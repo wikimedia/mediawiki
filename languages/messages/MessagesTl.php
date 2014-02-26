@@ -587,7 +587,7 @@ Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SIT
 'userlogin-joinproject' => 'Sumali sa {{SITENAME}}',
 'nologin' => 'Wala ka pang kuwenta? $1.',
 'nologinlink' => 'Lumikha ng kuwenta',
-'createaccount' => 'Lumikha ng kuwenta',
+'createaccount' => 'Lumikha ng akawnt',
 'gotaccount' => 'May kuwenta ka na ba? $1.',
 'gotaccountlink' => 'Lumagda',
 'userlogin-resetlink' => 'Nakalimutan mo ang iyong mga detalyeng panglagda?',

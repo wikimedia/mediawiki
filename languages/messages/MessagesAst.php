@@ -616,6 +616,9 @@ Por favor espera $1 enantes d'intentalo otra vuelta.",
 'suspicious-userlogout' => "La to solicitú de zarrar sesión refugose porque paez qu'unvióla un restolador frañíu o un proxy de caché.",
 'createacct-another-realname-tip' => "El nome real ye opcional.
 Si decide conseñalu, va usase p'atribuir el trabayu al usuariu.",
+'pt-login' => 'Entrar',
+'pt-createaccount' => 'Crear una cuenta',
+'pt-userlogout' => 'Salir',
 
 # Email sending
 'php-mail-error-unknown' => 'Fallu desconocíu na función mail() de PHP.',
@@ -624,8 +627,7 @@ Si decide conseñalu, va usase p'atribuir el trabayu al usuariu.",
 
 # Change password dialog
 'changepassword' => 'Camudar la clave',
-'resetpass_announce' => "Aniciasti sesión con un códigu provisional unviáu per corréu electrónicu.
-P'acabar d'aniciar sesión, tienes de configurar equí una contraseña nueva:",
+'resetpass_announce' => "P'acabar d'aniciar sesión, tien de definir equí una contraseña nueva.",
 'resetpass_text' => '<!-- Amestar testu equí -->',
 'resetpass_header' => 'Camudar la contraseña de la cuenta',
 'oldpassword' => 'Contraseña antigua:',
@@ -641,8 +643,13 @@ Por favor espera $1 enantes d'intentalo otra vuelta.",
 'resetpass-submit-cancel' => 'Encaboxar',
 'resetpass-wrong-oldpass' => 'Contraseña temporal o actual inválida.
 Seique yá camudaras correutamente la contraseña o que pidieras una nueva contraseña temporal.',
+'resetpass-recycled' => 'Por favor, cambie la so contraseña por otra distinta de la actual.',
+'resetpass-temp-emailed' => "Anició sesión con un códigu temporal unviáu per corréu electrónicu.
+Pa completar l'aniciu de sesión, tien de definir una nueva contraseña equí:",
 'resetpass-temp-password' => 'Contraseña temporal:',
 'resetpass-abort-generic' => "Una estensión encaboxó'l cambiu de la contraseña.",
+'resetpass-expired' => "La so contraseña caducó. Defina una nueva contraseña p'aniciar sesión.",
+'resetpass-expired-soft' => 'La so contraseña caducó y tien de reaniciala. Escueya una contraseña nueva o calque encaboxar pa reaniciala más sero.',
 
 # Special:PasswordReset
 'passwordreset' => 'Reaniciar contraseña',
@@ -2009,6 +2016,7 @@ Les entraes <del>tachaes</del> tan resueltes.',
 'deadendpagestext' => 'Les páxines siguientes nun enllacien a páxina dala de {{SITENAME}}.',
 'protectedpages' => 'Páxines protexíes',
 'protectedpages-indef' => 'Namái les proteiciones permanentes',
+'protectedpages-summary' => 'Esta páxina llista les páxines esistentes que tan protexíes actualmente. Pa ver la llista de títulos que tienen torgada la creación, vea [[{{#special:ProtectedTitles}}]].',
 'protectedpages-cascade' => 'Namái proteiciones en cascada',
 'protectedpages-noredirect' => 'Anubrir redireiciones',
 'protectedpagesempty' => 'Nun hai páxines protexíes anguaño con estos parámetros.',
@@ -2021,6 +2029,7 @@ Les entraes <del>tachaes</del> tan resueltes.',
 'protectedpages-unknown-timestamp' => 'Desconocida',
 'protectedpages-unknown-performer' => 'Usuariu desconocíu',
 'protectedtitles' => 'Títulos protexíos',
+'protectedtitles-summary' => 'Esta páxina llista los títulos que tienen torgada la creación. Pa ver una llista de les páxines esistentes protexíes, vea [[{{#special:ProtectedPages}}]].',
 'protectedtitlesempty' => 'Nun hai títulos protexíos anguaño con estos parámetros.',
 'listusers' => "Llista d'usuarios",
 'listusers-editsonly' => 'Amosar namái usuarios con ediciones',

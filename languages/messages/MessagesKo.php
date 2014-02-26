@@ -913,6 +913,9 @@ $1 기다렸다가 다시 시도하세요.',
 'suspicious-userlogout' => '브라우저에 이상이 있거나 캐싱 프록시에서 로그아웃을 요청했기 때문에 로그아웃이 거부되었습니다.',
 'createacct-another-realname-tip' => '실명은 선택 사항입니다.
 실명을 입력하면 문서 기여에 사용자의 이름이 들어가게 됩니다.',
+'pt-login' => '로그인',
+'pt-createaccount' => '계정 만들기',
+'pt-userlogout' => '로그아웃',
 
 # Email sending
 'php-mail-error-unknown' => 'PHP의 mail() 함수에서 알 수 없는 오류가 발생했습니다.',
@@ -921,8 +924,7 @@ $1 기다렸다가 다시 시도하세요.',
 
 # Change password dialog
 'changepassword' => '비밀번호 바꾸기',
-'resetpass_announce' => '이메일로 받은 임시 비밀번호로 로그인했습니다.
-로그인을 마치려면 새 비밀번호를 여기에서 설정해야 합니다:',
+'resetpass_announce' => '로그인을 마치려면 새 비밀번호를 여기에서 설정해야 합니다:',
 'resetpass_text' => '<!-- 여기에 텍스트를 추가하세요 -->',
 'resetpass_header' => '비밀번호 바꾸기',
 'oldpassword' => '이전 비밀번호:',
@@ -938,8 +940,13 @@ $1 뒤에 다시 시도하세요.',
 'resetpass-submit-cancel' => '취소',
 'resetpass-wrong-oldpass' => '비밀번호가 잘못되었거나 현재의 비밀번호와 같습니다.
 이미 비밀번호를 성공적으로 바꾸었거나 새 임시 비밀번호를 요청했을 수 있습니다.',
+'resetpass-recycled' => '현재 비밀번호와 다른 비밀번호로 재설정해주세요.',
+'resetpass-temp-emailed' => '임시 이메일 코드로 로그인되어 있습니다.
+로그인을 마치려면 여기서 새로운 비밀번호를 설정해야 합니다:',
 'resetpass-temp-password' => '임시 비밀번호:',
 'resetpass-abort-generic' => '비밀번호 바꾸기가 확장 기능에 의해 중단되었습니다.',
+'resetpass-expired' => '비밀번호가 만료되었습니다. 로그인하려면 새로운 비밀번호를 설정해야 합니다.',
+'resetpass-expired-soft' => '비밀번호가 만료되어 재설정해야 합니다. 지금 새로운 비밀번호를 선택하거나, 취소를 클릭하고 나중에 재설정해주세요.',
 
 # Special:PasswordReset
 'passwordreset' => '비밀번호 재설정',

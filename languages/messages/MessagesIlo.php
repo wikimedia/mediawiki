@@ -589,6 +589,9 @@ Pangngaasi nga agurayka ti $1 sakbay a padasem manen.',
 'suspicious-userlogout' => 'Naiparit ti panagkiddawmo a rummuar ngamin ket kasla inpatulod ti nadadael a panagbasabasa wenno pannakaidulin a pannakbagi.',
 'createacct-another-realname-tip' => 'Saan a nasken ti pudno a nagan.
 No kayatmo nga ited, mausarto daytoy para iti panangited ti pammadayaw para kadagiti obrada.',
+'pt-login' => 'Sumrek',
+'pt-createaccount' => 'Agaramid ti pakabilangan',
+'pt-userlogout' => 'Rummuar',
 
 # Email sending
 'php-mail-error-unknown' => 'Di ammo a biddut ti surat ti PHP() nga annong.',
@@ -597,8 +600,7 @@ No kayatmo nga ited, mausarto daytoy para iti panangited ti pammadayaw para kada
 
 # Change password dialog
 'changepassword' => 'Baliwan ti kontrasenias',
-'resetpass_announce' => 'Simrekka a nagus-usar ti temporario a kodigo ti esurat.
-Tapno malpaska a makastrek, nasken a mangikabilka ti baro a kontrasenias ditoy:',
+'resetpass_announce' => 'Tapno malpas ti panagserrek, nasken a mangiyasentarka ti baro a kontrasenias.',
 'resetpass_header' => 'Sukatan ti kontrasenias ti pakabilangan',
 'oldpassword' => 'Daan a kontrasenias:',
 'newpassword' => 'Baro a kontrasenias:',
@@ -613,8 +615,13 @@ Pangngaasi nga aguray ti $1 sakbay a padasen manen.',
 'resetpass-submit-cancel' => 'Ukasen',
 'resetpass-wrong-oldpass' => 'Imbalido ti temporario wenno agdama a kontrasenias.
 Mabalin a nagballigi ti panagsukatmo ti kontrasenias wenno nagkiddaw ti baro a temporario a kontrasenias.',
+'resetpass-recycled' => 'Pangngaasi nga iyasentar manen ti kontrasenias iti sabali ngem ti agdama a kontraseniasmo.',
+'resetpass-temp-emailed' => 'Simrekka a nagusar ti temporario a naipatulod a kodigo.
+Tapno malpas ti panagserrek, nasken a mangiyasentarka ti baro a kontrasenias ditoy:',
 'resetpass-temp-password' => 'Temporario a kontrasenias:',
 'resetpass-abort-generic' => 'Ti panagsukat ti kontrasenias ket pinasardeng babaen ti maysa a pagpaatiddog.',
+'resetpass-expired' => 'Nagpason ti kontraseniasmo. Pangngaasi a mangiyasentar ti baro a kontrasenias tapno makastrek.',
+'resetpass-expired-soft' => 'Nagpason ti kontraseniasmo, ken nasken a maiyasentar manen. Pangngaasi nga agpili tattan ti baro a kontrasenias, wenno pinduten ti ukasen tapno iyasentar no madamdama.',
 
 # Special:PasswordReset
 'passwordreset' => 'Iyasentar manen ti kontrasenias',
@@ -1985,6 +1992,7 @@ Tattan ket naibaw-ing idiay [[$2]].',
 'deadendpagestext' => 'Dagitoy a pampanid ket saan a nakasilpo ti sabali a pampanid ditoy {{SITENAME}} .',
 'protectedpages' => 'Dagiti nasalakniban a panid',
 'protectedpages-indef' => 'Inggat ingana a salakniban laeng',
+'protectedpages-summary' => 'Daytoy a panid ket ilistana dagiti adda a panid nga agdama a nasalakniban. Para iti listaan dagiti titulo a nasalakniban manipud ti pannakapartuat, kitaen ti [[{{#special:ProtectedTitles}}]].',
 'protectedpages-cascade' => 'Dagiti sariap a salaknib laeng',
 'protectedpages-noredirect' => 'Ilemmeng dagiti baw-ing',
 'protectedpagesempty' => 'Awan ti pampanid nga agdama a nasalakniban babaen kadagitoy a parametro.',
@@ -1997,6 +2005,7 @@ Tattan ket naibaw-ing idiay [[$2]].',
 'protectedpages-unknown-timestamp' => 'Di ammo',
 'protectedpages-unknown-performer' => 'Di ammo nga agar-aramat',
 'protectedtitles' => 'Dagiti nasalakniban a titulo',
+'protectedtitles-summary' => 'Daytoy a panid ket ilistana dagiti titulo nga agdama a nasalakniban manipud ti pannakapartuat. Para iti listaan dagiti adda a panid a nasalakniban, kitaen ti [[{{#special:ProtectedPages}}]].',
 'protectedtitlesempty' => 'Awan dagiti titulo nga agdama a nasalakniban iti dagitoy a parametro.',
 'listusers' => 'Listaan dagiti agar-aramat',
 'listusers-editsonly' => 'Ipakita laeng dagiti agar-aramat nga adda inurnosda',

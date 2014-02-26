@@ -1437,6 +1437,7 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 # Auto-summaries
 'autosumm-blank' => 'Masaxay bogga',
 'autosumm-replace' => 'Wuxuu qoraalka ku badalay "$1"',
+'autoredircomment' => 'Bog loo bedeley [[$1]]',
 'autosumm-new' => 'Bog cusub: $1',
 
 # Watchlist editor

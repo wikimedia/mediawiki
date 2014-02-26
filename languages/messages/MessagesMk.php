@@ -4196,7 +4196,7 @@ $5
 'version' => 'Верзија',
 'version-extensions' => 'Воспоставени додатоци',
 'version-specialpages' => 'Специјални страници',
-'version-parserhooks' => 'Парсерски куки',
+'version-parserhooks' => 'Расчленувачки куки',
 'version-variables' => 'Променливи',
 'version-antispam' => 'Спречување на спам',
 'version-skins' => 'Рува',
@@ -4204,8 +4204,8 @@ $5
 'version-other' => 'Друго',
 'version-mediahandlers' => 'Ракувачи со мултимедијални содржини',
 'version-hooks' => 'Куки',
-'version-parser-extensiontags' => 'Ознаки за парсерски додатоци',
-'version-parser-function-hooks' => 'Куки на парсерските функции',
+'version-parser-extensiontags' => 'Ознаки за расчленувачки додатоци',
+'version-parser-function-hooks' => 'Куки на расчленувачки функции',
 'version-hook-name' => 'Име на кука',
 'version-hook-subscribedby' => 'Претплатено од',
 'version-version' => '(Верзија $1)',
@@ -4465,7 +4465,7 @@ $5
 'rotate-comment' => 'Сликата е завртена за $1 {{PLURAL:$1|степен|степени}} вдесно',
 
 # Limit report
-'limitreport-title' => 'Профилни парсерски податоци:',
+'limitreport-title' => 'Профилни расчленувачки податоци:',
 'limitreport-cputime' => 'Употреба на обработувачко време',
 'limitreport-cputime-value' => '{{PLURAL:$1|една секунда|$1 секунди}}',
 'limitreport-walltime' => 'Употреба на вистинско време',
@@ -4477,12 +4477,12 @@ $5
 'limitreport-templateargumentsize' => 'Големина на аргументот во шаблонот',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|бајт|бајти}}',
 'limitreport-expansiondepth' => 'Најголема длабочина на проширувањето',
-'limitreport-expensivefunctioncount' => 'Бр. на сложени парсерски функции',
+'limitreport-expensivefunctioncount' => 'Бр. на сложени расчленувачки функции',
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Прошири шаблони',
 'expand_templates_intro' => 'Оваа специјална страница зема еден текст и рекурзивно ги проширува сите шаблони во него.
-Исто така проширува и парсерски функции како
+Исто така проширува и расчленувачки функции како
 <code><nowiki>{{</nowiki>#language:…}}</code> и променливи како
 <code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
 Всушност, го проширува сето она што стои во двојни аглести загради.',

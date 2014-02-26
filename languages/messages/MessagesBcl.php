@@ -640,6 +640,9 @@ Pakilaog sana tabi nin sarong tugmadong koreo o pabayae na mayong laman an surat
 'suspicious-userlogout' => 'An hinahagad mong magluwas pinagpundo nin huli ta ini gayod pinagpadara sa paagi nin sarong pasang kilyaw o proksing hilom.',
 'createacct-another-realname-tip' => 'An totoong pangaran opsyonal.
 Kun gustuhon mong itao ini, ini paggagamiton sa pagtatao nin pagkakabistohan kan paragamit para sa saindang mga kaggibohan.',
+'pt-login' => 'Maglaog',
+'pt-createaccount' => 'Magmukna nin panindog',
+'pt-userlogout' => 'Magluwas',
 
 # Email sending
 'php-mail-error-unknown' => 'Bakong bantog na kasalaan sa PHP mail() function.',
@@ -648,8 +651,7 @@ Kun gustuhon mong itao ini, ini paggagamiton sa pagtatao nin pagkakabistohan kan
 
 # Change password dialog
 'changepassword' => 'Ribayan an sekretong panlaog',
-'resetpass_announce' => 'Ika nakalaog na na igwang sarong temporaryong koda sa e-koreo.
-Tanganing tapuson an paglalaog, ika kaipong magkaag nin sarong baguhon na sekretong panlaog digdi:',
+'resetpass_announce' => 'Sa pagtapos kan paglalaog mo, ika kaipuhanan na magkaag nin sarong baguhong pasa-taramon.',
 'resetpass_text' => '<!-- Magdagdag nin teksto digdi -->',
 'resetpass_header' => 'Ribayan an panindog na sekretong panlaog',
 'oldpassword' => 'Dating sekretong panlaog:',
@@ -663,8 +665,12 @@ Tanganing tapuson an paglalaog, ika kaipong magkaag nin sarong baguhon na sekret
 'resetpass-submit-cancel' => 'I-kansela',
 'resetpass-wrong-oldpass' => 'Saláng temporaryo o presenteng sekretong panlaog.
 Matriumpo mo nang nailaog an sekretong panlaog o nakua an bàgong temporaryong sekretong panlaog.',
+'resetpass-recycled' => 'Tabi man pakibaguha an saimong pasa-taramon na magin sarong bagay na ibahon kesa sa ngunyan mong pasa-taramon.',
+'resetpass-temp-emailed' => 'Ika nakapaglaog na igwa nin sarong temporaryong koda na pinag-esurat saimo. Sa pagtapos kan paglalaog mo, ika kaipuhan na magkaag nin sarong baguhong pasa-taramon digde:',
 'resetpass-temp-password' => 'Temporaryong sekretong panlaog:',
 'resetpass-abort-generic' => 'Pagliwat kan sikretong panlaog ipinagpauntok kan sarong ekstensyon.',
+'resetpass-expired' => 'An saimong pasa-taramon nagpalso na. Tabi man pakikaag nin sarong baguhong pasa-taramon tanganing makalaog ka.',
+'resetpass-expired-soft' => 'An saimong pasa-taramon nagpalso na, asin kinakaipuhan na baguhan. Tabi man pakipili nin sarong baguhong pasa-taramon ngunyan, o i-klik an kanselaron sa pagbago kaini aro-atyan.',
 
 # Special:PasswordReset
 'passwordreset' => 'Pakibago kan sekretong panlaog',

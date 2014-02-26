@@ -1262,7 +1262,7 @@ Pages on [[Special:Watchlist|your watchleet]] are '''bold'''.",
 'uploadnologintext' => 'Please $1 tae uplaid files.',
 'uploaderror' => 'Uplaid error',
 'uploadtext' => 'Uise the form ablow tae uplaid files.
-Tae view or rake previously uplaided files gae til the [[Special:FileList|leet o uplaided files]], (re)uplaids ar loggit in the [[Special:Log/uplaid|uplaid log]] ava, deletions in the [[Special:Log/delete|deletion log]].
+Tae view or rake previously uplaided files gae til the [[Special:FileList|leet o uplaided files]], (re)uplaids ar loggit in the [[Special:Log/upload|upload log]] ava, deletions in the [[Special:Log/delete|deletion log]].
 
 Tae inclæde ae file in ae page, uise ae link in yin o the follaein forms:
 * <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code></strong> tae uise the ful version o the file

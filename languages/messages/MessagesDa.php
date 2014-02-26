@@ -731,6 +731,9 @@ Vent venligst $1, før du prøver igen.',
 'suspicious-userlogout' => 'Din anmodning om at logge af blev nægtet, fordi det ser ud som den blev sendt af en ødelagt browser eller caching proxy.',
 'createacct-another-realname-tip' => 'Angivelse af rigtigt navn er valgfrit.
 Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit arbejde.',
+'pt-login' => 'Log ind',
+'pt-createaccount' => 'Opret konto',
+'pt-userlogout' => 'Log ud',
 
 # Email sending
 'php-mail-error-unknown' => 'Ukendt fejl i PHP funktionen mail()',
@@ -755,8 +758,13 @@ Vent venligst $1, før du prøver igen.',
 'resetpass-submit-cancel' => 'Annuller',
 'resetpass-wrong-oldpass' => 'Ugyldig midlertidig eller gældende adgangskode.
 Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlertidig kode.',
+'resetpass-recycled' => 'Vær venlig at ændre dit kodeord til et andet end dit nuværende kodeord.',
+'resetpass-temp-emailed' => 'Du loggede på med en midlertidig kode tilsendt på e-mail.
+For at afslutte indlogning, skal du oprette et nyt kodeord:',
 'resetpass-temp-password' => 'Midlertidig adgangskode',
 'resetpass-abort-generic' => 'Ændring af adgangskode er blevet afbrudt af en udvidelse',
+'resetpass-expired' => 'Dit kodeord er udløbet. Vær venlig at ændre det til et nyt.',
+'resetpass-expired-soft' => 'Dit kodeord er udløbet og skal ændres. Vær venlig at ændre det nu, eller tryk annuller for at ændre det senere.',
 
 # Special:PasswordReset
 'passwordreset' => 'Nulstil adgangskode',
@@ -1020,6 +1028,8 @@ Den ser du til at være slettet.',
 'content-not-allowed-here' => '"$1" indhold er ikke tilladt på siden [[$2]]',
 'editwarning-warning' => 'Hvis du forlader siden nu, risikerer du at miste alle ændringer, som du har lavet.
 Denne advarsel kan slås fra under "{{int:prefs-editing}}" i dine indstillinger.',
+'editpage-notsupportedcontentformat-title' => 'Indholdsformatet understøttes ikke',
+'editpage-notsupportedcontentformat-text' => 'Indholdsformatet $1 understøttes ikke af indholdsmodellen $2',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',
@@ -1052,6 +1062,7 @@ Der bør være færre end {{PLURAL:$2|$2 kald}}, lige nu er der {{PLURAL:$1|$1 k
 Kontroller venligst sammenligningen herunder for at bekræfte at det er hvad du ønsker at gøre, og gem så ændringerne for at fuldføre fjernelsen.',
 'undo-failure' => 'Redigeringen kunne ikke fjernes på grund af konflikter med efterfølgende redigeringer.',
 'undo-norev' => 'Redigeringen kunne ikke fjernes fordi den ikke findes eller er blevet slettet.',
+'undo-nochange' => 'Ændringen ser ud til allerede at være blevet fjernet.',
 'undo-summary' => 'Fjerner version $1 af [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])',
 'undo-summary-username-hidden' => 'Fortryde revision $1 af en skjult bruger',
 
@@ -1231,6 +1242,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'showhideselectedversions' => 'Vis/skjul udvalgte versioner',
 'editundo' => 'fjern redigering',
 'diff-empty' => '(Ingen forskel)',
+'diff-multi-sameuser' => '({{PLURAL:$1|En mellem liggende version|$1 mellemliggende versioner}} af den samme bruger, vises ikke',
 'diff-multi-manyusers' => '({{PLURAL:$1|En mellemliggende version|$1 mellemliggende versioner}} af mere end $2 {{PLURAL:$2|bruger|brugere}} ikke vist)',
 'difference-missing-revision' => '{{PLURAL:$2|En revision|$2 revisioner}} af denne forskel ($1) {{PLURAL:$2|blev|blev}} ikke fundet.
 

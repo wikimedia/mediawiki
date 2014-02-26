@@ -838,6 +838,9 @@ Palun oota $1, enne kui uuesti proovid.',
 'suspicious-userlogout' => 'Sinu väljalogimiskatse nurjus, sest see näis olevat katkise veebilehitseja või puhverserveri saadetud.',
 'createacct-another-realname-tip' => 'Tegelik nimi on valikuline.
 Kui otsustad selle sisestada, kasutatakse seda kasutaja töö temale omistamiseks.',
+'pt-login' => 'Logi sisse',
+'pt-createaccount' => 'Loo konto',
+'pt-userlogout' => 'Logi välja',
 
 # Email sending
 'php-mail-error-unknown' => 'Tundmatu tõrge PHP funktsioonis mail().',
@@ -846,8 +849,7 @@ Kui otsustad selle sisestada, kasutatakse seda kasutaja töö temale omistamisek
 
 # Change password dialog
 'changepassword' => 'Muuda parool',
-'resetpass_announce' => 'Logisid sisse e-posti teel saadud ajutise koodiga.
-Sisselogimise lõpetamiseks pead siia uue parooli sisestama:',
+'resetpass_announce' => 'Pead määrama uue parooli, et sisselogimine lõpule viia.',
 'resetpass_text' => '<!-- Lisa tekst siia -->',
 'resetpass_header' => 'Konto parooli muutmine',
 'oldpassword' => 'Vana parool:',
@@ -864,8 +866,13 @@ Palun oota $1, enne kui uuesti proovid.',
 'resetpass-submit-cancel' => 'Loobu',
 'resetpass-wrong-oldpass' => 'Vigane ajutine või praegune salasõna.
 Võib-olla oled juba edukalt muudnud oma salasõna või taotlenud uut ajutist salasõna.',
+'resetpass-recycled' => 'Palun vali uus salasõna, mis erineb praegusest.',
+'resetpass-temp-emailed' => 'Logisid sisse e-posti teel saadud ajutise koodiga.
+Et sisselogimine lõpule viia, pead määrama siin uue parooli:',
 'resetpass-temp-password' => 'Ajutine parool:',
 'resetpass-abort-generic' => 'Tarkvaralisa on paroolimuudatuse abortinud.',
+'resetpass-expired' => 'Sinu parool on iganenud. Palun määra uus parool, et sisse logida.',
+'resetpass-expired-soft' => 'Sinu parool on iganenud ja tuleb uuesti määrata. Palun vali kohe uus parool või klõpsa "Loobu", et määrata see hiljem.',
 
 # Special:PasswordReset
 'passwordreset' => 'Parooli lähtestamine',
@@ -2188,6 +2195,7 @@ Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise �
 'deadendpagestext' => 'Järgmised leheküljed ei viita ühelegi teisele {{GRAMMAR:genitive|{{SITENAME}}}} leheküljele.',
 'protectedpages' => 'Kaitstud leheküljed',
 'protectedpages-indef' => 'Ainult määramata ajani kaitstud',
+'protectedpages-summary' => 'Siin on loetletud olemasolevad leheküljed, mis on praegu kaitstud. Loomise eest kaitstud pealkirjade loendi leiad leheküljelt [[{{#special:ProtectedTitles}}]].',
 'protectedpages-cascade' => 'Ainult kaskaadkaitsega',
 'protectedpages-noredirect' => 'Peida ümbersuunamised',
 'protectedpagesempty' => 'Selliste parameetritega ei ole praegu ühtegi lehekülge kaitstud.',
@@ -2200,6 +2208,7 @@ Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise �
 'protectedpages-unknown-timestamp' => 'Teadmata',
 'protectedpages-unknown-performer' => 'Teadmata kasutaja',
 'protectedtitles' => 'Kaitstud pealkirjad',
+'protectedtitles-summary' => 'Siin on loetletud pealkirjad, mis on praegu loomise eest kaitstud. Olemasolevate kaitstud lehekülgede loendi leiad leheküljelt [[{{#special:ProtectedPages}}]].',
 'protectedtitlesempty' => 'Hetkel pole ükski pealkiri kaitstud.',
 'listusers' => 'Kasutajad',
 'listusers-editsonly' => 'Näita vaid kasutajaid, kes on teinud muudatusi',
