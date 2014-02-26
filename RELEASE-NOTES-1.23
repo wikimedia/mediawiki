@@ -109,6 +109,8 @@ production.
   $wgPasswordExpirationDays configuration setting.
 * Add new hook SendWatchlistEmailNotification, this will be used to determine
   whether to send a watchlist email notification.
+* (bug 42026) Special:Contributions now includes an option to filter page
+  creations, similar to the topOnly option.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
@@ -193,6 +195,9 @@ production.
 * Added llprop=langname and llprop=autonym for action=query&prop=langlinks.
 * prop=redirects is added, to return redirects to the pages in the query.
 * list=allredirects is added, to list all redirects pointing to a namespace.
+* (bug 42026) Added ucshow={new,!new,top,!top} to list=usercontribs.
+  Also added newonly to action=feedcontributions.
+* (bug 42026) Deprecated uctoponly in favor of ucshow=top.
 
 === Languages updated in 1.23 ===
 

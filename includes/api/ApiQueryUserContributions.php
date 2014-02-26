@@ -207,10 +207,16 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addWhereFld( 'page_namespace', $this->params['namespace'] );
 
 		$show = $this->params['show'];
+		if ( $this->params['toponly'] ) { // deprecated/old param
+			$show[] = 'top';
+		}
 		if ( !is_null( $show ) ) {
 			$show = array_flip( $show );
+
 			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
 				|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
+				|| ( isset( $show['top'] ) && isset( $show['!top'] ) )
+				|| ( isset( $show['new'] ) && isset( $show['!new'] ) )
 			) {
 				$this->dieUsageMsg( 'show' );
 			}
@@ -219,6 +225,10 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->addWhereIf( 'rev_minor_edit != 0', isset( $show['minor'] ) );
 			$this->addWhereIf( 'rc_patrolled = 0', isset( $show['!patrolled'] ) );
 			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
+			$this->addWhereIf( 'rev_id != page_latest', isset( $show['!top'] ) );
+			$this->addWhereIf( 'rev_id = page_latest', isset( $show['top'] ) );
+			$this->addWhereIf( 'rev_parent_id != 0', isset( $show['!new'] ) );
+			$this->addWhereIf( 'rev_parent_id = 0', isset( $show['new'] ) );
 		}
 		$this->addOption( 'LIMIT', $this->params['limit'] + 1 );
 		$index = array( 'revision' => 'usertext_timestamp' );
@@ -292,10 +302,6 @@ class ApiQueryContributions extends ApiQueryBase {
 				array( 'change_tag' => array( 'INNER JOIN', array( 'rev_id=ct_rev_id' ) ) )
 			);
 			$this->addWhereFld( 'ct_tag', $this->params['tag'] );
-		}
-
-		if ( $this->params['toponly'] ) {
-			$this->addWhere( 'rev_id = page_latest' );
 		}
 
 		$this->addOption( 'USE INDEX', $index );
@@ -477,10 +483,17 @@ class ApiQueryContributions extends ApiQueryBase {
 					'!minor',
 					'patrolled',
 					'!patrolled',
+					'top',
+					'!top',
+					'new',
+					'!new',
 				)
 			),
 			'tag' => null,
-			'toponly' => false,
+			'toponly' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
 		);
 	}
 

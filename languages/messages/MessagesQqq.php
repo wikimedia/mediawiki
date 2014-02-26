@@ -6266,6 +6266,7 @@ Anon version:
 'sp-contributions-username' => 'This message appears whenever someone requests [[Special:Contributions]].
 {{Identical|IP address or username}}',
 'sp-contributions-toponly' => '"top revision" means the "latest revision"',
+'sp-contributions-newonly' => '"page creation" means the "first revision" of a page',
 'sp-contributions-submit' => '{{Identical|Search}}',
 'sp-contributions-explain' => '{{optional}}',
 
