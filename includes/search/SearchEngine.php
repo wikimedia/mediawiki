@@ -975,6 +975,13 @@ class SearchResult {
 	}
 
 	/**
+	 * @return string interwiki namespace of the title (since we likely can't resolve it locally)
+	 */
+	function getInterwikiNamespaceText() {
+		return '';
+	}
+
+	/**
 	 * Did this match file contents (eg: PDF/DJVU)?
 	 */
 	function isFileMatch() {
