@@ -69,11 +69,12 @@ class SpecialPage {
 	 * @param string $name
 	 * @param string|bool $subpage Subpage string, or false to not use a subpage
 	 * @param string $fragment The link fragment (after the "#")
+	 * @param bool $shortest Whether to return the shortest name for the page instead of the first
 	 * @return Title
 	 * @throws MWException
 	 */
-	public static function getTitleFor( $name, $subpage = false, $fragment = '' ) {
-		$name = SpecialPageFactory::getLocalNameFor( $name, $subpage );
+	public static function getTitleFor( $name, $subpage = false, $fragment = '', $shortest = false ) {
+		$name = SpecialPageFactory::getLocalNameFor( $name, $subpage, $shortest );
 		return Title::makeTitle( NS_SPECIAL, $name, $fragment );
 	}
 
