@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (ddcf828854)
+ * OOjs UI v0.1.0-pre (064484f9af)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri Feb 21 2014 19:44:50 GMT-0800 (PST)
+ * Date: Wed Feb 26 2014 12:12:11 GMT-0800 (PST)
  */
 ( function () {
 
@@ -4497,15 +4497,10 @@ OO.ui.PopupToolGroup.prototype.onBlur = function ( e ) {
  * @inheritdoc
  */
 OO.ui.PopupToolGroup.prototype.onMouseUp = function ( e ) {
-	this.setActive( false );
+	if ( !this.disabled && e.which === 1 ) {
+		this.setActive( false );
+	}
 	return OO.ui.ToolGroup.prototype.onMouseUp.call( this, e );
-};
-
-/**
- * @inheritdoc
- */
-OO.ui.PopupToolGroup.prototype.onMouseDown = function ( e ) {
-	return OO.ui.ToolGroup.prototype.onMouseDown.call( this, e );
 };
 
 /**
