@@ -31,23 +31,42 @@
  * @ingroup DifferenceEngine
  */
 abstract class DiffOp {
+
 	public $type;
 	public $orig;
 	public $closing;
+
+	public function getType() {
+		return $this->type;
+	}
+
+	public function getOrig() {
+		return $this->orig;
+	}
+
+	public function getClosing( $i = null ) {
+		if( $i === null ) {
+			return $this->closing;
+		}
+		if( array_key_exists( $i, $this->closing ) ) {
+			return $this->closing[$i];
+		}
+		return null;
+	}
 
 	abstract public function reverse();
 
 	/**
 	 * @return int
 	 */
-	function norig() {
+	public function norig() {
 		return $this->orig ? count( $this->orig ) : 0;
 	}
 
 	/**
 	 * @return int
 	 */
-	function nclosing() {
+	public function nclosing() {
 		return $this->closing ? count( $this->closing ) : 0;
 	}
 }
@@ -60,7 +79,7 @@ abstract class DiffOp {
 class DiffOpCopy extends DiffOp {
 	public $type = 'copy';
 
-	function __construct( $orig, $closing = false ) {
+	public function __construct( $orig, $closing = false ) {
 		if ( !is_array( $closing ) ) {
 			$closing = $orig;
 		}
@@ -71,7 +90,7 @@ class DiffOpCopy extends DiffOp {
 	/**
 	 * @return DiffOpCopy
 	 */
-	function reverse() {
+	public function reverse() {
 		return new DiffOpCopy( $this->closing, $this->orig );
 	}
 }
@@ -84,7 +103,7 @@ class DiffOpCopy extends DiffOp {
 class DiffOpDelete extends DiffOp {
 	public $type = 'delete';
 
-	function __construct( $lines ) {
+	public function __construct( $lines ) {
 		$this->orig = $lines;
 		$this->closing = false;
 	}
@@ -92,7 +111,7 @@ class DiffOpDelete extends DiffOp {
 	/**
 	 * @return DiffOpAdd
 	 */
-	function reverse() {
+	public function reverse() {
 		return new DiffOpAdd( $this->orig );
 	}
 }
@@ -105,7 +124,7 @@ class DiffOpDelete extends DiffOp {
 class DiffOpAdd extends DiffOp {
 	public $type = 'add';
 
-	function __construct( $lines ) {
+	public function __construct( $lines ) {
 		$this->closing = $lines;
 		$this->orig = false;
 	}
@@ -113,7 +132,7 @@ class DiffOpAdd extends DiffOp {
 	/**
 	 * @return DiffOpDelete
 	 */
-	function reverse() {
+	public function reverse() {
 		return new DiffOpDelete( $this->closing );
 	}
 }
@@ -126,7 +145,7 @@ class DiffOpAdd extends DiffOp {
 class DiffOpChange extends DiffOp {
 	public $type = 'change';
 
-	function __construct( $orig, $closing ) {
+	public function __construct( $orig, $closing ) {
 		$this->orig = $orig;
 		$this->closing = $closing;
 	}
@@ -134,7 +153,7 @@ class DiffOpChange extends DiffOp {
 	/**
 	 * @return DiffOpChange
 	 */
-	function reverse() {
+	public function reverse() {
 		return new DiffOpChange( $this->closing, $this->orig );
 	}
 }
@@ -180,7 +199,7 @@ class DiffEngine {
 	 * @param $to_lines
 	 * @return array
 	 */
-	function diff( $from_lines, $to_lines ) {
+	public function diff( $from_lines, $to_lines ) {
 		wfProfileIn( __METHOD__ );
 
 		// Diff and store locally
@@ -659,6 +678,10 @@ class DiffEngine {
  * @ingroup DifferenceEngine
  */
 class Diff {
+
+	/**
+	 * @var DiffOp[]
+	 */
 	public $edits;
 
 	/**
@@ -669,9 +692,16 @@ class Diff {
 	 *   Typically these are lines from a file.
 	 * @param $to_lines array An array of strings.
 	 */
-	function __construct( $from_lines, $to_lines ) {
+	public function __construct( $from_lines, $to_lines ) {
 		$eng = new DiffEngine;
 		$this->edits = $eng->diff( $from_lines, $to_lines );
+	}
+
+	/**
+	 * @return array|DiffOp[]
+	 */
+	public function getEdits() {
+		return $this->edits;
 	}
 
 	/**
@@ -684,7 +714,7 @@ class Diff {
 	 * @return Object A Diff object representing the inverse of the
 	 *   original diff.
 	 */
-	function reverse() {
+	public function reverse() {
 		$rev = $this;
 		$rev->edits = array();
 		/** @var DiffOp $edit */
@@ -700,7 +730,7 @@ class Diff {
 	 *
 	 * @return bool True if two sequences were identical.
 	 */
-	function isEmpty() {
+	public function isEmpty() {
 		foreach ( $this->edits as $edit ) {
 			if ( $edit->type != 'copy' ) {
 				return false;
@@ -717,7 +747,7 @@ class Diff {
 	 *
 	 * @return int The length of the LCS.
 	 */
-	function lcs() {
+	public function lcs() {
 		$lcs = 0;
 		foreach ( $this->edits as $edit ) {
 			if ( $edit->type == 'copy' ) {
@@ -736,7 +766,7 @@ class Diff {
 	 *
 	 * @return array The original sequence of strings.
 	 */
-	function orig() {
+	public function orig() {
 		$lines = array();
 
 		foreach ( $this->edits as $edit ) {
@@ -756,7 +786,7 @@ class Diff {
 	 *
 	 * @return array The sequence of strings.
 	 */
-	function closing() {
+	public function closing() {
 		$lines = array();
 
 		foreach ( $this->edits as $edit ) {
@@ -798,7 +828,7 @@ class MappedDiff extends Diff {
 	 * @param $mapped_to_lines array This array should
 	 *   have the same number of elements as $to_lines.
 	 */
-	function __construct( $from_lines, $to_lines,
+	public function __construct( $from_lines, $to_lines,
 		$mapped_from_lines, $mapped_to_lines ) {
 		wfProfileIn( __METHOD__ );
 
@@ -922,7 +952,7 @@ class WordLevelDiff extends MappedDiff {
 	 * @param $orig_lines
 	 * @param $closing_lines
 	 */
-	function __construct( $orig_lines, $closing_lines ) {
+	public function __construct( $orig_lines, $closing_lines ) {
 		wfProfileIn( __METHOD__ );
 
 		list( $orig_words, $orig_stripped ) = $this->split( $orig_lines );
