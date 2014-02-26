@@ -29,7 +29,6 @@ global $wgAutoloadLocalClasses;
 
 $wgAutoloadLocalClasses = array(
 	# Includes
-	'Action' => 'includes/Action.php',
 	'AjaxDispatcher' => 'includes/AjaxDispatcher.php',
 	'AjaxResponse' => 'includes/AjaxResponse.php',
 	'AlphabeticPager' => 'includes/Pager.php',
@@ -80,8 +79,6 @@ $wgAutoloadLocalClasses = array(
 	'FeedUtils' => 'includes/FeedUtils.php',
 	'FileDeleteForm' => 'includes/FileDeleteForm.php',
 	'ForkController' => 'includes/ForkController.php',
-	'FormlessAction' => 'includes/Action.php',
-	'FormAction' => 'includes/Action.php',
 	'FormOptions' => 'includes/FormOptions.php',
 	'FormSpecialPage' => 'includes/specialpage/FormSpecialPage.php',
 	'GitInfo' => 'includes/GitInfo.php',
@@ -237,10 +234,13 @@ $wgAutoloadLocalClasses = array(
 	'XmlSelect' => 'includes/Xml.php',
 
 	# includes/actions
+	'Action' => 'includes/actions/Action.php',
 	'CachedAction' => 'includes/actions/CachedAction.php',
 	'CreditsAction' => 'includes/actions/CreditsAction.php',
 	'DeleteAction' => 'includes/actions/DeleteAction.php',
 	'EditAction' => 'includes/actions/EditAction.php',
+	'FormlessAction' => 'includes/actions/FormlessAction.php',
+	'FormAction' => 'includes/actions/FormAction.php',
 	'HistoryAction' => 'includes/actions/HistoryAction.php',
 	'HistoryPage' => 'includes/actions/HistoryAction.php',
 	'HistoryPager' => 'includes/actions/HistoryAction.php',
