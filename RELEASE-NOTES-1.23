@@ -107,6 +107,8 @@ production.
   parameter, which overrides the 'options' parameter.
 * Admins can expire users users passwords manually, or on a schedule using the
   $wgPasswordExpirationDays configuration setting.
+* Add new hook SendWatchlistEmailNotification, this will be used to determine
+  whether to send a watchlist email notification.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
