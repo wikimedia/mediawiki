@@ -744,7 +744,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$prefix = ( $dir == '' ) ? null : "{$dir}/";
 		$status = $this->objectListing( $fullCont, 'names', 1, null, $prefix );
 		if ( $status->isOk() ) {
-			return ( count( $status->value ) );
+			return ( count( $status->value ) ) > 0;
 		}
 
 		return null; // error
@@ -1470,7 +1470,7 @@ class SwiftFileBackend extends FileBackendStore {
 			}
 
 			// (a) Check the container
-			$cstat = $this->getContainerStat( $srcCont, true );
+			$cstat = $this->getContainerStat( $srcCont );
 			if ( $cstat === false ) {
 				$stats[$path] = false;
 				continue; // ok, nothing to do
