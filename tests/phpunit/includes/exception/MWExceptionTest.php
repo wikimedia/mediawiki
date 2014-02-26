@@ -16,6 +16,108 @@ class MWExceptionTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provideTextUseOutputPage
+	 * @covers MWException::useOutputPage
+	 */
+	public function testUseOutputPage( $expected, $wgLang, $wgFullyInitialised, $wgOut ) {
+		$this->setMwGlobals( array(
+			'wgLang' => $wgLang,
+			'wgFullyInitialised' => $wgFullyInitialised,
+			'wgOut' => $wgOut,
+		) );
+
+		$e = new MWException();
+		$this->assertEquals( $expected, $e->useOutputPage() );
+	}
+
+	public function provideTextUseOutputPage() {
+		return array(
+			// expected, wgLang, wgFullyInitialised, wgOut
+			array( false, null, null, null ),
+			array( false, $this->getMockLanguage(), null, null ),
+			array( false, $this->getMockLanguage(), true, null ),
+			array( false, null, true, null ),
+			array( false, null, null, true ),
+			array( true, $this->getMockLanguage(), true, true ),
+		);
+	}
+
+	private function getMockLanguage() {
+		return $this->getMockBuilder( 'Language' )
+			->disableOriginalConstructor()
+			->getMock();
+	}
+
+	/**
+	 * @dataProvider provideUseMessageCache
+	 * @covers MWException::useMessageCache
+	 */
+	public function testUseMessageCache( $expected, $wgLang ) {
+		$this->setMwGlobals( array(
+			'wgLang' => $wgLang,
+		) );
+		$e = new MWException();
+		$this->assertEquals( $expected, $e->useMessageCache() );
+	}
+
+	public function provideUseMessageCache() {
+		return array(
+			array( false, null ),
+			array( true, $this->getMockLanguage() ),
+		);
+	}
+
+	/**
+	 * @covers MWException::isLoggable
+	 */
+	public function testIsLogable() {
+		$e = new MWException();
+		$this->assertTrue( $e->isLoggable() );
+	}
+
+	/**
+	 * @dataProvider provideRunHooks
+	 * @covers MWException::runHooks
+	 */
+	public function testRunHooks( $wgExceptionHooks, $name, $args, $expectedReturn ) {
+		$this->setMwGlobals( array(
+			'wgExceptionHooks' => $wgExceptionHooks,
+		) );
+		$e = new MWException();
+		$this->assertEquals( $expectedReturn, $e->runHooks( $name, $args ) );
+	}
+
+	/**
+	 * @todo test that hooks are actually called correctly
+	 */
+	public function provideRunHooks() {
+		return array(
+			array( null, null, null, null ),
+			array( array(), 'name', array(), null ),
+			array( array( 'name' => false ), 'name', array(), null ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideIsCommandLine
+	 * @covers MWException::isCommandLine
+	 */
+	public function testisCommandLine( $expected, $wgCommandLineMode ) {
+		$this->setMwGlobals( array(
+			'wgCommandLineMode' => $wgCommandLineMode,
+		) );
+		$e = new MWException();
+		$this->assertEquals( $expected, $e->isCommandLine() );
+	}
+
+	public function provideIsCommandLine() {
+		return array(
+			array( false, null ),
+			array( true, true ),
+		);
+	}
+
+	/**
 	 * Verify the exception classes are JSON serializabe.
 	 *
 	 * @covers MWExceptionHandler::jsonSerializeException
