@@ -6,6 +6,7 @@
  * @todo tests for the rest of DifferenceEngine!
  *
  * @group Database
+ * @group Diff
  *
  * @licence GNU GPL v2+
  * @author Katie Filbert < aude.wiki@gmail.com >
