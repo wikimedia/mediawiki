@@ -19,12 +19,17 @@
 	 * @return {string} return.done.watch.message Parsed HTML of the confirmational interface message
 	 */
 	function doWatchInternal( page, ok, err, addParams ) {
-		var params,
-			d = $.Deferred(),
-			apiPromise;
+		// XXX: Parameter addParams is undocumented because we inherit this
+		// documentation in the public method..
+		var params, apiPromise,
+			d = $.Deferred();
 
 		// Backwards compatibility (< MW 1.20)
-		d.done( ok ).fail( err );
+		if ( ok || err ) {
+			mw.track( 'mw.deprecate', 'api.cbParam' );
+			mw.log.warn( msg );
+			d.done( ok ).fail( err );
+		}
 
 		params = {
 			action: 'watch',
@@ -46,6 +51,7 @@
 		return d.promise( { abort: apiPromise.abort } );
 	}
 
+	var msg = 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.';
 	$.extend( mw.Api.prototype, {
 		/**
 		 * Convenience method for `action=watch`.
