@@ -810,6 +810,7 @@ $wgMessageStructure = array(
 		'cantcreateaccounttitle',
 		'cantcreateaccount-text',
 		'cantcreateaccount-range-text',
+		'createaccount-hook-aborted',
 	),
 	'history' => array(
 		'viewpagelogs',
@@ -1448,6 +1449,7 @@ $wgMessageStructure = array(
 		'uploaddisabledtext',
 		'php-uploaddisabledtext',
 		'uploadscripted',
+		'uploadinvalidxml',
 		'uploadvirus',
 		'uploadjava',
 		'upload-source',
