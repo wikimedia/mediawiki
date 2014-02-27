@@ -452,6 +452,11 @@ if ( !$wgHTCPRouting && $wgHTCPMulticastAddress ) {
 	);
 }
 
+// Back compatibility for $wgRateLimitLog deprecated with 1.23
+if ( $wgRateLimitLog && ! array_key_exists( 'ratelimit', $wgDebugLogGroups ) ) {
+	$wgDebugLogGroups['ratelimit'] = $wgRateLimitLog;
+}
+
 wfProfileOut( $fname . '-defaults2' );
 wfProfileIn( $fname . '-misc1' );
 

@@ -4739,6 +4739,8 @@ $wgRateLimits = array(
 
 /**
  * Set to a filename to log rate limiter hits.
+ *
+ * @deprecated since 1.23, use $wgDebugLogGroups['ratelimit'] instead
  */
 $wgRateLimitLog = null;
 
