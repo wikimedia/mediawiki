@@ -158,6 +158,8 @@ production.
 * (bug 26811) When a DBUnexpectedError occurs, DB server hostnames are now
   hidden unless $wgShowExceptionDetails is true, and $wgShowDBErrorBacktrace
   no longer applies in such cases.
+* (bug 60960) Avoid doing file_exist() checks on data: URIs, as they cause
+  warnings to be printed on Windows due to large path length.
 
 === Web API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing
