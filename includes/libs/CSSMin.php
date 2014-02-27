@@ -79,11 +79,20 @@ class CSSMin {
 		$rFlags = PREG_OFFSET_CAPTURE | PREG_SET_ORDER;
 		if ( preg_match_all( '/' . self::URL_REGEX . '/', $source, $matches, $rFlags ) ) {
 			foreach ( $matches as $match ) {
-				$file = $path . $match['file'][0];
-				// Only proceed if we can access the file
-				if ( file_exists( $file ) ) {
-					$files[] = $file;
+				$url = $match['file'][0];
+
+				// Skip fully-qualified and protocol-relative URLs and data URIs
+				if ( substr( $url, 0, 2 ) === '//' || parse_url( $url, PHP_URL_SCHEME ) ) {
+					break;
 				}
+
+				$file = $path . $url;
+				// Skip non-existent files
+				if ( file_exists( $file ) ) {
+					break;
+				}
+
+				$files[] = $file;
 			}
 		}
 		return $files;
@@ -246,8 +255,7 @@ class CSSMin {
 		$url = $file . $query;
 
 		// Skip fully-qualified and protocol-relative URLs and data URIs
-		$urlScheme = substr( $url, 0, 2 ) === '//' || parse_url( $url, PHP_URL_SCHEME );
-		if ( $urlScheme ) {
+		if ( substr( $url, 0, 2 ) === '//' || parse_url( $url, PHP_URL_SCHEME ) ) {
 			return $url;
 		}
 
