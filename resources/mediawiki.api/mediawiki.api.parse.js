@@ -18,6 +18,10 @@
 			var d = $.Deferred(),
 				apiPromise;
 
+			if ( ok || err ) {
+				mw.track( 'mw.deprecate', 'api.cbParam' );
+				mw.log.warn( 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.' );
+			}
 			// Backwards compatibility (< MW 1.20)
 			d.done( ok ).fail( err );
 

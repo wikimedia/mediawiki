@@ -9,8 +9,6 @@
 	 * @context mw.Api
 	 *
 	 * @param {string|mw.Title|string[]|mw.Title[]} page Full page name or instance of mw.Title or array of pages
-	 * @param {Function} [ok] Success callback (deprecated)
-	 * @param {Function} [err] Error callback (deprecated)
 	 * @return {jQuery.Promise}
 	 * @return {Function} return.done
 	 * @return {Object} return.done.watch
@@ -18,13 +16,9 @@
 	 * @return {boolean} return.done.watch.watched
 	 * @return {string} return.done.watch.message Parsed HTML of the confirmational interface message
 	 */
-	function doWatchInternal( page, ok, err, addParams ) {
-		var params,
-			d = $.Deferred(),
-			apiPromise;
-
-		// Backwards compatibility (< MW 1.20)
-		d.done( ok ).fail( err );
+	function doWatchInternal( page, addParams ) {
+		var params, apiPromise,
+			d = $.Deferred();
 
 		params = {
 			action: 'watch',
@@ -46,6 +40,7 @@
 		return d.promise( { abort: apiPromise.abort } );
 	}
 
+	var msg = 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.';
 	$.extend( mw.Api.prototype, {
 		/**
 		 * Convenience method for `action=watch`.
@@ -53,7 +48,11 @@
 		 * @inheritdoc #doWatchInternal
 		 */
 		watch: function ( page, ok, err ) {
-			return doWatchInternal.call( this, page, ok, err );
+			if ( ok || err ) {
+				mw.track( 'mw.deprecate', 'api.cbParam' );
+				mw.log.warn( msg );
+			}
+			return doWatchInternal.call( this, page ).done( ok ).fail( err );
 		},
 		/**
 		 * Convenience method for `action=watch&unwatch=1`.
@@ -61,7 +60,11 @@
 		 * @inheritdoc #doWatchInternal
 		 */
 		unwatch: function ( page, ok, err ) {
-			return doWatchInternal.call( this, page, ok, err, { unwatch: 1 } );
+			if ( ok || err ) {
+				mw.track( 'mw.deprecate', 'api.cbParam' );
+				mw.log.warn( msg );
+			}
+			return doWatchInternal.call( this, page, { unwatch: 1 } ).done( ok ).fail( err );
 		}
 
 	} );
