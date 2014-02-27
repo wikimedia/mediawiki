@@ -498,7 +498,6 @@ $wgOptionalMessages = array(
 	'limitreport-expensivefunctioncount-value',
 	'interlanguage-link-title',
 	'img-lang-opt',
-	'quotation-marks',
 	'recentchanges-legend-plusminus',
 );
 
