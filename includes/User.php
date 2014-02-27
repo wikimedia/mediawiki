@@ -985,7 +985,11 @@ class User {
 			$passwordCorrect = $proposedUser->getToken( false ) === $request->getSessionData( 'wsToken' );
 			$from = 'session';
 		} elseif ( $request->getCookie( 'Token' ) ) {
-			$passwordCorrect = $proposedUser->getToken( false ) === $request->getCookie( 'Token' );
+			# Get the token from DB/cache and clean it up to remove garbage padding.
+			# This deals with historical problems with bugs and the default column value.
+			$token = rtrim( $proposedUser->getToken( false ) ); // correct token
+			// Make comparison in constant time (bug 61346)
+			$passwordCorrect = strlen( $token ) && $this->compareSecrets( $token, $request->getCookie( 'Token' ) );
 			$from = 'cookie';
 		} else {
 			# No session or persistent login cookie
@@ -1004,6 +1008,25 @@ class User {
 			$this->loadDefaults();
 			return false;
 		}
+	}
+
+	/**
+	 * A comparison of two strings, not vulnerable to timing attacks
+	 * @param string $answer the secret string that you are comparing against.
+	 * @param string $test compare this string to the $answer.
+	 * @return bool True if the strings are the same, false otherwise
+	 */
+	protected function compareSecrets( $answer, $test ) {
+		if ( strlen( $answer ) !== strlen( $test ) ) {
+			$passwordCorrect = false;
+		} else {
+			$result = 0;
+			for ( $i = 0; $i < strlen( $answer ); $i++ ) {
+				$result |= ord( $answer{$i} ) ^ ord( $test{$i} );
+			}
+			$passwordCorrect = ( $result == 0 );
+		}
+		return $passwordCorrect;
 	}
 
 	/**
