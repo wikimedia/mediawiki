@@ -53,7 +53,16 @@
 		 * @inheritdoc #doWatchInternal
 		 */
 		watch: function ( page, ok, err ) {
-			return doWatchInternal.call( this, page, ok, err );
+			var msg = 'MWDeprecationWarning: Use of "ok" and "err" on watch is deprecated. Use .done() and .fail() instead.';
+			if ( ok ) {
+				mw.track( 'mw.deprecate', 'ok' );
+				mw.log.warn( msg );
+			}
+			if ( err ) {
+				mw.track( 'mw.deprecate', 'err' );
+				mw.log.warn( msg );
+			}
+			return doWatchInternal.call( this, page ).done( ok ).fail( err );
 		},
 		/**
 		 * Convenience method for `action=watch&unwatch=1`.
@@ -61,7 +70,16 @@
 		 * @inheritdoc #doWatchInternal
 		 */
 		unwatch: function ( page, ok, err ) {
-			return doWatchInternal.call( this, page, ok, err, { unwatch: 1 } );
+			var msg = 'MWDeprecationWarning: Use of "ok" and "err" on unwatch is deprecated. Use .done() and .fail() instead.';
+			if ( ok ) {
+				mw.track( 'mw.deprecate', 'ok' );
+				mw.log.warn( msg );
+			}
+			if ( err ) {
+				mw.track( 'mw.deprecate', 'err' );
+				mw.log.warn( msg );
+			}
+			return doWatchInternal.call( this, page, null, null, { unwatch: 1 } ).done( ok ).fail( err );
 		}
 
 	} );

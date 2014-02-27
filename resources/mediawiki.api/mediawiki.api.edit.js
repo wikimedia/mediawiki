@@ -16,19 +16,37 @@
 		 * @return {jQuery.Promise} See #post
 		 */
 		postWithEditToken: function ( params, ok, err ) {
+			var msg = 'MWDeprecationWarning: Use of "ok" and "err" on postWithEditToken is deprecated. Use .done() and .fail() instead.';
+			if ( ok ) {
+				mw.track( 'mw.deprecate', 'ok' );
+				mw.log.warn( msg );
+			}
+			if ( err ) {
+				mw.track( 'mw.deprecate', 'err' );
+				mw.log.warn( msg );
+			}
 			return this.postWithToken( 'edit', params ).done( ok ).fail( err );
 		},
 
 		/**
 		 * Api helper to grab an edit token.
 		 *
-		 * @param {Function} [ok] Success callback
-		 * @param {Function} [err] Error callback
+		 * @param {Function} [ok] Success callback (deprecated)
+		 * @param {Function} [err] Error callback (deprecated)
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
 		 * @return {string} return.done.token Received token.
 		 */
 		getEditToken: function ( ok, err ) {
+			var msg = 'MWDeprecationWarning: Use of "ok" and "err" on getEditToken is deprecated. Use .done() and .fail() instead.';
+			if ( ok ) {
+				mw.track( 'mw.deprecate', 'ok' );
+				mw.log.warn( msg );
+			}
+			if ( err ) {
+				mw.track( 'mw.deprecate', 'err' );
+				mw.log.warn( msg );
+			}
 			return this.getToken( 'edit' ).done( ok ).fail( err );
 		},
 
@@ -38,11 +56,20 @@
 		 * @param {mw.Title|String} title Target page
 		 * @param {string} header
 		 * @param {string} message wikitext message
-		 * @param {Function} [ok] Success handler
-		 * @param {Function} [err] Error handler
+		 * @param {Function} [ok] Success handler (deprecated)
+		 * @param {Function} [err] Error handler (deprecated)
 		 * @return {jQuery.Promise}
 		 */
 		newSection: function ( title, header, message, ok, err ) {
+			var msg = 'MWDeprecationWarning: Use of "ok" and "err" on newSection is deprecated. Use .done() and .fail() instead.';
+			if ( ok ) {
+				mw.track( 'mw.deprecate', 'ok' );
+				mw.log.warn( msg );
+			}
+			if ( err ) {
+				mw.track( 'mw.deprecate', 'err' );
+				mw.log.warn( msg );
+			}
 			return this.postWithEditToken( {
 				action: 'edit',
 				section: 'new',
@@ -50,7 +77,7 @@
 				title: title.toString(),
 				summary: header,
 				text: message
-			}, ok, err );
+			} ).done( ok ).fail( err );
 		}
 	} );
 

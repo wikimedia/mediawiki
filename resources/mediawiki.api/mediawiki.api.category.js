@@ -15,8 +15,17 @@
 		 */
 		isCategory: function ( title, ok, err ) {
 			var d = $.Deferred(),
+				msg = 'MWDeprecationWarning: Use of "ok" and "err" on isCategory is deprecated. Use .done() and .fail() instead.',
 				apiPromise;
 
+			if ( ok ) {
+				mw.track( 'mw.deprecate', 'ok' );
+				mw.log.warn( msg );
+			}
+			if ( err ) {
+				mw.track( 'mw.deprecate', 'err' );
+				mw.log.warn( msg );
+			}
 			// Backwards compatibility (< MW 1.20)
 			d.done( ok ).fail( err );
 
@@ -52,8 +61,17 @@
 		 */
 		getCategoriesByPrefix: function ( prefix, ok, err ) {
 			var d = $.Deferred(),
+				msg = 'MWDeprecationWarning: Use of "ok" and "err" on getCategoriesByPrefix is deprecated. Use .done() and .fail() instead.',
 				apiPromise;
 
+			if ( ok ) {
+				mw.track( 'mw.deprecate', 'ok' );
+				mw.log.warn( msg );
+			}
+			if ( err ) {
+				mw.track( 'mw.deprecate', 'err' );
+				mw.log.warn( msg );
+			}
 			// Backwards compatibility (< MW 1.20)
 			d.done( ok ).fail( err );
 
@@ -91,8 +109,17 @@
 		 */
 		getCategories: function ( title, ok, err, async ) {
 			var d = $.Deferred(),
+				msg = 'MWDeprecationWarning: Use of "ok" and "err" on getCategories is deprecated. Use .done() and .fail() instead.',
 				apiPromise;
 
+			if ( ok ) {
+				mw.track( 'mw.deprecate', 'ok' );
+				mw.log.warn( msg );
+			}
+			if ( err ) {
+				mw.track( 'mw.deprecate', 'err' );
+				mw.log.warn( msg );
+			}
 			// Backwards compatibility (< MW 1.20)
 			d.done( ok ).fail( err );
 
