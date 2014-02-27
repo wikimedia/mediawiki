@@ -3088,7 +3088,7 @@ Deletion of such pages has been restricted to prevent accidental disruption of {
 'delete-warning-toobig'      => 'This page has a large edit history, over $1 {{PLURAL:$1|revision|revisions}}.
 Deleting it may disrupt database operations of {{SITENAME}};
 proceed with caution.',
-'deleting-backlinks-warning' => "'''Warning:''' Other pages link to or transclude from the page you are about to delete.",
+'deleting-backlinks-warning' => "'''Warning:''' Other pages link to or transclude the page you are about to delete.",
 
 # Rollback
 'rollback'                   => 'Roll back edits',
