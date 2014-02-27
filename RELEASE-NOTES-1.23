@@ -114,6 +114,13 @@ production.
   whether to send a watchlist email notification.
 
 === Bug fixes in 1.23 ===
+* (bug 60771) SECURITY: Disallow uploading non-whitelisted namespaces. Also 
+  disallow iframe elements. User will get an error including the namespace name 
+  if they use a non- whitelisted namespace.
+* (bug 61346) SECURITY: Make token comparison constant time. It seems like our 
+  token comparison would be vulnerable to timing attacks. This will take 
+  constant time.
+* (bug 61362) SECURITY: API: Don't find links in the middle of api.php links.
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
   changes and watchlist) and the talk page message indicator are now correctly
   updated when the user is viewing old revisions of pages, instead of always
