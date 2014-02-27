@@ -3,6 +3,19 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.19.12 ==
+
+This is a security release of the MediaWiki 1.19 branch.
+
+=== Changes since 1.19.11 ===
+
+* (bug 60771) SECURITY: Disallow uploading SVG files using non-whitelisted
+  namespaces files. Also disallow iframe elements. User will get an error
+  including the namespace name if they use a non- whitelisted namespace.
+* (bug 61346) SECURITY: Make token comparison use constant time. It seems like
+  our token comparison would be vulnerable to timing attacks. This will take
+  constant time.
+
 == MediaWiki 1.19.11 ==
 
 This is a security release of the MediaWiki 1.19 branch.
