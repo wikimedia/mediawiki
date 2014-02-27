@@ -14,7 +14,7 @@
 		var color;
 
 		do {
-			color = $.curCSS( elem, attr );
+			color = $.css( elem, attr );
 
 			// Keep going until we find an element that has color, or we hit the body
 			if ( color !== '' && color !== 'transparent' || $.nodeName( elem, 'body' ) ) {
@@ -38,9 +38,10 @@
 		'outlineColor'
 	], function ( i, attr ) {
 		$.fx.step[attr] = function ( fx ) {
-			if ( fx.state === 0 ) {
+			if ( !fx.colorInit ) {
 				fx.start = getColor( fx.elem, attr );
 				fx.end = $.colorUtil.getRGB( fx.end );
+				fx.colorInit = true;
 			}
 
 			fx.elem.style[attr] = 'rgb(' + [
