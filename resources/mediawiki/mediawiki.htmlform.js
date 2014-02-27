@@ -5,6 +5,15 @@
  */
 ( function ( mw, $ ) {
 
+	var hideIfTests = {
+			'===': function ( a, b ) {
+				return a === b;
+			},
+			'!==': function ( a, b ) {
+				return a !== b;
+			}
+		};
+
 	/**
 	 * jQuery plugin to fade or snap to visible state.
 	 *
@@ -57,6 +66,44 @@
 				$other.goIn( instant );
 			} else {
 				$other.goOut( instant );
+			}
+		} );
+
+		// Set up hide-if elements
+		$( '[data-hide-if]' ).each( function () {
+			var $el = $( this ),
+				data = $el.data( 'hideIf' ),
+				sel, value, test, func, $found, $p;
+
+			value = data[2];
+
+			if ( !hideIfTests[data[0]] ) {
+				return;
+			}
+			test = hideIfTests[data[0]];
+			func = function () {
+				if ( test( $( this ).val(), value ) ) {
+					$el.hide();
+				} else {
+					$el.show();
+				}
+			};
+
+			// Find the closest match for the given name, "closest" being the
+			// minimum level of parents to go to find a form field matching the
+			// given name or ending in array keys matching the given name
+			// (e.g. "baz" matches "foo[bar][baz]").
+			sel = '[name="' + data[1] + '"],' +
+				'[name="wp' + data[1] + '"],' +
+				'[name$="' + data[1].replace( /^([^\[]+)/, '[$1]' ) + '"]';
+			$found = $();
+			for ( $p = $el.parent(); $p.length > 0; $p = $p.parent() ) {
+				$found = $p.find( sel );
+				if ( $found.length > 0 ) {
+					$found.first().change( func );
+					func.call( $found.first() );
+					break;
+				}
 			}
 		} );
 
