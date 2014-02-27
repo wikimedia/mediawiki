@@ -522,7 +522,7 @@ abstract class HTMLFormField {
 		foreach ( $options as $key => $value ) {
 			$key = $this->msg( $key )->plain();
 			$ret[$key] = is_array( $value )
-				? $this->lookupOptionsKeys($field, $value)
+				? $this->lookupOptionsKeys( $value )
 				: strval( $value );
 		}
 		return $ret;
