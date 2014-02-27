@@ -1582,7 +1582,7 @@ class User {
 			return false;
 		}
 
-		global $wgMemc, $wgRateLimitLog;
+		global $wgMemc;
 		wfProfileIn( __METHOD__ );
 
 		$limits = $wgRateLimits[$action];
@@ -1645,12 +1645,7 @@ class User {
 			// Already pinged?
 			if ( $count ) {
 				if ( $count >= $max ) {
-					wfDebug( __METHOD__ . ": tripped! $key at $count $summary\n" );
-					if ( $wgRateLimitLog ) {
-						wfSuppressWarnings();
-						file_put_contents( $wgRateLimitLog, wfTimestamp( TS_MW ) . ' ' . wfWikiID() . ': ' . $this->getName() . " tripped $key at $count $summary\n", FILE_APPEND );
-						wfRestoreWarnings();
-					}
+					wfDebugLog( 'ratelimit', $this->getName() . " tripped! $key at $count $summary");
 					$triggered = true;
 				} else {
 					wfDebug( __METHOD__ . ": ok. $key at $count $summary\n" );
