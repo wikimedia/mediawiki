@@ -265,11 +265,11 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
 
 			if ( $row->rd_from && $level < 2 ) {
-				$out->addHTML( $this->listItem( $row, $nt, true ) );
+				$out->addHTML( $this->listItem( $row, $nt, $target, true ) );
 				$this->showIndirectLinks( $level + 1, $nt, $wgMaxRedirectLinksRetrieved );
 				$out->addHTML( Xml::closeElement( 'li' ) );
 			} else {
-				$out->addHTML( $this->listItem( $row, $nt ) );
+				$out->addHTML( $this->listItem( $row, $nt, $target ) );
 			}
 		}
 
@@ -286,7 +286,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		return Xml::openElement( 'ul', ( $level ? array() : array( 'id' => 'mw-whatlinkshere-list' ) ) );
 	}
 
-	protected function listItem( $row, $nt, $notClose = false ) {
+	protected function listItem( $row, $nt, $target, $notClose = false ) {
 		$dirmark = $this->getLanguage()->getDirMark();
 
 		# local message cache
@@ -325,6 +325,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		if ( $row->is_image ) {
 			$props[] = $msgcache['isimage'];
 		}
+
+		wfRunHooks( 'WhatLinksHereProps', array( $row, $nt, $target, &$props ) );
 
 		if ( count( $props ) ) {
 			$propsText = $this->msg( 'parentheses' )
