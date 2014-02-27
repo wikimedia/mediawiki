@@ -46,6 +46,7 @@
 		return d.promise( { abort: apiPromise.abort } );
 	}
 
+	var msg = 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.';
 	$.extend( mw.Api.prototype, {
 		/**
 		 * Convenience method for `action=watch`.
@@ -53,7 +54,11 @@
 		 * @inheritdoc #doWatchInternal
 		 */
 		watch: function ( page, ok, err ) {
-			return doWatchInternal.call( this, page, ok, err );
+			if ( ok || err ) {
+				mw.track( 'mw.deprecate', 'api.cbParam' );
+				mw.log.warn( msg );
+			}
+			return doWatchInternal.call( this, page ).done( ok ).fail( err );
 		},
 		/**
 		 * Convenience method for `action=watch&unwatch=1`.
@@ -61,7 +66,11 @@
 		 * @inheritdoc #doWatchInternal
 		 */
 		unwatch: function ( page, ok, err ) {
-			return doWatchInternal.call( this, page, ok, err, { unwatch: 1 } );
+			if ( ok || err ) {
+				mw.track( 'mw.deprecate', 'api.cbParam' );
+				mw.log.warn( msg );
+			}
+			return doWatchInternal.call( this, page, null, null, { unwatch: 1 } ).done( ok ).fail( err );
 		}
 
 	} );
