@@ -19,7 +19,11 @@
 				apiPromise;
 
 			// Backwards compatibility (< MW 1.20)
-			d.done( ok ).fail( err );
+			if ( ok || err ) {
+				mw.track( 'mw.deprecate', 'api.cbParam' );
+				mw.log.warn( 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.' );
+				d.done( ok ).fail( err );
+			}
 
 			apiPromise = this.get( {
 					action: 'parse',

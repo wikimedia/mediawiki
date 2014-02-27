@@ -3,6 +3,7 @@
  */
 ( function ( mw, $ ) {
 
+	var msg = 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.';
 	$.extend( mw.Api.prototype, {
 		/**
 		 * Determine if a category exists.
@@ -18,7 +19,11 @@
 				apiPromise;
 
 			// Backwards compatibility (< MW 1.20)
-			d.done( ok ).fail( err );
+			if ( ok || err ) {
+				mw.track( 'mw.deprecate', 'api.cbParam' );
+				mw.log.warn( msg );
+				d.done( ok ).fail( err );
+			}
 
 			apiPromise = this.get( {
 					prop: 'categoryinfo',
@@ -55,7 +60,11 @@
 				apiPromise;
 
 			// Backwards compatibility (< MW 1.20)
-			d.done( ok ).fail( err );
+			if ( ok || err ) {
+				mw.track( 'mw.deprecate', 'api.cbParam' );
+				mw.log.warn( msg );
+				d.done( ok ).fail( err );
+			}
 
 			// Fetch with allpages to only get categories that have a corresponding description page.
 			apiPromise = this.get( {
@@ -94,7 +103,11 @@
 				apiPromise;
 
 			// Backwards compatibility (< MW 1.20)
-			d.done( ok ).fail( err );
+			if ( ok || err ) {
+				mw.track( 'mw.deprecate', 'api.cbParam' );
+				mw.log.warn( msg );
+				d.done( ok ).fail( err );
+			}
 
 			apiPromise = this.get( {
 					prop: 'categories',
