@@ -126,6 +126,8 @@ production.
 * Special:UserLogin/signup now does AJAX checks for invalid and taken usernames,
   displaying the error live.
 * Added BaseTemplateAfterPortlet hook to allow injecting html after portlets in skins.
+* Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
+  WhatLinksHere entries.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
