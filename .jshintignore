@@ -16,6 +16,7 @@ resources/jquery/jquery.cookie.js
 resources/jquery/jquery.cycle.all.js
 resources/jquery/jquery.farbtastic.js
 resources/jquery/jquery.form.js
+resources/jquery/jquery.fullscreen.js
 resources/jquery/jquery.hoverIntent.js
 resources/jquery/jquery.js
 resources/jquery/jquery.json.js
