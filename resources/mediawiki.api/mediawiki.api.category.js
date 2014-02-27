@@ -3,6 +3,7 @@
  */
 ( function ( mw, $ ) {
 
+	var msg = 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.';
 	$.extend( mw.Api.prototype, {
 		/**
 		 * Determine if a category exists.
@@ -17,6 +18,10 @@
 			var d = $.Deferred(),
 				apiPromise;
 
+			if ( ok || err ) {
+				mw.track( 'mw.deprecate', 'api.cbParam' );
+				mw.log.warn( msg );
+			}
 			// Backwards compatibility (< MW 1.20)
 			d.done( ok ).fail( err );
 
@@ -54,6 +59,10 @@
 			var d = $.Deferred(),
 				apiPromise;
 
+			if ( ok || err ) {
+				mw.track( 'mw.deprecate', 'api.cbParam' );
+				mw.log.warn( msg );
+			}
 			// Backwards compatibility (< MW 1.20)
 			d.done( ok ).fail( err );
 
@@ -93,6 +102,10 @@
 			var d = $.Deferred(),
 				apiPromise;
 
+			if ( ok || err ) {
+				mw.track( 'mw.deprecate', 'api.cbParam' );
+				mw.log.warn( msg );
+			}
 			// Backwards compatibility (< MW 1.20)
 			d.done( ok ).fail( err );
 

@@ -3,6 +3,7 @@
  */
 ( function ( mw, $ ) {
 
+	var msg = 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.';
 	$.extend( mw.Api.prototype, {
 
 		/**
@@ -16,19 +17,27 @@
 		 * @return {jQuery.Promise} See #post
 		 */
 		postWithEditToken: function ( params, ok, err ) {
+			if ( ok || err ) {
+				mw.track( 'mw.deprecate', 'api.cbParam' );
+				mw.log.warn( msg );
+			}
 			return this.postWithToken( 'edit', params ).done( ok ).fail( err );
 		},
 
 		/**
 		 * Api helper to grab an edit token.
 		 *
-		 * @param {Function} [ok] Success callback
-		 * @param {Function} [err] Error callback
+		 * @param {Function} [ok] Success callback (deprecated)
+		 * @param {Function} [err] Error callback (deprecated)
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
 		 * @return {string} return.done.token Received token.
 		 */
 		getEditToken: function ( ok, err ) {
+			if ( ok || err ) {
+				mw.track( 'mw.deprecate', 'api.cbParam' );
+				mw.log.warn( msg );
+			}
 			return this.getToken( 'edit' ).done( ok ).fail( err );
 		},
 
@@ -38,11 +47,15 @@
 		 * @param {mw.Title|String} title Target page
 		 * @param {string} header
 		 * @param {string} message wikitext message
-		 * @param {Function} [ok] Success handler
-		 * @param {Function} [err] Error handler
+		 * @param {Function} [ok] Success handler (deprecated)
+		 * @param {Function} [err] Error handler (deprecated)
 		 * @return {jQuery.Promise}
 		 */
 		newSection: function ( title, header, message, ok, err ) {
+			if ( ok || err ) {
+				mw.track( 'mw.deprecate', 'api.cbParam' );
+				mw.log.warn( msg );
+			}
 			return this.postWithEditToken( {
 				action: 'edit',
 				section: 'new',
@@ -50,7 +63,7 @@
 				title: title.toString(),
 				summary: header,
 				text: message
-			}, ok, err );
+			} ).done( ok ).fail( err );
 		}
 	} );
 
