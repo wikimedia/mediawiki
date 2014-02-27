@@ -2836,6 +2836,12 @@ Return false to prevent setting of the cookie.
 &$expire: Cookie expiration, as for PHP's setcookie()
 $options: Options passed to WebResponse::setcookie()
 
+'WhatLinksHereProps': Allows annotations to be added to WhatLinksHere
+$row: The DB row of the entry.
+$title: The Title of the page where the link comes FROM
+$target: The Title of the page where the link goes TO
+&$props: Array of HTML strings to display after the title.
+
 'WikiExporter::dumpStableQuery': Get the SELECT query for "stable" revisions
 dumps. One, and only one hook should set this, and return false.
 &$tables: Database tables to use in the SELECT query
