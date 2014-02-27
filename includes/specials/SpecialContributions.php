@@ -318,6 +318,16 @@ class SpecialContributions extends IncludableSpecialPage {
 				array(),
 				array( 'page' => $userpage->getPrefixedText() )
 			);
+
+			# Suppression log link (bug 59120)
+			if ( $this->getUser()->isAllowed( 'suppressionlog' ) ) {
+				$tools[] = Linker::linkKnown(
+					SpecialPage::getTitleFor( 'Log', 'suppress' ),
+					$this->msg( 'sp-contributions-suppresslog' )->escaped(),
+					array(),
+					array( 'offender' => $username )
+				);
+			}
 		}
 		# Uploads
 		$tools[] = Linker::linkKnown(
