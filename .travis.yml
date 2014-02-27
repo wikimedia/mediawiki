@@ -29,7 +29,7 @@ before_script:
   # Travis CI's HHVM environment provides PHPUnit as a phar file, but
   # MediaWiki's test suite only works if individual PHPUnit files are
   # actual files on disk (bug 58881).
-  - composer require 'phpunit/phpunit=3.7.*'
+  - composer require 'phpunit/phpunit=3.7.*'  --prefer-source
   - >
       php maintenance/install.php testwiki admin
       --pass travis
