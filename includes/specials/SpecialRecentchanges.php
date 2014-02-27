@@ -713,7 +713,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$dl = $lang->pipeList( $dl );
 
 		// show/hide links
-		$showhide = array( $this->msg( 'show' )->text(), $this->msg( 'hide' )->text() );
 		$filters = array(
 			'hideminor' => 'rcshowhideminor',
 			'hidebots' => 'rcshowhidebots',
@@ -721,7 +720,16 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			'hideliu' => 'rcshowhideliu',
 			'hidepatrolled' => 'rcshowhidepatr',
 			'hidemyself' => 'rcshowhidemine'
-		);
+		  );
+
+		// The following messages are also used as the link text itself:
+		// rcshowhideminor-show, rcshowhideminor-hide,
+		// rcshowhidebots-show, rcshowhideminor-hide,
+		// rcshowhideanons-show, rcshowhideanons-hide,
+		// rcshowhidepatr-show, rcshowhidepatr-hide,
+		// rcshowhidemine-show, rcshowhidemine-hide.
+		$showhide = array( 'show', 'hide' );
+
 		foreach ( $this->getCustomFilters() as $key => $params ) {
 			$filters[$key] = $params['msg'];
 		}
@@ -732,7 +740,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$links = array();
 		foreach ( $filters as $key => $msg ) {
-			$link = $this->makeOptionsLink( $showhide[1 - $options[$key]],
+			$link = $this->makeOptionsLink( $this->msg( $msg . '-' . $showhide[1 - $options[$key]] ),
 				array( $key => 1 - $options[$key] ), $nondefaults );
 			$links[] = $this->msg( $msg )->rawParams( $link )->escaped();
 		}
