@@ -228,6 +228,7 @@ return array(
 	),
 	'jquery.colorUtil' => array(
 		'scripts' => 'resources/jquery/jquery.colorUtil.js',
+		'dependencies' => 'jquery',
 	),
 	'jquery.cookie' => array(
 		'scripts' => 'resources/jquery/jquery.cookie.js',

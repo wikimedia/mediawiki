@@ -38,9 +38,10 @@
 		'outlineColor'
 	], function ( i, attr ) {
 		$.fx.step[attr] = function ( fx ) {
-			if ( fx.state === 0 ) {
+			if ( !fx.colorInit ) {
 				fx.start = getColor( fx.elem, attr );
 				fx.end = $.colorUtil.getRGB( fx.end );
+				fx.colorInit = true;
 			}
 
 			fx.elem.style[attr] = 'rgb(' + [
