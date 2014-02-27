@@ -4660,7 +4660,7 @@ Please confirm that you really want to recreate this page.',
 'percent'             => '$1%', # only translate this message to other languages if you have to change it
 'parentheses'         => '($1)', # only translate this message to other languages if you have to change it
 'brackets'            => '[$1]', # only translate this message to other languages if you have to change it
-'quotation-marks'     => '"$1"', # only translate this message to other languages if you have to change it
+'quotation-marks'     => '"$1"',
 
 # Multipage image navigation
 'imgmultipageprev' => '← previous page',
