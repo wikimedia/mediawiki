@@ -6,6 +6,172 @@
 ( function ( mw, $ ) {
 
 	/**
+	 * Helper function for hide-if to find the nearby form field.
+	 *
+	 * Find the closest match for the given name, "closest" being the minimum
+	 * level of parents to go to find a form field matching the given name or
+	 * ending in array keys matching the given name (e.g. "baz" matches
+	 * "foo[bar][baz]").
+	 *
+	 * @param {jQuery} element
+	 * @param {string} name
+	 * @return {jQuery|null}
+	 */
+	function hideIfGetField( $el, name ) {
+		var sel, $found, $p;
+
+		sel = '[name="' + name + '"],' +
+			'[name="wp' + name + '"],' +
+			'[name$="' + name.replace( /^([^\[]+)/, '[$1]' ) + '"]';
+		for ( $p = $el.parent(); $p.length > 0; $p = $p.parent() ) {
+			$found = $p.find( sel );
+			if ( $found.length > 0 ) {
+				return $found;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Helper function for hide-if to return a test function and list of
+	 * dependent fields for a hide-if specification.
+	 *
+	 * @param {jQuery} element
+	 * @param {Array} hide-if spec
+	 * @return {Array} 2 elements: jQuery of dependent fields, and test function
+	 */
+	function hideIfParse( $el, spec ) {
+		var op, i, l, v, $field, $fields, func, funcs, getVal;
+
+		op = spec[0];
+		l = spec.length;
+		switch ( op ) {
+			case 'AND':
+			case 'OR':
+			case 'NAND':
+			case 'NOR':
+				funcs = [];
+				$fields = $();
+				for ( i = 1; i < l; i++ ) {
+					if ( !$.isArray( spec[i] ) ) {
+						throw new Error( op + ' parameters must be arrays' );
+					}
+					v = hideIfParse( $el, spec[i] );
+					$fields = $fields.add( v[0] );
+					funcs.push( v[1] );
+				}
+
+				l = funcs.length;
+				switch ( op ) {
+					case 'AND':
+						func = function () {
+							var i;
+							for ( i = 0; i < l; i++ ) {
+								if ( !funcs[i]() ) {
+									return false;
+								}
+							}
+							return true;
+						};
+						break;
+
+					case 'OR':
+						func = function () {
+							var i;
+							for ( i = 0; i < l; i++ ) {
+								if ( funcs[i]() ) {
+									return true;
+								}
+							}
+							return false;
+						};
+						break;
+
+					case 'NAND':
+						func = function () {
+							var i;
+							for ( i = 0; i < l; i++ ) {
+								if ( !funcs[i]() ) {
+									return true;
+								}
+							}
+							return false;
+						};
+						break;
+
+					case 'NOR':
+						func = function () {
+							var i;
+							for ( i = 0; i < l; i++ ) {
+								if ( funcs[i]() ) {
+									return false;
+								}
+							}
+							return true;
+						};
+						break;
+				}
+
+				return [ $fields, func ];
+
+			case 'NOT':
+				if ( l !== 2 ) {
+					throw new Error( 'NOT takes exactly one parameter' );
+				}
+				if ( !$.isArray( spec[1] ) ) {
+					throw new Error( 'NOT parameters must be arrays' );
+				}
+				v = hideIfParse( $el, spec[1] );
+				$fields = v[0];
+				func = v[1];
+				return [ $fields, function () {
+					return !func();
+				} ];
+
+			case '===':
+			case '!==':
+				if ( l !== 3 ) {
+					throw new Error( op + ' takes exactly two parameters' );
+				}
+				$field = hideIfGetField( $el, spec[1] );
+				if ( !$field ) {
+					return [ $(), function () {
+						return false;
+					} ];
+				}
+				v = spec[2];
+
+				if ( $field.first().attr( 'type' ) === 'radio' ||
+					$field.first().attr( 'type' ) === 'checkbox'
+				) {
+					getVal = function () {
+						return $field.filter( ':checked' ).val();
+					};
+				} else {
+					getVal = $field.val;
+				}
+
+				switch ( op ) {
+					case '===':
+						func = function () {
+							return getVal() === v;
+						};
+						break;
+					case '!==':
+						func = function () {
+							return getVal() !== v;
+						};
+						break;
+				}
+
+				return [ $field, func ];
+
+			default:
+				throw new Error( 'Unrecognized operation \'' + op + '\'' );
+		}
+	}
+
+	/**
 	 * jQuery plugin to fade or snap to visible state.
 	 *
 	 * @param {boolean} [instantToggle=false]
@@ -60,6 +226,30 @@
 			} else {
 				$other.goOut( instant );
 			}
+		} );
+
+		// Set up hide-if elements
+		$( '.mw-htmlform-hide-if' ).each( function () {
+			var $el = $( this ),
+				spec = $el.data( 'hideIf' ),
+				v, $fields, test, func;
+
+			if ( !spec ) {
+				return;
+			}
+
+			v = hideIfParse( $el, spec );
+			$fields = v[0];
+			test = v[1];
+			func = function () {
+				if ( test() ) {
+					$el.hide();
+				} else {
+					$el.show();
+				}
+			};
+			$fields.change( func );
+			func();
 		} );
 
 	} );
