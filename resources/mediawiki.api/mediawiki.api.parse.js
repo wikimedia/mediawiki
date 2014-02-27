@@ -16,8 +16,17 @@
 		 */
 		parse: function ( wikitext, ok, err ) {
 			var d = $.Deferred(),
+				msg = 'MWDeprecationWarning: Use of "ok" and "err" on parse is deprecated. Use .done() and .fail() instead.',
 				apiPromise;
 
+			if ( ok ) {
+				mw.track( 'mw.deprecate', 'ok' );
+				mw.log.warn( msg );
+			}
+			if ( err ) {
+				mw.track( 'mw.deprecate', 'err' );
+				mw.log.warn( msg );
+			}
 			// Backwards compatibility (< MW 1.20)
 			d.done( ok ).fail( err );
 

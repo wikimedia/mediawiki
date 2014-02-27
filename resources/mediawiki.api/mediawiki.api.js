@@ -118,7 +118,8 @@
 		ajax: function ( parameters, ajaxOptions ) {
 			var token,
 				apiDeferred = $.Deferred(),
-				xhr;
+				xhr,
+				msg = 'MWDeprecationWarning: Use of "ok" and "err" on methods of mw.Api is deprecated. Use .done() and .fail() instead.';
 
 			parameters = $.extend( {}, this.defaults.parameters, parameters );
 			ajaxOptions = $.extend( {}, this.defaults.ajax, ajaxOptions );
@@ -141,10 +142,14 @@
 			// Backwards compatibility: Before MediaWiki 1.20,
 			// callbacks were done with the 'ok' and 'err' property in ajaxOptions.
 			if ( ajaxOptions.ok ) {
+				mw.track( 'mw.deprecate', 'ok' );
+				mw.log.warn( msg );
 				apiDeferred.done( ajaxOptions.ok );
 				delete ajaxOptions.ok;
 			}
 			if ( ajaxOptions.err ) {
+				mw.track( 'mw.deprecate', 'err' );
+				mw.log.warn( msg );
 				apiDeferred.fail( ajaxOptions.err );
 				delete ajaxOptions.err;
 			}
