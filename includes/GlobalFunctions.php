@@ -1064,6 +1064,9 @@ function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
 	}
 
 	$logConfig = $wgDebugLogGroups[$logGroup];
+	if ( $logConfig === false ) {
+		return;
+	}
 	if ( is_array( $logConfig ) ) {
 		if ( isset( $logConfig['sample'] ) && mt_rand( 1, $logConfig['sample'] ) !== 1 ) {
 			return;

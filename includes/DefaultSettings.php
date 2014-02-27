@@ -4951,10 +4951,12 @@ $wgDebugDumpSql = false;
  * of the regular $wgDebugLogFile. Useful for enabling selective logging
  * in production.
  *
- * Log destinations may be string values specifying a filename or URI, or they
- * may be filename or an associative array mapping 'destination' to the desired
- * filename. The associative array may also contain a 'sample' key with an
- * integer value, specifying a sampling factor.
+ * Log destinations may be one of the following:
+ * - false to completely remove from the output, including from $wgDebugLogFile.
+ * - string values specifying a filename or URI.
+ * - associative array mapping 'destination' key to the desired filename or URI.
+ *   The associative array may also contain a 'sample' key with an integer value,
+ *   specifying a sampling factor.
  *
  * @par Example:
  * @code
