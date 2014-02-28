@@ -78,6 +78,7 @@ class ApiFeedContributions extends ApiBase {
 			'tagFilter' => $params['tagfilter'],
 			'deletedOnly' => $params['deletedonly'],
 			'topOnly' => $params['toponly'],
+			'newOnly' => $params['newonly'],
 			'showSizeDiff' => $params['showsizediff'],
 		) );
 
@@ -186,6 +187,7 @@ class ApiFeedContributions extends ApiBase {
 			),
 			'deletedonly' => false,
 			'toponly' => false,
+			'newonly' => false,
 			'showsizediff' => false,
 		);
 	}
@@ -200,6 +202,7 @@ class ApiFeedContributions extends ApiBase {
 			'tagfilter' => 'Filter contributions that have these tags',
 			'deletedonly' => 'Show only deleted contributions',
 			'toponly' => 'Only show edits that are latest revisions',
+			'newonly' => 'Only show edits that are page creations',
 			'showsizediff' => 'Show the size difference between revisions. Disabled in Miser Mode',
 		);
 	}

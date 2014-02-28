@@ -74,6 +74,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->opts['limit'] = $request->getInt( 'limit', $user->getOption( 'rclimit' ) );
 		$this->opts['target'] = $target;
 		$this->opts['topOnly'] = $request->getBool( 'topOnly' );
+		$this->opts['newOnly'] = $request->getBool( 'newOnly' );
 
 		$nt = Title::makeTitleSafe( NS_USER, $target );
 		if ( !$nt ) {
@@ -140,6 +141,9 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( $this->opts['topOnly'] ) {
 			$feedParams['toponly'] = true;
 		}
+		if ( $this->opts['newOnly'] ) {
+			$feedParams['newonly'] = true;
+		}
 		if ( $this->opts['deletedOnly'] ) {
 			$feedParams['deletedonly'] = true;
 		}
@@ -185,6 +189,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				'month' => $this->opts['month'],
 				'deletedOnly' => $this->opts['deletedOnly'],
 				'topOnly' => $this->opts['topOnly'],
+				'newOnly' => $this->opts['newOnly'],
 				'nsInvert' => $this->opts['nsInvert'],
 				'associated' => $this->opts['associated'],
 			) );
@@ -404,6 +409,10 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['topOnly'] = false;
 		}
 
+		if ( !isset( $this->opts['newOnly'] ) ) {
+			$this->opts['newOnly'] = false;
+		}
+
 		$form = Html::openElement(
 			'form',
 			array(
@@ -423,6 +432,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			'year',
 			'month',
 			'topOnly',
+			'newOnly',
 			'associated'
 		);
 
@@ -555,10 +565,21 @@ class SpecialContributions extends IncludableSpecialPage {
 				array( 'class' => 'mw-input' )
 			)
 		);
+		$checkLabelNewOnly = Html::rawElement(
+			'span',
+			array( 'style' => 'white-space: nowrap' ),
+			Xml::checkLabel(
+				$this->msg( 'sp-contributions-newonly' )->text(),
+				'newOnly',
+				'mw-show-new-only',
+				$this->opts['newOnly'],
+				array( 'class' => 'mw-input' )
+			)
+		);
 		$extraOptions = Html::rawElement(
 			'td',
 			array( 'colspan' => 2 ),
-			$deletedOnlyCheck . $checkLabelTopOnly
+			$deletedOnlyCheck . $checkLabelTopOnly . $checkLabelNewOnly
 		);
 
 		$dateSelectionAndSubmit = Xml::tags( 'td', array( 'colspan' => 2 ),
@@ -642,6 +663,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		$this->deletedOnly = !empty( $options['deletedOnly'] );
 		$this->topOnly = !empty( $options['topOnly'] );
+		$this->newOnly = !empty( $options['newOnly'] );
 
 		$year = isset( $options['year'] ) ? $options['year'] : false;
 		$month = isset( $options['month'] ) ? $options['month'] : false;
@@ -819,6 +841,10 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		if ( $this->topOnly ) {
 			$condition[] = 'rev_id = page_latest';
+		}
+
+		if ( $this->newOnly ) {
+			$condition[] = 'rev_parent_id = 0';
 		}
 
 		return array( $tables, $index, $condition, $join_conds );

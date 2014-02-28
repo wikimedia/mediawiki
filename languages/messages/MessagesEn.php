@@ -3277,6 +3277,7 @@ The latest block log entry is provided below for reference:',
 'sp-contributions-search'              => 'Search for contributions',
 'sp-contributions-username'            => 'IP address or username:',
 'sp-contributions-toponly'             => 'Only show edits that are latest revisions',
+'sp-contributions-newonly'             => 'Only show edits that are page creations',
 'sp-contributions-submit'              => 'Search',
 'sp-contributions-explain'             => '', # only translate this message to other languages if you have to change it
 'sp-contributions-footer'              => '-', # do not translate or duplicate this message to other languages
