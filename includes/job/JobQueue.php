@@ -434,10 +434,10 @@ abstract class JobQueue {
 	 * that are actually inserted into the queue. For example, "refreshLinks" jobs are
 	 * spawned when a template is edited. One can think of the task as "update links
 	 * of pages that use template X" and an instance of that task as a "root job".
-	 * However, what actually goes into the queue are potentially many refreshLinks2 jobs.
-	 * Since these jobs include things like page ID ranges and DB master positions, and morph
-	 * into smaller refreshLinks2 jobs recursively, simple duplicate detection (like job_sha1)
-	 * for individual jobs being identical is not useful.
+	 * However, what actually goes into the queue are range and leaf job subtypes.
+	 * Since these jobs include things like page ID ranges and DB master positions,
+	 * and can morph into smaller jobs recursively, simple duplicate detection
+	 * for individual jobs being identical (like that of job_sha1) is not useful.
 	 *
 	 * In the case of "refreshLinks", if these jobs are still in the queue when the template
 	 * is edited again, we want all of these old refreshLinks jobs for that template to become
