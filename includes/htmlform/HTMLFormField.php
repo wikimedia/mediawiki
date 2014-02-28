@@ -558,7 +558,7 @@ abstract class HTMLFormField {
 				$this->mOptions = self::forceToStringRecursive( $this->mParams['options'] );
 			} elseif ( array_key_exists( 'options-message', $this->mParams ) ) {
 				/** @todo This is copied from Xml::listDropDown(), deprecate/avoid duplication? */
-				$message = $this->msg( $this->mParams['options-message'] )->plain();
+				$message = $this->msg( $this->mParams['options-message'] )->inContentLanguage()->plain();
 
 				$optgroup = false;
 				$this->mOptions = array();
