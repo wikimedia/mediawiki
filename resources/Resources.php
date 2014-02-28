@@ -225,9 +225,11 @@ return array(
 	'jquery.color' => array(
 		'scripts' => 'resources/jquery/jquery.color.js',
 		'dependencies' => 'jquery.colorUtil',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.colorUtil' => array(
 		'scripts' => 'resources/jquery/jquery.colorUtil.js',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.cookie' => array(
 		'scripts' => 'resources/jquery/jquery.cookie.js',
@@ -253,6 +255,7 @@ return array(
 	),
 	'jquery.fullscreen' => array(
 		'scripts' => 'resources/jquery/jquery.fullscreen.js',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.getAttrs' => array(
 		'scripts' => 'resources/jquery/jquery.getAttrs.js',
@@ -340,6 +343,7 @@ return array(
 	),
 	'jquery.throttle-debounce' => array(
 		'scripts' => 'resources/jquery/jquery.ba-throttle-debounce.js',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.validate' => array(
 		'scripts' => 'resources/jquery/jquery.validate.js',
@@ -372,25 +376,30 @@ return array(
 		),
 		'dependencies' => 'jquery',
 		'group' => 'jquery.ui',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.ui.widget' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.widget.js',
 		'group' => 'jquery.ui',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.ui.mouse' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.mouse.js',
 		'dependencies' => 'jquery.ui.widget',
 		'group' => 'jquery.ui',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.ui.position' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.position.js',
 		'group' => 'jquery.ui',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	// Interactions
 	'jquery.ui.draggable' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.draggable.js',
 		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.mouse', 'jquery.ui.widget' ),
 		'group' => 'jquery.ui',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.ui.droppable' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.droppable.js',
@@ -407,6 +416,7 @@ return array(
 		),
 		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.mouse' ),
 		'group' => 'jquery.ui',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.ui.selectable' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.selectable.js',
@@ -449,6 +459,7 @@ return array(
 			'vector' => 'resources/jquery.ui/themes/vector/jquery.ui.button.css',
 		),
 		'group' => 'jquery.ui',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.ui.datepicker' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.datepicker.js',
@@ -538,6 +549,7 @@ return array(
 			'vector' => 'resources/jquery.ui/themes/vector/jquery.ui.dialog.css',
 		),
 		'group' => 'jquery.ui',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.ui.progressbar' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.progressbar.js',
@@ -711,6 +723,7 @@ return array(
 			'zh-cn' => 'resources/moment/lang/zh-cn.js',
 			'zh-tw' => 'resources/moment/lang/zh-tw.js',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 
 	/* MediaWiki */
