@@ -17,7 +17,8 @@
 		}
 	}
 
-	&:active {
+	&:active,
+	&.mw-ui-active {
 		// lessphp doesn't implement shade (https://github.com/leafo/lessphp/issues/528);
 		// it passes it through, then ResourceLoader drops it.
 		// background: shade(@bgColor, 20%);
@@ -51,7 +52,8 @@
 
 		// make sure disabled buttons don't have hover and active states
 		&:hover,
-		&:active {
+		&:active,
+		&.mw-ui-active{
 			box-shadow: none;
 		}
 	}
@@ -69,7 +71,8 @@
 		color: mix(#fff, @textColor, 20%);
 	}
 
-	&:active {
+	&:active,
+	&.mw-ui-active {
 		// lessphp doesn't implement shade, see above
 		// color: shade(@textColor, 20%);
 		color: mix(#000, @textColor, 20%);

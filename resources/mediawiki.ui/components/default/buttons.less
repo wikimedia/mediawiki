@@ -213,6 +213,10 @@ a.mw-ui-button {
 		border-bottom-left-radius: @buttonBorderRadius;
 	}
 
+	&:not(:first-child){
+		border-left: none;
+	}
+
 	&:last-child{
 		border-top-right-radius: @buttonBorderRadius;
 		border-bottom-right-radius: @buttonBorderRadius;
