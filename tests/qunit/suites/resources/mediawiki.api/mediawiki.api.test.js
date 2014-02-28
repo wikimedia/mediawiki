@@ -81,4 +81,12 @@
 		this.server.respond();
 	} );
 
+	QUnit.test( 'FormData as parameters', function ( assert ) {
+		QUnit.expect( 1 );
+		var api = new mw.Api(), data = new FormData();
+
+		api.ajax( data );
+		assert.ok( true, 'did not throw an exception' );
+	} );
+
 }( mediaWiki ) );
