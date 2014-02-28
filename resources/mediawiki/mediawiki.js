@@ -558,8 +558,7 @@ var mw = ( function ( $, undefined ) {
 			log.deprecate = !Object.defineProperty ? function ( obj, key, val ) {
 				obj[key] = val;
 			} : function ( obj, key, val, msg ) {
-				msg = 'MWDeprecationWarning: Use of "' + key + '" property is deprecated.' +
-					( msg ? ( ' ' + msg ) : '' );
+				msg = 'Use of "' + key + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' );
 				try {
 					Object.defineProperty( obj, key, {
 						configurable: true,
