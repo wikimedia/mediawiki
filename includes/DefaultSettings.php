@@ -5105,11 +5105,6 @@ $wgUDPProfilerPort = '3811';
 $wgUDPProfilerFormatString = "%s - %d %f %f %f %f %s\n";
 
 /**
- * Detects non-matching wfProfileIn/wfProfileOut calls
- */
-$wgDebugProfiling = false;
-
-/**
  * Output debug message on every wfProfileIn/wfProfileOut
  */
 $wgDebugFunctionEntry = false;
