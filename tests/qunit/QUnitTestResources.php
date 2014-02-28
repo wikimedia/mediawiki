@@ -44,7 +44,6 @@ return array(
 			'tests/qunit/suites/resources/jquery/jquery.client.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.color.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.colorUtil.test.js',
-			'tests/qunit/suites/resources/jquery/jquery.delayedBind.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.getAttrs.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.hidpi.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.highlightText.test.js',
