@@ -81,4 +81,23 @@
 		this.server.respond();
 	} );
 
+	QUnit.test( 'FormData as parameters', function ( assert ) {
+		QUnit.expect( 1 );
+
+		var
+			api = new mw.Api(),
+			data = new FormData();
+
+		// FIXME: uncomment when we update Sinon.JS to include
+		// https://github.com/cjohansen/Sinon.JS/commit/dd2cb8917d437157675e13ae8e08dc0bfefb8291
+		//this.sandbox.spy( data, 'append' );
+
+		api.ajax( data );
+		assert.ok( true, 'did not throw an exception' );
+		// FIXME: uncomment when we update Sinon.JS to include
+		// https://github.com/cjohansen/Sinon.JS/commit/dd2cb8917d437157675e13ae8e08dc0bfefb8291
+		//assert.ok( data.append.calledWith( 'action', 'query' ), 'default action parameter appended' );
+		//assert.ok( data.append.calledWith( 'format', 'json' ), 'default format parameter appended' );
+	} );
+
 }( mediaWiki ) );
