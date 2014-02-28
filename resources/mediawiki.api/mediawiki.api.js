@@ -120,22 +120,30 @@
 				apiDeferred = $.Deferred(),
 				xhr;
 
-			parameters = $.extend( {}, this.defaults.parameters, parameters );
 			ajaxOptions = $.extend( {}, this.defaults.ajax, ajaxOptions );
 
-			// Ensure that token parameter is last (per [[mw:API:Edit#Token]]).
-			if ( parameters.token ) {
-				token = parameters.token;
-				delete parameters.token;
-			}
-			// Some deployed MediaWiki >= 1.17 forbid periods in URLs, due to an IE XSS bug
-			// So let's escape them here. See bug #28235
-			// This works because jQuery accepts data as a query string or as an Object
-			ajaxOptions.data = $.param( parameters ).replace( /\./g, '%2E' );
+			// Don't touch parameters if it's a FormData
+			if ( typeof FormData !== 'undefined' && parameters instanceof FormData ) {
+				ajaxOptions.data = parameters;
+				// don't try to process FormData like a plain object
+				ajaxOptions.processData = false;
+			} else {
+				parameters = $.extend( {}, this.defaults.parameters, parameters );
 
-			// If we extracted a token parameter, add it back in.
-			if ( token ) {
-				ajaxOptions.data += '&token=' + encodeURIComponent( token );
+				// Ensure that token parameter is last (per [[mw:API:Edit#Token]]).
+				if ( parameters.token ) {
+					token = parameters.token;
+					delete parameters.token;
+				}
+				// Some deployed MediaWiki >= 1.17 forbid periods in URLs, due to an IE XSS bug
+				// So let's escape them here. See bug #28235
+				// This works because jQuery accepts data as a query string or as an Object
+				ajaxOptions.data = $.param( parameters ).replace( /\./g, '%2E' );
+
+				// If we extracted a token parameter, add it back in.
+				if ( token ) {
+					ajaxOptions.data += '&token=' + encodeURIComponent( token );
+				}
 			}
 
 			// Backwards compatibility: Before MediaWiki 1.20,
