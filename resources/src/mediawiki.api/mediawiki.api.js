@@ -131,7 +131,7 @@
 			var token,
 				apiDeferred = $.Deferred(),
 				msg = 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.',
-				xhr;
+				xhr, key, formData;
 
 			parameters = $.extend( {}, this.defaults.parameters, parameters );
 			ajaxOptions = $.extend( {}, this.defaults.ajax, ajaxOptions );
@@ -141,14 +141,46 @@
 				token = parameters.token;
 				delete parameters.token;
 			}
-			// Some deployed MediaWiki >= 1.17 forbid periods in URLs, due to an IE XSS bug
-			// So let's escape them here. See bug #28235
-			// This works because jQuery accepts data as a query string or as an Object
-			ajaxOptions.data = $.param( parameters ).replace( /\./g, '%2E' );
 
-			// If we extracted a token parameter, add it back in.
-			if ( token ) {
-				ajaxOptions.data += '&token=' + encodeURIComponent( token );
+			// If multipart/form-data has been requested and emulation is possible, emulate it
+			if (
+				ajaxOptions.type === 'POST' &&
+				window.FormData &&
+				ajaxOptions.contentType === 'multipart/form-data'
+			) {
+
+				formData = new FormData();
+
+				for ( key in parameters ) {
+					formData.append( key, parameters[key] );
+				}
+				// If we extracted a token parameter, add it back in.
+				if ( token ) {
+					formData.append( 'token', token );
+				}
+
+				ajaxOptions.data = formData;
+
+				// Prevent jQuery from mangling our FormData object
+				ajaxOptions.processData = false;
+				// Prevent jQuery from overriding the Content-Type header
+				ajaxOptions.contentType = false;
+			} else {
+				// Some deployed MediaWiki >= 1.17 forbid periods in URLs, due to an IE XSS bug
+				// So let's escape them here. See bug #28235
+				// This works because jQuery accepts data as a query string or as an Object
+				ajaxOptions.data = $.param( parameters ).replace( /\./g, '%2E' );
+
+				// If we extracted a token parameter, add it back in.
+				if ( token ) {
+					ajaxOptions.data += '&token=' + encodeURIComponent( token );
+				}
+
+				if ( ajaxOptions.contentType === 'multipart/form-data' ) {
+					// We were asked to emulate but can't, so drop the Content-Type header, otherwise
+					// it'll be wrong and the server will fail to decode the POST body
+					delete ajaxOptions.contentType;
+				}
 			}
 
 			// Backwards compatibility: Before MediaWiki 1.20,
