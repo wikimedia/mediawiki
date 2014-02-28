@@ -1373,6 +1373,7 @@ return array(
 			'ooui-dialog-action-close',
 			'ooui-outline-control-move-down',
 			'ooui-outline-control-move-up',
+			'ooui-outline-control-remove',
 			'ooui-toolbar-more',
 		),
 		'dependencies' => array(
