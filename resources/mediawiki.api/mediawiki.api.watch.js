@@ -8,7 +8,7 @@
 	 * @private
 	 * @context mw.Api
 	 *
-	 * @param {String|mw.Title} page Full page name or instance of mw.Title
+	 * @param {string|mw.Title|string[]|mw.Title[]} page Full page name or instance of mw.Title or array of pages
 	 * @param {Function} [ok] Success callback (deprecated)
 	 * @param {Function} [err] Error callback (deprecated)
 	 * @return {jQuery.Promise}
@@ -28,7 +28,7 @@
 
 		params = {
 			action: 'watch',
-			title: String( page ),
+			titles: $.isArray( page ) ? page.join( '|' ) : String( page ),
 			token: mw.user.tokens.get( 'watchToken' ),
 			uselang: mw.config.get( 'wgUserLanguage' )
 		};
