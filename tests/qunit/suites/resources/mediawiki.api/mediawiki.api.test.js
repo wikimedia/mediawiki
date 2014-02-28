@@ -81,4 +81,22 @@
 		this.server.respond();
 	} );
 
+	QUnit.test( 'FormData as parameters', function ( assert ) {
+		QUnit.expect( 1 );
+
+		var
+			api = new mw.Api(),
+			data = new FormData();
+
+		api.ajax( data ).done( function() {
+			assert.ok( true, 'request sent with default action and format parameters' );
+		} );
+
+		this.server.respondWith( /action=query&format=json|format=json&action=query/, function ( request ) {
+			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
+		} );
+
+		this.server.respond();
+	} );
+
 }( mediaWiki ) );
