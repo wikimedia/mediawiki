@@ -46,6 +46,23 @@
 		} );
 	} );
 
+	QUnit.test( 'FormData support', function ( assert ) {
+		QUnit.expect( 1 );
+
+		var api = new mw.Api();
+
+		api.post( { action: 'test' }, { contentType: 'multipart/form-data' } )
+			.done( function ( data ) {
+				assert.deepEqual( data, [], 'FormData POST request' );
+			} );
+
+		this.server.respond( function ( request ) {
+			if ( request.requestBody instanceof FormData ) {
+				request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
+			}
+		} );
+	} );
+
 	QUnit.test( 'Deprecated callback methods', function ( assert ) {
 		QUnit.expect( 3 );
 
