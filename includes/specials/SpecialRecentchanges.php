@@ -722,12 +722,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			'hidemyself' => 'rcshowhidemine'
 		  );
 
-		// The following messages are also used as the link text itself:
-		// rcshowhideminor-show, rcshowhideminor-hide,
-		// rcshowhidebots-show, rcshowhideminor-hide,
-		// rcshowhideanons-show, rcshowhideanons-hide,
-		// rcshowhidepatr-show, rcshowhidepatr-hide,
-		// rcshowhidemine-show, rcshowhidemine-hide.
 		$showhide = array( 'show', 'hide' );
 
 		foreach ( $this->getCustomFilters() as $key => $params ) {
@@ -740,7 +734,18 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$links = array();
 		foreach ( $filters as $key => $msg ) {
-			$link = $this->makeOptionsLink( $this->msg( $msg . '-' . $showhide[1 - $options[$key]] ),
+			// The following messages are used here:
+			// rcshowhideminor-show, rcshowhideminor-hide, rcshowhidebots-show, rcshowhidebots-hide,
+			// rcshowhideanons-show, rcshowhideanons-hide, rcshowhideliu-show, rcshowhideliu-hide,
+			// rcshowhidepatr-show, rcshowhidepatr-hide, rcshowhidemine-show, rcshowhidemine-hide.
+			$linkMessage = $this->msg( $msg . '-' . $showhide[1 - $options[$key]] );
+			// Extensions can define additional filters, but don't need to define the corresponding
+			// messages. If they don't exist, just fall back to 'show' and 'hide'.
+			if ( !$linkMessage->exists() ) {
+				$linkMessage = $this->msg( $showhide[1 - $options[$key]] );
+			}
+
+			$link = $this->makeOptionsLink( $linkMessage->text(),
 				array( $key => 1 - $options[$key] ), $nondefaults );
 			$links[] = $this->msg( $msg )->rawParams( $link )->escaped();
 		}
