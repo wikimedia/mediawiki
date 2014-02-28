@@ -3840,6 +3840,10 @@ $wgMessageStructure = array(
 		'htmlform-no',
 		'htmlform-yes',
 		'htmlform-chosen-placeholder',
+		'htmlform-date-placeholder',
+		'htmlform-date-invalid',
+		'htmlform-date-toolow',
+		'htmlform-date-toohigh',
 	),
 	'sqlite' => array(
 		'sqlite-has-fts',
