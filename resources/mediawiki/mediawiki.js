@@ -566,12 +566,12 @@ var mw = ( function ( $, undefined ) {
 						enumerable: true,
 						get: function () {
 							mw.track( 'mw.deprecate', key );
-							log.warn( msg );
+							mw.log.warn( msg );
 							return val;
 						},
 						set: function ( newVal ) {
 							mw.track( 'mw.deprecate', key );
-							log.warn( msg );
+							mw.log.warn( msg );
 							val = newVal;
 						}
 					} );
