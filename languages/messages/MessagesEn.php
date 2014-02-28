@@ -5017,6 +5017,10 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'htmlform-no'                  => 'No',
 'htmlform-yes'                 => 'Yes',
 'htmlform-chosen-placeholder'  => 'Select an option',
+'htmlform-date-placeholder'    => 'YYYY-MM-DD',
+'htmlform-date-invalid'        => 'The value you specified is not a recognized date. Try using YYYY-MM-DD format.',
+'htmlform-date-toolow'         => 'The value you specified is before the earliest allowed date of $1.',
+'htmlform-date-toohigh'        => 'The value you specified is after the latest allowed date of $1.',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 with full-text search support',

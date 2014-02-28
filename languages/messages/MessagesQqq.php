@@ -10498,6 +10498,28 @@ See also:
 'htmlform-yes' => 'Used in form, such as with radio buttons, for generic yes / no questions.
 {{Identical|Yes}}',
 'htmlform-chosen-placeholder' => 'Used as initial placeholder text in select multiple "chosen" input boxes',
+'htmlform-date-placeholder' => 'Used as initial placeholder text in "date" input boxes',
+'htmlform-date-invalid' => 'Used as error message in HTML forms.
+
+* {{msg-mw|Htmlform-invalid-input}}
+* {{msg-mw|Htmlform-date-placeholder}}
+* {{msg-mw|Htmlform-date-toolow}}
+* {{msg-mw|Htmlform-date-toohigh}}
+* {{msg-mw|Htmlform-required}}',
+'htmlform-date-toolow' => 'Used as error message in HTML forms. Parameters:
+* $1 - minimum date
+See also:
+* {{msg-mw|Htmlform-invalid-input}}
+* {{msg-mw|Htmlform-required}}
+* {{msg-mw|Htmlform-date-invalid}}
+* {{msg-mw|Htmlform-date-toohigh}}',
+'htmlform-date-toohigh' => 'Used as error message in HTML forms. Parameters:
+* $1 - maximum date
+See also:
+* {{msg-mw|Htmlform-invalid-input}}
+* {{msg-mw|Htmlform-required}}
+* {{msg-mw|Htmlform-date-invalid}}
+* {{msg-mw|Htmlform-date-toolow}}',
 
 # SQLite database support
 'sqlite-has-fts' => 'Shown on [[Special:Version]].

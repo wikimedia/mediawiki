@@ -92,6 +92,7 @@ $wgAutoloadLocalClasses = array(
 	'HTMLButtonField' => 'includes/htmlform/HTMLButtonField.php',
 	'HTMLCheckField' => 'includes/htmlform/HTMLCheckField.php',
 	'HTMLCheckMatrix' => 'includes/htmlform/HTMLCheckMatrix.php',
+	'HTMLDateField' => 'includes/htmlform/HTMLDateField.php',
 	'HTMLEditTools' => 'includes/htmlform/HTMLEditTools.php',
 	'HTMLFloatField' => 'includes/htmlform/HTMLFloatField.php',
 	'HTMLForm' => 'includes/htmlform/HTMLForm.php',
