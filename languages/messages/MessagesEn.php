@@ -5021,6 +5021,11 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'htmlform-date-invalid'        => 'The value you specified is not a recognized date. Try using YYYY-MM-DD format.',
 'htmlform-date-toolow'         => 'The value you specified is before the earliest allowed date of $1.',
 'htmlform-date-toohigh'        => 'The value you specified is after the latest allowed date of $1.',
+'htmlform-daterange-layout'    => 'Start on $1 and run for $2 days',
+'htmlform-daterange-days-badoption' => 'The value you specified for the days to run is not a valid option.',
+'htmlform-daterange-days-invalid' => 'The value you specified for the days to run is not an integer.',
+'htmlform-daterange-days-toolow'  => 'The value you specified for the days to run is below the minimum of $1.',
+'htmlform-daterange-days-toohigh' => 'The value you specified for the days to run is above the maximum of $1.',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 with full-text search support',

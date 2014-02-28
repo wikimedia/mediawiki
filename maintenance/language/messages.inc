@@ -3844,6 +3844,11 @@ $wgMessageStructure = array(
 		'htmlform-date-invalid',
 		'htmlform-date-toolow',
 		'htmlform-date-toohigh',
+		'htmlform-daterange-layout',
+		'htmlform-daterange-days-badoption',
+		'htmlform-daterange-days-invalid',
+		'htmlform-daterange-days-toolow',
+		'htmlform-daterange-days-toohigh',
 	),
 	'sqlite' => array(
 		'sqlite-has-fts',
