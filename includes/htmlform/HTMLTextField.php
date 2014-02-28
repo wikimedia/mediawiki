@@ -50,6 +50,9 @@ class HTMLTextField extends HTMLFormField {
 					$attribs['type'] = 'number';
 					$attribs['step'] = 'any';
 					break;
+				case 'daterange':
+					$attribs['type'] = 'date';
+					break;
 				# Pass through
 				case 'email':
 				case 'password':

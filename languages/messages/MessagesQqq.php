@@ -10520,6 +10520,63 @@ See also:
 * {{msg-mw|Htmlform-required}}
 * {{msg-mw|Htmlform-date-invalid}}
 * {{msg-mw|Htmlform-date-toolow}}',
+'htmlform-daterange-layout' => 'Used to give context to the form fields in an HTML form date-range element.
+* $1 - HTML for the starting date control
+* $2 - HTML for the number-of-days control',
+'htmlform-daterange-days-badoption' => 'Used as error message in HTML forms.
+
+* {{msg-mw|Htmlform-invalid-input}}
+* {{msg-mw|Htmlform-required}}
+* {{msg-mw|Htmlform-int-invalid}}
+* {{msg-mw|Htmlform-int-toolow}}
+* {{msg-mw|Htmlform-int-toohigh}}
+* {{msg-mw|Htmlform-date-invalid}}
+* {{msg-mw|Htmlform-date-toolow}}
+* {{msg-mw|Htmlform-date-toohigh}}
+* {{msg-mw|Htmlform-daterange-invalid}}
+* {{msg-mw|Htmlform-daterange-toolow}}
+* {{msg-mw|Htmlform-daterange-toohigh}}',
+'htmlform-daterange-days-invalid' => 'Used as error message in HTML forms.
+
+* {{msg-mw|Htmlform-invalid-input}}
+* {{msg-mw|Htmlform-required}}
+* {{msg-mw|Htmlform-int-invalid}}
+* {{msg-mw|Htmlform-int-toolow}}
+* {{msg-mw|Htmlform-int-toohigh}}
+* {{msg-mw|Htmlform-date-invalid}}
+* {{msg-mw|Htmlform-date-toolow}}
+* {{msg-mw|Htmlform-date-toohigh}}
+* {{msg-mw|Htmlform-daterange-badoption}}
+* {{msg-mw|Htmlform-daterange-toolow}}
+* {{msg-mw|Htmlform-daterange-toohigh}}',
+'htmlform-daterange-days-toolow' => 'Used as error message in HTML forms. Parameters:
+* $1 - minimum value
+See also:
+* {{msg-mw|Htmlform-invalid-input}}
+* {{msg-mw|Htmlform-required}}
+* {{msg-mw|Htmlform-int-invalid}}
+* {{msg-mw|Htmlform-int-toolow}}
+* {{msg-mw|Htmlform-int-toohigh}}
+* {{msg-mw|Htmlform-date-invalid}}
+* {{msg-mw|Htmlform-date-toolow}}
+* {{msg-mw|Htmlform-date-toohigh}}
+* {{msg-mw|Htmlform-daterange-badoption}}
+* {{msg-mw|Htmlform-daterange-invalid}}
+* {{msg-mw|Htmlform-daterange-toohigh}}',
+'htmlform-daterange-days-toohigh' => 'Used as error message in HTML forms. Parameters:
+* $1 - maximum value
+See also:
+* {{msg-mw|Htmlform-invalid-input}}
+* {{msg-mw|Htmlform-required}}
+* {{msg-mw|Htmlform-int-invalid}}
+* {{msg-mw|Htmlform-int-toolow}}
+* {{msg-mw|Htmlform-int-toohigh}}
+* {{msg-mw|Htmlform-date-invalid}}
+* {{msg-mw|Htmlform-date-toolow}}
+* {{msg-mw|Htmlform-date-toohigh}}
+* {{msg-mw|Htmlform-daterange-badoption}}
+* {{msg-mw|Htmlform-daterange-invalid}}
+* {{msg-mw|Htmlform-daterange-toolow}}',
 
 # SQLite database support
 'sqlite-has-fts' => 'Shown on [[Special:Version]].
