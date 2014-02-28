@@ -118,10 +118,11 @@ class HTMLForm extends ContextSource {
 		'edittools' => 'HTMLEditTools',
 		'checkmatrix' => 'HTMLCheckMatrix',
 		// HTMLTextField will output the correct type="" attribute automagically.
-		// There are about four zillion other HTML5 input types, like url, but
+		// There are about four zillion other HTML5 input types, like range, but
 		// we don't use those at the moment, so no point in adding all of them.
 		'email' => 'HTMLTextField',
 		'password' => 'HTMLTextField',
+		'url' => 'HTMLTextField',
 	);
 
 	public $mFieldData;
