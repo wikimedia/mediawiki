@@ -55,6 +55,7 @@ class HTMLTextField extends HTMLFormField {
 				case 'password':
 				case 'file':
 				case 'url':
+				case 'date':
 					$attribs['type'] = $this->mParams['type'];
 					break;
 			}
