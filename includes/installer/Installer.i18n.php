@@ -29,7 +29,7 @@ $1',
 	'config-localsettings-incomplete' => 'The existing <code>LocalSettings.php</code> appears to be incomplete.
 The $1 variable is not set.
 Please change <code>LocalSettings.php</code> so that this variable is set, and click "{{int:Config-continue}}".',
-	'config-localsettings-connection-error' => 'An error was encountered when connecting to the database using the settings specified in <code>LocalSettings.php</code> or <code>AdminSettings.php</code>. Please fix these settings and try again.
+	'config-localsettings-connection-error' => 'An error was encountered when connecting to the database using the settings specified in <code>LocalSettings.php</code>. Please fix these settings and try again.
 
 $1',
 	'config-session-error'            => 'Error starting session: $1',
@@ -609,7 +609,7 @@ $messages['qqq'] = array(
 	'config-localsettings-incomplete' => '{{doc-important|Do not translate <code>LocalSettings.php</code> and <code><nowiki>{{int:Config-continue}}</nowiki><code>.}}
 Parameters:
 * $1 - name of variable (any one of required variables or installer-specific global variables)',
-	'config-localsettings-connection-error' => '{{doc-important|Do not translate <code>LocalSettings.php</code> and <code>AdminSettings.php</code>.}}
+	'config-localsettings-connection-error' => '{{doc-important|Do not translate <code>LocalSettings.php</code>.}}
 Used as error message. Parameters:
 * $1 - (probably empty string)',
 	'config-session-error' => 'Parameters:
