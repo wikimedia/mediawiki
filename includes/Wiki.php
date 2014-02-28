@@ -621,7 +621,7 @@ class MediaWiki {
 	 * the socket once it's done.
 	 */
 	protected function triggerJobs() {
-		global $wgJobRunRate, $wgServer, $wgScriptPath, $wgScriptExtension;
+		global $wgJobRunRate, $wgServer, $wgScriptPath, $wgScriptExtension, $wgEnableAPI;
 
 		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
 			return;
@@ -643,16 +643,30 @@ class MediaWiki {
 			'tasks' => 'jobs', 'maxjobs' => $n, 'sigexpiry' => time() + 5 );
 		$query['signature'] = ApiRunJobs::getQuerySignature( $query );
 
+		// Slow job running method in case of API or socket functions being disabled
+		$fallback = function() use ( $query ) {
+			$api = new ApiMain( new FauxRequest( $query, true ) );
+			$api->execute();
+		};
+
+		if ( !$wgEnableAPI ) {
+			$fallback();
+			return;
+		}
+
 		$errno = $errstr = null;
 		$info = wfParseUrl( $wgServer );
+		wfSuppressWarnings();
 		$sock = fsockopen(
 			$info['host'],
 			isset( $info['port'] ) ? $info['port'] : 80,
 			$errno,
 			$errstr
 		);
+		wfRestoreWarnings();
 		if ( !$sock ) {
 			wfDebugLog( 'runJobs', "Failed to start cron API (socket error $errno): $errstr\n" );
+			$fallback();
 			return;
 		}
 
@@ -661,7 +675,7 @@ class MediaWiki {
 
 		wfDebugLog( 'runJobs', "Running $n job(s) via '$url'\n" );
 		// Send a cron API request to be performed in the background.
-		// Give up if this takes to long to send (which should be rare).
+		// Give up if this takes too long to send (which should be rare).
 		stream_set_timeout( $sock, 1 );
 		$bytes = fwrite( $sock, $req );
 		if ( $bytes !== strlen( $req ) ) {
