@@ -876,10 +876,9 @@ ul.mw-gallery-packed-hover li.gallerybox:hover div.gallerytextwrapper,
 ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper,
 ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper {
 	position:absolute;
-	opacity:.8;
 	filter:alpha(opacity=80);
 	zoom: 1;
-	background-color:white;
+	background-color: rgba( 255, 255, 255, 0.8 );
 	padding: 5px 10px;
 	bottom: 0;
 	left: 0; /* Needed for IE */
@@ -896,7 +895,6 @@ ul.mw-gallery-packed {
 
 ul.mw-gallery-packed-hover div.gallerytext,
 ul.mw-gallery-packed-overlay div.gallerytext {
-	opacity: 1;
 	position: relative; /* Resets opacity in old IE */
 }
 
