@@ -1148,6 +1148,28 @@
 		);
 	} );
 
+	QUnit.test( 'holes in the table headers should not throw JS errors', 2, function ( assert ) {
+		var $table = $(
+			'<table class="sortable">' +
+				'<thead>' +
+				'<tr><th id="A1">A1</th><th>B1</th><th id="C1" rowspan="2">C1</th></tr>' +
+				'<tr><th id="A2">A2</th></tr>' +
+				'</thead>' +
+				'<tr><td>A</td><td>Aa</td><td>Aaa</td></tr>' +
+				'<tr><td>B</td><td>Ba</td><td>Bbb</td></tr>' +
+				'</table>'
+		);
+		$table.tablesorter();
+		assert.equal( 0,
+			$table.find( '#A2' ).prop( 'headerIndex' ),
+			'A2 should be a sort header'
+		);
+		assert.equal( 1, // should be 2
+			$table.find( '#C1' ).prop( 'headerIndex' ),
+			'C1 should be a sort header, but will sort the wrong column'
+		);
+	} );
+
 	// bug 41889 - exploding rowspans in more complex cases
 	tableTestHTML(
 		'Rowspan exploding with row headers',
@@ -1161,6 +1183,22 @@
 			[ '1', 'foo', 'bar', 'baz' ],
 			[ '2', 'foo', 'bar', 'baz' ]
 		]
+	);
+
+	// bug 53211 - exploding rowspans in more complex cases
+	QUnit.test(
+		'Rowspan exploding with row headers and colspans', 1, function ( assert ) {
+		var $table = $( '<table class="sortable">' +
+			'<thead><tr><th rowspan="2">n</th><th colspan="2">foo</th><th rowspan="2">baz</th></tr>' +
+			'<tr><th>foo</th><th>bar</th></tr></thead>' +
+			'<tbody>' +
+			'<tr><td>1</td><td>foo</td><td>bar</td><td>baz</td></tr>' +
+			'<tr><td>2</td><td>foo</td><td>bar</td><td>baz</td></tr>' +
+			'</tbody></table>' );
+
+			$table.tablesorter();
+			assert.equal( 2, $table.find( 'tr:eq(1) th:eq(1)').prop('headerIndex'), 'Incorrect index of sort header' );
+		}
 	);
 
 	tableTestHTML(

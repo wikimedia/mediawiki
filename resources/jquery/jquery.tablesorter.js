@@ -289,7 +289,6 @@
 	function buildHeaders( table, msg ) {
 		var maxSeen = 0,
 			colspanOffset = 0,
-			longest,
 			columns,
 			i,
 			$tableHeaders = $( [] ),
@@ -297,27 +296,47 @@
 		if ( $tableRows.length <= 1 ) {
 			$tableHeaders = $tableRows.children( 'th' );
 		} else {
-			// We need to find the cells of the row containing the most columns
 			var rowspan,
-				headersIndex = [];
-			$tableRows.each( function ( rowIndex ) {
-				$.each( this.cells, function( index2, cell ) {
+				colspan,
+				headerCount,
+				longestTR,
+				matrixRowIndex,
+				matrixColumnIndex,
+				exploded = [];
+
+			// Loop through all the dom cells of the thead
+			$tableRows.each( function ( rowIndex, row ) {
+				$.each( row.cells, function( columnIndex, cell ) {
 					rowspan = Number( cell.rowSpan );
-					for ( i = 0; i < rowspan; i++ ) {
-						if ( headersIndex[rowIndex+i] === undefined ) {
-							headersIndex[rowIndex+i] = $( [] );
+					colspan = Number( cell.colSpan );
+
+					// Skip the spots in the exploded matrix that are already filled
+					while ( exploded[rowIndex] && exploded[rowIndex][columnIndex] !== undefined ) {
+						++columnIndex;
+					}
+
+					// Find the actual dimensions of the thead, by placing each cell
+					// in the exploded matrix rowspan times colspan times, with the proper offsets
+					for ( matrixColumnIndex = columnIndex; matrixColumnIndex < columnIndex + colspan; ++matrixColumnIndex ) {
+						for ( matrixRowIndex = rowIndex; matrixRowIndex < rowIndex + rowspan; ++matrixRowIndex ) {
+							if ( !exploded[matrixRowIndex] ) {
+								exploded[matrixRowIndex] = [];
+							}
+							exploded[matrixRowIndex][matrixColumnIndex] = cell;
 						}
-						headersIndex[rowIndex+i].push( cell );
 					}
 				} );
 			} );
-			$.each( headersIndex, function ( index, cellArray ) {
-				if ( cellArray.length >= maxSeen ) {
-					maxSeen = cellArray.length;
-					longest = index;
+			// We want to find the row that has the most columns (ignoring colspan)
+			$.each( exploded, function ( index, cellArray ) {
+				headerCount = $.unique( $(cellArray) ).length;
+				if ( headerCount >= maxSeen ) {
+					maxSeen = headerCount;
+					longestTR = index;
 				}
 			} );
-			$tableHeaders = headersIndex[longest];
+			// We cannot use $.unique() here because it sorts into dom order, which is undesirable
+			$tableHeaders = $( uniqueElements( exploded[longestTR] ) );
 		}
 
 		// as each header can span over multiple columns (using colspan=N),
@@ -403,6 +422,17 @@
 			}
 		}
 		return false;
+	}
+
+
+	function uniqueElements( array ) {
+		var uniques = [];
+		$.each( array, function( index, elem ) {
+			if ( elem !== undefined && $.inArray( elem, uniques ) === -1 ) {
+				uniques.push( elem );
+			}
+		} );
+		return uniques;
 	}
 
 	function setHeadersCss( table, $headers, list, css, msg, columnToHeader ) {
