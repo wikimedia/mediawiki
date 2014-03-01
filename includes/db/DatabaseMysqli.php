@@ -281,4 +281,18 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	protected function mysqlPing() {
 		return $this->mConn->ping();
 	}
+
+	/**
+	 * Give an id for the connection
+	 *
+	 * mysql driver used resource id, but mysqli objects cannot be cast to string.
+	 */
+	public function __toString() {
+		if ( $this->mConn instanceof Mysqli ) {
+			return (string)$this->mConn->thread_id;
+		} else {
+			// mConn might be false or something.
+			return (string)$this->mConn;
+		}
+	}
 }
