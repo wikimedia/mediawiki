@@ -1449,6 +1449,7 @@ $wgMessageStructure = array(
 		'uploaddisabledtext',
 		'php-uploaddisabledtext',
 		'uploadscripted',
+		'uploadscriptednamespace',
 		'uploadinvalidxml',
 		'uploadvirus',
 		'uploadjava',
