@@ -221,6 +221,7 @@ class HTMLForm extends ContextSource {
 		// Expand out into a tree.
 		$loadedDescriptor = array();
 		$this->mFlatFields = array();
+		$requiredField = 0;
 
 		foreach ( $descriptor as $fieldname => $info ) {
 			$section = isset( $info['section'] )
@@ -229,6 +230,11 @@ class HTMLForm extends ContextSource {
 
 			if ( isset( $info['type'] ) && $info['type'] == 'file' ) {
 				$this->mUseMultipart = true;
+			}
+
+			if ( isset( $info['required'] ) && $info['required'] == 'true' ) {
+				$info['label'] = '* '.$info['label'];
+				$requiredField += 1;
 			}
 
 			$field = self::loadInputFromParameters( $fieldname, $info );
@@ -258,6 +264,18 @@ class HTMLForm extends ContextSource {
 
 			$setSection[$fieldname] = $field;
 			$this->mFlatFields[$fieldname] = $field;
+		}
+
+		if($requiredField > 0) {
+			$info = array(
+                		'type' => 'info',
+                		'default' => '*Required Field',  # String in field
+                		'raw' => true # if true, the above string won't be html-escaped.
+                	);
+			$field = self::loadInputFromParameters( 'info_text', $info );
+			$field->mParent = $this;
+			$setSection['info_text'] = $field;
+			$this->mFlatFields['info_text'] = $field;
 		}
 
 		$this->mFieldTree = $loadedDescriptor;
