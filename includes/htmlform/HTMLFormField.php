@@ -213,6 +213,10 @@ abstract class HTMLFormField {
 		if ( isset( $params['hidelabel'] ) ) {
 			$this->mShowEmptyLabels = false;
 		}
+
+		if ( isset( $params['required'] ) ) {
+			$this->mLabel = '* ' . $this->mLabel;
+		}
 	}
 
 	/**
