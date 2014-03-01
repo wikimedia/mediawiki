@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (064484f9af)
+ * OOjs UI v0.1.0-pre (51f922ba17)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Feb 26 2014 12:12:11 GMT-0800 (PST)
+ * Date: Fri Feb 28 2014 16:33:26 GMT-0800 (PST)
  */
 ( function () {
 
@@ -87,6 +87,8 @@ var messages = {
 	'ooui-outline-control-move-down': 'Move item down',
 	// Tool tip for a button that moves items in a list up one place
 	'ooui-outline-control-move-up': 'Move item up',
+	// Tool tip for a button that removes items from a list
+	'ooui-outline-control-remove': 'Remove item',
 	// Label for the toolbar group that contains a list of all other available tools
 	'ooui-toolbar-more': 'More'
 };
@@ -1774,6 +1776,7 @@ OO.ui.Widget.prototype.setDisabled = function ( disabled ) {
 	isDisabled = this.isDisabled();
 	if ( isDisabled !== this.wasDisabled ) {
 		this.$element.toggleClass( 'oo-ui-widget-disabled', isDisabled );
+		this.$element.toggleClass( 'oo-ui-widget-enabled', !isDisabled );
 		this.emit( 'disable', isDisabled );
 	}
 	this.wasDisabled = isDisabled;
@@ -1789,7 +1792,7 @@ OO.ui.Widget.prototype.setDisabled = function ( disabled ) {
  * @param {jQuery} $button Button node, assigned to #$button
  * @param {Object} [config] Configuration options
  * @cfg {boolean} [frameless] Render button without a frame
- * @cfg {number} [tabIndex] Button's tab index
+ * @cfg {number} [tabIndex=0] Button's tab index, use -1 to prevent tab focusing
  */
 OO.ui.ButtonedElement = function OoUiButtonedElement( $button, config ) {
 	// Configuration initialization
@@ -1828,7 +1831,9 @@ OO.ui.ButtonedElement = function OoUiButtonedElement( $button, config ) {
 OO.ui.ButtonedElement.prototype.onMouseDown = function () {
 	this.tabIndex = this.$button.attr( 'tabIndex' );
 	// Remove the tab-index while the button is down to prevent the button from stealing focus
-	this.$button.removeAttr( 'tabIndex' );
+	this.$button
+		.removeAttr( 'tabIndex' )
+		.addClass( 'oo-ui-buttonedElement-pressed' );
 	this.getElementDocument().addEventListener( 'mouseup', this.onMouseUpHandler, true );
 };
 
@@ -1840,7 +1845,9 @@ OO.ui.ButtonedElement.prototype.onMouseDown = function () {
  */
 OO.ui.ButtonedElement.prototype.onMouseUp = function () {
 	// Restore the tab-index after the button is up to restore the button's accesssibility
-	this.$button.attr( 'tabIndex', this.tabIndex );
+	this.$button
+		.attr( 'tabIndex', this.tabIndex )
+		.removeClass( 'oo-ui-buttonedElement-pressed' );
 	this.getElementDocument().removeEventListener( 'mouseup', this.onMouseUpHandler, true );
 };
 
@@ -1852,7 +1859,7 @@ OO.ui.ButtonedElement.prototype.onMouseUp = function () {
  * @chainable
  */
 OO.ui.ButtonedElement.prototype.setActive = function ( value ) {
-	this.$element.toggleClass( 'oo-ui-buttonedElement-active', !!value );
+	this.$button.toggleClass( 'oo-ui-buttonedElement-active', !!value );
 	return this;
 };
 /**
@@ -3857,9 +3864,9 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 	this.stackLayout.connect( this, { 'set': 'onStackLayoutSet' } );
 	if ( this.outlined ) {
 		this.outlineWidget.connect( this, { 'select': 'onOutlineWidgetSelect' } );
-		// Event 'focus' does not bubble, but 'focusin' does
-		this.stackLayout.onDOMEvent( 'focusin', OO.ui.bind( this.onStackLayoutFocus, this ) );
 	}
+	// Event 'focus' does not bubble, but 'focusin' does
+	this.stackLayout.onDOMEvent( 'focusin', OO.ui.bind( this.onStackLayoutFocus, this ) );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-bookletLayout' );
@@ -3934,6 +3941,7 @@ OO.ui.BookletLayout.prototype.onStackLayoutFocus = function ( e ) {
  */
 OO.ui.BookletLayout.prototype.onStackLayoutSet = function ( page ) {
 	if ( page ) {
+		this.stackLayout.$element.find( ':focus' ).blur();
 		page.scrollElementIntoView( { 'complete': OO.ui.bind( function () {
 			this.ignoreFocus = true;
 			if ( this.autoFocus ) {
@@ -3974,6 +3982,41 @@ OO.ui.BookletLayout.prototype.isOutlined = function () {
  */
 OO.ui.BookletLayout.prototype.isEditable = function () {
 	return this.editable;
+};
+
+/**
+ * Get the outline widget.
+ *
+ * @method
+ * @param {OO.ui.PageLayout} page Page to be selected
+ * @returns {OO.ui.PageLayout|null} Closest page to another
+ */
+OO.ui.BookletLayout.prototype.getClosestPage = function ( page ) {
+	var next, prev, level,
+		pages = this.stackLayout.getItems(),
+		index = $.inArray( page, pages );
+
+	if ( index !== -1 ) {
+		next = pages[index + 1];
+		prev = pages[index - 1];
+		// Prefer adjacent pages at the same level
+		if ( this.outlined ) {
+			level = this.outlineWidget.getItemFromData( page.getName() ).getLevel();
+			if (
+				prev &&
+				level === this.outlineWidget.getItemFromData( prev.getName() ).getLevel()
+			) {
+				return prev;
+			}
+			if (
+				next &&
+				level === this.outlineWidget.getItemFromData( next.getName() ).getLevel()
+			) {
+				return next;
+			}
+		}
+	}
+	return prev || next || null;
 };
 
 /**
@@ -4030,26 +4073,39 @@ OO.ui.BookletLayout.prototype.getPageName = function () {
  * @chainable
  */
 OO.ui.BookletLayout.prototype.addPages = function ( pages, index ) {
-	var i, len, name, page, item,
-		items = [],
-		remove = [];
+	var i, len, name, page, item, currentIndex,
+		stackLayoutPages = this.stackLayout.getItems(),
+		remove = [],
+		items = [];
 
+	// Remove pages with same names
 	for ( i = 0, len = pages.length; i < len; i++ ) {
 		page = pages[i];
 		name = page.getName();
-		if ( name in this.pages ) {
-			// Remove page with same name
+
+		if ( Object.prototype.hasOwnProperty.call( this.pages, name ) ) {
+			// Correct the insertion index
+			currentIndex = $.inArray( this.pages[name], stackLayoutPages );
+			if ( currentIndex !== -1 && currentIndex + 1 < index ) {
+				index--;
+			}
 			remove.push( this.pages[name] );
 		}
+	}
+	if ( remove.length ) {
+		this.removePages( remove );
+	}
+
+	// Add new pages
+	for ( i = 0, len = pages.length; i < len; i++ ) {
+		page = pages[i];
+		name = page.getName();
 		this.pages[page.getName()] = page;
 		if ( this.outlined ) {
 			item = new OO.ui.OutlineItemWidget( name, page, { '$': this.$ } );
 			page.setOutlineItem( item );
 			items.push( item );
 		}
-	}
-	if ( remove.length ) {
-		this.removePages( remove );
 	}
 
 	if ( this.outlined && items.length ) {
@@ -4137,8 +4193,12 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 	}
 
 	if ( page ) {
+		if ( this.currentPageName && this.pages[this.currentPageName] ) {
+			this.pages[this.currentPageName].setActive( false );
+		}
 		this.currentPageName = name;
 		this.stackLayout.setItem( page );
+		page.setActive( true );
 		this.emit( 'set', page );
 	}
 };
@@ -4213,6 +4273,7 @@ OO.ui.PageLayout = function OoUiPageLayout( name, config ) {
 	// Properties
 	this.name = name;
 	this.outlineItem = config.outlineItem || null;
+	this.active = false;
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-pageLayout' );
@@ -4221,6 +4282,13 @@ OO.ui.PageLayout = function OoUiPageLayout( name, config ) {
 /* Inheritance */
 
 OO.inheritClass( OO.ui.PageLayout, OO.ui.PanelLayout );
+
+/* Events */
+
+/**
+ * @event active
+ * @param {boolean} active Page is active
+ */
 
 /* Methods */
 
@@ -4231,6 +4299,15 @@ OO.inheritClass( OO.ui.PageLayout, OO.ui.PanelLayout );
  */
 OO.ui.PageLayout.prototype.getName = function () {
 	return this.name;
+};
+
+/**
+ * Check if page is active.
+ *
+ * @returns {boolean} Page is active
+ */
+OO.ui.PageLayout.prototype.isActive = function () {
+	return this.active;
 };
 
 /**
@@ -4251,6 +4328,22 @@ OO.ui.PageLayout.prototype.getOutlineItem = function () {
 OO.ui.PageLayout.prototype.setOutlineItem = function ( outlineItem ) {
 	this.outlineItem = outlineItem;
 	return this;
+};
+
+/**
+ * Set page active state.
+ *
+ * @param {boolean} Page is active
+ * @fires active
+ */
+OO.ui.PageLayout.prototype.setActive = function ( active ) {
+	active = !!active;
+
+	if ( active !== this.active ) {
+		this.active = active;
+		this.$element.toggleClass( 'oo-ui-pageLayout-active', active );
+		this.emit( 'active', this.active );
+	}
 };
 /**
  * Layout containing a series of mutually exclusive pages.
@@ -5476,8 +5569,6 @@ OO.ui.LookupInputWidget.prototype.getLookupMenuItemsFromData = function () {
  * @constructor
  * @param {Mixed} data Option data
  * @param {Object} [config] Configuration options
- * @cfg {boolean} [selected=false] Select option
- * @cfg {boolean} [highlighted=false] Highlight option
  * @cfg {string} [rel] Value for `rel` attribute in DOM, allowing per-option styling
  */
 OO.ui.OptionWidget = function OoUiOptionWidget( data, config ) {
@@ -5505,10 +5596,6 @@ OO.ui.OptionWidget = function OoUiOptionWidget( data, config ) {
 		.attr( 'rel', config.rel )
 		.addClass( 'oo-ui-optionWidget' )
 		.append( this.$label );
-	this.setSelected( config.selected );
-	this.setHighlighted( config.highlighted );
-
-	// Options
 	this.$element
 		.prepend( this.$icon )
 		.append( this.$indicator );
@@ -6512,26 +6599,21 @@ OO.inheritClass( OO.ui.OutlineWidget, OO.ui.SelectWidget );
  * @constructor
  * @param {OO.ui.OutlineWidget} outline Outline to control
  * @param {Object} [config] Configuration options
- * @cfg {Object[]} [adders] List of icons to show as addable item types, each an object with
- *  name, title and icon properties
  */
 OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, config ) {
 	// Configuration initialization
-	config = config || {};
+	config = $.extend( { 'icon': 'add-item' }, config );
 
 	// Parent constructor
 	OO.ui.Widget.call( this, config );
 
+	// Mixin constructors
+	OO.ui.GroupElement.call( this, this.$( '<div>' ), config );
+	OO.ui.IconedElement.call( this, this.$( '<div>' ), config );
+
 	// Properties
 	this.outline = outline;
-	this.adders = {};
-	this.$adders = this.$( '<div>' );
 	this.$movers = this.$( '<div>' );
-	this.addButton = new OO.ui.ButtonWidget( {
-		'$': this.$,
-		'frameless': true,
-		'icon': 'add-item'
-	} );
 	this.upButton = new OO.ui.ButtonWidget( {
 		'$': this.$,
 		'frameless': true,
@@ -6544,6 +6626,12 @@ OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, confi
 		'icon': 'expand',
 		'title': OO.ui.msg( 'ooui-outline-control-move-down' )
 	} );
+	this.removeButton = new OO.ui.ButtonWidget( {
+		'$': this.$,
+		'frameless': true,
+		'icon': 'remove',
+		'title': OO.ui.msg( 'ooui-outline-control-remove' )
+	} );
 
 	// Events
 	outline.connect( this, {
@@ -6553,28 +6641,33 @@ OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, confi
 	} );
 	this.upButton.connect( this, { 'click': ['emit', 'move', -1] } );
 	this.downButton.connect( this, { 'click': ['emit', 'move', 1] } );
+	this.removeButton.connect( this, { 'click': ['emit', 'remove'] } );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-outlineControlsWidget' );
-	this.$adders.addClass( 'oo-ui-outlineControlsWidget-adders' );
+	this.$group.addClass( 'oo-ui-outlineControlsWidget-adders' );
 	this.$movers
 		.addClass( 'oo-ui-outlineControlsWidget-movers' )
-		.append( this.upButton.$element, this.downButton.$element );
-	this.$element.append( this.$adders, this.$movers );
-	if ( config.adders && config.adders.length ) {
-		this.setupAdders( config.adders );
-	}
+		.append( this.removeButton.$element, this.upButton.$element, this.downButton.$element );
+	this.$element.append( this.$icon, this.$group, this.$movers );
 };
 
 /* Inheritance */
 
 OO.inheritClass( OO.ui.OutlineControlsWidget, OO.ui.Widget );
 
+OO.mixinClass( OO.ui.OutlineControlsWidget, OO.ui.GroupElement );
+OO.mixinClass( OO.ui.OutlineControlsWidget, OO.ui.IconedElement );
+
 /* Events */
 
 /**
  * @event move
  * @param {number} places Number of places to move
+ */
+
+/**
+ * @event remove
  */
 
 /* Methods */
@@ -6586,12 +6679,12 @@ OO.inheritClass( OO.ui.OutlineControlsWidget, OO.ui.Widget );
  */
 OO.ui.OutlineControlsWidget.prototype.onOutlineChange = function () {
 	var i, len, firstMovable, lastMovable,
-		movable = false,
 		items = this.outline.getItems(),
-		selectedItem = this.outline.getSelectedItem();
+		selectedItem = this.outline.getSelectedItem(),
+		movable = selectedItem && selectedItem.isMovable(),
+		removable = selectedItem && selectedItem.isRemovable();
 
-	if ( selectedItem && selectedItem.isMovable() ) {
-		movable = true;
+	if ( movable ) {
 		i = -1;
 		len = items.length;
 		while ( ++i < len ) {
@@ -6610,30 +6703,7 @@ OO.ui.OutlineControlsWidget.prototype.onOutlineChange = function () {
 	}
 	this.upButton.setDisabled( !movable || selectedItem === firstMovable );
 	this.downButton.setDisabled( !movable || selectedItem === lastMovable );
-};
-
-/**
- * Setup adders icons.
- *
- * @method
- * @param {Object[]} adders List of configuations for adder buttons, each containing a name, title
- *  and icon property
- */
-OO.ui.OutlineControlsWidget.prototype.setupAdders = function ( adders ) {
-	var i, len, addition, button,
-		$buttons = this.$( [] );
-
-	this.$adders.append( this.addButton.$element );
-	for ( i = 0, len = adders.length; i < len; i++ ) {
-		addition = adders[i];
-		button = new OO.ui.ButtonWidget( {
-			'$': this.$, 'frameless': true, 'icon': addition.icon, 'title': addition.title
-		} );
-		button.connect( this, { 'click': ['emit', 'add', addition.name] } );
-		this.adders[addition.name] = button;
-		this.$adders.append( button.$element );
-		$buttons = $buttons.add( button.$element );
-	}
+	this.removeButton.setDisabled( !removable );
 };
 /**
  * Creates an OO.ui.OutlineItemWidget object.
@@ -6657,6 +6727,7 @@ OO.ui.OutlineItemWidget = function OoUiOutlineItemWidget( data, config ) {
 	// Properties
 	this.level = 0;
 	this.movable = !!config.movable;
+	this.removable = !!config.removable;
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-outlineItemWidget' );
@@ -6691,6 +6762,17 @@ OO.ui.OutlineItemWidget.prototype.isMovable = function () {
 };
 
 /**
+ * Check if item is removable.
+ *
+ * Removablilty is used by outline controls.
+ *
+ * @returns {boolean} Item is removable
+ */
+OO.ui.OutlineItemWidget.prototype.isRemovable = function () {
+	return this.removable;
+};
+
+/**
  * Get indentation level.
  *
  * @returns {number} Indentation level
@@ -6709,6 +6791,19 @@ OO.ui.OutlineItemWidget.prototype.getLevel = function () {
  */
 OO.ui.OutlineItemWidget.prototype.setMovable = function ( movable ) {
 	this.movable = !!movable;
+	return this;
+};
+
+/**
+ * Set removability.
+ *
+ * Removablilty is used by outline controls.
+ *
+ * @param {boolean} movable Item is removable
+ * @chainable
+ */
+OO.ui.OutlineItemWidget.prototype.setRemovable = function ( removable ) {
+	this.removable = !!removable;
 	return this;
 };
 
@@ -7683,18 +7778,18 @@ OO.ui.ToggleSwitchWidget = function OoUiToggleSwitchWidget( config ) {
 	this.dragging = false;
 	this.dragStart = null;
 	this.sliding = false;
-	this.$on = this.$( '<span>' );
+	this.$glow = this.$( '<span>' );
 	this.$grip = this.$( '<span>' );
 
 	// Events
 	this.$element.on( 'click', OO.ui.bind( this.onClick, this ) );
 
 	// Initialization
-	this.$on.addClass( 'oo-ui-toggleSwitchWidget-on' );
+	this.$glow.addClass( 'oo-ui-toggleSwitchWidget-glow' );
 	this.$grip.addClass( 'oo-ui-toggleSwitchWidget-grip' );
 	this.$element
 		.addClass( 'oo-ui-toggleSwitchWidget' )
-		.append( this.$on, this.$grip );
+		.append( this.$glow, this.$grip );
 };
 
 /* Inheritance */
