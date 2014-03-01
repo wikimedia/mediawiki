@@ -643,14 +643,8 @@ class MediaWiki {
 			'tasks' => 'jobs', 'maxjobs' => $n, 'sigexpiry' => time() + 5 );
 		$query['signature'] = ApiRunJobs::getQuerySignature( $query );
 
-		// Slow job running method in case of API or socket functions being disabled
-		$fallback = function() use ( $query ) {
-			$api = new ApiMain( new FauxRequest( $query, true ) );
-			$api->execute();
-		};
-
 		if ( !$wgEnableAPI ) {
-			$fallback();
+			ApiRunJobs::executeJobs( $n ); // slow fallback
 			return;
 		}
 
@@ -666,7 +660,7 @@ class MediaWiki {
 		wfRestoreWarnings();
 		if ( !$sock ) {
 			wfDebugLog( 'runJobs', "Failed to start cron API (socket error $errno): $errstr\n" );
-			$fallback();
+			ApiRunJobs::executeJobs( $n ); // slow fallback
 			return;
 		}
 
@@ -684,7 +678,7 @@ class MediaWiki {
 			// Do not wait for the response (the script should handle client aborts).
 			// Make sure that we don't close before that script reaches ignore_user_abort().
 			$status = fgets( $sock );
-			if ( !preg_match( '#^HTTP/\d\.\d 204 #', $status ) ) {
+			if ( !preg_match( '#^HTTP/\d\.\d 202 #', $status ) ) {
 				wfDebugLog( 'runJobs', "Failed to start cron API: received '$status'\n" );
 			}
 		}

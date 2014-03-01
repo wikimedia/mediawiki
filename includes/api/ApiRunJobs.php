@@ -51,21 +51,21 @@ class ApiRunJobs extends ApiBase {
 		}
 
 		if ( !$verified || $params['sigexpiry'] < time() ) {
-			$this->dieUsage( 'Invalid or stale signature provided', 'bad_signature', 401 );
+			$this->dieUsage( 'Invalid or stale signature provided', 'bad_signature', 400 );
 		}
 
 		// Client will usually disconnect before checking the response,
 		// but it needs to know when it is safe to disconnect. Until this
 		// reaches ignore_user_abort(), it is not safe as the jobs won't run.
 		ignore_user_abort( true ); // jobs may take a bit of time
-		header( "HTTP/1.0 204 No Content" );
+		header( "HTTP/1.0 202 Accepted" );
 		ob_flush();
         flush();
 		// Once the client receives this response, it can disconnect
 
 		// Do all of the specified tasks...
 		if ( in_array( 'jobs', $params['tasks'] ) ) {
-			$this->executeJobs( $params );
+			self::executeJobs( $params['maxjobs'] );
 		}
 	}
 
@@ -83,11 +83,13 @@ class ApiRunJobs extends ApiBase {
 	/**
 	 * Run jobs from the job queue
 	 *
-	 * @param array $params Request parameters
+	 * @note: also called from Wiki.php
+	 *
+	 * @param integer $maxJobs Maximum number of jobs to run
 	 * @return void
 	 */
-	protected function executeJobs( array $params ) {
-		$n = $params['maxjobs']; // number of jobs to run
+	public static function executeJobs( $maxJobs ) {
+		$n = $maxJobs; // number of jobs to run
 		if ( $n < 1 ) {
 			return;
 		}
