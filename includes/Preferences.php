@@ -1419,6 +1419,10 @@ class Preferences {
 		// Fortunately, the realname field is MUCH simpler
 		// (not really "private", but still shouldn't be edited without permission)
 		if ( !in_array( 'realname', $wgHiddenPrefs ) && $user->isAllowed( 'editmyprivateinfo' ) ) {
+			# If user not allowed to change his realname we have no realname key in $formdata
+			if (!array_key_exists('realname', $formData)) {
+				$formData['realname'] = $user->getRealname();
+			}
 			$realName = $formData['realname'];
 			$user->setRealName( $realName );
 		}
