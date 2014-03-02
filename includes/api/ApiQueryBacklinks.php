@@ -538,7 +538,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			case 'embeddedin':
 				return 'Find all pages that embed (transclude) the given title';
 			case 'imageusage':
-				return 'Find all pages that use the given image title.';
+				return 'Find all pages that use the given image title';
 			default:
 				ApiBase::dieDebug( __METHOD__, 'Unknown module name' );
 		}

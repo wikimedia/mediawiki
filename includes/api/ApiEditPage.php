@@ -492,7 +492,7 @@ class ApiEditPage extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Create and edit pages.';
+		return 'Create and edit pages';
 	}
 
 	public function getPossibleErrors() {

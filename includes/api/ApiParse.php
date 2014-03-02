@@ -824,7 +824,7 @@ class ApiParse extends ApiBase {
 			'There are several ways to specify the text to parse:',
 			"1) Specify a page or revision, using {$p}page, {$p}pageid, or {$p}oldid.",
 			"2) Specify content explicitly, using {$p}text, {$p}title, and {$p}contentmodel.",
-			"3) Specify only a summary to parse. {$p}prop should be given an empty value.",
+			"3) Specify only a summary to parse. {$p}prop should be given an empty value",
 		);
 	}
 
