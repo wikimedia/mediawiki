@@ -56,6 +56,11 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->fld_patrolled = isset( $prop['patrolled'] );
 		$this->fld_tags = isset( $prop['tags'] );
 
+		// Most of this code will use the 'contributions' group DB, which can map to slaves
+		// with extra user based indexes or partioning by user. The additional metadata
+		// queries should use a regular slave since the lookup pattern is not all by user.
+		$dbSecondary = $this->getDB(); // any random slave
+
 		// TODO: if the query is going only against the revision table, should this be done?
 		$this->selectNamedDB( 'contributions', DB_SLAVE, 'contributions' );
 
@@ -90,7 +95,7 @@ class ApiQueryContributions extends ApiQueryBase {
 					$revIds[] = $row->rev_parent_id;
 				}
 			}
-			$this->parentLens = Revision::getParentLengths( $this->getDB(), $revIds );
+			$this->parentLens = Revision::getParentLengths( $dbSecondary, $revIds );
 			$res->rewind(); // reset
 		}
 
