@@ -489,7 +489,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			if ( $metadata && $version !== 'latest' ) {
 				$metadata = $file->convertMetadataVersion( $metadata, $version );
 			}
-			$vals['metadata'] = $metadata ? self::processMetaData( $metadata, $result ) : null;
+			$vals['metadata'] = $metadata ? self::processMetaData( $metadata, $result ) : array();
 		}
 		if ( $commonmeta ) {
 			$metaArray = $file->getCommonMetaArray();
