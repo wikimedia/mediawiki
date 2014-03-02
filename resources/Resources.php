@@ -759,7 +759,7 @@ return array(
 	),
 	'mediawiki.debug' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.debug.js',
-		'styles' => 'resources/mediawiki/mediawiki.debug.css',
+		'styles' => 'resources/mediawiki/mediawiki.debug.less',
 		'dependencies' => 'jquery.footHovzer',
 		'position' => 'bottom',
 	),
