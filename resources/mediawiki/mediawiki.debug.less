@@ -1,0 +1,189 @@
+.mw-debug {
+	width: 100%;
+	background-color: #eee;
+	border-top: 1px solid #aaa;
+
+	pre {
+		font-size: 11px;
+		padding: 0;
+		margin: 0;
+		background: none;
+		border: none;
+	}
+
+	table {
+		border-spacing: 0;
+		width: 100%;
+		table-layout: fixed;
+
+		td,
+		th {
+			padding: 4px 10px;
+		}
+
+		td {
+			border-bottom: 1px solid #eee;
+			word-wrap: break-word;
+
+			&.nr {
+				text-align: right;
+			}
+
+			span.stats {
+				color: #808080;
+			}
+		}
+
+		tr {
+			background-color: #fff;
+
+			&:nth-child(even) {
+				background-color: #f9f9f9;
+			}
+		}
+	}
+
+	ul {
+		margin: 0;
+		list-style: none;
+	}
+
+	li {
+		padding: 4px 0;
+		width: 100%;
+	}
+}
+
+.mw-debug-bits {
+	text-align: center;
+	border-bottom: 1px solid #aaa;
+}
+
+.mw-debug-bit {
+	display: inline-block;
+	padding: 10px 5px;
+	font-size: 13px;
+	/* IE-hack for display: inline-block */
+	zoom: 1;
+	*display:inline;
+}
+
+.mw-debug-panelink {
+	background-color: #eee;
+	border-right: 1px solid #ccc;
+
+	&:first-child {
+		border-left: 1px solid #ccc;
+	}
+
+	&:hover {
+		background-color: #fefefe;
+		cursor: pointer;
+	}
+
+	&.current {
+		background-color: #dedede;
+	}
+}
+
+a.mw-debug-panelabel,
+a.mw-debug-panelabel:visited {
+	color: #000;
+}
+
+.mw-debug-pane {
+	height: 300px;
+	overflow: scroll;
+	display: none;
+	font-size: 11px;
+	background-color: #e1eff2;
+	box-sizing: border-box;
+}
+
+#mw-debug-pane-debuglog,
+#mw-debug-pane-request {
+	padding: 20px;
+}
+
+#mw-debug-pane-request {
+	table {
+		width: 100%;
+		margin: 10px 0 30px;
+	}
+
+	tr,
+	th,
+	td,
+	table {
+		border: 1px solid #D0DBB3;
+		border-collapse: collapse;
+		margin: 0;
+	}
+
+	th,
+	td {
+		font-size: 12px;
+		padding: 8px 10px;
+	}
+
+	th {
+		background-color: #F1F7E2;
+		font-weight: bold;
+	}
+
+	td {
+		background-color: white;
+	}
+}
+
+#mw-debug-console tr td {
+	&:first-child {
+		font-weight: bold;
+		vertical-align: top;
+	}
+
+	&:last-child {
+		vertical-align: top;
+	}
+}
+
+.mw-debug-backtrace {
+	padding: 5px 10px;
+	margin: 5px;
+	background-color: #dedede;
+
+	span {
+		font-weight: bold;
+		color: #111;
+	}
+
+	ul {
+		padding-left: 10px;
+	}
+
+	li {
+		width: auto;
+		padding: 0;
+		color: #333;
+		font-size: 10px;
+		margin-bottom: 0;
+		line-height: 1em;
+	}
+}
+
+.mw-debug-console-log {
+	background-color: #add8e6;
+}
+
+.mw-debug-console-warn {
+	background-color: #ffa07a;
+}
+
+.mw-debug-console-deprecated {
+	background-color: #ffb6c1;
+}
+
+/* Cheapo hack to hide the first 3 lines of the backtrace */
+.mw-debug-backtrace li:nth-child(-n+3) {
+	display: none;
+}
