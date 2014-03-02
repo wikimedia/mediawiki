@@ -1653,6 +1653,7 @@ Cyn i chi ail-lwytho'r ffeil, dylech holi i rywun â'r gallu ganddo i weld data 
 'php-uploaddisabledtext' => 'Anablwyd uwchlwytho ffeiliau yn PHP.
 Gwiriwch y gosodiad ar file_uploads.',
 'uploadscripted' => "Mae'r ffeil hon yn cynnwys HTML neu sgript a all achosi problemau i borwyr gwe.",
+'uploadinvalidxml' => "Ni ellid dosrannu'r XML yn y ffeil a uwchlwythwyd.",
 'uploadvirus' => 'Mae firws gan y ffeil hon! Manylion: $1',
 'uploadjava' => "Ffeil ZIP yw hwn sy'n cynnwys ffeil Java .class.
 Ni chaniateir uwchlwytho ffeiliau Java, oherwydd y gallant osgoi cyfyngiadau diogelwch.",
@@ -3975,6 +3976,4 @@ Defnydd:
 'expand_templates_generate_rawhtml' => 'Dangos HTML crai',
 'expand_templates_preview' => 'Rhagolwg',
 
-# Unknown messages
-'uploadinvalidxml' => "Ni ellid dosrannu'r XML yn y ffeil a uwchlwythwyd.",
 );

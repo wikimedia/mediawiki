@@ -822,7 +822,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'logout' => 'Afmelden',
 'userlogout' => 'Afmelden',
 'notloggedin' => 'Niet aangemeld',
-'userlogin-noaccount' => 'Hebt u geen gebruiker?',
+'userlogin-noaccount' => 'Hebt u geen account?',
 'userlogin-joinproject' => 'Word lid van {{SITENAME}}',
 'nologin' => 'Nog geen gebruikersnaam? $1.',
 'nologinlink' => 'Registreren',
@@ -1982,6 +1982,7 @@ Vraag iemand die onderdrukte bestandsgegevens kan bekijken om de situatie opnieu
 'php-uploaddisabledtext' => 'Het uploaden van bestanden is uitgeschakeld in PHP.
 Controleer de instelling "file_uploads".',
 'uploadscripted' => 'Dit bestand bevat HTML- of scriptcode die foutief door uw browser kan worden weergegeven.',
+'uploadinvalidxml' => 'De XML in het geüploade bestand kon niet worden geparst.',
 'uploadvirus' => 'Het bestand bevat een virus! Details: $1',
 'uploadjava' => 'Het bestand is een ZIP-bestand dat een Java .class-bestand bevat.
 Het uploaden van Java-bestanden is niet toegestaan omdat hiermee beveiligingsinstellingen omzeild kunnen worden.',
@@ -2867,7 +2868,7 @@ Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'ipadressorusername' => 'IP-adres of gebruikersnaam:',
 'ipbexpiry' => 'Vervalt (maak een keuze):',
 'ipbreason' => 'Reden:',
-'ipbreason-dropdown' => "*Veel voorkomende redenen voor blokkades
+'ipbreason-dropdown' => "*Veelvoorkomende redenen voor blokkades
 ** Foutieve informatie invoeren
 ** Verwijderen van informatie uit pagina's
 ** Spamkoppeling naar externe websites
@@ -4407,6 +4408,4 @@ Vrijwel alle tekst tussen dubbele accolades wordt gesubstitueerd.',
 'expand_templates_generate_rawhtml' => 'Ruwe HTML weergeven',
 'expand_templates_preview' => 'Voorvertoning',
 
-# Unknown messages
-'uploadinvalidxml' => 'De XML in het geüploade bestand kon niet worden geparst.',
 );

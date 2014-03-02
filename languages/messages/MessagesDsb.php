@@ -1673,6 +1673,7 @@ Jolic maš toś ten wobraz w połnem rozeznaśu, nagraj jen, howac změń pšosy
 'uploaddisabledtext' => 'Nagraśa datajow su znjemóžnjone.',
 'php-uploaddisabledtext' => 'Nagraśa PHP-datajow su znjemóžnjone. Pšosym pśekontrolěruj nastajenje file_uploads.',
 'uploadscripted' => 'Toś ta dataja wopśimjejo HTML abo script code, kótaryž móžo wót browsera se zamólnje wuwjasć.',
+'uploadinvalidxml' => 'XML w nagratej dataji njedajo se parsowaś.',
 'uploadvirus' => 'Toś ta dataja ma wirus! Nadrobnosći: $1',
 'uploadjava' => 'Toś ta dataja jo ZIP-dataja, kótaraž wopśimujo dataju .class z Javy.
 Nagrawanje datajow Javy njejo dowólone, dokulaž mógli wobjeźenje wěstotnych wobgranicowanjow zmóžniś.',
@@ -3992,6 +3993,4 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'expand_templates_generate_rawhtml' => 'Gropny HTML pokazaś',
 'expand_templates_preview' => 'Pśeglěd',
 
-# Unknown messages
-'uploadinvalidxml' => 'XML w nagratej dataji njedajo se parsowaś.',
 );

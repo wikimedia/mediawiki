@@ -1898,11 +1898,23 @@ $1",
 'rcnotefrom' => 'در زیر تغییرات از تاریخ <b>$2</b> آمده‌اند (تا <b>$1</b> مورد نشان داده می‌شود).',
 'rclistfrom' => 'نمایش تغییرات جدید با شروع از $1',
 'rcshowhideminor' => '$1 ویرایش‌های جزئی',
+'rcshowhideminor-show' => 'نمایش',
+'rcshowhideminor-hide' => 'پنهان‌ کردن',
 'rcshowhidebots' => '$1 ربات‌ها',
+'rcshowhidebots-show' => 'نمایش',
+'rcshowhidebots-hide' => 'پنهان کردن',
 'rcshowhideliu' => 'کاربران نسخهٔ $1 ثبت‌نام‌ کردند',
+'rcshowhideliu-show' => 'نمایش',
+'rcshowhideliu-hide' => 'پنهان کردن',
 'rcshowhideanons' => '$1 کاربران ناشناس',
+'rcshowhideanons-show' => 'نمایش',
+'rcshowhideanons-hide' => 'پنهان کردن',
 'rcshowhidepatr' => '$1 ویرایش‌های گشت‌خورده',
+'rcshowhidepatr-show' => 'نمایش',
+'rcshowhidepatr-hide' => 'پنهان کردن',
 'rcshowhidemine' => '$1 ویرایش‌های من',
+'rcshowhidemine-show' => 'نمایش',
+'rcshowhidemine-hide' => 'پنهان کردن',
 'rclinks' => 'نمایش آخرین $1 تغییر در $2 روز اخیر<br />$3',
 'diff' => 'تفاوت',
 'hist' => 'تاریخچه',
@@ -2037,6 +2049,8 @@ $1",
 'php-uploaddisabledtext' => 'بارگذاری پرونده‌های پی‌اچ‌پی غیرفعال است.
 لطفاً تنظیمات file_uploads را بررسی کنید.',
 'uploadscripted' => 'این صفحه حاوی کد اچ‌تی‌ام‌ال یا اسکریپتی است که ممکن است به‌نادرست توسط مرورگر وب تفسیر شود.',
+'uploadscriptednamespace' => "این پوشه اس‌وی‌جی شامل فضای نام غیرقانونی '$1' است",
+'uploadinvalidxml' => 'XML در پروندهٔ بارگذاری‌شده نمی‌تواند تجزیه شود.',
 'uploadvirus' => 'این پرونده ویروس دارد!
 جزئیات : $1',
 'uploadjava' => 'این پرونده یک پرونده زیپ است که حاوی پرونده‌ای از نوع ‎‎.class جاوا است.
@@ -2870,6 +2884,7 @@ $1',
 'sp-contributions-search' => 'جستجوی مشارکت‌ها',
 'sp-contributions-username' => 'نشانی آی‌پی یا نام کاربری:',
 'sp-contributions-toponly' => 'فقط ویرایش‌هایی که آخرین نسخه‌اند نمایش داده شود',
+'sp-contributions-newonly' => 'فقط نمایش ویرایش‌هایی که تولید‌های صفحه هستند',
 'sp-contributions-submit' => 'جستجو',
 
 # What links here
@@ -4462,6 +4477,4 @@ $5
 'expand_templates_generate_rawhtml' => 'نمایش اچ‌تی‌ام‌ال خام',
 'expand_templates_preview' => 'پیش‌نمایش',
 
-# Unknown messages
-'uploadinvalidxml' => 'XML در پروندهٔ بارگذاری‌شده نمی‌تواند تجزیه شود.',
 );

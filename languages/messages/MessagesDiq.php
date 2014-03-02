@@ -779,7 +779,7 @@ Wexta ke verhafızayê cıgerayoxê şıma pak beno no benate de taye peli de he
 'userlogin-joinproject' => 'Cıkewe {{SITENAME}}',
 'nologin' => "Hesabê şıma çıniyo? '''$1'''.",
 'nologinlink' => 'Yew hesab ake',
-'createaccount' => 'Hesab vıraşten',
+'createaccount' => 'Hesab vıraze',
 'gotaccount' => "Hesabê şıma esto? '''$1'''.",
 'gotaccountlink' => 'Cı kewe',
 'userlogin-resetlink' => 'Melumatê cıkewtışi xo vira kerdê?',
@@ -875,6 +875,9 @@ Bıne vındere u newe ra dest pê bıkere.',
 'suspicious-userlogout' => 'Waştişê tu ya veciyayişi kebul nibiya cunki ihtimal o ke waştiş yew browser ya zi proksiyê heripiyaye ra ameya.',
 'createacct-another-realname-tip' => 'Nameyo raştıkên keyfiyo.
 Şıma nameyo xoyo raştıkên ke bımocnê, seba iştırakanê karberi be ney ra istıfade beno.',
+'pt-login' => 'Cı kewe',
+'pt-createaccount' => 'Hesab vıraze',
+'pt-userlogout' => 'Veciyayış',
 
 # Email sending
 'php-mail-error-unknown' => "PHP's mail() fonksiyoni de xırabin vıcyê.",
@@ -883,7 +886,7 @@ Bıne vındere u newe ra dest pê bıkere.',
 
 # Change password dialog
 'changepassword' => 'Parola bıvurne',
-'resetpass_announce' => 'Şıma pê yew parolayê muweqqet hesab kerd a, qey qedyayişe dekewtış newe yew parola bınuse:',
+'resetpass_announce' => 'Seba temamkerdışê cıkewtışi rê, şıma gani yew parolaya newiye bınusê.',
 'resetpass_text' => 'Parolayê hesab bıvurn',
 'resetpass_header' => 'Parola hesabi bıvurne',
 'oldpassword' => 'Parola kıhane:',
@@ -898,6 +901,7 @@ Bıne vındere u newe ra dest pê bıkere.',
 'resetpass-submit-cancel' => 'Bıtexelne',
 'resetpass-wrong-oldpass' => 'parolayo parola maqbul niyo.
 şıma ya parolaye xo vurnayo ya zi parolayo muwaqqat waşto.',
+'resetpass-recycled' => 'Parolaya şımaya newiye wa paroloya şımaya verêne ra ferqıne bo.',
 'resetpass-temp-password' => 'parolayo muweqet:',
 'resetpass-abort-generic' => 'Parola vurnayış jew derganey ra tepya ibtal biyo',
 
@@ -1155,7 +1159,7 @@ Hewna kerde aseno.',
 'postedit-confirmation' => 'Vurnayışê to qeyd bi.',
 'edit-already-exists' => 'Pelo newe nêvıraziyeno.
 Pel ca ra esto.',
-'defaultmessagetext' => 'Hesıbyaye metne mesaci',
+'defaultmessagetext' => 'Metnê mesacê hesabiyayey',
 'content-failed-to-parse' => 'Qandê madela $3 zereyê $1, $2 sero nêagozyayo',
 'invalid-content-data' => 'Zerrey malumati nêravêrdeyo',
 'content-not-allowed-here' => '"$1" sero per da [[$2]] rê mısade nêdeyêno',
@@ -1742,11 +1746,23 @@ Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de moc
 'rcnotefrom' => "Cêr de '''$2''' ra nata vurnayışiyê asenê (tewr vêşi <b> '''$1'''</b> asenê).",
 'rclistfrom' => '$1 ra tepiya vurnayışanê neweyan bımocne',
 'rcshowhideminor' => 'Vurnayışanê werdiyan $1',
+'rcshowhideminor-show' => 'Bımocne',
+'rcshowhideminor-hide' => 'Bınımne',
 'rcshowhidebots' => 'Botan $1',
+'rcshowhidebots-show' => 'Bımocne',
+'rcshowhidebots-hide' => 'Bınımne',
 'rcshowhideliu' => 'Karberanê qeydbiyayeyan $1',
+'rcshowhideliu-show' => 'Bımocne',
+'rcshowhideliu-hide' => 'Bınımne',
 'rcshowhideanons' => 'Karberanê bênameyan $1',
+'rcshowhideanons-show' => 'Bımocne',
+'rcshowhideanons-hide' => 'Bınımne',
 'rcshowhidepatr' => '$1 vurnayışê ke dewriya geyrayê',
+'rcshowhidepatr-show' => 'Bımocne',
+'rcshowhidepatr-hide' => 'Bınımne',
 'rcshowhidemine' => 'Vurnayışanê mı $1',
+'rcshowhidemine-show' => 'Bımocne',
+'rcshowhidemine-hide' => 'Bınımne',
 'rclinks' => 'Peyniya $2 rocan de $1 vurnayışan bımocne <br />$3',
 'diff' => 'ferq',
 'hist' => 'verên',
@@ -1869,6 +1885,7 @@ Semedê ancia barkerdışi dewamkerdış ra ver tarixê esterışê dosya gani q
 'uploaddisabledtext' => 'Bar kerdişê dosyayî iptal biyo',
 'php-uploaddisabledtext' => 'barkerdışê dosyayê PHP nıka çino. kerem kere eyarê file_uploads korol bıkerê.',
 'uploadscripted' => 'Ena dosya de yew HTML ya zi kodê scriptî este ke belki browserê webî fam nikeno.',
+'uploadinvalidxml' => 'Dosyaya barkerdiye de XML nêgureniya.',
 'uploadvirus' => 'Ena dosya de yew virus estê: Qe detayan: $1',
 'uploadjava' => 'Dosya, zerre de cıdı jew Java .class dosyaya ZIP esta.
 Dosyayn de Java barkerdışi rê icazet nêdeyê, çıkı emeleya merduman nêbena.',
@@ -3963,7 +3980,7 @@ Ma rica keno tesdiq bike ke ti raştî wazeno eno pel bivirazo.",
 'imgmultigoto' => 'Şo pela da $1',
 
 # Language selector for translatable SVGs
-'img-lang-default' => '(hesıbyayi zıwan)',
+'img-lang-default' => '(zıwano hesabiyaye)',
 'img-lang-info' => 'Resimé $1, $2 ya teké pé ke.',
 'img-lang-go' => 'Bırş',
 
@@ -4415,6 +4432,4 @@ Eneri Medya wiki sera xo keno.',
 'expand_templates_generate_rawhtml' => "Xam HTML'i bıvin",
 'expand_templates_preview' => 'Verqayt',
 
-# Unknown messages
-'uploadinvalidxml' => 'Dosyaya barkerdiye de XML nêgureniya.',
 );

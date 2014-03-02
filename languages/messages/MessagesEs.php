@@ -26,6 +26,7 @@
  * @author Candalua
  * @author Capmo
  * @author Carlitosag
+ * @author Carlosz22
  * @author Cerealito
  * @author Ciencia Al Poder
  * @author Clerc
@@ -1813,11 +1814,23 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'rcnotefrom' => 'A continuación se muestran los cambios desde <b>$2</b> (hasta <b>$1</b>).',
 'rclistfrom' => 'Mostrar nuevos cambios desde $1',
 'rcshowhideminor' => '$1 ediciones menores',
+'rcshowhideminor-show' => 'Mostrar',
+'rcshowhideminor-hide' => 'Ocultar',
 'rcshowhidebots' => '$1 bots',
+'rcshowhidebots-show' => 'Mostrar',
+'rcshowhidebots-hide' => 'Ocultar',
 'rcshowhideliu' => '$1 usuarios registrados',
+'rcshowhideliu-show' => 'Mostrar',
+'rcshowhideliu-hide' => 'Ocultar',
 'rcshowhideanons' => '$1 usuarios anónimos',
+'rcshowhideanons-show' => 'Mostrar',
+'rcshowhideanons-hide' => 'Ocultar',
 'rcshowhidepatr' => '$1 ediciones patrulladas',
+'rcshowhidepatr-show' => 'Mostrar',
+'rcshowhidepatr-hide' => 'Ocultar',
 'rcshowhidemine' => '$1 mis ediciones',
+'rcshowhidemine-show' => 'Mostrar',
+'rcshowhidemine-hide' => 'Ocultar',
 'rclinks' => 'Ver los últimos $1 cambios en los últimos $2 días.<br />$3',
 'diff' => 'dif',
 'hist' => 'hist',
@@ -1940,6 +1953,8 @@ Si todavía quiere subir su archivo, por favor, regrese a la página anterior y 
 'uploaddisabledtext' => 'No es posible subir archivos.',
 'php-uploaddisabledtext' => 'La subida de archivos está deshabilitada en PHP. Por favor compruebe <code>file_uploads</code> en php.ini.',
 'uploadscripted' => 'Este archivo contiene script o código HTML que puede ser interpretado erróneamente por un navegador web.',
+'uploadscriptednamespace' => "Este archivo SVG contiene un espacio de nombre no permitido '$1'",
+'uploadinvalidxml' => 'No se pudo analizar el XML del archivo cargado.',
 'uploadvirus' => '¡El archivo contiene un virus!
 Detalles: $1',
 'uploadjava' => 'El archivo es un ZIP que contiene un archivo .class de Java.
@@ -2311,7 +2326,7 @@ Las entradas <del>tachadas</del> han sido resueltas.',
 'deadendpagestext' => 'Las siguientes páginas no enlazan a otras páginas de {{SITENAME}}.',
 'protectedpages' => 'Páginas protegidas',
 'protectedpages-indef' => 'Sólo protecciones indefinidas',
-'protectedpages-summary' => 'Esta página enumera las páginas existentes que actualmente están protegidas. Para obtener una lista de títulos que están protegidos desde su creación, véase [[{{#special: ProtectedTitles}}]].',
+'protectedpages-summary' => 'Esta página enumera las páginas existentes que actualmente están protegidas. Para obtener una lista de títulos que están protegidos desde su creación, véase [[{{#special:ProtectedTitles}}]].',
 'protectedpages-cascade' => 'Sólo protecciones en cascada',
 'protectedpages-noredirect' => 'Ocultar redirecciones',
 'protectedpagesempty' => 'Actualmente no hay ninguna página protegida con esos parámetros.',
@@ -2324,7 +2339,7 @@ Las entradas <del>tachadas</del> han sido resueltas.',
 'protectedpages-unknown-timestamp' => 'Desconocido',
 'protectedpages-unknown-performer' => 'Usuario desconocido',
 'protectedtitles' => 'Títulos protegidos',
-'protectedtitles-summary' => 'Esta página enumera títulos que actualmente están protegidos desde su creación. Para una lista de las páginas existentes que están protegidos, véase [[{{#special: ProtectedPages}}]].',
+'protectedtitles-summary' => 'Esta página enumera títulos que actualmente están protegidos desde su creación. Para una lista de las páginas existentes que están protegidos, véase [[{{#special:ProtectedPages}}]].',
 'protectedtitlesempty' => 'Actualmente no existen entradas protegidas con esos parámetros.',
 'listusers' => 'Lista de usuarios',
 'listusers-editsonly' => 'Muestra sólo usuarios con ediciones',
@@ -2772,6 +2787,7 @@ A continuación se muestra la última entrada del registro de bloqueos para mayo
 'sp-contributions-search' => 'Buscar contribuciones',
 'sp-contributions-username' => 'Dirección IP o nombre de usuario:',
 'sp-contributions-toponly' => 'Solo mostrar últimas ediciones de página',
+'sp-contributions-newonly' => 'Mostrar solo ediciones que son creaciones de páginas',
 'sp-contributions-submit' => 'Buscar',
 
 # What links here
@@ -4313,6 +4329,4 @@ También expande las funciones sintácticas como <code><nowiki>{{</nowiki>#langu
 'expand_templates_generate_rawhtml' => 'Mostrar HTML en crudo',
 'expand_templates_preview' => 'Previsualización',
 
-# Unknown messages
-'uploadinvalidxml' => 'No se pudo analizar el XML del archivo cargado.',
 );

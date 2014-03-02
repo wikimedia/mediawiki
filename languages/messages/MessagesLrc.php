@@ -1071,6 +1071,7 @@ $2',
 'copyuploaddisabled' => 'سوار کردن وا یو آر ال د کار نئ.',
 'uploadfromurl-queued' => 'سوارکرد تو ها د گئ.',
 'uploaddisabledtext' => 'سوار کرد فایلیا د کار نئ.',
+'uploadinvalidxml' => 'ایکس ام الی که سوار بیه نبوئه نوتیج با.',
 'upload-source' => 'سرچشمه فایل',
 'sourcefilename' => 'سرچشمه نوم جانیا:',
 'sourceurl' => 'سرچشمه يو آر ال:',
@@ -1714,6 +1715,4 @@ $2',
 # Special:ExpandTemplates
 'expand_templates_remove_comments' => 'جا وه جا بیئن ویر و باوریا',
 
-# Unknown messages
-'uploadinvalidxml' => 'ایکس ام الی که سوار بیه نبوئه نوتیج با.',
 );

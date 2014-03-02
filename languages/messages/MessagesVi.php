@@ -1749,8 +1749,14 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'rcnotefrom' => "Thay đổi từ '''$2''' (hiển thị tối đa '''$1''' thay đổi).",
 'rclistfrom' => 'Hiển thị các thay đổi từ $1.',
 'rcshowhideminor' => '$1 sửa đổi nhỏ',
+'rcshowhideminor-show' => 'Hiện',
+'rcshowhideminor-hide' => 'Ẩn',
 'rcshowhidebots' => '$1 sửa đổi bot',
+'rcshowhidebots-show' => 'Hiện',
+'rcshowhidebots-hide' => 'Ẩn',
 'rcshowhideliu' => '$1 thành viên đăng ký',
+'rcshowhideliu-show' => 'Hiện',
+'rcshowhideliu-hide' => 'Ẩn',
 'rcshowhideanons' => '$1 sửa đổi vô danh',
 'rcshowhidepatr' => '$1 sửa đổi đã tuần tra',
 'rcshowhidemine' => '$1 sửa đổi của tôi',
@@ -1880,6 +1886,7 @@ Bạn nên xin một người có quyền xem dữ liệu tập tin bị đàn �
 'uploaddisabledtext' => 'Chức năng tải tập tin đã bị tắt.',
 'php-uploaddisabledtext' => 'Việc tải tập tin trong PHP đã bị tắt. Xin hãy kiểm tra lại thiết lập file_uploads.',
 'uploadscripted' => 'Tập tin này có chứa mã HTML hoặc kịch bản có thể khiến trình duyệt web thông dịch sai.',
+'uploadinvalidxml' => 'Không thể phân tích mã XML trong tập tin tải lên.',
 'uploadvirus' => 'Tập tin có virút! Chi tiết: $1',
 'uploadjava' => 'Tập tin ZIP này chứa một tập tin Java .class.
 Không được phép tải lên các tập tin Java, bởi vì chúng có thể vượt qua các hạn chế bảo mật.',
@@ -4356,6 +4363,4 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'expand_templates_generate_rawhtml' => 'Hiển thị HTML thô',
 'expand_templates_preview' => 'Xem trước',
 
-# Unknown messages
-'uploadinvalidxml' => 'Không thể phân tích mã XML trong tập tin tải lên.',
 );

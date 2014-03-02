@@ -1063,8 +1063,8 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'userpage-userdoesnotexist' => 'A conta "<nowiki>$1</nowiki>" não se encontra registada.
 Verifique se deseja realmente criar ou editar esta página, por favor.',
 'userpage-userdoesnotexist-view' => 'A conta de utilizador "$1" não está registada.',
-'blocked-notice-logextract' => 'Este utilizador encontra-se atualmente bloqueado.
-Para referência, o último registro de bloqueio é apresentado abaixo:',
+'blocked-notice-logextract' => 'Este utilizador está bloqueado.
+Para referência, o último registo de bloqueio é apresentado abaixo:',
 'clearyourcache' => "'''Nota:''' Após gravar, terá de limpar a ''cache'' do seu browser para ver as alterações.
 *'''Firefox / Safari:''' Pressione ''Shift'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' no Mac)
 *'''Google Chrome:''' Pressione ''Ctrl-Shift-R'' (''⌘-Shift-R'' no Mac)
@@ -1444,7 +1444,7 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'searchrelated' => 'relacionados',
 'searchall' => 'todos',
 'showingresults' => "{{PLURAL:$1|É apresentado '''um''' resultado|São apresentados até '''$1''' resultados}} abaixo{{PLURAL:$1||, começando pelo '''$2'''º}}.",
-'showingresultsinrange' => 'Mostrando abaixo até {{PLURAL:$1|<strong>1</strong> resultado|<strong>$1</strong> resultados}} entre #<strong>$2</strong> e #<strong>$3</strong>.',
+'showingresultsinrange' => 'Apresenta-se abaixo {{PLURAL:$1|<strong>1</strong> resultado|até <strong>$1</strong> resultados}} no intervalo #<strong>$2</strong> a #<strong>$3</strong>.',
 'showingresultsnum' => "{{PLURAL:$3|É apresentado '''um''' resultado|São apresentados '''$3''' resultados}} abaixo{{PLURAL:$3||, começando pelo '''$2'''º}}.",
 'showingresultsheader' => "{{PLURAL:$5|Resultado '''$1''' de '''$3'''|Resultados '''$1–$2''' de '''$3'''}} para '''$4'''",
 'search-nonefound' => 'A pesquisa não produziu resultados.',
@@ -1768,11 +1768,23 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'rcnotefrom' => 'Abaixo estão as mudanças desde <b>$2</b> (mostradas até <b>$1</b>).',
 'rclistfrom' => 'Mostrar as novas mudanças a partir das $1',
 'rcshowhideminor' => '$1 edições menores',
+'rcshowhideminor-show' => 'Mostrar',
+'rcshowhideminor-hide' => 'Esconder',
 'rcshowhidebots' => '$1 robôs',
+'rcshowhidebots-show' => 'Mostrar',
+'rcshowhidebots-hide' => 'Esconder',
 'rcshowhideliu' => '$1 utilizadores registados',
+'rcshowhideliu-show' => 'Mostrar',
+'rcshowhideliu-hide' => 'Esconder',
 'rcshowhideanons' => '$1 utilizadores anónimos',
+'rcshowhideanons-show' => 'Mostrar',
+'rcshowhideanons-hide' => 'Esconder',
 'rcshowhidepatr' => '$1 edições patrulhadas',
+'rcshowhidepatr-show' => 'Mostrar',
+'rcshowhidepatr-hide' => 'Esconder',
 'rcshowhidemine' => '$1 as minhas edições',
+'rcshowhidemine-show' => 'Mostrar',
+'rcshowhidemine-hide' => 'Esconder',
 'rclinks' => 'Mostrar as últimas $1 mudanças nos últimos $2 dias<br />$3',
 'diff' => 'dif',
 'hist' => 'his',
@@ -1815,7 +1827,7 @@ As suas [[Special:Watchlist|páginas vigiadas]] aparecem a '''negrito'''.",
 Para sua conveniência, é apresentado de seguida o registo de eliminação e de movimento da página:",
 'uploadtext' => "Utilize o formulário abaixo para fazer upload de ficheiros novos.
 Para ver ou pesquisar ficheiros anteriormente enviados, consulte a [[Special:FileList|lista de ficheiros]].
-Os reenvios de um ficheiro são também registrados no [[Special:Log/upload|registro de uploads]] e as eliminações no [[Special:Log/delete|registro de eliminações]].
+Os reenvios de um ficheiro são também registados no [[Special:Log/upload|registo de uploads]] e as eliminações no [[Special:Log/delete|registo de eliminações]].
 
 Para utilizar um ficheiro numa página, depois de ter feito o upload, insira um link com um dos seguintes formatos:
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.jpg]]</nowiki></code>''' para mostrar uma imagem nas suas dimensões originais;
@@ -1892,7 +1904,7 @@ Caso deseje, mesmo assim, carregar o seu ficheiro, volte atrás e envie-o com um
 'file-exists-duplicate' => 'Este ficheiro é um duplicado {{PLURAL:$1|do seguinte|dos seguintes}}:',
 'file-deleted-duplicate' => 'Um ficheiro idêntico a este ([[:$1]]) foi eliminado anteriormente.
 Verifique o motivo da eliminação do ficheiro antes de prosseguir com o re-envio.',
-'file-deleted-duplicate-notitle' => 'Um ficheiro idêntico a este foi eliminado anteriormente, e o título foi suprimido. Você deve pedir a alguém capaz de ver os dados de ficheiros eliminados para que revise a situação antes de carregar novamente este ficheiro.',
+'file-deleted-duplicate-notitle' => 'Um ficheiro idêntico já foi eliminado e o seu título suprimido. Devia pedir a alguém capaz de ver os dados dos ficheiros eliminados para verificar a situação antes de carregá-lo novamente.',
 'uploadwarning' => 'Aviso de envio',
 'uploadwarning-text' => 'Modifique a descrição do ficheiro abaixo e tente novamente, por favor.',
 'savefile' => 'Gravar ficheiro',
@@ -1905,6 +1917,7 @@ Verifique o motivo da eliminação do ficheiro antes de prosseguir com o re-envi
 'php-uploaddisabledtext' => 'O carregamento de ficheiros está impossibilitado no PHP.
 Verifique a configuração file_uploads, por favor.',
 'uploadscripted' => 'Este ficheiro contém HTML ou código que pode ser erradamente interpretado por um browser.',
+'uploadinvalidxml' => 'Erro detectado na análise do XML do ficheiro carregado.',
 'uploadvirus' => 'O ficheiro contém um vírus! Detalhes: $1',
 'uploadjava' => 'Este é um ficheiro ZIP que contém um ficheiro .class de Java.
 Não é permitido o upload de ficheiros Java, porque estes podem contornar as restrições de segurança.',
@@ -2170,6 +2183,7 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 'randompage-nopages' => 'Não há páginas {{PLURAL:$2|no seguinte espaço nominal|nos seguintes espaços nominais}}: $1.',
 
 # Random page in category
+'randomincategory' => 'Página aleatória na categoria',
 'randomincategory-invalidcategory' => '"$1" não é um nome de categoria válido',
 'randomincategory-nopages' => 'Não há páginas na categoria [[:Category:$1|$1]].',
 'randomincategory-selectcategory' => 'Obter página aleatória da categoria: $1 $2',
@@ -2235,6 +2249,7 @@ Agora redirecciona para [[$2]].',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|ligação|ligações}}',
 'nmembers' => '$1 {{PLURAL:$1|membro|membros}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|membro|membros}}',
 'nrevisions' => '$1 {{PLURAL:$1|edição|edições}}',
 'nviews' => '$1 {{PLURAL:$1|visita|visitas}}',
 'nimagelinks' => 'Usada {{PLURAL:$1|numa página|em $1 páginas}}',
@@ -2276,9 +2291,13 @@ Agora redirecciona para [[$2]].',
 'protectedpages-cascade' => 'Apenas proteções em cascata',
 'protectedpages-noredirect' => 'Esconder redirecionamentos',
 'protectedpagesempty' => 'Neste momento, nenhuma das páginas está protegida com estes parâmetros.',
-'protectedpages-timestamp' => 'Timestamp',
+'protectedpages-timestamp' => 'Data e hora',
+'protectedpages-page' => 'Página',
 'protectedpages-expiry' => 'Expira em',
-'protectedpages-params' => 'Parâmetros de protecção',
+'protectedpages-performer' => 'Protetor',
+'protectedpages-params' => 'Parâmetros de proteção',
+'protectedpages-reason' => 'Motivo',
+'protectedpages-unknown-timestamp' => 'Desconhecido',
 'protectedpages-unknown-performer' => 'Utilizador desconhecido',
 'protectedtitles' => 'Títulos protegidos',
 'protectedtitles-summary' => 'Esta página lista os títulos protegidos, cuja criação está impossibilitada. Para ver as páginas protegidas consulte [[{{#special:ProtectedPages}}]].',
@@ -2792,7 +2811,7 @@ Isto só deve ser feito para prevenir vandalismo e de acordo com a [[{{MediaWiki
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] foi {{GENDER:$1|bloqueado|bloqueada}}.<br />
 Consulte a [[Special:BlockList|lista de bloqueios]] para rever os bloqueios.',
 'ipb-blockingself' => 'Está prestes a bloquear-se a si próprio. Tem a certeza de que pretende fazê-lo?',
-'ipb-confirmhideuser' => 'Está prestes a bloquear um utilizador com "Ocultar nome de utilizador/IP" ativado. Isto irá suprimir o nome do utilizador de todas as listas e entradas dos registros. Tem a certeza de que pretende fazê-lo?',
+'ipb-confirmhideuser' => 'Está prestes a bloquear um utilizador com "Ocultar nome de utilizador/IP" ativado. Isto irá suprimir o nome do utilizador de todas as listas e entradas dos registos. Tem a certeza de que pretende fazê-lo?',
 'ipb-confirmaction' => 'Se tem a certeza de que quer fazê-lo, marque o campo "{{int:ipb-confirm}}" ao fundo.',
 'ipb-edit-dropdown' => 'Editar motivos de bloqueio',
 'ipb-unblock-addr' => 'Desbloquear $1',
@@ -3093,6 +3112,7 @@ Não há um diretório temporário.',
 'import-error-special' => 'A página "$1" não pode ser importada porque ela pertence a um espaço nominal especial que não permite páginas.',
 'import-error-invalid' => 'A página "$1" não pode ser importada porque seu nome é inválido.',
 'import-error-unserialize' => 'Revisão $2 da página "$1" não pode ser desserializada. Foi relatado que a revisão usava o modelo de conteúdo $3 serializado como $4.',
+'import-error-bad-location' => 'A revisão $2, que usa o modelo de conteúdo $3, não pode ser gravada em "$1" nesta wiki, porque o modelo não é suportado nessa página.',
 'import-options-wrong' => '{{PLURAL:$2|Opção errada|Opções erradas}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'A raiz da página dada é um título inválido.',
 'import-rootpage-nosubpage' => 'O domínio "$1" da página de raiz não permite subpáginas.',
@@ -3144,7 +3164,7 @@ Utilize o botão "Antever resultado" antes de gravar, por favor.',
 'tooltip-p-logo' => 'Visite a página principal',
 'tooltip-n-mainpage' => 'Visitar a página principal',
 'tooltip-n-mainpage-description' => 'Visitar a página principal',
-'tooltip-n-portal' => 'Sobre o projeto, o que se pode fazer e onde achar as coisas',
+'tooltip-n-portal' => 'Sobre o projeto, o que se pode fazer e onde encontrar as coisas',
 'tooltip-n-currentevents' => 'Informação temática sobre acontecimentos atuais',
 'tooltip-n-recentchanges' => 'A lista de mudanças recentes nesta wiki.',
 'tooltip-n-randompage' => 'Carregar página aleatória',
@@ -3316,9 +3336,9 @@ $1',
 'nextdiff' => 'Edição posterior →',
 
 # Media information
-'mediawarning' => '<strong>AVISO:</strong> Este tipo de arquivo pode conter código malicioso.
+'mediawarning' => '<strong>Aviso:</strong> Este tipo de ficheiro pode conter código malicioso.
 Se o executar, o seu sistema pode ficar comprometido.',
-'imagemaxsize' => 'Tamanho limite da imagem:<br /><em>(para páginas com descrições de arquivos)</em>',
+'imagemaxsize' => 'Tamanho limite da imagem:<br /><em>(para páginas de descrição de ficheiros)</em>',
 'thumbsize' => 'Tamanho de miniaturas:',
 'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|página|páginas}}',
 'file-info' => 'tamanho: $1, tipo MIME: $2',
@@ -3328,7 +3348,7 @@ Se o executar, o seu sistema pode ficar comprometido.',
 'svg-long-desc' => 'ficheiro SVG, de $1 × $2 pixels, tamanho: $3',
 'svg-long-desc-animated' => 'ficheiro SVG animado, de $1 × $2 pixels, tamanho: $3',
 'svg-long-error' => 'Ficheiro SVG inválido: $1',
-'show-big-image' => 'Arquivo original',
+'show-big-image' => 'Ficheiro original',
 'show-big-image-preview' => 'Tamanho desta antevisão: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Outra resolução|Outras resoluções}}: $1.',
 'show-big-image-size' => '$1 × $2 pixels',
@@ -3822,7 +3842,7 @@ Pode agora [[Special:UserLogin|autenticar-se]] e desfrutar da wiki.',
 'confirmemail_loggedin' => 'O seu endereço de correio eletrónico foi confirmado.',
 'confirmemail_subject' => 'Confirmação de endereço de correio eletrónico da {{SITENAME}}',
 'confirmemail_body' => 'Alguém, provavelmente você a partir do endereço IP $1,
-registrou uma conta "$2" com este endereço de correio eletrónico na {{SITENAME}}.
+registou uma conta "$2" com este endereço de correio eletrónico na {{SITENAME}}.
 
 Para confirmar que esta conta é realmente sua e ativar
 as funcionalidades de correio eletrónico na {{SITENAME}},
@@ -3995,6 +4015,7 @@ Também pode [[Special:EditWatchlist|editar a lista da maneira convencional]].',
 'version-ext-colheader-credits' => 'Autores',
 'version-license-title' => 'Licença para $1',
 'version-license-not-found' => 'Não foi encontrada informação detalhada da licença para esta extensão.',
+'version-credits-title' => 'Créditos de autoria da extensão $1',
 'version-credits-not-found' => 'Não foi encontrada informação detalhada dos créditos para esta extensão.',
 'version-poweredby-credits' => 'Esta wiki é potenciada por <strong>[https://www.mediawiki.org/ MediaWiki]</strong>, copyright © 2001-$1 $2.',
 'version-poweredby-others' => 'outros',
@@ -4272,6 +4293,4 @@ Na verdade, expande tudo o que estiver entre chavetas duplas.",
 'expand_templates_generate_rawhtml' => 'Mostrar o HTML puro',
 'expand_templates_preview' => 'Antevisão do resultado',
 
-# Unknown messages
-'uploadinvalidxml' => 'Erro detectado na análise do XML do ficheiro carregado.',
 );

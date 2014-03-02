@@ -1628,11 +1628,23 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'rcnotefrom' => "Navedene so spremembe od '''$2''' dalje (prikazujem jih do '''$1''').",
 'rclistfrom' => 'Prikaži spremembe od $1 naprej',
 'rcshowhideminor' => '$1 manjša urejanja',
+'rcshowhideminor-show' => 'Prikaži',
+'rcshowhideminor-hide' => 'Skrij',
 'rcshowhidebots' => '$1 bote',
+'rcshowhidebots-show' => 'Prikaži',
+'rcshowhidebots-hide' => 'Skrij',
 'rcshowhideliu' => '$1 registrirane uporabnike',
+'rcshowhideliu-show' => 'Prikaži',
+'rcshowhideliu-hide' => 'Skrij',
 'rcshowhideanons' => '$1 brezimne uporabnike',
+'rcshowhideanons-show' => 'Prikaži',
+'rcshowhideanons-hide' => 'Skrij',
 'rcshowhidepatr' => '$1 pregledana urejanja',
+'rcshowhidepatr-show' => 'Prikaži',
+'rcshowhidepatr-hide' => 'Skrij',
 'rcshowhidemine' => '$1 moja urejanja',
+'rcshowhidemine-show' => 'Prikaži',
+'rcshowhidemine-hide' => 'Skrij',
 'rclinks' => 'Prikaži zadnjih $1 sprememb v zadnjih $2 dneh<br />$3',
 'diff' => 'prim',
 'hist' => 'zgod',
@@ -1764,6 +1776,7 @@ Poprosite koga, ki ima možnost ogleda podatkov zatrtih datotek, da preveri polo
 'php-uploaddisabledtext' => 'Nalaganje datotek je onemogočeno v PHP.
 Prosimo preverite file_uploads nastavitev.',
 'uploadscripted' => 'Datoteka vsebuje HTML- ali skriptno kodo, ki bi jo lahko brskalnik razlagal napačno.',
+'uploadinvalidxml' => 'XML v naloženi datoteki ne moremo razčleniti.',
 'uploadvirus' => 'Datoteka vsebuje virus!
 Podrobnosti: $1',
 'uploadjava' => 'Datoteka je datoteka ZIP, ki vsebuje javansko datoteko .class.
@@ -4138,6 +4151,4 @@ Pravzaprav razširi skoraj vse v dvojnih zavitih oklepajih.',
 'expand_templates_generate_rawhtml' => 'Prikaži surovi HTML',
 'expand_templates_preview' => 'Predogled',
 
-# Unknown messages
-'uploadinvalidxml' => 'XML v naloženi datoteki ne moremo razčleniti.',
 );

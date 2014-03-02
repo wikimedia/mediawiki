@@ -1727,11 +1727,23 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'rcnotefrom' => 'Dedesubt sunt modificările de la <b>$2</b> (maxim <b>$1</b> de modificări sunt afișate - schimbă numărul maxim de linii alegând altă valoare mai jos).',
 'rclistfrom' => 'Se arată modificările începând cu $1',
 'rcshowhideminor' => '$1 modificările minore',
+'rcshowhideminor-show' => 'Arată',
+'rcshowhideminor-hide' => 'Ascunde',
 'rcshowhidebots' => '$1 roboții',
+'rcshowhidebots-show' => 'Arată',
+'rcshowhidebots-hide' => 'Ascunde',
 'rcshowhideliu' => '$1 utilizatorii înregistrați',
+'rcshowhideliu-show' => 'Arată',
+'rcshowhideliu-hide' => 'Ascunde',
 'rcshowhideanons' => '$1 utilizatorii anonimi',
+'rcshowhideanons-show' => 'Arată',
+'rcshowhideanons-hide' => 'Ascunde',
 'rcshowhidepatr' => '$1 modificările patrulate',
+'rcshowhidepatr-show' => 'Arată',
+'rcshowhidepatr-hide' => 'Ascunde',
 'rcshowhidemine' => '$1 contribuțiile mele',
+'rcshowhidemine-show' => 'Arată',
+'rcshowhidemine-hide' => 'Ascunde',
 'rclinks' => 'Se arată ultimele $1 modificări din ultimele $2 zile.<br />
 $3',
 'diff' => 'dif',
@@ -1859,6 +1871,7 @@ Ar trebui să contactați pe cineva care poate vizualiza datele suprimate ale fi
 'php-uploaddisabledtext' => 'Încărcarea de fișiere este dezactivată în PHP.
 Vă rugăm să verificați setările din file_uploads.',
 'uploadscripted' => 'Fișierul conține HTML sau cod script care poate fi interpretat în mod eronat de un browser.',
+'uploadinvalidxml' => 'Nu s-a putut analiza conținutul XML din fișierul încărcat.',
 'uploadvirus' => 'Fișierul conține un virus! Detalii: $1',
 'uploadjava' => 'Fișierul de față este o arhivă ZIP care conține un fișier de clasă Java.
 Încărcarea fișierelor Java nu este permisă, întrucât pot evita restricțiile de securitate.',
@@ -4208,6 +4221,4 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 'expand_templates_generate_rawhtml' => 'Arată HTML brut',
 'expand_templates_preview' => 'Previzualizare',
 
-# Unknown messages
-'uploadinvalidxml' => 'Nu s-a putut analiza conținutul XML din fișierul încărcat.',
 );

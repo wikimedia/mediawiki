@@ -39,6 +39,7 @@
  * @author Kaganer
  * @author Klutzy
  * @author Marco 27
+ * @author Maria victoria
  * @author Martorell
  * @author Marzedu
  * @author McDutchie
@@ -840,7 +841,7 @@ Attendi $1 e riprova in seguito.',
 
 # Change password dialog
 'changepassword' => 'Cambia password',
-'resetpass_announce' => 'Per completare la registrazione, è necessario impostare una nuova password.',
+'resetpass_announce' => 'Per completare il log in, è necessario impostare una nuova password.',
 'resetpass_text' => '<!-- Aggiungere il testo qui -->',
 'resetpass_header' => "Cambia la password dell'account",
 'oldpassword' => 'Vecchia password:',
@@ -857,7 +858,7 @@ Attendi $1 e riprova in seguito.',
 'resetpass-wrong-oldpass' => 'Password temporanea o attuale non valida.
 La password potrebbe essere stata già cambiata, oppure potrebbe essere stata richiesta una nuova password temporanea.',
 'resetpass-recycled' => 'Si prega di reimpostare con una password diversa dalla password attuale.',
-'resetpass-temp-emailed' => "L'accesso è stato effettuato con un codice temporaneo, inviato via email. Per completare la registrazione, è necessario impostare una nuova password:",
+'resetpass-temp-emailed' => "L'accesso è stato effettuato con un codice temporaneo, inviato via email. Per completare la registrazione, è necessario impostare una nuova password qui:",
 'resetpass-temp-password' => 'Password temporanea:',
 'resetpass-abort-generic' => "La modifica della password è stata interrotta da un'estensione.",
 'resetpass-expired' => "La password è scaduta. Si prega di impostare una nuova password per effettuare l'accesso.",
@@ -1697,11 +1698,23 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'rcnotefrom' => "Di seguito sono elencate le modifiche apportate a partire da '''$2''' (fino a '''$1''').",
 'rclistfrom' => 'Mostra le modifiche apportate a partire da $1',
 'rcshowhideminor' => '$1 le modifiche minori',
+'rcshowhideminor-show' => 'Mostra',
+'rcshowhideminor-hide' => 'Nascondi',
 'rcshowhidebots' => '$1 i bot',
+'rcshowhidebots-show' => 'Mostra',
+'rcshowhidebots-hide' => 'Nascondi',
 'rcshowhideliu' => '$1 gli utenti registrati',
+'rcshowhideliu-show' => 'Mostra',
+'rcshowhideliu-hide' => 'Nascondi',
 'rcshowhideanons' => '$1 gli utenti anonimi',
+'rcshowhideanons-show' => 'Mostra',
+'rcshowhideanons-hide' => 'Nascondi',
 'rcshowhidepatr' => '$1 le modifiche verificate',
+'rcshowhidepatr-show' => 'Mostra',
+'rcshowhidepatr-hide' => 'Nascondi',
 'rcshowhidemine' => '$1 le mie modifiche',
+'rcshowhidemine-show' => 'Mostra',
+'rcshowhidemine-hide' => 'Nascondi',
 'rclinks' => 'Mostra le $1 modifiche più recenti apportate negli ultimi $2 giorni<br />$3',
 'diff' => 'diff',
 'hist' => 'cron',
@@ -1818,6 +1831,7 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'uploaddisabledtext' => 'Il caricamento dei file non è attivo.',
 'php-uploaddisabledtext' => 'Il caricamento di file tramite PHP è disabilitato. Controlla la configurazione di file_uploads.',
 'uploadscripted' => 'Questo file contiene codice HTML o di script, che potrebbe essere interpretato erroneamente da un browser web.',
+'uploadinvalidxml' => 'Il codice XML nel file caricato non può essere elaborato.',
 'uploadvirus' => 'Questo file contiene un virus! Dettagli: $1',
 'uploadjava' => "Questo file è un file ZIP che contiene un file .class Java.
 Carica i file Java non è consentito, perché possono causare l'aggiramento delle restrizioni di sicurezza.",
@@ -4172,6 +4186,4 @@ vale a dire praticamente tutto ciò che si trova tra doppie parentesi graffe.',
 'expand_templates_generate_rawhtml' => 'Mostra HTML',
 'expand_templates_preview' => 'Anteprima',
 
-# Unknown messages
-'uploadinvalidxml' => 'Il codice XML nel file caricato non può essere elaborato.',
 );

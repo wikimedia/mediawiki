@@ -1740,6 +1740,7 @@ Si tu vole totevia incargar iste file, per favor retorna e usa un nove nomine. [
 'uploaddisabledtext' => 'Le incargamento de files es disactivate.',
 'php-uploaddisabledtext' => 'Le incargamento de files PHP es disactivate. Per favor verifica le configuration file_uploads.',
 'uploadscripted' => 'Iste file contine codice de HTML o de script que pote esser interpretate erroneemente per un navigator del web.',
+'uploadinvalidxml' => 'Le codice XML in le file incargate non pote esser interpretate.',
 'uploadvirus' => 'Le file contine un virus! Detalios: $1',
 'uploadjava' => 'Iste file es un archivo ZIP que contine un file .class de Java.
 Non es permittite incargar files Java, proque istes pote contornar le restrictiones de securitate.',
@@ -4136,6 +4137,4 @@ De facto, illo expande quasi toto inter accolladas duple.',
 'expand_templates_generate_rawhtml' => 'Monstrar HTML brute',
 'expand_templates_preview' => 'Previsualisation',
 
-# Unknown messages
-'uploadinvalidxml' => 'Le codice XML in le file incargate non pote esser interpretate.',
 );

@@ -1509,11 +1509,23 @@ Esta información sedrá pública.',
 'rcnotefrom' => "Abaxo tan los cambeos dende '''$2''' (s'amuesen fasta '''$1''').",
 'rclistfrom' => 'Amosar los nuevos cambios dende $1',
 'rcshowhideminor' => '$1 ediciones menores',
+'rcshowhideminor-show' => 'Amosar',
+'rcshowhideminor-hide' => 'Anubrir',
 'rcshowhidebots' => '$1 bots',
+'rcshowhidebots-show' => 'Amosar',
+'rcshowhidebots-hide' => 'Anubrir',
 'rcshowhideliu' => '$1 los usuarios rexistraos',
+'rcshowhideliu-show' => 'Amosar',
+'rcshowhideliu-hide' => 'Anubrir',
 'rcshowhideanons' => '$1 usuarios anónimos',
+'rcshowhideanons-show' => 'Amosar',
+'rcshowhideanons-hide' => 'Anubrir',
 'rcshowhidepatr' => '$1 ediciones supervisaes',
+'rcshowhidepatr-show' => 'Amosar',
+'rcshowhidepatr-hide' => 'Anubrir',
 'rcshowhidemine' => '$1 les mios ediciones',
+'rcshowhidemine-show' => 'Amosar',
+'rcshowhidemine-hide' => 'Anubrir',
 'rclinks' => 'Amosar los caberos $1 cambeos de los caberos $2 díes <br />$3',
 'diff' => 'dif',
 'hist' => 'hist',
@@ -1645,6 +1657,7 @@ Deberíes revisar el historial de desaniciu del ficheru enantes de xubilu otra v
 'php-uploaddisabledtext' => 'Les xubíes de ficheros tan desactivaes en PHP.
 Por favor, comprueba la configuración de file_uploads.',
 'uploadscripted' => 'Esti ficheru contién códigu HTML o scripts que se puen interpretar equivocadamente por un navegador.',
+'uploadinvalidxml' => "Nun pudo interpretase'l XML del ficheru cargáu.",
 'uploadvirus' => '¡El ficheru tien un virus!
 Detalles: $1',
 'uploadjava' => 'El ficheru ye un archivu ZIP que contién un ficheru .class de Java.
@@ -4025,6 +4038,4 @@ En realidá cuasi tolo qu'apaeza ente llaves dobles.",
 'expand_templates_generate_rawhtml' => 'Ver el HTML en bruto',
 'expand_templates_preview' => 'Vista previa',
 
-# Unknown messages
-'uploadinvalidxml' => "Nun pudo interpretase'l XML del ficheru cargáu.",
 );

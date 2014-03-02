@@ -1678,6 +1678,7 @@ Jeli maš tutón wobraz z połnym rozeznaćom, nahraj tutón, hewak změń proš
 'uploaddisabledtext' => 'Nahraće datajow je znjemóžnjene.',
 'php-uploaddisabledtext' => 'Nahraća PHP-datajow su znjemóžnjene. Prošu skontroluj nastajenje file_uploads.',
 'uploadscripted' => 'Dataja wobsahuje HTML- abo skriptowy kod, kotryž móhł so mylnje přez wobhladowak wuwjesć.',
+'uploadinvalidxml' => 'XML w nahratej dataji njeda so parsować.',
 'uploadvirus' => 'Dataja wirus wobsahuje! Podrobnosće: $1',
 'uploadjava' => 'Tuta dataja je ZIP-dataja, kotraž .class-dataju z Javy wobsahuje.
 Nahraće datajow Javy njeje dowolene, dokelž móhli wobeńdźenje wěstotnych wobmjezowanjow zmóžnić.',
@@ -3982,6 +3983,4 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'expand_templates_generate_rawhtml' => 'Hruby HTML pokazać',
 'expand_templates_preview' => 'Přehlad',
 
-# Unknown messages
-'uploadinvalidxml' => 'XML w nahratej dataji njeda so parsować.',
 );

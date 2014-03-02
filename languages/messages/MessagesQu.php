@@ -1747,6 +1747,7 @@ Kay churkunayki rikcha hunt'a chhikan kayniyuq kaptinqa, chay hunt'atam churkuy,
 'uploaddisabledtext' => 'Willañiqi churkuyqa manam saqillasqachu.',
 'php-uploaddisabledtext' => "PHP-wan willañiqi churkuyqa hark'asqam. Ama hina kaspa, willañiqi churkuy allinkachinakunata llanchiy.",
 'uploadscripted' => "Kay willañiqiqa wakichi icha HTML qillqayuqmi, llika wamp'unaqa pantalla unanchanmanchá.",
+'uploadinvalidxml' => 'Manam atinichu churkusqa willañiqipi XML-ta kuskiyta.',
 'uploadvirus' => 'Willañiqipiqa añawmi! Yuyay: $1',
 'uploadjava' => 'Kay ZIP willañiqiqa Java .class willañiqiyuqmi.
 Java churkuyqa manam saqillasqachu, qasikanapaq saywachasqa kanman karunchana tiyanman.',
@@ -3992,6 +3993,4 @@ Mana chayqa, kay qatiqpi kaq hunt'ana p'anqatam llamk'achiyta atinki. Willapuyni
 'expand_templates_generate_rawhtml' => 'Chawa HTML-ta rikuchiy',
 'expand_templates_preview' => 'Ñawpaqta qhawallay',
 
-# Unknown messages
-'uploadinvalidxml' => 'Manam atinichu churkusqa willañiqipi XML-ta kuskiyta.',
 );

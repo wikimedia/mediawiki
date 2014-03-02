@@ -868,6 +868,9 @@ Bonvolu ĝisatendi $1 antaŭ reprovi.',
 'suspicious-userlogout' => 'Via peto por elsaluti estis malpermesita, ĉar verŝajne ĝi estis sendita de trompita retumilo aŭ kaŝiĝanta prokura servilo.',
 'createacct-another-realname-tip' => 'La vera nomo estas nenecesa.
 Se vi decidas indiki ĝin, ĝi estos uzata por montri atribuadon de viaj kontribuoj.',
+'pt-login' => 'Ensaluti',
+'pt-createaccount' => 'Krei novan konton',
+'pt-userlogout' => 'Elsaluti',
 
 # Email sending
 'php-mail-error-unknown' => 'Nekonata eraro en la funkcio mail() de PHP',
@@ -876,7 +879,7 @@ Se vi decidas indiki ĝin, ĝi estos uzata por montri atribuadon de viaj kontrib
 
 # Change password dialog
 'changepassword' => 'Ŝanĝi pasvorton',
-'resetpass_announce' => 'Vi ensalutis kun provizora retpoŝtita pasvorto. Por kompleti ensalutadon, vi devas fari novan pasvorton ĉi tie:',
+'resetpass_announce' => 'Por kompleti ensaluton vi devas agordi novan pasvorton.',
 'resetpass_text' => '<!-- Aldonu tekston ĉi tien -->',
 'resetpass_header' => 'Ŝanĝi kontan pasvorton',
 'oldpassword' => 'Malnova pasvorto',
@@ -884,12 +887,15 @@ Se vi decidas indiki ĝin, ĝi estos uzata por montri atribuadon de viaj kontrib
 'retypenew' => 'Retajpi novan pasvorton',
 'resetpass_submit' => 'Fari pasvorton kaj ensaluti',
 'changepassword-success' => 'Via pasvorto estis sukcese ŝanĝita!',
+'changepassword-throttled' => 'Vi tro ofte provis ensaluti al ĉi tiu konto.
+Bonvolu atendi $1 antaŭ ol reprovi.',
 'resetpass_forbidden' => 'Pasvortoj ne estas ŝanĝeblaj',
 'resetpass-no-info' => 'Vi devas ensaluti por atingi ĉi tiun paĝon rekte.',
 'resetpass-submit-loggedin' => 'Ŝanĝi pasvorton',
 'resetpass-submit-cancel' => 'Nuligi',
 'resetpass-wrong-oldpass' => 'Malvalida provizora aŭ nuna pasvorto.
 Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
+'resetpass-recycled' => 'Bonvolu agordi vian novan pasvorton, kiu estu alia ol via nuntempa pasvorto.',
 'resetpass-temp-password' => 'Provizora pasvorto:',
 'resetpass-abort-generic' => 'Ŝanĝo de pasvorto estis nuligita per kromprogramo.',
 
@@ -1719,15 +1725,28 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'recentchanges-label-minor' => 'Ĉi tiu estas eta redakto',
 'recentchanges-label-bot' => 'Ĉi tiu redakto estis farita per roboto.',
 'recentchanges-label-unpatrolled' => 'Ĉi tiu redakto ne jam estis patrolata.',
+'recentchanges-legend-heading' => "'''Klarigo:'''",
 'recentchanges-legend-newpage' => '(vidu ankaŭ [[Special:NewPages|liston de novaj paĝoj]])',
 'rcnotefrom' => "Jen la ŝanĝoj ekde '''$2''' (lastaj ĝis '''$1''').",
 'rclistfrom' => 'Montri novajn ŝanĝojn ekde "$1"',
 'rcshowhideminor' => '$1 redaktetojn',
+'rcshowhideminor-show' => 'Montri',
+'rcshowhideminor-hide' => 'Kaŝi',
 'rcshowhidebots' => '$1 robotojn',
+'rcshowhidebots-show' => 'Montri',
+'rcshowhidebots-hide' => 'Kaŝi',
 'rcshowhideliu' => '$1 registriĝintojn',
+'rcshowhideliu-show' => 'Montri',
+'rcshowhideliu-hide' => 'Kaŝi',
 'rcshowhideanons' => '$1 anonimajn redaktojn',
+'rcshowhideanons-show' => 'Montri',
+'rcshowhideanons-hide' => 'Kaŝi',
 'rcshowhidepatr' => '$1 patrolitajn redaktojn',
+'rcshowhidepatr-show' => 'Montri',
+'rcshowhidepatr-hide' => 'Kaŝi',
 'rcshowhidemine' => '$1 miajn redaktojn',
+'rcshowhidemine-show' => 'Montri',
+'rcshowhidemine-hide' => 'Kaŝi',
 'rclinks' => 'Montri $1 lastajn ŝanĝojn dum la $2 lastaj tagoj.<br />$3',
 'diff' => 'malsamoj',
 'hist' => 'historio',
@@ -1853,6 +1872,7 @@ Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu retroigi kaj uzi novan nomon
 'uploaddisabledtext' => 'Alŝutado de dosieroj estas malebligita.',
 'php-uploaddisabledtext' => 'Dosiera alŝutado estas malŝalta en PHP. Bonvolu kontroli la preferon file_uploads.',
 'uploadscripted' => 'HTML-aĵo aŭ skriptokodaĵo troviĝas en tiu ĉi tiu dosiero, kiun TTT-foliumilo eble interpretus erare.',
+'uploadinvalidxml' => 'Ne eblas interpreti la XML-sintakson en la alŝutita dosiero',
 'uploadvirus' => 'Viruso troviĝas en la dosiero! Detaloj: $1',
 'uploadjava' => 'La dosiero estas ZIP-dosiero kiu enhavas .class-dosieron de Java.
 Alŝutante Java-dosieron estas malpermesita, ĉar ili povas kaŭzi sekureco-limigojn esti preterpasitaj.',
@@ -2196,6 +2216,7 @@ Bonvolu kontroli aliajn ligilojn al la ŝablonoj antaŭ ol forigi ilin.',
 'mostrevisions' => 'Artikoloj kun la plej multaj versioj',
 'prefixindex' => 'Ĉiuj paĝoj kun prefikso',
 'prefixindex-namespace' => 'Ĉiuj paĝoj kun prefikso ($1 nomspaco)',
+'prefixindex-strip' => 'Ne montri prefikson en listo',
 'shortpages' => 'Mallongaj paĝoj',
 'longpages' => 'Longaj paĝoj',
 'deadendpages' => 'Paĝoj sen interna ligilo',
@@ -2203,6 +2224,7 @@ Bonvolu kontroli aliajn ligilojn al la ŝablonoj antaŭ ol forigi ilin.',
 'protectedpages' => 'Protektitaj paĝoj',
 'protectedpages-indef' => 'Nur ĉiamaj protektaĵoj',
 'protectedpages-cascade' => 'Nur kaskadaj protektoj',
+'protectedpages-noredirect' => 'Kaŝi alidirektilojn',
 'protectedpagesempty' => 'Neniuj paĝoj estas momente protektitaj kun ĉi tiuj parametroj.',
 'protectedpages-timestamp' => 'Tempindiko',
 'protectedpages-page' => 'Paĝo',
@@ -2948,6 +2970,7 @@ se vi volus kontribui al la komuna MediaWiki-asimilado.',
 'allmessages-prefix' => 'Filtri laŭ prefikso:',
 'allmessages-language' => 'Lingvo:',
 'allmessages-filter-submit' => 'Ek!',
+'allmessages-filter-translate' => 'Traduki',
 
 # Thumbnails
 'thumbnail-more' => 'Pligrandigi',
@@ -3814,6 +3837,10 @@ Bonvolu konfirmi ke vi ja volas rekrei la paĝon.',
 'imgmultigo' => 'Ek!',
 'imgmultigoto' => 'Iri al paĝo $1',
 
+# Language selector for translatable SVGs
+'img-lang-default' => '(defaŭlta lingvo)',
+'img-lang-go' => 'Ek',
+
 # Table pager
 'ascending_abbrev' => 'sprn',
 'descending_abbrev' => 'subn',
@@ -3949,6 +3976,13 @@ Vi povas ankaŭ [[Special:EditWatchlist|redakti norme]].',
 'version-hook-subscribedby' => 'Abonita de',
 'version-version' => '($1)',
 'version-license' => 'Permesilo de MediaWiki',
+'version-ext-license' => 'Permesilo',
+'version-ext-colheader-version' => 'Versio',
+'version-ext-colheader-license' => 'Permesilo',
+'version-ext-colheader-description' => 'Priskribo',
+'version-ext-colheader-credits' => 'Aŭtoroj',
+'version-license-title' => 'Permesilo por $1',
+'version-credits-title' => 'Agnosko por $1',
 'version-poweredby-credits' => "Ĉi tiu vikio funkcias per '''[https://www.mediawiki.org/ MediaWiki]''', aŭtorrajto ©&thinsp;2001–$1 $2.",
 'version-poweredby-others' => 'aliaj',
 'version-poweredby-translators' => 'tradukantoj de translatewiki.net',
@@ -3966,10 +4000,12 @@ Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU Gen
 'version-entrypoints-header-url' => 'Retadreso',
 
 # Special:Redirect
+'redirect-legend' => 'Alidirektilo al dosiero aŭ paĝo',
 'redirect-submit' => 'Ek',
 'redirect-lookup' => 'Traserĉi:',
 'redirect-value' => 'Valoro:',
 'redirect-user' => 'Salutnomo',
+'redirect-page' => 'Paĝa identigo',
 'redirect-revision' => 'Revizio de la paĝo',
 'redirect-file' => 'Dosiernomo',
 'redirect-not-exists' => 'Valoro ne trovita',
@@ -3987,6 +4023,7 @@ Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU Gen
 
 # Special:SpecialPages
 'specialpages' => 'Specialaj paĝoj',
+'specialpages-note-top' => 'Klarigo',
 'specialpages-note' => '* Normaj specialaj paĝoj.
 * <span class="mw-specialpagerestricted">Limigitaj specialaj paĝoj.</span>',
 'specialpages-group-maintenance' => 'Raportoj pri prizorgado',
@@ -4186,8 +4223,12 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'rotate-comment' => 'Bildo pivotita $1 {{PLURAL:$1|gradon|gradojn}} dekstren',
 
 # Limit report
+'limitreport-cputime' => 'Uzo de procesora tempo',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekundo|sekundoj}}',
+'limitreport-walltime' => 'Uzo de reala tempo',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekundo|sekundoj}}',
+'limitreport-ppvisitednodes' => 'Nombro da nodoj vizititaj de antaŭtraktilo',
+'limitreport-ppgeneratednodes' => 'Nombro da nodoj kreitaj de antaŭtraktilo',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|bitoko|bitokoj}}',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|bitoko|bitokoj}}',
 
@@ -4201,12 +4242,12 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'expand_templates_input' => 'Enigita teksto:',
 'expand_templates_output' => 'Rezulto',
 'expand_templates_xml_output' => 'XML-eligo',
+'expand_templates_html_output' => 'Kruda eliga HTML',
 'expand_templates_ok' => 'Ek!',
 'expand_templates_remove_comments' => 'Forigi komentojn',
 'expand_templates_remove_nowiki' => 'Nuligi <nowiki> etikedojn en rezulto',
 'expand_templates_generate_xml' => 'Montri XML-sintaksarbon',
+'expand_templates_generate_rawhtml' => 'Montri krudan HTML-n',
 'expand_templates_preview' => 'Antaŭrigardo',
 
-# Unknown messages
-'uploadinvalidxml' => 'Ne eblas interpreti la XML-sintakson en la alŝutita dosiero',
 );

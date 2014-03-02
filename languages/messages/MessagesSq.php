@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Amire80
  * @author Andejkendej
  * @author Cradel
  * @author Dashohoxha
@@ -1526,7 +1527,7 @@ Kjo informatë është publike.',
 'rc_categories_any' => 'Të gjitha',
 'rc-change-size-new' => '$1 {{PLURAL:$1|bajt|bajtë}} pas ndryshimit',
 'newsectionsummary' => '/* $1 */ seksion i ri',
-'rc-enhanced-expand' => 'Trego detajet (kërkon JavaScript)',
+'rc-enhanced-expand' => 'Trego detajet',
 'rc-enhanced-hide' => 'Fshih detajet',
 'rc-old-title' => 'fillimisht i krijuar si "$1"',
 
@@ -2401,7 +2402,7 @@ $1',
 'mycontris' => 'Kontributet',
 'contribsub2' => 'Për $1 ($2)',
 'nocontribs' => 'Nuk ka asnjë ndryshim që përputhet me këto kritere.',
-'uctop' => ' (sipër)',
+'uctop' => '(aktual)',
 'month' => 'Nga muaji (dhe më herët):',
 'year' => 'Nga viti (dhe më herët):',
 

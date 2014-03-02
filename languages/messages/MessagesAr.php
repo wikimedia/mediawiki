@@ -1038,7 +1038,7 @@ $2',
 'createacct-another-realname-tip' => 'الاسم الحقيقي اختياري.
 إذا اخترت توفيره فسيستخدم لنسبة عمل المستخدم إليه.',
 'pt-login' => 'تسجيل الدخول',
-'pt-createaccount' => 'أنشئ حساباً',
+'pt-createaccount' => 'أنشئ حسابا',
 'pt-userlogout' => 'تسجيل الخروج',
 
 # Email sending
@@ -1266,10 +1266,10 @@ $2
 في نص التعديل. تم رفض التعديل لمنع فساد نص المقالة.
 هذا يحدث أحيانا عندما تستخدم خدمة بروكسي مجهول معيبة مبنية على الوب.'''",
 'edit_form_incomplete' => "'''بعض أجزاء من نموذج التعديل لم تصل إلى الخادم؛ تأكد من أن تعديلاتك لم تمس وحاول مجددا.'''",
-'editing' => 'تعديل «$1»',
+'editing' => 'تعديل $1',
 'creating' => 'إنشاء «$1»',
-'editingsection' => 'تعديل قسم من «$1»',
-'editingcomment' => 'تعديل $1 (قسم جديد)',
+'editingsection' => 'تعديل $1 (قسم)',
+'editingcomment' => 'إنشاء قسم من «$1»',
 'editconflict' => 'تضارب في التحرير: $1',
 'explainconflict' => "لقد عدل شخص آخر هذه الصفحة بعد أن بدأت أنت بتحريرها.
 صندوق النصوص العلوي يحتوي على النص الموجود حاليا في الصفحة.
@@ -1551,7 +1551,7 @@ $1",
 'mergelogpagetext' => 'بالأسفل قائمة بأحدث عمليات الدمج لتاريخ صفحة ما إلى أخرى.',
 
 # Diffs
-'history-title' => 'تاريخ «$1»',
+'history-title' => 'تاريخ "$1"',
 'difference-title' => '«$1»: الفرق بين المراجعتين',
 'difference-title-multipage' => '«$1» و«$2»: الفرق بين الصفحتين',
 'difference-multipage' => '(الفرق بين الصفحتين)',
@@ -2064,6 +2064,7 @@ $1",
 'uploaddisabledtext' => 'رفع الملفات معطل.',
 'php-uploaddisabledtext' => 'رفع ملفات PHP معطل. من فضلك تحقق من إعدادات رفع الملفات.',
 'uploadscripted' => 'هذا الملف يضم كود HTML أو كود آخر يمكن أن يفسره متصفح الوب بطريقة خاطئة.',
+'uploadinvalidxml' => 'تعذر تحليل XML في الملف المرفوع.',
 'uploadvirus' => 'الملف يحتوي على فيروس! التفاصيل: $1',
 'uploadjava' => 'يحتوي ملف ZIP هذا على ملفات جافا .class.
 لا يسمح برفع ملفات جافا لأنها تتيح تخطي القيود الأمنية.',
@@ -2702,7 +2703,7 @@ $UNWATCHURL
 'excontentauthor' => "المحتوى كان: '$1' (والمساهم الوحيد كان '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank' => "المحتوى قبل الإفراغ كان: '$1'",
 'exblank' => 'الصفحة كانت فارغة',
-'delete-confirm' => 'حذف «$1»',
+'delete-confirm' => 'حذف "$1"',
 'delete-legend' => 'حذف',
 'historywarning' => "'''تحذير:''' الصفحة التي توشك على حذفها لها تاريخ فيه {{PLURAL:$1||مراجعة واحدة|مراجعتان|$1 مراجعات|$1 مراجعة}} تقريبا:",
 'confirmdeletetext' => 'أنت على وشك أن تقوم بحذف صفحة بالإضافة إلى كل تاريخها.
@@ -2765,7 +2766,7 @@ $UNWATCHURL
 'modifiedarticleprotection' => 'غير مستوى حماية "[[$1]]"',
 'unprotectedarticle' => 'أزال الحماية من "[[$1]]"',
 'movedarticleprotection' => 'نقل إعدادات الحماية من "[[$2]]" إلى "[[$1]]"',
-'protect-title' => 'ضبط حماية «$1»',
+'protect-title' => 'ضبط حماية "$1"',
 'protect-title-notallowed' => 'عرض مستوى حماية "$1"',
 'prot_1movedto2' => 'نُقلت [[$1]] إلى [[$2]]',
 'protect-badnamespace-title' => 'نطاق لا يحمى',
@@ -2892,7 +2893,7 @@ $1',
 'contributions' => 'مساهمات {{GENDER:$1|المستخدم|المستخدمة}}',
 'contributions-title' => 'مساهمات {{GENDER:$1|المستخدم|المستخدمة}} $1',
 'mycontris' => 'مساهماتي',
-'contribsub2' => '{{GENDER:$3|$1}} ($2)',
+'contribsub2' => 'ل{{GENDER:$3|$1}} ($2)',
 'nocontribs' => 'لم يتم العثور على تغييرات تطابق هذه المحددات.',
 'uctop' => 'حالي',
 'month' => 'من شهر (وأقدم):',
@@ -3082,7 +3083,7 @@ $1',
 'lockedbyandtime' => '(من $1 على $2 في $3 )',
 
 # Move page
-'move-page' => 'نقل «$1»',
+'move-page' => 'نقل $1',
 'move-page-legend' => 'نقل صفحة',
 'movepagetext' => "باستخدام  الاستمارة بالأسفل بإمكانك أن تغير اسم الصفحة، وأن تنقل تاريخها إلى الاسم الجديد.
 العنوان القديم سيصبح تحويلة للعنوان الجديد.
@@ -4585,6 +4586,4 @@ $5
 'expand_templates_generate_rawhtml' => 'أظهر خام HTML',
 'expand_templates_preview' => 'عرض مسبق',
 
-# Unknown messages
-'uploadinvalidxml' => 'تعذر تحليل XML في الملف المرفوع.',
 );

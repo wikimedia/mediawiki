@@ -16,6 +16,7 @@
  * @author Kaganer
  * @author MegaAlex
  * @author Milicevic01
+ * @author Mitzev
  * @author Simona
  * @author Spiritia
  * @author Stanqo
@@ -633,6 +634,7 @@ $2',
 
 Администраторът, който го е заключил, е посочил следната причина: „$3“.',
 'exception-nologin-text' => 'За досъп до желаната страница или действие уикито изисква [[Special:Userlogin|влизане в системата]].',
+'exception-nologin-text-manual' => 'За достъп до избраното действие или страница е необходимо $1 в системата.',
 
 # Virus scanner
 'virus-badscanner' => "Лоша конфигурация: непознат скенер за вируси: ''$1''",
@@ -642,8 +644,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Излязохте от системата.'''
 
-Можете да продължите да използвате {{SITENAME}} анонимно или да <span class='plainlinks'>[$1 влезете отново]</span> като друг потребител.
-Обърнете внимание, че някои страници все още ще се показват така, сякаш сте влезли, докато не изтриете кеш-паметта на браузъра.",
+Обърнете внимание, че някои страници все още ще се показват така, сякаш сте влезли, докато не изтриете кеша на браузъра.",
 'welcomeuser' => 'Здравейте, $1!',
 'welcomecreation-msg' => 'Вашата сметка беше създадена.
 Можете да промените [[Special:Preferences|настройките на {{SITENAME}}]] според предпочитанията си.',
@@ -659,6 +660,7 @@ $2',
 'createacct-yourpasswordagain' => 'Потвърждаване на паролата',
 'createacct-yourpasswordagain-ph' => 'Въвежда се паролата (повторно)',
 'remembermypassword' => 'Запомняне на паролата на този компютър (най-много за $1 {{PLURAL:$1|ден|дни}})',
+'userlogin-remembermypassword' => 'Запомняне',
 'userlogin-signwithsecure' => 'Използване на защитена връзка',
 'yourdomainname' => 'Домейн:',
 'password-change-forbidden' => 'Не можете да променяте пароли в това уики.',
@@ -691,6 +693,7 @@ $2',
 'createacct-another-join' => 'Попълване на информацията за новата сметка',
 'createacct-emailrequired' => 'Адрес за електронна поща',
 'createacct-emailoptional' => 'Адрес за електронна поща (незадължително)',
+'createacct-email-ph' => 'Въведете Вашия адрес за електронна поща',
 'createacct-another-email-ph' => 'Въвежда се електронна поща',
 'createaccountmail' => 'Използване на случайна временна парола, която се изпраща на електронната поща, посочена по-долу',
 'createacct-realname' => 'Истинско име (незадължително)',
@@ -767,6 +770,11 @@ $2',
 'login-abort-generic' => 'Влизането беше неуспешно - Прекратено',
 'loginlanguagelabel' => 'Език: $1',
 'suspicious-userlogout' => 'Заявката ви за излизане от системата беше отхвърлена, тъй като изглежда е била изпратена погрешка от браузъра или кеширащото прокси.',
+'createacct-another-realname-tip' => 'Истинското име е незадължително.
+В случай, че бъде избрабо да се попълни, ще бъде използвано за да му се приписват приносите в уикито.',
+'pt-login' => 'Влизане',
+'pt-createaccount' => 'Създаване на сметка',
+'pt-userlogout' => 'Излизане',
 
 # Email sending
 'php-mail-error-unknown' => 'Неизвестна грешка в mail() функцията на PHP',
@@ -774,7 +782,7 @@ $2',
 
 # Change password dialog
 'changepassword' => 'Смяна на парола',
-'resetpass_announce' => 'Влязохте с временен код, получен по електронната поща. Сега е нужно да си изберете нова парола:',
+'resetpass_announce' => 'За да се завърши процеса на влизане, необходимо е да се избере нова парола.',
 'resetpass_text' => '<!-- Тук добавете текст -->',
 'resetpass_header' => 'Промяна на парола',
 'oldpassword' => 'Стара парола:',
@@ -1581,11 +1589,23 @@ $1",
 'rcnotefrom' => 'Дадени са промените от <strong>$2</strong> (до <strong>$1</strong> показани).',
 'rclistfrom' => 'Показване на промени, като се започва от $1.',
 'rcshowhideminor' => '$1 на малки промени',
+'rcshowhideminor-show' => 'Показване',
+'rcshowhideminor-hide' => 'Скриване',
 'rcshowhidebots' => '$1 на ботове',
+'rcshowhidebots-show' => 'Показване',
+'rcshowhidebots-hide' => 'Скриване',
 'rcshowhideliu' => '$1 на регистрирани потребители',
+'rcshowhideliu-show' => 'Показване',
+'rcshowhideliu-hide' => 'Скриване',
 'rcshowhideanons' => '$1 на анонимни потребители',
+'rcshowhideanons-show' => 'Показване',
+'rcshowhideanons-hide' => 'Скриване',
 'rcshowhidepatr' => '$1 на проверени редакции',
+'rcshowhidepatr-show' => 'Показване',
+'rcshowhidepatr-hide' => 'Скриване',
 'rcshowhidemine' => '$1 на моите приноси',
+'rcshowhidemine-show' => 'Показване',
+'rcshowhidemine-hide' => 'Скриване',
 'rclinks' => 'Показване на последните $1 промени за последните $2 дни<br />$3',
 'diff' => 'разл',
 'hist' => 'ист',
@@ -1706,6 +1726,7 @@ $1",
 'uploaddisabledtext' => 'Качването на файлове е забранено.',
 'php-uploaddisabledtext' => 'Качванията на файлове са спрени през PHP. Проверете настройката file_uploads.',
 'uploadscripted' => 'Файлът съдържа HTML или скриптов код, който може да бъде погрешно  интерпретиран от браузъра.',
+'uploadscriptednamespace' => 'Този SVG файл съдържа неправилно пространство на имената " $1 "',
 'uploadvirus' => 'Файлът съдържа вирус! Подробности: $1',
 'uploadjava' => 'Файлът е ZIP файл, който съдържа Java .class файл.
 Качването на Java файлове не е позволено, тъй като могат да причинят заобикаляне на ограниченията за сигурност.',
@@ -2006,6 +2027,7 @@ $1',
 'protectedpages-indef' => 'Само безсрочни защити',
 'protectedpages-cascade' => 'Само каскадни защити',
 'protectedpagesempty' => 'В момента няма защитени страници с тези параметри.',
+'protectedpages-reason' => 'Причина',
 'protectedtitles' => 'Защитени заглавия',
 'protectedtitlesempty' => 'В момента няма заглавия, защитени с тези параметри.',
 'listusers' => 'Списък на потребителите',
@@ -2432,6 +2454,7 @@ $1',
 'sp-contributions-search' => 'Търсене на приноси',
 'sp-contributions-username' => 'IP-адрес или потребителско име:',
 'sp-contributions-toponly' => 'Показване само на последните редакции',
+'sp-contributions-newonly' => 'Показване само на редакции свързани с началното създаване на страницата.',
 'sp-contributions-submit' => 'Търсене',
 
 # What links here
@@ -2714,6 +2737,7 @@ $1',
 'allmessages-prefix' => 'Филтриране по представка:',
 'allmessages-language' => 'Език:',
 'allmessages-filter-submit' => 'Отваряне',
+'allmessages-filter-translate' => 'Превеждане',
 
 # Thumbnails
 'thumbnail-more' => 'Увеличаване',
@@ -3572,7 +3596,13 @@ $5
 'version-hook-name' => 'Име на куката',
 'version-hook-subscribedby' => 'Ползвана от',
 'version-version' => '(Версия $1)',
-'version-license' => 'Лиценз',
+'version-license' => 'Лиценз на МедияУики',
+'version-ext-license' => 'Лиценз',
+'version-ext-colheader-version' => 'Версия',
+'version-ext-colheader-license' => 'Лиценз',
+'version-ext-colheader-description' => 'Описание',
+'version-ext-colheader-credits' => 'Автори',
+'version-license-title' => 'Лиценз за $1',
 'version-poweredby-credits' => "Това уики се задвиждва от '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'други',
 'version-poweredby-translators' => 'преводачи в translatewiki.net',

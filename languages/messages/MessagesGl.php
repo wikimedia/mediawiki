@@ -836,6 +836,9 @@ Por favor, agarde $1 antes de probar outra vez.',
 'suspicious-userlogout' => 'Rexeitouse a súa petición de saír do sistema porque semella que a enviou un navegador roto ou a caché dun proxy.',
 'createacct-another-realname-tip' => 'O nome real é opcional.
 Se escolle dalo utilizarase para atribuír ao usuario o seu traballo.',
+'pt-login' => 'Iniciar sesión',
+'pt-createaccount' => 'Crear unha conta',
+'pt-userlogout' => 'Pechar sesión',
 
 # Email sending
 'php-mail-error-unknown' => 'Erro descoñecido na función mail() do PHP.',
@@ -1730,11 +1733,23 @@ Se escolle dalo utilizarase para atribuírlle o seu traballo.',
 'rcnotefrom' => "A continuación móstranse os cambios feitos desde o '''$3''' ás '''$4''' (móstranse '''$1''' como máximo).",
 'rclistfrom' => 'Mostrar os cambios novos desde o $1',
 'rcshowhideminor' => '$1 as edicións pequenas',
+'rcshowhideminor-show' => 'Mostrar',
+'rcshowhideminor-hide' => 'Agochar',
 'rcshowhidebots' => '$1 os bots',
+'rcshowhidebots-show' => 'Mostrar',
+'rcshowhidebots-hide' => 'Agochar',
 'rcshowhideliu' => '$1 os usuarios rexistrados',
+'rcshowhideliu-show' => 'Mostrar',
+'rcshowhideliu-hide' => 'Agochar',
 'rcshowhideanons' => '$1 os usuarios anónimos',
+'rcshowhideanons-show' => 'Mostrar',
+'rcshowhideanons-hide' => 'Agochar',
 'rcshowhidepatr' => '$1 as edicións revisadas',
+'rcshowhidepatr-show' => 'Mostrar',
+'rcshowhidepatr-hide' => 'Agochar',
 'rcshowhidemine' => '$1 as edicións propias',
+'rcshowhidemine-show' => 'Mostrar',
+'rcshowhidemine-hide' => 'Agochar',
 'rclinks' => 'Mostrar os últimos $1 cambios nos últimos $2 días.<br />$3',
 'diff' => 'dif',
 'hist' => 'hist',
@@ -1865,6 +1880,8 @@ Debería contactar con alguén capaz de ver os datos de ficheiros borrados para 
 'uploaddisabledtext' => 'A carga de ficheiros está desactivada.',
 'php-uploaddisabledtext' => 'As cargas de ficheiros PHP están desactivadas. Por favor, comprobe a característica file_uploads.',
 'uploadscripted' => 'Este ficheiro contén código HTML ou script que pode producir erros ao ser interpretado polo navegador.',
+'uploadscriptednamespace' => "Este ficheiro SVG contén un espazo de nome non permitido '$1'",
+'uploadinvalidxml' => 'Non se puido analizar o XML do ficheiro cargado.',
 'uploadvirus' => 'O ficheiro contén un virus! Detalles: $1',
 'uploadjava' => 'O ficheiro é un ZIP que contén un ficheiro .class de Java.
 Non están permitidas as cargas de ficheiros Java, dado que poden causar restricións de seguridade.',
@@ -2708,6 +2725,7 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 'sp-contributions-search' => 'Busca de contribucións',
 'sp-contributions-username' => 'Enderezo IP ou nome de usuario:',
 'sp-contributions-toponly' => 'Mostrar só as últimas revisións',
+'sp-contributions-newonly' => 'Mostrar só edicións que son creacións de páxinas',
 'sp-contributions-submit' => 'Procurar',
 
 # What links here
@@ -4254,6 +4272,4 @@ De feito, expande case calquera cousa entre dúas chaves.',
 'expand_templates_generate_rawhtml' => 'Mostrar o HTML en bruto',
 'expand_templates_preview' => 'Vista previa',
 
-# Unknown messages
-'uploadinvalidxml' => 'Non se puido analizar o XML do ficheiro cargado.',
 );

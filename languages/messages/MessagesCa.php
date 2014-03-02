@@ -1740,6 +1740,7 @@ Si us plau, si encara desitgeu carregar el vostre fitxer, torneu enrera i carreg
 'uploaddisabledtext' => "S'ha inhabilitat la càrrega de fitxers.",
 'php-uploaddisabledtext' => 'La càrrega de fitxer està desactivada al PHP. Comproveu les opcions del fitxer file_uploads.',
 'uploadscripted' => 'Aquest fitxer conté codi HTML o de seqüències que pot ser interpretat equivocadament per un navegador.',
+'uploadinvalidxml' => "No s'ha pogut analitzar l'XML del fitxer carregat.",
 'uploadvirus' => 'El fitxer conté un virus! Detalls: $1',
 'uploadjava' => 'El fitxer és un arxiu ZIP que conté un fitxer .class de Java. No està permesa la càrrega de fitxers Java, perquè poden passar per alt les restriccions de seguretat.',
 'upload-source' => 'Fitxer font',
@@ -4075,6 +4076,4 @@ També expandeix les funcions sintàctiques, com ara <code><nowiki>{{</nowiki>#l
 'expand_templates_generate_rawhtml' => "Mostra l'HTML sense filtrar",
 'expand_templates_preview' => 'Previsualitza',
 
-# Unknown messages
-'uploadinvalidxml' => "No s'ha pogut analitzar l'XML del fitxer carregat.",
 );

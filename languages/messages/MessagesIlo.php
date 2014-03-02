@@ -1633,6 +1633,7 @@ Nasken nga agdamagka ti addaan ti abilidad a mangkita ti nalapdan a datos ti pap
 'php-uploaddisabledtext' => 'Ti pinag-ipan ti papeles ket naiddep idiay PHP.
 Panngaasi a kitaem ti pannakaikabil ti pinag-ipan ti papeles.',
 'uploadscripted' => 'Daytoy a papeles ket adda nagyanna a HTML wenno panagsurat a kodigo a mabalin nga agpakamali ti panagbasa ti sapot a pagbasabasa.',
+'uploadinvalidxml' => 'Ti XML iti naikarga a papeles ket saan a maiwaswas.',
 'uploadvirus' => 'Addaan ti birus daytoy a papeles! Salaysay: $1',
 'uploadjava' => 'Daytoy a papeles ket ZIP a papeles nga adda nagyanna a Java .a kita ti papeles.
 Saan a mabalin ti pinag-ipan ti Java a papeles, ngamin ket palabsanda dagiti seguridad a pangrestrikto.',
@@ -3981,6 +3982,4 @@ Iti kinapudno, palawaenna amin dagiti adda ti doble a tukol.',
 'expand_templates_generate_rawhtml' => 'Ipakita ti naata a HTML',
 'expand_templates_preview' => 'Pamadasan',
 
-# Unknown messages
-'uploadinvalidxml' => 'Ti XML iti naikarga a papeles ket saan a maiwaswas.',
 );

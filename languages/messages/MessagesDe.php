@@ -1242,8 +1242,7 @@ Zur Information folgt der aktuelle Logbucheintrag:",
 'sectioneditnotsupported-text' => 'Die Bearbeitung von Abschnitten wird auf dieser Bearbeitungsseite nicht unterstützt.',
 'permissionserrors' => 'Berechtigungsfehler',
 'permissionserrorstext' => 'Du bist nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
-'permissionserrorstext-withaction' => 'Du bist nicht berechtigt, $2.
-{{PLURAL:$1|Grund|Gründe}}:',
+'permissionserrorstext-withaction' => 'Du bist aus {{PLURAL:$1|dem folgenden Grund|den folgenden Gründen}} nicht berechtigt, $2:',
 'recreate-moveddeleted-warn' => "'''Achtung: Du erstellst eine Seite, die bereits früher gelöscht wurde.'''
 
 Bitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
@@ -1847,11 +1846,23 @@ Diese Information ist öffentlich.',
 'rcnotefrom' => "Angezeigt werden die Änderungen seit '''$2''' (max. '''$1''' Einträge).",
 'rclistfrom' => 'Nur Änderungen seit $1 zeigen.',
 'rcshowhideminor' => 'Kleine Änderungen $1',
+'rcshowhideminor-show' => 'anzeigen',
+'rcshowhideminor-hide' => 'ausblenden',
 'rcshowhidebots' => 'Bots $1',
+'rcshowhidebots-show' => 'anzeigen',
+'rcshowhidebots-hide' => 'ausblenden',
 'rcshowhideliu' => 'Registrierte Benutzer $1',
+'rcshowhideliu-show' => 'anzeigen',
+'rcshowhideliu-hide' => 'ausblenden',
 'rcshowhideanons' => 'Unangemeldete Benutzer $1',
+'rcshowhideanons-show' => 'anzeigen',
+'rcshowhideanons-hide' => 'ausblenden',
 'rcshowhidepatr' => 'Kontrollierte Änderungen $1',
+'rcshowhidepatr-show' => 'anzeigen',
+'rcshowhidepatr-hide' => 'ausblenden',
 'rcshowhidemine' => 'Eigene Beiträge $1',
+'rcshowhidemine-show' => 'anzeigen',
+'rcshowhidemine-hide' => 'ausblenden',
 'rclinks' => 'Zeige die letzten $1 Änderungen der letzten $2 Tage.<br />$3',
 'diff' => 'Unterschied',
 'hist' => 'Versionen',
@@ -1976,6 +1987,8 @@ Du solltest jemanden fragen, der die Möglichkeit hat, die unterdrückten Dateid
 'php-uploaddisabledtext' => 'Das Hochladen von Dateien wurde in PHP deaktiviert.
 Bitte überprüfe die <code>file_uploads</code>-Einstellung.',
 'uploadscripted' => 'Diese Datei enthält HTML- oder Scriptcode, der irrtümlich von einem Webbrowser ausgeführt werden könnte.',
+'uploadscriptednamespace' => 'Diese SVG-Datei enthält den ungültigen Namensraum „$1“.',
+'uploadinvalidxml' => 'Das XML in der hochgeladenen Datei konnte nicht geparst werden.',
 'uploadvirus' => 'Diese Datei enthält einen Virus! Details: $1',
 'uploadjava' => 'Dies ist eine ZIP-Datei, die ein CLASS-Datei von Java enthält.
 Das Hochladen von Java-Dateien ist nicht gestattet, da sie die Umgehung von Sicherheitseinschränkungen ermöglichen könnten.',
@@ -2795,6 +2808,7 @@ Zur Information folgt der aktuelle Auszug aus dem Sperr-Logbuch:',
 'sp-contributions-search' => 'Suche nach Benutzerbeiträgen',
 'sp-contributions-username' => 'IP-Adresse oder Benutzername:',
 'sp-contributions-toponly' => 'Nur aktuelle Versionen zeigen',
+'sp-contributions-newonly' => 'Nur Seitenerstellungen anzeigen',
 'sp-contributions-submit' => 'Suchen',
 
 # What links here
@@ -4355,6 +4369,4 @@ faktisch alles was in doppelten geschweiften Klammern enthalten ist.',
 'expand_templates_generate_rawhtml' => 'Rohes HTML anzeigen',
 'expand_templates_preview' => 'Vorschau',
 
-# Unknown messages
-'uploadinvalidxml' => 'Das XML in der hochgeladenen Datei konnte nicht geparst werden.',
 );

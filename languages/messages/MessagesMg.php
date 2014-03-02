@@ -765,6 +765,9 @@ Andraso $1 alohan'ny mamerina.",
 'suspicious-userlogout' => "Ny fangataham-pialanao dia tsy nekena satria ohatry ny nalfan'ny mpizahan-tsehatra simba izy na kasy ny proxy.",
 'createacct-another-realname-tip' => "Azo tsy atsofoka ny tena anarana.
 Raha misafidy ny hanome azy ianao, ho ampiasaina amin'ny fanehoana ny anjara asan'ilay mpikambana ilay izy.",
+'pt-login' => 'Hiditra',
+'pt-createaccount' => 'Hamorona kaonty',
+'pt-userlogout' => 'Hivoaka',
 
 # Email sending
 'php-mail-error-unknown' => "Hadisoana tsy fantatra tao amin'ny tao mial() an'i PHP.",
@@ -1623,11 +1626,23 @@ Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa."
 'rcnotefrom' => "Ity eto ambany ity ny lisitry ny vao niova manomboka ny <b>$2</b> (hatramin'ny <b>$1</b> no miseho).",
 'rclistfrom' => 'Asehoy izay vao niova manomboka ny $1',
 'rcshowhideminor' => '$1 ny fanovàna kely',
+'rcshowhideminor-show' => 'Haneho',
+'rcshowhideminor-hide' => 'Hanafina',
 'rcshowhidebots' => '$1 ny mpikambana rôbô',
+'rcshowhidebots-show' => 'Haneho',
+'rcshowhidebots-hide' => 'Hanafina',
 'rcshowhideliu' => '$1 ny mpikambana nisoratra anarana',
+'rcshowhideliu-show' => 'Haneho',
+'rcshowhideliu-hide' => 'Hanadina',
 'rcshowhideanons' => '$1 ny mpikambana tsy nisoratra anarana',
+'rcshowhideanons-show' => 'Haneho',
+'rcshowhideanons-hide' => 'Hanafina',
 'rcshowhidepatr' => '$1 ny fanovana voaambina',
+'rcshowhidepatr-show' => 'Haneho',
+'rcshowhidepatr-hide' => 'Hanafina',
 'rcshowhidemine' => '$1 ny fanovàko',
+'rcshowhidemine-show' => 'Haneho',
+'rcshowhidemine-hide' => 'Hanafina',
 'rclinks' => "Asehoy ny $1 niova farany tato anatin'ny $2 andro<br />$3",
 'diff' => 'Fampitahana',
 'hist' => 'tant.',
@@ -1754,6 +1769,7 @@ Raha mbola te-hampiditra io rakitra io foana ianao, miverena any aoriana ary mam
 Marino ny option configuration file_uploads.",
 'uploadscripted' => "
 Misy kialo HTML na fango script mety tsy ho hain'ny navigateur sasany haseho ity rakitra ity.",
+'uploadinvalidxml' => "Tsy afaka vakiana ny XML tao anatin'ilay rakitra nafaranao.",
 'uploadvirus' => 'Misy viriosy io rakitra io! Toy izao ny antsipirihany: $1',
 'uploadjava' => 'Ny rakitra dia rakitra ZIP ahitana rakitra .class Java.
 Voarara ny mandefa rakitra Java satria mety hahavaky ny fepetra mikasika ny antoka ireo rakitra ireo.',
@@ -3699,6 +3715,4 @@ Azonao atao ihany koa ny [[Special:EditWatchlist/raw|manova ilay lisitra amin'ny
 'api-error-uploaddisabled' => "Tsy alefa eto amin'ity wiki ity ny fandefasan-drakita.",
 'api-error-verification-error' => 'Mety tapaka ity rakitra ity, na diso tovan-drakitra.',
 
-# Unknown messages
-'uploadinvalidxml' => "Tsy afaka vakiana ny XML tao anatin'ilay rakitra nafaranao.",
 );

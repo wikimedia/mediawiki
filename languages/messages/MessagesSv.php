@@ -1753,11 +1753,23 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'rcnotefrom' => "Nedan visas ändringar sedan '''$2''' (upp till '''$1''' ändringar visas).",
 'rclistfrom' => 'Visa ändringar från och med $1',
 'rcshowhideminor' => '$1 mindre ändringar',
+'rcshowhideminor-show' => 'Visa',
+'rcshowhideminor-hide' => 'Dölj',
 'rcshowhidebots' => '$1 robotar',
+'rcshowhidebots-show' => 'Visa',
+'rcshowhidebots-hide' => 'Dölj',
 'rcshowhideliu' => '$1 registrerade användare',
+'rcshowhideliu-show' => 'Visa',
+'rcshowhideliu-hide' => 'Dölj',
 'rcshowhideanons' => '$1 oinloggade användare',
+'rcshowhideanons-show' => 'Visa',
+'rcshowhideanons-hide' => 'Dölj',
 'rcshowhidepatr' => '$1 patrullerade redigeringar',
+'rcshowhidepatr-show' => 'Visa',
+'rcshowhidepatr-hide' => 'Dölj',
 'rcshowhidemine' => '$1 mina ändringar',
+'rcshowhidemine-show' => 'Visa',
+'rcshowhidemine-hide' => 'Dölj',
 'rclinks' => 'Visa senaste $1 ändringar under de senaste $2 dygnen<br />$3',
 'diff' => 'skillnad',
 'hist' => 'historik',
@@ -1885,6 +1897,7 @@ Du borde be någon som kan se undanhållen fildata att granska situationen innan
 'uploaddisabledtext' => 'Uppladdning av filer är avstängd.',
 'php-uploaddisabledtext' => 'PHP filuppladdningar är avaktiverade. Kolla inställningarna för file_uploads.',
 'uploadscripted' => 'Denna fil innehåller HTML eller script som felaktigt kan komma att tolkas av webbläsare.',
+'uploadinvalidxml' => 'XML-koden i den uppladdade filen kunde inte tolkas.',
 'uploadvirus' => 'Filen innehåller virus! Detaljer: $1',
 'uploadjava' => 'Filen är en ZIP-fil som innehåller en Java .class fil.
 Uppladdning av Java filer tillåts inte, eftersom de kan orsaka att säkerhetsbegränsningar kan kringgås.',
@@ -4250,6 +4263,4 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'expand_templates_generate_rawhtml' => 'Visa rå HTML',
 'expand_templates_preview' => 'Förhandsvisning',
 
-# Unknown messages
-'uploadinvalidxml' => 'XML-koden i den uppladdade filen kunde inte tolkas.',
 );

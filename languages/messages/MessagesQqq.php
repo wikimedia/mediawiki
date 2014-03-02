@@ -4222,6 +4222,7 @@ See also:
 * {{msg-mw|zip-wrong-format}}
 * {{msg-mw|uploadjava}}
 * {{msg-mw|uploadvirus}}',
+'uploadinvalidxml' => 'Error message displayed when the uploaded file contains XML that cannot be properly parsed and checked.',
 'uploadvirus' => 'Error message displayed when uploaded file contains a virus.
 
 Parameters:
@@ -5118,7 +5119,11 @@ See also:
 This refers to expiry timestamp.
 {{Identical|Expire}}',
 'protectedpages-performer' => 'This is a column header in the table on the page [[Special:ProtectedPages]].',
-'protectedpages-params' => 'This is a column header in the table on the page [[Special:ProtectedPages]].',
+'protectedpages-params' => 'This is a column header in the table on the page [[Special:ProtectedPages]].
+
+Protection parameters are:
+* {{msg-mw|Restriction-level-autoconfirmed}}
+* {{msg-mw|Restriction-level-sysop}}',
 'protectedpages-reason' => 'This is a column header in the table on the page [[Special:ProtectedPages]].
 {{Identical|Reason}}',
 'protectedpages-unknown-timestamp' => 'This is shown, when the date and time is unknown for a protection on the page [[Special:ProtectedPages]].
@@ -10828,6 +10833,4 @@ test
 'expand_templates_generate_rawhtml' => 'Used as checkbox label.',
 'expand_templates_preview' => '{{Identical|Preview}}',
 
-# Unknown messages
-'uploadinvalidxml' => 'Error message displayed when the uploaded file contains XML that cannot be properly parsed and checked.',
 );

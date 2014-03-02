@@ -862,8 +862,8 @@ Hau batzuetan gertatzen da buggyan oinarritutako web proxy zerbitzua erabiltzean
 'edit_form_incomplete' => "'''Aldaketa formularioaren atal batzuk ez dira iritsi zerbitzarira; bi aldiz ziurtatu zure aldaketak osorik daudela eta berriro saiatu.'''",
 'editing' => '«$1» aldatzen',
 'creating' => '$1 sortzen',
-'editingsection' => '$1 aldatzen (atala)',
-'editingcomment' => '$1 aldatzen (atal berria)',
+'editingsection' => '«$1» aldatzen (atala)',
+'editingcomment' => '«$1» aldatzen (atal berria)',
 'editconflict' => 'Aldaketa gatazka: $1',
 'explainconflict' => "Zu orrialdea aldatzen hasi ondoren beste norbaitek ere aldaketak egin ditu.
 Goiko testu koadroan ikus daiteke orrialdeak uneotan duen edukia.

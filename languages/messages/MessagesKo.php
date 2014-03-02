@@ -1954,6 +1954,7 @@ $2 {{PLURAL:$3|형식만 사용할 수 있습니다}}.',
 'uploaddisabledtext' => '파일 올리기 기능이 비활성화되어 있습니다.',
 'php-uploaddisabledtext' => 'PHP 파일 올리기가 비활성화되었습니다. 파일 올리기 설정을 확인하십시오.',
 'uploadscripted' => '이 파일에는 HTML이나 다른 스크립트 코드가 포함되어 있어, 웹 브라우저에서 오류를 일으킬 수 있습니다.',
+'uploadinvalidxml' => '업로드된 파일의 XML의 구문을 분석할 수 없습니다.',
 'uploadvirus' => '파일이 바이러스를 포함하고 있습니다!
 자세한 설명: $1',
 'uploadjava' => '이 ZIP 파일은 자바의 .class 파일을 포함하고 있습니다.
@@ -4373,6 +4374,4 @@ $5
 'expand_templates_generate_rawhtml' => '원본 HTML 보이기',
 'expand_templates_preview' => '미리 보기',
 
-# Unknown messages
-'uploadinvalidxml' => '업로드된 파일의 XML의 구문을 분석할 수 없습니다.',
 );

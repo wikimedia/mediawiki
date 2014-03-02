@@ -18,6 +18,7 @@
  * @author KaidoKikkas
  * @author KalmerE.
  * @author Ker
+ * @author Kristian.kankainen
  * @author Kyng
  * @author Morel
  * @author Nemo bis
@@ -448,7 +449,7 @@ $messages = array(
 'morenotlisted' => 'See loend pole täielik.',
 'mypage' => 'Minu lehekülg',
 'mytalk' => 'Arutelu',
-'anontalk' => 'Selle IP-aadressi artuelu',
+'anontalk' => 'Selle IP-aadressi arutelu',
 'navigation' => 'Navigeerimine',
 'and' => '&#32;ja',
 
@@ -1854,6 +1855,7 @@ Enne kui jätkad uuesti üleslaadimisega, peaksid paluma olukorda hinnata kellel
 'php-uploaddisabledtext' => 'Failide üleslaadmine on PHP seadetes keelatud.
 Palun vaata <code>file_uploads</code> sätet.',
 'uploadscripted' => 'See fail sisaldab HTML- või skriptikoodi, mida veebilehitseja võib valesti kuvada.',
+'uploadinvalidxml' => 'Üleslaaditud failis sisalduvat XMLi ei õnnestunud liigendada.',
 'uploadvirus' => 'Fail sisaldab viirust! Täpsemalt: $1',
 'uploadjava' => 'See fail on ZIP-fail, milles on Java .class-fail.
 Java failide üleslaadimine on keelatud, kuna nende kaudu võidaks turvapiiranguist mööda minna.',
@@ -4176,6 +4178,4 @@ Samuti hõrendab see parserifunktsioonid nagu
 'expand_templates_generate_rawhtml' => 'Näita toor-HTMLi',
 'expand_templates_preview' => 'Eelvaade',
 
-# Unknown messages
-'uploadinvalidxml' => 'Üleslaaditud failis sisalduvat XMLi ei õnnestunud liigendada.',
 );

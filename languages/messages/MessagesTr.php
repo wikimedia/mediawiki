@@ -37,6 +37,7 @@
  * @author LuCKY
  * @author Mach
  * @author Manco Capac
+ * @author Marmase
  * @author Meelo
  * @author Metal Militia
  * @author Mirzali
@@ -893,6 +894,9 @@ Devam etmeden önce $1 bekleyin.',
 'suspicious-userlogout' => 'Çıkış isteğiniz reddedildi çünkü bozuk bir tarayıcı ya da önbellekli vekil tarafından gönerilmiş gibi görünüyor.',
 'createacct-another-realname-tip' => 'Gerçek adınız isteğe bağlıdır.
 Eğer gerçek adınızı belirtirseniz, çalışmalarınıza atıfta bulunulması için de kullanılacaktır.',
+'pt-login' => 'Giriş yap',
+'pt-createaccount' => 'Hesap oluştur',
+'pt-userlogout' => 'Oturumu kapat',
 
 # Email sending
 'php-mail-error-unknown' => "PHP's mail() fonksiyonunda bilinmeyen hata",
@@ -917,8 +921,11 @@ Lütfen tekrar denemeden önce $1 bekleyin.',
 'resetpass-submit-cancel' => 'İptal',
 'resetpass-wrong-oldpass' => 'Geçersiz geçici veya güncel şifre.
 Şifrenizi zaten başarıyla değiştirdiniz ya da yeni bir geçici şifre istediniz.',
+'resetpass-recycled' => 'Lütfen parolanızı eski parolanızdan farklı olarak değiştirin.',
 'resetpass-temp-password' => 'Geçici parola:',
 'resetpass-abort-generic' => 'Parola değişikliği bir uzantı tarafından iptal edildi.',
+'resetpass-expired' => 'Parolanızın süresi bitti. Lütfen, giriş için yeni bir parola oluşturun.',
+'resetpass-expired-soft' => 'Parolanızın süresi bitti ve değiştirilmesi gerekiyor. Lütfen, yeni bir parola seçin veya daha sonra oluşturmak için vazgeç e tıklayın.',
 
 # Special:PasswordReset
 'passwordreset' => 'Parola sıfırlama',
@@ -1764,11 +1771,23 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'rcnotefrom' => "'''$2''' tarihinden itibaren yapılan değişiklikler aşağıdadır (en fazla <b>$1</b> tanesi gösterilmektedir).",
 'rclistfrom' => '$1 tarihinden itibaren yeni değişiklikleri göster',
 'rcshowhideminor' => 'Küçük değişiklikleri $1',
+'rcshowhideminor-show' => 'Göster',
+'rcshowhideminor-hide' => 'Gizle',
 'rcshowhidebots' => 'botları $1',
+'rcshowhidebots-show' => 'Göster',
+'rcshowhidebots-hide' => 'Gizle',
 'rcshowhideliu' => 'Kayıtlı kullanıcıları $1',
+'rcshowhideliu-show' => 'Göster',
+'rcshowhideliu-hide' => 'Gizle',
 'rcshowhideanons' => 'Anonim kullanıcıları $1',
+'rcshowhideanons-show' => 'Göster',
+'rcshowhideanons-hide' => 'Gizle',
 'rcshowhidepatr' => 'İzlenmiş değişiklikleri $1',
+'rcshowhidepatr-show' => 'Göster',
+'rcshowhidepatr-hide' => 'Gizle',
 'rcshowhidemine' => 'Değişikliklerimi $1',
+'rcshowhidemine-show' => 'Göster',
+'rcshowhidemine-hide' => 'Gizle',
 'rclinks' => 'Son $2 günde yapılan son $1 değişikliği göster;<br /> $3',
 'diff' => 'fark',
 'hist' => 'geçmiş',
@@ -1893,6 +1912,7 @@ Dosyayı tekrar yüklemeye devam etmeden önce, bastırılmış dosya verisini g
 'uploaddisabledtext' => 'Dosya yüklemeleri devredışı bırakılmıştır.',
 'php-uploaddisabledtext' => 'PHP dosyası yüklemeleri devre dışıdır. Lütfen file_uploads ayarını kontrol edin.',
 'uploadscripted' => 'Bu dosya bir internet tarayıcısı tarafından hatalı çevrilebilecek bir HTML veya script kodu içermektedir.',
+'uploadinvalidxml' => 'Yüklenen dosyadaki XML işlenemedi.',
 'uploadvirus' => 'Bu dosya virüslüdür! Detayları: $1',
 'uploadjava' => 'Dosya, bir Java .classdosyası içeren bir ZIP dosyasıdır.
 Java dosyalarının yüklenmesine izin verilmemektedir, zira güvenlik kısıtlamalarının atlanmasına neden olabilmektedirler.',
@@ -4278,6 +4298,4 @@ Aslında, çift ayraçlı hemen hemen her şeyi genişletir.',
 'expand_templates_generate_rawhtml' => 'Ham HTML göster',
 'expand_templates_preview' => 'Önizleme',
 
-# Unknown messages
-'uploadinvalidxml' => 'Yüklenen dosyadaki XML işlenemedi.',
 );

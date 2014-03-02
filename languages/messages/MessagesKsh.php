@@ -1894,6 +1894,7 @@ wann De se noch han wells.',
 'php-uploaddisabledtext' => 'Et Dateie Huhlade es en PHP affjeschalldt.
 Bes esu joot un donn noh de Enshtellung <i lang="en">file_uploads</i> loore.',
 'uploadscripted' => 'En dä Datei es HTML dren oder Code vun enem Skripp, dä künnt Dinge Brauser en do verkihrte Hals krije un usführe.',
+'uploadinvalidxml' => 'Dat <i lang="en" xml:lang="en">XML</i> en dä huh jelaade Dattei kunnt wohr nit en Oodenong beim Ongersöhke.',
 'uploadvirus' => 'Esu ene Dress:
 <br />
 En dä Datei stich e Kompjutervirus!
@@ -4420,6 +4421,4 @@ Derbei jehüüere enschtalleete Paaserfunxjuhne, alsu esu jät wi
 'expand_templates_generate_rawhtml' => 'Donn de Röh HTML Ußjaav aanzeije',
 'expand_templates_preview' => 'Vör-Aansich',
 
-# Unknown messages
-'uploadinvalidxml' => 'Dat <i lang="en" xml:lang="en">XML</i> en dä huh jelaade Dattei kunnt wohr nit en Oodenong beim Ongersöhke.',
 );

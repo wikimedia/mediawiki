@@ -23,6 +23,7 @@
  * @author Geitost
  * @author Herr Kriss
  * @author Holek
+ * @author Jacenty359
  * @author Jwitos
  * @author Kaganer
  * @author Kaligula
@@ -317,7 +318,7 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Podkreślenie linków',
+'tog-underline' => 'Podkreślenie linków:',
 'tog-hideminor' => 'Ukryj drobne edycje w ostatnich zmianach',
 'tog-hidepatrolled' => 'Ukryj sprawdzone edycje w ostatnich zmianach',
 'tog-newpageshidepatrolled' => 'Ukryj sprawdzone strony na liście nowych stron',
@@ -863,6 +864,9 @@ Odczekaj $1 zanim ponowisz próbę.',
 'suspicious-userlogout' => 'Żądanie wylogowania zostało odrzucone ponieważ wygląda na to, że zostało wysłane przez uszkodzoną przeglądarkę lub buforujący serwer proxy.',
 'createacct-another-realname-tip' => 'Wpisanie imienia i nazwiska nie jest obowiązkowe.
 Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje autorstwo.',
+'pt-login' => 'Zaloguj się',
+'pt-createaccount' => 'Utwórz konto',
+'pt-userlogout' => 'Wyloguj',
 
 # Email sending
 'php-mail-error-unknown' => 'Wystąpił nieznany błąd w funkcji PHP mail()',
@@ -887,6 +891,9 @@ Odczekaj $1, zanim ponowisz próbę.',
 'resetpass-submit-cancel' => 'Anuluj',
 'resetpass-wrong-oldpass' => 'Nieprawidłowe tymczasowe lub aktualne hasło.
 Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub poprosił{{GENDER:|eś|aś|eś(‐aś)}} o nowe tymczasowe hasło.',
+'resetpass-recycled' => 'Zmień swoje hasło na inne niż aktualne.',
+'resetpass-temp-emailed' => 'Zalogowałeś się dzięki tymczasowemu kodowi.
+Aby dokończyć logowanie, musisz ustawić nowe hasło tutaj:',
 'resetpass-temp-password' => 'Tymczasowe hasło:',
 'resetpass-abort-generic' => 'Zmiana hasła została przerwana przez rozszerzenie.',
 'resetpass-expired' => 'Twoje hasło wygasło. Proszę ustawić nowe hasło do logowania.',
@@ -1746,11 +1753,23 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'rcnotefrom' => "Poniżej pokazano zmiany wykonane po '''$2''' (nie więcej niż '''$1''' pozycji).",
 'rclistfrom' => 'Pokaż nowe zmiany od $1',
 'rcshowhideminor' => '$1 drobne zmiany',
+'rcshowhideminor-show' => 'Pokaż',
+'rcshowhideminor-hide' => 'Ukryj',
 'rcshowhidebots' => '$1 boty',
+'rcshowhidebots-show' => 'Pokaż',
+'rcshowhidebots-hide' => 'Ukryj',
 'rcshowhideliu' => '$1 zarejestrowanych',
+'rcshowhideliu-show' => 'Pokaż',
+'rcshowhideliu-hide' => 'Ukryj',
 'rcshowhideanons' => '$1 anonimowych',
+'rcshowhideanons-show' => 'Pokaż',
+'rcshowhideanons-hide' => 'Ukryj',
 'rcshowhidepatr' => '$1 sprawdzone',
+'rcshowhidepatr-show' => 'Pokaż',
+'rcshowhidepatr-hide' => 'Ukryj',
 'rcshowhidemine' => '$1 moje edycje',
+'rcshowhidemine-show' => 'Pokaż',
+'rcshowhidemine-hide' => 'Ukryj',
 'rclinks' => 'Pokaż ostatnie $1 zmian w ciągu ostatnich $2 dni.<br />$3',
 'diff' => 'różn.',
 'hist' => 'hist.',
@@ -1879,6 +1898,8 @@ Sprawdź historię usunięć tamtego pliku zanim prześlesz go ponownie.',
 'uploaddisabledtext' => 'Możliwość przesyłania plików została wyłączona.',
 'php-uploaddisabledtext' => 'Przesyłanie plików PHP zostało zablokowane. Sprawdź ustawienie „file_uploads”.',
 'uploadscripted' => 'Plik zawiera kod HTML lub skrypt, który może zostać błędnie zinterpretowany przez przeglądarkę internetową.',
+'uploadscriptednamespace' => "Ten plik SVG zawiera niepoprawną nazwę '$1'",
+'uploadinvalidxml' => 'Nie udało się przeanalizować XML w załadowanym pliku.',
 'uploadvirus' => 'W pliku jest wirus! Szczegóły: $1',
 'uploadjava' => 'Ten plik zawiera deklarację klasy Java skompresowaną ZIP.
 Przesyłanie plików Java nie jest dozwolone, ponieważ mogłoby zostać użyte do obchodzenia zabezpieczeń.',
@@ -2251,6 +2272,7 @@ Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, d
 'deadendpagestext' => 'Poniższe strony nie posiadają odnośników do innych stron znajdujących się w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'protectedpages' => 'Strony zabezpieczone',
 'protectedpages-indef' => 'Tylko strony zabezpieczone na zawsze',
+'protectedpages-summary' => 'Ta strona zawiera istniejące strony które są chronione. Aby uzyskać listę tytułów których stworzenie jest zabronione, zobacz [[{{#special:ProtectedTitles}}]].',
 'protectedpages-cascade' => 'Tylko strony zabezpieczone rekursywnie',
 'protectedpages-noredirect' => 'Ukryj przekierowania',
 'protectedpagesempty' => 'Żadna strona nie jest obecnie zabezpieczona z podanymi parametrami.',
@@ -2263,6 +2285,7 @@ Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, d
 'protectedpages-unknown-timestamp' => 'Nieznane',
 'protectedpages-unknown-performer' => 'Użytkownik nieznany',
 'protectedtitles' => 'Zabezpieczone nazwy stron',
+'protectedtitles-summary' => 'Ta strona zawiera tytuły, których tworzenie jest zabronione. Aby zobaczyć listę istniejących stron które są chronione, odwiedź tą stronę [[{{#special:ProtectedPages}}]]',
 'protectedtitlesempty' => 'Dla tych ustawień dopuszczalne jest utworzenie stron o dowolnej nazwie.',
 'listusers' => 'Lista użytkowników',
 'listusers-editsonly' => 'Pokaż tylko użytkowników z edycjami',
@@ -2712,6 +2735,7 @@ Poniżej znajduje się ostatni wpis w rejestrze blokowania.',
 'sp-contributions-search' => 'Szukaj wkładu',
 'sp-contributions-username' => 'Adres IP lub nazwa użytkownika',
 'sp-contributions-toponly' => 'Pokaż wyłącznie ostatnie wersje',
+'sp-contributions-newonly' => 'Pokazuj wyłącznie stworzenia stron',
 'sp-contributions-submit' => 'Szukaj',
 
 # What links here
@@ -3072,6 +3096,7 @@ Brak katalogu dla plików tymczasowych.',
 'import-error-special' => 'Strona „$1” nie została zaimportowana, ponieważ należy do specjalnej przestrzeni nazw, która nie zezwala na strony.',
 'import-error-invalid' => 'Strona „$1” nie została zaimportowana, ponieważ jej nazwa jest nieprawidłowa.',
 'import-error-unserialize' => 'Wersja $2 strony "$1" nie może zostać odserializowana. Wersja używa modelu treści $3 zserializowanego jako $4',
+'import-error-bad-location' => 'Zmiana $2 używająca modelu danych $3 nie może zostać zapisana na "$1" na tej wiki, ze względu na to, że ten model danych nie jest wspierany na tej stronie.',
 'import-options-wrong' => '{{PLURAL:$2|Niepoprawna opcja|Niepoprawne opcje}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Wskazana strona główna jest niepoprawna.',
 'import-rootpage-nosubpage' => 'Przestrzeń nazw "$1" strony głównej nie dopuszcza stron podrzędnych.',
@@ -4249,6 +4274,7 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'api-error-overwrite' => 'Nadpisanie istniejącego pliku nie jest dopuszczalne.',
 'api-error-stashfailed' => 'Błąd wewnętrzny – serwer nie mógł zapisać pliku tymczasowego.',
 'api-error-publishfailed' => 'Błąd wewnętrzny: serwer nie mógł zapisać pliku tymczasowego.',
+'api-error-stasherror' => 'Wystąpił błąd podczas przesyłania pliku.',
 'api-error-timeout' => 'Serwer nie odpowiedział w oczekiwanym czasie.',
 'api-error-unclassified' => 'Wystąpił nieznany błąd',
 'api-error-unknown-code' => 'Błąd nieznany – „$1”',
@@ -4306,6 +4332,4 @@ W zasadzie rozwijane jest prawie wszystko w podwójnych nawiasach klamrowych.',
 'expand_templates_generate_rawhtml' => 'Pokaż surowy HTML',
 'expand_templates_preview' => 'Podgląd',
 
-# Unknown messages
-'uploadinvalidxml' => 'Nie udało się przeanalizować XML w załadowanym pliku.',
 );
