@@ -3,6 +3,7 @@
 
 	// Enforcing
 	"eqeqeq": true,
+	"es3": true,
 	"latedef": true,
 	"noarg": true,
 	"nonew": true,

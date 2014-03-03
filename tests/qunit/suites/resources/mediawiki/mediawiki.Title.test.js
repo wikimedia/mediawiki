@@ -1,3 +1,4 @@
+/*jshint -W024 */
 ( function ( mw, $ ) {
 	// mw.Title relies on these three config vars
 	// Restore them after each test run
