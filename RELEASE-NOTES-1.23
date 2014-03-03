@@ -130,6 +130,9 @@ production.
 * Added BaseTemplateAfterPortlet hook to allow injecting html after portlets in skins.
 * Support has been added for a JSON based localisation file format. The
   installer has been updated to use it.
+* Add new hook ChangesListInitRows accessed via ChangesList::initChangesListRows. 
+  If called by the ChangesList consumer this gives extensions a chance to batch 
+  process the result set prior to rendering.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
