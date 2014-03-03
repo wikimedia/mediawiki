@@ -72,6 +72,12 @@ class JobQueueRedis extends JobQueue {
 	protected $key;
 
 	/**
+	 * @var null|int maximum seconds between execution of periodic tasks.  Used to speed up
+	 * testing but should otherwise be left unset.
+	 */
+	protected $maximumPeriodicTaskSeconds;
+
+	/**
 	 * @params include:
 	 *   - redisConfig : An array of parameters to RedisConnectionPool::__construct().
 	 *                   Note that the serializer option is ignored as "none" is always used.
@@ -79,6 +85,10 @@ class JobQueueRedis extends JobQueue {
 	 *                   If a hostname is specified but no port, the standard port number
 	 *                   6379 will be used. Required.
 	 *   - compression : The type of compression to use; one of (none,gzip).
+	 *   - maximumPeriodicTaskSeconds : Maximum seconds between check periodic tasks.  Set to
+	 *                   force faster execution of periodic tasks for inegration tests that
+	 *                   rely on checkDelay.  Without this the integration tests are very very
+	 *                   slow.  This really shouldn't be set in production.
 	 * @param array $params
 	 */
 	public function __construct( array $params ) {
@@ -87,6 +97,8 @@ class JobQueueRedis extends JobQueue {
 		$this->server = $params['redisServer'];
 		$this->compression = isset( $params['compression'] ) ? $params['compression'] : 'none';
 		$this->redisPool = RedisConnectionPool::singleton( $params['redisConfig'] );
+		$this->maximumPeriodicTaskSeconds = isset( $params['maximumPeriodicTaskSeconds'] ) ?
+			$params['maximumPeriodicTaskSeconds'] : null;
 	}
 
 	protected function supportedOrders() {
@@ -724,10 +736,16 @@ LUA;
 		if ( $this->checkDelay ) {
 			$periods[] = 300; // 5 minutes
 		}
+		$period = min( $periods );
+		$period = max( $period, 30 ); // sanity
+		// Support override for faster testing
+		if ( $this->maximumPeriodicTaskSeconds !== null ) {
+			$period = min( $period, $this->maximumPeriodicTaskSeconds );
+		}
 		return array(
 			'recyclePruneAndUndelayJobs' => array(
 				'callback' => array( $this, 'recyclePruneAndUndelayJobs' ),
-				'period'   => max( min( $periods ), 30 ) // sanity
+				'period'   => $period,
 			)
 		);
 	}
