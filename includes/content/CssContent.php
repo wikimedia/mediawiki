@@ -39,9 +39,10 @@ class CssContent extends TextContent {
 	 * Returns a Content object with pre-save transformations applied using
 	 * Parser::preSaveTransform().
 	 *
-	 * @param $title Title
-	 * @param $user User
-	 * @param $popts ParserOptions
+	 * @param Title $title
+	 * @param User $user
+	 * @param ParserOptions $popts
+	 *
 	 * @return Content
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {

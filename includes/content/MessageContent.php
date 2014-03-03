@@ -40,7 +40,7 @@ class MessageContent extends AbstractContent {
 	protected $mMessage;
 
 	/**
-	 * @param Message|String $msg A Message object, or a message key
+	 * @param Message|string $msg A Message object, or a message key
 	 * @param array|null $params An optional array of message parameters
 	 */
 	public function __construct( $msg, $params = null ) {
@@ -130,7 +130,8 @@ class MessageContent extends AbstractContent {
 	 * @see Content::isCountable
 	 *
 	 * @param bool $hasLinks
-	 * @return bool false
+	 *
+	 * @return bool Always false.
 	 */
 	public function isCountable( $hasLinks = null ) {
 		return false;
@@ -143,6 +144,7 @@ class MessageContent extends AbstractContent {
 	 * @param int $revId Optional revision ID
 	 * @param ParserOptions $options
 	 * @param bool $generateHtml Wether to generate HTML
+	 *
 	 * @return ParserOutput
 	 */
 	public function getParserOutput(

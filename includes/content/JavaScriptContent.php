@@ -42,6 +42,7 @@ class JavaScriptContent extends TextContent {
 	 * @param Title $title
 	 * @param User $user
 	 * @param ParserOptions $popts
+	 *
 	 * @return Content
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {

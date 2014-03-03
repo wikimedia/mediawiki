@@ -47,6 +47,7 @@ class JavaScriptContentHandler extends TextContentHandler {
 	 *
 	 * @param Title $title
 	 * @param Content $content
+	 *
 	 * @return Language wfGetLangObj( 'en' )
 	 *
 	 * @see ContentHandler::getPageLanguage()
@@ -60,6 +61,7 @@ class JavaScriptContentHandler extends TextContentHandler {
 	 *
 	 * @param Title $title
 	 * @param Content $content
+	 *
 	 * @return Language wfGetLangObj( 'en' )
 	 *
 	 * @see ContentHandler::getPageViewLanguage()

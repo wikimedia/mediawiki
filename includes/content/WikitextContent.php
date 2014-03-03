@@ -103,7 +103,8 @@ class WikitextContent extends TextContent {
 	 * Returns a new WikitextContent object with the given section heading
 	 * prepended.
 	 *
-	 * @param $header string
+	 * @param string $header
+	 *
 	 * @return Content
 	 */
 	public function addSectionHeader( $header ) {
@@ -119,9 +120,10 @@ class WikitextContent extends TextContent {
 	 * Returns a Content object with pre-save transformations applied using
 	 * Parser::preSaveTransform().
 	 *
-	 * @param $title Title
-	 * @param $user User
-	 * @param $popts ParserOptions
+	 * @param Title $title
+	 * @param User $user
+	 * @param ParserOptions $popts
+	 *
 	 * @return Content
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
@@ -138,8 +140,9 @@ class WikitextContent extends TextContent {
 	 * Returns a Content object with preload transformations applied (or this
 	 * object if no transformations apply).
 	 *
-	 * @param $title Title
-	 * @param $popts ParserOptions
+	 * @param Title $title
+	 * @param ParserOptions $popts
+	 *
 	 * @return Content
 	 */
 	public function preloadTransform( Title $title, ParserOptions $popts ) {
@@ -157,6 +160,7 @@ class WikitextContent extends TextContent {
 	 * @note: migrated here from Title::newFromRedirectInternal()
 	 *
 	 * @since 1.23
+	 *
 	 * @return array 2 elements: Title|null and string
 	 */
 	protected function getRedirectTargetAndText() {
@@ -195,7 +199,7 @@ class WikitextContent extends TextContent {
 	/**
 	 * Implement redirect extraction for wikitext.
 	 *
-	 * @return null|Title
+	 * @return Title|null
 	 *
 	 * @see Content::getRedirectTarget
 	 * @see AbstractContent::getRedirectTarget
@@ -216,7 +220,7 @@ class WikitextContent extends TextContent {
 	 *
 	 * @param Title $target
 	 *
-	 * @return Content a new Content object with the updated redirect (or $this
+	 * @return Content A new Content object with the updated redirect (or $this
 	 *   if this Content object isn't a redirect)
 	 */
 	public function updateRedirect( Title $target ) {
@@ -238,10 +242,10 @@ class WikitextContent extends TextContent {
 	 * Returns true if this content is not a redirect, and this content's text
 	 * is countable according to the criteria defined by $wgArticleCountMethod.
 	 *
-	 * @param bool $hasLinks if it is known whether this content contains
+	 * @param bool $hasLinks If it is known whether this content contains
 	 *    links, provide this information here, to avoid redundant parsing to
 	 *    find out (default: null).
-	 * @param $title Title: (default: null)
+	 * @param Title $title Optional title, defaults to the title from the current main request.
 	 *
 	 * @internal param \IContextSource $context context for parsing if necessary
 	 *
@@ -294,15 +298,14 @@ class WikitextContent extends TextContent {
 	 * Returns a ParserOutput object resulting from parsing the content's text
 	 * using $wgParser.
 	 *
-	 * @since    1.21
+	 * @since 1.21
 	 *
-	 * @param $title Title
-	 * @param int $revId Revision to pass to the parser (default: null)
-	 * @param $options ParserOptions (default: null)
+	 * @param Title $title * @param int $revId Revision to pass to the parser (default: null)
+	 * @param ParserOptions $options (default: null)
 	 * @param bool $generateHtml (default: false)
-	 *
 	 * @internal param \IContextSource|null $context
-	 * @return ParserOutput representing the HTML form of the text
+	 *
+	 * @return ParserOutput Representing the HTML form of the text
 	 */
 	public function getParserOutput( Title $title,
 		$revId = null,
@@ -348,7 +351,7 @@ class WikitextContent extends TextContent {
 	 *
 	 * @param MagicWord $word
 	 *
-	 * @return bool whether this Content object matches the given magic word.
+	 * @return bool Whether this Content object matches the given magic word.
 	 */
 	public function matchMagicWord( MagicWord $word ) {
 		return $word->match( $this->getNativeData() );

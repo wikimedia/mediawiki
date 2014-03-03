@@ -114,7 +114,7 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isSupportedFormat( $format ) {
 		if ( !$format ) {
@@ -160,7 +160,7 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isEmpty() {
 		return $this->getSize() === 0;
@@ -171,7 +171,7 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isValid() {
 		return true;
@@ -184,7 +184,7 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @param Content|null $that
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function equals( Content $that = null ) {
 		if ( is_null( $that ) ) {
@@ -216,16 +216,16 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @see Content::getSecondaryDataUpdates()
 	 *
-	 * @param $title Title The context for determining the necessary updates
-	 * @param $old Content|null An optional Content object representing the
+	 * @param Title $title The context for determining the necessary updates
+	 * @param Content|null $old An optional Content object representing the
 	 *    previous content, i.e. the content being replaced by this Content
 	 *    object.
-	 * @param $recursive boolean Whether to include recursive updates (default:
+	 * @param bool $recursive Whether to include recursive updates (default:
 	 *    false).
-	 * @param $parserOutput ParserOutput|null Optional ParserOutput object.
+	 * @param ParserOutput|null $parserOutput Optional ParserOutput object.
 	 *    Provide if you have one handy, to avoid re-parsing of the content.
 	 *
-	 * @return Array. A list of DataUpdate objects for putting information
+	 * @return array A list of DataUpdate objects for putting information
 	 *    about this content object somewhere.
 	 *
 	 * @since 1.21
@@ -386,8 +386,8 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $page WikiPage the deleted page
-	 * @param $parserOutput null|ParserOutput optional parser output object
+	 * @param WikiPage $page The deleted page
+	 * @param ParserOutput|null $parserOutput Optional parser output object
 	 *    for efficient access to meta-information about the content object.
 	 *    Provide if you have one handy.
 	 *
@@ -424,9 +424,10 @@ abstract class AbstractContent implements Content {
 	 * This base implementation calls the hook ConvertContent to enable custom conversions.
 	 * Subclasses may override this to implement conversion for "their" content model.
 	 *
-	 * @param string $toModel the desired content model, use the CONTENT_MODEL_XXX flags.
-	 * @param string $lossy flag, set to "lossy" to allow lossy conversion. If lossy conversion is
-	 * not allowed, full round-trip conversion is expected to work without losing information.
+	 * @param string $toModel The desired content model, use the CONTENT_MODEL_XXX flags.
+	 * @param string $lossy Optional flag, set to "lossy" to allow lossy conversion. If lossy
+	 * conversion is not allowed, full round-trip conversion is expected to work without losing
+	 * information.
 	 *
 	 * @return Content|bool A content object with the content model $toModel, or false if
 	 * that conversion is not supported.

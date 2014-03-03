@@ -51,7 +51,8 @@ abstract class DiffFormatter {
 	/**
 	 * Format a diff.
 	 *
-	 * @param $diff Diff A Diff object.
+	 * @param Diff $diff A Diff object.
+	 *
 	 * @return string The formatted output.
 	 */
 	public function format( $diff ) {
@@ -161,10 +162,11 @@ abstract class DiffFormatter {
 	}
 
 	/**
-	 * @param $xbeg
-	 * @param $xlen
-	 * @param $ybeg
-	 * @param $ylen
+	 * @param int $xbeg
+	 * @param int $xlen
+	 * @param int $ybeg
+	 * @param int $ylen
+	 *
 	 * @return string
 	 */
 	protected function blockHeader( $xbeg, $xlen, $ybeg, $ylen ) {
@@ -187,7 +189,7 @@ abstract class DiffFormatter {
 
 	/**
 	 * @param $lines
-	 * @param $prefix string
+	 * @param string $prefix
 	 */
 	protected function lines( $lines, $prefix = ' ' ) {
 		foreach ( $lines as $line ) {

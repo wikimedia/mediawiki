@@ -59,10 +59,11 @@ class UnifiedDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 * @param $xbeg
-	 * @param $xlen
-	 * @param $ybeg
-	 * @param $ylen
+	 * @param int $xbeg
+	 * @param int $xlen
+	 * @param int $ybeg
+	 * @param int $ylen
+	 *
 	 * @return string
 	 */
 	protected function blockHeader( $xbeg, $xlen, $ybeg, $ylen ) {

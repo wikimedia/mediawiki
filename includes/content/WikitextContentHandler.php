@@ -53,8 +53,8 @@ class WikitextContentHandler extends TextContentHandler {
 	 *
 	 * @see ContentHandler::makeRedirectContent
 	 *
-	 * @param Title $destination the page to redirect to.
-	 * @param string $text text to include in the redirect, if possible.
+	 * @param Title $destination The page to redirect to.
+	 * @param string $text Text to include in the redirect, if possible.
 	 *
 	 * @return Content
 	 */
@@ -86,7 +86,7 @@ class WikitextContentHandler extends TextContentHandler {
 	 *
 	 * @see ContentHandler::supportsRedirects
 	 *
-	 * @return boolean whether redirects are supported.
+	 * @return bool Whether redirects are supported.
 	 */
 	public function supportsRedirects() {
 		return true;
@@ -95,7 +95,7 @@ class WikitextContentHandler extends TextContentHandler {
 	/**
 	 * Returns true because wikitext supports sections.
 	 *
-	 * @return boolean whether sections are supported.
+	 * @return bool Whether sections are supported.
 	 */
 	public function supportsSections() {
 		return true;
@@ -106,6 +106,7 @@ class WikitextContentHandler extends TextContentHandler {
 	 * ParserCache mechanism.
 	 *
 	 * @since 1.21
+	 *
 	 * @return bool
 	 */
 	public function isParserCacheSupported() {

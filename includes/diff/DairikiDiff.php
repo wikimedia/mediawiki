@@ -195,8 +195,9 @@ class DiffEngine {
 	protected $lcs = 0;
 
 	/**
-	 * @param $from_lines
-	 * @param $to_lines
+	 * @param array $from_lines
+	 * @param array $to_lines
+	 *
 	 * @return array
 	 */
 	public function diff( $from_lines, $to_lines ) {
@@ -256,8 +257,8 @@ class DiffEngine {
 	}
 
 	/**
-	 * @param $from_lines
-	 * @param $to_lines
+	 * @param array $from_lines
+	 * @param array $to_lines
 	 */
 	private function diffLocal( $from_lines, $to_lines ) {
 		global $wgExternalDiffEngine;
@@ -329,7 +330,9 @@ class DiffEngine {
 
 	/**
 	 * Returns the whole line if it's small enough, or the MD5 hash otherwise
-	 * @param $line string
+	 *
+	 * @param string $line
+	 *
 	 * @return string
 	 */
 	private function lineHash( $line ) {
@@ -356,11 +359,13 @@ class DiffEngine {
 	 * of the two files do not match, and likewise that the last lines do not
 	 * match.  The caller must trim matching lines from the beginning and end
 	 * of the portions it is going to specify.
+	 *
 	 * @param $xoff
 	 * @param $xlim
 	 * @param $yoff
 	 * @param $ylim
 	 * @param $nchunks
+	 *
 	 * @return array
 	 */
 	private function diag( $xoff, $xlim, $yoff, $ylim, $nchunks ) {
@@ -447,6 +452,7 @@ class DiffEngine {
 
 	/**
 	 * @param $ypos
+	 *
 	 * @return int
 	 */
 	private function lcsPos( $ypos ) {
@@ -488,6 +494,7 @@ class DiffEngine {
 	 *
 	 * Note that XLIM, YLIM are exclusive bounds.
 	 * All line numbers are origin-0 and discarded lines are not counted.
+	 *
 	 * @param $xoff
 	 * @param $xlim
 	 * @param $yoff
@@ -688,9 +695,9 @@ class Diff {
 	 * Constructor.
 	 * Computes diff between sequences of strings.
 	 *
-	 * @param $from_lines array An array of strings.
+	 * @param array $from_lines An array of strings.
 	 *   Typically these are lines from a file.
-	 * @param $to_lines array An array of strings.
+	 * @param array $to_lines An array of strings.
 	 */
 	public function __construct( $from_lines, $to_lines ) {
 		$eng = new DiffEngine;
@@ -711,6 +718,7 @@ class Diff {
 	 *
 	 *    $diff = new Diff($lines1, $lines2);
 	 *    $rev = $diff->reverse();
+	 *
 	 * @return Object A Diff object representing the inverse of the
 	 *   original diff.
 	 */
@@ -814,18 +822,18 @@ class MappedDiff extends Diff {
 	 * case-insensitve diffs, or diffs which ignore
 	 * changes in white-space.
 	 *
-	 * @param $from_lines array An array of strings.
+	 * @param array $from_lines An array of strings.
 	 *   Typically these are lines from a file.
 	 *
-	 * @param $to_lines array An array of strings.
+	 * @param array $to_lines An array of strings.
 	 *
-	 * @param $mapped_from_lines array This array should
+	 * @param array $mapped_from_lines This array should
 	 *   have the same size number of elements as $from_lines.
 	 *   The elements in $mapped_from_lines and
 	 *   $mapped_to_lines are what is actually compared
 	 *   when computing the diff.
 	 *
-	 * @param $mapped_to_lines array This array should
+	 * @param array $mapped_to_lines This array should
 	 *   have the same number of elements as $to_lines.
 	 */
 	public function __construct( $from_lines, $to_lines,
@@ -875,7 +883,7 @@ class HWLDFWordAccumulator {
 	private $tag = '';
 
 	/**
-	 * @param $new_tag
+	 * @param string $new_tag
 	 */
 	private function flushGroup( $new_tag ) {
 		if ( $this->group !== '' ) {
@@ -894,7 +902,7 @@ class HWLDFWordAccumulator {
 	}
 
 	/**
-	 * @param $new_tag
+	 * @param string $new_tag
 	 */
 	private function flushLine( $new_tag ) {
 		$this->flushGroup( $new_tag );
@@ -908,8 +916,8 @@ class HWLDFWordAccumulator {
 	}
 
 	/**
-	 * @param $words
-	 * @param $tag string
+	 * @param array $words
+	 * @param string $tag
 	 */
 	public function addWords( $words, $tag = '' ) {
 		if ( $tag != $this->tag ) {
@@ -949,8 +957,8 @@ class WordLevelDiff extends MappedDiff {
 	const MAX_LINE_LENGTH = 10000;
 
 	/**
-	 * @param $orig_lines
-	 * @param $closing_lines
+	 * @param array $orig_lines
+	 * @param array $closing_lines
 	 */
 	public function __construct( $orig_lines, $closing_lines ) {
 		wfProfileIn( __METHOD__ );
@@ -964,7 +972,8 @@ class WordLevelDiff extends MappedDiff {
 	}
 
 	/**
-	 * @param $lines
+	 * @param array $lines
+	 *
 	 * @return array
 	 */
 	private function split( $lines ) {

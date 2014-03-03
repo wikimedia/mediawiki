@@ -32,6 +32,7 @@ class ArrayDiffFormatter extends DiffFormatter {
 
 	/**
 	 * @param Diff $diff A Diff object.
+	 *
 	 * @return array
 	 */
 	public function format( $diff ) {
