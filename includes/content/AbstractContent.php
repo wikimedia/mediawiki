@@ -364,7 +364,7 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @since 1.21
 	 */
-	public function preloadTransform( Title $title, ParserOptions $popts ) {
+	public function preloadTransform( Title $title, ParserOptions $popts, $params = array() ) {
 		return $this;
 	}
 

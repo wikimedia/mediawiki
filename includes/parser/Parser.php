@@ -650,9 +650,13 @@ class Parser {
 	 * @param $text String
 	 * @param $title Title
 	 * @param $options ParserOptions
+	 * @param $params Array
 	 * @return String
 	 */
-	public function getPreloadText( $text, Title $title, ParserOptions $options ) {
+	public function getPreloadText( $text, Title $title, ParserOptions $options, $params = array() ) {
+		$msg = new RawMessage( $text );
+		$text = $msg->params( $params )->plain();
+
 		# Parser (re)initialisation
 		$this->startParse( $title, $options, self::OT_PLAIN, true );
 

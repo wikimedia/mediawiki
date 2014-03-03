@@ -912,8 +912,9 @@ class EditPage {
 				$preload = $wgRequest->getVal( 'preload',
 					// Custom preload text for new sections
 					$this->section === 'new' ? 'MediaWiki:addsection-preload' : '' );
+				$params = $wgRequest->getArray( 'preloadparams', array() );
 
-				$content = $this->getPreloadedContent( $preload );
+				$content = $this->getPreloadedContent( $preload, $params );
 			}
 		// For existing pages, get text based on "undo" or section parameters.
 		} else {
@@ -1118,12 +1119,13 @@ class EditPage {
 	 * an earlier setPreloadText() or by loading the given page.
 	 *
 	 * @param string $preload representing the title to preload from.
+	 * @param Array $params Parameters to use (interface-message style) in the preloaded text
 	 *
 	 * @return Content
 	 *
 	 * @since 1.21
 	 */
-	protected function getPreloadedContent( $preload ) {
+	protected function getPreloadedContent( $preload, $params = array() ) {
 		global $wgUser;
 
 		if ( !empty( $this->mPreloadContent ) ) {
@@ -1177,7 +1179,7 @@ class EditPage {
 			$content = $converted;
 		}
 
-		return $content->preloadTransform( $title, $parserOptions );
+		return $content->preloadTransform( $title, $parserOptions, $params );
 	}
 
 	/**
