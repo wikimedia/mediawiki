@@ -86,6 +86,9 @@ class SpecialVersion extends SpecialPage {
 					$file = $this->getExtAuthorsFileName( dirname( $extNode['path'] ) );
 					if ( $file ) {
 						$wikiText = file_get_contents( $file );
+						if ( substr( $file, -4 ) === '.txt' ) {
+							$wikiText = Html::element( 'pre', array(), $wikiText );
+						}
 					}
 				}
 
