@@ -1287,8 +1287,8 @@ You may have already successfully changed your password or requested a new tempo
 To finish logging in, you must set a new password here:',
 'resetpass-temp-password'   => 'Temporary password:',
 'resetpass-abort-generic'   => 'Password change has been aborted by an extension.',
-'resetpass-expired'         => 'Your password has expired. Please set a new password to login.',
-'resetpass-expired-soft'    => 'Your password has expired, and needs to be reset. Please choose a new password now, or click cancel to reset it later.',
+'resetpass-expired'         => 'Your password has expired. Please set a new password to log in.',
+'resetpass-expired-soft'    => 'Your password has expired and needs to be reset. Please choose a new password now, or click "{{int:resetpass-submit-cancel}}" to reset it later.',
 
 # Special:PasswordReset
 'passwordreset'                    => 'Reset password',
