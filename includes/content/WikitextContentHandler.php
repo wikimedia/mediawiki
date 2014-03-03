@@ -29,6 +29,7 @@
  * @ingroup Content
  */
 class WikitextContentHandler extends TextContentHandler {
+
 	public function __construct( $modelId = CONTENT_MODEL_WIKITEXT ) {
 		parent::__construct( $modelId, array( CONTENT_FORMAT_WIKITEXT ) );
 	}
@@ -40,9 +41,9 @@ class WikitextContentHandler extends TextContentHandler {
 	}
 
 	/**
-	 * @see ContentHandler::makeEmptyContent
+	 * @return Content A new WikitextContent object with empty text.
 	 *
-	 * @return Content
+	 * @see ContentHandler::makeEmptyContent
 	 */
 	public function makeEmptyContent() {
 		return new WikitextContent( '' );
@@ -51,12 +52,12 @@ class WikitextContentHandler extends TextContentHandler {
 	/**
 	 * Returns a WikitextContent object representing a redirect to the given destination page.
 	 *
-	 * @see ContentHandler::makeRedirectContent
-	 *
-	 * @param Title $destination the page to redirect to.
-	 * @param string $text text to include in the redirect, if possible.
+	 * @param Title $destination The page to redirect to.
+	 * @param string $text Text to include in the redirect, if possible.
 	 *
 	 * @return Content
+	 *
+	 * @see ContentHandler::makeRedirectContent
 	 */
 	public function makeRedirectContent( Title $destination, $text = '' ) {
 		$optionalColon = '';
@@ -84,9 +85,9 @@ class WikitextContentHandler extends TextContentHandler {
 	/**
 	 * Returns true because wikitext supports redirects.
 	 *
-	 * @see ContentHandler::supportsRedirects
+	 * @return bool Always true.
 	 *
-	 * @return boolean whether redirects are supported.
+	 * @see ContentHandler::supportsRedirects
 	 */
 	public function supportsRedirects() {
 		return true;
@@ -95,7 +96,9 @@ class WikitextContentHandler extends TextContentHandler {
 	/**
 	 * Returns true because wikitext supports sections.
 	 *
-	 * @return boolean whether sections are supported.
+	 * @return bool Always true.
+	 *
+	 * @see ContentHandler::supportsSections
 	 */
 	public function supportsSections() {
 		return true;
@@ -106,9 +109,13 @@ class WikitextContentHandler extends TextContentHandler {
 	 * ParserCache mechanism.
 	 *
 	 * @since 1.21
-	 * @return bool
+	 *
+	 * @return bool Always true.
+	 *
+	 * @see ContentHandler::isParserCacheSupported
 	 */
 	public function isParserCacheSupported() {
 		return true;
 	}
+
 }

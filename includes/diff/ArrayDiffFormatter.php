@@ -32,7 +32,8 @@ class ArrayDiffFormatter extends DiffFormatter {
 
 	/**
 	 * @param Diff $diff A Diff object.
-	 * @return array
+	 *
+	 * @return array[] List of associative arrays, each describing a difference.
 	 */
 	public function format( $diff ) {
 		$oldline = 1;
@@ -77,4 +78,5 @@ class ArrayDiffFormatter extends DiffFormatter {
 
 		return $retval;
 	}
+
 }

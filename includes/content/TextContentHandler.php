@@ -29,10 +29,10 @@
  * @ingroup Content
  */
 class TextContentHandler extends ContentHandler {
+
 	// @codingStandardsIgnoreStart bug 57585
 	public function __construct( $modelId = CONTENT_MODEL_TEXT,
-		$formats = array( CONTENT_FORMAT_TEXT )
-	) {
+		$formats = array( CONTENT_FORMAT_TEXT ) ) {
 		parent::__construct( $modelId, $formats );
 	}
 	// @codingStandardsIgnoreEnd
@@ -40,8 +40,9 @@ class TextContentHandler extends ContentHandler {
 	/**
 	 * Returns the content's text as-is.
 	 *
-	 * @param $content Content
-	 * @param $format string|null
+	 * @param Content $content
+	 * @param string $format The serialization format to check
+	 *
 	 * @return mixed
 	 */
 	public function serializeContent( Content $content, $format = null ) {
@@ -59,11 +60,11 @@ class TextContentHandler extends ContentHandler {
 	 *
 	 * This text-based implementation uses wfMerge().
 	 *
-	 * @param $oldContent Content|string  String
-	 * @param $myContent Content|string   String
-	 * @param $yourContent Content|string String
+	 * @param Content|string $oldContent The page's previous content.
+	 * @param Content|string $myContent One of the page's conflicting contents.
+	 * @param Content|string $yourContent One of the page's conflicting contents.
 	 *
-	 * @return Content|Bool
+	 * @return Content|bool
 	 */
 	public function merge3( Content $oldContent, Content $myContent, Content $yourContent ) {
 		$this->checkModelID( $oldContent->getModel() );
@@ -96,10 +97,10 @@ class TextContentHandler extends ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $text   string serialized form of the content
-	 * @param $format null|String the format used for serialization
+	 * @param string $text Serialized form of the content
+	 * @param string $format The format used for serialization
 	 *
-	 * @return Content the TextContent object wrapping $text
+	 * @return Content The TextContent object wrapping $text
 	 */
 	public function unserializeContent( $text, $format = null ) {
 		$this->checkFormat( $format );
@@ -112,9 +113,10 @@ class TextContentHandler extends ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @return Content
+	 * @return Content A new TextContent object with empty text.
 	 */
 	public function makeEmptyContent() {
 		return new TextContent( '' );
 	}
+
 }
