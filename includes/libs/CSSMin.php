@@ -107,6 +107,16 @@ class CSSMin {
 		if ( !$type ) {
 			return false;
 		}
+
+		// For handling svg images. (No base64 encoding, only removal of comments and whitespaces.)
+		if( $type === "application/xml" || $type === "image/svg+xml" ) {
+			$type = "image/svg+xml";
+			$data = file_get_contents( $file );
+			$data = preg_replace('/<!--(.*)-->/Uis', '', $data);
+			$data = rawurlencode( $data );
+			return 'data:' . $type . ',' . $data;
+		}
+		
 		$data = base64_encode( file_get_contents( $file ) );
 		return 'data:' . $type . ';base64,' . $data;
 	}
