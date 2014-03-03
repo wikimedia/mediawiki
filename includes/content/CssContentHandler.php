@@ -28,16 +28,28 @@
  * @ingroup Content
  */
 class CssContentHandler extends TextContentHandler {
+	/**
+	 * @param string $modelId
+	 */
 	public function __construct( $modelId = CONTENT_MODEL_CSS ) {
 		parent::__construct( $modelId, array( CONTENT_FORMAT_CSS ) );
 	}
 
+	/**
+	 * @param string $text
+	 * @param string $format
+	 *
+	 * @return CssContent
+	 */
 	public function unserializeContent( $text, $format = null ) {
 		$this->checkFormat( $format );
 
 		return new CssContent( $text );
 	}
 
+	/**
+	 * @return CssContent A new CssContent object with empty text.
+	 */
 	public function makeEmptyContent() {
 		return new CssContent( '' );
 	}
@@ -47,6 +59,7 @@ class CssContentHandler extends TextContentHandler {
 	 *
 	 * @param Title $title
 	 * @param Content $content
+	 *
 	 * @return Language wfGetLangObj( 'en' )
 	 *
 	 * @see ContentHandler::getPageLanguage()
@@ -60,6 +73,7 @@ class CssContentHandler extends TextContentHandler {
 	 *
 	 * @param Title $title
 	 * @param Content $content
+	 *
 	 * @return Language wfGetLangObj( 'en' )
 	 *
 	 * @see ContentHandler::getPageViewLanguage()

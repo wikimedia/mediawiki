@@ -40,8 +40,8 @@ class MessageContent extends AbstractContent {
 	protected $mMessage;
 
 	/**
-	 * @param Message|String $msg A Message object, or a message key
-	 * @param array|null $params An optional array of message parameters
+	 * @param Message|string $msg A Message object, or a message key.
+	 * @param string[] $params An optional array of message parameters.
 	 */
 	public function __construct( $msg, $params = null ) {
 		# XXX: messages may be wikitext, html or plain text! and maybe even something else entirely.
@@ -59,18 +59,18 @@ class MessageContent extends AbstractContent {
 	}
 
 	/**
-	 * Returns the message as rendered HTML
+	 * Fully parse the text from wikitext to HTML.
 	 *
-	 * @return string The message text, parsed into html
+	 * @return string Parsed HTML.
 	 */
 	public function getHtml() {
 		return $this->mMessage->parse();
 	}
 
 	/**
-	 * Returns the message as rendered HTML
+	 * Returns the message text. {{-transformation is done.
 	 *
-	 * @return string The message text, parsed into html
+	 * @return string Unescaped message text.
 	 */
 	public function getWikitext() {
 		return $this->mMessage->text();
@@ -88,6 +88,8 @@ class MessageContent extends AbstractContent {
 
 	/**
 	 * @see Content::getTextForSearchIndex
+	 *
+	 * @return string
 	 */
 	public function getTextForSearchIndex() {
 		return $this->mMessage->plain();
@@ -95,6 +97,8 @@ class MessageContent extends AbstractContent {
 
 	/**
 	 * @see Content::getWikitextForTransclusion
+	 *
+	 * @return string
 	 */
 	public function getWikitextForTransclusion() {
 		return $this->getWikitext();
@@ -102,6 +106,10 @@ class MessageContent extends AbstractContent {
 
 	/**
 	 * @see Content::getTextForSummary
+	 *
+	 * @param int $maxLength Maximum length of the summary text, defaults to 250.
+	 *
+	 * @return string The summary text.
 	 */
 	public function getTextForSummary( $maxlength = 250 ) {
 		return substr( $this->mMessage->plain(), 0, $maxlength );
@@ -130,7 +138,8 @@ class MessageContent extends AbstractContent {
 	 * @see Content::isCountable
 	 *
 	 * @param bool $hasLinks
-	 * @return bool false
+	 *
+	 * @return bool Always false.
 	 */
 	public function isCountable( $hasLinks = null ) {
 		return false;
@@ -139,17 +148,15 @@ class MessageContent extends AbstractContent {
 	/**
 	 * @see Content::getParserOutput
 	 *
-	 * @param Title $title
-	 * @param int $revId Optional revision ID
-	 * @param ParserOptions $options
-	 * @param bool $generateHtml Wether to generate HTML
+	 * @param Title $title Unused.
+	 * @param int $revId Unused.
+	 * @param ParserOptions $options Unused.
+	 * @param bool $generateHtml Whether to generate HTML (default: true).
+	 *
 	 * @return ParserOutput
 	 */
-	public function getParserOutput(
-		Title $title, $revId = null,
-		ParserOptions $options = null, $generateHtml = true
-	) {
-
+	public function getParserOutput( Title $title, $revId = null,
+		ParserOptions $options = null, $generateHtml = true ) {
 		if ( $generateHtml ) {
 			$html = $this->getHtml();
 		} else {

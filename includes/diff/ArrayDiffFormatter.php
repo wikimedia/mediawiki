@@ -32,7 +32,8 @@ class ArrayDiffFormatter extends DiffFormatter {
 
 	/**
 	 * @param Diff $diff A Diff object.
-	 * @return array
+	 *
+	 * @return mixed[]
 	 */
 	public function format( $diff ) {
 		$oldline = 1;

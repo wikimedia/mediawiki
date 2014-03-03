@@ -43,7 +43,7 @@ abstract class AbstractContent implements Content {
 	protected $model_id;
 
 	/**
-	 * @param string|null $modelId
+	 * @param string $modelId
 	 *
 	 * @since 1.21
 	 */
@@ -61,14 +61,12 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * Throws an MWException if $model_id is not the id of the content model
-	 * supported by this Content object.
-	 *
 	 * @since 1.21
 	 *
 	 * @param string $modelId The model to check
 	 *
-	 * @throws MWException
+	 * @throws MWException If the provided ID is not the ID of the content model supported by this
+	 * Content object.
 	 */
 	protected function checkModelID( $modelId ) {
 		if ( $modelId !== $this->model_id ) {
@@ -110,11 +108,11 @@ abstract class AbstractContent implements Content {
 	/**
 	 * @see Content::isSupportedFormat
 	 *
-	 * @param string $format
-	 *
 	 * @since 1.21
 	 *
-	 * @return boolean
+	 * @param string $format The serialization format to check
+	 *
+	 * @return bool
 	 */
 	public function isSupportedFormat( $format ) {
 		if ( !$format ) {
@@ -125,13 +123,12 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * Throws an MWException if $this->isSupportedFormat( $format ) does not
-	 * return true.
-	 *
 	 * @since 1.21
 	 *
-	 * @param string $format
-	 * @throws MWException
+	 * @param string $format The serialization format to check.
+	 *
+	 * @return void
+	 * @throws MWException If the format is not supported by this content handler.
 	 */
 	protected function checkFormat( $format ) {
 		if ( !$this->isSupportedFormat( $format ) ) {
@@ -145,11 +142,11 @@ abstract class AbstractContent implements Content {
 	/**
 	 * @see Content::serialize
 	 *
-	 * @param string|null $format
-	 *
 	 * @since 1.21
 	 *
-	 * @return string
+	 * @param string $format The desired serialization format
+	 *
+	 * @return string Serialized form of the content
 	 */
 	public function serialize( $format = null ) {
 		return $this->getContentHandler()->serializeContent( $this, $format );
@@ -160,7 +157,7 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isEmpty() {
 		return $this->getSize() === 0;
@@ -171,7 +168,7 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @return boolean
+	 * @return bool Always true.
 	 */
 	public function isValid() {
 		return true;
@@ -182,9 +179,9 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @param Content|null $that
+	 * @param Content $that The Content object to compare to
 	 *
-	 * @return boolean
+	 * @return bool True if this Content object is equal to $that, false otherwise.
 	 */
 	public function equals( Content $that = null ) {
 		if ( is_null( $that ) ) {
@@ -216,24 +213,22 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @see Content::getSecondaryDataUpdates()
 	 *
-	 * @param $title Title The context for determining the necessary updates
-	 * @param $old Content|null An optional Content object representing the
+	 * @param Title $title The context for determining the necessary updates
+	 * @param Content $old An optional Content object representing the
 	 *    previous content, i.e. the content being replaced by this Content
 	 *    object.
-	 * @param $recursive boolean Whether to include recursive updates (default:
+	 * @param bool $recursive Whether to include recursive updates (default:
 	 *    false).
-	 * @param $parserOutput ParserOutput|null Optional ParserOutput object.
+	 * @param ParserOutput $parserOutput Optional ParserOutput object.
 	 *    Provide if you have one handy, to avoid re-parsing of the content.
 	 *
-	 * @return Array. A list of DataUpdate objects for putting information
+	 * @return DataUpdate[] A list of DataUpdate objects for putting information
 	 *    about this content object somewhere.
 	 *
 	 * @since 1.21
 	 */
-	public function getSecondaryDataUpdates( Title $title,
-		Content $old = null,
-		$recursive = true, ParserOutput $parserOutput = null
-	) {
+	public function getSecondaryDataUpdates( Title $title, Content $old = null,
+		$recursive = true, ParserOutput $parserOutput = null ) {
 		if ( $parserOutput === null ) {
 			$parserOutput = $this->getParserOutput( $title, null, null, false );
 		}
@@ -245,6 +240,8 @@ abstract class AbstractContent implements Content {
 	 * @see Content::getRedirectChain
 	 *
 	 * @since 1.21
+	 *
+	 * @return Title[]|null List of Titles, with the destination last.
 	 */
 	public function getRedirectChain() {
 		global $wgMaxRedirects;
@@ -280,6 +277,8 @@ abstract class AbstractContent implements Content {
 	 * @see Content::getRedirectTarget
 	 *
 	 * @since 1.21
+	 *
+	 * @return null
 	 */
 	public function getRedirectTarget() {
 		return null;
@@ -290,6 +289,8 @@ abstract class AbstractContent implements Content {
 	 * @note: migrated here from Title::newFromRedirectRecurse
 	 *
 	 * @since 1.21
+	 *
+	 * @return Title|null
 	 */
 	public function getUltimateRedirectTarget() {
 		$titles = $this->getRedirectChain();
@@ -313,9 +314,9 @@ abstract class AbstractContent implements Content {
 	 *
 	 * This default implementation always returns $this.
 	 *
-	 * @param Title $target
-	 *
 	 * @since 1.21
+	 *
+	 * @param Title $target
 	 *
 	 * @return Content $this
 	 */
@@ -327,6 +328,8 @@ abstract class AbstractContent implements Content {
 	 * @see Content::getSection
 	 *
 	 * @since 1.21
+	 *
+	 * @return null
 	 */
 	public function getSection( $sectionId ) {
 		return null;
@@ -336,6 +339,8 @@ abstract class AbstractContent implements Content {
 	 * @see Content::replaceSection
 	 *
 	 * @since 1.21
+	 *
+	 * @return null
 	 */
 	public function replaceSection( $section, Content $with, $sectionTitle = '' ) {
 		return null;
@@ -345,6 +350,8 @@ abstract class AbstractContent implements Content {
 	 * @see Content::preSaveTransform
 	 *
 	 * @since 1.21
+	 *
+	 * @return Content $this
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
 		return $this;
@@ -354,6 +361,8 @@ abstract class AbstractContent implements Content {
 	 * @see Content::addSectionHeader
 	 *
 	 * @since 1.21
+	 *
+	 * @return Content $this
 	 */
 	public function addSectionHeader( $header ) {
 		return $this;
@@ -363,6 +372,8 @@ abstract class AbstractContent implements Content {
 	 * @see Content::preloadTransform
 	 *
 	 * @since 1.21
+	 *
+	 * @return Content $this
 	 */
 	public function preloadTransform( Title $title, ParserOptions $popts ) {
 		return $this;
@@ -372,6 +383,8 @@ abstract class AbstractContent implements Content {
 	 * @see Content::prepareSave
 	 *
 	 * @since 1.21
+	 *
+	 * @return Status
 	 */
 	public function prepareSave( WikiPage $page, $flags, $baseRevId, User $user ) {
 		if ( $this->isValid() ) {
@@ -386,17 +399,15 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $page WikiPage the deleted page
-	 * @param $parserOutput null|ParserOutput optional parser output object
+	 * @param WikiPage $page The deleted page
+	 * @param ParserOutput $parserOutput Optional parser output object
 	 *    for efficient access to meta-information about the content object.
 	 *    Provide if you have one handy.
 	 *
-	 * @return array A list of DataUpdate instances that will clean up the
+	 * @return LinksDeletionUpdate[] A list of DataUpdate instances that will clean up the
 	 *    database after deletion.
 	 */
-	public function getDeletionUpdates( WikiPage $page,
-		ParserOutput $parserOutput = null
-	) {
+	public function getDeletionUpdates( WikiPage $page, ParserOutput $parserOutput = null ) {
 		return array(
 			new LinksDeletionUpdate( $page ),
 		);
@@ -412,7 +423,7 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @param MagicWord $word
 	 *
-	 * @return bool
+	 * @return bool Always false.
 	 */
 	public function matchMagicWord( MagicWord $word ) {
 		return false;
@@ -424,9 +435,10 @@ abstract class AbstractContent implements Content {
 	 * This base implementation calls the hook ConvertContent to enable custom conversions.
 	 * Subclasses may override this to implement conversion for "their" content model.
 	 *
-	 * @param string $toModel the desired content model, use the CONTENT_MODEL_XXX flags.
-	 * @param string $lossy flag, set to "lossy" to allow lossy conversion. If lossy conversion is
-	 * not allowed, full round-trip conversion is expected to work without losing information.
+	 * @param string $toModel The desired content model, use the CONTENT_MODEL_XXX flags.
+	 * @param string $lossy Optional flag, set to "lossy" to allow lossy conversion. If lossy
+	 * conversion is not allowed, full round-trip conversion is expected to work without losing
+	 * information.
 	 *
 	 * @return Content|bool A content object with the content model $toModel, or false if
 	 * that conversion is not supported.

@@ -51,7 +51,8 @@ abstract class DiffFormatter {
 	/**
 	 * Format a diff.
 	 *
-	 * @param $diff Diff A Diff object.
+	 * @param Diff $diff A Diff object.
+	 *
 	 * @return string The formatted output.
 	 */
 	public function format( $diff ) {
@@ -124,7 +125,9 @@ abstract class DiffFormatter {
 	 * @param int $ybeg
 	 * @param int $ylen
 	 * @param $edits
-	 * @throws MWException
+	 *
+	 * @return void
+	 * @throws MWException If the edit type is not known.
 	 */
 	protected function block( $xbeg, $xlen, $ybeg, $ylen, &$edits ) {
 		wfProfileIn( __METHOD__ );
@@ -146,6 +149,9 @@ abstract class DiffFormatter {
 		wfProfileOut( __METHOD__ );
 	}
 
+	/**
+	 * @return void
+	 */
 	protected function startDiff() {
 		ob_start();
 	}
@@ -161,10 +167,11 @@ abstract class DiffFormatter {
 	}
 
 	/**
-	 * @param $xbeg
-	 * @param $xlen
-	 * @param $ybeg
-	 * @param $ylen
+	 * @param int $xbeg
+	 * @param int $xlen
+	 * @param int $ybeg
+	 * @param int $ylen
+	 *
 	 * @return string
 	 */
 	protected function blockHeader( $xbeg, $xlen, $ybeg, $ylen ) {
@@ -178,16 +185,26 @@ abstract class DiffFormatter {
 		return $xbeg . ( $xlen ? ( $ylen ? 'c' : 'd' ) : 'a' ) . $ybeg;
 	}
 
+	/**
+	 * @param string $header
+	 *
+	 * @return void
+	 */
 	protected function startBlock( $header ) {
 		echo $header . "\n";
 	}
 
+	/**
+	 * @return void
+	 */
 	protected function endBlock() {
 	}
 
 	/**
-	 * @param $lines
-	 * @param $prefix string
+	 * @param string[] $lines
+	 * @param string $prefix
+	 *
+	 * @return void
 	 */
 	protected function lines( $lines, $prefix = ' ' ) {
 		foreach ( $lines as $line ) {
@@ -196,29 +213,37 @@ abstract class DiffFormatter {
 	}
 
 	/**
-	 * @param $lines
+	 * @param string[] $lines
+	 *
+	 * @return void
 	 */
 	protected function context( $lines ) {
 		$this->lines( $lines );
 	}
 
 	/**
-	 * @param $lines
+	 * @param string[] $lines
+	 *
+	 * @return void
 	 */
 	protected function added( $lines ) {
 		$this->lines( $lines, '>' );
 	}
 
 	/**
-	 * @param $lines
+	 * @param string[] $lines
+	 *
+	 * @return void
 	 */
 	protected function deleted( $lines ) {
 		$this->lines( $lines, '<' );
 	}
 
 	/**
-	 * @param $orig
-	 * @param $closing
+	 * @param string[] $orig
+	 * @param string[] $closing
+	 *
+	 * @return void
 	 */
 	protected function changed( $orig, $closing ) {
 		$this->deleted( $orig );

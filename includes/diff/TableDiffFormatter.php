@@ -38,7 +38,8 @@ class TableDiffFormatter extends DiffFormatter {
 
 	/**
 	 * @static
-	 * @param $msg
+	 * @param string $msg
+	 *
 	 * @return mixed
 	 */
 	public static function escapeWhiteSpace( $msg ) {
@@ -50,10 +51,11 @@ class TableDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 * @param $xbeg
-	 * @param $xlen
-	 * @param $ybeg
-	 * @param $ylen
+	 * @param int $xbeg
+	 * @param int $xlen
+	 * @param int $ybeg
+	 * @param int $ylen
+	 *
 	 * @return string
 	 */
 	protected function blockHeader( $xbeg, $xlen, $ybeg, $ylen ) {
@@ -65,20 +67,30 @@ class TableDiffFormatter extends DiffFormatter {
 
 	/**
 	 * @param $header
+	 *
+	 * @return void
 	 */
 	protected function startBlock( $header ) {
 		echo $header;
 	}
 
+	/**
+	 * @return void
+	 */
 	protected function endBlock() {
 	}
 
+	/**
+	 * @return void
+	 */
 	protected function lines( $lines, $prefix = ' ', $color = 'white' ) {
 	}
 
 	/**
 	 * HTML-escape parameter before calling this
-	 * @param $line
+	 *
+	 * @param string $line
+	 *
 	 * @return string
 	 */
 	protected function addedLine( $line ) {
@@ -87,7 +99,9 @@ class TableDiffFormatter extends DiffFormatter {
 
 	/**
 	 * HTML-escape parameter before calling this
-	 * @param $line
+	 *
+	 * @param string $line
+	 *
 	 * @return string
 	 */
 	protected function deletedLine( $line ) {
@@ -96,7 +110,9 @@ class TableDiffFormatter extends DiffFormatter {
 
 	/**
 	 * HTML-escape parameter before calling this
-	 * @param $line
+	 *
+	 * @param string $line
+	 *
 	 * @return string
 	 */
 	protected function contextLine( $line ) {
@@ -104,9 +120,10 @@ class TableDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 * @param $marker
-	 * @param $class
-	 * @param $line
+	 * @param string $marker
+	 * @param string $class Unused
+	 * @param string $line
+	 *
 	 * @return string
 	 */
 	protected function wrapLine( $marker, $class, $line ) {
@@ -120,13 +137,17 @@ class TableDiffFormatter extends DiffFormatter {
 
 	/**
 	 * @return string
+	 *
+	 * @return void
 	 */
 	protected function emptyLine() {
 		return '<td colspan="2">&#160;</td>';
 	}
 
 	/**
-	 * @param $lines array
+	 * @param string[] $lines
+	 *
+	 * @return void
 	 */
 	protected function added( $lines ) {
 		foreach ( $lines as $line ) {
@@ -137,7 +158,9 @@ class TableDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 * @param $lines
+	 * @param string[] $lines
+	 *
+	 * @return void
 	 */
 	protected function deleted( $lines ) {
 		foreach ( $lines as $line ) {
@@ -148,7 +171,9 @@ class TableDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 * @param $lines
+	 * @param string[] $lines
+	 *
+	 * @return void
 	 */
 	protected function context( $lines ) {
 		foreach ( $lines as $line ) {
@@ -159,8 +184,8 @@ class TableDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 * @param $orig
-	 * @param $closing
+	 * @param string[] $orig
+	 * @param string[] $closing
 	 */
 	protected function changed( $orig, $closing ) {
 		wfProfileIn( __METHOD__ );

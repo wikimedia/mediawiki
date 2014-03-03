@@ -31,6 +31,9 @@
  * @ingroup Content
  */
 class CssContent extends TextContent {
+	/**
+	 * @param string $text
+	 */
 	public function __construct( $text ) {
 		parent::__construct( $text, CONTENT_MODEL_CSS );
 	}
@@ -39,10 +42,11 @@ class CssContent extends TextContent {
 	 * Returns a Content object with pre-save transformations applied using
 	 * Parser::preSaveTransform().
 	 *
-	 * @param $title Title
-	 * @param $user User
-	 * @param $popts ParserOptions
-	 * @return Content
+	 * @param Title $title
+	 * @param User $user
+	 * @param ParserOptions $popts
+	 *
+	 * @return CssContent
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
 		global $wgParser;
@@ -54,6 +58,9 @@ class CssContent extends TextContent {
 		return new CssContent( $pst );
 	}
 
+	/**
+	 * @return string
+	 */
 	protected function getHtml() {
 		$html = "";
 		$html .= "<pre class=\"mw-code mw-css\" dir=\"ltr\">\n";

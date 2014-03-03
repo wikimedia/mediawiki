@@ -97,16 +97,15 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Constructor
-	 * @param $context IContextSource context to use, anything else will be ignored
-	 * @param $old Integer old ID we want to show and diff with.
-	 * @param $new String|int either revision ID or 'prev' or 'next'. Default: 0.
-	 * @param $rcid Integer Deprecated, no longer used!
-	 * @param $refreshCache boolean If set, refreshes the diff cache
-	 * @param $unhide boolean If set, allow viewing deleted revs
+	 * @param IContextSource $context context to use, anything else will be ignored
+	 * @param int $old old ID we want to show and diff with.
+	 * @param string|int $new either revision ID or 'prev' or 'next'. Default: 0.
+	 * @param int $rcid Deprecated, no longer used!
+	 * @param bool $refreshCache If set, refreshes the diff cache
+	 * @param bool $unhide If set, allow viewing deleted revs
 	 */
 	function __construct( $context = null, $old = 0, $new = 0, $rcid = 0,
-		$refreshCache = false, $unhide = false
-	) {
+		$refreshCache = false, $unhide = false ) {
 		if ( $context instanceof IContextSource ) {
 			$this->setContext( $context );
 		}
@@ -120,7 +119,7 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * @param $value bool
+	 * @param bool $value
 	 */
 	function setReducedLineNumbers( $value = true ) {
 		$this->mReducedLineNumbers = $value;
@@ -155,7 +154,7 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * @return Bool|int
+	 * @return bool|int
 	 */
 	function getNewid() {
 		$this->loadRevisionIds();
@@ -167,7 +166,8 @@ class DifferenceEngine extends ContextSource {
 	 * Look up a special:Undelete link to the given deleted revision id,
 	 * as a workaround for being unable to load deleted diffs in currently.
 	 *
-	 * @param int $id revision ID
+	 * @param int $id Revision ID
+	 *
 	 * @return mixed URL or false
 	 */
 	function deletedLink( $id ) {
@@ -193,8 +193,9 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Build a wikitext link toward a deleted revision, if viewable.
 	 *
-	 * @param int $id revision ID
-	 * @return string wikitext fragment
+	 * @param int $id Revision ID
+	 *
+	 * @return string Wikitext fragment
 	 */
 	function deletedIdMarker( $id ) {
 		$link = $this->deletedLink( $id );
@@ -451,7 +452,7 @@ class DifferenceEngine extends ContextSource {
 	 * Side effect: When the patrol link is build, this method will call
 	 * OutputPage::preventClickjacking() and load mediawiki.page.patrol.ajax.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	protected function markPatrolledLink() {
 		global $wgUseRCPatrol, $wgEnableAPI, $wgEnableWriteAPI;
@@ -518,8 +519,9 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * @param $rev Revision
-	 * @return String
+	 * @param Revision $rev
+	 *
+	 * @return string
 	 */
 	protected function revisionDeleteLink( $rev ) {
 		$link = Linker::getRevDeleteLink( $this->getUser(), $rev, $rev->getTitle() );
@@ -643,6 +645,7 @@ class DifferenceEngine extends ContextSource {
 	 * @param string|bool $otitle Header for old text or false
 	 * @param string|bool $ntitle Header for new text or false
 	 * @param string $notice HTML between diff header and body
+	 *
 	 * @return mixed
 	 */
 	function getDiff( $otitle, $ntitle, $notice = '' ) {
@@ -771,8 +774,8 @@ class DifferenceEngine extends ContextSource {
 	 * perhaps taking advantage of the content's native form. This is required for all content
 	 * models that are not text based.
 	 *
-	 * @param $old Content: old content
-	 * @param $new Content: new content
+	 * @param Content $old old content
+	 * @param Content $new new content
 	 *
 	 * @return bool|string
 	 * @since 1.21
@@ -800,6 +803,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @param string $otext old text, must be already segmented
 	 * @param string $ntext new text, must be already segmented
+	 *
 	 * @return bool|string
 	 * @deprecated since 1.21, use generateContentDiffBody() instead!
 	 */
@@ -816,6 +820,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @param string $otext old text, must be already segmented
 	 * @param string $ntext new text, must be already segmented
+	 *
 	 * @return bool|string
 	 */
 	function generateTextDiffBody( $otext, $ntext ) {
@@ -897,7 +902,7 @@ class DifferenceEngine extends ContextSource {
 	 * Generate a debug comment indicating diff generating time,
 	 * server node, and generator backend.
 	 *
-	 * @param String $generator : What diff engine was used
+	 * @param string $generator : What diff engine was used
 	 *
 	 * @return string
 	 */
@@ -920,7 +925,7 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Replace line numbers with the text in the user's language
 	 *
-	 * @param String $text
+	 * @param string $text
 	 *
 	 * @return mixed
 	 */
@@ -942,6 +947,7 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * If there are revisions between the ones being compared, return a note saying so.
+	 *
 	 * @return string
 	 */
 	function getMultiNotice() {
@@ -978,9 +984,11 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Get a notice about how many intermediate edits and users there are
-	 * @param $numEdits int
-	 * @param $numUsers int
-	 * @param $limit int
+	 *
+	 * @param int $numEdits
+	 * @param int $numUsers
+	 * @param int $limit
+	 *
 	 * @return string
 	 */
 	public static function intermediateEditsMsg( $numEdits, $numUsers, $limit ) {
@@ -999,10 +1007,11 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Get a header for a specified revision.
 	 *
-	 * @param $rev Revision
+	 * @param Revision $rev
 	 * @param string $complete 'complete' to get the header wrapped depending
 	 *        the visibility of the revision and a link to edit the page.
-	 * @return String HTML fragment
+	 *
+	 * @return string HTML fragment
 	 */
 	protected function getRevisionHeader( Revision $rev, $complete = '' ) {
 		$lang = $this->getLanguage();
@@ -1149,7 +1158,8 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @param int $old Revision id, e.g. from URL parameter 'oldid'
 	 * @param int|string $new Revision id or strings 'next' or 'prev', e.g. from URL parameter 'diff'
-	 * @return array Array of two revision ids, older first, later second.
+	 *
+	 * @return mixed[] List of two revision ids, older first, later second.
 	 *     Zero signifies invalid argument passed.
 	 *     false signifies that there is no previous/next revision ($old is the oldest/newest one).
 	 */
