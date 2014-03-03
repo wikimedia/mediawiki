@@ -96,6 +96,7 @@ class OracleUpdater extends DatabaseUpdater {
 			//1.23
 			array( 'addIndex', 'logging', 'i06', 'patch-logging_user_text_type_time_index.sql' ),
 			array( 'addIndex', 'logging', 'i07', 'patch-logging_user_text_time_index.sql' ),
+			array( 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ),
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),
