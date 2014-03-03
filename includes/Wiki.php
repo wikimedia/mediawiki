@@ -444,7 +444,15 @@ class MediaWiki {
 	public function run() {
 		try {
 			$this->checkMaxLag();
-			$this->main();
+			try {
+				$this->main();
+			} catch ( ErrorPageError $e ) {
+				// Bug 62091: while exceptions are convenient to bubble up GUI errors,
+				// they are not internal application faults. As with normal requests, this
+				// should commit, print the output, do deferred updates, jobs, and profiling.
+				wfGetLBFactory()->commitMasterChanges();
+				$e->report(); // display the GUI error
+			}
 			if ( function_exists( 'fastcgi_finish_request' ) ) {
 				fastcgi_finish_request();
 			}
