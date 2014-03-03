@@ -114,6 +114,8 @@ production.
   whether to send a watchlist email notification.
 * (bug 42026) Special:Contributions now includes an option to filter page
   creations, similar to the topOnly option.
+* Add new hooks OldChangesListBegin and EnhancedChangesListBegin hooks to allow
+  extensions a chance to batch process the result set prior to rendering.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent

@@ -1106,6 +1106,11 @@ $editToken: The user's edit token.
 &$hookErr: Out-param for the error. Passed as the parameters to
   OutputPage::showErrorPage.
 
+'EnhancedChangesListBegin': to receive the full list of rows to be rendered
+in the enhanced changes list before rendering begings.
+$changesList: EnhancedChangesList object
+$rows: ResultWrapper containing all rows to be rendered
+
 'ExemptFromAccountCreationThrottle': Exemption from the account creation
 throttle.
 $ip: The ip address of the user
@@ -1735,6 +1740,11 @@ displayed.
   whether to use the content language (true) or site language (false) (bool)
 &$transform: whether or not to expand variables and templates
   in the message (bool)
+
+'OldChangesListBegin': to receive the full list of rows to be rendered
+in the enhanced changes list before rendering begings.
+$changesList: OldChangesList object
+$rows: array containing all rows to be rendered
 
 'OldChangesListRecentChangesLine': Customize entire recent changes line, or
 return false to omit the line from RecentChanges and Watchlist special pages.
