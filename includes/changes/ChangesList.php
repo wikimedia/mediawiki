@@ -174,6 +174,13 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * @param ResultWrapper|array $rows
+	 */
+	public function initChangesListRows( $rows ) {
+		wfRunHooks( 'ChangesListInitRows', array( $this, $rows ) );
+	}
+
+	/**
 	 * Show formatted char difference
 	 * @param int $old Number of bytes
 	 * @param int $new Number of bytes

@@ -296,6 +296,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$counter = 1;
 		$list = ChangesList::newFromContext( $this->getContext() );
+		$list->initChangesListRows( $rows );
 
 		$rclistOutput = $list->beginRecentChangesList();
 		foreach ( $rows as $obj ) {

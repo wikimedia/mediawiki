@@ -137,6 +137,9 @@ production.
 * Changes to content typography (fonts, line-height, etc.). See
   https://www.mediawiki.org/wiki/Typography_refresh for further information.
 * ResourceLoader: mw.loader.using() now implements a Promise interface.
+* Add new hook ChangesListInitRows accessed via ChangesList::initChangesListRows.
+  If called by the ChangesList consumer this gives extensions a chance to batch
+  process the result set prior to rendering.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
