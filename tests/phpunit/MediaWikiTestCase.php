@@ -59,6 +59,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private $mwGlobals = array();
 
 	/**
+	 * Holds list of globals to be unset in tearDown()
+	 * See also setMwGlobals().
+	 * @var array
+	 */
+	private $mwGlobalsToUnset = array();
+
+	/**
 	 * Table name prefixes. Oracle likes it shorter.
 	 */
 	const DB_PREFIX = 'unittest_';
@@ -242,6 +249,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 		$this->mwGlobals = array();
 
+		// Unset any globals we didnt previously have
+		foreach( $this->mwGlobalsToUnset as $key ) {
+			unset( $GLOBALS[$key] );
+		}
+		$this->mwGlobalsToUnset = array();
+
 		$phpErrorLevel = intval( ini_get( 'error_reporting' ) );
 
 		if ( $phpErrorLevel !== $this->phpErrorLevel ) {
@@ -312,7 +325,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			// setMwGlobals() on the same global would override the original
 			// value.
 			if ( !array_key_exists( $key, $this->mwGlobals ) ) {
-				$this->mwGlobals[$key] = $GLOBALS[$key];
+				if( array_key_exists( $key, $GLOBALS ) ) {
+					$this->mwGlobals[$key] = $GLOBALS[$key];
+				} else {
+					$this->mwGlobalsToUnset[] = $key;
+				}
 			}
 
 			// Override the global
