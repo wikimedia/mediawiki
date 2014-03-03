@@ -737,7 +737,7 @@ $messages = array(
 'hide' => 'Чуьнуьхун',
 'show' => 'Къалурун',
 'minoreditletter' => 'гъ',
-'newpageletter' => '<font color ="blue">Цl</font>',
+'newpageletter' => 'Цl',
 'boteditletter' => 'б',
 'rc_categories_any' => 'ГЬар са',
 'rc-enhanced-expand' => 'Куьлуь-шуьлуьяр къалурун (JavaScript герекзава)',

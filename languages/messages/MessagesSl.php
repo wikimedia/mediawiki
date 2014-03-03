@@ -1776,6 +1776,7 @@ Poprosite koga, ki ima možnost ogleda podatkov zatrtih datotek, da preveri polo
 'php-uploaddisabledtext' => 'Nalaganje datotek je onemogočeno v PHP.
 Prosimo preverite file_uploads nastavitev.',
 'uploadscripted' => 'Datoteka vsebuje HTML- ali skriptno kodo, ki bi jo lahko brskalnik razlagal napačno.',
+'uploadscriptednamespace' => 'Datoteka SVG vsebuje nedovoljen imenski prostor »$1«',
 'uploadinvalidxml' => 'XML v naloženi datoteki ne moremo razčleniti.',
 'uploadvirus' => 'Datoteka vsebuje virus!
 Podrobnosti: $1',
@@ -2621,6 +2622,7 @@ Najnovejši vnos v dnevniku blokad je naveden spodaj:',
 'sp-contributions-search' => 'Išči prispevke',
 'sp-contributions-username' => 'IP-naslov ali uporabniško ime:',
 'sp-contributions-toponly' => 'Prikaži samo vrhnje redakcije',
+'sp-contributions-newonly' => 'Prikaži samo urejanja, ki so ustvarila nove strani',
 'sp-contributions-submit' => 'Išči',
 
 # What links here

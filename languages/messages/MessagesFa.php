@@ -1191,7 +1191,7 @@ $2
 'noarticletext-nopermission' => 'این صفحه هم‌اکنون متنی ندارد.
 شما می‌توانید در دیگر صفحه‌ها [[Special:Search/{{PAGENAME}}|این عنوان را جستجو کنید]]،
 یا <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} سیاهه‌های مرتبط را بگردید]</span> ولی شما اجازه ایجاد این صفحه را ندارید.',
-'missing-revision' => 'ویرایش #$1 از صفحهٔ "{{PAGENAME}}" موجود نیست.
+'missing-revision' => 'ویرایش #$1 از صفحهٔ «{{PAGENAME}}» موجود نیست.
 
 معمولاً در اثر پیوند به تاریخچهٔ به‌روز نشدهٔ صفحهٔ حذف شده است.
 می‌توانید جزئیات بیشتر را در [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] بیابید.',

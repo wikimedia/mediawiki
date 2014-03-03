@@ -841,7 +841,7 @@ Attendi $1 e riprova in seguito.',
 
 # Change password dialog
 'changepassword' => 'Cambia password',
-'resetpass_announce' => 'Per completare il log in, è necessario impostare una nuova password.',
+'resetpass_announce' => "Per completare l'accesso, è necessario impostare una nuova password.",
 'resetpass_text' => '<!-- Aggiungere il testo qui -->',
 'resetpass_header' => "Cambia la password dell'account",
 'oldpassword' => 'Vecchia password:',
@@ -1831,6 +1831,7 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'uploaddisabledtext' => 'Il caricamento dei file non è attivo.',
 'php-uploaddisabledtext' => 'Il caricamento di file tramite PHP è disabilitato. Controlla la configurazione di file_uploads.',
 'uploadscripted' => 'Questo file contiene codice HTML o di script, che potrebbe essere interpretato erroneamente da un browser web.',
+'uploadscriptednamespace' => "Questo file SVG contiene un namespace '$1' non consentito",
 'uploadinvalidxml' => 'Il codice XML nel file caricato non può essere elaborato.',
 'uploadvirus' => 'Questo file contiene un virus! Dettagli: $1',
 'uploadjava' => "Questo file è un file ZIP che contiene un file .class Java.
@@ -2652,6 +2653,7 @@ $1',
 'sp-contributions-search' => 'Ricerca contributi',
 'sp-contributions-username' => 'Indirizzo IP o nome utente:',
 'sp-contributions-toponly' => 'Mostra solo i contributi che sono le ultime revisioni per la pagina',
+'sp-contributions-newonly' => 'Visualizza solo le modifiche che sono creazioni di pagina',
 'sp-contributions-submit' => 'Ricerca',
 
 # What links here
@@ -3083,6 +3085,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-undo' => '"Annulla" permette di annullare questa modifica e apre il modulo di modifica in modalità di anteprima. Permette di inserire una motivazione nell\'oggetto della modifica.',
 'tooltip-preferences-save' => 'Salva le preferenze',
 'tooltip-summary' => 'Inserire una breve sintesi',
+'interlanguage-link-title' => '$1 - $2',
 
 # Stylesheets
 'common.css' => '/* Gli stili CSS inseriti qui si applicano a tutte le skin */',

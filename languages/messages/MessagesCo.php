@@ -802,6 +802,7 @@ Parechji mudelli ùn seranu micca inclusi.",
 'tags-edit' => 'mudificà',
 
 # New logging system
+'logentry-move-move' => '$1 {{GENDER:$2|hà spustatu}} a pagina $3 à $4',
 'rightsnone' => '(nessunu)',
 
 # Special:ExpandTemplates

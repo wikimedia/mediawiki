@@ -940,6 +940,9 @@ $2',
 'suspicious-userlogout' => 'Ваш захтев за одјаву је одбијен јер је послат од стране неисправног прегледача или посредника.',
 'createacct-another-realname-tip' => 'Право име није обавезно.
 Ако изаберете да га унесете, оно ће бити коришћено за приписивање вашег рада.',
+'pt-login' => 'Пријави ме',
+'pt-createaccount' => 'Отвори налог',
+'pt-userlogout' => 'Одјави ме',
 
 # Email sending
 'php-mail-error-unknown' => 'Непозната грешка у функцији PHP mail().',
@@ -963,8 +966,13 @@ $2',
 'resetpass-submit-cancel' => 'Откажи',
 'resetpass-wrong-oldpass' => 'Неисправна привремена или текућа лозинка.
 Можда сте већ променили лозинку или сте затражили нову привремену лозинку.',
+'resetpass-recycled' => 'Унели сте садашњу лозинку, да би сте ресетовали лозинку морате унети нову.',
+'resetpass-temp-emailed' => 'Пријавили сте се са привременим кодом из е-поште.
+Да бисте завршили пријављивање морате поставити нову лозинку овде:',
 'resetpass-temp-password' => 'Привремена лозинка:',
 'resetpass-abort-generic' => 'Промену лозинке је спречио додатак.',
+'resetpass-expired' => 'Ваша лозинка је истекла. Поставите нову лозинку да бисте се пријавили.',
+'resetpass-expired-soft' => 'Ваша лозинка је истекла и морате поставити нову. Поставите нову лозинку или кликните откажи да је поставите касније.',
 
 # Special:PasswordReset
 'passwordreset' => 'Обнављање лозинке',
@@ -1792,11 +1800,23 @@ $1",
 'rcnotefrom' => 'Испод су измене од <b>$3; $4</b> (до <b>$1</b> измена).',
 'rclistfrom' => 'Прикажи нове измене почев од $1',
 'rcshowhideminor' => '$1 мање измене',
+'rcshowhideminor-show' => 'Прикажи',
+'rcshowhideminor-hide' => 'Сакриј',
 'rcshowhidebots' => '$1 ботове',
+'rcshowhidebots-show' => 'Прикажи',
+'rcshowhidebots-hide' => 'Сакриј',
 'rcshowhideliu' => '$1 пријављене кориснике',
+'rcshowhideliu-show' => 'Прикажи',
+'rcshowhideliu-hide' => 'Сакриј',
 'rcshowhideanons' => '$1 анонимне кориснике',
+'rcshowhideanons-show' => 'Прикажи',
+'rcshowhideanons-hide' => 'Сакриј',
 'rcshowhidepatr' => '$1 патролиране измене',
+'rcshowhidepatr-show' => 'Прикажи',
+'rcshowhidepatr-hide' => 'Сакриј',
 'rcshowhidemine' => '$1 моје измене',
+'rcshowhidemine-show' => 'Прикажи',
+'rcshowhidemine-hide' => 'Сакриј',
 'rclinks' => 'Прикажи последњих $1 измена {{PLURAL:$2|претходни дан|у последња $2 дана|у последњих $2 дана}}<br />$3',
 'diff' => 'разл',
 'hist' => 'ист',
@@ -1930,6 +1950,7 @@ $1",
 'php-uploaddisabledtext' => 'Слање датотека је онемогућено у PHP-у.
 Проверите поставке file_uploads.',
 'uploadscripted' => 'Датотека садржи HTML или скриптни код који може бити погрешно протумачен од стране прегледача.',
+'uploadscriptednamespace' => 'Ова SVG датотека садржи погрешан именски простор „$1“',
 'uploadvirus' => 'Датотека садржи вирус!
 Детаљи: $1',
 'uploadjava' => 'Датотека је формата ZIP који садржи јава .class елемент.
@@ -2765,6 +2786,7 @@ $1',
 'sp-contributions-search' => 'Претрага доприноса',
 'sp-contributions-username' => 'ИП адреса или корисничко име:',
 'sp-contributions-toponly' => 'Прикажи само најновије измене',
+'sp-contributions-newonly' => 'Прикажи само измене којима су креиране нове странице',
 'sp-contributions-submit' => 'Претражи',
 
 # What links here

@@ -73,6 +73,7 @@
  * @author Wrightbus
  * @author Xiaomingyan
  * @author Yfdyh000
+ * @author Zoglun
  * @author 乌拉跨氪
  * @author 御坂美琴
  * @author 燃玉
@@ -1420,7 +1421,7 @@ $1",
 'powersearch-toggleall' => '全选',
 'powersearch-togglenone' => '全不选',
 'search-external' => '外部搜索',
-'searchdisabled' => '{{SITENAME}}的搜索已被禁用。您可以暂时使用Google进行搜索，须注意他们索引的{{SITENAME}}内容可能会过时。',
+'searchdisabled' => '{{SITENAME}}的搜索已被禁用。您可以暂时使用搜索引擎进行搜索，须注意他们索引的{{SITENAME}}内容可能不是最新的。',
 'search-error' => '搜索时发生错误：$1',
 
 # Preferences page
@@ -1857,6 +1858,7 @@ $1",
 'uploaddisabledtext' => '文件上传已停用。',
 'php-uploaddisabledtext' => 'PHP文件上传停用。请检查file_uploads设置。',
 'uploadscripted' => '该文件包含可能被网络浏览器错误解释的 HTML 或脚本代码。',
+'uploadscriptednamespace' => "此SVG文件包含非法名字空间'$1'",
 'uploadinvalidxml' => '上传文件中的XML无法解析。',
 'uploadvirus' => '该文件包含病毒！
 详情：$1',
@@ -2475,7 +2477,7 @@ $UNWATCHURL
 'delete-edit-reasonlist' => '编辑删除原因',
 'delete-toobig' => '这个页面有一个十分大量的编辑历史，超过$1次修订。删除此类页面的动作已经被限制，以防止在{{SITENAME}}上的意外扰乱。',
 'delete-warning-toobig' => '这个页面有一个十分大量的编辑历史，超过$1次修订。删除它可能会扰乱{{SITENAME}}的数据库操作；在继续此动作前请小心。',
-'deleting-backlinks-warning' => "'''警告：'''有其他页面链接至或transclude自您要删除的页面。",
+'deleting-backlinks-warning' => "'''警告：'''有其他页面链接至或包含您要删除的页面。",
 
 # Rollback
 'rollback' => '回退编辑',
@@ -2645,6 +2647,7 @@ $1',
 'sp-contributions-search' => '搜索贡献',
 'sp-contributions-username' => 'IP地址或用户名：',
 'sp-contributions-toponly' => '仅显示最后版本的编辑',
+'sp-contributions-newonly' => '仅显示创建页面的编辑',
 'sp-contributions-submit' => '搜索',
 
 # What links here

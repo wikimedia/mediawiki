@@ -1613,6 +1613,7 @@ A dovrìa ciamé a cheidun con la possibilità ëd vëdde ij dàit dj'archivi el
 'php-uploaddisabledtext' => "Ij cariament d'archivi a son disabilità an PHP.
 Për piasì, ch'a controla l'ampostassion file_uploads.",
 'uploadscripted' => "St'archivi-sì a l'ha andrinta chèich-còs (dël còdes HTML ò pura un senari) che a podrìa esse travajà mal da chèich programa ëd navigassion.",
+'uploadscriptednamespace' => "S'archivi SVG a conten në spassi nominal «1» nen autorisà",
 'uploadinvalidxml' => "L'XML ant l'archivi carià a l'ha nen podù esse analisà.",
 'uploadvirus' => "St'archivi-sì a l'han andrinta un '''vìrus!''' Detaj: $1",
 'uploadjava' => "L'archivi a l'é n'archivi ZIP ch'a conten n'archivi Java .class.
@@ -2448,6 +2449,7 @@ L'ùltima intrada dël registr dij blocagi a l'é butà sì-sota për arferiment
 'sp-contributions-search' => 'Arserché le contribussion',
 'sp-contributions-username' => "Adrëssa IP ò stranòm dl'utent:",
 'sp-contributions-toponly' => "Mostré mach le modìfiche ch'a son j'ùltime revision",
+'sp-contributions-newonly' => "Mostré mach le modìfiche ch'a son dle creassion ëd pàgina",
 'sp-contributions-submit' => 'Arserché',
 
 # What links here

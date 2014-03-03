@@ -1917,6 +1917,7 @@ Verifique o motivo da eliminação do ficheiro antes de prosseguir com o re-envi
 'php-uploaddisabledtext' => 'O carregamento de ficheiros está impossibilitado no PHP.
 Verifique a configuração file_uploads, por favor.',
 'uploadscripted' => 'Este ficheiro contém HTML ou código que pode ser erradamente interpretado por um browser.',
+'uploadscriptednamespace' => "Este ficheiro SVG contém um espaço nominal que não é permitido '$1'",
 'uploadinvalidxml' => 'Erro detectado na análise do XML do ficheiro carregado.',
 'uploadvirus' => 'O ficheiro contém um vírus! Detalhes: $1',
 'uploadjava' => 'Este é um ficheiro ZIP que contém um ficheiro .class de Java.
@@ -2754,6 +2755,7 @@ Para referência é apresentado abaixo o último registo de bloqueio:',
 'sp-contributions-search' => 'Pesquisar contribuições',
 'sp-contributions-username' => 'Endereço IP ou utilizador:',
 'sp-contributions-toponly' => 'Mostrar somente as revisões mais recentes',
+'sp-contributions-newonly' => 'Mostrar só edições que são criações de páginas',
 'sp-contributions-submit' => 'Pesquisar',
 
 # What links here
@@ -3913,6 +3915,9 @@ Por favor, confirme que você quer realmente recriar esta página.',
 'confirm-watch-top' => 'Adicionar esta página às suas páginas vigiadas?',
 'confirm-unwatch-button' => 'OK',
 'confirm-unwatch-top' => 'Remover esta página das páginas vigiadas?',
+
+# Separators for various lists, etc.
+'quotation-marks' => '"$1"',
 
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',

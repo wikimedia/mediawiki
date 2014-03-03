@@ -1870,6 +1870,7 @@ Om du fortsatt ønsker å laste opp filen, gå tilbake og last den opp under et 
 'uploaddisabledtext' => 'Opplasting er slått av.',
 'php-uploaddisabledtext' => 'PHP-filopplasting er deaktivert. Sjekk innstillingen for file_uploads.',
 'uploadscripted' => 'Denne filen inneholder HTML eller skripting som kan feiltolkes av en nettleser.',
+'uploadinvalidxml' => 'XML-en i den opplastede filen kunne ikke tolkes.',
 'uploadvirus' => 'Denne filen inneholder virus! Detaljer: $1',
 'uploadjava' => 'Filen er en ZIP-fil som inneholder en Java-fil av typen .class.
 Det er ikke tillatt å laste opp Java-filer, fordi de kan omgå sikkerhetsrestriksjoner.',
@@ -4236,6 +4237,4 @@ Faktisk utvider den det meste innkapslet i doble krøllparenteser.',
 'expand_templates_generate_rawhtml' => 'Vis ubehandlet HTML',
 'expand_templates_preview' => 'Forhåndsvisning',
 
-# Unknown messages
-'uploadinvalidxml' => 'XML-en i den opplastede filen kunne ikke tolkes.',
 );

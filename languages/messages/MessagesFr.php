@@ -1978,6 +1978,7 @@ Vous devriez demander à quelqu'un la possibilité de vérifier le journal de ce
 'uploaddisabledtext' => 'L’import de fichiers est désactivé sur ce wiki.',
 'php-uploaddisabledtext' => "L'import de fichiers a été désactivé dans PHP. Vérifiez l'option de configuration file_uploads.",
 'uploadscripted' => 'Ce fichier contient du code HTML ou un script qui pourrait être interprété de façon incorrecte par un navigateur web.',
+'uploadscriptednamespace' => "Ce fichier SVG contient un espace de noms '$1' non autorisé.",
 'uploadinvalidxml' => 'Le XML dans le fichier importé n’a pas pu être analysé.',
 'uploadvirus' => 'Ce fichier contient un virus ! Pour plus de détails, consultez : $1',
 'uploadjava' => 'C’est un fichier ZIP qui contient un fichier Java .class.
@@ -2282,7 +2283,7 @@ N’oubliez pas de vérifier s’il n’y a pas d’autres liens vers les modèl
 'pageswithprop-legend' => 'Pages avec une propriété de page',
 'pageswithprop-text' => 'Cette page liste les pages qui utilisent une propriété de page particulière.',
 'pageswithprop-prop' => 'Nom de la propriété :',
-'pageswithprop-submit' => 'Aller',
+'pageswithprop-submit' => 'Lister',
 'pageswithprop-prophidden-long' => 'valeur de propriété de texte long masquée ($1)',
 'pageswithprop-prophidden-binary' => 'valeur de propriété binaire masquée ($1)',
 
@@ -2821,6 +2822,7 @@ La dernière entrée du journal des blocages est indiquée ci-dessous à titre d
 'sp-contributions-search' => 'Rechercher les contributions',
 'sp-contributions-username' => "Adresse IP ou nom d'utilisateur :",
 'sp-contributions-toponly' => 'Ne montrer que les contributions qui sont les dernières des articles',
+'sp-contributions-newonly' => 'Afficher uniquement les modifications qui sont des créations de page',
 'sp-contributions-submit' => 'Rechercher',
 
 # What links here

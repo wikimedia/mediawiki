@@ -1993,6 +1993,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'php-uploaddisabledtext' => 'ファイルのアップロードがPHPで無効化されています。
 file_uploadsの設定を確認してください。',
 'uploadscripted' => 'このファイルは、ウェブブラウザーが誤って解釈してしまうおそれがあるHTMLまたはスクリプトコードを含んでいます。',
+'uploadscriptednamespace' => 'この SVG ファイルは無効な名前空間「$1」を含んでいます',
 'uploadinvalidxml' => 'アップロードされたファイルに含まれる XML が構文解析できませんでした。',
 'uploadvirus' => 'このファイルはウイルスを含んでいます!
 詳細: $1',
@@ -2847,6 +2848,7 @@ $1',
 'sp-contributions-search' => '投稿の検索',
 'sp-contributions-username' => 'IPアドレスまたは利用者名:',
 'sp-contributions-toponly' => '最新版の編集のみを表示',
+'sp-contributions-newonly' => 'ページ作成を伴う編集のみを表示',
 'sp-contributions-submit' => '検索',
 
 # What links here

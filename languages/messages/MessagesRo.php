@@ -1871,6 +1871,7 @@ Ar trebui să contactați pe cineva care poate vizualiza datele suprimate ale fi
 'php-uploaddisabledtext' => 'Încărcarea de fișiere este dezactivată în PHP.
 Vă rugăm să verificați setările din file_uploads.',
 'uploadscripted' => 'Fișierul conține HTML sau cod script care poate fi interpretat în mod eronat de un browser.',
+'uploadscriptednamespace' => 'Acest fișier SVG conține un spațiu de nume „$1” neautorizat.',
 'uploadinvalidxml' => 'Nu s-a putut analiza conținutul XML din fișierul încărcat.',
 'uploadvirus' => 'Fișierul conține un virus! Detalii: $1',
 'uploadjava' => 'Fișierul de față este o arhivă ZIP care conține un fișier de clasă Java.
@@ -2701,6 +2702,7 @@ Iată aici ultima înregistrare relevantă din jurnalul blocărilor:',
 'sp-contributions-search' => 'Căutare contribuții',
 'sp-contributions-username' => 'Adresă IP sau nume de utilizator:',
 'sp-contributions-toponly' => 'Afișează numai versiunile recente',
+'sp-contributions-newonly' => 'Afișează numai modificările care au dus la crearea de pagini',
 'sp-contributions-submit' => 'Căutare',
 
 # What links here

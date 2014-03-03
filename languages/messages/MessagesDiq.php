@@ -1050,13 +1050,12 @@ Qey na hesabê newe parola, cıkewtış dıma şıma eşkeni na qısım de ''[[S
 Seba afernayışê pele ra, qutiya metnê cêrêni bıgurene (seba melumati qaytê [[{{MediaWiki:Helppage}}|pela peşti]] ke).
 Eke be ğeletine ameya tiya, wa gocega '''peyser'''i programê xo de bıtıkne.",
 'anontalkpagetext' => "----''No pel, pel o karbero hesab a nêkerdeyan o, ya zi karbero hesab akerdeyan o labele pê hesabê xo nêkewto de. No sebeb ra ma IP adres şuxulneni û ney IP adresan herkes eşkeno bıvino. Eke şıma qayil niye ina bo xo ri [[Special:UserLogin/signup|yew hesab bıvıraze]] veyaxut [[Special:UserLogin|hesab akere]].''",
-'noarticletext' => 'Na per enewke venga.
-Tı şenay na perer, peran de [[Special:Search/{{PAGENAME}}|binan miyan de bıgeyrè]],
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}  qeyda miyande bıgeyre],
-ya na [{{fullurl:{{FULLPAGENAME}}|action=edit}} ena perer vırazé]</span>.',
-'noarticletext-nopermission' => 'Na pela dı eno metin enewke vengo
-Na sernuşteya şıma [[Special:Search/{{PAGENAME}}|pelanê binan de şeni bıgeyri]]
-ya zi <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} itara şeni bıgeyri cı].</span> feqet şıma nişeni biizın teba bıkeri.',
+'noarticletext' => 'Ena pele de hewna theba çıniyo.
+Tı şenay zerreyê pelanê binan de [[Special:Search/{{PAGENAME}}|seba sernameyê ena pele cı geyre]],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} qeydan miyan de cı geyre],
+ya zi [{{fullurl:{{FULLPAGENAME}}|action=edit}} ena pele bıvurne]</span>.',
+'noarticletext-nopermission' => 'Ena pele de hewna theba çıniyo.
+Tı şenay zerreyê pelanê binan de [[Special:Search/{{PAGENAME}}|seba sernameyê na pele cı geyre]], ya zi <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} qeydan miyan de cı geyre]</span>, ema destur çıniyo ke na pele vırazê.',
 'missing-revision' => 'Rewizyonê name dê pela da #$1 "{{PAGENAME}}" dı çıniyo.
 
 No normal de tarix dê pelanê besterneyan dı ena xırabin asena.
@@ -3109,7 +3108,7 @@ dosyaya emaneti vindbiyo',
 'tooltip-pt-login' => 'Mayê şıma ronıştış akerdışi rê dawet keme; labelê ronıştış mecburi niyo',
 'tooltip-pt-logout' => 'Sistem ra vıcyayış',
 'tooltip-ca-talk' => 'Zerrekê pele sero werênayış',
-'tooltip-ca-edit' => 'Tı şenay na perer bıvurné.Verdé qeyd kerdışi ver gocega verqayti bıkarné.',
+'tooltip-ca-edit' => 'Tı şenay na pele bıvurnê. Kerem ke, qeydkerdış ra ver gocega verqayti bıgurene.',
 'tooltip-ca-addsection' => 'Zu bınnusteya newi ak',
 'tooltip-ca-viewsource' => 'Ena pele kılit biya.
 Şıma şenê çımeyê aye bıvênê',
@@ -3120,7 +3119,7 @@ dosyaya emaneti vindbiyo',
 'tooltip-ca-undelete' => 'peli biyarê halê ver hewnakerdışi',
 'tooltip-ca-move' => 'Ena pele bere',
 'tooltip-ca-watch' => 'Ena pele lista xoya seyrkerdışi ke',
-'tooltip-ca-unwatch' => 'Ena pele listeya seyir-kerdışi xo ra bıvec',
+'tooltip-ca-unwatch' => 'Ena pele lista xoya seyrkerdışi ra vece',
 'tooltip-search' => '{{SITENAME}} miyan de bıvin',
 'tooltip-search-go' => 'Ebe nê namey tami şo yew pela ke esta',
 'tooltip-search-fulltext' => 'Nê  metni peran dı cı geyre',
@@ -3148,7 +3147,7 @@ dosyaya emaneti vindbiyo',
 'tooltip-ca-nstab-special' => 'Na yew pela xasa, şıma nêşenê sero vurnayış bıkerê',
 'tooltip-ca-nstab-project' => 'Pela procey bıvêne',
 'tooltip-ca-nstab-image' => 'Pera dosyayer bıvin',
-'tooltip-ca-nstab-mediawiki' => 'Mesacané sistemi bıvin',
+'tooltip-ca-nstab-mediawiki' => 'Mesacê sistemi bıvêne',
 'tooltip-ca-nstab-template' => 'Şabloni bıvin',
 'tooltip-ca-nstab-help' => 'Pela peşti bıvêne',
 'tooltip-ca-nstab-category' => 'Pela kategoriye bıvêne',
@@ -3157,7 +3156,7 @@ dosyaya emaneti vindbiyo',
 'tooltip-preview' => 'Vurnayışané ğo çımra ravyarné. Verdé qeyd kerdışi eneri bıkarné!',
 'tooltip-diff' => 'Metni sero vurnayışan mocneno',
 'tooltip-compareselectedversions' => 'Ena per de ferqê rewziyonan de dı weçinaya bıvinê',
-'tooltip-watch' => 'Eno pele listey tıyo seyir-kerdişi ri dek',
+'tooltip-watch' => 'Ena pele lista xoya seyrkerdışi ke',
 'tooltip-watchlistedit-normal-submit' => 'Sernuşteya hewad',
 'tooltip-watchlistedit-raw-submit' => 'Listeyê seyri newen ke',
 'tooltip-recreate' => 'pel hewn a bışiyo zi tepiya biya',

@@ -2987,7 +2987,9 @@ $2',
 'pageinfo-toolboxlink' => 'పేజీ సమాచారం',
 'pageinfo-redirectsto' => 'ఇక్కడికి దారిమార్పు:',
 'pageinfo-redirectsto-info' => 'సమాచారం',
+'pageinfo-contentpage' => 'విషయపు పేజీగా పరిగణింపబడుతుంది',
 'pageinfo-contentpage-yes' => 'అవును',
+'pageinfo-protect-cascading' => 'సంరక్షణ ఇక్కడినుంచి వ్యాపిస్తుంది',
 'pageinfo-protect-cascading-yes' => 'అవును',
 'pageinfo-category-info' => 'వర్గపు సమాచారం',
 'pageinfo-category-pages' => 'పేజీల సంఖ్య',
@@ -3254,6 +3256,7 @@ $1',
 'exif-source' => 'మూలం',
 'exif-editstatus' => 'బొమ్మ యొక్క ఎడిటోరియల్ స్థితి',
 'exif-urgency' => 'ఎంత త్వరగా కావాలి',
+'exif-fixtureidentifier' => 'స్థాపిత వస్తువు పేరు',
 'exif-locationdest' => 'చూపించిన ప్రాంతం',
 'exif-objectcycle' => 'ఈ మాధ్యమం ఉద్దేశించిన సమయం',
 'exif-contact' => 'సంప్రదింపు సమాచారం',
@@ -3306,6 +3309,8 @@ $1',
 
 'exif-planarconfiguration-1' => 'స్థూల ఆకృతి',
 'exif-planarconfiguration-2' => 'సమతల ఆకృతి',
+
+'exif-colorspace-65535' => 'క్రమాంకితం కానిది',
 
 'exif-componentsconfiguration-0' => 'లేదు',
 
@@ -3577,6 +3582,7 @@ $5
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(అప్రమేయ భాష)',
+'img-lang-info' => 'ఈ బొమ్మను $1.$2 లో పెట్టు',
 'img-lang-go' => 'వెళ్ళు',
 
 # Table pager
@@ -3685,6 +3691,7 @@ $5
 
 # Special:Redirect
 'redirect-submit' => 'వెళ్ళు',
+'redirect-lookup' => 'చూడు:',
 'redirect-value' => 'విలువ:',
 'redirect-user' => 'వాడుకరి ID',
 'redirect-page' => 'పుట ఐడీ',
@@ -3872,7 +3879,9 @@ $5
 'api-error-internal-error' => 'అంతర్గత లోపం: ఈ వికీలో మీ ఎక్కింపును ప్రాసెసు చెయ్యడంలో ఎదో తప్పు జరిగింది.',
 'api-error-invalid-file-key' => 'అంతర్గత దోషము: తాత్కాలిక నిల్వలో ఫైల్ కనపడలేదు.',
 'api-error-missingparam' => 'అంతర్గత దోషం: అభ్యర్ధనలో పరామితులు అన్నీ లేవు.',
+'api-error-missingresult' => 'అంతర్గత లోపం: నకలు తీయడం సఫలమైందో లేదో తెలియడం లేదు.',
 'api-error-mustbeloggedin' => 'దస్త్రాలను ఎక్కించడానికి మీరు ప్రవేశించివుండాలి.',
+'api-error-mustbeposted' => 'అంతర్గత లోపం: అభ్యర్థనకు HTTP POST అవసరం.',
 'api-error-noimageinfo' => 'ఎక్కింపు జయప్రదమైంది. కానీ సర్వరు, ఆ ఫైలు గురించిన సమాచారమేమీ ఇవ్వలేదు.',
 'api-error-nomodule' => 'అంతర్గత దోషము: ఎక్కింపు పర్వికము అమర్చబడలేదు.',
 'api-error-ok-but-empty' => 'అంతర్గత దోషము: సేవకము నుండి ఎటువంటి స్పందనా లేదు.',

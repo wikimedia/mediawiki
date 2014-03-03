@@ -1796,6 +1796,7 @@ $1",
 'uploaddisabledtext' => '檔案上傳不可用。',
 'php-uploaddisabledtext' => 'PHP 檔案上載已經停用。請檢查 file_uploads 設定。',
 'uploadscripted' => '該檔案包含可能被網路瀏覽器錯誤解釋的 HTML 或腳本代碼。',
+'uploadscriptednamespace' => "此SVG檔案中包含非法命名空間'$1'",
 'uploadinvalidxml' => '上載檔案中的XML無法解析。',
 'uploadvirus' => '該檔案包含有病毒！
 詳情：$1',
@@ -2432,7 +2433,7 @@ $UNWATCHURL
 'delete-edit-reasonlist' => '編輯刪除理由',
 'delete-toobig' => '這個頁面有一個十分大量的編輯歷史，超過$1次修訂。刪除此類頁面的動作已經被限制，以防止在{{SITENAME}}上的意外擾亂。',
 'delete-warning-toobig' => '這個頁面有一個十分大量的編輯歷史，超過$1次修訂。刪除它可能會擾亂{{SITENAME}}的資料庫操作；在繼續此動作前請小心。',
-'deleting-backlinks-warning' => "'''警告：'''您要刪除的頁面有其他頁面連接至此或從此頁面transclude。",
+'deleting-backlinks-warning' => "'''警告：'''您要刪除的頁面有其他頁面連接至此或包含此頁面。",
 
 # Rollback
 'rollback' => '回退編輯',
@@ -2607,6 +2608,7 @@ $1',
 'sp-contributions-search' => '搜尋貢獻記錄',
 'sp-contributions-username' => 'IP位址或用戶名稱：',
 'sp-contributions-toponly' => '只顯示最新修訂版本的編輯',
+'sp-contributions-newonly' => '僅顯示建立頁面之編輯',
 'sp-contributions-submit' => '搜尋',
 
 # What links here
