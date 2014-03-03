@@ -617,8 +617,9 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	protected function doGetFileStat( array $params ) {
-		$params['concurrency'] = 1;
-		$stats = $this->doGetFileStatMulti( array( 'srcs' => array( $params['src'] ) ) + $params );
+		$params = array( 'srcs' => array( $params['src'] ), 'concurrency' => 1 ) + $params;
+		unset( $params['src'] );
+		$stats = $this->doGetFileStatMulti( $params );
 
 		return reset( $stats );
 	}
