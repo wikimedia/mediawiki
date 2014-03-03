@@ -584,12 +584,20 @@ class MediaWiki {
 			wfProfileOut( 'main-try-filecache' );
 		}
 
+		$e = null;
 		// Actually do the work of the request and build up any output
-		$this->performRequest();
-
+		try {
+			$this->performRequest();
+		} catch ( ErrorPageError $e ) {
+			// bug 62091: while exceptions are convenient to bubble up GUI errors
+			// they are not internal application faults and we should commit as normal.
+		}
 		// Now commit any transactions, so that unreported errors after
 		// output() don't roll back the whole DB transaction
 		wfGetLBFactory()->commitMasterChanges();
+		if ( $e ) {
+			throw $e; // display any GUI error (could use "finally" in PHP 5.5)
+		}
 
 		// Output everything!
 		$this->context->getOutput()->output();
