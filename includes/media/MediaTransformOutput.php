@@ -348,9 +348,9 @@ class ThumbnailImage extends MediaTransformOutput {
 			throw new MWException( __METHOD__ . ' called in the old style' );
 		}
 
-		$alt = empty( $options['alt'] ) ? '' : $options['alt'];
+		$alt = isset( $options['alt'] ) ? $options['alt'] : '';
 
-		$query = empty( $options['desc-query'] ) ? '' : $options['desc-query'];
+		$query = empty( $options['desc-query'] ) ? '0' : $options['desc-query'];
 
 		if ( !empty( $options['custom-url-link'] ) ) {
 			$linkAttribs = array( 'href' => $options['custom-url-link'] );
