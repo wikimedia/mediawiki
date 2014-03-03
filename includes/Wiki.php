@@ -450,6 +450,21 @@ class MediaWiki {
 			}
 			$this->triggerJobs();
 			$this->restInPeace();
+		} catch ( ErrorPageError $e ) {
+			// Bug 62091: while exceptions are convenient to bubble up GUI errors,
+			// they are not internal application faults. As with normal requests, this
+			// should commit, print the output, do deferred updates, jobs, and profiling.
+			try {
+				wfGetLBFactory()->commitMasterChanges();
+				$e->report(); // display the GUI error
+				if ( function_exists( 'fastcgi_finish_request' ) ) {
+					fastcgi_finish_request();
+				}
+				$this->triggerJobs();
+				$this->restInPeace();
+			} catch ( Exception $e ) {
+				MWExceptionHandler::handle( $e );
+			}
 		} catch ( Exception $e ) {
 			MWExceptionHandler::handle( $e );
 		}
