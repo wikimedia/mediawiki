@@ -551,8 +551,12 @@ class DatabaseOracle extends DatabaseBase {
 			} else {
 				$first = false;
 			}
-
-			$sql .= $this->fieldBindStatement( $table, $col, $val );
+			if ( $this->isQuotedIdentifier( $val ) ) {
+				$sql .= $this->removeIdentifierQuotes( $val );
+				unset( $row[$col] );
+			} else {
+				$sql .= $this->fieldBindStatement( $table, $col, $val );
+			}
 		}
 		$sql .= ')';
 
@@ -677,6 +681,30 @@ class DatabaseOracle extends DatabaseBase {
 		}
 
 		return $retval;
+	}
+
+	public function upsert( $table, array $rows, array $uniqueIndexes, array $set,
+		$fname = __METHOD__
+	) {
+		if ( !count( $rows ) ) {
+			return true; // nothing to do
+		}
+
+		if ( !is_array( reset( $rows ) ) ) {
+			$rows = array( $rows );
+		}
+
+		$sequenceData = $this->getSequenceData( $table );
+		if ( $sequenceData !== false ) {
+			// add sequence column to each list of columns, when not set
+			foreach ( $rows as &$row ) {
+				if ( !isset( $row[$sequenceData['column']] ) ) {
+					$row[$sequenceData['column']] = $this->addIdentifierQuotes('GET_SEQUENCE_VALUE(\'' . $sequenceData['sequence'] . '\')');
+				}
+			}
+		}
+
+		return parent::upsert( $table, $rows, $uniqueIndexes, $set, $fname );
 	}
 
 	function tableName( $name, $format = 'quoted' ) {

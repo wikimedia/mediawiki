@@ -124,8 +124,9 @@ It may cause problems, particularly if using file uploads and <code>math</code> 
 	'config-xml-bad'                  => "PHP's XML module is missing.
 MediaWiki requires functions in this module and will not work in this configuration.
 If you're running Mandrake, install the php-xml package.",
-	'config-pcre'                     => 'The PCRE support module appears to be missing.
-MediaWiki requires the Perl-compatible regular expression functions to work.',
+	'config-pcre-old'                 => "'''Fatal:''' PCRE $1 or later is required.
+Your PHP binary is linked with PCRE $2.
+[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE More information].",
 	'config-pcre-no-utf8'             => "'''Fatal:''' PHP's PCRE module seems to be compiled without PCRE_UTF8 support.
 MediaWiki requires UTF-8 support to function correctly.",
 	'config-memory-raised'            => "PHP's <code>memory_limit</code> is $1, raised to $2.",
@@ -651,6 +652,10 @@ Parameters:
 	'config-mbstring' => '{{Related|Config-fatal}}',
 	'config-ze1' => '{{Related|Config-fatal}}',
 	'config-pcre' => 'PCRE is an initialism for "Perl-compatible regular expression". Perl is programming language whose [[:w:regular expression|regular expression]] syntax is popular and used in other languages using a library called PCRE.',
+	'config-pcre-old' => 'Parameters:
+* $1 - minimum PCRE version number
+* $2 - the installed version of [[wikipedia:PCRE|PCRE]]
+{{Related|Config-fatal}}',
 	'config-pcre-no-utf8' => "PCRE is a name of a programmers' library for supporting regular expressions. It can probably be translated without change.
 {{Related|Config-fatal}}",
 	'config-memory-raised' => 'Parameters:

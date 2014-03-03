@@ -57,6 +57,20 @@ class UpdateMediaWiki extends Maintenance {
 	}
 
 	function compatChecks() {
+		// Avoid syntax error in PHP4
+		$minimumPcreVersion = constant( 'Installer::MINIMUM_PCRE_VERSION' );
+
+		list( $pcreVersion ) = explode( ' ', PCRE_VERSION, 2 );
+		if ( version_compare( $pcreVersion, $minimumPcreVersion, '<' ) ) {
+			$this->error(
+				"PCRE $minimumPcreVersion or later is required.\n" .
+				"Your PHP binary is linked with PCRE $pcreVersion.\n\n" .
+				"More information:\n" .
+				"https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE\n\n" .
+				"ABORTING.\n",
+				true );
+		}
+
 		$test = new PhpXmlBugTester();
 		if ( !$test->ok ) {
 			$this->error(

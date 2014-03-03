@@ -653,12 +653,19 @@ class MediaWiki {
 		}
 
 		if ( !wfShellExecDisabled() && is_executable( $wgPhpCli ) ) {
-			// Start a background process to run some of the jobs.
-			// This will be asynchronous on *nix though not on Windows.
+			// Start a background process to run some of the jobs
 			wfProfileIn( __METHOD__ . '-exec' );
 			$retVal = 1;
 			$cmd = wfShellWikiCmd( "$IP/maintenance/runJobs.php", array( '--maxjobs', $n ) );
-			wfShellExec( "$cmd &", $retVal );
+			$cmd .= " >" . wfGetNull() . " 2>&1"; // don't hang PHP on pipes
+			if ( wfIsWindows() ) {
+				// Using START makes this async and also works around a bug where using
+				// wfShellExec() with a quoted script name causes a filename syntax error.
+				$cmd = "START /B \"bg\" $cmd";
+			} else {
+				$cmd = "$cmd &";
+			}
+			wfShellExec( $cmd, $retVal );
 			wfProfileOut( __METHOD__ . '-exec' );
 		} else {
 			try {

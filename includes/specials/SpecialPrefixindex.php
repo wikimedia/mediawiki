@@ -264,6 +264,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 					'from' => $s->page_title,
 					'prefix' => $prefix,
 					'hideredirects' => $this->hideRedirects,
+					'stripprefix' => $this->stripPrefix,
 				);
 
 				if ( $namespace || $prefix == '' ) {
