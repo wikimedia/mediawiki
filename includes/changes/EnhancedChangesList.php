@@ -26,9 +26,11 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * Add the JavaScript file for enhanced changeslist
+	 *
+	 * @param ResultWrapper $res
 	 * @return string
 	 */
-	public function beginRecentChangesList() {
+	public function beginRecentChangesList( $res ) {
 		$this->rc_cache = array();
 		$this->rcMoveIndex = 0;
 		$this->rcCacheIndex = 0;
@@ -42,6 +44,8 @@ class EnhancedChangesList extends ChangesList {
 			'jquery.makeCollapsible',
 			'mediawiki.icon',
 		) );
+
+		wfRunHooks( 'ChangesListBegin', array( $this, $res ) );
 
 		return '<div class="mw-changeslist">';
 	}

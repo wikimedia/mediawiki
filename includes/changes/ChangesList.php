@@ -152,9 +152,10 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Returns text for the start of the tabular part of RC
+	 * @param ResultWrapper|array $res Database result used to build the list
 	 * @return string
 	 */
-	public function beginRecentChangesList() {
+	public function beginRecentChangesList( $res ) {
 		$this->rc_cache = array();
 		$this->rcMoveIndex = 0;
 		$this->rcCacheIndex = 0;
@@ -162,7 +163,10 @@ class ChangesList extends ContextSource {
 		$this->rclistOpen = false;
 		$this->getOutput()->addModuleStyles( 'mediawiki.special.changeslist' );
 
+		wfRunHooks( 'ChangesListBegin', array( $this, $res ) );
+
 		return '<div class="mw-changeslist">';
+
 	}
 
 	/**
