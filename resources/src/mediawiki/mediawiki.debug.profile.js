@@ -194,7 +194,7 @@
 					[ tail, 8 ],
 					[ tail, 19 ],
 					[ tail - 8, 8 ],
-					[ tail, 8 ],
+					[ tail, 8 ]
 				] ) );
 				g.appendChild( node );
 
@@ -277,7 +277,7 @@
 				trigger: 'manual',
 				title: function () {
 					return profile.buildFlyout( $( this ).data( 'period' ) ).html();
-				},
+				}
 			} ).on( 'mouseenter', function () {
 				hide();
 				addClass( this, 'tipsy-visible' );
@@ -305,7 +305,7 @@
 		 */
 		xCoord: function ( msTimestamp ) {
 			return ( msTimestamp - profile.data.timespan.start ) * profile.ratio;
-		},
+		}
 	};
 
 	function ProfileData( data, width, mergeThresholdPx, dropThresholdPx ) {
@@ -382,7 +382,7 @@
 		return Object.keys( groups ).map( function ( group ) {
 			return {
 				name: group,
-				events: groups[group],
+				events: groups[group]
 			};
 		} );
 	};
@@ -401,7 +401,7 @@
 				return [{
 					start: period.start,
 					end: period.end,
-					contained: [period],
+					contained: [period]
 				}];
 			}
 			var last = result[result.length - 1];
@@ -417,7 +417,7 @@
 				result.push({
 					start: period.start,
 					end: period.end,
-					contained: [period],
+					contained: [period]
 				});
 			}
 			return result;

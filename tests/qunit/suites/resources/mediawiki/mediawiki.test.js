@@ -1,3 +1,4 @@
+/*jshint -W024 */
 ( function ( mw, $ ) {
 	var specialCharactersPageName;
 
