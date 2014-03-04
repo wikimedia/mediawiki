@@ -767,11 +767,11 @@ var mw = ( function ( $, undefined ) {
 					return;
 				}
 
-				// By default, always create a new <style>. Appending text
-				// to a <style> tag means the contents have to be re-parsed (bug 45810).
-				// Except, of course, in IE below 9, in there we default to
-				// re-using and appending to a <style> tag due to the
-				// IE stylesheet limit (bug 31676).
+				// By default, always create a new <style>. Appending text to a <style>
+				// tag is bad as it means the contents have to be re-parsed (bug 45810).
+				//
+				// Except, of course, in IE 9 and below. In there we default to re-using and
+				// appending to a <style> tag due to the IE stylesheet limit (bug 31676).
 				if ( 'documentMode' in document && document.documentMode <= 9 ) {
 
 					$style = getMarker().prev();
@@ -1138,11 +1138,14 @@ var mw = ( function ( $, undefined ) {
 				 */
 				function addLink( media, url ) {
 					var el = document.createElement( 'link' );
-					getMarker().before( el ); // IE: Insert in dom before setting href
+					// For IE: Insert in document *before* setting href
+					getMarker().before( el );
 					el.rel = 'stylesheet';
 					if ( media && media !== 'all' ) {
 						el.media = media;
 					}
+					// If you end up here from an IE exception "SCRIPT: Invalid property value.",
+					// see #addEmbeddedCSS, bug 31676, and bug 47277 for details.
 					el.href = url;
 				}
 
