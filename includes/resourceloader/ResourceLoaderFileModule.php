@@ -636,6 +636,18 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		return $files;
 	}
 
+	public function getAllStyleFilesByLang( $lang ) {
+		$files = array();
+
+		foreach ( $this->getAllStyleFiles() as $file ) {
+			if ( $this->getStyleSheetLang( $file ) === $lang ) {
+				$files[] = $file;
+			}
+		}
+
+		return $files;
+	}
+
 	/**
 	 * Gets the contents of a list of JavaScript files.
 	 *
