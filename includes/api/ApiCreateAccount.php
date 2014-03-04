@@ -83,10 +83,14 @@ class ApiCreateAccount extends ApiBase {
 
 		$loginForm = new LoginForm();
 		$loginForm->setContext( $context );
-		wfRunHooks( 'AddNewAccountApiForm', array( $this, $loginForm ) );
 		$loginForm->load();
+		$status = $loginForm->validateUser();
 
-		$status = $loginForm->addNewaccountInternal();
+		if ( $status->isGood() ) {
+			wfRunHooks( 'AddNewAccountApiForm', array( $this, $loginForm ) );
+			$status = $loginForm->createUser();
+		}
+
 		$result = array();
 		if ( $status->isGood() ) {
 			// Success!
