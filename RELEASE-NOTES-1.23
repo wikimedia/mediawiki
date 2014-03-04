@@ -196,6 +196,8 @@ production.
 * Added llprop=langname and llprop=autonym for action=query&prop=langlinks.
 * prop=redirects is added, to return redirects to the pages in the query.
 * list=allredirects is added, to list all redirects pointing to a namespace.
+* (bug 61704) action=createaccount now performs checks in the first request,
+  not second.
 
 === Languages updated in 1.23 ===
 

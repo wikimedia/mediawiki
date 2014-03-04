@@ -52,6 +52,8 @@ class LoginForm extends SpecialPage {
 	private $mTempPasswordUsed;
 	private $mLoaded = false;
 	private $mSecureLoginUrl;
+	/** @var User */
+	private $mUser;
 
 	/**
 	 * @ var WebRequest
@@ -327,14 +329,13 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
-	 * Make a new user account using the loaded data.
-	 * @private
-	 * @throws PermissionsError|ReadOnlyError
+	 * Validates a user account. Sets $mUser to be used by createUser()
+	 *
 	 * @return Status
+	 * @throws PermissionsError|ReadOnlyError
 	 */
-	public function addNewAccountInternal() {
-		global $wgAuth, $wgMemc, $wgAccountCreationThrottle,
-			$wgMinimalPasswordLength, $wgEmailConfirmToEdit;
+	public function validateUser() {
+		global $wgAuth, $wgMinimalPasswordLength, $wgEmailConfirmToEdit;
 
 		// If the user passes an invalid domain, something is fishy
 		if ( !$wgAuth->validDomain( $this->mDomain ) ) {
@@ -393,7 +394,7 @@ class LoginForm extends SpecialPage {
 		# Include checks that will include GlobalBlocking (Bug 38333)
 		$permErrors = $this->getPageTitle()->getUserPermissionsErrors( 'createaccount', $currentUser, true );
 		if ( count( $permErrors ) ) {
-				throw new PermissionsError( 'createaccount', $permErrors );
+			throw new PermissionsError( 'createaccount', $permErrors );
 		}
 
 		$ip = $this->getRequest()->getIP();
@@ -439,14 +440,30 @@ class LoginForm extends SpecialPage {
 			return Status::newFatal( 'invalidemailaddress' );
 		}
 
+		$this->mUser = $u;
+
+		return Status::newGood();
+	}
+
+	/**
+	 * Makes a new user after most of validation has already been performed.
+	 * @return Status
+	 */
+	public function createUser() {
+		global $wgAuth, $wgMemc, $wgAccountCreationThrottle;
+
+		if ( !$this->mUser ) {
+			throw new MWException( __METHOD__ . '() called on a user not previously validated by validateUser()' );
+		}
+
 		# Set some additional data so the AbortNewAccount hook can be used for
 		# more than just username validation
-		$u->setEmail( $this->mEmail );
-		$u->setRealName( $this->mRealName );
+		$this->mUser->setEmail( $this->mEmail );
+		$this->mUser->setRealName( $this->mRealName );
 
 		$abortError = '';
 		$abortStatus = null;
-		if ( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError, &$abortStatus ) ) ) {
+		if ( !wfRunHooks( 'AbortNewAccount', array( $this->mUser, &$abortError, &$abortStatus ) ) ) {
 			// Hook point to add extra creation throttles and blocks
 			wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
 			if ( $abortStatus === null ) {
@@ -468,7 +485,7 @@ class LoginForm extends SpecialPage {
 		if ( !wfRunHooks( 'ExemptFromAccountCreationThrottle', array( $ip ) ) ) {
 			wfDebug( "LoginForm::exemptFromAccountCreationThrottle: a hook allowed account creation w/o throttle\n" );
 		} else {
-			if ( ( $wgAccountCreationThrottle && $currentUser->isPingLimitable() ) ) {
+			if ( ( $wgAccountCreationThrottle && $this->getUser()->isPingLimitable() ) ) {
 				$key = wfMemcKey( 'acctcreate', 'ip', $ip );
 				$value = $wgMemc->get( $key );
 				if ( !$value ) {
@@ -481,12 +498,26 @@ class LoginForm extends SpecialPage {
 			}
 		}
 
-		if ( !$wgAuth->addUser( $u, $this->mPassword, $this->mEmail, $this->mRealName ) ) {
+		if ( !$wgAuth->addUser( $this->mUser, $this->mPassword, $this->mEmail, $this->mRealName ) ) {
 			return Status::newFatal( 'externaldberror' );
 		}
 
 		self::clearCreateaccountToken();
-		return $this->initUser( $u, false );
+		return $this->initUser( $this->mUser, false );
+	}
+
+	/**
+	 * Make a new user account using the loaded data.
+	 * @private
+	 * @throws PermissionsError|ReadOnlyError
+	 * @return Status
+	 */
+	public function addNewAccountInternal() {
+		$status = $this->validateUser();
+		if ( !$status->isGood() ) {
+			return $status;
+		}
+		return $this->createUser();
 	}
 
 	/**
