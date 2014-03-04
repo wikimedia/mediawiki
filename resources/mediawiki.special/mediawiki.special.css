@@ -63,7 +63,6 @@ table.mw-listgrouprights-table tr {
 }
 
 /**** Special:Prefixindex ****/
-table#mw-prefixindex-list-table, /* HTML backwards-compatibility, to be removed before 1.23 */
 table.mw-prefixindex-list-table,
 table#mw-prefixindex-nav-table {
 	width: 100%;
