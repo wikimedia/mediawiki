@@ -42,9 +42,19 @@ class SiteList extends GenericArrayObject {
 	 *
 	 * @since 1.21
 	 *
-	 * @var array of string
+	 * @var array of integer
 	 */
 	protected $byGlobalId = array();
+
+	/**
+	 * Navigational site identifiers alias inter-language prefixes
+	 * pointing to their sites offset value.
+	 *
+	 * @since 1.23
+	 *
+	 * @var array of integer
+	 */
+	protected $byNavigationId = array();
 
 	/**
 	 * @see GenericArrayObject::getObjectType
@@ -75,6 +85,11 @@ class SiteList extends GenericArrayObject {
 		$this->byGlobalId[$site->getGlobalId()] = $index;
 		$this->byInternalId[$site->getInternalId()] = $index;
 
+		$ids = $site->getNavigationIds();
+		foreach ( $ids as $navId ) {
+			$this->byNavigationId[$navId] = $index;
+		}
+
 		return true;
 	}
 
@@ -94,6 +109,11 @@ class SiteList extends GenericArrayObject {
 
 			unset( $this->byGlobalId[$site->getGlobalId()] );
 			unset( $this->byInternalId[$site->getInternalId()] );
+
+			$ids = $site->getNavigationIds();
+			foreach ( $ids as $navId ) {
+				unset( $this->byNavigationId[$navId] );
+			}
 		}
 
 		parent::offsetUnset( $index );
@@ -194,6 +214,43 @@ class SiteList extends GenericArrayObject {
 	 */
 	public function removeSiteByInternalId( $id ) {
 		$this->offsetUnset( $this->byInternalId[$id] );
+	}
+
+	/**
+	 * Returns if the list contains the site with the provided navigational site id.
+	 *
+	 * @param string $id
+	 *
+	 * @return boolean
+	 */
+	public function hasNavigationId( $id ) {
+		return array_key_exists( $id, $this->byNavigationId );
+	}
+
+	/**
+	 * Returns the Site with the provided navigational site id.
+	 * The site needs to exist, so if not sure, call has first.
+	 *
+	 * @since 1.23
+	 *
+	 * @param string $id
+	 *
+	 * @return Site
+	 */
+	public function getSiteByNavigationId( $id ) {
+		return $this->offsetGet( $this->byNavigationId[$id] );
+	}
+
+	/**
+	 * Removes the site with the specified navigational site id.
+	 * The site needs to exist, so if not sure, call has first.
+	 *
+	 * @since 1.23
+	 *
+	 * @param string $id
+	 */
+	public function removeSiteByNavigationId( $id ) {
+		$this->offsetUnset( $this->byNavigationId[$id] );
 	}
 
 	/**
