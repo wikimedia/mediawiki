@@ -12,11 +12,13 @@
             "Ty221",
             "WTM",
             "Woytecr",
-            "Wpedzich"
+            "Wpedzich",
+            "Jacenty359"
         ]
     },
     "ooui-dialog-action-close": "Zamknij",
     "ooui-outline-control-move-down": "Przenieś niżej",
     "ooui-outline-control-move-up": "Przenieś wyżej",
+    "ooui-outline-control-remove": "Usuń przedmiot",
     "ooui-toolbar-more": "Więcej"
 }

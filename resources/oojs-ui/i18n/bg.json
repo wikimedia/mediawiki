@@ -3,9 +3,11 @@
         "authors": [
             "DCLXVI",
             "Hristofor.mirchev",
-            "පසිඳු කාවින්ද"
+            "පසිඳු කාවින්ද",
+            "Mitzev"
         ]
     },
     "ooui-dialog-action-close": "Затваряне",
+    "ooui-outline-control-remove": "Премахване на обекти",
     "ooui-toolbar-more": "Още"
 }
