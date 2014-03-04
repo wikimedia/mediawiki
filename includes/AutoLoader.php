@@ -872,6 +872,12 @@ $wgAutoloadLocalClasses = array(
 		'includes/resourceloader/ResourceLoaderLanguageDataModule.php',
 	'ResourceLoaderWikiModule' => 'includes/resourceloader/ResourceLoaderWikiModule.php',
 
+        # includes/resourcevalidator
+        'LESSResourceValidator' => 'includes/resourcevalidator/LESSResourceValidator.php',
+        'ResourceValidator' => 'includes/resourcevalidator/ResourceValidator.php',
+        'ResourceValidationResult' => 'includes/resourcevalidator/ResourceValidationResult.php',
+        'ResourceValidationCoordinator' => 'includes/resourcevalidator/ResourceValidationCoordinator.php',
+
 	# includes/revisiondelete
 	'RevDel_ArchivedFileItem' => 'includes/revisiondelete/RevisionDelete.php',
 	'RevDel_ArchivedFileList' => 'includes/revisiondelete/RevisionDelete.php',
