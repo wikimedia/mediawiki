@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (064484f9af)
+ * OOjs UI v0.1.0-pre (eba4c6370f)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Feb 26 2014 12:12:11 GMT-0800 (PST)
+ * Date: Mon Mar 03 2014 17:20:33 GMT-0800 (PST)
  */
 ( function () {
 
@@ -7278,9 +7278,10 @@ OO.ui.SearchWidget.prototype.getResults = function () {
  * @cfg {string} [icon] Symbolic name of icon
  * @cfg {boolean} [multiline=false] Allow multiple lines of text
  * @cfg {boolean} [autosize=false] Automatically resize to fit content
+ * @cfg {boolean} [maxRows=10] Maximum number of rows to make visible when autosizing
  */
 OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
-	config = config || {};
+	config = $.extend( { 'maxRows': 10 }, config );
 
 	// Parent constructor
 	OO.ui.InputWidget.call( this, config );
@@ -7289,9 +7290,11 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	this.pending = 0;
 	this.multiline = !!config.multiline;
 	this.autosize = !!config.autosize;
+	this.maxRows = config.maxRows;
 
 	// Events
 	this.$input.on( 'keypress', OO.ui.bind( this.onKeyPress, this ) );
+	this.$element.on( 'DOMNodeInsertedIntoDocument', OO.ui.bind( this.onElementAttach, this ) );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-textInputWidget' );
@@ -7340,12 +7343,34 @@ OO.ui.TextInputWidget.prototype.onKeyPress = function ( e ) {
 };
 
 /**
+ * Handles element attach events.
+ *
+ * @param {jQuery.Event} e Element attach event
+ */
+OO.ui.TextInputWidget.prototype.onElementAttach = function () {
+	this.adjustSize();
+};
+
+/**
  * @inheritdoc
  */
 OO.ui.TextInputWidget.prototype.onEdit = function () {
-	var $clone, scrollHeight, innerHeight, outerHeight;
+	this.adjustSize();
 
-	// Automatic size adjustment
+	// Parent method
+	return OO.ui.InputWidget.prototype.onEdit.call( this );
+};
+
+/**
+ * Automatically adjust the size of the text input.
+ *
+ * This only affects multi-line inputs that are auto-sized.
+ *
+ * @chainable
+ */
+OO.ui.TextInputWidget.prototype.adjustSize = function() {
+	var $clone, scrollHeight, innerHeight, outerHeight, maxInnerHeight, idealHeight;
+
 	if ( this.multiline && this.autosize ) {
 		$clone = this.$input.clone()
 			.val( this.$input.val() )
@@ -7357,17 +7382,20 @@ OO.ui.TextInputWidget.prototype.onEdit = function () {
 		$clone.css( 'height', '' );
 		innerHeight = $clone.innerHeight();
 		outerHeight = $clone.outerHeight();
+		// Measure max rows height
+		$clone.attr( 'rows', this.maxRows ).css( 'height', 'auto' );
+		maxInnerHeight = $clone.innerHeight();
+		$clone.removeAttr( 'rows' ).css( 'height', '' );
 		$clone.remove();
+		idealHeight = Math.min( maxInnerHeight, scrollHeight );
 		// Only apply inline height when expansion beyond natural height is needed
 		this.$input.css(
 			'height',
 			// Use the difference between the inner and outer height as a buffer
-			scrollHeight > outerHeight ? scrollHeight + ( outerHeight - innerHeight ) : ''
+			idealHeight > outerHeight ? idealHeight + ( outerHeight - innerHeight ) : ''
 		);
 	}
-
-	// Parent method
-	return OO.ui.InputWidget.prototype.onEdit.call( this );
+	return this;
 };
 
 /**
