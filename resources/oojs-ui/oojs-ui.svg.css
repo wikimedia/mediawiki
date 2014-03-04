@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (51f922ba17)
+ * OOjs UI v0.1.0-pre (f3bc5c6)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri Feb 28 2014 16:33:26 GMT-0800 (PST)
+ * Date: Mon Mar 03 2014 17:03:30 GMT-0800 (PST)
  */
 
 /* Textures */
@@ -211,6 +211,7 @@
   display: inline-block;
   -webkit-transition: opacity 200ms;
      -moz-transition: opacity 200ms;
+      -ms-transition: opacity 200ms;
        -o-transition: opacity 200ms;
           transition: opacity 200ms;
 }
@@ -647,8 +648,8 @@
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
-       -o-user-select: none;
           user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .oo-ui-toolbar-actions .oo-ui-popupWidget {
@@ -671,6 +672,7 @@
   opacity: 0.125;
   -webkit-transition: opacity 500ms ease-in-out;
      -moz-transition: opacity 500ms ease-in-out;
+      -ms-transition: opacity 500ms ease-in-out;
        -o-transition: opacity 500ms ease-in-out;
           transition: opacity 500ms ease-in-out;
 }
@@ -1111,6 +1113,7 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .oo-ui-outlineItemWidget.oo-ui-optionWidget-selected {
@@ -1480,14 +1483,11 @@
 }
 
 .oo-ui-popupWidget-transitioning .oo-ui-popupWidget-popup {
-  -webkit-transition: width 100ms, height 100ms, left 100ms;
-     -moz-transition: width 100ms, height 100ms, left 100ms;
-       -o-transition: width 100ms, height 100ms, left 100ms;
-          transition: width 100ms, height 100ms, left 100ms;
-  -webkit-transition-timing-function: ease-in-out;
-     -moz-transition-timing-function: ease-in-out;
-       -o-transition-timing-function: ease-in-out;
-          transition-timing-function: ease-in-out;
+  -webkit-transition: width 100ms ease-in-out, height 100ms ease-in-out, left 100ms ease-in-out;
+     -moz-transition: width 100ms ease-in-out, height 100ms ease-in-out, left 100ms ease-in-out;
+      -ms-transition: width 100ms ease-in-out, height 100ms ease-in-out, left 100ms ease-in-out;
+       -o-transition: width 100ms ease-in-out, height 100ms ease-in-out, left 100ms ease-in-out;
+          transition: width 100ms ease-in-out, height 100ms ease-in-out, left 100ms ease-in-out;
 }
 
 .oo-ui-popupWidget-head {
