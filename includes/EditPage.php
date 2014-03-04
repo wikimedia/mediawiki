@@ -1988,7 +1988,9 @@ class EditPage {
 		global $wgOut, $wgUser;
 
 		$wgOut->addModules( 'mediawiki.action.edit' );
-		$wgOut->addModuleStyles( 'mediawiki.action.edit.styles' );
+		$wgOut->addModuleStyles( array(
+			'mediawiki.action.edit.styles', 'mediawiki.ui.button'
+		) );
 
 		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
 			$wgOut->addModules( 'mediawiki.action.edit.preview' );
@@ -3544,6 +3546,7 @@ HTML
 			'id' => 'wpSave',
 			'name' => 'wpSave',
 			'type' => 'submit',
+			'class' => 'mw-ui-button mw-ui-primary',
 			'tabindex' => ++$tabindex,
 			'value' => wfMessage( 'savearticle' )->text(),
 			'accesskey' => wfMessage( 'accesskey-save' )->text(),
@@ -3556,6 +3559,7 @@ HTML
 			'id' => 'wpPreview',
 			'name' => 'wpPreview',
 			'type' => 'submit',
+			'class' => 'mw-ui-button',
 			'tabindex' => $tabindex,
 			'value' => wfMessage( 'showpreview' )->text(),
 			'accesskey' => wfMessage( 'accesskey-preview' )->text(),
@@ -3568,6 +3572,7 @@ HTML
 			'id' => 'wpDiff',
 			'name' => 'wpDiff',
 			'type' => 'submit',
+			'class' => 'mw-ui-button',
 			'tabindex' => ++$tabindex,
 			'value' => wfMessage( 'showdiff' )->text(),
 			'accesskey' => wfMessage( 'accesskey-diff' )->text(),
