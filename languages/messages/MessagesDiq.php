@@ -633,8 +633,8 @@ $1',
 'feed-atom' => 'Atom',
 'feed-rss' => 'RSS',
 'red-link-title' => '$1 (çınya)',
-'sort-descending' => 'Ratnayışê qemeyayışi',
-'sort-ascending' => 'Ratnayışê Zeydnayışi',
+'sort-descending' => 'Rêzkerdışo kêmbiyaye',
+'sort-ascending' => 'Rêzkerdışo zêdiyaye',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Wesiqe',

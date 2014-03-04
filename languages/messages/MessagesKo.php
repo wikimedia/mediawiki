@@ -1954,6 +1954,7 @@ $2 {{PLURAL:$3|형식만 사용할 수 있습니다}}.',
 'uploaddisabledtext' => '파일 올리기 기능이 비활성화되어 있습니다.',
 'php-uploaddisabledtext' => 'PHP 파일 올리기가 비활성화되었습니다. 파일 올리기 설정을 확인하십시오.',
 'uploadscripted' => '이 파일에는 HTML이나 다른 스크립트 코드가 포함되어 있어, 웹 브라우저에서 오류를 일으킬 수 있습니다.',
+'uploadscriptednamespace' => "이 SVG 파일은 사용할 수 없는 이름공간 '$1'을 포함하고 있습니다.",
 'uploadinvalidxml' => '업로드된 파일의 XML의 구문을 분석할 수 없습니다.',
 'uploadvirus' => '파일이 바이러스를 포함하고 있습니다!
 자세한 설명: $1',

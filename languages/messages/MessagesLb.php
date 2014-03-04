@@ -758,6 +758,7 @@ Waart w.e.g. $1 ier Dir et nach eng Kéier probéiert.',
 'resetpass-wrong-oldpass' => 'Net valabelt temporäert oder aktuellt Passwuert.
 Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwuert ugefrot.',
 'resetpass-recycled' => 'Ännert Äert Passwuert w.e.g. op een anert Passwuert wéi Äert aktuellt Passwuert.',
+'resetpass-temp-emailed' => "Dir hutt Iech mat engem temporären E-Mail-Code ageloggt. Fir d'Aloggen ofzeschléisse musst Dir hei en neit Passwuert astellen:",
 'resetpass-temp-password' => 'Temporäert Passwuert:',
 'resetpass-abort-generic' => "D'Ännere vum Passwuert gouf duerch eng Erweiderung ofgebrach.",
 'resetpass-expired' => 'Äert Passwuert ass ofgelaf. Gitt w.e.g. en neit Passwuert u fir Iech anzeloggen.',
@@ -1750,6 +1751,7 @@ Wann Dir dëse Fichier trotzdeem eropluede wëllt da gitt w.e.g. zréck a luet d
 'uploaddisabledtext' => "D'Eropluede vu Fichieren ass ausgeschalt.",
 'php-uploaddisabledtext' => "D'Eropluede vu Fichieren ass am PHP desaktivéiert. Kuckt w.e.g. d'Astellung ''file_uploads'' no.",
 'uploadscripted' => 'An dësem Fichier ass HTML- oder Scriptcode, dee vun engem Webbrowser falsch interpretéiert kéint ginn.',
+'uploadscriptednamespace' => 'An dësem SVG-Fichier ass en illegalen Nummraum "$1"',
 'uploadinvalidxml' => 'Den XML am eropgelueden Fichier konnt net verschafft ginn.',
 'uploadvirus' => 'An dësem Fichier ass ee Virus! Detailer: $1',
 'uploadjava' => "An dësem ZIP-Fichier ass e JAVA CLASS-Fichier dran.
@@ -2094,6 +2096,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'mostrevisions' => 'Säite mat de meeschte Versiounen',
 'prefixindex' => 'All Säite mat Prefix',
 'prefixindex-namespace' => 'All Säite mat Prefix (Nummraum $1)',
+'prefixindex-strip' => 'Prefix an der Lëscht ewechhuelen',
 'shortpages' => 'Kuerz Säiten',
 'longpages' => 'Laang Säiten',
 'deadendpages' => 'Sakgaasse-Säiten',
@@ -2567,6 +2570,7 @@ $1',
 'sp-contributions-search' => 'No Kontributioune sichen',
 'sp-contributions-username' => 'IP-Adress oder Benotzernumm:',
 'sp-contributions-toponly' => 'Nëmmen Ännerunge weisen déi déi lescht Versioun sinn',
+'sp-contributions-newonly' => 'Nëmmen Ännerunge weisen déi Säiten uleeën',
 'sp-contributions-submit' => 'Sichen',
 
 # What links here

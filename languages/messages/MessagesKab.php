@@ -1550,6 +1550,7 @@ Ilaq ad ssutereḍ i yiwen aterras ma yezmer ad yessenqed aɣmis n ufaylu agi ye
 'uploaddisabledtext' => 'Azen n ifuyla yettwakkes deg wiki agi.',
 'php-uploaddisabledtext' => 'Taktert n ifuyla tensa deg PHP. Selken taxtiṛit n tawila  file_uploads.',
 'uploadscripted' => 'Afaylu-yagi yesɛa angal n HTML/script i yexdem agula deg browser/explorateur.',
+'uploadinvalidxml' => 'XML deg ufaylu yekteren ur d-yetwesleḍ ara.',
 'uploadvirus' => 'Afaylu-nni yesɛa anfafad asenselkim (virus)! Ẓer kter: $1',
 'uploadjava' => 'Wagi d afaylu ZIP yesɛan afaylu Java .class.
 Azdam n ifuyla Java ur yesɛa ara turagt, acku zemren ad zizdewen ikyafen n taɣellist.',
@@ -3868,6 +3869,4 @@ Yetexddem aderrec n akkw ayen yella yesegrer s <nowiki>'''{{ }}'''</nowiki>.",
 'expand_templates_generate_rawhtml' => 'Beqqeḍ HTML aneṣli',
 'expand_templates_preview' => 'Azaraskan',
 
-# Unknown messages
-'uploadinvalidxml' => 'XML deg ufaylu yekteren ur d-yetwesleḍ ara.',
 );

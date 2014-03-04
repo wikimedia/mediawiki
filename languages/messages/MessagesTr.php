@@ -925,7 +925,7 @@ Lütfen tekrar denemeden önce $1 bekleyin.',
 'resetpass-temp-password' => 'Geçici parola:',
 'resetpass-abort-generic' => 'Parola değişikliği bir uzantı tarafından iptal edildi.',
 'resetpass-expired' => 'Parolanızın süresi bitti. Lütfen, giriş için yeni bir parola oluşturun.',
-'resetpass-expired-soft' => 'Parolanızın süresi bitti ve değiştirilmesi gerekiyor. Lütfen, yeni bir parola seçin veya daha sonra oluşturmak için vazgeç e tıklayın.',
+'resetpass-expired-soft' => 'Parolanızın süresi bitti ve değiştirilmesi gerekiyor. Lütfen, yeni bir parola seçin veya daha sonra oluşturmak için "{{int:resetpass-submit-cancel}}" butonuna tıklayın.',
 
 # Special:PasswordReset
 'passwordreset' => 'Parola sıfırlama',

@@ -1094,7 +1094,7 @@ $2
 'updated' => '（已更新）',
 'note' => "'''注意：'''",
 'previewnote' => "'''请记住这只是预览。'''你的更改还没有保存！",
-'continue-editing' => '往编辑框',
+'continue-editing' => '前往编辑区',
 'previewconflict' => '该预览反映了上面文字编辑区中的文字在你保存后的显示状况。',
 'session_fail_preview' => "'''对不起！由于会话数据丢失，我们无法处理你的编辑。'''请重试。如果仍然失败，请尝试[[Special:UserLogout|退出登录]]后重新登录。",
 'session_fail_preview_html' => "'''对不起！由于会话数据丢失，我们无法处理你的编辑。'''

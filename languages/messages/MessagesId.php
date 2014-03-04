@@ -1890,6 +1890,7 @@ Anda harus meminta bantuan seseorang dengan kemampuan untuk melihat data berkas 
 'uploaddisabledtext' => 'Pemuatan berkas tidak diizinkan.',
 'php-uploaddisabledtext' => 'Pemuatan berkas dimatikan di PHP. Silakan cek pengaturan file_uploads.',
 'uploadscripted' => 'Berkas ini mengandung HTML atau kode yang dapat diinterpretasikan dengan keliru oleh penjelajah web.',
+'uploadinvalidxml' => 'XML dalam berkas yang diunggah tidak bisa diuraikan.',
 'uploadvirus' => 'Berkas tersebut mengandung virus! Rincian: $1',
 'uploadjava' => 'Berkas ini adalah berkas ZIP yang mengnadung berkas .class Java.
 Penggunggahan berkas Java tidak diperbolehkan karena dapat menyebabkan pengabaian batasan keamanan.',
@@ -4364,6 +4365,4 @@ Jika tidak, Anda dapat menggunakan formulir mudah di bawah ini. Komentar Anda ak
 'expand_templates_generate_rawhtml' => 'Tampilkan HTML mentah',
 'expand_templates_preview' => 'Pratayang',
 
-# Unknown messages
-'uploadinvalidxml' => 'XML dalam berkas yang diunggah tidak bisa diuraikan.',
 );

@@ -25,6 +25,7 @@
  * @author Pdxx
  * @author Perkunas
  * @author Pėstininkas
+ * @author Reedy
  * @author Siggis
  * @author Tomasdd
  * @author Urhixidur
@@ -716,6 +717,9 @@ Palaukite prieš bandant vėl.',
 'login-abort-generic' => 'Jūsų prisijungimas buvo nesėkmingas - Nutraukta',
 'loginlanguagelabel' => 'Kalba: $1',
 'suspicious-userlogout' => 'Jūsų prašymas atsijungti buvo atmestas, nes, atrodo, jį klaidingai išsiuntė naršyklė arba spartinantysis tarpinis serveris.',
+'pt-login' => 'Prisijungti',
+'pt-createaccount' => 'Sukurti paskyrą',
+'pt-userlogout' => 'Atsijungti',
 
 # Email sending
 'php-mail-error-unknown' => 'Nežinoma klaida PHP mail() funkcijoje',
@@ -1527,7 +1531,11 @@ teisės",
 'rcshowhideliu' => '$1 prisijungusius naudotojus',
 'rcshowhideanons' => '$1 anoniminius naudotojus',
 'rcshowhidepatr' => '$1 patikrintus keitimus',
+'rcshowhidepatr-show' => 'Rodyti',
+'rcshowhidepatr-hide' => 'Slėpti',
 'rcshowhidemine' => '$1 mano keitimus',
+'rcshowhidemine-show' => 'Rodyti',
+'rcshowhidemine-hide' => 'Slėpti',
 'rclinks' => 'Rodyti paskutinius $1 pakeitimų per paskutiniąsias $2 dienų<br />$3',
 'diff' => 'skirt',
 'hist' => 'ist',
@@ -1651,6 +1659,7 @@ Jei visvien norite įkelti savo failą, prašome eiti atgal ir įkelti šį fail
 'php-uploaddisabledtext' => "Failų įkėlimai uždrausti PHP nustatymuose.
 Patikrinkite ''file_uploads'' nustatą.",
 'uploadscripted' => 'Šis failas turi HTML arba programinį kodą, kuris gali būti klaidingai suprastas interneto naršyklės.',
+'uploadscriptednamespace' => "Šis SVG failas turi neteisėtą vietą vardui '$1'",
 'uploadvirus' => 'Šiame faile yra virusas! Smulkiau: $1',
 'uploadjava' => 'Failas yra ZIP failas, kuriame yra Java .class failas.
 Įkelti Java failus neleidžiama, nes jie gali padėti apeiti saugumo apribojimus.',

@@ -1555,6 +1555,7 @@ Dü skulst hoker fraage, di ferbürgen nöömer uunluke koon, am tu besnaakin, w
 'php-uploaddisabledtext' => 'Det huuchschüüren faan datein as uun PHP ei aktiwiaret.
 Luke di det iinstelang faan <code>file_uploads</code> uun.',
 'uploadscripted' => 'Uun detdiar datei stäänt HTML- of Scriptcode, an küd ütj fersen faan en browser ütjfeerd wurd.',
+'uploadinvalidxml' => "Det XML uun det huuchschüürd datei küd ei ''parset'' wurd.",
 'uploadvirus' => 'Uun detdiar datei as en wiirus! Details: $1',
 'uploadjava' => 'Detdiar as en ZIP-datei mä en CLASS-datei faan Java.
 Java-datein kön ei tuläät wurd, auer jo det seekerhaid uun fraag stel küd.',
@@ -3838,6 +3839,4 @@ Uk parser-funktjuunen liküs <code><nowiki>{{</nowiki>#language:…}}</code> an 
 'expand_templates_generate_rawhtml' => 'Rä HTML uunwise',
 'expand_templates_preview' => 'Föörskau',
 
-# Unknown messages
-'uploadinvalidxml' => "Det XML uun det huuchschüürd datei küd ei ''parset'' wurd.",
 );

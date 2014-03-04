@@ -528,6 +528,9 @@ Se l'inscrisiòun l'é stêda fâta per şbâli, es pōl scanşlêr sté mesâg.
 'loginlanguagelabel' => 'Léngva: $1',
 'suspicious-userlogout' => "La tó dmânda per destachêret l'é stēda rifiutêda perchè la sèmbra spidîda da un navigadōr ch' al funsiòuna mìa o da un proxy di caching.",
 'createacct-another-realname-tip' => "Druvêr al nòm vèira l'é 'na siēlta personêla; s' es pèinsa 'd ruvêrel al gnirâ uşê per dêr la paternitê di lavōr spidî.",
+'pt-login' => 'Và dèinter',
+'pt-createaccount' => 'Fà la tó inscrisiòun',
+'pt-userlogout' => 'Và fōra',
 
 # Email sending
 'php-mail-error-unknown' => 'Erōr mìa cngusû int la funsiòun PHP mail().',
@@ -550,8 +553,11 @@ Se l'inscrisiòun l'é stêda fâta per şbâli, es pōl scanşlêr sté mesâg.
 'resetpass-submit-cancel' => 'Scanşèla',
 'resetpass-wrong-oldpass' => "Cêva 'd ingrès pruvişôria o còla 'd adès mìa vâlida.
 La cêva 'd ingrès la pré èser stêda bèle cambiêda, opór n'in pré èser stê dmandê 'na nōva pruvişôria.",
+'resetpass-recycled' => "Mèt dèinter 'na cêva 'd ingrès divêrsa da còla 'd adès.",
 'resetpass-temp-password' => "Cêva 'd ingrès pruvişôria:",
 'resetpass-abort-generic' => "La mudéfica 'd la cêva 'd ingrès l'é stêda fermêda da un şlungamèint.",
+'resetpass-expired' => "La cêva 'd ingrès l'é scadûda. Mèt dèinter 'na cêva 'd ingrès nōva per fêr l'ingrès.",
+'resetpass-expired-soft' => "La tó cêva 'd ingrès l'é scadûda. T'é perghê ed siēlier 'na cêva 'd ingrès nōva o clichêr insém a scanşèla per turnêrla a mèter dèinter in sègvit.",
 
 # Special:PasswordReset
 'passwordreset' => "Câmbia la cêva 'd ingrès",
@@ -604,6 +610,7 @@ Cêva 'd ingrès pruvişôria: $2",
 'resettokens-text' => "Ché 't pō turnêr a impustêr al cêvi ch'ét permèten l'ingrès a precîşi infurmasiòun privêdi lighêdi a la tó utèinsa. Ét duvrés fêrel se per chêş ét j ê spartîdi cun quelchidûn o se al j infurmasiòun ed la tó utèinsa în  in perécol.",
 'resettokens-no-tokens' => "An gh'é mìa di token da turnêr a impustêr.",
 'resettokens-legend' => "Tōrna 'd impustêr la cêva",
+'resettokens-tokens' => ' Token:',
 'resettokens-token-label' => "$1 (valōr 'd adèsa: $2)",
 'resettokens-watchlist-token' => "Token p'r al feed web (Atom/RSS) dal [[Special:Watchlist|mudéfichi al pàgini ch'ét tîn sòt' ôc]]",
 'resettokens-done' => 'Token turnê a impustêr.',
@@ -896,7 +903,7 @@ Per cumditê còst l'é l'èlèinch dal scanşladûri e di spustamèint relatîv
 'recentchanges-label-minor' => "Còsta l'é 'na mudéfica céca",
 'recentchanges-label-bot' => "Cla mudéfica ché l'é stêda fâta da un bot.",
 'recentchanges-label-unpatrolled' => "Cla mudéfica ché an n'é mìa incòra stêda verifichêda.",
-'rcnotefrom' => "Ché sòt a gh'é la lésta dal mudéfichi fâti a partîr da '''$2''' (fîn a '''$1''').",
+'rcnotefrom' => "Ché sòt a gh'é la lésta dal mudéfichi fâti a partîr da <strong>$2</strong>(fîn a <strong>$1</strong>).",
 'rclistfrom' => 'Fà vèder al mudéfichi fâti a partîr da $1.',
 'rcshowhideminor' => '$1 al mudéfichi céchi',
 'rcshowhidebots' => '$1 i bot',

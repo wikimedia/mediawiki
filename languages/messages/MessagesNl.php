@@ -533,7 +533,7 @@ $messages = array(
 'qbedit' => 'Bewerken',
 'qbpageoptions' => 'Deze pagina',
 'qbmyoptions' => "Mijn pagina's",
-'faq' => 'Veel gestelde vragen',
+'faq' => 'Veelgestelde vragen',
 'faqpage' => 'Project:Veelgestelde vragen',
 
 # Vector skin
@@ -1841,11 +1841,11 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'rcnotefrom' => "Wijzigingen sinds '''$2''' (met een maximum van '''$1''' wijzigingen).",
 'rclistfrom' => 'Wijzigingen bekijken vanaf $1',
 'rcshowhideminor' => 'Kleine wijzigingen $1',
-'rcshowhideminor-show' => 'weergeven',
-'rcshowhideminor-hide' => 'verbergen',
+'rcshowhideminor-show' => 'Weergeven',
+'rcshowhideminor-hide' => 'Verbergen',
 'rcshowhidebots' => 'bots $1',
-'rcshowhidebots-show' => 'weergeven',
-'rcshowhidebots-hide' => 'verbergen',
+'rcshowhidebots-show' => 'Weergeven',
+'rcshowhidebots-hide' => 'Verbergen',
 'rcshowhideliu' => 'geregistreerde gebruikers $1',
 'rcshowhideliu-show' => 'weergeven',
 'rcshowhideliu-hide' => 'verbergen',
@@ -2496,7 +2496,7 @@ Heeft tenminste een topleveldomein nodig, zoals bijvoorbeeld "*.org".<br />
 'listgrouprights' => 'Rechten van gebruikersgroepen',
 'listgrouprights-summary' => 'Op deze pagina staan de gebruikersgroepen in deze wiki beschreven, met hun bijbehorende rechten.
 Er kan [[{{MediaWiki:Listgrouprights-helppage}}|extra informatie]] over individuele rechten aanwezig zijn.',
-'listgrouprights-key' => 'Leganda:
+'listgrouprights-key' => 'Legenda:
 * <span class="listgrouprights-granted">Toegewezen recht</span>
 * <span class="listgrouprights-revoked">Ingetrokken recht</span>',
 'listgrouprights-group' => 'Groep',
@@ -2847,6 +2847,7 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 'sp-contributions-search' => 'Zoeken naar bijdragen',
 'sp-contributions-username' => 'IP-adres of gebruikersnaam:',
 'sp-contributions-toponly' => 'Alleen nieuwste versies weergeven',
+'sp-contributions-newonly' => "Alleen nieuwe pagina's weergeven",
 'sp-contributions-submit' => 'Bekijken',
 
 # What links here

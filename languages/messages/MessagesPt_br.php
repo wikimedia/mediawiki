@@ -1894,6 +1894,7 @@ Verifique o histórico de eliminação de tal arquivo antes de tentar re-enviar.
 'php-uploaddisabledtext' => 'O envio de arquivos via PHP está desativado.
 Verifique a configuração file_uploads.',
 'uploadscripted' => 'Este arquivo contém HTML ou código que pode ser erroneamente interpretado por um navegador web.',
+'uploadinvalidxml' => 'O XML no arquivo enviado não pôde ser analisado.',
 'uploadvirus' => 'O arquivo contém vírus!
 Detalhes: $1',
 'uploadjava' => 'Este é um arquivo ZIP que contém um arquivo .class de Java.
@@ -4247,6 +4248,4 @@ Na verdade, expande tudo que está entre chaves duplas.',
 'expand_templates_generate_rawhtml' => 'Mostrar HTML puro',
 'expand_templates_preview' => 'Pré-visualização',
 
-# Unknown messages
-'uploadinvalidxml' => 'O XML no arquivo enviado não pôde ser analisado.',
 );

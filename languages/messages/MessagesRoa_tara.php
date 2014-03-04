@@ -1600,6 +1600,7 @@ Avissa verificà 'a storie d'a scangellazzione d'u file apprime de condinuà a c
 'php-uploaddisabledtext' => "Le carecaminde de file sonde disabilitate in PHP.<br />
 Pe piacere verifiche le 'mbostaziune d'u ''file_uploads''.",
 'uploadscripted' => "Stu file condene HTML o codece de script ca ponne essere inderpretete jndr'à 'nu mode sbagliete da le browser.",
+'uploadinvalidxml' => "L'XML jndr'à 'u file carecate non ge pò essere analizzate.",
 'uploadvirus' => "Alanga toje, 'u file condiene 'nu virus! Dettaglie: $1",
 'uploadjava' => "'U file jè 'nu file de tipe ZIP ca condene 'nu file de classe Java.
 'U carecamende de le file Java non g'è permesse, purcé lore ponne causà l'aggiramende de le restriziune de sicurezze.",
@@ -4174,6 +4175,4 @@ In pratiche tutte quidde ca stè jndr'à le doppie parendesi graffe.<br />",
 'expand_templates_generate_xml' => "Fà vedè l'arvule de l'analisi XML",
 'expand_templates_preview' => 'Andeprime',
 
-# Unknown messages
-'uploadinvalidxml' => "L'XML jndr'à 'u file carecate non ge pò essere analizzate.",
 );

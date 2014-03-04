@@ -3041,8 +3041,8 @@ Vinsamlegast reyndu aftur.',
 'spam_reverting' => 'Tek aftur síðustu breytingu sem inniheldur ekki tengil á $1',
 'spam_blanking' => 'Allar útgáfur innihéldu tengla á $1, tæmi síðuna',
 'spam_deleting' => 'Allar útgáfur innihéldu tengla á $1, eyði síðunni',
-'simpleantispam-label' => "Kæfuvörn.
-'''EKKI''' fylla þetta út!",
+'simpleantispam-label' => 'Kæfuvörn.
+<strong>EKKI</strong> fylla þetta út!',
 
 # Info page
 'pageinfo-title' => 'Upplýsingar um $1',

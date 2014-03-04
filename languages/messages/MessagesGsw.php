@@ -1629,6 +1629,7 @@ Wänn Du die Datei einewäg wit uffelade, gang bitte zruck un ändere dr Name.
 'uploaddisabledtext' => 'S Uffelade vu Dateie isch deaktiviert.',
 'php-uploaddisabledtext' => 'S Uffelade vu PHP-Dateie isch deaktiviert wore. Bitte iberprief d file_uploads-Yystellig.',
 'uploadscripted' => 'In däre Datei git s HTML- oder Scriptcode, wu fälschligerwyys vun eme Webbrowser usgfiert chennt were.',
+'uploadinvalidxml' => 'S XML in dr uffegladene Datei het nit chenne parst wäre.',
 'uploadvirus' => 'In däre Datei het s e Virus! Detail: $1',
 'uploadjava' => 'Des isch e ZIP-Datei, wu s e CLASS-Datei vu Java din het.
 S Uffelade vu Java-Dateien isch nit gstattet, wel si s Umgoh vu Sicherheitsyyschränkige chennte megli mache.',
@@ -3799,6 +3800,4 @@ Sunscht chasch au s eifach Formular unte nutze. Dyy Kommentar wird, zämme mit D
 'expand_templates_generate_xml' => 'Zeig XML-Parser-Baum',
 'expand_templates_preview' => 'Vorschou',
 
-# Unknown messages
-'uploadinvalidxml' => 'S XML in dr uffegladene Datei het nit chenne parst wäre.',
 );

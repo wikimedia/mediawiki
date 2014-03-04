@@ -3582,7 +3582,7 @@ $5
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(అప్రమేయ భాష)',
-'img-lang-info' => 'ఈ బొమ్మను $1.$2 లో పెట్టు',
+'img-lang-info' => 'ఈ బొమ్మను $1 లో చూపెట్టు. $2',
 'img-lang-go' => 'వెళ్ళు',
 
 # Table pager

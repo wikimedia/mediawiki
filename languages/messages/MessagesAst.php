@@ -649,7 +649,7 @@ Pa completar l'aniciu de sesión, tien de definir una nueva contraseña equí:",
 'resetpass-temp-password' => 'Contraseña temporal:',
 'resetpass-abort-generic' => "Una estensión encaboxó'l cambiu de la contraseña.",
 'resetpass-expired' => "La so contraseña caducó. Defina una nueva contraseña p'aniciar sesión.",
-'resetpass-expired-soft' => 'La so contraseña caducó y tien de reaniciala. Escueya una contraseña nueva o calque encaboxar pa reaniciala más sero.',
+'resetpass-expired-soft' => 'La so contraseña caducó y tien de reaniciala. Escueya una contraseña nueva, o calque «{{int:resetpass-submit-cancel}}» pa reaniciala más sero.',
 
 # Special:PasswordReset
 'passwordreset' => 'Reaniciar contraseña',
@@ -1506,7 +1506,7 @@ Esta información sedrá pública.',
 'recentchanges-legend-heading' => "'''Lleenda:'''",
 'recentchanges-legend-newpage' => '(ver tamién la  [[Special:NewPages|llista de páxines nueves]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnotefrom' => "Abaxo tan los cambeos dende '''$2''' (s'amuesen fasta '''$1''').",
+'rcnotefrom' => "Abaxo tan los cambeos dende <strong>$2</strong> (s'amuesen fasta <strong>$1</strong>).",
 'rclistfrom' => 'Amosar los nuevos cambios dende $1',
 'rcshowhideminor' => '$1 ediciones menores',
 'rcshowhideminor-show' => 'Amosar',
@@ -1657,6 +1657,7 @@ Deberíes revisar el historial de desaniciu del ficheru enantes de xubilu otra v
 'php-uploaddisabledtext' => 'Les xubíes de ficheros tan desactivaes en PHP.
 Por favor, comprueba la configuración de file_uploads.',
 'uploadscripted' => 'Esti ficheru contién códigu HTML o scripts que se puen interpretar equivocadamente por un navegador.',
+'uploadscriptednamespace' => "Esti ficheru SVG contién l'espaciu de nomes illegal «$1»",
 'uploadinvalidxml' => "Nun pudo interpretase'l XML del ficheru cargáu.",
 'uploadvirus' => '¡El ficheru tien un virus!
 Detalles: $1',
@@ -2496,6 +2497,7 @@ La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'sp-contributions-search' => 'Buscar contribuciones',
 'sp-contributions-username' => "Direición IP o nome d'usuariu:",
 'sp-contributions-toponly' => 'Amosar namái les ediciones que son les caberes revisiones',
+'sp-contributions-newonly' => 'Amosar namái les ediciones que son creaciones de páxines',
 'sp-contributions-submit' => 'Buscar',
 
 # What links here

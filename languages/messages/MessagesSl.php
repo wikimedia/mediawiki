@@ -769,7 +769,7 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 'resetpass-temp-password' => 'Začasno geslo:',
 'resetpass-abort-generic' => 'Razširitev je prekinila spremembo gesla.',
 'resetpass-expired' => 'Vaše geslo je poteklo. Prosimo, nastavite novo geslo za prijavo.',
-'resetpass-expired-soft' => 'Vaše geslo je poteklo in ga morate ponastaviti. Prosimo, izberite novo geslo zdaj ali kliknite Prekliči, da ga ponastavite pozneje.',
+'resetpass-expired-soft' => 'Vaše geslo je poteklo in ga morate ponastaviti. Prosimo, izberite novo geslo zdaj ali kliknite »{{int:resetpass-submit-cancel}}«, da ga ponastavite pozneje.',
 
 # Special:PasswordReset
 'passwordreset' => 'Ponastavitev gesla',
@@ -1625,7 +1625,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'recentchanges-label-plusminus' => 'uporabnik je velikost strani spremenil za tolikšno število bajtov',
 'recentchanges-legend-heading' => "'''Legenda:'''",
 'recentchanges-legend-newpage' => '(glej tudi [[Special:NewPages|seznam novih strani]])',
-'rcnotefrom' => "Navedene so spremembe od '''$2''' dalje (prikazujem jih do '''$1''').",
+'rcnotefrom' => 'Navedene so spremembe od <strong>$2</strong> dalje (prikazujem jih do <strong>$1</strong>).',
 'rclistfrom' => 'Prikaži spremembe od $1 naprej',
 'rcshowhideminor' => '$1 manjša urejanja',
 'rcshowhideminor-show' => 'Prikaži',

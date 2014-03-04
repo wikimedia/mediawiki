@@ -1724,6 +1724,7 @@ Jika anda memiliki imej ini dalam leraian penuh, sila muat naik fail tersebut. J
 'uploaddisabledtext' => 'Ciri muat naik fail dimatikan.',
 'php-uploaddisabledtext' => 'Pemuatnaikan fail PHP dilumpuhkan. Sila semak tetapan file_uploads.',
 'uploadscripted' => 'Fail ini mengandungi kod HTML atau skrip yang boleh disalahtafsirkan oleh pelayar web.',
+'uploadinvalidxml' => 'XML dalam fail yang dimuat naik ini tidak dapat dihuraikan.',
 'uploadvirus' => 'Fail tersebut mengandungi virus! Butiran: $1',
 'uploadjava' => 'Fail ini ialah fail ZIP yang mengandungi fail .class Java.
 Memuat naik fail Java tidak dibenarkan, kerana boleh menyebabkan sekatan keselamatan dipintas.',
@@ -4074,6 +4075,4 @@ Sebenarnya, ia mengembangkan segalanya dalam tanda kurung panah berganda.',
 'expand_templates_generate_rawhtml' => 'Paparkan HTML mentah',
 'expand_templates_preview' => 'Pralihat',
 
-# Unknown messages
-'uploadinvalidxml' => 'XML dalam fail yang dimuat naik ini tidak dapat dihuraikan.',
 );
