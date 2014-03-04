@@ -753,13 +753,15 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		// show from this onward link
 		$timestamp = wfTimestampNow();
 		$now = $lang->userTimeAndDate( $timestamp, $user );
-		$tl = $this->makeOptionsLink(
-			$now, array( 'from' => $timestamp ), $nondefaults
-		);
-
+		$timenow = $lang->userTime( $timestamp, $user );
+		$datenow = $lang->userDate( $timestamp, $user );
 		$rclinks = $this->msg( 'rclinks' )->rawParams( $cl, $dl, $lang->pipeList( $links ) )
 			->parse();
-		$rclistfrom = $this->msg( 'rclistfrom' )->rawParams( $tl )->parse();
+		$rclistfrom = $this->makeOptionsLink(
+			$this->msg( 'rclistfrom' )->rawParams( $now, $timenow, $datenow )->parse(),
+			array( 'from' => $timestamp ),
+			$nondefaults
+		);
 
 		return "{$note}$rclinks<br />$rclistfrom";
 	}
