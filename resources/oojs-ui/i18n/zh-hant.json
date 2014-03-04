@@ -18,5 +18,6 @@
     "ooui-dialog-action-close": "關閉",
     "ooui-outline-control-move-down": "向下移項",
     "ooui-outline-control-move-up": "向上移項",
+    "ooui-outline-control-remove": "移除項",
     "ooui-toolbar-more": "更多"
 }

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (51f922ba17)
+ * OOjs UI v0.1.0 (f3bc5c6)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri Feb 28 2014 16:33:26 GMT-0800 (PST)
+ * Date: Mon Mar 03 2014 17:03:30 GMT-0800 (PST)
  */
 ( function () {
 
@@ -3865,8 +3865,10 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 	if ( this.outlined ) {
 		this.outlineWidget.connect( this, { 'select': 'onOutlineWidgetSelect' } );
 	}
-	// Event 'focus' does not bubble, but 'focusin' does
-	this.stackLayout.onDOMEvent( 'focusin', OO.ui.bind( this.onStackLayoutFocus, this ) );
+	if ( this.autoFocus ) {
+		// Event 'focus' does not bubble, but 'focusin' does
+		this.stackLayout.onDOMEvent( 'focusin', OO.ui.bind( this.onStackLayoutFocus, this ) );
+	}
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-bookletLayout' );
@@ -4185,21 +4187,22 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 	var selectedItem,
 		page = this.pages[name];
 
-	if ( this.outlined ) {
-		selectedItem = this.outlineWidget.getSelectedItem();
-		if ( selectedItem && selectedItem.getData() !== name ) {
-			this.outlineWidget.selectItem( this.outlineWidget.getItemFromData( name ) );
+	if ( name !== this.currentPageName ) {
+		if ( this.outlined ) {
+			selectedItem = this.outlineWidget.getSelectedItem();
+			if ( selectedItem && selectedItem.getData() !== name ) {
+				this.outlineWidget.selectItem( this.outlineWidget.getItemFromData( name ) );
+			}
 		}
-	}
-
-	if ( page ) {
-		if ( this.currentPageName && this.pages[this.currentPageName] ) {
-			this.pages[this.currentPageName].setActive( false );
+		if ( page ) {
+			if ( this.currentPageName && this.pages[this.currentPageName] ) {
+				this.pages[this.currentPageName].setActive( false );
+			}
+			this.currentPageName = name;
+			this.stackLayout.setItem( page );
+			page.setActive( true );
+			this.emit( 'set', page );
 		}
-		this.currentPageName = name;
-		this.stackLayout.setItem( page );
-		page.setActive( true );
-		this.emit( 'set', page );
 	}
 };
 
@@ -4463,18 +4466,20 @@ OO.ui.StackLayout.prototype.clearItems = function () {
  * @chainable
  */
 OO.ui.StackLayout.prototype.setItem = function ( item ) {
-	if ( !this.continuous ) {
-		this.$items.css( 'display', '' );
-	}
-	if ( $.inArray( item, this.items ) !== -1 ) {
+	if ( item !== this.currentItem ) {
 		if ( !this.continuous ) {
-			item.$element.css( 'display', 'block' );
+			this.$items.css( 'display', '' );
 		}
-	} else {
-		item = null;
+		if ( $.inArray( item, this.items ) !== -1 ) {
+			if ( !this.continuous ) {
+				item.$element.css( 'display', 'block' );
+			}
+		} else {
+			item = null;
+		}
+		this.currentItem = item;
+		this.emit( 'set', item );
 	}
-	this.currentItem = item;
-	this.emit( 'set', item );
 
 	return this;
 };
