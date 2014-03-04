@@ -896,18 +896,16 @@ class SearchResult {
 	}
 
 	/**
-	 * @param array $terms terms to highlight
 	 * @return String: highlighted title, '' if not supported
 	 */
-	function getTitleSnippet( $terms ) {
+	function getTitleSnippet() {
 		return '';
 	}
 
 	/**
-	 * @param array $terms terms to highlight
 	 * @return String: highlighted redirect name (redirect to this page), '' if none or not supported
 	 */
-	function getRedirectSnippet( $terms ) {
+	function getRedirectSnippet() {
 		return '';
 	}
 
