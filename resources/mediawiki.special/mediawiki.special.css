@@ -49,9 +49,6 @@ span.mw-blocklist-actions {
 }
 
 /**** Special:EmailUser ****/
-table.mw-emailuser-table {
-	width: 98%;
-}
 td#mw-emailuser-sender,
 td#mw-emailuser-recipient {
 	font-weight: bold;
@@ -69,7 +66,7 @@ table.mw-listgrouprights-table tr {
 table#mw-prefixindex-list-table, /* HTML backwards-compatibility, to be removed before 1.23 */
 table.mw-prefixindex-list-table,
 table#mw-prefixindex-nav-table {
-	width: 98%;
+	width: 100%;
 }
 td#mw-prefixindex-nav-form {
 	margin-bottom: 1em;
