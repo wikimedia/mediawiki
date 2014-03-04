@@ -1369,6 +1369,9 @@ return array(
 		'styles' => array(
 			'resources/oojs-ui/oojs-ui.svg.css',
 		),
+		'skinStyles' => array(
+			'default' => 'resources/oojs-ui/oojs-ui-apex.css',
+		),
 		'messages' => array(
 			'ooui-dialog-action-close',
 			'ooui-outline-control-move-down',
