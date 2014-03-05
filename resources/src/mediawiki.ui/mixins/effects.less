@@ -29,11 +29,11 @@
 }
 
 .button-colors(@bgColor) when (lightness(@bgColor) >= 70%) {
-	color: @colorGrayDark;
-	border: 1px solid @colorGrayLight;
+	color: @colorGray9;
+	border: 1px solid @colorGray12;
 
 	&:disabled {
-		color: @colorGrayLight;
+		color: @colorDisabledText;
 
 		// make sure disabled buttons don't have hover and active states
 		&:hover,
@@ -45,7 +45,7 @@
 }
 
 .button-colors(@bgColor) when (lightness(@bgColor) < 70%) {
-	color: @colorWhite;
+	color: #fff;
 	// border of the same color as background so that light background and
 	// dark background buttons are the same height (only top and bottom to
 	// make box shadow on hover cover the corners too)
@@ -54,8 +54,8 @@
 	border-right: none;
 
 	&:disabled {
-		background: @colorGrayLight;
-		border-color: @colorGrayLight;
+		background: @colorGray12;
+		border-color: @colorGray12;
 
 		// make sure disabled buttons don't have hover and active states
 		&:hover,
@@ -69,7 +69,7 @@
 .button-colors-quiet(@textColor) {
 	// Quiet buttons all start gray, and reveal
 	// constructive/progressive/destructive color on hover and active.
-	color: @colorGrayDark;
+	color: @colorGray9;
 
 	&:hover,
 	&:focus {
@@ -86,6 +86,6 @@
 	}
 
 	&:disabled {
-		color: @colorGrayLight;
+		color: @colorDisabledText;
 	}
 }
