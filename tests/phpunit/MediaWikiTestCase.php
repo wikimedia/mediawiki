@@ -59,6 +59,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private $mwGlobals = array();
 
 	/**
+	 * Holds list of globals to be unset in tearDown()
+	 * See also setMwGlobals().
+	 * @var array
+	 */
+	private $mwGlobalsToUnset = array();
+
+	/**
 	 * Table name prefixes. Oracle likes it shorter.
 	 */
 	const DB_PREFIX = 'unittest_';
@@ -242,6 +249,14 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 		$this->mwGlobals = array();
 
+		// Unset any globals we didn't previously have if they are set
+		foreach ( $this->mwGlobalsToUnset as $key ) {
+			if ( array_key_exists( $key, $GLOBALS ) ) {
+				unset( $GLOBALS[$key] );
+			}
+		}
+		$this->mwGlobalsToUnset = array();
+
 		$phpErrorLevel = intval( ini_get( 'error_reporting' ) );
 
 		if ( $phpErrorLevel !== $this->phpErrorLevel ) {
@@ -334,16 +349,20 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			// setMwGlobals() on the same global would override the original
 			// value.
 			if ( !array_key_exists( $globalKey, $this->mwGlobals ) ) {
-				// NOTE: we serialize then unserialize the value in case it is an object
-				// this stops any objects being passed by reference. We could use clone
-				// and if is_object but this does account for objects within objects!
-				try {
-					$this->mwGlobals[$globalKey] = unserialize( serialize( $GLOBALS[$globalKey] ) );
-				}
-					// NOTE; some things such as Closures are not serializable
-					// in this case just set the value!
-				catch( Exception $e ) {
-					$this->mwGlobals[$globalKey] = $GLOBALS[$globalKey];
+				if( array_key_exists( $globalKey, $GLOBALS ) ) {
+					// NOTE: we serialize then unserialize the value in case it is an object
+					// this stops any objects being passed by reference. We could use clone
+					// and if is_object but this does account for objects within objects!
+					try {
+						$this->mwGlobals[$globalKey] = unserialize( serialize( $GLOBALS[$globalKey] ) );
+					}
+						// NOTE; some things such as Closures are not serializable
+						// in this case just set the value!
+					catch( Exception $e ) {
+						$this->mwGlobals[$globalKey] = $GLOBALS[$globalKey];
+					}
+				} else {
+					$this->mwGlobalsToUnset[] = $globalKey;
 				}
 			}
 		}
