@@ -312,7 +312,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			// setMwGlobals() on the same global would override the original
 			// value.
 			if ( !array_key_exists( $key, $this->mwGlobals ) ) {
-				$this->mwGlobals[$key] = $GLOBALS[$key];
+				$this->mwGlobals[$key] = unserialize( serialize( $GLOBALS[$key] ) );
 			}
 
 			// Override the global
