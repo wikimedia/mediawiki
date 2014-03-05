@@ -80,8 +80,7 @@ class JpegHandler extends ExifBitmapHandler {
 			wfDebug( __METHOD__ . ": running jpgtran: $cmd\n" );
 			wfProfileIn( 'jpegtran' );
 			$retval = 0;
-			// @todo FIXME Undefined variable $env
-			$err = wfShellExecWithStderr( $cmd, $retval, $env );
+			$err = wfShellExecWithStderr( $cmd, $retval );
 			wfProfileOut( 'jpegtran' );
 			if ( $retval !== 0 ) {
 				$this->logErrorForExternalProcess( $retval, $err, $cmd );
