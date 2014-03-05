@@ -10,8 +10,10 @@ kss: nodecheck
 	@node_modules/.bin/kss-node mediawiki.ui mediawiki.ui/docs --css $(KSS_RL_TMP) -t styleguide-template
 	@echo Opening the generated style guide...
 	@command -v xdg-open >/dev/null 2>&1 || { open ${PWD}/mediawiki.ui/docs/index.html; exit 1; }
-	@xdg-open ${PWD}/mediawiki.ui/docs/index.html
 	@rm $(KSS_RL_TMP)
+
+kssopen: kss
+	@xdg-open ${PWD}/mediawiki.ui/docs/index.html
 
 nodecheck:
 	@scripts/nodecheck.sh
