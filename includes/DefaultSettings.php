@@ -2009,7 +2009,7 @@ $wgCacheDirectory = false;
  *
  * @see $wgMessageCacheType, $wgParserCacheType
  */
-$wgMainCacheType = CACHE_NONE;
+$wgMainCacheType = CACHE_ANYTHING;
 
 /**
  * The cache type for storing the contents of the MediaWiki namespace. This
