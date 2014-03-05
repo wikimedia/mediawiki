@@ -2919,6 +2919,7 @@ Posetite [https://www.mediawiki.org/wiki/Localisation Medijaviki lokalizaciju] i
 'allmessages-prefix' => 'Filtriraj po prefiksu:',
 'allmessages-language' => 'Jezik:',
 'allmessages-filter-submit' => 'Idi',
+'allmessages-filter-translate' => 'Prevedi',
 
 # Thumbnails
 'thumbnail-more' => 'Povećaj',

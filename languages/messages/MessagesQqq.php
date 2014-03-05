@@ -153,6 +153,7 @@
  * @author Verdy p
  * @author Vinhtantran
  * @author Vivaelcelta
+ * @author Vriullop
  * @author Waldir
  * @author Whym
  * @author Yekrats
@@ -1642,7 +1643,7 @@ Parameters:
 'resetpass-temp-password' => 'The label of the input box for the temporary password (received by email) on the form displayed after logging in with a temporary password.',
 'resetpass-abort-generic' => 'Generic error message shown on [[Special:ChangePassword]] when an extension aborts a password change from a hook.',
 'resetpass-expired' => "Generic error message shown on [[Special:ChangePassword]] when a user's password is expired",
-'resetpass-expired-soft' => 'Generic marning message shown on [[Special:ChangePassword]] when a user needs to reset their password, but they are not prevented from logging in at this time',
+'resetpass-expired-soft' => 'Generic warning message shown on [[Special:ChangePassword]] when a user needs to reset their password, but they are not prevented from logging in at this time',
 
 # Special:PasswordReset
 'passwordreset' => 'Title of [[Special:PasswordReset]].
@@ -3689,12 +3690,10 @@ Parameters:
 * $2 - a date and time
 * $3 - (Optional) a date
 * $4 - (Optional) a time',
-'rclistfrom' => 'Used on [[Special:RecentChanges]].
-
-Parameters:
-* $1 - Revision of a specific date and time. The date and the time adds to the rclistfrom description. No longer used.
-* $2 - Revision of a specific time. The time adds to the rclistfrom link description (with split of date and time).
-* $3 - Revision of a specific date. The date adds to the rclistfrom link description (with split of date and time).
+'rclistfrom' => 'Used on [[Special:RecentChanges]]. Parameters:
+* $1 - (Optional) date and time. The date and the time adds to the rclistfrom description.
+* $2 - time. The time adds to the rclistfrom link description (with split of date and time).
+* $3 - date. The date adds to the rclistfrom link description (with split of date and time).
 
 The corresponding message is {{msg-mw|Rcnotefrom}}.',
 'rcshowhideminor' => 'Option text in [[Special:RecentChanges]]. Parameters:
@@ -5934,7 +5933,19 @@ Parameters:
 {{Related|Protect-locked}}',
 'protect-cascadeon' => 'Used in Protection form.
 * $1 - number of cascade source pages',
-'protect-default' => '{{Identical|Default}}',
+'protect-default' => 'Describes the protection state of a page that allows all users to do a certain thing, like editing or moving the page. Example:
+
+<div style="border: 2px dotted gray; padding: .25cm">
+=={{int:Pageinfo-header-restrictions/en}}==
+{| class="wikitable"
+|-
+| {{int:Restriction-edit/en}}
+| {{int:Protect-default/en}}
+|-
+| {{int:Restriction-move/en}}
+| {{int:Protect-level-autoconfirmed/en}}
+|}
+</div>',
 'protect-fallback' => 'This message is used as an option in the protection form on wikis were extra protection levels have been configured.
 
 Parameters:

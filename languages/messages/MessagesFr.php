@@ -992,7 +992,7 @@ Pour terminer la connexion, vous devez fournir un nouveau mot de passe ici :',
 'resetpass-temp-password' => 'Mot de passe temporaire :',
 'resetpass-abort-generic' => 'La modification du mot de passe a été annulée par une extension.',
 'resetpass-expired' => 'Votre mot de passe a expiré. Veuillez en fournir un nouveau pour vous connecter.',
-'resetpass-expired-soft' => 'Votre mot de passe a expiré, et doit être réinitialisé. Veuillez en choisir un nouveau maintenant, ou cliquer sur annuler pour le faire plus tard.',
+'resetpass-expired-soft' => 'Votre mot de passe a expiré, et doit être réinitialisé. Veuillez en choisir un nouveau maintenant, ou cliquer sur « {{int:resetpass-submit-cancel}} » pour le faire plus tard.',
 
 # Special:PasswordReset
 'passwordreset' => 'Remise à zéro du mot de passe',

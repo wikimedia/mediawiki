@@ -500,7 +500,7 @@ $messages = array(
 'searcharticle' => 'Kreni',
 'history' => 'Stare izmjene',
 'history_short' => 'Stare izmjene',
-'updatedmarker' => 'obnovljeno od zadnjeg posjeta',
+'updatedmarker' => 'obnovljeno od posljednjeg posjeta',
 'printableversion' => 'Inačica za ispis',
 'permalink' => 'Trajna poveznica',
 'print' => 'Ispiši',
@@ -540,7 +540,7 @@ $messages = array(
 'otherlanguages' => 'Drugi jezici',
 'redirectedfrom' => '(Preusmjereno s $1)',
 'redirectpagesub' => 'Preusmjeravanje',
-'lastmodifiedat' => 'Datum zadnje promjene na ovoj stranici: $2, $1',
+'lastmodifiedat' => 'Vrijeme i datum posljednje promjene na ovoj stranici: $2, $1',
 'viewcount' => 'Ova stranica je pogledana {{PLURAL:$1|$1 put|$1 puta}}.',
 'protectedpage' => 'Zaštićena stranica',
 'jumpto' => 'Skoči na:',
@@ -587,7 +587,7 @@ $1',
 'youhavenewmessagesfromusers' => 'Imate $1 {{PLURAL:$3||od $3 suradnika|od $3 suradnika}} ($2).',
 'youhavenewmessagesmanyusers' => 'Imate $1 od više suradnika ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|novu poruku|$1 nove poruke|$1 novih poruka}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|zadnje uređivanje|zadnja $1 uređivanja|zadnjih $1 uređivanja}} na stranici za razgovor',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|posljednje uređivanje|posljednja $1 uređivanja|posljednjih $1 uređivanja}} na stranici za razgovor',
 'youhavenewmessagesmulti' => 'Imate nove poruke na $1',
 'editsection' => 'uredi',
 'editold' => 'uredi',
@@ -675,7 +675,9 @@ Nema obrazloženja ili poruke o pogrješci.',
 'badtitle' => 'Loš naslov',
 'badtitletext' => 'Navedeni naslov stranice nepravilan ili loše formirana interwiki poveznica.',
 'perfcached' => 'Sljedeći podaci su iz međuspremnika i možda nisu najsvježiji. Međuspremnik sadrži $1 {{PLURAL:$1|rezultat|rezultata}} pretraživanja.',
-'perfcachedts' => 'Sljedeći podaci su iz međuspremnika i zadnji puta su ažurirani u $1. Međuspremnik sadrži $4 {{PLURAL:$4|rezultat|rezultata}} pretraživanja.',
+'perfcachedts' => 'Sljedeći podaci su iz međuspremnika i posljednji puta su ažurirani u $1. Međuspremnik sadrži $4 {{PLURAL:$4|rezultat|rezultata}} pretraživanja.
+
+Više o ovoj [[Wikipedija:Posebne stranice|posebnoj stranici]] na [[Razgovor Wikipedija:Special:{{PAGENAME}}]].',
 'querypage-no-updates' => 'Osvježavanje ove stranice je trenutačno onemogućeno. Nove promjene neće biti vidljive.',
 'viewsource' => 'Vidi izvornik',
 'viewsource-title' => 'Vidi kôd stranice $1',
@@ -815,7 +817,7 @@ koristiti staru lozinku.',
 'blocked-mailpassword' => 'Vašoj IP adresi je blokirano uređivanje stranica, a da bi se spriječila nedopuštena radnja, mogućnost zahtijevanja nove lozinke je također onemogućena.',
 'eauthentsent' => 'Na navedenu adresu poslana je e-poruka s potvrdom.
 Prije nego što pošaljemo daljnje poruke, molimo Vas otvorite e-poruku i slijedite u njemu sadržana uputstva kako biste potvrdili da je adresa e-pošte zaista Vaša.',
-'throttled-mailpassword' => 'Već Vam je poslan e-mail za promjenu zaporke, u {{PLURAL:$1|zadnjih sat vremena|zadnja $1 sata|zadnjih $1 sati}}.
+'throttled-mailpassword' => 'Već Vam je poslan e-mail za promjenu zaporke, u {{PLURAL:$1|posljednjih sat vremena|posljednja $1 sata|posljednjih $1 sati}}.
 Da bi spriječili zloupotrebu, moguće je poslati samo jedan e-mail za promjenu zaporke {{PLURAL:$1|svakih sat vremena|svaka $1 sata|svakih $1 sati}}.',
 'mailerror' => 'Pogrješka pri slanju e-pošte: $1',
 'acct_creation_throttle_hit' => 'Posjetitelji ovog wikija koji rabe Vašu IP adresu napravili su {{PLURAL:$1|1 račun|$1 računa}} u posljednjem danu, što je najveći dopušteni broj u tom vremenskom razdoblju.
@@ -1144,7 +1146,7 @@ Neki predlošci neće biti uključeni.',
 'converter-manual-rule-error' => 'Pronađena je pogrješka u pravilu ručnog prijevoda',
 
 # "Undo" feature
-'undo-success' => 'Izmjena je uklonjena (tekst u okviru ispod ne sadrži zadnju izmjenu). Molim sačuvajte stranicu (provjerite sažetak).',
+'undo-success' => 'Izmjena je uklonjena (tekst u okviru ispod ne sadrži posljednju izmjenu). Molim sačuvajte stranicu (provjerite sažetak).',
 'undo-failure' => 'Ova izmjena ne može biti uklonjena zbog postojanja međuinačica.',
 'undo-norev' => 'Izmjena nije mogla biti uklonjena jer ne postoji ili je obrisana.',
 'undo-summary' => 'Uklanjanje izmjene $1 što ju je unio/unijela [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]])',
@@ -1588,7 +1590,7 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'right-viewmyprivateinfo' => 'Vidite svoje privatne podatke (npr. adresu e-pošte, stvarno ime)',
 'right-editmyprivateinfo' => 'Uredite svoje privatne podatke (npr. adresa e-pošte, stvarno ime)',
 'right-editmyoptions' => 'Uredite svoje postavke',
-'right-rollback' => 'Brzo uklanjanje izmjena zadnjeg suradnika na određenoj stranici',
+'right-rollback' => 'Brzo uklanjanje izmjena posljednjeg suradnika na određenoj stranici',
 'right-markbotedits' => 'Označavanje uklonjenih izmjena kao izmjenu bota',
 'right-noratelimit' => 'Bez vremenskog ograničenja uređivanja',
 'right-import' => 'Uvoženje stranica s drugih wikija',
@@ -1677,7 +1679,7 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'rcshowhideanons' => '$1 neprijavljene suradnike',
 'rcshowhidepatr' => '$1 provjerene promjene',
 'rcshowhidemine' => '$1 moje promjene',
-'rclinks' => 'Prikaži zadnjih $1 promjena u zadnjih $2 dana; $3',
+'rclinks' => 'Prikaži posljednjih $1 promjena {{PLURAL:$2|prethodni dan|u posljednja $2 dana|u posljednjih $2 dana}}<br />$3',
 'diff' => 'razl',
 'hist' => 'pov',
 'hide' => 'sakrij',
@@ -2233,7 +2235,7 @@ Podržani {{PLURAL:$2|protokol|protokoli}}: <code>$1</code> (default je http:// 
 
 # Special:ActiveUsers
 'activeusers' => 'Popis aktivnih suradnika',
-'activeusers-intro' => 'Ovo je popis suradnika koji su napravili neku aktivnost u {{PLURAL:$1|zadnji $1 dan|zadnja $1 dana|zadnjih $1 dana}}.',
+'activeusers-intro' => 'Ovo je popis suradnika koji su napravili neku aktivnost u {{PLURAL:$1|posljednji $1 dan|posljednja $1 dana|posljednjih $1 dana}}.',
 'activeusers-count' => '{{PLURAL:$1|nedavna $1 izmjena|nedavne $1 izmjene|nedavnih $1 izmjena}} u {{PLURAL:$3|posljednji $3 dan|posljednja $3 dana|posljednjih $3 dana}}',
 'activeusers-from' => 'Prikaži suradnike počevši od:',
 'activeusers-hidebots' => 'Sakrij botove',
@@ -2320,12 +2322,12 @@ Promjene na toj stranici i njenoj stranici za razgovor bit će prikazane na popi
 'notvisiblerev' => 'Izmjena je obrisana',
 'watchlist-details' => '{{PLURAL:$1|$1 stranica|$1 stranice|$1 stranica}} se nalazi na popisu praćenja, ne brojeći stranice za razgovor.',
 'wlheader-enotif' => 'Uključeno je izvješćivanje e-poštom.',
-'wlheader-showupdated' => "Stranice koje su promijenjene od Vašeg zadnjeg posjeta prikazane su '''podebljano'''",
+'wlheader-showupdated' => "Stranice koje su promijenjene od Vašeg posljednjeg posjeta prikazane su '''podebljano'''",
 'watchmethod-recent' => 'provjera nedavnih promjena praćenih stranica',
 'watchmethod-list' => 'provjera praćanih stranica za nedavne promjene',
 'watchlistcontains' => 'Vaš popis praćenja sadrži $1 {{PLURAL:$1|stranicu|stranice|stranica}}.',
 'iteminvalidname' => "Problem s izborom '$1', ime nije valjano...",
-'wlshowlast' => 'Prikaži zadnjih $1 sati $2 dana $3',
+'wlshowlast' => 'Prikaži posljednjih $1 sati $2 dana $3',
 'watchlist-options' => 'Izbornik popisa praćenja',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -2355,11 +2357,11 @@ $PAGEINTRO $NEWPAGE
 
 Sažetak urednika: $PAGESUMMARY $PAGEMINOREDIT
 
-Možete kontaktirati suradnika koji je zadnji uređivao stranicu:
+Možete kontaktirati suradnika koji je posljednji uređivao stranicu:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Do Vašeg ponovnog posjeta stranici nećete dobivati nove obavijesti. Postavke za izvješćivanje možete resetirati za sve praćene stranice svog popisa praćenja.
+Do Vašeg ponovnog posjeta stranici nećete dobivati nove obavijesti. Postavke za izvješćivanje možete vratiti na prvotno zadane za sve praćene stranice svog popisa praćenja.
 
 Vaš sustav izvješćivanja {{SITENAME}}.
 
@@ -2423,10 +2425,10 @@ Sva vremena su prema poslužiteljevom vremenu.',
 
 Posljednju promjenu napravio je [[User:$3|$3]] ([[User talk:$3|Razgovor]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Sažetak promjene je bio: \"''\$1''\".",
-'revertpage' => 'Uklonjena promjena suradnika $2, vraćeno na zadnju inačicu suradnika $1',
+'revertpage' => 'Uklonjena promjena suradnika $2, vraćeno na posljednju inačicu suradnika $1',
 'revertpage-nouser' => 'Vraćene izmjene suradnika (suradničko ime uklonjeno) na posljednju inačicu suradnika [[User:$1|$1]]',
 'rollback-success' => 'Uklonjeno uređivanje {{GENDER:$1|suradnika|suradnice}} $1
-vraćeno na zadnju inačicu {{GENDER:$2|suradnika|suradnice}} $2.',
+vraćeno na posljednju inačicu {{GENDER:$2|suradnika|suradnice}} $2.',
 
 # Edit tokens
 'sessionfailure-title' => 'Prekid sesije',
@@ -2511,7 +2513,7 @@ Baza se povremeno čisti od ovakvih stranica.',
 Ako želite vratiti određene izmjene, označite ih i kliknite '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions' => '$1 {{PLURAL:$1|inačica je arhivirana|inačice su arhivirane|inačica je arhivirano}}',
 'undeletehistory' => 'Ako vratite izbrisanu stranicu, bit će vraćene i sve prijašnje promjene. Ako je u međuvremenu stvorena nova stranica s istim imenom, vraćena stranica bit će upisana kao prijašnja promjena sadašnje.',
-'undeleterevdel' => 'Vraćanje stranice neće biti izvršeno ako je rezultat toga djelomično brisanje zadnjeg uređivanja.
+'undeleterevdel' => 'Vraćanje stranice neće biti izvršeno ako je rezultat toga djelomično brisanje posljednjeg uređivanja.
 U takvim slučajevima morate isključiti ili otkriti najnovije obrisane promjene.',
 'undeletehistorynoadmin' => 'Ovaj je članak izbrisan. Razlog za brisanje prikazan je u donjem sažetku, zajedno s
 detaljima o suradnicima koji su uređivali ovu stranicu prije brisanja.
@@ -3018,7 +3020,7 @@ Snimite je na svoje računalo i postavite je ovdje.',
 'tooltip-watchlistedit-raw-submit' => 'Osvježi popis praćenja',
 'tooltip-recreate' => 'Vrati stranicu unatoč tome što je obrisana',
 'tooltip-upload' => "Pokreni snimanje (''upload'')",
-'tooltip-rollback' => '"Ukloni" uklanja uređivanja zadnjeg suradnika na ovoj stranici.',
+'tooltip-rollback' => '"Ukloni" uklanja uređivanja posljednjeg suradnika na ovoj stranici.',
 'tooltip-undo' => '"Ukloni ovu izmjenu" uklanja ovu izmjenu i otvara okvir za uređivanje. Omogućava unošenje razloga u sažetak.',
 'tooltip-preferences-save' => 'Spremi postavke',
 'tooltip-summary' => 'Unesite kratki sažetak',
@@ -3038,7 +3040,7 @@ Snimite je na svoje računalo i postavite je ovdje.',
 'anonymous' => 'Neprijavljeni {{PLURAL:$1|suradnik|suradnici}} projekta {{SITENAME}}',
 'siteuser' => 'Suradnik $1 na projektu {{SITENAME}}',
 'anonuser' => '{{SITENAME}} anonimni suradnik $1',
-'lastmodifiedatby' => 'Ovu je stranicu zadnji put mijenjao dana $2, $1 suradnik $3.',
+'lastmodifiedatby' => 'Ovu je stranicu posljednji put {{GENDER:$4|mijenjao suradnik|mijenjala suradnica}} $3 dana $1 u $2.',
 'othercontribs' => 'Temelji se na doprinosu suradnika $1.',
 'others' => 'drugih',
 'siteusers' => '{{SITENAME}} {{PLURAL:$2|suradnik|suradnici}} $1',
@@ -3052,7 +3054,7 @@ Snimite je na svoje računalo i postavite je ovdje.',
 Razlog je vjerojatno vanjska poveznica koja se nalazi na crnom popisu.',
 'spamprotectionmatch' => 'Naš filtar spama reagirao je na sljedeći tekst: $1',
 'spambot_username' => 'MediaWiki zaštita od spama',
-'spam_reverting' => 'Vraćam na zadnju inačicu koja ne sadrži poveznice na $1',
+'spam_reverting' => 'Vraćam na posljednju inačicu koja ne sadrži poveznice na $1',
 'spam_blanking' => 'Sve inačice sadrže poveznice na $1, brišem cjelokupni sadržaj',
 'spam_deleting' => 'Sve inačice sadržale su poveznice na $1, brišem cjelokupni sadržaj',
 'simpleantispam-label' => "Anti-spam provjera.
@@ -3081,10 +3083,10 @@ Razlog je vjerojatno vanjska poveznica koja se nalazi na crnom popisu.',
 'pageinfo-firstuser' => 'Suradnik koji je stvorio stranicu',
 'pageinfo-firsttime' => 'Datum stvaranja stranice',
 'pageinfo-lastuser' => 'Posljednji urednik stranice',
-'pageinfo-lasttime' => 'Datum zadnjeg uređivanja',
+'pageinfo-lasttime' => 'Datum posljednjeg uređivanja',
 'pageinfo-edits' => 'Ukupan broj uređivanja',
 'pageinfo-authors' => 'Broj različitih autora',
-'pageinfo-recent-edits' => 'Broj uređivanja (u zadnjih $1)',
+'pageinfo-recent-edits' => 'Broj uređivanja (u posljednjih $1)',
 'pageinfo-recent-authors' => 'Broj različitih autora u gornjem razdoblju',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magična riječ - varijabla|Magične riječi - varijable}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Postoji|Postoje|Postoji}} $1 {{PLURAL:$1|skrivena kategorija|skrivene kategorije|skrivenih kategorija}}',
@@ -3167,7 +3169,7 @@ Njegovim izvršavanjem mogli biste oštetiti svoj sustav.",
 # Special:NewFiles
 'newimages' => 'Galerija novih datoteka',
 'imagelisttext' => 'Ispod je popis {{PLURAL:$1|$1 slike|$1 slike|$1 slika}} složen $2.',
-'newimages-summary' => 'Ova posebna stranica pokazuje zadnje nedavno postavljene datoteke.',
+'newimages-summary' => 'Ova posebna stranica pokazuje posljednje nedavno postavljene datoteke.',
 'newimages-legend' => 'Filtar',
 'newimages-label' => 'Naziv datoteke (ili njen dio):',
 'showhidebots' => '($1 botova)',
@@ -3244,7 +3246,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'exif-primarychromaticities' => 'Kromaticitet primarnih boja',
 'exif-ycbcrcoefficients' => 'Matrični koeficijenti preobrazbe kolor prostora',
 'exif-referenceblackwhite' => 'Mjesto bijele i crne točke',
-'exif-datetime' => 'Datum zadnje promjene datoteke',
+'exif-datetime' => 'Datum posljednje promjene datoteke',
 'exif-imagedescription' => 'Ime slike',
 'exif-make' => 'Proizvođač kamere',
 'exif-model' => 'Model kamere',
@@ -3374,7 +3376,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'exif-serialnumber' => 'Serijski broj kamere',
 'exif-cameraownername' => 'Vlasnik kamere',
 'exif-label' => 'Oznaka',
-'exif-datetimemetadata' => 'Datum zadnje promjene metapodataka',
+'exif-datetimemetadata' => 'Datum posljednje promjene metapodataka',
 'exif-nickname' => 'Neformalni naziv slike',
 'exif-rating' => 'Ocjena (od 5)',
 'exif-rightscertificate' => 'Certifikat za upravljanje pravima',
@@ -3736,8 +3738,8 @@ Potvrdite namjeru vraćanja ovog članka.",
 'livepreview-error' => 'Spajanje nije uspjelo: $1 "$2". Pokušajte normalni pretpregled.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Moguće je da izmjene nastale zadnjih $1 {{PLURAL:$1|sekundu|sekundi}} neće biti vidljive na ovom popisu.',
-'lag-warn-high' => 'Zbog kašnjenja baze podataka, moguće je da promjene napravljene u zadnjih $1 {{PLURAL:$1|sekundu|sekunde|sekundi}} nisu prikazane u popisu.',
+'lag-warn-normal' => 'Moguće je da izmjene nastale posljednjih $1 {{PLURAL:$1|sekundu|sekundi}} neće biti vidljive na ovom popisu.',
+'lag-warn-high' => 'Zbog kašnjenja baze podataka, moguće je da promjene napravljene u posljednjih $1 {{PLURAL:$1|sekundu|sekunde|sekundi}} nisu prikazane u popisu.',
 
 # Watchlist editor
 'watchlistedit-numitems' => 'Vaš popis praćenja sadrži {{PLURAL:$1|1 stranicu|$1 stranica}}, bez stranica za razgovor.',

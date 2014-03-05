@@ -1862,7 +1862,7 @@ Sinun on syytä pyytää jotakuta häivytettyjen tietojen näkemiseen oikeutettu
 'uploaddisabledtext' => 'Tiedostojen tallennus on poistettu käytöstä.',
 'php-uploaddisabledtext' => 'PHP:n tiedostojen lähetys ei ole käytössä. Tarkista asetukset kohdasta file_uploads.',
 'uploadscripted' => 'Tämä tiedosto sisältää HTML-koodia tai skriptejä, jotka selain saattaa virheellisesti suorittaa.',
-'uploadscriptednamespace' => "Tämä SVG-tiedosto sisältää kelvottoman nimiavaruuden '$1'",
+'uploadscriptednamespace' => 'Tämä SVG-tiedosto sisältää nimiavaruuden ”$1”, joka ei ole sallittu.',
 'uploadinvalidxml' => 'Ladatun tiedoston XML-koodia ei voitu jäsentää kunnolla.',
 'uploadvirus' => 'Tiedosto sisältää viruksen. Tarkemmat tiedot: $1',
 'uploadjava' => 'Tämä tiedosto on ZIP-tiedosto, joka sisältää Java .class-tiedoston.

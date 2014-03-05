@@ -954,7 +954,7 @@ Agar keltirsangiz, undan sahifa kim tomonidan tahrirlanganini koʻrsatish uchun 
 'recentchanges-label-plusminus' => 'vazni qanchaga oʻzgargani (bayt)',
 'recentchanges-legend-heading' => "'''Izoh:'''",
 'recentchanges-legend-newpage' => '([[Special:NewPages|alohida roʻyxat]])',
-'rcnotefrom' => "Quyida <strong>$2</strong> dan (<strong>$1</strong> gacha) bo'lgan o'zgarishlar keltirilgan.",
+'rcnotefrom' => 'Quyida <strong>$2</strong>dan boshlab boʻlgan oʻzgarishlar keltirilgan (<strong>$1</strong>dan koʻp boʻlmaganlari koʻrsatildi).',
 'rclistfrom' => '$1 dan boshlab yangi oʻzgarishlarni koʻrsat.',
 'rcshowhideminor' => 'Kichik tahrirlarni $1',
 'rcshowhidebots' => 'Botlarni $1',

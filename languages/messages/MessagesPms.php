@@ -615,7 +615,7 @@ Për finì ëd rintré ant ël sistema, a dev definì na neuva ciav ambelessì:"
 'resetpass-temp-password' => 'Ciav provisòria:',
 'resetpass-abort-generic' => "La modìfica ëd la ciav a l'é stàita anulà da n'estension.",
 'resetpass-expired' => "Soa ciav a l'é scadùa. Për piasì, ch'a definissa na ciav neuva për rintré ant ël sistema.",
-'resetpass-expired-soft' => "Soa ciav a l'é scadùa e a l'ha damanca d'esse arnovà. Për piasì, ch'a serna na neuva ciav adess o ch'a sgnaca su anulé për cangela pi tard.",
+'resetpass-expired-soft' => "Soa ciav a l'é scadùa e a l'ha damanca d'esse arnovà. Për piasì, ch'a serna na neuva ciav adess o ch'a sgnaca su «{{int:resetpass-submit-cancel}}» për cangela pi tard.",
 
 # Special:PasswordReset
 'passwordreset' => 'Ri-inissialisassion ëd la ciav',
@@ -1464,7 +1464,7 @@ Costa anformassion a sarà pùblica.",
 'recentchanges-legend-heading' => "'''Legend:'''",
 'recentchanges-legend-newpage' => '(vëdde ëdcò [[Special:NewPages|lista dle pàgine neuve]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnotefrom' => ' Ambelessì sota a-i é la lista dle modìfiche da <b>$2</b> (fin-a a <b>$1</b>).',
+'rcnotefrom' => 'Ambelessì sota a-i é la lista dle modìfiche da <strong>$2</strong> (mostrà fin-a a <strong>$1</strong>).',
 'rclistfrom' => 'Mostré le modìfiche a parte da $1',
 'rcshowhideminor' => '$1 le modìfiche cite',
 'rcshowhideminor-show' => 'Smon-e',
