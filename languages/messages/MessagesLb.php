@@ -762,7 +762,7 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 'resetpass-temp-password' => 'Temporäert Passwuert:',
 'resetpass-abort-generic' => "D'Ännere vum Passwuert gouf duerch eng Erweiderung ofgebrach.",
 'resetpass-expired' => 'Äert Passwuert ass ofgelaf. Gitt w.e.g. en neit Passwuert u fir Iech anzeloggen.',
-'resetpass-expired-soft' => 'Äert Passwuert ass ofgelaf a muss zeréckgesat. Sicht w.e.g. elo en neit Passwuert eraus oder klickt ofbrieche fir et spéider zeréckzesetzen.',
+'resetpass-expired-soft' => 'Äert Passwuert ass ofgelaf a muss zeréckgesat. Sicht w.e.g. elo en neit Passwuert eraus oder klickt  "{{int:resetpass-submit-cancel}}" fir et spéider zeréckzesetzen.',
 
 # Special:PasswordReset
 'passwordreset' => 'Passwuert zrécksetzen',

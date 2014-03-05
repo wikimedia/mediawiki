@@ -9,6 +9,7 @@
  *
  * @author Alcali
  * @author Alchimista
+ * @author Anaclaudiaml
  * @author Bani
  * @author Brion
  * @author BrunaaAa
@@ -873,6 +874,8 @@ Por favor aguarde $1 antes de tentar novamente.',
 'suspicious-userlogout' => 'Sua solicitação para sair foi negada porque aparentemente foi enviada por um navegador danificado ou por um servidor proxy com cache.',
 'createacct-another-realname-tip' => 'O nome verdadeiro é opcional.
 Se você optar por fornecê-lo, este nome será utilizado para dar ao usuário a atribuição de seu trabalho.',
+'pt-login' => 'Entrar',
+'pt-createaccount' => 'Criar conta',
 
 # Email sending
 'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
@@ -881,7 +884,7 @@ Se você optar por fornecê-lo, este nome será utilizado para dar ao usuário a
 
 # Change password dialog
 'changepassword' => 'Alterar senha',
-'resetpass_announce' => 'Você foi autenticado através de uma senha temporária. Para prosseguir, será necessário definir uma nova senha.',
+'resetpass_announce' => 'Para completar a autenticação, é necessário definir uma nova senha.',
 'resetpass_text' => '<!-- Adicionar texto aqui -->',
 'resetpass_header' => 'Alterar a senha da conta',
 'oldpassword' => 'Senha antiga',
@@ -897,8 +900,12 @@ Por favor, aguarde $1 antes de tentar novamente.',
 'resetpass-submit-cancel' => 'Cancelar',
 'resetpass-wrong-oldpass' => 'Senha temporária ou atual inválida.
 Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senha temporária.',
+'resetpass-recycled' => 'Por favor, redefina sua nova senha para uma diferente da atual.',
+'resetpass-temp-emailed' => 'Você está autenticado com o código temporário enviado. Para finalizar a autenticação, você deve inserir uma nova senha aqui:',
 'resetpass-temp-password' => 'Senha temporária:',
 'resetpass-abort-generic' => 'Uma extensão cancelou a alteração da senha.',
+'resetpass-expired' => 'Sua senha expirou. Por favor insira uma nova senha para autenticar-se.',
+'resetpass-expired-soft' => 'Sua senha expirou e necessita ser resetada. Por favor escolha uma nova agora, ou clique "{{int:resetpass-submit-cancel}}" para resetar mais tarde.',
 
 # Special:PasswordReset
 'passwordreset' => 'Redefinir senha',
@@ -1756,11 +1763,23 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'rcnotefrom' => "Seguem as alterações desde as '''$4''' de '''$3''' (limitadas a '''$1''').",
 'rclistfrom' => 'Mostrar as novas alterações a partir das $1',
 'rcshowhideminor' => '$1 edições menores',
+'rcshowhideminor-show' => 'Exibir',
+'rcshowhideminor-hide' => 'Ocultar',
 'rcshowhidebots' => '$1 robôs',
+'rcshowhidebots-show' => 'Exibir',
+'rcshowhidebots-hide' => 'Ocultar',
 'rcshowhideliu' => '$1 usuários registrados',
+'rcshowhideliu-show' => 'Exibir',
+'rcshowhideliu-hide' => 'Ocultar',
 'rcshowhideanons' => '$1 usuários anônimos',
+'rcshowhideanons-show' => 'Exibir',
+'rcshowhideanons-hide' => 'Ocultar',
 'rcshowhidepatr' => '$1 edições patrulhadas',
+'rcshowhidepatr-show' => 'Exibir',
+'rcshowhidepatr-hide' => 'Ocultar',
 'rcshowhidemine' => '$1 minhas edições',
+'rcshowhidemine-show' => 'Exibir',
+'rcshowhidemine-hide' => 'Ocultar',
 'rclinks' => 'Exibir as $1 alterações recentes feitas nos últimos $2 dias<br />$3',
 'diff' => 'dif',
 'hist' => 'his',
@@ -1882,6 +1901,7 @@ Se você ainda quer enviar seu arquivo, volte e use um novo nome.
 'file-exists-duplicate' => 'Este arquivo é uma duplicata do seguinte {{PLURAL:$1|arquivo|arquivos}}:',
 'file-deleted-duplicate' => 'Um arquivo idêntico a este ([[:$1]]) foi eliminado anteriormente.
 Verifique o histórico de eliminação de tal arquivo antes de tentar re-enviar.',
+'file-deleted-duplicate-notitle' => 'Um arquivo idêntico a este foi anteriormente excluído, e o título foi suprimido. Você deve comunicar com alguém capaz de visualizar dados suprimidos, para verificar a situação antes de enviá-lo novamente.',
 'uploadwarning' => 'Aviso de envio',
 'uploadwarning-text' => 'Modifique a descrição do arquivo abaixo e tente novamente.',
 'savefile' => 'Salvar arquivo',
@@ -1894,6 +1914,7 @@ Verifique o histórico de eliminação de tal arquivo antes de tentar re-enviar.
 'php-uploaddisabledtext' => 'O envio de arquivos via PHP está desativado.
 Verifique a configuração file_uploads.',
 'uploadscripted' => 'Este arquivo contém HTML ou código que pode ser erroneamente interpretado por um navegador web.',
+'uploadscriptednamespace' => 'Este aruivo SVG contém um espaço nominal probido "$1"',
 'uploadinvalidxml' => 'O XML no arquivo enviado não pôde ser analisado.',
 'uploadvirus' => 'O arquivo contém vírus!
 Detalhes: $1',

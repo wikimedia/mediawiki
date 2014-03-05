@@ -3084,6 +3084,7 @@ $1',
 'allmessages-prefix' => 'Филтрирај по префиксу:',
 'allmessages-language' => 'Језик:',
 'allmessages-filter-submit' => 'Иди',
+'allmessages-filter-translate' => 'Преведи',
 
 # Thumbnails
 'thumbnail-more' => 'Повећај',

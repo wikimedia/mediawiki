@@ -2478,10 +2478,10 @@ Ecce le configurationes actual del pagina '''$1''':",
 Ecce le configurationes actual del pagina '''$1''':",
 'protect-cascadeon' => 'Iste pagina es actualmente protegite proque illo es includite in le sequente {{PLURAL:$1|pagina, le qual|paginas, le quales}} ha activate le protection in cascada.
 Tu pote cambiar le nivello de protection de iste pagina, ma isto non cambiara le effecto del protection in cascada.',
-'protect-default' => 'Permitter tote le usatores',
-'protect-fallback' => 'Permitter solmente usatores con le permission de "$1"',
-'protect-level-autoconfirmed' => 'Permitter solmente usatores autoconfirmate',
-'protect-level-sysop' => 'Permitter solmente administratores',
+'protect-default' => 'Permitter a tote le usatores',
+'protect-fallback' => 'Permitter solmente al usatores con le privilegio de "$1"',
+'protect-level-autoconfirmed' => 'Permitter solmente al usatores autoconfirmate',
+'protect-level-sysop' => 'Permitter solmente al administratores',
 'protect-summary-cascade' => 'in cascada',
 'protect-expiring' => 'expira le $1 (UTC)',
 'protect-expiring-local' => 'expira le $1',
@@ -3108,7 +3108,7 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 '''NON''' completa isto!",
 
 # Info page
-'pageinfo-title' => 'Informationes pro "$1"',
+'pageinfo-title' => 'Information sur "$1"',
 'pageinfo-not-current' => 'Regrettabilemente, il es impossibile fornir iste information pro versiones ancian.',
 'pageinfo-header-basic' => 'Information de base',
 'pageinfo-header-edits' => 'Historia de modificationes',

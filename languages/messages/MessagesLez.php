@@ -146,12 +146,12 @@ $messages = array(
 'dec' => 'дек',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|1=Категори|Категорияр}}',
+'pagecategories' => '{{PLURAL:$1|1=Категория|Категорияр}}',
 'category_header' => '«$1» категориядин ччинар',
 'subcategories' => 'агъакатегорияр',
 'category-media-header' => '"$1" категориядин медиа',
 'category-empty' => "''Алай чӀава и категория ичӀи я.\"",
-'hidden-categories' => '{{PLURAL:$1|1=Чуьнуьхай категори|Чуьнуьхай категорияр}}',
+'hidden-categories' => '{{PLURAL:$1|1=Чуьнуьхай категория|Чуьнуьхай категорияр}}',
 'hidden-category-category' => 'Чуьнуьхай категорияр',
 'category-subcat-count' => '{{PLURAL:$2|И категорияда анжах гуьгъуьна авай подкатегория ава.|$2-кай {{PLURAL:$1|1=агъакатегория|$1 агъакатегорияр}} къалурнава }}',
 'category-subcat-count-limited' => 'И категорияда {{PLURAL:$1|1=агъакатегория|$1 агъакатегорияр}} ава.',
@@ -866,7 +866,7 @@ $messages = array(
 'withoutinterwiki-submit' => 'Къалурун',
 
 # Miscellaneous special pages
-'nbytes' => '$1 {{PLURAL:$1|баjт|баjтар}}',
+'nbytes' => '$1 {{PLURAL:$1|1=байт|байтар}}',
 'nmembers' => '$1 {{PLURAL:$1|1=уьзви|уьзвияр}}',
 'lonelypages' => 'Eтим xъувун',
 'prefixindex' => 'Префикс галай вири ччинар',

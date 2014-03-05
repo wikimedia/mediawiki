@@ -870,7 +870,7 @@ Pentru a finaliza acțiunea de autentificare, trebuie să setați o parolă nou�
 'resetpass-temp-password' => 'Parolă temporară:',
 'resetpass-abort-generic' => 'Schimbarea parolei a fost anulată de către o extensie.',
 'resetpass-expired' => 'Parola dumneavoastră a expirat. Alegeți o parolă nouă pentru a vă autentifica.',
-'resetpass-expired-soft' => 'Parola dumneavoastră a expirat și trebuie schimbată. Alegeți o parolă nouă acum sau apăsați Revocare pentru a o reseta mai târziu.',
+'resetpass-expired-soft' => 'Parola dumneavoastră a expirat și trebuie schimbată. Alegeți o parolă nouă acum sau apăsați „{{int:resetpass-submit-cancel}}” pentru a o reseta mai târziu.',
 
 # Special:PasswordReset
 'passwordreset' => 'Resetare parolă',

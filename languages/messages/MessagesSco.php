@@ -592,7 +592,7 @@ Tae finish loggin in, ye maun set ae new passwaird here:',
 'resetpass-temp-password' => 'Temperie passwaird:',
 'resetpass-abort-generic' => 'Passwaird chynge haes been aborted bi aen extension.',
 'resetpass-expired' => 'Yer passwaird haes expired. Please set ae new passwaird tae log-in.',
-'resetpass-expired-soft' => 'Yer passwaird haes expired, an needs tae be reset. Please chuise ae new passwaird nou, or clap oan cancel tae reset it later.',
+'resetpass-expired-soft' => 'Yer passwaird haes expired n needs tae be reset. Please chuise ae new passwaird nou, or clap oan "{{int:resetpass-submit-cancel}}" tae reset it later.',
 
 # Special:PasswordReset
 'passwordreset' => 'Reset passwaird',
@@ -775,8 +775,8 @@ It's no been hained yet!</strong>",
 Yer chynges hae no been hained yet!',
 'continue-editing' => 'Gae til eiditing area',
 'previewconflict' => 'This scance reflects the tex in the upper tex eiditin area like it will kythe gin ye chuise tae hain.',
-'session_fail_preview' => "<strong>Sairy! We culdnae process yer eidit acause o ae loss o term data.</strong>
-Please try again. Gin it disnae wairk still, try loggin oot an loggin in again.'''",
+'session_fail_preview' => '<strong>Sairy! We culdnae process yer eidit acause o ae loss o term data.</strong>
+Please try again. Gin it disnae wairk still, try [[Secial:UserLogout|login oot]] an loggin in again.',
 'session_fail_preview_html' => "<strong>Sairrie! We coudna process yer eidit cause o ae loss o session data.</strong>
 
 <em>Cause {{SITENAME}} haes raw HTML enabled, the preview is skauk't aes ae precaution again JavaScript attacks.</em>
@@ -1224,7 +1224,7 @@ Yer wab-mail address isna revealed whan ither uisers contact ye.',
 'recentchanges-label-minor' => 'This is ae smaa eidit',
 'recentchanges-label-bot' => 'This edit wis performed by a bot',
 'recentchanges-label-unpatrolled' => 'This edit haes nae yet bin patrolled',
-'rcnotefrom' => 'Ablo is the chynges sin <strong>$2</strong> (up til <strong>$1</strong> shawn).',
+'rcnotefrom' => 'Ablo ar the chynges sin <strong>$2</strong> (up til <strong>$1</strong> shawn).',
 'rclistfrom' => 'Shaw new chynges stertin frae $1',
 'rcshowhideminor' => '$1 smaa edits',
 'rcshowhideminor-show' => 'Shaw',
@@ -1538,6 +1538,7 @@ an that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
 'reverted' => 'Revertit tae aulder reveision',
 'deletecomment' => 'Raeson:',
 'deletereasonotherlist' => 'Ither raeson',
+'deleting-backlinks-warning' => "'''Warnishment:''' ither pages link til or transclude the page ye'r aboot tae delyte.",
 
 # Rollback
 'rollback' => 'Row back edits',

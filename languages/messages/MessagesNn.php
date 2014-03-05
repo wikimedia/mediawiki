@@ -2388,6 +2388,7 @@ Attendemelding og hjelp:
 'delete-edit-reasonlist' => 'Endre grunnar til sletting',
 'delete-toobig' => 'Denne sida har ein stor endringsshistorikk, med over {{PLURAL:$1|$1&nbsp;endring|$1&nbsp;endringar}}. Sletting av slike sider er avgrensa for å unngå utilsikta forstyrring av {{SITENAME}}.',
 'delete-warning-toobig' => 'Denne sida har ein lang endringshistorikk, med meir enn {{PLURAL:$1|$1&nbsp;endring|$1&nbsp;endringar}}. Dersom du slettar henne kan det forstyrre handlingar i databasen til {{SITENAME}}, ver varsam.',
+'deleting-backlinks-warning' => "'''Åtvaring''': Andre sider lenkjer til eller inkluderer sida du er i ferd med å sletta.",
 
 # Rollback
 'rollback' => 'Rull attende endringar',

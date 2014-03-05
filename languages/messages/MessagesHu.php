@@ -880,7 +880,7 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 'resetpass-temp-password' => 'Ideiglenes jelszó:',
 'resetpass-abort-generic' => 'A jelszómódosítást megszakította egy kiterjesztés.',
 'resetpass-expired' => 'A jelszavad lejárt. Adjál meg egy új jelszót a bejelentkezéshez!',
-'resetpass-expired-soft' => 'A jelszavad lejárt, ezért újat kell beállítanod. Válassz most egy új jelszót, kattints a Mégse gombra, ha később akarod csak beállítani.',
+'resetpass-expired-soft' => 'A jelszavad lejárt, ezért újat kell beállítanod. Válassz most egy új jelszót, vagy kattints a {{int:resetpass-submit-cancel}} gombra, ha később akarod csak beállítani.',
 
 # Special:PasswordReset
 'passwordreset' => 'Jelszó törlése',

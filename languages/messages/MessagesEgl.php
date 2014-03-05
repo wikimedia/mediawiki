@@ -557,7 +557,7 @@ La cêva 'd ingrès la pré èser stêda bèle cambiêda, opór n'in pré èser 
 'resetpass-temp-password' => "Cêva 'd ingrès pruvişôria:",
 'resetpass-abort-generic' => "La mudéfica 'd la cêva 'd ingrès l'é stêda fermêda da un şlungamèint.",
 'resetpass-expired' => "La cêva 'd ingrès l'é scadûda. Mèt dèinter 'na cêva 'd ingrès nōva per fêr l'ingrès.",
-'resetpass-expired-soft' => "La tó cêva 'd ingrès l'é scadûda. T'é perghê ed siēlier 'na cêva 'd ingrès nōva o clichêr insém a scanşèla per turnêrla a mèter dèinter in sègvit.",
+'resetpass-expired-soft' => "La tó cêva 'd ingrès l'é scadûda. T'é perghê ed siēlier 'na nōva o clichêr insém a \"{{int:resetpass-submit-cancel}}\" per turnêrla a mèter dèinter in sègvit.",
 
 # Special:PasswordReset
 'passwordreset' => "Câmbia la cêva 'd ingrès",
