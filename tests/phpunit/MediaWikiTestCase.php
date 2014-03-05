@@ -1,9 +1,6 @@
 <?php
 
 abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
-	public $suite;
-	public $regex = '';
-	public $runDisabled = false;
 
 	/**
 	 * $called tracks whether the setUp and tearDown method has been called.
@@ -71,14 +68,14 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		'oracle'
 	);
 
-	function __construct( $name = null, array $data = array(), $dataName = '' ) {
+	public function __construct( $name = null, array $data = array(), $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->backupGlobals = false;
 		$this->backupStaticAttributes = false;
 	}
 
-	function run( PHPUnit_Framework_TestResult $result = null ) {
+	public function run( PHPUnit_Framework_TestResult $result = null ) {
 		/* Some functions require some kind of caching, and will end up using the db,
 		 * which we can't allow, as that would open a new connection for mysql.
 		 * Replace with a HashBag. They would not be going to persist anyway.
@@ -130,7 +127,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 	}
 
-	function usesTemporaryTables() {
+	public function usesTemporaryTables() {
 		return self::$useTemporaryTables;
 	}
 
@@ -170,27 +167,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		return $fname;
 	}
 
-	/**
-	 * setUp and tearDown should (where significant)
-	 * happen in reverse order.
-	 */
 	protected function setUp() {
 		wfProfileIn( __METHOD__ );
 		parent::setUp();
 		$this->called['setUp'] = 1;
 
 		$this->phpErrorLevel = intval( ini_get( 'error_reporting' ) );
-
-		/*
-		// @todo global variables to restore for *every* test
-		array(
-			'wgLang',
-			'wgContLang',
-			'wgLanguageCode',
-			'wgUser',
-			'wgTitle',
-		);
-		*/
 
 		// Cleaning up temporary files
 		foreach ( $this->tmpfiles as $fname ) {
@@ -351,11 +333,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$this->setMwGlobals( $name, $merged );
 	}
 
-	function dbPrefix() {
+	public function dbPrefix() {
 		return $this->db->getType() == 'oracle' ? self::ORA_DB_PREFIX : self::DB_PREFIX;
 	}
 
-	function needsDB() {
+	public function needsDB() {
 		# if the test says it uses database tables, it needs the database
 		if ( $this->tablesUsed ) {
 			return true;
@@ -374,7 +356,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * Stub. If a test needs to add additional data to the database, it should
 	 * implement this method and do so
 	 */
-	function addDBData() {
+	public function addDBData() {
 	}
 
 	private function addCoreDBData() {
@@ -470,7 +452,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	public static function setupTestDB( DatabaseBase $db, $prefix ) {
 		global $wgDBprefix;
 		if ( $wgDBprefix === $prefix ) {
-			throw new MWException( 'Cannot run unit tests, the database prefix is already "' . $prefix . '"' );
+			throw new MWException(
+				'Cannot run unit tests, the database prefix is already "' . $prefix . '"' );
 		}
 
 		if ( self::$dbSetup ) {
@@ -525,7 +508,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 	}
 
-	function __call( $func, $args ) {
+	public function __call( $func, $args ) {
 		static $compatibility = array(
 			'assertInternalType' => 'assertType',
 			'assertNotInternalType' => 'assertNotType',
@@ -533,9 +516,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			'assertEmpty' => 'assertEmpty2',
 		);
 
-		if ( method_exists( $this->suite, $func ) ) {
-			return call_user_func_array( array( $this->suite, $func ), $args );
-		} elseif ( isset( $compatibility[$func] ) ) {
+		if ( isset( $compatibility[$func] ) ) {
 			return call_user_func_array( array( $this, $compatibility[$func] ), $args );
 		} else {
 			throw new MWException( "Called non-existant $func method on "
@@ -608,7 +589,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param $function String
 	 * @return null
 	 */
-	function hideDeprecated( $function ) {
+	public function hideDeprecated( $function ) {
 		wfSuppressWarnings();
 		wfDeprecated( $function );
 		wfRestoreWarnings();
