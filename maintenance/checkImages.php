@@ -55,7 +55,7 @@ class CheckImages extends Maintenance {
 					continue;
 				}
 				wfSuppressWarnings();
-				$stat = stat( $file->getPath() );
+				$stat = stat( $file->getLocalRefPath() );
 				wfRestoreWarnings();
 				if ( !$stat ) {
 					$this->output( "{$row->img_name}: missing\n" );
