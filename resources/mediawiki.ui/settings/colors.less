@@ -1,10 +1,35 @@
-@colorWhite: #fff;
-@colorGrayLight: #ccc;
-@colorGrayDark: #898989;
-@colorText: #252525;
-@colorProgressive: #347bff;
-// FIXME: remove @colorProgressiveShadow (shadows should be generated
-// in LESS by dimming the original colors)
-@colorProgressiveShadow: #4091ed;
-@colorConstructive: #00af89;
-@colorDestructive: #d11d13;
+// Colors for use in mediawiki.ui and elsewhere
+
+// 15 Shades of Grey, er Gray
+// Although this defines many shades, be parsimonious in your own use of grays. Prefer
+// colors already in use in MediaWiki. Prefer semantic color names such as "@colorText".
+@colorGray1: #111; // darkest
+@colorGray2: #222;
+@colorGray3: #333;
+@colorGray4: #444;
+@colorGray5: #555;
+@colorGray6: #666;
+@colorGray7: #777;
+@colorGray8: #888;
+@colorGray9: #999;
+@colorGray10: #AAA;
+@colorGray11: #BBB;
+@colorGray12: #CCC;
+@colorGray13: #DDD;
+@colorGray14: #EEE;
+@colorGray15: #F9F9F9; // lightest
+
+// Action and warning colors
+@colorProgressive: #347BFF;
+@colorConstructive: #00AF89;
+@colorDestructive: #D11D13;
+@colorMediumSevere: #FF5D00;
+@colorLowSevere: #FFB50D;
+
+// Text colors
+@colorText: @colorGray3;
+@colorDisabledText: @colorGray12;
+@colorErrorText: #CC0000;
+
+// UI colors
+@colorFieldBorder: @colorGray12;
