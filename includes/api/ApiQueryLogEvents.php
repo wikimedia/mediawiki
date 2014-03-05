@@ -423,6 +423,16 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	public function getAllowedParams() {
 		global $wgLogTypes, $wgLogActions, $wgLogActionsHandlers;
 
+		$actions = array_keys( $wgLogActions );
+		// Remove wildcard actions, searching for log_action='*' will always give a empty result
+		foreach ( $wgLogActionsHandlers as $action => $handler ) {
+			if ( substr( $action, -2 ) !== '/*' ) {
+				$actions[] = $action;
+			}
+		}
+		// TODO: Add all possible actions, also actions which are descriped by wildcards (bug 61834).
+		// The log actions at the moment only filterable by type
+
 		return array(
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
@@ -444,7 +454,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => $wgLogTypes
 			),
 			'action' => array(
-				ApiBase::PARAM_TYPE => array_keys( array_merge( $wgLogActions, $wgLogActionsHandlers ) )
+				ApiBase::PARAM_TYPE => $actions
 			),
 			'start' => array(
 				ApiBase::PARAM_TYPE => 'timestamp'
