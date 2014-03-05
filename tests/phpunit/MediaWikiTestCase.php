@@ -1,9 +1,9 @@
 <?php
 
+/**
+ * @since 1.18
+ */
 abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
-	public $suite;
-	public $regex = '';
-	public $runDisabled = false;
 
 	/**
 	 * $called tracks whether the setUp and tearDown method has been called.
@@ -20,14 +20,21 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private $called = array();
 
 	/**
-	 * @var Array of TestUser
+	 * @var TestUser[]
+	 * @since 1.20
 	 */
 	public static $users;
 
 	/**
 	 * @var DatabaseBase
+	 * @since 1.18
 	 */
 	protected $db;
+
+	/**
+	 * @var array
+	 * @since 1.19
+	 */
 	protected $tablesUsed = array(); // tables with data
 
 	private static $useTemporaryTables = true;
@@ -48,7 +55,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @var array
 	 */
-	private $tmpfiles = array();
+	private $tmpFiles = array();
 
 	/**
 	 * Holds original values of MediaWiki configuration settings
@@ -64,6 +71,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	const DB_PREFIX = 'unittest_';
 	const ORA_DB_PREFIX = 'ut_';
 
+	/**
+	 * @var array
+	 * @since 1.18
+	 */
 	protected $supportedDBs = array(
 		'mysql',
 		'sqlite',
@@ -71,14 +82,14 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		'oracle'
 	);
 
-	function __construct( $name = null, array $data = array(), $dataName = '' ) {
+	public function __construct( $name = null, array $data = array(), $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->backupGlobals = false;
 		$this->backupStaticAttributes = false;
 	}
 
-	function run( PHPUnit_Framework_TestResult $result = null ) {
+	public function run( PHPUnit_Framework_TestResult $result = null ) {
 		/* Some functions require some kind of caching, and will end up using the db,
 		 * which we can't allow, as that would open a new connection for mysql.
 		 * Replace with a HashBag. They would not be going to persist anyway.
@@ -130,22 +141,29 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 	}
 
-	function usesTemporaryTables() {
+	/**
+	 * @since 1.21
+	 *
+	 * @return bool
+	 */
+	public function usesTemporaryTables() {
 		return self::$useTemporaryTables;
 	}
 
 	/**
-	 * obtains a new temporary file name
+	 * Obtains a new temporary file name
 	 *
 	 * The obtained filename is enlisted to be removed upon tearDown
 	 *
-	 * @return string: absolute name of the temporary file
+	 * @since 1.20
+	 *
+	 * @return string absolute name of the temporary file
 	 */
 	protected function getNewTempFile() {
-		$fname = tempnam( wfTempDir(), 'MW_PHPUnit_' . get_class( $this ) . '_' );
-		$this->tmpfiles[] = $fname;
+		$fileName = tempnam( wfTempDir(), 'MW_PHPUnit_' . get_class( $this ) . '_' );
+		$this->tmpFiles[] = $fileName;
 
-		return $fname;
+		return $fileName;
 	}
 
 	/**
@@ -154,26 +172,24 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * The obtained directory is enlisted to be removed (recursively with all its contained
 	 * files) upon tearDown.
 	 *
-	 * @return string: absolute name of the temporary directory
+	 * @since 1.20
+	 *
+	 * @return string Absolute name of the temporary directory
 	 */
 	protected function getNewTempDirectory() {
 		// Starting of with a temporary /file/.
-		$fname = $this->getNewTempFile();
+		$fileName = $this->getNewTempFile();
 
 		// Converting the temporary /file/ to a /directory/
 		//
 		// The following is not atomic, but at least we now have a single place,
 		// where temporary directory creation is bundled and can be improved
-		unlink( $fname );
-		$this->assertTrue( wfMkdirParents( $fname ) );
+		unlink( $fileName );
+		$this->assertTrue( wfMkdirParents( $fileName ) );
 
-		return $fname;
+		return $fileName;
 	}
 
-	/**
-	 * setUp and tearDown should (where significant)
-	 * happen in reverse order.
-	 */
 	protected function setUp() {
 		wfProfileIn( __METHOD__ );
 		parent::setUp();
@@ -181,23 +197,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$this->phpErrorLevel = intval( ini_get( 'error_reporting' ) );
 
-		/*
-		// @todo global variables to restore for *every* test
-		array(
-			'wgLang',
-			'wgContLang',
-			'wgLanguageCode',
-			'wgUser',
-			'wgTitle',
-		);
-		*/
-
 		// Cleaning up temporary files
-		foreach ( $this->tmpfiles as $fname ) {
-			if ( is_file( $fname ) || ( is_link( $fname ) ) ) {
-				unlink( $fname );
-			} elseif ( is_dir( $fname ) ) {
-				wfRecursiveRemoveDir( $fname );
+		foreach ( $this->tmpFiles as $fileName ) {
+			if ( is_file( $fileName ) || ( is_link( $fileName ) ) ) {
+				unlink( $fileName );
+			} elseif ( is_dir( $fileName ) ) {
+				wfRecursiveRemoveDir( $fileName );
 			}
 		}
 
@@ -218,11 +223,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		wfProfileIn( __METHOD__ );
 
 		// Cleaning up temporary files
-		foreach ( $this->tmpfiles as $fname ) {
-			if ( is_file( $fname ) || ( is_link( $fname ) ) ) {
-				unlink( $fname );
-			} elseif ( is_dir( $fname ) ) {
-				wfRecursiveRemoveDir( $fname );
+		foreach ( $this->tmpFiles as $fileName ) {
+			if ( is_file( $fileName ) || ( is_link( $fileName ) ) ) {
+				unlink( $fileName );
+			} elseif ( is_dir( $fileName ) ) {
+				wfRecursiveRemoveDir( $fileName );
 			}
 		}
 
@@ -360,8 +365,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * Useful for setting some entries in a configuration array, instead of
 	 * setting the entire array.
 	 *
-	 * @param String $name The name of the global, as in wgFooBar
-	 * @param Array $values The array containing the entries to set in that global
+	 * @param string $name The name of the global, as in wgFooBar
+	 * @param array $values The array containing the entries to set in that global
 	 *
 	 * @throws MWException if the designated global is not an array.
 	 *
@@ -385,11 +390,19 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$this->setMwGlobals( $name, $merged );
 	}
 
-	function dbPrefix() {
+	/**
+	 * @return string
+	 * @since 1.18
+	 */
+	public function dbPrefix() {
 		return $this->db->getType() == 'oracle' ? self::ORA_DB_PREFIX : self::DB_PREFIX;
 	}
 
-	function needsDB() {
+	/**
+	 * @return bool
+	 * @since 1.18
+	 */
+	public function needsDB() {
 		# if the test says it uses database tables, it needs the database
 		if ( $this->tablesUsed ) {
 			return true;
@@ -407,15 +420,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	/**
 	 * Stub. If a test needs to add additional data to the database, it should
 	 * implement this method and do so
+	 *
+	 * @since 1.18
 	 */
-	function addDBData() {
+	public function addDBData() {
 	}
 
 	private function addCoreDBData() {
-		# disabled for performance
-		#$this->tablesUsed[] = 'page';
-		#$this->tablesUsed[] = 'revision';
-
 		if ( $this->db->getType() == 'oracle' ) {
 
 			# Insert 0 user to prevent FK violations
@@ -470,6 +481,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * Restores MediaWiki to using the table set (table prefix) it was using before
 	 * setupTestDB() was called. Useful if we need to perform database operations
 	 * after the test run has finished (such as saving logs or profiling info).
+	 *
+	 * @since 1.21
 	 */
 	public static function teardownTestDB() {
 		if ( !self::$dbSetup ) {
@@ -490,6 +503,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * This is used to generate a dummy table set, typically consisting of temporary
 	 * tables, that will be used by tests instead of the original wiki database tables.
 	 *
+	 * @since 1.21
+	 *
 	 * @note: the original table prefix is stored in self::$oldTablePrefix. This is used
 	 * by teardownTestDB() to return the wiki to using the original table set.
 	 *
@@ -504,7 +519,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	public static function setupTestDB( DatabaseBase $db, $prefix ) {
 		global $wgDBprefix;
 		if ( $wgDBprefix === $prefix ) {
-			throw new MWException( 'Cannot run unit tests, the database prefix is already "' . $prefix . '"' );
+			throw new MWException(
+				'Cannot run unit tests, the database prefix is already "' . $prefix . '"' );
 		}
 
 		if ( self::$dbSetup ) {
@@ -559,17 +575,24 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 	}
 
-	function __call( $func, $args ) {
+	/**
+	 * @since 1.18
+	 *
+	 * @param string $func
+	 * @param array $args
+	 *
+	 * @return mixed
+	 * @throws MWException
+	 */
+	public function __call( $func, $args ) {
 		static $compatibility = array(
-			'assertInternalType' => 'assertType',
-			'assertNotInternalType' => 'assertNotType',
-			'assertInstanceOf' => 'assertType',
-			'assertEmpty' => 'assertEmpty2',
+			'assertInternalType' => 'assertType', // assertInternalType was added in phpunit 3.5.0
+			'assertNotInternalType' => 'assertNotType', // assertNotInternalType was added in phpunit 3.5.0
+			'assertInstanceOf' => 'assertType', // assertInstanceOf was added in phpunit 3.5.0
+			'assertEmpty' => 'assertEmpty2', // assertEmpty was added in phpunit 3.7.32
 		);
 
-		if ( method_exists( $this->suite, $func ) ) {
-			return call_user_func_array( array( $this->suite, $func ), $args );
-		} elseif ( isset( $compatibility[$func] ) ) {
+		if ( isset( $compatibility[$func] ) ) {
 			return call_user_func_array( array( $this, $compatibility[$func] ), $args );
 		} else {
 			throw new MWException( "Called non-existant $func method on "
@@ -577,6 +600,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 	}
 
+	/**
+	 * Used as a compatibility method for phpunit < 3.7.32
+	 */
 	private function assertEmpty2( $value, $msg ) {
 		return $this->assertTrue( $value == '', $msg );
 	}
@@ -591,6 +617,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		return strpos( $table, 'unittest_' ) !== 0;
 	}
 
+	/**
+	 * @since 1.18
+	 *
+	 * @param DataBaseBase $db
+	 *
+	 * @return array
+	 */
 	public static function listTables( $db ) {
 		global $wgDBprefix;
 
@@ -618,31 +651,41 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		return $tables;
 	}
 
+	/**
+	 * @throws MWException
+	 * @since 1.18
+	 */
 	protected function checkDbIsSupported() {
 		if ( !in_array( $this->db->getType(), $this->supportedDBs ) ) {
 			throw new MWException( $this->db->getType() . " is not currently supported for unit testing." );
 		}
 	}
 
+	/**
+	 * @since 1.18
+	 */
 	public function getCliArg( $offset ) {
-
 		if ( isset( MediaWikiPHPUnitCommand::$additionalOptions[$offset] ) ) {
 			return MediaWikiPHPUnitCommand::$additionalOptions[$offset];
 		}
 	}
 
+	/**
+	 * @since 1.18
+	 */
 	public function setCliArg( $offset, $value ) {
-
 		MediaWikiPHPUnitCommand::$additionalOptions[$offset] = $value;
 	}
 
 	/**
 	 * Don't throw a warning if $function is deprecated and called later
 	 *
-	 * @param $function String
+	 * @since 1.19
+	 *
+	 * @param string $function
 	 * @return null
 	 */
-	function hideDeprecated( $function ) {
+	public function hideDeprecated( $function ) {
 		wfSuppressWarnings();
 		wfDeprecated( $function );
 		wfRestoreWarnings();
@@ -656,12 +699,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @since 1.20
 	 *
-	 * @param $table String|Array the table(s) to query
-	 * @param $fields String|Array the columns to include in the result (and to sort by)
-	 * @param $condition String|Array "where" condition(s)
-	 * @param $expectedRows Array - an array of arrays giving the expected rows.
+	 * @param string|array $table The table(s) to query
+	 * @param string|array $fields The columns to include in the result (and to sort by)
+	 * @param string|array $condition "where" condition(s)
+	 * @param array $expectedRows An array of arrays giving the expected rows.
 	 *
-	 * @throws MWException if this test cases's needsDB() method doesn't return true.
+	 * @throws MWException If this test cases's needsDB() method doesn't return true.
 	 *         Test cases can use "@group Database" to enable database test support,
 	 *         or list the tables under testing in $this->tablesUsed, or override the
 	 *         needsDB() method.
@@ -724,8 +767,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @param array $expected
 	 * @param array $actual
-	 * @param boolean $ordered If the order of the values should match
-	 * @param boolean $named If the keys should match
+	 * @param bool $ordered If the order of the values should match
+	 * @param bool $named If the keys should match
 	 */
 	protected function assertArrayEquals( array $expected, array $actual, $ordered = false, $named = false ) {
 		if ( !$ordered ) {
@@ -752,9 +795,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @since 1.20
 	 *
-	 * @param String $expected HTML on oneline
-	 * @param String $actual HTML on oneline
-	 * @param String $msg Optional message
+	 * @param string $expected HTML on oneline
+	 * @param string $actual HTML on oneline
+	 * @param string $msg Optional message
 	 */
 	protected function assertHTMLEquals( $expected, $actual, $msg = '' ) {
 		$expected = str_replace( '>', ">\n", $expected );
@@ -786,7 +829,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @since 1.20
 	 *
-	 * @param $r mixed the array to remove string keys from.
+	 * @param mixed $r The array to remove string keys from.
 	 */
 	protected static function stripStringKeys( &$r ) {
 		if ( !is_array( $r ) ) {
@@ -861,9 +904,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Returns the ID of a namespace that defaults to Wikitext.
-	 * Throws an MWException if there is none.
 	 *
-	 * @return int the ID of the wikitext Namespace
+	 * @throws MWException If there is none.
+	 * @return int The ID of the wikitext Namespace
 	 * @since 1.21
 	 */
 	protected function getDefaultWikitextNS() {
@@ -1010,8 +1053,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * then calls assertValidHtmlDocument().
 	 * The snippet is expected to be HTML 5.
 	 *
-	 * @note: Will mark the test as skipped if the "tidy" module is not installed.
-	 * @note: This ignores $wgUseTidy, so we can check for valid HTML even (and especially)
+	 * @since 1.23
+	 *
+	 * @note Will mark the test as skipped if the "tidy" module is not installed.
+	 * @note This ignores $wgUseTidy, so we can check for valid HTML even (and especially)
 	 *        when automatic tidying is disabled.
 	 *
 	 * @param string $html An HTML snippet (treated as the contents of the body tag).
@@ -1024,8 +1069,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	/**
 	 * Asserts that the given string is valid HTML document.
 	 *
-	 * @note: Will mark the test as skipped if the "tidy" module is not installed.
-	 * @note: This ignores $wgUseTidy, so we can check for valid HTML even (and especially)
+	 * @since 1.23
+	 *
+	 * @note Will mark the test as skipped if the "tidy" module is not installed.
+	 * @note This ignores $wgUseTidy, so we can check for valid HTML even (and especially)
 	 *        when automatic tidying is disabled.
 	 *
 	 * @param string $html A complete HTML document
@@ -1054,4 +1101,5 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$this->assertEmpty( $errors, implode( "\n", $errors ) );
 	}
+
 }
