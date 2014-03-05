@@ -842,6 +842,8 @@ abstract class File {
 			return $this->iconThumb();
 		}
 		$hp['width'] = $width;
+		// be sure to ignore any height specification as well (bug 62258)
+		unset( $hp['height'] );
 
 		return $this->transform( $hp );
 	}
