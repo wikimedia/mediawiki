@@ -72,7 +72,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 
 			if ( $list == 'other' ) {
 				$final = $text;
-			} elseif ( !in_array( $list, $this->mFlatOptions ) ) {
+			} elseif ( !in_array( $list, $this->mFlatOptions, true ) ) {
 				# User has spoofed the select form to give an option which wasn't
 				# in the original offer.  Sulk...
 				$final = $text;

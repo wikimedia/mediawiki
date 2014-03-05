@@ -28,6 +28,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	}
 
 	function getInputHTML( $value ) {
+		$value = HTMLFormField::forceToStringRecursive( $value );
 		$html = $this->formatOptions( $this->getOptions(), $value );
 
 		return $html;
@@ -103,11 +104,12 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	}
 
 	function filterDataForSubmit( $data ) {
+		$data = HTMLFormField::forceToStringRecursive( $data );
 		$options = HTMLFormField::flattenOptions( $this->getOptions() );
 
 		$res = array();
 		foreach ( $options as $opt ) {
-			$res["$opt"] = in_array( $opt, $data );
+			$res["$opt"] = in_array( $opt, $data, true );
 		}
 
 		return $res;
