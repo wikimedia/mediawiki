@@ -37,6 +37,11 @@ fi
 # Undo any changes in the oojs-ui directory
 git reset resources/oojs-ui/
 git checkout resources/oojs-ui/
+
+git fetch origin
+# Create a branch of MW if needed, and reset it to master
+git checkout -B update-oojsui origin/master
+
 # Get the old oojs-ui version
 OLDVERSION=$(oojsuihash)
 if [ "x$OLDVERSION" == "x" ]
@@ -64,7 +69,8 @@ then
 	exit 0
 fi
 # Build the distribution
-grunt
+npm install || exit 1
+grunt || exit 1
 # Get the list of changes
 NEWCHANGES=$(git log $OLDVERSION.. --oneline --no-merges --reverse --color=never)
 NEWCHANGESDISPLAY=$(git log $OLDVERSION.. --oneline --no-merges --reverse --color=always)
