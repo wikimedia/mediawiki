@@ -15,21 +15,19 @@
 		 * @return {boolean} return.done.isCategory Whether the category exists.
 		 */
 		isCategory: function ( title, ok, err ) {
-			var d = $.Deferred(),
-				apiPromise;
+			var apiPromise = this.get( {
+				prop: 'categoryinfo',
+				titles: title.toString()
+			} );
 
 			// Backwards compatibility (< MW 1.20)
 			if ( ok || err ) {
 				mw.track( 'mw.deprecate', 'api.cbParam' );
 				mw.log.warn( msg );
-				d.done( ok ).fail( err );
 			}
 
-			apiPromise = this.get( {
-					prop: 'categoryinfo',
-					titles: title.toString()
-				} )
-				.done( function ( data ) {
+			return apiPromise
+				.then( function ( data ) {
 					var exists = false;
 					if ( data.query && data.query.pages ) {
 						$.each( data.query.pages, function ( id, page ) {
@@ -38,52 +36,52 @@
 							}
 						} );
 					}
-					d.resolve( exists );
+					return exists;
 				} )
-				.fail( d.reject );
-
-			return d.promise( { abort: apiPromise.abort } );
+				.done( ok )
+				.fail( err )
+				.promise( { abort: apiPromise.abort } );
 		},
 
 		/**
 		 * Get a list of categories that match a certain prefix.
-		 *   e.g. given "Foo", return "Food", "Foolish people", "Foosball tables" ...
+		 *
+		 * E.g. given "Foo", return "Food", "Foolish people", "Foosball tables" ...
+		 *
 		 * @param {string} prefix Prefix to match.
 		 * @param {Function} [ok] Success callback (deprecated)
 		 * @param {Function} [err] Error callback (deprecated)
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
-		 * @return {String[]} return.done.categories Matched categories
+		 * @return {string[]} return.done.categories Matched categories
 		 */
 		getCategoriesByPrefix: function ( prefix, ok, err ) {
-			var d = $.Deferred(),
-				apiPromise;
+			var apiPromise = this.get( {
+				list: 'allpages',
+				apprefix: prefix,
+				apnamespace: mw.config.get( 'wgNamespaceIds' ).category
+			} );
 
 			// Backwards compatibility (< MW 1.20)
 			if ( ok || err ) {
 				mw.track( 'mw.deprecate', 'api.cbParam' );
 				mw.log.warn( msg );
-				d.done( ok ).fail( err );
 			}
 
 			// Fetch with allpages to only get categories that have a corresponding description page.
-			apiPromise = this.get( {
-					list: 'allpages',
-					apprefix: prefix,
-					apnamespace: mw.config.get( 'wgNamespaceIds' ).category
-				} )
-				.done( function ( data ) {
+			return apiPromise
+				.then( function ( data ) {
 					var texts = [];
 					if ( data.query && data.query.allpages ) {
 						$.each( data.query.allpages, function ( i, category ) {
 							texts.push( new mw.Title( category.title ).getNameText() );
 						} );
 					}
-					d.resolve( texts );
+					return texts;
 				} )
-				.fail( d.reject );
-
-			return d.promise( { abort: apiPromise.abort } );
+				.done( ok )
+				.fail( err )
+				.promise( { abort: apiPromise.abort } );
 		},
 
 
@@ -99,41 +97,39 @@
 		 *  if title was not found.
 		 */
 		getCategories: function ( title, ok, err, async ) {
-			var d = $.Deferred(),
-				apiPromise;
+			var apiPromise = this.get( {
+				prop: 'categories',
+				titles: title.toString()
+			}, {
+				async: async === undefined ? true : async
+			} );
 
 			// Backwards compatibility (< MW 1.20)
 			if ( ok || err ) {
 				mw.track( 'mw.deprecate', 'api.cbParam' );
 				mw.log.warn( msg );
-				d.done( ok ).fail( err );
 			}
 
-			apiPromise = this.get( {
-					prop: 'categories',
-					titles: title.toString()
-				}, {
-					async: async === undefined ? true : async
-				} )
-				.done( function ( data ) {
-					var ret = false;
+			return apiPromise
+				.then( function ( data ) {
+					var titles = false;
 					if ( data.query && data.query.pages ) {
 						$.each( data.query.pages, function ( id, page ) {
 							if ( page.categories ) {
-								if ( typeof ret !== 'object' ) {
-									ret = [];
+								if ( titles !== false ) {
+									titles = [];
 								}
 								$.each( page.categories, function ( i, cat ) {
-									ret.push( new mw.Title( cat.title ) );
+									titles.push( new mw.Title( cat.title ) );
 								} );
 							}
 						} );
 					}
-					d.resolve( ret );
+					return titles;
 				} )
-				.fail( d.reject );
-
-			return d.promise( { abort: apiPromise.abort } );
+				.done( ok )
+				.fail( err )
+				.promise( { abort: apiPromise.abort } );
 		}
 
 	} );
