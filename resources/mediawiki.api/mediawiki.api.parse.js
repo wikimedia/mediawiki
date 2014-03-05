@@ -15,29 +15,25 @@
 		 * @return {string} return.done.data Parsed HTML of `wikitext`.
 		 */
 		parse: function ( wikitext, ok, err ) {
-			var d = $.Deferred(),
-				apiPromise;
+			var apiPromise = this.get( {
+				action: 'parse',
+				contentmodel: 'wikitext',
+				text: wikitext
+			} );
 
 			// Backwards compatibility (< MW 1.20)
 			if ( ok || err ) {
 				mw.track( 'mw.deprecate', 'api.cbParam' );
 				mw.log.warn( 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.' );
-				d.done( ok ).fail( err );
 			}
 
-			apiPromise = this.get( {
-					action: 'parse',
-					contentmodel: 'wikitext',
-					text: wikitext
+			return apiPromise
+				.then( function ( data ) {
+					return data.parse.text['*'];
 				} )
-				.done( function ( data ) {
-					if ( data.parse && data.parse.text && data.parse.text['*'] ) {
-						d.resolve( data.parse.text['*'] );
-					}
-				} )
-				.fail( d.reject );
-
-			return d.promise( { abort: apiPromise.abort } );
+				.done( ok )
+				.fail( err )
+				.promise( { abort: apiPromise.abort } );
 		}
 	} );
 
