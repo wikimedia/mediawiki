@@ -13,7 +13,7 @@ class HTMLSelectField extends HTMLFormField {
 
 		$validOptions = HTMLFormField::flattenOptions( $this->getOptions() );
 
-		if ( in_array( $value, $validOptions ) ) {
+		if ( in_array( strval( $value ), $validOptions, true ) ) {
 			return true;
 		} else {
 			return $this->msg( 'htmlform-select-badoption' )->parse();

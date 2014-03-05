@@ -21,7 +21,10 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		$valInSelect = false;
 
 		if ( $value !== false ) {
-			$valInSelect = in_array( $value, HTMLFormField::flattenOptions( $this->getOptions() ) );
+			$value = strval( $value );
+			$valInSelect = in_array(
+				$value, HTMLFormField::flattenOptions( $this->getOptions() ), true
+			);
 		}
 
 		$selected = $valInSelect ? $value : 'other';
@@ -67,7 +70,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		if ( $request->getCheck( $this->mName ) ) {
 			$val = $request->getText( $this->mName );
 
-			if ( $val == 'other' ) {
+			if ( $val === 'other' ) {
 				$val = $request->getText( $this->mName . '-other' );
 			}
 
