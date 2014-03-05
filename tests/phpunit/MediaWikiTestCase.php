@@ -322,6 +322,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @param array|string $globalKeys Key to the global variable, or an array of keys.
 	 *
+	 * @throws Exception when trying to stash an unset global
 	 * @since 1.23
 	 */
 	protected function stashMwGlobals( $globalKeys ) {
@@ -334,6 +335,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			// setMwGlobals() on the same global would override the original
 			// value.
 			if ( !array_key_exists( $globalKey, $this->mwGlobals ) ) {
+				if ( !array_key_exists( $globalKey, $GLOBALS ) ) {
+					throw new Exception( 'Global with key {$globalKey} doesn\'t exist and cant be stashed' );
+				}
 				// NOTE: we serialize then unserialize the value in case it is an object
 				// this stops any objects being passed by reference. We could use clone
 				// and if is_object but this does account for objects within objects!
