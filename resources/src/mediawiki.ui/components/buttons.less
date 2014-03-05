@@ -39,7 +39,7 @@
 	zoom: 1;
 
 	// Container styling
-	.button-colors(@colorWhite);
+	.button-colors(#FFF);
 	border-radius: @buttonBorderRadius;
 
 	// Ensure that buttons and inputs are nicely aligned when they have differing heights
@@ -75,7 +75,7 @@
 	//
 	// Styleguide 2.1.6.
 	&.mw-ui-big {
-		font-size: @baseFontSize * 1.3;
+		font-size: 1.3em;
 	}
 
 	// Block buttons
@@ -169,7 +169,7 @@
 		background: transparent;
 		border: none;
 		text-shadow: none;
-		.button-colors-quiet(@colorGrayDark);
+		.button-colors-quiet(@colorButtonText);
 
 		&:hover,
 		&:focus {
