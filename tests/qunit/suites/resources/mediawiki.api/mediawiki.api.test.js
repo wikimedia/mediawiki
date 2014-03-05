@@ -7,7 +7,7 @@
 		teardown: function () {
 			this.clock.tick( 1 );
 		}
-	}) );
+	} ) );
 
 	QUnit.test( 'Basic functionality', function ( assert ) {
 		QUnit.expect( 2 );
