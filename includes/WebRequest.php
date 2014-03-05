@@ -203,7 +203,7 @@ class WebRequest {
 	 * @return array
 	 */
 	public static function detectProtocol() {
-		if ( ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on' ) ||
+		if ( ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] != '' && $_SERVER['HTTPS'] != 'off' ) ||
 			( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) &&
 			$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' ) ) {
 			return 'https';
