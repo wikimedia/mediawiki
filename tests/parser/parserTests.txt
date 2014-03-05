@@ -1657,7 +1657,7 @@ parsoid
 !!input
 <p><pre>foo</pre></p>
 !!result
-<p data-parsoid='{"stx":"html","autoInsertedEnd":true,"dsr":[0,3,3,0]}'></p><pre data-parsoid='{"stx":"html","dsr":[3,17,5,6]}'>foo</pre><p data-parsoid='{"autoInsertedStart":true,"stx":"html","dsr":[17,21,0,null]}'></p>
+<p data-parsoid='{"stx":"html","autoInsertedEnd":true}'></p><pre data-parsoid='{"stx":"html"}'>foo</pre><p data-parsoid='{"autoInsertedStart":true,"stx":"html"}'></p>
 !!end
 
 !!test
@@ -2156,7 +2156,7 @@ c
 !!end
 
 !!test
-3c. Indent-Pre and block tags (multi-line html)
+3b. Indent-Pre and block tags (multi-line html)
 !!input
  a <span>foo</span>
  b <div> foo </div>
@@ -2168,7 +2168,7 @@ c
 !!end
 
 !!test
-3b. Indent-Pre and block tags (pre-content on separate line)
+3c. Indent-Pre and block tags (pre-content on separate line)
 !!input
 <p>
  foo
@@ -2228,6 +2228,78 @@ foo
 <ul><li>
   foo
 </li></ul>
+
+!!end
+
+!!test
+4. Indent-Pre and extension tags
+!!input
+ a <gallery>
+File:foobar.jpg
+</gallery>
+!!result
+ a <ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+			</div>
+		</div></li>
+</ul>
+
+!!end
+
+!! test
+Leading pipes outside of tables
+!! options
+parsoid
+!! input
+| foo
+!! result
+<p>| foo</p>
+!! end
+
+!! test
+Leading pipes outside of tables 2
+!! options
+parsoid
+!! input
+a
+| foo
+b
+!! result
+<p>a
+| foo
+b</p>
+!! end
+
+!! test
+Leading pipes outside of tables 3
+!! options
+parsoid
+!! input
+a
+| class="foo bar" | baz
+b
+!! result
+<p>a
+| class="foo bar" | baz
+b</p>
+!! end
+
+!!test
+Render paragraphs when indent-pre is suppressed in blocklevels
+!!input
+<blockquote>
+ foo
+
+ bar
+</blockquote>
+!! result
+<blockquote>
+<p> foo
+</p><p> bar
+</p>
+</blockquote>
 
 !!end
 
@@ -4153,9 +4225,9 @@ parsoid
 
 (http://example.com<!-- hi -->)
 !! result
-<p>(<a data-mw='{"attribs":[[{"txt":"href"},{"html":"http://example.com/&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-mw=\"{&amp;quot;parts&amp;quot;:[{&amp;quot;template&amp;quot;:{&amp;quot;target&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;echo&amp;quot;,&amp;quot;href&amp;quot;:&amp;quot;./Template:Echo&amp;quot;},&amp;quot;params&amp;quot;:{&amp;quot;1&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;hi&amp;quot;}},&amp;quot;i&amp;quot;:0}}]}\" data-parsoid=\"{&amp;quot;dsr&amp;quot;:[20,31,null,null],&amp;quot;pi&amp;quot;:[[{&amp;quot;k&amp;quot;:&amp;quot;1&amp;quot;,&amp;quot;spc&amp;quot;:[&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;]}]]}\">hi&lt;/span>"}]]}' typeof="mw:ExpandedAttrs" about="#mwt2" rel="mw:ExtLink" href="http://example.com/hi" data-parsoid='{"stx":"url","a":{"href":"http://example.com/hi"},"sa":{"href":"http://example.com/{{echo|hi}}"},"dsr":[1,31,0,0]}'>http://example.com/hi</a>)</p>
+<p>(<a data-mw='{"attribs":[[{"txt":"href"},{"html":"http://example.com/&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-mw=\"{&amp;quot;parts&amp;quot;:[{&amp;quot;template&amp;quot;:{&amp;quot;target&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;echo&amp;quot;,&amp;quot;href&amp;quot;:&amp;quot;./Template:Echo&amp;quot;},&amp;quot;params&amp;quot;:{&amp;quot;1&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;hi&amp;quot;}},&amp;quot;i&amp;quot;:0}}]}\" data-parsoid=\"{&amp;quot;dsr&amp;quot;:[20,31,null,null],&amp;quot;pi&amp;quot;:[[{&amp;quot;k&amp;quot;:&amp;quot;1&amp;quot;,&amp;quot;spc&amp;quot;:[&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;]}]]}\">hi&lt;/span>"}]]}' typeof="mw:ExpandedAttrs" about="#mwt2" rel="mw:ExtLink" href="http://example.com/hi" data-parsoid='{"stx":"url","a":{"href":"http://example.com/hi"},"sa":{"href":"http://example.com/{{echo|hi}}"}}'>http://example.com/hi</a>)</p>
 
-<p>(<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url","a":{"href":"http://example.com"},"sa":{"href":"http://example.com&lt;!-- hi -->"},"dsr":[35,64,0,0]}'>http://example.com</a>)</p>
+<p>(<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url","a":{"href":"http://example.com"},"sa":{"href":"http://example.com&lt;!-- hi -->"}}'>http://example.com</a>)</p>
 !! end
 
 ###
@@ -5174,9 +5246,18 @@ Link with HTML entity in suffix / tail
 !! test
 Link with 3 brackets
 !! input
-[[[main page]]]
+[[[Main Page]]]
 !! result
-<p>[[[main page]]]
+<p>[[[Main Page]]]
+</p>
+!! end
+
+!! test
+Link with 4 brackets
+!! input
+[[[[Main Page]]]]
+!! result
+<p>[[<a href="/wiki/Main_Page" title="Main Page">Main Page</a>]]
 </p>
 !! end
 
@@ -5599,6 +5680,36 @@ language=kaa
 </p>
 !! end
 
+!! test
+1. Interaction of linktrail and template encapsulation
+!! options
+parsoid
+!! input
+{{echo|[[Foo]]}}l
+!! result
+<p><a rel="mw:WikiLink" href="Foo" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[[Foo]]"}},"i":0}},"l"]}'>Fool</a></p>
+!! end
+
+!! test
+2. Interaction of linktrail and template encapsulation
+!! options
+parsoid
+!! input
+{{echo|Some [[Fool]]}}s
+!! result
+<p data-parsoid='{}'><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"Some [[Fool]]"}},"i":0}},"s"]}' data-parsoid='{"pi":[[{"k":"1","spc":["","","",""]}]]}'>Some </span><a rel="mw:WikiLink" href="./Fool" about="#mwt1" data-parsoid='{"stx":"simple","a":{"href":"./Fool"},"sa":{"href":"Fool"},"tail":"s"}'>Fools</a></p>
+!! end
+
+!! test
+3. Interaction of linktrail and template encapsulation
+!! options
+parsoid
+!! input
+{{echo|Some [[Fool]]s are '''bold and foolish'''}}
+!! result
+<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"Some [[Fool]]s are &#39;&#39;&#39;bold and foolish&#39;&#39;&#39;"}},"i":0}}]}' data-parsoid='{"pi":[[{"k":"1","spc":["","","",""]}]]}'>Some <a rel="mw:WikiLink" href="./Fool" data-parsoid='{"stx":"simple","a":{"href":"./Fool"},"sa":{"href":"Fool"},"tail":"s"}'>Fools</a> are <b data-parsoid="{}">bold and foolish</b></p>
+!! end
+
 !! article
 Söfnuður
 !! text
@@ -5687,7 +5798,7 @@ parsoid
 !! input
 [[Foo|{{echo|a}} b {{echo|c}}]]
 !! result
-<p data-parsoid='{"dsr":[0,20,0,0]}'><a rel="mw:WikiLink" href="Foo"><span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"a"}},"i":0}}]}'>a</span> b <span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"c"}},"i":0}}]}'>c</span></a></p>
+<p><a rel="mw:WikiLink" href="Foo"><span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"a"}},"i":0}}]}'>a</span> b <span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"c"}},"i":0}}]}'>c</span></a></p>
 !! end
 
 ###
@@ -5746,10 +5857,9 @@ parsoid
 
 [[:en:Foo]]
 !! result
-<p data-parsoid='{"dsr":[0,17,0,0]}'><a rel="mw:ExtLink" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"simple","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":"wikipedia:Foo"},"isIW":true,"dsr":[0,17,null,1]}'>wikipedia:Foo</a></p>
+<p><a rel="mw:ExtLink" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"simple","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":"wikipedia:Foo"},"isIW":true}'>wikipedia:Foo</a></p>
 
-
-<p data-parsoid='{"dsr":[19,30,0,0]}'><a rel="mw:ExtLink" href="//en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"simple","a":{"href":"//en.wikipedia.org/wiki/Foo"},"sa":{"href":":en:Foo"},"isIW":true,"dsr":[19,30,null,1]}'>en:Foo</a></p>
+<p><a rel="mw:ExtLink" href="//en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"simple","a":{"href":"//en.wikipedia.org/wiki/Foo"},"sa":{"href":":en:Foo"},"isIW":true}'>en:Foo</a></p>
 !! end
 
 !! test
@@ -5771,6 +5881,15 @@ parsoid
 <a rel="mw:ExtLink" href="http://de.wikipedia.org/wiki/#foo">is just fragment</a></p>
 !! end
 
+!! test
+Interwiki links: trail
+!! options
+parsoid
+!! input
+[[wikipedia:Foo|Ba]]r
+!! result
+<p data-parsoid='{}'><a rel="mw:ExtLink" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"piped","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":"wikipedia:Foo"},"isIW":true,"tail":"r"}'>Bar</a></p>
+!! end
 
 ###
 ### Interlanguage links
@@ -5856,10 +5975,9 @@ parsoid
 
 [[constructor:foo]]
 !! result
-<p data-parsoid="{&quot;dsr&quot;:[0,15,0,0]}"><a rel="mw:WikiLink" href="./Constructor" data-parsoid="{&quot;stx&quot;:&quot;simple&quot;,&quot;a&quot;:{&quot;href&quot;:&quot;./Constructor&quot;},&quot;sa&quot;:{&quot;href&quot;:&quot;constructor&quot;},&quot;dsr&quot;:[0,15,2,2]}">constructor</a></p>
+<p><a rel="mw:WikiLink" href="./Constructor" data-parsoid="{&quot;stx&quot;:&quot;simple&quot;,&quot;a&quot;:{&quot;href&quot;:&quot;./Constructor&quot;},&quot;sa&quot;:{&quot;href&quot;:&quot;constructor&quot;}}">constructor</a></p>
 
-
-<p data-parsoid="{&quot;dsr&quot;:[17,36,0,0]}"><a rel="mw:WikiLink" href="./Foo" data-parsoid="{&quot;stx&quot;:&quot;simple&quot;,&quot;a&quot;:{&quot;href&quot;:&quot;./Foo&quot;},&quot;sa&quot;:{&quot;href&quot;:&quot;constructor:foo&quot;},&quot;dsr&quot;:[17,36,2,2]}">constructor:foo</a></p>
+<p><a rel="mw:WikiLink" href="./Foo" data-parsoid="{&quot;stx&quot;:&quot;simple&quot;,&quot;a&quot;:{&quot;href&quot;:&quot;./Foo&quot;},&quot;sa&quot;:{&quot;href&quot;:&quot;constructor:foo&quot;}}">constructor:foo</a></p>
 !! end
 
 !! test
@@ -5883,17 +6001,40 @@ parsoid
 <p><a rel="mw:ExtLink" href="//ko.wikipedia.org/wiki/">ko:</a></p>
 !! end
 
+!! test
+Parsoid: Bug #45209, handle interwiki links pointing to the current wiki as plain wiki links
+!! options
+parsoid
+!! input
+[[en:Foo]]
+!! result
+<p><a rel="mw:WikiLink" href="./Foo" data-parsoid='{"stx":"simple","a":{"href":"./Foo"},"sa":{"href":"en:Foo"}}'>Foo</a></p>
+!! end
+
 ###
 ### Redirects, Parsoid-only
 ###
 !! test
-Simple redirect to page
+1. Simple redirect to page
 !! options
 parsoid
 !! input
 #REDIRECT [[Main Page]]
 !! result
 <link rel="mw:PageProp/redirect" href="./Main_Page">
+!! end
+
+# Only wt2html and html2html since "Main_Page" will serialize to "Main Page"
+!! test
+2. Other redirect variants
+!! options
+parsoid=wt2html,wt2wt
+!! input
+#REDIRECT [[Main_Page]]
+#REDIRECT [[<nowiki>[[Bar]]</nowiki>]]
+!! result
+<link rel="mw:PageProp/redirect" href="./Main_Page">
+<link rel="mw:PageProp/redirect" href="./%5B%5BBar%5D%5D">
 !! end
 
 !! test
@@ -6015,6 +6156,17 @@ language=is
 #TILVÍSUN [[Main Page]]
 !! result
 <link rel="mw:PageProp/redirect" href="./Main_Page">
+!! end
+
+!! test
+New redirect
+!! options
+parsoid=html2wt
+!! input
+Foo
+#REDIRECT [[Foo]]
+!! result
+<p>Foo<link rel="mw:PageProp/redirect" href="./Foo"></p>
 !! end
 
 ##
@@ -7513,6 +7665,39 @@ hi+world%3F%21
 </p>
 !! end
 
+!! test
+Magic Word: prioritize type info over data-parsoid
+!! options
+parsoid=html2wt
+!! input
+__FORCETOC__
+!! result
+<meta property="mw:PageProp/forcetoc" data-parsoid='{"src":"__NOTOC__","magicSrc":"__NOTOC__"}'/>
+!! end
+
+!! test
+Magic Word: serialize on separate line (parsoid)
+!! options
+parsoid=wt2wt,html2wt
+!! input
+foo
+__NOTOC__
+bar
+!! result
+foo<meta property="mw:PageProp/notoc"/>bar
+!! end
+
+!! test
+Magic Word: rt non-english wikis
+!! options
+parsoid=wt2wt
+language=de
+!! input
+__NOEDITSECTION__
+!! result
+<meta property="mw:PageProp/noeditsection" data-parsoid='{"src":"__NOEDITSECTION__","magicSrc":"__NOEDITSECTION__"}'/>
+!! end
+
 ###
 ### Magic links
 ###
@@ -7581,6 +7766,27 @@ Template with invalid target containing unclosed tag
 !! result
 <p>{{a<b>|foo|a=b|a = b}}</b>
 </p>
+!! end
+
+!! test
+Template with invalid target containing wikilink (php)
+!! options
+php
+!! input
+{{[[Main Page]]}}
+!! result
+<p>{{<a href="/wiki/Main_Page" title="Main Page">Main Page</a>}}
+</p>
+!! end
+
+!! test
+Template with invalid target containing wikilink (parsoid)
+!! options
+parsoid
+!! input
+{{[[Main Page]]}}
+!! result
+<p><span typeof="mw:Transclusion" about="#mwt1" data-mw='{"parts":[{"template":{"target":{"wt":"[[Main Page]]"},"params":{},"i":0}}]}'>{{</span><a rel="mw:WikiLink" href="./Main_Page" about="#mwt1">Main Page</a><span about="#mwt1">}}</span></p>
 !! end
 
 !! article
@@ -8874,8 +9080,8 @@ parsoid
 <tbody>
 <tr>
 <td>foo</td></tr></tbody></table><span about="#mwt1">
-</span><span about="#mwt1">bar</span><span about="#mwt1">
-</span>
+</span><span about="#mwt1">|bar</span><span about="#mwt1">
+|}</span>
 !!end
 
 !!test
@@ -9768,6 +9974,31 @@ parsoid
 !! end
 
 !! test
+Allow empty links in image captions (Bug 60753) (parsoid)
+!! options
+parsoid
+!!input
+[[File:Foobar.jpg|thumb|Caption [[Link1]]
+[[]]
+[[Link2]]
+]]
+!! result
+<figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"Caption [[Link1]]\n[[]]\n[[Link2]]\n"}],"dsr":[0,59,2,2]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"dsr":[2,null,null,null]}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" height="25" width="220" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption data-parsoid='{"dsr":[null,57,null,null]}'>Caption <a rel="mw:WikiLink" href="./Link1" data-parsoid='{"stx":"simple","a":{"href":"./Link1"},"sa":{"href":"Link1"},"dsr":[32,41,2,2]}'>Link1</a>
+[[]]
+<a rel="mw:WikiLink" href="./Link2" data-parsoid='{"stx":"simple","a":{"href":"./Link2"},"sa":{"href":"Link2"},"dsr":[47,56,2,2]}'>Link2</a>
+</figcaption></figure>
+!! end
+
+!! test
+Link with empty target
+!! input
+[[]]
+!! result
+<p>[[]]
+</p>
+!! end
+
+!! test
 Image with empty attribute (php)
 !! options
 php
@@ -9789,7 +10020,37 @@ parsoid=wt2html
 !! end
 
 !! test
-Image with attributes from template (php)
+1. Block image with individual attributes from templates
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|thumb|{{echo|137px}}|This is a caption]]
+!! result
+<figure typeof="mw:Image/Thumb mw:ExpandedAttrs" data-mw='{"attribs":[["thumbnail",{"html":"thumb"}],["width",{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-mw=\"{&amp;quot;parts&amp;quot;:[{&amp;quot;template&amp;quot;:{&amp;quot;target&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;echo&amp;quot;,&amp;quot;href&amp;quot;:&amp;quot;./Template:Echo&amp;quot;},&amp;quot;params&amp;quot;:{&amp;quot;1&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;137px&amp;quot;}},&amp;quot;i&amp;quot;:0}}]}\" data-parsoid=\"{&amp;quot;dsr&amp;quot;:[24,38,null,null],&amp;quot;pi&amp;quot;:[[{&amp;quot;k&amp;quot;:&amp;quot;1&amp;quot;,&amp;quot;spc&amp;quot;:[&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;]}]]}\">137px&lt;/span>"}]]}'><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="16" width="137"/></a><figcaption>This is a caption</figcaption></figure>
+!! end
+
+!! test
+2. Block Image with individual attributes from templates
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|{{echo|thumb}}|{{echo|137px}}|This is a caption]]
+!! result
+<figure typeof="mw:Image/Thumb mw:ExpandedAttrs" data-mw='{"attribs":[["thumbnail",{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-mw=\"{&amp;quot;parts&amp;quot;:[{&amp;quot;template&amp;quot;:{&amp;quot;target&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;echo&amp;quot;,&amp;quot;href&amp;quot;:&amp;quot;./Template:Echo&amp;quot;},&amp;quot;params&amp;quot;:{&amp;quot;1&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;thumb&amp;quot;}},&amp;quot;i&amp;quot;:0}}]}\" data-parsoid=\"{&amp;quot;dsr&amp;quot;:[18,32,null,null],&amp;quot;pi&amp;quot;:[[{&amp;quot;k&amp;quot;:&amp;quot;1&amp;quot;,&amp;quot;spc&amp;quot;:[&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;]}]]}\">thumb&lt;/span>"}],["width",{"html":"&lt;span about=\"#mwt2\" typeof=\"mw:Transclusion\" data-mw=\"{&amp;quot;parts&amp;quot;:[{&amp;quot;template&amp;quot;:{&amp;quot;target&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;echo&amp;quot;,&amp;quot;href&amp;quot;:&amp;quot;./Template:Echo&amp;quot;},&amp;quot;params&amp;quot;:{&amp;quot;1&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;137px&amp;quot;}},&amp;quot;i&amp;quot;:0}}]}\" data-parsoid=\"{&amp;quot;dsr&amp;quot;:[33,47,null,null],&amp;quot;pi&amp;quot;:[[{&amp;quot;k&amp;quot;:&amp;quot;1&amp;quot;,&amp;quot;spc&amp;quot;:[&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;]}]]}\">137px&lt;/span>"}]]}'><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="16" width="137"/></a><figcaption>This is a caption</figcaption></figure>
+!! end
+
+!! test
+3. Inline image with individual attributes from templates
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|{{echo|50px}}]]
+!! result
+<p><span typeof="mw:Image mw:ExpandedAttrs" about="#mwt2" data-mw='{"attribs":[["width",{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-mw=\"{&amp;quot;parts&amp;quot;:[{&amp;quot;template&amp;quot;:{&amp;quot;target&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;echo&amp;quot;,&amp;quot;href&amp;quot;:&amp;quot;./Template:Echo&amp;quot;},&amp;quot;params&amp;quot;:{&amp;quot;1&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;50px&amp;quot;}},&amp;quot;i&amp;quot;:0}}]}\" data-parsoid=\"{&amp;quot;dsr&amp;quot;:[18,31,null,null],&amp;quot;pi&amp;quot;:[[{&amp;quot;k&amp;quot;:&amp;quot;1&amp;quot;,&amp;quot;spc&amp;quot;:[&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;]}]]}\">50px&lt;/span>"}]]}' data-parsoid='{"optList":[{"ck":"width","ak":"{{echo|50px}}"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"6","width":"50"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
+!! end
+
+!! test
+Image with multiple attributes from the same template (php)
 !! options
 php
 !! input
@@ -9799,14 +10060,16 @@ php
 
 !! end
 
+## Parsoid does not provide editing support for images where templates produce multiple image attributes.
+## To signal this, we add a 'mw:Placeholder' type to such images. This could change in the future.
 !! test
-Image with attributes from template (parsoid)
+Image with multiple attributes from the same template (parsoid)
 !! options
 parsoid
 !! input
 [[File:Foobar.jpg|{{image_attribs}}]]
 !! result
-<figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a><figcaption>Caption text</figcaption></figure>
+<figure class="mw-default-size mw-halign-right" typeof="mw:Image mw:Placeholder"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a><figcaption>Caption text</figcaption></figure>
 !! end
 
 !! test
@@ -9836,7 +10099,7 @@ parsoid
 !! result
 <p>123<span class="mw-default-size" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a></span>456</p>
 123<figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a></figure>456
-123<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" height="20" width="180"></a></figure>456
+123<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" height="25" width="220"></a></figure>456
 !! end
 
 !! test
@@ -9861,6 +10124,54 @@ parsoid
 !! end
 
 !! test
+Image with multiple widths -- use last (php)
+!! options
+php
+!! input
+[[File:Foobar.jpg|200px|300px|caption]]
+!! result
+<p><a href="/wiki/File:Foobar.jpg" class="image" title="caption"><img alt="caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg" width="300" height="34" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/450px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/600px-Foobar.jpg 2x" /></a>
+</p>
+!! end
+
+!! test
+Image with multiple widths -- use last (parsoid)
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|200px|300px|caption]]
+!! result
+<p><span typeof="mw:Image" data-mw='{"caption":"caption"}'><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="34" width="300"/></a></span></p>
+!! end
+
+!! test
+Image with multiple alignments -- use first (bug 48664) (php)
+!! options
+php
+!! input
+[[File:Foobar.jpg|thumb|left|right|center|caption]]
+
+[[File:Foobar.jpg|middle|text-top|caption]]
+!! result
+<div class="thumb tleft"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>caption</div></div></div>
+<p><a href="/wiki/File:Foobar.jpg" class="image" title="caption"><img alt="caption" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" style="vertical-align: middle" /></a>
+</p>
+!! end
+
+!! test
+Image with multiple alignments -- use first (bug 48664) (parsoid)
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|thumb|left|right|center|caption]]
+
+[[File:Foobar.jpg|middle|text-top|caption]]
+!! result
+<figure class="mw-default-size mw-halign-left" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="25" width="220"/></a><figcaption>caption</figcaption></figure>
+<p><span class="mw-default-size mw-valign-middle" typeof="mw:Image" data-mw='{"caption":"caption"}'><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"/></a></span></p>
+!! end
+
+!! test
 Image with width attribute at different positions (php)
 !! options
 php
@@ -9880,13 +10191,38 @@ Image with width attribute at different positions (parsoid)
 !! options
 parsoid
 !! input
-[[File:Foobar.jpg|200px|right|Caption]]
-[[File:Foobar.jpg|right|200px|Caption]]
-[[File:Foobar.jpg|right|Caption|200px]]
+[[File:Foobar.jpg|200x200px|right|Caption]]
+[[File:Foobar.jpg|right|200x200px|Caption]]
+[[File:Foobar.jpg|right|Caption|200x200px]]
 !! result
 <figure class="mw-halign-right" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" height="23" width="200"></a><figcaption>Caption</figcaption></figure>
 <figure class="mw-halign-right" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" height="23" width="200"></a><figcaption>Caption</figcaption></figure>
 <figure class="mw-halign-right" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" height="23" width="200"></a><figcaption>Caption</figcaption></figure>
+!! end
+
+# a sad bit of backward-compatibility
+!! test
+Image with size specified with pxpx (bug 13500, 51628) (php)
+!! options
+php
+!! input
+[[File:Foobar.jpg|20pxpx]]
+[[File:Foobar.jpg|200x20pxpx]]
+!! result
+<p><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/20px-Foobar.jpg" width="20" height="2" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/30px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/40px-Foobar.jpg 2x" /></a>
+<a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/177px-Foobar.jpg" width="177" height="20" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/265px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/353px-Foobar.jpg 2x" /></a>
+</p>
+!! end
+
+!! test
+Image with size specified with pxpx (bug 13500, 51628) (parsoid)
+!! options
+parsoid=wt2html,wt2wt
+!! input
+[[File:Foobar.jpg|20pxpx]]
+[[File:Foobar.jpg|200x20pxpx]]
+!! result
+<p><span typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="2" width="20"/></a></span><span typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="20" width="177"/></a></span></p>
 !! end
 
 !! test
@@ -10361,6 +10697,45 @@ Parsoid: Image caption containing leading space
 !!end
 
 !! test
+Image caption containing a table (php)
+!! options
+php
+!! input
+[[Image:Foobar.jpg|thumb|200px|This is an example image thumbnail caption with a table
+{|
+! Foo !! Bar
+|-
+| Foo1 || Bar1
+|}
+and some more text.]]
+!! result
+<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" width="200" height="23" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This is an example image thumbnail caption with a table <table> <tr> <th> Foo </th> <th> Bar </th></tr> <tr> <td> Foo1 </td> <td> Bar1 </td></tr></table> and some more text.</div></div></div>
+
+!!end
+
+!! test
+Image caption containing a table (parsoid)
+!! options
+parsoid
+!! input
+[[Image:Foobar.jpg|thumb|200px|This is an example image thumbnail caption with a table
+{|
+! Foo !! Bar
+|-
+| Foo1 || Bar1
+|}
+and some more text.]]
+!! result
+<figure typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="23" width="200"/></a><figcaption>This is an example image thumbnail caption with a table
+<table>
+<tbody>
+<tr><th>Foo </th><th>Bar</th></tr>
+<tr>
+<td>Foo1 </td>
+<td>Bar1</td></tr></tbody></table>and some more text.</figcaption></figure>
+!! end
+
+!! test
 Bug 3090: External links other than http: in image captions
 !! input
 [[Image:Foobar.jpg|thumb|200px|This caption has [irc://example.net irc] and [https://example.com Secure] ext links in it.]]
@@ -10447,10 +10822,52 @@ Parsoid-specific image handling - simple image with size and middle alignment
 !! options
 parsoid
 !! input
+[[File:Foobar.jpg|middle|50px]]
+!! result
+<p><span class="mw-valign-middle" typeof="mw:Image">
+<a href="File:Foobar.jpg">
+<img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50">
+</a>
+</span>
+</p>
+!! end
+
+!! test
+Parsoid-specific image handling - simple image with size, middle alignment,
+non-standard namespace alias
+!! options
+parsoid=wt2wt,wt2html,html2html
+!! input
+[[Image:Foobar.jpg|middle|50px]]
+!! result
+<p><span class="mw-valign-middle" typeof="mw:Image">
+<a href="File:Foobar.jpg">
+<img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50">
+</a>
+</span>
+</p>
+!! end
+
+!! test
+Parsoid-specific image handling - simple image with size and middle alignment
+(existing content)
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|50px|middle]]
+!! result
+<p><span class="mw-valign-middle" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"width","ak":"50px"},{"ck":"middle","ak":"middle"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"6","width":"50"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
+!! end
+
+!! test
+Parsoid-specific image handling - simple image with size and middle alignment
+and non-standard namespace name
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! input
 [[Image:Foobar.jpg|50px|middle]]
 !! result
-<p>
-<span class="mw-valign-middle" typeof="mw:Image">
+<p><span class="mw-valign-middle" typeof="mw:Image">
 <a href="File:Foobar.jpg">
 <img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50">
 </a>
@@ -10463,15 +10880,9 @@ Parsoid-specific image handling - simple image with both sizes, a baseline align
 !! options
 parsoid
 !! input
-[[Image:Foobar.jpg|500x10px|baseline|caption]]
+[[File:Foobar.jpg|500x10px|baseline|caption]]
 !! result
-<p>
-<span class="mw-valign-baseline" typeof="mw:Image" data-mw="{&quot;caption&quot;:&quot;caption&quot;}">
-<a href="File:Foobar.jpg">
-<img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/89px-Foobar.jpg" height="10" width="89">
-</a>
-</span>
-</p>
+<p><span class="mw-valign-baseline" typeof="mw:Image" data-mw='{"caption":"caption"}' data-parsoid='{"optList":[{"ck":"width","ak":"500x10px"},{"ck":"baseline","ak":"baseline"},{"ck":"caption","ak":"caption"}],"size":"500x10"}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/89px-Foobar.jpg" height="10" width="89" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"10","width":"89"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
 !! end
 
 !! test
@@ -10479,15 +10890,9 @@ Parsoid-specific image handling - simple image with border and size spec
 !! options
 parsoid
 !! input
-[[Image:Foobar.jpg|50px|border|caption]]
+[[File:Foobar.jpg|50px|border|caption]]
 !! result
-<p>
-<span class="mw-image-border" typeof="mw:Image" data-mw="{&quot;caption&quot;:&quot;caption&quot;}">
-<a href="File:Foobar.jpg">
-<img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50">
-</a>
-</span>
-</p>
+<p><span class="mw-image-border" typeof="mw:Image" data-mw='{"caption":"caption"}' data-parsoid='{"optList":[{"ck":"width","ak":"50px"},{"ck":"border","ak":"border"},{"ck":"caption","ak":"caption"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"6","width":"50"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
 !! end
 
 !! test
@@ -10495,14 +10900,25 @@ Parsoid-specific image handling - thumbnail with halign, valign, and caption
 !! options
 parsoid
 !! input
-[[Image:Foobar.jpg|thumb|left|baseline|caption content]]
+[[File:Foobar.jpg|left|baseline|thumb|caption content]]
 !! result
 <figure class="mw-default-size mw-halign-left mw-valign-baseline" typeof="mw:Image/Thumb">
 <a href="File:Foobar.jpg">
-<img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" height="21" width="180" />
+<img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" height="25" width="220" />
 </a>
 <figcaption>caption content</figcaption>
 </figure>
+!! end
+
+!! test
+Parsoid-specific image handling - thumbnail with halign, valign, and caption
+(existing content)
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|thumb|left|baseline|caption content]]
+!! result
+<figure class="mw-default-size mw-halign-left mw-valign-baseline" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"left","ak":"left"},{"ck":"baseline","ak":"baseline"},{"ck":"caption","ak":"caption content"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" height="25" width="220" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>caption content</figcaption></figure>
 !! end
 
 !! test
@@ -10510,7 +10926,7 @@ Parsoid-specific image handling - thumbnail with specific size, halign, valign, 
 !! options
 parsoid
 !! input
-[[Image:Foobar.jpg|thumb|50x50px|right|middle|caption]]
+[[Image:Foobar.jpg|right|middle|thumb|50x50px|caption]]
 !! result
 <figure class="mw-halign-right mw-valign-middle" typeof="mw:Image/Thumb">
 <a href="File:Foobar.jpg">
@@ -10521,11 +10937,22 @@ parsoid
 !! end
 
 !! test
+Parsoid-specific image handling - thumbnail with specific size, halign,
+valign, and caption (existing content)
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|thumb|50x50px|right|middle|caption]]
+!! result
+<figure class="mw-halign-right mw-valign-middle" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"width","ak":"50x50px"},{"ck":"right","ak":"right"},{"ck":"middle","ak":"middle"},{"ck":"caption","ak":"caption"}],"size":"50x50"}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg" height="6" width="50" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"6","width":"50"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>caption</figcaption></figure>
+!! end
+
+!! test
 Parsoid-specific image handling - framed image with specific size and caption
 !! options
 parsoid
 !! input
-[[Image:Foobar.jpg|500x50px|frame|caption]]
+[[Image:Foobar.jpg|frame|500x50px|caption]]
 !! result
 <figure typeof="mw:Image/Frame">
 <a href="File:Foobar.jpg">
@@ -10536,11 +10963,22 @@ parsoid
 !! end
 
 !! test
+Parsoid-specific image handling - framed image with specific size and caption
+(existing content)
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|442x50px|frame|caption]]
+!! result
+<figure typeof="mw:Image/Frame" data-parsoid='{"optList":[{"ck":"width","ak":"442x50px"},{"ck":"framed","ak":"frame"},{"ck":"caption","ak":"caption"}],"size":"442x50"}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"50","width":"442"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>caption</figcaption></figure>
+!! end
+
+!! test
 Parsoid-specific image handling - framed image with specific size, halign, valign, and caption
 !! options
 parsoid
 !! input
-[[Image:Foobar.jpg|500x50px|frame|left|baseline|caption]]
+[[Image:Foobar.jpg|left|baseline|frame|500x50px|caption]]
 !! result
 <figure class="mw-halign-left mw-valign-baseline" typeof="mw:Image/Frame">
 <a href="File:Foobar.jpg">
@@ -10551,42 +10989,45 @@ parsoid
 !! end
 
 !! test
+Parsoid-specific image handling - framed image with specific size, halign,
+valign, and caption (existing content)
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|442x50px|frame|left|baseline|caption]]
+!! result
+<figure class="mw-halign-left mw-valign-baseline" typeof="mw:Image/Frame" data-parsoid='{"optList":[{"ck":"width","ak":"442x50px"},{"ck":"framed","ak":"frame"},{"ck":"left","ak":"left"},{"ck":"baseline","ak":"baseline"},{"ck":"caption","ak":"caption"}],"size":"442x50"}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"50","width":"442"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>caption</figcaption></figure>
+!! end
+
+!! test
 Parsoid-specific image handling - frameless image with specific size, border, and caption
 !! options
 parsoid
 !! input
-[[Image:Foobar.jpg|frameless|500x50px|border|caption]]
+[[File:Foobar.jpg|frameless|442x50px|border|caption]]
 !! result
-<p>
-<span class="mw-image-border" typeof="mw:Image/Frameless" data-mw="{&quot;caption&quot;:&quot;caption&quot;}">
-<a href="File:Foobar.jpg">
-<img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" />
-</a>
-</p>
+<p><span class="mw-image-border" typeof="mw:Image/Frameless" data-mw='{"caption":"caption"}' data-parsoid='{"optList":[{"ck":"frameless","ak":"frameless"},{"ck":"width","ak":"442x50px"},{"ck":"border","ak":"border"},{"ck":"caption","ak":"caption"}],"size":"442x50"}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"50","width":"442"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
 !! end
 
-#!! test
-#Parsoid-specific image handling - simple image with a formatted caption
-#!! options
-#parsoid
-#!! input
-#[[Image:Foobar.jpg|<table><tr><td>a</td><td>b</td></tr><tr><td>c</td></tr></table>]]
-#!! result
-#<p>
-#<span typeof="mw:Image">
-#<a class="mw-default-size" href="Image:Foobar.jpg">
-#<img alt="Foobar.jpg" class="mw-default-size" src="http://example.com/images/3/3a/Foobar.jpg" height="220" width="1941">
-#</a>
-#<span>abc</span>
-#</span>
-#</p>
+!! test
+Parsoid-specific image handling - simple image with a formatted caption
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|<table><tr><td>a</td><td>b</td></tr><tr><td>c</td></tr></table>]]
+!! result
+<p><span class="mw-default-size" typeof="mw:Image" data-mw='{"caption":"&lt;table>&lt;tr>&lt;td>a&lt;/td>&lt;td>b&lt;/td>&lt;/tr>&lt;tr>&lt;td>c&lt;/td>&lt;/tr>&lt;/table>"}'>
+<a href="File:Foobar.jpg">
+<img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941">
+</a></span></p>
+!! end
 
 !! test
 Parsoid-specific image handling - caption with a template in it
 !! options
 parsoid
 !! input
-[[File:Foobar.jpg|thumb|200x200px|This caption has a {{echo|transclusion}} in it.]]
+[[File:Foobar.jpg|thumb|200x23px|This caption has a {{echo|transclusion}} in it.]]
 !! result
 <figure typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" height="23" width="200"></a><figcaption>This caption has a <span about="#mwt1" typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;transclusion&quot;}},&quot;i&quot;:0}}]}">transclusion</span> in it.</figcaption></figure>
 !! end
@@ -10603,6 +11044,40 @@ bar
 <p>foo</p>
 <figure typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="23" width="200"></a><figcaption>This caption has a <center>unbalanced tag in it.</center></figcaption></figure>
 <p>bar</p>
+!! end
+
+!! test
+Parsoid-specific image handling - empty caption
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|thumb|]]
+!! result
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="25" width="220"/></a><figcaption></figcaption></figure>
+!! end
+
+!! test
+Parsoid-specific image handling - whitespace caption
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|thumb| ]]
+!! result
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="25" width="220"/></a><figcaption> </figcaption></figure>
+!! end
+
+!! test
+Parsoid-specific image handling - lang option
+!! options
+parsoid
+!! input
+foo
+[[File:Foobar.svg|lang=de|caption]]
+bar
+!! result
+<p>foo
+<span class="mw-default-size" typeof="mw:Image" data-mw='{"caption":"caption"}'><a href="./File:Foobar.svg"><img resource="./File:Foobar.svg" src="//example.com/images/f/ff/Foobar.svg" lang="de" height="180" width="240"/></a></span>
+bar</p>
 !! end
 
 
@@ -14443,6 +14918,15 @@ ISBN ISBN 1234567890
 !! end
 
 !! test
+ISBN with an X
+!! input
+ISBN 3-462-04561-X
+!! result
+<p><a href="/wiki/Special:BookSources/346204561X" class="internal mw-magiclink-isbn">ISBN 3-462-04561-X</a>
+</p>
+!! end
+
+!! test
 Bug 22905: <abbr> followed by ISBN followed by </a>
 !! input
 <abbr>(fr)</abbr> ISBN 2753300917 [http://www.example.com example.com]
@@ -17036,10 +17520,10 @@ A <ref>
 
 <references />
 !!result
-<p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"This is a &lt;b data-parsoid=&#39;{\"dsr\":[19,40,3,3]}&#39;>&lt;a rel=\"mw:WikiLink\" href=\"./Bolded_link\" data-parsoid=&#39;{\"stx\":\"simple\",\"a\":{\"href\":\"./Bolded_link\"},\"sa\":{\"href\":\"bolded link\"},\"dsr\":[22,37,2,2]}&#39;>bolded link&lt;/a>&lt;/b> and this is a &lt;span about=\"#mwt5\" typeof=\"mw:Transclusion\" data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"transclusion\"}},\"i\":0}}]}&#39; data-parsoid=&#39;{\"dsr\":[55,76,null,null],\"pi\":[[{\"k\":\"1\",\"spc\":[\"\",\"\",\"\",\"\"]}]]}&#39;>transclusion&lt;/span>\n"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
+<p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"This is a &lt;b data-parsoid=&#39;{\"dsr\":[19,40,3,3]}&#39;>&lt;a rel=\"mw:WikiLink\" href=\"./Bolded_link\" data-parsoid=&#39;{\"stx\":\"simple\",\"a\":{\"href\":\"./Bolded_link\"},\"sa\":{\"href\":\"bolded link\"},\"dsr\":[22,37,2,2]}&#39;>bolded link&lt;/a>&lt;/b> and this is a &lt;span about=\"#mwt3\" typeof=\"mw:Transclusion\" data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"transclusion\"}},\"i\":0}}]}&#39; data-parsoid=&#39;{\"dsr\":[55,76,null,null],\"pi\":[[{\"k\":\"1\",\"spc\":[\"\",\"\",\"\",\"\"]}]]}&#39;>transclusion&lt;/span>\n"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
 
 <ol class="references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> This is a <b><a rel="mw:WikiLink" href="./Bolded_link">bolded link</a></b> and this is a <span about="#mwt5" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"transclusion"}},"i":0}}]}'>transclusion</span>
+<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> This is a <b><a rel="mw:WikiLink" href="./Bolded_link">bolded link</a></b> and this is a <span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"transclusion"}},"i":0}}]}'>transclusion</span>
 </li>
 </ol>
 !!end
@@ -17142,11 +17626,11 @@ A <ref> <b> foo </ref> B C
 
 <references />
 !!result
-<p data-parsoid='{"dsr":[0,26,0,0]}'>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"&lt;b data-parsoid=&#39;{\"stx\":\"html\",\"autoInsertedEnd\":true,\"dsr\":[8,16,3,0]}&#39;> foo &lt;/b>"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref> &lt;b> foo &lt;/ref>","dsr":[2,22,5,6]}'><a href="#cite_note-1">[1]</a></span> B C</p>
+<p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"&lt;b data-parsoid=&#39;{\"stx\":\"html\",\"autoInsertedEnd\":true,\"dsr\":[8,16,3,0]}&#39;> foo &lt;/b>"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref> &lt;b> foo &lt;/ref>"}'><a href="#cite_note-1">[1]</a></span> B C</p>
 
 
-<ol class="references" typeof="mw:Extension/references" about="#mwt4" data-parsoid='{"src":"&lt;references />","dsr":[28,42,2,2]}' data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1" data-parsoid="{}"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> <b data-parsoid='{"stx":"html","autoInsertedEnd":true,"dsr":[8,16,3,0]}'> foo </b></li>
+<ol class="references" typeof="mw:Extension/references" about="#mwt4" data-parsoid='{"src":"&lt;references />"}' data-mw='{"name":"references","attrs":{}}'>
+<li about="#cite_note-1" id="cite_note-1" data-parsoid="{}"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> <b data-parsoid='{"stx":"html","autoInsertedEnd":true}'> foo </b></li>
 </ol>
 !!end
 
@@ -17158,8 +17642,8 @@ parsoid
 A <ref>foo</ref> B
 C <ref>bar</ref> D
 !!result
-<p data-parsoid='{"dsr":[0,37,0,0]}'>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref>foo&lt;/ref>","dsr":[2,16,5,6]}'><a href="#cite_note-1">[1]</a></span> B
-C <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{}}' id="cite_ref-2-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref>bar&lt;/ref>","dsr":[21,35,5,6]}'><a href="#cite_note-2">[2]</a></span> D</p>
+<p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref>foo&lt;/ref>"}'><a href="#cite_note-1">[1]</a></span> B
+C <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{}}' id="cite_ref-2-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref>bar&lt;/ref>"}'><a href="#cite_note-2">[2]</a></span> D</p>
 !!end
 
 !!test
@@ -17206,9 +17690,9 @@ parsoid
 
 <references />
 !!result
-<p data-parsoid='{"dsr":[0,33,0,0]}'><span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo &amp;lt;ref>bar&amp;lt;/ref> baz"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref>foo &lt;ref>bar&lt;/ref> baz&lt;/ref>","dsr":[0,33,5,6]}'><a href="#cite_note-1">[1]</a></span></p>
+<p><span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo &amp;lt;ref>bar&amp;lt;/ref> baz"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref>foo &lt;ref>bar&lt;/ref> baz&lt;/ref>"}'><a href="#cite_note-1">[1]</a></span></p>
 
-<ol class="references" typeof="mw:Extension/references" about="#mwt5" data-parsoid='{"src":"&lt;references />","dsr":[35,49,2,2]}' data-mw='{"name":"references","attrs":{}}'>
+<ol class="references" typeof="mw:Extension/references" about="#mwt5" data-parsoid='{"src":"&lt;references />"}' data-mw='{"name":"references","attrs":{}}'>
 <li about="#cite_note-1" id="cite_note-1" data-parsoid="{}"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo &lt;ref>bar&lt;/ref> baz</li>
 </ol>
 !!end
@@ -17267,7 +17751,7 @@ B <ref group="b">bar</ref>
 <references group="a" />
 !!result
 <p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{"group":"a"}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[a 1]</a></span>
-B <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{"group":"b"}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[b 1]</a></span></p>
+B <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{"group":"b"}}' id="cite_ref-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-2">[b 1]</a></span></p>
 
 <ol about="#mwt6" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{"group":"a"}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo</li>
 </ol>
@@ -17291,9 +17775,9 @@ B <ref>bar</ref>
 <ol about="#mwt4" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo</li>
 </ol>
 
-<p>B <span about="#mwt6" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[1]</a></span></p>
+<p>B <span about="#mwt6" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{}}' id="cite_ref-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-2">[1]</a></span></p>
 
-<ol about="#mwt8" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> bar</li>
+<ol about="#mwt8" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-2" id="cite_note-2"><span rel="mw:referencedBy"><a href="#cite_ref-2-0">↑</a></span> bar</li>
 </ol>
 !!end
 
@@ -17312,14 +17796,14 @@ C <ref>cfoo</ref>
 <references />
 !!result
 <p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"afoo"},"attrs":{"group":"a"}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-1">[a 1]</a></span>
-B <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bfoo"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"<ref>bfoo</ref>","dsr":[30,45,5,6]}'><a href="#cite_note-1">[1]</a></span></p>
+B <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bfoo"},"attrs":{}}' id="cite_ref-2-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"<ref>bfoo</ref>"}'><a href="#cite_note-2">[1]</a></span></p>
 
 <ol about="#mwt6" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{"group":"a"}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> afoo</li>
 </ol>
 
-<p>C <span about="#mwt8" class="reference" data-mw='{"name":"ref","body":{"html":"cfoo"},"attrs":{}}' id="cite_ref-2-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-2">[2]</a></span></p>
+<p>C <span about="#mwt8" class="reference" data-mw='{"name":"ref","body":{"html":"cfoo"},"attrs":{}}' id="cite_ref-3-0" rel="dc:references" typeof="mw:Extension/ref"><a href="#cite_note-3">[2]</a></span></p>
 
-<ol about="#mwt10" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> bfoo</li><li about="#cite_note-2" id="cite_note-2"><span rel="mw:referencedBy"><a href="#cite_ref-2-0">↑</a></span> cfoo</li>
+<ol about="#mwt10" class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-2" id="cite_note-2"><span rel="mw:referencedBy"><a href="#cite_ref-2-0">↑</a></span> bfoo</li><li about="#cite_note-3" id="cite_note-3"><span rel="mw:referencedBy"><a href="#cite_ref-3-0">↑</a></span> cfoo</li>
 </ol>
 !!end
 
@@ -17336,11 +17820,11 @@ B <ref name="b">bar</ref>
 This should just get lost.
 </references>
 !!result
-<p data-parsoid='{"dsr":[0,57,0,0]}'>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","attrs":{"name":"a"}}' id="cite_ref-a-1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref name=\"a\" />","dsr":[2,18,16,0]}'><a href="#cite_note-a-1">[1]</a></span>
-B <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{"name":"b"}}' id="cite_ref-b-2-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref name=\"b\">bar&lt;/ref>","dsr":[21,44,14,6]}'><a href="#cite_note-b-2">[2]</a></span></p>
+<p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","attrs":{"name":"a"}}' id="cite_ref-a-1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref name=\"a\" />"}'><a href="#cite_note-a-1">[1]</a></span>
+B <span about="#mwt4" class="reference" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{"name":"b"}}' id="cite_ref-b-2-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref name=\"b\">bar&lt;/ref>"}'><a href="#cite_note-b-2">[2]</a></span></p>
 
 
-<ol class="references" typeof="mw:Extension/references" about="#mwt6" data-parsoid='{"src":"&lt;references>\n&lt;ref name=\"a\">foo&lt;/ref>\nThis should just get lost.\n&lt;/references>","dsr":[46,123,2,2]}' data-mw='{"name":"references","body":{"extsrc":"&lt;ref name=\"a\">foo&lt;/ref>\nThis should just get lost.","html":"\n&lt;span about=\"#mwt8\" class=\"reference\" data-mw=&#39;{\"name\":\"ref\",\"body\":{\"html\":\"foo\"},\"attrs\":{\"name\":\"a\"}}&#39; rel=\"dc:references\" typeof=\"mw:Extension/ref\">&lt;a href=\"#cite_note-a-1\">[1]&lt;/a>&lt;/span>\n"},"attrs":{}}'>
+<ol class="references" typeof="mw:Extension/references" about="#mwt6" data-parsoid='{"src":"&lt;references>\n&lt;ref name=\"a\">foo&lt;/ref>\nThis should just get lost.\n&lt;/references>"}' data-mw='{"name":"references","body":{"extsrc":"&lt;ref name=\"a\">foo&lt;/ref>\nThis should just get lost.","html":"\n&lt;span about=\"#mwt8\" class=\"reference\" data-mw=&#39;{\"name\":\"ref\",\"body\":{\"html\":\"foo\"},\"attrs\":{\"name\":\"a\"}}&#39; rel=\"dc:references\" typeof=\"mw:Extension/ref\">&lt;a href=\"#cite_note-a-1\">[1]&lt;/a>&lt;/span>\n"},"attrs":{}}'>
 <li about="#cite_note-a-1" id="cite_note-a-1" data-parsoid="{}"><span rel="mw:referencedBy"><a href="#cite_ref-a-1-0">↑</a></span> foo</li>
 <li about="#cite_note-b-2" id="cite_note-b-2" data-parsoid="{}"><span rel="mw:referencedBy"><a href="#cite_ref-b-2-0">↑</a></span> bar</li>
 </ol>
@@ -17370,18 +17854,47 @@ B <ref name="b" />
 <ref name="b">foo</ref>
 </references>
 !! result
-<p data-parsoid='{"dsr":[0,45,0,0]}'>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo bar for a"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref>foo bar for a&lt;/ref>","dsr":[2,26,5,6]}'><a href="#cite_note-1">[1]</a></span>
-B <span about="#mwt4" class="reference" data-mw='{"name":"ref","attrs":{"name":"b"}}' id="cite_ref-b-2-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref name=\"b\" />","dsr":[29,45,16,0]}'><a href="#cite_note-b-2">[2]</a></span></p>
+<p>A <span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo bar for a"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref>foo bar for a&lt;/ref>"}'><a href="#cite_note-1">[1]</a></span>
+B <span about="#mwt4" class="reference" data-mw='{"name":"ref","attrs":{"name":"b"}}' id="cite_ref-b-2-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref name=\"b\" />"}'><a href="#cite_note-b-2">[2]</a></span></p>
 
 
-<ol class="references" typeof="mw:Extension/references" about="#mwt6" data-parsoid='{"src":"&lt;references />","dsr":[47,61,2,2]}' data-mw='{"name":"references","attrs":{}}'>
+<ol class="references" typeof="mw:Extension/references" about="#mwt6" data-parsoid='{"src":"&lt;references />"}' data-mw='{"name":"references","attrs":{}}'>
 <li about="#cite_note-1" id="cite_note-1" data-parsoid="{}"><span rel="mw:referencedBy"><a href="#cite_ref-1-0">↑</a></span> foo bar for a</li>
 <li about="#cite_note-b-2" id="cite_note-b-2" data-parsoid="{}"><span rel="mw:referencedBy"><a href="#cite_ref-b-2-0">↑</a></span> </li></ol>
 
 
-<ol class="references" typeof="mw:Extension/references" about="#mwt8" data-parsoid='{"src":"&lt;references>\n&lt;ref name=\"b\">foo&lt;/ref>\n&lt;/references>","dsr":[63,113,2,2]}' data-mw='{"name":"references","body":{"extsrc":"&lt;ref name=\"b\">foo&lt;/ref>","html":"\n&lt;span about=\"#mwt10\" class=\"reference\" data-mw=&#39;{\"name\":\"ref\",\"body\":{\"html\":\"foo\"},\"attrs\":{\"name\":\"b\"}}&#39; rel=\"dc:references\" typeof=\"mw:Extension/ref\">&lt;a href=\"#cite_note-b-1\">[1]&lt;/a>&lt;/span>\n"},"attrs":{}}'>
-<li about="#cite_note-b-1" id="cite_note-b-1" data-parsoid="{}"><span rel="mw:referencedBy">↑</span> foo</li>
+<ol class="references" typeof="mw:Extension/references" about="#mwt8" data-parsoid='{"src":"&lt;references>\n&lt;ref name=\"b\">foo&lt;/ref>\n&lt;/references>"}' data-mw='{"name":"references","body":{"extsrc":"&lt;ref name=\"b\">foo&lt;/ref>","html":"\n&lt;span about=\"#mwt10\" class=\"reference\" data-mw=&#39;{\"name\":\"ref\",\"body\":{\"html\":\"foo\"},\"attrs\":{\"name\":\"b\"}}&#39; rel=\"dc:references\" typeof=\"mw:Extension/ref\">&lt;a href=\"#cite_note-b-3\">[1]&lt;/a>&lt;/span>\n"},"attrs":{}}'>
+<li about="#cite_note-b-3" id="cite_note-b-3" data-parsoid="{}"><span rel="mw:referencedBy">↑</span> foo</li>
 </ol>
+!! end
+
+# This test is wt2html only because we're permitting the serializer to produce
+# dirty diffs, normalizing the unclosed references to the self-closed version.
+!! test
+Generate references for unclosed references tag
+!! options
+parsoid=wt2html
+!! input
+a<ref>foo</ref>
+
+<references>
+!! result
+<p data-parsoid='{}'>a<span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{}}' id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref>foo&lt;/ref>"}'><a href="#cite_note-1" data-parsoid="{}">[1]</a></span></p>
+
+
+<ol class="references" typeof="mw:Extension/references" about="#mwt4" data-parsoid='{"src":"&lt;references>"}' data-mw='{"name":"references","attrs":{}}'>
+<li about="#cite_note-1" id="cite_note-1" data-parsoid="{}"><span rel="mw:referencedBy" data-parsoid="{}"><a href="#cite_ref-1-0" data-parsoid="{}">↑</a></span> foo</li></ol>
+!! end
+
+!! test
+New reference serializes on its own line
+!! options
+parsoid=wt2wt,html2wt
+!! input
+foo
+<references />
+!! result
+foo<ol class="references" typeof="mw:Extension/references" about="#mwt2" data-mw='{"name":"references","attrs":{}}'></ol>
 !! end
 
 #### ----------------------------------------------------------------
@@ -18111,6 +18624,21 @@ parsoid
 </tbody></table>
 !! end
 
+!! test
+Tables: Digest broken attributes on table and tr tag
+!! options
+parsoid=wt2html
+!! input
+{| || |} ++
+|- || || ++ --
+|}
+!! result
+<table>
+<tbody>
+<tr></tr>
+</tbody></table>
+!! end
+
 #### --------------- Links ----------------
 #### 1. Quote marks in link text
 #### 2. Wikilinks: Escapes needed
@@ -18133,15 +18661,17 @@ Links 2. WikiLinks: Escapes needed
 !! options
 parsoid
 !! input
-[[Foo|<nowiki>[Foobar]</nowiki>]]
+[[Foo|[Foobar]]]
 [[Foo|<nowiki>Foobar]</nowiki>]]
 [[Foo|x [Foobar] x]]
-[[Foo|<nowiki>x [http://google.com g] x</nowiki>]]
+[[Foo|x <nowiki>[http://google.com g]</nowiki> x]]
 [[Foo|<nowiki>[[Bar]]</nowiki>]]
 [[Foo|<nowiki>x [[Bar]] x</nowiki>]]
 [[Foo|<nowiki>|Bar</nowiki>]]
 [[Foo|<nowiki>]]bar</nowiki>]]
 [[Foo|<nowiki>[[bar</nowiki>]]
+[[Foo|<nowiki>x [[ y</nowiki>]]
+[[Foo|<nowiki>x ]] y</nowiki>]]
 [[Foo|<nowiki>x ]] y [[ z</nowiki>]]
 !! result
 <a href="Foo" rel="mw:WikiLink">[Foobar]</a>
@@ -18153,6 +18683,8 @@ parsoid
 <a href="Foo" rel="mw:WikiLink">|Bar</a>
 <a href="Foo" rel="mw:WikiLink">]]bar</a>
 <a href="Foo" rel="mw:WikiLink">[[bar</a>
+<a href="Foo" rel="mw:WikiLink">x [[ y</a>
+<a href="Foo" rel="mw:WikiLink">x ]] y</a>
 <a href="Foo" rel="mw:WikiLink">x ]] y [[ z</a>
 !! end
 
@@ -18829,7 +19361,7 @@ plain text
 !!end
 
 !!test
-Ensure fostered text content is wrapped in spans
+1. Ensure fostered text content is wrapped in spans
 !!options
 parsoid=wt2html
 !!input
@@ -18839,6 +19371,24 @@ parsoid=wt2html
 <table></table>
 <span>ho</span>
 <table></table>
+!!end
+
+!!test
+2. Ensure fostered text content is wrapped in spans (traps regressions around fostered marker on the span getting lost)
+!!options
+parsoid=wt2html,wt2wt
+!!input
+<table>
+<tr> || ||
+<td> a
+</table>
+!!result
+<span> || ||</span>
+<table>
+<tbody>
+<tr>
+<td> a</td></tr>
+</tbody></table>
 !!end
 
 !!test
@@ -19023,12 +19573,22 @@ parsoid=wt2html,wt2wt
 </div>
 |}
 !!result
-<div about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"OpenTable","href":"./Template:OpenTable"},"params":{},"i":0}},"\n&lt;div>"]}' data-parsoid='{"stx":"html","autoInsertedEnd":true,"dsr":[0,19,null,null],"src":"{{OpenTable}}\n&lt;div>","pi":[[]]}'></div><span about="#mwt1" data-parsoid="{}">
+<div about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"OpenTable","href":"./Template:OpenTable"},"params":{},"i":0}},"\n&lt;div>"]}' data-parsoid='{"stx":"html","autoInsertedEnd":true,"pi":[[]]}'></div><span about="#mwt1" data-parsoid="{}">
 </span>
-<table about="#mwt1" data-parsoid='{"autoInsertedEnd":true,"dsr":[null,19,2,0]}'></table>
+<table about="#mwt1" data-parsoid='{"autoInsertedEnd":true}'></table>
 
-<table data-parsoid='{"dsr":[20,25,2,2]}'>
+<table>
 </table>
+!!end
+
+!!test
+Support <object> element with .data attribute
+!!options
+parsoid=html2wt
+!!input
+<object data="test.swf"></object>
+!!result
+<object data="test.swf"></object>
 !!end
 
 # -----------------------------------------------------------------
@@ -19039,25 +19599,134 @@ parsoid=wt2html,wt2wt
 # ----------------------------------------------------------------
 
 !! test
-Image: Modifying size of an image
+Image: Modifying size of an image (1)
 !! options
 parsoid=html2wt
 !! input
-[[Image:Wiki.png|230x230px]]
+[[Image:Foobar.jpg|200x200px]]
 !! result
-<p data-parsoid='{"dsr":[0,24,0,0]}'><span typeof="mw:Image" data-parsoid='{"optList":[{"ck":"width","ak":"100px"}],"cacheKey":"[[Image:Wiki.png|100px]]","img":{"h":115,"w":100,"wdset":true},"dsr":[0,24,null,null]}'><a href="./File:Wiki.png" data-parsoid='{"a":{"href":"./File:Wiki.png"}}'><img resource="./File:Wiki.png" src="//upload.wikimedia.org/wikipedia/en/thumb/b/bc/Wiki.png/100px-Wiki.png" height="230" width="200" data-parsoid='{"a":{"resource":"./File:Wiki.png"},"sa":{"resource":"Image:Wiki.png"}}'></a></span></p>
+<p><span typeof="mw:Image" data-parsoid='{"optList":[{"ck":"width","ak":"230x230px"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/230px-Foobar.jpg" height="22" width="200" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"26","width":"230"},"sa":{"resource":"Image:Foobar.jpg"}}'/></a></span></p>
 !!end
 
 !! test
-Image: New block level image should have \n before and after
+Image: Modifying size of an image (2)
 !! options
 parsoid=html2wt
 !! input
+[[Image:Foobar.jpg|500x500px]]
+!! result
+<p><span typeof="mw:Image" data-parsoid='{"optList":[{"ck":"width","ak":"230x230px"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/230px-Foobar.jpg" height="100" width="500" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"26","width":"230"},"sa":{"resource":"Image:Foobar.jpg"}}'/></a></span></p>
+!!end
+
+# note that the data-parsoid value conflicts with the figure's class
+!! test
+Image: Modifying alignment of an image (bug 48665)
+!! options
+parsoid=html2wt
+!! input
+[[Image:Foobar.jpg|thumb|caption|left]]
+!! result
+<figure class="mw-default-size mw-halign-left" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"caption"},{"ck":"right","ak":"right"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" height="20" width="180" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"20","width":"180"},"sa":{"resource":"Image:Foobar.jpg"}}'/></a><figcaption>caption</figcaption></figure>
+!! end
+
+!! test
+Image: Modifying valign of an image (bug 49221)
+!! options
+parsoid=html2wt
+!! input
+[[File:Foobar.jpg|20px|text-top]]
+!! result
+<p><span class="mw-valign-text-top" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"width","ak":"20px"},{"ck":"text_top","ak":"text-top"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/20px-Foobar.jpg" height="2" width="20" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"2","width":"20"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
+!! end
+
+!! test
+Image: Modifying alt attribute of an image (bug 56400)
+!! options
+parsoid=html2wt
+!! input
+[[File:Foobar.jpg|thumb|some caption|alt=some alternate edited text]]
+!! result
+<figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"some caption"},{"ck":"alt","ak":"alt=some alternate text"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img alt="some alternate edited text" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" height="20" width="180" data-parsoid='{"a":{"alt":"some alternate edited text","resource":"./File:Foobar.jpg","height":"20","width":"180"},"sa":{"alt":"alt=some alternate edited text","resource":"File:Foobar.jpg"}}'/></a><figcaption>some caption</figcaption></figure>
+!!end
+
+!! test
+Image: Modifying caption of an image
+!! options
+parsoid=html2wt
+!! input
+[[Image:Foobar.jpg|thumb|new caption]]
+!! result
+<figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"original caption"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" height="20" width="180" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"20","width":"180"},"sa":{"resource":"Image:Foobar.jpg"}}'/></a><figcaption>new caption</figcaption></figure>
+!!end
+
+!! test
+Image: empty alt attribute (bug 48924)
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|thumb|alt=|bar]]
+!! result
+<figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"alt","ak":"alt="},{"ck":"caption","ak":"bar"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img alt="" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" height="25" width="220" data-parsoid='{"a":{"alt":"","resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"alt":"alt=","resource":"File:Foobar.jpg"}}'/></a><figcaption>bar</figcaption></figure>
+!! end
+
+#!! test
+#Image: new attributes should be serialized in wiki's language for RTL languages (bug 51852)
+#!! options
+#parsoid=html2wt
+#language=ar
+#!! input
+#[[Imagen:Foobar.jpg|derecha|miniaturadeimagen]]
+#!! result
+#<figure class="mw-default-size mw-halign-right" typeof="mw:Image/Thumb"><a href="Imagen:Foobar.jpg"><img resource="./Imagen:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="20" width="180"/></a></figure>
+#!! end
+
+!! test
+Image: Block level image should have \n before and after
+!! options
+parsoid
+!! input
 123
-[[File:Wiki.png|right|thumb|150x150px]]
+[[File:Foobar.jpg|right|thumb|150x150px]]
 456
 !! result
-<p>123</p><figure typeof="mw:Image/Thumb" class="mw-halign-right"><a href="./File:Wiki.png"><img src="http://192.168.142.128/mw/images/thumb/b/bc/Wiki.png/131px-Wiki.png" width="131" height="150" resource="./File:Wiki.png"></a></figure><p>456</p>
+<p>123</p><figure typeof="mw:Image/Thumb" class="mw-halign-right"><a href="./File:Foobar.png"><img src="http://192.168.142.128/mw/images/thumb/b/bc/Foobar.png/131px-Foobar.png" width="131" height="150" resource="./File:Foobar.png" data-parsoid='{"a":{"resource":"./File:Foobar.png","width":"131"},"sa":{"resource":"File:Foobar.png","width":"150"}}'></a></figure><p>456</p>
+!!end
+
+!! test
+Image: New block level image should have \n before and after (existing
+content)
+!! options
+parsoid
+!! input
+123
+[[File:Foobar.jpg|right|thumb|150x150px]]
+456
+!! result
+<p data-parsoid='{"dsr":[0,3,0,0]}'>123</p>
+<figure class="mw-halign-right" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"right","ak":"right"},{"ck":"thumbnail","ak":"thumb"},{"ck":"width","ak":"150x150px"}],"dsr":[4,45,2,2]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"dsr":[6,43,null,null]}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/150px-Foobar.jpg" height="17" width="150" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"17","width":"150"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></figure>
+<p data-parsoid='{"dsr":[46,49,0,0]}'>456</p>
+!!end
+
+!! test
+Images: upright option (parsoid)
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|thumb|upright|caption]]
+[[File:Foobar.jpg|thumb|upright=0.5|caption]]
+[[File:Foobar.jpg|thumb|500x500px|upright=0.5|caption]]
+!! result
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="19" width="170"/></a><figcaption>caption</figcaption></figure><figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="19" width="170"/></a><figcaption>caption</figcaption></figure><figure typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="57" width="500"/></a><figcaption>caption</figcaption></figure>
+!!end
+
+!! test
+Images: upright option is ignored on inline and frame images (parsoid)
+!! options
+parsoid
+!! input
+[[File:Foobar.jpg|500x500px|upright=0.5|caption]]
+!! result
+<p><span typeof="mw:Image" data-mw='{"caption":"caption"}'><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="57" width="500"/></a></span></p>
 !!end
 
 !! test
@@ -19412,6 +20081,16 @@ parsoid=html2wt
 [//www.ncbi.nlm.nih.gov/pubmed/123?dopt=Abstract New PMID]
 !! result
 <a href="//www.ncbi.nlm.nih.gov/pubmed/123?dopt=Abstract" rel="mw:ExtLink">New PMID</a>
+!! end
+
+!! test
+Edited Redirect link should emit a non-piped wikitext link
+!! options
+parsoid=html2wt
+!! input
+#REDIRECT [[Bar]]
+!! result
+<link rel="mw:PageProp/redirect" href="Bar" data-parsoid='{"src":"#REDIRECT ","a":{"href":"./Foo"},"sa":{"href":"Foo"}}'>
 !! end
 
 # -----------------------------------------------------------------
