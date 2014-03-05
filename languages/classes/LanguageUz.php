@@ -69,9 +69,7 @@ class UzConverter extends LanguageConverter {
 		'a' => 'а', 'A' => 'А',
 		'b' => 'б', 'B' => 'Б',
 		'd' => 'д', 'D' => 'Д',
-		'e' => 'е', 'E' => 'Е',
-		' e' => ' э', ' E' => ' Э', // "э" is used at the beginning of a word instead of "e"
-		'ye' => 'е', 'Ye' => 'Е',
+		'e' => 'э', 'E' => 'Э', // at the beginning of a word and after a vowel, "э" is used instead of "e" (see regex below)
 		'f' => 'ф', 'F' => 'Ф',
 		'g' => 'г', 'G' => 'Г',
 		'g‘' => 'ғ', 'G‘' => 'Ғ', 'gʻ' => 'ғ', 'Gʻ' => 'Ғ',
@@ -110,6 +108,17 @@ class UzConverter extends LanguageConverter {
 			'uz-latn' => new ReplacementArray( $this->toLatin ),
 			'uz' => new ReplacementArray()
 		);
+	}
+
+	function translate( $text, $toVariant ) {
+		if( $toVariant == 'uz-cyrl' ) {
+			$text = str_replace( 'ye', 'е', $text );
+			$text = str_replace( 'Ye', 'Е', $text );
+			$text = str_replace( 'YE', 'Е', $text );
+			$text = preg_replace( '/([BVGDJZYKLMNPRSTFXCWQʻ‘H])E/u', '$1Е', $text );
+			$text = preg_replace( '/([bvgdjzyklmnprstfxcwqʻ‘h])e/ui', '$1е', $text );
+		}
+		return parent::translate( $text, $toVariant );
 	}
 
 }
