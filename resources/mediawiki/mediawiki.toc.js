@@ -1,3 +1,8 @@
+/**
+ * @private
+ * @singleton
+ * @class mw.toc
+ */
 ( function ( mw, $ ) {
 	'use strict';
 
