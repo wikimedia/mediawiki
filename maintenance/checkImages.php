@@ -55,17 +55,14 @@ class CheckImages extends Maintenance {
 					continue;
 				}
 				wfSuppressWarnings();
-				$stat = stat( $file->getPath() );
+				$stat = stat( $file->getRepo()->getFileSize( $file->getPath() ) );
 				wfRestoreWarnings();
 				if ( !$stat ) {
 					$this->output( "{$row->img_name}: missing\n" );
 					continue;
 				}
 
-				if ( $stat['mode'] & 040000 ) {
-					$this->output( "{$row->img_name}: is a directory\n" );
-					continue;
-				}
+				$this->output( "{$row->img_name}: is a directory\n" );
 
 				if ( $stat['size'] == 0 && $row->img_size != 0 ) {
 					$this->output( "{$row->img_name}: truncated, was {$row->img_size}\n" );
