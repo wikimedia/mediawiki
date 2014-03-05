@@ -6,6 +6,7 @@
 
 	/**
 	 * @private
+	 * @static
 	 * @context mw.Api
 	 *
 	 * @param {string|mw.Title|string[]|mw.Title[]} pages Full page name or instance of mw.Title, or an
@@ -24,35 +25,32 @@
 	function doWatchInternal( pages, ok, err, addParams ) {
 		// XXX: Parameter addParams is undocumented because we inherit this
 		// documentation in the public method..
-		var params, apiPromise,
-			d = $.Deferred();
+		var apiPromise = this.post(
+			$.extend(
+				{
+					action: 'watch',
+					titles: $.isArray( pages ) ? pages.join( '|' ) : String( pages ),
+					token: mw.user.tokens.get( 'watchToken' ),
+					uselang: mw.config.get( 'wgUserLanguage' )
+				},
+				addParams
+			)
+		);
 
 		// Backwards compatibility (< MW 1.20)
 		if ( ok || err ) {
 			mw.track( 'mw.deprecate', 'api.cbParam' );
 			mw.log.warn( 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.' );
-			d.done( ok ).fail( err );
 		}
 
-		params = {
-			action: 'watch',
-			token: mw.user.tokens.get( 'watchToken' ),
-			uselang: mw.config.get( 'wgUserLanguage' ),
-			titles: $.isArray( pages ) ? pages.join( '|' ) : String( pages )
-		};
-
-		if ( addParams ) {
-			$.extend( params, addParams );
-		}
-
-		apiPromise = this.post( params )
-			.done( function ( data ) {
+		return apiPromise
+			.then( function ( data ) {
 				// If a single page was given (not an array) respond with a single item as well.
-				d.resolve( $.isArray( pages ) ? data.watch : data.watch[0] );
+				return $.isArray( pages ) ? data.watch : data.watch[0];
 			} )
-			.fail( d.reject );
-
-		return d.promise( { abort: apiPromise.abort } );
+			.done( ok )
+			.fail( err )
+			.promise( { abort: apiPromise.abort } );
 	}
 
 	$.extend( mw.Api.prototype, {

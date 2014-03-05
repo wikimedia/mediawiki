@@ -49,7 +49,7 @@
 			options = {};
 		}
 
-		// Force toString if we got a mw.Uri object
+		// Force a string if we got a mw.Uri object
 		if ( options.ajax && options.ajax.url !== undefined ) {
 			options.ajax.url = String( options.ajax.url );
 		}

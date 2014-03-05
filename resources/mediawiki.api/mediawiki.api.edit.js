@@ -60,7 +60,7 @@
 				action: 'edit',
 				section: 'new',
 				format: 'json',
-				title: title.toString(),
+				title: String( title ),
 				summary: header,
 				text: message
 			} ).done( ok ).fail( err );
