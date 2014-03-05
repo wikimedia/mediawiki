@@ -1,35 +1,60 @@
-// FIXME: remove @colorProgressiveShadow (shadows should be generated
-// in LESS by dimming the original colors)
-@colorProgressiveShadow: #4091ed;
+// Colors for use in mediawiki.ui and elsewhere
 
-// White; for background use, and text use on dark backgrounds
+// 15 Shades of Grey, er Gray
+// Although this defines many shades, be parsimonious in your own use of grays. Prefer
+// colors already in use in MediaWiki. Prefer semantic color names such as "@colorText".
+@colorGray1: #111; // darkest
+@colorGray2: #222;
+@colorGray3: #333;
+@colorGray4: #444;
+@colorGray5: #555;
+@colorGray6: #666;
+@colorGray7: #777;
+@colorGray8: #888;
+@colorGray9: #999;
+@colorGray10: #AAA;
+@colorGray11: #BBB;
+@colorGray12: #CCC;
+@colorGray13: #DDD;
+@colorGray14: #EEE;
+@colorGray15: #F9F9F9; // lightest
+
+// The following rules are deprecated
 @colorWhite: #fff;
-// Off-white; for background use on white backgrounds
 @colorOffWhite: #fafafa;
-// Dark gray; for non-text use
 @colorGrayDark: #898989;
-// Light gray; for non-text use
 @colorGrayLight: #ccc;
-// Very light gray; for non-text use
 @colorGrayLighter: #ddd;
-// Lightest gray; for non-text use
 @colorGrayLightest: #eee;
 
-// Dark gray; for body text
-@colorText: #252525;
-// Light gray; for less important body text and links
-@colorTextLight: #696969;
+// Warning background colors
+// Red; for contextual use of a potentially negative action of high severity
+@colorHighSevere: #d11d13;
+// Orange; for contextual use of a potentially negative action of medium severity
+@colorMediumSevere: #FF5D00;
+// Yellow; for contextual use of a potentially negative action of low severity
+@colorLowSevere: #FFB50D;
 
+// Semantic background colors
 // Blue; for contextual use of a continuing action
 @colorProgressive: #347bff;
-// Orange; for contextual use of returning to a past action
-@colorRegressive: #ff7e1e;
 // Green; for contextual use of a positive finalizing action
 @colorConstructive: #00af89;
-// Red; for contextual use of a negative finalizing action
-@colorDestructive: #d11d13;
+// Red; for contextual use of a negative action of high severity
+@colorDestructive: @colorHighSevere;
+// Orange; For contextual use of returning to a past action
+@colorRegressive: @colorMediumSevere;
 
 // Used in mixins to darken contextual colors by the same amount (eg. focus)
 @colorDarkenPercentage: 13.5%;
 // Used in mixins to lighten contextual colors by the same amount (eg. hover)
 @colorLightenPercentage: 13.5%;
+
+// Text colors
+@colorText: @colorGray3;
+@colorTextLight: @colorGray6;
+@colorTextDisabled: @colorGray12;
+@colorTextError: #CC0000;
+
+// UI colors
+@colorFieldBorder: @colorGray12;
