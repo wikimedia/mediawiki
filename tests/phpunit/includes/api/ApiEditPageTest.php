@@ -18,6 +18,13 @@ class ApiEditPageTest extends ApiTestCase {
 
 		parent::setUp();
 
+		$this->setMwGlobals( array(
+			'wgExtraNamespaces' => $wgExtraNamespaces,
+			'wgNamespaceContentModels' => $wgNamespaceContentModels,
+			'wgContentHandlers' => $wgContentHandlers,
+			'wgContLang' => clone $wgContLang,
+		) );
+
 		$wgExtraNamespaces[12312] = 'Dummy';
 		$wgExtraNamespaces[12313] = 'Dummy_talk';
 
@@ -31,17 +38,7 @@ class ApiEditPageTest extends ApiTestCase {
 	}
 
 	protected function tearDown() {
-		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
-
-		unset( $wgExtraNamespaces[12312] );
-		unset( $wgExtraNamespaces[12313] );
-
-		unset( $wgNamespaceContentModels[12312] );
-		unset( $wgContentHandlers["testing"] );
-
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
-		$wgContLang->resetNamespaces(); # reset namespace cache
-
 		parent::tearDown();
 	}
 
@@ -215,7 +212,9 @@ class ApiEditPageTest extends ApiTestCase {
 			'text' => "==section 1==\nnew content 1",
 		) );
 		$this->assertEquals( 'Success', $re['edit']['result'] );
-		$newtext = WikiPage::factory( Title::newFromText( $name ) )->getContent( Revision::RAW )->getNativeData();
+		$newtext = WikiPage::factory( Title::newFromText( $name ) )
+			->getContent( Revision::RAW )
+			->getNativeData();
 		$this->assertEquals( $newtext, "==section 1==\nnew content 1\n\n==section 2==\ncontent2" );
 
 		// Test that we raise a 'nosuchsection' error
@@ -253,7 +252,9 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->assertEquals( 'Success', $re['edit']['result'] );
 		// Check the page text is correct
-		$text = WikiPage::factory( Title::newFromText( $name ) )->getContent( Revision::RAW )->getNativeData();
+		$text = WikiPage::factory( Title::newFromText( $name ) )
+			->getContent( Revision::RAW )
+			->getNativeData();
 		$this->assertEquals( $text, "== header ==\n\ntest" );
 
 		// Now on one that does
@@ -267,7 +268,9 @@ class ApiEditPageTest extends ApiTestCase {
 		));
 
 		$this->assertEquals( 'Success', $re2['edit']['result'] );
-		$text = WikiPage::factory( Title::newFromText( $name ) )->getContent( Revision::RAW )->getNativeData();
+		$text = WikiPage::factory( Title::newFromText( $name ) )
+			->getContent( Revision::RAW )
+			->getNativeData();
 		$this->assertEquals( $text, "== header ==\n\ntest\n\n== header ==\n\ntest" );
 	}
 
