@@ -6,6 +6,7 @@
 
 	/**
 	 * @private
+	 * @static
 	 * @context mw.Api
 	 *
 	 * @param {string|mw.Title|string[]|mw.Title[]} page Full page name or instance of mw.Title or array of pages
@@ -21,34 +22,30 @@
 	function doWatchInternal( page, ok, err, addParams ) {
 		// XXX: Parameter addParams is undocumented because we inherit this
 		// documentation in the public method..
-		var params, apiPromise,
-			d = $.Deferred();
+		var apiPromise = this.post(
+			$.extend(
+				{
+					action: 'watch',
+					titles: $.isArray( page ) ? page.join( '|' ) : String( page ),
+					token: mw.user.tokens.get( 'watchToken' ),
+					uselang: mw.config.get( 'wgUserLanguage' )
+				},
+				addParams
+			)
+		);
 
-		// Backwards compatibility (< MW 1.20)
 		if ( ok || err ) {
 			mw.track( 'mw.deprecate', 'api.cbParam' );
 			mw.log.warn( 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.' );
-			d.done( ok ).fail( err );
 		}
 
-		params = {
-			action: 'watch',
-			titles: $.isArray( page ) ? page.join( '|' ) : String( page ),
-			token: mw.user.tokens.get( 'watchToken' ),
-			uselang: mw.config.get( 'wgUserLanguage' )
-		};
-
-		if ( addParams ) {
-			$.extend( params, addParams );
-		}
-
-		apiPromise = this.post( params )
-			.done( function ( data ) {
-				d.resolve( data.watch );
+		return apiPromise
+			.then( function ( data ) {
+				return data.watch;
 			} )
-			.fail( d.reject );
-
-		return d.promise( { abort: apiPromise.abort } );
+			.done( ok )
+			.fail( err )
+			.promise( { abort: apiPromise.abort } );
 	}
 
 	$.extend( mw.Api.prototype, {
