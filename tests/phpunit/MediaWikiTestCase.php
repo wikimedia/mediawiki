@@ -315,7 +315,14 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				// NOTE: we serialize then unserialize the value in case it is an object
 				// this stops any objects being passed by reference. We could use clone
 				// and if is_object but this does account for objects within objects!
-				$this->mwGlobals[$key] = unserialize( serialize( $GLOBALS[$key] ) );
+				try{
+					$this->mwGlobals[$key] = unserialize( serialize( $GLOBALS[$key] ) );
+				}
+				// NOTE; some things such as Closures are not serializable
+				// in this case just set the value!
+				catch( Exception $e ) {
+					$this->mwGlobals[$key] = $GLOBALS[$key];
+				}
 			}
 
 			// Override the global
