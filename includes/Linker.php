@@ -575,6 +575,14 @@ class Linker {
 			$postfix = '</div>';
 			$fp['align'] = 'none';
 		}
+
+		// Images with `frame` attribute should be unscaled.
+		// Bug #62258
+		if ( isset( $fp['framed'] ) ) {
+			unset( $hp['width'] );
+			unset( $hp['height'] );
+		}
+
 		if ( $file && !isset( $hp['width'] ) ) {
 			if ( isset( $hp['height'] ) && $file->isVectorized() ) {
 				// If its a vector image, and user only specifies height
