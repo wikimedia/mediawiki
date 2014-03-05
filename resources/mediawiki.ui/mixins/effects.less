@@ -10,6 +10,7 @@
 	&:focus {
 		// The inner bottom bevel should match the active background color.
 		box-shadow: 0 1px rgba(0, 0, 0, 10%), inset 0 -3px rgba(0, 0, 0, 20%);
+		border-bottom-color: mix(#000, @bgColor, 20%);
 		outline: none;
 		// remove outline in Firefox
 		&::-moz-focus-inner {
@@ -44,10 +45,13 @@
 
 .button-colors(@bgColor) when (lightness(@bgColor) < 70%) {
 	color: @colorWhite;
-	border: none;
+	// border of the same color as background so that light background and
+	// dark background buttons are the same height
+	border: 1px solid @bgColor;
 
 	&:disabled {
 		background: @colorGrayLight;
+		border-color: @colorGrayLight;
 
 		// make sure disabled buttons don't have hover and active states
 		&:hover,
