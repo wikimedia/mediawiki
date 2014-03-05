@@ -2355,6 +2355,7 @@ var mw = ( function ( $, undefined ) {
 }( jQuery ) );
 
 // Alias $j to jQuery for backwards compatibility
+// @deprecated since 1.23 Use $ or jQuery instead
 mw.log.deprecate( window, '$j', jQuery, 'Use $ or jQuery instead.' );
 
 // Attach to window and globally alias
