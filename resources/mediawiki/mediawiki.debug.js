@@ -1,37 +1,41 @@
-/**
- * JavaScript for the new debug toolbar, enabled through $wgDebugToolbar.
- *
- * @author John Du Hart
- * @since 1.19
- */
-
 ( function ( mw, $ ) {
 	'use strict';
 
 	var debug,
 		hovzer = $.getFootHovzer();
 
+	/**
+	 * Debug toolbar.
+	 *
+	 * Enabled server-side through `$wgDebugToolbar`.
+	 *
+	 * @singleton
+	 * @class mw.Debug
+	 * @author John Du Hart
+	 * @since 1.19
+	 */
 	debug = mw.Debug = {
 		/**
 		 * Toolbar container element
 		 *
-		 * @var {jQuery}
+		 * @property {jQuery}
 		 */
 		$container: null,
 
 		/**
 		 * Object containing data for the debug toolbar
 		 *
-		 * @var {Object}
+		 * @property {Object}
 		 */
 		data: {},
 
 		/**
-		 * Initializes the debugging pane.
+		 * Initialize the debugging pane
+		 *
 		 * Shouldn't be called before the document is ready
 		 * (since it binds to elements on the page).
 		 *
-		 * @param {Object} data, defaults to 'debugInfo' from mw.config
+		 * @param {Object} data Defaults to 'debugInfo' from mw.config
 		 */
 		init: function ( data ) {
 
@@ -46,10 +50,10 @@
 		},
 
 		/**
-		 * Switches between panes
+		 * Switch between panes
 		 *
-		 * @todo Store cookie for last pane open
-		 * @context {Element}
+		 * TODO: Store cookie for last pane open.
+		 *
 		 * @param {jQuery.Event} e
 		 */
 		switchPane: function ( e ) {
@@ -91,7 +95,7 @@
 		},
 
 		/**
-		 * Constructs the HTML for the debugging toolbar
+		 * Construct the HTML for the debugging toolbar
 		 */
 		buildHtml: function () {
 			var $container, $bits, panes, id, gitInfo;
@@ -103,7 +107,8 @@
 			/**
 			 * Returns a jQuery element for a debug-bit div
 			 *
-			 * @param id
+			 * @ignore
+			 * @param {string} id
 			 * @return {jQuery}
 			 */
 			function bitDiv( id ) {
@@ -117,8 +122,9 @@
 			/**
 			 * Returns a jQuery element for a pane link
 			 *
-			 * @param id
-			 * @param text
+			 * @ignore
+			 * @param {string} id
+			 * @param {string} text
 			 * @return {jQuery}
 			 */
 			function paneLabel( id, text ) {
@@ -133,9 +139,10 @@
 			/**
 			 * Returns a jQuery element for a debug-bit div with a for a pane link
 			 *
-			 * @param id CSS id snippet. Will be prefixed with 'mw-debug-'
-			 * @param text Text to show
-			 * @param count Optional count to show
+			 * @ignore
+			 * @param {string} id CSS id snippet. Will be prefixed with 'mw-debug-'
+			 * @param {string} text Text to show
+			 * @param {string} count Optional count to show
 			 * @return {jQuery}
 			 */
 			function paneTriggerBitDiv( id, text, count ) {
@@ -217,7 +224,7 @@
 		},
 
 		/**
-		 * Builds the console panel
+		 * Build the console panel
 		 */
 		buildConsoleTable: function () {
 			var $table, entryTypeText, i, length, entry;
@@ -260,7 +267,7 @@
 		},
 
 		/**
-		 * Query list pane
+		 * Build query list pane
 		 */
 		buildQueryTable: function () {
 			var $table, i, length, query;
@@ -290,7 +297,7 @@
 		},
 
 		/**
-		 * Legacy debug log pane
+		 * Build legacy debug log pane
 		 */
 		buildDebugLogTable: function () {
 			var $list, i, length, line;
@@ -307,7 +314,7 @@
 		},
 
 		/**
-		 * Request information pane
+		 * Build request information pane
 		 */
 		buildRequestPane: function () {
 
@@ -343,7 +350,7 @@
 		},
 
 		/**
-		 * Included files pane
+		 * Build included files pane
 		 */
 		buildIncludesPane: function () {
 			var $table, i, length, file;
