@@ -132,6 +132,13 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 		die();
 	}
 
+	# LocalSettings.php must be readable by the server
+	if ( !is_readable( MW_CONFIG_FILE ) ) {
+		header( "HTTP/1.1 500 Internal Server Error" );
+		echo "Could not read LocalSettings.php";
+		die( -1 );
+	}
+
 	# Include site settings. $IP may be changed (hopefully before the AutoLoader is invoked)
 	require_once MW_CONFIG_FILE;
 }
