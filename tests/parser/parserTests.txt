@@ -10172,8 +10172,7 @@ parsoid=wt2html,wt2wt,html2html
 # Foobar has actual size of 1941x220
 # 1. Thumbs & frameless always reduce, can't be enlarged unless it's
 #    a scalable format.
-# 2. Framed images ignore width; always render at default size.
-#    If given a height, they respect height but continue to ignore width.
+# 2. Framed images always ignore size options; always render at default size.
 # 3. "Unspecified format" and border are the only types which can be
 #    enlarged.
 
@@ -10272,7 +10271,7 @@ parsoid=wt2html,wt2wt,html2html
 !! end
 
 !! test
-Image: framed images ignore size if only width is given
+Image: framed images are always unscaled.
 !! options
 parsoid=wt2html,wt2wt,html2html
 !! wikitext
@@ -10280,25 +10279,17 @@ parsoid=wt2html,wt2wt,html2html
 
 [[File:Foobar.jpg|frame|50px]]
 
+[[File:Foobar.jpg|frame|50x50px]]
+
 [[File:Foobar.jpg|frame|2000px]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div>
 
 !! html/parsoid
-<figure class="mw-default-size" typeof="mw:Image/Frame"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"/></a></figure><figure typeof="mw:Image/Frame"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"/></a></figure><figure typeof="mw:Image/Frame"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"/></a></figure>
-!! end
-
-!! test
-Image: framed images respect size if given a height, but ignore width.
-!! wikitext
-[[File:Foobar.jpg|frame|50x50px]]
-!! html/php
-<div class="thumb tright"><div class="thumbinner" style="width:444px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/442px-Foobar.jpg" width="442" height="50" class="thumbimage" /></a>  <div class="thumbcaption"></div></div></div>
-
-!! html/parsoid
-<figure typeof="mw:Image/Frame"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="50" width="442"/></a></figure>
+<figure class="mw-default-size" typeof="mw:Image/Frame"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"/></a></figure><figure typeof="mw:Image/Frame"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"/></a></figure><figure typeof="mw:Image/Frame"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"/></a></figure><figure typeof="mw:Image/Frame"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"/></a></figure>
 !! end
 
 ###################
