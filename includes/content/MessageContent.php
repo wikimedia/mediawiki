@@ -34,14 +34,15 @@
  * @ingroup Content
  */
 class MessageContent extends AbstractContent {
+
 	/**
 	 * @var Message
 	 */
 	protected $mMessage;
 
 	/**
-	 * @param Message|String $msg A Message object, or a message key
-	 * @param array|null $params An optional array of message parameters
+	 * @param Message|string $msg A Message object, or a message key.
+	 * @param string[] $params An optional array of message parameters.
 	 */
 	public function __construct( $msg, $params = null ) {
 		# XXX: messages may be wikitext, html or plain text! and maybe even something else entirely.
@@ -59,18 +60,18 @@ class MessageContent extends AbstractContent {
 	}
 
 	/**
-	 * Returns the message as rendered HTML
+	 * Fully parse the text from wikitext to HTML.
 	 *
-	 * @return string The message text, parsed into html
+	 * @return string Parsed HTML.
 	 */
 	public function getHtml() {
 		return $this->mMessage->parse();
 	}
 
 	/**
-	 * Returns the message as rendered HTML
+	 * Returns the message text. {{-transformation is done.
 	 *
-	 * @return string The message text, parsed into html
+	 * @return string Unescaped message text.
 	 */
 	public function getWikitext() {
 		return $this->mMessage->text();
@@ -87,6 +88,8 @@ class MessageContent extends AbstractContent {
 	}
 
 	/**
+	 * @return string
+	 *
 	 * @see Content::getTextForSearchIndex
 	 */
 	public function getTextForSearchIndex() {
@@ -94,6 +97,8 @@ class MessageContent extends AbstractContent {
 	}
 
 	/**
+	 * @return string
+	 *
 	 * @see Content::getWikitextForTransclusion
 	 */
 	public function getWikitextForTransclusion() {
@@ -101,6 +106,10 @@ class MessageContent extends AbstractContent {
 	}
 
 	/**
+	 * @param int $maxLength Maximum length of the summary text, defaults to 250.
+	 *
+	 * @return string The summary text.
+	 *
 	 * @see Content::getTextForSummary
 	 */
 	public function getTextForSummary( $maxlength = 250 ) {
@@ -108,18 +117,18 @@ class MessageContent extends AbstractContent {
 	}
 
 	/**
-	 * @see Content::getSize
-	 *
 	 * @return int
+	 *
+	 * @see Content::getSize
 	 */
 	public function getSize() {
 		return strlen( $this->mMessage->plain() );
 	}
 
 	/**
-	 * @see Content::copy
-	 *
 	 * @return Content. A copy of this object
+	 *
+	 * @see Content::copy
 	 */
 	public function copy() {
 		// MessageContent is immutable (because getNativeData() returns a clone of the Message object)
@@ -127,29 +136,28 @@ class MessageContent extends AbstractContent {
 	}
 
 	/**
-	 * @see Content::isCountable
-	 *
 	 * @param bool $hasLinks
-	 * @return bool false
+	 *
+	 * @return bool Always false.
+	 *
+	 * @see Content::isCountable
 	 */
 	public function isCountable( $hasLinks = null ) {
 		return false;
 	}
 
 	/**
-	 * @see Content::getParserOutput
+	 * @param Title $title Unused.
+	 * @param int $revId Unused.
+	 * @param ParserOptions $options Unused.
+	 * @param bool $generateHtml Whether to generate HTML (default: true).
 	 *
-	 * @param Title $title
-	 * @param int $revId Optional revision ID
-	 * @param ParserOptions $options
-	 * @param bool $generateHtml Wether to generate HTML
 	 * @return ParserOutput
+	 *
+	 * @see Content::getParserOutput
 	 */
-	public function getParserOutput(
-		Title $title, $revId = null,
-		ParserOptions $options = null, $generateHtml = true
-	) {
-
+	public function getParserOutput( Title $title, $revId = null,
+		ParserOptions $options = null, $generateHtml = true ) {
 		if ( $generateHtml ) {
 			$html = $this->getHtml();
 		} else {
@@ -160,4 +168,5 @@ class MessageContent extends AbstractContent {
 
 		return $po;
 	}
+
 }
