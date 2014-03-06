@@ -77,55 +77,84 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * FIXME: This should not need database, but Language#formatExpiry does (bug 55912)
-	 * @group Database
-	 * @todo this should be split up into multiple test methods
 	 * @covers Message::numParams
-	 * @covers Message::durationParams
-	 * @covers Message::expiryParams
-	 * @covers Message::timeperiodParams
-	 * @covers Message::sizeParams
-	 * @covers Message::bitrateParams
 	 */
-	public function testMessageParamTypes() {
+	public function testMessageNumParams() {
 		$lang = Language::factory( 'en' );
-
 		$msg = new RawMessage( '$1' );
+
 		$this->assertEquals(
 			$lang->formatNum( 123456.789 ),
 			$msg->inLanguage( $lang )->numParams( 123456.789 )->plain(),
 			'numParams is handled correctly'
 		);
+	}
 
+	/**
+	 * @covers Message::durationParams
+	 */
+	public function testMessageDurationParams() {
+		$lang = Language::factory( 'en' );
 		$msg = new RawMessage( '$1' );
+
 		$this->assertEquals(
 			$lang->formatDuration( 1234 ),
 			$msg->inLanguage( $lang )->durationParams( 1234 )->plain(),
 			'durationParams is handled correctly'
 		);
+	}
 
+	/**
+	 * FIXME: This should not need database, but Language#formatExpiry does (bug 55912)
+	 * @group Database
+	 * @covers Message::expiryParams
+	 */
+	public function testMessageExpiryParams() {
+		$lang = Language::factory( 'en' );
 		$msg = new RawMessage( '$1' );
+
 		$this->assertEquals(
 			$lang->formatExpiry( wfTimestampNow() ),
 			$msg->inLanguage( $lang )->expiryParams( wfTimestampNow() )->plain(),
 			'expiryParams is handled correctly'
 		);
+	}
 
+	/**
+	 * @covers Message::timeperiodParams
+	 */
+	public function testMessageTimeperiodParams() {
+		$lang = Language::factory( 'en' );
 		$msg = new RawMessage( '$1' );
+
 		$this->assertEquals(
 			$lang->formatTimePeriod( 1234 ),
 			$msg->inLanguage( $lang )->timeperiodParams( 1234 )->plain(),
 			'timeperiodParams is handled correctly'
 		);
+	}
 
+	/**
+	 * @covers Message::sizeParams
+	 */
+	public function testMessageSizeParams() {
+		$lang = Language::factory( 'en' );
 		$msg = new RawMessage( '$1' );
+
 		$this->assertEquals(
 			$lang->formatSize( 123456 ),
 			$msg->inLanguage( $lang )->sizeParams( 123456 )->plain(),
 			'sizeParams is handled correctly'
 		);
+	}
 
+	/**
+	 * @covers Message::bitrateParams
+	 */
+	public function testMessageBitrateParams() {
+		$lang = Language::factory( 'en' );
 		$msg = new RawMessage( '$1' );
+
 		$this->assertEquals(
 			$lang->formatBitrate( 123456 ),
 			$msg->inLanguage( $lang )->bitrateParams( 123456 )->plain(),
