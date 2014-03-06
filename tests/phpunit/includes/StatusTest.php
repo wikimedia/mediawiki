@@ -371,20 +371,11 @@ class StatusTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideGetMessage
 	 * @covers Status::getMessage
-	 * @todo test with multiple messages at once
+	 * @todo test long and short context messages generated through this method
 	 */
-	public function testGetMessage( Status $status, $expectedParams = array(), $expectedKey, $shortContext = false, $longContext = false ) {
-		$message = $status->getMessage( $shortContext, $longContext );
+	public function testGetMessage( Status $status, $expectedParams = array(), $expectedKey ) {
+		$message = $status->getMessage();
 		$this->assertInstanceOf( 'Message', $message );
-
-		// Loop through until we get to the appropriate depth for the message
-		$loops = $shortContext ? 1 : ( $longContext ? 2 : 0 );
-		for( $i = 1; $i <= $loops; $i++ ) {
-			$params = $message->getParams();
-			$this->assertInstanceOf( 'Message', $params[0] );
-			$message = $params[0];
-		}
-
 		$this->assertEquals( $expectedParams, $message->getParams() );
 		$this->assertEquals( $expectedKey, $message->getKey() );
 	}
@@ -392,7 +383,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	/**
 	 * @return array of arrays with values;
 	 *    0 => status object
-	 *    1 => expected Message Params
+	 *    1 => expected Message Params (with no context)
 	 */
 	public static function provideGetMessage() {
 		$testCases = array();
@@ -409,21 +400,6 @@ class StatusTest extends MediaWikiLangTestCase {
 			$status,
 			array( "Status::getMessage: Invalid result object: no error text but not OK\n" ),
 			'internalerror_info'
-		);
-
-		$testCases[ 'GoodButNoErrorShortContext' ] = array(
-			$status,
-			array( "Status::getMessage: Invalid result object: no error text but not OK\n" ),
-			'internalerror_info',
-			true
-		);
-
-		$testCases[ 'GoodButNoErrorLongContext' ] = array(
-			$status,
-			array( "Status::getMessage: Invalid result object: no error text but not OK\n" ),
-			'internalerror_info',
-			false,
-			true
 		);
 
 		$status = new Status();
@@ -461,33 +437,6 @@ class StatusTest extends MediaWikiLangTestCase {
 //			array(),
 //			"",
 //		);
-
-		$status = new Status();
-		$status->error( new Message( 'fooBar!', array( 'foo', 'bar' )  ) );
-		$testCases[ '1MessageError' ] = array(
-			$status,
-			array( 'foo', 'bar' ),
-			"fooBar!",
-		);
-
-		$status = new Status();
-		$status->error( new Message( 'fooBar!', array( 'foo', 'bar' )  ) );
-		$testCases[ '1MessageErrorShortContext' ] = array(
-			$status,
-			array( 'foo', 'bar' ),
-			"fooBar!",
-			true,
-		);
-
-		$status = new Status();
-		$status->error( new Message( 'fooBar!', array( 'foo', 'bar' )  ) );
-		$testCases[ '1MessageErrorLongContext' ] = array(
-			$status,
-			array( 'foo', 'bar' ),
-			"fooBar!",
-			false,
-			true,
-		);
 
 		return $testCases;
 	}
