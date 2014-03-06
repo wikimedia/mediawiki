@@ -224,12 +224,14 @@ class Status {
 	/**
 	 * Get the error list as a Message object
 	 *
-	 * @param string $shortContext a short enclosing context message name, to
-	 *        be used when there is a single error
-	 * @param string $longContext a long enclosing context message name, for a list
+	 * @param string|string[] $shortContext A short enclosing context message name (or an array of
+	 * message names), to be used when there is a single error.
+	 * @param string|string[] $longContext A long enclosing context message name (or an array of
+	 * message names), for a list.
+	 *
 	 * @return Message
 	 */
-	public function getMessage( $shortContext = false, $longContext = false ) {
+	public function getMessage( $shortContext = null, $longContext = null ) {
 		if ( count( $this->errors ) == 0 ) {
 			if ( $this->ok ) {
 				$this->fatal( 'internalerror_info',
@@ -241,9 +243,9 @@ class Status {
 		}
 		if ( count( $this->errors ) == 1 ) {
 			$s = $this->getErrorMessage( $this->errors[0] );
-			if ( $shortContext ) {
+			if ( !empty( $shortContext ) ) {
 				$s = wfMessage( $shortContext, $s );
-			} elseif ( $longContext ) {
+			} elseif ( !empty( $longContext ) ) {
 				$wrapper = new RawMessage( "* \$1\n" );
 				$wrapper->params( $s )->parse();
 				$s = wfMessage( $longContext, $wrapper );
@@ -252,17 +254,17 @@ class Status {
 			$msgs = $this->getErrorMessageArray( $this->errors );
 			$msgCount = count( $msgs );
 
-			if ( $shortContext ) {
+			if ( !empty( $shortContext ) ) {
 				$msgCount++;
 			}
 
-			$wrapper = new RawMessage( '* $' . implode( "\n* \$", range( 1, $msgCount ) ) );
-			$s = $wrapper->params( $msgs )->parse();
+			$s = new RawMessage( '* $' . implode( "\n* \$", range( 1, $msgCount ) ) );
+			$s->params( $msgs )->parse();
 
-			if ( $longContext ) {
-				$s = wfMessage( $longContext, $wrapper );
-			} elseif ( $shortContext ) {
-				$wrapper = new RawMessage( "\n\$1\n", $wrapper );
+			if ( !empty( $longContext ) ) {
+				$s = wfMessage( $longContext, $s );
+			} elseif ( !empty( $shortContext ) ) {
+				$wrapper = new RawMessage( "\n\$1\n", $s );
 				$wrapper->parse();
 				$s = wfMessage( $shortContext, $wrapper );
 			}
