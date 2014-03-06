@@ -8,8 +8,8 @@ return array(
 
 	'test.sinonjs' => array(
 		'scripts' => array(
-			'resources/sinonjs/sinon-1.8.1.js',
-			'resources/sinonjs/sinon-ie-1.8.1.js',
+			'resources/sinonjs/sinon-1.9.0.js',
+			'resources/sinonjs/sinon-ie-1.9.0.js',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
