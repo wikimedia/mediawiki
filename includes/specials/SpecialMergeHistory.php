@@ -396,6 +396,7 @@ class SpecialMergeHistory extends SpecialPage {
 				$dbw->insert( 'pagelinks',
 					array(
 						'pl_from' => $this->mDestID,
+						'pf_from_namespace' => $destTitle->getNamespace(),
 						'pl_namespace' => $destTitle->getNamespace(),
 						'pl_title' => $destTitle->getDBkey() ),
 					__METHOD__

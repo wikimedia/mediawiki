@@ -1125,6 +1125,7 @@ $wgAutoloadLocalClasses = array(
 	'FixExtLinksProtocolRelative' => 'maintenance/fixExtLinksProtocolRelative.php',
 	'LoggedUpdateMaintenance' => 'maintenance/Maintenance.php',
 	'Maintenance' => 'maintenance/Maintenance.php',
+	'PopulateBacklinkNamespace' => 'maintenance/populateBacklinkNamespace.php',
 	'PopulateCategory' => 'maintenance/populateCategory.php',
 	'PopulateImageSha1' => 'maintenance/populateImageSha1.php',
 	'PopulateFilearchiveSha1' => 'maintenance/populateFilearchiveSha1.php',
