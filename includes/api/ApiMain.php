@@ -362,37 +362,7 @@ class ApiMain extends ApiBase {
 		try {
 			$this->executeAction();
 		} catch ( Exception $e ) {
-			// Allow extra cleanup and logging
-			wfRunHooks( 'ApiMain::onException', array( $this, $e ) );
-
-			// Log it
-			if ( !( $e instanceof UsageException ) ) {
-				MWExceptionHandler::logException( $e );
-			}
-
-			// Handle any kind of exception by outputting properly formatted error message.
-			// If this fails, an unhandled exception should be thrown so that global error
-			// handler will process and log it.
-
-			$errCode = $this->substituteResultWithError( $e );
-
-			// Error results should not be cached
-			$this->setCacheMode( 'private' );
-
-			$response = $this->getRequest()->response();
-			$headerStr = 'MediaWiki-API-Error: ' . $errCode;
-			if ( $e->getCode() === 0 ) {
-				$response->header( $headerStr );
-			} else {
-				$response->header( $headerStr, true, $e->getCode() );
-			}
-
-			// Reset and print just the error message
-			ob_clean();
-
-			// If the error occurred during printing, do a printer->profileOut()
-			$this->mPrinter->safeProfileOut();
-			$this->printResult( true );
+			$this->handleException( $e );
 		}
 
 		// Log the request whether or not there was an error
@@ -405,6 +375,73 @@ class ApiMain extends ApiBase {
 		if ( $this->mPrinter->getIsHtml() && !$this->mPrinter->isDisabled() ) {
 			echo wfReportTime();
 		}
+
+		ob_end_flush();
+	}
+
+	/**
+	 * Handle an exception as an API response
+	 *
+	 * @since 1.23
+	 * @param Exception $e
+	 */
+	protected function handleException( Exception $e ) {
+		// Allow extra cleanup and logging
+		wfRunHooks( 'ApiMain::onException', array( $this, $e ) );
+
+		// Log it
+		if ( !( $e instanceof UsageException ) ) {
+			MWExceptionHandler::logException( $e );
+		}
+
+		// Handle any kind of exception by outputting properly formatted error message.
+		// If this fails, an unhandled exception should be thrown so that global error
+		// handler will process and log it.
+
+		$errCode = $this->substituteResultWithError( $e );
+
+		// Error results should not be cached
+		$this->setCacheMode( 'private' );
+
+		$response = $this->getRequest()->response();
+		$headerStr = 'MediaWiki-API-Error: ' . $errCode;
+		if ( $e->getCode() === 0 ) {
+			$response->header( $headerStr );
+		} else {
+			$response->header( $headerStr, true, $e->getCode() );
+		}
+
+		// Reset and print just the error message
+		ob_clean();
+
+		// If the error occurred during printing, do a printer->profileOut()
+		$this->mPrinter->safeProfileOut();
+		$this->printResult( true );
+	}
+
+	/**
+	 * Handle an exception from the ApiBeforeMain hook.
+	 *
+	 * This tries to print the exception as an API response, to be more
+	 * friendly to clients. If it fails, it will rethrow the exception.
+	 *
+	 * @since 1.23
+	 * @param Exception $e
+	 */
+	public static function handleApiBeforeMainException( Exception $e ) {
+		ob_start();
+
+		try {
+			$main = new self( RequestContext::getMain(), false );
+			$main->handleException( $e );
+		} catch ( Exception $e2 ) {
+			// Nope, even that didn't work. Punt.
+			throw $e;
+		}
+
+		// Log the request and reset cache headers
+		$main->logRequest( 0 );
+		$main->sendCacheHeaders();
 
 		ob_end_flush();
 	}
