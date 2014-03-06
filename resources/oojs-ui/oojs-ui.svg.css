@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (e1b23620c0)
+ * OOjs UI v0.1.0-pre (8b13d2b7f7)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Mar 05 2014 17:18:44 GMT-0800 (PST)
+ * Date: Thu Mar 06 2014 14:13:03 GMT-0800 (PST)
  */
 
 /* Textures */
@@ -676,6 +676,36 @@
 .oo-ui-popupTool .oo-ui-popupWidget-popup,
 .oo-ui-popupTool .oo-ui-popupWidget-tail {
   z-index: 4;
+}
+
+.oo-ui-iconWidget {
+  display: inline-block;
+  width: 1.9em;
+  height: 1.9em;
+  line-height: 2.5em;
+  vertical-align: middle;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+}
+
+.oo-ui-iconWidget.oo-ui-widget-disabled {
+  opacity: 0.2;
+}
+
+.oo-ui-indicatorWidget {
+  display: inline-block;
+  width: 1.9em;
+  height: 1.9em;
+  line-height: 2.5em;
+  vertical-align: middle;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+}
+
+.oo-ui-indicatorWidget.oo-ui-widget-disabled {
+  opacity: 0.2;
 }
 
 .oo-ui-selectWidget {

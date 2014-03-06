@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (e1b23620c0)
+ * OOjs UI v0.1.0-pre (8b13d2b7f7)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Mar 05 2014 17:18:44 GMT-0800 (PST)
+ * Date: Thu Mar 06 2014 14:13:03 GMT-0800 (PST)
  */
 ( function () {
 
@@ -22,6 +22,28 @@ OO.ui = {};
 OO.ui.bind = $.proxy;
 
 /**
+ * @property {Object}
+ */
+OO.ui.Keys = {
+	'UNDEFINED': 0,
+	'BACKSPACE': 8,
+	'DELETE': 46,
+	'LEFT': 37,
+	'RIGHT': 39,
+	'UP': 38,
+	'DOWN': 40,
+	'ENTER': 13,
+	'END': 35,
+	'HOME': 36,
+	'TAB': 9,
+	'PAGEUP': 33,
+	'PAGEDOWN': 34,
+	'ESCAPE': 27,
+	'SHIFT': 16,
+	'SPACE': 32
+};
+
+/**
  * Get the user's language and any fallback languages.
  *
  * These language codes are used to localize user interface elements in the user's language.
@@ -29,7 +51,7 @@ OO.ui.bind = $.proxy;
  * In environments that provide a localization system, this function should be overridden to
  * return the user's language(s). The default implementation returns English (en) only.
  *
- * @returns {string[]} Language codes, in descending order of priority
+ * @return {string[]} Language codes, in descending order of priority
  */
 OO.ui.getUserLanguages = function () {
 	return [ 'en' ];
@@ -41,7 +63,7 @@ OO.ui.getUserLanguages = function () {
  * @param {Object.<string,Mixed>} obj Object keyed by language code
  * @param {string|null} [lang] Language code, if omitted or null defaults to any user language
  * @param {string} [fallback] Fallback code, used if no matching language can be found
- * @returns {Mixed} Local value
+ * @return {Mixed} Local value
  */
 OO.ui.getLocalValue = function ( obj, lang, fallback ) {
 	var i, len, langs;
@@ -108,7 +130,7 @@ var messages = {
  * @abstract
  * @param {string} key Message key
  * @param {Mixed...} [params] Message parameters
- * @returns {string} Translated message with parameters substituted
+ * @return {string} Translated message with parameters substituted
  */
 OO.ui.msg = function ( key ) {
 	var message = messages[key], params = Array.prototype.slice.call( arguments, 1 );
@@ -125,12 +147,14 @@ OO.ui.msg = function ( key ) {
 	return message;
 };
 
+/** */
 OO.ui.deferMsg = function ( key ) {
 	return function () {
 		return OO.ui.msg( key );
 	};
 };
 
+/** */
 OO.ui.resolveMsg = function ( msg ) {
 	if ( $.isFunction( msg ) ) {
 		return msg();
@@ -139,31 +163,11 @@ OO.ui.resolveMsg = function ( msg ) {
 };
 
 } )();
-
-// Add more as you need
-OO.ui.Keys = {
-	'UNDEFINED': 0,
-	'BACKSPACE': 8,
-	'DELETE': 46,
-	'LEFT': 37,
-	'RIGHT': 39,
-	'UP': 38,
-	'DOWN': 40,
-	'ENTER': 13,
-	'END': 35,
-	'HOME': 36,
-	'TAB': 9,
-	'PAGEUP': 33,
-	'PAGEDOWN': 34,
-	'ESCAPE': 27,
-	'SHIFT': 16,
-	'SPACE': 32
-};
 /**
  * DOM element abstraction.
  *
- * @class
  * @abstract
+ * @class
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -191,11 +195,6 @@ OO.ui.Element = function OoUiElement( config ) {
 
 /* Static Properties */
 
-/**
- * @static
- * @property
- * @inheritable
- */
 OO.ui.Element.static = {};
 
 /**
@@ -212,12 +211,12 @@ OO.ui.Element.static.tagName = 'div';
 /* Static Methods */
 
 /**
- * Gets a jQuery function within a specific document.
+ * Get a jQuery function within a specific document.
  *
  * @static
  * @param {jQuery|HTMLElement|HTMLDocument|Window} context Context to bind the function to
  * @param {OO.ui.Frame} [frame] Frame of the document context
- * @returns {Function} Bound jQuery function
+ * @return {Function} Bound jQuery function
  */
 OO.ui.Element.getJQuery = function ( context, frame ) {
 	function wrapper( selector ) {
@@ -238,7 +237,7 @@ OO.ui.Element.getJQuery = function ( context, frame ) {
  *
  * @static
  * @param {jQuery|HTMLElement|HTMLDocument|Window} obj Object to get the document for
- * @returns {HTMLDocument} Document object
+ * @return {HTMLDocument} Document object
  * @throws {Error} If context is invalid
  */
 OO.ui.Element.getDocument = function ( obj ) {
@@ -266,7 +265,7 @@ OO.ui.Element.getDocument = function ( obj ) {
  *
  * @static
  * @param {jQuery|HTMLElement|HTMLDocument|Window} obj Context to get the window for
- * @returns {Window} Window object
+ * @return {Window} Window object
  */
 OO.ui.Element.getWindow = function ( obj ) {
 	var doc = this.getDocument( obj );
@@ -278,7 +277,7 @@ OO.ui.Element.getWindow = function ( obj ) {
  *
  * @static
  * @param {jQuery|HTMLElement|HTMLDocument|Window} obj Context to get the direction for
- * @returns {string} Text direction, either `ltr` or `rtl`
+ * @return {string} Text direction, either `ltr` or `rtl`
  */
 OO.ui.Element.getDir = function ( obj ) {
 	var isDoc, isWin;
@@ -306,7 +305,7 @@ OO.ui.Element.getDir = function ( obj ) {
  * @param {Window} from Window of the child frame
  * @param {Window} [to=window] Window of the parent frame
  * @param {Object} [offset] Offset to start with, used internally
- * @returns {Object} Offset object, containing left and top properties
+ * @return {Object} Offset object, containing left and top properties
  */
 OO.ui.Element.getFrameOffset = function ( from, to, offset ) {
 	var i, len, frames, frame, rect;
@@ -348,7 +347,7 @@ OO.ui.Element.getFrameOffset = function ( from, to, offset ) {
  * @static
  * @param {jQuery} $from
  * @param {jQuery} $to
- * @returns {Object} Translated position coordinates, containing top and left properties
+ * @return {Object} Translated position coordinates, containing top and left properties
  */
 OO.ui.Element.getRelativePosition = function ( $from, $to ) {
 	var from = $from.offset(),
@@ -465,7 +464,7 @@ OO.ui.Element.getClosestScrollableContainer = function ( el, dimension ) {
 };
 
 /**
- * Scroll element into view
+ * Scroll element into view.
  *
  * @static
  * @param {HTMLElement} el Element to scroll into view
@@ -528,7 +527,7 @@ OO.ui.Element.scrollIntoView = function ( el, config ) {
  *
  * Override this method to base the result on instance information.
  *
- * @returns {string} HTML tag name
+ * @return {string} HTML tag name
  */
 OO.ui.Element.prototype.getTagName = function () {
 	return this.constructor.static.tagName;
@@ -537,7 +536,7 @@ OO.ui.Element.prototype.getTagName = function () {
 /**
  * Get the DOM document.
  *
- * @returns {HTMLDocument} Document object
+ * @return {HTMLDocument} Document object
  */
 OO.ui.Element.prototype.getElementDocument = function () {
 	return OO.ui.Element.getDocument( this.$element );
@@ -546,7 +545,7 @@ OO.ui.Element.prototype.getElementDocument = function () {
 /**
  * Get the DOM window.
  *
- * @returns {Window} Window object
+ * @return {Window} Window object
  */
 OO.ui.Element.prototype.getElementWindow = function () {
 	return OO.ui.Element.getWindow( this.$element );
@@ -555,7 +554,6 @@ OO.ui.Element.prototype.getElementWindow = function () {
 /**
  * Get closest scrollable container.
  *
- * @method
  * @see #static-method-getClosestScrollableContainer
  */
 OO.ui.Element.prototype.getClosestScrollableElementContainer = function () {
@@ -565,7 +563,7 @@ OO.ui.Element.prototype.getClosestScrollableElementContainer = function () {
 /**
  * Get group element is in.
  *
- * @returns {OO.ui.GroupElement|null} Group element, null if none
+ * @return {OO.ui.GroupElement|null} Group element, null if none
  */
 OO.ui.Element.prototype.getElementGroup = function () {
 	return this.elementGroup;
@@ -583,9 +581,8 @@ OO.ui.Element.prototype.setElementGroup = function ( group ) {
 };
 
 /**
- * Scroll element into view
+ * Scroll element into view.
  *
- * @method
  * @see #static-method-scrollIntoView
  * @param {Object} [config={}]
  */
@@ -712,6 +709,10 @@ OO.mixinClass( OO.ui.Frame, OO.EventEmitter );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.Frame.static.tagName = 'iframe';
 
 /* Events */
@@ -921,8 +922,8 @@ OO.ui.Frame.prototype.setSize = function ( width, height ) {
  * There are two ways to specify a title: set the static `title` property or provide a `title`
  * property in the configuration options. The latter will override the former.
  *
- * @class
  * @abstract
+ * @class
  * @extends OO.ui.Element
  * @mixins OO.EventEmitter
  *
@@ -1029,8 +1030,7 @@ OO.ui.Window.static.title = null;
 /**
  * Check if window is visible.
  *
- * @method
- * @returns {boolean} Window is visible
+ * @return {boolean} Window is visible
  */
 OO.ui.Window.prototype.isVisible = function () {
 	return this.visible;
@@ -1039,8 +1039,7 @@ OO.ui.Window.prototype.isVisible = function () {
 /**
  * Check if window is opening.
  *
- * @method
- * @returns {boolean} Window is opening
+ * @return {boolean} Window is opening
  */
 OO.ui.Window.prototype.isOpening = function () {
 	return this.opening;
@@ -1049,8 +1048,7 @@ OO.ui.Window.prototype.isOpening = function () {
 /**
  * Check if window is closing.
  *
- * @method
- * @returns {boolean} Window is closing
+ * @return {boolean} Window is closing
  */
 OO.ui.Window.prototype.isClosing = function () {
 	return this.closing;
@@ -1059,8 +1057,7 @@ OO.ui.Window.prototype.isClosing = function () {
 /**
  * Get the window frame.
  *
- * @method
- * @returns {OO.ui.Frame} Frame of window
+ * @return {OO.ui.Frame} Frame of window
  */
 OO.ui.Window.prototype.getFrame = function () {
 	return this.frame;
@@ -1069,7 +1066,7 @@ OO.ui.Window.prototype.getFrame = function () {
 /**
  * Get the title of the window.
  *
- * @returns {string} Title text
+ * @return {string} Title text
  */
 OO.ui.Window.prototype.getTitle = function () {
 	return this.title;
@@ -1078,7 +1075,7 @@ OO.ui.Window.prototype.getTitle = function () {
 /**
  * Get the window icon.
  *
- * @returns {string} Symbolic name of icon
+ * @return {string} Symbolic name of icon
  */
 OO.ui.Window.prototype.getIcon = function () {
 	return this.icon;
@@ -1137,7 +1134,7 @@ OO.ui.Window.prototype.setIcon = function ( icon ) {
 };
 
 /**
- * Set the position of window to fit with contents..
+ * Set the position of window to fit with contents.
  *
  * @param {string} left Left offset
  * @param {string} top Top offset
@@ -1190,7 +1187,6 @@ OO.ui.Window.prototype.fitWidthToContents = function ( min, max ) {
  *
  * Once this method is called, this.$$ can be used to create elements within the frame.
  *
- * @method
  * @fires initialize
  * @chainable
  */
@@ -1231,7 +1227,6 @@ OO.ui.Window.prototype.initialize = function () {
  *
  * When you override this method, you must call the parent method at the very beginning.
  *
- * @method
  * @abstract
  * @param {Object} [data] Window opening data
  */
@@ -1247,7 +1242,6 @@ OO.ui.Window.prototype.setup = function () {
  *
  * When you override this method, you must call the parent method at the very end.
  *
- * @method
  * @abstract
  * @param {Object} [data] Window closing data
  */
@@ -1260,7 +1254,6 @@ OO.ui.Window.prototype.teardown = function () {
  *
  * Do not override this method. See #setup for a way to make changes each time the window opens.
  *
- * @method
  * @param {Object} [data] Window opening data
  * @fires open
  * @chainable
@@ -1287,7 +1280,6 @@ OO.ui.Window.prototype.open = function ( data ) {
  *
  * See #teardown for a way to do something each time the window closes.
  *
- * @method
  * @param {Object} [data] Window closing data
  * @fires close
  * @chainable
@@ -1328,13 +1320,15 @@ OO.ui.WindowSet = function OoUiWindowSet( factory, config ) {
 	this.factory = factory;
 
 	/**
-	 * List of all windows associated with this window set
+	 * List of all windows associated with this window set.
+	 *
 	 * @property {OO.ui.Window[]}
 	 */
 	this.windowList = [];
 
 	/**
 	 * Mapping of OO.ui.Window objects created by name from the #factory.
+	 *
 	 * @property {Object}
 	 */
 	this.windows = {};
@@ -1381,7 +1375,6 @@ OO.mixinClass( OO.ui.WindowSet, OO.EventEmitter );
 /**
  * Handle a window that's being opened.
  *
- * @method
  * @param {OO.ui.Window} win Window that's being opened
  * @param {Object} [config] Window opening information
  * @fires opening
@@ -1397,7 +1390,6 @@ OO.ui.WindowSet.prototype.onWindowOpening = function ( win, config ) {
 /**
  * Handle a window that's been opened.
  *
- * @method
  * @param {OO.ui.Window} win Window that's been opened
  * @param {Object} [config] Window opening information
  * @fires open
@@ -1409,7 +1401,6 @@ OO.ui.WindowSet.prototype.onWindowOpen = function ( win, config ) {
 /**
  * Handle a window that's being closed.
  *
- * @method
  * @param {OO.ui.Window} win Window that's being closed
  * @param {Object} [config] Window closing information
  * @fires closing
@@ -1422,7 +1413,6 @@ OO.ui.WindowSet.prototype.onWindowClosing = function ( win, config ) {
 /**
  * Handle a window that's been closed.
  *
- * @method
  * @param {OO.ui.Window} win Window that's been closed
  * @param {Object} [config] Window closing information
  * @fires close
@@ -1434,8 +1424,7 @@ OO.ui.WindowSet.prototype.onWindowClose = function ( win, config ) {
 /**
  * Get the current window.
  *
- * @method
- * @returns {OO.ui.Window} Current window
+ * @return {OO.ui.Window} Current window
  */
 OO.ui.WindowSet.prototype.getCurrentWindow = function () {
 	return this.currentWindow;
@@ -1494,10 +1483,8 @@ OO.ui.WindowSet.prototype.addWindow = function ( win ) {
 	this.$element.append( win.$element );
 };
 /**
- * Modal dialog box.
- *
- * @class
  * @abstract
+ * @class
  * @extends OO.ui.Window
  *
  * @constructor
@@ -1549,6 +1536,7 @@ OO.ui.Dialog.static.name = '';
  *
  * @static
  * @property {Object}
+ * @inheritable
  */
 OO.ui.Dialog.static.sizeCssClasses = {
 	'small': 'oo-ui-dialog-small',
@@ -1560,8 +1548,6 @@ OO.ui.Dialog.static.sizeCssClasses = {
 
 /**
  * Handle close button click events.
- *
- * @method
  */
 OO.ui.Dialog.prototype.onCloseButtonClick = function () {
 	this.close( { 'action': 'cancel' } );
@@ -1570,7 +1556,6 @@ OO.ui.Dialog.prototype.onCloseButtonClick = function () {
 /**
  * Handle window mouse wheel events.
  *
- * @method
  * @param {jQuery.Event} e Mouse wheel event
  */
 OO.ui.Dialog.prototype.onWindowMouseWheel = function () {
@@ -1580,7 +1565,6 @@ OO.ui.Dialog.prototype.onWindowMouseWheel = function () {
 /**
  * Handle document key down events.
  *
- * @method
  * @param {jQuery.Event} e Key down event
  */
 OO.ui.Dialog.prototype.onDocumentKeyDown = function ( e ) {
@@ -1601,7 +1585,6 @@ OO.ui.Dialog.prototype.onDocumentKeyDown = function ( e ) {
 /**
  * Handle frame document key down events.
  *
- * @method
  * @param {jQuery.Event} e Key down event
  */
 OO.ui.Dialog.prototype.onFrameDocumentKeyDown = function ( e ) {
@@ -1709,8 +1692,8 @@ OO.ui.Dialog.prototype.close = function ( data ) {
 /**
  * Container for elements.
  *
- * @class
  * @abstract
+ * @class
  * @extends OO.ui.Element
  * @mixins OO.EventEmitter
  *
@@ -1739,8 +1722,8 @@ OO.mixinClass( OO.ui.Layout, OO.EventEmitter );
 /**
  * User interface control.
  *
- * @class
  * @abstract
+ * @class
  * @extends OO.ui.Element
  * @mixins OO.EventEmitter
  *
@@ -1785,7 +1768,6 @@ OO.mixinClass( OO.ui.Widget, OO.EventEmitter );
 /**
  * Check if the widget is disabled.
  *
- * @method
  * @param {boolean} Button is disabled
  */
 OO.ui.Widget.prototype.isDisabled = function () {
@@ -1795,7 +1777,6 @@ OO.ui.Widget.prototype.isDisabled = function () {
 /**
  * Update the disabled state, in case of changes in parent widget.
  *
- * @method
  * @chainable
  */
 OO.ui.Widget.prototype.updateDisabled = function () {
@@ -1808,7 +1789,6 @@ OO.ui.Widget.prototype.updateDisabled = function () {
  *
  * This should probably change the widgets's appearance and prevent it from being used.
  *
- * @method
  * @param {boolean} disabled Disable widget
  * @chainable
  */
@@ -2690,8 +2670,8 @@ OO.ui.TitledElement.prototype.getTitle = function () {
 /**
  * Generic toolbar tool.
  *
- * @class
  * @abstract
+ * @class
  * @extends OO.ui.Widget
  * @mixins OO.ui.IconedElement
  *
@@ -2750,6 +2730,10 @@ OO.mixinClass( OO.ui.Tool, OO.ui.IconedElement );
 
 /* Static Properties */
 
+/**
+ * @static
+ * @inheritdoc
+ */
 OO.ui.Tool.static.tagName = 'span';
 
 /**
@@ -2799,11 +2783,11 @@ OO.ui.Tool.static.autoAdd = true;
 /**
  * Check if this tool is compatible with given data.
  *
- * @method
  * @static
+ * @method
  * @inheritable
  * @param {Mixed} data Data to check
- * @returns {boolean} Tool can be used with data
+ * @return {boolean} Tool can be used with data
  */
 OO.ui.Tool.static.isCompatibleWith = function () {
 	return false;
@@ -2817,7 +2801,6 @@ OO.ui.Tool.static.isCompatibleWith = function () {
  * This is an abstract method that must be overridden in a concrete subclass.
  *
  * @abstract
- * @method
  */
 OO.ui.Tool.prototype.onUpdateState = function () {
 	throw new Error(
@@ -2831,7 +2814,6 @@ OO.ui.Tool.prototype.onUpdateState = function () {
  * This is an abstract method that must be overridden in a concrete subclass.
  *
  * @abstract
- * @method
  */
 OO.ui.Tool.prototype.onSelect = function () {
 	throw new Error(
@@ -2842,7 +2824,6 @@ OO.ui.Tool.prototype.onSelect = function () {
 /**
  * Check if the button is active.
  *
- * @method
  * @param {boolean} Button is active
  */
 OO.ui.Tool.prototype.isActive = function () {
@@ -2852,7 +2833,6 @@ OO.ui.Tool.prototype.isActive = function () {
 /**
  * Make the button appear active or inactive.
  *
- * @method
  * @param {boolean} state Make button appear active
  */
 OO.ui.Tool.prototype.setActive = function ( state ) {
@@ -2867,7 +2847,6 @@ OO.ui.Tool.prototype.setActive = function ( state ) {
 /**
  * Get the tool title.
  *
- * @method
  * @param {string|Function} title Title text or a function that returns text
  * @chainable
  */
@@ -2880,8 +2859,7 @@ OO.ui.Tool.prototype.setTitle = function ( title ) {
 /**
  * Get the tool title.
  *
- * @method
- * @returns {string} Title text
+ * @return {string} Title text
  */
 OO.ui.Tool.prototype.getTitle = function () {
 	return this.title;
@@ -2890,8 +2868,7 @@ OO.ui.Tool.prototype.getTitle = function () {
 /**
  * Get the tool's symbolic name.
  *
- * @method
- * @returns {string} Symbolic name of tool
+ * @return {string} Symbolic name of tool
  */
 OO.ui.Tool.prototype.getName = function () {
 	return this.constructor.static.name;
@@ -2899,8 +2876,6 @@ OO.ui.Tool.prototype.getName = function () {
 
 /**
  * Update the title.
- *
- * @method
  */
 OO.ui.Tool.prototype.updateTitle = function () {
 	var titleTooltips = this.toolGroup.constructor.static.titleTooltips,
@@ -2931,8 +2906,6 @@ OO.ui.Tool.prototype.updateTitle = function () {
 
 /**
  * Destroy tool.
- *
- * @method
  */
 OO.ui.Tool.prototype.destroy = function () {
 	this.toolbar.disconnect( this );
@@ -3002,8 +2975,7 @@ OO.mixinClass( OO.ui.Toolbar, OO.ui.GroupElement );
 /**
  * Get the tool factory.
  *
- * @method
- * @returns {OO.Factory} Tool factory
+ * @return {OO.Factory} Tool factory
  */
 OO.ui.Toolbar.prototype.getToolFactory = function () {
 	return this.toolFactory;
@@ -3012,7 +2984,6 @@ OO.ui.Toolbar.prototype.getToolFactory = function () {
 /**
  * Handles mouse down events.
  *
- * @method
  * @param {jQuery.Event} e Mouse down event
  */
 OO.ui.Toolbar.prototype.onMouseDown = function ( e ) {
@@ -3035,11 +3006,11 @@ OO.ui.Toolbar.prototype.initialize = function () {
  * Setup toolbar.
  *
  * Tools can be specified in the following ways:
- *  - A specific tool: `{ 'name': 'tool-name' }` or `'tool-name'`
- *  - All tools in a group: `{ 'group': 'group-name' }`
- *  - All tools: `'*'` - Using this will make the group a list with a "More" label by default
  *
- * @method
+ * - A specific tool: `{ 'name': 'tool-name' }` or `'tool-name'`
+ * - All tools in a group: `{ 'group': 'group-name' }`
+ * - All tools: `'*'` - Using this will make the group a list with a "More" label by default
+ *
  * @param {Object.<string,Array>} groups List of tool group configurations
  * @param {Array|string} [groups.include] Tools to include
  * @param {Array|string} [groups.exclude] Tools to exclude
@@ -3138,7 +3109,7 @@ OO.ui.Toolbar.prototype.releaseTool = function ( tool ) {
  * This is a stub that should be overridden to provide access to accelerator information.
  *
  * @param {string} name Symbolic name of tool
- * @returns {string|undefined} Tool accelerator label if available
+ * @return {string|undefined} Tool accelerator label if available
  */
 OO.ui.Toolbar.prototype.getToolAccelerator = function () {
 	return undefined;
@@ -3161,6 +3132,7 @@ OO.inheritClass( OO.ui.ToolFactory, OO.Factory );
 
 /* Methods */
 
+/** */
 OO.ui.ToolFactory.prototype.getTools = function ( include, exclude, promote, demote ) {
 	var i, len, included, promoted, demoted,
 		auto = [],
@@ -3187,14 +3159,15 @@ OO.ui.ToolFactory.prototype.getTools = function ( include, exclude, promote, dem
  * Get a flat list of names from a list of names or groups.
  *
  * Tools can be specified in the following ways:
- *  - A specific tool: `{ 'name': 'tool-name' }` or `'tool-name'`
- *  - All tools in a group: `{ 'group': 'group-name' }`
- *  - All tools: `'*'`
+ *
+ * - A specific tool: `{ 'name': 'tool-name' }` or `'tool-name'`
+ * - All tools in a group: `{ 'group': 'group-name' }`
+ * - All tools: `'*'`
  *
  * @private
  * @param {Array|string} collection List of tools
  * @param {Object} [used] Object with names that should be skipped as properties; extracted
- *   names will be added as properties
+ *  names will be added as properties
  * @return {string[]} List of extracted names
  */
 OO.ui.ToolFactory.prototype.extract = function ( collection, used ) {
@@ -3257,15 +3230,16 @@ OO.ui.ToolFactory.prototype.extract = function ( collection, used ) {
 /**
  * Collection of tools.
  *
- * @class
+ * Tools can be specified in the following ways:
+ *
+ * - A specific tool: `{ 'name': 'tool-name' }` or `'tool-name'`
+ * - All tools in a group: `{ 'group': 'group-name' }`
+ * - All tools: `'*'`
+ *
  * @abstract
+ * @class
  * @extends OO.ui.Widget
  * @mixins OO.ui.GroupElement
- *
- * Tools can be specified in the following ways:
- *  - A specific tool: `{ 'name': 'tool-name' }` or `'tool-name'`
- *  - All tools in a group: `{ 'group': 'group-name' }`
- *  - All tools: `'*'`
  *
  * @constructor
  * @param {OO.ui.Toolbar} toolbar
@@ -3349,7 +3323,6 @@ OO.ui.ToolGroup.static.accelTooltips = false;
 /**
  * Handle mouse down events.
  *
- * @method
  * @param {jQuery.Event} e Mouse down event
  */
 OO.ui.ToolGroup.prototype.onMouseDown = function ( e ) {
@@ -3368,7 +3341,6 @@ OO.ui.ToolGroup.prototype.onMouseDown = function ( e ) {
 /**
  * Handle captured mouse up events.
  *
- * @method
  * @param {Event} e Mouse up event
  */
 OO.ui.ToolGroup.prototype.onCapturedMouseUp = function ( e ) {
@@ -3381,7 +3353,6 @@ OO.ui.ToolGroup.prototype.onCapturedMouseUp = function ( e ) {
 /**
  * Handle mouse up events.
  *
- * @method
  * @param {jQuery.Event} e Mouse up event
  */
 OO.ui.ToolGroup.prototype.onMouseUp = function ( e ) {
@@ -3398,7 +3369,6 @@ OO.ui.ToolGroup.prototype.onMouseUp = function ( e ) {
 /**
  * Handle mouse over events.
  *
- * @method
  * @param {jQuery.Event} e Mouse over event
  */
 OO.ui.ToolGroup.prototype.onMouseOver = function ( e ) {
@@ -3412,7 +3382,6 @@ OO.ui.ToolGroup.prototype.onMouseOver = function ( e ) {
 /**
  * Handle mouse out events.
  *
- * @method
  * @param {jQuery.Event} e Mouse out event
  */
 OO.ui.ToolGroup.prototype.onMouseOut = function ( e ) {
@@ -3429,10 +3398,9 @@ OO.ui.ToolGroup.prototype.onMouseOut = function ( e ) {
  * Only tool links are considered, which prevents other elements in the tool such as popups from
  * triggering tool group interactions.
  *
- * @method
  * @private
  * @param {jQuery.Event} e
- * @returns {OO.ui.Tool|null} Tool, `null` if none was found
+ * @return {OO.ui.Tool|null} Tool, `null` if none was found
  */
 OO.ui.ToolGroup.prototype.getTargetTool = function ( e ) {
 	var tool,
@@ -3449,6 +3417,7 @@ OO.ui.ToolGroup.prototype.getTargetTool = function ( e ) {
  * Handle tool registry register events.
  *
  * If a tool is registered after the group is created, we must repopulate the list to account for:
+ *
  * - a tool being added that may be included
  * - a tool already included being overridden
  *
@@ -3469,8 +3438,6 @@ OO.ui.ToolGroup.prototype.getToolbar = function () {
 
 /**
  * Add and remove tools based on configuration.
- *
- * @method
  */
 OO.ui.ToolGroup.prototype.populate = function () {
 	var i, len, name, tool,
@@ -3526,8 +3493,6 @@ OO.ui.ToolGroup.prototype.populate = function () {
 
 /**
  * Destroy tool group.
- *
- * @method
  */
 OO.ui.ToolGroup.prototype.destroy = function () {
 	var name;
@@ -4947,6 +4912,78 @@ OO.ui.ItemWidget.prototype.setElementGroup = function ( group ) {
 
 	return this;
 };
+/**
+ * Creates an OO.ui.IconWidget object.
+ *
+ * @class
+ * @extends OO.ui.Widget
+ * @mixins OO.ui.IconedElement
+ * @mixins OO.ui.TitledElement
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ */
+OO.ui.IconWidget = function OoUiIconWidget( config ) {
+	// Config intialization
+	config = config || {};
+
+	// Parent constructor
+	OO.ui.Widget.call( this, config );
+
+	// Mixin constructors
+	OO.ui.IconedElement.call( this, this.$element, config );
+	OO.ui.TitledElement.call( this, this.$element, config );
+
+	// Initialization
+	this.$element.addClass( 'oo-ui-iconWidget' );
+};
+
+/* Inheritance */
+
+OO.inheritClass( OO.ui.IconWidget, OO.ui.Widget );
+
+OO.mixinClass( OO.ui.IconWidget, OO.ui.IconedElement );
+OO.mixinClass( OO.ui.IconWidget, OO.ui.TitledElement );
+
+/* Static Properties */
+
+OO.ui.IconWidget.static.tagName = 'span';
+/**
+ * Creates an OO.ui.IndicatorWidget object.
+ *
+ * @class
+ * @extends OO.ui.Widget
+ * @mixins OO.ui.IndicatedElement
+ * @mixins OO.ui.TitledElement
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ */
+OO.ui.IndicatorWidget = function OoUiIndicatorWidget( config ) {
+	// Config intialization
+	config = config || {};
+
+	// Parent constructor
+	OO.ui.Widget.call( this, config );
+
+	// Mixin constructors
+	OO.ui.IndicatedElement.call( this, this.$element, config );
+	OO.ui.TitledElement.call( this, this.$element, config );
+
+	// Initialization
+	this.$element.addClass( 'oo-ui-indicatorWidget' );
+};
+
+/* Inheritance */
+
+OO.inheritClass( OO.ui.IndicatorWidget, OO.ui.Widget );
+
+OO.mixinClass( OO.ui.IndicatorWidget, OO.ui.IndicatedElement );
+OO.mixinClass( OO.ui.IndicatorWidget, OO.ui.TitledElement );
+
+/* Static Properties */
+
+OO.ui.IndicatorWidget.static.tagName = 'span';
 /**
  * Container for multiple related buttons.
  *
@@ -6907,7 +6944,7 @@ OO.ui.OutlineItemWidget.prototype.setLevel = function ( level ) {
 	return this;
 };
 /**
- * Create an OO.ui.ButtonSelect object.
+ * Create an OO.ui.ButtonOptionWidget object.
  *
  * @class
  * @extends OO.ui.OptionWidget
