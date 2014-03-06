@@ -72,6 +72,7 @@ abstract class DatabaseUpdater {
 		'PopulateImageSha1',
 		'FixExtLinksProtocolRelative',
 		'PopulateFilearchiveSha1',
+		'PopulateBacklinkNamespace'
 	);
 
 	/**
@@ -1062,5 +1063,13 @@ abstract class DatabaseUpdater {
 			$this->output( "Content Handler DB fields should be usable now.\n" );
 			$wgContentHandlerUseDB = $this->holdContentHandlerUseDB;
 		}
+	}
+
+	/**
+	 * Fill *_from_namespace fields in links tables
+	 */
+	protected function populateBacklinkNamespaces() {
+		$task = $this->maintenance->runChild( 'PopulateBacklinkNamespace' );
+		$task->execute();
 	}
 }

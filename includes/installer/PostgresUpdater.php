@@ -405,6 +405,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'recentchanges', 'rc_source', "TEXT NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'page', 'page_links_updated', "TIMESTAMPTZ NULL" ),
 			array( 'addPgField', 'mwuser', 'user_password_expires', 'TIMESTAMPTZ NULL' ),
+			array( 'addPgField', 'pagelinks', 'pl_from_namespace', 'INTEGER NOT NULL DEFAULT 0' ),
+			array( 'addPgField', 'templatelinks', 'tl_from_namespace', 'INTEGER NOT NULL DEFAULT 0' ),
+			array( 'addPgField', 'imagelinks', 'il_from_namespace', 'INTEGER NOT NULL DEFAULT 0' )
 		);
 	}
 

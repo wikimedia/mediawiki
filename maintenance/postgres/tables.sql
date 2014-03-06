@@ -198,6 +198,7 @@ CREATE INDEX redirect_ns_title ON redirect (rd_namespace,rd_title,rd_from);
 
 CREATE TABLE pagelinks (
   pl_from       INTEGER   NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  pl_from_namespace INTEGER NOT NULL DEFAULT 0,
   pl_namespace  SMALLINT  NOT NULL,
   pl_title      TEXT      NOT NULL
 );
@@ -206,6 +207,7 @@ CREATE INDEX pagelinks_title ON pagelinks (pl_title);
 
 CREATE TABLE templatelinks (
   tl_from       INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  tl_from_namespace INTEGER NOT NULL DEFAULT 0,
   tl_namespace  SMALLINT NOT NULL,
   tl_title      TEXT     NOT NULL
 );
@@ -214,6 +216,7 @@ CREATE INDEX templatelinks_from          ON templatelinks (tl_from);
 
 CREATE TABLE imagelinks (
   il_from  INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  il_from_namespace INTEGER NOT NULL DEFAULT 0,
   il_to    TEXT     NOT NULL
 );
 CREATE UNIQUE INDEX il_from ON imagelinks (il_to,il_from);
