@@ -1,0 +1,9 @@
+Verified+2: jenkins-bot
+Code-Review+1: Siebrand <siebrand@wikimedia.org>
+Code-Review+1: Addshore <addshorewiki@gmail.com>
+Code-Review+2: Daniel Kinzler <daniel.kinzler@wikimedia.de>
+Submitted-by: jenkins-bot
+Submitted-at: Thu, 06 Mar 2014 14:18:15 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/97118
+Project: mediawiki/core
+Branch: refs/heads/master
