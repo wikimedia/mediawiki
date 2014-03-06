@@ -730,7 +730,7 @@ Pro completar le accesso, tu debe definir un nove contrasigno hic:',
 'resetpass-temp-password' => 'Contrasigno temporari:',
 'resetpass-abort-generic' => 'Le cambio del contrasigno ha essite abortate per un extension.',
 'resetpass-expired' => 'Le contrasigno ha expirate. Per favor defini un nove contrasigno pro aperir session.',
-'resetpass-expired-soft' => 'Le contrasigno ha expirate e debe esser redefinite. Per favor elige un nove contrasigno ora, o clicca sur Cancellar pro redefinir lo plus tarde.',
+'resetpass-expired-soft' => 'Le contrasigno ha expirate e debe esser redefinite. Per favor elige un nove contrasigno ora, o clicca sur "{{int:resetpass-submit-cancel}}" pro redefinir lo plus tarde.',
 
 # Special:PasswordReset
 'passwordreset' => 'Reinitialisar contrasigno',

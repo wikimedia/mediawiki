@@ -2794,6 +2794,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'כתובת IP זו חסומה כרגע.
 הפעולה האחרונה ביומן החסימות מוצגת להלן:',
 'sp-contributions-search' => 'חיפוש תרומות',
+'sp-contributions-suppresslog' => 'תרומות משתמש מוסתרות',
 'sp-contributions-username' => 'שם משתמש או כתובת IP:',
 'sp-contributions-toponly' => 'הצגת עריכות שהן הגרסאות האחרונות בלבד',
 'sp-contributions-newonly' => 'הצגת עריכות שהן יצירות של דפים בלבד',

@@ -866,7 +866,7 @@ Xin hãy bỏ qua thông điệp này nếu tài khoản này không phải do b
 
 Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao của bạn.',
 'pt-login' => 'Đăng nhập',
-'pt-createaccount' => 'Tạo tài khoản',
+'pt-createaccount' => 'Mở tài khoản',
 'pt-userlogout' => 'Đăng xuất',
 
 # Email sending
@@ -896,7 +896,7 @@ Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đ
 'resetpass-temp-password' => 'Mật khẩu tạm:',
 'resetpass-abort-generic' => 'Một phần mở rộng đã hủy bỏ tác vụ thay đổi mật khẩu.',
 'resetpass-expired' => 'Mật khẩu của bạn đã hết hạn. Xin vui lòng tạo lại mật khẩu mới để đăng nhập.',
-'resetpass-expired-soft' => 'Mật khẩu của bạn đã hết hạn và cần được đặt lại. Xin vui lòng chọn một mật khẩu mới lúc bây giờ hoặc bấm Hủy bỏ để đặt lại sau.',
+'resetpass-expired-soft' => 'Mật khẩu của bạn đã hết hạn và cần được đặt lại. Xin vui lòng chọn một mật khẩu mới lúc bây giờ hoặc bấm “{{int:resetpass-submit-cancel}}” để đặt lại sau.',
 
 # Special:PasswordReset
 'passwordreset' => 'Tái tạo mật khẩu',
@@ -1746,7 +1746,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'recentchanges-legend-heading' => "'''Chú giải:'''",
 'recentchanges-legend-newpage' => '(xem thêm [[Special:NewPages|danh sách các trang mới]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnotefrom' => "Thay đổi từ '''$2''' (hiển thị tối đa '''$1''' thay đổi).",
+'rcnotefrom' => 'Thay đổi từ <strong>$2</strong> (hiển thị tối đa <strong>$1</strong> thay đổi).',
 'rclistfrom' => 'Hiển thị các thay đổi từ $1.',
 'rcshowhideminor' => '$1 sửa đổi nhỏ',
 'rcshowhideminor-show' => 'Hiện',
@@ -1758,8 +1758,14 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'rcshowhideliu-show' => 'Hiện',
 'rcshowhideliu-hide' => 'Ẩn',
 'rcshowhideanons' => '$1 sửa đổi vô danh',
+'rcshowhideanons-show' => 'Hiện',
+'rcshowhideanons-hide' => 'Ẩn',
 'rcshowhidepatr' => '$1 sửa đổi đã tuần tra',
+'rcshowhidepatr-show' => 'Hiện',
+'rcshowhidepatr-hide' => 'Ẩn',
 'rcshowhidemine' => '$1 sửa đổi của tôi',
+'rcshowhidemine-show' => 'Hiện',
+'rcshowhidemine-hide' => 'Ẩn',
 'rclinks' => 'Xem $1 sửa đổi gần đây nhất trong $2 ngày qua; $3.',
 'diff' => 'khác',
 'hist' => 'sử',
@@ -1886,6 +1892,7 @@ Bạn nên xin một người có quyền xem dữ liệu tập tin bị đàn �
 'uploaddisabledtext' => 'Chức năng tải tập tin đã bị tắt.',
 'php-uploaddisabledtext' => 'Việc tải tập tin trong PHP đã bị tắt. Xin hãy kiểm tra lại thiết lập file_uploads.',
 'uploadscripted' => 'Tập tin này có chứa mã HTML hoặc kịch bản có thể khiến trình duyệt web thông dịch sai.',
+'uploadscriptednamespace' => 'Tập tin SVG này chứa không gian tên “$1” không được cho phép',
 'uploadinvalidxml' => 'Không thể phân tích mã XML trong tập tin tải lên.',
 'uploadvirus' => 'Tập tin có virút! Chi tiết: $1',
 'uploadjava' => 'Tập tin ZIP này chứa một tập tin Java .class.
@@ -2716,6 +2723,7 @@ $1',
 'sp-contributions-search' => 'Tìm kiếm đóng góp',
 'sp-contributions-username' => 'Địa chỉ IP hay tên thành viên:',
 'sp-contributions-toponly' => 'Chỉ hiện các phiên bản mới nhất',
+'sp-contributions-newonly' => 'Chỉ hiện các sửa đổi tạo trang',
 'sp-contributions-submit' => 'Tìm kiếm',
 
 # What links here
