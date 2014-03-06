@@ -281,8 +281,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			/* Add fields to our query if they are specified as a needed parameter. */
 			$this->addFieldsIf( array( 'rc_this_oldid', 'rc_last_oldid' ), $this->fld_ids );
 			$this->addFieldsIf( 'rc_comment', $this->fld_comment || $this->fld_parsedcomment );
-			$this->addFieldsIf( 'rc_user', $this->fld_user );
-			$this->addFieldsIf( 'rc_user_text', $this->fld_user || $this->fld_userid );
+			$this->addFieldsIf( 'rc_user', $this->fld_user || $this->fld_userid );
+			$this->addFieldsIf( 'rc_user_text', $this->fld_user );
 			$this->addFieldsIf( array( 'rc_minor', 'rc_type', 'rc_bot' ), $this->fld_flags );
 			$this->addFieldsIf( array( 'rc_old_len', 'rc_new_len' ), $this->fld_sizes );
 			$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
