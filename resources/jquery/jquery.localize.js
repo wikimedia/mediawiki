@@ -9,7 +9,7 @@
  *
  * @param {Object} options
  * @param {string} key
- * @returns {string} Localized message
+ * @return {string} Localized message
  */
 function msg( options, key ) {
 	var args = options.params[key] || [];

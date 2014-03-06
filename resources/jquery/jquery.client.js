@@ -20,7 +20,7 @@
 		 *
 		 * @param {Object} nav An object with atleast a 'userAgent' and 'platform' key.
 		 * Defaults to the global Navigator object.
-		 * @returns {Object} The resulting client object will be in the following format:
+		 * @return {Object} The resulting client object will be in the following format:
 		 *  {
 		 *   'name': 'firefox',
 		 *   'layout': 'gecko',
@@ -231,7 +231,7 @@
 		 * @param {boolean} [exactMatchOnly=false] Only return true if the browser is matched, otherwise
 		 * returns true if the browser is not found.
 		 *
-		 * @returns {boolean} The current browser is in the support map
+		 * @return {boolean} The current browser is in the support map
 		 */
 		test: function ( map, profile, exactMatchOnly ) {
 			/*jshint evil: true */
