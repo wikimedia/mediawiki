@@ -59,6 +59,15 @@ abstract class DatabaseUpdater {
 	 */
 	protected $db;
 
+	/**
+	 * Array of tables mapped to other DatabaseBase objects, for updates to
+	 * select tables that are not part of the core $this->db.
+	 *
+	 * @see self::addDB
+	 * @var array Array in the format: ['table name' => DatabaseBase]
+	 */
+	protected $externalDBs = array();
+
 	protected $shared = false;
 
 	/**
@@ -175,10 +184,33 @@ abstract class DatabaseUpdater {
 	/**
 	 * Get a database connection to run updates
 	 *
+	 * @param string[optional] Get database for a specific table (null for core)
 	 * @return DatabaseBase
 	 */
-	public function getDB() {
+	public function getDB( $table = null ) {
+		/*
+		 * If a specific table is specified, check if it's in the list of tables
+		 * for which updates should be performed against a separate DB.
+		 */
+		if ( $table && isset( $this->externalDBs[$table] ) ) {
+			return $this->externalDBs[$table];
+		}
+
 		return $this->db;
+	}
+
+	/**
+	 * Add a new database to perform updates for select tables to, for tables
+	 * that are not part of the core $this->db.
+	 *
+	 * @param DatabaseBase $db
+	 * @param array $tableNames
+	 */
+	public function addDB( DatabaseBase $db, array $tableNames ) {
+		foreach ( $tableNames as $tableName ) {
+			$db->setFlag( DBO_DDLMODE ); // For Oracle's handling of schema files
+			$this->externalDBs[$tableName] = $db;
+		}
 	}
 
 	/**
@@ -288,7 +320,7 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Rename an index on an extension table
+	 * meme an index on an extension table
 	 *
 	 * @since 1.21
 	 *
@@ -332,7 +364,7 @@ abstract class DatabaseUpdater {
 	 * @return bool
 	 */
 	public function tableExists( $tableName ) {
-		return ( $this->db->tableExists( $tableName, __METHOD__ ) );
+		return ( $this->getDB( $tableName )->tableExists( $tableName, __METHOD__ ) );
 	}
 
 	/**
@@ -393,7 +425,10 @@ abstract class DatabaseUpdater {
 	public function doUpdates( $what = array( 'core', 'extensions', 'stats' ) ) {
 		global $wgVersion;
 
-		$this->db->begin( __METHOD__ );
+		$dbs = array_merge( array( $this->db ), array_unique( $this->externalDBs ) );
+		foreach ( $dbs as $db ) {
+			$db->begin( __METHOD__ );
+		}
 		$what = array_flip( $what );
 		$this->skipSchema = isset( $what['noschema'] ) || $this->fileHandle !== null;
 		if ( isset( $what['core'] ) ) {
@@ -416,7 +451,9 @@ abstract class DatabaseUpdater {
 			$this->setAppliedUpdates( "$wgVersion-schema", $this->updatesSkipped );
 		}
 
-		$this->db->commit( __METHOD__ );
+		foreach ( $dbs as $db ) {
+			$db->commit( __METHOD__ );
+		}
 	}
 
 	/**
@@ -591,9 +628,14 @@ abstract class DatabaseUpdater {
 	 * Append an SQL fragment to the open file handle.
 	 *
 	 * @param string $filename File name to open
+	 * @param DatabaseBase[optional] $db Database to copy file to (defaults to core $this->db)
 	 */
-	public function copyFile( $filename ) {
-		$this->db->sourceFile( $filename, false, false, false,
+	public function copyFile( $filename, DatabaseBase $db = null ) {
+		if ( $db === null ) {
+			$db = $this->db;
+		}
+
+		$db->sourceFile( $filename, false, false, false,
 			array( $this, 'appendLine' )
 		);
 	}
@@ -623,9 +665,10 @@ abstract class DatabaseUpdater {
 	 * @param string $path Path to the patch file
 	 * @param $isFullPath Boolean Whether to treat $path as a relative or not
 	 * @param string $msg Description of the patch
+	 * @param DatabaseBase[optional] $db Database to apply patch to (defaults to core $this->db)
 	 * @return bool False if patch is skipped.
 	 */
-	protected function applyPatch( $path, $isFullPath = false, $msg = null ) {
+	protected function applyPatch( $path, $isFullPath = false, $msg = null, DatabaseBase $db = null ) {
 		if ( $msg === null ) {
 			$msg = "Applying $path patch";
 		}
@@ -634,16 +677,19 @@ abstract class DatabaseUpdater {
 
 			return false;
 		}
+		if ( $db === null ) {
+			$db = $this->db;
+		}
 
 		$this->output( "$msg ..." );
 
 		if ( !$isFullPath ) {
-			$path = $this->db->patchPath( $path );
+			$path = $db->patchPath( $path );
 		}
 		if ( $this->fileHandle !== null ) {
-			$this->copyFile( $path );
+			$this->copyFile( $path, $db );
 		} else {
-			$this->db->sourceFile( $path );
+			$db->sourceFile( $path );
 		}
 		$this->output( "done.\n" );
 
@@ -663,10 +709,11 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
-		if ( $this->db->tableExists( $name, __METHOD__ ) ) {
+		$db = $this->getDB( $name );
+		if ( $db->tableExists( $name, __METHOD__ ) ) {
 			$this->output( "...$name table already exists.\n" );
 		} else {
-			return $this->applyPatch( $patch, $fullpath, "Creating $name table" );
+			return $this->applyPatch( $patch, $fullpath, "Creating $name table", $db );
 		}
 
 		return true;
@@ -686,12 +733,13 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
-		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+		$db = $this->getDB( $table );
+		if ( !$db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping new field patch.\n" );
-		} elseif ( $this->db->fieldExists( $table, $field, __METHOD__ ) ) {
+		} elseif ( $db->fieldExists( $table, $field, __METHOD__ ) ) {
 			$this->output( "...have $field field in $table table.\n" );
 		} else {
-			return $this->applyPatch( $patch, $fullpath, "Adding $field field to table $table" );
+			return $this->applyPatch( $patch, $fullpath, "Adding $field field to table $table", $db );
 		}
 
 		return true;
@@ -711,12 +759,13 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
-		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+		$db = $this->getDB( $table );
+		if ( !$db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
-		} elseif ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
+		} elseif ( $db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "...index $index already set on $table table.\n" );
 		} else {
-			return $this->applyPatch( $patch, $fullpath, "Adding index $index to table $table" );
+			return $this->applyPatch( $patch, $fullpath, "Adding index $index to table $table", $db );
 		}
 
 		return true;
@@ -736,8 +785,9 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
-		if ( $this->db->fieldExists( $table, $field, __METHOD__ ) ) {
-			return $this->applyPatch( $patch, $fullpath, "Table $table contains $field field. Dropping" );
+		$db = $this->getDB( $table );
+		if ( $db->fieldExists( $table, $field, __METHOD__ ) ) {
+			return $this->applyPatch( $patch, $fullpath, "Table $table contains $field field. Dropping", $db );
 		} else {
 			$this->output( "...$table table does not contain $field field.\n" );
 		}
@@ -759,8 +809,9 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
-		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
-			return $this->applyPatch( $patch, $fullpath, "Dropping $index index from table $table" );
+		$db = $this->getDB( $table );
+		if ( $db->indexExists( $table, $index, __METHOD__ ) ) {
+			return $this->applyPatch( $patch, $fullpath, "Dropping $index index from table $table", $db );
 		} else {
 			$this->output( "...$index key doesn't exist.\n" );
 		}
@@ -787,18 +838,20 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
+		$db = $this->getDB( $table );
+
 		// First requirement: the table must exist
-		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+		if ( !$db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
 
 			return true;
 		}
 
 		// Second requirement: the new index must be missing
-		if ( $this->db->indexExists( $table, $newIndex, __METHOD__ ) ) {
+		if ( $db->indexExists( $table, $newIndex, __METHOD__ ) ) {
 			$this->output( "...index $newIndex already set on $table table.\n" );
 			if ( !$skipBothIndexExistWarning &&
-				$this->db->indexExists( $table, $oldIndex, __METHOD__ )
+				$db->indexExists( $table, $oldIndex, __METHOD__ )
 			) {
 				$this->output( "...WARNING: $oldIndex still exists, despite it has " .
 					"been renamed into $newIndex (which also exists).\n" .
@@ -809,7 +862,7 @@ abstract class DatabaseUpdater {
 		}
 
 		// Third requirement: the old index must exist
-		if ( !$this->db->indexExists( $table, $oldIndex, __METHOD__ ) ) {
+		if ( !$db->indexExists( $table, $oldIndex, __METHOD__ ) ) {
 			$this->output( "...skipping: index $oldIndex doesn't exist.\n" );
 
 			return true;
@@ -819,7 +872,8 @@ abstract class DatabaseUpdater {
 		return $this->applyPatch(
 			$patch,
 			$fullpath,
-			"Renaming index $oldIndex into $newIndex to table $table"
+			"Renaming index $oldIndex into $newIndex to table $table",
+			$db
 		);
 	}
 
@@ -839,15 +893,16 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
-		if ( $this->db->tableExists( $table, __METHOD__ ) ) {
+		$db = $this->getDB( $table );
+		if ( $db->tableExists( $table, __METHOD__ ) ) {
 			$msg = "Dropping table $table";
 
 			if ( $patch === false ) {
 				$this->output( "$msg ..." );
-				$this->db->dropTable( $table, __METHOD__ );
+				$db->dropTable( $table, __METHOD__ );
 				$this->output( "done.\n" );
 			} else {
-				return $this->applyPatch( $patch, $fullpath, $msg );
+				return $this->applyPatch( $patch, $fullpath, $msg, $db );
 			}
 		} else {
 			$this->output( "...$table doesn't exist.\n" );
@@ -870,10 +925,11 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
+		$db = $this->getDB( $table );
 		$updateKey = "$table-$field-$patch";
-		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+		if ( !$db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping modify field patch.\n" );
-		} elseif ( !$this->db->fieldExists( $table, $field, __METHOD__ ) ) {
+		} elseif ( !$db->fieldExists( $table, $field, __METHOD__ ) ) {
 			$this->output( "...$field field does not exist in $table table, " .
 				"skipping modify field patch.\n" );
 		} elseif ( $this->updateRowExists( $updateKey ) ) {
@@ -881,7 +937,7 @@ abstract class DatabaseUpdater {
 		} else {
 			$this->insertUpdateRow( $updateKey );
 
-			return $this->applyPatch( $patch, $fullpath, "Modifying $field field of table $table" );
+			return $this->applyPatch( $patch, $fullpath, "Modifying $field field of table $table", $db );
 		}
 
 		return true;

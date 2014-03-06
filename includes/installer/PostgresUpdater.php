@@ -821,9 +821,10 @@ END;
 	}
 
 	protected function dropIndex( $table, $index, $patch = '', $fullpath = false ) {
-		if ( $this->db->indexExists( $table, $index ) ) {
+		$db = $this->getDB( $table );
+		if ( $db->indexExists( $table, $index ) ) {
 			$this->output( "Dropping obsolete index '$index'\n" );
-			$this->db->query( "DROP INDEX \"" . $index . "\"" );
+			$db->query( "DROP INDEX \"" . $index . "\"" );
 		}
 	}
 
