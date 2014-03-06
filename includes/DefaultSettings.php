@@ -7125,6 +7125,14 @@ $wgHKDFAlgorithm = 'sha256';
 $wgPageLanguageUseDB = false;
 
 /**
+ * Enable use of the *_namespace fields of the pagelinks, redirect, and templatelinks tables.
+ * Set this only if the fields are fully populated. This may be removed in 1.25.
+ * @var bool
+ * @since 1.24
+ */
+$wgUseLinkNamespaceDBFields = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
