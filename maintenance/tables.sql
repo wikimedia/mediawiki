@@ -470,6 +470,8 @@ CREATE INDEX /*i*/ar_revid ON /*_*/archive (ar_rev_id);
 CREATE TABLE /*_*/pagelinks (
   -- Key to the page_id of the page containing the link.
   pl_from int unsigned NOT NULL default 0,
+  -- Namespace for this page
+  pl_from_namespace int NOT NULL default 0,
 
   -- Key to page_namespace/page_title of the target page.
   -- The target page may or may not exist, and due to renames
@@ -480,7 +482,8 @@ CREATE TABLE /*_*/pagelinks (
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/pl_from ON /*_*/pagelinks (pl_from,pl_namespace,pl_title);
-CREATE UNIQUE INDEX /*i*/pl_namespace ON /*_*/pagelinks (pl_namespace,pl_title,pl_from);
+CREATE INDEX /*i*/pl_namespace ON /*_*/pagelinks (pl_namespace,pl_title,pl_from);
+CREATE INDEX /*i*/pl_backlinks_namespace ON /*_*/pagelinks (pl_namespace,pl_title,pl_from_namespace,pl_from);
 
 
 --
@@ -489,6 +492,8 @@ CREATE UNIQUE INDEX /*i*/pl_namespace ON /*_*/pagelinks (pl_namespace,pl_title,p
 CREATE TABLE /*_*/templatelinks (
   -- Key to the page_id of the page containing the link.
   tl_from int unsigned NOT NULL default 0,
+  -- Namespace for this page
+  tl_from_namespace int NOT NULL default 0,
 
   -- Key to page_namespace/page_title of the target page.
   -- The target page may or may not exist, and due to renames
@@ -499,7 +504,8 @@ CREATE TABLE /*_*/templatelinks (
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/tl_from ON /*_*/templatelinks (tl_from,tl_namespace,tl_title);
-CREATE UNIQUE INDEX /*i*/tl_namespace ON /*_*/templatelinks (tl_namespace,tl_title,tl_from);
+CREATE INDEX /*i*/tl_namespace ON /*_*/templatelinks (tl_namespace,tl_title,tl_from);
+CREATE INDEX /*i*/tl_backlinks_namespace ON /*_*/templatelinks (tl_namespace,tl_title,tl_from_namespace,tl_from);
 
 
 --
@@ -510,6 +516,8 @@ CREATE UNIQUE INDEX /*i*/tl_namespace ON /*_*/templatelinks (tl_namespace,tl_tit
 CREATE TABLE /*_*/imagelinks (
   -- Key to page_id of the page containing the image / media link.
   il_from int unsigned NOT NULL default 0,
+  -- Namespace for this page
+  il_from_namespace int NOT NULL default 0,
 
   -- Filename of target image.
   -- This is also the page_title of the file's description page;
@@ -518,7 +526,8 @@ CREATE TABLE /*_*/imagelinks (
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/il_from ON /*_*/imagelinks (il_from,il_to);
-CREATE UNIQUE INDEX /*i*/il_to ON /*_*/imagelinks (il_to,il_from);
+CREATE INDEX /*i*/il_to ON /*_*/imagelinks (il_to,il_from);
+CREATE INDEX /*i*/il_backlinks_namespace ON /*_*/imagelinks (il_to,il_from_namespace,il_from);
 
 
 --

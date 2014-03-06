@@ -102,9 +102,9 @@ class SpecialWhatLinksHere extends SpecialPage {
 	 */
 	function showIndirectLinks( $level, $target, $limit, $from = 0, $back = 0 ) {
 		global $wgMaxRedirectLinksRetrieved;
+
 		$out = $this->getOutput();
 		$dbr = wfGetDB( DB_SLAVE );
-		$options = array();
 
 		$hidelinks = $this->opts->getValue( 'hidelinks' );
 		$hideredirs = $this->opts->getValue( 'hideredirs' );
@@ -113,80 +113,84 @@ class SpecialWhatLinksHere extends SpecialPage {
 
 		$fetchlinks = ( !$hidelinks || !$hideredirs );
 
-		// Make the query
-		$plConds = array(
-			'page_id=pl_from',
+		// Build query conds in concert for all three tables...
+		$conds['pagelinks'] = array(
 			'pl_namespace' => $target->getNamespace(),
 			'pl_title' => $target->getDBkey(),
 		);
-		if ( $hideredirs ) {
-			$plConds['rd_from'] = null;
-		} elseif ( $hidelinks ) {
-			$plConds[] = 'rd_from is NOT NULL';
-		}
-
-		$tlConds = array(
-			'page_id=tl_from',
+		$conds['templatelinks'] = array(
 			'tl_namespace' => $target->getNamespace(),
 			'tl_title' => $target->getDBkey(),
 		);
-
-		$ilConds = array(
-			'page_id=il_from',
+		$conds['imagelinks'] = array(
 			'il_to' => $target->getDBkey(),
 		);
 
 		$namespace = $this->opts->getValue( 'namespace' );
 		if ( is_int( $namespace ) ) {
-			$plConds['page_namespace'] = $namespace;
-			$tlConds['page_namespace'] = $namespace;
-			$ilConds['page_namespace'] = $namespace;
+			$conds['pagelinks']['pl_from_namespace'] = $namespace;
+			$conds['templatelinks']['tl_from_namespace'] = $namespace;
+			$conds['imagelinks']['il_from_namespace'] = $namespace;
 		}
 
 		if ( $from ) {
-			$tlConds[] = "tl_from >= $from";
-			$plConds[] = "pl_from >= $from";
-			$ilConds[] = "il_from >= $from";
+			$conds['templatelinks'][] = "tl_from >= $from";
+			$conds['pagelinks'][] = "pl_from >= $from";
+			$conds['imagelinks'][] = "il_from >= $from";
 		}
 
-		// Read an extra row as an at-end check
-		$queryLimit = $limit + 1;
+		if ( $hideredirs ) {
+			$conds['pagelinks']['rd_from'] = null;
+			$conds['templatelinks']['rd_from'] = null;
+			$conds['imagelinks']['rd_from'] = null;
+		} elseif ( $hidelinks ) {
+			$conds['pagelinks'][] = 'rd_from is NOT NULL';
+			$conds['templatelinks'][] = 'rd_from is NOT NULL';
+			$conds['imagelinks'][] = 'rd_from is NOT NULL';
+		}
 
-		$options['LIMIT'] = $queryLimit;
-		$fields = array( 'page_id', 'page_namespace', 'page_title', 'rd_from' );
-
-		$joinConds = array( 'redirect' => array( 'LEFT JOIN', array(
-			'rd_from = page_id',
-			'rd_namespace' => $target->getNamespace(),
-			'rd_title' => $target->getDBkey(),
-			'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL'
-		)));
+		$queryFunc = function( $dbr, $table, $fromCol ) use ( $conds, $target, $limit ) {
+			// Read an extra row as an at-end check
+			$queryLimit = $limit + 1;
+			// Inner LIMIT is 2X in case of stale backlinks with no page
+			$subQuery = $dbr->selectSqlText(
+				array( $table, 'redirect' ),
+				array( $fromCol, 'rd_from' ),
+				$conds[$table],
+				__CLASS__ . '::showIndirectLinks',
+				array( 'ORDER BY' => $fromCol, 'LIMIT' => 2 * $queryLimit ),
+				array( 'redirect' => array( 'LEFT JOIN', array(
+					"rd_from = $fromCol",
+					'rd_namespace' => $target->getNamespace(),
+					'rd_title' => $target->getDBkey(),
+					'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL'
+				) ) )
+			);
+			return $dbr->select(
+				array( 'page', 'temp_backlink_range' => "($subQuery)" ),
+				array( 'page_id', 'page_namespace', 'page_title', 'rd_from' ),
+				array(),
+				__CLASS__ . '::showIndirectLinks',
+				array( 'ORDER BY' => 'page_id', 'LIMIT' => $queryLimit ),
+				array( 'page' => array( 'INNER JOIN', "$fromCol = page_id" ) )
+			);
+		};
 
 		if ( $fetchlinks ) {
-			$options['ORDER BY'] = 'pl_from';
-			$plRes = $dbr->select( array( 'pagelinks', 'page', 'redirect' ), $fields,
-				$plConds, __METHOD__, $options,
-				$joinConds
-			);
+			$plRes = $queryFunc( $dbr, 'pagelinks', 'pl_from' );
 		}
 
 		if ( !$hidetrans ) {
-			$options['ORDER BY'] = 'tl_from';
-			$tlRes = $dbr->select( array( 'templatelinks', 'page', 'redirect' ), $fields,
-				$tlConds, __METHOD__, $options,
-				$joinConds
-			);
+			$tlRes = $queryFunc( $dbr, 'templatelinks', 'tl_from' );
 		}
 
 		if ( !$hideimages ) {
-			$options['ORDER BY'] = 'il_from';
-			$ilRes = $dbr->select( array( 'imagelinks', 'page', 'redirect' ), $fields,
-				$ilConds, __METHOD__, $options,
-				$joinConds
-			);
+			$ilRes = $queryFunc( $dbr, 'imagelinks', 'il_from' );
 		}
 
-		if ( ( !$fetchlinks || !$plRes->numRows() ) && ( $hidetrans || !$tlRes->numRows() ) && ( $hideimages || !$ilRes->numRows() ) ) {
+		if ( ( !$fetchlinks || !$plRes->numRows() )
+			&& ( $hidetrans || !$tlRes->numRows() ) && ( $hideimages || !$ilRes->numRows() )
+		) {
 			if ( 0 == $level ) {
 				$out->addHTML( $this->whatlinkshereForm() );
 
