@@ -224,9 +224,11 @@ class Status {
 	/**
 	 * Get the error list as a Message object
 	 *
-	 * @param string $shortContext a short enclosing context message name, to
-	 *        be used when there is a single error
-	 * @param string $longContext a long enclosing context message name, for a list
+	 * @param string|string[] $shortContext A short enclosing context message name (or an array of
+	 * message names), to be used when there is a single error.
+	 * @param string|string[] $longContext A long enclosing context message name (or an array of
+	 * message names), for a list.
+	 *
 	 * @return Message
 	 */
 	public function getMessage( $shortContext = false, $longContext = false ) {
@@ -256,13 +258,13 @@ class Status {
 				$msgCount++;
 			}
 
-			$wrapper = new RawMessage( '* $' . implode( "\n* \$", range( 1, $msgCount ) ) );
-			$s = $wrapper->params( $msgs )->parse();
+			$s = new RawMessage( '* $' . implode( "\n* \$", range( 1, $msgCount ) ) );
+			$s->params( $msgs )->parse();
 
 			if ( $longContext ) {
-				$s = wfMessage( $longContext, $wrapper );
+				$s = wfMessage( $longContext, $s );
 			} elseif ( $shortContext ) {
-				$wrapper = new RawMessage( "\n\$1\n", $wrapper );
+				$wrapper = new RawMessage( "\n\$1\n", $s );
 				$wrapper->parse();
 				$s = wfMessage( $shortContext, $wrapper );
 			}
