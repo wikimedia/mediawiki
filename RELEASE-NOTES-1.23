@@ -278,6 +278,8 @@ changes to languages because of Bugzilla reports.
   table.mw-prefixindex-list-table to avoid duplicate ids when the special page
   is transcluded.
 * (bug 62198) window.$j has been deprecated.
+* A _from_namespace field has been added to the templatelinks, pagelinks,
+  and filelinks tables. Run update.php to apply this change to the schema. 
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)

@@ -3882,13 +3882,31 @@ class Title {
 			$log->addRelations( 'pr_id', $logRelationsValues, $logId );
 		}
 
+		// Update *_from_namespace fields as needed
+		if ( $this->getNamespace() != $nt->getNamespace() ) {
+			$dbw->update( 'pagelinks',
+				array( 'pl_from_namespace' => $nt->getNamespace() ),
+				array( 'pl_from' => $pageid ),
+				__METHOD__
+			);
+			$dbw->update( 'templatelinks',
+				array( 'tl_from_namespace' => $nt->getNamespace() ),
+				array( 'tl_from' => $pageid ),
+				__METHOD__
+			);
+			$dbw->update( 'imagelinks',
+				array( 'il_from_namespace' => $nt->getNamespace() ),
+				array( 'il_from' => $pageid ),
+				__METHOD__
+			);
+		}
+
 		# Update watchlists
-		$oldnamespace = MWNamespace::getSubject( $this->getNamespace() );
-		$newnamespace = MWNamespace::getSubject( $nt->getNamespace() );
 		$oldtitle = $this->getDBkey();
 		$newtitle = $nt->getDBkey();
-
-		if ( $oldnamespace != $newnamespace || $oldtitle != $newtitle ) {
+		$oldsnamespace = MWNamespace::getSubject( $this->getNamespace() );
+		$newsnamespace = MWNamespace::getSubject( $nt->getNamespace() );
+		if ( $oldsnamespace != $newsnamespace || $oldtitle != $newtitle ) {
 			WatchedItem::duplicateEntries( $this, $nt );
 		}
 
