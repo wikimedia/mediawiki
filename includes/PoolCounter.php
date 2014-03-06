@@ -182,7 +182,7 @@ abstract class PoolCounterWork {
 	 * Do something with the error, like showing it to the user.
 	 * @return bool
 	 */
-	function error( $status ) {
+	public function error( $status ) {
 		return false;
 	}
 
@@ -192,7 +192,7 @@ abstract class PoolCounterWork {
 	 * @param $status Status
 	 * @return void
 	 */
-	function logError( $status ) {
+	public function logError( $status ) {
 		$key = $this->poolCounter->getKey();
 
 		wfDebugLog( 'poolcounter', "Pool key '$key': "
@@ -323,14 +323,14 @@ class PoolCounterWorkViaCallback extends PoolCounterWork {
 		return false;
 	}
 
-	function fallback() {
+	public function fallback() {
 		if ( $this->fallback ) {
 			return call_user_func_array( $this->fallback, array() );
 		}
 		return false;
 	}
 
-	function error( $status ) {
+	public function error( $status ) {
 		if ( $this->error ) {
 			return call_user_func_array( $this->error, array( $status ) );
 		}
