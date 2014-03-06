@@ -358,6 +358,7 @@ class LinksUpdate extends SqlDataUpdate {
 			foreach ( $diffs as $dbk => $id ) {
 				$arr[] = array(
 					'pl_from' => $this->mId,
+					'pl_from_namespace' => $this->mTitle->getNamespace(),
 					'pl_namespace' => $ns,
 					'pl_title' => $dbk
 				);
@@ -379,6 +380,7 @@ class LinksUpdate extends SqlDataUpdate {
 			foreach ( $diffs as $dbk => $id ) {
 				$arr[] = array(
 					'tl_from' => $this->mId,
+					'tl_from_namespace' => $this->mTitle->getNamespace(),
 					'tl_namespace' => $ns,
 					'tl_title' => $dbk
 				);
@@ -400,6 +402,7 @@ class LinksUpdate extends SqlDataUpdate {
 		foreach ( $diffs as $iname => $dummy ) {
 			$arr[] = array(
 				'il_from' => $this->mId,
+				'il_from_namespace' => $this->mTitle->getNamespace(),
 				'il_to' => $iname
 			);
 		}
