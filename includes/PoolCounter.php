@@ -92,6 +92,13 @@ abstract class PoolCounter {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getKey() {
+		return $this->key;
+	}
+
+	/**
 	 * I want to do this task and I need to do it myself.
 	 *
 	 * @return Status Value is one of Locked/Error
@@ -186,7 +193,9 @@ abstract class PoolCounterWork {
 	 * @return void
 	 */
 	function logError( $status ) {
-		wfDebugLog( 'poolcounter', "Pool key '{$this->key}': "
+		$key = $this->poolCounter->getKey();
+
+		wfDebugLog( 'poolcounter', "Pool key '$key': "
 			. $status->getMessage()->inLanguage( 'en' )->useDatabase( false )->text() );
 	}
 
