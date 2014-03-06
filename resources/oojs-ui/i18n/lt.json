@@ -2,8 +2,10 @@
     "@metadata": {
         "authors": [
             "Audriusa",
-            "Eitvys200"
+            "Eitvys200",
+            "Mantak111"
         ]
     },
-    "ooui-dialog-action-close": "Uždaryti"
+    "ooui-dialog-action-close": "Uždaryti",
+    "ooui-outline-control-remove": "Šalinti elementus"
 }

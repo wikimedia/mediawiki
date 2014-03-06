@@ -15,11 +15,13 @@
             "Saruman",
             "Siebrand",
             "Southparkfan",
-            "सरोज कुमार ढकाल"
+            "सरोज कुमार ढकाल",
+            "Sjoerddebruin"
         ]
     },
     "ooui-dialog-action-close": "Sluiten",
     "ooui-outline-control-move-down": "Item omlaag verplaatsen",
     "ooui-outline-control-move-up": "Item omhoog verplaatsen",
+    "ooui-outline-control-remove": "Item verwijderen",
     "ooui-toolbar-more": "Meer"
 }

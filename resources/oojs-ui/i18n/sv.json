@@ -10,11 +10,13 @@
             "Per",
             "Sendelbach",
             "Skalman",
-            "WikiPhoenix"
+            "WikiPhoenix",
+            "Lokal Profil"
         ]
     },
     "ooui-dialog-action-close": "Stäng",
     "ooui-outline-control-move-down": "Flytta ned objekt",
     "ooui-outline-control-move-up": "Flytta upp objekt",
+    "ooui-outline-control-remove": "Ta bort objekt",
     "ooui-toolbar-more": "Mer"
 }

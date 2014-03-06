@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (8ac38a5c31)
+ * OOjs UI v0.1.0-pre (e4f6ce0156)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Tue Mar 04 2014 11:26:29 GMT-0800 (PST)
+ * Date: Wed Mar 05 2014 16:08:46 GMT-0800 (PST)
  */
 ( function () {
 
@@ -1454,10 +1454,20 @@ OO.ui.WindowSet.prototype.getWindow = function ( name ) {
 		throw new Error( 'Unknown window: ' + name );
 	}
 	if ( !( name in this.windows ) ) {
-		win = this.windows[name] = this.factory.create( name, this, { '$': this.$ } );
+		win = this.windows[name] = this.createWindow( name );
 		this.addWindow( win );
 	}
 	return this.windows[name];
+};
+
+/**
+ * Create a window for use in this window set.
+ *
+ * @param {string} name Symbolic name of window
+ * @return {OO.ui.Window} Window with specified name
+ */
+OO.ui.WindowSet.prototype.createWindow = function ( name ) {
+	return this.factory.create( name, { '$': this.$ } );
 };
 
 /**
@@ -1493,11 +1503,11 @@ OO.ui.WindowSet.prototype.addWindow = function ( win ) {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {boolean} [footless] Hide foot
- * @cfg {boolean} [small] Make the dialog small
+ * @cfg {string} [size='large'] Symbolic name of dialog size, `small`, `medium` or `large`
  */
 OO.ui.Dialog = function OoUiDialog( config ) {
 	// Configuration initialization
-	config = config || {};
+	config = $.extend( { 'size': 'large' }, config );
 
 	// Parent constructor
 	OO.ui.Window.call( this, config );
@@ -1505,7 +1515,7 @@ OO.ui.Dialog = function OoUiDialog( config ) {
 	// Properties
 	this.visible = false;
 	this.footless = !!config.footless;
-	this.small = !!config.small;
+	this.size = null;
 	this.onWindowMouseWheelHandler = OO.ui.bind( this.onWindowMouseWheel, this );
 	this.onDocumentKeyDownHandler = OO.ui.bind( this.onDocumentKeyDown, this );
 
@@ -1515,6 +1525,7 @@ OO.ui.Dialog = function OoUiDialog( config ) {
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-dialog' );
+	this.setSize( config.size );
 };
 
 /* Inheritance */
@@ -1532,6 +1543,18 @@ OO.inheritClass( OO.ui.Dialog, OO.ui.Window );
  * @inheritable
  */
 OO.ui.Dialog.static.name = '';
+
+/**
+ * Map of symbolic size names and CSS classes.
+ *
+ * @static
+ * @property {Object}
+ */
+OO.ui.Dialog.static.sizeCssClasses = {
+	'small': 'oo-ui-dialog-small',
+	'medium': 'oo-ui-dialog-medium',
+	'large': 'oo-ui-dialog-large'
+};
 
 /* Methods */
 
@@ -1594,6 +1617,29 @@ OO.ui.Dialog.prototype.onOpening = function () {
 };
 
 /**
+ * Set dialog size.
+ *
+ * @param {string} [size='large'] Symbolic name of dialog size, `small`, `medium` or `large`
+ */
+OO.ui.Dialog.prototype.setSize = function ( size ) {
+	var name, state, cssClass,
+		sizeCssClasses = OO.ui.Dialog.static.sizeCssClasses;
+
+	if ( !sizeCssClasses[size] ) {
+		size = 'large';
+	}
+	this.size = size;
+	for ( name in sizeCssClasses ) {
+		state = name === size;
+		cssClass = sizeCssClasses[name];
+		this.$element.toggleClass( cssClass, state );
+		if ( this.frame.$content ) {
+			this.frame.$content.toggleClass( cssClass, state );
+		}
+	}
+};
+
+/**
  * @inheritdoc
  */
 OO.ui.Dialog.prototype.initialize = function () {
@@ -1616,9 +1662,6 @@ OO.ui.Dialog.prototype.initialize = function () {
 	this.frame.$content.addClass( 'oo-ui-dialog-content' );
 	if ( this.footless ) {
 		this.frame.$content.addClass( 'oo-ui-dialog-content-footless' );
-	}
-	if ( this.small ) {
-		this.$frame.addClass( 'oo-ui-window-frame-small' );
 	}
 	this.closeButton.$element.addClass( 'oo-ui-window-closeButton' );
 	this.$head.append( this.closeButton.$element );
@@ -3842,6 +3885,7 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 	this.ignoreFocus = false;
 	this.stackLayout = new OO.ui.StackLayout( { '$': this.$, 'continuous': !!config.continuous } );
 	this.autoFocus = !!config.autoFocus;
+	this.outlineVisible = false;
 	this.outlined = !!config.outlined;
 	if ( this.outlined ) {
 		this.editable = !!config.editable;
@@ -3852,6 +3896,7 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 		this.gridLayout = new OO.ui.GridLayout(
 			[this.outlinePanel, this.stackLayout], { '$': this.$, 'widths': [1, 2] }
 		);
+		this.outlineVisible = true;
 		if ( this.editable ) {
 			this.outlineControlsWidget = new OO.ui.OutlineControlsWidget(
 				this.outlineWidget,
@@ -3984,6 +4029,32 @@ OO.ui.BookletLayout.prototype.isOutlined = function () {
  */
 OO.ui.BookletLayout.prototype.isEditable = function () {
 	return this.editable;
+};
+
+/**
+ * Check if booklet has editing controls.
+ *
+ * @method
+ * @returns {boolean} Booklet is outlined
+ */
+OO.ui.BookletLayout.prototype.isOutlineVisible = function () {
+	return this.outlined && this.outlineVisible;
+};
+
+/**
+ * Hide or show the outline.
+ *
+ * @param {boolean} [show] Show outline, omit to invert current state
+ * @chainable
+ */
+OO.ui.BookletLayout.prototype.toggleOutline = function ( show ) {
+	if ( this.outlined ) {
+		show = show === undefined ? !this.outlineVisible : !!show;
+		this.outlineVisible = show;
+		this.gridLayout.layout( show ? [ 1, 2 ] : [ 0, 1 ], [ 1 ] );
+	}
+
+	return this;
 };
 
 /**

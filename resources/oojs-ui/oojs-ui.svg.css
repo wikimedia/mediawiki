@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (8ac38a5c31)
+ * OOjs UI v0.1.0-pre (e4f6ce0156)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Tue Mar 04 2014 11:26:29 GMT-0800 (PST)
+ * Date: Wed Mar 05 2014 16:08:46 GMT-0800 (PST)
  */
 
 /* Textures */
@@ -41,6 +41,16 @@
   left: 0;
   padding: 1em;
   line-height: 1em;
+  /* Fix for strange opacity-related rendering issues.
+	   CAUTION: -webkit-backface-visibility: hidden; is EXTREMELY DANGEROUS.
+	   If applied to a VE surface directly, it will break selection of
+	   FocusableNodes, and in the past it's caused transparent PNGs to
+	   render as opaque black images. For some reason applying it to the dialog
+	   wrapper in the main document fixes opacity-related behavior in the iframe
+	   document, but doesn't break the surface inside the iframe. */
+
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 
 .oo-ui-dialog .oo-ui-window-frame {
@@ -49,16 +59,24 @@
   right: 0;
   bottom: 1em;
   left: 0;
-  width: 800px;
-  max-height: 600px;
   min-height: 12em;
   margin: auto;
   overflow: hidden;
 }
 
-.oo-ui-dialog .oo-ui-window-frame-small {
-  max-width: 600px;
+.oo-ui-dialog-small .oo-ui-window-frame {
+  width: 400px;
+  max-height: 200px;
+}
+
+.oo-ui-dialog-medium .oo-ui-window-frame {
+  width: 600px;
   max-height: 400px;
+}
+
+.oo-ui-dialog-large .oo-ui-window-frame {
+  width: 800px;
+  max-height: 600px;
 }
 
 .oo-ui-dialog .oo-ui-frame {
