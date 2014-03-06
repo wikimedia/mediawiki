@@ -518,6 +518,10 @@
   background-color: #e1f3ff;
 }
 
+.oo-ui-menuSectionItemWidget {
+  color: #888;
+}
+
 .oo-ui-outlineControlsWidget {
   background-color: #fff;
 }
