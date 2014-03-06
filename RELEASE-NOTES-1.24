@@ -246,6 +246,9 @@ changes to languages because of Bugzilla reports.
 * Removed getFormFields(), onSubmit() and onSuccess() from FormlessAction, as
   these were meant specifically for FormAction instead.
 * Removed Action::execute().
+* A _from_namespace field has been added to the templatelinks, pagelinks,
+  and filelinks tables. Run update.php to apply this change to the schema.
+
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
