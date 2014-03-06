@@ -381,7 +381,7 @@ var mw = ( function ( $, undefined ) {
 		 * values with microsecond precision that are guaranteed to be monotonic. On all other browsers,
 		 * it will fall back to using `Date`.
 		 *
-		 * @returns {number} Current time
+		 * @return {number} Current time
 		 */
 		now: ( function () {
 			var perf = window.performance,

@@ -16,8 +16,7 @@
  *
  * Uses window.devicePixelRatio if available, or CSS media queries on IE.
  *
- * @method
- * @returns {number} Device pixel ratio
+ * @return {number} Device pixel ratio
  */
 $.devicePixelRatio = function () {
 	if ( window.devicePixelRatio !== undefined ) {
@@ -51,8 +50,7 @@ $.devicePixelRatio = function () {
  * Implement responsive images based on srcset attributes, if browser has no
  * native srcset support.
  *
- * @method
- * @returns {jQuery} This selection
+ * @return {jQuery} This selection
  */
 $.fn.hidpi = function () {
 	var $target = this,
@@ -81,11 +79,11 @@ $.fn.hidpi = function () {
 /**
  * Match a srcset entry for the given device pixel ratio
  *
+ * Exposed for testing.
+ *
  * @param {number} devicePixelRatio
  * @param {string} srcset
  * @return {mixed} null or the matching src string
- *
- * Exposed for testing.
  */
 $.matchSrcSet = function ( devicePixelRatio, srcset ) {
 	var candidates,
