@@ -116,6 +116,10 @@ production.
   creations, similar to the topOnly option.
 * Add mediawiki.ui.button styling to all pages so wiki content can use styled
   buttons.
+* Special:UserLogin/signup now does AJAX checks for invalid and taken usernames,
+  displaying the error live.
+* Special:UserLogin/signup now warns the user if their chosen username has to be
+  normalized.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
