@@ -2255,6 +2255,7 @@ $wgMessageStructure = array(
 		'sp-contributions-blocked-notice',
 		'sp-contributions-blocked-notice-anon',
 		'sp-contributions-search',
+		'sp-contributions-suppresslog',
 		'sp-contributions-username',
 		'sp-contributions-toponly',
 		'sp-contributions-newonly',
