@@ -58,15 +58,23 @@ class UsercreateTemplate extends BaseTemplate {
 			<section class="mw-form-header">
 				<?php $this->html( 'header' ); /* extensions such as ConfirmEdit add form HTML here */ ?>
 			</section>
+			<!-- This element is used by the mediawiki.special.userlogin.signup.js module. -->
+			<div
+				id="mw-createacct-status-area"
+				<?php if ( $this->data['message'] ) { ?>
+					class="<?php echo $this->data['messagetype']; ?>box"
+				<?php } else { ?>
+					style="display: none;"
+				<?php } ?>
+			>
 			<?php if ( $this->data['message'] ) { ?>
-				<div class="<?php $this->text( 'messagetype' ); ?>box">
 					<?php if ( $this->data['messagetype'] == 'error' ) { ?>
 						<strong><?php $this->msg( 'createacct-error' ); ?></strong>
 						<br />
 					<?php } ?>
 					<?php $this->html( 'message' ); ?>
-				</div>
 			<?php } ?>
+			</div>
 
 			<div>
 				<label for='wpName2'>
