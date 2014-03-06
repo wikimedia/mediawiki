@@ -376,14 +376,15 @@ class StatusTest extends MediaWikiLangTestCase {
 	public function testGetMessage( Status $status, $expectedParams = array(), $expectedKey ) {
 		$message = $status->getMessage();
 		$this->assertInstanceOf( 'Message', $message );
-		$this->assertEquals( $expectedParams, $message->getParams() );
-		$this->assertEquals( $expectedKey, $message->getKey() );
+		$this->assertEquals( $expectedParams, $message->getParams(), 'Message::getParams' );
+		$this->assertEquals( $expectedKey, $message->getKey(), 'Message::getKey' );
 	}
 
 	/**
 	 * @return array of arrays with values;
 	 *    0 => status object
-	 *    1 => expected Message Params (with no context)
+	 *    1 => expected Message parameters (with no context)
+	 *    2 => expected Message key
 	 */
 	public static function provideGetMessage() {
 		$testCases = array();
@@ -407,17 +408,21 @@ class StatusTest extends MediaWikiLangTestCase {
 		$testCases[ '1StringWarning' ] = array(
 			$status,
 			array(),
-			"fooBar!"
+			'fooBar!'
 		);
 
-		//NOTE: this seems to return a string instead of a Message object...
+		// FIXME: Assertion tries to compare a StubUserLang with a Language object, because
+		// "data providers are executed before both the call to the setUpBeforeClass static method
+		// and the first call to the setUp method. Because of that you can't access any variables
+		// you create there from within a data provider."
+		// http://phpunit.de/manual/3.7/en/writing-tests-for-phpunit.html
 //		$status = new Status();
 //		$status->warning( 'fooBar!' );
 //		$status->warning( 'fooBar2!' );
 //		$testCases[ '2StringWarnings' ] = array(
 //			$status,
-//			array(),
-//			''
+//			array( new Message( 'fooBar!' ), new Message( 'fooBar2!' ) ),
+//			"* \$1\n* \$2"
 //		);
 
 		$status = new Status();
@@ -425,18 +430,17 @@ class StatusTest extends MediaWikiLangTestCase {
 		$testCases[ '1MessageWarning' ] = array(
 			$status,
 			array( 'foo', 'bar' ),
-			"fooBar!",
+			'fooBar!'
 		);
 
-		//NOTE: this seems to return a string instead of a Message object...
-//		$status = new Status();
-//		$status->warning( new Message( 'fooBar!', array( 'foo', 'bar' ) ) );
-//		$status->warning( new Message( 'fooBar2!' ) );
-//		$testCases[ '2MessageWarnings' ] = array(
-//			$status,
-//			array(),
-//			"",
-//		);
+		$status = new Status();
+		$status->warning( new Message( 'fooBar!', array( 'foo', 'bar' ) ) );
+		$status->warning( new Message( 'fooBar2!' ) );
+		$testCases[ '2MessageWarnings' ] = array(
+			$status,
+			array( new Message( 'fooBar!', array( 'foo', 'bar' ) ), new Message( 'fooBar2!' ) ),
+			"* \$1\n* \$2"
+		);
 
 		return $testCases;
 	}
