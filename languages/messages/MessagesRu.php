@@ -2855,6 +2855,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'Этот IP-адрес в данный момент заблокирован.
 Ниже приведена последняя запись из журнала блокировок:',
 'sp-contributions-search' => 'Поиск вклада',
+'sp-contributions-suppresslog' => 'удалённый вклад участника',
 'sp-contributions-username' => 'IP-адрес или имя участника:',
 'sp-contributions-toponly' => 'Показывать только правки, являющиеся последними версиями',
 'sp-contributions-newonly' => 'Показывать только правки, являющиеся созданием страниц',

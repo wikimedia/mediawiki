@@ -1242,7 +1242,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'showhideselectedversions' => 'Vis/skjul udvalgte versioner',
 'editundo' => 'fjern redigering',
 'diff-empty' => '(Ingen forskel)',
-'diff-multi-sameuser' => '({{PLURAL:$1|En mellemliggende version|$1 mellemliggende versioner}} af den samme bruger, vises ikke)',
+'diff-multi-sameuser' => '({{PLURAL:$1|En mellemliggende version|$1 mellemliggende versioner}} af den samme bruger vises ikke)',
 'diff-multi-otherusers' => '({{PLURAL:$1|En mellemliggende version|$1 mellemliggende versioner}} af {{PLURAL:$2|en anden bruger|$2 andre brugere}} ikke vist)',
 'diff-multi-manyusers' => '({{PLURAL:$1|En mellemliggende version|$1 mellemliggende versioner}} af mere end $2 {{PLURAL:$2|bruger|brugere}} ikke vist)',
 'difference-missing-revision' => '{{PLURAL:$2|En revision|$2 revisioner}} af denne forskel ($1) {{PLURAL:$2|blev|blev}} ikke fundet.

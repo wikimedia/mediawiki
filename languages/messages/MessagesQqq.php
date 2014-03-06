@@ -6286,9 +6286,6 @@ See also:
 * {{msg-mw|Sp-contributions-deleted}}
 * {{msg-mw|Sp-contributions-userrights}}
 {{Identical|Block log}}',
-'sp-contributions-suppresslog' => 'Used as a display name for a link to log entries of suppressed edits made by that user.
-
-Used as link title in [[Special:Contributions]] and in [[Special:DeletedContributions]].',
 'sp-contributions-deleted' => "This is a link anchor used in [[Special:Contributions]]/''name'', when user viewing the page has the right to delete pages, or to restore deleted pages.
 
 Used as link title in [[Special:Contributions]].
@@ -6364,6 +6361,9 @@ Anon version:
 * {{msg-mw|Sp-contributions-blocked-notice-anon}}',
 'sp-contributions-blocked-notice-anon' => 'Same as {{msg-mw|Sp-contributions-blocked-notice}} but for anonymous users.',
 'sp-contributions-search' => 'Used on [[Special:Contributions]]',
+'sp-contributions-suppresslog' => 'Used as a display name for a link to log entries of suppressed edits made by that user.
+
+Used as link title in [[Special:Contributions]] and in [[Special:DeletedContributions]].',
 'sp-contributions-username' => 'This message appears whenever someone requests [[Special:Contributions]].
 {{Identical|IP address or username}}',
 'sp-contributions-toponly' => '"top revision" means the "latest revision"',
