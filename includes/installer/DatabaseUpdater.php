@@ -1063,4 +1063,12 @@ abstract class DatabaseUpdater {
 			$wgContentHandlerUseDB = $this->holdContentHandlerUseDB;
 		}
 	}
+
+	/**
+	 * Fill *_from_namespace fields in links tables
+	 */
+	protected function populateBacklinkNamespaces() {
+		$task = $this->maintenance->runChild( 'PopulateBacklinkNamespace' );
+		$task->execute();
+	}
 }
