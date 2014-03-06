@@ -10,6 +10,33 @@ class MessageTest extends MediaWikiLangTestCase {
 		) );
 	}
 
+	public function provideTestParams() {
+		return array(
+			array( array() ),
+			array( array( 'foo' ), 'foo' ),
+			array( array( 'foo', 'bar' ), 'foo', 'bar' ),
+			array( array( 'baz' ), array( 'baz' ) ),
+			array( array( 'baz', 'foo' ), array( 'baz', 'foo' ) ),
+			array( array( 'baz', 'foo' ), array( 'baz', 'foo' ), 'hhh' ),
+			array( array( 'baz', 'foo' ), array( 'baz', 'foo' ), 'hhh', array( 'ahahahahha' ) ),
+			array( array( 'baz', 'foo' ), array( 'baz', 'foo' ), array( 'ahahahahha' ) ),
+			array( array( 'baz' ), array( 'baz' ), array( 'ahahahahha' ) ),
+		);
+	}
+
+	/**
+	 * @covers Message::params
+	 * @dataProvider provideTestParams
+	 */
+	public function testParams( $expected ) {
+		$msg = new Message( 'imasomething' );
+
+		$returned = call_user_func_array( array( $msg, 'params' ),  array_slice( func_get_args(), 1 ) );
+
+		$this->assertSame( $msg, $returned );
+		$this->assertEquals( $expected, $msg->getParams() );
+	}
+
 	/**
 	 * @covers Message::exists
 	 */
