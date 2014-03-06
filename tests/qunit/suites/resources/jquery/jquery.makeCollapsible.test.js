@@ -1,7 +1,11 @@
 ( function ( mw, $ ) {
 	var loremIpsum = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.';
 
-	QUnit.module( 'jquery.makeCollapsible', QUnit.newMwEnvironment() );
+	QUnit.module( 'jquery.makeCollapsible', QUnit.newMwEnvironment( {
+		setup: function () {
+			this.clock = this.sandbox.useFakeTimers();
+		}
+	} ) );
 
 	function prepareCollapsible( html, options ) {
 		return $( $.parseHTML( html ) )
@@ -11,8 +15,9 @@
 	}
 
 	// This test is first because if it fails, then almost all of the latter tests are meaningless.
-	QUnit.asyncTest( 'testing hooks/triggers', 4, function ( assert ) {
-		var $collapsible = prepareCollapsible(
+	QUnit.test( 'testing hooks/triggers', 4, function ( assert ) {
+		var test = this,
+			$collapsible = prepareCollapsible(
 				'<div class="mw-collapsible">' + loremIpsum + '</div>'
 			),
 			$content = $collapsible.find( '.mw-collapsible-content' ),
@@ -33,20 +38,21 @@
 			} );
 			$collapsible.on( 'afterExpand.mw-collapsible', function () {
 				assert.assertTrue( $content.is( ':visible' ), 'second afterCollapseExpand: content is visible' );
-
-				QUnit.start();
 			} );
 
 			// ...expanding happens here
 			$toggle.trigger( 'click' );
+			test.clock.tick( 500 );
 		} );
 
 		// ...collapsing happens here
 		$toggle.trigger( 'click' );
+		test.clock.tick( 500 );
 	} );
 
-	QUnit.asyncTest( 'basic operation (<div>)', 5, function ( assert ) {
-		var $collapsible = prepareCollapsible(
+	QUnit.test( 'basic operation (<div>)', 5, function ( assert ) {
+		var test = this,
+			$collapsible = prepareCollapsible(
 				'<div class="mw-collapsible">' + loremIpsum + '</div>'
 			),
 			$content = $collapsible.find( '.mw-collapsible-content' ),
@@ -62,17 +68,19 @@
 
 			$collapsible.on( 'afterExpand.mw-collapsible', function () {
 				assert.assertTrue( $content.is( ':visible' ), 'after expanding: content is visible' );
-				QUnit.start();
 			} );
 
 			$toggle.trigger( 'click' );
+			test.clock.tick( 500 );
 		} );
 
 		$toggle.trigger( 'click' );
+		test.clock.tick( 500 );
 	} );
 
-	QUnit.asyncTest( 'basic operation (<table>)', 7, function ( assert ) {
-		var $collapsible = prepareCollapsible(
+	QUnit.test( 'basic operation (<table>)', 7, function ( assert ) {
+		var test = this,
+			$collapsible = prepareCollapsible(
 				'<table class="mw-collapsible">' +
 					'<tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr>' +
 					'<tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr>' +
@@ -95,16 +103,17 @@
 			$collapsible.on( 'afterExpand.mw-collapsible', function () {
 				assert.assertTrue( $headerRow.is( ':visible' ), 'after expanding: headerRow is still visible' );
 				assert.assertTrue( $contentRow.is( ':visible' ), 'after expanding: contentRow is visible' );
-				QUnit.start();
 			} );
 
 			$toggle.trigger( 'click' );
+			test.clock.tick( 500 );
 		} );
 
 		$toggle.trigger( 'click' );
+		test.clock.tick( 500 );
 	} );
 
-	function tableWithCaptionTest( $collapsible, assert ) {
+	function tableWithCaptionTest( $collapsible, test, assert ) {
 		var $caption = $collapsible.find( 'caption' ),
 			$headerRow = $collapsible.find( 'tr:first' ),
 			$contentRow = $collapsible.find( 'tr:last' ),
@@ -125,16 +134,17 @@
 				assert.assertTrue( $caption.is( ':visible' ), 'after expanding: caption is still visible' );
 				assert.assertTrue( $headerRow.is( ':visible' ), 'after expanding: headerRow is visible' );
 				assert.assertTrue( $contentRow.is( ':visible' ), 'after expanding: contentRow is visible' );
-				QUnit.start();
 			} );
 
 			$toggle.trigger( 'click' );
+			test.clock.tick( 500 );
 		} );
 
 		$toggle.trigger( 'click' );
+		test.clock.tick( 500 );
 	}
 
-	QUnit.asyncTest( 'basic operation (<table> with caption)', 10, function ( assert ) {
+	QUnit.test( 'basic operation (<table> with caption)', 10, function ( assert ) {
 		tableWithCaptionTest( prepareCollapsible(
 			'<table class="mw-collapsible">' +
 				'<caption>' + loremIpsum + '</caption>' +
@@ -142,10 +152,10 @@
 				'<tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr>' +
 				'<tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr>' +
 			'</table>'
-		), assert );
+		), this, assert );
 	} );
 
-	QUnit.asyncTest( 'basic operation (<table> with caption and <thead>)', 10, function ( assert ) {
+	QUnit.test( 'basic operation (<table> with caption and <thead>)', 10, function ( assert ) {
 		tableWithCaptionTest( prepareCollapsible(
 			'<table class="mw-collapsible">' +
 				'<caption>' + loremIpsum + '</caption>' +
@@ -153,10 +163,10 @@
 				'<tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr>' +
 				'<tr><td>' + loremIpsum + '</td><td>' + loremIpsum + '</td></tr>' +
 			'</table>'
-		), assert );
+		), this, assert );
 	} );
 
-	function listTest( listType, assert ) {
+	function listTest( listType, test, assert ) {
 		var $collapsible = prepareCollapsible(
 				'<' + listType + ' class="mw-collapsible">' +
 					'<li>' + loremIpsum + '</li>' +
@@ -179,21 +189,22 @@
 			$collapsible.on( 'afterExpand.mw-collapsible', function () {
 				assert.assertTrue( $toggleItem.is( ':visible' ), 'after expanding: toggleItem is still visible' );
 				assert.assertTrue( $contentItem.is( ':visible' ), 'after expanding: contentItem is visible' );
-				QUnit.start();
 			} );
 
 			$toggle.trigger( 'click' );
+			test.clock.tick( 500 );
 		} );
 
 		$toggle.trigger( 'click' );
+		test.clock.tick( 500 );
 	}
 
-	QUnit.asyncTest( 'basic operation (<ul>)', 7, function ( assert ) {
-		listTest( 'ul', assert );
+	QUnit.test( 'basic operation (<ul>)', 7, function ( assert ) {
+		listTest( 'ul', this, assert );
 	} );
 
-	QUnit.asyncTest( 'basic operation (<ol>)', 7, function ( assert ) {
-		listTest( 'ol', assert );
+	QUnit.test( 'basic operation (<ol>)', 7, function ( assert ) {
+		listTest( 'ol', this, assert );
 	} );
 
 	QUnit.test( 'basic operation when synchronous (options.instantHide)', 2, function ( assert ) {
@@ -235,7 +246,7 @@
 		assert.assertTrue( $collapsible.hasClass( 'mw-collapsed' ), 'mw-collapsed class present' );
 	} );
 
-	QUnit.asyncTest( 'initial collapse (mw-collapsed class)', 2, function ( assert ) {
+	QUnit.test( 'initial collapse (mw-collapsed class)', 2, function ( assert ) {
 		var $collapsible = prepareCollapsible(
 				'<div class="mw-collapsible mw-collapsed">' + loremIpsum + '</div>'
 			),
@@ -246,13 +257,13 @@
 
 		$collapsible.on( 'afterExpand.mw-collapsible', function () {
 			assert.assertTrue( $content.is( ':visible' ), 'after expanding: content is visible' );
-			QUnit.start();
 		} );
 
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
+		this.clock.tick( 500 );
 	} );
 
-	QUnit.asyncTest( 'initial collapse (options.collapsed)', 2, function ( assert ) {
+	QUnit.test( 'initial collapse (options.collapsed)', 2, function ( assert ) {
 		var $collapsible = prepareCollapsible(
 				'<div class="mw-collapsible">' + loremIpsum + '</div>',
 				{ collapsed: true }
@@ -264,10 +275,10 @@
 
 		$collapsible.on( 'afterExpand.mw-collapsible', function () {
 			assert.assertTrue( $content.is( ':visible' ), 'after expanding: content is visible' );
-			QUnit.start();
 		} );
 
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
+		this.clock.tick( 500 );
 	} );
 
 	QUnit.test( 'clicks on links inside toggler pass through (options.linksPassthru)' , 2, function ( assert ) {
@@ -290,7 +301,7 @@
 		assert.assertTrue( $content.is( ':hidden' ), 'click event on non-link inside toggle toggles content' );
 	} );
 
-	QUnit.asyncTest( 'collapse/expand text (data-collapsetext, data-expandtext)', 2, function ( assert ) {
+	QUnit.test( 'collapse/expand text (data-collapsetext, data-expandtext)', 2, function ( assert ) {
 		var $collapsible = prepareCollapsible(
 				'<div class="mw-collapsible" data-collapsetext="Collapse me!" data-expandtext="Expand me!">' +
 					loremIpsum +
@@ -302,13 +313,13 @@
 
 		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
 			assert.equal( $toggleLink.text(), 'Expand me!', 'data-expandtext is respected' );
-			QUnit.start();
 		} );
 
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
+		this.clock.tick( 500 );
 	} );
 
-	QUnit.asyncTest( 'collapse/expand text (options.collapseText, options.expandText)', 2, function ( assert ) {
+	QUnit.test( 'collapse/expand text (options.collapseText, options.expandText)', 2, function ( assert ) {
 		var $collapsible = prepareCollapsible(
 				'<div class="mw-collapsible">' + loremIpsum + '</div>',
 				{ collapseText: 'Collapse me!', expandText: 'Expand me!' }
@@ -319,10 +330,10 @@
 
 		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
 			assert.equal( $toggleLink.text(), 'Expand me!', 'options.expandText is respected' );
-			QUnit.start();
 		} );
 
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
+		this.clock.tick( 500 );
 	} );
 
 }( mediaWiki, jQuery ) );
