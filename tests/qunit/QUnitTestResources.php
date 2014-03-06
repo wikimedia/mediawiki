@@ -9,7 +9,13 @@ return array(
 	'test.sinonjs' => array(
 		'scripts' => array(
 			'resources/sinonjs/sinon-1.8.1.js',
-			'resources/sinonjs/sinon-ie-1.8.1.js',
+			// We want tests to work in IE, but can't include this as it
+			// will break the placeholders in Sinon because the hack it uses
+			// to hijack IE globals relies on running in the global scope
+			// and in ResourceLoader this won't be running in the global scope.
+			// Including it results (among other things) in sandboxed timers
+			// being broken due to Date inheritance being undefined.
+			// 'resources/sinonjs/sinon-ie-1.8.1.js',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
