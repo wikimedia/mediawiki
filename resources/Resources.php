@@ -1249,17 +1249,9 @@ return array(
 	'mediawiki.special.userlogin.signup.js' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.userlogin.signup.js',
 		'messages' => array(
-			'createacct-error',
 			'createacct-emailrequired',
-			'createacct-normalization',
-			'noname',
-			'userexists',
 		),
-		'dependencies' => array(
-			'mediawiki.api',
-			'mediawiki.jqueryMsg',
-			'jquery.throttle-debounce',
-		),
+		'dependencies' => 'mediawiki.jqueryMsg',
 	),
 	'mediawiki.special.javaScriptTest' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.javaScriptTest.js',
