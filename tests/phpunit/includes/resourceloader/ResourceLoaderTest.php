@@ -1,6 +1,6 @@
 <?php
 
-class ResourceLoaderTest extends MediaWikiTestCase {
+class ResourceLoaderTest extends ResourceLoaderTestCase {
 
 	protected static $resourceLoaderRegisterModulesHook;
 
@@ -20,7 +20,7 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 				},
 			),
 			'wgResourceLoaderLESSImportPaths' => array(
-				dirname( __DIR__ ) . '/data/less/common',
+				dirname( dirname( __DIR__  ) ) . '/data/less/common',
 			),
 			'wgResourceLoaderLESSVars' => array(
 				'foo'  => '2px',
@@ -45,14 +45,6 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 	public static function provideValidModules() {
 		return array(
 			array( 'TEST.validModule1', new ResourceLoaderTestModule() ),
-		);
-	}
-
-	public static function provideResourceLoaderContext() {
-		$resourceLoader = new ResourceLoader();
-		$request = new FauxRequest();
-		return array(
-			array( new ResourceLoaderContext( $resourceLoader, $request ) ),
 		);
 	}
 
@@ -84,11 +76,11 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideResourceLoaderContext
 	 * @covers ResourceLoaderFileModule::compileLessFile
 	 */
-	public function testLessFileCompilation( $context ) {
-		$basePath = __DIR__ . '/../data/less/module';
+	public function testLessFileCompilation() {
+		$context = self::getResourceLoaderContext();
+		$basePath = __DIR__ . '/../../data/less/module';
 		$module = new ResourceLoaderFileModule( array(
 			'localBasePath' => $basePath,
 			'styles' => array( 'styles.less' ),
@@ -137,11 +129,6 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 			),
 		);
 	}
-}
-
-/* Stubs */
-
-class ResourceLoaderTestModule extends ResourceLoaderModule {
 }
 
 /* Hooks */
