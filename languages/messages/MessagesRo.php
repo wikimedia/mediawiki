@@ -2700,6 +2700,7 @@ Ultima blocare este indicată mai jos pentru informare:',
 'sp-contributions-blocked-notice-anon' => 'Această adresă IP este blocată acum.
 Iată aici ultima înregistrare relevantă din jurnalul blocărilor:',
 'sp-contributions-search' => 'Căutare contribuții',
+'sp-contributions-suppresslog' => 'contribuții suprimate ale utilizatorului',
 'sp-contributions-username' => 'Adresă IP sau nume de utilizator:',
 'sp-contributions-toponly' => 'Afișează numai versiunile recente',
 'sp-contributions-newonly' => 'Afișează numai modificările care au dus la crearea de pagini',

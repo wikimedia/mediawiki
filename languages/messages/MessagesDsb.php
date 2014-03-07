@@ -2501,6 +2501,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'Toś ta IP-adresa jo tuchylu zablokěrowana.
 Nejnowšy zapisk protokola blokěrowanjow pódawa se dołojce ako referenca:',
 'sp-contributions-search' => 'Pśinoski pytaś',
+'sp-contributions-suppresslog' => 'pódtłocone wužywarske pśinoski',
 'sp-contributions-username' => 'IP-adresa abo wužywarske mě:',
 'sp-contributions-toponly' => 'Jano wuše wersije pokazaś',
 'sp-contributions-newonly' => 'Jano změny pokazaś, kótarež su napóranja bokow',

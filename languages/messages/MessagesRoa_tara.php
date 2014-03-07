@@ -591,7 +591,7 @@ Ce tu scacchie de metterle, quiste avène ausate pe dà 'u giuste merite a 'a fa
 
 # Change password dialog
 'changepassword' => "Cange 'a password",
-'resetpass_announce' => "Tu tè colleghete cu 'nu codece mannete pe e-mail temboranee.
+'resetpass_announce' => "Tu tè collegate cu 'nu codece mannate pe e-mail temboranèe.
 Pe spiccià 'a procedure de collegamende, tu a 'mbostà 'na password nove aqquà:",
 'resetpass_text' => "<!-- Mitte 'u teste aqquà -->",
 'resetpass_header' => "Cange 'a password d'u cunde utende",
@@ -1461,7 +1461,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'recentchanges-label-unpatrolled' => "Stu cangiamende non g'à state angore condrollate",
 'recentchanges-legend-heading' => "'''Leggende:'''",
 'recentchanges-legend-newpage' => "('ndruche pure [[Special:NewPages|elenghe de le pàggene nuève]])",
-'rcnotefrom' => "Sotte stonne le cangiaminde da '''$2''' (fine a '''$1''' mustrete).",
+'rcnotefrom' => "Sotte stonne le cangiaminde da '''$2''' ('nzigne a '''$1''' fatte vedè).",
 'rclistfrom' => 'Fà vedè le urteme cangiaminde partenne da $1',
 'rcshowhideminor' => '$1 cangiaminde stuèdeche',
 'rcshowhidebots' => '$1 bot',
@@ -1600,6 +1600,7 @@ Avissa verificà 'a storie d'a scangellazzione d'u file apprime de condinuà a c
 'php-uploaddisabledtext' => "Le carecaminde de file sonde disabilitate in PHP.<br />
 Pe piacere verifiche le 'mbostaziune d'u ''file_uploads''.",
 'uploadscripted' => "Stu file condene HTML o codece de script ca ponne essere inderpretete jndr'à 'nu mode sbagliete da le browser.",
+'uploadscriptednamespace' => "Stu file SVG tène 'nu namespace illegale '$1'",
 'uploadinvalidxml' => "L'XML jndr'à 'u file carecate non ge pò essere analizzate.",
 'uploadvirus' => "Alanga toje, 'u file condiene 'nu virus! Dettaglie: $1",
 'uploadjava' => "'U file jè 'nu file de tipe ZIP ca condene 'nu file de classe Java.

@@ -897,7 +897,7 @@ För att slutföra inloggningen måste du välja ett nytt lösenord här:',
 'resetpass-temp-password' => 'Tillfälligt lösenord:',
 'resetpass-abort-generic' => 'Lösenordsändring av har avbrutits av ett tillägg.',
 'resetpass-expired' => 'Ditt lösenord har gått ut. Var god välj ett nytt lösenord för att logga in.',
-'resetpass-expired-soft' => 'Ditt lösenord har gått ut och behöver återställas. Var god välj ett nytt lösenord nu eller klicka på avbryt för att återställa det senare.',
+'resetpass-expired-soft' => 'Ditt lösenord har gått ut och behöver återställas. Var god välj ett nytt lösenord nu eller klicka på "{{int:resetpass-submit-cancel}}" för att återställa det senare.',
 
 # Special:PasswordReset
 'passwordreset' => 'Återställ lösenord',
@@ -1750,7 +1750,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'recentchanges-legend-heading' => "'''Teckenförklaring:'''",
 'recentchanges-legend-newpage' => '(se även [[Special:NewPages|listan över nya sidor]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnotefrom' => "Nedan visas ändringar sedan '''$2''' (upp till '''$1''' ändringar visas).",
+'rcnotefrom' => 'Nedan visas ändringar sedan <strong>$2</strong> (upp till <strong>$1</strong> ändringar visas).',
 'rclistfrom' => 'Visa ändringar från och med $1',
 'rcshowhideminor' => '$1 mindre ändringar',
 'rcshowhideminor-show' => 'Visa',
@@ -1897,6 +1897,7 @@ Du borde be någon som kan se undanhållen fildata att granska situationen innan
 'uploaddisabledtext' => 'Uppladdning av filer är avstängd.',
 'php-uploaddisabledtext' => 'PHP filuppladdningar är avaktiverade. Kolla inställningarna för file_uploads.',
 'uploadscripted' => 'Denna fil innehåller HTML eller script som felaktigt kan komma att tolkas av webbläsare.',
+'uploadscriptednamespace' => 'Denna SVG-fil innehåller den ogiltiga namnrymden "$1"',
 'uploadinvalidxml' => 'XML-koden i den uppladdade filen kunde inte tolkas.',
 'uploadvirus' => 'Filen innehåller virus! Detaljer: $1',
 'uploadjava' => 'Filen är en ZIP-fil som innehåller en Java .class fil.
@@ -2726,6 +2727,7 @@ Den senaste posten i blockeringsloggen visas nedan som referens:',
 'sp-contributions-search' => 'Sök efter användarbidrag',
 'sp-contributions-username' => 'IP-adress eller användarnamn:',
 'sp-contributions-toponly' => 'Visa endast aktuella sidversioner',
+'sp-contributions-newonly' => 'Visa endast redigeringar där sidor skapas',
 'sp-contributions-submit' => 'Sök',
 
 # What links here

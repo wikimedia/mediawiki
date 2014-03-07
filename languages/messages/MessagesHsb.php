@@ -2505,6 +2505,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'Tuta IP-adresa je tuchwilu zablokowana.
 Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'sp-contributions-search' => 'Přinoški pytać',
+'sp-contributions-suppresslog' => 'potłóčene wužiwarske přinoški',
 'sp-contributions-username' => 'IP-adresa abo wužiwarske mjeno:',
 'sp-contributions-toponly' => 'Jenož wyše wersije pokazać',
 'sp-contributions-newonly' => 'Jenož změny pokazać, kotrež su wutworjenja stronow',

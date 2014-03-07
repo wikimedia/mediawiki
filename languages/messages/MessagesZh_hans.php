@@ -2645,6 +2645,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => '这个IP地址现时正在被封锁中。
 最近的封锁日志项目在下面提供以便参考：',
 'sp-contributions-search' => '搜索贡献',
+'sp-contributions-suppresslog' => '已被删除的用户贡献',
 'sp-contributions-username' => 'IP地址或用户名：',
 'sp-contributions-toponly' => '仅显示最后版本的编辑',
 'sp-contributions-newonly' => '仅显示创建页面的编辑',

@@ -2785,6 +2785,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'Esta dirección IP se encuentra actualmente bloqueada.
 A continuación se muestra la última entrada del registro de bloqueos para mayor referencia.',
 'sp-contributions-search' => 'Buscar contribuciones',
+'sp-contributions-suppresslog' => 'Contribuciones borradas de usuario',
 'sp-contributions-username' => 'Dirección IP o nombre de usuario:',
 'sp-contributions-toponly' => 'Solo mostrar últimas ediciones de página',
 'sp-contributions-newonly' => 'Mostrar solo ediciones que son creaciones de páginas',

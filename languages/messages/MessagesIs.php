@@ -762,6 +762,7 @@ Vinsamlegast bíðið $1 áður en þú reynir aftur.',
 'loginlanguagelabel' => 'Tungumál: $1',
 'suspicious-userlogout' => 'Beiðni um útskráningu hafnað því hún var líklegast send frá biluðum vafra eða vefseli sem hefur vistað vefsíðuna í flýtiminni.',
 'createacct-another-realname-tip' => 'Alvöru nafn er valfrjálst. Ef þú kýst að gefa það upp, verður það notað til að gefa þér heiður af verkum þínum.',
+'pt-createaccount' => 'Stofna aðgang',
 
 # Email sending
 'php-mail-error-unknown' => 'Óþekkt villa í PHP mail() aðgerð.',

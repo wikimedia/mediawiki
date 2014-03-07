@@ -706,6 +706,7 @@ $2',
 'login-throttled' => 'ژمارەیەکی زۆر هەوڵت داوە بۆ چوونە ژوورەوە.
 تکایە پێش هەوڵی دووبارە، نەختێک بوەستە.',
 'loginlanguagelabel' => 'زمان: $1',
+'pt-userlogout' => 'بچۆ دەرەوە',
 
 # Change password dialog
 'changepassword' => 'تێپەڕوشە بگۆڕە',
@@ -1511,6 +1512,8 @@ $1",
 'rcnotefrom' => "ئەوی‌ خوارەوە گۆڕانکارییەکانە لە '''$2'''ەوە (ھەتا '''$1''' نیشاندراو).",
 'rclistfrom' => 'گۆڕانکارییە نوێکان نیشان بدە بە دەستپێکردن لە $1',
 'rcshowhideminor' => 'دەستکارییە بچووکەکان $1',
+'rcshowhideminor-show' => 'نیشان بدە',
+'rcshowhideminor-hide' => 'بشارەوە',
 'rcshowhidebots' => 'بۆتەکان $1',
 'rcshowhideliu' => 'بەکارھێنەرە تۆمارکراوەکان $1',
 'rcshowhideanons' => 'بەکارھێنەرە نەناسراوەکان $1',

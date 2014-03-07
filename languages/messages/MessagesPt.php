@@ -900,7 +900,7 @@ Para completar a autenticação, tem de definir uma palavra-chave nova aqui:',
 'resetpass-temp-password' => 'Palavra-chave temporária:',
 'resetpass-abort-generic' => 'A alteração da palavra-chave foi cancelada por uma extensão.',
 'resetpass-expired' => 'A sua palavra-chave expirou. Para autenticar-se, defina uma nova.',
-'resetpass-expired-soft' => 'A sua palavra-chave expirou e tem de ser redefinida. Escolha uma nova agora ou clique cancelar para redefini-la mais tarde.',
+'resetpass-expired-soft' => 'A sua palavra-chave expirou e tem de ser redefinida. Escolha uma nova agora ou clique "{{int:resetpass-submit-cancel}}" para redefini-la mais tarde.',
 
 # Special:PasswordReset
 'passwordreset' => 'Redefinir palavra-chave',
@@ -1765,7 +1765,7 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'recentchanges-label-plusminus' => 'Alteração no tamanho da página, em bytes',
 'recentchanges-legend-heading' => "'''Legenda:'''",
 'recentchanges-legend-newpage' => '([[Special:NewPages|lista de páginas novas]])',
-'rcnotefrom' => 'Abaixo estão as mudanças desde <b>$2</b> (mostradas até <b>$1</b>).',
+'rcnotefrom' => 'Abaixo estão as mudanças desde <strong>$2</strong> (mostradas até <strong>$1</strong>).',
 'rclistfrom' => 'Mostrar as novas mudanças a partir das $1',
 'rcshowhideminor' => '$1 edições menores',
 'rcshowhideminor-show' => 'Mostrar',

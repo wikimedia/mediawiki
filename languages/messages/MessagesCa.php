@@ -737,7 +737,9 @@ Espereu $1 abans de tornar-ho a provar.",
 'suspicious-userlogout' => "S'ha denegat la vostra petició per tancar la sessió ja què sembla que va ser enviada per un navegador defectuós o un proxy cau.",
 'createacct-another-realname-tip' => "El nom real és opcional.
 Si decidiu proporcionar-lo, s'utilitzarà per a reconèixer a l'usuari el seu treball.",
+'pt-login' => 'Iniciar sessió',
 'pt-createaccount' => 'Crea un compte',
+'pt-userlogout' => 'Finalitza la sessió',
 
 # Email sending
 'php-mail-error-unknown' => 'Error desconegut en la funció mail() de PHP',
@@ -2565,6 +2567,7 @@ Per més detalls, la última entrada del registre es mostra a continuació:",
 'sp-contributions-blocked-notice-anon' => 'En aquests moments, aquesta adreça IP es troba blocada.
 Per més detalls, la última entrada del registre es mostra a continuació:',
 'sp-contributions-search' => 'Cerca les contribucions',
+'sp-contributions-suppresslog' => "contribucions suprimides de l'usuari",
 'sp-contributions-username' => "Adreça IP o nom d'usuari:",
 'sp-contributions-toponly' => 'Mostra només revisions superiors',
 'sp-contributions-newonly' => 'Mostra només modificacions que són creacions de pàgina',

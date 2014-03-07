@@ -659,7 +659,7 @@ Keyepelê {{SITENAME}} eşkeno xeta eşkera bıkero.',
 Seba lista pelanê xasanê vêrdeyan reca kena: [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
-'error' => 'Ğeta',
+'error' => 'Xeta',
 'databaseerror' => 'Ğetay ardoği',
 'databaseerror-text' => 'Tabanda malumati de ğırabiya persayışi bi
 Na nusteber  zew ğırabin asınena.',
@@ -1433,7 +1433,7 @@ Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'powersearch-togglenone' => 'Çıniyo',
 'search-external' => 'Cıgeyrayışê teberi',
 'searchdisabled' => '{{SITENAME}} no keyepel de cıgerayiş muweqqet bıryayo. no benatê de şıma pê Google eşkeni zerreyê {{SITENAME}} de cıgerayiş bıkeri.',
-'search-error' => 'Cı geyrayış de zu ğeta emé meydan:$1',
+'search-error' => 'Cıgeyrayış de yew xeta emê meydan: $1',
 
 # Preferences page
 'preferences' => 'Tercihi',

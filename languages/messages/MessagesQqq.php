@@ -395,8 +395,10 @@ See also:
 Followed by a colon and a list of categories.
 
 Parameters:
-* $1 - number of hidden categories',
-'hidden-category-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where hidden categories will be listed.',
+* $1 - number of hidden categories
+{{Identical|Hidden category}}',
+'hidden-category-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where hidden categories will be listed.
+{{Identical|Hidden category}}',
 'category-subcat-count' => 'This message is displayed at the top of a category page showing the number of pages in the category.
 
 Parameters:
@@ -8278,7 +8280,8 @@ This message is followed by the total number of times the page has been edited.'
 'pageinfo-magic-words' => 'The list of magic words on the page. Parameters:
 * $1 is the number of magic words on the page.',
 'pageinfo-hidden-categories' => 'The list of hidden categories on the page. Parameters:
-* $1 is the number of hidden categories on the page.',
+* $1 - the number of hidden categories on the page
+{{Identical|Hidden category}}',
 'pageinfo-templates' => 'The list of templates transcluded within the page. Parameters:
 * $1 is the number of templates transcluded within the current page.
 See also:
@@ -9015,12 +9018,14 @@ See also Wikipedia on [[w:Focal_length#In_photography|focal length]].',
 'exif-gpslatituderef' => 'In older versions of mediawiki this referred to if the latitude was North or South. This is no longer used in modern versions of mediawiki except for when using a foreign image repository that is using an older version of mediawiki since the information is now contained in {{msg-mw|exif-gpslatitude}}.
 {{Related|Exif-gpslatitude}}',
 'exif-gpslatitude' => 'The latitude of the location from where the picture was taken from.
-{{Related|Exif-gpslatitude}}',
+{{Related|Exif-gpslatitude}}
+{{Identical|Latitude}}',
 'exif-gpslongituderef' => 'Same as {{msg-mw|exif-gpslatituderef}} but for longitude.
 
 {{Related|Exif-gpslatitude}}',
 'exif-gpslongitude' => 'The longitude of the location from where the picture was taken from.
-{{Related|Exif-gpslatitude}}',
+{{Related|Exif-gpslatitude}}
+{{Identical|Longitude}}',
 'exif-gpsaltituderef' => 'No longer used except for when using foreign image repository with old version of mediawiki. 0 for above sea level, 1 for below sea level.',
 'exif-gpsaltitude' => 'Altitude in meters that the image was taken at.',
 'exif-gpstimestamp' => 'Time (does not include date) that GPS measurement was taken, in UTC. Since often this is at the same time as photo was taken, this is sometimes more reliable than {{msg-mw|exif-datetimeoriginal}}.',

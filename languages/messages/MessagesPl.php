@@ -897,7 +897,7 @@ Aby dokończyć logowanie, musisz ustawić nowe hasło tutaj:',
 'resetpass-temp-password' => 'Tymczasowe hasło:',
 'resetpass-abort-generic' => 'Zmiana hasła została przerwana przez rozszerzenie.',
 'resetpass-expired' => 'Twoje hasło wygasło. Proszę ustawić nowe hasło do logowania.',
-'resetpass-expired-soft' => 'Twoje hasło wygasło i musi zostać zresetowane. Proszę wybrać nowe hasło albo kliknąć przycisk Anuluj, aby zresetować je później.',
+'resetpass-expired-soft' => 'Twoje hasło wygasło i musi zostać zresetowane. Proszę wybrać nowe hasło albo kliknąć na "{{int:resetpass-submit-cancel}}", aby zresetować je później.',
 
 # Special:PasswordReset
 'passwordreset' => 'Wyczyść hasło',
@@ -1062,11 +1062,11 @@ Upewnij się, czy na pewno zamierza{{GENDER:|łeś|łaś|sz}} utworzyć lub zmod
 'userpage-userdoesnotexist-view' => 'Konto użytkownika „$1” nie jest zarejestrowane.',
 'blocked-notice-logextract' => '{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest obecnie {{GENDER:$1|zablokowany|zablokowana}}.
 Ostatni wpis rejestru blokad jest pokazany poniżej.',
-'clearyourcache' => "'''Uwaga:''' aby zobaczyć zmiany po zapisaniu, może zajść potrzeba wyczyszczenia pamięci podręcznej przeglądarki.
-* '''Firefox / Safari:''' Przytrzymaj ''Shift'' podczas klikania ''Odśwież bieżącą stronę'', lub naciśnij klawisze ''Ctrl+F5'' lub ''Ctrl+R'' (''⌘-R'' na komputerze Mac)
-* '''Google Chrome:''' Naciśnij ''Ctrl-Shift-R'' (''⌘-Shift-R'' na komputerze Mac)
-* '''Internet Explorer:''' Przytrzymaj ''Ctrl'' jednocześnie klikając ''Odśwież'' lub naciśnij klawisze ''Ctrl+F5''
-* '''Opera:''' Wyczyść pamięć podręczną w ''Narzędzia → Preferencje''",
+'clearyourcache' => '<strong>Uwaga:</strong> aby zobaczyć zmiany po zapisaniu, może zajść potrzeba wyczyszczenia pamięci podręcznej przeglądarki.
+* <strong>Firefox / Safari:</strong> Przytrzymaj <em>Shift</em> podczas klikania <em>Odśwież bieżącą stronę</em>, lub naciśnij klawisze <em>Ctrl+F5</em> lub <em>Ctrl+R</em> (<em>⌘-R</em> na komputerze Mac)
+* <strong>Google Chrome:</strong> Naciśnij <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> na komputerze Mac)
+* <strong>Internet Explorer:</strong> Przytrzymaj <em>Ctrl</em>, jednocześnie klikając <em>Odśwież</em>, lub naciśnij klawisze <em>Ctrl+F5</em>
+* <strong>Opera:</strong> Wyczyść pamięć podręczną w <em>Narzędzia → Preferencje</em>',
 'usercssyoucanpreview' => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy arkusz stylów CSS przed jego zapisaniem.",
 'userjsyoucanpreview' => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy kod JavaScript przed jego zapisaniem.",
 'usercsspreview' => "'''Pamiętaj, że to tylko podgląd arkusza stylów CSS – nic jeszcze nie zostało zapisane!'''",

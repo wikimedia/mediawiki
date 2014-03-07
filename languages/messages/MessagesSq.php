@@ -17,6 +17,7 @@
  * @author Ergon
  * @author Euriditi
  * @author FatosMorina
+ * @author GretaDoci
  * @author Kaganer
  * @author Marinari
  * @author Mdupont
@@ -735,6 +736,8 @@ Për të hyrë tërësisht duhet të vendosni një fjalëkalim të ri këtu:',
 'resetpass-submit-cancel' => 'Anulo',
 'resetpass-wrong-oldpass' => 'Fjalëkalimi momental ose i përkohshëm nuk është i vlefshëm. Ndoshta tanimë me sukses keni ndërruar fjalëkalimin, ose keni kërkuar fjalëkalim të përkohshëm.',
 'resetpass-temp-password' => 'Fjalëkalimi i përkohshëm:',
+'resetpass-expired' => 'Fjalëkalimin tuaj ka skaduar. Ju lutem vendosni një fjalëkalim të ri për të hyr.',
+'resetpass-expired-soft' => 'Fjalëkalimi juaj ka skaduar dhe duhet të rivendoset. Ju lutem zgjidhni një fjalëkalim të ri tani, ose klikoni "{{int:resetpass-submit-cancel}}" për ta rivendosur më vonë.',
 
 # Special:PasswordReset
 'passwordreset' => 'Ndrysho fjalkalimin',
@@ -2420,6 +2423,7 @@ Bllokimi i fundit është shfaqur më poshtë për referencë:',
 'sp-contributions-blocked-notice-anon' => 'Kjo adresë IP është e bllokuar aktualisht.
 Bllokimi i funditë është më poshtë për referencë:',
 'sp-contributions-search' => 'Kërko tek kontributet',
+'sp-contributions-suppresslog' => 'Anëtar me Kontribute të kufizuara',
 'sp-contributions-username' => 'IP Addresa ose Përdoruesi:',
 'sp-contributions-toponly' => 'Trego vetëm redaktimet që janë versionet më të fundit',
 'sp-contributions-submit' => 'Kërko',
