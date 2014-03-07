@@ -25,32 +25,45 @@
 /**
  * Dynamic JavaScript and CSS resource loading system.
  *
- * Most of the documention is on the MediaWiki documentation wiki starting at:
+ * Most of the documentation is on the MediaWiki documentation wiki starting at:
  *    https://www.mediawiki.org/wiki/ResourceLoader
  */
 class ResourceLoader {
 
-	/* Protected Static Members */
+	/**
+	 * @var int
+	 */
 	protected static $filterCacheVersion = 7;
+	/**
+	 * @var array
+	 */
 	protected static $requiredSourceProperties = array( 'loadScript' );
 
-	/** Array: List of module name/ResourceLoaderModule object pairs */
+	/**
+	 * @var array Module name/ResourceLoaderModule object pairs
+	 */
 	protected $modules = array();
 
-	/** Associative array mapping module name to info associative array */
+	/**
+	 * @var array Associative array mapping module name to info associative array
+	 */
 	protected $moduleInfos = array();
 
-	/** Associative array mapping framework ids to a list of names of test suite modules */
-	/** like array( 'qunit' => array( 'mediawiki.tests.qunit.suites', 'ext.foo.tests', .. ), .. ) */
+	/**
+	 * @var array Associative array mapping framework ids to a list of names of test suite modules
+	 *      like array( 'qunit' => array( 'mediawiki.tests.qunit.suites', 'ext.foo.tests', .. ), .. )
+	 */
 	protected $testModuleNames = array();
 
-	/** array( 'source-id' => array( 'loadScript' => 'http://.../load.php' ) ) **/
+	/**
+	 * @var array e.g. array( 'source-id' => array( 'loadScript' => 'http://.../load.php' ) )
+	 */
 	protected $sources = array();
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 */
 	protected $hasErrors = false;
-
-	/* Protected Methods */
 
 	/**
 	 * Load information stored in the database about modules.
