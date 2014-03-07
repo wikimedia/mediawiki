@@ -1,18 +1,6 @@
 <?php
 
-class ResourceLoaderModuleTest extends MediaWikiTestCase {
-
-	protected static function getResourceLoaderContext() {
-		$resourceLoader = new ResourceLoader();
-		$request = new FauxRequest( array(
-				'debug' => 'false',
-				'lang' => 'en',
-				'modules' => 'startup',
-				'only' => 'scripts',
-				'skin' => 'vector',
-		) );
-		return new ResourceLoaderContext( $resourceLoader, $request );
-	}
+class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @covers ResourceLoaderModule::getDefinitionSummary
@@ -83,5 +71,3 @@ class ResourceLoaderModuleTest extends MediaWikiTestCase {
 		);
 	}
 }
-
-class ResourceLoaderFileModuleTestModule extends ResourceLoaderFileModule {}
