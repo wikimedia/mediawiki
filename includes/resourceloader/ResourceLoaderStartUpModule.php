@@ -33,7 +33,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	/* Protected Methods */
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
 	protected function getConfig( $context ) {
@@ -118,66 +118,95 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Gets registration code for all modules
+	 * Get registration code for all modules.
 	 *
-	 * @param $context ResourceLoaderContext object
-	 * @return String: JavaScript code for registering all modules with the client loader
+	 * @param ResourceLoaderContext $context object
+	 * @return string JavaScript code for registering all modules with the client loader
 	 */
 	public static function getModuleRegistrations( ResourceLoaderContext $context ) {
 		global $wgCacheEpoch;
 		wfProfileIn( __METHOD__ );
 
-		$out = '';
-		$registrations = array();
 		$resourceLoader = $context->getResourceLoader();
 		$target = $context->getRequest()->getVal( 'target', 'desktop' );
 
-		// Register sources
-		$out .= ResourceLoader::makeLoaderSourcesScript( $resourceLoader->getSources() );
+		$out = '';
+		$registryData = array();
 
-		// Register modules
+		// Get registry data
 		foreach ( $resourceLoader->getModuleNames() as $name ) {
 			$module = $resourceLoader->getModule( $name );
 			$moduleTargets = $module->getTargets();
 			if ( !in_array( $target, $moduleTargets ) ) {
 				continue;
 			}
-			$deps = $module->getDependencies();
-			$group = $module->getGroup();
-			$source = $module->getSource();
-			// Support module loader scripts
-			$loader = $module->getLoaderScript();
-			if ( $loader !== false ) {
-				$version = wfTimestamp( TS_ISO_8601_BASIC,
-					$module->getModifiedTime( $context ) );
-				$out .= ResourceLoader::makeCustomLoaderScript( $name, $version, $deps, $group, $source, $loader );
-				continue;
-			}
 
-			// Automatically register module
 			// getModifiedTime() is supposed to return a UNIX timestamp, but it doesn't always
 			// seem to do that, and custom implementations might forget. Coerce it to TS_UNIX
 			$moduleMtime = wfTimestamp( TS_UNIX, $module->getModifiedTime( $context ) );
 			$mtime = max( $moduleMtime, wfTimestamp( TS_UNIX, $wgCacheEpoch ) );
 
-			if ( !count( $deps ) && $group === null && $source === 'local' ) {
-				// Modules without dependencies, a group or a foreign source pass two arguments (name, timestamp) to
-				// mw.loader.register()
-				$registrations[] = array( $name, $mtime );
-			} elseif ( $group === null && $source === 'local' ) {
-				// Modules with dependencies but no group or foreign source pass three arguments
-				// (name, timestamp, dependencies) to mw.loader.register()
-				$registrations[] = array( $name, $mtime, $deps );
-			} elseif ( $source === 'local' ) {
-				// Modules with a group but no foreign source pass four arguments (name, timestamp, dependencies, group)
-				// to mw.loader.register()
-				$registrations[] = array( $name, $mtime, $deps, $group );
+			// FIXME: Convert to numbers, wfTimestamp always gives us stings, even for TS_UNIX
+
+			$registryData[ $name ] = array(
+				'version' => $mtime,
+				'dependencies' => $module->getDependencies(),
+				'group' => $module->getGroup(),
+				'source' => $module->getSource(),
+				'loader' => $module->getLoaderScript(),
+			);
+		}
+
+		// Register sources
+		$out .= ResourceLoader::makeLoaderSourcesScript( $resourceLoader->getSources() );
+
+		// Concatenate module loader scripts and figure out the different call
+		// signatures for mw.loader.register
+		$registrations = array();
+		foreach ( $registryData as $name => $data ) {
+			if ( $data['loader'] !== false ) {
+				$out .= ResourceLoader::makeCustomLoaderScript(
+					$name,
+					wfTimestamp( TS_ISO_8601_BASIC, $data['version'] ),
+					$data['dependencies'],
+					$data['group'],
+					$data['source'],
+					$data['loader']
+				);
+				continue;
+			}
+
+			if ( !count( $data['dependencies'] ) && $data['group'] === null && $data['source'] === 'local' ) {
+				// Modules without dependencies, a group or a foreign source;
+				// call mw.loader.register(name, timestamp)
+				$registrations[] = array( $name, $data['version'] );
+			} elseif ( $data['group'] === null && $data['source'] === 'local' ) {
+				// Modules with dependencies but no group or foreign source;
+				// call mw.loader.register(name, timestamp, dependencies)
+				$registrations[] = array( $name, $data['version'], $data['dependencies'] );
+			} elseif ( $data['source'] === 'local' ) {
+				// Modules with a group but no foreign source;
+				// call mw.loader.register(name, timestamp, dependencies, group)
+				$registrations[] = array(
+					$name,
+					$data['version'],
+					$data['dependencies'],
+					$data['group']
+				);
 			} else {
-				// Modules with a foreign source pass five arguments (name, timestamp, dependencies, group, source)
-				// to mw.loader.register()
-				$registrations[] = array( $name, $mtime, $deps, $group, $source );
+				// Modules with a foreign source;
+				// call mw.loader.register(name, timestamp, dependencies, group, source)
+				$registrations[] = array(
+					$name,
+					$data['version'],
+					$data['dependencies'],
+					$data['group'],
+					$data['source']
+				);
 			}
 		}
+
+		// Register modules
 		$out .= ResourceLoader::makeLoaderRegisterScript( $registrations );
 
 		wfProfileOut( __METHOD__ );
@@ -199,7 +228,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * This is a helper for getScript(), but can also be called standalone, such
 	 * as when generating an AppCache manifest.
 	 *
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return string
 	 */
 	public static function getStartupModulesUrl( ResourceLoaderContext $context ) {
@@ -230,7 +259,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return string
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
@@ -268,7 +297,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return array|mixed
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
