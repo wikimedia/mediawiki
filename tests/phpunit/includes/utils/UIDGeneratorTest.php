@@ -21,9 +21,6 @@ class UIDGeneratorTest extends MediaWikiTestCase {
 		}
 
 		$lastId = array_shift( $ids );
-		if ( $hostbits ) {
-			$lastHost = substr( wfBaseConvert( $lastId, 10, 2, $bits ), -$hostbits );
-		}
 
 		$this->assertArrayEquals( array_unique( $ids ), $ids, "All generated IDs are unique." );
 
