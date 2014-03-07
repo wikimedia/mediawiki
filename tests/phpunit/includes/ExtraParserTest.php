@@ -32,17 +32,16 @@ class ExtraParserTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Bug 8689 - Long numeric lines kill the parser
+	 * @see Bug 8689
 	 * @covers Parser::parse
 	 */
-	public function testBug8689() {
-		global $wgUser;
+	public function testLongNumericLinesDontKillTheParser() {
 		$longLine = '1.' . str_repeat( '1234567890', 100000 ) . "\n";
 
-		$t = Title::newFromText( 'Unit test' );
-		$options = ParserOptions::newFromUser( $wgUser );
+		$title = Title::newFromText( 'Unit test' );
+		$options = ParserOptions::newFromUser( new User() );
 		$this->assertEquals( "<p>$longLine</p>",
-			$this->parser->parse( $longLine, $t, $options )->getText() );
+			$this->parser->parse( $longLine, $title, $options )->getText() );
 	}
 
 	/**
@@ -52,16 +51,23 @@ class ExtraParserTest extends MediaWikiTestCase {
 	public function testParse() {
 		$title = Title::newFromText( __FUNCTION__ );
 		$parserOutput = $this->parser->parse( "Test\n{{Foo}}\n{{Bar}}", $title, $this->options );
-		$this->assertEquals( "<p>Test\nContent of <i>Template:Foo</i>\nContent of <i>Template:Bar</i>\n</p>", $parserOutput->getText() );
+		$this->assertEquals(
+			"<p>Test\nContent of <i>Template:Foo</i>\nContent of <i>Template:Bar</i>\n</p>",
+			$parserOutput->getText()
+		);
 	}
 
 	/**
 	 * @covers Parser::preSaveTransform
 	 */
 	public function testPreSaveTransform() {
-		global $wgUser;
 		$title = Title::newFromText( __FUNCTION__ );
-		$outputText = $this->parser->preSaveTransform( "Test\r\n{{subst:Foo}}\n{{Bar}}", $title, $wgUser, $this->options );
+		$outputText = $this->parser->preSaveTransform(
+			"Test\r\n{{subst:Foo}}\n{{Bar}}",
+			$title,
+			new User(),
+			$this->options
+		);
 
 		$this->assertEquals( "Test\nContent of ''Template:Foo''\n{{Bar}}", $outputText );
 	}
@@ -73,7 +79,10 @@ class ExtraParserTest extends MediaWikiTestCase {
 		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->preprocess( "Test\n{{Foo}}\n{{Bar}}", $title, $this->options );
 
-		$this->assertEquals( "Test\nContent of ''Template:Foo''\nContent of ''Template:Bar''", $outputText );
+		$this->assertEquals(
+			"Test\nContent of ''Template:Foo''\nContent of ''Template:Bar''",
+			$outputText
+		);
 	}
 
 	/**
@@ -148,6 +157,12 @@ class ExtraParserTest extends MediaWikiTestCase {
 		$this->assertEquals( "{{Foo}} information <!-- is very secret -->", $outputText );
 	}
 
+	/**
+	 * @param Title $title
+	 * @param bool $parser
+	 *
+	 * @return array
+	 */
 	static function statelessFetchTemplate( $title, $parser = false ) {
 		$text = "Content of ''" . $title->getFullText() . "''";
 		$deps = array();

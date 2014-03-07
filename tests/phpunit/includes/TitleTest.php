@@ -213,6 +213,7 @@ class TitleTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideBug31100
 	 * @covers Title::fixSpecialName
+	 * @todo give this test a real name explaining what is being tested here
 	 */
 	public function testBug31100FixSpecialName( $text, $expectedParam ) {
 		$title = Title::newFromText( $text );
