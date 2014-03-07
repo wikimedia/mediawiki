@@ -358,9 +358,9 @@ In <strong>UTF-8 mode</strong>, MySQL will know what character set your data is 
 
 	'config-mssql-auth'               => 'Authentication type:',
 	'config-mssql-install-auth'       => 'Select the authentication type that will be used to connect to the database during the installation process.
-If you select "Windows Authentication", the credentials of whatever user the webserver is running as will be used.',
+If you select "{{int:config-mssql-windowsauth}}", the credentials of whatever user the webserver is running as will be used.',
 	'config-mssql-web-auth'           => 'Select the authentication type that the web server will use to connect to the database server, during ordinary operation of the wiki.
-If you select "Windows Authentication", the credentials of whatever user the webserver is running as will be used.',
+If you select "{{int:config-mssql-windowsauth}}", the credentials of whatever user the webserver is running as will be used.',
 	'config-mssql-sqlauth'            => 'SQL Server Authentication',
 	'config-mssql-windowsauth'        => 'Windows Authentication',
 	'config-site-name'                => 'Name of wiki:',
