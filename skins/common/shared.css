@@ -273,8 +273,11 @@ tr.mw-htmlform-vertical-label td.mw-label {
 }
 
 input#wpSummary {
-	width: 80%;
+	width: 100%;
 	margin-bottom: 1em;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 /**
