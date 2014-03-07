@@ -154,6 +154,7 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideBug32548
 	 * @covers JavaScriptMinifier::minify
+	 * @todo give this test a real name explaining what is being tested here
 	 */
 	public function testBug32548Exponent( $num ) {
 		// Long line breaking was being incorrectly done between the base and
