@@ -5026,6 +5026,9 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'htmlform-daterange-days-invalid' => 'The value you specified for the number of days to run is not an integer.',
 'htmlform-daterange-days-toolow'  => 'The value you specified for the number of days to run is below the minimum of {{PLURAL:$1|$1}}.',
 'htmlform-daterange-days-toohigh' => 'The value you specified for the number of days to run is above the maximum of {{PLURAL:$1|$1}}.',
+'htmlform-cloner-create'       => 'Add more',
+'htmlform-cloner-delete'       => 'Remove',
+'htmlform-cloner-required'     => 'At least one value is required.',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 with full-text search support',

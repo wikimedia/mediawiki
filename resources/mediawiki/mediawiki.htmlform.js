@@ -5,7 +5,8 @@
  */
 ( function ( mw, $ ) {
 
-	var hideIfTests = {
+	var cloneCounter = 0,
+		hideIfTests = {
 			'===': function ( a, b ) {
 				return a === b;
 			},
@@ -55,12 +56,12 @@
 			} );
 	};
 
-	$( function () {
+	function enhance( $root ) {
 
 		// Animate the SelectOrOther fields, to only show the text field when
 		// 'other' is selected.
-		$( '.mw-htmlform-select-or-other' ).liveAndTestAtStart( function ( instant ) {
-			var $other = $( '#' + $( this ).attr( 'id' ) + '-other' );
+		$root.find( '.mw-htmlform-select-or-other' ).liveAndTestAtStart( function ( instant ) {
+			var $other = $root.find( '#' + $( this ).attr( 'id' ) + '-other' );
 			$other = $other.add( $other.siblings( 'br' ) );
 			if ( $( this ).val() === 'other' ) {
 				$other.goIn( instant );
@@ -70,7 +71,7 @@
 		} );
 
 		// Set up hide-if elements
-		$( '[data-hide-if]' ).each( function () {
+		$root.find( '[data-hide-if]' ).each( function () {
 			var $el = $( this ),
 				data = $el.data( 'hideIf' ),
 				sel, value, test, func, $found, $p;
@@ -107,108 +108,135 @@
 			}
 		} );
 
-	} );
-
-	function addMulti( $oldContainer, $container ) {
-		var name = $oldContainer.find( 'input:first-child' ).attr( 'name' ),
-			oldClass = ( ' ' + $oldContainer.attr( 'class' ) + ' ' ).replace( /(mw-htmlform-field-HTMLMultiSelectField|mw-chosen)/g, '' ),
-			$select = $( '<select>' ),
-			dataPlaceholder = mw.message( 'htmlform-chosen-placeholder' );
-		oldClass = $.trim( oldClass );
-		$select.attr( {
-			name: name,
-			multiple: 'multiple',
-			'data-placeholder': dataPlaceholder.plain(),
-			'class': 'htmlform-chzn-select mw-input ' + oldClass
-		} );
-		$oldContainer.find( 'input' ).each( function () {
-			var $oldInput = $( this ),
-			checked = $oldInput.prop( 'checked' ),
-			$option = $( '<option>' );
-			$option.prop( 'value', $oldInput.prop( 'value' ) );
-			if ( checked ) {
-				$option.prop( 'selected', true );
-			}
-			$option.text( $oldInput.prop( 'value' ) );
-			$select.append( $option );
-		} );
-		$container.append( $select );
-	}
-
-	function convertCheckboxesToMulti( $oldContainer, type ) {
-		var $fieldLabel = $( '<td>' ),
-		$td = $( '<td>' ),
-		$fieldLabelText = $( '<label>' ),
-		$container;
-		if ( type === 'tr' ) {
-			addMulti( $oldContainer, $td );
-			$container = $( '<tr>' );
-			$container.append( $td );
-		} else if ( type === 'div' ) {
-			$fieldLabel = $( '<div>' );
-			$container = $( '<div>' );
-			addMulti( $oldContainer, $container );
-		}
-		$fieldLabel.attr( 'class', 'mw-label' );
-		$fieldLabelText.text( $oldContainer.find( '.mw-label label' ).text() );
-		$fieldLabel.append( $fieldLabelText );
-		$container.prepend( $fieldLabel );
-		$oldContainer.replaceWith( $container );
-		return $container;
-	}
-
-	if ( $( '.mw-chosen' ).length ) {
-		mw.loader.using( 'jquery.chosen', function () {
-			$( '.mw-chosen' ).each( function () {
-				var type = this.nodeName.toLowerCase(),
-					$converted = convertCheckboxesToMulti( $( this ), type );
-				$converted.find( '.htmlform-chzn-select' ).chosen( { width: 'auto' } );
+		function addMulti( $oldContainer, $container ) {
+			var name = $oldContainer.find( 'input:first-child' ).attr( 'name' ),
+				oldClass = ( ' ' + $oldContainer.attr( 'class' ) + ' ' ).replace( /(mw-htmlform-field-HTMLMultiSelectField|mw-chosen)/g, '' ),
+				$select = $( '<select>' ),
+				dataPlaceholder = mw.message( 'htmlform-chosen-placeholder' );
+			oldClass = $.trim( oldClass );
+			$select.attr( {
+				name: name,
+				multiple: 'multiple',
+				'data-placeholder': dataPlaceholder.plain(),
+				'class': 'htmlform-chzn-select mw-input ' + oldClass
 			} );
-		} );
-	}
+			$oldContainer.find( 'input' ).each( function () {
+				var $oldInput = $( this ),
+				checked = $oldInput.prop( 'checked' ),
+				$option = $( '<option>' );
+				$option.prop( 'value', $oldInput.prop( 'value' ) );
+				if ( checked ) {
+					$option.prop( 'selected', true );
+				}
+				$option.text( $oldInput.prop( 'value' ) );
+				$select.append( $option );
+			} );
+			$container.append( $select );
+		}
 
-	$( function () {
-		var $matrixTooltips = $( '.mw-htmlform-matrix .mw-htmlform-tooltip' );
+		function convertCheckboxesToMulti( $oldContainer, type ) {
+			var $fieldLabel = $( '<td>' ),
+			$td = $( '<td>' ),
+			$fieldLabelText = $( '<label>' ),
+			$container;
+			if ( type === 'tr' ) {
+				addMulti( $oldContainer, $td );
+				$container = $( '<tr>' );
+				$container.append( $td );
+			} else if ( type === 'div' ) {
+				$fieldLabel = $( '<div>' );
+				$container = $( '<div>' );
+				addMulti( $oldContainer, $container );
+			}
+			$fieldLabel.attr( 'class', 'mw-label' );
+			$fieldLabelText.text( $oldContainer.find( '.mw-label label' ).text() );
+			$fieldLabel.append( $fieldLabelText );
+			$container.prepend( $fieldLabel );
+			$oldContainer.replaceWith( $container );
+			return $container;
+		}
+
+		if ( $root.find( '.mw-chosen' ).length ) {
+			mw.loader.using( 'jquery.chosen', function () {
+				$root.find( '.mw-chosen' ).each( function () {
+					var type = this.nodeName.toLowerCase(),
+						$converted = convertCheckboxesToMulti( $( this ), type );
+					$converted.find( '.htmlform-chzn-select' ).chosen( { width: 'auto' } );
+				} );
+			} );
+		}
+
+		var $matrixTooltips = $root.find( '.mw-htmlform-matrix .mw-htmlform-tooltip' );
 		if ( $matrixTooltips.length ) {
 			mw.loader.using( 'jquery.tipsy', function () {
 				$matrixTooltips.tipsy( { gravity: 's' } );
 			} );
 		}
-	} );
 
-	( function () {
-		var inputs, i;
+		( function () {
+			var inputs, i;
 
-		inputs = $( 'input[type=date]' );
-		if ( inputs.length === 0 ) {
-			return;
-		}
+			inputs = $( 'input[type=date]' );
+			if ( inputs.length === 0 ) {
+				return;
+			}
 
-		// Assume that if the browser implements validation for <input type=date>
-		// (so it rejects "bogus" as a value) then it supports a date picker too.
-		i = document.createElement( 'input' );
-		i.setAttribute( 'type', 'date' );
-		i.value = 'bogus';
-		if ( i.value === 'bogus' ) {
-			mw.loader.using( 'jquery.ui.datepicker', function () {
-				inputs.each( function () {
-					var i = $( this );
-					// Reset the type, Just In Case
-					i.prop( 'type', 'text' );
-					i.datepicker( {
-						dateFormat: 'yy-mm-dd',
-						constrainInput: true,
-						showOn: 'focus',
-						changeMonth: true,
-						changeYear: true,
-						showButtonPanel: true,
-						minDate: i.data( 'min' ),
-						maxDate: i.data( 'max' ),
+			// Assume that if the browser implements validation for <input type=date>
+			// (so it rejects "bogus" as a value) then it supports a date picker too.
+			i = document.createElement( 'input' );
+			i.setAttribute( 'type', 'date' );
+			i.value = 'bogus';
+			if ( i.value === 'bogus' ) {
+				mw.loader.using( 'jquery.ui.datepicker', function () {
+					inputs.each( function () {
+						var i = $( this );
+						// Reset the type, Just In Case
+						i.prop( 'type', 'text' );
+						i.datepicker( {
+							dateFormat: 'yy-mm-dd',
+							constrainInput: true,
+							showOn: 'focus',
+							changeMonth: true,
+							changeYear: true,
+							showButtonPanel: true,
+							minDate: i.data( 'min' ),
+							maxDate: i.data( 'max' ),
+						} );
 					} );
 				} );
-			} );
-		}
-	}() );
+			}
+		}() );
+
+		// Add/remove cloner clones without having to resubmit the form
+		$root.find( 'input.mw-htmlform-cloner-delete-button' ).click( function ( ev ) {
+			ev.preventDefault();
+			$( this ).closest( 'li.mw-htmlform-cloner-li' ).remove();
+		} );
+
+		$root.find( 'input.mw-htmlform-cloner-create-button' ).click( function ( ev ) {
+			var $ul, $li, html;
+
+			ev.preventDefault();
+
+			$ul = $( this ).prev( 'ul.mw-htmlform-cloner-ul' );
+
+			html = $ul.data( 'template' ).replace(
+				$ul.data( 'unique-id' ), 'clone' + ( ++cloneCounter ), 'g'
+			);
+
+			$li = $( '<li>' )
+				.addClass( 'mw-htmlform-cloner-li' )
+				.html( html )
+				.appendTo( $ul );
+
+			enhance( $li );
+		} );
+
+	}
+
+	$( function () {
+		enhance( $( document ) );
+	} );
 
 	/**
 	 * @class jQuery
