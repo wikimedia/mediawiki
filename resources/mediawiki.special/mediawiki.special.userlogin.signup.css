@@ -21,6 +21,12 @@ div.mw-createacct-benefits-container h2 {
 	margin-bottom: 30px;
 }
 
+.client-js .mw-createacct-normalization-warning {
+	/* Hide entirely, from screen readers as well */
+	display: none;
+	visibility: hidden;
+}
+
 .mw-number-text.icon-edits {
 	/* @embed */
 	background: url(images/icon-edits.png) no-repeat left center;

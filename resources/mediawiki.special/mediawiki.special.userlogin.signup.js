@@ -30,7 +30,7 @@
 		updateForCheckbox();
 	} );
 
-	// Check if the username is invalid or already taken
+	// Check if the username is invalid or already taken; show username normalisation warning
 	$( function () {
 		var
 			// All of these are apparently required to be sure we detect all changes.
@@ -38,7 +38,8 @@
 			$input = $( '#wpName2' ),
 			$statusContainer = $( '#mw-createacct-status-area' ),
 			api = new mw.Api(),
-			currentRequest;
+			currentRequest,
+			tweakedUsername;
 
 		// Hide any present status messages.
 		function cleanup() {
@@ -51,7 +52,9 @@
 
 		function updateUsernameStatus() {
 			var
-				username = $.trim( $input.val() ),
+				// Leading/trailing/multiple whitespace characters are always stripped in usernames and users
+				// know that, don't warn if someone accidentally types any. We do warn about underscores.
+				username = $.trim( $input.val().replace( /\s+/g, ' ' ) ),
 				currentRequestInternal;
 
 			// Abort any pending requests.
@@ -77,6 +80,8 @@
 					return;
 				}
 
+				tweakedUsername = undefined;
+
 				userinfo = resp.query.users[0];
 
 				if ( resp.query.users.length !== 1 ) {
@@ -86,12 +91,21 @@
 					state = 'invalid';
 				} else if ( userinfo.userid !== undefined ) {
 					state = 'taken';
+				} else if ( username !== userinfo.name ) {
+					state = 'tweaked';
 				} else {
 					state = 'ok';
 				}
 
 				if ( state === 'ok' ) {
 					cleanup();
+				} else if ( state === 'tweaked' ) {
+					$statusContainer
+						.attr( 'class', 'warningbox' )
+						.text( mw.message( 'createacct-normalization', username, userinfo.name ).text() )
+						.slideDown();
+
+					tweakedUsername = userinfo.name;
 				} else {
 					if ( state === 'invalid' ) {
 						message = mw.message( 'noname' ).text();

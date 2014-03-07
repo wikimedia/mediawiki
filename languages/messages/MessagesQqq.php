@@ -1436,6 +1436,13 @@ Parameters:
 * $1 - number of contributors (users)',
 'badretype' => 'Used as error message when the new password and its retype do not match.',
 'userexists' => 'Used as error message in creating a user account.',
+'createacct-normalization' => 'Used as warning message on account creation when user name is adjusted silently due to technical restrictions (e.g. first letter capitalized, underscores converted to spaces).
+Only shown to users with JavaScript support enabled; {{msg-mw|createacct-normalization-warning}} is used otherwise.
+Parameters:
+* $1 - the old username
+* $2 - the new username',
+'createacct-normalization-warning' => 'Information that usernames might have to be adjusted silently by the software due to technical restrictions (e.g. first letter capitalized, underscores converted to spaces).
+Only shown to users with JavaScript support disabled; {{msg-mw|createacct-normalization}} is used otherwise.',
 'loginerror' => 'Used as title of error message.
 {{Identical|Login error}}',
 'createacct-error' => 'Used as heading for the error message.',
