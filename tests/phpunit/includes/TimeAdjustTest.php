@@ -3,8 +3,6 @@
 class TimeAdjustTest extends MediaWikiLangTestCase {
 	protected function setUp() {
 		parent::setUp();
-
-		$this->iniSet( 'precision', 15 );
 	}
 
 	/**
