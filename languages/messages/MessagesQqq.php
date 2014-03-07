@@ -10577,6 +10577,22 @@ See also:
 * {{msg-mw|Htmlform-daterange-badoption}}
 * {{msg-mw|Htmlform-daterange-invalid}}
 * {{msg-mw|Htmlform-daterange-toolow}}',
+'htmlform-cloner-create' => 'Used as the text for the button that adds a row to a multi-input HTML form element
+
+See also:
+* {{msg-mw|htmlform-cloner-delete}}
+* {{msg-mw|htmlform-cloner-required}}',
+'htmlform-cloner-delete' => 'Used as the text for the button that removes a row from a multi-input HTML form element
+
+See also:
+* {{msg-mw|htmlform-cloner-create}}
+* {{msg-mw|htmlform-cloner-required}}',
+'htmlform-cloner-required' => 'Used as an error message in HTML forms.
+
+See also:
+* {{msg-mw|htmlform-required}}
+* {{msg-mw|htmlform-cloner-create}}
+* {{msg-mw|htmlform-cloner-delete}}',
 
 # SQLite database support
 'sqlite-has-fts' => 'Shown on [[Special:Version]].
