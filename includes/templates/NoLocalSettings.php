@@ -75,16 +75,21 @@ if ( !function_exists( 'session_name' ) ) {
 
 		<h1>MediaWiki <?php echo htmlspecialchars( $wgVersion ) ?></h1>
 		<div class='error'>
-		<p>LocalSettings.php not found.</p>
-		<p>
-		<?php
-		if ( $installerStarted ) {
-			echo "Please <a href=\"" . htmlspecialchars( $path ) . "mw-config/index." . htmlspecialchars( $ext ) . "\"> complete the installation</a> and download LocalSettings.php.";
-		} else {
-			echo "Please <a href=\"" . htmlspecialchars( $path ) . "mw-config/index." . htmlspecialchars( $ext ) . "\"> set up the wiki</a> first.";
-		}
-		?>
-		</p>
+		<?php if ( !file_exists( MW_CONFIG_FILE ) ) { ?>
+			<p>LocalSettings.php not found.</p>
+			<p>
+			<?php
+			if ( $installerStarted ) {
+				echo "Please <a href=\"" . htmlspecialchars( $path ) . "mw-config/index." . htmlspecialchars( $ext ) . "\"> complete the installation</a> and download LocalSettings.php.";
+			} else {
+				echo "Please <a href=\"" . htmlspecialchars( $path ) . "mw-config/index." . htmlspecialchars( $ext ) . "\"> set up the wiki</a> first.";
+			}
+			?>
+			</p>
+		<?php } else { ?>
+			<p>LocalSettings.php not readable.</p>
+			<p>Please correct file permissions and try again.</p>
+		<?php } ?>
 
 		</div>
 	</body>
