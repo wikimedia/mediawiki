@@ -26,7 +26,7 @@ class SearchUpdateTest extends MediaWikiTestCase {
 		$this->setMwGlobals( 'wgSearchType', 'MockSearch' );
 	}
 
-	function updateText( $text ) {
+	public function updateText( $text ) {
 		return trim( SearchUpdate::updateText( $text ) );
 	}
 
@@ -67,6 +67,7 @@ EOT
 
 	/**
 	 * @covers SearchUpdate::updateText
+	 * @todo give this test a real name explaining what is being tested here
 	 */
 	public function testBug32712() {
 		$text = "text „http://example.com“ text";
