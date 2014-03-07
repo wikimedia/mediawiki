@@ -5017,6 +5017,9 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'htmlform-no'                  => 'No',
 'htmlform-yes'                 => 'Yes',
 'htmlform-chosen-placeholder'  => 'Select an option',
+'htmlform-cloner-create'       => 'Add more',
+'htmlform-cloner-delete'       => 'Remove',
+'htmlform-cloner-required'     => 'At least one value is required.',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 with full-text search support',

@@ -5,7 +5,8 @@
  */
 ( function ( mw, $ ) {
 
-	var hideIfTests = {
+	var cloneCounter = 0,
+		hideIfTests = {
 			'===': function ( a, b ) {
 				return a === b;
 			},
@@ -55,12 +56,12 @@
 			} );
 	};
 
-	$( function () {
+	function enhance( $root ) {
 
 		// Animate the SelectOrOther fields, to only show the text field when
 		// 'other' is selected.
-		$( '.mw-htmlform-select-or-other' ).liveAndTestAtStart( function ( instant ) {
-			var $other = $( '#' + $( this ).attr( 'id' ) + '-other' );
+		$root.find( '.mw-htmlform-select-or-other' ).liveAndTestAtStart( function ( instant ) {
+			var $other = $root.find( '#' + $( this ).attr( 'id' ) + '-other' );
 			$other = $other.add( $other.siblings( 'br' ) );
 			if ( $( this ).val() === 'other' ) {
 				$other.goIn( instant );
@@ -70,7 +71,7 @@
 		} );
 
 		// Set up hide-if elements
-		$( '.mw-htmlform-hide-if' ).each( function () {
+		$root.find( '.mw-htmlform-hide-if' ).each( function () {
 			var $el = $( this ),
 				data = $el.data( 'hideIf' ),
 				sel, value, test, func, $found, $p;
@@ -111,73 +112,102 @@
 			}
 		} );
 
-	} );
-
-	function addMulti( $oldContainer, $container ) {
-		var name = $oldContainer.find( 'input:first-child' ).attr( 'name' ),
-			oldClass = ( ' ' + $oldContainer.attr( 'class' ) + ' ' ).replace( /(mw-htmlform-field-HTMLMultiSelectField|mw-chosen)/g, '' ),
-			$select = $( '<select>' ),
-			dataPlaceholder = mw.message( 'htmlform-chosen-placeholder' );
-		oldClass = $.trim( oldClass );
-		$select.attr( {
-			name: name,
-			multiple: 'multiple',
-			'data-placeholder': dataPlaceholder.plain(),
-			'class': 'htmlform-chzn-select mw-input ' + oldClass
-		} );
-		$oldContainer.find( 'input' ).each( function () {
-			var $oldInput = $( this ),
-			checked = $oldInput.prop( 'checked' ),
-			$option = $( '<option>' );
-			$option.prop( 'value', $oldInput.prop( 'value' ) );
-			if ( checked ) {
-				$option.prop( 'selected', true );
-			}
-			$option.text( $oldInput.prop( 'value' ) );
-			$select.append( $option );
-		} );
-		$container.append( $select );
-	}
-
-	function convertCheckboxesToMulti( $oldContainer, type ) {
-		var $fieldLabel = $( '<td>' ),
-		$td = $( '<td>' ),
-		$fieldLabelText = $( '<label>' ),
-		$container;
-		if ( type === 'tr' ) {
-			addMulti( $oldContainer, $td );
-			$container = $( '<tr>' );
-			$container.append( $td );
-		} else if ( type === 'div' ) {
-			$fieldLabel = $( '<div>' );
-			$container = $( '<div>' );
-			addMulti( $oldContainer, $container );
-		}
-		$fieldLabel.attr( 'class', 'mw-label' );
-		$fieldLabelText.text( $oldContainer.find( '.mw-label label' ).text() );
-		$fieldLabel.append( $fieldLabelText );
-		$container.prepend( $fieldLabel );
-		$oldContainer.replaceWith( $container );
-		return $container;
-	}
-
-	if ( $( '.mw-chosen' ).length ) {
-		mw.loader.using( 'jquery.chosen', function () {
-			$( '.mw-chosen' ).each( function () {
-				var type = this.nodeName.toLowerCase(),
-					$converted = convertCheckboxesToMulti( $( this ), type );
-				$converted.find( '.htmlform-chzn-select' ).chosen( { width: 'auto' } );
+		function addMulti( $oldContainer, $container ) {
+			var name = $oldContainer.find( 'input:first-child' ).attr( 'name' ),
+				oldClass = ( ' ' + $oldContainer.attr( 'class' ) + ' ' ).replace( /(mw-htmlform-field-HTMLMultiSelectField|mw-chosen)/g, '' ),
+				$select = $( '<select>' ),
+				dataPlaceholder = mw.message( 'htmlform-chosen-placeholder' );
+			oldClass = $.trim( oldClass );
+			$select.attr( {
+				name: name,
+				multiple: 'multiple',
+				'data-placeholder': dataPlaceholder.plain(),
+				'class': 'htmlform-chzn-select mw-input ' + oldClass
 			} );
-		} );
-	}
+			$oldContainer.find( 'input' ).each( function () {
+				var $oldInput = $( this ),
+				checked = $oldInput.prop( 'checked' ),
+				$option = $( '<option>' );
+				$option.prop( 'value', $oldInput.prop( 'value' ) );
+				if ( checked ) {
+					$option.prop( 'selected', true );
+				}
+				$option.text( $oldInput.prop( 'value' ) );
+				$select.append( $option );
+			} );
+			$container.append( $select );
+		}
 
-	$( function () {
-		var $matrixTooltips = $( '.mw-htmlform-matrix .mw-htmlform-tooltip' );
+		function convertCheckboxesToMulti( $oldContainer, type ) {
+			var $fieldLabel = $( '<td>' ),
+			$td = $( '<td>' ),
+			$fieldLabelText = $( '<label>' ),
+			$container;
+			if ( type === 'tr' ) {
+				addMulti( $oldContainer, $td );
+				$container = $( '<tr>' );
+				$container.append( $td );
+			} else if ( type === 'div' ) {
+				$fieldLabel = $( '<div>' );
+				$container = $( '<div>' );
+				addMulti( $oldContainer, $container );
+			}
+			$fieldLabel.attr( 'class', 'mw-label' );
+			$fieldLabelText.text( $oldContainer.find( '.mw-label label' ).text() );
+			$fieldLabel.append( $fieldLabelText );
+			$container.prepend( $fieldLabel );
+			$oldContainer.replaceWith( $container );
+			return $container;
+		}
+
+		if ( $root.find( '.mw-chosen' ).length ) {
+			mw.loader.using( 'jquery.chosen', function () {
+				$root.find( '.mw-chosen' ).each( function () {
+					var type = this.nodeName.toLowerCase(),
+						$converted = convertCheckboxesToMulti( $( this ), type );
+					$converted.find( '.htmlform-chzn-select' ).chosen( { width: 'auto' } );
+				} );
+			} );
+		}
+
+		var $matrixTooltips = $root.find( '.mw-htmlform-matrix .mw-htmlform-tooltip' );
 		if ( $matrixTooltips.length ) {
 			mw.loader.using( 'jquery.tipsy', function () {
 				$matrixTooltips.tipsy( { gravity: 's' } );
 			} );
 		}
+
+		// Add/remove cloner clones without having to resubmit the form
+		$root.find( '.mw-htmlform-cloner-delete-button' ).click( function ( ev ) {
+			ev.preventDefault();
+			$( this ).closest( 'li.mw-htmlform-cloner-li' ).remove();
+		} );
+
+		$root.find( '.mw-htmlform-cloner-create-button' ).click( function ( ev ) {
+			var $ul, $li, html;
+
+			ev.preventDefault();
+
+			$ul = $( this ).prev( 'ul.mw-htmlform-cloner-ul' );
+
+			html = $ul.data( 'template' ).replace(
+				$ul.data( 'uniqueId' ), 'clone' + ( ++cloneCounter ), 'g'
+			);
+
+			$li = $( '<li>' )
+				.addClass( 'mw-htmlform-cloner-li' )
+				.html( html )
+				.appendTo( $ul );
+
+			enhance( $li );
+		} );
+
+		mw.hook( 'htmlform.enhance' ).fire( $root );
+
+	}
+
+	$( function () {
+		enhance( $( document ) );
 	} );
 
 	/**
