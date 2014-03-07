@@ -242,14 +242,29 @@ abstract class HTMLFormField {
 	}
 
 	/**
+	 * Override this function if the control can somehow trigger a form
+	 * submission that shouldn't actually submit the HTMLForm.
+	 *
+	 * @since 1.23
+	 * @param string|array $value The value the field was submitted with
+	 * @param array $alldata The data collected from the form
+	 *
+	 * @return bool true to cancel the submission
+	 */
+	function cancelSubmit( $value, $alldata ) {
+		return false;
+	}
+
+	/**
 	 * Override this function to add specific validation checks on the
 	 * field input.  Don't forget to call parent::validate() to ensure
 	 * that the user-defined callback mValidationCallback is still run
 	 *
-	 * @param string $value The value the field was submitted with
+	 * @param string|array $value The value the field was submitted with
 	 * @param array $alldata The data collected from the form
 	 *
-	 * @return Mixed Bool true on success, or String error to display.
+	 * @return Mixed Bool true on success, or String error to display, or
+	 *   false to fail validation without displaying an error.
 	 */
 	function validate( $value, $alldata ) {
 		if ( $this->isHidden( $alldata ) ) {
@@ -356,6 +371,7 @@ abstract class HTMLFormField {
 		}
 
 		$validName = Sanitizer::escapeId( $this->mName );
+		$validName = str_replace( array( '.5B', '.5D' ), array( '[', ']' ), $validName );
 		if ( $this->mName != $validName && !isset( $params['nodata'] ) ) {
 			throw new MWException( "Invalid name '{$this->mName}' passed to " . __METHOD__ );
 		}
@@ -631,9 +647,7 @@ abstract class HTMLFormField {
 	public function getErrorsAndErrorClass( $value ) {
 		$errors = $this->validate( $value, $this->mParent->mFieldData );
 
-		if ( $errors === true ||
-			( !$this->mParent->getRequest()->wasPosted() && $this->mParent->getMethod() === 'post' )
-		) {
+		if ( is_bool( $errors ) || !$this->mParent->wasSubmitted() ) {
 			$errors = '';
 			$errorClass = '';
 		} else {
