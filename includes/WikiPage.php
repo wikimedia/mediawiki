@@ -1568,7 +1568,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param $flags Int
 	 * @return Int updated $flags
 	 */
-	function checkFlags( $flags ) {
+	public function checkFlags( $flags ) {
 		if ( !( $flags & EDIT_NEW ) && !( $flags & EDIT_UPDATE ) ) {
 			if ( $this->exists() ) {
 				$flags |= EDIT_UPDATE;
@@ -3508,7 +3508,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 * @param $parserOptions parserOptions to use for the parse operation
 	 * @param $content Content|String: content to parse or null to load it; may also be given as a wikitext string, for BC
 	 */
-	function __construct( Page $page, ParserOptions $parserOptions, $revid, $useParserCache, $content = null ) {
+	public function __construct( Page $page, ParserOptions $parserOptions, $revid, $useParserCache, $content = null ) {
 		if ( is_string( $content ) ) { // BC: old style call
 			$modelId = $page->getRevision()->getContentModel();
 			$format = $page->getRevision()->getContentFormat();
@@ -3554,7 +3554,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	/**
 	 * @return bool
 	 */
-	function doWork() {
+	public function doWork() {
 		global $wgUseFileCache;
 
 		// @todo several of the methods called on $this->page are not declared in Page, but present
@@ -3617,7 +3617,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	/**
 	 * @return bool
 	 */
-	function getCachedWork() {
+	public function getCachedWork() {
 		$this->parserOutput = ParserCache::singleton()->get( $this->page, $this->parserOptions );
 
 		if ( $this->parserOutput === false ) {
@@ -3632,7 +3632,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	/**
 	 * @return bool
 	 */
-	function fallback() {
+	public function fallback() {
 		$this->parserOutput = ParserCache::singleton()->getDirty( $this->page, $this->parserOptions );
 
 		if ( $this->parserOutput === false ) {
@@ -3651,7 +3651,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 * @param $status Status
 	 * @return bool
 	 */
-	function error( $status ) {
+	public function error( $status ) {
 		$this->error = $status;
 		return false;
 	}
