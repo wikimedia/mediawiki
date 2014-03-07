@@ -39,6 +39,30 @@ class ResourceLoaderTestCase extends MediaWikiTestCase {
 
 /* Stubs */
 
-class ResourceLoaderTestModule extends ResourceLoaderModule {}
+class ResourceLoaderTestModule extends ResourceLoaderModule {
+
+	protected $dependencies = array();
+	protected $group = null;
+	protected $source = 'local';
+	protected $targets = array( 'test' );
+
+	public function __construct( $options = array() ) {
+		foreach ( $options as $key => $value ) {
+			$this->$key = $value;
+		}
+	}
+
+	public function getDependencies() {
+		return $this->dependencies;
+	}
+
+	public function getGroup() {
+		return $this->group;
+	}
+
+	public function getSource() {
+		return $this->source;
+	}
+}
 
 class ResourceLoaderFileModuleTestModule extends ResourceLoaderFileModule {}
