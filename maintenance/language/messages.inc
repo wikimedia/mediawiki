@@ -3851,6 +3851,9 @@ $wgMessageStructure = array(
 		'htmlform-no',
 		'htmlform-yes',
 		'htmlform-chosen-placeholder',
+		'htmlform-cloner-create',
+		'htmlform-cloner-delete',
+		'htmlform-cloner-required',
 	),
 	'sqlite' => array(
 		'sqlite-has-fts',
