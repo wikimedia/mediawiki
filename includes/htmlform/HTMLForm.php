@@ -119,6 +119,7 @@ class HTMLForm extends ContextSource {
 		'checkmatrix' => 'HTMLCheckMatrix',
 		'date' => 'HTMLDateField',
 		'daterange' => 'HTMLDateRangeField',
+		'cloner' => 'HTMLFormFieldCloner',
 		// HTMLTextField will output the correct type="" attribute automagically.
 		// There are about four zillion other HTML5 input types, like range, but
 		// we don't use those at the moment, so no point in adding all of them.
@@ -157,6 +158,7 @@ class HTMLForm extends ContextSource {
 
 	protected $mTitle;
 	protected $mMethod = 'post';
+	protected $mWasSubmitted = false;
 
 	/**
 	 * Form action URL. false means we will use the URL to set Title
@@ -411,6 +413,7 @@ class HTMLForm extends ContextSource {
 		}
 
 		if ( $submit ) {
+			$this->mWasSubmitted = true;
 			$result = $this->trySubmit();
 		}
 
@@ -445,6 +448,16 @@ class HTMLForm extends ContextSource {
 	 *     display.
 	 */
 	function trySubmit() {
+		$this->mWasSubmitted = true;
+
+		# Check for cancelled submission
+		foreach ( $this->mFlatFields as $fieldname => $field ) {
+			if ( $field->cancelSubmit( $this->mFieldData[$fieldname], $this->mFieldData ) ) {
+				$this->mWasSubmitted = false;
+				return false;
+			}
+		}
+
 		# Check for validation
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
 			if ( !empty( $field->mParams['nodata'] ) ) {
@@ -470,8 +483,26 @@ class HTMLForm extends ContextSource {
 		$data = $this->filterDataForSubmit( $this->mFieldData );
 
 		$res = call_user_func( $callback, $data, $this );
+		if ( $res === false ) {
+			$this->mWasSubmitted = false;
+		}
 
 		return $res;
+	}
+
+	/**
+	 * Test whether the form was considered to have been submitted or not, i.e.
+	 * whether the last call to tryAuthorizedSubmit or trySubmit returned
+	 * non-false.
+	 *
+	 * This will return false until HTMLForm::tryAuthorizedSubmit or
+	 * HTMLForm::trySubmit is called.
+	 *
+	 * @since 1.23
+	 * @return bool
+	 */
+	function wasSubmitted() {
+		return $this->mWasSubmitted;
 	}
 
 	/**
