@@ -81,6 +81,13 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * @return bool true when setWatchlistDivs has been called
+	 */
+	public function isWatchlist() {
+		return (bool)$this->watchlist;
+	}
+
+	/**
 	 * As we use the same small set of messages in various methods and that
 	 * they are called often, we call them once and save them in $this->message
 	 */
