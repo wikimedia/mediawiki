@@ -94,10 +94,14 @@ class ApiRunJobs extends ApiBase {
 			return;
 		}
 		try {
-			// Fallback to running the jobs here while the user waits
 			$group = JobQueueGroup::singleton();
+			$count = $group->executeReadyPeriodicTasks();
+			if ( $count > 0 ) {
+				wfDebugLog( 'jobqueue', "Executed $count periodic queue task(s)." );
+			}
+
 			do {
-				$job = $group->pop( JobQueueGroup::USE_CACHE ); // job from any queue
+				$job = $group->pop( JobQueueGroup::TYPE_DEFAULT, JobQueueGroup::USE_CACHE ); // job from any queue
 				if ( $job ) {
 					$output = $job->toString() . "\n";
 					$t = - microtime( true );

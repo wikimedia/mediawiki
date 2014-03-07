@@ -644,7 +644,8 @@ class MediaWiki {
 		$query['signature'] = ApiRunJobs::getQuerySignature( $query );
 
 		if ( !$wgEnableAPI ) {
-			ApiRunJobs::executeJobs( $n ); // slow fallback
+			// Fall back to running the job here while the user waits
+			ApiRunJobs::executeJobs( $n );
 			return;
 		}
 
@@ -660,7 +661,8 @@ class MediaWiki {
 		wfRestoreWarnings();
 		if ( !$sock ) {
 			wfDebugLog( 'runJobs', "Failed to start cron API (socket error $errno): $errstr\n" );
-			ApiRunJobs::executeJobs( $n ); // slow fallback
+			// Fall back to running the job here while the user waits
+			ApiRunJobs::executeJobs( $n );
 			return;
 		}
 
