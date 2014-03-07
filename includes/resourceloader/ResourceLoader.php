@@ -936,7 +936,11 @@ class ResourceLoader {
 	 * @return string
 	 */
 	public static function makeMessageSetScript( $messages ) {
-		return Xml::encodeJsCall( 'mw.messages.set', array( (object)$messages ) );
+		return Xml::encodeJsCall(
+			'mw.messages.set',
+			array( (object)$messages ),
+			ResourceLoader::inDebugMode()
+		);
 	}
 
 	/**
@@ -989,9 +993,17 @@ class ResourceLoader {
 	 */
 	public static function makeLoaderStateScript( $name, $state = null ) {
 		if ( is_array( $name ) ) {
-			return Xml::encodeJsCall( 'mw.loader.state', array( $name ) );
+			return Xml::encodeJsCall(
+				'mw.loader.state',
+				array( $name ),
+				ResourceLoader::inDebugMode()
+			);
 		} else {
-			return Xml::encodeJsCall( 'mw.loader.state', array( $name, $state ) );
+			return Xml::encodeJsCall(
+				'mw.loader.state',
+				array( $name, $state ),
+				ResourceLoader::inDebugMode()
+			);
 		}
 	}
 
@@ -1013,7 +1025,9 @@ class ResourceLoader {
 		$script = str_replace( "\n", "\n\t", trim( $script ) );
 		return Xml::encodeJsCall(
 			"( function ( name, version, dependencies, group, source ) {\n\t$script\n} )",
-			array( $name, $version, $dependencies, $group, $source ) );
+			array( $name, $version, $dependencies, $group, $source ),
+			ResourceLoader::inDebugMode()
+		);
 	}
 
 	/**
@@ -1044,11 +1058,18 @@ class ResourceLoader {
 		$dependencies = null, $group = null, $source = null
 	) {
 		if ( is_array( $name ) ) {
-			return Xml::encodeJsCall( 'mw.loader.register', array( $name ) );
+			return Xml::encodeJsCall(
+				'mw.loader.register',
+				array( $name ),
+				ResourceLoader::inDebugMode()
+			);
 		} else {
 			$version = (int)$version > 1 ? (int)$version : 1;
-			return Xml::encodeJsCall( 'mw.loader.register',
-				array( $name, $version, $dependencies, $group, $source ) );
+			return Xml::encodeJsCall(
+				'mw.loader.register',
+				array( $name, $version, $dependencies, $group, $source ),
+				ResourceLoader::inDebugMode()
+			);
 		}
 	}
 
@@ -1068,9 +1089,17 @@ class ResourceLoader {
 	 */
 	public static function makeLoaderSourcesScript( $id, $properties = null ) {
 		if ( is_array( $id ) ) {
-			return Xml::encodeJsCall( 'mw.loader.addSource', array( $id ) );
+			return Xml::encodeJsCall(
+				'mw.loader.addSource',
+				array( $id ),
+				ResourceLoader::inDebugMode()
+			);
 		} else {
-			return Xml::encodeJsCall( 'mw.loader.addSource', array( $id, $properties ) );
+			return Xml::encodeJsCall(
+				'mw.loader.addSource',
+				array( $id, $properties ),
+				ResourceLoader::inDebugMode()
+			);
 		}
 	}
 
@@ -1093,7 +1122,11 @@ class ResourceLoader {
 	 * @return string
 	 */
 	public static function makeConfigSetScript( array $configuration ) {
-		return Xml::encodeJsCall( 'mw.config.set', array( $configuration ), ResourceLoader::inDebugMode() );
+		return Xml::encodeJsCall(
+			'mw.config.set',
+			array( $configuration ),
+			ResourceLoader::inDebugMode()
+		);
 	}
 
 	/**

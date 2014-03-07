@@ -19,6 +19,12 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 		parent::setUp();
 
 		$this->setMwGlobals( array(
+			// For ResourceLoader::inDebugMode since it doesn't have context
+			'wgResourceLoaderDebug' => true,
+
+			// Avoid influence from wgInvalidateCacheOnLocalSettingsChange
+			'wgCacheEpoch' => '20140101000000',
+
 			// For ResourceLoader::__construct()
 			'wgResourceLoaderSources' => array(),
 
