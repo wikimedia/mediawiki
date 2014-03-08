@@ -767,7 +767,8 @@ class LoginForm extends SpecialPage {
 	}
 
 	function processLogin() {
-		global $wgMemc, $wgLang, $wgSecureLogin, $wgPasswordAttemptThrottle;
+		global $wgMemc, $wgLang, $wgSecureLogin, $wgPasswordAttemptThrottle,
+			$wgInvalidPasswordReset;
 
 		switch ( $this->authenticateUserData() ) {
 			case self::SUCCESS:
@@ -808,6 +809,13 @@ class LoginForm extends SpecialPage {
 					$this->renewSessionId();
 					if ( $this->getUser()->getPasswordExpired() == 'soft' ) {
 						$this->resetLoginForm( $this->msg( 'resetpass-expired-soft' ) );
+					} elseif ( $wgInvalidPasswordReset
+						&& !$user->isValidPassword( $this->mPassword )
+					) {
+						$status = $user->checkPasswordValidity( $this->mPassword );
+						$this->resetLoginForm(
+							$status->getMessage( 'resetpass-validity-soft' )
+						);
 					} else {
 						$this->successfulLogin();
 					}

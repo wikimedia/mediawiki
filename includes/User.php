@@ -3722,14 +3722,9 @@ class User {
 		global $wgAuth, $wgLegacyEncoding;
 		$this->load();
 
-		// Even though we stop people from creating passwords that
-		// are shorter than this, doesn't mean people wont be able
-		// to. Certain authentication plugins do NOT want to save
+		// Certain authentication plugins do NOT want to save
 		// domain passwords in a mysql database, so we should
 		// check this (in case $wgAuth->strict() is false).
-		if ( !$this->isValidPassword( $password ) ) {
-			return false;
-		}
 
 		if ( $wgAuth->authenticate( $this->getName(), $password ) ) {
 			return true;
