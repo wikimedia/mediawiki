@@ -1644,6 +1644,7 @@ Parameters:
 'resetpass-abort-generic' => 'Generic error message shown on [[Special:ChangePassword]] when an extension aborts a password change from a hook.',
 'resetpass-expired' => "Generic error message shown on [[Special:ChangePassword]] when a user's password is expired",
 'resetpass-expired-soft' => 'Generic warning message shown on [[Special:ChangePassword]] when a user needs to reset their password, but they are not prevented from logging in at this time',
+'resetpass-length-soft' => 'Generic warning message shown on [[Special:ChangePassword]] when a user needs to reset their password, because their password is too short',
 
 # Special:PasswordReset
 'passwordreset' => 'Title of [[Special:PasswordReset]].

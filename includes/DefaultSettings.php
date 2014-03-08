@@ -3963,7 +3963,13 @@ $wgPasswordSalt = true;
  * Specifies the minimal length of a user password. If set to 0, empty pass-
  * words are allowed.
  */
-$wgMinimalPasswordLength = 1;
+$wgMinimalPasswordLength = 6;
+
+/**
+ * Specifies if users should be sent to a password-reset form on login, if their
+ * password doesn't meet the $wgMinimalPasswordLength requirement.
+ */
+$wgShortPasswordReset = true;
 
 /**
  * Whether to allow password resets ("enter some identifying data, and we'll send an email
