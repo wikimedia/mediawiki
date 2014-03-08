@@ -276,6 +276,7 @@ changes to languages because of Bugzilla reports.
   table.mw-prefixindex-list-table to avoid duplicate ids when the special page
   is transcluded.
 * (bug 62198) window.$j has been deprecated.
+* The jquery.mwExtension module has been deprecated.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
