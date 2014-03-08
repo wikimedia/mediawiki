@@ -96,6 +96,7 @@ changes to languages because of Bugzilla reports.
 * The Block class constructor now takes an associative array of parameters
   instead of many optional positional arguments. Calling the constructor the old
   way will issue a deprecation warning.
+* The jquery.mwExtension module was deprecated.
 
 
 == Compatibility ==
