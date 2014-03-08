@@ -398,6 +398,8 @@ class SkinTemplate extends Skin {
 		// that interface elements are in a different language.
 		$tpl->set( 'userlangattributes', '' );
 		$tpl->set( 'specialpageattributes', '' ); # obsolete
+		// Used by VectorBeta to insert HTML before content but after the heading for the page title. Defaults to empty string.
+		$tpl->set( 'prebodytext', '' );
 
 		if ( $userLangCode !== $wgContLang->getHtmlCode() || $userLangDir !== $wgContLang->getDir() ) {
 			$escUserlang = htmlspecialchars( $userLangCode );
