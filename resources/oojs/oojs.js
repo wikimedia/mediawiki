@@ -1,12 +1,12 @@
 /*!
- * OOjs v1.0.7-pre (9c04f3e917)
+ * OOjs v1.0.7-pre (22e610a5e9)
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri Feb 14 2014 17:51:43 GMT-0800 (PST)
+ * Date: Fri Mar 07 2014 17:36:23 GMT-0800 (PST)
  */
 ( function ( global ) {
 
@@ -26,7 +26,6 @@ var
 /**
  * Assert whether a value is a plain object or not.
  *
- * @method
  * @param {Mixed} obj
  * @return {boolean}
  */
@@ -61,20 +60,20 @@ oo.isPlainObject = function ( obj ) {
  *  This is how prototypal inheritance works, it can only be one straight chain
  *  (just like classical inheritance in PHP for example). If you need to work with
  *  multiple constructors consider storing an instance of the other constructor in a
- *  property instead, or perhaps use a mixin (see oo.mixinClass).
+ *  property instead, or perhaps use a mixin (see OO.mixinClass).
  *
  *     function Thing() {}
  *     Thing.prototype.exists = function () {};
  *
  *     function Person() {
- *         this.constructor.super.apply( this, arguments );
+ *         Person.super.apply( this, arguments );
  *     }
- *     oo.inheritClass( Person, Thing );
+ *     OO.inheritClass( Person, Thing );
  *     Person.static.defaultEyeCount = 2;
  *     Person.prototype.walk = function () {};
  *
  *     function Jumper() {
- *         this.constructor.super.apply( this, arguments );
+ *         Jumper.super.apply( this, arguments );
  *     }
  *     OO.inheritClass( Jumper, Person );
  *     Jumper.prototype.jump = function () {};
@@ -85,7 +84,6 @@ oo.isPlainObject = function ( obj ) {
  *     x.walk();
  *     x instanceof Thing && x instanceof Person && x instanceof Jumper;
  *
- * @method
  * @param {Function} targetFn
  * @param {Function} originFn
  * @throws {Error} If target already inherits from origin
@@ -139,7 +137,6 @@ oo.inheritClass = function ( targetFn, originFn ) {
  *     OO.inheritClass( FooBar, Foo );
  *     OO.mixinClass( FooBar, ContextLazyLoad );
  *
- * @method
  * @param {Function} targetFn
  * @param {Function} originFn
  */
@@ -187,7 +184,6 @@ oo.mixinClass = function ( targetFn, originFn ) {
  *     foo2.getAge(); // 21
  *     foo.getAge(); // 22
  *
- * @method
  * @param {Object} origin
  * @return {Object} Clone of origin
  */
@@ -206,11 +202,10 @@ oo.cloneObject = function ( origin ) {
 };
 
 /**
- * Gets an array of all property values in an object.
+ * Get an array of all property values in an object.
  *
- * @method
  * @param {Object} Object to get values from
- * @returns {Array} List of object values
+ * @return {Array} List of object values
  */
 oo.getObjectValues = function ( obj ) {
 	var key, values;
@@ -236,11 +231,10 @@ oo.getObjectValues = function ( obj ) {
  * the other. An asymmetrical test may also be performed, which checks only that properties in the
  * first object are present in the second object, but not the inverse.
  *
- * @method
  * @param {Object} a First object to compare
  * @param {Object} b Second object to compare
  * @param {boolean} [asymmetrical] Whether to check only that b contains values from a
- * @returns {boolean} If the objects contain the same values as each other
+ * @return {boolean} If the objects contain the same values as each other
  */
 oo.compare = function ( a, b, asymmetrical ) {
 	var aValue, bValue, aType, bType, k;
@@ -269,10 +263,9 @@ oo.compare = function ( a, b, asymmetrical ) {
  *
  * Copies are deep, and will either be an object or an array depending on `source`.
  *
- * @method
  * @param {Object} source Object to copy
  * @param {Function} [callback] Applied to leaf values before they added to the clone
- * @returns {Object} Copy of source object
+ * @return {Object} Copy of source object
  */
 oo.copy = function ( source, callback ) {
 	var key, sourceValue, sourceType, destination;
@@ -310,8 +303,9 @@ oo.copy = function ( source, callback ) {
 };
 
 /**
- * Generates a hash of an object based on its name and data.
- * Performance optimization: http://jsperf.com/ve-gethash-201208#/toJson_fnReplacerIfAoForElse
+ * Generate a hash of an object based on its name and data.
+ *
+ * Performance optimization: <http://jsperf.com/ve-gethash-201208#/toJson_fnReplacerIfAoForElse>
  *
  * To avoid two objects with the same values generating different hashes, we utilize the replacer
  * argument of JSON.stringify and sort the object by key as it's being serialized. This may or may
@@ -322,20 +316,21 @@ oo.copy = function ( source, callback ) {
  * ourselves. This allows classes to define custom hashing.
  *
  * @param {Object} val Object to generate hash for
- * @returns {string} Hash of object
+ * @return {string} Hash of object
  */
 oo.getHash = function ( val ) {
 	return JSON.stringify( val, oo.getHash.keySortReplacer );
 };
 
 /**
- * Helper function for oo.getHash which sorts objects by key.
+ * Helper function for OO.getHash which sorts objects by key.
  *
  * This is a callback passed into JSON.stringify.
  *
+ * @method getHash_keySortReplacer
  * @param {string} key Property name of value being replaced
  * @param {Mixed} val Property value to replace
- * @returns {Mixed} Replacement value
+ * @return {Mixed} Replacement value
  */
 oo.getHash.keySortReplacer = function ( key, val ) {
 	var normalized, keys, i, len;
@@ -365,13 +360,13 @@ oo.getHash.keySortReplacer = function ( key, val ) {
 /**
  * Compute the union (duplicate-free merge) of a set of arrays.
  *
- * Arrays values must be convertable to object keys (strings)
+ * Arrays values must be convertable to object keys (strings).
  *
  * By building an object (with the values for keys) in parallel with
- * the array, a new item's existence in the union can be computed faster
+ * the array, a new item's existence in the union can be computed faster.
  *
  * @param {Array...} arrays Arrays to union
- * @returns {Array} Union of the arrays
+ * @return {Array} Union of the arrays
  */
 oo.simpleArrayUnion = function () {
 	var i, ilen, arr, j, jlen,
@@ -396,16 +391,16 @@ oo.simpleArrayUnion = function () {
  *
  * An intersection checks the item exists in 'b' while difference checks it doesn't.
  *
- * Arrays values must be convertable to object keys (strings)
+ * Arrays values must be convertable to object keys (strings).
  *
  * By building an object (with the values for keys) of 'b' we can
- * compute the result faster
+ * compute the result faster.
  *
  * @private
  * @param {Array} a First array
  * @param {Array} b Second array
  * @param {boolean} includeB Whether to items in 'b'
- * @returns {Array} Combination (intersection or difference) of arrays
+ * @return {Array} Combination (intersection or difference) of arrays
  */
 function simpleArrayCombine( a, b, includeB ) {
 	var i, ilen, isInB,
@@ -429,11 +424,11 @@ function simpleArrayCombine( a, b, includeB ) {
 /**
  * Compute the intersection of two arrays (items in both arrays).
  *
- * Arrays values must be convertable to object keys (strings)
+ * Arrays values must be convertable to object keys (strings).
  *
  * @param {Array} a First array
  * @param {Array} b Second array
- * @returns {Array} Intersection of arrays
+ * @return {Array} Intersection of arrays
  */
 oo.simpleArrayIntersection = function ( a, b ) {
 	return simpleArrayCombine( a, b, true );
@@ -442,25 +437,28 @@ oo.simpleArrayIntersection = function ( a, b ) {
 /**
  * Compute the difference of two arrays (items in 'a' but not 'b').
  *
- * Arrays values must be convertable to object keys (strings)
+ * Arrays values must be convertable to object keys (strings).
  *
  * @param {Array} a First array
  * @param {Array} b Second array
- * @returns {Array} Intersection of arrays
+ * @return {Array} Intersection of arrays
  */
 oo.simpleArrayDifference = function ( a, b ) {
 	return simpleArrayCombine( a, b, false );
 };
 /**
- * Event emitter.
- *
  * @class OO.EventEmitter
  *
  * @constructor
- * @property {Object} bindings
  */
 oo.EventEmitter = function OoEventEmitter() {
 	// Properties
+
+	/**
+	 * Storage of bound event handlers by event name.
+	 *
+	 * @property
+	 */
 	this.bindings = {};
 };
 
@@ -471,7 +469,6 @@ oo.EventEmitter = function OoEventEmitter() {
  *
  * If the callback/context are already bound to the event, they will not be bound again.
  *
- * @method
  * @param {string} event Type of event to listen to
  * @param {Function} callback Function to call when event occurs
  * @param {Array} [args] Arguments to pass to listener, will be prepended to emitted arguments
@@ -516,7 +513,6 @@ oo.EventEmitter.prototype.on = function ( event, callback, args, context ) {
 /**
  * Adds a one-time listener to a specific event.
  *
- * @method
  * @param {string} event Type of event to listen to
  * @param {Function} listener Listener to call when event occurs
  * @chainable
@@ -532,7 +528,6 @@ oo.EventEmitter.prototype.once = function ( event, listener ) {
 /**
  * Remove a specific listener from a specific event.
  *
- * @method
  * @param {string} event Type of event to remove listener from
  * @param {Function} [callback] Listener to remove, omit to remove all
  * @param {Object} [context=null] Object used context for callback function or method
@@ -577,13 +572,13 @@ oo.EventEmitter.prototype.off = function ( event, callback, context ) {
 
 /**
  * Emit an event.
+ *
  * TODO: Should this be chainable? What is the usefulness of the boolean
  * return value here?
  *
- * @method
  * @param {string} event Type of event
  * @param {Mixed} args First in a list of variadic arguments passed to event handler (optional)
- * @returns {boolean} If event was handled by at least one listener
+ * @return {boolean} If event was handled by at least one listener
  */
 oo.EventEmitter.prototype.emit = function ( event ) {
 	var i, len, binding, bindings, args;
@@ -607,12 +602,11 @@ oo.EventEmitter.prototype.emit = function ( event ) {
 /**
  * Connect event handlers to an object.
  *
- * @method
  * @param {Object} context Object to call methods on when events occur
  * @param {Object.<string,string>|Object.<string,Function>|Object.<string,Array>} methods List of
- * event bindings keyed by event name containing either method names, functions or arrays containing
- * method name or function followed by a list of arguments to be passed to callback before emitted
- * arguments
+ *  event bindings keyed by event name containing either method names, functions or arrays containing
+ *  method name or function followed by a list of arguments to be passed to callback before emitted
+ *  arguments
  * @chainable
  */
 oo.EventEmitter.prototype.connect = function ( context, methods ) {
@@ -647,7 +641,6 @@ oo.EventEmitter.prototype.connect = function ( context, methods ) {
 /**
  * Disconnect event handlers from an object.
  *
- * @method
  * @param {Object} context Object to disconnect methods from
  * @param {Object.<string,string>|Object.<string,Function>|Object.<string,Array>} [methods] List of
  * event bindings keyed by event name containing either method names or functions
@@ -688,8 +681,6 @@ oo.EventEmitter.prototype.disconnect = function ( context, methods ) {
 	return this;
 };
 /**
- * Data registry.
- *
  * @class OO.Registry
  * @mixins OO.EventEmitter
  *
@@ -722,52 +713,44 @@ oo.mixinClass( oo.Registry, oo.EventEmitter );
  *
  * Only the base name will be registered, overriding any existing entry with the same base name.
  *
- * @method
  * @param {string|string[]} name Symbolic name or list of symbolic names
  * @param {Mixed} data Data to associate with symbolic name
  * @fires register
  * @throws {Error} Name argument must be a string or array
  */
 oo.Registry.prototype.register = function ( name, data ) {
-	if ( typeof name !== 'string' && !Array.isArray( name ) ) {
-		throw new Error( 'Name argument must be a string or array, cannot be a ' + typeof name );
-	}
 	var i, len;
-	if ( Array.isArray( name ) ) {
+	if ( typeof name === 'string' ) {
+		this.registry[name] = data;
+		this.emit( 'register', name, data );
+	} else if ( Array.isArray( name ) ) {
 		for ( i = 0, len = name.length; i < len; i++ ) {
 			this.register( name[i], data );
 		}
-	} else if ( typeof name === 'string' ) {
-		this.registry[name] = data;
-		this.emit( 'register', name, data );
 	} else {
-		throw new Error( 'Name must be a string or array of strings, cannot be a ' + typeof name );
+		throw new Error( 'Name must be a string or array, cannot be a ' + typeof name );
 	}
 };
 
 /**
- * Gets data for a given symbolic name.
+ * Get data for a given symbolic name.
  *
  * Lookups are done using the base name.
  *
- * @method
  * @param {string} name Symbolic name
- * @returns {Mixed|undefined} Data associated with symbolic name
+ * @return {Mixed|undefined} Data associated with symbolic name
  */
 oo.Registry.prototype.lookup = function ( name ) {
 	return this.registry[name];
 };
 /**
- * Object factory.
- *
  * @class OO.Factory
  * @extends OO.Registry
  *
  * @constructor
  */
 oo.Factory = function OoFactory() {
-	// Parent constructor
-	oo.Registry.call( this );
+	oo.Factory.super.call( this );
 
 	// Properties
 	this.entries = [];
@@ -784,14 +767,12 @@ oo.inheritClass( oo.Factory, oo.Registry );
  *
  * Classes must have a static `name` property to be registered.
  *
- *     @example
  *     function MyClass() {};
  *     // Adds a static property to the class defining a symbolic name
  *     MyClass.static = { 'name': 'mine' };
  *     // Registers class with factory, available via symbolic name 'mine'
  *     factory.register( MyClass );
  *
- * @method
  * @param {Function} constructor Constructor to use when creating object
  * @throws {Error} Name must be a string and must not be empty
  * @throws {Error} Constructor must be a function
@@ -807,7 +788,8 @@ oo.Factory.prototype.register = function ( constructor ) {
 		throw new Error( 'Name must be a string and must not be empty' );
 	}
 	this.entries.push( name );
-	oo.Registry.prototype.register.call( this, name, constructor );
+
+	oo.Factory.super.prototype.register.call( this, name, constructor );
 };
 
 /**
@@ -816,10 +798,9 @@ oo.Factory.prototype.register = function ( constructor ) {
  * Name is used to look up the constructor to use, while all additional arguments are passed to the
  * constructor directly, so leaving one out will pass an undefined to the constructor.
  *
- * @method
  * @param {string} name Object name
  * @param {Mixed...} [args] Arguments to pass to the constructor
- * @returns {Object} The new object
+ * @return {Object} The new object
  * @throws {Error} Unknown object name
  */
 oo.Factory.prototype.create = function ( name ) {
