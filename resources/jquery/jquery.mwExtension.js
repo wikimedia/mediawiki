@@ -1,9 +1,8 @@
 /*
  * JavaScript backwards-compatibility alternatives and other convenience functions
  */
-( function ( $ ) {
-
-	$.extend({
+( function ( $, mw ) {
+	$.each( {
 		trimLeft: function ( str ) {
 			return str === null ? '' : str.toString().replace( /^\s+/, '' );
 		},
@@ -28,7 +27,7 @@
 				return true;
 			}
 			// the for-loop could potentially contain prototypes
-			// to avoid that we check it's length first
+			// to avoid that we check its length first
 			if ( v.length === 0 ) {
 				return true;
 			}
@@ -117,6 +116,7 @@
 			}
 			return true;
 		}
-	});
-
-}( jQuery ) );
+	}, function ( key, value ) {
+		mw.log.deprecate( $, key, value );
+	} );
+} )( jQuery, mediaWiki );

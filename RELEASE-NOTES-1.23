@@ -315,6 +315,7 @@ changes to languages because of Bugzilla reports.
   parser, where it differs from the PHP parser).
 * Special:Search no longer has an "include redirects" option on the advanced
   tab. Redirects are now included in all searches.
+* The jquery.mwExtension module has been deprecated.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
