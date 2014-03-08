@@ -1289,6 +1289,9 @@ To finish logging in, you must set a new password here:',
 'resetpass-abort-generic'   => 'Password change has been aborted by an extension.',
 'resetpass-expired'         => 'Your password has expired. Please set a new password to log in.',
 'resetpass-expired-soft'    => 'Your password has expired and needs to be reset. Please choose a new password now, or click "{{int:resetpass-submit-cancel}}" to reset it later.',
+'resetpass-validity-soft'     => 'Your password is not valid: $1
+
+Please choose a new password now, or click "{{int:resetpass-submit-cancel}}" to reset it later.',
 
 # Special:PasswordReset
 'passwordreset'                    => 'Reset password',
