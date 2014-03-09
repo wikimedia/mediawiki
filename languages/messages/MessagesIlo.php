@@ -621,7 +621,7 @@ Tapno malpas ti panagserrek, nasken a mangiyasentarka ti baro a kontrasenias dit
 'resetpass-temp-password' => 'Temporario a kontrasenias:',
 'resetpass-abort-generic' => 'Ti panagsukat ti kontrasenias ket pinasardeng babaen ti maysa a pagpaatiddog.',
 'resetpass-expired' => 'Nagpason ti kontraseniasmo. Pangngaasi a mangiyasentar ti baro a kontrasenias tapno makastrek.',
-'resetpass-expired-soft' => 'Nagpason ti kontraseniasmo, ken nasken a maiyasentar manen. Pangngaasi nga agpili tattan ti baro a kontrasenias, wenno pinduten ti ukasen tapno iyasentar no madamdama.',
+'resetpass-expired-soft' => 'Nagpason ti kontraseniasmo, ken nasken a maiyasentar manen. Pangngaasi nga agpili tattan ti baro a kontrasenias, wenno pinduten ti "{{int:resetpass-submit-cancel}}"  tapno maiyasentarto intono madamdama.',
 
 # Special:PasswordReset
 'passwordreset' => 'Iyasentar manen ti kontrasenias',
@@ -1491,14 +1491,26 @@ Ti esurat a pagtaengam ket saan a maipakita kadagiti agar-aramat nga agkontak ke
 'recentchanges-label-plusminus' => 'Ti panagbaliw ti kadakkel ti panid babaen ti bilang dagiti byte',
 'recentchanges-legend-heading' => "'''Sarita:'''",
 'recentchanges-legend-newpage' => '(kitaen pay ti [[Special:NewPages|listaan ti baro a pampanid]])',
-'rcnotefrom' => "Dita baba ket dagiti sinukatan manipud idi '''$2''' (agingga iti '''$1''' a naipakita).",
+'rcnotefrom' => 'Dita baba ket dagiti sinukatan manipud idi strong>$2</strong> (agingga iti <strong>$1</strong> a naipakita).',
 'rclistfrom' => 'Ipakita dagiti kabarbaro a sinukatan a mangrugi manipud idi $1',
 'rcshowhideminor' => '$1 dagiti bassit a panag-urnos',
+'rcshowhideminor-show' => 'Ipakita',
+'rcshowhideminor-hide' => 'Ilemmeng',
 'rcshowhidebots' => '$1 dagiti bot',
+'rcshowhidebots-show' => 'Ipakita',
+'rcshowhidebots-hide' => 'Ilemmeng',
 'rcshowhideliu' => '$1 dagiti nakarehistro nga agar-aramat',
+'rcshowhideliu-show' => 'Ipakita',
+'rcshowhideliu-hide' => 'Ilemmeng',
 'rcshowhideanons' => '$1 dagiti di am-ammo nga agar-aramat',
+'rcshowhideanons-show' => 'Ipakita',
+'rcshowhideanons-hide' => 'Ilemmeng',
 'rcshowhidepatr' => '$1 dagiti napatrulian a panag-urnos',
+'rcshowhidepatr-show' => 'Ipakita',
+'rcshowhidepatr-hide' => 'Ilemmeng',
 'rcshowhidemine' => '$1 dagiti inurnosko',
+'rcshowhidemine-show' => 'Ipakita',
+'rcshowhidemine-hide' => 'Ilemmeng',
 'rclinks' => 'Ipakita dagiti naudi a $1 a sinukatan iti kallabes a $2 nga al-aldaw<br />$3',
 'diff' => 'sabali',
 'hist' => 'saritaan',
@@ -1633,6 +1645,7 @@ Nasken nga agdamagka ti addaan ti abilidad a mangkita ti nalapdan a datos ti pap
 'php-uploaddisabledtext' => 'Ti pinag-ipan ti papeles ket naiddep idiay PHP.
 Panngaasi a kitaem ti pannakaikabil ti pinag-ipan ti papeles.',
 'uploadscripted' => 'Daytoy a papeles ket adda nagyanna a HTML wenno panagsurat a kodigo a mabalin nga agpakamali ti panagbasa ti sapot a pagbasabasa.',
+'uploadscriptednamespace' => 'Daytoy a papeles ti SVG ket aglaon ti maysa a saan a mabalin a nagan ti espasio ti "$1"',
 'uploadinvalidxml' => 'Ti XML iti naikarga a papeles ket saan a maiwaswas.',
 'uploadvirus' => 'Addaan ti birus daytoy a papeles! Salaysay: $1',
 'uploadjava' => 'Daytoy a papeles ket ZIP a papeles nga adda nagyanna a Java .a kita ti papeles.
@@ -2463,8 +2476,10 @@ Ti naudi a listaan ti pannakaserra ket adda dita baba tapno mausar a reperensia:
 'sp-contributions-blocked-notice-anon' => 'Daytoy nga IP a pagtaengan ket naserraan.
 Ti naudi a listaan ti pannakaserra ket adda dita baba tapno mausar a reperensia:',
 'sp-contributions-search' => 'Agsapul para kadagiti naar-aramid',
+'sp-contributions-suppresslog' => 'pasardengen dagiti kontribusion ti agar-aramat',
 'sp-contributions-username' => 'IP a pagtaengan wenno nagan ti agar-aramat:',
 'sp-contributions-toponly' => 'Ipakita laeng dagiti inurnos a kinaudian a panagbaliw',
+'sp-contributions-newonly' => 'Ipakita laeng dagiti inurnos a pannakapartuat ti pampanid',
 'sp-contributions-submit' => 'Biruken',
 
 # What links here

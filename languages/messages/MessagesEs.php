@@ -95,6 +95,7 @@
  * @author Sethladan
  * @author Shirayuki
  * @author Spacebirdy
+ * @author Sporeunai
  * @author Stephensuleeman
  * @author Technorum
  * @author The Evil IP address
@@ -959,7 +960,7 @@ Para terminar la sesión, debes establecer una nueva contraseña aquí:',
 'resetpass-temp-password' => 'Contraseña temporal:',
 'resetpass-abort-generic' => 'Una extensión ha cancelado el cambio de la contraseña.',
 'resetpass-expired' => 'Tu contraseña ha caducado. Por favor, establece una nueva contraseña para iniciar sesión.',
-'resetpass-expired-soft' => 'Tu contraseña ha expirado y necesita ser restablecida. Elije una nueva contraseña ahora, o haz clic en cancelar para restablecerla más tarde.',
+'resetpass-expired-soft' => 'Su contraseña ha caducado y necesita reajustarse. Elija una nueva contraseña ahora, o haga clic en "{{int:resetpass-enviar-cancelar}}" para restaurarla más adelante.',
 
 # Special:PasswordReset
 'passwordreset' => 'Restablecimiento de contraseña',
@@ -1811,7 +1812,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'recentchanges-label-plusminus' => 'El tamaño de la página cambió esta cantidad de bytes',
 'recentchanges-legend-heading' => "'''Leyenda:'''",
 'recentchanges-legend-newpage' => '(véase también la [[Special:NewPages|lista de páginas nuevas]])',
-'rcnotefrom' => 'A continuación se muestran los cambios desde <b>$2</b> (hasta <b>$1</b>).',
+'rcnotefrom' => 'A continuación se presentan los cambios desde <strong> $2 </strong> (hasta <strong> $1 </strong> se muestra).',
 'rclistfrom' => 'Mostrar nuevos cambios desde $1',
 'rcshowhideminor' => '$1 ediciones menores',
 'rcshowhideminor-show' => 'Mostrar',

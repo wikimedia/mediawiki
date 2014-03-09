@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author C.R.
  * @author Carmine Colacino
  * @author Chelin
  * @author Cryptex
@@ -281,7 +282,7 @@ $messages = array(
 'feedlinks' => 'Feed:',
 'site-atom-feed' => "Feed Atom 'e $1",
 'page-atom-feed' => 'Feed Atom ppe "$1"',
-'red-link-title' => '$1 (a paggena nun esiste)',
+'red-link-title' => "$1 ('a paggena nun esiste)",
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Articulo',
@@ -637,6 +638,7 @@ Vere anche 'e [[Special:WantedCategories|categurìe richieste]].",
 'sp-contributions-blocklog' => 'blocche',
 'sp-contributions-logs' => 'registre',
 'sp-contributions-talk' => 'Chiàcchiera',
+'sp-contributions-suppresslog' => 'contribbute utente scancellate',
 'sp-contributions-username' => 'Nnerizzo IP o nomme utente',
 'sp-contributions-submit' => 'Truova',
 
@@ -718,7 +720,7 @@ Vere anche 'e [[Special:WantedCategories|categurìe richieste]].",
 'tooltip-p-logo' => 'Visita a paggena prencepale',
 'tooltip-n-mainpage' => 'Visita a paggena prencepale',
 'tooltip-n-mainpage-description' => 'Visita a paggena prencepale',
-'tooltip-n-portal' => 'Descrizione ddo prugietto, che pou fa, addo truova e cose',
+'tooltip-n-portal' => "Descrizione d&#39;'o prugietto, che po' ffa, addò truvà 'e ccose",
 'tooltip-n-recentchanges' => 'Ennece dde urdeme cagnamiénte ddo sito',
 'tooltip-n-randompage' => 'Na paggena qualsiase',
 'tooltip-n-help' => "Paggena 'e ajùto",

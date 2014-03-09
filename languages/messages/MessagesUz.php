@@ -530,6 +530,7 @@ Ism yozilishini tekshirib koʻring.',
 'accountcreated' => 'Hisob yozuvi yaratildi',
 'login-abort-generic' => 'Tizimga kirishga mufavvaqiyatsiz urinish',
 'loginlanguagelabel' => 'Til: $1',
+'pt-login' => 'Kirish',
 'pt-userlogout' => 'Chiqish',
 
 # Change password dialog

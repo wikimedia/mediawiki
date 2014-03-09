@@ -11,6 +11,7 @@
  * @author Aitolos
  * @author Assassingr
  * @author Astralnet
+ * @author Axil
  * @author Azimout
  * @author Badseed
  * @author Chomwitt
@@ -912,7 +913,7 @@ $2',
 
 # Change password dialog
 'changepassword' => 'Αλλαγή κωδικού',
-'resetpass_announce' => 'Συνδεθήκατε με ένα προσωρινό κωδικό, σταλμένο με e-mail. Για να ολοκληρώσετε την σύνδεση, πρέπει να στείλετε ένα νέο κωδικό εδώ:',
+'resetpass_announce' => 'Για να ολοκληρώσετε την σύνδεση, πρέπει να στείλετε ένα νέο κωδικό εδώ:',
 'resetpass_text' => '<!-- Προσθέστε κείμενο εδώ -->',
 'resetpass_header' => 'Αλλαγή κωδικού πρόσβασης',
 'oldpassword' => 'Παλιός κωδικός',
@@ -928,6 +929,7 @@ $2',
 'resetpass-submit-cancel' => 'Ακύρωση',
 'resetpass-wrong-oldpass' => 'Λάθος προσωρινός ή κανονικός κωδικός.
 Μπορεί να έχετε ήδη αλλάξει επιτυχώς τον κωδικό σας ή να έχετε ζητήσει έναν νέο προσωρινό κωδικό.',
+'resetpass-recycled' => 'Παρακαλούμε επαναφέρετε τον κωδικό πρόσβασής σας σε κάτι διαφορετικό από τον τρέχοντα κωδικό πρόσβασης.',
 'resetpass-temp-password' => 'Προσωρινός κωδικός:',
 'resetpass-abort-generic' => 'Η αλλαγή του κωδικού έχει απορριφθεί από μια προέκταση.',
 

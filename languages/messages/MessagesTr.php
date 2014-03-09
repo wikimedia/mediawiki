@@ -2580,10 +2580,10 @@ dikkatle devam edin.',
 'rollbacklinkcount-morethan' => '$1 {{PLURAL:$1|değişiklikten|değişiklikten}} fazla geri döndür',
 'rollbackfailed' => 'geri alma işlemi başarısız',
 'cantrollback' => 'Sayfaya son katkıda bulunan kullanıcı, sayfaya katkıda bulunmuş tek kişi olduğu için, değişiklikler geri alınamıyor.',
-'alreadyrolled' => '[[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tarafından [[:$1]] sayfasında yapılmış son değişiklik geriye alınamıyor;
-başka biri sayfada değişiklik yaptı ya da sayfayı geriye aldı.
+'alreadyrolled' => '[[User:$2|$2]] ([[User talk:$2|Tartışma]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tarafından [[:$1]] sayfasında yapılmış son değişiklik geriye alınamıyor;
+başka birisi sayfada değişiklik yaptı ya da sayfayı geriye aldı.
 
-Son değişikliği yapan: [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
+Son değişikliği yapan: [[User:$3|$3]] ([[User talk:$3|Tartışma]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Değişiklik özeti: \"''\$1''\" idi.",
 'revertpage' => '[[Special:Contributions/$2|$2]] [[User talk:$2|mesaj]] tarafından yapılan değişiklikler geri alınarak, [[User:$1|$1]] tarafından değiştirilmiş önceki sürüm geri getirildi.',
 'revertpage-nouser' => 'Gizli bir kullanıcı tarafından yapılan değişiklikler geri alınarak {{GENDER:$1|[[User:$1|$1]]}} tarafından yapılan son revizyon geri getirildi',

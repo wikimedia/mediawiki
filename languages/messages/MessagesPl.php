@@ -2382,7 +2382,7 @@ Wymaga podania co najmniej domeny najwyższego poziomu np. „*.org”.<br />
 # Special:ActiveUsers
 'activeusers' => 'Lista aktywnych użytkowników',
 'activeusers-intro' => 'Poniżej znajduje się lista użytkowników, którzy byli aktywni w ciągu {{PLURAL:$1|ostatniego dnia|ostatnich $1 dni}}.',
-'activeusers-count' => 'w ciągu {{PLURAL:$3|ostatniego dnia|ostatnich $3 dni}} {{GENDER:$2|wykonał|wykonała|wykonał}} $1 {{PLURAL:$1|edycję|edycje|edycji}}',
+'activeusers-count' => 'w ciągu {{PLURAL:$3|ostatniego dnia|ostatnich $3 dni}} {{GENDER:$2|wykonał|wykonała|wykonał}} $1 {{PLURAL:$1|operację|operacje|operacji}}',
 'activeusers-from' => 'Pokaż użytkowników zaczynając od',
 'activeusers-hidebots' => 'Ukryj boty',
 'activeusers-hidesysops' => 'Ukryj administratorów',

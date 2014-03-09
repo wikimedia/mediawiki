@@ -2847,6 +2847,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'このIPアドレスは現在ブロックされています。
 参考のために最近のブロック記録項目を以下に表示します:',
 'sp-contributions-search' => '投稿の検索',
+'sp-contributions-suppresslog' => '利用者の秘匿された投稿',
 'sp-contributions-username' => 'IPアドレスまたは利用者名:',
 'sp-contributions-toponly' => '最新版の編集のみを表示',
 'sp-contributions-newonly' => 'ページ作成を伴う編集のみを表示',

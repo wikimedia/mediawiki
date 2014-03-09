@@ -1414,7 +1414,7 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'nextn-title' => '{{PLURAL:$1|próximo|próximos}} $1 {{PLURAL:$1|resultado|resultados}}',
 'shown-title' => 'Mostrar $1 {{PLURAL:$1|resultado|resultados}} por página',
 'viewprevnext' => 'Ver ($1 {{int:pipe-separator}} $2) ($3).',
-'searchmenu-exists' => "'''Há uma página com o nome \"[[:\$1]]\" nesta wiki'''",
+'searchmenu-exists' => '<strong>Há uma página com o nome "[[:$1]]" neste wiki.</strong> {{PLURAL:$2|0=|Veja também os outros resultados da pesquisa encontrados.}}',
 'searchmenu-new' => '<strong>Criar a página "[[:$1]]" nesta wiki!</strong>{{PLURAL:$2|0=| Veja também a página encontrada com sua pesquisa.|Veja também os resultados das pesquisas encontradas.}}',
 'searchprofile-articles' => 'Páginas de conteúdo',
 'searchprofile-project' => 'Ajuda e páginas de projeto',

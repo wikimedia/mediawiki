@@ -1493,7 +1493,7 @@ $1",
 'recentchanges' => 'Керла нисдарш',
 'recentchanges-legend' => 'Гlирс нисбарна керла нисдарш',
 'recentchanges-summary' => 'Лахахь гайтина хене хьаьжна Википедин агӀонашкахь тӀаьхьара бина хийцамаш',
-'recentchanges-noresult' => 'Билгал йинчу хенахь цӀа хийцамаш бина бац.',
+'recentchanges-noresult' => 'Билгал йинчу хенахь цхьа хийцамаш бина бац.',
 'recentchanges-feed-description' => 'Тергам бе тlаьхьара вики хийцаман хlокху ларца.',
 'recentchanges-label-newpage' => 'Оцу нисдарца кхоллина керла агlо.',
 'recentchanges-label-minor' => 'Хlара нисдинарг къастийна жимо долушсан',
@@ -1736,7 +1736,7 @@ PICT # тайп тайпан
 'unusedtemplates' => 'Лелош доцу кепаш',
 'unusedtemplatestext' => 'Кхузахь дагар йина «{{ns:template}}» цӀерийн меттиган агӀонаш, кхечу агӀонийн юкъа тоьхна йоцу.
 Диц ма делахь хьажа кеп агӀонашкахь лелош юй.',
-'unusedtemplateswlh' => 'кхин хьажорагаш',
+'unusedtemplateswlh' => 'кхин хьажоргаш',
 
 # Random page
 'randompage' => 'Цахууш нисйелла агӀо',
@@ -2147,7 +2147,7 @@ PICT # тайп тайпан
 'sp-contributions-submit' => 'Лаха',
 
 # What links here
-'whatlinkshere' => 'Хьажорагаш кхузе',
+'whatlinkshere' => 'Хьажоргаш кхузе',
 'whatlinkshere-title' => 'ХӀокхунца «$1» йолу агӀонаш',
 'whatlinkshere-page' => 'Агlо:',
 'linkshere' => "ТӀаьхьайогӀу агӀонаш оцу '''[[:$1]]''': хьажорагца ю",
@@ -2158,10 +2158,10 @@ PICT # тайп тайпан
 'isimage' => 'Файлан хьажораг',
 'whatlinkshere-prev' => '{{PLURAL:$1|1=хьалхайодарг|хьалхайодарш}} $1',
 'whatlinkshere-next' => '{{PLURAL:$1|тlаьхьайогlург|тlаьхьайогlурш|тlаьхьайогlурш}} $1',
-'whatlinkshere-links' => '← хьажорагаш',
-'whatlinkshere-hideredirs' => '$1 дlасахьажйар',
+'whatlinkshere-links' => '← хьажоргаш',
+'whatlinkshere-hideredirs' => '$1 дӀасахьажорш',
 'whatlinkshere-hidetrans' => '$1 латораш',
-'whatlinkshere-hidelinks' => '$1 хьажорагаш',
+'whatlinkshere-hidelinks' => '$1 хьажоргаш',
 'whatlinkshere-hideimages' => '$1 файлийн хьажорагаш',
 'whatlinkshere-filters' => 'Литтарш',
 

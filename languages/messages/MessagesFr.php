@@ -78,6 +78,7 @@
  * @author Nobody
  * @author Od1n
  * @author Omnipaedista
+ * @author Orlodrim
  * @author Peter17
  * @author PieRRoMaN
  * @author ProgVal
@@ -421,11 +422,11 @@ $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Lien hypertexte:',
+'tog-underline' => 'Souligner les liens :',
 'tog-hideminor' => 'Masquer les modifications mineures dans les changements récents',
-'tog-hidepatrolled' => 'Masquer les modifications surveillées dans les changements récents',
+'tog-hidepatrolled' => 'Masquer les modifications surveillées dans les modifications récentes',
 'tog-newpageshidepatrolled' => 'Masquer les pages surveillées dans la liste des nouvelles pages',
-'tog-extendwatchlist' => 'Développer la liste de suivi pour voir tous les changements, non seulement le plus récent',
+'tog-extendwatchlist' => 'Étendre la liste de suivi pour afficher toutes les modifications et pas uniquement les plus récentes',
 'tog-usenewrc' => 'Grouper les changements par page dans les modifications récentes et la liste de suivi (nécessite JavaScript)',
 'tog-numberheadings' => 'Numéroter automatiquement les titres de section',
 'tog-showtoolbar' => "Afficher la barre d'outils de modification (nécessite JavaScript)",
@@ -434,9 +435,9 @@ $messages = array(
 'tog-rememberpassword' => 'Me reconnecter automatiquement lors des prochaines visites avec ce navigateur (au maximum $1&nbsp;{{PLURAL:$1|jour|jours}})',
 'tog-watchcreations' => "Ajouter les pages que je crée et les fichiers que j'importe à ma liste de suivi",
 'tog-watchdefault' => 'Ajouter les pages et les fichiers que je modifie à ma liste de suivi',
-'tog-watchmoves' => 'Ajouter les pages et les fichiers que je déplace à ma liste de suivi',
+'tog-watchmoves' => 'Ajouter les pages et les fichiers que je renomme à ma liste de suivi',
 'tog-watchdeletion' => 'Ajouter les pages et les fichiers que je supprime à ma liste de suivi',
-'tog-minordefault' => 'Marquer toutes les modifications mineures par défaut',
+'tog-minordefault' => 'Marquer toutes mes modifications comme mineures par défaut',
 'tog-previewontop' => 'Afficher la prévisualisation au-dessus de la zone de modification',
 'tog-previewonfirst' => 'Afficher la prévisualisation lors de la première modification',
 'tog-enotifwatchlistpages' => "M'avertir par courriel lorsqu'une page ou un fichier de ma liste de suivi est modifiée",
@@ -464,23 +465,23 @@ $messages = array(
 
 'underline-always' => 'Toujours',
 'underline-never' => 'Jamais',
-'underline-default' => 'Navigateur ou thème par défaut',
+'underline-default' => 'Valeur par défaut du navigateur ou du thème',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Style de police de la zone de modification :',
-'editfont-default' => 'Navigateur par défaut',
-'editfont-monospace' => 'Police Monospaced',
-'editfont-sansserif' => 'Police Sans-serif',
-'editfont-serif' => 'Police Serif',
+'editfont-default' => 'Police par défaut du navigateur',
+'editfont-monospace' => 'Police à chasse fixe',
+'editfont-sansserif' => 'Police sans-serif',
+'editfont-serif' => 'Police serif',
 
 # Dates
-'sunday' => 'Dimanche',
-'monday' => 'Lundi',
-'tuesday' => 'Mardi',
-'wednesday' => 'Mercredi',
-'thursday' => 'Jeudi',
-'friday' => 'Vendredi',
-'saturday' => 'Samedi',
+'sunday' => 'dimanche',
+'monday' => 'lundi',
+'tuesday' => 'mardi',
+'wednesday' => 'mercredi',
+'thursday' => 'jeudi',
+'friday' => 'vendredi',
+'saturday' => 'samedi',
 'sun' => 'Dim.',
 'mon' => 'Lun.',
 'tue' => 'Mar.',
@@ -2351,7 +2352,7 @@ Les entrées <del>barrées</del> ont été résolues.',
 'deadendpagestext' => "Les pages suivantes ne contiennent aucun lien vers d'autres pages du wiki.",
 'protectedpages' => 'Pages protégées',
 'protectedpages-indef' => 'Uniquement les protections permanentes',
-'protectedpages-summary' => 'Cette page liste les pages existantes actuellement protégées. Pour une liste des titres protégés depuis leur création, voir [[{{#special:ProtectedTitles}}]].',
+'protectedpages-summary' => 'Cette page liste les pages existantes actuellement protégées. Pour une liste des titres protégés contre la création, voir [[{{#special:ProtectedTitles}}]].',
 'protectedpages-cascade' => 'Uniquement les protections en cascade',
 'protectedpages-noredirect' => 'Masquer les redirections',
 'protectedpagesempty' => "Aucune page n'est protégée de cette façon.",
@@ -2364,7 +2365,7 @@ Les entrées <del>barrées</del> ont été résolues.',
 'protectedpages-unknown-timestamp' => 'Inconnu',
 'protectedpages-unknown-performer' => 'Utilisateur inconnu',
 'protectedtitles' => 'Titres protégés',
-'protectedtitles-summary' => 'Cette page liste les titres actuellement protégés depuis leur création. Pour une liste des pages  protégées existantes, voir [[{{#special:ProtectedPages}}]].',
+'protectedtitles-summary' => 'Cette page liste les titres actuellement protégés contre la création. Pour une liste des pages protégées existantes, voir [[{{#special:ProtectedPages}}]].',
 'protectedtitlesempty' => "Aucun titre n'est actuellement protégé avec ces paramètres.",
 'listusers' => 'Liste des utilisateurs',
 'listusers-editsonly' => 'Ne montrer que les utilisateurs ayant au moins une contribution',

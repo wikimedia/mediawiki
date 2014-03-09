@@ -1725,7 +1725,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'recentchanges-legend-newpage' => '(vedeți și [[Special:NewPages|lista cu pagini noi]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
 'rcnotefrom' => 'Dedesubt sunt modificările începând cu <b>$2</b> (maximum <b>$1</b> afișate).',
-'rclistfrom' => 'Se arată modificările începând cu $1',
+'rclistfrom' => 'Se afișează modificările începând cu $1',
 'rcshowhideminor' => '$1 modificările minore',
 'rcshowhideminor-show' => 'Arată',
 'rcshowhideminor-hide' => 'Ascunde',

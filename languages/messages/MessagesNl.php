@@ -971,7 +971,7 @@ Om het inloggen te voltooien moet u hier een nieuw wachtwoord instellen:',
 'resetpass-temp-password' => 'Tijdelijk wachtwoord:',
 'resetpass-abort-generic' => 'De wachtwoordwijziging is afgebroken door een uitbreiding.',
 'resetpass-expired' => 'Uw wachtwoord is verlopen. Stel een nieuw wachtwoord om in te loggen.',
-'resetpass-expired-soft' => 'Uw wachtwoord is verlopen, en moet opnieuw worden ingesteld. Kies een nieuw wachtwoord nu, of klik op Annuleren als u het later opnieuw wilt.',
+'resetpass-expired-soft' => 'Uw wachtwoord is verlopen, en moet opnieuw worden ingesteld. Kies een nieuw wachtwoord nu, of klik op "{{int:resetpass-submit-cancel}}" als u het later opnieuw wilt.',
 
 # Special:PasswordReset
 'passwordreset' => 'Wachtwoord opnieuw instellen',

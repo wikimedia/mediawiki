@@ -18,6 +18,7 @@
  * @author Krinkle
  * @author Mahitgar
  * @author Naveen Sankar
+ * @author NehalDaveND
  * @author Omnipaedista
  * @author Shantanoo
  * @author Shijualex
@@ -1016,6 +1017,7 @@ $2
 प्रतीयते यदिदं अपाकृतमस्ति।',
 'edit-conflict' => 'सम्पादनयोः/सम्पादनानां अन्तर्विरोधः।',
 'edit-no-change' => 'भवतः सम्पादनम् उपेक्षितम्, यतो हि भवता पाठे न किमपि परिवर्तनं कृतम्।',
+'postedit-confirmation' => 'सम्पादनं रक्षितम् ।',
 'edit-already-exists' => 'नूतनं पृष्ठं स्रष्टुं नापारयत्।
 इदं पूर्वे एव विद्यते।',
 'defaultmessagetext' => 'सन्देशपाठं स्थिरयतु ।',

@@ -324,7 +324,7 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Sublinhar ligação:',
+'tog-underline' => 'Sublinhar links:',
 'tog-hideminor' => 'Esconder edições menores nas mudanças recentes',
 'tog-hidepatrolled' => 'Esconder edições patrulhadas nas mudanças recentes',
 'tog-newpageshidepatrolled' => 'Esconder páginas patrulhadas na lista de páginas novas',
@@ -333,7 +333,7 @@ $messages = array(
 'tog-numberheadings' => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar' => 'Mostrar barra de edição',
 'tog-editondblclick' => 'Editar páginas quando houver um clique duplo',
-'tog-editsectiononrightclick' => 'Possibilitar a edição de seções por clique com o botão direito no título da seção',
+'tog-editsectiononrightclick' => 'Possibilitar a edição de secções por clique com o botão direito no título da secção',
 'tog-rememberpassword' => 'Recordar os meus dados neste browser (no máximo, durante $1 {{PLURAL:$1|dia|dias}})',
 'tog-watchcreations' => 'Adicionar as páginas e ficheiros que eu criar às minhas páginas vigiadas',
 'tog-watchdefault' => 'Adicionar as páginas e ficheiros que eu editar às minhas páginas vigiadas',
@@ -363,7 +363,7 @@ $messages = array(
 'tog-noconvertlink' => 'Impossibilitar a conversão dos títulos de links',
 'tog-norollbackdiff' => 'Omitir diferenças depois de reverter edições em bloco',
 'tog-useeditwarning' => 'Avisar-me ao abandonar uma página editada sem gravar as alterações.',
-'tog-prefershttps' => 'Sempre utilizar uma conexão segura ao iniciar sessão',
+'tog-prefershttps' => 'Usar sempre uma ligação segura quando estiver autenticado',
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Nunca',
@@ -373,7 +373,7 @@ $messages = array(
 'editfont-style' => 'Fonte de edição:',
 'editfont-default' => 'Fonte por omissão, do browser',
 'editfont-monospace' => 'Fonte monoespaçada',
-'editfont-sansserif' => 'Fonte sans-serif',
+'editfont-sansserif' => 'Fonte sem serifa',
 'editfont-serif' => 'Fonte serifada',
 
 # Dates
@@ -573,7 +573,7 @@ $1',
 'disclaimerpage' => 'Project:Aviso_geral',
 'edithelp' => 'Ajuda de edição',
 'helppage' => 'Help:Conteúdos',
-'mainpage' => 'Página principal',
+'mainpage' => 'Página Principal',
 'mainpage-description' => 'Página principal',
 'policy-url' => 'Project:Políticas',
 'portal' => 'Portal comunitário',
@@ -591,8 +591,8 @@ Consulte a página da [[Special:Version|versão do sistema]].',
 
 'ok' => 'OK',
 'retrievedfrom' => 'Obtida de "$1"',
-'youhavenewmessages' => 'Tem $1 ($2).',
-'youhavenewmessagesfromusers' => 'Tem $1 de {{PLURAL:$3|outro utilizador|$3 utilizadores}} ($2).',
+'youhavenewmessages' => '{{PLURAL:$3|Tem}} $1 ($2).',
+'youhavenewmessagesfromusers' => '{{PLURAL:$4|Tem}} $1 de {{PLURAL:$3|outro utilizador|$3 utilizadores}} ($2).',
 'youhavenewmessagesmanyusers' => 'Tem $1 de muitos utilizadores ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|uma mensagem nova|999=mensagens novas}}',
 'newmessagesdifflinkplural' => '{{PLURAL:$1|última alteração|999=últimas alterações}}',
@@ -1264,31 +1264,31 @@ Tente [[Special:Search|pesquisar na wiki]] novas páginas relevantes.',
 'rev-deleted-user' => '(nome de utilizador removido)',
 'rev-deleted-event' => '(entrada removida)',
 'rev-deleted-user-contribs' => '[nome de utilizador ou IP removido - edição ocultada das contribuições]',
-'rev-deleted-text-permission' => "Esta revisão de página foi '''eliminada'''.
-Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
-'rev-deleted-text-unhide' => "Esta revisão de página foi '''eliminada'''.
-Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
-Pode mesmo assim [$1 ver esta edição] se deseja prosseguir.",
-'rev-suppressed-text-unhide' => "Esta revisão de página foi '''suprimida'''.
-Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].
-Pode mesmo assim [$1 ver esta revisão] se deseja prosseguir.",
-'rev-deleted-text-view' => "Esta revisão de página foi '''eliminada'''.
-Você pode vê-la; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
-'rev-suppressed-text-view' => "Esta revisão de página foi '''suprimida'''.
-Você pode vê-la; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].",
-'rev-deleted-no-diff' => "Não pode ver esta diferença entre revisões porque uma das revisões foi '''eliminada'''.
-Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
-'rev-suppressed-no-diff' => "Não pode ver esta diferença entre versões porque uma das revisões foi '''eliminada'''.",
-'rev-deleted-unhide-diff' => "Uma das revisões desta diferença entre revisões foi '''eliminada'''.
-Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
-Pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.",
-'rev-suppressed-unhide-diff' => "Uma das revisões desta diferença entre revisões foi '''suprimida'''.
-Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].
-Pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.",
-'rev-deleted-diff-view' => "Uma das revisões desta diferença entre revisões foi '''eliminada'''.
-Você pode ver a diferença entre revisões; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
-'rev-suppressed-diff-view' => "Uma das revisões desta diferença entre revisões foi '''suprimida'''.
-Você pode ver a diferença entre revisões; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].",
+'rev-deleted-text-permission' => 'Esta revisão de página foi <strong>eliminada</strong>.
+Encontrará detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].',
+'rev-deleted-text-unhide' => 'Esta revisão de página foi <strong>eliminada</strong>.
+Encontrará detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
+Pode mesmo assim [$1 ver esta revisão] se deseja prosseguir.',
+'rev-suppressed-text-unhide' => 'Esta revisão de página foi <strong>suprimida</strong>.
+Encontrará detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].
+Pode mesmo assim [$1 ver esta revisão] se deseja prosseguir.',
+'rev-deleted-text-view' => 'Esta revisão de página foi <strong>eliminada</strong>.
+Você pode vê-la; encontrará detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].',
+'rev-suppressed-text-view' => 'Esta revisão de página foi <strong>suprimida</strong>.
+Você pode vê-la; encontrará detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].',
+'rev-deleted-no-diff' => 'Não pode ver esta diferença entre revisões porque uma das revisões foi <strong>eliminada</strong>.
+Encontrará detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].',
+'rev-suppressed-no-diff' => 'Não pode ver esta diferença entre versões porque uma das revisões foi <strong>eliminada</strong>.',
+'rev-deleted-unhide-diff' => 'Uma das revisões desta diferença entre revisões foi <strong>eliminada</strong>.
+Encontrará detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
+Pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.',
+'rev-suppressed-unhide-diff' => 'Uma das revisões desta diferença entre revisões foi <strong>suprimida</strong>.
+Encontrará detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].
+Pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.',
+'rev-deleted-diff-view' => 'Uma das revisões desta diferença entre revisões foi <strong>eliminada</strong>.
+Pode ver a diferença entre revisões; encontrará detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].',
+'rev-suppressed-diff-view' => 'Uma das revisões desta diferença entre revisões foi <strong>suprimida</strong>.
+Pode ver a diferença entre revisões; encontrará detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].',
 'rev-delundel' => 'mostrar/esconder',
 'rev-showdeleted' => 'mostrar',
 'revisiondelete' => 'Eliminar/restaurar edições',
@@ -1299,8 +1299,8 @@ Você pode ver a diferença entre revisões; podem existir mais detalhes no [{{f
 'revdelete-show-file-submit' => 'Sim',
 'revdelete-selected' => "'''{{PLURAL:$2|Edição selecionada|Edições selecionadas}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Evento do registo selecionado|Eventos do registo selecionados}}:'''",
-'revdelete-text' => "'''Edições e eventos eliminados continuarão a aparecer no histórico e registos da página, mas partes do seu conteúdo estarão inacessíveis ao público.'''
-Outros administradores da {{SITENAME}} continuarão a poder aceder ao conteúdo escondido e podem restaurá-lo novamente através desta mesma interface, a menos que restrições adicionais sejam definidas.",
+'revdelete-text' => '<strong>Edições e operações eliminadas continuarão a aparecer no histórico da página e nos registos, mas partes do seu conteúdo estarão inacessíveis ao público.</strong>
+Outros administradores da {{SITENAME}} continuarão a poder aceder ao conteúdo escondido e podem repô-lo através desta mesma interface, a menos que restrições adicionais sejam definidas.',
 'revdelete-confirm' => 'Por favor confirme que pretende executar esta operação, que compreende as suas consequências e que o faz em concordância com as [[{{MediaWiki:Policy-url}}|políticas e recomendações]].',
 'revdelete-suppress-text' => "A supressão '''só''' deverá ser usada nos seguintes casos:
 * Informação potencialmente caluniosa, difamatória ou injuriosa
@@ -1417,7 +1417,7 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'nextn-title' => '{{PLURAL:$1|próximo|próximos}} $1 {{PLURAL:$1|resultado|resultados}}',
 'shown-title' => 'Mostrar $1 {{PLURAL:$1|resultado|resultados}} por página',
 'viewprevnext' => 'Ver ($1 {{int:pipe-separator}} $2) ($3).',
-'searchmenu-exists' => "'''Há uma página com o nome \"[[:\$1]]\" nesta wiki'''",
+'searchmenu-exists' => '<strong>Há uma página com o nome "[[:$1]]" nesta wiki.</strong> {{PLURAL:$2|0=|Veja também os outros resultados encontrados.}}',
 'searchmenu-new' => '<strong>Crie a página "[[:$1]]" nesta wiki!</strong> {{PLURAL:$2|0=|Veja também a página encontrada na pesquisa.|Veja também os resultados da pesquisa.}}',
 'searchprofile-articles' => 'Páginas de conteúdo',
 'searchprofile-project' => 'Páginas de ajuda e de projeto',
@@ -1765,6 +1765,7 @@ Se optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu
 'recentchanges-label-plusminus' => 'Alteração no tamanho da página, em bytes',
 'recentchanges-legend-heading' => "'''Legenda:'''",
 'recentchanges-legend-newpage' => '([[Special:NewPages|lista de páginas novas]])',
+'recentchanges-legend-plusminus' => '(<em>±123</em>)',
 'rcnotefrom' => 'Abaixo estão as mudanças desde <strong>$2</strong> (mostradas até <strong>$1</strong>).',
 'rclistfrom' => 'Mostrar as novas mudanças a partir das $1',
 'rcshowhideminor' => '$1 edições menores',
@@ -2753,6 +2754,7 @@ Para referência é apresentado abaixo o último registo de bloqueio:',
 'sp-contributions-blocked-notice-anon' => 'Este endereço IP está bloqueado neste momento.
 Para referência é apresentado abaixo o último registo de bloqueio:',
 'sp-contributions-search' => 'Pesquisar contribuições',
+'sp-contributions-suppresslog' => 'contribuições suprimidas',
 'sp-contributions-username' => 'Endereço IP ou utilizador:',
 'sp-contributions-toponly' => 'Mostrar somente as revisões mais recentes',
 'sp-contributions-newonly' => 'Mostrar só edições que são criações de páginas',
@@ -4173,8 +4175,8 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'revdelete-unrestricted' => 'restrições a administradores removidas',
 'logentry-move-move' => '$1 moveu a página $3 para $4',
 'logentry-move-move-noredirect' => '$1 moveu a página $3 para $4 sem deixar um redirecionamento',
-'logentry-move-move_redir' => '$1 moveu a página $3 para $4 sobre um redirecionamento',
-'logentry-move-move_redir-noredirect' => '$1 moveu a página $3 para $4 sobre um redirecionamento sem deixar um redirecionamento',
+'logentry-move-move_redir' => '$1 {{GENDER:$2|moveu}} a página $3 para $4 sobre um redirecionamento',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moveu}} a página $3 para $4 sobre um redirecionamento sem deixar um redirecionamento',
 'logentry-patrol-patrol' => '$1 {{GENDER:$2|marcou}} a revisão $4 da página $3 como patrulhada',
 'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|marcou}} automaticamente a revisão $4 da página $3 como patrulhada',
 'logentry-newusers-newusers' => 'A conta de utilizador $1 foi {{GENDER:$2|criada}}',

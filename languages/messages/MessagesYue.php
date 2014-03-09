@@ -689,6 +689,7 @@ $1',
 'login-throttled' => '你已經試咗太多次登入動作。請等多一陣再試過。',
 'loginlanguagelabel' => '語言：$1',
 'suspicious-userlogout' => '你去登出嘅要求已經拒絕咗，因為佢可能由壞咗嘅瀏覽器或者快取代理傳送。',
+'pt-createaccount' => '開戶口',
 
 # Email sending
 'php-mail-error-unknown' => '響 PHP 嘅 mail() 參數度出現咗未知嘅錯誤',

@@ -2620,6 +2620,7 @@ Najnovejši vnos v dnevniku blokad je naveden spodaj:',
 'sp-contributions-blocked-notice-anon' => 'Ta IP-naslov je trenutno blokiran.
 Najnovejši vnos v dnevniku blokad je naveden spodaj:',
 'sp-contributions-search' => 'Išči prispevke',
+'sp-contributions-suppresslog' => 'zatrti uporabnikovi prispevki',
 'sp-contributions-username' => 'IP-naslov ali uporabniško ime:',
 'sp-contributions-toponly' => 'Prikaži samo vrhnje redakcije',
 'sp-contributions-newonly' => 'Prikaži samo urejanja, ki so ustvarila nove strani',

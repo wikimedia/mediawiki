@@ -107,6 +107,7 @@
  * @author Od1n
  * @author Onecountry
  * @author Opraco
+ * @author Orlodrim
  * @author OsamaK
  * @author PhiLiP
  * @author Piangpha
@@ -660,8 +661,8 @@ See also:
 {{Identical|View}}',
 'toolbox' => 'The title of the toolbox below the search menu.
 {{Identical|Tool}}',
-'userpage' => '',
-'projectpage' => 'Used as link text in Talk page of project page.',
+'userpage' => 'Used in user talk pages as the text of the link to the user page, with the Cologne Blue skin.',
+'projectpage' => 'Used as link text in Talk page of project page with the Cologne Blue skin.',
 'imagepage' => 'Used as link text in Talk page of file page.',
 'mediawikipage' => 'Used as link text in Talk page of MediaWiki message page.',
 'templatepage' => 'Used as link text in Talk page of template page.',
