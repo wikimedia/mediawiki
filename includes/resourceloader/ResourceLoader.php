@@ -935,7 +935,7 @@ class ResourceLoader {
 	 */
 	public static function makeLoaderImplementScript( $name, $scripts, $styles, $messages ) {
 		if ( is_string( $scripts ) ) {
-			$scripts = new XmlJsCode( "function () {\n{$scripts}\n}" );
+			$scripts = new XmlJsCode( "function ( $, jQuery ) {\n{$scripts}\n}" );
 		} elseif ( !is_array( $scripts ) ) {
 			throw new MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
 		}
