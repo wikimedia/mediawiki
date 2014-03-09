@@ -818,13 +818,13 @@ class ApiParse extends ApiBase {
 		$p = $this->getModulePrefix();
 
 		return array(
-			'Parses content and returns parser output',
+			'Parses content and returns parser output.',
 			'See the various prop-Modules of action=query to get information from the current' .
-				'version of a page',
+				'version of a page.',
 			'There are several ways to specify the text to parse:',
 			"1) Specify a page or revision, using {$p}page, {$p}pageid, or {$p}oldid.",
 			"2) Specify content explicitly, using {$p}text, {$p}title, and {$p}contentmodel.",
-			"3) Specify only a summary to parse. {$p}prop should be given an empty value",
+			"3) Specify only a summary to parse. {$p}prop should be given an empty value.",
 		);
 	}
 

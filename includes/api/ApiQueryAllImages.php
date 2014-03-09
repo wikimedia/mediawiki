@@ -394,7 +394,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Enumerate all images sequentially';
+		return 'Enumerate all images sequentially.';
 	}
 
 	public function getPossibleErrors() {

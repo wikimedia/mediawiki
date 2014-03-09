@@ -254,7 +254,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'List all categories the page(s) belong to';
+		return 'List all categories the page(s) belong to.';
 	}
 
 	public function getPossibleErrors() {

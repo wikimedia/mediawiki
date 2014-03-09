@@ -185,7 +185,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Returns all interwiki links from the given page(s)';
+		return 'Returns all interwiki links from the given page(s).';
 	}
 
 	public function getPossibleErrors() {

@@ -217,7 +217,7 @@ class ApiRevisionDelete extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Delete/undelete revisions';
+		return 'Delete/undelete revisions.';
 	}
 
 	public function getPossibleErrors() {

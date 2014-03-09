@@ -249,7 +249,7 @@ class ApiQueryRedirects extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Returns all redirects to the given page(s)';
+		return 'Returns all redirects to the given page(s).';
 	}
 
 	public function getExamples() {

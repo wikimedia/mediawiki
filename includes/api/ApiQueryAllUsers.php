@@ -438,7 +438,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Enumerate all registered users';
+		return 'Enumerate all registered users.';
 	}
 
 	public function getPossibleErrors() {

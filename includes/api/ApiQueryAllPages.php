@@ -341,7 +341,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Enumerate all pages sequentially in a given namespace';
+		return 'Enumerate all pages sequentially in a given namespace.';
 	}
 
 	public function getPossibleErrors() {

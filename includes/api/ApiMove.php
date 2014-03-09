@@ -272,7 +272,7 @@ class ApiMove extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Move a page';
+		return 'Move a page.';
 	}
 
 	public function getPossibleErrors() {

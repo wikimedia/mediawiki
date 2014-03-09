@@ -150,7 +150,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Returns all external URLs (not interwikis) from the given page(s)';
+		return 'Returns all external URLs (not interwikis) from the given page(s).';
 	}
 
 	public function getPossibleErrors() {

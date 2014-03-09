@@ -188,7 +188,7 @@ class ApiQueryTags extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'List change tags';
+		return 'List change tags.';
 	}
 
 	public function getExamples() {

@@ -257,7 +257,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Enumerate pages that contain a given URL';
+		return 'Enumerate pages that contain a given URL.';
 	}
 
 	public function getPossibleErrors() {

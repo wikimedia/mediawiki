@@ -187,10 +187,10 @@ class ApiOptions extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Change preferences of the current user',
+			'Change preferences of the current user.',
 			'Only options which are registered in core or in one of installed extensions,',
 			'or as options with keys prefixed with \'userjs-\' (intended to be used by user',
-			'scripts), can be set'
+			'scripts), can be set.'
 		);
 	}
 

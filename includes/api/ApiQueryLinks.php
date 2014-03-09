@@ -233,7 +233,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return "Returns all {$this->description}s from the given page(s)";
+		return "Returns all {$this->description}s from the given page(s).";
 	}
 
 	public function getExamples() {

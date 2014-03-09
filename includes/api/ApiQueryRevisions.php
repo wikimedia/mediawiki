@@ -874,12 +874,12 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 	public function getDescription() {
 		return array(
-			'Get revision information',
+			'Get revision information.',
 			'May be used in several ways:',
-			' 1) Get data about a set of pages (last revision), by setting titles or pageids parameter',
-			' 2) Get revisions for one given page, by using titles/pageids with start/end/limit params',
-			' 3) Get data about a set of revisions by setting their IDs with revids parameter',
-			'All parameters marked as (enum) may only be used with a single page (#2)'
+			' 1) Get data about a set of pages (last revision), by setting titles or pageids parameter.',
+			' 2) Get revisions for one given page, by using titles/pageids with start/end/limit params.',
+			' 3) Get data about a set of revisions by setting their IDs with revids parameter.',
+			'All parameters marked as (enum) may only be used with a single page (#2).'
 		);
 	}
 
