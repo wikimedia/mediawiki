@@ -339,6 +339,13 @@ changes to languages because of Bugzilla reports.
 * The locations of resources have been split between upstream libraries, now in
   resources/lib/, local libaries in resources/src/, and local forks of upstream
   libraries, also in resources/src/.
+* BREAKING CHANGE: The automatically-generated function closure with which
+  ResourceLoader wraps all modules' JavaScript code now binds the identifier
+  names 'jQuery' and '$' to the jQuery object of the version of jQuery that is
+  bundled with MediaWiki. If you bind these names to other objects in global
+  scope (like Zepto.js or document.querySelectorAll, for example) you will need
+  to use different names to or re-bind them at the top of each
+  ResourceLoader-loaded module.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
