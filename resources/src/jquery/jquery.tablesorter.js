@@ -675,7 +675,8 @@
 				new RegExp( /(https?|ftp|file):\/\// )
 			],
 			isoDate: [
-				new RegExp( /^\d{4}[\/\-]\d{1,2}[\/\-]\d{1,2}$/ )
+				new RegExp( /^(-|\+)?\d{4}-[01]\d-[0-3]\d([T\s]((([01]\d|2[0-3])(:?[0-5]\d)?|24\:?00)?(:?([0-5]\d))?([\.,]\d+)?)([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?/ ),
+				new RegExp( /^(-|\+)?\d{4}-[01]\d-[0-3]\d/ )
 			],
 			usLongDate: [
 				new RegExp( /^[A-Za-z]{3,10}\.? [0-9]{1,2}, ([0-9]{4}|'?[0-9]{2}) (([0-2]?[0-9]:[0-5][0-9])|([0-1]?[0-9]:[0-5][0-9]\s(AM|PM)))$/ )
@@ -1083,8 +1084,16 @@
 			return ts.rgx.isoDate[0].test( s );
 		},
 		format: function ( s ) {
-			return $.tablesorter.formatFloat( ( s !== '' ) ? new Date( s.replace(
-			new RegExp( /-/g ), '/' ) ).getTime() : '0' );
+			var isodate,
+				matches;
+			if ( !Date.prototype.toISOString ) {
+				// Old browsers don't understand iso, Fallback to US date parsing and ignore the time part.
+				matches = $.trim(s).match( ts.rgx.isoDate[1] );
+				isodate = new Date( matches[1] + '/' + matches[2] + '/' + matches[3] );
+			} else {
+				isodate = new Date( $.trim( s ) );
+			}
+			return $.tablesorter.formatFloat( ( isodate !== undefined ) ? isodate.getTime() : 0 );
 		},
 		type: 'numeric'
 	} );

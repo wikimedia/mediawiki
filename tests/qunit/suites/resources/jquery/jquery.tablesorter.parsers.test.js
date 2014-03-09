@@ -5,7 +5,7 @@
 	 */
 
 	var text, ipv4,
-		simpleMDYDatesInMDY, simpleMDYDatesInDMY, oldMDYDates, complexMDYDates, clobberedDates, MYDates, YDates,
+		simpleMDYDatesInMDY, simpleMDYDatesInDMY, oldMDYDates, complexMDYDates, clobberedDates, MYDates, YDates, ISODates,
 		currencyData, transformedCurrencyData;
 
 	QUnit.module( 'jquery.tablesorter.parsers', QUnit.newMwEnvironment( {
@@ -172,6 +172,41 @@
 		['2010 BC',	false, '99999999', '4-digit year BC']
 	];
 	parserTest( 'Y Dates', 'date', YDates );
+
+	ISODates = [
+		['2000',		false, 946684800000, 'Plain 4-digit year'],
+		['2000-01',		false, 946684800000, 'Year with month'],
+		['2000-01-01',	true, 946684800000, 'Year with month and day'],
+		['2000-13-01',	true, 0, 'Non existant month'],
+		['2000-01-32',	true, 0, 'Non existant day'],
+		['2000-01-01T12:30:30',		true, 946729830000, 'Date with a time'],
+		['2000-01-01T12:30:30Z',	true, 946729830000, 'Date with a UTC+0 time'],
+		['2000-01-01T24:30:30Z',	true, 0, 'Date with invalid hours'],
+		['2000-01-01T12:60:30Z',	true, 0, 'Date with invalid minutes'],
+		['2000-01-01T12:30:61Z',	true, 0, 'Date with invalid amount of seconds'],
+		['2000-01-01T23:59:59Z',	true, 946771199000, 'Edges of time'],
+		['2000-01-01T12:30:30.111Z',	true, 946729830111, 'Date with milliseconds'],
+		['2000-01-01T12:30:30.11111Z',	true, 946729830111, 'Date with too high precision'],
+		['2000-01-01T12:30:30,111Z',	true, 0, 'Date with milliseconds and , separator'],
+		['2000-01-01T12:30:30+01:00',	true, 946726230000, 'Date time in UTC+1'],
+		['2000-01-01T12:30:30+01:30',	true, 946724430000, 'Date time in UTC+1:30'],
+		['2000-01-01T12:30:30-01:00',	true, 946733430000, 'Date time in UTC-1'],
+		['2000-01-01T12:30:30-01:30',	true, 946735230000, 'Date time in UTC-1:30'],
+		['2000-01-01T12:30:30.111+01:00', true, 946726230111, 'Date time and milliseconds in UTC+1 ']
+		/* Disable testcases, because behavior is browser dependant */
+		/*
+		['2000-11-31',	true, 0, '31 days in 30 day month'],
+		['50-01-01',	false, -60589296000000, 'Year with just two digits'],
+		['-1000-01-01',	true, -93724128000000, 'Year BC'],
+		['+1000-01-01',	true, -30610224000000, 'Date with +sign'],
+		['2000-01-01 12:30:30Z',	true, 0, 'Date and time with no T marker'],
+		['2000-01-01T12:30:60Z',	true, 946729860000, 'Date with leap second'],
+		['2000-01-01T12:30:30-24:00',	true, 946816230000, 'Date time in UTC-24'],
+		['2000-01-01T12:30:30+24:00',	true, 946643430000, 'Date time in UTC+24'],
+		['2000-01-01T12:30:30+0100',	true, 946726230000, 'Time without separator in timezone offset']
+		*/
+	];
+	parserTest( 'ISO Dates', 'isoDate', ISODates );
 
 	currencyData = [
 		['1.02 $',	true, 1.02, ''],
