@@ -153,6 +153,24 @@
 			['January 01 2010'],
 			['January 16 2010'],
 			['February 05 2010']
+		],
+		isoDateSorting = [
+			['2010-02-01'],
+			['2009-12-25T12:30:45.001Z'],
+			['2010-01-31'],
+			['2009'],
+			['2009-12-25T12:30:45'],
+			['2009-12-25T12:30:45.111'],
+			['2009-12-25T12:30:45+01:00']
+		],
+		isoDateSortingSorted = [
+			['2009'],
+			['2009-12-25T12:30:45'],
+			['2009-12-25T12:30:45+01:00'],
+			['2009-12-25T12:30:45.001Z'],
+			['2009-12-25T12:30:45.111'],
+			['2010-01-31'],
+			['2010-02-01']
 		];
 
 	QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
@@ -1048,6 +1066,19 @@
 		['date'],
 		correctDateSorting2,
 		correctDateSortingSorted2,
+		function ( $table ) {
+			mw.config.set( 'wgDefaultDateFormat', 'dmy' );
+
+			$table.tablesorter();
+			$table.find( '.headerSort:eq(0)' ).click();
+		}
+	);
+
+	tableTest(
+		'ISO date sorting',
+		['isoDate'],
+		isoDateSorting,
+		isoDateSortingSorted,
 		function ( $table ) {
 			mw.config.set( 'wgDefaultDateFormat', 'dmy' );
 
