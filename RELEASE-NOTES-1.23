@@ -299,6 +299,13 @@ changes to languages because of Bugzilla reports.
   us to extend parser tests to accommodate additional input/output
   pairs, such as "!!html/parsoid" (for the output of the Parsoid
   parser, where it differs from the PHP parser).
+* BREAKING CHANGE: The automatically-generated function closure with which
+  ResourceLoader wraps all modules' JavaScript code now binds the identifier
+  names 'jQuery' and '$' to the jQuery object of the version of jQuery that is
+  bundled with MediaWiki. If you bind these names to other objects in global
+  scope (like Zepto.js or document.querySelectorAll, for example) you will need
+  to use different names to or re-bind them at the top of each
+  ResourceLoader-loaded module.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
