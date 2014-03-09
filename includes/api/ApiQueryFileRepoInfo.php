@@ -104,7 +104,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Return meta information about image repositories configured on the wiki.';
+		return 'Return meta information about image repositories configured on the wiki';
 	}
 
 	public function getExamples() {

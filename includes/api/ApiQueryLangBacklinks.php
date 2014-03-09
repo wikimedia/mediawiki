@@ -231,7 +231,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 			'Can be used to find all links with a language code, or',
 			'all links to a title (with a given language).',
 			'Using neither parameter is effectively "All Language Links".',
-			'Note that this may not consider language links added by extensions.',
+			'Note that this may not consider language links added by extensions',
 		);
 	}
 
