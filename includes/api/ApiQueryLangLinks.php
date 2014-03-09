@@ -213,7 +213,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Returns all interlanguage links from the given page(s)';
+		return 'Returns all interlanguage links from the given page(s).';
 	}
 
 	public function getPossibleErrors() {

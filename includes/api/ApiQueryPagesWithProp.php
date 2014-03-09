@@ -174,7 +174,7 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'List all pages using a given page prop';
+		return 'List all pages using a given page prop.';
 	}
 
 	public function getExamples() {

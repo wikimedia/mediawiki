@@ -125,7 +125,7 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Search the wiki using the OpenSearch protocol';
+		return 'Search the wiki using the OpenSearch protocol.';
 	}
 
 	public function getExamples() {

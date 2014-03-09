@@ -143,7 +143,7 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Returns information about the given categories';
+		return 'Returns information about the given categories.';
 	}
 
 	public function getExamples() {

@@ -266,7 +266,7 @@ class ApiFeedWatchlist extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Returns a watchlist feed';
+		return 'Returns a watchlist feed.';
 	}
 
 	public function getPossibleErrors() {

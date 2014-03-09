@@ -534,13 +534,13 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	public function getDescription() {
 		switch ( $this->getModuleName() ) {
 			case 'backlinks':
-				return 'Find all pages that link to the given page';
+				return 'Find all pages that link to the given page.';
 			case 'embeddedin':
-				return 'Find all pages that embed (transclude) the given title';
+				return 'Find all pages that embed (transclude) the given title.';
 			case 'imageusage':
-				return 'Find all pages that use the given image title';
+				return 'Find all pages that use the given image title.';
 			default:
-				ApiBase::dieDebug( __METHOD__, 'Unknown module name' );
+				ApiBase::dieDebug( __METHOD__, 'Unknown module name.' );
 		}
 	}
 

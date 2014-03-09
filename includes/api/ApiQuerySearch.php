@@ -416,7 +416,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Perform a full text search';
+		return 'Perform a full text search.';
 	}
 
 	public function getPossibleErrors() {

@@ -152,7 +152,7 @@ class ApiHelp extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Display this help screen. Or the help screen for the specified module';
+		return 'Display this help screen. Or the help screen for the specified module.';
 	}
 
 	public function getExamples() {

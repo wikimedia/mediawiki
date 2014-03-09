@@ -167,7 +167,7 @@ class ApiCreateAccount extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Create a new user account';
+		return 'Create a new user account.';
 	}
 
 	public function mustBePosted() {

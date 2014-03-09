@@ -143,7 +143,7 @@ class ApiUndelete extends ApiBase {
 	public function getDescription() {
 		return array(
 			'Restore certain revisions of a deleted page. A list of deleted revisions ',
-			'(including timestamps) can be retrieved through list=deletedrevs'
+			'(including timestamps) can be retrieved through list=deletedrevs.'
 		);
 	}
 

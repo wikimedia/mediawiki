@@ -208,7 +208,7 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Returns a user contributions feed';
+		return 'Returns a user contributions feed.';
 	}
 
 	public function getPossibleErrors() {

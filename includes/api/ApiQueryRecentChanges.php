@@ -892,7 +892,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Enumerate recent changes';
+		return 'Enumerate recent changes.';
 	}
 
 	public function getPossibleErrors() {

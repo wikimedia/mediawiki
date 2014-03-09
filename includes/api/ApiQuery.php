@@ -736,7 +736,7 @@ class ApiQuery extends ApiBase {
 				'from the MediaWiki databases,',
 			'and is loosely based on the old query.php interface.',
 			'All data modifications will first have to use query to acquire a ' .
-				'token to prevent abuse from malicious sites'
+				'token to prevent abuse from malicious sites.'
 		);
 	}
 

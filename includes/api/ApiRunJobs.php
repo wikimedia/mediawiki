@@ -161,7 +161,7 @@ class ApiRunJobs extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Perform periodic tasks or run jobs from the queue';
+		return 'Perform periodic tasks or run jobs from the queue.';
 	}
 
 	public function getExamples() {

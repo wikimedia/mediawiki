@@ -225,7 +225,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Enumerate all categories';
+		return 'Enumerate all categories.';
 	}
 
 	public function getExamples() {

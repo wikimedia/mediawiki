@@ -131,7 +131,7 @@ class ApiUnblock extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Unblock a user';
+		return 'Unblock a user.';
 	}
 
 	public function getPossibleErrors() {

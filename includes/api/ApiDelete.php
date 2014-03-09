@@ -240,7 +240,7 @@ class ApiDelete extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Delete a page';
+		return 'Delete a page.';
 	}
 
 	public function getPossibleErrors() {

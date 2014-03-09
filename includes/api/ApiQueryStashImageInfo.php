@@ -129,7 +129,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 	}
 
 	public function getDescription() {
-		return 'Returns image information for stashed images';
+		return 'Returns image information for stashed images.';
 	}
 
 	public function getExamples() {

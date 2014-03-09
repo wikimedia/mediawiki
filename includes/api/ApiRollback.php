@@ -141,7 +141,7 @@ class ApiRollback extends ApiBase {
 	public function getDescription() {
 		return array(
 			'Undo the last edit to the page. If the last user who edited the page made',
-			'multiple edits in a row, they will all be rolled back'
+			'multiple edits in a row, they will all be rolled back.'
 		);
 	}
 

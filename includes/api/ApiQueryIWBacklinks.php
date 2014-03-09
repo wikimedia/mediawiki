@@ -231,7 +231,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 		return array( 'Find all pages that link to the given interwiki link.',
 			'Can be used to find all links with a prefix, or',
 			'all links to a title (with a given prefix).',
-			'Using neither parameter is effectively "All IW Links"',
+			'Using neither parameter is effectively "All IW Links".',
 		);
 	}
 
