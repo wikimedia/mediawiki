@@ -141,7 +141,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Get various properties defined in the page content';
+		return 'Get various properties defined in the page content.';
 	}
 
 	public function getExamples() {

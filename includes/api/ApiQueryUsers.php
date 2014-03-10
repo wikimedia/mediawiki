@@ -387,7 +387,7 @@ class ApiQueryUsers extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Get information about a list of users';
+		return 'Get information about a list of users.';
 	}
 
 	public function getExamples() {

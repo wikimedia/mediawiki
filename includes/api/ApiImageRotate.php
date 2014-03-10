@@ -203,7 +203,7 @@ class ApiImageRotate extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Rotate one or more images';
+		return 'Rotate one or more images.';
 	}
 
 	public function needsToken() {

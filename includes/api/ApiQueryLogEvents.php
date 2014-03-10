@@ -561,7 +561,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Get events from logs';
+		return 'Get events from logs.';
 	}
 
 	public function getPossibleErrors() {

@@ -211,7 +211,7 @@ class ApiWatch extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Add or remove pages from/to the current user\'s watchlist';
+		return 'Add or remove pages from/to the current user\'s watchlist.';
 	}
 
 	public function getPossibleErrors() {

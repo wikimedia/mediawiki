@@ -367,7 +367,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Enumerate all deleted files sequentially';
+		return 'Enumerate all deleted files sequentially.';
 	}
 
 	public function getPossibleErrors() {

@@ -180,7 +180,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Returns all images contained on the given page(s)';
+		return 'Returns all images contained on the given page(s).';
 	}
 
 	public function getExamples() {

@@ -408,7 +408,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'List all blocked users and IP addresses';
+		return 'List all blocked users and IP addresses.';
 	}
 
 	public function getPossibleErrors() {

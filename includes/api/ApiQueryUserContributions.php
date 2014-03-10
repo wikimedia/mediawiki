@@ -601,7 +601,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Get all edits by a user';
+		return 'Get all edits by a user.';
 	}
 
 	public function getPossibleErrors() {

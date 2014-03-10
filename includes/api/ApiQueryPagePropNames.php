@@ -102,7 +102,7 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'List all page prop names in use on the wiki';
+		return 'List all page prop names in use on the wiki.';
 	}
 
 	public function getExamples() {

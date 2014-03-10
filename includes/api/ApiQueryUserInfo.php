@@ -299,7 +299,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Get information about the current user';
+		return 'Get information about the current user.';
 	}
 
 	public function getExamples() {

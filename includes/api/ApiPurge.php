@@ -182,7 +182,7 @@ class ApiPurge extends ApiBase {
 
 	public function getDescription() {
 		return array( 'Purge the cache for the given titles.',
-			'Requires a POST request if the user is not logged in'
+			'Requires a POST request if the user is not logged in.'
 		);
 	}
 

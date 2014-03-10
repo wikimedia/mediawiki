@@ -275,7 +275,7 @@ class ApiQueryContributors extends ApiQueryBase {
 
 	public function getDescription() {
 		return 'Get the list of logged-in contributors and ' .
-			'the count of anonymous contributors to a page';
+			'the count of anonymous contributors to a page.';
 	}
 
 	public function getExamples() {

@@ -273,7 +273,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		return array( 'Update the notification timestamp for watched pages.',
 			'This affects the highlighting of changed pages in the watchlist and history,',
 			'and the sending of email when the "Email me when a page on my watchlist is',
-			'changed" preference is enabled'
+			'changed" preference is enabled.'
 		);
 	}
 

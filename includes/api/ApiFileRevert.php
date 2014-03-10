@@ -167,7 +167,7 @@ class ApiFileRevert extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Revert a file to an old version'
+			'Revert a file to an old version.'
 		);
 	}
 

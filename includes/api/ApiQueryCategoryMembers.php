@@ -401,7 +401,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'List all pages in a given category';
+		return 'List all pages in a given category.';
 	}
 
 	public function getPossibleErrors() {

@@ -205,7 +205,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return "Get all pages on the logged in user's watchlist";
+		return "Get all pages on the logged in user's watchlist.";
 	}
 
 	public function getPossibleErrors() {

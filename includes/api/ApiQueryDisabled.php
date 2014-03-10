@@ -50,7 +50,7 @@ class ApiQueryDisabled extends ApiQueryBase {
 
 	public function getDescription() {
 		return array(
-			'This module has been disabled'
+			'This module has been disabled.'
 		);
 	}
 
