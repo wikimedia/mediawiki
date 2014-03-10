@@ -244,6 +244,12 @@ class SpecialContributions extends IncludableSpecialPage {
 	 */
 	protected function contributionsSub( $userObj ) {
 		if ( $userObj->isAnon() ) {
+
+			// To show a warning message that the user being searched for doesn't exists.
+			if ( User::isIP( $userObj ) )
+				$invalidName = $this->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
+					array( 'userpage-userdoesnotexist-view', wfEscapeWikiText( $userObj ) ) );
+
 			$user = htmlspecialchars( $userObj->getName() );
 		} else {
 			$user = Linker::link( $userObj->getUserPage(), htmlspecialchars( $userObj->getName() ) );
@@ -280,7 +286,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			}
 		}
 
-		return $this->msg( 'contribsub2' )->rawParams( $user, $links )->params( $userObj->getName() );
+		return $this->msg( 'contribsub2' )->rawParams( $user, $links )->params( $userObj->getName() ) . $invalidName;
 	}
 
 	/**
