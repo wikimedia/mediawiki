@@ -6261,6 +6261,8 @@ See examples: [[Special:Contributions/x]] and [[Special:DeletedContributions/x]]
 
 Parameters:
 * $1 - (Unused) the user name',
+
+'nouserfound' => 'This message is used in [[Special:Contributions]]. This is used to show that the name the the user has searched doesnt exists in our databases. $1 is the name, that the user is searching for.',
 'uctop' => 'This message is used in [[Special:Contributions]]. It is used to show that a particular edit was the last made to a page. Example: 09:57, 11 February 2008 (hist) (diff) Pagename‎ (edit summary) (current)
 {{Identical|Top}}',
 'month' => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a dropdown box to select a specific month to view the edits made in that month, and the earlier months. See also {{msg-mw|year}}.',

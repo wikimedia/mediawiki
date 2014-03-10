@@ -93,6 +93,11 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( $this->opts['contribs'] != 'newbie' ) {
 			$target = $nt->getText();
 			$out->addSubtitle( $this->contributionsSub( $userObj ) );
+
+			// Display warning message when the queried user account doesn't exists.
+			if ( $userObj->isAnon() && !User::isIP($userObj) )
+				$out->addHTML( $this->msg( 'nouserfound' )->rawParams( $userObj )->plain() );
+
 			$out->setHTMLTitle( $this->msg(
 				'pagetitle',
 				$this->msg( 'contributions-title', $target )->plain()
@@ -194,7 +199,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				'associated' => $this->opts['associated'],
 			) );
 
-			if ( !$pager->getNumRows() ) {
+			if ( !( $userObj->isAnon() && !User::isIP( $userObj ) ) && !$pager->getNumRows() ) {
 				$out->addWikiMsg( 'nocontribs', $target );
 			} else {
 				# Show a message about slave lag, if applicable
