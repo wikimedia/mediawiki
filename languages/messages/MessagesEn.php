@@ -3258,15 +3258,16 @@ $1',
 'blanknamespace'                => '(Main)',
 
 # Contributions
-'contributions'         => '{{GENDER:$1|User}} contributions',
-'contributions-summary' => '', # do not translate or duplicate this message to other languages
-'contributions-title'   => 'User contributions for $1',
-'mycontris'             => 'Contributions',
-'contribsub2'           => 'For {{GENDER:$3|$1}} ($2)',
-'nocontribs'            => 'No changes were found matching these criteria.',
-'uctop'                 => '(current)',
-'month'                 => 'From month (and earlier):',
-'year'                  => 'From year (and earlier):',
+'contributions'                  => '{{GENDER:$1|User}} contributions',
+'contributions-summary'          => '', # do not translate or duplicate this message to other languages
+'contributions-title'            => 'User contributions for $1',
+'mycontris'                      => 'Contributions',
+'contribsub2'                    => 'For {{GENDER:$3|$1}} ($2)',
+'nocontribs'                     => 'No changes were found matching these criteria.',
+'contributions-userdoesnotexist' => 'User account $1 is not registered',
+'uctop'                          => '(current)',
+'month'                          => 'From month (and earlier):',
+'year'                           => 'From year (and earlier):',
 
 'sp-contributions-newbies'             => 'Show contributions of new accounts only',
 'sp-contributions-newbies-sub'         => 'For new accounts',

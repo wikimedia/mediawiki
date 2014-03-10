@@ -2241,6 +2241,7 @@ $wgMessageStructure = array(
 		'mycontris',
 		'contribsub2',
 		'nocontribs',
+		'contributions-userdoesnotexist',
 		'uctop',
 		'month',
 		'year',
