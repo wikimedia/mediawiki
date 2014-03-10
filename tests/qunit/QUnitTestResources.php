@@ -65,6 +65,7 @@ return array(
 			'tests/qunit/suites/resources/mediawiki/mediawiki.util.test.js',
 			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.test.js',
 			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.parse.test.js',
+			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.watch.test.js',
 			'tests/qunit/suites/resources/mediawiki.special/mediawiki.special.recentchanges.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.language.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cldr.test.js',
