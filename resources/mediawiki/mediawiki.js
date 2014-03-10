@@ -1052,12 +1052,12 @@ var mw = ( function ( $, undefined ) {
 					// Can't use jQuery.getScript because that only uses <script> for cross-domain,
 					// it uses XHR and eval for same-domain scripts, which we don't want because it
 					// messes up line numbers.
-					// The below is based on jQuery ([jquery@1.8.2]/src/ajax/script.js)
+					// The below is based on jQuery ([jquery@1.9.1]/src/ajax/script.js)
 
-					// IE-safe way of getting the <head>. document.head isn't supported
-					// in old IE, and doesn't work when in the <head>.
+					// IE-safe way of getting an append target. In old IE document.head isn't supported
+					// and its getElementsByTagName can't find <head> until </head> is parsed.
 					done = false;
-					head = document.getElementsByTagName( 'head' )[0] || document.body;
+					head = document.head || document.getElementsByTagName( 'head' )[0] || document.documentElement;
 
 					script = document.createElement( 'script' );
 					script.async = true;
@@ -1099,7 +1099,9 @@ var mw = ( function ( $, undefined ) {
 							document.body.appendChild( script );
 						} );
 					} else {
-						head.appendChild( script );
+						// Circumvent IE6 bugs with base elements (jqbug.com/2709, jqbug.com/4378)
+						// by prepending instead of appending.
+						head.insertBefore( script, head.firstChild );
 					}
 				} else {
 					document.write( mw.html.element( 'script', { 'src': src }, '' ) );
