@@ -350,7 +350,7 @@ class SpecialPage {
 	function setHeaders() {
 		$out = $this->getOutput();
 		$out->setArticleRelated( false );
-		$out->setRobotPolicy( "noindex,nofollow" );
+		$out->setRobotPolicy( $this->getRobotPolicy() );
 		$out->setPageTitle( $this->getDescription() );
 	}
 
@@ -585,6 +585,17 @@ class SpecialPage {
 	 */
 	public function getFullTitle() {
 		return $this->getContext()->getTitle();
+	}
+
+	/**
+	 * Return the robot policy. Derived classes that override this can change
+	 * the robot policy set by setHeaders() from the default 'noindex,nofollow'.
+	 *
+	 * @return string
+	 * @since 1.23
+	 */
+	protected function getRobotPolicy() {
+		return 'noindex,nofollow';
 	}
 
 	/**
