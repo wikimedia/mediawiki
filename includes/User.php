@@ -4736,28 +4736,35 @@ class User {
 			// Don't bother storing default values
 			$defaultOption = self::getDefaultOption( $key );
 			if ( ( is_null( $defaultOption ) &&
-					!( $value === false || is_null( $value ) ) ) ||
-					$value != $defaultOption ) {
+				!( $value === false || is_null( $value ) ) ) ||
+				$value != $defaultOption
+			) {
 				$insert_rows[] = array(
-						'up_user' => $userId,
-						'up_property' => $key,
-						'up_value' => $value,
-					);
+					'up_user' => $userId,
+					'up_property' => $key,
+					'up_value' => $value,
+				);
 			}
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		$hasRows = $dbw->selectField( 'user_properties', '1',
-			array( 'up_user' => $userId ), __METHOD__ );
-
-		if ( $hasRows ) {
-			// Only do this delete if there is something there. A very large portion of
-			// calls to this function are for setting 'rememberpassword' for new accounts.
-			// Doing this delete for new accounts with no rows in the table rougly causes
-			// gap locks on [max user ID,+infinity) which causes high contention since many
-			// updates will pile up on each other since they are for higher (newer) user IDs.
-			$dbw->delete( 'user_properties', array( 'up_user' => $userId ), __METHOD__ );
+		// Find and delete any prior preference rows...
+		$res = $dbw->select( 'user_properties',
+			array( 'up_property' ), array( 'up_user' => $userId ), __METHOD__ );
+		$priorKeys = array();
+		foreach ( $res as $row ) {
+			$priorKeys[] = $row->up_property;
 		}
+		if ( count( $priorKeys ) ) {
+			// Do the DELETE by PRIMARY KEY for prior rows. A very large portion of
+			// calls to this function are for setting 'rememberpassword' for new accounts.
+			// Doing a blanket per-user DELETE for new accounts with no rows in the table
+			// causes gap locks on [max user ID,+infinity) which causes high contention since
+			// updates will pile up on each other as they are for higher (newer) user IDs.
+			$dbw->delete( 'user_properties',
+				array( 'up_user' => $userId, 'up_property' => $priorKeys ), __METHOD__ );
+		}
+		// Insert the new preference rows
 		$dbw->insert( 'user_properties', $insert_rows, __METHOD__, array( 'IGNORE' ) );
 	}
 
