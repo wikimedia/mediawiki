@@ -103,7 +103,26 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 
 		if ( !is_null( $params['action'] ) ) {
-			list( $type, $action ) = explode( '/', $params['action'] );
+			// Do validation of action param, list of allowed actions can contains wildcards
+			// Allow the param, when the actions is in the list or a wildcard version is listed.
+			$logAction = $params['action'];
+			if ( strpos( $logAction, '/' ) === false ) {
+				// all items in the list have a slash
+				$valid = false;
+			} else {
+				$logActions = array_flip( $this->getAllowedLogActions() );
+				list( $type, $action ) = explode( '/', $logAction, 2 );
+				$valid = isset( $logActions[$logAction] ) || isset( $logActions[$type . '/*'] );
+			}
+
+			if ( !$valid ) {
+				$valueName = $this->encodeParamName( 'action' );
+				$this->dieUsage(
+					"Unrecognized value for parameter '$valueName': {$logAction}",
+					"unknown_$valueName"
+				);
+			}
+
 			$this->addWhereFld( 'log_type', $type );
 			$this->addWhereFld( 'log_action', $action );
 		} elseif ( !is_null( $params['type'] ) ) {
@@ -404,6 +423,12 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		return $vals;
 	}
 
+	private function getAllowedLogActions() {
+		global $wgLogActions, $wgLogActionsHandlers;
+
+		return array_keys( array_merge( $wgLogActions, $wgLogActionsHandlers ) );
+	}
+
 	public function getCacheMode( $params ) {
 		if ( $this->userCanSeeRevDel() ) {
 			return 'private';
@@ -420,8 +445,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 	}
 
-	public function getAllowedParams() {
-		global $wgLogTypes, $wgLogActions, $wgLogActionsHandlers;
+	public function getAllowedParams( $flags = 0 ) {
+		global $wgLogTypes;
 
 		return array(
 			'prop' => array(
@@ -444,7 +469,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => $wgLogTypes
 			),
 			'action' => array(
-				ApiBase::PARAM_TYPE => array_keys( array_merge( $wgLogActions, $wgLogActionsHandlers ) )
+				// validation on request is done in execute()
+				ApiBase::PARAM_TYPE => ( $flags & ApiBase::GET_VALUES_FOR_HELP )
+					? $this->getAllowedLogActions()
+					: null
 			),
 			'start' => array(
 				ApiBase::PARAM_TYPE => 'timestamp'
@@ -491,7 +519,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				' tags           - Lists tags for the event',
 			),
 			'type' => 'Filter log entries to only this type',
-			'action' => "Filter log actions to only this type. Overrides {$p}type",
+			'action' => array(
+				"Filter log actions to only this action. Overrides {$p}type",
+				"Wildcard actions like 'action/*' allows to specify any string for the asterisk"
+			),
 			'start' => 'The timestamp to start enumerating from',
 			'end' => 'The timestamp to end enumerating',
 			'dir' => $this->getDirectionDescription( $p ),
