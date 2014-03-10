@@ -11,6 +11,7 @@
  * @author E.shijir
  * @author Kaganer
  * @author Meno25
+ * @author Mongol
  * @author MongolWiki
  * @author Wisdom
  * @author Zorigt
@@ -2269,6 +2270,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'Энэхүү IP хаягыг одоогоор түгжигдсэн байна.
 Лавлагааны зориулалтаар түгжээний лог дээрх хамгийн сүүлийн нэмэлтийг доор оруулав:',
 'sp-contributions-search' => 'Хувь нэмрийг хайх',
+'sp-contributions-suppresslog' => 'Хориглосон хэрэглэгчийн оролцоо',
 'sp-contributions-username' => 'IP хаяг эсвэл хэрэглэгчийн нэр:',
 'sp-contributions-toponly' => 'Хамгийн сүүлийн засваруудыг л үзүүлэх',
 'sp-contributions-submit' => 'Хайх',

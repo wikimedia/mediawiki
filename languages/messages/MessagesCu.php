@@ -767,7 +767,7 @@ $messages = array(
 'contributions' => '{{GENDER:$1|польꙃєватєлꙗ}} добродѣꙗниꙗ',
 'contributions-title' => 'польꙃєватєлꙗ ⁖ $1 ⁖ добродѣꙗниꙗ',
 'mycontris' => 'добродѣꙗниꙗ',
-'contribsub2' => 'польꙃєватєлꙗ имѧ ⁖ $1 ⁖ ѥстъ ($2)',
+'contribsub2' => 'польꙃєватєлꙗ имѧ ⁖ {{GENDER:$3|$1}} ⁖ ѥстъ ($2)',
 'uctop' => '(нꙑнѣщьн҄ь обраꙁъ)',
 
 'sp-contributions-blocklog' => 'ꙁаграждєниꙗ їсторїꙗ',
@@ -882,7 +882,7 @@ $messages = array(
 # Media information
 'file-info-size' => '$1 × $2 п҃ѯ · дѣла мѣра : $3 · MIME тѷпъ : $4',
 'svg-long-desc' => 'дѣло SVG · обꙑчьнъ обраꙁъ : $1 × $2 п҃ѯ · дѣла мѣра : $3',
-'show-big-image' => 'пльнъ вида обраꙁъ',
+'show-big-image' => 'источьнъ дѣла обраꙁъ',
 'show-big-image-size' => '$1 × $2 пиѯєлъ',
 
 # Special:NewFiles

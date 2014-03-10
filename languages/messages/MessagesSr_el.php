@@ -3554,7 +3554,7 @@ $8',
 'exif-compression-34712' => 'JPEG2000',
 
 'exif-copyrighted-true' => 'Zaštićeno autorskim pravom',
-'exif-copyrighted-false' => 'Status autorskih prava nije podešen',
+'exif-copyrighted-false' => 'Status autorskih prava nije definisan',
 
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',

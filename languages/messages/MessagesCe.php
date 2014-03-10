@@ -846,6 +846,7 @@ URL язъеш гӀалат даьлла хила мега.
 'resetpass-submit-cancel' => 'Цаоьшу',
 'resetpass-temp-password' => 'Цхьан хана пароль:',
 'resetpass-abort-generic' => 'Пароль хийцар дӀахедар',
+'resetpass-expired' => 'Хьан паролан хан чекхелла. Дехар до керла пароль хӀоттаяр.',
 
 # Special:PasswordReset
 'passwordreset' => 'Пароль кхоссар',
@@ -2142,8 +2143,10 @@ PICT # тайп тайпан
 'sp-contributions-blocked-notice-anon' => 'ХӀара IP-адрес хӀинца блоктоьхна ду.
 Лахахь гойту блоктохаршан тептар чура тӀаьхьарлера дӀаяздар:',
 'sp-contributions-search' => 'Къинхьегам лахар',
+'sp-contributions-suppresslog' => 'Декъашхочун дӀабаьккхина къинхьегам',
 'sp-contributions-username' => 'IP-адрес я декъашхочун цӀе:',
 'sp-contributions-toponly' => 'ТӀаьхьара бина хийцамаш гайта',
+'sp-contributions-newonly' => 'АгӀонаш кхоллар бен ма гайта',
 'sp-contributions-submit' => 'Лаха',
 
 # What links here

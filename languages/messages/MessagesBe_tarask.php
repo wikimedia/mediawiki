@@ -2648,8 +2648,10 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'Гэты IP-адрас у дадзены момант заблякаваны.
 Апошні запіс з журнала блякаваньняў пададзены ніжэй для даведкі:',
 'sp-contributions-search' => 'Пошук унёску',
+'sp-contributions-suppresslog' => 'выдалены ўнёсак удзельніка',
 'sp-contributions-username' => 'IP-адрас альбо імя ўдзельніка/ўдзельніцы:',
 'sp-contributions-toponly' => 'Паказваць толькі зьмены, якія зьяўляюцца апошнімі вэрсіямі',
+'sp-contributions-newonly' => 'Паказваць толькі праўкі, якімі былі створаныя старонкі',
 'sp-contributions-submit' => 'Шукаць',
 
 # What links here

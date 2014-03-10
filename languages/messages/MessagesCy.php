@@ -647,7 +647,7 @@ Oedwch $1 cyn mentro eto.',
 'suspicious-userlogout' => 'Gwrthodwyd eich cais i allgofnodi oherwydd ei fod yn ymddangos mai gweinydd wedi torri neu ddirprwy gelc a anfonodd y cais.',
 'createacct-another-realname-tip' => "Gallwch ddewis roi eich enw go iawn.
 Os y gwnewch, fe gaiff yr enw go iawn ei defnyddio wrth dadogi'ch gwaith.",
-'pt-login' => 'Mewngofnoder',
+'pt-login' => 'Mewngofnodi',
 'pt-createaccount' => 'Creu cyfri',
 'pt-userlogout' => 'Allgofnodi',
 

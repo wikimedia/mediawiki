@@ -607,6 +607,9 @@ Cosas de ammentare: '''({{int:cur}})''' = diferèntzias cun sa versione currente
 'nextn' => '{{PLURAL:$1|imbeniente|imbenientes $1}}',
 'shown-title' => 'Ammustra $1 {{PLURAL:$1|resurtadu|resurtados}} pro pàgina',
 'viewprevnext' => 'Càstia ($1 {{int:pipe-separator}} $2) ($3).',
+'searchprofile-articles' => 'Pàginas de càbidu',
+'searchprofile-project' => 'Pàginas de agiudu e de su progetu',
+'searchprofile-images' => 'Multimèdia',
 'searchprofile-everything' => 'Totu',
 'searchprofile-advanced' => 'Avantzada',
 'searchprofile-articles-tooltip' => 'Chirca in $1',
@@ -995,7 +998,7 @@ S'indiritzu chi as insertadu in is [[Special:Preferences|preferèntzias usuàriu
 
 # Watchlist
 'watchlist' => 'Sa watchlist mea',
-'mywatchlist' => 'Sa watchlist mea',
+'mywatchlist' => 'Pàginas annotadas',
 'nowatchlist' => 'No as indicadu pàginas in sa watchlist tua.',
 'watchnologin' => 'No intrau (log in)',
 'watchnologintext' => 'Devi prima fare il [[Special:UserLogin|login]]

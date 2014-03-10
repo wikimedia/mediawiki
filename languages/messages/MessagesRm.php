@@ -2071,7 +2071,7 @@ Conferma per plaschair che ti ta es conscient da las consequenzas e che ti agesc
 'actioncomplete' => "L' acziun è terminada.",
 'actionfailed' => "L'acziun n'è betg reussida",
 'deletedtext' => '"$1" è vegnì stizzà.
-Sin $2 chattas ti ina glista dals davos artitgels stizzads.',
+En il $2 chattas ti ina glista dals davos artitgels stizzads.',
 'dellogpage' => "Protocol d'eliminaziuns",
 'dellogpagetext' => "Sutvart è ina glista dals elements stizzads l'ultim.",
 'deletionlog' => "protocol d'eliminaziuns",

@@ -2721,6 +2721,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'ഈ ഐ.പി. വിലാസം ഇപ്പോൾ തടയപ്പെട്ടിരിക്കുകയാണ്.
 അവലംബമായി തടയൽ രേഖയുടെ പുതിയഭാഗം താഴെ കൊടുത്തിരിക്കുന്നു:',
 'sp-contributions-search' => 'ചെയ്ത സേവനങ്ങൾ',
+'sp-contributions-suppresslog' => 'ഒതുക്കപ്പെട്ട ഉപയോക്തൃസംഭാവനകൾ',
 'sp-contributions-username' => 'ഐ.പി. വിലാസം അഥവാ ഉപയോക്തൃനാമം:',
 'sp-contributions-toponly' => 'ഒടുവിലത്തെ നാൾപ്പതിപ്പുകൾ മാത്രം പ്രദർശിപ്പിക്കുക',
 'sp-contributions-newonly' => 'താൾ സൃഷ്ടിക്കാനുള്ള തിരുത്തുകൾ മാത്രം പ്രദർശിപ്പിക്കുക',

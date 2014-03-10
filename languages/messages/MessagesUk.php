@@ -49,6 +49,7 @@
  * @author Yuriy Apostol
  * @author Ата
  * @author Дар'я Козлова
+ * @author Максим Підліснюк
  * @author Тест
  */
 
@@ -2333,6 +2334,7 @@ $1',
 'deadendpagestext' => 'Наступні сторінки не містять посилань на інші сторінки цієї вікі.',
 'protectedpages' => 'Захищені сторінки',
 'protectedpages-indef' => 'Тільки безстроково захищені',
+'protectedpages-summary' => 'На цій сторінці перераховані сторінки, які на цей момент захищені. Список назв, які захищені від створення див. [[{{#special:ProtectedTitles}}]].',
 'protectedpages-cascade' => 'Тільки каскадний захист',
 'protectedpages-noredirect' => 'Сховати перенаправлення',
 'protectedpagesempty' => 'Зараз нема захищених сторінок із зазначеними параметрами',
@@ -2345,6 +2347,7 @@ $1',
 'protectedpages-unknown-timestamp' => 'Невідомо',
 'protectedpages-unknown-performer' => 'Невідомий користувач',
 'protectedtitles' => 'Заборонені назви',
+'protectedtitles-summary' => 'На цій сторінці перераховані назви, які захищені від створення. Для перегляду списку сторінок, які на цей момент захищені, див. [[{{#special:ProtectedPages}}]].',
 'protectedtitlesempty' => 'Зараз нема захищених назв із зазначеними параметрами.',
 'listusers' => 'Список користувачів',
 'listusers-editsonly' => 'Показати лише користувачів, які зробили принаймні одне редагування',

@@ -38,15 +38,15 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Enable section editin bi richt-clapin on section teitles',
 'tog-rememberpassword' => 'Mynd ma password oan this browser (fer ae maximum o $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations' => 'Add pages that Ah cræft n files that Ah uplaid til ma watchleet',
-'tog-watchdefault' => 'Add pages an files that Ah edit til ma watchleet',
-'tog-watchmoves' => 'Eik pages an files that Ah muiv til ma watchleet',
+'tog-watchdefault' => 'Add pages n files that Ah eedit til ma watchleet',
+'tog-watchmoves' => 'Add pages n files that Ah muiv til ma watchleet',
 'tog-watchdeletion' => 'Eik pages n files that Ah get rid o til ma watchleet',
 'tog-minordefault' => 'Mairk aa edits "smaa" bi defaut',
 'tog-previewontop' => 'Shaw owerview afore eidit kist n no efter it',
 'tog-previewonfirst' => 'Shaw luikower oan firstwhile eidit',
 'tog-enotifwatchlistpages' => 'Wab-mail me whan ae page or file on ma watchleet is chynged',
 'tog-enotifusertalkpages' => 'Send me ae wab-mail whan ma uiser tauk page is chynged',
-'tog-enotifminoredits' => 'Send me ae wab-mail fer wee edits o pages an files ava',
+'tog-enotifminoredits' => 'Send me ae wab-mail fer wee eedits o pages n files ava',
 'tog-enotifrevealaddr' => 'Shaw ma email address in notification mails',
 'tog-shownumberswatching' => 'Shaw the nummer o watching uisers',
 'tog-oldsig' => 'Existin signatur:',
@@ -296,8 +296,8 @@ $1',
 'newmessageslinkplural' => '{{PLURAL:$1|ae new message|999=new messages}}',
 'newmessagesdifflinkplural' => 'last {{PLURAL:$1|chynge|999=chynges}}',
 'youhavenewmessagesmulti' => 'Ye hae new messages oan $1',
-'editsection' => 'eedit',
-'editold' => 'eedit',
+'editsection' => 'edit',
+'editold' => 'eidit',
 'viewsourceold' => 'ken soorce',
 'editlink' => 'eidit',
 'viewsourcelink' => 'view soorce',
@@ -339,9 +339,9 @@ $1',
 Ye micht hae mistyped the URL, or follaed a wrang link
 This micht forby be caused by a bug in the saftware uised by {{SITENAME}}.",
 'nosuchspecialpage' => 'Nae sic byordinar page',
-'nospecialpagetext' => '<strong>Ye hae requestit an invalid byordinar page.</strong>
+'nospecialpagetext' => '<strong>Ye hae requestit aen onvalid byordinar page.</strong>
 
-A leet o valid byordinar pages can be funnd at [[Special:SpecialPages|{{int:specialpages}}]].',
+A leet o valid byordinar pages can be foond at [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error' => 'Mistak',
@@ -355,10 +355,9 @@ This micht be cause o ae bug in the saffware.',
 'laggedslavemode' => '<strong>Warnishment:</strong> Page micht no contain recent updates',
 'readonly' => 'Database lockit',
 'enterlockreason' => "Enter ae raeson fer the lock, inclædin aen estimate o whan the lock'll be lowsed",
-'readonlytext' => "The databae is lockit tae new entries an ither modifeecations the nou,
-likely for routine database maintenance; efter that it'll be back tae normal.
-The adminstration that lockit it gied this explanation:
-$1",
+'readonlytext' => "The databae is lockit tae new entries n ither modifeecations the nou,
+likelie fer routine database maintenance; efter that it'll be back til normal.
+The admeenstration that lockit it gied this explanation: $1",
 'missing-article' => 'The database didna fynd the tex o ae page that it shid hae foond, cawed "$1" $2.
 
 Maistly this is caused bi follaein aen ootdated diff or histerie link til ae page that haes been delytit.
@@ -389,8 +388,8 @@ It gae nae explanâtion.',
 'no-null-revision' => 'Coudna mak new null reveesion fer page "$1"',
 'badtitle' => 'Bad teitle',
 'badtitletext' => 'The requestit page teitle wis invalid, tuim, or a wranglie airtit inter-leid or inter-wiki teitle. It mibbe haes ane or mair chairacters that canna be uised in teitles.',
-'perfcached' => 'The follaeing data is cached an michtna be richt up til date. A maximum o {{PLURAL:$1|yin result is|$1 results ar}} available in the cache.',
-'perfcachedts' => 'The followin data is cached, an wis hindermaist updated $1. Ae maximum o {{PLURAL:$4|yin result is|$4 results ar}} available in the cache.',
+'perfcached' => 'The follaein data is cached n michtna be richt up til date. Ae maist muckle o {{PLURAL:$1|yin result is|$1 results ar}} available in the cache.',
+'perfcachedts' => 'The follaein data is cached, n wis hindermaist updated $1. Ae maist muckkle o {{PLURAL:$4|yin result is|$4 results ar}} available in the cache.',
 'querypage-no-updates' => 'Updates for this page ar disablit at the meenit. Data here wilnae be refreshit at the meenit.',
 'viewsource' => 'View soorce',
 'viewsource-title' => 'View soorce fer $1',
@@ -419,8 +418,8 @@ The grunds for this are: ''$2''.",
 'filereadonlyerror' => 'Canna modify the file "$1" cause the file repository "$2" is in read-yinly mode.
 
 The administrater that lock\'t it affered this explanation: "$3".',
-'invalidtitle-knownnamespace' => 'Onvalid title wi namespace "$2" an tex "$3"',
-'invalidtitle-unknownnamespace' => 'Onvalid title wi onken\'t namespace nummer $1 an tex "$2"',
+'invalidtitle-knownnamespace' => 'Onvalid title wi namespace "$2" n tex "$3"',
+'invalidtitle-unknownnamespace' => 'Onvalid title wi onkent namespace nummer $1 n tex "$2"',
 'exception-nologin' => 'No loggit in',
 'exception-nologin-text' => 'Please [[Special:Userlogin|log in]] tae be able tae access this page or action.',
 'exception-nologin-text-manual' => 'Please $1 tae be able tae access this page or action.',
@@ -455,7 +454,7 @@ Ye can chynge yer {{SITENAME}} [[Special:Preferences|preferences]] gif ye like.'
 'password-change-forbidden' => 'Ye canna chynge passwords oan this wiki.',
 'externaldberror' => "Aither thaur wis aen external authentication database mistak, or ye'r no permitit tae update yer external accoont.",
 'login' => 'Log in',
-'nav-login-createaccount' => 'Log in / mak an accoont',
+'nav-login-createaccount' => 'Log in / cræft aen accoont',
 'loginprompt' => 'Ye maun hae cookies enabled tae log in tae {{SITENAME}}.',
 'userlogin' => 'Cræft aen accoont or log in',
 'userloginnocreate' => 'Log in.',
@@ -464,10 +463,10 @@ Ye can chynge yer {{SITENAME}} [[Special:Preferences|preferences]] gif ye like.'
 'notloggedin' => 'No loggit in',
 'userlogin-noaccount' => 'Dinna hae aen accoont?',
 'userlogin-joinproject' => 'Jyn {{SITENAME}}',
-'nologin' => "Dinna hae an accoont? '''$1'''.",
+'nologin' => 'Dinna hae aen accoont? $1.',
 'nologinlink' => 'Cræft aen accoont',
 'createaccount' => 'Mak new accoont',
-'gotaccount' => "Got an accoont afore? '''$1'''.",
+'gotaccount' => 'Awreadie hae aen accoont? $1.',
 'gotaccountlink' => 'Log in',
 'userlogin-resetlink' => 'Forgotten yer login details?',
 'userlogin-resetpassword-link' => 'Fergot yer password?',
@@ -502,8 +501,8 @@ Uise the form ablow tae log in as anither uiser.",
 'createaccounterror' => 'Coudna mak accoont: $1',
 'nocookiesnew' => "The uiser accoont wis creatit, but ye'r no loggit in. {{SITENAME}} uises cookies tae log uisers in. Ye hae cookies disabled. Please enable them, than log in wi yer new uisername and password.",
 'nocookieslogin' => '{{SITENAME}} uises cookies tae log in uisers. Ye hae cookies disabled. Please enable thaim an gie it anither shot.',
-'nocookiesfornew' => 'The uiser accoont wisna created, as we couda confirm its source.
-Ensure that ye have cookies enabled, relaid this page an try again.',
+'nocookiesfornew' => 'The uiser accoont wisna cræftit, aes we couda confirm its soorce.
+Ensure that ye have cookies enabled, relaid this page n gie it anither shote.',
 'noname' => "Ye hivna specifee'd a valid uisername.",
 'loginsuccesstitle' => 'Login fine',
 'loginsuccess' => 'Ye\'re nou loggit in tae {{SITENAME}} as "$1".',
@@ -518,14 +517,14 @@ Check yer spellin, or uise [[Special:UserLogin/signup|mak a new accoont]].',
 'passwordtooshort' => 'Yer password is ower short.
 It maun hae at laest {{PLURAL:$1|1 chairacter|$1 chairacters}}.',
 'password-name-match' => 'Yer password maun be different fae yer uisername.',
-'password-login-forbidden' => 'The uise o this uisername an password haes been ferbidden.',
+'password-login-forbidden' => 'The uise o this uisername n passwaird haes been ferbidden.',
 'mailmypassword' => 'Reset password',
 'passwordremindertitle' => 'Password reminder frae {{SITENAME}}',
 'passwordremindertext' => 'Somebodie (liklie ye, fae IP address $1) requested ae new
-password fer {{SITENAME}} ($4). Ae temporarie password fer uiser "$2" haes been creatit an wis set til "$3". Gif this wis yer intent, ye will need tae log in an chuise ae new password now.
-Yer temporarie password will expire in {{PLURAL:$5|one day|$5 days}}.
+passwaird fer {{SITENAME}} ($4). Ae temporarie passwaird fer uiser "$2" haes been cræftit n wis set til "$3". Gif this wis yer intent, ye will need tae log in n chuise ae new passwaird nou.
+Yer temporarie passwaird will expire in {{PLURAL:$5|yin day|$5 days}}.
 
-Gif somebodie else made this request, or gif ye hae mindit yer password, an ye nae langer wish tae chynge it, ye can ignore this message an continue uising yer auld password.',
+Gif some ither bodie makit this request, or gif ye hae myndit yer passwaird, n ye nae langer wish tae chynge it, ye can ignore this message n continue uisin yer auld passwaird.',
 'noemail' => 'Thaur\'s nae wab-mail address recordit fer uiser "$1".',
 'noemailcreate' => 'Ye need tae provide ae valid wab-mail address.',
 'passwordsent' => 'A new password haes been sent tae the e-mail address registert for "$1". Please log in again efter ye receive it.',
@@ -578,7 +577,7 @@ Gif ye chuise tae provide it, this will be uised fer giein the uiser attreebutio
 'oldpassword' => 'Auld password',
 'newpassword' => 'New passwaird:',
 'retypenew' => 'Retype new passwaird:',
-'resetpass_submit' => 'Mak passwaird an log in',
+'resetpass_submit' => 'Set passwaird n log in',
 'changepassword-success' => 'Yer passwaird chynge wis braw!',
 'changepassword-throttled' => "Ye'v made ower moni recent login attempts.
 Please wait $1 afore trying again.",
@@ -605,7 +604,7 @@ Tae finish loggin in, ye maun set ae new passwaird here:',
 'passwordreset-emaildisabled' => 'Wab-mail features hae been disabled oan this wiki.',
 'passwordreset-username' => 'Uisername:',
 'passwordreset-capture' => 'View the resultin wab-mail?',
-'passwordreset-capture-help' => 'Gif ye check this kist, the wab-mail (wi the temperie passwaird) will be shawn til ye an be sent til the uiser ava.',
+'passwordreset-capture-help' => 'Gif ye check this kist, the wab-mail (wi the temperie passwaird) will be shawn til ye n be sent til the uiser ava.',
 'passwordreset-email' => 'Wab-mail address:',
 'passwordreset-emailtitle' => 'Accoont details oan {{SITENAME}}',
 'passwordreset-emailtext-ip' => "Somebodie (likely ye, fae IP address $1) requested ae reset o yer passwaird fer {{SITENAME}} ($4). The follaein uiser {{PLURAL:$3|accoont is|accoonts ar}}
@@ -613,17 +612,16 @@ associated wi this wab-mail address:
 
 $2
 
-{{PLURAL:$3|This temperie passwaird|These temperie passwairds}} will expire in {{PLURAL:$5|yin day|$5 days}}.
-Ye shid log in an chuise ae new passwaird nou. Gif some ither bodie made this request, or gif ye'v mynded yer oreeginal passwaird, an ye nae longer
-wish tae chynge it, ye can ignore this message an continue uising yer auld passwaird.",
+{{PLURAL:$3|This temperie passwaird|Thir temperie passwairds}} will expire in {{PLURAL:$5|yin day|$5 days}}.
+Ye shid log in n chuise ae new passwaird nou. Gif some ither bodie makit this request, or gif ye'v mynded yer oreeginal passwaird, n ye nae longer
+wish tae chynge it, ye can ignore this message n continue uisin yer auld passwaird.",
 'passwordreset-emailtext-user' => "Uiser $1 oan {{SITENAME}} requested ae reset o yer passwaird fer {{SITENAME}}
 ($4). The follaein uiser {{PLURAL:$3|accoont is|accoonts ar}} associated wi this wab-mail address:
 
 $2
 
-{{PLURAL:$3|This temperie passwaird|These temperie passwairds}} will expire in {{PLURAL:$5|yin day|$5 days}}.
-Ye shid log in an chuise ae new password nou. Gif some ither bodie made this request, or gif ye'v mynded yer oreeginal passwaird, an ye nae longer wish tae chynge it, ye can ignore this message an continue uisin yer auld
-passwaird.",
+{{PLURAL:$3|This temperie passwaird|Thir temperie passwairds}} will expire in {{PLURAL:$5|yin day|$5 days}}.
+Ye shid log in n chuise ae new password nou. Gif some ither bodie haes makit this request, or gif ye'v mynded yer oreeginal passwaird, n ye nae langer wish tae chynge it, ye can ignore this message n continue uisin yer auld passwaird.",
 'passwordreset-emailelement' => 'Uisername: $1
 Temperie passwaird: $2',
 'passwordreset-emailsent' => 'Ae passwaird reset wab-mail haes been sent.',
@@ -705,10 +703,10 @@ The raison gieen is <em>$2</em>.
 * Expirie o block: $6
 * Intended blockee: $7
 
-Ye can contact $1 or anither [[{{MediaWiki:Grouppage-sysop}}|admeenistræter]] tae discuss the block.
-Ye canna uise the "wab-mail this uiser" feature onless ae valid wab-mail address is speceefied in yer [[Special:Preferences|accoont preferences]] an ye\'v no been blockit fae uising it.
-Your current IP address is $3, n the block ID is #$5.
-Please inclæde aw the abuin details in oni speirins ye mak.',
+Ye can contact $1 or anither [[{{MediaWiki:Grouppage-sysop}}|admeenistrater]] tae discuss the block.
+Ye canna uise the "wab-mail this uiser" feature onless ae valid wab-mail address is speceefied in yer [[Special:Preferences|accoont preferences]] n ye\'v no been blockit fae uisin it.
+Yer current IP address is $3, n the block ID is #$5.
+Please incluide aw the abuin details in onie speirins ye mak.',
 'autoblockedtext' => 'Yer IP address haes been autæmaticly blockit cause it wis uised bi anither uiser, wha wis blockit bi $1.
 The raison gieen is:
 
@@ -726,7 +724,7 @@ Yer current IP address is $3, an the block ID is #$5.
 Please inclæde aw abuin details in oni speirins ye mak.',
 'blockednoreason' => 'nae grunds put',
 'whitelistedittext' => 'Ye hae tae $1 tae edit pages.',
-'confirmedittext' => 'Ye maun confirm yer e-mail address afore editin pages. Please set an validate yer e-mail address throu yer [[Special:Preferences|uiser settins]].',
+'confirmedittext' => 'Ye maun confirm yer wab-mail address afore eeditin pages. Please set n validate yer wab-mail address throogh yer [[Special:Preferences|uiser settins]].',
 'nosuchsectiontitle' => 'Canna find section',
 'nosuchsectiontext' => 'Ye tried tae eidit ae section that disna exist.
 It micht hae been muived or delytit while ye were viewing the page.',
@@ -738,10 +736,10 @@ It micht hae been muived or delytit while ye were viewing the page.',
 'newarticle' => '(New)',
 'newarticletext' => "Ye'v follaed ae link til ae page that disna exist yet. Tae mak the page, stairt typin in the kist ablo (see the [[{{MediaWiki:Helppage}}|heelp page]] fer mair info). Gif ye'r here bi mistak, juist clap yer brouser's '''back''' button.",
 'anontalkpagetext' => "----
-<em>This is the discussion page fer aen anonymous uiser wha's no makit aen accoont yet, or wha disna uise it.</em>
+<em>This is the discussion page fer aen anonymoos uiser that's no makit aen accoont yet, or that disna uise it.</em>
 We maun therefore uise the numerical IP address tae identifie him/her.
 Sic aen IP address can be shaired bi several uisers.
-Gif ye'r aen anonymous uiser an feel that onrelevant comments hae been directed at ye, please [[Special:UserLogin/signup|mak aen accoont]] or [[Special:UserLogin|log in]] tae avoid future confusion wi ither anonymous uisers.",
+Gif ye'r aen anonymos uiser n feel that onreelavant comments hae been directed at ye, please [[Special:UserLogin/signup|cræft aen accoont]] or [[Special:UserLogin|log in]] tae avoid futur confusion wi ither anonymoos uisers.",
 'noarticletext' => 'Thaur\'s naw tex oan this page the nou. 
 Ye can [[Special:Search/{{PAGENAME}}|rake fer this page teitle]] in ither pages,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rake the related logs],
@@ -777,18 +775,18 @@ It's no been hained yet!</strong>",
 Yer chynges hae no been hained yet!',
 'continue-editing' => 'Gae til eiditing area',
 'previewconflict' => 'This scance reflects the tex in the upper tex eiditin area like it will kythe gin ye chuise tae hain.',
-'session_fail_preview' => '<strong>Sairy! We culdnae process yer eidit acause o ae loss o term data.</strong>
-Please try again. Gin it disnae wairk still, try [[Secial:UserLogout|logging out]] an loggin in again.',
-'session_fail_preview_html' => "<strong>Sairrie! We coudna process yer eidit cause o ae loss o session data.</strong>
+'session_fail_preview' => "'''Sairy! We culdnae process yer eidit acause o ae loss o term data.'''
+Please gie it anither gae. Gin it disnae wairk still, gie [[Special:UserLogout|loggin oot]] n loggin back in again ae gae.",
+'session_fail_preview_html' => '<strong>Sairrie! We coudna process yer eedit cause o ae loss o session data.</strong>
 
-<em>Cause {{SITENAME}} haes raw HTML enabled, the preview is skauk't aes ae precaution again JavaScript attacks.</em>
+<em>Cause {{SITENAME}} haes raw HTML enabled, the owerluik is skaukt aes ae precaution again JavaScript attacks.</em>
 
-<strong>Gif this is ae legeetimate eidit attempt, please try again.</strong>
-Gif it still disna wairk, try [[Special:UserLogout|loggin oot]] an loggin back in.",
+<strong>Gif this is ae legeetimate eedit attempt, please gei it anither gae.</strong>
+Gif it still disna wairk, try [[Special:UserLogout|loggin oot]] n loggin back in.',
 'token_suffix_mismatch' => '<strong>Yer eidit haes been rejectit acause yer client made ae richt mess o the punctuation characters in the eidit token.</strong>
 The eidit haes been rejectit tae hinder corruption o the page tex.
 This whiles happens when ye ar uisin ae bruken web-based anonymous proxie service.',
-'edit_form_incomplete' => '<strong>Some pairts o the eidit form didna reach the server; dooble-check that yer eidits ar intact an try again.</strong>',
+'edit_form_incomplete' => '<strong>Some pairts o the eedit form didna reach the server; dooble-check that yer edits ar intact n gie it anither gae.</strong>',
 'editing' => 'Editin $1',
 'creating' => 'Makin $1',
 'editingsection' => 'Editin $1 (section)',
@@ -804,16 +802,16 @@ Ye\'ll hae tae merge yer chynges intil the exeestin tex.
 'nonunicodebrowser' => "'''Warnishment: Yer brouser isna unicode compliant. Ae warkaroond is in place tae permit ye tae sauflie eidit airticles: no-ASCII chairacters will kythe in the eidit kist aes hexadecimal codes.'''",
 'editingold' => "<strong>Warnishment:</strong> Ye'r eiditin aen oot-o-date reveesion o this page. Gin ye hain it, onie chynges makit sin this reveesion will be lost.",
 'yourdiff' => 'Differs',
-'copyrightwarning' => "Please mynd that aa contreebutions til {{SITENAME}} is conseedert tae be released unner the $2 (see $1 for details). Gin ye dinna want yer writin tae be eiditit wioot mercy an redistributed at will, than dinna haun it it here.<br /> Forbye thon, ye'r promisin us that ye wrat this yersel, or copied it frae ae public domain or siclike free resoorce. <strong>DINNA SUBMIT COPIERICHTIT WARK WIOOT PERMEESSION!</strong>",
-'copyrightwarning2' => "Please mynd that aa contreebutions til {{SITENAME}} micht be eiditit, chynged, or remuived bi ither contreebuters.
-Gin ye dinna want yer writin tae be eiditit wioot mercie an redistreebuted at will, than dinna haun it in here.<br />
-Ye'r promisin us forbye that ye wrat this yersel, or copied it frae ae
-public domain or siclike free resoorce (see $1 for details).
-<strong>DINNA HAUN IN COPIERICHTIT WARK WIOOT PERMEESSION!</strong>",
-'longpageerror' => "<strong>Mistak: The tex ye'v submitted is {{PLURAL:$1|yin kilobyte|$1 kilobytes}} lang, an this is langer nor the maximum o {{PLURAL:$2|yin kilobyte|$2 kilobytes}}.</strong>
+'copyrightwarning' => "Please mynd that aw contreebutions til {{SITENAME}} is conseedert tae be released unner the $2 (see $1 for details). Gif ye dinna want yer writin tae be eeditit wioot mercie n redistreebuted at will, than dinna haun it it here.<br /> Forbye thon, ye'r promisin us that ye wrat this yersel, or copied it fae ae publeec domain or siclike free resoorce. <strong>Dinna haun in copierichtit wark wioot permeession!</strong>",
+'copyrightwarning2' => "Please mynd that aa contreebutions til {{SITENAME}} micht be eeditit, chynged, or remuived bi ither contreebuters.
+Gin ye dinna want yer writin tae be eeditit wioot mercie n redistreebuted at will, than dinna haun it in here.<br />
+Ye'r promisin us forbye that ye wrat this yersel, or copied it fae ae
+publeec domain or siclike free resoorce (see $1 fer details).
+<strong>Dinna haun in copierichtit wark wioot permeession!</strong>",
+'longpageerror' => "<strong>Mistak: The tex ye'v submitted is {{PLURAL:$1|yin kilobyte|$1 kilobytes}} lang, n this is langer than the maist muckle o {{PLURAL:$2|yin kilobyte|$2 kilobytes}}.</strong>
 It canna be hained.",
-'readonlywarning' => "<strong>Warnishment: The database haes been lockit fer maintenance, sae ye'll no be able tae hain yer eidits richt nou.</strong>
-Ye micht wish tae cope n paste yer tex intil ae tex file an hain it fer later.
+'readonlywarning' => "<strong>Warnishment: The database haes been lockit fer maintenance, sae ye'll no be able tae hain yer eedits richt nou.</strong>
+Ye micht wish tae copie n paste yer tex intil ae tex file n hain it fer later.
 
 The admeenistræter that lockit it affered this explanation: $1",
 'protectedpagewarning' => '<strong>Warnishment: This page haes been protectit sae that yinly uisers wi admeenistræter preevileges can eidit it.</strong>
@@ -830,19 +828,19 @@ The laitest log entry is provided ablo fer reference:',
 'template-semiprotected' => '(semi-protectit)',
 'hiddencategories' => "This page is ae member o {{PLURAL:$1|1 skauk't categerie|$1 skauk't categeries}}:",
 'nocreatetext' => '{{SITENAME}} haes restricted the abeelitie tae cræft new pages.
-Ye can gae back an eidit aen existin page, or [[Special:UserLogin|log in or mak aen accoont]].',
+Ye can gang back n eedit aen exestin page, or [[Special:UserLogin|log in or cræft aen accoont]].',
 'nocreate-loggedin' => 'Ye dinnae hae the richts tae mak new pages.',
 'sectioneditnotsupported-title' => 'Section eiditin isna supported',
 'sectioneditnotsupported-text' => 'Section eiditing isna supported in this page.',
 'permissionserrors' => 'Permission mistak',
 'permissionserrorstext' => 'Ye dinnae hae the richts tae dae that, acause o the followin {{PLURAL:$1|grund|grunds}}:',
 'permissionserrorstext-withaction' => 'Ye dinna hae the richts tae $2, fer the follaein {{PLURAL:$1|raison|raisons}}:',
-'recreate-moveddeleted-warn' => "'''Warnishment: Ye'r remakin ae page that haes been delytit.'''
+'recreate-moveddeleted-warn' => "<strong>Warnishment: Ye'r recræftin ae page that haes been delytit.</strong>
 
-Ye shid check that it is guid tae keep eiditin this page.
-The delytion an muiv log fer this page is providit here:",
-'moveddeleted-notice' => 'This page haes bin delytit. 
-The delytion an muiv log fer the page ar provided ablo fer reference.',
+Ye shid check that it is guid tae keep eeditin this page.
+The delytion n muiv log fer this page is providit here fer conveeniance:",
+'moveddeleted-notice' => 'This page haes been deletit. 
+The deletion an flit log fer the page are providit ablo fer reference.',
 'log-fulllog' => 'View ful log',
 'edit-hook-aborted' => 'Eedit abortit bi huik.
 It gae naw explanation.',
@@ -874,7 +872,7 @@ It shid hae less than $2 {{PLURAL:$2|caw|caws}}, thaur {{PLURAL:$1|is nou $1 caw
 'post-expand-template-inclusion-warning' => "'''Wairnin:''' Template include size is tae lairge. 
 Some templates wull nae be included.",
 'post-expand-template-inclusion-category' => 'Pages whaur template include size is exceeded',
-'post-expand-template-argument-warning' => 'Tak tent: This page hauds at least the ae template argument that haes an ower muckle expansion size.
+'post-expand-template-argument-warning' => '<strong>Warnishment:</strong> This page hauds at least the ae template argument that haes aen ower muckle expansion size.
 Thir arguments hae been left oot.',
 'post-expand-template-argument-category' => 'Pages containing omitted template arguments',
 'parser-template-loop-warning' => 'Template luip detected: [[$1]]',
@@ -977,17 +975,17 @@ Ye can view this diff; details can be foond in the [{{fullurl:{{#Special:Log}}/s
 'revdelete-show-file-submit' => 'Ai',
 'revdelete-selected' => '<strong>{{PLURAL:$2|Selected reveesion|Selected reveesions}} o [[:$1]]:</strong>',
 'logdelete-selected' => "'''{{PLURAL:$1|Selectit log event|Selectit log events}}:'''",
-'revdelete-text' => "<strong>Delytit reveesions an events will still kyth in the page histerie an logs, but pairts o their content will be onaccessible til the public.</strong>
-Ither admeenistraters oan {{SITENAME}} will still be able tae access the skauk't content an can ondelyte it again through this same interface, onless addeetional restreections ar set.",
-'revdelete-confirm' => "Please confirm that ye'r ettlin tae dae this, that ye unnerstaunn the consequences, an that ye'r daein this in accordance wi [[{{MediaWiki:Policy-url}}|the policie]].",
+'revdelete-text' => '<strong>Delytit reveesions n events will still kyth in the page histerie n logs, but pairts o thair content will be onaccessible til the publeec.</strong>
+Ither admeenistraters oan {{SITENAME}} will still be able tae access the skaukt content n can ondelyte it again throogh this same interface, onless addeetional restreections ar set.',
+'revdelete-confirm' => "Please confirm that ye'r ettlin tae dae this, that ye unnerstaunn the consequences, n that ye'r daein this in accordance wi [[{{MediaWiki:Policy-url}}|the policie]].",
 'revdelete-suppress-text' => 'Suppression shid <strong>yinly</strong> be uised fer the follaein cases:
-* poteentially libeloos information
-* onappropriate personal information
-*: <em>hame addresses an telephane nummers, national ideentification nummers, etc.</em>',
+* poteentiallie libeloos information
+* galus personal information
+*: <em>hame addresses n telephane nummers, national ideentifeecation nummers, etc.</em>',
 'revdelete-legend' => 'Set visibeelitie restreections',
 'revdelete-hide-text' => 'Reveesion tex',
 'revdelete-hide-image' => 'Skauk file content.',
-'revdelete-hide-name' => 'Skauk aiction an target',
+'revdelete-hide-name' => 'Skauk aiction n tairget',
 'revdelete-hide-comment' => 'Eidit summarie',
 'revdelete-hide-user' => "Eiditer's uisername/IP address",
 'revdelete-hide-restricted' => 'Suppress data fae admeenistraters aes weel aes ithers',
@@ -1017,7 +1015,7 @@ Ye dinna hae access til it.',
 'revdelete-no-change' => '<strong>Warnishment:</strong> The eetem dated $2, $1 awreadie haed the requested veesibeelitie settins.',
 'revdelete-concurrent-change' => "Mistak modifiein the eitem dated $2, $1: Its status appears tae'v been chynged bi some ither bodie while ye attempted tae modifie it.
 Please check the logs.",
-'revdelete-only-restricted' => 'Mistak hidin the item dated $2, $1: Ye canna suppress eitems fae view bi admeenistraters wioot selectin yin o the ither veesibeelitie opties ava.',
+'revdelete-only-restricted' => 'Mistak hidin the eetem dated $2, $1: Ye canna suppress eetems fae sicht bi admeenistraters wioot selectin yin o the ither veesibeelitie opties ava.',
 'revdelete-reason-dropdown' => '*Commyn delete raisons
 ** Copiericht violation
 ** Onappropriate comment or personal information
@@ -1055,7 +1053,7 @@ Mynd that uisin the navigâtion links will reset this column.',
 'mergehistory-invalid-destination' => 'Destinâtion page maun be ae valid title.',
 'mergehistory-autocomment' => 'Merged [[:$1]] intil [[:$2]]',
 'mergehistory-comment' => 'Merged [[:$1]] intil [[:$2]]: $3',
-'mergehistory-same-destination' => 'Soorce an destinâtion pages canna be the same',
+'mergehistory-same-destination' => 'Soorce n destination pages canna be the same',
 'mergehistory-reason' => 'Raeson:',
 
 # Merge log
@@ -1096,7 +1094,7 @@ Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'shown-title' => 'Shaw $1 {{PLURAL:$1|ootcome|ootcomes}} per page',
 'viewprevnext' => 'View ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''There is a page named \"[[:\$1]]\" oan this wiki.'''",
-'searchmenu-new' => '<strong>Mak the page "[[:$1]]" oan this wiki!</strong> {{PLURAL:$2|0=|See the page foond wi yer rake ava.|See the rake affcome foond ava.}}',
+'searchmenu-new' => '<strong>Cræft the page "[[:$1]]" oan this wiki!</strong> {{PLURAL:$2|0=|See the page foond wi yer rake ava.|See the rake affcome foond ava.}}',
 'searchprofile-articles' => 'Content pages',
 'searchprofile-project' => 'Heelp n Waurk pages',
 'searchprofile-images' => 'Multimedia',
@@ -1149,7 +1147,7 @@ Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'prefs-labs' => 'Labs featurs',
 'prefs-user-pages' => 'Uiser pages',
 'prefs-personal' => 'Uiser data',
-'prefs-rc' => 'Recent chynges an shawin stubs',
+'prefs-rc' => 'Recent chynges n shawin stubs',
 'prefs-watchlist' => 'Watchleet',
 'prefs-watchlist-days' => 'Days tae shaw in watchleet:',
 'prefs-watchlist-days-max' => 'Mucklest $1 {{PLURAL:$1|day|days}}',
@@ -1159,6 +1157,8 @@ Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'prefs-misc' => 'Antrin settins',
 'prefs-resetpass' => 'Chynge passwaird',
 'prefs-changeemail' => 'Chynge email address',
+'prefs-setemail' => 'Set ae wab-mail address',
+'prefs-email' => 'Wab-mail opties',
 'saveprefs' => 'Hain preferences',
 'restoreprefs' => 'Restore aw default settings (in aw sections)',
 'prefs-editing' => 'Editin',
@@ -1166,6 +1166,7 @@ Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'stub-threshold' => 'Threshold for <a href="#" class="stub">stub link</a> formattin (bytes):',
 'stub-threshold-disabled' => 'Tuckie',
 'recentchangesdays' => 'Days tae shaw in recent chynges:',
+'recentchangesdays-max' => 'Mucklest $1 {{PLURAL:$1|day|days}}',
 'recentchangescount' => 'Nummer o eidits tae shaw bi defaut:',
 'prefs-help-recentchangescount' => 'This includes recent chynges, page histories, n logs.',
 'prefs-help-watchlist-token2' => 'This is the hidlins key til the wab feed o yer watchleet. Onibodie wha kens this can read yer watchleet, sae dinna shair it. Gif ye need to, [[Special:ResetTokens|Ye can reset it]].',
@@ -1176,7 +1177,10 @@ Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'guesstimezone' => 'Fill in frae brouser',
 'timezoneregion-africa' => 'Africae',
 'timezoneregion-america' => 'Americae',
+'timezoneregion-antarctica' => 'Antairctica',
+'timezoneregion-arctic' => 'Airctic',
 'timezoneregion-asia' => 'Asie',
+'timezoneregion-atlantic' => 'Atlaunteec Ocean',
 'timezoneregion-australia' => 'Australie',
 'timezoneregion-pacific' => 'Paceefic Ocean',
 'allowemail' => 'Allou email frae ither uisers',
@@ -1189,10 +1193,12 @@ Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'prefs-common-css-js' => 'Shared CSS/JavaScript for aw skins:',
 'prefs-reset-intro' => 'Ye can uise this page tae reset yer preferences tae the steid defaults.
 This cannae be unduin.',
+'prefs-emailconfirm-label' => 'Wab-mail confirmation:',
 'youremail' => 'Yer email:',
 'username' => '{{GENDER:$1|Uisername}}:',
 'uid' => '{{GENDER:$1|Uiser}} ID:',
 'prefs-memberingroups' => '{{GENDER:$2|Member}} o {{PLURAL:$1|group|groups}}:',
+'prefs-registration' => 'Regeestration time:',
 'yourrealname' => 'Yer real name:',
 'yourlanguage' => 'Interface leid:',
 'yourvariant' => 'Content leid variant',
@@ -1203,19 +1209,37 @@ This cannae be unduin.',
 'badsiglength' => 'Yer nickname is ower lang; it haes tae be $1 {{PLURAL:$1|character|characters}} or less.',
 'yourgender' => 'Hou dae ye prefer tae be describit?',
 'gender-unknown' => 'I prefer nae tae say',
-'prefs-help-gender' => 'Settin this preference is optional.
-The saftware uises its value tae address ye an tae mention ye tae ithers uisin the appropriate grammatical gender.
-This information will be public.',
+'gender-male' => 'He eedits wiki pages',
+'gender-female' => 'She eedits wiki pages',
+'prefs-help-gender' => 'Settin this preference is aen optie.
+The saffware uises its value tae address ye n tae mention ye til ithers uisin the appropriate grammatical gender.
+This information will be publeec.',
 'email' => 'E-mail',
-'prefs-help-realname' => 'Rael name is optional an gin ye chuise tae provide it this will be uised tae gie ye attreibution for yer wark.',
+'prefs-help-realname' => 'Real name is aen optie.
+Gif ye chuise tae provide it, this will be uised fer giein ye attreebution fer yer wark.',
 'prefs-help-email' => 'Wab-mail is optional, bit is needed fer passwaird resets, shid ye ferget yer passwaird.',
 'prefs-help-email-others' => 'Ye can chuise tae let ithers contact ye bi wab-mail through ae link oan yer uiser or tauk page.
 Yer wab-mail address isna revealed whan ither uisers contact ye.',
 'prefs-help-email-required' => 'Yer e-mail address is needit.',
 'prefs-i18n' => 'Internaitionalisation',
 'prefs-signature' => 'Signatur',
+'prefs-timeoffset' => 'Time affset',
+'prefs-advancedediting' => 'General opties',
+'prefs-editor' => 'Eediter',
+'prefs-preview' => 'Luikower',
+'prefs-advancedrc' => 'Advanced opties',
+'prefs-advancedrendering' => 'Advanced opties',
+'prefs-advancedsearchoptions' => 'Advanced opties',
+'prefs-advancedwatchlist' => 'Advanced opties',
+'prefs-displayrc' => 'Displey opties',
+'prefs-displaysearchoptions' => 'Displey opties',
+'prefs-displaywatchlist' => 'Displey opties',
 'prefs-diffs' => 'Diffs',
 'prefs-help-prefershttps' => 'This preference will tak effect on yer next login.',
+
+# User preference: email validation using jQuery
+'email-address-validity-valid' => 'Wab-mail address appears tae be valid',
+'email-address-validity-invalid' => 'Enter ae valid wab-mail address',
 
 # User rights
 'userrights' => 'Uiser richts management',
@@ -1227,10 +1251,11 @@ Yer wab-mail address isna revealed whan ither uisers contact ye.',
 'saveusergroups' => 'Save uiser groups',
 'userrights-groupsmember' => 'Member o:',
 'userrights-groupsmember-auto' => 'Implicit member o:',
-'userrights-groups-help' => 'You mey alter the groups this uiser is in:
-* A checked box means the uiser is in that group.
-* An unchecked box means the uiser is nae in that group.
-* A * indicates that ye cannae remove the group ance you hae addit it, or vice versa.',
+'userrights-groups-help' => "Ye can alter the groops this uiser is in:
+* Ae checkit kist means that the uiser is in that groop.
+* Aen oncheckit kist means that the uiser's no in that groop.
+* Ae * indicates that ye cannae remuiv the groop yince ye'v added it, or vice versa.",
+'userrights-reason' => 'Raison:',
 'userrights-no-interwiki' => 'Ye dae nae hae permission tae edit uiser richts on ither wikis.',
 'userrights-nodatabase' => 'Database $1 daes nae exist or is nae local.',
 'userrights-nologin' => 'Ye maun [[Special:UserLogin|log in]] wi aen admeenistrater accoont tae assign uiser richts.',
@@ -1241,6 +1266,7 @@ Yer wab-mail address isna revealed whan ither uisers contact ye.',
 'userrights-removed-self' => 'Ye successfully removed yer ain richts. As such, ye are no langer able tae access this page.',
 
 # Groups
+'group' => 'Groop:',
 'group-user' => 'Uisers',
 'group-autoconfirmed' => 'Autoconfirmed uisers',
 'group-bot' => 'Bots',
@@ -1249,10 +1275,20 @@ Yer wab-mail address isna revealed whan ither uisers contact ye.',
 'group-all' => '(aw)',
 
 'group-user-member' => '{{GENDER:$1|uiser}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|autæconfirmed uiser}}',
 'group-bot-member' => '{{GENDER:$1|bot}}',
+'group-sysop-member' => '{{GENDER:$1|admeenistrater}}',
+'group-suppress-member' => '{{GENDER:$1|owersicht}}',
+
+'grouppage-user' => '{{ns:project}}:Uisers',
+'grouppage-autoconfirmed' => '{{ns:project}}:Autæconfirmed uisers',
+'grouppage-sysop' => '{{ns:project}}:Admeenistraters',
+'grouppage-suppress' => '{{ns:project}}:Owersicht',
 
 # Rights
+'right-edit' => 'Eedit pages',
 'right-createpage' => 'Create pages (which are nae discussion pages)',
+'right-createtalk' => 'Cræft discussion pages',
 'right-createaccount' => 'Create new uiser accoonts',
 'right-minoredit' => 'Mark edits as smaa',
 'right-move' => 'Flit pages',
@@ -1278,9 +1314,49 @@ Yer wab-mail address isna revealed whan ither uisers contact ye.',
 'right-deletedhistory' => 'View deletit history entries, wioot thair associatit text',
 'right-deletedtext' => 'See delytit tex n chynges atween delytit reveesions',
 'right-browsearchive' => 'Rake deletit pages',
+'right-undelete' => 'Ondelyte ae page',
+'right-suppressrevision' => 'Luikower n restore reveesions skaukt fae admeenistraters',
+'right-suppressionlog' => 'see preevate logs',
+'right-block' => 'Block ither uisers fae eeditin',
+'right-blockemail' => 'Block ae uiser fae sendin wab-mail',
+'right-hideuser' => 'Block ae uisername, skaukin it fae the publeec',
+'right-ipblock-exempt' => 'Bypass IP blocks, autae-blocks  range blocks',
+'right-proxyunbannable' => 'Bypass autaematic blocks o proxies',
+'right-unblockself' => 'Onblock yersel',
+'right-protect' => 'Chynge protection levels n eedit cascade-protected pages',
+'right-editprotected' => 'Eedit pages protected aes "{{int:protect-level-sysop}}"',
+'right-editsemiprotected' => 'Eedit pages protected aes "{{int:protect-level-autoconfirmed}}"',
+'right-editinterface' => 'Eedit the uiser interface',
+'right-editusercssjs' => "Eedit ither uisers' CSS n JavaScript files",
+'right-editusercss' => "Eedit ither uisers' CSS files",
+'right-edituserjs' => "Eedit ither uisers' JavaScript files",
+'right-editmyusercss' => 'Eidit yer ain uiser CSS files',
+'right-editmyuserjs' => 'Eedit yer ain uiser JavaScript files',
+'right-viewmywatchlist' => 'See yer ain watchleet',
+'right-editmywatchlist' => 'Eedit yer ain watchleet. Myd that some actions will still add pages even wioot this richt.',
+'right-viewmyprivateinfo' => 'See yer ain preevate data (e.g. wab-mail address, real name)',
+'right-editmyprivateinfo' => 'Eedit yer ain preevate data (e.g. wab-mail address, real name)',
+'right-editmyoptions' => 'Eedit yer ain preeferences',
+'right-rollback' => 'Quicklie rowback the eedits o the laist uiser that eeditit ae parteecular page',
+'right-markbotedits' => 'Maurk rowed-back eedits aes bot eedits',
+'right-noratelimit' => 'No be affected bi rate limits',
+'right-import' => 'Import pages fae ither wikis',
+'right-importupload' => 'Import pages fae ae file uplaid',
+'right-patrol' => "Maurk ithers' eedits aes patrowed",
+'right-autopatrol' => "Hae ye'r ain eedits autaematiclie maurked aes patrowed",
+'right-patrolmarks' => 'See recent chynges patrol maurks',
+'right-unwatchedpages' => 'See ae leet o onwatched pages',
+'right-mergehistory' => 'Merge the histerie o pages',
+'right-userrights' => 'Eedit aw uiser richts',
+'right-userrights-interwiki' => 'Eedit the uiser richts o uisers oan ither wikis',
+'right-siteadmin' => 'Lock n lowse the database',
+'right-override-export-depth' => 'Export pages incluidin linked pages up til ae depth o 5',
+'right-sendemail' => 'Send Wab-mail til ither uisers',
+'right-passwordreset' => 'See passwaird reset wab-mails',
 
 # Special:Log/newusers
 'newuserlogpage' => 'Uiser cræftin log',
+'newuserlogpagetext' => 'This is ae log o uiser cræftins.',
 
 # User rights log
 'rightslog' => 'Uiser richts log',
@@ -1288,15 +1364,55 @@ Yer wab-mail address isna revealed whan ither uisers contact ye.',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'eidit this page',
+'action-createpage' => 'cræft pages',
+'action-createtalk' => 'cræft discussion pages',
+'action-createaccount' => 'cræft this uiser accoont',
+'action-minoredit' => 'maurk this eedit aes minor',
+'action-move' => 'muiv this page',
+'action-move-subpages' => 'mui this page, n its subpages',
+'action-move-rootuserpages' => 'muiv ruit uiser pages',
+'action-movefile' => 'muiv this file',
+'action-upload' => 'uplaid this file',
+'action-reupload' => 'owerwrite this exeestin file',
+'action-reupload-shared' => 'owerride this file oan ae shaired reposeeterie',
+'action-upload_by_url' => 'uplaid this file fae ae URL',
+'action-writeapi' => 'uise the write API',
+'action-delete' => 'delyte this page',
+'action-deleterevision' => 'delyte this reveesion',
+'action-deletedhistory' => "see this page's delytit histerie",
+'action-browsearchive' => 'rake delytit pages',
+'action-undelete' => 'ondelyte this page',
+'action-suppressrevision' => 'luikower n restore this skaukt reveesion',
+'action-suppressionlog' => 'see this preevate log',
+'action-block' => 'block this uiser fae eeditin',
+'action-protect' => 'chynge protection levels fer this page',
+'action-rollback' => 'quicklie rowback the eedits o the laist uiser that eeditit ae parteecular page',
+'action-import' => 'import pages fae anither wiki',
+'action-importupload' => 'import pages fae ae file uplaid',
+'action-patrol' => "maurk ithers' eedits aes patrowed",
+'action-autopatrol' => 'hae yer eedit maurked aes patrowed',
+'action-unwatchedpages' => 'see the leet o onwatched pages',
+'action-mergehistory' => 'merge the histerie o this page',
+'action-userrights' => 'eedit aw uiser richts',
+'action-userrights-interwiki' => 'eedit the uiser richts o uisers oan ither wikis',
+'action-siteadmin' => 'lock or lowse the database',
+'action-sendemail' => 'send wab-mails',
+'action-editmywatchlist' => 'eedit yer watchleet',
+'action-viewmywatchlist' => 'see yer watchleet',
+'action-viewmyprivateinfo' => 'see yer preevate information',
+'action-editmyprivateinfo' => 'eedit yer preevate information',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|chynge|chynges}}',
+'enhancedrc-since-last-visit' => '$1 {{PLURAL:$1|sin laist veesit}}',
+'enhancedrc-history' => 'histeri',
 'recentchanges' => 'Recent chynges',
 'recentchanges-legend' => 'Recent changes options',
 'recentchanges-summary' => 'Follae the maist recent chynges tae the wiki on this page.',
+'recentchanges-noresult' => 'Naw chynges durin the gien period matchin thir guidins.',
 'recentchanges-feed-description' => 'Follae the maist recent chynges tae the wiki in this feed.',
 'recentchanges-label-newpage' => 'This edit created a freish page',
-'recentchanges-label-minor' => 'This is ae smaa eidit',
+'recentchanges-label-minor' => 'This is a smaa eidit',
 'recentchanges-label-bot' => 'This edit wis performed bi a bot',
 'recentchanges-label-unpatrolled' => 'This edit haes nae yet bin patrolled',
 'rcnotefrom' => 'Ablo ar the chynges sin <strong>$2</strong> (up til <strong>$1</strong> shawn).',
@@ -1328,9 +1444,12 @@ Yer wab-mail address isna revealed whan ither uisers contact ye.',
 'newpageletter' => 'N',
 'boteditletter' => 'b',
 'number_of_watching_users_pageview' => '[$1 watchin {{PLURAL:$1|uiser|uisers}}]',
+'rc_categories' => 'Limit til categeries (separate wi "|")',
 'rc_categories_any' => 'Ony',
+'rc-change-size-new' => '$1 {{PLURAL:$1|byte|bytes}} efter chynge',
 'rc-enhanced-expand' => 'Shaw details',
 'rc-enhanced-hide' => 'Skauk details',
+'rc-old-title' => 'oreeginlie cræftit aes "$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'Relatit chynges',
@@ -1346,47 +1465,214 @@ Pages oan [[Special:Watchlist|yer watchleet]] ar <strong>baud</strong.',
 'upload' => 'Uplaid file',
 'uploadbtn' => 'Uplaid file',
 'reuploaddesc' => 'Gang back tae the uplaid form.',
+'upload-tryagain' => 'Haunn in modified file descreeption',
 'uploadnologin' => 'Nae loggit in',
 'uploadnologintext' => 'Please $1 tae uplaid files.',
+'upload_directory_missing' => 'The uplaid directerie ($1) is missin n coudna be cræftit bi the wabserver.',
+'upload_directory_read_only' => 'The uplaid directerie ($1) is no writable bi the wabserver.',
 'uploaderror' => 'Uplaid mistak',
-'uploadtext' => 'Uise the form ablo tae uplaid files.
-Tae view or rake previooslei uplaided files gang til the [[Special:FileList|leet o uplaided files]], (re)uplaids ar loggit in the [[Special:Log/upload|uplaid log]] ava, delytions in the [[Special:Log/delete|delytion log]].
+'upload-recreate-warning' => "'''Warnishment: Ae file bi that name haes been delytir or muived.'''
 
-Tae inclæde ae file in ae page, uise ae link in yin o the follaein forms:
+The delytion n muiv log fer this page ar provided here fer conveeeniance:",
+'uploadtext' => 'Uise the form ablo tae uplaid files.
+Tae see or rake preeveeooslie uplaided files gang til the [[Special:FileList|leet o uplaided files]], (re)uplaids ar loggit in the [[Special:Log/upload|uplaid log]] ava, delytions in the [[Special:Log/delete|delytion log]].
+
+Tae incluide ae file in ae page, uise ae link in yin o the follaein forms:
 * <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code></strong> tae uise the ful version o the file
-* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code></strong> tae uise ae 200 pixel wide rendition in ae kist in the cair margin wi "alt tex" aes descreeption
-* <strong><code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code></strong> fer linkin directlie til the file wioot displeyin the file',
+* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt tex]]</nowiki></code></strong> tae uise ae 200 pixel wide rendeetion in ae kist in the cair margin wi "alt tex" aes descreeption
+* <strong><code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code></strong> fer linkin directlie til the file wioot displeyin the file.',
+'upload-prohibited' => 'Proheebited file types: $1.',
 'uploadlog' => 'uplaid log',
 'uploadlogpage' => 'Uplaid log',
 'uploadlogpagetext' => 'Ablo is a leet o the maist recent file uplaids.',
 'filedesc' => 'Ootline',
+'fileuploadsummary' => 'Ootline:',
+'filereuploadsummary' => 'File chynges:',
 'filestatus' => 'Copyricht status:',
 'filesource' => 'Soorce:',
 'uploadedfiles' => 'Uplaidit files',
 'ignorewarning' => 'Ignore warnishment n hain file oniewey.',
 'ignorewarnings' => 'Ignore ony warnins',
-'illegalfilename' => 'The filename "$1" haes characters that isna alloud in page teitles. Please rename the file an gie uplaidin it anither shot.',
+'minlength1' => 'Filenames maun be at least yin letter.',
+'illegalfilename' => 'The filename "$1" haes chairacters that\'s no permitit in page teitles. Please rename the file n gie uplaidin it anither shote.',
+'filename-toolong' => 'Filenames canna be langer than 240 bytes.',
 'badfilename' => 'Eimage name haes been chynged tae "$1".',
+'filetype-mime-mismatch' => 'File exteension ".$1" disna match the detected MIME type o the file ($2).',
+'filetype-badmime' => 'Files o the MIME type "$1" ar no permitit tae be uplaided.',
+'filetype-bad-ie-mime' => 'Canna uplaid this file cause Internet Explorer wid detect it aes "$1", n this is ae no-permitit n potentiallie dangeroos file type.',
+'filetype-unwanted-type' => "'''\".\$1\"''' is aen onwanted file type.
+Preferred {{PLURAL:\$3|file type is|file types ar}} \$2.",
+'filetype-banned-type' => '\'\'\'".$1"\'\'\' {{PLURAL:$4|is no ae permitted file type|ar no permitted file types}}.
+Permitted {{PLURAL:$3|file type is|file types ar}} $2.',
+'filetype-missing' => 'The file haes nae extension (like ".jpg").',
+'empty-file' => 'The file that ye haunned in wiss tuim.',
+'file-too-large' => 'The file that ye haunned in wis ower muckle.',
+'filename-tooshort' => 'The filename is ower short.',
+'filetype-banned' => 'This type o file is banned.',
+'verification-error' => 'This file didna pass file verifeecation.',
+'hookaborted' => 'The modifeecation that ye tried tae mak wis abortit bi aen exteension.',
+'illegal-filename' => 'The filename isna permitit.',
+'overwrite' => 'Owerwritin aen exeestin file isna permeetit.',
+'unknown-error' => 'Aen onkent mistake occurred.',
+'tmp-create-error' => 'Coudna cræft temperie file.',
+'tmp-write-error' => 'Mistak writin temperie file.',
+'large-file' => "It's recommended that files ar nae muckler than $1;
+this file is $2.",
 'largefileserver' => 'This file is bigger nor the server is confeigurt tae allou.',
+'emptyfile' => 'The file that ye uplaided seems tae be tuim.
+This micht be cause o ae typeower in the filename.
+Please check whether ye reallie want tae uplaid this file.',
+'windows-nonascii-filename' => 'This wiki disna support filenames wi speecial chairacters.',
 'fileexists' => "A file wi this name exists aareadies, please check <strong>[[:$1]]</strong> gin ye'r no siccar that ye want tae chynge it.
 [[$1|thumb]]",
+'filepageexists' => "The descreeption page fer this file haes awreadie been cræftit at <strong>[[:$1]]</strong>, but naw file wi this name exeests the nou.
+The ootline that ye enter willna kith oan the descreeption page.
+Tae mak yer ootlline kith there, ye'll need tae manuallie eedit it.
+[[$1|thumb]]",
+'fileexists-extension' => 'Ae file wi ae siclike name exeests: [[$2|thumb]]
+* Name o the uplaidin file: <strong>[[:$1]]</strong>
+* Name o the exeestin file: <strong>[[:$2]]</strong>
+Please chuise ae different name.',
+'fileexists-thumbnail-yes' => "The file seems tae be aen eemage o reduced size ''(thumbnail)''.
+[[$1|thumb]]
+Please check the file <strong>[[:$1]]</strong>.
+Gif the checked file is the same eemage o oreeginal size it's no necessairie tae uplaid aen extra thumbnail.",
+'file-thumbnail-no' => "The filename begins wi <strong>$1</strong>.
+It seems tae be aen eemage o reduced size ''(thumbnail)''.
+Gif ye hae this emage in ful resolution uplaid this yin, itherwise please chynge the filename.",
 'fileexists-forbidden' => 'Ae file wi this name awreadie exists, n canna be owerwritten.
 Gif ye still wish tae uplaid yer file, please gang back n uise ae new name.
 [[File:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Ae file wi this name awreadie exists in the shaired file repository.
-Gif ye still wish tae uplaid yer file, please gae back an uise ae new name.
+'fileexists-shared-forbidden' => 'Ae file wi this name awreadie exeests in the shaired file repositerie.
+Gif ye still wish tae uplaid yer file, please gang back n uise ae new name.
 [[File:$1|thumb|center|$1]]',
+'file-exists-duplicate' => 'This file is ae dupleecate o the follaein {{PLURAL:$1|file|files}}:',
+'file-deleted-duplicate' => "Ae file ideentical til this file ([[:$1]]) haes been delytit afore.
+Ye shid check that file's delytion histerie afore proceedin tae re-uplaid it.",
 'uploadwarning' => 'Uplaid warnishment',
+'uploadwarning-text' => 'Please modeefie the file descreeption ablo n gie it anither gae.',
 'savefile' => 'Hain file',
 'uploadedimage' => 'uplaidit "$1"',
+'overwroteimage' => 'uplaided ae new version o "[[$1]]"',
 'uploaddisabled' => 'Sorry, uplaidin is disabled.',
+'copyuploaddisabled' => 'Uplaid bi URL disabled.',
+'uploadfromurl-queued' => 'Yer uplaid haes been pit in line.',
+'uploaddisabledtext' => 'File uplaids ar disabled.',
+'php-uploaddisabledtext' => 'File uplaids ar disabled in PHP.
+Please check the file_uploads settin.',
 'uploadscripted' => 'This file hauds HTML or script code that micht be wrang interpretit bi a wab brouser.',
 'uploadscriptednamespace' => 'This SVG file contains aen illegal namespace "$1"',
+'uploadinvalidxml' => 'The XML in the uplaided file coudna be parsed.',
 'uploadvirus' => 'The file hauds a virus! Details: $1',
+'uploadjava' => 'The file is ae ZIP file that contains ae Java .class file.
+Uplaidin Java files isna permitit cause thay can cause secureetie restreections tae be bypassed.',
+'upload-source' => 'Soorce file',
 'sourcefilename' => 'Soorce filename:',
+'sourceurl' => 'Soorce URL:',
+'upload-maxfilesize' => 'Mucklest file size: $1',
+'upload-description' => 'File descreeption',
+'upload-options' => 'Uplaid opties',
+'watchthisupload' => 'Watch this file.',
+'filewasdeleted' => 'Ae file o this name haes been preeveeooslie uplaided n than delytit.
+Ye shid check the $1 afore preceedin tae uplaid it again.',
+'filename-bad-prefix' => "The name o the file that ye'r uplaidin begins wi '''\"\$1\"''', this is ae no-descreepteeve name typiclie assigned autæmateeclie bi deegital cameras.
+Please chuise ae mai descreepteeve name fer yer file.",
+'upload-success-subj' => 'Successfu uplaid',
+'upload-success-msg' => "Yer uplaid fae [$2] wis successfu. It's available here: [[:{{ns:file}}:$1]]",
+'upload-failure-subj' => 'Uplaid problem',
+'upload-failure-msg' => 'Thaur wis ae problem wi yer uplaid fae [$2]:
+
+$1',
+'upload-warning-subj' => 'Uplaid warnishment',
+'upload-warning-msg' => 'Thaur wis ae proablem wi yer uplaid fae [$2]. Ye can return til the [[Special:Upload/stash/$1|uplaid form]] tae correct this proablem.',
+
+'upload-proto-error' => 'Oncorrect protocol',
+'upload-proto-error-text' => 'Remote uplaid needs URLs beginnin wi <code>http://</code> or <code>ftp://</code>.',
+'upload-file-error' => 'Internal mistak',
+'upload-file-error-text' => 'Aen internal mitake occurred whan attemptin tae cræft ae temperie file oan the server.
+Please contact aen [[Special:ListUsers/sysop|admeenistrater]].',
+'upload-misc-error' => 'Onkent uplaid mistake',
+'upload-misc-error-text' => 'Aen onkent error occurred durin the uplaid.
+Please vereefie that the URL is valid n accessible n gie it anither gae.
+Gif the proablem perseests, contact aen [[Special:ListUsers/sysop|admeenistrater]].',
+'upload-too-many-redirects' => 'The URL contained oewr monie reguidals',
+'upload-unknown-size' => 'Onkent size',
+'upload-http-error' => 'Aen HTTP mistake occurred: $1',
+'upload-copy-upload-invalid-domain' => 'Copie uplaids arna available fae this domain.',
+
+# File backend
+'backend-fail-stream' => 'Coudna stream file "$1".',
+'backend-fail-backup' => 'Coudna backup file "$1".',
+'backend-fail-notexists' => 'The file $1 disna exeest.',
+'backend-fail-hashes' => 'Coudna get file hashes fer comparison.',
+'backend-fail-notsame' => 'Ae no-identeecal file awreadie exeests at "$1".',
+'backend-fail-invalidpath' => '"$1" isna ae valid storage path.',
+'backend-fail-delete' => 'Coudna delyte file "$1".',
+'backend-fail-describe' => 'Coudna chynge metadata fer file "$1".',
+'backend-fail-alreadyexists' => 'The file "$1" awreadiw exeests.',
+'backend-fail-store' => 'Coudna store file "$1" at "$2".',
+'backend-fail-copy' => 'Coudna copie file "$1" til "$2".',
+'backend-fail-move' => 'Coudna muiv file "$1" til "$2".',
+'backend-fail-opentemp' => 'Coudna apen temperie file.',
+'backend-fail-writetemp' => 'Coudna write til temperie file.',
+'backend-fail-closetemp' => 'Coudna claise temperie file.',
+'backend-fail-read' => 'Coudna read file "$1".',
+'backend-fail-create' => 'Coudna write file "$1".',
+'backend-fail-maxsize' => 'Coudna write file "$1" cause it\'s muckler than {{PLURAL:$2|yin byte|$2 bytes}}.',
+'backend-fail-readonly' => 'The storage backend "$1" is read-yinlie the nou. The raison gien is: "\'\'$2\'\'"',
+'backend-fail-synced' => 'The file "$1" is in aen onconseestent state wiin the internal storage backends',
+'backend-fail-connect' => 'Coudna connect til storage backend "$1".',
+'backend-fail-internal' => 'Aen onkent mistak occurred in storage backend "$1".',
+'backend-fail-contenttype' => 'Coudna determine the content type o the file tae store at "$1".',
+'backend-fail-batchsize' => 'The storage backend wis gien ae batch o $1 file {{PLURAL:$1|operation|operations}}; the limit is $2 {{PLURAL:$2|operation|operations}}.',
+'backend-fail-usable' => 'Coudna read or write file "$1" cause o onsuffeecient permeessions or missin directeries/containers.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'Coudna connect til the journal database fer storage backend "$1".',
+'filejournal-fail-dbquery' => 'Coudna update the journal database fer storage backend "$1".',
+
+# Lock manager
+'lockmanager-notlocked' => 'Coudna lowse "$1"; it\'s no lockit.',
+'lockmanager-fail-closelock' => 'Coud no claise lock file fer "$1".',
+'lockmanager-fail-deletelock' => 'Coudna delyte lock file fer "$1".',
+'lockmanager-fail-acquirelock' => 'Coudna acquire lock fer "$1".',
+'lockmanager-fail-openlock' => 'Coudna apen lock file fer "$1".',
+'lockmanager-fail-releaselock' => 'Coudna release lock fer "$1".',
+'lockmanager-fail-db-bucket' => 'Coudna contact enoogh lock databases in bucket $1.',
+'lockmanager-fail-db-release' => 'Coudna release locks oan database $1.',
+'lockmanager-fail-svr-acquire' => 'Coudna acquire locks oan server $1.',
+'lockmanager-fail-svr-release' => 'Coudna release locks oan server $1.',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Ae mistak wis encoontered whan apenin the file fer ZIP checks.',
+'zip-wrong-format' => 'The speceefied file wisna ae ZIP file.',
+'zip-bad' => 'The file is ae rotten or itherwise onreadable ZIP file.
+It canna be properlie checkt fer securitie.',
+'zip-unsupported' => "The file is ae ZIP file that uises ZIP featurs that'r no supported bi MediaWiki.
+It canna be properlie checkt fer securitie.",
+
+# Special:UploadStash
+'uploadstash' => 'Uplaid stash',
+'uploadstash-summary' => 'This page provides access til files that ar uplaided or in the process o uplaidin, but ar no yet published til the wiki. Thir files ar no veesible til oniebodie but the uiser that uplaided thaim.',
+'uploadstash-clear' => 'Clear stashed files.',
+'uploadstash-nofiles' => "Ye'v naw stashed files.",
+'uploadstash-badtoken' => 'The performin o that action wis onnsuccessfu, perhaps cause yer eeditin creeedentials hae expired. Gie it anither gae.',
+'uploadstash-errclear' => 'Clearin the files wis onsuccessfu.',
+'uploadstash-refresh' => 'Refresh the leet o files',
+'invalid-chunk-offset' => 'Onvalid chunk affset',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'Access denied.',
+'img-auth-nopathinfo' => 'Missin PATH_INFO.
+Yer server isna set up tae pass this information.
+It micht be CGI-based n canna support img_auth.
+See https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir' => 'Requested path isna in the confeegured uplaid directerie.',
+'img-auth-badtitle' => 'Onable tae cræft ae valid title fae "$1".',
+'img-auth-nologinnWL' => 'Ye\'r no loggit in n "$1" isna in the whiteleet.',
 
 'license' => 'Licensing:',
-'license-header' => 'Licensing',
+'license-header' => 'Licensin',
 'nolicense' => 'Nane selected',
 
 # Special:ListFiles
@@ -1412,7 +1698,7 @@ Gif ye still wish tae uplaid yer file, please gae back an uise ae new name.
 'imagelinks' => 'File uisage',
 'linkstoimage' => 'The follaein {{PLURAL:$1|page airts|$1 pages airt}} tae this file:',
 'nolinkstoimage' => "The'r nae pages airts tae this eimage.",
-'sharedupload-desc-here' => 'This file is frae $1 an micht be uised bi ither projects.
+'sharedupload-desc-here' => 'This file is fae $1 n micht be uised bi ither waurks.
 The descreeption oan its [$2 file descreeption page] thaur is shawn ablo.',
 
 # File reversion
@@ -1429,7 +1715,7 @@ The descreeption oan its [$2 file descreeption page] thaur is shawn ablo.',
 
 # Unused templates
 'unusedtemplates' => 'Templates that arena uised',
-'unusedtemplatestext' => 'This page leets aw pages in the {{ns:template}} namespace that arna incæded in anither page. Mynd an check fer ither airtins til the templates afore deletin theim.',
+'unusedtemplatestext' => "This page leets aw pages in the {{ns:template}} namespace that's no incuidit in anither page. Mynd n check fer ither links til the templates afore delytin thaim.",
 'unusedtemplateswlh' => 'ither links',
 
 # Random page
@@ -1496,8 +1782,8 @@ Ilka rou contains airtins til the first and seicont redirect, aes weel aes the t
 'ancientpages' => 'Auldest pages',
 'move' => 'Flit',
 'movethispage' => 'Flit this page',
-'unusedimagestext' => 'The follaeing files exist but arna embeddit in oni page.
-Please note that ither wab sites micht airt til ae file wi ae direct URL, an sae micht still be leetit here despite being in active uiss.',
+'unusedimagestext' => 'The follaein files exeest but arna embeddit in onie page.
+Please mynd that ither wab sites micht link til ae file wi ae direct URL, n sae micht still be leetit here despite being in acteeve uiss.',
 'unusedcategoriestext' => 'The follaein category pages exists, tho nae ither airticle or category maks uiss o thaim.',
 'notargettitle' => 'Nae target',
 'notargettext' => "Ye hivna specifee'd a tairget page or uiser tae perform this function on.",
@@ -1514,12 +1800,12 @@ Please note that ither wab sites micht airt til ae file wi ae direct URL, an sae
 'speciallogtitlelabel' => 'Target (title or uiser):',
 'log' => 'Logs',
 'all-logs-page' => 'Aw public logs',
-'alllogstext' => 'Combined display o aw available logs o {{SITENAME}}.
-Ye can narrae down the view bi selectin ae log type, the uisername (case-sensitive), or the affected page (case-sensitive ava).',
+'alllogstext' => 'Combined displey o aw available logs o {{SITENAME}}.
+Ye can narrae doon the whit ye see bi selectin ae log type, the uisername (case-sensiteeve), or the affected page (case-sensiteeve ava).',
 'logempty' => 'Nae matchin items in log.',
 
 # Special:AllPages
-'allpages' => 'Aa pages',
+'allpages' => 'Aw pages',
 'alphaindexline' => '$1 tae $2',
 'nextpage' => 'Neist page ($1)',
 'prevpage' => 'Page afore ($1)',
@@ -1533,9 +1819,9 @@ Ye can narrae down the view bi selectin ae log type, the uisername (case-sensiti
 
 # Special:Categories
 'categories' => 'Categories',
-'categoriespagetext' => 'The follaeing {{PLURAL:$1|categorie contains|categories contain}} pages or media.
-[[Special:UnusedCategories|Onuised categories]] arna shawn here.
-See [[Special:WantedCategories|wanted categories]] ava.',
+'categoriespagetext' => 'The follaein {{PLURAL:$1|categerie contains|categeries contain}} pages or media.
+[[Special:UnusedCategories|Onuised categeries]] arna shawn here.
+See [[Special:WantedCategories|wanted categeries]] ava.',
 'special-categories-sort-count' => 'sairt bi coont',
 'special-categories-sort-abc' => 'sairt by the alphabet',
 
@@ -1556,7 +1842,7 @@ See [[Special:WantedCategories|wanted categories]] ava.',
 
 # Email user
 'mailnologin' => 'Nae send address',
-'mailnologintext' => 'Ye maun be [[Special:UserLogin|loggit in]] an hae a valid e-mail address in yer [[Special:Preferences|preferences]] tae send e-mail til ither uisers.',
+'mailnologintext' => 'Ye maun be [[Special:UserLogin|loggit in]] n hae ae valid wab-mail address in yer [[Special:Preferences|preferences]] tae send Wab-mail til ither uisers.',
 'emailuser' => 'E-mail this uiser',
 'noemailtitle' => 'Nae e-mail address',
 'noemailtext' => 'This uiser haesna speceefied ae valid wab-mail address.',
@@ -1570,13 +1856,13 @@ See [[Special:WantedCategories|wanted categories]] ava.',
 'watchnologin' => 'Nae loggit in',
 'watchnologintext' => 'Ye maun be [[Special:UserLogin|loggit in]] tae modify yer watchleet.',
 'addedwatchtext' => 'The page "[[:$1]]" haes been added til yer [[Special:Watchlist|watchleet]].
-Future chynges til this page an its associated tauk page will be leeted there.',
+Futur chynges til this page n its associated tauk page will be leeted thaur.',
 'removedwatchtext' => 'The page "[[:$1]]" haes been remuied fae [[Special:Watchlist|yer watchleet]].',
 'watch' => 'Watch',
 'watchthispage' => 'Leuk ower this page',
 'unwatch' => 'Unwatch',
 'notanarticle' => 'No a content page',
-'watchlist-details' => '{{PLURAL:$1|$1 page|$1 pages}} oan yer watchleet, no coontin tauk pages.',
+'watchlist-details' => '{{PLURAL:$1|$1 page|$1 pages}} on yer watchleet, nae coontin collogue pages.',
 'watchlistcontains' => 'Yer watchleet contains $1 {{PLURAL:$1|page|pages}}.',
 'iteminvalidname' => "Trouble wi eitem '$1', invalid name...",
 'wlnote2' => 'Ablow ar the chynges in the hainmaist {{PLURAL:$1|hour|<strong>$1</strong> hours}}, as of $3, $2.',
@@ -1601,9 +1887,9 @@ Future chynges til this page an its associated tauk page will be leeted there.',
 'delete-confirm' => 'Delyte "$1"',
 'delete-legend' => 'Delyte',
 'historywarning' => "<strong>Warnishment:</strong> The page that ye'r aboot tae delyte haes ae histerie wi approximatelie $1 {{PLURAL:$1|reveesion|reveesions}}:",
-'confirmdeletetext' => "Ye'r aboot tae permanently delete a page or eimage alang wi aa its history frae the database.
+'confirmdeletetext' => "Ye'r aboot tae delyte ae page or eemage alang wi aw its histerie fae the database.
 Please confirm that ye intend tae dae this, that ye unnerstaun the consequences,
-an that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
+n that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete' => 'Action duin',
 'actionfailed' => 'Action failed',
 'deletedtext' => '"$1" haes been delytit. See $2 fer ae record o recent delytions.',
@@ -1745,7 +2031,7 @@ til aen afore-blockit IP address or uisername.',
 'autoblocker' => 'Autaematicallie blockit sin yer IP address haes been uised recentlie bi "[[User:$1|$1]]". The raeson gien fer $1\'s block is "$2"',
 'blocklogpage' => 'Block log',
 'blocklogentry' => 'blockit [[$1]] wi aen expirie time o $2 $3',
-'blocklogtext' => 'This is ae log o uiser blockin an onblockin actions. Autaematically blockit IP addresses isna leetit. See the [[Special:BlockList|block leet]] fer the leet o bans and blocks oan nou.',
+'blocklogtext' => 'This is ae log o uiser blockin n onblockin actions. Autaematiclie blockit IP addresses isna leetit. See the [[Special:BlockList|block leet]] fer the leet o bans n blocks oan the nou.',
 'unblocklogentry' => 'unblockit $1',
 'block-log-flags-nocreate' => 'accoont-makkin blockit',
 'range_block_disabled' => 'The administrator abeility tae mak range blocks is disabled.',
@@ -1756,7 +2042,7 @@ Ye canna mak aen accoont.',
 
 # Developer tools
 'unlockdb' => 'Lowse database',
-'lockdbtext' => "Lockin the database will suspend the abeelitie o aa uisers tae eidit pages, chynge thair preeferences, eidit thair watchleets, an ither things requirin chynges in the database. Please confirm that this is whit ye'r etlin tae dae, an that ye'll lowse the database whan yer maintenance is duin.",
+'lockdbtext' => "Lockin the database will suspend the abeelitie o aw uisers tae eedit pages, chynge thair preeferences, eedit thair watchleets, n ither things needin chynges in the database. Please confirm that this is whit ye'r etlin tae dae, n that ye'll lowse the database whan yer maintenance is dun.",
 'unlockdbtext' => 'Lowsin the database will gie back the abeelitie fer aa uisers tae eidit pages, chynge their preeferences, eidit their watchleets, an ither things needin chynges in the database. Please confirm that this is whit ye ettle tae dae.',
 'lockconfirm' => 'Ai, Ah reellie want tae lock the database.',
 'unlockconfirm' => 'Ai, Ah reellie want tae lowse the database.',
@@ -1810,7 +2096,7 @@ In thae cases, ye will hae tae muiv or merge the page manuallie gif ye sae desir
 'movelogpagetext' => "A leet o pages that's flitted is ablo.",
 'movereason' => 'Raeson:',
 'revertmove' => 'revert',
-'delete_and_move' => 'Delete an muiv',
+'delete_and_move' => 'Delyte n muiv',
 'delete_and_move_text' => '==Delytion caad fer==
 
 The destination airticle "[[:$1]]" aareadies exists. Div ye want tae delyte it fer tae mak wey fer the muiv?',
@@ -1824,12 +2110,12 @@ The hainmaist log entry is provided ablow fer reference:',
 
 # Export
 'export' => 'Export pages',
-'exporttext' => 'Ye can export the tex an eiditin histerie o ae parteecular page or set o pages wrapped in some XML.
+'exporttext' => 'Ye can export the tex n eeditin histerie o ae parteecular page or set o pages wrapped in some XML.
 This can be imported intil anither wiki uisin MediaWiki bi waa o the [[Special:Import|import page]].
 
-Tae export pages, enter the titles in the tex kist ablo, yin title per line, an select whether ye want the current reveesion aes weel aes aw auld reveesions, wi the page histerie lines, or the current reveesion wi the info aneat the laist eidit.
+Tae export pages, enter the titles in the tex kist ablo, yin title per line, n select whether ye want the Nou reveesion  aw auld reveesions ava, wi the page histerie lines, or the Nou reveesion wi the info aneat the laist eedit.
 
-In the latter case ye can ava uise ae link, fer example [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] fer the page "[[{{MediaWiki:Mainpage}}]]".',
+In the latter case ye can uise ae link ava, fer example [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] fer the page "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly' => 'Inclæde juist the current reveesion, no the ful histerie',
 'exportnohistory' => '----
 <strong>Note:</strong> Exporting the ful histerie o pages through this form has been disabled caus o performance raisons.',
@@ -1840,7 +2126,7 @@ In the latter case ye can ava uise ae link, fer example [[{{#Special:Export}}/{{
 'allmessagesdefault' => 'Defaut message tex',
 'allmessagescurrent' => 'Message tex the nou',
 'allmessagestext' => 'This is ae leet o system messages available in the MediaWiki namespace.
-Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] an [//translatewiki.net translatewiki.net] gif ye wish tae contreebute til the generic MediaWiki localisation.',
+Please veesit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] n [//translatewiki.net translatewiki.net] gif ye wish tae contreebute til the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' nae supportit acause '''\$wgUseDatabaseMessages''' is aff.",
 'allmessages-filter-translate' => 'Owerset',
 
@@ -1851,8 +2137,8 @@ Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation
 'thumbnail_image-failure-limit' => 'There hae been ower moni recent failed attempts ($1 or mair) tae render this thumbnail. Please try again later.',
 
 # Special:Import
-'importtext' => 'Please export the file fae the soorce wiki uising the [[Special:Export|export utility]].
-Hain it til yer computer an uplaid it here.',
+'importtext' => 'Please export the file fae the soorce wiki uising the [[Special:Export|export utilitie]].
+Hain it til yer computer n uplaid it here.',
 'importnotext' => 'Tuim or nae tex',
 'importsuccess' => 'Importit fine!',
 'importhistoryconflict' => 'Conflictin histerie reveesion exeests (micht hae importit this page afore)',
@@ -1901,7 +2187,7 @@ Ye can view its soorce',
 'tooltip-t-permalink' => 'Permanent link til this reveesion o the page',
 'tooltip-ca-nstab-main' => 'Leuk at content page',
 'tooltip-ca-nstab-user' => 'View the uiser page',
-'tooltip-ca-nstab-special' => "This is ae byordinair page, ye cannae eidit th' page itsel",
+'tooltip-ca-nstab-special' => 'This is a byordinair page, ye cannae eidit the page itsel',
 'tooltip-ca-nstab-project' => 'See the waurk page',
 'tooltip-ca-nstab-image' => 'View the file page',
 'tooltip-ca-nstab-template' => 'View the template',
@@ -1912,8 +2198,8 @@ Ye can view its soorce',
 'tooltip-diff' => 'Shaw the chynges that ye makit til the tex.',
 'tooltip-compareselectedversions' => 'See the differs atween the twa selectit versions o this page.',
 'tooltip-watch' => 'Add this page tae yer watchleet',
-'tooltip-rollback' => '"Rowback" reverts eedit(s) til this page o the laist contreebuter in yin clap',
-'tooltip-undo' => '"Ondae" reverts this eedit n apens the eedit form in luikower mode. It permits addin ae raison in the owerview.',
+'tooltip-rollback' => '"Rowback" reverts eidit(s) til this page o the laist contreebuter in yin clap',
+'tooltip-undo' => '"Ondae" reverts this eedit n apens the eidit form in luikower mode. It permits addin ae raison in the owerview.',
 'tooltip-summary' => 'Enter ae short owerview',
 
 # Metadata
@@ -2010,10 +2296,10 @@ Gif the file haes bin modified frae its oreeginal state, some details micht no f
 
 # Email address confirmation
 'confirmemail_noemail' => 'Ye dinna hae a valid email address set in yer [[Special:Preferences|uiser preferences]].',
-'confirmemail_text' => 'This wiki requires ye tae validate yer e-mail address
-afore uisin e-mail featurs. Activate the button ablo tae send a confirmation
-mail tae yer address. The mail will include an airtin containing a code; laid the
-airtin in yer brouser tae confirm that yer e-mail address is guid.',
+'confirmemail_text' => 'This wiki needs ye tae validate yer wab-mail address
+afore uisin wab-mail featurs. Acteevate the button ablo tae send a confirmation
+mail til yer address. The mail will incluide ae link containin ae code; laid the
+ link in yer brouser tae confirm that yer wab-mail address is guid.',
 'confirmemail_sendfailed' => '{{SITENAME}} coudna send yer confirmation mail.
 Please check yer wab-mail address fer onvalid chairacters.
 
@@ -2025,12 +2311,11 @@ Mailer returned: $1',
 'confirmemail_body' => 'Somebodie, maist likely ye, fae IP address $1,
 haes registered aen accoont "$2" wi this wab-mail address oan {{SITENAME}}.
 
-Tae confirm that this accont really is yers an activate
-wab-mail features oan {{SITENAME}}, apen this airtin in yer brouser:
+Tae confirm that this accoont reallie is yers n acteevate wab-mail featurs oan {{SITENAME}}, apen this link in yer brouser:
 
 $3
 
-Gif ye did *no* register the accoont, follae this airtin
+Gif ye div *no* register the accoont, follae this link
 tae cancel the wab-mail address confirmation:
 
 $5
@@ -2063,8 +2348,8 @@ Please confirm that ye reallie want tae recræft this page.',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'View relevant changes',
-'watchlisttools-edit' => 'View aen eidit watchleet',
-'watchlisttools-raw' => 'Eidit raw watchleet',
+'watchlisttools-edit' => 'View an eidit watchleet',
+'watchlisttools-raw' => 'Edit raw watchleet',
 
 # Core parser functions
 'duplicate-defaultsort' => '\'\'\'Wairnin:\'\'\' Default sort key "$2" overrides earlier default sort key "$1".',

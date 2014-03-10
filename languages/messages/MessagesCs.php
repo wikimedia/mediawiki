@@ -937,7 +937,7 @@ Abyste dokončili přihlášení, nastavte si zde nové heslo:',
 'resetpass-temp-password' => 'Dočasné heslo:',
 'resetpass-abort-generic' => 'Změna hesla byla zablokována rozšířením.',
 'resetpass-expired' => 'Platnost vašeho hesla vypršela. Pro přihlášení si nastavte nové heslo.',
-'resetpass-expired-soft' => 'Platnost vašeho hesla vypršela, musíte si nastavit nové. Zvolte si nové heslo nebo klikněte na storno a nastavte si ho později.',
+'resetpass-expired-soft' => 'Platnost vašeho hesla vypršela, musíte si nastavit nové. Zvolte si nové heslo nebo klikněte na „{{int:resetpass-submit-cancel}}“ a nastavte si ho později.',
 
 # Special:PasswordReset
 'passwordreset' => 'Reset hesla',
@@ -1779,7 +1779,7 @@ Vaše adresa v takovém případě není prozrazena.',
 'recentchanges-legend-heading' => "'''Legenda:'''",
 'recentchanges-legend-newpage' => '(vizte též [[Special:NewPages|seznam nových stránek]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnotefrom' => 'Níže {{PLURAL:$1|je|jsou|je}} nejvýše <b>$1</b> {{PLURAL:$1|změna|změny|změn}} od <b>$2</b>.',
+'rcnotefrom' => 'Níže jsou změny od <strong>$2</strong> ({{PLURAL:$1|zobrazena|zobrazeny|zobrazeno}} nejvýše <strong>$1</strong>).',
 'rclistfrom' => 'Ukázat nové změny, počínaje od $1',
 'rcshowhideminor' => '$1 malé editace',
 'rcshowhideminor-show' => 'Zobrazit',
@@ -1920,6 +1920,7 @@ Před tím, než soubor znovu nahrajete, byste měli požádat někoho, kdo mů�
 'uploaddisabledtext' => 'Načítání souborů je vypnuto.',
 'php-uploaddisabledtext' => 'V PHP je vypnuto načítání souborů. Prosím, zkontrolujte nastavení file_uploads.',
 'uploadscripted' => 'Tento soubor obsahuje HTML nebo kód skriptu, který by mohl být prohlížečem chybně interpretován.',
+'uploadscriptednamespace' => 'Tento SVG soubor obsahuje nedovolený jmenný prostor „$1“',
 'uploadinvalidxml' => 'XML v načteném souboru nelze zpracovat.',
 'uploadvirus' => 'Tento soubor obsahuje virus! Podrobnosti: $1',
 'uploadjava' => 'Tento soubor je ZIP, který obsahuje javový soubor .class.
@@ -2742,8 +2743,10 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'Tato IP adresa je momentálně zablokována.
 Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'sp-contributions-search' => 'Zobrazení příspěvků',
+'sp-contributions-suppresslog' => 'utajené příspěvky uživatele',
 'sp-contributions-username' => 'IP adresa nebo uživatelské jméno:',
-'sp-contributions-toponly' => 'Zobrazit pouze aktuální revize',
+'sp-contributions-toponly' => 'Zobrazit pouze editace na aktuální revizi',
+'sp-contributions-newonly' => 'Zobrazovat pouze editace zakládající stránku',
 'sp-contributions-submit' => 'Zobrazit',
 
 # What links here
