@@ -8,19 +8,20 @@
 	 * @private
 	 * @context mw.Api
 	 *
-	 * @param {string|mw.Title|string[]|mw.Title[]} page Full page name or instance of mw.Title, or an
+	 * @param {string|mw.Title|string[]|mw.Title[]} pages Full page name or instance of mw.Title, or an
 	 *  array thereof. If an array is passed, the return value passed to the promise will also be an
 	 *  array of appropriate objects.
 	 * @param {Function} [ok] Success callback (deprecated)
 	 * @param {Function} [err] Error callback (deprecated)
 	 * @return {jQuery.Promise}
 	 * @return {Function} return.done
-	 * @return {Object|Object[]} return.done.watch
+	 * @return {Object|Object[]} return.done.watch Object or list of objects (depends on the `pages`
+	 *  parameter)
 	 * @return {string} return.done.watch.title Full pagename
-	 * @return {boolean} return.done.watch.watched
+	 * @return {boolean} return.done.watch.watched Whether the page is now watched or unwatched
 	 * @return {string} return.done.watch.message Parsed HTML of the confirmational interface message
 	 */
-	function doWatchInternal( page, ok, err, addParams ) {
+	function doWatchInternal( pages, ok, err, addParams ) {
 		// XXX: Parameter addParams is undocumented because we inherit this
 		// documentation in the public method..
 		var params, apiPromise,
@@ -36,17 +37,9 @@
 		params = {
 			action: 'watch',
 			token: mw.user.tokens.get( 'watchToken' ),
-			uselang: mw.config.get( 'wgUserLanguage' )
+			uselang: mw.config.get( 'wgUserLanguage' ),
+			titles: $.isArray( pages ) ? pages.join( '|' ) : String( pages )
 		};
-
-		if ( $.isArray( page ) ) {
-			params.titles = page.join( '|' );
-		} else {
-			// The 'title' parameter is deprecated, keeping this for compatibility instead of
-			// converting to array because the API response changes from object to array of objects
-			// as well (bug 62422).
-			params.title = String( page );
-		}
 
 		if ( addParams ) {
 			$.extend( params, addParams );
@@ -54,7 +47,8 @@
 
 		apiPromise = this.post( params )
 			.done( function ( data ) {
-				d.resolve( data.watch );
+				// If a single page was given (not an array) respond with a single item as well.
+				d.resolve( $.isArray( pages ) ? data.watch : data.watch[0] );
 			} )
 			.fail( d.reject );
 
@@ -67,16 +61,16 @@
 		 *
 		 * @inheritdoc #doWatchInternal
 		 */
-		watch: function ( page, ok, err ) {
-			return doWatchInternal.call( this, page, ok, err );
+		watch: function ( pages, ok, err ) {
+			return doWatchInternal.call( this, pages, ok, err );
 		},
 		/**
 		 * Convenience method for `action=watch&unwatch=1`.
 		 *
 		 * @inheritdoc #doWatchInternal
 		 */
-		unwatch: function ( page, ok, err ) {
-			return doWatchInternal.call( this, page, ok, err, { unwatch: 1 } );
+		unwatch: function ( pages, ok, err ) {
+			return doWatchInternal.call( this, pages, ok, err, { unwatch: 1 } );
 		}
 
 	} );
