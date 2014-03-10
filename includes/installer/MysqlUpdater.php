@@ -1057,4 +1057,12 @@ class MysqlUpdater extends DatabaseUpdater {
 			'Making iwl_prefix_title_from index non-UNIQUE'
 		);
 	}
+
+	protected function doModifyTimeRelatedFields(){
+		return $this->applyPatch(
+		'patch-clean_timestamps.sql',
+		false,
+		'Modify all time related fields to varbinary(14)'
+		);
+	}
 }
