@@ -42,6 +42,7 @@ if ( count( $args ) < 1 || isset( $options['help'] ) ) {
 
 			echo "\nUsing title '" . $title->getPrefixedText() . "'...";
 			if ( !$title->exists() || !isset( $options['nooverwrite'] ) ) {
+				RequestContext::getMain()->setTitle( $title );
 
 				$text = file_get_contents( $filename );
 				$user = isset( $options['user'] ) ? $options['user'] : 'Maintenance script';
