@@ -269,13 +269,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Individual test functions may override globals (either directly or through this
-	 * setMwGlobals() function), however one must call this method at least once for
-	 * each key within the setUp().
-	 * That way the key is added to the array of globals that will be reset afterwards
-	 * in the tearDown(). And, equally important, that way all other tests are executed
-	 * with the same settings (instead of using the unreliable local settings for most
-	 * tests and fix it only for some tests).
+	 * Sets a global, maintaining a stashed version of the previous global to be
+	 * restored in tearDown
+	 *
+	 * The key is added to the array of globals that will be reset afterwards
+	 * in the tearDown().
 	 *
 	 * @example
 	 * <code>
@@ -299,34 +297,57 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *  of key/value pairs.
 	 * @param mixed $value Value to set the global to (ignored
 	 *  if an array is given as first argument).
+	 *
+	 * @since 1.21
 	 */
 	protected function setMwGlobals( $pairs, $value = null ) {
-
-		// Normalize (string, value) to an array
 		if ( is_string( $pairs ) ) {
 			$pairs = array( $pairs => $value );
 		}
 
+		$this->stashMwGlobals( array_keys( $pairs ) );
+
 		foreach ( $pairs as $key => $value ) {
+			$GLOBALS[$key] = $value;
+		}
+	}
+
+	/**
+	 * Stashes the global, will be restored in tearDown()
+	 *
+	 * Individual test functions may override globals through the setMwGlobals() function
+	 * or directly. When directly overriding globals their keys should first be passed to this
+	 * method in setUp to avoid breaking global state for other tests
+	 *
+	 * That way all other tests are executed with the same settings (instead of using the
+	 * unreliable local settings for most tests and fix it only for some tests).
+	 *
+	 * @param array|string $globalKeys Key to the global variable, or an array of keys.
+	 *
+	 * @since 1.23
+	 */
+	protected function stashMwGlobals( $globalKeys ) {
+		if ( is_string( $globalKeys ) ) {
+			$globalKeys = array( $globalKeys );
+		}
+
+		foreach ( $globalKeys as $globalKey ) {
 			// NOTE: make sure we only save the global once or a second call to
 			// setMwGlobals() on the same global would override the original
 			// value.
-			if ( !array_key_exists( $key, $this->mwGlobals ) ) {
+			if ( !array_key_exists( $globalKey, $this->mwGlobals ) ) {
 				// NOTE: we serialize then unserialize the value in case it is an object
 				// this stops any objects being passed by reference. We could use clone
 				// and if is_object but this does account for objects within objects!
-				try{
-					$this->mwGlobals[$key] = unserialize( serialize( $GLOBALS[$key] ) );
+				try {
+					$this->mwGlobals[$globalKey] = unserialize( serialize( $GLOBALS[$globalKey] ) );
 				}
-				// NOTE; some things such as Closures are not serializable
-				// in this case just set the value!
+					// NOTE; some things such as Closures are not serializable
+					// in this case just set the value!
 				catch( Exception $e ) {
-					$this->mwGlobals[$key] = $GLOBALS[$key];
+					$this->mwGlobals[$globalKey] = $GLOBALS[$globalKey];
 				}
 			}
-
-			// Override the global
-			$GLOBALS[$key] = $value;
 		}
 	}
 
@@ -339,6 +360,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param Array $values The array containing the entries to set in that global
 	 *
 	 * @throws MWException if the designated global is not an array.
+	 *
+	 * @since 1.21
 	 */
 	protected function mergeMwGlobalArrayValue( $name, $values ) {
 		if ( !isset( $GLOBALS[$name] ) ) {
