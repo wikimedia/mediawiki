@@ -1478,6 +1478,7 @@ class Article implements Page {
 	 */
 	public function render() {
 		$this->getContext()->getOutput()->setArticleBodyOnly( true );
+		$this->getContext()->getOutput()->enableSectionEditLinks( false );
 		$this->view();
 	}
 
