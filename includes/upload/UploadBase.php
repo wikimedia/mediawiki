@@ -786,7 +786,7 @@ abstract class UploadBase {
 			return $this->mTitle;
 		} elseif ( $blackListedExtensions ||
 				( $wgCheckFileExtensions && $wgStrictFileExtensions &&
-					!$this->checkFileExtensionList( $ext, $wgFileExtensions ) ) ) {
+					!$this->checkFileExtension( $this->mFinalExtension, $wgFileExtensions ) ) ) {
 			$this->mBlackListedExtensions = $blackListedExtensions;
 			$this->mTitleError = self::FILETYPE_BADTYPE;
 			$this->mTitle = null;
