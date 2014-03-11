@@ -1,7 +1,7 @@
-/**
-	.hlist fallbacks for IE 6, 7 and 8.
-	@author [[User:Edokter]]
-*/
+/*!
+ * .hlist fallbacks for IE 6, 7 and 8.
+ * @author [[User:Edokter]]
+ */
 ( function ( mw, $ ) {
 	var profile = $.client.profile();
 

@@ -1,4 +1,4 @@
-/**
+/*!
  * Add search suggestions to the search form.
  */
 ( function ( mw, $ ) {
