@@ -1,12 +1,12 @@
 /*!
- * OOjs v1.0.7-pre (22e610a5e9)
+ * OOjs v1.0.8
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri Mar 07 2014 17:36:23 GMT-0800 (PST)
+ * Date: Tue Mar 11 2014 19:27:31 GMT+0100 (CET)
  */
 ( function ( global ) {
 
