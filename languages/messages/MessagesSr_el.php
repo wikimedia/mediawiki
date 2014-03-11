@@ -342,7 +342,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Pošalji mi primerke e-poruka koje pošaljem drugim korisnicima',
 'tog-diffonly' => 'Ne prikazuj sadržaj stranice ispod razlika',
 'tog-showhiddencats' => 'Prikaži skrivene kategorije',
-'tog-noconvertlink' => 'Onemogući pretvaranje naslova veza',
 'tog-norollbackdiff' => 'Izostavi razliku nakon izvršenog vraćanja',
 'tog-useeditwarning' => 'Upozori me kada napuštam stranicu sa nesačuvanim promenama',
 'tog-prefershttps' => 'Uvek koristi sigurnu konekciju kada sam prijavljen.',

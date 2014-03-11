@@ -424,7 +424,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Recibir copias de los correos que envío a otros usuarios',
 'tog-diffonly' => "No mostrar bajo las ''diferencias'' el contenido de la página",
 'tog-showhiddencats' => 'Mostrar las categorías escondidas',
-'tog-noconvertlink' => 'Desactivar la conversión de título de enlace',
 'tog-norollbackdiff' => 'Omitir la diferencia después de revertir',
 'tog-useeditwarning' => 'Advertirme cuando abandone una página editada con cambios sin grabar',
 'tog-prefershttps' => 'Utiliza una conexión segura siempre que haya iniciado una sesión',

@@ -79,7 +79,6 @@ $messages = array(
 'tog-ccmeonemails' => "Mandeme na còpia dij mëssagi ëd pòsta eletrònica che i-j mando a j'àotri utent",
 'tog-diffonly' => 'Smon-e pa ël contnù dle pàgine sota le diferense',
 'tog-showhiddencats' => 'Smon-e le categorìe stërmà',
-'tog-noconvertlink' => "Disativé la conversion dij tìtoj ant j'anliure",
 'tog-norollbackdiff' => "Fé nen vëdde le diferense apress d'avèj ripristinà",
 'tog-useeditwarning' => 'Aviseme quand che i chito na pàgina ëd modìfiche con dle modìfiche nen salvà',
 'tog-prefershttps' => "Dovré sempe na conession sigura pr'ësté andrinta al sistema",

@@ -360,7 +360,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Enviar-me cópias das mensagens por correio eletrónico que eu enviar a outros utilizadores',
 'tog-diffonly' => 'Não mostrar o conteúdo da página ao comparar duas edições',
 'tog-showhiddencats' => 'Mostrar categorias ocultas',
-'tog-noconvertlink' => 'Impossibilitar a conversão dos títulos de links',
 'tog-norollbackdiff' => 'Omitir diferenças depois de reverter edições em bloco',
 'tog-useeditwarning' => 'Avisar-me ao abandonar uma página editada sem gravar as alterações.',
 'tog-prefershttps' => 'Usar sempre uma ligação segura quando estiver autenticado',
@@ -2578,7 +2577,7 @@ A eliminação de páginas como esta foi restringida na {{SITENAME}}, para evita
 'delete-warning-toobig' => 'Esta página tem um histórico de edições longo, com mais de $1 {{PLURAL:$1|edição|edições}}.
 Eliminá-la poderá causar problemas na base de dados da {{SITENAME}};
 prossiga com precaução.',
-'deleting-backlinks-warning' => "'''Aviso:''' Outras páginas possuem ligação à ou são transcluídas da página que está prestes a eliminar.",
+'deleting-backlinks-warning' => "'''Aviso:''' Há [[Special:WhatLinksHere/{{FULLPAGENAME}}|páginas]] que contêm links para a página que está prestes a eliminar ou que a transcluem.",
 
 # Rollback
 'rollback' => 'Reverter edições',

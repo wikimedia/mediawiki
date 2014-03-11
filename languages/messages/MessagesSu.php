@@ -164,7 +164,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Kirimkeun ogé salinan surélékna ka alamat kuring',
 'tog-diffonly' => 'Ulah némbongkeun eusi kaca di handapeun béda éditan',
 'tog-showhiddencats' => 'Témbongkeun kategori nyumput',
-'tog-noconvertlink' => 'Non-aktifkeun konvérsi judul tumbu',
 'tog-norollbackdiff' => 'Liwat béda sanggeus malikkeun révisi',
 'tog-useeditwarning' => 'Béjaan kuring lamun ninggalkeun kaca édit anu parobahanana can disimpen',
 

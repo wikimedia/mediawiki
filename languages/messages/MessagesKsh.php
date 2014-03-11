@@ -248,7 +248,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Scheck mer en Kopie, wann ich en <i lang="en">e-mail</i> an ene andere Metmaacher scheck',
 'tog-diffonly' => 'Zeich beim Versione Verjliche nur de Ungerscheide aan (ävver pack nit noch de janze Sigg dodronger)',
 'tog-showhiddencats' => 'Donn de verstoche Saachjroppe aanzeije',
-'tog-noconvertlink' => 'Don de Tittele nit ömwandelle',
 'tog-norollbackdiff' => 'Donn noh „{{int:Rollback}}“ de Ungerscheide nit aanzeije',
 'tog-useeditwarning' => 'Donn mesch warne, wann esch vun en Sigg fott jonn, ih dat esch all ming Änderunge avjeschpeischert hann.',
 'tog-prefershttps' => 'Jangk emmer övver en verschlößelte Verbendong bei Enlogge',

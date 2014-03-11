@@ -80,7 +80,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Sendan mē gelīcnessa þāra spearcǣrenda þe ic ōðrum brūcendum sende',
 'tog-diffonly' => 'Nā īwan trametes innunge under scādungum',
 'tog-showhiddencats' => 'Īwan gehȳdede floccas',
-'tog-noconvertlink' => 'Ne lǣt hlencena titula āwendunge',
 'tog-norollbackdiff' => 'Forlǣtan scādunge siþþan edweorc sīe gedōn',
 'tog-useeditwarning' => 'Cȳðan mē þǣr ic afare fram adihtunge tramete þe gīet hæbbe unhordoda andwendunga.',
 'tog-prefershttps' => 'Brūc ā sicore þēodednesse þā þū sī inmeldod',

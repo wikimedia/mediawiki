@@ -222,7 +222,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Schéck mir eng Kopie vun de Mailen, déi ech anere Benotzer schécken.',
 'tog-diffonly' => "Weis bei Versiounsvergläicher just d'Ënnerscheeder an net déi ganz Säit",
 'tog-showhiddencats' => 'Verstoppt Kategorië weisen',
-'tog-noconvertlink' => 'Ëmwandlung vum Titel desaktivéieren',
 'tog-norollbackdiff' => 'Ënnerscheed nom Zrécksetzen ënnerdrécken',
 'tog-useeditwarning' => "Mech warne wann ech d'Ännerung vun enger Säit verloossen, ouni Ännerunge gespäichert ze hunn",
 'tog-prefershttps' => 'Ëmmer eng sécher Verbindung benotze wann ageloggt',

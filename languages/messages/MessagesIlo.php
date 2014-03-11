@@ -768,9 +768,9 @@ Mabalin a naiyalis wenno naikkat bayat idi kitkitaem ti panid.',
 'accmailtext' => "Ti pugto a napartuat a kontrasenias para kenni [[User talk:$1|$1]] ket naipatuloden idiay $2. Mabalin a masukatan idiay
 ''[[Special:ChangePassword|pagsukatan ti kontrasenias]]'' a panid no sumrekka.",
 'newarticle' => '(Baro)',
-'newarticletext' => "Nasurotmo ti maysa a silpo iti awan pay a panid. 
-Tapno mapartuat daytoy a panid, rugiamon ti agikur-it wenno agisurat iti pagsuratan a kahon dita baba (kitaen ti [[{{MediaWiki:Helppage}}|panid ti tulong]] para iti ad-adu pay a pakaammo). 
-No addaka ditoy babaen ti biddut, ipidutmo ti '''agsubli''' a buton ti pabasabasam tapno makasublika iti naggapuam a panid.",
+'newarticletext' => 'Nasurotmo ti silpo ti awan pay a panid. 
+Ti mangpartuat ti panid, rugiamon ti agmakinilia iti kahon dita baba (kitaen ti [[{{MediaWiki:Helppage}}|panid ti tulong]] para iti adu pay a pakaammo). 
+No addaka ditoy babaen ti biddut, pindutem ti buton ti <strong>agsubli</strong> ti pagbasabasam.',
 'anontalkpagetext' => "----
 ''Daytoy ti pakitungtungan a panid para iti di am-ammo nga agar-aramat a saan pay a nakaaramid ti pakabilangan, wenno saanna nga us-usaren.
 Dakami ket agusar kami ti numero nga IP a pagtaengan ti panangilasin dagiti lalaki/babai.
@@ -967,8 +967,8 @@ Ti inted a rason babaen ni $3 ket ''$2''",
 'last' => 'naudi',
 'page_first' => 'umuna',
 'page_last' => 'naudi',
-'histlegend' => "Panagpili ti sabali: Markaan dagiti kahon ti radio dagiti panagbaliwan tapno maipada ken pesselen ti serrek wenno ti buton dita baba.<br />
-Sarita: '''({{int:cur}})''' = naggidiatan ti kinaudi a panagbaliw, '''({{int:last}})''' = naggidiatan ti sarsarunuen a panagbaliw , '''{{int:minoreditletter}}''' = bassit a panagbaliw.",
+'histlegend' => 'Panagpili ti diperensia: Markaan dagiti kahon ti radio kadagiti panagbaliw tapno maipada ken pinduten ti serrek wenno ti buton dita baba.<br />
+Leyenda: <strong>({{int:cur}})</strong> = naggidiatan ti kinaudi a panagbaliw, <strong>({{int:last}})</strong> = naggidiatan ti sarsarunuen a panagbaliw , <strong>{{int:minoreditletter}}</strong> = bassit a panagbaliw.',
 'history-fieldset-title' => 'Agbasabasa ti pakasaritaan',
 'history-show-deleted' => 'Naikkat laeng',
 'histfirst' => 'kadaanan',
@@ -1489,7 +1489,7 @@ Ti esurat a pagtaengam ket saan a maipakita kadagiti agar-aramat nga agkontak ke
 'recentchanges-label-bot' => 'Daytoy a panag-urnos ket inaramid babaen ti maysa a bot',
 'recentchanges-label-unpatrolled' => 'Daytoy a panag-urnos ket saan pay a napatruliaan',
 'recentchanges-label-plusminus' => 'Ti panagbaliw ti kadakkel ti panid babaen ti bilang dagiti byte',
-'recentchanges-legend-heading' => "'''Sarita:'''",
+'recentchanges-legend-heading' => "'''Leyenda:'''",
 'recentchanges-legend-newpage' => '(kitaen pay ti [[Special:NewPages|listaan ti baro a pampanid]])',
 'rcnotefrom' => 'Dita baba ket dagiti sinukatan manipud idi strong>$2</strong> (agingga iti <strong>$1</strong> a naipakita).',
 'rclistfrom' => 'Ipakita dagiti kabarbaro a sinukatan a mangrugi manipud idi $1',
@@ -2294,7 +2294,7 @@ Ti panagikkat ti kastoy a pammpanid ket naparitan tapno mapawilan ti saan nga in
 'delete-warning-toobig' => 'Daytoy a panid ket adda ti dakkel unay a pakasaritaan ti panag-urnos, ti kaadu nga $1 {{PLURAL:$1|panagbaliw|dagiti panagbaliw}}.
 Ti panagikkat ket madisturbo ti panagpataray ti database ti {{SITNAME}};
 agal-aluadka a mangrugi.',
-'deleting-backlinks-warning' => "'''Ballaag:''' Dagiti dadduma a panid ket naisilpo wenno nailak-am manipud ti panid a gangani nga ikkatem.",
+'deleting-backlinks-warning' => "'''Ballaag:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Dagiti dadduma a panid]] ket naisilpo wenno nailak-am manipud ti panid a gangani nga ikkatem.",
 
 # Rollback
 'rollback' => 'Isubli dagiti panag-urnos',
@@ -3763,7 +3763,7 @@ Naka-awatka koman ti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopia iti GNU Sapasap a  
 
 # Special:SpecialPages
 'specialpages' => 'Espesial a pampanid',
-'specialpages-note-top' => 'Sarita',
+'specialpages-note-top' => 'Leyenda',
 'specialpages-note' => '* Kadawyan nga espesial a pampanid.
 * <span class="mw-specialpagerestricted">Nagawidan nga espesial a pampanid.</span>',
 'specialpages-group-maintenance' => 'Dagiti padamag ti panagtaripato',

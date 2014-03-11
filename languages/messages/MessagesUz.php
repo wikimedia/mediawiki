@@ -147,7 +147,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Boshqa ishtirokchilarga yozgan xatimning nusxasi oʻzimga yuborilsin',
 'tog-diffonly' => 'Versiyalar taqqoslanayotganda, pastda sahifa matni koʻrsatilmasin',
 'tog-showhiddencats' => 'Yashirin turkumlarni koʻrsatish',
-'tog-noconvertlink' => 'Sarlavhani oʻzgartirish havolasini oʻchirib qoʻyish',
 'tog-norollbackdiff' => 'Tahrir qaytarilganda, versiyalar taqqosi koʻrsatilmasin',
 'tog-useeditwarning' => 'Kiritgan oʻzgarishlarimni saqlamay sahifadan chiqib ketayotganim haqida ogohlantirilsin',
 'tog-prefershttps' => 'Doim himoyalangan holda kirish',

@@ -394,7 +394,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Diğer kullanıcılara gönderdiğim e-postaların kopyalarını bana da gönder',
 'tog-diffonly' => 'Sayfa içeriğini sürüm farklarının altında gösterme',
 'tog-showhiddencats' => 'Gizli kategorileri göster',
-'tog-noconvertlink' => 'Bağlantı başlığı dönüştürmesini devre dışı bırakma',
 'tog-norollbackdiff' => 'Geridönüş uygulandıktan sonra değişikliği atla',
 'tog-useeditwarning' => 'Kaydedilmemiş değişikliğe sahip bir değişiklik sayfasından çıkarken beni uyar',
 'tog-prefershttps' => 'Oturumu açarken her zaman güvenli bağlantı kullan',

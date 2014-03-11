@@ -216,7 +216,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Kas din un eilskrid eus ar posteloù a gasan da implijerien all',
 'tog-diffonly' => "Arabat diskouez danvez ar pennadoù dindan an diforc'hioù",
 'tog-showhiddencats' => 'Diskouez ar rummadoù kuzhet',
-'tog-noconvertlink' => 'Diweredekaat amdroadur an titloù',
 'tog-norollbackdiff' => 'Na ziskouez an diff goude un distaoladenn',
 'tog-useeditwarning' => 'Kas keloù din pa guitaan ur bajenn degaset kemmoù enni hep enrollañ',
 'tog-prefershttps' => "Implijout bepred ur c'hevreadur suraet pa vezit kevreet",

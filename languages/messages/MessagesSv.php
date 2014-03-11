@@ -362,7 +362,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Skicka kopior till mig av e-post jag skickar till andra användare',
 'tog-diffonly' => 'Visa inte sidinnehåll under diffar',
 'tog-showhiddencats' => 'Visa dolda kategorier',
-'tog-noconvertlink' => 'Stäng av konvertering av sidtitlar',
 'tog-norollbackdiff' => 'Visa inte diff efter tillbakarullning',
 'tog-useeditwarning' => 'Varna mig om jag lämnar en redigeringssida där jag gjort ändringar men inte sparat.',
 'tog-prefershttps' => 'Använd alltid en säker anslutning när jag är inloggad',

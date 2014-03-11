@@ -356,7 +356,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Send meg kopi av e-postane eg sender til andre brukarar',
 'tog-diffonly' => 'Ikkje vis sideinnhaldet under skilnadene mellom versjonane',
 'tog-showhiddencats' => 'Vis gøymde kategoriar',
-'tog-noconvertlink' => 'Slå av konvertering av sidetitlar',
 'tog-norollbackdiff' => 'Ikkje vis skilnad etter attenderulling',
 'tog-useeditwarning' => 'Gje ei åtvaring om eg går ut av ei redigeringsside og ikkje alle endringar er lagra',
 'tog-prefershttps' => 'Alltid bruk ei trygg kopling når du er innlogga',
@@ -1304,6 +1303,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'showhideselectedversions' => 'Vis/løyn valde versjonar',
 'editundo' => 'angre',
 'diff-empty' => '(Ingen skilnad)',
+'diff-multi-sameuser' => '({{PLURAL:$1|Éin mellomversjon|$1 mellomversjonar}} av den same brukaren er ikkje {{PLURAL:$1|vist|viste}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ein mellomversjon|$1 mellomversjonar}} av meir enn $2 {{PLURAL:$2|brukar|brukarar}}  er ikkje {{PLURAL:$1|vist|viste}})',
 'difference-missing-revision' => '{{PLURAL:$2|Éin versjon|$2 versjonar}} av skilnaden ($1) vart ikkje {{PLURAL:$2|funnen|funne}}.
 

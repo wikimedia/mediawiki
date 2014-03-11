@@ -403,7 +403,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Zasílat mi kopie e-mailů, které pošlu jiným uživatelům',
 'tog-diffonly' => 'Nezobrazovat obsah stránky pod rozdílem verzí',
 'tog-showhiddencats' => 'Zobrazit skryté kategorie',
-'tog-noconvertlink' => 'Vypnout konverzi názvů',
 'tog-norollbackdiff' => 'Po vrácení změny nezobrazovat porovnání rozdílů',
 'tog-useeditwarning' => 'Upozornit, když budu opouštět editaci bez uložení změn',
 'tog-prefershttps' => 'Po přihlášení používat vždy zabezpečené spojení',
@@ -2573,7 +2572,7 @@ $2 zaznamenává poslední smazání.',
 'delete-edit-reasonlist' => 'Editovat důvody smazání',
 'delete-toobig' => 'Tato stránka má velkou historii editací, přes $1 {{PLURAL:$1|verzi|verze|verzí}}. Mazání takových stránek je omezeno, aby se předešlo nechtěnému narušení {{grammar:2sg|{{SITENAME}}}}.',
 'delete-warning-toobig' => 'Tato stránka má velkou historii editací, přes $1 {{PLURAL:$1|verzi|verze|verzí}}. Mazání takových stránek může narušit databázové operace {{grammar:2sg|{{SITENAME}}}}; postupujte opatrně.',
-'deleting-backlinks-warning' => "'''Upozornění:''' Stránka, kterou se chystáte smazat, je na jiných stránkách odkazována nebo je do nich vložena.",
+'deleting-backlinks-warning' => "'''Upozornění:''' Stránka, kterou se chystáte smazat, je [[Special:WhatLinksHere/{{FULLPAGENAME}}|na jiných stránkách]] odkazována nebo je do nich vložena.",
 
 # Rollback
 'rollback' => 'Vrátit zpět editace',

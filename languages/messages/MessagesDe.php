@@ -461,7 +461,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Schicke mir Kopien der E-Mails, die ich anderen Benutzern sende',
 'tog-diffonly' => 'Beim Versionsvergleich nur die Unterschiede und nicht die vollständige Seite anzeigen',
 'tog-showhiddencats' => 'Anzeige versteckter Kategorien',
-'tog-noconvertlink' => 'Konvertierung des Titels deaktivieren',
 'tog-norollbackdiff' => 'Unterschied nach dem Zurücksetzen unterdrücken',
 'tog-useeditwarning' => 'Warnen, sofern eine zur Bearbeitung geöffnete Seite verlassen wird, die nicht gespeicherte Änderungen enthält',
 'tog-prefershttps' => 'Wenn angemeldet, immer eine sichere Verbindung benutzen.',
@@ -2634,7 +2633,7 @@ Rückmeldungen und weitere Hilfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'delete-edit-reasonlist' => 'Löschgründe bearbeiten',
 'delete-toobig' => 'Diese Seite hat mit mehr als $1 {{PLURAL:$1|Version|Versionen}} eine sehr lange Versionsgeschichte. Das Löschen solcher Seiten wurde eingeschränkt, um eine versehentliche Überlastung der Server zu verhindern.',
 'delete-warning-toobig' => 'Diese Seite hat mit mehr als $1 {{PLURAL:$1|Version|Versionen}} eine sehr lange Versionsgeschichte. Das Löschen kann zu Störungen im Datenbankbetrieb führen.',
-'deleting-backlinks-warning' => "'''Warnung:''' Es verweisen noch andere Seiten auf die zu löschende Seite oder diese Seite ist noch woanders eingebunden.",
+'deleting-backlinks-warning' => "'''Warnung:''' Es verweisen noch [[Special:WhatLinksHere/{{FULLPAGENAME}}|andere Seiten]] auf die zu löschende Seite oder diese Seite ist noch woanders eingebunden.",
 
 # Rollback
 'rollback' => 'Zurücksetzen der Änderungen',

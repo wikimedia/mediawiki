@@ -61,7 +61,6 @@ $messages = array(
 'tog-ccmeonemails' => "Manneme 'na copie de le mail ca je manne a l'ôtre utinde",
 'tog-diffonly' => 'No fà vedè le pàggene cu le condenute sotte a le differenze',
 'tog-showhiddencats' => 'Fa vedè le categorije scunnute',
-'tog-noconvertlink' => "Disabbilite 'a conversione d'u titele de collegamende",
 'tog-norollbackdiff' => "Non sce penzanne a le differenze apprisse l'esecuzione de 'nu rollback",
 'tog-useeditwarning' => "Avvisave quanne jie lasse 'na pàgene cangiate senze ca agghie sarvate le cangiaminde",
 'tog-prefershttps' => "Ause sembre 'na connessione secure quanne trase",

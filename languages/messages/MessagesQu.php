@@ -300,7 +300,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Huk ruraqkunaman kachasqay e-chaskikunamanta iskaychasqakunata kachamuway',
 'tog-diffonly' => "Huk kaykunap uranpi kaq p'anqap samiqninta ama rikuchiychu",
 'tog-showhiddencats' => 'Pakasqa katiguriyakunata rikuchiy',
-'tog-noconvertlink' => "T'inki suti t'ikrayman ama niy",
 'tog-norollbackdiff' => 'Ruraqpa hukchasqankunata kutichispa ama wakin kayta willaychu',
 'tog-useeditwarning' => "Yuyampaway p'anqata saqiptiy manaraq rurarqusqay hukchasqakunata waqaychaspay.",
 'tog-prefershttps' => "Yaykurqaspaqa hayk'appas takyasqa t'inkiwan llamk'ay",

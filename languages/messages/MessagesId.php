@@ -383,7 +383,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Kirimkan saya salinan surel yang saya kirimkan ke orang lain',
 'tog-diffonly' => 'Jangan tampilkan isi halaman di bawah perbedaan suntingan',
 'tog-showhiddencats' => 'Tampilkan kategori tersembunyi',
-'tog-noconvertlink' => 'Matikan konversi judul pranala',
 'tog-norollbackdiff' => 'Jangan tampilkan perbedaan setelah melakukan pengembalian',
 'tog-useeditwarning' => 'Ingatkan saya bila meninggalkan halaman penyuntingan sebelum menyimpan perubahan',
 'tog-prefershttps' => 'Selalu gunakan koneksi aman ketika masuk log',

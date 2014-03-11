@@ -166,7 +166,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Recibir copias de os correus que ninvío ta atros usuarios',
 'tog-diffonly' => "No amostrar o conteniu d'a pachina debaixo d'as esferencias",
 'tog-showhiddencats' => 'Amostrar categorías amagatas',
-'tog-noconvertlink' => 'Desactivar a conversión de titol de vinclo',
 'tog-norollbackdiff' => 'No amostrar as diferencias dimpués de revertir',
 'tog-useeditwarning' => "Alvertir-me quan salga d'una pachina d'edición sin alzar os cambios",
 

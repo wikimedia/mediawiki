@@ -48,6 +48,7 @@
  * @author Reedy
  * @author Schu
  * @author Shirayuki
+ * @author Sonicarts
  * @author Suisui
  * @author VZP10224
  * @author Vigorous action
@@ -406,7 +407,6 @@ $messages = array(
 'tog-ccmeonemails' => '他の利用者に送信したメールの控えを自分にも送信',
 'tog-diffonly' => '差分の下にページ内容を表示しない',
 'tog-showhiddencats' => '隠しカテゴリを表示',
-'tog-noconvertlink' => 'リンクタイトル変換を無効にする',
 'tog-norollbackdiff' => '巻き戻し後の差分を表示しない',
 'tog-useeditwarning' => '変更を保存せずに編集画面から離れようとしたら警告',
 'tog-prefershttps' => 'ログインする際、常に SSL (https) 接続を使用する',
@@ -2664,7 +2664,7 @@ $UNWATCHURL
 'delete-warning-toobig' => 'このページには、 $1版を超える編集履歴があります。
 削除すると、{{SITENAME}}のデータベース処理に大きな負荷がかかります。
 十分に注意してください。',
-'deleting-backlinks-warning' => "'''警告:''' 削除しようとしているページは、他のページからリンクまたは参照読み込みされています。",
+'deleting-backlinks-warning' => "'''警告:''' 削除しようとしているページは、[Special:WhatLinksHere/{{FULLPAGENAME}}|他のページ]]からリンクまたは参照読み込みされています。",
 
 # Rollback
 'rollback' => '編集を巻き戻し',

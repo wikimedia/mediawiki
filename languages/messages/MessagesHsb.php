@@ -191,7 +191,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Mi kopije e-mejlkow pósłać, kotrež druhim wužiwarjam pósćelu',
 'tog-diffonly' => 'Jenož rozdźěle pokazać (nic pak zbytny wobsah)',
 'tog-showhiddencats' => 'Schowane kategorije pokazać',
-'tog-noconvertlink' => 'Konwertowanje wotkazoweho titula znjemóžnić',
 'tog-norollbackdiff' => 'Rozdźěl po wróćostajenju zanjechać',
 'tog-useeditwarning' => 'Warnować, hdyž so wobdźěłowanska strona z njeskładowanymi změnami wopušća',
 'tog-prefershttps' => 'Po přizjewjenju přeco wěsty zwisk wužiwać',

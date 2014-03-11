@@ -182,7 +182,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Inviar me copias del messages de e-mail que io invia a altere usatores',
 'tog-diffonly' => 'Non monstrar le contento del pagina sub le comparation de duo versiones',
 'tog-showhiddencats' => 'Monstrar categorias celate',
-'tog-noconvertlink' => 'Disactivar conversion de titulos de ligamines',
 'tog-norollbackdiff' => 'Omitter le diff post le execution de un revocation',
 'tog-useeditwarning' => 'Advertir me quando io quita un pagina de modification sin publicar le cambiamentos',
 'tog-prefershttps' => 'Sempre usar un connexion secur in session aperte',

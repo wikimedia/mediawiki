@@ -230,7 +230,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Send mig kopier af e-mails som jeg sender til andre brugere',
 'tog-diffonly' => 'Vis ikke sideindhold neden under versionssammenligninger',
 'tog-showhiddencats' => 'Vis skjulte kategorier',
-'tog-noconvertlink' => 'Slå konvertering af sidetitler fra',
 'tog-norollbackdiff' => 'Vis ikke forskel efter tilbagerulning',
 'tog-useeditwarning' => 'Advar mig, hvis jeg forlader en redigeringsside med ændringer, der ikke er gemt.',
 'tog-prefershttps' => 'Brug altid en sikker forbindelse, når du er logget ind',

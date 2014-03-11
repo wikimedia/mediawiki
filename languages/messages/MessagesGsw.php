@@ -170,7 +170,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Schick mr Kopie vo de E-Mails, won i andere schick.',
 'tog-diffonly' => 'Numme Versionsunterschiid aazeige, ohni d Syte',
 'tog-showhiddencats' => 'Zeig di versteckte Kategorie',
-'tog-noconvertlink' => 'Konvertierig vum Titel deaktiviere',
 'tog-norollbackdiff' => 'Unterschid noch em Zrucksetze unterdrucke',
 'tog-useeditwarning' => 'Warn mi, wänn I ne Syte verloss mit Bearbeitige, wu nonig gspycheret sin',
 'tog-prefershttps' => 'Wänn aagmäldet, alliwyl e sicheri Verbindig bruuche',

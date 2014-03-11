@@ -320,7 +320,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Posielať mi kópie mojich emailov, ktoré pošlem ostatným používateľom',
 'tog-diffonly' => 'Nezobrazovať obsah stránky pod rozdielmi',
 'tog-showhiddencats' => 'Zobraziť skryté kategórie',
-'tog-noconvertlink' => 'Vypnúť konverziu názvov odkazov',
 'tog-norollbackdiff' => 'Vynechať rozdiel po vykonaní rollbacku',
 'tog-useeditwarning' => 'Upozorniť ma, keď opúšťam upravovaciu stránku s neuloženými zmenami',
 'tog-prefershttps' => 'Po prihlásení používať vždy zabezpečené pripojenie',

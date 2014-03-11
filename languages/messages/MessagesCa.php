@@ -240,7 +240,6 @@ $messages = array(
 'tog-ccmeonemails' => "Envia'm còpia dels missatges que enviï als altres usuaris",
 'tog-diffonly' => 'Amaga el contingut de la pàgina davall de la taula de diferències',
 'tog-showhiddencats' => 'Mostra les categories ocultes',
-'tog-noconvertlink' => 'Inhabilita la conversió dels títols dels enllaços',
 'tog-norollbackdiff' => 'Omet la pàgina de diferències després de realitzar una reversió',
 'tog-useeditwarning' => "Avisa'm quan surti d'una pàgina d'edició amb canvis sense desar",
 'tog-prefershttps' => 'Utilitza sempre una connexió segura en iniciar una sessió',
@@ -2392,7 +2391,7 @@ Vegeu $2 per a un registre dels esborrats més recents.",
 'delete-edit-reasonlist' => "Edita els motius d'eliminació",
 'delete-toobig' => "Aquesta pàgina té un historial d'edicions molt gran, amb més de $1 {{PLURAL:$1|canvi|canvis}}. L'eliminació d'aquestes pàgines està restringida per a prevenir que hi pugui haver un desajustament seriós de la base de dades de tot el projecte {{SITENAME}} per accident.",
 'delete-warning-toobig' => "Aquesta pàgina té un historial d'edicions molt gran, amb més de $1 {{PLURAL:$1|canvi|canvis}}. Eliminar-la podria suposar un seriós desajustament de la base de dades de tot el projecte {{SITENAME}}; aneu en compte abans dur a terme l'acció.",
-'deleting-backlinks-warning' => "'''Avís:''' Altres pàgines enllacen o transclouen de la pàgina que esteu a punt de suprimir.",
+'deleting-backlinks-warning' => "'''Avís:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Altres pàgines]] enllacen o transclouen de la pàgina que esteu a punt de suprimir.",
 
 # Rollback
 'rollback' => 'Reverteix edicions',

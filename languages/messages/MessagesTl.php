@@ -185,7 +185,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Padalahan ako ng mga kopya ng mga ipinadala kong e-liham sa ibang mga tagagamit',
 'tog-diffonly' => 'Huwag ipakita ang nilalaman ng pahinang nasa ilalim ng mga pagkakaiba',
 'tog-showhiddencats' => 'Ipakita ang mga nakatagong kategorya',
-'tog-noconvertlink' => 'Huwag paganahin ang pagpapalit ng pamagat na pangkawing',
 'tog-norollbackdiff' => 'Alisin ang mga pagkakaiba pagkatapos isagawa ang pagpapagulong na pabalik sa dati',
 'tog-useeditwarning' => 'Magbabala sa akin kapag umalis ako sa isang pahina ng pampatnugot na hindi pa nasasagip ang mga pagbabago',
 

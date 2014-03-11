@@ -348,7 +348,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Mè mandar na copia des mèssâjos que mando ux ôtros utilisators',
 'tog-diffonly' => 'Pas montrar lo contegnu de les pâges desot les difs',
 'tog-showhiddencats' => 'Montrar les catègories cachiêes',
-'tog-noconvertlink' => 'Dèsactivar la convèrsion des titros des lims',
 'tog-norollbackdiff' => 'Pas fâre vêre la dif pendent na rèvocacion',
 'tog-useeditwarning' => 'M’avèrtir quand quito una pâge de changement sen sôvar los changements',
 

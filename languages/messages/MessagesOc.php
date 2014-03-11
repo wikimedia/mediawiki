@@ -327,7 +327,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Me mandar una còpia dels corrièrs electronics que mandi als autres utilizaires',
 'tog-diffonly' => 'Far pas veire lo contengut de las paginas jos las difs',
 'tog-showhiddencats' => 'Afichar las categorias amagadas',
-'tog-noconvertlink' => 'Desactivar la conversion dels títols',
 'tog-norollbackdiff' => 'Ometre lo diff aprèp l’utilizacion d’un revert',
 'tog-useeditwarning' => 'M’avisar quand quiti una pagina de modificacion sens publicar los cambiaments',
 'tog-prefershttps' => 'Utilizar totjorn una connexion securizada en essent connectat',

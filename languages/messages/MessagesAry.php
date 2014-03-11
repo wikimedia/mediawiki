@@ -53,7 +53,6 @@ $messages = array(
 'tog-ccmeonemails' => 'sift liya noskha mn rasaail lbarid lelectroni likansiftha lmostkhdimin lkhrin',
 'tog-diffonly' => 'matbiynch mohtawa sfha tht lforoqat',
 'tog-showhiddencats' => 'biyn tsnifat lmkhfiya',
-'tog-noconvertlink' => 'aattl thwil anwan lwslat',
 'tog-norollbackdiff' => 'hiyd lfrq ila drt istirjaa',
 
 'underline-always' => 'Dima',

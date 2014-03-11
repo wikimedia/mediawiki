@@ -2441,7 +2441,7 @@ Izbris takšnih strani je bil omejen v izogib neželenim motnjam {{GRAMMAR:dativ
 'delete-warning-toobig' => 'Ta stran ima obsežno zgodovino urejanja, tj. čez $1 {{PLURAL:$1|redakcijo|redakciji|redakcije|redakcij}}.
 Njeno brisanje lahko zmoti obratovanje zbirke podatkov {{GRAMMAR:dative|{{SITENAME}}}};
 nadaljujte s previdnostjo.',
-'deleting-backlinks-warning' => "'''Opozorilo:''' Druge strani se povezujejo na ali vključujejo stran, ki jo nameravate izbrisati.",
+'deleting-backlinks-warning' => "'''Opozorilo:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Druge strani]] se povezujejo na ali vključujejo stran, ki jo nameravate izbrisati.",
 
 # Rollback
 'rollback' => 'Vrni spremembe',

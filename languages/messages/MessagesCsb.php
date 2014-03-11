@@ -75,7 +75,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Sélôj do mie kòpije e-mailów, chtërné sélóm do jinych brëkòwników',
 'tog-diffonly' => 'Nie wëskrzëniôj zamkłoscë starnë niżi przërónaniô zjinaków',
 'tog-showhiddencats' => 'Wëskrzëni zataconé kategòrëje',
-'tog-noconvertlink' => 'Wëłączë kònwersëjã titlów w lënkach',
 'tog-norollbackdiff' => 'Pòcësni wëskrzënianié zjinaków pò copniãcô sã',
 
 'underline-always' => 'Wiedno',

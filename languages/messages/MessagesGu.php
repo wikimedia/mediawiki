@@ -188,7 +188,6 @@ $messages = array(
 'tog-ccmeonemails' => 'મે અન્યોને મોકલેલા ઇમેલની નકલ મને મોકલો',
 'tog-diffonly' => 'તફાવતની નીચે લેખ ન બતાવશો',
 'tog-showhiddencats' => 'છુપી શ્રેણીઓ દર્શાવો',
-'tog-noconvertlink' => 'Disable link title conversion',
 'tog-norollbackdiff' => 'રોલબેક કર્યા પછીના તફાવતો છુપાવો',
 'tog-useeditwarning' => 'સાચવ્યા વગર જો હું પૃષ્ઠ છોડું તો મને ચેતવણી આપો',
 'tog-prefershttps' => 'સભ્યનામથી પ્રવેશ કર્યો હોય ત્યારે સુરક્ષિત જોડાણ (https) જ વાપરો',

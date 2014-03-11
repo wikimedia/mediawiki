@@ -399,7 +399,6 @@ $messages = array(
 'tog-ccmeonemails' => '이메일을 보낼 때 내 이메일로 복사본을 보내기',
 'tog-diffonly' => '편집 차이를 비교할 때 문서 내용을 보지 않기',
 'tog-showhiddencats' => '숨은 분류 보이기',
-'tog-noconvertlink' => '링크 제목 변환을 비활성화',
 'tog-norollbackdiff' => '되돌리기 후 차이를 보지 않기',
 'tog-useeditwarning' => '바꾼 내용을 저장하지 않고 편집 페이지를 벗어날 때 알림',
 'tog-prefershttps' => '로그인할 때 항상 보안 연결 사용',

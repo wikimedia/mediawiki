@@ -334,7 +334,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Doresc să primesc o copie a mesajelor e-mail pe care le trimit',
 'tog-diffonly' => 'Nu arăta conținutul paginii sub dif',
 'tog-showhiddencats' => 'Arată categoriile ascunse',
-'tog-noconvertlink' => 'Dezactivează conversia titlurilor',
 'tog-norollbackdiff' => 'Nu arăta diferența după efectuarea unei reveniri',
 'tog-useeditwarning' => 'Avertizează-mă când părăsesc o pagină fără a salva modificările',
 'tog-prefershttps' => 'Utilizează întotdeauna o conexiune securizată când sunt autentificat(ă)',

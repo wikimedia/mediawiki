@@ -187,7 +187,6 @@ $messages = array(
 'tog-ccmeonemails' => '凡所遺書，請存副本。',
 'tog-diffonly' => '異下無示頁',
 'tog-showhiddencats' => '示隱類',
-'tog-noconvertlink' => '非轉鍵題',
 'tog-norollbackdiff' => '轉後略異',
 'tog-useeditwarning' => '離而未存，示吾',
 

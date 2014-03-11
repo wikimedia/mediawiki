@@ -271,7 +271,6 @@ $messages = array(
 'tog-ccmeonemails' => '當我寄電郵畀其他人嗰陣寄返封副本畀我',
 'tog-diffonly' => '響差異下面唔顯示頁面內容',
 'tog-showhiddencats' => '顯示隱藏類',
-'tog-noconvertlink' => '唔轉連結標題',
 'tog-norollbackdiff' => '進行反轉之後略過差異',
 'tog-useeditwarning' => '當我離開未保存好嘅修改嗰陣警告我',
 'tog-prefershttps' => '簽到後繼續用加密連線',

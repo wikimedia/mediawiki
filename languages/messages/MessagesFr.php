@@ -458,7 +458,6 @@ $messages = array(
 'tog-ccmeonemails' => "M'envoyer une copie des courriels que j'envoie aux autres utilisateurs",
 'tog-diffonly' => 'Ne pas afficher le contenu des pages sous les diffs',
 'tog-showhiddencats' => 'Afficher les catégories cachées',
-'tog-noconvertlink' => 'Désactiver la conversion des titres',
 'tog-norollbackdiff' => "Ne pas afficher le diff lors d'une révocation",
 'tog-useeditwarning' => "M'avertir quand je quitte une page de modification sans publier les changements",
 'tog-prefershttps' => 'Toujours utiliser une connexion sécurisée en étant connecté',
@@ -2640,7 +2639,7 @@ La suppression de telles pages a été restreinte pour prévenir des perturbatio
 'delete-warning-toobig' => "Cette page possède un historique important de modifications, dépassant $1 version{{PLURAL:$1||s}}.
 La supprimer peut perturber le fonctionnement de la base de données de {{SITENAME}} ;
 veuiller ne procéder qu'avec prudence.",
-'deleting-backlinks-warning' => "'''Attention :''' D’autres pages ont un lien vers ou incorporent la page que vous allez supprimer.",
+'deleting-backlinks-warning' => "'''Attention :''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|D’autres pages]] ont un lien vers ou incorporent la page que vous allez supprimer.",
 
 # Rollback
 'rollback' => 'Révoquer les modifications',

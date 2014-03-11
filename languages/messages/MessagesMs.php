@@ -235,7 +235,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Kirimkan saya salinan e-mel yang saya hantar kepada pengguna lain',
 'tog-diffonly' => 'Jangan tunjukkan kandungan laman di bawah perbezaan',
 'tog-showhiddencats' => 'Tunjukkan kategori tersembunyi',
-'tog-noconvertlink' => 'Lumpuhkan penukaran tajuk pautan',
 'tog-norollbackdiff' => 'Abaikan perbezaan selepas melakukan pengunduran suntingan.',
 'tog-useeditwarning' => 'Beri saya amaran apabila saya meninggalkan sesebuah laman penyuntingan tanpa menyimpan perubahan.',
 'tog-prefershttps' => 'Sentiasa gunakan sambungan terlindung apabila log masuk',

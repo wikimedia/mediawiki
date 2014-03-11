@@ -355,7 +355,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Дlадахьийта суна исанна кехат, аса дохьуьйтуш долу кхечу декъашхошна.',
 'tog-diffonly' => 'Ма гайта агlон чулацам шина башхонца цхьатерра йолуш',
 'tog-showhiddencats' => 'Гайта къайлаха йолу категореш',
-'tog-noconvertlink' => 'Хааман хьажораг кхуллу гӀирс дӀабайа',
 'tog-norollbackdiff' => 'Юха яккхиначул тӀаьхьа ма гайта версешан башхо',
 'tog-useeditwarning' => 'Хаамбе бина хийцамаш дӀаязцабеш аса болх дӀатосучу хенахь',
 'tog-prefershttps' => 'Даима лела йе лардина системин чудалар',
@@ -833,6 +832,7 @@ URL язъеш гӀалат даьлла хила мега.
 
 # Change password dialog
 'changepassword' => 'Хийца пароль',
+'resetpass_announce' => 'Чудахар чекх далийта хӀотта йе керла пароль.',
 'resetpass_text' => '<!-- Кхузахь язъде хьай йоза -->',
 'resetpass_header' => 'Хийца дӀаяздаран пароль',
 'oldpassword' => 'Шираелла пароль:',
@@ -844,9 +844,12 @@ URL язъеш гӀалат даьлла хила мега.
 'resetpass-no-info' => 'ХӀара агӀо лело системин чугӀо.',
 'resetpass-submit-loggedin' => 'Хийца пароль',
 'resetpass-submit-cancel' => 'Цаоьшу',
+'resetpass-recycled' => 'Дехар до, хӀинца йолччул башха пароль хӀотта йе.',
+'resetpass-temp-emailed' => 'Ахьа чугӀош язйина цкъачунна электронан почте яийтина пароль. Чудахар чекхдалийта язъян еза керла пароль.',
 'resetpass-temp-password' => 'Цхьан хана пароль:',
 'resetpass-abort-generic' => 'Пароль хийцар дӀахедар',
 'resetpass-expired' => 'Хьан паролан хан чекхелла. Дехар до керла пароль хӀоттаяр.',
+'resetpass-expired-soft' => 'Хьа паролан хан чекхелла. Дехар до, харжа керла пароль я тӀетаӀе «{{int:resetpass-submit-cancel}}», и тӀехо хица.',
 
 # Special:PasswordReset
 'passwordreset' => 'Пароль кхоссар',
@@ -1613,6 +1616,7 @@ $1",
 'savefile' => 'ДӀаязе йе файл',
 'uploadedimage' => 'чуяьккхина «[[$1]]»',
 'overwroteimage' => 'Чуяьккхина файлан керла верси «[[$1]]»',
+'uploadscriptednamespace' => "ХӀокху SVG-файлан цӀерийн меттиг нийса яц '$1'",
 'upload-source' => 'ДIайолалун файл',
 'sourcefilename' => 'ДIайолалун файл:',
 'destfilename' => 'Файлан керла цӀе:',
@@ -1972,7 +1976,7 @@ PICT # тайп тайпан
 'wlheader-enotif' => 'Электронан почте хаамаш байтар латина ду.',
 'wlheader-showupdated' => "Хийцам бина агӀонаш '''Ӏаьржа''' шрифтцан билгальяха ю.",
 'wlnote2' => 'Лахахьа гайтина {{PLURAL:$1|тӀеххьара сахьт}} чохь бина хийцамаш $2 $3.',
-'wlshowlast' => 'Гайта тlаьххьара $1 сахьташ $2 денош $3',
+'wlshowlast' => 'Гайта тӀаьххьара $1 сахьт $2 де $3',
 'watchlist-options' => 'Тергаме могlаман гlирс нисбар',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -2008,7 +2012,7 @@ PICT # тайп тайпан
 ** авторан лаамца
 ** авторан бакъонаш талхор',
 'delete-edit-reasonlist' => 'Бахьанин список нисяр',
-'deleting-backlinks-warning' => "'''ДӀахьедар.''' Ахьа дӀайоккхуш йолчун тӀе товжийна кхин агӀонаш ю.",
+'deleting-backlinks-warning' => "'''ДӀахьедар:''' Ахьа дӀайоккхуш йолчун тӀе товжийна [[Special:WhatLinksHere/{{FULLPAGENAME}}|кхин агӀонаш]] ю.",
 
 # Rollback
 'rollback' => 'Юхабаккха хийцам',

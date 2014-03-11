@@ -160,7 +160,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Nitumie nakala ya barua pepe nitakazo tuma kwa watumiaji wengine',
 'tog-diffonly' => 'Usionyeshe yaliyomo kwenye ukurasa chini ya faili za diff',
 'tog-showhiddencats' => 'Onyesha jamii zilizofichwa',
-'tog-noconvertlink' => 'Lemaza kiungo cha jina la badiliko',
 'tog-norollbackdiff' => 'Ondoa faili za diff baada ya kufanyakazi ya kurejesha',
 'tog-useeditwarning' => 'Unionyeshe ilani ninapotaka kutoka kwenye ukurasa ninouhariri, bila kuhifadhi mabadiliko',
 

@@ -375,7 +375,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Gửi bản sao cho tôi khi gửi thư điện tử cho người khác',
 'tog-diffonly' => 'Không hiển thị nội dung trang dưới phần so sánh phiên bản',
 'tog-showhiddencats' => 'Hiển thị thể loại ẩn',
-'tog-noconvertlink' => 'Tắt liên kết chuyển đổi tựa đề',
 'tog-norollbackdiff' => 'Không so sánh sau khi lùi sửa',
 'tog-useeditwarning' => 'Cảnh báo khi tôi thoát trang sửa đổi mà chưa lưu trang',
 'tog-prefershttps' => 'Luôn kết nối an toàn khi đăng nhập',

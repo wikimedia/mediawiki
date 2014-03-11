@@ -360,7 +360,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Stuur mien kopieën van berichten an aandere gebrukers',
 'tog-diffonly' => 'Laot de inhoud van ziejen niet onder de an-egeven wiezigingen zien.',
 'tog-showhiddencats' => 'Laot verbörgen kategorieën zien',
-'tog-noconvertlink' => 'Ziednaamkonversie uutschakelen',
 'tog-norollbackdiff' => 'Wiezigingen vortlaoten nao t weerummedreien',
 'tog-useeditwarning' => "Waorschuw mien a'k n bewörken zied aof wil sluten die nog niet op-esleugen is",
 'tog-prefershttps' => "Altied n beveiligde verbiending gebruken a'j an-emeld bin",

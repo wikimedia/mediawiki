@@ -356,7 +356,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Lähetä minulle kopio MediaWikin kautta lähetetyistä sähköposteista',
 'tog-diffonly' => 'Älä näytä sivun sisältöä eroavaisuusvertailun alapuolella',
 'tog-showhiddencats' => 'Näytä piilotetut luokat',
-'tog-noconvertlink' => 'Älä muunna linkkien otsikoita toiseen kirjoitusjärjestelmään',
 'tog-norollbackdiff' => 'Älä näytä eroavaisuuksia, kun olet palauttanut muokkauksen palauta-työkalulla',
 'tog-useeditwarning' => 'Varoita minua, kun poistun muokkaussivulta tallentamatta muutoksia',
 'tog-prefershttps' => 'Käytä aina suojattua yhteyttä, kun olet kirjautunut sisään',

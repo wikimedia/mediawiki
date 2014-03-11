@@ -368,7 +368,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Receber cópias de e-mails que eu enviar a outros usuários',
 'tog-diffonly' => 'Não mostrar o conteúdo da página ao comparar duas edições',
 'tog-showhiddencats' => 'Exibir categorias ocultas',
-'tog-noconvertlink' => 'Desabilitar conversão de títulos de links',
 'tog-norollbackdiff' => 'Omitir diferenças após desfazer edições em bloco',
 'tog-useeditwarning' => 'Avisar-me quando eu deixar uma janela de edição sem ter salvo as alterações',
 'tog-prefershttps' => 'Usar sempre uma conexão segura quando estiver conectado',

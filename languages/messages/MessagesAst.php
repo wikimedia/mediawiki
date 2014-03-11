@@ -100,7 +100,6 @@ $messages = array(
 'tog-ccmeonemails' => "Mandame copies de los correos qu'unvio a otros usuarios",
 'tog-diffonly' => 'Nun amosar el conteníu de la páxina embaxo de les diferencies',
 'tog-showhiddencats' => 'Amosar categoríes anubríes',
-'tog-noconvertlink' => 'Desactivar la conversión del títulu del enllaz',
 'tog-norollbackdiff' => 'Desaniciar les diferencies depués de facer una restauración',
 'tog-useeditwarning' => "Avisame cuando salga d'una páxina d'edición con cambios ensin guardar",
 'tog-prefershttps' => 'Usar siempre una conexón segura en aniciando sesión',

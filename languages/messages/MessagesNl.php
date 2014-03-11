@@ -416,7 +416,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Mij een kopie zenden van e-mails die ik naar andere gebruikers stuur',
 'tog-diffonly' => 'Pagina-inhoud onder wijzigingen niet weergeven',
 'tog-showhiddencats' => 'Verborgen categorieën weergeven',
-'tog-noconvertlink' => 'Paginanaamconversie uitschakelen',
 'tog-norollbackdiff' => 'Wijzigingen weglaten na terugdraaien',
 'tog-useeditwarning' => 'Waarschuwen als u een bewerkte pagina die nog niet is opgeslagen wilt verlaten',
 'tog-prefershttps' => 'Altijd een beveiligde verbinding gebruiken wanneer u bent aangemeld',

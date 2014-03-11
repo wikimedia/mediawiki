@@ -170,7 +170,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Inviar me copies de e-mailes que yo invia por altri usatores',
 'tog-diffonly' => 'Ne monstrar li contenete de págine in infra del changes',
 'tog-showhiddencats' => 'Monstrar categories ne visibil',
-'tog-noconvertlink' => 'Desvalidar conversion de titul de catenun',
 'tog-norollbackdiff' => 'Omisser change pos de efectuar un rollback',
 'tog-useeditwarning' => 'Averti me, si yo abandona un págine con ínconservat changes',
 'tog-prefershttps' => 'Sempre usar un secur connection, si tui session es activ.',
