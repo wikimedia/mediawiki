@@ -276,7 +276,7 @@ class UserMailer {
 				$headers = $mime->headers( $headers );
 			}
 		}
-		if ( !isset( $mime ) ) {
+		if ( $mime === null ) {
 			// sending text only, either deliberately or as a fallback
 			if ( wfIsWindows() ) {
 				$body = str_replace( "\n", "\r\n", $body );
