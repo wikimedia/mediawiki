@@ -7,6 +7,7 @@
 class MediaWikiTestCaseTest extends MediaWikiTestCase {
 
 	const GLOBAL_KEY_EXISTING = 'MediaWikiTestCaseTestGLOBAL-Existing';
+	const GLOBAL_KEY_NONEXISTING = 'MediaWikiTestCaseTestGLOBAL-NONExisting';
 
 	public static function setUpBeforeClass() {
 		parent::setUpBeforeClass();
@@ -59,6 +60,18 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 			$GLOBALS[self::GLOBAL_KEY_EXISTING],
 			'Global failed to be restored on tearDown'
 		);
+	}
+
+	/**
+	 * @covers MediaWikiTestCase::stashMwGlobals
+	 */
+	public function testExceptionThrownWhenStashingNonExistentGlobals() {
+		$this->setExpectedException(
+			'Exception',
+			'Global with key ' . self::GLOBAL_KEY_NONEXISTING . ' doesn\'t exist and cant be stashed'
+		);
+
+		$this->stashMwGlobals( self::GLOBAL_KEY_NONEXISTING );
 	}
 
 }
