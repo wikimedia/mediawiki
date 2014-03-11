@@ -694,7 +694,6 @@ future releases. Also note that since each list value is wrapped in a unique
 'tog-ccmeonemails'            => 'Send me copies of emails I send to other users',
 'tog-diffonly'                => 'Do not show page content below diffs',
 'tog-showhiddencats'          => 'Show hidden categories',
-'tog-noconvertlink'           => 'Disable link title conversion', # only translate this message to other languages if you have to change it
 'tog-norollbackdiff'          => 'Omit diff after performing a rollback',
 'tog-useeditwarning'          => 'Warn me when I leave an edit page with unsaved changes',
 'tog-prefershttps'            => 'Always use a secure connection when logged in',

@@ -63,7 +63,6 @@ $wgMessageStructure = array(
 		'tog-ccmeonemails',
 		'tog-diffonly',
 		'tog-showhiddencats',
-		'tog-noconvertlink',
 		'tog-norollbackdiff',
 		'tog-useeditwarning',
 		'tog-prefershttps'

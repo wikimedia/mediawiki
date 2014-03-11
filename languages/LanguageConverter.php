@@ -752,8 +752,7 @@ class LanguageConverter {
 			return;
 		}
 
-		global $wgDisableLangConversion, $wgDisableTitleConversion, $wgRequest,
-			$wgUser;
+		global $wgDisableLangConversion, $wgDisableTitleConversion, $wgRequest;
 		$isredir = $wgRequest->getText( 'redirect', 'yes' );
 		$action = $wgRequest->getText( 'action' );
 		$linkconvert = $wgRequest->getText( 'linkconvert', 'yes' );
@@ -768,8 +767,7 @@ class LanguageConverter {
 				( $isredir == 'no'
 					|| $action == 'edit'
 					|| $action == 'submit'
-					|| $linkconvert == 'no'
-					|| $wgUser->getOption( 'noconvertlink' ) == 1 ) ) ) {
+					|| $linkconvert == 'no' ) ) ) {
 			return;
 		}
 
