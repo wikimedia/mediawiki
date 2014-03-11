@@ -13,6 +13,12 @@ production.
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
   WhatLinksHere entries.
+* HTMLForm's HTMLTextField now supports the 'url' type.
+* HTMLForm fields may now be dynamically hidden based on the values of other
+  fields in the form.
+* HTMLForm now supports multiple copies of an input field or set of input
+  fields, e.g. the form may request "one or more usernames" without having to
+  have the user enter delimited list of names into a text field.
 
 === Bug fixes in 1.24 ===
 * (bug 62258) A bug was fixed in File::getUnscaledThumb when a height
