@@ -118,6 +118,12 @@ production.
   creations, similar to the topOnly option.
 * Add mediawiki.ui.button styling to all pages so wiki content can use styled
   buttons.
+* HTMLForm's HTMLTextField now supports the 'url' type.
+* HTMLForm fields may now be dynamically hidden based on the values of other
+  fields in the form.
+* HTMLForm now supports multiple copies of an input field or set of input
+  fields, e.g. the form may request "one or more usernames" without having to
+  have the user enter delimited list of names into a text field.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
