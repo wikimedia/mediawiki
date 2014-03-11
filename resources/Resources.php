@@ -1371,6 +1371,7 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => 'resources/oojs-ui/oojs-ui-apex.css',
+			'minerva' => array(),
 		),
 		'messages' => array(
 			'ooui-dialog-action-close',
