@@ -106,7 +106,7 @@
 			'#mw-unwatch-link2, #mw-watch-link2, #mw-watch-link1' );
 
 		// Allowing people to add inline animated links is a little scary
-		$links = $links.filter( ':not( #bodyContent *, #content * )' );
+		$links = $links.filter( ':not( #bodyContent * )' );
 
 		$links.click( function ( e ) {
 			var action, api, $link;
@@ -115,7 +115,6 @@
 			mw.loader.load( ['mediawiki.notification'], null, true );
 
 			action = mwUriGetAction( this.href );
-
 			if ( action !== 'watch' && action !== 'unwatch' ) {
 				// Could not extract target action from link url,
 				// let native browsing handle it further

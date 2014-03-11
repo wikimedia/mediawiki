@@ -60,6 +60,24 @@ class SkinVector extends SkinTemplate {
 		$out->addModules( array( 'skins.vector.js', 'skins.vector.collapsibleNav' ) );
 	}
 
+	public function getDefaultModules() {
+		global $wgEnableAPI, $wgUseAjax, $wgEnableWriteAPI, $wgAjaxWatch;
+		$modules = parent::getDefaultModules();
+
+		$user = $this->getUser();
+		// Add ajax watch star if available
+		if ( $wgUseAjax ) {
+			if ( $wgEnableAPI ) {
+				if ( $wgEnableWriteAPI && $wgAjaxWatch && $user->isLoggedIn()
+					&& $user->isAllowed( 'writeapi' )
+				) {
+					$modules['watch'][] = 'mediawiki.page.watch.ajax';
+				}
+			}
+		}
+		return $modules;
+	}
+
 	/**
 	 * Loads skin and user CSS files.
 	 * @param $out OutputPage object
