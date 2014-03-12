@@ -15,7 +15,7 @@
  * performed in LocalSettings.php.
  *
  * Documentation is in the source and on:
- * http://www.mediawiki.org/wiki/Manual:Configuration_settings
+ * https://www.mediawiki.org/wiki/Manual:Configuration_settings
  *
  * @warning  Note: this (and other things) will break if the autoloader is not
  * enabled. Please include includes/AutoLoader.php before including this file.
@@ -2256,7 +2256,7 @@ $wgInvalidateCacheOnLocalSettingsChange = true;
  * although they are referred to as Squid settings for historical reasons.
  *
  * Achieving a high hit ratio with an HTTP proxy requires special
- * configuration. See http://www.mediawiki.org/wiki/Manual:Squid_caching for
+ * configuration. See https://www.mediawiki.org/wiki/Manual:Squid_caching for
  * more details.
  *
  * @{
@@ -2264,7 +2264,7 @@ $wgInvalidateCacheOnLocalSettingsChange = true;
 
 /**
  * Enable/disable Squid.
- * See http://www.mediawiki.org/wiki/Manual:Squid_caching
+ * See https://www.mediawiki.org/wiki/Manual:Squid_caching
  */
 $wgUseSquid = false;
 
@@ -3927,7 +3927,7 @@ $wgTranscludeCacheExpiry = 3600;
  *         if $wgUseCommaCount is false, it will be 'link', if it is true
  *         it will be 'comma'
  *
- * See also See http://www.mediawiki.org/wiki/Manual:Article_count
+ * See also See https://www.mediawiki.org/wiki/Manual:Article_count
  *
  * Retroactively changing this variable will not affect the existing count,
  * to update it, you will need to run the maintenance/updateArticleCount.php
@@ -4173,7 +4173,7 @@ $wgBlockDisablesLogin = false;
  *
  * @note Also that this will only protect _pages in the wiki_. Uploaded files
  * will remain readable. You can use img_auth.php to protect uploaded files,
- * see http://www.mediawiki.org/wiki/Manual:Image_Authorization
+ * see https://www.mediawiki.org/wiki/Manual:Image_Authorization
  */
 $wgWhitelistRead = false;
 
@@ -4910,7 +4910,7 @@ $wgUseTeX = false;
  */
 
 /**
- * Filename for debug logging. See http://www.mediawiki.org/wiki/How_to_debug
+ * Filename for debug logging. See https://www.mediawiki.org/wiki/How_to_debug
  * The debug log file should be not be publicly accessible if it is used, as it
  * may contain private data.
  */
@@ -5197,7 +5197,7 @@ $wgParserTestFiles = array(
  *
  * Something like this:
  * $wgParserTestRemote = array(
- *     'api-url' => 'http://www.mediawiki.org/w/api.php',
+ *     'api-url' => 'https://www.mediawiki.org/w/api.php',
  *     'repo'    => 'MediaWiki',
  *     'suite'   => 'ParserTests',
  *     'path'    => '/trunk/phase3', // not used client-side; for reference
@@ -6605,7 +6605,7 @@ $wgExemptFromUserRobotsControl = null;
  * Enable the MediaWiki API for convenient access to
  * machine-readable data via api.php
  *
- * See http://www.mediawiki.org/wiki/API
+ * See https://www.mediawiki.org/wiki/API
  */
 $wgEnableAPI = true;
 
