@@ -5004,13 +5004,13 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'dberr-cachederror' => 'This is a cached copy of the requested page, and may not be up to date.',
 
 # HTML forms
-'htmlform-invalid-input'       => 'There are problems with some of your input',
+'htmlform-invalid-input'       => 'There are problems with some of your input.',
 'htmlform-select-badoption'    => 'The value you specified is not a valid option.',
 'htmlform-int-invalid'         => 'The value you specified is not an integer.',
 'htmlform-float-invalid'       => 'The value you specified is not a number.',
-'htmlform-int-toolow'          => 'The value you specified is below the minimum of $1',
-'htmlform-int-toohigh'         => 'The value you specified is above the maximum of $1',
-'htmlform-required'            => 'This value is required',
+'htmlform-int-toolow'          => 'The value you specified is below the minimum of $1.',
+'htmlform-int-toohigh'         => 'The value you specified is above the maximum of $1.',
+'htmlform-required'            => 'This value is required.',
 'htmlform-submit'              => 'Submit',
 'htmlform-reset'               => 'Undo changes',
 'htmlform-selectorother-other' => 'Other',
