@@ -250,6 +250,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addIndex', 'logging', 'log_user_text_time', 'patch-logging_user_text_time_index.sql' ),
 			array( 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ),
 			array( 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ),
+			array('doModifyTimeRelatedFields'),
 		);
 	}
 
@@ -1055,6 +1056,14 @@ class MysqlUpdater extends DatabaseUpdater {
 			'patch-iwl_prefix_title_from-non-unique.sql',
 			false,
 			'Making iwl_prefix_title_from index non-UNIQUE'
+		);
+	}
+
+	protected function doModifyTimeRelatedFields(){
+		return $this->applyPatch(
+		'patch-clean_timestamps.sql',
+		false,
+		'Modify all time related fields to varbinary(14)'
 		);
 	}
 }
