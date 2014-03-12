@@ -1945,12 +1945,12 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		return $opts;
 	}
 
-    /**
-     * Make UPDATE options for the DatabaseBase::update function
-     *
-     * @param array $options The options passed to DatabaseBase::update
-     * @return string
-     */
+	/**
+	 * Make UPDATE options for the DatabaseBase::update function
+	 *
+	 * @param array $options The options passed to DatabaseBase::update
+	 * @return string
+	 */
 	protected function makeUpdateOptions( $options ) {
 		$opts = $this->makeUpdateOptionsArray( $options );
 
@@ -2436,11 +2436,12 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 				}
 
 				$retJOIN[] = $tableClause;
-			// Is there an INDEX clause for this table?
 			} elseif ( isset( $use_index[$alias] ) ) {
+				// Is there an INDEX clause for this table?
 				$tableClause = $this->tableNameWithAlias( $table, $alias );
 				$tableClause .= ' ' . $this->useIndexClause(
-					implode( ',', (array)$use_index[$alias] ) );
+					implode( ',', (array)$use_index[$alias] )
+				);
 
 				$ret[] = $tableClause;
 			} else {

@@ -1418,7 +1418,8 @@ class MssqlBlob extends Blob {
 		}
 
 		$ret = '0x';
-		for ( $i = 0; $i < strlen( $this->mData ); $i++ ) {
+		$dataLength = strlen( $this->mData );
+		for ( $i = 0; $i < $dataLength; $i++ ) {
 			$ret .= bin2hex( pack( 'C', ord( $this->mData[$i] ) ) );
 		}
 
