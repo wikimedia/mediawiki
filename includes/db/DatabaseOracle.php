@@ -794,7 +794,9 @@ class DatabaseOracle extends DatabaseBase {
 			// add sequence column to each list of columns, when not set
 			foreach ( $rows as &$row ) {
 				if ( !isset( $row[$sequenceData['column']] ) ) {
-					$row[$sequenceData['column']] = $this->addIdentifierQuotes('GET_SEQUENCE_VALUE(\'' . $sequenceData['sequence'] . '\')');
+					$row[$sequenceData['column']] =
+						$this->addIdentifierQuotes( 'GET_SEQUENCE_VALUE(\'' .
+							$sequenceData['sequence'] . '\')' );
 				}
 			}
 		}
