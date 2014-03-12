@@ -1,5 +1,6 @@
 <?php
 /**
+ * Implements Special:RunJobs
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,29 +18,52 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @ingroup SpecialPage
  * @author Aaron Schulz
  */
 
 /**
- * This is a simple class to handle action=runjobs and is only used internally
+ * Special page designed for running background tasks (internal use only)
  *
- * @note: this does not requre "write mode" nor tokens due to the signature check
- *
- * @ingroup API
+ * @ingroup SpecialPage
  */
-class ApiRunJobs extends ApiBase {
-	public function execute() {
+class SpecialRunJobs extends UnlistedSpecialPage {
+	public function __construct() {
+		parent::__construct( 'RunJobs' );
+	}
+
+	public function execute( $par = '' ) {
+		$this->getOutput()->disable();
+
 		if ( wfReadOnly() ) {
-			$this->dieUsage( 'Wiki is in read-only mode', 'read_only', 400 );
+			header( "HTTP/1.0 423 Locked" );
+			print 'Wiki is in read-only mode';
+			return;
+		} elseif ( !$this->getRequest()->wasPosted() ) {
+			header( "HTTP/1.0 400 Bad Request" );
+			print 'Request must be POSTed';
+			return;
 		}
 
-		$params = $this->extractRequestParams();
-		$squery = $this->getRequest()->getValues();
-		unset( $squery['signature'] );
-		$cSig = self::getQuerySignature( $squery );
-		$rSig = $params['signature'];
+		$optional = array( 'maxjobs' => 0 );
+		$required = array_flip( array( 'title', 'tasks', 'signature', 'sigexpiry' ) );
 
-		// Time-insensitive signature verification
+		$params = array_intersect_key( $this->getRequest()->getValues(), $required + $optional );
+		$missing = array_diff_key( $required, $params );
+		if ( count( $missing ) ) {
+			header( "HTTP/1.0 400 Bad Request" );
+			print 'Missing parameters: ' . implode( ', ', array_keys( $missing ) );
+			return;
+		}
+
+		$squery = $params;
+		unset( $squery['signature'] );
+		$cSig = self::getQuerySignature( $squery ); // correct signature
+		$rSig = $params['signature']; // provided signature
+
+		// Constant-time signature verification
+		// http://www.emerose.com/timing-attacks-explained
+		// @todo: make a common method for this
 		if ( strlen( $rSig ) !== strlen( $cSig ) ) {
 			$verified = false;
 		} else {
@@ -49,9 +73,15 @@ class ApiRunJobs extends ApiBase {
 			}
 			$verified = ( $result == 0 );
 		}
-
 		if ( !$verified || $params['sigexpiry'] < time() ) {
-			$this->dieUsage( 'Invalid or stale signature provided', 'bad_signature', 400 );
+			header( "HTTP/1.0 400 Bad Request" );
+			print 'Invalid or stale signature provided';
+			return;
+		}
+
+		// Apply any default parameter values
+		foreach ( $optional as $key => $default ) {
+			$params[$key] = isset( $params[$key] ) ? $params[$key] : $default;
 		}
 
 		// Client will usually disconnect before checking the response,
@@ -60,11 +90,11 @@ class ApiRunJobs extends ApiBase {
 		ignore_user_abort( true ); // jobs may take a bit of time
 		header( "HTTP/1.0 202 Accepted" );
 		ob_flush();
-        flush();
+		flush();
 		// Once the client receives this response, it can disconnect
 
 		// Do all of the specified tasks...
-		if ( in_array( 'jobs', $params['tasks'] ) ) {
+		if ( in_array( 'jobs', explode( '|', $params['tasks'] ) ) ) {
 			self::executeJobs( $params['maxjobs'] );
 		}
 	}
@@ -101,7 +131,7 @@ class ApiRunJobs extends ApiBase {
 			}
 
 			do {
-				$job = $group->pop( JobQueueGroup::TYPE_DEFAULT, JobQueueGroup::USE_CACHE ); // job from any queue
+				$job = $group->pop( JobQueueGroup::TYPE_DEFAULT, JobQueueGroup::USE_CACHE );
 				if ( $job ) {
 					$output = $job->toString() . "\n";
 					$t = - microtime( true );
@@ -125,48 +155,5 @@ class ApiRunJobs extends ApiBase {
 			// Instead we just log them.
 			MWExceptionHandler::logException( $e );
 		}
-	}
-
-	public function mustBePosted() {
-		return true;
-	}
-
-	public function getAllowedParams() {
-		return array(
-			'tasks' => array(
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array( 'jobs' )
-			),
-			'maxjobs' => array(
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_DFLT => 0
-			),
-			'signature' =>  array(
-				ApiBase::PROP_TYPE => 'string',
-			),
-			'sigexpiry' => array(
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_DFLT => 0 // ~epoch
-			),
-		);
-	}
-
-	public function getParamDescription() {
-		return array(
-			'tasks' => 'List of task types to perform',
-			'maxjobs' => 'Maximum number of jobs to run',
-			'signature' => 'HMAC Signature that signs the request',
-			'sigexpiry' => 'HMAC signature expiry as a UNIX timestamp'
-		);
-	}
-
-	public function getDescription() {
-		return 'Perform periodic tasks or run jobs from the queue.';
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=runjobs&tasks=jobs&maxjobs=3' => 'Run up to 3 jobs from the queue',
-		);
 	}
 }
