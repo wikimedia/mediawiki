@@ -1264,11 +1264,13 @@ return array(
 		'messages' => array(
 			'createacct-error',
 			'createacct-emailrequired',
+			'createacct-normalization',
 			'noname',
 			'userexists',
 		),
 		'dependencies' => array(
 			'mediawiki.api',
+			'mediawiki.Title',
 			'mediawiki.jqueryMsg',
 			'jquery.throttle-debounce',
 		),
