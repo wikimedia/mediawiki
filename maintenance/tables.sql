@@ -80,7 +80,7 @@ CREATE TABLE /*_*/user (
   -- Emailed passwords will expire $wgNewPasswordExpiry
   -- (a week) after being set. If user_newpass_time is NULL
   -- (eg. created by mail) it doesn't expire.
-  user_newpass_time binary(14),
+  user_newpass_time varbinary(14),
 
   -- Note: email should be restricted, not public info.
   -- Same with passwords.
@@ -92,7 +92,7 @@ CREATE TABLE /*_*/user (
   -- for the browser cache of logged-in users. Among other things, it is used
   -- to prevent pages generated for a previously logged in user from being
   -- displayed after a session expiry followed by a fresh login.
-  user_touched binary(14) NOT NULL default '',
+  user_touched varbinary(14) NOT NULL default '',
 
   -- A pseudorandomly generated value that is stored in
   -- a cookie when the "remember password" feature is
@@ -103,18 +103,18 @@ CREATE TABLE /*_*/user (
   -- Initially NULL; when a user's e-mail address has been
   -- validated by returning with a mailed token, this is
   -- set to the current timestamp.
-  user_email_authenticated binary(14),
+  user_email_authenticated varbinary(14),
 
   -- Randomly generated token created when the e-mail address
   -- is set and a confirmation test mail sent.
   user_email_token binary(32),
 
   -- Expiration date for the user_email_token
-  user_email_token_expires binary(14),
+  user_email_token_expires varbinary(14),
 
   -- Timestamp of account registration.
   -- Accounts predating this schema addition may contain NULL.
-  user_registration binary(14),
+  user_registration varbinary(14),
 
   -- Count of edits and edit-like actions.
   --
@@ -259,7 +259,7 @@ CREATE TABLE /*_*/page (
   -- Aside from editing this includes permission changes,
   -- creation or deletion of linked pages, and alteration
   -- of contained templates.
-  page_touched binary(14) NOT NULL default '',
+  page_touched varbinary(14) NOT NULL default '',
 
   -- This timestamp is updated whenever a page is re-parsed and
   -- it has all the link tracking tables updated for it. This is
@@ -314,7 +314,7 @@ CREATE TABLE /*_*/revision (
   rev_user_text varchar(255) binary NOT NULL default '',
 
   -- Timestamp of when revision was created
-  rev_timestamp binary(14) NOT NULL default '',
+  rev_timestamp varbinary(14) NOT NULL default '',
 
   -- Records whether the user marked the 'minor edit' checkbox.
   -- Many automated edits are marked as minor.
@@ -407,7 +407,7 @@ CREATE TABLE /*_*/archive (
   ar_comment tinyblob NOT NULL,
   ar_user int unsigned NOT NULL default 0,
   ar_user_text varchar(255) binary NOT NULL,
-  ar_timestamp binary(14) NOT NULL default '',
+  ar_timestamp varbinary(14) NOT NULL default '',
   ar_minor_edit tinyint NOT NULL default 0,
 
   -- See ar_text note.
@@ -752,7 +752,7 @@ CREATE TABLE /*_*/ipblocks (
 
   -- Creation (or refresh) date in standard YMDHMS form.
   -- IP blocks expire automatically.
-  ipb_timestamp binary(14) NOT NULL default '',
+  ipb_timestamp varbinary(14) NOT NULL default '',
 
   -- Indicates that the IP address was banned because a banned
   -- user accessed a page through it. If this is 1, ipb_address
@@ -890,7 +890,7 @@ CREATE TABLE /*_*/oldimage (
   oi_description tinyblob NOT NULL,
   oi_user int unsigned NOT NULL default 0,
   oi_user_text varchar(255) binary NOT NULL,
-  oi_timestamp binary(14) NOT NULL default '',
+  oi_timestamp varbinary(14) NOT NULL default '',
 
   oi_metadata mediumblob NOT NULL,
   oi_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
@@ -934,7 +934,7 @@ CREATE TABLE /*_*/filearchive (
 
   -- Deletion information, if this file is deleted.
   fa_deleted_user int,
-  fa_deleted_timestamp binary(14) default '',
+  fa_deleted_timestamp varbinary(14) default '',
   fa_deleted_reason text,
 
   -- Duped fields from image
@@ -949,7 +949,7 @@ CREATE TABLE /*_*/filearchive (
   fa_description tinyblob,
   fa_user int unsigned default 0,
   fa_user_text varchar(255) binary,
-  fa_timestamp binary(14) default '',
+  fa_timestamp varbinary(14) default '',
 
   -- Visibility of deleted revisions, bitfield
   fa_deleted tinyint unsigned NOT NULL default 0,
@@ -1224,7 +1224,7 @@ CREATE INDEX /*i*/exptime ON /*_*/objectcache (exptime);
 CREATE TABLE /*_*/transcache (
   tc_url varbinary(255) NOT NULL,
   tc_contents text,
-  tc_time binary(14) NOT NULL
+  tc_time varbinary(14) NOT NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/tc_url_idx ON /*_*/transcache (tc_url);
@@ -1241,7 +1241,7 @@ CREATE TABLE /*_*/logging (
   log_action varbinary(32) NOT NULL default '',
 
   -- Timestamp. Duh.
-  log_timestamp binary(14) NOT NULL default '19700101000000',
+  log_timestamp varbinary(14) NOT NULL default '19700101000000',
 
   -- The user who performed this action; key to user_id
   log_user int unsigned NOT NULL default 0,
@@ -1340,7 +1340,7 @@ CREATE TABLE /*_*/querycache_info (
   qci_type varbinary(32) NOT NULL default '',
 
   -- Timestamp of last update
-  qci_timestamp binary(14) NOT NULL default '19700101000000'
+  qci_timestamp varbinary(14) NOT NULL default '19700101000000'
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/qci_type ON /*_*/querycache_info (qci_type);
@@ -1416,7 +1416,7 @@ CREATE TABLE /*_*/protected_titles (
   pt_title varchar(255) binary NOT NULL,
   pt_user int unsigned NOT NULL,
   pt_reason tinyblob,
-  pt_timestamp binary(14) NOT NULL,
+  pt_timestamp varbinary(14) NOT NULL,
   pt_expiry varbinary(14) NOT NULL default '',
   pt_create_perm varbinary(60) NOT NULL
 ) /*$wgDBTableOptions*/;
@@ -1507,7 +1507,7 @@ CREATE TABLE /*_*/msg_resource (
   -- JSON blob
   mr_blob mediumblob NOT NULL,
   -- Timestamp of last update
-  mr_timestamp binary(14) NOT NULL
+  mr_timestamp varbinary(14) NOT NULL
 ) /*$wgDBTableOptions*/;
 CREATE UNIQUE INDEX /*i*/mr_resource_lang ON /*_*/msg_resource (mr_resource, mr_lang);
 
