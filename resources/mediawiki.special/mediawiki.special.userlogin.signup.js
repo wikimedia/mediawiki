@@ -30,7 +30,7 @@
 		updateForCheckbox();
 	} );
 
-	// Check if the username is invalid or already taken
+	// Check if the username is invalid or already taken; show username normalisation warning
 	$( function () {
 		var
 			// We need to hook to all of these events to be sure we are notified of all changes to the
@@ -52,8 +52,8 @@
 
 		// Returns a promise receiving a { state:, username: } object, where:
 		// * 'state' is one of 'invalid', 'taken', 'ok'
-		// * 'username' is the validated username if 'state' is 'ok', null otherwise (if it's not
-		//   possible to register such an account)
+		// * 'username' is the validated and normalized username if 'state' is 'ok', null otherwise
+		//   (if it's not possible to register such an account)
 		function checkUsername( username ) {
 			// We could just use .then() if we didn't have to pass on .abort()…
 			var d, apiPromise;
@@ -75,7 +75,7 @@
 					} else if ( userinfo.userid !== undefined ) {
 						d.resolve( { state: 'taken', username: null } );
 					} else {
-						d.resolve( { state: 'ok', username: username } );
+						d.resolve( { state: 'ok', username: userinfo.name } );
 					}
 				} )
 				.fail( d.reject );
@@ -85,7 +85,9 @@
 
 		function updateUsernameStatus() {
 			var
-				username = $.trim( $input.val() ),
+				// Leading/trailing/multiple whitespace characters are always stripped in usernames and users
+				// know that, don't warn if someone accidentally types any. We do warn about underscores.
+				username = $.trim( $input.val().replace( /\s+/g, ' ' ) ),
 				currentRequestInternal;
 
 			// Abort any pending requests.
@@ -110,7 +112,14 @@
 				currentRequest = undefined;
 
 				if ( info.state === 'ok' ) {
-					clearStatus();
+					if ( username !== info.username ) {
+						$statusContainer
+							.attr( 'class', 'warningbox' )
+							.text( mw.message( 'createacct-normalization', username, info.username ).text() )
+							.slideDown();
+					} else {
+						clearStatus();
+					}
 				} else {
 					if ( info.state === 'invalid' ) {
 						message = mw.message( 'noname' ).text();
