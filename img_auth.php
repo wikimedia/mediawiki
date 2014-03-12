@@ -2,7 +2,7 @@
 /**
  * Image authorisation script
  *
- * To use this, see http://www.mediawiki.org/wiki/Manual:Image_Authorization
+ * To use this, see https://www.mediawiki.org/wiki/Manual:Image_Authorization
  *
  * - Set $wgUploadDirectory to a non-public directory (not web accessible)
  * - Set $wgUploadPath to point to this file

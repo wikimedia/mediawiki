@@ -306,7 +306,7 @@ class WebInstallerOutput {
 <div id="mw-panel">
 	<div class="portal" id="p-logo">
 	  <a style="background-image: url(../skins/common/images/mediawiki.png);"
-		href="http://www.mediawiki.org/"
+		href="https://www.mediawiki.org/"
 		title="Main Page"></a>
 	</div>
 	<div class="portal"><div class="body">

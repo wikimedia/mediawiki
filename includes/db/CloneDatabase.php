@@ -3,7 +3,7 @@
  * Helper class for making a copy of the database, mostly for unit testing.
  *
  * Copyright © 2010 Chad Horohoe <chad@anyonecanedit.org>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
