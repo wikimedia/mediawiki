@@ -93,6 +93,9 @@ class UsercreateTemplate extends BaseTemplate {
 						'createacct-another-username-ph' : 'userlogin-yourname-ph' )->text(),
 				) );
 				?>
+				<div class="prefsectiontip mw-createacct-normalization-warning">
+					<?php $this->msgWiki( 'createacct-normalization-warning' ); ?>
+				</div>
 			</div>
 
 			<div>
