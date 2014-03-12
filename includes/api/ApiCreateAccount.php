@@ -141,7 +141,9 @@ class ApiCreateAccount extends ApiBase {
 			$result['result'] = 'NeedToken';
 		} elseif ( !$status->isOK() ) {
 			// There was an error. Die now.
-			$this->dieStatus( $status );
+			$extraData = array();
+			wfRunHooks( 'AddNewAccountApiFailed', array( $this, $loginForm, $status, &$extraData ) );
+			$this->dieStatus( $status, 0, $extraData );
 		} elseif ( !$status->isGood() ) {
 			// Status is not good, but OK. This means warnings.
 			$result['result'] = 'Warning';

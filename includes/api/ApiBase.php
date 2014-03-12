@@ -1415,12 +1415,14 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @since 1.22
 	 * @param Status $status Status object
-	 * @throws MWException
+	 * @param int $httpRespCode HTTP response code
+	 * @param array $extradata Data to add to the "<error>" element; array in ApiResult format
+	 * @throws UsageException
 	 */
-	public function dieStatus( $status ) {
+	public function dieStatus( $status, $httpRespCode = 0, $extradata = null ) {
 
 		list( $code, $msg ) = $this->getErrorFromStatus( $status );
-		$this->dieUsage( $msg, $code );
+		$this->dieUsage( $msg, $code, $httpRespCode, $extradata );
 	}
 
 	// @codingStandardsIgnoreStart Allow long lines. Cannot split these.
