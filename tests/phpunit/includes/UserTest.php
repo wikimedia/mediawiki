@@ -258,4 +258,33 @@ class UserTest extends MediaWikiTestCase {
 
 		$wgPasswordExpireGrace = $wgTemp;
 	}
+
+	/**
+	 * Test password validity checks. There are 3 checks in core,
+	 *	- ensure the password meets the minimal length
+	 *	- ensure the password is not the same as the username
+	 *	- ensure the username/password combo isn't forbidden
+	 * @covers User::checkPasswordValidity()
+	 * @covers User::getPasswordValidity()
+	 * @covers User::isValidPassword()
+	 */
+	public function testCheckPasswordValidity() {
+		$this->setMwGlobals( 'wgMinimalPasswordLength', 6 );
+		$user = User::newFromName( 'Useruser' );
+		// Sanity
+		$this->assertTrue( $user->isValidPassword( 'Password1234' ) );
+
+		// Minimum length
+		$this->assertFalse( $user->isValidPassword( 'a' ) );
+		$this->assertFalse( $user->checkPasswordValidity( 'a' )->isGood() );
+		$this->assertEquals( 'passwordtooshort', $user->getPasswordValidity( 'a' ) );
+
+		// Matches username
+		$this->assertFalse( $user->checkPasswordValidity( 'Useruser' )->isGood() );
+		$this->assertEquals( 'password-name-match', $user->getPasswordValidity( 'Useruser' ) );
+
+		// On the forbidden list
+		$this->assertFalse( $user->checkPasswordValidity( 'Passpass' )->isGood() );
+		$this->assertEquals( 'password-login-forbidden', $user->getPasswordValidity( 'Passpass' ) );
+	}
 }
