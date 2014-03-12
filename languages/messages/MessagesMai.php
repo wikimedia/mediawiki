@@ -2580,7 +2580,6 @@ $1 एकर प्रतिबन्धक कारण अछि : "$2"',
 'pageinfo-authors' => 'भिन्न लेखक संख्या',
 
 # Skin names
-'skinname-modern' => 'आधुनिक',
 'skinname-vector' => 'सदिश',
 
 # Patrolling

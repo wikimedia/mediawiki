@@ -2627,9 +2627,7 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 
 # Stylesheets
 'common.css' => '/* Os estilos CSS definius aquí aplicarán a todas as apariencias (skins) */',
-'cologneblue.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Cologne Blue */",
 'monobook.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Monobook */",
-'modern.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Modern */",
 'vector.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Vector */",
 'print.css' => '/* Os estilos CSS colocaus aquí afectarán a la impresión */',
 'noscript.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que tiengan desactivato JavaScript */",
@@ -2640,9 +2638,7 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 
 # Scripts
 'common.js' => '/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios en cada carga de pachina */',
-'cologneblue.js' => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia Colonia azul */",
 'monobook.js' => "/* O codigo Javascript que se meta aquí será cargau por os usuarios faigan servir l'apariencia MonoBook */",
-'modern.js' => "/* O codigo Javascript que se meta aquí será cargau por os usuarios faigan servir l'apariencia Modern */",
 'vector.js' => '/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que usen a piel Vector */',
 'group-autoconfirmed.js' => '/* Qualsiquier codigo Javascript escrito aquí se cargará nomás ta os usuarios autoconfirmatos */',
 'group-bot.js' => '/* Qualsiquier codigo Javascript escrito aquí se cargará nomás ta os bots */',
@@ -2683,9 +2679,7 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 'pageinfo-authors' => "Numero d'autors diferents",
 
 # Skin names
-'skinname-cologneblue' => 'Colonia Azul (Cologne Blue)',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Moderna',
 'skinname-vector' => 'Vector',
 
 # Patrolling

@@ -3016,7 +3016,6 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr wahardd
 'pageinfo-category-files' => 'Nifer y ffeiliau',
 
 # Skin names
-'skinname-cologneblue' => 'Glas Cwlen',
 
 # Patrolling
 'markaspatrolleddiff' => 'Marcio ei bod wedi derbyn ymweliad patrôl',

@@ -3273,9 +3273,7 @@ Vous pouvez toutefois en visualiser la source.',
 
 # Stylesheets
 'common.css' => '/* Le CSS placé ici sera appliqué à tous les habillages. */',
-'cologneblue.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Cologne Blue. */',
 'monobook.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Monobook. */',
-'modern.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Modern. */',
 'vector.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Vector. */',
 'print.css' => '/* Le CSS placé ici affectera les impressions */',
 'noscript.css' => '/* Le CSS placé ici affectera les utilisateurs ayant désactivé Javascript. */',
@@ -3287,9 +3285,7 @@ Vous pouvez toutefois en visualiser la source.',
 
 # Scripts
 'common.js' => '/* Tout JavaScript ici sera chargé avec chaque page accédée par n’importe quel utilisateur. */',
-'cologneblue.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Bleu de cologne uniquement */',
 'monobook.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage MonoBook uniquement. */',
-'modern.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Moderne uniquement */',
 'vector.js' => '/* Tout code JavaScript placé ici sera chargé pour les utilisateurs de l’habillage Vector */',
 'group-autoconfirmed.js' => '/* Le JavaScript inclus ici n’affectera que les utilisateurs auto-confirmés */',
 'group-user.js' => '/* Le JavaScript placé ici ne sera chargé que pour les utilisateurs enregistrés. */',
@@ -3371,9 +3367,7 @@ Ne '''RIEN''' inscrire ici !",
 'pageinfo-category-files' => 'Nombre de fichiers',
 
 # Skin names
-'skinname-cologneblue' => 'Bleu de Cologne',
 'skinname-monobook' => 'Monobook',
-'skinname-modern' => 'Moderne',
 'skinname-vector' => 'Vector',
 
 # Patrolling

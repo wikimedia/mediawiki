@@ -2900,7 +2900,6 @@ $2',
 'pageinfo-category-files' => 'Билэ ахсаана',
 
 # Skin names
-'skinname-modern' => 'Билиҥҥи',
 
 # Patrolling
 'markaspatrolleddiff' => 'Бэрэбиэркэлэммит курдук бэлиэтээ',

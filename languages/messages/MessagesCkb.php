@@ -2826,9 +2826,7 @@ $1',
 'pageinfo-category-files' => 'ژمارەی پەڕگەکان',
 
 # Skin names
-'skinname-cologneblue' => 'شینی کۆلۆن',
 'skinname-monobook' => 'مۆنۆ',
-'skinname-modern' => 'مۆدێڕن',
 'skinname-vector' => 'ڤێکتۆر',
 
 # Patrolling

@@ -3044,17 +3044,13 @@ Salvatz-lo sus vòstre disc dur puèi importatz-lo aicí.",
 
 # Stylesheets
 'common.css' => '/** Lo CSS plaçat aicí serà aplicat a totas las aparéncias. */',
-'cologneblue.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Cologne Blue */',
 'monobook.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires del skin Monobook */',
-'modern.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Modern */',
 'vector.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Vector */',
 'print.css' => '/* Lo CSS plaçat aicí afectarà las impressions */',
 
 # Scripts
 'common.js' => '/* Tot JavaScript serà cargat amb cada pagina accedida per un utilizaire quin que siá. */',
-'cologneblue.js' => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Cologne Blue unicament. */',
 'monobook.js' => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge MonoBook unicament. */',
-'modern.js' => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Modern unicament. */',
 'vector.js' => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Vector unicament. */',
 
 # Metadata
@@ -3131,9 +3127,7 @@ Inscriviscatz '''PAS RES''' dedins !",
 'pageinfo-category-files' => 'Nombre de fichièrs',
 
 # Skin names
-'skinname-cologneblue' => 'Colonha Blau',
 'skinname-monobook' => 'Monobook',
-'skinname-modern' => 'Modèrne',
 
 # Patrolling
 'markaspatrolleddiff' => 'Marcar coma essent pas un vandalisme',

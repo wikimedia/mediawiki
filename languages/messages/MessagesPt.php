@@ -3211,18 +3211,14 @@ Permite colocar uma justificação no resumo da edição.',
 
 # Stylesheets
 'common.css' => '/* Código CSS colocado aqui será aplicado a todos os temas */',
-'cologneblue.css' => '/* Código CSS colocado aqui afectará os utilizadores do tema Azul colonial */',
 'monobook.css' => '/* Código CSS colocado aqui afectará os utilizadores do tema Monobook */',
-'modern.css' => '/* Código CSS colocado aqui afectará os utilizadores do tema Moderno */',
 'vector.css' => '/* Código CSS colocado aqui afectará os utilizadores do tema Vector */',
 'print.css' => '/* Código CSS colocado aqui afectará as impressões */',
 'noscript.css' => '/* Os estilos CSS colocados aqui afetarão os utilizadores que tenham o JavaScript desativado em seus navegadores */',
 
 # Scripts
 'common.js' => '/* Código Javascript colocado aqui será carregado para todos os utilizadores em cada carregamento de página */',
-'cologneblue.js' => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Azul colonial */',
 'monobook.js' => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Monobook */',
-'modern.js' => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Moderno */',
 'vector.js' => '/* Código Javascript colocado aqui será carregado para utilizadores do tema Vector */',
 
 # Metadata
@@ -3300,9 +3296,7 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'pageinfo-category-files' => 'Número de ficheiros',
 
 # Skin names
-'skinname-cologneblue' => 'Azul colonial',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Moderno',
 'skinname-vector' => 'Vector',
 
 # Patrolling

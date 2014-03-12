@@ -3047,16 +3047,12 @@ Dopušta unos razloga u sažetak.',
 
 # Stylesheets
 'common.css' => '/* CSS umetnut ovdje primijenit će se na sve skinove */',
-'cologneblue.css' => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Cologne Blue skin */',
 'monobook.css' => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Monobook skin */',
-'modern.css' => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Modern skin */',
 'print.css' => '/* CSS umetnut ovdje uticat će na izgled isprintane stranice */',
 
 # Scripts
 'common.js' => '/* Bilo koja JavaScript će biti učitana za sve korisnike pri svakom učitavanju stranice. */',
-'cologneblue.js' => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste Cologne Blue skin */',
 'monobook.js' => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste MonoBook skin */',
-'modern.js' => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste Modern skin */',
 
 # Metadata
 'notacceptable' => 'Viki server ne može da pruži podatke u onom formatu koji Vaš klijent može da pročita.',
@@ -3131,9 +3127,7 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 'pageinfo-category-files' => 'Broj datoteka',
 
 # Skin names
-'skinname-cologneblue' => 'Kelnsko plavo',
 'skinname-monobook' => 'MonoKnjiga',
-'skinname-modern' => 'Moderna',
 
 # Patrolling
 'markaspatrolleddiff' => 'Označi kao patrolirano',

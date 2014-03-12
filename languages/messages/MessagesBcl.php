@@ -2980,7 +2980,6 @@ Giboha na '''DAE''' paglaogan digde!",
 'pageinfo-category-files' => 'Bilang nin mga sagunson',
 
 # Skin names
-'skinname-modern' => 'Bago',
 
 # Patrolling
 'markaspatrolleddiff' => 'Markahan bilang pigpapatrolya',

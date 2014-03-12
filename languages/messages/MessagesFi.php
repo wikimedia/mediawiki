@@ -3122,9 +3122,7 @@ Voit katsella sivun lähteenä olevaa wikitekstiä.',
 
 # Stylesheets
 'common.css' => '/* Tämä sivu sisältää koko sivustoa muuttavia tyylejä. */',
-'cologneblue.css' => '/* Tämä sivu sisältää Kölnin sininen -ulkoasua muuttavia tyylejä. */',
 'monobook.css' => '/* Tämä sivu sisältää Monobook-ulkoasua muuttavia tyylejä. */',
-'modern.css' => '/* Tämä sivu sisältää Moderni-ulkoasua muuttavia tyylejä. */',
 'vector.css' => '/* Tämä sivu sisältää Vector-ulkoasua muuttavia tyylejä. */',
 'print.css' => '/* Tämä sivu sisältää tulostettua sivua muuttavia tyylejä */',
 'noscript.css' => '/* Tämä sivun tyylit muuttavat niiden käyttäjien tyylejä, joilla JavaScript ei ole käytössä */',
@@ -3135,9 +3133,7 @@ Voit katsella sivun lähteenä olevaa wikitekstiä.',
 
 # Scripts
 'common.js' => '/* Tämän sivun JavaScript-koodi liitetään jokaiseen sivulataukseen */',
-'cologneblue.js' => '/* Tämän sivun JavaScript-koodi liitetään Kölnin sininen -tyyliin */',
 'monobook.js' => '/* Tämän sivun JavaScript-koodi liitetään Monobook-tyyliin */',
-'modern.js' => '/* Tämän sivun JavaScript-koodi liitetään Moderni-tyyliin */',
 'vector.js' => '/* Tämän sivun JavaScript-koodi liitetään Vector-tyyliin */',
 'group-autoconfirmed.js' => '/* Tämän sivun JavaScript-koodi liitetään vain automaattisesti hyväksytyille käyttäjille */',
 'group-bot.js' => '/* Tämän sivun JavaScript-koodi liitetään vain boteille */',
@@ -3218,9 +3214,7 @@ Voit katsella sivun lähteenä olevaa wikitekstiä.',
 'pageinfo-category-files' => 'Tiedostojen määrä',
 
 # Skin names
-'skinname-cologneblue' => 'Kölnin sininen',
 'skinname-monobook' => 'Monobook',
-'skinname-modern' => 'Moderni',
 
 # Patrolling
 'markaspatrolleddiff' => 'Merkitse tarkastetuksi',

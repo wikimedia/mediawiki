@@ -3074,9 +3074,7 @@ Pokušajte ponovo.',
 
 # Stylesheets
 'common.css' => '/** CSS postavljen ovde će se odraziti na sve teme */',
-'cologneblue.css' => '/* CSS postavljen ovde će uticati na sve korisnike teme „Kelnsko plava“ */',
 'monobook.css' => '/* CSS postavljen ovde će uticati na sve korisnike teme „Monobuk“ */',
-'modern.css' => '/* CSS postavljen ovde će uticati na sve korisnike teme „Savremeno“ */',
 'vector.css' => '/* CSS postavljen ovde će uticati na sve korisnike teme „Vektorsko“ */',
 'print.css' => '/* CSS postavljen ovde će uticati na izdanje za štampu */',
 'noscript.css' => '/* CSS postavljen ovde će uticati na sve korisnike kojima je onemogućen javaskript */',
@@ -3087,9 +3085,7 @@ Pokušajte ponovo.',
 
 # Scripts
 'common.js' => '/* Javaskript postavljen ovde će se koristiti za sve korisnike pri otvaranju svake stranice. */',
-'cologneblue.js' => '/* Javaskript postavljen ovde će se učitati za sve one koji koriste temu „Kelnsko plava“ */',
 'monobook.js' => '/* Javaskript postavljen ovde će se učitati za sve one koji koriste temu „Monobuk“ */',
-'modern.js' => '/* Javaskript postavljen ovde će se učitati za sve one koji koriste temu „Savremeno“ */',
 'vector.js' => '/* Javaskript postavljen ovde će se učitati za sve one koji koriste temu „Vektorsko“ */',
 'group-autoconfirmed.js' => '/* Javaskript postavljen ovde će se učitati za samopotvrđene korisnike */',
 'group-bot.js' => '/* Javaskript postavljen ovde će se učitati samo za botove */',
@@ -3170,9 +3166,7 @@ Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj li
 'pageinfo-category-files' => 'Broj datoteka',
 
 # Skin names
-'skinname-cologneblue' => 'Kelnsko plava',
 'skinname-monobook' => 'Monobuk',
-'skinname-modern' => 'Savremeno',
 'skinname-vector' => 'Vektorsko',
 
 # Patrolling

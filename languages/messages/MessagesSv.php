@@ -3178,9 +3178,7 @@ Den ger möjlighet att skriva en motivering i redigeringssammanfattningen.',
 
 # Stylesheets
 'common.css' => '/* CSS som skrivs här påverkar alla skal */',
-'cologneblue.css' => '/* CSS som skrivs här kommer att påverka alla användare av skalet Cologne blå */',
 'monobook.css' => '/* CSS som skrivs här kommer att påverka alla användare av skalet Monobook */',
-'modern.css' => '/* CSS som skrivs här kommer att påverka alla användare av skalet Modern */',
 'vector.css' => '/* CSS som skrivs här kommer att påverka alla användare av skalet Vector */',
 'print.css' => '/* CSS som skrivs här kommer att påverka utskriftsversionen */',
 'noscript.css' => '/* CSS som placeras här kommer att påverka användare med JavaScript inaktiverat */',
@@ -3191,9 +3189,7 @@ Den ger möjlighet att skriva en motivering i redigeringssammanfattningen.',
 
 # Scripts
 'common.js' => '/* JavaScript som skrivs här körs varje gång en användare laddar en sida. */',
-'cologneblue.js' => '/* JavaScript här kommer att laddas för dem som använder skalet Cologne blå */',
 'monobook.js' => '/* JavaScript här kommer att laddas för dem som använder skalet Monobook */',
-'modern.js' => '/* JavaScript här kommer att laddas för dem som använder skalet Modern */',
 'vector.js' => '/* JavaScript här kommer att laddas för dem som använder skalet Vector */',
 'group-autoconfirmed.js' => '/* JavaScript här kommer att laddas för bekräftade användare */',
 'group-bot.js' => '/* JavaScript här kommer att laddas för robotar */',
@@ -3275,9 +3271,7 @@ Fyll '''INTE''' i den här!",
 'pageinfo-category-files' => 'Antal filer',
 
 # Skin names
-'skinname-cologneblue' => 'Cologne blå',
 'skinname-monobook' => 'Monobook',
-'skinname-modern' => 'Modern',
 'skinname-vector' => 'Vector',
 
 # Patrolling

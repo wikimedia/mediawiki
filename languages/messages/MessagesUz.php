@@ -1619,8 +1619,6 @@ Umumiy omborda [[:$1]] mavjud. Faylning bu nomga qayta nomlanishi faylning umumi
 'pageinfo-redirectsto' => 'Qayta yoʻnaltirish',
 
 # Skin names
-'skinname-cologneblue' => 'Kyolncha sogʻinch',
-'skinname-modern' => 'Zamonaviy',
 'skinname-vector' => 'Vektor',
 
 # Patrol log

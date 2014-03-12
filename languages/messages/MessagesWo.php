@@ -1977,15 +1977,11 @@ Dafay tax nga man a bind ngirte li ci boyotu tënk bi.',
 
 # Stylesheets
 'common.css' => '/* CSS yiñ def fii dañuy am ay njeexit ci col yépp  */',
-'cologneblue.css' => '/* CSS yiñ def fii dañuy am ay njeexit ci jëfandikukatu col gu Cologne Blue */',
 'monobook.css' => '/* CSS yiñ def fii dañuy am ay njeexit ci jëfandikukatu col gu Monobook. */',
-'modern.css' => '/* CSS yiñ def fii dañuy am ay njeexit ci jëfandikukatu col gu Modern */',
 
 # Scripts
 'common.js' => '/* Bépp JavaScript buñ fi duggal, xët yéppa koy yeb ak jëfandikukat bumu manti doon. */',
-'cologneblue.js' => '/* Bépp JavaScript buñ fi duggal jëfandikukat yiy jëfandikoo col gu Cologne Blue keppa koy yeb */',
 'monobook.js' => '/*Bépp JavaScript buñ fi duggal jëfandikukat yiy jëfandikoo col gu Monobook keppa koy yeb. */',
-'modern.js' => '/* Bépp JavaScript buñ fi duggal jëfandikukat yiy jëfandikoo col gu Modern keppa koy yeb */',
 
 # Metadata
 'notacceptable' => 'Bii joxekaay bu wiki manuta jébbal ay njoxe cib kem bu sa client mana jàng.',

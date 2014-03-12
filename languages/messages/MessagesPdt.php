@@ -531,16 +531,12 @@ Dee Grunt es: "$2"',
 
 # Stylesheets
 'common.css' => '/* CSS opp dise Sted woat opp aula Skins wirtje */',
-'cologneblue.css' => '/* CSS opp dise Sted wirtjt opp daut Keloonsch-Blau-Skin */',
 'monobook.css' => '/* CSS opp dise Sted wirtjt opp daut Monobook-Skin */',
-'modern.css' => '/* CSS opp dise Sted wirtjt opp daut Modern-Skin */',
 'print.css' => '/* CSS opp dise Sted woat daut Utkome vom Dretje aundasch moake */',
 
 # Scripts
 'common.js' => '/* Daut neachste JavaScript woat fe aula Brucka jelode. */',
-'cologneblue.js' => '/* Daut neachste JavaScript woat fe Brucka mett Keloonsch-Blau-Skin jelode */',
 'monobook.js' => '/* Daut neachste JavaScript woat fe Brucka mett Monobook-Skin jelode */',
-'modern.js' => '/* Daut neachste JavaScript woat fe Brucka mett Modern-Skin jelode. */',
 
 # Metadata
 'notacceptable' => 'Dee Wiki-Server kaun dee Dote nich soo reedmoake, daut dien Jereetschauft dee lese kaun.',

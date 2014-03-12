@@ -2324,9 +2324,7 @@ $1',
 ای شیء پر ''مکن''",
 
 # Skin names
-'skinname-cologneblue' => 'نیلی کولاجن',
 'skinname-monobook' => 'منوبوک',
-'skinname-modern' => 'مدرن',
 
 # Patrolling
 'markaspatrolleddiff' => 'نشان کن په داب نظارت بوتگین',

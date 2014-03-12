@@ -1061,9 +1061,7 @@ Por fabor, scuolhe outro nome.',
 Premite ajuntar la rezon de la eidiçon ne l sumário.',
 
 # Skin names
-'skinname-cologneblue' => 'Azul',
 'skinname-monobook' => 'Lhibro',
-'skinname-modern' => 'Moderno',
 
 # Browsing diffs
 'previousdiff' => "← Eidiçon d'atrás",

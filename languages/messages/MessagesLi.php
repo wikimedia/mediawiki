@@ -2735,7 +2735,6 @@ Vol dit veld '''NEET''' in!",
 'pageinfo-authors' => 'Aantal versjillende sjrievers',
 
 # Skin names
-'skinname-cologneblue' => 'Keuls blauw',
 
 # Patrolling
 'markaspatrolleddiff' => 'Markeer es gecontroleerd',

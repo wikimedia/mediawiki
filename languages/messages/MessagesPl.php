@@ -3190,9 +3190,7 @@ Pozwala na wpisanie powodu w opisie zmian.',
 
 # Stylesheets
 'common.css' => '/* Umieszczony tutaj kod CSS zostanie zastosowany we wszystkich skórkach */',
-'cologneblue.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Błękit */',
 'monobook.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Książka */',
-'modern.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Nowoczesna */',
 'vector.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd skórki Wektor */',
 'print.css' => '/* Umieszczony tutaj kod CSS wpłynie na wygląd wydruku */',
 'noscript.css' => '/* Umieszczony tu arkusz stylów CSS będzie wykorzystywany dla użytkowników z wyłączoną obsługą JavaScript */',
@@ -3203,9 +3201,7 @@ Pozwala na wpisanie powodu w opisie zmian.',
 
 # Scripts
 'common.js' => '/* Umieszczony tutaj kod JavaScript zostanie załadowany przez każdego użytkownika, podczas każdego ładowania strony. */',
-'cologneblue.js' => '/* Umieszczony tutaj kod JavaScript zostanie załadowany wyłącznie przez użytkowników korzystających ze skórki Błękit */',
 'monobook.js' => '/* Umieszczony tutaj kod JavaScript zostanie załadowany wyłącznie przez użytkowników korzystających ze skórki Książka */',
-'modern.js' => '/* Umieszczony tutaj kod JavaScript zostanie załadowany wyłącznie przez użytkowników korzystających ze skórki Nowoczesna */',
 'vector.js' => '/* Umieszczony tutaj kod JavaScript zostanie załadowany wyłącznie przez użytkowników korzystających ze skórki Wektor */',
 
 # Metadata
@@ -3283,9 +3279,7 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'pageinfo-category-files' => 'Liczba plików',
 
 # Skin names
-'skinname-cologneblue' => 'Błękit',
 'skinname-monobook' => 'Książka',
-'skinname-modern' => 'Nowoczesna',
 'skinname-vector' => 'Wektor',
 
 # Patrolling

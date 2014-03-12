@@ -2878,8 +2878,6 @@ Atal hau '''EZ''' bete!",
 'pageinfo-category-files' => 'Fitxategi kopurua',
 
 # Skin names
-'skinname-cologneblue' => 'Cologne Blue',
-'skinname-modern' => 'Modernoa',
 
 # Patrolling
 'markaspatrolleddiff' => 'Patruilatutzat markatu',

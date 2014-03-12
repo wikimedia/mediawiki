@@ -2899,7 +2899,6 @@ Ju lutemi provoni përsëri.',
 'pageinfo-authors' => 'Numri i autorëve të veçantë',
 
 # Skin names
-'skinname-cologneblue' => 'Kolonjë Blu',
 
 # Patrolling
 'markaspatrolleddiff' => 'Shënoje si të patrulluar',

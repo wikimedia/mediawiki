@@ -2412,17 +2412,13 @@ $1',
 
 # Stylesheets
 'common.css' => '/* 此之 CSS 用於全面也 */',
-'cologneblue.css' => '/* 此之 CSS 用於馨藍面之簿也 */',
 'monobook.css' => '/* 此之 CSS 用於單書面之簿也 */',
-'modern.css' => '/* 此之 CSS 用於時髦面之簿也 */',
 'vector.css' => '/* 此之 CSS 用於動力面之簿也 */',
 'print.css' => '/* 此之 CSS 用於印之出力也 */',
 
 # Scripts
 'common.js' => '/* 此之JavaScript將載於全簿之頁。 */',
-'cologneblue.js' => '/* 此之JavaScript將載於用馨藍面之簿 */',
 'monobook.js' => '/* 此之JavaScript將載於用單書面之簿 */',
-'modern.js' => '/* 此之JavaScript將載於用時髦面之簿 */',
 'vector.js' => '/* 此之JavaScript將載於用動力面之簿 */',
 
 # Attribution
@@ -2447,9 +2443,7 @@ $1',
 'spam_blanking' => '審皆鏈$1，遂令白頁。',
 
 # Skin names
-'skinname-cologneblue' => '馨藍',
 'skinname-monobook' => '單書',
-'skinname-modern' => '時髦',
 'skinname-vector' => '動力',
 
 # Patrolling

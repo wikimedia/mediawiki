@@ -2995,9 +2995,7 @@ $2',
 
 # Stylesheets
 'common.css' => '/* CSS געשריבן דא וועט אפילירן און באיינפלוסן אלע סקינס */',
-'cologneblue.css' => '/* CSS געשטעלט דא ווירקט נאר אויפן קעלנישן־בלוי סקין */',
 'monobook.css' => '/* סטייל דא געלייגט וועט באאיינפלוסן דעם Monobook סקין */',
-'modern.css' => '/* CSS געשטעלט דא ווירקט אויפן מאדערנעם סקין */',
 'vector.css' => '/* CSS געשטעלט דא ווירקט נאר אויפן וועקטאר סקין */',
 
 # Scripts
@@ -3073,9 +3071,7 @@ $2',
 'pageinfo-category-files' => 'צאָל טעקעס',
 
 # Skin names
-'skinname-cologneblue' => 'קעלניש בלוי',
 'skinname-monobook' => 'מאנאבוק',
-'skinname-modern' => 'מאדערן',
 'skinname-vector' => 'וועקטאר',
 
 # Patrolling

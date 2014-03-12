@@ -2996,9 +2996,7 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 
 # Stylesheets
 'common.css' => '/* CSS yang terletak di sini akan digunakan pada semua kulit */',
-'cologneblue.css' => '/* CSS yang terletak di sini akan mempengaruhi pengguna kulit Cologne Blue */',
 'monobook.css' => '/* CSS yang terletak di sini akan mempengaruhi pengguna kulit Monobook */',
-'modern.css' => '/* CSS yang terletak di sini akan mempengaruhi pengguna kulit Moden */',
 'vector.css' => '/* CSS yang terletak di sini akan mempengaruhi pengguna kulit Vector */',
 
 # Metadata
@@ -3075,9 +3073,7 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'pageinfo-category-files' => 'Bilangan fail',
 
 # Skin names
-'skinname-cologneblue' => 'Cologne Blue',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Moden',
 'skinname-vector' => 'Vector',
 
 # Patrolling

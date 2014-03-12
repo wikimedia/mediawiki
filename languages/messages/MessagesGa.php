@@ -1724,9 +1724,7 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'pageinfo-toolboxlink' => 'Faoin leathanach seo',
 
 # Skin names
-'skinname-cologneblue' => 'Gorm Köln',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Nua-aimseartha',
 'skinname-vector' => 'Veicteoir',
 
 # Patrolling

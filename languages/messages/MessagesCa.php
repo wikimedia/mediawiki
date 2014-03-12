@@ -3103,7 +3103,6 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'pageinfo-category-files' => "Nombre d'arxius",
 
 # Skin names
-'skinname-cologneblue' => 'Colònia blava',
 
 # Patrolling
 'markaspatrolleddiff' => 'Marca com a supervisat',

@@ -3125,9 +3125,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 
 # Stylesheets
 'common.css' => '/* La jena CSS influos la aspekton de ĉiaj temoj. */',
-'cologneblue.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Kolonja Blua temo. */',
 'monobook.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Libreja temo. */',
-'modern.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Moderna temo. */',
 'vector.css' => '/* La jena CSS influos la paĝaspekton por uzantoj de la Vektora temo. */',
 'print.css' => '/* La jena CSS influos la prezentadon de la presaĵo. */',
 'noscript.css' => '/* La jena CSS influos uzantojn, kiuj desebligis Ĝavaskripton. */',
@@ -3138,9 +3136,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 
 # Scripts
 'common.js' => '/* La jena Ĝavaskripto ŝargiĝos por ĉiaj uzantoj ĉe ĉiu paĝoŝargado. */',
-'cologneblue.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Kolonja Blua temo. */',
 'monobook.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Libreja temo. */',
-'modern.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Moderna temo. */',
 'vector.js' => '/* La jena Ĝavaskripto ŝargiĝos por uzantoj de la Vektora temo. */',
 'group-autoconfirmed.js' => '/* La jena Ĝavaskripto sole ŝargiĝos por auxtokonfirmataj uzantoj. */',
 'group-bot.js' => '/* La jena Ĝavaskripto sole ŝargiĝos por robotoj. */',
@@ -3221,9 +3217,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'pageinfo-category-files' => 'Nombro de dosieroj',
 
 # Skin names
-'skinname-cologneblue' => 'Kolonja Bluo',
 'skinname-monobook' => 'Librejo',
-'skinname-modern' => 'Moderno',
 'skinname-vector' => 'Vektoro',
 
 # Patrolling

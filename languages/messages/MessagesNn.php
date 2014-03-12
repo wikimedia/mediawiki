@@ -2984,16 +2984,12 @@ Vitja [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [/
 
 # Stylesheets
 'common.css' => '/* CSS plassert i denne fila vil gjelde for alle utsjånader. */',
-'cologneblue.css' => '/* CSS i denne fila vil gjelde alle som nyttar drakta Kølnerblå */',
 'monobook.css' => '/* CSS-tekst som vert plassert her, endrar utsjånaden til sidedrakta Monobook */',
-'modern.css' => '/* CSS i denne fila vil gjelde alle som nyttar drakta Modern */',
 'print.css' => '/* CSS i denne fila vil påverke utskriftsversjonen */',
 
 # Scripts
 'common.js' => '/* Javascript i denne fila vil gjelde for alle drakter. */',
-'cologneblue.js' => '/* Javascript i denne fila vil gjelde for brukarar av drakta Kølnerblå */',
 'monobook.js' => '/* Javascript i denne fila vil gjelde for brukarar av drakta Monobook */',
-'modern.js' => '* Javascript i denne fila vil gjelde for brukarar av drakta Modern */',
 
 # Metadata
 'notacceptable' => 'Wikitenaren kan ikkje gje data i noko format som programmet ditt kan lesa.',
@@ -3068,9 +3064,7 @@ Vitja [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [/
 'pageinfo-category-files' => 'Tal filer',
 
 # Skin names
-'skinname-cologneblue' => 'Kölnerblå',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Moderne',
 
 # Patrolling
 'markaspatrolleddiff' => 'Merk som patruljert',

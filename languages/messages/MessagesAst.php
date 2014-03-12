@@ -2946,9 +2946,7 @@ Pues ver el so códigu fonte.',
 
 # Stylesheets
 'common.css' => "/* Los CSS allugaos equí s'aplicarán a tolos aspeutos */",
-'cologneblue.css' => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Cologne Blue */',
 'monobook.css' => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Monobook */',
-'modern.css' => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Modern */',
 'vector.css' => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Vector */',
 'print.css' => '/* Los CSS allugaos equí afeutarán a la salida pola imprentadora */',
 'noscript.css' => '/* Los CSS allugaos equí afeutarán a los usuarios col JavaScript desactiváu */',
@@ -2959,9 +2957,7 @@ Pues ver el so códigu fonte.',
 
 # Scripts
 'common.js' => '/* Cualesquier JavaScript que tea equí se cargará pa tolos usuarios en cada carga de páxina. */',
-'cologneblue.js' => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Cologne Blue */',
 'monobook.js' => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu MonoBook */',
-'modern.js' => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Modern */',
 'vector.js' => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Vector */',
 'group-autoconfirmed.js' => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios autoconfirmaos namái */',
 'group-bot.js' => '/* Cualesquier JavaScript que tea equí se cargará pa los bots namái */',
@@ -3043,8 +3039,6 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'pageinfo-category-files' => 'Númberu de ficheros',
 
 # Skin names
-'skinname-cologneblue' => 'Azul Colonia',
-'skinname-modern' => 'Modernu',
 
 # Patrolling
 'markaspatrolleddiff' => 'Marcar como supervisada',

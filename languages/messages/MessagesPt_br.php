@@ -3197,9 +3197,7 @@ Permite colocar uma justificativa no sumário da edição.',
 
 # Scripts
 'common.js' => '/* Códigos JavaScript aqui colocados serão carregados por todos aqueles que acessarem alguma página deste wiki */',
-'cologneblue.js' => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Azul colonial */',
 'monobook.js' => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin MonoBook */',
-'modern.js' => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Moderno */',
 'vector.js' => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Vector */',
 
 # Metadata
@@ -3277,9 +3275,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'pageinfo-category-files' => 'Número de arquivos',
 
 # Skin names
-'skinname-cologneblue' => 'Azul colonial',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Moderno',
 
 # Patrolling
 'markaspatrolleddiff' => 'Marcar como patrulhada',

@@ -845,7 +845,6 @@ Ita-nia mudansa la armazenadu seidauk!",
 'siteusers' => "{{PLURAL:$2|uza-na'in|uza-na'in}} {{SITENAME}} nian $1",
 
 # Skin names
-'skinname-cologneblue' => 'Kolónia azúl',
 
 # Browsing diffs
 'previousdiff' => '←Versaun molok',

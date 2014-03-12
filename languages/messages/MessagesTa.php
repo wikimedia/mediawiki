@@ -2760,7 +2760,6 @@ $1',
 'pageinfo-category-files' => 'கோப்புகளின் எண்ணிக்கை',
 
 # Skin names
-'skinname-cologneblue' => 'கொலோன் (Cologne) நீலம் Blue',
 
 # Patrolling
 'markaspatrolleddiff' => 'ரோந்திட்டதாக குறி',

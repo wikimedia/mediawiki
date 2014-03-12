@@ -1814,9 +1814,7 @@ Zinhar başqa isem saylağız.',
 'spamprotectiontitle' => 'Spam filtrı',
 
 # Skin names
-'skinname-cologneblue' => 'Zäñgär sağış',
 'skinname-monobook' => 'Kitap',
-'skinname-modern' => 'Zamana',
 'skinname-vector' => 'Sızımlı',
 
 # Patrolling

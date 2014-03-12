@@ -3240,9 +3240,7 @@ Permite añadir una razón al resumen de edición.',
 
 # Stylesheets
 'common.css' => '/* El CSS colocado en esta página será aplicado a todas las apariencias */',
-'cologneblue.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la apariencia Cologne Blue */',
 'monobook.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la apariencia "MonoBook" */',
-'modern.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la apariencia Moderna */',
 'vector.css' => '/* El CSS colocado en esta página afectará a los usuarios que usen la apariencia "Vector" */',
 'print.css' => '/* Los estilos CSS colocados aquí afectarán la impresión */',
 'noscript.css' => '/* Los estilos CSS colocados aquí se aplicarán a los usuarios que hayan desactivado el JavaScript en su navegador */',
@@ -3253,9 +3251,7 @@ Permite añadir una razón al resumen de edición.',
 
 # Scripts
 'common.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios en cada carga de página */',
-'cologneblue.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la piel Colonia azul */',
 'monobook.js' => '/* El código JavaScript que se ponga aquí será cargado por los usuarios de la apariencia MonoBook */',
-'modern.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la apariencia Moderna */',
 'vector.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios que usen la apariencia Vector */',
 'group-autoconfirmed.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios del grupo Usuarios autoconfirmados */',
 'group-bot.js' => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios del grupo Bots */',
@@ -3338,9 +3334,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'pageinfo-category-files' => 'Número de archivos',
 
 # Skin names
-'skinname-cologneblue' => 'Colonia azul',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Moderna',
 'skinname-vector' => 'Vector',
 
 # Patrolling

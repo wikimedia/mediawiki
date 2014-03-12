@@ -3310,9 +3310,7 @@ $2',
 
 # Stylesheets
 'common.css' => '/* ここに記述したCSSはすべての外装に反映されます */',
-'cologneblue.css' => '/* ここに記述したCSSはケルンブルー外装の利用者に影響します */',
 'monobook.css' => '/* ここに記述したCSSはモノブック外装の利用者に影響します */',
-'modern.css' => '/* ここに記述したCSSはモダン外装の利用者に影響します */',
 'vector.css' => '/* ここに記述したCSSはベクター外装の利用者に影響します */',
 'print.css' => '/* ここに記述したCSSは印刷出力に影響します */',
 'noscript.css' => '/* ここに記述したCSSはJavaScriptを無効にしている利用者に影響します */',
@@ -3324,9 +3322,7 @@ $2',
 
 # Scripts
 'common.js' => '/* ここにあるすべてのJavaScriptは、すべてのページ読み込みですべての利用者に対して読み込まれます */',
-'cologneblue.js' => '/* ここにあるすべてのJavaScriptは、ケルンブルー外装を使用している利用者に対して読み込まれます */',
 'monobook.js' => '/* ここにあるすべてのJavaScriptは、モノブック外装を使用している利用者に対して読み込まれます */',
-'modern.js' => '/* ここにあるすべてのJavaScriptは、モダン外装を使用している利用者に対して読み込まれます */',
 'vector.js' => '/* ここにあるすべてのJavaScriptは、ベクター外装を使用している利用者に対して読み込まれます */',
 'group-autoconfirmed.js' => '/* ここにあるすべてのJavaScriptは、自動承認された利用者のみに読み込まれます */',
 'group-user.js' => '/* ここにあるすべてのJavaScriptは、登録利用者のみに読み込まれます */',
@@ -3410,9 +3406,7 @@ $2',
 'pageinfo-category-files' => 'ファイル数',
 
 # Skin names
-'skinname-cologneblue' => 'ケルンブルー',
 'skinname-monobook' => 'モノブック',
-'skinname-modern' => 'モダン',
 'skinname-vector' => 'ベクター',
 
 # Patrolling

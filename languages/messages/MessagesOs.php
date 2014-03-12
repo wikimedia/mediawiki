@@ -1626,7 +1626,6 @@ $3',
 'spamprotectiontitle' => 'Спамы ныхмæ фильтр',
 
 # Skin names
-'skinname-cologneblue' => 'Кёльны æрхæндæг',
 'skinname-monobook' => 'Моно-чиныг',
 
 # Browsing diffs

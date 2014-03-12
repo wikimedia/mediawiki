@@ -2308,9 +2308,7 @@ Masukan ko '''DILARANG'''!",
 'pageinfo-category-files' => 'Jumlah berkas',
 
 # Skin names
-'skinname-cologneblue' => 'Biru Köln',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Moderen',
 'skinname-vector' => 'Vektor',
 
 # Patrolling

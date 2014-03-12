@@ -3018,9 +3018,7 @@ Tu '''NIČO''' njezapisać!",
 'pageinfo-category-files' => 'Ličba datajow',
 
 # Skin names
-'skinname-cologneblue' => 'Kölnjanska módrina',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Moderny',
 
 # Patrolling
 'markaspatrolleddiff' => 'Změnu jako přepruwowanu woznamjenić',

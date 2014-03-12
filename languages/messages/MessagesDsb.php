@@ -3023,9 +3023,7 @@ HOW '''NIC''' njezapisaś!",
 'pageinfo-category-files' => 'Licba datajow',
 
 # Skin names
-'skinname-cologneblue' => 'Kölnski Módry',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Moderny',
 
 # Patrolling
 'markaspatrolleddiff' => 'Ako kontrolěrowane markěrowaś',

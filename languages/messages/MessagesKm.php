@@ -2994,9 +2994,7 @@ $1',
 
 # Stylesheets
 'common.css' => '/* CSS បានដាក់ទីនេះនឹងមានអនុភាពលើគ្រប់សំបកទាំងអស់ */',
-'cologneblue.css' => '/* CSS បានដាក់ទីនេះនឹងមានអនុភាពលើអ្នកប្រើប្រាស់នៃសំបក Cologne Blue */',
 'monobook.css' => '/* CSS បានដាក់ទីនេះនឹងមានអនុភាពលើអ្នកប្រើប្រាស់នៃសំបក Monobook */',
-'modern.css' => '/* CSS បានដាក់ទីនេះនឹងមានអនុភាពលើអ្នកប្រើប្រាស់នៃសំបក Modern */',
 'vector.css' => '/* CSS បានដាក់ទីនេះនឹងមានអនុភាពលើអ្នកប្រើប្រាស់នៃសំបក Vector */',
 
 # Attribution
@@ -3065,9 +3063,7 @@ $1',
 'pageinfo-category-files' => 'ចំនួនឯកសារ',
 
 # Skin names
-'skinname-cologneblue' => 'ទឹកអប់ខៀវ',
 'skinname-monobook' => 'សៀវភៅឯក',
-'skinname-modern' => 'ទំនើប',
 'skinname-vector' => 'វ៉ិចទ័រ​​',
 
 # Patrolling

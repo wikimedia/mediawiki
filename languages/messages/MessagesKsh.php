@@ -3252,9 +3252,7 @@ Esu kam_mer noch en Aanmärkong en „{{int:summary}}“ maache.',
 
 # Stylesheets
 'common.css' => '/* CSS heh aan dä Stell hät Uswirkunge op all Ovverflääsche */',
-'cologneblue.css' => '/* CSS heh aan dä Stell wirrek nur op de Ovverflääsch „Kölsch Blau“ */',
 'monobook.css' => '/* CSS heh aan dä Stell wirrek nur op de Ovverflääsch „Monobooch“ */',
-'modern.css' => '/* CSS heh aan dä Stell wirrek nur op de Ovverflääsch „Modern“ */',
 'vector.css' => '/* CSS heh aan dä Stell wirrek nur op de Ovverflääsch „Vector“ */',
 'print.css' => '/* CSS heh aan dä Stell wirrek nur op et Sigge Drökke */',
 'noscript.css' => '/* Dat CSS heh aan dä Stell krijje nur de Metmaacher met affjeschaldt JavaSkrepp jescheck */',
@@ -3265,9 +3263,7 @@ Esu kam_mer noch en Aanmärkong en „{{int:summary}}“ maache.',
 
 # Scripts
 'common.js' => '/* Jedes JavaScrip hee kütt för jede Metmaacher in jede Sigg erinn */',
-'cologneblue.js' => '/* De JavaSkrippte fun hee krijje alle Sigge met de Ovverflääsch "Kölsch Blou" jescheck */',
 'monobook.js' => '/* De JavaSkrippte fun hee krijje alle Sigge met de Ovverflääsch "Monnobooch" jescheck */',
-'modern.js' => '/* De JavaSkrippte fun hee krijje alle Sigge met de Ovverflääsch "Modern" jescheck */',
 'vector.js' => '/* De JavaSkrippte fun hee krijje alle Sigge met de Ovverflääsch "Vector" jescheck */',
 'group-autoconfirmed.js' => '/* De JavaSkreppte fun hee krijje bloß de autemattesch beshtääteschte Metmaacher jescheck */',
 'group-bot.js' => '/* De JavaSkreppte fun hee krijje bloß de Bots jescheck */',
@@ -3347,9 +3343,7 @@ Esu kam_mer noch en Aanmärkong en „{{int:summary}}“ maache.',
 'pageinfo-category-files' => 'De Aanzahl Dateie',
 
 # Skin names
-'skinname-cologneblue' => 'Kölsch Blau',
 'skinname-monobook' => 'MonoBoch',
-'skinname-modern' => 'Modern',
 'skinname-vector' => 'Vektor',
 
 # Patrolling

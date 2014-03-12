@@ -2387,9 +2387,7 @@ Visita [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [/
 'pageinfo-toolboxlink' => 'Nfurmazzioni ncapu la pàggina',
 
 # Skin names
-'skinname-cologneblue' => 'Cologne Blu',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Mudernu',
 
 # Patrolling
 'markaspatrolleddiff' => 'Segna lu canciamentu comu virificatu',

@@ -2811,7 +2811,6 @@ Vinarliga royn aftur.',
 'pageinfo-category-files' => 'Tal av fílum',
 
 # Skin names
-'skinname-cologneblue' => 'Cologne-bláur',
 
 # Patrolling
 'markaspatrolleddiff' => 'Merk síðuna sum eftirhugda',

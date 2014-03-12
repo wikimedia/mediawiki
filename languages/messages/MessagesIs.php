@@ -3104,9 +3104,7 @@ Vinsamlegast reyndu aftur.',
 'pageinfo-category-files' => 'Fjöldi skráa',
 
 # Skin names
-'skinname-cologneblue' => 'Kölnarblátt',
 'skinname-monobook' => 'EinBók',
-'skinname-modern' => 'Nútímalegt',
 
 # Patrolling
 'markaspatrolleddiff' => 'Merkja sem yfirfarið',

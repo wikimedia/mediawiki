@@ -3160,9 +3160,7 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 
 # Stylesheets
 'common.css' => '/** CSS plasate aici vor fi aplicate tuturor aparițiilor */',
-'cologneblue.css' => '/* CSS plasate aici vor afecta utilizatorii stilului Cologne Blue */',
 'monobook.css' => '/* modificați acest fișier pentru a adapta înfățișarea monobook-ului pentru tot situl*/',
-'modern.css' => '/* CSS plasate aici vor afecta utilizatorii stilului Modern */',
 'vector.css' => '/* CSS plasate aici vor afecta utilizatorii stilului Vector */',
 'print.css' => '/* CSS plasate aici vor afecta modul în care paginile vor fi imprimate */',
 
@@ -3240,9 +3238,7 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 'pageinfo-category-files' => 'Număr de fișiere',
 
 # Skin names
-'skinname-cologneblue' => 'Albastru de Cologne',
 'skinname-monobook' => 'Monobook',
-'skinname-modern' => 'Modern',
 'skinname-vector' => 'Vector',
 
 # Patrolling

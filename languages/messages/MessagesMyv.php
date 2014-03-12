@@ -1835,7 +1835,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'pageinfo-authors' => 'Весемезэ зяро авторонзо',
 
 # Skin names
-'skinname-modern' => 'НееньШкань',
 
 # Patrolling
 'markaspatrolleddiff' => 'Тешкстамс ванстнемань ютазекс',

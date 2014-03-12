@@ -3162,9 +3162,7 @@ Hier '''NIKS''' invullen!",
 'pageinfo-category-files' => 'Antal bestaanden',
 
 # Skin names
-'skinname-cologneblue' => 'Keuls blauw',
 'skinname-monobook' => 'Monobook',
-'skinname-modern' => 'Niejmoeds',
 
 # Patrolling
 'markaspatrolleddiff' => 'Zet op nao-ekeken',

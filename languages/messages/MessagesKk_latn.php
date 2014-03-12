@@ -2157,15 +2157,11 @@ Wïkï-aparw üşin sırttan alw barlıq äreketter [[{{#special:Log}}/import|s�
 
 # Stylesheets
 'common.css' => '/* Mında ornalastırılğan CSS barlıq mänerlerde qoldanıladı */',
-'cologneblue.css' => '/* Mında ornalastırılğan CSS tek «Köln zeñgirligi» (cologneblue) mänerin paýdalanwşılarına ıqpal etedi skin */',
 'monobook.css' => '/* Mında ornalastırılğan CSS tek «Dara kitap» (monobook) mänerin paýdalanwşılarına ıqpal etedi */',
-'modern.css' => '/* Mında ornalastırılğan CSS tek «Zamanawï» (modern) mänerin paýdalanwşılarına ıqpal etedi */',
 
 # Scripts
 'common.js' => '/* Mındağı ärtürli JavaScript kez kelgen bet qotarılğanda barlıq paýdalanwşılar üşin jegiledi. */',
-'cologneblue.js' => '/* Mındağı JavaScript tek «Köln zeñgirligi» (cologneblue) mänerin paýdalanwşılar üşin jegiledi */',
 'monobook.js' => '/* Mındağı JavaScript tek «Dara kitap» (monobook) mänerin paýdalanwşılar üşin jegiledi */',
-'modern.js' => '/* Mındağı JavaScript tek «Zamanawï» (modern) mänerin paýdalanwşılar üşin jegiledi */',
 
 # Metadata
 'notacceptable' => 'Tutınğışıñız oqï alatın pişimi bar derekterdi bul wïkï server jetistire almaýdı.',
@@ -2190,9 +2186,7 @@ Bunıñ sebebi şettik torap siltemesinen bolwı mümkin.',
 'spam_blanking' => '$1 degenge siltemeleri bar barlıq tüzetwler tazartıldı',
 
 # Skin names
-'skinname-cologneblue' => 'Köln zeñgirligi (cologneblue)',
 'skinname-monobook' => 'Dara kitap (monobook)',
-'skinname-modern' => 'Zamanawï (modern)',
 
 # Patrolling
 'markaspatrolleddiff' => 'Zertteldi dep belgilew',

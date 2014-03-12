@@ -3134,9 +3134,7 @@ $1',
 'pageinfo-category-files' => 'संचिकांची संख्या',
 
 # Skin names
-'skinname-cologneblue' => 'सुरेखनीळी',
 'skinname-monobook' => 'मोनोबुक',
-'skinname-modern' => 'आधुनिक',
 'skinname-vector' => 'सदिश',
 
 # Patrolling

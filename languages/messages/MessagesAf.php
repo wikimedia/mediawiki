@@ -3078,7 +3078,6 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 'pageinfo-category-files' => 'Aantal lêers',
 
 # Skin names
-'skinname-cologneblue' => 'Keulen blou',
 
 # Patrolling
 'markaspatrolleddiff' => 'Merk as gekontroleerd',

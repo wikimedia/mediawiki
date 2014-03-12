@@ -2475,8 +2475,6 @@ PICT # тайп тайпан
 'pageinfo-category-info' => 'Категорех лаьцна хаам',
 
 # Skin names
-'skinname-cologneblue' => 'Кёльнин сингаттам',
-'skinname-modern' => 'Кхузаманан',
 'skinname-vector' => 'Векторни',
 
 # Patrolling

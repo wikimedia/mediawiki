@@ -3156,9 +3156,7 @@ Simpan ke komputer Anda dan unggah ke sini.',
 
 # Stylesheets
 'common.css' => '/* CSS yang ada di sini akan diterapkan pada semua kulit. */',
-'cologneblue.css' => '/* CSS yang ada di sini akan diterapkan pada kulit Cologne Blue. */',
 'monobook.css' => '/* CSS yang ada di sini akan diterapkan pada kulit Monobook. */',
-'modern.css' => '/* CSS yang ada di sini akan diterapkan pada kulit Modern. */',
 'vector.css' => '/* CSS nan ado di siko diterapkan pado kulik Vektor. */',
 'print.css' => '/* CSS yang ada di sini akan diterapkan pada tampilan cetak. */',
 'noscript.css' => '/* CSS di sini akan mempengaruhi pengguna dengan skrip Java non-aktif */',
@@ -3169,9 +3167,7 @@ Simpan ke komputer Anda dan unggah ke sini.',
 
 # Scripts
 'common.js' => '/* JavaScript yang ada di sini akan diterapkan untuk semua kulit. */',
-'cologneblue.js' => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Cologne Blue */',
 'monobook.js' => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit MonoBook */',
-'modern.js' => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Modern */',
 'vector.js' => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Vector */',
 'group-autoconfirmed.js' => '/* Semua JavaScript di sini hanya dimuatkan untuk pengguna terkonfirmasi otomatis */',
 'group-bot.js' => '/* Semua JavaScript di sini hanya dimuatkan untuk bot */',
@@ -3254,9 +3250,7 @@ Masukan ini '''DILARANG'''!",
 'pageinfo-category-files' => 'Jumlah berkas',
 
 # Skin names
-'skinname-cologneblue' => 'Biru Köln',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Modern',
 'skinname-vector' => 'Vektor',
 
 # Patrolling

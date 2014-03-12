@@ -3308,9 +3308,7 @@ U kunt wel de broncode bekijken.',
 
 # Stylesheets
 'common.css' => '/** CSS die hier wordt geplaatst heeft invloed op alle skins */',
-'cologneblue.css' => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Keuls blauw */',
 'monobook.css' => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Monobook */',
-'modern.css' => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Modern */',
 'vector.css' => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Vector */',
 'print.css' => '/* CSS die hier wordt geplaatst heeft alleen invloed op de printuitvoer */',
 'noscript.css' => '/ * CSS die hier wordt geplaatst heeft invloed voor gebruikers die JavaScript hebben uitgeschakeld * /',
@@ -3322,9 +3320,7 @@ U kunt wel de broncode bekijken.',
 
 # Scripts
 'common.js' => "/* JavaScript die hier wordt geplaatst heeft invloed op alle pagina's voor alle gebruikers */",
-'cologneblue.js' => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Keuls blauw gebruiken */',
 'monobook.js' => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Monobook gebruiken */',
-'modern.js' => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Modern gebruiken */',
 'vector.js' => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Vector gebruiken */',
 'group-autoconfirmed.js' => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op automatisch bevestigde gebruikers */',
 'group-user.js' => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op geregistreerde gebruikers */',
@@ -3407,9 +3403,7 @@ Vul dit veld '''NIET''' in!",
 'pageinfo-category-files' => 'Aantal bestanden',
 
 # Skin names
-'skinname-cologneblue' => 'Keuls blauw',
 'skinname-monobook' => 'Monobook',
-'skinname-modern' => 'Modern',
 'skinname-vector' => 'Vector',
 
 # Patrolling

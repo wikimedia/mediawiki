@@ -3170,9 +3170,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 
 # Stylesheets
 'common.css' => '/* Mã CSS đặt ở đây sẽ áp dụng cho mọi hình dạng */',
-'cologneblue.css' => '/* Mã CSS tại đây sẽ ảnh hưởng đến những người dùng sử dụng hình dạng Xanh Cologne */',
 'monobook.css' => '/* Mã CSS đặt ở đây sẽ ảnh hưởng đến thành viên sử dụng hình dạng MonoBook */',
-'modern.css' => '/* Mã CSS tại đây sẽ ảnh hưởng đến những người dùng sử dụng hình dạng Hiện đại */',
 'vector.css' => '/* Mã CSS đặt ở đây sẽ ảnh hưởng đến thành viên sử dụng hình dạng Vectơ */',
 'print.css' => '/* Mã CSS tại đây sẽ ảnh hưởng đến bản để in */',
 'noscript.css' => '/* Mã CSS tại đây sẽ ảnh hưởng đến những người dùng tắt JavaScript */',
@@ -3184,9 +3182,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 
 # Scripts
 'common.js' => '/* Bất kỳ mã JavaScript ở đây sẽ được tải cho tất cả các thành viên khi tải một trang nào đó lên. */',
-'cologneblue.js' => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng Xanh Cologne */',
 'monobook.js' => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng bề ngoài MonoBook */',
-'modern.js' => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng bề ngoài Hiện đại */',
 'vector.js' => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng bề ngoài Vectơ */',
 'group-autoconfirmed.js' => '/* Mã JavaScript tại đây sẽ chỉ được tải cho các thành viên tự động xác nhận */',
 'group-user.js' => '/* Mã JavaScript tại đây sẽ chỉ được tải cho các thành viên có tài khoản */',
@@ -3270,8 +3266,6 @@ Xin '''ĐỪNG''' điền gì vào!",
 'pageinfo-category-files' => 'Số tập tin',
 
 # Skin names
-'skinname-cologneblue' => 'Xanh Cologne',
-'skinname-modern' => 'Hiện đại',
 'skinname-vector' => 'Vectơ',
 
 # Patrolling

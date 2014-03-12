@@ -2013,7 +2013,6 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'pageinfo-toolboxlink' => 'De hac pagina',
 
 # Skin names
-'skinname-cologneblue' => 'Caerulus Colonia',
 
 # Patrolling
 'markaspatrolleddiff' => 'Indicare hanc paginam qua circumita',

@@ -2950,9 +2950,7 @@ $2',
 'pageinfo-category-files' => 'ফাইলের সংখ্যা',
 
 # Skin names
-'skinname-cologneblue' => 'কলোন ব্লু',
 'skinname-monobook' => 'মনোবুক',
-'skinname-modern' => 'মডার্ন',
 'skinname-vector' => 'ভেক্টর',
 
 # Patrolling

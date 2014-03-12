@@ -2294,9 +2294,7 @@ Zəhmət olmasa başqa ad seçin.',
 
 # Stylesheets
 'common.css' => '/* Burada yerləşən CSS bütün skinlərə tətbiq olunur */',
-'cologneblue.css' => '/* Burada yerləşən CSS Cologne Blue skin istifadəçilərinə tətbiq olunur */',
 'monobook.css' => '/* Burada yerləşən CSS Monobook skin istifadəçilərinə tətbiq olunur */',
-'modern.css' => '/* Burada yerləşən CSS Modern skin istifadəçilərinə tətbiq olunur */',
 'vector.css' => '/* Burada yerləşən CSS Vector istifadəçilərinə tətbiq olunur */',
 'group-autoconfirmed.css' => '/* Burada yerləşən CSS yalnız avtotəsdiqlənmiş istifadəçilərə şamil olunur */',
 'group-bot.css' => '/* Burada yerləşən CSS yalnız botlara şamil olunur */',
@@ -2305,9 +2303,7 @@ Zəhmət olmasa başqa ad seçin.',
 
 # Scripts
 'common.js' => '/* Burada istifadəçilərin hamısı üçün bütün səhifələrdə istənilən JavaScript yüklənəcək */',
-'cologneblue.js' => '/* Burada Cologne Blue skin istifadəçiləri üçün istənilən JavaScript yüklənəcək */',
 'monobook.js' => '/* Burada MonoBook skin istifadəçiləri üçün istənilən JavaScript yüklənəcək */',
-'modern.js' => '/* Burada Modern skin istifadəçiləri üçün istənilən JavaScript yüklənəcək */',
 'vector.js' => '/* Burada Vector skin istifadəçiləri üçün istənilən JavaScript yüklənəcək */',
 'group-autoconfirmed.js' => '/* Burada istənilən JavaScript yalnız avtotəsdiqlənmiş istifadəçilər üçün yüklənəcək */',
 'group-bot.js' => '/* Burada istənilən JavaScript yalnız botlar üçün yüklənəcək */',
@@ -2347,9 +2343,7 @@ Zəhmət olmasa başqa ad seçin.',
 'pageinfo-authors' => 'Fərqli müəlliflərin sayı',
 
 # Skin names
-'skinname-cologneblue' => 'Cologne Blue',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Modern',
 'skinname-vector' => 'Vector',
 
 # Patrolling

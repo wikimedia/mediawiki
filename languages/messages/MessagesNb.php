@@ -3139,15 +3139,11 @@ Du kan se på kildeteksten',
 
 # Stylesheets
 'common.css' => '/* CSS plassert i denne fila vil gjelde for alle utseender. */',
-'cologneblue.css' => '/* CSS i denne fila vil gjelde alle som bruker drakta Kølnerblå */',
 'monobook.css' => '/* CSS i denne fila vil gjelde alle som bruker drakta Monobook */',
-'modern.css' => '/* CSS i denne fila vil gjelde alle som bruker drakta Modern */',
 
 # Scripts
 'common.js' => '/* Javascript i denne fila vil gjelde for alle drakter. */',
-'cologneblue.js' => '/* Javascript i denne fila vil gjelde for brukere av drakta Kølnerblå */',
 'monobook.js' => '/* Javascript i denne fila vil gjelde for brukere av drakta Monobook */',
-'modern.js' => '/* Javascript i denne fila vil gjelde for brukere av drakta Modern */',
 
 # Metadata
 'notacceptable' => 'Tjeneren har ingen mulige måter å vise data i din nettleser.',
@@ -3224,9 +3220,7 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'pageinfo-category-files' => 'Antall filer',
 
 # Skin names
-'skinname-cologneblue' => 'Kølnerblå',
 'skinname-monobook' => 'Monobook',
-'skinname-modern' => 'Moderne',
 
 # Patrolling
 'markaspatrolleddiff' => 'Merk som patruljert',

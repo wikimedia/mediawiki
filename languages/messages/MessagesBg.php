@@ -2958,9 +2958,7 @@ $2',
 'pageinfo-category-files' => 'Брой файлове',
 
 # Skin names
-'skinname-cologneblue' => 'Кьолнско синьо',
 'skinname-monobook' => 'Монобук',
-'skinname-modern' => 'Модерен',
 
 # Patrolling
 'markaspatrolleddiff' => 'Отбелязване като проверена редакция',

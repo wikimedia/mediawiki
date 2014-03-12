@@ -3066,17 +3066,13 @@ Es possibile adder un motivo in le summario.',
 
 # Stylesheets
 'common.css' => '/* Le CSS placiate hic se applicara a tote le stilos */',
-'cologneblue.css' => '/* Le CSS placiate hic afficera le usatores del apparentia Colonia Blau */',
 'monobook.css' => '/* Le CSS placiate hic afficera le usatores del apparentia MonoBook */',
-'modern.css' => '/* Le CSS placiate hic afficera le usatores del apparentia Moderne */',
 'vector.css' => '/* Le CSS placiate hic afficera le usatores del apparentia Vector */',
 'print.css' => '/* Le CSS placiate hic influentiara le apparentia del paginas imprimite */',
 
 # Scripts
 'common.js' => '/* Omne JavaScript hic se executara pro tote le usatores a cata cargamento de pagina. */',
-'cologneblue.js' => '/* Omne JavaScript hic se executara pro le usatores del apparentia Colonia Blau */',
 'monobook.js' => '/* Omne JavaScript hic se executara pro le usatores del apparentia MonoBook */',
-'modern.js' => '/* Omne JavaScript hic se executara pro le usatores del apparentia Moderne */',
 'vector.js' => '/* Omne JavaScript hic se executara pro le usatores del apparentia Vector */',
 
 # Metadata
@@ -3154,9 +3150,7 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'pageinfo-category-files' => 'Numero de files',
 
 # Skin names
-'skinname-cologneblue' => 'Colonia Blau',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Moderne',
 
 # Patrolling
 'markaspatrolleddiff' => 'Marcar como patruliate',

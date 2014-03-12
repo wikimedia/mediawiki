@@ -2594,17 +2594,13 @@ $1',
 
 # Stylesheets
 'common.css' => '/* 響呢度放 CSS 碼來改成個網站嘅畫面 */',
-'cologneblue.css' => '/* 響呢度放 CSS 碼去改用戶用嘅科隆藍畫面 */',
 'monobook.css' => '/* 響呢度放 CSS 碼去改用戶用嘅 Monobook 畫面 */',
-'modern.css' => '/* 響呢度放 CSS 碼去改用戶用嘅摩登畫面 */',
 'vector.css' => '/* 響呢度放 CSS 碼去改用戶用嘅域達畫面 */',
 'print.css' => '/* 響呢度放 CSS 碼去改打印輸出 */',
 
 # Scripts
 'common.js' => '/* 響每一次個頁面載入時，所有用戶都會載入呢度任何嘅JavaScript。 */',
-'cologneblue.js' => '/* 響每一次個頁面載入時，用科隆藍畫面嘅用戶都會載入呢度任何嘅JavaScript */',
 'monobook.js' => '/* 響每一次個頁面載入時，用 Monobook 畫面嘅用戶都會載入呢度任何嘅JavaScript */',
-'modern.js' => '/* 響每一次個頁面載入時，用摩登畫面嘅用戶都會載入呢度任何嘅JavaScript */',
 'vector.js' => '/* 響每一次個頁面載入時，用域達畫面嘅用戶都會載入呢度任何嘅JavaScript */',
 
 # Metadata
@@ -2634,9 +2630,7 @@ $1',
 '''唔好'''加入呢個！",
 
 # Skin names
-'skinname-cologneblue' => '科隆藍',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => '摩登',
 'skinname-vector' => 'Vector',
 
 # Patrolling

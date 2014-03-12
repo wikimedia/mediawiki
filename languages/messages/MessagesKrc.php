@@ -2735,9 +2735,7 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 'pageinfo-protect-cascading-yes' => 'Хоу',
 
 # Skin names
-'skinname-cologneblue' => 'Кёльн такъылыкъ',
 'skinname-monobook' => 'Моно-китаб',
-'skinname-modern' => 'Бусагъатдагъы',
 'skinname-vector' => 'Вектор',
 
 # Patrolling

@@ -3057,9 +3057,7 @@ $2',
 
 # Stylesheets
 'common.css' => '/* 此處的 CSS 將應用於所有的面板 */',
-'cologneblue.css' => '/* 此處的 CSS 將影響使用科隆香水藍面板的用戶 */',
 'monobook.css' => '/* 此處的 CSS 將影響使用 Monobook 面板的用戶 */',
-'modern.css' => '/* 此處的 CSS 將影響使用 Modern 面板的用戶 */',
 'vector.css' => '/* 此處的 CSS 將影響使用 Vector 面板的用戶 */',
 'print.css' => '/* 此處的 CSS 將影響打印輸出 */',
 'noscript.css' => '/* 此處的 CSS 將影響沒有啓用 JavaScript 的用戶 */',
@@ -3070,9 +3068,7 @@ $2',
 
 # Scripts
 'common.js' => '/* 此處的JavaScript將載入於所有用戶每一個頁面。 */',
-'cologneblue.js' => '/* 此處的JavaScript將載入於使用科隆香水藍面板的用戶 */',
 'monobook.js' => '/* 此處的JavaScript將載入於使用Monobook面板的用戶 */',
-'modern.js' => '/* 此處的JavaScript將載入於使用Modern面板的用戶 */',
 'vector.js' => '/* 此處的JavaScript將載入於使用Vector面板的用戶 */',
 
 # Metadata
@@ -3150,8 +3146,6 @@ $2',
 'pageinfo-category-files' => '編輯數量',
 
 # Skin names
-'skinname-cologneblue' => '科隆香水藍',
-'skinname-modern' => '現代',
 
 # Patrolling
 'markaspatrolleddiff' => '標記為已巡查',

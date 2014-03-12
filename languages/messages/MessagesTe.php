@@ -3032,9 +3032,7 @@ $2',
 'pageinfo-category-files' => 'దస్త్రాల సంఖ్య',
 
 # Skin names
-'skinname-cologneblue' => 'కలోన్ నీలం',
 'skinname-monobook' => 'మోనోబుక్',
-'skinname-modern' => 'ఆధునిక',
 'skinname-vector' => 'వెక్టర్',
 
 # Patrolling

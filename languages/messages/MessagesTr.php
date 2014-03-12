@@ -3280,7 +3280,6 @@ Bunu '''doldurMAyın'''!",
 'pageinfo-category-files' => 'Dosya sayısı',
 
 # Skin names
-'skinname-modern' => 'Modern',
 
 # Patrolling
 'markaspatrolleddiff' => 'Kontrol edilmiş olarak işaretle',

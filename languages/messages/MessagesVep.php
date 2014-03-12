@@ -2374,7 +2374,6 @@ Voib olda, necil lehtpolel om kosketuz irdsaitale, kudamb om mustas nimikirjutes
 'pageinfo-category-files' => 'Failoiden lugumär',
 
 # Skin names
-'skinname-cologneblue' => "Köl'nan sinine",
 'skinname-monobook' => 'MonoBook',
 'skinname-modern' => "Nügüd'aigaine",
 

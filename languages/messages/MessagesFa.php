@@ -3421,9 +3421,7 @@ $2',
 'pageinfo-category-files' => 'تعداد پرونده‌ها',
 
 # Skin names
-'skinname-cologneblue' => 'آبی کلن',
 'skinname-monobook' => 'مونوبوک',
-'skinname-modern' => 'مدرن',
 'skinname-vector' => 'برداری',
 
 # Patrolling

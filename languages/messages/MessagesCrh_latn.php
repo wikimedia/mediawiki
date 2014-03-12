@@ -1741,7 +1741,6 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 'spam_blanking' => 'Bar olğan versiyalarda $1 saytına bağlantılar bar, temizlev',
 
 # Skin names
-'skinname-cologneblue' => 'Köln asretligi',
 'skinname-monobook' => 'MonoBook',
 
 # Patrol log

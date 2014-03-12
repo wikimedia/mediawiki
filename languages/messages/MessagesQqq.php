@@ -8061,10 +8061,8 @@ Format of a sidebar interwiki link tooltip. Parameters:
 # Stylesheets
 'common.css' => '{{optional}}
 CSS applied to all users.',
-'cologneblue.css' => '{{optional}}',
 'monobook.css' => '{{optional}}
 CSS applied to users using Monobook skin.',
-'modern.css' => '{{optional}}',
 'vector.css' => '{{optional}}',
 'print.css' => '{{optional}}',
 'noscript.css' => '{{optional}}',
@@ -8077,10 +8075,8 @@ CSS applied to users using Monobook skin.',
 # Scripts
 'common.js' => '{{optional}}
 JS for all users.',
-'cologneblue.js' => '{{optional}}',
 'monobook.js' => '{{optional}}
 JS for users using Monobook skin.',
-'modern.js' => '{{optional}}',
 'vector.js' => '{{optional}}',
 'group-autoconfirmed.js' => '{{doc-group|autoconfirmed|js}}',
 'group-user.js' => '{{doc-group|user|js}}',
@@ -8317,7 +8313,6 @@ See also:
 * {{msg-mw|Pageinfo-category-subcats}}',
 
 # Skin names
-'skinname-cologneblue' => '{{optional}}',
 'skinname-monobook' => '{{optional}}',
 'skinname-modern' => '{{optional}}
 {{Identical|Modern}}',

@@ -3089,9 +3089,7 @@ $2',
 
 # Stylesheets
 'common.css' => '/* 放置于这里的CSS将应用于所有皮肤 */',
-'cologneblue.css' => '/* 放置于这里的CSS将影响使用科隆香水蓝皮肤的用户 */',
 'monobook.css' => '/* 放置于这里的CSS将影响使用MonoBook皮肤的用户 */',
-'modern.css' => '/* 放置于这里的CSS将影响使用现代皮肤的用户 */',
 'vector.css' => '/* 放置于这里的CSS将影响使用Vector皮肤的用户 */',
 'print.css' => '/* 放置于这里的CSS将影响打印输出 */',
 'noscript.css' => '/* 放置于这里的CSS将影响停用JavaScript的用户 */',
@@ -3102,9 +3100,7 @@ $2',
 
 # Scripts
 'common.js' => '/* 这里的任何JavaScript将为所有用户在每次页面载入时加载。 */',
-'cologneblue.js' => '/* 这里的任何JavaScript将为使用科隆香水蓝皮肤的用户加载 */',
 'monobook.js' => '/* 这里的任何JavaScript将为使用MonoBook皮肤的用户加载 */',
-'modern.js' => '/* 这里的任何JavaScript将为使用现代皮肤的用户加载 */',
 'vector.js' => '/* 这里的任何JavaScript将为使用Vector皮肤的用户加载 */',
 'group-autoconfirmed.js' => '/* 这里的任何JavaScript将只为自动确认用户加载 */',
 'group-bot.js' => '/* 这里的任何JavaScript将只为机器人加载 */',
@@ -3186,8 +3182,6 @@ $2',
 'pageinfo-category-files' => '文件数',
 
 # Skin names
-'skinname-cologneblue' => '科隆香水蓝',
-'skinname-modern' => '现代',
 
 # Patrolling
 'markaspatrolleddiff' => '标记为已巡查',

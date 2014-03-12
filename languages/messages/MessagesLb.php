@@ -3017,9 +3017,7 @@ Erlaabt et e Grond an de Resumé derbäizesetzen.',
 
 # Stylesheets
 'common.css' => "/* Dës CSS huet nëmmen Afloss op de Skin ''Chick''  */",
-'cologneblue.css' => "/* Dës CSS huet nëmmen Afloss op de Skin ''Köln Blo''  */",
 'monobook.css' => "/* Dës CSS huet nëmmen Afloss op de Skin ''Monobook''  */",
-'modern.css' => "/* Dës CSS huet nëmmen Afloss op de Skin ''Modern''  */",
 
 # Scripts
 'common.js' => '/* All JavaScript hei gëtt fir all Benotzer beim Luede vun all Säit gelueden. */',
@@ -3099,9 +3097,7 @@ Fëllt dëst '''NET''' aus!",
 'pageinfo-category-files' => 'Zuel vun de Fichieren',
 
 # Skin names
-'skinname-cologneblue' => 'Köln Blo',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Modern',
 
 # Patrolling
 'markaspatrolleddiff' => 'Als nogekuckt markéieren',

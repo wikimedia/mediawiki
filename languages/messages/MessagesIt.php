@@ -3089,9 +3089,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 
 # Stylesheets
 'common.css' => '/* Gli stili CSS inseriti qui si applicano a tutte le skin */',
-'cologneblue.css' => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Cologne Blue */',
 'monobook.css' => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Monobook */',
-'modern.css' => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Modern */',
 'vector.css' => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Vector */',
 'print.css' => "/* Gli stili CSS inseriti qui si applicano all'output in stampa */",
 'noscript.css' => '/ * Gli stili CSS inseriti qui si applicano agli utenti che hanno JavaScript disabilitato * /',
@@ -3103,9 +3101,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 
 # Scripts
 'common.js' => '/* Il codice JavaScript inserito qui viene caricato da ciascuna pagina, per tutti gli utenti. */',
-'cologneblue.js' => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Cologne Blue */',
 'monobook.js' => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin MonoBook */',
-'modern.js' => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Modern */',
 'vector.js' => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Vector */',
 'group-autoconfirmed.js' => '/ * Il codice JavaScript inserito qui viene caricato solo per gli utenti autoconvalidati * /',
 'group-user.js' => '/ * Il codice JavaScript inserito qui viene caricato solo per gli utenti registrati * /',

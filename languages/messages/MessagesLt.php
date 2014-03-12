@@ -2972,9 +2972,7 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 'pageinfo-category-files' => 'Failų skaičius',
 
 # Skin names
-'skinname-cologneblue' => 'Kelno mėlyna',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Moderni',
 'skinname-vector' => 'Vektorinė',
 
 # Patrolling

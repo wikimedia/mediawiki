@@ -3252,9 +3252,7 @@ $2',
 
 # Stylesheets
 'common.css' => '/* הסגנונות הנכתבים כאן ישפיעו על כל העיצובים */',
-'cologneblue.css' => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב CologneBlue בלבד */',
 'monobook.css' => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב MonoBook בלבד */',
-'modern.css' => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Modern בלבד */',
 'vector.css' => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Vector בלבד */',
 'print.css' => '/* הסגנונות הנכתבים כאן ישפיעו על הפלט בהדפסה בלבד */',
 'noscript.css' => '/* הסגנונות הנכתבים כאן ישפיעו על משתמשים עם JavaScript מבוטל */',
@@ -3266,9 +3264,7 @@ $2',
 
 # Scripts
 'common.js' => '/* כל סקריפט JavaScript שנכתב כאן ירוץ עבור כל המשתמשים בכל טעינת עמוד */',
-'cologneblue.js' => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב CologneBlue */',
 'monobook.js' => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Monobook */',
-'modern.js' => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Modern */',
 'vector.js' => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Vector */',
 'group-autoconfirmed.js' => '/* כל סקריפט JavaScript שנכתב כאן ירוץ עבור משתמשים ותיקים בלבד */',
 'group-user.js' => '/* כל סקריפט JavaScript שנכתב כאן ירוץ עבור משתמשים רשומים בלבד */',
@@ -3351,9 +3347,7 @@ $2',
 'pageinfo-category-files' => 'מספר הקבצים',
 
 # Skin names
-'skinname-cologneblue' => 'מים כחולים',
 'skinname-monobook' => 'מונובוק',
-'skinname-modern' => 'מודרני',
 'skinname-vector' => 'וקטור',
 
 # Patrolling

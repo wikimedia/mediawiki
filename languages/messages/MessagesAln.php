@@ -1444,17 +1444,13 @@ Lejon dhânien e arsyes në përmbledhje.',
 
 # Stylesheets
 'common.css' => '/* CSSi i vendosun këtu ka me u zbatue në tâna dukjet */',
-'cologneblue.css' => '/* CSS i vendosun këtu ka me i prekë shfrytëzuesit e dukjes Cologne Blue */',
 'monobook.css' => '/* CSS i vednosun këtu ka me i prekë shfrytëzuesit e dukjes Monobook */',
-'modern.css' => '/* CSSi i vednosun këtu ka me i prekë shfrytëzuesit e dukjes Modern */',
 'vector.css' => '/* CSSi i vednosun këtu ka me i prekë shfrytëzuesit e dukjes Vector */',
 'print.css' => '/* CSSi i vednosun këtu ka me e prekë pamjen e shtypjes */',
 
 # Scripts
 'common.js' => '/* Çdo JavaScript këtu ka me u ngarkue për të gjithë përdoruesit në secilën thirrje të faqes. */',
-'cologneblue.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Cologne Blue */',
 'monobook.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen MonoBook */',
-'modern.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Modern */',
 'vector.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Vector */',
 
 # Metadata

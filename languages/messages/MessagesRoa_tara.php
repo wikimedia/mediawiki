@@ -2901,9 +2901,7 @@ Permette de aggiungere 'nu mutive jndr'à 'u riepileghe",
 
 # Stylesheets
 'common.css' => "/* 'U CSS ca se iacchie aqquà avène applicate a tutte le masckere */",
-'cologneblue.css' => "/* 'U CSS ca se iacchie aqquà 'u 'ndrucane le utinde d'a masckere Blu Cologne */",
 'monobook.css' => "/* 'U CSS ca se iacchie aqquà 'u 'ndrucane le utinde d'a masckere Monobook */",
-'modern.css' => "/* 'U CSS ca se iacchie aqquà 'u 'ndrucane le utinde d'a masckere Moderne */",
 'vector.css' => "/* 'U CSS ca se iacchie aqquà 'u 'ndrucane le utinde d'a masckere Vettore */",
 'print.css' => "/* 'U CSS ca se iacchie aqquà avène applicate a 'u resultate d'a stambe */",
 'noscript.css' => "/* 'U CSS ca se iacchie aqquà l'ausane le utinde cu 'u Javascript disabbilitate */",
@@ -2914,9 +2912,7 @@ Permette de aggiungere 'nu mutive jndr'à 'u riepileghe",
 
 # Scripts
 'common.js' => '/* Ogne JavaScript aqquà avène carecate pe tutte le utinde sus a ogne pàgene carecate. */',
-'cologneblue.js' => "/* Ogne JavaScript aqquà avène carecate pe le utinde ca ausane 'a masckere Blu Cologne */",
 'monobook.js' => "/* Ogne JavaScript aqquà avène carecate pe le utinde ca ausane 'a masckere MonoBook */",
-'modern.js' => "/* Ogne JavaScript aqquà avène carecate pe le utinde ca ausane 'a masckere Moderne */",
 'vector.js' => "/* Ogne JavaScript aqquà avène carecate pe le utinde ca ausane 'a masckere Vettore */",
 'group-autoconfirmed.js' => '/* Ogne JavaScript aqquà avène carecate pe le utinde autoconfirmatarie */',
 'group-bot.js' => '/* Ogne JavaScript aqquà avène carecate pe le bot */',
@@ -2998,9 +2994,7 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'pageinfo-category-files' => 'Numere de file',
 
 # Skin names
-'skinname-cologneblue' => 'Blu Cologne',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Moderne',
 'skinname-vector' => 'Vettore',
 
 # Patrolling

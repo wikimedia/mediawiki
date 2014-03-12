@@ -3067,9 +3067,7 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 
 # Stylesheets
 'common.css' => '/* Közös CSS az összes felületnek */',
-'cologneblue.css' => '/* Az ide elhelyezett CSS hatással lesz a Kölni kék felület használóira */',
 'monobook.css' => '/* Az ide elhelyezett CSS hatással lesz a Monobook felület használóira */',
-'modern.css' => '/* Az ide elhelyezett CSS hatással lesz a Modern felület használóira */',
 'vector.css' => '/* Az ide elhelyezett CSS hatással lesz a Vector felület használóira */',
 'print.css' => '/* Az ide elhelyezett CSS hatással lesz a nyomtatás kimenetelére */',
 'noscript.css' => '/* Az ide elhelyezett CSS azon felhasználókra lesz hatással, ahol a JavaScript le van tiltva */',
@@ -3080,9 +3078,7 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 
 # Scripts
 'common.js' => '/* Az ide elhelyezett JavaScript kód minden felhasználó számára lefut az oldalak betöltésekor. */',
-'cologneblue.js' => '/* A Kölni kék felületet használó szerkesztők számára betöltendő JavaScriptek */',
 'monobook.js' => '/* A Monobook felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'modern.js' => '/* A Modern felületet használó szerkesztők számára betöltendő JavaScriptek */',
 'vector.js' => '/* A Vector felületet használó szerkesztők számára betöltendő JavaScriptek */',
 'group-autoconfirmed.js' => '/* Az ide elhelyezett JavaScript csak automatikusan megerősített felhasználóknak töltődik be */',
 'group-bot.js' => '/* Az ide elhelyezett JavaScript csak botoknak töltődik be */',
@@ -3160,9 +3156,7 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'pageinfo-category-files' => 'Fájlok száma',
 
 # Skin names
-'skinname-cologneblue' => 'Kölni kék',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Modern',
 
 # Patrolling
 'markaspatrolleddiff' => 'Ellenőrzöttnek jelölöd',

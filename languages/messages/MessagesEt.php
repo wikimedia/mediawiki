@@ -3211,9 +3211,7 @@ See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrguk
 'pageinfo-category-files' => 'Failide arv',
 
 # Skin names
-'skinname-cologneblue' => 'Kölni sinine',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Uudne',
 'skinname-vector' => 'Vektor',
 
 # Patrolling

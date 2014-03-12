@@ -3281,9 +3281,7 @@ $2',
 
 # Stylesheets
 'common.css' => '/* 이 CSS 설정은 모든 스킨에 동일하게 적용됩니다 */',
-'cologneblue.css' => '/* 이 CSS 설정은 쾰른 블루 스킨을 사용하는 사용자에게 적용됩니다 */',
 'monobook.css' => '/* 이 CSS 설정은 모노북 스킨을 사용하는 사용자에게 적용됩니다 */',
-'modern.css' => '/* 이 CSS 설정은 모던 스킨을 사용하는 사용자에게 적용됩니다 */',
 'vector.css' => '/* 이 CSS 설정은 벡터 스킨을 사용하는 사용자에게 적용됩니다 */',
 'print.css' => '/* 이 CSS 설정은 인쇄 출력 화면에 적용됩니다 */',
 'noscript.css' => '/* 이 CSS 설정은 자바스크립트를 비활성화한 사용자에 적용됩니다 */',
@@ -3294,9 +3292,7 @@ $2',
 
 # Scripts
 'common.js' => '/* 이 자바스크립트 설정은 모든 문서, 모든 사용자에게 적용됩니다. */',
-'cologneblue.js' => '/* 이 자바스크립트 설정은 쾰른 블루 스킨을 사용하는 사용자에게 적용됩니다 */',
 'monobook.js' => '/* 이 자바스크립트 설정은 모노북 스킨을 사용하는 사용자에게 적용됩니다 */',
-'modern.js' => '/* 이 자바스크립트 설정은 모던 스킨을 사용하는 사용자에게 적용됩니다 */',
 'vector.js' => '/* 이 자바스크립트 설정은 벡터 스킨을 사용하는 사용자에게 적용됩니다 */',
 'group-autoconfirmed.js' => '/* 이 자바스크립트 설정은 자동 인증된 사용자에만 적용됩니다 */',
 'group-bot.js' => '/* 이 자바스크립트 설정은 봇에만 적용됩니다 */',
@@ -3379,9 +3375,7 @@ $2',
 'pageinfo-category-files' => '파일 수',
 
 # Skin names
-'skinname-cologneblue' => '쾰른 블루',
 'skinname-monobook' => '모노북',
-'skinname-modern' => '모던',
 'skinname-vector' => '벡터',
 
 # Patrolling

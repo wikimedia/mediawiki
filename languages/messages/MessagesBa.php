@@ -3011,8 +3011,6 @@ The wiki server cannot provide data in a format your client can read.',
 'pageinfo-category-files' => 'Файлдар һаны',
 
 # Skin names
-'skinname-cologneblue' => 'Кёльн һағышы',
-'skinname-modern' => 'Заманса',
 'skinname-vector' => 'Векторлы',
 
 # Patrolling

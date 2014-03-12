@@ -3176,9 +3176,7 @@ $2',
 'pageinfo-category-files' => 'Колькасьць файлаў',
 
 # Skin names
-'skinname-cologneblue' => 'Кёльнскі смутак',
 'skinname-monobook' => 'Монакніга',
-'skinname-modern' => 'Сучаснае',
 'skinname-vector' => 'Вэктар',
 
 # Patrolling

@@ -3245,9 +3245,7 @@ Ney '''Mefiyé de'''!",
 'pageinfo-category-files' => 'Amarê dosyeyan',
 
 # Skin names
-'skinname-cologneblue' => 'Cologne Blue',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Modern',
 'skinname-vector' => 'Vektor',
 
 # Patrolling

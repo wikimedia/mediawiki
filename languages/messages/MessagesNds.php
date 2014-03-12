@@ -2435,7 +2435,6 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'pageinfo-category-subcats' => 'TAll vun Ünnerkategorien',
 
 # Skin names
-'skinname-cologneblue' => 'Kölsch Blau',
 
 # Patrolling
 'markaspatrolleddiff' => 'As nakeken marken',

@@ -3075,9 +3075,7 @@ Umožnuje do zhrnutia pridanie dôvodu.',
 
 # Stylesheets
 'common.css' => '/* Tu umiestnené CSS bude ovplyvňovať všetky štýly */',
-'cologneblue.css' => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Kolínska modrá */',
 'monobook.css' => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Monobook */',
-'modern.css' => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Moderný */',
 'vector.css' => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Vector */',
 'print.css' => '/* Tu umiestnené CSS bude ovplyvňovať tlačový výstup */',
 'noscript.css' => '/* Tu umiestnené CSS bude ovplyvňovať používateľov s vypnutým JavaScriptom */',
@@ -3088,9 +3086,7 @@ Umožnuje do zhrnutia pridanie dôvodu.',
 
 # Scripts
 'common.js' => '/* Tu uvedený JavaScript sa nahrá všetkým používateľom pri každom nahraní stránky. */',
-'cologneblue.js' => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Kolínska modrá */',
 'monobook.js' => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Monobook */',
-'modern.js' => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Moderný */',
 'vector.js' => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Vector */',
 'group-autoconfirmed.js' => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom s potvrdenou emailovou adresou */',
 'group-bot.js' => '/* Tu sa nachádzajúci JavaScript sa načíta len robotom */',
@@ -3172,9 +3168,7 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'pageinfo-category-files' => 'Počet súborov',
 
 # Skin names
-'skinname-cologneblue' => 'Kolínska modrá',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Moderný',
 'skinname-vector' => 'Vector',
 
 # Patrolling

@@ -1186,9 +1186,7 @@ It must not be more than $1 {{PLURAL:$1|1=character|characters}} long.',
 'anonymous' => '{{grammar:genitive|{{SITENAME}}}} адыжок {{PLURAL:$1|киржикчизи}}',
 
 # Skin names
-'skinname-cologneblue' => 'Cologne Blue',
 'skinname-monobook' => 'МоноБук',
-'skinname-modern' => 'Модерн',
 'skinname-vector' => 'Вектор',
 
 # Image deletion

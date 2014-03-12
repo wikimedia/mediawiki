@@ -3256,9 +3256,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 
 # Stylesheets
 'common.css' => '/* Das folgende CSS wird für alle Benutzeroberflächen geladen. */',
-'cologneblue.css' => '/* Das folgende CSS wird für Benutzer der Kölnisch-Blau-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'monobook.css' => '/* Das folgende CSS wird für Benutzer der MonoBook-Benutzeroberfläche geladen */',
-'modern.css' => '/* Das folgende CSS wird für Benutzer der Modern-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte MediaWiki:Common.css bearbeiten. */',
 'vector.css' => '/* Das folgende CSS wird für Benutzer der Vector-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'print.css' => '/* Das folgende CSS wird in der Druckausgabe geladen. */',
 'noscript.css' => '/* Das folgende CSS wirkt sich für Benutzer aus, die JavaScript deaktiviert haben */',
@@ -3270,9 +3268,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 
 # Scripts
 'common.js' => '/* Das folgende JavaScript wird für alle Benutzer geladen. */',
-'cologneblue.js' => '/* Das folgende JavaScript wird für Benutzer der Kölnisch-Blau-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'monobook.js' => '/* Das folgende JavaScript wird für Benutzer der Monobook-Benutzeroberfläche geladen. */',
-'modern.js' => '/* Das folgende JavaScript wird für Benutzer der Modern-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'vector.js' => '/* Das folgende JavaScript wird für Benutzer der Vector-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'group-autoconfirmed.js' => '/* Das folgende JavaScript wird nur für automatisch bestätigte Benutzer geladen. */',
 'group-user.js' => '/* Das folgende JavaScript wird nur für angemeldete Benutzer geladen. */',
@@ -3356,9 +3352,7 @@ Hier '''NICHTS''' eintragen!",
 'pageinfo-category-files' => 'Anzahl der Dateien',
 
 # Skin names
-'skinname-cologneblue' => 'Kölnisch Blau',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Modern',
 'skinname-vector' => 'Vector',
 
 # Patrolling

@@ -3143,17 +3143,13 @@ $2',
 
 # Stylesheets
 'common.css' => '/* Το τοποθετημένο εδώ CSS θα εφαρμοστεί σε όλα τα skins */',
-'cologneblue.css' => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Cologne Blue skin */',
 'monobook.css' => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Monobook skin */',
-'modern.css' => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Modern skin */',
 'vector.css' => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Vector skin */',
 'print.css' => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει το αποτέλεσμα της εκτύπωσης */',
 
 # Scripts
 'common.js' => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για όλους τους χρήστες σε κάθε φόρτωση σελίδας. */',
-'cologneblue.js' => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Cologne Blue skin */',
 'monobook.js' => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το MonoBook skin */',
-'modern.js' => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Modern skin */',
 'vector.js' => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Vector skin */',
 
 # Metadata
@@ -3231,7 +3227,6 @@ $2',
 'pageinfo-category-files' => 'Αριθμός αρχείων',
 
 # Skin names
-'skinname-modern' => 'Μοντέρνο',
 
 # Patrolling
 'markaspatrolleddiff' => "Να σημειωθεί 'υπό παρακολούθηση'",

@@ -2679,9 +2679,7 @@ $1',
 'pageinfo-authors' => 'Агульная колькасць розных аўтараў',
 
 # Skin names
-'skinname-cologneblue' => 'Сіні Кёльн',
 'skinname-monobook' => 'Манабук',
-'skinname-modern' => 'Сучаснасць',
 
 # Patrolling
 'markaspatrolleddiff' => 'Пазначыць як ухваленае',

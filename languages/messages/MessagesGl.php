@@ -3176,9 +3176,7 @@ Pode ver o código fonte.',
 
 # Stylesheets
 'common.css' => '/** O CSS que se coloque aquí será aplicado a todas as aparencias */',
-'cologneblue.css' => '/* O CSS que se coloque aquí afectará a quen use a aparencia Azul colonial */',
 'monobook.css' => '/* O CSS que se coloque aquí afectará a quen use a aparencia Monobook */',
-'modern.css' => '/* O CSS que se coloque aquí afectará a quen use a aparencia Moderna */',
 'vector.css' => '/* O CSS que se coloque aquí afectará a quen use a aparencia Vector */',
 'print.css' => '/* O CSS que se coloque aquí afectará ás impresións */',
 'noscript.css' => '/* O CSS que se coloque aquí afectará aos usuarios co JavaScript desactivado */',
@@ -3189,9 +3187,7 @@ Pode ver o código fonte.',
 
 # Scripts
 'common.js' => '/* Calquera JavaScript que haxa aquí será cargado para todos os usuarios en cada páxina que vexan. */',
-'cologneblue.js' => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Azul colonial */',
 'monobook.js' => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia MonoBook */',
-'modern.js' => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Moderna */',
 'vector.js' => '/* Calquera JavaScript que haxa aquí será cargado para os usuarios que usen a aparencia Vector */',
 'group-autoconfirmed.js' => '/* Calquera JavaScript que haxa aquí será cargado soamente para os usuarios autoconfirmados */',
 'group-bot.js' => '/* Calquera JavaScript que haxa aquí será cargado soamente para os bots */',
@@ -3273,9 +3269,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'pageinfo-category-files' => 'Número de ficheiros',
 
 # Skin names
-'skinname-cologneblue' => 'Azul colonial',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Moderna',
 
 # Patrolling
 'markaspatrolleddiff' => 'Marcar como revisada',

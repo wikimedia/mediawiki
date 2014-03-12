@@ -3187,9 +3187,7 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 
 # Stylesheets
 'common.css' => '/* Zde uvedené CSS bude ovlivňovat všechny styly */',
-'cologneblue.css' => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Kolínská modř“  */',
 'monobook.css' => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Monobook“ */',
-'modern.css' => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Moderní“ */',
 'vector.css' => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Vektor“ */',
 'print.css' => '/* Zde uvedené CSS bude ovlivňovat tiskový výstup */',
 'noscript.css' => '/* Zde uvedené CSS bude ovlivňovat uživatele s vypnutým JavaScriptem */',
@@ -3201,9 +3199,7 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 
 # Scripts
 'common.js' => '/* Zde uvedený JavaScript bude použit pro všechny uživatele při načtení každé stránky.  */',
-'cologneblue.js' => '/* JavaScript pro uživatele používající vzhled „Kolínská modř“  */',
 'monobook.js' => '/* JavaScript pro uživatele používající vzhled MonoBook */',
-'modern.js' => '/* JavaScript pro uživatele používající vzhled „Moderní“ */',
 'vector.js' => '/* JavaScript pro uživatele používající vzhled „Vektor“ */',
 'group-autoconfirmed.js' => '/* Zde uvedený JavaScript bude použit pouze pro automaticky schválené uživatele */',
 'group-user.js' => '/* Zde uvedený JavaScript bude použit pouze pro registrované uživatele */',
@@ -3285,8 +3281,6 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'pageinfo-category-files' => 'Počet souborů',
 
 # Skin names
-'skinname-cologneblue' => 'Kolínská modř',
-'skinname-modern' => 'Moderní',
 'skinname-vector' => 'Vektor',
 
 # Patrolling

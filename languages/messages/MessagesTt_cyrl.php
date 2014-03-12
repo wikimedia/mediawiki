@@ -2122,9 +2122,7 @@ $1',
 'pageinfo-toolboxlink' => 'Бит турында мәгълүмат',
 
 # Skin names
-'skinname-cologneblue' => 'Зәңгәр сагыш',
 'skinname-monobook' => 'Китап',
-'skinname-modern' => 'Замана',
 'skinname-vector' => 'Сызымлы',
 
 # Patrolling

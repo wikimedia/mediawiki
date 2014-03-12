@@ -2446,9 +2446,7 @@ Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation
 'pageinfo-protect-cascading-yes' => 'Այո',
 
 # Skin names
-'skinname-cologneblue' => 'Քյոլնի թախիծ',
 'skinname-monobook' => 'ՄիաԳիրք',
-'skinname-modern' => 'Մոդերն',
 'skinname-vector' => 'Սովորական',
 
 # Patrolling

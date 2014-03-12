@@ -3120,7 +3120,6 @@ Razlog je vjerojatno vanjska poveznica koja se nalazi na crnom popisu.',
 'pageinfo-category-files' => 'Broj datoteka',
 
 # Skin names
-'skinname-cologneblue' => 'Kölnska plava',
 'skinname-monobook' => 'MonoBook',
 
 # Patrolling

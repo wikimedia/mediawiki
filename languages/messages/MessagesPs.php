@@ -2230,9 +2230,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'pageinfo-category-files' => 'د دوتنو شمېر',
 
 # Skin names
-'skinname-cologneblue' => 'شين کلون',
 'skinname-monobook' => 'مونوبوک',
-'skinname-modern' => 'نوی',
 'skinname-vector' => 'وېکټور',
 
 # Patrolling

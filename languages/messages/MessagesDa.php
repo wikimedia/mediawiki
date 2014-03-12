@@ -3103,9 +3103,7 @@ Udfyld '''IKKE''' dette!",
 'pageinfo-category-files' => 'Antal filer',
 
 # Skin names
-'skinname-cologneblue' => 'Kølnerblå',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Moderne',
 
 # Patrolling
 'markaspatrolleddiff' => 'Markér som patruljeret',

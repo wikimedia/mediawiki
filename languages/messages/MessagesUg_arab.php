@@ -2901,9 +2901,7 @@ $1',
 
 # Stylesheets
 'common.css' => '/* CSS placed here will be applied to all skins */',
-'cologneblue.css' => '/* CSS placed here will affect users of the Cologne Blue skin */',
 'monobook.css' => '/* CSS placed here will affect users of the Monobook skin */',
-'modern.css' => '/* CSS placed here will affect users of the Modern skin */',
 'vector.css' => '/* CSS placed here will affect users of the Vector skin */',
 'print.css' => '/* CSS placed here will affect the print output */',
 'noscript.css' => '/* CSS placed here will affect users with JavaScript disabled */',
@@ -2914,9 +2912,7 @@ $1',
 
 # Scripts
 'common.js' => '/* Any JavaScript here will be loaded for all users on every page load. */',
-'cologneblue.js' => '/* Any JavaScript here will be loaded for users using the Cologne Blue skin */',
 'monobook.js' => '/* Any JavaScript here will be loaded for users using the MonoBook skin */',
-'modern.js' => '/* Any JavaScript here will be loaded for users using the Modern skin */',
 'vector.js' => '/* Any JavaScript here will be loaded for users using the Vector skin */',
 'group-autoconfirmed.js' => '/* Any JavaScript here will be loaded for autoconfirmed users only */',
 'group-bot.js' => '/* Any JavaScript here will be loaded for bots only */',
@@ -2995,9 +2991,7 @@ $1',
 'pageinfo-category-files' => 'ھۆججەت سانى',
 
 # Skin names
-'skinname-cologneblue' => 'Cologne Blue',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Modern',
 'skinname-vector' => 'Vector',
 
 # Patrolling

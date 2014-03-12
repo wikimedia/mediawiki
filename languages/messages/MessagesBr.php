@@ -2955,9 +2955,7 @@ Talvezout a ra da ouzhpennañ un displegadenn er c\'hombod diverrañ.',
 
 # Stylesheets
 'common.css' => '/** Talvezout a raio ar CSS lakaet amañ evit an holl wiskadurioù */',
-'cologneblue.css' => '/* Talvezout a raio ar CSS lakaet amañ evit implijerien ar gwiskadur Glaz Kologn */',
 'monobook.css' => '/* Talvezout a raio ar CSS lakaet amañ evit implijerien ar gwiskadur Monobook */',
-'modern.css' => '/* Talvezout a raio ar CSS lakaet amañ evit implijerien ar gwiskadur Modern */',
 'vector.css' => '/* Talvezout a raio ar CSS lakaet amañ evit implijerien ar gwiskadur Vektor */',
 'print.css' => '/* Talvezout a raio ar CSS lakaet amañ evit ar moullañ */',
 'noscript.css' => '/* Talvezout a raio ar CSS lakaet amañ evit an implijerien o deus diweredekaet JavaScript */',
@@ -2968,9 +2966,7 @@ Talvezout a ra da ouzhpennañ un displegadenn er c\'hombod diverrañ.',
 
 # Scripts
 'common.js' => '/* Kement JavaScript amañ a vo karget evit an holl implijerien war kement pajenn lennet ganto. */',
-'cologneblue.js' => '/* Kement JavaScript amañ a vo karget evit an implijerien a ra gant ar gwiskadur Glaz Kologn */',
 'monobook.js' => '/* Kement JavaScript amañ a vo karget evit an implijerien a ra gant ar gwiskadur MonoBook */',
-'modern.js' => '/* Kement JavaScript amañ a vo karget evit an implijerien a ra gant ar gwiskadur Modern */',
 'vector.js' => '/* Kement JavaScript amañ a vo karget evit an implijerien a ra gant ar gwiskadur Vektor */',
 
 # Metadata
@@ -3044,9 +3040,7 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 'pageinfo-category-files' => 'Niver a restroù',
 
 # Skin names
-'skinname-cologneblue' => 'Glaz Kologn',
 'skinname-monobook' => 'MonoBook',
-'skinname-modern' => 'Modern',
 'skinname-vector' => 'Vektor',
 
 # Patrolling
