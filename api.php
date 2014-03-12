@@ -70,10 +70,21 @@ $wgTitle = Title::makeTitle( NS_MAIN, 'API' );
 $processor = new ApiMain( RequestContext::getMain(), $wgEnableWriteAPI );
 
 // Last chance hook before executing the API
-wfRunHooks( 'ApiBeforeMain', array( &$processor ) );
+try {
+	wfRunHooks( 'ApiBeforeMain', array( &$processor ) );
+	if ( !$processor instanceof ApiMain ) {
+		throw new MWException( 'ApiBeforMain hook set $processor to a non-ApiMain class' );
+	}
+} catch ( Exception $e ) {
+	// Crap. Try to report the exception in API format to be friendly to clients.
+	ApiMain::handleApiBeforeMainException( $e );
+	$processor = false;
+}
 
 // Process data & print results
-$processor->execute();
+if ( $processor ) {
+	$processor->execute();
+}
 
 if ( function_exists( 'fastcgi_finish_request' ) ) {
 	fastcgi_finish_request();
@@ -97,11 +108,15 @@ if ( $wgAPIRequestLog ) {
 		$_SERVER['HTTP_USER_AGENT']
 	);
 	$items[] = $wgRequest->wasPosted() ? 'POST' : 'GET';
-	$module = $processor->getModule();
-	if ( $module->mustBePosted() ) {
-		$items[] = "action=" . $wgRequest->getVal( 'action' );
+	if ( $processor ) {
+		$module = $processor->getModule();
+		if ( $module->mustBePosted() ) {
+			$items[] = "action=" . $wgRequest->getVal( 'action' );
+		} else {
+			$items[] = wfArrayToCgi( $wgRequest->getValues() );
+		}
 	} else {
-		$items[] = wfArrayToCgi( $wgRequest->getValues() );
+		$items[] = "failed in ApiBeforeMain";
 	}
 	wfErrorLog( implode( ',', $items ) . "\n", $wgAPIRequestLog );
 	wfDebug( "Logged API request to $wgAPIRequestLog\n" );
