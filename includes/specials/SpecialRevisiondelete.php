@@ -63,29 +63,29 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 */
 	static $UILabels = array(
 		'revision' => array(
-			'check-label' 	=> 'revdelete-hide-text',
-			'success' 		=> 'revdelete-success',
-			'failure' 		=> 'revdelete-failure',
+			'check-label' => 'revdelete-hide-text',
+			'success' => 'revdelete-success',
+			'failure' => 'revdelete-failure',
 		),
 		'archive' => array(
-			'check-label' 	=> 'revdelete-hide-text',
-			'success' 		=> 'revdelete-success',
-			'failure' 		=> 'revdelete-failure',
+			'check-label' => 'revdelete-hide-text',
+			'success' => 'revdelete-success',
+			'failure' => 'revdelete-failure',
 		),
 		'oldimage' => array(
-			'check-label' 	=> 'revdelete-hide-image',
-			'success' 		=> 'revdelete-success',
-			'failure' 		=> 'revdelete-failure',
+			'check-label' => 'revdelete-hide-image',
+			'success' => 'revdelete-success',
+			'failure' => 'revdelete-failure',
 		),
 		'filearchive' => array(
-			'check-label' 	=> 'revdelete-hide-image',
-			'success' 		=> 'revdelete-success',
-			'failure' 		=> 'revdelete-failure',
+			'check-label' => 'revdelete-hide-image',
+			'success' => 'revdelete-success',
+			'failure' => 'revdelete-failure',
 		),
 		'logging' => array(
-			'check-label'	=> 'revdelete-hide-name',
-			'success' 		=> 'logdelete-success',
-			'failure' 		=> 'logdelete-failure',
+			'check-label' => 'revdelete-hide-name',
+			'success' => 'logdelete-success',
+			'failure' => 'logdelete-failure',
 		),
 	);
 
