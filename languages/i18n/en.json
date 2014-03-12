@@ -444,6 +444,8 @@
     "createacct-benefit-body3": "recent {{PLURAL:$1|contributor|contributors}}",
     "badretype": "The passwords you entered do not match.",
     "userexists": "Username entered already in use.\nPlease choose a different name.",
+    "createacct-normalization": "Your username will be adjusted to \"$2\" due to technical restrictions.",
+    "createacct-normalization-warning": "Your username might have to be adjusted due to technical restrictions.",
     "loginerror": "Login error",
     "createacct-error": "Account creation error",
     "createaccounterror": "Could not create account: $1",

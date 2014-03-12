@@ -1263,6 +1263,7 @@ return array(
 		'messages' => array(
 			'createacct-error',
 			'createacct-emailrequired',
+			'createacct-normalization',
 			'noname',
 			'userexists',
 		),
