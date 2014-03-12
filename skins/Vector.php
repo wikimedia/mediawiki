@@ -274,7 +274,7 @@ class VectorTemplate extends BaseTemplate {
 					$this->renderPortal( 'tb', $this->getToolbox(), 'toolbox', 'SkinTemplateToolboxEnd' );
 					break;
 				case 'LANGUAGES':
-					if ( $this->data['language_urls'] ) {
+					if ( $this->data['language_urls']  !== false ) {
 						$this->renderPortal( 'lang', $this->data['language_urls'], 'otherlanguages' );
 					}
 					break;
@@ -316,9 +316,12 @@ class VectorTemplate extends BaseTemplate {
 		</ul>
 <?php
 		} else { ?>
-		<?php echo $content; /* Allow raw HTML block to be defined by extensions */ ?>
-<?php
-		} ?>
+		<?php
+			echo $content; /* Allow raw HTML block to be defined by extensions */
+		}
+
+		$this->renderAfterPortlet( $name );
+		?>
 	</div>
 </div>
 <?php
