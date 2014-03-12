@@ -165,6 +165,7 @@ class SpecialPageFactory {
 		'PermanentLink'             => 'SpecialPermanentLink',
 		'Redirect'                  => 'SpecialRedirect',
 		'Revisiondelete'            => 'SpecialRevisionDelete',
+		'RunJobs'                   => 'SpecialRunJobs',
 		'Specialpages'              => 'SpecialSpecialpages',
 		'Userlogout'                => 'SpecialUserlogout',
 	);
