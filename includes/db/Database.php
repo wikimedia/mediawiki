@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @defgroup Database Database
  *
@@ -1921,12 +1922,12 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
-	 * Make UPDATE options for the DatabaseBase::update function
+	 * Make UPDATE options array for DatabaseBase::makeUpdateOptions
 	 *
-	 * @param array $options The options passed to DatabaseBase::update
-	 * @return string
+	 * @param array $options
+	 * @return array
 	 */
-	protected function makeUpdateOptions( $options ) {
+	protected function makeUpdateOptionsArray( $options ) {
 		if ( !is_array( $options ) ) {
 			$options = array( $options );
 		}
@@ -1940,6 +1941,18 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( in_array( 'IGNORE', $options ) ) {
 			$opts[] = 'IGNORE';
 		}
+
+		return $opts;
+	}
+
+    /**
+     * Make UPDATE options for the DatabaseBase::update function
+     *
+     * @param array $options The options passed to DatabaseBase::update
+     * @return string
+     */
+	protected function makeUpdateOptions( $options ) {
+		$opts = $this->makeUpdateOptionsArray( $options );
 
 		return implode( ' ', $opts );
 	}

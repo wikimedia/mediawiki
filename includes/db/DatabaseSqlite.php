@@ -522,10 +522,11 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @param array $options
 	 * @return string
 	 */
-	protected function makeUpdateOptions( $options ) {
+	protected function makeUpdateOptionsArray( $options ) {
+		$options = parent::makeUpdateOptionsArray( $options );
 		$options = self::fixIgnore( $options );
 
-		return parent::makeUpdateOptions( $options );
+		return $options;
 	}
 
 	/**
