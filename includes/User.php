@@ -697,6 +697,7 @@ class User {
 		return $this->getPasswordValidity( $password ) === true;
 	}
 
+
 	/**
 	 * Given unvalidated password input, return error message on failure.
 	 *
@@ -704,6 +705,33 @@ class User {
 	 * @return mixed: true on success, string or array of error message on failure
 	 */
 	public function getPasswordValidity( $password ) {
+		$result = $this->checkPasswordValidity( $password );
+		if ( $result->isGood() ) {
+			return true;
+		} else {
+			$messages = array();
+			foreach ( $result->getErrorsByType( 'error' ) as $error ) {
+				$messages[] = $error['message'];
+			}
+			foreach ( $result->getErrorsByType( 'warning' ) as $warning ) {
+				$messages[] = $warning['message'];
+			}
+			if ( count( $messages ) === 1 ) {
+				return $messages[0];
+			}
+			return $messages;
+		}
+	}
+
+	/**
+	 * Check if this is a valid password for this user. Status will be good if
+	 * the password is valid, or have an array of error messages if not.
+	 *
+	 * @param string $password Desired password
+	 * @return Status
+	 * @since 1.23
+	 */
+	public function checkPasswordValidity( $password ) {
 		global $wgMinimalPasswordLength, $wgContLang;
 
 		static $blockedLogins = array(
@@ -711,30 +739,37 @@ class User {
 			'Apitestsysop' => 'testpass', 'Apitestuser' => 'testpass' # r75605
 		);
 
+		$status = Status::newGood();
+
 		$result = false; //init $result to false for the internal checks
 
 		if ( !wfRunHooks( 'isValidPassword', array( $password, &$result, $this ) ) ) {
-			return $result;
+			$status->warning( $result );
+			return $status;
 		}
 
 		if ( $result === false ) {
 			if ( strlen( $password ) < $wgMinimalPasswordLength ) {
-				return 'passwordtooshort';
+				$status->warning( 'passwordtooshort', $wgMinimalPasswordLength );
+				return $status;
 			} elseif ( $wgContLang->lc( $password ) == $wgContLang->lc( $this->mName ) ) {
-				return 'password-name-match';
+				$status->warning( 'password-name-match' );
+				return $status;
 			} elseif ( isset( $blockedLogins[$this->getName()] ) && $password == $blockedLogins[$this->getName()] ) {
-				return 'password-login-forbidden';
+				$status->warning( 'password-login-forbidden' );
+				return $status;
 			} else {
-				//it seems weird returning true here, but this is because of the
+				//it seems weird returning a Good status here, but this is because of the
 				//initialization of $result to false above. If the hook is never run or it
 				//doesn't modify $result, then we will likely get down into this if with
 				//a valid password.
-				return true;
+				return $status;
 			}
 		} elseif ( $result === true ) {
-			return true;
+			return $status;
 		} else {
-			return $result; //the isValidPassword hook set a string $result and returned true
+			$status->warning( $result );
+			return $status; //the isValidPassword hook set a string $result and returned true
 		}
 	}
 
