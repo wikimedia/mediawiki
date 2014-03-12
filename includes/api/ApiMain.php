@@ -68,7 +68,6 @@ class ApiMain extends ApiBase {
 		'purge' => 'ApiPurge',
 		'setnotificationtimestamp' => 'ApiSetNotificationTimestamp',
 		'rollback' => 'ApiRollback',
-		'runjobs' => 'ApiRunJobs',
 		'delete' => 'ApiDelete',
 		'undelete' => 'ApiUndelete',
 		'protect' => 'ApiProtect',

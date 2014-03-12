@@ -624,10 +624,12 @@ class MediaWiki {
 	 * the socket once it's done.
 	 */
 	protected function triggerJobs() {
-		global $wgJobRunRate, $wgServer, $wgScriptPath, $wgScriptExtension, $wgEnableAPI;
+		global $wgJobRunRate, $wgServer;
 
 		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
 			return;
+		} elseif ( $this->getTitle()->isSpecial( 'RunJobs' ) ) {
+			return; // recursion guard
 		}
 
 		$section = new ProfileSection( __METHOD__ );
@@ -642,15 +644,9 @@ class MediaWiki {
 			$n = intval( $wgJobRunRate );
 		}
 
-		$query = array( 'action' => 'runjobs',
+		$query = array( 'title' => 'Special:RunJobs',
 			'tasks' => 'jobs', 'maxjobs' => $n, 'sigexpiry' => time() + 5 );
-		$query['signature'] = ApiRunJobs::getQuerySignature( $query );
-
-		if ( !$wgEnableAPI ) {
-			// Fall back to running the job here while the user waits
-			ApiRunJobs::executeJobs( $n );
-			return;
-		}
+		$query['signature'] = SpecialRunJobs::getQuerySignature( $query );
 
 		$errno = $errstr = null;
 		$info = wfParseUrl( $wgServer );
@@ -665,11 +661,11 @@ class MediaWiki {
 		if ( !$sock ) {
 			wfDebugLog( 'runJobs', "Failed to start cron API (socket error $errno): $errstr\n" );
 			// Fall back to running the job here while the user waits
-			ApiRunJobs::executeJobs( $n );
+			SpecialRunJobs::executeJobs( $n );
 			return;
 		}
 
-		$url = wfAppendQuery( "{$wgScriptPath}/api{$wgScriptExtension}", $query );
+		$url = wfAppendQuery( wfScript( 'index' ), $query );
 		$req = "POST $url HTTP/1.1\r\nHost: {$info['host']}\r\nConnection: Close\r\n\r\n";
 
 		wfDebugLog( 'runJobs', "Running $n job(s) via '$url'\n" );

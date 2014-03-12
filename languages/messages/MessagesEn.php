@@ -460,6 +460,7 @@ $specialPageAliases = array(
 	'Redirect'                  => array( 'Redirect' ),
 	'ResetTokens'               => array( 'ResetTokens' ),
 	'Revisiondelete'            => array( 'RevisionDelete' ),
+	'RunJobs'                   => array( 'RunJobs' ),
 	'Search'                    => array( 'Search' ),
 	'Shortpages'                => array( 'ShortPages' ),
 	'Specialpages'              => array( 'SpecialPages' ),
