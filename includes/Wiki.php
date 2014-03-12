@@ -621,7 +621,7 @@ class MediaWiki {
 	 * the socket once it's done.
 	 */
 	protected function triggerJobs() {
-		global $wgJobRunRate, $wgServer, $wgScriptPath, $wgScriptExtension, $wgEnableAPI;
+		global $wgJobRunRate, $wgServer, $wgScriptPath, $wgScriptExtension;
 
 		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
 			return;
@@ -642,12 +642,6 @@ class MediaWiki {
 		$query = array( 'action' => 'runjobs',
 			'tasks' => 'jobs', 'maxjobs' => $n, 'sigexpiry' => time() + 5 );
 		$query['signature'] = ApiRunJobs::getQuerySignature( $query );
-
-		if ( !$wgEnableAPI ) {
-			// Fall back to running the job here while the user waits
-			ApiRunJobs::executeJobs( $n );
-			return;
-		}
 
 		$errno = $errstr = null;
 		$info = wfParseUrl( $wgServer );

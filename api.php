@@ -51,29 +51,36 @@ if ( !$wgRequest->checkUrlExtension() ) {
 	return;
 }
 
-// Verify that the API has not been disabled
-if ( !$wgEnableAPI ) {
-	header( $_SERVER['SERVER_PROTOCOL'] . ' 500 MediaWiki configuration Error', true, 500 );
-	echo 'MediaWiki API is not enabled for this site. Add the following line to your LocalSettings.php'
-		. '<pre><b>$wgEnableAPI=true;</b></pre>';
-	die( 1 );
-}
-
 // Set a dummy $wgTitle, because $wgTitle == null breaks various things
 // In a perfect world this wouldn't be necessary
 $wgTitle = Title::makeTitle( NS_MAIN, 'API' );
 
-/* Construct an ApiMain with the arguments passed via the URL. What we get back
- * is some form of an ApiMain, possibly even one that produces an error message,
- * but we don't care here, as that is handled by the ctor.
- */
-$processor = new ApiMain( RequestContext::getMain(), $wgEnableWriteAPI );
+if ( $wgRequest->getVal( 'action' ) === 'runjobs' ) {
+	$processor = null;
+	// Internal-only API for various background tasks
+	$module = new ApiRunJobs();
+	$module->execute();
+} else {
+	// Verify that the API has not been disabled
+	if ( !$wgEnableAPI ) {
+		header( $_SERVER['SERVER_PROTOCOL'] . ' 500 MediaWiki configuration Error', true, 500 );
+		echo 'MediaWiki API is not enabled for this site. Add the following line to your LocalSettings.php'
+			. '<pre><b>$wgEnableAPI=true;</b></pre>';
+		die( 1 );
+	}
 
-// Last chance hook before executing the API
-wfRunHooks( 'ApiBeforeMain', array( &$processor ) );
+	/* Construct an ApiMain with the arguments passed via the URL. What we get back
+	 * is some form of an ApiMain, possibly even one that produces an error message,
+	 * but we don't care here, as that is handled by the ctor.
+	 */
+	$processor = new ApiMain( RequestContext::getMain(), $wgEnableWriteAPI );
 
-// Process data & print results
-$processor->execute();
+	// Last chance hook before executing the API
+	wfRunHooks( 'ApiBeforeMain', array( &$processor ) );
+
+	// Process data & print results
+	$processor->execute();
+}
 
 if ( function_exists( 'fastcgi_finish_request' ) ) {
 	fastcgi_finish_request();
@@ -89,7 +96,7 @@ wfProfileOut( 'api.php' );
 wfLogProfilingData();
 
 // Log the request
-if ( $wgAPIRequestLog ) {
+if ( $wgAPIRequestLog && $processor ) {
 	$items = array(
 		wfTimestamp( TS_MW ),
 		$endtime - $starttime,
