@@ -28,7 +28,13 @@
  * @ingroup SpecialPage
  */
 abstract class ChangesListSpecialPage extends SpecialPage {
-	var $rcSubpage, $rcOptions; // @todo Rename these, make protected
+	/** @var string */
+	protected $rcSubpage;
+
+	/** @var FormOptions */
+	protected $rcOptions;
+
+	/** @var array */
 	protected $customFilters;
 
 	/**

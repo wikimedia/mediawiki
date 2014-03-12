@@ -27,10 +27,11 @@
  * @ingroup SpecialPage
  */
 class SpecialRecentChanges extends ChangesListSpecialPage {
-
+	// @codingStandardsIgnoreStart Needed "useless" override to change parameters.
 	public function __construct( $name = 'Recentchanges', $restriction = '' ) {
 		parent::__construct( $name, $restriction );
 	}
+	// @codingStandardsIgnoreEnd
 
 	/**
 	 * Main execution point
@@ -285,7 +286,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$limit = $opts['limit'];
 
-		$showWatcherCount = $wgRCShowWatchingUsers && $this->getUser()->getOption( 'shownumberswatching' );
+		$showWatcherCount = $wgRCShowWatchingUsers
+			&& $this->getUser()->getOption( 'shownumberswatching' );
 		$watcherCache = array();
 
 		$dbr = $this->getDB();
@@ -334,7 +336,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		if ( $rows->numRows() === 0 ) {
 			$this->getOutput()->addHtml(
-				'<div class="mw-changeslist-empty">' . $this->msg( 'recentchanges-noresult' )->parse() . '</div>'
+				'<div class="mw-changeslist-empty">' .
+				$this->msg( 'recentchanges-noresult' )->parse() .
+				'</div>'
 			);
 		} else {
 			$this->getOutput()->addHTML( $rclistOutput );
@@ -688,7 +692,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			'hideliu' => 'rcshowhideliu',
 			'hidepatrolled' => 'rcshowhidepatr',
 			'hidemyself' => 'rcshowhidemine'
-		  );
+		);
 
 		$showhide = array( 'show', 'hide' );
 
