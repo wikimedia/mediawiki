@@ -558,6 +558,7 @@ $wgMessageStructure = array(
 		'suspicious-userlogout',
 		'createacct-another-realname-tip',
 		'pt-login',
+		'pt-login-button',
 		'pt-createaccount',
 		'pt-userlogout',
 	),
