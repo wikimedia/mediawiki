@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @covers RCCacheEntryFactory
  *
@@ -8,7 +9,6 @@
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
 class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
-
 	protected function setUp() {
 		parent::setUp();
 
@@ -20,7 +20,9 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider editChangeProvider
 	 */
-	public function testNewFromRecentChange( $expected, $context, $messages, $recentChange, $watched ) {
+	public function testNewFromRecentChange( $expected, $context, $messages,
+		$recentChange, $watched
+	) {
 		$cacheEntryFactory = new RCCacheEntryFactory( $context, $messages );
 		$cacheEntry = $cacheEntryFactory->newFromRecentChange( $recentChange, $watched );
 
@@ -28,7 +30,10 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals( $watched, $cacheEntry->watched, 'watched' );
 		$this->assertEquals( $expected['timestamp'], $cacheEntry->timestamp, 'timestamp' );
-		$this->assertEquals( $expected['numberofWatchingusers'], $cacheEntry->numberofWatchingusers, 'watching users' );
+		$this->assertEquals(
+			$expected['numberofWatchingusers'], $cacheEntry->numberofWatchingusers,
+			'watching users'
+		);
 		$this->assertEquals( $expected['unpatrolled'], $cacheEntry->unpatrolled, 'unpatrolled' );
 
 		$this->assertUserLinks( 'Mary', $cacheEntry );
@@ -98,7 +103,10 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals( $watched, $cacheEntry->watched, 'watched' );
 		$this->assertEquals( $expected['timestamp'], $cacheEntry->timestamp, 'timestamp' );
-		$this->assertEquals( $expected['numberofWatchingusers'], $cacheEntry->numberofWatchingusers, 'watching users' );
+		$this->assertEquals(
+			$expected['numberofWatchingusers'],
+			$cacheEntry->numberofWatchingusers, 'watching users'
+		);
 		$this->assertEquals( $expected['unpatrolled'], $cacheEntry->unpatrolled, 'unpatrolled' );
 
 		$this->assertDeleteLogLink( $cacheEntry );
@@ -168,7 +176,10 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals( $watched, $cacheEntry->watched, 'watched' );
 		$this->assertEquals( $expected['timestamp'], $cacheEntry->timestamp, 'timestamp' );
-		$this->assertEquals( $expected['numberofWatchingusers'], $cacheEntry->numberofWatchingusers, 'watching users' );
+		$this->assertEquals(
+			$expected['numberofWatchingusers'],
+			$cacheEntry->numberofWatchingusers, 'watching users'
+		);
 		$this->assertEquals( $expected['unpatrolled'], $cacheEntry->unpatrolled, 'unpatrolled' );
 
 		$this->assertRevDel( $cacheEntry );
@@ -325,7 +336,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 			'assert query link element'
 		);
 
-		foreach( $params as $key => $value ) {
+		foreach ( $params as $key => $value ) {
 			$this->assertRegExp( '/' . $key . '=' . $value . '/', $link, "verify $key link params" );
 		}
 	}
@@ -368,7 +379,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	private function getTestUser() {
 		$user = User::newFromName( 'Mary' );
 
-		if ( ! $user->getId() ) {
+		if ( !$user->getId() ) {
 			$user->addToDatabase();
 		}
 
@@ -401,5 +412,4 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 
 		return $context;
 	}
-
 }
