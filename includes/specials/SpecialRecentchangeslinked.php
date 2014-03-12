@@ -27,7 +27,8 @@
  * @ingroup SpecialPage
  */
 class SpecialRecentChangesLinked extends SpecialRecentChanges {
-	var $rclTargetTitle;
+	/** @var bool|Title */
+	protected $rclTargetTitle;
 
 	function __construct() {
 		parent::__construct( 'Recentchangeslinked' );
@@ -55,7 +56,8 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$outputPage = $this->getOutput();
 		$title = Title::newFromURL( $target );
 		if ( !$title || $title->isExternal() ) {
-			$outputPage->addHtml( '<div class="errorbox">' . $this->msg( 'allpagesbadtitle' )->parse() . '</div>' );
+			$outputPage->addHtml( '<div class="errorbox">' . $this->msg( 'allpagesbadtitle' )
+					->parse() . '</div>' );
 			return false;
 		}
 
@@ -105,7 +107,9 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$opts['tagfilter']
 		);
 
-		if ( !wfRunHooks( 'SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$select ) ) ) {
+		if ( !wfRunHooks( 'SpecialRecentChangesQuery',
+			array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$select ) )
+		) {
 			return false;
 		}
 
@@ -128,14 +132,20 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		}
 
 		// field name prefixes for all the various tables we might want to join with
-		$prefix = array( 'pagelinks' => 'pl', 'templatelinks' => 'tl', 'categorylinks' => 'cl', 'imagelinks' => 'il' );
+		$prefix = array(
+			'pagelinks' => 'pl',
+			'templatelinks' => 'tl',
+			'categorylinks' => 'cl',
+			'imagelinks' => 'il'
+		);
 
 		$subsql = array(); // SELECT statements to combine with UNION
 
 		foreach ( $link_tables as $link_table ) {
 			$pfx = $prefix[$link_table];
 
-			// imagelinks and categorylinks tables have no xx_namespace field, and have xx_to instead of xx_title
+			// imagelinks and categorylinks tables have no xx_namespace field,
+			// and have xx_to instead of xx_title
 			if ( $link_table == 'imagelinks' ) {
 				$link_ns = NS_FILE;
 			} elseif ( $link_table == 'categorylinks' ) {

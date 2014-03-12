@@ -96,7 +96,8 @@ $wgAutoloadLocalClasses = array(
 	'HTMLFloatField' => 'includes/htmlform/HTMLFloatField.php',
 	'HTMLForm' => 'includes/htmlform/HTMLForm.php',
 	'HTMLFormField' => 'includes/htmlform/HTMLFormField.php',
-	'HTMLFormFieldRequiredOptionsException' => 'includes/htmlform/HTMLFormFieldRequiredOptionsException.php',
+	'HTMLFormFieldRequiredOptionsException' =>
+		'includes/htmlform/HTMLFormFieldRequiredOptionsException.php',
 	'HTMLHiddenField' => 'includes/htmlform/HTMLHiddenField.php',
 	'HTMLInfoField' => 'includes/htmlform/HTMLInfoField.php',
 	'HTMLIntField' => 'includes/htmlform/HTMLIntField.php',

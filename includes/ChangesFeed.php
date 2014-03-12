@@ -67,10 +67,12 @@ class ChangesFeed {
 	/**
 	 * Generates feed's content
 	 *
-	 * @param $feed ChannelFeed subclass object (generally the one returned by getFeedObject())
-	 * @param $rows ResultWrapper object with rows in recentchanges table
-	 * @param $lastmod Integer: timestamp of the last item in the recentchanges table (only used for the cache key)
-	 * @param $opts FormOptions as in SpecialRecentChanges::getDefaultOptions()
+	 * @param ChannelFeed $feed ChannelFeed subclass object (generally the one returned
+	 *   by getFeedObject())
+	 * @param ResultWrapper $rows ResultWrapper object with rows in recentchanges table
+	 * @param int $lastmod Timestamp of the last item in the recentchanges table (only
+	 *   used for the cache key)
+	 * @param FormOptions $opts As in SpecialRecentChanges::getDefaultOptions()
 	 * @return null|bool True or null
 	 */
 	public function execute( $feed, $rows, $lastmod, $opts ) {
@@ -201,7 +203,10 @@ class ChangesFeed {
 
 		foreach ( $sorted as $obj ) {
 			$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
-			$talkpage = MWNamespace::canTalk( $obj->rc_namespace ) ? $title->getTalkPage()->getFullURL() : '';
+			$talkpage = MWNamespace::canTalk( $obj->rc_namespace )
+				? $title->getTalkPage()->getFullURL()
+				: '';
+
 			// Skip items with deleted content (avoids partially complete/inconsistent output)
 			if ( $obj->rc_deleted ) {
 				continue;
@@ -231,5 +236,4 @@ class ChangesFeed {
 		wfProfileOut( __METHOD__ );
 		return $items;
 	}
-
 }
