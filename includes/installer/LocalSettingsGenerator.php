@@ -264,7 +264,7 @@ class LocalSettingsGenerator {
 # file, not there.
 #
 # Further documentation for configuration settings may be found at:
-# http://www.mediawiki.org/wiki/Manual:Configuration_settings
+# https://www.mediawiki.org/wiki/Manual:Configuration_settings
 
 # Protect against web entry
 if ( !defined( 'MEDIAWIKI' ) ) {
@@ -280,7 +280,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## defaults for all runtime URL paths are based off of this.
 ## For more information on customizing the URLs
 ## (like /w/index.php/Page_title to /wiki/Page_title) please see:
-## http://www.mediawiki.org/wiki/Manual:Short_URL
+## https://www.mediawiki.org/wiki/Manual:Short_URL
 \$wgScriptPath = \"{$this->values['wgScriptPath']}\";
 \$wgScriptExtension = \"{$this->values['wgScriptExtension']}\";
 ${serverSetting}
