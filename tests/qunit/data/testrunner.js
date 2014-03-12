@@ -82,7 +82,7 @@
 	sinon.config = {
 		injectIntoThis: true,
 		injectInto: null,
-		properties: ['spy', 'stub', 'mock', 'clock', 'sandbox'],
+		properties: ['spy', 'stub', 'mock', 'sandbox'],
 		// Don't fake timers by default
 		useFakeTimers: false,
 		useFakeServer: false
