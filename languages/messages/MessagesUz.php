@@ -109,6 +109,23 @@ $magicWords = array(
 $linkTrail = '/^([a-zʻʼ“»]+)(.*)$/sDu';
 $linkPrefixCharset = 'a-zA-Z\\x80-\\xffʻʼ«„';
 
+/**
+ * Formats need to be overwritten. Others are inherited automatically
+ */
+$dateFormats = array(
+	'dmy date' => 'j-F Y',
+	'dmy both' => 'H:i, j-F Y',
+	'dmy pretty' => 'j-F'
+);
+
+/**
+ * Transform table for decimal point '.' and thousands separator ','
+ */
+$separatorTransformTable = array(
+	'.' => ',',
+	',' => "\xc2\xa0", # nbsp
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Havolalarning tagiga chizish:',
