@@ -4,11 +4,13 @@
             "Dj",
             "Einstein2",
             "Misibacsi",
-            "ViDam"
+            "ViDam",
+            "Tacsipacsi"
         ]
     },
     "ooui-dialog-action-close": "Bezár",
     "ooui-outline-control-move-down": "Elem mozgatása lefelé",
     "ooui-outline-control-move-up": "Elem mozgatása felfelé",
+    "ooui-outline-control-remove": "Elem eltávolítása",
     "ooui-toolbar-more": "Tovább..."
 }
