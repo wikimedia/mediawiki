@@ -300,6 +300,7 @@ class CologneBlueTemplate extends BaseTemplate {
 		<?php if ( $this->getSkin()->subPageSubtitle() ) { ?>
 		<p class="subpages"><?php echo $this->getSkin()->subPageSubtitle() ?></p>
 		<?php } ?>
+		<div id="bodyContent">
 <?php
 		$s = ob_get_contents();
 		ob_end_clean();
@@ -313,6 +314,7 @@ class CologneBlueTemplate extends BaseTemplate {
 	function afterContent() {
 		ob_start();
 ?>
+	</div>
 	</div>
 	<div id="footer">
 		<div id="footer-navigation" role="navigation">

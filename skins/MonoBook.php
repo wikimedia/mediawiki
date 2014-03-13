@@ -93,8 +93,10 @@ class MonoBookTemplate extends BaseTemplate {
 		<div id="jump-to-nav" class="mw-jump"><?php $this->msg( 'jumpto' ) ?> <a href="#column-one"><?php $this->msg( 'jumptonavigation' ) ?></a><?php $this->msg( 'comma-separator' ) ?><a href="#searchInput"><?php $this->msg( 'jumptosearch' ) ?></a></div>
 
 		<!-- start content -->
-<?php $this->html( 'bodytext' ) ?>
+		<div id="bodyContent">
+		<?php $this->html( 'bodytext' ) ?>
 		<?php if ( $this->data['catlinks'] ) { $this->html( 'catlinks' ); } ?>
+		</div>
 		<!-- end content -->
 		<?php if ( $this->data['dataAfterContent'] ) { $this->html( 'dataAfterContent' ); } ?>
 		<div class="visualClear"></div>

@@ -97,8 +97,9 @@ class ModernTemplate extends MonoBookTemplate {
 
 		<?php if ( $this->data['undelete'] ) { ?><div id="contentSub2"><?php $this->html( 'undelete' ) ?></div><?php } ?>
 		<div id="jump-to-nav"><?php $this->msg( 'jumpto' ) ?> <a href="#mw_portlets"><?php $this->msg( 'jumptonavigation' ) ?></a><?php $this->msg( 'comma-separator' ) ?><a href="#searchInput"><?php $this->msg( 'jumptosearch' ) ?></a></div>
-
+		<div id="bodyContent">
 		<?php $this->html( 'bodytext' ) ?>
+		</div>
 		<div class='mw_clear'></div>
 		<?php if ( $this->data['catlinks'] ) { $this->html( 'catlinks' ); } ?>
 		<?php $this->html( 'dataAfterContent' ) ?>
