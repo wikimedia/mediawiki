@@ -222,6 +222,8 @@ production.
 * (bug 42026) Added ucshow={new,!new,top,!top} to list=usercontribs.
   Also added newonly to action=feedcontributions.
 * (bug 42026) Deprecated uctoponly in favor of ucshow=top.
+* list=search no longer has a "srredirects" parameter. Redirects are now
+  included in all searches.
 
 === Languages updated in 1.23 ===
 
@@ -303,6 +305,8 @@ changes to languages because of Bugzilla reports.
   us to extend parser tests to accommodate additional input/output
   pairs, such as "!!html/parsoid" (for the output of the Parsoid
   parser, where it differs from the PHP parser).
+* Special:Search no longer has an "include redirects" option on the advanced
+  tab. Redirects are now included in all searches.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)

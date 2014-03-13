@@ -168,11 +168,6 @@ class SearchPostgres extends SearchDatabase {
 			"AND r.rev_text_id = c.old_id AND $fulltext @@ to_tsquery($searchstring)";
 		}
 
-		## Redirects
-		if ( !$this->showRedirects ) {
-			$query .= ' AND page_is_redirect = 0';
-		}
-
 		## Namespaces - defaults to 0
 		if ( !is_null( $this->namespaces ) ) { // null -> search all
 			if ( count( $this->namespaces ) < 1 ) {
