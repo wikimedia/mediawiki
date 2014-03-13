@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (efc7297353)
+ * OOjs UI v0.1.0-pre (46ccd5b3a7)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri Mar 07 2014 17:36:48 GMT-0800 (PST)
+ * Date: Wed Mar 12 2014 17:44:18 GMT-0700 (PDT)
  */
 
 /* Textures */
@@ -66,17 +66,17 @@
 
 .oo-ui-dialog-small .oo-ui-window-frame {
   width: 400px;
-  max-height: 200px;
+  max-height: 230px;
 }
 
 .oo-ui-dialog-medium .oo-ui-window-frame {
   width: 600px;
-  max-height: 400px;
+  max-height: 460px;
 }
 
 .oo-ui-dialog-large .oo-ui-window-frame {
   width: 800px;
-  max-height: 600px;
+  max-height: 690px;
 }
 
 .oo-ui-dialog .oo-ui-frame {
