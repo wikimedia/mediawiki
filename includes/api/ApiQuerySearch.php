@@ -72,7 +72,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			SearchEngine::create( $params['backend'] ) : SearchEngine::create();
 		$search->setLimitOffset( $limit + 1, $params['offset'] );
 		$search->setNamespaces( $params['namespace'] );
-		$search->showRedirects = $params['redirects'];
 
 		$query = $search->transformSearchTerm( $query );
 		$query = $search->replacePrefixes( $query );
@@ -299,7 +298,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				),
 				ApiBase::PARAM_ISMULTI => true,
 			),
-			'redirects' => false,
 			'offset' => 0,
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
@@ -345,7 +343,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				' sectiontitle     - Adds the title of the matching section',
 				' hasrelated       - Indicates whether a related search is available',
 			),
-			'redirects' => 'Include redirect pages in the search',
 			'offset' => 'Use this value to continue paging (return by query)',
 			'limit' => 'How many total pages to return',
 			'interwiki' => 'Include interwiki results in the search, if available'

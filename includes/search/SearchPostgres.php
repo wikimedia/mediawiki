@@ -169,9 +169,7 @@ class SearchPostgres extends SearchDatabase {
 		}
 
 		## Redirects
-		if ( !$this->showRedirects ) {
-			$query .= ' AND page_is_redirect = 0';
-		}
+		$query .= ' AND page_is_redirect = 0';
 
 		## Namespaces - defaults to 0
 		if ( !is_null( $this->namespaces ) ) { // null -> search all

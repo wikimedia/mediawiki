@@ -61,11 +61,6 @@ class SpecialSearch extends SpecialPage {
 	protected $namespaces;
 
 	/**
-	 * @var bool
-	 */
-	protected $searchRedirects;
-
-	/**
 	 * @var string
 	 */
 	protected $didYouMeanHtml, $fulltext;
@@ -159,9 +154,6 @@ class SpecialSearch extends SpecialPage {
 			}
 		}
 
-		// Redirects defaults to true, but we don't know whether it was ticked of or just missing
-		$default = $request->getBool( 'profile' ) ? 0 : 1;
-		$this->searchRedirects = $request->getBool( 'redirs', $default ) ? 1 : 0;
 		$this->didYouMeanHtml = ''; # html of did you mean... link
 		$this->fulltext = $request->getVal( 'fulltext' );
 		$this->profile = $profile;
@@ -219,8 +211,6 @@ class SpecialSearch extends SpecialPage {
 		$search = $this->getSearchEngine();
 		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
-		$search->showRedirects = $this->searchRedirects; // BC
-		$search->setFeatureData( 'list-redirects', $this->searchRedirects );
 		$search->prefix = $this->mPrefix;
 		$term = $search->transformSearchTerm( $term );
 
@@ -514,7 +504,6 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected function powerSearchOptions() {
 		$opt = array();
-		$opt['redirs'] = $this->searchRedirects ? 1 : 0;
 		if ( $this->profile !== 'advanced' ) {
 			$opt['profile'] = $this->profile;
 		} else {
@@ -872,7 +861,6 @@ class SpecialSearch extends SpecialPage {
 	protected function getProfileForm( $profile, $term ) {
 		// Hidden stuff
 		$opts = array();
-		$opts['redirs'] = $this->searchRedirects;
 		$opts['profile'] = $this->profile;
 
 		if ( $profile === 'advanced' ) {
@@ -941,16 +929,9 @@ class SpecialSearch extends SpecialPage {
 
 		$showSections = array( 'namespaceTables' => $namespaceTables );
 
-		// Show redirects check only if backend supports it
-		if ( $this->getSearchEngine()->supports( 'list-redirects' ) ) {
-			$showSections['redirects'] =
-				Xml::checkLabel( $this->msg( 'powersearch-redir' )->text(), 'redirs', 'redirs', $this->searchRedirects );
-		}
-
 		wfRunHooks( 'SpecialSearchPowerBox', array( &$showSections, $term, $opts ) );
 
 		$hidden = '';
-		unset( $opts['redirs'] );
 		foreach ( $opts as $key => $value ) {
 			$hidden .= Html::hidden( $key, $value );
 		}
@@ -1132,7 +1113,6 @@ class SpecialSearch extends SpecialPage {
 		foreach ( $namespaces as $n ) {
 			$opt['ns' . $n] = 1;
 		}
-		$opt['redirs'] = $this->searchRedirects;
 
 		$stParams = array_merge(
 			array(

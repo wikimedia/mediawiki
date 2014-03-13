@@ -35,7 +35,6 @@ class SearchEngine {
 	var $prefix = '';
 	var $searchTerms = array();
 	var $namespaces = array( NS_MAIN );
-	var $showRedirects = false;
 	protected $showSuggestion = true;
 
 	/// Feature values
@@ -72,7 +71,6 @@ class SearchEngine {
 	 */
 	public function supports( $feature ) {
 		switch ( $feature ) {
-		case 'list-redirects':
 		case 'search-update':
 			return true;
 		case 'title-suffix-filter':

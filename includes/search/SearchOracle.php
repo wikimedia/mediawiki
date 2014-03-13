@@ -94,11 +94,7 @@ class SearchOracle extends SearchDatabase {
 	 * @return String
 	 */
 	function queryRedirect() {
-		if ( $this->showRedirects ) {
-			return '';
-		} else {
-			return 'AND page_is_redirect=0';
-		}
+		return 'AND page_is_redirect=0';
 	}
 
 	/**
