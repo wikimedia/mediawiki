@@ -27,6 +27,7 @@
  * The number of rounds can be configured by $wgPasswordCost.
  *
  * @since 1.23
+ * @broken
  */
 class BcryptPassword extends ParameterizedPassword {
 	function getDefaultParams() {
