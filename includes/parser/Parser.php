@@ -5922,7 +5922,7 @@ class Parser {
 
 		# Strip external link markup
 		# @todo FIXME: Not tolerant to blank link text
-		# I.E. [http://www.mediawiki.org] will render as [1] or something depending
+		# I.E. [https://www.mediawiki.org] will render as [1] or something depending
 		# on how many empty links there are on the page - need to figure that out.
 		$text = preg_replace( '/\[(?i:' . $this->mUrlProtocols . ')([^ ]+?) ([^[]+)\]/', '$2', $text );
 
