@@ -1,13 +1,15 @@
 // FIXME: This size of this CSS is ridiculous. Please refactor (see bug 54604)
 @import "mediawiki.mixins.less";
 
-div#content a.external {
+div#content a.external,
+div#content a[rel="mw:ExtLink"] {
 	background-position: center right;
 	background-repeat: no-repeat;
 	.background-image-svg('images/external-link-ltr-icon.svg', 'images/external-link-ltr-icon.png');
 	padding-right: 13px;
 }
 div#content a.external[href ^="https://"],
+div#content a[rel="mw:ExtLink"][href ^="https://"],
 .link-https {
 	background-position: center right;
 	background-repeat: no-repeat;
@@ -15,19 +17,22 @@ div#content a.external[href ^="https://"],
 	padding-right: 13px;
 }
 div#content a.external[href ^="mailto:"],
+div#content a[rel="mw:ExtLink"][href ^="mailto:"],
 .link-mailto {
 	background-position: center right;
 	background-repeat: no-repeat;
 	.background-image-svg('images/mail-icon.svg', 'images/mail-icon.png');
 	padding-right: 13px;
 }
-div#content a.external[href ^="news:"] {
+div#content a.external[href ^="news:"],
+div#content a[rel="mw:ExtLink"][href ^="news:"] {
 	background-position: center right;
 	background-repeat: no-repeat;
 	.background-image-svg('images/news-icon.svg', 'images/news-icon.png');
 	padding-right: 13px;
 }
 div#content a.external[href ^="ftp://"],
+div#content a[rel="mw:ExtLink"][href ^="ftp://"],
 .link-ftp {
 	background-position: center right;
 	background-repeat: no-repeat;
@@ -36,6 +41,8 @@ div#content a.external[href ^="ftp://"],
 }
 div#content a.external[href ^="irc://"],
 div#content a.external[href ^="ircs://"],
+div#content a[rel="mw:ExtLink"][href ^="irc://"],
+div#content a[rel="mw:ExtLink"][href ^="ircs://"],
 .link-irc {
 	background-position: center right;
 	background-repeat: no-repeat;
@@ -48,6 +55,12 @@ div#content a.external[href $=".midi"], div#content a.external[href $=".MIDI"],
 div#content a.external[href $=".mp3"], div#content a.external[href $=".MP3"],
 div#content a.external[href $=".wav"], div#content a.external[href $=".WAV"],
 div#content a.external[href $=".wma"], div#content a.external[href $=".WMA"],
+div#content a[rel="mw:ExtLink"][href $=".ogg"], div#content a[rel="mw:ExtLink"][href $=".OGG"],
+div#content a[rel="mw:ExtLink"][href $=".mid"], div#content a[rel="mw:ExtLink"][href $=".MID"],
+div#content a[rel="mw:ExtLink"][href $=".midi"], div#content a[rel="mw:ExtLink"][href $=".MIDI"],
+div#content a[rel="mw:ExtLink"][href $=".mp3"], div#content a[rel="mw:ExtLink"][href $=".MP3"],
+div#content a[rel="mw:ExtLink"][href $=".wav"], div#content a[rel="mw:ExtLink"][href $=".WAV"],
+div#content a[rel="mw:ExtLink"][href $=".wma"], div#content a[rel="mw:ExtLink"][href $=".WMA"],
 .link-audio {
 	background-position: center right;
 	background-repeat: no-repeat;
@@ -58,6 +71,10 @@ div#content a.external[href $=".ogm"], div#content a.external[href $=".OGM"],
 div#content a.external[href $=".avi"], div#content a.external[href $=".AVI"],
 div#content a.external[href $=".mpeg"], div#content a.external[href $=".MPEG"],
 div#content a.external[href $=".mpg"], div#content a.external[href $=".MPG"],
+div#content a[rel="mw:ExtLink"][href $=".ogm"], div#content a[rel="mw:ExtLink"][href $=".OGM"],
+div#content a[rel="mw:ExtLink"][href $=".avi"], div#content a[rel="mw:ExtLink"][href $=".AVI"],
+div#content a[rel="mw:ExtLink"][href $=".mpeg"], div#content a[rel="mw:ExtLink"][href $=".MPEG"],
+div#content a[rel="mw:ExtLink"][href $=".mpg"], div#content a[rel="mw:ExtLink"][href $=".MPG"],
 .link-video {
 	background-position: center right;
 	background-repeat: no-repeat;
@@ -67,6 +84,9 @@ div#content a.external[href $=".mpg"], div#content a.external[href $=".MPG"],
 div#content a.external[href $=".pdf"], div#content a.external[href $=".PDF"],
 div#content a.external[href *=".pdf#"], div#content a.external[href *=".PDF#"],
 div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
+div#content a[rel="mw:ExtLink"][href $=".pdf"], div#content a[rel="mw:ExtLink"][href $=".PDF"],
+div#content a[rel="mw:ExtLink"][href *=".pdf#"], div#content a[rel="mw:ExtLink"][href *=".PDF#"],
+div#content a[rel="mw:ExtLink"][href *=".pdf?"], div#content a[rel="mw:ExtLink"][href *=".PDF?"],
 .link-document {
 	background-position: center right;
 	background-repeat: no-repeat;

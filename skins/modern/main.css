@@ -404,29 +404,34 @@ h1, h2, h3, h4, h5, h6 {
 	text-decoration: none;
 	color: white;
 }
+#mw_content a[rel="mw:ExtLink"],
 #mw_content a.external {
 	/* @embed */
 	background: url(external.png) center right no-repeat;
 	padding-right: 13px;
 }
 #mw_content a.external[href ^="https://"],
+#mw_content a[rel="mw:ExtLink"][href ^="https://"],
 .link-https {
 	/* @embed */
 	background: url(lock_icon.gif) center right no-repeat;
 	padding-right: 16px;
 }
 #mw_content a.external[href ^="mailto:"],
+#mw_content a[rel="mw:ExtLink"][href ^="mailto:"],
 .link-mailto {
 	/* @embed */
 	background: url(mail_icon.gif) center right no-repeat;
 	padding-right: 18px;
 }
-#mw_content a.external[href ^="news:"] {
+#mw_content a.external[href ^="news:"],
+#mw_content a[rel="mw:ExtLink"][href ^="news:"] {
 	/* @embed */
 	background: url(news_icon.png) center right no-repeat;
 	padding-right: 18px;
 }
 #mw_content a.external[href ^="ftp://"],
+#mw_content a[rel="mw:ExtLink"][href ^="ftp://"],
 .link-ftp {
 	/* @embed */
 	background: url(file_icon.gif) center right no-repeat;
@@ -434,6 +439,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 #mw_content a.external[href ^="irc://"],
 #mw_content a.external[href ^="ircs://"],
+#mw_content a[rel="mw:ExtLink"][href ^="irc://"],
+#mw_content a[rel="mw:ExtLink"][href ^="ircs://"],
 .link-irc {
 	/* @embed */
 	background: url(discussionitem_icon.gif) center right no-repeat;
@@ -446,6 +453,12 @@ h1, h2, h3, h4, h5, h6 {
 #mw_content a.external[href $=".mp3"], #mw_content a.external[href $=".MP3"],
 #mw_content a.external[href $=".wav"], #mw_content a.external[href $=".WAV"],
 #mw_content a.external[href $=".wma"], #mw_content a.external[href $=".WMA"],
+#mw_content a[rel="mw:ExtLink"][href $=".ogg"], #mw_content a[rel="mw:ExtLink"][href $=".OGG"],
+#mw_content a[rel="mw:ExtLink"][href $=".mid"], #mw_content a[rel="mw:ExtLink"][href $=".MID"],
+#mw_content a[rel="mw:ExtLink"][href $=".midi"], #mw_content a[rel="mw:ExtLink"][href $=".MIDI"],
+#mw_content a[rel="mw:ExtLink"][href $=".mp3"], #mw_content a[rel="mw:ExtLink"][href $=".MP3"],
+#mw_content a[rel="mw:ExtLink"][href $=".wav"], #mw_content a[rel="mw:ExtLink"][href $=".WAV"],
+#mw_content a[rel="mw:ExtLink"][href $=".wma"], #mw_content a[rel="mw:ExtLink"][href $=".WMA"],
 .link-audio {
 	/* @embed */
 	background: url(audio.png) center right no-repeat;
@@ -455,6 +468,10 @@ h1, h2, h3, h4, h5, h6 {
 #mw_content a.external[href $=".avi"], #mw_content a.external[href $=".AVI"],
 #mw_content a.external[href $=".mpeg"], #mw_content a.external[href $=".MPEG"],
 #mw_content a.external[href $=".mpg"], #mw_content a.external[href $=".MPG"],
+#mw_content a[rel="mw:ExtLink"][href $=".ogm"], #mw_content a[rel="mw:ExtLink"][href $=".OGM"],
+#mw_content a[rel="mw:ExtLink"][href $=".avi"], #mw_content a[rel="mw:ExtLink"][href $=".AVI"],
+#mw_content a[rel="mw:ExtLink"][href $=".mpeg"], #mw_content a[rel="mw:ExtLink"][href $=".MPEG"],
+#mw_content a[rel="mw:ExtLink"][href $=".mpg"], #mw_content a[rel="mw:ExtLink"][href $=".MPG"],
 .link-video {
 	/* @embed */
 	background: url(video.png) center right no-repeat;
@@ -463,6 +480,9 @@ h1, h2, h3, h4, h5, h6 {
 #mw_content a.external[href $=".pdf"], #mw_content a.external[href $=".PDF"],
 #mw_content a.external[href *=".pdf#"], #mw_content a.external[href *=".PDF#"],
 #mw_content a.external[href *=".pdf?"], #mw_content a.external[href *=".PDF?"],
+#mw_content a[rel="mw:ExtLink"][href $=".pdf"], #mw_content a[rel="mw:ExtLink"][href $=".PDF"],
+#mw_content a[rel="mw:ExtLink"][href *=".pdf#"], #mw_content a[rel="mw:ExtLink"][href *=".PDF#"],
+#mw_content a[rel="mw:ExtLink"][href *=".pdf?"], #mw_content a[rel="mw:ExtLink"][href *=".PDF?"],
 .link-document {
 	/* @embed */
 	background: url(document.png) center right no-repeat;
@@ -634,7 +654,8 @@ table.toc td {
 #mw_content a.extiw:active {
 	color: #36b;
 }
-#mw_content a.external {
+#mw_content a.external,
+#mw_content a[rel="mw:ExtLink"] {
 	color: #36b;
 }
 

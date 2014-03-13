@@ -201,7 +201,9 @@ a:link, a:visited {
 }
 
 #content a.external.text:after,
-#content a.external.autonumber:after {
+#content a.external.autonumber:after,
+#content a[rel="mw:ExtLink"].text:after,
+#content a[rel="mw:ExtLink"].autonumber:after {
 	/* Expand URLs for printing */
 	content: " (" attr(href) ")";
 }
@@ -228,6 +230,7 @@ a:link, a:visited {
 /* MSIE/Win doesn't understand 'inherit' */
 a,
 a.external,
+a[rel="mw:ExtLink"],
 a.new,
 a.stub {
 	color: black !important;
@@ -237,6 +240,7 @@ a.stub {
 /* Continue ... */
 a,
 a.external,
+a[rel="mw:ExtLink"],
 a.new,
 a.stub {
 	color: inherit !important;

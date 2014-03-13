@@ -142,29 +142,34 @@ table.rimage {
 ** keep the whitespace in front of the ^=, hides rule from konqueror
 ** this is css3, the validator doesn't like it when validating as css2
 */
-#bodyContent a.external {
+#bodyContent a.external,
+#bodyContent a[rel="mw:ExtLink"] {
 	/* @embed */
 	background: url(external-ltr.png) center right no-repeat;
 	padding-right: 13px;
 }
 #bodyContent a.external[href ^="https://"],
+#bodyContent a[rel="mw:ExtLink"][href ^="https://"],
 .link-https {
 	/* @embed */
 	background: url(lock_icon.gif) center right no-repeat;
 	padding-right: 16px;
 }
 #bodyContent a.external[href ^="mailto:"],
+#bodyContent a[rel="mw:ExtLink"][href ^="mailto:"],
 .link-mailto {
 	/* @embed */
 	background: url(mail_icon.gif) center right no-repeat;
 	padding-right: 18px;
 }
-#bodyContent a.external[href ^="news:"] {
+#bodyContent a.external[href ^="news:"],
+#bodyContent a[rel="mw:ExtLink"][href ^="news:"] {
 	/* @embed */
 	background: url(news_icon.png) center right no-repeat;
 	padding-right: 18px;
 }
 #bodyContent a.external[href ^="ftp://"],
+#bodyContent a[rel="mw:ExtLink"][href ^="ftp://"],
 .link-ftp {
 	/* @embed */
 	background: url(file_icon.gif) center right no-repeat;
@@ -172,6 +177,8 @@ table.rimage {
 }
 #bodyContent a.external[href ^="irc://"],
 #bodyContent a.external[href ^="ircs://"],
+#bodyContent a[rel="mw:ExtLink"][href ^="irc://"],
+#bodyContent a[rel="mw:ExtLink"][href ^="ircs://"],
 .link-irc {
 	/* @embed */
 	background: url(discussionitem_icon.gif) center right no-repeat;
@@ -183,6 +190,12 @@ table.rimage {
 #bodyContent a.external[href $=".mp3"], #bodyContent a.external[href $=".MP3"],
 #bodyContent a.external[href $=".wav"], #bodyContent a.external[href $=".WAV"],
 #bodyContent a.external[href $=".wma"], #bodyContent a.external[href $=".WMA"],
+#bodyContent a[rel="mw:ExtLink"][href $=".ogg"], #bodyContent a[rel="mw:ExtLink"][href $=".OGG"],
+#bodyContent a[rel="mw:ExtLink"][href $=".mid"], #bodyContent a[rel="mw:ExtLink"][href $=".MID"],
+#bodyContent a[rel="mw:ExtLink"][href $=".midi"], #bodyContent a[rel="mw:ExtLink"][href $=".MIDI"],
+#bodyContent a[rel="mw:ExtLink"][href $=".mp3"], #bodyContent a[rel="mw:ExtLink"][href $=".MP3"],
+#bodyContent a[rel="mw:ExtLink"][href $=".wav"], #bodyContent a[rel="mw:ExtLink"][href $=".WAV"],
+#bodyContent a[rel="mw:ExtLink"][href $=".wma"], #bodyContent a[rel="mw:ExtLink"][href $=".WMA"],
 .link-audio {
 	/* @embed */
 	background: url(audio.png) center right no-repeat;
@@ -192,6 +205,10 @@ table.rimage {
 #bodyContent a.external[href $=".avi"], #bodyContent a.external[href $=".AVI"],
 #bodyContent a.external[href $=".mpeg"], #bodyContent a.external[href $=".MPEG"],
 #bodyContent a.external[href $=".mpg"], #bodyContent a.external[href $=".MPG"],
+#bodyContent a[rel="mw:ExtLink"][href $=".ogm"], #bodyContent a[rel="mw:ExtLink"][href $=".OGM"],
+#bodyContent a[rel="mw:ExtLink"][href $=".avi"], #bodyContent a[rel="mw:ExtLink"][href $=".AVI"],
+#bodyContent a[rel="mw:ExtLink"][href $=".mpeg"], #bodyContent a[rel="mw:ExtLink"][href $=".MPEG"],
+#bodyContent a[rel="mw:ExtLink"][href $=".mpg"], #bodyContent a[rel="mw:ExtLink"][href $=".MPG"],
 .link-video {
 	/* @embed */
 	background: url(video.png) center right no-repeat;
@@ -200,6 +217,9 @@ table.rimage {
 #bodyContent a.external[href $=".pdf"], #bodyContent a.external[href $=".PDF"],
 #bodyContent a.external[href *=".pdf#"], #bodyContent a.external[href *=".PDF#"],
 #bodyContent a.external[href *=".pdf?"], #bodyContent a.external[href *=".PDF?"],
+#bodyContent a[rel="mw:ExtLink"][href $=".pdf"], #bodyContent a[rel="mw:ExtLink"][href $=".PDF"],
+#bodyContent a[rel="mw:ExtLink"][href *=".pdf#"], #bodyContent a[rel="mw:ExtLink"][href *=".PDF#"],
+#bodyContent a[rel="mw:ExtLink"][href *=".pdf?"], #bodyContent a[rel="mw:ExtLink"][href *=".PDF?"],
 .link-document {
 	/* @embed */
 	background: url(document.png) center right no-repeat;
@@ -213,7 +233,8 @@ table.rimage {
 }
 
 /* External links */
-#bodyContent a.external {
+#bodyContent a.external,
+#bodyContent a[rel="mw:ExtLink"] {
 	color: #36b;
 }
 

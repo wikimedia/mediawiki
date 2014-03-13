@@ -163,7 +163,8 @@ a {
 	color: #223366;
 }
 
-a.external {
+a.external,
+a[rel="mw:ExtLink"] {
 	color: #336644;
 }
 

@@ -44,13 +44,16 @@ a.new:visited, #p-personal a.new:visited {
 }
 
 /* External links */
-.mw-body a.external {
+.mw-body a.external,
+.mw-body a[rel="mw:ExtLink"] {
 	color: #36b;
 }
-.mw-body a.external:visited {
+.mw-body a.external:visited,
+.mw-body a[rel="mw:ExtLink"]:visited {
 	color: #636; /* bug 3112 */
 }
-.mw-body a.external:active {
+.mw-body a.external:active,
+.mw-body a[rel="mw:ExtLink"]:active {
 	color: #b63;
 }
 

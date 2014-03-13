@@ -501,7 +501,9 @@ a.feedlink {
 }
 /* External URLs should always be treated as LTR (bug 4330) */
 /* @noflip */ .rtl a.external.free,
-.rtl a.external.autonumber {
+.rtl a.external.autonumber,
+.rtl a[rel="mw:ExtLink"].free,
+.rtl a[rel="mw:ExtLink"].autonumber {
 	direction: ltr;
 	unicode-bidi: embed;
 }
