@@ -6074,30 +6074,43 @@ $wgAutoloadClasses = array();
 $wgAutoloadAttemptLowercase = true;
 
 /**
- * An array of extension types and inside that their names, versions, authors,
- * urls, descriptions and pointers to localized description msgs. Note that
- * the version, url, description and descriptionmsg key can be omitted.
+ * An array of information about installed extensions keyed by their type.
+ *
+ * All but 'name', 'path' and 'author' can be omitted.
  *
  * @code
  * $wgExtensionCredits[$type][] = array(
- *     'name' => 'Example extension',
- *     'version' => 1.9,
  *     'path' => __FILE__,
- *     'author' => 'Foo Barstein',
- *     'url' => 'http://www.example.com/Example%20Extension/',
- *     'description' => 'An example extension',
+ *     'name' => 'Example extension',
+ *     'author' => array(
+ *         'Foo Barstein',
+ *     ),
+ *     'version' => '1.9.0',
+ *     'url' => 'http://example.org/example-extension/',
  *     'descriptionmsg' => 'exampleextension-desc',
+ *     'license-name' => 'GPLv2',
  * );
  * @endcode
  *
- * Where $type is 'specialpage', 'parserhook', 'variable', 'media' or 'other'.
- * Where 'descriptionmsg' can be an array with message key and parameters:
- * 'descriptionmsg' => array( 'exampleextension-desc', param1, param2, ... ),
+ * The extensions will be listed on Special:Version. This page also looks for
+ * a file named COPYING or LICENSE (optional .txt extnsion) and provides a
+ * link to view said file. When the 'license-name' key is specified, this
+ * file will be interpreted as wikitext.
  *
- * author can be a string or an array of strings. Authors can be linked using
- * the regular wikitext link syntax. To have an internationalized version of
- * "and others" show, add an element "...". This element can also be linked,
- * for instance "[http://example ...]".
+ * - $type: One of 'specialpage', 'parserhook', 'variable', 'media' or 'other'.
+ *
+ * - author: A string or an array of strings. Authors can be linked using
+ *    the regular wikitext link syntax. To have an internationalized version of
+ *    "and others" show, add an element "...". This element can also be linked,
+ *    for instance "[http://example ...]".
+ *
+ * - descriptionmsg: A message key or an an array with message key and parameters:
+ *    `'descriptionmsg' => array( 'exampleextension-desc', param1, param2, ... ),`
+ *
+ * - description: Description of extension as inline string intead of
+ *    localizable message (omit in favour of 'descriptionmsg').
+ *
+ * - license-name: Short name of the license (used as label for the link).
  */
 $wgExtensionCredits = array();
 
