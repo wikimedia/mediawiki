@@ -9388,7 +9388,7 @@ bug 22297: safesubst: works during normal parse
 </p>
 !! end
 
-!! test:
+!! test
 subst: does not work during normal parse
 !! input
 {{SubstTest}}
