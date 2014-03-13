@@ -573,7 +573,7 @@ class TestFileIterator implements Iterator {
 			throw new MWException( sprintf(
 				"'%s' without '%s' at line %s of %s\n",
 				$this->section,
-				$token,
+				implode( ',', $tokens ),
 				$this->lineNum,
 				$this->file
 			) );
