@@ -50,10 +50,7 @@ class NamespaceConflictChecker extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgTitle;
-
 		$this->db = wfGetDB( DB_MASTER );
-		$wgTitle = Title::newFromText( 'Namespace title conflict cleanup script' );
 
 		$fix = $this->hasOption( 'fix' );
 		$suffix = $this->getOption( 'suffix', '' );

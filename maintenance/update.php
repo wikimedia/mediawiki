@@ -83,7 +83,7 @@ class UpdateMediaWiki extends Maintenance {
 	}
 
 	function execute() {
-		global $wgVersion, $wgTitle, $wgLang, $wgAllowSchemaUpdates;
+		global $wgVersion, $wgLang, $wgAllowSchemaUpdates;
 
 		if ( !$wgAllowSchemaUpdates && !( $this->hasOption( 'force' ) || $this->hasOption( 'schema' ) || $this->hasOption( 'noschema' ) ) ) {
 			$this->error( "Do not run update.php on this wiki. If you're seeing this you should\n"
@@ -106,7 +106,6 @@ class UpdateMediaWiki extends Maintenance {
 		}
 
 		$wgLang = Language::factory( 'en' );
-		$wgTitle = Title::newFromText( "MediaWiki database updater" );
 
 		define( 'MW_UPDATER', true );
 

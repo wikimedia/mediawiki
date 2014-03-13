@@ -47,8 +47,6 @@ class Orphans extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgTitle;
-		$wgTitle = Title::newFromText( 'Orphan revision cleanup script' );
 		$this->checkOrphans( $this->hasOption( 'fix' ) );
 		$this->checkSeparation( $this->hasOption( 'fix' ) );
 		# Does not work yet, do not use

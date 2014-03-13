@@ -99,9 +99,6 @@ $maintenance->finalSetup();
 // Some last includes
 require_once "$IP/includes/Setup.php";
 
-// Much much faster startup than creating a title object
-$wgTitle = null;
-
 // Do the work
 try {
 	$maintenance->execute();
