@@ -275,8 +275,8 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 		// identify requests to api.php
 		$text = preg_replace( '#^(\s*)(api\.php\?[^ <\n\t]+)$#m', '\1<a href="\2">\2</a>', $text );
 		if ( $this->mHelp ) {
-			// make strings inside * bold
-			$text = preg_replace( "#\\*[^<>\n]+\\*#", '<b>\\0</b>', $text );
+			// make lines inside * bold
+			$text = preg_replace( '#^(\s*)(\*[^<>\n]+\*)(\s*)$#m', '$1<b>$2</b>$3', $text );
 		}
 
 		// Armor links (bug 61362)
