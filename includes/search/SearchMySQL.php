@@ -217,10 +217,9 @@ class SearchMySQL extends SearchDatabase {
 	 * @since 1.18
 	 */
 	protected function queryFeatures( &$query ) {
+		$query['conds']['page_is_redirect'] = 0;
 		foreach ( $this->features as $feature => $value ) {
-			if ( $feature === 'list-redirects' && !$value ) {
-				$query['conds']['page_is_redirect'] = 0;
-			} elseif ( $feature === 'title-suffix-filter' && $value ) {
+			if ( $feature === 'title-suffix-filter' && $value ) {
 				$query['conds'][] = 'page_title' . $this->db->buildLike( $this->db->anyString(), $value );
 			}
 		}
