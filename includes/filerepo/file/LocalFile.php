@@ -903,11 +903,12 @@ class LocalFile extends File {
 
 		// Get a list of old thumbnails and URLs
 		$files = $this->getThumbnails( $archiveName );
-		$dir = array_shift( $files );
-		$this->purgeThumbList( $dir, $files );
 
 		// Purge any custom thumbnail caches
 		wfRunHooks( 'LocalFilePurgeThumbnails', array( $this, $archiveName ) );
+
+		$dir = array_shift( $files );
+		$this->purgeThumbList( $dir, $files );
 
 		// Purge the squid
 		if ( $wgUseSquid ) {
@@ -947,11 +948,11 @@ class LocalFile extends File {
 			}
 		}
 
-		$dir = array_shift( $files );
-		$this->purgeThumbList( $dir, $files );
-
 		// Purge any custom thumbnail caches
 		wfRunHooks( 'LocalFilePurgeThumbnails', array( $this, false ) );
+
+		$dir = array_shift( $files );
+		$this->purgeThumbList( $dir, $files );
 
 		// Purge the squid
 		if ( $wgUseSquid ) {
