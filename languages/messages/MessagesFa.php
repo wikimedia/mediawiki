@@ -2700,7 +2700,7 @@ $PAGEINTRO $NEWPAGE
 'delete-warning-toobig' => 'این صفحه تاریخچهٔ ویرایشی بزرگی دارد، که شامل بیش از $1 {{PLURAL:$1|نسخه|نسخه}} است.
 حذف آن ممکن است که عملکرد پایگاه دادهٔ {{SITENAME}} را مختل کند;
 با احتیاط ادامه دهید.',
-'deleting-backlinks-warning' => "''' هشدار:''' صفحات دیگر پیوند یا تراگنجایش به صفحه شما  برای حذف هستند.",
+'deleting-backlinks-warning' => "''' هشدار:''' پیوند [[Special:WhatLinksHere/{{FULLPAGENAME}}|صفحات دیگر]] یا تراگنجایش صفحهٔ شما برای حذف.",
 
 # Rollback
 'rollback' => 'واگردانی ویرایش‌ها',

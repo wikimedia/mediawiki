@@ -1145,7 +1145,9 @@ D'unas inclusions seràn pas efectuadas.",
 'cantcreateaccount-text' => "La creacion de compte dempuèi aquesta adreça IP ('''$1''') es estada blocada per [[User:$3|$3]].
 
 La rason balhada per $3 èra ''$2''.",
-'cantcreateaccount-range-text' => "La creacion de compte dempuèi las adressas IP  '''$1''', que la vòstra n'es ('''$4''') es estada blocada per [[User:$3|$3]].",
+'cantcreateaccount-range-text' => "La creacion de compte dempuèi las adreças IP dins la plaja '''$1''', que compren vòstra agreça IP ('''$4''') son estadas blocadas per [[User:$3|$3]].
+
+Lo motiu provesit per $3 es ''$2''",
 
 # History pages
 'viewpagelogs' => 'Vejatz las operacions per aquesta pagina',
@@ -1180,7 +1182,7 @@ Benlèu es estada escafada o renomenada.
 Ensajatz de [[Special:Search|recercar sul wiki]] per trobar de paginas en rapòrt.',
 
 # Revision deletion
-'rev-deleted-comment' => '(comentari suprimit)',
+'rev-deleted-comment' => '(resumit de comentari suprimit)',
 'rev-deleted-user' => '(nom d’utilizaire suprimit)',
 'rev-deleted-event' => '(entrada suprimida)',
 'rev-deleted-user-contribs' => "[nom d'utilizaire o adreça IP suprimida - modificacion amagada sus las contribucions]",
@@ -1333,7 +1335,7 @@ Podètz trobar de detalhs dins lo [{{fullurl:{{#Special:Log}}/delete|page={{FULL
 'shown-title' => 'Afichar $1 {{PLURAL:$1|resultat|resultats}} per pagina',
 'viewprevnext' => 'Veire ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "* Pagina '''[[$1]]'''",
-'searchmenu-new' => "'''Crear la pagina ''[[:$1|$1]]'' sus aqueste wiki !'''",
+'searchmenu-new' => '<strong>Crear la pagina « [[:$1|$1]] » sus aqueste wiki !</strong> {{PLURAL:$2|0=|Vejatz tanben la pagina trobada amb vòstra recèrca.|Vejatz tanben los resultats de vòstra recèrca.}}',
 'searchprofile-articles' => 'Paginas de contengut',
 'searchprofile-project' => "Paginas d'ajuda e del projècte",
 'searchprofile-images' => 'Multimèdia',
@@ -1673,9 +1675,10 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'recentchanges-label-minor' => 'Aqueste cambiament es menor',
 'recentchanges-label-bot' => 'Aqueste cambiament es estat efectuat per un bòt.',
 'recentchanges-label-unpatrolled' => 'Aqueste cambiament es pas estat verificat encara.',
+'recentchanges-label-plusminus' => "La talha de la pagna a cambiat d'aqueste nombre d’octets.",
 'recentchanges-legend-heading' => "'''Legenda :'''",
 'recentchanges-legend-newpage' => '(veire tanben la [[Special:NewPages|lista de las paginas novèlas]]).',
-'rcnotefrom' => "Vaquí los cambiaments efectuats dempuèi lo '''$2''' ('''$1''' al maximum).",
+'rcnotefrom' => 'Çaijós las modificacions efectuadas dempuèi lo <strong>$2</strong> (fins a <strong>$1</strong> afichats).',
 'rclistfrom' => 'Afichar las modificacions novèlas dempuèi lo $1.',
 'rcshowhideminor' => '$1 los cambiaments menors',
 'rcshowhideminor-show' => 'Afichar',
@@ -1817,6 +1820,8 @@ S'o volètz importar tornamai, tornatz en rèire e importatz-lo jos un autre nom
 'uploaddisabledtext' => "L'impòrt de fichièrs cap al servidor es desactivat.",
 'php-uploaddisabledtext' => "Lo telecargament de fichièrs es estat desactivat dins PHP. Verificatz l'opcion de configuracion file_uploads.",
 'uploadscripted' => "Aqueste fichièr conten de còde HTML o un escript que poiriá èsser interpretat d'un biais incorrècte per un navigador Internet.",
+'uploadscriptednamespace' => "Aqueste fichièr SVG conten un espaci de noms '$1' pas autorizat.",
+'uploadinvalidxml' => 'Lo XML dins lo fichièr importat a pas pogut èsser analisat.',
 'uploadvirus' => 'Aqueste fichièr conten un virús ! Per mai de detalhs, consultatz : $1',
 'uploadjava' => 'Es un fichièr ZIP que conten un fichièr Java .class.
 Lo telecargament de fichièrs Java es pas autorizat, perque pòdon contornar de restriccions de seguretat.',
@@ -2133,6 +2138,7 @@ Las entradas <del>barradas</del> son estadas resolgudas.',
 'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|ligam|ligams}}',
 'nmembers' => '$1 {{PLURAL:$1|membre|membres}}',
+'nmemberschanged' => '$1 → $2 {{PLURAL:$2|membre|membres}}',
 'nrevisions' => '$1 {{PLURAL:$1|revision|revisions}}',
 'nviews' => '$1 {{PLURAL:$1|consultacion|consultacions}}',
 'nimagelinks' => 'Utilisat sus $1 {{PLURAL:$1|pagina|paginas}}',
@@ -2390,21 +2396,20 @@ per modificar vòstra lista de seguiment.',
 'enotif_lastvisited' => 'Consultatz $1 per totes los cambiaments dempuèi vòstra darrièra visita.',
 'enotif_lastdiff' => 'Consultatz $1 per veire aquesta modificacion.',
 'enotif_anon_editor' => 'utilizaire anonim $1',
-'enotif_body' => 'Car(a) $WATCHINGUSERNAME,
+'enotif_body' => 'Car $WATCHINGUSERNAME,
 
 $PAGEINTRO $NEWPAGE
 
-Resumit del contributor : $PAGESUMMARY 
-$PAGEMINOREDIT
+Resumit del contributor :
+$PAGESUMMARY $PAGEMINOREDIT
 
 Contactatz aqueste contributor :
 corrièl : $PAGEEDITOR_EMAIL
 wiki : $PAGEEDITOR_WIKI
 
-I aurà pas d’autras notificacions en cas de cambiaments ulteriors, levat se visitatz aquela pagina.
-Podètz tanben reïnicializar las bandièras de notificacion per totas las paginas de vòstra lista de seguiment.
+I aurà pas d’autras notificacions en cas de cambiaments ulteriors, levat se visitatz aquela pagina un còp connectat. Podètz tanben reïnicializar las bandièras de notificacion per totas las paginas de vòstra lista de seguiment.
 
-             Vòstre sistèma de notificacion de {{SITENAME}}
+Vòstre sistèma de notificacion de {{SITENAME}}
 
 --
 Pour modificar los paramètres de notificacion per corrièl, visitatz {{canonicalurl:{{#special:Preferences}}}}
@@ -2622,8 +2627,10 @@ $1",
 'sp-contributions-blocked-notice-anon' => 'Aquesta adreça IP es actualament blocada.
 La darrièra intrada del jornal dels blocatges es indicada çaijós a títol d’informacion :',
 'sp-contributions-search' => 'Cercar las contribucions',
+'sp-contributions-suppresslog' => 'contribucions suprimidas d’un utilizaire',
 'sp-contributions-username' => 'Adreça IP o nom d’utilizaire :',
 'sp-contributions-toponly' => 'Mostrar sonque las contribucions que son lo darrièr cambiament',
+'sp-contributions-newonly' => 'Afichar unicament las modificacions que son de creacions de pagina',
 'sp-contributions-submit' => 'Cercar',
 
 # What links here
@@ -2724,8 +2731,8 @@ a partir d'una adreça IP precedentament blocada.",
 'change-blocklink' => 'modificar lo blocatge',
 'contribslink' => 'contribucions',
 'emaillink' => 'mandar un messatge',
-'autoblocker' => 'Sètz estat autoblocat perque partejatz una adreça IP amb "[[User:$1|$1]]".
-La rason balhada per $1 es : « $2 ».',
+'autoblocker' => 'Sètz estat blocat automaticament perque vòstra adreça IP es estada utilizada recentament per « [[User:$1|$1]] ».
+Lo motiu provesit pel blocatge de $1 es « $2 »',
 'blocklogpage' => 'Istoric dels blocatges',
 'blocklog-showlog' => 'Aqueste utilizaire es estat blocat precedentament. Lo jornal dels blocatges es disponible çaijós :',
 'blocklog-showsuppresslog' => 'Aqueste utilizaire es estat blocat e amagat precedentament. Lo jornal de las supressions es disponible çaijós :',
@@ -2745,7 +2752,7 @@ Consultatz la [[Special:BlockList|lista dels utilizaires blocats]] per veire los
 'range_block_disabled' => "Lo blocatge de plajas d'IP es estat desactivat.",
 'ipb_expiry_invalid' => 'Temps d’expiracion invalid.',
 'ipb_expiry_temp' => 'Las plajas dels utilizaires amagats deurián èsser permanentas.',
-'ipb_hide_invalid' => "Impossible de suprimir aqueste compte ; sembla qu'a tròp de modificacions.",
+'ipb_hide_invalid' => "Impossible de suprimir aqueste compte ; sembla qu'a mai {{PLURAL:$1|d’una modificacion|de $1 modificacions}}.",
 'ipb_already_blocked' => '« $1 » ja es blocat',
 'ipb-needreblock' => '$1 ja es blocat. Volètz modificar los paramètres ?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Autre blocatge|Autres blocatges}}',
@@ -2945,7 +2952,7 @@ Salvatz-lo sus vòstre disc dur puèi importatz-lo aicí.",
 'importuploaderrortemp' => "Lo telecargament del fichièr d'importar a pas capitat. Un dorsièr temporari es mancant.",
 'import-parse-failure' => "Ruptura dins l'analisi de l'impòrt XML",
 'import-noarticle' => "Pas de pagina d'importar !",
-'import-nonewrevisions' => 'Totas las revisions son estadas importadas deperabans.',
+'import-nonewrevisions' => 'Cap de revision pas importada (totas èran ja presentas, o ignoradas del fach d’errors).',
 'xml-error-string' => '$1 a la linha $2, col $3 (octet $4) : $5',
 'import-upload' => "Impòrt d'un fichier XML",
 'import-token-mismatch' => 'Pèrda de las donadas de sesilha. Tornatz ensajar.',
@@ -3836,6 +3843,7 @@ Ensajatz la previsualizacion normala.',
 'version-version' => '(Version $1)',
 'version-license' => 'Licéncia de MediaWiki',
 'version-ext-license' => 'Licéncia',
+'version-ext-colheader-name' => 'Extensions',
 'version-ext-colheader-license' => 'Licéncia',
 'version-ext-colheader-description' => 'Descripcion',
 'version-ext-colheader-credits' => 'Autors',
@@ -4049,6 +4057,7 @@ Ensajatz la previsualizacion normala.',
 'api-error-overwrite' => 'Espotir un fichièr existent es pas autorizat.',
 'api-error-stashfailed' => 'Error intèrna : lo servidor a pas pogut enregistrar lo fichièr temporari.',
 'api-error-publishfailed' => 'Error intèrna: Lo servidor a pas pogut publicar lo fichièr temporari.',
+'api-error-stasherror' => "Una error s'es produsida al moment del telecargament del fichièr per lo dissimular.",
 'api-error-timeout' => 'Lo servidor a pas respondut dins lo relambi pervist.',
 'api-error-unclassified' => "Una error desconeguda s'es producha.",
 'api-error-unknown-code' => 'Error desconeguda : « $1 »',
@@ -4089,7 +4098,11 @@ Ensajatz la previsualizacion normala.',
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Espandiment dels modèls',
-'expand_templates_intro' => 'Aquesta pagina permet de testar l’espandiment de modèls, que son desvolopats recursivament. Las foncions e las variablas predefinidas, coma <nowiki>{{</nowiki>#language:...}} e <nowiki>{{</nowiki>CURRENTDAY}} tanben son desvolopadas.',
+'expand_templates_intro' => "Aquesta pagina especiala accèpta un tèxte wiki source e permet de realizar recursivament l’espandiment dels modèls que conten.
+Realiza tanben l’espandiment de las foncions del parser talas coma
+<code><nowiki>{{</nowiki>#language:...}}</code> e de variablas coma
+<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.
+En fach, realiza l'espandiment de gaireben tot çò qu'es enquadrat per d'acoladas doblas.",
 'expand_templates_title' => 'Títol de l’article, util per exemple se lo modèl utiliza {{FULLPAGENAME}} :',
 'expand_templates_input' => 'Picatz vòstre tèxte aicí :',
 'expand_templates_output' => 'Visualizatz lo resultat :',

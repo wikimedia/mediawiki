@@ -2312,7 +2312,7 @@ Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 Cyfyngwyd ar y gallu i ddileu tudalennau sydd wedi eu golygu cymaint â hyn, er mwyn osgoi amharu ar weithrediad databas {{SITENAME}} yn ddamweiniol.",
 'delete-warning-toobig' => "Cafwyd dros $1 {{PLURAL:$1|o olygiadau}} i'r dudalen hon.
 Gallai dileu tudalen, gyda hanes golygu cymaint â hyn iddi, beri dryswch i weithrediadau'r databas ar {{SITENAME}}; ewch ati'n ofalus.",
-'deleting-backlinks-warning' => "'''Rhybudd:''' Mae tudalennau eraill yn cysylltu i'r dudalen yr ydych ar fin ei dileu, neu'n trawsgynnwys y dudalen hon.",
+'deleting-backlinks-warning' => "'''Rhybudd:''' Mae [[Special:WhatLinksHere/{{FULLPAGENAME}}|tudalennau eraill]] yn cysylltu i'r dudalen yr ydych ar fin ei dileu, neu'n trawsgynnwys y dudalen hon.",
 
 # Rollback
 'rollback' => 'Gwrthdroi golygiadau',
@@ -2489,6 +2489,7 @@ Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
 'sp-contributions-search' => 'Chwilio am gyfraniadau',
 'sp-contributions-username' => 'Cyfeiriad IP neu enw defnyddiwr:',
 'sp-contributions-toponly' => "Dangos golygiadau sy'n olygiadau diweddaraf yn unig",
+'sp-contributions-newonly' => "Dangos y golygiadau hynny sy'n dechrau tudalen yn unig",
 'sp-contributions-submit' => 'Chwilier',
 
 # What links here

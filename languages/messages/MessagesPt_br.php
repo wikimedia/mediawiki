@@ -785,6 +785,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda para iniciar sessão]]',
 'userlogin-loggedin' => 'Você já está conectado como {{GENDER:$1|$1}}.
 Use o formulário abaixo para iniciar sessão como outro usuário.',
+'userlogin-createanother' => 'Criar uma outra conta',
 'createacct-join' => 'Insira suas informações abaixo.',
 'createacct-another-join' => 'Preeencha as informações para a nova conta',
 'createacct-emailrequired' => 'Endereço de e-mail',

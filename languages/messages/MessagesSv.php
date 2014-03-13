@@ -2550,7 +2550,8 @@ Se $2 för noteringar om de senaste raderingarna.',
 'delete-edit-reasonlist' => 'Redigera anledningar för radering',
 'delete-toobig' => 'Denna sida har en lång redigeringshistorik med mer än $1 {{PLURAL:$1|sidversion|sidversioner}}. Borttagning av sådana sidor har begränsats för att förhindra oavsiktliga driftstörningar på {{SITENAME}}.',
 'delete-warning-toobig' => 'Denna sida har en lång redigeringshistorik med mer än $1 {{PLURAL:$1|sidversion|sidversioner}}. Att radera sidan kan skapa problem med hanteringen av databasen på {{SITENAME}}; var försiktig.',
-'deleting-backlinks-warning' => "'''Varning:''' Andra sidor länkar till eller inkluderar sidan som du är på väg att radera.",
+'deleting-backlinks-warning' => "'''Varning:'''
+[[Special:WhatLinksHere/{{FULLPAGENAME}}|Andra sidor]] länkar till eller inkluderar sidan som du är på väg att radera.",
 
 # Rollback
 'rollback' => 'Rulla tillbaka ändringar',
@@ -3138,7 +3139,7 @@ Vänligen använd förhandsgranskningsknappen innan du sparar.',
 'tooltip-n-currentevents' => 'Hitta bakgrundsinformation om aktuella händelser',
 'tooltip-n-recentchanges' => 'Lista över senaste ändringar i wikin',
 'tooltip-n-randompage' => 'Gå till en slumpmässigt vald sida',
-'tooltip-n-help' => 'Platsen för att hitta',
+'tooltip-n-help' => 'Platsen där du hittar hjälp',
 'tooltip-t-whatlinkshere' => 'Lista över alla wikisidor som länkar hit',
 'tooltip-t-recentchangeslinked' => 'Visa senaste ändringarna av sidor som den här sidan länkar till',
 'tooltip-feed-rss' => 'RSS-flöde för den här sidan',

@@ -2664,7 +2664,7 @@ $UNWATCHURL
 'delete-warning-toobig' => 'このページには、 $1版を超える編集履歴があります。
 削除すると、{{SITENAME}}のデータベース処理に大きな負荷がかかります。
 十分に注意してください。',
-'deleting-backlinks-warning' => "'''警告:''' 削除しようとしているページは、[Special:WhatLinksHere/{{FULLPAGENAME}}|他のページ]]からリンクまたは参照読み込みされています。",
+'deleting-backlinks-warning' => "'''警告:''' 削除しようとしているページは、[[Special:WhatLinksHere/{{FULLPAGENAME}}|他のページ]]からリンクまたは参照読み込みされています。",
 
 # Rollback
 'rollback' => '編集を巻き戻し',
@@ -4379,13 +4379,13 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'dberr-cachederror' => 'これは要求されたページをキャッシュした複製であり、古くなっている可能性があります。',
 
 # HTML forms
-'htmlform-invalid-input' => '入力に何らかの問題があります',
+'htmlform-invalid-input' => '入力に何らかの問題があります。',
 'htmlform-select-badoption' => '指定した値は有効な選択肢ではありません。',
 'htmlform-int-invalid' => '指定した値は整数ではありません。',
 'htmlform-float-invalid' => '指定した値は数値ではありません。',
-'htmlform-int-toolow' => '指定した値は、最小値 $1 より小さい値です',
-'htmlform-int-toohigh' => '指定した値は、最大値 $1 を超えています',
-'htmlform-required' => 'この値は必須です',
+'htmlform-int-toolow' => '指定した値は、最小値 $1 より小さい値です。',
+'htmlform-int-toohigh' => '指定した値は、最大値 $1 を超えています。',
+'htmlform-required' => 'この値は必須です。',
 'htmlform-submit' => '送信',
 'htmlform-reset' => '変更を取り消す',
 'htmlform-selectorother-other' => 'その他',

@@ -2547,7 +2547,7 @@ Việc xóa các trang như vậy bị hạn chế để ngăn ngừa phá hoạ
 'delete-warning-toobig' => 'Trang này có lịch sử sửa đổi lớn, đến hơn {{PLURAL:$1|lần|lần}} sửa đổi.
 Việc xóa các trang có thể làm tổn hại đến hoạt động của cơ sở dữ liệu {{SITENAME}};
 hãy cẩn trọng khi thực hiện.',
-'deleting-backlinks-warning' => "'''Cảnh báo:''' Có trang khác liên kết đến hoặc nhúng trang mà bạn sắp xóa.",
+'deleting-backlinks-warning' => "'''Cảnh báo:''' Có [[Special:WhatLinksHere/{{FULLPAGENAME}}|trang khác]] liên kết đến hoặc nhúng trang mà bạn sắp xóa.",
 
 # Rollback
 'rollback' => 'Lùi tất cả sửa đổi',

@@ -2273,7 +2273,7 @@ Lë scancelassion ëd pàgine parèj a l'é stàita limità për evité ch'as fa
 'delete-warning-toobig' => "Sta pàgina-sì a l'ha na stòria motobin longa, bele pì che $1 {{PLURAL:$1|revision|revision}}.
 A scancelela as peul fesse darmagi a j'operassion dla base ëd dat ëd {{SITENAME}};
 ch'a daga da ment a lòn ch'a fa.",
-'deleting-backlinks-warning' => "'''Avis:''' D'àutre pàgine a l'han na liurao a transcludo a la pàgina che chiel a veul ëscancelé.",
+'deleting-backlinks-warning' => "'''Avis:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|D'àutre pàgine]] a l'han na liura o a transcludo la pàgina che chiel a veul ëscancelé.",
 
 # Rollback
 'rollback' => 'Gavé via le modìfiche',

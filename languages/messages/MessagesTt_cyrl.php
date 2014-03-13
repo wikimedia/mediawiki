@@ -12,6 +12,7 @@
  * @author Don Alessandro
  * @author Haqmar
  * @author Himiq Dzyu
+ * @author Ilnur efende
  * @author KhayR
  * @author MF-Warburg
  * @author Marat Vildanov
@@ -353,7 +354,7 @@ $messages = array(
 'moredotdotdot' => 'Дәвамы…',
 'morenotlisted' => 'Башка берни дә юк...',
 'mypage' => 'Бит',
-'mytalk' => 'Бәхәс',
+'mytalk' => 'Бәхәс бите',
 'anontalk' => 'Бу IP адресы өчен бәхәс бите',
 'navigation' => 'Күчү',
 'and' => '&#32;һәм',
@@ -694,6 +695,8 @@ $2',
 'login-abort-generic' => 'Системага уңышсыз керү очрагы',
 'loginlanguagelabel' => 'Тел: $1',
 'suspicious-userlogout' => 'Сезнең эшчәнлекне бетерү соравыгыз кире кагылды, чөнки ул ялгыш браузер яисә кэшлаучы прокси аша җибәрелергэ мөмкин.',
+'pt-login' => 'Керү',
+'pt-userlogout' => 'Чыгу',
 
 # Email sending
 'php-mail-error-unknown' => 'PHP mail() функциясендә билгесез хата',
@@ -1340,17 +1343,29 @@ $1",
 'recentchanges-feed-description' => 'Бу агымда соңгы үзгәртүләрне күзәтү.',
 'recentchanges-label-newpage' => 'Бу үзгәртү белән яңа бит төзелде',
 'recentchanges-label-minor' => 'Бу кече үзгәртү',
-'recentchanges-label-bot' => 'Бу үзгәртү бот белән эшләнгән иде',
+'recentchanges-label-bot' => 'Бу үзгәртү бот белән эшләнгән',
 'recentchanges-label-unpatrolled' => 'Үзгәртүне әлегә тикшермәгәннәр',
+'recentchanges-label-plusminus' => 'Битнең зурлыгы шуның кадәрле байтка үзгәрде',
 'recentchanges-legend-newpage' => '([[Special:NewPages|яңа бит]])',
 'rcnotefrom' => "Астарак '''$2''' башлап ('''$1''' кадәр) үзгәртүләр күрсәтелгән.",
 'rclistfrom' => '$1 башлап яңа үзгәртүләрне күрсәт',
 'rcshowhideminor' => 'кече үзгәртүләрне $1',
+'rcshowhideminor-show' => 'Күрсәтергә',
+'rcshowhideminor-hide' => 'Яшерергә',
 'rcshowhidebots' => 'ботларны $1',
-'rcshowhideliu' => '$1 кергән кулланучылар',
+'rcshowhidebots-show' => 'Күрсәтергә',
+'rcshowhidebots-hide' => 'Яшерергә',
+'rcshowhideliu' => '$1 теркәлгән кулланучыларны яшерергә',
+'rcshowhideliu-show' => 'Күрсәтергә',
+'rcshowhideliu-hide' => 'Яшерергә',
 'rcshowhideanons' => 'кермәгән кулланучыларны $1',
+'rcshowhideanons-show' => 'Күрсәтергә',
+'rcshowhideanons-hide' => 'Яшерергә',
 'rcshowhidepatr' => 'тикшерелгән үзгәртүләрне $1',
+'rcshowhidepatr-hide' => 'Яшерергә',
 'rcshowhidemine' => 'минем үзгәртүләремне $1',
+'rcshowhidemine-show' => 'Күрсәтергә',
+'rcshowhidemine-hide' => 'Яшерергә',
 'rclinks' => 'Соңгы $2 көн эчендә соңгы $1 үзгәртүне күрсәт<br />$3',
 'diff' => 'аерма',
 'hist' => 'тарих',

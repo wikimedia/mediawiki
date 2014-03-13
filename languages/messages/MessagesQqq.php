@@ -2648,17 +2648,16 @@ See also:
 * {{msg-mw|Revdelete-reason-dropdown|item list for dropdown|notext=1}}
 * {{msg-mw|Revdelete-reasonotherlist|item in dropdown}}
 * {{msg-mw|Revdelete-submit|submit button}}',
-'revdelete-reasonotherlist' => '{{Identical|Other reason}}
-{{RevisionDelete}}
+'revdelete-reasonotherlist' => '{{RevisionDelete}}
 Used as an item in dropdown.
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
-
 See also:
 * {{msg-mw|Revdelete-legend|legend for the form}}
 * {{msg-mw|Revdelete-log|label for dropdown}}
 * {{msg-mw|Revdelete-reason-dropdown|item list for dropdown|notext=1}}
 * {{msg-mw|Revdelete-otherreason|label for input box}}
-* {{msg-mw|Revdelete-submit|submit button}}',
+* {{msg-mw|Revdelete-submit|submit button}}
+{{Identical|Other reason}}',
 'revdelete-edit-reasonlist' => '{{Identical|Edit delete reasons}}
 {{RevisionDelete}}
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',

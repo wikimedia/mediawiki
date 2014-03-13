@@ -1594,7 +1594,7 @@ Toute personne la connaissant pourra lire votre liste de suivi, ne la communique
 'prefs-files' => 'Fichiers',
 'prefs-custom-css' => 'CSS personnalisé',
 'prefs-custom-js' => 'JavaScript personnalisé',
-'prefs-common-css-js' => 'JavaScript et CSS partagé pour tous les habillages :',
+'prefs-common-css-js' => 'CSS et JavaScript communs à tous les habillages :',
 'prefs-reset-intro' => 'Vous pouvez utiliser cette page pour restaurer vos préférences aux valeurs par défaut du site. Ceci ne peut pas être défait.',
 'prefs-emailconfirm-label' => 'Confirmation du courriel :',
 'youremail' => 'Courriel :',

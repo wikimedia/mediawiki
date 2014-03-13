@@ -226,7 +226,7 @@ $messages = array(
 'edit' => 'Urnosen',
 'create' => 'Agaramid',
 'editthispage' => 'Urnosen daytoy a panid',
-'create-this-page' => 'Aramidem daytoy a panid',
+'create-this-page' => 'Partuaten daytoy a panid',
 'delete' => 'Ikkaten',
 'deletethispage' => 'Ikkaten daytoy a panid',
 'undeletethispage' => 'Isubli ti pannakaikkat daytoy a panid',
@@ -880,7 +880,7 @@ Mabalinmo ti agsubli ken urnosen ti adda a panid, wenno [[Special:UserLogin|sumr
 'sectioneditnotsupported-text' => 'Saan a nasuportaran ti panag-urnos ti paset iti daytoy a panid.',
 'permissionserrors' => 'Biddut ti pammalubos',
 'permissionserrorstext' => 'Awan ti pammalubosmo nga agaramid iti dayta, gapu ti sumaganad {{PLURAL:$1|a rason|a rasrason}}:',
-'permissionserrorstext-withaction' => 'Awan ti pammalubosmo nga $2, gapu ti sumaganad {{PLURAL:$1|a rason|rasrason}}:',
+'permissionserrorstext-withaction' => 'Awan ti pammalubosmo nga $2, gapu ti sumaganad a {{PLURAL:$1|rason|rasrason}}:',
 'recreate-moveddeleted-warn' => "'''Ballaag: Agparpartuatka manen ti dati a naikkat a panid'''
 
 Nasken a siguraduem no maikanatad nga ituloymo nga urnosen daytoy a panid.
@@ -1436,7 +1436,7 @@ Ti esurat a pagtaengam ket saan a maipakita kadagiti agar-aramat nga agkontak ke
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'basaen datoy a panid',
-'action-edit' => 'urnosen datoy a panid',
+'action-edit' => 'agurnos iti datoy a panid',
 'action-createpage' => 'agpartuat kadagiti panid',
 'action-createtalk' => 'agaramid kadagiti pagtungtungan a panid',
 'action-createaccount' => 'agpartuat ti pakabilangan daytoy nga agar-aramat',
