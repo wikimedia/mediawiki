@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (46ccd5b3a7)
+ * OOjs UI v0.1.0-pre (5345806a96)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Mar 12 2014 17:44:18 GMT-0700 (PDT)
+ * Date: Thu Mar 13 2014 16:44:56 GMT-0700 (PDT)
  */
 ( function () {
 
@@ -2459,6 +2459,7 @@ OO.ui.IndicatedElement.prototype.getIndicatorTitle = function () {
  * @param {jQuery} $label Label node, assigned to #$label
  * @param {Object} [config] Configuration options
  * @cfg {jQuery|string|Function} [label] Label nodes, text or a function that returns nodes or text
+ * @cfg {bool} [autoFitLabel=true] Whether to fit the label or not.
  */
 OO.ui.LabeledElement = function OoUiLabeledElement( $label, config ) {
 	// Config intialization
@@ -2471,6 +2472,7 @@ OO.ui.LabeledElement = function OoUiLabeledElement( $label, config ) {
 	// Initialization
 	this.$label.addClass( 'oo-ui-labeledElement-label' );
 	this.setLabel( config.label || this.constructor.static.label );
+	this.autoFitLabel = config.autoFitLabel === undefined || !!config.autoFitLabel;
 };
 
 /* Static Properties */
@@ -2541,7 +2543,7 @@ OO.ui.LabeledElement.prototype.getLabel = function () {
  * @chainable
  */
 OO.ui.LabeledElement.prototype.fitLabel = function () {
-	if ( this.$label.autoEllipsis ) {
+	if ( this.$label.autoEllipsis && this.autoFitLabel ) {
 		this.$label.autoEllipsis( { 'hasSpan': false, 'tooltip': true } );
 	}
 	return this;
