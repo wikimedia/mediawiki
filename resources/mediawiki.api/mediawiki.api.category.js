@@ -21,7 +21,6 @@
 				titles: String( title )
 			} );
 
-			// Backwards compatibility (< MW 1.20)
 			if ( ok || err ) {
 				mw.track( 'mw.deprecate', 'api.cbParam' );
 				mw.log.warn( msg );
@@ -64,7 +63,6 @@
 				apnamespace: mw.config.get( 'wgNamespaceIds' ).category
 			} );
 
-			// Backwards compatibility (< MW 1.20)
 			if ( ok || err ) {
 				mw.track( 'mw.deprecate', 'api.cbParam' );
 				mw.log.warn( msg );
@@ -91,7 +89,7 @@
 		 * @param {mw.Title|string} title
 		 * @param {Function} [ok] Success callback (deprecated)
 		 * @param {Function} [err] Error callback (deprecated)
-		 * @param {boolean} [async=true] Asynchronousness
+		 * @param {boolean} [async=true] Asynchronousness (deprecated)
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
 		 * @return {boolean|mw.Title[]} return.done.categories List of category titles or false
@@ -105,10 +103,16 @@
 				async: async === undefined ? true : async
 			} );
 
-			// Backwards compatibility (< MW 1.20)
 			if ( ok || err ) {
 				mw.track( 'mw.deprecate', 'api.cbParam' );
 				mw.log.warn( msg );
+			}
+			if ( async !== undefined ) {
+				mw.track( 'mw.deprecate', 'api.async' );
+				mw.log.warn(
+					'Use of mediawiki.api async=false param is deprecated. ' +
+					'The sychronous mode will be removed in the future.'
+				);
 			}
 
 			return apiPromise
