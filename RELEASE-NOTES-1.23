@@ -130,6 +130,8 @@ production.
 * Added BaseTemplateAfterPortlet hook to allow injecting html after portlets in skins.
 * Support has been added for a JSON based localisation file format. The
   installer has been updated to use it.
+* Special:ProtectedTitles shows now a table. The timestamp, the reason and
+  the protecting user is also shown.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
