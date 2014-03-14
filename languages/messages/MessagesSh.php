@@ -31,6 +31,29 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Razgovor_o_kategoriji',
 );
 
+$namespaceAliases = array(
+	'Корисник'                => NS_USER,
+	'Разговор_са_корисником'  => NS_USER_TALK,
+	'Suradnik'                => NS_USER,
+	'Razgovor_sa_suradnikom'  => NS_USER_TALK,
+	'Slika'                   => NS_FILE,
+	'Razgovor_o_slici'        => NS_FILE_TALK,
+	'Слика'                   => NS_FILE,
+	'Разговор_о_слици'        => NS_FILE_TALK,
+	'Medijaviki'              => NS_MEDIAWIKI,
+	'Razgovor_o_Medijavikiju' => NS_MEDIAWIKI_TALK,
+	'Медијавики'              => NS_MEDIAWIKI,
+	'Разговор_о_Медијавикију' => NS_MEDIAWIKI_TALK,
+	'Шаблон'                  => NS_TEMPLATE,
+	'Разговор_о_шаблону'      => NS_TEMPLATE_TALK,
+	'Predložak'               => NS_TEMPLATE,
+	'Razgovor_o_predlošku'    => NS_TEMPLATE_TALK,
+	'Помоћ'                   => NS_HELP,
+	'Разговор_о_помоћи'       => NS_HELP_TALK,
+	'Категорија'              => NS_CATEGORY,
+	'Разговор_о_Категорији'   => NS_CATEGORY_TALK,
+);
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Aktivni_korisnici' ),
 	'Allmessages'               => array( 'Sve_poruke' ),
