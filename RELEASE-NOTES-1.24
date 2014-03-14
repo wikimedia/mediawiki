@@ -24,6 +24,8 @@ changes to languages because of Bugzilla reports.
 
 === Other changes in 1.24 ===
 * The deprecated jquery.delayedBind ResourceLoader module was removed.
+* Deprecated 'ok', 'err' and 'async' parameters to several functions in
+  mediawiki.api.* ResourceLoader modules have been removed.
 
 == Compatibility ==
 
