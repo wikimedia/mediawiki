@@ -5,7 +5,7 @@
 
 	$.extend( mw.Api.prototype, {
 		/**
-		 * Convinience method for 'action=parse'.
+		 * Convenience method for 'action=parse'.
 		 *
 		 * @param {string} wikitext
 		 * @param {Function} [ok] Success callback (deprecated)
