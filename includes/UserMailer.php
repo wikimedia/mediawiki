@@ -262,8 +262,7 @@ class UserMailer {
 				wfDebug( "PEAR Mail_Mime package is not installed. Falling back to text email.\n" );
 				// remove the html body for text email fall back
 				$body = $body['text'];
-			}
-			else {
+			} else {
 				require_once 'Mail/mime.php';
 				if ( wfIsWindows() ) {
 					$body['text'] = str_replace( "\n", "\r\n", $body['text'] );
