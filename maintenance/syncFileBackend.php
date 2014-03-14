@@ -221,6 +221,9 @@ class SyncFileBackend extends Maintenance {
 			return $status;
 		}
 
+		$src->preloadFileStat( array( 'srcs' => $sPaths, 'latest' => 1 ) );
+		$dst->preloadFileStat( array( 'srcs' => $dPaths, 'latest' => 1 ) );
+
 		$ops = array();
 		$fsFiles = array();
 		foreach ( $sPaths as $i => $sPath ) {
