@@ -205,8 +205,7 @@ class CacheHelper implements ICacheHelper {
 				'cachedspecial-viewing-cached-ttl',
 				$context->getLanguage()->formatDuration( $this->cacheExpiry )
 			)->escaped();
-		}
-		else {
+		} else {
 			$message = $context->msg(
 				'cachedspecial-viewing-cached-ts'
 			)->escaped();
@@ -277,25 +276,20 @@ class CacheHelper implements ICacheHelper {
 
 				if ( !is_integer( $itemKey ) ) {
 					wfWarn( "Attempted to get item with non-numeric key while the next item in the queue has a key ($itemKey) in " . __METHOD__ );
-				}
-				elseif ( is_null( $itemKey ) ) {
+				} elseif ( is_null( $itemKey ) ) {
 					wfWarn( "Attempted to get an item while the queue is empty in " . __METHOD__ );
-				}
-				else {
+				} else {
 					$value = array_shift( $this->cachedChunks );
 				}
-			}
-			else {
+			} else {
 				if ( array_key_exists( $key, $this->cachedChunks ) ) {
 					$value = $this->cachedChunks[$key];
 					unset( $this->cachedChunks[$key] );
-				}
-				else {
+				} else {
 					wfWarn( "There is no item with key '$key' in this->cachedChunks in " . __METHOD__ );
 				}
 			}
-		}
-		else {
+		} else {
 			if ( !is_array( $args ) ) {
 				$args = array( $args );
 			}
@@ -305,8 +299,7 @@ class CacheHelper implements ICacheHelper {
 			if ( $this->cacheEnabled ) {
 				if ( is_null( $key ) ) {
 					$this->cachedChunks[] = $value;
-				}
-				else {
+				} else {
 					$this->cachedChunks[$key] = $value;
 				}
 			}
