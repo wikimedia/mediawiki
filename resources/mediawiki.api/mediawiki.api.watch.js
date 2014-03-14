@@ -24,7 +24,7 @@
 	 */
 	function doWatchInternal( pages, ok, err, addParams ) {
 		// XXX: Parameter addParams is undocumented because we inherit this
-		// documentation in the public method..
+		// documentation in the public method...
 		var apiPromise = this.post(
 			$.extend(
 				{
@@ -70,7 +70,6 @@
 		unwatch: function ( pages, ok, err ) {
 			return doWatchInternal.call( this, pages, ok, err, { unwatch: 1 } );
 		}
-
 	} );
 
 	/**
