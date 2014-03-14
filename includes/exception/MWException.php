@@ -208,7 +208,9 @@ class MWException extends Exception {
 	public function reportHTML() {
 		global $wgOut;
 		if ( $this->useOutputPage() ) {
-			$wgOut->prepareErrorPage( $this->getPageTitle() );
+			// Set HTML title as well since otherwise OutputPage will apply
+			// pagetitle again ($1 - sitename) which getPageTitle() already did.
+			$wgOut->prepareErrorPage( $this->getPageTitle(), /* $getHTMLTitle= */ $this->getPageTitle() );
 
 			$hookResult = $this->runHooks( get_class( $this ) );
 			if ( $hookResult ) {
