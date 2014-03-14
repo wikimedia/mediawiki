@@ -7,7 +7,8 @@
 	$.extend( mw.Api.prototype, {
 		/**
 		 * Determine if a category exists.
-		 * @param {mw.Title} title
+		 *
+		 * @param {mw.Title|string} title
 		 * @param {Function} [ok] Success callback (deprecated)
 		 * @param {Function} [err] Error callback (deprecated)
 		 * @return {jQuery.Promise}
@@ -46,7 +47,7 @@
 		/**
 		 * Get a list of categories that match a certain prefix.
 		 *
-		 * E.g. given "Foo", return "Food", "Foolish people", "Foosball tables" ...
+		 * E.g. given "Foo", return "Food", "Foolish people", "Foosball tables"...
 		 *
 		 * @param {string} prefix Prefix to match.
 		 * @param {Function} [ok] Success callback (deprecated)
@@ -56,6 +57,7 @@
 		 * @return {string[]} return.done.categories Matched categories
 		 */
 		getCategoriesByPrefix: function ( prefix, ok, err ) {
+			// Fetch with allpages to only get categories that have a corresponding description page.
 			var apiPromise = this.get( {
 				list: 'allpages',
 				apprefix: prefix,
@@ -68,7 +70,6 @@
 				mw.log.warn( msg );
 			}
 
-			// Fetch with allpages to only get categories that have a corresponding description page.
 			return apiPromise
 				.then( function ( data ) {
 					var texts = [];
@@ -84,9 +85,9 @@
 				.promise( { abort: apiPromise.abort } );
 		},
 
-
 		/**
-		 * Get the categories that a particular page on the wiki belongs to
+		 * Get the categories that a particular page on the wiki belongs to.
+		 *
 		 * @param {mw.Title} title
 		 * @param {Function} [ok] Success callback (deprecated)
 		 * @param {Function} [err] Error callback (deprecated)
@@ -131,7 +132,6 @@
 				.fail( err )
 				.promise( { abort: apiPromise.abort } );
 		}
-
 	} );
 
 	/**

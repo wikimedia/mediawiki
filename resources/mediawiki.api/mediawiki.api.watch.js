@@ -24,7 +24,7 @@
 	 */
 	function doWatchInternal( pages, ok, err, addParams ) {
 		// XXX: Parameter addParams is undocumented because we inherit this
-		// documentation in the public method..
+		// documentation in the public method...
 		var apiPromise = this.post(
 			$.extend(
 				{
@@ -37,6 +37,7 @@
 			)
 		);
 
+		// Backwards compatibility (< MW 1.20)
 		if ( ok || err ) {
 			mw.track( 'mw.deprecate', 'api.cbParam' );
 			mw.log.warn( 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.' );
@@ -69,7 +70,6 @@
 		unwatch: function ( pages, ok, err ) {
 			return doWatchInternal.call( this, pages, ok, err, { unwatch: 1 } );
 		}
-
 	} );
 
 	/**
