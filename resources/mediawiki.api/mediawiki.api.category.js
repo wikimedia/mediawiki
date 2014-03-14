@@ -3,29 +3,20 @@
  */
 ( function ( mw, $ ) {
 
-	var msg = 'Use of mediawiki.api callback params is deprecated. Use the Promise instead.';
 	$.extend( mw.Api.prototype, {
 		/**
 		 * Determine if a category exists.
 		 *
 		 * @param {mw.Title|string} title
-		 * @param {Function} [ok] Success callback (deprecated)
-		 * @param {Function} [err] Error callback (deprecated)
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
 		 * @return {boolean} return.done.isCategory Whether the category exists.
 		 */
-		isCategory: function ( title, ok, err ) {
+		isCategory: function ( title ) {
 			var apiPromise = this.get( {
 				prop: 'categoryinfo',
 				titles: title.toString()
 			} );
-
-			// Backwards compatibility (< MW 1.20)
-			if ( ok || err ) {
-				mw.track( 'mw.deprecate', 'api.cbParam' );
-				mw.log.warn( msg );
-			}
 
 			return apiPromise
 				.then( function ( data ) {
@@ -39,8 +30,6 @@
 					}
 					return exists;
 				} )
-				.done( ok )
-				.fail( err )
 				.promise( { abort: apiPromise.abort } );
 		},
 
@@ -50,25 +39,17 @@
 		 * E.g. given "Foo", return "Food", "Foolish people", "Foosball tables"...
 		 *
 		 * @param {string} prefix Prefix to match.
-		 * @param {Function} [ok] Success callback (deprecated)
-		 * @param {Function} [err] Error callback (deprecated)
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
 		 * @return {string[]} return.done.categories Matched categories
 		 */
-		getCategoriesByPrefix: function ( prefix, ok, err ) {
+		getCategoriesByPrefix: function ( prefix ) {
 			// Fetch with allpages to only get categories that have a corresponding description page.
 			var apiPromise = this.get( {
 				list: 'allpages',
 				apprefix: prefix,
 				apnamespace: mw.config.get( 'wgNamespaceIds' ).category
 			} );
-
-			// Backwards compatibility (< MW 1.20)
-			if ( ok || err ) {
-				mw.track( 'mw.deprecate', 'api.cbParam' );
-				mw.log.warn( msg );
-			}
 
 			return apiPromise
 				.then( function ( data ) {
@@ -80,8 +61,6 @@
 					}
 					return texts;
 				} )
-				.done( ok )
-				.fail( err )
 				.promise( { abort: apiPromise.abort } );
 		},
 
@@ -89,32 +68,16 @@
 		 * Get the categories that a particular page on the wiki belongs to.
 		 *
 		 * @param {mw.Title} title
-		 * @param {Function} [ok] Success callback (deprecated)
-		 * @param {Function} [err] Error callback (deprecated)
-		 * @param {boolean} [async=true] Asynchronousness (deprecated)
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
 		 * @return {boolean|mw.Title[]} return.done.categories List of category titles or false
 		 *  if title was not found.
 		 */
-		getCategories: function ( title, ok, err, async ) {
+		getCategories: function ( title ) {
 			var apiPromise = this.get( {
 				prop: 'categories',
 				titles: title.toString()
-			}, {
-				async: async === undefined ? true : async
 			} );
-
-			// Backwards compatibility (< MW 1.20)
-			if ( ok || err ) {
-				mw.track( 'mw.deprecate', 'api.cbParam' );
-				mw.log.warn( msg );
-			}
-			// Backwards compatibility (< MW 1.23)
-			if ( async !== undefined ) {
-				mw.track( 'mw.deprecate', 'api.async' );
-				mw.log.warn( 'Use of mediawiki.api async params is deprecated' );
-			}
 
 			return apiPromise
 				.then( function ( data ) {
@@ -133,8 +96,6 @@
 					}
 					return titles;
 				} )
-				.done( ok )
-				.fail( err )
 				.promise( { abort: apiPromise.abort } );
 		}
 	} );
