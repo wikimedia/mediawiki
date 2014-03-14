@@ -1579,7 +1579,9 @@ This message is used in html.
 'createacct-another-realname-tip' => "{{doc-singularthey}}
 Used on the account creation form when creating another user's account. Similar to {{msg-mw|prefs-help-realname}}.
 {{Identical|Real name attribution}}",
-'pt-login' => "Shown as the caption of the button at [[Special:UserLogin]], and also to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg-mw|nav-login-createaccount}} is shown there)
+'pt-login' => "Shown to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg-mw|nav-login-createaccount}} is shown there).
+{{Identical|Log in}}",
+'pt-login-button' => "Shown as the caption of the button at [[Special:UserLogin]].
 {{Identical|Log in}}",
 'pt-createaccount' => 'Used on the top of the page for logged out users, where it appears next to {{msg-mw|login}}, so consider making them similar.
 {{Identical|Create account}}',

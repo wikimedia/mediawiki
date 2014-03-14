@@ -1252,6 +1252,7 @@ Please wait $1 before trying again.',
 'createacct-another-realname-tip' => 'Real name is optional.
 If you choose to provide it, this will be used for giving the user attribution for their work.',
 'pt-login'                        => 'Log in',
+'pt-login-button'                 => 'Log in',
 'pt-createaccount'                => 'Create account',
 'pt-userlogout'                   => 'Log out',
 
