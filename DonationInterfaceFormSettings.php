@@ -10,12 +10,16 @@ $form_dirs = array(
 	'gc' => $wgGlobalCollectGatewayHtmlFormDir,
 	'paypal' => $wgPaypalGatewayHtmlFormDir,
 	'amazon' => $wgAmazonGatewayHtmlFormDir,
+	'worldpay' => $wgWorldPayGatewayHtmlFormDir,
 //	'pfp' => $wgPayflowProGatewayHtmlFormDir,
 );
 
 // If it's not enabled we don't ever set this variable.
 if ( $wgDonationInterfaceEnableAdyen === true ) {
 	$form_dirs['adyen'] = $wgAdyenGatewayHtmlFormDir;
+}
+if ( $wgDonationInterfaceEnableWorldPay === true ) {
+	$form_dirs['worldpay'] = $wgWorldPayGatewayHtmlFormDir;
 }
 
 /**********
@@ -465,6 +469,29 @@ if ( $wgDonationInterfaceEnableAdyen === true ) {
 	$forms_whitelist['adyen'] = array(
 		'file' => $form_dirs['adyen'] . '/adyen.html',
 		'gateway' => 'adyen',
+		'countries' => array( '+' => 'US',),
+		'currencies' => array( '+' => 'USD',),
+		'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'discover' )),
+		'selection_weight' => 0
+	);
+	$forms_whitelist['adyen-cs'] = array(
+		'file' => $form_dirs['adyen'] . '/adyen-cs.html',
+		'gateway' => 'adyen',
+		'countries' => array( '+' => 'US',),
+		'currencies' => array( '+' => 'USD',),
+		'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'discover' )),
+		'selection_weight' => 0
+	);
+}
+
+/**********
+ * WorldPay *
+ **********/
+// This is at the bottom so that we prefer GC over adyen
+if ( $wgDonationInterfaceEnableWorldPay === true ) {
+	$forms_whitelist['worldpay'] = array(
+		'file' => $form_dirs['worldpay'] . '/worldpay.html',
+		'gateway' => 'worldpay',
 		'countries' => array( '+' => 'US',),
 		'currencies' => array( '+' => 'USD',),
 		'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'discover' )),
