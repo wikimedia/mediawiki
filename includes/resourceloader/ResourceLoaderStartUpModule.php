@@ -151,24 +151,22 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// seem to do that, and custom implementations might forget. Coerce it to TS_UNIX
 			$moduleMtime = wfTimestamp( TS_UNIX, $module->getModifiedTime( $context ) );
 			$mtime = max( $moduleMtime, wfTimestamp( TS_UNIX, $wgCacheEpoch ) );
-			// Modules without dependencies, a group or a foreign source pass two arguments (name, timestamp) to
-			// mw.loader.register()
+
 			if ( !count( $deps ) && $group === null && $source === 'local' ) {
+				// Modules without dependencies, a group or a foreign source pass two arguments (name, timestamp) to
+				// mw.loader.register()
 				$registrations[] = array( $name, $mtime );
-			}
-			// Modules with dependencies but no group or foreign source pass three arguments
-			// (name, timestamp, dependencies) to mw.loader.register()
-			elseif ( $group === null && $source === 'local' ) {
+			} elseif ( $group === null && $source === 'local' ) {
+				// Modules with dependencies but no group or foreign source pass three arguments
+				// (name, timestamp, dependencies) to mw.loader.register()
 				$registrations[] = array( $name, $mtime, $deps );
-			}
-			// Modules with a group but no foreign source pass four arguments (name, timestamp, dependencies, group)
-			// to mw.loader.register()
-			elseif ( $source === 'local' ) {
+			} elseif ( $source === 'local' ) {
+				// Modules with a group but no foreign source pass four arguments (name, timestamp, dependencies, group)
+				// to mw.loader.register()
 				$registrations[] = array( $name, $mtime, $deps, $group );
-			}
-			// Modules with a foreign source pass five arguments (name, timestamp, dependencies, group, source)
-			// to mw.loader.register()
-			else {
+			} else {
+				// Modules with a foreign source pass five arguments (name, timestamp, dependencies, group, source)
+				// to mw.loader.register()
 				$registrations[] = array( $name, $mtime, $deps, $group, $source );
 			}
 		}

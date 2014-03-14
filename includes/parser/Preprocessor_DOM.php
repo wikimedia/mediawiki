@@ -1144,14 +1144,12 @@ class PPFrame_DOM implements PPFrame {
 						|| ( $flags & PPFrame::STRIP_COMMENTS )
 					) {
 						$out .= '';
-					}
-					# Add a strip marker in PST mode so that pstPass2() can run some old-fashioned regexes on the result
-					# Not in RECOVER_COMMENTS mode (extractSections) though
-					elseif ( $this->parser->ot['wiki'] && !( $flags & PPFrame::RECOVER_COMMENTS ) ) {
+					} elseif ( $this->parser->ot['wiki'] && !( $flags & PPFrame::RECOVER_COMMENTS ) ) {
+						# Add a strip marker in PST mode so that pstPass2() can run some old-fashioned regexes on the result
+						# Not in RECOVER_COMMENTS mode (extractSections) though
 						$out .= $this->parser->insertStripItem( $contextNode->textContent );
-					}
+					} else {
 					# Recover the literal comment in RECOVER_COMMENTS and pre+no-remove
-					else {
 						$out .= $contextNode->textContent;
 					}
 				} elseif ( $contextNode->nodeName == 'ignore' ) {

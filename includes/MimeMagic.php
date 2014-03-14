@@ -508,8 +508,7 @@ class MimeMagic {
 				// trust the file extension
 				$mime = $this->guessTypesForExtension( $ext );
 			}
-		}
-		elseif ( $mime === 'application/x-opc+zip' ) {
+		} elseif ( $mime === 'application/x-opc+zip' ) {
 			if ( $this->isMatchingExtension( $ext, $mime ) ) {
 				// A known file extension for an OPC file,
 				// find the proper mime type for that file extension
