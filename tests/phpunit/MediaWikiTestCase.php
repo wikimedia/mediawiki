@@ -586,9 +586,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 */
 	public function __call( $func, $args ) {
 		static $compatibility = array(
-			'assertInternalType' => 'assertType', // assertInternalType was added in phpunit 3.5.0
-			'assertNotInternalType' => 'assertNotType', // assertNotInternalType was added in phpunit 3.5.0
-			'assertInstanceOf' => 'assertType', // assertInstanceOf was added in phpunit 3.5.0
 			'assertEmpty' => 'assertEmpty2', // assertEmpty was added in phpunit 3.7.32
 		);
 
