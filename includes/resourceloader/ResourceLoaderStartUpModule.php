@@ -42,7 +42,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname,
 			$wgSitename, $wgFileExtensions, $wgExtensionAssetsPath,
 			$wgCookiePrefix, $wgResourceLoaderMaxQueryLength,
-			$wgResourceLoaderStorageEnabled, $wgResourceLoaderStorageVersion;
+			$wgResourceLoaderStorageEnabled, $wgResourceLoaderStorageVersion,
+			$wgSearchType;
 
 		$mainPage = Title::newMainPage();
 
@@ -71,6 +72,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgScriptPath' => $wgScriptPath,
 			'wgScriptExtension' => $wgScriptExtension,
 			'wgScript' => $wgScript,
+			'wgSearchType' => $wgSearchType,
 			'wgVariantArticlePath' => $wgVariantArticlePath,
 			// Force object to avoid "empty" associative array from
 			// becoming [] instead of {} in JS (bug 34604)
