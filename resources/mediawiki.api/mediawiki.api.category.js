@@ -91,7 +91,7 @@
 		 * @param {mw.Title|string} title
 		 * @param {Function} [ok] Success callback (deprecated)
 		 * @param {Function} [err] Error callback (deprecated)
-		 * @param {boolean} [async=true] Asynchronousness
+		 * @param {boolean} [async=true] Asynchronousness (deprecated)
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
 		 * @return {boolean|mw.Title[]} return.done.categories List of category titles or false
@@ -109,6 +109,11 @@
 			if ( ok || err ) {
 				mw.track( 'mw.deprecate', 'api.cbParam' );
 				mw.log.warn( msg );
+			}
+			// Backwards compatibility (< MW 1.23)
+			if ( async !== undefined ) {
+				mw.track( 'mw.deprecate', 'api.async' );
+				mw.log.warn( 'Use of mediawiki.api async params is deprecated' );
 			}
 
 			return apiPromise
