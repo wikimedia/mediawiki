@@ -7,7 +7,8 @@
 	$.extend( mw.Api.prototype, {
 		/**
 		 * Determine if a category exists.
-		 * @param {mw.Title} title
+		 *
+		 * @param {mw.Title|string} title
 		 * @param {Function} [ok] Success callback (deprecated)
 		 * @param {Function} [err] Error callback (deprecated)
 		 * @return {jQuery.Promise}
@@ -46,7 +47,7 @@
 		/**
 		 * Get a list of categories that match a certain prefix.
 		 *
-		 * E.g. given "Foo", return "Food", "Foolish people", "Foosball tables" ...
+		 * E.g. given "Foo", return "Food", "Foolish people", "Foosball tables"...
 		 *
 		 * @param {string} prefix Prefix to match.
 		 * @param {Function} [ok] Success callback (deprecated)
@@ -84,10 +85,10 @@
 				.promise( { abort: apiPromise.abort } );
 		},
 
-
 		/**
-		 * Get the categories that a particular page on the wiki belongs to
-		 * @param {mw.Title} title
+		 * Get the categories that a particular page on the wiki belongs to.
+		 *
+		 * @param {mw.Title|string} title
 		 * @param {Function} [ok] Success callback (deprecated)
 		 * @param {Function} [err] Error callback (deprecated)
 		 * @param {boolean} [async=true] Asynchronousness
@@ -131,7 +132,6 @@
 				.fail( err )
 				.promise( { abort: apiPromise.abort } );
 		}
-
 	} );
 
 	/**
