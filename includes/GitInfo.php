@@ -82,18 +82,18 @@ class GitInfo {
 	 * @return string The HEAD
 	 */
 	public function getHead() {
-		$HEADfile = "{$this->basedir}/HEAD";
+		$headFile = "{$this->basedir}/HEAD";
 
-		if ( !is_readable( $HEADfile ) ) {
+		if ( !is_readable( $headFile ) ) {
 			return false;
 		}
 
-		$HEAD = file_get_contents( $HEADfile );
+		$head = file_get_contents( $headFile );
 
-		if ( preg_match( "/ref: (.*)/", $HEAD, $m ) ) {
+		if ( preg_match( "/ref: (.*)/", $head, $m ) ) {
 			return rtrim( $m[1] );
 		} else {
-			return rtrim( $HEAD );
+			return rtrim( $head );
 		}
 	}
 
@@ -102,20 +102,20 @@ class GitInfo {
 	 * @return string A SHA1 or false
 	 */
 	public function getHeadSHA1() {
-		$HEAD = $this->getHead();
+		$head = $this->getHead();
 
 		// If detached HEAD may be a SHA1
-		if ( self::isSHA1( $HEAD ) ) {
-			return $HEAD;
+		if ( self::isSHA1( $head ) ) {
+			return $head;
 		}
 
 		// If not a SHA1 it may be a ref:
-		$REFfile = "{$this->basedir}/{$HEAD}";
-		if ( !is_readable( $REFfile ) ) {
+		$refFile = "{$this->basedir}/{$head}";
+		if ( !is_readable( $refFile ) ) {
 			return false;
 		}
 
-		$sha1 = rtrim( file_get_contents( $REFfile ) );
+		$sha1 = rtrim( file_get_contents( $refFile ) );
 
 		return $sha1;
 	}
@@ -150,11 +150,11 @@ class GitInfo {
 	 * @return string The branch name, HEAD, or false
 	 */
 	public function getCurrentBranch() {
-		$HEAD = $this->getHead();
-		if ( $HEAD && preg_match( "#^refs/heads/(.*)$#", $HEAD, $m ) ) {
+		$head = $this->getHead();
+		if ( $head && preg_match( "#^refs/heads/(.*)$#", $head, $m ) ) {
 			return $m[1];
 		} else {
-			return $HEAD;
+			return $head;
 		}
 	}
 
