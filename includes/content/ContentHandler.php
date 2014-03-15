@@ -772,6 +772,12 @@ abstract class ContentHandler {
 			$truncatedtext = $newContent->getTextForSummary(
 				200 - strlen( wfMessage( 'autosumm-new' )->inContentLanguage()->text() ) );
 
+			// Check if new property was created
+			if(preg_match("/\bThis is a property of type\b(.*)/", $truncatedtext,$matches))
+			{
+				return wfMessage( 'autosumm-new-prop' )->rawParams( $matches[1] )
+					->inContentLanguage()->text();
+			}
 			return wfMessage( 'autosumm-new' )->rawParams( $truncatedtext )
 				->inContentLanguage()->text();
 		}

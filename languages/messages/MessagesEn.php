@@ -4696,6 +4696,7 @@ Please confirm that you really want to recreate this page.',
 'autosumm-replace' => 'Replaced content with "$1"',
 'autoredircomment' => 'Redirected page to [[$1]]',
 'autosumm-new'     => 'Created page with "$1"',
+'autosumm-new-prop'=> 'Created a property of type $1',
 
 # Autoblock whitelist
 'autoblock_whitelist' => 'AOL http://webmaster.info.aol.com/proxyinfo.html
