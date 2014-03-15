@@ -70,16 +70,26 @@ class WatchedItem {
 		return $this->mTitle;
 	}
 
-	/** Helper to retrieve the title namespace */
+	/**
+	 * Helper to retrieve the title namespace
+	 * @return int
+	 */
 	protected function getTitleNs() {
 		return $this->getTitle()->getNamespace();
 	}
 
-	/** Helper to retrieve the title DBkey */
+	/**
+	 * Helper to retrieve the title DBkey
+	 * @return string
+	 */
 	protected function getTitleDBkey() {
 		return $this->getTitle()->getDBkey();
 	}
-	/** Helper to retrieve the user id */
+
+	/**
+	 * Helper to retrieve the user id
+	 * @return int
+	 */
 	protected function getUserId() {
 		return $this->mUser->getId();
 	}
