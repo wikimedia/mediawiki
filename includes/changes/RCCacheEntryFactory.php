@@ -81,7 +81,7 @@ class RCCacheEntryFactory {
 
 	/**
 	 * @param RecentChange $cacheEntry
-	 * @param User $User
+	 * @param User $user
 	 *
 	 * @return boolean
 	 */
