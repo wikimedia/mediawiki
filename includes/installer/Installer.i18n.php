@@ -260,6 +260,7 @@ If you do not see the database system you are trying to use listed below, then f
 	'config-invalid-db-type'          => 'Invalid database type',
 	'config-missing-db-name'          => 'You must enter a value for "Database name"',
 	'config-missing-db-host'          => 'You must enter a value for "Database host"',
+	'config-missing-db-username'      => 'You must enter a value for "Database username"',
 	'config-missing-db-server-oracle' => 'You must enter a value for "Database TNS"',
 	'config-invalid-db-server-oracle' => 'Invalid database TNS "$1".
 Use either "TNS Name" or an "Easy Connect" string ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods])',
@@ -1768,6 +1769,7 @@ $1
 	'config-invalid-db-type' => 'Няслушны тып базы зьвестак',
 	'config-missing-db-name' => 'Вы павінны ўвесьці значэньне парамэтру «Імя базы зьвестак»',
 	'config-missing-db-host' => 'Вы павінны ўвесьці значэньне парамэтру «Хост базы зьвестак»',
+	'config-missing-db-username' => 'Вы павінны ўвесьці значэньне парамэтру «Хост базы зьвестак»',
 	'config-missing-db-server-oracle' => 'Вы павінны ўвесьці значэньне парамэтру «TNS базы зьвестак»',
 	'config-invalid-db-server-oracle' => 'Няслушнае TNS базы зьвестак «$1».
 Назва можа ўтрымліваць толькі ASCII-літары (a-z, A-Z), лічбы (0-9), сымбалі падкрэсьліваньня(_) і кропкі (.).', # Fuzzy
@@ -2290,6 +2292,7 @@ $1
 	'config-invalid-db-type' => 'Невалиден тип база от данни',
 	'config-missing-db-name' => 'Необходимо е да се въведе стойност за "Име на базата от данни"',
 	'config-missing-db-host' => 'Необходимо е да се въведе стойност за "Хост на базата от данни"',
+	'config-missing-db-username' => 'Необходимо е да се въведе стойност за "Хост на базата от данни"',
 	'config-missing-db-server-oracle' => 'Необходимо е да се въведе стойност за "Database TNS"',
 	'config-invalid-db-server-oracle' => 'Невалиден TNS на базата от данни "$1".
 Допустими са само ASCII букви (a-z, A-Z), цифри (0-9), символите за долна черта (_) и точка (.).',
@@ -2652,6 +2655,7 @@ $messages['bn'] = array(
 	'config-invalid-db-type' => 'ডেটাবেজের ধরন অগ্রহযোগ্য',
 	'config-missing-db-name' => 'আপনাকে অবশ্যই "ডেটাবেজ নাম"-এর জন্য একটি মান প্রবেশ করাতে হবে',
 	'config-missing-db-host' => 'আপনাকে অবশ্যই "ডেটাবেজ হোস্ট"-এর জন্য একটি মান প্রবেশ করাতে হবে',
+	'config-missing-db-username' => 'আপনাকে অবশ্যই "ডেটাবেজ হোস্ট"-এর জন্য একটি মান প্রবেশ করাতে হবে',
 	'config-missing-db-server-oracle' => 'আপনাকে অবশ্যই "ডেটাবেজ টিএনএস"-এর জন্য একটি মান প্রবেশ করাতে হবে',
 	'config-mysql-engine' => 'সংরক্ষণ ইঞ্জিন:',
 	'config-mysql-innodb' => 'ইনোডিবি',
@@ -2938,6 +2942,7 @@ Ma ne welit ket amañ dindan ar reizhiad diaz titouroù a fell deoc'h ober ganti
 	'config-invalid-db-type' => 'Direizh eo ar seurt diaz roadennoù',
 	'config-missing-db-name' => 'Ret eo deoc\'h merkañ un dalvoudenn evit "Anv an diaz titouroù"',
 	'config-missing-db-host' => 'Ret eo deoc\'h merkañ un dalvoudenn evit "Ostiz an diaz titouroù"',
+	'config-missing-db-username' => 'You must enter a value for "Database username"',
 	'config-missing-db-server-oracle' => 'Ret eo deoc\'h merkañ un dalvoudenn evit "Anv TNS an diaz titouroù"',
 	'config-invalid-db-server-oracle' => 'Direizh eo anv TNS an diaz titouroù "$1".
 Ober hepken gant lizherennoù ASCII (a-z, A-Z), sifroù (0-9), arouezennoù islinennañ (_) ha pikoù (.).',
@@ -3598,6 +3603,7 @@ Pokud v nabídce níže nevidíte databázový systém, který chcete použít, 
 	'config-invalid-db-type' => 'Chybný typ databáze',
 	'config-missing-db-name' => 'Musíte zadat hodnotu pro „Jméno databáze“',
 	'config-missing-db-host' => 'Musíte zadat hodnotu pro „Databázový server“',
+	'config-missing-db-username' => 'Musíte zadat hodnotu pro „Databázový username“',
 	'config-missing-db-server-oracle' => 'Musíte zadat hodnotu pro „Databázové TNS“',
 	'config-invalid-db-server-oracle' => 'Chybné databázové TNS „$1“.
 Používejte buď „TNS Name“ nebo „Easy Connect“ (vizte [http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods]).',
@@ -4226,6 +4232,7 @@ Sofern nicht das Datenbanksystem angezeigt wird, das verwendet werden soll, gibt
 	'config-invalid-db-type' => 'Unzulässiges Datenbanksystem',
 	'config-missing-db-name' => 'Bei „Datenbankname“ muss ein Wert angegeben werden.',
 	'config-missing-db-host' => 'Bei „Datenbankhost“ muss ein Wert angegeben werden.',
+	'config-missing-db-username' => 'Bei „Datenbankusername“ muss ein Wert angegeben werden.',
 	'config-missing-db-server-oracle' => 'Für das „Datenbank-TNS“ muss ein Wert eingegeben werden',
 	'config-invalid-db-server-oracle' => 'Ungültiges Datenbank-TNS „$1“.
 Entweder „TNS Name“ oder eine „Easy Connect“-Zeichenfolge verwenden ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle-Benennungsmethoden])',
@@ -5008,6 +5015,7 @@ Si no encuentras en el listado el sistema de base de datos que estás intentando
 	'config-invalid-db-type' => 'Tipo de base de datos inválida',
 	'config-missing-db-name' => 'Debes introducir un valor para "Nombre de la base de datos"',
 	'config-missing-db-host' => 'Debe introducir un valor para "Servidor (host) de base de datos"',
+	'config-missing-db-username' => 'Debe introducir un valor para "username base de datos"',
 	'config-missing-db-server-oracle' => 'Debe introducir un valor para "TNS de la base de datos"',
 	'config-invalid-db-server-oracle' => 'El TNS de la base de datos, "$1", es inválido.Use sólo carateres ASCII: letras (a-z, A-Z), números (0-9), guiones bajos (_) y guiones (-).Usa sólo caracteres ASCII: letras (a-z, A-Z), dígitos (0-9), guiones bajos (_) y puntos (.).', # Fuzzy
 	'config-invalid-db-name' => 'El nombre de la base de datos "$1"  es inválido.
@@ -6038,6 +6046,7 @@ Si vous ne voyez pas le système de base de données que vous essayez d'utiliser
 	'config-invalid-db-type' => 'Type de base de données non valide',
 	'config-missing-db-name' => 'Vous devez saisir une valeur pour « Nom de la base de données »',
 	'config-missing-db-host' => "Vous devez entrer une valeur pour « l'hôte de la base de données »",
+	'config-missing-db-username' => 'Vous devez saisir une valeur pour « Nom de la base de données »',
 	'config-missing-db-server-oracle' => 'Vous devez saisir une valeur pour le « Nom TNS de la base de données »',
 	'config-invalid-db-server-oracle' => 'Le nom TNS de la base de données (« $1 ») est invalide.
 Utilisez uniquement la chaîne "TNS Name" ou "Easy Connect" ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Méthodes de nommage Oracle])',
@@ -6419,6 +6428,7 @@ Portant, MediaWiki at fôta de PHP $2 ou ben ples hôt.',
 	'config-invalid-db-type' => 'Tipo de bâsa de balyês envalido',
 	'config-missing-db-name' => 'Vos dête buchiér una valor por « Nom de la bâsa de balyês »',
 	'config-missing-db-host' => 'Vos dête buchiér una valor por « Hôto de la bâsa de balyês »',
+	'config-missing-db-username' => 'You must enter a value for "Database username"',
 	'config-missing-db-server-oracle' => 'Vos dête buchiér una valor por « TNS de la bâsa de balyês »',
 	'config-sqlite-readonly' => 'Lo fichiér <code>$1</code> est pas accèssiblo en ècritura.',
 	'config-regenerate' => 'Refâre LocalSettings.php →',
@@ -6867,6 +6877,7 @@ Se non ve listado a continuación o sistema de base de datos que intenta usar, s
 	'config-invalid-db-type' => 'Tipo de base de datos incorrecto',
 	'config-missing-db-name' => 'Debe escribir un valor "Nome da base de datos"',
 	'config-missing-db-host' => 'Debe escribir un valor "Servidor da base de datos"',
+	'config-missing-db-username' => 'Debe introducir un valor "usuario Database"',
 	'config-missing-db-server-oracle' => 'Debe escribir un valor "TNS da base de datos"',
 	'config-invalid-db-server-oracle' => 'O TNS da base de datos, "$1", é incorrecto.
 Utilice só "TNS Name" ou unha cadea de texto "Easy Connect" ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm métodos de nomeamento de Oracle])',
@@ -7594,6 +7605,7 @@ $1
 	'config-invalid-db-type' => 'סוג מסד הנתונים שגוי',
 	'config-missing-db-name' => 'עליך להזין ערך עבור "שם מסד הנתונים"',
 	'config-missing-db-host' => 'יש להכניס ערך לשדה "שרת מסד הנתונים"',
+	'config-missing-db-username' => 'אנא הכנס את ערך שדה "שם המשתמש של מסד נתונים"',
 	'config-missing-db-server-oracle' => 'יש להכניס ערך לשדה "TNS של מסד הנתונים"',
 	'config-invalid-db-server-oracle' => '"$1" הוא TNS בלתי תקין.
 יש להשתמש רק באותיות ASCII&rlm; (a עד z&rlm;, A עד Z), סְפָרוֹת (0 עד 9), קווים תחתיים (_) ונקודות (.).',
@@ -8095,6 +8107,7 @@ Změń ju jenož, jeli su přeswědčiwe přičiny za to.',
 	'config-invalid-db-type' => 'Njepłaćiwy typ datoweje banki',
 	'config-missing-db-name' => 'Dyrbiš hódnotu za "Mjeno datoweje banki" zapodać',
 	'config-missing-db-host' => 'Dyrbiš hódnotu za "Database host" zapodać',
+	'config-missing-db-username' => 'Dyrbiš hódnotu za "Database username" zapodać',
 	'config-missing-db-server-oracle' => 'Dyrbiš hódnotu za "Database TNS" zapodać',
 	'config-invalid-db-server-oracle' => 'Njepłaćiwa datowa banka TNS "$1".
 Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9), podsmužki (_) a dypki (.).',
@@ -8531,6 +8544,7 @@ Ha az alábbi listán nem találod azt a rendszert, melyet használni szeretnél
 	'config-invalid-db-type' => 'Érvénytelen adatbázistípus',
 	'config-missing-db-name' => 'Meg kell adnod az „Adatbázisnév” értékét',
 	'config-missing-db-host' => 'Meg kell adnod az „Adatbázis hosztneve” értékét',
+	'config-missing-db-username' => 'Meg kell adni a „Adatbázis username" érték',
 	'config-missing-db-server-oracle' => 'Meg kell adnod az „Adatbázis TNS” értékét',
 	'config-invalid-db-server-oracle' => 'Érvénytelen adatbázis TNS: „$1”
 Csak ASCII betűk (a-z, A-Z), számok (0-9), alulvonás (_) és pont (.) használható.',
@@ -9160,6 +9174,7 @@ Si tu non vide hic infra le systema de base de datos que tu tenta usar, alora se
 	'config-invalid-db-type' => 'Typo de base de datos invalide',
 	'config-missing-db-name' => 'Tu debe entrar un valor pro "Nomine de base de datos"',
 	'config-missing-db-host' => 'Tu debe entrar un valor pro "Host del base de datos"',
+	'config-missing-db-username' => 'Debe ingresar un valor para "Nombre de usuario de la base de datos"',
 	'config-missing-db-server-oracle' => 'You must enter a value for "TNS del base de datos"',
 	'config-invalid-db-server-oracle' => 'TNS de base de datos "$1" invalide.
 Usa o "TNS Name" o un catena "Easy Connect". ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Methodos de nomenclatura de Oracle])',
@@ -9700,6 +9715,7 @@ Jika Anda tidak melihat sistem basis data yang Anda gunakan tercantum di bawah i
 	'config-invalid-db-type' => 'Jenis basis data tidak sah',
 	'config-missing-db-name' => 'Anda harus memasukkan nilai untuk "Nama basis data"',
 	'config-missing-db-host' => 'Anda harus memasukkan nilai untuk "Inang basis data"',
+	'config-missing-db-username' => 'Anda harus memasukkan nilai untuk "Database username"',
 	'config-missing-db-server-oracle' => 'Anda harus memasukkan nilai untuk "TNS basis data"',
 	'config-invalid-db-server-oracle' => 'TNS basis data "$1" tidak sah.
 Gunakan hanya huruf ASCII (a-z, A-Z), angka (0-9), garis bawah (_), dan titik (.).',
@@ -10217,6 +10233,7 @@ Se fra quelli elencati qui sotto non vedi il sistema di database che vorresti ut
 	'config-invalid-db-type' => 'Tipo di database non valido',
 	'config-missing-db-name' => 'È necessario immettere un valore per "Nome del database"',
 	'config-missing-db-host' => 'È necessario immettere un valore per "Host del database"',
+	'config-missing-db-username' => 'È necessario immettere un valore per "Username del database"',
 	'config-missing-db-server-oracle' => 'È necessario immettere un valore per "TNS del database"',
 	'config-invalid-db-name' => 'Nome di database "$1" non valido.
 Utilizza soltanto caratteri ASCII come lettere (a-z, A-Z), numeri (0-9), sottolineatura (_) e trattini (-).',
@@ -10621,6 +10638,7 @@ $1
 	'config-invalid-db-type' => '無効なデータベースの種類',
 	'config-missing-db-name' => '「データベース名」を入力してください',
 	'config-missing-db-host' => '「データベースのホスト」を入力してください',
+	'config-missing-db-username' => '「ユーザ名データベース」を入力してください',
 	'config-missing-db-server-oracle' => '「データベース TNS」の値を入力してください',
 	'config-invalid-db-server-oracle' => '「$1」は無効なデータベース TNS です。
 「TNS 名」「Easy Connect」文字列のいずれかを使用してください ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle ネーミング メソッド])',
@@ -11399,6 +11417,7 @@ $1
 	'config-invalid-db-type' => '잘못된 데이터베이스 종류',
 	'config-missing-db-name' => '"데이터베이스 이름"에 대한 값을 입력해야 합니다',
 	'config-missing-db-host' => '"데이터베이스 호스트"에 대한 값을 입력해야 합니다',
+	'config-missing-db-username' => '"데이터베이스 이름", 당신은 값을 입력해야합니다',
 	'config-missing-db-server-oracle' => '"데이터베이스 TNS"에 대한 값을 입력해야 합니다',
 	'config-invalid-db-server-oracle' => '"$1" 데이터베이스 TNS가 잘못됐습니다.
 "TNS Name"이나 "Easy Connect" 문자열 중 하나를 사용하세요 ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle 네이밍 메서드])',
@@ -11985,6 +12004,7 @@ Wann dat Daatebangk_Süßteem, wat De nämme wells, onge nit dobei es, dann donn
 	'config-invalid-db-type' => 'Dat es en onjöltijje Zoot Daatebangk.',
 	'config-missing-db-name' => 'Do moß jät enjävve för dä Name vun dä Daatebangk.',
 	'config-missing-db-host' => 'Do moß jät enjävve för dä Name vun däm Rääschner met dä Daatebangk.',
+	'config-missing-db-username' => 'Do moß jät enjävve för dä Name vun däm Rääschner met dä Daatebangk.',
 	'config-missing-db-server-oracle' => 'Do moß jät enjävve för dä Daatebangk ier <i lang="en" title="Transparent Network Substrate">TNS</i>.',
 	'config-invalid-db-server-oracle' => 'Dä Daatebangk ier <i lang="en" title="Transparent Network Substrate">TNS</i> kann nit „$1“ sin, dat es esu nit jöltesch.
 Döh dörve bloß <i lang="en" title="American Standard Code for Information Interchange">ASCII</i> Boochshtaabe (a-z, A-Z), Zahle (0-9), Ongerstreshe (_), un Punkte (.) dren vörkumme.',
@@ -12451,6 +12471,7 @@ Wann et de Kont net gëtt, a wann den Installatiouns-Kont genuch Rechter huet, g
 	'config-invalid-db-type' => 'Net valabelen Datebank-Typ',
 	'config-missing-db-name' => 'Dir musst en Numm fir de Wäert "Numm vun der Datebank" uginn',
 	'config-missing-db-host' => 'Dir musst e Wäert fir "Database host" uginn',
+	'config-missing-db-username' => 'Dir musst e Wäert fir "Database username" uginn',
 	'config-missing-db-server-oracle' => 'Dir musst e Wäert fir "Datebank-TNS" uginn',
 	'config-db-sys-user-exists-oracle' => 'De Benotzerkont "$1" gëtt et schonn. SYSDBA kann nëmme benotzt gi fir en neie Benotzerkont opzemaachen.',
 	'config-postgres-old' => 'PostgreSQL $1 oder eng méi nei Versioun gëtt gebraucht, Dir hutt $2.',
@@ -13113,6 +13134,7 @@ $1
 	'config-invalid-db-type' => 'Неважечки тип на база',
 	'config-missing-db-name' => 'Мора да внесете значење за параметарот „Име на базата“',
 	'config-missing-db-host' => 'Мора да внесете вредност за „Домаќин на базата на податоци“',
+	'config-missing-db-username' => 'Мора да внесете вредност за "корисничко име База на податоци"',
 	'config-missing-db-server-oracle' => 'Мора да внесете вредност за „TNS на базата“',
 	'config-invalid-db-server-oracle' => 'Неважечки TNS „$1“.
 Користете или „TNS Name“ или низата „Easy Connect“ ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Методи на именување за Oracle])',
@@ -14090,6 +14112,7 @@ Hvis du ikke ser databasesystemet du prøver å bruke i listen nedenfor, følg i
 	'config-invalid-db-type' => 'Ugyldig databasetype',
 	'config-missing-db-name' => 'Du må skrive inn en verdi for «Databasenavn»',
 	'config-missing-db-host' => 'Du må skrive inn en verdi for «Databasevert»',
+	'config-missing-db-username' => 'Du må angi en verdi av «Database brukernavn»',
 	'config-missing-db-server-oracle' => 'Du må skrive inn en verdi for «Database TNS»',
 	'config-invalid-db-server-oracle' => 'Ugyldig database-TNS «$1».
 Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9) og undestreker (_) og punktum (.).',
@@ -14600,6 +14623,7 @@ Als u het databasesysteem dat u wilt gebruiken niet in de lijst terugvindt, volg
 	'config-invalid-db-type' => 'Ongeldig databasetype',
 	'config-missing-db-name' => 'U moet een waarde opgeven voor "Databasenaam"',
 	'config-missing-db-host' => 'U moet een waarde invoeren voor "Databaseserver"',
+	'config-missing-db-username' => 'U moet een waarde invoeren voor "Databaseusername"',
 	'config-missing-db-server-oracle' => 'U moet een waarde opgeven voor "Database-TNS"',
 	'config-invalid-db-server-oracle' => 'Ongeldige database-TNS "$1".
 Gebruik "TNS Names" of een "Easy Connect" tekst ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle naamgevingsmethoden])',
@@ -15041,6 +15065,7 @@ $1
 Als je het databasesysteem dat je wilt gebruiken niet in de lijst terugvindt, volg dan de handleiding waarnaar hierboven wordt verwezen om ondersteuning toe te voegen.',
 	'config-missing-db-name' => 'Je moet een waarde opgeven voor "Databasenaam"',
 	'config-missing-db-host' => 'Je moet een waarde invoeren voor "Databaseserver"',
+	'config-missing-db-username' => 'Je moet een waarde invoeren voor "Databaseusername"',
 	'config-missing-db-server-oracle' => 'Je moet een waarde opgeven voor "Database-TNS"',
 	'config-postgres-old' => 'PostgreSQL $1 of hoger is vereist.
 Jij gebruikt $2.',
@@ -15597,6 +15622,7 @@ Poniżej wyświetlone są systemy baz danych gotowe do użycia. Jeżeli poniżej
 	'config-invalid-db-type' => 'Nieprawidłowy typ bazy danych',
 	'config-missing-db-name' => 'Należy wpisać wartość w polu „Nazwa bazy danych”',
 	'config-missing-db-host' => 'Musisz wpisać wartość w polu „Serwer bazy danych”',
+	'config-missing-db-username' => 'Należy wpisać wartość w polu "Nazwa użytkownika bazy danych"',
 	'config-missing-db-server-oracle' => 'Należy wpisać wartość w polu „Nazwa instancji bazy danych (TNS)”',
 	'config-invalid-db-server-oracle' => 'Nieprawidłowa nazwa instancji bazy danych (TNS) „$1”.
 Użyj "TNS Name" lub "Easy Connect" ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods])',
@@ -16149,6 +16175,7 @@ S'a vëd pa listà sì-sota ël sistema ëd base ëd dàit ch'a preuva a dovré,
 	'config-invalid-db-type' => 'Sòrt ëd ëd base ëd dàit pa bon-a',
 	'config-missing-db-name' => 'A dev buteje un valor për "Nòm ëd la base ëd dàit"',
 	'config-missing-db-host' => 'A dev buteje un valor për "l\'òspit ëd la base ëd dàit"',
+	'config-missing-db-username' => 'You must enter a value for "Database username"',
 	'config-missing-db-server-oracle' => 'A dev buteje un valor për "TNS ëd la base ëd dat"',
 	'config-invalid-db-server-oracle' => 'TNS ëd la base ëd dat pa bon "$1".
 Dovré mach dle litre ASCII (a-z, A-Z), nùmer (0-9), sotlignadure (_) e pontin (.).',
@@ -16768,6 +16795,7 @@ Se a plataforma que pretende usar não está listada abaixo, siga as instruçõe
 	'config-invalid-db-type' => 'O tipo de base de dados é inválido',
 	'config-missing-db-name' => 'Tem de introduzir um valor para "Nome da base de dados"',
 	'config-missing-db-host' => 'Tem de introduzir um valor para "Servidor da base de dados"',
+	'config-missing-db-username' => 'Você deve digitar um valor para "username banco de dados"',
 	'config-missing-db-server-oracle' => 'Tem de introduzir um valor para "TNS da base de dados"',
 	'config-invalid-db-server-oracle' => 'O TNS da base de dados, "$1", é inválido.
 Use só letras (a-z, A-Z), algarismos (0-9), sublinhados (_) e pontos (.) dos caracteres ASCII.', # Fuzzy
@@ -17712,6 +17740,7 @@ $1
 	'config-invalid-db-type' => 'Неверный тип базы данных',
 	'config-missing-db-name' => 'Вы должны ввести значение параметра «Имя базы данных»',
 	'config-missing-db-host' => 'Необходимо ввести значение параметра «Сервер базы данных»',
+	'config-missing-db-username' => 'Вы должны ввести значение "Имя пользователя базы данных"',
 	'config-missing-db-server-oracle' => 'Вы должны заполнить поле «TNS базы данных»',
 	'config-invalid-db-server-oracle' => 'Неверное TNS базы данных «$1».
 Используйте либо «TNS Name», либо строку «Easy Connect» ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Методы наименования Oracle])',
@@ -18189,6 +18218,7 @@ $messages['si'] = array(
 	'config-invalid-db-type' => 'වලංගු නොවන දත්ත සංචිත වර්ගය',
 	'config-missing-db-name' => '"දත්ත සංචිත නාමය" සඳහා ඔබ විසින් අගයක් දිය යුතු වේ',
 	'config-missing-db-host' => '"දත්ත සංචිත ධාරකය" සඳහා ඔබ විසින් අගයක් දිය යුතු වේ',
+	'config-missing-db-username' => '"දත්ත සංචිත නම" සඳහා ඔබ විසින් අගයක් දිය යුතු වේ',
 	'config-missing-db-server-oracle' => '"දත්ත සංචිත TNS" සඳහා ඔබ විසින් අගයක් දිය යුතු වේ',
 	'config-regenerate' => 'නැවත ජනිත කරන්න LocalSettings.php →',
 	'config-db-web-account' => 'ජාල ප්‍රවේශනය සඳහා දත්ත සංචිත ගිණුම',
@@ -18400,6 +18430,7 @@ $1
 	'config-invalid-db-type' => 'Neveljavna vrsta zbirke podatkov',
 	'config-missing-db-name' => 'Vnesti morate vrednost za »Ime zbirke podatkov«',
 	'config-missing-db-host' => 'Vnesti morate vrednost za »Gostitelj zbirke podatkov«',
+	'config-missing-db-username' => 'Vnesti morate vrednost za "ime zbirke podatkov"',
 	'config-missing-db-server-oracle' => 'Vnesti morate vrednost za »TNS zbirke podatkov«',
 	'config-invalid-db-server-oracle' => 'Neveljaven TNS zbirke podatkov »$1«.
 Uporabite ali "ime TNS" ali niz "Easy Connect" ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Načini poimenovanja Oracle])',
@@ -18792,6 +18823,7 @@ Installationen avbröts.",
 	'config-invalid-db-type' => 'Ogiltig databastyp',
 	'config-missing-db-name' => 'Du måste ange ett värde för "Databasnamn"',
 	'config-missing-db-host' => 'Du måste ange ett värde för "Databasvärd"',
+	'config-missing-db-username' => 'Du måste ange ett värde för "Databas Användarnamn"',
 	'config-missing-db-server-oracle' => 'Du måste ange ett värde för "Databas TNS"',
 	'config-invalid-db-name' => '"$1" är ett ogiltigt databasnamn.
 Använd bara ASCII-bokstäver (a-z, A-Z), siffror (0-9), understreck (_) och bindestreck (-).',
@@ -19462,6 +19494,7 @@ Kung hindi mo makita ang sistema ng kalipunan ng dato na sinusubukan mong gamiti
 	'config-invalid-db-type' => 'Hindi tanggap na uri ng kalipunan ng dato',
 	'config-missing-db-name' => 'Dapat kang magpasok ng isang halaga para sa "Pangalan ng kalipunan ng dato"',
 	'config-missing-db-host' => 'Dapat kang magpasok ng isang halaga para sa "Tagapagpasinaya ng kalipunan ng dato"',
+	'config-missing-db-username' => 'You must enter a value for "Database username"',
 	'config-missing-db-server-oracle' => 'Dapat kang magpasok ng isang halaga para sa "TNS ng kalipunan ng dato"',
 	'config-invalid-db-server-oracle' => 'Hindi katanggap-tanggap na pangalan ng TNSng kalipunan ng dato na "$1".
 Gumamit lamang ng mga titik ng ASCII (a-z, A-Z), mga bilang (0-9), mga salungguhit (_) at mga tuldok (.).',
@@ -20077,6 +20110,7 @@ $1
 	'config-invalid-db-type' => 'Невірний тип бази даних',
 	'config-missing-db-name' => "Ви повинні ввести значення параметру «Ім'я бази даних»",
 	'config-missing-db-host' => 'Ви повинні ввести значення параметру «Хост бази даних»',
+	'config-missing-db-username' => 'Ви повинні ввести значення для "Логін Database"',
 	'config-missing-db-server-oracle' => 'Ви повинні ввести значення параметру «TNS бази даних»',
 	'config-invalid-db-server-oracle' => 'Неприпустиме TNS бази даних "$1".
 Використовуйте "TNS Name" або рядок "Easy Connect"  ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Методи найменування Oracle])',
@@ -20850,6 +20884,7 @@ $1
 	'config-invalid-db-type' => '无效的数据库类型',
 	'config-missing-db-name' => '您必须为“数据库名称”输入内容',
 	'config-missing-db-host' => '您必须为“数据库主机”输入内容',
+	'config-missing-db-username' => '您必须是“数据库用户名”输入内容',
 	'config-missing-db-server-oracle' => '您必须为“数据库透明网络底层（TNS）”输入内容',
 	'config-invalid-db-server-oracle' => '无效的数据库TNS“$1”。请只使用ASCII字母（a-z、A-Z）、数字（0-9）、下划线（_）和点号（.）。',
 	'config-invalid-db-name' => '无效的数据库名称“$1”。请只使用ASCII字母（a-z、A-Z）、数字（0-9）、下划线（_）和连字号（-）。',
@@ -21301,6 +21336,7 @@ $1
 	'config-invalid-db-type' => '無效的資料庫類型',
 	'config-missing-db-name' => '您必須為“數據庫名稱”輸入內容',
 	'config-missing-db-host' => '您必須為“數據庫主機”輸入內容',
+	'config-missing-db-username' => '您必须是“数据库用户名”输入内容',
 	'config-missing-db-server-oracle' => '您必須為“數據庫透明網絡底層（TNS）”輸入內容',
 	'config-invalid-db-server-oracle' => '無效的數據庫TNS「$1」。
 請只使用「TNS Name」或「Easy Connect」 字串（[http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle命名法]）',
