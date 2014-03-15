@@ -900,6 +900,7 @@ $1',
 'pool-timeout'       => 'Timeout waiting for the lock',
 'pool-queuefull'     => 'Pool queue is full',
 'pool-errorunknown'  => 'Unknown error',
+'pool-servererror'   => 'The pool counter service is not reachable: $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite'            => 'About {{SITENAME}}',

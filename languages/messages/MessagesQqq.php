@@ -705,6 +705,9 @@ For explanation of 'lock' see [[w:Lock_(computer_science)|wikipedia]].",
 'pool-errorunknown' => 'Part of {{msg-mw|view-pool-error}}.
 {{Identical|Unknown error}}',
 
+'pool-servererror' => "Part of {{msg-mw|view-pool-error}}. Parameters:'
+$1 - list of server addresses.",
+
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Used as the label of the link that appears at the footer of every page on the wiki (in most of  the skins) and leads to the page that contains the site description. The link target is {{msg-mw|aboutpage}}.
 
