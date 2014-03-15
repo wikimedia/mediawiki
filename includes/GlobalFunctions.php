@@ -1817,19 +1817,23 @@ function wfHostname() {
 }
 
 /**
- * Returns a HTML comment with the elapsed time since request.
- * This method has no side effects.
+ * Returns a script tag that stores the amount of time it took MediaWiki to
+ * handle the request in milliseconds as 'wgBackendResponseTime'.
+ *
+ * If $wgShowHostnames is true, the script will also set 'wgHostname' to the
+ * hostname of the server handling the request.
  *
  * @return string
  */
 function wfReportTime() {
 	global $wgRequestTime, $wgShowHostnames;
 
-	$elapsed = microtime( true ) - $wgRequestTime;
-
-	return $wgShowHostnames
-		? sprintf( '<!-- Served by %s in %01.3f secs. -->', wfHostname(), $elapsed )
-		: sprintf( '<!-- Served in %01.3f secs. -->', $elapsed );
+	$responseTime = round( ( microtime( true ) - $wgRequestTime ) * 1000 );
+	$reportVars = array( 'wgBackendResponseTime' => $responseTime );
+	if ( $wgShowHostnames ) {
+		$reportVars[ 'wgHostname' ] = wfHostname();
+	}
+	return Skin::makeVariablesScript( $reportVars );
 }
 
 /**
