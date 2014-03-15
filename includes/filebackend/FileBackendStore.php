@@ -1666,7 +1666,22 @@ abstract class FileBackendStore extends FileBackend {
 		}
 		$age = time() - wfTimestamp( TS_UNIX, $val['mtime'] );
 		$ttl = min( 7 * 86400, max( 300, floor( .1 * $age ) ) );
-		$this->memCache->add( $this->fileCacheKey( $path ), $val, $ttl );
+		$key = $this->fileCacheKey( $path );
+		// Set the cache unless it is currently salted with the value "PURGED".
+		// Using add() handles this except it also is a no-op in that case where
+		// the current value is not "latest" but $val is, so use CAS in that case.
+		if ( !$this->memCache->add( $key, $val, $ttl ) && !empty( $val['latest'] ) ) {
+			$this->memCache->merge(
+				$key,
+				function( BagOStuff $cache, $key, $cValue ) use ( $val ) {
+					return ( is_array( $cValue ) && empty( $cValue['latest'] ) )
+						? $val // update the stat cache with the lastest info
+						: false; // do nothing (cache is salted or some error happened)
+				},
+				$ttl,
+				1
+			);
+		}
 	}
 
 	/**
