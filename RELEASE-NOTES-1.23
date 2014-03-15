@@ -140,6 +140,8 @@ production.
 * Add new hook ChangesListInitRows accessed via ChangesList::initChangesListRows.
   If called by the ChangesList consumer this gives extensions a chance to batch
   process the result set prior to rendering.
+* A PoolCounterRedis class was added which can be make use of in $wgPoolCounterConf.
+  This requires at least one Redis 2.6+ server.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
