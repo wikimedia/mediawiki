@@ -1684,6 +1684,7 @@ class Parser {
 		wfProfileOut( __METHOD__ );
 		return $s;
 	}
+
 	/**
 	 * Get the rel attribute for a particular external link.
 	 *
@@ -1703,6 +1704,7 @@ class Parser {
 		}
 		return null;
 	}
+
 	/**
 	 * Get an associative array of additional HTML attributes appropriate for a
 	 * particular external link.  This currently may include rel => nofollow

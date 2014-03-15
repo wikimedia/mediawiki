@@ -315,6 +315,7 @@ class SpecialUpload extends SpecialPage {
 		$form->setSubmitText( $this->msg( 'upload-tryagain' )->escaped() );
 		$this->showUploadForm( $form );
 	}
+
 	/**
 	 * Stashes the upload, shows the main form, but adds a "continue anyway button".
 	 * Also checks whether there are actually warnings to display.

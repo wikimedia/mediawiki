@@ -1302,6 +1302,7 @@ class Sanitizer {
 			array( 'Sanitizer', 'normalizeCharReferencesCallback' ),
 			$text );
 	}
+
 	/**
 	 * @param string $matches
 	 * @return string

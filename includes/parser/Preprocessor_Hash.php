@@ -1385,6 +1385,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		$s .= '}';
 		return $s;
 	}
+
 	/**
 	 * Returns true if there are no arguments in this frame
 	 *

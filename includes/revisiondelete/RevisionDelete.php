@@ -687,6 +687,7 @@ class RevDel_FileItem extends RevDel_Item {
 		}
 		return '<span class="history-deleted">' . $link . '</span>';
 	}
+
 	/**
 	 * Generate a user tool link cluster if the current user is allowed to view it
 	 * @return string HTML

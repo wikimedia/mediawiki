@@ -1249,6 +1249,7 @@ abstract class Skin extends ContextSource {
 		wfProfileOut( __METHOD__ );
 		return $bar;
 	}
+
 	/**
 	 * Add content from a sidebar system message
 	 * Currently only used for MediaWiki:Sidebar (but may be used by Extensions)
