@@ -50,6 +50,7 @@ abstract class FileBackendStore extends FileBackend {
 	protected $mimeCallback;
 
 	protected $maxFileSize = 4294967296; // integer bytes (4GiB)
+	protected $consistencyWindow = 30; // integer; seconds of eventual consistency
 
 	const CACHE_TTL = 10; // integer; TTL in seconds for process cache entries
 	const CACHE_CHEAP_SIZE = 500; // integer; max entries in "cheap cache"
@@ -1650,9 +1651,15 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
-	 * Set the cached stat info for a file path.
+	 * Set the cached stat info for a file path
+	 *
 	 * Negatives (404s) are not cached. By not caching negatives, we can skip cache
 	 * salting for the case when a file is created at a path were there was none before.
+	 *
+	 * The cache duration is factor of how long it has been since the file last changed.
+	 * The cache time is also tracked in the stat info. Unless the file changes, the cache
+	 * TTL increases each miss and the gap between last change and cache time increases.
+	 * The chance of staleness due to eventual consistency goes down over time.
 	 *
 	 * @param string $path Storage path
 	 * @param array $val Stat information to cache
@@ -1662,7 +1669,10 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $path === null ) {
 			return; // invalid storage path
 		}
-		$age = time() - wfTimestamp( TS_UNIX, $val['mtime'] );
+		unset( $val['latest'] ); // only useful for process cache
+		$now = time();
+		$val['asof'] = wfTimestamp( TS_MW, $now );
+		$age = $now - wfTimestamp( TS_UNIX, $val['mtime'] );
 		$ttl = min( 7 * 86400, max( 300, floor( .1 * $age ) ) );
 		$this->memCache->add( $this->fileCacheKey( $path ), $val, $ttl );
 	}
@@ -1716,6 +1726,12 @@ abstract class FileBackendStore extends FileBackend {
 		$values = $this->memCache->getMulti( array_keys( $pathNames ) );
 		foreach ( $values as $cacheKey => $val ) {
 			if ( is_array( $val ) ) {
+				// Find out how long the cache time is after the reported mtime
+				$delay = isset( $val['asof'] )
+					? wfTimestamp( TS_UNIX, $val['asof'] ) - wfTimestamp( TS_UNIX, $val['mtime'] )
+					: INF;
+				// If the cache time was safely after the mtime, flag it as "latest info"
+				$val['latest'] = ( $delay > $this->consistencyWindow );
 				$path = $pathNames[$cacheKey];
 				$this->cheapCache->set( $path, 'stat', $val );
 				if ( isset( $val['sha1'] ) ) { // some backends store SHA-1 as metadata
