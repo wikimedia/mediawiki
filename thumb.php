@@ -107,6 +107,22 @@ function wfStreamThumb( array $params ) {
 
 	$fileName = isset( $params['f'] ) ? $params['f'] : '';
 
+	//Output parameters if no file specified
+	if ( $fileName == null) {
+		wfThumbError( 400, '<p>This page takes following input as parameters:</p>'.
+		'<ul><li>f (for filename)</li>'.
+		'<li>archived (if archived file)</li>'.
+		'<li>temp (if temp file)</li>'.
+		'<li>w (alias for width)</li>'.
+		'<li> p (alias for page)</li>'.
+		'<li>r (ignored; historical)'.
+		'<li>rel404 (path for render on 404 to verify hash path correct)</li>'.
+		'<li>thumbName (thumbnail name to potentially extract more parameters from '.
+		"e.g. 'lossy-page1-120px-Foo.tiff' would add page, lossy and width ".
+		'to the parameters)</li></ul>');
+		return;
+	}
+
 	// Backwards compatibility parameters
 	if ( isset( $params['w'] ) ) {
 		$params['width'] = $params['w'];
