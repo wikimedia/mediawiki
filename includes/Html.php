@@ -689,6 +689,7 @@ class Html {
 		}
 		return self::element( 'textarea', $attribs, $spacedValue );
 	}
+
 	/**
 	 * Build a drop-down box for selecting a namespace
 	 *

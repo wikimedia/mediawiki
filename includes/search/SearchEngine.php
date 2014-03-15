@@ -439,6 +439,7 @@ class SearchEngine {
 		$lc = $this->legalSearchChars();
 		return trim( preg_replace( "/[^{$lc}]/", " ", $text ) );
 	}
+
 	/**
 	 * Load up the appropriate search engine class for the currently
 	 * active database backend, and return a configured instance.
@@ -775,6 +776,7 @@ class SearchResult {
 		$result->initFromTitle( $title );
 		return $result;
 	}
+
 	/**
 	 * Return a new SearchResult and initializes it with a row.
 	 *
@@ -986,23 +988,28 @@ class SearchResult {
 		return false;
 	}
 }
+
 /**
  * A SearchResultSet wrapper for SearchEngine::getNearMatch
  */
 class SearchNearMatchResultSet extends SearchResultSet {
 	private $fetched = false;
+
 	/**
 	 * @param $match mixed Title if matched, else null
 	 */
 	public function __construct( $match ) {
 		$this->result = $match;
 	}
+
 	public function hasResult() {
 		return (bool)$this->result;
 	}
+
 	public function numRows() {
 		return $this->hasResults() ? 1 : 0;
 	}
+
 	public function next() {
 		if ( $this->fetched || !$this->result ) {
 			return false;

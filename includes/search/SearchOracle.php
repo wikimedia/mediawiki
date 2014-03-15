@@ -230,6 +230,7 @@ class SearchOracle extends SearchDatabase {
 		$t = preg_replace( '/([-&|])/', '\\\\$1', $t );
 		return $t;
 	}
+
 	/**
 	 * Create or update the search index record for the given page.
 	 * Title and text should be pre-processed.

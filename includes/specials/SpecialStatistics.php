@@ -151,6 +151,7 @@ class SpecialStatistics extends SpecialPage {
 						$this->getLanguage()->formatNum( $this->images ),
 						array( 'class' => 'mw-statistics-files' ) );
 	}
+
 	private function getEditStats() {
 		return Xml::openElement( 'tr' ) .
 			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-header-edits' )->parse() ) .

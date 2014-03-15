@@ -249,6 +249,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	function setOffset( $offset ) {
 		$this->mOffset = $offset;
 	}
+
 	/**
 	 * Set the limit from an other source than the request
 	 *

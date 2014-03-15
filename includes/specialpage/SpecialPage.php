@@ -169,6 +169,7 @@ class SpecialPage {
 	function isListed() {
 		return $this->mListed;
 	}
+
 	/**
 	 * Set whether this page is listed in Special:Specialpages, at run-time
 	 * @since 1.3
@@ -178,6 +179,7 @@ class SpecialPage {
 	function setListed( $listed ) {
 		return wfSetVar( $this->mListed, $listed );
 	}
+
 	/**
 	 * Get or set whether this special page is listed in Special:SpecialPages
 	 * @since 1.6

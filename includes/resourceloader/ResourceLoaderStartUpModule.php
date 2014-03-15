@@ -221,7 +221,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		return  wfAppendQuery( wfScript( 'load' ), $query );
 	}
 
-
 	/**
 	 * @param $context ResourceLoaderContext
 	 * @return string

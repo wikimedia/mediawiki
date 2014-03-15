@@ -217,6 +217,7 @@ class PostgresSearchResult extends SearchResult {
 		parent::__construct( $row );
 		$this->score = $row->score;
 	}
+
 	function getScore() {
 		return $this->score;
 	}
