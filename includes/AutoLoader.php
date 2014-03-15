@@ -157,6 +157,7 @@ $wgAutoloadLocalClasses = array(
 	'PhpHttpRequest' => 'includes/HttpFunctions.php',
 	'PoolCounter' => 'includes/PoolCounter.php',
 	'PoolCounter_Stub' => 'includes/PoolCounter.php',
+	'PoolCounterRedis' => 'includes/PoolCounterRedis.php',
 	'PoolCounterWork' => 'includes/PoolCounter.php',
 	'PoolCounterWorkViaCallback' => 'includes/PoolCounter.php',
 	'PoolWorkArticleView' => 'includes/WikiPage.php',
