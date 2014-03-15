@@ -349,11 +349,11 @@ class DatabasePostgres extends DatabaseBase {
 	}
 
 	function hasConstraint( $name ) {
-		$SQL = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n " .
+		$sql = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n " .
 			"WHERE c.connamespace = n.oid AND conname = '" .
 			pg_escape_string( $this->mConn, $name ) . "' AND n.nspname = '" .
 			pg_escape_string( $this->mConn, $this->getCoreSchema() ) . "'";
-		$res = $this->doQuery( $SQL );
+		$res = $this->doQuery( $sql );
 
 		return $this->numRows( $res );
 	}
@@ -1360,10 +1360,10 @@ __INDEXATTR__;
 		$table = $this->realTableName( $table, 'raw' );
 		$etable = $this->addQuotes( $table );
 		$eschema = $this->addQuotes( $schema );
-		$SQL = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
+		$sql = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
 			. "WHERE c.relnamespace = n.oid AND c.relname = $etable AND n.nspname = $eschema "
 			. "AND c.relkind IN ('" . implode( "','", $types ) . "')";
-		$res = $this->query( $SQL );
+		$res = $this->query( $sql );
 		$count = $res ? $res->numRows() : 0;
 
 		return (bool)$count;
@@ -1421,13 +1421,13 @@ SQL;
 	}
 
 	function constraintExists( $table, $constraint ) {
-		$SQL = sprintf( "SELECT 1 FROM information_schema.table_constraints " .
+		$sql = sprintf( "SELECT 1 FROM information_schema.table_constraints " .
 			"WHERE constraint_schema = %s AND table_name = %s AND constraint_name = %s",
 			$this->addQuotes( $this->getCoreSchema() ),
 			$this->addQuotes( $table ),
 			$this->addQuotes( $constraint )
 		);
-		$res = $this->query( $SQL );
+		$res = $this->query( $sql );
 		if ( !$res ) {
 			return null;
 		}

@@ -333,7 +333,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * which will allow the user to choose new visibility settings.
 	 */
 	protected function showForm() {
-		$UserAllowed = true;
+		$userAllowed = true;
 
 		if ( $this->typeName == 'logging' ) {
 			$this->getOutput()->addWikiMsg( 'logdelete-selected', $this->getLanguage()->formatNum( count( $this->ids ) ) );
@@ -353,7 +353,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				if ( !$this->submitClicked ) {
 					throw new PermissionsError( 'suppressrevision' );
 				}
-				$UserAllowed = false;
+				$userAllowed = false;
 			}
 			$numRevisions++;
 			$this->getOutput()->addHTML( $item->getHTML() );
@@ -368,7 +368,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->addUsageText();
 
 		// Normal sysops can always see what they did, but can't always change it
-		if ( !$UserAllowed ) {
+		if ( !$userAllowed ) {
 			return;
 		}
 

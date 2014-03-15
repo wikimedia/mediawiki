@@ -1839,7 +1839,7 @@ class Sanitizer {
 		$rfc5322_atext = "a-z0-9!#$%&'*+\\-\/=?^_`{|}~";
 		$rfc1034_ldh_str = "a-z0-9\\-";
 
-		$HTML5_email_regexp = "/
+		$html5_email_regexp = "/
 		^                      # start of string
 		[$rfc5322_atext\\.]+    # user part which is liberal :p
 		@                      # 'apostrophe'
@@ -1848,6 +1848,6 @@ class Sanitizer {
 		$                      # End of string
 		/ix"; // case Insensitive, eXtended
 
-		return (bool)preg_match( $HTML5_email_regexp, $addr );
+		return (bool)preg_match( $html5_email_regexp, $addr );
 	}
 }
