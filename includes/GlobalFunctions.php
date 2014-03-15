@@ -1801,19 +1801,19 @@ function wfHostname() {
 }
 
 /**
- * Returns a HTML comment with the elapsed time since request.
- * This method has no side effects.
+ * Returns a script tag that stores the start and end of the request processing
+ * time as the JavaScript configuration variables 'wgReqStart' and 'wgReqEnd'.
  *
  * @return string
  */
 function wfReportTime() {
 	global $wgRequestTime, $wgShowHostnames;
 
-	$elapsed = microtime( true ) - $wgRequestTime;
-
-	return $wgShowHostnames
-		? sprintf( '<!-- Served by %s in %01.3f secs. -->', wfHostname(), $elapsed )
-		: sprintf( '<!-- Served in %01.3f secs. -->', $elapsed );
+	$timing = array( 'wgReqTime' => round( microtime( true ) - $wgRequestTime, 3 ) );
+	if ( $wgShowHostnames ) {
+		$timing[ 'wgHostname' ] = wfHostname();
+	}
+	return '<script>' . Xml::encodeJsCall( 'mw.config.set', array( $timing ) ) . '</script>';
 }
 
 /**
