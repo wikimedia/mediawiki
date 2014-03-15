@@ -440,9 +440,7 @@ class Preprocessor_Hash implements Preprocessor {
 					$extNode->addChild( PPNode_Hash_Tree::newWithText( 'close', $close ) );
 				}
 				$accum->addNode( $extNode );
-			}
-
-			elseif ( $found == 'line-start' ) {
+			} elseif ( $found == 'line-start' ) {
 				// Is this the start of a heading?
 				// Line break belongs before the heading element in any case
 				if ( $fakeLineStart ) {
@@ -1065,14 +1063,12 @@ class PPFrame_Hash implements PPFrame {
 						|| ( $flags & PPFrame::STRIP_COMMENTS )
 					) {
 						$out .= '';
-					}
-					# Add a strip marker in PST mode so that pstPass2() can run some old-fashioned regexes on the result
-					# Not in RECOVER_COMMENTS mode (extractSections) though
-					elseif ( $this->parser->ot['wiki'] && !( $flags & PPFrame::RECOVER_COMMENTS ) ) {
+					} elseif ( $this->parser->ot['wiki'] && !( $flags & PPFrame::RECOVER_COMMENTS ) ) {
+						# Add a strip marker in PST mode so that pstPass2() can run some old-fashioned regexes on the result
+						# Not in RECOVER_COMMENTS mode (extractSections) though
 						$out .= $this->parser->insertStripItem( $contextNode->firstChild->value );
-					}
-					# Recover the literal comment in RECOVER_COMMENTS and pre+no-remove
-					else {
+					} else {
+						# Recover the literal comment in RECOVER_COMMENTS and pre+no-remove
 						$out .= $contextNode->firstChild->value;
 					}
 				} elseif ( $contextNode->name == 'ignore' ) {

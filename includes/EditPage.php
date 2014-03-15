@@ -772,8 +772,7 @@ class EditPage {
 				$this->sectiontitle = $request->getVal( 'preloadtitle' );
 				// Once wpSummary isn't being use for setting section titles, we should delete this.
 				$this->summary = $request->getVal( 'preloadtitle' );
-			}
-			elseif ( $this->section != 'new' && $request->getVal( 'summary' ) ) {
+			} elseif ( $this->section != 'new' && $request->getVal( 'summary' ) ) {
 				$this->summary = $request->getText( 'summary' );
 				if ( $this->summary !== '' ) {
 					$this->hasPresetSummary = true;

@@ -631,8 +631,7 @@ class Sanitizer {
 				# Remove the comment, leading and trailing
 				# spaces, and leave only one newline.
 				$text = substr_replace( $text, "\n", $spaceStart, $spaceLen + 1 );
-			}
-			else {
+			} else {
 				# Remove just the comment.
 				$text = substr_replace( $text, '', $start, $end - $start );
 			}
