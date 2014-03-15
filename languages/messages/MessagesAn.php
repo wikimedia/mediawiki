@@ -915,8 +915,6 @@ Encara puet veyer a comparanza; en trobará mas detalles en o [{{fullurl:{{#Spec
 'revdelete-show-file-submit' => 'Sí',
 'revdelete-selected' => "'''{{PLURAL:$2|Versión trigata|Versions trigatas}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Escaicimiento d'o rechistro trigato|Escaicimientos d'o rechistro trigatos}}:'''",
-'revdelete-text' => "'''As versions y esdevenimientos borratos encara apareixerán en o historial d'a pachina y en os rechistros, pero bellas partes d'o suyo conteniu serán inaccesibles ta o publico.'''
-Atros admenistradors de {{SITENAME}} encara podrán acceder t'o conteniu amagato y podrán desfer o borrau a traviés d'ista mesma interfaz, fueras de si s'estableixen restriccions adicionals.",
 'revdelete-confirm' => "Por favor confirme que ye mirando de fer ísto, que entiende as conseqüencias, y que lo ye fendo d'alcuerdo con [[{{MediaWiki:Policy-url}}|as politicas]].",
 'revdelete-suppress-text' => "Os borraus de versions '''nomás''' s'habrían de fer en os siguients casos:
 * Información potencialment difamatoria o libelo grieu.

@@ -966,9 +966,6 @@ Dü könst di ferskeel uunluke. Wan dü muar wed wel, luke iin uun't [{{fullurl:
 'revdelete-show-file-submit' => 'Ja',
 'revdelete-selected' => "'''{{PLURAL:$2|Ütjsoocht werjuun|Ütjsoocht werjuunen}} faan [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Ütjsoocht logbukiindrach|Ütjsoocht logbukiindracher}}:'''",
-'revdelete-text' => "'''Stregen werjuunen an aktjuunen bliiw uun di ferluup an uun a logbuken, man det koon ei arken efterlees.'''
-
-Ööder administratooren üüb {{SITENAME}} kön oober üüb di ferbürgen ferluup tugrip an tu nuad en ual werjuun weder iinstel.",
 'revdelete-confirm' => 'Ferseekre noch ans, dat dü det würelk du wel, dat dü witjst, wat dü dääst, an dat det mä a [[{{MediaWiki:Policy-url}}|bestemangen]] auerian stemet.',
 'revdelete-suppress-text' => "Det skul '''bluas''' onertrakt wurd bi:
 * Persöönelk informatsjuunen, diar näämen wat uungung

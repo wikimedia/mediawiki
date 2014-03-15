@@ -1025,8 +1025,6 @@ awan ti naibaga a panagbaliw, wenno padpadasem nga ilemlemmeng ti agdama a panag
 'revdelete-show-file-submit' => 'Wen',
 'revdelete-selected' => "'''{{PLURAL:$2|Napili a nabaliwan|Dagiti napili a nabaliwan}} iti [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Ti napili a listaan ti napasamak|Dagiti napili a listaan ti napasamak}}:'''",
-'revdelete-text' => "'''Dagiti naikkat a binaliwan ken dagiti napasamak ket agparang idiay panid ti pakasaritaan ken dagiti listaan, ngem addaan dagiti paset ti nagyanda a saan a maserrekan ti publiko.'''
-Dagiti sabsabali nga administrador idiay {{SITENAME}} ket mabalinda a serrekan ti nailemmeng a nagyan ken isubli ti panakaikkatda manen idiay dati nga interface, ngem saan no adda dagiti nainayon a naikabil a panagparit.",
 'revdelete-confirm' => 'Pangngaasi a pasingkedam a kayatmo nga aramiden daytoy, a maawatam dagiti pagbanagan, ket araramidem daytoy a segun iti [[{{MediaWiki:Policy-url}}|ti annuroten]].',
 'revdelete-suppress-text' => "Ti panagdepdep ket usaren '''laeng''' kadagiti sumaganad a kaso;
 * Makapataud ti libelo a pakaammo

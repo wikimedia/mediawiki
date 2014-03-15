@@ -1045,8 +1045,6 @@ Pues ver el diff; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/supr
 'revdelete-show-file-submit' => 'Sí',
 'revdelete-selected' => "'''{{PLURAL:$2|Revisión seleicionada|Revisiones seleicionaes}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Socesu del rexistru seleicionáu|Socesos del rexistru seleicionaos}}:'''",
-'revdelete-text' => "'''Les revisiones y socesos desaniciaos van siguir apaeciendo nel historial de la páxina y nos rexistros, pero parte del so conteníu nun va ser accesible pal públicu.'''
-Otros alministradores de {{SITENAME}} van siguir pudiendo acceder al conteníu anubríu y puen restauralu de nuevo al traviés d'esta mesma interfaz, a nun ser que s'establezan otres restricciones.",
 'revdelete-confirm' => "Confirma que quies facer esto, qu'entiendes les consecuencies, y que vas facer esto d'alcuerdo [[{{MediaWiki:Policy-url}}|cola política]].",
 'revdelete-suppress-text' => "La supresión '''namái''' tendría d'usase nos casos darréu:
 * Información que pudiere ser bilordiosa

@@ -1260,8 +1260,6 @@ fonccion, la vèrsion spècifiâye ègziste pas ou ben vos èprovâd de cachiér
 'revdelete-show-file-submit' => 'Ouè',
 'revdelete-selected' => "'''{{PLURAL:$2|Vèrsion chouèsia|Vèrsions chouèsies}} de [[:$1]] :'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Èvènement du jornal chouèsi|Èvènements du jornal chouèsis}} :'''",
-'revdelete-text' => "'''Les vèrsions et los èvènements suprimâ(ye)s aparètront adés dedens l’historico de la pâge et pués sur los jornals, mas quârques parties de lor contegnu seront inaccèssibles u publico.'''
-Los ôtros administrators de {{SITENAME}} porront tojorn arrevar u contegnu cachiê et lo refâre per cela mém’entèrface, du muens que des rèstriccions de ples seyont pas dèfenies.",
 'revdelete-confirm' => 'Se vos plét, confirmâd qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et pués que vos o féte en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].',
 'revdelete-suppress-text' => "La rèprèssion dêt étre empleyêe '''ren que''' dens cetos câs :
 * Enformacions que pôvont étre difamatouères

@@ -800,7 +800,6 @@ Liá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he '
 'revdelete-show-file-submit' => '係',
 'revdelete-selected' => "'''選取[[:$1]]嘅$2次修訂:'''",
 'logdelete-selected' => "'''Chhí-chhṳ '''$1''' ke $2-ke ngit-ki hong-muk:'''",
-'revdelete-text' => "'''Chhù-thet ke siû-thin yìn-yèn chiông-voi hién-sṳ chhai vùn-chông li̍t-sṳ́ chûng, than vùn-sṳ nui-yùng yí-kîn put-nèn pûn chung-ngìn fóng-mun.''' Chhai chhṳ́ miong-chham ke khì-thâ kón-lî-yèn chiông chhòi-nèn fóng-mun yún-chhòng ke nui-yùng pin theu-ko siông-thùng ke kie-mien fî-fu̍k chhù-hi, chhù-fî miong-chham kûng-chok-chá chin-hàng han-chṳ.",
 'revdelete-legend' => 'Sat-thin siû-thin han-chṳ:',
 'revdelete-hide-text' => '隱藏修訂版本文字',
 'revdelete-hide-image' => '隱藏文件內容',

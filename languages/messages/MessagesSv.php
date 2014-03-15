@@ -864,6 +864,7 @@ Vänta $1 innan du försöker igen.',
 'createacct-another-realname-tip' => 'Riktiga namnet är valfritt.
 Om du väljer att ange det, kommer det användas för att tillskriva användaren för sitt arbete.',
 'pt-login' => 'Logga in',
+'pt-login-button' => 'Logga in',
 'pt-createaccount' => 'Skapa konto',
 'pt-userlogout' => 'Logga ut',
 
@@ -1285,8 +1286,6 @@ eller så försöker du gömma den senaste versionen av sidan.',
 'revdelete-show-file-submit' => 'Ja',
 'revdelete-selected' => "'''{{PLURAL:$2|Vald version|Valda versioner}} av [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Vald loggåtgärd|Valda loggåtgärder}}:'''",
-'revdelete-text' => "'''Borttagna versioner och åtgärder kommer fortfarande att synas i historiken och i loggar, men deras innehåll kommer ej att vara tillgängligt för allmänheten.'''
-Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte ytterligare begränsningar finns.",
 'revdelete-confirm' => 'Var god bekräfta att du vill göra detta, och att du förstår konsekvenserna, och att du gör så i enlighet med [[{{MediaWiki:Policy-url}}|policyn]].',
 'revdelete-suppress-text' => "Undanhållande ska '''bara''' användas i följande fall:
 * Eventuell förolämpande information
@@ -1422,7 +1421,7 @@ Detaljer kan hittas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-file-match' => '(överensstämmer filens innehåll)',
 'search-suggest' => 'Menade du: $1',
 'search-interwiki-caption' => 'Systerprojekt',
-'search-interwiki-default' => 'Resultat i $1:',
+'search-interwiki-default' => 'Resultat från $1:',
 'search-interwiki-more' => '(mer)',
 'search-relatedarticle' => 'Relaterad',
 'searcheverything-enable' => 'Sök i alla namnrymder',
@@ -2725,6 +2724,7 @@ Orsaken till senaste blockeringen kan ses nedan:',
 'sp-contributions-blocked-notice-anon' => 'Denna IP-adress är för närvarande blockerad.
 Den senaste posten i blockeringsloggen visas nedan som referens:',
 'sp-contributions-search' => 'Sök efter användarbidrag',
+'sp-contributions-suppresslog' => 'undanhållna användarbidrag',
 'sp-contributions-username' => 'IP-adress eller användarnamn:',
 'sp-contributions-toponly' => 'Visa endast aktuella sidversioner',
 'sp-contributions-newonly' => 'Visa endast redigeringar där sidor skapas',

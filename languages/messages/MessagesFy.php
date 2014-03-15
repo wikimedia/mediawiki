@@ -873,8 +873,6 @@ der kinne details wêze yn it [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPA
 'revdelete-show-file-submit' => 'Ja',
 'revdelete-selected' => "'''Spesifisearre {{PLURAL:$2|ferzje|ferzjes}} fan [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|keazen lochboekregel|keazen lochboekregels}}:'''",
-'revdelete-text' => "'''Fuorthelle bewurkings binne sichtber yn 'e skiednis, mar de ynhâld is net langer publyk tagonklik.'''
-Oare behearders fan {{SITENAME}} kinne de ferburgen ynhâld benaderje en it fuortheljen ûngedien meitsje mei help fan dit skerm, of der moatte oanfoljende beheinings jilde dy't ynsteld binne troch de systeembehearder.",
 'revdelete-legend' => 'Sichtberensbeheinings ynstelle.',
 'revdelete-hide-text' => 'De bewurke tekst ferskûlje',
 'revdelete-hide-image' => 'Triem ynhâld ferskûlje',

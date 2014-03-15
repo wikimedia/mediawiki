@@ -883,7 +883,6 @@ Sīkāku informāciju var atrast [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'revdelete-show-file-submit' => 'Jā',
 'revdelete-selected' => "'''[[:$1]] {{PLURAL:$2|izvēlētā versija|izvēlētās versijas}}:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Izvēlētais reģistra ieraksts|Izvēlētie reģistra ieraksti}}:'''",
-'revdelete-text' => "'''Lapu hronoloģijā un reģistros izdzēstās versijas vēl joprojām būs redzamas, tomēr daļa informācijas nebūs pieejama publiski.''' Citi {{SITENAME}} administratori varēs apskatīt spēlto saturu un varēs to atslēpt, ja vien nav papildu ierobežojumi.",
 'revdelete-confirm' => 'Lūdzu apstiprini, ka Tu zini, ko dari, Tu apzinies sekas, tāpat Tu to dari saskaņā ar vadlīnijām.',
 'revdelete-suppress-text' => "Paslēpšanu izmantot vienīgi šādos gadījumos:
 * potenciāli apmelojoša informācija

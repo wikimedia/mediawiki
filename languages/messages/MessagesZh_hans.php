@@ -908,6 +908,7 @@ $2',
 'createacct-another-realname-tip' => '真实姓名是选填项目。
 如果你选择提供它，它将会用于贡献署名。',
 'pt-login' => '登录',
+'pt-login-button' => '登录',
 'pt-createaccount' => '创建账户',
 'pt-userlogout' => '退出',
 
@@ -1272,8 +1273,6 @@ $3给出的原因是“$2”。",
 'revdelete-show-file-submit' => '是',
 'revdelete-selected' => "'''选取'''[[:$1]]'''的$2次修订：'''",
 'logdelete-selected' => "'''{{PLURAL:$1|选取的日志项目}}：'''",
-'revdelete-text' => "'''删除的版本仍将显示在页面历史及日志中，但公众已不能访问其文本内容。'''
-在{{SITENAME}}的其他管理员将仍能访问隐藏的内容并通过该界面恢复删除的版本，除非进行了额外限制。",
 'revdelete-confirm' => '请确认该操作，明白其后果，并确保该操作符合[[{{MediaWiki:Policy-url}}|方针]]。',
 'revdelete-suppress-text' => "阻止应'''仅'''用于以下情况：
 * 潜在的诽谤信息
@@ -1402,7 +1401,7 @@ $1",
 'search-file-match' => '（匹配文件内容）',
 'search-suggest' => '您是不是要找：$1',
 'search-interwiki-caption' => '姊妹项目',
-'search-interwiki-default' => '$1项结果：',
+'search-interwiki-default' => '来自$1的结果：',
 'search-interwiki-more' => '（更多）',
 'search-relatedarticle' => '相关',
 'searcheverything-enable' => '在所有名字空间中搜索',

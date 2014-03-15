@@ -1150,8 +1150,6 @@ ili ta revizija ne postoji, ili pokušavate sakriti trenutnu reviziju.',
 'revdelete-show-file-submit' => 'Da',
 'revdelete-selected' => "'''{{PLURAL:$2|Odabrana revizija|Odabrane revizije}} od [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Označena stavka registra|Označene stavke registra}}:'''",
-'revdelete-text' => "'''Obrisane revizije i događaji će i dalje biti vidljivi u historiji stranice i registrima, ali dijelovi njenog sadržaja neće biti dostupni javnosti.'''
-Drugi administratori projekta {{SITENAME}} će i dalje moći pristupiti sakrivenom sadržaju i mogu ga ponovo vratiti kroz ovaj interfejs, osim ako nisu postavljena dodatna ograničenja.",
 'revdelete-confirm' => 'Molimo potvrdite da namjeravate ovo učiniti, da razumijete posljedice i da to činite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].',
 'revdelete-suppress-text' => "Ograničenja bi trebala biti korištena '''samo''' u sljedećim slučajevima:
 * Osjetljive korisničke informacije

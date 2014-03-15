@@ -806,6 +806,7 @@ $2',
 'createacct-another-realname-tip' => '真實姓名為選填。
 如果您選擇提供，它將用於貢獻署名。',
 'pt-login' => '登入',
+'pt-login-button' => '登入',
 'pt-createaccount' => '建立帳戶',
 'pt-userlogout' => '登出',
 
@@ -1201,8 +1202,6 @@ $3所述禁止原因為“$2”。",
 'revdelete-show-file-submit' => '是',
 'revdelete-selected' => "'''選取[[:$1]]的$2次修訂:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|選取的日誌項目}}：'''",
-'revdelete-text' => "'''刪除的修訂仍將顯示在頁面歷史中, 但它們的文字內容已不能被公眾訪問。'''
-在{{SITENAME}}的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面恢復刪除，除非網站工作者進行了一些附加的限制。",
 'revdelete-confirm' => '請確認您肯定去做的話，您就要明白到後果，以及這個程序符合[[{{MediaWiki:Policy-url}}|政策]]。',
 'revdelete-suppress-text' => "禁制應'''僅'''於下述情形之一時使用：
 * 潛在誹謗性資訊
@@ -1332,7 +1331,7 @@ $1",
 'search-file-match' => '（匹配檔案內容）',
 'search-suggest' => '{{GENDER:|你|妳|你}}是不是要找：$1',
 'search-interwiki-caption' => '姊妹計劃',
-'search-interwiki-default' => '$1 項結果：',
+'search-interwiki-default' => '來自$1之結果：',
 'search-interwiki-more' => '（更多）',
 'search-relatedarticle' => '相關',
 'searcheverything-enable' => '在所有名字空間中搜尋',

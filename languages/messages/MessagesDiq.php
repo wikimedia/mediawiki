@@ -1277,8 +1277,6 @@ Eke şıma serkari u devam bıkeri [$1 no vurnayiş şıma eşkeni bıvini].",
 'revdelete-show-file-submit' => 'E',
 'revdelete-selected' => "'''[[:$1]]: ra {{PLURAL:$2|çımraviyarnayışo weçinıte|çımraviyarnayışê weçinıtey}}'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Qeydbiyayışo weçinıte|Qeydbiyayışê weçinıtey}}:'''",
-'revdelete-text' => "'''Çımraviyarnayışê esterıtey u kerdışi hewna tarixê pele u qeydan de asenê, hema parçeyê zerrekê dinan areze nêbenê.'''
-Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşenê hewna bıresê zerrekê nımıtey u şenê ey anciya na eyni miyanpele ra peyser biarê.",
 'revdelete-confirm' => 'Ma rica keno testiq bike ti ena hereket keno u ti zano neticeyanê herketanê xo u ti ena hereket pê ena [[{{MediaWiki:Policy-url}}|polici]] ra keno.',
 'revdelete-suppress-text' => "Wedardış gani '''tenya''' nê halanê cêrênan de bıxebıtiyo:
 * Melumatê kıfırio mıhtemel
@@ -2439,7 +2437,7 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 Ena deme ra, ma qe vurnayışan ser ena pele tı haberdar keni.',
 'removewatch' => 'Listedê mınê seyr kerdışi ra hewad',
 'removedwatchtext' => 'Ena pela "[[:$1]]" biya wedariya [[Special:Watchlist|listeyê seyr-kerdışi şıma]].',
-'watch' => 'Temaşe ke',
+'watch' => 'Seyr ke',
 'watchthispage' => 'Ena pele seyr ke',
 'unwatch' => 'Teqib mekerê',
 'unwatchthispage' => 'temaşa kerdışê peli vındarn.',

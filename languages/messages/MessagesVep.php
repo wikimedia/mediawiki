@@ -866,8 +866,6 @@ Detalid voidas olda [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 
 'revdelete-show-file-submit' => 'Ka',
 'revdelete-selected' => "'''{{PLURAL:$2|Valitud versii|Valitud versijad}} lehtpolišpäi [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Valitud kirjutez aigkirjas|Valitud kirjutesed aigkirjas}}:'''",
-'revdelete-text' => "'''Čutud versijad ozutadas lehtpolen istorijas da aigkirjoiš, no järgeližed lugijad ei voiškakoi nähta niiden südäimišton erasid paloid.'''
-Administratorad voiškatas lugeda peittud südäimištod da endištada sidä necen interfeisan kal't siloi, konz ei ole ližakaidendusid.",
 'revdelete-legend' => 'Säta kaidendused',
 'revdelete-hide-text' => 'Redakcijan tekst',
 'revdelete-hide-image' => 'Peitta failan südäiolend',

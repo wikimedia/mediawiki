@@ -1051,8 +1051,6 @@ Ika puwedeng makakatanaw kaining diff; mga detalye puwedeng mananagboan sa [{{fu
 'revdelete-show-file-submit' => 'Iyo tabi',
 'revdelete-selected' => "'''{{PLURAL:$2|Selected revision|Mga piniling pagbabago}} kan [[:$1]]'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Selected log event|Mga piniling talaan kan mga pangyayari}}:'''",
-'revdelete-text' => "'''Pinagpurang mga pagbabago asin mga pangyayari mahihiling pa man sa historiyang pahina asin mga talaan, pero an mga parte kan saindang laman dae puwedeng magamit kan publiko.'''
-An ibang administrador sa {{SITENAME}} puwede pa man makagamit sa pinagtagong laman asin balewalaon an pagpura kaini giraray sa paagi nin kaparehong panlaog-olay, laen lang kun may kadagdagang pangilin an inilapat.",
 'revdelete-confirm' => 'Pakikumpirma tabi na ika tuyong gumibo kaini, na saimong naintindihan an mga konsekuwensiya, asin ta ika pinaghihimo ini na uyon sa [[{{MediaWiki:Policy-url}}|an palisiya]].',
 'revdelete-suppress-text' => "An paglulubog dapat '''sana''' magagamit para sa minasunod na mga kaso:
 *Potensiyal na libeloso an impormasyon

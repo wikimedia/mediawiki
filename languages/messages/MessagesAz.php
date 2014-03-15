@@ -15,6 +15,7 @@
  * @author Emperyan
  * @author Erdemaslancan
  * @author Gulmammad
+ * @author Interfase
  * @author Kaganer
  * @author Khan27
  * @author Matma Rex
@@ -225,7 +226,7 @@ $messages = array(
 'moredotdotdot' => 'Daha...',
 'morenotlisted' => 'Bu siyahı tam deyil.',
 'mypage' => 'Səhifə',
-'mytalk' => 'Danışıqlarım',
+'mytalk' => 'Müzakirə',
 'anontalk' => 'Bu IP-yə aid müzakirə',
 'navigation' => 'Naviqasiya',
 'and' => '&#32;və',
@@ -294,7 +295,7 @@ $messages = array(
 'articlepage' => 'Məqaləni nəzərdən keçir',
 'talk' => 'Müzakirə',
 'views' => 'Görünüş',
-'toolbox' => 'Alətlər qutusu',
+'toolbox' => 'Alətlər',
 'userpage' => 'İstifadəçi səhifəsini göstər',
 'projectpage' => 'Layihə səhifəsini göstər',
 'imagepage' => 'Fayl səhifəsini göstər',
@@ -626,6 +627,9 @@ Yeni cəhd etməzdən əvvəl bir qədər gözləyin.',
 'suspicious-userlogout' => 'Sizin çıxış üçün cəhdiniz uğursuz alındı. Bu, brouzerin yaxud proksi-keşləmənin düzgün işləməməsindən qaynaqlanır.',
 'createacct-another-realname-tip' => 'Gərçək adınız istəyə bağlıdır.
 Əgər gərçək adınızı göstərsəniz, çalışmalarınıza müraciət etmək üçün istifadə ediləcəkdir.',
+'pt-login' => 'Daxil ol',
+'pt-createaccount' => 'Akkaunt yarat',
+'pt-userlogout' => 'Çıxış',
 
 # Email sending
 'php-mail-error-unknown' => 'PHP-nin mail() funksiyasında naməlum xəta',
@@ -642,7 +646,7 @@ Sistemə daxil olmanı yekunlaşdırmaq üçün yeni parolu bura yazmalısınız
 'newpassword' => 'Yeni parol:',
 'retypenew' => 'Yeni parolu təkrar yazın:',
 'resetpass_submit' => 'Parol yaradın və sistemə daxil olun',
-'changepassword-success' => 'Parolunuz dəyişdirldi! Hazırda sistemə daxil olursunuz...',
+'changepassword-success' => 'Sizin parol uğurla dəyişdirildi!',
 'resetpass_forbidden' => 'Parolu dəyişmək mümkün deyil',
 'resetpass-no-info' => 'Bu səhifəni birbaşa açmaq üçün sistemə daxil olmalısınız.',
 'resetpass-submit-loggedin' => 'Parolu dəyiş',
@@ -734,9 +738,8 @@ Belə IP ünvan bir neçə fərd tərəfindən istifadədə ola bilər.
 'noarticletext' => 'Hal-hazırda bu səhifə boşdur. Başqa səhifələrdə eyni adda səhifəni [[Special:Search/{{PAGENAME}}| axtara]], əlaqəli qeydlərə
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} baxa],
 və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> edə bilərsiniz.',
-'noarticletext-nopermission' => 'Hal-hazırda bu səhifə boşdur. Başqa səhifələrdə eyni adda səhifəni [[Special:Search/{{PAGENAME}}| axtara]], əlaqəli qeydlərə
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} baxa],
-və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> edə bilərsiniz.',
+'noarticletext-nopermission' => 'Hal-hazırda bu səhifə boşdur. Başqa səhifələrdə eyni adlı səhifəni [[Special:Search/{{PAGENAME}}| axtara]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} əlaqəli qeydlərə baxa],
+və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə edə bilərsiniz]</span>, lakin sizin bu məqaləni yaratmaq hüququnuz yoxdur.',
 'userpage-userdoesnotexist' => '"<nowiki>$1</nowiki>" istifadəçi adı qeydiyyata alınmayıb.
 Əgər siz bu səhifəni yaratmaq/redaktə etmək istəyirsinizsə, xahiş edirik bunu yoxlayın.',
 'userpage-userdoesnotexist-view' => '"$1" istifadəçi hesabı qeydiyyatda deyil',
@@ -969,7 +972,7 @@ $1",
 'shown-title' => 'Səhifə üçün $1 {{PLURAL:$1|nəticə|nəticəyə}} bax',
 'viewprevnext' => 'Göstər ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Bu vikidə \"[[:\$1]]\" adında səhifə mövcuddur'''",
-'searchmenu-new' => "'''Bu vikidə \"[[:\$1]]\" səhifəsini yarat!'''",
+'searchmenu-new' => '<strong>Bu vikidə "[[:$1]]" səhifəsini yarat!</strong> {{PLURAL:$2|0=|Həmçinin, axtarışınız əsasında çıxan səhifəyə baxın.|Həmçinin, axtarışınız əsasında çıxan nəticələrə baxın.}}',
 'searchprofile-articles' => 'Məqalələr',
 'searchprofile-project' => 'Kömək və Layihə səhifələri',
 'searchprofile-images' => 'Multimedia',
@@ -1286,7 +1289,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'rc-change-size' => '$1',
 'rc-change-size-new' => '$1 üçün dəyişiklikdən sonrakı həcm: {{PLURAL:$1|bayt|bayt|bayt}}',
 'newsectionsummary' => '/* $1 */ yeni bölmə',
-'rc-enhanced-expand' => 'Detalları göstər (JavaScript istifadə edir)',
+'rc-enhanced-expand' => 'Ətraflı göstər',
 'rc-enhanced-hide' => 'Redaktələri gizlət',
 'rc-old-title' => 'Əvvəlcə "$1" kimi yaradılmış',
 
@@ -1737,7 +1740,7 @@ Fərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-help
 
 # Watchlist
 'watchlist' => 'İzlədiyim səhifələr',
-'mywatchlist' => 'İzlədiyim səhifələr',
+'mywatchlist' => 'İzləmə siyahısı',
 'watchlistfor2' => '$1 $2 üçün',
 'nowatchlist' => 'İzləmə siyahınız böşdur.',
 'watchlistanontext' => 'Lütfən, izlədiyiniz səhifələri görmək və ya redaktə etmək üçün $1.',
@@ -1939,7 +1942,7 @@ $1',
 'blanknamespace' => '(Ana)',
 
 # Contributions
-'contributions' => 'İstifadəçi fəaliyyəti',
+'contributions' => '{{GENDER:$1|İstifadəçinin}} fəaliyyəti',
 'contributions-title' => '$1 istifadəçi fəaliyyətləri',
 'mycontris' => 'Fəaliyyətim',
 'contribsub2' => '$1 ($2)',
@@ -2390,7 +2393,7 @@ $1',
 'file-info-size' => '$1 × $2 piksel, fayl həcmi: $3, MIME növü: $4',
 'file-nohires' => 'Daha dəqiq versiyası yoxdur.',
 'svg-long-desc' => 'SVG fayl, nominal olaraq $1 × $2 piksel, faylın ölçüsü: $3',
-'show-big-image' => 'Daha yüksək keyfiyyətli şəkil',
+'show-big-image' => 'Faylın əsli',
 'show-big-image-preview' => 'Sınaq göstərişi ölçüsü: $1.',
 'show-big-image-other' => "Dig'r {{PLURAL:$2|nəticə|nəticələr}}: $1.",
 'show-big-image-size' => '$1 × $2 piksel',

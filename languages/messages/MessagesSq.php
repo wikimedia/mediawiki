@@ -1088,7 +1088,6 @@ Ju mund ta shikoni këtë ndryshim; detajet mund të gjenden te [{{fullurl:{{#Sp
 'revdelete-show-file-submit' => 'Po',
 'revdelete-selected' => "'''{{PLURAL:$2|Versioni i zgjedhur i|Versionet e zgjedhura të}} [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Veprimi i zgjedhur në regjistër|Veprimet e zgjedhura në regjistër}}:'''",
-'revdelete-text' => "'''Përmbajtja dhe pjesët e tjera nuk janë të dukshme për të gjithë, por figurojnë në historikun e versioneve.''' Administratorët munden përmbajtjen e larguar ta shikojnë dhe restaurojnë, përveç në rastet kur një gjë e tillë është ndaluar ekstra.",
 'revdelete-confirm' => 'Ju lutem konfirmoni që keni ndër mënd ta bëni këtë, që i kuptoni pasojat, dhe që ju po veproni në përputhje me [[{{MediaWiki:Policy-url}}|politiken]].',
 'revdelete-suppress-text' => "Shuarje duhet'''vetëm'''të përdoret për rastet e mëposhtme: 
  * Potencialisht e informacionit shpifës 

@@ -1145,8 +1145,6 @@ U kan wel hierdie verskil sien. Meer details kan in die [{{fullurl:{{#Special:Lo
 'revdelete-show-file-submit' => 'Ja',
 'revdelete-selected' => "'''Geselekteerde {{PLURAL:$2|wysiging|wysigings}} vir [[:$1]]:'''",
 'logdelete-selected' => "'''Geselekteerde {{PLURAL:$1|logboek aksie|logboek aksies}}:'''",
-'revdelete-text' => "'''Geskrapte wysigings en aksies sal in die geskiedenis en logboeke sigbaar bly, maar dele van die inhoud sal nie publiek toeganklik wees nie.'''
-Ander administrateurs van {{SITENAME}} kan steeds die verborge inhoud sien en die verwydering met behulp van die vorm ongedaan maak, tensy aanvullende beperkinge deur die stelseladministrateur opgelê is.",
 'revdelete-confirm' => 'Bevestig asseblief dat u dit wil doen, dat u die nagevolge verstaan en dat u dit doen in ooreenstemming met die [[{{MediaWiki:Policy-url}}|beleid]].',
 'revdelete-suppress-text' => "Verberging van weergawes mag '''slegs''' in die volgende gevalle gebruik word:
 * Potensieel lasterlike inligting

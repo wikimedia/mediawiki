@@ -1292,8 +1292,6 @@ Sebagai seorang pengurus, Anda dapat melihat perbedaan ini; detail mungkin terse
 'revdelete-show-file-submit' => 'Ya',
 'revdelete-selected' => "'''{{PLURAL:$2|Revisi|Revisi-revisi}} pilihan dari '''$1''''''",
 'logdelete-selected' => "'''{{PLURAL:$1|Log|Log-log}} pilihan untuk:'''",
-'revdelete-text' => "'''Revisi dan tindakan yang telah dihapus akan tetap muncul di versi terdahulu dan log halaman, tapi bagian dari isinya tidak bisa diakses publik.'''
-Pengurus {{SITENAME}} lain akan tetap dapat mengakses isi yang tersembunyi ini dan dapat membatalkan penghapusannya menggunakan antarmuka yang sama, kecuali ada pembatasan lain yang dibuat oleh operator situs.",
 'revdelete-confirm' => 'Tolong konfirmasi bahwa Anda memang bermaksud melakukan ini, memahami konsekuensinya, dan bahwa Anda melakukannya sesuai dengan [[{{MediaWiki:Policy-url}}|kebijakan]].',
 'revdelete-suppress-text' => "Penyembunyian revisi '''hanya''' boleh digunakan untuk kasus-kasus berikut:
 * Informasi yang berpotensi memfitnah

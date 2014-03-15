@@ -651,9 +651,6 @@ $2',
 'revdelete-nooldid-text' => '倷冇话个只操作𠮶目标修改。',
 'revdelete-selected' => "'''拣[[:$1]]𠮶$2回修订:'''",
 'logdelete-selected' => "'''拣'''$1'''𠮶$2只日志事件:'''",
-'revdelete-text' => "'''删吥𠮶改动哈会到页面历史里头显示, 但公众浏览伓正佢𠮶内容。'''
-
-个站别𠮶管理员哈系能眵吖弆到𠮶内容，同到通过同佢一样𠮶界面恢复删除，除非设正嘞附加𠮶限制。",
 'revdelete-legend' => '设置可见性𠮶限制',
 'revdelete-hide-text' => '弆到修改内容',
 'revdelete-hide-image' => '弆到档内容',

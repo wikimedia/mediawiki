@@ -683,6 +683,7 @@ Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnj
 'createacct-another-realname-tip' => 'Napšawdne mě jo opcionalne.
 Jolic jo pódajoš, buźo se to wužywaś, aby pśinoski pśirědowało.',
 'pt-login' => 'Pśizjawiś',
+'pt-login-button' => 'Pśizjawiś',
 'pt-createaccount' => 'Konto załožyś',
 'pt-userlogout' => 'Wótzjawiś',
 
@@ -1083,8 +1084,6 @@ Móžoš se toś ten rozdźěl woglědaś; drobnostki glědaj w [{{fullurl:{{#Sp
 'revdelete-show-file-submit' => 'Jo',
 'revdelete-selected' => "'''{{PLURAL:$2|Wuzwólona wersija|Wuzwólonej wersiji|Wuzwólone wersije}} wót [[:$1]].'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Wuzwólony protokolowe tšojenje|Wuzwólonej protokolowe tšojeni|wuzwólone protokolowe tšojenja}}:'''",
-'revdelete-text' => "'''Wulašowane wersije a tšojenja budu se dalej w stawiznach boka a w protokolach pokazaś, ale źěle jich wopśimjeśa njebudu pśistupne za zjawnosć.'''
-Dalšne administratory na {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hyšći pśistup na schowane wopśimjeśe měś a mógu jo pśez samki interfejs wótnowiś,  snaźkuli su pśidatne wobgranicowanja.",
 'revdelete-confirm' => 'Pšosym wobkšuś, až coš to cyniś, až rozmějoš konsekwence a až cyniš to pó [[{{MediaWiki:Policy-url}}|pšawidłach]].',
 'revdelete-suppress-text' => "Pódtłocenje by dejało se '''jano''' za slědujuce pady wužywaś:
 * Potencielnje ranjece informacije
@@ -1218,7 +1217,7 @@ Drobnostki móžoš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-file-match' => '(wótpowědujo datajowemu wopśimjeśeju)',
 'search-suggest' => 'Měnjašo $1?',
 'search-interwiki-caption' => 'Sotšine projekty',
-'search-interwiki-default' => '$1 wuslědki:',
+'search-interwiki-default' => 'Wuslědki z $1:',
 'search-interwiki-more' => '(wěcej)',
 'search-relatedarticle' => 'swójźbne',
 'searcheverything-enable' => 'We wšych mjenjowych rumach pytaś',
@@ -2332,7 +2331,7 @@ Pšašanja a dalšna pomoc:
 'delete-toobig' => 'Toś ten bok ma z wěcej nježli $1 {{PLURAL:$1|wersiju|wersijomaj|wersijami|wersijami}} dłujku historiju. Lašowanje takich bokow bu wobgranicowane, aby wobškoźenju {{GRAMMAR:genitiw|{{SITENAME}}}} z pśigódy zajźowało.',
 'delete-warning-toobig' => 'Toś ten bok ma z wěcej ako $1 {{PLURAL:$1|wersiju|wersijomaj|wersijami|wersijami}} dłujke stawizny. Jich wulašowanje móžo źěło datoweje banki na {{SITENAME}} kazyś;
 póstupujśo z glědanim.',
-'deleting-backlinks-warning' => "'''Warnowanje:''' Druge boki wótkazuju k bokoju abo bok jo hynźi zapśěgnjony, kótaryž coš wulašowaś.",
+'deleting-backlinks-warning' => "'''Warnowanje:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Druge boki]] wótkazuju k bokoju abo bok jo hynźi zapśěgnjony, kótaryž coš wulašowaś.",
 
 # Rollback
 'rollback' => 'Wobźěłanja slědk wześ',

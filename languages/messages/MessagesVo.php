@@ -860,8 +860,6 @@ Kanol logön oni; pats ba binons in [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'revdelete-show-file-submit' => 'Si',
 'revdelete-selected' => "'''{{PLURAL:$2|Fomam|Fomams}} pevalöl pada: [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Lisedajenot|Lisedajenots}} pevälöl:'''",
-'revdelete-text' => "'''Revids pemoüköl nog opubons in padajenotem, ab ninäd (vödem) onsik no gebidons publüge.'''
-Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka: {{SITENAME}}, kels kanons nog votükön ninädi peklänedöl u geükön padi medü fometem at (üf miedöfükams u neletians votik no lonöfons).",
 'revdelete-legend' => 'Levälön miedükamis logova:',
 'revdelete-hide-text' => 'Klänedön vödemi revida',
 'revdelete-hide-image' => 'Klänedön ragivaninädi',

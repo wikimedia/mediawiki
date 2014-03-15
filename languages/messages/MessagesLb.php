@@ -730,6 +730,7 @@ Waart w.e.g. $1 ier Dir et nach eng Kéier probéiert.',
 
 Wann Dir en ugitt, gëtt e benotzt fir d'Benotzerattributiounen fir Är Aarbecht zouzeuerdnen.",
 'pt-login' => 'Aloggen',
+'pt-login-button' => 'Aloggen',
 'pt-createaccount' => 'Benotzerkont opmaachen',
 'pt-userlogout' => 'Ausloggen',
 
@@ -1141,8 +1142,6 @@ Dir kënnt dësen Ënnerscheed gesinn; Detailer fannt Dir am [{{fullurl:{{#Speci
 'revdelete-show-file-submit' => 'Jo',
 'revdelete-selected' => "'''{{PLURAL:$2|Gewielt Versioun|Gewielt Versioune}} vu(n) [[:$1]] :'''",
 'logdelete-selected' => "'''Ausgewielten {{PLURAL:$1|Evenement|Evenementer}} aus dem Logbuch:'''",
-'revdelete-text' => "'''Geläscht Versiounen oder aner geläscht Bestanddeeler sinn net méi ëffentlech zougänglech, si stinn awer weiderhin an der Versiounsgeschicht vun der Säit.'''
-Aner {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläscht Bestanddeeler weiderhi gesinn a restauréieren, et sief, et gouf festgeluecht, datt déi Limitatioune vum Accès och fir Administrateure gëllen.",
 'revdelete-confirm' => "Confirméiert w.e.g. datt Dir dat maache wëllt, datt Dir d'Konsequenze verstitt an datt Dir dëst an Aklang mat de [[{{MediaWiki:Policy-url}}|Richtlinne]] maacht.",
 'revdelete-suppress-text' => "Ënnerdréckung sollt '''nëmmen''' an dëse Fäll benotzt ginn:
 * Informatiounen déi beleidege kéinten
@@ -1236,7 +1235,7 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'difference-title-multipage' => '$1 a(n) $2: Ënnerscheed tëscht de Säiten',
 'difference-multipage' => '(Ënnerscheed tëscht Säiten)',
 'lineno' => 'Linn $1:',
-'compareselectedversions' => 'Ausgewielte Versioune vergläichen',
+'compareselectedversions' => 'Ausgewielt Versioune vergläichen',
 'showhideselectedversions' => 'Erausgesicht Versioune weisen/verstoppen',
 'editundo' => 'zréck',
 'diff-empty' => '(Keen Ënnerscheed)',
@@ -1281,7 +1280,7 @@ Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-file-match' => '(Inhalt vum Fichier passt)',
 'search-suggest' => 'Mengt Dir: $1',
 'search-interwiki-caption' => 'Schwësterprojeten',
-'search-interwiki-default' => '$1 Resultater:',
+'search-interwiki-default' => 'Resultater vu(n) $1:',
 'search-interwiki-more' => '(méi)',
 'search-relatedarticle' => 'A Verbindung',
 'searcheverything-enable' => 'An allen Nummraim sichen',

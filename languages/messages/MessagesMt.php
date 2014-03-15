@@ -1137,8 +1137,6 @@ Bħala amministratur inti xorta waħda tista' tarah dan il-konfront; ikkonsulta 
 'revdelete-show-file-submit' => 'Iva',
 'revdelete-selected' => "'''{{PLURAL:$2|Reviżjoni magħżula|Reviżjonijiet magħżula}} ta' [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Avveniment tar-reġistru magħżul|Avvenimenti tar-reġistri magħżula}}:'''",
-'revdelete-text' => "'''Reviżjonijiet u azzjonijiet imħassra xorta waħda jidhru fil-kronoloġija tal-paġna, filwaqt li partijiet tal-kontenut jiġu inaċċessibli għall-pubbliku.'''
-L-amminstraturi l-oħrajn fuq {{SITENAME}} xorta jkunu jistgħu jidħlu fuq il-kontenut moħbi u jistgħu jirkuprawh minn din l-istess interfaċċa, sakemm restrizzjonijiet ulterjuri jiġu definiti.",
 'revdelete-confirm' => 'Jekk jogħġbok ikkonferma li dan hu dak li tixtieq tagħmel, li tifhem il-konsegwenzi, u li qed tagħmel dan skont il-[[{{MediaWiki:Policy-url}}|politika]].',
 'revdelete-suppress-text' => "It-trażżin għandu jintuża '''biss''' għall-każijiet segwenti:
 * Potenzjal ta' kontenut libelluż

@@ -999,8 +999,6 @@ Sawagai saurang pambakal Pian kawa nang balain ini; rarincian kawa diugai dalam 
 'revdelete-show-file-submit' => 'Iya-ai',
 'revdelete-selected' => "'''{{PLURAL:$2|Ralatan tapilih|Raralatan tapilih}} matan [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Log kajadian tapilih|Log kakajadian tapilih}}:'''",
-'revdelete-text' => "'''Raralatan tahapus wan kakajadian akan magun cungul dalam halam tungkaran wan log, tagal hagian matan isinya akan kada kawa diungkai umum.'''
-Pambakal lain pada {{SITENAME}} akan magun kawa maungkai isi tasungkup wan kawa mambulikakan hapusan pulang mangguna'akan antarmuha sama, kacuali ada panambahan pahalatan lain nang disetél.",
 'revdelete-confirm' => 'Muhun yakinakan bahwasa Pian handak manggawi ini, bahwasa Pian paham sabab akibat, wan bahwasa Pian manggawi ini bapandal awan [[{{MediaWiki:Policy-url}}|kaaripan]].',
 'revdelete-suppress-text' => "Panikinan parlu dipuruk gasan kakasus baumpat ini:
 * Pina kawa jadi panjalasan pitnah

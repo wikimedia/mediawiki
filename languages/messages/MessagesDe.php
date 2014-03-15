@@ -966,6 +966,7 @@ Bitte warte $1, bevor du es erneut probierst.',
 'createacct-another-realname-tip' => 'Der bürgerliche Name ist optional.
 Wenn du ihn angibst, wird er für die Zuordnung der Beiträge verwendet.',
 'pt-login' => 'Anmelden',
+'pt-login-button' => 'Anmelden',
 'pt-createaccount' => 'Benutzerkonto erstellen',
 'pt-userlogout' => 'Abmelden',
 
@@ -1379,8 +1380,10 @@ Du kannst diesen Versionsunterschied einsehen, sofern du möchtest. Nähere Anga
 'revdelete-show-file-submit' => 'Ja',
 'revdelete-selected' => "'''{{PLURAL:$2|Gewählte Version|Gewählte Versionen}} von [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Gewählter Logbucheintrag|Gewählte Logbucheinträge}}:'''",
-'revdelete-text' => "'''Gelöschte Versionen und Aktionen verbleiben in der Versionsgeschichte und den Logbüchern, jedoch sind Teile davon für die Öffentlichkeit unzugänglich.'''
-Andere Administratoren auf {{SITENAME}} haben Zugriff auf den versteckten Inhalt und können ihn mit der gleichen Seite wiederherstellen, sofern nicht zusätzliche Einschränkungen bestehen.",
+'revdelete-text-text' => 'Gelöschte Versionen verbleiben noch in der Versionsgeschichte, jedoch sind Teile ihres Inhalts für die Öffentlichkeit nicht zugänglich.',
+'revdelete-text-file' => 'Gelöschte Dateiversionen verbleiben noch in der Datei-Versionsgeschichte, jedoch sind Teile ihres Inhalts für die Öffentlichkeit nicht zugänglich.',
+'logdelete-text' => 'Gelöschte Logbucheinträge verbleiben noch in den Logbüchern, jedoch sind Teile ihres Inhalts für die Öffentlichkeit nicht zugänglich.',
+'revdelete-text-others' => 'Andere Administratoren auf {{SITENAME}} haben noch Zugriff auf den versteckten Inhalt und können ihn auch mithilfe dieser Spezialseite wiederherstellen, falls keine zusätzlichen Beschränkungen festgelegt wurden.',
 'revdelete-confirm' => 'Bitte bestätige, dass du beabsichtigst, dies zu tun, die Konsequenzen verstehst und es in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] tust.',
 'revdelete-suppress-text' => "Unterdrückungen sollten '''nur''' in den folgenden Fällen vorgenommen werden:
 * Potentiell beleidigende Informationen
@@ -1515,7 +1518,7 @@ Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'search-file-match' => '(treffende Dateiinhalte)',
 'search-suggest' => 'Meintest du „$1“?',
 'search-interwiki-caption' => 'Schwesterprojekte',
-'search-interwiki-default' => '$1 Ergebnisse:',
+'search-interwiki-default' => 'Ergebnisse von $1:',
 'search-interwiki-more' => '(weitere)',
 'search-relatedarticle' => 'Verwandte',
 'searcheverything-enable' => 'In allen Namensräumen suchen',

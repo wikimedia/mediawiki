@@ -971,8 +971,6 @@ achtergrönj zeen meugelik te vinjen in 't [{{fullurl:{{#Special:Log}}/suppress|
 'revdelete-show-file-submit' => 'Jao',
 'revdelete-selected' => "'''Geselecteerde {{PLURAL:$2|bewerking|bewerkinge}} van '''[[:$1]]''':'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Geselecteerde log gebeurtenis|Geselecteerde log gebeurtenisse}}:'''",
-'revdelete-text' => "'''Gewisjde bewerkinge zeen zichbaar in de gesjiedenis, maar de inhoud is neet langer publiek toegankelik.'''
-Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de verwiedering ongedaon make mit behölp van dit sjerm, tenzij d'r additionele restricties gelje die zeen ingesteld door de systeembeheerder.",
 'revdelete-confirm' => "Bevestig des se dit wils doon, des se de consequenties begrieps en des se dit deis in euvereinstömming mit 't geljendj [[{{MediaWiki:Policy-url}}|beleid]].",
 'revdelete-suppress-text' => "Versies verbèrge deentj '''allein''' gebroek te waere in de volgende gevalle:
 * Ongepaste perseunlike informatie

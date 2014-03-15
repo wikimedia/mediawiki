@@ -738,6 +738,7 @@ Prosimo, počakajte $1, preden poskusite znova.',
 'createacct-another-realname-tip' => 'Pravo ime ni obvezno.
 Če se ga odločite navesti, bo uporabljeno za priznavanje uporabnikovega dela.',
 'pt-login' => 'Prijava',
+'pt-login-button' => 'Prijava',
 'pt-createaccount' => 'Ustvari račun',
 'pt-userlogout' => 'Odjava',
 
@@ -1160,8 +1161,6 @@ To redakcijo si lahko ogledate; podrobnosti lahko najdete v [{{fullurl:{{#Specia
 'revdelete-show-file-submit' => 'Da',
 'revdelete-selected' => "'''{{PLURAL:$2|Izbrana redakcija|Izbrani redakciji|Izbrane redakcije}} strani [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Izbran dnevniški dogodek|Izbrana dnevniška dogodka|Izbrani dnevniški dogodki}}:'''",
-'revdelete-text' => "'''Izbrisane redakcije in dogodki bodo v zgodovini strani in dnevniki še vedno navedene, vendar bo njihova vsebina za javnost nedostopna.'''
-Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji {{GRAMMAR:rodilnik|{{SITENAME}}}} in jo z uporabo istega vmesnika tudi obnovili, razen kjer bodo uveljavljene dodatne omejitve.",
 'revdelete-confirm' => 'Prosim potrdite da nameravate to storiti, da se zavedate posledic in da to počnete v skladu s [[{{MediaWiki:Policy-url}}|politiko]].',
 'revdelete-suppress-text' => "Zadrževanje naj bi bilo uporabljeno '''le''' v sledečih primerih:
 * Morebitni klevetniški podatki
@@ -1298,7 +1297,7 @@ Podrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'search-file-match' => '(ujema se z vsebino datoteke)',
 'search-suggest' => 'Iščete morda: $1',
 'search-interwiki-caption' => 'Sorodni projekti',
-'search-interwiki-default' => '$1 zadetkov:',
+'search-interwiki-default' => 'Rezultati s strani $1:',
 'search-interwiki-more' => '(več)',
 'search-relatedarticle' => 'Podobno',
 'searcheverything-enable' => 'Iskanje po vseh imenskih prostorih',

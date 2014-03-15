@@ -744,9 +744,6 @@ Vos l' poloz co vey; i gn a des detays sol [{{fullurl:{{#Special:Log}}/suppress|
 'revdelete-show-file-submit' => 'Oyi',
 'revdelete-selected' => "'''{{PLURAL:$2|Tchoezeye modêye|Tchoezeyès modêyes}} di [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Evenmint tchoezi|Evenmints tchoezis}} ezès djournås:'''",
-'revdelete-text' => "'''Les disfacés avenmints et modêyes vont continouwer d' aparexhe dins l' pådje di l' istwere, mins leu contnou n' serè nén veyåve do publik.'''
-
-Les ôtes manaedjeus so {{SITENAME}} pôront todi vey li contnou catchî eyet l' rapexhî åd triviè di cisse minme eterface ci, a moens k' ene restriccion di pus ni soeye metowe en alaedje pås mwaisses-manaedjeus del waibe.",
 'revdelete-legend' => 'Defini des restriccions sol voeyaedje',
 'revdelete-hide-text' => "Catchî l' tecse del modêye",
 'revdelete-hide-comment' => "Catchî l' comintaire di candjmint",

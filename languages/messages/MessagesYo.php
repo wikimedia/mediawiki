@@ -987,8 +987,6 @@ Tó bá jẹ́ pé ẹ ti wọlé, ẹ lè dẹ́kun ìkìlọ̀ yìí nínù ab
 'revdelete-show-file-submit' => 'Bẹ́ẹ̀ni',
 'revdelete-selected' => "'''{{PLURAL:$2|Àtúnyẹ̀wò síṣàyàn|Àwọn àtúnyẹ̀wò síṣàyàn}} fún [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Àkọọ́lẹ̀ ìṣẹ̀lẹ̀ síṣàyàn|Àwọn àkọọ́lẹ̀ ìṣẹ̀lẹ̀ síṣàyàn}}:'''",
-'revdelete-text' => "'''Àwọn àtúnyẹ̀wò onípíparẹ́ àti ìṣẹ̀lẹ̀ yíò sì tún hàn nínú ojúewé ìtàn àti àkọọ́lẹ̀, sùgbọ́n àwọn apá àkóónú wọn kò ní hàn jáde sí ìgboro'''
-Àwọn olùmójútó míràn lórí {{SITENAME}} yíò sí tún le wo àkóónú àbòmọ́lẹ̀ náà bẹ́ẹ̀sìni wọ́n le mú ìparẹ́ kúrò lórí ìfojúkojú yìí, àyàfi tí àwọn ìdíwọ́ míràn bá jẹ́ títòsílẹ̀.",
 'revdelete-confirm' => 'Ẹ jọ̀wọ́ ẹ rídájú pé ohun tí ẹ fẹ́ ṣe nìyí, pé ohun tí yíò ṣẹlẹ̀ yé yín, bẹ́ẹ̀sìni pé ẹ̀ únṣe é lọ́nà tó bá  [[{{MediaWiki:Policy-url}}|àdéhùn]] mu.',
 'revdelete-suppress-text' => "Ìrẹ̀mọ́lẹ̀ gbọ́dọ̀ jẹ́ lílò fún àwọn ìṣẹ̀lẹ̀ ìsàlẹ̀ wọ̀nyí '''nìkan''':
 *Ọ̀rọ̀ tó le fa ẹjọ́ wá

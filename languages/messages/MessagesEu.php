@@ -1043,8 +1043,6 @@ Administratzailea zarenez, diff hau ikus dezakezu. Xehetasunak ikusgai daude [{{
 'revdelete-show-file-submit' => 'Bai',
 'revdelete-selected' => "'''{{PLURAL:$2|[[:$1]](r)en hautatutako berrikuspena:|[[:$1]](r)en hautatutako berrikuspenak}}'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Aukeratutako log gertakaria|Aukeratutako log gertakariak}}:'''",
-'revdelete-text' => "'''Ezabatutako berrikuspenek orrialdearen historian agertzen jarraituko dute, baina bere edukiak ez dira publikoki eskuratu ahal izango.'''
-{{SITENAME}}ko administratzaileek ezkutuko eduki hau ikusteko aukera izango dute, eta baita leheneratzeko ere, gunearen arduradunek beste mugapenen bat ezartzen ez badute behintzat.",
 'revdelete-confirm' => 'Baiezta ezazu hori dela zure asmoa, ulertzen dituzula ondorioak, eta [[{{MediaWiki:Policy-url}}|irizpideak]] errespetatuz egiten ari zarela hau.',
 'revdelete-suppress-text' => "Ezabaketa '''bakarrik''' arrazoi hauek direla eta erabili beharko litzateke:
 * Informazio pertsonal desegokia

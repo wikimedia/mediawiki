@@ -1165,8 +1165,6 @@ Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGE
 'revdelete-show-file-submit' => 'Já',
 'revdelete-selected' => "'''{{PLURAL:$2|Valin breyting|Valdar breytingar}} fyrir [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Valin aðgerð|Valdar aðgerðir}}:'''",
-'revdelete-text' => "'''Eyddar útgáfur og breytingar munu birtast áfram í breytingarskrá síðunnar og í aðgerðarskrám, en hluti upplýsingana verða falin almenningi.'''
-Önnur möppudýr á {{SITENAME}} hafa aðgang að földu upplýsingunum og geta endurvakið upplýsingarnar í gegnum sama viðmót, nema sérstakar takmarkanir séu virkar.",
 'revdelete-confirm' => 'Vinsamlegast staðfestu að þú viljir gera þetta, að þú skiljir afleiðingarnar og að þú sért að gera þetta í samræmi við  [[{{MediaWiki:Policy-url}}]].',
 'revdelete-suppress-text' => "Bælingu á '''eingöngu''' að nota í eftirfarandi tilfellum:
 * Mögulegar ærumleiðandi upplýsingar

@@ -1280,9 +1280,6 @@ Als ene Wiki_Köbes kanns De de Ungerscheide ävver aankike wann De wells.",
 'revdelete-show-file-submit' => 'Lohß Jonn!',
 'revdelete-selected' => "'''{{PLURAL:$2|Ein usjewählte Version|$2 usjewählte Versione|Kein Version usjewählt}} vun [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Dä ußjewählte Logboch-Endrach|De Ußjewählte Logboch-Endrähsch}}:'''",
-'revdelete-text' => "'''Dä fottjeschmesse Sigge ehre Enhald kanns De nit mieh aanluure. Se blieve ävver en de Liss met de Versione un en de Logböcher dren.'''
-Ene Wiki Köbes kann de fottjeschmessene Krom immer noch aanluere un kann en och widder herholle, usser wann bei
-dem Wiki singe Installation dat anders fassjelaht woode es.",
 'revdelete-confirm' => 'Bes esu joot un doon dat beschtääteje, un donn domet ongerschriive, dat De dat donn wells, dat De weiß, wat dobei eruß kütt, un dat De dat och noh de [[{{MediaWiki:Policy-url}}|Rääjelle]] deihß.',
 'revdelete-suppress-text' => "Dat sullt '''blooß''' jedonn wäde för:
 * onjesäzlesche Aanjaabe

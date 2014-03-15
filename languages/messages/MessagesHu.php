@@ -1252,9 +1252,6 @@ vagy a legutolsó változatot próbáltad meg elrejteni.',
 'revdelete-show-file-submit' => 'Igen',
 'revdelete-selected' => "'''A(z) [[:$1]] lap {{PLURAL:$2|kiválasztott változata|kiválasztott változatai}}:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Kiválasztott naplóesemény|Kiválasztott naplóesemények}}:'''",
-'revdelete-text' => "'''A törölt változatok és események továbbra is megjelennek a laptörténetben és a naplókban,
-azonban a tartalmuk nem lesz mindenki számára hozzáférhető.'''
-A(z) {{SITENAME}} adminisztrátorai továbbra is meg tudják tekinteni az elrejtett tartalmat, és helyre tudják állítani ugyanezen a felületen keresztül, amennyiben nincs további korlátozás beállítva.",
 'revdelete-confirm' => 'Kérlek erősítsd meg, hogy valóban ezt szeretnéd tenni; megértetted a következményeket, és amit teszel, az összhangban van [[{{MediaWiki:Policy-url}}|az irányelvekkel]].',
 'revdelete-suppress-text' => "Az elrejtés '''csak''' a következő esetekben használható:
 * Illetlen személyes információk

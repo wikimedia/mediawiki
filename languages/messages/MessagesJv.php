@@ -967,8 +967,6 @@ Sampéyan isih bisa ndelok prabédan iki; rincian bisa ditemokaké nèng [{{full
 'revdelete-show-file-submit' => 'Ya',
 'revdelete-selected' => "'''{{PLURAL:$2|Revisi kapilih|Revisi kapilih}} dari '''$1''''''",
 'logdelete-selected' => "'''{{PLURAL:$1|Log kapilih|Log kapilih}} kanggo:'''",
-'revdelete-text' => "'''Revisi lan tindhakan sing wis kabusak bakal tetep muncul ing kaca versi sadurungé lan log, nanging bagéyan isiné ora bisa diaksès déning publik.'''
-Pangurus {{SITENAME}} liyané bakal tetep bisa ngaksès isi sing kadhelikaké iku lan bisa mbatalaké pambusakan ngliwati antarmuka sing padha, kajaba ana pawatesan liya saka operator situs.",
 'revdelete-confirm' => 'Mangga pesthèkaké yèn Sampéyan pancèn kudu nglakoni iki, yèn Sampéyan ngerti akibaté, lan yèn Sampéyan ngakoni iki cocok karo [[{{MediaWiki:Policy-url}}|kawicakan]].',
 'revdelete-suppress-text' => "Pandhelikan révisi '''mung''' bisa dipigunakaké kanggo kasus ing ngisor:
 * Informasi sing kagolong pitnah

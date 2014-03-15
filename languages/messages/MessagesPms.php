@@ -999,8 +999,6 @@ Chiel a peul ancora s-ciairé costa diferensa; a peulo essje pì 'd detaj ant ë
 'revdelete-show-file-submit' => 'Bò!',
 'revdelete-selected' => "'''{{PLURAL:$2|Revision|Revision}} selessionà për [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Event|Event}} dël registr selessionà:'''",
-'revdelete-text' => "Le version scancelà e j'event a së s-ciaireran sempe ant la stòria dla pàgina e ant ij registr, ma sò test al pùblich a j'andrà pì nen.'''
-J'àutri aministrator dzora a {{SITENAME}} a saran ancó sempe bon a s-ciairé ël contnù stërmà e a podran disdëscancelelo andré con la midema antërfacia, sempe che a sia nen stàita butà na restrission adissional.",
 'revdelete-confirm' => "Për piasì, ch'a confema ch'a veul fé sòn, ch'as rend cont dle conseguense, e ch'a lo fa an acòrd con [[{{MediaWiki:Policy-url}}|le régole]].",
 'revdelete-suppress-text' => "La scancelassion a dovrìa '''mach''' esse dovrà an costi cas:
 * Anformassion ch'a podrìo esse difamatòrie

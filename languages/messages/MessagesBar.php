@@ -646,8 +646,6 @@ Du kauhstas auhschauh, waunn du wüst. Nahernte Auhgoom steengern im [{{fullurl:
 Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].</div>',
 'rev-delundel' => 'zoagn / vastecka',
 'revdelete-nooldid-title' => 'Koa Version ogem',
-'revdelete-text' => "'''Der Inhalt oder andere Bestandteile gelöschter Versionen sind nicht mehr öffentlich einsehbar, erscheinen jedoch weiterhin als Einträge in der Versionsgeschichte.'''
-{{SITENAME}}-Administratoren können den entfernten Inhalt oder andere entfernte Bestandteile weiterhin einsehen und wiederherstellen, es sei denn, es wurde festgelegt, dass die Zugangsbeschränkungen auch für Administratoren gelten.",
 'revdel-restore' => 'Siachtborkeit endan',
 'pagehist' => 'Versiónsgschicht',
 'deletedhist' => 'Gléschde Versiónen',

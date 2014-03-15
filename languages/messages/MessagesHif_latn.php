@@ -982,8 +982,6 @@ Aap ii diff ke dekhe saktaa hae: iske baare me aur jaan kaari [{{fullurl:{{#Spec
 'revdelete-show-file-submit' => 'Haan',
 'revdelete-selected' => "'''{{PLURAL:$2|Selected badlao|Selected badlao}} of [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Chuna gais log event|Chuna gais log events}}:'''",
-'revdelete-text' => "'''Mitawa gae badlao aur ghatna panna ke itihaas me dekhai, lekin content ke kuch part janta nai access kare saki.'''
-Duusra admins {{SITENAME}} me, lukawa gais content ke khole sake aur iske mitae bhi sake hai interface use kar ke, jab tak ki aur rukawat nai lagawa jaae.",
 'revdelete-confirm' => 'Meharbani kar ke aap ii confirm karo ki aap ii kare mangta hae, aap iske asar ke samajhta hae, aur iske aap [[{{MediaWiki:Policy-url}}|the policy]] ke anusar karta hae.',
 'revdelete-suppress-text' => "Suppression ke '''khaali''' ii chij ke khatir kaam me lawa jaae sake hai:
 * Aapan baare me jaankari thik nai hai

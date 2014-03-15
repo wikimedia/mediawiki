@@ -1283,8 +1283,6 @@ hoặc bạn đang tìm cách ẩn phiên bản hiện tại.',
 'revdelete-show-file-submit' => 'Có',
 'revdelete-selected' => "'''{{PLURAL:$2|Phiên bản|Các phiên bản}} được chọn của [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Nhật trình đã chọn|Các nhật trình đã chọn}}:'''",
-'revdelete-text' => "'''Các phiên bản và sự kiện bị xóa sẽ vẫn xuất hiện trong lịch sử trang và nhật trình, nhưng mọi người sẽ không xem được một số phần của các nội dung đó.'''
-Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội dung ẩn và phục hồi lại bằng cách dùng giao diện này, trừ trường hợp thiết lập thêm một số hạn chế.",
 'revdelete-confirm' => 'Xin hãy xác nhận rằng bạn có ý định xóa, nhận biết tầm quan trọng của việc này, và việc xóa tuân theo [[{{MediaWiki:Policy-url}}|quy định]].',
 'revdelete-suppress-text' => "Việc ẩn giấu '''chỉ''' nên dùng trong các trường hợp sau:
 * Thông tin có thể phỉ báng

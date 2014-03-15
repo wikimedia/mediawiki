@@ -938,6 +938,7 @@ Wacht alstublieft $1 voordat u het opnieuw probeert.',
 'createacct-another-realname-tip' => 'Echte naam is optioneel.
 Als u deze opgeeft, wordt deze naam gebruikt worden om u erkenning te geven voor uw werk.',
 'pt-login' => 'Aanmelden',
+'pt-login-button' => 'Aanmelden',
 'pt-createaccount' => 'Registreren',
 'pt-userlogout' => 'Afmelden',
 
@@ -1367,8 +1368,6 @@ U kunt deze verschillen bekijken. Er kunnen details te vinden zijn in het [{{ful
 'revdelete-show-file-submit' => 'Ja',
 'revdelete-selected' => "'''Geselecteerde {{PLURAL:$2|bewerking|bewerkingen}} van [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Geselecteerde logboekhandeling|Geselecteerde logboekhandelingen}}:'''",
-'revdelete-text' => "'''Verwijderde bewerkingen zijn zichtbaar in de geschiedenis en logboeken, maar delen van de inhoud zijn niet langer publiek toegankelijk.'''
-Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit formulier, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.",
 'revdelete-confirm' => 'Bevestig dat u dit wilde doen, dat u de consequenties begrijpt en dat u dit doet in overeenstemming met het geldende [[{{MediaWiki:Policy-url}}|beleid]].',
 'revdelete-suppress-text' => "Gebruik versies verbergen '''alleen''' in de volgende gevallen:
 * Mogelijk smadelijke informatie;

@@ -1254,8 +1254,6 @@ Saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAG
 'revdelete-show-file-submit' => 'Jah',
 'revdelete-selected' => "'''Valitud {{PLURAL:$2|redaktsioon|redaktsioonid}} leheküljest [[:$1]]:'''",
 'logdelete-selected' => "'''Valitud {{PLURAL:$1|logisissekanne|logisissekanded}}:'''",
-'revdelete-text' => "'''Kustutatud redaktsioonid ja sündmused kajastuvad endiselt lehekülje ajaloos ja logides, kuid osa nende sisust pole avalikult nähtav.'''
-{{GRAMMAR:genitive|{{SITENAME}}}} administraatorid saavad peidetud sisu siiski vaadata ning seda vajadusel selle liidese kaudu taastada, kui see pole just täiendavalt keelatud.",
 'revdelete-confirm' => 'Kinnita, et soovid tõesti seda teha ning et saad aru tagajärgedest ja tegevus on kooskõlas [[{{MediaWiki:Policy-url}}|siinsete kokkulepetega]].',
 'revdelete-suppress-text' => "Andmed tuleks varjata '''ainult''' järgmistel juhtudel:
 * võimalik laim
@@ -1392,7 +1390,7 @@ Harilikult tähendab see seda, et sind siia juhatanud link on vananenud ja siin 
 'search-file-match' => '(vastab faili sisule)',
 'search-suggest' => 'Kas mõtlesid: $1',
 'search-interwiki-caption' => 'Sõsarprojektid',
-'search-interwiki-default' => '$1 tulemused:',
+'search-interwiki-default' => 'Tulemused asukohast $1:',
 'search-interwiki-more' => '(veel)',
 'search-relatedarticle' => 'Seotud',
 'searcheverything-enable' => 'Otsi kõigist nimeruumidest',
@@ -2496,7 +2494,7 @@ Palun kinnita, et tahad seda tõepoolest teha, et sa mõistad tagajärgi ja et s
 Selle kustutamine on keelatud, et ära hoida ekslikku {{GRAMMAR:genitive|{{SITENAME}}}} töö häirimist.',
 'delete-warning-toobig' => 'See lehekülg on pika redigeerimislooga – üle {{PLURAL:$1|ühe muudatuse|$1 muudatuse}}.
 Ettevaatust, selle kustutamine võib esile kutsuda häireid {{GRAMMAR:genitive|{{SITENAME}}}} andmebaasi töös.',
-'deleting-backlinks-warning' => "'''Hoiatus:''' Teised leheküljed viitavad leheküljele, mida oled kustutamas, või see lehekülg on kasutuses mallina.",
+'deleting-backlinks-warning' => "'''Hoiatus:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Teised leheküljed]] viitavad leheküljele, mida oled kustutamas, või see lehekülg on kasutuses mallina.",
 
 # Rollback
 'rollback' => 'Tühista muudatused',

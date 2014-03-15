@@ -961,8 +961,6 @@ Tzemreḍ att ẓṛeḍ ; tilɣa llant deg [{{fullurl:{{#Special:Log}}/delete|p
 'revdelete-show-file-submit' => 'Ih',
 'revdelete-selected' => "'''{{PLURAL:$2|Tasiwelt tettwafren|Tisiwal ttwafernen}} n [[:$1]]'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Tamirt n uɣmis tettwafren|Isallen n uɣmis ttwafernen}}:'''",
-'revdelete-text' => 'Ileqman d tidyanin yettumḥan ad qqimen deg umezruy n usebter dɣa deg iɣmisen, maca agbur nsen ur i sɛu ara tuffart i uzayez."
-Inedbalen wiyaḍ deg {{SITENAME}} zemren ad ẓṛen imuren i yettwafren u zemren a ten-mḥan, ḥaca ma llan icekkilen.',
 'revdelete-confirm' => 'Sergeg ma tebɣiḍ ad xedmeḍ tigawt agi, fehmeḍ inalkamen, dɣa temtawiḍ s [[{{MediaWiki:Policy-url}}|ilugan]].',
 'revdelete-suppress-text' => "Ilaq tukksa att illi \"kan\" deg tijṛa agi :
 * Tilɣa ahat tinergamin

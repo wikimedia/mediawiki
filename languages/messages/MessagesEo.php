@@ -1280,8 +1280,6 @@ funkcion, la specifita versio ne ekzistas, aŭ vi estas provanta kaŝi la nunan 
 'revdelete-show-file-submit' => 'Jes',
 'revdelete-selected' => "'''{{PLURAL:$2|Selektata versio|Selektataj versioj}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Selektata protokola evento|Selektataj protokolaj eventoj}}:'''",
-'revdelete-text' => "'''Forigitaj versioj kaj eventoj plu aperos en la historipaĝoj, sed iliaj tekstoj ne estos alireblaj de la publiko.'''
-Aliaj administrantoj ĉe {{SITENAME}} plu povos aliri la kaŝitan entenon kaj restarigi ĝin per la sama interfaco, krom se plia limigo estas metita de la paĝaradministrantoj.",
 'revdelete-confirm' => 'Bonvolu konfirmi ke vi intencias fari ĉi tion, ke vi komprenas la konsekvencojn kaj ke vi faras ĉi tion laŭ [[{{MediaWiki:Policy-url}}|la regularo]].',
 'revdelete-suppress-text' => "Subpremo '''nur''' estu uzata por la jenaj kazoj:
 * Ebla kalumnia informo

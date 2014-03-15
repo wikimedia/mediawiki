@@ -1064,8 +1064,6 @@ Sanak dapek malieknyo; rinciannyo mungkin ado di [{{fullurl:{{#Special:Log}}/del
 'revdelete-show-file-submit' => 'Yo',
 'revdelete-selected' => "'''{{PLURAL:$2|Revisi piliahan}} dari [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Log piliahan}}:'''",
-'revdelete-text' => "'''Revisi jo tindakan nan alah dihapuih akan tetap muncua di versi tadaulu dan laman log, tapi bagian dari isinyo indak dapek diakses publik.'''
-Panguruih {{SITENAME}} lain tetap dapek mangakses isi nan tasuruak ko dan dapek mambatalan pangapuihannyo manggunoan antarmuko nan samo, kacuali ado pambatehan lain nan dibuek.",
 'revdelete-confirm' => 'Tolong konfirmasi baso Sanak samemang bamakasuik malakuan iko, mamahami konsekuensinyo, dan baso Sanak malakuannyo sasuai jo [[{{MediaWiki:Policy-url}}|kabijakan]].',
 'revdelete-suppress-text' => "Panyambunyian revisi '''hanyo''' buliah digunoan untuak kasus-kasus barikuik:
 * Informasi paribadi nan indak patuik

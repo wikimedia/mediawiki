@@ -885,9 +885,6 @@ Powody wyćepańo idźe znejść we [{{fullurl:{{#Special:Log}}/suppress|page={{
 'revdelete-show-file-submit' => 'Ja',
 'revdelete-selected' => "'''{{PLURAL:$2|Wybrano wersyjo|Wybrane wersyje}} zajty [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Wybrane zdarzyńy ze rejeru|Wybrane zdarzyńa ze rejeru}}:'''",
-'revdelete-text' => "'''Wyćepane wersyje bydům dali widoczne w historyji zajty, nale jejich treść ńy bydźe publiczńy dostympna.'''
-
-Inkśi admińistratorzi {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp do schrůńůnych wersyji a bydům můgli je wćepać nazod, chyba aże uoperator serwisu nouożůł dodatkowe uograńiczyńo.",
 'revdelete-legend' => 'Naštaluj uograńičyńo lo wersyji:',
 'revdelete-hide-text' => 'Schrůń tekst wersyji',
 'revdelete-hide-image' => 'Schrůń zawartość plika',

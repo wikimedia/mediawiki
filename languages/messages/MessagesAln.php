@@ -104,7 +104,6 @@ $messages = array(
 'tog-ccmeonemails' => 'Më ço kopje të mesazheve qi ua dërgoj të tjerëve',
 'tog-diffonly' => 'Mos e trego përmbajtjen e faqes nën ndryshimin',
 'tog-showhiddencats' => 'Trego kategoritë e mshefta',
-'tog-noconvertlink' => 'Mos lejo konvertimin e titullit vegëz',
 'tog-norollbackdiff' => 'Trego ndryshimin mbas procedurës së kthimit mbrapa',
 'tog-useeditwarning' => 'Paralajmëron mua kur unë të lë një redakto faqe me ndryshimet e para shpëtimit',
 
@@ -796,7 +795,6 @@ Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistr
 'revdelete-no-file' => 'Skeda e dhënë nuk ekziston.',
 'revdelete-selected' => "'''{{PLURAL:$2|Versioni i zgjedhur i|Versionet e zgjedhura të}} [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Veprimi i zgjedhur në regjistër|Veprimet e zgjedhura në regjistër}}:'''",
-'revdelete-text' => "'''Përmbajtja dhe pjesët e tjera nuk janë të dukshme për të gjithë, por figurojnë në historikun e versioneve.''' Administratorët munden përmbajtjen e larguar ta shikojnë dhe restaurojnë, përveç në rastet kur një gjë e tillë është ndaluar ekstra.",
 'revdelete-legend' => 'Vendosni kufizimet për versionin:',
 'revdelete-hide-text' => 'Fshihe tekstin e versionit',
 'revdelete-hide-image' => 'Fshih përmbajtjen skedare',

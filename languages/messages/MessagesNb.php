@@ -1277,8 +1277,6 @@ Du kan se denne diffen; det kan finnes detaljer i [{{fullurl:{{#Special:Log}}/su
 'revdelete-show-file-submit' => 'Ja',
 'revdelete-selected' => "'''{{PLURAL:$2|Valgt revisjon|Valgte revisjoner}} av [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Valgt loggoppføring|Valgte loggoppføringer}}:'''",
-'revdelete-text' => "'''Slettede versjoner og oppføringer vil fortsatt vises i sidehistorikken og loggene, men deler av innholdet vil ikke lenger bli offentliggjort.'''
-Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innholdet, og kan gjenopprette det, med mindre videre begrensninger blir gitt av sideoperatørene.",
 'revdelete-confirm' => 'Bekreft at du ønsker å gjøre dette, at du forstår konsekvensene, og at du gjør det i samsvar med [[{{MediaWiki:Policy-url}}|retningslinjene]].',
 'revdelete-suppress-text' => "Skjuling bør '''kun''' brukes i følgende tilfeller:
 * Mulig injurierende utsagn

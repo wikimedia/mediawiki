@@ -1316,9 +1316,6 @@ Můžete si toto porovnání prohlédnout; podrobnosti jsou uvedeny v [{{fullurl
 'revdelete-show-file-submit' => 'Ano',
 'revdelete-selected' => "'''{{PLURAL:$2|Vybraná|Vybrané}} revize stránky [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Vybraná protokolovaná událost|Vybrané protokolované události}}:'''",
-'revdelete-text' => "'''Smazané verze a události budou nadále zobrazeny v historii stránky a protokolovacích záznamech, ale některé jejich části nebudou veřejně dostupné.'''
-Ostatní správci {{GRAMMAR:2sg|{{SITENAME}}}} si budou moci skrytý obsah prohlížet a pomocí stejného rozhraní jej také obnovit,
-pokud nebyla nastavena další omezení.",
 'revdelete-confirm' => 'Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].',
 'revdelete-suppress-text' => "Utajování by se mělo používat '''pouze''' v následujících případech:
 * Potenciálně pomlouvačné informace
@@ -1328,7 +1325,7 @@ pokud nebyla nastavena další omezení.",
 'revdelete-hide-text' => 'Text revize',
 'revdelete-hide-image' => 'Skrýt obsah souboru',
 'revdelete-hide-name' => 'Skrýt událost a cíl',
-'revdelete-hide-comment' => 'Editační komentář',
+'revdelete-hide-comment' => 'Shrnutí editace',
 'revdelete-hide-user' => 'Uživatelské jméno / IP adresa',
 'revdelete-hide-restricted' => 'Utajit data i před správci',
 'revdelete-radio-same' => '(neměnit)',

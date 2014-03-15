@@ -998,8 +998,6 @@ Tu puè vedè ste differenze; pò essere ca stonne cchiù 'mbormaziune jndr'à l
 'revdelete-show-file-submit' => 'Sìne',
 'revdelete-selected' => "'''{{PLURAL:$2|Revisiona selezionete|Revisiune selezionete}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Fatte de l'archivije selezionete|Fatte de l'archivije selezionete}}:'''",
-'revdelete-text' => "'''Le revisiune scangellete e le evende iessene angore jndr'à storie d'a pàgene e jndr'à l'archivije, ma stuezze d'u condenute lore pò essere inaccessibbele a 'u pubbleche.'''
-Otre amministrature sus a {{SITENAME}}ponne angore trasè jndr'à 'u condenute scunnute e 'u ponne scangellà 'n'otra vote ausanne st'inderfacce, senze 'mbostà otre restriziune.",
 'revdelete-confirm' => 'Pe piacere conferme ca tu vuè ccu face sta cose, ce tu è capite le conseguenze e ce quidde ca ste face jè in accorde cu le [[{{MediaWiki:Policy-url}}|reghele]] de Uicchipèdie.',
 'revdelete-suppress-text' => "'A soppressione adda essere ausate '''sulamende''' jndr'à le case seguende:
 * 'Mbormaziune potenzialmende offenzive

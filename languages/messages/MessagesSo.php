@@ -484,6 +484,7 @@ Waa iska dhago tiri kartaa fariintaan, hadii akoonkaan oo ku sameysmay qalad.',
 Fadlan waxyar sug intii aadan soo gelin.',
 'login-abort-generic' => 'Ma u soo gali karin gudaha - waa la noqay',
 'loginlanguagelabel' => 'Luqada: $1',
+'pt-userlogout' => 'Ka bax',
 
 # Email sending
 'user-mail-no-addy' => "Isku dayday in aa dirto e-mail ayada oo ciwaan e-mail la'aan ah.",
@@ -789,11 +790,14 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'skin-preview' => 'Horfiirin',
 'datedefault' => "Ma'jiro dooq",
 'prefs-datetime' => 'Taariikhda iyo waqtiga',
+'prefs-personal' => 'Galka isticmaalaha',
 'prefs-rc' => 'Isbedelada dhow',
 'prefs-watchlist' => 'liiska-waardiyaha',
 'prefs-watchlist-days' => 'Tirada maalamaha ay ku jirayaan liiska-waardiyaha:',
 'prefs-email' => 'E-mail aad dooran kartaa',
+'prefs-rendering' => 'Muuqaalka',
 'saveprefs' => 'Kaydi',
+'restoreprefs' => 'Dib u soo celin qaabeynta (dhammaan qaybaha)',
 'prefs-editing' => 'Wax ka bedelka',
 'searchresultshead' => 'Raadi',
 'recentchangesdays' => 'Tirada maalmaha lagu tusaayo isbedelada dhow:',
@@ -1092,8 +1096,8 @@ si aad ugu dirto E-boosto isticmaalayaasha kale.',
 'emailsenttext' => 'Fariintaadii E-mailka aheeyd waa la diray.',
 
 # Watchlist
-'watchlist' => 'Liiskeyga waardiyeynta',
-'mywatchlist' => 'Liiskeyga waardiyeynta',
+'watchlist' => 'Liiska-waardiyaha',
+'mywatchlist' => 'Liiska-waardiyaha',
 'watchlistfor2' => 'Ku socoto $1 $2',
 'nowatchlist' => 'Waxba kuma jiraan liiskaaga waardiyeynta.',
 'watchlistanontext' => 'Fadlan $1 si aad u fiirisid ama wax uga bedeshid qoraalada ku jira liiska waardiyeyska.',
@@ -1379,6 +1383,7 @@ Waxaa fiiri kartaa cadaadkiisa',
 
 # Info page
 'pageinfo-title' => 'Macluumaad ku saabsan "$1"',
+'pageinfo-header-basic' => 'Macaaluumaadka asaasiga ah',
 'pageinfo-toolboxlink' => 'Macluumad ku saabsan',
 
 # Browsing diffs
@@ -1471,6 +1476,7 @@ waxaad awoodaa [[Special:EditWatchlist/raw|Liiska wax ka bedel]].',
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Filtaraha]] tag:',
+'tags-display-header' => 'Muuqaalka liiska bedelka',
 
 # Database error messages
 'dberr-usegoogle' => 'Waxaa baroobeen kartaa in aad ka raadiso google',

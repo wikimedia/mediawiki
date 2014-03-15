@@ -903,8 +903,6 @@ Salaku kuncen, mun perlu, anjeun bisa kénéh [$1 nempo bédana].",
 'revdelete-show-file-submit' => 'Enya',
 'revdelete-selected' => "'''{{PLURAL:$2|Révisi pilihan|Révisi pilihan}} pikeun '''$1''''''",
 'logdelete-selected' => "'''{{PLURAL:$1|pilihan keur log|pilihan keur log}}:'''",
-'revdelete-text' => "'''Revisi sarta tindakan anu geus dihapus baris tetep mecenghul di kaca vérsi tiheula, tapi teks eusi henteu bisa diakses ku publik.'''
-Kuncén séjén bakalan bisa ngakses eusi nu nyumput sarta bisa ngabolaykeun hapusan ngaliwatan antarmuka anu sarua, kajaba lamun aya pangbates séjén anu dijieun ku operator loka",
 'revdelete-confirm' => 'Mangga geura konfirmasi yen Anjeun gaduh maksad pikeun ngalakukeun hal ieu, paham kana konsekwensina, tur nu dilakukeun ieu teh luyu sareng [[{{MediaWiki:Policy-url}}|kawijakanana]]',
 'revdelete-suppress-text' => "Nyumputkeun revisi '''ukur''' bisa digunakeun keur kasus-kasus di handap ieu:
 * Informasi nu boga potensi mitenah

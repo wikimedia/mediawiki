@@ -14,6 +14,7 @@
  * @author Aotake
  * @author Aphaia
  * @author Broad-Sky
+ * @author Burthsceh
  * @author Chatama
  * @author Chinneeb
  * @author Emk
@@ -926,6 +927,7 @@ $1待ってから再度試してください。',
 'createacct-another-realname-tip' => '本名は省略できます。
 入力すると、その利用者の著作物の帰属表示に使われます。',
 'pt-login' => 'ログイン',
+'pt-login-button' => 'ログイン',
 'pt-createaccount' => 'アカウント作成',
 'pt-userlogout' => 'ログアウト',
 
@@ -1364,8 +1366,6 @@ $3 が示した理由: ''$2''",
 'revdelete-show-file-submit' => 'はい',
 'revdelete-selected' => '<strong>[[:$1]] の{{PLURAL:$2|選択された版}}:</strong>',
 'logdelete-selected' => '<strong>{{PLURAL:$1|選択された記録項目}}:</strong>',
-'revdelete-text' => '<strong>削除された版や記録項目は引き続きページの履歴や記録に表示されますが、一般利用者はその内容の一部を取得できなくなります。</strong>
-追加の制限がかけられない限り、{{SITENAME}}の他の管理者は同じインターフェイスを使って非表示の内容の取得や復元ができます。',
 'revdelete-confirm' => 'この操作を行おうとしていること、その結果を理解していること、[[{{MediaWiki:Policy-url}}|方針]]に従っていること、を確認してください。',
 'revdelete-suppress-text' => '秘匿は、<strong>以下の場合に限って</strong>使用すべきです:
 * 名誉毀損のおそれがある記述
@@ -1502,7 +1502,7 @@ $1',
 'search-file-match' => '(ファイルの内容との一致)',
 'search-suggest' => 'もしかして: $1',
 'search-interwiki-caption' => '姉妹プロジェクト',
-'search-interwiki-default' => '$1の結果:',
+'search-interwiki-default' => '$1からの結果:',
 'search-interwiki-more' => '(続き)',
 'search-relatedarticle' => '関連',
 'searcheverything-enable' => 'すべての名前空間を検索',
@@ -1837,7 +1837,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'recentchanges-legend-newpage' => '([[Special:NewPages|新しいページ一覧]]も参照)',
 'recentchanges-legend-plusminus' => '(<em>±123</em>)',
 'rcnotefrom' => '以下は<strong>$2</strong>以降の更新です (最大 <strong>$1</strong> 件)。',
-'rclistfrom' => '$2 $3以降の更新を表示する',
+'rclistfrom' => '$1以降の更新を表示する',
 'rcshowhideminor' => '細部の編集を$1',
 'rcshowhideminor-show' => '表示',
 'rcshowhideminor-hide' => '非表示',

@@ -994,8 +994,6 @@ Gheibh thu mion-fhiosrachadh air [{{fullurl:{{#Special:Log}}/suppress|page={{FUL
 'revdelete-show-file-submit' => 'Tha',
 'revdelete-selected' => "'''{{PLURAL:$2|Lèirmheas|Lèirmheasan}} de [[:$1]] a thagh thu:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|An tachartas loga|Na tachartasan loga}} a thagh thu:'''",
-'revdelete-text' => "'''Nochdaidh lèirmheasan is tachartasan fhathast ann an eachdraidh 's logaichean na duilleige ach bidh cuid a shusbaint ann nach fhaic am poball.'''
-Gheibh rianairean eile air {{SITENAME}} greim fhathast air an t-susbaint fhalaichte agus gabhaidh an sguabadh às a neo-dhèanamh a-rithist san aon eadar-aghaidh mur an deach cuingeachaidhean eile a shuidheachadh.",
 'revdelete-confirm' => "Dearbh gu bheil thu airson seo a dhèanamh, gu bheil thu a' tuigsinn na thachras ri linn agus gu bheil thu a' dèanamh seo a-rèir [[{{MediaWiki:Policy-url}}|a' phoileasaidh]].",
 'revdelete-suppress-text' => "Cha bu chòir dhut mùchadh a chleachdadh '''ach''' ann an suidheachaidhean mar seo:
 * Fiosrachadh a dh'fhaodadh a bhith dìteachail

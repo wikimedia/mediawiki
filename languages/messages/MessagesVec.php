@@ -1056,8 +1056,6 @@ Te połi uncora vixuałixare sto confronto; controłare el [{{fullurl:{{#Special
 'revdelete-show-file-submit' => 'Sì',
 'revdelete-selected' => "'''{{PLURAL:$2|Version selezionà|Versioni selezionà}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Evento del registro selezionà|Eventi del registro selezionè}}:'''",
-'revdelete-text' => "'''Le revision e le azion scancelàe le restarà visibili ne la cronologia de la pagina, ma parte del testo contegnùo no'l sarà visìbile al publico.'''
-I altri aministradori de {{SITENAME}} i podarà vardar istesso i contenuti sconti e ripristinarli atraverso questa stessa interfacia, se no xe stà inpostà altre limitazion.",
 'revdelete-confirm' => 'Par piaser, conferma che vol far sta azion, che te capissi le so conseguense, e che te sì drio operar secondo le [[{{MediaWiki:Policy-url}}|linee guida]].',
 'revdelete-suppress-text' => "La sopression la se dovarìa doparar '''solo''' in sti casi qua:
 

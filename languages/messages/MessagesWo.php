@@ -757,8 +757,6 @@ Li nga doon yorkat tax na ba-tay nga man a [$1 gis gii wuute] su la neexee.",
 'revdelete-show-file-submit' => 'Waaw',
 'revdelete-selected' => "'''{{PLURAL:$2|Sumbum '''$1''' mi falu|Sumbi '''$1''' yi falu}} :'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Xew-xewu yéenekaay bi falu|Xew-xewi yéenekaay yi falu}}:'''",
-'revdelete-text' => "'''Sumb yi nga far dañuy wéy di feeñ ci jaar-jaaru xët wi, waaye mbind yi ñu ëmb ñépp duñ leen man a gis.'''
-Yeneen yorkat yu {{SITENAME}} di nañ man a gis ëmbit yu laqu yi te loppanti leen ci benn jokkalekaay bi, su fekkee defuñu fi ay digal yu leen koy tere man a def.",
 'revdelete-legend' => 'Taxawal ay digal ci sumb yi ñu far:',
 'revdelete-hide-text' => 'Nëbb mbindum sumb bi',
 'revdelete-hide-image' => 'Nëbb ëmbiitu dencukaay bi',

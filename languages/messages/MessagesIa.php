@@ -1136,8 +1136,6 @@ function, o le version specificate non existe, o tu essaya celar le version actu
 'revdelete-show-file-submit' => 'Si',
 'revdelete-selected' => "'''{{PLURAL:$2|Version seligite|Versiones seligite}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Evento|Eventos}} de registro seligite:'''",
-'revdelete-text' => "'''Le versiones e eventos delite continuara a apparer in le historia e registro del pagina, sed partes de lor contento essera inaccessibile al publico.'''
-Altere administratores in {{SITENAME}} continuara a poter acceder al contento celate e pote restaurar lo per medio de iste mesme interfacie, si non se ha definite restrictiones additional.",
 'revdelete-confirm' => 'Per favor confirma que tu ha le intention de facer isto, que tu comprende le consequentias, e que tu face isto in accordo con [[{{MediaWiki:Policy-url}}|le politica]].',
 'revdelete-suppress-text' => "Le suppression debe '''solmente''' esser usate pro le sequente casos:
 * Information potentialmente diffamatori

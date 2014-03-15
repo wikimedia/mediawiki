@@ -961,8 +961,6 @@ As Administrater kannst du [$1 mit dissen Lenk] den Ünnerscheed ankieken.',
 'revdelete-show-file-submit' => 'Jo',
 'revdelete-selected' => "'''{{PLURAL:$2|Wählte Version|Wählte Versionen}} vun [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Wählt Logbook-Indrag|Wählte Logbook-Indrääg}}:'''",
-'revdelete-text' => "'''Wegsmetene Versionen un Akschonen staht noch jümmer in de Versionsgeschicht un Logböker, sünd aver nich mehr apen intosehn.'''
-{{SITENAME}}-Administraters köönt de Sieden noch jümmer sehn un ok wedderhalen, solang dat nich extra fastleggt is, dat ok Administraters dat nich mehr mehr dröfft.",
 'revdelete-suppress-text' => "Ünnerdrücken schull '''blot''' bi disse Fäll bruukt warrn:
 * Nich passliche persönliche Information
 *: ''Adressen, Telefonnummern, Sozialversekerungsnummern etc.''",

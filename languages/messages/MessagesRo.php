@@ -837,6 +837,7 @@ Vă rugăm să așteptați $1 până să reîncercați.',
 'createacct-another-realname-tip' => 'Numele real este opțional.
 Dacă decideți furnizarea sa, acesta va fi folosit pentru a atribui utilizatorului munca sa.',
 'pt-login' => 'Autentificare',
+'pt-login-button' => 'Autentificare',
 'pt-createaccount' => 'Creare cont',
 'pt-userlogout' => 'Închide sesiunea',
 
@@ -1262,7 +1263,6 @@ funcție, fie versiunea specificată nu există, ori sunteți pe cale să ascund
 'revdelete-show-file-submit' => 'Da',
 'revdelete-selected' => "'''{{PLURAL:$2|Versiunea aleasă|Versiunile alese}} pentru [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Revizia aleasă|Reviziile alese}}:'''",
-'revdelete-text' => "'''Versiunile șterse vor apărea în istoricul paginii, dar conținutul lor nu va fi accesibil publicului.''' Administratorii {{SITENAME}} pot accesa conținutul șters și îl pot recupera prin aceeași interfață, dacă nu este impusă altă restricție de către operatorii sitului.",
 'revdelete-confirm' => 'Vă rugăm să confirmați că intenționați să faceți acest lucru, că înțelegeți consecințele și că faceți asta în conformitate cu [[{{MediaWiki:Policy-url}}|politica]].',
 'revdelete-suppress-text' => "Suprimarea trebuie folosită '''doar''' în următoarele cazuri:
 * Informații potențial calomnioase
@@ -1397,7 +1397,7 @@ Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE
 'search-file-match' => '(se regăsește în conținutul fișierului)',
 'search-suggest' => 'V-ați referit la: $1',
 'search-interwiki-caption' => 'Proiecte înrudite',
-'search-interwiki-default' => '$1 rezultate:',
+'search-interwiki-default' => 'Rezultate de la $1:',
 'search-interwiki-more' => '(mai mult)',
 'search-relatedarticle' => 'Relaționat',
 'searcheverything-enable' => 'Caută în toate spațiile de nume',
@@ -2525,7 +2525,7 @@ Accesați $2 pentru o listă cu elementele recent șterse.',
 'delete-warning-toobig' => 'Această pagină are un istoric al modificărilor mult prea mare, cu mai mult de $1 {{PLURAL:$1|versiune|versiuni|de versiuni}}.
 Ștergerea sa poate afecta baza de date a sitului {{SITENAME}};
 acționați cu precauție.',
-'deleting-backlinks-warning' => "'''Atenție:''' Alte pagini se leagă sau sunt transcluse din pagina pe care doriți să o ștergeți.",
+'deleting-backlinks-warning' => "'''Atenție:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Alte pagini]] se leagă sau transclud pagina pe care doriți să o ștergeți.",
 
 # Rollback
 'rollback' => 'Editări de revenire',

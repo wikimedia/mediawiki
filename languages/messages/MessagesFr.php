@@ -66,6 +66,7 @@
  * @author Lucyin
  * @author Manohisoa
  * @author Mattho69
+ * @author Maxim21
  * @author Maxime Corbin
  * @author McDutchie
  * @author Meithal
@@ -542,7 +543,7 @@ $messages = array(
 'category_header' => 'Pages dans la catégorie « $1 »',
 'subcategories' => 'Sous-catégories',
 'category-media-header' => 'Fichiers multimédias dans la catégorie « $1 »',
-'category-empty' => "''Cette catégorie ne contient aucune page, sous-catégorie ou fichier multimédia.''",
+'category-empty' => '<em>Cette catégorie ne contient aucune page, sous-catégorie ou fichier multimédia.</em>',
 'hidden-categories' => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}}',
 'hidden-category-category' => 'Catégories cachées',
 'category-subcat-count' => 'Cette catégorie comprend {{PLURAL:$2|la sous-catégorie|$2 sous-catégories, dont {{PLURAL:$1|celle|les $1}}}} ci-dessous.',
@@ -960,6 +961,7 @@ Veuillez attendre $1 avant d'essayer à nouveau.",
 'createacct-another-realname-tip' => 'Le vrai nom est optionnel.
 Si vous décidez de le fournir, il sera utilisé pour attribuer à l’utilisateur ses travaux.',
 'pt-login' => 'Se connecter',
+'pt-login-button' => 'Se connecter',
 'pt-createaccount' => 'Créer un compte',
 'pt-userlogout' => 'Se déconnecter',
 
@@ -1371,8 +1373,10 @@ Vous pouvez voir ce diff ; des détails sont disponibles dans le [{{fullurl:{{#S
 'revdelete-show-file-submit' => 'Oui',
 'revdelete-selected' => "'''{{PLURAL:$2|Version sélectionnée|Versions sélectionnées}} de '''[[:$1]]''' :'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Événement d'historique sélectionné|Événements d'historique sélectionnés}} :'''",
-'revdelete-text' => "'''Les versions et événements supprimés seront encore présents dans l'historique de la page et dans les journaux, mais leur contenu textuel sera inaccessible au public.'''
-Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à travers cette même interface, à moins que des restrictions supplémentaires ne soient mises en place.",
+'revdelete-text-text' => "Les révisions supprimées continueront à apparaître dans l'historique de la page, mais une partie de leur contenu sera inaccessible au public.",
+'revdelete-text-file' => "Les versions de fichier supprimées continueront à apparaître dans l'historique des fichiers, mais une partie de leur contenu sera indisponible au public.",
+'logdelete-text' => 'Les évènements du journal supprimés continueront à apparaître dans les journaux, mais une partie de leur contenu sera indisponible au public.',
+'revdelete-text-others' => "Les autres administrateurs de {{SITENAME}} seront toujours capables d'accéder au contenu caché et peuvent le restaurer à nouveau par cette interface, à moins que des restrictions additionnelles soient définies.",
 'revdelete-confirm' => 'Confirmez que vous voulez effectuer cette action, que vous en comprenez les conséquences, et que vous le faites en accord avec [[{{MediaWiki:Policy-url}}|les règles]].',
 'revdelete-suppress-text' => "La suppression ne doit être utilisée '''que''' dans les cas suivants :
 * Informations potentiellement diffamatoires
@@ -1507,7 +1511,7 @@ Vous pouvez trouver des détails dans le [{{fullurl:{{#Special:Log}}/delete|page
 'search-file-match' => '(correspond au contenu du fichier)',
 'search-suggest' => 'Essayez avec cette orthographe : $1',
 'search-interwiki-caption' => 'Projets frères',
-'search-interwiki-default' => 'Résultats sur $1 :',
+'search-interwiki-default' => 'Résultats de $1 :',
 'search-interwiki-more' => '(plus)',
 'search-relatedarticle' => 'Reliés',
 'searcheverything-enable' => 'Rechercher dans tous les espaces de noms',

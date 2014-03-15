@@ -1133,8 +1133,6 @@ Anda boleh melihat perbezaan ini; butiran boleh didapati di [{{fullurl:{{#Specia
 'revdelete-show-file-submit' => 'Ya',
 'revdelete-selected' => "'''{{PLURAL:$2|Versi|Versi-versi}} '''$1''' yang dipilih:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Peristiwa|Peristiwa-peristiwa}} log yang dipilih:'''",
-'revdelete-text' => "'''Semakan dan peristiwa yang dihapuskan akan tetap muncul dalam sejarah laman dan log, tetapi kandungannya tidak boleh diakses awam.'''
-Pentadbir {{SITENAME}} boleh melihat kandungan tersebut dan menyahhapuskannya semula melalui laman ini melainkan mempunyai batasan.",
 'revdelete-confirm' => 'Sila sahkan bahawa anda bertujuan melakukan ini, bahawa anda faham akibatnya, dan anda melakukannya menurut [[{{MediaWiki:Policy-url}}| polisi]].',
 'revdelete-suppress-text' => "Sekatan seharusnya digunakan '''hanya''' untuk kes-kes berikut:
 * maklumat yang mungkin berunsur fitnah

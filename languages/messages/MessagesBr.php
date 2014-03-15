@@ -1113,8 +1113,6 @@ Gallout a ri gwelet an diforc'h-mañ ; titouroù zo war [{{fullurl:{{#Special:Lo
 'revdelete-show-file-submit' => 'Ya',
 'revdelete-selected' => "'''{{PLURAL:$2|Stumm dibabet|Stummoù dibabet}} eus [[:$1]] :'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Darvoud eus ar marilh diuzet|Darvoud eus ar marilh diuzet}} :'''",
-'revdelete-text' => "'''Derc'hel a raio ar stummoù ha darvoudoù diverket da zont war wel war istor ar bajenn hag er marilhoù, met dazrn eus ar boued n'hallo ket bezañ gwelet gant an dud.'''
-Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da ziziverkañ anezho en-dro dre an hevelep etrefas, nemet e vije bet lakaet e plas strishadurioù ouzhpenn.",
 'revdelete-confirm' => "Kadarnait eo mat an dra-se a fell deoc'h ober, e komprenit mat ar pezh a empleg, hag en grit en ur zoujañ d'ar [[{{MediaWiki:Policy-url}}|reolennoù]].",
 'revdelete-suppress-text' => "Ne zlefe an dilemel bezañ implijet '''nemet''' abalamour d'an abegoù da-heul :
 * Titouroù personel dizere

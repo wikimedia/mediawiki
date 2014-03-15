@@ -919,7 +919,6 @@ $2',
 'revdelete-show-file-submit' => '善',
 'revdelete-selected' => "'''審[[:$1]]已擇$2：'''",
 'logdelete-selected' => "'''已擇誌$1：'''",
-'revdelete-text' => "'''刪審雖見誌，其文摒公眾，惟有秩可得之。'''無規則有秩可復還焉。",
 'revdelete-confirm' => '爾確作之，解之果焉，合之[[{{MediaWiki:Policy-url}}|策]]矣。',
 'revdelete-suppress-text' => "'''限'''於此壓：
 * 無適之個訊

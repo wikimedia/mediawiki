@@ -151,6 +151,7 @@
  * @author Umherirrender
  * @author Urhixidur
  * @author Usarker
+ * @author V.narsikar
  * @author Verdy p
  * @author Vinhtantran
  * @author Vivaelcelta
@@ -1581,8 +1582,8 @@ Used on the account creation form when creating another user's account. Similar 
 {{Identical|Real name attribution}}",
 'pt-login' => "Shown to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg-mw|nav-login-createaccount}} is shown there).
 {{Identical|Log in}}",
-'pt-login-button' => "Shown as the caption of the button at [[Special:UserLogin]].
-{{Identical|Log in}}",
+'pt-login-button' => 'Shown as the caption of the button at [[Special:UserLogin]].
+{{Identical|Log in}}',
 'pt-createaccount' => 'Used on the top of the page for logged out users, where it appears next to {{msg-mw|login}}, so consider making them similar.
 {{Identical|Create account}}',
 'pt-userlogout' => '{{Doc-actionlink}}
@@ -2502,7 +2503,7 @@ See also: {{msg-mw|revdelete-text-text}}, {{msg-mw|logdelete-text}}, {{msg-mw|re
 'logdelete-text' => '{{RevisionDelete}}
 This is the introduction explaining the feature.
 See also: {{msg-mw|revdelete-text-text}}, {{msg-mw|revdelete-text-file}}, {{msg-mw|revdelete-text-others}}',
-'revdelete-text-others'       => '{{RevisionDelete}}
+'revdelete-text-others' => '{{RevisionDelete}}
 This message is shown after one of: {{msg-mw|revdelete-text-text}}, {{msg-mw|revdelete-text-image}}, {{msg-mw|revdelete-text-logging}}',
 'revdelete-confirm' => 'This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 

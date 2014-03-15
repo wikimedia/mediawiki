@@ -968,7 +968,7 @@ Agar keltirsangiz, undan sahifa kim tomonidan tahrirlanganini koʻrsatish uchun 
 'recentchanges-label-minor' => 'Bu tahrir kichik deb belgilangan',
 'recentchanges-label-bot' => 'Bu tahrirni bot bajargan',
 'recentchanges-label-unpatrolled' => 'Bu tahrir hali tekshirilmagan',
-'recentchanges-label-plusminus' => 'vazni qanchaga oʻzgargani (bayt)',
+'recentchanges-label-plusminus' => 'Sahifa vazni qanchaga oʻzgargani (bayt)',
 'recentchanges-legend-heading' => "'''Izoh:'''",
 'recentchanges-legend-newpage' => '([[Special:NewPages|alohida roʻyxat]])',
 'rcnotefrom' => 'Quyida <strong>$2</strong>dan boshlab boʻlgan oʻzgarishlar keltirilgan (<strong>$1</strong>dan koʻp boʻlmaganlari koʻrsatildi).',
@@ -1140,13 +1140,13 @@ Uning [$2 fayl tavsifi sahifasidan] olingan tavsifi quyida keltirilgan.',
 
 # Special:Log
 'specialloguserlabel' => 'Ijrochi:',
-'speciallogtitlelabel' => 'Moʻljal (foydalanuvchi yoki sahifa nomi):',
+'speciallogtitlelabel' => 'Moʻljal:',
 'log' => 'Qaydlar',
 'all-logs-page' => 'Barcha ochiq qaydlar',
-'alllogstext' => "{{SITENAME}}dagi barcha jurnallar roʻyxati.
+'alllogstext' => '{{SITENAME}}dagi barcha jurnallar roʻyxati.
 Natijalarni jurnal nomi, foydalanuvchi nomi (harflar katta-kichikligi inobatga olinadi) yoki sahifa nomi boʻyicha saralashingiz mumkin.
-* Biror foydalanuvchi ''amalga oshirgan qaydni'', uning foydalanuvchi nomini \"Ijrochi\" oynasiga kiritib qidirish mumkin.
-* Biror foydalanuvchi yoki sahifaga ''nisbatan'' amalga oshirilgan qaydni, ularning nomini \"Moʻljal\" oynasiga kiritib qidirish mumkin.",
+* Biror foydalanuvchi amalga oshirgan qaydni topish uchun uning foydalanuvchi nomini „Ijrochi“ oynasiga kiriting.
+* Biror foydalanuvchi yoki sahifaga nisbatan amalga oshirilgan qaydni topish uchun ulardan birining nomini „Moʻljal“ oynasiga kiriting.',
 'logempty' => 'Talabga mos yozuvlar mavjud emas.',
 'log-title-wildcard' => 'Shu matndan boshlanuvchi sarlavhalarni izlash',
 

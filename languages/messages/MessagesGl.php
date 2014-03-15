@@ -1265,8 +1265,6 @@ función, a revisión especificada non existe ou está intentando agochar a revi
 'revdelete-show-file-submit' => 'Si',
 'revdelete-selected' => "'''{{PLURAL:\$2|Revisión seleccionada|Revisións seleccionadas}} de \"[[:\$1]]\":'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Rexistro de evento seleccionado|Rexistro de eventos seleccionados}}:'''",
-'revdelete-text' => "'''As revisións borradas seguirán aparecendo no historial da páxina e nos rexistros, pero partes do seu contido serán inaccesibles de cara ao público.'''
-Os demais administradores de {{SITENAME}} poderán acceder ao contido agochado e poderán restaurar a páxina de novo a través desta mesma interface, a non ser que se estableza algunha restrición adicional.",
 'revdelete-confirm' => 'Por favor, confirme que quere levar a cabo esta acción, que comprende as consecuencias e que o fai de acordo [[{{MediaWiki:Policy-url}}|coas políticas]].',
 'revdelete-suppress-text' => "A eliminación '''unicamente''' debería utilizarse nos seguintes casos:
 * Información potencialmente difamatoria

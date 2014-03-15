@@ -832,8 +832,6 @@ Du koast dissen Versionsunnerskeed bekiekje, wan du wolt. Details fiende sik in 
 'revdelete-show-file-submit' => 'Jee',
 'revdelete-selected' => "'''{{PLURAL:$2|Uutwäälde Version|Uutwäälde Versione}} fon [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Uutwäälden Logboukiendraach|Uutwäälde Logboukiendraage}}:'''",
-'revdelete-text' => "'''Läskede Versione un Aktione ferblieuwe in ju Versionsgeskichte un do Logbouke, man Deele deerfon sunt nit eepentelk ientoukiekjen.'''
-Uur Administratore ap {{SITENAME}} hääbe Tougriep ap dän ferstatte Inhoold un konnen him mäd ju glieke Siede wier moakje, insowied uurhoop neen Ientuunengen bestounde.",
 'revdelete-confirm' => 'Bestäätigje, dät du dit wuddelk dwo wolt, dät du do Konsequenze ferstoanst un dät in Uureenstimmenge mäd do [[{{MediaWiki:Policy-url}}|Gjuchtlienjen]] dääst.',
 'revdelete-suppress-text' => "Unnerdrukkengen skuulen '''bloot''' in do foulgjende Fälle foarnuumen waide:
 * Uunpaasende persöönelke Informatione

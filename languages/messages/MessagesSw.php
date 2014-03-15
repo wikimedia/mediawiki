@@ -977,8 +977,6 @@ Unaweza masasisho; maelezo mengine yapo kwenye [{{fullurl:{{#Special:Log}}/delet
 'revdelete-show-file-submit' => 'Ndiyo',
 'revdelete-selected' => "'''{{PLURAL:$2|Pitio lililoteuliwa|Mapitio yaliyoteuliwa}} ya [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Tukio la kumbukumbu lililoteuliwa|Matukio ya kumbukumbu yaliyoteuliwa}}:'''",
-'revdelete-text' => "'''Mapitio bado yataonekana kwenye ukurasa wa historia na matukio bado yataonekana kwenye kumbukumbu, lakini baadhi ya yaliyomo haitaonekana mbele ya watu wote.'''
-Wakabidhi wengine wa {{SITENAME}} bado wataweza kuliona lile lililofichwa pamoja na kulirudisha kwa kuutumia ukurasa maalum huu huu, isipowekewa vizuio vingine.",
 'revdelete-confirm' => 'Tafadhali uthibitishe kwamba unataka kufanya hivyo, pamoja na kwamba unaelewa matokeo yake, na unafanya hivyo kutokana na [[{{MediaWiki:Policy-url}}|sera yetu]].',
 'revdelete-suppress-text' => "Kuficha kunaruhisiwa '''tu''' wakati hizo:
 * Taarifa zinazowezekana kwamba ni za kukashifu

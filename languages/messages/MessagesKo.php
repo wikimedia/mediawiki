@@ -913,6 +913,7 @@ $1 기다렸다가 다시 시도하세요.',
 'createacct-another-realname-tip' => '실명은 선택 사항입니다.
 실명을 입력하면 문서 기여에 사용자의 이름이 들어가게 됩니다.',
 'pt-login' => '로그인',
+'pt-login-button' => '로그인',
 'pt-createaccount' => '계정 만들기',
 'pt-userlogout' => '로그아웃',
 
@@ -1345,8 +1346,6 @@ $2개 보다 적게 {{PLURAL:$2|써야}} 하지만 {{PLURAL:$1|지금은 $1개�
 'revdelete-show-file-submit' => '예',
 'revdelete-selected' => "'''[[:$1]]의 {{PLURAL:$2|선택한 판}}:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|선택한 기록}}:'''",
-'revdelete-text' => "'''삭제된 판과 기록은 문서 역사와 기록에 계속 나타나지만, 내용은 공개되지 않을 것입니다.'''
-{{SITENAME}}의 다른 관리자는 다른 제한이 설정되어 있지 않는 한, 숨겨진 내용을 볼 수 있고, 같은 도구를 이용해 되살릴 수 있습니다.",
 'revdelete-confirm' => '이 작업을 수행하는 것의 결과를 알고 있으며, [[{{MediaWiki:Policy-url}}|정책]]에 맞는 행동인지 확인해주세요.',
 'revdelete-suppress-text' => "숨기기는 '''다음 경우에만''' 사용되어야 합니다:
 * 잠재적인 비방 정보
@@ -1484,7 +1483,7 @@ $1",
 'search-file-match' => '(내용이 일치하는 파일 있음)',
 'search-suggest' => '$1 문서를 찾고 있으신가요?',
 'search-interwiki-caption' => '자매 프로젝트',
-'search-interwiki-default' => '$1 결과:',
+'search-interwiki-default' => '$1 로부터의 결과:',
 'search-interwiki-more' => '(더 보기)',
 'search-relatedarticle' => '관련',
 'searcheverything-enable' => '모든 이름공간에서 검색',
@@ -2635,7 +2634,7 @@ $UNWATCHURL
 'delete-warning-toobig' => '이 문서에는 {{PLURAL:$1|편집 역사}}가 $1개 있습니다.
 편집 역사가 긴 문서를 삭제하면 {{SITENAME}} 데이터베이스 동작에 큰 영향을 줄 수 있습니다.
 주의해 주세요.',
-'deleting-backlinks-warning' => "'''경고:''' 삭제하려는 문서가 다른 문서에 연결되거나 삽입되어 있습니다.",
+'deleting-backlinks-warning' => "'''경고:''' 삭제하려는 문서가 [[Special:WhatLinksHere/{{FULLPAGENAME}}다른 문서에 연결]]되거나 삽입되어 있습니다.",
 
 # Rollback
 'rollback' => '편집 되돌리기',

@@ -1068,8 +1068,6 @@ Du chasch dää Unterschid allno aaluege; Details het's im [{{fullurl:{{#Special
 'revdelete-show-file-submit' => 'Jo',
 'revdelete-selected' => "'''{{PLURAL:$2|Usgwehlti Version|Usgwehlti Versione}} vu [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Usgwehlte Logbuechyytrag|Usgwehlti Logbuechyytreg}}:'''",
-'revdelete-text' => "'''Dr Inhalt oder anderi Bstandteil vu gleschte Versione chenne nimi aagluegt wäre, si erschyyne aber alno as Yytreg in dr Versiongschicht.'''
-{{SITENAME}}-Ammanne chenne dr Inhalt, wu glescht isch, oder di andre gleschte Bstandteil alno aaluege un au widerherstelle, user s isch feschtgleit, ass d Zuegangsbschränkige au fir Ammanne gälte.",
 'revdelete-confirm' => 'Bitte tue bstetige, ass Du vor hesch, des z mache, d Konsequänze drus verstohsch un s machsch in Inbereinstimmig mit dr [[{{MediaWiki:Policy-url}}|Richtlinie]].',
 'revdelete-suppress-text' => "Unterdruckige sotte '''nume''' in däne Fäll bruucht wäre:
 * Nit aabrochti Informatione

@@ -683,6 +683,7 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'createacct-another-realname-tip' => '* Woprawdźite mjeno je opcionalne.
 Jeli jo podaš, budźe so to wužiwać, zo by přinoški přirjadowało.',
 'pt-login' => 'Přizjewić',
+'pt-login-button' => 'Přizjewić',
 'pt-createaccount' => 'Konto załožić',
 'pt-userlogout' => 'Wotzjewić',
 
@@ -1083,8 +1084,6 @@ Móžeš sej tutón rozdźěl wobhladać; podrobnosće namakaš w [{{fullurl:{{#
 'revdelete-show-file-submit' => 'Haj',
 'revdelete-selected' => "'''{{PLURAL:$2|Wubrana wersija|Wubranej wersiji|Wubrane wersije|Wubranych wersijow}} wot [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Wubrany zapisk z protokola|Wubranej zapiskaj z protokola|Wubrane zapiski z protokola|Wubrane zapiski z protokola}} za '''$1:''''''",
-'revdelete-text' => "'''Wušmórnjene wersije a podawki so w stawiznach a protokolach dale jewja, ale dźěle jich wobsaha budu njepřistupne za zjawnosć.'''
-Druzy administratorojo na {{GRAMMAR:lokatiw|{{SITENAME}}}} móža hišće na schowany tekst přistup měć a jón z pomocu samsneho interfejsa wobnowić, chibazo tež přidatne prawa su wobmjezowane.",
 'revdelete-confirm' => 'Prošu potwjerdź, zo chceš to činić, zo rozumiš konsekwency a zo činiš to po [[{{MediaWiki:Policy-url}}|prawidłach]].',
 'revdelete-suppress-text' => "Potłóčenje dyrbjało so '''jenož''' za slědowace pady wužiwać:
 * Potencielnje křiwdźace informacije
@@ -1219,7 +1218,7 @@ Podrobnosće móžeš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'search-file-match' => '(wotpowěduje datajowemu wobsahej)',
 'search-suggest' => 'Měnješe ty $1?',
 'search-interwiki-caption' => 'Sotrowske projekty',
-'search-interwiki-default' => '$1 wuslědki:',
+'search-interwiki-default' => 'Wuslědki z $1:',
 'search-interwiki-more' => '(dalše)',
 'search-relatedarticle' => 'Přiwuzne',
 'searcheverything-enable' => 'We wšěch mjenowych rumach pytać',

@@ -1307,8 +1307,6 @@ Bir hizmetli olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Log
 'revdelete-show-file-submit' => 'Evet',
 'revdelete-selected' => "'''[[:$1]] sayfasının {{PLURAL:$2|seçili değişikliği|seçili değişiklikleri}}:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Seçili kayıt olayı|Seçili kayıt olayları}}:'''",
-'revdelete-text' => "'''Silinen revizyonlar ve olaylar hala sayfa geçmişinde ve günlüklerde görünecektir, fakat içeriğin parçaları umumi olarak erişilemeyecektir.'''
-{{SITENAME}} sitesindeki diğer hizmetliler gizli içeriğe erişebilir ve ilave kısıtlamalar ayarlanmadıysa bu arayüz ile geri getirebilir.",
 'revdelete-confirm' => 'Lütfen, bunu yapmak istediğinizi , sonuçlarını anladığınızı, ve bunu [[{{MediaWiki:Policy-url}}|ilkelere]] göre yapıyor olduğunuzu onaylayın.',
 'revdelete-suppress-text' => "Saklama '''sadece''' aşağıdaki durumlarda kullanılmalıdır:
 * Muhtemel iftira niteliğindeki bilgi

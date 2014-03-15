@@ -741,7 +741,6 @@ Lisateedüst või ollaq [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAME
 'revdelete-nooldid-text' => 'Sa olõ-i valinuq kujjo vai kujjõ.',
 'revdelete-selected' => "'''{{PLURAL:$2|Valit kujo|Validuq kujoq}} lehele [[:$1]]'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Valit muutminõ|Validuq muutmisõq}}:'''",
-'revdelete-text' => "'''Kistudõduq kujoq ommaq olõman lehe aoluun, a näide sissu saa-i avaligult nätäq.''' Seo viki tõõsõq kõrraldajaq saavaq taad käkitüt teksti lukõq ja taa tagasi avaligult nättäväs tetäq, ku olõ-i säet muid piirdmiisi.",
 'revdelete-legend' => 'Nättävüse piirdmiseq',
 'revdelete-hide-text' => 'Käkiq kujo sisu',
 'revdelete-hide-image' => 'Käkiq teedüstü sissu',

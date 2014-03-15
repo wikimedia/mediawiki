@@ -1144,8 +1144,6 @@ Du kan se denne forskel; der kan findes detaljer i [{{fullurl:{{#Special:Log}}/s
 'revdelete-show-file-submit' => 'Ja',
 'revdelete-selected' => "'''{{PLURAL:$2|Valgte version|Valgte versioner}} af '''$1:''''''",
 'logdelete-selected' => "'''{{PLURAL:$1|Valgt logindførsel|Valgte logindførsler}}:'''",
-'revdelete-text' => "'''Slettede versioner vil fortsat vises i sidehistorik og på logsider, men dele af deres indhold vil ikke være offentligt tilgængeligt.'''
-Andre administratorer på {{SITENAME}} vil fortsat være i stand til at se det skjulte indhold og kan gendanne det igen, medmindre der laves yderligere restriktioner.",
 'revdelete-confirm' => 'Vær venlig at bekræfte at du vil gøre dette, at du forstår konsekvenserne, og at du gør det i overensstemmelse med [[{{MediaWiki:Policy-url}}|retningslinjerne]].',
 'revdelete-suppress-text' => "Der bør '''kun''' skjules i de følgende tilfælde:
 * Potentielt injurierende oplysninger

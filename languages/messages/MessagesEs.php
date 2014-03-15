@@ -1350,8 +1350,6 @@ Aún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:
 'revdelete-show-file-submit' => 'Sí',
 'revdelete-selected' => "'''{{PLURAL:$2|Revisión seleccionada|Revisiones seleccionadas}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Seleccionado un evento|Seleccionados eventos}}:'''",
-'revdelete-text' => "Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
-Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.",
 'revdelete-confirm' => 'Por favor confirma que deseas realizar la operación, que entiendes las consecuencias y que estás ejecutando dicha acción acorde con [[{{MediaWiki:Policy-url}}|las políticas]].',
 'revdelete-suppress-text' => "La herramienta de supresión '''solo''' debería usarse en los siguientes casos:
 * información potencialmente injuriosa o calumniante.

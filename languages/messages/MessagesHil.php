@@ -907,8 +907,6 @@ ang ini nga buluhaton wala, ukon gahimakas ka nga taguon ang karon nga pagbag-o.
 'revdelete-show-file-submit' => 'Huo',
 'revdelete-selected' => "'''{{PLURAL:$2|Ginpili nga pagbag-o|Ginpili nga mga pagbag-o}} ni [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Ginpili nga hinatabo sa log|Ginpili nga mga hinatabo sa log}}:'''",
-'revdelete-text' => "'''Ang mga ginpanas nga pagbag-o kag hinatabo magapakita sa gihapon sa kasaysayan sang panid kag mga log, apang ang mga parte sang ila kaundan indi na mahimo nga masudlan sang publiko.'''
-Ang iban nga administrador sa {{SITENAME}} mahimo sa gihapon nga makasulod sa nakatago nga kaundan kag mapaiway nga mapanas ini liwat sa amo sa gihapon nga interface, luwas na lang kon may dugang pa nga pagpangbawal ang ibutang.",
 'revdelete-confirm' => 'Palihog konpermar nga luyag mo ini himuon, nga imo naintiendihan ang mga konsekwensya, kag ginahimo mo ini suno sa [[{{MediaWiki:Policy-url}}|polisiya]].',
 'revdelete-suppress-text' => "Ang pagpahugot nagakadapat '''lamang''' nga pagagamiton sa masunod nga kaso:
 * Nagapang-guba sang dignindad nga impormasyon
