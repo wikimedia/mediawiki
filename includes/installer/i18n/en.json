@@ -136,6 +136,8 @@
     "config-header-oracle": "Oracle settings",
     "config-header-mssql": "Microsoft SQL Server settings",
     "config-invalid-db-type": "Invalid database type",
+    "config-missing-db-username": "You must enter a value for \"Database username\"",
+    "config-missing-db-password": "You must enter a value for \"Database password\"",
     "config-missing-db-name": "You must enter a value for \"Database name\"",
     "config-missing-db-host": "You must enter a value for \"Database host\"",
     "config-missing-db-server-oracle": "You must enter a value for \"Database TNS\"",
