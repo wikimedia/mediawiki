@@ -268,6 +268,7 @@ $wgMessageStructure = array(
 		'pool-timeout',
 		'pool-queuefull',
 		'pool-errorunknown',
+		'pool-servererror',
 	),
 	'links' => array(
 		'aboutsite',
