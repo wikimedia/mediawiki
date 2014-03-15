@@ -102,17 +102,18 @@ class ProfilerSimple extends Profiler {
 		list( $ofname, /* $ocount */, $ortime, $octime ) = array_pop( $this->mWorkStack );
 
 		if ( !$ofname ) {
-			$this->debug( "Profiling error: $functionname\n" );
+			$this->debugGroup( 'profileerror', "Profiling error: $functionname" );
 		} else {
 			if ( $functionname == 'close' ) {
-				$message = "Profile section ended by close(): {$ofname}";
-				$functionname = $ofname;
-				$this->debug( "$message\n" );
-				$this->mCollated[$message] = $this->errorEntry;
-			}
-			elseif ( $ofname != $functionname ) {
+				if ( $ofname != '-total' ) {
+					$message = "Profile section ended by close(): {$ofname}";
+					$functionname = $ofname;
+					$this->debugGroup( 'profileerror', $message );
+					$this->mCollated[$message] = $this->errorEntry;
+				}
+			} elseif ( $ofname != $functionname ) {
 				$message = "Profiling error: in({$ofname}), out($functionname)";
-				$this->debug( "$message\n" );
+				$this->debugGroup( 'profileerror', $message );
 				$this->mCollated[$message] = $this->errorEntry;
 			}
 			$elapsedcpu = $this->getTime( 'cpu' ) - $octime;
