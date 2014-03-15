@@ -100,7 +100,9 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	public function submitConnectForm() {
 		// Get variables from the request.
-		$newValues = $this->setVarsFromRequest( array( 'wgDBserver', 'wgDBname', 'wgDBprefix' ) );
+		$newValues = $this->setVarsFromRequest(
+				array( 'wgDBserver', 'wgDBname', 'wgDBprefix', '_InstallUser',
+				'_InstallPassword' ) );
 
 		// Validate them.
 		$status = Status::newGood();
@@ -114,6 +116,12 @@ class MysqlInstaller extends DatabaseInstaller {
 		}
 		if ( !preg_match( '/^[a-z0-9_-]*$/i', $newValues['wgDBprefix'] ) ) {
 			$status->fatal( 'config-invalid-db-prefix', $newValues['wgDBprefix'] );
+		}
+		if ( !strlen( $newValues['_InstallUser'] ) ) {
+			$status->fatal( 'config-db-username-empty' );
+		}
+		if (!strlen( $newValues['_InstallPassword'] ) ) {
+			$status->fatal( 'config-db-password-empty', $newValues['_InstallUser'] );
 		}
 		if ( !$status->isOK() ) {
 			return $status;
