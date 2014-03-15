@@ -65,7 +65,7 @@ class GenerateJsonI18n extends Maintenance {
 			$extensionStyle = false;
 			$langcode = $this->getOption( 'langcode' );
 			$messages = array( $langcode => $messages );
-		} else if ( $this->hasOption( 'langcode' ) ) {
+		} elseif ( $this->hasOption( 'langcode' ) ) {
 			$this->output( "Warning: --langcode option set but will not be used.\n" );
 		}
 
