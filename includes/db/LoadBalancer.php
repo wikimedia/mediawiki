@@ -493,13 +493,6 @@ class LoadBalancer {
 	public function reuseConnection( $conn ) {
 		$serverIndex = $conn->getLBInfo( 'serverIndex' );
 		$refCount = $conn->getLBInfo( 'foreignPoolRefCount' );
-		$dbName = $conn->getDBname();
-		$prefix = $conn->tablePrefix();
-		if ( strval( $prefix ) !== '' ) {
-			$wiki = "$dbName-$prefix";
-		} else {
-			$wiki = $dbName;
-		}
 		if ( $serverIndex === null || $refCount === null ) {
 			wfDebug( __METHOD__ . ": this connection was not opened as a foreign connection\n" );
 
@@ -515,6 +508,14 @@ class LoadBalancer {
 			 */
 
 			return;
+		}
+
+		$dbName = $conn->getDBname();
+		$prefix = $conn->tablePrefix();
+		if ( strval( $prefix ) !== '' ) {
+			$wiki = "$dbName-$prefix";
+		} else {
+			$wiki = $dbName;
 		}
 		if ( $this->mConns['foreignUsed'][$serverIndex][$wiki] !== $conn ) {
 			throw new MWException( __METHOD__ . ": connection not found, has " .
