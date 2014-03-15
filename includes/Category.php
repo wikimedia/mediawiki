@@ -195,27 +195,37 @@ class Category {
 		return $cat;
 	}
 
-	/** @return mixed DB key name, or false on failure */
+	/**
+	 * @return mixed DB key name, or false on failure
+	 */
 	public function getName() {
 		return $this->getX( 'mName' );
 	}
 
-	/** @return mixed Category ID, or false on failure */
+	/**
+	 * @return mixed Category ID, or false on failure
+	 */
 	public function getID() {
 		return $this->getX( 'mID' );
 	}
 
-	/** @return mixed Total number of member pages, or false on failure */
+	/**
+	 * @return mixed Total number of member pages, or false on failure
+	 */
 	public function getPageCount() {
 		return $this->getX( 'mPages' );
 	}
 
-	/** @return mixed Number of subcategories, or false on failure */
+	/**
+	 * @return mixed Number of subcategories, or false on failure
+	 */
 	public function getSubcatCount() {
 		return $this->getX( 'mSubcats' );
 	}
 
-	/** @return mixed Number of member files, or false on failure */
+	/**
+	 * @return mixed Number of member files, or false on failure
+	 */
 	public function getFileCount() {
 		return $this->getX( 'mFiles' );
 	}

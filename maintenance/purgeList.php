@@ -51,7 +51,9 @@ class PurgeList extends Maintenance {
 		$this->output( "Done!\n" );
 	}
 
-	/** Purge URL coming from stdin */
+	/**
+	 * Purge URL coming from stdin
+	 */
 	private function doPurge() {
 		$stdin = $this->getStdin();
 		$urls = array();
@@ -78,7 +80,9 @@ class PurgeList extends Maintenance {
 		$this->sendPurgeRequest( $urls );
 	}
 
-	/** Purge a namespace or all pages */
+	/**
+	 * Purge a namespace or all pages
+	 */
 	private function purgeNamespace( $namespace = false ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$startId = 0;

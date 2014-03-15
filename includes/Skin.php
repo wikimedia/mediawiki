@@ -182,7 +182,9 @@ abstract class Skin extends ContextSource {
 		return $skin;
 	}
 
-	/** @return string skin name */
+	/**
+	 * @return string skin name
+	 */
 	public function getSkinName() {
 		return $this->skinname;
 	}
