@@ -67,30 +67,35 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			'success' => 'revdelete-success',
 			'failure' => 'revdelete-failure',
 			'text' => 'revdelete-text-text',
+			'selected'=> 'revdelete-selected-text',
 		),
 		'archive' => array(
 			'check-label' => 'revdelete-hide-text',
 			'success' => 'revdelete-success',
 			'failure' => 'revdelete-failure',
 			'text' => 'revdelete-text-text',
+			'selected'=> 'revdelete-selected-text',
 		),
 		'oldimage' => array(
 			'check-label' => 'revdelete-hide-image',
 			'success' => 'revdelete-success',
 			'failure' => 'revdelete-failure',
 			'text' => 'revdelete-text-file',
+			'selected'=> 'revdelete-selected-file',
 		),
 		'filearchive' => array(
 			'check-label' => 'revdelete-hide-image',
 			'success' => 'revdelete-success',
 			'failure' => 'revdelete-failure',
 			'text' => 'revdelete-text-file',
+			'selected'=> 'revdelete-selected-file',
 		),
 		'logging' => array(
 			'check-label' => 'revdelete-hide-name',
 			'success' => 'logdelete-success',
 			'failure' => 'logdelete-failure',
 			'text' => 'logdelete-text',
+			'selected' => 'logdelete-selected',
 		),
 	);
 
@@ -335,12 +340,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	protected function showForm() {
 		$userAllowed = true;
 
-		if ( $this->typeName == 'logging' ) {
-			$this->getOutput()->addWikiMsg( 'logdelete-selected', $this->getLanguage()->formatNum( count( $this->ids ) ) );
-		} else {
-			$this->getOutput()->addWikiMsg( 'revdelete-selected',
-				$this->targetObj->getPrefixedText(), count( $this->ids ) );
-		}
+		$this->getOutput()->wrapWikiMsg( "<strong>$1</strong>", array( $this->typeLabels['selected'],
+			$this->getLanguage()->formatNum( count( $this->ids ) ), $this->targetObj->getPrefixedText() ) );
 
 		$this->getOutput()->addHTML( "<ul>" );
 
