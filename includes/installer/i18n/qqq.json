@@ -79,6 +79,7 @@
     "config-db-wiki-settings": "This is more acurate: \"Enter identifying or distinguishing data for this wiki\" since a MySQL database can host tables of several wikis.",
     "config-db-account-oracle-warn": "A \"[[:wikipedia:Front and back ends|backend]]\" is a system or component that ordinary users don't interact with directly and don't need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are \"system\" or \"service\", or (depending on context and language) even leave it untranslated.",
     "config-db-password-empty": "Used as error message. Parameters:\n* $1 - database username",
+    "config-db-username-empty": "Used as error message. Shown when the database username is not entered by the user.",
     "config-db-account-lock": "It might be easier to translate ''normal operation'' as \"also after the installation process\"",
     "config-mysql-old": "Used as error message. Parameters:\n* $1 - minimum version\n* $2 - the version of MySQL that has been installed",
     "config-pg-test-error": "* $1 - database name\n* $2 - error message",
