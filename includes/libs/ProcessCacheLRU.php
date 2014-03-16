@@ -39,7 +39,7 @@ class ProcessCacheLRU {
 	 */
 	public function __construct( $maxKeys ) {
 		if ( !is_int( $maxKeys ) || $maxKeys < 1 ) {
-			throw new MWException( __METHOD__ . " must be given an integer and >= 1" );
+			throw new UnexpectedValueException( __METHOD__ . " must be given an integer >= 1" );
 		}
 		$this->maxCacheKeys = $maxKeys;
 	}
