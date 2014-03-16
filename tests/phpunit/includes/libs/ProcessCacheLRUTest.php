@@ -68,7 +68,7 @@ class ProcessCacheLRUTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideInvalidConstructorArg
-	 * @expectedException MWException
+	 * @expectedException UnexpectedValueException
 	 */
 	public function testConstructorGivenInvalidValue( $maxSize ) {
 		new ProcessCacheLRUTestable( $maxSize );
