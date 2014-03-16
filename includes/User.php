@@ -1555,6 +1555,7 @@ class User {
 			$ret = false;
 		}
 		wfProfileOut( __METHOD__ );
+                wfRunHooks( 'LocallyBlockedProxy', array( $ip, &$ret ) );
 		return $ret;
 	}
 
