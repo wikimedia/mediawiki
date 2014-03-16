@@ -35,12 +35,20 @@ class HashRing {
 	const RING_SIZE = 268435456; // 2^28
 
 	/**
-	 * @param array $map (location => weight)
-	 */
-	public function __construct( array $map ) {
-		$map = array_filter( $map, function ( $w ) {
-			return $w > 0;
-		} );
+	 * @param array $map If the $weight parameter is unset, $map should be an
+	 *   associative array mapping locations to weights. If $weight is set,
+	 *   $map should be a list of locations. They will each be assigned a
+	 *   weight of $weight.
+	 * @param int|null $weight If set, specifies the weight to assign all
+	 *   locations in the $map hash.
+     */
+	public function __construct( array $map, int $weight = null ) {
+
+		if ( is_int( $weight) ) {
+			$map = array_fill_keys( array_keys( $map, $weight ) );
+		}
+		$map = array_filter( $map );
+
 		if ( !count( $map ) ) {
 			throw new UnexpectedValueException( "Ring is empty or all weights are zero." );
 		}
