@@ -35,6 +35,7 @@ sftp-config.json
 /maintenance/.mweval_history
 /maintenance/.mwsql_history
 /maintenance/dev/data
+/tests/phpunit/phpunit.phar
 /AdminSettings.php
 /LocalSettings.php
 /StartProfiler.php
