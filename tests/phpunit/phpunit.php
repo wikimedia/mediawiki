@@ -93,6 +93,7 @@ class PHPUnitMaintClass extends Maintenance {
 			unset( $_SERVER['argv'][$key + 1] ); // its value
 			$_SERVER['argv'] = array_values( $_SERVER['argv'] );
 		}
+
 	}
 
 	public function getDbType() {
@@ -104,7 +105,13 @@ $maintClass = 'PHPUnitMaintClass';
 require RUN_MAINTENANCE_IF_MAIN;
 
 if ( !class_exists( 'PHPUnit_Runner_Version' ) ) {
-	require_once 'PHPUnit/Runner/Version.php';
+	if ( $wgPhpUnitPhar !== false && is_readable( $wgPhpUnitPhar ) ) {
+		// load phpunit phar
+		require_once( $wgPhpUnitPhar );
+	} else {
+		// try loading phpunit via PEAR
+		require_once 'PHPUnit/Runner/Version.php';
+	}
 }
 
 if ( PHPUnit_Runner_Version::id() !== '@package_version@'
