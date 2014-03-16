@@ -5207,6 +5207,14 @@ $wgParserTestFiles = array(
 $wgParserTestRemote = false;
 
 /**
+ * Specify phpunit phar install location to use non-PEAR versions of phpunit
+ * with the $IP/tests/phpunit/phpunit.php entry point.
+ *
+ * e.g. $wgPhpUnitPhar = '/opt/local/bin/phpunit';
+ */
+$wgPhpUnitPhar = false;
+
+/**
  * Allow running of javascript test suites via [[Special:JavaScriptTest]] (such as QUnit).
  */
 $wgEnableJavaScriptTest = false;
