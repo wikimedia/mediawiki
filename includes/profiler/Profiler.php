@@ -227,15 +227,17 @@ class Profiler {
 		$bit = array_pop( $this->mWorkStack );
 
 		if ( !$bit ) {
-			$this->debug( "Profiling error, !\$bit: $functionname\n" );
+			$this->debugGroup( 'profileerror', "Profiling error, !\$bit: $functionname" );
 		} else {
 			if ( $functionname == 'close' ) {
-				$message = "Profile section ended by close(): {$bit[0]}";
-				$this->debug( "$message\n" );
-				$this->mStack[] = array( $message, 0, 0.0, 0, 0.0, 0 );
+				if ( $bit[0] != '-total' ) {
+					$message = "Profile section ended by close(): {$bit[0]}";
+					$this->debugGroup( 'profileerror', $message );
+					$this->mStack[] = array( $message, 0, 0.0, 0, 0.0, 0 );
+				}
 			} elseif ( $bit[0] != $functionname ) {
 				$message = "Profiling error: in({$bit[0]}), out($functionname)";
-				$this->debug( "$message\n" );
+				$this->debugGroup( 'profileerror', $message );
 				$this->mStack[] = array( $message, 0, 0.0, 0, 0.0, 0 );
 			}
 			$bit[] = $time;
@@ -324,7 +326,7 @@ class Profiler {
 					list( $method, $realtime ) = $info;
 					$msg .= sprintf( "%d\t%.6f\t%s\n", $i, $realtime, $method );
 				}
-				wfDebugLog( 'DBPerformance', $msg );
+				$this->debugGroup( 'DBPerformance', $msg );
 			}
 			unset( $this->mDBTrxHoldingLocks[$name] );
 			unset( $this->mDBTrxMethodTimes[$name] );
@@ -717,6 +719,18 @@ class Profiler {
 	function debug( $s ) {
 		if ( function_exists( 'wfDebug' ) ) {
 			wfDebug( $s );
+		}
+	}
+
+	/**
+	 * Add an entry in the debug log group
+	 *
+	 * @param string $group Group to send the message to
+	 * @param string $s to output
+	 */
+	function debugGroup( $group, $s ) {
+		if ( function_exists( 'wfDebugLog' ) ) {
+			wfDebugLog( $group, $s );
 		}
 	}
 

@@ -90,7 +90,7 @@ class ProfilerMwprof extends Profiler {
 		// Check for unbalanced profileIn / profileOut calls.
 		// Bad entries are logged but not sent.
 		if ( $inName !== $outName ) {
-			wfDebugLog( 'ProfilerUnbalanced', json_encode( array( $inName, $outName ) ) );
+			$this->debugGroup( 'ProfilerUnbalanced', json_encode( array( $inName, $outName ) ) );
 			return;
 		}
 
