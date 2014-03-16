@@ -48,6 +48,9 @@ production.
   allows more than one value of $wgLocalInterwiki to be specified and
   understood by the parser. The value of $wgLocalInterwiki is automatically
   prepended to the start of this array.
+* Add $wgPhpUnitPhar setting to allow using phpunit.phar with MediaWiki's
+  $IP/tests/phpunit/phpunit.php entry point. Alternatively, phpunit.phar
+  can be placed in the $IP/tests/phpunit folder.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
