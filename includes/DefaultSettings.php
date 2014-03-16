@@ -4922,6 +4922,12 @@ $wgDebugLogFile = '';
 $wgDebugLogPrefix = '';
 
 /**
+ * Decimal precision of wfDebugLog timestamp.
+ * @since 1.23
+ */
+$wgDebugLogTimestampPrecision = 0;
+
+/**
  * If true, instead of redirecting, show a page with a link to the redirect
  * destination. This allows for the inspection of PHP error messages, and easy
  * resubmission of form data. For developer use only.
