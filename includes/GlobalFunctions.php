@@ -1182,9 +1182,19 @@ function wfDebugLog(
 		MWDebug::debugMsg( "[{$logGroup}] {$text}\n" );
 	}
 
+	// get timestamp, with fraction of a second, if requested
+	list( $ts_fract, $ts ) = explode( ' ', microtime() );
+	$time = wfTimestamp( TS_DB, $ts );
+	global $wgDebugLogTimestampPrecision;
+	if ( $wgDebugLogTimestampPrecision ) {
+		$time .= substr( $ts_fract, 1, $wgDebugLogTimestampPrecision + 1 );
+	}
+
 	$logger = MWLoggerFactory::getInstance( $logGroup );
 	$context['private'] = ( $dest === 'private' );
+	$context['time'] = $time;
 	$logger->info( $text, $context );
+
 }
 
 /**
