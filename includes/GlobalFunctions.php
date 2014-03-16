@@ -1076,7 +1076,14 @@ function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
 		$destination = strval( $logConfig );
 	}
 
-	$time = wfTimestamp( TS_DB );
+	// get timestamp, with fraction of a second, if requested
+	list( $ts_fract, $ts ) = explode( ' ', microtime() );
+	$time = wfTimestamp( TS_DB, $ts );
+	global $wgDebugLogTimestampPrecision;
+	if ( $wgDebugLogTimestampPrecision ) {
+		$time .= substr( $ts_fract, 1, $wgDebugLogTimestampPrecision + 1 );
+	}
+	
 	$wiki = wfWikiID();
 	$host = wfHostname();
 	wfErrorLog( "$time $host $wiki: $text", $destination );
