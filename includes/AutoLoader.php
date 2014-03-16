@@ -386,7 +386,6 @@ $wgAutoloadLocalClasses = array(
 	'MapCacheLRU' => 'includes/cache/MapCacheLRU.php',
 	'MessageCache' => 'includes/cache/MessageCache.php',
 	'ObjectFileCache' => 'includes/cache/ObjectFileCache.php',
-	'ProcessCacheLRU' => 'includes/cache/ProcessCacheLRU.php',
 	'ResourceFileCache' => 'includes/cache/ResourceFileCache.php',
 
 	# includes/changes
@@ -709,6 +708,7 @@ $wgAutoloadLocalClasses = array(
 	'JSTokenizer' => 'includes/libs/jsminplus.php',
 	'MultiHttpClient' => 'includes/libs/MultiHttpClient.php',
 	'MWMessagePack' => 'includes/libs/MWMessagePack.php',
+	'ProcessCacheLRU' => 'includes/libs/ProcessCacheLRU.php',
 	'RunningStat' => 'includes/libs/RunningStat.php',
 	'ScopedCallback' => 'includes/libs/ScopedCallback.php',
 	'ScopedPHPTimeout' => 'includes/libs/ScopedPHPTimeout.php',
