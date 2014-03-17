@@ -297,7 +297,7 @@ class SiteList extends GenericArrayObject {
 	 * @var string A string uniquely identifying the version of the serialization structure,
 	 *             not including any sub-structures.
 	 */
-	const SERIAL_VERSION_ID = '2013-02-07';
+	const SERIAL_VERSION_ID = '2014-03-17';
 
 	/**
 	 * Returns the version ID that identifies the serialization structure used by
@@ -327,6 +327,7 @@ class SiteList extends GenericArrayObject {
 			array(
 				'internalIds' => $this->byInternalId,
 				'globalIds' => $this->byGlobalId,
+				'navigationIds' => $this->byNavigationId
 			)
 		);
 	}
@@ -345,6 +346,7 @@ class SiteList extends GenericArrayObject {
 
 		$this->byInternalId = $serializationData['internalIds'];
 		$this->byGlobalId = $serializationData['globalIds'];
+		$this->byNavigationId = $serializationData['navigationIds'];
 
 		return $serializationData;
 	}
