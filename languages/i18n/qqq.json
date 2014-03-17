@@ -1294,6 +1294,7 @@
     "right-override-export-depth": "{{doc-right|override-export-depth}}",
     "right-sendemail": "{{doc-right|sendemail}}",
     "right-passwordreset": "{{doc-right|passwordreset}}",
+    "right-usedebugtoolbar": "{{doc-right|usedebugtoolbar}}",
     "newuserlogpage": "{{doc-logpage}}\n\nPart of the \"Newuserlog\" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in [[Special:RecentChanges]].",
     "newuserlogpagetext": "Part of the \"Newuserlog\" extension. It is the description you can see on [[Special:Log/newusers]].",
     "rightslog": "{{doc-logpage}}\n\nIn [[Special:Log]]",

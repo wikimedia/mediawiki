@@ -1260,6 +1260,7 @@ $wgMessageStructure = array(
 		'right-override-export-depth',
 		'right-sendemail',
 		'right-passwordreset',
+		'right-usedebugtoolbar'
 	),
 	'newuserlog' => array(
 		'newuserlogpage',

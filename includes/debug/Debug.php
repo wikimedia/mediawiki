@@ -78,6 +78,27 @@ class MWDebug {
 	}
 
 	/**
+	 * Returns debugger's current status
+	 * This is called by Setup.php.
+	 *
+	 * @since 1.23
+	 * @return bool
+	 */
+	public static function isEnabled() {
+		return self::$enabled;
+	}
+
+	/**
+	 * Disable the debugger.
+	 * This is called by Setup.php when $wgDebugToolbar is true but user did not have rights to use.
+	 *
+	 * @since 1.23
+	 */
+	public static function shutdown() {
+		self::$enabled = false;
+	}
+
+	/**
 	 * Add ResourceLoader modules to the OutputPage object if debugging is
 	 * enabled.
 	 *

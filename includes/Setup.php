@@ -398,15 +398,6 @@ if ( $wgRC2UDPAddress ) {
 
 wfProfileOut( $fname . '-defaults' );
 
-// Disable MWDebug for command line mode, this prevents MWDebug from eating up
-// all the memory from logging SQL queries on maintenance scripts
-global $wgCommandLineMode;
-if ( $wgDebugToolbar && !$wgCommandLineMode ) {
-	wfProfileIn( $fname . '-debugtoolbar' );
-	MWDebug::init();
-	wfProfileOut( $fname . '-debugtoolbar' );
-}
-
 if ( !class_exists( 'AutoLoader' ) ) {
 	require_once "$IP/includes/AutoLoader.php";
 }
@@ -579,6 +570,16 @@ $wgTitle = null;
 $wgDeferredUpdateList = array();
 
 wfProfileOut( $fname . '-globals' );
+
+// Disable MWDebug for command line mode, this prevents MWDebug from eating up
+// all the memory from logging SQL queries on maintenance scripts
+global $wgCommandLineMode;
+if ( $wgDebugToolbar && !$wgCommandLineMode && $wgUser->isAllowed('usedebugtoolbar')) {
+	wfProfileIn( $fname . '-debugtoolbar' );
+	MWDebug::init();
+	wfProfileOut( $fname . '-debugtoolbar' );
+}
+
 wfProfileIn( $fname . '-extensions' );
 
 # Extension setup functions for extensions other than skins

@@ -4352,6 +4352,7 @@ $wgGroupPermissions['sysop']['noratelimit'] = true;
 $wgGroupPermissions['sysop']['movefile'] = true;
 $wgGroupPermissions['sysop']['unblockself'] = true;
 $wgGroupPermissions['sysop']['suppressredirect'] = true;
+$wgGroupPermissions['sysop']['usedebugtoolbar'] = true;
 #$wgGroupPermissions['sysop']['upload_by_url'] = true;
 #$wgGroupPermissions['sysop']['mergehistory'] = true;
 
