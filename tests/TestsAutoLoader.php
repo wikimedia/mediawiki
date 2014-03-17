@@ -98,6 +98,9 @@ $wgAutoloadClasses += array(
 	'ParserTest' => "$testDir/parser/parserTest.inc",
 	'ParserTestParserHook' => "$testDir/parser/parserTestsParserHook.php",
 
+	# tests/phpunit/includes/resourceloader
+	'LessFileCompilationTest' => "$testDir/phpunit/includes/resourceloader/LessFileCompilationTest.php",
+
 	# tests/phpunit/includes/site
 	'SiteTest' => "$testDir/phpunit/includes/site/SiteTest.php",
 	'TestSites' => "$testDir/phpunit/includes/site/TestSites.php",
