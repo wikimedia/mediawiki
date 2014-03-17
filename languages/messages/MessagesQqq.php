@@ -3587,6 +3587,7 @@ The rate limits have no effect on the groups that have this right. Rate limits i
 'right-override-export-depth' => '{{doc-right|override-export-depth}}',
 'right-sendemail' => '{{doc-right|sendemail}}',
 'right-passwordreset' => '{{doc-right|passwordreset}}',
+'right-usedebugtoolbar' => '{{doc-right|usedebugtoolbar}}',
 
 # Special:Log/newusers
 'newuserlogpage' => '{{doc-logpage}}

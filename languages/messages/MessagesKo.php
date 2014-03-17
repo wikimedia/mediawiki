@@ -1746,6 +1746,7 @@ HTML 태그를 확인하세요.',
 'right-override-export-depth' => '5단계로 링크된 문서를 포함하여 문서를 내보내기',
 'right-sendemail' => '다른 사용자에게 이메일 보내기',
 'right-passwordreset' => '비밀번호 재설정 이메일을 보기',
+'right-usedebugtoolbar' => '디버그 툴바 사용 가능',
 
 # Special:Log/newusers
 'newuserlogpage' => '사용자 등록 기록',

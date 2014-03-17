@@ -574,6 +574,11 @@ $wgTitle = null;
 $wgDeferredUpdateList = array();
 
 wfProfileOut( $fname . '-globals' );
+
+if ( MWDebug::isEnabled() && !$wgUser->isAllowed( 'usedebugtoolbar' ) ) {
+	MWDebug::shutdown();
+}
+
 wfProfileIn( $fname . '-extensions' );
 
 # Extension setup functions for extensions other than skins
