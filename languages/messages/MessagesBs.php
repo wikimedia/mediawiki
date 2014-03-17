@@ -812,6 +812,8 @@ Molimo Vas da sačekate $1 prije nego što pokušate ponovo.',
 'suspicious-userlogout' => 'Vaš zahtjev za odjavu je odbijen jer je poslan preko pokvarenog preglednika ili keširanog proksija.',
 'createacct-another-realname-tip' => 'Pravo ime nije obavezno.
 Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
+'pt-login-button' => 'Prijavi me',
+'pt-createaccount' => 'Napravi korisnički račun',
 
 # Email sending
 'php-mail-error-unknown' => 'Nepoznata greška u PHP funkciji mail()',

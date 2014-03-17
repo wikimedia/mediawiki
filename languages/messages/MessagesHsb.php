@@ -1084,6 +1084,10 @@ Móžeš sej tutón rozdźěl wobhladać; podrobnosće namakaš w [{{fullurl:{{#
 'revdelete-show-file-submit' => 'Haj',
 'revdelete-selected' => "'''{{PLURAL:$2|Wubrana wersija|Wubranej wersiji|Wubrane wersije|Wubranych wersijow}} wot [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Wubrany zapisk z protokola|Wubranej zapiskaj z protokola|Wubrane zapiski z protokola|Wubrane zapiski z protokola}} za '''$1:''''''",
+'revdelete-text-text' => 'Zhašane wersije wostanu hišće we wersijowej historiji, ale dźěle jeje wobsaha njebudu přistupne zjawnosći.',
+'revdelete-text-file' => 'Zhašane datajowe wersije wostanu w datajowej historiji, ale dźěle jeje wobsaha njebudu přistupne zjawnosći.',
+'logdelete-text' => 'Zhašane protokolowe zapiski wostanu hišće w protokolach, ale dźěle jich wobsaha njebudu přistupne zjawnosći.',
+'revdelete-text-others' => 'Druzy administratorojo na {{GRAMMAR:lokatiw|{{SITENAME}}}} móža hišće na schowany wobsah přistup měć a móža jón zaso přez samsny wužiwarski powjerch wobnowić, chibazo su přidatne wobmjezowanja.',
 'revdelete-confirm' => 'Prošu potwjerdź, zo chceš to činić, zo rozumiš konsekwency a zo činiš to po [[{{MediaWiki:Policy-url}}|prawidłach]].',
 'revdelete-suppress-text' => "Potłóčenje dyrbjało so '''jenož''' za slědowace pady wužiwać:
 * Potencielnje křiwdźace informacije

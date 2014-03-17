@@ -830,6 +830,7 @@ Attendi $1 e riprova in seguito.',
 'suspicious-userlogout' => 'La tua richiesta di disconnessione è stata negata perché sembra inviata da un browser non funzionante o un proxy di caching.',
 'createacct-another-realname-tip' => "L'indicazione del proprio nome vero è opzionale; se si sceglie di inserirlo, verrà utilizzato per attribuire la paternità dei contenuti inviati.",
 'pt-login' => 'Entra',
+'pt-login-button' => 'Entra',
 'pt-createaccount' => 'Registrati',
 'pt-userlogout' => 'Esci',
 
@@ -1238,6 +1239,10 @@ In quanto amministratore puoi visualizzare questo confronto di versioni; potrebb
 'revdelete-show-file-submit' => 'Sì',
 'revdelete-selected' => "'''{{PLURAL:$2|Versione selezionata|Versioni selezionate}} di [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:'''",
+'revdelete-text-text' => 'Le versioni cancellate appariranno ancora nella cronologia della pagina, ma parti del loro contenuto sarà inaccessibile al pubblico.',
+'revdelete-text-file' => 'Le versioni di file cancellati appariranno ancora nella cronologia del file, ma parti del loro contenuto sarà inaccessibile al pubblico.',
+'logdelete-text' => 'Gli eventi cancellati appariranno ancora nei registri, ma parti del loro contenuto sarà inaccessibile al pubblico.',
+'revdelete-text-others' => 'Altri amministratori di {{SITENAME}} saranno ancora in grado di accedere ai contenuti nascosti e potranno ripristinarli nuovamente attraverso questa stessa interfaccia, se non sono state impostate restrizioni aggiuntive.',
 'revdelete-confirm' => 'Per favore conferma che questo è quanto intendi fare, che sei consapevole delle conseguenze, e che stai facendo questo nel rispetto delle [[{{MediaWiki:Policy-url}}|linee guida]].',
 'revdelete-suppress-text' => "La rimozione dovrebbe essere utilizzata '''unicamente''' nei seguenti casi:
 * informazioni potenzialmente diffamatorie

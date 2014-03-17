@@ -590,6 +590,7 @@ Pangngaasi nga agurayka ti $1 sakbay a padasem manen.',
 'createacct-another-realname-tip' => 'Saan a nasken ti pudno a nagan.
 No kayatmo nga ited, mausarto daytoy para iti panangited ti pammadayaw para kadagiti obrada.',
 'pt-login' => 'Sumrek',
+'pt-login-button' => 'Sumrek',
 'pt-createaccount' => 'Agaramid ti pakabilangan',
 'pt-userlogout' => 'Rummuar',
 
@@ -1025,6 +1026,10 @@ awan ti naibaga a panagbaliw, wenno padpadasem nga ilemlemmeng ti agdama a panag
 'revdelete-show-file-submit' => 'Wen',
 'revdelete-selected' => "'''{{PLURAL:$2|Napili a nabaliwan|Dagiti napili a nabaliwan}} iti [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Ti napili a listaan ti napasamak|Dagiti napili a listaan ti napasamak}}:'''",
+'revdelete-text-text' => 'Dagiti naikkat a rebision ket agparangto pay laeng iti panid ti pakasaritaan, ngem dagiti paset ti linaonda ket saanton a publiko a maserrekan.',
+'revdelete-text-file' => 'Dagiti naikkat a bersion ti papeles ket agparangto pay laeng iti pakasaritaan ti papeles, ngem dagiti paset ti linaonda ket saanton a publiko a maserrekan.',
+'logdelete-text' => 'Dagiti naikkat a listaan ti pasamak ket agparangto pay laeng kadagiti listaan, ngem dagiti paset ti linaonda ket saanton a publiko a maserrekan.',
+'revdelete-text-others' => 'Dagiti sabali nga administrador iti {{SITENAME}} ket mabalindanto pay laeng a maserrekan ti nailemmeng a linaon ken mabalindanto manen ti mangisubli ti pannakaikkat babaen iti daytoy nga isu met laeng nga interface, malaksid no adda dagiti maipatinayon a maisaad a panangigawid.',
 'revdelete-confirm' => 'Pangngaasi a pasingkedam a kayatmo nga aramiden daytoy, a maawatam dagiti pagbanagan, ket araramidem daytoy a segun iti [[{{MediaWiki:Policy-url}}|ti annuroten]].',
 'revdelete-suppress-text' => "Ti panagdepdep ket usaren '''laeng''' kadagiti sumaganad a kaso;
 * Makapataud ti libelo a pakaammo
@@ -1160,7 +1165,7 @@ Dagiti salaysay ket mabalin a mabirukan idiay [{{fullurl:{{#Special:Log}}/delete
 'search-file-match' => '(maipada ti linaon a papeles)',
 'search-suggest' => 'Daytoy kadi: $1',
 'search-interwiki-caption' => 'Dagiti kakabsat a gandat',
-'search-interwiki-default' => '$1 dagiti nagbanagan:',
+'search-interwiki-default' => 'Dagiti resulta manipud ti $1:',
 'search-interwiki-more' => '(adu pay)',
 'search-relatedarticle' => 'Mainaig',
 'searcheverything-enable' => 'Agbirukka kadagiti amin a nagan ti espasio',

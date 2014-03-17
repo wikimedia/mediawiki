@@ -2496,15 +2496,30 @@ See also:
 * {{msg-mw|Revdelete-selected}}',
 'revdelete-text-text' => '{{RevisionDelete}}
 This is the introduction explaining the feature.
-See also: {{msg-mw|revdelete-text-file}}, {{msg-mw|logdelete-text}}, {{msg-mw|revdelete-text-others}}',
+
+See also:
+* {{msg-mw|Revdelete-text-file}}
+* {{msg-mw|Logdelete-text}}
+* {{msg-mw|Revdelete-text-others}}',
 'revdelete-text-file' => '{{RevisionDelete}}
 This is the introduction explaining the feature.
-See also: {{msg-mw|revdelete-text-text}}, {{msg-mw|logdelete-text}}, {{msg-mw|revdelete-text-others}}',
+
+See also:
+* {{msg-mw|Revdelete-text-text}}
+* {{msg-mw|Logdelete-text}}
+* {{msg-mw|Revdelete-text-others}}',
 'logdelete-text' => '{{RevisionDelete}}
 This is the introduction explaining the feature.
-See also: {{msg-mw|revdelete-text-text}}, {{msg-mw|revdelete-text-file}}, {{msg-mw|revdelete-text-others}}',
+
+See also:
+* {{msg-mw|Revdelete-text-text}}
+* {{msg-mw|Revdelete-text-file}}
+* {{msg-mw|Revdelete-text-others}}',
 'revdelete-text-others' => '{{RevisionDelete}}
-This message is shown after one of: {{msg-mw|revdelete-text-text}}, {{msg-mw|revdelete-text-image}}, {{msg-mw|revdelete-text-logging}}',
+This message is shown after one of:
+* {{msg-mw|Revdelete-text-text}}
+* {{msg-mw|Revdelete-text-file}}
+* {{msg-mw|Logdelete-text}}',
 'revdelete-confirm' => 'This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 
 Refers to {{msg-mw|Policy-url}}.

@@ -1142,6 +1142,7 @@ Dir kënnt dësen Ënnerscheed gesinn; Detailer fannt Dir am [{{fullurl:{{#Speci
 'revdelete-show-file-submit' => 'Jo',
 'revdelete-selected' => "'''{{PLURAL:$2|Gewielt Versioun|Gewielt Versioune}} vu(n) [[:$1]] :'''",
 'logdelete-selected' => "'''Ausgewielten {{PLURAL:$1|Evenement|Evenementer}} aus dem Logbuch:'''",
+'revdelete-text-others' => 'Aner Administrateuren op {{SITENAME}} kënnen nach ëmmer de verstoppten Inhalt gesinn an en iwwer deeselwechten Interface nees restauréieren, ausser wann zousätzlech Limitatiounen agestallt sinn.',
 'revdelete-confirm' => "Confirméiert w.e.g. datt Dir dat maache wëllt, datt Dir d'Konsequenze verstitt an datt Dir dëst an Aklang mat de [[{{MediaWiki:Policy-url}}|Richtlinne]] maacht.",
 'revdelete-suppress-text' => "Ënnerdréckung sollt '''nëmmen''' an dëse Fäll benotzt ginn:
 * Informatiounen déi beleidege kéinten
@@ -1603,7 +1604,7 @@ Dës Informatioun ass ëffentlech.",
 'recentchanges-legend-heading' => "'''Legend:'''",
 'recentchanges-legend-newpage' => '(kuckt och [[Special:NewPages|Lëscht vun den neie Säiten]])',
 'recentchanges-legend-plusminus' => "''(±123)''",
-'rcnotefrom' => "Ugewise ginn d'Ännerunge vum '''$2''' un (maximal '''$1''' Ännerunge gi gewisen).",
+'rcnotefrom' => "Ugewise ginn d'Ännerunge vum <strong>$2</strong> un (maximal <strong>$1</strong> Ännerunge gi gewisen).",
 'rclistfrom' => 'Nei Ännerunge vu(n) $1 u weisen',
 'rcshowhideminor' => 'Kleng Ännerunge $1',
 'rcshowhideminor-show' => 'Weisen',
@@ -2335,7 +2336,7 @@ E-Mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
 Et gi soulaang keng weider Maile geschéckt, bis Dir d\'Säit nees emol besicht hutt wärend deem Dir ageloggt sidd.
-Op Ärer Iwwerwaachungslëscht kënnt Dir all Benoorichtigungsmarkeren zesummen zErécksetzen.
+Op Ärer Iwwerwaachungslëscht kënnt Dir all Benoorichtigungsmarkeren zesummen zrécksetzen.
 
 
 Äre frëndleche {{SITENAME}} Benoriichtigungssystem
@@ -2393,14 +2394,14 @@ D'Läsche vu sou Säite gouf limitéiert fir ongewollte Stéierungen op {{SITENA
 'delete-warning-toobig' => "Dës Säit huet eng laang Versiounsgeschicht, méi wéi $1 {{PLURAL:$1|Versioun|Versiounen}}.
 D'Läschen dovu kann zu Stéierungen am Fonctionnement vun {{SITENAME}} féieren;
 dës Aktioun soll mat Virsiicht gemaach ginn.",
-'deleting-backlinks-warning' => "'''Opgepasst:''' Aner Säite linken op déi Säit déi Dir am Gaang sidd ze läschen oder déi säit Déi Dir am Gaang sidd ze läschen ass an aner Säiten agebonn.",
+'deleting-backlinks-warning' => "'''Opgepasst:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Aner Säite]] linken op déi Säit déi Dir am Gaang sidd ze läschen oder déi Säit Déi Dir am Gaang sidd ze läschen ass an aner Säiten agebonn.",
 
 # Rollback
 'rollback' => 'Ännerungen zrécksetzen',
 'rollback_short' => 'Zrécksetzen',
 'rollbacklink' => 'Zrécksetzen',
-'rollbacklinkcount' => '{{PLURAL:$1|Eng Ännerung|$1 Ännerungen}} zerécksetzen',
-'rollbacklinkcount-morethan' => 'méi wéi {{PLURAL:$1|Eng Ännerung|$1 Ännerungen}} zerécksetzen',
+'rollbacklinkcount' => '{{PLURAL:$1|Eng Ännerung|$1 Ännerungen}} zrécksetzen',
+'rollbacklinkcount-morethan' => 'méi wéi {{PLURAL:$1|Eng Ännerung|$1 Ännerungen}} zrécksetzen',
 'rollbackfailed' => 'Zrécksetzen huet net geklappt',
 'cantrollback' => 'Lescht Ännerung kann net zréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
 'alreadyrolled' => 'Déi lescht Ännerung vun der Säit [[:$1]] vum [[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);; kann net zeréckgesat ginn;

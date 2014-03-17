@@ -904,6 +904,7 @@ Než to zkusíte znovu, musíte počkat na vypršení lhůty $1.',
 'createacct-another-realname-tip' => 'Skutečné jméno je nepovinné.
 Pokud se ho rozhodnete uvést, bude použito pro označení autorství vaší práce.',
 'pt-login' => 'Přihlášení',
+'pt-login-button' => 'Přihlásit se',
 'pt-createaccount' => 'Vytvoření účtu',
 'pt-userlogout' => 'Odhlásit se',
 
@@ -1316,6 +1317,10 @@ Můžete si toto porovnání prohlédnout; podrobnosti jsou uvedeny v [{{fullurl
 'revdelete-show-file-submit' => 'Ano',
 'revdelete-selected' => "'''{{PLURAL:$2|Vybraná|Vybrané}} revize stránky [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Vybraná protokolovaná událost|Vybrané protokolované události}}:'''",
+'revdelete-text-text' => 'Smazané editace se budou i nadále zobrazovat v historii stránky, ale části jejich obsahu nebudou veřejně přístupné.',
+'revdelete-text-file' => 'Smazané verze souborů se budou i nadále zobrazovat v historii stránky, ale části jejich obsahu nebudou veřejně přístupné.',
+'logdelete-text' => 'Smazané protokolovací záznamy se budou i nadále zobrazovat v historii stránky, ale části jejich obsahu nebudou veřejně přístupné.',
+'revdelete-text-others' => 'Ostatní správci {{grammar:2sg|{{SITENAME}}}} budou i nadále moci ke skrytému obsahu přistupovat a mohou ho pomocí stejného rozhraní obnovit, pokud nejsou nastavena dodatečná omezení.',
 'revdelete-confirm' => 'Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].',
 'revdelete-suppress-text' => "Utajování by se mělo používat '''pouze''' v následujících případech:
 * Potenciálně pomlouvačné informace

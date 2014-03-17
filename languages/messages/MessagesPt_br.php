@@ -875,6 +875,7 @@ Por favor aguarde $1 antes de tentar novamente.',
 'createacct-another-realname-tip' => 'O nome verdadeiro é opcional.
 Se você optar por fornecê-lo, este nome será utilizado para dar ao usuário a atribuição de seu trabalho.',
 'pt-login' => 'Entrar',
+'pt-login-button' => 'Entrar',
 'pt-createaccount' => 'Criar conta',
 
 # Email sending
@@ -1298,6 +1299,10 @@ Você pode ver esta comparação; detalhes podem ser encontrados no [{{fullurl:{
 'revdelete-show-file-submit' => 'Sim',
 'revdelete-selected' => "'''{{PLURAL:$2|Edição selecionada|Edições selecionadas}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Evento de registro selecionado|Eventos de registro selecionados}}:'''",
+'revdelete-text-text' => 'Revisões apagadas continuarão a aparecer na página de histórico, mas parte de seus conteúdos estarão inacessíveis ao público.',
+'revdelete-text-file' => 'Versões dos arquivos apagados continuarão a aparecer no arquivo de histórico, mas parte de seus conteúdos estarão inacessíveis ao publico.',
+'logdelete-text' => 'Eventos de log apagados continuarão a aparecer nos logs, mas parte de seus conteúdos estarão inacessíveis ao público.',
+'revdelete-text-others' => 'Outros administrador na {{SITENAME}} continuarão capazes de acessar o conteúdo oculto e desocultá-lo pela mesma interface, a menos que restrições adicionais tenha sido feitas.',
 'revdelete-confirm' => 'Por favor confirme que pretende executar esta ação, que compreende as suas consequências e que o faz em concordância com as [[{{MediaWiki:Policy-url}}|políticas e recomendações]].',
 'revdelete-suppress-text' => "A supressão deverá ser usada '''apenas''' para os seguintes casos:
 * Informação potencialmente difamatória
@@ -2284,12 +2289,15 @@ Entradas <del>riscadas</del> foram resolvidas.',
 'deadendpagestext' => 'As seguintes páginas não contêm links para outras páginas no wiki {{SITENAME}}.',
 'protectedpages' => 'Páginas protegidas',
 'protectedpages-indef' => 'Proteções infinitas apenas',
+'protectedpages-summary' => 'Esta página lista as páginas existentes que estão protegidas no momento. Para uma lista de títulos que estão protegidos desde a criação, veja [[{{#special:ProtectedTitles}}]].',
 'protectedpages-cascade' => 'Apenas proteções progressivas',
 'protectedpages-noredirect' => 'Ocultar redirecionamentos',
 'protectedpagesempty' => 'Neste momento, nenhuma das páginas está protegida com estes parâmetros.',
 'protectedpages-timestamp' => 'Data e hora',
 'protectedpages-page' => 'Página',
 'protectedpages-expiry' => 'Expira',
+'protectedpages-performer' => 'Protegendo usuário',
+'protectedpages-params' => 'Parâmetros de proteção.',
 'protectedpages-reason' => 'Motivo',
 'protectedpages-unknown-timestamp' => 'Desconhecido',
 'protectedpages-unknown-performer' => 'Usuário desconhecido',
@@ -2480,6 +2488,7 @@ Futuras modificações em tal página e páginas de discussão relacionadas ser�
 'watchmethod-list' => 'verificando páginas vigiadas para edições recentes',
 'watchlistcontains' => 'Sua lista de páginas vigiadas contém $1 {{PLURAL:$1|página|páginas}}.',
 'iteminvalidname' => "Problema com item '$1', nome inválido...",
+'wlnote2' => 'A seguir estão as mudanças nas últimas {{PLURAL:$1|hora|<strong>$1</strong> houras}}, a partir de $2, $3.',
 'wlshowlast' => 'Ver últimas $1 horas $2 dias $3',
 'watchlist-options' => 'Opções da lista de páginas vigiadas',
 
@@ -2569,7 +2578,7 @@ A eliminação de tais páginas foi restrita, a fim de se evitarem problemas aci
 'delete-warning-toobig' => 'Esta página possui um longo histórico de edições, com mais de $1 {{PLURAL:$1|edição|edições}}.
 Eliminá-la poderá causar problemas na base de dados de {{SITENAME}};
 prossiga com cuidado.',
-'deleting-backlinks-warning' => "'''Cuidado:''' Outras páginas se ligam ou redirecionam para a página que você está prestes a deletar.",
+'deleting-backlinks-warning' => "'''Cuidado:'''[[Special:WhatLinksHere/{{FULLPAGENAME}}|Outras páginas]] se ligam ou redirecionam para a página que você está prestes a deletar.",
 
 # Rollback
 'rollback' => 'Reverter edições',
@@ -3051,6 +3060,7 @@ Acesse [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [/
 'thumbnail_image-type' => 'Tipo de imagem não suportado',
 'thumbnail_gd-library' => 'Configuração da biblioteca GD incompleta: função $1 não encontrada',
 'thumbnail_image-missing' => 'Arquivo aparentemente inexistente: $1',
+'thumbnail_image-failure-limit' => 'Houveram muitas tentativas falhas recentemente ($1 ou mais) de criação desta miniatura. Por favor, tente novamente mais tarde.',
 
 # Special:Import
 'import' => 'Importar páginas',

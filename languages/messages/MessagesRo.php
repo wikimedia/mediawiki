@@ -1263,6 +1263,10 @@ funcție, fie versiunea specificată nu există, ori sunteți pe cale să ascund
 'revdelete-show-file-submit' => 'Da',
 'revdelete-selected' => "'''{{PLURAL:$2|Versiunea aleasă|Versiunile alese}} pentru [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Revizia aleasă|Reviziile alese}}:'''",
+'revdelete-text-text' => 'Versiunile șterse vor continua să fie vizibile în istoricul paginii, însă anumite părți ale conținutului acestora vor fi inaccesibile publicului.',
+'revdelete-text-file' => 'Versiunile șterse ale fișierului vor continua să fie vizibile în istoricul fișierului, însă anumite părți ale conținutului acestora vor fi inaccesibile publicului.',
+'logdelete-text' => 'Evenimentele șterse ale jurnalului vor continua să fie vizibile în jurnale, însă anumite părți ale conținutului acestora vor fi inaccesibile publicului.',
+'revdelete-text-others' => 'Alți administratori de la {{SITENAME}} vor avea acces în continuare la conținutul ascuns și îl vor putea restaura prin intermediul acestei interfețe, cu excepția cazurilor în care nu sunt activate și restricții suplimentare.',
 'revdelete-confirm' => 'Vă rugăm să confirmați că intenționați să faceți acest lucru, că înțelegeți consecințele și că faceți asta în conformitate cu [[{{MediaWiki:Policy-url}}|politica]].',
 'revdelete-suppress-text' => "Suprimarea trebuie folosită '''doar''' în următoarele cazuri:
 * Informații potențial calomnioase

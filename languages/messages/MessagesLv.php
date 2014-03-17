@@ -22,6 +22,7 @@
  * @author Marozols
  * @author Papuass
  * @author Reedy
+ * @author Srolanh
  * @author Xil
  * @author Yyy
  * @author לערי ריינהארט
@@ -428,6 +429,7 @@ Lai pievienotu izmaiņas tulkojumā visās ''wiki'', lūdzam izmantot ''MediaWik
 'ns-specialprotected' => 'Nevar izmainīt īpašās lapas.',
 'titleprotected' => "Šī lapa ir aizsargāta pret izveidošanu. To aizsargāja [[User:$1|$1]].
 Norādītais iemesls bija ''$2''.",
+'exception-nologin' => 'Neesat pieslēdzies',
 
 # Virus scanner
 'virus-badscanner' => "Nekorekta konfigurācija: nezināms vīrusu skeneris: ''$1''",
@@ -548,9 +550,15 @@ Tādēļ šobrīd no šīs IP adreses vairs nevar izveidot jaunus kontus.',
 Lūdzu, uzgaidiet $1 pirms mēģiniet vēlreiz.',
 'login-abort-generic' => 'Jūsu pieteikšanās bija neveiksmīga — Darbība pārtraukta',
 'loginlanguagelabel' => 'Valoda: $1',
+'pt-login' => 'Pieslēgties',
+'pt-login-button' => 'Pieslēgties',
+'pt-createaccount' => 'Reģistrēties',
+'pt-userlogout' => 'Iziet',
 
 # Email sending
 'php-mail-error-unknown' => 'Nezināma kļūda PHP mail() funkcijā',
+'user-mail-no-addy' => 'Mēģināja sūtīt e-pastu bez e-pasta adreses.',
+'user-mail-no-body' => 'Mēģināja sūtīt e-pastu ar tukšu vai nepamatoti īsu pamata daļu.',
 
 # Change password dialog
 'changepassword' => 'Mainīt paroli',
@@ -596,6 +604,7 @@ Pagaidu parole: $2',
 'changeemail-cancel' => 'Atcelt',
 
 # Special:ResetTokens
+'resettokens-tokens' => 'Žetoni:',
 'resettokens-token-label' => '$1 (šībrīža vērtība: $2)',
 
 # Edit page toolbar

@@ -69,6 +69,7 @@
  * @author Tischbeinahe
  * @author UV
  * @author Umherirrender
+ * @author Useopensource tobias
  * @author Vogone
  * @author W (aka Wuzur)
  * @author Wikifan
@@ -429,7 +430,7 @@ $messages = array(
 'tog-hideminor' => 'Kleine Änderungen in den „Letzten Änderungen“ ausblenden',
 'tog-hidepatrolled' => 'Kontrollierte Änderungen in den „Letzten Änderungen“ ausblenden',
 'tog-newpageshidepatrolled' => 'Kontrollierte Seiten bei den „Neuen Seiten“ ausblenden',
-'tog-extendwatchlist' => 'Erweiterte Beobachtungsliste zur Anzeige aller Änderungen',
+'tog-extendwatchlist' => 'Beobachtungsliste erweitern, um statt nur der letzten Änderung alle Änderungen anzuzeigen.',
 'tog-usenewrc' => 'Änderungen auf „Letzte Änderungen“ und Beobachtungsliste nach Seite gruppieren',
 'tog-numberheadings' => 'Überschriften automatisch nummerieren',
 'tog-showtoolbar' => 'Bearbeiten-Werkzeugleiste anzeigen',
@@ -1383,7 +1384,7 @@ Du kannst diesen Versionsunterschied einsehen, sofern du möchtest. Nähere Anga
 'revdelete-text-text' => 'Gelöschte Versionen verbleiben noch in der Versionsgeschichte, jedoch sind Teile ihres Inhalts für die Öffentlichkeit nicht zugänglich.',
 'revdelete-text-file' => 'Gelöschte Dateiversionen verbleiben noch in der Datei-Versionsgeschichte, jedoch sind Teile ihres Inhalts für die Öffentlichkeit nicht zugänglich.',
 'logdelete-text' => 'Gelöschte Logbucheinträge verbleiben noch in den Logbüchern, jedoch sind Teile ihres Inhalts für die Öffentlichkeit nicht zugänglich.',
-'revdelete-text-others' => 'Andere Administratoren auf {{SITENAME}} haben noch Zugriff auf den versteckten Inhalt und können ihn auch mithilfe dieser Spezialseite wiederherstellen, falls keine zusätzlichen Beschränkungen festgelegt wurden.',
+'revdelete-text-others' => 'Andere Administratoren auf {{SITENAME}} haben noch Zugriff auf den versteckten Inhalt und können ihn auch mithilfe dieser Spezialseite wiederherstellen, solange keine zusätzlichen Beschränkungen festgelegt werden.',
 'revdelete-confirm' => 'Bitte bestätige, dass du beabsichtigst, dies zu tun, die Konsequenzen verstehst und es in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] tust.',
 'revdelete-suppress-text' => "Unterdrückungen sollten '''nur''' in den folgenden Fällen vorgenommen werden:
 * Potentiell beleidigende Informationen

@@ -1373,7 +1373,7 @@ Tia adressa dad e-mail na vegn betg mussada sche auters utilisaders ta contactes
 'recentchanges-label-unpatrolled' => "Questa midada n'è anc betg vegnida controllada",
 'recentchanges-legend-heading' => "'''Legenda:'''",
 'recentchanges-legend-newpage' => '(vesair era la [[Special:NewPages|glista da novas paginas]])',
-'rcnotefrom' => 'I vegnan mussadas las modificaziuns a partir da las <strong>$4</strong> dals <strong>$3</strong>(maximalmain <strong>$1</strong>).',
+'rcnotefrom' => 'I vegnan mussadas las midadas a partir da las <strong>$4</strong> dals <strong>$3</strong> (maximalmain <strong>$1</strong>).',
 'rclistfrom' => 'Mussar las novas midadas a partir da las $2 dals $3',
 'rcshowhideminor' => '$1 midadas pitschnas',
 'rcshowhideminor-show' => 'Mussar',

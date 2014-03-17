@@ -4320,7 +4320,7 @@ satır ê ke pê ney # # destpêkenê zey mışore/mıjore muamele vineno.
 
 # Feedback
 'feedback-bugornote' => 'Jew mersela teferruato teknik esta şıma reca malumatê şıma hazıro se [ $1  jew xırab rapor] bıvinê.Zewbi zi, formê cerê xo rê şenê karfiyê. Vatışê xo pela da "[ $3  $2 ]", namey karber dê xoya piya u wasteriya karfiye.',
-'feedback-subject' => 'Mersel:',
+'feedback-subject' => 'Mewzu:',
 'feedback-message' => 'Mesac:',
 'feedback-cancel' => 'Bıtexelne',
 'feedback-submit' => 'Peyxeberdar Bırşe',

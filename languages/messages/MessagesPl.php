@@ -864,6 +864,7 @@ Odczekaj $1 zanim ponowisz próbę.',
 'createacct-another-realname-tip' => 'Wpisanie imienia i nazwiska nie jest obowiązkowe.
 Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje autorstwo.',
 'pt-login' => 'Zaloguj się',
+'pt-login-button' => 'Zaloguj się',
 'pt-createaccount' => 'Utwórz konto',
 'pt-userlogout' => 'Wyloguj',
 
@@ -1289,6 +1290,8 @@ wybrana wersja nie istnieje lub próbowano ukryć wersję bieżącą.',
 'revdelete-show-file-submit' => 'Tak',
 'revdelete-selected' => "'''{{PLURAL:$2|Zaznaczona wersja|Zaznaczone wersje}} strony [[:$1]]:'''",
 'logdelete-selected' => "'''Zaznaczone {{PLURAL:$1|zdarzenie|zdarzenia}} z rejestru:'''",
+'revdelete-text-text' => 'Usunięte wersje będą nadal widoczne w historii strony, ale niektóre fragmenty ich treści nie będą dostępne dla wszystkich.',
+'revdelete-text-file' => 'Usunięte wersje pliku będą nadal widoczne w historii pliku, ale niektóre fragmenty ich treści nie będą dostępne dla wszystkich.',
 'revdelete-confirm' => 'Potwierdź, że chcesz to zrobić zgodnie z [[{{MediaWiki:Policy-url}}|zasadami]] i że rozumiesz konsekwencje.',
 'revdelete-suppress-text' => "Ukrywanie powinno być używane '''wyłącznie''' w sytuacji:
 * Informacji, która może być zniesławieniem
@@ -1421,7 +1424,7 @@ Zazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powó
 'search-file-match' => '(odpowiada zawartości pliku)',
 'search-suggest' => 'Czy chodziło Ci o: $1',
 'search-interwiki-caption' => 'Projekty siostrzane',
-'search-interwiki-default' => 'Wyniki dla $1:',
+'search-interwiki-default' => 'Wyniki od $1:',
 'search-interwiki-more' => '(więcej)',
 'search-relatedarticle' => 'Pokrewne',
 'searcheverything-enable' => 'Szukaj we wszystkich przestrzeniach nazw',

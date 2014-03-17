@@ -1286,6 +1286,10 @@ eller så försöker du gömma den senaste versionen av sidan.',
 'revdelete-show-file-submit' => 'Ja',
 'revdelete-selected' => "'''{{PLURAL:$2|Vald version|Valda versioner}} av [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Vald loggåtgärd|Valda loggåtgärder}}:'''",
+'revdelete-text-text' => 'Raderade sidversioner kommer fortfarande synas i sidans historik, men delar av innehållet kommer inte att bli tillgängligt offentligt.',
+'revdelete-text-file' => 'Raderade filversioner kommer fortfarande synas i filens historik, men delar av innehållet kommer inte att bli tillgängligt offentligt.',
+'logdelete-text' => 'Raderade logghändelser kommer fortfarande synas i loggarna, men delar av innehållet kommer inte att bli tillgängligt offentligt.',
+'revdelete-text-others' => 'Andra administratörer på {{SITENAME}} kommer fortfarande att kunna komma åt det dolda innehållet och återställa det igen genom samma gränssnitt om inte tilläggande begränsningar används.',
 'revdelete-confirm' => 'Var god bekräfta att du vill göra detta, och att du förstår konsekvenserna, och att du gör så i enlighet med [[{{MediaWiki:Policy-url}}|policyn]].',
 'revdelete-suppress-text' => "Undanhållande ska '''bara''' användas i följande fall:
 * Eventuell förolämpande information

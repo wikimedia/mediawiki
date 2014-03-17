@@ -220,7 +220,7 @@ $messages = array(
 'articlepage' => 'Khoàⁿ loē-iông ia̍h',
 'talk' => 'thó-lūn',
 'views' => 'Khoàⁿ',
-'toolbox' => 'Ke-si kheh-á',
+'toolbox' => 'Ke-si',
 'userpage' => 'Khoàⁿ iōng-chiá ê Ia̍h',
 'projectpage' => 'Khoàⁿ sū-kang ia̍h',
 'imagepage' => 'Khoàⁿ tóng-àn ia̍h',
@@ -496,6 +496,9 @@ Lîm-sî ê bi̍t-bé: $2',
 'newarticle' => '(Sin)',
 'newarticletext' => "Lí tòe 1 ê liân-kiat lâi kàu 1 bīn iáu-bōe chûn-chāi ê ia̍h. Beh khai-sí pian-chi̍p chit ia̍h, chhiáⁿ tī ē-kha ê bûn-jī keh-á lāi-té phah-jī. ([[{{MediaWiki:Helppage}}|Bo̍k-lio̍k]] kà lí án-choáⁿ chìn-hêng.) Ká-sú lí bô-tiuⁿ-tî lâi kàu chia, ē-sai chhi̍h liû-lám-khì ê '''téng-1-ia̍h''' tńg--khì.",
 'anontalkpagetext' => "----''Pún thó-lūn-ia̍h bô kò·-tēng ê kháu-chō/hō·-thâu, kan-na ū 1 ê IP chū-chí (chhin-chhiūⁿ 123.456.789.123). In-ūi bô kāng lâng tī bô kāng sî-chūn ū khó-lêng tú-hó kong-ke kāng-ê IP, lâu tī chia ê oē ū khó-lêng hō· bô kāng lâng ê! Beh pī-bián chit khoán būn-tê, ē-sái khì [[Special:UserLogin|khui 1 ê hō·-thâu a̍h-sī teng-ji̍p]].''",
+'noarticletext' => '這頁這馬無內容，你會使佇別頁[[Special:Search/{{PAGENAME}}|揣這頁標題]]，
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 揣相關日誌]，
+抑[{{fullurl:{{FULLPAGENAME}}|action=edit}} 改這頁]</span>。',
 'clearyourcache' => "'''Chù-ì:''' Pó-chûn liáu-āu, tio̍h ē-kì leh kā liû-lám-khì ê cache piàⁿ tiāu chiah khoàⁿ-ē-tio̍h kái-piàn: *'''Firefox / Safari:''' chhi̍h tiâu \"Shift\" kâng-sî-chūn tiám-kik ''Reload/têng-sin chài-ji̍p'' a̍h-sī chhi̍h ''Ctrl-F5'' \"Ctrl-R\" kî-tiong chi̍t ê (''Command-R'' tī Mac) 
 * '''Google Chrome:''' chhi̍h ''Ctrl-Shift-R'' (''Command-Shift-R'' tī Mac)
 '''Internet Explorer :'''chhi̍h tiâu \"Ctrl\" kâng-sî-chūn tiám-kek ''Refresh/têng-sin chài-ji̍p'' a̍h-sī chhi̍h \"Ctrl-F5\" 
@@ -563,6 +566,12 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 # Revision feed
 'history-feed-item-nocomment' => '$1 tī $2',
 
+# Revision deletion
+'revdel-restore' => '改會當看無',
+
+# Merge log
+'revertmerge' => '取消合併',
+
 # Diffs
 'history-title' => '"$1"的歷史版本',
 'lineno' => 'Tē $1 chōa:',
@@ -580,16 +589,22 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'shown-title' => 'Múi ia̍h hián-sī $1 {{PLURAL:$1|kiat-kó|kiat-kó}}',
 'viewprevnext' => 'Khoàⁿ ($1 {{int:pipe-separator}} $2) ($3)',
 'searchprofile-articles' => 'Loē-iông ia̍h',
+'searchprofile-project' => '幫助佮事工的頁',
 'searchprofile-images' => 'To-mûi-thé',
 'searchprofile-everything' => 'Só͘-ū ê',
 'searchprofile-advanced' => 'chìn-chi̍t-pō͘',
 'searchprofile-articles-tooltip' => 'Tī $1 chhoé',
+'searchprofile-project-tooltip' => 'Tī $1 chhoé',
 'searchprofile-images-tooltip' => 'Chhoé tóng-àn',
+'searchprofile-everything-tooltip' => '揣全部（包括討論頁）',
+'searchprofile-advanced-tooltip' => '佇你家己設的名空間內底揣',
 'search-result-size' => '$1 ({{PLURAL:$2|1 jī-goân|$2 jī-goân}})',
+'search-redirect' => '（轉去 $1）',
 'search-section' => '(toān-lo̍h $1)',
 'searchall' => 'choân-pō·',
 'showingresults' => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$1</b> hāng kiat-kó.',
 'showingresultsnum' => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$3</b> hāng kiat-kó.',
+'showingresultsheader' => "對'''$4'''的{{PLURAL:$5|第 '''$1''' 到第 '''$3''' 項結果|第 '''$1 - $2''' 項，總共 '''$3''' 項結果}}",
 'powersearch-legend' => 'Kiám-sek',
 
 # Preferences page
@@ -709,7 +724,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'filehist-datetime' => 'Ji̍t-kî/ Sî-kan',
 'filehist-thumb' => '細張圖',
 'filehist-user' => 'Iōng-chiá',
-'imagelinks' => 'Iáⁿ-siōng liân-kiat',
+'imagelinks' => 'tóng-àn sù-iōng ê chōng-hòng',
 'linkstoimage' => 'Í-hā ê ia̍h liân kàu chit ê iáⁿ-siōng:',
 'nolinkstoimage' => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
 
@@ -888,6 +903,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Undelete
 'undelete' => 'Kiù thâi tiāu ê ia̍h',
 'undeletepage' => 'Khoàⁿ kap kiù thâi tiāu ê ia̍h',
+'undeletelink' => '看/復原',
 'undeleteviewlink' => 'Khoàⁿ',
 
 # Namespace form on various pages
@@ -932,6 +948,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'ipusubmit' => 'Chhú-siau hong-só chit ê chū-chí',
 'ipblocklist' => 'Siū hong-só ê IP chū-chí kap iōng-chiá miâ-chheng',
 'blocklink' => 'hong-só',
+'unblocklink' => '廢除封鎖',
+'change-blocklink' => '改封鎖',
 'contribslink' => 'kòng-hiàn',
 'autoblocker' => 'Chū-tōng kìm-chí lí sú-iōng, in-ūi lí kap "$1" kong-ke kāng 1 ê IP chū-chí (kìm-chí lí-iû "$2").',
 'blocklogentry' => 'hong-só [[$1]], siat kî-hān chì $2 $3',
@@ -967,6 +985,7 @@ Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chia
 'movepage-page-moved' => '$1 í-keng sóa khì tī $2.',
 'movelogpagetext' => 'Ē-kha lia̍t-chhut hông soá-ūi ê ia̍h.',
 'movereason' => 'Lí-iû:',
+'revertmove' => 'hôe-tńg',
 'selfmove' => 'Goân piau-tê kap sin piau-tê sio-siâng; bô hoat-tō· sóa.',
 'protectedpagemovewarning' => "'''KÉNG-KÒ: Pún ia̍h só tiâu leh. Kan-taⁿ ū hêng-chèng te̍k-koân ê iōng-chiá (sysop) ē-sái soá tín-tāng.'''
 Ē-kha ū choè-kīn ê kì-lio̍k thang chham-khó:",
@@ -993,6 +1012,7 @@ Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chia
 'tooltip-pt-userpage' => 'Lí chit ê iōng-chiá ê ia̍h',
 'tooltip-pt-mytalk' => 'Lí ê thó-lūn ia̍h',
 'tooltip-pt-preferences' => 'Lí ê siat-tēng',
+'tooltip-pt-watchlist' => '你監視的頁有改過的清單',
 'tooltip-pt-mycontris' => 'Lí ê kòng-hiàn lia̍t-toaⁿ',
 'tooltip-pt-login' => 'Hi-bāng lí teng-ji̍p; m̄-ko bô kiông-chè',
 'tooltip-pt-logout' => 'Teng-chhut',
@@ -1003,6 +1023,7 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'tooltip-ca-history' => 'Chit ia̍h ê chá-chêng pán-pún',
 'tooltip-ca-delete' => 'Thâi chit ia̍h',
 'tooltip-ca-move' => '徙這頁',
+'tooltip-ca-watch' => '共這頁加入去你的監視單',
 'tooltip-ca-unwatch' => 'Lí ê kàm-sī-toaⁿ soá tiàu chit ia̍h.',
 'tooltip-search' => 'Chhoé {{SITENAME}}',
 'tooltip-search-fulltext' => 'Chhoé ū chia-ê jī ê ia̍h',
@@ -1016,6 +1037,7 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'tooltip-n-help' => 'Beh chhoé ê só͘-chāi',
 'tooltip-t-whatlinkshere' => 'Só͘-ū liân kàu chia ê liat-toaⁿ',
 'tooltip-t-recentchangeslinked' => 'Liân kàu chit ia̍h koh choè-kīn ū kái koè--ê',
+'tooltip-feed-atom' => '訂看這頁的修改',
 'tooltip-t-contributions' => 'Khoàⁿ chit ê iōng-chiá ê kòng-hiàn lia̍t-toaⁿ',
 'tooltip-t-upload' => 'Í-keng sàng chiūⁿ-bāng ê tóng-àn',
 'tooltip-t-specialpages' => 'Só͘-ū te̍k-sû-ia̍h ê lia̍t-toaⁿ',
