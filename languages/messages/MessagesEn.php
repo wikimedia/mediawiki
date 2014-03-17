@@ -2139,6 +2139,7 @@ Your email address is not revealed when other users contact you.',
 'right-override-export-depth' => 'Export pages including linked pages up to a depth of 5',
 'right-sendemail'             => 'Send email to other users',
 'right-passwordreset'         => 'View password reset emails',
+'right-usedebugtoolbar'       => 'Can use debug toolbar',
 
 # Special:Log/newusers
 'newuserlogpage'     => 'User creation log',
