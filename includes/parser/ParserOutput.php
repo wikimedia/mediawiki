@@ -418,7 +418,7 @@ class ParserOutput extends CacheTime {
 	 * @note: Do not use setProperty() to set a property which is only used
 	 * in a context where the ParserOutput object itself is already available,
 	 * for example a normal page view. There is no need to save such a property
-	 * in the database since it the text is already parsed. You can just hook
+	 * in the database since the text is already parsed. You can just hook
 	 * OutputPageParserOutput and get your data out of the ParserOutput object.
 	 *
 	 * If you are writing an extension where you want to set a property in the
@@ -488,8 +488,10 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Adds an update job to the output. Any update jobs added to the output will eventually bexecuted in order to
-	 * store any secondary information extracted from the page's content.
+	 * Adds an update job to the output. Any update jobs added to the output will
+	 * eventually be executed in order to store any secondary information extracted
+	 * from the page's content. This is triggered by calling getSecondaryDataUpdates()
+	 * and is used for forward links updates on edit and backlink updates by jobs.
 	 *
 	 * @since 1.20
 	 *
@@ -655,5 +657,15 @@ class ParserOutput extends CacheTime {
 	 */
 	function setLimitReportData( $key, $value ) {
 		$this->mLimitReportData[$key] = $value;
+	}
+
+	/**
+	 * Save space for for serialization by removing useless values
+	 */
+	function __sleep() {
+		return array_diff(
+			array_keys( get_object_vars( $this ) ),
+			array( 'mSecondaryDataUpdates', 'mParseStartTime' )
+		);
 	}
 }
