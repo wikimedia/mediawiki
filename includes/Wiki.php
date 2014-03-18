@@ -587,6 +587,9 @@ class MediaWiki {
 		// Actually do the work of the request and build up any output
 		$this->performRequest();
 
+		// Either all DB and deferred updates should happen or none.
+		// The later should not be cancelled due to client disconnect.
+		ignore_user_abort( true );
 		// Now commit any transactions, so that unreported errors after
 		// output() don't roll back the whole DB transaction
 		wfGetLBFactory()->commitMasterChanges();
