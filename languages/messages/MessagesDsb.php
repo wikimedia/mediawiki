@@ -2060,7 +2060,7 @@ Kužda smužka wopśimjejo wótkaze na prědne a druge dalejpósrědnjenje a tek
 'protectedpages-unknown-timestamp' => 'Njeznaty',
 'protectedpages-unknown-performer' => 'Njeznaty wužywaŕ',
 'protectedtitles' => 'Šćitane titele',
-'protectedtitles-summary' => 'Toś ten bok nalicyjo titele, kótarež su tuchylu pśeśiwo napóranjoju šćitane. Za lisćinu eksistěrujucych bokow, kótarež su šćitane, glej [[{{#special:ProtectedPages}}]].',
+'protectedtitles-summary' => 'Toś ten bok nalicyjo titele, kótarež su tuchylu pśeśiwo napóranjoju šćitane. Za lisćinu eksistěrujucych bokow, kótarež su šćitane, glej [[{{#special:ProtectedPages}}|{{int:protectedpages}}]].',
 'protectedtitlesempty' => 'Tuchylu njejsu žedne boki z pódanych parametrami šćitane.',
 'listusers' => 'Lisćina wužywarjow',
 'listusers-editsonly' => 'Jano wužywarjow ze změnami pokazaś',

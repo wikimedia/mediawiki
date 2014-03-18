@@ -2068,7 +2068,7 @@ Kóžda rjadka wobsahuje wotkazy k prěnjemu a druhemu daleposrědkowanju kaž t
 'protectedpages-unknown-timestamp' => 'Njeznaty',
 'protectedpages-unknown-performer' => 'Njeznaty wužiwar',
 'protectedtitles' => 'Škitane titule',
-'protectedtitles-summary' => 'Tuta strona nalistuje titule, kotrež su tuchwilu přećiwo wutworjenju škitane. Za lisćinu eksistowacych stronow, kotrež su škitane, hlej [[{{#special:ProtectedPages}}]].',
+'protectedtitles-summary' => 'Tuta strona nalistuje titule, kotrež su tuchwilu přećiwo wutworjenju škitane. Za lisćinu eksistowacych stronow, kotrež su škitane, hlej [[{{#special:ProtectedPages}}|{{int:protectedpages}}]].',
 'protectedtitlesempty' => 'Žane titule njejsu tuchwilu z tutymi parametrami škitane.',
 'listusers' => 'Lisćina wužiwarjow',
 'listusers-editsonly' => 'Jenož wužiwarjow ze změnami pokazać',

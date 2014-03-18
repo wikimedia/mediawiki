@@ -616,6 +616,7 @@ Por favor espera $1 enantes d'intentalo otra vuelta.",
 'createacct-another-realname-tip' => "El nome real ye opcional.
 Si decide conseñalu, va usase p'atribuir el trabayu al usuariu.",
 'pt-login' => 'Entrar',
+'pt-login-button' => 'Aniciar sesión',
 'pt-createaccount' => 'Crear una cuenta',
 'pt-userlogout' => 'Salir',
 
@@ -1045,6 +1046,10 @@ Pues ver el diff; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/supr
 'revdelete-show-file-submit' => 'Sí',
 'revdelete-selected' => "'''{{PLURAL:$2|Revisión seleicionada|Revisiones seleicionaes}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Socesu del rexistru seleicionáu|Socesos del rexistru seleicionaos}}:'''",
+'revdelete-text-text' => 'Les revisiones desaniciaes inda apaecerán nel historial de la páxina, pero partes del conteníu nun sedrán accesibles al públicu.',
+'revdelete-text-file' => 'Les versiones del ficheru desaniciaes inda apaecerán nel historial del ficheru, pero partes del conteníu nun sedrán accesibles al públicu.',
+'logdelete-text' => 'Los socesos del rexistru desaniciaos inda apaecerán nos rexistros, pero partes del conteníu nun sedrán accesibles al públicu.',
+'revdelete-text-others' => "Otros alministradores de {{SITENAME}} inda tendrán accesu al conteníu anubríu y puen desfacer l'anubrimientu con esta mesma interfaz, mentanto nun se configuren otres torgues más.",
 'revdelete-confirm' => "Confirma que quies facer esto, qu'entiendes les consecuencies, y que vas facer esto d'alcuerdo [[{{MediaWiki:Policy-url}}|cola política]].",
 'revdelete-suppress-text' => "La supresión '''namái''' tendría d'usase nos casos darréu:
 * Información que pudiere ser bilordiosa
@@ -1179,7 +1184,7 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'search-file-match' => '(casa col conteníu del ficheru)',
 'search-suggest' => 'Quixisti dicir: $1',
 'search-interwiki-caption' => 'Proyeutos hermanos',
-'search-interwiki-default' => '$1 resultaos:',
+'search-interwiki-default' => 'Resultaos de $1:',
 'search-interwiki-more' => '(más)',
 'search-relatedarticle' => 'Rellacionáu',
 'searcheverything-enable' => 'Buscar en tolos espacios de nome',
@@ -2027,7 +2032,7 @@ Les entraes <del>tachaes</del> tan resueltes.',
 'deadendpagestext' => 'Les páxines siguientes nun enllacien a páxina dala de {{SITENAME}}.',
 'protectedpages' => 'Páxines protexíes',
 'protectedpages-indef' => 'Namái les proteiciones permanentes',
-'protectedpages-summary' => 'Esta páxina llista les páxines esistentes que tan protexíes actualmente. Pa ver la llista de títulos que tienen torgada la creación, vea [[{{#special:ProtectedTitles}}]].',
+'protectedpages-summary' => 'Esta páxina llista les páxines esistentes que tan protexíes actualmente. Pa ver la llista de títulos que tienen torgada la creación, vea [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].',
 'protectedpages-cascade' => 'Namái proteiciones en cascada',
 'protectedpages-noredirect' => 'Anubrir redireiciones',
 'protectedpagesempty' => 'Nun hai páxines protexíes anguaño con estos parámetros.',
@@ -2040,7 +2045,7 @@ Les entraes <del>tachaes</del> tan resueltes.',
 'protectedpages-unknown-timestamp' => 'Desconocida',
 'protectedpages-unknown-performer' => 'Usuariu desconocíu',
 'protectedtitles' => 'Títulos protexíos',
-'protectedtitles-summary' => 'Esta páxina llista los títulos que tienen torgada la creación. Pa ver una llista de les páxines esistentes protexíes, vea [[{{#special:ProtectedPages}}]].',
+'protectedtitles-summary' => 'Esta páxina llista los títulos que tienen torgada la creación. Pa ver una llista de les páxines esistentes protexíes, vea [[{{#special:ProtectedPages}}|{{int:protectedpages}}]].',
 'protectedtitlesempty' => 'Nun hai títulos protexíos anguaño con estos parámetros.',
 'listusers' => "Llista d'usuarios",
 'listusers-editsonly' => 'Amosar namái usuarios con ediciones',
@@ -2315,7 +2320,7 @@ Restrinxóse l'esborráu d'estes páxines pa evitar perturbaciones accidentales 
 'delete-warning-toobig' => "Esta páxina tien un historial d'ediciones grande, más de $1 {{PLURAL:$1|revisión|revisiones}}.
 Esborralu pue perturbar les operaciones de la base de datos de {{SITENAME}};
 obra con precaución.",
-'deleting-backlinks-warning' => "'''Avisu:''' Otres páxines enllacen a, o trescluyen de, la páxina que ta a piques de desaniciar.",
+'deleting-backlinks-warning' => "'''Avisu:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Otres páxines]] enllacen a, o trescluyen de, la páxina que ta a piques de desaniciar.",
 
 # Rollback
 'rollback' => 'Revertir ediciones',
@@ -2492,6 +2497,7 @@ La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'sp-contributions-blocked-notice-anon' => "Esta IP anguaño ta bloquiada.
 La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'sp-contributions-search' => 'Buscar contribuciones',
+'sp-contributions-suppresslog' => 'collaboraciones del usuariu desaniciaes',
 'sp-contributions-username' => "Direición IP o nome d'usuariu:",
 'sp-contributions-toponly' => 'Amosar namái les ediciones que son les caberes revisiones',
 'sp-contributions-newonly' => 'Amosar namái les ediciones que son creaciones de páxines',

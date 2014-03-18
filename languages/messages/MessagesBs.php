@@ -520,7 +520,7 @@ $1',
 'pool-errorunknown' => 'Nepoznata greška',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
-'aboutsite' => 'O projektu {{SITENAME}}',
+'aboutsite' => 'O {{GRAMMAR:dativ|{{SITENAME}}}}',
 'aboutpage' => 'Project:O_projektu_{{SITENAME}}',
 'copyright' => 'Sadržaj je dostupan pod licencom $1 osim ako je drugačije navedeno.',
 'copyrightpage' => '{{ns:project}}:Autorska_prava',
@@ -812,8 +812,10 @@ Molimo Vas da sačekate $1 prije nego što pokušate ponovo.',
 'suspicious-userlogout' => 'Vaš zahtjev za odjavu je odbijen jer je poslan preko pokvarenog preglednika ili keširanog proksija.',
 'createacct-another-realname-tip' => 'Pravo ime nije obavezno.
 Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
+'pt-login' => 'Prijavi me',
 'pt-login-button' => 'Prijavi me',
 'pt-createaccount' => 'Napravi korisnički račun',
+'pt-userlogout' => 'Odjavi me',
 
 # Email sending
 'php-mail-error-unknown' => 'Nepoznata greška u PHP funkciji mail()',

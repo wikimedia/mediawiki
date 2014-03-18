@@ -48,6 +48,7 @@
  * @author Shyam
  * @author Shyam123.ckp
  * @author Siddhartha Ghai
+ * @author Smtchahal
  * @author Subhashkataria21.90
  * @author Sunil Mohan
  * @author Taxman
@@ -1630,7 +1631,7 @@ HTML टैग की जाँच करें।',
 'recentchanges-label-plusminus' => 'पृष्ठ आकार इस बाइट संख्या से बदला',
 'recentchanges-legend-heading' => "'''कुंजी:'''",
 'recentchanges-legend-newpage' => '([[Special:NewPages|नए पन्नों की सूची]] को भी देखें)',
-'rcnotefrom' => "नीचे '''$2''' के बाद से ('''$1''' तक) हुए बदलाव दर्शाए गये हैं।",
+'rcnotefrom' => 'नीचे <strong>$2</strong> के बाद से (<strong>$1</strong> तक) हुए बदलाव दर्शाए गये हैं।',
 'rclistfrom' => '$1 से नये बदलाव दिखाएँ',
 'rcshowhideminor' => 'छोटे बदलाव $1',
 'rcshowhideminor-show' => 'दिखाएँ',
@@ -2165,7 +2166,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।',
 'protectedpages-unknown-timestamp' => 'अज्ञात',
 'protectedpages-unknown-performer' => 'अज्ञात सदस्य',
 'protectedtitles' => 'सुरक्षित शीर्षक',
-'protectedtitles-summary' => 'यह पृष्ठ उन पृष्ठ शीर्षकों की सूची देता है जिन्हें अभी बनाने से सुरक्षित किया गया है। सुरक्षित मौजूदा पृष्ठों की सूची देखने के लिए [[{{#special:ProtectedPages}}]] देखें।',
+'protectedtitles-summary' => 'यह पृष्ठ उन पृष्ठ शीर्षकों की सूची देता है जिन्हें अभी बनाने से सुरक्षित किया गया है। सुरक्षित मौजूदा पृष्ठों की सूची देखने के लिए [[{{#special:ProtectedPages}}|{{int:protectedpages}}]] देखें।',
 'protectedtitlesempty' => 'इन नियमों द्वारा कोई भी शीर्षक सुरक्षित नहीं हैं।',
 'listusers' => 'सदस्यसूची',
 'listusers-editsonly' => 'केवल संपादन कर चुके सदस्य दिखाएँ',
@@ -2441,7 +2442,7 @@ $UNWATCHURL
 'delete-warning-toobig' => 'इस पृष्ठ का संपादन इतिहास $1 से अधिक {{PLURAL:$1|अवतरण}} होने की वजह से बहुत बड़ा है।
 इसे हटाने से {{SITENAME}} के डाटाबेस की गतिविधियों में व्यवधान आ सकता है;
 कृपया सोच समझ कर आगे बढ़ें।',
-'deleting-backlinks-warning' => "'''चेतावनी:''' जो पृष्ठ आप हटाने जा रहे हैं उससे अन्य पृष्ठ जुड़ते हैं अथवा उसे ट्रांसक्लूड करते हैं।",
+'deleting-backlinks-warning' => "'''चेतावनी:''' जो पृष्ठ आप हटाने जा रहे हैं उससे [[विशेष:कड़ियाँ|अन्य पृष्ठ]] जुड़ते हैं अथवा उसे ट्रांसक्लूड करते हैं।",
 
 # Rollback
 'rollback' => 'संपादन वापिस लें',

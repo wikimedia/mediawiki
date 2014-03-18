@@ -701,6 +701,8 @@ URL язъеш гӀалат даьлла хила мега.
 'editinginterface' => "'''Тергам бе:''' Ахьа таеш ю интерфейсан йоза долу агӀо програмин латторан.
 Цуна бина хийцам хьокху википедин кхечу декъашхошна гур бу.
 Хьокху хаамийн гочдар тӀетоха я хийца лела йе сайт MediaWiki [//translatewiki.net/ translatewiki.net].",
+'cascadeprotected' => 'АгӀо хийцам ца байта гӀоралла дина ю {{PLURAL:$1|хӀокху агӀона|хӀокху агӀонийн}} юкъа йогӀуш хилар бахьнехь:
+$2',
 'namespaceprotected' => 'ХӀан бакъо яц анна цӀераш чохь тадарш да «$1».',
 'customcssprotected' => 'Хьан бакъо яц хӀара CSS-агӀо тая, иза кхечу декъашхочун гӀерс болу дера.',
 'customjsprotected' => 'Хьан бакъо яц хӀара JavaScript-агӀо тая, иза кхечу декъашхочун гӀерс болу дера.',
@@ -717,6 +719,7 @@ URL язъеш гӀалат даьлла хила мега.
 'invalidtitle-knownnamespace' => 'Магийна боцу коьртамогӀа цӀерийн меттигца «$2» йоза  «$3»',
 'invalidtitle-unknownnamespace' => 'Магийна боцу коьртамогӀа ца йовза меттигца $1 «$2» йозанца',
 'exception-nologin' => 'ХӀинца а ахьа системин чохь болх беш бац',
+'exception-nologin-text' => 'Иза дан [[Special:Userlogin|системин чугӀо]].',
 'exception-nologin-text-manual' => 'АгӀо тӀекхача луш хилийта оьшу $1.',
 
 # Virus scanner
@@ -838,6 +841,11 @@ URL язъеш гӀалат даьлла хила мега.
 'pt-createaccount' => 'Кхолла декъашхочун дӀаяздар',
 'pt-userlogout' => 'Болх дӀаберзор',
 
+# Email sending
+'php-mail-error-unknown' => 'PHP-функцин mail() доьвзуш доцу гӀалат',
+'user-mail-no-addy' => 'Электронан адрес доцуш гӀерта электронан хаам бахьийта',
+'user-mail-no-body' => 'Баьсса я тӀех боца электронан хаам бахьийта гӀерта.',
+
 # Change password dialog
 'changepassword' => 'Хийца пароль',
 'resetpass_announce' => 'Чудахар чекх далийта хӀотта йе керла пароль.',
@@ -848,10 +856,13 @@ URL язъеш гӀалат даьлла хила мега.
 'retypenew' => 'Юха язъйе керла пароль:',
 'resetpass_submit' => 'Пароль дӀахӀоттийна системин чугӀо',
 'changepassword-success' => 'Хьан пароль кхиамца хийцина!',
+'changepassword-throttled' => 'Хьо дукха гӀиртира.
+Дехар до, собар де $1 юха гӀортале.',
 'resetpass_forbidden' => 'Пароль хийца йиш яц',
 'resetpass-no-info' => 'ХӀара агӀо лело системин чугӀо.',
 'resetpass-submit-loggedin' => 'Хийца пароль',
 'resetpass-submit-cancel' => 'Цаоьшу',
+'resetpass-wrong-oldpass' => 'Нийса йоцу я хана йолу карара пароль. Ахьа кхиамца пароль хийцина я керла хана йолу пароль ехна хила там бу.',
 'resetpass-recycled' => 'Дехар до, хӀинца йолччул башха пароль хӀотта йе.',
 'resetpass-temp-emailed' => 'Ахьа чугӀош язйина цкъачунна электронан почте яийтина пароль. Чудахар чекхдалийта язъян еза керла пароль.',
 'resetpass-temp-password' => 'Цхьан хана пароль:',
@@ -861,6 +872,7 @@ URL язъеш гӀалат даьлла хила мега.
 
 # Special:PasswordReset
 'passwordreset' => 'Пароль кхоссар',
+'passwordreset-text-one' => 'Хьай пароль кхосса, юза хӀара форма.',
 'passwordreset-text-many' => '{{PLURAL:$1|Пароль кхосса юза лахара цхьа меттиг.}}',
 'passwordreset-legend' => 'Пароль кхоссар',
 'passwordreset-disabled' => 'ХӀокху вики чохь пароль кхоссар дӀадайина ду.',
@@ -868,6 +880,7 @@ URL язъеш гӀалат даьлла хила мега.
 'passwordreset-username' => 'Декъашхочун цӀе:',
 'passwordreset-domain' => 'Домен:',
 'passwordreset-capture' => 'Хьажа беанчу хааме?',
+'passwordreset-capture-help' => 'Ахьа хӀара билгало хӀотта яхь хьона гур бу декъашхочо баийта чохь хана пароль йолу хаам.',
 'passwordreset-email' => 'Электронан почтан адрес:',
 'passwordreset-emailtitle' => '{{SITENAME}}: декъашхочун дӀаяздарх лаьцна хаам',
 'passwordreset-emailelement' => 'Декъашхочун цӀе: $1

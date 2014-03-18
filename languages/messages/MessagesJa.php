@@ -43,6 +43,7 @@
  * @author Mizusumashi
  * @author Muttley
  * @author Mzm5zbC3
+ * @author Ochaochaocha3
  * @author Ohgi
  * @author Ort43v
  * @author Penn Station
@@ -1366,6 +1367,7 @@ $3 が示した理由: ''$2''",
 'revdelete-show-file-submit' => 'はい',
 'revdelete-selected' => '<strong>[[:$1]] の{{PLURAL:$2|選択された版}}:</strong>',
 'logdelete-selected' => '<strong>{{PLURAL:$1|選択された記録項目}}:</strong>',
+'revdelete-text-others' => '追加の制限を設定しない限り、{{SITENAME}} の他の管理者は非表示コンテンツにまだアクセスでき、この同じインターフェースを通してそれを復元することができます。',
 'revdelete-confirm' => 'この操作を行おうとしていること、その結果を理解していること、[[{{MediaWiki:Policy-url}}|方針]]に従っていること、を確認してください。',
 'revdelete-suppress-text' => '秘匿は、<strong>以下の場合に限って</strong>使用すべきです:
 * 名誉毀損のおそれがある記述
@@ -2372,7 +2374,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'deadendpagestext' => '以下のページは、{{SITENAME}}の他のページにリンクしていません。',
 'protectedpages' => '保護されているページ',
 'protectedpages-indef' => '無期限保護のみ',
-'protectedpages-summary' => 'このページでは、現時点で保護されている既存のページを列挙します。新規作成が禁止されているページ名の一覧は、[[{{#special:ProtectedTitles}}]] を参照してください。',
+'protectedpages-summary' => 'このページでは、現時点で保護されている既存のページを列挙します。新規作成が禁止されているページ名の一覧は、[[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]] を参照してください。',
 'protectedpages-cascade' => 'カスケード保護のみ',
 'protectedpages-noredirect' => 'リダイレクトを隠す',
 'protectedpagesempty' => '指定した条件で保護中のページは現在ありません。',
@@ -2385,7 +2387,7 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 'protectedpages-unknown-timestamp' => '不明',
 'protectedpages-unknown-performer' => '不明な利用者',
 'protectedtitles' => '作成保護されているページ名',
-'protectedtitles-summary' => 'このページでは、現時点で新規作成が禁止されているページ名を列挙します。保護されている既存のページの一覧は、[[{{#special:ProtectedPages}}]] を参照してください。',
+'protectedtitles-summary' => 'このページでは、現時点で新規作成が禁止されているページ名を列挙します。保護されている既存のページの一覧は、[[{{#special:ProtectedPages}}|{{int:protectedpages}}]] を参照してください。',
 'protectedtitlesempty' => 'これらの引数で現在保護されているページはありません。',
 'listusers' => '利用者一覧',
 'listusers-editsonly' => '投稿記録のある利用者のみを表示',
