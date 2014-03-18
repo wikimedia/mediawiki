@@ -648,7 +648,8 @@ abstract class FileBackendStore extends FileBackend {
 		$stat = $this->doGetFileStat( $params );
 		wfProfileOut( __METHOD__ . '-miss-' . $this->name );
 		if ( is_array( $stat ) ) { // file exists
-			$stat['latest'] = $latest;
+			// Strongly consistent backends can automatically set "latest"
+			$stat['latest'] = isset( $stat['latest'] ) ? $stat['latest'] : $latest;
 			$this->cheapCache->set( $path, 'stat', $stat );
 			$this->setFileCache( $path, $stat ); // update persistent cache
 			if ( isset( $stat['sha1'] ) ) { // some backends store SHA-1 as metadata
@@ -1295,7 +1296,8 @@ abstract class FileBackendStore extends FileBackend {
 				continue; // this shouldn't happen
 			}
 			if ( is_array( $stat ) ) { // file exists
-				$stat['latest'] = $latest;
+				// Strongly consistent backends can automatically set "latest"
+				$stat['latest'] = isset( $stat['latest'] ) ? $stat['latest'] : $latest;
 				$this->cheapCache->set( $path, 'stat', $stat );
 				$this->setFileCache( $path, $stat ); // update persistent cache
 				if ( isset( $stat['sha1'] ) ) { // some backends store SHA-1 as metadata
