@@ -10046,56 +10046,64 @@ parsoid=wt2html,wt2wt,html2html
 !! test
 Manually-specified thumbnail image
 !! wikitext
-[[Image:Foobar.jpg|thumb=Thumb.png|Title]]
+[[File:Foobar.jpg|thumb=Thumb.png|Title]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/File:Foobar.jpg"><img alt="" src="http://example.com/images/e/ea/Thumb.png" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Title</div></div></div>
 
 !! html/parsoid
-XXX NOT IMPLEMENTED XXX
+<figure class="mw-default-size" typeof="mw:Image/Thumb" data-mw='{"thumb":"Thumb.png"}'><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/e/ea/Thumb.png" height="135" width="135"/></a><figcaption>Title</figcaption></figure>
 !! end
 
 !! test
 Manually-specified thumbnail image with explicit link to wiki page
+!! options
+parsoid=wt2html,wt2wt,html2html
 !! wikitext
-[[Image:Foobar.jpg|thumb=Thumb.png|link=Main Page|Title]]
+[[File:Foobar.jpg|thumb=Thumb.png|link=Main_Page|Title]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/Main_Page" title="Main Page"><img alt="" src="http://example.com/images/e/ea/Thumb.png" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Title</div></div></div>
 
 !! html/parsoid
-XXX NOT IMPLEMENTED XXX
+<figure class="mw-default-size" typeof="mw:Image/Thumb" data-mw='{"thumb":"Thumb.png"}'><a href="Main_Page"><img resource="./File:Foobar.jpg" src="//example.com/images/e/ea/Thumb.png" height="135" width="135"/></a><figcaption>Title</figcaption></figure>
 !! end
 
 !! test
 Manually-specified thumbnail image with explicit link to url
+!! options
+parsoid=wt2html,wt2wt,html2html
 !! wikitext
-[[Image:Foobar.jpg|thumb=Thumb.png|link=http://example.com|Title]]
+[[File:Foobar.jpg|thumb=Thumb.png|link=http://example.com|Title]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="http://example.com"><img alt="" src="http://example.com/images/e/ea/Thumb.png" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Title</div></div></div>
 
 !! html/parsoid
-XXX NOT IMPLEMENTED XXX
+<figure class="mw-default-size" typeof="mw:Image/Thumb" data-mw='{"thumb":"Thumb.png"}'><a href="http://example.com"><img resource="./File:Foobar.jpg" src="//example.com/images/e/ea/Thumb.png" height="135" width="135"/></a><figcaption>Title</figcaption></figure>
 !! end
 
 !! test
 Manually-specified thumbnail image with explicit no link
+!! options
+parsoid=wt2html,wt2wt,html2html
 !! wikitext
-[[Image:Foobar.jpg|thumb=Thumb.png|link=|Title]]
+[[File:Foobar.jpg|thumb=Thumb.png|link=|Title]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:137px;"><img alt="" src="http://example.com/images/e/ea/Thumb.png" width="135" height="135" class="thumbimage" />  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Title</div></div></div>
 
 !! html/parsoid
-XXX NOT IMPLEMENTED XXX
+<figure class="mw-default-size" typeof="mw:Image/Thumb" data-mw='{"thumb":"Thumb.png"}'><span><img resource="./File:Foobar.jpg" src="//example.com/images/e/ea/Thumb.png" height="135" width="135"/></span><figcaption>Title</figcaption></figure>
 !! end
 
 !! test
 Manually-specified thumbnail image with explicit link and alt text
+!! options
+parsoid=wt2html,wt2wt,html2html
 !! wikitext
-[[Image:Foobar.jpg|thumb=Thumb.png|link=Main Page|alt=alttext|Title]]
+[[File:Foobar.jpg|thumb=Thumb.png|link=Main_Page|alt=alttext|Title]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/Main_Page" title="Main Page"><img alt="alttext" src="http://example.com/images/e/ea/Thumb.png" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Title</div></div></div>
 
 !! html/parsoid
-XXX NOT IMPLEMENTED XXX
+<figure class="mw-default-size" typeof="mw:Image/Thumb" data-mw='{"thumb":"Thumb.png"}'><a href="Main_Page"><img alt="alttext" resource="./File:Foobar.jpg" src="//example.com/images/e/ea/Thumb.png" height="135" width="135"/></a><figcaption>Title</figcaption></figure>
 !! end
 
 !! test
@@ -13278,9 +13286,11 @@ http://example.com<pre>junk</pre>
 Fuzz testing: image with bogus manual thumbnail
 !! wikitext
 [[Image:foobar.jpg|thumbnail= ]]
-!! html
+!! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;">Error creating thumbnail:   <div class="thumbcaption"></div></div></div>
 
+!! html/parsoid
+<meta typeof="mw:Placeholder" data-parsoid='{"src":"[[Image:foobar.jpg|thumbnail= ]]","optList":[{"ck":"manualthumb","ak":"thumbnail= "}],"dsr":[0,32,null,null]}'/>
 !!end
 
 !! test
