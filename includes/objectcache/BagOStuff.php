@@ -142,7 +142,7 @@ abstract class BagOStuff {
 	 * @return bool success
 	 */
 	protected function mergeViaLock( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
-		if ( !$this->lock( $key, 60 ) ) {
+		if ( !$this->lock( $key, 6 ) ) {
 			return false;
 		}
 
@@ -168,7 +168,7 @@ abstract class BagOStuff {
 	 * @param $timeout integer [optional]
 	 * @return bool success
 	 */
-	public function lock( $key, $timeout = 60 ) {
+	public function lock( $key, $timeout = 6 ) {
 		$timestamp = microtime( true ); // starting UNIX timestamp
 		if ( $this->add( "{$key}:lock", 1, $timeout ) ) {
 			return true;
