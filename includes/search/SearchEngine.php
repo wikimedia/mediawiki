@@ -630,13 +630,18 @@ class SearchResultSet {
 	}
 
 	/**
-	 * Return information about how and from where the results were fetched,
-	 * should be useful for diagnostics and debugging
+	 * Return information about the search results done, mostly for debugging
+	 * and metrics. Keys and values that are useful:
+	 *  - backend: name of search backend performing the request
+	 *  - servers: host(s) that the search was performed against
+	 *  - usertime: how long it took for the entire request to complete for the user
+	 *  - searchtime: how long it took the search to be performed against the backend
+	 *        (excluding stuff like query parsing and highlighting of results)
 	 *
-	 * @return String
+	 * @return array
 	 */
 	function getInfo() {
-		return null;
+		return array();
 	}
 
 	/**
