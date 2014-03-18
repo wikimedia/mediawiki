@@ -541,24 +541,35 @@ class LocalisationCache {
 	 */
 	protected function readJSONFile( $fileName ) {
 		wfProfileIn( __METHOD__ );
+
 		if ( !is_readable( $fileName ) ) {
+			wfProfileOut( __METHOD__ );
+
 			return array();
 		}
 
 		$json = file_get_contents( $fileName );
 		if ( $json === false ) {
+			wfProfileOut( __METHOD__ );
+
 			return array();
 		}
+
 		$data = FormatJson::decode( $json, true );
 		if ( $data === null ) {
+			wfProfileOut( __METHOD__ );
+
 			throw new MWException( __METHOD__ . ": Invalid JSON file: $fileName" );
 		}
+
 		// Remove keys starting with '@', they're reserved for metadata and non-message data
 		foreach ( $data as $key => $unused ) {
 			if ( $key === '' || $key[0] === '@' ) {
 				unset( $data[$key] );
 			}
 		}
+
+		wfProfileOut( __METHOD__ );
 
 		// The JSON format only supports messages, none of the other variables, so wrap the data
 		return array( 'messages' => $data );
