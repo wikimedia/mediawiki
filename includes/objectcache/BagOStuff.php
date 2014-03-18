@@ -142,7 +142,7 @@ abstract class BagOStuff {
 	 * @return bool success
 	 */
 	protected function mergeViaLock( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
-		if ( !$this->lock( $key, 60 ) ) {
+		if ( !$this->lock( $key, 6 ) ) {
 			return false;
 		}
 
