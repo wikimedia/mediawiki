@@ -263,8 +263,8 @@ class NewParserTest extends MediaWikiTestCase {
 		if ( !$this->db->selectField( 'image', '1', array( 'img_name' => $image->getName() ) ) ) {
 			$image->recordUpload2( '', 'Upload of some lame SVG', 'Some lame SVG', array(
 					'size'        => 12345,
-					'width'       => 200,
-					'height'      => 200,
+					'width'       => 240,
+					'height'      => 180,
 					'bits'        => 24,
 					'media_type'  => MEDIATYPE_DRAWING,
 					'mime'        => 'image/svg+xml',
@@ -445,7 +445,8 @@ class NewParserTest extends MediaWikiTestCase {
 
 		// No helpful SVG file to copy, so make one ourselves
 		$data = '<?xml version="1.0" encoding="utf-8"?>' .
-			'<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><text>Foo</text></svg>';
+			'<svg xmlns="http://www.w3.org/2000/svg"' .
+			' version="1.1" width="240" height="180"/>';
 
 		$backend->prepare( array( 'dir' => "$base/local-public/f/ff" ) );
 		$backend->quickCreate( array(

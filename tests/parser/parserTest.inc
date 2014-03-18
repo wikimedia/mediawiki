@@ -1074,10 +1074,10 @@ class ParserTest {
 		wfMkdirParents( $dir . '/0/09', null, __METHOD__ );
 		copy( "$IP/skins/monobook/headbg.jpg", "$dir/0/09/Bad.jpg" );
 		wfMkdirParents( $dir . '/f/ff', null, __METHOD__ );
-		copy( "$IP/skins/monobook/headbg.jpg", "$dir/f/ff/Foobar.svg" );
 		file_put_contents( "$dir/f/ff/Foobar.svg",
 			'<?xml version="1.0" encoding="utf-8"?>' .
-			'<svg xmlns="http://www.w3.org/2000/svg" />' );
+			'<svg xmlns="http://www.w3.org/2000/svg"' .
+			' version="1.1" width="240" height="180"/>' );
 		return $dir;
 	}
 
