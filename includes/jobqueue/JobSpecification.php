@@ -119,7 +119,7 @@ class JobSpecification implements IJobSpecification {
 			if ( is_array( $v ) ) {
 				$this->validateParams( $v );
 			} elseif ( !is_scalar( $v ) && $v !== null ) {
-				throw new UnexpectedValueException( 'Job parameters are not JSON serializable.' );
+				throw new UnexpectedValueException( "Job parameter $p is not JSON serializable." );
 			}
 		}
 	}
