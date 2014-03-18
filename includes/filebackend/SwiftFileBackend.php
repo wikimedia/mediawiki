@@ -72,6 +72,9 @@ class SwiftFileBackend extends FileBackendStore {
 	/** @var int UNIX timestamp */
 	protected $authErrorTimestamp = null;
 
+	/** @var bool Whether the server is an Ceph RGW */
+	protected $isRGW = false;
+
 	/**
 	 * @see FileBackendStore::__construct()
 	 * Additional $config params include:
@@ -1518,6 +1521,9 @@ class SwiftFileBackend extends FileBackendStore {
 					'md5'   => ctype_xdigit( $rhdrs['etag'] ) ? $rhdrs['etag'] : null,
 					'xattr' => array( 'metadata' => $metadata, 'headers' => $headers )
 				);
+				if ( $this->isRGW ) {
+					$stat['latest'] = true; // strong consistency
+				}
 			} elseif ( $rcode === 404 ) {
 				$stat = false;
 			} else {
@@ -1581,6 +1587,10 @@ class SwiftFileBackend extends FileBackendStore {
 
 					return null;
 				}
+			}
+			// Ceph RGW does not use <account> in URLs (OpenStack Swift uses "/v1/<account>")
+			if ( substr( $this->authCreds['storage_url'], -3 ) === '/v1' ) {
+				$this->isRGW = true; // take advantage of strong consistency
 			}
 		}
 
