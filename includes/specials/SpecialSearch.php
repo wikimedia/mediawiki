@@ -745,7 +745,7 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * Show results from other wikis
 	 *
-	 * @param $matches SearchResultSet
+	 * @param $matches SearchResultSet|array
 	 * @param $query String
 	 *
 	 * @return string
@@ -753,7 +753,6 @@ class SpecialSearch extends SpecialPage {
 	protected function showInterwiki( $matches, $query ) {
 		global $wgContLang;
 		wfProfileIn( __METHOD__ );
-		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
 
 		$out = "<div id='mw-search-interwiki'><div id='mw-search-interwiki-caption'>" .
 			$this->msg( 'search-interwiki-caption' )->text() . "</div>\n";
@@ -770,12 +769,20 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$prev = null;
-		$result = $matches->next();
-		while ( $result ) {
-			$out .= $this->showInterwikiHit( $result, $prev, $terms, $query, $customCaptions );
-			$prev = $result->getInterwikiPrefix();
-			$result = $matches->next();
+		if ( !is_array( $matches ) ) {
+			$matches = array( $matches );
 		}
+
+		foreach ( $matches as $set ) {
+			$result = $set->next();
+			while ( $result ) {
+				$out .= $this->showInterwikiHit( $result, $prev, $query, $customCaptions );
+				$prev = $result->getInterwikiPrefix();
+				$result = $set->next();
+			}
+		}
+
+
 		// TODO: should support paging in a non-confusing way (not sure how though, maybe via ajax)..
 		$out .= "</ul></div>\n";
 
@@ -790,13 +797,12 @@ class SpecialSearch extends SpecialPage {
 	 *
 	 * @param $result SearchResult
 	 * @param $lastInterwiki String
-	 * @param $terms Array
 	 * @param $query String
 	 * @param array $customCaptions iw prefix -> caption
 	 *
 	 * @return string
 	 */
-	protected function showInterwikiHit( $result, $lastInterwiki, $terms, $query, $customCaptions ) {
+	protected function showInterwikiHit( $result, $lastInterwiki, $query, $customCaptions ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( $result->isBrokenTitle() ) {
