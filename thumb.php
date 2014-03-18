@@ -107,6 +107,11 @@ function wfStreamThumb( array $params ) {
 
 	$fileName = isset( $params['f'] ) ? $params['f'] : '';
 
+        if( $fileName == null ){
+              wfThumbError( 400 , 'Invalid parameters or parameters missing. thumb.php takes 3 parameter, f for filename, w for width, p for pages within a file, if available. For more details please visit the manual page for '.'<a href="https://www.mediawiki.org/wiki/Thumb.php"> thumb.php </a>.' );
+              return;
+          }
+
 	// Backwards compatibility parameters
 	if ( isset( $params['w'] ) ) {
 		$params['width'] = $params['w'];
