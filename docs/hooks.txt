@@ -2916,9 +2916,9 @@ run a MediaWiki cli script.
 &$options: Associative array of options, may contain the 'php' and 'wrapper'
   keys
 
-'wgQueryPages': Called when initialising $wgQueryPages, use this to add new
-query pages to be updated with maintenance/updateSpecialPages.php.
-$query: $wgQueryPages itself
+'wgQueryPages': Called when initialising list of QueryPage subclasses, use this
+to add new query pages to be updated with maintenance/updateSpecialPages.php.
+$qp: The list of QueryPages
 
 'XmlDumpWriterOpenPage': Called at the end of XmlDumpWriter::openPage, to allow
 extra metadata to be added.
