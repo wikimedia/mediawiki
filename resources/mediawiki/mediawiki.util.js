@@ -135,18 +135,21 @@
 		/**
 		 * Get the link to a page name (relative to `wgServer`),
 		 *
-		 * @param {string} str Page name to get the link for.
+		 * @param {string} str Page name
 		 * @param {Object} [params] A mapping of query parameter names to values,
-		 *     e.g. `{ action: 'edit' }`.
-		 * @return {string} Location for a page with name of `str` or boolean false on error.
+		 *  e.g. `{ action: 'edit' }`
+		 * @return {string} Url of the page with name of `str`
 		 */
 		getUrl: function ( str, params ) {
-			var url = mw.config.get( 'wgArticlePath' ).replace( '$1',
-				util.wikiUrlencode( typeof str === 'string' ? str : mw.config.get( 'wgPageName' ) ) );
+			var url = mw.config.get( 'wgArticlePath' ).replace(
+				'$1',
+				util.wikiUrlencode( typeof str === 'string' ? str : mw.config.get( 'wgPageName' ) )
+			);
+
 			if ( params && !$.isEmptyObject( params ) ) {
-				url += url.indexOf( '?' ) !== -1 ? '&' : '?';
-				url += $.param( params );
+				url += ( url.indexOf( '?' ) !== -1 ? '&' : '?' ) + $.param( params );
 			}
+
 			return url;
 		},
 
