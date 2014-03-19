@@ -33,8 +33,29 @@
 	font-size: 0.9em;
 }
 
+#wpSummaryLabel {
+	float: left;
+	margin-right: 0.5em;
+}
+
+/* Create a line break when the remaining space is less than 20em */
+#wpSummaryWrap {
+	display: table;
+	width: 20em;
+}
+
+/* Hack for a box with the remaining space */
+#wpSummaryDiv {
+	display: table-cell;
+	width: 1%;
+}
+
 #wpSummary {
 	display: block;
+	width: 100%;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 	margin-top: 0;
 	margin-bottom: 0.5em;
 }
