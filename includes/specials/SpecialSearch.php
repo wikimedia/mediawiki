@@ -538,12 +538,7 @@ class SpecialSearch extends SpecialPage {
 
 		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
 
-		$out = "";
-		$infoLine = $matches->getInfo();
-		if ( !is_null( $infoLine ) ) {
-			$out .= "\n<!-- {$infoLine} -->\n";
-		}
-		$out .= "<ul class='mw-search-results'>\n";
+		$out = "<ul class='mw-search-results'>\n";
 		$result = $matches->next();
 		while ( $result ) {
 			$out .= $this->showHit( $result, $terms );
