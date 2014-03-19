@@ -274,6 +274,7 @@ $magicWords = array(
 	'img_right'               => array( 1,    'right' ),
 	'img_left'                => array( 1,    'left' ),
 	'img_none'                => array( 1,    'none' ),
+	'img_quality'             => array( 1,    'q=$1' ),
 	'img_width'               => array( 1,    '$1px' ),
 	'img_center'              => array( 1,    'center', 'centre' ),
 	'img_framed'              => array( 1,    'framed', 'enframed', 'frame' ),
