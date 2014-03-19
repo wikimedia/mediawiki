@@ -528,9 +528,9 @@ class Linker {
 	 *
 	 * @param array $handlerParams associative array of media handler parameters, to be passed
 	 *       to transform(). Typical keys are "width" and "page".
-	 * @param string $time timestamp of the file, set as false for current
+	 * @param string|bool $time timestamp of the file, set as false for current
 	 * @param string $query query params for desc url
-	 * @param $widthOption: Used by the parser to remember the user preference thumbnailsize
+	 * @param string $widthOption Used by the parser to remember the user preference thumbnailsize
 	 * @since 1.20
 	 * @return String: HTML for an image, with links, wrappers, etc.
 	 */
