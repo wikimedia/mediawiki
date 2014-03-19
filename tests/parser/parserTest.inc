@@ -787,6 +787,7 @@ class ParserTest {
 			'wgSVGConverters' => array( 'null' => 'echo "1">$output' ),
 			'wgLocaltimezone' => 'UTC',
 			'wgAllowExternalImages' => self::getOptionValue( 'wgAllowExternalImages', $opts, true ),
+			'wgThumbLimits' => array( self::getOptionValue( 'thumbsize', $opts, 180 ) ),
 			'wgUseTidy' => false,
 			'wgDefaultLanguageVariant' => $variant,
 			'wgVariantArticlePath' => false,
@@ -841,8 +842,10 @@ class ParserTest {
 		$context = new RequestContext();
 		$GLOBALS['wgLang'] = $context->getLanguage();
 		$GLOBALS['wgOut'] = $context->getOutput();
+		$GLOBALS['wgUser'] = $context->getUser();
 
-		$GLOBALS['wgUser'] = new User();
+		// We (re)set $wgThumbLimits to a single-element array above.
+		$context->getUser()->setOption( 'thumbsize', 0 );
 
 		global $wgHooks;
 
