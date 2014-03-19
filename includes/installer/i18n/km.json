@@ -1,0 +1,25 @@
+{
+    "@metadata": {
+        "authors": [
+            "Thearith",
+            "គីមស៊្រុន"
+        ]
+    },
+    "config-your-language": "ភាសារបស់អ្នក៖",
+    "config-your-language-help": "ជ្រើសយកភាសាដើម្បីប្រើក្នុងពេលតំលើង។",
+    "config-wiki-language": "ភាសាវិគី៖",
+    "config-wiki-language-help": "ជ្រើសរើសភាសាដែលវិគីនេះប្រើជាចំបង។",
+    "config-back": "← ត្រលប់ក្រោយ",
+    "config-continue": "បន្ត →",
+    "config-page-language": "ភាសា",
+    "config-page-welcome": "មេឌាវិគីសូមស្វាគមន៍!",
+    "config-page-dbconnect": "ភ្ជាប់ទៅមូលដ្ឋានទិន្នន័យ",
+    "config-page-name": "ឈ្មោះ",
+    "config-page-options": "ជំរើស",
+    "config-page-install": "តំលើង",
+    "config-page-complete": "បញ្ចប់!",
+    "config-page-restart": "តំលើងឡើងវិញ",
+    "config-help": "ជំនួយ",
+    "mainpagetext": "'''មេឌាវិគីត្រូវបានដំឡើងសំរេចហើយ​។'''",
+    "mainpagedocfooter": "សូមពិនិត្យមើល [//meta.wikimedia.org/wiki/ជំនួយ​៖ ខ្លឹមសារ​ណែនាំ​ប្រើប្រាស់]សម្រាប់​ព័ត៌មាន​​បន្ថែមចំពោះ​ការប្រើប្រាស់ ផ្នែកទន់វិគី​។\n\n== ចាប់ផ្ដើមជាមួយមេឌាវិគី ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings បញ្ជីកំណត់ទម្រង់]\n* [//www.mediawiki.org/wiki/Manual:FAQ/km សំណួរញឹកញាប់​មេឌាវិគី]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce បញ្ជី​ពិភាក្សា​ការផ្សព្វផ្សាយ​របស់​មេឌាវិគី]"
+}

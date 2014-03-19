@@ -1,0 +1,17 @@
+{
+    "@metadata": {
+        "authors": [
+            "George Animal"
+        ]
+    },
+    "config-information": "Agahî",
+    "config-your-language": "Zimanê te:",
+    "config-page-language": "Ziman",
+    "config-page-name": "Nav",
+    "config-page-options": "Vebijêrk",
+    "config-ns-generic": "Proje",
+    "config-install-step-done": "çêbû",
+    "config-help": "alîkarî",
+    "mainpagetext": "'''MediaWiki serketî hate çêkirin.'''",
+    "mainpagedocfooter": "Alîkarî ji bo bikaranîn û guherandin yê datayê Wîkî tu di bin [//meta.wikimedia.org/wiki/Help:Contents pirtûka alîkarîyê ji bikarhêneran] da dikarê bibînê.\n\n== Alîkarî ji bo destpêkê ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Lîsteya varîyablên konfîgûrasîyonê]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lîsteya e-nameyên versyonên nuh yê MediaWiki]"
+}

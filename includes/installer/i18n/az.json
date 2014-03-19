@@ -1,0 +1,29 @@
+{
+    "@metadata": {
+        "authors": [
+            "Cekli829",
+            "Vago",
+            "Wertuose"
+        ]
+    },
+    "config-back": "← Geri",
+    "config-continue": "Davam et →",
+    "config-page-language": "Dil",
+    "config-page-welcome": "MediaWiki-yə xoş gəlmişsiniz!",
+    "config-page-dbconnect": "Verilənlər bazasına birləşdir",
+    "config-page-dbsettings": "Verilənlər bazasının nizamlanması",
+    "config-page-name": "Ad",
+    "config-page-options": "Nizamlamalar:",
+    "config-page-install": "Nizamlama",
+    "config-page-complete": "Komplektləşdir!",
+    "config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
+    "config-mysql-myisam": "MyISAM",
+    "config-mysql-utf8": "UTF-8",
+    "config-ns-generic": "Layihə",
+    "config-admin-name": "Sizin adınız:",
+    "config-admin-password": "Parol:",
+    "config-admin-email": "E-poçt ünvanı",
+    "config-help": "kömək",
+    "mainpagetext": "'''MediaWiki müvəffəqiyyətlə quraşdırıldı.'''",
+    "mainpagedocfooter": "Bu vikinin istifadəsi ilə bağlı məlumat almaq üçün [//meta.wikimedia.org/wiki/Help:Contents İstifadəçi məlumat səhifəsinə] baxın.\n\n== Faydalı keçidlər ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Tənzimləmələrin siyahısı]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki haqqında tez-tez soruşulan suallar]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-poçt siyahısı]"
+}

@@ -346,15 +346,14 @@ abstract class Installer {
 	 * Constructor, always call this from child classes.
 	 */
 	public function __construct() {
-		global $wgExtensionMessagesFiles, $wgUser;
+		global $wgMessagesDirs, $wgUser;
 
 		// Disable the i18n cache and LoadBalancer
 		Language::getLocalisationCache()->disableBackend();
 		LBFactory::disableBackend();
 
-		// Load the installer's i18n file.
-		$wgExtensionMessagesFiles['MediawikiInstaller'] =
-			__DIR__ . '/Installer.i18n.php';
+		// Load the installer's i18n.
+		$wgMessagesDirs['MediawikiInstaller'] = __DIR__ . '/i18n';
 
 		// Having a user with id = 0 safeguards us from DB access via User::loadOptions().
 		$wgUser = User::newFromId( 0 );
