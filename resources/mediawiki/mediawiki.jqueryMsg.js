@@ -89,7 +89,7 @@
 	 * Decodes the main HTML entities, those encoded by mw.html.escape.
 	 *
 	 * @private
-	 * @param {string} encode Encoded string
+	 * @param {string} encoded Encoded string
 	 * @return {string} String with those entities decoded
 	 */
 	function decodePrimaryHtmlEntities( encoded ) {
@@ -108,7 +108,7 @@
 	 * If there was an error parsing, return the key and the error message (wrapped in jQuery). This should put the error right into
 	 * the interface, without causing the page to halt script execution, and it hopefully should be clearer how to fix it.
 	 * @private
-	 * @param {Object} parser options
+	 * @param {Object} options Parser options
 	 * @return {Function}
 	 * @return {Array} return.args First element is the key, replacements may be in array in 2nd element, or remaining elements.
 	 * @return {jQuery} return.return
@@ -721,7 +721,8 @@
 
 				if ( parsedCloseTagResult === null ) {
 					// Closing tag failed.  Return the start tag and contents.
-					return [ 'CONCAT', input.substring( startOpenTagPos, endOpenTagPos ) ].concat( parsedHtmlContents );
+					return [ 'CONCAT', input.substring( startOpenTagPos, endOpenTagPos ) ]
+						.concat( parsedHtmlContents );
 				}
 
 				endCloseTagPos = pos;
@@ -729,7 +730,8 @@
 				wrappedAttributes = parsedOpenTagResult[2];
 				attributes = wrappedAttributes.slice( 1 );
 				if ( isAllowedHtml( startTagName, endTagName, attributes ) ) {
-					result = [ 'HTMLELEMENT', startTagName, wrappedAttributes ].concat( parsedHtmlContents );
+					result = [ 'HTMLELEMENT', startTagName, wrappedAttributes ]
+						.concat( parsedHtmlContents );
 				} else {
 					// HTML is not allowed, so contents will remain how
 					// it was, while HTML markup at this level will be
@@ -743,7 +745,8 @@
 					// parsed HTML link.
 					//
 					// Concatenate everything from the tag, flattening the contents.
-					result = [ 'CONCAT', input.substring( startOpenTagPos, endOpenTagPos ) ].concat( parsedHtmlContents, input.substring( startCloseTagPos, endCloseTagPos ) );
+					result = [ 'CONCAT', input.substring( startOpenTagPos, endOpenTagPos ) ]
+						.concat( parsedHtmlContents, input.substring( startCloseTagPos, endCloseTagPos ) );
 				}
 
 				return result;
@@ -851,7 +854,6 @@
 				curlyBraceTransformExpressionLiteral
 			] );
 
-
 			/**
 			 * Starts the parse
 			 *
@@ -883,6 +885,7 @@
 		}
 
 	};
+
 	/**
 	 * htmlEmitter - object which primarily exists to emit HTML from parser ASTs
 	 */
@@ -894,10 +897,11 @@
 				return val;
 			};
 		} );
+
 		/**
 		 * (We put this method definition here, and not in prototype, to make sure it's not overwritten by any magic.)
 		 * Walk entire node structure, applying replacements and template functions when appropriate
-		 * @param {Mixed} abstract syntax tree (top node or subnode)
+		 * @param {Mixed} node Abstract syntax tree (top node or subnode)
 		 * @param {Array} replacements for $1, $2, ... $n
 		 * @return {Mixed} single-string node or array of nodes suitable for jQuery appending
 		 */
@@ -934,6 +938,7 @@
 			return ret;
 		};
 	};
+
 	// For everything in input that follows double-open-curly braces, there should be an equivalent parser
 	// function. For instance {{PLURAL ... }} will be processed by 'plural'.
 	// If you have 'magic words' then configure the parser to have them upon creation.
@@ -973,7 +978,7 @@
 		 * TODO: Throw error if nodes.length > 1 ?
 		 *
 		 * @param {Array} nodes List of one element, integer, n >= 0
-		 * @param {Array} replacements
+		 * @param {Array} replacements List of at least n strings
 		 * @return {String} replacement
 		 */
 		replace: function ( nodes, replacements ) {
@@ -1020,7 +1025,7 @@
 				anchor = nodes[1];
 			}
 
-			return $( '<a />' ).attr( {
+			return $( '<a>' ).attr( {
 				title: page,
 				href: url
 			} ).text( anchor );
@@ -1095,6 +1100,7 @@
 		 * TODO: throw error if nodes.length > 1 ?
 		 *
 		 * @param {Array} nodes List of one element, integer, n >= 0
+		 * @param {Array} replacements List of at least n strings
 		 * @return {string} replacement
 		 */
 		extlinkparam: function ( nodes, replacements ) {
