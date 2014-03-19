@@ -221,15 +221,15 @@ td.mw-label {
 }
 
 .mw-icon-question {
-	/* @embed */
-	background: url('images/question-small.png') no-repeat;
 	/* SVG support using a transparent gradient to guarantee cross-browser
-	 * compatibility (browsers able to understand gradient syntax support also SVG)
-	 * lifted from #pt-login css rule in skins/vector/screen.css */
+	 * compatibility (browsers able to understand gradient syntax support also SVG).
+	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
+	background-image: url(images/question-small.png);
 	/* @embed */
-	background: -webkit-linear-gradient(transparent, transparent), url('images/question.svg') no-repeat;
+	background-image: -webkit-linear-gradient(transparent, transparent), url(images/question.svg);
 	/* @embed */
-	background: linear-gradient(transparent, transparent), url('images/question.svg') no-repeat;
+	background-image: linear-gradient(transparent, transparent), url(images/question.svg);
+	background-repeat: no-repeat;
 	background-size: 13px 13px;
 	display: inline-block;
 	height: 13px;
@@ -484,8 +484,13 @@ a.new {
 
 /* feed links */
 a.feedlink {
-	/* @embed */
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG).
+	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
 	background-image: url(images/feed-icon.png);
+	/* @embed */
+	background-image: -webkit-linear-gradient(transparent, transparent), url(images/feed-icon.svg);
+	/* @embed */
 	background-image: linear-gradient(transparent, transparent), url(images/feed-icon.svg);
 	background-position: center left;
 	background-repeat: no-repeat;
@@ -1046,7 +1051,7 @@ ol:lang(or) li {
 	margin-bottom: -8px;
 	padding: 0 0 0 15px;
 	/* @embed */
-	background-image: url('images/help-question.gif');
+	background-image: url(images/help-question.gif);
 	background-position: left center;
 	background-repeat: no-repeat;
 	cursor: pointer;
@@ -1056,7 +1061,7 @@ ol:lang(or) li {
 }
 .mw-help-field-hint:hover {
 	/* @embed */
-	background-image: url('images/help-question-hover.gif');
+	background-image: url(images/help-question-hover.gif);
 }
 .mw-help-field-data {
 	display: block;
