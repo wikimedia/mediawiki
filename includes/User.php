@@ -1123,7 +1123,7 @@ class User {
 		} else {
 			$result = 0;
 			for ( $i = 0; $i < strlen( $answer ); $i++ ) {
-				$result |= ord( $answer{$i} ) ^ ord( $test{$i} );
+				$result |= ord( $answer[$i] ) ^ ord( $test[$i] );
 			}
 			$passwordCorrect = ( $result == 0 );
 		}

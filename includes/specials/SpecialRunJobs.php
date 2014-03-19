@@ -69,7 +69,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 		} else {
 			$result = 0;
 			for ( $i = 0; $i < strlen( $cSig ); $i++ ) {
-				$result |= ord( $cSig{$i} ) ^ ord( $rSig{$i} );
+				$result |= ord( $cSig[$i] ) ^ ord( $rSig[$i] );
 			}
 			$verified = ( $result == 0 );
 		}
