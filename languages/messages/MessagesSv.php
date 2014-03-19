@@ -772,8 +772,6 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'gotaccountlink' => 'Logga in',
 'userlogin-resetlink' => 'Har du glömt dina inloggningsuppgifter?',
 'userlogin-resetpassword-link' => 'Glömt ditt lösenord?',
-'helplogin-url' => 'Help:Logga in',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hjälp med inloggning]]',
 'userlogin-loggedin' => 'Du är redan inloggad som {{GENDER:$1|$1}}.
 Använd formuläret nedan för att logga in som en annan användare.',
 'userlogin-createanother' => 'Skapa ett annat konto',

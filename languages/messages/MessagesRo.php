@@ -745,8 +745,7 @@ Nu uitați să vă modificați [[Special:Preferences|preferințele]] pentru {{SI
 'gotaccountlink' => 'Autentificați-vă',
 'userlogin-resetlink' => 'Ați uitat datele de autentificare?',
 'userlogin-resetpassword-link' => 'V-ați uitat parola?',
-'helplogin-url' => 'Help:Autentificare',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajutor la autentificare]]',
+'userlogin-helplink2' => 'Ajutor la autentificare',
 'userlogin-loggedin' => 'Sunteți deja {{GENDER:$1|autentificat|autentificată}} ca {{GENDER:$1|$1}}.
 Utilizați formularul de mai jos pentru a vă autentifica cu alt nume de utilizator.',
 'userlogin-createanother' => 'Creează un alt cont',
@@ -871,6 +870,9 @@ Pentru a finaliza acțiunea de autentificare, trebuie să setați o parolă nou�
 'resetpass-abort-generic' => 'Schimbarea parolei a fost anulată de către o extensie.',
 'resetpass-expired' => 'Parola dumneavoastră a expirat. Alegeți o parolă nouă pentru a vă autentifica.',
 'resetpass-expired-soft' => 'Parola dumneavoastră a expirat și trebuie schimbată. Alegeți o parolă nouă acum sau apăsați „{{int:resetpass-submit-cancel}}” pentru a o reseta mai târziu.',
+'resetpass-validity-soft' => 'Parola dumneavoastră nu este validă: $1 
+
+Alegeți o parolă nouă acum sau apăsați „{{int:resetpass-submit-cancel}}” pentru a o reseta mai târziu.',
 
 # Special:PasswordReset
 'passwordreset' => 'Resetare parolă',

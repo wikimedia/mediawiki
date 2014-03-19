@@ -874,8 +874,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] zu ände
 'gotaccountlink' => 'Anmelden',
 'userlogin-resetlink' => 'Die Anmeldedaten vergessen?',
 'userlogin-resetpassword-link' => 'Passwort vergessen?',
-'helplogin-url' => 'Help:Anmelden',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hilfe beim Anmelden]]',
+'userlogin-helplink2' => 'Hilfe bei der Anmeldung',
 'userlogin-loggedin' => 'Du bist bereits als {{GENDER:$1|$1}} angemeldet.
 Benutze das unten stehende Formular, um dich unter einem anderen Benutzernamen anzumelden.',
 'userlogin-createanother' => 'Ein weiteres Benutzerkonto erstellen',
@@ -1001,6 +1000,9 @@ Um die Anmeldung abzuschließen, musst du jetzt ein neues Passwort festlegen:',
 'resetpass-abort-generic' => 'Die Passwortänderung wurde durch eine Erweiterung abgebrochen.',
 'resetpass-expired' => 'Dein Passwort ist abgelaufen. Bitte lege ein neues Passwort zur Anmeldung fest.',
 'resetpass-expired-soft' => 'Dein Passwort ist abgelaufen und muss zurückgesetzt werden. Bitte wähle jetzt ein neues Passwort aus oder klicke auf „{{int:resetpass-submit-cancel}}“, um es später zurückzusetzen.',
+'resetpass-validity-soft' => 'Dein Passwort ist nicht gültig: $1
+
+Bitte wähle jetzt ein neues Passwort oder klicke auf „{{int:resetpass-submit-cancel}}“, um es später zurückzusetzen.',
 
 # Special:PasswordReset
 'passwordreset' => 'Passwort zurücksetzen',

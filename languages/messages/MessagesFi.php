@@ -766,8 +766,6 @@ Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut si
 'gotaccountlink' => 'kirjautua sisään',
 'userlogin-resetlink' => 'Unohditko salasanasi?',
 'userlogin-resetpassword-link' => 'Unohditko salasanasi?',
-'helplogin-url' => 'Help:Sisäänkirjautuminen',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Auta sisäänkirjautumisessa]]',
 'userlogin-loggedin' => 'Olet jo kirjautunut sisään tunnuksella {{GENDER:$1|$1}}.
 Käytä alla olevaa lomaketta kirjautuaksesi sisään toisena käyttäjänä.',
 'userlogin-createanother' => 'Luo toinen käyttäjätunnus',

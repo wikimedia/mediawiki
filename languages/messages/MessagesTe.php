@@ -595,8 +595,6 @@ $2',
 'gotaccountlink' => 'లాగినవండి',
 'userlogin-resetlink' => 'మీ లాగిన్ వివరాలను మరచిపోయారా?',
 'userlogin-resetpassword-link' => 'మీ సంకేతపదాన్ని మర్చిపోయారా?',
-'helplogin-url' => 'Help:లాగినవడం',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|లాగినవడంలో సహాయం]]',
 'userlogin-loggedin' => 'మీరు ఈసరికే {{GENDER:$1|$1}} గా లాగిన్ అయి ఉన్నారు.
 వేరే వాడుకరిగా లాగినయేందుకు కింది ఫారమును వాడండి.',
 'userlogin-createanother' => 'మరొక ఖాతాను సృష్టించండి',
@@ -722,6 +720,8 @@ $2',
 'resetpass-abort-generic' => 'ఓ పొడిగింత (ఎక్స్టెన్‍షన్) సంకేతపదం మార్పిడిని ఆపేసింది.',
 'resetpass-expired' => 'మీ సంకేతపదానికి కాలం చెల్లింది. కొత్త సంకేతపదం ఇచ్చి లాగినవండి.',
 'resetpass-expired-soft' => 'మీ సంకేతపదానికి కాలం చెల్లింది, కాబట్టి కొత్తది ఇవ్వాలి. కొత్తది ఇప్పుడే ఇవ్వండి లేదా "{{int:resetpass-submit-cancel}}" నొక్కి, తరువాత మార్చుకోండి.',
+'resetpass-validity-soft' => 'మీ సంకేతపదానికి కాలం చెల్లింది:$1
+కొత్తది ఇప్పుడే ఇవ్వండి లేదా "{{int:resetpass-submit-cancel}}" నొక్కి, తరువాత మార్చుకోండి.',
 
 # Special:PasswordReset
 'passwordreset' => 'సంకేతపదాన్ని మార్చుకోండి',
@@ -3962,7 +3962,10 @@ $5
 'limitreport-walltime' => 'నిజ సమయం వినియోగం',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|క్షణం|క్షణాలు}}',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|బైట్|బైట్లు}}',
+'limitreport-templateargumentsize' => 'మూస ఆర్గ్యుమెంట్ పరిమాణం',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|బైటు|బైట్లు}}',
+'limitreport-expansiondepth' => 'గరిష్ట విస్తరణ లోతు',
+'limitreport-expensivefunctioncount' => 'ఖరీదైన పార్సర్ ఫంక్షన్ల సంఖ్య',
 
 # Special:ExpandTemplates
 'expandtemplates' => 'మూసలను విస్తరించు',

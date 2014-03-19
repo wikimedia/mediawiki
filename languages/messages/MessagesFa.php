@@ -906,8 +906,6 @@ $2',
 'gotaccountlink' => 'به سامانه وارد شوید',
 'userlogin-resetlink' => 'جزئیات ورود را فراموش کرده‌اید؟',
 'userlogin-resetpassword-link' => 'گذرواژه‌تان را فراموش کردید؟',
-'helplogin-url' => 'Help:ورود به سامانه',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|راهنمای ورود به سامانه]]',
 'userlogin-loggedin' => 'شما در حال حاضر به‌عنوان {{GENDER:$1|$1}} وارد شده‌اید.
 از فرم پایین برای ورود به‌عنوان یک کاربر دیگر استفاده کنید.',
 'userlogin-createanother' => 'ایجاد یک حساب کاربری دیگر',
@@ -4037,7 +4035,7 @@ $5
 'semicolon-separator' => '؛&#32;',
 'comma-separator' => '،&#32;',
 'percent' => '$1٪',
-'quotation-marks' => '$1',
+'quotation-marks' => '«$1»',
 
 # Multipage image navigation
 'imgmultipageprev' => '&rarr; صفحهٔ پیشین',

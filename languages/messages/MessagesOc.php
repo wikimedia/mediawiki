@@ -733,8 +733,6 @@ Doblidetz pas de modificar [[Special:Preferences|vòstras preferéncias per {{SI
 'gotaccountlink' => 'Identificatz-vos',
 'userlogin-resetlink' => 'Avètz doblidat vòstres detalhs de connexion ?',
 'userlogin-resetpassword-link' => 'Senhal doblidat ?',
-'helplogin-url' => 'Help:Connexion',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda a la connexion]]',
 'userlogin-loggedin' => 'Sètz ja connectat en tant que {{GENDER:$1|$1}}.
 Utilizatz lo formulari çaijós per vos connectar amb un autre utilizaire.',
 'userlogin-createanother' => 'Crear un autre compte',

@@ -647,8 +647,6 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'gotaccountlink' => 'Inicia una sessió',
 'userlogin-resetlink' => "Heu oblidat les vostres dades d'accés?",
 'userlogin-resetpassword-link' => 'Has oblidat la teva contrasenya?',
-'helplogin-url' => 'Help:Registrar-se',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda]]',
 'userlogin-loggedin' => 'Heu iniciat una sessió com {{GENDER:$1|$1}}.
 Feu servir el formulari de sota per iniciar la sessió com un altre usuari.',
 'userlogin-createanother' => 'Crea un altre compte',
@@ -736,7 +734,7 @@ Espereu $1 abans de tornar-ho a provar.",
 'suspicious-userlogout' => "S'ha denegat la vostra petició per tancar la sessió ja què sembla que va ser enviada per un navegador defectuós o un proxy cau.",
 'createacct-another-realname-tip' => "El nom real és opcional.
 Si decidiu proporcionar-lo, s'utilitzarà per a reconèixer a l'usuari el seu treball.",
-'pt-login' => 'Iniciar sessió',
+'pt-login' => 'Inicia la sessió',
 'pt-createaccount' => 'Crea un compte',
 'pt-userlogout' => 'Finalitza la sessió',
 

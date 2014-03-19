@@ -487,8 +487,6 @@ $2',
 'gotaccountlink' => 'Нэвтрэх',
 'userlogin-resetlink' => 'Нэвтрэх мэдээллээ мартаа юу?',
 'userlogin-resetpassword-link' => 'Нууц үгээ мартсан уу?',
-'helplogin-url' => 'Help:Нэвтрэх',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Нэвтрэхэд тусламж]]',
 'userlogin-loggedin' => 'Та {{GENDER:$1|$1}} нэрээр нэвтэрсэн байна.
 Өөр нэрээр нэвтрэх бол доорх маягтыг ашиглана уу.',
 'userlogin-createanother' => 'Өөр бүртгэл үүсгэх',

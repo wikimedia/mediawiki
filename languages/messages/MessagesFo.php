@@ -558,8 +558,6 @@ Gloym ikki at broyta tínar [[Special:Preferences|{{SITENAME}}-innstillingar]].'
 'gotaccountlink' => 'Rita inn',
 'userlogin-resetlink' => 'Hevur tú gloymt tínar logg inn upplýsingar',
 'userlogin-resetpassword-link' => 'Hevur tú gloymt títt loyniorð?',
-'helplogin-url' => 'Help:Innritan',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hjálp til innritan]]',
 'userlogin-loggedin' => 'Tú ert longu innritað/ur sum {{GENDER:$1|$1}}.
 Nýt formularin niðanfyri fyri at rita inn sum ein annar brúkari.',
 'userlogin-createanother' => 'Stovna eina aðra kontu',

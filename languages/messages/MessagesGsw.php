@@ -574,8 +574,6 @@ Vergiss nit, Dyni [[Special:Preferences|{{SITENAME}}-Yystellige]] z ändere.',
 'gotaccountlink' => '»Login fir Benutzer, wu scho aagmäldet sin«',
 'userlogin-resetlink' => 'Hesch Dyy Aamäldedate vergässe?',
 'userlogin-resetpassword-link' => 'Passwort vergässe?',
-'helplogin-url' => 'Help:Aamälde',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hilf bim Aamälde]]',
 'userlogin-loggedin' => 'Du bisch scho as {{GENDER:$1|$1}} aagmäldet.
 Bruuch s Formular unte go Di unter eme andere Benutzername aamälde.',
 'userlogin-createanother' => 'En ander Benutzerkonto aalege',

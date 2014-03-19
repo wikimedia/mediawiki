@@ -757,8 +757,6 @@ Gløym ikkje å endra [[Special:Preferences|innstillingane dine for {{SITENAME}}
 'gotaccountlink' => 'Logg inn',
 'userlogin-resetlink' => 'Har du gløymd påloggingsopplysingane dine?',
 'userlogin-resetpassword-link' => 'Gløymt passordet ditt?',
-'helplogin-url' => 'Help:Innlogging',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hjelp med innlogging]]',
 'createacct-join' => 'Skriv inn informasjonen din under.',
 'createacct-another-join' => 'Skriv inn informasjonen til den nye kontoen under',
 'createacct-emailrequired' => 'E-postadresse:',

@@ -532,7 +532,6 @@ Guon siden kinne noch foar it ljocht komme, krekt as wiesto noch oanmeld. Asto d
 'gotaccountlink' => 'Oanmelde',
 'userlogin-resetlink' => 'Ynlochdata fergetten?',
 'userlogin-resetpassword-link' => 'Wachtwurd fergetten?',
-'helplogin-url' => 'Help:Oanmelde',
 'createacct-emailrequired' => 'E-mailadres',
 'createacct-emailoptional' => 'E-mailadres (net ferplichte)',
 'createacct-email-ph' => 'E-mailadres ynfiere',

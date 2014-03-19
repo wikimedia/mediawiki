@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Amire80
  * @author Asmen
  * @author Aspar
  * @author Belekvor
@@ -783,8 +784,6 @@ Wexta ke verhafızayê cıgerayoxê şıma pak beno no benate de taye peli de he
 'gotaccountlink' => 'Cı kewe',
 'userlogin-resetlink' => 'Melumatê cıkewtışi xo vira kerdê?',
 'userlogin-resetpassword-link' => 'Parola xo kerda xo vira?',
-'helplogin-url' => 'Help:Qeydbiyayış',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Peşti be qeydbiyayış ra]]',
 'userlogin-loggedin' => 'Tı xora namey {{GENDER:$1|$1}} ra kewtê/kewtay cı.
 Formê cêrêni bıgureyne ke namey karberio bin ra cı kewê.',
 'userlogin-createanother' => 'Zewbi hesab vıraz',
@@ -875,6 +874,7 @@ Bıne vındere u newe ra dest pê bıkere.',
 'createacct-another-realname-tip' => 'Nameyo raştıkên keyfiyo.
 Şıma nameyo xoyo raştıkên ke bımocnê, seba iştırakanê karberi be ney ra istıfade beno.',
 'pt-login' => 'Cı kewe',
+'pt-login-button' => 'Cı kewe',
 'pt-createaccount' => 'Hesab vıraze',
 'pt-userlogout' => 'Veciyayış',
 
@@ -1290,7 +1290,7 @@ Eke şıma serkari u devam bıkeri [$1 no vurnayiş şıma eşkeni bıvini].",
 'revdelete-hide-user' => 'IP asresa/namey  vırnoği',
 'revdelete-hide-restricted' => 'Malumatan pa serkaran u karberan ra bınım.',
 'revdelete-radio-same' => '(mevurne)',
-'revdelete-radio-set' => 'Nımnaye',
+'revdelete-radio-set' => 'Nımıte',
 'revdelete-radio-unset' => 'Aseno',
 'revdelete-suppress' => 'Hem ê binan ra hem zi serkaran ra malumatan bınım',
 'revdelete-unsuppress' => 'reizyonê ke tepiya anciye serbest ker',
@@ -3967,7 +3967,7 @@ Ma rica keno tesdiq bike ke ti raştî wazeno eno pel bivirazo.",
 'percent' => '$1%',
 'parentheses' => '($1)',
 'brackets' => '[$1]',
-'quotation-marks' => '"$1".',
+'quotation-marks' => '"$1"',
 
 # Multipage image navigation
 'imgmultipageprev' => '← peleyê verin',

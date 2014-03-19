@@ -631,8 +631,6 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'gotaccountlink' => 'Umellen',
 'userlogin-resetlink' => "Hutt Dir d'Detailer vun Ärem Login vergiess?",
 'userlogin-resetpassword-link' => 'Hutt Dir Äert Passwuert vergiess?',
-'helplogin-url' => 'Help:Aloggen',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hëllef beim Aloggen]]',
 'userlogin-loggedin' => 'Dir sidd schonn als {{GENDER:$1|$1}} ageloggt.
 Benotzt de Formulaire hei drënner fir Iech als een anere Benotzer anzeloggen.',
 'userlogin-createanother' => 'Maacht een anere Benotzerkont op',
@@ -2102,7 +2100,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'deadendpagestext' => 'Dës Säite si mat kenger anerer Säit op {{SITENAME}} verlinkt.',
 'protectedpages' => 'Gespaart Säiten',
 'protectedpages-indef' => 'Nëmme onbegrenzt-gespaarte Säite weisen',
-'protectedpages-summary' => 'Op dëser Spezialsäit stinn all déi Säiten déi esou protegéiert sinn, datt se net vun alle Benotzer geréckelt oder geännert kënne ginn.',
+'protectedpages-summary' => "Op dëser Säit stinn all déi Säiten déi elo protegéiert sinn. Fir d'Lëscht vun de Säiten déi fir d'Uleeë gespaart sinn, kuckt [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].",
 'protectedpages-cascade' => 'Nëmme Säiten déi duerch Kaskade gespaart sinn',
 'protectedpages-noredirect' => 'Viruleedunge verstoppen',
 'protectedpagesempty' => 'Elo si keng Säite mat dëse Parameteren gespaart.',

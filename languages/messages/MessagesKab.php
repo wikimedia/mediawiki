@@ -482,8 +482,6 @@ Tzemreḍ ad beddeleḍ {{SITENAME}} [[Special:Preferences|ismenyifen]] inek(em)
 'gotaccountlink' => 'Kcem',
 'userlogin-resetlink' => 'Ettuḍ tilɣa n tuqqna ?',
 'userlogin-resetpassword-link' => 'Ettuḍ awal n uɛaddi ?',
-'helplogin-url' => 'Help:Tuqqna',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Tallalt i tuqqna]]',
 'userlogin-loggedin' => 'Teqqneḍ yakan am {{GENDER:$1|$1}}. Seqdec tiferkit ddaw-agi iwakken ad teqqneḍ s umiḍan nniḍen.',
 'userlogin-createanother' => 'Snulfud amiḍan nniḍen',
 'createacct-join' => 'Sekcem tilɣa inek(m) ddaw-agi.',

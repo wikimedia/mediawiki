@@ -491,8 +491,6 @@ Cathet yèn sapérangan kaca mungkin isih nampilaké kayata sampéyan isih mlebu
 'gotaccountlink' => 'Mlebu',
 'userlogin-resetlink' => 'Lali rincian mlebu log Sampéyan?',
 'userlogin-resetpassword-link' => 'Sampéyan kélangan tembung sandhi?',
-'helplogin-url' => 'Help:Mlebet log',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pitulung kangge mlebet log]]',
 'userlogin-loggedin' => 'Sampeyan sampun mlebet log dadi {{GENDER:$1|$1}}.
 Gunakna formulir ing ngisor iki kanggo mlebet log dadi panganggo liyane.',
 'userlogin-createanother' => 'Gawé akun anyar',

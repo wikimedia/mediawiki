@@ -791,8 +791,6 @@ Ingatlah bahwa beberapa halaman mungkin masih menampilkan anda seperti masih mas
 'gotaccountlink' => 'Masuk log',
 'userlogin-resetlink' => 'Lupa detail info masuk Anda?',
 'userlogin-resetpassword-link' => 'Lupa kata sandi?',
-'helplogin-url' => 'Help:Masuk log',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Bantuan masuk log]]',
 'userlogin-loggedin' => 'Andan telah masuk log sebagai $1.
 Gunakan formulir di bawah untuk masuk log sebagai pengguna lain.',
 'userlogin-createanother' => 'Buat akun lain',

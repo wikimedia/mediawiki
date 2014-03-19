@@ -645,8 +645,6 @@ Jangan lupa untuk mengubah [[Special:Preferences|keutamaan anda di {{SITENAME}}]
 'gotaccountlink' => 'Log masuk',
 'userlogin-resetlink' => 'Lupa nama pengguna/kata laluan anda?',
 'userlogin-resetpassword-link' => 'Lupa kata laluan anda?',
-'helplogin-url' => 'Help:Log masuk',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Bantuan untuk log masuk]]',
 'userlogin-loggedin' => 'Anda sudah log masuk sebagai {{GENDER:$1|$1}}. Gunakan borang di bawah untuk log masuk sebagai pengguna lain.',
 'userlogin-createanother' => 'Buka satu lagi akaun',
 'createacct-join' => 'Isikan keterangan anda di bawah.',

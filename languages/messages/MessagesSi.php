@@ -637,8 +637,6 @@ $2',
 'gotaccountlink' => 'පිවිසෙන්න',
 'userlogin-resetlink' => 'ඔබේ පිවිසුම් තොරතුරු අමතකද?',
 'userlogin-resetpassword-link' => 'ඔබේ මුරපදය නැති වුනාද?',
-'helplogin-url' => 'Help:ප්‍රවිෂ්ට වීම',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|ප්‍රවිෂ්ට වීමට උදවු වන්න]]',
 'userlogin-loggedin' => 'ඔබ දැනටමත් {{GENDER:$1|}} ලෙස පිවිසී ඇත.
 නව පරිශීලකයෙකු ලෙස ඇතුළු වීමට පහත ආකෘතිය පුරවන්න.',
 'userlogin-createanother' => 'තවත් ගිණුමක් ආරම්භ කරන්න',

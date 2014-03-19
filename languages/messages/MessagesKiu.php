@@ -662,7 +662,7 @@ Sıma be idarekerênia ho ra şikinê hona [$1 nê ferqi bıvênê], eke wazenê
 'revdelete-hide-comment' => 'Xulasa measne',
 'revdelete-hide-user' => 'Namê karberiê/Adresa IPya vurnaoği bınımne',
 'revdelete-radio-same' => '(mevurne)',
-'revdelete-radio-set' => 'Heya',
+'revdelete-radio-set' => 'Nımıte',
 'revdelete-radio-unset' => 'Nê',
 'revdelete-log' => 'Sebeb:',
 'revdelete-submit' => '{{PLURAL:$1|Çımraviarnaiso ke çiniyo|Çımraviarnaisê ke çiniyê}} we tetbiq ke',

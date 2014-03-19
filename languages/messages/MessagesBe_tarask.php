@@ -707,8 +707,6 @@ $2',
 'gotaccountlink' => 'Увайдзіце',
 'userlogin-resetlink' => 'Забыліся на зьвесткі для ўваходу?',
 'userlogin-resetpassword-link' => 'Забылі пароль?',
-'helplogin-url' => 'Help:Уваход у сыстэму',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Дапамога па ўваходзе ў сыстэму]]',
 'userlogin-loggedin' => 'Вы ўжо ўвайшлі як {{GENDER:$1|$1}}.
 Для ўваходу пад іншым удзельнікам скарыстайцеся формай унізе.',
 'userlogin-createanother' => 'Стварыць іншы рахунак',
@@ -834,6 +832,9 @@ $2',
 'resetpass-abort-generic' => 'Зьмяненьне паролю было скасаванае пашырэньнем.',
 'resetpass-expired' => 'Тэрмін дзеяньня вашага паролю скончыўся. Калі ласка, пазначце новы пароль для ўваходу ў сыстэму.',
 'resetpass-expired-soft' => 'Тэрмін дзеяньня вашага паролю скончыўся і ён патрабуе замены. Калі ласка, абярыце новы пароль цяпер або націсьніце «{{int:resetpass-submit-cancel}}», каб зьмяніць яго пазьней.',
+'resetpass-validity-soft' => 'Ваш пароль зьяўляецца некарэктным: $1
+
+Калі ласка, абярыце зараз новы пароль або націсьніце «{{int:resetpass-submit-cancel}}», каб скінуць яго пазьней.',
 
 # Special:PasswordReset
 'passwordreset' => 'Ачыстка паролю',

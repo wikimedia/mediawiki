@@ -706,8 +706,6 @@ Ama qunqaychu [[Special:Preferences|{{SITENAME}} allinkachinaykikunata]] hukchay
 'gotaccountlink' => 'Rakiqunaykita willaway',
 'userlogin-resetlink' => 'Yaykuna willayniykikunatari qunqarqankichu?',
 'userlogin-resetpassword-link' => 'Yaykuna rimaykita qunqarqankichu?',
-'helplogin-url' => 'Help:Yaykuy',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Yaykunapaq yanapa]]',
 'userlogin-createanother' => 'Huk rakiqunata kamariy',
 'createacct-join' => 'Kay qatiqpi willaykita yaykuchiy.',
 'createacct-emailrequired' => 'E-chaski imamayta',

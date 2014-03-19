@@ -15,6 +15,7 @@
  * @author Alexknight12
  * @author Ali1
  * @author Alnokta
+ * @author Amire80
  * @author Antime
  * @author Arjanizary
  * @author Asaifm
@@ -937,8 +938,6 @@ $2',
 'gotaccountlink' => 'تسجيل الدخول',
 'userlogin-resetlink' => 'نسيت تفاصيل الدخول؟',
 'userlogin-resetpassword-link' => 'نسيت كلمة مرورك؟',
-'helplogin-url' => 'Help:تسجيل الدخول',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|المساعدة في تسجيل الدخول]]',
 'userlogin-loggedin' => 'أنت {{GENDER:$1|مسجل|مسجلة}} الدخول مسبقًا باسم $1. {{GENDER:$1|استخدم|استخدمي}} النموذج بالأسفل لتسجيل الدخول بحساب آخر.',
 'userlogin-createanother' => 'إنشاء حساب آخر',
 'createacct-join' => 'قم بإدخال المعلومات الخاصة بك أدناه.',
@@ -2740,7 +2739,7 @@ $UNWATCHURL
 'delete-warning-toobig' => 'لهذه الصفحة تاريخ تعديل طويل، أكثر من {{PLURAL:$1||مراجعة واحدة|مراجعتين|$1 مراجعات|$1 مراجعة}}.
 قد يؤدي حذفها إلى اضطراب عمليات قاعدة البيانات في {{SITENAME}}؛
 استمر مع الحذر.',
-'deleting-backlinks-warning' => "'''تحذير:''' ترتبط صفحات أخرى بالصفحة التي أنت على وشك حذفها.",
+'deleting-backlinks-warning' => "'''تحذير:''' ترتبط [[Special:WhatLinksHere/{{FULLPAGENAME}}|صفحات أخرى]] بالصفحة التي أنت على وشك حذفها.",
 
 # Rollback
 'rollback' => 'استرجاع التعديلات',
@@ -4135,6 +4134,7 @@ $5
 # Separators for various lists, etc.
 'semicolon-separator' => '؛&#32;',
 'comma-separator' => '،&#32;',
+'quotation-marks' => '«$1»',
 
 # Multipage image navigation
 'imgmultipageprev' => '→ الصفحة السابقة',

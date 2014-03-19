@@ -598,8 +598,6 @@ Njezabudź swoje [[Special:Preferences|nastajenja za {{GRAMMAR:akuzatiw|{{SITENA
 'gotaccountlink' => 'Přizjewić',
 'userlogin-resetlink' => 'Přizjewjenske daty zabył?',
 'userlogin-resetpassword-link' => 'Sy swoje hesło zabył?',
-'helplogin-url' => 'Help:Přizjewić',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoc za přizjewjenje]]',
 'userlogin-loggedin' => 'Sy hižo jako {{GENDER:$1|$1 přizjewjeny|$1 přizjewjena}}. Wužij slědowacy formular, zo by so jako druhi wužiwar přizjewił.',
 'userlogin-createanother' => 'Dalše konto załožić',
 'createacct-join' => 'Zapodaj deleka swoje informacije.',

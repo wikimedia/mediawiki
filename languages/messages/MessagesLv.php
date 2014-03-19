@@ -474,7 +474,6 @@ Vari turpināt to izmantot anonīmi, vari <span class='plainlinks'>[$1 atgriezti
 'gotaccount' => "Tev jau ir lietotājvārds? '''$1'''!",
 'gotaccountlink' => 'Dodies iekšā',
 'userlogin-resetlink' => 'Esat aizmirsis savu pieslēgšanās informāciju?',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Palīdzība ar pieslēgšanos]]',
 'userlogin-createanother' => 'Izveidot citu kontu',
 'createacct-join' => 'Ievadiet savu informāciju zemāk.',
 'createacct-another-join' => 'Ievadiet jaunā konta informāciju zemāk.',

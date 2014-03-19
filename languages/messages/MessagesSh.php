@@ -646,8 +646,6 @@ Ne zaboravite izmijeniti vlastite [[Special:Preferences|{{SITENAME}} postavke]].
 'gotaccountlink' => 'Prijavite se / Пријавите се',
 'userlogin-resetlink' => 'Zaboravili ste detalje vaše prijave?',
 'userlogin-resetpassword-link' => 'Resetirajte svoju lozinku/zaporku',
-'helplogin-url' => 'Help:Logiranje',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoć pri logiranju]]',
 'createacct-join' => 'Unesite svoje informacije ispod',
 'createacct-another-join' => 'Dolje unesite informacije o novom računu.',
 'createacct-emailrequired' => 'E-mail adresa',

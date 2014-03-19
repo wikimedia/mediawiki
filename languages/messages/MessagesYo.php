@@ -497,8 +497,6 @@ Olùṣeàmójútó tó típa ṣe àlàyé yìí: "$3".',
 'gotaccountlink' => "Ẹ w'ọlé",
 'userlogin-resetlink' => 'À bí ẹ gbàgbé ìwọlé yín?',
 'userlogin-resetpassword-link' => 'Ṣé ẹ ti gbàgbé ọ̀rọ̀ìpamọ́ yín?',
-'helplogin-url' => 'Help:Ìwolé',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ìrànlọ́wọ́ láti ìwọlé]]',
 'userlogin-loggedin' => 'Ẹ pilẹ̀ ti jáwọlé bíi {{GENDER:$1|$1}}.
 Ẹ lo fọ́ọ̀mù ìsàlẹ̀ látí jáwọlé gẹ́gẹ́ bíi oníṣe míràn.',
 'userlogin-createanother' => 'Ìdá àkópamọ́ míràn',

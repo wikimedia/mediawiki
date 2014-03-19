@@ -533,7 +533,6 @@ Noli oblivisci [[Special:Preferences|praeferentias]] tuas apud {{grammar:accusat
 'gotaccount' => "Habesne iam rationem? '''$1'''.",
 'gotaccountlink' => 'Conventum aperi',
 'userlogin-resetlink' => 'Num tesserae tuae oblitus es?',
-'helplogin-url' => 'Help:Conventum aperire',
 'createacct-emailrequired' => 'Inscriptio electronica',
 'createacct-emailoptional' => 'Inscriptio electronica (non necesse)',
 'createacct-email-ph' => 'Inscriptionem electronicam tuam inscribe',

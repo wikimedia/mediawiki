@@ -889,8 +889,7 @@ $2',
 'gotaccountlink' => 'Представьтесь',
 'userlogin-resetlink' => 'Забыли данные для входа?',
 'userlogin-resetpassword-link' => 'Сбросить ваш пароль?',
-'helplogin-url' => 'Help:Представление системе',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Помощь со входом в систему]]',
+'userlogin-helplink2' => 'Помощь по входу',
 'userlogin-loggedin' => 'Вы уже вошли как {{GENDER:$1|$1}}.
 Используйте форму ниже, чтобы войти под другой учётной записью.',
 'userlogin-createanother' => 'Создать другую учётную запись',
@@ -1021,6 +1020,9 @@ $2',
 'resetpass-abort-generic' => 'Изменение пароля было прервано расширением.',
 'resetpass-expired' => 'Срок действия вашего пароля истёк. Пожалуйста, установите новый пароль для входа в систему.',
 'resetpass-expired-soft' => 'Срок действия вашего пароля истёк, и теперь он должен быть изменён. Пожалуйста, выберите новый пароль или нажмите «{{int:resetpass-submit-cancel}}», чтобы изменить его позже.',
+'resetpass-validity-soft' => 'Ваш пароль является некорректным: $1
+
+Пожалуйста, выберите новый пароль или нажмите «{{int:resetpass-submit-cancel}}», чтобы сбросить его позже.',
 
 # Special:PasswordReset
 'passwordreset' => 'Сброс пароля',

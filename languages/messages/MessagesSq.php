@@ -652,7 +652,6 @@ Mos harroni të ndryshoni [[Special:Preferences|{{SITENAME}} preferencat]] tuaja
 'gotaccountlink' => 'Hyni',
 'userlogin-resetlink' => 'Keni harruar të dhënat tuaja të identifikimit?',
 'userlogin-resetpassword-link' => 'Rivendos fjalëkalimin',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Më ndihmo të futem në Wikipedia]]',
 'createacct-join' => 'Jepni informacionin tuaj më poshtë',
 'createaccountmail' => 'me email',
 'createaccountreason' => 'Arsyeja:',

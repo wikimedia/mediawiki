@@ -518,8 +518,6 @@ $2',
 'gotaccountlink' => 'প্রবেশ',
 'userlogin-resetlink' => 'আপনার লগইনের বিস্তারিত তথ্যাদি ভুলে গেছেন?',
 'userlogin-resetpassword-link' => 'শব্দচাবি ভুলে গেছেন?',
-'helplogin-url' => 'Help:প্রবেশ',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|লগইন সংক্রান্ত সাহায্য]]',
 'userlogin-loggedin' => 'আপনি বর্তমানে {{GENDER:$1|$1}} হিসাবে লগইন আছেন।
 অন্য ব্যবহারকারী নামে লগইন করতে চাইলে নিচের ফর্মটি ব্যবহার করুন।',
 'userlogin-createanother' => 'আরেকটি অ্যাকাউন্ট তৈরি করুন',

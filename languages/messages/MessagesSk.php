@@ -728,8 +728,6 @@ Nezabudnite zmeniť svoje [[Special:Preferences|Predvoľby {{GRAMMAR:genitív|{{
 'gotaccountlink' => 'Prihlásiť',
 'userlogin-resetlink' => 'Zabudli ste svoje prihlasovacie údaje?',
 'userlogin-resetpassword-link' => 'Zabudli ste heslo?',
-'helplogin-url' => 'Help:Prihlasovanie',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoc s prihlásením]]',
 'userlogin-loggedin' => 'Ste už {{GENDER:$1|prihĺasený|prihlásená}} ako $1.
 Pomocou formulára nižšie sa môžete prihlásiť ako iný redaktor.',
 'userlogin-createanother' => 'Vytvoriť ďalší účet',
@@ -1686,7 +1684,7 @@ Softvér používa toto nastavenie na správne oslovenie a označenie vás ostat
 'recentchanges-label-plusminus' => 'Veľkosť stránky sa zmenila o toľkoto bajtov',
 'recentchanges-legend-heading' => "'''Legenda:'''",
 'recentchanges-legend-newpage' => '(pozri tiež [[Special:NewPages|zoznam nových stránok]])',
-'rcnotefrom' => "Nižšie sú zobrazené úpravy od '''$2''' (do '''$1''').",
+'rcnotefrom' => 'Nižšie sú zobrazené úpravy od <strong>$2</strong> (do <strong>$1</strong>).',
 'rclistfrom' => 'Zobraziť nové úpravy počnúc od $1',
 'rcshowhideminor' => '$1 drobné úpravy',
 'rcshowhideminor-show' => 'Zobraziť',

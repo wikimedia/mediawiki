@@ -561,8 +561,6 @@ $2',
 'gotaccountlink' => 'Приголошіня',
 'userlogin-resetlink' => 'Забыли сьте вашы даны на приголошіня?',
 'userlogin-resetpassword-link' => 'Забыли сьте гесло?',
-'helplogin-url' => 'Help:Приголошіня',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Поміч з приголошованём]]',
 'userlogin-loggedin' => 'Уж сьте {{GENDER:$1|приголошеный|приголошена}} як $1.
 Хоснуйте формулар долов жебы сьте ся приголосили як другый хоснователь.',
 'userlogin-createanother' => 'Створити інше конто',

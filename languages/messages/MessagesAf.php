@@ -653,8 +653,6 @@ Moenie vergeet om u [[Special:Preferences|voorkeure vir {{SITENAME}}]] te stel n
 'gotaccountlink' => 'Meld aan',
 'userlogin-resetlink' => 'U besonderhede vergeet?',
 'userlogin-resetpassword-link' => 'Wagwoord vergeet?',
-'helplogin-url' => 'Help:Aanmelding',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hulp met aanmelding]]',
 'userlogin-loggedin' => "U is reeds aangemeld as {{GENDER:$1|$1}}.
 Gebruik die onderstaande vorm om as 'n ander gebruiker aan te meld.",
 'userlogin-createanother' => "Skep nog 'n rekening",

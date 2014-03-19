@@ -482,8 +482,6 @@ Na dìochuimhnich na [[Special:Preferences|roghainnean agad air {{SITENAME}}]] a
 'gotaccountlink' => 'Log a-steach',
 'userlogin-resetlink' => "Na dhìochuimhnich thu d' ainm is facal-faire?",
 'userlogin-resetpassword-link' => 'Na dhìochuimhnich thu am facal-faire agad?',
-'helplogin-url' => "Help:A' clàradh a-steach",
-'userlogin-helplink' => "[[{{MediaWiki:helplogin-url}}|Cobhair leis a' chlàradh a-steach]]",
 'userlogin-loggedin' => 'Chaidh do chlàradh mar {{GENDER:$1|$1}} mu thràth.
 Cleachd am foirm gu h-ìosal airson clàradh a-steach mar chleachdaiche eile.',
 'userlogin-createanother' => 'Cruthaich cunntas eile',

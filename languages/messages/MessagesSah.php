@@ -485,8 +485,6 @@ $2',
 'gotaccountlink' => 'Аатыҥ',
 'userlogin-resetlink' => 'Киирэр тылгын умнубуккун дуо?',
 'userlogin-resetpassword-link' => 'Киирии тылы уларытыы',
-'helplogin-url' => 'Help:Бэлиэ-ааты киллэрии',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Бэлиэтэниигэ көмө]]',
 'userlogin-loggedin' => 'Маннык аатынан киирбиккин {{GENDER:$1|$1}}.
 Атын аатынан киирэргэ аллара көстөр форманы туһан.',
 'userlogin-createanother' => 'Атын аатынан бэлиэтэн',

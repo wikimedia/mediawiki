@@ -775,8 +775,6 @@ Ne forgesu ŝanĝi viajn [[Special:Preferences|{{SITENAME}}-preferojn]]',
 'gotaccountlink' => 'Ensaluti',
 'userlogin-resetlink' => 'Ĉu vi forgesis ensalutajn detalojn?',
 'userlogin-resetpassword-link' => 'Ĉu vi forgesis vian pasvorton?',
-'helplogin-url' => 'Help:Ensalutado',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Helpo pri ensalutado]]',
 'userlogin-loggedin' => 'Vi jam estas ensalutita kiel {{GENDER:$1|$1}}.
 Uzu la formularon suben por ensaluti kiel alia uzanto.',
 'userlogin-createanother' => 'Krei alian konton',

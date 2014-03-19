@@ -571,8 +571,6 @@ Accura chi quarchi pàggina pò cuntinuari a èssiri ammustrata comu si nun avis
 'gotaccountlink' => 'Trasi',
 'userlogin-resetlink' => "T'ascurdasti li dittagli pâ trasuta?",
 'userlogin-resetpassword-link' => 'Reinizzializza la tò password',
-'helplogin-url' => 'Help:Cunnissioni',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Aiutu câ fasi di login]]',
 'createacct-join' => 'Nzirisci li tò nfurnazzioni ccà',
 'createacct-emailrequired' => 'Nnirizzu e-mail',
 'createacct-emailoptional' => 'Nnirizzu e-mail (facurtativu)',

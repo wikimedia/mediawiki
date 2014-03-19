@@ -764,8 +764,6 @@ Vergeet niet joew [[Special:Preferences|veurkeuren veur {{SITENAME}}]] an te pas
 'gotaccountlink' => 'Anmelden',
 'userlogin-resetlink' => "Bi'j de anmeldgegevens kwiet?",
 'userlogin-resetpassword-link' => 'Joew wachtwoord vergeten?',
-'helplogin-url' => 'Help:Anmelden',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hulpe bie t anmelden]]',
 'userlogin-loggedin' => 'Je bin al an-emeld as {{GENDER:$1|$1}}.
 Gebruuk t onderstaonde formulier um an te melden as n aandere gebruker.',
 'userlogin-createanother' => 'n Aandere gebrukerskonto anmaken',

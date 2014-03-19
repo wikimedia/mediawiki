@@ -600,8 +600,6 @@ $2',
 'gotaccountlink' => 'પ્રવેશ કરો',
 'userlogin-resetlink' => 'પોતાની પ્રવેશ માહિતી ભૂલી ગયા છો?',
 'userlogin-resetpassword-link' => 'તમારો પાસવર્ડ ભૂલી ગયા છો?',
-'helplogin-url' => 'Help:પ્રવેશ માટે',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|પ્રવેશવા માટેની મદદ]]',
 'userlogin-loggedin' => 'તમે પહેલેથી {{GENDER:$1|$1}} તરીકે પ્રવેશ કરેલો જ છે.
 બીજા સભ્ય તરીકે પ્રવેશ કરવા માટે નીચેનું ફોર્મ વાપરો.',
 'userlogin-createanother' => 'બીજું ખાતું બનાવો',

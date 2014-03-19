@@ -476,7 +476,6 @@ Bila di bîra te de be ku gengaz e hin rûpel mîna ku tu hîn bi navê xwe qeyd
 'gotaccountlink' => 'Têkeve',
 'userlogin-resetlink' => 'Te agahiyên hesabê xwe ji bîr kirin?',
 'userlogin-resetpassword-link' => 'Şîfreyê ji nû ve çêke',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Alîkariya têketinê]]',
 'createacct-emailrequired' => 'E-name',
 'createaccountmail' => 'Use a temporary random password and send it to the email address specified below',
 'createaccountreason' => 'Sedem:',

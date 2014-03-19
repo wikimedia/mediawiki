@@ -417,7 +417,6 @@ Cnāw þæt sume trametas mihten gīet wesan geīwde swā þū wǣre gīet inmel
 'gotaccount' => 'Hafast þū reccinge ǣr? $1.',
 'gotaccountlink' => 'Inmeldian',
 'userlogin-resetpassword-link' => 'Forgēate þū þīn gelēafword?',
-'helplogin-url' => 'Help:Inmeldung',
 'createaccountmail' => 'Notian sceortne tīman hlētlic þafungword and sendan hit to þǣm spearcǣrenda naman þe is niðer',
 'createaccountreason' => 'Racu:',
 'badretype' => 'Þā þafungword þe write þū, bēoþ ungelīc.',

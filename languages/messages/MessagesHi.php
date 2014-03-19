@@ -643,8 +643,6 @@ $2',
 'gotaccountlink' => 'लॉग इन',
 'userlogin-resetlink' => 'अपनी प्रवेश जानकारी भूल गए हैं?',
 'userlogin-resetpassword-link' => 'अपना पासवर्ड भूल गए?',
-'helplogin-url' => 'Help:लॉगिंग इन',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|लॉग इन करने में सहायता]]',
 'userlogin-loggedin' => 'आप {{GENDER:$1|$1}} के रूप में पहले से लॉग्ड इन हैं।
 किसी अन्य सदस्य के रूप में लॉग इन करने के लिए निम्नलिखित फ़ॉर्म का प्रयोग करें।',
 'userlogin-createanother' => 'एक अन्य खाता खोलें',

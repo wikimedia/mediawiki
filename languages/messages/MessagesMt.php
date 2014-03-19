@@ -688,8 +688,6 @@ Kun af li ċerti paġni jistgħu jkomplu jidhru bħallikieku l-illogjar 'l barra
 'gotaccountlink' => 'Idħol',
 'userlogin-resetlink' => 'Insejt kif tidħol fil-kont tiegħek?',
 'userlogin-resetpassword-link' => 'Irrisettja l-password',
-'helplogin-url' => 'Help:Kif tirreġistra',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Għajnuna kif tillogja]]',
 'createacct-join' => 'Daħħal l-informazzjoni tiegħek hawn taħt.',
 'createacct-emailrequired' => 'Indirizz elettroniku',
 'createacct-emailoptional' => 'Indirizz elettroniku (fakultattiv)',

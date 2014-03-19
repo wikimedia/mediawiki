@@ -715,8 +715,6 @@ $2',
 'gotaccountlink' => '登入',
 'userlogin-resetlink' => '忘記了您的登入細節？',
 'userlogin-resetpassword-link' => '忘記您的密碼？',
-'helplogin-url' => 'Help:登入',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|登入幫助]]',
 'userlogin-loggedin' => '您已作為{{GENDER:$1|$1}}登錄。
 利用以下表單以作為另一賬戶登錄。',
 'userlogin-createanother' => '建立另一賬戶',
@@ -838,6 +836,9 @@ $2',
 'resetpass-abort-generic' => '擴充元件已中止了更改密碼操作。',
 'resetpass-expired' => '您的密碼已過期。請設置新密碼以登錄。',
 'resetpass-expired-soft' => '您的密碼已過期，現需重置。請設置新密碼以登錄，或點擊“{{int:resetpass-submit-cancel}}”以稍後重置。',
+'resetpass-validity-soft' => '您的密碼無效：$1 
+
+請選擇一個新密碼，或點擊「{{int:resetpass-submit-cancel}}」以稍後重置。',
 
 # Special:PasswordReset
 'passwordreset' => '重新設定密碼',

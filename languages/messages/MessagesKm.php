@@ -709,8 +709,6 @@ $2',
 'gotaccountlink' => 'កត់ឈ្មោះចូល',
 'userlogin-resetlink' => 'តើអ្នកភ្លេចព័ត៌មានលម្អិតសម្រាប់កត់ឈ្មោះចូលហើយ?',
 'userlogin-resetpassword-link' => 'អ្នកភ្លេចពាក្យសម្ងាត់ហើយ?',
-'helplogin-url' => 'Help:ការកត់ឈ្មោះចូល',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|ជំនួយក្នុងការកត់ឈ្មោះចូល]]',
 'userlogin-loggedin' => 'អ្នកបានកត់ឈ្មោះចូលជា {{GENDER:$1|$1}} ហើយ។
 ប្រើសំណុំបែបបទខាងក្រោមដើម្បីកត់ឈ្មោះចូលជាអ្នកប្រើប្រាស់ផ្សេងម្នាក់ទៀត។',
 'userlogin-createanother' => 'បង្កើតគណនីមួយទៀត',

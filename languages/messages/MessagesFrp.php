@@ -753,8 +753,6 @@ Oubliâd pas de changiér voutres [[Special:Preferences|prèferences dessus {{SI
 'gotaccountlink' => 'Branchiéd-vos',
 'userlogin-resetlink' => 'Vos éd oubliâ voutros dètalys de branchement ?',
 'userlogin-resetpassword-link' => 'Rebetar a zérô lo contresegno',
-'helplogin-url' => 'Help:Branchement',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Éde u branchement]]',
 'createacct-join' => 'Buchiéd voutres enformacions ce-desot.',
 'createacct-another-join' => 'Buchiéd les enformacions sur lo compto novél ce-desot.',
 'createacct-emailrequired' => 'Adrèce èlèctronica',

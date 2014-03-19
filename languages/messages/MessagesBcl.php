@@ -546,8 +546,6 @@ Dae malingaw na liwaton an saimong [[Special:Preferences|{{SITENAME}} mga kamuya
 'gotaccountlink' => 'Maglaog',
 'userlogin-resetlink' => 'Nakalingaw ka sa panlaog mong detalye?',
 'userlogin-resetpassword-link' => 'Nalingawan mo an saimong pasa-taramon?',
-'helplogin-url' => 'Help:Paglalaog',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Tabang sa paglalaog]]',
 'userlogin-loggedin' => 'Ika nakalaog na tabi bilang si {{GENDER:$1|$1}}.
 Gamita an porma sa ibaba sa paglaog bilang ibang paragamit.',
 'userlogin-createanother' => 'Magmukna nin ibang panindog',

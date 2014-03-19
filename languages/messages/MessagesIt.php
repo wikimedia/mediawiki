@@ -457,7 +457,7 @@ $messages = array(
 'vector-action-delete' => 'Cancella',
 'vector-action-move' => 'Sposta',
 'vector-action-protect' => 'Proteggi',
-'vector-action-undelete' => 'Recupera',
+'vector-action-undelete' => 'Ripristina',
 'vector-action-unprotect' => 'Cambia la protezione',
 'vector-view-create' => 'Crea',
 'vector-view-edit' => 'Modifica',
@@ -742,8 +742,6 @@ Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITEN
 'gotaccountlink' => 'Entra',
 'userlogin-resetlink' => 'Hai dimenticato i tuoi dati di accesso?',
 'userlogin-resetpassword-link' => 'Hai dimenticato la password?',
-'helplogin-url' => 'Help:Login',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Aiuto con il login]]',
 'userlogin-loggedin' => 'Sei già connesso come {{GENDER:$1|$1}}.
 Usa il modulo sottostante per accedere come altro utente.',
 'userlogin-createanother' => "Crea un'altra utenza",
@@ -863,6 +861,9 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 'resetpass-abort-generic' => "La modifica della password è stata interrotta da un'estensione.",
 'resetpass-expired' => "La password è scaduta. Si prega di impostare una nuova password per effettuare l'accesso.",
 'resetpass-expired-soft' => 'La tua password è scaduta e deve essere reimpostata. Si prega di scegliere una nuova password o fare clic su "{{int:resetpass-submit-cancel}}" per reimpostarla successivamente.',
+'resetpass-validity-soft' => 'La tua password non è valida: $1
+
+Si prega di scegliere una nuova password o fare clic su "{{int:resetpass-submit-cancel}}" per reimpostarla successivamente.',
 
 # Special:PasswordReset
 'passwordreset' => 'Reimposta password',

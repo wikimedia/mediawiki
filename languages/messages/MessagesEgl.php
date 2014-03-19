@@ -451,8 +451,6 @@ Guêrda che soquânti pàgini a prén vèdres incòra cme s'ét fós incòra col
 'gotaccountlink' => 'Và dèinter',
 'userlogin-resetlink' => "T'ét scurdê j elemèint p'r al tó ingrès?",
 'userlogin-resetpassword-link' => "T' ét scurdê la cêva 'd ingrès?",
-'helplogin-url' => "Help: Per l'ingrès",
-'userlogin-helplink' => "[[{{MediaWiki:helplogin-url}}|Ajót cun l' ingrès]]",
 'userlogin-loggedin' => "T'ét bèle coleghê {{GENDER:$1|$1}}. 
 Drōva al mōdul ché sòta cme un êter utèint.",
 'userlogin-createanother' => "Fà 'n' êtra utèinsa.",

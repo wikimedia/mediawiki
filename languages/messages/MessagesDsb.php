@@ -600,8 +600,6 @@ Glědaj: Jo móžno, až někotare boki pokazuju se snaź tak, ako by ty hyšći
 'gotaccountlink' => 'Pśizjawiś se',
 'userlogin-resetlink' => 'Sy pśizjawjeńske daty zabył?',
 'userlogin-resetpassword-link' => 'Sy swójo gronidło zabył?',
-'helplogin-url' => 'Help:Pśizjawiś',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoc za pśizjawjenje]]',
 'userlogin-loggedin' => 'Sy južo ako {{GENDER:$1|$1 pśizjawjony|$1 pśizjawjona}}. Wužyj slědujucy formular, aby se ako drugi wužywaŕ pśizjawił.',
 'userlogin-createanother' => 'Druge konto załožyś',
 'createacct-join' => 'Zapódaj dołojce swóje informacije.',

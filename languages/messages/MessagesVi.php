@@ -781,8 +781,6 @@ Hãy nhớ thay đổi [[Special:Preferences|tùy chọn cá nhân {{SITENAME}}]
 'gotaccountlink' => 'Đăng nhập',
 'userlogin-resetlink' => 'Quên mất thông tin đăng nhập?',
 'userlogin-resetpassword-link' => 'Quên mật khẩu?',
-'helplogin-url' => 'Help:Đăng nhập',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Trợ giúp đăng nhập]]',
 'userlogin-loggedin' => 'Bạn đã đăng nhập với tên {{GENDER:$1}}$1.
 Hãy sử dụng biểu mẫu ở dưới để đăng nhập với tài khoản người dùng khác.',
 'userlogin-createanother' => 'Mở thêm tài khoản',

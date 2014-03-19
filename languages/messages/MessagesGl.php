@@ -732,8 +732,6 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'gotaccountlink' => 'Acceda ao sistema',
 'userlogin-resetlink' => 'Esqueceu os seus datos de rexistro?',
 'userlogin-resetpassword-link' => 'Esqueceu o contrasinal?',
-'helplogin-url' => 'Help:Rexistro',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Axuda co rexistro]]',
 'userlogin-loggedin' => 'Xa accedeu ao sistema como {{GENDER:$1|$1}}.
 Utilice o formulario inferior para acceder como outro usuario.',
 'userlogin-createanother' => 'Crear outra conta',

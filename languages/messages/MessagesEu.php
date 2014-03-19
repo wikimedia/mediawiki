@@ -573,8 +573,6 @@ Ez ezazu ahaztu zure [[Special:Preferences|{{SITENAME}} hobespenak]] aldatzea.',
 'gotaccountlink' => 'Saioa hasi',
 'userlogin-resetlink' => 'Saioa hasteko datuak ahaztu dituzu?',
 'userlogin-resetpassword-link' => 'Zure pasahitza ahaztu duzu?',
-'helplogin-url' => 'Help:Sarrera',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Barrura sartzeko laguntza]]',
 'userlogin-loggedin' => 'Dagoeneko izena emana zaude {{GENDER:$1|$1}}.
 Beheko formularioa erabil ezazu beste erabiltzaile baten izenean sartzeko.',
 'userlogin-createanother' => 'Beste kontu bat sortu',

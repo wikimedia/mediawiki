@@ -622,8 +622,6 @@ Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}
 'gotaccountlink' => 'Kevreañ',
 'userlogin-resetlink' => "Ha disoñjet eo bet ho titouroù kevreañ ganeoc'h ?",
 'userlogin-resetpassword-link' => 'Ankouaet ho peus ho ker-tremen ?',
-'helplogin-url' => 'Help:Kevreañ',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Skoazell evit kevreañ]]',
 'userlogin-loggedin' => "Kevreet oc'h dija evel {{GENDER:$1|$1}}.
 Implijit ar furmskrid amañ dindan evit kevreañ evel un implijer all.",
 'userlogin-createanother' => 'Krouiñ ur gont all',

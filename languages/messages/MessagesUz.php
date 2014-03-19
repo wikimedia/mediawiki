@@ -508,7 +508,6 @@ Brauzeringiz keshini tozalamaguningizgacha ayrim sahifalar tizimga kirganingizde
 'gotaccountlink' => 'Kirish',
 'userlogin-resetlink' => 'Kirish maʻlumotlaringiz esdan chiqdimi?',
 'userlogin-resetpassword-link' => 'Unutib qoʻydingizmi?',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Kirish uchun yordam]]',
 'userlogin-loggedin' => 'Siz {{GENDER:$1|$1}} nomi bilan kirgansiz.
 Boshqa hisob raqami orqali kirish uchun quyidagi formadan foydalaning.',
 'userlogin-createanother' => 'Boshqa hisob yaratish',

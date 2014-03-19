@@ -769,8 +769,6 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'gotaccountlink' => 'Autentique-se',
 'userlogin-resetlink' => 'Esqueceu-se do seu nome de utilizador ou da palavra-chave?',
 'userlogin-resetpassword-link' => 'Esqueceu a sua palavra-chave?',
-'helplogin-url' => 'Help:Autenticação',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda a fazer login]]',
 'userlogin-loggedin' => 'Já está {{GENDER:$1|autenticado|autenticada|autenticado}} com o nome $1.
 Use o formulário abaixo para iniciar uma sessão com outro nome.',
 'userlogin-createanother' => 'Criar outra conta',

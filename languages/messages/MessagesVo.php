@@ -512,8 +512,6 @@ Küpälolös, das pads anik ba nog pojenons äsva no esenunädol oli, jüs uklin
 'gotaccountlink' => 'Nunädolös obi',
 'userlogin-resetlink' => 'Eglömol-li nünis kala olik?',
 'userlogin-resetpassword-link' => 'Dönuvälön letavödi olik',
-'helplogin-url' => 'Help:Nunädön',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Yuf ad nunädön]]',
 'createacct-join' => 'Penolös nünis olik dono.',
 'createacct-emailrequired' => 'Ladet leäktronik',
 'createaccountmail' => 'me pot leäktronik',

@@ -514,8 +514,6 @@ Ayaw kalimti pagbalyo han imo [[Special:Preferences|{{SITENAME}} preperensya]].'
 'gotaccountlink' => 'Sakob',
 'userlogin-resetlink' => 'Nangalimot han imo detalye han pagsakob?',
 'userlogin-resetpassword-link' => '¿Nangalimot ka han imo tigaman-pansulod?',
-'helplogin-url' => 'Help:Pag-log-in',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Bulig han pag-log-in]]',
 'userlogin-loggedin' => 'Nakalog-in kana komo hi {{GENDER:$1|$1}}.
 Gamiti an porma ha ubos para makalog-in komo iba nga gumaramit.',
 'userlogin-createanother' => 'Paghimo hin iba nga akawnt',

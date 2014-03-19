@@ -512,8 +512,7 @@ Nun t'escaezas de camudar les tos [[Special:Preferences|preferencies de {{SITENA
 'gotaccountlink' => 'Aniciar sesión',
 'userlogin-resetlink' => "¿Escaeció los datos d'accesu?",
 'userlogin-resetpassword-link' => '¿Escaeció la contraseña?',
-'helplogin-url' => 'Help:Aniciar sesión',
-'userlogin-helplink' => "[[{{MediaWiki:helplogin-url}}|Ayuda p'aniciar sesión]]",
+'userlogin-helplink2' => 'Ayuda del aniciu de sesión',
 'userlogin-loggedin' => "Yá anició sesión como {{GENDER:$1|$1}}.
 Utilice'l formulariu de más abaxo p'aniciar sesión como otru usuariu.",
 'userlogin-createanother' => 'Crear otra cuenta',
@@ -650,6 +649,9 @@ Pa completar l'aniciu de sesión, tien de definir una nueva contraseña equí:",
 'resetpass-abort-generic' => "Una estensión encaboxó'l cambiu de la contraseña.",
 'resetpass-expired' => "La so contraseña caducó. Defina una nueva contraseña p'aniciar sesión.",
 'resetpass-expired-soft' => 'La so contraseña caducó y tien de reaniciala. Escueya una contraseña nueva, o calque «{{int:resetpass-submit-cancel}}» pa reaniciala más sero.',
+'resetpass-validity-soft' => 'La so contraseña nun ye válida: $1
+
+Escueya una contraseña nueva, o calque «{{int:resetpass-submit-cancel}}» pa reaniciala más sero.',
 
 # Special:PasswordReset
 'passwordreset' => 'Reaniciar contraseña',
@@ -2045,7 +2047,7 @@ Les entraes <del>tachaes</del> tan resueltes.',
 'protectedpages-unknown-timestamp' => 'Desconocida',
 'protectedpages-unknown-performer' => 'Usuariu desconocíu',
 'protectedtitles' => 'Títulos protexíos',
-'protectedtitles-summary' => 'Esta páxina llista los títulos que tienen torgada la creación. Pa ver una llista de les páxines esistentes protexíes, vea [[{{#special:ProtectedPages}}|{{int:protectedpages}}]].',
+'protectedtitles-summary' => 'Esta páxina llista los títulos que tienen torgada la creación. Pa ver una llista de les páxines protexíes esistentes, vea [[{{#special:ProtectedPages}}|{{int:protectedpages}}]].',
 'protectedtitlesempty' => 'Nun hai títulos protexíos anguaño con estos parámetros.',
 'listusers' => "Llista d'usuarios",
 'listusers-editsonly' => 'Amosar namái usuarios con ediciones',

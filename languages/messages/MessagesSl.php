@@ -636,8 +636,7 @@ Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rod
 'gotaccountlink' => 'Prijavite se',
 'userlogin-resetlink' => 'Ste pozabili svoje prijavne podatke?',
 'userlogin-resetpassword-link' => 'Ste pozabili svoje geslo?',
-'helplogin-url' => 'Help:Prijava',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoč pri prijavi]]',
+'userlogin-helplink2' => 'Pomoč pri prijavi',
 'userlogin-loggedin' => 'Prijavljeni ste že kot {{GENDER:$1|$1}}.
 Uporabite spodnji obrazec, da se prijavite kot drug uporabnik.',
 'userlogin-createanother' => 'Ustvari drug račun',
@@ -771,6 +770,9 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 'resetpass-abort-generic' => 'Razširitev je prekinila spremembo gesla.',
 'resetpass-expired' => 'Vaše geslo je poteklo. Prosimo, nastavite novo geslo za prijavo.',
 'resetpass-expired-soft' => 'Vaše geslo je poteklo in ga morate ponastaviti. Prosimo, izberite novo geslo zdaj ali kliknite »{{int:resetpass-submit-cancel}}«, da ga ponastavite pozneje.',
+'resetpass-validity-soft' => 'Vaše geslo ni veljavno: $1
+
+Prosimo, izberite novo geslo zdaj ali kliknite »{{int:resetpass-submit-cancel}}«, da ga ponastavite pozneje.',
 
 # Special:PasswordReset
 'passwordreset' => 'Ponastavitev gesla',

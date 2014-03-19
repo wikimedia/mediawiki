@@ -479,8 +479,6 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'gotaccountlink' => 'Tràse',
 'userlogin-resetlink' => "T'è scurdate le dettaglie pe trasè?",
 'userlogin-resetpassword-link' => "T'è scurdate 'a passuord toje?",
-'helplogin-url' => 'Help:Trasenne',
-'userlogin-helplink' => "[[{{MediaWiki:helplogin-url}}|Aijute cu 'a trasute]]",
 'userlogin-loggedin' => "Tu ste jndre ggià cumme a {{GENDER:$1|$1}}.
 Ause 'u module aqquà sotte pe trasè cumme a 'n'otre utende.",
 'userlogin-createanother' => "Ccreje 'n'otre cunde",

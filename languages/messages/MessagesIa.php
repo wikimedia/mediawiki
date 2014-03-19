@@ -593,8 +593,6 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'gotaccountlink' => 'Aperir session',
 'userlogin-resetlink' => 'Datos de authentication oblidate?',
 'userlogin-resetpassword-link' => 'Contrasigno oblidate?',
-'helplogin-url' => 'Help:Aperir session',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Adjuta a aperir session]]',
 'userlogin-loggedin' => 'Tu ha jam aperite session como {{GENDER:$1|$1}}.
 Usa le formulario sequente pro aperir session como altere usator.',
 'userlogin-createanother' => 'Crear un altere conto',

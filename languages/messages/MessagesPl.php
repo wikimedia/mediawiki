@@ -764,8 +764,6 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'gotaccountlink' => 'Zaloguj się',
 'userlogin-resetlink' => 'Zapomniałeś danych do zalogowania się?',
 'userlogin-resetpassword-link' => 'Nie pamiętasz hasła?',
-'helplogin-url' => 'Help:Logowanie',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoc z logowaniem]]',
 'userlogin-loggedin' => 'Zalogowano jako {{GENDER:$1|$1}}.
 Użyj poniższego formularza, aby zalogować się jako inny użytkownik.',
 'userlogin-createanother' => 'Załóż nowe konto',

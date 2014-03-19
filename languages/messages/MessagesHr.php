@@ -754,7 +754,6 @@ Ne zaboravite prilagoditi Vaše [[Special:Preferences|{{SITENAME}} postavke]].',
 'gotaccountlink' => 'Prijavite se',
 'userlogin-resetlink' => 'Zaboravili ste detalje vaše prijave?',
 'userlogin-resetpassword-link' => 'Zaboravili ste zaporku?',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Pomoć pri prijavi]]',
 'userlogin-loggedin' => 'Već ste prijavljeni kao {{GENDER:$1|$1}}.
 Rabite donji obrazac da biste se prijavili kao drugi suradnik.',
 'userlogin-createanother' => 'Stvori još jedan račun',

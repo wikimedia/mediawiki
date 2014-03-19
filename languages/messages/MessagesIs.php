@@ -668,8 +668,6 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}} stillingunum]] þínum
 'gotaccountlink' => 'Skráðu þig inn',
 'userlogin-resetlink' => 'Gleymdir þú notendaupplýsingunum þínum?',
 'userlogin-resetpassword-link' => 'Gleymdiru lykilorðinu þínu?',
-'helplogin-url' => 'Help:Innskráning',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hjálp við innskráningu]]',
 'userlogin-loggedin' => 'Þú ert búin(n) að skrá þig inn sem {{GENDER:$1|$1}}.
 Notaðu eyðablaðið fyrir neðan til að skrá þig inn sem annar notandi.',
 'userlogin-createanother' => 'Stofna annan aðgang',

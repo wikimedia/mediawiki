@@ -868,8 +868,7 @@ N'oubliez pas de modifier [[Special:Preferences|vos préférences pour {{SITENAM
 'gotaccountlink' => 'Connectez-vous',
 'userlogin-resetlink' => 'Vous avez oublié vos détails de connexion ?',
 'userlogin-resetpassword-link' => 'Mot de passe oublié ?',
-'helplogin-url' => 'Help:Connexion',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Aide à la connexion]]',
+'userlogin-helplink2' => 'Aide à la connexion',
 'userlogin-loggedin' => 'Vous êtes déjà connecté{{GENDER:$1||e}} en tant que {{GENDER:$1|$1}}.
 Utilisez le formulaire ci-dessous pour vous connecter avec un autre compte utilisateur.',
 'userlogin-createanother' => 'Créer un autre compte',
@@ -995,6 +994,9 @@ Pour terminer la connexion, vous devez fournir un nouveau mot de passe ici :',
 'resetpass-abort-generic' => 'La modification du mot de passe a été annulée par une extension.',
 'resetpass-expired' => 'Votre mot de passe a expiré. Veuillez en fournir un nouveau pour vous connecter.',
 'resetpass-expired-soft' => 'Votre mot de passe a expiré, et doit être réinitialisé. Veuillez en choisir un nouveau maintenant, ou cliquer sur « {{int:resetpass-submit-cancel}} » pour le faire plus tard.',
+'resetpass-validity-soft' => 'Votre mot de passe n’est pas valide : $1
+
+Veuillez choisir un nouveau mot de passe maintenant, ou cliquez sur « {{int:resetpass-submit-cancel}} » pour le réinitialiser plus tard.',
 
 # Special:PasswordReset
 'passwordreset' => 'Remise à zéro du mot de passe',

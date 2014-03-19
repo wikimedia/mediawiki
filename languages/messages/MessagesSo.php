@@ -407,7 +407,6 @@ Waad sii isticmaali kartaa {{SITENAME}} adoona lagu aqoon, ama <span class='plai
 'gotaccountlink' => 'Gudaha gal',
 'userlogin-resetlink' => 'Ma ilaawday tafaasiisha gudagalahaada?',
 'userlogin-resetpassword-link' => 'Dib usoo cesho erey sirtaada',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Caawinaad habka gudagalka]]',
 'createacct-join' => 'Gali macluumaadkaada gaarka ah.',
 'createacct-emailoptional' => 'Ciwaanka e-mail-ka (dooqasho)',
 'createacct-email-ph' => 'Gali Ciwaankaada e-mail-ka',

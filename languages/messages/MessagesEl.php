@@ -816,8 +816,6 @@ $2',
 'gotaccountlink' => 'Είσοδος',
 'userlogin-resetlink' => 'Ξεχάσατε τα στοιχεία εισόδου σας;',
 'userlogin-resetpassword-link' => 'Ξεχάσατε τον κωδικό πρόσβασης;',
-'helplogin-url' => 'Help:Σύνδεση',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Βοήθεια για τη σύνδεσή σας]]',
 'userlogin-loggedin' => 'Είστε ήδη {{GENDER:$1|συνδεδεμένος|συνδεδεμένη}} ως $1.
 Χρησιμοποιήστε την παρακάτω φόρμα για να συνδεθείτε ως άλλος χρήστης.',
 'userlogin-createanother' => 'Δημιουργήσετε έναν άλλο λογαριασμό',

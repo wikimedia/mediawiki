@@ -638,8 +638,6 @@ $1',
 'gotaccountlink' => 'ล็อกอิน',
 'userlogin-resetlink' => 'ลืมรายละเอียดล็อกอินของคุณหรือ',
 'userlogin-resetpassword-link' => 'ลืมรหัสผ่านหรือ',
-'helplogin-url' => 'Help:การล็อกอิน',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|คำอธิบายเรื่องการล็อกอิน]]',
 'userlogin-loggedin' => 'คุณล็อกอินในชื่อ {{GENDER:$1|$1}} แล้ว
 ใช้แบบด้านล่างเพื่อล็อกอินเป็นอีกผู้ใช้หนึ่ง',
 'userlogin-createanother' => 'สร้างอีกบัญชี',

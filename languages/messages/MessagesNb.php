@@ -764,8 +764,6 @@ Ikke glem å endre [[Special:Preferences|innstillingene dine]] på {{SITENAME}}.
 'gotaccountlink' => 'Logg inn',
 'userlogin-resetlink' => 'Har du glemt påloggingsdetaljene dine?',
 'userlogin-resetpassword-link' => 'Glemt passordet?',
-'helplogin-url' => 'Help:Innlogging',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hjelp med innlogging]]',
 'userlogin-loggedin' => 'Du er allerede logget inn som {{GENDER:$1|$1}}.
 Bruk skjemaet nedenfor for å logge inn som en annen bruker.',
 'userlogin-createanother' => 'Opprett ny konto',

@@ -486,8 +486,6 @@ Che a dësmentia pa ëd cambié ij [[Special:Preferences|sò gust për {{SITENAM
 'gotaccountlink' => "Ch'a rintra ant ël sistema",
 'userlogin-resetlink' => "A l'ha dësmentià ij sò detaj për intré ant ël sistema?",
 'userlogin-resetpassword-link' => 'Ciav dësmentià?',
-'helplogin-url' => 'Help:Conession',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Agiut con la conession]]',
 'userlogin-loggedin' => "A l'é già rintrà an ël sistema tanme {{GENDER:$1|$1}}.
 Ch'a deuvra ël formolari sì-sota për rintré coma n'àutr n'utent.",
 'userlogin-createanother' => "Creé n'àutr cont",

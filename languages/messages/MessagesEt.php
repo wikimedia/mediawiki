@@ -751,8 +751,6 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'gotaccountlink' => 'logi sisse',
 'userlogin-resetlink' => 'Kas oled unustanud oma sisselogimisandmed?',
 'userlogin-resetpassword-link' => 'Kas unustasid parooli?',
-'helplogin-url' => 'Help:Sisselogimine',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Sisselogimisabi]]',
 'userlogin-loggedin' => 'Oled juba sisse logitud nimega {{GENDER:$1|$1}}.
 Kasuta allolevat vormi, et logida sisse teise kasutajaga.',
 'userlogin-createanother' => 'Loo teine konto',

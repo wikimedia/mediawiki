@@ -684,8 +684,6 @@ $2',
 'gotaccountlink' => 'Влизане',
 'userlogin-resetlink' => 'Забравени данни за влизане в системата?',
 'userlogin-resetpassword-link' => 'Забравена парола?',
-'helplogin-url' => 'Help:Влизане',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Помощ за влизане]] в системата',
 'userlogin-loggedin' => 'Вече сте влезли в системата като {{GENDER:$1|$1}}.
 Чрез формуляра по-долу можете да влезете като друг потребител.',
 'userlogin-createanother' => 'Създаване на друга сметка',

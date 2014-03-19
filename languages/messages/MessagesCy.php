@@ -561,8 +561,6 @@ Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddec
 'gotaccountlink' => 'Mewngofnodi',
 'userlogin-resetlink' => 'Ydych chi wedi anghofio eich manylion mewngofnodi?',
 'userlogin-resetpassword-link' => 'Wedi anghofio eich cyfrinair?',
-'helplogin-url' => 'Help:Mewngofnodi',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Cymorth i fewngofnodi]]',
 'userlogin-loggedin' => 'Rydych eisoes wedi mewngofnodi wrth yr enw {{GENDER:$1|$1}}.
 Defnyddiwch y ffurflen isod i fewngofnodi wrth rhyw enw arall.',
 'userlogin-createanother' => 'Creu cyfrif ychwanegol',

@@ -464,7 +464,6 @@ N'emblida betg da midar tias [[Special:Preferences|{{SITENAME}} preferenzas]].",
 'gotaccountlink' => "T'annunziar",
 'userlogin-resetlink' => "Emblidà tias datas per s'annunziar?",
 'userlogin-resetpassword-link' => 'Has emblidà tes pled-clav?',
-'userlogin-helplink' => "[[{{MediaWiki:helplogin-url}}|Agid tar l'annunzia]]",
 'userlogin-loggedin' => "Ti es gia t'annunzià sco {{GENDER:$1|$1}}.
 Dovra il suandant formular per t'annunziar cun in auter conto.",
 'userlogin-createanother' => 'Crear in auter conto',

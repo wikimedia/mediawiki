@@ -1343,10 +1343,6 @@ See example: [[Special:UserLogin]]
 
 userlogin-resetpassword-link may have to be shorter than the old {{msg-mw|userlogin-resetlink}}.
 {{Identical|Forgot your password}}',
-'helplogin-url' => '{{doc-important|Do not translate the target page, Special:MyLanguage handles it.}}
-Defines the URL to the page that provides information about logging into the wiki.
-
-Used as a link target for the link with label {{msg-mw|userlogin-helplink2}}; can be locally customised to be an URL or local page title.',
 'userlogin-helplink2' => 'Label for a link to login help.
 
 See example: [[Special:UserLogin]]
@@ -1647,6 +1643,8 @@ Parameters:
 'resetpass-expired' => "Generic error message shown on [[Special:ChangePassword]] when a user's password is expired",
 'resetpass-expired-soft' => 'Generic warning message shown on [[Special:ChangePassword]] when a user needs to reset their password, but they are not prevented from logging in at this time',
 'resetpass-validity-soft' => 'Warning message shown on [[Special:ChangePassword]] when a user needs to reset their password, because their password is not valid.
+
+Refers to {{msg-mw|Resetpass-submit-cancel}}.
 
 Parameters:
 * $1 - error message',

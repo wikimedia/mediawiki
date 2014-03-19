@@ -593,8 +593,6 @@ Parhatian bahawa bara laman mungkin masih taruih manunjukkan bahawa Sanak masih 
 'gotaccountlink' => 'Masuak log',
 'userlogin-resetlink' => 'Lupo rincian info masuak Sanak?',
 'userlogin-resetpassword-link' => 'Buek ulang kato sandi',
-'helplogin-url' => 'Help:Masuak log',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Bantuan untuak masuak log]]',
 'createacct-join' => 'Masuakan informasi Sanak di bawah ko.',
 'createacct-emailrequired' => 'Alamaik surel',
 'createacct-emailoptional' => 'Alamaik surel (opsional)',

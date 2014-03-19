@@ -470,8 +470,6 @@ Ferjid det ei, an aachte üüb din [[Special:Preferences|{{SITENAME}} iinstelang
 'gotaccountlink' => 'Uunmelde',
 'userlogin-resetlink' => 'Heest dü din login dooten ferjiden?',
 'userlogin-resetpassword-link' => 'Paaswurd ferjiden?',
-'helplogin-url' => 'Help:Uunmelde',
-'userlogin-helplink' => "[[{{MediaWiki:helplogin-url}}|Halep bi't uunmeldin]]",
 'userlogin-loggedin' => 'Du beest al üs {{GENDER:$1|$1}} uunmeldet.
 Brük det formulaar diar oner, am di mä en öödern nööm uuntumeldin.',
 'userlogin-createanother' => 'En ööder brükerkonto iinracht',

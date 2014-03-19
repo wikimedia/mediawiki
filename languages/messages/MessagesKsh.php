@@ -671,8 +671,6 @@ Wann De wells, künnts De Ding [[Special:Preferences|Enschtällonge aanpaße]].'
 'gotaccountlink' => 'Enlogge',
 'userlogin-resetlink' => 'Häß De Ding Daate för et Enlogge verjäße?',
 'userlogin-resetpassword-link' => 'Paßwoot verjäße?',
-'helplogin-url' => 'Help:Övver et Enlogge',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Hölp bem Enlogge]]',
 'userlogin-loggedin' => 'Do bes ald als {{GENDER:$1|dä Metmaacher|de Metmaacherėn|dä Metmaacher|de Metmaacherėn|däMetmaacher}} [[User:$1|$1]] enjelogg. Met heh dämm Fommolaa kanns De jäz ävver onger enem andere Nahme enlogge.',
 'userlogin-createanother' => 'Donn ene zohsäzlejje Zohjang aanlääje',
 'createacct-join' => 'Jiv Ding Daate en:',

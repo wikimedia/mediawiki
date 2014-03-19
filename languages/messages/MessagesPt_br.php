@@ -781,8 +781,6 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'gotaccountlink' => 'Autenticar-se',
 'userlogin-resetlink' => 'Esqueceu-se do seu nome de usuário ou da senha?',
 'userlogin-resetpassword-link' => 'Esqueceu sua senha?',
-'helplogin-url' => 'Help:Iniciar sessão',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuda para iniciar sessão]]',
 'userlogin-loggedin' => 'Você já está conectado como {{GENDER:$1|$1}}.
 Use o formulário abaixo para iniciar sessão como outro usuário.',
 'userlogin-createanother' => 'Criar uma outra conta',

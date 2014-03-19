@@ -486,8 +486,6 @@ Dimo liplipatan a sukatan dagiti kakaykayatam idiay [[Special:Preferences|{{SITE
 'gotaccountlink' => 'Sumrek',
 'userlogin-resetlink' => 'Nalipatam dagiti salaysay ti pagserrekmo?',
 'userlogin-resetpassword-link' => 'Nalipatam ti kontraseniasmo?',
-'helplogin-url' => 'Help:Panagserrek',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Tulong iti panagserrek]]',
 'userlogin-loggedin' => 'Nakastrekkan a kas ni {{GENDER:$1|$1}}.
 Usaren ti porma dita baba tapno sumrek a kas sabali nga agar-aramat.',
 'userlogin-createanother' => 'Agaramid pay ti sabali a pakabilangan',

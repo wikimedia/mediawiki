@@ -805,8 +805,6 @@ $2',
 'gotaccountlink' => 'Најавете се',
 'userlogin-resetlink' => 'Си ги заборавивте податоците за најава?',
 'userlogin-resetpassword-link' => 'Ја заборавивте лозинката?',
-'helplogin-url' => 'Help:Најава',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Помош со најавата]]',
 'userlogin-loggedin' => 'Веќе сте најавени како {{GENDER:$1|$1}}.
 Со образецот подолу можете да се најавите како друг корисник.',
 'userlogin-createanother' => 'Направи нова сметка',
@@ -938,7 +936,10 @@ $2',
 'resetpass-temp-password' => 'Привремена лозинка:',
 'resetpass-abort-generic' => 'Смената на лозинката е откажана од додаток.',
 'resetpass-expired' => 'Лозинката ви е истечена. Задајте нова лозинка за да се најавите.',
-'resetpass-expired-soft' => 'Лозинката ви е истечена и ќе мора да зададете нова. Одберете нова сега, или пак стиснете на „{{int:resetpass-submit-cancel}}“ за да ја зададете подоцна.',
+'resetpass-expired-soft' => 'Лозинката ви е истечена и ќе мора да зададете друга. Изберете ја сега, или пак стиснете на „{{int:resetpass-submit-cancel}}“ за да ја зададете подоцна.',
+'resetpass-validity-soft' => 'Лозинката ви е неважечка: $1
+
+Изберете друга сега, или пак стиснете на „{{int:resetpass-submit-cancel}}“ за да ја зададете подоцна.',
 
 # Special:PasswordReset
 'passwordreset' => 'Менување на лозинка',

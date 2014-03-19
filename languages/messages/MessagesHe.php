@@ -817,8 +817,7 @@ $2',
 'gotaccountlink' => 'כניסה לחשבון',
 'userlogin-resetlink' => 'שכחת את פרטי הכניסה?',
 'userlogin-resetpassword-link' => 'שכחת את הסיסמה?',
-'helplogin-url' => 'Help:כניסה לחשבון',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|עזרה בכניסה לחשבון]]',
+'userlogin-helplink2' => 'עזרה בכניסה לחשבון',
 'userlogin-loggedin' => 'אתם כבר מחוברים לחשבון {{GENDER:$1|$1}}.
 השתמשו בטופס שלהלן כדי להתחבר לחשבון אחר.',
 'userlogin-createanother' => 'יצירת חשבון אחר',
@@ -951,6 +950,9 @@ $2',
 'resetpass-abort-generic' => 'שינוי הסיסמה בוטל על־ידי הרחבה.',
 'resetpass-expired' => 'סיסמתכם פקעה. אנא הגדירו סיסמה חדשה כדי להיכנס.',
 'resetpass-expired-soft' => 'סיסמתכם פקעה ויש לאפס אותה. אנא בחרו סיסמה חדשה כעת, או לחצו על "{{int:resetpass-submit-cancel}}" כדי לאפס אותה מאוחר יותר.',
+'resetpass-validity-soft' => 'סיסמתך אינה תקינה: $1
+
+יש לבחור סיסמה חדשה עכשיו או ללחוץ "{{int:resetpass-submit-cancel}}" כדי לאפס את הסיסמה מאוחר יותר.',
 
 # Special:PasswordReset
 'passwordreset' => 'איפוס סיסמה',
@@ -2334,7 +2336,7 @@ $1',
 'deadendpagestext' => 'הדפים הבאים אינם מקשרים לדפים אחרים באתר {{SITENAME}}.',
 'protectedpages' => 'דפים מוגנים',
 'protectedpages-indef' => 'הגנות לזמן בלתי מוגבל בלבד',
-'protectedpages-summary' => 'בדף זה רשומים הדפים הקיימים שמוגנים כרגע. לרשימת הכותרות שמוגנות מפני יצירה, ראו את [[{{#special:ProtectedTitles}}|דף הכותרות המוגנות]].',
+'protectedpages-summary' => 'בדף זה רשומים הדפים הקיימים שמוגנים כרגע. לרשימת הכותרות שמוגנות מפני יצירה, ראו [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].',
 'protectedpages-cascade' => 'הגנות מדורגות בלבד',
 'protectedpages-noredirect' => 'הסתרת הפניות',
 'protectedpagesempty' => 'אין כרגע דפים מוגנים עם הפרמטרים הללו.',
@@ -2347,7 +2349,7 @@ $1',
 'protectedpages-unknown-timestamp' => 'לא ידוע',
 'protectedpages-unknown-performer' => 'משתמש לא ידוע',
 'protectedtitles' => 'כותרות מוגנות',
-'protectedtitles-summary' => 'בדף זה רשומות הכותרות שמוגנות כעת מפני יצירה. לרשימת הדפים הקיימים שמוגנים, ראו את [[{{#special:ProtectedPages}}|דף הדפים המוגנים]].',
+'protectedtitles-summary' => 'בדף זה רשומות הכותרות שמוגנות כעת מפני יצירה. לרשימת הדפים הקיימים שמוגנים, ראו [[{{#special:ProtectedPages}}|{{int:protectedpages}}]].',
 'protectedtitlesempty' => 'אין כרגע כותרות מוגנות עם הפרמטרים האלה.',
 'listusers' => 'רשימת משתמשים',
 'listusers-editsonly' => 'הצגת משתמשים עם עריכות בלבד',
@@ -3969,6 +3971,9 @@ $5
 'confirm-watch-top' => 'להוסיף דף זה לרשימת המעקב שלך?',
 'confirm-unwatch-button' => 'אישור',
 'confirm-unwatch-top' => 'להסיר דף זה מרשימת המעקב שלך?',
+
+# Separators for various lists, etc.
+'quotation-marks' => '"$1"',
 
 # Multipage image navigation
 'imgmultipageprev' => '→ לדף הקודם',

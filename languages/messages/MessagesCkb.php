@@ -617,8 +617,6 @@ $2',
 'gotaccountlink' => 'بچۆ ژوورەوە',
 'userlogin-resetlink' => 'وردەکارییەکانی چوونەژوورەوەتت لە بیر کردووە؟',
 'userlogin-resetpassword-link' => 'تێپەڕوشە ڕیسێت بکەوە',
-'helplogin-url' => 'Help:چوونەژوورەوە',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|یارمەتی بۆ چوونەژوورەوە]]',
 'userlogin-loggedin' => 'تۆ ھەر ئێستا بە ناوی {{GENDER:$1|$1}} چوویتە ژوورەوە.
 فۆرمی ژێرەوە بەکاربھێنە بۆ چوونەژوورەوە وەک بەکارھێنەرێکی تر.',
 'userlogin-createanother' => 'ھەژمارێکی تر دروست بکە',

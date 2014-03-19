@@ -758,8 +758,6 @@ Ne felejtsd el módosítani a [[Special:Preferences|{{SITENAME}} beállításaid
 'gotaccountlink' => 'Bejelentkezés',
 'userlogin-resetlink' => 'Elfelejtetted a bejelentkezési adataidat?',
 'userlogin-resetpassword-link' => 'Elfelejtetted a jelszavad?',
-'helplogin-url' => 'Help:Bejelentkezés',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Segítség a bejelentkezéshez]]',
 'userlogin-loggedin' => 'Már be vagy jelentkezve mint {{GENDER:$1|$1}}. Ha más néven akarsz belépni, alább megteheted.',
 'userlogin-createanother' => 'Felhasználói fiók létrehozása',
 'createacct-join' => 'Add meg az alábbi információkat.',

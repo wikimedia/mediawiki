@@ -470,8 +470,6 @@ Ye can chynge yer {{SITENAME}} [[Special:Preferences|preeferences]] gif ye like.
 'gotaccountlink' => 'Log in',
 'userlogin-resetlink' => 'Forgotten yer login details?',
 'userlogin-resetpassword-link' => 'Fergot yer password?',
-'helplogin-url' => 'Help:Loggin in',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Heelp wi loggin in]]',
 'userlogin-loggedin' => "Ye'r awreadie loggit in as {{GENDER:$1|$1}}.
 Uise the form ablow tae log in as anither uiser.",
 'userlogin-createanother' => 'Mak anither accoont',
@@ -1560,7 +1558,7 @@ Gif ye still wish tae uplaid yer file, please gang back n uise ae new name.
 'file-deleted-duplicate' => "Ae file ideentical til this file ([[:$1]]) haes been delytit afore.
 Ye shid check that file's delytion histerie afore proceedin tae re-uplaid it.",
 'file-deleted-duplicate-notitle' => 'Ae file identical til this file haes been delytit afore, n the title haes been suppressed.
-Ye shid ask somebodie wi the abeelitie tae see suppressed file data tae luik at the seetuation afore gaun oan tae re-uplaid it.',
+Ye shid speir somebodie wi the abeelitie tae see suppressed file data tae luik at the seetuation afore gaun oan tae re-uplaid it.',
 'uploadwarning' => 'Uplaid warnishment',
 'uploadwarning-text' => 'Please modeefie the file descreeption ablo n gie it anither gae.',
 'savefile' => 'Hain file',

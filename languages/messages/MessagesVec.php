@@ -595,8 +595,6 @@ Nó desmentegarte de personałixare łe [[Special:Preferences|prefarense de {{SI
 'gotaccountlink' => 'Entra',
 'userlogin-resetlink' => "Desmentegà i to dati d'aceso?",
 'userlogin-resetpassword-link' => "Te gheto desmentegà ła paroła d'ordine?",
-'helplogin-url' => 'Help:Login',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Ajuto col login]]',
 'createacct-join' => 'Meti le to informassion qua soto.',
 'createacct-emailrequired' => 'Indirisso e-mail',
 'createacct-emailoptional' => 'Indiriso e-mail (opsionałe)',

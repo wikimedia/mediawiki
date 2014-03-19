@@ -802,8 +802,6 @@ Tarayıcınızın önbelleğini temizleyinceye kadar bazı sayfalarda, oturumunu
 'gotaccountlink' => 'Oturum açın',
 'userlogin-resetlink' => 'Giriş bilgilerinizi mi unuttunuz?',
 'userlogin-resetpassword-link' => 'Parolanızı mı unuttunuz?',
-'helplogin-url' => 'Help:Oturum açma',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|Oturum açma konusunda yardım alın]]',
 'userlogin-loggedin' => 'Zaten {{GENDER:$1|$1}} olarak oturum açtınız.
 Başka bir kullanıcı olarak oturum açmak için aşağıdaki formu kullanın.',
 'userlogin-createanother' => 'Başka bir hesap oluşturun',
