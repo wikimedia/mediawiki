@@ -1,0 +1,27 @@
+{
+    "@metadata": {
+        "authors": [
+            "Meno25",
+            "Mido",
+            "OsamaK",
+            "روخو"
+        ]
+    },
+    "config-desc": "مثبت لميدياويكي",
+    "config-title": "تثبيت ميدياويكي $1",
+    "config-information": "معلومات",
+    "config-back": "→ ارجع",
+    "config-continue": "استمر ←",
+    "config-page-language": "اللغة",
+    "config-page-name": "الاسم",
+    "config-db-username": "اسم مستخدم قاعدة البيانات:",
+    "config-db-password": "كلمة سر قاعدة البيانات:",
+    "config-db-port": "منفذ قاعدة البيانات:",
+    "config-type-mysql": "ماي إس كيو إل",
+    "config-type-postgres": "بوستجر إس كيو إل",
+    "config-type-sqlite": "إس كيو لايت",
+    "config-type-oracle": "أوراكل",
+    "config-admin-email": "عنوان البريد الإلكتروني:",
+    "mainpagetext": "'''تم تثبيت ميدياويكي بنجاح.'''",
+    "mainpagedocfooter": "استشر [//meta.wikimedia.org/wiki/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.\n\n== البداية ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings قائمة إعدادات الضبط]\n* [//www.mediawiki.org/wiki/Manual:FAQ أسئلة متكررة حول ميدياويكي]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]"
+}

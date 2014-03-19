@@ -1,0 +1,24 @@
+{
+    "@metadata": {
+        "authors": [
+            "Pitort",
+            "පසිඳු කාවින්ද"
+        ]
+    },
+    "config-page-language": "Llengua",
+    "config-page-name": "Nom",
+    "config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
+    "config-mysql-innodb": "InnoDB",
+    "config-mysql-myisam": "MyISAM",
+    "config-mysql-utf8": "UTF-8",
+    "config-ns-generic": "Projecte",
+    "config-admin-password": "Contrasenya:",
+    "config-profile-wiki": "Wiki públic",
+    "config-profile-private": "Wiki privat",
+    "config-license-pd": "Domini públic",
+    "config-upload-deleted": "Directori pels arxius suprimits:",
+    "config-advanced-settings": "Configuració avançada",
+    "config-extensions": "Extensions",
+    "mainpagetext": "'''El programari del MediaWiki s'ha instaŀlat correctament.'''",
+    "mainpagedocfooter": "Consulteu la [//meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar-lo.\n\n== Per a començar ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Llista de característiques configurables]\n* [//www.mediawiki.org/wiki/Manual:FAQ PMF del MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu (''listserv'') per a anuncis del MediaWiki]"
+}

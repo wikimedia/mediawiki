@@ -1,0 +1,23 @@
+{
+    "@metadata": {
+        "authors": [
+            "GreenZeb"
+        ]
+    },
+    "config-back": "← Atpakaļ",
+    "config-continue": "Turpināt →",
+    "config-page-language": "Valoda",
+    "config-page-welcome": "Laipni lūdzam MediaWiki!",
+    "config-page-dbconnect": "Savienoties ar datubāzi",
+    "config-page-upgrade": "Atjaunināt pašreizējo instalāciju",
+    "config-page-dbsettings": "Datubāzes iestatījumi",
+    "config-page-name": "Vārds",
+    "config-page-options": "Iespējas",
+    "config-page-install": "Instalēt",
+    "config-page-complete": "Pabeigts!",
+    "config-page-restart": "Pārstartēt instalāciju",
+    "config-page-readme": "Lasīt mani",
+    "config-page-releasenotes": "Informācija par laidienu",
+    "mainpagetext": "'''MediaWiki veiksmīgi ieinstalēts'''",
+    "mainpagedocfooter": "Izlasi [//meta.wikimedia.org/wiki/Help:Contents Lietotāja pamācību], lai iegūtu vairāk informācijas par Wiki programmatūras lietošanu.\n\n== Pirmie soļi ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Konfigurācijas iespēju saraksts]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki J&A]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Parakstīties uz paziņojumiem par jaunām MediaWiki versijām]"
+}
