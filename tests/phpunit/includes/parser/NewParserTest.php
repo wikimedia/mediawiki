@@ -337,6 +337,7 @@ class NewParserTest extends MediaWikiTestCase {
 			'wgRawHtml' => self::getOptionValue( 'wgRawHtml', $opts, false ),
 			'wgNamespacesWithSubpages' => array( NS_MAIN => isset( $opts['subpage'] ) ),
 			'wgAllowExternalImages' => self::getOptionValue( 'wgAllowExternalImages', $opts, true ),
+			'wgThumbLimits' => array( self::getOptionValue( 'thumbsize', $opts, 180 ) ),
 			'wgMaxTocLevel' => $maxtoclevel,
 			'wgUseTeX' => isset( $opts['math'] ) || isset( $opts['texvc'] ),
 			'wgMathDirectory' => $uploadDir . '/math',
@@ -367,6 +368,9 @@ class NewParserTest extends MediaWikiTestCase {
 		$settings['wgOut'] = $context->getOutput();
 		$settings['wgUser'] = $context->getUser();
 		$settings['wgRequest'] = $context->getRequest();
+
+		// We (re)set $wgThumbLimits to a single-element array above.
+		$context->getUser()->setOption( 'thumbsize', 0 );
 
 		foreach ( $settings as $var => $val ) {
 			if ( array_key_exists( $var, $GLOBALS ) ) {
