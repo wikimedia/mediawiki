@@ -295,6 +295,9 @@
 [submodule "extensions/PoolCounter"]
 	path = extensions/PoolCounter
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/PoolCounter.git
+[submodule "extensions/Popups"]
+	path = extensions/Popups
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Popups.git
 [submodule "extensions/ProofreadPage"]
 	path = extensions/ProofreadPage
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ProofreadPage.git
