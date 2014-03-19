@@ -267,6 +267,7 @@ $wgIgnoredMessages = array(
 	'today-at',
 	'redirect-text',
 	'edithelppage',
+	'helplogin-url',
 	'autocomment-prefix',
 	'move-redirect-text',
 	'interlanguage-link-title-langonly',
