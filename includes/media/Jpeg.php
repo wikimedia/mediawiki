@@ -31,6 +31,51 @@
  * @ingroup Media
  */
 class JpegHandler extends ExifBitmapHandler {
+
+	function getParamMap() {
+		$res = parent::getParamMap();
+		$res['img_quality'] = 'quality';
+		return $res;
+	}
+
+	function validateParam( $name, $value ) {
+		if ( $name === 'quality' ) {
+			$v = intval( $value );
+			return $v > 0 && $v <= 100; # excludes '0'
+		} else {
+			return parent::validateParam( $name, $value );
+		}
+	}
+
+	function makeParamString( $params ) {
+		$res = parent::makeParamString( $params );
+		if ( $res && isset( $params['quality'] ) ) {
+			$res .= '-q' . $params['quality'];
+		}
+		return $res;
+	}
+
+	function parseParamString( $str ) {
+		$m = false;
+		if ( preg_match( '/(.*)-q(\d+)$/', $str, $m ) ) {
+			$res = parent::parseParamString( $m[1] );
+			if ( $res ) {
+				$res['quality'] = $m[2];
+			}
+		} else {
+			$res = parent::parseParamString( $str );
+		}
+		return $res;
+	}
+
+	function getScriptParams( $params ) {
+		$res = parent::getScriptParams( $params );
+		if ( isset( $params['quality'] ) ) {
+			$res['quality'] = $params['quality'];
+		}
+		return $res;
+	}
+
 	function getMetadata( $image, $filename ) {
 		try {
 			$meta = BitmapMetadataHandler::Jpeg( $filename );
@@ -58,6 +103,8 @@ class JpegHandler extends ExifBitmapHandler {
 
 			return ExifBitmapHandler::BROKEN_FILE;
 		}
+
+
 	}
 
 	/**
