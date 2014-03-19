@@ -1,0 +1,9 @@
+{
+    "@metadata": {
+        "authors": [
+            "Wu-chinese.com"
+        ]
+    },
+    "mainpagetext": "'''MediaWiki安装成功哉！'''",
+    "mainpagedocfooter": "请访问[//meta.wikimedia.org/wiki/Help:Contents 用户手册]以获得使用此维基软件个信息！\n\n== 入门 ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置设置列表]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常见问题解答]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布邮件列表]"
+}

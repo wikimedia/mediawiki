@@ -1,0 +1,9 @@
+{
+    "@metadata": {
+        "authors": [
+            "Peter Alberti"
+        ]
+    },
+    "mainpagetext": "'''MediaWiki er nu installeret.'''",
+    "mainpagedocfooter": "Se [//meta.wikimedia.org/wiki/Help:Contents brugervejledningen] for oplysninger om brugen af wikiprogrammellet.\n\n== At komme i gang ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Listen over opsætningsmuligheder]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki ofte stillede spørgsmål]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Postliste angående udgivelser af MediaWiki]"
+}

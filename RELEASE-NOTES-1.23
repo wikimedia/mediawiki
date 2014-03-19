@@ -128,6 +128,8 @@ production.
 * Special:UserLogin/signup now does AJAX checks for invalid and taken usernames,
   displaying the error live.
 * Added BaseTemplateAfterPortlet hook to allow injecting html after portlets in skins.
+* Support has been added for a JSON based localisation file format. The
+  installer has been updated to use it.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent

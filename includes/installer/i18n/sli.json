@@ -1,0 +1,9 @@
+{
+    "@metadata": {
+        "authors": [
+            "Äberlausitzer"
+        ]
+    },
+    "mainpagetext": "'''MediaWiki wourde erfolgreich installiert.'''",
+    "mainpagedocfooter": "Hilfe zur Benutzung und Konfiguration der Wiki-Software fendest du eim [//meta.wikimedia.org/wiki/Help:Contents Benutzerhandbichl].\n\n== Stoarthilfa ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]"
+}
