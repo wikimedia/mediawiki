@@ -91,6 +91,10 @@ changes to languages because of Bugzilla reports.
 * Added pp_sortkey column to page_props table, so pages can be efficiently
   queried and sorted by property value (bug 58032).
   See $wgPagePropsHaveSortkey if you want to postpone the schema change.
+* BREAKING CHANGE: The Modern and Cologne Blue skins were moved out of MediaWiki
+  core to their own respective repositories. See also
+  https://www.mediawiki.org/wiki/Skin:Modern and
+  https://www.mediawiki.org/wiki/Skin:CologneBlue.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

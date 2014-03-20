@@ -351,7 +351,7 @@ ${serverSetting}
 \$wgUpgradeKey = \"{$this->values['wgUpgradeKey']}\";
 
 ## Default skin: you can change the default skin. Use the internal symbolic
-## names, ie 'cologneblue', 'monobook', 'vector':
+## names, ie 'vector', 'monobook':
 \$wgDefaultSkin = \"{$this->values['wgDefaultSkin']}\";
 
 ## For attaching licensing metadata to pages, and displaying an

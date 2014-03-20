@@ -152,22 +152,6 @@ return array(
 	 *
 	 * See Vector for an example.
 	 */
-	'skins.cologneblue' => array(
-		'styles' => array(
-			'cologneblue/screen.css' => array( 'media' => 'screen' ),
-			'cologneblue/print.css' => array( 'media' => 'print' ),
-		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-	),
-	'skins.modern' => array(
-		'styles' => array(
-			'modern/main.css' => array( 'media' => 'screen' ),
-			'modern/print.css' => array( 'media' => 'print' ),
-		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-	),
 	'skins.vector.styles' => array(
 		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array(
