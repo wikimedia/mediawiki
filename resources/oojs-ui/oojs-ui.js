@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (53f2410336)
+ * OOjs UI v0.1.0-pre (0f50cdc46c)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Mar 19 2014 15:51:16 GMT-0700 (PDT)
+ * Date: Wed Mar 19 2014 17:39:11 GMT-0700 (PDT)
  */
 ( function () {
 
@@ -1627,7 +1627,7 @@ OO.ui.Dialog.prototype.setSize = function ( size ) {
  */
 OO.ui.Dialog.prototype.initialize = function () {
 	// Parent method
-	OO.ui.Dialog.super.prototype.initialize.call( this );
+	OO.ui.Window.prototype.initialize.call( this );
 
 	// Properties
 	this.closeButton = new OO.ui.ButtonWidget( {
@@ -1655,7 +1655,7 @@ OO.ui.Dialog.prototype.initialize = function () {
  */
 OO.ui.Dialog.prototype.setup = function ( data ) {
 	// Parent method
-	OO.ui.Dialog.super.prototype.setup.call( this, data );
+	OO.ui.Window.prototype.setup.call( this, data );
 
 	// Prevent scrolling in top-level window
 	this.$( window ).on( 'mousewheel', this.onWindowMouseWheelHandler );
@@ -1667,7 +1667,7 @@ OO.ui.Dialog.prototype.setup = function ( data ) {
  */
 OO.ui.Dialog.prototype.teardown = function ( data ) {
 	// Parent method
-	OO.ui.Dialog.super.prototype.teardown.call( this, data );
+	OO.ui.Window.prototype.teardown.call( this, data );
 
 	// Allow scrolling in top-level window
 	this.$( window ).off( 'mousewheel', this.onWindowMouseWheelHandler );
@@ -1685,7 +1685,7 @@ OO.ui.Dialog.prototype.close = function ( data ) {
 		// Allow transition to complete before actually closing
 		setTimeout( function () {
 			// Parent method
-			OO.ui.Dialog.super.prototype.close.call( dialog, data );
+			OO.ui.Window.prototype.close.call( dialog, data );
 		}, 250 );
 	}
 };
@@ -4860,7 +4860,7 @@ OO.ui.GroupWidget.prototype.setDisabled = function ( disabled ) {
 	var i, len;
 
 	// Parent method
-	OO.ui.GroupWidget.super.prototype.setDisabled.call( this, disabled );
+	OO.ui.Widget.prototype.setDisabled.call( this, disabled );
 
 	// During construction, #setDisabled is called before the OO.ui.GroupElement constructor
 	if ( this.items ) {
@@ -4907,7 +4907,7 @@ OO.ui.ItemWidget.prototype.isDisabled = function () {
  */
 OO.ui.ItemWidget.prototype.setElementGroup = function ( group ) {
 	// Parent method
-	OO.ui.ItemWidget.super.prototype.setElementGroup.call( this, group );
+	OO.ui.Element.prototype.setElementGroup.call( this, group );
 
 	// Initialize item disabled states
 	this.updateDisabled();
@@ -6460,7 +6460,7 @@ OO.ui.MenuWidget.prototype.unbindKeyDownListener = function () {
  */
 OO.ui.MenuWidget.prototype.selectItem = function ( item ) {
 	// Parent method
-	OO.ui.MenuWidget.super.prototype.selectItem.call( this, item );
+	OO.ui.SelectWidget.prototype.selectItem.call( this, item );
 
 	if ( !this.disabled ) {
 		if ( item ) {
@@ -6491,7 +6491,7 @@ OO.ui.MenuWidget.prototype.addItems = function ( items, index ) {
 	var i, len, item;
 
 	// Parent method
-	OO.ui.MenuWidget.super.prototype.addItems.call( this, items, index );
+	OO.ui.SelectWidget.prototype.addItems.call( this, items, index );
 
 	// Auto-initialize
 	if ( !this.newItems ) {
@@ -7568,7 +7568,7 @@ OO.ui.TextInputWidget.prototype.onEdit = function () {
 	this.adjustSize();
 
 	// Parent method
-	return OO.ui.TextInputWidget.super.prototype.onEdit.call( this );
+	return OO.ui.InputWidget.prototype.onEdit.call( this );
 };
 
 /**
@@ -7728,7 +7728,7 @@ OO.ui.TextInputMenuWidget.prototype.onWindowResize = function () {
  */
 OO.ui.TextInputMenuWidget.prototype.show = function () {
 	// Parent method
-	OO.ui.TextInputMenuWidget.super.prototype.show.call( this );
+	OO.ui.MenuWidget.prototype.show.call( this );
 
 	this.position();
 	this.$( this.getElementWindow() ).on( 'resize', this.onWindowResizeHandler );
@@ -7743,7 +7743,7 @@ OO.ui.TextInputMenuWidget.prototype.show = function () {
  */
 OO.ui.TextInputMenuWidget.prototype.hide = function () {
 	// Parent method
-	OO.ui.TextInputMenuWidget.super.prototype.hide.call( this );
+	OO.ui.MenuWidget.prototype.hide.call( this );
 
 	this.$( this.getElementWindow() ).off( 'resize', this.onWindowResizeHandler );
 	return this;
@@ -7883,7 +7883,7 @@ OO.ui.ToggleButtonWidget.prototype.onClick = function () {
 	}
 
 	// Parent method
-	return OO.ui.ToggleButtonWidget.super.prototype.onClick.call( this );
+	return OO.ui.ButtonWidget.prototype.onClick.call( this );
 };
 
 /**
@@ -7896,7 +7896,7 @@ OO.ui.ToggleButtonWidget.prototype.setValue = function ( value ) {
 	}
 
 	// Parent method
-	OO.ui.ToggleButtonWidget.super.prototype.setValue.call( this, value );
+	OO.ui.ToggleWidget.prototype.setValue.call( this, value );
 
 	return this;
 };
