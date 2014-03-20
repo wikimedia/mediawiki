@@ -125,7 +125,7 @@ $GLOBALS['wgHooks']['LocalisationCacheRecache'][] = function ( $cache, $code, &$
 
 PHP;
 
-		$jsondir = str_replace('\\', '/', $jsondir );
+		$jsondir = str_replace( '\\', '/', $jsondir );
 		$shim = str_replace( '{{OUT}}', $jsondir, $shim );
 		return $shim;
 	}

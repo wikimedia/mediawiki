@@ -246,7 +246,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			), LIST_OR );
 		}
 
-
 		ChangeTags::modifyDisplayQuery(
 			$tables,
 			$fields,

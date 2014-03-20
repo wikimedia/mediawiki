@@ -22,10 +22,9 @@ class BadTitleErrorTest extends MediaWikiTestCase {
 	public function testExceptionSetsStatusCode() {
 		global $wgOut;
 		$wgOut = $this->getMockWgOut();
-		try{
+		try {
 			throw new BadTitleError();
-		}
-		catch( BadTitleError $e ) {
+		} catch ( BadTitleError $e ) {
 			$e->report();
 			$this->assertTrue( true );
 		}

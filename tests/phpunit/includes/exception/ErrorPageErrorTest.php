@@ -27,7 +27,7 @@ class ErrorPageErrorTest extends MediaWikiTestCase {
 		$mockMessage->expects( $this->once() )
 			->method( 'inLanguage' )
 			->will( $this->returnValue( $mockMessage ) );
-		$mockMessage->expects(  $this->once() )
+		$mockMessage->expects( $this->once() )
 			->method( 'useDatabase' )
 			->will( $this->returnValue( $mockMessage ) );
 		return $mockMessage;

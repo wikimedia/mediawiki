@@ -23,10 +23,9 @@ class ThrottledErrorTest extends MediaWikiTestCase {
 	public function testExceptionSetsStatusCode() {
 		global $wgOut;
 		$wgOut = $this->getMockWgOut();
-		try{
+		try {
 			throw new ThrottledError();
-		}
-		catch( ThrottledError $e ) {
+		} catch ( ThrottledError $e ) {
 			$e->report();
 			$this->assertTrue( true );
 		}

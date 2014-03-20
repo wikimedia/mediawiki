@@ -108,5 +108,4 @@ class UserArrayFromResultTest extends MediaWikiTestCase {
 	//@todo unit test for key()
 	//@todo unit test for next()
 	//@todo unit test for rewind()
-
 }

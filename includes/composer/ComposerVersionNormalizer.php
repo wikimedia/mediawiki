@@ -63,5 +63,4 @@ class ComposerVersionNormalizer {
 
 		return $version;
 	}
-
 }

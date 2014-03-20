@@ -273,12 +273,12 @@ class MssqlInstaller extends DatabaseInstaller {
 		// http://technet.microsoft.com/en-us/library/ms178569.aspx
 		// The following array sets up which permissions imply whatever permissions we specify
 		$implied = array(
-			// schema           database   server
-			'DELETE'  => array( 'DELETE',  'CONTROL SERVER' ),
+			// schema           database  server
+			'DELETE'  => array( 'DELETE', 'CONTROL SERVER' ),
 			'EXECUTE' => array( 'EXECUTE', 'CONTROL SERVER' ),
-			'INSERT'  => array( 'INSERT',  'CONTROL SERVER' ),
-			'SELECT'  => array( 'SELECT',  'CONTROL SERVER' ),
-			'UPDATE'  => array( 'UPDATE',  'CONTROL SERVER' ),
+			'INSERT'  => array( 'INSERT', 'CONTROL SERVER' ),
+			'SELECT'  => array( 'SELECT', 'CONTROL SERVER' ),
+			'UPDATE'  => array( 'UPDATE', 'CONTROL SERVER' ),
 		);
 
 		$grantOptions = array_flip( $this->webUserPrivs );

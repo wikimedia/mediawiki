@@ -114,7 +114,7 @@ class UzConverter extends LanguageConverter {
 	}
 
 	function translate( $text, $toVariant ) {
-		if( $toVariant == 'uz-cyrl' ) {
+		if ( $toVariant == 'uz-cyrl' ) {
 			$text = str_replace( 'ye', 'е', $text );
 			$text = str_replace( 'Ye', 'Е', $text );
 			$text = str_replace( 'YE', 'Е', $text );

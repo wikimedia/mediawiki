@@ -112,11 +112,11 @@ class MWExceptionTest extends MediaWikiTestCase {
 	 */
 	public static function mockHook() {
 		$args = func_get_args();
-		if( !$args[0] instanceof MWException ) {
+		if ( !$args[0] instanceof MWException ) {
 			return '$caller not instance of MWException';
 		}
 		unset( $args[0] );
-		if( array_key_exists( 1, $args ) && $args[1] === null ) {
+		if ( array_key_exists( 1, $args ) && $args[1] === null ) {
 			return null;
 		}
 		return 'YAY.' . json_encode( $args );

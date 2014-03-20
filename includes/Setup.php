@@ -36,7 +36,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 $fname = 'Setup.php';
 wfProfileIn( $fname );
-wfProfileIn( $fname  . '-defaults' );
+wfProfileIn( $fname . '-defaults' );
 
 // Check to see if we are at the file scope
 if ( !isset( $wgVersion ) ) {
@@ -396,7 +396,7 @@ if ( $wgRC2UDPAddress ) {
 	);
 }
 
-wfProfileOut( $fname  . '-defaults' );
+wfProfileOut( $fname . '-defaults' );
 
 // Disable MWDebug for command line mode, this prevents MWDebug from eating up
 // all the memory from logging SQL queries on maintenance scripts

@@ -111,7 +111,7 @@ class CologneBlueTemplate extends BaseTemplate {
 		return $html;
 	}
 
-  	/**
+	/**
 	 * @param string $name
 	 */
 	protected function renderAfterPortlet( $name ) {

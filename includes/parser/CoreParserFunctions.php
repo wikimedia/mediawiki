@@ -60,12 +60,12 @@ class CoreParserFunctions {
 			$parser->setFunctionHook( $func, array( __CLASS__, $func ), SFH_NO_HASH );
 		}
 
-		$parser->setFunctionHook( 'namespace',  array( __CLASS__, 'mwnamespace' ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'int',        array( __CLASS__, 'intFunction' ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'special',    array( __CLASS__, 'special'     ) );
-		$parser->setFunctionHook( 'speciale',   array( __CLASS__, 'speciale'    ) );
-		$parser->setFunctionHook( 'tag',        array( __CLASS__, 'tagObj'      ), SFH_OBJECT_ARGS );
-		$parser->setFunctionHook( 'formatdate', array( __CLASS__, 'formatDate'  ) );
+		$parser->setFunctionHook( 'namespace', array( __CLASS__, 'mwnamespace' ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'int', array( __CLASS__, 'intFunction' ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'special', array( __CLASS__, 'special' ) );
+		$parser->setFunctionHook( 'speciale', array( __CLASS__, 'speciale' ) );
+		$parser->setFunctionHook( 'tag', array( __CLASS__, 'tagObj' ), SFH_OBJECT_ARGS );
+		$parser->setFunctionHook( 'formatdate', array( __CLASS__, 'formatDate' ) );
 
 		if ( $wgAllowDisplayTitle ) {
 			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), SFH_NO_HASH );
@@ -210,7 +210,7 @@ class CoreParserFunctions {
 
 	static function localurle( $parser, $s = '', $arg = null ) {
 		$temp = self::urlFunction( 'getLocalURL', $s, $arg );
-		if( !is_string( $temp ) ) {
+		if ( !is_string( $temp ) ) {
 			return $temp;
 		} else {
 			return htmlspecialchars( $temp );
@@ -223,7 +223,7 @@ class CoreParserFunctions {
 
 	static function fullurle( $parser, $s = '', $arg = null ) {
 		$temp = self::urlFunction( 'getFullURL', $s, $arg );
-		if( !is_string( $temp ) ) {
+		if ( !is_string( $temp ) ) {
 			return $temp;
 		} else {
 			return htmlspecialchars( $temp );
