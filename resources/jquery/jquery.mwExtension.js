@@ -104,7 +104,7 @@
 						// Check for properties in B but not in A
 						// This is about 15% faster (tested in Safari 5 and Firefox 3.6)
 						// ...than incrementing a count variable in the above and below loops
-						// See also: http://www.mediawiki.org/wiki/ResourceLoader/Default_modules/compareObject_test#Results
+						// See also: https://www.mediawiki.org/wiki/ResourceLoader/Default_modules/compareObject_test#Results
 						for ( prop in objectB ) {
 							if ( !( prop in objectA ) ) {
 								return false;

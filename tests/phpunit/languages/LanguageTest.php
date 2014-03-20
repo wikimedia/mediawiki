@@ -658,7 +658,7 @@ class LanguageTest extends LanguageClassesTestCase {
 				'2009-W53-4',
 				'leap week'
 			),
-			// What follows is mostly copied from http://www.mediawiki.org/wiki/Help:Extension:ParserFunctions#.23time
+			// What follows is mostly copied from https://www.mediawiki.org/wiki/Help:Extension:ParserFunctions#.23time
 			array(
 				'Y',
 				'20120102090705',

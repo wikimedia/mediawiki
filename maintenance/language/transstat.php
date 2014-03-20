@@ -24,7 +24,7 @@
  * @author Antoine Musso <hashar at free dot fr>
  *
  * Output is posted from time to time on:
- * http://www.mediawiki.org/wiki/Localisation_statistics
+ * https://www.mediawiki.org/wiki/Localisation_statistics
  */
 $optionsWithArgs = array( 'output' );
 
