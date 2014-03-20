@@ -1,6 +1,6 @@
 /*!
 * Experimental advanced wikitext parser-emitter.
-* See: http://www.mediawiki.org/wiki/Extension:UploadWizard/MessageParser for docs
+* See: https://www.mediawiki.org/wiki/Extension:UploadWizard/MessageParser for docs
 *
 * @author neilk@wikimedia.org
 * @author mflaschen@wikimedia.org
