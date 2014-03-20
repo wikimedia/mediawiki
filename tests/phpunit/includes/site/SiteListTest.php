@@ -229,7 +229,7 @@ class SiteListTest extends MediaWikiTestCase {
 		foreach ( $list as $site ) {
 			$this->assertTrue( $copy->hasInternalId( $site->getInternalId() ) );
 
-			foreach( $site->getNavigationIds() as $navId ) {
+			foreach ( $site->getNavigationIds() as $navId ) {
 				$this->assertTrue(
 					$copy->hasNavigationId( $navId ),
 					'unserialized data expects nav id ' . $navId . ' for site ' . $site->getGlobalId()

@@ -40,7 +40,7 @@ class ArrayDiffFormatterTest extends MediaWikiTestCase {
 		$diffOp->expects( $this->any() )
 			->method( 'getOrig' )
 			->will( $this->returnValue( $orig ) );
-		if( $type === 'change' ) {
+		if ( $type === 'change' ) {
 			$diffOp->expects( $this->any() )
 				->method( 'getClosing' )
 				->with( $this->isType( 'integer' ) )
@@ -104,10 +104,10 @@ class ArrayDiffFormatterTest extends MediaWikiTestCase {
 		);
 
 		$testCases = array();
-		foreach( $emptyArrayTestCases as $testCase ) {
+		foreach ( $emptyArrayTestCases as $testCase ) {
 			$testCases[] = array( $testCase, array() );
 		}
-		foreach( $otherTestCases as $testCase ) {
+		foreach ( $otherTestCases as $testCase ) {
 			$testCases[] = array( $testCase[0], $testCase[1] );
 		}
 		return $testCases;

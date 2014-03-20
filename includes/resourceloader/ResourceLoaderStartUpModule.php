@@ -218,7 +218,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		);
 		// Ensure uniform query order
 		ksort( $query );
-		return  wfAppendQuery( wfScript( 'load' ), $query );
+		return wfAppendQuery( wfScript( 'load' ), $query );
 	}
 
 	/**

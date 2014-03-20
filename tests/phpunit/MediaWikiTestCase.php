@@ -353,7 +353,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				}
 					// NOTE; some things such as Closures are not serializable
 					// in this case just set the value!
-				catch( Exception $e ) {
+				catch ( Exception $e ) {
 					$this->mwGlobals[$globalKey] = $GLOBALS[$globalKey];
 				}
 			}

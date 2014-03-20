@@ -17,8 +17,8 @@ class SpecialPageAliasTest extends MediaWikiTestCase {
 	 * @dataProvider validSpecialPageAliasesProvider
 	 */
 	public function testValidSpecialPageAliases( $code, $specialPageAliases ) {
-		foreach( $specialPageAliases as $specialPage => $aliases ) {
-			foreach( $aliases as $alias ) {
+		foreach ( $specialPageAliases as $specialPage => $aliases ) {
+			foreach ( $aliases as $alias ) {
 				$msg = "$specialPage alias '$alias' in $code is valid with no slashes";
 				$this->assertRegExp( '/^[^\/]*$/', $msg );
 			}
@@ -30,7 +30,7 @@ class SpecialPageAliasTest extends MediaWikiTestCase {
 
 		$data = array();
 
-		foreach( $codes as $code ) {
+		foreach ( $codes as $code ) {
 			$specialPageAliases = $this->getSpecialPageAliases( $code );
 
 			if ( $specialPageAliases !== array() ) {

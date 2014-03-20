@@ -67,7 +67,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 				$port = $hostAndPort[1];
 			}
 		}
-		
+
 		$connFlags = 0;
 		if ( $this->mFlags & DBO_SSL ) {
 			$connFlags |= MYSQLI_CLIENT_SSL;

@@ -1,7 +1,7 @@
 <?php
 
 //Load our FakeDiffOp
-require_once( __DIR__ . DIRECTORY_SEPARATOR . 'FakeDiffOp.php' );
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'FakeDiffOp.php';
 
 /**
  * @licence GNU GPL v2+
@@ -44,10 +44,10 @@ class DiffOpTest extends MediaWikiTestCase {
 	public function testGetClosingWithParameter() {
 		$obj = new FakeDiffOp();
 		$obj->closing = array( 'foo', 'bar', 'baz' );
-		$this->assertEquals( 'foo' , $obj->getClosing( 0 ) );
-		$this->assertEquals( 'bar' , $obj->getClosing( 1 ) );
-		$this->assertEquals( 'baz' , $obj->getClosing( 2 ) );
-		$this->assertEquals( null , $obj->getClosing( 3 ) );
+		$this->assertEquals( 'foo', $obj->getClosing( 0 ) );
+		$this->assertEquals( 'bar', $obj->getClosing( 1 ) );
+		$this->assertEquals( 'baz', $obj->getClosing( 2 ) );
+		$this->assertEquals( null, $obj->getClosing( 3 ) );
 	}
 
 	/**

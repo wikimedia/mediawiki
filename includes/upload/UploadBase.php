@@ -1195,7 +1195,7 @@ abstract class UploadBase {
 	 */
 	public static function checkSvgPICallback( $target, $data ) {
 		// Don't allow external stylesheets (bug 57550)
-		if ( preg_match( '/xml-stylesheet/i', $target) ) {
+		if ( preg_match( '/xml-stylesheet/i', $target ) ) {
 			return true;
 		}
 		return false;
@@ -1279,7 +1279,6 @@ abstract class UploadBase {
 			wfDebug( __METHOD__ . ": iframe in uploaded file.\n" );
 			return true;
 		}
-
 
 		foreach ( $attribs as $attrib => $value ) {
 			$stripped = $this->stripXmlNamespace( $attrib );

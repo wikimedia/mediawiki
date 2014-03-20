@@ -31,7 +31,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	public function testParams( $expected ) {
 		$msg = new Message( 'imasomething' );
 
-		$returned = call_user_func_array( array( $msg, 'params' ),  array_slice( func_get_args(), 1 ) );
+		$returned = call_user_func_array( array( $msg, 'params' ), array_slice( func_get_args(), 1 ) );
 
 		$this->assertSame( $msg, $returned );
 		$this->assertEquals( $expected, $msg->getParams() );

@@ -275,7 +275,7 @@ class VectorTemplate extends BaseTemplate {
 					$this->renderPortal( 'tb', $this->getToolbox(), 'toolbox', 'SkinTemplateToolboxEnd' );
 					break;
 				case 'LANGUAGES':
-					if ( $this->data['language_urls']  !== false ) {
+					if ( $this->data['language_urls'] !== false ) {
 						$this->renderPortal( 'lang', $this->data['language_urls'], 'otherlanguages' );
 					}
 					break;
