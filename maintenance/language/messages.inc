@@ -2745,9 +2745,7 @@ $wgMessageStructure = array(
 	),
 	'stylesheets' => array(
 		'common.css',
-		'cologneblue.css',
 		'monobook.css',
-		'modern.css',
 		'vector.css',
 		'print.css',
 		'noscript.css',
@@ -2759,9 +2757,7 @@ $wgMessageStructure = array(
 	),
 	'scripts' => array(
 		'common.js',
-		'cologneblue.js',
 		'monobook.js',
-		'modern.js',
 		'vector.js',
 		'group-autoconfirmed.js',
 		'group-user.js',
@@ -2845,9 +2841,7 @@ $wgMessageStructure = array(
 		'pageinfo-category-files'
 	),
 	'skin' => array(
-		'skinname-cologneblue',
 		'skinname-monobook',
-		'skinname-modern',
 		'skinname-vector',
 	),
 	'patrolling' => array(
