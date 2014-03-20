@@ -13,6 +13,7 @@
  * @author Symane
  * @author Urhixidur
  * @author Vipuser
+ * @author Xiaomingyan
  */
 
 $fallback = 'zh-hant, zh-hans';
@@ -1626,7 +1627,7 @@ Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation
 'importlogpagetext' => '管理員由別嗰 wiki 導入頁面同到佢俚嗰編輯歷史記錄。',
 'import-logentry-upload' => '通過檔案上傳導入嗰[[$1]]',
 'import-logentry-upload-detail' => '$1隻修改',
-'import-logentry-interwiki' => '跨wiki $1',
+'import-logentry-interwiki' => '跨wiki$1',
 'import-logentry-interwiki-detail' => '$2嗰$1隻修改',
 
 # Tooltip help for the actions

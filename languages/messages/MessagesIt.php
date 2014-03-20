@@ -742,6 +742,7 @@ Non dimenticare di personalizzare le [[Special:Preferences|preferenze di {{SITEN
 'gotaccountlink' => 'Entra',
 'userlogin-resetlink' => 'Hai dimenticato i tuoi dati di accesso?',
 'userlogin-resetpassword-link' => 'Hai dimenticato la password?',
+'userlogin-helplink2' => "Aiuto con l'accesso",
 'userlogin-loggedin' => 'Sei già connesso come {{GENDER:$1|$1}}.
 Usa il modulo sottostante per accedere come altro utente.',
 'userlogin-createanother' => "Crea un'altra utenza",

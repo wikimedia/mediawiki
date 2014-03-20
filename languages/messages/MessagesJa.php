@@ -824,6 +824,7 @@ $2',
 'gotaccountlink' => 'ログインしてください',
 'userlogin-resetlink' => 'ログイン情報をお忘れですか?',
 'userlogin-resetpassword-link' => 'パスワードをお忘れですか?',
+'userlogin-helplink2' => 'ログインについてのヘルプ',
 'userlogin-loggedin' => '{{GENDER:$1|$1}} として既にログインしています。
 別の利用者としてログインするには下のフォームを使用してください。',
 'userlogin-createanother' => '別アカウントを作成',

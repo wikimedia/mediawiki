@@ -149,8 +149,8 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Pagsasalungguhit ng kawing:',
-'tog-hideminor' => 'Itago ang mga maliliit na pagbabago sa mga huling binago',
+'tog-underline' => 'Pagsasalungguhit ng link:',
+'tog-hideminor' => 'Itago ang mga maliliit na pagbabago mula sa mga huling binago',
 'tog-hidepatrolled' => 'Ikubli ang napatrolyang mga pagbabagong nasa kamakailang mga pagbabago',
 'tog-newpageshidepatrolled' => 'Itago ang napatrolyang mga pahina mula talaan ng bagong pahina',
 'tog-extendwatchlist' => 'Palawigin ang talaan ng mga binabantayan upang maipakita ang lahat ng mga pagbabago, hindi lamang ang pinakakamakailan lamang',
@@ -187,6 +187,7 @@ $messages = array(
 'tog-showhiddencats' => 'Ipakita ang mga nakatagong kategorya',
 'tog-norollbackdiff' => 'Alisin ang mga pagkakaiba pagkatapos isagawa ang pagpapagulong na pabalik sa dati',
 'tog-useeditwarning' => 'Magbabala sa akin kapag umalis ako sa isang pahina ng pampatnugot na hindi pa nasasagip ang mga pagbabago',
+'tog-prefershttps' => 'Laging gamitin ang isang matibay na koneksiyon kapag naka-login',
 
 'underline-always' => 'Palagi',
 'underline-never' => 'Hindi magpakailanman',
@@ -288,6 +289,7 @@ $messages = array(
 'newwindow' => '(magbubukas sa bagong bintana)',
 'cancel' => 'Kanselahin',
 'moredotdotdot' => 'Damihan pa...',
+'morenotlisted' => 'Hindi kumpleto ang talang ito.',
 'mypage' => 'Pahina ko',
 'mytalk' => 'Usapan',
 'anontalk' => 'Usapan para sa IP na ito',
@@ -341,6 +343,7 @@ $messages = array(
 'create-this-page' => 'Likhain ang pahinang ito',
 'delete' => 'Burahin',
 'deletethispage' => 'Burahin itong pahina',
+'undeletethispage' => 'Ibalik mula sa pagkakabura ang pahinang ito',
 'undelete_short' => 'Baligtarin ang pagbura ng {{PLURAL:$1|isang pagbabago|$1 pagbabago}}',
 'viewdeleted_short' => 'Tingnan ang {{PLURAL:$1|isang binurang pagbabagp|$1 binurang pagbabago}}',
 'protect' => 'Ipagsanggalang',
@@ -387,7 +390,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'Tungkol sa {{SITENAME}}',
 'aboutpage' => 'Project:Patungkol',
-'copyright' => 'Maaaring gamitin ang nilalaman sa ilalim ng $1.',
+'copyright' => 'Maaaring gamitin ang nilalaman sa ilalim ng $1 maliban kung nabanggit.',
 'copyrightpage' => '{{ns:project}}:Mga karapatang-ari',
 'currentevents' => 'Mga kasalukuyang pangyayari',
 'currentevents-url' => 'Project:Mga kasalukuyang pangyayari',
@@ -474,6 +477,8 @@ Matatagpuan ang isang tala ng mga tamang natatanging pahina sa [[Special:Special
 # General errors
 'error' => 'Kamalian',
 'databaseerror' => 'Kamalian sa kalipunan ng datos',
+'databaseerror-text' => 'Mayroong kamalian sa pagtanong o pag-query sa database.
+Maaring ipinapahiwatig nito ang depekto o bug sa software.',
 'laggedslavemode' => "'''Babala:''' Maaaring hindi naglalaman ang pahina ng mga huling dagdag.",
 'readonly' => 'Nakakandado ang kalipunan ng datos',
 'enterlockreason' => 'Maglagay ng dahilan sa pagkakandado, kasama ang taya kung kailan magtatapos ang pagkakandado',

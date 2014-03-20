@@ -600,6 +600,7 @@ Glědaj: Jo móžno, až někotare boki pokazuju se snaź tak, ako by ty hyšći
 'gotaccountlink' => 'Pśizjawiś se',
 'userlogin-resetlink' => 'Sy pśizjawjeńske daty zabył?',
 'userlogin-resetpassword-link' => 'Sy swójo gronidło zabył?',
+'userlogin-helplink2' => 'Pomoc pśi pśizjawjenju',
 'userlogin-loggedin' => 'Sy južo ako {{GENDER:$1|$1 pśizjawjony|$1 pśizjawjona}}. Wužyj slědujucy formular, aby se ako drugi wužywaŕ pśizjawił.',
 'userlogin-createanother' => 'Druge konto załožyś',
 'createacct-join' => 'Zapódaj dołojce swóje informacije.',
@@ -714,6 +715,9 @@ Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło
 'resetpass-abort-generic' => 'Změnjanje gronidła jo se pśez rozšyrjenje pśetergnuło.',
 'resetpass-expired' => 'Twójo gronidło jo pśepadnyło. Pšosym póstaj nowe gronidło za pśizjawjenje.',
 'resetpass-expired-soft' => 'Twójo gronidło jo pśepadnyło a musy se slědk stajiś. Pšosym wubjeŕ něnto druge gronidło abo klikni na "{{int:resetpass-submit-cancel}}", aby jo pózdźej slědk stajił.',
+'resetpass-validity-soft' => 'Wašo gronidło njejo płaśiwe: $1
+
+Pšosym wubjeŕ něnto nowe gronidło abo klikni na "{{int:resetpass-submit-cancel}}", aby jo pózdźej slědk stajił.',
 
 # Special:PasswordReset
 'passwordreset' => 'Gronidło slědk stajiś',
@@ -1082,6 +1086,10 @@ Móžoš se toś ten rozdźěl woglědaś; drobnostki glědaj w [{{fullurl:{{#Sp
 'revdelete-show-file-submit' => 'Jo',
 'revdelete-selected' => "'''{{PLURAL:$2|Wuzwólona wersija|Wuzwólonej wersiji|Wuzwólone wersije}} wót [[:$1]].'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Wuzwólony protokolowe tšojenje|Wuzwólonej protokolowe tšojeni|wuzwólone protokolowe tšojenja}}:'''",
+'revdelete-text-text' => 'Wulašowane wersije wóstanu hyšći we wersijowej historiji, ale źěle jich wopśimjeśa njebudu pśistupne zjawnosći.',
+'revdelete-text-file' => 'Wulašowane datajowe wersije wóstanu w datajowej historiji, ale źěle jich wopśimjeśa njebudu pśistupne zjawnosći.',
+'logdelete-text' => 'Wulašowane protokolowe zapiski wóstanu hyšći w protokolach, ale źěle jich wopśimjeśa njebudu pśistupne zjawnosći.',
+'revdelete-text-others' => 'Druge administratory na {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu hyšći na schowane wopśimjeśe pśistup měś a mógu jo zasej pśez ten samski wužywarski pówjerch wótnowiś, snaźkuli su pśidatne wobgranicowanja.',
 'revdelete-confirm' => 'Pšosym wobkšuś, až coš to cyniś, až rozmějoš konsekwence a až cyniš to pó [[{{MediaWiki:Policy-url}}|pšawidłach]].',
 'revdelete-suppress-text' => "Pódtłocenje by dejało se '''jano''' za slědujuce pady wužywaś:
 * Potencielnje ranjece informacije
@@ -2045,7 +2053,7 @@ Kužda smužka wopśimjejo wótkaze na prědne a druge dalejpósrědnjenje a tek
 'deadendpagestext' => 'Slědujuce boki njewótkazuju na druge boki we {{GRAMMAR:lokatiw|{{SITENAME}}}}.',
 'protectedpages' => 'Šćitane boki',
 'protectedpages-indef' => 'Jano boki pokazaś, kótarež su na njewěsty cas šćitane',
-'protectedpages-summary' => 'Toś ten specialny bok pokazujo wšykne boki, kótarež njamgu se mimo wósebnych pšawow wobźěłowaś a pśesuwaś.',
+'protectedpages-summary' => 'Toś ten bok nalicyjo eksistěrujuce boki, kótarež su aktualnje šćitane. Za lisćinu titelow, kótarež su šćitane pśeśiwo napóranjeju, glej [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].',
 'protectedpages-cascade' => 'Jano boki z kaskadowym šćitom',
 'protectedpages-noredirect' => 'Dalejpósrědnjenja schowaś',
 'protectedpagesempty' => 'Z toś tymi parametrami njejsu tuchylu žedne boki šćitane.',
@@ -2377,7 +2385,7 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 'protect-locked-blocked' => "Njamóžoš status šćita togo boka změniś, dokulaž jo twójo wužywarske konto se blokěrowało. How su aktualne nastajenja šćita za bok '''„$1“:'''.",
 'protect-locked-dblock' => "Datowa banka jo zamknjona a toś njejo móžno šćit boka změniś. How su aktualne nastajenja šćita za bok '''„$1“:'''.",
 'protect-locked-access' => "Wašo wužywarske konto njama notne pšawa za změnu šćita toś togo boka. How su aktualne nastajenja šćita boka '''„$1“:'''.",
-'protect-cascadeon' => 'Toś ten bok jo tuchylu šćitany, dokulaž jo zawězany do {{PLURAL:$1|slědujucego boka|slědujuceju bokowu|slědujucych bokow}}, źož kaskadowy šćit jo aktiwěrowany. Status šćita móžo se za toś ten bok změniś, to ale njewówliwujo kaskadowy šćit:',
+'protect-cascadeon' => 'Toś ten bok jo tuchylu šćitany, dokulaž jo zawězany do {{PLURAL:$1|slědujucego boka|slědujuceju bokowu|slědujucych bokow}}, źož kaskadowy šćit jo aktiwěrowany. Změny na šćitnem schójźeńku toś togo boka njebudu kaskadowy šćit wobwliwowaś.',
 'protect-default' => 'Wšyknym wužywarjam dowóliś',
 'protect-fallback' => 'Jano wužywarjow z pšawom "$1" dowóliś',
 'protect-level-autoconfirmed' => 'Jano awtomatiski wobkšuśonych wužywarjow dowóliś',

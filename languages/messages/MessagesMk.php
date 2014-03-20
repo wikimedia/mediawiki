@@ -805,6 +805,7 @@ $2',
 'gotaccountlink' => 'Најавете се',
 'userlogin-resetlink' => 'Си ги заборавивте податоците за најава?',
 'userlogin-resetpassword-link' => 'Ја заборавивте лозинката?',
+'userlogin-helplink2' => 'Помош за најава',
 'userlogin-loggedin' => 'Веќе сте најавени како {{GENDER:$1|$1}}.
 Со образецот подолу можете да се најавите како друг корисник.',
 'userlogin-createanother' => 'Направи нова сметка',

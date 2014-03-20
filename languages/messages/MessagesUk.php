@@ -814,6 +814,7 @@ $1',
 'gotaccountlink' => 'Увійдіть',
 'userlogin-resetlink' => 'Забули дані, потрібні для входу?',
 'userlogin-resetpassword-link' => 'Забули пароль?',
+'userlogin-helplink2' => 'Допомога з входом у систему',
 'userlogin-loggedin' => 'Ви вже увійшли як {{GENDER:$1|$1}}.
 Використайте нижче форму для входу як інший користувач.',
 'userlogin-createanother' => 'Створити інший обліковий запис',

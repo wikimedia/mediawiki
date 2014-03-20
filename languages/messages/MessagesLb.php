@@ -631,6 +631,7 @@ Vergiesst net fir Är [[Special:Preferences|{{SITENAME}} Astellungen]] z'ännere
 'gotaccountlink' => 'Umellen',
 'userlogin-resetlink' => "Hutt Dir d'Detailer vun Ärem Login vergiess?",
 'userlogin-resetpassword-link' => 'Hutt Dir Äert Passwuert vergiess?',
+'userlogin-helplink2' => 'Hëllef beim Aloggen',
 'userlogin-loggedin' => 'Dir sidd schonn als {{GENDER:$1|$1}} ageloggt.
 Benotzt de Formulaire hei drënner fir Iech als een anere Benotzer anzeloggen.',
 'userlogin-createanother' => 'Maacht een anere Benotzerkont op',
@@ -761,6 +762,7 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 'resetpass-abort-generic' => "D'Ännere vum Passwuert gouf duerch eng Erweiderung ofgebrach.",
 'resetpass-expired' => 'Äert Passwuert ass ofgelaf. Gitt w.e.g. en neit Passwuert u fir Iech anzeloggen.',
 'resetpass-expired-soft' => 'Äert Passwuert ass ofgelaf a muss zeréckgesat. Sicht w.e.g. elo en neit Passwuert eraus oder klickt  "{{int:resetpass-submit-cancel}}" fir et spéider zeréckzesetzen.',
+'resetpass-validity-soft' => 'Ärt Passwuert ass net valabel: $1',
 
 # Special:PasswordReset
 'passwordreset' => 'Passwuert zrécksetzen',
@@ -2113,7 +2115,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'protectedpages-unknown-timestamp' => 'Onbekannt',
 'protectedpages-unknown-performer' => 'Onbekannte Benotzer',
 'protectedtitles' => 'Gespaarten Titel',
-'protectedtitles-summary' => 'Dës Titele goufe gespaart an et ka keng Säit mat esou engem Titel gemaach ginn.',
+'protectedtitles-summary' => "Op dëser Säit stinn all déi Säiten déi elo gespaart si fir ugefaang ze ginn. D'Lëscht vun de Säiten déi gespaart sinn: [[{{#special:ProtectedPages}}|{{int:protectedpages}}]].",
 'protectedtitlesempty' => 'Elo si mat de Parameteren déi Dir uginn hutt keng Säite fir neit Uleeë gespaart.',
 'listusers' => 'Benotzerlëscht',
 'listusers-editsonly' => 'Nëmme Benotzer mat Ännerunge weisen',

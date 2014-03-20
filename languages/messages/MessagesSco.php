@@ -470,6 +470,7 @@ Ye can chynge yer {{SITENAME}} [[Special:Preferences|preeferences]] gif ye like.
 'gotaccountlink' => 'Log in',
 'userlogin-resetlink' => 'Forgotten yer login details?',
 'userlogin-resetpassword-link' => 'Fergot yer password?',
+'userlogin-helplink2' => 'Heelp wi loggin in',
 'userlogin-loggedin' => "Ye'r awreadie loggit in as {{GENDER:$1|$1}}.
 Uise the form ablow tae log in as anither uiser.",
 'userlogin-createanother' => 'Mak anither accoont',
@@ -593,6 +594,9 @@ Tae finish loggin in, ye maun set ae new passwaird here:',
 'resetpass-abort-generic' => 'Passwaird chynge haes been aborted bi aen extension.',
 'resetpass-expired' => 'Yer passwaird haes expired. Please set ae new passwaird tae log-in.',
 'resetpass-expired-soft' => 'Yer passwaird haes expired n needs tae be reset. Please chuise ae new passwaird nou, or clap oan "{{int:resetpass-submit-cancel}}" tae reset it later.',
+'resetpass-validity-soft' => 'Yer passwaird isna valid: $1
+
+Please chuise ae new passwaird nou, or clap "{{int:resetpass-submit-cancel}}" tae reset it later.',
 
 # Special:PasswordReset
 'passwordreset' => 'Reset passwaird',

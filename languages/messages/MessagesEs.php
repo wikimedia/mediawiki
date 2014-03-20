@@ -962,7 +962,7 @@ Para terminar la sesión, debes establecer una nueva contraseña aquí:',
 'resetpass-expired-soft' => 'Su contraseña ha caducado y necesita reajustarse. Elija una nueva contraseña ahora, o haga clic en "{{int:resetpass-enviar-cancelar}}" para restaurarla más adelante.',
 'resetpass-validity-soft' => 'Tu contraseña no es válida: $1
 
-Por favor cambiela por una nueva ahora, o haga clic "{{int:resetpass-submit-cancel}}" para cambiarla más tarde.',
+Cámbiala ahora por una nueva, o haz clic en "{{int:resetpass-submit-cancel}}" para cambiarla más tarde.',
 
 # Special:PasswordReset
 'passwordreset' => 'Restablecimiento de contraseña',
@@ -1354,9 +1354,9 @@ Aún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:
 'revdelete-selected' => "'''{{PLURAL:$2|Revisión seleccionada|Revisiones seleccionadas}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Seleccionado un evento|Seleccionados eventos}}:'''",
 'revdelete-text-text' => 'Las revisiones eliminadas aún aparecerán en el historial de la página, pero parte de su contenido será inaccesible para el público.',
-'revdelete-text-file' => 'Las versiones de los archivos eliminados aún aparecerán en el historial del archivo, pero partes de su contenido será inaccesible por el público.',
+'revdelete-text-file' => 'Las versiones de los archivos eliminados aún aparecerán en el historial del archivo, pero partes de su contenido serán inaccesibles para el público.',
 'logdelete-text' => 'Las revisiones eliminadas aún aparecerán en el historial de la página, pero parte de su contenido será inaccesible para el público.',
-'revdelete-text-others' => 'Otros administradores en {{SITENAME}} serán capaces de acceder a los contenidos ocultos y pueden restaurarlos a través de esta interfaz, a menos que se establescan restricciones adicionales.',
+'revdelete-text-others' => 'Otros administradores en {{SITENAME}} aun serán capaces de acceder a los contenidos ocultos y pueden restaurarlos a través de esta interfaz, a menos que se establezcan restricciones adicionales.',
 'revdelete-confirm' => 'Por favor confirma que deseas realizar la operación, que entiendes las consecuencias y que estás ejecutando dicha acción acorde con [[{{MediaWiki:Policy-url}}|las políticas]].',
 'revdelete-suppress-text' => "La herramienta de supresión '''solo''' debería usarse en los siguientes casos:
 * información potencialmente injuriosa o calumniante.
@@ -2616,7 +2616,7 @@ Véase $2 para un registro de los borrados recientes.',
 'delete-edit-reasonlist' => 'Editar razones de borrado',
 'delete-toobig' => 'Esta página tiene un historial muy grande, con más de $1 {{PLURAL:$1|revisión|revisiones}}. Borrar este tipo de páginas ha sido restringido para prevenir posibles problemas en {{SITENAME}}.',
 'delete-warning-toobig' => 'Esta página tiene un historial de más de $1 {{PLURAL:$1|revisión|revisiones}}. Eliminarla puede perturbar las operaciones de la base de datos de {{SITENAME}}. Ten cuidado al borrar.',
-'deleting-backlinks-warning' => "'''Advertencia:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Otras páginas]] están enlazadas o transcluídas de la página que está por eliminar.",
+'deleting-backlinks-warning' => "'''Advertencia:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Otras páginas]] enlazan o transcluyen la página que vas a eliminar.",
 
 # Rollback
 'rollback' => 'Revertir ediciones',

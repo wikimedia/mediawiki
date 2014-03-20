@@ -830,6 +830,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'gotaccountlink' => 'Aanmelden',
 'userlogin-resetlink' => 'Bent u uw aanmeldgegevens vergeten?',
 'userlogin-resetpassword-link' => 'Wachtwoord vergeten?',
+'userlogin-helplink2' => 'Hulp bij aanmelden',
 'userlogin-loggedin' => 'U bent al aangemeld als {{GENDER:$1|$1}}.
 Gebruik het onderstaande formulier om aan te melden als een andere gebruiker.',
 'userlogin-createanother' => 'Nog een gebruiker aanmaken',

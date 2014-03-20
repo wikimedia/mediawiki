@@ -810,6 +810,7 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'gotaccountlink' => 'Přihlaste se',
 'userlogin-resetlink' => 'Zapomněli jste přihlašovací údaje?',
 'userlogin-resetpassword-link' => 'Zapomněli jste heslo?',
+'userlogin-helplink2' => 'Nápověda k přihlašování',
 'userlogin-loggedin' => 'Již jste {{GENDER:$1|přihlášen|přihlášena}} jako $1.
 Pomocí formuláře níže se můžete přihlásit jako jiný uživatel.',
 'userlogin-createanother' => 'Vytvořit jiný účet',
@@ -936,6 +937,9 @@ Abyste dokončili přihlášení, nastavte si zde nové heslo:',
 'resetpass-abort-generic' => 'Změna hesla byla zablokována rozšířením.',
 'resetpass-expired' => 'Platnost vašeho hesla vypršela. Pro přihlášení si nastavte nové heslo.',
 'resetpass-expired-soft' => 'Platnost vašeho hesla vypršela, musíte si nastavit nové. Zvolte si nové heslo nebo klikněte na „{{int:resetpass-submit-cancel}}“ a nastavte si ho později.',
+'resetpass-validity-soft' => 'Vaše heslo není platné: $1
+
+Zvolte si nové heslo nebo klikněte na „{{int:resetpass-submit-cancel}}“ a nastavte si ho později.',
 
 # Special:PasswordReset
 'passwordreset' => 'Reset hesla',

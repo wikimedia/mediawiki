@@ -766,6 +766,7 @@ Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut si
 'gotaccountlink' => 'kirjautua sisään',
 'userlogin-resetlink' => 'Unohditko salasanasi?',
 'userlogin-resetpassword-link' => 'Unohditko salasanasi?',
+'userlogin-helplink2' => 'Apua sisäänkirjautumiseen',
 'userlogin-loggedin' => 'Olet jo kirjautunut sisään tunnuksella {{GENDER:$1|$1}}.
 Käytä alla olevaa lomaketta kirjautuaksesi sisään toisena käyttäjänä.',
 'userlogin-createanother' => 'Luo toinen käyttäjätunnus',
@@ -885,6 +886,7 @@ Jotta pääset kirjautumaan sisään kunnolla, sinun on nyt asetettava uusi sala
 'resetpass-abort-generic' => 'Laajennus keskeytti salasanan vaihdon.',
 'resetpass-expired' => 'Salasanasi on vanhentunut. Valitse uusi salasana, jotta pääset kirjautumaan sisään.',
 'resetpass-expired-soft' => 'Salasanasi on vanhentunut ja se pitää uudistaa. Valitse uusi salasana nyt tai paina "{{int:resetpass-submit-cancel}}", niin voit uudistaa salasanan myöhemmin.',
+'resetpass-validity-soft' => 'Valitse nyt uusi salasana tai paina "{{int:resetpass-submit-cancel}}", niin voit vaihtaa sen myöhemmin.',
 
 # Special:PasswordReset
 'passwordreset' => 'Salasanan uudistus',
@@ -1260,6 +1262,9 @@ Voit silti nähdä tämän muutoksen. Lisätietoja löytyy [{{fullurl:{{#Special
 'revdelete-show-file-submit' => 'Kyllä',
 'revdelete-selected' => "'''{{PLURAL:$2|Valittu versio|Valitut versiot}} sivusta [[:$1]]'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Valittu lokimerkintä|Valitut lokimerkinnät}}:'''",
+'revdelete-text-text' => 'Poistetut versiot näkyvät edelleen sivun historiassa, mutta osa niiden sisällöstä ei enää ole saatavilla julkisesti.',
+'revdelete-text-file' => 'Poistetut tiedostoversiot näkyvät yhä sivun historiassa, mutta osa niiden sisällöstä ei ole saatavilla julkisesti.',
+'logdelete-text' => 'Poistetut lokimerkinnät näkyvät edelleen lokeissa, mutta osa niiden sisällöstä ei enää ole saatavilla julkisesti.',
 'revdelete-confirm' => 'Varmista, että haluat tehdä tämän – ymmärrät seuraukset ja teet tämän [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.',
 'revdelete-suppress-text' => "Häivytystä pitäisi käyttää '''vain''' seuraavissa tapauksissa:
 * Mahdollisesti henkilön kunniaa loukkaavia tietoja
@@ -2220,7 +2225,7 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 'deadendpagestext' => 'Seuraavat sivut eivät linkitä muihin sivuihin wikissä.',
 'protectedpages' => 'Suojatut sivut',
 'protectedpages-indef' => 'Vain ikuisesti suojatut',
-'protectedpages-summary' => 'Tällä sivulla on lueteltu tällä hetkellä suojatut sivut. Nähdäksesi luettelon sivuista, jotka on suojattu uudelleenluonnilta, katso  [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].',
+'protectedpages-summary' => 'Tällä sivulla on lueteltu tällä hetkellä suojatut sivut. Nähdäksesi luettelon sivuista, jotka on suojattu uudelleenluonnilta, katso [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].',
 'protectedpages-cascade' => 'Vain tarttuvasti suojatut',
 'protectedpages-noredirect' => 'Piilota ohjaukset',
 'protectedpagesempty' => 'Mitään sivuja ei ole tällä hetkellä suojattu näillä asetuksilla.',
@@ -2504,7 +2509,7 @@ Sivulla $2 on lista viimeaikaisista poistoista.',
 'delete-edit-reasonlist' => 'Muokkaa poistosyitä',
 'delete-toobig' => 'Tällä sivulla on pitkä muutoshistoria – yli $1 {{PLURAL:$1|versio|versiota}}. Näin suurien muutoshistorioiden poistamista on rajoitettu suorituskykysyistä.',
 'delete-warning-toobig' => 'Tällä sivulla on pitkä muutoshistoria – yli $1 {{PLURAL:$1|versio|versiota}}. Näin suurien muutoshistorioiden poistaminen voi haitata sivuston suorituskykyä.',
-'deleting-backlinks-warning' => "'''Varoitus:''' Sivulle, jota olet poistamassa, johtaa linkkejä muilta sivuilta, tai sivu on sisällytetty muuhun sivuun.",
+'deleting-backlinks-warning' => "'''Varoitus:''' Sivulle, jota olet poistamassa, johtaa [[Special:WhatLinksHere/{{FULLPAGENAME}}|linkkejä muilta sivuilta]], tai sivu on sisällytetty muuhun sivuun.",
 
 # Rollback
 'rollback' => 'palauta aiempaan versioon',

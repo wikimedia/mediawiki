@@ -1605,7 +1605,7 @@ Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation
 'importlogpagetext' => '管理员由别𠮶 wiki 导入页面同到佢俚𠮶编辑历史记录。',
 'import-logentry-upload' => '通过档案上传导入𠮶[[$1]]',
 'import-logentry-upload-detail' => '$1只修改',
-'import-logentry-interwiki' => '跨wiki $1',
+'import-logentry-interwiki' => '跨wiki$1',
 'import-logentry-interwiki-detail' => '$2𠮶$1只修改',
 
 # Tooltip help for the actions

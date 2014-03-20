@@ -662,8 +662,6 @@ Administratorn kinna se eensahn; Details stiehn eim [{{fullurl:{{#Special:Log}}/
 'revdelete-show-file-submit' => 'Ju',
 'revdelete-selected' => "'''{{PLURAL:$2|Ausgewählte Version|Ausgewählte Versionen}} vu [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}}:'''",
-'revdelete-text' => "'''Geläschte Versionen und Aksjonna verbleiba ei der Versionsgeschichte und den Logbichern, jedoch sein Teele davon fier de Effentlichkeit unzugänglich.'''
-Andere Administratoren uff {{SITENAME}} hoan Zugriff uff dann versteckta Inhalt und kinna ihn mit der gleichen Seite wiederherstella, sufern nee zusätzliche Einschränkungen bestieha.",
 'revdelete-legend' => 'Setza der Sichtbarkeits-Einschränkunga',
 'revdelete-hide-text' => 'Text dar Version verstecka',
 'revdelete-hide-image' => 'Bildinhalt verstecka',

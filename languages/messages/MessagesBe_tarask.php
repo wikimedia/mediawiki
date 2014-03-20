@@ -707,6 +707,7 @@ $2',
 'gotaccountlink' => 'Увайдзіце',
 'userlogin-resetlink' => 'Забыліся на зьвесткі для ўваходу?',
 'userlogin-resetpassword-link' => 'Забылі пароль?',
+'userlogin-helplink2' => 'Дапамога з уваходам у сыстэму',
 'userlogin-loggedin' => 'Вы ўжо ўвайшлі як {{GENDER:$1|$1}}.
 Для ўваходу пад іншым удзельнікам скарыстайцеся формай унізе.',
 'userlogin-createanother' => 'Стварыць іншы рахунак',

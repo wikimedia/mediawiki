@@ -715,6 +715,7 @@ $2',
 'gotaccountlink' => '登入',
 'userlogin-resetlink' => '忘記了您的登入細節？',
 'userlogin-resetpassword-link' => '忘記您的密碼？',
+'userlogin-helplink2' => '登入幫助',
 'userlogin-loggedin' => '您已作為{{GENDER:$1|$1}}登錄。
 利用以下表單以作為另一賬戶登錄。',
 'userlogin-createanother' => '建立另一賬戶',
@@ -2977,7 +2978,7 @@ $2',
 'importlogpagetext' => '來自其它 wiki 的行政性的帶編輯歷史匯入頁面。',
 'import-logentry-upload' => '透過檔案上傳匯入的$1',
 'import-logentry-upload-detail' => '$1個修訂',
-'import-logentry-interwiki' => '跨 wiki $1',
+'import-logentry-interwiki' => '跨wiki$1',
 'import-logentry-interwiki-detail' => '來自$2的$1個修訂',
 
 # JavaScriptTest

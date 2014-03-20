@@ -1064,7 +1064,7 @@ Du solltest dies nur machen, wenn du die Tokens versehentlich mit jemandem getei
 'resettokens-token-label' => '$1 (aktueller Wert: $2)',
 'resettokens-watchlist-token' => 'Token für den Webfeed (Atom/RSS) der [[Special:Watchlist|Änderungen an Seiten auf deiner Beobachtungsliste]]',
 'resettokens-done' => 'Tokens zurückgesetzt.',
-'resettokens-resetbutton' => 'Ausgewählte Tokens zurücksetzen',
+'resettokens-resetbutton' => 'Ausgewählte Token ändern',
 
 # Edit page toolbar
 'bold_sample' => 'Fetter Text',
@@ -1561,7 +1561,7 @@ Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'prefs-watchlist-days-max' => 'Maximal {{PLURAL:$1|ein Tag|$1 Tage}}',
 'prefs-watchlist-edits' => 'Maximale Anzahl der angezeigten Einträge:',
 'prefs-watchlist-edits-max' => 'Maximal 1.000 Einträge',
-'prefs-watchlist-token' => 'Beobachtungslisten-Token:',
+'prefs-watchlist-token' => 'Token der Beobachtungsliste:',
 'prefs-misc' => 'Verschiedenes',
 'prefs-resetpass' => 'Passwort ändern',
 'prefs-changeemail' => 'E-Mail-Adresse ändern',
