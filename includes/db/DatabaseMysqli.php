@@ -51,6 +51,17 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 				. " have you compiled PHP with the --with-mysqli option?\n" );
 		}
 
+		// Other than mysql_connect, mysqli_real_connect expects an explicit port
+		// parameter. So we need to parse the port out of $realServer
+		$port = null;
+		$hostAndPort = IP::splitHostAndPort( $realServer );
+		if ( $hostAndPort ) {
+			$realServer = $hostAndPort[0];
+			if ( $hostAndPort[1] ) {
+				$port = $hostAndPort[1];
+			}
+		}
+
 		$connFlags = 0;
 		if ( $this->mFlags & DBO_SSL ) {
 			$connFlags |= MYSQLI_CLIENT_SSL;
@@ -70,7 +81,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 				usleep( 1000 );
 			}
 			if ( $mysqli->real_connect( $realServer, $this->mUser,
-				$this->mPassword, $this->mDBname, null, null, $connFlags ) )
+				$this->mPassword, $this->mDBname, $port, null, $connFlags ) )
 			{
 				return $mysqli;
 			}
