@@ -3151,7 +3151,7 @@ Here are the current settings for the page <strong>$1</strong>:',
 'protect-locked-access'            => 'Your account does not have permission to change page protection levels.
 Here are the current settings for the page <strong>$1</strong>:',
 'protect-cascadeon'                => "This page is currently protected because it is included in the following {{PLURAL:$1|page, which has|pages, which have}} cascading protection turned on.
-You can change this page's protection level, but it will not affect the cascading protection.",
+Changes to this page's protection level will not affect the cascading protection.",
 'protect-default'                  => 'Allow all users',
 'protect-fallback'                 => 'Allow only users with "$1" permission',
 'protect-level-autoconfirmed'      => 'Allow only autoconfirmed users',
