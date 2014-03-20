@@ -2739,9 +2739,7 @@ $wgMessageStructure = array(
 	),
 	'stylesheets' => array(
 		'common.css',
-		'cologneblue.css',
 		'monobook.css',
-		'modern.css',
 		'vector.css',
 		'print.css',
 		'noscript.css',
@@ -2839,9 +2837,7 @@ $wgMessageStructure = array(
 		'pageinfo-category-files'
 	),
 	'skin' => array(
-		'skinname-cologneblue',
 		'skinname-monobook',
-		'skinname-modern',
 		'skinname-vector',
 	),
 	'patrolling' => array(
