@@ -1700,7 +1700,7 @@ class User {
 			// Already pinged?
 			if ( $count ) {
 				if ( $count >= $max ) {
-					wfDebugLog( 'ratelimit', $this->getName() . " tripped! $key at $count $summary");
+					wfDebugLog( 'ratelimit', $this->getName() . " tripped! $key at $count $summary" );
 					$triggered = true;
 				} else {
 					wfDebug( __METHOD__ . ": ok. $key at $count $summary\n" );

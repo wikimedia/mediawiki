@@ -471,7 +471,7 @@ class DatabaseMssql extends DatabaseBase {
 		$this->mScrollableCursor = false;
 		try {
 			parent::deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname );
-		} catch( Exception $e ) {
+		} catch ( Exception $e ) {
 			$this->mScrollableCursor = true;
 			throw $e;
 		}
@@ -482,7 +482,7 @@ class DatabaseMssql extends DatabaseBase {
 		$this->mScrollableCursor = false;
 		try {
 			parent::delete( $table, $conds, $fname );
-		} catch( Exception $e ) {
+		} catch ( Exception $e ) {
 			$this->mScrollableCursor = true;
 			throw $e;
 		}
@@ -730,7 +730,7 @@ class DatabaseMssql extends DatabaseBase {
 				$insertOptions,
 				$selectOptions
 			);
-		} catch( Exception $e ) {
+		} catch ( Exception $e ) {
 			$this->mScrollableCursor = true;
 			throw $e;
 		}
@@ -911,7 +911,7 @@ class DatabaseMssql extends DatabaseBase {
 			$first = $offset + 1;
 			$last = $offset + $limit;
 			$sub1 = 'sub_' . $this->mSubqueryId;
-			$sub2 = 'sub_' . ($this->mSubqueryId + 1);
+			$sub2 = 'sub_' . ( $this->mSubqueryId + 1 );
 			$this->mSubqueryId += 2;
 			if ( !$s1 ) {
 				// wat

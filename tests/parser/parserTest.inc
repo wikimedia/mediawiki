@@ -672,7 +672,7 @@ class ParserTest {
 				)
 			)
 		)';
-		$regex = '/'.$defs.'\b
+		$regex = '/' . $defs . '\b
 			(?<k>[\w-]+)				# Key
 			\b
 			(?:\s*
@@ -688,7 +688,7 @@ class ParserTest {
 				)
 			)?
 			/x';
-		$valueregex = '/'.$defs.'(?&value)/x';
+		$valueregex = '/' . $defs . '(?&value)/x';
 
 		if ( preg_match_all( $regex, $instring, $matches, PREG_SET_ORDER ) ) {
 			foreach ( $matches as $bits ) {

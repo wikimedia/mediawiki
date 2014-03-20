@@ -66,10 +66,10 @@ abstract class DiffOp {
 	 * @return string|null
 	 */
 	public function getClosing( $i = null ) {
-		if( $i === null ) {
+		if ( $i === null ) {
 			return $this->closing;
 		}
-		if( array_key_exists( $i, $this->closing ) ) {
+		if ( array_key_exists( $i, $this->closing ) ) {
 			return $this->closing[$i];
 		}
 		return null;
@@ -424,7 +424,7 @@ class DiffEngine {
 			}
 
 			$x1 = $xoff + (int)( ( $numer + ( $xlim - $xoff ) * $chunk ) / $nchunks );
-			for (; $x < $x1; $x++ ) {
+			for ( ; $x < $x1; $x++ ) {
 				$line = $flip ? $this->yv[$x] : $this->xv[$x];
 				if ( empty( $ymatches[$line] ) ) {
 					continue;

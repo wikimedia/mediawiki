@@ -156,7 +156,6 @@ class UserrightsPage extends SpecialPage {
 				$targetUser->clearInstanceCache(); // bug 38989
 			}
 
-
 			if ( $request->getVal( 'conflictcheck-originalgroups' ) !== implode( ',', $targetUser->getGroups() ) ) {
 				$out->addWikiMsg( 'userrights-conflict' );
 			} else {

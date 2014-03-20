@@ -36,7 +36,7 @@ class ProfilerMwprof extends Profiler {
 
 	// Message types
 
-	const TYPE_SINGLE  = 1;
+	const TYPE_SINGLE = 1;
 	const TYPE_RUNNING = 2;
 
 	/**

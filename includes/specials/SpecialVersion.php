@@ -490,7 +490,7 @@ class SpecialVersion extends SpecialPage {
 
 		$fhooks = $wgParser->getFunctionHooks();
 		if ( count( $fhooks ) ) {
-			$out = Html::rawElement( 'h2', array( 'class' => 'mw-headline' ) , Linker::makeExternalLink(
+			$out = Html::rawElement( 'h2', array( 'class' => 'mw-headline' ), Linker::makeExternalLink(
 				'//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Parser_functions',
 				$this->msg( 'version-parser-function-hooks' )->parse(),
 				false /* msg()->parse() already escapes */
@@ -625,7 +625,7 @@ class SpecialVersion extends SpecialPage {
 				);
 			} else {
 				$vcsVerString = Html::element( 'span',
-					array( 'class' => 'mw-version-ext-vcs-version'),
+					array( 'class' => 'mw-version-ext-vcs-version' ),
 					"({$vcsVersion})"
 				);
 			}
@@ -633,7 +633,7 @@ class SpecialVersion extends SpecialPage {
 
 			if ( $vcsDate ) {
 				$vcsTimeString = Html::element( 'span',
-						array( 'class' => 'mw-version-ext-vcs-timestamp'),
+						array( 'class' => 'mw-version-ext-vcs-timestamp' ),
 						$this->getLanguage()->timeanddate( $vcsDate )
 					);
 				$versionString .= " {$vcsTimeString}";

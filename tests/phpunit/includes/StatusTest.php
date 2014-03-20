@@ -541,7 +541,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetStatusArrayWithNonObjectMessages( $nonObjMsg ) {
 		$status = new Status();
-		if( !array_key_exists( 1, $nonObjMsg ) ) {
+		if ( !array_key_exists( 1, $nonObjMsg ) ) {
 			$status->warning( $nonObjMsg[0] );
 		} else {
 			$status->warning( $nonObjMsg[0], $nonObjMsg[1] );
