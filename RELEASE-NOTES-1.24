@@ -68,6 +68,11 @@ changes to languages because of Bugzilla reports.
 * mediawiki.util.$content no longer supports old versions of the Vector,
   Monobook, Modern and CologneBlue skins that don't yet implement the "mw-body"
   and/or "mw-body-primary" class name in their html.
+* BREAKING CHANGE: The Modern and Cologne Blue skins were moved out of MediaWiki
+  core to their own respective repositories. See also
+  https://www.mediawiki.org/wiki/Skin:Modern and
+  https://www.mediawiki.org/wiki/Skin:CologneBlue.
+
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
