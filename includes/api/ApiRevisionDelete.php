@@ -223,8 +223,9 @@ class ApiRevisionDelete extends ApiBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(),
 			array(
-				'needtarget' => 'A target title is required for this RevDel type',
-				'badparams' => 'Bad value for some parameter',
+				array( 'code' => 'needtarget',
+					'info' => 'A target title is required for this RevDel type' ),
+				array( 'code' => 'badparams', 'info' => 'Bad value for some parameter' ),
 			)
 		);
 	}
