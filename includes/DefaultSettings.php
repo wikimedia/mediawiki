@@ -5233,7 +5233,7 @@ $wgDebugLogGroups = array();
  * @see MwLogger
  */
 $wgMWLoggerDefaultSpi = array(
-	'class' => 'MWLoggerNullSpi',
+	'class' => 'MWLoggerLegacySpi',
 );
 
 /**
