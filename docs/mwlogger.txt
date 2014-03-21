@@ -1,0 +1,53 @@
+MWLogger implements a PSR-3 [0] compatible message logging system.
+
+The MWLogger class is actually a thin wrapper around any PSR-3 LoggerInterface
+implementation. Named MWLogger instances can be obtained from the
+MWLogger::getInstance() static method. MWLogger expects a class implementing
+the MWLoggerSpi interface to act as a factory for new MWLogger instances.
+
+The MWLogger::getInstance() static method is the means by which most code
+acquires an MWLogger instance. This in turn delegates creation of MWLogger
+instances to a class implementing the MWLoggerSpi service provider interface.
+
+The service provider interface allows the backend logging library to be
+implemented in multiple ways. The $wgMWLoggerDefaultSpi global provides the
+classname of the default MWLoggerSpi implementation to be loaded at runtime.
+This can either be the name of a class implementing the MWLoggerSpi with
+a zero argument constructor or a callable that will return an MWLoggerSpi
+instance. Alternately the MWLogger::registerProvider method can be called
+to inject an MWLoggerSpi instance into MWLogger and bypass the use of this
+configuration variable.
+
+The MWLoggerMonologSpi class implements a service provider to generate
+MWLogger instances that use the Monolog [1] logging library. See the PHP docs
+(or source) for MWLoggerMonologSpi for details on the configuration of this
+provider. The default configuration installs a null handler that will silently
+discard all logging events. The documentation provided by the class describes
+a more feature rich logging configuration.
+
+== Classes ==
+; MWLogger
+: PSR-3 compatible logger that wraps any \Psr\Log\LoggerInterface
+  implementation
+; MWLoggerSpi
+: Service provider interface for MWLogger factories
+; MWLoggerNullSpi
+: MWLoggerSpi for creating instances that discard all log events
+; MWLoggerMonologSpi
+: MWLoggerSpi for creating instances backed by the monolog logging library
+; MwLoggerMonologHandler
+: Monolog handler that replicates the udp2log and file logging
+  functionality of wfErrorLog()
+; MwLoggerMonologProcessor
+: Monolog log processer that adds host: wfHostname() and wiki: wfWikiID()
+  to all records
+
+== Globals ==
+; $wgMWLoggerDefaultSpi
+: Default service provider interface to use with MWLogger
+; $wgMWLoggerMonologSpiConfig
+: Configuration for MWLoggerMonologSpi describing how to configure the
+  Monolog logger instances.
+
+[0]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
+[1]: https://github.com/Seldaek/monolog
