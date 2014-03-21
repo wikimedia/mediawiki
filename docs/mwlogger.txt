@@ -1,0 +1,23 @@
+MWLogger implements a PSR-3 [0] compatible message logging system.
+
+The MWLogger::getInstance() static method is the means by which most code
+acquires an MWLogger instance. This in turn delegates creation of MWLogger
+instances to a class implementing the MWLoggerSpi service provider interface.
+
+The service provider interface allows the backend logging library to be
+implemented in multiple ways. The $wgMWLoggerDefaultSpi global provides the
+classname of the default MWLoggerSpi implementation to be loaded at runtime.
+This can either be the name of a class implementing the MWLoggerSpi with
+a zero argument constructor or a callable that will return an MWLoggerSpi
+instance. Alternately the MWLogger::registerProvider method can be called
+to inject an MWLoggerSpi instance into MWLogger and bypass the use of this
+configuration variable.
+
+The MWLoggerMonologSpi class implements a service provider to generate
+MWLogger instances that use the Monolog [1] logging library. See the PHP docs
+(or source) for MWLoggerMonologSpi for details on the configuration of this
+provider. The default configuration installs a null handler that will silently
+discard all logging events.
+
+[0]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
+[1]: https://github.com/Seldaek/monolog
