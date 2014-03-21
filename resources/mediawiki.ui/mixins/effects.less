@@ -10,11 +10,6 @@
 	&:focus {
 		// The inner bottom bevel should match the active background color.
 		box-shadow: 0 1px rgba(0, 0, 0, 10%), inset 0 -3px rgba(0, 0, 0, 20%);
-		outline: none;
-		// remove outline in Firefox
-		&::-moz-focus-inner {
-			border-color: transparent;
-		}
 	}
 
 	&:active {
