@@ -5004,6 +5004,17 @@ $wgDebugLogGroups = array();
 $wgMWLoggerDefaultSpi = 'MWLoggerMonologSpi';
 
 /**
+ * Feature switch to enable use of PSR-3 logger for legacy global logging
+ * functions.
+ *
+ * When enabled wfDebug, wfDebugLog and wfLogDBError will route their log
+ * events to MWLogger instances.
+ *
+ * @since 1.24
+ */
+$wgUseMWLoggerForLegacyFunctions = false;
+
+/**
  * Configuration for MonologFactory logger factory.
  *
  * Default configuration installs a null handler that will silently discard

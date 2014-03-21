@@ -942,6 +942,7 @@ function wfMatchesDomainList( $url, $domains ) {
  */
 function wfDebug( $text, $dest = 'all' ) {
 	global $wgDebugLogFile, $wgDebugRawPage, $wgDebugLogPrefix;
+	global $wgUseMWLoggerForLegacyFunctions;
 
 	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
@@ -963,7 +964,15 @@ function wfDebug( $text, $dest = 'all' ) {
 		MWDebug::debugMsg( $text );
 	}
 
-	if ( $wgDebugLogFile != '' ) {
+	if ( $wgUseMWLoggerForLegacyFunctions ) {
+		$log = MWLogger::getInstance( 'wfDebug' );
+		$ctx = array();
+		if ( $wgDebugLogPrefix !== '' ) {
+			$ctx['prefix'] = $wgDebugLogPrefix;
+		}
+		$log->debug( trim( $text ), $ctx );
+
+	} elseif ( $wgDebugLogFile != '' ) {
 		# Strip unprintables; they can switch terminal modes when binary data
 		# gets dumped, which is pretty annoying.
 		$text = preg_replace( '![\x00-\x08\x0b\x0c\x0e-\x1f]!', ' ', $text );
@@ -1048,7 +1057,7 @@ function wfDebugMem( $exact = false ) {
  *     - false: same as 'private'
  */
 function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
-	global $wgDebugLogGroups;
+	global $wgDebugLogGroups, $wgUseMWLoggerForLegacyFunctions;
 
 	$text = trim( $text ) . "\n";
 
@@ -1061,7 +1070,15 @@ function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
 
 	if ( !isset( $wgDebugLogGroups[$logGroup] ) ) {
 		if ( $dest !== 'private' ) {
-			wfDebug( "[$logGroup] $text", $dest );
+			if ( $wgUseMWLoggerForLegacyFunctions ) {
+				$log = MWLogger::getInstance( $logGroup );
+				$log->debug( trim( $text ), array(
+					'wiki' => wfWikiID(),
+					'host' => wfHostname(),
+				) );
+			} else {
+				wfDebug( "[$logGroup] $text", $dest );
+			}
 		}
 		return;
 	}
@@ -1086,7 +1103,16 @@ function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
 	$time = wfTimestamp( TS_DB );
 	$wiki = wfWikiID();
 	$host = wfHostname();
-	wfErrorLog( "$time $host $wiki: $text", $destination );
+	if ( $wgUseMWLoggerForLegacyFunctions ) {
+		$log = MWLogger::getInstance( $destination );
+		$log->debug( trim( $text ), array(
+			'wiki' => $wiki,
+			'host' => $host,
+		) );
+
+	} else {
+		wfErrorLog( "$time $host $wiki: $text", $destination );
+	}
 }
 
 /**
@@ -1095,10 +1121,10 @@ function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
  * @param string $text Database error message.
  */
 function wfLogDBError( $text ) {
-	global $wgDBerrorLog, $wgDBerrorLogTZ;
+	global $wgDBerrorLog, $wgDBerrorLogTZ, $wgUseMWLoggerForLegacyFunctions;
 	static $logDBErrorTimeZoneObject = null;
 
-	if ( $wgDBerrorLog ) {
+	if ( $wgDBerrorLog || $wgUseMWLoggerForLegacyFunctions ) {
 		$host = wfHostname();
 		$wiki = wfWikiID();
 
@@ -1115,9 +1141,19 @@ function wfLogDBError( $text ) {
 		}
 
 		$date = $d->format( 'D M j G:i:s T Y' );
+		$text = trim( $text );
 
-		$text = "$date\t$host\t$wiki\t" . trim( $text ) . "\n";
-		wfErrorLog( $text, $wgDBerrorLog );
+		if ( $wgUseMWLoggerForLegacyFunctions ) {
+			$log = MWLogger::getInstance( 'wfLogDBError' );
+			$log->error( $text, array(
+				'wiki' => $wiki,
+				'host' => $host,
+			) );
+
+		} else {
+			$text = "$date\t$host\t$wiki\t$text\n";
+			wfErrorLog( $text, $wgDBerrorLog );
+		}
 	}
 }
 
