@@ -234,8 +234,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// Startup function
 			$configuration = $this->getConfig( $context );
 			$registrations = self::getModuleRegistrations( $context );
-			$registrations = str_replace( "\n", "\n\t", trim( $registrations ) ); // fix indentation
-			$out .= "var startUp = function() {\n" .
+			// Fix indentation
+			$registrations = str_replace( "\n", "\n\t", trim( $registrations ) );
+			$out .= "var startUp = function () {\n" .
 				"\tmw.config = new " . Xml::encodeJsCall( 'mw.Map', array( $wgLegacyJavaScriptGlobals ) ) . "\n" .
 				"\t$registrations\n" .
 				"\t" . Xml::encodeJsCall( 'mw.config.set', array( $configuration ) ) .
@@ -245,8 +246,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$scriptTag = Html::linkedScript( self::getStartupModulesUrl( $context ) );
 			$out .= "if ( isCompatible() ) {\n" .
 				"\t" . Xml::encodeJsCall( 'document.write', array( $scriptTag ) ) .
-				"}\n" .
-				"delete isCompatible;";
+				"}";
 		}
 
 		return $out;
