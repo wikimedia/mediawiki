@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (0f50cdc46c)
+ * OOjs UI v0.1.0-pre (3b434d5388)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Mar 19 2014 17:39:11 GMT-0700 (PDT)
+ * Date: Fri Mar 21 2014 11:06:28 GMT-0700 (PDT)
  */
 ( function () {
 
@@ -2774,13 +2774,22 @@ OO.ui.Tool.static.group = '';
 OO.ui.Tool.static.title = '';
 
 /**
- * Tool can be automatically added to tool groups.
+ * Tool can be automatically added to catch-all groups.
  *
  * @static
  * @property {boolean}
  * @inheritable
  */
-OO.ui.Tool.static.autoAdd = true;
+OO.ui.Tool.static.autoAddToCatchall = true;
+
+/**
+ * Tool can be automatically added to named groups.
+ *
+ * @static
+ * @property {boolean}
+ * @inheritable
+ */
+OO.ui.Tool.static.autoAddToGroup = true;
 
 /**
  * Check if this tool is compatible with given data.
@@ -3181,7 +3190,7 @@ OO.ui.ToolFactory.prototype.extract = function ( collection, used ) {
 			tool = this.registry[name];
 			if (
 				// Only add tools by group name when auto-add is enabled
-				tool.static.autoAdd &&
+				tool.static.autoAddToCatchall &&
 				// Exclude already used tools
 				( !used || !used[name] )
 			) {
@@ -3206,7 +3215,7 @@ OO.ui.ToolFactory.prototype.extract = function ( collection, used ) {
 							// Include tools with matching group
 							tool.static.group === item.group &&
 							// Only add tools by group name when auto-add is enabled
-							tool.static.autoAdd &&
+							tool.static.autoAddToGroup &&
 							// Exclude already used tools
 							( !used || !used[name] )
 						) {
