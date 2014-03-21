@@ -276,20 +276,26 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$loader = $context->getResourceLoader();
 		$loader->preloadModuleInfo( $loader->getModuleNames(), $context );
 
-		$this->modifiedTime[$hash] = filemtime( "$IP/resources/startup.js" );
-		// ATTENTION!: Because of the line above, this is not going to cause
+		$time = max(
+			wfTimestamp( TS_UNIX, $wgCacheEpoch ),
+			filemtime( "$IP/resources/startup.js" )
+		);
+
+		// ATTENTION!: Because of the line below, this is not going to cause
 		// infinite recursion - think carefully before making changes to this
 		// code!
-		$time = wfTimestamp( TS_UNIX, $wgCacheEpoch );
+		// Pre-populate modifiedTime with something because the the loop over
+		// all modules below includes the the startup module (this module).
+		$this->modifiedTime[$hash] = 1;
+
 		foreach ( $loader->getModuleNames() as $name ) {
 			$module = $loader->getModule( $name );
 			$time = max( $time, $module->getModifiedTime( $context ) );
 		}
+
 		$this->modifiedTime[$hash] = $time;
 		return $this->modifiedTime[$hash];
 	}
-
-	/* Methods */
 
 	/**
 	 * @return string
