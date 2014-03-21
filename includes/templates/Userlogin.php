@@ -87,8 +87,8 @@ class UserloginTemplate extends BaseTemplate {
 			<div>
 				<label for='wpPassword1'>
 					<?php
-					$this->msg( 'userlogin-yourpassword' );
-
+					global $wgMinimalPasswordLength;
+					echo $this->getMsg( 'userlogin-yourpassword' )->numParams( $wgMinimalPasswordLength )->escaped();
 					if ( $this->data['useemail'] && $this->data['canreset'] && $this->data['resetlink'] === true ) {
 						echo ' ' . Linker::link(
 							SpecialPage::getTitleFor( 'PasswordReset' ),

@@ -109,7 +109,8 @@ class UsercreateTemplate extends BaseTemplate {
 			</div>
 
 			<div class="mw-row-password">
-				<label for='wpPassword2'><?php $this->msg( 'userlogin-yourpassword' ); ?></label>
+				<label for='wpPassword2'><?php global $wgMinimalPasswordLength;
+				echo $this->getMsg( 'userlogin-yourpassword' )->numParams( $wgMinimalPasswordLength )->escaped(); ?></label>
 				<?php
 				echo Html::input( 'wpPassword', null, 'password', array(
 					'class' => 'mw-input loginPassword',

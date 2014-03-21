@@ -1265,7 +1265,8 @@ See example: [[Special:UserLogin]] and [{{canonicalurl:Special:UserLogin|type=si
 'yourpassword' => 'In user preferences
 
 {{Identical|Password}}',
-'userlogin-yourpassword' => 'In login & create account forms, label for password field.
+'userlogin-yourpassword' => 'In login & create account forms, label for password field. Parameters:
+* $1 - minimum number of characters required for password.
 
 See examples: [[Special:UserLogin]] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]
 {{Identical|Password}}',

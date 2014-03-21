@@ -1098,7 +1098,7 @@ You can change your {{SITENAME}} [[Special:Preferences|preferences]] if you wish
 'createacct-another-username-ph'  => 'Enter the username',
 'createacct-helpusername'         => '', # do not translate or duplicate this message to other languages
 'yourpassword'                    => 'Password:',
-'userlogin-yourpassword'          => 'Password',
+'userlogin-yourpassword'          => 'Password (minimum $1 characters)',
 'userlogin-yourpassword-ph'       => 'Enter your password',
 'createacct-yourpassword-ph'      => 'Enter a password',
 'yourpasswordagain'               => 'Retype password:',
