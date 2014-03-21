@@ -258,12 +258,12 @@ class MWLoggerMonologSpi implements MWLoggerSpi {
 		// If an argument is a callable, call it.
 		// This allows passing things such as a database connection to a logger.
 		$args = array_map( function ( $value ) {
-				if ( is_callable( $value ) ) {
-					return $value();
-				} else {
-					return $value;
-				}
-			}, $args );
+			if ( is_callable( $value ) ) {
+				return $value();
+			} else {
+				return $value;
+			}
+		}, $args );
 
 		if ( empty( $args ) ) {
 			$obj = new $clazz();
