@@ -287,7 +287,6 @@ $1',
 'disclaimers' => 'Ætsacunga',
 'disclaimerpage' => 'Project:Gemǣne ætsacung',
 'edithelp' => 'Help on adihtunge',
-'helppage' => 'Help:Innung',
 'mainpage' => 'Hēafodtramet',
 'mainpage-description' => 'Hēafodtramet',
 'policy-url' => 'Project:Rǣd',
@@ -492,7 +491,7 @@ Scēawa þīne wrītunge eft, oþþe [[Special:UserLogin/signup|sciepp nīwe rec
 Þū mōst þæt þafungword andwendan for þisse nīwan reccinge on þǣm ''[[Special:ChangePassword|andwendan þafungword]]'' tramete siþþan þū inmeldie.",
 'newarticle' => '(Nīwe)',
 'newarticletext' => "Þū hæfst hlencan tō tramete þe nū gīet ne stent gefolgod.
-Tō scieppene þone tramet, onginn tō wrītenne in þǣre mearce þe is beneoþan (seoh þone [[{{MediaWiki:Helppage}}|helpes tramet]] ymb mā cȳþþu).
+Tō scieppene þone tramet, onginn tō wrītenne in þǣre mearce þe is beneoþan (seoh þone [$1 helpes tramet] ymb mā cȳþþu).
 Gif þū hider be misfēnge cōme, cnoca þīnes webbsēcendes '''on bæc''' cnæpp.",
 'usercssyoucanpreview' => "'''Rǣd:''' Brūc þone \"{{int:Forescēaƿian}}\" cnæpp tō costnienne þīne nīwan css/js wrītunge ǣr hit sīe hordod.",
 'userjsyoucanpreview' => "'''Rǣd:''' Brūc þone 'Forescēawian' cnæpp tō āfandienne þīne nīwe css/js beforan sparunge.",

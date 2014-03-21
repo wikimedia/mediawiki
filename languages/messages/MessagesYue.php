@@ -478,7 +478,6 @@ $1',
 'disclaimers' => '免責聲明',
 'disclaimerpage' => 'Project:一般免責聲明',
 'edithelp' => '編輯協助',
-'helppage' => 'Help:目錄',
 'mainpage' => '頭版',
 'mainpage-description' => '頭版',
 'policy-url' => 'Project:政策',
@@ -804,7 +803,7 @@ $1',
 呢個新戶口嘅密碼可以響登入咗之後嘅''[[Special:ChangePassword|改密碼]]''版度改佢。",
 'newarticle' => '(新)',
 'newarticletext' => "你連連過嚟嘅頁面重未存在。
-要起版新嘅，請你喺下面嗰格度輸入。(睇睇[[{{MediaWiki:Helppage}}|自助版]]拎多啲資料。)
+要起版新嘅，請你喺下面嗰格度輸入。(睇睇[$1 自助版]拎多啲資料。)
 如果你係唔覺意嚟到呢度，撳一次你個瀏覽器'''返轉頭'''個掣。",
 'anontalkpagetext' => "----''呢度係匿名用戶嘅討論頁，佢可能係重未開戶口，或者佢重唔識開戶口。我哋會用數字表示嘅IP地址嚟代表佢。一個IP地址係可以由幾個用戶夾來用。如果你係匿名用戶，同覺得呢啲留言係同你冇關係嘅話，唔該去[[Special:UserLogin/signup|開一個新戶口]]或[[Special:UserLogin|登入]]，避免喺以後嘅留言會同埋其它用戶混淆。''",
 'noarticletext' => '喺呢一頁而家並冇任何嘅文字，你可以喺其它嘅頁面中[[Special:Search/{{PAGENAME}}|搵呢一頁嘅標題]]，

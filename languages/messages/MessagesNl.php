@@ -627,7 +627,6 @@ $1',
 'disclaimers' => 'Voorbehoud',
 'disclaimerpage' => 'Project:Algemeen voorbehoud',
 'edithelp' => 'Hulp bij bewerken',
-'helppage' => 'Help:Inhoud',
 'mainpage' => 'Hoofdpagina',
 'mainpage-description' => 'Hoofdpagina',
 'policy-url' => 'Project:Beleid',
@@ -1116,7 +1115,7 @@ Wellicht is het verplaatst of verwijderd terwijl u de pagina aan het bekijken wa
 'accmailtext' => 'Een willekeurig gegenereerd wachtwoord voor [[User talk:$1|$1]] is verzonden naar $2. Het kan worden gewijzigd op de pagina "[[Special:ChangePassword|wachtwoord wijzigen]]" na het aanmelden.',
 'newarticle' => '(Nieuw)',
 'newarticletext' => "Deze pagina bestaat niet.
-Typ in het onderstaande veld om de pagina aan te maken (meer informatie staat op de [[{{MediaWiki:Helppage}}|hulppagina]]).
+Typ in het onderstaande veld om de pagina aan te maken (meer informatie staat op de [$1 hulppagina]).
 Gebruik de knop '''vorige''' in uw browser als u hier per ongeluk terecht bent gekomen.",
 'anontalkpagetext' => "----''Deze overlegpagina hoort bij een anonieme gebruiker die geen gebruikersnaam heeft of deze niet gebruikt.
 Daarom wordt het IP-adres ter identificatie gebruikt.
@@ -2725,7 +2724,7 @@ Hier zijn de huidige instellingen voor de pagina '''$1''':",
 'protect-locked-access' => "U hebt geen rechten om het beveiligingsniveau te wijzigen.
 Dit zijn de huidige instellingen voor de pagina '''$1''':",
 'protect-cascadeon' => "Deze pagina is beveiligd, omdat die in de volgende {{PLURAL:$1|pagina|pagina's}} is opgenomen, die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie.
-Het beveiligingsniveau wijzigen heeft geen enkel effect.",
+Wijzigingen aan beveiligingsniveau hebben geen invloed op de cascadebeveiliging.",
 'protect-default' => 'Toestaan voor alle gebruikers',
 'protect-fallback' => 'Alleen gebruikers met het recht "$1" toestaan',
 'protect-level-autoconfirmed' => 'Alleen automatisch bevestigde gebruikers toestaan',

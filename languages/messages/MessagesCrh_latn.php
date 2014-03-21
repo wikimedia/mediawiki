@@ -331,7 +331,6 @@ $1',
 'disclaimers' => 'Cevapkârlıq redi',
 'disclaimerpage' => 'Project:Umumiy Malümat Muqavelesi',
 'edithelp' => 'Saifeler nasıl deñiştirilir?',
-'helppage' => 'Help:Münderice',
 'mainpage' => 'Baş Saife',
 'mainpage-description' => 'Baş Saife',
 'policy-url' => 'Project:Qaideler',
@@ -637,7 +636,7 @@ Siz saifeni oquğanda o avuştırılğan ya da yoq etilgen ola bile.',
 
 Bu yañı esap içün parol, kiriş yapqandan soñ ''[[Special:ChangePassword|parolni deñiştir]]'' bölüginde deñiştirilip olur.",
 'newarticle' => '(Yañı)',
-'newarticletext' => "Siz bu bağlantınen şimdilik yoq olğan saifege avuştıñız. Yañı bir saife yaratmaq içün aşağıda bulunğan pencerege metin yazıñız (tafsilâtlı malümat almaq içün [[{{MediaWiki:Helppage}}|yardım saifesine]] baqıñız). Bu saifege tesadüfen avuşqan olsañız, brauzeriñizdeki '''keri''' dögmesine basıñız.",
+'newarticletext' => "Siz bu bağlantınen şimdilik yoq olğan saifege avuştıñız. Yañı bir saife yaratmaq içün aşağıda bulunğan pencerege metin yazıñız (tafsilâtlı malümat almaq içün [$1 yardım saifesine] baqıñız). Bu saifege tesadüfen avuşqan olsañız, brauzeriñizdeki '''keri''' dögmesine basıñız.",
 'anontalkpagetext' => "----''Bu muzakere saifesi şimdilik qayd olunmağan ya da oturımını açmağan adsız (anonim) qullanıcığa mensüptir. İdentifikatsiya içün IP adres işletile.
 Bir IP adresinden bir qaç qullanıcı faydalanıp ola.
 Eger siz anonim qullanıcı olsañız ve sizge kelgen beyanatlarnı yañlıştan kelgenini belleseñiz, lütfen, artıq bunıñ kibi qarışıqlıq olmasın dep [[Special:UserLogin/signup|qayd oluñız]] ya da [[Special:UserLogin|oturım açıñız]].''",

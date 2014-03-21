@@ -247,7 +247,6 @@ $1',
 'disclaimers' => 'Pogoliman',
 'disclaimerpage' => 'Project:Pogoliman kosoruan',
 'edithelp' => 'Sokodung mongidit',
-'helppage' => 'Help:Susuang',
 'mainpage' => 'Natad tagayo',
 'mainpage-description' => 'Natad tagayo',
 'policy-url' => 'Project:Kooturan',
@@ -635,7 +634,7 @@ Nokowolih toi nopugas kaanto iti maso di intaannu iti bolikon.',
 Kaatalib montok akaun wagu milo do alanan hilo id bolikon ''[[Special:ChangePassword|pangalanan kaatalib]]'' soira do kosuang log.",
 'newarticle' => '(Wagu)',
 'newarticletext' => "Nakatanudko di noputan kumaa di bolikon di awu po nokosuang.
-Momonsoi ko nopo do bolikon diti, timpuun do manaip id kutak siriba (intaai [[{{MediaWiki:Helppage}}|bolikon ponokodung]] montok lobi gumu kointalangan).
+Momonsoi ko nopo do bolikon diti, timpuun do manaip id kutak siriba (intaai [$1 bolikon ponokodung] montok lobi gumu kointalangan).
 Nung nakaansau ko do hiti, tonsoko ot butang '''gumuli''' id pogigihumnu.",
 'anontalkpagetext' => "----''Iti nopo nga bolikon pogibabarasan montok di momomoguno poinlisok it awu poh nokopomonsoi do takaun, toi it awu momoguno dilo.
 Mantad dilo, asansagan yahai do poposurat numbur kinoyonon IP do mongintutun dau.

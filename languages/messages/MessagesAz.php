@@ -332,7 +332,6 @@ $1',
 'disclaimers' => 'Məsuliyyətdən imtina',
 'disclaimerpage' => 'Project:Məsuliyyətdən imtina',
 'edithelp' => 'Redaktə kömək',
-'helppage' => 'Help:Mündəricat',
 'mainpage' => 'Ana Səhifə',
 'mainpage-description' => 'Ana Səhifə',
 'policy-url' => 'Project:Qaydalar',
@@ -728,7 +727,7 @@ Həmin alt səhifə ola bilsin siz səhifəyə baxan zaman silinib.',
 'accmailtext' => "[[User talk:$1|$1]] üçün təsadüfi yolla yaradılmış parol $2 ünvanına göndərildi.
 Hesabınıza daxil olduqdan sonra, parolunuzu ''[[Special:ChangePassword|parolu dəyiş]]'' səhifəsində dəyişdirə bilərsiniz.",
 'newarticle' => '(Yeni)',
-'newarticletext' => "Mövcud olmayan səhifəyə olan keçidi izlədiniz. Aşağıdakı sahəyə məzmununu yazaraq bu səhifəni '''siz''' yarada bilərsiniz. (əlavə məlumat üçün [[{{MediaWiki:Helppage}}|kömək səhifəsinə]] baxın). Əgər bu səhifəyə səhvən gəlmisinizsə sadəcə olaraq brauzerin '''geri''' düyməsinə vurun.",
+'newarticletext' => "Mövcud olmayan səhifəyə olan keçidi izlədiniz. Aşağıdakı sahəyə məzmununu yazaraq bu səhifəni '''siz''' yarada bilərsiniz. (əlavə məlumat üçün [$1 kömək səhifəsinə] baxın). Əgər bu səhifəyə səhvən gəlmisinizsə sadəcə olaraq brauzerin '''geri''' düyməsinə vurun.",
 'anontalkpagetext' => "----''Bu səhifə qeydiyyatdan keçməmiş və ya daxil olmamış anonim istifadəçiyə aid müzakirə səhifəsidir.
 Ona görə bu istifadəçini rəqəmlərdən ibarət IP ünvanı ilə müəyyən etmək məcburiyyətindəyik.
 Belə IP ünvan bir neçə fərd tərəfindən istifadədə ola bilər.

@@ -301,7 +301,6 @@ $1",
 'currentevents' => 'Actouwålités',
 'currentevents-url' => 'Project:Actouwålités',
 'edithelp' => 'Aidance',
-'helppage' => 'Help:Aidance',
 'mainpage' => 'Mwaisse pådje',
 'mainpage-description' => 'Mwaisse pådje',
 'portal' => 'Inte di nozôtes',
@@ -590,7 +589,7 @@ S' i vs plait racsegnoz totes les racsegnes chal å dzeur dins les dmandes ki vo
 Li scret po ci novea conte ci pout esse candjî sol pådje di ''[[Special:ChangePassword|candjmint di scret]]'' après l' elodjaedje.",
 'newarticle' => '(Novea)',
 'newarticletext' => "Vos avoz clitchî so on loyén viè ene pådje ki n' egzistêye nén co.
-Mins '''vos''' l' poloz askepyî! Po çoula, vos n' avoz k' a cmincî a taper vosse tecse dins l' boesse di tecse chal pa dzo (alez vey li [[{{MediaWiki:Helppage}}|pådje d' aidance]] po pus d' infôrmåcion).
+Mins '''vos''' l' poloz askepyî! Po çoula, vos n' avoz k' a cmincî a taper vosse tecse dins l' boesse di tecse chal pa dzo (alez vey li [$1 pådje d' aidance] po pus d' infôrmåcion).
 Si vos n' voloz nén scrire cisse pådje chal, clitchîz simplumint sol boton '''En erî''' di vosse betchteu waibe po rivni al pådje di dvant.",
 'anontalkpagetext' => "---- ''Çouchal, c' est li pådje di copene po èn uzeu anonime ki n' a nén (co) fwait on conte por lu s' elodjî, ou ki n' l' eploye nén.
 Ça fwait k' on doet eployî si adresse IP limerike po l' idintifyî.

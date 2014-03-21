@@ -272,7 +272,6 @@ $1',
 'disclaimers' => 'Disclamation',
 'disclaimerpage' => 'Project:General_disclamation',
 'edithelp' => 'Editin help',
-'helppage' => 'Help:Contents',
 'mainpage' => 'Main Page',
 'mainpage-description' => 'Main Page',
 'policy-url' => 'Project:Policy',
@@ -737,7 +736,7 @@ It micht hae been muived or delytit while ye were luikin at the page.',
 'accmailtitle' => 'Passwaird sent.',
 'accmailtext' => 'Ae randomly generated passwaird fer [[User talk:$1|$1]] haes been sent til $2. It can be chynged oan the <em>[[Special:ChangePassword|chynge passwaird]]</em> page upo loggin in.',
 'newarticle' => '(New)',
-'newarticletext' => "Ye'v follaed ae link til ae page that disna exeest yet. Tae cræft the page, stairt typin in the kist ablo (see the [[{{MediaWiki:Helppage}}|heelp page]] fer mair info). Gif ye'r here bi mistak, jist clap yer brouser's <strong>back</strong> button.",
+'newarticletext' => "Ye'v follaed ae link til ae page that disna exeest yet. Tae cræft the page, stairt typin in the kist ablo (see the [$1 heelp page] fer mair info). Gif ye'r here bi mistak, jist clap yer brouser's <strong>back</strong> button.",
 'anontalkpagetext' => "----
 <em>This is the discussion page fer aen anonymoos uiser that's naw cræftit aen accoont yet, or that disna uise it.</em>
 We maun therefore uise the numerical IP address tae identifie him/her.
@@ -2266,7 +2265,7 @@ Here ar the settins fer the page <strong>$1</strong> nou:',
 'protect-locked-access' => 'Yer accont disna hae permeession tae chynge page protection levels.
 Here ar the settins fer the page <strong>$1</strong> the nou:',
 'protect-cascadeon' => "This page is nou protected cause it is incluided in the follaein {{PLURAL:$1|page, this haes|pages, thir hae}} cascadin protection turned oan.
-Ye can chynge this page's protection level, but it will na affect the cascadin protection.",
+Chynges til this page's protection level will na affect the cascadin protection.",
 'protect-default' => 'Allow aw uisers',
 'protect-fallback' => 'permit yinlie uisers wi "$1" permission',
 'protect-level-autoconfirmed' => 'Allou yinly autæconfirmed uisers',

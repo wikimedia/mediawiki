@@ -227,7 +227,6 @@ Pāusai en kategōrijai "$1"',
 'disclaimers' => 'Etrāwingiskwas arāikinsenei',
 'disclaimerpage' => 'Project:Etrāwingiskwas arāikinsenei',
 'edithelp' => 'Redigīsnas pagalba',
-'helppage' => 'Help:Ēnturs',
 'mainpage' => 'Galwas pāusan',
 'mainpage-description' => 'Galwas pāusan',
 'policy-url' => 'Project:Pōlitiki',
@@ -525,7 +524,7 @@ Padāis e-mail adressi be padrūktinais din en swajāmans [[Special:Preferences|
 'accmailtitle' => 'Kliptaswīrds tengīntan.',
 'newarticle' => '(Nāuns)',
 'newarticletext' => 'Tu assei autengīntan pra autengīnsenin en dabber niekzistīntin pāusan.
-Kāi teīklai šin pāusan, pagaūneis enpeisātun en zemmaišasmu lāukan (wīdais [[{{MediaWiki:Helppage}}|help page]] per tūls infōrmaciōnis).
+Kāi teīklai šin pāusan, pagaūneis enpeisātun en zemmaišasmu lāukan (wīdais [$1 help page] per tūls infōrmaciōnis).
 Ik tū ni kwaitīwuns(si) teīktun nāunan pāusan, gnetteis "Etwārtai" knuppan en twajjai lasātlin.',
 'anontalkpagetext' => "----''Sta ast anōnimas tērpautajas diskusiōnis pāusan - stawīdan, kawīds ni turri dabber swajjan rekkenan anga ni tērpaui din.
 Kāi identificīlai tennan, tērpawimai IP adressins.

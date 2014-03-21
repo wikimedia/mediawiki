@@ -581,7 +581,6 @@ $1',
 'disclaimers' => 'Redê mesuliyeti',
 'disclaimerpage' => 'Project:Reddê mesuliyetê bıngey',
 'edithelp' => 'Peştdariya vurnayışi',
-'helppage' => 'Help:Zerrek',
 'mainpage' => 'Pela Seri',
 'mainpage-description' => 'Pela seri',
 'policy-url' => 'Project:Terzê hereketi',
@@ -1046,7 +1045,7 @@ Heta ke werte de qısım çıniyo, ca çıniyo ke tı raştkerdışê xo qeyd b�
 Qey na hesabê newe parola, cıkewtış dıma şıma eşkeni na qısım de ''[[Special:ChangePassword|parola bıvurn]]'' bıvurni.",
 'newarticle' => '(Newe)',
 'newarticletext' => "To yew gıre tıkna be ra yew pela ke hewna çıniya.
-Seba afernayışê pele ra, qutiya metnê cêrêni bıgurene (seba melumati qaytê [[{{MediaWiki:Helppage}}|pela peşti]] ke).
+Seba afernayışê pele ra, qutiya metnê cêrêni bıgurene (seba melumati qaytê [$1 pela peşti] ke).
 Eke be ğeletine ameya tiya, wa gocega '''peyser'''i programê xo de bıtıkne.",
 'anontalkpagetext' => "----''No pel, pel o karbero hesab a nêkerdeyan o, ya zi karbero hesab akerdeyan o labele pê hesabê xo nêkewto de. No sebeb ra ma IP adres şuxulneni û ney IP adresan herkes eşkeno bıvino. Eke şıma qayil niye ina bo xo ri [[Special:UserLogin/signup|yew hesab bıvıraze]] veyaxut [[Special:UserLogin|hesab akere]].''",
 'noarticletext' => 'Ena pele de hewna theba çıniyo.

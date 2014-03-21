@@ -267,7 +267,6 @@ $messages = array(
 'disclaimers' => 'Abiso de Cuntenido',
 'disclaimerpage' => 'Project:Abiso giral',
 'edithelp' => 'Ajuda de eidiçon',
-'helppage' => 'Help:Cuntenidos',
 'mainpage' => 'Páigina Percipal',
 'mainpage-description' => 'Páigina Percipal',
 'policy-url' => 'Project:Políticas',
@@ -460,7 +459,7 @@ La tue morada de IP atual ye $3 i l ID de l bloqueio ye $5. Por fabor, anclui un
 La palabra-chabe para esta nuoba cuonta puode ser demudada na páigina pa ''[[Special:ChangePassword|demudar palabra-chabe]]'' apuis de la outenticaçon.",
 'newarticle' => '(Nuoba)',
 'newarticletext' => "Tu bejiteste ua lhigaçon para ua páigina que inda nun eisiste.
-Para criar la páigina, ampeça a screbir an la caixa ambaixo (bei la [[{{MediaWiki:Helppage}}|páigina de ajuda]] pa mais detailhes).
+Para criar la páigina, ampeça a screbir an la caixa ambaixo (bei la [$1 páigina de ajuda] pa mais detailhes).
 Se stás eiqui por anganho, carrega ne l boton '''retornar''' de l tou nabegador de la Anternete.",
 'noarticletext' => 'Nun hai neste sfergante testo nesta páigina.
 Tu puodes [[Special:Search/{{PAGENAME}}|percurar pul títalo desta páigina]] noutras páiginas,

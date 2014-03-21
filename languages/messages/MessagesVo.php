@@ -344,7 +344,6 @@ $messages = array(
 'disclaimers' => 'Nuneds',
 'disclaimerpage' => 'Project:Gididimiedükam valemik',
 'edithelp' => 'Redakamayuf',
-'helppage' => 'Help:Ninäd',
 'mainpage' => 'Cifapad',
 'mainpage-description' => 'Cifapad',
 'policy-url' => 'Project:Dunamod',
@@ -679,7 +678,7 @@ Ladet-IP olik binon $3, e nüm blokama at binon #$5. Mäniotolös nünis löpik 
 Letavöd kala at kanon pavotükön medü pad: ''[[Special:ChangePassword|votükön letavödi]]'' pö nunädam ini vük.",
 'newarticle' => '(Nulik)',
 'newarticletext' => "Esökol yümi lü pad, kel no nog dabinon.
-Ad jafön padi at, primolös ad klavön vödemi olik in penaspad dono (logolöd [[{{MediaWiki:Helppage}}|yufapadi]] tefü nüns tefik votik).
+Ad jafön padi at, primolös ad klavön vödemi olik in penaspad dono (logolöd [$1 yufapadi] tefü nüns tefik votik).
 If binol is pölo, välolös knopi: '''geikön''' bevüresodatävöma olik.",
 'anontalkpagetext' => "----''Bespikapad at duton lü geban nennemik, kel no nog ejafon kali, u no vilon labön u gebön oni. Sekü atos pemütobs ad gebön ladeti-IP ad dientifükön gebani at. Ladets-IP kanons pagebön fa gebans difik. If binol geban nennemik e cedol, das küpets netefik pelüodükons ole, [[Special:UserLogin|jafolös, begö! kali]], u [[Special:UserLogin|nunädolös oli]] ad vitön kofudi ko gebans nennemik votik.''",
 'noarticletext' => 'Atimo no dabinon vödem su pad at.

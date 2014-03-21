@@ -311,7 +311,6 @@ $1",
 'disclaimers' => 'Avisu llegal',
 'disclaimerpage' => 'Project:Avisu xeneral',
 'edithelp' => "Ayuda d'edición",
-'helppage' => 'Help:Conteníu',
 'mainpage' => 'Portada',
 'mainpage-description' => 'Portada',
 'policy-url' => 'Project:Polítiques',
@@ -799,7 +798,7 @@ Seique se treslladara o desaniciara mientres víes la páxina.',
 'accmailtext' => "Unvióse a $2 una contraseña xenerada al debalu pal usuariu [[User talk:$1|$1]]. Pue camudase na páxina ''[[Special:ChangePassword|camudar contraseña]]'' depués d'aniciar sesión.",
 'newarticle' => '(Nuevu)',
 'newarticletext' => "Siguisti un enllaz a un artículu qu'inda nun esiste.
-Pa crear la páxina, empecipia a escribir nel cuadru d'embaxo (mira la [[{{MediaWiki:Helppage}}|páxina d'ayuda]] pa más información).
+Pa crear la páxina, empecipia a escribir nel cuadru d'embaxo (mira la [$1 páxina d'ayuda] pa más información).
 Si llegasti equí por enquivocu, calca nel botón '''atrás''' del to restolador.",
 'anontalkpagetext' => "----
 ''Esta ye la páxina d'alderique pa un usuariu anónimu qu'inda nun creó una cuenta o que nun la usa.''

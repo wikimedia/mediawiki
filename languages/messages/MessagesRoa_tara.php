@@ -273,7 +273,6 @@ $1",
 'disclaimers' => 'No ne sacce ninde',
 'disclaimerpage' => 'Project:Scareca uarrile',
 'edithelp' => "Cangianne l'ajute",
-'helppage' => 'Help:Condenute',
 'mainpage' => 'Pàgene Prengepàle',
 'mainpage-description' => 'Pàgene Prengepàle',
 'policy-url' => 'Project:Reghele',
@@ -749,7 +748,7 @@ Pò essere ca ha state spustate o scangellate quanne tu ste vedive 'a pàgene.",
 'A passuord pe stu cunde utende pò essere cangiate sus a pàgene ''[[Special:ChangePassword|cange passuord]]'' 'na vote ca è trasute.",
 'newarticle' => '(Nuève)',
 'newarticletext' => "Tu ste segue 'nu collegamende a pàgene ca angore non g'esiste.
-Pe ccrejà 'a pàgene, accuminze a scrivere jndr'à 'u scatole de sotte (vide 'a [[{{MediaWiki:Helppage}}|pàggene d'ajute]] pe avè cchiù 'mbormaziune).
+Pe ccrejà 'a pàgene, accuminze a scrivere jndr'à 'u scatole de sotte (vide 'a [$1 pàggene d'ajute] pe avè cchiù 'mbormaziune).
 Ce tu te iacche aqquà e manghe tu 'u se purcè, allore cazze 'u buttone '''back''' d'u brauser.",
 'anontalkpagetext' => "----''Queste jè 'na pàgene de 'ngazzaminde pe 'n'utende anonime, ca non ge vò ccu ccreje angore 'nu cunde utende, o de ce non g'u use.
 Nuje auseme 'n'indirizze IP (ca jè numereche) pe identificarle.

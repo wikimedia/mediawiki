@@ -562,7 +562,6 @@ $1',
 'disclaimers' => 'Jogi nyilatkozat',
 'disclaimerpage' => 'Project:Jogi nyilatkozat',
 'edithelp' => 'Szerkesztési segítség',
-'helppage' => 'Help:Tartalom',
 'mainpage' => 'Kezdőlap',
 'mainpage-description' => 'Kezdőlap',
 'policy-url' => 'Project:Irányelvek',
@@ -1015,7 +1014,7 @@ Lehet, hogy áthelyezték, átnevezték vagy törölték, miközben nézted a la
 Az új fiók jelszava a ''[[Special:ChangePassword|jelszó megváltoztatása]]'' lapon módosítható a bejelentkezés után.",
 'newarticle' => '(Új)',
 'newarticletext' => "Egy olyan lapra mutató hivatkozást követtél, ami még nem létezik.
-A lap létrehozásához csak gépeld be a szövegét a lenti szövegdobozba. Ha kész vagy, az „Előnézet megtekintése” gombbal ellenőrizheted, hogy úgy fog-e kinézni, ahogy szeretnéd, és a „Lap mentése” gombbal tudod elmenteni. (További információkat a [[{{MediaWiki:Helppage}}|súgólapon]] találsz).
+A lap létrehozásához csak gépeld be a szövegét a lenti szövegdobozba. Ha kész vagy, az „Előnézet megtekintése” gombbal ellenőrizheted, hogy úgy fog-e kinézni, ahogy szeretnéd, és a „Lap mentése” gombbal tudod elmenteni. (További információkat a [$1 súgólapon] találsz).
 Ha tévedésből jutottál ide, kattints a böngésződ '''vissza''' vagy '''back''' gombjára.",
 'anontalkpagetext' => "----''Ez egy olyan anonim szerkesztő vitalapja, aki még nem regisztrált, vagy csak nem jelentkezett be.
 Ezért az IP-címét használjuk az azonosítására.

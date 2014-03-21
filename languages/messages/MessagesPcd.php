@@ -226,7 +226,6 @@ $messages = array(
 'disclaimers' => 'Démintis',
 'disclaimerpage' => 'Project:Déminti général',
 'edithelp' => 'Éditer el aiyude',
-'helppage' => 'Help:Étnus',
 'mainpage' => 'Moaite Pache',
 'mainpage-description' => 'Moaite Pache',
 'portal' => 'Portal del conmeunauté',
@@ -390,7 +389,7 @@ Vote adrèche IP, ale sro inrégistrée din l'historique éd chol pache.",
 'summary-preview' => 'Prévue dech résumè :',
 'newarticle' => '(nouvieu)',
 'newarticletext' => "Os avez sui un loïen vers eune pache qui n’essiste poin coère ou qu' o té [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} défacée].
-Pou créer chol pache, intrez vote teske din l'boéte édsou (vir [[{{MediaWiki:Helppage}}|l'pache d’aïude]] ). <br />
+Pou créer chol pache, intrez vote teske din l'boéte édsou (vir [$1 l'pache d’aïude] ). <br />
 Si vos ètes ichi par bérlure, bukez su l'bouton '''értour''' du navigateu.",
 'noarticletext' => 'Achteure i n’y o nu teske su l\'pache-lo.
 Os povez [[Special:Search/{{PAGENAME}}|foaire eune érchérche du tite del pache]] din chés eutes paches,

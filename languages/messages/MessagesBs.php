@@ -529,7 +529,6 @@ $1',
 'disclaimers' => 'Odricanje odgovornosti',
 'disclaimerpage' => 'Project:Uslovi korištenja, pravne napomene i odricanje odgovornosti',
 'edithelp' => 'Pomoć pri uređivanju stranice',
-'helppage' => 'Help:Sadržaj',
 'mainpage' => 'Početna strana',
 'mainpage-description' => 'Početna strana',
 'policy-url' => 'Project:Pravila',
@@ -970,7 +969,7 @@ Možda je pomjerena ili obrisana dok ste pregledavali stranicu.',
 'newarticle' => '(Novi)',
 'newarticletext' => "Došli ste na stranicu koja još nema sadržaja.
 *Ako želite unijeti sadržaj, počnite tipkati u prozor ispod ovog teksta.
-*Ako vam treba pomoć, idite na [[{{MediaWiki:Helppage}}|stranicu za pomoć]].
+*Ako vam treba pomoć, idite na [\$1 stranicu za pomoć].
 *Ako ste ovamo dospjeli slučajno, kliknite dugme \"Nazad\" (''Back'') u svom internet pregledniku.",
 'anontalkpagetext' => "----''Ovo je stranica za razgovor za anonimnog korisnika koji još nije napravio nalog ili ga ne koristi.
 Zbog toga moramo da koristimo brojčanu IP adresu kako bismo identifikovali njega ili nju.

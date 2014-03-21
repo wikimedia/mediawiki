@@ -300,7 +300,6 @@ $1',
 'disclaimers' => 'Saistību atrunas',
 'disclaimerpage' => 'Project:Saistību atrunas',
 'edithelp' => 'Rediģēšanas palīdzība',
-'helppage' => 'Help:Saturs',
 'mainpage' => 'Sākumlapa',
 'mainpage-description' => 'Sākumlapa',
 'policy-url' => 'Project:Politika',
@@ -690,7 +689,7 @@ Tā var būt pārvietota vai dzēsta, kamēr jūs apskatījāt lapu.',
 Šī konta paroli pēc ielogošanās varēs nomainīt ''[[Special:ChangePassword|šeit]]''.",
 'newarticle' => '(Jauns raksts)',
 'newarticletext' => "Tu šeit nonāci sekojot saitei uz, pagaidām vēl neuzrakstītu, lapu.
-Lai izveidotu lapu, sāc rakstīt teksta logā apakšā (par teksta formatēšanu un sīkākai informācija skatīt [[{{MediaWiki:Helppage}}|palīdzības lapu]]).
+Lai izveidotu lapu, sāc rakstīt teksta logā apakšā (par teksta formatēšanu un sīkākai informācija skatīt [$1 palīdzības lapu]).
 Ja tu šeit nonāci kļūdas pēc, vienkārši uzspied '''back''' pogu pārlūkprogrammā.",
 'anontalkpagetext' => "----''Šī ir diskusiju lapa anonīmam lietotājam, kurš vēl nav kļuvis par reģistrētu lietotāju vai arī neizmanto savu lietotājvārdu. Tādēļ mums ir jāizmanto skaitliskā IP adrese, lai viņu identificētu.
 Šāda IP adrese var būt vairākiem lietotājiem.

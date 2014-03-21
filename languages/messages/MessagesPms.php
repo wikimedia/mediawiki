@@ -290,7 +290,6 @@ $1",
 'disclaimers' => 'Avertense',
 'disclaimerpage' => 'Project:Avertense generaj',
 'edithelp' => 'Agiut a la modìfica',
-'helppage' => 'Help:Contnù',
 'mainpage' => 'Intrada',
 'mainpage-description' => 'Intrada',
 'policy-url' => 'Project:Régole',
@@ -754,7 +753,7 @@ A peul essa stàita tramudà o scancelà antramentre ch'a vëdìa la pàgina.",
 A peul esse modificà an sla pàgina ''[[Special:ChangePassword|modìfica dla ciav]]'' apress esse rintrà ant ël sistema.",
 'newarticle' => '(Neuv)',
 'newarticletext' => "A l'é andaje dapress a na liura a na pàgina che a esist ancor nen.
-Për creé la pàgina, ch'a ancamin-a a scrive ant lë spassi sì-sota (vëdde la [[{{MediaWiki:Helppage}}|pàgina d'agiut]] për savèjne ëd pì).
+Për creé la pàgina, ch'a ancamin-a a scrive ant lë spassi sì-sota (vëdde la [$1 pàgina d'agiut] për savèjne ëd pì).
 S'a l'é rivà sì për eror, ch'a sgnaca ël boton '''andaré''' ëd sò navigador.",
 'anontalkpagetext' => "----''Costa a l'é la pàgina ëd ciaciarade për n'utent anònim che a l'é ancó pa dorbusse un cont, ò pura che a lo deuvra nen. Alora i l'oma da dovré ël nùmer d'adrëssa IP për deje n'identificassion a chiel o chila.
 N'adrëssa IP përparèj a peul esse partagià da vàire utent.
@@ -2319,7 +2318,7 @@ Ch'a varda la [[Special:ProtectedPages|Lista dle pàgine protegiùe]] për la li
 Ambelessì a-i son le regolassion corente për la pàgina '''$1''':",
 'protect-locked-access' => "Sò cont a l'ha pa la qualìfica për podèj cambié ij livej ëd protession.
 Ambelessì a-i son j'ampostassion atuaj për la pàgina '''$1''':",
-'protect-cascadeon' => "Sta pàgina për adess a l'é blocà përchè a-i intra ant {{PLURAL:$1|la pàgina sì-sota, ch'a l'ha|le-pàgine sì sota, ch'a l'han}} na protession a sàut anvisca. A peul cambie-je sò livel ëd protession a sta pàgina-sì ma lòn a tochërà pa la protession a sàut.",
+'protect-cascadeon' => "Sta pàgina për adess a l'é blocà përchè a-i intra ant {{PLURAL:$1|la pàgina sì-sota, ch'a l'ha|le-pàgine sì sota, ch'a l'han}} na protession a sàut anvisca. Le modìfiche al livel ëd protession dë sta pàgina-sì a tochëran pa la protession a sàut.",
 'protect-default' => "Autorisé tùit j'utent",
 'protect-fallback' => "Përmëtt mach a j'utent con ël përmess «$1»",
 'protect-level-autoconfirmed' => "Përmëtte mach j'utent autoconfirmà",

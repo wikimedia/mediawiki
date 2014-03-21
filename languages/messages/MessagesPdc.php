@@ -228,7 +228,6 @@ $messages = array(
 'disclaimers' => 'Impressum',
 'disclaimerpage' => 'Project:Impressum',
 'edithelp' => 'Hilf zum Ennere',
-'helppage' => 'Help:Hilf',
 'mainpage' => 'Haaptblatt',
 'mainpage-description' => 'Haaptblatt',
 'portal' => 'Gmeeschafts-Portal',

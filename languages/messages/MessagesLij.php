@@ -359,7 +359,6 @@ $1",
 'disclaimers' => 'Avertense',
 'disclaimerpage' => 'Project:Avertense generâli',
 'edithelp' => 'Agiùtto',
-'helppage' => 'Help:Contegnûi',
 'mainpage' => 'Pàgina prinçipâ',
 'mainpage-description' => 'Pagina prinçipâ',
 'policy-url' => 'Project:Lezzi',
@@ -645,7 +644,7 @@ Sta password a poeu ese cangiâ inta paggina pe ''[[Special:ChangePassword|cangi
 'newarticletext' => "Sto colegaménto o corisponde a 'na pàgina ch'a no l'existe ancon.
 
 Se se vêu creâ a pàgina òua, se pêu comensâ a scrive into spàçio chì sotta.
-(amia e [[{{MediaWiki:Helppage}}|paggine d'agiûtto]] pe ciû informaçioìn).
+(amia e [$1 paggine d'agiûtto] pe ciû informaçioìn).
 
 Se t'ê intròu chì pe sballio,  sciacca '''Inderê''' into navegatô.",
 'anontalkpagetext' => "----

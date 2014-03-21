@@ -741,9 +741,6 @@ See also:
 'disclaimerpage' => '{{doc-important|Do not change the <code>Project:</code> part.}}
 Used as page for that contains the site disclaimer. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].',
 'edithelp' => 'This is the text that appears on the editing help link that is near the bottom of the editing page',
-'helppage' => '{{doc-important|Do not change the <code>Help:</code> part.}}
-The link destination used by default in the sidebar, and in {{msg-mw|Noarticletext}}.
-{{Identical|HelpContent}}',
 'mainpage' => 'Defines the link and display name of the main page of the wiki. Shown as the top link in the navigation part of the interface. Please do not change it too often, that could break things!
 
 See also:
@@ -1952,9 +1949,9 @@ Parameters:
 * $1 - username
 * $2 - email address",
 'newarticle' => '{{Identical|New}}',
-'newarticletext' => "Text displayed above the edit box in editor when trying to create a new page.
+'newarticletext' => 'Text displayed above the edit box in editor when trying to create a new page.
 Parameters:
-* $1 - The URL to the help page, defined in {{msg-mw|helppage}}",
+* $1 - The URL to the help page, defined in {{msg-mw|helppage}}',
 'anontalkpagetext' => 'Displayed at the bottom of talk pages of anonymous users.',
 'noarticletext' => 'This is the message that you get if you search for a term that has not yet got any entries on the wiki.
 

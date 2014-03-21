@@ -459,7 +459,6 @@ $1',
 'disclaimers' => 'Henwies',
 'disclaimerpage' => 'Project:Impressum',
 'edithelp' => 'Hölp för et Bearbeide',
-'helppage' => 'Help:Hölp',
 'mainpage' => 'Haupsigg',
 'mainpage-description' => 'Haupsigg',
 'policy-url' => 'Project:Rejelle',
@@ -1000,7 +999,7 @@ wann De wider enjelogg bes.',
 'newarticle' => '(Neu)',
 'newarticletext' => 'Ene Link op en Sigg, wo noch nix drop steiht, weil et se noch jar nit jitt, hät Dich noh heh jebraht.
 Öm die Sigg aanzeläje, schriev heh unge en dat Feld eren, un dun dat dann avspeichere.
-Luur op de [[{{MediaWiki:Helppage}}|Sigge met Hölp]] noh, wann De mieh dodrüvver wesse wells.
+Luur op de [$1 Sigge met Hölp] noh, wann De mieh dodrüvver wesse wells.
 Wann De jar nit heh hen kumme wollts, dann jangk zeröck op die Sigg, wo De herjekumme bes, Dinge Brauser hät ene Knopp doför.',
 'anontalkpagetext' => '----
 <i>Dat heh es de Klaaf Sigg för ene namenlose Metmaacher. Dä hät sich noch keine Metmaacher Name jejovve un

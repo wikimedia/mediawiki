@@ -387,7 +387,6 @@ $1',
 'disclaimers' => 'Aafwiezinge aansjprakelikheid',
 'disclaimerpage' => 'Project:Algemein aafwiezing aansjprakelikheid',
 'edithelp' => 'Hulp bie bewirke',
-'helppage' => 'Help:Help',
 'mainpage' => 'Veurblaad',
 'mainpage-description' => 'Veurblaad',
 'policy-url' => 'Project:Beleid',
@@ -755,7 +754,7 @@ Meugelikerwies is t'r verplaats of gewösj gewaore wiel se de paasj 'nt bekieke 
 't Wachwaord veur deze nuje gebroeker kan gewiezig waere via de pagina ''[[Special:ChangePassword|Wachwaord wiezige]]'' nao 't aanmelje.",
 'newarticle' => '(Nuuj)',
 'newarticletext' => "De höbs 'ne link gevolg nao 'n pagina die nog neet besjteit.
-Type in de box hiejónger óm de pagina te beginne (zuug de [[{{MediaWiki:Helppage}}|helppagina]] veur mie infermasie).
+Type in de box hiejónger óm de pagina te beginne (zuug de [$1 helppagina] veur mie infermasie).
 Es te hie per óngelök terech bis gekómme, klik dan op de '''trök'''-knóp van diene browser.",
 'anontalkpagetext' => "----''Dit is de euverlèkpagina veur 'ne anonieme gebroeker dae nog gein account haet aangemaak of dae 't neet gebroek.
 Daoveur gebroeke v'r 't IP-adres óm de gebroeker te identificere.

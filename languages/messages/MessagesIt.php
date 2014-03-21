@@ -544,7 +544,6 @@ $1',
 'disclaimers' => 'Avvertenze',
 'disclaimerpage' => 'Project:Avvertenze generali',
 'edithelp' => 'Guida',
-'helppage' => 'Help:Indice',
 'mainpage' => 'Pagina principale',
 'mainpage-description' => 'Pagina principale',
 'policy-url' => 'Project:Policy',
@@ -1008,7 +1007,7 @@ Potrebbe essere stata spostata o eliminata mentre si stava visionando la pagina.
 'accmailtext' => "Una password generata casualmente per [[User talk:$1|$1]] è stata inviata a $2. Questa password può essere modificata nella pagina per ''[[Special:ChangePassword|cambiare la password]]'' subito dopo l'accesso.",
 'newarticle' => '(Nuovo)',
 'newarticletext' => "Il collegamento appena seguito corrisponde ad una pagina non ancora esistente.
-Se vuoi creare la pagina ora, basta cominciare a scrivere il testo nella casella qui sotto (vedi la [[{{MediaWiki:Helppage}}|pagina di aiuto]] per maggiori informazioni).
+Se vuoi creare la pagina ora, basta cominciare a scrivere il testo nella casella qui sotto (vedi la [$1 pagina di aiuto] per maggiori informazioni).
 Se il collegamento è stato aperto per errore, è sufficiente fare clic sul pulsante '''Indietro''' del proprio browser.",
 'anontalkpagetext' => "----
 ''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un'utenza o comunque non la sta usando. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:UserLogin/signup|crea una nuova utenza]] o [[Special:UserLogin|entra con quella che già hai]] per evitare di essere confuso con altri utenti anonimi in futuro.''",
@@ -2535,7 +2534,8 @@ Vedi la [[Special:ProtectedPages|lista delle pagine protette]] per l'elenco dell
 Le impostazioni correnti per la pagina sono '''$1''':",
 'protect-locked-access' => "Non si dispone dei permessi necessari per modificare i livelli di protezione della pagina.
 Le impostazioni correnti per la pagina sono '''$1''':",
-'protect-cascadeon' => 'Al momento questa pagina è bloccata perché viene inclusa {{PLURAL:$1|nella pagina indicata di seguito, per la quale|nelle pagine indicate di seguito, per le quali}} è attiva la protezione ricorsiva. È possibile modificare il livello di protezione individuale della pagina, ma le impostazioni derivanti dalla protezione ricorsiva non saranno modificate.',
+'protect-cascadeon' => 'Al momento questa pagina è bloccata perché viene inclusa {{PLURAL:$1|nella pagina indicata di seguito, per la quale|nelle pagine indicate di seguito, per le quali}} è attiva la protezione ricorsiva.
+Le modifiche al livello di protezione individuale della pagina, non avranno effetto sulle impostazioni derivanti dalla protezione ricorsiva.',
 'protect-default' => 'Autorizza tutti gli utenti',
 'protect-fallback' => 'Consentito solo agli utenti con permesso "$1"',
 'protect-level-autoconfirmed' => 'Consentito solo agli utenti autoconvalidati',

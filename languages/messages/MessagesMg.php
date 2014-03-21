@@ -466,7 +466,6 @@ $1',
 'disclaimers' => 'Fampitandremana',
 'disclaimerpage' => 'Project:General disclaimer',
 'edithelp' => 'Fanoroana',
-'helppage' => 'Help:Fanoroana',
 'mainpage' => 'Fandraisana',
 'mainpage-description' => 'Fandraisana',
 'policy-url' => 'Project:Fepetra',
@@ -933,7 +932,7 @@ Mety efa nakisaka angamba izy, na voafafa tamin' ianareo namaky ity pejy ity far
 'accmailtitle' => 'Lasa ny tenimiafina.',
 'accmailtext' => "Nalefa tany amin'i $2 ny tenimiafina kisendra ho an'ny kaonty [[User talk:$1|$1]]! Azo ovaina eo amin'i ''[[Special:ChangePassword|Manova tenimiafina]]'' izany amin'ny alalan'ny fidirana.",
 'newarticle' => '(Vaovao)',
-'newarticletext' => "Mbola tsy misy ity takelaka ity koa azonao atao ny mamorona azy eto ambany. Jereo ny [[{{MediaWiki:Helppage}}|Fanoroana]] raha misy fanazavana ilainao.
+'newarticletext' => "Mbola tsy misy ity takelaka ity koa azonao atao ny mamorona azy eto ambany. Jereo ny [$1 Fanoroana] raha misy fanazavana ilainao.
 
 Raha toa moa ka tsy nieritreritra ny hamorona ity takelaka ity ianao dia miverena etsy amin'ny fandraisana.",
 'anontalkpagetext' => "----<i>Ity pejy ity dia pejin-dresak'olona tsy nanokatra na tsy nampiasa ny kaontiny.

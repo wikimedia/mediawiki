@@ -225,7 +225,6 @@ $messages = array(
 'disclaimers' => 'Pamananggi',
 'disclaimerpage' => 'Project:Pangkabilugan a pamananggi',
 'edithelp' => 'Saup pamanalili',
-'helppage' => 'Help:Kalamnan',
 'mainpage' => 'Pun Bulung',
 'mainpage-description' => 'Pun Bulung',
 'policy-url' => 'Project:Tuntunan',
@@ -505,7 +504,7 @@ Pakisulat me at patutuan ing kekang e-mail address kapamilata'ning [[Special:Pre
 'accmailtext' => 'Ing password para keng "$1" miparala ya king $2.',
 'newarticle' => '(Bayu)',
 'newarticletext' => "Dela na ka ning suglung king bulung a e pa melalang.
-Ba meng lalangan ing bulung a iti, sumulat ka king kahun king lalam (lon me ing  [[{{MediaWiki:Helppage}}|help page]] para king karagdagang impormasiun).
+Ba meng lalangan ing bulung a iti, sumulat ka king kahun king lalam (lon me ing  [$1 help page] para king karagdagang impormasiun).
 Nung migkamali kang minta keni, i-click me mu ing '''back''' (mibalik) button ning kekang browser.",
 'anontalkpagetext' => "----''Ini ing bulung ning pamitalamitam (discussion page) para kareng gagamit a e pepakilala, e pa miglalang account, o e gagamit kaniti. Uli na nita, kaylangan ming gumamit IP address a nomiru ba yang makilala. Mapalyaring e ya mu metung ing gagamit kaniti. Nung metung kang gagamit a e pepakilala at king palage mu, mituran ka o meyatu king e dapat, pakisabi ming [[Special:UserLogin|maglalang kang account o mag-log in]] ba ra kang e pagkamalyan kareng aliwang gagamit.''",
 'noarticletext' => 'King salukuyan, alang sulat king bulung a ini.

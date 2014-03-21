@@ -377,7 +377,6 @@ $1",
 'disclaimers' => 'Panyangkalan',
 'disclaimerpage' => 'Project:Panyangkalan umum',
 'edithelp' => 'Patulung mambabak',
-'helppage' => 'Help:Isi',
 'mainpage' => 'Tungkaran Tatambaian',
 'mainpage-description' => 'Tungkaran Tatambaian',
 'policy-url' => 'Project:Kaaripan',
@@ -767,7 +766,7 @@ Pinanya ini sudah diugahakan atawa dihapus parhatan Pian maniringi tungkaran nan
 
 Katasunduk gasan pamakai hanyar nangini kawa diubah pintang tungkaran ''[[Special:ChangePassword|ubah katasunduk]]'' wayah babuat log.",
 'newarticle' => '(Hanyar)',
-'newarticletext' => "Pian maumpati sabuah tautan ka tungkaran nang baluman ada lagi. Gasan maulah tungkaran, mulai ja mangatik pada kutak di bawah (lihati [[{{MediaWiki:Helppage}}|tungkaran patulung]] gasan panjalasan labih). Amun Pian ka sia cagaran tasalah, klik picikan '''back''' di panjalajah web Pian.",
+'newarticletext' => "Pian maumpati sabuah tautan ka tungkaran nang baluman ada lagi. Gasan maulah tungkaran, mulai ja mangatik pada kutak di bawah (lihati [$1 tungkaran patulung] gasan panjalasan labih). Amun Pian ka sia cagaran tasalah, klik picikan '''back''' di panjalajah web Pian.",
 'anontalkpagetext' => "----''Ngini adalah tungkaran pamandiran gasan pamakai kada bangaran nang baluman ma-ulah akun pulang, atawa  kada mamakainya. Kami tapaksa mamakai numurik alamat IP hagan maminanduinya.
 Alamat IP nangkaini kawaai dipuruk ulih babarapa pamakai.
 Amun Pian adalah pamuruk kada bangaran wan marasa kumin nang kada pas ta ka Pian, muhun [[Special:UserLogin/signup|ulah sabuah akun]] or [[Special:UserLogin|babuat log]] hagan mahindari kabingungan awan pamuruk kada bangaran lain kaina.",

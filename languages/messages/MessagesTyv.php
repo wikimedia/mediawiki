@@ -302,7 +302,6 @@ $messages = array(
 'disclaimers' => 'Ажыглаар харысаалгазын чөрчүүрү (ойталаары)',
 'disclaimerpage' => 'Project:Ажыглаар харысаалгазын ойталаары',
 'edithelp' => 'Эдеринге дуза',
-'helppage' => 'Help:Допчузу',
 'mainpage' => 'Кол Арын',
 'mainpage-description' => 'Кол Арын',
 'policy-url' => 'Project:Чурум',
@@ -490,7 +489,7 @@ $messages = array(
 The password for this new account can be changed on the ''[[Special:ChangePassword|change password]]'' page upon logging in.",
 'newarticle' => '(Чаа)',
 'newarticletext' => 'Амдыызында чаяатынмаан арынче шөлүглеп шилчий бердиңер.
-Ону чаяарда адакы көзенекке сөзүглелден таналап киириңер ([[{{MediaWiki:Helppage}}|тайылбыр арынын]] тода көрүңер).. 
+Ону чаяарда адакы көзенекке сөзүглелден таналап киириңер ([$1 тайылбыр арынын] тода көрүңер).. 
 Маңаа алдаг аайы-биле шилчий берген болзуңарза, браузериңерниң "дедир"  деп таназын базыптыңар.',
 'noarticletext' => "Амдыызында ук арында сөзүглел чок.
 Ол дилеп турар [[Special:Search/{{PAGENAME}}|арыныңар дугайында өске чүүлдерге бижээнин тып аап]] болур силер,

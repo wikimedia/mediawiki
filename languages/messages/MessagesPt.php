@@ -571,7 +571,6 @@ $1',
 'disclaimers' => 'Exoneração de responsabilidade',
 'disclaimerpage' => 'Project:Aviso_geral',
 'edithelp' => 'Ajuda de edição',
-'helppage' => 'Help:Conteúdos',
 'mainpage' => 'Página principal',
 'mainpage-description' => 'Página principal',
 'policy-url' => 'Project:Políticas',
@@ -1043,7 +1042,7 @@ Ela pode ter sido movida ou removida enquanto estava a ver a página.',
 Ela pode ser alterada na página [[Special:ChangePassword|de alteração da palavra-chave]] após autenticação.',
 'newarticle' => '(Nova)',
 'newarticletext' => "Seguiu um link para uma página que ainda não existe.
-Para criá-la, escreva o seu conteúdo na caixa abaixo (consulte a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
+Para criá-la, escreva o seu conteúdo na caixa abaixo (consulte a [$1 página de ajuda] para mais detalhes).
 Se chegou aqui por engano, clique o botão '''voltar''' (ou ''back'') do seu browser.",
 'anontalkpagetext' => "----''Esta é a página de discussão de um utilizador anónimo que ainda não criou uma conta ou não a utiliza, pelo que temos de utilizar o endereço IP para identificá-lo(a).
 Um endereço IP pode ser partilhado por vários utilizadores.

@@ -586,7 +586,6 @@ $1',
 'disclaimers' => 'Phủ nhận',
 'disclaimerpage' => 'Project:Phủ nhận chung',
 'edithelp' => 'Trợ giúp sửa đổi',
-'helppage' => 'Help:Nội dung',
 'mainpage' => 'Trang Chính',
 'mainpage-description' => 'Trang Chính',
 'policy-url' => 'Project:Quy định và hướng dẫn',
@@ -1041,7 +1040,7 @@ Có thể nó đã bị di chuyển hoặc xóa đi trong khi bạn đang xem tr
 'accmailtitle' => 'Đã gửi mật khẩu.',
 'accmailtext' => "Một mật khẩu được tạo ngẫu nhiên cho [[User talk:$1|$1]] đã được gửi đến $2. Có thể đổi mật khẩu tại trang ''[[Special:ChangePassword|đổi mật khẩu]]'' sau khi đã đăng nhập.",
 'newarticle' => '(Mới)',
-'newarticletext' => "Bạn đi đến đây từ một liên kết đến một trang chưa tồn tại. Để tạo trang, hãy bắt đầu gõ vào ô bên dưới (xem [[{{MediaWiki:Helppage}}|trang trợ giúp]] để có thêm thông tin). Nếu bạn đến đây do nhầm lẫn, chỉ cần nhấn vào nút '''Lùi''' (hoặc Trở lại, Quay lại, Back) trong trình duyệt của bạn.",
+'newarticletext' => "Bạn đi đến đây từ một liên kết đến một trang chưa tồn tại. Để tạo trang, hãy bắt đầu gõ vào ô bên dưới (xem [$1 trang trợ giúp] để có thêm thông tin). Nếu bạn đến đây do nhầm lẫn, chỉ cần nhấn vào nút '''Lùi''' (hoặc Trở lại, Quay lại, Back) trong trình duyệt của bạn.",
 'anontalkpagetext' => "----''Đây là trang thảo luận của một người dùng vô danh chưa tạo tài khoản hoặc có tài khoản nhưng không đăng nhập.
 Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để xác định anh/chị ta.
 Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung.

@@ -635,7 +635,6 @@ $1',
 'disclaimers' => 'Aviso legal',
 'disclaimerpage' => 'Project:Limitación general de responsabilidad',
 'edithelp' => 'Ayuda de edición',
-'helppage' => 'Help:Contenido',
 'mainpage' => 'Página principal',
 'mainpage-description' => 'Página principal',
 'policy-url' => 'Project:Políticas',
@@ -1111,7 +1110,7 @@ Quizá ha sido movida o borrada mientras visitabas la página.',
 La contraseña para esta nueva cuenta puede cambiarse en [[Special:ChangePassword|la página destinada para ello]] después de haber iniciado sesión.',
 'newarticle' => '(Nuevo)',
 'newarticletext' => 'Has seguido un enlace a una página que aún no existe.
-Para crear esta página, escribe en el campo a continuación. Para más información, consulta la [[{{MediaWiki:Helppage}}|página de ayuda]].
+Para crear esta página, escribe en el campo a continuación. Para más información, consulta la [$1 página de ayuda].
 Si llegaste aquí por error, vuelve a la página anterior.',
 'anontalkpagetext' => "---- ''Esta es la página de discusión de un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su dirección IP para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y crees que se han dirigido a ti con comentarios improcedentes, por favor [[Special:UserLogin/signup|crea una cuenta]] o si ya la tienes [[Special:UserLogin|identifícate]] para evitar confusiones futuras con otros usuarios anónimos.''",
 'noarticletext' => 'En este momento no hay texto en esta página.
@@ -1442,7 +1441,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'mergelogpagetext' => 'Debajo está una lista de las fusiones más recientes de historial de una página en otra.',
 
 # Diffs
-'history-title' => 'Historial de revisiones para «$1»',
+'history-title' => 'Historial de revisiones de «$1»',
 'difference-title' => 'Diferencia entre revisiones de «$1»',
 'difference-title-multipage' => 'Diferencia entre las páginas «$1» y «$2»',
 'difference-multipage' => '(Diferencia entre las páginas)',
@@ -1848,7 +1847,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'rc_categories' => 'Limitar a las categorías (separadas por «|»)',
 'rc_categories_any' => 'Cualquiera',
 'rc-change-size-new' => '$1 {{PLURAL:$1|byte|bytes}} después del cambio',
-'newsectionsummary' => 'Nueva sección: /* $1 */',
+'newsectionsummary' => 'Sección nueva: /* $1 */',
 'rc-enhanced-expand' => 'Mostrar detalles',
 'rc-enhanced-hide' => 'Ocultar detalles',
 'rc-old-title' => 'originalmente creado como "$1"',

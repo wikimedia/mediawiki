@@ -429,7 +429,6 @@ $1',
 'disclaimers' => 'Refuzo de responsabilitá',
 'disclaimerpage' => 'Project:Refuzo de responsabilitá jeneral',
 'edithelp' => '¿Cómo se la troca?',
-'helppage' => 'Help:Contènidos',
 'mainpage' => 'La Primera Hoja',
 'mainpage-description' => 'La Primera Hoja',
 'policy-url' => 'Project:Politikas',
@@ -698,7 +697,7 @@ Tu adresso de IP se va a enrejistrar en la istoria de trocamientos de la hoja.',
 'accmailtext' => "Se a embiado a $2 una kontrasenya jenerado por [[User talk:$1|$1]]. Se puede kambiar en la pajina ''[[Special:ChangePassword|cambiar kontrasenya]]'' al entrar.",
 'newarticle' => '(Muevo)',
 'newarticletext' => 'Arrivates a una hoja que daínda no egziste.
-Para crear esta hoja, empeça a escribir en la caxa de abaxo. Mira [[{{MediaWiki:Helppage}}|la hoja de ayudo]] para saber más.
+Para crear esta hoja, empeça a escribir en la caxa de abaxo. Mira [$1 la hoja de ayudo] para saber más.
 Si venites aquí por yerro, torna a la hoja de antes.',
 'noarticletext' => 'En este momento no ay teksto en esta hoja.
 Puedes [[Special:Search/{{PAGENAME}}|buxcar el títolo desta hoja]] en otras hojas,

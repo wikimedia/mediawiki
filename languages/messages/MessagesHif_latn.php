@@ -283,7 +283,6 @@ $1',
 'disclaimers' => 'Jimmewari se chhutkaari',
 'disclaimerpage' => 'Project:Saadharan jimmewari nai lo',
 'edithelp' => 'Badlao pe madat',
-'helppage' => 'Help:Madat',
 'mainpage' => 'Pahila Panna',
 'mainpage-description' => 'Pahila Panna',
 'policy-url' => 'Project:Niti',
@@ -734,7 +733,7 @@ Jab aap ii panna ke dekhtaa rahaa tab saait iske hatae nai to mitae dewa gais ra
 Ii nawa account ke password ke ''[[Special:ChangePassword|change password]]''  panna pe badla jaae sake hai jab aap login karta hai.",
 'newarticle' => '(Nawaa)',
 'newarticletext' => "Aap ek panna ke jorr ke follow kara hae jon ki abhi nai hae.
-Ii panna banae khatir, niche box me type karo (see the [[{{MediaWiki:Helppage}}|help page]] for more info).
+Ii panna banae khatir, niche box me type karo (see the [$1 help page] for more info).
 Agar jo aap hian par galti se aae hai tab aapan browser ke '''back''' button pe click karo.",
 'anontalkpagetext' => "----''Ii salah kare waala panna uu anonymous sadasya ke baare me jon abhi account nai banais hai, nai to account ke kaam me nai lawe hai.
 Ii kaaran se ham log ke IP address kaam me lae ke ii sadasya ke jaana jae hai.

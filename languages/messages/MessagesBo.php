@@ -273,7 +273,6 @@ $messages = array(
 'disclaimers' => 'བདག་སྤྲོད་འདོར་མཁན།',
 'disclaimerpage' => 'Project:ཡོངས་ཁྱབ་ཀྱི་བདག་སྤྲོད་ཁེ་དབང་རྩོད་ལེན།',
 'edithelp' => 'རྩོམ་སྒྲིག་རོགས་རམ།',
-'helppage' => 'Help:ནང་དོན།',
 'mainpage' => 'གཙོ་གནད་ཤོག་ངོས།',
 'mainpage-description' => 'གཙོ་གནད་ཤོག་ངོས།',
 'policy-url' => 'Project: སྒྲིག་གཞི།',

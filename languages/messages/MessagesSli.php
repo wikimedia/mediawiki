@@ -237,7 +237,6 @@ $1",
 'disclaimers' => 'Impressum',
 'disclaimerpage' => 'Project:Impressum',
 'edithelp' => 'Bearbeitungshilfe',
-'helppage' => 'Help:Hilfe',
 'mainpage' => 'Hauptseite',
 'mainpage-description' => 'Hauptseite',
 'policy-url' => 'Project:Leitlinien',
@@ -506,7 +505,7 @@ Vermutlich wurde ar verschuba oder geläscht, nachdem du de Seite uffgeruffa hos
 'accmailtitle' => 'Passwurt wourde verschickt',
 'newarticle' => '(Neu)',
 'newarticletext' => "Du best an'm Link zu anner Seite gefulgt, de nee vorhanden ies.
-Im de Seite oazulega, trage denn Text ei de undastehende Box a (siehe de [[{{MediaWiki:Helppage}}|Hilfeseite]] fier meh Informationen).
+Im de Seite oazulega, trage denn Text ei de undastehende Box a (siehe de [$1 Hilfeseite] fier meh Informationen).
 Best du fälschlicherweise hier, klicke de '''Zerricke'''-Schaltfläche dennes Browsers.",
 'anontalkpagetext' => "----''Diese Seite dient dazu, a'm nee oagemeldeta Benutzer Noachrichta zu hinterlassa. 'S werd senne IP-Atresse zur Identifizierung verwendet. IP-Atressen kinna vu mehrera Nutzern gemeensam verwendet waan. Wenn du miet dann Kommentarn uff dieser Seite nischt oafanga koast, richta se siech vermutlich oa an'n friehera Inhaber denner IP-Atresse und du koast se ignorieren. Du koast dir au a [[Special:UserLogin/signup|Nutzerkonto erstalla]] oder dich [[Special:UserLogin|oamelda]], im kinftig Verwechslunga miet andern anonyma Nutzern zu vermeida.''",
 'noarticletext' => 'Diese Seite enthält momentan noo kenn Text.

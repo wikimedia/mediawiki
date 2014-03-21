@@ -274,7 +274,6 @@ $1",
 'disclaimers' => 'Voebehoud',
 'disclaimerpage' => 'Project:Alhemeên voebehoud',
 'edithelp' => "Ulpe bie't bewerken",
-'helppage' => 'Help:Inoud',
 'mainpage' => 'Vòblad',
 'mainpage-description' => 'Vòblad',
 'policy-url' => 'Project:Beleid',
@@ -542,7 +541,7 @@ Voer jen e-mailadres in en bevestig 't via [[Special:Preferences|je vòkeuren]].
 'accmailtitle' => 'Wachtwoord verstierd.',
 'accmailtext' => "'t Wachtwoord vò $1 is nae $2 opgestierd.",
 'newarticle' => '(Nieuw)',
-'newarticletext' => "Deêze pagina besti nie. Typ in 't onderstaende veld om de pagina an te maeken (meêr informatie sti op de [[{{MediaWiki:Helppage}}|ulppagina]]).
+'newarticletext' => "Deêze pagina besti nie. Typ in 't onderstaende veld om de pagina an te maeken (meêr informatie sti op de [$1 ulppagina]).
 Gebruuk de knoppe '''vorige''' in je browser as je ier per ongeluk terecht bin ekomm'n.",
 'anontalkpagetext' => "----''Dit is de overlegbladzie vò 'n anonieme gebruker die-a gin inlognaem eit of 'm nie gebruukt.
 Zien/eur IP-adres kan deu meêr as eên gebruker gebruukt ore.
@@ -705,9 +704,6 @@ der kunn'n details anwezig zien in 't [{{fullurl:{{#Special:Log}}/suppress|page=
 'revdelete-nooldid-text' => 'Je ei hin doelversie(s) voe deêze handelienge opeheven, de aneheven versie besti nie, of je probeer de lèste versie te verberhen.',
 'revdelete-selected' => "'''Hesillecteerde {{PLURAL:$2|bewerkieng|bewerkiengen}} van [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Hesillecteerde logboekactie|Hesillecteerde logboekacties}}:'''",
-'revdelete-text' => "'''Verwiederde bewerkiengen zien zichbaer in de heschiedenisse, mè den inoud is nie langer publiek toehankelijk.'''
-
-Aore opzichters van {{SITENAME}} kunn'n de verborhen inoud benadern en de verwiederieng onedaene maeken mie de ulpe van dit scherm, tenzie an der anvull'nde beperkiengen heln die an zien inesteld deur de systeembeheêrder.",
 'revdelete-legend' => "Zichbaereidsbeperkiengen instell'n",
 'revdelete-hide-text' => 'De bewerkte tekst verberhen',
 'revdelete-hide-image' => 'Bestandsinoud verberhen',

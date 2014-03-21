@@ -305,7 +305,6 @@ $messages = array(
 'disclaimers' => 'Walzera',
 'disclaimerpage' => 'Project:Jadif walzereem',
 'edithelp' => 'Pomara',
-'helppage' => 'Help:Pomara',
 'mainpage' => 'Emudexo',
 'mainpage-description' => 'Emudexo',
 'policy-url' => 'Project:Policy',
@@ -584,7 +583,7 @@ Rinaf tise IP mane tir $3 ise ID elekara tir #$5. Va bate ik bane mane ko kota e
 'accmailtext' => 'Remravlem ke « $1 » al zo stakser pu $2.',
 'newarticle' => '(Warzaf)',
 'newarticletext' => "Va gluyasiki va metisu bu su vulegal.
-Ta buredura, ko vlevef bor toz geltsutel (va [[{{MediaWiki:Helppage}}|pomarabu]] ta loa giva wil).
+Ta buredura, ko vlevef bor toz geltsutel (va [$1 pomarabu] ta loa giva wil).
 Ede batlize roklason tigil, va '''back''' uzadjo ke nedisiki vulegal.",
 'anontalkpagetext' => "---- ''Vous êtes sur la page de discussion d'un utilisateur anonyme qui n'a pas encore créé un compte ou qui ne l'utilise pas. Pour cette raison, nous devons utiliser l'adresse IP numérique pour l'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:UserLogin|créer un compte ou vous connecter]] afin d'éviter toute future confusion.''",
 'noarticletext' => 'Moe batu bu mek krent dure tir.

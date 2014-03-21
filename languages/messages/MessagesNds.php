@@ -446,7 +446,6 @@ $1",
 'disclaimers' => 'Impressum',
 'disclaimerpage' => 'Project:Impressum',
 'edithelp' => 'Bearbeidenshülp',
-'helppage' => 'Help:Hülp',
 'mainpage' => 'Hööftsiet',
 'mainpage-description' => 'Hööftsiet',
 'policy-url' => 'Project:Richtlienen',
@@ -772,7 +771,7 @@ Villicht is he verschaven oder rutnahmen worrn, wieldes du de Sied ankeken hest.
 Dat Passwoord för dit Brukerkonto kann na dat Anmellen ünner ''[[Special:ChangePassword|Passwoord ännern]]'' ännert warrn.",
 'newarticle' => '(Nee)',
 'newarticletext' => "Du büst op en Sied kamen, de dat noch nich gifft.
-Wenn du disse Sied opstellen wullt, schriev dien Text in dat Finster ünnen  (kiek op de [[{{MediaWiki:Helppage}}|Hülpsied]] för mehr Infos).
+Wenn du disse Sied opstellen wullt, schriev dien Text in dat Finster ünnen  (kiek op de [$1 Hülpsied] för mehr Infos).
 Wenn du de Sied gornich ännern wullst, denn klick op den '''Trügg'''-Knoop in dien Webkieker.",
 'anontalkpagetext' => "---- ''Dit is de Diskuschoonssiet vun en nich anmellt Bruker, de noch keen Brukerkonto anleggt hett oder dat jüst nich bruukt.
 Wi mööt hier de numerische IP-Adress verwennen, üm den Bruker to identifizeern.

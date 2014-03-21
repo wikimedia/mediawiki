@@ -397,7 +397,6 @@ $1',
 'disclaimers' => '免責宣',
 'disclaimerpage' => 'Project:免責宣',
 'edithelp' => '助纂塾',
-'helppage' => 'Help:目錄',
 'mainpage' => '卷首',
 'mainpage-description' => '卷首',
 'policy-url' => 'Project:策',
@@ -734,7 +733,7 @@ $2',
 
 此符節可於登簿後改',
 'newarticle' => '撰',
-'newarticletext' => '此頁尚缺。欲補，撰於下，有惑見[[{{MediaWiki:Helppage}}|助]]。
+'newarticletext' => '此頁尚缺。欲補，撰於下，有惑見[$1 助]。
 誤入者，返前即可。',
 'anontalkpagetext' => "----''此匿論也，為未簿或不簿者設，IP俱錄以辨人焉。然IP不獨，恐生亂象，不喜惠[[Special:UserLogin/signup|增]][[Special:UserLogin|登簿]]遠之。",
 'noarticletext' => '查無此文。[[Special:Search/{{PAGENAME}}|尋題]]，

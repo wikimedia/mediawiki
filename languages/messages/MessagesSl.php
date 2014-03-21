@@ -434,7 +434,6 @@ $1',
 'disclaimers' => 'Zanikanja odgovornosti',
 'disclaimerpage' => 'Project:Splošno zanikanje odgovornosti',
 'edithelp' => 'Pomoč pri urejanju',
-'helppage' => 'Help:Vsebina',
 'mainpage' => 'Glavna stran',
 'mainpage-description' => 'Glavna stran',
 'policy-url' => 'Project:Pravila',
@@ -922,7 +921,7 @@ Morda je bil premaknjen ali izbrisan, medtem ko ste gledali stran.',
 'newarticle' => '(Nov)',
 'newarticletext' => "Sledili ste povezavi na stran, ki še ne obstaja.
 Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
-(za več informacij glej [[{{MediaWiki:Helppage}}|pomoč]]).
+(za več informacij glej [$1 pomoč]).
 Če ste sem prišli po pomoti, v svojem brskalniku kliknite gumb ''Nazaj''.",
 'anontalkpagetext' => "---- ''To je pogovorna stran brezimnega uporabnika, ki si še ni ustvaril računa ali pa ga ne uporablja. Zaradi tega moramo uporabiti IP-naslov za njegovo/njeno ugotavljanje istovetnosti. Takšen IP-naslov si lahko deli več uporabnikov. Če ste brezimni uporabnik in menite, da so nepomembne pripombe namenjene vam, prosimo [[Special:UserLogin|ustvarite račun]] ali pa se [[Special:UserLogin/signup|vpišite]], da preprečite zmedo z drugimi nepodpisanimi uporabniki.''",
 'noarticletext' => 'Na tej strani ni trenutno nobenega besedila. Naslov strani lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati]] na drugih straneh, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} v dnevniških zapisih] ali pa [{{fullurl:{{FULLPAGENAME}}|action=edit}} stran uredite]</span>.',
@@ -2498,8 +2497,8 @@ To so trenutne nastavitve za stran '''$1''':",
 To so trenutne nastavitve za stran '''$1''':",
 'protect-locked-access' => "Vaš uporabniški račun nima dovoljenja za spreminjanje stopnje zaščite strani.
 Trenutne nastavitve za stran '''$1''' so:",
-'protect-cascadeon' => 'Ta stran je trenutno uaščitena, ker je vključena v {{PLURAL:$1|naslednjo stran, ki ima|naslednji strani, ki imata|naslednje strani, ki imajo|naslednjih strani, ki imajo}} vključeno kaskadno zaščito.
-Stopnjo zaščite te strani lahko spremenite, vendar to ne bo vplivalo na kaskadno zaščito.',
+'protect-cascadeon' => 'Ta stran je trenutno zaščitena, ker je vključena v {{PLURAL:$1|naslednjo stran, ki ima|naslednji strani, ki imata|naslednje strani, ki imajo|naslednjih strani, ki imajo}} vključeno kaskadno zaščito.
+Spremembe stopnje zaščite strani ne bodo vplivale na kaskadno zaščito.',
 'protect-default' => 'Dovoli vsem uporabnikom',
 'protect-fallback' => 'Dovoli samo uporabnikom s pravico »$1«',
 'protect-level-autoconfirmed' => 'Dovoli samo samodejno potrjenim uporabnikom',

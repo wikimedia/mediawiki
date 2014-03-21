@@ -189,7 +189,6 @@ $messages = array(
 'disclaimers' => 'Daīšmu nūstatejumi',
 'disclaimerpage' => 'Project:Dasaīšonu nūstateišona',
 'edithelp' => 'Paleigs',
-'helppage' => 'Help:Turīņs',
 'mainpage' => 'Suoku puslopa',
 'mainpage-description' => 'Suoku puslopa',
 'policy-url' => 'Project:Nūsacejumi',
@@ -305,7 +304,7 @@ Par to var ziņuot [[Special:ListUsers/sysop|kaidam administratoram]], nūruodū
 'summary-preview' => 'Apsavērt kūpsavylkumu',
 'newarticle' => '(Jauns roksts)',
 'newarticletext' => "Tu ite tyki caur saitis nu, pagaidam vēļ nauzraksteitys, lopys.
-Kab radeitu lopu, suoc raksteit teksta lūgā apaškā (par teksta formatiešonu i seikuokai informaceja verīs [[{{MediaWiki:Helppage}}|paleigu]]).
+Kab radeitu lopu, suoc raksteit teksta lūgā apaškā (par teksta formatiešonu i seikuokai informaceja verīs [$1 paleigu]).
 Ka Tu ite tyki deļ klaidys, vīnkuorši daspīd '''back''' pūgu puorlyukprogramā.",
 'noarticletext' => "Pošulaik itymā puslopā navā nikaida teksta.
 Jius varat [[Special:Search/{{PAGENAME}}|atrast ituos pasaukys pīmini]] cytuos puslopuos,

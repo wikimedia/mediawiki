@@ -446,7 +446,6 @@ $1',
 'disclaimers' => 'Penolak tuntutan',
 'disclaimerpage' => 'Project:Penolak tuntutan umum',
 'edithelp' => 'Bantuan menyunting',
-'helppage' => 'Help:Kandungan',
 'mainpage' => 'Laman Utama',
 'mainpage-description' => 'Laman utama',
 'policy-url' => 'Project:Dasar',
@@ -891,7 +890,7 @@ Ia mungkin telah dialih atau dihapus semasa anda melihat laman ini.',
 'newarticle' => '(Baru)',
 'newarticletext' => "Anda telah mengikuti pautan ke laman yang belum wujud.
 Untuk mencipta laman ini, sila taip dalam kotak di bawah
-(lihat [[{{MediaWiki:Helppage}}|laman bantuan]] untuk maklumat lanjut).
+(lihat [$1 laman bantuan] untuk maklumat lanjut).
 Jika anda tiba di sini secara tak sengaja, hanya klik butang '''back''' pada pelayar anda.",
 'anontalkpagetext' => "----''Ini ialah laman perbincangan bagi pengguna tanpa nama yang belum membuka akaun atau tidak log masuk.
 Oleh itu kami terpaksa menggunakan alamat IP untuk mengenal pasti pengguna tersebut. Alamat IP ini boleh dikongsi oleh ramai pengguna.

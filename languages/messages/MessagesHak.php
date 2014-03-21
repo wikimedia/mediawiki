@@ -266,7 +266,6 @@ $1',
 'disclaimers' => '免責聲明',
 'disclaimerpage' => 'Project:一般免責聲明',
 'edithelp' => '編寫幫手',
-'helppage' => 'Help:目錄',
 'mainpage' => '頭頁',
 'mainpage-description' => '頭頁',
 'policy-url' => 'Project:方針',
@@ -639,7 +638,7 @@ Liá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he '
 'accmailtext' => "'$1' ke pi-me̍t yí-kîn ki-kî to $2.",
 'newarticle' => '（新）',
 'newarticletext' => '汝入到矣一隻還吂建立嘅頁面。
-愛建立本頁面，請在下面嘅編寫框肚輸入內容（詳情參詳[[{{MediaWiki:Helppage}}|幫手]]）。
+愛建立本頁面，請在下面嘅編寫框肚輸入內容（詳情參詳[$1 幫手]）。
 係講汝係毋小心來到本頁面，直接點擊汝嘅瀏覽器肚嘅“轉頭”撳掣轉頭。',
 'anontalkpagetext' => "---- ''Liá-he yit-ke hàn-mò kien-li̍p chong-ho ke ngia̍k-miàng yung-fu ke tui-fa-hong. Só-yî chṳ́-nèn yung IP thi-tiám lòi lâu kí lièn-lo̍k. Ke-IP thi-tiám khó-nèn yù-chhai kí-miàng yung-fu khiung-hióng. Kó-yèn ngì-he yit-miàng ngia̍k-miàng yung-fu ngin-vì pún-hong song ke phìn-lî kiên ngì mò-kôan, chhiáng [[Special:UserLogin|Chhóng-kien sîn chong-ho fe̍t-chá Tên-ngi̍p]] khó-yî phit-miên lòi-yì khì-thâ ngia̍k-miàng yung-fu ke fun-lon.''",
 'noarticletext' => '邇頁當前無內容，汝做得在其他頁[[Special:Search/{{PAGENAME}}|搜尋邇頁標題]]，

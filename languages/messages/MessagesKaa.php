@@ -360,7 +360,6 @@ $messages = array(
 'disclaimers' => 'Juwapkershilikten bas tartıw',
 'disclaimerpage' => 'Project:Juwapkershilikten bas tartıw',
 'edithelp' => "O'zgertiw anıqlaması",
-'helppage' => 'Help:Mazmunı',
 'mainpage' => 'Bas bet',
 'mainpage-description' => 'Bas bet',
 'policy-url' => "Project:Qag'ıydalar",
@@ -642,7 +641,7 @@ Siz bul betti ko'rip atırg'an waqtın'ızda ol ko'shirilgen yamasa o'shirilgen 
 Saytqa kirgenin'izden keyin, bul akkaunt parolin ''[[Special:ChangePassword|change password]]'' betinde o'zgertiwge boladı.",
 'newarticle' => '(Taza)',
 'newarticletext' => "Siz ele jaratılmag'an betke siltew arqalı o'ttin'iz.
-Betti jaratıw ushın to'mendegi aynada tekstin'izdi kiritin' (qosımsha mag'lıwmat ushın [[{{MediaWiki:Helppage}}|anıqlama betin]] qaran').
+Betti jaratıw ushın to'mendegi aynada tekstin'izdi kiritin' (qosımsha mag'lıwmat ushın [$1 anıqlama betin] qaran').
 Eger bul jerge aljasıp o'tken bolsan'ız, brauzerin'izdin' «Arqag'a» knopkasın basın'.",
 'noarticletext' => "Ha'zirgi waqıtta bul bette hesh qanday mag'lıwmat joq.
 Basqa betlerden usı bet atamasın [[Special:Search/{{PAGENAME}}|izlep ko'riwin'izge]],

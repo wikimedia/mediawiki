@@ -452,7 +452,6 @@ $1",
 'disclaimers' => 'Avís general',
 'disclaimerpage' => 'Project:Avís general',
 'edithelp' => 'Ajuda',
-'helppage' => 'Help:Índex',
 'mainpage' => 'Pàgina principal',
 'mainpage-description' => 'Pàgina principal',
 'policy-url' => 'Project:Polítiques',
@@ -909,7 +908,7 @@ La contrasenya per aquest nou compte pot ser canviada a la pàgina de ''[[Specia
 'newarticle' => '(Nou)',
 'newarticletext' => "Heu seguit un enllaç a una pàgina que encara no existeix.
 Per a crear-la, comenceu a escriure en l'espai de sota
-(vegeu l'[[{{MediaWiki:Helppage}}|ajuda]] per a més informació).
+(vegeu l'[$1 ajuda] per a més informació).
 Si sou ací per error, simplement cliqueu al botó «Enrere» del vostre navegador.",
 'anontalkpagetext' => "----''Aquesta és la pàgina de discussió d'un usuari anònim que encara no ha creat un compte o que no fa servir el seu nom registrat. Per tant, hem de fer servir la seua adreça IP numèrica per a identificar-lo. Una adreça IP pot ser compartida per molts usuaris. Si sou un usuari anònim, i trobeu que us han adreçat comentaris inoportuns, si us plau, [[Special:UserLogin/signup|creeu-vos un compte]], o [[Special:UserLogin|entreu en el vostre compte]] si ja en teniu un, per a evitar futures confusions amb altres usuaris anònims.''",
 'noarticletext' => 'Actualment no hi ha text en aquesta pàgina.

@@ -374,7 +374,6 @@ $1',
 'disclaimers' => 'Mugaketak',
 'disclaimerpage' => 'Project:Erantzukizunen mugaketa orokorra',
 'edithelp' => 'Aldaketak egiteko laguntza',
-'helppage' => 'Help:Laguntza',
 'mainpage' => 'Azala',
 'mainpage-description' => 'Azala',
 'policy-url' => 'Project:Politikak',
@@ -811,7 +810,7 @@ Baliteke orrialdea begiratzen zenuen bitartean norbaitek ezabatu edo izenburua a
 
 ''[[Special:ChangePassword|pasahitz aldaketa]]'' orrialdean alda daiteke, behin barruan sartuta.",
 'newarticle' => '(Berria)',
-'newarticletext' => "Orrialde hau ez da existitzen oraindik. Orrialde sortu nahi baduzu, beheko koadroan idazten hasi zaitezke (ikus [[{{MediaWiki:Helppage}}|laguntza orrialdea]] informazio gehiagorako). Hona nahi gabe etorri bazara, nabigatzaileko '''atzera''' botoian klik egin.",
+'newarticletext' => "Orrialde hau ez da existitzen oraindik. Orrialde sortu nahi baduzu, beheko koadroan idazten hasi zaitezke (ikus [$1 laguntza orrialdea] informazio gehiagorako). Hona nahi gabe etorri bazara, nabigatzaileko '''atzera''' botoian klik egin.",
 'anontalkpagetext' => "----''Orrialde hau konturik sortu ez edo erabiltzen ez duen erabiltzaile anonimo baten eztabaida orria da.
 Bere IP helbidea erabili beharko da beraz identifikatzeko.
 Erabiltzaile batek baino gehiagok IP bera erabil dezakete ordea.

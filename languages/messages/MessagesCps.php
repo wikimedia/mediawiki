@@ -244,7 +244,6 @@ $1',
 'disclaimers' => 'Mga pagpangindi',
 'disclaimerpage' => 'Project:Pangkabilugan nga pagpangindi',
 'edithelp' => 'Bulig sa pag-ilis',
-'helppage' => 'Help:Mga ka-undan',
 'mainpage' => 'Panguna nga pahina',
 'mainpage-description' => 'Panguna nga pahina',
 'policy-url' => 'Project:Patakaran',
@@ -470,7 +469,7 @@ Igasulat ang imo IP adres sa historya sang mga inislan sang mini nga pahina.",
 'summary-preview' => 'Kabilugan nga prebyu:',
 'newarticle' => '(Bag-o)',
 'newarticletext' => "Ginsundan mo ang pahina nga wala pa gagana.
-Para ubrahon ang pahina, umpisahan nga mag-type sa kahon sa idalum (tan-awon ang [[{{MediaWiki:Helppage}}|pahina sang tabang]] para sa madamo pa nga info).
+Para ubrahon ang pahina, umpisahan nga mag-type sa kahon sa idalum (tan-awon ang [$1 pahina sang tabang] para sa madamo pa nga info).
 Kung ari ka diya tungod sa sala, pinduton ang ('''back''') nga buton sang imo nga browser.",
 'noarticletext' => 'Wala pa yanda sang teksto sa sulod sang mini nga pahina.
 Sarang mo [[Special:Search/{{PAGENAME}}|pangitaon ang titulo sang mini nga pahina]] sa iban pa nga mga pahina,

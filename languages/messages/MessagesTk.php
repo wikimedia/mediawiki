@@ -269,7 +269,6 @@ $1',
 'disclaimers' => 'Jogapkärçilikden boýun gaçyrmak',
 'disclaimerpage' => 'Project:Umumy jogapkärçilikden boýun gaçyrmak',
 'edithelp' => 'Nähili redaktirlenýär?',
-'helppage' => 'Help:Mazmuny',
 'mainpage' => 'Baş Sahypa',
 'mainpage-description' => 'Baş sahypa',
 'policy-url' => 'Project:Ýörelge',
@@ -599,7 +598,7 @@ Sahypany görýän mahalayňyz onuň ady üýtgedilen ýa-da öçürilen bolmagy
 
 Bu paroly sessiýa açanyňyzdan soňra ''[[Special:ChangePassword|paroly üýtget]]'' sahypasynda üýtgedip bilersiňiz.",
 'newarticle' => '(Täze)',
-'newarticletext' => "Häzirlikçe ýazylmadyk bir sahypa goýlan çykgyda tykladyňyz. Bu sahypany döretmek üçin aşakdaky tekst gutusyndan peýdalanyň. Maglumat üçin [[{{MediaWiki:Helppage}}|ýardam sahypasyna]] serediň. Bu ýere ýalňyşlyk bilen gelen bolsaňyz, programmanyň '''Yza''' düwmesine tyklaň.",
+'newarticletext' => "Häzirlikçe ýazylmadyk bir sahypa goýlan çykgyda tykladyňyz. Bu sahypany döretmek üçin aşakdaky tekst gutusyndan peýdalanyň. Maglumat üçin [$1 ýardam sahypasyna] serediň. Bu ýere ýalňyşlyk bilen gelen bolsaňyz, programmanyň '''Yza''' düwmesine tyklaň.",
 'anontalkpagetext' => "----''Bu sahypa heniz ulanyjy hasaby edinmedik ýa-da hasabyny ulanmaýan bir anonim ulanyjynyň pikir alyşma sahypasydyr.
 Şonuň üçinem biz ony görkezmek üçin sanlaýyn IP adresini ulanmaly bolýarys.
 Şunuň ýaly IP adresinden ençeme ulanyjy peýdalanýan bolmagy ahmal.

@@ -441,7 +441,6 @@ $1',
 'disclaimers' => 'Forbehold',
 'disclaimerpage' => 'Project:Generelle forbehold',
 'edithelp' => 'Hjælp til redigering',
-'helppage' => 'Help:Hjælp',
 'mainpage' => 'Forside',
 'mainpage-description' => 'Forside',
 'policy-url' => 'Project:Politik',
@@ -902,7 +901,7 @@ Angiv venligst alle de ovenstående detaljer ved eventuelle henvendelser.',
 'newarticle' => '(Ny)',
 'newarticletext' => "Du har fulgt en henvisning til en side som endnu ikke findes.
 For at oprette siden skal du begynde at skrive i boksen nedenfor
-(se [[{{MediaWiki:Helppage}}|hjælpesiden]] for yderligere information).
+(se [$1 hjælpesiden] for yderligere information).
 Hvis du er her ved en fejl, så tryk på din browsers '''tilbage'''-knap.",
 'anontalkpagetext' => "---- ''Dette er en diskussionsside for en anonym bruger, der ikke har oprettet en konto endnu eller ikke bruger den.
 Vi er derfor nødt til at bruge den numeriske IP-adresse til at identificere ham eller hende.

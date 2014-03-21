@@ -398,7 +398,6 @@ $1",
 'disclaimers' => 'Avvirtenzi',
 'disclaimerpage' => 'Project:Avvirtenzi ginirali',
 'edithelp' => 'Guida',
-'helppage' => 'Help:Cuntinuti',
 'mainpage' => 'Pàggina principali',
 'mainpage-description' => 'Pàggina principali',
 'policy-url' => 'Project:Policy',
@@ -747,7 +746,7 @@ Forsi ca fu spustata o cancillata na mentri ca stàvutu taliannu la pàggina.',
 La password pi stu novu account pò essiri canciata â accessu nâ pàggina pi [[Special:ChangePassword|canciari password]].',
 'newarticle' => '(Novu)',
 'newarticletext' => "Sta pàggina ancora nun esisti.
-Pi criari na pàggina cu stu tìtulu, accumenza a scrìviri ccassutta (talìa la [[{{MediaWiki:Helppage}}|pàggina d'aiutu]] pi aviri maiuri nfurmazzioni).
+Pi criari na pàggina cu stu tìtulu, accumenza a scrìviri ccassutta (talìa la [$1 pàggina d'aiutu] pi aviri maiuri nfurmazzioni).
 Si agghicasti ccà pi sbagghiu, clicca lu buttuni ''''n arreri (back)''' dû tò browser.",
 'anontalkpagetext' => "----''Chista è la pàggina di discussioni di n’utenti anònimu, ca nun criau ancora n’accessu o ca nun l’usa.
 P’idintificàrilu è pirciò nicissariu usari lu nùmmiru di lu sò nnirizzu IP.

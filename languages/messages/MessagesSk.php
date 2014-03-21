@@ -531,7 +531,6 @@ $1',
 'disclaimers' => 'Vylúčenie zodpovednosti',
 'disclaimerpage' => 'Project:Vylúčenie zodpovednosti',
 'edithelp' => 'Ako upravovať stránku',
-'helppage' => 'Help:Obsah',
 'mainpage' => 'Hlavná stránka',
 'mainpage-description' => 'Hlavná stránka',
 'policy-url' => 'Project:Zásady a smernice',
@@ -997,7 +996,7 @@ Možno bola presunutá alebo zmazaná odkedy ste si stránku zobrazili.',
 'newarticle' => '(Nový)',
 'newarticletext' => "Sledovali ste odkaz na stránku, ktorá zatiaľ neexistuje.
 Stránku vytvoríte tak, že začnete písať do dolného poľa a potom stlačíte tlačidlo „Uložiť stránku“.
-(Viac informácií nájdete na stránkach [[{{MediaWiki:Helppage}}|Pomocníka]]).
+(Viac informácií nájdete na stránkach [$1 Pomocníka]).
 Ak ste sa sem dostali nechtiac, iba kliknite na tlačidlo '''späť''' vo svojom prehliadači.",
 'anontalkpagetext' => "----''Toto je diskusná stránka anonymného používateľa, ktorý nemá vytvorené svoje konto alebo ho nepoužíva.
 Preto musíme na jeho identifikáciu použiť numerickú IP adresu. Je možné, že takúto IP adresu používajú viacerí používatelia.

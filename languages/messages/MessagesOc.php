@@ -538,7 +538,6 @@ $1",
 'disclaimers' => 'Avertiments',
 'disclaimerpage' => 'Project:Avertiments generals',
 'edithelp' => 'Ajuda',
-'helppage' => 'Help:Acuèlh',
 'mainpage' => 'Acuèlh',
 'mainpage-description' => 'Acuèlh',
 'policy-url' => 'Project:Règlas',
@@ -989,7 +988,7 @@ Benlèu qu'es estada desplaçada o suprimida dempuèi qu'avètz legida aquesta p
 Lo senhal per aqueste compte novèl pòt èsser cambiat sus la pagina ''[[Special:ChangePassword|Cambiament de senhal]]'' aprèp s'èsser connectat.",
 'newarticle' => '(Novèl)',
 'newarticletext' => "Avètz seguit un ligam cap a una pagina qu’existís pas encara o qu'es estada [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} escafada].
-Per crear aquesta pagina, picatz vòstre tèxte dins la bóstia çaijós (podètz consultar [[{{MediaWiki:Helppage}}|la pagina d’ajuda]] per mai d’entresenhas).
+Per crear aquesta pagina, picatz vòstre tèxte dins la bóstia çaijós (podètz consultar [$1 la pagina d’ajuda] per mai d’entresenhas).
 Se sètz arribat(ada) aicí per error, clicatz sul boton '''retorn''' de vòstre navigador.",
 'anontalkpagetext' => "---- ''Sètz sus la pagina de discussion d'un utilizaire anonim qu'a pas encara creat un compte o que n'utiliza pas.
 Per aquesta rason, devèm utilizar son adreça IP per l'identificar. Una adreça d'aqueste tipe pòt èsser partejada entre mantun utilizaire. Se sètz un utilizaire anonim e se constatatz que de comentaris que vos concernisson pas vos son estats adreçats, podètz [[Special:UserLogin/signup|crear un compte]] o [[Special:UserLogin|vos connectar]] per evitar tota confusion venenta amb d’autres contributors anonims.''",

@@ -283,7 +283,6 @@ $1",
 'disclaimers' => 'Aithrisean-àichidh',
 'disclaimerpage' => 'Project:Aithris-àichidh choitcheann',
 'edithelp' => 'Cobhair deasachaidh',
-'helppage' => 'Help:Susbaint',
 'mainpage' => 'Prìomh dhuilleag',
 'mainpage-description' => 'Prìomh dhuilleag',
 'policy-url' => 'Project:Poileasaidh',
@@ -746,7 +745,7 @@ Dh'fhaoidte gun deach a ghluasad no a sguabadh às fhad 's a bha thu a' coimhead
 Gabhaidh am facal-faire airson a' chunntais ùir seo atharrachadh air an fo ''[[Special:ChangePassword|atharraich facal-faire]]'' as dèidh dhan chleachdaiche clàradh a-steach.",
 'newarticle' => '(Ùr)',
 'newarticletext' => "Lean thu ri ceangal gu duilleag nach eil ann fhathast.
-Cuir teacs sa bhogsa gu h-ìosal gus an duilleag seo a chruthachadh (seall air [[{{MediaWiki:Helppage}}|duilleag na cobharach]] airson barrachd fiosrachaidh).
+Cuir teacs sa bhogsa gu h-ìosal gus an duilleag seo a chruthachadh (seall air [$1 duilleag na cobharach] airson barrachd fiosrachaidh).
 Mura robh dùil agad ris an duilleag seo a ruigsinn, briog air a' phutan '''air ais''' 'nad bhrabhsair.",
 'anontalkpagetext' => "----''Seo an duilleag deasbaireachd aig cleachdaiche gun urra nach do chruthaich cunntas fhathast no nach eil 'ga chleachdadh.
 Feumaidh sinn an àireamh IP aca a chleachdadh air sgàth sin.

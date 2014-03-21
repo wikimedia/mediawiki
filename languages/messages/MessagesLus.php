@@ -246,7 +246,6 @@ $1',
 'disclaimers' => 'Intlawhkhalhna',
 'disclaimerpage' => 'Project: Intlawhkhalhna Dan',
 'edithelp' => 'Siamţhat zirna',
-'helppage' => 'Help: A chhunga thu awmte',
 'mainpage' => 'Phekpui',
 'mainpage-description' => 'Phekpui',
 'policy-url' => 'Project: Dàn',
@@ -557,7 +556,7 @@ A phêk i en chhungin sawn emaw nuaibo emaw a ni a ni ang.',
 'accmailtext' => '[[User talk:$1|$1]] tan a kahpaha siam thurûk $2 hnenah thawn a ni tawh.
 I siangchan thurûk hi [[Special:ChangePassword|thurûk tihdanglamna]]-ah i inziahluh hnuah i tidanglam thei ang.',
 'newarticle' => '(A thar)',
-'newarticletext' => "Phêk awm lo zawmna i rawn zui lut a ni. Phêk siam tùrin a hnuaia bawmah khuan chhu rawh (hriattirna dang [[{{MediaWiki:Helppage}}|ţanpuina phêk]]-ah a en theih).
+'newarticletext' => "Phêk awm lo zawmna i rawn zui lut a ni. Phêk siam tùrin a hnuaia bawmah khuan chhu rawh (hriattirna dang [$1 ţanpuina phêk]-ah a en theih).
 Tihsual palh thilthua heta lo lût i nih chuan i rangpuifanna-a '''letna''' fei zawnah hmet rawh.",
 'noarticletext' => 'He phêkah hian thu a la awm hrih lo.
 Phêk dangah [[Special:Search/{{PAGENAME}}| he phêk hming hi i zawng]] thei ang, a nih loh pawhin a laichin 

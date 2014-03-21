@@ -567,7 +567,6 @@ $1',
 'disclaimers' => 'Atterhald',
 'disclaimerpage' => 'Project:Atterhald',
 'edithelp' => 'Endringshjelp',
-'helppage' => 'Help:Innhald',
 'mainpage' => 'Hovudside',
 'mainpage-description' => 'Hovudside',
 'policy-url' => 'Project:Retningsliner',
@@ -979,7 +978,7 @@ Han kan ha vorten flytta eller sletta medan du såg på sida.',
 Passordet for den nye kontoen kan verta endra på ''[[Special:ChangePassword|endra passord]]''-sida etter innlogging.",
 'newarticle' => '(Ny)',
 'newarticletext' => "Du har følgt ei lenkje til ei side som ikkje finst enno.
-For å opprette sida, kan du skrive i boksen under (sjå [[{{MediaWiki:Helppage}}|hjelpesida]] for meir informasjon).
+For å opprette sida, kan du skrive i boksen under (sjå [$1 hjelpesida] for meir informasjon).
 Hamna du her ved ein feil, klikk på '''attende'''-knappen i nettlesaren din.",
 'anontalkpagetext' => "----''Dette er ei diskusjonsside for ein anonym brukar som ikkje har oppretta konto eller ikkje har logga inn.
 Vi er difor nøydde til å bruke den numeriske IP-adressa til å identifisere brukaren. Same IP-adresse kan vere knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[Special:UserLogin/signup|opprett ein brukarkonto]] eller [[Special:UserLogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",

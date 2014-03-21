@@ -434,7 +434,6 @@ $1',
 'disclaimers' => 'Avisyansow',
 'disclaimerpage' => 'Project:Avisyans ollgemmyn',
 'edithelp' => 'Gweres gans chanjya',
-'helppage' => 'Help:Gweres',
 'mainpage' => 'Dynnargh',
 'mainpage-description' => 'Dynnargh',
 'policy-url' => 'Project:Polici',
@@ -690,7 +689,7 @@ Rekordys vydh agas trigva IP yn istori an folen-ma.",
 'accmailtitle' => 'Ger-tremena danvenys.',
 'newarticle' => '(Nowyth)',
 'newarticletext' => "Hwi re holyas kevren dhe folen nag yw gwruthys hwath.
-Rag gwruthyl an folen, dalethewgh jynnskrifa y'n gist a-woles (gwelewgh an [[{{MediaWiki:Helppage}}|folen weres]] rag moy kedhlow).
+Rag gwruthyl an folen, dalethewgh jynnskrifa y'n gist a-woles (gwelewgh an [$1 folen weres] rag moy kedhlow).
 Mar teuthowgh omma yn kamm, klyckyewgh boton '''war-dhelergh''' agas peurel.",
 'noarticletext' => 'Nyns eus tekst y\'n folen-ma a-lemmyn.
 Hwi a yll [[Special:Search/{{PAGENAME}}|hwilas titel an folen-ma]] yn folennow erel,

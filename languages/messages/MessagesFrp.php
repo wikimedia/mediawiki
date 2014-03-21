@@ -558,7 +558,6 @@ $1',
 'disclaimers' => 'Semonces',
 'disclaimerpage' => 'Project:Semonces g·ènèrales',
 'edithelp' => 'Éde',
-'helppage' => 'Help:Somèro',
 'mainpage' => 'Reçua',
 'mainpage-description' => 'Reçua',
 'policy-url' => 'Project:Règlles de dedens',
@@ -1010,7 +1009,7 @@ Pôt-étre el est étâye dèplaciêe ou ben ôtâye dês que vos éd liesu cela
 Lo contresegno por cél compto novél pôt étre changiê sur la pâge de ''[[Special:ChangePassword|changement de contresegno]]'' aprés s’étre branchiê.",
 'newarticle' => '(Novél)',
 'newarticletext' => "Vos éd siuvu un lim de vers na pâge qu’ègziste p’oncor.
-Por fâre cela pâge, buchiéd voutron tèxto dedens la bouèta ce-desot (vêde la [[{{MediaWiki:Helppage}}|pâge d’éde]] por més d’enformacions).
+Por fâre cela pâge, buchiéd voutron tèxto dedens la bouèta ce-desot (vêde la [$1 pâge d’éde] por més d’enformacions).
 Se vos éte arrevâ{{GENDER:||ye|(ye)}} ice per fôta, clicâd sur lo boton '''Devant''' de voutron navigator.",
 'anontalkpagetext' => "----''O est la pâge de discussion d’un utilisator anonimo qu’at p’oncor fêt un compto ou ben que nen emplèye pas.
 Por cen nos devens empleyér la sin’adrèce IP numerica por lo recognetre.

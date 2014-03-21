@@ -184,7 +184,6 @@ $messages = array(
 'disclaimers' => 'Dikulemi',
 'disclaimerpage' => 'Project:Dikulemi generali',
 'edithelp' => "Hloli ye ng'i",
-'helppage' => 'Help:Buinaneli di petulo',
 'mainpage' => 'Petulo yem efro',
 'mainpage-description' => 'Petulo yem efro',
 'policy-url' => 'Project:Busize',
@@ -360,7 +359,7 @@ A IP sa $3, e ID di bolok sa #$5. Bulelezi IP e ID kwa bukizisize.",
 'loginreqpagetext' => 'A sa $1 di kamukile xeti di petulo.',
 'newarticle' => '(Nca)',
 'newarticletext' => "Bye petulo ni sa, tiguki zwa ling'ki.
-Di hloli, seltisize kwa sisebelisoni (kamukile [[{{MediaWiki:Helppage}}|likitisize]]).
+Di hloli, seltisize kwa sisebelisoni (kamukile [$1 likitisize]).
 A sa nca di bufosi, tampi '''back'''.",
 'noarticletext' => 'Sa no selt kwa petulo, a sa [[Special:Search/{{PAGENAME}}|fatukile di petulonom]] kwa xete petulo/[{{fullurl:{{FULLPAGENAME}}|action=edit}} petulo kenki].',
 'updated' => '(sa updeti)',

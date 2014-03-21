@@ -565,7 +565,6 @@ $1',
 'disclaimers' => 'Informacje prawne',
 'disclaimerpage' => 'Project:Informacje prawne',
 'edithelp' => 'Pomoc w edycji',
-'helppage' => 'Help:Spis treści',
 'mainpage' => 'Strona główna',
 'mainpage-description' => 'Strona główna',
 'policy-url' => 'Project:Zasady',
@@ -764,6 +763,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'gotaccountlink' => 'Zaloguj się',
 'userlogin-resetlink' => 'Zapomniałeś danych do zalogowania się?',
 'userlogin-resetpassword-link' => 'Nie pamiętasz hasła?',
+'userlogin-helplink2' => 'Pomoc przy logowaniu',
 'userlogin-loggedin' => 'Zalogowano jako {{GENDER:$1|$1}}.
 Użyj poniższego formularza, aby zalogować się jako inny użytkownik.',
 'userlogin-createanother' => 'Załóż nowe konto',
@@ -896,6 +896,9 @@ Aby dokończyć logowanie, musisz ustawić nowe hasło tutaj:',
 'resetpass-abort-generic' => 'Zmiana hasła została przerwana przez rozszerzenie.',
 'resetpass-expired' => 'Twoje hasło wygasło. Proszę ustawić nowe hasło do logowania.',
 'resetpass-expired-soft' => 'Twoje hasło wygasło i musi zostać zresetowane. Proszę wybrać nowe hasło albo kliknąć na "{{int:resetpass-submit-cancel}}", aby zresetować je później.',
+'resetpass-validity-soft' => 'Twoje hasło jest niepoprawne: $1
+
+Wybierz teraz nowe hasło albo kliknij „{{int:resetpass-submit-cancel}}”, aby zresetować je później.',
 
 # Special:PasswordReset
 'passwordreset' => 'Wyczyść hasło',
@@ -1040,7 +1043,7 @@ Mogła zostać przeniesiona lub usunięta podczas przeglądania tej strony.',
 Hasło dla tego nowego konta po zalogowaniu można zmienić na stronie ''[[Special:ChangePassword|zmiana hasła]]''.",
 'newarticle' => '(Nowy)',
 'newarticletext' => "Brak strony o tym tytule.
-Jeśli chcesz ją utworzyć, wpisz treść strony w poniższym polu (więcej informacji odnajdziesz [[{{MediaWiki:Helppage}}|na stronie pomocy]]).
+Jeśli chcesz ją utworzyć, wpisz treść strony w poniższym polu (więcej informacji odnajdziesz [$1 na stronie pomocy]).
 Jeśli utworzenie nowej strony nie było Twoim zamiarem, wciśnij ''Wstecz'' w swojej przeglądarce.",
 'anontalkpagetext' => "---- ''To jest strona dyskusji anonimowego użytkownika – takiego, który nie ma jeszcze swojego konta lub nie chce go w tej chwili używać.
 By go identyfikować, używamy adresów IP.
@@ -2270,7 +2273,7 @@ Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, d
 'deadendpagestext' => 'Poniższe strony nie posiadają odnośników do innych stron znajdujących się w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'protectedpages' => 'Strony zabezpieczone',
 'protectedpages-indef' => 'Tylko strony zabezpieczone na zawsze',
-'protectedpages-summary' => 'Ta strona zawiera istniejące strony które są chronione. Aby uzyskać listę tytułów których stworzenie jest zabronione, zobacz [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].',
+'protectedpages-summary' => 'Ta strona zawiera listę stron, które są obecnie chronione. Aby uzyskać listę tytułów, których utworzenie jest zabronione, zobacz [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].',
 'protectedpages-cascade' => 'Tylko strony zabezpieczone rekursywnie',
 'protectedpages-noredirect' => 'Ukryj przekierowania',
 'protectedpagesempty' => 'Żadna strona nie jest obecnie zabezpieczona z podanymi parametrami.',
@@ -2283,7 +2286,7 @@ Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, d
 'protectedpages-unknown-timestamp' => 'Nieznane',
 'protectedpages-unknown-performer' => 'Użytkownik nieznany',
 'protectedtitles' => 'Zabezpieczone nazwy stron',
-'protectedtitles-summary' => 'Ta strona zawiera tytuły, których tworzenie jest zabronione. Aby zobaczyć listę istniejących stron które są chronione, odwiedź tą stronę [[{{#special:ProtectedPages}}|{{int:protectedpages}}]]',
+'protectedtitles-summary' => 'Ta strona zawiera listę tytułów, których utworzenie jest obecnie zabronione. Aby zobaczyć listę istniejących stron, które są chronione, zobacz [[{{#special:ProtectedPages}}|{{int:protectedpages}}]].',
 'protectedtitlesempty' => 'Dla tych ustawień dopuszczalne jest utworzenie stron o dowolnej nazwie.',
 'listusers' => 'Lista użytkowników',
 'listusers-editsonly' => 'Pokaż tylko użytkowników z edycjami',
@@ -2606,7 +2609,7 @@ Wszystkie aktywne zabezpieczenia odnajdziesz na liście [[Special:ProtectedPages
 Obecne ustawienia dla strony '''$1''' to:",
 'protect-locked-dblock' => "Nie można zmienić poziomu zabezpieczenia z powodu działającej blokady bazy danych. Obecne ustawienia dla strony '''$1''' to:",
 'protect-locked-access' => "Nie masz uprawnień do zmiany poziomu zabezpieczenia strony. Obecne ustawienia dla strony '''$1''' to:",
-'protect-cascadeon' => 'Ta strona jest zabezpieczona przed edycją, ponieważ jest używana przez {{PLURAL:$1|następującą stronę, która została zabezpieczona|następujące strony, które zostały zabezpieczone}} z włączoną opcją dziedziczenia. Możesz zmienić stopień zabezpieczenia strony, ale nie wpłynie to na dziedziczenie zabezpieczenia.',
+'protect-cascadeon' => 'Ta strona jest zabezpieczona przed edycją, ponieważ jest używana przez {{PLURAL:$1|następującą stronę, która została zabezpieczona|następujące strony, które zostały zabezpieczone}} z włączoną opcją dziedziczenia. Zmiany stopnia zabezpieczenia tej strony nie wpłyną na dziedziczenie zabezpieczenia.',
 'protect-default' => 'Dostęp mają wszyscy użytkownicy',
 'protect-fallback' => 'Wymaga uprawnień „$1”',
 'protect-level-autoconfirmed' => 'Dozwolone tylko dla użytkowników automatycznie zatwierdzonych',

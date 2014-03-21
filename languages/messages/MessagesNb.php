@@ -566,7 +566,6 @@ $1',
 'disclaimers' => 'Forbehold',
 'disclaimerpage' => 'Project:Generelle forbehold',
 'edithelp' => 'Redigeringshjelp',
-'helppage' => 'Help:Innhold',
 'mainpage' => 'Forside',
 'mainpage-description' => 'Forside',
 'policy-url' => 'Project:Retningslinjer',
@@ -1031,7 +1030,7 @@ Det kan ha blitt flyttet eller slettet mens du så på siden.',
 'accmailtext' => 'Et tilfeldig passord for [[User talk:$1|$1]] har blitt sendt til $2. Det kan endres på [[Special:ChangePassword|passordendringssiden]] under innlogging.',
 'newarticle' => '(Ny)',
 'newarticletext' => "Du har fulgt en lenke til en side som ikke finnes ennå.
-For å opprette siden, begynn å skrive i boksen under (se [[{{MediaWiki:Helppage}}|hjelpesiden]] for mer informasjon).
+For å opprette siden, begynn å skrive i boksen under (se [$1 hjelpesiden] for mer informasjon).
 Om du havnet her ved en feil, trykk '''tilbake''' i nettleseren.",
 'anontalkpagetext' => "----
 ''Dette er en diskusjonsside for en uregistrert bruker som ikke har opprettet konto eller ikke er logget inn.

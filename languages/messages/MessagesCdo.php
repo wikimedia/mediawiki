@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Xiaomingyan
  * @author Xqt
  * @author Yejianfei
  */
@@ -383,7 +384,6 @@ $1',
 'disclaimers' => '無負責聲明',
 'disclaimerpage' => 'Project:無負責聲明',
 'edithelp' => '修改保護',
-'helppage' => 'Help:目錄',
 'mainpage' => '頭頁',
 'mainpage-description' => '頭頁',
 'policy-url' => 'Project:政策',
@@ -549,8 +549,6 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 'gotaccountlink' => '躒底',
 'userlogin-resetlink' => '躒底其資料𣍐記咯？',
 'userlogin-resetpassword-link' => '密码𣍐記？',
-'helplogin-url' => 'Help: 躒底',
-'userlogin-helplink' => '[[{{MediaWiki:helplogin-url}}|幫助躒底]]',
 'createacct-join' => '敆下底輸底汝其信息。',
 'createacct-emailrequired' => '電子郵件地址',
 'createacct-emailoptional' => '電子郵件地址（愛寫就寫）',
@@ -684,7 +682,7 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 茲蜀萆新其賬戶其密碼會使敆用戶躒底以後著''[[Special:ChangePassword|改密碼]]''頁面𡅏改變。",
 'newarticle' => '（新）',
 'newarticletext' => '汝已經跟鏈接跟遘無存在其頁面了。
-卜想創建頁面，敆下底其框框𡅏拍字（覷蜀覷[[{{MediaWiki:Helppage}}|幫助頁面]]有無更更価其幫助）。
+卜想創建頁面，敆下底其框框𡅏拍字（覷蜀覷[$1 幫助頁面]有無更更価其幫助）。
 如果汝是無注意來遘茲蜀萆頁面，篤囇汝其瀏覽器上其「返回」按鈕。',
 'anontalkpagetext' => "''茲是未躒底其用戶討論頁面。''
 故此儂家著使數字IP來確定伊。
@@ -749,7 +747,7 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 說明：（伶）=共第一新其版本比並，（前）=共前蜀版本比並，~=過要修改。",
 'history-fieldset-title' => '瀏覽歷史',
 'history-show-deleted' => '囇刪掉去',
-'histfirst' => '最早',
+'histfirst' => '最旧',
 'histlast' => '最遲',
 'historysize' => '（{{PLURAL:$1|$1字節}}）',
 

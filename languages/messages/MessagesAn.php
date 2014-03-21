@@ -361,7 +361,6 @@ $1",
 'disclaimers' => 'Alvertencias chenerals',
 'disclaimerpage' => 'Project:Alvertencias chenerals',
 'edithelp' => 'Aduya ta editar pachinas',
-'helppage' => 'Help:Aduya',
 'mainpage' => 'Portalada',
 'mainpage-description' => 'Portalada',
 'policy-url' => 'Project:Politicas y normas',
@@ -715,9 +714,9 @@ Talment bell un l'haiga moviu u borrau entre que vusté vesitaba a pachina.",
 
 A clau ta ista nueva cuenta la puet cambiar en a pachina ''[[Special:ChangePassword|Cambiar a clau]]'' dimpués d'haber dentrato en ella.",
 'newarticle' => '(Nuevo)',
-'newarticletext' => "Ha siguito un vinclo ta una pachina que encara no existe.
-Ta creyar a pachina, prencipie a escribir en a caixa d'abaixo (mire-se l'[[{{MediaWiki:Helppage}}|aduya]] ta más información).
-Si ye plegau por error, punche o botón \"enta zaga\" d'o suyo navegador.",
+'newarticletext' => 'Ha siguito un vinclo ta una pachina que encara no existe.
+Ta creyar a pachina, prencipie a escribir en a caixa d\'abaixo (mire-se l\'[$1 aduya] ta más información).
+Si ye plegau por error, punche o botón "enta zaga" d\'o suyo navegador.',
 'anontalkpagetext' => "----''Ista ye a pachina de descusión d'un usuario anonimo que encara no ha creyato una cuenta, u no l'ha feito servir. Por ixo, hemos d'emplegar a suya adreza IP ta identificar-lo/a.
 Diferents usuarios pueden compartir una mesma adreza IP.
 Si vusté ye un usuario anonimo y creye que l'han escrito comentarios no relevants, [[Special:UserLogin/signup|creye una cuenta]] u [[Special:UserLogin/signup|identifique-se]] ta privar confusions futuras con atros usuarios anonimos.''",

@@ -322,7 +322,6 @@ $1',
 'disclaimers' => 'Nā Akahele',
 'disclaimerpage' => 'Project:Akahele Laulaha',
 'edithelp' => 'Kōkua ho‘ololi',
-'helppage' => 'Help:Papakuhikuhi',
 'mainpage' => 'Papa Kinohi',
 'mainpage-description' => 'Papa Kinohi',
 'policy-url' => 'Project:Kulekele',
@@ -547,7 +546,7 @@ E hoʻopaʻa ʻia ana kāu IP ma ko kēia ʻaoʻao mōʻaukala hoʻololi.',
 'accmailtitle' => 'Ua ho‘ouna ‘ia ka ‘ōlelo hūnā',
 'newarticle' => '(Hou)',
 'newarticletext' => 'Ua hāhai ʻoe i kekahi loulou i kekahi ʻaoʻao e haku ʻole.
-No ka haku ʻana i ka ʻaoʻao, kikokiko i loko o ka pahu i lalo (ʻike i ka [[{{MediaWiki:Helppage}}|ʻaoʻao kōkua]] no nā ʻike ʻē aʻe).
+No ka haku ʻana i ka ʻaoʻao, kikokiko i loko o ka pahu i lalo (ʻike i ka [$1 ʻaoʻao kōkua] no nā ʻike ʻē aʻe).
 Inā hewa kou hele ʻana, kāomi i ka pihi <strong>hoʻi</strong>.',
 'anontalkpagetext' => "----
 <em>ʻO kēia ka ʻaoʻao kūkākūkā no kekahi mea ho‘ohana me ka inoa ʻole.</em>

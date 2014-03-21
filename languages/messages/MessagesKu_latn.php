@@ -328,7 +328,6 @@ $messages = array(
 'disclaimers' => 'Ferexetname',
 'disclaimerpage' => 'Project:Ferexetname',
 'edithelp' => 'Alîkariya guherandinê',
-'helppage' => 'Help:Alîkarî',
 'mainpage' => 'Destpêk',
 'mainpage-description' => 'Destpêk',
 'policy-url' => 'Project:Rêgez',
@@ -643,7 +642,7 @@ Zanibe ku tu nikarî e-nameya bişînî heta tu di [[Special:Preferences|tercih�
 'accmailtext' => "Şîfreya '$1' hat şandin ji $2 re.",
 'newarticle' => '(Nû)',
 'newarticletext' => "Ev rûpel hîn tune. Eger tu bixwazî vê rûpelê çêkî, dest bi nivîsandinê bike û piştre qeyd bike. '''Wêrek be''', biceribîne!<br />
-Ji bo alîkariyê binêre: [[{{MediaWiki:Helppage}}|Alîkarî]].<br />
+Ji bo alîkariyê binêre: [$1 Alîkarî].<br />
 Heke tu bi şaşîtî hatî, bizîvire rûpela berê.",
 'anontalkpagetext' => "----''Ev rûpela gotûbêjê ye ji bo bikarhênerên nediyarkirî ku hîn hesabekî xwe çênekirine an jî bikarnaînin. Ji ber vê yekê divê em wan bi navnîşana IP ya hejmarî nîşan bikin. Navnîşaneke IP dikare ji aliyê gelek kesan ve were bikaranîn. Heger tu bikarhênerekî nediyarkirî bî û bawerdikî ku nirxandinên bê peywend di der barê te de hatine kirin ji kerema xwe re [[Special:UserLogin/signup|hesabekî xwe veke an jî têkeve]] da ku tu xwe ji tevlîheviyên bi bikarhênerên din re biparêzî.''",
 'noarticletext' => 'Ev rûpel niha vala ye, tu dikarî [[Special:Search/{{PAGENAME}}|Di nav gotarên din de li "{{PAGENAME}}" bigerî]] an jî [{{fullurl:{{FULLPAGENAME}}|action=edit}} vê rûpelê biguherînî].',

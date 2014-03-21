@@ -610,7 +610,6 @@ $1',
 'disclaimers' => '면책 조항',
 'disclaimerpage' => 'Project:면책 조항',
 'edithelp' => '편집 도움말',
-'helppage' => 'Help:목차',
 'mainpage' => '대문',
 'mainpage-description' => '대문',
 'policy-url' => 'Project:정책',
@@ -812,6 +811,7 @@ $2',
 'gotaccountlink' => '로그인하세요',
 'userlogin-resetlink' => '로그인 정보를 잊으셨나요?',
 'userlogin-resetpassword-link' => '비밀번호를 잊으셨나요?',
+'userlogin-helplink2' => '로그인 도움말',
 'userlogin-loggedin' => '이미 $1로 로그인되어 있습니다. 아래의 양식을 사용하여 다른 계정으로 로그인하세요.',
 'userlogin-createanother' => '다른 계정 만들기',
 'createacct-join' => '아래에 정보를 입력하세요.',
@@ -945,6 +945,9 @@ $1 뒤에 다시 시도하세요.',
 'resetpass-abort-generic' => '비밀번호 바꾸기가 확장 기능에 의해 중단되었습니다.',
 'resetpass-expired' => '비밀번호가 만료되었습니다. 로그인하려면 새로운 비밀번호를 설정해야 합니다.',
 'resetpass-expired-soft' => '비밀번호가 만료되어 재설정해야 합니다. 지금 새로운 비밀번호를 선택하거나, "{{int:resetpass-submit-cancel}}"를 클릭하고 나중에 재설정해주세요.',
+'resetpass-validity-soft' => '귀하의 비밀번호는 유효하지 않습니다: $1
+
+새로운 비밀번호를 지금 설정하거나, "{{int:resetpass-submit-cancel}}"을 눌러 나중에 재설정하세요.',
 
 # Special:PasswordReset
 'passwordreset' => '비밀번호 재설정',
@@ -1091,7 +1094,7 @@ $1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대
 'accmailtext' => '[[User talk:$1|$1]] 사용자의 비밀번호를 임의로 만들어 $2(으)로 보냈습니다. 로그인하고 나서 [[Special:ChangePassword|비밀번호를 바꿀]] 수 있습니다.',
 'newarticle' => '(새 문서)',
 'newarticletext' => "아직 없는 문서의 링크를 따라왔습니다.
-새 문서를 만들려면 아래 상자에 내용을 입력하면 됩니다. (자세한 내용은 [[{{MediaWiki:Helppage}}|도움말 문서]]를 참고하세요)
+새 문서를 만들려면 아래 상자에 내용을 입력하면 됩니다. (자세한 내용은 [$1 도움말 문서]를 참고하세요)
 만약 잘못 찾아왔다면, 브라우저의 '''뒤로''' 버튼을 눌러 주세요.",
 'anontalkpagetext' => '----
 여기는 계정을 만들지 않았거나 사용하고 있지 않은 익명 사용자를 위한 토론 문서입니다.
@@ -1344,6 +1347,9 @@ $2개 보다 적게 {{PLURAL:$2|써야}} 하지만 {{PLURAL:$1|지금은 $1개�
 'revdelete-show-file-submit' => '예',
 'revdelete-selected' => "'''[[:$1]]의 {{PLURAL:$2|선택한 판}}:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|선택한 기록}}:'''",
+'revdelete-text-text' => '삭제된 판은 여전히 문서 역사에 남게 되지만, 그 내용의 일부는 다른 사람들이 접근할 수 없게 됩니다.',
+'revdelete-text-file' => '삭제된 파일 버전은 계속 파일 역사에 남게 되지만, 내용의 일부는 다른 사람들이 접근할 수 없게 됩니다.',
+'logdelete-text' => '삭제된 로그 내용은 로그에 보여지겠지만, 내용의 일부는 다른 사람들이 접근할 수 없게 됩니다.',
 'revdelete-confirm' => '이 작업을 수행하는 것의 결과를 알고 있으며, [[{{MediaWiki:Policy-url}}|정책]]에 맞는 행동인지 확인해주세요.',
 'revdelete-suppress-text' => "숨기기는 '''다음 경우에만''' 사용되어야 합니다:
 * 잠재적인 비방 정보
@@ -2632,7 +2638,7 @@ $UNWATCHURL
 'delete-warning-toobig' => '이 문서에는 {{PLURAL:$1|편집 역사}}가 $1개 있습니다.
 편집 역사가 긴 문서를 삭제하면 {{SITENAME}} 데이터베이스 동작에 큰 영향을 줄 수 있습니다.
 주의해 주세요.',
-'deleting-backlinks-warning' => "'''경고:''' 삭제하려는 문서가 [[Special:WhatLinksHere/{{FULLPAGENAME}}다른 문서에 연결]]되거나 삽입되어 있습니다.",
+'deleting-backlinks-warning' => "'''경고:''' 삭제하려는 문서가 [[Special:WhatLinksHere/{{FULLPAGENAME}}|다른 문서에 연결]]되거나 삽입되어 있습니다.",
 
 # Rollback
 'rollback' => '편집 되돌리기',

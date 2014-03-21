@@ -268,7 +268,6 @@ $1',
 'disclaimers' => '甮追問',
 'disclaimerpage' => 'Project:甮追問',
 'edithelp' => '编写帮助',
-'helppage' => 'Help:目录',
 'mainpage' => '封面',
 'mainpage-description' => '封面',
 'policy-url' => 'Project:策略',
@@ -626,7 +625,7 @@ $2',
 登录之后，侬可以垃拉 ''[[Special:ChangePassword|箇只页面]]''更改密码。",
 'newarticle' => '（新）',
 'newarticletext' => "倷跟仔链接来着一个还弗勒里个页面。
-要创建该页面呢，就勒下底个框框里向开始写（[[{{MediaWiki:Helppage}}|帮助页面]]浪有更加多个信息）。
+要创建该页面呢，就勒下底个框框里向开始写（[$1 帮助页面]浪有更加多个信息）。
 要是倷是弗用心到该搭个说话，只要点击倷浏览器个'''返回'''揿钮。",
 'anontalkpagetext' => "---- ''箇是一个还弗曾建立账户个匿名用户个讨论页, 箇咾我伲只好用IP地址来搭渠联络。该IP地址可能由几名用户共享。如果侬是一名匿名用户并认为箇只页面高头个评语搭侬弗搭界，请 [[Special:UserLogin/signup|创建新账户]]或[[Special:UserLogin|登录]]来避免垃拉将来搭其他匿名用户混淆。''",
 'noarticletext' => '箇页目前呒有文本。

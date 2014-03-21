@@ -368,7 +368,6 @@ $1',
 'disclaimers' => 'Kanusho',
 'disclaimerpage' => 'Project:Kanusho kwa jumla',
 'edithelp' => 'Usaidizi kwa uhariri',
-'helppage' => 'Help:Yaliyomo',
 'mainpage' => 'Mwanzo',
 'mainpage-description' => 'Mwanzo',
 'policy-url' => 'Project:Sera',
@@ -771,7 +770,7 @@ Labda ilihamishwa au ilifutwa endapo unatazama ukurasa.',
 
 Unaweza kubadilisha neno la siri hili kwenye ukurasa wa ''[[Special:ChangePassword|kubadilisha neno la siri]]'' baada ya kuingia kwenye wiki.",
 'newarticle' => '(Mpya)',
-'newarticletext' => "Ukurasa unaotaka haujaandikwa bado. Ukipenda unaweza kuuandika wewe mwenyewe kwa kutumia sanduku la hapa chini (tazama [[{{MediaWiki:Helppage}}|Mwongozo]] kwa maelezo zaidi). Ukifika hapa kwa makosa, bofya kibonyezi '''back''' (nyuma) cha programu yako.",
+'newarticletext' => "Ukurasa unaotaka haujaandikwa bado. Ukipenda unaweza kuuandika wewe mwenyewe kwa kutumia sanduku la hapa chini (tazama [$1 Mwongozo] kwa maelezo zaidi). Ukifika hapa kwa makosa, bofya kibonyezi '''back''' (nyuma) cha programu yako.",
 'anontalkpagetext' => "----''Huu ni ukurasa wa majadiliano wa mtumiaji ambaye hana jina na bado hajaumba akaunti bado, au hajawahi kutumia kabisa.
 Kwa hiyo tunatumia namba za anwani ya IP yake kumtambulisha.
 Anwani ya IP kama hiyo inaweza kutumika na watumiaji kadhaa.

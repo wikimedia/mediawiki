@@ -231,7 +231,6 @@ $messages = array(
 'disclaimers' => 'Hlapa-matsogo',
 'disclaimerpage' => 'Project:Hlapa-Matsogo',
 'edithelp' => 'Thušo ya go fetola',
-'helppage' => 'Help:Mateng',
 'mainpage' => 'Letlakala la Pele',
 'mainpage-description' => 'Letlakala la Pele',
 'policy-url' => 'Project:Melao',
@@ -438,7 +437,7 @@ Se, se ka hlolwa ke ge letlakala le phumulwa goba la hudušwa ge wena o sa le le
 'newarticle' => '(mpsha)',
 'newarticletext' => "O latetše hlomaganyo go letlakala leo le sego gona ka se sebaka.
 Go tlhola letlakala, thoma go ngwalo lepokising le letelago
-(lebelela [[{{MediaWiki:Helppage}}|letlakala la thušo]] go hwetša šedi).
+(lebelela [$1 letlakala la thušo] go hwetša šedi).
 Ga eba o le fa ka phošo, o ka boela morago ka go šumiša konopo ya '''back''' go ''browser'' ya gago.",
 'noarticletext' => 'Ga gona ditlhaka letlakaleng le, oka [[Special:Search/{{PAGENAME}}|fetleka leina la letlakala]] matlakaleng a mangwe, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} fetleka "logs"], goba [{{fullurl:{{FULLPAGENAME}}|action=edit}} wa fetola letlakala le]</span>.',
 'noarticletext-nopermission' => 'Ga gona ditlhaka letlakaleng le, 

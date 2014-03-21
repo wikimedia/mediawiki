@@ -211,7 +211,6 @@ $messages = array(
 'disclaimers' => 'Diklarasion Inadahi',
 'disclaimerpage' => 'Project:Diklarasion inadahi henerat',
 'edithelp' => 'Ayudo tumulaika',
-'helppage' => 'Help:Guinaha',
 'mainpage' => 'Fanhaluman',
 'mainpage-description' => 'Fanhaluman',
 'policy-url' => 'Project:Areklamentu',
@@ -448,7 +447,7 @@ Pot fabot po'lo yan konfotme iyo-mu e-mail gi [[Special:Preferences|prifirensia 
 'accmailtext' => 'Mana\'hanague $2 ni password "$1".',
 'newarticle' => '(Nuebu)',
 'newarticletext' => "Tåya' na påhina trabiha ni inachetton ni un yemme'.
-Para un fa'tinas i påhina, fångge' gi sanpapa' na kahon (bisita i [[{{MediaWiki:Helppage}}|påhinan ayudo]] para mas infotmasion).
+Para un fa'tinas i påhina, fångge' gi sanpapa' na kahon (bisita i [$1 påhinan ayudo] para mas infotmasion).
 Anggen lachi finatto-mu mågi, yemme' i batunes '''back''' ni iyo-mu browser.",
 'anontalkpagetext' => "----''Este na påhinan kombetsasion muna'sesetbi taina'an ni ti ha fa'tinas kuenta-ña pat ti ha u'usa i kuenta. Entonses na in i'isa i numiron IP para in aidentifika gue'.
 Buente ha' na guåha unos kuantos na muna'sesetbi ni ma u'usa i enao na IP.

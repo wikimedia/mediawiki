@@ -456,7 +456,6 @@ $1",
 'disclaimers' => 'Voorbehoud',
 'disclaimerpage' => 'Project:Voorwaardes',
 'edithelp' => 'Wysigingshulp',
-'helppage' => 'Help:Inhoud',
 'mainpage' => 'Tuisblad',
 'mainpage-description' => 'Tuisblad',
 'policy-url' => 'Project:Beleid',
@@ -902,7 +901,7 @@ Dis was moontlik geskuif of verwyder terwyl u die bladsy gelees het.",
 Die wagwoord vir hierdie nuwe gebruiker kan op die ''[[Special:ChangePassword|verander wagwoord]]''-bladsy verander word nadat ingeteken is.",
 'newarticle' => '(Nuut)',
 'newarticletext' => "Hierdie bladsy bestaan nie.
-Tik iets in die invoerboks hier onder om 'n nuwe bladsy te skep. Meer inligting is op die [[{{MediaWiki:Helppage}}|hulpbladsy]] beskikbaar.
+Tik iets in die invoerboks hier onder om 'n nuwe bladsy te skep. Meer inligting is op die [$1 hulpbladsy] beskikbaar.
 As u per ongeluk hier uitgekom het, gebruik u blaaier se '''terug'''-knoppie.",
 'anontalkpagetext' => "----''Hierdie is die besprekingsblad vir 'n anonieme gebruiker wat nog nie 'n gebruiker geskep het nie, of wat dit nie gebruik nie.
 Daarom moet ons sy/haar numeriese IP-adres vir identifikasie gebruik.

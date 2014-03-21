@@ -374,7 +374,6 @@ $1',
 'disclaimers' => 'Ogohlantirishlar',
 'disclaimerpage' => 'Project:Umumiy ogohlantirish',
 'edithelp' => 'Tahrirlash yordami',
-'helppage' => 'Help:Mundarija',
 'mainpage' => 'Bosh sahifa',
 'mainpage-description' => 'Bosh sahifa',
 'policy-url' => 'Project:Qoida',
@@ -638,7 +637,7 @@ Sizning hozirgi IP manzilingiz - $3, chetlashtirish raqamingiz - #$5. Arizaga bu
 'accmailtitle' => 'Maxfiy soʻz joʻnatildi',
 'newarticle' => '(Yangi)',
 'newarticletext' => "Bu sahifa hali mavjud emas.
-Sahifani yaratish uchun quyida matn kiritishingiz mumkin (qoʻshimcha axborot uchun [[{{MediaWiki:Helppage}}|yordam sahifasini]] koʻring).
+Sahifani yaratish uchun quyida matn kiritishingiz mumkin (qoʻshimcha axborot uchun [$1 yordam sahifasini] koʻring).
 Agar bu sahifaga xatolik sabab kelib qolgan boʻlsangiz brauzeringizning '''orqaga''' tugmasini bosing.",
 'anontalkpagetext' => "----''Ushbu munozara sahifasi hali hisob yozuvini yaratmagan, yoki undan foydalanmaydigan anonim ishtirokchiga tegishli.
 Shu sababli tenglashtirish uchun raqamli IP-manzildan foydalaniladi.

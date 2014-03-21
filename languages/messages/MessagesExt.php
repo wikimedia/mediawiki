@@ -230,7 +230,6 @@ $messages = array(
 'disclaimers' => 'Avissu legal',
 'disclaimerpage' => 'Project:Arrayu heneral de responsabiliá',
 'edithelp' => "Ayua d'eición",
-'helppage' => 'Help:Continius',
 'mainpage' => 'Página prencipal',
 'mainpage-description' => 'Páhina prencipal',
 'policy-url' => 'Project:Pulítica',
@@ -515,7 +514,7 @@ Es possibri escambial la consínia de la cuenta entrandu ena tu cuenta, ena pág
 'newarticle' => '(Nuevu)',
 'newarticletext' => "Esti artículu entovia nu desisti.
 Si quieis crial esti artículu, escribi nel cuairu d'embahu
-(si t'es mestel, mira la [[{{MediaWiki:Helppage}}|páhina d'ayua]]).
+(si t'es mestel, mira la [\$1 páhina d'ayua]).
 Si nu quieis crial esti artículu, solu tiinis que pursal nel botón \"'''atrás'''\" del tu escrucaol.",
 'anontalkpagetext' => "----''Esta es la caraba dun usuáriu anónimu qu'entovia nu á criau una cuenta, u nu la gasta, asínque tenemus que usal la su direción IP pa ientificalu. Una mesma direción IP puei sel gastá pol varius usuárius, polo que si creis que s'án derihiu a tí con cosas que nu vinin a cuentu, pol favol [[Special:UserLogin|cria una cuenta]] pa evital huturus pobremas con otrus usuárius anónimus.''",
 'noarticletext' => 'Entovia nu ai dengún testu escrebiu nesta páhina.

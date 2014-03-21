@@ -579,7 +579,6 @@ $1',
 'disclaimers' => 'Exoneração de responsabilidade',
 'disclaimerpage' => 'Project:Aviso_geral',
 'edithelp' => 'Ajuda de edição',
-'helppage' => 'Help:Conteúdos',
 'mainpage' => 'Página principal',
 'mainpage-description' => 'Página principal',
 'policy-url' => 'Project:Políticas',
@@ -1053,7 +1052,7 @@ Ela pode ter sido movida ou removido enquanto você estava vendo a página.',
 Ela pode ser alterada na página ''[[Special:ChangePassword|de troca de senha]]'', após o início de sessão.",
 'newarticle' => '(Nova)',
 'newarticletext' => "Você seguiu um link para uma página que ainda não existe.
-Para criá-la, comece escrevendo na caixa abaixo (veja [[{{MediaWiki:Helppage}}|a página de ajuda]] para mais informações).
+Para criá-la, comece escrevendo na caixa abaixo (veja [$1 a página de ajuda] para mais informações).
 Se você chegou aqui por engano, clique no botão '''voltar''' do seu navegador.",
 'anontalkpagetext' => "---- ''Esta é a página de discussão para um usuário anônimo que ainda não criou uma conta ou que não a usa, de forma que temos de utilizar o endereço de IP para identificá-lo(a). Tal endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha que comentários irrelevantes foram direcionados a você, por gentileza, [[Special:UserLogin/signup|crie uma conta]] ou [[Special:UserLogin|autentique-se]], a fim de evitar futuras confusões com outros usuários anônimos.''",
 'noarticletext' => 'No momento, não há conteúdo nesta página.

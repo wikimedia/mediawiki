@@ -378,7 +378,6 @@ $1",
 'disclaimers' => 'Foarbehâld',
 'disclaimerpage' => 'Project:Algemien foarbehâld',
 'edithelp' => 'Bewurk-help',
-'helppage' => 'Help:Help',
 'mainpage' => 'Haadside',
 'mainpage-description' => 'Haadside',
 'policy-url' => 'Project:Belied',
@@ -705,7 +704,7 @@ Jo tsjintwurdich e-postadres is $3 en it útsletnûmer is #$5. Neam beide gegeve
 'newarticle' => '(Nij)',
 'newarticletext' => "Jo hawwe in keppeling folge nei in side dêr't noch gjin tekst op stiet.
 Om sels tekst te meistjsen kinne jo dy gewoan yntype in dit bewurkingsfjild
-([[{{MediaWiki:Helppage}}|Mear ynformaasje oer bewurkjen]].)
+([$1 Mear ynformaasje oer bewurkjen].)
 Oars kinne jo tebek mei de tebek-knop fan jo blêder.",
 'anontalkpagetext' => "----''Dit is de oerlisside fan in ûnbekende meidogger; in meidogger dy't him/har net oanmeld hat. Om't der gjin namme bekend is, wurdt it ynternet-adres brûkt om oan te jaan wa. Mar faak is it sa dat sa'n adres net altyd troch deselde persoan brûkt wurdt. As jo it idee hawwe dat jo as ûnbekende meidogger opmerkings foar in oar krije, dan kinne jo jo [[Special:UserLogin/signup|registrearje]], of jo [[Special:UserLogin|oanmelde]]. Fan in oanmelde meidogger is it ynternet-adres net sichtber, en as oanmelde meidogger krije jo allinnich opmerkings dy't foar josels bedoeld binne.''",
 'noarticletext' => 'Der stjit noch gjin tekst op dizze side. Jo kinne

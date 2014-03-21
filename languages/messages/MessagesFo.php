@@ -359,7 +359,6 @@ $1',
 'disclaimers' => 'Fyrivarni',
 'disclaimerpage' => 'Project:Generelt fyrivarni',
 'edithelp' => 'Rættingarhjálp',
-'helppage' => 'Help:Innihald',
 'mainpage' => 'Forsíða',
 'mainpage-description' => 'Forsíða',
 'policy-url' => 'Project:Handfaring av persónligum upplýsingum',
@@ -824,7 +823,7 @@ Tað kann vera flutt ella blivið strikað meðan tú hevur hugt at síðuni.',
 Tað kann broytast á ''[[Special:ChangePassword|broyt loyniorð]]'' síðuni tá tú ritar inn.",
 'newarticle' => '(Nýggj)',
 'newarticletext' => "Tú ert komin eftir eini slóð til eina síðu, ið ikki er til enn. Skriva í kassan niðanfyri, um tú vilt byrja uppá hesa síðuna.
-(Sí [[{{MediaWiki:Helppage}}|hjálparsíðuna]] um tú ynskir fleiri upplýsingar).
+(Sí [$1 hjálparsíðuna] um tú ynskir fleiri upplýsingar).
 Ert tú komin higar av einum mistaki, kanst tú trýsta á '''aftur'''-knøttin á kagaranum.",
 'anontalkpagetext' => "----''Hetta er ein kjaksíða hjá einum dulnevndum brúkara, sum ikki hevur stovnað eina kontu enn, ella ikki brúkar hana. 
 Tí noyðast vit at brúka nummerisku IP-adressuna hjá honum ella henni.

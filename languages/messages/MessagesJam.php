@@ -244,7 +244,6 @@ $1',
 'disclaimers' => 'Diskliema',
 'disclaimerpage' => 'Project: Jinaral diskliema',
 'edithelp' => 'Editin elp',
-'helppage' => 'Help: Kantent',
 'mainpage' => 'Mien piej',
 'mainpage-description' => 'Mien piej',
 'policy-url' => 'Project:Palisi',
@@ -576,7 +575,7 @@ Imaita muuv ar diliit wails yu a vyuu di piej.',
 Di paaswod fi dis nyuu akount kiahn chienj a di ''[[Special:ChangePassword|chienj paaswod]]'' piej afta yu lag iin.",
 'newarticle' => '(Nyuu)',
 'newarticletext' => "Yu fala lingk tu piej we no egzis yet.
-Fi kriet di piej, taat taip ina di bax biluo (si di [[{{MediaWiki:Helppage}}|elp piej]] fi muo infamieshan).
+Fi kriet di piej, taat taip ina di bax biluo (si di [$1 elp piej] fi muo infamieshan).
 Ef yu de ya by mistiek, klik yu brouza '''bak''' botn.",
 'anontalkpagetext' => "----''Dis a di diskoshan piej fi ananimos yuuza uu no kriet no akount yet, ar uu no yuuzi.
 Wi dierfuor afi yuuz di nyuumerikal IP ajres fi aidentifai im/ar.

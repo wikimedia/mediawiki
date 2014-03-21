@@ -300,7 +300,6 @@ $1',
 'disclaimers' => 'Ikìlọ̀',
 'disclaimerpage' => 'Project:Ìkìlọ̀ gbogbo',
 'edithelp' => 'Ìrànlọ́wọ́ fún àtúnṣe',
-'helppage' => 'Help:Àwon àkóónú',
 'mainpage' => 'Ojúewé Àkọ́kọ́',
 'mainpage-description' => 'Ojúewé Àkọ́kọ́',
 'policy-url' => 'Project:Ìpinu',
@@ -739,7 +738,7 @@ $1 ni ó ṣe ìdínà.
 'accmailtext' => "A ti fi ọ̀rọ̀ìpamọ́ àrìnàkò tí a pèsè fún [[User talk:$1|$1]] ránṣẹ́ sí $2. Ẹ le ṣe àyípadà ọ̀rọ̀ìpamọ́ fún àpamọ́ tuntun yìí ní ibi ''[[Special:ChangePassword|àyípadà ọ̀rọ̀ìpamọ́]]'' lẹ́yìn tí ẹ bá ti jáwọlé.",
 'newarticle' => '(Tuntun)',
 'newarticletext' => "Ẹ ti tẹ̀lé ìjápọ̀ mọ́ ojúewé tí kò sí.
-Láti dá ojúewé yí ẹ bẹ̀rẹ̀ síní tẹ́kọ sí inú àpótí ìsàlẹ̀ yí (ẹ wo [[{{MediaWiki:Helppage}}|ojúewé ìrànlọ́wọ́ ]] fun ẹ̀kúnrẹ́rẹ́ ).
+Láti dá ojúewé yí ẹ bẹ̀rẹ̀ síní tẹ́kọ sí inú àpótí ìsàlẹ̀ yí (ẹ wo [$1 ojúewé ìrànlọ́wọ́ ] fun ẹ̀kúnrẹ́rẹ́ ).
 T'óbá sepé àsìse ló gbé yin dé bi, ẹ kọn bọ́tìnì ìpadàsẹ́yìn.",
 'anontalkpagetext' => "''Ojúewé ìfọ̀rọ̀wérọ̀ yìí wà fún oníṣe aláílórúkọ tí kò tíì dá àkópamọ́, tàbí tí kò lò ó rárá.
 Bí bẹ́ẹ̀ laṣe únlo àdírẹ́ẹ̀sì IP oníyenọ́mbà láti dáamọ̀.

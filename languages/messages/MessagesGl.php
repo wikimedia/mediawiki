@@ -532,7 +532,6 @@ $1',
 'disclaimers' => 'Advertencias',
 'disclaimerpage' => 'Project:Advertencia xeral',
 'edithelp' => 'Axuda de edición',
-'helppage' => 'Help:Axuda',
 'mainpage' => 'Portada',
 'mainpage-description' => 'Portada',
 'policy-url' => 'Project:Políticas e normas',
@@ -1016,7 +1015,7 @@ Poida que a movesen ou borrasen mentres ollaba a páxina.',
 'accmailtext' => 'Un contrasinal xerado ao chou para [[User talk:$1|$1]] foi enviado a $2. Pode modificarse na páxina de [[Special:ChangePassword|cambio de contrasinais]] tras acceder ao sistema.',
 'newarticle' => '(Novo)',
 'newarticletext' => "Seguiu unha ligazón a unha páxina que aínda non existe.
-Para crear a páxina, comece a escribir na caixa de embaixo (vexa a [[{{MediaWiki:Helppage}}|páxina de axuda]] para obter máis información).
+Para crear a páxina, comece a escribir na caixa de embaixo (vexa a [$1 páxina de axuda] para obter máis información).
 Se chegou aquí por erro, simplemente prema no botón '''atrás''' do seu navegador.",
 'anontalkpagetext' => "----''Esta é a páxina de conversa dun usuario anónimo que aínda non creou unha conta ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódeno compartir varios usuarios distintos. Se pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor, [[Special:UserLogin/signup|cree unha conta]] ou [[Special:UserLogin|acceda ao sistema]] para evitar futuras confusións con outros usuarios anónimos.''",
 'noarticletext' => 'Actualmente non hai ningún texto nesta páxina.

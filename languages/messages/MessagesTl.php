@@ -397,7 +397,6 @@ $1',
 'disclaimers' => 'Mga pagtatanggi',
 'disclaimerpage' => 'Project:Pangkalahatang pagtatanggi',
 'edithelp' => 'Tulong sa pagbabago',
-'helppage' => 'Help:Mga nilalaman',
 'mainpage' => 'Unang Pahina',
 'mainpage-description' => 'Unang Pahina',
 'policy-url' => 'Project:Patakaran',
@@ -837,7 +836,7 @@ Maaaring inilipat o ibinura ito habang tinitingnan mo ang pahina.',
 'accmailtext' => "Ipinadala na sa $2 ang isang hudyat na nilikha ng pagkakataon para kay [[User talk:$1|$1]].  Maaari itong baguhin sa pahinang ''[[Special:ChangePassword|palitan ng hudyat]]'' kapag lumagdang papasok.",
 'newarticle' => '(Bago)',
 'newarticletext' => "Sinundan mo ang isang kawing para sa isang pahinang hindi pa umiiral.
-Para likhain ang pahina, magsimulang magmakinilya sa loob ng kahong nasa ibaba (tingnan ang [[{{MediaWiki:Helppage}}|pahina ng tulong]] para sa mas maraming kabatiran).
+Para likhain ang pahina, magsimulang magmakinilya sa loob ng kahong nasa ibaba (tingnan ang [$1 pahina ng tulong] para sa mas maraming kabatiran).
 Kung napunta ka rito dahil sa pagkakamali, pakipindot ang pinduntang '''balik''' ('''''back''''') ng iyong pantingin-tingin (''browser'').",
 'anontalkpagetext' => "Ito ang pahinang usapan para sa isang hindi nakikilalang tagagamit na hindi pa lumilikha ng kuwenta, o kaya hindi ito ginagamit.
 Kaya't kinailangan naming gamitin ang may bilang na direksiyonng IP para makilala siya.

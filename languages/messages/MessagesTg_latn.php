@@ -238,7 +238,6 @@ $1",
 'disclaimers' => 'Takzibnoma',
 'disclaimerpage' => 'Project:Takzibnomai umumī',
 'edithelp' => 'Rohnamoi viroiş',
-'helppage' => 'Help:Mundariça',
 'mainpage' => 'Sahifai Aslī',
 'mainpage-description' => 'Sahifai Aslī',
 'policy-url' => 'Project:Sijosatho',
@@ -498,7 +497,7 @@ Lutfan in jo onro va jo hardui onro dar darxosthoi xud zikr kuned.",
 'accmailtitle' => 'Kalimai ubur firistoda şud.',
 'newarticle' => '(Nav)',
 'newarticletext' => "Şumo pajvandero intixob karded, ki sahifa dar on arzi vuçud nadorad.
-Baroi soxtani sahifa, ba quttiji zerin navised ([[{{MediaWiki:Helppage}}|sahifai rohnamoro]] baroi ma'lumoti beştar nigared).
+Baroi soxtani sahifa, ba quttiji zerin navised ([$1 sahifai rohnamoro] baroi ma'lumoti beştar nigared).
 Agar az sababi xatogī va jo iştiboh omaded, tugmai '''Ba oqib'''-ro dar brauzeri xud paxş kuned.",
 'noarticletext' => 'Dar in sahifa to kunun matne vuçud nadorad.
 Şumo metavoned dar digar sahifaho [[Special:Search/{{PAGENAME}}|unvoni in sahifaro çustuçū kuned]],

@@ -190,7 +190,6 @@ $messages = array(
 'disclaimers' => 'Tukuldungun ñi pin ley',
 'disclaimerpage' => 'Project:Katrütuwün ñi llowdüngun',
 'edithelp' => 'Kellü wirin',
-'helppage' => 'Help:Trokiñdungu',
 'mainpage' => 'Ñidol Wülngiñ',
 'mainpage-description' => 'Ñidol Wülngiñ',
 'portal' => 'Lofche ñi wülngiñ',
@@ -313,7 +312,7 @@ Tami chew küpan (IP) chillkatugeay wülngiñ ñi wirin kuyfidungu.",
 'loginreqlink' => 'Koni',
 'newarticle' => '(We)',
 'newarticletext' => 'Ngelay wirin tüfachi wülngiñ mew. 
-Pepillituam tüfachi wülngiñ, wirintuaymi nagpüle (pen [[{{MediaWiki:Helppage}}|kellu wülngiñ]] nieael doy kimdungu).
+Pepillituam tüfachi wülngiñ, wirintuaymi nagpüle (pen [$1 kellu wülngiñ] nieael doy kimdungu).
 Welule tami küpan, wiñotunge rupachi wülngiñ.',
 'noarticletext' => 'Iney no rume wirilay tüfachi wülngiñ mew. Eymi [[Special:Search/{{PAGENAME}}|pepikintuymi tüfachi üy]] kake wülngiñ mew,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} kintuymi koneltuyelelu wirintukun],

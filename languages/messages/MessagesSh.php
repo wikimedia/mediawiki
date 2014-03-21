@@ -454,7 +454,6 @@ $1',
 'disclaimers' => 'Odricanje odgovornosti',
 'disclaimerpage' => 'Project:Uslovi korištenja, pravne napomene i odricanje odgovornosti',
 'edithelp' => 'Pomoć pri uređivanju',
-'helppage' => 'Help:Sadržaj',
 'mainpage' => 'Glavna stranica / Главна страница',
 'mainpage-description' => 'Glavna stranica / Главна страница',
 'policy-url' => 'Project:Pravila',
@@ -900,7 +899,7 @@ Možda je premještena ili obrisana dok ste pregledavali stranicu.',
 Шифра за налог '$1' је послата на адресу $2.",
 'newarticle' => '(Novi)',
 'newarticletext' => "Preko linka ste došli na stranicu koja još uvijek ne postoji.
-* Ako želite stvoriti stranicu, počnite tipkati u okviru dolje (v. [[{{MediaWiki:Helppage}}|stranicu za pomoć]] za više informacija).
+* Ako želite stvoriti stranicu, počnite tipkati u okviru dolje (v. [$1 stranicu za pomoć] za više informacija).
 * Ukoliko ste došli greškom, pritisnike dugme '''Nazad''' ('''back''') na vašem pregledniku.",
 'anontalkpagetext' => "----''Ovo je stranica za razgovor za anonimnog korisnika koji još nije napravio račun ili ga ne koristi.
 Zbog toga moramo da koristimo brojčanu IP adresu kako bismo identifikovali njega ili nju.

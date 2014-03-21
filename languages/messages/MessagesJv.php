@@ -300,7 +300,6 @@ $1',
 'disclaimers' => 'Pamaidonan',
 'disclaimerpage' => 'Project:Panyangkalan umum',
 'edithelp' => 'Pitulung panyuntingan',
-'helppage' => 'Help:Isi',
 'mainpage' => 'Kaca Utama',
 'mainpage-description' => 'Kaca Utama',
 'policy-url' => 'Project:Kabijakan',
@@ -741,7 +740,7 @@ Bagéan iki manawa wis dipindhah utawa dibusak nalika panjenengan buka.',
 Tembung sandi kanggo panganggo anyar iki isa diganti ing kaca ''[[Special:ChangePassword|ganti tembung sandi]]'' sawisé mlebu log.",
 'newarticle' => '(Anyar)',
 'newarticletext' => "Katonané panjenengan ngetutaké pranala artikel sing durung ana.
-Manawa kersa manulis artikel iki, manggaa. (Mangga mirsani [[{{MediaWiki:Helppage}}|Pitulung]] kanggo informasi sabanjuré).
+Manawa kersa manulis artikel iki, manggaa. (Mangga mirsani [$1 Pitulung] kanggo informasi sabanjuré).
 Yèn ora sengaja tekan kéné, bisa ngeklik pencètan '''back''' waé ing panjlajah wèb panjenengan.",
 'anontalkpagetext' => "---- ''Iki yaiku kaca dhiskusi sawijining panganggo anonim sing durung kagungan akun utawa ora nganggo akuné, dadi kita keeksa kudu nganggo alamat IP-né kanggo nepangi. Alamat IP kaya mengkéné iki bisa dienggo déning panganggo sing séjé-séjé. Yèn panjenengan pancèn panganggo anonim lan olèh komentar-komentar miring, mangga [[Special:UserLogin/signup|nggawé akun]] utawa [[Special:UserLogin|log mlebu]] supaya ora rancu karo panganggo anonim liyané ing mangsa ngarep.''",
 'noarticletext' => 'Saiki ora ana tèks ing kaca iki. Panjenengan bisa [[Special:Search/{{PAGENAME}}|nglakoni panggolèkan kanggo judhul iki kaca iki]] ing kaca-kaca liyané, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|kaca={{urlencode:{{FULLPAGENAME}}}}}} nggolèki log kagandhèng],

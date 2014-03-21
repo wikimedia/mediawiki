@@ -290,7 +290,6 @@ $1",
 'disclaimers' => 'Hoiatuisi',
 'disclaimerpage' => 'Project:Üledseq hoiatusõq',
 'edithelp' => 'Toimõndamisoppus',
-'helppage' => 'Help:Sisukõrd',
 'mainpage' => 'Pääleht',
 'mainpage-description' => 'Pääleht',
 'policy-url' => 'Project:Säädüseq',
@@ -605,7 +604,7 @@ Või ollaq, et taa kistutõdi ärq tuul aol, ku sa lehte kait.',
 Tuud salasõnna saa muutaq ''[[Special:ChangePassword|salasõba muutmisõ lehe pääl]]'' päält vahtsõ nimega sisseminemist.",
 'newarticle' => '(Vahtsõnõ)',
 'newarticletext' => "Taad lehekülge olõ-i viil luud.
-Leheküle luumisõs nakkaq kirotama alanolõvahe kasti (kaeq [[{{MediaWiki:Helppage}}|oppust]]).
+Leheküle luumisõs nakkaq kirotama alanolõvahe kasti (kaeq [$1 oppust]).
 Ku sa johtuq siiäq kogõmaldaq, sis klõpsaq võrgokaeja '''Tagasi'''-nuppi.",
 'anontalkpagetext' => "---- ''Taa om arotusleht nimeldä pruukja kotsilõ, kiä olõ-i loonuq pruukjanimme vai pruugi-i tuud. Tuuperäst tulõ meil pruukja kimmästegemises pruukiq timä puutri võrgoaadrõssit. Taa aadrõs või ollaq mitmõ pruukja pääle ütine. Ku olõt nimeldä pruukja ja lövvät, et taa leheküle pääle kirotõt jutt käü suq kotsilõ, sis olõq hää, [[Special:UserLogin/signup|luuq konto]] vai [[Special:UserLogin|mineq nimega sisse]], et edespiten segähüisi ärq hoitaq.''",
 'noarticletext' => 'Seo leht om parlaq tühi.

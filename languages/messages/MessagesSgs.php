@@ -283,7 +283,6 @@ $1',
 'disclaimers' => 'Atsakuomībės aprėbuojims',
 'disclaimerpage' => 'Project:Atsakuomībės aprėbuojims',
 'edithelp' => 'Kāp redagoutė',
-'helppage' => 'Help:Torėnīs',
 'mainpage' => 'Pėrms poslapis',
 'mainpage-description' => 'Pėrms poslapis',
 'policy-url' => 'Project:Puolitėka',
@@ -536,7 +535,7 @@ Prašuom nuruodītė šėtūs doumenis visūmet, kumet kreipiatės diel bluokav�
 'newarticle' => '(Naus)',
 'newarticletext' => "Tamsta pakliovuot i nūnā neesoti poslapi.
 Nuoriedamė sokortė poslapi, pradiekėt rašītė žemiau esontiamė ivedima pluotė
-(platiau [[{{MediaWiki:Helppage}}|pagelbas poslapī]]).
+(platiau [$1 pagelbas poslapī]).
 Jēgo pakliovuot čė netīčiuom, paprastiausē paspauskėt naršīklės mīgtoka '''atgal'''.",
 'anontalkpagetext' => "----''Tas īr anonimėnė nauduotuojė, katros nier sosėkūrės aba nenauduo paskīruos, aptarėmu poslapis.
 Dielē tuo nauduojams IP adresos anuo atpažėnėmō.

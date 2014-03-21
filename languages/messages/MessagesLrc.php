@@ -257,7 +257,6 @@ $messages = array(
 'disclaimers' => 'منكرون',
 'disclaimerpage' => 'پروجه:منكر بيئن كاروريا',
 'edithelp' => 'هومياری سی ويرايشت',
-'helppage' => 'هومياری:مینونه',
 'mainpage' => 'سرآسونه',
 'mainpage-description' => 'سرآسونه',
 'policy-url' => 'پروجه:خط و مش',
@@ -583,7 +582,7 @@ $1 لطفن سی تلاش هنی صبر بکید',
 'accmailtitle' => 'پاسورد کل بی',
 'newarticle' => 'تازه',
 'newarticletext' => 'شما وادما هوم پیوندی هئیت که وجود ناره.
-سی راس کردن بلگه.شرو د نیسنن مئن جعوه هاری بکید(سیل[[{{MediaWiki:Helppage}}|]] سی دونسمنی بیشتر بکید).
+سی راس کردن بلگه.شرو د نیسنن مئن جعوه هاری بکید(سیل[$1 ] سی دونسمنی بیشتر بکید).
 ار شما سی اشتوا کردن هایئن ایچه، دگمه وادما رئتن مرورگر تونه بپورنیت.',
 'noarticletext' => 'د تازه یا د ای بلگه متن نی.
 شما تونید د[[Special:Search/{{PAGENAME}}|search for this page title]] بگردید د ای بلگه یا د بلگیا هنی یا<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}   د هنی پی جوری بوئه  logs]</span>   

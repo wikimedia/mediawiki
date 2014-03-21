@@ -433,7 +433,6 @@ $1',
 'disclaimers' => 'Atsakomybės apribojimas',
 'disclaimerpage' => 'Project:Atsakomybės apribojimas',
 'edithelp' => 'Kaip redaguoti',
-'helppage' => 'Help:Turinys',
 'mainpage' => 'Pagrindinis puslapis',
 'mainpage-description' => 'Pagrindinis puslapis',
 'policy-url' => 'Project:Politika',
@@ -867,7 +866,7 @@ Jis galėjo būti perkeltas arba ištrintas, kol peržiūrėjote puslapį.',
 'newarticle' => '(Naujas)',
 'newarticletext' => "Jūs patekote į dar neegzistuojantį puslapį.
 Norėdami sukurti puslapį, pradėkite rašyti žemiau esančiame įvedimo lauke
-(plačiau [[{{MediaWiki:Helppage}}|pagalbos puslapyje]]).
+(plačiau [$1 pagalbos puslapyje]).
 Jei patekote čia per klaidą, paprasčiausiai spustelkite  naršyklės mygtuką '''atgal'''.",
 'anontalkpagetext' => "----''Tai yra anoniminio naudotojo, nesusikūrusio arba nenaudojančio paskyros, aptarimų puslapis.
 Dėl to naudojamas IP adresas jo identifikavimui.

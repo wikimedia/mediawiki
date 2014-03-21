@@ -427,7 +427,6 @@ $1',
 'disclaimers' => 'Kemennoù',
 'disclaimerpage' => 'Project:Kemenn hollek',
 'edithelp' => 'Skoazell',
-'helppage' => 'Help:Skoazell',
 'mainpage' => 'Degemer',
 'mainpage-description' => 'Degemer',
 'policy-url' => 'Project:Reolennoù',
@@ -874,7 +873,7 @@ Moarvat ez eo bet dilerc'hiet pe dilamet abaoe ma oa bet lennet ganeoc'h.",
 'accmailtext' => "Kaset ez eus bet ur ger-tremen dargouezhek evit [[User talk:$1|$1]] da $2. Cheñchet e c'hall ar ger-tremen evit ar gont nevez-mañ bezañ war ar bajenn ''[[Special:ChangePassword|cheñch ger-tremen]]'', ur wezh kevreet.",
 'newarticle' => '(Nevez)',
 'newarticletext' => "Heuliet hoc'h eus ul liamm a gas d'ur bajenn n'eo ket bet savet evit c'hoazh.
-A-benn krouiñ ar bajenn-se, krogit da skrivañ er prenestr skridaozañ dindan (gwelet ar [[{{MediaWiki:Helppage}}|bajenn skoazell]] evit gouzout hiroc'h).
+A-benn krouiñ ar bajenn-se, krogit da skrivañ er prenestr skridaozañ dindan (gwelet ar [$1 bajenn skoazell] evit gouzout hiroc'h).
 M'emaoc'h en em gavet amañ dre fazi, klikit war bouton '''kent''' ho merdeer evit mont war ho kiz.",
 'anontalkpagetext' => "---- ''Homañ eo ar bajenn gaozeal evit un implijer(ez) dizanv n'eus ket krouet kont ebet evit c'hoazh pe na implij ket anezhi.
 Setu perak e rankomp ober gant ar chomlec'h IP niverel evit anavezout anezhañ/i.

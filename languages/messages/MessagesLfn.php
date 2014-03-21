@@ -211,7 +211,6 @@ $messages = array(
 'disclaimers' => 'Negas de respondablia',
 'disclaimerpage' => 'Project:Nega jeneral de respondablia',
 'edithelp' => 'Aida con edita',
-'helppage' => 'Help:Contenis',
 'mainpage' => 'Paje Prima',
 'mainpage-description' => 'Paje Prima',
 'policy-url' => 'Project:Politica',
@@ -362,7 +361,7 @@ Per favore inclui tota esta detales en tu demandas.",
 'newarticle' => '(Nova)',
 'newarticletext' => "Tu ia segue un lia a un paje ce no esista ja.
 Per crea la paje, comensa scrive en la caxa a su
-(vide la [[{{MediaWiki:Helppage}}|paje de aida]] per plu).
+(vide la [$1 paje de aida] per plu).
 Si tu es asi par era, clica a la boton '''retro''' de tu surfador.",
 'noarticletext' => 'Es aora no testo a esta paje.
 Tu pote [[Special:Search/{{PAGENAME}}|xerca per la titulo de esta paje]] en otra pajes,

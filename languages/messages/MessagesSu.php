@@ -359,7 +359,6 @@ $1',
 'disclaimers' => 'Bantahan',
 'disclaimerpage' => 'Project:Bantahan_umum',
 'edithelp' => 'Pitulung ngédit',
-'helppage' => 'Help:Pitulung',
 'mainpage' => 'Tepas',
 'mainpage-description' => 'Tepas',
 'policy-url' => 'Project:Kawijakan',
@@ -718,7 +717,7 @@ Sandi pikeun rekening anyar ieu bisa diganti dina kaca ''[[Special:ChangePasswor
 'newarticle' => '(anyar)',
 'newarticletext' => "Anjeun geus nuturkeun tutumbu ka kaca nu can aya.
 Pikeun nyieun kaca, mimitian ku ngetik jeroeun kotak di handap
-(tempo [[{{MediaWiki:Helppage}}|kaca pitulung]] pikeun leuwih écés).
+(tempo [$1 kaca pitulung] pikeun leuwih écés).
 Mun anjeun ka dieu teu ngahaja, klik baé tombol '''back''' na panyungsi anjeun.",
 'anontalkpagetext' => "----''Ieu mangrupa kaca sawala pikeun pamaké anonim nu can (henteu) nyieun rekening, kusabab kitu alamat IP dipaké dina hal ieu pikeun nyirikeun anjeunna. Alamat IP ieu bisa dipaké ku sababaraha urang. Mun anjeun salasahiji pamaké anonim sarta ngarasa aya koméntar nu teu pakait geus ditujukeun ka anjeun, leuwih hadé [[Special:UserLogin|nyieun rekening atawa asup log]] sangkan teu pahili jeung pamaké anonim séjén.''",
 'noarticletext' => 'Kiwari can aya téks dina ieu kaca.

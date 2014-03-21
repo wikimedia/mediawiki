@@ -318,7 +318,6 @@ $messages = array(
 'disclaimers' => 'Séanadh',
 'disclaimerpage' => 'Project:Séanadh_ginearálta',
 'edithelp' => 'Cabhair eagarthóireachta',
-'helppage' => 'Help:Clár_ábhair',
 'mainpage' => 'Príomhleathanach',
 'mainpage-description' => 'Príomhleathanach',
 'policy-url' => 'Project:Polasaí',
@@ -624,7 +623,7 @@ Is é $3 do sheoladh IP agus #$5 do ID coisc. Déan tagairt don seoladh seo le g
 'newarticle' => '(Nua)',
 'newarticletext' => "Lean tú nasc chuig leathanach nach bhfuil ann fós.
 Chun an leathanach a chruthú, tosaigh ag clóscríobh sa bhosca thíos
-(féach ar an [[{{MediaWiki:Helppage}}|leathanach cabhrach]] chun a thuilleadh eolais a fháil).
+(féach ar an [$1 leathanach cabhrach] chun a thuilleadh eolais a fháil).
 Má tháinig tú anseo as dearmad, brúigh an cnaipe '''ar ais''' ar do bhrabhsálaí.",
 'anontalkpagetext' => "---- ''Leathanach plé é seo a bhaineann le húsáideoir gan ainm nár chruthaigh cuntas fós, nó nach bhfuil ag úsáid an chuntais. Dá bhrí sin, caithfimid an seoladh IP a úsáid chun é/í a (h)ionannú. Is féidir le níos mó ná úsáideoir amháin an seoladh IP céanna a úsáid. Má tá tú i d'úsáideoir gan ainm agus má cheapann tú go bhfuil teachtaireachtaí nach mbaineann leat seolta chugat, [[Special:UserLogin|cruthaigh cuntas]] nó [[Special:UserLogin|logáil isteach]] chun mearbhall le húsáideoirí eile gan ainmneacha a éalú amach anseo.''",
 'noarticletext' => 'Níl aon téacs ar an leathanach seo faoi láthair.

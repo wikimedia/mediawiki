@@ -318,7 +318,6 @@ $messages = array(
 'disclaimers' => 'Avvirthènzi',
 'disclaimerpage' => 'Project:Avvirthènzi ginarari',
 'edithelp' => 'Ghia',
-'helppage' => 'Help:Indizi',
 'mainpage' => 'Pàgina prinzipari',
 'mainpage-description' => 'Pàgina prinzipari',
 'policy-url' => 'Project:Policy',
@@ -589,7 +588,7 @@ La paràura d'órdhini pa chistha noba registhrazioni pò assé mudifiggadda a l
 'newarticle' => '(Nóbu)',
 'newarticletext' => "Lu cullegamentu sighiddu curripondi a'na pàgina nò ancora esisthenti.
 
-Si vói crià la pàgina abà, pói sùbidu ischribì in giossu (abbaidda li [[{{MediaWiki:Helppage}}|pàgini d'aggiuddu]] pà maggiori infuimmazioni).
+Si vói crià la pàgina abà, pói sùbidu ischribì in giossu (abbaidda li [$1 pàgini d'aggiuddu] pà maggiori infuimmazioni).
 
 S'ài sighiddu lu cullegamentu pa un'errori, è suffizenti incalchà lu buttoni '''Indareddu''' i' lu propriu nabiggadori.",
 'anontalkpagetext' => "----''Chistha è la pàgina di dischussioni di un'utenti anònimu, chi no ha ancora criaddu una registhrazioni o, in dugna modu, no la usa. Pa identifiggallu è dunca nezzessàriu usà lu sóiu nùmaru di l'indirizzu IP. L'indirizzi IP, parò, poni assé cundibisi da più utenti. Si sei un'utenti anònimu e vói chi li cummenti prisenti in chistha pàgina no si rifèrini a te, [[Special:UserLogin|crea una noba registhrazion o intra]] cu' chidda ch'hai già pa evità d'assé confusu cu' althri utenti anònimi in futuru.''",

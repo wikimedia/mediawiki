@@ -253,7 +253,6 @@ $messages = array(
 'disclaimers' => 'Prawné zastrzedżi',
 'disclaimerpage' => 'Project:Prawné zastrzedżi',
 'edithelp' => 'Pòmòc do edicëji',
-'helppage' => 'Help:Spisënk zamkłoscë',
 'mainpage' => 'Przédnô starna',
 'mainpage-description' => 'Przédnô starna',
 'policy-url' => 'Project:Regle',
@@ -456,7 +455,7 @@ Proszëmë pòdac wëższé pòdôłczi przë wszëtczich pëtaniach.",
 Parolã dlô negò nowégò kònta mòże zmienic pò wlogòwaniu na starnie ''[[Special:ChangePassword|zjinaka parolë]]''.",
 'newarticle' => '(Nowi)',
 'newarticletext' => "Môsz przëszłi z lënkù do starnë jaka jesz nie òbstoji.
-Bë ùsôdzëc artikel, naczni pisac w kastce niżi (òb. [[{{MediaWiki:Helppage}}|starnã pòmòcë]]
+Bë ùsôdzëc artikel, naczni pisac w kastce niżi (òb. [$1 starnã pòmòcë]
 dlô wicy wëdowiédzë).
 Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '''nazôd'''.",
 'anontalkpagetext' => "----''To je starna dyskùsëji anonimòwiégò brëkòwnika, chtëren nie ùsôdzëł jesz swòjegò kòntae, abò gò nie brëkùje.

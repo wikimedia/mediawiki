@@ -411,7 +411,6 @@ $1",
 'disclaimers' => 'Beunantah',
 'disclaimerpage' => 'Project:Beunantah umom',
 'edithelp' => 'Bantu andam',
-'helppage' => 'Help:Asoë',
 'mainpage' => 'Ôn Keuë',
 'mainpage-description' => 'Ôn Keuë',
 'policy-url' => 'Project:Neuatô',
@@ -770,7 +769,7 @@ Alamat IP Droëneuh nakeuh $3, ngön ID neutheun nakeuh $5. Tulông peuseureuta 
 'accmailtitle' => 'Lageuem rahsia ka meukirém',
 'newarticle' => '(Barô)',
 'newarticletext' => "Droëneuh ka neuseutöt peunawôt u laman nyang goh na.
-Keu neupeugöt laman nyan, neukeutik lam plôk di yup (eu [[{{MediaWiki:Helppage}}|laman beunantu]] keu haba leubèh le).
+Keu neupeugöt laman nyan, neukeutik lam plôk di yup (eu [$1 laman beunantu] keu haba leubèh le).
 Meunyö droëneuh trôk keunoë hana neusaja, neuteugön tèk '''back''' bak ''browser'''droëneuh.",
 'anontalkpagetext' => "----''Nyoe nakeuh ôn marit ureueng ngui nyang hana tamöng atawa hana geungui.''
 Saweub nyan, kamoe payah meukubah alamat IP-geuh keu meuparéksa. 

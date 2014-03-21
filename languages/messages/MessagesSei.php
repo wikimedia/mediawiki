@@ -192,7 +192,6 @@ $messages = array(
 'disclaimers' => 'Isój cacóomx',
 'disclaimerpage' => 'Project:Isoj cacóomx geniiraloj',
 'edithelp' => 'Help ticpatlöx',
-'helppage' => 'Help:Caálixötöj',
 'mainpage' => 'Caálixötöj',
 'mainpage-description' => 'Caálixötöj',
 'policy-url' => 'Project:Cáyun',
@@ -436,7 +435,7 @@ Me IDde block coccebj $5. Includam 1 jöx 2 pac querinám iti.",
 'newarticle' => '(Quiih)',
 'newarticletext' => 'Meclickom linkamde páhina tazo necoccebj zo.
 Huants createnom jan páhina, startom type mii box !-cmaa iti
-([[{{MediaWiki:Helppage}}|páhinade helpom]] zo viside plus informacion).
+([$1 páhinade helpom] zo viside plus informacion).
 Me coccebj römjasi poop, clickom meback-buttonde browser coccebj perfectua.',
 'anontalkpagetext' => "----''Jan coccebj czaxö zode caitomde IDde adressade IP. Isój necoccebj caápo. Jan coccebj rae'de usadadde adressade IP numerical identificacion 'prenisój. Plusöxde caitom pos-coccebj jan adressade IP. Me pos-coccebj anonimo ö commentua irrevelantua coccebj directomde me poop, [[Special:UserLogin|caápo-jande]] exitom confucion diijömde IP-caitóm mii.''",
 'noarticletext' => 'Jan páhina necoccebj textua zo, me pos-coccebj [[Special:Search/{{PAGENAME}}|yahöx jan páhina]] diijömde páhinám iti jöx [{{fullurl:{{FULLPAGENAME}}|action=edit}} ticpatlöx jan páhina].',

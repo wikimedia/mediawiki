@@ -552,7 +552,6 @@ $1',
 'disclaimers' => 'Hoiatused',
 'disclaimerpage' => 'Project:Hoiatused',
 'edithelp' => 'Redigeerimisjuhend',
-'helppage' => 'Help:Sisukord',
 'mainpage' => 'Esileht',
 'mainpage-description' => 'Esileht',
 'policy-url' => 'Project:Reeglid',
@@ -1016,7 +1015,7 @@ Võimalik, et see teisaldati või kustutati, sellal kui lehekülge vaatasid.',
 Seda saab pärast sisselogimist muuta ''[[Special:ChangePassword|parooli muutmise]]'' leheküljel.",
 'newarticle' => '(Uus)',
 'newarticletext' => "Lehekülge, kuhu link sind suunas, pole veel.
-Lehekülje loomiseks alusta allolevasse kasti kirjutamist (lisateave [[{{MediaWiki:Helppage}}|juhendist]]).
+Lehekülje loomiseks alusta allolevasse kasti kirjutamist (lisateave [$1 juhendist]).
 Kui sattusid siia kogemata, klõpsa võrgulehitseja ''tagasi''-nupule.",
 'anontalkpagetext' => "----''See on anonüümse kasutaja arutelulehekülg. See kasutaja pole kontot loonud või ei kasuta seda. Sellepärast tuleb meil kasutaja tuvastamiseks kasutada tema IP-aadressi. Sellist IP-aadressi võib kasutada mitu kasutajat. Kui oled osutatud IP-aadressi kasutaja ning leiad, et siinsed kommentaarid ei puutu kuidagi sinusse, [[Special:UserLogin/signup|loo palun kasutajakonto]] või [[Special:UserLogin|logi sisse]], et sind edaspidi teiste anonüümsete kasutajatega segi ei aetaks.''",
 'noarticletext' => 'Käesoleval leheküljel hetkel teksti ei ole.

@@ -285,7 +285,6 @@ $1',
 'disclaimers' => 'Diwanê mesulêti',
 'disclaimerpage' => 'Project:Diwanê mesuliyetê bıngey',
 'edithelp' => 'Phoştdariya vurnaişi',
-'helppage' => 'Help:Tedeestey',
 'mainpage' => 'Pela Seri',
 'mainpage-description' => 'Pela seri',
 'policy-url' => 'Project:Poliça',
@@ -539,7 +538,7 @@ Sırewo ke to qaytê pele kerdêne, beno ke no kırışiyo ya ki esteriyo.',
 'accmailtitle' => 'Parola rusniye.',
 'newarticle' => '(Newe)',
 'newarticletext' => "To jü girê teqna be jü pela ke hona çina.
-Serba afernaena pele qutiya metnê cêrêni bıgurêne. Serba melumati qaytê [[{{MediaWiki:Helppage}}|pela phoşti]] ke.
+Serba afernaena pele qutiya metnê cêrêni bıgurêne. Serba melumati qaytê [$1 pela phoşti] ke.
 Eke be ğeletêni ama ita, wa gozaga '''peyser'''i programê ho de bıteqne.",
 'noarticletext' => 'Na pele de hona thowa çino.
 Tı şikina zerrê pelunê binu de [[Special:Search/{{PAGENAME}}|serba sernamê na pele cı feteliye]],

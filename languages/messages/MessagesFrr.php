@@ -268,7 +268,6 @@ $1',
 'disclaimers' => 'Disclaimers',
 'disclaimerpage' => 'Project:Disclaimers',
 'edithelp' => "Halep bi't bewerkin",
-'helppage' => 'Help:Auersicht',
 'mainpage' => 'Hoodsidj',
 'mainpage-description' => 'Hoodsidj',
 'policy-url' => 'Project:Reegeln',
@@ -729,7 +728,7 @@ Ferlicht as det stregen of fersköwen wurden, jüst üs dü det sidj bewerke wul
 'newarticle' => '(Nei)',
 'newarticletext' => "Dü beest en ferwisang tu en sidj fulagt, diar't noch ei jaft.
 Am det sidj iinturachten, skriiw dan tekst uun det fial för't bewerkin iin.
-Üüb det [[{{MediaWiki:Helppage}}|halepsidj]] fanjst dü halep.
+Üüb det [$1 halepsidj] fanjst dü halep.
 Wan dü ütj fersen heer beest, trak ianfach üüb di '''turag'''-knoop faan dan browser.",
 'anontalkpagetext' => "----''Üüb detheer sidj könst dü en ünbekäänden brüker en nooracht du. Det lääpt auer sin IP adres. IP adresen kön faan flook brükern brükt wurd. Wan dü mä detheer nooracht niks began könst, do as det ferlicht för hoker ööders mend weesen. Dü säärst niks widjer onernem. Wan dü en aanj [[Special:UserLogin/signup|brükerkonto iinrachst]] of di [[Special:UserLogin|uunmeldest]], komt sowat ei weder föör.",
 'noarticletext' => 'Üüb detdiar sidj stäänt noch niks.

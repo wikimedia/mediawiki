@@ -167,7 +167,6 @@ $messages = array(
 'disclaimers' => 'Disclaimers',
 'disclaimerpage' => 'Project: Disclaimer gawonoyo',
 'edithelp' => 'Editing help',
-'helppage' => 'Help: Ḥbişoṭo',
 'mainpage' => 'Faṭo rişoyto',
 'mainpage-description' => 'Faṭo rişoyto',
 'portal' => 'Portal diJama³a',
@@ -301,7 +300,7 @@ uIP-Adresayḍux gmikṭaw buMaktabzabno diFaṭaṭe. Kul Noşo kibe ḥozele u
 'loginreqpagetext' => 'Glozım $1 qanna dqudrat ḥozat Faṭoṭe ḥrene.',
 'newarticle' => '(Ḥaṭo)',
 'newarticletext' => "You have followed a link to a page that does not exist yet.
-To create the page, start typing in the box below (see the [[{{MediaWiki:Helppage}}|help page]] for more info).
+To create the page, start typing in the box below (see the [$1 help page] for more info).
 If you are here by mistake, click your browser's '''back''' button.",
 'noarticletext' => 'There is currently no text in this page.
 You can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,

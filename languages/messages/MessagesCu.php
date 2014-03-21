@@ -253,12 +253,11 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
 'aboutsite' => 'О {{grammar:instrumental|{{SITENAME}}}}',
 'aboutpage' => 'Project:О сѥмь опꙑтьствовании',
-'copyright' => 'подъ прощєниѥмь $1 пьсано ѥстъ',
+'copyright' => 'подъ прощєниѥмь $1 пьсано ѥстъ · ащє ино нє каꙁано ѥстъ',
 'copyrightpage' => '{{ns:project}}:Творьцъ права',
 'currentevents' => 'сѫщѧѩ вѣщи',
 'currentevents-url' => 'Project:Сѫщѧѩ вѣщи',
 'edithelp' => 'помощь по исправлѥниѭ',
-'helppage' => 'Help:Каталогъ',
 'mainpage' => 'главьна страница',
 'mainpage-description' => 'главьна страница',
 'policy-url' => 'Project:Полїтїка',
@@ -329,7 +328,6 @@ $messages = array(
 'createaccount' => 'съꙁижди си мѣсто',
 'gotaccount' => 'мѣсто ти ѥстъ ли? $1',
 'gotaccountlink' => 'въниди',
-'helplogin-url' => 'Help:Въниждѥниѥ',
 'createaccountreason' => 'какъ съмꙑслъ :',
 'createacct-reason' => 'какъ съмꙑслъ',
 'createacct-submit' => 'съꙁижди си мѣсто',
@@ -444,7 +442,7 @@ $messages = array(
 'searchresults-title' => 'исканиꙗ ⁖ $1 ⁖ слѣдьствиѥ',
 'viewprevnext' => 'виждь ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''страница имєньмь ⁖ [[:$1]] ⁖ ѥстъ створѥна ю'''",
-'searchmenu-new' => "'''страницѫ ⁖ [[:$1]] ⁖ сътворити можєши'''",
+'searchmenu-new' => '<strong>страницѫ "⁖ [[:$1]] ⁖" сътворити можєши</strong> {{PLURAL:$2|0=|ꙁъри такождє страница ижє по искании авлєна ѥстъ|ꙁьри такождє исканиꙗ слѣдьствиꙗ}}',
 'searchprofile-articles' => 'члѣни',
 'searchprofile-project' => 'опꙑтьствовании и помощи страницѧ',
 'searchprofile-images' => 'дѣла',
@@ -497,9 +495,9 @@ $messages = array(
 'yourrealname' => 'истиньно имѧ :',
 'yourlanguage' => 'ѩꙁꙑкъ :',
 'yournick' => 'новъ аѵтографъ :',
-'yourgender' => 'полъ :',
-'gender-male' => 'мѫжъ',
-'gender-female' => 'жєна',
+'yourgender' => 'ꙗко жє о тєбѣ пьсати ;',
+'gender-male' => 'онъ исправитъ страницѧ',
+'gender-female' => 'она исправитъ страницѧ',
 'prefs-signature' => 'аѵтографъ',
 
 # User rights
@@ -944,7 +942,7 @@ $messages = array(
 'version' => 'MediaWiki обраꙁъ',
 'version-specialpages' => 'нарочьнꙑ страницѧ',
 'version-version' => '(обраꙁъ $1)',
-'version-license' => 'прощєниѥ',
+'version-license' => 'MediaWiki прощєниѥ',
 'version-software-version' => 'обраꙁъ',
 
 # Special:Redirect

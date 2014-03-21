@@ -551,7 +551,6 @@ $1',
 'disclaimers' => 'Odricanje odgovornosti',
 'disclaimerpage' => 'Project:Odricanje odgovornosti',
 'edithelp' => 'Pomoć pri uređivanju',
-'helppage' => 'Help:Sadržaj',
 'mainpage' => 'Glavna strana',
 'mainpage-description' => 'Glavna strana',
 'policy-url' => 'Project:Pravila',
@@ -980,7 +979,7 @@ Možda je premešten ili obrisan dok ste pregledali stranicu.',
 'accmailtext' => 'Lozika za {{GENDER:$1|korisnika|korisnicu}} [[User talk:$1|$1]] je poslata na $2. Nakon prijave, lozinka se može promeniti [[Special:ChangePassword|ovde]].',
 'newarticle' => '(novi)',
 'newarticletext' => 'Došli ste na stranicu koja još ne postoji.
-Da biste je napravili, počnite kucati u prozor ispod ovog teksta (pogledajte [[{{MediaWiki:Helppage}}|stranicu za pomoć]]).
+Da biste je napravili, počnite kucati u prozor ispod ovog teksta (pogledajte [$1 stranicu za pomoć]).
 Ako ste ovde došli greškom, vratite se na prethodnu stranicu.',
 'anontalkpagetext' => '---- Ovo je stranica za razgovor s anonimnim korisnikom koji još nema nalog ili ga ne koristi.
 Zbog toga moramo da koristimo brojčanu IP adresu kako bismo ga prepoznali.

@@ -311,7 +311,6 @@ $1',
 'disclaimers' => 'Mga Disclaimer',
 'disclaimerpage' => 'Project:Kasahiran nga disclaimer',
 'edithelp' => 'Bulig hin pagliwat',
-'helppage' => 'Help:Sulod',
 'mainpage' => 'Syahan nga Pakli',
 'mainpage-description' => 'Syahan nga Pakli',
 'policy-url' => 'Project:Polisiya',
@@ -764,7 +763,7 @@ Ini in puydi binmalhin o napara samtang ikaw in nagkikita han pakli.',
 'accmailtitle' => 'Ginpadara na an tigaman-pagsulod.',
 'accmailtext' => "Uska hinimo nga random nga tigaman-panakob para kan [[User talk:$1|$1]] in ginpadangat ha $2. Puydi ini mabal-iwan ha ''[[Special:ChangePassword|liwani an tigaman-panakob]]'' nga pakli han paglog-in.",
 'newarticle' => '(Bag-o)',
-'newarticletext' => "Ginsunod mo an pakli nga waray pa kahihimo.  Para ighimo an pakli, tikanga pagmakinilya ha kahon nga aada ha ubos (kitaa an [[{{MediaWiki:Helppage}}|nabulig nga pakli]] para han kadugangan nga pananabutan).  Kun sayop an imo pagkanhi, igpidlit an imo kanan panngaykay (''browser'') '''balik''' (''back'') nga piridlitan.",
+'newarticletext' => "Ginsunod mo an pakli nga waray pa kahihimo.  Para ighimo an pakli, tikanga pagmakinilya ha kahon nga aada ha ubos (kitaa an [$1 nabulig nga pakli] para han kadugangan nga pananabutan).  Kun sayop an imo pagkanhi, igpidlit an imo kanan panngaykay (''browser'') '''balik''' (''back'') nga piridlitan.",
 'anontalkpagetext' => "----
 ''Ini in hiruhimangraw-nga-pakli para han waray magpakilala nga gumaramit, nga waray pa hinmimo hin akawnt.''
 Magamit la kami hin IP address para makilal-an hiya.

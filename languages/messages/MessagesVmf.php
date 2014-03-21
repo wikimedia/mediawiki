@@ -256,7 +256,6 @@ $1",
 'disclaimers' => 'Imbräsum',
 'disclaimerpage' => 'Project:Imbräsum',
 'edithelp' => 'Hilfe dsum beärbâdn',
-'helppage' => 'Help:Inhalds-fârdsajchnis',
 'mainpage' => 'Haubdsajdn',
 'mainpage-description' => 'Haubdsajdn',
 'policy-url' => 'Project:Reechln',
@@ -409,7 +408,7 @@ Dii schbärr-ID is: $5
 Schrajb des bide als dâdsu, wen De Dich meldsd.",
 'newarticle' => '(Naj)',
 'newarticletext' => "Duu bisd âm fârwajs gfolchd, däär noch af ghâ sajdn dsajchd.
-Um dii sajdn ôôdsleechn, schrajb Dajn dhägsd in deen rôôma dô undn naj (fir aandslhajdn, schau af dâr [[{{MediaWiki:Helppage}}|hilfesajdn]] nôôch).
+Um dii sajdn ôôdsleechn, schrajb Dajn dhägsd in deen rôôma dô undn naj (fir aandslhajdn, schau af dâr [$1 hilfesajdn] nôôch).
 Wen'D dich awâr hiirhäär bloos fârlaafn hasd, glig ââfach af '''Zurück''' in Dajm brausâr, dan geedâr dôôhi dsrig, wos'D häärghumma bisd.",
 'noarticletext' => 'Dii sajdn gibd\'s bis eds no ned.
 Duu ghâusch nach däm ausdrug aa [[Special:Search/{{PAGENAME}}|in alle sajdn suchng]],

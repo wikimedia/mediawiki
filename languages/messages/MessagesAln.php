@@ -293,7 +293,6 @@ $1',
 'disclaimers' => 'Shfajsime',
 'disclaimerpage' => 'Project:Shfajsimet e përgjithshme',
 'edithelp' => 'Ndihmë për redaktim',
-'helppage' => 'Help:Përmbajtja',
 'mainpage' => 'Faqja kryesore',
 'mainpage-description' => 'Faqja Kryesore',
 'policy-url' => 'Project:Politika',
@@ -624,7 +623,7 @@ Ju lutemi vërtetoni adresën tuej të emailit përmjet [[Special:Preferences|pa
 Fjalëkalimi për këtë llogari mundet me u ndryshue në faqen ''[[Special:ChangePassword|ndrysho fjalëkalimin]]'' mbas kyçjes.",
 'newarticle' => '(I ri)',
 'newarticletext' => "Ke ndjekë nji vegëz për te nji faqe që nuk ekziston.
-Me krijue kët faqe, shkruej në kutinë ma poshtë (shih [[{{MediaWiki:Helppage}}|faqen e ndihmës]] për ma shum udhzime).
+Me krijue kët faqe, shkruej në kutinë ma poshtë (shih [$1 faqen e ndihmës] për ma shum udhzime).
 Nëse ke hy këtu gabimisht, klikoje sustën '''mbrapa''' në shfletues.",
 'anontalkpagetext' => "----''Kjo âsht faqe diskutimi e nji përdoruesi anonim, i cili nuk ka krijue llogari, apo nuk e përdor atê.
 Prandej përdoret adresa numerike IP e tij për me identifikue.

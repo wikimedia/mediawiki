@@ -567,7 +567,6 @@ $1',
 'disclaimers' => 'Vastuuvapaus',
 'disclaimerpage' => 'Project:Vastuuvapaus',
 'edithelp' => 'Muokkausohjeet',
-'helppage' => 'Help:Sisällys',
 'mainpage' => 'Etusivu',
 'mainpage-description' => 'Etusivu',
 'policy-url' => 'Project:Käytännöt',
@@ -1033,7 +1032,7 @@ Se on saatettu siirtää tai poistaa äskettäin.',
 'accmailtext' => 'Satunnaisesti generoitu salasana käyttäjälle [[User talk:$1|$1]] on lähetetty osoitteeseen $2. Sen voi vaihtaa kirjautumisen jälkeen [[Special:ChangePassword|asetussivulla]].',
 'newarticle' => '(Uusi)',
 'newarticletext' => 'Linkki toi sivulle, jota ei vielä ole.
-Voit luoda sivun kirjoittamalla alla olevaan kenttään (katso [[{{MediaWiki:Helppage}}|ohjesivulta]] lisätietoja).
+Voit luoda sivun kirjoittamalla alla olevaan kenttään (katso [$1 ohjesivulta] lisätietoja).
 Jos et halua luoda sivua, käytä selaimen paluutoimintoa.',
 'anontalkpagetext' => "----''Tämä on nimettömän käyttäjän keskustelusivu. Hän ei ole joko luonut itselleen käyttäjätunnusta tai ei käytä sitä. Siksi hänet tunnistetaan nyt numeerisella IP-osoitteella. Kyseinen IP-osoite voi olla useamman henkilön käytössä. Jos olet nimetön käyttäjä, ja sinusta tuntuu, että aiheettomia kommentteja on ohjattu sinulle, [[Special:UserLogin/signup|luo itsellesi käyttäjätunnus]] tai [[Special:UserLogin|kirjaudu sisään]] välttääksesi jatkossa sekaannukset muiden nimettömien käyttäjien kanssa.''",
 'noarticletext' => 'Tällä hetkellä tällä sivulla ei ole tekstiä.

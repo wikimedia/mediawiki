@@ -274,7 +274,6 @@ $messages = array(
 'disclaimers' => 'Abbertimentos',
 'disclaimerpage' => 'Project:Abbertimentos generales',
 'edithelp' => "Agiudu pro s'acontzu o sa scritura",
-'helppage' => 'Help:Agiudu',
 'mainpage' => 'Pàgina Base',
 'mainpage-description' => 'Pàgina Base',
 'policy-url' => 'Project:Polìticas',
@@ -502,7 +501,7 @@ Pro praxere spetzìfica totu is particulares in antis in carche siat pregunta de
 'accmailtitle' => 'Password ispedia.',
 'newarticle' => '(Nou)',
 'newarticletext' => "Custa pàgina no esistit galu.
-Pro creare sa pàgina, scrie in su box inoghe in bàsciu (abbàida sa [[{{MediaWiki:Helppage}}|pàgina de agiudu]] pro àteras informatziones).
+Pro creare sa pàgina, scrie in su box inoghe in bàsciu (abbàida sa [$1 pàgina de agiudu] pro àteras informatziones).
 Si ses intradu inoghe pro sbàlliu, carca in su browser tuo su butone '''back/indietro'''.",
 'anontalkpagetext' => "----''Custa est sa pàgina de cuntierra de unu usuàriu anònimu ki no at creadu unu account galu, o ki non dd'usat. Pro custu impreamus su nùmeru de indiritzos IP pro ddu identificare. Is indiritzos IP podent però èsser cundivìdidos dae unos cantos usuàrios. Si ses unu usuàriu anònimu e ritenes ki custos cummentos non sunt diretos a tue, pro praxere [[Special:UserLogin/signup|crea unu account]] o [[Special:UserLogin|identifica·ti (log in)]] pro evitare cunfusione cun àteros usuàrios anònimos.''",
 'noarticletext' => 'In custu momentu sa pàgina est bùida.

@@ -406,7 +406,6 @@ $1',
 'disclaimers' => 'Avertense',
 'disclaimerpage' => 'Project:Avertense xenerali',
 'edithelp' => 'Guida',
-'helppage' => 'Help:Ajuto',
 'mainpage' => 'Pajina prinsipałe',
 'mainpage-description' => 'Pajina prinsipałe',
 'policy-url' => 'Project:Policy',
@@ -829,7 +828,7 @@ La password par sta nova utensa la pode vegner canbià, dopo ver fato l'acesso, 
 'newarticle' => '(Novo)',
 'newarticletext' => "Te ghe sì 'ndà drio a un colegamento a na pagina che no esiste gnancora.
 Se te voli crear sta pagina, taca scrìvar el testo in te la casèla qua soto
-(varda le [[{{MediaWiki:Helppage}}|pagine de ajuto]] par saverghene de pì).
+(varda le [$1 pagine de ajuto] par saverghene de pì).
 Se te sì rivà qua par sbajo, basta che te struchi '''Indrìo''' sul to browser.",
 'anontalkpagetext' => "----''Sta qua la xe la pagina de discussion de un utente anonimo che no'l se gà gnancora registrà o che no'l xe entrà col so nome utente.
 De conseguenza xè necessario identificarlo tramite l'indirizo IP numerico.

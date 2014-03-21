@@ -595,7 +595,6 @@ $1',
 'disclaimers' => 'Penyangkalan',
 'disclaimerpage' => 'Project:Penyangkalan umum',
 'edithelp' => 'Bantuan penyuntingan',
-'helppage' => 'Help:Isi',
 'mainpage' => 'Halaman Utama',
 'mainpage-description' => 'Halaman Utama',
 'policy-url' => 'Project:Kebijakan',
@@ -1051,7 +1050,7 @@ Subbagian ini mungkin dipindahkan atau dihapus ketika Anda membukanya.',
 
 Kata sandi untuk akun baru ini dapat diubah di halaman ''[[Special:ChangePassword|pengubahan kata sandi]]'' setelah masuk log.",
 'newarticle' => '(Baru)',
-'newarticletext' => "Anda mengikuti pranala ke halaman yang belum tersedia. Untuk membuat halaman tersebut, ketiklah isi halaman di kotak di bawah ini (lihat [[{{MediaWiki:Helppage}}|halaman bantuan]] untuk informasi lebih lanjut). Jika Anda tanpa sengaja sampai ke halaman ini, klik tombol '''back''' di penjelajah web Anda.",
+'newarticletext' => "Anda mengikuti pranala ke halaman yang belum tersedia. Untuk membuat halaman tersebut, ketiklah isi halaman di kotak di bawah ini (lihat [$1 halaman bantuan] untuk informasi lebih lanjut). Jika Anda tanpa sengaja sampai ke halaman ini, klik tombol '''back''' di penjelajah web Anda.",
 'anontalkpagetext' => "----''Ini adalah halaman pembicaraan seorang pengguna anonim yang belum membuat akun atau tidak menggunakannya.
 Dengan demikian, kami terpaksa harus memakai alamat IP yang bersangkutan untuk mengidentifikasikannya.
 Alamat IP seperti ini mungkin dipakai bersama oleh beberapa pengguna yang berbeda.

@@ -275,7 +275,6 @@ $1',
 'disclaimers' => 'Impressum',
 'disclaimerpage' => 'Project:Impressum',
 'edithelp' => 'Agid per modifitgar',
-'helppage' => 'Help:Cuntegn',
 'mainpage' => 'Pagina principala',
 'mainpage-description' => 'Pagina principala',
 'policy-url' => 'Project:Directivas',
@@ -700,7 +699,7 @@ Ella è eventualmain vegnida spustada u stizzada durant che ti has contemplà la
 'accmailtitle' => 'Il pled-clav è vegnì tramess.',
 'accmailtext' => "In pled-clav casual per [[User talk:$1|$1]] è vegnì tramess a $2. El po vegnir midà sin la pagina ''[[Special:ChangePassword|midar pled-clav]]'' suenter che ti t'es annunzià.",
 'newarticle' => '(Nov)',
-'newarticletext' => "Ti has cliccà ina colliaziun ad ina pagina che n'exista anc betg. Per crear ina pagina, entschaiva a tippar en la stgaffa sutvart (guarda [[{{MediaWiki:Helppage}}|la pagina d'agid]] per t'infurmar).",
+'newarticletext' => "Ti has cliccà ina colliaziun ad ina pagina che n'exista anc betg. Per crear ina pagina, entschaiva a tippar en la stgaffa sutvart (guarda [$1 la pagina d'agid] per t'infurmar).",
 'anontalkpagetext' => "----''Quai è la pagina da discussiun per in utilisader anomim che n'ha anc betg creà in conto d'utilisader u che n'al utilisescha betg.
 Perquai avain nus d'utilisar l'adressa dad IP per l'identifitgar.
 Ina tala adressa dad IP po vegnir utilisada da differents utilisaders.

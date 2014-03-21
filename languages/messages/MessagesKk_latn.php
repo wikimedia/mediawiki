@@ -542,7 +542,6 @@ $messages = array(
 'disclaimers' => 'Jawapkerşilikten bas tartw',
 'disclaimerpage' => 'Project:Jawapkerşilikten bas tartw',
 'edithelp' => 'Öndew anıqtaması',
-'helppage' => 'Help:Mazmunı',
 'mainpage' => 'Bastı bet',
 'mainpage-description' => 'Bastı bet',
 'policy-url' => 'Project:Erejeler',
@@ -826,7 +825,7 @@ E-poşta mekenjaýıñızdı [[{{#special:Preferences}}|paýdalanwşılıq bapta
 'accmailtext' => '$2 jaýına «$1» qupïya sözi jöneltildi.',
 'newarticle' => '(Jaña)',
 'newarticletext' => 'Siltemege erip äli bastalmağan betke kelipsiz.
-Betti bastaw üşin, tömendegi kiristirw ornında mätiniñizdi teriñiz (köbirek aqparat üşin [[{{{{ns:mediawiki}}:helppage}}|anıqtama betin]] qarañız).
+Betti bastaw üşin, tömendegi kiristirw ornında mätiniñizdi teriñiz (köbirek aqparat üşin [[{{{{ns:mediawiki}}:helppage}}|anıqtama betin] qarañız).
 Eger jañılğannan osında kelgen bolsañız, şolğışıñız «Artqa» degen batırmasın nuqıñız.',
 'anontalkpagetext' => "----''Bul tirkelgisiz (nemese tirkelgisin qoldanbağan) qatıswşı talqılaw beti. Osı qatıswşını biz tek sandıq IP mekenjaýımen teñdestiremiz.
 Osındaý IP mekenjaý birneşe qatıswşığa ortaqtastırılğan bolwı mümkin.

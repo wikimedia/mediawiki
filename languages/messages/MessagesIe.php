@@ -380,7 +380,6 @@ $1',
 'disclaimers' => 'Advertimentes',
 'disclaimerpage' => 'Project:Advertimentes',
 'edithelp' => 'Redactori auxilie',
-'helppage' => 'Help:Contenete',
 'mainpage' => 'Principal págine',
 'mainpage-description' => 'Principal págine',
 'policy-url' => 'Project:Regulariumes',
@@ -564,7 +563,7 @@ Tui adresse de IP va esser registrat in historico de redactiones de ti págine."
 'accmailtext' => "Li passa-parol por '$1' ha esset inviat a $2.",
 'newarticle' => '(Nov)',
 'newarticletext' => "Vu have sequet un catenun por un págine que ne existe ancor.
-Por crear li págine, comensa tippant in li buxe in infra (vider li [[{{MediaWiki:Helppage}}|págine de auxilie]] por plu informationes).
+Por crear li págine, comensa tippant in li buxe in infra (vider li [$1 págine de auxilie] por plu informationes).
 Si vu es ci per errore, clacca in li buton '''retornar''' in tui navigator.",
 'noarticletext' => 'Actualmen ti-ci págine ancor ne contene alquel textu.
 Tu posse <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} redacter]</span> it, [[Special:Search/{{PAGENAME}}|serchar]] su titul in altri págines o regardar li relatent <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} logs]</span>.',

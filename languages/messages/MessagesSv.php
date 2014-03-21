@@ -573,7 +573,6 @@ $1',
 'disclaimers' => 'Förbehåll',
 'disclaimerpage' => 'Project:Allmänt förbehåll',
 'edithelp' => 'Redigeringshjälp',
-'helppage' => 'Help:Innehåll',
 'mainpage' => 'Huvudsida',
 'mainpage-description' => 'Huvudsida',
 'policy-url' => 'Project:Riktlinjer',
@@ -772,6 +771,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'gotaccountlink' => 'Logga in',
 'userlogin-resetlink' => 'Har du glömt dina inloggningsuppgifter?',
 'userlogin-resetpassword-link' => 'Glömt ditt lösenord?',
+'userlogin-helplink2' => 'Hjälp med inloggning',
 'userlogin-loggedin' => 'Du är redan inloggad som {{GENDER:$1|$1}}.
 Använd formuläret nedan för att logga in som en annan användare.',
 'userlogin-createanother' => 'Skapa ett annat konto',
@@ -896,6 +896,9 @@ För att slutföra inloggningen måste du välja ett nytt lösenord här:',
 'resetpass-abort-generic' => 'Lösenordsändring av har avbrutits av ett tillägg.',
 'resetpass-expired' => 'Ditt lösenord har gått ut. Var god välj ett nytt lösenord för att logga in.',
 'resetpass-expired-soft' => 'Ditt lösenord har gått ut och behöver återställas. Var god välj ett nytt lösenord nu eller klicka på "{{int:resetpass-submit-cancel}}" för att återställa det senare.',
+'resetpass-validity-soft' => 'Ditt lösenord är ogiltigt: $1
+
+Var god välj ett nytt lösenord nu eller klicka på "{{int:resetpass-submit-cancel}}" för att återställa det senare.',
 
 # Special:PasswordReset
 'passwordreset' => 'Återställ lösenord',
@@ -1036,7 +1039,7 @@ Det kan ha flyttats eller raderats medan du tittade på sidan.',
 'accmailtitle' => 'Lösenord skickat.',
 'accmailtext' => "Ett slumpgenererat lösenord för [[User talk:$1|$1]] har skickats till $2. Det kan ändras på sidan ''[[Special:ChangePassword|ändra lösenord]]'' när du loggar in.",
 'newarticle' => '(Ny)',
-'newarticletext' => 'Du har klickat på en länk till en sida som inte finns ännu. För att skapa sidan, börja att skriva i fältet nedan (du kan läsa mer på [[{{MediaWiki:Helppage}}|hjälpsidan]]). Om du kom hit av misstag kan du bara trycka på <strong>tillbaka</strong>-knappen i din webbläsare.',
+'newarticletext' => 'Du har klickat på en länk till en sida som inte finns ännu. För att skapa sidan, börja att skriva i fältet nedan (du kan läsa mer på [$1 hjälpsidan]). Om du kom hit av misstag kan du bara trycka på <strong>tillbaka</strong>-knappen i din webbläsare.',
 'anontalkpagetext' => "----''Detta är diskussionssidan för en anonym användare som inte ännu skapat ett konto, eller som inte använder det.
 Därför måste vi använda den numeriska IP-adressen för att identifiera honom/henne.
 En sådan IP-adress kan delas av flera användare.
@@ -2604,7 +2607,7 @@ Nuvarande skrivskyddsinställning för sidan '''$1''' är:",
 'protect-locked-access' => "Ditt konto har inte behörighet att ändra skrivskydd på sidor.
 Nuvarande skrivskyddsinställning för sidan '''$1''' är:",
 'protect-cascadeon' => 'Den här sidan är skrivskyddad eftersom den inkluderas på följande {{PLURAL:$1|sida|sidor}} som har ett kaskaderande skydd.
-Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande skyddet.',
+Ändringar i skyddet för den här sidan kommer inte påverka det kaskaderande skyddet.',
 'protect-default' => 'Tillåt alla användare',
 'protect-fallback' => 'Kräv "$1"-behörighet',
 'protect-level-autoconfirmed' => 'Blockera nya och oregistrerade användare',

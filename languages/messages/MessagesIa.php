@@ -393,7 +393,6 @@ $1',
 'disclaimers' => 'Declaration de non-responsabilitate',
 'disclaimerpage' => 'Project:Declaration general de non-responsabilitate',
 'edithelp' => 'Adjuta de modification',
-'helppage' => 'Help:Contento',
 'mainpage' => 'Pagina principal',
 'mainpage-description' => 'Pagina principal',
 'policy-url' => 'Project:Politica',
@@ -880,7 +879,7 @@ Illo pote haber essite displaciate o delite durante que tu legeva le pagina.',
 'accmailtext' => "Un contrasigno generate aleatorimente pro [[User talk:$1|$1]] ha essite inviate a $2. Illo pote esser cambiate in le pagina ''[[Special:ChangePassword|Cambiar contrasigno]]'' post que tu ha aperite un session.",
 'newarticle' => '(Nove)',
 'newarticletext' => "Tu ha sequite un ligamine verso un pagina que non existe ancora.
-Pro crear iste pagina, comencia a scriber in le quadro infra (consulta le [[{{MediaWiki:Helppage}}|pagina de adjuta]] pro plus informationes).
+Pro crear iste pagina, comencia a scriber in le quadro infra (consulta le [$1 pagina de adjuta] pro plus informationes).
 Si tu ha arrivate a iste pagina per error, clicca le button '''Retornar''' de tu navigator.",
 'anontalkpagetext' => "---- ''Isto es le pagina de discussion pro un usator anonyme qui non ha ancora create un conto, o qui non lo usa. Consequentemente nos debe usar le adresse IP numeric pro identificar le/la.
 Un tal adresse IP pote esser usate in commun per varie personas.

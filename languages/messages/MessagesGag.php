@@ -281,7 +281,6 @@ $messages = array(
 'disclaimers' => 'Cuvapçılık reti',
 'disclaimerpage' => 'Project:Genel cuvapçılık reti',
 'edithelp' => 'Nesoy var nicä diiştirmää?',
-'helppage' => 'Help:İçindekilär',
 'mainpage' => 'Baş yaprak',
 'mainpage-description' => 'Baş yaprak',
 'policy-url' => 'Project:Politika',
@@ -470,7 +469,7 @@ Herliim girmediniz [[Special:Preferences|seçimner]] bölümünde geçerli bir e
 'accmailtitle' => 'Parol gönderildi.',
 'accmailtext' => '[[User talk:$1|$1]] kullanıcısın parolu $2 adresine gönderildi.',
 'newarticle' => '(Eni)',
-'newarticletext' => "Henez var olmayan bir sayfaya konulmuş baalantıya tuşladınız. Bu sayfayı yaratmaa deyni aşaadaki tekst kutusunu kullanınız. Bilgi için [[{{MediaWiki:Helppage}}|yardım sayfasına]] bakınız. Herliim buraya yannış geldiniz, läazım tuşlamaa programınızın '''Geeri''' tuşuna.",
+'newarticletext' => "Henez var olmayan bir sayfaya konulmuş baalantıya tuşladınız. Bu sayfayı yaratmaa deyni aşaadaki tekst kutusunu kullanınız. Bilgi için [$1 yardım sayfasına] bakınız. Herliim buraya yannış geldiniz, läazım tuşlamaa programınızın '''Geeri''' tuşuna.",
 'noarticletext' => 'Bu sayfa boş.
 Bu başlıı [[Special:Search/{{PAGENAME}}|var nicä aramaa]] übür sayfalarda yaki bu sayfayı siz <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ilgili günlükleri arayabilir], ya [{{fullurl:{{FULLPAGENAME}}|action=edit}} var nicä yazmaa]</span>.',
 'updated' => '(Enilendi)',

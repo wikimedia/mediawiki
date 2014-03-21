@@ -673,7 +673,6 @@ $1',
 'disclaimers' => 'Impressum',
 'disclaimerpage' => 'Project:Impressum',
 'edithelp' => 'Bearbeitungshilfe',
-'helppage' => 'Help:Inhaltsverzeichnis',
 'mainpage' => 'Hauptseite',
 'mainpage-description' => 'Hauptseite',
 'policy-url' => 'Project:Richtlinien',
@@ -1145,7 +1144,7 @@ Vermutlich wurde er verschoben oder gelöscht, nachdem du die Seite aufgerufen h
 'accmailtext' => "Ein zufällig generiertes Passwort für [[User talk:$1|$1]] wurde an $2 versandt. Es kann auf der Seite ''[[Special:ChangePassword|Passwort ändern]]'' nach der Anmeldung geändert werden.",
 'newarticle' => '(Neu)',
 'newarticletext' => "Du bist einem Link zu einer Seite gefolgt, die nicht vorhanden ist.
-Um diese Seite anzulegen, trage deinen Text in das untenstehende Bearbeitungsfeld ein (weitere Informationen auf der [[{{MediaWiki:Helppage}}|Hilfeseite]]).
+Um diese Seite anzulegen, trage deinen Text in das untenstehende Bearbeitungsfeld ein (weitere Informationen auf der [$1 Hilfeseite]).
 Sofern du fälschlicherweise hier bist, klicke auf die Schaltfläche '''Zurück''' deines Browsers.",
 'anontalkpagetext' => "----''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Es wird seine IP-Adresse zur Identifizierung verwendet. IP-Adressen können von mehreren Benutzern gemeinsam verwendet werden. Wenn du mit den Kommentaren auf dieser Seite nichts anfangen kannst, richten sie sich vermutlich an einen früheren Inhaber deiner IP-Adresse und du kannst sie ignorieren. Du kannst dir auch ein [[Special:UserLogin/signup|Benutzerkonto erstellen]] oder dich [[Special:UserLogin|anmelden]], um künftig Verwechslungen mit anderen anonymen Benutzern zu vermeiden.''",
 'noarticletext' => 'Diese Seite enthält momentan noch keinen Text.
@@ -2688,7 +2687,8 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'protect-locked-blocked' => "Du kannst den Seitenschutz nicht ändern, da dein Benutzerkonto gesperrt ist. Hier sind die aktuellen Seitenschutz-Einstellungen der Seite '''„$1“:'''",
 'protect-locked-dblock' => "Die Datenbank ist gesperrt, der Seitenschutz kann daher nicht geändert werden. Hier sind die aktuellen Seitenschutz-Einstellungen der Seite '''„$1“:'''",
 'protect-locked-access' => "Dein Benutzerkonto verfügt nicht über die notwendigen Rechte zur Änderung des Seitenschutzes. Hier sind die aktuellen Seitenschutzeinstellungen der Seite '''„$1“:'''",
-'protect-cascadeon' => 'Diese Seite ist gegenwärtig Teil einer Kaskadensperre. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, welche durch die Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}. Der Seitenschutzstatus dieser Seite kann geändert werden, dies hat jedoch keinen Einfluss auf die Kaskadensperre:',
+'protect-cascadeon' => 'Diese Seite ist gegenwärtig Teil einer Kaskadensperre. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, welche durch die Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}.
+Änderungen am Seitenschutzstatus haben keinen Einfluss auf die Kaskadensperre:',
 'protect-default' => 'Alle Benutzer',
 'protect-fallback' => 'Nur Benutzern mit der „$1“-Berechtigung erlauben.',
 'protect-level-autoconfirmed' => 'Nur automatisch bestätigten Benutzern erlauben',

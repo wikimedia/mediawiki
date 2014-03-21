@@ -275,7 +275,6 @@ $1',
 'disclaimers' => 'Begriepskläärenge',
 'disclaimerpage' => 'Project:Siede tou Begriepskläärenge',
 'edithelp' => 'Beoarbaidengshälpe',
-'helppage' => 'Help:Hälpe',
 'mainpage' => 'Haudsiede',
 'mainpage-description' => 'Haudsiede',
 'policy-url' => 'Project:Laitlienjen',
@@ -621,7 +620,7 @@ Dät Paaswoud foar dit näie Benutserkonto kon ap ju Spezioalsiede
 „[[Special:ChangePassword|Paaswoud annerje]]“ annerd wäide.',
 'newarticle' => '(Näi)',
 'newarticletext' => "Du hääst n Link foulged ätter ne Siede, ju dät noch nit rakt.
-Uum ju Siede tou moakjen, dien Text fon dän näie Artikkel iendreege in ju unnerstoundene Box (sjuch ju [[{{MediaWiki:Helppage}}|Hälpesiede]] foar moor Informatione).
+Uum ju Siede tou moakjen, dien Text fon dän näie Artikkel iendreege in ju unnerstoundene Box (sjuch ju [$1 Hälpesiede] foar moor Informatione).
 Bäst du hier bie Fersjoon, klik ju '''Tourääch'''-Skaltfläche fon din Browser.",
 'anontalkpagetext' => "----''Dit is ju Diskussionssiede fon n uunbekoanden Benutser, die sik nit anmälded häd.
 Wail naan Noome deer is, wäd ju nuumeriske IP-Adrässe tou Identifizierenge ferwoand.

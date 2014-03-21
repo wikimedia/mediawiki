@@ -338,7 +338,6 @@ $messages = array(
 'disclaimers' => 'Disclaimers',
 'disclaimerpage' => 'Project:Disclaimer gi ala',
 'edithelp' => 'Yepi nanga kenki',
-'helppage' => 'Help:San de',
 'mainpage' => 'Fesipapira',
 'mainpage-description' => 'Fesipapira',
 'policy-url' => 'Project:Polisi',
@@ -545,7 +544,7 @@ Yu IP now na $3 en a tapu pasi ID na #$5. Gi wan, noso ala tu, ini yu brifi te y
 'accmailtitle' => 'Waktiwortu ben stir.',
 'accmailtext' => 'A waktiwortu fu "$1" ben stir na $2.',
 'newarticle' => '(Nyun)',
-'newarticletext' => "Yu e pruberi fu opo wan papira di no de ete. Fu meki a papira, bigin skrifi ini a boksu dyaso na ondrosey (luku ini [[{{MediaWiki:Helppage}}|yepipapira]] gi yepi).
+'newarticletext' => "Yu e pruberi fu opo wan papira di no de ete. Fu meki a papira, bigin skrifi ini a boksu dyaso na ondrosey (luku ini [$1 yepipapira] gi yepi).
 Kebroiki a '''back''' knopo ini yu browser, efu yu no ben wan opo a papira disi.",
 'noarticletext' => 'A papira disi leigi.
 Yu kan [[Special:Search/{{PAGENAME}}|suku a papira nen disi]] ini tra papira noso <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} kenki a papira disi]</span>.',

@@ -565,7 +565,6 @@ $1',
 'disclaimers' => 'Odricanje od odgovornosti',
 'disclaimerpage' => 'Project:General_disclaimer',
 'edithelp' => 'Kako uređivati stranicu',
-'helppage' => 'Help:Pomoć',
 'mainpage' => 'Glavna stranica',
 'mainpage-description' => 'Glavna stranica',
 'policy-url' => 'Project:Pravila',
@@ -1002,7 +1001,7 @@ Možda je premješten ili izbrisan dok ste pregledavali stranicu.',
 Nakon prijave, lozinka za ovaj novi račun može biti promijenjena na stranici ''[[Special:ChangePassword|promijeni lozinku]]'' nakon prijave.",
 'newarticle' => '(Novo)',
 'newarticletext' => "Došli ste na stranicu koja još ne postoji.
-Ako želite stvoriti tu stranicu, počnite tipkati u prozor ispod ovog teksta (pogledajte [[{{MediaWiki:Helppage}}|stranicu za pomoć]]).
+Ako želite stvoriti tu stranicu, počnite tipkati u prozor ispod ovog teksta (pogledajte [$1 stranicu za pomoć]).
 Ako ste ovamo dospjeli slučajno, kliknite gumb '''natrag''' (back) u svom pregledniku.",
 'anontalkpagetext' => "----''Ovo je stranica za razgovor s neprijavljenim suradnikom koji još nije otvorio suradnički račun ili se njime ne koristi. Zbog toga se moramo služiti brojčanom IP adresom kako bismo ga identificirali. Takvu adresu često može dijeliti više ljudi. Ako ste neprijavljeni suradnik i smatrate da su Vam upućeni irelevantni komentari, molimo Vas da [[Special:UserLogin/signup|otvorite suradnički račun]] ili [[Special:UserLogin|se prijavite]] te tako u budućnosti izbjegnete zamjenu s drugim neprijavljenim suradnicima.''",
 'noarticletext' => 'Na ovoj stranici trenutačno nema sadržaja.

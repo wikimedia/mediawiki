@@ -364,7 +364,6 @@ $1',
 'disclaimers' => 'Avîs legâi',
 'disclaimerpage' => 'Project:Avîs gjenerâi',
 'edithelp' => 'Jutori pai cambiaments',
-'helppage' => 'Help:Contignûts',
 'mainpage' => 'Pagjine principâl',
 'mainpage-description' => 'Pagjine principâl',
 'policy-url' => 'Project:Politiche',
@@ -628,7 +627,7 @@ Par plasê inclût la to direzion IP atuâl ($3) o il numar dal bloc (ID #$5) in
 
 La password par cheste identitât e pues jessi cambiade su la pagjine ''[[Special:ChangePassword|cambie password]]'' daspò de jentrade.",
 'newarticle' => '(Gnûf)',
-'newarticletext' => "Tu âs seguît un leam a une pagjine che no esist ancjemò. Par creâ une pagjine, scomence a scrivi tal spazi ca sot (cjale il [[{{MediaWiki:Helppage}}|jutori]] par altris informazions). Se tu sês ca par erôr, frache semplicementri il boton '''Indaûr''' dal to sgarfadôr.",
+'newarticletext' => "Tu âs seguît un leam a une pagjine che no esist ancjemò. Par creâ une pagjine, scomence a scrivi tal spazi ca sot (cjale il [$1 jutori] par altris informazions). Se tu sês ca par erôr, frache semplicementri il boton '''Indaûr''' dal to sgarfadôr.",
 'anontalkpagetext' => "----''Cheste e je la pagjine di discussion di un utent anonim, che nol à ancjemò creât une identitât, o che no la vûl doprâ. Par identificâlu/e a doprin alore la so direzion IP. Lis direzions IP a podin però jessi condividudis di plui utents. Se tu sês un utent anonim e tu crodis che ti vedin fat coments che no si riferissin a ti, par plasê [[Special:UserLogin|cree une gnove identitâ o jentre]] cun chê che tu âs za cussì tu evitarâs in futûr di jessi confondût un altris utents anonims.''",
 'noarticletext' => 'Par cumò nol è nuie in cheste pagjine.
 Tu puedis [[Special:Search/{{PAGENAME}}|cirî chest titul]] in altris pagjinis o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cirî i regjistris leâts],

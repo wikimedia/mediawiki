@@ -291,7 +291,6 @@ $1",
 'disclaimers' => 'Impressum',
 'disclaimerpage' => 'Project:Impressum',
 'edithelp' => 'Huif fias Werkln',
-'helppage' => 'Help:Inhoidsvazeichnis',
 'mainpage' => 'Hoamseitn',
 'mainpage-description' => 'Hoamseitn',
 'policy-url' => 'Project:Richtlinien',
@@ -527,7 +526,7 @@ Dei IP-Adress wead in da Versionsgschicht afzoachnet.',
 Des Posswort fyr des naiche Benutzerkonto kå auf da Speziaalseiten  „[[Special:ChangePassword|Posswort ändern]]“ gändert wern.',
 'newarticle' => '(Neich)',
 'newarticletext' => 'Du bist am Link gfoigt, wos no koa Seitn gibt.
-Um de Seitn ozlegn, trog dein Text im untan Kostn ei (schaug af da [[{{MediaWiki:Helppage}}|Huifeseitn]] fia mea Infos).
+Um de Seitn ozlegn, trog dein Text im untan Kostn ei (schaug af da [$1 Huifeseitn] fia mea Infos).
 Wens a Irrtum is, dassd do bist, nach druck in Zruck-Knopf vom Brausa.',
 'anontalkpagetext' => "---- ''De Seiten werd dodazua hergnumma, am ned-ågmöiderten Benutzer Nochrichten z' hinterlossen.
 Wånnst mid de Kommentare auf derer Seiten nix åfanga kåst, is vamuatlich da friarerne Inhower vo derer IP-Adress gmoat und du kåstas ignorirn.

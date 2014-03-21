@@ -306,7 +306,6 @@ $1',
 'disclaimers' => 'Ay aartu',
 'disclaimerpage' => 'Project:Aartu yu daj',
 'edithelp' => 'Ndimbal',
-'helppage' => 'Help:Ndimbal',
 'mainpage' => 'Xëtu Njëlbéen',
 'mainpage-description' => 'Xët wu njëkk',
 'policy-url' => 'Project:àtte',
@@ -591,7 +590,7 @@ Sa màkkaanu IP mooy $3 xammeekaayu téye gi mooy #$5. Di la sakku nga joxe leen
 'accmailtext' => "Ab baatujàll ngir [[User talk:$1|$1]]  yónne nañu ko $2.
 Baatujàllub bii jëfandikukat bu bees man nga ko soppi ci ''[[Special:ChangePassword|soppi baatujàll]]'' soo duggee ba noppi.",
 'newarticle' => '(Bees)',
-'newarticletext' => "Da ngaa topp ab lëkkalekaay buy jëme ci aw xët wu amagul. ngir sos xët wi léegi, duggalal sa mbind ci boyot bii ci suuf (man ngaa yër [[{{MediaWiki:Helppage}}|xëtu ndimbal wi]] ngir yeneeni xamle). Su fekkee njuumtee la fi indi cuqal ci '''dellu''' bu sa joowukaay.",
+'newarticletext' => "Da ngaa topp ab lëkkalekaay buy jëme ci aw xët wu amagul. ngir sos xët wi léegi, duggalal sa mbind ci boyot bii ci suuf (man ngaa yër [$1 xëtu ndimbal wi] ngir yeneeni xamle). Su fekkee njuumtee la fi indi cuqal ci '''dellu''' bu sa joowukaay.",
 'anontalkpagetext' => "---- ''Yaa ngi ci xëtu waxtaanuwaayu ab jëfandikukatu alaxam, bu bindoogul ba fim ne mbaa jëfandikoowul am sàqam.
 Kon ngir xàmmee ko fàw nga jëfandikoo màkkaanub IP wam. Te màkkaanub IP jëfandikukat yu bari man nañ koo bokk.
 Su fekkee jëfandikukatu alaxam nga, te nga gis ne dees laa féetale ay kàddu yoo moomul, ngalla [[Special:UserLogin|bindu]] walla [[Special:UserLogin|dugg]] ngir benn jaxase bañatee am ëllëg .''",

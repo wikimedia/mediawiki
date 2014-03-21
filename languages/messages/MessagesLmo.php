@@ -317,7 +317,6 @@ $1",
 'disclaimers' => 'Disclaimers',
 'disclaimerpage' => 'Project:Avertenz generaj',
 'edithelp' => 'Manual de spiegazión',
-'helppage' => 'Help:Contegnüü',
 'mainpage' => 'Pagina principala',
 'mainpage-description' => 'Pagina principala',
 'policy-url' => 'Project:Policy',
@@ -518,7 +517,7 @@ Fee el piasè d'inclüd tüt i detaj chì de sura in qualsessìa dumanda che a d
 'accmailtext' => 'La parola d\'urdin per "$1" l\'è stada mandada a $2.',
 'newarticle' => '(Növ)',
 'newarticletext' => 'Te seet andaa adree a un ligam a una pagina che la esista gnamò.
-Per creà la pagina, a l\'è assee che te tachet a scriv in del box desota (varda la [[{{MediaWiki:Helppage}}|pagina de vüt]] per savèn püssee).
+Per creà la pagina, a l\'è assee che te tachet a scriv in del box desota (varda la [$1 pagina de vüt] per savèn püssee).
 Se te seet chì per erur, schiscia "indree" in sül tò browser.',
 'anontalkpagetext' => "''Questa chí a l'é la pagina da ciciarada d'un druvadur che l'ha nonanmò registraa un cünt, o che 'l le dröva mia.
 Per 'sta reson chí, el pò vess identificaa dumà cunt el sò indirizz nümereg de IP.

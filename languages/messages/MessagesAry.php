@@ -247,7 +247,6 @@ $1',
 'disclaimers' => 'Inḍaraṫ',
 'disclaimerpage' => 'Project:Inḍaraṫ ĝammin',
 'edithelp' => 'Mosaĝada',
-'helppage' => 'Help:Meḍmon',
 'mainpage' => 'Ṣ-Ṣefḫa l-owla',
 'mainpage-description' => 'Ṣ-Ṣefḫa l-owla',
 'policy-url' => 'Project:siyassa',
@@ -627,7 +626,7 @@ yqdr ikon ṫnql wlla ṫḫyyd mlli knṫi kaṫċof had ṣfḫa.',
 ṫqdr ṫbddal klmṫ s-srr dialt had l-ḫisab j-jdid f-ṣṣfḫa ṫaĝ ''[[Special:ChangePassword|bḍḍel klmṫ s-srr]]'' mn bĝdmma ṫdĥol.",
 'newarticle' => '(jdid)',
 'newarticletext' => "Ṫbeĝṫi waḫed l-lyan li kayddi le waḫed ṣ-ṣefḫa li ṫṫemḫaṫ.
-Baċ ṫsayeb had ṣ-ṣefḫa, bda ṫekṫeb fe ṣ-ṣendoq li l-ṫeḫṫ (ċof ila bġiṫi [[{{MediaWiki:Helppage}}|ṣ-ṣefḫa de l-mosaĝada]] le l-mazid de l-meĝlomaṫ).
+Baċ ṫsayeb had ṣ-ṣefḫa, bda ṫekṫeb fe ṣ-ṣendoq li l-ṫeḫṫ (ċof ila bġiṫi [$1 ṣ-ṣefḫa de l-mosaĝada] le l-mazid de l-meĝlomaṫ).
 Ila wṣelṫi hnaya ĝla ġefla, brek ĝla l-boton '''rjeĝ''' dyal n-navigaṫør internet dyalek.",
 'anontalkpagetext' => "----''hada niqaċ ṫaĝ waḫd l-mosṫĥdim anonim lli mazal ma ṣayb-ċ ċi ḫisab, wlla ma kayĥdam-ċ bih.
 dakċċi ĝlaċ raḫna ĥddamin b-ĝonwan l-IP ṛ-ṛqmi baċ nĝaṛṛfoh.

@@ -571,7 +571,6 @@ $1",
 'disclaimers' => 'Veurbehold',
 'disclaimerpage' => 'Project:Veurbehoud',
 'edithelp' => 'Hulpe mit bewarken',
-'helppage' => 'Help:Inhoud',
 'mainpage' => 'Veurblad',
 'mainpage-description' => 'Veurblad',
 'policy-url' => 'Project:Beleid',
@@ -1022,7 +1021,7 @@ t Kan ween dat t herneumd is of dat t vortedaon is to jie t an t bekieken waren.
 'accmailtext' => "Der is n willekeurig wachtwoord veur [[User talk:$1|$1]] verstuurd naor $2. t Kan ewiezigd wörden op de zied ''[[Special:ChangePassword|wachtwoord wiezigen]]'' naoda'j an-emeld bin.",
 'newarticle' => '(Niej)',
 'newarticletext' => "Disse zied besteet nog niet.
-In t veld hieronder ku'j wat schrieven um disse zied an te maken (meer informasie vie'j op de [[{{MediaWiki:Helppage}}|hulpzied]]).
+In t veld hieronder ku'j wat schrieven um disse zied an te maken (meer informasie vie'j op de [$1 hulpzied]).
 A'j hier per ongelok terechtekeumen bin gebruuk dan de knoppe '''veurige''' um weerumme te gaon.",
 'anontalkpagetext' => "---- ''Disse overlegzied heurt bie n anonieme gebruker die nog gien gebrukersnaam hef, of t niet gebruukt. We gebruken daorumme t IP-adres um hum of heur te herkennen, mer t kan oek ween dat meerdere personen t zelfde IP-adres gebruken, en da'j hiermee berichten ontvangen die niet veur joe bedoeld bin. A'j dit veurkoemen willen, dan ku'j t best [[Special:UserLogin/signup|n gebrukersnaam anmaken]] of [[Special:UserLogin|anmelden]].''",
 'noarticletext' => 'Der steet noen gien tekste op disse zied.

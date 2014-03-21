@@ -282,7 +282,6 @@ $1',
 'disclaimers' => '免責聲明',
 'disclaimerpage' => 'Project:免責聲明',
 'edithelp' => '編寫幫助',
-'helppage' => 'Help:説明',
 'mainpage' => '封面',
 'mainpage-description' => '封面',
 'policy-url' => 'Project:政策',
@@ -538,7 +537,7 @@ $2',
 'accmailtext' => "'$1'嗰密碼發到$2嘞。",
 'newarticle' => '（新）',
 'newarticletext' => '箇係隻冇拕建立嗰頁面。
-要新開箇隻頁面，請到下首嗰方框裡頭編寫內容（望吖[[{{MediaWiki:Helppage}}|説明]]嗰細節）。
+要新開箇隻頁面，請到下首嗰方框裡頭編寫內容（望吖[$1 説明]嗰細節）。
 若係汝伓係特事來到箇首，捺吖瀏覽器嗰「去還」鍵即得去還。',
 'anontalkpagetext' => "---- ''箇係匿名用戶嗰討論頁，話伓定佢哈冇開隻帳戶。別人單用得正IP地址同佢聯繫。箇隻IP地址可能有好幾隻用戶共用。如果倷係匿名用戶，覺得箇頁嗰內容同倷冇關，歡迎去[[Special:UserLogin|開隻新帳戶或登入]]，省得同別嗰匿名用戶扤混來。''",
 'noarticletext' => '眼下箇頁哈冇內容，汝到別嗰頁面[[Special:Search/{{PAGENAME}}|尋得正箇頁嗰標題]]，

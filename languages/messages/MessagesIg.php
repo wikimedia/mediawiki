@@ -305,7 +305,6 @@ $1',
 'disclaimers' => 'Ihe anyí chọrọ ki ma',
 'disclaimerpage' => 'Project:Ihe I kweshiri ma',
 'edithelp' => 'Inyetuáká I rüwa',
-'helppage' => 'Help: Ihe di ime',
 'mainpage' => 'Ihü Mbu',
 'mainpage-description' => 'Ihü Mbu',
 'policy-url' => 'Project:Iwu',
@@ -551,7 +550,7 @@ Biko tinyé cha ihe ńdía na ájújú nkeówulà I gi me.',
 'accmailtitle' => 'mkpurụ okwu ejị a gafẹ a sipuole.',
 'newarticle' => '(Nke ohúrù)',
 'newarticletext' => "Í sòrò jikodo na ihü nke adíghị bòdì.
-Í chȯrí ké ihü nke áhù, bìdó Í pị áka nà igbé nȯr nà àlà ngá (lé [[{{MediaWiki:Helppage}}|ihü nkwádo]] màkà ụmà ozor).
+Í chȯrí ké ihü nke áhù, bìdó Í pị áka nà igbé nȯr nà àlà ngá (lé [$1 ihü nkwádo] màkà ụmà ozor).
 Ȯ bú nà Í byàrà ngá na aghọ, piá mpiá otúzor-intanet gi nke '''àzú'''.",
 'noarticletext' => 'Mkpụrụ edemede à díghị na ihü nke.
 Í nwèríkí [[Special:Search/{{PAGENAME}}|tuó íshí ihü nke á]] na ihü ndi ozor,

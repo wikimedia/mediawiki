@@ -366,7 +366,6 @@ $1',
 'disclaimers' => 'Gwadiadau',
 'disclaimerpage' => 'Project:Gwadiad Cyffredinol',
 'edithelp' => 'Help gyda golygu',
-'helppage' => 'Help:Cymorth',
 'mainpage' => 'Hafan',
 'mainpage-description' => 'Hafan',
 'policy-url' => 'Project:Policy',
@@ -816,7 +815,7 @@ Efallai bod yr adran wedi cael ei symud neu ei dileu ers i chi agor y dudalen.",
 'accmailtext' => "Anfonwyd cyfrinair a grewyd ar hap ar gyfer [[User talk:$1|$1]] at $2. Gellir newid y cyfrinair hwn ar y dudalen ''[[Special:ChangePassword|newid cyfrinair]]'', wrth fewngofnodi.",
 'newarticle' => '(Newydd)',
 'newarticletext' => "Rydych chi wedi dilyn cysylltiad i dudalen sydd heb gael ei chreu eto.
-I greu'r dudalen, dechreuwch deipio yn y blwch isod (gweler y [[{{MediaWiki:Helppage}}|dudalen gymorth]] am fwy o wybodaeth).
+I greu'r dudalen, dechreuwch deipio yn y blwch isod (gweler y [$1 dudalen gymorth] am fwy o wybodaeth).
 Os daethoch yma ar ddamwain, cliciwch botwm '''n&ocirc;l''' y porwr.",
 'anontalkpagetext' => "----''Dyma dudalen sgwrs ar gyfer defnyddiwr anhysbys sydd heb greu cyfrif eto, neu nad yw'n ei ddefnyddio. Felly mae'n rhaid inni ddefnyddio'r cyfeiriad IP i'w (h)adnabod. Mae cyfeiriadau IP yn gallu cael eu rhannu rhwng nifer o ddefnyddwyr. Os ydych chi'n ddefnyddiwr anhysbys ac yn teimlo'ch bod wedi derbyn sylwadau amherthnasol, [[Special:UserLogin/signup|crëwch gyfrif]] neu [[Special:UserLogin|mewngofnodwch]] i osgoi cael eich drysu gyda defnyddwyr anhysbys eraill o hyn ymlaen.''",
 'noarticletext' => "Mae'r dudalen hon yn wag ar hyn o bryd.

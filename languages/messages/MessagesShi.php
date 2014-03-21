@@ -240,7 +240,6 @@ $1',
 'disclaimers' => 'Ur darssuq',
 'disclaimerpage' => 'Project: Ur illa maddar illa ssuq',
 'edithelp' => 'Aws ɣ tirra',
-'helppage' => 'Help:Mayllan',
 'mainpage' => 'Tasana tamzwarut',
 'mainpage-description' => 'Tasna tamzwarut',
 'policy-url' => 'Project:Tasrtit',
@@ -454,7 +453,7 @@ Kcm zwar tft tansan nk tbratin ɣ [[Special:Preferences|Timssusmin n umqdac]].',
 'accmailtitle' => 'awal ihdan hatin yuznak nnit',
 'newarticle' => '(Amaynu)',
 'newarticletext' => "Tfrt yan uzday s yat tasna lli ur ta jju illan [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} ttuykkas].
-Iɣ rast daɣ tskrt skcm atṛiṣ nk ɣ tanaka  yad (Tẓḍaṛt an taggt γi [[{{MediaWiki:Helppage}}|tasna u usaws]] iɣ trit inɣmisn yaḍn).
+Iɣ rast daɣ tskrt skcm atṛiṣ nk ɣ tanaka  yad (Tẓḍaṛt an taggt γi [$1 tasna u usaws] iɣ trit inɣmisn yaḍn).
 Ivd tlkmt {{GENDER:||e|(e)}} ɣis bla trit, klikki f tajrrayt n '''urrir''' n iminig nk (navigateur).",
 'noarticletext' => 'ɣilad ur illa walu may ityuran  f tasnatad ad, tzdart at [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],

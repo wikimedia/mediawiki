@@ -289,7 +289,6 @@ $1',
 'disclaimers' => 'Mga pagpasabot',
 'disclaimerpage' => 'Project:Mga pagpasabot',
 'edithelp' => 'Tabang sa pag-usab',
-'helppage' => 'Help:Mga sulod',
 'mainpage' => 'Unang Panid',
 'mainpage-description' => 'Unang Panid',
 'policy-url' => 'Project:Palisiya',
@@ -495,7 +494,7 @@ Ang imong ''IP address'' maoy itala sa kaagi niini nga panid.",
 'summary-preview' => 'Paunang tan-aw sa mubong sugid:',
 'newarticle' => '(Bag-o)',
 'newarticletext' => 'Mitulpok ka sa sumpay ngadto sa usa ka wala pa masulat nga panid.
-Aron mahimo ang maong panid, pagtayp sa kahon sa ubos (tan-awa ang [[{{MediaWiki:Helppage}}|panid sa tabang]] alang sa dugang impormasyon).
+Aron mahimo ang maong panid, pagtayp sa kahon sa ubos (tan-awa ang [$1 panid sa tabang] alang sa dugang impormasyon).
 Kon miabot ka dinhi pinaagi sa usa ka sayop, palihog tuploka ang back nga tuplokanan sa imong brawser.',
 'noarticletext' => 'Sa kasamtangan walay sulod nga teksto ang kining panid.
 Puyde nimong  [[Special:Search/{{PAGENAME}}|pangitaon kining titulo sa panid]] sa ubang mga panid, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pangitaa ang related nga mga log],

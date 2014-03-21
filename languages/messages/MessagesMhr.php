@@ -282,7 +282,6 @@ $messages = array(
 'disclaimers' => 'Вуйшиймаш деч кораҥмаш',
 'disclaimerpage' => 'Project:Вуйшиймаш деч кораҥмаш',
 'edithelp' => 'Тӧрлатымаш полыш',
-'helppage' => 'Help:Полшык',
 'mainpage' => 'Тӱҥ лаштык',
 'mainpage-description' => 'Тӱҥ лаштык',
 'portal' => 'Тӱшка',
@@ -439,7 +438,7 @@ $messages = array(
 'accmailtitle' => 'Шолыпмут колтымо.',
 'newarticle' => '(У)',
 'newarticletext' => "Тыгай лӱман лаштык уке.
-Лаштыкым ышташлан ӱлнӧ возаш тӱҥал (сайынрак палашлан [[{{MediaWiki:Helppage}}|полшыкым]] ончал).
+Лаштыкым ышташлан ӱлнӧ возаш тӱҥал (сайынрак палашлан [$1 полшыкым] ончал).
 Тый тышке йонгылыш логалынат гын, браузерыште '''шенгек''' полдышым темдал.",
 'noarticletext' => 'Кызытсе жаплан тиде лаштыкыште нимом возымо огыл.
 Тый тиде лаштыкын лӱмжым вес лаштык-влакыште [[Special:Search/{{PAGENAME}}|кычалын]] кертат, але <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журнал-влакыште кычалын] кертат, але [{{fullurl:{{FULLPAGENAME}}|action=edit}} тыгай лӱман лаштыкым ышташ] кертат</span>.',

@@ -281,7 +281,6 @@ $1',
 'disclaimers' => 'Дааврас эс зөвшәрлһн',
 'disclaimerpage' => 'Project:Даарас эс зөвшәрлһн',
 'edithelp' => 'Чикллһнә дөң',
-'helppage' => 'Help:Һарг',
 'mainpage' => 'Нүр халх',
 'mainpage-description' => 'Нүр халх',
 'policy-url' => 'Project:Бодлһн',
@@ -466,7 +465,7 @@ $1',
 'accmailtitle' => 'Нууц үгтә бичг йовулла.',
 'newarticle' => '(Шин)',
 'newarticletext' => "Та заалһиг дахад бәәдг уга халхд ирв.
-Терүг бүтәҗ болхла, дораһар терзд бичтн (дәкәд өггцнә төлә [[{{MediaWiki:Helppage}}|тәәлвр]] хәләтн).
+Терүг бүтәҗ болхла, дораһар терзд бичтн (дәкәд өггцнә төлә [$1 тәәлвр] хәләтн).
 Та эн һазрт эндүһәр бәәхлә, '''Хәрү''' дарциг дартн.",
 'noarticletext' => "Эн халх хоосн. Та [[Special:Search/{{PAGENAME}}|эн нернә сананд орулһна хәәх]] , <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} бүртклин бичгт хәәх], аль '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} бүтәх]'''</span>.",
 'clearyourcache' => "'''Оньган өгтн:''' Кесн сольлһн үзхәр, тана хәләлгчин кеш цеврүлтн: '''Mozilla / Firefox''': ''Ctrl+Shift+R'', '''IE:''' ''Ctrl+F5'', '''Safari''': ''Cmd+Shift+R'', '''Konqueror''': ''F5'', '''Opera''': ''Tools→Preferences'' менүһәс.",

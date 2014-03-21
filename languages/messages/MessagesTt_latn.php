@@ -320,7 +320,6 @@ $1',
 'disclaimers' => 'Cawaplılıqtan baş tartu',
 'disclaimerpage' => 'Project:Cawaplılıqtan baş tartu',
 'edithelp' => 'Üzgärtü buyınça yärdäm',
-'helppage' => 'Help:Eçtälek',
 'mainpage' => 'Baş bit',
 'mainpage-description' => 'Baş bit',
 'policy-url' => 'Project:Qäğidälär',
@@ -620,7 +619,7 @@ Sez bu säxifäne qarağanda ul beterelä aldı.',
 Saytqa kergäç sez ''[[Special:ChangePassword|sersüzegezne üzgärtä alasız]]''.",
 'newarticle' => '(Yaña)',
 'newarticletext' => "Sez älegä yazılmağan bitkä kerdegez.
-Yaña bit yasaw öçen astağı täräzädä mäqälä tekstın cıyığız ([[{{MediaWiki:Helppage}}|yärdäm biten]] qarıy alasız).
+Yaña bit yasaw öçen astağı täräzädä mäqälä tekstın cıyığız ([$1 yärdäm biten] qarıy alasız).
 Ägär sez bu bitkä yalğışlıq belän eläkkän bulsağız, brauzerığıznıñ '''artqa''' töymäsenä basığız.",
 'anontalkpagetext' => "----''Bu bäxäs bite sistemada terkälmägän yäisä üz iseme belän kermägän qullanuçınıqı.
 Anı tanu öçen IP adresı faydalanıla.

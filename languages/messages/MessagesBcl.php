@@ -345,7 +345,6 @@ $1',
 'disclaimers' => 'Mga Pangindahan',
 'disclaimerpage' => 'Project:Pangkagabsán na pangindahan',
 'edithelp' => 'Pantabang sa pagliliwat',
-'helppage' => 'Help:Mga Kalamnan',
 'mainpage' => 'Panginot na Pahina',
 'mainpage-description' => 'Panginot na Pahina',
 'policy-url' => 'Project:Kalakawan',
@@ -807,7 +806,7 @@ Ini puwedeng pinagbalyo o pinagpara na habang saimong pinaghihiling an pahina.',
 'accmailtitle' => 'Napadará na an sekretong panlaog.',
 'accmailtext' => "An purak na pinagpuyos na pasa-taramon para ki [[User talk:$1|$1]] ipinagpadara na sa $2. Ini mapupuwedeng pagribayan sa ''[[Special:ChangePassword|change password]]'' na pahina matapos na ika nakalaog na.",
 'newarticle' => '(Bàgo)',
-'newarticletext' => "Ika nakapagsunod sa sarong sugpon pasiring sa sarong pahina na bako pang eksistido. Tanganing makapagmukna nin pahina, magpoon sa pagpindot sa laog nin kahon sa ibaba (hilngon an [[{{MediaWiki:Helppage}}|pahina nin katabangan]] para sa kadugangan na impormasyon).
+'newarticletext' => "Ika nakapagsunod sa sarong sugpon pasiring sa sarong pahina na bako pang eksistido. Tanganing makapagmukna nin pahina, magpoon sa pagpindot sa laog nin kahon sa ibaba (hilngon an [$1 pahina nin katabangan] para sa kadugangan na impormasyon).
 Kun ika napasalang nakadigde, i-klik an  '''ibalik''' na pindutan kan saimong kilyaw.",
 'anontalkpagetext' => "----''Ini iyo an pahina kan orolayan para an sarong dae bistadong paragamit na dae pa nakapagmukna nin panindog, o dae pa nakapaggamit kaini.
 Kaya kami kaipong gumamit nin numerikal na IP address sa pagbisto saiya.

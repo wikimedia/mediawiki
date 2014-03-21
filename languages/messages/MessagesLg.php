@@ -240,7 +240,6 @@ $1",
 'disclaimers' => "Okutangaaza ku kkomo ery'obuvunaaniro bwaffe obw'omu mateeka",
 'disclaimerpage' => "Project:Okutangaaza ku kkomo ery'obuvunaaniro bwaffe obw'omu mateeka",
 'edithelp' => 'Nyamba',
-'helppage' => 'Help:Endagiriro',
 'mainpage' => 'Olupapula Olusooka',
 'mainpage-description' => 'Olupapula Olusooka',
 'policy-url' => "Project:Amateeka n'enkola",
@@ -584,7 +583,7 @@ Okukyusa ekigambo kino memba, ng'ayingidde mu wiki, alage ku lupapula ''[[Specia
 'newarticle' => '(Lupapula lupya)',
 'newarticletext' => "Enyunzi gy'ogenzeko egguka ku lupapula olutannakolebwawo.<br />
 Oba gwe oyagala okulukolawo, wandika mu kabokisi akaddako wano.
-(okuyiga ebisingawo, genda ku [[{{MediaWiki:Helppage}}|lupapula olw'obuyambi]]).<br />
+(okuyiga ebisingawo, genda ku [$1 lupapula olw'obuyambi]).<br />
 Bw'obanga tewagenderedde kutuuka wano, nyigabunyizi eppeesa ery'omu kalambula-neti yo
 erya '''ddayo'''.",
 'anontalkpagetext' => "----''Olupapula olw'emboozi luno lukoledwawo at'eyanjula atakolera mu akawunti ya ku wiki eno.<br />

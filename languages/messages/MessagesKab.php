@@ -291,7 +291,6 @@ $1',
 'disclaimers' => 'Iɣtalen',
 'disclaimerpage' => 'Project:Iɣtalen',
 'edithelp' => 'Tallat deg ubeddel',
-'helppage' => 'Help:Agbur',
 'mainpage' => 'Asebter amenzawi',
 'mainpage-description' => 'Asebter amenzawi',
 'policy-url' => 'Project:Ilugan',
@@ -726,7 +725,7 @@ Yezmer ad yetbeddel ɣef usebtar [[Special:ChangePassword|Abeddel n awal uɛddi]
 'newarticle' => '(Amaynut)',
 'newarticletext' => 'Tḍefreḍ azday ɣer usebter mazal ur yettwaxleq ara.
 Akken ad txelqeḍ asebter-nni, aru deg tenkult i tella deg ukessar
-(ẓer [[{{MediaWiki:Helppage}}|asebter n tallat]] akken ad tessneḍ kter).
+(ẓer [$1 asebter n tallat] akken ad tessneḍ kter).
 Ma tɣelṭeḍ, wekki kan ɣef tqeffalt "Back/Précédent" n browser/explorateur inek.',
 'anontalkpagetext' => "---- ''Wagi d asebter n umyennan n useqdac adrig, mazal ur d-yesnufa ara amiḍan. I taɣẓint agi, ilaq an seqdec tansa IP ines iwakken at-id n sulu. Yiwet tansa IP tezmer at tettuseqdac sɣur aṭṭas n iseqdacen. Lukan ula d kečč aqla-k amseqdac adrig dɣa ur tebɣiḍ ara ad tettwabcreḍ izen am wigini, ihi [[Special:UserLogin/signup|snulfud amiḍan]] naɣ [[Special:UserLogin|qqened]] iwakken sya d asawen ur t-illint ara uguren n usulu.''",
 'noarticletext' => 'Ulac aḍris deg usebter-agi, tzemreḍ ad [[Special:Search/{{PAGENAME}}|tnadiḍ ɣef wezwel n usebter-agi]] deg isebtar wiyaḍ neɣ [{{fullurl:{{FULLPAGENAME}}|action=edit}} tettbeddileḍ asebter-agi].',

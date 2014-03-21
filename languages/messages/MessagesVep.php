@@ -334,7 +334,6 @@ $1",
 'disclaimers' => 'Pučind vastusenpidandaspäi',
 'disclaimerpage' => 'Project:Pučind vastusenpidandaspäi',
 'edithelp' => 'Abu redaktiruindas',
-'helppage' => 'Help:südäiolend',
 'mainpage' => 'Pälehtpol’',
 'mainpage-description' => 'Pälehtpol’',
 'policy-url' => 'Project:Ohjandimed',
@@ -699,7 +698,7 @@ Voib olda, se om sirtud vai čutud poiš lugemižen aigan.',
 'accmailtitle' => 'Peitsana om oigetud.',
 'newarticle' => '(Uz’)',
 'newarticletext' => "Tö tulit kosketustme lehtpolele, kudamb ei olend tehtud völ.
-Miše säta lehtpol', kirjutaškakat alemba sijatud iknas (kc. [[{{MediaWiki:Helppage}}|abun lehtpol']], miše sada ližainformacijad).
+Miše säta lehtpol', kirjutaškakat alemba sijatud iknas (kc. [$1 abun lehtpol'], miše sada ližainformacijad).
 Ku tö olet petnus tänna tuldes, pingat teiden kaclimen '''tagaze'''-kingitimele.",
 'noarticletext' => 'Necil lehtpolel ei ole nügüd\' tekstad.
 Tö voit [[Special:Search/{{PAGENAME}}|ectä nece nimi]] toižil lehtpolil,

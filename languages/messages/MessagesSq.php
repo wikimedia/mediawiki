@@ -464,7 +464,6 @@ $1",
 'disclaimers' => 'Shfajësimet',
 'disclaimerpage' => 'Project:Shfajësimet e përgjithshme',
 'edithelp' => 'Ndihmë për redaktim',
-'helppage' => 'Help:Përmbajtje',
 'mainpage' => 'Faqja kryesore',
 'mainpage-description' => 'Faqja kryesore',
 'policy-url' => 'Project:Politika e rregullave',
@@ -863,7 +862,7 @@ Mund të jetë zhvendosur ose fshirë ndërkohë që ju ishit duke parë këtë 
 Fjalëkalimi për këtë llogari mund të ndryshohet në faqen ''[[Special:ChangePassword|ndrysho fjalëkalimin]]'' pasi të jeni identifikuar.",
 'newarticle' => '(I ri)',
 'newarticletext' => "Ju keni ndjekur nje lidhje drejt një faqeje që nuk ekziston.
-Për ta krijuar këtë faqe ju mund të shkruani në kutinë e mëposhtme (shih [[{{MediaWiki:Helppage}}|faqen e ndihmës]] për më shumë informacion).
+Për ta krijuar këtë faqe ju mund të shkruani në kutinë e mëposhtme (shih [$1 faqen e ndihmës] për më shumë informacion).
 Nëse ju keni mbërritur këtu gabimisht, atëherë klikoni butonin '''pas''' të shfletuesit tuaj.",
 'anontalkpagetext' => "----'' Kjo është një faqe diskutimi për një përdorues anonim i cili nuk ka krijuar akoma një llogari, ose qe nuk e përdor atë. 
  Prandaj, ne duhet të përdorim adresën IP numerike për identifikimin e tij. 

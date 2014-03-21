@@ -545,7 +545,6 @@ $1',
 'disclaimers' => 'Termeni',
 'disclaimerpage' => 'Project:Termeni',
 'edithelp' => 'Ajutor pentru modificare',
-'helppage' => 'Help:Ajutor',
 'mainpage' => 'Pagina principală',
 'mainpage-description' => 'Pagina principală',
 'policy-url' => 'Project:Politică',
@@ -1014,7 +1013,7 @@ Aceasta fie a fost mutată, fie a fost ștearsă în timp ce vizualizați pagina
 'accmailtitle' => 'Parola a fost trimisă.',
 'accmailtext' => "O parolă generată aleator pentru [[User talk:$1|$1]] a fost trimisă la $2. Parola poate fi schimbată după autentificare din pagina ''[[Special:ChangePassword|schimbare parolă]]''.",
 'newarticle' => '(Nou)',
-'newarticletext' => 'Ați încercat să ajungeți la o pagină care nu există. Pentru a o crea, începeți să scrieți în caseta de mai jos (vedeți [[{{MediaWiki:Helppage}}|pagina de ajutor]] pentru mai multe informații). Dacă ați ajuns aici din greșeală, întoarceți-vă folosind controalele navigatorului dumneavoastră.',
+'newarticletext' => 'Ați încercat să ajungeți la o pagină care nu există. Pentru a o crea, începeți să scrieți în caseta de mai jos (vedeți [$1 pagina de ajutor] pentru mai multe informații). Dacă ați ajuns aici din greșeală, întoarceți-vă folosind controalele navigatorului dumneavoastră.',
 'anontalkpagetext' => "---- ''Aceasta este pagina de discuții pentru un utilizator care nu și-a creat un cont încă, sau care nu s-a autentificat.
 De aceea trebuie să folosim adresă IP pentru a identifica această persoană.
 O adresă IP poate fi folosită în comun de mai mulți utilizatori.

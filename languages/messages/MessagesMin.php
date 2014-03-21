@@ -409,7 +409,6 @@ $1',
 'disclaimers' => 'Sanggahan umum',
 'disclaimerpage' => 'Project:Sanggahan umum',
 'edithelp' => 'Bantuan suntiangan',
-'helppage' => 'Help:Isi',
 'mainpage' => 'Palanta',
 'mainpage-description' => 'Palanta',
 'policy-url' => 'Project:Kabijakan jo padoman',
@@ -827,7 +826,7 @@ Subbagian ko mungkin lah dipindahan atau dihapuih sangkek Sanak mambukaknyo.',
 Kato sandi untuak akun baharu iko dapek diubah di laman ''[[Special:ChangePassword|pangubahan kato sandi]]'' satalah masuak log.",
 'newarticle' => '(Baru)',
 'newarticletext' => "Laman nan Sanak cari alun ado.
-Untuak mambuek laman tu, mulailah jo manulih dalam kotak di bawah (caliak [[{{MediaWiki:Helppage}}|laman bantuan]] untuak informasi labiah lanjuik).
+Untuak mambuek laman tu, mulailah jo manulih dalam kotak di bawah (caliak [$1 laman bantuan] untuak informasi labiah lanjuik).
 Jikok Sanak indak sangajo sampai ka laman ko, klik tombol '''back''' pado paramban web Sanak.",
 'anontalkpagetext' => "----''Iko adolah laman rundiang saurang pangguno anonim nan alun mambuek akun atau indak manggunoannyo.
 Jadi, kami tapaso mamakai alamat IP nan takaik untuak mangenalinyo.

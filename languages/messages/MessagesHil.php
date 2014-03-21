@@ -252,7 +252,6 @@ $1',
 'disclaimers' => 'Diskleymer',
 'disclaimerpage' => 'Project:Kabilogan nga diskleymer',
 'edithelp' => 'Bulig sa pag Ilis',
-'helppage' => 'Help:Mga Unod',
 'mainpage' => 'Mayor nga Panid',
 'mainpage-description' => 'Mayor nga Panid',
 'policy-url' => 'Project:Patakaran',
@@ -662,7 +661,7 @@ Mahimo nga ini ginsaylo na ukon ginpanas samtang nagalantaw ka sang panid.',
 Ang pasword para sa sini nga bag-o nga akawnt mahimo ma-ilisan sa ''[[Special:ChangePassword|ilisan ang pasword]]'' nga panid pagkatapos magsulod.",
 'newarticle' => '(Bag-o)',
 'newarticletext' => "Nagbukas ka sang isa ka tabid pakadto sa isa ka pahina nga wala pa nahimo.
-Para maghimo sang sina na pahina, sugod ka lang sa pagtayp sa sulod sang kahon nga makit an mo sa idalum (tan-awa ang [[{{MediaWiki:Helppage}}|bulig nga pahina]] para sa dugang nga impormasyon).
+Para maghimo sang sina na pahina, sugod ka lang sa pagtayp sa sulod sang kahon nga makit an mo sa idalum (tan-awa ang [$1 bulig nga pahina] para sa dugang nga impormasyon).
 Pero kung nakasulod nga aksidente lamang, palihog lang i-klik sa imo internet nga may ngalan ukon simbolo nga '''back''' button.",
 'anontalkpagetext' => "----''Ini ang panid para sa pagtalakay sa wala makilala-an nga manuggamit nga wala pa nakatuga sang akawnt, ukon wala nagagamit sang isa.
 Amo nga kinahanglan naton mag-gamit sang IP adres nga de numero agod nga mahibaluan naton siya.

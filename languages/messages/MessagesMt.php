@@ -520,7 +520,6 @@ $1",
 'disclaimers' => 'Ċaħdiet',
 'disclaimerpage' => 'Project:Ċaħda ġenerali',
 'edithelp' => 'Gwida',
-'helppage' => 'Help:Kontenut',
 'mainpage' => 'Il-Paġna prinċipali',
 'mainpage-description' => 'Il-Paġna prinċipali',
 'policy-url' => 'Project:Politika',
@@ -915,7 +914,7 @@ Seta' ġara li din ġiet immexxiha jew imħassra waqt li kont qed tara l-paġna.
 Il-password għal dan il-kont il-ġdid tista' titbiddel fil-paġna għat-''[[Special:ChangePassword|tibdil tal-password]]''.",
 'newarticle' => '(Ġdid)',
 'newarticletext' => "Inti segwejt link għal paġna li għadha ma ġietx maħluqa.
-Sabiex toħloq il-paġna, ikteb fil-kaxxa li tinsab hawn taħt (ara [[{{MediaWiki:Helppage}}|paġna tal-għajnuna]] għal aktar informazzjoni).
+Sabiex toħloq il-paġna, ikteb fil-kaxxa li tinsab hawn taħt (ara [$1 paġna tal-għajnuna] għal aktar informazzjoni).
 Jekk wasalt hawn biż-żball, agħfas il-buttuna '''lura''' (''back'') fuq il-browser tiegħek.",
 'anontalkpagetext' => "----''Din hija l-paġna ta' diskussjoni ta' utent anonimu li għadu ma ħoloqx kont, jew inkella li ma jużahx.
 Għaldaqstant biex nidentifikawh ikollna nużaw l-indirizz tal-IP tiegħu/tagħha.

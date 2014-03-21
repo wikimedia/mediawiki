@@ -1,5 +1,5 @@
 <?php
-/** Nahuatl (Nāhuatl)
+/** Nāhuatl (Nāhuatl)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -283,7 +283,6 @@ $messages = array(
 'currentevents-url' => 'Project:Āxcāncāyōtl',
 'disclaimers' => 'Nahuatīllahtōl',
 'edithelp' => 'Tlapatlaliztechcopa tēpalēhuiliztli',
-'helppage' => 'Help:Tlapiyaliztli',
 'mainpage' => 'Achkàuhìxtlapalli',
 'mainpage-description' => 'Achkàuhìxtlapalli',
 'policy-url' => 'Project:Nahuatīltōn',
@@ -472,7 +471,7 @@ Occeppa xicalaqui niman ticmatīz.',
 'accmailtitle' => 'Tlahtōlichtacāyōtl ōmoihuah.',
 'accmailtext' => "Ōquiyōcox zāzochtacātlahtōlli in [[User talk:$1|$1]] auh ōmoquitītlan īhuīc $2. Tihueliti ticpatlaz īpan ''[[Special:ChangePassword|Ticpatlaz in ]]'' in ōticalaco achtopa.",
 'newarticle' => '(Yancuīc)',
-'newarticletext' => 'Ōtictocac cētiliztli cē zāzanilhuīc oc ahmo ia. Intlā quiēlēhuia quichīhua, xitlahcuiloa niman (nō xiquitta [[{{MediaWiki:Helppage}}|tēpalēhuiliztli zāzanilli]] huehca ōmpa tlapatlaliztli). Intlā ahmo, yāuh achtopa zāzanilli.',
+'newarticletext' => 'Ōtictocac cētiliztli cē zāzanilhuīc oc ahmo ia. Intlā quiēlēhuia quichīhua, xitlahcuiloa niman (nō xiquitta [$1 tēpalēhuiliztli zāzanilli] huehca ōmpa tlapatlaliztli). Intlā ahmo, yāuh achtopa zāzanilli.',
 'noarticletext' => 'In āxcān, ahmō onca tlahcuilōlli inīn zāzanilpan.
 Tihuelīti [[Special:Search/{{PAGENAME}}|tictēmoa inīn zāzaniltōcācopa]] occequīntīn zāzanilpan,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} machiyōmacalpan], ahnozo [{{fullurl:{{FULLPAGENAME}}|action=edit}} ticpatla inīn zāzanilli]</span>.',

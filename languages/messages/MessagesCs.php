@@ -614,7 +614,6 @@ $1',
 'disclaimers' => 'Vyloučení odpovědnosti',
 'disclaimerpage' => 'Project:Vyloučení odpovědnosti',
 'edithelp' => 'Pomoc při editování',
-'helppage' => 'Help:Obsah',
 'mainpage' => 'Hlavní strana',
 'mainpage-description' => 'Hlavní strana',
 'policy-url' => 'Project:Pravidla',
@@ -1082,9 +1081,9 @@ Možná byla přesunuta či smazána, zatímco jste si stránku {{GENDER:|prohl�
 'accmailtitle' => 'Heslo odesláno.',
 'accmailtext' => 'Náhodně vygenerované heslo pro uživatele [[User talk:$1|$1]] bylo odesláno na $2. Po přihlášení ho bude možno změnit na [[Special:ChangePassword|stránce pro změnu hesla]].',
 'newarticle' => '(Nový)',
-'newarticletext' => "Následovali jste odkaz na stránku, která dosud neexistuje.
-Pokud ji chcete vytvořit, napište text do rámečku níže a stiskněte tlačítko ''Uložit změny''. Další rady najdete v [[{{MediaWiki:Helppage}}|nápovědě]].
-Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
+'newarticletext' => 'Následovali jste odkaz na stránku, která dosud neexistuje.
+Pokud ji chcete vytvořit, začněte psát do rámečku níže (více informací najdete v [$1 nápovědě]).
+Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko <strong>Zpět</strong>.',
 'anontalkpagetext' => "----''Toto je diskusní stránka anonymního uživatele, který si dosud nevytvořil účet nebo ho nepoužívá. K&nbsp;jeho identifikaci proto musíme používat číselnou IP adresu. Takovou IP adresu může sdílet několik uživatelů. Pokud jste anonymní uživatel a&nbsp;máte za to, že jsou vám adresovány irelevantní komentáře, prosíme, [[Special:UserLogin/signup|vytvořte si účet]] nebo [[Special:UserLogin|se přihlaste]], vyhnete se tím budoucí záměně s&nbsp;jinými anonymními uživateli.''",
 'noarticletext' => 'Tato stránka zatím neobsahuje žádný text.
 Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} prohlédnout si příslušné protokolovací záznamy] nebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tuto stránku založit]</span>.',
@@ -2627,7 +2626,7 @@ Můžete si prohlédnout též [[Special:ProtectedPages|seznam aktuálně platn�
 Současné nastavení pro tuto stránku je: '''$1''':",
 'protect-locked-access' => "Tento účet nemá povoleno měnit nastavení zámků.
 Současné nastavení pro tuto stránku je: '''$1''':",
-'protect-cascadeon' => 'Tato stránka je právě zamčena, protože je vložena do {{PLURAL:$1|následující stránky zamčené|následujících stránek zamčených|následujících stránek zamčených}} kaskádovým zámkem. Můžete změnit zámky pro tuto stránku, ale nebude to mít žádný vliv na kaskádové zamčení.',
+'protect-cascadeon' => 'Tato stránka je právě zamčena, protože je vložena do {{PLURAL:$1|následující stránky zamčené|následujících stránek zamčených}} kaskádovým zámkem. Změny zámků této stránky nebudou mít žádný vliv na kaskádové zamčení.',
 'protect-default' => 'Povolit všem',
 'protect-fallback' => 'Povolit jen uživatelům s oprávněním „$1“',
 'protect-level-autoconfirmed' => 'Povolit jen automaticky schváleným uživatelům',

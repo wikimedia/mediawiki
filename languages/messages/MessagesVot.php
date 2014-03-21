@@ -165,7 +165,6 @@ $messages = array(
 'disclaimers' => 'Ceeltümin vassamizõõ',
 'disclaimerpage' => 'Project:Ceeltümin vassamizõõ',
 'edithelp' => 'Muutuzavid',
-'helppage' => 'Help:Sisälto',
 'mainpage' => 'Päälehto',
 'mainpage-description' => 'Päälehto',
 'portal' => 'Foorum',
@@ -280,7 +279,7 @@ Kui cüsümüssessä ebõõ roocittu cülci, võib õlla õlõttõ löütännü 
 'loginreqlink' => 'cirjut süäme',
 'newarticle' => '(Uusi)',
 'newarticletext' => 'Sitä cülciä veel ebõõ.
-Võitta loovva cüľľee cirjuttamall alla õlõvasõõ tilaa. Kui että taho loovva [[{{MediaWiki:Helppage}}|cülciä]], menka takaz Web-brauzeraa "back"-napuukaa.',
+Võitta loovva cüľľee cirjuttamall alla õlõvasõõ tilaa. Kui että taho loovva [$1 cülciä], menka takaz Web-brauzeraa "back"-napuukaa.',
 'noarticletext' => '{{GRAMMAR:inessive|{{SITENAME}}}} ebõõ sene nimissä cülciä.
 * Võid [[Special:Search/{{PAGENAME}}|ettsiä cüľľee nimellä]] muilta cüľľeltä.
 * Võid cirjuttõma uuvvõõ cüľľee <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} {{PAGENAME}}]</span>.',

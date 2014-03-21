@@ -250,7 +250,6 @@ $1',
 'disclaimers' => 'Dạbi bạnuḱko',
 'disclaimerpage' => 'Project: Sadharon ḍiskleimarko(General disclaimer)',
 'edithelp' => 'Tońge goṛo',
-'helppage' => 'Help: Bhitri renaḱ',
 'mainpage' => 'Mukhiạ Sakam',
 'mainpage-description' => 'Mukhiạ sakam',
 'policy-url' => 'Project:Ritiniti',
@@ -538,7 +537,7 @@ Amaḱ IP ṭhikana do noa sakam sompadon jạṛre rekorḍoḱa.",
 Bhitri bolo kateḱ noa nãwã ekaunṭ lạgit uku nambar "[[Special:ChangePassword Change password]]" sakam khonem bodol daṛyakya.',
 'newarticle' => '(Nãwa)',
 'newarticletext' => "Am do oka mitṭen joṛaoem pańja akada, onaṭak do bạnuḱa.
-Ona sakam tear lạgit́te, latar reaḱ baksore ol ehoṕmẽ (arhõ jạsti baḍae lạgit́te [[{{mediaWiki:Helppage}}help page]] pańjaemẽ).
+Ona sakam tear lạgit́te, latar reaḱ baksore ol ehoṕmẽ (arhõ jạsti baḍae lạgit́te [[{{mediaWiki:Helppage}}help page] pańjaemẽ).
 Am do judi nonḍe vulkatem heć akan khan, tobe amaḱ sendrakore '''back''' baṭon linmẽ.",
 'noarticletext' => 'Nitoḱ noa sakamre do ol bạnuḱa.
 

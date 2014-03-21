@@ -374,7 +374,6 @@ $1',
 'disclaimers' => 'Avètisman',
 'disclaimerpage' => 'Project:Avètisman jeneral yo',
 'edithelp' => 'Èd pou modifye paj',
-'helppage' => 'Help:Èd',
 'mainpage' => 'Paj prensipal',
 'mainpage-description' => 'Paj prensipal',
 'policy-url' => 'Project:Règleman',
@@ -672,7 +671,7 @@ Petèt li te bouje oubyen efase pandan ou tap gade paj la.',
 Ou ka chanje mopas pou kont sa a nan paj ''[[Special:ChangePassword|chanje mopas]]'' aprè ou konekte ou.",
 'newarticle' => '(Nouvo)',
 'newarticletext' => "Ou swiv on lyen pou yon paj ki poko egziste.
-Pou ou kapab kreye paj sa a, komanse ekri nan bwat ki anba (gade [[{{MediaWiki:Helppage}}|paj èd nan]] pou konnen plis, pou plis enfòmasyon).
+Pou ou kapab kreye paj sa a, komanse ekri nan bwat ki anba (gade [$1 paj èd nan] pou konnen plis, pou plis enfòmasyon).
 Si se paske ou fè yon erè ke ou rive nan paj sa a, klike anlè bouton '''fè back''' nan navigatè ou a.",
 'anontalkpagetext' => "---- ''Ou nan paj diskisyon yon itilizatè anonim, ki pa gen non, ki poko kreye yon kont oubyen ki pa itilize pyès kont nan sistèm sa. Pou rezon sa, nou dwe itilize adrès IP l pou nou kapab lokalize l, sitye l, montre kote l rete, idantifye l. Yon adrès IP kapab pataje ant plizyè moun, plizyè itilizatè. Si ou se yon itilizatè anonim e si ou wè ke ou resevwa komantè ki pa t pou ou, ou mèt [[Special:UserLogin/signup|kreye yon kont]] oubyen [[Special:UserLogin|konekte ou]] pou ou kapab anpeche konfizyon ak kontribitè anonim yo.''",
 'noarticletext' => 'Poko genyen tèks nan paj sa a.

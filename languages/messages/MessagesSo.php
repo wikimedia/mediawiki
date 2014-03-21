@@ -245,7 +245,6 @@ $1',
 'disclaimers' => "Masuul la'aan",
 'disclaimerpage' => "Project:Masuul la'aan guud",
 'edithelp' => 'Caawinaada wax ka bedelka',
-'helppage' => 'Help:Caawinaad',
 'mainpage' => 'Bogga Hore',
 'mainpage-description' => 'Bogga Hore',
 'policy-url' => 'Project: Xeerka',
@@ -607,7 +606,7 @@ Waxaa laga yaabaa in la wareejiyay ama la tirtiray adiga oo fiirinaayo bogga.',
 Akoonkaan cusub eraysirkiisa waxaa ku badali kartaa  bogga ''[[Special:ChangePassword|bedel eraysirka]]'' si aad u soo gashid.",
 'newarticle' => '(Cusub)',
 'newarticletext' => "Waxaa soo raacday link kula soo xiriiriyay bog oo hadda wali jirin.
-Hadii aad rabto in aad sameyso bogga, hoos ka bilaaw qoraalkaada (fiiri [[{{MediaWiki:Helppage}}|bogga caawinaada]] wax war ah oo kale).
+Hadii aad rabto in aad sameyso bogga, hoos ka bilaaw qoraalkaada (fiiri [$1 bogga caawinaada] wax war ah oo kale).
 hadii aad meeshaan ku soo qaldantay, riix batoonka barowsahaaga  '''gadaal uuga noqo''' .",
 'anontalkpagetext' => "----''Meeshaan waa bogga wadahadalka isticmaalayaasha la aqoon oo aanan weli sameysanin akoon, ama  wali isticmaalin. 
 Sidaas darteed, waa in aan isticmaalnaa lambar cinwaaneedka IP:ga si aan u ogaano asiga/ayada. Cinwaanka IP:ga waxaa suurto gal ah in ay qeybsadaan isticmaaleyaal badan.

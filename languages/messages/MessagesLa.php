@@ -391,7 +391,6 @@ $messages = array(
 'disclaimers' => 'Repudiationes',
 'disclaimerpage' => 'Project:Repudiationes',
 'edithelp' => 'Opes recensendi',
-'helppage' => 'Help:Adiutatum',
 'mainpage' => 'Pagina prima',
 'mainpage-description' => 'Pagina prima',
 'policy-url' => 'Project:Consilium',
@@ -692,7 +691,7 @@ Fortasse aliquis hanc partem movit vel delevit.',
 'newarticle' => '(Nova)',
 'newarticletext' => "Per nexum progressus es ad paginam quae nondum exsistit.
 Novam paginam si vis creare, in capsam infra praebitam scribe.
-(Vide [[{{MediaWiki:Helppage}}|paginam auxilii]] si plura cognoscere vis.)
+(Vide [$1 paginam auxilii] si plura cognoscere vis.)
 Si hic es propter errorem, solum '''Retrorsum''' in navigatro tuo preme.",
 'anontalkpagetext' => "----''Haec est pagina disputationis usoris anonymi, solum a loco IP suo noti. Memento locos IP aliquando mutaturos, et a usoribus multis fortasse adhibitos. Si es usor ignotus, et tibi querulae sine causa datae sunt, conventum [[Special:UserLogin/signup|crea]] vel [[Special:UserLogin|aperi]] ad confusionem futuram evitendam.''",
 'noarticletext' => 'Hac in pagina non sunt litterae.

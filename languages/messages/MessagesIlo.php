@@ -283,7 +283,6 @@ $1',
 'disclaimers' => 'Dagiti renunsia',
 'disclaimerpage' => 'Project:Sapasap a renunsia',
 'edithelp' => 'Tulong ti panag-urnos',
-'helppage' => 'Help:Dagiti linaon',
 'mainpage' => 'Umuna a Panid',
 'mainpage-description' => 'Umuna a Panid',
 'policy-url' => 'Project:Annuroten',
@@ -768,7 +767,7 @@ Mabalin a naiyalis wenno naikkat bayat idi kitkitaem ti panid.',
 ''[[Special:ChangePassword|pagsukatan ti kontrasenias]]'' a panid no sumrekka.",
 'newarticle' => '(Baro)',
 'newarticletext' => 'Nasurotmo ti silpo ti awan pay a panid. 
-Ti mangpartuat ti panid, rugiamon ti agmakinilia iti kahon dita baba (kitaen ti [[{{MediaWiki:Helppage}}|panid ti tulong]] para iti adu pay a pakaammo). 
+Ti mangpartuat ti panid, rugiamon ti agmakinilia iti kahon dita baba (kitaen ti [$1 panid ti tulong] para iti adu pay a pakaammo). 
 No addaka ditoy babaen ti biddut, pindutem ti buton ti <strong>agsubli</strong> ti pagbasabasam.',
 'anontalkpagetext' => "----
 ''Daytoy ti pakitungtungan a panid para iti di am-ammo nga agar-aramat a saan pay a nakaaramid ti pakabilangan, wenno saanna nga us-usaren.

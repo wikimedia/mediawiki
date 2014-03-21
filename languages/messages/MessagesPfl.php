@@ -252,7 +252,6 @@ $1',
 'disclaimers' => 'Hafdungsausschluß',
 'disclaimerpage' => 'Project:Impressum',
 'edithelp' => 'Unaschdizung fas Beawaide',
-'helppage' => 'Help:Inhald',
 'mainpage' => 'Schdadsaid',
 'mainpage-description' => 'Schdadsaid',
 'policy-url' => 'Project:Grundsedz',
@@ -437,7 +436,7 @@ Nemmen onnare.',
 'accmailtitle' => 'Kennword gschiggd',
 'newarticle' => '(Naij)',
 'newarticletext' => "Du bischdm Lingg nochgõnge zu enna Said, wus ganedd hodd.
-Fa die Said õzleesche, konnschd do im Käschdl unne õfonge mid schraiwe (gugg [[{{MediaWiki:Helppage}}|Hilf]] fa mea Auskinfd).
+Fa die Said õzleesche, konnschd do im Käschdl unne õfonge mid schraiwe (gugg [$1 Hilf] fa mea Auskinfd).
 Wonn do nedd hoschd heakumme wolle, drigg uff Browser uff '''Zrigg'''.",
 'noarticletext' => 'Uffde Said hods noch kän Tegschd. Du konnschd uff õnnare Saide nochm [[Special:Search/{{PAGENAME}}|Oidrach gugge]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} Logbuchaidrach gugge, wu dezu kead],
 odda [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Said beawaide]</span>.',

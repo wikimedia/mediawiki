@@ -220,7 +220,6 @@ $messages = array(
 'disclaimers' => 'Swi alanandzu',
 'disclaimerpage' => 'Project:Swithsuxa nadzu hikuangara',
 'edithelp' => 'Mpfuno hi ta mindzulamiso',
-'helppage' => 'Help:Leswinga ndzeni',
 'mainpage' => 'Tlukankulu',
 'mainpage-description' => 'Tluka-Nkulu',
 'policy-url' => 'Project:Policy',
@@ -403,7 +402,7 @@ Tsundzuka leswaku matluka man'wana mangaha komba onge upfule unghena eka wiki, l
 Adirese ya khompuyuta ya wena ya IP yita tsariwa eka matimu ya ku lulamisiwa ka tluka leri.",
 'newarticle' => '(yintswa)',
 'newarticletext' => "Ulandzele xikhwekerisi lexi kombaka tluka leringasi tsariwaka.
-Leswaku u tumbuluxa tluka leri, tsala eka bokisi leringa e hansi (Nkambe unga ye eka [[{{MediaWiki:Helppage}}|tluka ra mpfuno]] kukuma vuxokoxoko lebyi engetelekeke).
+Leswaku u tumbuluxa tluka leri, tsala eka bokisi leringa e hansi (Nkambe unga ye eka [$1 tluka ra mpfuno] kukuma vuxokoxoko lebyi engetelekeke).
 Loko ufike eka tluka leri hixihoxo, thlava bhatheni leyinge '''thlelela'''.",
 'noarticletext' => 'Kuhava matsalwa eka tluka leri.
 Unga [[Special:Search/{{PAGENAME}}|lavalava nhlokomhaka ya tluka leri]] eka matluka man\'wana,

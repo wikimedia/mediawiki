@@ -479,7 +479,6 @@ $1',
 'disclaimers' => 'Fyrirvarar',
 'disclaimerpage' => 'Project:Almennur fyrirvari',
 'edithelp' => 'Breytingarhjálp',
-'helppage' => 'Help:Efnisyfirlit',
 'mainpage' => 'Forsíða',
 'mainpage-description' => 'Forsíða',
 'policy-url' => 'Project:Samþykktir',
@@ -928,7 +927,7 @@ Hægt er að breyta lykilorðinu fyrir aðganginn á ''[[Special:ChangePassword|
 'newarticle' => '(Ný)',
 'newarticletext' => "Þú hefur fylgt tengli á síðu sem ekki er til ennþá.
 Þú getur búið til síðu með þessu nafni með því að skrifa í formið fyrir neðan
-(meiri upplýsingar í [[{{MediaWiki:Helppage}}|hjálpinni]]).
+(meiri upplýsingar í [$1 hjálpinni]).
 Ef þú hefur óvart villst hingað geturðu notað '''til baka'''-hnappinn í vafranum þínum.",
 'anontalkpagetext' => "----''Þetta er spjallsíða fyrir óþekktan notanda sem hefur ekki búið til aðgang ennþá, eða notar hann ekki.
 Þar af leiðandi þurfum við að nota vistfang til að bera kennsli á hann/hana.

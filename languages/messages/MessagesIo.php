@@ -312,7 +312,6 @@ $messages = array(
 'disclaimers' => 'Legala averto',
 'disclaimerpage' => 'Project:Generala des-agnosko',
 'edithelp' => 'Helpo pri redaktado',
-'helppage' => 'Help:Helpo',
 'mainpage' => 'Frontispico',
 'mainpage-description' => 'Frontispico',
 'policy-url' => 'Project:Sistemo di agado',
@@ -517,7 +516,7 @@ La pasovorto por ica nova konto povas chanjesar che la ''[[Special:ChangePasswor
 'newarticle' => '(nova)',
 'newarticletext' => 'Vu sequis ligilo a pagino qua ne existas ankore.
 Por krear ica pagino, voluntez startar skribar en la infra buxo.
-(regardez la [[{{MediaWiki:Helppage}}|helpo]] por plusa informo).
+(regardez la [$1 helpo] por plusa informo).
 Se vu esas hike erore, kliktez sur la butono por retrovenar en vua navigilo.',
 'noarticletext' => 'Prezente, ne esas texto en ica pagino.
 Vu povas [[Special:Search/{{PAGENAME}}|serchar ica titulo]] en altra pagini,
