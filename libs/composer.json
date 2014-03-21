@@ -1,0 +1,12 @@
+{
+    "require": {
+        "php": ">=5.3.2",
+        "psr/log": "1.0.0",
+        "monolog/monolog": "1.9.1"
+    },
+    "preferred-install": "dist",
+    "prefer-stable": true,
+    "config": {
+        "vendor-dir": "."
+    }
+}
