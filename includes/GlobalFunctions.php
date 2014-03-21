@@ -988,7 +988,7 @@ function wfMatchesDomainList( $url, $domains ) {
  *     - false: same as 'log'
  */
 function wfDebug( $text, $dest = 'all' ) {
-	global $wgDebugLogFile, $wgDebugRawPage, $wgDebugLogPrefix;
+	global $wgDebugRawPage, $wgDebugLogPrefix;
 
 	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
@@ -1003,6 +1003,7 @@ function wfDebug( $text, $dest = 'all' ) {
 
 	$timer = wfDebugTimer();
 	if ( $timer !== '' ) {
+		// Prepend elapsed request time and real memory usage to each line
 		$text = preg_replace( '/[^\n]/', $timer . '\0', $text, 1 );
 	}
 
@@ -1010,13 +1011,13 @@ function wfDebug( $text, $dest = 'all' ) {
 		MWDebug::debugMsg( $text );
 	}
 
-	if ( $wgDebugLogFile != '' ) {
-		# Strip unprintables; they can switch terminal modes when binary data
-		# gets dumped, which is pretty annoying.
-		$text = preg_replace( '![\x00-\x08\x0b\x0c\x0e-\x1f]!', ' ', $text );
-		$text = $wgDebugLogPrefix . $text;
-		wfErrorLog( $text, $wgDebugLogFile );
+	$ctx = array();
+	if ( $wgDebugLogPrefix !== '' ) {
+		$ctx['prefix'] = $wgDebugLogPrefix;
 	}
+
+	$logger = MWLogger::getInstance( 'wfDebug' );
+	$logger->debug( trim( $text ), $ctx );
 }
 
 /**
@@ -1097,8 +1098,6 @@ function wfDebugMem( $exact = false ) {
 function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
 	global $wgDebugLogGroups;
 
-	$text = trim( $text ) . "\n";
-
 	// Turn $dest into a string if it's a boolean (for b/c)
 	if ( $dest === true ) {
 		$dest = 'all';
@@ -1106,34 +1105,16 @@ function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
 		$dest = 'private';
 	}
 
-	if ( !isset( $wgDebugLogGroups[$logGroup] ) ) {
-		if ( $dest !== 'private' ) {
-			wfDebug( "[$logGroup] $text", $dest );
-		}
-		return;
-	}
+	$text = trim( $text );
 
 	if ( $dest === 'all' ) {
-		MWDebug::debugMsg( "[$logGroup] $text" );
+		MWDebug::debugMsg( "[{$logGroup}] {$text}\n" );
 	}
 
-	$logConfig = $wgDebugLogGroups[$logGroup];
-	if ( $logConfig === false ) {
-		return;
-	}
-	if ( is_array( $logConfig ) ) {
-		if ( isset( $logConfig['sample'] ) && mt_rand( 1, $logConfig['sample'] ) !== 1 ) {
-			return;
-		}
-		$destination = $logConfig['destination'];
-	} else {
-		$destination = strval( $logConfig );
-	}
-
-	$time = wfTimestamp( TS_DB );
-	$wiki = wfWikiID();
-	$host = wfHostname();
-	wfErrorLog( "$time $host $wiki: $text", $destination );
+	$logger = MWLogger::getInstance( $logGroup );
+	$logger->debug( $text, array(
+		'private' => ( $dest === 'private' ),
+	) );
 }
 
 /**
@@ -1142,30 +1123,8 @@ function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
  * @param string $text Database error message.
  */
 function wfLogDBError( $text ) {
-	global $wgDBerrorLog, $wgDBerrorLogTZ;
-	static $logDBErrorTimeZoneObject = null;
-
-	if ( $wgDBerrorLog ) {
-		$host = wfHostname();
-		$wiki = wfWikiID();
-
-		if ( $wgDBerrorLogTZ && !$logDBErrorTimeZoneObject ) {
-			$logDBErrorTimeZoneObject = new DateTimeZone( $wgDBerrorLogTZ );
-		}
-
-		// Workaround for https://bugs.php.net/bug.php?id=52063
-		// Can be removed when min PHP > 5.3.2
-		if ( $logDBErrorTimeZoneObject === null ) {
-			$d = date_create( "now" );
-		} else {
-			$d = date_create( "now", $logDBErrorTimeZoneObject );
-		}
-
-		$date = $d->format( 'D M j G:i:s T Y' );
-
-		$text = "$date\t$host\t$wiki\t" . trim( $text ) . "\n";
-		wfErrorLog( $text, $wgDBerrorLog );
-	}
+	$logger = MWLogger::getInstance( 'wfLogDBError' );
+	$logger->error( trim( $text ) );
 }
 
 /**
@@ -1223,58 +1182,10 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
  * @throws MWException
  */
 function wfErrorLog( $text, $file ) {
-	if ( substr( $file, 0, 4 ) == 'udp:' ) {
-		# Needs the sockets extension
-		if ( preg_match( '!^(tcp|udp):(?://)?\[([0-9a-fA-F:]+)\]:(\d+)(?:/(.*))?$!', $file, $m ) ) {
-			// IPv6 bracketed host
-			$host = $m[2];
-			$port = intval( $m[3] );
-			$prefix = isset( $m[4] ) ? $m[4] : false;
-			$domain = AF_INET6;
-		} elseif ( preg_match( '!^(tcp|udp):(?://)?([a-zA-Z0-9.-]+):(\d+)(?:/(.*))?$!', $file, $m ) ) {
-			$host = $m[2];
-			if ( !IP::isIPv4( $host ) ) {
-				$host = gethostbyname( $host );
-			}
-			$port = intval( $m[3] );
-			$prefix = isset( $m[4] ) ? $m[4] : false;
-			$domain = AF_INET;
-		} else {
-			throw new MWException( __METHOD__ . ': Invalid UDP specification' );
-		}
-
-		// Clean it up for the multiplexer
-		if ( strval( $prefix ) !== '' ) {
-			$text = preg_replace( '/^/m', $prefix . ' ', $text );
-
-			// Limit to 64KB
-			if ( strlen( $text ) > 65506 ) {
-				$text = substr( $text, 0, 65506 );
-			}
-
-			if ( substr( $text, -1 ) != "\n" ) {
-				$text .= "\n";
-			}
-		} elseif ( strlen( $text ) > 65507 ) {
-			$text = substr( $text, 0, 65507 );
-		}
-
-		$sock = socket_create( $domain, SOCK_DGRAM, SOL_UDP );
-		if ( !$sock ) {
-			return;
-		}
-
-		socket_sendto( $sock, $text, strlen( $text ), 0, $host, $port );
-		socket_close( $sock );
-	} else {
-		wfSuppressWarnings();
-		$exists = file_exists( $file );
-		$size = $exists ? filesize( $file ) : false;
-		if ( !$exists || ( $size !== false && $size + strlen( $text ) < 0x7fffffff ) ) {
-			file_put_contents( $file, $text, FILE_APPEND );
-		}
-		wfRestoreWarnings();
-	}
+	$logger = MWLogger::getInstance( 'wfErrorLog' );
+	$logger->info( trim( $text ), array(
+		'destination' => $file,
+	) );
 }
 
 /**
