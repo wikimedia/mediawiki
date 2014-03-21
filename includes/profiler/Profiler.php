@@ -575,11 +575,37 @@ class Profiler {
 	/**
 	 * Returns a list of profiled functions.
 	 *
+	 * @return Array
+	 */
+	public function getRawFunctionReport() {
+		global $wgDebugFunctionEntry;
+		$wgDebugFunctionEntry = false;
+
+		$this->collateData();
+		$data = array();
+		$total = isset( $this->mCollated['-total'] ) ? $this->mCollated['-total'] : 0;
+		foreach ( $this->mCollated as $fname => $elapsed ) {
+			$data[] = array(
+				'fname' => $fname,
+				'calls' => $this->mCalls[$fname],
+				'total' => (float)( $elapsed * 1000 ),
+				'each' => (float)( $elapsed * 1000 ) / $this->mCalls[$fname],
+				'percent' => $total ? 100. * $elapsed / $total : 0,
+				'memory' => $this->mMemory[$fname],
+				'min' => $this->mMin[$fname] * 1000.0,
+				'max' => $this->mMax[$fname] * 1000.0,
+				'overhead' => $this->mOverhead[$fname],
+			);
+		}
+		return array( 'total' => $total, 'functions' => $data );
+	}
+
+	/**
+	 * Returns a list of profiled functions.
+	 *
 	 * @return string
 	 */
 	function getFunctionReport() {
-		$this->collateData();
-
 		$width = 140;
 		$nameWidth = $width - 65;
 		$format = "%-{$nameWidth}s %6d %13.3f %13.3f %13.3f%% %9d  (%13.3f -%13.3f) [%d]\n";
@@ -587,25 +613,24 @@ class Profiler {
 		$prof = "\nProfiling data\n";
 		$prof .= sprintf( $titleFormat, 'Name', 'Calls', 'Total', 'Each', '%', 'Mem' );
 
-		$total = isset( $this->mCollated['-total'] ) ? $this->mCollated['-total'] : 0;
-
-		foreach ( $this->mCollated as $fname => $elapsed ) {
+		$raw = $this->getRawFunctionReport();
+		foreach ( $raw['functions'] as $data ) {
 			$calls = $this->mCalls[$fname];
 			$percent = $total ? 100. * $elapsed / $total : 0;
 			$memory = $this->mMemory[$fname];
 			$prof .= sprintf( $format,
-				substr( $fname, 0, $nameWidth ),
-				$calls,
-				(float)( $elapsed * 1000 ),
-				(float)( $elapsed * 1000 ) / $calls,
-				$percent,
-				$memory,
-				( $this->mMin[$fname] * 1000.0 ),
-				( $this->mMax[$fname] * 1000.0 ),
-				$this->mOverhead[$fname]
+				substr( $data['function'], 0, $nameWidth ),
+				$data['calls'],
+				$data['total'],
+				$data['each'],
+				$data['percent'],
+				$data['memory'],
+				$data['min'],
+				$data['max'],
+				$data['overhead']
 			);
 		}
-		$prof .= "\nTotal: $total\n\n";
+		$prof .= "\nTotal: {$raw['total']}\n\n";
 
 		return $prof;
 	}
