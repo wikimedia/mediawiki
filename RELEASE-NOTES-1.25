@@ -42,6 +42,8 @@ production.
     https://www.mediawiki.org/wiki/Manual:Skinning#Page_status_indicators
 * Edit tokens may now be time-limited: passing a maximum age to
   User::matchEditToken will reject any older tokens.
+* The debug logging internals have been overhauled, and are now using the
+  PSR-3 interfaces.
 
 === Bug fixes in 1.25 ===
 * (bug 71003) No additional code will be generated to try to load CSS-embedded
