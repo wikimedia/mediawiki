@@ -3860,10 +3860,10 @@ class User {
 				$this->getRequest()->getIP(),
 				$this->getName(),
 				$url,
-				$wgLang->timeanddate( $expiration, false ),
+				$wgLang->timeanddate( $expiration, true ),
 				$invalidateURL,
-				$wgLang->date( $expiration, false ),
-				$wgLang->time( $expiration, false ) )->text() );
+				$wgLang->date( $expiration, true ),
+				$wgLang->time( $expiration, true ) )->text() );
 	}
 
 	/**
