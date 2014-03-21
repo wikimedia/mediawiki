@@ -1221,16 +1221,11 @@ class AutoLoader {
 		}
 
 		if ( !$filename ) {
-			if ( function_exists( 'wfDebugLog' ) ) {
-				# FIXME: This is not very polite.  Assume we do not manage the class.
-				wfDebugLog( 'autoloader', "Class {$className} not found; skipped loading" );
-			}
-
-			# Give up
+			// Class not found; let the next autoloader try to find it
 			return;
 		}
 
-		# Make an absolute path, this improves performance by avoiding some stat calls
+		// Make an absolute path, this improves performance by avoiding some stat calls
 		if ( substr( $filename, 0, 1 ) != '/' && substr( $filename, 1, 1 ) != ':' ) {
 			global $IP;
 			$filename = "$IP/$filename";
