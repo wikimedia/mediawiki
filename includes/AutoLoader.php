@@ -20,6 +20,9 @@
  * @file
  */
 
+// Include the external library autoloader managed via Composer
+require_once "$IP/libs/autoload.php";
+
 /**
  * Locations of core classes
  * Extension classes are specified with $wgAutoloadClasses

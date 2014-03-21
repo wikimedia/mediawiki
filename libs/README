@@ -1,0 +1,14 @@
+The classes in this directory ./libs are third-party libraries managed using
+Composer [0].
+
+To update or add libraries in this directory:
+
+1. Edit the composer.json file
+2. Run `composer update --optimize-autoloader` to download files and update
+   the autoloader files.
+3. (Optionally) Remove tests, documentation, non-PHP 5.3 compatible files.
+   Do not remove license files!
+4. Add and commit changes as a gerrit patch.
+5. Review and merge changes.
+
+[0]: https://getcomposer.org/
