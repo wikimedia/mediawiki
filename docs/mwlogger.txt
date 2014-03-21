@@ -18,6 +18,14 @@ instance. Alternately the MWLogger::registerProvider method can be called
 to inject an MWLoggerSpi instance into MWLogger and bypass the use of this
 configuration variable.
 
+The MWLoggerLegacySpi class implements a service provider to generate
+MWLoggerLegacyLogger instances. The MWLoggerLegacyLogger class implements the
+PSR-3 logger interface and provides output and configuration equivalent to the
+historic logging output of wfDebug, wfDebugLog, wfLogDBError and wfErrorLog.
+The MWLoggerLegacySpi class is the default service provider configured in
+DefaultSettings.php. It's usage should be transparent for users who are not
+ready or do not wish to switch to a alternate logging platform.
+
 The MWLoggerMonologSpi class implements a service provider to generate
 MWLogger instances that use the Monolog [1] logging library. See the PHP docs
 (or source) for MWLoggerMonologSpi for details on the configuration of this
@@ -33,6 +41,11 @@ a more feature rich logging configuration.
 : Service provider interface for MWLogger factories
 ; MWLoggerNullSpi
 : MWLoggerSpi for creating instances that discard all log events
+; MWLoggerLegacySpi
+: Service provider for creating MWLoggerLegacyLogger instances
+; MWLoggerLegacyLogger
+: PSR-3 logger that mimics the historical output and configuration of wfDebug,
+  wfErrorLog and other global logging functions.
 ; MWLoggerMonologSpi
 : MWLoggerSpi for creating instances backed by the monolog logging library
 ; MwLoggerMonologHandler
