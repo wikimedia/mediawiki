@@ -133,24 +133,49 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 		global $wgDebugLogGroups;
 
 		if ( $channel === 'wfDebug' ) {
-			$text = self::formatWfDebug( $channel, $message, $context );
+			$text = self::formatAsWfDebug( $channel, $message, $context );
 
 		} elseif ( $channel === 'wfLogDBError' ) {
-			$text = self::formatWfLogDBError( $channel, $message, $context );
+			$text = self::formatAsWfLogDBError( $channel, $message, $context );
 
 		} elseif ( $channel === 'wfErrorLog' ) {
 			$text = "{$message}\n";
 
+		} elseif ( $channel === 'profileoutput' ) {
+			// Legacy wfLogProfilingData formatitng
+			$forward = '';
+			if ( isset( $context['forwarded_for'] )) {
+				$forward = " forwarded for {$context['forwarded_for']}";
+			}
+			if ( isset( $context['client_ip'] ) ) {
+				$forward .= " client IP {$context['client_ip']}";
+			}
+			if ( isset( $context['from'] ) ) {
+				$forward .= " from {$context['from']}";
+			}
+			if ( $forward ) {
+				$forward = "\t(proxied via {$context['proxy']}{$forward})";
+			}
+			if ( $context['anon'] ) {
+				$forward .= ' anon';
+			}
+			if ( !isset( $context['url'] ) ) {
+				$context['url'] = 'n/a';
+			}
+
+			$log = sprintf( "%s\t%04.3f\t%s%s\n",
+				gmdate( 'YmdHis' ), $context['elapsed'], $context['url'], $forward );
+
+			$text = self::formatAsWfDebugLog(
+				$channel, $log . $context['output'], $context );
+
 		} elseif ( !isset( $wgDebugLogGroups[$channel] ) ) {
-			$text = self::formatWfDebug(
+			$text = self::formatAsWfDebug(
 				$channel, "[{$channel}] {$message}", $context );
 
 		} else {
 			// Default formatting is wfDebugLog's historic style
-			$time = wfTimestamp( TS_DB );
-			$wiki = wfWikiID();
-			$host = wfHostname();
-			$text = "{$time} {$host} {$wiki}: {$message}\n";
+			$text = self::formatAsWfDebugLog( $channel, $message, $context );
 		}
 		return $text;
 	}
@@ -163,7 +188,7 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 	 * @param string $message
 	 * @param array $context
 	 */
-	protected static function formatWfDebug( $channel, $message, $context ) {
+	protected static function formatAsWfDebug( $channel, $message, $context ) {
 		$text = preg_replace( '![\x00-\x08\x0b\x0c\x0e-\x1f]!', ' ', $message );
 		if ( isset( $context['prefix'] ) ) {
 			$text = "{$context['prefix']}{$text}";
@@ -179,7 +204,7 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 	 * @param string $message
 	 * @param array $context
 	 */
-	protected static function formatWfLogDBError( $channel, $message, $context ) {
+	protected static function formatAsWfLogDBError( $channel, $message, $context ) {
 		global $wgDBerrorLogTZ;
 		static $cachedTimezone = null;
 
@@ -200,6 +225,22 @@ class MWLoggerLegacyLogger extends \Psr\Log\AbstractLogger {
 		$wiki = wfWikiID();
 
 		$text = "{$date}\t{$host}\t{$wiki}\t{$message}\n";
+		return $text;
+	}
+
+
+	/**
+	 * Format a message as `wfDebugLog() would have formatted it.
+	 *
+	 * @param string $channel
+	 * @param string $message
+	 * @param array $context
+	 */
+	protected static function formatAsWfDebugLog( $channel, $message, $context ) {
+		$time = wfTimestamp( TS_DB );
+		$wiki = wfWikiID();
+		$host = wfHostname();
+		$text = "{$time} {$host} {$wiki}: {$message}\n";
 		return $text;
 	}
 
