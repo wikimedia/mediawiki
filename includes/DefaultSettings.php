@@ -4989,6 +4989,43 @@ $wgDebugDumpSql = false;
 $wgDebugLogGroups = array();
 
 /**
+ * Default service provider for creating MWLogger instances.
+ *
+ * This can either be the name of a class implementing the MWLoggerSpi
+ * interface with a zero argument constructor or a callable that will return
+ * an MWLoggerSpi instance. Alternately the MWLogger::registerProvider method
+ * can be called to inject an MWLoggerSpi instance into MWLogger and bypass
+ * the use of this configuration variable.
+ *
+ * @since 1.24
+ * @var $wgMWLoggerDefaultSpi string|callable
+ * @see MwLogger
+ */
+$wgMWLoggerDefaultSpi = 'MWLoggerNullSpi';
+
+/**
+ * Configuration for MWLoggerMonologSpi logger factory.
+ *
+ * Default configuration installs a null handler that will silently discard
+ * all logging events.
+ *
+ * @since 1.24
+ * @see MWLoggerMonologSpi
+ */
+$wgMWLoggerMonologSpiConfig = array(
+	'loggers' => array(
+		'@default' => array(
+			'handlers' => array( 'null' ),
+		),
+	),
+	'handlers' => array(
+		'null' => array(
+			'class' => '\\Monolog\\Logger\\NullHandler',
+		),
+	),
+);
+
+/**
  * Display debug data at the bottom of the main content area.
  *
  * Useful for developers and technical users trying to working on a closed wiki.
