@@ -1319,6 +1319,7 @@ function wfErrorLog( $text, $file ) {
 function wfLogProfilingData() {
 	global $wgRequestTime, $wgDebugLogFile, $wgDebugLogGroups, $wgDebugRawPage;
 	global $wgProfileLimit, $wgUser, $wgRequest;
+	global $wgUseMWLoggerForLegacyFunctions;
 
 	StatCounter::singleton()->flush();
 
@@ -1339,52 +1340,81 @@ function wfLogProfilingData() {
 	$profiler->logData();
 
 	// Check whether this should be logged in the debug file.
-	if ( isset( $wgDebugLogGroups['profileoutput'] )
-		&& $wgDebugLogGroups['profileoutput'] === false
-	) {
-		// Explicitely disabled
-		return;
-	}
-	if ( !isset( $wgDebugLogGroups['profileoutput'] ) && $wgDebugLogFile == '' ) {
-		// Logging not enabled; no point going further
-		return;
-	}
-	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
-		return;
+	if ( !wgUseMWLoggerForLegacyFunctions ) {
+		if ( isset( $wgDebugLogGroups['profileoutput'] )
+			&& $wgDebugLogGroups['profileoutput'] === false
+		) {
+			// Explicitely disabled
+			return;
+		}
+		if ( !isset( $wgDebugLogGroups['profileoutput'] ) && $wgDebugLogFile == '' ) {
+			// Logging not enabled; no point going further
+			return;
+		}
+		if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
+			return;
+		}
 	}
 
-	$forward = '';
+	$ctx = array( 'elapsed' => $elapsed );
 	if ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-		$forward = ' forwarded for ' . $_SERVER['HTTP_X_FORWARDED_FOR'];
+		$ctx['forwarded_for'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
 	}
 	if ( !empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
-		$forward .= ' client IP ' . $_SERVER['HTTP_CLIENT_IP'];
+		$ctx['client_ip'] = $_SERVER['HTTP_CLIENT_IP'];
 	}
 	if ( !empty( $_SERVER['HTTP_FROM'] ) ) {
-		$forward .= ' from ' . $_SERVER['HTTP_FROM'];
+		$ctx['from'] = $_SERVER['HTTP_FROM'];
 	}
-	if ( $forward ) {
-		$forward = "\t(proxied via {$_SERVER['REMOTE_ADDR']}{$forward})";
+	if ( isset( $ctx['forwarded_for'] ) ||
+		isset( $ctx['client_ip'] ) ||
+		isset( $ctx['from'] ) ) {
+		$ctx['proxy'] = $_SERVER['REMOTE_ADDR'];
 	}
+
 	// Don't load $wgUser at this late stage just for statistics purposes
-	// @todo FIXME: We can detect some anons even if it is not loaded. See User::getId()
+	// @todo FIXME: We can detect some anons even if it is not loaded.
+	// See User::getId()
 	if ( $wgUser->isItemLoaded( 'id' ) && $wgUser->isAnon() ) {
-		$forward .= ' anon';
+		$ctx['anon'] = 'anon';
 	}
 
 	// Command line script uses a FauxRequest object which does not have
 	// any knowledge about an URL and throw an exception instead.
 	try {
-		$requestUrl = $wgRequest->getRequestURL();
+		$ctx['url'] = urldecode( $wgRequest->getRequestURL() );
 	} catch ( MWException $e ) {
-		$requestUrl = 'n/a';
+		$ctx['url'] = 'n/a';
 	}
 
-	$log = sprintf( "%s\t%04.3f\t%s\n",
-		gmdate( 'YmdHis' ), $elapsed,
-		urldecode( $requestUrl . $forward ) );
+	if ( $wgUseMWLoggerForLegacyFunctions ) {
+		$log = MWLogger::getInstance( 'wfLogProfilingData' );
+		$raw = $profiler->getRawData();
+		$log->info( 'Total: {total}', array_merge( $ctx, $raw ) );
 
-	wfDebugLog( 'profileoutput', $log . $profiler->getOutput() );
+	} else {
+		$forward = '';
+		if ( isset( $ctx['forwarded_for'] )) {
+			$forward = " forwarded for {$ctx['forwarded_for']}";
+		}
+		if ( isset( $ctx['client_ip'] ) ) {
+			$forward .= " client IP {$ctx['client_ip']}";
+		}
+		if ( isset( $ctx['from'] ) ) {
+			$forward .= " from {$ctx['from']}";
+		}
+		if ( $forward ) {
+			$forward = "\t(proxied via {$ctx['proxy']}{$forward})";
+		}
+		if ( isset( $ctx['anon'] ) ) {
+			$forward .= " {$ctx['anon']}";
+		}
+
+		$log = sprintf( "%s\t%04.3f\t%s%s\n",
+			gmdate( 'YmdHis' ), $elapsed, $ctx['url'], $forward );
+
+		wfDebugLog( 'profileoutput', $log . $profiler->getOutput() );
+	}
 }
 
 /**
