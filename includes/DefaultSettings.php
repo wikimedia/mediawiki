@@ -5186,7 +5186,7 @@ $wgDebugLogGroups = array();
  * @var $wgMWLoggerDefaultSpi string|callable
  * @see MwLogger
  */
-$wgMWLoggerDefaultSpi = 'MWLoggerNullSpi';
+$wgMWLoggerDefaultSpi = 'MWLoggerLegacySpi';
 
 /**
  * Configuration for MWLoggerMonologSpi logger factory.
