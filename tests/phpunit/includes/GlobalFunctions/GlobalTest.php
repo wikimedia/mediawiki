@@ -322,16 +322,16 @@ class GlobalTest extends MediaWikiTestCase {
 		$wgDebugTimestamps = false;
 
 		wfDebug( "This is a normal string" );
-		$this->assertEquals( "This is a normal string", file_get_contents( $wgDebugLogFile ) );
+		$this->assertEquals( "This is a normal string\n", file_get_contents( $wgDebugLogFile ) );
 		unlink( $wgDebugLogFile );
 
 		wfDebug( "This is nöt an ASCII string" );
-		$this->assertEquals( "This is nöt an ASCII string", file_get_contents( $wgDebugLogFile ) );
+		$this->assertEquals( "This is nöt an ASCII string\n", file_get_contents( $wgDebugLogFile ) );
 		unlink( $wgDebugLogFile );
 
 		wfDebug( "\00305This has böth UTF and control chars\003" );
 		$this->assertEquals(
-			" 05This has böth UTF and control chars ",
+			" 05This has böth UTF and control chars \n",
 			file_get_contents( $wgDebugLogFile )
 		);
 		unlink( $wgDebugLogFile );
