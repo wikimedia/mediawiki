@@ -214,8 +214,8 @@ class SpecialSearch extends SpecialPage {
 	 */
 	public function showResults( $term ) {
 		global $wgDisableTextSearch, $wgSearchForwardUrl, $wgContLang, $wgScript;
-		wfProfileIn( __METHOD__ );
 
+		$profile = new ProfileSection( __METHOD__ );
 		$search = $this->getSearchEngine();
 		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
@@ -247,7 +247,6 @@ class SpecialSearch extends SpecialPage {
 					Xml::closeElement( 'fieldset' )
 				);
 			}
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -303,7 +302,6 @@ class SpecialSearch extends SpecialPage {
 
 		if ( !wfRunHooks( 'SpecialSearchResultsPrepend', array( $this, $out, $term ) ) ) {
 			# Hook requested termination
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -330,7 +328,6 @@ class SpecialSearch extends SpecialPage {
 		// Sometimes the search engine knows there are too many hits
 		if ( $titleMatches instanceof SearchResultTooMany ) {
 			$out->wrapWikiMsg( "==$1==\n", 'toomanymatches' );
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -340,7 +337,6 @@ class SpecialSearch extends SpecialPage {
 			$out->addHtml( $this->getProfileForm( $this->profile, $term ) );
 			$out->addHTML( '</form>' );
 			// Empty query -- straight view of search form
-			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -430,7 +426,6 @@ class SpecialSearch extends SpecialPage {
 			$out->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
 		}
 		wfRunHooks( 'SpecialSearchResultsAppend', array( $this, $out, $term ) );
-		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -534,8 +529,8 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected function showMatches( &$matches ) {
 		global $wgContLang;
-		wfProfileIn( __METHOD__ );
 
+		$profile = new ProfileSection( __METHOD__ );
 		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
 
 		$out = "<ul class='mw-search-results'>\n";
@@ -548,7 +543,7 @@ class SpecialSearch extends SpecialPage {
 
 		// convert the whole thing to desired language variant
 		$out = $wgContLang->convert( $out );
-		wfProfileOut( __METHOD__ );
+
 		return $out;
 	}
 
@@ -561,10 +556,9 @@ class SpecialSearch extends SpecialPage {
 	 * @return string
 	 */
 	protected function showHit( $result, $terms ) {
-		wfProfileIn( __METHOD__ );
+		$profile = new ProfileSection( __METHOD__ );
 
 		if ( $result->isBrokenTitle() ) {
-			wfProfileOut( __METHOD__ );
 			return "<!-- Broken link in search result -->\n";
 		}
 
@@ -590,7 +584,6 @@ class SpecialSearch extends SpecialPage {
 		//This is not quite safe, but better than showing excerpts from non-readable pages
 		//Note that hiding the entry entirely would screw up paging.
 		if ( !$t->userCan( 'read', $this->getUser() ) ) {
-			wfProfileOut( __METHOD__ );
 			return "<li>{$link}</li>\n";
 		}
 
@@ -598,7 +591,6 @@ class SpecialSearch extends SpecialPage {
 		// The least confusing at this point is to drop the result.
 		// You may get less results, but... oh well. :P
 		if ( $result->isMissingRevision() ) {
-			wfProfileOut( __METHOD__ );
 			return "<!-- missing page " . htmlspecialchars( $t->getPrefixedText() ) . "-->\n";
 		}
 
@@ -698,7 +690,6 @@ class SpecialSearch extends SpecialPage {
 				$thumb = $img->transform( array( 'width' => 120, 'height' => 120 ) );
 				if ( $thumb ) {
 					$desc = $this->msg( 'parentheses' )->rawParams( $img->getShortDesc() )->escaped();
-					wfProfileOut( __METHOD__ );
 					// Float doesn't seem to interact well with the bullets.
 					// Table messes up vertical alignment of the bullets.
 					// Bullets are therefore disabled (didn't look great anyway).
@@ -733,7 +724,6 @@ class SpecialSearch extends SpecialPage {
 				"</li>\n";
 		}
 
-		wfProfileOut( __METHOD__ );
 		return $html;
 	}
 
@@ -747,7 +737,8 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected function showInterwiki( $matches, $query ) {
 		global $wgContLang;
-		wfProfileIn( __METHOD__ );
+
+		$profile = new ProfileSection( __METHOD__ );
 		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
 
 		$out = "<div id='mw-search-interwiki'><div id='mw-search-interwiki-caption'>" .
@@ -776,7 +767,7 @@ class SpecialSearch extends SpecialPage {
 
 		// convert the whole thing to desired language variant
 		$out = $wgContLang->convert( $out );
-		wfProfileOut( __METHOD__ );
+
 		return $out;
 	}
 
@@ -792,10 +783,9 @@ class SpecialSearch extends SpecialPage {
 	 * @return string
 	 */
 	protected function showInterwikiHit( $result, $lastInterwiki, $terms, $query, $customCaptions ) {
-		wfProfileIn( __METHOD__ );
+		$profile = new ProfileSection( __METHOD__ );
 
 		if ( $result->isBrokenTitle() ) {
-			wfProfileOut( __METHOD__ );
 			return "<!-- Broken link in search result -->\n";
 		}
 
@@ -855,7 +845,6 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$out .= "<li>{$link} {$redirect}</li>\n";
-		wfProfileOut( __METHOD__ );
 		return $out;
 	}
 
