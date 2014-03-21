@@ -112,6 +112,8 @@ class AssembleUploadChunksJob extends Job {
 				)
 			);
 			$this->setLastError( get_class( $e ) . ": " . $e->getText() );
+			// For good measure.
+			wfGetLBFactory()->rollbackMasterChanges( __METHOD__ );
 
 			return false;
 		}

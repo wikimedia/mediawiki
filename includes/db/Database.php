@@ -3510,6 +3510,23 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
+	 * If there is an open (non-automatic) transaction, roll it back.
+	 *
+	 * Meant to be used when something bad happens (e.g. in a catch block)
+	 * and its unclear if there is a half-done transaction. If there is
+	 * a half done transaction, then we would want to kill it, however if
+	 * there is a transaction open just for DB_TRX, then the data is
+	 * probably still good, and it should stay.
+	 *
+	 * @param $string $fname Calling functions name
+	 */
+	public function maybeRollbackOpenTransaction( $fname = __METHOD__ ) {
+		if ( $this->mTrxLevel && !$this->mTrxAutomatic ) {
+			$this->rollback( $fname );
+		}
+	}
+
+	/**
 	 * Issues the ROLLBACK command to the database server.
 	 *
 	 * @see DatabaseBase::rollback()

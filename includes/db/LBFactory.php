@@ -191,6 +191,13 @@ abstract class LBFactory {
 	function commitMasterChanges() {
 		$this->forEachLBCallMethod( 'commitMasterChanges' );
 	}
+
+	/**
+	 * Rollback all pending (non-automatic) transactions
+	 */
+	function rollbackMasterChanges( $fname = __METHOD__ ) {
+		$this->forEachLBCallMethod( 'rollbackMasterChanges', array( $fname ) );
+	}
 }
 
 /**

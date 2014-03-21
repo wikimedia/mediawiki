@@ -950,6 +950,28 @@ class LoadBalancer {
 	}
 
 	/**
+	 * Issue ROLLBACK only on master, only if pending (non-automatic) transaction.
+	 *
+	 * Meant in case of something bad happening, and we want to get rid of all
+	 * open transactions.
+	 *
+	 * @param String $fname Calling method's name.
+	 */
+	function rollbackMasterChanges( $fname = __METHOD__ ) {
+		// Always 0, but who knows.. :)
+		$masterIndex = $this->getWriterIndex();
+		foreach ( $this->mConns as $conns2 ) {
+			if ( empty( $conns2[$masterIndex] ) ) {
+				continue;
+			}
+			/** @var DatabaseBase $conn */
+			foreach ( $conns2[$masterIndex] as $conn ) {
+				$conn->maybeRollbackOpenTransaction( $fname );
+			}
+		}
+	}
+
+	/**
 	 * @param $value null
 	 * @return Mixed
 	 */

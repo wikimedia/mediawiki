@@ -103,6 +103,9 @@ class RunJobs extends Maintenance {
 					$status = $job->run();
 					$error = $job->getLastError();
 				} catch ( MWException $e ) {
+					// In case an exception leaves DB in inconsistent
+					// state, be sure to rollback pending transactions.
+					wfGetLBFactory()->rollbackMasterChanges( __METHOD__ );
 					$status = false;
 					$error = get_class( $e ) . ': ' . $e->getMessage();
 					$e->report(); // write error to STDERR and the log

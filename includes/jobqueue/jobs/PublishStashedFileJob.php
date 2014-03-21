@@ -125,6 +125,9 @@ class PublishStashedFileJob extends Job {
 				)
 			);
 			$this->setLastError( get_class( $e ) . ": " . $e->getText() );
+			// If the exception was during edit process (e.g. External storage)
+			// we need to rollback db changes or we are left with an inconsistent state.
+			wfGetLBFactory()->rollbackMasterChanges( __METHOD__ );
 
 			return false;
 		}
