@@ -93,6 +93,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('wikispecies','http://species.wikimedia.org/wiki/$1',1),
 ('wikitravel','http://wikitravel.org/en/$1',0),
 ('wikiversity','http://en.wikiversity.org/wiki/$1',1),
+('wikivoyage','http://en.wikivoyage.org/wiki/$1',1),
 ('wikt','http://en.wiktionary.org/wiki/$1',1),
 ('wiktionary','http://en.wiktionary.org/wiki/$1',1),
 ('wlug','http://www.wlug.org.nz/$1',0),
