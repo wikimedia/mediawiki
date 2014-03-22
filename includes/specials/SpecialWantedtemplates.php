@@ -32,10 +32,11 @@
  * @ingroup SpecialPage
  */
 class WantedTemplatesPage extends WantedQueryPage {
-
+	// @codingStandardsIgnoreStart Method overriding is needed here.
 	function __construct( $name = 'Wantedtemplates' ) {
 		parent::__construct( $name );
 	}
+	// @codingStandardsIgnoreEnd
 
 	function getQueryInfo() {
 		return array(

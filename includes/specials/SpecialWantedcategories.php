@@ -31,9 +31,11 @@
 class WantedCategoriesPage extends WantedQueryPage {
 	private $currentCategoryCounts;
 
+	// @codingStandardsIgnoreStart Method overriding is needed here.
 	function __construct( $name = 'Wantedcategories' ) {
 		parent::__construct( $name );
 	}
+	// @codingStandardsIgnoreEnd
 
 	function getQueryInfo() {
 		return array(

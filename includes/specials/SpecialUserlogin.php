@@ -27,7 +27,6 @@
  * @ingroup SpecialPage
  */
 class LoginForm extends SpecialPage {
-
 	const SUCCESS = 0;
 	const NO_NAME = 1;
 	const ILLEGAL = 2;
@@ -107,10 +106,13 @@ class LoginForm extends SpecialPage {
 		$this->mAction = $request->getVal( 'action' );
 		$this->mRemember = $request->getCheck( 'wpRemember' );
 		$this->mFromHTTP = $request->getBool( 'fromhttp', false );
-		$this->mStickHTTPS = ( !$this->mFromHTTP && $request->getProtocol() === 'https' ) || $request->getBool( 'wpForceHttps', false );
+		$this->mStickHTTPS = ( !$this->mFromHTTP && $request->getProtocol() === 'https' )
+			|| $request->getBool( 'wpForceHttps', false );
 		$this->mLanguage = $request->getText( 'uselang' );
 		$this->mSkipCookieCheck = $request->getCheck( 'wpSkipCookieCheck' );
-		$this->mToken = ( $this->mType == 'signup' ) ? $request->getVal( 'wpCreateaccountToken' ) : $request->getVal( 'wpLoginToken' );
+		$this->mToken = $this->mType == 'signup'
+			? $request->getVal( 'wpCreateaccountToken' )
+			: $request->getVal( 'wpLoginToken' );
 		$this->mReturnTo = $request->getVal( 'returnto', '' );
 		$this->mReturnToQuery = $request->getVal( 'returntoquery', '' );
 
@@ -404,7 +406,12 @@ class LoginForm extends SpecialPage {
 		}
 
 		# Include checks that will include GlobalBlocking (Bug 38333)
-		$permErrors = $this->getPageTitle()->getUserPermissionsErrors( 'createaccount', $currentUser, true );
+		$permErrors = $this->getPageTitle()->getUserPermissionsErrors(
+			'createaccount',
+			$currentUser,
+			true
+		);
+
 		if ( count( $permErrors ) ) {
 			throw new PermissionsError( 'createaccount', $permErrors );
 		}
@@ -414,8 +421,9 @@ class LoginForm extends SpecialPage {
 			return Status::newFatal( 'sorbs_create_account_reason' );
 		}
 
-		// Normalize the name so that silly things don't cause "invalid username" errors.
-		// User::newFromName does some rather strict checking, rejecting e.g. leading/trailing/multiple spaces.
+		// Normalize the name so that silly things don't cause "invalid username"
+		// errors. User::newFromName does some rather strict checking, rejecting
+		// e.g. leading/trailing/multiple spaces.
 		$title = Title::makeTitleSafe( NS_USER, $this->mUsername );
 		if ( !is_object( $title ) ) {
 			return Status::newFatal( 'noname' );
@@ -487,7 +495,8 @@ class LoginForm extends SpecialPage {
 
 		// Hook point to check for exempt from account creation throttle
 		if ( !wfRunHooks( 'ExemptFromAccountCreationThrottle', array( $ip ) ) ) {
-			wfDebug( "LoginForm::exemptFromAccountCreationThrottle: a hook allowed account creation w/o throttle\n" );
+			wfDebug( "LoginForm::exemptFromAccountCreationThrottle: a hook " .
+				"allowed account creation w/o throttle\n" );
 		} else {
 			if ( ( $wgAccountCreationThrottle && $currentUser->isPingLimitable() ) ) {
 				$key = wfMemcKey( 'acctcreate', 'ip', $ip );
@@ -795,7 +804,7 @@ class LoginForm extends SpecialPage {
 
 	function processLogin() {
 		global $wgMemc, $wgLang, $wgSecureLogin, $wgPasswordAttemptThrottle,
-			   $wgInvalidPasswordReset;
+			$wgInvalidPasswordReset;
 
 		switch ( $this->authenticateUserData() ) {
 			case self::SUCCESS:
@@ -939,7 +948,9 @@ class LoginForm extends SpecialPage {
 	 * @param string $emailText message name of email text
 	 * @return Status object
 	 */
-	function mailPasswordInternal( $u, $throttle = true, $emailTitle = 'passwordremindertitle', $emailText = 'passwordremindertext' ) {
+	function mailPasswordInternal( $u, $throttle = true, $emailTitle = 'passwordremindertitle',
+		$emailText = 'passwordremindertext'
+	) {
 		global $wgNewPasswordExpiry;
 
 		if ( $u->getEmail() == '' ) {

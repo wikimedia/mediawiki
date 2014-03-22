@@ -30,9 +30,11 @@
 class WithoutInterwikiPage extends PageQueryPage {
 	private $prefix = '';
 
+	// @codingStandardsIgnoreStart Method overriding is needed here.
 	function __construct( $name = 'Withoutinterwiki' ) {
 		parent::__construct( $name );
 	}
+	// @codingStandardsIgnoreEnd
 
 	function execute( $par ) {
 		$this->prefix = Title::capitalize(
@@ -55,7 +57,13 @@ class WithoutInterwikiPage extends PageQueryPage {
 			Html::openElement( 'fieldset' ) . "\n" .
 			Html::element( 'legend', null, $this->msg( 'withoutinterwiki-legend' )->text() ) . "\n" .
 			Html::hidden( 'title', $t->getPrefixedText() ) . "\n" .
-			Xml::inputLabel( $this->msg( 'allpagesprefix' )->text(), 'prefix', 'wiprefix', 20, $prefix ) . "\n" .
+			Xml::inputLabel(
+				$this->msg( 'allpagesprefix' )->text(),
+				'prefix',
+				'wiprefix',
+				20,
+				$prefix
+			) . "\n" .
 			Xml::submitButton( $this->msg( 'withoutinterwiki-submit' )->text() ) . "\n" .
 			Html::closeElement( 'fieldset' ) . "\n" .
 			Html::closeElement( 'form' );

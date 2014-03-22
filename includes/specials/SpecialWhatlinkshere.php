@@ -27,17 +27,12 @@
  * @ingroup SpecialPage
  */
 class SpecialWhatLinksHere extends IncludableSpecialPage {
-
-	/**
-	 * @var FormOptions
-	 */
+	/** @var FormOptions */
 	protected $opts;
 
 	protected $selfTitle;
 
-	/**
-	 * @var Title
-	 */
+	/** @var Title */
 	protected $target;
 
 	protected $limits = array( 20, 50, 100, 250, 500 );
@@ -89,7 +84,13 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		$out->setPageTitle( $this->msg( 'whatlinkshere-title', $this->target->getPrefixedText() ) );
 		$out->addBacklinkSubtitle( $this->target );
-		$this->showIndirectLinks( 0, $this->target, $opts->getValue( 'limit' ), $opts->getValue( 'from' ), $opts->getValue( 'back' ) );
+		$this->showIndirectLinks(
+			0,
+			$this->target,
+			$opts->getValue( 'limit' ),
+			$opts->getValue( 'from' ),
+			$opts->getValue( 'back' )
+		);
 	}
 
 	/**
@@ -185,7 +186,10 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			);
 		}
 
-		if ( ( !$fetchlinks || !$plRes->numRows() ) && ( $hidetrans || !$tlRes->numRows() ) && ( $hideimages || !$ilRes->numRows() ) ) {
+		if ( ( !$fetchlinks || !$plRes->numRows() )
+			&& ( $hidetrans || !$tlRes->numRows() )
+			&& ( $hideimages || !$ilRes->numRows() )
+		) {
 			if ( 0 == $level ) {
 				if ( !$this->including() ) {
 					$out->addHTML( $this->whatlinkshereForm() );
@@ -323,12 +327,16 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		}
 
 		if ( count( $props ) ) {
-			$propsText = $this->msg( 'parentheses' )->rawParams( implode( $msgcache['semicolon-separator'], $props ) )->escaped();
+			$propsText = $this->msg( 'parentheses' )
+				->rawParams( implode( $msgcache['semicolon-separator'], $props ) )->escaped();
 		}
 
 		# Space for utilities links, with a what-links-here link provided
 		$wlhLink = $this->wlhLink( $nt, $msgcache['whatlinkshere-links'] );
-		$wlh = Xml::wrapClass( $this->msg( 'parentheses' )->rawParams( $wlhLink )->escaped(), 'mw-whatlinkshere-tools' );
+		$wlh = Xml::wrapClass(
+			$this->msg( 'parentheses' )->rawParams( $wlhLink )->escaped(),
+			'mw-whatlinkshere-tools'
+		);
 
 		return $notClose ?
 			Xml::openElement( 'li' ) . "$link $propsText $dirmark $wlh\n" :
@@ -462,7 +470,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$types[] = 'hideimages';
 		}
 
-		// Combined message keys: 'whatlinkshere-hideredirs', 'whatlinkshere-hidetrans', 'whatlinkshere-hidelinks', 'whatlinkshere-hideimages'
+		// Combined message keys: 'whatlinkshere-hideredirs', 'whatlinkshere-hidetrans',
+		// 'whatlinkshere-hidelinks', 'whatlinkshere-hideimages'
 		// To be sure they will be found by grep
 		foreach ( $types as $type ) {
 			$chosen = $this->opts->getValue( $type );
@@ -472,7 +481,10 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				$this->makeSelfLink( $msg, array_merge( $changed, $overrides ) ) )->escaped();
 		}
 
-		return Xml::fieldset( $this->msg( 'whatlinkshere-filters' )->text(), $this->getLanguage()->pipeList( $links ) );
+		return Xml::fieldset(
+			$this->msg( 'whatlinkshere-filters' )->text(),
+			$this->getLanguage()->pipeList( $links )
+		);
 	}
 
 	protected function getGroupName() {

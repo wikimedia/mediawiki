@@ -27,10 +27,11 @@
  * @ingroup SpecialPage
  */
 class WantedPagesPage extends WantedQueryPage {
-
+	// @codingStandardsIgnoreStart Method overriding is needed here.
 	function __construct( $name = 'Wantedpages' ) {
 		parent::__construct( $name );
 	}
+	// @codingStandardsIgnoreEnd
 
 	function isIncludable() {
 		return true;
