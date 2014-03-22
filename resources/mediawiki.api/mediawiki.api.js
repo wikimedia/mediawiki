@@ -199,6 +199,7 @@
 		 * @param {string} tokenType The name of the token, like options or edit.
 		 * @param {Object} params API parameters
 		 * @return {jQuery.Promise} See #post
+		 * @since 1.22
 		 */
 		postWithToken: function ( tokenType, params ) {
 			var api = this, hasOwn = tokenCache.hasOwnProperty;
@@ -231,6 +232,7 @@
 		 * @return {jQuery.Promise}
 		 * @return {Function} return.done
 		 * @return {string} return.done.token Received token.
+		 * @since 1.22
 		 */
 		getToken: function ( type ) {
 			var apiPromise,
