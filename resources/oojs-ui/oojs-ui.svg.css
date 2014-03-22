@@ -733,6 +733,7 @@
   line-height: 1.5em;
   text-overflow: ellipsis;
   white-space: nowrap;
+  display: block;
 }
 
 .oo-ui-optionWidget .oo-ui-iconedElement-icon,
