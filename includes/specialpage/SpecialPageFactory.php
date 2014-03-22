@@ -49,125 +49,125 @@ class SpecialPageFactory {
 	 */
 	private static $list = array(
 		// Maintenance Reports
-		'BrokenRedirects'           => 'BrokenRedirectsPage',
-		'Deadendpages'              => 'DeadendpagesPage',
-		'DoubleRedirects'           => 'DoubleRedirectsPage',
-		'Longpages'                 => 'LongpagesPage',
-		'Ancientpages'              => 'AncientpagesPage',
-		'Lonelypages'               => 'LonelypagesPage',
-		'Fewestrevisions'           => 'FewestrevisionsPage',
-		'Withoutinterwiki'          => 'WithoutinterwikiPage',
-		'Protectedpages'            => 'SpecialProtectedpages',
-		'Protectedtitles'           => 'SpecialProtectedtitles',
-		'Shortpages'                => 'ShortpagesPage',
-		'Uncategorizedcategories'   => 'UncategorizedcategoriesPage',
-		'Uncategorizedimages'       => 'UncategorizedimagesPage',
-		'Uncategorizedpages'        => 'UncategorizedpagesPage',
-		'Uncategorizedtemplates'    => 'UncategorizedtemplatesPage',
-		'Unusedcategories'          => 'UnusedcategoriesPage',
-		'Unusedimages'              => 'UnusedimagesPage',
-		'Unusedtemplates'           => 'UnusedtemplatesPage',
-		'Unwatchedpages'            => 'UnwatchedpagesPage',
-		'Wantedcategories'          => 'WantedcategoriesPage',
-		'Wantedfiles'               => 'WantedfilesPage',
-		'Wantedpages'               => 'WantedpagesPage',
-		'Wantedtemplates'           => 'WantedtemplatesPage',
+		'BrokenRedirects' => 'BrokenRedirectsPage',
+		'Deadendpages' => 'DeadendpagesPage',
+		'DoubleRedirects' => 'DoubleRedirectsPage',
+		'Longpages' => 'LongpagesPage',
+		'Ancientpages' => 'AncientpagesPage',
+		'Lonelypages' => 'LonelypagesPage',
+		'Fewestrevisions' => 'FewestrevisionsPage',
+		'Withoutinterwiki' => 'WithoutinterwikiPage',
+		'Protectedpages' => 'SpecialProtectedpages',
+		'Protectedtitles' => 'SpecialProtectedtitles',
+		'Shortpages' => 'ShortpagesPage',
+		'Uncategorizedcategories' => 'UncategorizedcategoriesPage',
+		'Uncategorizedimages' => 'UncategorizedimagesPage',
+		'Uncategorizedpages' => 'UncategorizedpagesPage',
+		'Uncategorizedtemplates' => 'UncategorizedtemplatesPage',
+		'Unusedcategories' => 'UnusedcategoriesPage',
+		'Unusedimages' => 'UnusedimagesPage',
+		'Unusedtemplates' => 'UnusedtemplatesPage',
+		'Unwatchedpages' => 'UnwatchedpagesPage',
+		'Wantedcategories' => 'WantedcategoriesPage',
+		'Wantedfiles' => 'WantedfilesPage',
+		'Wantedpages' => 'WantedpagesPage',
+		'Wantedtemplates' => 'WantedtemplatesPage',
 
 		// List of pages
-		'Allpages'                  => 'SpecialAllpages',
-		'Prefixindex'               => 'SpecialPrefixindex',
-		'Categories'                => 'SpecialCategories',
-		'Listredirects'             => 'ListredirectsPage',
-		'PagesWithProp'             => 'SpecialPagesWithProp',
+		'Allpages' => 'SpecialAllpages',
+		'Prefixindex' => 'SpecialPrefixindex',
+		'Categories' => 'SpecialCategories',
+		'Listredirects' => 'ListredirectsPage',
+		'PagesWithProp' => 'SpecialPagesWithProp',
 
 		// Login/create account
-		'Userlogin'                 => 'LoginForm',
-		'CreateAccount'             => 'SpecialCreateAccount',
+		'Userlogin' => 'LoginForm',
+		'CreateAccount' => 'SpecialCreateAccount',
 
 		// Users and rights
-		'Block'                     => 'SpecialBlock',
-		'Unblock'                   => 'SpecialUnblock',
-		'BlockList'                 => 'SpecialBlockList',
-		'ChangePassword'            => 'SpecialChangePassword',
-		'PasswordReset'             => 'SpecialPasswordReset',
-		'DeletedContributions'      => 'DeletedContributionsPage',
-		'Preferences'               => 'SpecialPreferences',
-		'ResetTokens'               => 'SpecialResetTokens',
-		'Contributions'             => 'SpecialContributions',
-		'Listgrouprights'           => 'SpecialListGroupRights',
-		'Listusers'                 => 'SpecialListUsers',
-		'Listadmins'                => 'SpecialListAdmins',
-		'Listbots'                  => 'SpecialListBots',
-		'Userrights'                => 'UserrightsPage',
-		'EditWatchlist'             => 'SpecialEditWatchlist',
+		'Block' => 'SpecialBlock',
+		'Unblock' => 'SpecialUnblock',
+		'BlockList' => 'SpecialBlockList',
+		'ChangePassword' => 'SpecialChangePassword',
+		'PasswordReset' => 'SpecialPasswordReset',
+		'DeletedContributions' => 'DeletedContributionsPage',
+		'Preferences' => 'SpecialPreferences',
+		'ResetTokens' => 'SpecialResetTokens',
+		'Contributions' => 'SpecialContributions',
+		'Listgrouprights' => 'SpecialListGroupRights',
+		'Listusers' => 'SpecialListUsers',
+		'Listadmins' => 'SpecialListAdmins',
+		'Listbots' => 'SpecialListBots',
+		'Userrights' => 'UserrightsPage',
+		'EditWatchlist' => 'SpecialEditWatchlist',
 
 		// Recent changes and logs
-		'Newimages'                 => 'SpecialNewFiles',
-		'Log'                       => 'SpecialLog',
-		'Watchlist'                 => 'SpecialWatchlist',
-		'Newpages'                  => 'SpecialNewpages',
-		'Recentchanges'             => 'SpecialRecentChanges',
-		'Recentchangeslinked'       => 'SpecialRecentChangesLinked',
-		'Tags'                      => 'SpecialTags',
+		'Newimages' => 'SpecialNewFiles',
+		'Log' => 'SpecialLog',
+		'Watchlist' => 'SpecialWatchlist',
+		'Newpages' => 'SpecialNewpages',
+		'Recentchanges' => 'SpecialRecentChanges',
+		'Recentchangeslinked' => 'SpecialRecentChangesLinked',
+		'Tags' => 'SpecialTags',
 
 		// Media reports and uploads
-		'Listfiles'                 => 'SpecialListFiles',
-		'Filepath'                  => 'SpecialFilepath',
-		'MIMEsearch'                => 'MIMEsearchPage',
-		'FileDuplicateSearch'       => 'FileDuplicateSearchPage',
-		'Upload'                    => 'SpecialUpload',
-		'UploadStash'               => 'SpecialUploadStash',
+		'Listfiles' => 'SpecialListFiles',
+		'Filepath' => 'SpecialFilepath',
+		'MIMEsearch' => 'MIMEsearchPage',
+		'FileDuplicateSearch' => 'FileDuplicateSearchPage',
+		'Upload' => 'SpecialUpload',
+		'UploadStash' => 'SpecialUploadStash',
 
 		// Data and tools
-		'Statistics'                => 'SpecialStatistics',
-		'Allmessages'               => 'SpecialAllmessages',
-		'Version'                   => 'SpecialVersion',
-		'Lockdb'                    => 'SpecialLockdb',
-		'Unlockdb'                  => 'SpecialUnlockdb',
+		'Statistics' => 'SpecialStatistics',
+		'Allmessages' => 'SpecialAllmessages',
+		'Version' => 'SpecialVersion',
+		'Lockdb' => 'SpecialLockdb',
+		'Unlockdb' => 'SpecialUnlockdb',
 
 		// Redirecting special pages
-		'LinkSearch'                => 'LinkSearchPage',
-		'Randompage'                => 'Randompage',
-		'RandomInCategory'          => 'SpecialRandomInCategory',
-		'Randomredirect'            => 'SpecialRandomredirect',
+		'LinkSearch' => 'LinkSearchPage',
+		'Randompage' => 'Randompage',
+		'RandomInCategory' => 'SpecialRandomInCategory',
+		'Randomredirect' => 'SpecialRandomredirect',
 
 		// High use pages
-		'Mostlinkedcategories'      => 'MostlinkedCategoriesPage',
-		'Mostimages'                => 'MostimagesPage',
-		'Mostinterwikis'            => 'MostinterwikisPage',
-		'Mostlinked'                => 'MostlinkedPage',
-		'Mostlinkedtemplates'       => 'MostlinkedTemplatesPage',
-		'Mostcategories'            => 'MostcategoriesPage',
-		'Mostrevisions'             => 'MostrevisionsPage',
+		'Mostlinkedcategories' => 'MostlinkedCategoriesPage',
+		'Mostimages' => 'MostimagesPage',
+		'Mostinterwikis' => 'MostinterwikisPage',
+		'Mostlinked' => 'MostlinkedPage',
+		'Mostlinkedtemplates' => 'MostlinkedTemplatesPage',
+		'Mostcategories' => 'MostcategoriesPage',
+		'Mostrevisions' => 'MostrevisionsPage',
 
 		// Page tools
-		'ComparePages'              => 'SpecialComparePages',
-		'Export'                    => 'SpecialExport',
-		'Import'                    => 'SpecialImport',
-		'Undelete'                  => 'SpecialUndelete',
-		'Whatlinkshere'             => 'SpecialWhatlinkshere',
-		'MergeHistory'              => 'SpecialMergeHistory',
-		'ExpandTemplates'           => 'SpecialExpandTemplates',
+		'ComparePages' => 'SpecialComparePages',
+		'Export' => 'SpecialExport',
+		'Import' => 'SpecialImport',
+		'Undelete' => 'SpecialUndelete',
+		'Whatlinkshere' => 'SpecialWhatlinkshere',
+		'MergeHistory' => 'SpecialMergeHistory',
+		'ExpandTemplates' => 'SpecialExpandTemplates',
 
 		// Other
-		'Booksources'               => 'SpecialBookSources',
+		'Booksources' => 'SpecialBookSources',
 
 		// Unlisted / redirects
-		'Blankpage'                 => 'SpecialBlankpage',
-		'Diff'                      => 'SpecialDiff',
-		'Emailuser'                 => 'SpecialEmailUser',
-		'Movepage'                  => 'MovePageForm',
-		'Mycontributions'           => 'SpecialMycontributions',
-		'Mypage'                    => 'SpecialMypage',
-		'Mytalk'                    => 'SpecialMytalk',
-		'Myuploads'                 => 'SpecialMyuploads',
-		'AllMyUploads'              => 'SpecialAllMyUploads',
-		'PermanentLink'             => 'SpecialPermanentLink',
-		'Redirect'                  => 'SpecialRedirect',
-		'Revisiondelete'            => 'SpecialRevisionDelete',
-		'RunJobs'                   => 'SpecialRunJobs',
-		'Specialpages'              => 'SpecialSpecialpages',
-		'Userlogout'                => 'SpecialUserlogout',
+		'Blankpage' => 'SpecialBlankpage',
+		'Diff' => 'SpecialDiff',
+		'Emailuser' => 'SpecialEmailUser',
+		'Movepage' => 'MovePageForm',
+		'Mycontributions' => 'SpecialMycontributions',
+		'Mypage' => 'SpecialMypage',
+		'Mytalk' => 'SpecialMytalk',
+		'Myuploads' => 'SpecialMyuploads',
+		'AllMyUploads' => 'SpecialAllMyUploads',
+		'PermanentLink' => 'SpecialPermanentLink',
+		'Redirect' => 'SpecialRedirect',
+		'Revisiondelete' => 'SpecialRevisionDelete',
+		'RunJobs' => 'SpecialRunJobs',
+		'Specialpages' => 'SpecialSpecialpages',
+		'Userlogout' => 'SpecialUserlogout',
 	);
 
 	private static $aliases;
@@ -220,6 +220,7 @@ class SpecialPageFactory {
 
 			wfProfileOut( __METHOD__ );
 		}
+
 		return self::$list;
 	}
 
@@ -253,6 +254,7 @@ class SpecialPageFactory {
 			// Cast to object: func()[$key] doesn't work, but func()->$key does
 			self::$aliases = (object)self::$aliases;
 		}
+
 		return self::$aliases;
 	}
 
@@ -321,6 +323,7 @@ class SpecialPageFactory {
 	 */
 	public static function exists( $name ) {
 		list( $title, /*...*/ ) = self::resolveAlias( $name );
+
 		return property_exists( self::getList(), $title );
 	}
 
@@ -336,6 +339,7 @@ class SpecialPageFactory {
 			$rec = self::getList()->$realName;
 			if ( is_string( $rec ) ) {
 				$className = $rec;
+
 				return new $className;
 			} elseif ( is_array( $rec ) ) {
 				// @deprecated, officially since 1.18, unofficially since forever
@@ -343,6 +347,7 @@ class SpecialPageFactory {
 				$className = array_shift( $rec );
 				self::getList()->$realName = MWFunction::newObj( $className, $rec );
 			}
+
 			return self::getList()->$realName;
 		} else {
 			return null;
@@ -374,6 +379,7 @@ class SpecialPageFactory {
 				}
 			}
 		}
+
 		return $pages;
 	}
 
@@ -390,6 +396,7 @@ class SpecialPageFactory {
 				$pages[$name] = $page;
 			}
 		}
+
 		return $pages;
 	}
 
@@ -412,6 +419,7 @@ class SpecialPageFactory {
 				$pages[$name] = $page;
 			}
 		}
+
 		return $pages;
 	}
 
@@ -453,6 +461,7 @@ class SpecialPageFactory {
 
 			$context->getOutput()->showErrorPage( 'nosuchspecialpage', 'nospecialpagetext' );
 			wfProfileOut( __METHOD__ );
+
 			return false;
 		}
 
@@ -472,13 +481,14 @@ class SpecialPageFactory {
 				$url = $title->getFullURL( $query );
 				$context->getOutput()->redirect( $url );
 				wfProfileOut( __METHOD__ );
+
 				return $title;
 			} else {
 				$context->setTitle( $page->getPageTitle( $par ) );
 			}
-
 		} elseif ( !$page->isIncludable() ) {
 			wfProfileOut( __METHOD__ );
+
 			return false;
 		}
 
@@ -490,6 +500,7 @@ class SpecialPageFactory {
 		$page->run( $par );
 		wfProfileOut( $profName );
 		wfProfileOut( __METHOD__ );
+
 		return true;
 	}
 
@@ -570,6 +581,7 @@ class SpecialPageFactory {
 		if ( $subpage !== false && !is_null( $subpage ) ) {
 			$name = "$name/$subpage";
 		}
+
 		return $wgContLang->ucfirst( $name );
 	}
 

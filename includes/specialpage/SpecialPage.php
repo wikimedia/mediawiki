@@ -74,6 +74,7 @@ class SpecialPage {
 	 */
 	public static function getTitleFor( $name, $subpage = false, $fragment = '' ) {
 		$name = SpecialPageFactory::getLocalNameFor( $name, $subpage );
+
 		return Title::makeTitle( NS_SPECIAL, $name, $fragment );
 	}
 
@@ -157,6 +158,7 @@ class SpecialPage {
 	 */
 	function getFile() {
 		wfDeprecated( __METHOD__, '1.18' );
+
 		return $this->mFile;
 	}
 
@@ -215,6 +217,7 @@ class SpecialPage {
 		if ( !isset( $this->mLocalName ) ) {
 			$this->mLocalName = SpecialPageFactory::getLocalNameFor( $this->mName );
 		}
+
 		return $this->mLocalName;
 	}
 
@@ -450,7 +453,6 @@ class SpecialPage {
 			$this->getOutput()->wrapWikiMsg(
 				"<div class='mw-specialpage-summary'>\n$1\n</div>", $msg );
 		}
-
 	}
 
 	/**
@@ -475,6 +477,7 @@ class SpecialPage {
 	 */
 	function getTitle( $subpage = false ) {
 		wfDeprecated( __METHOD__, '1.23' );
+
 		return $this->getPageTitle( $subpage );
 	}
 
@@ -511,6 +514,7 @@ class SpecialPage {
 		} else {
 			wfDebug( __METHOD__ . " called and \$mContext is null. " .
 				"Return RequestContext::getMain(); for sanity\n" );
+
 			return RequestContext::getMain();
 		}
 	}
@@ -564,6 +568,7 @@ class SpecialPage {
 	 */
 	public function getLang() {
 		wfDeprecated( __METHOD__, '1.19' );
+
 		return $this->getLanguage();
 	}
 
@@ -605,6 +610,7 @@ class SpecialPage {
 		if ( $this->including() ) {
 			$message->setInterfaceMessageFlag( false );
 		}
+
 		return $message;
 	}
 
