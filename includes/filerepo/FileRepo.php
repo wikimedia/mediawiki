@@ -966,11 +966,13 @@ class FileRepo {
 	 *
 	 * @param string $src Source file system path, storage path, or virtual URL
 	 * @param string $dst Virtual URL or storage path
-	 * @param string|null $disposition Content-Disposition if given and supported
+	 * @param Array|string|null $options An array consisting of a key named headers
+	 *   listing extra headers. If a string, taken as content-disposition header.
+	 *   (Support for array of options new in 1.23)
 	 * @return FileRepoStatus
 	 */
-	final public function quickImport( $src, $dst, $disposition = null ) {
-		return $this->quickImportBatch( array( array( $src, $dst, $disposition ) ) );
+	final public function quickImport( $src, $dst, $options = null ) {
+		return $this->quickImportBatch( array( array( $src, $dst, $options ) ) );
 	}
 
 	/**
@@ -1007,7 +1009,7 @@ class FileRepo {
 	 * This is intended for copying generated thumbnails into the repo.
 	 *
 	 * All path parameters may be a file system path, storage path, or virtual URL.
-	 * When "dispositions" are given they are used as Content-Disposition if supported.
+	 * When "headers" are given they are used as HTTP headers if supported.
 	 *
 	 * @param array $triples List of (source path, destination path, disposition)
 	 * @return FileRepoStatus
@@ -1019,11 +1021,20 @@ class FileRepo {
 			list( $src, $dst ) = $triple;
 			$src = $this->resolveToStoragePath( $src );
 			$dst = $this->resolveToStoragePath( $dst );
+
+			if ( !isset( $triple[2] ) ) {
+				$headers = array();
+			} elseif ( is_string( $triple[2] ) ) {
+				// back-compat
+				$headers = array( 'Content-Disposition' => $triple[2] );
+			} elseif ( is_array( $triple[2] ) && isset( $triple[2]['headers'] ) ) {
+				$headers = $triple[2]['headers'];
+			}
 			$operations[] = array(
 				'op' => FileBackend::isStoragePath( $src ) ? 'copy' : 'store',
 				'src' => $src,
 				'dst' => $dst,
-				'disposition' => isset( $triple[2] ) ? $triple[2] : null
+				'headers' => $headers
 			);
 			$status->merge( $this->initDirectory( dirname( $dst ) ) );
 		}
