@@ -30,10 +30,11 @@
  * @ingroup SpecialPage
  */
 class WantedFilesPage extends WantedQueryPage {
-
+	// @codingStandardsIgnoreStart Method overriding is needed here.
 	function __construct( $name = 'Wantedfiles' ) {
 		parent::__construct( $name );
 	}
+	// @codingStandardsIgnoreEnd
 
 	function getPageHeader() {
 		# Specifically setting to use "Wanted Files" (NS_MAIN) as title, so as to get what
