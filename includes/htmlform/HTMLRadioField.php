@@ -11,6 +11,11 @@ class HTMLRadioField extends HTMLFormField {
 			return $p;
 		}
 
+		if ( $value === null ) {
+			// will result in default value
+			return true;
+		}
+
 		if ( !is_string( $value ) && !is_int( $value ) ) {
 			return false;
 		}
