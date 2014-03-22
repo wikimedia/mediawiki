@@ -125,6 +125,7 @@ class SpecialBookSources extends SpecialPage {
 		$form .= '&#160;' . Xml::submitButton( $this->msg( 'booksources-go' )->text() ) . "</p>\n";
 		$form .= Html::closeElement( 'form' ) . "\n";
 		$form .= Html::closeElement( 'fieldset' ) . "\n";
+
 		return $form;
 	}
 

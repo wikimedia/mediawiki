@@ -20,6 +20,7 @@
  * @file
  * @ingroup SpecialPage
  */
+
 class SpecialNewFiles extends IncludableSpecialPage {
 	public function __construct() {
 		parent::__construct( 'Newimages' );

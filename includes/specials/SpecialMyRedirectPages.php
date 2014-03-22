@@ -108,6 +108,7 @@ class SpecialAllMyUploads extends RedirectSpecialPage {
 
 	function getRedirect( $subpage ) {
 		$this->mAddedRedirectParams['ilshowall'] = 1;
+
 		return SpecialPage::getTitleFor( 'Listfiles', $this->getUser()->getName() );
 	}
 }

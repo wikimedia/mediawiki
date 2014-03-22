@@ -26,7 +26,6 @@
  *
  * @ingroup SpecialPage
  */
-
 class SpecialContributions extends IncludableSpecialPage {
 	protected $opts;
 
@@ -66,6 +65,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			if ( !$this->including() ) {
 				$out->addHTML( $this->getForm() );
 			}
+
 			return;
 		}
 

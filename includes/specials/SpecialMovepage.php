@@ -593,8 +593,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		$dbr = wfGetDB( DB_MASTER );
 		if ( $this->moveSubpages && (
 			MWNamespace::hasSubpages( $nt->getNamespace() ) || (
-				$this->moveTalk &&
-					MWNamespace::hasSubpages( $nt->getTalkPage()->getNamespace() )
+				$this->moveTalk
+					&& MWNamespace::hasSubpages( $nt->getTalkPage()->getNamespace() )
 			)
 		) ) {
 			$conds = array(

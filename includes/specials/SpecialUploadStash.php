@@ -66,6 +66,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		if ( $subPage === null || $subPage === '' ) {
 			return $this->showUploads();
 		}
+
 		return $this->showUpload( $subPage );
 	}
 
@@ -136,10 +137,11 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			$handler = $file->getHandler();
 			if ( $handler ) {
 				$params = $handler->parseParamString( $paramString );
+
 				return array( 'file' => $file, 'type' => $type, 'params' => $params );
 			} else {
 				throw new UploadStashBadPathException( 'No handler found for ' .
-						"mime {$file->getMimeType()} of file {$file->getPath()}" );
+					"mime {$file->getMimeType()} of file {$file->getPath()}" );
 			}
 		}
 
@@ -204,7 +206,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		}
 
 		return $this->outputLocalFile( $thumbFile );
-
 	}
 
 	/**
@@ -214,9 +215,9 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * Note: We rely on NFS to have propagated the file contents to the scaler. However, we do not rely on the thumbnail being created in NFS and then
 	 *   propagated back to our filesystem. Instead we take the results of the HTTP request instead.
 	 * Note: no caching is being done here, although we are instructing the client to cache it forever.
-	 * @param $file: File object
-	 * @param $params: scaling parameters ( e.g. array( width => '50' ) );
-	 * @param $flags: scaling flags ( see File:: constants )
+	 * @param File $file
+	 * @param array $params Scaling parameters ( e.g. array( width => '50' ) );
+	 * @param $flags Scaling flags ( see File:: constants )
 	 * @throws MWException
 	 * @return boolean success
 	 */
@@ -248,16 +249,17 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		);
 		$req = MWHttpRequest::factory( $scalerThumbUrl, $httpOptions );
 		$status = $req->execute();
-		if ( ! $status->isOK() ) {
+		if ( !$status->isOK() ) {
 			$errors = $status->getErrorsArray();
 			$errorStr = "Fetching thumbnail failed: " . print_r( $errors, 1 );
 			$errorStr .= "\nurl = $scalerThumbUrl\n";
 			throw new MWException( $errorStr );
 		}
 		$contentType = $req->getResponseHeader( "content-type" );
-		if ( ! $contentType ) {
+		if ( !$contentType ) {
 			throw new MWException( "Missing content-type header" );
 		}
+
 		return $this->outputContents( $req->getContent(), $contentType );
 	}
 
@@ -273,6 +275,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		if ( $file->getSize() > self::MAX_SERVE_BYTES ) {
 			throw new SpecialUploadStashTooLargeException();
 		}
+
 		return $file->getRepo()->streamFile( $file->getPath(),
 			array( 'Content-Transfer-Encoding: binary',
 				'Expires: Sun, 17-Jan-2038 19:14:07 GMT' )
@@ -294,6 +297,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		}
 		self::outputFileHeaders( $contentType, $size );
 		print $content;
+
 		return true;
 	}
 
@@ -301,8 +305,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * Output headers for streaming
 	 * XXX unsure about encoding as binary; if we received from HTTP perhaps we should use that encoding, concatted with semicolon to mimeType as it usually is.
 	 * Side effect: preps PHP to write headers to STDOUT.
-	 * @param string $contentType : string suitable for content-type header
-	 * @param string $size: length in bytes
+	 * @param string $contentType String suitable for content-type header
+	 * @param string $size Length in bytes
 	 */
 	private static function outputFileHeaders( $contentType, $size ) {
 		header( "Content-Type: $contentType", true );
@@ -325,10 +329,12 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		if ( isset( $formData['Clear'] ) ) {
 			$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
 			wfDebug( "stash has: " . print_r( $stash->listFiles(), true ) );
-			if ( ! $stash->clear() ) {
+
+			if ( !$stash->clear() ) {
 				return Status::newFatal( 'uploadstash-errclear' );
 			}
 		}
+
 		return Status::newGood();
 	}
 
@@ -390,4 +396,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	}
 }
 
-class SpecialUploadStashTooLargeException extends MWException {};
+class SpecialUploadStashTooLargeException extends MWException {
+}
+

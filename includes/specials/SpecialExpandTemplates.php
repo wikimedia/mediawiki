@@ -125,9 +125,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			}
 
 			$this->showHtmlPreview( $title, $rawhtml, $out );
-
 		}
-
 	}
 
 	/**

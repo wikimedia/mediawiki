@@ -167,6 +167,7 @@ class SpecialChangePassword extends FormSpecialPage {
 			}
 			$query = $request->getVal( 'returntoquery' );
 			$this->getOutput()->redirect( $titleObj->getFullURL( $query ) );
+
 			return true;
 		}
 

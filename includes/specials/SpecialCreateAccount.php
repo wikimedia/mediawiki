@@ -27,7 +27,6 @@
  *
  * @ingroup SpecialPage
  */
-
 class SpecialCreateAccount extends SpecialRedirectToSpecial {
 	function __construct() {
 		parent::__construct( 'CreateAccount', 'Userlogin', 'signup', array( 'returnto', 'returntoquery', 'uselang' ) );
