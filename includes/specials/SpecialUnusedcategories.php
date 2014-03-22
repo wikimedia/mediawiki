@@ -25,13 +25,12 @@
  * @ingroup SpecialPage
  */
 class UnusedCategoriesPage extends QueryPage {
+	function __construct( $name = 'Unusedcategories' ) {
+		parent::__construct( $name );
+	}
 
 	function isExpensive() {
 		return true;
-	}
-
-	function __construct( $name = 'Unusedcategories' ) {
-		parent::__construct( $name );
 	}
 
 	function getPageHeader() {

@@ -26,10 +26,9 @@
  * Special page lists images which haven't been categorised
  *
  * @ingroup SpecialPage
+ * @todo FIXME: Use an instance of UncategorizedPagesPage or something
  */
-// @todo FIXME: Use an instance of UncategorizedPagesPage or something
 class UncategorizedImagesPage extends ImageQueryPage {
-
 	function __construct( $name = 'Uncategorizedimages' ) {
 		parent::__construct( $name );
 	}

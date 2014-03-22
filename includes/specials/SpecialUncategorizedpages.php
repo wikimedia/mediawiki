@@ -25,8 +25,8 @@
  * A special page looking for page without any category.
  *
  * @ingroup SpecialPage
+ * @todo FIXME: Make $requestedNamespace selectable, unify all subclasses into one
  */
-// @todo FIXME: Make $requestedNamespace selectable, unify all subclasses into one
 class UncategorizedPagesPage extends PageQueryPage {
 	protected $requestedNamespace = false;
 
@@ -58,7 +58,9 @@ class UncategorizedPagesPage extends PageQueryPage {
 			// otherwise, page_namespace is requestedNamespace
 			'conds' => array(
 				'cl_from IS NULL',
-				'page_namespace' => ( $this->requestedNamespace !== false ? $this->requestedNamespace : MWNamespace::getContentNamespaces() ),
+				'page_namespace' => $this->requestedNamespace !== false
+						? $this->requestedNamespace
+						: MWNamespace::getContentNamespaces(),
 				'page_is_redirect' => 0
 			),
 			'join_conds' => array(

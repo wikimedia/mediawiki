@@ -39,37 +39,45 @@ class SpecialUpload extends SpecialPage {
 	}
 
 	/** Misc variables **/
-	public $mRequest; // The WebRequest or FauxRequest this form is supposed to handle
+
+	/** @var WebRequest|FauxRequest The request this form is supposed to handle */
+	public $mRequest;
 	public $mSourceType;
 
-	/**
-	 * @var UploadBase
-	 */
+	/** @var UploadBase */
 	public $mUpload;
 
-	/**
-	 * @var LocalFile
-	 */
+	/** @var LocalFile */
 	public $mLocalFile;
 	public $mUploadClicked;
 
 	/** User input variables from the "description" section **/
-	public $mDesiredDestName; // The requested target file name
+
+	/** @var string The requested target file name */
+	public $mDesiredDestName;
 	public $mComment;
 	public $mLicense;
 
 	/** User input variables from the root section **/
+
 	public $mIgnoreWarning;
 	public $mWatchthis;
 	public $mCopyrightStatus;
 	public $mCopyrightSource;
 
 	/** Hidden variables **/
+
 	public $mDestWarningAck;
-	public $mForReUpload; // The user followed an "overwrite this file" link
-	public $mCancelUpload; // The user clicked "Cancel and return to upload form" button
+
+	/** @var bool The user followed an "overwrite this file" link */
+	public $mForReUpload;
+
+	/** @var bool The user clicked "Cancel and return to upload form" button */
+	public $mCancelUpload;
 	public $mTokenOk;
-	public $mUploadSuccessful = false; // Subclasses can use this to determine whether a file was uploaded
+
+	/** @var bool Subclasses can use this to determine whether a file was uploaded */
+	public $mUploadSuccessful = false;
 
 	/** Text injection points for hooks not using HTMLForm **/
 	public $uploadFormTextTop;
@@ -449,7 +457,14 @@ class SpecialUpload extends SpecialPage {
 		} else {
 			$pageText = false;
 		}
-		$status = $this->mUpload->performUpload( $this->mComment, $pageText, $this->mWatchthis, $this->getUser() );
+
+		$status = $this->mUpload->performUpload(
+			$this->mComment,
+			$pageText,
+			$this->mWatchthis,
+			$this->getUser()
+		);
+
 		if ( !$status->isGood() ) {
 			$this->showUploadError( $this->getOutput()->parse( $status->getWikiText() ) );
 
@@ -464,13 +479,15 @@ class SpecialUpload extends SpecialPage {
 
 	/**
 	 * Get the initial image page text based on a comment and optional file status information
-	 * @param $comment string
-	 * @param $license string
-	 * @param $copyStatus string
-	 * @param $source string
+	 * @param string $comment
+	 * @param string $license
+	 * @param string $copyStatus
+	 * @param string $source
 	 * @return string
 	 */
-	public static function getInitialPageText( $comment = '', $license = '', $copyStatus = '', $source = '' ) {
+	public static function getInitialPageText( $comment = '', $license = '',
+		$copyStatus = '', $source = ''
+	) {
 		global $wgUseCopyrightUpload, $wgForceUIMsgAsContentMsg;
 
 		$msg = array();
@@ -890,23 +907,32 @@ class UploadForm extends HTMLForm {
 		# Print a list of allowed file extensions, if so configured.  We ignore
 		# MIME type here, it's incomprehensible to most people and too long.
 		global $wgCheckFileExtensions, $wgStrictFileExtensions,
-		   $wgFileExtensions, $wgFileBlacklist;
+			$wgFileExtensions, $wgFileBlacklist;
 
 		if ( $wgCheckFileExtensions ) {
 			if ( $wgStrictFileExtensions ) {
 				# Everything not permitted is banned
 				$extensionsList =
 					'<div id="mw-upload-permitted">' .
-					$this->msg( 'upload-permitted', $this->getContext()->getLanguage()->commaList( array_unique( $wgFileExtensions ) ) )->parseAsBlock() .
+					$this->msg(
+						'upload-permitted',
+						$this->getContext()->getLanguage()->commaList( array_unique( $wgFileExtensions ) )
+					)->parseAsBlock() .
 					"</div>\n";
 			} else {
 				# We have to list both preferred and prohibited
 				$extensionsList =
 					'<div id="mw-upload-preferred">' .
-						$this->msg( 'upload-preferred', $this->getContext()->getLanguage()->commaList( array_unique( $wgFileExtensions ) ) )->parseAsBlock() .
+						$this->msg(
+							'upload-preferred',
+							$this->getContext()->getLanguage()->commaList( array_unique( $wgFileExtensions ) )
+						)->parseAsBlock() .
 					"</div>\n" .
 					'<div id="mw-upload-prohibited">' .
-						$this->msg( 'upload-prohibited', $this->getContext()->getLanguage()->commaList( array_unique( $wgFileBlacklist ) ) )->parseAsBlock() .
+						$this->msg(
+							'upload-prohibited',
+							$this->getContext()->getLanguage()->commaList( array_unique( $wgFileBlacklist ) )
+						)->parseAsBlock() .
 					"</div>\n";
 			}
 		} else {
@@ -1072,7 +1098,8 @@ class UploadForm extends HTMLForm {
 	 * Add upload JS to the OutputPage
 	 */
 	protected function addUploadJS() {
-		global $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview, $wgEnableAPI, $wgStrictFileExtensions;
+		global $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview,
+			$wgEnableAPI, $wgStrictFileExtensions;
 
 		$useAjaxDestCheck = $wgUseAjax && $wgAjaxUploadDestCheck;
 		$useAjaxLicensePreview = $wgUseAjax && $wgAjaxLicensePreview && $wgEnableAPI;
