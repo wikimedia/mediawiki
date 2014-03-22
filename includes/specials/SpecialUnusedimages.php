@@ -27,9 +27,11 @@
  * @ingroup SpecialPage
  */
 class UnusedimagesPage extends ImageQueryPage {
+	// @codingStandardsIgnoreStart Method overriding is needed here.
 	function __construct( $name = 'Unusedimages' ) {
 		parent::__construct( $name );
 	}
+	// @codingStandardsIgnoreEnd
 
 	function isExpensive() {
 		return true;

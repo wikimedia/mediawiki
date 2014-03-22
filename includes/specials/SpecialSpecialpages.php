@@ -103,9 +103,15 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 			$middle = ceil( $total / 2 );
 			$count = 0;
 
-			$out->wrapWikiMsg( "<h2 class=\"mw-specialpagesgroup\" id=\"mw-specialpagesgroup-$group\">$1</h2>\n", "specialpages-group-$group" );
+			$out->wrapWikiMsg(
+				"<h2 class=\"mw-specialpagesgroup\" id=\"mw-specialpagesgroup-$group\">$1</h2>\n",
+				"specialpages-group-$group"
+			);
 			$out->addHTML(
-				Html::openElement( 'table', array( 'style' => 'width:100%;', 'class' => 'mw-specialpages-table' ) ) . "\n" .
+				Html::openElement(
+					'table',
+					array( 'style' => 'width:100%;', 'class' => 'mw-specialpages-table' )
+				) . "\n" .
 				Html::openElement( 'tr' ) . "\n" .
 				Html::openElement( 'td', array( 'style' => 'width:30%;vertical-align:top' ) ) . "\n" .
 				Html::openElement( 'ul' ) . "\n"
@@ -124,7 +130,11 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 				}
 
 				$link = Linker::linkKnown( $title, htmlspecialchars( $desc ) );
-				$out->addHTML( Html::rawElement( 'li', array( 'class' => implode( ' ', $pageClasses ) ), $link ) . "\n" );
+				$out->addHTML( Html::rawElement(
+						'li',
+						array( 'class' => implode( ' ', $pageClasses ) ),
+						$link
+					) . "\n" );
 
 				# Split up the larger groups
 				$count++;
