@@ -42,26 +42,38 @@ class LoginForm extends SpecialPage {
 	const NEED_TOKEN = 12;
 	const WRONG_TOKEN = 13;
 
-	var $mUsername, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
-	var $mAction, $mCreateaccount, $mCreateaccountMail;
-	var $mLoginattempt, $mRemember, $mEmail, $mDomain, $mLanguage;
-	var $mSkipCookieCheck, $mReturnToQuery, $mToken, $mStickHTTPS;
-	var $mType, $mReason, $mRealName;
-	var $mAbortLoginErrorMsg = null;
+	public $mAbortLoginErrorMsg = null;
+
+	protected $mUsername;
+	protected $mPassword;
+	protected $mRetype;
+	protected $mReturnTo;
+	protected $mCookieCheck;
+	protected $mPosted;
+	protected $mAction;
+	protected $mCreateaccount;
+	protected $mCreateaccountMail;
+	protected $mLoginattempt;
+	protected $mRemember;
+	protected $mEmail;
+	protected $mDomain;
+	protected $mLanguage;
+	protected $mSkipCookieCheck;
+	protected $mReturnToQuery;
+	protected $mToken;
+	protected $mStickHTTPS;
+	protected $mType;
+	protected $mReason;
+	protected $mRealName;
+
 	private $mTempPasswordUsed;
 	private $mLoaded = false;
 	private $mSecureLoginUrl;
 
-	/**
-	 * @ var WebRequest
-	 */
+	/** @var WebRequest */
 	private $mOverrideRequest = null;
 
-	/**
-	 * Effective request; set at the beginning of load
-	 *
-	 * @var WebRequest $mRequest
-	 */
+	/** @var WebRequest Effective request; set at the beginning of load */
 	private $mRequest = null;
 
 	/**
