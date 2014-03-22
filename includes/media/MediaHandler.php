@@ -798,4 +798,18 @@ abstract class MediaHandler {
 	public function getDefaultRenderLanguage( File $file ) {
 		return null;
 	}
+
+	/**
+	 * If its an audio file, return the length of the file. Otherwise 0.
+	 *
+	 * File::getLength() existed for a long time, but was calling a method
+	 * that only existed in some subclasses of this class (The TMH ones).
+	 *
+	 * @param File $file
+	 * @return float Length in seconds
+	 * @since 1.23
+	 */
+	public function getLength( $file ) {
+		return 0;
+	}
 }
