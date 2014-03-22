@@ -162,14 +162,14 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			}
 
 			if ( count( $toWatch ) > 0 ) {
-				$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-added'
-				)->numParams( count( $toWatch ) )->parse();
+				$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-added' )
+					->numParams( count( $toWatch ) )->parse();
 				$this->showTitles( $toWatch, $this->successMessage );
 			}
 
 			if ( count( $toUnwatch ) > 0 ) {
-				$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-removed'
-				)->numParams( count( $toUnwatch ) )->parse();
+				$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-removed' )
+					->numParams( count( $toUnwatch ) )->parse();
 				$this->showTitles( $toUnwatch, $this->successMessage );
 			}
 		} else {

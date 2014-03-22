@@ -58,6 +58,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			}
 
 			$output->redirect( $title->getLocalURL() );
+
 			return;
 		}
 
@@ -66,11 +67,13 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$user = $this->getUser();
 		$opts = $this->getOptions();
 
-		if ( ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) && $request->getVal( 'reset' ) &&
-			$request->wasPosted() )
-		{
+		if ( ( $wgEnotifWatchlist || $wgShowUpdatedMarker )
+			&& $request->getVal( 'reset' )
+			&& $request->wasPosted()
+		) {
 			$user->clearAllNotifications();
 			$output->redirect( $this->getPageTitle()->getFullURL( $opts->getChangedValues() ) );
+
 			return;
 		}
 
@@ -145,6 +148,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		// methods defined on WebRequest and removing this dependency would cause some code duplication.
 		$request = new DerivativeRequest( $this->getRequest(), $params );
 		$opts->fetchValuesFromRequest( $request );
+
 		return $opts;
 	}
 
@@ -379,7 +383,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		if ( $opts['days'] > 0 ) {
 			$timestamp = wfTimestampNow();
 			$wlInfo = $this->msg( 'wlnote2' )->numParams( round( $opts['days'] * 24 ) )->params(
-				$lang->userDate( $timestamp, $user ), $lang->userTime( $timestamp, $user ) )->parse() . "<br />\n";
+				$lang->userDate( $timestamp, $user ), $lang->userTime( $timestamp, $user )
+			)->parse() . "<br />\n";
 		}
 
 		$nondefaults = $opts->getChangedValues();
@@ -557,6 +562,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		foreach ( $days as $d ) {
 			$days[$i++] = $this->daysLink( $d, $options );
 		}
+
 		return $this->msg( 'wlshowlast' )->rawParams(
 			$this->getLanguage()->pipeList( $hours ),
 			$this->getLanguage()->pipeList( $days ),

@@ -179,6 +179,7 @@ class SpecialSearch extends SpecialPage {
 		# If the string cannot be used to create a title
 		if ( is_null( $t ) ) {
 			$this->showResults( $term );
+
 			return;
 		}
 		# If there's an exact or very near match, jump right there.
@@ -191,6 +192,7 @@ class SpecialSearch extends SpecialPage {
 
 		if ( !is_null( $t ) ) {
 			$this->getOutput()->redirect( $t->getFullURL() );
+
 			return;
 		}
 		# No match, generate an edit URL
@@ -203,6 +205,7 @@ class SpecialSearch extends SpecialPage {
 			# If the feature is enabled, go straight to the edit page
 			if ( $wgGoToEdit ) {
 				$this->getOutput()->redirect( $t->getFullURL( array( 'action' => 'edit' ) ) );
+
 				return;
 			}
 		}
@@ -247,6 +250,7 @@ class SpecialSearch extends SpecialPage {
 					Xml::closeElement( 'fieldset' )
 				);
 			}
+
 			return;
 		}
 
@@ -328,6 +332,7 @@ class SpecialSearch extends SpecialPage {
 		// Sometimes the search engine knows there are too many hits
 		if ( $titleMatches instanceof SearchResultTooMany ) {
 			$out->wrapWikiMsg( "==$1==\n", 'toomanymatches' );
+
 			return;
 		}
 
@@ -336,6 +341,7 @@ class SpecialSearch extends SpecialPage {
 			$out->addHTML( $this->formHeader( $term, 0, 0 ) );
 			$out->addHtml( $this->getProfileForm( $this->profile, $term ) );
 			$out->addHTML( '</form>' );
+
 			// Empty query -- straight view of search form
 			return;
 		}
@@ -438,12 +444,14 @@ class SpecialSearch extends SpecialPage {
 		// show direct page/create link if applicable
 
 		// Check DBkey !== '' in case of fragment link only.
-		if ( is_null( $t ) || $t->getDBkey() === '' ||
-				( $titleMatches !== null && $titleMatches->searchContainedSyntax() ) ||
-				( $textMatches !== null && $textMatches->searchContainedSyntax() ) ) {
+		if ( is_null( $t ) || $t->getDBkey() === ''
+			|| ( $titleMatches !== null && $titleMatches->searchContainedSyntax() )
+			|| ( $textMatches !== null && $textMatches->searchContainedSyntax() )
+		) {
 			// invalid title
 			// preserve the paragraph for margins etc...
 			$this->getOutput()->addHtml( '<p></p>' );
+
 			return;
 		}
 
@@ -517,6 +525,7 @@ class SpecialSearch extends SpecialPage {
 				$opt['ns' . $n] = 1;
 			}
 		}
+
 		return $opt + $this->extraParams;
 	}
 
@@ -573,7 +582,7 @@ class SpecialSearch extends SpecialPage {
 		$link_t = clone $t;
 
 		wfRunHooks( 'ShowSearchHitTitle',
-					array( &$link_t, &$titleSnippet, $result, $terms, $this ) );
+			array( &$link_t, &$titleSnippet, $result, $terms, $this ) );
 
 		$link = Linker::linkKnown(
 			$link_t,
@@ -845,6 +854,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$out .= "<li>{$link} {$redirect}</li>\n";
+
 		return $out;
 	}
 
@@ -864,6 +874,7 @@ class SpecialSearch extends SpecialPage {
 		} else {
 			$form = '';
 			wfRunHooks( 'SpecialSearchProfileForm', array( $this, &$form, $profile, $term, $opts ) );
+
 			return $form;
 		}
 	}
@@ -938,11 +949,12 @@ class SpecialSearch extends SpecialPage {
 		foreach ( $opts as $key => $value ) {
 			$hidden .= Html::hidden( $key, $value );
 		}
+
 		// Return final output
 		return Xml::openElement(
-				'fieldset',
-				array( 'id' => 'mw-searchoptions', 'style' => 'margin:0em;' )
-			) .
+			'fieldset',
+			array( 'id' => 'mw-searchoptions', 'style' => 'margin:0em;' )
+		) .
 			Xml::element( 'legend', null, $this->msg( 'powersearch-legend' )->text() ) .
 			Xml::tags( 'h4', null, $this->msg( 'powersearch-ns' )->parse() ) .
 			Html::element( 'div', array( 'id' => 'mw-search-togglebox' ) ) .
@@ -1098,6 +1110,7 @@ class SpecialSearch extends SpecialPage {
 			$this->msg( 'searchbutton' )->text(),
 			array( 'class' => array( 'mw-ui-button', 'mw-ui-progressive' ) )
 		) . "\n";
+
 		return $out . $this->didYouMeanHtml;
 	}
 
@@ -1149,6 +1162,7 @@ class SpecialSearch extends SpecialPage {
 		if ( count( $p ) > 1 ) {
 			return $wgContLang->getNsIndex( $p[0] ) == NS_FILE;
 		}
+
 		return false;
 	}
 
@@ -1166,6 +1180,7 @@ class SpecialSearch extends SpecialPage {
 		if ( count( $p ) > 1 ) {
 			return $p[0] == $allkeyword;
 		}
+
 		return false;
 	}
 
@@ -1179,6 +1194,7 @@ class SpecialSearch extends SpecialPage {
 			$this->searchEngine = $this->searchEngineType ?
 				SearchEngine::create( $this->searchEngineType ) : SearchEngine::create();
 		}
+
 		return $this->searchEngine;
 	}
 

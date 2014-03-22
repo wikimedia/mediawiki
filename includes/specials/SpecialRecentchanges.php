@@ -45,6 +45,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$query = $this->getFeedQuery();
 			$query['feedformat'] = $feedFormat === 'atom' ? 'atom' : 'rss';
 			$this->getOutput()->redirect( wfAppendQuery( wfScript( 'api' ), $query ) );
+
 			return;
 		}
 
@@ -272,6 +273,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		if ( $query['limit'] > $wgFeedLimit ) {
 			$query['limit'] = $wgFeedLimit;
 		}
+
 		return $query;
 	}
 
@@ -492,6 +494,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	public function checkLastModified() {
 		$dbr = $this->getDB();
 		$lastmod = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', false, __METHOD__ );
+
 		return $lastmod;
 	}
 

@@ -179,6 +179,7 @@ class SpecialUpload extends SpecialPage {
 			# Backwards compatibility hook
 			if ( !wfRunHooks( 'UploadForm:initial', array( &$this ) ) ) {
 				wfDebug( "Hook 'UploadForm:initial' broke output of the upload form" );
+
 				return;
 			}
 			$this->showUploadForm( $this->getUploadForm() );
@@ -206,7 +207,6 @@ class SpecialUpload extends SpecialPage {
 		} else {
 			$this->getOutput()->addHTML( $form );
 		}
-
 	}
 
 	/**
@@ -401,6 +401,7 @@ class SpecialUpload extends SpecialPage {
 		$status = $this->mUpload->fetchFile();
 		if ( !$status->isOK() ) {
 			$this->showUploadError( $this->getOutput()->parse( $status->getWikiText() ) );
+
 			return;
 		}
 
@@ -418,6 +419,7 @@ class SpecialUpload extends SpecialPage {
 		$details = $this->mUpload->verifyUpload();
 		if ( $details['status'] != UploadBase::OK ) {
 			$this->processVerificationError( $details );
+
 			return;
 		}
 
@@ -426,6 +428,7 @@ class SpecialUpload extends SpecialPage {
 		if ( $permErrors !== true ) {
 			$code = array_shift( $permErrors[0] );
 			$this->showRecoverableUploadError( $this->msg( $code, $permErrors[0] )->parse() );
+
 			return;
 		}
 
@@ -449,6 +452,7 @@ class SpecialUpload extends SpecialPage {
 		$status = $this->mUpload->performUpload( $this->mComment, $pageText, $this->mWatchthis, $this->getUser() );
 		if ( !$status->isGood() ) {
 			$this->showUploadError( $this->getOutput()->parse( $status->getWikiText() ) );
+
 			return;
 		}
 
@@ -500,6 +504,7 @@ class SpecialUpload extends SpecialPage {
 				$pageText = $comment;
 			}
 		}
+
 		return $pageText;
 	}
 
@@ -629,6 +634,7 @@ class SpecialUpload extends SpecialPage {
 		$success = $this->mUpload->unsaveUploadedFile();
 		if ( !$success ) {
 			$this->getOutput()->showFileDeleteError( $this->mUpload->getTempPath() );
+
 			return false;
 		} else {
 			return true;
@@ -707,6 +713,7 @@ class SpecialUpload extends SpecialPage {
 		foreach ( $dupes as $file ) {
 			$gallery->add( $file->getTitle() );
 		}
+
 		return '<li>' .
 			wfMessage( 'file-exists-duplicate' )->numParams( count( $dupes ) )->parse() .
 			$gallery->toHtml() . "</li>\n";
@@ -741,8 +748,7 @@ class UploadForm extends HTMLForm {
 	public function __construct( array $options = array(), IContextSource $context = null ) {
 		$this->mWatch = !empty( $options['watch'] );
 		$this->mForReUpload = !empty( $options['forreupload'] );
-		$this->mSessionKey = isset( $options['sessionkey'] )
-				? $options['sessionkey'] : '';
+		$this->mSessionKey = isset( $options['sessionkey'] ) ? $options['sessionkey'] : '';
 		$this->mHideIgnoreWarning = !empty( $options['hideignorewarning'] );
 		$this->mDestWarningAck = !empty( $options['destwarningack'] );
 		$this->mDestFile = isset( $options['destfile'] ) ? $options['destfile'] : '';
@@ -778,7 +784,6 @@ class UploadForm extends HTMLForm {
 				$this->mSourceIds[] = $field['id'];
 			}
 		}
-
 	}
 
 	/**
@@ -838,8 +843,8 @@ class UploadForm extends HTMLForm {
 			'upload-type' => 'File',
 			'radio' => &$radio,
 			'help' => $this->msg( 'upload-maxfilesize',
-				$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['file'] ) )
-				->parse() .
+				$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['file'] )
+			)->parse() .
 				$this->msg( 'word-separator' )->escaped() .
 				$this->msg( 'upload_source_file' )->escaped(),
 			'checked' => $selectedSourceType == 'file',
@@ -855,8 +860,8 @@ class UploadForm extends HTMLForm {
 				'upload-type' => 'url',
 				'radio' => &$radio,
 				'help' => $this->msg( 'upload-maxfilesize',
-					$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['url'] ) )
-					->parse() .
+					$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['url'] )
+				)->parse() .
 					$this->msg( 'word-separator' )->escaped() .
 					$this->msg( 'upload_source_url' )->escaped(),
 				'checked' => $selectedSourceType == 'url',
@@ -870,6 +875,7 @@ class UploadForm extends HTMLForm {
 			'default' => $this->getExtensionsMessage(),
 			'raw' => true,
 		);
+
 		return $descriptor;
 	}
 
@@ -882,7 +888,7 @@ class UploadForm extends HTMLForm {
 		# Print a list of allowed file extensions, if so configured.  We ignore
 		# MIME type here, it's incomprehensible to most people and too long.
 		global $wgCheckFileExtensions, $wgStrictFileExtensions,
-		$wgFileExtensions, $wgFileBlacklist;
+		   $wgFileExtensions, $wgFileBlacklist;
 
 		if ( $wgCheckFileExtensions ) {
 			if ( $wgStrictFileExtensions ) {
@@ -905,6 +911,7 @@ class UploadForm extends HTMLForm {
 			# Everything is permitted.
 			$extensionsList = '';
 		}
+
 		return $extensionsList;
 	}
 
@@ -1100,7 +1107,6 @@ class UploadForm extends HTMLForm {
 	function trySubmit() {
 		return false;
 	}
-
 }
 
 /**
@@ -1130,6 +1136,7 @@ class UploadSourceField extends HTMLTextField {
 			$id = $this->mParams['id'];
 			$label = Html::rawElement( 'label', array( 'for' => $id ), $this->mLabel );
 		}
+
 		return Html::rawElement( 'td', array( 'class' => 'mw-label' ) + $cellAttributes, $label );
 	}
 

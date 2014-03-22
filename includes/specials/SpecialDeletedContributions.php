@@ -276,7 +276,7 @@ class DeletedContribsPager extends IndexPager {
 class DeletedContributionsPage extends SpecialPage {
 	function __construct() {
 		parent::__construct( 'DeletedContributions', 'deletedhistory',
-		/*listed*/true, /*function*/false, /*file*/false );
+			/*listed*/true, /*function*/false, /*file*/false );
 	}
 
 	/**

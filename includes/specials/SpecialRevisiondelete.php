@@ -137,6 +137,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->token = $request->getVal( 'token' );
 		if ( $this->archiveName && $this->targetObj ) {
 			$this->tryShowFile( $this->archiveName );
+
 			return;
 		}
 
@@ -156,6 +157,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		# We need a target page!
 		if ( is_null( $this->targetObj ) ) {
 			$output->addWikiMsg( 'undelete-header' );
+
 			return;
 		}
 		# Give a link to the logs/hist for this page
@@ -257,6 +259,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$conds['log_action'] = $this->getList()->getLogAction();
 		$conds['ls_field'] = RevisionDeleter::getRelationType( $this->typeName );
 		$conds['ls_value'] = $this->ids;
+
 		return $conds;
 	}
 
@@ -271,6 +274,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		// Check if user is allowed to see this file
 		if ( !$oimage->exists() ) {
 			$this->getOutput()->addWikiMsg( 'revdelete-no-file' );
+
 			return;
 		}
 		$user = $this->getUser();
@@ -300,6 +304,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				Xml::submitButton( $this->msg( 'revdelete-show-file-submit' )->text() ) .
 				'</form>'
 			);
+
 			return;
 		}
 		$this->getOutput()->disable();
@@ -325,6 +330,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				$this->typeName, $this->getContext(), $this->targetObj, $this->ids
 			);
 		}
+
 		return $this->list;
 	}
 
@@ -467,8 +473,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				$line = Xml::tags( 'td', array( 'class' => 'mw-input' ), $innerHTML );
 				$html .= "<tr>$line</tr>\n";
 			}
-		// Otherwise, use tri-state radios
 		} else {
+			// Otherwise, use tri-state radios
 			$html .= '<tr>';
 			$html .= '<th class="mw-revdel-checkbox">' . $this->msg( 'revdelete-radio-same' )->escaped() . '</th>';
 			$html .= '<th class="mw-revdel-checkbox">' . $this->msg( 'revdelete-radio-unset' )->escaped() . '</th>';
@@ -495,6 +501,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		}
 
 		$html .= '</table>';
+
 		return $html;
 	}
 
@@ -508,6 +515,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$token = $this->getRequest()->getVal( 'wpEditToken' );
 		if ( $this->submitClicked && !$this->getUser()->matchEditToken( $token ) ) {
 			$this->getOutput()->addWikiMsg( 'sessionfailure' );
+
 			return false;
 		}
 		$bitParams = $this->extractBitParams();
@@ -527,11 +535,13 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$status = $this->save( $bitParams, $comment, $this->targetObj );
 		if ( $status->isGood() ) {
 			$this->success();
+
 			return true;
-		# ...otherwise, bounce back to form...
 		} else {
+			# ...otherwise, bounce back to form...
 			$this->failure( $status );
 		}
+
 		return false;
 	}
 
@@ -573,6 +583,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		if ( !isset( $bitfield[Revision::DELETED_RESTRICTED] ) ) {
 			$bitfield[Revision::DELETED_RESTRICTED] = 0;
 		}
+
 		return $bitfield;
 	}
 
