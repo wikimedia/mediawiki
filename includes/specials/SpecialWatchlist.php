@@ -28,9 +28,6 @@
  * @ingroup SpecialPage
  */
 class SpecialWatchlist extends ChangesListSpecialPage {
-	/**
-	 * Constructor
-	 */
 	public function __construct( $page = 'Watchlist', $restriction = 'viewmywatchlist' ) {
 		parent::__construct( $page, $restriction );
 	}
@@ -164,7 +161,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		// Calculate cutoff
 		if ( $opts['days'] > 0 ) {
-			$conds[] = 'rc_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( time() - intval( $opts['days'] * 86400 ) ) );
+			$conds[] = 'rc_timestamp > ' .
+				$dbr->addQuotes( $dbr->timestamp( time() - intval( $opts['days'] * 86400 ) ) );
 		}
 
 		return $conds;
@@ -518,7 +516,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$label = $this->msg( $value ? 'show' : 'hide' )->escaped();
 		$options[$name] = 1 - (int)$value;
 
-		return $this->msg( $message )->rawParams( Linker::linkKnown( $this->getPageTitle(), $label, array(), $options ) )->escaped();
+		return $this->msg( $message )
+			->rawParams( Linker::linkKnown( $this->getPageTitle(), $label, array(), $options ) )
+			->escaped();
 	}
 
 	protected function hoursLink( $h, $options = array() ) {
@@ -534,7 +534,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 	protected function daysLink( $d, $options = array() ) {
 		$options['days'] = $d;
-		$message = ( $d ? $this->getLanguage()->formatNum( $d ) : $this->msg( 'watchlistall2' )->escaped() );
+		$message = $d ? $this->getLanguage()->formatNum( $d )
+			: $this->msg( 'watchlistall2' )->escaped();
 
 		return Linker::linkKnown(
 			$this->getPageTitle(),
