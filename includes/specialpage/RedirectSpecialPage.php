@@ -92,8 +92,11 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
  * @ingroup SpecialPage
  */
 abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
-	// @todo FIXME: Visibility must be declared
-	var $redirName, $redirSubpage;
+	/** @var string Name of redirect target */
+	protected $redirName;
+
+	/** @var string Name of subpage of redirect target */
+	protected $redirSubpage;
 
 	function __construct(
 		$name, $redirName, $redirSubpage = false,
