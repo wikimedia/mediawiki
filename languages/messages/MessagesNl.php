@@ -1114,9 +1114,9 @@ Wellicht is het verplaatst of verwijderd terwijl u de pagina aan het bekijken wa
 'accmailtitle' => 'Wachtwoord verzonden.',
 'accmailtext' => 'Een willekeurig gegenereerd wachtwoord voor [[User talk:$1|$1]] is verzonden naar $2. Het kan worden gewijzigd op de pagina "[[Special:ChangePassword|wachtwoord wijzigen]]" na het aanmelden.',
 'newarticle' => '(Nieuw)',
-'newarticletext' => "Deze pagina bestaat niet.
+'newarticletext' => 'Deze pagina bestaat niet.
 Typ in het onderstaande veld om de pagina aan te maken (meer informatie staat op de [$1 hulppagina]).
-Gebruik de knop '''vorige''' in uw browser als u hier per ongeluk terecht bent gekomen.",
+Gebruik de knop <strong>Terug</strong> in uw browser als u hier per ongeluk terecht bent gekomen.',
 'anontalkpagetext' => "----''Deze overlegpagina hoort bij een anonieme gebruiker die geen gebruikersnaam heeft of deze niet gebruikt.
 Daarom wordt het IP-adres ter identificatie gebruikt.
 Het is mogelijk dat meerdere personen hetzelfde IP-adres gebruiken.

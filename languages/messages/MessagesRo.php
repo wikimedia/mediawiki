@@ -2581,8 +2581,8 @@ Iată configurația curentă a paginii '''$1''':",
 Iată configurația curentă a paginii '''$1''':",
 'protect-locked-access' => "Contul dumneavoastră nu are permisiunea de a schimba nivelurile de protejare a paginii.
 Aici sunt setările curente pentru pagina '''$1''':",
-'protect-cascadeon' => 'Această pagină este protejată deoarece este inclusă în {{PLURAL:$1|următoarea pagină, ce are|următoarele pagini ce au}} activată protejarea la modificare în cascadă.
-Puteți schimba nivelul de protejare al acestei pagini, dar asta nu va afecta protecția în cascadă.',
+'protect-cascadeon' => 'Această pagină este protejată deoarece este inclusă în {{PLURAL:$1|următoarea pagină ce are|următoarele pagini ce au}} activată protejarea în cascadă.
+Schimbarea nivelului de protejare al acestei pagini nu va afecta protejarea în cascadă.',
 'protect-default' => 'Permis pentru toți utilizatorii',
 'protect-fallback' => 'Autorizat doar pentru utilizatorii cu permisiunea „$1”',
 'protect-level-autoconfirmed' => 'Autorizat doar pentru utilizatorii autoconfirmați',

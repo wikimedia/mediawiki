@@ -3800,6 +3800,9 @@ $5
 'imgmultigo' => 'Перайсьці!',
 'imgmultigoto' => 'Перайсьці на старонку $1',
 
+# Language selector for translatable SVGs
+'img-lang-default' => '(мова па змоўчаньні)',
+
 # Table pager
 'ascending_abbrev' => 'узраст.',
 'descending_abbrev' => 'зьмянш.',

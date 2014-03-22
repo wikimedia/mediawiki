@@ -33,6 +33,7 @@
  * @author R-Joe
  * @author Samat
  * @author Sucy
+ * @author Szaszicska
  * @author TK-999
  * @author Tacsipacsi
  * @author Terik
@@ -846,6 +847,7 @@ Várj $1, mielőtt újra próbálkozol.',
 'suspicious-userlogout' => 'A kijelentkezési kérésed vissza lett utasítva, mert úgy tűnik, hogy egy hibás böngésző vagy gyorsítótárazó proxy küldte.',
 'createacct-another-realname-tip' => 'A valódi nevet nem kötelező megadni, de ha úgy döntesz, hogy megadod, azzal leszel feltüntetve a munkád szerzőjeként.',
 'pt-login' => 'Bejelentkezés',
+'pt-login-button' => 'Bejelentkezés',
 'pt-createaccount' => 'Fiók létrehozása',
 'pt-userlogout' => 'Kijelentkezés',
 

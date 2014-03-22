@@ -1016,6 +1016,9 @@ $2
 'changeemail-submit' => 'Промени',
 'changeemail-cancel' => 'Откажи',
 
+# Special:ResetTokens
+'resettokens-token-label' => '$1 (тренутна вредност: $2)',
+
 # Edit page toolbar
 'bold_sample' => 'Подебљан текст',
 'bold_tip' => 'Подебљан текст',
@@ -1801,7 +1804,7 @@ $1",
 'rcshowhidebots' => '$1 ботове',
 'rcshowhidebots-show' => 'Прикажи',
 'rcshowhidebots-hide' => 'Сакриј',
-'rcshowhideliu' => '$1 пријављене кориснике',
+'rcshowhideliu' => '$1 регисторваних корисника',
 'rcshowhideliu-show' => 'Прикажи',
 'rcshowhideliu-hide' => 'Сакриј',
 'rcshowhideanons' => '$1 анонимне кориснике',
@@ -4224,13 +4227,14 @@ $5
 'version-hook-subscribedby' => 'Пријављено од',
 'version-version' => '(издање $1)',
 'version-svn-revision' => '(изм. $2)',
-'version-license' => 'Лиценца',
+'version-license' => 'Медијавики лиценца',
 'version-ext-license' => 'Лиценца',
 'version-ext-colheader-name' => 'Екстензија',
 'version-ext-colheader-version' => 'Верзија',
 'version-ext-colheader-license' => 'Лиценца',
 'version-ext-colheader-description' => 'Опис',
 'version-ext-colheader-credits' => 'Аутори',
+'version-license-title' => 'Лиценца за $1',
 'version-poweredby-credits' => "Овај вики покреће '''[https://www.mediawiki.org/ Медијавики]''', ауторска права © 2001-$1 $2.",
 'version-poweredby-others' => 'остали',
 'version-poweredby-translators' => 'translatewiki.net преводиоци',
@@ -4251,6 +4255,7 @@ $5
 'redirect-legend' => 'Преусмери на датотеку или страницу',
 'redirect-submit' => 'Иди',
 'redirect-value' => 'Вредност:',
+'redirect-user' => 'Кориснички ID:',
 'redirect-page' => 'ID странице',
 'redirect-file' => 'Назив датотеке',
 'redirect-not-exists' => 'Вредност није пронађена',
@@ -4467,9 +4472,10 @@ $5
 'rotate-comment' => 'Слика је ротирана у смеру казаљке на сату за {{PLURAL:$1|степени}}',
 
 # Limit report
+'limitreport-cputime-value' => '$1 {{PLURAL:$1|секунда|секунд|секунди}}',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|секунда|секунди}}',
-'limitreport-postexpandincludesize-value' => '$1/$2 бајтова',
-'limitreport-templateargumentsize-value' => '$1/$2 бајтова',
+'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|бајт|бајта|бајтова}}',
+'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|бајт|бајта|бајтова}}',
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Замена шаблона',

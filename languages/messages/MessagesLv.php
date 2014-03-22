@@ -471,8 +471,10 @@ Vari turpināt to izmantot anonīmi, vari <span class='plainlinks'>[$1 atgriezti
 'nologinlink' => 'Reģistrējies',
 'createaccount' => 'Izveidot jaunu lietotāju',
 'gotaccount' => "Tev jau ir lietotājvārds? '''$1'''!",
-'gotaccountlink' => 'Dodies iekšā',
+'gotaccountlink' => 'Pieslēgties',
 'userlogin-resetlink' => 'Esat aizmirsis savu pieslēgšanās informāciju?',
+'userlogin-loggedin' => 'Tu esi pieslēdzies ar lietotājvārdu {{GENDER:$1|$1}}.
+Lai pieslēgtos ar citu lietotājvārdu, aizpildi šo formu.',
 'userlogin-createanother' => 'Izveidot citu kontu',
 'createacct-join' => 'Ievadiet savu informāciju zemāk.',
 'createacct-another-join' => 'Ievadiet jaunā konta informāciju zemāk.',
@@ -489,7 +491,7 @@ Vari turpināt to izmantot anonīmi, vari <span class='plainlinks'>[$1 atgriezti
 'createacct-imgcaptcha-ph' => 'Ievadiet tekstu, kuru jūs redzat augstāk',
 'createacct-submit' => 'Izveidot savu kontu',
 'createacct-another-submit' => 'Izveidot citu lietotāja kontu',
-'createacct-benefit-heading' => '{{SITENAME}} darbojas ar tādu cilvēku kā jūs ieguldījumu.',
+'createacct-benefit-heading' => '{{SITENAME}} darbojas ar tādu cilvēku kā Tu ieguldījumu.',
 'createacct-benefit-body1' => '{{PLURAL:$1|labojums|labojumi}}',
 'createacct-benefit-body2' => '{{PLURAL:$1|lapa|lapas}}',
 'createacct-benefit-body3' => '{{PLURAL:$1|nesens dalībnieks|neseni dalībnieki}}',
@@ -681,7 +683,7 @@ Norādi un apstiprini e-pasta adresi savos [[Special:Preferences|lietotāja uzst
 'nosuchsectiontext' => 'Jūs mēģinājāt rediģēt sadaļu, kas neeksistē.
 Tā var būt pārvietota vai dzēsta, kamēr jūs apskatījāt lapu.',
 'loginreqtitle' => 'Nepieciešama ieiešana',
-'loginreqlink' => 'login',
+'loginreqlink' => 'pieslēgties',
 'loginreqpagetext' => 'Tev nepieciešams $1, lai apskatītu citas lapas.',
 'accmailtitle' => 'Parole nosūtīta.',
 'accmailtext' => "Nejauši ģenerēta parole lietotājam [[User talk:$1|$1]] tika nosūtīta uz $2.
@@ -1718,8 +1720,8 @@ Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirm
 'notargettitle' => 'Bez mērķa',
 'nopagetitle' => 'Nav tādas mērķa lapas',
 'nopagetext' => 'Mērķa lapa, ko Jūs norādījāt, nepastāv.',
-'pager-newer-n' => '{{PLURAL:$1|1 jaunāku|$1 jaunākas}}',
-'pager-older-n' => '{{PLURAL:$1|1 vecāku|$1 vecākas}}',
+'pager-newer-n' => '{{PLURAL:$1|$1 jaunāku|$1 jaunākas}}',
+'pager-older-n' => '{{PLURAL:$1|$1 vecāku|$1 vecākas}}',
 'querypage-disabled' => 'Šī īpašā lapā ir atspējota veiktspējas iemeslu dēļ.',
 
 # Book sources
@@ -1940,7 +1942,7 @@ Papildinformācija:
 'delete-edit-reasonlist' => 'Izmainīt dzēšanas iemeslus',
 'delete-toobig' => 'Šai lapai ir liela izmaiņu hronoloģija, vairāk nekā $1 {{PLURAL:$1|versija|versijas}}.
 Šādu lapu dzēšana ir atslēgta, lai novērstu nejaušus traucējumus {{grammar:lokatīvs|{{SITENAME}}}}.',
-'deleting-backlinks-warning' => "'''Brīdinājums:''' uz lapu, ko grasies izdzēst, ved saites no citām lapām.",
+'deleting-backlinks-warning' => "'''Brīdinājums:''' uz lapu, ko grasies izdzēst, ved [[Special:WhatLinksHere/{{FULLPAGENAME}}|saites no citām lapām]].",
 
 # Rollback
 'rollback' => 'Novērst labojumus',
@@ -1983,7 +1985,7 @@ Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlrei
 'protect-text' => "Šeit var apskatīties un izmainīt lapas '''$1''' aizsardzības līmeni.",
 'protect-locked-access' => "Jūsu kontam nav atļaujas mainīt lapas aizsardzības pakāpi.
 Pašreizējie lapas '''$1''' iestatījumi ir:",
-'protect-cascadeon' => 'Šī lapa pašlaik ir aizsargāta, jo tā ir iekļauta {{PLURAL:$1|sekojošā lapā|sekojošās lapās}} (mainot šīs lapas aizsardzības līmeni aizsardzība netiks noņemta):',
+'protect-cascadeon' => 'Šī lapa pašlaik ir aizsargāta, jo tā ir iekļauta {{PLURAL:$1|šajā lapā|šajās lapās}} (mainot šīs lapas aizsardzības līmeni aizsardzība netiks noņemta):',
 'protect-default' => 'Atļaut visiem lietotājiem',
 'protect-fallback' => 'Atļaut tikai lietotājiem ar "$1" atļauju',
 'protect-level-autoconfirmed' => 'Atļaut tikai autoapstiprinātiem lietotājiem',

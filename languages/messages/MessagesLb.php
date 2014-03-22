@@ -1421,7 +1421,7 @@ Dës Informatioun ass ëffentlech.",
 
 # User rights
 'userrights' => 'Benotzerrechterverwaltung',
-'userrights-lookup-user' => 'Benotzergrupp verwalten',
+'userrights-lookup-user' => 'Benotzergruppe verwalten',
 'userrights-user-editname' => 'Benotzernumm uginn:',
 'editusergroup' => 'Benotzergruppen änneren',
 'editinguser' => "Ännere vun de Rechter vum Benotzer '''[[User:$1|$1]]''' $2",
@@ -1731,13 +1731,13 @@ Kuckt de Fichier <strong>[[:$1]]</strong> w.e.g. no.
 Wann et sech ëm d'Bild an der Originalgréisst handelt, da brauch kee separat Bild als Minitaur eropgelueden ze ginn.",
 'file-thumbnail-no' => "Den Numm vum Fichier fänkt mat <strong>$1</strong> un.
 Da deit drop hin datt et eng Minitaur ''(thumbnail)'' ass.
-Wann Dir dat Bild a méi enger grousser Opléisung hutt, da luet dëst erop, soss ännert den Numm vum Fichier w.e.g.",
+Wann Dir dat Bild a méi enger grousser Opléisung hutt, da luet dëst erop, wann net dann ännert w.e.g. den Numm vum Fichier.",
 'fileexists-forbidden' => 'Et gëtt schonn e Fichier mat dësem Numm an dee kann net iwwerschriwwe ginn.
 Wann Dir de Fichier nach ëmmer eropluede wëllt, da gitt w.e.g. zréck a benotzt en neien Numm. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'E Fichier mat dësem Numm gëtt et schonn an dem gedeelte Repertoire.
 Wann Dir dëse Fichier trotzdeem eropluede wëllt da gitt w.e.g. zréck a luet dëse Fichier ënner engem aneren Numm erop. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'Dëse Fichier schéngt een Doublon vun {{PLURAL:$1|dësem Fichier|dëse Fichieren}} ze sinn:',
-'file-deleted-duplicate' => 'En identesche Fichier ([[:$1]]) gouf virdru geläscht. Kuckt w.e.g. an der Lëscht vum Läschen no, Ier Dir en nach emol eropluet.',
+'file-deleted-duplicate' => 'En identesche Fichier ([[:$1]]) gouf virdru geläscht. Kuckt w.e.g. an der Lëscht vum Läschen no, ier Dir en nach emol eropluet.',
 'uploadwarning' => 'Opgepasst',
 'uploadwarning-text' => "Ännert d'Beschreiwung hei ënnedrënner w.e.g. a versicht et nach eng Kéier.",
 'savefile' => 'Fichier späicheren',
@@ -1960,7 +1960,7 @@ Dir kënnt seng Beschreiwung op senger [$2 Beschreiwungssäit] änneren.',
 'filedelete' => 'Läsch "$1"',
 'filedelete-legend' => 'Fichier läschen',
 'filedelete-intro' => "Dir läscht de Fichier '''[[Media:$1|$1]]''' mat all senge Versiounen (Historique).",
-'filedelete-intro-old' => "Dir läscht  d'Versioun $4  vum $2, $3 Auer vum Fichier '''„[[Media:$1|$1]]“'''.",
+'filedelete-intro-old' => "Dir läscht d'Versioun $4 vum $2, $3 Auer vum Fichier <strong>[[Media:$1|$1]]</strong>.",
 'filedelete-comment' => 'Grond:',
 'filedelete-submit' => 'Läschen',
 'filedelete-success' => "'''$1''' gouf geläscht.",
@@ -2335,14 +2335,14 @@ E-Mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
 Et gi soulaang keng weider Maile geschéckt, bis Dir d\'Säit nees emol besicht hutt wärend deem Dir ageloggt sidd.
-Op Ärer Iwwerwaachungslëscht kënnt Dir all Benoorichtigungsmarkeren zesummen zrécksetzen.
+Op Ärer Iwwerwaachungslëscht kënnt Dir all Noriichtemarkeren zesummen zrécksetzen.
 
 
-Äre frëndleche {{SITENAME}} Benoriichtigungssystem
+Äre frëndlechen {{SITENAME}} Noriichtessystem
 
 --
 
-Fir d\'Astellungen op Ären E-Mailbenoriichtigungen z\'änneren, besicht w.e.g.
+Fir d\'Astellungen op Ären E-Mailnoriichten z\'änneren, besicht w.e.g.
 {{canonicalurl:{{#special:Preferences}}}}
 
 
@@ -2815,7 +2815,8 @@ Wëll Dir se läsche fir d\'Réckelen ze erméiglechen?',
 'imageinvalidfilename' => 'Den Numm vum Zil-Fichier ass ongëlteg',
 'fix-double-redirects' => 'All Viruleedungen déi op den Originaltitel weisen aktualiséieren',
 'move-leave-redirect' => 'Viruleedung uleeën',
-'protectedpagemovewarning' => "'''OPGEPASST:''' Dës Säit gouf gespaart sou datt nëmme Benotzer mat Administreursrechter se réckele kënnen. Déi lescht Zeil aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner.",
+'protectedpagemovewarning' => '<strong>OPGEPASST:</strong> Dës Säit gouf gespaart sou datt nëmme Benotzer mat Administreursrechter se réckele kënnen.
+Déi lescht Zeil aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner.',
 'semiprotectedpagemovewarning' => "'''OPGEPASST:''' Dës Säit gouf gespaart sou datt nëmme confirméiert Benotzer se réckele kënnen. Déi lescht Zeil aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner.",
 'move-over-sharedrepo' => '== De Fichier gëtt et ==
 [[:$1]] gëtt et op engem gedeelte Repertoire. Wann dir e Fichier op dësen Titel réckelt dann ass dee gedeelte Fichier net méi accessibel.',
@@ -3624,7 +3625,7 @@ Iwwerpréift w.e.g. är E-Mailadress op ongëlteg Zeechen.
 
 Feelermeldung vum Mailserver: $1',
 'confirmemail_invalid' => "Ongëltege Confirmatiounscode. Eventuell ass d'Gëltegkeetsdauer vum Code ofgelaf.",
-'confirmemail_needlogin' => 'Dir musst iech $1, fir är E-Mail-Adress ze confirméieren.',
+'confirmemail_needlogin' => 'Dir musst Iech $1, fir Är E-Mail-Adress ze confirméieren.',
 'confirmemail_success' => 'Är E-Mailadress gouf confirméiert. Där kënnt iech elo aloggen an a vollem Ëmfang vun der Wiki profitéieren.',
 'confirmemail_loggedin' => 'Är E-Mail-Adress gouf elo confirméiert.',
 'confirmemail_subject' => 'Confirmatioun vun der E-Mail-Adress fir {{SITENAME}}',

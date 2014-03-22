@@ -9,6 +9,7 @@
  *
  * @author Alcali
  * @author Alchimista
+ * @author Amgauna
  * @author Anaclaudiaml
  * @author Bani
  * @author Brion
@@ -782,7 +783,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'userlogin-resetpassword-link' => 'Esqueceu sua senha?',
 'userlogin-loggedin' => 'Você já está conectado como {{GENDER:$1|$1}}.
 Use o formulário abaixo para iniciar sessão como outro usuário.',
-'userlogin-createanother' => 'Criar uma outra conta',
+'userlogin-createanother' => 'Crie uma outra conta',
 'createacct-join' => 'Insira suas informações abaixo.',
 'createacct-another-join' => 'Preeencha as informações para a nova conta',
 'createacct-emailrequired' => 'Endereço de e-mail',
@@ -872,8 +873,8 @@ Por favor aguarde $1 antes de tentar novamente.',
 'createacct-another-realname-tip' => 'O nome verdadeiro é opcional.
 Se você optar por fornecê-lo, este nome será utilizado para dar ao usuário a atribuição de seu trabalho.',
 'pt-login' => 'Entrar',
-'pt-login-button' => 'Entrar',
-'pt-createaccount' => 'Criar conta',
+'pt-login-button' => 'Logado',
+'pt-createaccount' => 'Crie uma conta',
 
 # Email sending
 'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
@@ -1052,7 +1053,7 @@ Ela pode ter sido movida ou removido enquanto você estava vendo a página.',
 Ela pode ser alterada na página ''[[Special:ChangePassword|de troca de senha]]'', após o início de sessão.",
 'newarticle' => '(Nova)',
 'newarticletext' => "Você seguiu um link para uma página que ainda não existe.
-Para criá-la, comece escrevendo na caixa abaixo (veja [$1 a página de ajuda] para mais informações).
+Para criá-la, comece escrevendo na caixa abaixo (veja [$1 na página de ajuda] para mais informações).
 Se você chegou aqui por engano, clique no botão '''voltar''' do seu navegador.",
 'anontalkpagetext' => "---- ''Esta é a página de discussão para um usuário anônimo que ainda não criou uma conta ou que não a usa, de forma que temos de utilizar o endereço de IP para identificá-lo(a). Tal endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha que comentários irrelevantes foram direcionados a você, por gentileza, [[Special:UserLogin/signup|crie uma conta]] ou [[Special:UserLogin|autentique-se]], a fim de evitar futuras confusões com outros usuários anônimos.''",
 'noarticletext' => 'No momento, não há conteúdo nesta página.
@@ -1297,9 +1298,9 @@ Você pode ver esta comparação; detalhes podem ser encontrados no [{{fullurl:{
 'revdelete-selected' => "'''{{PLURAL:$2|Edição selecionada|Edições selecionadas}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Evento de registro selecionado|Eventos de registro selecionados}}:'''",
 'revdelete-text-text' => 'Revisões apagadas continuarão a aparecer na página de histórico, mas parte de seus conteúdos estarão inacessíveis ao público.',
-'revdelete-text-file' => 'Versões dos arquivos apagados continuarão a aparecer no arquivo de histórico, mas parte de seus conteúdos estarão inacessíveis ao publico.',
+'revdelete-text-file' => 'Versões dos arquivos apagados continuarão a aparecer no arquivo de histórico, mas parte de seus conteúdos estarão inacessíveis ao público.',
 'logdelete-text' => 'Eventos de log apagados continuarão a aparecer nos logs, mas parte de seus conteúdos estarão inacessíveis ao público.',
-'revdelete-text-others' => 'Outros administrador na {{SITENAME}} continuarão capazes de acessar o conteúdo oculto e desocultá-lo pela mesma interface, a menos que restrições adicionais tenha sido feitas.',
+'revdelete-text-others' => 'Outros administradores do {{SITENAME}} continuarão sendo capazes de acessar o conteúdo oculto e desocultá-lo pela mesma interface, a menos que restrições adicionais tenham sido feitas.',
 'revdelete-confirm' => 'Por favor confirme que pretende executar esta ação, que compreende as suas consequências e que o faz em concordância com as [[{{MediaWiki:Policy-url}}|políticas e recomendações]].',
 'revdelete-suppress-text' => "A supressão deverá ser usada '''apenas''' para os seguintes casos:
 * Informação potencialmente difamatória
@@ -1760,7 +1761,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'recentchanges-legend-heading' => "'''Legenda''':",
 'recentchanges-legend-newpage' => '(veja também a [[Special:NewPages|lista de páginas novas]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnotefrom' => "Seguem as alterações desde as '''$4''' de '''$3''' (limitadas a '''$1''').",
+'rcnotefrom' => 'Abaixo estão mostradas as alterações de <strong>$2</strong> (até <strong>$1</strong>).',
 'rclistfrom' => 'Mostrar as novas alterações a partir das $1',
 'rcshowhideminor' => '$1 edições menores',
 'rcshowhideminor-show' => 'Exibir',
@@ -2485,7 +2486,7 @@ Futuras modificações em tal página e páginas de discussão relacionadas ser�
 'watchmethod-list' => 'verificando páginas vigiadas para edições recentes',
 'watchlistcontains' => 'Sua lista de páginas vigiadas contém $1 {{PLURAL:$1|página|páginas}}.',
 'iteminvalidname' => "Problema com item '$1', nome inválido...",
-'wlnote2' => 'A seguir estão as mudanças nas últimas {{PLURAL:$1|hora|<strong>$1</strong> houras}}, a partir de $2, $3.',
+'wlnote2' => 'A seguir estão as mudanças nas últimas {{PLURAL:$1|hora|<strong>$1</strong> horas}}, a partir de $2, $3.',
 'wlshowlast' => 'Ver últimas $1 horas $2 dias $3',
 'watchlist-options' => 'Opções da lista de páginas vigiadas',
 
@@ -2751,7 +2752,7 @@ Segue, para referência, a entrada mais recente no registro de bloqueios:',
 'sp-contributions-suppresslog' => 'Contribuições de usuário eliminadas',
 'sp-contributions-username' => 'Endereço de IP ou usuário:',
 'sp-contributions-toponly' => 'Mostrar somente as edições que sejam a última alteração',
-'sp-contributions-newonly' => 'Mostrar somente as edições que criaram uma nova página.',
+'sp-contributions-newonly' => 'Mostre somente as edições que criaram uma nova página.',
 'sp-contributions-submit' => 'Pesquisar',
 
 # What links here
@@ -4154,7 +4155,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'logentry-move-move' => '$1 moveu a página $3 para $4',
 'logentry-move-move-noredirect' => '$1 moveu a página $3 para $4 sem deixar um redirecionamento',
 'logentry-move-move_redir' => '$1 moveu a página $3 para $4 através de um redirecionamento',
-'logentry-move-move_redir-noredirect' => '$1 moveu a página $3 para $4 sem um redirecionamento',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moveu}} a página $3 para $4 sem um redirecionamento',
 'logentry-patrol-patrol' => '$1 {{GENDER:$2|marcou}} a revisão $4 da página $3 como patrulhada',
 'logentry-patrol-patrol-auto' => '$1 {{GENDER:$2|marcou}} automaticamente a revisão $4 da página $3 como patrulhada',
 'logentry-newusers-newusers' => 'A conta de usuário $1 foi {{GENDER:$2|criada}}',

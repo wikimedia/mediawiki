@@ -1355,7 +1355,7 @@ HTML નાકું ચકાસો',
 'prefs-displaysearchoptions' => 'પ્રદર્શન વિકલ્પો',
 'prefs-displaywatchlist' => 'પ્રદર્શન વિકલ્પો',
 'prefs-tokenwatchlist' => 'નિશાની',
-'prefs-diffs' => 'ફરક',
+'prefs-diffs' => 'ભેદો',
 'prefs-help-prefershttps' => 'આ પ્રાથમિકતા તમારા હવે પછીના પ્રવેશથી લાગુ પડશે.',
 
 # User preference: email validation using jQuery
