@@ -80,6 +80,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	public function getRows() {
 		$opts = $this->getOptions();
 		$conds = $this->buildMainQueryConds( $opts );
+
 		return $this->doMainQuery( $conds, $opts );
 	}
 
@@ -164,6 +165,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	protected function fetchOptionsFromRequest( $opts ) {
 		$opts->fetchValuesFromRequest( $this->getRequest() );
+
 		return $opts;
 	}
 
@@ -293,6 +295,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		// }
 
 		$dbr = $this->getDB();
+
 		return $dbr->select(
 			$tables,
 			$fields,
