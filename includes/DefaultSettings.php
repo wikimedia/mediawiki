@@ -6020,7 +6020,7 @@ $wgExtensionMessagesFiles = array();
  * @since 1.23
  */
 $wgMessagesDirs = array(
-	"$IP/resources/oojs-ui/i18n",
+	'oojs-ui' => "$IP/resources/oojs-ui/i18n",
 );
 
 /**
