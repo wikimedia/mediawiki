@@ -3463,16 +3463,16 @@ HTML
 			}
 
 			$params = array(
-				$image = $wgStylePath . '/common/images/' . $tool['image'],
+				$wgStylePath . '/common/images/' . $tool['image'],
 				// Note that we use the tip both for the ALT tag and the TITLE tag of the image.
 				// Older browsers show a "speedtip" type message only for ALT.
 				// Ideally these should be different, realistically they
 				// probably don't need to be.
-				$tip = $tool['tip'],
-				$open = $tool['open'],
-				$close = $tool['close'],
-				$sample = $tool['sample'],
-				$cssId = $tool['id'],
+				$tool['tip'],
+				$tool['open'],
+				$tool['close'],
+				$tool['sample'],
+				$tool['id'],
 			);
 
 			$script .= Xml::encodeJsCall( 'mw.toolbar.addButton', $params );
