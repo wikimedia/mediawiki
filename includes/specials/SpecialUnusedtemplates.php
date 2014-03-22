@@ -30,10 +30,11 @@
  * @ingroup SpecialPage
  */
 class UnusedtemplatesPage extends QueryPage {
-
+	// @codingStandardsIgnoreStart Method overriding is needed here.
 	function __construct( $name = 'Unusedtemplates' ) {
 		parent::__construct( $name );
 	}
+	// @codingStandardsIgnoreEnd
 
 	function isExpensive() {
 		return true;

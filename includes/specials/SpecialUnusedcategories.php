@@ -25,13 +25,14 @@
  * @ingroup SpecialPage
  */
 class UnusedCategoriesPage extends QueryPage {
+	// @codingStandardsIgnoreStart Method overriding is needed here.
+	function __construct( $name = 'Unusedcategories' ) {
+		parent::__construct( $name );
+	}
+	// @codingStandardsIgnoreEnd
 
 	function isExpensive() {
 		return true;
-	}
-
-	function __construct( $name = 'Unusedcategories' ) {
-		parent::__construct( $name );
 	}
 
 	function getPageHeader() {
