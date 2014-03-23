@@ -452,12 +452,22 @@ class Block {
 
 		$affected = $dbw->affectedRows();
 
-		$dbw->update(
-			'ipblocks',
-			$this->getAutoblockUpdateArray(),
-			array( 'ipb_parent_block_id' => $this->getId() ),
-			__METHOD__
-		);
+		if ( $this->isAutoblocking() ) {
+			// update corresponding autoblock(s) (bug 48813)
+			$dbw->update(
+				'ipblocks',
+				$this->getAutoblockUpdateArray(),
+				array( 'ipb_parent_block_id' => $this->getId() ),
+				__METHOD__
+			);
+		} else {
+			// autoblock no longer required, delete corresponding autoblock(s)
+			$dbw->delete(
+				'ipblocks',
+				array( 'ipb_parent_block_id' => $this->getId() ),
+				__METHOD__
+			);
+		}
 
 		$dbw->endAtomic( __METHOD__ );
 
