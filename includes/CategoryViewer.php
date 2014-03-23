@@ -76,7 +76,9 @@ class CategoryViewer extends ContextSource {
 	 * @param array $until An array with 3 keys for until of each section (since 1.17)
 	 * @param $query Array
 	 */
-	function __construct( $title, IContextSource $context, $from = array(), $until = array(), $query = array() ) {
+	function __construct( $title, IContextSource $context, $from = array(),
+		$until = array(), $query = array()
+	) {
 		global $wgCategoryPagingLimit;
 		$this->title = $title;
 		$this->setContext( $context );
@@ -423,7 +425,12 @@ class CategoryViewer extends ContextSource {
 			$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'file' );
 
 			$r .= "<div id=\"mw-category-media\">\n";
-			$r .= '<h2>' . $this->msg( 'category-media-header', wfEscapeWikiText( $this->title->getText() ) )->text() . "</h2>\n";
+			$r .= '<h2>' .
+				$this->msg(
+					'category-media-header',
+					wfEscapeWikiText( $this->title->getText() )
+				)->text() .
+				"</h2>\n";
 			$r .= $countmsg;
 			$r .= $this->getSectionPagingLinks( 'file' );
 			if ( $this->showGallery ) {
@@ -447,7 +454,9 @@ class CategoryViewer extends ContextSource {
 	private function getSectionPagingLinks( $type ) {
 		if ( isset( $this->until[$type] ) && $this->until[$type] !== null ) {
 			return $this->pagingLinks( $this->nextPage[$type], $this->until[$type], $type );
-		} elseif ( $this->nextPage[$type] !== null || ( isset( $this->from[$type] ) && $this->from[$type] !== null ) ) {
+		} elseif ( $this->nextPage[$type] !== null
+			|| ( isset( $this->from[$type] ) && $this->from[$type] !== null )
+		) {
 			return $this->pagingLinks( $this->from[$type], $this->nextPage[$type], $type );
 		} else {
 			return '';
@@ -562,7 +571,8 @@ class CategoryViewer extends ContextSource {
 	static function shortList( $articles, $articles_start_char ) {
 		$r = '<h3>' . htmlspecialchars( $articles_start_char[0] ) . "</h3>\n";
 		$r .= '<ul><li>' . $articles[0] . '</li>';
-		for ( $index = 1; $index < count( $articles ); $index++ ) {
+		$articleCount = count( $articles );
+		for ( $index = 1; $index < $articleCount; $index++ ) {
 			if ( $articles_start_char[$index] != $articles_start_char[$index - 1] ) {
 				$r .= "</ul><h3>" . htmlspecialchars( $articles_start_char[$index] ) . "</h3>\n<ul>";
 			}

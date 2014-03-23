@@ -435,7 +435,8 @@ class Block {
 	 * Update a block in the DB with new parameters.
 	 * The ID field needs to be loaded first.
 	 *
-	 * @return bool|array False on failure, array on success: ('id' => block ID, 'autoIds' => array of autoblock IDs)
+	 * @return bool|array False on failure, array on success:
+	 *   ('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
 	public function update() {
 		wfDebug( "Block::update; timestamp {$this->mTimestamp}\n" );
@@ -676,7 +677,8 @@ class Block {
 		wfDebug( "Autoblocking {$this->getTarget()}@" . $autoblockIP . "\n" );
 		$autoblock->setTarget( $autoblockIP );
 		$autoblock->setBlocker( $this->getBlocker() );
-		$autoblock->mReason = wfMessage( 'autoblocker', $this->getTarget(), $this->mReason )->inContentLanguage()->plain();
+		$autoblock->mReason = wfMessage( 'autoblocker', $this->getTarget(), $this->mReason )
+			->inContentLanguage()->plain();
 		$timestamp = wfTimestampNow();
 		$autoblock->mTimestamp = $timestamp;
 		$autoblock->mAuto = 1;
@@ -973,7 +975,10 @@ class Block {
 			# passed by some callers (bug 29116)
 			return null;
 
-		} elseif ( in_array( $type, array( Block::TYPE_USER, Block::TYPE_IP, Block::TYPE_RANGE, null ) ) ) {
+		} elseif ( in_array(
+			$type,
+			array( Block::TYPE_USER, Block::TYPE_IP, Block::TYPE_RANGE, null ) )
+		) {
 			$block = new Block();
 			$block->fromMaster( $fromMaster );
 

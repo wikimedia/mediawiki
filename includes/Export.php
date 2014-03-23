@@ -594,9 +594,8 @@ class XmlDumpWriter {
 	 *
 	 * @param $row object
 	 * @return string
-	 * @access private
 	 */
-	function openPage( $row ) {
+	public function openPage( $row ) {
 		$out = "  <page>\n";
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$out .= '    ' . Xml::elementClean( 'title', array(), self::canonicalTitle( $title ) ) . "\n";
@@ -606,7 +605,9 @@ class XmlDumpWriter {
 			$page = WikiPage::factory( $title );
 			$redirect = $page->getRedirectTarget();
 			if ( $redirect instanceof Title && $redirect->isValidRedirectTarget() ) {
-				$out .= '    ' . Xml::element( 'redirect', array( 'title' => self::canonicalTitle( $redirect ) ) ) . "\n";
+				$out .= '    ';
+				$out .= Xml::element( 'redirect', array( 'title' => self::canonicalTitle( $redirect ) ) );
+				$out .= "\n";
 			}
 		}
 
@@ -680,7 +681,10 @@ class XmlDumpWriter {
 				"" ) . "\n";
 		}
 
-		if ( isset( $row->rev_sha1 ) && $row->rev_sha1 && !( $row->rev_deleted & Revision::DELETED_TEXT ) ) {
+		if ( isset( $row->rev_sha1 )
+			&& $row->rev_sha1
+			&& !( $row->rev_deleted & Revision::DELETED_TEXT )
+		) {
 			$out .= "      " . Xml::element( 'sha1', null, strval( $row->rev_sha1 ) ) . "\n";
 		} else {
 			$out .= "      <sha1/>\n";
@@ -813,7 +817,7 @@ class XmlDumpWriter {
 	}
 
 	/**
-	 * @param $file File
+	 * @param File $file
 	 * @param $dumpContents bool
 	 * @return string
 	 */
@@ -828,7 +832,7 @@ class XmlDumpWriter {
 			$be = $file->getRepo()->getBackend();
 			# Dump file as base64
 			# Uses only XML-safe characters, so does not need escaping
-			# @TODO: too bad this loads the contents into memory (script might swap)
+			# @todo Too bad this loads the contents into memory (script might swap)
 			$contents = '      <contents encoding="base64">' .
 				chunk_split( base64_encode(
 					$be->getFileContents( array( 'src' => $file->getPath() ) ) ) ) .
@@ -956,7 +960,8 @@ class DumpOutput {
 	 * Use this for the last piece of a file written out
 	 * at specified checkpoints (e.g. every n hours).
 	 * @param $newname mixed File name. May be a string or an array with one element
-	 * @param bool $open If true, a new file with the old filename will be opened again for writing (default: false)
+	 * @param bool $open If true, a new file with the old filename will be opened
+	 *   again for writing (default: false)
 	 */
 	function closeAndRename( $newname, $open = false ) {
 	}
