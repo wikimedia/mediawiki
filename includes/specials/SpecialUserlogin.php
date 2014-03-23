@@ -108,12 +108,12 @@ class LoginForm extends SpecialPage {
 		$this->mRemember = $request->getCheck( 'wpRemember' );
 		$this->mFromHTTP = $request->getBool( 'fromhttp', false );
 		$this->mStickHTTPS = ( !$this->mFromHTTP && $request->getProtocol() === 'https' ) || $request->getBool( 'wpForceHttps', false );
-		$this->mLanguage = $request->getText( 'uselang' );
 		$this->mSkipCookieCheck = $request->getCheck( 'wpSkipCookieCheck' );
 		$this->mToken = ( $this->mType == 'signup' ) ? $request->getVal( 'wpCreateaccountToken' ) : $request->getVal( 'wpLoginToken' );
 		$this->mReturnTo = $request->getVal( 'returnto', '' );
 		$this->mReturnToQuery = $request->getVal( 'returntoquery', '' );
 
+		
 		if ( $wgEnableEmail ) {
 			$this->mEmail = $request->getText( 'wpEmail' );
 		} else {
@@ -139,6 +139,19 @@ class LoginForm extends SpecialPage {
 			|| $returnToTitle->isSpecial( 'PasswordReset' ) ) ) {
 			$this->mReturnTo = '';
 			$this->mReturnToQuery = '';
+		}
+
+		// Try to be smart about default language preferences. First check
+		// the language cookie, then the HTTP Accept Header, and finally the
+		// uselang property.
+		$cookieLang = $request->getCookie( 'language' );
+		$acceptLang = $request->getAcceptLang();
+		if ( $cookieLang ) {
+			$this->mLanguage = $cookieLang;
+		} else if ( count($acceptLang) > 0 ){
+			$this->mLanguage = $acceptLang[0];
+		} else {
+			$this->mLanguage = $request->getText( 'uselang' );
 		}
 	}
 
@@ -267,9 +280,9 @@ class LoginForm extends SpecialPage {
 
 		# Only save preferences if the user is not creating an account for someone else.
 		if ( $this->getUser()->isAnon() ) {
-			# If we showed up language selection links, and one was in use, be
-			# smart (and sensible) and save that language as the user's preference
-			if ( $wgLoginLanguageSelector && $this->mLanguage ) {
+			# If this language was set, either by language selection links or in the
+			# wikilanguage cookies somehow, save that language as the user's preference
+			if ( $this->mLanguage && Language::isSupportedLanguage( $this->mLanguage ) ) {
 				$u->setOption( 'language', $this->mLanguage );
 			} else {
 
