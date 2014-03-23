@@ -2221,6 +2221,7 @@ class EditPage {
 		$wgOut->addHTML( $this->editFormTextTop );
 
 		$showToolbar = true;
+		$showToolbar = wfRunHooks( 'EditPage::showEditForm:editToolbar', array( $this->mArticle ) );
 		if ( $this->wasDeletedSinceLastEdit() ) {
 			if ( $this->formtype == 'save' ) {
 				// Hide the toolbar and edit area, user can click preview to get it back
