@@ -108,7 +108,6 @@ class LoginForm extends SpecialPage {
 		$this->mRemember = $request->getCheck( 'wpRemember' );
 		$this->mFromHTTP = $request->getBool( 'fromhttp', false );
 		$this->mStickHTTPS = ( !$this->mFromHTTP && $request->getProtocol() === 'https' ) || $request->getBool( 'wpForceHttps', false );
-		$this->mLanguage = $request->getText( 'uselang' );
 		$this->mSkipCookieCheck = $request->getCheck( 'wpSkipCookieCheck' );
 		$this->mToken = ( $this->mType == 'signup' ) ? $request->getVal( 'wpCreateaccountToken' ) : $request->getVal( 'wpLoginToken' );
 		$this->mReturnTo = $request->getVal( 'returnto', '' );
@@ -139,6 +138,22 @@ class LoginForm extends SpecialPage {
 			|| $returnToTitle->isSpecial( 'PasswordReset' ) ) ) {
 			$this->mReturnTo = '';
 			$this->mReturnToQuery = '';
+		}
+
+		// Try to be smart about default language preferences. First use the uselang 
+		// property, then check for a language cookie, and finally the HTTP request
+		// Accept Header
+		$useLang = $request->getText( 'uselang' );
+		$cookieLang = $request->getCookie( 'language' );
+		$acceptLang = $request->getAcceptLang();
+		if ( $useLang ) {
+			$this->mLanguage = $useLang;
+		} elseif ( $cookieLang ) {
+			$this->mLanguage = $cookieLang;
+		} elseif ( count( $acceptLang ) > 0 ){
+			$this->mLanguage = key( $acceptLang );
+		} else {
+			$this->mLanguage = '';
 		}
 	}
 
@@ -267,12 +282,13 @@ class LoginForm extends SpecialPage {
 
 		# Only save preferences if the user is not creating an account for someone else.
 		if ( $this->getUser()->isAnon() ) {
-			# If we showed up language selection links, and one was in use, be
-			# smart (and sensible) and save that language as the user's preference
-			if ( $wgLoginLanguageSelector && $this->mLanguage ) {
+			# If this language was set, either by language selection links or in the
+			# language cookies somehow, save that language as the user's preference
+			if ( $this->mLanguage && Language::isSupportedLanguage( $this->mLanguage ) ) {
 				$u->setOption( 'language', $this->mLanguage );
+			} elseif ( $this->mLanguage && Language::isSupportedLanguage( strtok( $this->mLanguage, '-' ) ) ) {
+				$u->setOption( 'language', strtok( $this->mLanguage, '-' ) );
 			} else {
-
 				# Otherwise the user's language preference defaults to $wgContLang,
 				# but it may be better to set it to their preferred $wgContLang variant,
 				# based on browser preferences or URL parameters.
