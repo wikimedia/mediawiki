@@ -674,11 +674,20 @@ class PageArchive {
  * @ingroup SpecialPage
  */
 class SpecialUndelete extends SpecialPage {
-	var $mAction, $mTarget, $mTimestamp, $mRestore, $mInvert, $mFilename;
-	var $mTargetTimestamp, $mAllowed, $mCanView, $mComment, $mToken;
+	private $mAction;
+	private	$mTarget;
+	private	$mTimestamp;
+	private	$mRestore;
+	private	$mInvert;
+	private	$mFilename;
+	private $mTargetTimestamp;
+	private	$mAllowed;
+	private	$mCanView;
+	private	$mComment;
+	private	$mToken;
 
 	/** @var Title */
-	var $mTargetObj;
+	private $mTargetObj;
 
 	function __construct() {
 		parent::__construct( 'Undelete', 'deletedhistory' );
