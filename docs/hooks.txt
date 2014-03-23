@@ -1326,6 +1326,10 @@ Return value is ignored (should always return true)
 $editor: EditPage instance (object)
 &$out: an OutputPage instance to write to
 
+'EditPage::showEditForm:editToolbar': allow removal of edit toolbar from editpage
+$article: Article being edited
+Return false for no edit toolbar
+
 'EditPage::showStandardInputs:options': allows injection of form fields into
 the editOptions area
 Return value is ignored (should always be true)
