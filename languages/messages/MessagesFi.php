@@ -1348,9 +1348,9 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'mergelogpagetext' => 'Alla on loki viimeisimmistä muutoshistorioiden yhdistämisistä.',
 
 # Diffs
-'history-title' => 'Sivun $1 muutoshistoria',
-'difference-title' => 'Ero sivun $1 versioiden välillä',
-'difference-title-multipage' => 'Erot sivujen $1 ja $2 välillä',
+'history-title' => 'Sivun "$1" muutoshistoria',
+'difference-title' => 'Ero sivun "$1" versioiden välillä',
+'difference-title-multipage' => 'Erot sivujen "$1" ja "$2" välillä',
 'difference-multipage' => '(Sivujen välinen eroavaisuus)',
 'lineno' => 'Rivi $1:',
 'compareselectedversions' => 'Vertaile valittuja versioita',
@@ -2484,7 +2484,7 @@ Palaute ja lisäapu osoitteessa:
 'excontentauthor' => 'sisälsi: ”$1” (ainoa muokkaaja oli $2)',
 'exbeforeblank' => 'ennen tyhjentämistä sisälsi: ”$1”',
 'exblank' => 'oli tyhjä',
-'delete-confirm' => 'Sivun ”$1” poistaminen',
+'delete-confirm' => 'Poista ”$1”',
 'delete-legend' => 'Sivun poisto',
 'historywarning' => "'''Varoitus:''' Sivua, jota olet poistamassa, on muokattu noin $1 {{PLURAL:$1|kerta|kertaa}}:",
 'confirmdeletetext' => 'Olet poistamassa sivun tai tiedoston ja kaiken sen historian. Ymmärrä teon seuraukset ja tee poisto {{GRAMMAR:genitive|{{SITENAME}}}} [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.',
@@ -2842,7 +2842,7 @@ Muista [[Special:UnlockDB|poistaa tietokannan lukitus]] kun huolto on tehty.',
 'lockedbyandtime' => '(lukinnut {{GENDER:$1|$1}} $2 kello $3)',
 
 # Move page
-'move-page' => 'Sivun $1 siirto',
+'move-page' => 'Siirrä $1',
 'move-page-legend' => 'Siirrä sivu',
 'movepagetext' => "Alla olevalla lomakkeella voit nimetä uudelleen sivuja, jolloin niiden koko historia siirtyy uuden nimen alle.
 Vanhasta sivusta tulee ohjaussivu, joka osoittaa uuteen sivuun.

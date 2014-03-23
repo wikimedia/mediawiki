@@ -1773,22 +1773,22 @@ $1",
 # Upload
 'upload' => '上传文件',
 'uploadbtn' => '上传文件',
-'reuploaddesc' => '取消上传并返回上传表单',
-'upload-tryagain' => '提交修改后的文件描述',
+'reuploaddesc' => '取消上传，返回上传表格',
+'upload-tryagain' => '提交修改过的文件说明',
 'uploadnologin' => '未登录',
 'uploadnologintext' => '您必须先$1才能上传文件。',
 'upload_directory_missing' => '上传目录（$1）遗失，不能由网页服务器建立。',
 'upload_directory_read_only' => '上传目录（$1）不存在或无写权限。',
-'uploaderror' => '上传错误',
+'uploaderror' => '上传出错',
 'upload-recreate-warning' => "'''警告：一个相同名字的文件曾经被删除或者移动至别处。'''
 
 这个页面的删除和移动日志在这里提供以便参考：",
-'uploadtext' => "请使用下面的表格上传文件。要查看或搜索以前上传的文件，可以进入[[Special:FileList|文件上传列表]]，（重新）上传也将在[[Special:Log/upload|上传日志]]中记录，而删除将在[[Special:Log/delete|删除日志]]中记录。
+'uploadtext' => '请使用下面的表格上传文件。要查看或搜索以往上传的文件，请前往[[Special:FileList|上传的文件的列表]]，（重新）上传也将记录在[[Special:Log/upload|上传日志]]中，删除将记录在[[Special:Log/delete|删除日志]]中。
 
-要在页面中加入文件，请使用一种以下形式的链接：
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>'''使用文件的完整版本
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替换文字]]</nowiki></code>'''使用放置于左侧的一个框内的200像素宽的图片，同时使用“替换文字”作为描述
-* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>'''直接链接到文件而不显示文件",
+要在页面中包含文件，请使用一种以下形式的链接：
+* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code></strong>使用文件的完整版本
+* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替代文字]]</nowiki></code></strong>使用位于页面左边的框内的200像素宽的图片，以“替代文字”作为说明
+* <strong><code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code></strong>直接链接到文件而不显示文件',
 'upload-permitted' => '允许的文件类型：$1。',
 'upload-preferred' => '建议的文件类型：$1。',
 'upload-prohibited' => '禁止的文件类型：$1。',
@@ -1802,7 +1802,7 @@ $1",
 'filestatus' => '著作权状况：',
 'filesource' => '来源：',
 'uploadedfiles' => '已上传文件',
-'ignorewarning' => '忽视警告并继续保存文件',
+'ignorewarning' => '忽略警告，继续保存文件',
 'ignorewarnings' => '忽略所有警告',
 'minlength1' => '文件名至少要有一个字符。',
 'illegalfilename' => '文件名“$1”包含在页面标题中不允许使用的字符。请重命名该文件，然后重新上传。',
@@ -1832,10 +1832,7 @@ $1",
 'emptyfile' => '您所上传的文件不存在。这可能是由于文件名键入错误。请检查您是否真的要上传此文件。',
 'windows-nonascii-filename' => '本wiki不支持在文件名中使用特殊字符。',
 'fileexists' => '已存在相同名称的文件，如果您无法确定您是否要改变它，请检查<strong><strong>[[:$1]]</strong></strong>。 [[$1|thumb]]',
-'filepageexists' => '这个文件的描述页已经于<strong><strong>[[:$1]]</strong></strong>创建，但是这个名称的文件尚不存在。
-您输入的摘要不会显示在该描述页中。
-要令该摘要在该处中出现，您需要手动地编辑该页。
-[[$1|thumb]]',
+'filepageexists' => '该文件的说明页面已经创建于<strong>[[:$1]]</strong>，但是目前没有名称为此的文件存在。你输入的摘要不会显示在说明页面上。要使你的摘要在那里显示，你需要手工编辑它。[[$1|thumb]]',
 'fileexists-extension' => '一个相似名称的文件已经存在: [[$2|thumb]]
 * 上传文件的文件名：<strong>[[:$1]]</strong>
 * 现有文件的文件名：<strong>[[:$2]]</strong>
@@ -2014,7 +2011,7 @@ $1',
 # File description page
 'file-anchor-link' => '文件',
 'filehist' => '文件历史',
-'filehist-help' => '查看某一时刻的文件，请单击相应的日期/时间。',
+'filehist-help' => '单击某个日期/时间查看对应时刻的文件。',
 'filehist-deleteall' => '删除全部',
 'filehist-deleteone' => '删除',
 'filehist-revert' => '恢复',
@@ -2037,16 +2034,16 @@ $1',
 'morelinkstoimage' => '查看连接到这个文件的[[Special:WhatLinksHere/$1|更多链接]]。',
 'linkstoimage-redirect' => '$1（文件重定向）$2',
 'duplicatesoffile' => '以下{{PLURAL:$1|文件|$1个文件}}是本文件的副本（[[Special:FileDuplicateSearch/$2|更多细节]]）：',
-'sharedupload' => '本文件来自$1并可能被其它项目使用。',
-'sharedupload-desc-there' => '本文件来自$1并可能被其它项目使用。更多信息请见[$2 文件说明页面]。',
-'sharedupload-desc-here' => '本文件来自$1并可能被其它项目使用。其[$2 文件说明页面]上的说明显示在下面。',
-'sharedupload-desc-edit' => '本文件来自$1并可能被其它项目使用。也许你想要编辑其[$2 文件说明页面]上的说明。',
+'sharedupload' => '本文件来自$1并可能被其他项目使用。',
+'sharedupload-desc-there' => '本文件来自$1并可能被其他项目使用。更多信息请见[$2 文件说明页面]。',
+'sharedupload-desc-here' => '本文件来自$1并可能被其他项目使用。其[$2 文件说明页面]上的说明显示在下面。',
+'sharedupload-desc-edit' => '本文件来自$1并可能被其他项目使用。也许你想要编辑其[$2 文件说明页面]上的说明。',
 'sharedupload-desc-create' => '本文件来自$1并可能被其他项目使用。也许你想要编辑其[$2 文件说明页面]上的说明。',
 'filepage-nofile' => '不存在此名称的文件。',
 'filepage-nofile-link' => '不存在此名称的文件，但您可以[$1 上传它]。',
 'uploadnewversion-linktext' => '上传该文件的新版本',
-'shared-repo-from' => '出自$1',
-'shared-repo' => '一个共用文件库',
+'shared-repo-from' => '来自$1',
+'shared-repo' => '一个共享文件库',
 'shared-repo-name-wikimediacommons' => '维基共享资源',
 'upload-disallowed-here' => '您不可以覆盖此文件。',
 
@@ -3417,7 +3414,7 @@ Variants for Chinese language
 'exif-contrast' => '对比度',
 'exif-saturation' => '饱和度',
 'exif-sharpness' => '锐化',
-'exif-devicesettingdescription' => '设备设定描述',
+'exif-devicesettingdescription' => '设备设置说明',
 'exif-subjectdistancerange' => '主体距离范围',
 'exif-imageuniqueid' => '唯一图像ID',
 'exif-gpsversionid' => 'GPS标签版本',
@@ -3473,7 +3470,7 @@ Variants for Chinese language
 'exif-editstatus' => '编辑状态的图像',
 'exif-urgency' => '紧急性',
 'exif-fixtureidentifier' => '夹具名称',
-'exif-locationdest' => '位置描述',
+'exif-locationdest' => '描绘的地点',
 'exif-locationdestcode' => '位置所示的代码',
 'exif-objectcycle' => '媒体文件使用时间要求',
 'exif-contact' => '联系信息',
@@ -3510,9 +3507,9 @@ Variants for Chinese language
 'exif-intellectualgenre' => '项目类型',
 'exif-subjectnewscode' => '主题代码',
 'exif-scenecode' => 'IPTC 现场代码',
-'exif-event' => '事件描述',
-'exif-organisationinimage' => '组织描述',
-'exif-personinimage' => '描述的人',
+'exif-event' => '描绘的事件',
+'exif-organisationinimage' => '描绘的组织',
+'exif-personinimage' => '描绘的人物',
 'exif-originalimageheight' => '裁剪前的图像高度',
 'exif-originalimagewidth' => '裁剪前的图像宽度',
 

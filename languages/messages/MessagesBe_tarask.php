@@ -3802,6 +3802,7 @@ $5
 
 # Language selector for translatable SVGs
 'img-lang-default' => '(мова па змоўчаньні)',
+'img-lang-info' => 'Паказаць гэтую выяву наступнай мовай: $1. $2',
 
 # Table pager
 'ascending_abbrev' => 'узраст.',

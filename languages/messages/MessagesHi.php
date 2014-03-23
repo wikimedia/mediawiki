@@ -18,6 +18,7 @@
  * @author Charu
  * @author Darshan kandolkar
  * @author Dineshjk
+ * @author Goelujjwal
  * @author Hemant wikikosh1
  * @author Htt
  * @author InfinityO O
@@ -738,6 +739,7 @@ $2',
 'createacct-another-realname-tip' => 'असली नाम देना आवश्यक नहीं है।
 यदि आप प्रदान करते हैं तो इसका प्रयोग सदस्य के योगदानों के लिये उनको श्रेय (attribution) देने के लिये किया जायेगा।',
 'pt-login' => 'लॉग इन',
+'pt-login-button' => 'लॉग इन',
 'pt-createaccount' => 'खाता बनाएँ',
 'pt-userlogout' => 'लॉगआउट',
 

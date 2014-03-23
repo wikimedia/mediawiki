@@ -50,6 +50,7 @@
  * @author Rhinestorm
  * @author Runningfridgesrule
  * @author Sadrettin
+ * @author SiLveRLeaD
  * @author Srhat
  * @author Stultiwikia
  * @author Suelnur
@@ -891,6 +892,7 @@ Devam etmeden önce $1 bekleyin.',
 'createacct-another-realname-tip' => 'Gerçek adınız isteğe bağlıdır.
 Eğer gerçek adınızı belirtirseniz, çalışmalarınıza atıfta bulunulması için de kullanılacaktır.',
 'pt-login' => 'Giriş yap',
+'pt-login-button' => 'Oturum aç',
 'pt-createaccount' => 'Hesap oluştur',
 'pt-userlogout' => 'Oturumu kapat',
 

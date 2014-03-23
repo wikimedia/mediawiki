@@ -732,6 +732,7 @@ Doblidetz pas de modificar [[Special:Preferences|vòstras preferéncias per {{SI
 'gotaccountlink' => 'Identificatz-vos',
 'userlogin-resetlink' => 'Avètz doblidat vòstres detalhs de connexion ?',
 'userlogin-resetpassword-link' => 'Senhal doblidat ?',
+'userlogin-helplink2' => 'Ajuda a la connexion',
 'userlogin-loggedin' => 'Sètz ja connectat en tant que {{GENDER:$1|$1}}.
 Utilizatz lo formulari çaijós per vos connectar amb un autre utilizaire.',
 'userlogin-createanother' => 'Crear un autre compte',
@@ -850,8 +851,10 @@ Esperatz $1 abans d’ensajar tornarmai.',
 'resetpass-submit-cancel' => 'Anullar',
 'resetpass-wrong-oldpass' => 'Senhal actual o temporari invalid.
 Benlèu ja avètz modificat vòstre senhal o demandat un senhal temporari novèl.',
+'resetpass-recycled' => 'Reïnicializatz vòstre senhal a quicòm mai que l’actual.',
 'resetpass-temp-password' => 'Senhal temporari :',
 'resetpass-abort-generic' => 'La modificacion del senhal es estada anulada per una extension.',
+'resetpass-expired' => 'Vòstre senhal a expirat. Provesissètz-ne un novèl per vos connectar.',
 
 # Special:PasswordReset
 'passwordreset' => 'Remesa a zèro del senhal',
@@ -893,6 +896,8 @@ Senhal temporari: $2',
 'changeemail-password' => 'Vòstre senhal sus {{SITENAME}} :',
 'changeemail-submit' => "Cambiar l'adreça electronica:",
 'changeemail-cancel' => 'Anullar',
+'changeemail-throttled' => 'Avètz fach tròp de temptativas de connexion.
+Esperatz $1 abans d’ensajar tornarmai.',
 
 # Special:ResetTokens
 'resettokens' => 'Reïnicializar los getons',
@@ -1103,6 +1108,7 @@ Existís ja.',
 'editwarning-warning' => "Quitar aquesta pagina vos farà pèrdre totas las modificacions qu'avètz fachas.
 Se sètz connectat, podètz desactivar aqueste avertiment dins la seccion « {{int:prefs-editing}} » de vòstras preferéncias.",
 'editpage-notsupportedcontentformat-title' => 'Format de contengut pas pres en carga',
+'editpage-notsupportedcontentformat-text' => 'Lo format de contengut $1 es pas pres en carga pel modèl de contengut $2 .',
 
 # Content models
 'content-model-wikitext' => 'wikitèxte',
@@ -1135,6 +1141,7 @@ D'unas inclusions seràn pas efectuadas.",
 'undo-success' => "Aquesta modificacion va èsser desfacha. Confirmatz los cambiaments (visibles en bas d'aquesta pagina), puèi salvatz se sètz d’acòrdi. Mercés de motivar l’anullacion dins la bóstia de resumit.",
 'undo-failure' => 'Aquesta modificacion a pas pogut èsser desfacha a causa de conflictes amb de modificacions intermediàrias.',
 'undo-norev' => 'La modificacion a pas pogut èsser desfacha perque siá es inexistenta siá es estada suprimida.',
+'undo-nochange' => 'Sembla que la modificacion es ja estada anullada.',
 'undo-summary' => 'Anullacion de las modificacions $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discutir]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
 'undo-summary-username-hidden' => 'Anullar la revision $1 per un utilizaire amagat',
 
@@ -1311,6 +1318,7 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'showhideselectedversions' => 'Afichar/amagar las versions seleccionadas',
 'editundo' => 'desfar',
 'diff-empty' => '(Pas cap de diferéncia)',
+'diff-multi-sameuser' => '({{PLURAL:$1|Una revision intermediària pel meteis utilizaire pas afichada|$1 revisions intermediàrias pel meteis utilizaire pas afichadas}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Una revision intermediària amagada|$1 revisions intermediàrias amagadas}}) per ({{PLURAL:$2|un utilizaire pas afichada|$2 utilizaires pas afichadas}})',
 'difference-missing-revision' => "{{PLURAL:$2|Una revision|$2 revisions}} d'aquesta diferéncia ($1) {{PLURAL:$2|es pas estada trobada|son pas estadas trobadas}}.
 
@@ -2244,6 +2252,7 @@ Podètz restrénher la vista en seleccionant un tipe de jornal, un nom d’utili
 'allpages-hide-redirects' => 'Amagar las redireccions',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => "Visualizatz una version d'aquesta pagina mesa en escondedor, que pòt èsser datada d’al mai $1.",
 'cachedspecial-refresh-now' => 'Veire lo mai recent.',
 
 # Special:Categories
@@ -2496,6 +2505,7 @@ Consultatz la [[Special:ProtectedPages|lista de las paginas protegidas]] per la 
 'prot_1movedto2' => 'a renomenat [[$1]] en [[$2]]',
 'protect-badnamespace-title' => 'Espaci de noms pas protegible',
 'protect-badnamespace-text' => 'Las paginas dins aqueste espaci de noms pòdon pas èsser protegidas.',
+'protect-norestrictiontypes-text' => 'Aquesta pagina pòt pas èsser protegida perque i a pas de tipe de restriccion disponible.',
 'protect-norestrictiontypes-title' => 'Pagina pas protegibla',
 'protect-legend' => 'Confirmar la proteccion',
 'protectcomment' => 'Rason :',
@@ -2507,7 +2517,7 @@ Consultatz la [[Special:ProtectedPages|lista de las paginas protegidas]] per la 
 'protect-locked-blocked' => "Podètz pas modificar lo nivèl de proteccion tant que sètz blocat. Vaquí los reglatges actuals de la pagina '''$1''' :",
 'protect-locked-dblock' => "Lo nivèl de proteccion pòt pas èsser modificat perque la banca de donadas es blocada. Vaquí los reglatges actuals de la pagina '''$1''' :",
 'protect-locked-access' => "Avètz pas los dreches necessaris per modificar la proteccion de la pagina. Vaquí los reglatges actuals de la pagina '''$1''' :",
-'protect-cascadeon' => "Aquesta pagina es actualament protegida perque es inclusa dins {{PLURAL:$1|la pagina seguenta|las paginas seguentas}}, {{PLURAL:$1|qu'es estada protegida|que son estadas protegidas}} amb l’opcion « proteccion en cascada » activada. Podètz cambiar lo nivèl de proteccion d'aquesta pagina sens qu'aquò afècte la proteccion en cascada.",
+'protect-cascadeon' => "Aquesta pagina es protegida perque es inclusa dins {{PLURAL:$1|la pagina seguenta qu'es estada protegida|las paginas seguentas que son estadas protegidas}}, amb l’opcion « proteccion en cascada » activada. Podètz cambiar lo nivèl de proteccion d'aquesta pagina sens qu'aquò afècte la proteccion en cascada.",
 'protect-default' => 'Autorizar totes los utilizaires',
 'protect-fallback' => 'Autorizar unicament los utilizaires amb lo drech « $1 »',
 'protect-level-autoconfirmed' => 'Autorizar unicament los utilizaires autoconfirmats',
@@ -2688,6 +2698,7 @@ Donatz çaijós un motiu precís (per exemple en citant las paginas que son esta
 'blockipsuccesssub' => 'Blocatge capitat',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] es esta{{GENDER:||t|(da)}} bloca{{GENDER:||t|(da)}}.<br />
 Podètz consultar la [[Special:BlockList|lista dels comptes e de las adreças IP blocats]].',
+'ipb-blockingself' => 'Sètz a mand de blocar vòstre pròpri compte ! Sètz segur{{GENDER:||a}} que volètz far aquò ?',
 'ipb-edit-dropdown' => 'Modificar los motius de blocatge per defaut',
 'ipb-unblock-addr' => 'Desblocar $1',
 'ipb-unblock' => "Desblocar un compte d'utilizaire o una adreça IP",
@@ -2755,6 +2766,7 @@ Consultatz la [[Special:BlockList|lista dels utilizaires blocats]] per veire los
 'ipb_already_blocked' => '« $1 » ja es blocat',
 'ipb-needreblock' => '$1 ja es blocat. Volètz modificar los paramètres ?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Autre blocatge|Autres blocatges}}',
+'unblock-hideuser' => 'Podètz pas desblocar aqueste utilizaire, perque son nom d’utilizaire es estat amagat.',
 'ipb_cant_unblock' => 'Error : Lo blocatge d’ID $1 existís pas. Es possible qu’un desblocatge ja siá estat efectuat.',
 'ipb_blocked_as_range' => "Error : L'adreça IP $1 es pas estada blocada dirèctament e doncas pòt pas èsser deblocada. Çaquelà, es estada blocada per la plaja $2 la quala pòt èsser deblocada.",
 'ip_range_invalid' => 'Plaja IP incorrècta.',
@@ -2961,6 +2973,7 @@ Salvatz-lo sus vòstre disc dur puèi importatz-lo aicí.",
 'import-error-invalid' => 'Pagina « $1 » es pas importada perque son nom es pas valid.',
 'import-options-wrong' => '{{PLURAL:$2|Marrida opcion|Marridas opcions}} : <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'La pagina raiç provesida es un títol invalid.',
+'import-rootpage-nosubpage' => "L'espaci de noms « $1 » de la pagina raiç autoriza pas las sospaginas.",
 
 # Import log
 'importlogpage' => 'Istoric de las importacions de paginas',
@@ -3092,6 +3105,7 @@ Inscriviscatz '''PAS RES''' dedins !",
 
 # Info page
 'pageinfo-title' => 'Informacions per « $1 »',
+'pageinfo-not-current' => 'O planhèm, impossible de provesir aquesta informacion per las ancianas revisions.',
 'pageinfo-header-basic' => 'Informacions de basa',
 'pageinfo-header-edits' => 'Istoric de las modificacions',
 'pageinfo-header-restrictions' => 'Proteccion de la pagina',
@@ -3151,6 +3165,7 @@ Inscriviscatz '''PAS RES''' dedins !",
 'markedaspatrollederror' => 'Pòt pas èsser marcat coma pas vandalizat',
 'markedaspatrollederrortext' => 'Vos cal seleccionar una version per poder la marcar coma pas vandalizada.',
 'markedaspatrollederror-noautopatrol' => 'Avètz pas lo drech de marcar vòstras pròprias modificacions coma susvelhadas.',
+'markedaspatrollednotify' => 'Aquesta modificacion de $1 es estada marcada coma relegida.',
 'markedaspatrollederrornotify' => 'Fracàs del marcatge coma contrarotlat.',
 
 # Patrol log
@@ -3847,7 +3862,9 @@ Ensajatz la previsualizacion normala.',
 'version-ext-colheader-description' => 'Descripcion',
 'version-ext-colheader-credits' => 'Autors',
 'version-license-title' => 'Licéncia per $1',
+'version-license-not-found' => "Cap d'informacion detalhada de la licéncia es pas estada trobada per aquesta extension.",
 'version-credits-title' => 'Mercejaments per $1',
+'version-credits-not-found' => "Cap d'informacion detalhada dels mercejaments es pas estada trobada per aquesta extension.",
 'version-poweredby-credits' => "Aqueste wiki fonciona gràcias a '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'autres',
 'version-poweredby-translators' => 'traductors de translatewiki.net',
@@ -4036,6 +4053,7 @@ Ensajatz la previsualizacion normala.',
 'api-error-emptypage' => 'Creacion de paginas voidas pas autorizada.',
 'api-error-fetchfileerror' => "Error intèrna : Quicòm s'es mal passat al moment de la recuperacion del fichièr.",
 'api-error-fileexists-forbidden' => 'Un fichièr nomenat "$1" existís ja, e pòt pas èsser espotir.',
+'api-error-fileexists-shared-forbidden' => 'Un fichièr nomenat "$1" existís ja dins lo repertòri dels fichièrs partejats, e pòt pas èsser espotit.',
 'api-error-file-too-large' => "Lo fichièr qu'avètz somés èra tròp grand.",
 'api-error-filename-tooshort' => 'Lo nom del fichièr es tròp cort.',
 'api-error-filetype-banned' => 'Aqueste tipe de fichièr es interdich',
@@ -4051,6 +4069,7 @@ Ensajatz la previsualizacion normala.',
 'api-error-missingresult' => 'Error intèrna : Avèm pas pogut determinar se la còpia aviá capitat.',
 'api-error-mustbeloggedin' => 'Vos cal èsser connectat per telecargar de fichièrs.',
 'api-error-mustbeposted' => 'Error intèrna : aquesta requèsta necessita lo metòde HTTP POST.',
+'api-error-noimageinfo' => "Lo mandadís a capitat, mas lo servidor a pas donat cap d'informacions sul fichièr.",
 'api-error-nomodule' => 'Error intèrna : cap de modul de versament pas definit.',
 'api-error-ok-but-empty' => 'Error intèrna : Lo servidor a pas respondut.',
 'api-error-overwrite' => 'Espotir un fichièr existent es pas autorizat.',

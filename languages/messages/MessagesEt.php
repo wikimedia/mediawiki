@@ -750,6 +750,7 @@ Pane tähele, et seni kuni sa pole oma võrgulehitseja puhvrit tühjendanud, võ
 'gotaccountlink' => 'logi sisse',
 'userlogin-resetlink' => 'Kas oled unustanud oma sisselogimisandmed?',
 'userlogin-resetpassword-link' => 'Kas unustasid parooli?',
+'userlogin-helplink2' => 'Sisselogimisabi',
 'userlogin-loggedin' => 'Oled juba sisse logitud nimega {{GENDER:$1|$1}}.
 Kasuta allolevat vormi, et logida sisse teise kasutajaga.',
 'userlogin-createanother' => 'Loo teine konto',
@@ -837,6 +838,7 @@ Palun oota $1, enne kui uuesti proovid.',
 'createacct-another-realname-tip' => 'Tegelik nimi on valikuline.
 Kui otsustad selle sisestada, kasutatakse seda kasutaja töö temale omistamiseks.',
 'pt-login' => 'Logi sisse',
+'pt-login-button' => 'Logi sisse',
 'pt-createaccount' => 'Loo konto',
 'pt-userlogout' => 'Logi välja',
 
@@ -871,6 +873,9 @@ Et sisselogimine lõpule viia, pead määrama siin uue parooli:',
 'resetpass-abort-generic' => 'Tarkvaralisa on paroolimuudatuse abortinud.',
 'resetpass-expired' => 'Sinu parool on iganenud. Palun määra uus parool, et sisse logida.',
 'resetpass-expired-soft' => 'Sinu parool on iganenud ja tuleb uuesti määrata. Palun vali kohe uus parool või klõpsa "{{int:resetpass-submit-cancel}}", et määrata see hiljem.',
+'resetpass-validity-soft' => 'Sinu parool ei sobi: $1
+
+Palun vali kohe uus parool või klõpsa "{{int:resetpass-submit-cancel}}", et see hiljem uuesti määrata.',
 
 # Special:PasswordReset
 'passwordreset' => 'Parooli lähtestamine',
@@ -1251,6 +1256,10 @@ Saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAG
 'revdelete-show-file-submit' => 'Jah',
 'revdelete-selected' => "'''Valitud {{PLURAL:$2|redaktsioon|redaktsioonid}} leheküljest [[:$1]]:'''",
 'logdelete-selected' => "'''Valitud {{PLURAL:$1|logisissekanne|logisissekanded}}:'''",
+'revdelete-text-text' => 'Kustutatud redaktsioonid jäävad lehekülje ajalukku alles, aga osa nende sisust pole kõigile juurdepääsetav.',
+'revdelete-text-file' => 'Kustutatud failiversioonid jäävad faili ajalukku alles, aga osa nende sisust pole kõigile juurdepääsetav.',
+'logdelete-text' => 'Kustutatud logisündmused jäävad logisse alles, aga osa nende sisust pole kõigile juurdepääsetav.',
+'revdelete-text-others' => 'Teised {{GRAMMAR:genitive|{{SITENAME}}}} administraatorid pääsevad ikkagi peidetud sisu juurde ja saavad sama liidese kaudu selle taastada, kui seatud pole lisapiiranguid.',
 'revdelete-confirm' => 'Kinnita, et soovid tõesti seda teha ning et saad aru tagajärgedest ja tegevus on kooskõlas [[{{MediaWiki:Policy-url}}|siinsete kokkulepetega]].',
 'revdelete-suppress-text' => "Andmed tuleks varjata '''ainult''' järgmistel juhtudel:
 * võimalik laim
@@ -2205,7 +2214,7 @@ Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise �
 'deadendpagestext' => 'Järgmised leheküljed ei viita ühelegi teisele {{GRAMMAR:genitive|{{SITENAME}}}} leheküljele.',
 'protectedpages' => 'Kaitstud leheküljed',
 'protectedpages-indef' => 'Ainult määramata ajani kaitstud',
-'protectedpages-summary' => 'Siin on loetletud olemasolevad leheküljed, mis on praegu kaitstud. Loomise eest kaitstud pealkirjade loendi leiad leheküljelt [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].',
+'protectedpages-summary' => 'Siin on loetletud olemasolevad leheküljed, mis on praegu kaitstud. Loomise eest kaitstud pealkirjade loendi leiad [[{{#special:ProtectedTitles}}|siit]].',
 'protectedpages-cascade' => 'Ainult kaskaadkaitsega',
 'protectedpages-noredirect' => 'Peida ümbersuunamised',
 'protectedpagesempty' => 'Selliste parameetritega ei ole praegu ühtegi lehekülge kaitstud.',
@@ -2218,7 +2227,7 @@ Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise �
 'protectedpages-unknown-timestamp' => 'Teadmata',
 'protectedpages-unknown-performer' => 'Teadmata kasutaja',
 'protectedtitles' => 'Kaitstud pealkirjad',
-'protectedtitles-summary' => 'Siin on loetletud pealkirjad, mis on praegu loomise eest kaitstud. Olemasolevate kaitstud lehekülgede loendi leiad leheküljelt [[{{#special:ProtectedPages}}|{{int:protectedpages}}]].',
+'protectedtitles-summary' => 'Siin on loetletud pealkirjad, mis on praegu loomise eest kaitstud. Olemasolevate kaitstud lehekülgede loendi leiad [[{{#special:ProtectedPages}}|siit]].',
 'protectedtitlesempty' => 'Hetkel pole ükski pealkiri kaitstud.',
 'listusers' => 'Kasutajad',
 'listusers-editsonly' => 'Näita vaid kasutajaid, kes on teinud muudatusi',
@@ -2544,7 +2553,7 @@ Allpool on toodud lehekülje '''$1''' hetkel kehtivad seaded:",
 'protect-locked-access' => "Sinu kontol pole õigust muuta lehekülje kaitsetaset.
 Allpool on toodud lehekülje '''$1''' hetkel kehtivad seaded:",
 'protect-cascadeon' => 'See lehekülg on kaitstud, kuna ta on kasutusel {{PLURAL:$1|järgmisel leheküljel|järgmistel lehekülgedel}}, mis on omakorda kaskaadkaitse all.
-Sa saad muuta selle lehekülje kaitse staatust, kuid see ei mõjuta kaskaadkaitset.',
+Selle lehekülje kaitsetaseme muutmine ei mõjuta kaskaadkaitset.',
 'protect-default' => 'Luba kõigile kasutajatele',
 'protect-fallback' => 'Lubatud vaid kasutajatele õigusega "$1"',
 'protect-level-autoconfirmed' => 'Lubatud vaid automaatselt kinnitatud kasutajatele',

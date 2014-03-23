@@ -348,7 +348,7 @@ $messages = array(
 'viewtalkpage' => 'Eztabaida ikusi',
 'otherlanguages' => 'Erdaretan',
 'redirectedfrom' => '($1(e)tik birzuzenduta)',
-'redirectpagesub' => 'Birzuzenketa orrialdea',
+'redirectpagesub' => 'Birbideratze orria',
 'lastmodifiedat' => 'Orrialdearen azken aldaketa: $2, $1.',
 'viewcount' => 'Orrialde hau {{PLURAL:$1|behin|$1 aldiz}} bisitatu da.',
 'protectedpage' => 'Babestutako orrialdea',
@@ -1163,7 +1163,7 @@ Kontura zaitez nabigazio loturek, zutabea ezabatu dezakela.',
 'search-result-size' => '$1 ({{PLURAL:$2|hitz bat|$2 hitz}})',
 'search-result-category-size' => '{{PLURAL:$1|kide 1|$1 kide}} ({{PLURAL:$2|azpikategoria 1|$2 azpikategoria}}, {{PLURAL:$3|fitxategi 1|$3 fitxategi}})',
 'search-result-score' => 'Garrantzia: %$1',
-'search-redirect' => '($1 birzuzenketa)',
+'search-redirect' => '(«$1» orritik birbideratua)',
 'search-section' => '($1 atala)',
 'search-suggest' => '$1 esan nahi zenuen',
 'search-interwiki-caption' => 'Beste proiektuak',
@@ -1364,7 +1364,7 @@ Informazio hau publikoa da.',
 'right-move-subpages' => 'Mugitu orrialdeak bere azpiorrialdeekin',
 'right-move-rootuserpages' => 'Erro-lankidearen orriak mugitu',
 'right-movefile' => 'Mugitu fitxategiak',
-'right-suppressredirect' => 'Ez sortu birzuzenketa bat antzinako izenetik orrialdea mugitzerakoan',
+'right-suppressredirect' => 'Orri bat mugitzean, ez sortu birbideratzea jatorrizko izenetik',
 'right-upload' => 'Fitxategia igo',
 'right-reupload' => 'Jada existitzen den artxibo bat gainidatzi',
 'right-reupload-own' => 'Norberak igotako fitxategi baten gainean idatzi',
@@ -1642,7 +1642,7 @@ $1',
 'upload-file-error-text' => 'Barne errore bat gertatu da zerbitzarian fitxategi tenporal bat sortzen saiatzean. Mesedez, jar zaitez [[Special:ListUsers/sysop|administratzaile]] batekin harremanetan.',
 'upload-misc-error' => 'Errore ezezaguna igotzerakoan',
 'upload-misc-error-text' => 'Errore ezezagun bat gertatu da fitxategia igotzen ari zenean. Mesedez, egiaztatu URLa baliozkoa eta eskuragarria dela eta berriz saiatu. Arazoak jarraitzen badu, jar zaitez [[Special:ListUsers/sysop|administratzailearekin]] harremanetan.',
-'upload-too-many-redirects' => 'URLak birzuzenketa gehiegi zituen',
+'upload-too-many-redirects' => 'URLak birbideratze gehiegi zituen',
 'upload-unknown-size' => 'Tamaina ezezaguna',
 'upload-http-error' => 'HTTP errorea gertatu da: $1',
 'upload-copy-upload-invalid-domain' => 'Domeinu honetan ezin dira igoerak kopiatu.',
@@ -1771,7 +1771,7 @@ Ondorengo zerrendak fitxategira dauden {{PLURAL:$1|lehen lotura|lehen $1 loturak
 [[Special:WhatLinksHere/$2|Zerrenda osoa]] ere eskuragarri dago.',
 'nolinkstoimage' => 'Ez dago fitxategi honetara lotura egiten duen orrialderik.',
 'morelinkstoimage' => 'Ikusi fitxategi honen [[Special:WhatLinksHere/$1|lotura gehiago]].',
-'linkstoimage-redirect' => '$1 (fitxategi birzuzenketa) $2',
+'linkstoimage-redirect' => '$1 (fitxategiranzko birbideratzea) $2',
 'duplicatesoffile' => 'Ondorengo fitxategi {{PLURAL:$1|hau beste honen berdina da|$1 hauek beste honen berdinak dira}} ([[Special:FileDuplicateSearch/$2|zehaztasun gehiago]]):',
 'sharedupload' => 'Elkarbanatutako fitxategi hau $1-(e)ko igoera bat da eta beste proiektuek ere erabil dezakete.',
 'sharedupload-desc-here' => 'Fitxategi hau $1-(e)koa da eta beste proeiktuetan erabilia izan liteke.
@@ -1840,7 +1840,7 @@ Bere [$2 fitxategiaren deskribapen orrialdea] behean dago.',
 'randomincategory-selectcategory-submit' => 'Joan',
 
 # Random redirect
-'randomredirect' => 'Ausazko birzuzenketa',
+'randomredirect' => 'Ausazko birbideratzea',
 'randomredirect-nopages' => 'Ez dago birzuzenketarik "$1" izen-tartean.',
 
 # Statistics
@@ -1852,7 +1852,7 @@ Bere [$2 fitxategiaren deskribapen orrialdea] behean dago.',
 'statistics-header-hooks' => 'Beste estatistikak',
 'statistics-articles' => 'Edukiak dituzten orrialdeak',
 'statistics-pages' => 'Orrialdeak',
-'statistics-pages-desc' => 'Wikian dauden orrialde guztiak, eztabaida orrialdeak, birzuzenketa, etab. barne.',
+'statistics-pages-desc' => 'Wikian dauden orri guztiak (eztabaida orriak, birbideratzeak eta abar barne).',
 'statistics-files' => 'Igotako fitxategiak',
 'statistics-edits' => '{{SITENAME}} sortu zenetik eginiko aldaketa kopurua',
 'statistics-edits-average' => 'Bataz-besteko aldaketak orrialdeko',
@@ -1869,14 +1869,14 @@ Bere [$2 fitxategiaren deskribapen orrialdea] behean dago.',
 'pageswithprop-submit' => 'Joan',
 'pageswithprop-prophidden-long' => 'testu luzearen ezagaurria izkutatua ($1)',
 
-'doubleredirects' => 'Birzuzenketa bikoitzak',
+'doubleredirects' => 'Birbideratze bikoitzak',
 'doubleredirectstext' => 'Lerro bakoitzean lehen eta bigarren birzuzenketetarako loturak ikus daitezke, eta baita edukia daukan edo eduki beharko lukeen orrialderako lotura ere. Lehen birzuzenketak azken honetara <del>zuzendu</del> beharko luke.',
-'double-redirect-fixed-move' => '[[$1]] mugitu da eta orain [[$2]](e)ra birzuzenketa bat da',
-'double-redirect-fixed-maintenance' => 'Birzuzenketa bikoitza konpontzen [[$1]]-etik [[$2]]-ra',
-'double-redirect-fixer' => 'Birzuzenketa zuzentzailea',
+'double-redirect-fixed-move' => '«[[$1]]» orria mugitu da, eta orain «[[$2]]» orrira daraman birbideratzea da',
+'double-redirect-fixed-maintenance' => '«[[$1]]» orritik «[[$2]]» orrira birbideratze bikoitza konpontzea',
+'double-redirect-fixer' => 'Birbideratze zuzentzailea',
 
 'brokenredirects' => 'Hautsitako birzuzenketak',
-'brokenredirectstext' => 'Jarraian zerrendatutako birzuzenketa loturak existitzen ez diren orrietara zuzenduta daude:',
+'brokenredirectstext' => 'Ondorengo birbideratze hauek existitzen ez diren orrietara bideratuta daude:',
 'brokenredirects-edit' => 'aldatu',
 'brokenredirects-delete' => 'ezabatu',
 
@@ -1979,8 +1979,8 @@ Erregistro mota, erabiltzailearen izena edota orrialdearen izena iragaziz bistar
 'alphaindexline' => '$1(e)tik $2(e)raino',
 'nextpage' => 'Hurrengo orrialdea ($1)',
 'prevpage' => 'Aurreko orrialdea ($1)',
-'allpagesfrom' => 'Honela hasten diren orrialdeak erakutsi:',
-'allpagesto' => 'Orrialde honetara zuzentzen diren guztiak erakutsi:',
+'allpagesfrom' => 'Erakutsi hasiera hau duten orriak:',
+'allpagesto' => 'Erakutsi bukaera hau duten orriak:',
 'allarticles' => 'Artikulu guztiak',
 'allinnamespace' => 'Orrialde guztiak ($1 izen-tartea)',
 'allpagessubmit' => 'Joan',
@@ -2380,7 +2380,7 @@ Blokeo erregistroa azken sarrera ematen da azpian erreferentziarako:',
 'linkshere' => "Hauek dute '''[[:$1]]''' orrialderako lotura:",
 'nolinkshere' => "Ez dago '''[[:$1]]''' lotura duen orrialderik.",
 'nolinkshere-ns' => "Hautatutako izen-tartean ez dago '''[[:$1]]''' orrialderako lotura duenik.",
-'isredirect' => 'birzuzenketa orrialdea',
+'isredirect' => 'birbideratze orrialdea',
 'istemplate' => 'erabilpena',
 'isimage' => 'fitxategi lotura',
 'whatlinkshere-prev' => '{{PLURAL:$1|aurrekoa|aurreko $1ak}}',
@@ -2526,24 +2526,18 @@ Hala ere, $2-(r)en parte denez, blokeoa kendu daiteke.',
 # Move page
 'move-page' => 'Mugitu «$1»',
 'move-page-legend' => 'Orrialdea mugitu',
-'movepagetext' => "Konturatu zaitez orrialdea '''ez''' dela mugituko izenburu berria duen orrialde bat badago jadanik, ez bada aldaketa-historiarik gabeko orrialde huts edo birbideratze bat.
-Horrek esan nahi du hanka sartzekotan orrialde baten jatorrizko izenburua berreskuratu daitekeela, baina ezin dela jada existitzen den orrialde baten gainean idatzi.
-
-'''Oharra!'''
-Aldaketa hau drastikoa eta ustekabekoa izan daiteke orrialde oso ezagunetan;
-mesedez, egiazta ezazu honen ondorioak ulertzen dituzula, jarraitu baino lehen.
-Inprimaki hau erabiliz, orri baten izena aldatuko da, eta haren historia izen berrira eraman.
-Izenburu zaharra izenburu berrirantz birzuzendutako orri bihurtuko da.
-Jatorrizko izenburura doazen birzuzenketak automatikoki egunera ditzakezu.
+'movepagetext' => 'Inprimaki hau erabiliz, orri baten izena aldatuko da, eta haren historia izen berrira eramango.
+Izenburu zaharra izenburu berrirantz birbideratutako orri bihurtuko da.
+Jatorrizko izenburura doazen birbideratzeak automatikoki egunera ditzakezu.
 Halako eguneratze automatikorik ez egitea aukeratzen baduzu, egiazta itzazu birbideratze [[Special:DoubleRedirects|bikoitzak]] eta [[Special:BrokenRedirects|apurtuak]].
 Zure ardura da loturak behar den tokirantz bideratzea.
 
-Gogoan izan ezazu ezazu: orriaren izena <strong>ez</strong> da aldatuko baldin jarri nahi duzun izenburua duen orria dagoeneko sortuta badago, salbu eta historiarik gabeko birzuzenketa orri bat bada.
+Gogoan izan ezazu ezazu: orriaren izena <strong>ez</strong> da aldatuko baldin jarri nahi duzun izenburua duen orria dagoeneko sortuta badago, salbu eta historiarik gabeko birbideratze orri bat bada.
 Hau da, nahasten baldin bazara, mugitu duzun orria lehengo izenburura itzultzeko modua badago, eta ezin duzun lehendik sortuta dagoen orri bat gainidatzi.
 
 <strong>Kontuz!</strong>
 Oso erabilia den orri batean, aldaketa hau bat-batekoa eta ustekabekoa izan liteke;
-zalantzarik baldin baduzu, lehenbizi adieraz ezazu zure asmoa eztabaida orrian, beste wikilarien iritziak jasotzeko.",
+zalantzarik baldin baduzu, lehenbizi adieraz ezazu zure asmoa eztabaida orrian, beste wikilarien iritziak jasotzeko.',
 'movepagetalktext' => "Dagokion eztabaida orrialdea berarekin batera mugitu da, honako kasu hauetan '''ezik:'''
 * Hutsik ez dagoen eztabaida orrialde bat existitzen bada izen berrian.
 * Beheko koadroa hautatzen ez baduzu.
@@ -2562,7 +2556,7 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'pagemovedsub' => 'Mugimendua eginda',
 'movepage-moved' => '\'\'\'"$1" "$2"(e)ra mugitu da\'\'\'',
 'movepage-moved-redirect' => 'Birbideratze orri bat sortu da.',
-'movepage-moved-noredirect' => 'Birzuzenketa baten sorrera kendu da.',
+'movepage-moved-noredirect' => 'Birbideratzea sortzeko aukera kendu da.',
 'articleexists' => 'Izen hori duen artikulu bat badago edo hautatutako izena ez da baliozkoa. Mesedez, beste izen bat aukeratu.',
 'cantmove-titleprotected' => 'Ezin duzu orrialde bat leku honetara mugitu izenburu berri hori sor ez dadin babesa duelako',
 'movetalk' => 'Eztabaida orrialdea ere mugitu, ahal bada.',
@@ -2594,8 +2588,8 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'imagenocrossnamespace' => 'Ezin da mugitu fitxategia fitxategiena ez den izen batera',
 'imagetypemismatch' => 'Fitxategiaren luzapen berriak ez du bere motako fitxategiekin bat egiten',
 'imageinvalidfilename' => 'Xede-artxiboaren izenak ez du balio',
-'fix-double-redirects' => 'Hasierako izenburura zuzentzen duten birzuzenketa guztiak aldatu',
-'move-leave-redirect' => 'Atzean birzuzenketa bat utzi',
+'fix-double-redirects' => 'Eguneratu jatorrizko izenburura zuzendutako birbideratze guztiak',
+'move-leave-redirect' => 'Utzi atzean birbideratzea',
 'protectedpagemovewarning' => "'''Oharra:''' Orrialde hau babestua izan da, beraz administratzaile eskumenak dituztenek alda dezakete bakarrik.
 Azken erregistroko sarrera ematen da azpian erreferentzia gisa:",
 'semiprotectedpagemovewarning' => "'''Oharra:''' Orrialde hau blokeatu dute, izena emanda duten erabiltzaileek soilik mugitu ahal dezaten. Erregistroko azken sarrera erakusten da jarraian erreferentzia gisa:",
@@ -3696,7 +3690,7 @@ Halaber [[Special:EditWatchlist|aldatzaile estandarra]] erabil dezakezu.',
 'logentry-move-move' => '$1 {{GENDER:$2|wikilariak}} «$3» orria «$4» izenera aldatu du',
 'logentry-move-move-noredirect' => '$1 {{GENDER:$2|wikilariak}} $3 orria $4 izenera aldatu du, birzuzenketarik utzi gabe',
 'logentry-move-move_redir' => '$1 {{GENDER:$2|wikilariak}} «$3» orria «$4» izenera aldatu du, birzuzenketaren gainetik',
-'logentry-move-move_redir-noredirect' => '$1 {{GENDER:wikilariak}} «$3» orria «$4» izenera aldatu du, birzuzenketa bat gainidatzita, birzuzenketarik utzi gabe',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:wikilariak}} «$3» orria «$4» izenera aldatu du, birbideratze bat gainidatzita, birbideratzerik utzi gabe',
 'logentry-patrol-patrol' => '$1(e)k $3 orrialdearen $4 berrikuzpena patruilatutzat {{GENDER:$2|markatu}} du',
 'logentry-newusers-newusers' => '$1 erabiltzaile kontua sortu da',
 'logentry-newusers-create' => '$1 erabiltzaile kontua sortu da',

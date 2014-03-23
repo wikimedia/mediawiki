@@ -411,7 +411,7 @@ $2',
 'invalidtitle-knownnamespace' => '使用名字空間「$2」與文本「$3」嘅無效標題',
 'invalidtitle-unknownnamespace' => '使用未知名字空間編號$1與文本“$2”嘅無效標題',
 'exception-nologin' => '還吂登入',
-'exception-nologin-text' => '你愛登入本wiki正做得查閲邇頁或進行操作。',
+'exception-nologin-text' => '汝愛[[Special:Userlogin|登入]]本wiki查看邇頁或者進行操作。',
 
 # Virus scanner
 'virus-badscanner' => "損壞設定: 未知嘅病毒掃瞄器: ''$1''",
@@ -419,10 +419,9 @@ $2',
 'virus-unknownscanner' => '還吂知嘅反病毒軟件:',
 
 # Login and logout pages
-'logouttext' => "汝已經登出。
+'logouttext' => "'''汝今下既經登出。'''
 
-汝做得用匿名方式繼續使用{{SITENAME}}，或用相同或毋同用戶身份<span class='plainlinks'>[$1 登入]</span>。
-請注意，假使汝再次登入，本頁可能會繼續顯示，直到汝清除瀏覽器緩存。",
+請注意一兜頁面可能還顯示汝係登入狀態，一直到汝清空汝嘅瀏覽器緩存為止。",
 'welcomeuser' => '歡迎，$1！',
 'welcomecreation-msg' => '汝嘅賬號已經建立。
 莫添忘訖設置[[Special:Preferences|{{SITENAME}}嘅個人參數]]。',
@@ -458,12 +457,12 @@ $2',
 'gotaccount' => '已經擁有帳號係無？$1。',
 'gotaccountlink' => '登入',
 'userlogin-resetlink' => '毋記得汝嘅登入信息？',
-'userlogin-resetpassword-link' => '重置爾嘅密碼',
+'userlogin-resetpassword-link' => '添忘訖汝嘅密碼？',
 'createacct-join' => '輸入汝嘅基本資料：',
 'createacct-emailrequired' => '電郵地址：',
 'createacct-emailoptional' => '電郵地址（可選）',
 'createacct-email-ph' => '設置電郵地址',
-'createaccountmail' => '使用一隻臨時嘅隨機密碼，並發送其到以下指定嘅電子郵件地址',
+'createaccountmail' => '使用一隻臨時嘅隨機密碼，並將其發送到指定嘅電子郵件地址',
 'createacct-realname' => '實名（可選）',
 'createaccountreason' => '原因:',
 'createacct-reason' => '原因',
@@ -499,7 +498,7 @@ $2',
 'passwordtooshort' => '汝嘅密碼毋得少過$1隻字符。',
 'password-name-match' => '汝嘅密碼必須撈汝嘅用戶名毋相同。',
 'password-login-forbidden' => '邇隻用戶名稱及密碼嘅使用係分禁止嘅。',
-'mailmypassword' => '用電郵寄新密碼分亻厓',
+'mailmypassword' => '重設密碼',
 'passwordremindertitle' => '{{SITENAME}}嘅新臨時密碼',
 'passwordremindertext' => '有人（可能係汝本人，來自IP地址$1）已請求{{SITENAME}}嘅新密碼 （$4）。
 用戶"$2"嘅一隻新臨時密碼今下已分設定好為"$3"。
@@ -513,13 +512,14 @@ $2',
 'passwordsent' => '用戶“$1”嘅新密碼已經寄到所登記嘅電子郵件地址。
 請在收到後再登入。',
 'blocked-mailpassword' => '汝嘅IP地址處於查封狀態故所毋允許編輯，為矣安全起見，密碼恢復功能已分禁用。',
-'eauthentsent' => '一封確認信已經發送到推薦地址。在發送其它郵件到邇隻賬戶前，汝必須首先按照邇封信肚嘅指導確認邇隻電子郵件信箱真實有效。',
+'eauthentsent' => '一封確認信已經發送到汝設定嘅電郵地址。
+在任何其他郵件發到賬戶之前，汝必須首先照邇封信嘅指示，確認介隻賬戶確實係汝嘅。',
 'throttled-mailpassword' => '密碼提醒已經在最近$1小時內發送。
 為防止濫用，限定在$1小時內僅發送一次密碼提醒。',
 'mailerror' => '發送郵件出差錯:$1',
 'acct_creation_throttle_hit' => '在邇隻wiki上係話訪客利用汝个IP地址在昨天創建矣$1個賬戶，係在邇段時間肚的上限。
 結果利用這個IP地址个訪客在邇段時間中無辦法創建更多个賬戶。',
-'emailauthenticated' => '汝嘅電郵地址已經於$2 $3確認有效。',
+'emailauthenticated' => '汝嘅電郵地址已經於$2 $3確認。',
 'emailnotauthenticated' => '汝嘅郵箱地址<strong>還無分認証</strong>。以下功能將毋會發送任何郵件。',
 'noemailprefs' => '在嘅嘅偏好設定肚指定一隻電子郵件地址來使用邇隻功能。',
 'emailconfirmlink' => '確認汝嘅郵箱地址',

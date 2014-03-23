@@ -2446,7 +2446,7 @@ Hei sinn déi aktuell Säiteprotektiounsastellunge fir d'Säit '''$1''':",
 Hei sinn déi aktuell Astellungen fir d'Säit '''$1''':",
 'protect-locked-access' => "Dir hutt net déi néideg Rechter fir de Protektiounsniveau vun dëser Säit z'änneren.
 Hei sinn déi aktuell Astellunge fir d'Säit '''$1''':",
-'protect-cascadeon' => "Dës Säit ass elo gespaart well si an déi folgend {{PLURAL:$1|Säit|Säiten}} agebonnen ass déi duerch eng Kaskadespär gespaart {{PLURAL:$1|ass|sinn}}. De Protektiounsniveau ka fir dës Säit geännert ginn, dat huet awer keen Afloss op d'Kaskadespär.",
+'protect-cascadeon' => "Dës Säit ass elo gespaart well si an déi folgend {{PLURAL:$1|Säit|Säiten}} agebonnen ass déi duerch eng Kaskadespär gespaart {{PLURAL:$1|ass|sinn}}. Ännerunge vum Protektiounsniveau fir dës Säit hu keen Afloss op d'Kaskadespär.",
 'protect-default' => 'All Benotzer erlaben',
 'protect-fallback' => 'Nëmme Benotzer mat enger "$1"-Autorisatioun erlaben.',
 'protect-level-autoconfirmed' => 'Nëmmen automatesch ugemellt Benotzer erlaben',

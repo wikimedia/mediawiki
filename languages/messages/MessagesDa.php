@@ -636,6 +636,7 @@ Glem ikke at ændre dine [[Special:Preferences|{{SITENAME}} indstillinger]].',
 'gotaccountlink' => 'Log på',
 'userlogin-resetlink' => 'Har du glemt dine login oplysninger?',
 'userlogin-resetpassword-link' => 'Glemt din adgangskode?',
+'userlogin-helplink2' => 'Hjælp med at logge på',
 'userlogin-loggedin' => 'Du er allerede logget på som {{GENDER:$1|$1}}.
 Brug formularen nedenfor til at logge på som en anden bruger.',
 'userlogin-createanother' => 'Opret en anden konto',
@@ -728,6 +729,7 @@ Vent venligst $1, før du prøver igen.',
 'createacct-another-realname-tip' => 'Angivelse af rigtigt navn er valgfrit.
 Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit arbejde.',
 'pt-login' => 'Log på',
+'pt-login-button' => 'Log på',
 'pt-createaccount' => 'Opret konto',
 'pt-userlogout' => 'Log af',
 
@@ -760,7 +762,10 @@ For at afslutte indlogning, skal du oprette et nyt kodeord:',
 'resetpass-temp-password' => 'Midlertidig adgangskode',
 'resetpass-abort-generic' => 'Ændring af adgangskode er blevet afbrudt af en udvidelse',
 'resetpass-expired' => 'Dit kodeord er udløbet. Vær venlig at ændre det til et nyt.',
-'resetpass-expired-soft' => 'Dit kodeord er udløbet og skal ændres. Vær venlig at ændre det nu, eller tryk annuller for at ændre det senere.',
+'resetpass-expired-soft' => 'Din adgangskode er udløbet og skal ændres. Vær venlig at ændre den nu, eller tryk "{{int:resetpass-submit-cancel}}" for at ændre den senere.',
+'resetpass-validity-soft' => 'Din adgangskode er ikke gyldig:  $1 
+
+Vær venlig at ændre den nu, eller tryk "{{int:resetpass-submit-cancel}}" for at ændre den senere.',
 
 # Special:PasswordReset
 'passwordreset' => 'Nulstil adgangskode',
@@ -1276,7 +1281,7 @@ Detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-section' => '(afsnit $1)',
 'search-suggest' => 'Mente du: $1',
 'search-interwiki-caption' => 'Søsterprojekter',
-'search-interwiki-default' => '{{PLURAL:$1|et resultat|$1 resultater}}:',
+'search-interwiki-default' => 'Resultater fra $1:',
 'search-interwiki-more' => '(mere)',
 'search-relatedarticle' => 'Relateret',
 'searcheverything-enable' => 'Søg i alle navnerum',
@@ -1745,6 +1750,7 @@ Du bør spørge en person med evnen til at se undertrykte fildata for at gennemg
 'uploaddisabledtext' => 'Oplægning af filer er deaktiveret.',
 'php-uploaddisabledtext' => 'Oplægning af filer er forhindret i PHP. Tjek indstillingen for file_uploads.',
 'uploadscripted' => 'Denne fil indeholder HTML eller script-kode, der i visse tilfælde can fejlfortolkes af en browser.',
+'uploadscriptednamespace' => 'Denne SVG-fil indeholder et ulovligt navnerum "$1"',
 'uploadinvalidxml' => 'XML i den uploadede fil kunne ikke tolkes.',
 'uploadvirus' => 'Denne fil indeholder en virus! Virusnavn: $1',
 'uploadjava' => 'Denne fil er en ZIP-fil, der indeholder en Java .class-fil.
@@ -2397,7 +2403,7 @@ Bekræft venligst at du virkelig vil gøre dette, at du forstår konsekvenserne,
 'delete-edit-reasonlist' => 'Rediger sletningsårsager',
 'delete-toobig' => 'Denne side har en stor historik, over {{PLURAL:$1|en version|$1 versioner}}. Sletning af sådanne sider er begrænset, for at forhindre utilsigtet forstyrrelse af {{SITENAME}}.',
 'delete-warning-toobig' => 'Denne side har en stor historik, over {{PLURAL:$1|en version|$1 versioner}} versioner, slettes den kan det forstyrre driften af {{SITENAME}}, gå forsigtigt frem.',
-'deleting-backlinks-warning' => "'''Advarsel:''' Andre sider linker til eller inkluderer den side, du er ved at slette.",
+'deleting-backlinks-warning' => "'''Advarsel:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Andre sider]] linker til eller inkluderer den side, du er ved at slette.",
 
 # Rollback
 'rollback' => 'Fjern redigeringer',
@@ -2447,7 +2453,7 @@ Se [[Special:ProtectedPages|listen over beskyttede sider]] for listen over sideb
 Her er de aktuelle beskyttelsesindstillinger for siden '''$1''':",
 'protect-locked-dblock' => "Databasen er spærret, sidebeskyttelsen kan derfor ikke ændres. her er de aktuelle beskyttelsesindstillinger for siden '''„$1“:'''",
 'protect-locked-access' => "Den brugerkonto har ikke de nødvendige rettigheder til at ændre sidebeskyttelsen. Her er de aktuelle beskyttelsesindstillinger for siden '''„$1“:'''",
-'protect-cascadeon' => 'Denne side er del af en nedarvet skrivebeskyttelse. Wen er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af "nedarvende sidebeskyttelse" Sidebeskyttelsen kan ændres for denne side, det påvirker dog ikke kaskadespærringen:',
+'protect-cascadeon' => 'Denne side er del af en nedarvet skrivebeskyttelse. Den er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af "nedarvende sidebeskyttelse". Sidebeskyttelsen kan ændres for denne side, det påvirker dog ikke den nedarvede sidebeskyttelse.',
 'protect-default' => 'Tillad alle brugere',
 'protect-fallback' => 'Tillad kun brugere med "$1" adgang',
 'protect-level-autoconfirmed' => 'Tillad kun autobekræftede brugere',
@@ -2571,6 +2577,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'Denne IP-adresse er i øjeblikket blokeret.
 Den seneste post i blokeringsloggen vises nedenfor:',
 'sp-contributions-search' => 'Søg efter bidrag',
+'sp-contributions-suppresslog' => 'undertrykte brugerbidrag',
 'sp-contributions-username' => 'IP-adresse eller brugernavn:',
 'sp-contributions-toponly' => 'Vis kun redigeringer, der er aktuelle versioner',
 'sp-contributions-newonly' => 'Vis kun redigeringer, der er sideoprettelser',

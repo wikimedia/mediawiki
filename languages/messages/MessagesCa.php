@@ -3701,9 +3701,9 @@ Confirmeu que realment voleu tornar-la a crear.",
 'recreate' => 'Torna a crear',
 
 # action=purge
-'confirm_purge_button' => 'OK',
+'confirm_purge_button' => "D'acord",
 'confirm-purge-top' => "Voleu buidar la memòria cau d'aquesta pàgina?",
-'confirm-purge-bottom' => "Purgar una pàgina força que hi aparegui la versió més actual i n'esborra la memòria cau.",
+'confirm-purge-bottom' => 'En refrescar una pàgina es neteja de la memòria cau i es força que hi aparegui la versió més actual.',
 
 # action=watch/unwatch
 'confirm-watch-button' => "D'acord",

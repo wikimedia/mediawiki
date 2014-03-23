@@ -244,8 +244,8 @@ $messages = array(
 'friday' => 'майрæмбон',
 'saturday' => 'сабат',
 'sun' => 'Хцб',
-'mon' => 'Крс',
-'tue' => 'Дцг',
+'mon' => 'Къс',
+'tue' => 'Дц',
 'wed' => 'Æрт',
 'thu' => 'Цпр',
 'fri' => 'Мрб',
@@ -1182,7 +1182,7 @@ ASCII нысæнттæм чи нæ хауы, уыдон ивыны бынаты 
 'recentchanges-feed-description' => 'Хъус дарын викийы фæстаг ивдтытæм ацы лæсæны уылты.',
 'recentchanges-label-newpage' => 'Ацы ивд нæуæг фарс бакодта',
 'recentchanges-label-minor' => 'Ай у чысыл ивд',
-'recentchanges-label-bot' => 'Ацы ивд бот сарызта',
+'recentchanges-label-bot' => 'Ацы ивд бот сарæзта',
 'recentchanges-label-unpatrolled' => 'Ацы ивд нырмæ нæу фидар гонд',
 'rcnotefrom' => "Бындæр сты æвдыст ивдтытæ '''$2'''-æй ('''{{grammar:genitive|$1}}''' йонг).",
 'rclistfrom' => 'Равдисын ивдтытæ амæй фæстæ: $1',
@@ -1760,6 +1760,7 @@ $3',
 
 # Special:SpecialPages
 'specialpages' => 'Сæрмагонд фæрстæ',
+'specialpages-note-top' => 'Легендæ',
 
 # External image whitelist
 'external_image_whitelist' => ' #Ныууадз ацы рæнхъ куыд у афтæ<pre>
