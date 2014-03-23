@@ -367,9 +367,11 @@ class Article implements Page {
 	 * Does *NOT* follow redirects.
 	 *
 	 * @protected
-	 * @note this is really internal functionality that should really NOT be used by other functions. For accessing
-	 *       article content, use the WikiPage class, especially WikiBase::getContent(). However, a lot of legacy code
-	 *       uses this method to retrieve page text from the database, so the function has to remain public for now.
+	 * @note This is really internal functionality that should really NOT be
+	 * used by other functions. For accessing article content, use the WikiPage
+	 * class, especially WikiBase::getContent(). However, a lot of legacy code
+	 * uses this method to retrieve page text from the database, so the function
+	 * has to remain public for now.
 	 *
 	 * @return mixed string containing article contents, or false if null
 	 * @deprecated in 1.21, use WikiPage::getContent() instead
@@ -397,9 +399,10 @@ class Article implements Page {
 	/**
 	 * Get text content object
 	 * Does *NOT* follow redirects.
-	 * TODO: when is this null?
+	 * @todo When is this null?
 	 *
-	 * @note code that wants to retrieve page content from the database should use WikiPage::getContent().
+	 * @note Code that wants to retrieve page content from the database should
+	 * use WikiPage::getContent().
 	 *
 	 * @return Content|null|boolean false
 	 *
@@ -434,7 +437,8 @@ class Article implements Page {
 			}
 		} else {
 			if ( !$this->mPage->getLatest() ) {
-				wfDebug( __METHOD__ . " failed to find page data for title " . $this->getTitle()->getPrefixedText() . "\n" );
+				wfDebug( __METHOD__ . " failed to find page data for title " .
+					$this->getTitle()->getPrefixedText() . "\n" );
 				wfProfileOut( __METHOD__ );
 				return false;
 			}
@@ -442,7 +446,8 @@ class Article implements Page {
 			$this->mRevision = $this->mPage->getRevision();
 
 			if ( !$this->mRevision ) {
-				wfDebug( __METHOD__ . " failed to retrieve current page, rev_id " . $this->mPage->getLatest() . "\n" );
+				wfDebug( __METHOD__ . " failed to retrieve current page, rev_id " .
+					$this->mPage->getLatest() . "\n" );
 				wfProfileOut( __METHOD__ );
 				return false;
 			}
@@ -450,7 +455,11 @@ class Article implements Page {
 
 		// @todo FIXME: Horrible, horrible! This content-loading interface just plain sucks.
 		// We should instead work with the Revision object when we need it...
-		$this->mContentObject = $this->mRevision->getContent( Revision::FOR_THIS_USER, $this->getContext()->getUser() ); // Loads if user is allowed
+		// Loads if user is allowed
+		$this->mContentObject = $this->mRevision->getContent(
+			Revision::FOR_THIS_USER,
+			$this->getContext()->getUser()
+		);
 		$this->mRevIdFetched = $this->mRevision->getId();
 
 		wfRunHooks( 'ArticleAfterFetchContentObject', array( &$this, &$this->mContentObject ) );
@@ -711,7 +720,8 @@ class Article implements Page {
 					# Don't cache a dirty ParserOutput object
 					if ( $poolArticleView->getIsDirty() ) {
 						$outputPage->setSquidMaxage( 0 );
-						$outputPage->addHTML( "<!-- parser cache is expired, sending anyway due to pool overload-->\n" );
+						$outputPage->addHTML( "<!-- parser cache is expired, " .
+							"sending anyway due to pool overload-->\n" );
 					}
 
 					$outputDone = true;
@@ -794,13 +804,21 @@ class Article implements Page {
 		}
 
 		$contentHandler = $rev->getContentHandler();
-		$de = $contentHandler->createDifferenceEngine( $this->getContext(), $oldid, $diff, $rcid, $purge, $unhide );
+		$de = $contentHandler->createDifferenceEngine(
+			$this->getContext(),
+			$oldid,
+			$diff,
+			$rcid,
+			$purge,
+			$unhide
+		);
 
 		// DifferenceEngine directly fetched the revision:
 		$this->mRevIdFetched = $de->mNewid;
 		$de->showDiffPage( $diffOnly );
 
-		// Run view updates for the newer revision being diffed (and shown below the diff if not $diffOnly)
+		// Run view updates for the newer revision being diffed (and shown
+		// below the diff if not $diffOnly).
 		list( $old, $new ) = $de->mapDiffPrevNext( $oldid, $diff );
 		// New can be false, convert it to 0 - this conveniently means the latest revision
 		$this->mPage->doViewUpdates( $user, (int)$new );
@@ -813,7 +831,8 @@ class Article implements Page {
 	 * This is hooked by SyntaxHighlight_GeSHi to do syntax highlighting of these
 	 * page views.
 	 *
-	 * @param bool $showCacheHint whether to show a message telling the user to clear the browser cache (default: true).
+	 * @param bool $showCacheHint whether to show a message telling the user
+	 *   to clear the browser cache (default: true).
 	 */
 	protected function showCssOrJsPage( $showCacheHint = true ) {
 		$outputPage = $this->getContext()->getOutput();
@@ -822,15 +841,20 @@ class Article implements Page {
 			$dir = $this->getContext()->getLanguage()->getDir();
 			$lang = $this->getContext()->getLanguage()->getCode();
 
-			$outputPage->wrapWikiMsg( "<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
-				'clearyourcache' );
+			$outputPage->wrapWikiMsg(
+				"<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
+				'clearyourcache'
+			);
 		}
 
 		$this->fetchContentObject();
 
 		if ( $this->mContentObject ) {
 			// Give hooks a chance to customise the output
-			if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', array( $this->mContentObject, $this->getTitle(), $outputPage ) ) ) {
+			if ( ContentHandler::runLegacyHooks(
+				'ShowRawCssJs',
+				array( $this->mContentObject, $this->getTitle(), $outputPage ) )
+			) {
 				$po = $this->mContentObject->getParserOutput( $this->getTitle() );
 				$outputPage->addHTML( $po->getText() );
 			}
@@ -1007,7 +1031,10 @@ class Article implements Page {
 	public function showNamespaceHeader() {
 		if ( $this->getTitle()->isTalkPage() ) {
 			if ( !wfMessage( 'talkpageheader' )->isDisabled() ) {
-				$this->getContext()->getOutput()->wrapWikiMsg( "<div class=\"mw-talkpageheader\">\n$1\n</div>", array( 'talkpageheader' ) );
+				$this->getContext()->getOutput()->wrapWikiMsg(
+					"<div class=\"mw-talkpageheader\">\n$1\n</div>",
+					array( 'talkpageheader' )
+				);
 			}
 		}
 	}
@@ -1017,7 +1044,9 @@ class Article implements Page {
 	 */
 	public function showViewFooter() {
 		# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
-		if ( $this->getTitle()->getNamespace() == NS_USER_TALK && IP::isValid( $this->getTitle()->getText() ) ) {
+		if ( $this->getTitle()->getNamespace() == NS_USER_TALK
+			&& IP::isValid( $this->getTitle()->getText() )
+		) {
 			$this->getContext()->getOutput()->addWikiMsg( 'anontalkpagetext' );
 		}
 
@@ -1025,7 +1054,6 @@ class Article implements Page {
 		$patrolFooterShown = $this->showPatrolFooter();
 
 		wfRunHooks( 'ArticleViewFooter', array( $this, $patrolFooterShown ) );
-
 	}
 
 	/**
@@ -1045,7 +1073,9 @@ class Article implements Page {
 		$cache = wfGetMainCache();
 		$rc = false;
 
-		if ( !$this->getTitle()->quickUserCan( 'patrol', $user ) || !( $wgUseRCPatrol || $wgUseNPPatrol ) ) {
+		if ( !$this->getTitle()->quickUserCan( 'patrol', $user )
+			|| !( $wgUseRCPatrol || $wgUseNPPatrol )
+		) {
 			// Patrolling is disabled or the user isn't allowed to
 			return false;
 		}
@@ -1064,7 +1094,9 @@ class Article implements Page {
 			return false;
 		}
 
-		if ( $this->mRevision && !RecentChange::isInRCLifespan( $this->mRevision->getTimestamp(), 21600 ) ) {
+		if ( $this->mRevision
+			&& !RecentChange::isInRCLifespan( $this->mRevision->getTimestamp(), 21600 )
+		) {
 			// The current revision is already older than what could be in the RC table
 			// 6h tolerance because the RC might not be cleaned out regularly
 			wfProfileOut( __METHOD__ );
@@ -1079,7 +1111,9 @@ class Article implements Page {
 			__METHOD__
 		);
 
-		if ( $oldestRevisionTimestamp && RecentChange::isInRCLifespan( $oldestRevisionTimestamp, 21600 ) ) {
+		if ( $oldestRevisionTimestamp
+			&& RecentChange::isInRCLifespan( $oldestRevisionTimestamp, 21600 )
+		) {
 			// 6h tolerance because the RC might not be cleaned out regularly
 			$rc = RecentChange::newFromConds(
 				array(
@@ -1153,7 +1187,9 @@ class Article implements Page {
 		$validUserPage = false;
 
 		# Show info in user (talk) namespace. Does the user exist? Is he blocked?
-		if ( $this->getTitle()->getNamespace() == NS_USER || $this->getTitle()->getNamespace() == NS_USER_TALK ) {
+		if ( $this->getTitle()->getNamespace() == NS_USER
+			|| $this->getTitle()->getNamespace() == NS_USER_TALK
+		) {
 			$parts = explode( '/', $this->getTitle()->getText() );
 			$rootPart = $parts[0];
 			$user = User::newFromName( $rootPart, false /* allow IP users*/ );
@@ -1446,9 +1482,7 @@ class Article implements Page {
 
 		// the loop prepends the arrow image before the link, so the first case needs to be outside
 
-		/**
-		 * @var $title Title
-		 */
+		/** @var $title Title */
 		$title = array_shift( $target );
 
 		if ( $forceKnown ) {
@@ -1459,13 +1493,27 @@ class Article implements Page {
 
 		$nextRedirect = $wgStylePath . '/common/images/nextredirect' . $imageDir . '.png';
 		$alt = $lang->isRTL() ? '←' : '→';
-		// Automatically append redirect=no to each link, since most of them are redirect pages themselves.
+
+		// Automatically append redirect=no to each link, since most of them are
+		// redirect pages themselves.
+		/** @var Title $rt */
 		foreach ( $target as $rt ) {
 			$link .= Html::element( 'img', array( 'src' => $nextRedirect, 'alt' => $alt ) );
 			if ( $forceKnown ) {
-				$link .= Linker::linkKnown( $rt, htmlspecialchars( $rt->getFullText(), array(), array( 'redirect' => 'no' ) ) );
+				$link .= Linker::linkKnown(
+					$rt,
+					htmlspecialchars( $rt->getFullText(),
+					array(),
+					array( 'redirect' => 'no' )
+				)
+				);
 			} else {
-				$link .= Linker::link( $rt, htmlspecialchars( $rt->getFullText() ), array(), array( 'redirect' => 'no' ) );
+				$link .= Linker::link(
+					$rt,
+					htmlspecialchars( $rt->getFullText() ),
+					array(),
+					array( 'redirect' => 'no' )
+				);
 			}
 		}
 
@@ -1572,7 +1620,8 @@ class Article implements Page {
 			try {
 				$reason = $this->generateReason( $hasHistory );
 			} catch ( MWException $e ) {
-				# if a page is horribly broken, we still want to be able to delete it. so be lenient about errors here.
+				# if a page is horribly broken, we still want to be able to
+				# delete it. So be lenient about errors here.
 				wfDebug( "Error while building auto delete summary: $e" );
 				$reason = '';
 			}
@@ -1594,7 +1643,11 @@ class Article implements Page {
 			if ( $this->mTitle->isBigDeletion() ) {
 				global $wgDeleteRevisionsLimit;
 				$this->getContext()->getOutput()->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
-					array( 'delete-warning-toobig', $this->getContext()->getLanguage()->formatNum( $wgDeleteRevisionsLimit ) ) );
+					array(
+						'delete-warning-toobig',
+						$this->getContext()->getLanguage()->formatNum( $wgDeleteRevisionsLimit )
+					)
+				);
 			}
 		}
 
@@ -1647,9 +1700,14 @@ class Article implements Page {
 					Xml::label( wfMessage( 'deletecomment' )->text(), 'wpDeleteReasonList' ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::listDropDown( 'wpDeleteReasonList',
+					Xml::listDropDown(
+						'wpDeleteReasonList',
 						wfMessage( 'deletereason-dropdown' )->inContentLanguage()->text(),
-						wfMessage( 'deletereasonotherlist' )->inContentLanguage()->text(), '', 'wpReasonDropDown', 1 ) .
+						wfMessage( 'deletereasonotherlist' )->inContentLanguage()->text(),
+						'',
+						'wpReasonDropDown',
+						1
+					) .
 				"</td>
 			</tr>
 			<tr id=\"wpDeleteReasonRow\">
@@ -1690,7 +1748,10 @@ class Article implements Page {
 			</tr>" .
 			Xml::closeElement( 'table' ) .
 			Xml::closeElement( 'fieldset' ) .
-			Html::hidden( 'wpEditToken', $user->getEditToken( array( 'delete', $this->getTitle()->getPrefixedText() ) ) ) .
+			Html::hidden(
+				'wpEditToken',
+				$user->getEditToken( array( 'delete', $this->getTitle()->getPrefixedText() ) )
+			) .
 			Xml::closeElement( 'form' );
 
 			if ( $user->isAllowed( 'editinterface' ) ) {
@@ -1715,13 +1776,14 @@ class Article implements Page {
 
 	/**
 	 * Perform a deletion and output success or failure messages
-	 * @param $reason
-	 * @param $suppress bool
+	 * @param string $reason
+	 * @param bool $suppress
 	 */
 	public function doDelete( $reason, $suppress = false ) {
 		$error = '';
 		$outputPage = $this->getContext()->getOutput();
 		$status = $this->mPage->doDeleteArticleReal( $reason, $suppress, 0, true, $error );
+
 		if ( $status->isGood() ) {
 			$deleted = $this->getTitle()->getPrefixedText();
 
@@ -1733,7 +1795,11 @@ class Article implements Page {
 			$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
 			$outputPage->returnToMain( false );
 		} else {
-			$outputPage->setPageTitle( wfMessage( 'cannotdelete-title', $this->getTitle()->getPrefixedText() ) );
+			$outputPage->setPageTitle(
+				wfMessage( 'cannotdelete-title',
+					$this->getTitle()->getPrefixedText() )
+			);
+
 			if ( $error == '' ) {
 				$outputPage->addWikiText(
 					"<div class=\"error mw-error-cannotdelete\">\n" . $status->getWikiText() . "\n</div>"
@@ -1878,7 +1944,8 @@ class Article implements Page {
 		if ( $this->mContext instanceof IContextSource ) {
 			return $this->mContext;
 		} else {
-			wfDebug( __METHOD__ . " called and \$mContext is null. Return RequestContext::getMain(); for sanity\n" );
+			wfDebug( __METHOD__ . " called and \$mContext is null. " .
+				"Return RequestContext::getMain(); for sanity\n" );
 			return RequestContext::getMain();
 		}
 	}
@@ -1978,7 +2045,9 @@ class Article implements Page {
 	 * @param $user User
 	 * @return Status
 	 */
-	public function doUpdateRestrictions( array $limit, array $expiry, &$cascade, $reason, User $user ) {
+	public function doUpdateRestrictions( array $limit, array $expiry, &$cascade,
+		$reason, User $user
+	) {
 		return $this->mPage->doUpdateRestrictions( $limit, $expiry, $cascade, $reason, $user );
 	}
 
@@ -1989,7 +2058,9 @@ class Article implements Page {
 	 * @param $expiry array
 	 * @return bool
 	 */
-	public function updateRestrictions( $limit = array(), $reason = '', &$cascade = 0, $expiry = array() ) {
+	public function updateRestrictions( $limit = array(), $reason = '',
+		&$cascade = 0, $expiry = array()
+	) {
 		return $this->mPage->doUpdateRestrictions(
 			$limit,
 			$expiry,
@@ -2007,7 +2078,9 @@ class Article implements Page {
 	 * @param $error string
 	 * @return bool
 	 */
-	public function doDeleteArticle( $reason, $suppress = false, $id = 0, $commit = true, &$error = '' ) {
+	public function doDeleteArticle( $reason, $suppress = false, $id = 0,
+		$commit = true, &$error = ''
+	) {
 		return $this->mPage->doDeleteArticle( $reason, $suppress, $id, $commit, $error );
 	}
 

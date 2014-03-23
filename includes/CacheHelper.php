@@ -28,7 +28,6 @@
  * @since 1.20
  */
 interface ICacheHelper {
-
 	/**
 	 * Sets if the cache should be enabled or not.
 	 *
@@ -81,7 +80,6 @@ interface ICacheHelper {
 	 * @param integer $cacheExpiry
 	 */
 	function setExpiry( $cacheExpiry );
-
 }
 
 /**
@@ -103,7 +101,6 @@ interface ICacheHelper {
  * @since 1.20
  */
 class CacheHelper implements ICacheHelper {
-
 	/**
 	 * The time to live for the cache, in seconds or a unix timestamp indicating the point of expiry.
 	 *
@@ -275,7 +272,8 @@ class CacheHelper implements ICacheHelper {
 				$itemKey = array_shift( $itemKey );
 
 				if ( !is_integer( $itemKey ) ) {
-					wfWarn( "Attempted to get item with non-numeric key while the next item in the queue has a key ($itemKey) in " . __METHOD__ );
+					wfWarn( "Attempted to get item with non-numeric key while " .
+						"the next item in the queue has a key ($itemKey) in " . __METHOD__ );
 				} elseif ( is_null( $itemKey ) ) {
 					wfWarn( "Attempted to get an item while the queue is empty in " . __METHOD__ );
 				} else {
@@ -316,7 +314,11 @@ class CacheHelper implements ICacheHelper {
 	 */
 	public function saveCache() {
 		if ( $this->cacheEnabled && $this->hasCached === false && !empty( $this->cachedChunks ) ) {
-			wfGetCache( CACHE_ANYTHING )->set( $this->getCacheKeyString(), $this->cachedChunks, $this->cacheExpiry );
+			wfGetCache( CACHE_ANYTHING )->set(
+				$this->getCacheKeyString(),
+				$this->cachedChunks,
+				$this->cacheExpiry
+			);
 		}
 	}
 
@@ -381,5 +383,4 @@ class CacheHelper implements ICacheHelper {
 	public function setOnInitializedHandler( $handlerFunction ) {
 		$this->onInitHandler = $handlerFunction;
 	}
-
 }

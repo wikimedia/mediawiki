@@ -26,7 +26,7 @@
  * like to refresh link counts, the objects will be appropriately reinitialized.
  * Member variables are lazy-initialized.
  *
- * TODO: Move some stuff from CategoryPage.php to here, and use that.
+ * @todo Move some stuff from CategoryPage.php to here, and use that.
  */
 class Category {
 	/** Name of the category, normalized to DB-key form */
@@ -75,7 +75,8 @@ class Category {
 		if ( !$row ) {
 			# Okay, there were no contents.  Nothing to initialize.
 			if ( $this->mTitle ) {
-				# If there is a title object but no record in the category table, treat this as an empty category
+				# If there is a title object but no record in the category table,
+				# treat this as an empty category.
 				$this->mID = false;
 				$this->mName = $this->mTitle->getDBkey();
 				$this->mPages = 0;
@@ -155,11 +156,13 @@ class Category {
 	/**
 	 * Factory function, for constructing a Category object from a result set
 	 *
-	 * @param $row result set row, must contain the cat_xxx fields. If the fields are null,
-	 *        the resulting Category object will represent an empty category if a title object
-	 *        was given. If the fields are null and no title was given, this method fails and returns false.
-	 * @param Title $title optional title object for the category represented by the given row.
-	 *        May be provided if it is already known, to avoid having to re-create a title object later.
+	 * @param $row Result set row, must contain the cat_xxx fields. If the
+	 *   fields are null, the resulting Category object will represent an empty
+	 *   category if a title object was given. If the fields are null and no
+	 *   title was given, this method fails and returns false.
+	 * @param Title $title optional title object for the category represented by
+	 *   the given row. May be provided if it is already known, to avoid having
+	 *   to re-create a title object later.
 	 * @return Category
 	 */
 	public static function newFromRow( $row, $title = null ) {
@@ -177,7 +180,8 @@ class Category {
 				# but we can't know that here...
 				return false;
 			} else {
-				$cat->mName = $title->getDBkey(); # if we have a title object, fetch the category name from there
+				# if we have a title object, fetch the category name from there
+				$cat->mName = $title->getDBkey();
 			}
 
 			$cat->mID = false;
