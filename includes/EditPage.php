@@ -512,6 +512,8 @@ class EditPage {
 			throw new PermissionsError( $action, $permErrors );
 		}
 
+		wfRunHooks( 'EditPage::showReadOnlyForm:initial', array( &$this, &$wgOut ) );
+
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setPageTitle( wfMessage( 'viewsource-title', $this->getContextTitle()->getPrefixedText() ) );
 		$wgOut->addBacklinkSubtitle( $this->getContextTitle() );
@@ -2219,7 +2221,7 @@ class EditPage {
 			$previewOutput = $this->getPreviewText();
 		}
 
-		wfRunHooks( 'EditPage::showEditForm:initial', array( &$this, &$wgOut ) );
+		wfRunHooks( 'EditPage::showEditForm:initial', array( $this, &$wgOut ) );
 
 		$this->setHeaders();
 
