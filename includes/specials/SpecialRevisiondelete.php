@@ -28,40 +28,46 @@
  * @ingroup SpecialPage
  */
 class SpecialRevisionDelete extends UnlistedSpecialPage {
-	/** True if the submit button was clicked, and the form was posted */
-	var $submitClicked;
-
-	/** Target ID list */
-	var $ids;
-
-	/** Archive name, for reviewing deleted files */
-	var $archiveName;
-
-	/** Edit token for securing image views against XSS */
-	var $token;
-
-	/** Title object for target parameter */
-	var $targetObj;
-
-	/** Deletion type, may be revision, archive, oldimage, filearchive, logging. */
-	var $typeName;
-
-	/** Array of checkbox specs (message, name, deletion bits) */
-	var $checks;
-
-	/** UI Labels about the current type */
-	var $typeLabels;
-
-	/** The RevDel_List object, storing the list of items to be deleted/undeleted */
-	var $list;
-
-	/** Was the DB modified in this request */
+	/** @var bool Was the DB modified in this request */
 	protected $wasSaved = false;
+
+	/** @var bool True if the submit button was clicked, and the form was posted */
+	private $submitClicked;
+
+	/** @var array Target ID list */
+	private $ids;
+
+	/** @var string Archive name, for reviewing deleted files */
+	private $archiveName;
+
+	/** @var string Edit token for securing image views against XSS */
+	private $token;
+
+	/** @var Title object for target parameter */
+	private $targetObj;
+
+	/** @var string Deletion type, may be revision, archive, oldimage, filearchive, logging. */
+	private $typeName;
+
+	/** @var array of checkbox specs (message, name, deletion bits) */
+	private $checks;
+
+	/** @var array UI Labels about the current type */
+	private $typeLabels;
+
+	/** @var RevDel_List object, storing the list of items to be deleted/undeleted */
+	private $revDelList;
+
+	/** @var bool Whether user is allowed to perform the action */
+	private $mIsAllowed;
+
+	/** @var string */
+	private $otherReason;
 
 	/**
 	 * UI labels for each type.
 	 */
-	static $UILabels = array(
+	private static $UILabels = array(
 		'revision' => array(
 			'check-label' => 'revdelete-hide-text',
 			'success' => 'revdelete-success',
@@ -325,13 +331,13 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * Get the list object for this request
 	 */
 	protected function getList() {
-		if ( is_null( $this->list ) ) {
-			$this->list = RevisionDeleter::createList(
+		if ( is_null( $this->revDelList ) ) {
+			$this->revDelList = RevisionDeleter::createList(
 				$this->typeName, $this->getContext(), $this->targetObj, $this->ids
 			);
 		}
 
-		return $this->list;
+		return $this->revDelList;
 	}
 
 	/**
@@ -552,7 +558,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->getOutput()->setPageTitle( $this->msg( 'actioncomplete' ) );
 		$this->getOutput()->wrapWikiMsg( "<span class=\"success\">\n$1\n</span>", $this->typeLabels['success'] );
 		$this->wasSaved = true;
-		$this->list->reloadFromMaster();
+		$this->revDelList->reloadFromMaster();
 		$this->showForm();
 	}
 
@@ -592,7 +598,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * @param $bitfield
 	 * @param $reason
 	 * @param $title
-	 * @return
+	 * @return Status
 	 */
 	protected function save( $bitfield, $reason, $title ) {
 		return $this->getList()->setVisibility(
