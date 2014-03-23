@@ -36,7 +36,6 @@
  * headaches, which may be fatal.
  */
 class EditPage {
-
 	/**
 	 * Status: Article successfully updated
 	 */
@@ -3706,24 +3705,12 @@ HTML
 	}
 
 	/**
-	 * Format an anchor fragment as it would appear for a given section name
-	 * @param $text String
-	 * @return String
-	 * @private
-	 */
-	function sectionAnchor( $text ) {
-		global $wgParser;
-		return $wgParser->guessSectionNameFromWikiText( $text );
-	}
-
-	/**
 	 * Check if the browser is on a blacklist of user-agents known to
 	 * mangle UTF-8 data on form submission. Returns true if Unicode
 	 * should make it through, false if it's known to be a problem.
 	 * @return bool
-	 * @private
 	 */
-	function checkUnicodeCompliantBrowser() {
+	private function checkUnicodeCompliantBrowser() {
 		global $wgBrowserBlackList, $wgRequest;
 
 		$currentbrowser = $wgRequest->getHeader( 'User-Agent' );
@@ -3744,25 +3731,12 @@ HTML
 	 * Filter an input field through a Unicode de-armoring process if it
 	 * came from an old browser with known broken Unicode editing issues.
 	 *
-	 * @param $request WebRequest
-	 * @param $field String
-	 * @return String
-	 * @private
-	 */
-	function safeUnicodeInput( $request, $field ) {
-		$text = rtrim( $request->getText( $field ) );
-		return $request->getBool( 'safemode' )
-			? $this->unmakesafe( $text )
-			: $text;
-	}
-
-	/**
-	 * @param $request WebRequest
-	 * @param $text string
+	 * @param WebRequest $request
+	 * @param string $field
 	 * @return string
 	 */
-	function safeUnicodeText( $request, $text ) {
-		$text = rtrim( $text );
+	protected function safeUnicodeInput( $request, $field ) {
+		$text = rtrim( $request->getText( $field ) );
 		return $request->getBool( 'safemode' )
 			? $this->unmakesafe( $text )
 			: $text;
@@ -3772,11 +3746,10 @@ HTML
 	 * Filter an output field through a Unicode armoring process if it is
 	 * going to an old browser with known broken Unicode editing issues.
 	 *
-	 * @param $text String
-	 * @return String
-	 * @private
+	 * @param string $text
+	 * @return string
 	 */
-	function safeUnicodeOutput( $text ) {
+	protected function safeUnicodeOutput( $text ) {
 		global $wgContLang;
 		$codedText = $wgContLang->recodeForEdit( $text );
 		return $this->checkUnicodeCompliantBrowser()
@@ -3793,11 +3766,10 @@ HTML
 	 * Preexisting such character references will have a 0 added to them
 	 * to ensure that round-trips do not alter the original data.
 	 *
-	 * @param $invalue String
-	 * @return String
-	 * @private
+	 * @param string $invalue
+	 * @return string
 	 */
-	function makesafe( $invalue ) {
+	private function makesafe( $invalue ) {
 		// Armor existing references for reversibility.
 		$invalue = strtr( $invalue, array( "&#x" => "&#x0" ) );
 
@@ -3835,13 +3807,13 @@ HTML
 	 * back to UTF-8. Used to protect data from corruption by broken web browsers
 	 * as listed in $wgBrowserBlackList.
 	 *
-	 * @param $invalue String
-	 * @return String
-	 * @private
+	 * @param string $invalue
+	 * @return string
 	 */
-	function unmakesafe( $invalue ) {
+	private function unmakesafe( $invalue ) {
 		$result = "";
-		for ( $i = 0; $i < strlen( $invalue ); $i++ ) {
+		$valueLength = strlen( $invalue );
+		for ( $i = 0; $i < $valueLength; $i++ ) {
 			if ( ( substr( $invalue, $i, 3 ) == "&#x" ) && ( $invalue[$i + 3] != '0' ) ) {
 				$i += 3;
 				$hexstring = "";
