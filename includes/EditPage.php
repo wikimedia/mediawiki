@@ -2221,6 +2221,10 @@ class EditPage {
 		$wgOut->addHTML( $this->editFormTextTop );
 
 		$showToolbar = true;
+		global $wgBookManagerv2JsonEditor;
+		if ( $this->mArticle->getTitle()->inNamespace( NS_BOOK ) && $wgBookManagerv2JsonEditor ) {
+			$showToolbar = false;
+		}
 		if ( $this->wasDeletedSinceLastEdit() ) {
 			if ( $this->formtype == 'save' ) {
 				// Hide the toolbar and edit area, user can click preview to get it back
