@@ -6643,7 +6643,14 @@ OO.ui.InlineMenuWidget.prototype.getMenu = function () {
  * @param {OO.ui.MenuItemWidget} item Selected menu item
  */
 OO.ui.InlineMenuWidget.prototype.onMenuSelect = function ( item ) {
-	this.setLabel( item.getLabel() );
+	var selectedLabel = item.getLabel();
+
+	// If the label is a DOM element, clone it, because setLabel will append() it
+	if ( selectedLabel instanceof jQuery ) {
+		selectedLabel = selectedLabel.clone();
+	}
+
+	this.setLabel( selectedLabel );
 };
 
 /**
