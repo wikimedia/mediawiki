@@ -960,9 +960,10 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @param $desc
-	 * @param $page
-	 * @return string
+	 * Returns an HTML link for use in the footer
+	 * @param string $desc i18n message key for the link text
+	 * @param string $page Name of the page to link to
+	 * @return string HTML anchor
 	 */
 	public function footerLink( $desc, $page ) {
 		// if the link description has been set to "-" in the default language,
