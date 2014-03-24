@@ -2261,6 +2261,11 @@ Invoer: inhoudstype/subtype, bijvoorbeeld <code>image/jpeg</code>.',
 # List redirects
 'listredirects' => 'Doorverwijzingenlijst',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Lijst met bestanden met duplicaten',
+'listduplicatedfiles-summary' => 'Dit is een lijst met bestanden waarvan de laatste versie een duplicaat is van de meest recente versie van een ander bestand. Er wordt alleen gerapporteerd over lokale bestanden.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] heeft [[$3|{{PLURAL:$2|één duplicaat|$2 duplicaten}}]].',
+
 # Unused templates
 'unusedtemplates' => 'Ongebruikte sjablonen',
 'unusedtemplatestext' => 'Deze pagina geeft alle pagina\'s weer in de naamruimte {{ns:template}} die op geen enkele pagina gebruikt worden.

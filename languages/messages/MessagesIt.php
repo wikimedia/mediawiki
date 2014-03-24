@@ -2087,6 +2087,11 @@ Probabilmente vuoi modificare la descrizione presente nella [$2 pagina di descri
 # List redirects
 'listredirects' => 'Elenco di tutti i redirect',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Elenco dei file duplicati',
+'listduplicatedfiles-summary' => 'Questo è un elenco di file, dove la versione più recente di un file è un duplicato della versione più recente di un altro file. Sono considerati solo i file locali.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] ha [[$3|{{PLURAL:$2|un duplicato|$2 duplicati}}]].',
+
 # Unused templates
 'unusedtemplates' => 'Template non utilizzati',
 'unusedtemplatestext' => 'In questa pagina vengono elencate le pagine del namespace {{ns:template}} che non sono incluse in nessuna pagina. Prima di cancellarli è opportuno verificare che i singoli template non abbiano altri collegamenti entranti.',

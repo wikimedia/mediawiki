@@ -2246,6 +2246,11 @@ Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungs
 # List redirects
 'listredirects' => 'Weiterleitungen',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Liste der Dateien mit Duplikaten',
+'listduplicatedfiles-summary' => 'Dies ist eine Liste der Dateien, deren aktuelle Dateiversion ein Duplikat der aktuellen Version einer anderen Datei ist. Es werden nur lokale Dateien berücksichtigt.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] hat [[$3|{{PLURAL:$2|ein Duplikat|$2 Duplikate}}]].',
+
 # Unused templates
 'unusedtemplates' => 'Verwaiste Vorlagen',
 'unusedtemplatestext' => 'Diese Seite listet alle Seiten im {{ns:template}}-Namensraum auf, die nicht in anderen Seiten eingebunden sind.

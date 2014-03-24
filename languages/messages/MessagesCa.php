@@ -3159,7 +3159,7 @@ Si l'executeu, podeu comprometre la seguretat del vostre sistema.",
 'file-no-thumb-animation-gif' => "''' Nota: degut a limitacions tècniques no s'animaran les miniatures d'alta resolució d'imatges GIF com aquesta.'''",
 
 # Special:NewFiles
-'newimages' => 'Galeria de nous fitxers',
+'newimages' => 'Galeria de fitxers nous',
 'imagelisttext' => "Llista {{PLURAL:$1|d'un sol fitxer|de '''$1''' fitxers ordenats $2}}.",
 'newimages-summary' => 'Aquesta pàgina especial mostra els darrers fitxers carregats.',
 'newimages-legend' => 'Nom del fitxer',

@@ -885,7 +885,9 @@ Jotta pääset kirjautumaan sisään kunnolla, sinun on nyt asetettava uusi sala
 'resetpass-abort-generic' => 'Laajennus keskeytti salasanan vaihdon.',
 'resetpass-expired' => 'Salasanasi on vanhentunut. Valitse uusi salasana, jotta pääset kirjautumaan sisään.',
 'resetpass-expired-soft' => 'Salasanasi on vanhentunut ja se pitää uudistaa. Valitse uusi salasana nyt tai paina "{{int:resetpass-submit-cancel}}", niin voit uudistaa salasanan myöhemmin.',
-'resetpass-validity-soft' => 'Valitse nyt uusi salasana tai paina "{{int:resetpass-submit-cancel}}", niin voit vaihtaa sen myöhemmin.',
+'resetpass-validity-soft' => 'Salasanasi ei ole kelvollinen: $1
+
+Valitse nyt uusi salasana tai paina "{{int:resetpass-submit-cancel}}", niin voit vaihtaa sen myöhemmin.',
 
 # Special:PasswordReset
 'passwordreset' => 'Salasanan uudistus',
@@ -1264,6 +1266,7 @@ Voit silti nähdä tämän muutoksen. Lisätietoja löytyy [{{fullurl:{{#Special
 'revdelete-text-text' => 'Poistetut versiot näkyvät edelleen sivun historiassa, mutta osa niiden sisällöstä ei enää ole saatavilla julkisesti.',
 'revdelete-text-file' => 'Poistetut tiedostoversiot näkyvät yhä sivun historiassa, mutta osa niiden sisällöstä ei ole saatavilla julkisesti.',
 'logdelete-text' => 'Poistetut lokimerkinnät näkyvät edelleen lokeissa, mutta osa niiden sisällöstä ei enää ole saatavilla julkisesti.',
+'revdelete-text-others' => 'Muut ylläpitäjät sivustolla {{SITENAME}} kykenevät silti näkemään piilotetun sisällön ja voivat palauttaa sen takaisin näkyviin tämän saman käyttöliittymän kautta, paitsi silloin kun lisärajoituksia on asetettu.',
 'revdelete-confirm' => 'Varmista, että haluat tehdä tämän – ymmärrät seuraukset ja teet tämän [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.',
 'revdelete-suppress-text' => "Häivytystä pitäisi käyttää '''vain''' seuraavissa tapauksissa:
 * Mahdollisesti henkilön kunniaa loukkaavia tietoja
@@ -1724,7 +1727,7 @@ Tämä tieto on julkinen.',
 'recentchanges-legend-heading' => "'''Selitys:'''",
 'recentchanges-legend-newpage' => '(katso myös [[Special:NewPages|lista uusista sivuista]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnotefrom' => 'Alla on muutokset <b>$2</b> lähtien. Enintään <b>$1</b> merkintää näytetään.',
+'rcnotefrom' => 'Alla ovat muutokset <strong>$2</strong> lähtien. (Enintään <strong>$1</strong> näytetään.)',
 'rclistfrom' => 'Näytä uudet muutokset $1 alkaen',
 'rcshowhideminor' => '$1 pienet muutokset',
 'rcshowhideminor-show' => 'Näytä',
@@ -1938,6 +1941,10 @@ $1',
 'backend-fail-batchsize' => 'Taustajärjestelmälle on annettu $1 {{PLURAL:$1|tiedostotoiminto|toimintoa}}; enimmäismäärä on $2 {{PLURAL:$2|tiedostotoiminto|toimintoa}}.',
 'backend-fail-usable' => 'Tiedostoa $1 ei voitu lukea tai luoda, koska käyttöoikeudet eivät riittäneet tai hakemisto puuttuu.',
 
+# File journal errors
+'filejournal-fail-dbconnect' => 'Ei voitu yhdistää kohteeseen journal database for storage backend "$1".',
+'filejournal-fail-dbquery' => 'Ei voitu päivittää kohdetta journal database for storage backend "$1".',
+
 # Lock manager
 'lockmanager-notlocked' => 'Kohteen $1 lukitusta ei voitu poistaa, koska se ei ole lukittu.',
 'lockmanager-fail-closelock' => 'Tiedoston $1 lukkotiedostoa ei voitu sulkea.',
@@ -2110,6 +2117,10 @@ Syöte: sisältötyyppi/alatyyppi, esimerkiksi <code>image/jpeg</code>.',
 
 # List redirects
 'listredirects' => 'Ohjaukset',
+
+# List duplicated files special page
+'listduplicatedfiles' => 'Luettelo tiedostoista, joista on kaksoiskappale.',
+'listduplicatedfiles-entry' => 'Tiedostosta [[:File:$1|$1]] on olemassa [[$3|{{PLURAL:$2|kaksoiskappale|$2 kaksoiskappaletta}}]].',
 
 # Unused templates
 'unusedtemplates' => 'Käyttämättömät mallineet',
@@ -2554,7 +2565,9 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'protect-locked-blocked' => "Et voi muuttaa sivun suojauksia, koska sinut on estetty. Alla on sivun ”'''$1'''” nykyiset suojaukset:",
 'protect-locked-dblock' => "Sivun suojauksia ei voi muuttaa, koska tietokanta on lukittu. Alla on sivun ”'''$1'''” nykyiset suojaukset:",
 'protect-locked-access' => "Sinulla ei ole tarvittavia oikeuksia sivujen suojauksen muuttamiseen. Alla on sivun ”'''$1'''” nykyiset suojaukset:",
-'protect-cascadeon' => 'Tämä sivu on suojauksen kohteena, koska se on sisällytetty alla {{PLURAL:$1|olevaan tartuttavasti suojattuun sivuun|oleviin tartuttavasti suojattuihin sivuihin}}. Voit muuttaa tämän sivun suojaustasoa, mutta se ei vaikuta tarttuvaan suojaukseen.',
+'protect-cascadeon' => 'Tämä sivu on suojauksen kohteena, koska se on sisällytetty alla {{PLURAL:$1|olevaan suojattuun sivuun, jossa|oleviin suojattuihin sivuihin, joissa}} on kytketty tarttuva suojaus päälle.
+
+Tämän sivun suojaustasoon tehdyillä muutoksilla ei ole vaikutusta sivuun muualta tarttuneeseen suojaukseen.',
 'protect-default' => 'Salli kaikki käyttäjät',
 'protect-fallback' => 'Salli vain käyttäjät, joilla on oikeus $1',
 'protect-level-autoconfirmed' => 'Vain hyväksytyt käyttäjät',
@@ -3874,9 +3887,9 @@ Yritä normaalia esikatselua.',
 'watchlistedit-numitems' => 'Tarkkailulistallasi on {{PLURAL:$1|yksi sivu|$1 sivua}}, lukuun ottamatta keskustelusivuja.',
 'watchlistedit-noitems' => 'Tarkkailulistasi on tyhjä.',
 'watchlistedit-normal-title' => 'Tarkkailulistan muokkaus',
-'watchlistedit-normal-legend' => 'Sivut',
+'watchlistedit-normal-legend' => 'Poista sivuja tarkkailulistalta',
 'watchlistedit-normal-explain' => 'Tarkkailulistasi sivut on lueteltu alla. Voit poistaa sivuja valitsemalla niitä vastaavat valintaruudut ja napsauttamalla ”{{int:Watchlistedit-normal-submit}}”. Voit myös muokata listaa [[Special:EditWatchlist/raw|tekstimuodossa]].',
-'watchlistedit-normal-submit' => 'Poista',
+'watchlistedit-normal-submit' => 'Poista kohteet',
 'watchlistedit-normal-done' => '{{PLURAL:$1|Yksi sivu|$1 sivua}} poistettiin tarkkailulistaltasi:',
 'watchlistedit-raw-title' => 'Tarkkailulistan muokkaus',
 'watchlistedit-raw-legend' => 'Tarkkailulistan muokkaus',
@@ -3890,9 +3903,9 @@ Voit myös muokata listaa [[Special:EditWatchlist|tavalliseen tapaan]].',
 'watchlistedit-raw-removed' => '{{PLURAL:$1|Yksi sivu|$1 sivua}} poistettiin:',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'Näytä muutokset',
-'watchlisttools-edit' => 'Muokkaa listaa',
-'watchlisttools-raw' => 'Lista raakamuodossa',
+'watchlisttools-view' => 'Näytä tarkkaillut muutokset',
+'watchlisttools-edit' => 'Katso ja muokkaa tarkkailulistaa',
+'watchlisttools-raw' => 'Muokkaa listaa raakamuodossa',
 
 # Signatures
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|keskustelu]])',
@@ -4024,7 +4037,7 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'compare-rev1' => 'Versio 1',
 'compare-rev2' => 'Versio 2',
 'compare-submit' => 'Vertaa',
-'compare-invalid-title' => 'Antamasi otsikko on virheellinen.',
+'compare-invalid-title' => 'Antamasi sivun nimi on virheellinen.',
 'compare-title-not-exists' => 'Määrittämääsi sivua ei ole.',
 'compare-revision-not-exists' => 'Määrittämääsi versiota ei ole.',
 
@@ -4171,20 +4184,21 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'rotate-comment' => 'Kuvaa käännettiin $1 {{PLURAL:$1|aste|astetta}} myötäpäivään',
 
 # Limit report
-'limitreport-title' => 'Jäsentimen profilointitiedot',
+'limitreport-title' => 'Jäsentimen profilointitiedot:',
 'limitreport-cputime' => 'Suorittimen ajankäyttö',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|sekunti|sekuntia}}',
 'limitreport-walltime' => 'Todellinen ajankäyttö',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekunti|sekuntia}}',
-'limitreport-ppvisitednodes' => 'Esikääntäjän läpikäymien solmujen määrä',
+'limitreport-ppvisitednodes' => 'Esikääntäjän läpikäymien solmujen määrä<br />(preprocessor visited node count)',
+'limitreport-ppgeneratednodes' => 'Esikääntäjän synnyttämien solmujen määrä <br />(preprocessor generated node count)',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|tavu|tavua}}',
-'limitreport-templateargumentsize' => 'Mallineen argumenttien koko',
+'limitreport-templateargumentsize' => 'Mallineen argumenttien koko<br />(template argument size)',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|tavu|tavua}}',
 'limitreport-expansiondepth' => 'Highest expansion depth',
 'limitreport-expensivefunctioncount' => 'Vaativien parserfunktioiden määrä',
 
 # Special:ExpandTemplates
-'expandtemplates' => 'Mallineiden laajennus',
+'expandtemplates' => 'Laajenna mallineet',
 'expand_templates_intro' => 'Tämä toimintosivu ottaa syötteeksi tekstiä ja laajentaa kaikki siinä olevat mallineet rekursiivisesti.
 Se myös laajentaa tuetut parserifunktiot kuten
 <code><nowiki>{{</nowiki>#language:...}}</code> ja -muuttujat kuten

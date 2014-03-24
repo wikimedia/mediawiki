@@ -2073,6 +2073,9 @@ $1',
 # List redirects
 'listredirects' => 'Сьпіс перанакіраваньняў',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Сьпіс файлаў з дублікатамі',
+
 # Unused templates
 'unusedtemplates' => 'Шаблёны, якія не выкарыстоўваюцца',
 'unusedtemplatestext' => 'На гэтай старонцы зьмешчаны сьпіс усіх старонак прасторы назваў «{{ns:template}}», якія ня ўключаныя ў іншыя старонкі.

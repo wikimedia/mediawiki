@@ -1738,6 +1738,7 @@ Wann Dir de Fichier nach ëmmer eropluede wëllt, da gitt w.e.g. zréck a benotz
 Wann Dir dëse Fichier trotzdeem eropluede wëllt da gitt w.e.g. zréck a luet dëse Fichier ënner engem aneren Numm erop. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'Dëse Fichier schéngt een Doublon vun {{PLURAL:$1|dësem Fichier|dëse Fichieren}} ze sinn:',
 'file-deleted-duplicate' => 'En identesche Fichier ([[:$1]]) gouf virdru geläscht. Kuckt w.e.g. an der Lëscht vum Läschen no, ier Dir en nach emol eropluet.',
+'file-deleted-duplicate-notitle' => "En identesche Fichier gouf scho geläscht an den Titel gouf suppriméiert. Dir sollt e froen dee suppriméiert Date vu Fichiere kucken däerf fir d'Situatioun ze klären ier Dir de Fichier nach eng Kéier eroplued.",
 'uploadwarning' => 'Opgepasst',
 'uploadwarning-text' => "Ännert d'Beschreiwung hei ënnedrënner w.e.g. a versicht et nach eng Kéier.",
 'savefile' => 'Fichier späicheren',

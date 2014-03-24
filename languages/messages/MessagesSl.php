@@ -2042,6 +2042,11 @@ Vnesite: vrstavsebine/podvrsta, npr. <code>image/jpeg</code>.',
 # List redirects
 'listredirects' => 'Seznam preusmeritev',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Seznam datotek z dvojniki',
+'listduplicatedfiles-summary' => 'Seznam datotek, kjer je najnovejša različica datoteke dvojnik najnovejše različice neke druge datoteke. Upoštevamo samo lokalne datoteke.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] ima [[$3|{{PLURAL:$2|dvojnik|$2 dvojnika|$2 dvojnike|$2 dvojnikov}}]].',
+
 # Unused templates
 'unusedtemplates' => 'Osirotele predloge',
 'unusedtemplatestext' => 'Naslednji seznam navaja vse strani v imenskem prostoru {{ns:template}}, ki niso vključene v nobeno stran.

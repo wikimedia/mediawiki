@@ -2749,7 +2749,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'Este endereço IP encontra-se bloqueado.
 Segue, para referência, a entrada mais recente no registro de bloqueios:',
 'sp-contributions-search' => 'Navegar pelas contribuições',
-'sp-contributions-suppresslog' => 'Contribuições de usuário eliminadas',
+'sp-contributions-suppresslog' => 'Contribuições de usuário suprimidas',
 'sp-contributions-username' => 'Endereço de IP ou usuário:',
 'sp-contributions-toponly' => 'Mostrar somente as edições que sejam a última alteração',
 'sp-contributions-newonly' => 'Mostre somente as edições que criaram uma nova página.',

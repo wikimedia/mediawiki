@@ -2244,6 +2244,11 @@ Entrée : ''typedecontenu''/''sous-type'', par exemple <code>image/jpeg</code>."
 # List redirects
 'listredirects' => 'Liste des redirections',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Liste de fichiers en double',
+'listduplicatedfiles-summary' => "C'est une liste de fichiers où la version la plus récente du fichier est une copie de la version la plus récente d'un autre fichier. Seuls les fichiers locaux sont examinés.",
+'listduplicatedfiles-entry' => '[[:Fichier:$1|$1]] a [[$3|{{PLURAL:$2|un doublon|$2 doublons}}]].',
+
 # Unused templates
 'unusedtemplates' => 'Modèles inutilisés',
 'unusedtemplatestext' => 'Cette page liste toutes les pages de l’espace de noms « {{ns:template}} » qui ne sont incluses dans aucune autre page.

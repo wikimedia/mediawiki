@@ -780,6 +780,7 @@ Hãy nhớ thay đổi [[Special:Preferences|tùy chọn cá nhân {{SITENAME}}]
 'gotaccountlink' => 'Đăng nhập',
 'userlogin-resetlink' => 'Quên mất thông tin đăng nhập?',
 'userlogin-resetpassword-link' => 'Quên mật khẩu?',
+'userlogin-helplink2' => 'Trợ giúp đăng nhập',
 'userlogin-loggedin' => 'Bạn đã đăng nhập với tên {{GENDER:$1}}$1.
 Hãy sử dụng biểu mẫu ở dưới để đăng nhập với tài khoản người dùng khác.',
 'userlogin-createanother' => 'Mở thêm tài khoản',
@@ -894,6 +895,9 @@ Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đ
 'resetpass-abort-generic' => 'Một phần mở rộng đã hủy bỏ tác vụ thay đổi mật khẩu.',
 'resetpass-expired' => 'Mật khẩu của bạn đã hết hạn. Xin vui lòng tạo lại mật khẩu mới để đăng nhập.',
 'resetpass-expired-soft' => 'Mật khẩu của bạn đã hết hạn và cần được đặt lại. Xin vui lòng chọn một mật khẩu mới lúc bây giờ hoặc bấm “{{int:resetpass-submit-cancel}}” để đặt lại sau.',
+'resetpass-validity-soft' => 'Mật khẩu của bạn không hợp lệ: $1
+
+Xin hãy chọn mật khẩu mới bây giờ hoặc bấm “{{int:resetpass-submit-cancel}}” để đặt lại sau.',
 
 # Special:PasswordReset
 'passwordreset' => 'Tái tạo mật khẩu',
@@ -2598,7 +2602,7 @@ hiện tại của trang '''$1''':",
 Đây là trạng thái hiện tại của trang '''$1''':",
 'protect-locked-access' => "Tài khoản của bạn không được cấp quyền đổi mức khóa của trang.
 Đây là trạng thái hiện tại của trang '''$1''':",
-'protect-cascadeon' => 'Trang này hiện bị khóa vì nó được nhúng vào {{PLURAL:$1|những trang|trang}} dưới đây bị khóa với tùy chọn “khóa theo tầng” được kích hoạt. Bạn có thể đổi mức độ khóa của trang này, nhưng nó sẽ không ảnh hưởng đến việc khóa theo tầng.',
+'protect-cascadeon' => 'Trang này hiện bị khóa vì nó được nhúng vào {{PLURAL:$1|những trang|trang}} dưới đây bị khóa với tùy chọn “khóa theo tầng” được kích hoạt. Việc thay đổi mức độ khóa của trang này sẽ không ảnh hưởng đến việc khóa theo tầng.',
 'protect-default' => 'Cho phép mọi thành viên',
 'protect-fallback' => 'Chỉ cho phép những người dùng có quyền “$1”',
 'protect-level-autoconfirmed' => 'Chỉ cho phép các thành viên tự động xác nhận',

@@ -2067,6 +2067,9 @@ Una [[Special:WhatLinksHere/$2|lista completa]] es disponibla.',
 # List redirects
 'listredirects' => 'Lista de las redireccions',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Lista de fichièrs en doble',
+
 # Unused templates
 'unusedtemplates' => 'Modèls inutilizats',
 'unusedtemplatestext' => "Aquesta pagina lista totas las paginas de l’espaci de noms {{ns:template}} que son pas enclusas dins cap d'autra pagina.

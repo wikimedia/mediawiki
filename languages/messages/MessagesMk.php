@@ -2218,6 +2218,11 @@ $1',
 # List redirects
 'listredirects' => 'Список на пренасочувања',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Список на податотеки со дупликати',
+'listduplicatedfiles-summary' => 'Ова е список на податотеки чија најнова верзија е дупликат на најнова верзија на некоја друга податотека. Се земаат предвид само локални податотеки.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] има [[$3|{{PLURAL:$2|дупликат|$2 дупликати}}]].',
+
 # Unused templates
 'unusedtemplates' => 'Неискористени шаблони',
 'unusedtemplatestext' => 'Оваа страница ги прикажува сите страници во именскиот простор {{ns:template}} кои не се вклучени во друга страница.

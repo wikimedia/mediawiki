@@ -469,6 +469,7 @@ Ferjid det ei, an aachte üüb din [[Special:Preferences|{{SITENAME}} iinstelang
 'gotaccountlink' => 'Uunmelde',
 'userlogin-resetlink' => 'Heest dü din login dooten ferjiden?',
 'userlogin-resetpassword-link' => 'Paaswurd ferjiden?',
+'userlogin-helplink2' => "Halep bi't uunmeldin",
 'userlogin-loggedin' => 'Du beest al üs {{GENDER:$1|$1}} uunmeldet.
 Brük det formulaar diar oner, am di mä en öödern nööm uuntumeldin.',
 'userlogin-createanother' => 'En ööder brükerkonto iinracht',
@@ -563,6 +564,10 @@ Wees so gud an teew $1, iar dü det noch ans ferschükst.',
 'loginlanguagelabel' => 'Spriak: $1',
 'suspicious-userlogout' => 'Din ufmeldang as ei föörnimen wurden, auer det uunfraag ferlicht faan en uunstakenen browser of faan en cache-proxy kaam.',
 'createacct-another-realname-tip' => 'Stäänt tu wool. Wan dü dan rochten nööm uundääst, koon hi mä din feranrangen ferbünjen wurd.',
+'pt-login' => 'Uunmelde',
+'pt-login-button' => 'Uunmelde',
+'pt-createaccount' => 'Brükerkonto iinracht',
+'pt-userlogout' => 'Ufmelde',
 
 # Email sending
 'php-mail-error-unknown' => 'Ünbekäänd feeler mä det funktjuun mail() faan PHP.',
@@ -571,8 +576,7 @@ Wees so gud an teew $1, iar dü det noch ans ferschükst.',
 
 # Change password dialog
 'changepassword' => 'Paaswurd feranre',
-'resetpass_announce' => 'Dü heest di mä di code uunmeldet, di dü per e-mail tuschüürd füngen heest.
-Am det uunmeldin uftuslütjen, skel dü en nei paaswurd iindu.',
+'resetpass_announce' => 'Am det uunmeldin uftuslütjen, skel dü en nei paaswurd iindu.',
 'resetpass_header' => 'Paaswurd feranre',
 'oldpassword' => 'Ual paaswurd:',
 'newpassword' => 'Nei paaswurd:',
@@ -588,8 +592,16 @@ Wees so gud an teew $1, iar dü det noch ans ferschükst.',
 'resetpass-wrong-oldpass' => 'Detdiar paaswurd docht niks.
 Ferlicht heest dü jüst din paaswurd feranert
 of am en nei paaswurd uunfraaget.',
+'resetpass-recycled' => 'Wees so gud an lei en nei paaswurd fääst.',
+'resetpass-temp-emailed' => 'Dü heest di mä en tidjwiis code uunmeldet.
+Am det uunmeldin uftuslütjen, lei nü en nei paaswurd fääst:',
 'resetpass-temp-password' => 'Tidjwiis paaswurd:',
 'resetpass-abort-generic' => 'Det paaswurd-anerang as ferhanert wurden.',
+'resetpass-expired' => 'Din paaswurd as uflepen. Wees so gud an lei en nei paaswurd fääst.',
+'resetpass-expired-soft' => 'Din paaswurd as uflepen an skal turagsaat wurd. Wees so gud an lei en nei paaswurd fääst of trak üüb "{{int:resetpass-submit-cancel}}", am det leeder turag tu saaten.',
+'resetpass-validity-soft' => 'Din paaswurd gongt ei: $1
+
+Wees so gud an lei en nei paaswurd fääst, of trak üüb "{{int:resetpass-submit-cancel}}" am det leeder turag tu saaten.',
 
 # Special:PasswordReset
 'passwordreset' => 'Paaswurd turagsaat',
@@ -963,6 +975,10 @@ Dü könst di ferskeel uunluke. Wan dü muar wed wel, luke iin uun't [{{fullurl:
 'revdelete-show-file-submit' => 'Ja',
 'revdelete-selected' => "'''{{PLURAL:$2|Ütjsoocht werjuun|Ütjsoocht werjuunen}} faan [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Ütjsoocht logbukiindrach|Ütjsoocht logbukiindracher}}:'''",
+'revdelete-text-text' => "Stregen werjuunen bliiw uun't werjuunshistoore, man dialen diarfaan san ei för arken tu sen.",
+'revdelete-text-file' => "Stregen datei-werjuunen bliiw uun't werjuunshistoore, man dialen diarfaan san ei för arken tu sen.",
+'logdelete-text' => 'Stregen logbuk-iindracher bliiw uun a logbuken, man dialen diarfaan san ei för arken tu sen.',
+'revdelete-text-others' => 'Ööder administratooren faan {{SITENAME}} kön widjerhen ales uunluke an kön det uk weder mä detheer spezial-sidj iinstel, wan diar niks ööders uun a wai as.',
 'revdelete-confirm' => 'Ferseekre noch ans, dat dü det würelk du wel, dat dü witjst, wat dü dääst, an dat det mä a [[{{MediaWiki:Policy-url}}|bestemangen]] auerian stemet.',
 'revdelete-suppress-text' => "Det skul '''bluas''' onertrakt wurd bi:
 * Persöönelk informatsjuunen, diar näämen wat uungung
@@ -1095,7 +1111,7 @@ Dü könst det uun't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'search-file-match' => '(fünjen tekst)',
 'search-suggest' => 'Mendst dü „$1“?',
 'search-interwiki-caption' => 'Saster-projekten',
-'search-interwiki-default' => '$1 resultaaten:',
+'search-interwiki-default' => 'Resultaaten faan $1:',
 'search-interwiki-more' => '(muar)',
 'search-relatedarticle' => 'Ferbünjen',
 'searcheverything-enable' => 'Uun arke nöömrüm schük',
@@ -1419,14 +1435,26 @@ Arken koon det lees.',
 'recentchanges-legend-heading' => "'''Ferklaarang:'''",
 'recentchanges-legend-newpage' => "(luke uk bi't [[Special:NewPages|list mä nei sidjen]])",
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnotefrom' => "Diar wurd a feranrangen sant '''$2'''uunwiset (ei muar üs '''$1''' feranrangen).",
+'rcnotefrom' => 'Diar wurd a feranrangen sant <strong>$2</strong>uunwiset (ei muar üs <strong>$1</strong> feranrangen).',
 'rclistfrom' => 'Bluas feranrangen sant $1 wise.',
 'rcshowhideminor' => '$1 letj feranrangen',
+'rcshowhideminor-show' => 'Wise',
+'rcshowhideminor-hide' => 'Fersteeg',
 'rcshowhidebots' => '$1 bots',
+'rcshowhidebots-show' => 'Wise',
+'rcshowhidebots-hide' => 'Fersteeg',
 'rcshowhideliu' => '$1 registriaret brükern',
+'rcshowhideliu-show' => 'Wise',
+'rcshowhideliu-hide' => 'Fersteeg',
 'rcshowhideanons' => '$1 anonüüm brükern',
+'rcshowhideanons-show' => 'Wise',
+'rcshowhideanons-hide' => 'Fersteeg',
 'rcshowhidepatr' => '$1 efterluket feranrangen',
+'rcshowhidepatr-show' => 'Wise',
+'rcshowhidepatr-hide' => 'Fersteeg',
 'rcshowhidemine' => '$1 min bidracher',
+'rcshowhidemine-show' => 'Wise',
+'rcshowhidemine-hide' => 'Fersteeg',
 'rclinks' => 'Wise a leetst $1 feranrangen faan a leetst $2 daar.<br />$3',
 'diff' => 'ferskeel',
 'hist' => 'werjuunen',
@@ -1549,6 +1577,7 @@ Dü skulst hoker fraage, di ferbürgen nöömer uunluke koon, am tu besnaakin, w
 'php-uploaddisabledtext' => 'Det huuchschüüren faan datein as uun PHP ei aktiwiaret.
 Luke di det iinstelang faan <code>file_uploads</code> uun.',
 'uploadscripted' => 'Uun detdiar datei stäänt HTML- of Scriptcode, an küd ütj fersen faan en browser ütjfeerd wurd.',
+'uploadscriptednamespace' => 'Detdiar SVG-datei wiset üüb en ferkiarden nöömrüm "$1".',
 'uploadinvalidxml' => "Det XML uun det huuchschüürd datei küd ei ''parset'' wurd.",
 'uploadvirus' => 'Uun detdiar datei as en wiirus! Details: $1',
 'uploadjava' => 'Detdiar as en ZIP-datei mä en CLASS-datei faan Java.
@@ -1786,6 +1815,11 @@ Det formoot as leewen slach/onerslach üs uun det bispal: <code>image/jpeg</code
 # List redirects
 'listredirects' => 'Widjerfeerangen',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'List faan datein mä duplikaaten',
+'listduplicatedfiles-summary' => 'Det as en list mä datein, huar det aktuel werjuun en duplikaat faan en ööder datei as. Det gongt bluas am lokaal datein.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] hää [[$3|{{PLURAL:$2|en duplikaat|$2 duplikaaten}}]].',
+
 # Unused templates
 'unusedtemplates' => 'Ei iinbünjen föörlaagen',
 'unusedtemplatestext' => 'Sidjen uun a {{ns:template}}-nöömrüm, diar ei uun ööder sidjen iinbünjen san.
@@ -1899,6 +1933,7 @@ Uun arke rä stun ferwisangen tu't iarst an ööder widjerfeerang an uk tu det s
 'deadendpagestext' => 'Jodiar sidjen ferwise ei üüb ööder sidjen uun {{SITENAME}}.',
 'protectedpages' => 'Seekert sidjen',
 'protectedpages-indef' => 'Bluas permanent seekert sidjen uunwise',
+'protectedpages-summary' => 'Detdiar sidj feert seekert sidjen ap. En list mä seekert sidjennöömer fanjst dü diar: „[[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]]“.',
 'protectedpages-cascade' => 'Bluas sidjen mä kaskaaden-seekerhaid',
 'protectedpages-noredirect' => 'Widjerfeerangen fersteeg',
 'protectedpagesempty' => 'Uun uugenblak san sok sidjen ei seekert.',
@@ -1911,6 +1946,7 @@ Uun arke rä stun ferwisangen tu't iarst an ööder widjerfeerang an uk tu det s
 'protectedpages-unknown-timestamp' => 'Ünbekäänd',
 'protectedpages-unknown-performer' => 'Ünbekäänd brüker',
 'protectedtitles' => 'Seekert sidjennöömer',
+'protectedtitles-summary' => 'Detdiar sidj feert seekert sidjennöömer ap. En list mä seekert sidjen fanjst dü diar: „[[{{#special:ProtectedPages}}|{{int:protectedpages}}]]“.',
 'protectedtitlesempty' => 'Uun uugenblak san sok sidjen ei speret.',
 'listusers' => 'Brükerfertiaknis',
 'listusers-editsonly' => 'Wise bluas aktiif brükern',
@@ -2173,7 +2209,7 @@ Halep an muar diartu: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'delete-edit-reasonlist' => "Grünjer för't striken bewerke",
 'delete-toobig' => 'Detdiar sidj hää muar üs $1 {{PLURAL:$1|werjuun|werjuunen}} . Sok sidjen kön ei so gau stregen wurd, ööders san a servers plaat.',
 'delete-warning-toobig' => "Detdiar sidj hää muar üs $1 {{PLURAL:$1|werjuun|werjuunen}} . Det striken koon komer maage bi't dootenbeenk.",
-'deleting-backlinks-warning' => "'''Paase üüb:''' Diar ferwise noch ööder sidjen üüb det sidj, diar dü strik wel. Of det sidj as noch huarööders iinbünjen.",
+'deleting-backlinks-warning' => "'''Paase üüb:''' Diar ferwise noch [[Special:WhatLinksHere/{{FULLPAGENAME}}|ööder sidjen]] üüb det sidj, diar dü strik wel. Of det sidj as noch huarööders iinbünjen.",
 
 # Rollback
 'rollback' => 'Feranrangen turagsaat',
@@ -2345,8 +2381,10 @@ $1",
 'sp-contributions-blocked-notice' => "Didiar brüker as speret. Det stäänt uun't sperlogbuk:",
 'sp-contributions-blocked-notice-anon' => "Detdiar IP-adres as speret. Det stäänt uun't sperlogbuk:",
 'sp-contributions-search' => 'Schük efter brükerbidracher',
+'sp-contributions-suppresslog' => 'Ei uunwiset brüker-bidracher',
 'sp-contributions-username' => 'IP-adres of brükernööm:',
 'sp-contributions-toponly' => 'Bluas aktuel werjuunen wise',
+'sp-contributions-newonly' => 'Bluas nei maaget sidjen wise',
 'sp-contributions-submit' => 'Schük',
 
 # What links here

@@ -43,6 +43,7 @@
  * @author Odie2
  * @author Olgak85
  * @author Peter Bowman
+ * @author Pio387
  * @author Przemub
  * @author Reedy
  * @author Remedios44
@@ -1899,7 +1900,7 @@ Sprawdź historię usunięć tamtego pliku zanim prześlesz go ponownie.',
 'uploaddisabledtext' => 'Możliwość przesyłania plików została wyłączona.',
 'php-uploaddisabledtext' => 'Przesyłanie plików PHP zostało zablokowane. Sprawdź ustawienie „file_uploads”.',
 'uploadscripted' => 'Plik zawiera kod HTML lub skrypt, który może zostać błędnie zinterpretowany przez przeglądarkę internetową.',
-'uploadscriptednamespace' => "Ten plik SVG zawiera niepoprawną nazwę '$1'",
+'uploadscriptednamespace' => "Ten plik SVG zawiera niedozwoloną przestrzeń nazw '$1'",
 'uploadinvalidxml' => 'Nie udało się przeanalizować XML w załadowanym pliku.',
 'uploadvirus' => 'W pliku jest wirus! Szczegóły: $1',
 'uploadjava' => 'Ten plik zawiera deklarację klasy Java skompresowaną ZIP.
@@ -2736,7 +2737,7 @@ Poniżej znajduje się ostatni wpis w rejestrze blokowania.',
 'sp-contributions-search' => 'Szukaj wkładu',
 'sp-contributions-username' => 'Adres IP lub nazwa użytkownika',
 'sp-contributions-toponly' => 'Pokaż wyłącznie ostatnie wersje',
-'sp-contributions-newonly' => 'Pokazuj wyłącznie stworzenia stron',
+'sp-contributions-newonly' => 'Pokazuj tylko edycje tworzące nową stronę',
 'sp-contributions-submit' => 'Szukaj',
 
 # What links here
@@ -2820,7 +2821,7 @@ Przejdź do [[Special:BlockList|listy blokad]], by przejrzeć blokady.',
 'blocklist-timestamp' => 'Sygnatura czasowa',
 'blocklist-target' => 'Cel',
 'blocklist-expiry' => 'Upływa',
-'blocklist-by' => 'Zarządzanie blokowaniem',
+'blocklist-by' => 'Administrator blokujący',
 'blocklist-params' => 'Parametry blokad',
 'blocklist-reason' => 'Powód',
 'ipblocklist-submit' => 'Szukaj',

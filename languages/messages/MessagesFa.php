@@ -3432,7 +3432,7 @@ $2',
 'markedaspatrollederror' => 'برچسب گشت زده نشد',
 'markedaspatrollederrortext' => 'باید یک نسخه را مشخص کنید تا برچسب گشت بخورد.',
 'markedaspatrollederror-noautopatrol' => 'شما نمی‌توانید به تغییرات انجام شده توسط خودتان برچسب گشت بزنید.',
-'markedaspatrollednotify' => 'این تغییر روی $1 برچسب گشت خورده است.',
+'markedaspatrollednotify' => 'این تغییر روی $1 برچسب گشت خورد.',
 'markedaspatrollederrornotify' => 'زدن برچسب گشت، ناموفق بود.',
 
 # Patrol log

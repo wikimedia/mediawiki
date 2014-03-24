@@ -1861,6 +1861,10 @@ $1',
 # List redirects
 'listredirects' => 'ДIасахьажоран могIам',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Файлийн могӀам дубликатшца',
+'listduplicatedfiles-entry' => 'Файлан [[:File:$1|$1]] — [[$3|{{PLURAL:$2|дубликат ю}}]].',
+
 # Unused templates
 'unusedtemplates' => 'Лелош доцу кепаш',
 'unusedtemplatestext' => 'Кхузахь дагар йина «{{ns:template}}» цӀерийн меттиган агӀонаш, кхечу агӀонийн юкъа тоьхна йоцу.
@@ -1948,12 +1952,12 @@ $1',
 Кхин йоцу файлаш гойту [[:$1]] чохь',
 'wantedfiletext-nocat' => 'Лахара йоцу файлаш лело гӀерта. Оцу могӀам юкъа ца хууш файлаш кхета там бу, кхечу проекташ чохь йолу. Ишта ца хууш юкъа нийса елачарна тӀехула <del>сиз</del> хира ду.',
 'wantedtemplates' => 'Оьшуш долу кепаш',
-'mostlinked' => 'Дуккха хьажорагаш тIе тоьхна йолу агIонаш',
+'mostlinked' => 'Дуккха хьажоргаш тӀе тоьхна йолу агӀонаш',
 'mostlinkedcategories' => 'Дуккха тӀе хьажораш йолу категореш',
 'mostlinkedtemplates' => 'Массарел дуккха а леладо кепаш',
 'mostcategories' => 'Дуккха категореш тӀе тоьхна йолу агӀонаш',
 'mostimages' => 'Массарел дуккха лелайо файлаш',
-'mostinterwikis' => 'Дуккха юкъарвики хьажорагаш тӀе тоьхна йолу агӀонаш',
+'mostinterwikis' => 'Дуккха юкъарвики хьажоргаш тӀе тоьхна йолу агӀонаш',
 'mostrevisions' => 'Сих сиха нисйина йолу агIонаш',
 'prefixindex' => 'Хьалха агӀонашан цӀераш хӀотто йеза',
 'prefixindex-namespace' => 'Хьалха агӀонашан цӀераш хӀотто еза («{{ns:$1}}»)',
@@ -3060,6 +3064,12 @@ MediaWiki яржош ю и шуна пайдане хир яц те аьлла, 
 
 # HTML forms
 'htmlform-invalid-input' => 'Ахьа яздинчу цхьан дакхано гӀалат далина',
+'htmlform-select-badoption' => 'Ахьа яздина маьӀна магийна дац.',
+'htmlform-int-invalid' => 'Ахьа яздина маьӀна дуьззина терахь дац.',
+'htmlform-float-invalid' => 'Ахьа яздина маьӀна терахь дац.',
+'htmlform-int-toolow' => 'Ахьа яздина маьӀна минималал лаха ду — $1',
+'htmlform-int-toohigh' => 'Ахьа яздина маьӀна максималал лакхара ду — $1',
+'htmlform-required' => 'ХӀара юззар тӀехь ду.',
 'htmlform-submit' => 'ДӀадахьийта',
 'htmlform-reset' => 'Цаоьшу хийцамаш',
 'htmlform-selectorother-other' => 'Кхин',

@@ -2040,6 +2040,11 @@ $1',
 # List redirects
 'listredirects' => '重定向清單',
 
+# List duplicated files special page
+'listduplicatedfiles' => '重複檔案列表',
+'listduplicatedfiles-summary' => '以下列表中某檔案之最新版本與其他檔案之最新版本重複。進包含本地檔案',
+'listduplicatedfiles-entry' => '檔案[[:File:$1|$1]]與[[$3|其他$2個重複]]。',
+
 # Unused templates
 'unusedtemplates' => '未使用的模板',
 'unusedtemplatestext' => '本頁面列出{{ns:template}}名字空間下所有未被其他頁面使用的頁面。請在刪除這些模板前檢查其他連入該模板的頁面。',

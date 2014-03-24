@@ -768,6 +768,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências]].'
 'gotaccountlink' => 'Autentique-se',
 'userlogin-resetlink' => 'Esqueceu-se do seu nome de utilizador ou da palavra-chave?',
 'userlogin-resetpassword-link' => 'Esqueceu a sua palavra-chave?',
+'userlogin-helplink2' => 'Ajuda na autenticação',
 'userlogin-loggedin' => 'Já está {{GENDER:$1|autenticado|autenticada|autenticado}} com o nome $1.
 Use o formulário abaixo para iniciar uma sessão com outro nome.',
 'userlogin-createanother' => 'Criar outra conta',
@@ -898,6 +899,9 @@ Para completar a autenticação, tem de definir uma palavra-chave nova aqui:',
 'resetpass-abort-generic' => 'A alteração da palavra-chave foi cancelada por uma extensão.',
 'resetpass-expired' => 'A sua palavra-chave expirou. Para autenticar-se, defina uma nova.',
 'resetpass-expired-soft' => 'A sua palavra-chave expirou e tem de ser redefinida. Escolha uma nova agora ou clique "{{int:resetpass-submit-cancel}}" para redefini-la mais tarde.',
+'resetpass-validity-soft' => 'Sua palavra-chave não é válida: $1
+
+Por favor, escolha uma nova palavra-chave agora, ou clique em "{{int:resetpass-submit-cancel}}" para redefini-la mais tarde.',
 
 # Special:PasswordReset
 'passwordreset' => 'Redefinir palavra-chave',
@@ -1298,6 +1302,7 @@ Pode ver a diferença entre revisões; encontrará detalhes no [{{fullurl:{{#Spe
 'logdelete-selected' => "'''{{PLURAL:$1|Evento do registo selecionado|Eventos do registo selecionados}}:'''",
 'revdelete-text-text' => 'Revisões eliminadas ainda aparecerão no histórico da página, mas parte do seu conteúdo estará inacessível para o público.',
 'revdelete-text-file' => 'Versões eliminadas do ficheiro ainda aparecerão no histórico da página, mas parte do seu conteúdo estará inacessível para o público.',
+'logdelete-text' => 'Os eventos eliminados ainda aparecerão no histórico da página, mas pare de seu conteúdo será inacessível ao público.',
 'revdelete-text-others' => 'Outros administradores em {{SITENAME}} podem aceder ao conteúdo oculto e torná-lo visível novamente através desta mesma interface, a menos que sejam definidas restrições adicionais.',
 'revdelete-confirm' => 'Por favor confirme que pretende executar esta operação, que compreende as suas consequências e que o faz em concordância com as [[{{MediaWiki:Policy-url}}|políticas e recomendações]].',
 'revdelete-suppress-text' => "A supressão '''só''' deverá ser usada nos seguintes casos:
@@ -2172,6 +2177,11 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 
 # List redirects
 'listredirects' => 'Lista de redirecionamentos',
+
+# List duplicated files special page
+'listduplicatedfiles' => 'Lista de ficheiros com duplicatas',
+'listduplicatedfiles-summary' => 'Esta é uma lista de ficheiros cuja suas versões mais recentes são duplicatas da versão mais recente de outros ficheiros. Somente os ficheiros locais são considerados.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] possui [[$3|{{PLURAL:$2|uma duplicata|$2 duplicatas}}]].',
 
 # Unused templates
 'unusedtemplates' => 'Predefinições não utilizadas',

@@ -2090,6 +2090,11 @@ $1',
 # List redirects
 'listredirects' => '重定向列表',
 
+# List duplicated files special page
+'listduplicatedfiles' => '重复文件列表',
+'listduplicatedfiles-summary' => '这是某文件的最新版本与其他文件最新版本重复的文件列表。仅考虑本地文件。',
+'listduplicatedfiles-entry' => '文件[[:File:$1|$1]]与[[$3|$2个重复]]。',
+
 # Unused templates
 'unusedtemplates' => '未使用模板',
 'unusedtemplatestext' => '本页面列出{{ns:template}}名字空间中所有未包含于其它页面的页面。请记得在删除这些模板前检查其他链至它们的链接。',

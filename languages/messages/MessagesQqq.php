@@ -4895,7 +4895,7 @@ See also:
 # List redirects
 'listredirects' => '{{doc-special|ListRedirects}}',
 
-# List duplicates
+# List duplicated files special page
 'listduplicatedfiles' => '{{doc-special|ListDuplicatedFiles}}',
 'listduplicatedfiles-summary' => 'Summary at top of Special:ListDuplicatedFiles',
 'listduplicatedfiles-entry' => 'A list item on Special:ListDuplicatedFiles. $1 is the file name (no namespace prefix). $2 is the number of duplicates this file has. $3 is the name of the duplicate search page (aka "Special:FileDuplicateSearch/Foo.png" or "Spécial:Recherche_fichier_en_double/Firefox.png")',

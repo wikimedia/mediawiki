@@ -1116,8 +1116,8 @@ $2
 'userpage-userdoesnotexist' => 'חשבון המשתמש "$1" אינו רשום.
 אנא בדקו אם ברצונכם ליצור/לערוך דף זה.',
 'userpage-userdoesnotexist-view' => 'חשבון המשתמש "$1" אינו רשום.',
-'blocked-notice-logextract' => 'משתמש זה חסום כרגע.
-פעולת יומן החסימות האחרונה מוצגת להלן:',
+'blocked-notice-logextract' => '{{GENDER:$1|המשתמש הזה חסום|המשתמשת הזאת חסומה}} כרגע.
+הפעולה האחרונה ביומן החסימות מוצגת להלן לעיון:',
 'clearyourcache' => "'''הערה:''' לאחר השמירה, עליכם לנקות את זיכרון המטמון (cache) של הדפדפן כדי להבחין בשינויים.
 * '''פיירפוקס / ספארי:''' לחצו על Shift בעת לחיצתכם על '''העלה מחדש''' (Reload), או הקישו על ''Ctrl-F5'' או על ''Ctrl-R'' (או על ''<span dir=\"ltr\">⌘-R</span>'' במחשב מק)
 * '''גוגל כרום:''' לחצו על ''Ctrl-Shift-R'' (או על ''<span dir=\"ltr\">⌘-Shift-R</span>'' במק)
@@ -2221,6 +2221,11 @@ $1',
 # List redirects
 'listredirects' => 'רשימת הפניות',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'רשימת קבצים כפולים',
+'listduplicatedfiles-summary' => 'זוהי רשימה של קבצים שהגרסה החדשה ביותר שלהם זהה לגרסה החדשה ביותר של קובץ אחר כלשהו. רק קבצים מקומיים נבדקים לצורך זה.',
+'listduplicatedfiles-entry' => 'לקובץ [[:File:$1|$1]] יש [[$3|{{PLURAL:$2|עותק זהה|$2 עותקים זהים}}]].',
+
 # Unused templates
 'unusedtemplates' => 'תבניות שאינן בשימוש',
 'unusedtemplatestext' => 'דף זה מכיל רשימה של כל הדפים במרחב השם {{ns:template}} שאינם נכללים בדף אחר. אנא זכרו לבדוק את הקישורים האחרים לתבניות לפני שתמחקו אותן.',
@@ -2793,8 +2798,8 @@ $1',
 'sp-contributions-logs' => 'יומנים',
 'sp-contributions-talk' => 'שיחה',
 'sp-contributions-userrights' => 'ניהול הרשאות משתמש',
-'sp-contributions-blocked-notice' => 'משתמש זה חסום כרגע.
-הפעולה האחרונה ביומן החסימות מוצגת להלן:',
+'sp-contributions-blocked-notice' => '{{GENDER:$1|המשתמש הזה חסום|המשתמשת הזאת חסומה}} כרגע.
+הפעולה האחרונה ביומן החסימות מוצגת להלן לעיון:',
 'sp-contributions-blocked-notice-anon' => 'כתובת IP זו חסומה כרגע.
 הפעולה האחרונה ביומן החסימות מוצגת להלן:',
 'sp-contributions-search' => 'חיפוש תרומות',
