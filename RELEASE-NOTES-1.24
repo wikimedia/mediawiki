@@ -32,6 +32,8 @@ production.
 * (bug 44740) jQuery upgraded from 1.8.3 to 1.11.1.
 
 === Bug fixes in 1.24 ===
+* (bug 49116) Footer copyright notice is now always displayed in user language
+  rather than content language (same as copyright notice for editing interface).
 * (bug 62258) A bug was fixed in File::getUnscaledThumb when a height
   restriction was present in the parameters.  Images with both the "frame"
   option and a size specification set will now always ignore the provided
