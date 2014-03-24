@@ -149,14 +149,3 @@ div.magnify a, div.magnify img {
 img.thumbborder {
 	border: 1px solid #dddddd;
 }
-
-/**
- * Basic styles for the user login and create account forms
- */
-#loginend {
-	margin: 0.5em;
-}
-
-#loginend table {
-	width: 100%;
-}
