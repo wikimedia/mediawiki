@@ -2471,6 +2471,10 @@ OO.ui.LabeledElement = function OoUiLabeledElement( $label, config ) {
 	// Initialization
 	this.$label.addClass( 'oo-ui-labeledElement-label' );
 	this.setLabel( config.label || this.constructor.static.label );
+
+	if ( config.noEllipsis ) {
+		this.$label.autoEllipsis = false;
+	}
 };
 
 /* Static Properties */
