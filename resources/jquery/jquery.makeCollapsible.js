@@ -11,7 +11,7 @@
  * @author Krinkle, 2011-2012
  *
  * Dual license:
- * @license CC-BY 3.0 <http://creativecommons.org/licenses/by/3.0>
+ * @license CC BY 3.0 <http://creativecommons.org/licenses/by/3.0>
  * @license GPL2 <http://www.gnu.org/licenses/old-licenses/gpl-2.0.html>
  */
 ( function ( $, mw ) {
