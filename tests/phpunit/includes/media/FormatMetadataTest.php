@@ -23,7 +23,10 @@ class FormatMetadataTest extends MediaWikiTestCase {
 			'backend' => $this->backend
 		) );
 
-		$this->setMwGlobals( 'wgShowEXIF', true );
+		$this->setMwGlobals( array(
+			'wgShowEXIF' => true,
+			'wgTitle' => Title::newFromText( 'FooBar' )
+		) );
 	}
 
 	/**

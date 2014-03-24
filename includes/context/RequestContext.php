@@ -138,6 +138,11 @@ class RequestContext implements IContextSource {
 			global $wgTitle; # fallback to $wg till we can improve this
 			$this->title = $wgTitle;
 		}
+		// If also wgTitle is null, just take whatever we can get
+		if ( $this->title === null ) {
+			$this->title = Title::newMainPage();
+			wfWarn( 'Falling back to Title::newMainPage() as Title source because $wgTitle is null' );
+		}
 
 		return $this->title;
 	}
