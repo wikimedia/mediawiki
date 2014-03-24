@@ -1109,7 +1109,7 @@ function wfLogDBError( $text ) {
 
 		$date = $d->format( 'D M j G:i:s T Y' );
 
-		$text = "$date\t$host\t$wiki\t$text";
+		$text = "$date\t$host\t$wiki\t" . trim( $text ) . "\n";
 		wfErrorLog( $text, $wgDBerrorLog );
 	}
 }

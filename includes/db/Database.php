@@ -1108,7 +1108,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 				$elapsed = round( microtime( true ) - $wgRequestTime, 3 );
 				if ( $elapsed < 300 ) {
 					# Not a database error to lose a transaction after a minute or two
-					wfLogDBError( "Connection lost and reconnected after {$elapsed}s, query: $sqlx\n" );
+					wfLogDBError( "Connection lost and reconnected after {$elapsed}s, query: $sqlx" );
 				}
 				if ( !$hadTrx ) {
 					# Should be safe to silently retry
@@ -1152,7 +1152,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$this->ignoreErrors( $ignore );
 		} else {
 			$sql1line = mb_substr( str_replace( "\n", "\\n", $sql ), 0, 5 * 1024 );
-			wfLogDBError( "$fname\t{$this->mServer}\t$errno\t$error\t$sql1line\n" );
+			wfLogDBError( "$fname\t{$this->mServer}\t$errno\t$error\t$sql1line" );
 			wfDebug( "SQL ERROR: " . $error . "\n" );
 			throw new DBQueryError( $this, $error, $errno, $sql, $fname );
 		}

@@ -744,13 +744,13 @@ class LoadBalancer {
 
 		if ( !is_object( $conn ) ) {
 			// No last connection, probably due to all servers being too busy
-			wfLogDBError( "LB failure with no last connection. Connection error: {$this->mLastError}\n" );
+			wfLogDBError( "LB failure with no last connection. Connection error: {$this->mLastError}" );
 
 			// If all servers were busy, mLastError will contain something sensible
 			throw new DBConnectionError( null, $this->mLastError );
 		} else {
 			$server = $conn->getProperty( 'mServer' );
-			wfLogDBError( "Connection error: {$this->mLastError} ({$server})\n" );
+			wfLogDBError( "Connection error: {$this->mLastError} ({$server})" );
 			$conn->reportConnectionError( "{$this->mLastError} ({$server})" ); // throws DBConnectionError
 		}
 
