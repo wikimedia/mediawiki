@@ -122,4 +122,13 @@ interface IContextSource {
 	 * @since 1.21
 	 */
 	public function exportSession();
+
+	/**
+	 * Whether the context has a title assigned to it
+	 *
+	 * @since 1.23
+	 *
+	 * @return bool
+	 */
+	public function hasTitle();
 }

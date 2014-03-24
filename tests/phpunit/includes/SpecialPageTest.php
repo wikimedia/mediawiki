@@ -15,7 +15,8 @@ class SpecialPageTest extends MediaWikiTestCase {
 
 		$this->setMwGlobals( array(
 			'wgScript' => '/index.php',
-			'wgContLang' => Language::factory( 'en' )
+			'wgContLang' => Language::factory( 'en' ),
+			'wgTitle' => SpecialPage::getTitleFor( 'UserLogin' )
 		) );
 	}
 
