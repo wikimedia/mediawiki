@@ -136,10 +136,26 @@ class RequestContext implements IContextSource {
 	public function getTitle() {
 		if ( $this->title === null ) {
 			global $wgTitle; # fallback to $wg till we can improve this
-			$this->title = $wgTitle;
+			return $wgTitle;
+		}
+		// If also wgTitle is null, just take whatever we can get
+		if ( $this->title === null ) {
+			wfWarn( 'Falling back to Title::newMainPage() as Title source because $wgTitle is null' );
+			return Title::newMainPage();
 		}
 
 		return $this->title;
+	}
+
+	/**
+	 * Whether the context has a title assigned to it
+	 *
+	 * @since 1.23
+	 *
+	 * @return bool
+	 */
+	public function hasTitle() {
+		return $this->title !== null;
 	}
 
 	/**
