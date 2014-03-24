@@ -150,6 +150,10 @@ function wfImageAuthMain() {
 		return;
 	}
 
+	if ( !is_null( $wgRequest->getVal( 'download', null ) ) ) {
+		header( 'Content-Disposition: attachment' );
+	}
+
 	// Stream the requested file
 	wfDebugLog( 'img_auth', "Streaming `" . $filename . "`." );
 	$repo->streamFile( $filename, array( 'Cache-Control: private', 'Vary: Cookie' ) );
