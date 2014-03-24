@@ -82,14 +82,13 @@ wikicities|http://www.wikia.com/wiki/$1|0
 wikif1|http://www.wikif1.org/$1|0
 wikihow|http://www.wikihow.com/$1|0
 wikinfo|http://www.wikinfo.org/index.php/$1|0
-# The following wik[it]* interwikis but wikitravel belong to the Wikimedia Family:
+# The following wik[it]* interwikis belong to the Wikimedia Family:
 wikimedia|https://wikimediafoundation.org/wiki/$1|0
 wikinews|https://en.wikinews.org/wiki/$1|1
 wikipedia|https://en.wikipedia.org/wiki/$1|1
 wikiquote|https://en.wikiquote.org/wiki/$1|1
 wikisource|https://wikisource.org/wiki/$1|1
 wikispecies|https://species.wikimedia.org/wiki/$1|1
-wikitravel|http://wikitravel.org/en/$1|0
 wikiversity|https://en.wikiversity.org/wiki/$1|1
 wikivoyage|https://en.wikivoyage.org/wiki/$1|1
 wikt|https://en.wiktionary.org/wiki/$1|1
