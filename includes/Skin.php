@@ -815,20 +815,11 @@ abstract class Skin extends ContextSource {
 		}
 
 		// Allow for site and per-namespace customization of copyright notice.
+		// @todo Remove deprecated $forContent param from hook handlers and then remove here.
 		$forContent = true;
-
 		wfRunHooks( 'SkinCopyrightFooter', array( $this->getTitle(), $type, &$msg, &$link, &$forContent ) );
 
-		$msgObj = $this->msg( $msg )->rawParams( $link );
-		if ( $forContent ) {
-			$msg = $msgObj->inContentLanguage()->text();
-			if ( $this->getLanguage()->getCode() !== $wgContLang->getCode() ) {
-				$msg = Html::rawElement( 'span', array( 'lang' => $wgContLang->getHtmlCode(), 'dir' => $wgContLang->getDir() ), $msg );
-			}
-			return $msg;
-		} else {
-			return $msgObj->text();
-		}
+		return $this->msg( $msg )->rawParams( $link )->text();
 	}
 
 	/**
