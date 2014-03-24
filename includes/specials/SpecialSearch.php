@@ -753,12 +753,12 @@ class SpecialSearch extends SpecialPage {
 			}
 		}
 
-		$prev = null;
 		if ( !is_array( $matches ) ) {
 			$matches = array( $matches );
 		}
 
 		foreach ( $matches as $set ) {
+			$prev = null;
 			$result = $set->next();
 			while ( $result ) {
 				$out .= $this->showInterwikiHit( $result, $prev, $query, $customCaptions );
