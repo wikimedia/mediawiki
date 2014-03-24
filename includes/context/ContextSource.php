@@ -90,6 +90,17 @@ abstract class ContextSource implements IContextSource {
 	}
 
 	/**
+	 * Whether the context has a title assigned to it
+	 *
+	 * @since 1.23
+	 *
+	 * @return bool
+	 */
+	public function hasTitle() {
+		return $this->getContext()->hasTitle();
+	}
+
+	/**
 	 * Check whether a WikiPage object can be get with getWikiPage().
 	 * Callers should expect that an exception is thrown from getWikiPage()
 	 * if this method returns false.
