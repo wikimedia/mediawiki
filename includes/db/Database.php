@@ -1097,7 +1097,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( false === $ret && $this->wasErrorReissuable() ) {
 			# Transaction is gone, like it or not
 			$hadTrx = $this->mTrxLevel; // possible lost transaction
-			wfDebug( "Connection lost, reconnecting...\n" );
 			$this->mTrxLevel = 0;
 			wfDebug( "Connection lost, reconnecting...\n" );
 
