@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (3b434d5388)
+ * OOjs UI v0.1.0-pre (9df7af96c2)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri Mar 21 2014 11:06:28 GMT-0700 (PDT)
+ * Date: Mon Mar 24 2014 16:48:42 GMT-0700 (PDT)
  */
 
 /* Textures */
@@ -158,11 +158,6 @@
   background: none;
 }
 
-.oo-ui-frame-content {
-  font-family: sans-serif;
-  font-size: 0.8em;
-}
-
 .oo-ui-toolbar {
   clear: both;
 }
@@ -232,23 +227,14 @@
   -webkit-touch-callout: none;
 }
 
-.oo-ui-window-body {
-  padding: 0 0.75em;
-}
-
 .oo-ui-window-icon {
   float: left;
-  width: 2em;
-  height: 2em;
-  margin-right: 0.5em;
-  line-height: 2em;
-  background-position: right center;
+  background-position: center center;
   background-repeat: no-repeat;
 }
 
 .oo-ui-window-title {
   float: left;
-  line-height: 2em;
   white-space: nowrap;
   cursor: default;
 }
@@ -287,8 +273,6 @@
 .oo-ui-buttonedElement.oo-ui-indicatedElement .oo-ui-buttonedElement-button > .oo-ui-indicatedElement-indicator,
 .oo-ui-buttonedElement.oo-ui-iconedElement .oo-ui-buttonedElement-button > .oo-ui-iconedElement-icon {
   display: inline-block;
-  width: 1.9em;
-  height: 1.9em;
   vertical-align: middle;
   background-position: center center;
   background-repeat: no-repeat;
@@ -717,7 +701,6 @@
 .oo-ui-optionWidget {
   position: relative;
   display: block;
-  padding: 0.5em 2em 0.5em 3em;
   margin: 0;
   list-style: none;
   cursor: pointer;
@@ -828,7 +811,6 @@
 
 .oo-ui-buttonOptionWidget {
   display: inline-block;
-  padding: 0;
   background-color: transparent;
 }
 
@@ -930,7 +912,6 @@
 }
 
 .oo-ui-menuSectionItemWidget {
-  padding: 0.33em 0.75em;
   cursor: default;
 }
 
@@ -1052,7 +1033,6 @@
 
 .oo-ui-textInputWidget {
   position: relative;
-  width: 20em;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
@@ -1062,7 +1042,6 @@
 .oo-ui-textInputWidget textarea {
   display: inline-block;
   width: 100%;
-  padding: 0.5em;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
