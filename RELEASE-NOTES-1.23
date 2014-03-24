@@ -130,6 +130,8 @@ production.
 * Added BaseTemplateAfterPortlet hook to allow injecting html after portlets in skins.
 
 === Bug fixes in 1.23 ===
+* (bug 49116) Footer copyright notice is now always displayed in user language
+  rather than content language (same as copyright notice for editing interface).
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
   changes and watchlist) and the talk page message indicator are now correctly
   updated when the user is viewing old revisions of pages, instead of always

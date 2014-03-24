@@ -2199,6 +2199,7 @@ $type: 'normal' or 'history' for old/diff views
   message must be in HTML format, not wikitext!
 &$link: overridable HTML link to be passed into the message as $1
 &$forContent: overridable flag if copyright footer is shown in content language.
+  This parameter is deprecated.
 
 'SkinGetPoweredBy': TODO
 &$text: additional 'powered by' icons in HTML. Note: Modern skin does not use
