@@ -25,7 +25,8 @@
 					"mw.Notification_",
 					"mw.user",
 					"mw.util",
-					"mw.plugin.*"
+					"mw.plugin.*",
+					"mw.cookie"
 				]
 			},
 			{
