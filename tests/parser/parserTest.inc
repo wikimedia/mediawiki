@@ -990,6 +990,20 @@ class ParserTest {
 				'fileExists'  => true
 		), $this->db->timestamp( '20010115123500' ), $user );
 
+		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Portrait.svg' ) );
+		# again, note that size/width/height below are ignored; see above.
+		$image->recordUpload2( '', 'Upload of tall SVG', 'Some tall SVG', array(
+			'size'        => 12345,
+			'width'       => 180,
+			'height'      => 240,
+			'bits'        => 24,
+			'media_type'  => MEDIATYPE_DRAWING,
+			'mime'        => 'image/svg+xml',
+			'metadata'    => serialize( array() ),
+			'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
+			'fileExists'  => true
+		), $this->db->timestamp( '20140325124200' ), $user );
+
 		# This image will be blacklisted in [[MediaWiki:Bad image list]]
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Bad.jpg' ) );
 		$image->recordUpload2( '', 'zomgnotcensored', 'Borderline image', array(
@@ -1081,6 +1095,11 @@ class ParserTest {
 			'<?xml version="1.0" encoding="utf-8"?>' .
 			'<svg xmlns="http://www.w3.org/2000/svg"' .
 			' version="1.1" width="240" height="180"/>' );
+		wfMkdirParents( $dir . '/f/fc', null, __METHOD__ );
+		file_put_contents( "$dir/f/fc/Portrait.svg",
+			'<?xml version="1.0" encoding="utf-8"?>' .
+			'<svg xmlns="http://www.w3.org/2000/svg"' .
+			' version="1.1" width="180" height="240"/>' );
 		return $dir;
 	}
 
@@ -1158,6 +1177,16 @@ class ParserTest {
 				"$dir/thumb/f/ff/Foobar.svg/langde-270px-Foobar.svg.png",
 				"$dir/thumb/f/ff/Foobar.svg/langde-360px-Foobar.svg.png",
 
+				"$dir/f/fc/Portrait.svg",
+				"$dir/thumb/f/fc/Portrait.svg/124px-Portrait.svg.png",
+				"$dir/thumb/f/fc/Portrait.svg/165px-Portrait.svg.png",
+				"$dir/thumb/f/fc/Portrait.svg/180px-Portrait.svg.png",
+				"$dir/thumb/f/fc/Portrait.svg/247px-Portrait.svg.png",
+				"$dir/thumb/f/fc/Portrait.svg/270px-Portrait.svg.png",
+				"$dir/thumb/f/fc/Portrait.svg/330px-Portrait.svg.png",
+				"$dir/thumb/f/fc/Portrait.svg/360px-Portrait.svg.png",
+				"$dir/thumb/f/fc/Portrait.svg/82px-Portrait.svg.png",
+
 				"$dir/math/f/a/5/fa50b8b616463173474302ca3e63586b.png",
 			)
 		);
@@ -1171,8 +1200,11 @@ class ParserTest {
 				"$dir/thumb/3",
 				"$dir/e/ea",
 				"$dir/e",
+				"$dir/f/fc/",
 				"$dir/f/ff/",
 				"$dir/f/",
+				"$dir/thumb/f/fc/Portrait.svg",
+				"$dir/thumb/f/fc/",
 				"$dir/thumb/f/ff/Foobar.svg",
 				"$dir/thumb/f/ff/",
 				"$dir/thumb/f/",

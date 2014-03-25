@@ -5249,7 +5249,7 @@ class Parser {
 				'vertAlign' => array( 'baseline', 'sub', 'super', 'top', 'text-top', 'middle',
 					'bottom', 'text-bottom' ),
 				'frame' => array( 'thumbnail', 'manualthumb', 'framed', 'frameless',
-					'upright', 'border', 'link', 'alt', 'class' ),
+					'upright', 'square', 'border', 'link', 'alt', 'class' ),
 			);
 			static $internalParamMap;
 			if ( !$internalParamMap ) {
@@ -5297,6 +5297,7 @@ class Parser {
 		#  * framed     Same as "frame"
 		#  * frameless  like 'thumb' but without a frame. Keeps user preferences for width
 		#  * upright    reduce width for upright images, rounded to full __0 px
+		#  * square     use square bounding box for thumb/upright/___px
 		#  * border     draw a 1px border around the image
 		#  * alt        Text for HTML alt attribute (defaults to empty)
 		#  * class      Set a class for img node

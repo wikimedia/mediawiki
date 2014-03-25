@@ -281,6 +281,7 @@ $magicWords = array(
 	'img_lang'                => array( 1,    'lang=$1' ),
 	'img_page'                => array( 1,    'page=$1', 'page $1' ),
 	'img_upright'             => array( 1,    'upright', 'upright=$1', 'upright $1' ),
+	'img_square'              => array( 1,    'square' ),
 	'img_border'              => array( 1,    'border' ),
 	'img_baseline'            => array( 1,    'baseline' ),
 	'img_sub'                 => array( 1,    'sub' ),
