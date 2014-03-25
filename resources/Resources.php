@@ -1392,4 +1392,11 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.cookie' => array(
+		'scripts' => 'resources/mediawiki.cookie/mediawiki.cookie.js',
+		'dependencies' => array(
+			'jquery',
+			'mediawiki',
+		),
+	),
 );
