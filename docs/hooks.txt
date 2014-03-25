@@ -1325,6 +1325,9 @@ page history view, i.e. undo, rollback, etc.
 $rev: Revision object
 &$links: Array of HTML links
 
+'HistoryPageAddLink': Called to add a link to Revision history page subtitle.
+&$links: Array to which link will be stored
+
 'ImageBeforeProduceHTML': Called before producing the HTML created by a wiki
 image insertion. You can skip the default logic entirely by returning false, or
 just modify a few things using call-by-reference.
