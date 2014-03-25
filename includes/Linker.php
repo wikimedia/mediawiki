@@ -998,12 +998,26 @@ class Linker {
 			$url = self::getUploadUrl( $title );
 			$class = 'new';
 		}
-		$alt = htmlspecialchars( $title->getText(), ENT_QUOTES );
+
+		$alt = $title->getText();
 		if ( $html == '' ) {
 			$html = $alt;
 		}
-		$u = htmlspecialchars( $url );
-		return "<a href=\"{$u}\" class=\"$class\" title=\"{$alt}\">{$html}</a>";
+
+		$ret = '';
+		$attribs = array(
+			'href' => $url,
+			'class' => $class,
+			'title' => $alt
+		);
+
+		if ( !wfRunHooks( 'LinkerMakeMediaLinkFile',
+			array( $title, $file, &$html, &$attribs, &$ret ) ) ) {
+			wfDebug( "Hook LinkerMakeMediaLinkFile changed the output of link with url {$url} and text {$html} to {$ret}\n", true );
+			return $ret;
+		}
+
+		return Html::rawElement( 'a', $attribs, $html );
 	}
 
 	/**
