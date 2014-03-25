@@ -35,6 +35,8 @@ production.
   users during an import.
 * Added a hook, ParserOutputPostCacheTransform, to allow extensions to affect
   the ParserOutput::getText() post-cache transformations.
+* (T28934) The 'HistoryPageAddLink' hook allows extensions to append additional
+  links to the subtitle of a history page.
 
 === External library changes in 1.31 ===
 
