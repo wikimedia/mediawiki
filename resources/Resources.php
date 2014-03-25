@@ -906,6 +906,12 @@ return array(
 		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.cookie' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.cookie.js',
+		'dependencies' => array(
+			'jquery.cookie',
+		),
+	),
 
 	/* MediaWiki Action */
 
