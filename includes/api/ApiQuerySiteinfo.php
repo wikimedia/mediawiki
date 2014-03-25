@@ -31,8 +31,8 @@
  */
 class ApiQuerySiteinfo extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'si' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'si' );
 	}
 
 	public function execute() {

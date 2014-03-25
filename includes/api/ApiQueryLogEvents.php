@@ -31,8 +31,8 @@
  */
 class ApiQueryLogEvents extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'le' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'le' );
 	}
 
 	private $fld_ids = false, $fld_title = false, $fld_type = false,

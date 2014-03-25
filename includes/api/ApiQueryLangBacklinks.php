@@ -31,8 +31,8 @@
  */
 class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'lbl' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'lbl' );
 	}
 
 	public function execute() {

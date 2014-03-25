@@ -32,8 +32,8 @@
  */
 class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'wl' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'wl' );
 	}
 
 	public function execute() {

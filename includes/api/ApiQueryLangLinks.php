@@ -31,8 +31,8 @@
  */
 class ApiQueryLangLinks extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'll' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'll' );
 	}
 
 	public function execute() {

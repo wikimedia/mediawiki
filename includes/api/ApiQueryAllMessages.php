@@ -31,8 +31,8 @@
  */
 class ApiQueryAllMessages extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'am' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'am' );
 	}
 
 	public function execute() {

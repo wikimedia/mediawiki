@@ -40,8 +40,8 @@ class ApiQueryTags extends ApiQueryBase {
 	private $fld_displayname = false, $fld_description = false,
 		$fld_hitcount = false;
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'tg' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'tg' );
 	}
 
 	public function execute() {

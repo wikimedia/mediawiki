@@ -27,8 +27,8 @@
  */
 class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'sii' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'sii' );
 	}
 
 	public function execute() {

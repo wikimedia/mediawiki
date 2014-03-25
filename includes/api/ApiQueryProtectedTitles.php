@@ -31,8 +31,8 @@
  */
 class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'pt' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'pt' );
 	}
 
 	public function execute() {

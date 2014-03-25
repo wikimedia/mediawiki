@@ -33,8 +33,8 @@ class ApiQueryUsers extends ApiQueryBase {
 
 	private $tokenFunctions, $prop;
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'us' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'us' );
 	}
 
 	/**

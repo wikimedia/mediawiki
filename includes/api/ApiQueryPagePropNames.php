@@ -32,8 +32,8 @@
  */
 class ApiQueryPagePropNames extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'ppn' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'ppn' );
 	}
 
 	public function getCacheMode( $params ) {

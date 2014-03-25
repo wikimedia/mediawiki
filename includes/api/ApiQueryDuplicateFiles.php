@@ -31,8 +31,8 @@
  */
 class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'df' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'df' );
 	}
 
 	public function execute() {

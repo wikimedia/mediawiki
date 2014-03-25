@@ -31,8 +31,8 @@
  */
 class ApiQueryDeletedrevs extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'dr' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'dr' );
 	}
 
 	public function execute() {

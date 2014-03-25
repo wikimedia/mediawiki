@@ -32,8 +32,8 @@
  */
 class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'wr' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'wr' );
 	}
 
 	public function execute() {

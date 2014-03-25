@@ -87,17 +87,23 @@ abstract class ApiBase extends ContextSource {
 	 */
 	const GET_VALUES_FOR_HELP = 1;
 
-	private $mMainModule, $mModuleName, $mModulePrefix;
+	/**
+	 * @var ApiBase
+	 */
+	private $mMainModule;
+	/**
+	 * @var string
+	 */
+	private $mModuleName, $mModulePrefix;
 	private $mSlaveDB = null;
 	private $mParamCache = array();
 
 	/**
-	 * Constructor
-	 * @param $mainModule ApiMain object
+	 * @param ApiBase $mainModule
 	 * @param string $moduleName Name of this module
 	 * @param string $modulePrefix Prefix to use for parameter names
 	 */
-	public function __construct( $mainModule, $moduleName, $modulePrefix = '' ) {
+	public function __construct( ApiBase $mainModule, $moduleName, $modulePrefix = '' ) {
 		$this->mMainModule = $mainModule;
 		$this->mModuleName = $moduleName;
 		$this->mModulePrefix = $modulePrefix;
@@ -184,7 +190,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Get the main module
-	 * @return ApiMain object
+	 * @return ApiBase
 	 */
 	public function getMain() {
 		return $this->mMainModule;

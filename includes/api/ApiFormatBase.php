@@ -34,13 +34,12 @@ abstract class ApiFormatBase extends ApiBase {
 	private $mBufferResult = false, $mBuffer, $mDisabled = false;
 
 	/**
-	 * Constructor
 	 * If $format ends with 'fm', pretty-print the output in HTML.
-	 * @param $main ApiMain
+	 * @param ApiBase $mainModule
 	 * @param string $format Format name
 	 */
-	public function __construct( $main, $format ) {
-		parent::__construct( $main, $format );
+	public function __construct( ApiBase $mainModule, $format ) {
+		parent::__construct( $mainModule, $format );
 
 		$this->mIsHtml = ( substr( $format, -2, 2 ) === 'fm' ); // ends with 'fm'
 		if ( $this->mIsHtml ) {
@@ -337,8 +336,8 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
  */
 class ApiFormatFeedWrapper extends ApiFormatBase {
 
-	public function __construct( $main ) {
-		parent::__construct( $main, 'feed' );
+	public function __construct( ApiBase $mainModule ) {
+		parent::__construct( $mainModule, 'feed' );
 	}
 
 	/**

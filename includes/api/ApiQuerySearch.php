@@ -39,8 +39,8 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	 */
 	const BACKEND_NULL_PARAM = 'database-backed';
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'sr' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'sr' );
 	}
 
 	public function execute() {

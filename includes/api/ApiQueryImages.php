@@ -32,8 +32,8 @@
  */
 class ApiQueryImages extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'im' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'im' );
 	}
 
 	public function execute() {

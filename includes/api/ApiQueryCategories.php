@@ -31,8 +31,8 @@
  */
 class ApiQueryCategories extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'cl' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'cl' );
 	}
 
 	public function execute() {

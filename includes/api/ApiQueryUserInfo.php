@@ -33,8 +33,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 	private $prop = array();
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'ui' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'ui' );
 	}
 
 	public function execute() {

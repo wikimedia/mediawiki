@@ -32,8 +32,8 @@
  */
 class ApiQueryRedirects extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'rd' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'rd' );
 	}
 
 	public function execute() {

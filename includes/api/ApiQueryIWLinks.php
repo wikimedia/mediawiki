@@ -32,8 +32,8 @@
  */
 class ApiQueryIWLinks extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'iw' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'iw' );
 	}
 
 	public function execute() {

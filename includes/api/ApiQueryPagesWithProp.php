@@ -32,8 +32,8 @@
  */
 class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'pwp' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'pwp' );
 	}
 
 	public function execute() {

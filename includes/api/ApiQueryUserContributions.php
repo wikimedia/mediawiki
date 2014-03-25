@@ -31,8 +31,8 @@
  */
 class ApiQueryContributions extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'uc' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'uc' );
 	}
 
 	private $params, $prefixMode, $userprefix, $multiUserMode, $usernames, $parentLens;

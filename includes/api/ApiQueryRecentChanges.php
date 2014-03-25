@@ -32,8 +32,8 @@
  */
 class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'rc' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'rc' );
 	}
 
 	private $fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,

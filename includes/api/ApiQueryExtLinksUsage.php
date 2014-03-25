@@ -29,8 +29,8 @@
  */
 class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'eu' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'eu' );
 	}
 
 	public function execute() {

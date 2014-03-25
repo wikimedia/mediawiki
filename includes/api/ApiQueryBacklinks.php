@@ -75,13 +75,13 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		)
 	);
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiBase $queryModule, $moduleName ) {
 		$settings = $this->backlinksSettings[$moduleName];
 		$prefix = $settings['prefix'];
 		$code = $settings['code'];
 		$this->resultArr = array();
 
-		parent::__construct( $query, $moduleName, $code );
+		parent::__construct( $queryModule, $moduleName, $code );
 		$this->bl_ns = $prefix . '_namespace';
 		$this->bl_from = $prefix . '_from';
 		$this->bl_table = $settings['linktbl'];

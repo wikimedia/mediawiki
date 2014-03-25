@@ -32,8 +32,8 @@
  */
 class ApiLogin extends ApiBase {
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action, 'lg' );
+	public function __construct( ApiBase $mainModule, $action ) {
+		parent::__construct( $mainModule, $action, 'lg' );
 	}
 
 	/**

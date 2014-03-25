@@ -34,8 +34,8 @@
 class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	protected $mRepo;
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'ai' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'ai' );
 		$this->mRepo = RepoGroup::singleton()->getLocalRepo();
 	}
 

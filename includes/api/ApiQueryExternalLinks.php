@@ -31,8 +31,8 @@
  */
 class ApiQueryExternalLinks extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'el' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'el' );
 	}
 
 	public function execute() {

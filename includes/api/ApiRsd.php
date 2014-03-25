@@ -156,8 +156,8 @@ class ApiRsd extends ApiBase {
 }
 
 class ApiFormatXmlRsd extends ApiFormatXml {
-	public function __construct( $main, $format ) {
-		parent::__construct( $main, $format );
+	public function __construct( ApiBase $mainModule, $format ) {
+		parent::__construct( $mainModule, $format );
 		$this->setRootElement( 'rsd' );
 	}
 

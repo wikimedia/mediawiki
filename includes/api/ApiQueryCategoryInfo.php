@@ -32,8 +32,8 @@
  */
 class ApiQueryCategoryInfo extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'ci' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'ci' );
 	}
 
 	public function execute() {

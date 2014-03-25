@@ -31,8 +31,8 @@
  */
 class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'iwbl' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'iwbl' );
 	}
 
 	public function execute() {

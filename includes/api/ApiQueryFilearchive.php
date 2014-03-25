@@ -33,8 +33,8 @@
  */
 class ApiQueryFilearchive extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'fa' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'fa' );
 	}
 
 	public function execute() {

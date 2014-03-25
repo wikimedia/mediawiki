@@ -36,7 +36,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 	private $table, $prefix, $description, $helpUrl;
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiBase $queryModule, $moduleName ) {
 		switch ( $moduleName ) {
 			case self::LINKS:
 				$this->table = 'pagelinks';
@@ -60,7 +60,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				ApiBase::dieDebug( __METHOD__, 'Unknown module name' );
 		}
 
-		parent::__construct( $query, $moduleName, $this->prefix );
+		parent::__construct( $queryModule, $moduleName, $this->prefix );
 	}
 
 	public function execute() {

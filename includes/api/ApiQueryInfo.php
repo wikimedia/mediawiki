@@ -48,8 +48,8 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	private $tokenFunctions;
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'in' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'in' );
 	}
 
 	/**

@@ -39,10 +39,10 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	private $useIndex = null;
 	private $props = array(), $propHelp = array();
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiBase $queryModule, $moduleName ) {
 		switch ( $moduleName ) {
 			case 'alllinks':
-				$prefix = 'al';
+				$modulePrefix = 'al';
 				$this->table = 'pagelinks';
 				$this->tablePrefix = 'pl_';
 				$this->useIndex = 'pl_namespace';
@@ -53,7 +53,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				$this->descriptionLinking = 'linking';
 				break;
 			case 'alltransclusions':
-				$prefix = 'at';
+				$modulePrefix = 'at';
 				$this->table = 'templatelinks';
 				$this->tablePrefix = 'tl_';
 				$this->dfltNamespace = NS_TEMPLATE;
@@ -66,7 +66,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				$this->descriptionLinking = 'transcluding';
 				break;
 			case 'allfileusages':
-				$prefix = 'af';
+				$modulePrefix = 'af';
 				$this->table = 'imagelinks';
 				$this->tablePrefix = 'il_';
 				$this->fieldTitle = 'to';
@@ -79,7 +79,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				$this->descriptionLinking = 'using';
 				break;
 			case 'allredirects':
-				$prefix = 'ar';
+				$modulePrefix = 'ar';
 				$this->table = 'redirect';
 				$this->tablePrefix = 'rd_';
 				$this->indexTag = 'r';
@@ -100,7 +100,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				ApiBase::dieDebug( __METHOD__, 'Unknown module name' );
 		}
 
-		parent::__construct( $query, $moduleName, $prefix );
+		parent::__construct( $queryModule, $moduleName, $modulePrefix );
 	}
 
 	public function execute() {

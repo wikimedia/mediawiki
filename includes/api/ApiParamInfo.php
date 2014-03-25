@@ -34,8 +34,8 @@ class ApiParamInfo extends ApiBase {
 	 */
 	protected $queryObj;
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
+	public function __construct( ApiBase $mainModule, $action ) {
+		parent::__construct( $mainModule, $action );
 		$this->queryObj = new ApiQuery( $this->getMain(), 'query' );
 	}
 

@@ -31,8 +31,8 @@
  */
 class ApiQueryAllPages extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'ap' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'ap' );
 	}
 
 	public function execute() {

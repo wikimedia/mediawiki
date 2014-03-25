@@ -36,8 +36,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 	 */
 	protected $usernames;
 
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'bk' );
+	public function __construct( ApiBase $queryModule, $moduleName ) {
+		parent::__construct( $queryModule, $moduleName, 'bk' );
 	}
 
 	public function execute() {
