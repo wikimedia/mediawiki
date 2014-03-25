@@ -14,8 +14,8 @@ class PrefixUniquenessTest extends MediaWikiTestCase {
 		$prefixes = array();
 
 		foreach ( $modules as $name => $class ) {
-			/** @var ApiMain $module */
-			$module = new $class( $main, $name );
+			/** @var ApiQueryBase $module */
+			$module = new $class( $query, $name );
 			$prefix = $module->getModulePrefix();
 			if ( isset( $prefixes[$prefix] ) ) {
 				$this->fail( "Module prefix '{$prefix}' is shared between {$class} and {$prefixes[$prefix]}" );
