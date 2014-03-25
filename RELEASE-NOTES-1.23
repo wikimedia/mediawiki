@@ -156,6 +156,9 @@ production.
   in StartProfiler.php instead of using this.
 * (bug 63444) Made it possible to change the indent string (default: 4 spaces)
   used by FormatJson::encode().
+* (bug 49156) Added the mediawiki.cookie ResourceLoader module, which wraps
+  jQuery.cookie so that getting/setting a cookie is syntactically and functionally
+  similar to using the WebRequest#getCookie/WebResponse#setcookie methods.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
