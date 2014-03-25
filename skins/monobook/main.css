@@ -642,10 +642,6 @@ td.htmlform-tip {
 	margin-top: 2em;
 }
 
-#loginend, #signupend {
-	clear: both;
-}
-
 #userloginprompt, #languagelinks {
 	font-size: 85%;
 }
