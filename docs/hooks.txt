@@ -1809,6 +1809,11 @@ $rev: Revision object
 $prevRev: Revision object, next in line in page history, or null
 $user: Current user object
 
+'HistoryPageToolLinks': Add one or more links to revision history page subtitle.
+$context: IContextSource (object)
+$linkRenderer: LinkRenderer instance
+&$links: Array of HTML strings
+
 'HTMLFileCache::useFileCache': Override whether a page should be cached in file
 cache.
 $context: An IContextSource object with information about the request being

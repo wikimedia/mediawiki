@@ -62,12 +62,25 @@ class HistoryAction extends FormlessAction {
 
 	protected function getDescription() {
 		// Creation of a subtitle link pointing to [[Special:Log]]
-		return MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$subtitle = $linkRenderer->makeKnownLink(
 			SpecialPage::getTitleFor( 'Log' ),
 			$this->msg( 'viewpagelogs' )->text(),
 			[],
 			[ 'page' => $this->getTitle()->getPrefixedText() ]
 		);
+
+		$links = [];
+		// Allow extensions to add more links
+		Hooks::run( 'HistoryPageToolLinks', [ $this->getContext(), $linkRenderer, &$links ] );
+		if ( $links ) {
+			$subtitle .= ''
+				. $this->msg( 'word-separator' )->escaped()
+				. $this->msg( 'parentheses' )
+					->rawParams( $this->getLanguage()->pipeList( $links ) )
+					->escaped();
+		}
+		return $subtitle;
 	}
 
 	/**

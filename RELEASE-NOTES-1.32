@@ -33,6 +33,8 @@ production.
   temporary user groups.
 * (T152462) A cookie can now be set when an IP user is blocked to track that user if
   they move to a new IP address. This is disabled by default.
+* (T28934) The 'HistoryPageToolLinks' hook allows extensions to append additional
+  links to the subtitle of a history page.
 
 === External library changes in 1.32 ===
 * …
