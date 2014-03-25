@@ -917,7 +917,7 @@ class EditPage {
 		} else {
 			if ( $this->section != '' ) {
 				// Get section edit text (returns $def_text for invalid sections)
-				$orig = $this->getOriginalContent();
+				$orig = $this->getOriginalContent( $wgUser );
 				$content = $orig ? $orig->getSection( $this->section ) : null;
 
 				if ( !$content ) {
@@ -999,7 +999,7 @@ class EditPage {
 				}
 
 				if ( $content === false ) {
-					$content = $this->getOriginalContent();
+					$content = $this->getOriginalContent( $wgUser );
 				}
 			}
 		}
@@ -1020,9 +1020,10 @@ class EditPage {
 	 * 'missing-revision' message.
 	 *
 	 * @since 1.19
+	 * @param User $user The user to get the revision for
 	 * @return Content|null
 	 */
-	private function getOriginalContent() {
+	private function getOriginalContent( User $user ) {
 		if ( $this->section == 'new' ) {
 			return $this->getCurrentContent();
 		}
@@ -1035,7 +1036,7 @@ class EditPage {
 
 			return $handler->makeEmptyContent();
 		}
-		$content = $revision->getContent();
+		$content = $revision->getContent( Revision::FOR_THIS_USER, $user );
 		return $content;
 	}
 
@@ -1734,7 +1735,7 @@ class EditPage {
 					return $status;
 				}
 			} elseif ( !$this->allowBlankSummary
-				&& !$content->equals( $this->getOriginalContent() )
+				&& !$content->equals( $this->getOriginalContent( $wgUser ) )
 				&& !$content->isRedirect()
 				&& md5( $this->summary ) == $this->autoSumm
 			) {
