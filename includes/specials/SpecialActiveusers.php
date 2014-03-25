@@ -291,6 +291,7 @@ class SpecialActiveUsers extends SpecialPage {
 				self::doQueryCacheUpdate( $dbw, $window );
 			}
 		}
+
 		return ( time() -
 			( $cTime ? wfTimestamp( TS_UNIX, $cTime ) : $wgActiveUserDays * 86400 ) );
 	}
@@ -383,7 +384,7 @@ class SpecialActiveUsers extends SpecialPage {
 			$newRows = array();
 			foreach ( $names as $name => $lastEditTime ) {
 				$newRows[] = array(
-					'qcc_type'  => 'activeusers',
+					'qcc_type' => 'activeusers',
 					'qcc_namespace' => NS_USER,
 					'qcc_title' => $name,
 					'qcc_value' => wfTimestamp( TS_UNIX, $lastEditTime ),

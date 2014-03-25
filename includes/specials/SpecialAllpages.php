@@ -216,6 +216,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 		// since generating it will cause a lot of scanning
 		if ( $count > $this->maxTopLevelPages ) {
 			$this->showChunk( $namespace, $from, $to, $hideredirects );
+
 			return;
 		}
 

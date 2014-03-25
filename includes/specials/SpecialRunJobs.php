@@ -38,10 +38,12 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 		if ( wfReadOnly() ) {
 			header( "HTTP/1.0 423 Locked" );
 			print 'Wiki is in read-only mode';
+
 			return;
 		} elseif ( !$this->getRequest()->wasPosted() ) {
 			header( "HTTP/1.0 400 Bad Request" );
 			print 'Request must be POSTed';
+
 			return;
 		}
 
@@ -53,6 +55,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 		if ( count( $missing ) ) {
 			header( "HTTP/1.0 400 Bad Request" );
 			print 'Missing parameters: ' . implode( ', ', array_keys( $missing ) );
+
 			return;
 		}
 
@@ -76,6 +79,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 		if ( !$verified || $params['sigexpiry'] < time() ) {
 			header( "HTTP/1.0 400 Bad Request" );
 			print 'Invalid or stale signature provided';
+
 			return;
 		}
 
@@ -132,7 +136,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 				$job = $group->pop( JobQueueGroup::TYPE_DEFAULT, JobQueueGroup::USE_CACHE );
 				if ( $job ) {
 					$output = $job->toString() . "\n";
-					$t = - microtime( true );
+					$t = -microtime( true );
 					wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
 					$success = $job->run();
 					wfProfileOut( __METHOD__ . '-' . get_class( $job ) );

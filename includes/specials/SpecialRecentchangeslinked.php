@@ -38,6 +38,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$opts = parent::getDefaultOptions();
 		$opts->add( 'target', '' );
 		$opts->add( 'showlinkedto', false );
+
 		return $opts;
 	}
 
@@ -58,6 +59,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		if ( !$title || $title->isExternal() ) {
 			$outputPage->addHtml( '<div class="errorbox">' . $this->msg( 'allpagesbadtitle' )
 					->parse() . '</div>' );
+
 			return false;
 		}
 
@@ -91,7 +93,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 				'wl_user' => $uid,
 				'wl_title=rc_title',
 				'wl_namespace=rc_namespace'
-			));
+			) );
 		}
 		if ( $this->getUser()->isAllowed( 'rollback' ) ) {
 			$tables[] = 'page';
@@ -256,6 +258,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 				$this->rclTargetTitle = false;
 			}
 		}
+
 		return $this->rclTargetTitle;
 	}
 }

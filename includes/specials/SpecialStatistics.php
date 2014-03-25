@@ -30,7 +30,7 @@
 class SpecialStatistics extends SpecialPage {
 
 	private $views, $edits, $good, $images, $total, $users,
-			$activeUsers = 0;
+		$activeUsers = 0;
 
 	public function __construct() {
 		parent::__construct( 'Statistics' );
@@ -123,6 +123,7 @@ class SpecialStatistics extends SpecialPage {
 					" $descriptionText" );
 			}
 		}
+
 		return Html::rawElement( 'tr', $trExtraParams,
 			Html::rawElement( 'td', array(), $text ) .
 			Html::rawElement( 'td', array( 'class' => 'mw-statistics-numbers' ), $number )
@@ -166,6 +167,7 @@ class SpecialStatistics extends SpecialPage {
 
 	private function getUserStats() {
 		global $wgActiveUserDays;
+
 		return Xml::openElement( 'tr' ) .
 			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-header-users' )->parse() ) .
 			Xml::closeElement( 'tr' ) .
@@ -225,6 +227,7 @@ class SpecialStatistics extends SpecialPage {
 				$this->getLanguage()->formatNum( $countUsers ),
 				array( 'class' => 'statistics-group-' . Sanitizer::escapeClass( $group ) . $classZero ) );
 		}
+
 		return $text;
 	}
 
@@ -245,36 +248,39 @@ class SpecialStatistics extends SpecialPage {
 		$text = '';
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select(
-				'page',
-				array(
-					'page_namespace',
-					'page_title',
-					'page_counter',
-				),
-				array(
-					'page_is_redirect' => 0,
-					'page_counter > 0',
-				),
-				__METHOD__,
-				array(
-					'ORDER BY' => 'page_counter DESC',
-					'LIMIT' => 10,
-				)
-			);
-			if ( $res->numRows() > 0 ) {
-				$text .= Xml::openElement( 'tr' );
-				$text .= Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-mostpopular' )->parse() );
-				$text .= Xml::closeElement( 'tr' );
-				foreach ( $res as $row ) {
-					$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
-					if ( $title instanceof Title ) {
-						$text .= $this->formatRow( Linker::link( $title ),
-								$this->getLanguage()->formatNum( $row->page_counter ) );
+			'page',
+			array(
+				'page_namespace',
+				'page_title',
+				'page_counter',
+			),
+			array(
+				'page_is_redirect' => 0,
+				'page_counter > 0',
+			),
+			__METHOD__,
+			array(
+				'ORDER BY' => 'page_counter DESC',
+				'LIMIT' => 10,
+			)
+		);
 
-					}
+		if ( $res->numRows() > 0 ) {
+			$text .= Xml::openElement( 'tr' );
+			$text .= Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-mostpopular' )->parse() );
+			$text .= Xml::closeElement( 'tr' );
+
+			foreach ( $res as $row ) {
+				$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
+
+				if ( $title instanceof Title ) {
+					$text .= $this->formatRow( Linker::link( $title ),
+						$this->getLanguage()->formatNum( $row->page_counter ) );
 				}
-				$res->free();
 			}
+			$res->free();
+		}
+
 		return $text;
 	}
 

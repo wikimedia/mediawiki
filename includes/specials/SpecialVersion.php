@@ -255,6 +255,7 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return $version;
 	}
 
@@ -283,6 +284,7 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return $v;
 	}
 
@@ -323,6 +325,7 @@ class SpecialVersion extends SpecialPage {
 			preg_match( "/^(\d+\.\d+)/", $wgVersion, $versionParts );
 			$versionUrl = "https://www.mediawiki.org/wiki/MediaWiki_{$versionParts[1]}";
 		}
+
 		return "[$versionUrl $wgVersion]";
 	}
 
@@ -396,6 +399,7 @@ class SpecialVersion extends SpecialPage {
 	 */
 	public static function getExtensionTypeName( $type ) {
 		$types = self::getExtensionTypes();
+
 		return isset( $types[$type] ) ? $types[$type] : $types['other'];
 	}
 
@@ -469,7 +473,7 @@ class SpecialVersion extends SpecialPage {
 				)
 			);
 
-			array_walk( $tags, function( &$value ) {
+			array_walk( $tags, function ( &$value ) {
 				$value = '&lt;' . htmlentities( $value ) . '&gt;';
 			} );
 			$out .= $this->listToText( $tags );
@@ -633,9 +637,9 @@ class SpecialVersion extends SpecialPage {
 
 			if ( $vcsDate ) {
 				$vcsTimeString = Html::element( 'span',
-						array( 'class' => 'mw-version-ext-vcs-timestamp' ),
-						$this->getLanguage()->timeanddate( $vcsDate )
-					);
+					array( 'class' => 'mw-version-ext-vcs-timestamp' ),
+					$this->getLanguage()->timeanddate( $vcsDate )
+				);
 				$versionString .= " {$vcsTimeString}";
 			}
 			$versionString = Html::rawElement( 'span',
@@ -784,6 +788,7 @@ class SpecialVersion extends SpecialPage {
 	 */
 	private function IPInfo() {
 		$ip = str_replace( '--', ' - ', htmlspecialchars( $this->getRequest()->getIP() ) );
+
 		return "<!-- visited from $ip -->\n<span style='display:none'>visited from $ip</span>";
 	}
 
@@ -824,13 +829,11 @@ class SpecialVersion extends SpecialPage {
 					$text = $this->msg( 'version-poweredby-others' )->text();
 				}
 				$list[] = $text;
-
 			} elseif ( substr( $item, -5 ) == ' ...]' ) {
 				$hasOthers = true;
 				$list[] = $this->getOutput()->parseInline(
 					substr( $item, 0, -4 ) . $this->msg( 'version-poweredby-others' )->text() . "]"
 				);
-
 			} else {
 				$list[] = $this->getOutput()->parseInline( $item );
 			}
@@ -850,7 +853,7 @@ class SpecialVersion extends SpecialPage {
 	 * Obtains the full path of an extensions authors or credits file if
 	 * one exists.
 	 *
-	 * @param string $extDir: Path to the extensions root directory
+	 * @param string $extDir Path to the extensions root directory
 	 *
 	 * @since 1.23
 	 *
@@ -879,7 +882,7 @@ class SpecialVersion extends SpecialPage {
 	 * Obtains the full path of an extensions copying or license file if
 	 * one exists.
 	 *
-	 * @param string $extDir: Path to the extensions root directory
+	 * @param string $extDir Path to the extensions root directory
 	 *
 	 * @since 1.23
 	 *
@@ -924,6 +927,7 @@ class SpecialVersion extends SpecialPage {
 			if ( $sort ) {
 				sort( $list );
 			}
+
 			return $this->getLanguage()->listToText( array_map( array( __CLASS__, 'arrayToString' ), $list ) );
 		}
 	}
@@ -942,6 +946,7 @@ class SpecialVersion extends SpecialPage {
 		}
 		if ( is_object( $list ) ) {
 			$class = wfMessage( 'parentheses' )->params( get_class( $list ) )->escaped();
+
 			return $class;
 		} elseif ( !is_array( $list ) ) {
 			return $list;
@@ -951,6 +956,7 @@ class SpecialVersion extends SpecialPage {
 			} else {
 				$class = $list[0];
 			}
+
 			return wfMessage( 'parentheses' )->params( "$class, {$list[1]}" )->escaped();
 		}
 	}
@@ -1063,6 +1069,7 @@ class SpecialVersion extends SpecialPage {
 	 */
 	public static function getGitHeadSha1( $dir ) {
 		$repo = new GitInfo( $dir );
+
 		return $repo->getHeadSHA1();
 	}
 
@@ -1111,11 +1118,11 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		$out .= Html::closeElement( 'table' );
+
 		return $out;
 	}
 
 	protected function getGroupName() {
 		return 'wiki';
 	}
-
 }

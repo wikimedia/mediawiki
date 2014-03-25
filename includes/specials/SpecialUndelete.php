@@ -58,6 +58,7 @@ class PageArchive {
 	 */
 	public static function listAllPages() {
 		$dbr = wfGetDB( DB_SLAVE );
+
 		return self::listPages( $dbr, '' );
 	}
 
@@ -137,7 +138,7 @@ class PageArchive {
 		}
 
 		$conds = array( 'ar_namespace' => $this->title->getNamespace(),
-				'ar_title' => $this->title->getDBkey() );
+			'ar_title' => $this->title->getDBkey() );
 
 		$options = array( 'ORDER BY' => 'ar_timestamp DESC' );
 
@@ -406,6 +407,7 @@ class PageArchive {
 				->inContentLanguage()->text();
 		} else {
 			wfDebug( "Undelete: nothing undeleted...\n" );
+
 			return false;
 		}
 
@@ -545,6 +547,7 @@ class PageArchive {
 
 			$status = Status::newGood( 0 );
 			$status->warning( "undelete-no-results" );
+
 			return $status;
 		}
 
@@ -765,6 +768,7 @@ class SpecialUndelete extends SpecialPage {
 			if ( $user->isAllowed( 'browsearchive' ) ) {
 				$this->showSearchForm();
 			}
+
 			return;
 		}
 
@@ -844,6 +848,7 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( $result->numRows() == 0 ) {
 			$out->addWikiMsg( 'undelete-no-results' );
+
 			return false;
 		}
 
@@ -897,6 +902,7 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( !$rev ) {
 			$out->addWikiMsg( 'undeleterevision-missing' );
+
 			return;
 		}
 
@@ -906,6 +912,7 @@ class SpecialUndelete extends SpecialPage {
 					"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 					'rev-deleted-text-permission'
 				);
+
 				return;
 			}
 
@@ -1269,32 +1276,31 @@ class SpecialUndelete extends SpecialPage {
 				$unsuppressBox = '';
 			}
 
-			$table =
-				Xml::fieldset( $this->msg( 'undelete-fieldset-title' )->text() ) .
-					Xml::openElement( 'table', array( 'id' => 'mw-undelete-table' ) ) .
-					"<tr>
-						<td colspan='2' class='mw-undelete-extrahelp'>" .
-					$this->msg( 'undeleteextrahelp' )->parseAsBlock() .
-					"</td>
-				</tr>
-				<tr>
-					<td class='mw-label'>" .
-					Xml::label( $this->msg( 'undeletecomment' )->text(), 'wpComment' ) .
-					"</td>
-					<td class='mw-input'>" .
-					Xml::input( 'wpComment', 50, $this->mComment, array( 'id' => 'wpComment', 'autofocus' => true ) ) .
-					"</td>
-				</tr>
-				<tr>
-					<td>&#160;</td>
-					<td class='mw-submit'>" .
-					Xml::submitButton( $this->msg( 'undeletebtn' )->text(), array( 'name' => 'restore', 'id' => 'mw-undelete-submit' ) ) . ' ' .
-					Xml::submitButton( $this->msg( 'undeleteinvert' )->text(), array( 'name' => 'invert', 'id' => 'mw-undelete-invert' ) ) .
-					"</td>
-				</tr>" .
-					$unsuppressBox .
-					Xml::closeElement( 'table' ) .
-					Xml::closeElement( 'fieldset' );
+			$table = Xml::fieldset( $this->msg( 'undelete-fieldset-title' )->text() ) .
+				Xml::openElement( 'table', array( 'id' => 'mw-undelete-table' ) ) .
+				"<tr>
+					<td colspan='2' class='mw-undelete-extrahelp'>" .
+				$this->msg( 'undeleteextrahelp' )->parseAsBlock() .
+				"</td>
+			</tr>
+			<tr>
+				<td class='mw-label'>" .
+				Xml::label( $this->msg( 'undeletecomment' )->text(), 'wpComment' ) .
+				"</td>
+				<td class='mw-input'>" .
+				Xml::input( 'wpComment', 50, $this->mComment, array( 'id' => 'wpComment', 'autofocus' => true ) ) .
+				"</td>
+			</tr>
+			<tr>
+				<td>&#160;</td>
+				<td class='mw-submit'>" .
+				Xml::submitButton( $this->msg( 'undeletebtn' )->text(), array( 'name' => 'restore', 'id' => 'mw-undelete-submit' ) ) . ' ' .
+				Xml::submitButton( $this->msg( 'undeleteinvert' )->text(), array( 'name' => 'invert', 'id' => 'mw-undelete-invert' ) ) .
+				"</td>
+			</tr>" .
+				$unsuppressBox .
+				Xml::closeElement( 'table' ) .
+				Xml::closeElement( 'fieldset' );
 
 			$out->addHTML( $table );
 		}

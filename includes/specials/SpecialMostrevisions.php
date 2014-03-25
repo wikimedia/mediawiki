@@ -23,6 +23,7 @@
  * @ingroup SpecialPage
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
+
 class MostrevisionsPage extends FewestrevisionsPage {
 	function __construct( $name = 'Mostrevisions' ) {
 		parent::__construct( $name );

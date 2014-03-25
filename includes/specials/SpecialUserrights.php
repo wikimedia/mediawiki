@@ -55,6 +55,7 @@ class UserrightsPage extends SpecialPage {
 		if ( $user->getId() == 0 ) {
 			return false;
 		}
+
 		return !empty( $available['add'] )
 			|| !empty( $available['remove'] )
 			|| ( ( $this->isself || !$checkIfSelf ) &&
@@ -118,6 +119,7 @@ class UserrightsPage extends SpecialPage {
 				$out = $this->getOutput();
 				$out->wrapWikiMsg( "<div class=\"successbox\">\n$1\n</div>", 'userrights-removed-self' );
 				$out->returnToMain();
+
 				return;
 			}
 
@@ -148,6 +150,7 @@ class UserrightsPage extends SpecialPage {
 			$status = $this->fetchUser( $this->mTarget );
 			if ( !$status->isOK() ) {
 				$this->getOutput()->addWikiText( $status->getWikiText() );
+
 				return;
 			}
 
@@ -166,6 +169,7 @@ class UserrightsPage extends SpecialPage {
 				);
 
 				$out->redirect( $this->getSuccessURL() );
+
 				return;
 			}
 		}
@@ -266,6 +270,7 @@ class UserrightsPage extends SpecialPage {
 		if ( $newGroups != $oldGroups ) {
 			$this->addLogEntry( $user, $oldGroups, $newGroups, $reason );
 		}
+
 		return array( $add, $remove );
 	}
 
@@ -293,6 +298,7 @@ class UserrightsPage extends SpecialPage {
 		$status = $this->fetchUser( $username );
 		if ( !$status->isOK() ) {
 			$this->getOutput()->addWikiText( $status->getWikiText() );
+
 			return;
 		} else {
 			$user = $status->value;
@@ -486,10 +492,10 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		$userToolLinks = Linker::userToolLinks(
-				$user->getId(),
-				$user->getName(),
-				false, /* default for redContribsWhenNoEdits */
-				Linker::TOOL_LINKS_EMAIL /* Add "send e-mail" link */
+			$user->getId(),
+			$user->getName(),
+			false, /* default for redContribsWhenNoEdits */
+			Linker::TOOL_LINKS_EMAIL /* Add "send e-mail" link */
 		);
 
 		$this->getOutput()->addHTML(
@@ -640,6 +646,7 @@ class UserrightsPage extends SpecialPage {
 	private function canRemove( $group ) {
 		// $this->changeableGroups()['remove'] doesn't work, of course. Thanks, PHP.
 		$groups = $this->changeableGroups();
+
 		return in_array( $group, $groups['remove'] ) || ( $this->isself && in_array( $group, $groups['remove-self'] ) );
 	}
 
@@ -649,6 +656,7 @@ class UserrightsPage extends SpecialPage {
 	 */
 	private function canAdd( $group ) {
 		$groups = $this->changeableGroups();
+
 		return in_array( $group, $groups['add'] ) || ( $this->isself && in_array( $group, $groups['add-self'] ) );
 	}
 

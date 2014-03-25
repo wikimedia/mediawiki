@@ -79,6 +79,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$this->target = Title::newFromURL( $opts->getValue( 'target' ) );
 		if ( !$this->target ) {
 			$out->addHTML( $this->whatlinkshereForm() );
+
 			return;
 		}
 
@@ -158,7 +159,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			'rd_namespace' => $target->getNamespace(),
 			'rd_title' => $target->getDBkey(),
 			'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL'
-		)));
+		) ) );
 
 		if ( $fetchlinks ) {
 			$options['ORDER BY'] = 'pl_from';
@@ -197,6 +198,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 					$out->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
 				}
 			}
+
 			return;
 		}
 
@@ -270,7 +272,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$out->addHTML( $this->listEnd() );
 
 		if ( $level == 0 ) {
-			if( !$this->including() ){
+			if ( !$this->including() ) {
 				$out->addHTML( $prevnext );
 			}
 		}
@@ -414,7 +416,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		# Target input
 		$f .= Xml::inputLabel( $this->msg( 'whatlinkshere-page' )->text(), 'target',
-				'mw-whatlinkshere-target', 40, $target );
+			'mw-whatlinkshere-target', 40, $target );
 
 		$f .= ' ';
 
@@ -469,6 +471,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$links[] = $this->msg( "whatlinkshere-{$type}" )->rawParams(
 				$this->makeSelfLink( $msg, array_merge( $changed, $overrides ) ) )->escaped();
 		}
+
 		return Xml::fieldset( $this->msg( 'whatlinkshere-filters' )->text(), $this->getLanguage()->pipeList( $links ) );
 	}
 

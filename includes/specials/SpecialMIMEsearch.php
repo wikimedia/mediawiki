@@ -84,6 +84,7 @@ class MIMEsearchPage extends QueryPage {
 				),
 			),
 		);
+
 		return $qi;
 	}
 

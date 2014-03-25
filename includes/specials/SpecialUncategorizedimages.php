@@ -50,13 +50,13 @@ class UncategorizedImagesPage extends ImageQueryPage {
 		return array(
 			'tables' => array( 'page', 'categorylinks' ),
 			'fields' => array( 'namespace' => 'page_namespace',
-					'title' => 'page_title',
-					'value' => 'page_title' ),
+				'title' => 'page_title',
+				'value' => 'page_title' ),
 			'conds' => array( 'cl_from IS NULL',
-					'page_namespace' => NS_FILE,
-					'page_is_redirect' => 0 ),
+				'page_namespace' => NS_FILE,
+				'page_is_redirect' => 0 ),
 			'join_conds' => array( 'categorylinks' => array(
-					'LEFT JOIN', 'cl_from=page_id' ) )
+				'LEFT JOIN', 'cl_from=page_id' ) )
 		);
 	}
 
