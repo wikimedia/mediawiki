@@ -655,7 +655,10 @@ class MediaWiki {
 			$info['host'],
 			isset( $info['port'] ) ? $info['port'] : 80,
 			$errno,
-			$errstr
+			$errstr,
+			// If it takes more than 100ms to connect to ourselves there
+			// is a problem elsewhere.
+			0.1
 		);
 		wfRestoreWarnings();
 		if ( !$sock ) {
