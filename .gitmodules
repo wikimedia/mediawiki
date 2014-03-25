@@ -18,6 +18,9 @@
 	path = extensions/ApiSandbox
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ApiSandbox.git
 	branch = REL1_22
+[submodule "extensions/Arrays"]
+	path = extensions/Arrays
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Arrays.git
 [submodule "extensions/Babel"]
 	path = extensions/Babel
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Babel.git
@@ -153,6 +156,9 @@
 	path = extensions/LocalisationUpdate
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/LocalisationUpdate.git
 	branch = REL1_22
+[submodule "extensions/Math"]
+	path = extensions/Math
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Math.git
 [submodule "extensions/MassMessage"]
 	path = extensions/MassMessage
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MassMessage.git
@@ -199,6 +205,9 @@
 	path = extensions/Quiz
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Quiz.git
 	branch = REL1_22
+[submodule "extensions/RegexFun"]
+	path = extensions/RegexFun
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/RegexFun.git
 [submodule "extensions/Renameuser"]
 	path = extensions/Renameuser
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Renameuser.git
@@ -238,6 +247,9 @@
 [submodule "extensions/SubpageFun"]
 	path = extensions/SubpageFun
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SubpageFun.git
+[submodule "extensions/SubPageList3"]
+	path = extensions/SubPageList3
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SubPageList3.git
 [submodule "extensions/SyntaxHighlight_GeSHi"]
 	path = extensions/SyntaxHighlight_GeSHi
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SyntaxHighlight_GeSHi.git
@@ -246,6 +258,9 @@
 	path = extensions/Tabber
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Tabber.git
 	branch = REL1_22
+[submodule "extensions/Tabs"]
+	path = extensions/Tabs
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Tabs.git
 [submodule "extensions/TemplateSandbox"]
 	path = extensions/TemplateSandbox
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TemplateSandbox.git
@@ -298,6 +313,3 @@
 [submodule "skins/monaco"]
 	path = skins/monaco
   url = https://github.com/dantman/monaco-port.git
-[submodule "extensions/Math"]
-	path = extensions/Math
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Math.git
