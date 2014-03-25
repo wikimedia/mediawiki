@@ -2075,6 +2075,7 @@ $1',
 
 # List duplicated files special page
 'listduplicatedfiles' => 'Сьпіс файлаў з дублікатамі',
+'listduplicatedfiles-summary' => 'Гэта сьпіс файлаў, дзе самая апошняя вэрсія файла зьяўляецца дублікатам самай апошняй вэрсіі нейкага іншага файла. Улічваюцца толькі лякальныя файлы.',
 
 # Unused templates
 'unusedtemplates' => 'Шаблёны, якія не выкарыстоўваюцца',

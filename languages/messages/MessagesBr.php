@@ -621,6 +621,7 @@ Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}
 'gotaccountlink' => 'Kevreañ',
 'userlogin-resetlink' => "Ha disoñjet eo bet ho titouroù kevreañ ganeoc'h ?",
 'userlogin-resetpassword-link' => 'Ankouaet ho peus ho ker-tremen ?',
+'userlogin-helplink2' => 'Skoazell evit kevreañ',
 'userlogin-loggedin' => "Kevreet oc'h dija evel {{GENDER:$1|$1}}.
 Implijit ar furmskrid amañ dindan evit kevreañ evel un implijer all.",
 'userlogin-createanother' => 'Krouiñ ur gont all',
@@ -1377,6 +1378,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'prefs-tokenwatchlist' => 'Jedouer',
 'prefs-diffs' => "Diforc'hioù",
 'prefs-help-prefershttps' => "Efediñ a ray an dibarzh-mañ kentañ gwech ma kevreoc'h.",
+'prefs-tabs-navigation-hint' => 'Titourig : Gallout a rit implijout an touchennoù bir kleiz ha bir dehoù evit merdeiñ etre an ivinelloù e roll an ivinelloù.',
 
 # User preference: email validation using jQuery
 'email-address-validity-valid' => "Reizh eo ar chomlec'h postel war a seblant",
@@ -1563,7 +1565,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'recentchanges-label-plusminus' => 'Kemmet eo ment ar bajenn eus an niver-mañ a oktedoù',
 'recentchanges-legend-heading' => "'''Alc'hwez :'''",
 'recentchanges-legend-newpage' => '(gwelet ivez [[Special:NewPages|roll ar pajennoù nevez]])',
-'rcnotefrom' => "Setu aze roll ar c'hemmoù c'hoarvezet abaoe an '''$2''' ('''$1''' d'ar muiañ).",
+'rcnotefrom' => "Setu aze roll ar c'hemmoù c'hoarvezet abaoe an <strong>$2</strong> (<strong>$1</strong> d'ar muiañ).",
 'rclistfrom' => "Diskouez ar c'hemmoù diwezhañ abaoe an $1.",
 'rcshowhideminor' => "$1 ar c'hemmoù dister",
 'rcshowhideminor-show' => 'Diskouez',
@@ -1706,6 +1708,7 @@ Mar fell deoc'h enporzhiañ ar restr-mañ da vat, kit war ho kiz hag enporzhiit 
 'uploaddisabledtext' => 'Diweredekaet eo an enporzhiañ restroù.',
 'php-uploaddisabledtext' => 'Diweredekaet eo bet ar pellgargañ e PHP. Gwiriit an dibarzh arventennoù file_uploads.',
 'uploadscripted' => "Er restr-mañ ez eus kodoù HTML pe skriptoù a c'hallfe bezañ kammgomprenet gant ur merdeer Kenrouedad.",
+'uploadinvalidxml' => "N'eus ket bet gallet dielfennañ an XML er restr ezporzhiet.",
 'uploadvirus' => 'Viruzet eo ar restr! Titouroù : $1',
 'uploadjava' => "Ur restr ZIP a ra gant Java .class eo homañ.
 N'haller ket enporzhiañ restroù Java peogwir e c'haller mont dreist da vevennoù surentez ganto.",
@@ -2536,8 +2539,10 @@ $1',
 'sp-contributions-blocked-notice-anon' => "Stanket eo ar chomlec'h IP-mañ evit ar mare.
 Dindan emañ merket enmont diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'sp-contributions-search' => 'Klask degasadennoù',
+'sp-contributions-suppresslog' => 'degasadennoù diverket un implijer',
 'sp-contributions-username' => "Anv implijer pe chomlec'h IP :",
 'sp-contributions-toponly' => 'Na ziskouez nemet an adweladennoù diwezhañ',
+'sp-contributions-newonly' => 'Diskouez an aozadennoù a zo krouidigezhioù pajennoù hepken',
 'sp-contributions-submit' => 'Klask',
 
 # What links here
@@ -2657,7 +2662,7 @@ Setu amañ perak $1 : "$2"',
 'range_block_disabled' => "Diweredekaet eo bet ar stankañ stuc'hadoù IP.",
 'ipb_expiry_invalid' => 'amzer termen direizh.',
 'ipb_expiry_temp' => "Peurbadus e rank bezañ bloc'hadoù an implijerien guzh.",
-'ipb_hide_invalid' => 'Dibosupl diverkañ ar gont-mañ; evit doare ez eus bet graet re a gemmoù enni.',
+'ipb_hide_invalid' => "Ne c'haller ket dilemel ar gont-mañ : Ouzhpenn {{PLURAL:$1|ur c'hemm|$1 kemm}} zo enni.",
 'ipb_already_blocked' => 'Stanket eo "$1" dija',
 'ipb-needreblock' => "Stanket eo $1 c'hoazh. Kemmañ an arventennoù a fell deoc'h ?",
 'ipb-otherblocks-header' => '{{PLURAL:$1|Stankadenn|Stankadnenoù}} all',
@@ -3034,6 +3039,7 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 'pageinfo-length' => 'Ment ar bajenn (en oktedoù)',
 'pageinfo-article-id' => 'Niverenn ar bajenn',
 'pageinfo-language' => 'Yezh ar bajenn',
+'pageinfo-content-model' => "Patrom endalc'had ar bajenn",
 'pageinfo-robot-policy' => 'Menegeriñ gant robotoù',
 'pageinfo-robot-index' => 'Aotreet',
 'pageinfo-robot-noindex' => 'Diaotreet',
@@ -4033,14 +4039,18 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'rotate-comment' => 'Skeudenn troet eus $1 {{PLURAL:$1|derez}} a-du gant an heol',
 
 # Limit report
+'limitreport-title' => 'Roadennoù da wellekaat an dielfenner :',
 'limitreport-cputime' => 'Amzer implij ar CPU',
 'limitreport-cputime-value' => '$1 {{PLURAL:$1|eiladenn}}',
 'limitreport-walltime' => 'Amzer implij gwirion',
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|eiladenn}}',
+'limitreport-ppvisitednodes' => 'Niver a skoulmoù rakprosesor gweladennet',
+'limitreport-ppgeneratednodes' => 'Niver a skoulmoù rakprosesor ganet',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|okted}}',
 'limitreport-templateargumentsize' => 'Ment arguzenn ar patrom',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|okted}}',
 'limitreport-expansiondepth' => 'Donder astenn brasañ',
+'limitreport-expensivefunctioncount' => "Niver a arc'hwelioù dielfennañ koustus",
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Emled ar patromoù',
@@ -4052,6 +4062,7 @@ Astenn a ra ivez an arc'hwelioù parser evel
 'expand_templates_input' => 'Merkañ ho testenn amañ :',
 'expand_templates_output' => "Disoc'h",
 'expand_templates_xml_output' => 'Ezvont XML',
+'expand_templates_html_output' => "Disoc'h HTML kriz",
 'expand_templates_ok' => 'Mat eo',
 'expand_templates_remove_comments' => 'Lemel an notennoù kuit',
 'expand_templates_remove_nowiki' => "Diverkañ a ra ar balizennoù <nowiki> en disoc'h",

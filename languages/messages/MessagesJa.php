@@ -2257,6 +2257,9 @@ contenttype/subtypeの形式で入力してください (例: <code>image/jpeg</
 # List redirects
 'listredirects' => '転送ページの一覧',
 
+# List duplicated files special page
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] には [[$3|{{PLURAL:$2|$2 件の重複ファイル}}]]があります。',
+
 # Unused templates
 'unusedtemplates' => '使われていないテンプレート',
 'unusedtemplatestext' => 'このページでは{{ns:template}}名前空間にあって他のページに読み込まれていないページを一覧にしています。

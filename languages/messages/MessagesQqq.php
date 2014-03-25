@@ -4898,7 +4898,10 @@ See also:
 # List duplicated files special page
 'listduplicatedfiles' => '{{doc-special|ListDuplicatedFiles}}',
 'listduplicatedfiles-summary' => 'Summary at top of Special:ListDuplicatedFiles',
-'listduplicatedfiles-entry' => 'A list item on Special:ListDuplicatedFiles. $1 is the file name (no namespace prefix). $2 is the number of duplicates this file has. $3 is the name of the duplicate search page (aka "Special:FileDuplicateSearch/Foo.png" or "Spécial:Recherche_fichier_en_double/Firefox.png")',
+'listduplicatedfiles-entry' => 'A list item on [[Special:ListDuplicatedFiles]]. Parameters:
+* $1 - the file name (no namespace prefix)
+* $2 - the number of duplicates this file has
+* $3 - the name of the duplicate search page (aka "Special:FileDuplicateSearch/Foo.png" or "Spécial:Recherche_fichier_en_double/Firefox.png")',
 
 # Unused templates
 'unusedtemplates' => '{{doc-special|UnusedTemplates}}',

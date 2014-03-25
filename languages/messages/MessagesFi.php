@@ -1351,9 +1351,9 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'mergelogpagetext' => 'Alla on loki viimeisimmistä muutoshistorioiden yhdistämisistä.',
 
 # Diffs
-'history-title' => 'Sivun "$1" muutoshistoria',
-'difference-title' => 'Ero sivun "$1" versioiden välillä',
-'difference-title-multipage' => 'Erot sivujen "$1" ja "$2" välillä',
+'history-title' => 'Sivun ”$1” muutoshistoria',
+'difference-title' => 'Ero sivun ”$1” versioiden välillä',
+'difference-title-multipage' => 'Erot sivujen ”$1” ja ”$2” välillä',
 'difference-multipage' => '(Sivujen välinen eroavaisuus)',
 'lineno' => 'Rivi $1:',
 'compareselectedversions' => 'Vertaile valittuja versioita',
@@ -2548,7 +2548,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'modifiedarticleprotection' => 'muutti sivun [[$1]] suojaustasoa',
 'unprotectedarticle' => 'poisti suojauksen sivulta [[$1]]',
 'movedarticleprotection' => 'siirsi suojausasetukset sivulta [[$2]] sivulle [[$1]]',
-'protect-title' => 'Sivun $1 suojaus',
+'protect-title' => 'Muuta suojausta sivulla ”$1”',
 'protect-title-notallowed' => 'Sivun $1 suojaustaso',
 'prot_1movedto2' => 'siirsi sivun [[$1]] uudelle nimelle [[$2]]',
 'protect-badnamespace-title' => 'Nimiavaruus ei suojattavissa',

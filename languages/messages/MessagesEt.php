@@ -2101,6 +2101,11 @@ Sisesta kujul tüüp/alamtüüp, näiteks <code>image/jpeg</code>.',
 # List redirects
 'listredirects' => 'Ümbersuunamised',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Duplikaatfailide loend',
+'listduplicatedfiles-summary' => 'Siin on loetletud failid, mille viimane versioon on mõne teise faili viimase versiooni duplikaat. Arvesse võetakse ainult kohalikke faile.',
+'listduplicatedfiles-entry' => 'Failil [[:File:$1|$1]] on [[$3|{{PLURAL:$2|üks duplikaat|$2 duplikaati}}]].',
+
 # Unused templates
 'unusedtemplates' => 'Kasutamata mallid',
 'unusedtemplatestext' => 'See lehekülg loetleb kõik leheküljed nimeruumis {{ns:template}}, mida teistel lehekülgedel ei kasutata. Enne kustutamist palun kontrollige, kas siia pole muid linke.',

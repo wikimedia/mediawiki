@@ -2832,7 +2832,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => "Cette adresse IP est actuellement bloquée.
 La dernière entrée du journal des blocages est indiquée ci-dessous à titre d'information :",
 'sp-contributions-search' => 'Rechercher les contributions',
-'sp-contributions-suppresslog' => 'contributions des utilisateurs supprimées',
+'sp-contributions-suppresslog' => 'contributions masquées',
 'sp-contributions-username' => "Adresse IP ou nom d'utilisateur :",
 'sp-contributions-toponly' => 'Ne montrer que les contributions qui sont les dernières des articles',
 'sp-contributions-newonly' => 'Afficher uniquement les modifications qui sont des créations de page',

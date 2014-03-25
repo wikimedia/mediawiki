@@ -2155,6 +2155,11 @@ Kanske vill du redigera beskrivningen på dess [$2 filbeskrivningssida] där.',
 # List redirects
 'listredirects' => 'Lista över omdirigeringar',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Lista över filer med dubbletter',
+'listduplicatedfiles-summary' => 'Detta är en lista över filer där den senaste versionen av filen är en dubblett av den senaste versionen av någon annan fil. Endast lokala filer behandlas.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] har [[$3|{{PLURAL:$2|en dubblett|$2 dubbletter}}]].',
+
 # Unused templates
 'unusedtemplates' => 'Oanvända mallar',
 'unusedtemplatestext' => 'Denna sida listar alla sidor i {{ns:template}}-namnrymden som inte inkluderas på någon annan sida.

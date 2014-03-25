@@ -478,6 +478,8 @@ Matatagpuan ang isang tala ng mga tamang natatanging pahina sa [[Special:Special
 'databaseerror' => 'Kamalian sa kalipunan ng datos',
 'databaseerror-text' => 'Mayroong kamalian sa pagtanong o pag-query sa database.
 Maaring ipinapahiwatig nito ang depekto o bug sa software.',
+'databaseerror-textcl' => 'May nangyaring depekto sa pag-query ng database.',
+'databaseerror-error' => 'Depekto: $1',
 'laggedslavemode' => "'''Babala:''' Maaaring hindi naglalaman ang pahina ng mga huling dagdag.",
 'readonly' => 'Nakakandado ang kalipunan ng datos',
 'enterlockreason' => 'Maglagay ng dahilan sa pagkakandado, kasama ang taya kung kailan magtatapos ang pagkakandado',
@@ -511,6 +513,7 @@ Maaaring ibinura na ito ng iba.',
 'cannotdelete-title' => 'Hindi maibura ang pahinang "$1"',
 'delete-hook-aborted' => 'Pinigil ng sungkit ang pagbura.
 Walang ibinigay na paliwanag.',
+'no-null-revision' => 'Hindi makalikha ng bagong "null" para sa pahina na "$1"',
 'badtitle' => 'Hindi kanais-nais na pamagat',
 'badtitletext' => 'Ang hiniling na pamagat ng pahina ay hindi katanggap-tanggap, wala, o isang may-maling kawing na pamagat na pangugnayang-wika (interwika) o pangugnayang wiki (interwiki).
 Maaaring naglalaman ito ng isa o higit pang mga panitik (karakter) na hindi maaaring gamitin para sa mga pamagat.',
@@ -523,10 +526,11 @@ Ang mga dato dito ay hindi pa masasariwa sa kasalukuyan.',
 'actionthrottled' => 'Hinadlangan ang gawain',
 'actionthrottledtext' => "Bilang paraang panglaban sa ''spam'', pinigalan kang magawa ang galaw na ito nang maraming ulit sa loob ng maikling panahon, at lumabis ka na sa limitasyong ito.
 Pakisubok na lang ulit pagkaraan ng kaunting mga minuto.",
-'protectedpagetext' => 'Kinandado ang pahinang ito upang mahadlangang ang pagbago.',
+'protectedpagetext' => 'Kinandado ang pahinang ito upang mahadlangang ang pagbago o ibang aksyon.',
 'viewsourcetext' => 'Maaari mong tingnan at kopyahin ang pinagmulan ng pahinang ito:',
 'viewyourtext' => "Matitingnan at makukopya mo ang pinagmulan ng '''mga pagbabago''' papunta sa pahinang ito:",
-'protectedinterface' => "Nagbibigay ang pahinang ito ng tekstong panghangganan (''interface'') para sa sopwer, at ikinandado para maiwasan ang pangaabuso.",
+'protectedinterface' => 'Nagbibigay ang pahinang ito ng tekstong interface para sa software, at ikinandado para maiwasan ang pangaabuso.
+Upang dagdagan o baguhin ang mga salin para sa lahat ng mga wiki, pakigamit ang [//translatewiki.net/ translatewiki.net], ang proyekto para sa lokalisasyon ng MediaWiki.',
 'editinginterface' => "'''Babala:''' Binabago mo ang isang pahinang ginagamit sa pagbibigay ng tekstong panghangganan para sa sopwer.
 Makaaapekto ang mga pagbago sa pahinang ito sa anyo ng hangganang (''interface'') pantagagamit na para sa ibang mga tagagamit sa wiking ito.
 Upang magdagag o magbago ng mga salinwika, isaaalang-alang na lang po ang paggamit ng [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], ang proyekto para sa lokalisasyon ng MediaWiki.",
@@ -537,6 +541,8 @@ $2',
 'customjsprotected' => 'Wala kang pahintulot na baguhin ang pahina ng JavaScript na ito, dahil naglalaman ito ng mga katakdaang pansarili ng ibang tagagamit.',
 'mycustomcssprotected' => 'Wala kang pahintulot na baguhin itong pahinang CSS.',
 'mycustomjsprotected' => 'Wala kang pahintulot na baguhin itong pahinang JavaScript.',
+'myprivateinfoprotected' => 'Wala kang pahintulot na baguhin ang iyong pribadong impormasyon.',
+'mypreferencesprotected' => 'Wala kang pahintulot na baguhin ang iyong mga kagustuhan.',
 'ns-specialprotected' => 'Hindi pwedeng baguhin ang mga natatanging pahina.',
 'titleprotected' => "Nakasanggalang ang pamagat na ito mula sa paglikha ni [[User:$1|$1]].
 Ang ibinigay na dahilan ay ''$2''.",
@@ -546,7 +552,8 @@ Ang tagapangasiwang nagkandado nito ay nag-alok ng ganitong paliwanag: "$3".',
 'invalidtitle-knownnamespace' => 'Hindi katanggap-tanggap na pamagat na may puwang na pampangalang "$2" at tekstong "$3"',
 'invalidtitle-unknownnamespace' => 'Hindi katanggap-tanggap na pamagat na mayroong hindi nalalamang bilang na pampuwang ng pangalan na $1 at tekstong "$2"',
 'exception-nologin' => 'Hindi nakalagda',
-'exception-nologin-text' => 'Ang pahina o kilos na ito ay nangangailangan ng paglagda mo sa wiking ito.',
+'exception-nologin-text' => '[[Natatangi:Paglagda_ng_tagagamit|Mag-login]] upang ma-access ang aksyon o pahinang ito.',
+'exception-nologin-text-manual' => '$1 upang ma-access ang pahina o aksyong ito.',
 
 # Virus scanner
 'virus-badscanner' => "Masamang kompigurasyon: hindi kilalang tagahagilap (iskaner) ng birus: ''$1''",
@@ -554,10 +561,9 @@ Ang tagapangasiwang nagkandado nito ay nag-alok ng ganitong paliwanag: "$3".',
 'virus-unknownscanner' => 'hindi kilalang panlaban sa birus:',
 
 # Login and logout pages
-'logouttext' => "'''Nakaalis ka na sa pagkakalagda.'''
+'logouttext' => '<strong>Nakaalis ka na sa pagkaka-login.</strong>
 
-Maaari kang tumuloy sa paggamit ng {{SITENAME}} nang hindi nakikilala (anonimo), o maaaring kang <span class='plainlinks'>[$1 lumagda/tumala muli]</span> bilang kapareho o ibang tagagamit.
-Tandaan na may ilang pahinang maaaring magpatuloy na nagpapakitang parang nakalagda ka pa rin, hanggang sa linisin mo ang iyong baunang pambasa-basa (''browser cache'').",
+Tandaan na may ilang mga pahina na patuloy na nagpapakita na parang hindi ka naka-login, hanggang alisin mo ang iyong <i>browser cache</i>.',
 'welcomeuser' => 'Mabuhay, $1!',
 'welcomecreation-msg' => 'Nilikha na ang iyong kuwenta.
 Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SITENAME}}]].',
@@ -565,18 +571,18 @@ Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SIT
 'userlogin-yourname' => 'Pangngalan',
 'userlogin-yourname-ph' => 'Ilagay ang iyong Pangalan',
 'createacct-another-username-ph' => 'Ilagay ang Pangalan',
-'yourpassword' => 'Hudyat:',
+'yourpassword' => 'Password:',
 'userlogin-yourpassword' => 'Hudyat',
 'userlogin-yourpassword-ph' => 'Ipasok ang iyong hudyat',
 'createacct-yourpassword-ph' => 'Ilagay ang hudyat (password)',
-'yourpasswordagain' => 'Hudyat mo uli:',
+'yourpasswordagain' => 'Password mo uli:',
 'createacct-yourpasswordagain' => 'Tiyakin ang hudyat',
 'createacct-yourpasswordagain-ph' => 'Muling ilagay ang hudyat (password)',
 'remembermypassword' => 'Tandaan ang paglagda ko sa kompyuter na ito (pinakamarami na ang $1 {{PLURAL:$1|araw|mga araw}})',
 'userlogin-remembermypassword' => 'Panatilihin akong nakalagda',
 'userlogin-signwithsecure' => 'Gumamit ng ligtas na koneksyon',
 'yourdomainname' => 'Dominyo mo:',
-'password-change-forbidden' => 'Hindi mo maaaring palitan ang mga hudyat sa wiking ito.',
+'password-change-forbidden' => 'Hindi mo maaaring palitan ang mga password sa wiking ito.',
 'externaldberror' => 'Maaaring may kamalian sa pagpapatotoo ng kalipunan ng mga dato o kaya hindi ka pinahintulutang isapanahon ng iyong panlabas na kuwenta o patnugutan.',
 'login' => 'Lumagda',
 'nav-login-createaccount' => 'Lumagda / lumikha ng kuwenta',
@@ -595,18 +601,29 @@ Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SIT
 'gotaccountlink' => 'Lumagda',
 'userlogin-resetlink' => 'Nakalimutan mo ang iyong mga detalyeng panglagda?',
 'userlogin-resetpassword-link' => 'Nakalimutan ba ang iyong hudyat (password)?',
+'userlogin-helplink2' => 'Tulong sa pag-login',
+'userlogin-loggedin' => 'Naka-login ka na bilang {{GENDER:$1|$1}}. Gamitin ang form sa ibaba upang maka-login bilang ibang tagagamit o user.',
 'userlogin-createanother' => 'Lumikha ng iba pang akawnt',
 'createacct-join' => 'Ilagay ang iyong impormasyon sa ibaba.',
 'createacct-another-join' => 'Ilagay ang impormasyon ng bagong akawnt sa ibaba.',
 'createacct-emailrequired' => 'Direksiyong e-liham:',
-'createaccountmail' => 'Gumamit ng pansamantalang walang-piling hudyat at ipadala ito sa direksiyong e-liham na nakasaad sa ibaba',
+'createacct-emailoptional' => 'Email (hindi kailangan)',
+'createacct-email-ph' => 'Ipasok ang iyong email address',
+'createacct-another-email-ph' => 'Ipasok ang email address',
+'createaccountmail' => 'Gumamit ng pansamantalang random na password at ipadala ito sa email na nakasaad sa ibaba',
 'createacct-realname' => 'Tunay na pangalan (maaaring wala)',
 'createaccountreason' => 'Dahilan:',
 'createacct-reason' => 'Dahilan',
 'createacct-reason-ph' => 'Bakit ka gagawa ng isa pang akawnt?',
+'createacct-captcha' => 'Siyasatin ang seguridad',
 'createacct-imgcaptcha-ph' => 'Ilagay ang tekstong makikita sa itaas.',
+'createacct-submit' => 'Likhain ang iyong akawnt',
+'createacct-another-submit' => 'Lumikha ng ibang akawnt',
 'createacct-benefit-heading' => '{{SITENAME}} ay nilikha ng mga taong iyong katulad.',
-'badretype' => 'Hindi magkatugma ang ipinasok mong mga hudyat.',
+'createacct-benefit-body1' => '{{PLURAL:$1|pagbabago|mga pagbabago}}',
+'createacct-benefit-body2' => '{{PLURAL:$1|pahina|mga pahina}}',
+'createacct-benefit-body3' => 'kamakailang {{PLURAL:$1|nag-ambag|mga nag-ambag}}',
+'badretype' => 'Hindi magkatugma ang ipinasok mong mga password.',
 'userexists' => 'May gumagamit na ng ipinasok na bansag.
 Pumili po ng ibang pangalan.',
 'loginerror' => 'Kamalian sa paglagda',
@@ -632,15 +649,15 @@ Suriin ang iyong pagbabaybay, o [[Special:UserLogin/signup|lumikha ng bagong kuw
 Pakitingnan ang iyong pagbabaybay.',
 'nouserspecified' => 'Kailangang tukuyin mo ang isang pangalang pantagagamit.',
 'login-userblocked' => 'Hinarang ang tagagamit na ito.  Hindi pinahihintulutan ang paglalagda.',
-'wrongpassword' => 'Mali ang ipinasok na hudyat.
+'wrongpassword' => 'Mali ang ipinasok na password.
 Pakisubok muli.',
-'wrongpasswordempty' => 'Walang laman ang ipinasok na hudyat.
+'wrongpasswordempty' => 'Walang laman ang ipinasok na password.
 Pakisubok muli.',
 'passwordtooshort' => 'Ang mga hudyat ay dapat mayroong {{PLURAL:$1|1 panitik|$1 panitik}} (karakter).',
-'password-name-match' => 'Dapat magkaiba ang hudyat mo sa bansag mo.',
-'password-login-forbidden' => 'Ipinagbabawal ang paggamit ng ganitong pangalan ng tagagamit at hudyat.',
-'mailmypassword' => 'Baguhin ang hudyat',
-'passwordremindertitle' => 'Bagong pansamantalang hudyat para sa {{SITENAME}}',
+'password-name-match' => 'Dapat magkaiba ang password mo sa bansag o username mo.',
+'password-login-forbidden' => 'Ipinagbabawal ang paggamit ng ganitong pangalan ng tagagamit at password.',
+'mailmypassword' => 'Baguhin ang password',
+'passwordremindertitle' => 'Bagong pansamantalang password para sa {{SITENAME}}',
 'passwordremindertext' => 'Mayroong (na maaaring ikaw, mula sa adres ng IP na $1) humiling ng isang bagong
 hudyat para sa {{SITENAME}} ($4). Isang pansamantalang hudyat ang nilikha
 para sa tagagamit na "$2" at itinakda sa "$3".  Kung ito ang iyong pakay,
@@ -655,16 +672,16 @@ magpatuloy sa paggamit ng iyong lumang hudyat.',
 'passwordsent' => 'Isang bagong hudyat ang ipinadala sa adres ng e-liham na nakatala para kay "$1".
 Lumagda/Tumala lang po muli pagkaraan mong matanggap ito.',
 'blocked-mailpassword' => 'Hinarangan sa paggawa ng mga pagbabago ang iyong adres ng IP, at kaya hindi rin pinapahintulutang gumamit ng tungkuling makabawi ng hudyat para maiwasan ang pangaabuso.',
-'eauthentsent' => 'Nagpadala ng isang e-liham na pangkompirmasyon doon sa iniharap na direksiyong e-liham.
-Bago magpadala ng iba pang e-liham sa kuwenta, kailangan mong sundin ang mga tagubiling nasa loob ng e-liham, para mapatunayang iyo talaga ang kuwenta.',
-'throttled-mailpassword' => 'Nagpadala na ng isang paalalang panghudyat, nitong huling {{PLURAL:$1|oras|$1 oras}}.
-Para maiwasin ang pangaabuso, isang paalalang panghudyat lang ang ipapadala bawat {{PLURAL:$1|oras|$1 oras}}.',
+'eauthentsent' => 'Nagpadala ng isang email na pangkompirmasyon doon sa tinukoy na email address.
+Bago magpadala ng iba email sa akawnt, kailangan mong sundin ang mga tagubiling nasa loob ng email, para mapatunayang iyo talaga ang akawnt.',
+'throttled-mailpassword' => 'Nagpadala na ng isang paalalang pang-password, nitong huling {{PLURAL:$1|oras|$1 oras}}.
+Para maiwasin ang pangaabuso, isang paalalang pang-password lamang ang ipapadala bawat {{PLURAL:$1|oras|$1 oras}}.',
 'mailerror' => 'Kamalian sa pagpapadala ng liham: $1',
 'acct_creation_throttle_hit' => 'Ang mga panauhin sa wiking ito na gumagamit ng direksiyong IP mo ay nakalikha na ng {{PLURAL:$1|1 kuwenta|$1 kuwenta}} sa loob ng huling araw, na siyang pinakamataas na pinapahintulutan sa loob ng sakop ng panahong ito.
 Bilang kinalabasan, ang mga panauhing gumagamit ng ganitong direksiyong IP ay hindi na muna makakalikha ng anumang karagdagang kuwenta sa ngayon.',
-'emailauthenticated' => 'Napatunayan na ang iyong direksiyong e-liham sa $2 noong $3.',
-'emailnotauthenticated' => 'Hindi pa napapatunayan ang iyong direksiyong e-liham.
-Walang e-liham na ipapadala para sa anumang sumusunod na tampok na kasangkapang-katangian.',
+'emailauthenticated' => 'Napatunayan na ang iyong email address sa $2 noong $3.',
+'emailnotauthenticated' => 'Hindi pa napapatunayan ang iyong email address.
+Walang email na ipapadala para sa anumang sumusunod na mga tampok o features.',
 'noemailprefs' => 'Tumukoy ng isang direksiyong e-liham sa loob ng mga nais mo upang gumana ang mga kasangkapang-katangiang ito.',
 'emailconfirmlink' => 'Pakikompirma ang iyong direksiyong e-liham.',
 'invalidemailaddress' => 'Hindi matatanggap ang direksiyong e-liham na ito dahil tila mayroon itong maling anyo.
@@ -679,56 +696,71 @@ Dapat kang tumala at baguhin ang hudyat mo ngayon.
 
 Maaari mong huwag pansinin ang mensaheng ito, kung mali ang paglikha ng kuwentang ito.',
 'usernamehasherror' => 'Hindi maaaring maglaman ng mga panitik na pantadtad ang pangalan ng tagagamit',
-'login-throttled' => 'Masyadong marami ang ginawa mong kamakailan lang na mga pagsubok sa paglagdang papasok.
-Maghintay po muna bago subukan uli.',
+'login-throttled' => 'Masyadong madami ang kamakailan lamang mong pagsubok sa pag-login.
+Maghintay po muna ng $1 bago subukan uli.',
 'login-abort-generic' => 'Bigo ang paglagda mo - Pinigil',
 'loginlanguagelabel' => 'Wika: $1',
 'suspicious-userlogout' => "Tinanggihan ang inyong kahilingang umalis sa pagkalagda dahil tila ito ay ipinadala ng sirang pambasa-basa o apoderadong pambaon (''caching proxy'')",
+'createacct-another-realname-tip' => 'Hindi kinakailangan ang tunay na pangalan.
+Kung nais mo na ibigay ito, gagamitin ito para sa pagbibigay ng atribusyon para sa kanilang gawa.',
+'pt-login' => 'Mag-login',
+'pt-login-button' => 'Mag-login',
 'pt-createaccount' => 'Lumikha ng akawnt',
 'pt-userlogout' => 'Umalis sa pagkakatala',
 
 # Email sending
 'php-mail-error-unknown' => 'Hindi malamang kamalian sa tungkulin ng liham ng PHP ()',
 'user-mail-no-addy' => 'Sinubukang magpadala ng e-liham na walang tirahan na para sa e-liham.',
+'user-mail-no-body' => 'Sinubukan na magpadala ng email na walang laman o maikling laman.',
 
 # Change password dialog
-'changepassword' => 'Baguhin ang hudyat',
+'changepassword' => 'Baguhin ang password',
 'resetpass_announce' => 'Para sa ganap na pagtala, magtalaga ng panibagong password.',
 'resetpass_text' => '<!-- Magdagdag ng teksto rito -->',
-'resetpass_header' => 'Baguhin ang hudyat ng kuwenta',
-'oldpassword' => 'Lumang hudyat:',
-'newpassword' => 'Bagong hudyat:',
-'retypenew' => 'Ipasok muli ang bagong hudyat:',
-'resetpass_submit' => 'Itakda ang hudyat at lumagda',
-'changepassword-success' => 'Matagumpay na nabago ang iyong hudyat!  Inilalagda ka na ngayon...',
-'resetpass_forbidden' => 'Hindi mababago ang mga hudyat',
+'resetpass_header' => 'Baguhin ang password ng akawnt',
+'oldpassword' => 'Lumang password:',
+'newpassword' => 'Bagong password:',
+'retypenew' => 'Ipasok muli ang bagong password:',
+'resetpass_submit' => 'Itakda ang password at mag-login',
+'changepassword-success' => 'Matagumpay na nabago ang iyong password!',
+'changepassword-throttled' => 'Masyadong madami ang kamakailan lamang mong pagsubok sa pag-login.
+Maghintay po muna ng $1 bago subukan uli.',
+'resetpass_forbidden' => 'Hindi mababago ang mga password',
 'resetpass-no-info' => 'Nakalagda ka dapat para tuwirang mapuntahan ang pahina ito.',
-'resetpass-submit-loggedin' => 'Baguhin ang hudyat',
+'resetpass-submit-loggedin' => 'Baguhin ang password',
 'resetpass-submit-cancel' => 'Kanselahin',
-'resetpass-wrong-oldpass' => 'Hindi tanggap na pansamantala o pangkasalukuyang hudyat.
-Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bagong pansamantalang hudyat.',
+'resetpass-wrong-oldpass' => 'Hindi balido na pansamantala o pangkasalukuyang password.
+Maaaring matagumpay mo nang nabago ang iyong password o nakahiling na ng isang bagong pansamantalang password.',
 'resetpass-recycled' => 'Ireset ang iyong password sa pamamagitan ng paggamit ng iba pa maliban sa iyong ginagamit sa kasalukuyan.',
 'resetpass-temp-emailed' => 'Nakapagtala sa pamamagitan ng pansamantalang email code.
 Para sa ganap na pagtatala, magtakda ng panibagong password dito:',
-'resetpass-temp-password' => 'Pansamantalang hudyat:',
-'resetpass-expired-soft' => 'Napaso na ang iyong password at kailangan ireset. Pumili ng bagong password o iklik ang cancel upang i-reset sa ibang pagkakataon.',
+'resetpass-temp-password' => 'Pansamantalang password:',
+'resetpass-abort-generic' => 'Inuurong sa pamamagitan ng isan extensyon ang pagpalit ng password.',
+'resetpass-expired' => 'Paso na ang iyong password. Pakipalit ng bagong password upang maka-login.',
+'resetpass-expired-soft' => 'Napaso na ang iyong password at kailangan i-reset. Pumili ng bagong password o i-klik ang "{{int:resetpass-submit-cancel}}" upang i-reset sa ibang pagkakataon.',
+'resetpass-validity-soft' => 'Hindi matanggap ang iyong password: $1
+
+Pumili ng bagong password ngayon, o i-klik ang "{{int:resetpass-submit-cancel}}" para i-reset ito sa ibang pagkakataon.',
 
 # Special:PasswordReset
-'passwordreset' => 'Muling pagtatakda ng hudyat',
-'passwordreset-legend' => 'Itakdang muli ang hudyat',
+'passwordreset' => 'Muling pagtatakda ng password',
+'passwordreset-text-one' => 'Ikumpleto ang form na ito upang makatanggap ng pansamantalang password sa pamamagitan ng email.',
+'passwordreset-text-many' => '{{PLURAL:$1|Ipasok sa isa sa mga field upang makatanggap ng isang pansamantalang password sa pamamagitan ng email.}}',
+'passwordreset-legend' => 'Itakdang muli ang password',
 'passwordreset-disabled' => 'Hindi pinagagana sa wiking ito ang muling mga pagtatakda ng hudyat.',
+'passwordreset-emaildisabled' => 'Hindi pinagana ang email features sa wiking ito.',
 'passwordreset-username' => 'Pangalan ng tagagamit:',
 'passwordreset-domain' => 'Nasasakupan:',
 'passwordreset-capture' => 'Tingnan ang lumabas na e-liham?',
 'passwordreset-capture-help' => 'Kapag tsetsekan mo ang kahong ito, ang e-liham (may pansamantalang hudyat) ay ipapakita sa iyo at ipapadala rin sa tagagamit.',
 'passwordreset-email' => 'Direksiyong e-liham:',
 'passwordreset-emailtitle' => 'Mga detalye ng kuwenta sa {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Isang tao (marahil ay ikaw, mula sa direksiyong IP na $1) ang humiling ng isang paalala sa iyong mga detalye ng kuwenta para sa {{SITENAME}} ($4). Ang sumusunod na {{PLURAL:$3|kuwenta ng tagagamit ay|mga kuwenta ng tagagamit ay}} may kaugnayan sa direksiyong e-liham na ito:
+'passwordreset-emailtext-ip' => 'Isang tao (marahil ay ikaw, mula sa IP address na $1) ang humiling ng isang paalala sa iyong mga detalye ng kuwenta para sa {{SITENAME}} ($4). Ang sumusunod na {{PLURAL:$3|akawant ng tagagamit ay|mga akawnt ng tagagamit ay}} may kaugnayan sa email address na ito:
 
 $2
 
-{{PLURAL:$3|Ang pansamantalang hudyat na ito|Ang mga pansamantalang hudyat na ito}} ay mawawalan ng bisa sa loob ng {{PLURAL:$5|isang araw|$5 mga araw}}.
-Dapat kang lumagda at pumili ng isang bagong hudyat ngayon. Kung ibang tao ang gumawa ng kahilingang ito, o kung naalala mo na ang orihinal mong hudyat, at hindi mo na nais palitan ito, maaari mong huwag nang pansinin ang mensaheng ito at magpatuloy sa paggamit ng luma mong hudyat.',
+{{PLURAL:$3|Ang pansamantalang hudyat na ito|Ang mga pansamantalang hudyat na ito}} ay mawawalan ng bisa sa loob ng {{PLURAL:$5|isang araw|$5 araw}}.
+Dapat kang mag-login at pumili ng isang bagong password ngayon. Kung ibang tao ang gumawa ng kahilingang ito, o kung naalala mo na ang orihinal mong password, at hindi mo na nais palitan ito, maaari mong huwag nang pansinin ang mensaheng ito at magpatuloy sa paggamit ng luma mong password.',
 'passwordreset-emailtext-user' => 'Ang tagagamit na si $1 sa {{SITENAME}} ay humiling ng isang paalala ng iyong mga akawnt ng detalye para sa {{SITENAME}}
 ($4). Ang sumusunod na pangtagagamit na {{PLURAL:$3|akawnt ay|mga akawnt ay}} may kaugnayan sa tirahang ito ng e-liham:
 
@@ -737,7 +769,7 @@ $2
 {{PLURAL:$3|Ang pansamantalang hudyat na ito|Ang pansamantalang mga hudyat na ito}} mawawalan ng bias sa loob ng {{PLURAL:$5|isang araw|$5 mga araw}}.
 Dapat kang lumagda at pumili ng isang hudyat ngayon. Kung ibang tao ang gumawa ng kahilingang ito, o kung naalala mo na ang iyong orihinal na hudyat, at hindi mo na nais palitan pa ito, maaari mong huwag nang pansinin ang mensaheng ito at magpatuloy sa paggamit ng iyong lumang hudyat.',
 'passwordreset-emailelement' => 'Pangalan ng tagagamit: $1
-Pansamantalang hudyat: $2',
+Pansamantalang password: $2',
 'passwordreset-emailsent' => 'Naipadala na ang isang e-liham na pampaalala.',
 'passwordreset-emailsent-capture' => 'Naipadala na ang isang e-liham na paalala, na ipinapakita sa ibaba.',
 'passwordreset-emailerror-capture' => 'Nalikha na ang isang e-liham na paalala, na ipinapakita sa ibaba, subalit nabigo ang pagpapadala sa tagagamit: $1',
@@ -750,8 +782,14 @@ Pansamantalang hudyat: $2',
 'changeemail-oldemail' => 'Kasalukuyang direksiyong e-liham:',
 'changeemail-newemail' => 'Bagong direksiyong e-liham:',
 'changeemail-none' => '(wala)',
+'changeemail-password' => 'Ang iyong {{SITENAME}} password:',
 'changeemail-submit' => 'Baguhin ang e-liham',
 'changeemail-cancel' => 'Kanselahin',
+'changeemail-throttled' => 'Masyadong madami ang kamakailan lamang mong pagsubok sa pag-login.
+Maghintay po muna ng $1 bago subukan uli.',
+
+# Special:ResetTokens
+'resettokens' => 'I-reset ang mga token o susi',
 
 # Edit page toolbar
 'bold_sample' => 'Makapal na panitik',
@@ -832,7 +870,7 @@ Maaaring inilipat o ibinura ito habang tinitingnan mo ang pahina.',
 'loginreqtitle' => 'Paglagda/Pagtala Kailangan',
 'loginreqlink' => 'lumagda/tumala',
 'loginreqpagetext' => 'Kailangan mong $1 para matanaw ang ibang mga pahina.',
-'accmailtitle' => 'Ipinadala na ang hudyat.',
+'accmailtitle' => 'Ipinadala na ang password.',
 'accmailtext' => "Ipinadala na sa $2 ang isang hudyat na nilikha ng pagkakataon para kay [[User talk:$1|$1]].  Maaari itong baguhin sa pahinang ''[[Special:ChangePassword|palitan ng hudyat]]'' kapag lumagdang papasok.",
 'newarticle' => '(Bago)',
 'newarticletext' => "Sinundan mo ang isang kawing para sa isang pahinang hindi pa umiiral.
@@ -961,6 +999,7 @@ Walang ibinigay na paliwanag.',
 Tila binura na ito.',
 'edit-conflict' => 'Alitan sa pagbabago.',
 'edit-no-change' => 'Binalewala ang pagbabago mo, dahil walang pagbabagong ginawa sa teksto.',
+'postedit-confirmation' => 'Naitala na ang iyong pagbabago.',
 'edit-already-exists' => 'Hindi makalikha ng isang bagong pahina.
 Umiiral na ito.',
 'defaultmessagetext' => 'Nakatakdang teksto ng mensahe',
@@ -1246,7 +1285,7 @@ Matatagpuan ang mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/delete|page={
 'prefs-watchlist-edits-max' => 'Pinakamataas na bilang: 1000',
 'prefs-watchlist-token' => 'Balap ng talaan ng mga binabantayan:',
 'prefs-misc' => 'Bala-balaki',
-'prefs-resetpass' => 'Baguhin ang hudyat',
+'prefs-resetpass' => 'Baguhin ang password',
 'prefs-changeemail' => 'Baguhin ang direksiyong e-liham',
 'prefs-setemail' => 'Magtakda ng direksiyong e-liham',
 'prefs-email' => 'Mga pagpipilian para sa e-liham',
@@ -1328,6 +1367,7 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'prefs-dateformat' => 'Anyo ng petsa',
 'prefs-timeoffset' => 'Pagtatama ng oras',
 'prefs-advancedediting' => 'Masulong na mga mapagpipilian',
+'prefs-preview' => 'Paunang tingin',
 'prefs-advancedrc' => 'Masulong na mga mapagpipilian',
 'prefs-advancedrendering' => 'Masulong na mga mapagpipilian',
 'prefs-advancedsearchoptions' => 'Masulong na mga mapagpipilian',
@@ -1335,6 +1375,7 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'prefs-displayrc' => 'Ipakita ang mga pagpipilian',
 'prefs-displaysearchoptions' => 'Ipakita ang mga pagpipilian',
 'prefs-displaywatchlist' => 'Ipakita ang mga pagpipilian',
+'prefs-tokenwatchlist' => 'Token o susi',
 'prefs-diffs' => 'Mga pagkakaiba',
 
 # User preference: email validation using jQuery
@@ -1448,7 +1489,7 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'right-siteadmin' => 'Ikandado at alisin ang pagkakakandado ng kalipunan ng dato',
 'right-override-export-depth' => 'Iluwas ang mga pahina na kabilang ang mga pahinang nakakawing magpahanggang sa isang lalim na 5',
 'right-sendemail' => 'Magpadala ng e-liham sa ibang mga tagagamit',
-'right-passwordreset' => 'Tingnan ang mga e-liham ng muling pagtatakda ng hudyat',
+'right-passwordreset' => 'Tingnan ang mga email ng muling pagtatakda ng password',
 
 # Special:Log/newusers
 'newuserlogpage' => 'Talaan ng paglikha ng tagagamit',
@@ -1509,11 +1550,23 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'rcnotefrom' => "Nasa ibaba ang mga pagbabago mula pa noong '''$2''' (ipinapakita ang magpahanggang sa '''$1''').",
 'rclistfrom' => 'Ipakita ang bagong mga pagbabago simula sa $1',
 'rcshowhideminor' => '$1 maliliit na mga pagbabago',
+'rcshowhideminor-show' => 'Ipakita',
+'rcshowhideminor-hide' => 'Itago',
 'rcshowhidebots' => "$1 mga ''bot''",
-'rcshowhideliu' => '$1 nakalagdang mga tagagamit',
+'rcshowhidebots-show' => 'Ipakita',
+'rcshowhidebots-hide' => 'Itago',
+'rcshowhideliu' => '$1 nakatalang mga tagagamit',
+'rcshowhideliu-show' => 'Ipakita',
+'rcshowhideliu-hide' => 'Itago',
 'rcshowhideanons' => '$1 hindi kilalang mga tagagamit',
+'rcshowhideanons-show' => 'Ipakita',
+'rcshowhideanons-hide' => 'Itago',
 'rcshowhidepatr' => '$1 napatrolyang mga pagbabago',
+'rcshowhidepatr-show' => 'Ipakita',
+'rcshowhidepatr-hide' => 'Itago',
 'rcshowhidemine' => '$1 mga pagbabago ko',
+'rcshowhidemine-show' => 'Ipakita',
+'rcshowhidemine-hide' => 'Itago',
 'rclinks' => 'Ipakita ang huling $1 mga pagbabago sa loob ng huling $2 mga araw<br />$3',
 'diff' => 'pagkakaiba',
 'hist' => 'kasaysayan',
@@ -1529,7 +1582,7 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'rc-change-size' => '$1',
 'rc-change-size-new' => '$1 {{PLURAL:$1|byte|mga byte}} pagkaraan ng pagbabago',
 'newsectionsummary' => '/* $1 */ bagong seksyon',
-'rc-enhanced-expand' => 'Ipakita ang mga detalye (kailangan ng JavaScript)',
+'rc-enhanced-expand' => 'Ipakita ang mga detalye',
 'rc-enhanced-hide' => 'Itago ang mga detalye',
 'rc-old-title' => 'dating nalikha bilang "$1"',
 
@@ -1548,8 +1601,7 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'reuploaddesc' => 'Kanselahin/Iurong ang pagkarga at magbalik sa pormularyo ng pagkakarga',
 'upload-tryagain' => 'Ipasa ang binagong paglalarawan ng talaksan',
 'uploadnologin' => 'Hindi nakalagda',
-'uploadnologintext' => 'Dapat ikaw ay [[Special:UserLogin|nakalagda]]
-upang makapagkarga ng talaksan.',
+'uploadnologintext' => '$1 upang makapag-upload ng files.',
 'upload_directory_missing' => 'Nawawala ang direktoryo ng pagkarga ($1) at hindi na mailikha ng webserver.',
 'upload_directory_read_only' => 'Ang direktoryo ng pagkarga ($1) ay hindi maisulat ng webserver.',
 'uploaderror' => 'Kamalian sa pagkarga',
@@ -1806,6 +1858,8 @@ Kapag sinala ng tagagamit, tanging mga talaksan lang kung saan nagkarga ang taga
 'listfiles_size' => 'Sukat',
 'listfiles_description' => 'Paglalarawan',
 'listfiles_count' => 'Mga bersiyon',
+'listfiles-latestversion-yes' => 'Oo',
+'listfiles-latestversion-no' => 'Hindi',
 
 # File description page
 'file-anchor-link' => 'Talaksan',
@@ -1902,6 +1956,9 @@ Marahil ay naisa mong baguhin ang paglalarawan doon sa [$2 pahina ng paglalarawa
 'randompage' => 'Pahinang walang-pili',
 'randompage-nopages' => 'Walang mga pahina sa sumusunod na {{PLURAL:$2|ngalan-espasyo|mga ngalan-espasyo}}: $1.',
 
+# Random page in category
+'randomincategory-selectcategory-submit' => 'Gawin',
+
 # Random redirect
 'randomredirect' => 'Pagkargang walang-pili',
 'randomredirect-nopages' => 'Walang mga pagkarga sa ngalan-espasyong "$1".',
@@ -1990,6 +2047,10 @@ Nasugpo na ang mga ipinasok na <del>inekisan</del>.',
 'protectedpages-indef' => 'Mga walang katiyakang proteksyon lamang',
 'protectedpages-cascade' => 'Baita-baitang na mga panananggalang lamang',
 'protectedpagesempty' => 'Sa kasalukuyan, walang mga pahinang nakasanggalang na may ganitong mga parametro.',
+'protectedpages-page' => 'Pahina',
+'protectedpages-reason' => 'Dahilan',
+'protectedpages-unknown-timestamp' => 'Hindi alam',
+'protectedpages-unknown-performer' => 'Hindi alam na tagagamit o user',
 'protectedtitles' => 'Nakasanggalang na mga pamagat',
 'protectedtitlesempty' => 'Walang pamagat ang kasalukuyang nakaprotekta sa binigay na parametro.',
 'listusers' => 'Tala ng tagagamit',
@@ -2152,7 +2213,7 @@ Ang ipinasok mong direksiyong e-liham sa [[Special:Preferences|iyong mga kagustu
 'usermessage-template' => 'MediaWiki:UserMessage',
 
 # Watchlist
-'watchlist' => 'Mga binabantayan ko',
+'watchlist' => 'Talaan ng mga binabantayan',
 'mywatchlist' => 'Bantayan',
 'watchlistfor2' => 'Para sa $1 $2',
 'nowatchlist' => 'Wala kang pahinang binabantayan.',
@@ -3864,7 +3925,7 @@ Dapat na nakatanggap ka ng [{{SERVER}}{{SCRIPTPATH}}/COPYING isang sipi ng Pangk
 * <span class="mw-specialpagerestricted">Pinaghihigpitang natatanging mga pahina.</span>',
 'specialpages-group-maintenance' => 'Mga pagpapanatiling ulat',
 'specialpages-group-other' => 'Iba pang natatanging mga pahina',
-'specialpages-group-login' => 'Lumagda / lumikha ng kuwenta',
+'specialpages-group-login' => 'Mag-login / lumikha ng akawnt',
 'specialpages-group-changes' => 'Mga huling binago at mga tala',
 'specialpages-group-media' => 'Mga ulat ng midya at mga pagkarga',
 'specialpages-group-users' => 'Mga tagagamit at mga karapatan',

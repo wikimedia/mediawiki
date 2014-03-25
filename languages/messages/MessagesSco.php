@@ -1818,6 +1818,11 @@ Input: contenttype/subtype, e.g. <code>image/jpeg</code>.',
 # List redirects
 'listredirects' => 'Leet o reguidals',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Leet o files wi dupleecates',
+'listduplicatedfiles-summary' => 'This is ae leet o files whaur the maist recynt version o the file is ae duplicate o the maist recynt version o some ither file. Yinlie local files ar conseederit.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] haes [[$3|{{PLURAL:$2|ae dupleecate|$2 dupleecates}}]].',
+
 # Unused templates
 'unusedtemplates' => 'Templates that arena uised',
 'unusedtemplatestext' => "This page leets aw pages in the {{ns:template}} namespace that's naw incuidit in anither page. Mynd n check fer ither links til the templates afore delytin thaim.",

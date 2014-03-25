@@ -2177,6 +2177,11 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 # List redirects
 'listredirects' => 'Seznam přesměrování',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Seznam souborů s duplikáty',
+'listduplicatedfiles-summary' => 'Toto je seznam souborů, u kterých je aktuální revize duplikátem aktuální revize nějakého jiného souboru. Do úvahy se berou jen lokální soubory.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] má [[$3|$2 {{PLURAL:$2|duplikát|duplikáty|duplikátů}}]].',
+
 # Unused templates
 'unusedtemplates' => 'Nepoužívané šablony',
 'unusedtemplatestext' => 'Tato stránka obsahuje seznam všech stran ve jmenném prostoru {{ns:template}}, které nejsou vloženy do žádné jiné strany. Před jejich smazáním nezapomeňte zkontrolovat ostatní odkazy.',

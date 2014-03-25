@@ -1116,8 +1116,8 @@ $2
 'userpage-userdoesnotexist' => 'חשבון המשתמש "$1" אינו רשום.
 אנא בדקו אם ברצונכם ליצור/לערוך דף זה.',
 'userpage-userdoesnotexist-view' => 'חשבון המשתמש "$1" אינו רשום.',
-'blocked-notice-logextract' => '{{GENDER:$1|המשתמש הזה חסום|המשתמשת הזאת חסומה}} כרגע.
-הפעולה האחרונה ביומן החסימות מוצגת להלן לעיון:',
+'blocked-notice-logextract' => '{{GENDER:$1|המשתמש הזה חסום|המשתמשת הזו חסומה}} כרגע.
+הפעולה האחרונה ביומן החסימות מוצגת להלן:',
 'clearyourcache' => "'''הערה:''' לאחר השמירה, עליכם לנקות את זיכרון המטמון (cache) של הדפדפן כדי להבחין בשינויים.
 * '''פיירפוקס / ספארי:''' לחצו על Shift בעת לחיצתכם על '''העלה מחדש''' (Reload), או הקישו על ''Ctrl-F5'' או על ''Ctrl-R'' (או על ''<span dir=\"ltr\">⌘-R</span>'' במחשב מק)
 * '''גוגל כרום:''' לחצו על ''Ctrl-Shift-R'' (או על ''<span dir=\"ltr\">⌘-Shift-R</span>'' במק)
@@ -2798,8 +2798,8 @@ $1',
 'sp-contributions-logs' => 'יומנים',
 'sp-contributions-talk' => 'שיחה',
 'sp-contributions-userrights' => 'ניהול הרשאות משתמש',
-'sp-contributions-blocked-notice' => '{{GENDER:$1|המשתמש הזה חסום|המשתמשת הזאת חסומה}} כרגע.
-הפעולה האחרונה ביומן החסימות מוצגת להלן לעיון:',
+'sp-contributions-blocked-notice' => '{{GENDER:$1|המשתמש הזה חסום|המשתמשת הזו חסומה}} כרגע.
+הפעולה האחרונה ביומן החסימות מוצגת להלן:',
 'sp-contributions-blocked-notice-anon' => 'כתובת IP זו חסומה כרגע.
 הפעולה האחרונה ביומן החסימות מוצגת להלן:',
 'sp-contributions-search' => 'חיפוש תרומות',
