@@ -184,6 +184,10 @@ a.new, #quickbar span.new a, #footer span.new a {
 	color: #CC2200;
 }
 
+.onlyinprint {
+	display: none;
+}
+
 h2, h3, h4, h5, h6 {
 	margin-bottom: 0;
 }
@@ -275,3 +279,4 @@ input.mw-searchInput {
 #linkcollection * {
 	text-align: right;
 }
+By commonsmetadata you mean the

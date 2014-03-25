@@ -149,3 +149,6 @@ div.magnify a, div.magnify img {
 img.thumbborder {
 	border: 1px solid #dddddd;
 }
+.onlyinprint {
+	display: none;
+}

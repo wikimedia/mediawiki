@@ -833,3 +833,7 @@ div.mw-lag-warn-high {
 	-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.125);
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.125);
 }
+
+.onlyinprint {
+	display: none;
+}
