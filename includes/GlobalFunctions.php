@@ -1027,10 +1027,8 @@ function wfDebugMem( $exact = false ) {
  *
  * @since 1.23 support for sampling log messages via $wgDebugLogGroups.
  *
- * @param $logGroup String
- * @param $text String
- * @param bool $public whether to log the event in the public log if no private
- *                     log file is specified, (default true)
+ * @param string $logGroup
+ * @param string $text
  * @param string|bool $dest Destination of the message:
  *     - 'all': both to the log and HTML (debug toolbar or HTML comments)
  *     - 'log': only to the log and not in HTML
