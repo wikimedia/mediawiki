@@ -1369,6 +1369,10 @@ page history view, i.e. undo, rollback, etc.
 $rev: Revision object
 &$links: Array of HTML links
 
+'HistoryPageAddLink': Add one ore more links to Revision history page subtitle.
+$context: IContextSource (object)
+&$links: Array List of html strings of anchor links
+
 'ImageBeforeProduceHTML': Called before producing the HTML created by a wiki
 image insertion. You can skip the default logic entirely by returning false, or
 just modify a few things using call-by-reference.
