@@ -71,6 +71,8 @@ production.
 * Wikimedia\Rdbms\IDatabase::doAtomicSection(), non-native ::insertSelect(),
   and non-MySQL ::replace() and ::upsert() no longer roll back the whole
   transaction on failure.
+* (T28934) The 'HistoryPageAddLink' hook allows extensions to append additional
+  links to the subtitle of a history page.
 
 === External library changes in 1.31 ===
 
