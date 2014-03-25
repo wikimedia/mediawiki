@@ -131,6 +131,9 @@ production.
 * Added BaseTemplateAfterPortlet hook to allow injecting html after portlets in skins.
 * Support has been added for a JSON based localisation file format. The
   installer has been updated to use it.
+* Images now support a "square" option in wikitext, which uses a square
+  bounding box for resizing.  This gives better results for non-landscape
+  thumbnails, etc.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent

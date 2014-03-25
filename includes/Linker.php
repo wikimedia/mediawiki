@@ -575,6 +575,18 @@ class Linker {
 			$postfix = '</div>';
 			$fp['align'] = 'none';
 		}
+		if ( isset( $fp['square'] ) && ( isset( $hp['width'] ) || isset( $hp['height'] ) ) ) {
+			// make a square bounding box out of the largest given dimension
+			if ( isset( $hp['width' ] ) ) {
+				$squareSize = $hp['width'];
+			} else {
+				$squareSize = $hp['height'];
+			}
+			if ( isset( $hp['height'] ) && $hp['height'] > $squareSize ) {
+				$squareSize = $hp['height'];
+			}
+			$hp['width'] = $hp['height'] = $squareSize;
+		}
 		if ( $file && !isset( $hp['width'] ) ) {
 			if ( isset( $hp['height'] ) && $file->isVectorized() ) {
 				// If its a vector image, and user only specifies height
@@ -605,6 +617,9 @@ class Linker {
 				if ( !isset( $hp['height'] ) && ( $hp['width'] <= 0 ||
 						$prefWidth < $hp['width'] || $file->isVectorized() ) ) {
 					$hp['width'] = $prefWidth;
+					if ( isset( $fp['square'] ) ) {
+						$hp['height'] = $prefWidth;
+					}
 				}
 			}
 		}
