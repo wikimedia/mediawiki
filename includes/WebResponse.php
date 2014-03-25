@@ -88,12 +88,6 @@ class WebResponse {
 			$expire = time() + $wgCookieExpiration;
 		}
 
-		// Don't mark the cookie as httpOnly if the requesting user-agent is
-		// known to have trouble with httpOnly cookies.
-		if ( !wfHttpOnlySafe() ) {
-			$options['httpOnly'] = false;
-		}
-
 		$func = $options['raw'] ? 'setrawcookie' : 'setcookie';
 
 		if ( wfRunHooks( 'WebResponseSetCookie', array( &$name, &$value, &$expire, $options ) ) ) {
