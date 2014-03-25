@@ -76,6 +76,8 @@ production.
 * (T189785) Added a monthly heartbeat ping to the pingback feature.
 * The CLI installer (maintenance/install.php) learned to detect and include
   extensions. Pass --with-extensions to enable that feature.
+* (T28934) The 'HistoryPageAddLink' hook allows extensions to append additional
+  links to the subtitle of a history page.
 
 === External library changes in 1.31 ===
 
