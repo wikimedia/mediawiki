@@ -951,8 +951,12 @@ class ContribsPager extends ReverseChronologicalPager {
 		 * to extensions to subscribe to the hook to parse the row.
 		 */
 		wfSuppressWarnings();
-		$rev = new Revision( $row );
-		$validRevision = (bool)$rev->getId();
+		try {
+			$rev = new Revision( $row );
+			$validRevision = (bool)$rev->getId();
+		} catch ( MWException $e ) {
+			$validRevision = false;
+		}
 		wfRestoreWarnings();
 
 		if ( $validRevision ) {
