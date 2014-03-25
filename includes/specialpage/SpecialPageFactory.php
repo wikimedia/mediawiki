@@ -50,28 +50,28 @@ class SpecialPageFactory {
 	private static $list = array(
 		// Maintenance Reports
 		'BrokenRedirects'           => 'BrokenRedirectsPage',
-		'Deadendpages'              => 'DeadendpagesPage',
+		'Deadendpages'              => 'DeadendPagesPage',
 		'DoubleRedirects'           => 'DoubleRedirectsPage',
-		'Longpages'                 => 'LongpagesPage',
-		'Ancientpages'              => 'AncientpagesPage',
-		'Lonelypages'               => 'LonelypagesPage',
+		'Longpages'                 => 'LongPagesPage',
+		'Ancientpages'              => 'AncientPagesPage',
+		'Lonelypages'               => 'LonelyPagesPage',
 		'Fewestrevisions'           => 'FewestrevisionsPage',
-		'Withoutinterwiki'          => 'WithoutinterwikiPage',
+		'Withoutinterwiki'          => 'WithoutInterwikiPage',
 		'Protectedpages'            => 'SpecialProtectedpages',
 		'Protectedtitles'           => 'SpecialProtectedtitles',
 		'Shortpages'                => 'ShortpagesPage',
-		'Uncategorizedcategories'   => 'UncategorizedcategoriesPage',
-		'Uncategorizedimages'       => 'UncategorizedimagesPage',
-		'Uncategorizedpages'        => 'UncategorizedpagesPage',
-		'Uncategorizedtemplates'    => 'UncategorizedtemplatesPage',
-		'Unusedcategories'          => 'UnusedcategoriesPage',
+		'Uncategorizedcategories'   => 'UncategorizedCategoriesPage',
+		'Uncategorizedimages'       => 'UncategorizedImagesPage',
+		'Uncategorizedpages'        => 'UncategorizedPagesPage',
+		'Uncategorizedtemplates'    => 'UncategorizedTemplatesPage',
+		'Unusedcategories'          => 'UnusedCategoriesPage',
 		'Unusedimages'              => 'UnusedimagesPage',
 		'Unusedtemplates'           => 'UnusedtemplatesPage',
 		'Unwatchedpages'            => 'UnwatchedpagesPage',
-		'Wantedcategories'          => 'WantedcategoriesPage',
-		'Wantedfiles'               => 'WantedfilesPage',
-		'Wantedpages'               => 'WantedpagesPage',
-		'Wantedtemplates'           => 'WantedtemplatesPage',
+		'Wantedcategories'          => 'WantedCategoriesPage',
+		'Wantedfiles'               => 'WantedFilesPage',
+		'Wantedpages'               => 'WantedPagesPage',
+		'Wantedtemplates'           => 'WantedTemplatesPage',
 
 		// List of pages
 		'Allpages'                  => 'SpecialAllpages',
@@ -128,7 +128,7 @@ class SpecialPageFactory {
 
 		// Redirecting special pages
 		'LinkSearch'                => 'LinkSearchPage',
-		'Randompage'                => 'Randompage',
+		'Randompage'                => 'RandomPage',
 		'RandomInCategory'          => 'SpecialRandomInCategory',
 		'Randomredirect'            => 'SpecialRandomredirect',
 
@@ -146,7 +146,7 @@ class SpecialPageFactory {
 		'Export'                    => 'SpecialExport',
 		'Import'                    => 'SpecialImport',
 		'Undelete'                  => 'SpecialUndelete',
-		'Whatlinkshere'             => 'SpecialWhatlinkshere',
+		'Whatlinkshere'             => 'SpecialWhatLinksHere',
 		'MergeHistory'              => 'SpecialMergeHistory',
 		'ExpandTemplates'           => 'SpecialExpandTemplates',
 
@@ -187,7 +187,7 @@ class SpecialPageFactory {
 			wfProfileIn( __METHOD__ );
 
 			if ( !$wgDisableCounters ) {
-				self::$list['Popularpages'] = 'PopularpagesPage';
+				self::$list['Popularpages'] = 'PopularPagesPage';
 			}
 
 			if ( !$wgDisableInternalSearch ) {
