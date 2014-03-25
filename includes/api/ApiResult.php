@@ -59,10 +59,9 @@ class ApiResult extends ApiBase {
 	private $mData, $mIsRawMode, $mSize, $mCheckingSize;
 
 	/**
-	 * Constructor
-	 * @param $main ApiMain object
+	 * @param ApiMain $main
 	 */
-	public function __construct( $main ) {
+	public function __construct( ApiMain $main ) {
 		parent::__construct( $main, 'result' );
 		$this->mIsRawMode = false;
 		$this->mCheckingSize = true;
