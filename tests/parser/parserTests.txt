@@ -7755,7 +7755,7 @@ Magic Word: {{NUMBEROFFILES}}
 !! wikitext
 {{NUMBEROFFILES}}
 !! html
-<p>5
+<p>7
 </p>
 !! end
 
@@ -10793,12 +10793,16 @@ parsoid=wt2html,wt2wt,html2html
 # Image sizing.
 # See https://www.mediawiki.org/wiki/Help:Images#Size_and_frame
 # and https://bugzilla.wikimedia.org/show_bug.cgi?id=62258
-# Foobar has actual size of 1941x220
+# Foobar.jpg has actual size of 1941x220
+# Portrait.svg has actual size of 180x240
+# Portrait.png has actual size of 180x240
 # 1. Thumbs & frameless always reduce, can't be enlarged unless it's
 #    a scalable format.
 # 2. Framed images always ignore size options; always render at default size.
 # 3. "Unspecified format" and border are the only types which can be
 #    enlarged.
+# 4. Without an explicit size specification, thumbnails are
+#    resized to a square bonuding box.
 
 !! test
 Image: "unspecified format" and border enlarge
@@ -10914,6 +10918,55 @@ parsoid=wt2html,wt2wt,html2html
 
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Frame"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"/></a></figure><figure typeof="mw:Image/Frame"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"/></a></figure><figure typeof="mw:Image/Frame"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"/></a></figure><figure typeof="mw:Image/Frame"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"/></a></figure>
+!! end
+
+!! test
+Image: thumbnails of the default size use a square bounding box.
+!! options
+thumbsize=220
+!! wikitext
+[[File:Foobar.jpg|thumb|landscape thumb]]
+
+[[File:Foobar.jpg|frameless|landscape frameless]]
+
+[[File:Portrait.png|thumb|should use 220x220px bounding box]]
+
+[[File:Portrait.png|frameless|should use 220x220px bounding box]]
+
+[[File:Portrait.svg|thumb|should use 220x220px bounding box]]
+
+[[File:Portrait.svg|frameless|should use 220x220px bounding box]]
+!! html/php
+<div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" width="220" height="25" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>landscape thumb</div></div></div>
+<p><a href="/wiki/File:Foobar.jpg" class="image" title="landscape frameless"><img alt="landscape frameless" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" width="220" height="25" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:167px;"><a href="/wiki/File:Portrait.png" class="image"><img alt="" src="http://example.com/images/thumb/9/93/Portrait.png/165px-Portrait.png" width="165" height="220" class="thumbimage" srcset="http://example.com/images/9/93/Portrait.png 1.5x, http://example.com/images/9/93/Portrait.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Portrait.png" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>should use 220x220px bounding box</div></div></div>
+<p><a href="/wiki/File:Portrait.png" class="image" title="should use 220x220px bounding box"><img alt="should use 220x220px bounding box" src="http://example.com/images/thumb/9/93/Portrait.png/165px-Portrait.png" width="165" height="220" srcset="http://example.com/images/9/93/Portrait.png 1.5x, http://example.com/images/9/93/Portrait.png 2x" /></a>
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:167px;"><a href="/wiki/File:Portrait.svg" class="image"><img alt="" src="http://example.com/images/thumb/f/fc/Portrait.svg/165px-Portrait.svg.png" width="165" height="220" class="thumbimage" srcset="http://example.com/images/thumb/f/fc/Portrait.svg/247px-Portrait.svg.png 1.5x, http://example.com/images/thumb/f/fc/Portrait.svg/330px-Portrait.svg.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Portrait.svg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>should use 220x220px bounding box</div></div></div>
+<p><a href="/wiki/File:Portrait.svg" class="image" title="should use 220x220px bounding box"><img alt="should use 220x220px bounding box" src="http://example.com/images/thumb/f/fc/Portrait.svg/165px-Portrait.svg.png" width="165" height="220" srcset="http://example.com/images/thumb/f/fc/Portrait.svg/247px-Portrait.svg.png 1.5x, http://example.com/images/thumb/f/fc/Portrait.svg/330px-Portrait.svg.png 2x" /></a>
+</p>
+!! end
+
+!! test
+Image: bitmap thumbnails reduce only if thumb size is smaller than inherent size.
+!! options
+thumbsize=300
+!! wikitext
+[[File:Portrait.png|thumb|should use inherent 180x240px size]]
+
+[[File:Portrait.png|frameless|should use inherent 180x240px size]]
+
+[[File:Portrait.svg|thumb|will resize to 300x300px]]
+
+[[File:Portrait.svg|frameless|will resize to 300x300px]]
+!! html/php
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Portrait.png" class="image"><img alt="" src="http://example.com/images/9/93/Portrait.png" width="180" height="240" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Portrait.png" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>should use inherent 180x240px size</div></div></div>
+<p><a href="/wiki/File:Portrait.png" class="image" title="should use inherent 180x240px size"><img alt="should use inherent 180x240px size" src="http://example.com/images/9/93/Portrait.png" width="180" height="240" /></a>
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:227px;"><a href="/wiki/File:Portrait.svg" class="image"><img alt="" src="http://example.com/images/thumb/f/fc/Portrait.svg/225px-Portrait.svg.png" width="225" height="300" class="thumbimage" srcset="http://example.com/images/thumb/f/fc/Portrait.svg/337px-Portrait.svg.png 1.5x, http://example.com/images/thumb/f/fc/Portrait.svg/450px-Portrait.svg.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Portrait.svg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>will resize to 300x300px</div></div></div>
+<p><a href="/wiki/File:Portrait.svg" class="image" title="will resize to 300x300px"><img alt="will resize to 300x300px" src="http://example.com/images/thumb/f/fc/Portrait.svg/225px-Portrait.svg.png" width="225" height="300" srcset="http://example.com/images/thumb/f/fc/Portrait.svg/337px-Portrait.svg.png 1.5x, http://example.com/images/thumb/f/fc/Portrait.svg/450px-Portrait.svg.png 2x" /></a>
+</p>
 !! end
 
 ###################
