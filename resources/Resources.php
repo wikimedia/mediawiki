@@ -761,6 +761,12 @@ return array(
 			'user.tokens',
 		),
 	),
+	'mediawiki.cookie' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.cookie.js',
+		'dependencies' => array(
+			'jquery.cookie',
+		),
+	),
 	'mediawiki.debug' => array(
 		'scripts' => array(
 			'resources/src/mediawiki/mediawiki.debug.js',
