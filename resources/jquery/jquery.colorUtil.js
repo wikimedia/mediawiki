@@ -12,7 +12,7 @@
 		// By Blair Mitchelmore
 		// http://jquery.offput.ca/highlightFade/
 		// Parse strings looking for color tuples [255,255,255]
-		getRGB : function ( color ) {
+		getRGB: function ( color ) {
 			/*jshint boss:true */
 			var result;
 
@@ -28,7 +28,7 @@
 
 			// Look for rgb(num%,num%,num%)
 			if (result = /rgb\(\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*\)/.exec(color)) {
-				return [parseFloat(result[1],10)*2.55, parseFloat(result[2],10)*2.55, parseFloat(result[3])*2.55];
+				return [parseFloat(result[1],10) * 2.55, parseFloat(result[2],10) * 2.55, parseFloat(result[3]) * 2.55];
 			}
 
 			// Look for #a0b1c2
@@ -38,7 +38,7 @@
 
 			// Look for #fff
 			if (result = /#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/.exec(color)) {
-				return [parseInt(result[1]+result[1],16), parseInt(result[2]+result[2],16), parseInt(result[3]+result[3],16)];
+				return [parseInt(result[1] + result[1],16), parseInt(result[2] + result[2],16), parseInt(result[3] + result[3],16)];
 			}
 
 			// Look for rgba(0, 0, 0, 0) == transparent in Safari 3
@@ -170,23 +170,23 @@
 					if ( t > 1 ) {
 						t -= 1;
 					}
-					if ( t < 1/6 ) {
+					if ( t < 1 / 6 ) {
 						return p + (q - p) * 6 * t;
 					}
-					if ( t < 1/2 ) {
+					if ( t < 1 / 2 ) {
 						return q;
 					}
-					if ( t < 2/3 ) {
-						return p + (q - p) * (2/3 - t) * 6;
+					if ( t < 2 / 3 ) {
+						return p + (q - p) * (2 / 3 - t) * 6;
 					}
 					return p;
 				};
 
 				q = l < 0.5 ? l * (1 + s) : l + s - l * s;
 				p = 2 * l - q;
-				r = hue2rgb( p, q, h + 1/3 );
+				r = hue2rgb( p, q, h + 1 / 3 );
 				g = hue2rgb( p, q, h );
-				b = hue2rgb( p, q, h - 1/3 );
+				b = hue2rgb( p, q, h - 1 / 3 );
 			}
 
 			return [r * 255, g * 255, b * 255];
@@ -207,7 +207,7 @@
 		getColorBrightness: function ( currentColor, mod ) {
 			var rgbArr = $.colorUtil.getRGB( currentColor ),
 				hslArr = $.colorUtil.rgbToHsl(rgbArr[0], rgbArr[1], rgbArr[2] );
-			rgbArr = $.colorUtil.hslToRgb(hslArr[0], hslArr[1], hslArr[2]+mod);
+			rgbArr = $.colorUtil.hslToRgb(hslArr[0], hslArr[1], hslArr[2] + mod);
 
 			return 'rgb(' +
 				[parseInt( rgbArr[0], 10), parseInt( rgbArr[1], 10 ), parseInt( rgbArr[2], 10 )].join( ',' ) +

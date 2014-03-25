@@ -269,7 +269,7 @@
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
 	} );
 
-	QUnit.test( 'clicks on links inside toggler pass through (options.linksPassthru)' , 2, function ( assert ) {
+	QUnit.test( 'clicks on links inside toggler pass through (options.linksPassthru)', 2, function ( assert ) {
 		var $collapsible = prepareCollapsible(
 				'<div class="mw-collapsible">' +
 					'<div class="mw-collapsible-toggle">' +

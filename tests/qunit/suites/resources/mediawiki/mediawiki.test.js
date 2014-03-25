@@ -75,7 +75,7 @@
 		assert.strictEqual( conf.get( 'constructor' ), 42, 'Map.get for key "constructor"' );
 
 		assert.strictEqual( conf.set( 'ImUndefined', undefined ), true, 'Map.set allows setting value to `undefined`' );
-		assert.equal( conf.get( 'ImUndefined', 'fallback' ), undefined , 'Map.get supports retreiving value of `undefined`' );
+		assert.equal( conf.get( 'ImUndefined', 'fallback' ), undefined, 'Map.get supports retreiving value of `undefined`' );
 
 		assert.strictEqual( conf.set( funky, 'Funky' ), false, 'Map.set returns boolean false if key was invalid (Function)' );
 		assert.strictEqual( conf.set( arry, 'Arry' ), false, 'Map.set returns boolean false if key was invalid (Array)' );
@@ -108,7 +108,6 @@
 			'foo': 'bar',
 			'notExist': null
 		}, 'Map.get return includes keys that were not found as null values' );
-
 
 		// Interacting with globals and accessing the values object
 		assert.strictEqual( conf.get(), conf.values, 'Map.get returns the entire values object by reference (if called without arguments)' );
@@ -181,7 +180,7 @@
 		assertMultipleFormats( ['mediawiki-test-version-entrypoints-index-php'], ['plain', 'text', 'escaped'], mw.messages.get( 'mediawiki-test-version-entrypoints-index-php' ), 'External link markup is unprocessed' );
 		assert.htmlEqual( mw.message( 'mediawiki-test-version-entrypoints-index-php' ).parse(), '<a href="https://www.mediawiki.org/wiki/Manual:index.php">index.php</a>', 'External link works correctly in parse mode' );
 
-		assertMultipleFormats( ['external-link-replace', 'http://example.org/?x=y&z'], ['plain', 'text'] , 'Foo [http://example.org/?x=y&z bar]', 'Parameters are substituted but external link is not processed' );
+		assertMultipleFormats( ['external-link-replace', 'http://example.org/?x=y&z'], ['plain', 'text'], 'Foo [http://example.org/?x=y&z bar]', 'Parameters are substituted but external link is not processed' );
 		assert.equal( mw.message( 'external-link-replace', 'http://example.org/?x=y&z' ).escaped(), 'Foo [http://example.org/?x=y&amp;z bar]', 'In escaped mode, parameters are substituted and ampersand is escaped, but external link is not processed' );
 		assert.htmlEqual( mw.message( 'external-link-replace', 'http://example.org/?x=y&z' ).parse(), 'Foo <a href="http://example.org/?x=y&amp;z">bar</a>', 'External link with replacement works in parse mode without double-escaping' );
 
@@ -216,13 +215,11 @@
 		assertMultipleFormats( ['plural-test-msg-explicit-beginning', 6], ['text', 'parse', 'escaped'], 'Basket has half a dozen eggs', 'explicit plural given at beginning get resolved for 6' );
 		assertMultipleFormats( ['plural-test-msg-explicit-beginning', 0], ['text', 'parse', 'escaped'], 'Basket has no eggs', 'explicit plural given at beginning get resolved for 0' );
 
-
 		assertMultipleFormats( ['mediawiki-test-pagetriage-del-talk-page-notify-summary'], ['plain', 'text'], mw.messages.get( 'mediawiki-test-pagetriage-del-talk-page-notify-summary' ), 'Double square brackets with no parameters unchanged' );
 
 		assertMultipleFormats( ['mediawiki-test-pagetriage-del-talk-page-notify-summary', specialCharactersPageName], ['plain', 'text'], 'Notifying author of deletion nomination for [[' + specialCharactersPageName + ']]', 'Double square brackets with one parameter' );
 
 		assert.equal( mw.message( 'mediawiki-test-pagetriage-del-talk-page-notify-summary', specialCharactersPageName ).escaped(), 'Notifying author of deletion nomination for [[' + mw.html.escape( specialCharactersPageName ) + ']]', 'Double square brackets with one parameter, when escaped' );
-
 
 		assert.ok( mw.messages.set( 'mediawiki-test-categorytree-collapse-bullet', '[<b>−</b>]' ), 'mw.messages.set: Register' );
 		assert.equal( mw.message( 'mediawiki-test-categorytree-collapse-bullet' ).plain(), mw.messages.get( 'mediawiki-test-categorytree-collapse-bullet' ), 'Single square brackets unchanged in plain mode' );
@@ -277,7 +274,6 @@
 			'Script escaped when using parse format'
 		);
 
-
 	} );
 
 	QUnit.test( 'mw.msg', 14, function ( assert ) {
@@ -285,7 +281,7 @@
 		assert.equal( mw.msg( 'hello' ), 'Hello <b>awesome</b> world', 'Gets message with default options (existing message)' );
 		assert.equal( mw.msg( 'goodbye' ), '<goodbye>', 'Gets message with default options (nonexistent message)' );
 
-		assert.ok( mw.messages.set( 'plural-item' , 'Found $1 {{PLURAL:$1|item|items}}' ), 'mw.messages.set: Register' );
+		assert.ok( mw.messages.set( 'plural-item', 'Found $1 {{PLURAL:$1|item|items}}' ), 'mw.messages.set: Register' );
 		assert.equal( mw.msg( 'plural-item', 5 ), 'Found 5 items', 'Apply plural for count 5' );
 		assert.equal( mw.msg( 'plural-item', 0 ), 'Found 0 items', 'Apply plural for count 0' );
 		assert.equal( mw.msg( 'plural-item', 1 ), 'Found 1 item', 'Apply plural for count 1' );
