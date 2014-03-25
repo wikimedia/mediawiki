@@ -39,6 +39,8 @@ production.
   the ParserOutput::getText() post-cache transformations.
 * Added a hook, UploadForm:getInitialPageText, to allow extensions to alter the
   initial page text for file uploads.
+* (T28934) The 'HistoryPageAddLink' hook allows extensions to append additional
+  links to the subtitle of a history page.
 
 === External library changes in 1.31 ===
 
