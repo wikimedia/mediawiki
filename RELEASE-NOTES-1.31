@@ -51,6 +51,8 @@ production.
 * Style tags with a 'data-mw-deduplicate' attribute will be deduplicated as a
   ParserOutput::getText() post-cache transformation. This may be disabled by
   passing 'deduplicateStyles' => false to that method.
+* (T28934) The 'HistoryPageAddLink' hook allows extensions to append additional
+  links to the subtitle of a history page.
 
 === External library changes in 1.31 ===
 
