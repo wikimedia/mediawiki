@@ -4,5 +4,9 @@
             "John Reid"
         ]
     },
-    "ooui-outline-control-remove": "Remuiv eitem"
+    "ooui-dialog-action-close": "Claise",
+    "ooui-outline-control-move-down": "Muiv eetem doon",
+    "ooui-outline-control-move-up": "Muiv eetem up",
+    "ooui-outline-control-remove": "Remuiv eitem",
+    "ooui-toolbar-more": "Mair"
 }

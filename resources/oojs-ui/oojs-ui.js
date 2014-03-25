@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (3b434d5388)
+ * OOjs UI v0.1.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri Mar 21 2014 11:06:28 GMT-0700 (PDT)
+ * Date: Mon Mar 24 2014 17:35:46 GMT-0700 (PDT)
  */
 ( function () {
 
@@ -7044,12 +7044,13 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 
 	// Mixin constructors
 	OO.ui.LabeledElement.call( this, this.$( '<div>' ), config );
+	OO.ui.ClippableElement.call( this, this.$( '<div>' ), config );
 
 	// Properties
 	this.visible = false;
 	this.$popup = this.$( '<div>' );
 	this.$head = this.$( '<div>' );
-	this.$body = this.$( '<div>' );
+	this.$body = this.$clippable;
 	this.$tail = this.$( '<div>' );
 	this.$container = config.$container || this.$( 'body' );
 	this.autoClose = !!config.autoClose;
@@ -7086,6 +7087,8 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 OO.inheritClass( OO.ui.PopupWidget, OO.ui.Widget );
 
 OO.mixinClass( OO.ui.PopupWidget, OO.ui.LabeledElement );
+
+OO.mixinClass( OO.ui.PopupWidget, OO.ui.ClippableElement );
 
 /* Events */
 
@@ -7192,6 +7195,7 @@ OO.ui.PopupWidget.prototype.hasTail = function () {
  */
 OO.ui.PopupWidget.prototype.show = function () {
 	if ( !this.visible ) {
+		this.setClipping( true );
 		this.$element.show();
 		this.visible = true;
 		this.emit( 'show' );
@@ -7211,6 +7215,7 @@ OO.ui.PopupWidget.prototype.show = function () {
  */
 OO.ui.PopupWidget.prototype.hide = function () {
 	if ( this.visible ) {
+		this.setClipping( false );
 		this.$element.hide();
 		this.visible = false;
 		this.emit( 'hide' );
@@ -7474,6 +7479,13 @@ OO.ui.SearchWidget.prototype.onResultsSelect = function ( item ) {
  */
 OO.ui.SearchWidget.prototype.getQuery = function () {
 	return this.query;
+};
+
+/**
+ * Reset the widget to initial value.
+ */
+OO.ui.SearchWidget.prototype.clear = function () {
+	this.query.setValue( '' );
 };
 
 /**

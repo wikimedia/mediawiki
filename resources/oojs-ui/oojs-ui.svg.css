@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (3b434d5388)
+ * OOjs UI v0.1.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri Mar 21 2014 11:06:28 GMT-0700 (PDT)
+ * Date: Mon Mar 24 2014 17:35:46 GMT-0700 (PDT)
  */
 
 /* Textures */
@@ -625,7 +625,7 @@
 }
 
 .oo-ui-popupToolGroup.oo-ui-iconedElement .oo-ui-popupToolGroup-handle .oo-ui-labeledElement-label {
-  margin-left: 3.25em;
+  margin-left: 3em;
 }
 
 .oo-ui-popupToolGroup.oo-ui-indicatedElement .oo-ui-popupToolGroup-handle .oo-ui-labeledElement-label {
@@ -653,7 +653,7 @@
   display: inline-block;
   width: 2em;
   height: 2em;
-  margin-right: 0.5em;
+  margin-right: 0.25em;
   vertical-align: middle;
 }
 
@@ -803,6 +803,10 @@
   float: left;
   margin: 0.75em 1em;
   cursor: default;
+}
+
+.oo-ui-popupWidget-body {
+  clear: both;
 }
 
 .oo-ui-buttonGroupWidget {
