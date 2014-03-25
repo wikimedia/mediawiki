@@ -34,7 +34,7 @@ class ThrottledError extends ErrorPageError {
 
 	public function report() {
 		global $wgOut;
-		$wgOut->setStatusCode( 503 );
+		$wgOut->setStatusCode( 429 );
 		parent::report();
 	}
 }

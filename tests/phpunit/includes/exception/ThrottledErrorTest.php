@@ -37,7 +37,7 @@ class ThrottledErrorTest extends MediaWikiTestCase {
 			->getMock();
 		$mock->expects( $this->once() )
 			->method( 'setStatusCode' )
-			->with( 503 );
+			->with( 429 );
 		return $mock;
 	}
 
