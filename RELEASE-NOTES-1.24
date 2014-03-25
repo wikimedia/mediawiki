@@ -30,6 +30,9 @@ production.
   jQuery.cookie so that getting/setting a cookie is syntactically and functionally
   similar to using the WebRequest#getCookie/WebResponse#setcookie methods.
 * (bug 44740) jQuery upgraded from 1.8.3 to 1.11.1.
+* (bug 63903) Thumbnails without an explicit size specification are
+  now resized to a square bounding box. This gives better results for
+  non-landscape thumbnails.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
