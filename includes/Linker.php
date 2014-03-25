@@ -594,6 +594,12 @@ class Linker {
 				}
 
 				// Reduce width for upright images when parameter 'upright' is used
+				$useSquare = !isset( $fp['upright'] );
+				// work around bug 62258 (see comment 5)
+				if ( isset( $fp['framed'] ) ) {
+					$useSquare = false;
+				}
+
 				if ( isset( $fp['upright'] ) && $fp['upright'] == 0 ) {
 					$fp['upright'] = $wgThumbUpright;
 				}
@@ -607,6 +613,9 @@ class Linker {
 				if ( !isset( $hp['height'] ) && ( $hp['width'] <= 0 ||
 						$prefWidth < $hp['width'] || $file->isVectorized() ) ) {
 					$hp['width'] = $prefWidth;
+					if ( $useSquare ) {
+						$hp['height'] = $prefWidth;
+					}
 				}
 			}
 		}
