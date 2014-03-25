@@ -3513,14 +3513,6 @@ function wfSetupSession( $sessionId = false ) {
 		# hasn't already been set to the desired value (that causes errors)
 		ini_set( 'session.save_handler', $wgSessionHandler );
 	}
-	wfDebugLog( 'cookie',
-		'session_set_cookie_params: "' . implode( '", "',
-			array(
-				0,
-				$wgCookiePath,
-				$wgCookieDomain,
-				$wgCookieSecure,
-				$wgCookieHttpOnly ) ) . '"' );
 	session_set_cookie_params(
 		0, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
 	session_cache_limiter( 'private, must-revalidate' );
