@@ -79,6 +79,8 @@ production.
   extensions. Pass --with-extensions to enable that feature.
 * (T184791) rc_patrolled now has three states: "0" for unpatrolled,
   "1" for manually patrolled and "2" for autopatrolled actions.
+* (T28934) The 'HistoryPageAddLink' hook allows extensions to append additional
+  links to the subtitle of a history page.
 
 === External library changes in 1.31 ===
 
