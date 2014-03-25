@@ -33,7 +33,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 
 	private $params;
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'pp' );
 	}
 
