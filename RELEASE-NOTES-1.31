@@ -63,6 +63,8 @@ production.
     the SQL query. The ActorMigration class may also be used to get feature-flagged
     information needed to access actor-related fields during the migration
     period.
+* (T28934) The 'HistoryPageAddLink' hook allows extensions to append additional
+  links to the subtitle of a history page.
 
 === External library changes in 1.31 ===
 
