@@ -28,6 +28,8 @@ production.
 * Added 'ApiParseMakeOutputPage' hook.
 * (T174313) Added checkbox on Special:ListUsers to display only users in temporary
   user groups.
+* (T28934) The 'HistoryPageToolLinks' hook allows extensions to append additional
+  links to the subtitle of a history page.
 
 === External library changes in 1.32 ===
 * …
