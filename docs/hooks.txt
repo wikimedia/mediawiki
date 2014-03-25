@@ -1547,6 +1547,14 @@ before the return.
 &$attribs: the attributes to be applied.
 $linkType: The external link type
 
+'LinkerMakeMediaLinkFile': At the end of Linker::makeMediaLinkFile() just
+before the return.
+$title: the Title object that the link is pointing to
+$file: the File object or false if broken link
+&$html: the link text
+&$attribs: the attributes to be applied
+&$ret: the value to return if your hook returns false
+
 'LinksUpdate': At the beginning of LinksUpdate::doUpdate() just before the
 actual update.
 &$linksUpdate: the LinksUpdate object
