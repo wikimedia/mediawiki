@@ -1458,6 +1458,10 @@ page history view, i.e. undo, rollback, etc.
 $rev: Revision object
 &$links: Array of HTML links
 
+'HistoryPageAddLink': Add one ore more links to Revision history page subtitle.
+$context: IContextSource (object)
+&$links: Array List of html strings of anchor linksUpdate
+
 'HTMLFileCache::useFileCache': Override whether a page should be cached in file
 cache.
 $context: An IContextSource object with information about the request being served.
