@@ -142,6 +142,9 @@ production.
   process the result set prior to rendering.
 * A PoolCounterRedis class was added which can be make use of in $wgPoolCounterConf.
   This requires at least one Redis 2.6+ server.
+* Thumbnails without an explicit size specification are now resized to a
+  square bounding box. This gives better results for non-landscape
+  thumbnails.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
