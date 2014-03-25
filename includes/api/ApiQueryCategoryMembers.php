@@ -31,7 +31,7 @@
  */
 class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'cm' );
 	}
 

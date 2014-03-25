@@ -98,7 +98,6 @@ class ApiPageSet extends ApiBase {
 	}
 
 	/**
-	 * Constructor
 	 * @param $dbSource ApiBase Module implementing getDB().
 	 *        Allows PageSet to reuse existing db connection from the shared state like ApiQuery.
 	 * @param int $flags Zero or more flags like DISABLE_GENERATORS
