@@ -57,13 +57,18 @@ class HistoryAction extends FormlessAction {
 	}
 
 	protected function getDescription() {
+		$links = array();
 		// Creation of a subtitle link pointing to [[Special:Log]]
-		return Linker::linkKnown(
+		$links[] = Linker::link(
 			SpecialPage::getTitleFor( 'Log' ),
 			$this->msg( 'viewpagelogs' )->escaped(),
 			array(),
 			array( 'page' => $this->getTitle()->getPrefixedText() )
 		);
+
+		// Allow extensions to add more links
+		wfRunHooks( 'HistoryPageAddLink', array( $this->getContext(), &$links ) );
+		return $this->getLanguage()->pipeList( $links );
 	}
 
 	/**
