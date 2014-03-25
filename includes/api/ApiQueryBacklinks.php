@@ -75,7 +75,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		)
 	);
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		$settings = $this->backlinksSettings[$moduleName];
 		$prefix = $settings['prefix'];
 		$code = $settings['code'];

@@ -31,7 +31,7 @@
  */
 class ApiQueryContributions extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'uc' );
 	}
 
