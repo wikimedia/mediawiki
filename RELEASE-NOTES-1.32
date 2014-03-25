@@ -12,7 +12,8 @@ production.
 * …
 
 === New features in 1.32 ===
-* …
+* (T28934) The 'HistoryPageToolLinks' hook allows extensions to append additional
+  links to the subtitle of a history page.
 
 === External library changes in 1.32 ===
 * …
