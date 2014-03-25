@@ -48,7 +48,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$wgVariantArticlePath, $wgActionPaths, $wgVersion,
 			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname,
 			$wgSitename, $wgFileExtensions, $wgExtensionAssetsPath,
-			$wgCookiePrefix, $wgResourceLoaderMaxQueryLength,
+			$wgCookiePrefix, $wgCookieDomain, $wgCookiePath,
+			$wgCookieExpiration, $wgResourceLoaderMaxQueryLength,
 			$wgResourceLoaderStorageEnabled, $wgResourceLoaderStorageVersion,
 			$wgSearchType;
 
@@ -104,6 +105,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgExtensionAssetsPath' => $wgExtensionAssetsPath,
 			// MediaWiki sets cookies to have this prefix by default
 			'wgCookiePrefix' => $wgCookiePrefix,
+			'wgCookieDomain' => $wgCookieDomain,
+			'wgCookiePath' => $wgCookiePath,
+			'wgCookieExpiration' => $wgCookieExpiration,
 			'wgResourceLoaderMaxQueryLength' => $wgResourceLoaderMaxQueryLength,
 			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
 			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
