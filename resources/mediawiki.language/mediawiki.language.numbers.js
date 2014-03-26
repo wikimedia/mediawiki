@@ -13,7 +13,7 @@
 	 *
 	 * Example: Fill the string to length 10 with '+' characters on the right.
 	 *
-	 *     pad('blah', 10, '+', true); // => 'blah++++++'
+	 *     pad( 'blah', 10, '+', true ); // => 'blah++++++'
 	 *
 	 * @private
 	 * @param {string} text The string to pad
@@ -59,7 +59,7 @@
 	 * consideration to local customs.
 	 *
 	 * Adapted from dojo/number library with thanks
-	 * http://dojotoolkit.org/reference-guide/1.8/dojo/number.html
+	 * <http://dojotoolkit.org/reference-guide/1.8/dojo/number.html>
 	 *
 	 * @private
 	 * @param {number} value the number to be formatted, ignores sign

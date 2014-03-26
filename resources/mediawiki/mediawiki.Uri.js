@@ -1,5 +1,5 @@
 /**
- * Library for simple URI parsing and manipulation. Dependencies: mw, jQuery.
+ * Library for simple URI parsing and manipulation.
  *
  * Intended to be minimal, but featureful; do not expect full RFC 3986 compliance. The use cases we
  * have in mind are constructing 'next page' or 'previous page' URLs, detecting whether we need to
@@ -44,8 +44,8 @@
  * (N.b., 'password' is technically not allowed for HTTP URIs, but it is possible with other kinds
  * of URIs.)
  *
- * Parsing based on parseUri 1.2.2 (c) Steven Levithan <stevenlevithan.com>, MIT License.
- * http://stevenlevithan.com/demo/parseuri/js/
+ * Parsing based on parseUri 1.2.2 (c) Steven Levithan <http://stevenlevithan.com>, MIT License.
+ * <http://stevenlevithan.com/demo/parseuri/js/>
  *
  * @class mw.Uri
  */
