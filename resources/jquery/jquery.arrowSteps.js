@@ -31,6 +31,7 @@
 	 *       $( '#robin-hood-daffy' ).arrowSteps();
 	 *     </script>
 	 *
+	 * @return {jQuery}
 	 * @chainable
 	 */
 	$.fn.arrowSteps = function () {

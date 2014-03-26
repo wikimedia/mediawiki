@@ -99,12 +99,12 @@ function msg( options, key ) {
  * Appends something like this to the body...
  *     <p>You may not get there all in one piece.</p>
  *
- * @method
  * @param {Object} options Map of options to be used while localizing
  * @param {string} options.prefix String to prepend to all message keys
  * @param {Object} options.keys Message key aliases, used for remapping keys to a template
  * @param {Object} options.params Lists of parameters to use with certain message keys
  * @return {jQuery}
+ * @chainable
  */
 $.fn.localize = function ( options ) {
 	var $target = this,
