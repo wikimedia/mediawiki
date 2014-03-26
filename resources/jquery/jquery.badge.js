@@ -1,10 +1,8 @@
-/**
+/*!
  * jQuery Badge plugin
  *
  * @license MIT
- */
-
-/**
+ *
  * @author Ryan Kaldari <rkaldari@wikimedia.org>, 2012
  * @author Andrew Garrett <agarrett@wikimedia.org>, 2012
  * @author Marius Hoch <hoo@online.de>, 2012
@@ -21,19 +19,28 @@
  *
  * This program is distributed WITHOUT ANY WARRANTY.
  */
+
+/**
+ * @class jQuery.plugin.badge
+ */
 ( function ( $, mw ) {
 	/**
-	 * Allows you to put a "badge" on an item on the page. The badge container
-	 * will be appended to the selected element(s).
-	 * See mediawiki.org/wiki/ResourceLoader/Default_modules#jQuery.badge
+	 * Put a badge on an item on the page. The badge container will be appended to the selected element(s).
+	 *
+	 *     $element.badge( text );
+	 *     $element.badge( 5 );
+	 *     $element.badge( '100+' );
+	 *     $element.badge( text, inline );
+	 *     $element.badge( 'New', true );
 	 *
 	 * @param {number|string} text The value to display in the badge. If the value is falsey (0,
 	 *  null, false, '', etc.), any existing badge will be removed.
-	 * @param {boolean} inline True if the badge should be displayed inline, false
-	 *  if the badge should overlay the parent element (default is inline)
-	 * @param {boolean} displayZero True if the number zero should be displayed,
+	 * @param {boolean} [inline=true] True if the badge should be displayed inline, false
+	 *  if the badge should overlay the parent element.
+	 * @param {boolean} [displayZero=false] True if the number zero should be displayed,
 	 *  false if the number zero should result in the badge being hidden
-	 *  (default is zero will result in the badge being hidden)
+	 * @return {jQuery}
+	 * @chainable
 	 */
 	$.fn.badge = function ( text, inline, displayZero ) {
 		var $badge = this.find( '.mw-badge' ),
@@ -73,4 +80,9 @@
 		}
 		return this;
 	};
+
+	/**
+	 * @class jQuery
+	 * @mixins jQuery.plugin.badge
+	 */
 }( jQuery, mediaWiki ) );
