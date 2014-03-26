@@ -1,6 +1,5 @@
 /**
- * Plugin that automatically truncates the plain text contents of an element
- * and adds an ellipsis.
+ * @class jQuery.plugin.autoEllipsis
  */
 ( function ( $ ) {
 
@@ -11,6 +10,21 @@ var
 	// Use a separate cache when match highlighting is enabled
 	matchTextCache = {};
 
+/**
+ * Automatically truncate the plain text contents of an element and add an ellipsis
+ *
+ * @param {Object} options
+ * @param {'center'|'left'|'right'} [options.position='center'] Where to remove text.
+ * @param {boolean} [options.tooltip=false] Whether to show a tooltip with the remainder
+ * of the text.
+ * @param {boolean} [options.restoreText=false] Whether to save the text for restoring
+ * later.
+ * @param {boolean} [options.hasSpan=false] Whether the element is already a container,
+ * or if the library should create a new container for it.
+ * @param {string|null} [options.matchText=null] Text to highlight, e.g. search terms.
+ * @return {jQuery}
+ * @chainable
+ */
 $.fn.autoEllipsis = function ( options ) {
 	options = $.extend( {
 		position: 'center',
@@ -145,5 +159,10 @@ $.fn.autoEllipsis = function ( options ) {
 
 	} );
 };
+
+/**
+ * @class jQuery
+ * @mixins jQuery.plugin.autoEllipsis
+ */
 
 }( jQuery ) );
