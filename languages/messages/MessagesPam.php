@@ -651,7 +651,6 @@ mapaliaring maki detalle king [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPA
 'revisiondelete' => 'Ilako/e-ilako ing pamanalili',
 'revdelete-nooldid-title' => 'E ustung pamanaliling target',
 'revdelete-nooldid-text' => 'Mapaliaring ala kang binieng balak a pamanalili (target revision) ba meng daptan ing gamit (function) a iti, ala yu ing mebanggit a pamanaliling iti, o magtangka kang isalikut ya ing kasalungsungan a pamanalili.',
-'revdelete-selected' => "'''{{PLURAL:$2|Mepiling bersion|Mepiling bersion}} ning [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Mepiling miliari king tala/listaan|Mepiling miliari king tala/listaan}}:'''",
 'revdelete-legend' => 'Mitakdang angganan/limitasiun kareng maliaring akit',
 'revdelete-hide-text' => 'Isalikut ya ing meyaliling kulitan',

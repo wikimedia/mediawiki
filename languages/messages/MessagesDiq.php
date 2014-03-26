@@ -1274,7 +1274,6 @@ Eke şıma serkari u devam bıkeri [$1 no vurnayiş şıma eşkeni bıvini].",
 'revdelete-no-file' => 'Dosya diyarkerdiye çıniya.',
 'revdelete-show-file-confirm' => 'Şıma eminê ke wazenê çımraviyarnayışê esterıtey na dosya "<nowiki>$1</nowiki>" $2 ra $3 de bıvênê?',
 'revdelete-show-file-submit' => 'E',
-'revdelete-selected' => "'''[[:$1]]: ra {{PLURAL:$2|çımraviyarnayışo weçinıte|çımraviyarnayışê weçinıtey}}'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Qeydbiyayışo weçinıte|Qeydbiyayışê weçinıtey}}:'''",
 'revdelete-confirm' => 'Ma rica keno testiq bike ti ena hereket keno u ti zano neticeyanê herketanê xo u ti ena hereket pê ena [[{{MediaWiki:Policy-url}}|polici]] ra keno.',
 'revdelete-suppress-text' => "Wedardış gani '''tenya''' nê halanê cêrênan de bıxebıtiyo:

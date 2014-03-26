@@ -37,9 +37,9 @@ $messages = array(
 'tog-editondblclick' => 'Eidit pages oan dooble-clap (JavaScript)',
 'tog-editsectiononrightclick' => 'Enable section editin bi richt-clapin on section teitles',
 'tog-rememberpassword' => 'Mynd ma password oan this browser (fer ae maximum o $1 {{PLURAL:$1|day|days}})',
-'tog-watchcreations' => 'Add pages that Ah cræft n files that Ah uplaid til ma watchleet',
-'tog-watchdefault' => 'Add pages n files that Ah eedit til ma watchleet',
-'tog-watchmoves' => 'Add pages n files that Ah muiv til ma watchleet',
+'tog-watchcreations' => 'Eik pages that Ah cræft n files that Ah uplaid til ma watchleet',
+'tog-watchdefault' => 'Eik pages n files that Ah eedit til ma watchleet',
+'tog-watchmoves' => 'Eik pages n files that Ah muiv til ma watchleet',
 'tog-watchdeletion' => 'Eik pages n files that Ah get rid o til ma watchleet',
 'tog-minordefault' => 'Mairk aa edits "smaa" bi defaut',
 'tog-previewontop' => 'Shaw owerview afore eedit kist n naw efter it',
@@ -181,7 +181,7 @@ $messages = array(
 'faqpage' => 'Project:ASQ',
 
 # Vector skin
-'vector-action-addsection' => 'Add topic',
+'vector-action-addsection' => 'Eik topic',
 'vector-action-delete' => 'Delyte',
 'vector-action-move' => 'Muiv',
 'vector-action-protect' => 'Fend',
@@ -359,10 +359,10 @@ likelie fer routine database maintenance; efter that it'll be back til normal.
 The admeenstration that lockit it gied this explanation: $1",
 'missing-article' => 'The database didna fynd the tex o ae page that it shid hae foond, cawed "$1" $2.
 
-Maistlie this is caused bi follaein aen ootdated diff or histerie link til ae page that haes been delytit.
+Maistlie this is caused bi follaein aen ootdated diff or histerie airtin til ae page that\'s been delytit.
 
 Gif this isna the case, ye micht hae foond ae bug in the saffware.
-Please lat aen [[Special:ListUsers/sysop|admeenistrater]] ken aneat this, makin note o the URL.',
+Please lat aen [[Special:ListUsers/sysop|admeenistrater]] ken aneat this, makin ae myndin o the URL.',
 'missingarticle-rev' => '(reveesion#: $1)',
 'missingarticle-diff' => '(Diff: $1, $2)',
 'readonly_lag' => 'The database haes been autaematically lockit while the sclave database servers catch up tae the maister',
@@ -398,10 +398,10 @@ It gae nae explanâtion.',
 'viewsourcetext' => 'Ye can leuk at n copie the soorce o this page:',
 'viewyourtext' => 'Ye can see n copie the soorce o <strong>yer eedits</strong> til this page:',
 'protectedinterface' => 'This page provides interface tex fer the saffware oan this wiki, n is protected fer tae hinder abuise.
-Tae add or chynge owersets fer aw wikis, please uise [//translatewiki.net/ translatewiki.net], the MediaWiki localisation waurk.',
-'editinginterface' => "<strong>Warnishment:</strong> Ye'r eiditing ae page that is uised tae provide interface tex fer the saffware.
-Chynges til this page will affect the appearance o the uiser interface fer ither uisers oan this wiki.
-Tae add or chynge owersets fer aw wikis, please uise [//translatewiki.net/ translatewiki.net], the MediaWiki localisation project.",
+Tae eik or chynge owersets fer aw wikis, please uise [//translatewiki.net/ translatewiki.net], the MediaWiki localisation waurk.',
+'editinginterface' => "<strong>Warnishment:</strong> Ye'r eeditin ae page that is uised tae provide interface tex fer the saffware.
+Chynges til this page will affect the kithin o the uiser interface fer ither uisers oan this wiki.
+Tae eik or chynge owersets fer aw wikis, please uise [//translatewiki.net/ translatewiki.net], the MediaWiki localisation waurk.",
 'cascadeprotected' => 'This page haes been protectit fae eiditin, cause it is inclædit in the follaein {{PLURAL:$1|page|pages}}, that ar protectit wi the "cascadin" optie turnit oan:
 $2',
 'namespaceprotected' => "Ye dinna hae permeession tae edit pages in the '''$1''' namespace.",
@@ -736,7 +736,7 @@ It micht hae been muived or delytit while ye were luikin at the page.',
 'accmailtitle' => 'Passwaird sent.',
 'accmailtext' => 'Ae randomly generated passwaird fer [[User talk:$1|$1]] haes been sent til $2. It can be chynged oan the <em>[[Special:ChangePassword|chynge passwaird]]</em> page upo loggin in.',
 'newarticle' => '(New)',
-'newarticletext' => "Ye'v follaed ae link til ae page that disna exeest yet. Tae cræft the page, stairt typin in the kist ablo (see the [$1 heelp page] fer mair info). Gif ye'r here bi mistak, jist clap yer brouser's <strong>back</strong> button.",
+'newarticletext' => "Ye'v follaed aen airtin til ae page that disna exeest yet. Tae cræft the page, stairt typin in the kist ablo (see the [$1 heelp page] fer mair info). Gif ye'r here bi mistak, jist clap yer brouser's <strong>back</strong> button.",
 'anontalkpagetext' => "----
 <em>This is the discussion page fer aen anonymoos uiser that's naw cræftit aen accoont yet, or that disna uise it.</em>
 We maun therefore uise the numerical IP address tae identifie him/her.
@@ -975,7 +975,6 @@ Ye can view this diff; details can be foond in the [{{fullurl:{{#Special:Log}}/s
 'revdelete-no-file' => 'The file speceefied disna exeest.',
 'revdelete-show-file-confirm' => 'Ar ye sair ye wish tae see ae delytit reveesion o the file "<nowiki>$1</nowiki>" fae $2 at $3?',
 'revdelete-show-file-submit' => 'Ai',
-'revdelete-selected' => '<strong>{{PLURAL:$2|Selected reveesion|Selected reveesions}} o [[:$1]]:</strong>',
 'logdelete-selected' => "'''{{PLURAL:$1|Selectit log event|Selectit log events}}:'''",
 'revdelete-text-text' => 'Delytit reveesions will still kith in the page histerie, bit pairts o thair content will be onaccessible til the publeec.',
 'revdelete-text-file' => 'Delytit file versions will still kith in the file histerie, bit pairts o thair content will be onaccessible til the publeec.',
@@ -1045,7 +1044,7 @@ Mak sair that this chynge will maintain historical page conteenuitie.',
 'mergehistory-list' => 'Mergeable eidit histerie',
 'mergehistory-merge' => 'The follaein reveesions o [[:$1]] can be merged intil [[:$2]].
 Uise the radio button column tae merge in yinlie the reveesions cræftit at n afore the speceefied time.
-Mynd that uisin the naveegation links will reset this column.',
+Mynd that uisin the naveegation airtins will reset this column.',
 'mergehistory-go' => 'Shaw mergeable eidits',
 'mergehistory-submit' => 'Merge reveesions',
 'mergehistory-empty' => 'Naw reveesions can be merged.',
@@ -1079,10 +1078,10 @@ Mynd that uisin the naveegation links will reset this column.',
 'diff-multi-sameuser' => '({{PLURAL:$1|yin intermeediate reveesion|$1 intermeediate reveesions}} bi the same uiser naw shawn)',
 'diff-multi-otherusers' => '({{PLURAL:$1|yin intermeediate reveesion|$1 intermeediate reveesions}} bi {{PLURAL:$2|yin ither uiser|$2 uisers}} no shawn)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Yin intermeediate reveesion|$1 intermeediate reveesions}} bi mair than $2 {{PLURAL:$2|uiser|uisers}} no shawn)',
-'difference-missing-revision' => '{{PLURAL:$2|Yin reveesion|$2 reveesions}} o this difference ($1) {{PLURAL:$2|was|were}} no fond.
+'difference-missing-revision' => "{{PLURAL:$2|Yin reveesion|$2 reveesions}} o this difference ($1) {{PLURAL:$2|wis|were}} na foond.
 
-This is usually caused bi follaein aen ootdated diff link til ae page that haes been delytit.
-Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} delytion log].',
+This is usuallie caused bi follaein aen ootdated diff airtin til ae page that's been delytit.
+Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} delytion log].",
 
 # Search results
 'searchresults' => 'Rake results',
@@ -1169,7 +1168,7 @@ Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'prefs-editing' => 'Editin',
 'rows' => 'Raws:',
 'searchresultshead' => 'Rake result settins',
-'stub-threshold' => 'Threeshaud fer <a href="#" class="stub">stub link</a> formattin (bytes):',
+'stub-threshold' => 'Threeshaud fer <a href="#" class="stub">stub airtin</a> formattin (bytes):',
 'stub-threshold-disabled' => 'Tuckie',
 'recentchangesdays' => 'Days tae shaw in recynt chynges:',
 'recentchangesdays-max' => 'Mucklest $1 {{PLURAL:$1|day|days}}',
@@ -1261,13 +1260,13 @@ Yer wab-mail address isna revealed whan ither uisers contact ye.',
 'userrights-groupsmember-auto' => 'Impleecit memmer o:',
 'userrights-groups-help' => "Ye can alter the groops this uiser is in:
 * Ae checkit kist means that the uiser is in that groop.
-* Aen oncheckit kist means that the uiser's no in that groop.
-* Ae * indicates that ye cannae remuiv the groop yince ye'v added it, or vice versa.",
+* Aen oncheckit kist means that the uiser's na in that groop.
+* Ae * indeecates that ye canna remuiv the groop yince ye'v eikit it, or vice versa.",
 'userrights-reason' => 'Raison:',
 'userrights-no-interwiki' => 'Ye dinna hae permission tae eedit uiser richts oan ither wikis.',
 'userrights-nodatabase' => 'Database $1 disna exeest or isna local.',
 'userrights-nologin' => 'Ye maun [[Special:UserLogin|log in]] wi aen admeenistrater accoont tae assign uiser richts.',
-'userrights-notallowed' => 'Ye dinna hae permission tae add or remuiv uiser richts.',
+'userrights-notallowed' => 'Ye dinna hae permeession tae eik or remuiv uiser richts.',
 'userrights-changeable-col' => 'Groops that ye can chynge',
 'userrights-unchangeable-col' => 'Groops ye canna chynge',
 'userrights-conflict' => 'Conflict o uiser richts chynges! Please luikower n confirm yer chynges.',
@@ -1341,7 +1340,7 @@ Yer wab-mail address isna revealed whan ither uisers contact ye.',
 'right-editmyusercss' => 'Eidit yer ain uiser CSS files',
 'right-editmyuserjs' => 'Eedit yer ain uiser JavaScript files',
 'right-viewmywatchlist' => 'See yer ain watchleet',
-'right-editmywatchlist' => 'Eedit yer ain watchleet. Myd that some actions will still add pages even wioot this richt.',
+'right-editmywatchlist' => 'Eedit yer ain watchleet. Mynd that some actions will still eik pages even wioot this richt.',
 'right-viewmyprivateinfo' => 'See yer ain preevate data (e.g. wab-mail address, real name)',
 'right-editmyprivateinfo' => 'Eedit yer ain preevate data (e.g. wab-mail address, real name)',
 'right-editmyoptions' => 'Eedit yer ain preeferences',
@@ -1485,9 +1484,9 @@ Pages oan [[Special:Watchlist|yer watchleet]] ar <strong>baud</strong.',
 
 The delytion n muiv log fer this page ar gien here fer conveeneeance:",
 'uploadtext' => 'Uise the form ablo tae uplaid files.
-Tae see or rake preeveeooslie uplaided files gang til the [[Special:FileList|leet o uplaided files]], (re)uplaids ar loggit in the [[Special:Log/upload|uplaid log]] ava, delytions in the [[Special:Log/delete|delytion log]].
+Tae see or rake preeveeislie uplaided files gang til the [[Special:FileList|leet o uplaided files]], (re)uplaids ar loggit in the [[Special:Log/upload|uplaid log]] ava, delytions in the [[Special:Log/delete|delytion log]].
 
-Tae incluid ae file in ae page, uise ae link in yin o the follaein forms:
+Tae incluid ae file in ae page, uise aen airtin in yin o the follaein forms:
 * <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code></strong> tae uise the ful version o the file
 * <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt tex]]</nowiki></code></strong> tae uise ae 200 pixel wide rendeetion in ae kist in the cair margin wi "alt tex" aes descreeption
 * <strong><code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code></strong> fer linkin directlie til the file wioot displeyin the file.',
@@ -1752,10 +1751,10 @@ Ye micht want tae try at ae less busie time.',
 'filehist-missing' => 'File missin',
 'imagelinks' => 'File uisage',
 'linkstoimage' => 'The follaein {{PLURAL:$1|page airts|$1 pages airt}} tae this file:',
-'linkstoimage-more' => 'Mair than $1 {{PLURAL:$1|page links|pages link}} til this file.
-The follaein leet shaws the {{PLURAL:$1|first page link|first $1 page links}} til this file yinlie.
+'linkstoimage-more' => 'Mair than $1 {{PLURAL:$1|page airts|pages airt}} til this file.
+The follaein leet shaws the {{PLURAL:$1|first page airtin|first $1 page airtins}} til this file yinlie.
 Ae [[Special:WhatLinksHere/$2|ful leet]] is available.',
-'nolinkstoimage' => "Thaur's nae pages that link til this eemage.",
+'nolinkstoimage' => "Thaur's nae pages that airt til this eemage.",
 'morelinkstoimage' => 'See [[Special:WhatLinksHere/$1|mair links]] til this file.',
 'linkstoimage-redirect' => '$1 (file reguidal) $2',
 'duplicatesoffile' => 'The follaein {{PLURAL:$1|file is ae dupleecate|$1 files ar dupleecates}} o this file ([[Special:FileDuplicateSearch/$2|mair details]]):',
@@ -1825,8 +1824,8 @@ Input: contenttype/subtype, e.g. <code>image/jpeg</code>.',
 
 # Unused templates
 'unusedtemplates' => 'Templates that arena uised',
-'unusedtemplatestext' => "This page leets aw pages in the {{ns:template}} namespace that's naw incuidit in anither page. Mynd n check fer ither links til the templates afore delytin thaim.",
-'unusedtemplateswlh' => 'ither links',
+'unusedtemplatestext' => "This page leets aw pages in the {{ns:template}} namespace that's naw incuidit in anither page. Mynd n check fer ither airtins til the templates afore delytin thaim.",
+'unusedtemplateswlh' => 'ither airtins',
 
 # Random page
 'randompage' => 'Wale page allevolie',
@@ -1873,7 +1872,7 @@ Input: contenttype/subtype, e.g. <code>image/jpeg</code>.',
 
 'doubleredirects' => 'Dooble reguidals',
 'doubleredirectstext' => 'This page leets pages that reguide til ither reguidal pages.
-Ilka raw contains links til the first n seicont reguidals, n the tairget o the seicont reguidal ava, this is uisuallie the "real" tairget page whaur the first reguidal shid poynt.
+Ilka raw contains airtins til the first n seicont reguidals, n the tairget o the seicont reguidal ava, this is uisuallie the "real" tairget page whaur the first reguidal shid poynt.
 <del>Crossed oot</del> entries hae been solved.',
 'double-redirect-fixed-move' => '[[$1]] haes been muived.
 It nou reguides til [[$2]].',
@@ -1885,7 +1884,7 @@ It nou reguides til [[$2]].',
 'brokenredirects-edit' => 'eedit',
 'brokenredirects-delete' => 'delyte',
 
-'withoutinterwiki' => 'Pages athoot leid links',
+'withoutinterwiki' => 'Pages wioot leid airtins',
 'withoutinterwiki-summary' => 'The follaein pages dinan link til ither leid versions.',
 'withoutinterwiki-legend' => 'Prefix',
 'withoutinterwiki-submit' => 'Shaw',
@@ -1895,7 +1894,7 @@ It nou reguides til [[$2]].',
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories' => '$1 {{PLURAL:$1|category|categories}}',
-'nlinks' => '$1 {{PLURAL:$1|link|links}}',
+'nlinks' => '$1 {{PLURAL:$1|airtin|airtins}}',
 'nmembers' => '$1 {{PLURAL:$1|membir|membirs}}',
 'nmemberschanged' => '$1 → $2 {{PLURAL:$2|memmer|memmers}}',
 'nrevisions' => '$1 {{PLURAL:$1|reveesion|reveesions}}',
@@ -1975,7 +1974,7 @@ Please mynd that ither wab sites micht link til ae file wi ae direct URL, n sae 
 'booksources' => 'Beuk sources',
 'booksources-search-legend' => 'Rake fer buik soorces',
 'booksources-go' => 'Gang',
-'booksources-text' => "Ablo is ae leet o links til ither sites that sell new n uised buiks, n mmicht hae further information aneat buiks that ye'r seekin ava:",
+'booksources-text' => "Ablo is ae leet o airtins til ither steids that sell new n uised buiks, n micht hae further information aneat buiks that ye'r seekin ava:",
 'booksources-invalid-isbn' => 'The gien ISBN disna seem tae be valid; check fer mistaks copiein fae the oreeginal soorce.',
 
 # Special:Log
@@ -2024,7 +2023,7 @@ See [[Special:WantedCategories|wanted categeries]] ava.',
 'sp-deletedcontributions-contribs' => 'contreebutions',
 
 # Special:LinkSearch
-'linksearch' => 'External links rake',
+'linksearch' => 'Ootby airtins rake',
 'linksearch-pat' => 'Rake pattern:',
 'linksearch-ns' => 'Namespace:',
 'linksearch-ok' => 'Rake',
@@ -2060,13 +2059,13 @@ There micht be [[{{MediaWiki:Listgrouprights-helppage}}|addeetional information]
 'listgrouprights-rights' => 'Richts',
 'listgrouprights-helppage' => 'Help:Groop richts',
 'listgrouprights-members' => '(leet o members)',
-'listgrouprights-addgroup' => 'Add {{PLURAL:$2|groop|groops}}: $1',
+'listgrouprights-addgroup' => 'Eik {{PLURAL:$2|groop|groops}}: $1',
 'listgrouprights-removegroup' => 'Remuiv {{PLURAL:$2|grop|groops}}: $1',
-'listgrouprights-addgroup-all' => 'Add aw groops',
+'listgrouprights-addgroup-all' => 'Eik aw groops',
 'listgrouprights-removegroup-all' => 'Remui aw groops',
-'listgrouprights-addgroup-self' => 'Add {{PLURAL:$2|groop|groops}} til yer accoont: $1',
+'listgrouprights-addgroup-self' => 'Eik {{PLURAL:$2|groop|groops}} til yer accoont: $1',
 'listgrouprights-removegroup-self' => 'Remuiv {{PLURAL:$2|groop|groops}} fae yer accoont: $1',
-'listgrouprights-addgroup-self-all' => 'Add aw groops til yer accoont',
+'listgrouprights-addgroup-self-all' => 'Eik aw groops til yer accoont',
 'listgrouprights-removegroup-self-all' => 'Remuiv aw groops fae yer accoont',
 
 # Email user
@@ -2113,7 +2112,7 @@ The wab-mail address that ye entered in [[Special:Preferences|yer uiser preefera
 'watchlistanontext' => 'Please $1 tae see or eedit eetems oan yer watchlet.',
 'watchnologin' => 'Nae loggit in',
 'watchnologintext' => 'Ye maun be [[Special:UserLogin|loggit in]] tae modify yer watchleet.',
-'addwatch' => 'Add til watchleet',
+'addwatch' => 'Eik til watchleet',
 'addedwatchtext' => 'The page "[[:$1]]" haes been added til yer [[Special:Watchlist|watchleet]].
 Futur chynges til this page n its associated tauk page will be leeted thaur.',
 'removewatch' => 'Remuiv fae watchleet',
@@ -2219,7 +2218,7 @@ Delytion o sic pages haes been restrictit tae stap accidental disruption o {{SIT
 'delete-warning-toobig' => 'This page haes ae muckle eedit histerie, ower $1 {{PLURAL:$1|reveesion|reveesions}}.
 Delytin it micht disrupt database operations o {{SITENAME}};
 proceed wi caution.',
-'deleting-backlinks-warning' => "'''Warnishment:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Ither pages]] link til or transcluide the page ye'r aboot tae delyte.",
+'deleting-backlinks-warning' => "'''Warnishment:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Ither pages]] airt til or transcluide the page ye'r aboot tae delyte.",
 
 # Rollback
 'rollback' => 'Row back edits',
@@ -2397,7 +2396,7 @@ The latest block log entrie is gien ablo fer referance:',
 'sp-contributions-submit' => 'Rake',
 
 # What links here
-'whatlinkshere' => 'Whit links here',
+'whatlinkshere' => 'Whit airts here',
 'whatlinkshere-title' => 'Pages that link til "$1"',
 'whatlinkshere-page' => 'Page:',
 'linkshere' => 'The follaein pages link til <strong>[[:$1]]</strong>:',
@@ -2405,13 +2404,13 @@ The latest block log entrie is gien ablo fer referance:',
 'nolinkshere-ns' => 'No pages aiet til <strong>[[:$1]]</strong> in the choosen namespace.',
 'isredirect' => 'reguidal page',
 'istemplate' => 'transclusion',
-'isimage' => 'file link',
+'isimage' => 'file airtin',
 'whatlinkshere-prev' => '{{PLURAL:$1|previous|previous $1}}',
 'whatlinkshere-next' => '{{PLURAL:$1|next|next $1}}',
-'whatlinkshere-links' => '← links',
+'whatlinkshere-links' => '← airtins',
 'whatlinkshere-hideredirs' => '$1 redirects',
 'whatlinkshere-hidetrans' => '$1 transclusions',
-'whatlinkshere-hidelinks' => '$1 links',
+'whatlinkshere-hidelinks' => '$1 airtins',
 'whatlinkshere-hideimages' => '$1 file airtins',
 'whatlinkshere-filters' => 'Filters',
 
@@ -2428,7 +2427,7 @@ The latest block log entrie is gien ablo fer referance:',
 'ipbreason-dropdown' => '*Commyn block raisons
 ** Insertin false information
 ** Remuivin content fae pages
-** Spammin links til external sites
+** Spammin airtins til ootby steids
 ** Insertin nonsense/gibberish intil pages
 ** Inteemidatin behavier/harassment
 ** Abuisin multiple accoonts
@@ -2556,7 +2555,7 @@ Tae lock or lowse the database, this needs tae be writable bi the wab server.',
 The auld title will become ae reguidal page til the new title.
 Ye can update reguidals that poynt til the oreeginal title autæmateeclie.
 Gif ye chuise na tae, be sair tae check fer [[Special:DoubleRedirects|dooble]] or [[Special:BrokenRedirects|broken reguidals]].
-Ye'r responsible fer makin sair that links continue tae poynt til whaur thay'r supposed to gae.
+Ye'r responsible fer makin sair that airtins continue tae poynt til whaur thay'r supposed to gae.
 
 Mynd that the page will <strong>na</strong> be muived gif thaur is awreadie ae page at the new title, onless the latter is ae reguidal n haes nae past eedit histerie.
 This means that ye can rename ae page back til whaur it wis renamed fae gif ye mak ae mistak, n ye canna owerwrite aen exeestin page.
@@ -2639,19 +2638,19 @@ Please chuise anither name.',
 
 # Export
 'export' => 'Export pages',
-'exporttext' => 'Ye can export the tex n eeditin histerie o ae parteecular page or set o pages wrapped in some XML.
+'exporttext' => 'Ye can export the tex n eeditin histerie o ae parteecular page or set o pages wrapt in some XML.
 This can be imported intil anither wiki uisin MediaWiki bi waa o the [[Special:Import|import page]].
 
-Tae export pages, enter the titles in the tex kist ablo, yin title per line, n select whether ye want the Nou reveesion  aw auld reveesions ava, wi the page histerie lines, or the Nou reveesion wi the info aneat the laist eedit.
+Tae export pages, enter the titles in the tex kist ablo, yin title per line, n select whather ye want the Nou reveesion  aw auld reveesions ava, wi the page histerie lines, or the Nou reveesion wi the info aneat the laist eedit.
 
-In the latter case ye can uise ae link ava, fer example [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] fer the page "[[{{MediaWiki:Mainpage}}]]".',
+In the latter case ye can uise aen airtin ava, fer example [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] fer the page "[[{{MediaWiki:Mainpage}}]]".',
 'exportall' => 'Export aw pages',
 'exportcuronly' => 'Inclæde juist the nou reveesion, naw the ful histerie',
 'exportnohistory' => '----
 <strong>Mynd:</strong> Exportin the ful histerie o pages throogh this form haes been disabled cause o performance raisons.',
 'exportlistauthors' => 'Incluid ae ful leet o contreebuters fer ilka page',
-'export-addcattext' => 'Add pages fae categerie:',
-'export-addnstext' => 'Add pages fae namespace:',
+'export-addcattext' => 'Eik pages fae categerie:',
+'export-addnstext' => 'Eik pages fae namespace:',
 'export-download' => 'Hain aes file',
 'export-templates' => 'Incluid templates',
 'export-pagelinks' => 'Incluid linkt pages til ae depth o:',
@@ -2771,7 +2770,7 @@ Ye can view its soorce',
 'tooltip-ca-delete' => 'Delyte this page',
 'tooltip-ca-undelete' => 'Restore the eedits dun oan this page afore it wis delytit',
 'tooltip-ca-move' => 'Muiv this page',
-'tooltip-ca-watch' => 'Add this page til yer watchleet',
+'tooltip-ca-watch' => 'Eik this page til yer watchleet',
 'tooltip-ca-unwatch' => 'Remove this page frum yer watchleet',
 'tooltip-search' => 'Rake {{SITENAME}}',
 'tooltip-search-go' => 'Gang til ae page wi this exact name gif exeests',
@@ -2809,7 +2808,7 @@ Ye can view its soorce',
 'tooltip-preview' => 'Luikower yer chynges, please uise this afore hainin!',
 'tooltip-diff' => 'Shaw the chynges that ye makit til the tex.',
 'tooltip-compareselectedversions' => 'See the differs atween the twa selectit versions o this page.',
-'tooltip-watch' => 'Add this page tae yer watchleet',
+'tooltip-watch' => 'Eik this page til yer watchleet',
 'tooltip-watchlistedit-normal-submit' => 'Remuiv titles',
 'tooltip-watchlistedit-raw-submit' => 'Update watchleet',
 'tooltip-recreate' => "Recræft the page even thoogh it's been delytit",
@@ -2962,12 +2961,12 @@ Bi executin it, yer system micht be compromised.',
 # Bad image list
 'bad_image_list' => 'The format is aes follaes:
 
-Ainlie leet items (lines stairtin wi *) ar considered. The foremaist link oan ae line maun be ae link til aen ill file. Oni subsequent links oan the same line ar considered tae be exceptions, i,e., pages whaur the eimage can occur inline.',
+Ainlie leet eetems (lines stairtin wi *) ar considered. The foremaist airtin oan ae line maun be aen airtin til aen ill file. Onie subsequent airtins oan the same line ar considered tae be exceptions, i,e., pages whaur the eemage can occur inline.',
 
 # Metadata
 'metadata' => 'Metadata',
-'metadata-help' => 'This file contains addeetional speirins, likelie added fae the deegital camera or scanner uised tae cræft or deegitize it. 
-Gif the file haes bin modified fae its oreeginal state, some details micht naw fullie reflect the modified file.',
+'metadata-help' => 'This file contains addeetional information, likelie eikit fae the deegital camera or scanner uised tae cræft or deegitise it. 
+Gif the file haes bin modeefied fae its oreeginal state, some details micht na fullie reflect the modeefied file.',
 'metadata-expand' => 'Shaw extendit details',
 'metadata-collapse' => 'Skauk extendit details',
 'metadata-fields' => "Eemage metadata fields leetit in this message will be incluidit oan eemage page displey whan the metadata buird is collaps't. Ithers will be skaukt bi defaut. 
@@ -3375,7 +3374,7 @@ Please confirm that ye reallie want tae recræft this page.',
 'confirm-purge-bottom' => 'Purgin ae page clears the cache n forces the maist recynt reveesion tae appear.',
 
 # action=watch/unwatch
-'confirm-watch-top' => 'Add this page til yer watchleet?',
+'confirm-watch-top' => 'Eik this page til yer watchleet?',
 'confirm-unwatch-top' => 'Remuiv this page fae yer watchleet?',
 
 # Multipage image navigation
@@ -3520,9 +3519,9 @@ Ye shid hae receeved [{{SERVER}}{{SCRIPTPATH}}/COPIEIN ae copie o the GNU Genera
 
 # External image whitelist
 'external_image_whitelist' => ' #Lea this line exactlie aes it is<pre>
-#Put regulair expression fragments (juist the pairt that gaes atween the //) ablo
-#Thir will be matched wi the URLs o external (hotlinked) eimages
-#Thae that match will be displeyed aes eimages, itherwise yinlie ae link til the eimage will be shawn
+#Put regulair expression fragments (jist the pairt that gaes atween the //) ablo
+#Thir will be matched wi the URLs o ootby (hotairtit) eemages
+#Thae that match will be displeyed aes eemages, itherwise yinlie aen airtin til the eemage will be shawn
 #Lines beginnin wi # ar treated aes comments
 #This is case-onsensiteeve
 
@@ -3613,8 +3612,8 @@ Ye shid hae receeved [{{SERVER}}{{SCRIPTPATH}}/COPIEIN ae copie o the GNU Genera
 'rightsnone' => '(nane)',
 
 # Feedback
-'feedback-bugornote' => 'Gif yer readie tae describe ae techneecal problem in detail please [$1 report ae bug].
-Itherwise, ye can uiss the easie form ablo. Yer comment will be added til the page "[$3 $2]", alang wi yer uisername.',
+'feedback-bugornote' => 'Gif yer readie tae describe ae techneecal proablem in detail please [$1 report ae bug].
+Itherwise, ye can uiss the easie form ablo. Yer comment will be eikit til the page "[$3 $2]", alang wi yer uisername.',
 'feedback-adding' => 'Addin feedback til page...',
 'feedback-error1' => 'Mistak: Onrecognised ootcome fae API',
 'feedback-error2' => 'Mistak: Eedit failed',

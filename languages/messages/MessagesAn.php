@@ -912,7 +912,6 @@ Encara puet veyer a comparanza; en trobará mas detalles en o [{{fullurl:{{#Spec
 'revdelete-no-file' => 'O fichero especificato no existe.',
 'revdelete-show-file-confirm' => 'Seguro que quiere veyer una versión borrata d\'o fichero "<nowiki>$1</nowiki>" d\'o $2 a las $3?',
 'revdelete-show-file-submit' => 'Sí',
-'revdelete-selected' => "'''{{PLURAL:$2|Versión trigata|Versions trigatas}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Escaicimiento d'o rechistro trigato|Escaicimientos d'o rechistro trigatos}}:'''",
 'revdelete-confirm' => "Por favor confirme que ye mirando de fer ísto, que entiende as conseqüencias, y que lo ye fendo d'alcuerdo con [[{{MediaWiki:Policy-url}}|as politicas]].",
 'revdelete-suppress-text' => "Os borraus de versions '''nomás''' s'habrían de fer en os siguients casos:

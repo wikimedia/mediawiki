@@ -1224,7 +1224,6 @@ Podètz veire aquesta diff ; i pòt aver mai de detalhs dins lo [{{fullurl:{{#Sp
 'revdelete-no-file' => 'Lo fichièr especificat existís pas.',
 'revdelete-show-file-confirm' => 'Sètz segur(a) que volètz veire la revision suprimida del fichièr « <nowiki>$1</nowiki> » datant del $2 a $3?',
 'revdelete-show-file-submit' => 'Òc',
-'revdelete-selected' => "'''{{PLURAL:$2|Version seleccionada|Versions seleccionadas}} de [[:$1]] :'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Eveniment d'istoric seleccionat|Eveniments d'istoric seleccionats}} :'''",
 'revdelete-confirm' => "Confirmatz que volètz efectuar aquesta accion, que ne comprenètz las consequéncias, e qu'o fasètz en acòrd amb [[{{MediaWiki:Policy-url}}|las règlas]].",
 'revdelete-suppress-text' => "La supression deu èsser utilizada '''sonque''' dins los cases seguents :

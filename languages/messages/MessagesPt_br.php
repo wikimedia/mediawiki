@@ -858,7 +858,7 @@ Não lhe será enviado nenhum e-mail sobre nenhuma das seguintes funcionalidades
 'cannotchangeemail' => 'A conta de e-mail não pode ser alterada neste wiki.',
 'emaildisabled' => 'Este site não tem como enviar e-mails.',
 'accountcreated' => 'Conta criada',
-'accountcreatedtext' => 'A conta d eusuários para [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|talk]]) foi criada.',
+'accountcreatedtext' => 'A conta de usuário para [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|talk]]) foi criada.',
 'createaccount-title' => 'Criação de conta em {{SITENAME}}',
 'createaccount-text' => 'Alguém criou uma conta de nome $2 para o seu endereço de email no wiki {{SITENAME}} ($4), tendo como senha "$3".
 Você deve se autenticar e alterar sua senha.
@@ -1295,7 +1295,6 @@ Você pode ver esta comparação; detalhes podem ser encontrados no [{{fullurl:{
 'revdelete-no-file' => 'O arquivo especificado não existe.',
 'revdelete-show-file-confirm' => 'Tem a certeza de que quer visualizar uma revisão eliminada do arquivo "<nowiki>$1</nowiki>" de $2 em $3?',
 'revdelete-show-file-submit' => 'Sim',
-'revdelete-selected' => "'''{{PLURAL:$2|Edição selecionada|Edições selecionadas}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Evento de registro selecionado|Eventos de registro selecionados}}:'''",
 'revdelete-text-text' => 'Revisões apagadas continuarão a aparecer na página de histórico, mas parte de seus conteúdos estarão inacessíveis ao público.',
 'revdelete-text-file' => 'Versões dos arquivos apagados continuarão a aparecer no arquivo de histórico, mas parte de seus conteúdos estarão inacessíveis ao público.',
@@ -2576,7 +2575,7 @@ A eliminação de tais páginas foi restrita, a fim de se evitarem problemas aci
 'delete-warning-toobig' => 'Esta página possui um longo histórico de edições, com mais de $1 {{PLURAL:$1|edição|edições}}.
 Eliminá-la poderá causar problemas na base de dados de {{SITENAME}};
 prossiga com cuidado.',
-'deleting-backlinks-warning' => "'''Cuidado:'''[[Special:WhatLinksHere/{{FULLPAGENAME}}|Outras páginas]] se ligam ou redirecionam para a página que você está prestes a deletar.",
+'deleting-backlinks-warning' => "'''Cuidado:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Outras páginas]] se ligam ou redirecionam para a página que você está prestes a deletar.",
 
 # Rollback
 'rollback' => 'Reverter edições',

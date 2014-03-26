@@ -1144,7 +1144,6 @@ Du kan se denne forskel; der kan findes detaljer i [{{fullurl:{{#Special:Log}}/s
 'revdelete-no-file' => 'Den angivne fil findes ikke.',
 'revdelete-show-file-confirm' => 'Er du sikker på, at du vil vise en slettet version af filen "<nowiki>$1</nowiki>" fra den $2, klokken $3?',
 'revdelete-show-file-submit' => 'Ja',
-'revdelete-selected' => "'''{{PLURAL:$2|Valgte version|Valgte versioner}} af '''$1:''''''",
 'logdelete-selected' => "'''{{PLURAL:$1|Valgt logindførsel|Valgte logindførsler}}:'''",
 'revdelete-confirm' => 'Vær venlig at bekræfte at du vil gøre dette, at du forstår konsekvenserne, og at du gør det i overensstemmelse med [[{{MediaWiki:Policy-url}}|retningslinjerne]].',
 'revdelete-suppress-text' => "Der bør '''kun''' skjules i de følgende tilfælde:

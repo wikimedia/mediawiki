@@ -890,7 +890,6 @@ Sīkāku informāciju var atrast [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'revdelete-nooldid-title' => 'Nederīga mērķa versija',
 'revdelete-no-file' => 'Norādītais fails neeksistē.',
 'revdelete-show-file-submit' => 'Jā',
-'revdelete-selected' => "'''[[:$1]] {{PLURAL:$2|izvēlētā versija|izvēlētās versijas}}:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Izvēlētais reģistra ieraksts|Izvēlētie reģistra ieraksti}}:'''",
 'revdelete-confirm' => 'Lūdzu apstiprini, ka Tu zini, ko dari, Tu apzinies sekas, tāpat Tu to dari saskaņā ar vadlīnijām.',
 'revdelete-suppress-text' => "Paslēpšanu izmantot vienīgi šādos gadījumos:

@@ -1250,7 +1250,6 @@ Je kunnen disse verschillen bekieken. Misschien steet der over in t [{{fullurl:{
 'revdelete-no-file' => 't Op-egeven bestaand besteet niet.',
 'revdelete-show-file-confirm' => 'Bi\'j der wisse van da\'j de vortedaone versie van t bestaand "<nowiki>$1</nowiki>" van $2 um $3 bekieken willen?',
 'revdelete-show-file-submit' => 'Ja',
-'revdelete-selected' => "'''{{PLURAL:$2|Ekeuzen bewarking|Ekeuzen bewarkingen}} van '''[[:$1]]''':'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Ekeuzen logboekboekaksie|Ekeuzen logboekaksies}}:'''",
 'revdelete-confirm' => "Bevestig da'j dit doon wollen, da'j de gevolgen dervan begriepen en da'j t doon in overeenstemming mit t geldende [[{{MediaWiki:Policy-url}}|beleid]].",
 'revdelete-suppress-text' => "Onderdrokken ma'j '''allinnig''' gebruken in de volgende gevallen:

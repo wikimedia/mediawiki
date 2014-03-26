@@ -1045,7 +1045,6 @@ Pues ver el diff; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/supr
 'revdelete-no-file' => 'El ficheru conseñáu nun esiste.',
 'revdelete-show-file-confirm' => '¿Tas seguru de que quies ver una versión desaniciada del ficheru "<nowiki>$1</nowiki>" del $2 a les $3?',
 'revdelete-show-file-submit' => 'Sí',
-'revdelete-selected' => "'''{{PLURAL:$2|Revisión seleicionada|Revisiones seleicionaes}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Socesu del rexistru seleicionáu|Socesos del rexistru seleicionaos}}:'''",
 'revdelete-text-text' => 'Les revisiones desaniciaes inda apaecerán nel historial de la páxina, pero partes del conteníu nun sedrán accesibles al públicu.',
 'revdelete-text-file' => 'Les versiones del ficheru desaniciaes inda apaecerán nel historial del ficheru, pero partes del conteníu nun sedrán accesibles al públicu.',

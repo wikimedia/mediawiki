@@ -557,7 +557,6 @@ Komu administradot {{SITENAME}} siña un atan ha';
 fana'an guåha attikulo gi [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log muna'susuha].",
 'rev-delundel' => "na'annok/nå'na'",
 'revisiondelete' => "Na'suha/para håfa muna'suha i tinilaika",
-'revdelete-selected' => "'''{{PLURAL:$2|Tinilaika ma'ayek|Tinilaika manma'ayek}} gi [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Kasun log ni ma'ayek|Kasun log ni manma'ayek}}:'''",
 'revdelete-legend' => "Po'lo i chinemma' lini'e'on siha",
 'revdelete-hide-text' => "Nå'na' i tinige' ribision",

@@ -1132,7 +1132,6 @@ Bħala amministratur inti xorta waħda tista' tarah dan il-konfront; ikkonsulta 
 'revdelete-no-file' => 'Il-fajl speċifikat ma jeżistix.',
 'revdelete-show-file-confirm' => 'Tinsab ċert li trid tara reviżjoni mħassra tal-fajl "<nowiki>$1</nowiki>" tal-$2 fil-$3?',
 'revdelete-show-file-submit' => 'Iva',
-'revdelete-selected' => "'''{{PLURAL:$2|Reviżjoni magħżula|Reviżjonijiet magħżula}} ta' [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Avveniment tar-reġistru magħżul|Avvenimenti tar-reġistri magħżula}}:'''",
 'revdelete-confirm' => 'Jekk jogħġbok ikkonferma li dan hu dak li tixtieq tagħmel, li tifhem il-konsegwenzi, u li qed tagħmel dan skont il-[[{{MediaWiki:Policy-url}}|politika]].',
 'revdelete-suppress-text' => "It-trażżin għandu jintuża '''biss''' għall-każijiet segwenti:

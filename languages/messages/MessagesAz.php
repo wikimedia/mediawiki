@@ -885,7 +885,6 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'revdelete-no-file' => 'Axtarılan fayl mövcud deyil',
 'revdelete-show-file-confirm' => '"<nowiki>$1</nowiki>" faylının $2 $3 tarixli silinmiş bir redaktəsini görmək istədiyinizdən əminsizinizmi?',
 'revdelete-show-file-submit' => 'Bəli',
-'revdelete-selected' => "'''[[:$1]] səhifəsinin {{PLURAL:$2|seçilmiş versiyası|seçilmiş versiyaları}}:'''",
 'logdelete-selected' => "'''Jurnalın {{PLURAL:$1|seçilmiş qeydi|seçilmiş qeydləri}}:'''",
 'revdelete-legend' => 'Məhdudiyyətləri müəyyənləşdir:',
 'revdelete-hide-text' => 'Səhifənin bu versiyasının mətnini gizlə',

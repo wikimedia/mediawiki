@@ -956,7 +956,6 @@ Tzemreḍ att ẓṛeḍ ; tilɣa llant deg [{{fullurl:{{#Special:Log}}/delete|p
 'revdelete-no-file' => 'Afaylu id ssefruḍ ur yella ara.',
 'revdelete-show-file-confirm' => 'Tebɣriḍ ad mḥuḍ tacaggart n ufaylu « <nowiki>$1</nowiki> » n $2 af $3 ?',
 'revdelete-show-file-submit' => 'Ih',
-'revdelete-selected' => "'''{{PLURAL:$2|Tasiwelt tettwafren|Tisiwal ttwafernen}} n [[:$1]]'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Tamirt n uɣmis tettwafren|Isallen n uɣmis ttwafernen}}:'''",
 'revdelete-confirm' => 'Sergeg ma tebɣiḍ ad xedmeḍ tigawt agi, fehmeḍ inalkamen, dɣa temtawiḍ s [[{{MediaWiki:Policy-url}}|ilugan]].',
 'revdelete-suppress-text' => "Ilaq tukksa att illi \"kan\" deg tijṛa agi :

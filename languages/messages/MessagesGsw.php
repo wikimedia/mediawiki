@@ -1063,7 +1063,6 @@ Du chasch dää Unterschid allno aaluege; Details het's im [{{fullurl:{{#Special
 'revdelete-no-file' => 'D Datei, wu Du aagee hesch, git s nit.',
 'revdelete-show-file-confirm' => 'Bisch sicher, ass Du di glescht Version vu dr Datei „<nowiki>$1</nowiki>“ vum $2 am $3 witt aaluege?',
 'revdelete-show-file-submit' => 'Jo',
-'revdelete-selected' => "'''{{PLURAL:$2|Usgwehlti Version|Usgwehlti Versione}} vu [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Usgwehlte Logbuechyytrag|Usgwehlti Logbuechyytreg}}:'''",
 'revdelete-confirm' => 'Bitte tue bstetige, ass Du vor hesch, des z mache, d Konsequänze drus verstohsch un s machsch in Inbereinstimmig mit dr [[{{MediaWiki:Policy-url}}|Richtlinie]].',
 'revdelete-suppress-text' => "Unterdruckige sotte '''nume''' in däne Fäll bruucht wäre:

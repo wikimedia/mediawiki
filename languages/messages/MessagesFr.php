@@ -1374,7 +1374,6 @@ Vous pouvez voir ce diff ; des détails sont disponibles dans le [{{fullurl:{{#S
 'revdelete-no-file' => "Le fichier spécifié n'existe pas.",
 'revdelete-show-file-confirm' => 'Êtes-vous sûr de vouloir voir la révision supprimée du fichier « <nowiki>$1</nowiki> » datant du $2 à $3 ?',
 'revdelete-show-file-submit' => 'Oui',
-'revdelete-selected' => "'''{{PLURAL:$2|Version sélectionnée|Versions sélectionnées}} de '''[[:$1]]''' :'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Événement d'historique sélectionné|Événements d'historique sélectionnés}} :'''",
 'revdelete-text-text' => "Les révisions supprimées continueront à apparaître dans l'historique de la page, mais une partie de leur contenu sera inaccessible au public.",
 'revdelete-text-file' => "Les versions de fichier supprimées continueront à apparaître dans l'historique des fichiers, mais une partie de leur contenu sera indisponible au public.",
@@ -2247,7 +2246,7 @@ Entrée : ''typedecontenu''/''sous-type'', par exemple <code>image/jpeg</code>."
 # List duplicated files special page
 'listduplicatedfiles' => 'Liste de fichiers en double',
 'listduplicatedfiles-summary' => "C'est une liste de fichiers où la version la plus récente du fichier est une copie de la version la plus récente d'un autre fichier. Seuls les fichiers locaux sont examinés.",
-'listduplicatedfiles-entry' => '[[:Fichier:$1|$1]] a [[$3|{{PLURAL:$2|un doublon|$2 doublons}}]].',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] a [[$3|{{PLURAL:$2|un doublon|$2 doublons}}]].',
 
 # Unused templates
 'unusedtemplates' => 'Modèles inutilisés',

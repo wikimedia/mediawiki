@@ -1160,7 +1160,6 @@ To redakcijo si lahko ogledate; podrobnosti lahko najdete v [{{fullurl:{{#Specia
 'revdelete-no-file' => 'Navedena datoteka ne obstaja.',
 'revdelete-show-file-confirm' => 'Ali ste prepričani da si želite ogledati izbrisano verzijo datoteke "<nowiki>$1</nowiki>" od $2 ob $3?',
 'revdelete-show-file-submit' => 'Da',
-'revdelete-selected' => "'''{{PLURAL:$2|Izbrana redakcija|Izbrani redakciji|Izbrane redakcije}} strani [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Izbran dnevniški dogodek|Izbrana dnevniška dogodka|Izbrani dnevniški dogodki}}:'''",
 'revdelete-text-text' => 'Izbrisane redakcije bodo še vedno prikazane v zgodovini strani, vendar bodo deli njihovih vsebin nedostopni javnosti.',
 'revdelete-text-file' => 'Izbrisane različice datoteke bodo še vedno prikazane v zgodovini datoteke, vendar bodo deli njihovih vsebin nedostopni javnosti.',

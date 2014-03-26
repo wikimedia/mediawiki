@@ -1232,7 +1232,6 @@ Ako správca si môžete tento rozdiel zobraziť; podrobnosti môžete nájsť v
 'revdelete-no-file' => 'Uvedený súbor neexistuje.',
 'revdelete-show-file-confirm' => 'Ste si istý, že chcete zobraziť zmazanú revíziu súboru „<nowiki>$1</nowiki>“ z $2 $3?',
 'revdelete-show-file-submit' => 'Áno',
-'revdelete-selected' => "'''{{PLURAL:$2|Vybraná jedna revízia|Vybrané $2 revízie|Vybraných $2 revízií}} z [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Vybraná udalosť záznamu|Vybrané udalosti záznamu}}:'''",
 'revdelete-confirm' => 'Prosím, potvrďte, že to naozaj chcete vykonať, rozumiete následkom a že to robíte v súlade s [[{{MediaWiki:Policy-url}}|politikou]].',
 'revdelete-suppress-text' => "Zatajenie by sa malo používať '''výlučne''' v nasledovných prípadoch:

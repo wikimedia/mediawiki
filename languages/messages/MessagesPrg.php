@@ -678,7 +678,6 @@ Bandais [[Special:Search|laukītun]] sirzdau nāunans pāusans en wiki',
 'revdelete-nooldid-text' => 'Ni etrīnkā di wersiōnins, na kawīdans šis dīlasenis turīlai būtwei izpilnintan, etrīnkta wersiōni ni ekzistijja, anga bandāi di kliptintun bigāntin wersiōnin.',
 'revdelete-no-file' => 'Etrīnkts zūrbrukis ni ekzistijja.',
 'revdelete-show-file-submit' => 'Jā',
-'revdelete-selected' => "{{PLURAL:$2|Pazentlitā pāusas [[:$1]] wersiōni|Pazentlitas pāusas [[:$1]] wersiōnis}}:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Pazentlits registeres audāsenis|Pazentlitai redigisenes audāsenei}}:'''",
 'revdelete-suppress-text' => 'Klipsnan prawerru tērpautun tēr prei:
 * Persōniskas dātas etkesnā

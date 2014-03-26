@@ -1298,7 +1298,6 @@ Pode ver a diferença entre revisões; encontrará detalhes no [{{fullurl:{{#Spe
 'revdelete-no-file' => 'O ficheiro especificado não existe.',
 'revdelete-show-file-confirm' => 'Tem a certeza de que quer ver uma revisão eliminada do ficheiro "<nowiki>$1</nowiki>" de $2 às $3?',
 'revdelete-show-file-submit' => 'Sim',
-'revdelete-selected' => "'''{{PLURAL:$2|Edição selecionada|Edições selecionadas}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Evento do registo selecionado|Eventos do registo selecionados}}:'''",
 'revdelete-text-text' => 'Revisões eliminadas ainda aparecerão no histórico da página, mas parte do seu conteúdo estará inacessível para o público.',
 'revdelete-text-file' => 'Versões eliminadas do ficheiro ainda aparecerão no histórico da página, mas parte do seu conteúdo estará inacessível para o público.',

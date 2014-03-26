@@ -1275,7 +1275,6 @@ funkcion, la specifita versio ne ekzistas, aŭ vi estas provanta kaŝi la nunan 
 'revdelete-no-file' => 'La specifita dosiero ne ekzistas.',
 'revdelete-show-file-confirm' => 'Ĉu vi certas ke vi volas vidi forigitan revizion de la dosiero "<nowiki>$1</nowiki>" de $2, $3?',
 'revdelete-show-file-submit' => 'Jes',
-'revdelete-selected' => "'''{{PLURAL:$2|Selektata versio|Selektataj versioj}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Selektata protokola evento|Selektataj protokolaj eventoj}}:'''",
 'revdelete-confirm' => 'Bonvolu konfirmi ke vi intencias fari ĉi tion, ke vi komprenas la konsekvencojn kaj ke vi faras ĉi tion laŭ [[{{MediaWiki:Policy-url}}|la regularo]].',
 'revdelete-suppress-text' => "Subpremo '''nur''' estu uzata por la jenaj kazoj:

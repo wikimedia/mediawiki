@@ -1260,7 +1260,6 @@ función, a revisión especificada non existe ou está intentando agochar a revi
 'revdelete-no-file' => 'O ficheiro especificado non existe.',
 'revdelete-show-file-confirm' => 'Está seguro de querer ver unha revisión borrada do ficheiro "<nowiki>$1</nowiki>" do día $2 ás $3?',
 'revdelete-show-file-submit' => 'Si',
-'revdelete-selected' => "'''{{PLURAL:\$2|Revisión seleccionada|Revisións seleccionadas}} de \"[[:\$1]]\":'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Rexistro de evento seleccionado|Rexistro de eventos seleccionados}}:'''",
 'revdelete-confirm' => 'Por favor, confirme que quere levar a cabo esta acción, que comprende as consecuencias e que o fai de acordo [[{{MediaWiki:Policy-url}}|coas políticas]].',
 'revdelete-suppress-text' => "A eliminación '''unicamente''' debería utilizarse nos seguintes casos:

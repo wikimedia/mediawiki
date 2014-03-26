@@ -869,7 +869,6 @@ der kinne details wêze yn it [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPA
 'revdelete-nooldid-text' => 'Jo hawwe gjin doelferzje(s) foar dizze hanneling opjûn, de oanjûne ferzje bestiet net, of jo besykje de lêste ferzje te ferskûljen.',
 'revdelete-no-file' => 'De spesifisearre triem bestiet net.',
 'revdelete-show-file-submit' => 'Ja',
-'revdelete-selected' => "'''Spesifisearre {{PLURAL:$2|ferzje|ferzjes}} fan [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|keazen lochboekregel|keazen lochboekregels}}:'''",
 'revdelete-legend' => 'Sichtberensbeheinings ynstelle.',
 'revdelete-hide-text' => 'De bewurke tekst ferskûlje',

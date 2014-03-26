@@ -880,7 +880,6 @@ Powody wyćepańo idźe znejść we [{{fullurl:{{#Special:Log}}/suppress|page={{
 'revdelete-no-file' => 'Ńy mo tygo plika.',
 'revdelete-show-file-confirm' => 'Jeżeś echt pewny co chcesz uobejzdrzeć wyćepano wersyjo plika „<nowiki>$1</nowiki>” s $2 $3?',
 'revdelete-show-file-submit' => 'Ja',
-'revdelete-selected' => "'''{{PLURAL:$2|Wybrano wersyjo|Wybrane wersyje}} zajty [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Wybrane zdarzyńy ze rejeru|Wybrane zdarzyńa ze rejeru}}:'''",
 'revdelete-legend' => 'Naštaluj uograńičyńo lo wersyji:',
 'revdelete-hide-text' => 'Schrůń tekst wersyji',

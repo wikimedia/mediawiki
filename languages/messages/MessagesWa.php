@@ -741,7 +741,6 @@ Vos l' poloz co vey; i gn a des detays sol [{{fullurl:{{#Special:Log}}/suppress|
 'rev-delundel' => 'mostrer/catchî',
 'revisiondelete' => 'Disfacer/rapexhî des modêyes',
 'revdelete-show-file-submit' => 'Oyi',
-'revdelete-selected' => "'''{{PLURAL:$2|Tchoezeye modêye|Tchoezeyès modêyes}} di [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Evenmint tchoezi|Evenmints tchoezis}} ezès djournås:'''",
 'revdelete-legend' => 'Defini des restriccions sol voeyaedje',
 'revdelete-hide-text' => "Catchî l' tecse del modêye",

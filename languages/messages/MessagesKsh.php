@@ -1275,7 +1275,6 @@ Als ene Wiki_Köbes kanns De de Ungerscheide ävver aankike wann De wells.",
 'revdelete-no-file' => 'De aanjejovve Dattei jidd_et nit.',
 'revdelete-show-file-confirm' => 'Beß De sescher, dat De de fottjeschmeße Version vun dä Dattei „<nowiki>$1</nowiki>“ vum $2 oö $3 Uhr aanloore wells?',
 'revdelete-show-file-submit' => 'Lohß Jonn!',
-'revdelete-selected' => "'''{{PLURAL:$2|Ein usjewählte Version|$2 usjewählte Versione|Kein Version usjewählt}} vun [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Dä ußjewählte Logboch-Endrach|De Ußjewählte Logboch-Endrähsch}}:'''",
 'revdelete-confirm' => 'Bes esu joot un doon dat beschtääteje, un donn domet ongerschriive, dat De dat donn wells, dat De weiß, wat dobei eruß kütt, un dat De dat och noh de [[{{MediaWiki:Policy-url}}|Rääjelle]] deihß.',
 'revdelete-suppress-text' => "Dat sullt '''blooß''' jedonn wäde för:

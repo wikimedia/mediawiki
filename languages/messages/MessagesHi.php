@@ -1169,7 +1169,6 @@ $2
 'revdelete-no-file' => 'निर्दिष्ट फ़ाइल मौजूद नहीं है।',
 'revdelete-show-file-confirm' => 'क्या आप वाकई फ़ाइल "<nowiki>$1</nowiki>" के $2 को $3 बजे बने, हटाए जा चुके अवतरण को देखना चाहते हैं?',
 'revdelete-show-file-submit' => 'हाँ',
-'revdelete-selected' => "'''[[:$1]] {{PLURAL:$2|का चुना हुआ|के चुने हुए}} अवतरण:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|चुना हुआ|चुने हुए}} लॉग इवेंट:'''",
 'revdelete-confirm' => 'पुष्टि करें कि आप यह कार्य करना चाहते हैं, आप इसका परिणाम समझते हैं, और आप ये [[{{MediaWiki:Policy-url}}|नीति]] के अनुसार कर रहे हैं।',
 'revdelete-suppress-text' => 'छिपाने का प्रयोग <strong>केवल</strong> इन परिस्थितियों में होना चाहिए:

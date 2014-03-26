@@ -702,7 +702,6 @@ der kunn'n details anwezig zien in 't [{{fullurl:{{#Special:Log}}/suppress|page=
 'revisiondelete' => 'Versies verwiederen/trugplekken',
 'revdelete-nooldid-title' => 'Hin doelversie',
 'revdelete-nooldid-text' => 'Je ei hin doelversie(s) voe deêze handelienge opeheven, de aneheven versie besti nie, of je probeer de lèste versie te verberhen.',
-'revdelete-selected' => "'''Hesillecteerde {{PLURAL:$2|bewerkieng|bewerkiengen}} van [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Hesillecteerde logboekactie|Hesillecteerde logboekacties}}:'''",
 'revdelete-legend' => "Zichbaereidsbeperkiengen instell'n",
 'revdelete-hide-text' => 'De bewerkte tekst verberhen',

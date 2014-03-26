@@ -1249,7 +1249,6 @@ vagy a legutolsó változatot próbáltad meg elrejteni.',
 'revdelete-no-file' => 'A megadott fájl nem létezik.',
 'revdelete-show-file-confirm' => 'Biztosan meg szeretnéd nézni a(z) „<nowiki>$1</nowiki>” $2, $3-i törölt változatát?',
 'revdelete-show-file-submit' => 'Igen',
-'revdelete-selected' => "'''A(z) [[:$1]] lap {{PLURAL:$2|kiválasztott változata|kiválasztott változatai}}:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Kiválasztott naplóesemény|Kiválasztott naplóesemények}}:'''",
 'revdelete-confirm' => 'Kérlek erősítsd meg, hogy valóban ezt szeretnéd tenni; megértetted a következményeket, és amit teszel, az összhangban van [[{{MediaWiki:Policy-url}}|az irányelvekkel]].',
 'revdelete-suppress-text' => "Az elrejtés '''csak''' a következő esetekben használható:

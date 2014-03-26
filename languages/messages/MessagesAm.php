@@ -728,7 +728,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'revdelete-nooldid-text' => 'ይህ ተግባር የሚፈጸምበት ግብ (አላማ) እትም አልወሰኑም።',
 'revdelete-no-file' => 'የተወሰነው ፋይል አይኖርም።',
 'revdelete-show-file-submit' => 'አዎን',
-'revdelete-selected' => "'''ከ [[:$1]] {{PLURAL:$2|የተመረጡ ዝርያዎች|የተመረጡ ዝርያዎች}}:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|የተመረጠ መዝገብ ድርጊት|የተመረጡ መዝገብ ድርጊቶች}}፦'''",
 'revdelete-hide-text' => 'የእትሙ ጽሕፈት ይደበቅ',
 'revdelete-hide-image' => 'የፋይሉ ይዞታ ይደበቅ',

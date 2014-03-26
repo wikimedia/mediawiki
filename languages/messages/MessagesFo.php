@@ -1054,7 +1054,6 @@ Tú kanst síggja munin; smálutir eru at finna í [{{fullurl:{{#Special:Log}}/s
 'revdelete-no-file' => 'Nevnda fíla er ikki til.',
 'revdelete-show-file-confirm' => 'Ert tú vís/ur í, at tú ynskir at síggja eina strikaða endurskoðan av fíluni "<nowiki>$1</nowiki>" frá $2 kl. $3?',
 'revdelete-show-file-submit' => 'Ja',
-'revdelete-selected' => "'''{{PLURAL:$2|Valda versjón|Valdar versjónir}} hjá [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Útvald logghending|Útvaldar logghendingar}}:'''",
 'revdelete-confirm' => 'Vinarliga vátta, at tú ætlar at gera hetta, at tú skilir avleiðingarnar, og at tú ger hetta í samsvari við [[{{MediaWiki:Policy-url}}|mannagongdirnar]].',
 'revdelete-legend' => 'Set avmarkinga fyri sjónligheit',

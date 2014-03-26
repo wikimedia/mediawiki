@@ -450,6 +450,7 @@ Guêrda che soquânti pàgini a prén vèdres incòra cme s'ét fós incòra col
 'gotaccountlink' => 'Và dèinter',
 'userlogin-resetlink' => "T'ét scurdê j elemèint p'r al tó ingrès?",
 'userlogin-resetpassword-link' => "T' ét scurdê la cêva 'd ingrès?",
+'userlogin-helplink2' => "Ajót per l'ingrès",
 'userlogin-loggedin' => "T'ét bèle coleghê {{GENDER:$1|$1}}. 
 Drōva al mōdul ché sòta cme un êter utèint.",
 'userlogin-createanother' => "Fà 'n' êtra utèinsa.",
@@ -557,6 +558,9 @@ La cêva 'd ingrès la pré èser stêda bèle cambiêda, opór n'in pré èser 
 'resetpass-abort-generic' => "La mudéfica 'd la cêva 'd ingrès l'é stêda fermêda da un şlungamèint.",
 'resetpass-expired' => "La cêva 'd ingrès l'é scadûda. Mèt dèinter 'na cêva 'd ingrès nōva per fêr l'ingrès.",
 'resetpass-expired-soft' => "La tó cêva 'd ingrès l'é scadûda. T'é perghê ed siēlier 'na nōva o clichêr insém a \"{{int:resetpass-submit-cancel}}\" per turnêrla a mèter dèinter in sègvit.",
+'resetpass-validity-soft' => "La tó cêva 'd ingrès an n'è mìa vâlida:\$1. 
+
+T'é perghê ed siēlier 'na nōva o clichêr insém a \"{{int:resetpass-submit-cancel}}\" per turnêrla a impustêr in sègvit.",
 
 # Special:PasswordReset
 'passwordreset' => "Câmbia la cêva 'd ingrès",
@@ -733,10 +737,28 @@ S'es pèinsa ed salvêrla, tót i cambiamèint fât dōp cla mudéfica ché andr
 'copyrightwarning' => "Per piaşèir tîn cûnt che tót al colaborasiòun a {{SITENAME}} a vînen cunsidrêdi publichêdi sòta la licèinsa $2 (per i particulêr guêrda $1). S' an 't vō mìa che i tō tèst a pôsen èser cambiê e turnê a publichêr da tót sèinsa lémit, an publichêri mìa ché.<br /> In pió, se 't  i póblich ché, a 't dichiâr, sòta la tó responsabilitê, che còl ch' è stê scrét a 't l'ê scrét té personalmèint opór l'é ste cupiê da documèint sèinsa ch' al sìa quacê da nisûn dirét 'd autōr. <strong> Ché insém an pubblichêr mìa materiêl quacê da dirét 'd autōr sèinsa autorişâsiòun! </strong>",
 'copyrightwarning2' => "Per piaşèir tîn cûnt che tót al colaborasiòun a {{SITENAME}} a pōlen èser mudifichê, arversê o scanşlê da êtra gînta cla dà 'na mân. S' an 't vō mìa che i tō tèst a pôsen èser cambiê alōra an publichêri mìa ché.<br />In pió, se 't  i póblich ché, a 't dichiâr, sòta la tó responsabilitê, che còl ch' è stê scrét a 't l'ê scrét té personalmèint opór l'é ste cupiê da documèint sèinsa ch' al sìa quacê da nisûn dirét 'd autōr (per i particulêr guêrda $1). <strong> Ché insém an pubblichêr mìa materiêl quacê da dirét 'd autōr sèinsa autorişâsiòun! </strong>",
 'longpageerror' => "<strong> Erōr: al tèst spidî l'é lòngh {{PLURAL:$1|1|$1}} kilobyte, ch'l'é pió grôs ed l'amzûra mâsima permésa ({{PLURAL:$2|1|$2}} kilobyte). </strong> Al tèst al pôl mìa èser salvê.",
+'readonlywarning' => "<strong>Atensiòun: al databêş l'é stê bluchê per justadûri e dòunca l'é impusébil salvê al mudéfichi in cól mumèint ché.</strong> P'r an pêrdi mìa, l'é pusébil cupiêri còl ch' é stê més dèinter fîn a dès int la caşèla di cambiamèint, incolêrel in un prugrâma tèst e salvêrel per spetêr al şblôch dal databêş. 
+
+L'aministradōr ch' l'à bluchê al databêş l'à dê cla spiegasiòun ché: $1",
+'protectedpagewarning' => "<strong> Atensiòun: cla pàgina ché l'é stêda bluchêda in môd che sōl j utèint cun i privilèg 'd aministradōr a pôsen cambiêrla.</strong> 
+Per infurmasiòun ché 'd sègvit a vîn scrét l'ûltem elemèint dal regéster:",
+'semiprotectedpagewarning' => "<strong>Nôta:</strong> cla pàgina ché l'é stêda bluchê in môd che sōl j utèint registrê a pôsen cambiêrla. 
+Per infurmasiòun ché 'd sègvit è scrét l'ûltem elemèint dal regéster.",
+'cascadeprotectedwarning' => "<strong> Atensiòun: </strong>cla pàgina ché l'é stêda bluchêda in môd che sōl j utèint cun i privilèg 'd aministradō a pôsen cambiêrla. Còst a sucēd perchè la pàgina l'é dèinter in cl'elèinch sòta protesiòun ché 'd sègvit {{PLURAL:$1|pàgina|pàgini}}",
+'titleprotectedwarning' => "<strong> Atensiòun: cla pàgina ché l'é stêda bluchêda in môd che, per fêrla, sién necesâri [[Special:ListGroupRights|dirét specêl]] </strong> 
+Per infurmasiòun ché 'd sègvit è scrét l'ûltem elemèint dal regéster.",
 'templatesused' => '{{PLURAL:$1|Mudèl druvê|Mudē druvê}} in cla pàgina ché:',
+'templatesusedpreview' => "{{PLURAL:$1|Mudèl druvê|Mudē druvê}} in cla pàgina 'd contròl ché:",
+'templatesusedsection' => '{{PLURAL:$1|Mudèl druvê|Mudē druvê}} in cla sesiòun ché:',
 'template-protected' => '(prutèt)',
 'template-semiprotected' => '(mèz-prutèt)',
 'hiddencategories' => "Cla pàgina ché l' é 'd {{PLURAL:$1|'na categoréia lughêda|$1 categoréi lughêdi}}:",
+'nocreatetext' => "La pusibilitê ed fêr dal pàgini nōvi insém a {{SITENAME}} l'é stêda limitêda a sōl j utèint registrê. L'é pusébil turnê indrē e mudifichêr 'na pògina ch la gh'é bèle,opór [[Special:UserLogin|andêr dèinter o registrêres]].",
+'nocreate-loggedin' => "An 's gh'à mìa i permès necesâri per fêr dal pàgini nōvi.",
+'sectioneditnotsupported-title' => 'Mudéfica dal sesiòun mìa sustgnûda.',
+'sectioneditnotsupported-text' => 'Mudéfica dal sesiòun mìa sustgnûda in cla pàgina ché.',
+'permissionserrors' => 'I permès în mìa asê',
+'permissionserrorstext' => "An 's gh'à mìa i permès necesâri per fêr còl ch'es pèinsa ed fêr per{{PLURAL:$1|cól mutîv ché|chi mutîv ché}}:",
 'permissionserrorstext-withaction' => "An 's gh'à mìa i permès necesâri per $2, per{{PLURAL:$1|cól mutîv ché|chi mutîv ché}}:",
 'recreate-moveddeleted-warn' => "'''Atensiòun: a s'é drē serchêr ed fêr 'na pàgina bèle scanşlêda tèimp fa'''. 
 
@@ -744,6 +766,10 @@ Asicurêres che sìa dabòun necesâri cuntinvêr a mudifichêr cla pàgina ché
 Per cumditê còst l'é l'èlèinch dal scanşladûri e di spustamèint relatîv a la pàgina.",
 'moveddeleted-notice' => "Cla pàgina ché l'é stêda scanşlêda. Per infurmasiòun  còst l'é l'èlèinch relatîv dal scanşladûri e di spustemèint fât.",
 'log-fulllog' => 'Guêrda la stòria dal registrasiòun',
+'edit-hook-aborted' => "La mudéfica l'é stêda scanşlêda da l' hook.
+An n'é mìa stê dê nisóna spiegasiòun.",
+'edit-gone-missing' => "Impusébil arnuvêr la pàgina. 
+A sèmbra ch'la sìa stêda scanşlêda.",
 'edit-conflict' => "Cuntrâst 'd edisiòun",
 
 # Parser/template warnings

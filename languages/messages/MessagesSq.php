@@ -1084,7 +1084,6 @@ Ju mund ta shikoni këtë ndryshim; detajet mund të gjenden te [{{fullurl:{{#Sp
 'revdelete-no-file' => 'Skeda e dhënë nuk ekziston.',
 'revdelete-show-file-confirm' => 'Jeni i/e sigurt se dëshironi të shikoni një version të grisur të skedës "<nowiki>$1</nowiki>" nga $2 tek $3?',
 'revdelete-show-file-submit' => 'Po',
-'revdelete-selected' => "'''{{PLURAL:$2|Versioni i zgjedhur i|Versionet e zgjedhura të}} [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Veprimi i zgjedhur në regjistër|Veprimet e zgjedhura në regjistër}}:'''",
 'revdelete-confirm' => 'Ju lutem konfirmoni që keni ndër mënd ta bëni këtë, që i kuptoni pasojat, dhe që ju po veproni në përputhje me [[{{MediaWiki:Policy-url}}|politiken]].',
 'revdelete-suppress-text' => "Shuarje duhet'''vetëm'''të përdoret për rastet e mëposhtme: 

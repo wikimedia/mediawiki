@@ -977,7 +977,6 @@ Aap ii diff ke dekhe saktaa hae: iske baare me aur jaan kaari [{{fullurl:{{#Spec
 'revdelete-no-file' => 'Chuna gais file abhi nai banawa gais hai.',
 'revdelete-show-file-confirm' => 'Ka aap sure hai ki aap file ke mitawa gais revision ke dekhe mangtaa hai "<nowiki>$1</nowiki>" $2 se $3 talak?',
 'revdelete-show-file-submit' => 'Haan',
-'revdelete-selected' => "'''{{PLURAL:$2|Selected badlao|Selected badlao}} of [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Chuna gais log event|Chuna gais log events}}:'''",
 'revdelete-confirm' => 'Meharbani kar ke aap ii confirm karo ki aap ii kare mangta hae, aap iske asar ke samajhta hae, aur iske aap [[{{MediaWiki:Policy-url}}|the policy]] ke anusar karta hae.',
 'revdelete-suppress-text' => "Suppression ke '''khaali''' ii chij ke khatir kaam me lawa jaae sake hai:

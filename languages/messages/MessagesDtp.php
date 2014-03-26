@@ -812,7 +812,6 @@ Milo ko do montong diti; kointalangan oihum id [{{fullurl:{{#Special:Log}}/suppr
 'revdelete-no-file' => 'Pail pinotontu awu poinsuang.',
 'revdelete-show-file-confirm' => 'Mongintong ko di sinimakan nopugas do pail  "<nowiki>$1</nowiki>" mantad $2 ontok $3?',
 'revdelete-show-file-submit' => 'O',
-'revdelete-selected' => "'''{{PLURAL:$2|Sinimakan pinili|Sinimakan nopili}} id [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Log kinaantakan nopili|Tongolog kinaantakan it nopili}}:'''",
 'revdelete-legend' => 'Uludo pogigihum pangangantob',
 'revdelete-hide-text' => 'Polisoko sinimakan tiik',

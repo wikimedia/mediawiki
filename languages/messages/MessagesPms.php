@@ -994,7 +994,6 @@ Chiel a peul ancora s-ciairé costa diferensa; a peulo essje pì 'd detaj ant ë
 'revdelete-no-file' => "L'archivi sërcà a-i é pa.",
 'revdelete-show-file-confirm' => 'É-lo sigur ëd vorèj vëdde na vërsion scancelà dl\'archivi "<nowiki>$1</nowiki>" da $2 a $3?',
 'revdelete-show-file-submit' => 'Bò!',
-'revdelete-selected' => "'''{{PLURAL:$2|Revision|Revision}} selessionà për [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Event|Event}} dël registr selessionà:'''",
 'revdelete-confirm' => "Për piasì, ch'a confema ch'a veul fé sòn, ch'as rend cont dle conseguense, e ch'a lo fa an acòrd con [[{{MediaWiki:Policy-url}}|le régole]].",
 'revdelete-suppress-text' => "La scancelassion a dovrìa '''mach''' esse dovrà an costi cas:

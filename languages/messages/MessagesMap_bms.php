@@ -827,7 +827,6 @@ Rinciane teyeng ditemokna nang [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAG
 'revdelete-no-file' => 'Berkas sing dituju ora ana.',
 'revdelete-show-file-confirm' => 'Apa rika wis mantep arep ndeleng revisi sing wis dibusek nggone berkas "<nowiki>$1</nowiki>" sekang tanggal $2 jam $3?',
 'revdelete-show-file-submit' => 'Ya',
-'revdelete-selected' => "'''{{PLURAL:$2|Revisi kepilih}} sekang [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Log kepilih|Log kepilih}} kanggo:'''",
 'revdelete-legend' => 'Atur watesan',
 'revdelete-hide-text' => 'Tèks revisi',

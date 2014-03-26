@@ -1367,7 +1367,6 @@ U kunt deze verschillen bekijken. Er kunnen details te vinden zijn in het [{{ful
 'revdelete-no-file' => 'Het opgegeven bestand bestaat niet.',
 'revdelete-show-file-confirm' => 'Weet u zeker dat u de verwijderde versie van het bestand "<nowiki>$1</nowiki>" van $2 om $3 wilt bekijken?',
 'revdelete-show-file-submit' => 'Ja',
-'revdelete-selected' => "'''Geselecteerde {{PLURAL:$2|bewerking|bewerkingen}} van [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Geselecteerde logboekhandeling|Geselecteerde logboekhandelingen}}:'''",
 'revdelete-text-text' => 'Verwijderde versies zijn nog zichtbaar in de geschiedenis, maar delen van de inhoud zijn niet openbaar.',
 'revdelete-text-file' => 'Verwijderde versies zijn nog zichtbaar in de bestandsgeschiedenis, maar delen van de inhoud zijn niet openbaar.',

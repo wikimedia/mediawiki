@@ -914,7 +914,6 @@ All'amministratura è ancora possibili [$1 talìari lu confrontu] si nicissariu.
 'revdelete-no-file' => 'Lu file spicificatu nun esisti.',
 'revdelete-show-file-confirm' => 'Si desidira talìari la virsioni cancillata dô file "<nowiki>$1</nowiki>" dô $2 ê $3?',
 'revdelete-show-file-submit' => 'Sì',
-'revdelete-selected' => "'''{{PLURAL:$2|Virsioni silizziunata|Virsioni silizziunati}} di [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Eventu dû riggistru silizziunatu|Eventi dû riggistru silizziunati}}:'''",
 'revdelete-suppress-text' => "La rimozzioni havi a essiri utilizzata '''sulu''' ni sti casi:
 * Dati pirsonali inoppurtuni

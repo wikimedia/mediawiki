@@ -1316,7 +1316,6 @@ Můžete si toto porovnání prohlédnout; podrobnosti jsou uvedeny v [{{fullurl
 'revdelete-no-file' => 'Uvedený soubor neexistuje.',
 'revdelete-show-file-confirm' => 'Určitě si chcete prohlédnout smazanou revizi souboru „<nowiki>$1</nowiki>“ z $2, $3?',
 'revdelete-show-file-submit' => 'Ano',
-'revdelete-selected' => "'''{{PLURAL:$2|Vybraná|Vybrané}} revize stránky [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Vybraná protokolovaná událost|Vybrané protokolované události}}:'''",
 'revdelete-text-text' => 'Smazané editace se budou i nadále zobrazovat v historii stránky, ale části jejich obsahu nebudou veřejně přístupné.',
 'revdelete-text-file' => 'Smazané verze souborů se budou i nadále zobrazovat v historii stránky, ale části jejich obsahu nebudou veřejně přístupné.',

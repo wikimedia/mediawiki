@@ -855,7 +855,6 @@ Kanol logön oni; pats ba binons in [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'revdelete-nooldid-text' => 'U no elevälol zeilafomami(s) pro dun at, u fomam pelevälöl no dabinon, u steifülol ad klänedön fomami anuik.',
 'revdelete-show-file-confirm' => 'Vilol-li fümiko logön revidi pemoüköl ragiva: „<nowiki>$1</nowiki>“ dätü $2 tü $3?',
 'revdelete-show-file-submit' => 'Si',
-'revdelete-selected' => "'''{{PLURAL:$2|Fomam|Fomams}} pevalöl pada: [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Lisedajenot|Lisedajenots}} pevälöl:'''",
 'revdelete-legend' => 'Levälön miedükamis logova:',
 'revdelete-hide-text' => 'Klänedön vödemi revida',

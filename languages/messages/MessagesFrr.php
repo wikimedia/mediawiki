@@ -973,7 +973,6 @@ Dü könst di ferskeel uunluke. Wan dü muar wed wel, luke iin uun't [{{fullurl:
 'revdelete-no-file' => 'Son dateinööm as ei diar.',
 'revdelete-show-file-confirm' => 'Wel dü würelk det stregen werjuun faan det datei „<nowiki>$1</nowiki>“ faan di $2, am a klook $3 uunluke?',
 'revdelete-show-file-submit' => 'Ja',
-'revdelete-selected' => "'''{{PLURAL:$2|Ütjsoocht werjuun|Ütjsoocht werjuunen}} faan [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Ütjsoocht logbukiindrach|Ütjsoocht logbukiindracher}}:'''",
 'revdelete-text-text' => "Stregen werjuunen bliiw uun't werjuunshistoore, man dialen diarfaan san ei för arken tu sen.",
 'revdelete-text-file' => "Stregen datei-werjuunen bliiw uun't werjuunshistoore, man dialen diarfaan san ei för arken tu sen.",

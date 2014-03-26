@@ -1212,7 +1212,6 @@ Vi možete vidjeti ovu razliku; detalji se mogu vidjeti u [{{fullurl:{{#Special:
 'revdelete-no-file' => 'Navedena datoteka ne postoji.',
 'revdelete-show-file-confirm' => 'Da li ste sigurni da želite pogledati obrisanu reviziju datoteke "<nowiki>$1</nowiki>" od $2 u $3?',
 'revdelete-show-file-submit' => 'Da',
-'revdelete-selected' => "'''{{PLURAL:$2|Odabrana revizija|Odabrane revizije}} od [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Označena stavka zapisa|Označene stavke zapisa}}:'''",
 'revdelete-confirm' => 'Molimo potvrdite da namjeravate ovo učiniti, da razumijete posljedice i da to činite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].',
 'revdelete-suppress-text' => "Ograničenja bi trebala biti korištena '''samo''' u slijedećim slučajevima:

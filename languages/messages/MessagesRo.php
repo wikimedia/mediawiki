@@ -1262,7 +1262,6 @@ funcție, fie versiunea specificată nu există, ori sunteți pe cale să ascund
 'revdelete-no-file' => 'Fișierul specificat nu există.',
 'revdelete-show-file-confirm' => 'Sigur doriți să vedeți versiunea ștearsă a fișierului „<nowiki>$1</nowiki>” din $2 ora $3?',
 'revdelete-show-file-submit' => 'Da',
-'revdelete-selected' => "'''{{PLURAL:$2|Versiunea aleasă|Versiunile alese}} pentru [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Revizia aleasă|Reviziile alese}}:'''",
 'revdelete-text-text' => 'Versiunile șterse vor continua să fie vizibile în istoricul paginii, însă anumite părți ale conținutului acestora vor fi inaccesibile publicului.',
 'revdelete-text-file' => 'Versiunile șterse ale fișierului vor continua să fie vizibile în istoricul fișierului, însă anumite părți ale conținutului acestora vor fi inaccesibile publicului.',

@@ -610,7 +610,6 @@ Sahifahoi çadidī aloqamandro metavoned [[Special:Search|dar viki]] çustuçū 
 'revisiondelete' => 'Nusxahoi hazf/ehjoī',
 'revdelete-nooldid-title' => "Nusxai maqsadi nomū'tabar",
 'revdelete-nooldid-text' => 'Şumo in jo on nusxai(hoi) maqsadro baroi içroi in amal muşaxxas nakardaed, nusxai muşaxxasşuda vuçud nadorad, jo  şumo dar holi kūşişi pinhon kardani nusxai kununiaş hasted.',
-'revdelete-selected' => "'''{{PLURAL:$2|Nusxai intixobşuda|Nusxahoi intixobşuda}} az [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Guzorişi mavrid intixobşuda|Guzorişi mavoridi intixobşuda}}:'''",
 'revdelete-legend' => 'Tanzimi mahdudijathoi padidorī',
 'revdelete-hide-text' => 'Pinhon kardani nusxai matn',

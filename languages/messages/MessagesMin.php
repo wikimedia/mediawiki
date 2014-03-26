@@ -1059,7 +1059,6 @@ Sanak dapek malieknyo; rinciannyo mungkin ado di [{{fullurl:{{#Special:Log}}/del
 'revdelete-no-file' => 'Berkas nan dituju indak basobok.',
 'revdelete-show-file-confirm' => 'Apokah Sanak yakin nio mancaliak revisi nan alah dihapuih dari berkas "<nowiki>$1</nowiki>" per $3, $2?',
 'revdelete-show-file-submit' => 'Yo',
-'revdelete-selected' => "'''{{PLURAL:$2|Revisi piliahan}} dari [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Log piliahan}}:'''",
 'revdelete-confirm' => 'Tolong konfirmasi baso Sanak samemang bamakasuik malakuan iko, mamahami konsekuensinyo, dan baso Sanak malakuannyo sasuai jo [[{{MediaWiki:Policy-url}}|kabijakan]].',
 'revdelete-suppress-text' => "Panyambunyian revisi '''hanyo''' buliah digunoan untuak kasus-kasus barikuik:

@@ -1350,7 +1350,6 @@ Aún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:
 'revdelete-no-file' => 'El archivo especificado no existe.',
 'revdelete-show-file-confirm' => '¿Quieres ver la revisión borrada del archivo «<nowiki>$1</nowiki>» del $2 a las $3?',
 'revdelete-show-file-submit' => 'Sí',
-'revdelete-selected' => "'''{{PLURAL:$2|Revisión seleccionada|Revisiones seleccionadas}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Seleccionado un evento|Seleccionados eventos}}:'''",
 'revdelete-text-text' => 'Las revisiones eliminadas aún aparecerán en el historial de la página, pero parte de su contenido será inaccesible para el público.',
 'revdelete-text-file' => 'Las versiones de los archivos eliminados aún aparecerán en el historial del archivo, pero partes de su contenido serán inaccesibles para el público.',

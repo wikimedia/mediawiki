@@ -1345,7 +1345,6 @@ $2개 보다 적게 {{PLURAL:$2|써야}} 하지만 {{PLURAL:$1|지금은 $1개�
 'revdelete-no-file' => '해당 파일이 존재하지 않습니다.',
 'revdelete-show-file-confirm' => '정말 "<nowiki>$1</nowiki>" 파일의 삭제된 $2 $3 버전을 보시겠습니까?',
 'revdelete-show-file-submit' => '예',
-'revdelete-selected' => "'''[[:$1]]의 {{PLURAL:$2|선택한 판}}:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|선택한 기록}}:'''",
 'revdelete-text-text' => '삭제된 판은 여전히 문서 역사에 남게 되지만, 그 내용의 일부는 다른 사람들이 접근할 수 없게 됩니다.',
 'revdelete-text-file' => '삭제된 파일 버전은 계속 파일 역사에 남게 되지만, 내용의 일부는 다른 사람들이 접근할 수 없게 됩니다.',

@@ -1083,7 +1083,8 @@ Móžeš sej tutón rozdźěl wobhladać; podrobnosće namakaš w [{{fullurl:{{#
 'revdelete-no-file' => 'Podata dataja njeeksistuje.',
 'revdelete-show-file-confirm' => 'Chceš sej woprawdźe wušmórnjenu wersiju dataje "<nowiki>$1</nowiki>" wot $2 $3  wobhladać?',
 'revdelete-show-file-submit' => 'Haj',
-'revdelete-selected' => "'''{{PLURAL:$2|Wubrana wersija|Wubranej wersiji|Wubrane wersije|Wubranych wersijow}} wot [[:$1]]:'''",
+'revdelete-selected-text' => '{{PLURAL:$1|Wubrana wersija|Wubranej wersiji|Wubrane wersije}} wot [[:$2]]:',
+'revdelete-selected-file' => '{{PLURAL:$1|Wubrana datajowa wersija|Wubranej datajowej wersiji|Wubrane datajowe wersije}} wot [[:$2]]:',
 'logdelete-selected' => "'''{{PLURAL:$1|Wubrany zapisk z protokola|Wubranej zapiskaj z protokola|Wubrane zapiski z protokola|Wubrane zapiski z protokola}} za '''$1:''''''",
 'revdelete-text-text' => 'Zhašane wersije wostanu hišće we wersijowej historiji, ale dźěle jich wobsaha njebudu přistupne zjawnosći.',
 'revdelete-text-file' => 'Zhašane datajowe wersije wostanu w datajowej historiji, ale dźěle jich wobsaha njebudu přistupne zjawnosći.',
@@ -1943,6 +1944,11 @@ Snano chceš wopisanje na jeje [$2 stronje datajoweho wopisanja] wobdźěłać.'
 
 # List redirects
 'listredirects' => 'Lisćina daleposrědkowanjow',
+
+# List duplicated files special page
+'listduplicatedfiles' => 'Lisćina datajow z duplikatami',
+'listduplicatedfiles-summary' => 'To je lisćina datajow, hdźež najnowša wersija dataje je duplikat najnowšeje wersije někajkeje druheje dataje. Jenož lokalne dataje so wobkedźbuja.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] ma [[$3|{{PLURAL:$2|duplikat|$2 duplikataj|$2 duplikaty|$2 duplikatow}}]].',
 
 # Unused templates
 'unusedtemplates' => 'Njewužiwane předłohi',

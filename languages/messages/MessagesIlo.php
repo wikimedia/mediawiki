@@ -1021,7 +1021,6 @@ awan ti naibaga a panagbaliw, wenno padpadasem nga ilemlemmeng ti agdama a panag
 'revdelete-no-file' => 'Awan dayta nainaganan a papeles.',
 'revdelete-show-file-confirm' => 'Sigurado kadi a kayatmo ti mangkita ti naikkat a baliwan ti papeles "<nowiki>$1</nowiki>" a naggapu idi $2 idi $3?',
 'revdelete-show-file-submit' => 'Wen',
-'revdelete-selected' => "'''{{PLURAL:$2|Napili a nabaliwan|Dagiti napili a nabaliwan}} iti [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Ti napili a listaan ti napasamak|Dagiti napili a listaan ti napasamak}}:'''",
 'revdelete-text-text' => 'Dagiti naikkat a rebision ket agparangto pay laeng iti panid ti pakasaritaan, ngem dagiti paset ti linaonda ket saanton a publiko a maserrekan.',
 'revdelete-text-file' => 'Dagiti naikkat a bersion ti papeles ket agparangto pay laeng iti pakasaritaan ti papeles, ngem dagiti paset ti linaonda ket saanton a publiko a maserrekan.',

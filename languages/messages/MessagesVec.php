@@ -1051,7 +1051,6 @@ Te połi uncora vixuałixare sto confronto; controłare el [{{fullurl:{{#Special
 'revdelete-no-file' => "El file indicà no l'esiste mia.",
 'revdelete-show-file-confirm' => 'Vuto dal bon vardar la version scancelà del file "<nowiki>$1</nowiki>" del $2 a le $3?',
 'revdelete-show-file-submit' => 'Sì',
-'revdelete-selected' => "'''{{PLURAL:$2|Version selezionà|Versioni selezionà}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Evento del registro selezionà|Eventi del registro selezionè}}:'''",
 'revdelete-confirm' => 'Par piaser, conferma che vol far sta azion, che te capissi le so conseguense, e che te sì drio operar secondo le [[{{MediaWiki:Policy-url}}|linee guida]].',
 'revdelete-suppress-text' => "La sopression la se dovarìa doparar '''solo''' in sti casi qua:

@@ -939,7 +939,6 @@ Ti pos vesair quest diff; detagls pon vegnir chattads en il [{{fullurl:{{#Specia
 'revdelete-no-file' => "La datoteca specifitgada n'exista betg.",
 'revdelete-show-file-confirm' => 'Es ti segir che ti vuls vesar ina versiun stizzada da la datoteca "<nowiki>$1</nowiki>" dals $2 las $3?',
 'revdelete-show-file-submit' => 'Gea',
-'revdelete-selected' => "'''{{PLURAL:$2|Versiun tschernida|Versiuns tschernidas}} da [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Element dal protocol tschernì|Elements dal protocol tschernids}}:'''",
 'revdelete-confirm' => 'Confermescha che ti vuls far quai, che ti chapeschas las consequenzas e che ti fas quai en accordanza cun [[{{MediaWiki:Policy-url}}|las directivas]].',
 'revdelete-suppress-text' => "Ti duessas '''be''' supprimer en quests cas: 

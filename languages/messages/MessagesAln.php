@@ -792,7 +792,6 @@ Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistr
 'revdelete-nooldid-title' => 'Version i dëshiruar i pavfleshëm',
 'revdelete-nooldid-text' => 'Ose nuk keni përcaktuar një version(e) të dëshiruar për veprimin, ose versioni nuk ekziston, ose po mundoheni të fshihni versionin e tanishëm.',
 'revdelete-no-file' => 'Skeda e dhënë nuk ekziston.',
-'revdelete-selected' => "'''{{PLURAL:$2|Versioni i zgjedhur i|Versionet e zgjedhura të}} [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Veprimi i zgjedhur në regjistër|Veprimet e zgjedhura në regjistër}}:'''",
 'revdelete-legend' => 'Vendosni kufizimet për versionin:',
 'revdelete-hide-text' => 'Fshihe tekstin e versionit',

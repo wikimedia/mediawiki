@@ -738,7 +738,6 @@ Lisateedüst või ollaq [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAME
 'revisiondelete' => 'Kistudaq/võtaq tagasi lehe kujjõ',
 'revdelete-nooldid-title' => 'Säänest otsitavat kujjo olõ-i',
 'revdelete-nooldid-text' => 'Sa olõ-i valinuq kujjo vai kujjõ.',
-'revdelete-selected' => "'''{{PLURAL:$2|Valit kujo|Validuq kujoq}} lehele [[:$1]]'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Valit muutminõ|Validuq muutmisõq}}:'''",
 'revdelete-legend' => 'Nättävüse piirdmiseq',
 'revdelete-hide-text' => 'Käkiq kujo sisu',

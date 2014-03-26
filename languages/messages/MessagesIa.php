@@ -592,6 +592,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'gotaccountlink' => 'Aperir session',
 'userlogin-resetlink' => 'Datos de authentication oblidate?',
 'userlogin-resetpassword-link' => 'Contrasigno oblidate?',
+'userlogin-helplink2' => 'Adjuta al accesso',
 'userlogin-loggedin' => 'Tu ha jam aperite session como {{GENDER:$1|$1}}.
 Usa le formulario sequente pro aperir session como altere usator.',
 'userlogin-createanother' => 'Crear un altere conto',
@@ -693,6 +694,7 @@ Per favor attende $1 ante de probar lo novemente.',
 'createacct-another-realname-tip' => 'Le nomine real es optional.
 Si tu opta pro dar lo, isto essera usate pro dar al usator attribution pro su contributiones.',
 'pt-login' => 'Aperir session',
+'pt-login-button' => 'Aperir session',
 'pt-createaccount' => 'Crear conto',
 'pt-userlogout' => 'Clauder session',
 
@@ -727,6 +729,9 @@ Pro completar le accesso, tu debe definir un nove contrasigno hic:',
 'resetpass-abort-generic' => 'Le cambio del contrasigno ha essite abortate per un extension.',
 'resetpass-expired' => 'Le contrasigno ha expirate. Per favor defini un nove contrasigno pro aperir session.',
 'resetpass-expired-soft' => 'Le contrasigno ha expirate e debe esser redefinite. Per favor elige un nove contrasigno ora, o clicca sur "{{int:resetpass-submit-cancel}}" pro redefinir lo plus tarde.',
+'resetpass-validity-soft' => 'Le contrasigno non es valide: $1
+
+Per favor elige un nove contrasigno ora, o clicca sur "{{int:resetpass-submit-cancel}}" pro redefinir lo plus tarde.',
 
 # Special:PasswordReset
 'passwordreset' => 'Reinitialisar contrasigno',
@@ -1131,8 +1136,11 @@ function, o le version specificate non existe, o tu essaya celar le version actu
 'revdelete-no-file' => 'Le file specificate non existe.',
 'revdelete-show-file-confirm' => 'Es tu secur de voler vider un version delite del file  "<nowiki>$1</nowiki>" del $2 a $3?',
 'revdelete-show-file-submit' => 'Si',
-'revdelete-selected' => "'''{{PLURAL:$2|Version seligite|Versiones seligite}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Evento|Eventos}} de registro seligite:'''",
+'revdelete-text-text' => 'Versiones delite continua a apparer in le historia del pagina, ma parte de lor contento essera inaccessibile pro le publico.',
+'revdelete-text-file' => 'Versiones delite de un file continua a apparer in le historia del file, ma parte de lor contento essera inaccessibile pro le publico.',
+'logdelete-text' => 'Eventos delite continua a apparer in le registros, ma parte de lor contento essera inaccessibile pro le publico.',
+'revdelete-text-others' => 'Altere administratores in {{SITENAME}} continua a poter acceder al contento abscondite e pote restaurar lo per medio de iste mesme interfacie, a minus que additional restrictiones ha essite definite.',
 'revdelete-confirm' => 'Per favor confirma que tu ha le intention de facer isto, que tu comprende le consequentias, e que tu face isto in accordo con [[{{MediaWiki:Policy-url}}|le politica]].',
 'revdelete-suppress-text' => "Le suppression debe '''solmente''' esser usate pro le sequente casos:
 * Information potentialmente diffamatori
@@ -1597,7 +1605,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'recentchanges-legend-heading' => "'''Legenda:'''",
 'recentchanges-legend-newpage' => '(vide etiam le [[Special:NewPages|lista de nove paginas]])',
 'recentchanges-legend-plusminus' => "(''±123'')",
-'rcnotefrom' => 'infra es le modificationes a partir de <b>$2</b> (usque a <b>$1</b>).',
+'rcnotefrom' => 'Ecce le modificationes a partir del <strong>$3 a $4</strong> (usque a <strong>$1</strong> entratas).',
 'rclistfrom' => 'Monstrar nove modificationes a partir de $1',
 'rcshowhideminor' => '$1 modificationes minor',
 'rcshowhideminor-show' => 'Monstrar',
@@ -2007,6 +2015,11 @@ Syntaxe: typo/subtypo, p.ex. <code>image/jpeg</code>.',
 # List redirects
 'listredirects' => 'Listar redirectiones',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Lista de files con duplicatos',
+'listduplicatedfiles-summary' => 'Isto es un lista de files del quales le version le plus recente es un duplicato del version le plus recente de un altere file. Solmente le files local es examinate.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] ha [[$3|{{PLURAL:$2|un duplicato|$2 duplicatos}}]].',
+
 # Unused templates
 'unusedtemplates' => 'Patronos non usate',
 'unusedtemplatestext' => 'Iste pagina es un lista de tote le paginas in le spatio de nomines "{{ns:template}}" que non es includite in un altere pagina.
@@ -2415,7 +2428,7 @@ Le deletion de tal paginas ha essite restringite pro impedir le disruption accid
 'delete-warning-toobig' => 'Iste pagina ha un grande historia de modificationes con plus de $1 {{PLURAL:$1|version|versiones}}.
 Le deletion de illo pote disrumper le operationes del base de datos de {{SITENAME}};
 procede con caution.',
-'deleting-backlinks-warning' => "'''Attention:''' Il ha altere paginas que liga a o transclude le pagina que tu es sur le puncto de deler.",
+'deleting-backlinks-warning' => "'''Attention:''' Il ha [[Special:WhatLinksHere/{{FULLPAGENAME}}|altere paginas]] que liga a o transclude le pagina que tu es sur le puncto de deler.",
 
 # Rollback
 'rollback' => 'Revocar modificationes',
@@ -2471,7 +2484,7 @@ Ecce le configurationes actual del pagina '''$1''':",
 'protect-locked-access' => "Tu conto non ha le permission de cambiar le nivellos de protection de paginas.
 Ecce le configurationes actual del pagina '''$1''':",
 'protect-cascadeon' => 'Iste pagina es actualmente protegite proque illo es includite in le sequente {{PLURAL:$1|pagina, le qual|paginas, le quales}} ha activate le protection in cascada.
-Tu pote cambiar le nivello de protection de iste pagina, ma isto non cambiara le effecto del protection in cascada.',
+Cambiamentos in le nivello de protection de iste pagina non influentia le protection in cascada.',
 'protect-default' => 'Permitter a tote le usatores',
 'protect-fallback' => 'Permitter solmente al usatores con le privilegio de "$1"',
 'protect-level-autoconfirmed' => 'Permitter solmente al usatores autoconfirmate',
@@ -2597,6 +2610,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'Iste adresse IP es actualmente blocate.
 Le ultime entrata del registro de blocadas es reproducite hic infra pro information:',
 'sp-contributions-search' => 'Cercar contributiones',
+'sp-contributions-suppresslog' => 'contributiones supprimite de usatores',
 'sp-contributions-username' => 'Adresse IP o nomine de usator:',
 'sp-contributions-toponly' => 'Monstrar solmente le versiones recente',
 'sp-contributions-newonly' => 'Monstrar solmente le modificationes que es creationes de pagina',

@@ -649,7 +649,6 @@ Sıma be idarekerênia ho ra şikinê hona [$1 nê ferqi bıvênê], eke wazenê
 'revdelete-no-file' => 'Dosya diyarkerdiye çina.',
 'revdelete-show-file-confirm' => 'Sıma eminê ke wazenê çımraviarnaena esterıtiya na dosya "<nowiki>$1</nowiki>" $2 ra $3 de bıvênê?',
 'revdelete-show-file-submit' => 'Heya',
-'revdelete-selected' => "'''[[:$1]]: ra {{PLURAL:$2|Çımraviarnaiso weçinıte|Çımraviarnaisê weçinıtey}}'''",
 'revdelete-suppress-text' => "Wedardene gunê '''teyna''' nê halunê cêrênu de bıguriyo:
 * Melumatê kıfırio mıhtemel
 * Melumatê şexsio bêmınasıb

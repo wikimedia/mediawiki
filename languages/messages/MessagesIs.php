@@ -1160,7 +1160,6 @@ Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGE
 'revdelete-no-file' => 'Umbeðin skrá er ekki til.',
 'revdelete-show-file-confirm' => 'Ertu viss um að þú viljir sjá eydda breytingu af síðunni "<nowiki>$1</nowiki>" frá $2 $3?',
 'revdelete-show-file-submit' => 'Já',
-'revdelete-selected' => "'''{{PLURAL:$2|Valin breyting|Valdar breytingar}} fyrir [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Valin aðgerð|Valdar aðgerðir}}:'''",
 'revdelete-confirm' => 'Vinsamlegast staðfestu að þú viljir gera þetta, að þú skiljir afleiðingarnar og að þú sért að gera þetta í samræmi við  [[{{MediaWiki:Policy-url}}]].',
 'revdelete-suppress-text' => "Bælingu á '''eingöngu''' að nota í eftirfarandi tilfellum:

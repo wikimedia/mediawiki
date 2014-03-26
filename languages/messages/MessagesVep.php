@@ -863,7 +863,6 @@ Detalid voidas olda [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 
 'revdelete-nooldid-text' => 'Tö et olgoi valinuded metversijad (metversijoid) necen funkcijan oigetes.',
 'revdelete-no-file' => 'Mugošt failad ei ole.',
 'revdelete-show-file-submit' => 'Ka',
-'revdelete-selected' => "'''{{PLURAL:$2|Valitud versii|Valitud versijad}} lehtpolišpäi [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Valitud kirjutez aigkirjas|Valitud kirjutesed aigkirjas}}:'''",
 'revdelete-legend' => 'Säta kaidendused',
 'revdelete-hide-text' => 'Redakcijan tekst',

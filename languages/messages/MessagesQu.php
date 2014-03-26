@@ -1173,7 +1173,6 @@ Kay wakin kayta qhawayta atinkim; astawanchá rikunkiman [{{fullurl:{{#Special:L
 'revdelete-no-file' => 'Sapaqchasqa willañiqiqa manam kanchu.',
 'revdelete-show-file-confirm' => 'Allinta yachankichu "<nowiki>$1</nowiki>" willañiqimanta qullusqa $2-manta $3-pi musuqchasqata qhawayta munaspayki?',
 'revdelete-show-file-submit' => 'Arí',
-'revdelete-selected' => "'''{{PLURAL:$2|Akllasqa llamk'apusqa|Akllasqa llamk'apusqakuna}} [[:$1]]-manta:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Akllasqa tukusqa|Akllasqa tukusqakuna}} hallch'api:'''",
 'revdelete-confirm' => 'Ama hina kaspa, takyachiy munayniykita, qatiqninkunata riqsiyniykita, [[{{MediaWiki:Policy-url}}|kawpaykama]] rurayniykitapas.',
 'revdelete-suppress-text' => "Pakay ruranata '''kaylla kaptin''' llamk'achiy:

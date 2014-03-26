@@ -1158,7 +1158,6 @@ $2
 'revdelete-no-file' => 'Иштта файл яц.',
 'revdelete-show-file-confirm' => 'Бакъалла лаьий хьуна дӀаяьккхина файлан версега хьажа «<nowiki>$1</nowiki>» $2 тӀера, $3?',
 'revdelete-show-file-submit' => 'Хlаъ',
-'revdelete-selected' => "'''АгӀона [[:$1]] {{PLURAL:$2|1=къастина верси|къастина версеш}}:'''",
 'logdelete-selected' => '<strong>Тептар чура {{PLURAL:$1|хаьржина дӀаяздар|хаьржина дӀаяздарш}}:</strong>',
 'revdelete-confirm' => 'Дехар до, бакъдар ахьа деш дерг [[{{MediaWiki:Policy-url}}|бакъонашца]] деш хилар.',
 'revdelete-legend' => 'Доза тохар',

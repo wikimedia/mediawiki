@@ -1083,7 +1083,8 @@ Móžoš se toś ten rozdźěl woglědaś; drobnostki glědaj w [{{fullurl:{{#Sp
 'revdelete-no-file' => 'Pódana dataja njeeksistěrujo.',
 'revdelete-show-file-confirm' => 'Coš se napšawdu wulašowanu wersiju dataje "<nowiki>$1</nowiki>" wót $2 $3 woglědaś?',
 'revdelete-show-file-submit' => 'Jo',
-'revdelete-selected' => "'''{{PLURAL:$2|Wuzwólona wersija|Wuzwólonej wersiji|Wuzwólone wersije}} wót [[:$1]].'''",
+'revdelete-selected-text' => '{{PLURAL:$1|Wubrana wersija|Wubranej wersiji|Wubrane wersije}} wót [[:$2]]:',
+'revdelete-selected-file' => '{{PLURAL:$1|Wubrana datajowa wersija|Wubranej datajowej wersiji|Wubrane datajowe wersije}} wót [[:$2]]:',
 'logdelete-selected' => "'''{{PLURAL:$1|Wuzwólony protokolowe tšojenje|Wuzwólonej protokolowe tšojeni|wuzwólone protokolowe tšojenja}}:'''",
 'revdelete-text-text' => 'Wulašowane wersije wóstanu hyšći we wersijowej historiji, ale źěle jich wopśimjeśa njebudu pśistupne zjawnosći.',
 'revdelete-text-file' => 'Wulašowane datajowe wersije wóstanu w datajowej historiji, ale źěle jich wopśimjeśa njebudu pśistupne zjawnosći.',
@@ -1938,6 +1939,11 @@ Snaź coš wopisanje na jeje [$2 boku datajowego wopisanja] wobźěłaś.',
 
 # List redirects
 'listredirects' => 'Lisćina dalejpósrědnjenjow',
+
+# List duplicated files special page
+'listduplicatedfiles' => 'Lisćina datajow z duplikatami',
+'listduplicatedfiles-summary' => 'To jo lisćina datajow, źož nejnowša wersija dataje jo duplikat nejnowšeje wersije někakeje drugeje dataje. Jano lokalne dataje se zapśimuju.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] ma [[$3|{{PLURAL:$2|duplikat|$2 duplikata|$2 duplikaty|$2 duplikatow}}]].',
 
 # Unused templates
 'unusedtemplates' => 'Njewužywane pśedłogi',

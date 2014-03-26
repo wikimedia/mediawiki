@@ -1272,7 +1272,6 @@ Du kan se denne diffen; det kan finnes detaljer i [{{fullurl:{{#Special:Log}}/su
 'revdelete-no-file' => 'Den spesifiserte filen finnes ikke.',
 'revdelete-show-file-confirm' => 'Er du sikker på at du ønsker å vise en slettet versjon av filen «<nowiki>$1</nowiki>» fra $2 kl. $3?',
 'revdelete-show-file-submit' => 'Ja',
-'revdelete-selected' => "'''{{PLURAL:$2|Valgt revisjon|Valgte revisjoner}} av [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Valgt loggoppføring|Valgte loggoppføringer}}:'''",
 'revdelete-confirm' => 'Bekreft at du ønsker å gjøre dette, at du forstår konsekvensene, og at du gjør det i samsvar med [[{{MediaWiki:Policy-url}}|retningslinjene]].',
 'revdelete-suppress-text' => "Skjuling bør '''kun''' brukes i følgende tilfeller:

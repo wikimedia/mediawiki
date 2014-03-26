@@ -712,7 +712,6 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 'revdelete-nooldid-title' => 'Versioni nò ippizzificadda',
 'revdelete-nooldid-text' => "No ài ippizzificaddu la o li versioni di la pàgina i' li quari eseguì chistha funzioni; pò assé chi nò esisthini.",
 'revdelete-show-file-submit' => 'Si',
-'revdelete-selected' => "'''{{PLURAL:$2|Versioni sciubaradda|Versioni sciubaraddi}} di [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Eventu di lu rigisthru sciubaraddu|Eventi di lu rigisthru sciubaraddi}}:'''",
 'revdelete-legend' => "Impustha li sighenti limitazioni i'li versioni canzilladdi:",
 'revdelete-hide-text' => 'Cua lu testhu di la versioni',

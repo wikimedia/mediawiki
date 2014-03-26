@@ -956,7 +956,6 @@ $2
 'revdelete-no-file' => 'खुलाइएको पृष्ठ अस्तित्वमा छैन',
 'revdelete-show-file-confirm' => 'तपाईँ $2 बाट $3 मा मेटिएको फाइल "<nowiki>$1</nowiki>" को पुनरावलोकन हेर्न चाहनुहुन्छ भन्ने कुरामा निश्चित हुनुहुन्छ ?',
 'revdelete-show-file-submit' => 'हो',
-'revdelete-selected' => "'''[[:$1]]को {{PLURAL:$2|छानिएको संस्करण|छानिएका संस्करणहरु}}  :'''",
 'logdelete-selected' => "'''{{PLURAL:$1|छानिएको लग घटना|छानिएका लग घटनाहरु}}:'''",
 'revdelete-legend' => 'दृष्टि बन्देज मिलाउने',
 'revdelete-hide-text' => 'पुनरावलोकन पाठ',

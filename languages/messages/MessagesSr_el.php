@@ -1223,7 +1223,6 @@ Ipak možete da vidite ovu razliku; više detalja možete naći u [{{fullurl:{{#
 'revdelete-no-file' => 'Tražena datoteka ne postoji.',
 'revdelete-show-file-confirm' => 'Želite li da vidite obrisanu izmenu datoteke „<nowiki>$1</nowiki>“ od $2; $3?',
 'revdelete-show-file-submit' => 'Da',
-'revdelete-selected' => "'''{{PLURAL:$2|Izabrana izmena|Izabrane izmene}} stranice [[:$1]]'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Izabrana stavka u istoriji|Izabrane stavke u istoriji}}:'''",
 'revdelete-confirm' => 'Potvrdite da nameravate ovo uraditi, da razumete posledice i da to činite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].',
 'revdelete-suppress-text' => "Sakrivanje izmena bi trebalo koristiti '''samo''' u sledećim slučajevima:

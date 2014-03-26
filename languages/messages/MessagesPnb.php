@@ -825,7 +825,6 @@ $3 نے ''$2'' وجہ دسی اے۔",
 'revdelete-no-file' => 'فائل جیہڑی کئی گئی اے ہے ای نئیں۔',
 'revdelete-show-file-confirm' => 'تساں نوں کیا پک اے جے تسیں فائل "<nowiki>$1</nowiki>" دی مٹائی ریوین  $2 توں $3 تک؟',
 'revdelete-show-file-submit' => 'ہاں',
-'revdelete-selected' => "'''{{PLURAL:$2|چنی ریوین|چنیاں ریویناں}} دی [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|چنیا لاگ واقعہ|چنے لاگ واقعے}}:'''",
 'revdelete-confirm' => 'اے پکا کرلو جے تسیں ایہ کرنا چاندے او، تے توانوں ایدے نتیجے دا پتہ اے، تے تسیں [[{{MediaWiki:Policy-url}}|پالیسی]] تے چل کے ک رۓ او۔',
 'revdelete-suppress-text' => "دبانا اودوں ای ٹھیک اے جدوں اے تھلے دتے کۓ مسلیاں لئی ہووے۔

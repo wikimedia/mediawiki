@@ -802,6 +802,7 @@ Tarayıcınızın önbelleğini temizleyinceye kadar bazı sayfalarda, oturumunu
 'gotaccountlink' => 'Oturum açın',
 'userlogin-resetlink' => 'Giriş bilgilerinizi mi unuttunuz?',
 'userlogin-resetpassword-link' => 'Parolanızı mı unuttunuz?',
+'userlogin-helplink2' => 'Oturum açma konusunda yardım alın',
 'userlogin-loggedin' => 'Zaten {{GENDER:$1|$1}} olarak oturum açtınız.
 Başka bir kullanıcı olarak oturum açmak için aşağıdaki formu kullanın.',
 'userlogin-createanother' => 'Başka bir hesap oluşturun',
@@ -1304,7 +1305,6 @@ Bir hizmetli olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Log
 'revdelete-no-file' => 'Belirtilen dosya mevcut değil.',
 'revdelete-show-file-confirm' => '"<nowiki>$1</nowiki>" dosyasının $2 $3 tarihli silinmiş bir revizyonunu görmek istediğinize emin misiniz?',
 'revdelete-show-file-submit' => 'Evet',
-'revdelete-selected' => "'''[[:$1]] sayfasının {{PLURAL:$2|seçili değişikliği|seçili değişiklikleri}}:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Seçili kayıt olayı|Seçili kayıt olayları}}:'''",
 'revdelete-confirm' => 'Lütfen, bunu yapmak istediğinizi , sonuçlarını anladığınızı, ve bunu [[{{MediaWiki:Policy-url}}|ilkelere]] göre yapıyor olduğunuzu onaylayın.',
 'revdelete-suppress-text' => "Saklama '''sadece''' aşağıdaki durumlarda kullanılmalıdır:
@@ -2164,6 +2164,9 @@ Dosyanın açıklama sayfasında değişiklik yapmak için ilgili sayfaya [$2 bu
 
 # List redirects
 'listredirects' => 'Yönlendirmeleri listele',
+
+# List duplicated files special page
+'listduplicatedfiles' => 'Kopyası bulunan dosyalar listesi',
 
 # Unused templates
 'unusedtemplates' => 'Kullanılmayan şablonlar',

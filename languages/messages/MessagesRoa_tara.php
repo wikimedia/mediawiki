@@ -993,7 +993,6 @@ Tu puè vedè ste differenze; pò essere ca stonne cchiù 'mbormaziune jndr'à l
 'revdelete-no-file' => "'U file specificate non g'esiste.",
 'revdelete-show-file-confirm' => 'Si secure ca vuè ccu vide \'a revisione scangellate d\'u file "<nowiki>$1</nowiki>" \'u $2 a le $3?',
 'revdelete-show-file-submit' => 'Sìne',
-'revdelete-selected' => "'''{{PLURAL:$2|Revisiona selezionete|Revisiune selezionete}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Fatte de l'archivije selezionete|Fatte de l'archivije selezionete}}:'''",
 'revdelete-confirm' => 'Pe piacere conferme ca tu vuè ccu face sta cose, ce tu è capite le conseguenze e ce quidde ca ste face jè in accorde cu le [[{{MediaWiki:Policy-url}}|reghele]] de Uicchipèdie.',
 'revdelete-suppress-text' => "'A soppressione adda essere ausate '''sulamende''' jndr'à le case seguende:

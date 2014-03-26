@@ -1128,7 +1128,6 @@ Anda boleh melihat perbezaan ini; butiran boleh didapati di [{{fullurl:{{#Specia
 'revdelete-no-file' => 'Fail yang dinyatakan tidak wujud.',
 'revdelete-show-file-confirm' => 'Anda pasti anda mahu paparkan semakan yang telah dihapuskan bagi fail "<nowiki>$1</nowiki>" dari $2 pada $3?',
 'revdelete-show-file-submit' => 'Ya',
-'revdelete-selected' => "'''{{PLURAL:$2|Versi|Versi-versi}} '''$1''' yang dipilih:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Peristiwa|Peristiwa-peristiwa}} log yang dipilih:'''",
 'revdelete-confirm' => 'Sila sahkan bahawa anda bertujuan melakukan ini, bahawa anda faham akibatnya, dan anda melakukannya menurut [[{{MediaWiki:Policy-url}}| polisi]].',
 'revdelete-suppress-text' => "Sekatan seharusnya digunakan '''hanya''' untuk kes-kes berikut:

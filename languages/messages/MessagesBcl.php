@@ -1046,7 +1046,6 @@ Ika puwedeng makakatanaw kaining diff; mga detalye puwedeng mananagboan sa [{{fu
 'revdelete-no-file' => 'An sagunson na pinaghayag dae tabi eksistido.',
 'revdelete-show-file-confirm' => 'Segurado ka tabi na gusto mo matanaw sarong pinagpurang pagbabago kan sagunson "<nowiki>$1</nowiki>" poon $2 sa $3?',
 'revdelete-show-file-submit' => 'Iyo tabi',
-'revdelete-selected' => "'''{{PLURAL:$2|Selected revision|Mga piniling pagbabago}} kan [[:$1]]'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Selected log event|Mga piniling talaan kan mga pangyayari}}:'''",
 'revdelete-confirm' => 'Pakikumpirma tabi na ika tuyong gumibo kaini, na saimong naintindihan an mga konsekuwensiya, asin ta ika pinaghihimo ini na uyon sa [[{{MediaWiki:Policy-url}}|an palisiya]].',
 'revdelete-suppress-text' => "An paglulubog dapat '''sana''' magagamit para sa minasunod na mga kaso:

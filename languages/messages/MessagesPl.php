@@ -1290,7 +1290,6 @@ wybrana wersja nie istnieje lub próbowano ukryć wersję bieżącą.',
 'revdelete-no-file' => 'Wybrany plik nie istnieje.',
 'revdelete-show-file-confirm' => 'Czy jesteś pewien, że chcesz zobaczyć usuniętą wersję pliku „<nowiki>$1</nowiki>” z $2 o $3?',
 'revdelete-show-file-submit' => 'Tak',
-'revdelete-selected' => "'''{{PLURAL:$2|Zaznaczona wersja|Zaznaczone wersje}} strony [[:$1]]:'''",
 'logdelete-selected' => "'''Zaznaczone {{PLURAL:$1|zdarzenie|zdarzenia}} z rejestru:'''",
 'revdelete-text-text' => 'Usunięte wersje będą nadal widoczne w historii strony, ale niektóre fragmenty ich treści nie będą dostępne dla wszystkich.',
 'revdelete-text-file' => 'Usunięte wersje pliku będą nadal widoczne w historii pliku, ale niektóre fragmenty ich treści nie będą dostępne dla wszystkich.',
@@ -2159,6 +2158,10 @@ Użycie: typ_treści/podtyp, np. <code>image/jpeg</code>.',
 
 # List redirects
 'listredirects' => 'Lista przekierowań',
+
+# List duplicated files special page
+'listduplicatedfiles' => 'Lista plików mających duplikaty',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] ma [[$3|{{PLURAL:$2|jeden duplikat|$2 duplikaty|$2 duplikatów}}]].',
 
 # Unused templates
 'unusedtemplates' => 'Nieużywane szablony',

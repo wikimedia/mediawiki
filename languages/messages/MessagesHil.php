@@ -904,7 +904,6 @@ ang ini nga buluhaton wala, ukon gahimakas ka nga taguon ang karon nga pagbag-o.
 'revdelete-no-file' => 'Ang ginatumod nga hilera wala naga-eksister.',
 'revdelete-show-file-confirm' => 'Sigurado ka bala nga luyag mo makita ang ginpanas nga pagbag-o sang hilera nga "<nowiki>$1</nowiki>" halin sang $2 sa $3?',
 'revdelete-show-file-submit' => 'Huo',
-'revdelete-selected' => "'''{{PLURAL:$2|Ginpili nga pagbag-o|Ginpili nga mga pagbag-o}} ni [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Ginpili nga hinatabo sa log|Ginpili nga mga hinatabo sa log}}:'''",
 'revdelete-confirm' => 'Palihog konpermar nga luyag mo ini himuon, nga imo naintiendihan ang mga konsekwensya, kag ginahimo mo ini suno sa [[{{MediaWiki:Policy-url}}|polisiya]].',
 'revdelete-suppress-text' => "Ang pagpahugot nagakadapat '''lamang''' nga pagagamiton sa masunod nga kaso:

@@ -1254,7 +1254,6 @@ Saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAG
 'revdelete-no-file' => 'Faili ei ole.',
 'revdelete-show-file-confirm' => 'Kas oled kindel, et soovid häha faili "<nowiki>$1</nowiki>" kustutatud redaktsiooni, mis tehti $2 kell $3?',
 'revdelete-show-file-submit' => 'Jah',
-'revdelete-selected' => "'''Valitud {{PLURAL:$2|redaktsioon|redaktsioonid}} leheküljest [[:$1]]:'''",
 'logdelete-selected' => "'''Valitud {{PLURAL:$1|logisissekanne|logisissekanded}}:'''",
 'revdelete-text-text' => 'Kustutatud redaktsioonid jäävad lehekülje ajalukku alles, aga osa nende sisust pole kõigile juurdepääsetav.',
 'revdelete-text-file' => 'Kustutatud failiversioonid jäävad faili ajalukku alles, aga osa nende sisust pole kõigile juurdepääsetav.',

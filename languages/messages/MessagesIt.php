@@ -1238,7 +1238,6 @@ In quanto amministratore puoi visualizzare questo confronto di versioni; potrebb
 'revdelete-no-file' => 'Il file specificato non esiste.',
 'revdelete-show-file-confirm' => 'Si desidera visualizzare la versione cancellata del file "<nowiki>$1</nowiki>" del $2 alle $3?',
 'revdelete-show-file-submit' => 'Sì',
-'revdelete-selected' => "'''{{PLURAL:$2|Versione selezionata|Versioni selezionate}} di [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:'''",
 'revdelete-text-text' => 'Le versioni cancellate appariranno ancora nella cronologia della pagina, ma parti del loro contenuto sarà inaccessibile al pubblico.',
 'revdelete-text-file' => 'Le versioni di file cancellati appariranno ancora nella cronologia del file, ma parti del loro contenuto sarà inaccessibile al pubblico.',

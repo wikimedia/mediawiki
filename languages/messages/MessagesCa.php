@@ -1148,7 +1148,6 @@ funció, la revisió especificada no existeix, o bé esteu provant d'amagar l'ac
 'revdelete-no-file' => 'El fitxer especificat no existeix.',
 'revdelete-show-file-confirm' => 'Esteu segurs que voleu veure una revisió esborrada del fitxer «<nowiki>$1</nowiki>» de $2 a $3?',
 'revdelete-show-file-submit' => 'Sí',
-'revdelete-selected' => "'''{{PLURAL:$2|Revisió seleccionada|Revisions seleccionades}} de [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Esdeveniment del registre seleccionat|Esdeveniments del registre seleccionats}}:'''",
 'revdelete-confirm' => "Si us plau, confirmeu que és això el que desitgeu fer, que enteneu les conseqüències, i que esteu fent-ho d'acord amb [[{{MediaWiki:Policy-url}}|les polítiques acordades]].",
 'revdelete-suppress-text' => "Les supressions '''només''' han de ser portades a terme en els següents casos:

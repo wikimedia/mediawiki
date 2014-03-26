@@ -1170,7 +1170,6 @@ tsy misy ilay izy, na ny santiôna ankehitriny no andramana asitrika.',
 'revdelete-no-file' => 'Tsy misy ilay rakitra hofafàna.',
 'revdelete-show-file-confirm' => "Tapa-kevitra hamafa ny ''revision''-n'i rakitra <nowiki>$1</nowiki> tamin'ny $2 tamin'ny $3 ve ianao ?",
 'revdelete-show-file-submit' => 'Eny',
-'revdelete-selected' => "'''{{PLURAL:$2|Votoatiny nosafidiana|Votoatiny nosafidiana}}n'i '''[[:$1]]''' :'''",
 'logdelete-selected' => "'''{{PLURAL:$1||}}Laogy voafidy :'''",
 'revdelete-confirm' => 'Amafiso eto ny hevitrao raha hanao io ianao, raha azonao sary an-tsaina ny mety ho vokany, ary raha araka ny [[{{MediaWiki:Policy-url}}|fepetra mihatra]] ny zavatra ataonao.',
 'revdelete-suppress-text' => "Ny famafàna pejy dia ampiasaina rehefa :

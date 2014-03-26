@@ -1140,7 +1140,6 @@ U kan wel hierdie verskil sien. Meer details kan in die [{{fullurl:{{#Special:Lo
 'revdelete-no-file' => 'Die gespesifiseerde lêer bestaan nie.',
 'revdelete-show-file-confirm' => 'Is u seker u wil die geskrapte weergawe van die lêer "<nowiki>$1</nowiki>" van $2 om $3 sien?',
 'revdelete-show-file-submit' => 'Ja',
-'revdelete-selected' => "'''Geselekteerde {{PLURAL:$2|wysiging|wysigings}} vir [[:$1]]:'''",
 'logdelete-selected' => "'''Geselekteerde {{PLURAL:$1|logboek aksie|logboek aksies}}:'''",
 'revdelete-confirm' => 'Bevestig asseblief dat u dit wil doen, dat u die nagevolge verstaan en dat u dit doen in ooreenstemming met die [[{{MediaWiki:Policy-url}}|beleid]].',
 'revdelete-suppress-text' => "Verberging van weergawes mag '''slegs''' in die volgende gevalle gebruik word:

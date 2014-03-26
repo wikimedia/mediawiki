@@ -915,7 +915,6 @@ $2',
 'revdelete-no-file' => '指之檔無存也。',
 'revdelete-show-file-confirm' => '爾察於$2 $3刪「$1」檔之審？',
 'revdelete-show-file-submit' => '善',
-'revdelete-selected' => "'''審[[:$1]]已擇$2：'''",
 'logdelete-selected' => "'''已擇誌$1：'''",
 'revdelete-confirm' => '爾確作之，解之果焉，合之[[{{MediaWiki:Policy-url}}|策]]矣。',
 'revdelete-suppress-text' => "'''限'''於此壓：

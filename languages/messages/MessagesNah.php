@@ -551,7 +551,6 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'rev-delundel' => 'tiquittāz/tictlātīz',
 'revisiondelete' => 'Tiquimpolōz/ahtiquimpolōz tlachiyaliztli',
 'revdelete-show-file-submit' => 'Quēmah',
-'revdelete-selected' => "'''{{PLURAL:$2|Tlachiyaliztli ōmoēlēhui|Tlachiyaliztli ōmoēlēhuih}} [[:$1]] ītechcopa:'''",
 'revdelete-hide-text' => 'In tlahtlachiyaliztli ītlahcuilōl',
 'revdelete-hide-image' => 'Tictlātīz tlahcuilōlli ītlapiyaliz',
 'revdelete-radio-set' => 'Tlaīnāyalli',

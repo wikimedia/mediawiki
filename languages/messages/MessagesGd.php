@@ -989,7 +989,6 @@ Gheibh thu mion-fhiosrachadh air [{{fullurl:{{#Special:Log}}/suppress|page={{FUL
 'revdelete-no-file' => 'Chan eil am faidhle a shònraich thu ann.',
 'revdelete-show-file-confirm' => 'A bheil thu cinnteach gu bheil thu airson coimhead air mùthadh an fhaidhle "<nowiki>$1</nowiki>" a chaidh a sguabadh às $2 aig $3?',
 'revdelete-show-file-submit' => 'Tha',
-'revdelete-selected' => "'''{{PLURAL:$2|Lèirmheas|Lèirmheasan}} de [[:$1]] a thagh thu:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|An tachartas loga|Na tachartasan loga}} a thagh thu:'''",
 'revdelete-confirm' => "Dearbh gu bheil thu airson seo a dhèanamh, gu bheil thu a' tuigsinn na thachras ri linn agus gu bheil thu a' dèanamh seo a-rèir [[{{MediaWiki:Policy-url}}|a' phoileasaidh]].",
 'revdelete-suppress-text' => "Cha bu chòir dhut mùchadh a chleachdadh '''ach''' ann an suidheachaidhean mar seo:

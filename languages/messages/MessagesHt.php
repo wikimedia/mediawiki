@@ -823,7 +823,6 @@ Lejand : ({{MediaWiki:Cur}}) = diferans ak vèsyon kounye a, ({{MediaWiki:Last}}
 'revisiondelete' => 'Efase/Restore, remèt vèsyon sa',
 'revdelete-nooldid-title' => 'Pa genyen sib, destinasyon pou revizyon sa',
 'revdelete-show-file-submit' => 'Wi',
-'revdelete-selected' => "'''{{PLURAL:$2|Vèsyon ou seleksyone|Vèsyon ou seleksyone yo}} de $1 :'''",
 'revdelete-legend' => 'Mete restriksyon nan vizibilite yo :',
 'revdelete-hide-text' => 'Kache tèks ki te modifye',
 'revdelete-hide-image' => 'Kache kontni fichye a',

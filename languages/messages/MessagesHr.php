@@ -1228,7 +1228,6 @@ Možete ju pregledati; više podataka možete vidjeti u [{{fullurl:{{#Special:Lo
 'revdelete-no-file' => 'Navedena datoteka ne postoji.',
 'revdelete-show-file-confirm' => 'Jeste li sigurni da želite pregledati izbrisanu inačicu datoteke "<nowiki>$1</nowiki>" od $2 u $3?',
 'revdelete-show-file-submit' => 'Da',
-'revdelete-selected' => "'''{{PLURAL:$2|Odabrana izmjena|Odabrane izmjene|Odabrane izmjene}} stranice [[$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Odabrani zapis u evidenciji|Odabrani zapisi u evidenciji}}:'''",
 'revdelete-confirm' => 'Molimo potvrdite da namjeravate ovo učiniti, da razumijete posljedice i da to činite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].',
 'revdelete-suppress-text' => "Sklanjanje uređivanja treba raditi '''iznimno''' u slijedećih par slučajeva:

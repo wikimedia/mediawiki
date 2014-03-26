@@ -962,7 +962,6 @@ Sampéyan isih bisa ndelok prabédan iki; rincian bisa ditemokaké nèng [{{full
 'revdelete-no-file' => 'Berkas sing dituju ora ana.',
 'revdelete-show-file-confirm' => 'Apa panjenengan yakin arep mirsani révisi sing wis kabusak saka berkas "<nowiki>$1</nowiki>" ing $2, jam $3?',
 'revdelete-show-file-submit' => 'Ya',
-'revdelete-selected' => "'''{{PLURAL:$2|Revisi kapilih|Revisi kapilih}} dari '''$1''''''",
 'logdelete-selected' => "'''{{PLURAL:$1|Log kapilih|Log kapilih}} kanggo:'''",
 'revdelete-confirm' => 'Mangga pesthèkaké yèn Sampéyan pancèn kudu nglakoni iki, yèn Sampéyan ngerti akibaté, lan yèn Sampéyan ngakoni iki cocok karo [[{{MediaWiki:Policy-url}}|kawicakan]].',
 'revdelete-suppress-text' => "Pandhelikan révisi '''mung''' bisa dipigunakaké kanggo kasus ing ngisor:
