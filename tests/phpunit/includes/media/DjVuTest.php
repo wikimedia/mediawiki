@@ -24,9 +24,9 @@ class DjVuTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		//cli tool setup
-		$wgDjvuRenderer = $wgDjvuRenderer ? $wgDjvuRenderer : '/usr/local/bin/ddjvu';
-		$wgDjvuDump = $wgDjvuDump ? $wgDjvuDump : '/usr/local/bin/djvudump';
-		$wgDjvuToXML = $wgDjvuToXML ? $wgDjvuToXML : '/usr/local/bin/djvutoxml';
+		$wgDjvuRenderer = $wgDjvuRenderer ? $wgDjvuRenderer : '/usr/bin/ddjvu';
+		$wgDjvuDump = $wgDjvuDump ? $wgDjvuDump : '/usr/bin/djvudump';
+		$wgDjvuToXML = $wgDjvuToXML ? $wgDjvuToXML : '/usr/bin/djvutoxml';
 		if (
 			!$this->checkIfToolExists( $wgDjvuRenderer ) ||
 			!$this->checkIfToolExists( $wgDjvuDump ) ||
