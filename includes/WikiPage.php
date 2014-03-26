@@ -104,9 +104,10 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Create a WikiPage object of the appropriate class for the given title.
 	 *
-	 * @param $title Title
+	 * @param Title $title
+	 *
 	 * @throws MWException
-	 * @return WikiPage object of the appropriate type
+	 * @return WikiPage Object of the appropriate type
 	 */
 	public static function factory( Title $title ) {
 		$ns = $title->getNamespace();
@@ -1468,12 +1469,13 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * @param $section null|bool|int or a section number (0, 1, 2, T1, T2...)
-	 * @param string $text new text of the section
-	 * @param string $sectionTitle new section's subject, only if $section is 'new'
-	 * @param string $edittime revision timestamp or null to use the current revision
+	 * @param mixed $section Null/false, a section number (0, 1, 2, T1, T2, ...) or "new".
+	 * @param string $text New text of the section.
+	 * @param string $sectionTitle New section's subject, only if $section is "new".
+	 * @param string $edittime Revision timestamp or null to use the current revision.
+	 *
 	 * @throws MWException
-	 * @return String new complete article text, or null if error
+	 * @return string New complete article text, or null if error.
 	 *
 	 * @deprecated since 1.21, use replaceSectionContent() instead
 	 */
@@ -1486,13 +1488,15 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( !$this->supportsSections() ) {
-			throw new MWException( "sections not supported for content model " . $this->getContentHandler()->getModelID() );
+			throw new MWException( "sections not supported for content model " .
+				$this->getContentHandler()->getModelID() );
 		}
 
 		// could even make section title, but that's not required.
 		$sectionContent = ContentHandler::makeContent( $text, $this->getTitle() );
 
-		$newContent = $this->replaceSectionContent( $section, $sectionContent, $sectionTitle, $edittime );
+		$newContent = $this->replaceSectionContent( $section, $sectionContent, $sectionTitle,
+			$edittime );
 
 		return ContentHandler::getContentText( $newContent );
 	}
@@ -1500,7 +1504,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Returns true if this page's content model supports sections.
 	 *
-	 * @return boolean whether sections are supported.
+	 * @return bool
 	 *
 	 * @todo The skin should check this and not offer section functionality if sections are not supported.
 	 * @todo The EditPage should check this and not offer section functionality if sections are not supported.
@@ -1510,17 +1514,18 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * @param $section null|bool|int or a section number (0, 1, 2, T1, T2...)
-	 * @param $sectionContent Content: new content of the section
-	 * @param string $sectionTitle new section's subject, only if $section is 'new'
-	 * @param string $edittime revision timestamp or null to use the current revision
+	 * @param mixed $section Null/false, a section number (0, 1, 2, T1, T2, ...) or "new".
+	 * @param Content $sectionContent New content of the section.
+	 * @param string $sectionTitle New section's subject, only if $section is "new".
+	 * @param string $edittime Revision timestamp or null to use the current revision.
 	 *
 	 * @throws MWException
-	 * @return Content new complete article content, or null if error
+	 * @return Content New complete article content, or null if error.
 	 *
 	 * @since 1.21
 	 */
-	public function replaceSectionContent( $section, Content $sectionContent, $sectionTitle = '', $edittime = null ) {
+	public function replaceSectionContent( $section, Content $sectionContent, $sectionTitle = '',
+		$edittime = null ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( strval( $section ) == '' ) {
@@ -1529,7 +1534,8 @@ class WikiPage implements Page, IDBAccessObject {
 		} else {
 			if ( !$this->supportsSections() ) {
 				wfProfileOut( __METHOD__ );
-				throw new MWException( "sections not supported for content model " . $this->getContentHandler()->getModelID() );
+				throw new MWException( "sections not supported for content model " .
+					$this->getContentHandler()->getModelID() );
 			}
 
 			// Bug 30711: always use current version when adding a new section
@@ -2612,9 +2618,11 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Take an array of page restrictions and flatten it to a string
 	 * suitable for insertion into the page_restrictions field.
-	 * @param $limit Array
+	 *
+	 * @param string[] $limit
+	 *
 	 * @throws MWException
-	 * @return String
+	 * @return string
 	 */
 	protected static function flattenRestrictions( $limit ) {
 		if ( !is_array( $limit ) ) {
