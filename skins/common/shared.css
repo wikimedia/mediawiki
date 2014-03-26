@@ -1217,3 +1217,6 @@ table.floatleft {
 .mw-content-ltr .mw-content-rtl .mw-editsection {
 	margin-right: 1em;
 }
+.onlyinprint {
+	display: none;
+}
