@@ -680,12 +680,13 @@ class LocalisationCache {
 		global $IP;
 		wfProfileIn( __METHOD__ );
 
-		$fileName = Language::getMessagesFileName( $code );
-		if ( !file_exists( $fileName ) ) {
+		if ( !Language::isSupportedLanguage( $code ) ) {
 			wfProfileOut( __METHOD__ );
 
 			return false;
 		}
+
+		$fileName = Language::getMessagesFileName( $code );
 
 		$deps[] = new FileDependency( $fileName );
 		$data = $this->readPHPFile( $fileName, 'core' );
