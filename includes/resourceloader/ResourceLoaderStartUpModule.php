@@ -27,6 +27,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	/* Protected Members */
 
 	protected $modifiedTime = array();
+	protected $configVars = array();
 	protected $targets = array( 'desktop', 'mobile' );
 
 	/* Protected Methods */
@@ -36,6 +37,12 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	protected function getConfig( $context ) {
+
+		$hash = $context->getHash();
+		if ( isset( $this->configVars[$hash] ) ) {
+			return $this->configVars[$hash];
+		}
+
 		global $wgLoadScript, $wgScript, $wgStylePath, $wgScriptExtension,
 			$wgArticlePath, $wgScriptPath, $wgServer, $wgContLang,
 			$wgVariantArticlePath, $wgActionPaths, $wgVersion,
@@ -106,7 +113,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		wfRunHooks( 'ResourceLoaderGetConfigVars', array( &$vars ) );
 
-		return $vars;
+		$this->configVars[$hash] = $vars;
+		return $this->configVars[$hash];
 	}
 
 	/**
@@ -278,7 +286,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		$time = max(
 			wfTimestamp( TS_UNIX, $wgCacheEpoch ),
-			filemtime( "$IP/resources/startup.js" )
+			filemtime( "$IP/resources/startup.js" ),
+			$this->getHashMtime( $context )
 		);
 
 		// ATTENTION!: Because of the line below, this is not going to cause
@@ -295,6 +304,25 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		$this->modifiedTime[$hash] = $time;
 		return $this->modifiedTime[$hash];
+	}
+
+	/**
+	 * Hash of all dynamic data embedded in getScript().
+	 *
+	 * Detect changes to mw.config settings embedded in #getScript (bug 28899).
+	 *
+	 * @param $context ResourceLoaderContext
+	 * @return string: Hash
+	 */
+	public function getModifiedHash( ResourceLoaderContext $context ) {
+		global $wgLegacyJavaScriptGlobals;
+
+		$data = array(
+			'vars' => $this->getConfig( $context ),
+			'wgLegacyJavaScriptGlobals' => $wgLegacyJavaScriptGlobals,
+		);
+
+		return md5( serialize( $data ) );
 	}
 
 	/**
