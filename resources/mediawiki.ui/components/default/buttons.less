@@ -105,7 +105,8 @@
 	&.mw-ui-primary {
 		.button-colors(@colorProgressive);
 
-		&.mw-ui-quiet {
+		&.mw-ui-quiet,
+		&.mw-ui-light {
 			.button-colors-quiet(@colorProgressive);
 		}
 	}
@@ -124,7 +125,8 @@
 	&.mw-ui-constructive {
 		.button-colors(@colorConstructive);
 
-		&.mw-ui-quiet {
+		&.mw-ui-quiet,
+		&.mw-ui-light {
 			.button-colors-quiet(@colorConstructive);
 		}
 	}
@@ -143,7 +145,8 @@
 	&.mw-ui-destructive {
 		.button-colors(@colorDestructive);
 
-		&.mw-ui-quiet {
+		&.mw-ui-quiet,
+		&.mw-ui-light {
 			.button-colors-quiet(@colorDestructive);
 		}
 	}
@@ -178,6 +181,42 @@
 			background: transparent;
 		}
 	}
+
+	// Light buttons
+	//
+	// Light buttons are similar to, but more lightweight than mw-ui-quiet ones. Currently used in Flow.
+	//
+	// Markup:
+	// <button class="mw-ui-button mw-ui-light">.mw-ui-button</button>
+	// <button class="mw-ui-button mw-ui-constructive mw-ui-light">.mw-ui-constructive</button>
+	// <button class="mw-ui-button mw-ui-constructive mw-ui-light" disabled>.mw-ui-constructive</button>
+	// <button class="mw-ui-button mw-ui-destructive mw-ui-light">.mw-ui-destructive</button>
+	// <button class="mw-ui-button mw-ui-destructive mw-ui-light" disabled>.mw-ui-destructive</button>
+	// <button class="mw-ui-button mw-ui-progressive mw-ui-light">.mw-ui-progressive</button>
+	// <button class="mw-ui-button mw-ui-progressive mw-ui-light" disabled>.mw-ui-progressive</button>
+	//
+	// Styleguide 2.1.7.
+	&.mw-ui-light {
+		background: none;
+		border: none;
+		font-weight: normal;
+		padding: 0;
+		text-shadow: none;
+
+		.button-colors-quiet(@colorGrayDark);
+
+		font-size: 14px;
+		&:hover,
+		&:focus {
+			box-shadow: none;
+		}
+
+		&:active,
+		&:disabled {
+			background: transparent;
+		}
+	}
+
 }
 
 a.mw-ui-button {
