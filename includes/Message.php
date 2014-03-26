@@ -223,12 +223,14 @@ class Message {
 	 * @param string|string[] $key Message key or array of message keys to try and use the first
 	 * non-empty message for.
 	 * @param array $params Message parameters.
+	 * @param Language $language (optional, defaults to $wgLang)
 	 */
-	public function __construct( $key, $params = array() ) {
+	public function __construct( $key, $params = array(), Language $language = null ) {
 		global $wgLang;
+
 		$this->key = $key;
 		$this->parameters = array_values( $params );
-		$this->language = $wgLang;
+		$this->language = $language ? $language : $wgLang;
 	}
 
 	/**

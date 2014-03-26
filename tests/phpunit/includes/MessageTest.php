@@ -1,6 +1,7 @@
 <?php
 
 class MessageTest extends MediaWikiLangTestCase {
+
 	protected function setUp() {
 		parent::setUp();
 
@@ -8,6 +9,25 @@ class MessageTest extends MediaWikiLangTestCase {
 			'wgLang' => Language::factory( 'en' ),
 			'wgForceUIMsgAsContentMsg' => array(),
 		) );
+	}
+
+	/**
+	 * @covers Message::__construct
+	 * @dataProvider provideConstructor
+	 */
+	public function testConstructor( $key, $params, $language ) {
+		$messageNoLang = new Message( $key, $params );
+		$messageWithLang = new Message( $key, $params, $language );
+
+		$this->assertInstanceOf( 'Message', $messageNoLang, 'new message without language param' );
+		$this->assertInstanceOf( 'Message', $messageWithLang, 'new message with language param' );
+	}
+
+	public function provideConstructor() {
+		return array(
+			array( 'foo', array(), Language::factory( 'en' ) ),
+			array( 'foo', array( 'bar' ), Language::factory( 'en' ) ),
+		);
 	}
 
 	public function provideTestParams() {
