@@ -42,6 +42,11 @@
   box-shadow: 0 0 0.66em rgba(0, 0, 0, 0.25);
 }
 
+.oo-ui-frame-content {
+  font-family: sans-serif;
+  font-size: 0.8em;
+}
+
 .oo-ui-toolbar-bar {
   background: #f8fbfd;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #f1f7fb));
@@ -89,7 +94,19 @@
   color: #000;
 }
 
+.oo-ui-window-body {
+  padding: 0 0.75em;
+}
+
+.oo-ui-window-icon {
+  width: 2em;
+  height: 2em;
+  margin-right: 0.5em;
+  line-height: 2em;
+}
+
 .oo-ui-window-title {
+  line-height: 2em;
   color: #333;
 }
 
@@ -105,6 +122,8 @@
 
 .oo-ui-buttonedElement.oo-ui-indicatedElement .oo-ui-buttonedElement-button > .oo-ui-indicatedElement-indicator,
 .oo-ui-buttonedElement.oo-ui-iconedElement .oo-ui-buttonedElement-button > .oo-ui-iconedElement-icon {
+  width: 1.9em;
+  height: 1.9em;
   opacity: 0.8;
 }
 
@@ -428,6 +447,10 @@
   box-shadow: inset 0 0.07em 0.07em 0 rgba(0, 0, 0, 0.07);
 }
 
+.oo-ui-optionWidget {
+  padding: 0.5em 2em 0.5em 3em;
+}
+
 .oo-ui-optionWidget-highlighted {
   background-color: #e1f3ff;
 }
@@ -475,6 +498,10 @@
   white-space: nowrap;
 }
 
+.oo-ui-buttonOptionWidget {
+  padding: 0;
+}
+
 .oo-ui-buttonOptionWidget.oo-ui-optionWidget-selected,
 .oo-ui-buttonOptionWidget.oo-ui-optionWidget-highlighted {
   background-color: transparent;
@@ -519,6 +546,7 @@
 }
 
 .oo-ui-menuSectionItemWidget {
+  padding: 0.33em 0.75em;
   color: #888;
 }
 
@@ -560,8 +588,13 @@
   box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.2);
 }
 
+.oo-ui-textInputWidget {
+  width: 20em;
+}
+
 .oo-ui-textInputWidget input,
 .oo-ui-textInputWidget textarea {
+  padding: 0.5em;
   font-family: sans-serif;
   font-size: 1em;
   background-color: #fff;

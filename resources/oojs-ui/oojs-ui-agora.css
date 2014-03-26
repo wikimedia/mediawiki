@@ -1,0 +1,52 @@
+.oo-ui-window-head {
+  height: 3.35em;
+  border-bottom: 1px solid #dddddd;
+}
+
+.oo-ui-window-body {
+  padding: 2em 3.35em;
+}
+
+.oo-ui-window-icon {
+  width: 3.35em;
+  height: 3.35em;
+  background-size: 2em auto;
+  border-left: 1px solid #dddddd;
+}
+
+.oo-ui-window-title {
+  line-height: 3.35em;
+}
+
+.oo-ui-buttonedElement.oo-ui-indicatedElement .oo-ui-buttonedElement-button > .oo-ui-indicatedElement-indicator,
+.oo-ui-buttonedElement.oo-ui-iconedElement .oo-ui-buttonedElement-button > .oo-ui-iconedElement-icon {
+  width: 3.35em;
+  height: 3.35em;
+  background-size: 2em auto;
+}
+
+.oo-ui-optionWidget {
+  padding: 0.8em 1em 0.8em 3.35em;
+  font-weight: bold;
+  border-bottom: 1px solid #dddddd;
+}
+
+.oo-ui-buttonOptionWidget {
+  padding: 0;
+}
+
+.oo-ui-menuItemWidget.oo-ui-optionWidget-selected {
+  color: #ffffff;
+  background: #347bff;
+}
+
+.oo-ui-menuSectionItemWidget {
+  font-weight: normal;
+  color: #777777;
+  border: none;
+}
+
+.oo-ui-textInputWidget input,
+.oo-ui-textInputWidget textarea {
+  padding: .8em 1em;
+}
