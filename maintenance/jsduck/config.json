@@ -17,6 +17,7 @@
 		"../../resources/mediawiki.page/mediawiki.page.watch.ajax.js",
 		"../../resources/mediawiki.api",
 		"../../resources/mediawiki.language",
+		"../../resources/jquery/jquery.arrowSteps.js",
 		"../../resources/jquery/jquery.localize.js",
 		"../../resources/jquery/jquery.spinner.js",
 		"../../resources/oojs",
