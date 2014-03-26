@@ -98,7 +98,7 @@
 	 * Collection contents remain unchanged.
 	 *
 	 * @param {Object|string} [opts] See #createSpinner
-	 * @return {jQuery}
+	 * @chainable
 	 */
 	$.fn.injectSpinner = function ( opts ) {
 		return this.after( $.createSpinner( opts ) );
