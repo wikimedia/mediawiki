@@ -2224,12 +2224,13 @@ var mw = ( function ( $, undefined ) {
 				 * @param {string} name The tag name.
 				 * @param {Object} attrs An object with members mapping element names to values
 				 * @param {Mixed} contents The contents of the element. May be either:
+				 *
 				 *  - string: The string is escaped.
-				 *  - null or undefined: The short closing form is used, e.g. <br/>.
+				 *  - null or undefined: The short closing form is used, e.g. `<br/>`.
 				 *  - this.Raw: The value attribute is included without escaping.
 				 *  - this.Cdata: The value attribute is included, and an exception is
 				 *   thrown if it contains an illegal ETAGO delimiter.
-				 *   See http://www.w3.org/TR/1999/REC-html401-19991224/appendix/notes.html#h-B.3.2
+				 *   See <http://www.w3.org/TR/1999/REC-html401-19991224/appendix/notes.html#h-B.3.2>.
 				 */
 				element: function ( name, attrs, contents ) {
 					var v, attrName, s = '<' + name;
