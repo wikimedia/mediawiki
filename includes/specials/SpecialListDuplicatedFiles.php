@@ -98,7 +98,7 @@ class ListDuplicatedFilesPage extends QueryPage {
 		$image1 = Title::makeTitle( $result->namespace, $result->title );
 		$dupeSearch = SpecialPage::getTitleFor( 'FileDuplicateSearch', $image1->getDBKey() );
 
-		$msg = wfMessage( 'listduplicatedfiles-entry' )
+		$msg = $this->msg( 'listduplicatedfiles-entry' )
 			->params( $image1->getText() )
 			->numParams( $result->value - 1 )
 			->params( $dupeSearch->getPrefixedDBKey() );
