@@ -1,6 +1,7 @@
 <?php
 
 class MessageTest extends MediaWikiLangTestCase {
+
 	protected function setUp() {
 		parent::setUp();
 
@@ -8,6 +9,40 @@ class MessageTest extends MediaWikiLangTestCase {
 			'wgLang' => Language::factory( 'en' ),
 			'wgForceUIMsgAsContentMsg' => array(),
 		) );
+	}
+
+	/**
+	 * @covers Message::__construct
+	 * @dataProvider provideConstructor
+	 */
+	public function testConstructor( $expectedLang, $key, $params, $language ) {
+		$reflection = new ReflectionClass( 'Message' );
+
+		$keyProperty = $reflection->getProperty( 'key' );
+		$keyProperty->setAccessible( true );
+
+		$paramsProperty = $reflection->getProperty( 'parameters' );
+		$paramsProperty->setAccessible( true );
+
+		$langProperty = $reflection->getProperty( 'language' );
+		$langProperty->setAccessible( true );
+
+		$message = new Message( $key, $params, $language );
+
+		$this->assertEquals( $key, $keyProperty->getValue( $message ) );
+		$this->assertEquals( $params, $paramsProperty->getValue( $message ) );
+		$this->assertEquals( $expectedLang, $langProperty->getValue( $message ) );
+	}
+
+	public function provideConstructor() {
+		$langDe = Language::factory( 'de' );
+		$langEn = Language::factory( 'en' );
+
+		return array(
+			array( $langDe, 'foo', array(), $langDe ),
+			array( $langDe, 'foo', array( 'bar' ), $langDe ),
+			array( $langEn, 'foo', array( 'bar' ), null )
+		);
 	}
 
 	public function provideTestParams() {
