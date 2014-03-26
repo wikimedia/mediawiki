@@ -28,7 +28,6 @@
  * @ingroup Ajax
  */
 class AjaxResponse {
-
 	/**
 	 * Number of seconds to get the response cached by a proxy
 	 * @var int $mCacheDuration
@@ -184,10 +183,10 @@ class AjaxResponse {
 				}
 
 			} else {
-
 				# Let the client do the caching. Cache is not purged.
 				header ( "Expires: " . gmdate( "D, d M Y H:i:s", time() + $this->mCacheDuration ) . " GMT" );
-				header ( "Cache-Control: s-maxage={$this->mCacheDuration},public,max-age={$this->mCacheDuration}" );
+				header ( "Cache-Control: s-maxage={$this->mCacheDuration}," .
+					"public,max-age={$this->mCacheDuration}" );
 			}
 
 		} else {
@@ -237,17 +236,22 @@ class AjaxResponse {
 			wfDebug( "$fname: -- client send If-Modified-Since: " . $modsince . "\n", 'log' );
 			wfDebug( "$fname: --  we might send Last-Modified : $lastmod\n", 'log' );
 
-			if ( ( $ismodsince >= $timestamp ) && $wgUser->validateCache( $ismodsince ) && $ismodsince >= $wgCacheEpoch ) {
+			if ( ( $ismodsince >= $timestamp )
+				&& $wgUser->validateCache( $ismodsince ) &&
+				$ismodsince >= $wgCacheEpoch
+			) {
 				ini_set( 'zlib.output_compression', 0 );
 				$this->setResponseCode( "304 Not Modified" );
 				$this->disable();
 				$this->mLastModified = $lastmod;
 
-				wfDebug( "$fname: CACHED client: $ismodsince ; user: {$wgUser->getTouched()} ; page: $timestamp ; site $wgCacheEpoch\n", 'log' );
+				wfDebug( "$fname: CACHED client: $ismodsince ; user: {$wgUser->getTouched()} ; " .
+					"page: $timestamp ; site $wgCacheEpoch\n", 'log' );
 
 				return true;
 			} else {
-				wfDebug( "$fname: READY  client: $ismodsince ; user: {$wgUser->getTouched()} ; page: $timestamp ; site $wgCacheEpoch\n", 'log' );
+				wfDebug( "$fname: READY  client: $ismodsince ; user: {$wgUser->getTouched()} ; " .
+					"page: $timestamp ; site $wgCacheEpoch\n", 'log' );
 				$this->mLastModified = $lastmod;
 			}
 		} else {

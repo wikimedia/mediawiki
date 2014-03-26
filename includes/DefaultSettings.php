@@ -5520,9 +5520,10 @@ $wgGitBin = '/usr/bin/git';
  * @since 1.20
  */
 $wgGitRepositoryViewers = array(
-	'https://(?:[a-z0-9_]+@)?gerrit.wikimedia.org/r/(?:p/)?(.*)' => 'https://git.wikimedia.org/commit/%r/%H',
-	'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)'
-		=> 'https://git.wikimedia.org/commit/%r/%H',
+	'https://(?:[a-z0-9_]+@)?gerrit.wikimedia.org/r/(?:p/)?(.*)' =>
+		'https://git.wikimedia.org/commit/%r/%H',
+	'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)' =>
+		'https://git.wikimedia.org/commit/%r/%H',
 );
 
 /** @} */ # End of maintenance }
