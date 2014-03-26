@@ -160,10 +160,9 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Returns text for the start of the tabular part of RC
-	 * @param ResultWrapper|array $rows
 	 * @return string
 	 */
-	public function beginRecentChangesList( $rows ) {
+	public function beginRecentChangesList() {
 		$this->rc_cache = array();
 		$this->rcMoveIndex = 0;
 		$this->rcCacheIndex = 0;

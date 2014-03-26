@@ -317,8 +317,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$list = ChangesList::newFromContext( $this->getContext() );
 		$list->setWatchlistDivs();
 
-		$s = $list->beginRecentChangesList( $rows );
-		$dbr->dataSeek( $rows, 0 );
+		$s = $list->beginRecentChangesList();
 		$counter = 1;
 		foreach ( $rows as $obj ) {
 			# Make RC entry
