@@ -2082,9 +2082,9 @@ class EditPage {
 		}
 		# Try to add a custom edit intro, or use the standard one if this is not possible.
 		if ( !$this->showCustomIntro() && !$this->mTitle->exists() ) {
-			$helpLink = Skin::makeInternalOrExternalUrl(
+			$helpLink = wfExpandUrl( Skin::makeInternalOrExternalUrl(
 				wfMessage( 'helppage' )->inContentLanguage()->text()
-			);
+			) );
 			if ( $wgUser->isLoggedIn() ) {
 				$wgOut->wrapWikiMsg(
 					// Suppress the external link icon, consider the help url an internal one
