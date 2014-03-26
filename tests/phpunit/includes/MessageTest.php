@@ -44,6 +44,24 @@ class MessageTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	public function getLanguageCodeProvider() {
+		return array(
+			array( 'foo', array( 'bar' ), 'en' ),
+			array( 'foo', array( 'bar' ), 'de' )
+		);
+	}
+
+	/**
+	 * @covers Message::getLanguageCode
+	 * @dataProvider getLanguageCodeProvider
+	 */
+	public function testGetLanguageCode( $key, $params, $languageCode ) {
+		$language = Language::factory( $languageCode );
+		$message = new Message( $key, $params, $language );
+
+		$this->assertEquals( $languageCode, $message->getLanguageCode() );
+	}
+
 	/**
 	 * @covers Message::params
 	 * @dataProvider provideTestParams

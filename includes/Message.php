@@ -273,6 +273,17 @@ class Message {
 	}
 
 	/**
+	 * Returns the language code for the message language.
+	 *
+	 * @since 1.23
+	 *
+	 * @return string
+	 */
+	public function getLanguageCode() {
+		return $this->language->getCode();
+	}
+
+	/**
 	 * Factory function that is just wrapper for the real constructor. It is
 	 * intended to be used instead of the real constructor, because it allows
 	 * chaining method calls, while new objects don't.
