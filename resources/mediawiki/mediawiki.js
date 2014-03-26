@@ -1989,7 +1989,7 @@ var mw = ( function ( $, undefined ) {
 					 * The try / catch block is used for JSON & localStorage feature detection.
 					 * See the in-line documentation for Modernizr's localStorage feature detection
 					 * code for a full account of why we need a try / catch:
-					 * https://github.com/Modernizr/Modernizr/blob/v2.7.1/modernizr.js#L771-L796
+					 * <https://github.com/Modernizr/Modernizr/blob/v2.7.1/modernizr.js#L771-L796>.
 					 */
 					init: function () {
 						var raw, data;
