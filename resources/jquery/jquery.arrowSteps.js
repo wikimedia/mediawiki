@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery arrowSteps plugin
  * Copyright Neil Kandalgaonkar, 2010
  *
@@ -7,40 +7,34 @@
  * (see http://www.fsf.org/licensing/licenses/gpl.html).
  * Derivative works and later versions of the code must be free software
  * licensed under the same or a compatible license.
- *
- *
- * DESCRIPTION
- *
- * Show users their progress through a series of steps, via a row of items that fit
- * together like arrows. One item can be highlighted at a time.
- *
- *
- * SYNOPSIS
- *
- * <ul id="robin-hood-daffy">
- *   <li id="guard"><div>Guard!</div></li>
- *   <li id="turn"><div>Turn!</div></li>
- *   <li id="parry"><div>Parry!</div></li>
- *   <li id="dodge"><div>Dodge!</div></li>
- *   <li id="spin"><div>Spin!</div></li>
- *   <li id="ha"><div>Ha!</div></li>
- *   <li id="thrust"><div>Thrust!</div></li>
- * </ul>
- *
- * <script>
- *   $( '#robin-hood-daffy' ).arrowSteps();
- *
- *   $( '#robin-hood-daffy' ).arrowStepsHighlight( '#guard' );
- *   // 'Guard!' is highlighted.
- *
- *   // ... user completes the 'guard' step ...
- *
- *   $( '#robin-hood-daffy' ).arrowStepsHighlight( '#turn' );
- *   // 'Turn!' is highlighted.
- * </script>
- *
+ */
+
+/**
+ * @class jQuery.plugin.arrowSteps
  */
 ( function ( $ ) {
+	/**
+	 * Show users their progress through a series of steps, via a row of items that fit
+	 * together like arrows. One item can be highlighted at a time.
+	 *
+	 *     <ul id="robin-hood-daffy">
+	 *       <li id="guard"><div>Guard!</div></li>
+	 *       <li id="turn"><div>Turn!</div></li>
+	 *       <li id="parry"><div>Parry!</div></li>
+	 *       <li id="dodge"><div>Dodge!</div></li>
+	 *       <li id="spin"><div>Spin!</div></li>
+	 *       <li id="ha"><div>Ha!</div></li>
+	 *       <li id="thrust"><div>Thrust!</div></li>
+	 *     </ul>
+	 *
+	 *     <script>
+	 *       $( '#robin-hood-daffy' ).arrowSteps();
+	 *     </script>
+	 *
+	 * @method
+	 * @chainable
+	 * @returns {jQuery}
+	 */
 	$.fn.arrowSteps = function () {
 		var $steps, width, arrowWidth,
 			paddingSide = $( 'body' ).hasClass( 'rtl' ) ? 'padding-left' : 'padding-right';
@@ -62,6 +56,22 @@
 		return this;
 	};
 
+	/**
+	 * Highlights the element selected by the selector.
+	 *
+	 *       $( '#robin-hood-daffy' ).arrowStepsHighlight( '#guard' );
+	 *       // 'Guard!' is highlighted.
+	 *
+	 *       // ... user completes the 'guard' step ...
+	 *
+	 *       $( '#robin-hood-daffy' ).arrowStepsHighlight( '#turn' );
+	 *       // 'Turn!' is highlighted.
+	 *
+	 * @method
+	 * @chainable
+	 * @param {string} selector
+	 * @returns {jQuery}
+	 */
 	$.fn.arrowStepsHighlight = function ( selector ) {
 		var $previous,
 			$steps = this.data( 'arrowSteps' );
@@ -79,4 +89,8 @@
 		} );
 	};
 
+	/**
+	 * @class jQuery
+	 * @mixins jQuery.plugin.arrowSteps
+	 */
 }( jQuery ) );
