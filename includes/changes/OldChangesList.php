@@ -130,4 +130,15 @@ class OldChangesList extends ChangesList {
 
 		return "$dateheader<li class=\"" . implode( ' ', $classes ) . "\">" . $s . "</li>\n";
 	}
+
+	/**
+	 * Returns text for the start of the tabular part of RC
+	 *
+	 * @param ResultWrapper $res
+	 * @return string
+	 */
+	public function beginRecentChangesList( $res ) {
+		wfRunHooks( 'OldChangesListBegin', array( $this, $res ) );
+		return parent::beginRecentChangesList( $res );
+	}
 }
