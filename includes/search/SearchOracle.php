@@ -90,18 +90,6 @@ class SearchOracle extends SearchDatabase {
 	}
 
 	/**
-	 * Return a partial WHERE clause to exclude redirects, if so set
-	 * @return String
-	 */
-	function queryRedirect() {
-		if ( $this->showRedirects ) {
-			return '';
-		} else {
-			return 'AND page_is_redirect=0';
-		}
-	}
-
-	/**
 	 * Return a partial WHERE clause to limit the search to the given namespaces
 	 * @return String
 	 */
@@ -147,7 +135,6 @@ class SearchOracle extends SearchDatabase {
 	 */
 	function getQuery( $filteredTerm, $fulltext ) {
 		return $this->queryLimit( $this->queryMain( $filteredTerm, $fulltext ) . ' ' .
-			$this->queryRedirect() . ' ' .
 			$this->queryNamespaces() . ' ' .
 			$this->queryRanking( $filteredTerm, $fulltext ) . ' ' );
 	}

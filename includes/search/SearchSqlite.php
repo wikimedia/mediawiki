@@ -185,18 +185,6 @@ class SearchSqlite extends SearchDatabase {
 	}
 
 	/**
-	 * Return a partial WHERE clause to exclude redirects, if so set
-	 * @return String
-	 */
-	function queryRedirect() {
-		if ( $this->showRedirects ) {
-			return '';
-		} else {
-			return 'AND page_is_redirect=0';
-		}
-	}
-
-	/**
 	 * Return a partial WHERE clause to limit the search to the given namespaces
 	 * @return String
 	 */
@@ -231,7 +219,6 @@ class SearchSqlite extends SearchDatabase {
 	function getQuery( $filteredTerm, $fulltext ) {
 		return $this->limitResult(
 			$this->queryMain( $filteredTerm, $fulltext ) . ' ' .
-			$this->queryRedirect() . ' ' .
 			$this->queryNamespaces()
 		);
 	}
@@ -267,8 +254,7 @@ class SearchSqlite extends SearchDatabase {
 		$searchindex = $this->db->tableName( 'searchindex' );
 		return "SELECT COUNT(*) AS c " .
 			"FROM $page,$searchindex " .
-			"WHERE page_id=$searchindex.rowid AND $match" .
-			$this->queryRedirect() . ' ' .
+			"WHERE page_id=$searchindex.rowid AND $match " .
 			$this->queryNamespaces();
 	}
 
