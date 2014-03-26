@@ -257,9 +257,14 @@ class OutputPage extends ContextSource {
 	private $mTarget = null;
 
 	/**
-	 * @var bool: Whether output should contain table of contents
+	 * @var bool: Whether parser output should contain table of contents
 	 */
 	private $mEnableTOC = true;
+
+	/**
+	 * @var bool: Whether parser output should contain section edit links
+	 */
+	private $mEnableSectionEditLinks = true;
 
 	/**
 	 * Constructor for OutputPage. This should not be called directly.
@@ -1613,6 +1618,11 @@ class OutputPage extends ContextSource {
 	function addParserOutput( &$parserOutput ) {
 		$this->addParserOutputNoText( $parserOutput );
 		$parserOutput->setTOCEnabled( $this->mEnableTOC );
+
+		// Touch section edit links only if not previously disabled
+		if ( $parserOutput->getEditSectionTokens() ) {
+			$parserOutput->setEditSectionTokens( $this->mEnableSectionEditLinks );
+		}
 		$text = $parserOutput->getText();
 		wfRunHooks( 'OutputPageBeforeHTML', array( &$this, &$text ) );
 		$this->addHTML( $text );
@@ -3690,5 +3700,22 @@ $templates
 	 */
 	public function isTOCEnabled() {
 		return $this->mEnableTOC;
+	}
+
+	/**
+	 * Enables/disables section edit links, doesn't override __NOEDITSECTION__
+	 * @param bool $flag
+	 * @since 1.23
+	 */
+	public function enableSectionEditLinks( $flag = true ) {
+		$this->mEnableSectionEditLinks = $flag;
+	}
+
+	/**
+	 * @return bool
+	 * @since 1.23
+	 */
+	public function sectionEditLinksEnabled() {
+		return $this->mEnableSectionEditLinks;
 	}
 }
