@@ -1066,16 +1066,17 @@ abstract class File {
 
 	/**
 	 * @param string $thumbName Thumbnail name
+	 * @param string $dispositionType Type of disposition (either "attachment" or "inline")
 	 * @return string Content-Disposition header value
 	 */
-	function getThumbDisposition( $thumbName ) {
+	function getThumbDisposition( $thumbName, $dispositionType = 'inline' ) {
 		$fileName = $this->name; // file name to suggest
 		$thumbExt = FileBackend::extensionFromPath( $thumbName );
 		if ( $thumbExt != '' && $thumbExt !== $this->getExtension() ) {
 			$fileName .= ".$thumbExt";
 		}
 
-		return FileBackend::makeContentDisposition( 'inline', $fileName );
+		return FileBackend::makeContentDisposition( $dispositionType, $fileName );
 	}
 
 	/**

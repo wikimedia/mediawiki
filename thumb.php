@@ -289,8 +289,10 @@ function wfStreamThumb( array $params ) {
 		}
 	}
 
+	$dispositionType = isset( $params['download'] ) ? 'attachment' : 'inline';
+
 	// Suggest a good name for users downloading this thumbnail
-	$headers[] = "Content-Disposition: {$img->getThumbDisposition( $thumbName )}";
+	$headers[] = "Content-Disposition: {$img->getThumbDisposition( $thumbName, $dispositionType )}";
 
 	if ( count( $varyHeader ) ) {
 		$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
