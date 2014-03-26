@@ -1,8 +1,12 @@
+/*
+ * @author Jan Paul Posma, 2011
+ * @author Timo Tijhof, 2011-2012
+ */
+
 /**
  * jQuery byteLimit plugin.
  *
- * @author Jan Paul Posma, 2011
- * @author Timo Tijhof, 2011-2012
+ * @class jQuery.plugin.byteLimit
  */
 ( function ( $ ) {
 
@@ -13,14 +17,15 @@
 	 * "fobo", not "foba". Basically emulating the native maxlength by
 	 * reconstructing where the insertion occured.
 	 *
+	 * @private
 	 * @param {string} safeVal Known value that was previously returned by this
 	 * function, if none, pass empty string.
 	 * @param {string} newVal New value that may have to be trimmed down.
 	 * @param {number} byteLimit Number of bytes the value may be in size.
-	 * @param {Function} fn [optional] See $.fn.byteLimit.
-	 * @return {Object} Object with:
-	 *  - {string} newVal
-	 *  - {boolean} trimmed
+	 * @param {Function} [fn] See jQuery.byteLimit.
+	 * @return {Object}
+	 * @return {string} return.newVal
+	 * @return {boolean} return.trimmed
 	 */
 	function trimValForByteLength( safeVal, newVal, byteLimit, fn ) {
 		var startMatches, endMatches, matchesLen, inpParts,
@@ -117,11 +122,10 @@
 	 * value), a filter function (in case the limit should apply to something other than the
 	 * exact input value), or both. Order of parameters is important!
 	 *
-	 * @context {jQuery} Instance of jQuery for one or more input elements
-	 * @param {Number} limit [optional] Limit to enforce, fallsback to maxLength-attribute,
+	 * @chainable
+	 * @param {number} [limit] Limit to enforce, fallsback to maxLength-attribute,
 	 *  called with fetched value as argument.
-	 * @param {Function} fn [optional] Function to call on the string before assessing the length.
-	 * @return {jQuery} The context
+	 * @param {Function} [fn] Function to call on the string before assessing the length.
 	 */
 	$.fn.byteLimit = function ( limit, fn ) {
 		// If the first argument is the function,
@@ -229,4 +233,9 @@
 			} );
 		} );
 	};
+
+	/**
+	 * @class jQuery
+	 * @mixins jQuery.plugin.byteLimit
+	 */
 }( jQuery ) );
