@@ -1052,6 +1052,7 @@ return array(
 	'mediawiki.action.edit.editWarning' => array(
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.editWarning.js',
 		'dependencies' => array(
+			'jquery.textSelection',
 			'mediawiki.jqueryMsg'
 		),
 		'messages' => array(
