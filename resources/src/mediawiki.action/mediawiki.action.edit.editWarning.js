@@ -24,8 +24,8 @@
 				// the original values
 				if (
 					mw.config.get( 'wgAction' ) === 'submit' ||
-						$wpTextbox1.data( 'origtext' ) !== $wpTextbox1.val() ||
-						$wpSummary.data( 'origtext' ) !== $wpSummary.val()
+						$wpTextbox1.data( 'origtext' ) !== $wpTextbox1.textSelection( 'getContents' ) ||
+						$wpSummary.data( 'origtext' ) !== $wpSummary.textSelection( 'getContents' )
 				) {
 					// Return our message
 					retval = mw.msg( 'editwarning-warning' );
