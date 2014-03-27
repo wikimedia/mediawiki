@@ -950,6 +950,49 @@ class LoadBalancer {
 	}
 
 	/**
+	 * Issue ROLLBACK only on master, only if queries were done on connection
+	 * @since 1.23
+	 */
+	function rollbackMasterChanges() {
+		// Always 0, but who knows.. :)
+		$masterIndex = $this->getWriterIndex();
+		foreach ( $this->mConns as $conns2 ) {
+			if ( empty( $conns2[$masterIndex] ) ) {
+				continue;
+			}
+			/** @var DatabaseBase $conn */
+			foreach ( $conns2[$masterIndex] as $conn ) {
+				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
+					$conn->rollback( __METHOD__, 'flush' );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Determine if there are any pending changes that need to be rolled back
+	 * or committed.
+	 * @since 1.23
+	 * @return bool
+	 */
+	function hasMasterChanges() {
+		// Always 0, but who knows.. :)
+		$masterIndex = $this->getWriterIndex();
+		foreach ( $this->mConns as $conns2 ) {
+			if ( empty( $conns2[$masterIndex] ) ) {
+				continue;
+			}
+			/** @var DatabaseBase $conn */
+			foreach ( $conns2[$masterIndex] as $conn ) {
+				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * @param $value null
 	 * @return Mixed
 	 */

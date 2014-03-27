@@ -386,6 +386,9 @@ class ApiMain extends ApiBase {
 	 * @param Exception $e
 	 */
 	protected function handleException( Exception $e ) {
+		// Bug 63145: Rollback any open database transactions
+		MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+
 		// Allow extra cleanup and logging
 		wfRunHooks( 'ApiMain::onException', array( $this, $e ) );
 
