@@ -20,6 +20,14 @@
 			.on( 'beforeunload.editwarning', function () {
 				var retval;
 
+				// Sync content between editor and form
+				$( '#wpTextbox1, #wpSummary' ).each( function () {
+					var syncFn = $( this ).data( 'syncEditorWithFormFn' );
+					if ( typeof syncFn === 'function' ) {
+						syncFn();
+					}
+				} );
+
 				// Check if the current values of some form elements are the same as
 				// the original values
 				if (
