@@ -132,6 +132,8 @@ production.
 * Added BaseTemplateAfterPortlet hook to allow injecting html after portlets in skins.
 * Support has been added for a JSON based localisation file format. The
   installer has been updated to use it.
+* Changes to content typography (fonts, line-height, etc.). See
+  https://www.mediawiki.org/wiki/Typography_refresh for further information.
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
