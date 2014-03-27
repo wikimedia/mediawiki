@@ -1337,18 +1337,19 @@ Temporary password: $2',
 'passwordreset-emailerror-capture' => 'A password reset email was generated, which is shown below, but sending it to the {{GENDER:$2|user}} failed: $1',
 
 # Special:ChangeEmail
-'changeemail'           => 'Change email address',
-'changeemail-summary'   => '', # do not translate or duplicate this message to other languages
-'changeemail-header'    => 'Change account email address',
-'changeemail-text'      => 'Complete this form to change your email address. You will need to enter your password to confirm this change.',
-'changeemail-no-info'   => 'You must be logged in to access this page directly.',
-'changeemail-oldemail'  => 'Current email address:',
-'changeemail-newemail'  => 'New email address:',
-'changeemail-none'      => '(none)',
-'changeemail-password'  => 'Your {{SITENAME}} password:',
-'changeemail-submit'    => 'Change email',
-'changeemail-cancel'    => 'Cancel',
-'changeemail-throttled' => 'You have made too many login attempts.
+'changeemail'               => 'Change email address',
+'changeemail-summary'       => '', # do not translate or duplicate this message to other languages
+'changeemail-header'        => 'Change account email address',
+'changeemail-text'          => 'Complete this form to change your email address. You will need to enter your password to confirm this change.',
+'changeemail-no-info'       => 'You must be logged in to access this page directly.',
+'changeemail-oldemail'      => 'Current email address:',
+'changeemail-newemail'      => 'New email address:',
+'changeemail-none'          => '(none)',
+'changeemail-password'      => 'Your {{SITENAME}} password:',
+'changeemail-wrongpassword' => 'Incorrect password entered.',
+'changeemail-submit'        => 'Change email',
+'changeemail-cancel'        => 'Cancel',
+'changeemail-throttled'     => 'You have made too many login attempts.
 Please wait $1 before trying again.',
 
 # Special:ResetTokens
