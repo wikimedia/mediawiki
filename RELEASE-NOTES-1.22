@@ -5,10 +5,15 @@ have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.22.5 ==
 
-This is a maintenance release of the MediaWiki 1.22 branch.
+This is a security and maintenance release of the MediaWiki 1.22 branch.
 
 === Changes since 1.22.4 ===
 
+* (bug 62497) SECURITY: Add CSRF token on Special:ChangePassword.
+* (bug 62467) Set a title for the context during import on the cli.
+* Fix custom local MediaWiki:Helppage values.
+* mediawiki.js: Fix documentation breakage.
+* (bug 58153) Make MySQLi work with non standard port.
 * (bug 53887) Reintroduced a link to help pages in the default sidebar, that
   any sysop can customize by editing [[MediaWiki:Sidebar]] locally. The link
   now points to a mediawiki.org page which is guaranteed to exist. Nothing needs
