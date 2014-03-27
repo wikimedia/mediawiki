@@ -51,6 +51,11 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		$this->getOutput()->disallowUserJs();
 
 		$user = $this->getUser();
+
+		if ( !$user->isLoggedIn() && !LoginForm::getLoginToken() ) {
+			LoginForm::setLoginToken();
+		}
+
 		if( !$request->wasPosted() && !$user->isLoggedIn() ) {
 			$this->error( $this->msg( 'resetpass-no-info' )->text() );
 			return;
@@ -70,6 +75,14 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 				if( !$wgAuth->allowPasswordChange() ) {
 					$this->error( $this->msg( 'resetpass_forbidden' )->text() );
 					return;
+				}
+
+				if ( !$user->isLoggedIn()
+					&& $request->getVal( 'wpLoginOnChangeToken' ) !== LoginForm::getLoginToken()
+				) {
+					// Potential CSRF (bug 62497)
+					$this->error( $this->msg( 'sessionfailure' )->text() );
+					return false;
 				}
 
 				$this->attemptReset( $this->mNewpass, $this->mRetype );
@@ -136,6 +149,10 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			$oldpassMsg = 'oldpassword';
 			$submitMsg = 'resetpass-submit-loggedin';
 		}
+		$loginOnChangeToken = '';
+		if ( !$user->isLoggedIn() ) {
+			$loginOnChangeToken = LoginForm::getLoginToken();
+		}
 		$this->getOutput()->addHTML(
 			Xml::fieldset( $this->msg( 'resetpass_header' )->text() ) .
 			Xml::openElement( 'form',
@@ -147,6 +164,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			Html::hidden( 'wpName', $this->mUserName ) . "\n" .
 			Html::hidden( 'wpDomain', $this->mDomain ) . "\n" .
 			Html::hidden( 'returnto', $this->getRequest()->getVal( 'returnto' ) ) . "\n" .
+			$loginOnChangeToken .
 			$this->msg( 'resetpass_text' )->parseAsBlock() . "\n" .
 			Xml::openElement( 'table', array( 'id' => 'mw-resetpass-table' ) ) . "\n" .
 			$this->pretty( array(
