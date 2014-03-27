@@ -71,6 +71,10 @@ class UIDGenerator {
 				$nodeId[1] = dechex( hexdec( $nodeId[1] ) | 0x1 ); // set multicast bit
 			}
 			file_put_contents( $this->nodeIdFile, $nodeId ); // cache
+			if ( is_file( $this->nodeIdFile ) ) {
+				// Bug: 53791
+				chmod( $this->nodeIdFile, 0666 );
+			}
 		}
 		$this->nodeId32 = wfBaseConvert( substr( sha1( $nodeId ), 0, 8 ), 16, 2, 32 );
 		$this->nodeId48 = wfBaseConvert( $nodeId, 16, 2, 48 );
@@ -299,6 +303,10 @@ class UIDGenerator {
 			} else {
 				$handle = fopen( $path, 'cb+' );
 				$this->fileHandles[$path] = $handle ?: null; // cache
+				if ( is_file( $path ) ) {
+					// Bug: 53791
+					chmod( $path, 0666 );
+				}
 			}
 			// Acquire the UID lock file
 			if ( $handle === false ) {
@@ -348,6 +356,10 @@ class UIDGenerator {
 		} else {
 			$handle = fopen( $path, 'cb+' );
 			$this->fileHandles[$path] = $handle ?: null; // cache
+			if ( is_file( $path ) ) {
+				// Bug: 53791
+				chmod( $path, 0666 );
+			}
 		}
 		// Acquire the UID lock file
 		if ( $handle === false ) {
