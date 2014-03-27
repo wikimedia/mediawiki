@@ -100,14 +100,10 @@ div#content {
 		font-family: @content-font-family;
 	}
 
-	// Give extra long preformatted content horizontal scroll bars
-	pre {
-		overflow-x: auto;
-	}
-
-	// Prevent citations from interfering with the line-height
-	sup {
-		line-height: 0;
+	// Prevent citations and subscripts from interfering with the line-height
+	sup,
+	sub {
+		line-height: 1;
 	}
 }
 
