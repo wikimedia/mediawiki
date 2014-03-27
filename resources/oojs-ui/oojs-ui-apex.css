@@ -128,11 +128,10 @@
 }
 
 .oo-ui-buttonedElement-frameless .oo-ui-buttonedElement-button > .oo-ui-iconedElement-icon {
-  -webkit-transition: opacity 200ms;
-     -moz-transition: opacity 200ms;
-      -ms-transition: opacity 200ms;
-       -o-transition: opacity 200ms;
-          transition: opacity 200ms;
+  /* Don't animate opacities for now, causes wiggling in Chrome (bug 63020) */
+
+  /*.oo-ui-transition(opacity 200ms);*/
+
 }
 
 .oo-ui-buttonedElement-frameless .oo-ui-buttonedElement-button:hover > .oo-ui-iconedElement-icon,
@@ -459,6 +458,10 @@
   background-color: #a7dcff;
 }
 
+.oo-ui-optionWidget.oo-ui-widget-disabled {
+  color: #ccc;
+}
+
 .oo-ui-menuWidget {
   margin-top: -1px;
   background: #fff;
@@ -541,6 +544,17 @@
   opacity: 0.8;
 }
 
+.oo-ui-inlineMenuWidget.oo-ui-widget-disabled .oo-ui-inlineMenuWidget-handle {
+  color: #ccc;
+  text-shadow: 0 1px 1px #fff;
+  background-color: #f3f3f3;
+  border-color: #ddd;
+}
+
+.oo-ui-inlineMenuWidget.oo-ui-widget-disabled .oo-ui-indicatedElement-indicator {
+  opacity: 0.2;
+}
+
 .oo-ui-menuItemWidget.oo-ui-optionWidget-highlighted {
   background-color: #e1f3ff;
 }
@@ -606,6 +620,15 @@
       -ms-transition: border-color 200ms, box-shadow 200ms;
        -o-transition: border-color 200ms, box-shadow 200ms;
           transition: border-color 200ms, box-shadow 200ms;
+}
+
+.oo-ui-textInputWidget-decorated input,
+.oo-ui-textInputWidget-decorated textarea {
+  padding-left: 2em;
+}
+
+.oo-ui-textInputWidget-icon {
+  width: 2em;
 }
 
 .oo-ui-textInputWidget.oo-ui-widget-enabled input:focus,
