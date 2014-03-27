@@ -121,6 +121,16 @@ abstract class ApiFormatBase extends ApiBase {
 	}
 
 	/**
+	 * Whether this formatter can handle printing API errors. If this returns
+	 * false, then on API errors the default printer will be instantiated.
+	 * @since 1.23
+	 * @return bool
+	 */
+	public function canPrintErrors() {
+		return true;
+	}
+
+	/**
 	 * Initialize the printer function and prepare the output headers, etc.
 	 * This method must be the first outputting method during execution.
 	 * A human-targeted notice about available formats is printed for the HTML-based output,
@@ -375,6 +385,15 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	 */
 	public function getNeedsRawData() {
 		return true;
+	}
+
+	/**
+	 * ChannelFeed doesn't give us a method to print errors in a friendly
+	 * manner, so just punt errors to the default printer.
+	 * @return false
+	 */
+	public function canPrintErrors() {
+		return false;
 	}
 
 	/**
