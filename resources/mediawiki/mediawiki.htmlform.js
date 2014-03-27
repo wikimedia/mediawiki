@@ -10,6 +10,7 @@
 	 *
 	 * @param {boolean} [instantToggle=false]
 	 * @return {jQuery}
+	 * @chainable
 	 */
 	$.fn.goIn = function ( instantToggle ) {
 		if ( instantToggle === true ) {
@@ -23,6 +24,7 @@
 	 *
 	 * @param {boolean} [instantToggle=false]
 	 * @return jQuery
+	 * @chainable
 	 */
 	$.fn.goOut = function ( instantToggle ) {
 		if ( instantToggle === true ) {
