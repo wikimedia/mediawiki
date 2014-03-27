@@ -23,7 +23,10 @@
 /**
  * The MediaWiki class is the helper class for the index.php entry point.
  *
- * @internal documentation reviewed 15 Mar 2010
+ * There is deprecated UnknownAction hook.
+ *
+ * @internal documentation reviewed 15 Mar
+ 2010
  */
 class MediaWiki {
 
@@ -429,7 +432,11 @@ class MediaWiki {
 			wfProfileOut( __METHOD__ );
 			return;
 		}
-
+                
+                /** 
+                 * UnknownAction hook deprecated
+                 * @deprecated, since 1.19 aplha
+                 */
 		if ( wfRunHooks( 'UnknownAction', array( $request->getVal( 'action', 'view' ), $page ) ) ) {
 			$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 		}
