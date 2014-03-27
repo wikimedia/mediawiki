@@ -40,9 +40,9 @@ class UserloginTemplate extends BaseTemplate {
 					<?php echo $this->getMsg( 'userlogin-loggedin' )->params( $this->data['loggedinuser'] )->parse(); ?>
 				</div>
 			<?php } ?>
-			<section class="mw-form-header">
+			<div class="mw-form-header">
 				<?php $this->html( 'header' ); /* extensions such as ConfirmEdit add form HTML here */ ?>
-			</section>
+			</div>
 
 			<?php if ( $this->data['message'] ) { ?>
 				<div class="<?php $this->text( 'messagetype' ); ?>box">
