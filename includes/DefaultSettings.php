@@ -63,7 +63,7 @@ $wgConf = new SiteConfiguration;
  * MediaWiki version number
  * @since 1.2
  */
-$wgVersion = '1.21.7';
+$wgVersion = '1.21.8';
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
