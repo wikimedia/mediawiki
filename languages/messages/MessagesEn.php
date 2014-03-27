@@ -1464,7 +1464,7 @@ or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.',
 'noarticletext-nopermission'               => 'There is currently no text in this page.
 You can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages, or <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>, but you do not have permission to create this page.',
 'noarticletextanon'                        => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
-'missing-revision'                         => 'The revision #$1 of the page named "{{PAGENAME}}" does not exist.
+'missing-revision'                         => 'The revision #$1 of the page named "{{FULLPAGENAME}}" does not exist.
 
 This is usually caused by following an outdated history link to a page that has been deleted.
 Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
