@@ -5067,6 +5067,9 @@ $wgProfileLimit = 0.0;
 
 /**
  * Don't put non-profiling info into log file
+ *
+ * @deprecated since 1.23, set the log file in
+ *   $wgDebugLogGroups['profileoutput'] instead.
  */
 $wgProfileOnly = false;
 

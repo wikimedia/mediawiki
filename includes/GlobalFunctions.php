@@ -921,7 +921,6 @@ function wfMatchesDomainList( $url, $domains ) {
  *
  * Controlling globals:
  * $wgDebugLogFile - points to the log file
- * $wgProfileOnly - if set, normal debug messages will not be recorded.
  * $wgDebugRawPage - if false, 'action=raw' hits will not result in debug output.
  * $wgDebugComments - if on, some debug items may appear in comments in the HTML output.
  *
@@ -934,7 +933,7 @@ function wfMatchesDomainList( $url, $domains ) {
  *     - false: same as 'log'
  */
 function wfDebug( $text, $dest = 'all' ) {
-	global $wgDebugLogFile, $wgProfileOnly, $wgDebugRawPage, $wgDebugLogPrefix;
+	global $wgDebugLogFile, $wgDebugRawPage, $wgDebugLogPrefix;
 
 	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
@@ -956,7 +955,7 @@ function wfDebug( $text, $dest = 'all' ) {
 		MWDebug::debugMsg( $text );
 	}
 
-	if ( $wgDebugLogFile != '' && !$wgProfileOnly ) {
+	if ( $wgDebugLogFile != '' ) {
 		# Strip unprintables; they can switch terminal modes when binary data
 		# gets dumped, which is pretty annoying.
 		$text = preg_replace( '![\x00-\x08\x0b\x0c\x0e-\x1f]!', ' ', $text );
@@ -1227,8 +1226,8 @@ function wfErrorLog( $text, $file ) {
  * @todo document
  */
 function wfLogProfilingData() {
-	global $wgRequestTime, $wgDebugLogFile, $wgDebugRawPage, $wgRequest;
-	global $wgProfileLimit, $wgUser;
+	global $wgRequestTime, $wgDebugLogFile, $wgDebugLogGroups, $wgDebugRawPage;
+	global $wgProfileLimit, $wgUser, $wgRequest;
 
 	StatCounter::singleton()->flush();
 
@@ -1249,7 +1248,17 @@ function wfLogProfilingData() {
 	$profiler->logData();
 
 	// Check whether this should be logged in the debug file.
-	if ( $wgDebugLogFile == '' || ( !$wgDebugRawPage && wfIsDebugRawPage() ) ) {
+	if ( isset( $wgDebugLogGroups['profileoutput'] )
+		&& $wgDebugLogGroups['profileoutput'] === false
+	) {
+		// Explicitely disabled
+		return;
+	}
+	if ( !isset( $wgDebugLogGroups['profileoutput'] ) && $wgDebugLogFile == '' ) {
+		// Logging not enabled; no point going further
+		return;
+	}
+	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
 	}
 
@@ -1284,7 +1293,7 @@ function wfLogProfilingData() {
 		gmdate( 'YmdHis' ), $elapsed,
 		urldecode( $requestUrl . $forward ) );
 
-	wfErrorLog( $log . $profiler->getOutput(), $wgDebugLogFile );
+	wfDebugLog( 'profileoutput', $log . $profiler->getOutput() );
 }
 
 /**

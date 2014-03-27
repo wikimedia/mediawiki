@@ -51,6 +51,8 @@ production.
 * $wgQueryPages has been removed. Query Pages should be added to by using the
   wgQueryPages hook.
 * $wgHttpOnlyBlacklist has been removed.
+* $wgProfileOnly is now deprecated; set the log file in
+  $wgDebugLogGroups['profileoutput'] to replace it.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
