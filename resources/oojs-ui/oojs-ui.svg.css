@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (1c7875205a)
+ * OOjs UI v0.1.0-pre (e697490c9b)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Mar 26 2014 09:53:51 GMT-0700 (PDT)
+ * Date: Wed Mar 26 2014 17:40:12 GMT-0700 (PDT)
  */
 
 /* Textures */
@@ -712,6 +712,7 @@
 }
 
 .oo-ui-optionWidget .oo-ui-labeledElement-label {
+  display: block;
   overflow: hidden;
   line-height: 1.5em;
   text-overflow: ellipsis;
@@ -896,7 +897,12 @@
 }
 
 .oo-ui-inlineMenuWidget .oo-ui-menuWidget {
+  z-index: 1;
   width: 100%;
+}
+
+.oo-ui-inlineMenuWidget.oo-ui-widget-disabled .oo-ui-inlineMenuWidget-handle {
+  cursor: default;
 }
 
 .oo-ui-menuItemWidget {
@@ -1052,16 +1058,10 @@
   resize: none;
 }
 
-.oo-ui-textInputWidget-decorated input,
-.oo-ui-textInputWidget-decorated textarea {
-  padding-left: 2em;
-}
-
 .oo-ui-textInputWidget-icon {
   position: absolute;
   top: 0;
   left: 0;
-  width: 2em;
   height: 100%;
   background-position: right center;
   background-repeat: no-repeat;
@@ -1070,7 +1070,7 @@
 .oo-ui-toggleSwitchWidget {
   position: relative;
   display: inline-block;
-  width: 3em;
+  width: 4em;
   height: 2em;
   overflow: hidden;
   vertical-align: middle;
@@ -1125,7 +1125,7 @@
 }
 
 .oo-ui-toggleWidget-on .oo-ui-toggleSwitchWidget-grip {
-  left: 1.25em;
+  left: 2.25em;
   margin-left: -2px;
 }
 
