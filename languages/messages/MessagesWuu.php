@@ -821,7 +821,7 @@ $3封禁个原因是''$2''",
 'revdelete-no-file' => '指定文件弗存在。',
 'revdelete-show-file-confirm' => '侬阿是真个要查看文件“<nowiki>$1</nowiki>”垃拉$2 $3已经删除个修订？',
 'revdelete-show-file-submit' => '是',
-'logdelete-selected' => "'''选取'''$1'''个日志事件：'''",
+'logdelete-selected' => '选取$1个日志事件：',
 'revdelete-confirm' => '假使侬想箇能介做个闲话，请确认侬已经清爽箇能介做个后果，外加箇个程序符合[[{{MediaWiki:Policy-url}}|政策]]。',
 'revdelete-suppress-text' => "'''只有'''出现下头眼情况再应阻止访问：
 * 弗适合个个人信息

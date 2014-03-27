@@ -1028,7 +1028,7 @@ Ha úgy látod, hogy az üzenetek, amiket ide kapsz, nem neked szólnak, [[Speci
 vagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted a lapot].</span>',
 'noarticletext-nopermission' => 'Ez a lap jelenleg nem tartalmaz szöveget.
 [[Special:Search/{{PAGENAME}}|Rákereshetsz a lap címére]] más lapok tartalmában, vagy <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} megtekintheted a kapcsolódó naplófájlokat]</span>.',
-'missing-revision' => 'A(z) "{{PAGENAME}}" nevű oldal #$1 változata nem létezik.
+'missing-revision' => 'A(z) "{{FULLPAGENAME}}" nevű oldal #$1 változata nem létezik.
 
 Ezt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás használata okozza. Részletek a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatóak.',
 'userpage-userdoesnotexist' => 'Nincs „<nowiki>$1</nowiki>” nevű regisztrált felhasználónk.
@@ -1249,7 +1249,7 @@ vagy a legutolsó változatot próbáltad meg elrejteni.',
 'revdelete-no-file' => 'A megadott fájl nem létezik.',
 'revdelete-show-file-confirm' => 'Biztosan meg szeretnéd nézni a(z) „<nowiki>$1</nowiki>” $2, $3-i törölt változatát?',
 'revdelete-show-file-submit' => 'Igen',
-'logdelete-selected' => "'''{{PLURAL:$1|Kiválasztott naplóesemény|Kiválasztott naplóesemények}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Kiválasztott naplóesemény|Kiválasztott naplóesemények}}:',
 'revdelete-confirm' => 'Kérlek erősítsd meg, hogy valóban ezt szeretnéd tenni; megértetted a következményeket, és amit teszel, az összhangban van [[{{MediaWiki:Policy-url}}|az irányelvekkel]].',
 'revdelete-suppress-text' => "Az elrejtés '''csak''' a következő esetekben használható:
 * Illetlen személyes információk

@@ -900,7 +900,7 @@ Salaku kuncen, mun perlu, anjeun bisa kénéh [$1 nempo bédana].",
 'revdelete-no-file' => 'Berkas anu ditujul teu kapanggih.',
 'revdelete-show-file-confirm' => 'Anjeun yakin rék nempo révisi anu geus dihapus dina koropak "<nowiki>$1</nowiki>" ti $2 nepi ka $3?',
 'revdelete-show-file-submit' => 'Enya',
-'logdelete-selected' => "'''{{PLURAL:$1|pilihan keur log|pilihan keur log}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|pilihan keur log|pilihan keur log}}:',
 'revdelete-confirm' => 'Mangga geura konfirmasi yen Anjeun gaduh maksad pikeun ngalakukeun hal ieu, paham kana konsekwensina, tur nu dilakukeun ieu teh luyu sareng [[{{MediaWiki:Policy-url}}|kawijakanana]]',
 'revdelete-suppress-text' => "Nyumputkeun revisi '''ukur''' bisa digunakeun keur kasus-kasus di handap ieu:
 * Informasi nu boga potensi mitenah

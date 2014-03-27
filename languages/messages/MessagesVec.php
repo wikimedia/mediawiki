@@ -840,7 +840,7 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'noarticletext-nopermission' => 'In sto momento no ghe xe nissun testo su sta pagina.
 Te pol [[Special:Search/{{PAGENAME}}|sercar sto titolo de pagina]] in altre pagine,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sercar in tei registri ligà a sta pagina]</span>, ma no te ghè el parmesso de crear sta pagina.',
-'missing-revision' => 'Ła revixion #$1 de ła pàjina "{{PAGENAME}}" nó ła existe.',
+'missing-revision' => 'Ła revixion #$1 de ła pàjina "{{FULLPAGENAME}}" nó ła existe.',
 'userpage-userdoesnotexist' => 'L\'account "<nowiki>$1</nowiki>" no\'l corisponde mìa a un utente registrà. Verifica se te voli dal bon crear o modificar sta pagina.',
 'userpage-userdoesnotexist-view' => 'L\'utensa "$1" no la xe gnancora registrà.',
 'blocked-notice-logextract' => "Sto utente xè atualmente blocà.
@@ -1051,7 +1051,7 @@ Te połi uncora vixuałixare sto confronto; controłare el [{{fullurl:{{#Special
 'revdelete-no-file' => "El file indicà no l'esiste mia.",
 'revdelete-show-file-confirm' => 'Vuto dal bon vardar la version scancelà del file "<nowiki>$1</nowiki>" del $2 a le $3?',
 'revdelete-show-file-submit' => 'Sì',
-'logdelete-selected' => "'''{{PLURAL:$1|Evento del registro selezionà|Eventi del registro selezionè}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Evento del registro selezionà|Eventi del registro selezionè}}:',
 'revdelete-confirm' => 'Par piaser, conferma che vol far sta azion, che te capissi le so conseguense, e che te sì drio operar secondo le [[{{MediaWiki:Policy-url}}|linee guida]].',
 'revdelete-suppress-text' => "La sopression la se dovarìa doparar '''solo''' in sti casi qua:
 

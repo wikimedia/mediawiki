@@ -917,7 +917,7 @@ Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines,
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear-la ara]</span>.',
 'noarticletext-nopermission' => 'Actualment no hi ha text en aquesta pàgina.
 Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines o bé <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar en els registres relacionats]</span>, però no teniu permisos per crear la pàgina.',
-'missing-revision' => 'La revisió núm. $1 de la pàgina anomenada «{{PAGENAME}}» no existeix.
+'missing-revision' => 'La revisió núm. $1 de la pàgina anomenada «{{FULLPAGENAME}}» no existeix.
 
 Normalment això ocorre quan seguiu un enllaç d’historial desactualitzat que apunta a una pàgina que s’ha suprimit.
 Podeu trobar detalls en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre de supressions].',
@@ -1148,7 +1148,7 @@ funció, la revisió especificada no existeix, o bé esteu provant d'amagar l'ac
 'revdelete-no-file' => 'El fitxer especificat no existeix.',
 'revdelete-show-file-confirm' => 'Esteu segurs que voleu veure una revisió esborrada del fitxer «<nowiki>$1</nowiki>» de $2 a $3?',
 'revdelete-show-file-submit' => 'Sí',
-'logdelete-selected' => "'''{{PLURAL:$1|Esdeveniment del registre seleccionat|Esdeveniments del registre seleccionats}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Esdeveniment del registre seleccionat|Esdeveniments del registre seleccionats}}:',
 'revdelete-confirm' => "Si us plau, confirmeu que és això el que desitgeu fer, que enteneu les conseqüències, i que esteu fent-ho d'acord amb [[{{MediaWiki:Policy-url}}|les polítiques acordades]].",
 'revdelete-suppress-text' => "Les supressions '''només''' han de ser portades a terme en els següents casos:
 * Informació potencialment difamatòria

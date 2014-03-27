@@ -757,7 +757,7 @@ Mas e cleachdaiche gun urra a tha annad 's ma tha thu dhen bheachd nach eil na b
 no [{{fullurl:{{FULLPAGENAME}}|action=edit}} an duilleag seo a dheasachadh]</span>.',
 'noarticletext-nopermission' => 'Chan eil teacsa sam bith san duilleag seo an-dràsta.
 \'S urrainn dhut [[Special:Search/{{PAGENAME}}|tiotal na duilleige seo a lorg]] ann an duilleagan eile, no <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} na logaichean co-cheangailte a rannsachadh]</span> ach chan eil cead agad an duilleag seo a chruthachadh.',
-'missing-revision' => 'Chan eil mùthadh #$1 na duilleige "{{PAGENAME}}" ann.
+'missing-revision' => 'Chan eil mùthadh #$1 na duilleige "{{FULLPAGENAME}}" ann.
 
 Mar is trice, tachraidh seo ma leanas tu ceangal san eachdraidh a tha fìor aosta \'s a tha a\' dol gu duilleag a chaidh a sguabadh às.
 Gheibh thu mion-fhiosrachadh ann an [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} loga nan duilleagan a chaidh a sguabadh às].',
@@ -989,7 +989,7 @@ Gheibh thu mion-fhiosrachadh air [{{fullurl:{{#Special:Log}}/suppress|page={{FUL
 'revdelete-no-file' => 'Chan eil am faidhle a shònraich thu ann.',
 'revdelete-show-file-confirm' => 'A bheil thu cinnteach gu bheil thu airson coimhead air mùthadh an fhaidhle "<nowiki>$1</nowiki>" a chaidh a sguabadh às $2 aig $3?',
 'revdelete-show-file-submit' => 'Tha',
-'logdelete-selected' => "'''{{PLURAL:$1|An tachartas loga|Na tachartasan loga}} a thagh thu:'''",
+'logdelete-selected' => '{{PLURAL:$1|An tachartas loga|Na tachartasan loga}} a thagh thu:',
 'revdelete-confirm' => "Dearbh gu bheil thu airson seo a dhèanamh, gu bheil thu a' tuigsinn na thachras ri linn agus gu bheil thu a' dèanamh seo a-rèir [[{{MediaWiki:Policy-url}}|a' phoileasaidh]].",
 'revdelete-suppress-text' => "Cha bu chòir dhut mùchadh a chleachdadh '''ach''' ann an suidheachaidhean mar seo:
 * Fiosrachadh a dh'fhaodadh a bhith dìteachail

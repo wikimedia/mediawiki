@@ -781,7 +781,7 @@ Mabalinmo ti [[Special:Search/{{PAGENAME}}|agsapul iti kastoy a titulo ti panid]
 wenno [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} urnosem daytoy a panid].',
 'noarticletext-nopermission' => 'Awan ti agdama  a linaon daytoy a panid.
 Mabalinmo ti [[Special:Search/{{PAGENAME}}|agbiruk para iti titulo ti daytoy a panid]] kadagiti sabali a panid, wenno <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} agbiruk kadagiti mainaig a listaan]</span>, ngem awan ti pammalubosmo a mangpartuat ti daytoy a panid.',
-'missing-revision' => 'Ti panagbalbaliw ti #$1 iti daytoy a panid a nanaganan ti "{{PAGENAME}}" ket awan.
+'missing-revision' => 'Ti panagbalbaliw ti #$1 iti daytoy a panid a nanaganan ti "{{FULLPAGENAME}}" ket awan.
 
 Daytoy ket kadawyan a gapuanan babaen ti sumaganad a silpo ti baak a pakasaritaan iti maysa a naikkaten a panid.
 Dagiti salaysay ket mabalin a mabirukan idiay [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} listaan ti panagikkat].',
@@ -1021,7 +1021,7 @@ awan ti naibaga a panagbaliw, wenno padpadasem nga ilemlemmeng ti agdama a panag
 'revdelete-no-file' => 'Awan dayta nainaganan a papeles.',
 'revdelete-show-file-confirm' => 'Sigurado kadi a kayatmo ti mangkita ti naikkat a baliwan ti papeles "<nowiki>$1</nowiki>" a naggapu idi $2 idi $3?',
 'revdelete-show-file-submit' => 'Wen',
-'logdelete-selected' => "'''{{PLURAL:$1|Ti napili a listaan ti napasamak|Dagiti napili a listaan ti napasamak}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Ti napili a listaan ti napasamak|Dagiti napili a listaan ti napasamak}}:',
 'revdelete-text-text' => 'Dagiti naikkat a rebision ket agparangto pay laeng iti panid ti pakasaritaan, ngem dagiti paset ti linaonda ket saanton a publiko a maserrekan.',
 'revdelete-text-file' => 'Dagiti naikkat a bersion ti papeles ket agparangto pay laeng iti pakasaritaan ti papeles, ngem dagiti paset ti linaonda ket saanton a publiko a maserrekan.',
 'logdelete-text' => 'Dagiti naikkat a listaan ti pasamak ket agparangto pay laeng kadagiti listaan, ngem dagiti paset ti linaonda ket saanton a publiko a maserrekan.',

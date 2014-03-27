@@ -2482,8 +2482,10 @@ Parameters:
 'logdelete-selected' => '{{RevisionDelete}}
 Parameters:
 * $1 - number of log events
+* $2 - localized name of Special:Log, maybe with type as subpage [unused]
 See also:
-* {{msg-mw|Revdelete-selected}}',
+* {{msg-mw|Revdelete-selected-text}}
+* {{msg-mw|Revdelete-selected-file}}',
 'revdelete-text-text' => '{{RevisionDelete}}
 This is the introduction explaining the feature.
 
@@ -9817,9 +9819,7 @@ Most languages use a space, but some Asian languages, such as Thai and Chinese, 
 'percent' => '{{optional}}',
 'parentheses' => '{{optional}}',
 'brackets' => '{{Optional}}',
-'quotation-marks' => '{{optional}}
-
-Quotation marks, for quoting, sometimes titles etc., depending on the language.
+'quotation-marks' => 'Quotation marks, for quoting, sometimes titles etc., depending on the language.
 
 See: [[w:Non-English usage of quotation marks|Non-English usage of quotation marks on Wikipedia]].
 

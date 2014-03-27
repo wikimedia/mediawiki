@@ -674,7 +674,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} islan ini nga pahina]</span>.',
 'noarticletext-nopermission' => 'Wala subong sang teksto ang sini nga panid.
 Pwede ka [[Special:Search/{{PAGENAME}}|mangita para sa titulo sang ini nga panid]] sa iban man nga panid,
 ukon <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mangita ka sang kaparehas nga logs]</span>.',
-'missing-revision' => 'Ang ini nga pag-ilis nga #$1 sang panid nga ginhinanglan nga "{{PAGENAME}}" wala naga-eksister.
+'missing-revision' => 'Ang ini nga pag-ilis nga #$1 sang panid nga ginhinanglan nga "{{FULLPAGENAME}}" wala naga-eksister.
 
 Ini kalabanan ginabuhat sang nagasunod nga wala na mabag-o nga link sang hisayranay sa isa ka panid nga gindula na.
 Ang mga detalye mahimo nga makita sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
@@ -904,7 +904,7 @@ ang ini nga buluhaton wala, ukon gahimakas ka nga taguon ang karon nga pagbag-o.
 'revdelete-no-file' => 'Ang ginatumod nga hilera wala naga-eksister.',
 'revdelete-show-file-confirm' => 'Sigurado ka bala nga luyag mo makita ang ginpanas nga pagbag-o sang hilera nga "<nowiki>$1</nowiki>" halin sang $2 sa $3?',
 'revdelete-show-file-submit' => 'Huo',
-'logdelete-selected' => "'''{{PLURAL:$1|Ginpili nga hinatabo sa log|Ginpili nga mga hinatabo sa log}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Ginpili nga hinatabo sa log|Ginpili nga mga hinatabo sa log}}:',
 'revdelete-confirm' => 'Palihog konpermar nga luyag mo ini himuon, nga imo naintiendihan ang mga konsekwensya, kag ginahimo mo ini suno sa [[{{MediaWiki:Policy-url}}|polisiya]].',
 'revdelete-suppress-text' => "Ang pagpahugot nagakadapat '''lamang''' nga pagagamiton sa masunod nga kaso:
 * Nagapang-guba sang dignindad nga impormasyon

@@ -34,6 +34,7 @@
  * @author Nghtwlkr
  * @author Njardarlogar
  * @author Nsaa
+ * @author Pcoombe
  * @author Pladask
  * @author Purodha
  * @author Qaqqalik
@@ -852,6 +853,8 @@ Vent $1 før du prøver på nytt.',
 'suspicious-userlogout' => 'Din forespørsel om å logge ut ble nektet fordi den så ut til å ha bli sendt av en ødelagt nettleser eller en mellomtjener.',
 'createacct-another-realname-tip' => 'Det er frivillig å oppgi ditt egentlige navn.
 Hvis du velger å oppgi det, vil det blir anvendt for å gi deg som bruker anerkjennelse',
+'pt-login' => 'Logg inn',
+'pt-createaccount' => 'Opprett konto',
 
 # Email sending
 'php-mail-error-unknown' => 'Ukjent feil i PHPs mail()-funksjon',
@@ -1043,7 +1046,7 @@ Du kan [[Special:Search/{{PAGENAME}}|søke etter denne sidetittelen]] på andre 
 eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} opprette siden]</span>.',
 'noarticletext-nopermission' => 'Det er for tiden ingen tekst på denne siden.
 Du kan [[Special:Search/{{PAGENAME}}|søke etter sidens tittel]] blant andre sider, eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søke i relevante logger]</span>.',
-'missing-revision' => 'Revisjonen #$1 av siden med navnet "{{PAGENAME}}" eksisterer ikke.
+'missing-revision' => 'Revisjonen #$1 av siden med navnet "{{FULLPAGENAME}}" eksisterer ikke.
 
 Dette skyldes som regel at en gammel historikklenke er fulgt til en side som er slettet.
 Detaljer kan finnes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].',
@@ -1272,7 +1275,7 @@ Du kan se denne diffen; det kan finnes detaljer i [{{fullurl:{{#Special:Log}}/su
 'revdelete-no-file' => 'Den spesifiserte filen finnes ikke.',
 'revdelete-show-file-confirm' => 'Er du sikker på at du ønsker å vise en slettet versjon av filen «<nowiki>$1</nowiki>» fra $2 kl. $3?',
 'revdelete-show-file-submit' => 'Ja',
-'logdelete-selected' => "'''{{PLURAL:$1|Valgt loggoppføring|Valgte loggoppføringer}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Valgt loggoppføring|Valgte loggoppføringer}}:',
 'revdelete-confirm' => 'Bekreft at du ønsker å gjøre dette, at du forstår konsekvensene, og at du gjør det i samsvar med [[{{MediaWiki:Policy-url}}|retningslinjene]].',
 'revdelete-suppress-text' => "Skjuling bør '''kun''' brukes i følgende tilfeller:
 * Mulig injurierende utsagn

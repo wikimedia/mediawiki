@@ -1049,7 +1049,7 @@ Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] på andra sido
 'noarticletext-nopermission' => 'Det finns för tillfället ingen text på denna sida.
 Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidas titel]] på andra sidor,
 eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} söka i relaterade loggar]</span> men du har inte behörighet att skapa sidan.',
-'missing-revision' => 'Revisionen #$1 av sidan med namnet "{{PAGENAME}}" finns inte.
+'missing-revision' => 'Revisionen #$1 av sidan med namnet "{{FULLPAGENAME}}" finns inte.
 
 Detta orsakas vanligen av efter en gammal historiklänk till en sida som har raderats.
 Detaljer kan hittas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].',
@@ -1285,7 +1285,9 @@ eller så försöker du gömma den senaste versionen av sidan.',
 'revdelete-no-file' => 'Den specificerade filen finns inte.',
 'revdelete-show-file-confirm' => 'Är du säker på att du vill visa en raderad version av filen "<nowiki>$1</nowiki>" från den $2 klockan $3?',
 'revdelete-show-file-submit' => 'Ja',
-'logdelete-selected' => "'''{{PLURAL:$1|Vald loggåtgärd|Valda loggåtgärder}}:'''",
+'revdelete-selected-text' => '{{PLURAL:$1|Vald version|Valda versioner}} av [[:$2]]:',
+'revdelete-selected-file' => '{{PLURAL:$1|Vald filversion|Valda filversioner}} av [[:$2]]:',
+'logdelete-selected' => '{{PLURAL:$1|Vald loggåtgärd|Valda loggåtgärder}}:',
 'revdelete-text-text' => 'Raderade sidversioner kommer fortfarande synas i sidans historik, men delar av innehållet kommer inte att bli tillgängligt offentligt.',
 'revdelete-text-file' => 'Raderade filversioner kommer fortfarande synas i filens historik, men delar av innehållet kommer inte att bli tillgängligt offentligt.',
 'logdelete-text' => 'Raderade logghändelser kommer fortfarande synas i loggarna, men delar av innehållet kommer inte att bli tillgängligt offentligt.',

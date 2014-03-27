@@ -956,7 +956,7 @@ icha [{{fullurl:{{FULLPAGENAME}}|action=edit}} kay p'anqata llamk'apuy]</span>."
 Kaytam rurayta atinkiman: kay p'anqap sutinta [[Special:Search/{{PAGENAME}}|huk p'anqakunapi maskay]]
 icha payman kapuq <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} hallch'akunapi maskay]</span>,
 ichataq kay p'anqata kamariyta manam saqillasunkichu.",
-'missing-revision' => "\"{{PAGENAME}}\" nisqa p'anqapaq #\$1 musuqchasqaqa manam kanchu.
+'missing-revision' => "\"{{FULLPAGENAME}}\" nisqa p'anqapaq #\$1 musuqchasqaqa manam kanchu.
 
 Kayqa tukurqanman qullusqa p'anchaman t'inkimuq mawk'ayasqa wiñay kawsay t'inkiraykuchá.
 Imaymanata [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apim] tariykiman.",
@@ -1173,7 +1173,7 @@ Kay wakin kayta qhawayta atinkim; astawanchá rikunkiman [{{fullurl:{{#Special:L
 'revdelete-no-file' => 'Sapaqchasqa willañiqiqa manam kanchu.',
 'revdelete-show-file-confirm' => 'Allinta yachankichu "<nowiki>$1</nowiki>" willañiqimanta qullusqa $2-manta $3-pi musuqchasqata qhawayta munaspayki?',
 'revdelete-show-file-submit' => 'Arí',
-'logdelete-selected' => "'''{{PLURAL:$1|Akllasqa tukusqa|Akllasqa tukusqakuna}} hallch'api:'''",
+'logdelete-selected' => "{{PLURAL:$1|Akllasqa tukusqa|Akllasqa tukusqakuna}} hallch'api:",
 'revdelete-confirm' => 'Ama hina kaspa, takyachiy munayniykita, qatiqninkunata riqsiyniykita, [[{{MediaWiki:Policy-url}}|kawpaykama]] rurayniykitapas.',
 'revdelete-suppress-text' => "Pakay ruranata '''kaylla kaptin''' llamk'achiy:
 * K'amiqchá willakuna

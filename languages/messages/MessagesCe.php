@@ -997,7 +997,7 @@ $2
 'noarticletext-nopermission' => 'ХӀокх хан чохь кху агӀонца йоза дац.
 Шуьга далундерг [[Special:Search/{{PAGENAME}}|лахар ишта хьехош йолу цӀе]] кхечу яззамашкахь,
 йа <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} лаха оцуьнах терадерг кхечу тептаршкахь].</span>',
-'missing-revision' => 'АгӀона «{{PAGENAME}}» верси $1 яц.
+'missing-revision' => 'АгӀона «{{FULLPAGENAME}}» верси $1 яц.
 
 Ишта хуьйла ширелла дӀаяьккхина агӀонан хьажораган дихьа делча.
 Ма-дара хила мега [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} дӀайаьхарш йолу тептар] чохь.',
@@ -1158,7 +1158,7 @@ $2
 'revdelete-no-file' => 'Иштта файл яц.',
 'revdelete-show-file-confirm' => 'Бакъалла лаьий хьуна дӀаяьккхина файлан версега хьажа «<nowiki>$1</nowiki>» $2 тӀера, $3?',
 'revdelete-show-file-submit' => 'Хlаъ',
-'logdelete-selected' => '<strong>Тептар чура {{PLURAL:$1|хаьржина дӀаяздар|хаьржина дӀаяздарш}}:</strong>',
+'logdelete-selected' => 'Тептар чура {{PLURAL:$1|хаьржина дӀаяздар|хаьржина дӀаяздарш}}:',
 'revdelete-confirm' => 'Дехар до, бакъдар ахьа деш дерг [[{{MediaWiki:Policy-url}}|бакъонашца]] деш хилар.',
 'revdelete-legend' => 'Доза тохар',
 'revdelete-hide-text' => 'Къайладаккха хӀокху агӀона чура йоза',
@@ -2130,7 +2130,7 @@ $1',
 'unwatchthispage' => 'ДӀадаккха терго яр',
 'notanarticle' => 'Бац яззам',
 'notvisiblerev' => 'Верси дӀаяьккхина хила',
-'watchlist-details' => 'Хьан тергаме могlамца $1 {{PLURAL:$1|агlо|агlонаш|агlонаш}} ю, дийцаре агlонаша йоцуш.',
+'watchlist-details' => 'Хьан тергаме могӀамца $1 {{PLURAL:$1|агӀо|агонаш}} ю, дийцаре агӀонаша йоцуш.',
 'wlheader-enotif' => 'Электронан почте хаамаш байтар латина ду.',
 'wlheader-showupdated' => "Хийцам бина агӀонаш '''Ӏаьржа''' шрифтцан билгальяха ю.",
 'wlnote2' => 'Лахахьа гайтина {{PLURAL:$1|тӀеххьара сахьт}} чохь бина хийцамаш $2 $3.',

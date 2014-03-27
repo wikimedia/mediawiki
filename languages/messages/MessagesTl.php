@@ -569,7 +569,7 @@ Tandaan na may ilang mga pahina na patuloy na nagpapakita na parang hindi ka nak
 Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SITENAME}}]].',
 'yourname' => 'Bansag:',
 'userlogin-yourname' => 'Pangalan',
-'userlogin-yourname-ph' => 'Ilagay ang iyong Pangalan',
+'userlogin-yourname-ph' => 'Ilagay ang iyong pangalan',
 'createacct-another-username-ph' => 'Ilagay ang Pangalan',
 'yourpassword' => 'Password:',
 'userlogin-yourpassword' => 'Password',
@@ -653,20 +653,20 @@ Pakitingnan ang iyong pagbabaybay.',
 Pakisubok muli.',
 'wrongpasswordempty' => 'Walang laman ang ipinasok na password.
 Pakisubok muli.',
-'passwordtooshort' => 'Ang mga hudyat ay dapat mayroong {{PLURAL:$1|1 panitik|$1 panitik}} (karakter).',
+'passwordtooshort' => 'Ang mga password ay dapat mayroong {{PLURAL:$1|1 panitik|$1 panitik}} (karakter).',
 'password-name-match' => 'Dapat magkaiba ang password mo sa bansag o username mo.',
 'password-login-forbidden' => 'Ipinagbabawal ang paggamit ng ganitong pangalan ng tagagamit at password.',
 'mailmypassword' => 'Baguhin ang password',
 'passwordremindertitle' => 'Bagong pansamantalang password para sa {{SITENAME}}',
 'passwordremindertext' => 'Mayroong (na maaaring ikaw, mula sa adres ng IP na $1) humiling ng isang bagong
-hudyat para sa {{SITENAME}} ($4). Isang pansamantalang hudyat ang nilikha
+password para sa {{SITENAME}} ($4). Isang pansamantalang password ang nilikha
 para sa tagagamit na "$2" at itinakda sa "$3".  Kung ito ang iyong pakay,
-kailangan mo na ngayong lumagda/tumala at pumili ng isang bagong hudyat.
-Mawawala/magtatapos ang bisa ang pansamantala mong hudyat sa loob ng {{PLURAL:$5|isang araw|$5 araw}}.
+kailangan mo na ngayong mag-login at pumili ng isang bagong password.
+Mawawala/magtatapos ang bisa ang pansamantala mong password sa loob ng {{PLURAL:$5|isang araw|$5 araw}}.
 
-Kung ibang tao ang humiling nito, o kung naalala mo na ang iyong hudyat,
+Kung ibang tao ang humiling nito, o kung naalala mo na ang iyong password,
 at hindi mo na ibig pang baguhin ito, maaari mong huwag pansinin ang mensaheng ito at
-magpatuloy sa paggamit ng iyong lumang hudyat.',
+magpatuloy sa paggamit ng iyong lumang password.',
 'noemail' => 'Walang nakatalang adres ng e-liham para sa tagagamit na "$1".',
 'noemailcreate' => 'Kailangan mong magbigay ng may-bisang direksiyong e-liham',
 'passwordsent' => 'Isang bagong hudyat ang ipinadala sa adres ng e-liham na nakatala para kay "$1".
@@ -747,7 +747,7 @@ Pumili ng bagong password ngayon, o i-klik ang "{{int:resetpass-submit-cancel}}"
 'passwordreset-text-one' => 'Ikumpleto ang form na ito upang makatanggap ng pansamantalang password sa pamamagitan ng email.',
 'passwordreset-text-many' => '{{PLURAL:$1|Ipasok sa isa sa mga field upang makatanggap ng isang pansamantalang password sa pamamagitan ng email.}}',
 'passwordreset-legend' => 'Itakdang muli ang password',
-'passwordreset-disabled' => 'Hindi pinagagana sa wiking ito ang muling mga pagtatakda ng hudyat.',
+'passwordreset-disabled' => 'Hindi pinagagana sa wiking ito ang muling mga pagtatakda ng password.',
 'passwordreset-emaildisabled' => 'Hindi pinagana ang email features sa wiking ito.',
 'passwordreset-username' => 'Pangalan ng tagagamit:',
 'passwordreset-domain' => 'Nasasakupan:',
@@ -887,7 +887,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} baguhin ang pahinang ito]</span>.',
 'noarticletext-nopermission' => 'Kasalukuyang walang teksto sa pahinang ito.
 Maaari mong [[Special:Search/{{PAGENAME}}|hanapin ang pamagat ng pahinang ito]] sa ibang mga pahina,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} maghanap sa kaugnay na mga talaan]</span>.',
-'missing-revision' => 'Hindi umiiral ang rebisyong #$1 ng pahinang napangalanang "{{PAGENAME}}".
+'missing-revision' => 'Hindi umiiral ang rebisyong #$1 ng pahinang napangalanang "{{FULLPAGENAME}}".
 
 Karaniwang itong dulot ng pagsunod sa isang wala na sa panahong kawing ng kasaysayan na papunta sa isang pahinang nabura na.
 Matatagpuan ang mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].',
@@ -1357,7 +1357,7 @@ Isasapubliko ang impormasyong ito.',
 'email' => 'E-liham',
 'prefs-help-realname' => "Opsyonal ('di-talaga kailangan) ang tunay na pangalan.
 Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para iyong mga ginawa.",
-'prefs-help-email' => 'Hindi talaga kailangang may tirahan ng e-liham, subalit kailangan para sa muling pagtatakda ng hudyat, kung makalimutan mo ang hudyat mo.',
+'prefs-help-email' => 'Hindi kailangang may email address, subalit kailangan ito para sa muling pagtatakda ng password, kung makalimutan mo ang password mo.',
 'prefs-help-email-others' => 'Mapipili mo rin na makipag-ugnayan sa iyo ang iba sa pamamagitan ng iyong pahina ng tagagamit o usapan na hindi kailangang ilantad ang katauhan mo.',
 'prefs-help-email-required' => 'Kailangan ang direksiyong e-liham.',
 'prefs-info' => 'Saligang kabatiran',

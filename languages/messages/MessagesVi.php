@@ -1054,7 +1054,7 @@ Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] tro
 hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này]</span>.',
 'noarticletext-nopermission' => 'Trang này hiện đang trống.
 Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] tại các trang khác, hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tìm kiếm các nhật trình liên quan]</span>, nhưng bạn không có phép tạo trang này.',
-'missing-revision' => 'Phiên bản #$1 của trang có tên “{{PAGENAME}}” không tồn tại.
+'missing-revision' => 'Phiên bản #$1 của trang có tên “{{FULLPAGENAME}}” không tồn tại.
 
 Lỗi này thường xuất hiện đối khi theo dõi liên kết lỗi thời đến phiên bản cũ của một trang đã bị xóa.
 Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].',
@@ -1283,7 +1283,9 @@ hoặc bạn đang tìm cách ẩn phiên bản hiện tại.',
 'revdelete-no-file' => 'Tập tin chỉ định không tồn tại.',
 'revdelete-show-file-confirm' => 'Bạn có chắc muốn xem phiên bản đã bị xóa của tập tin “<nowiki>$1</nowiki>” từ ngày $2 vào lúc $3?',
 'revdelete-show-file-submit' => 'Có',
-'logdelete-selected' => "'''{{PLURAL:$1|Nhật trình đã chọn|Các nhật trình đã chọn}}:'''",
+'revdelete-selected-text' => '{{PLURAL:$1|Phiên bản|Các phiên bản}} [[:$2]] được chọn:',
+'revdelete-selected-file' => '{{PLURAL:$1|Phiên bản|Các phiên bản}} tập tin [[:$2]] được chọn:',
+'logdelete-selected' => '{{PLURAL:$1|Nhật trình đã chọn|Các nhật trình đã chọn}}:',
 'revdelete-text-text' => 'Các phiên bản đã xóa sẽ tiếp tục xuất hiện trong lịch sử trang, nhưng một số phần của nội dung sẽ bị ẩn khỏi công chúng.',
 'revdelete-text-file' => 'Các phiên bản tập tin đã xóa sẽ tiếp tục xuất hiện trong lịch sử tập tin, nhưng một số phần của nội dung sẽ bị ẩn khỏi công chúng.',
 'logdelete-text' => 'Các sự kiện đã xóa sẽ tiếp tục xuất hiện trong nhật trình, nhưng một số phần của nội dung sẽ bị ẩn khỏi công chúng.',
@@ -2149,6 +2151,11 @@ Có lẽ bạn muốn miêu tả nó trên [$2 trang miêu tả tập tin] tại
 
 # List redirects
 'listredirects' => 'Danh sách trang đổi hướng',
+
+# List duplicated files special page
+'listduplicatedfiles' => 'Danh sách các tập tin có bản sao',
+'listduplicatedfiles-summary' => 'Đây là danh sách các tập tin là bản sao của tập tin khác, chỉ tính theo phiên bản mới nhất của các tập tin địa phương.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] có [[$3|{{PLURAL:$2|một bản sao|$2 bản sao}}]].',
 
 # Unused templates
 'unusedtemplates' => 'Bản mẫu chưa dùng',

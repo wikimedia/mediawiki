@@ -1043,7 +1043,7 @@ Voit [[Special:Search/{{PAGENAME}}|etsiä sivun nimellä]] muilta sivuilta,
 tai [{{fullurl:{{FULLPAGENAME}}|action=edit}} muokata tätä sivua]</span>.',
 'noarticletext-nopermission' => 'Tällä hetkellä tällä sivulla ei ole tekstiä.
 Voit [[Special:Search/{{PAGENAME}}|etsiä sivun nimellä]] muilta sivuilta tai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} hakea aiheeseen liittyviä lokeja]</span>, mutta sinulla ei ole oikeutta luoda tätä sivua.',
-'missing-revision' => 'Sivusta "{{PAGENAME}}" ei ole olemassa versiota $1.
+'missing-revision' => 'Sivusta "{{FULLPAGENAME}}" ei ole olemassa versiota $1.
 
 Yleensä tämä johtuu vanhentuneesta historialinkistä sivulle, joka on poistettu.
 Tarkempia tietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].',
@@ -1263,7 +1263,7 @@ Voit silti nähdä tämän muutoksen. Lisätietoja löytyy [{{fullurl:{{#Special
 'revdelete-show-file-submit' => 'Kyllä',
 'revdelete-selected-text' => '{{PLURAL:$1|Valittu versio|Valitut versiot}} kohteesta [[:$2]]:',
 'revdelete-selected-file' => '{{PLURAL:$1|Valittu tiedoton versio|Valitut tiedoston versiot}} kohteesta [[:$2]]:',
-'logdelete-selected' => "'''{{PLURAL:$1|Valittu lokimerkintä|Valitut lokimerkinnät}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Valittu lokimerkintä|Valitut lokimerkinnät}}:',
 'revdelete-text-text' => 'Poistetut versiot näkyvät edelleen sivun historiassa, mutta osa niiden sisällöstä ei enää ole saatavilla julkisesti.',
 'revdelete-text-file' => 'Poistetut tiedostoversiot näkyvät yhä sivun historiassa, mutta osa niiden sisällöstä ei ole saatavilla julkisesti.',
 'logdelete-text' => 'Poistetut lokimerkinnät näkyvät edelleen lokeissa, mutta osa niiden sisällöstä ei enää ole saatavilla julkisesti.',

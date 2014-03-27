@@ -1057,7 +1057,7 @@ Pode [[Special:Search/{{PAGENAME}}|pesquisar o título desta página]] noutras p
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'noarticletext-nopermission' => 'Ainda não existe texto nesta página.
 Pode [[Special:Search/{{PAGENAME}}|pesquisar o título desta página]] noutras páginas, ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} procurar nos registos relacionados]</span>, mas não tem permissão para criar esta página.',
-'missing-revision' => 'A revisão #$1 da página denominada "{{PAGENAME}}" não existe.
+'missing-revision' => 'A revisão #$1 da página denominada "{{FULLPAGENAME}}" não existe.
 
 Isto é geralmente causado por seguir um link de histórico desatualizado para uma página que foi eliminada.
 Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].',
@@ -1298,7 +1298,7 @@ Pode ver a diferença entre revisões; encontrará detalhes no [{{fullurl:{{#Spe
 'revdelete-no-file' => 'O ficheiro especificado não existe.',
 'revdelete-show-file-confirm' => 'Tem a certeza de que quer ver uma revisão eliminada do ficheiro "<nowiki>$1</nowiki>" de $2 às $3?',
 'revdelete-show-file-submit' => 'Sim',
-'logdelete-selected' => "'''{{PLURAL:$1|Evento do registo selecionado|Eventos do registo selecionados}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Evento do registo selecionado|Eventos do registo selecionados}}:',
 'revdelete-text-text' => 'Revisões eliminadas ainda aparecerão no histórico da página, mas parte do seu conteúdo estará inacessível para o público.',
 'revdelete-text-file' => 'Versões eliminadas do ficheiro ainda aparecerão no histórico da página, mas parte do seu conteúdo estará inacessível para o público.',
 'logdelete-text' => 'Os eventos eliminados ainda aparecerão no histórico da página, mas pare de seu conteúdo será inacessível ao público.',

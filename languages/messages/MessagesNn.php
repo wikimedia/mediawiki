@@ -28,6 +28,7 @@
  * @author Nghtwlkr
  * @author Njardarlogar
  * @author Olve Utne
+ * @author Pcoombe
  * @author Ranveig
  * @author Shauni
  * @author Urhixidur
@@ -833,6 +834,8 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'login-abort-generic' => 'Innlogginga er avbroten.',
 'loginlanguagelabel' => 'Språk: $1',
 'suspicious-userlogout' => 'Førespurnaden din om å logge ut vart nekta fordi han såg ut til å vere sendt av ein øydelagt nettlesar eller mellomtenar.',
+'pt-login' => 'Logg inn',
+'pt-createaccount' => 'Opprett konto',
 
 # Email sending
 'php-mail-error-unknown' => 'Ukjend feil i PHPs mail()-funksjon',
@@ -988,7 +991,7 @@ eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} endra denne sida]</span>.',
 'noarticletext-nopermission' => 'Der er nett no ikkje noko tekst på denne sida.
 Du kan [[Special:Search/{{PAGENAME}}|søkja etter sidetittelen]] i andre sider
 eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søkja i dei relaterte loggane]</span>, men du har ikkje løyve til å oppretta denne sida.',
-'missing-revision' => 'Versjonen #$1 av sida med namnet «{{PAGENAME}}» finst ikkje.
+'missing-revision' => 'Versjonen #$1 av sida med namnet «{{FULLPAGENAME}}» finst ikkje.
 
 Dette skriv seg som oftast frå at ei forelda historikklenkje vart fylgd til ei side som er sletta.
 Detaljar kan ein finna i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].',
@@ -1203,7 +1206,7 @@ Du kan sjå skilnaden; detaljar finst i [{{fullurl:{{#Special:Log}}/suppcess|pag
 'revdelete-no-file' => 'Fila som vart synt til finst ikkje.',
 'revdelete-show-file-confirm' => 'Er du viss på at du ynskjer å sjå ein sletta versjon av fila "<nowiki>$1</nowiki>" frå $2 ved $3?',
 'revdelete-show-file-submit' => 'Ja',
-'logdelete-selected' => "'''{{PLURAL:$1|Vald loggoppføring|Valde loggoppføringar}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Vald loggoppføring|Valde loggoppføringar}}:',
 'revdelete-confirm' => 'Stadfest at du ynskjer å gjera dette, at du skjønar konsekvensane, og at du gjer det i samsvar med [[{{MediaWiki:Policy-url}}|retningslinene]].',
 'revdelete-suppress-text' => "Løyning av sideversjonar bør '''berre''' nyttast i desse tilfella:
 * Mogeleg ærekrenkjande informasjon

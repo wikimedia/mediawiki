@@ -691,7 +691,7 @@ Per impustêr e cunfermêr l'indirés dervîres dal [[Special:Preferences|prefer
 'anontalkpagetext' => "----'' Còsta l'è la pàgina 'd discusiòun ed 'n utèint sèinsa nòm, ch' an n' à mìa incòra fât 'n' utèinsa o in tót al manēri an n'è mìa drē druvêrla. Per arcgnòsrel l'è dòunca necesâri druvê al só indirés IP. J indirés IP a pōlen èser spartî cun êter utèint. Se t'è un utèint sèinsa nòm e 't pèins che i cumèint in cla pàgina ché an riguêrden mìa tè, [[Special:UserLogin/signup|fa 'n' utèinsa nōva]] o [[Special:UserLogin|vîn dèinter cun còla ch' ét gh'ê bèle]] per schivşêr, in futûr,  'd èser cunfûş cun 'd j êter utèint sèinsa nòm.''",
 'noarticletext' => 'In cól mumèint ché la pàgina serchêda l\'é vōda. L\'é pusébil [[Special:Search/{{PAGENAME}}|serchêr sté tétol]] int al j êtri pàgini dal sît, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serchêr int i regéster coleghê] opór  [{{fullurl:{{FULLPAGENAME}}|action=edit}} mudifichêr la pàgina adèsa]</span>.',
 'noarticletext-nopermission' => "In cól mumèint ché la pàgina serchêda l'é vōda. L'é pusébil [[Special:Search/{{PAGENAME}}|serchêr sté tétol]] int al j êtri pàgini dal sît o<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serchêr int i regéster coleghê] <span>, mó an 't gh'ê mìa al permès ed fêr cla pàgina ché.",
-'missing-revision' => "La revişiòun #\$1 'd la pagina \"{{PAGENAME}}\" l' an gh'è mìa. Còst, ed sôlit, a sucēd mèint'r as va drē a 'n colegamèint a 'na pàgina scanşlêda, in 'na stòria, di lavōr fât, mìa arnuvêda. I particulêr a 's pōlen catêr int al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} regéster dal scanşladûri].",
+'missing-revision' => "La revişiòun #\$1 'd la pagina \"{{FULLPAGENAME}}\" l' an gh'è mìa. Còst, ed sôlit, a sucēd mèint'r as va drē a 'n colegamèint a 'na pàgina scanşlêda, in 'na stòria, di lavōr fât, mìa arnuvêda. I particulêr a 's pōlen catêr int al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} regéster dal scanşladûri].",
 'userpage-userdoesnotexist' => 'L\'inscrisiòun "<nowiki>$1</nowiki>" la cumbîna mìa cun \'n utèint registrê. Ét sicûr ed vrèir fêr o mudifichêr cla pàgina ché.',
 'userpage-userdoesnotexist-view' => 'L\'utèin "$1" an n\'à mìa fât l\'inscrisiòun.',
 'blocked-notice-logextract' => "Cl'utèint ché adèsa l'é bluchê. 
@@ -771,6 +771,12 @@ An n'é mìa stê dê nisóna spiegasiòun.",
 'edit-gone-missing' => "Impusébil arnuvêr la pàgina. 
 A sèmbra ch'la sìa stêda scanşlêda.",
 'edit-conflict' => "Cuntrâst 'd edisiòun",
+'edit-no-change' => "La mudéfica an n'é mìa stêda cunsidrêda perchè an n'é mìa stê fât di cambiamèint al tèst.",
+'postedit-confirmation' => "La mudéfica l'é stêda salvêda.",
+'edit-already-exists' => "L'é impusébil fêr 'na pàgina nōva.
+La ghé bèle.",
+'defaultmessagetext' => 'Tèst pre-stabilî',
+'content-failed-to-parse' => "L'é impusébil cunsidrêr $2 p'r al mudèl $1:$3",
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''Atensiòun:''' la grandèsa di mudē més dèinter l'é trôp grôsa. Soquânt mudē gnirâ mìa més dèinter.",

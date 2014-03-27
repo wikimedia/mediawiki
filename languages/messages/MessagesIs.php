@@ -938,7 +938,7 @@ Ef þú ert óþekktur notandi og finnst að óviðkomandi athugasemdum hafa ver
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} leitað í tengdum skrám], eða [{{fullurl:{{FULLPAGENAME}}|action=edit}} breytt henni sjálfur]</span>.',
 'noarticletext-nopermission' => 'Það er enginn texti á þessari síðu eins og er.
 Þú getur [[Special:Search/{{PAGENAME}}|leitað að þessum titli]] í öðrum síðum, eða <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} leitað í tengdum skrám]</span>, en þú hefur ekki réttindi til þess að stofna þessa síðu.',
-'missing-revision' => 'Útgáfa #$1 síðunnar „{{PAGENAME}}" er ekki til.
+'missing-revision' => 'Útgáfa #$1 síðunnar „{{FULLPAGENAME}}" er ekki til.
 
 Þetta gerist oftast þegar úreld breytingarskrá tengir á síðu sem hefur verið eytt. Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} eyðingarskránni].',
 'userpage-userdoesnotexist' => 'Notandaaðgangurinn „<nowiki>$1</nowiki>“ er ekki skráður.
@@ -1160,7 +1160,7 @@ Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGE
 'revdelete-no-file' => 'Umbeðin skrá er ekki til.',
 'revdelete-show-file-confirm' => 'Ertu viss um að þú viljir sjá eydda breytingu af síðunni "<nowiki>$1</nowiki>" frá $2 $3?',
 'revdelete-show-file-submit' => 'Já',
-'logdelete-selected' => "'''{{PLURAL:$1|Valin aðgerð|Valdar aðgerðir}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Valin aðgerð|Valdar aðgerðir}}:',
 'revdelete-confirm' => 'Vinsamlegast staðfestu að þú viljir gera þetta, að þú skiljir afleiðingarnar og að þú sért að gera þetta í samræmi við  [[{{MediaWiki:Policy-url}}]].',
 'revdelete-suppress-text' => "Bælingu á '''eingöngu''' að nota í eftirfarandi tilfellum:
 * Mögulegar ærumleiðandi upplýsingar

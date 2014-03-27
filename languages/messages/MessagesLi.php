@@ -968,7 +968,7 @@ achtergrönj zeen meugelik te vinjen in 't [{{fullurl:{{#Special:Log}}/suppress|
 'revdelete-no-file' => "'d Aangegaeve bestandj besteit neet.",
 'revdelete-show-file-confirm' => 'Wèt se zeker det se de gewösjdje versie ven \'t bestandj "<nowiki>$1</nowiki>" ven $2 óm $3 wils bekieke?',
 'revdelete-show-file-submit' => 'Jao',
-'logdelete-selected' => "'''{{PLURAL:$1|Geselecteerde log gebeurtenis|Geselecteerde log gebeurtenisse}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Geselecteerde log gebeurtenis|Geselecteerde log gebeurtenisse}}:',
 'revdelete-confirm' => "Bevestig des se dit wils doon, des se de consequenties begrieps en des se dit deis in euvereinstömming mit 't geljendj [[{{MediaWiki:Policy-url}}|beleid]].",
 'revdelete-suppress-text' => "Versies verbèrge deentj '''allein''' gebroek te waere in de volgende gevalle:
 * Ongepaste perseunlike informatie

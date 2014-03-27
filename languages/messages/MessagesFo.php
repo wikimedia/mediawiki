@@ -836,7 +836,7 @@ ella [{{fullurl:{{FULLPAGENAME}}|action=edit}} rætta hesa síðu]</span>.',
 'noarticletext-nopermission' => 'Tað er í løtuni ongin tekstur á hesi síðu.
 Tú kanst [[Special:Search/{{PAGENAME}}|leita eftir hesum síðuheiti]] á øðrum síðum, 
 ella <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} leita eftir viðkomandi loggum]</span>, men tú hevur ikki loyvi til at stovna hesa síðu.',
-'missing-revision' => 'Endurskoðan #$1 av síðuni við heitinum "{{PAGENAME}}" er ikki til.
+'missing-revision' => 'Endurskoðan #$1 av síðuni við heitinum "{{FULLPAGENAME}}" er ikki til.
 
 Hetta skyldast vanliga tað, at tú fylgir einari gamlari søguslóð til eina síðu, sum er blivin slettað. 
 Nærri frágreiðing kanst tú finna í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} strikingar logginum].',
@@ -1054,7 +1054,7 @@ Tú kanst síggja munin; smálutir eru at finna í [{{fullurl:{{#Special:Log}}/s
 'revdelete-no-file' => 'Nevnda fíla er ikki til.',
 'revdelete-show-file-confirm' => 'Ert tú vís/ur í, at tú ynskir at síggja eina strikaða endurskoðan av fíluni "<nowiki>$1</nowiki>" frá $2 kl. $3?',
 'revdelete-show-file-submit' => 'Ja',
-'logdelete-selected' => "'''{{PLURAL:$1|Útvald logghending|Útvaldar logghendingar}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Útvald logghending|Útvaldar logghendingar}}:',
 'revdelete-confirm' => 'Vinarliga vátta, at tú ætlar at gera hetta, at tú skilir avleiðingarnar, og at tú ger hetta í samsvari við [[{{MediaWiki:Policy-url}}|mannagongdirnar]].',
 'revdelete-legend' => 'Set avmarkinga fyri sjónligheit',
 'revdelete-hide-text' => 'Versjónstekstur',

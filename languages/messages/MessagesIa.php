@@ -896,7 +896,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina]</span>.',
 'noarticletext-nopermission' => 'In iste momento il non ha texto in iste pagina.
 Tu pote [[Special:Search/{{PAGENAME}}|cercar le titulo de iste pagina]] in altere paginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar in le registros pertinente], ma tu non ha le permission de crear iste pagina.</span>',
-'missing-revision' => 'Le version №$1 del pagina nominate "{{PAGENAME}}" non existe.
+'missing-revision' => 'Le version №$1 del pagina nominate "{{FULLPAGENAME}}" non existe.
 
 Isto es generalmente causate per sequer un ligamine de historia obsolete a un pagina que ha essite delite.
 Detalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].',
@@ -1136,7 +1136,7 @@ function, o le version specificate non existe, o tu essaya celar le version actu
 'revdelete-no-file' => 'Le file specificate non existe.',
 'revdelete-show-file-confirm' => 'Es tu secur de voler vider un version delite del file  "<nowiki>$1</nowiki>" del $2 a $3?',
 'revdelete-show-file-submit' => 'Si',
-'logdelete-selected' => "'''{{PLURAL:$1|Evento|Eventos}} de registro seligite:'''",
+'logdelete-selected' => '{{PLURAL:$1|Evento|Eventos}} de registro seligite:',
 'revdelete-text-text' => 'Versiones delite continua a apparer in le historia del pagina, ma parte de lor contento essera inaccessibile pro le publico.',
 'revdelete-text-file' => 'Versiones delite de un file continua a apparer in le historia del file, ma parte de lor contento essera inaccessibile pro le publico.',
 'logdelete-text' => 'Eventos delite continua a apparer in le registros, ma parte de lor contento essera inaccessibile pro le publico.',

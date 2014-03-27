@@ -817,7 +817,7 @@ Administrator hökmünde bu aratapawudy görüp bilersiňiz; [{{fullurl:{{#Speci
 'revdelete-no-file' => 'Görkezilen faýl ýok.',
 'revdelete-show-file-confirm' => '"<nowiki>$1</nowiki>" faýlynyň $3, $2 seneli öçürilen wersiýasyny görmek isleýäniňiz çynyňyzmy?',
 'revdelete-show-file-submit' => 'Hawa',
-'logdelete-selected' => "'''{{PLURAL:$1|Saýlanylan gündelik wakasy|Saýlanylan gündelik wakalary}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Saýlanylan gündelik wakasy|Saýlanylan gündelik wakalary}}:',
 'revdelete-confirm' => 'Şu işi anyk isleýändigiňizi, ýagny onuň netijelerine düşünýändiňizi we [[{{MediaWiki:Policy-url}}|kadalar boýunça]] amala aşyrýandygyňyzy tassyklamagyňyzy haýyş edýäris.',
 'revdelete-suppress-text' => "Gizlemeklik '''diňe''' aşakdaky ýagdaýlarda ulanylmalydyr:
 * Potensial taýdan töhmetçilikli maglumat

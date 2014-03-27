@@ -710,7 +710,7 @@ Ti pos [[Special:Search/{{PAGENAME}}|tschertgar il term]] sin in\'autra pagina,
 u [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear questa pagina]</span>.',
 'noarticletext-nopermission' => 'Questa pagina na cuntegna actualmain nagin text.
 Ti pos [[Special:Search/{{PAGENAME}}|tschertgar quest titel]] en autras paginas u <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tschertgar en ils protocols correspundents]</span>, ma ti n\'has betg ils dretgs da crear questa pagina.',
-'missing-revision' => 'La versiun #$1 da la pagina cun il num "{{PAGENAME}}" n\'exista betg.
+'missing-revision' => 'La versiun #$1 da la pagina cun il num "{{FULLPAGENAME}}" n\'exista betg.
 
 Quai capita savnes sche ti cliccas sin ina colliaziun antiquada en la cronologia per ina pagina ch\'è vegnida stizzada.
 Detagls pon vegnri chattads en il [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protocol da stizzar].',
@@ -939,7 +939,7 @@ Ti pos vesair quest diff; detagls pon vegnir chattads en il [{{fullurl:{{#Specia
 'revdelete-no-file' => "La datoteca specifitgada n'exista betg.",
 'revdelete-show-file-confirm' => 'Es ti segir che ti vuls vesar ina versiun stizzada da la datoteca "<nowiki>$1</nowiki>" dals $2 las $3?',
 'revdelete-show-file-submit' => 'Gea',
-'logdelete-selected' => "'''{{PLURAL:$1|Element dal protocol tschernì|Elements dal protocol tschernids}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Element dal protocol tschernì|Elements dal protocol tschernids}}:',
 'revdelete-confirm' => 'Confermescha che ti vuls far quai, che ti chapeschas las consequenzas e che ti fas quai en accordanza cun [[{{MediaWiki:Policy-url}}|las directivas]].',
 'revdelete-suppress-text' => "Ti duessas '''be''' supprimer en quests cas: 
 * Infurmaziuns offendentas

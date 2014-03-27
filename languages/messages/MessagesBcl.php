@@ -819,7 +819,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} liwaton ining pahina]</span>.',
 'noarticletext-nopermission' => 'Mayong sa presente nin teksto an pahinang ini.
 Ika mapuwedeng [[Special:Search/{{PAGENAME}}|hanapa para kaining titulo kan pahina]] sa iba pang mga pahina,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} maghanap sa magkasurundong mga talaan]</span>.',
-'missing-revision' => 'An rebisyon #$1 kan pahina pinagngaranan na "{{PAGENAME}}" bakong eksistido.
+'missing-revision' => 'An rebisyon #$1 kan pahina pinagngaranan na "{{FULLPAGENAME}}" bakong eksistido.
 
 Ini pirmihan na pinagkakausa sa paagi nin pagsusunod nin luwas na petsang historiya nin kasugpunan pasiring sa sarong pahinang pinagpura na.
 An mga detalye matatagboan sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} pinagpura na talaan].',
@@ -1046,7 +1046,7 @@ Ika puwedeng makakatanaw kaining diff; mga detalye puwedeng mananagboan sa [{{fu
 'revdelete-no-file' => 'An sagunson na pinaghayag dae tabi eksistido.',
 'revdelete-show-file-confirm' => 'Segurado ka tabi na gusto mo matanaw sarong pinagpurang pagbabago kan sagunson "<nowiki>$1</nowiki>" poon $2 sa $3?',
 'revdelete-show-file-submit' => 'Iyo tabi',
-'logdelete-selected' => "'''{{PLURAL:$1|Selected log event|Mga piniling talaan kan mga pangyayari}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Selected log event|Mga piniling talaan kan mga pangyayari}}:',
 'revdelete-confirm' => 'Pakikumpirma tabi na ika tuyong gumibo kaini, na saimong naintindihan an mga konsekuwensiya, asin ta ika pinaghihimo ini na uyon sa [[{{MediaWiki:Policy-url}}|an palisiya]].',
 'revdelete-suppress-text' => "An paglulubog dapat '''sana''' magagamit para sa minasunod na mga kaso:
 *Potensiyal na libeloso an impormasyon

@@ -858,7 +858,7 @@ Móžno, zo je so přesunył abo zhašał, mjeztym zo sej wobhladuješ stronu.',
 'noarticletext' => 'Tuchwilu tuta strona žadyn tekst njewobsahuje. Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony na druhich stronach pytać]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wotpowědne protokole pytać] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tutu stronu wobdźěłać]</span>.',
 'noarticletext-nopermission' => 'Tuchwilu žadyn tekst na tutej stronje njeje.
 Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony]] na druhich stronach pytać abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pytaj wotpowědne protokole]</span>, ale nimaš prawo, strou wutworić.',
-'missing-revision' => 'Wersija #$1 strony z mjenom "{{PAGENAME}}" njeeksistuje.
+'missing-revision' => 'Wersija #$1 strony z mjenom "{{FULLPAGENAME}}" njeeksistuje.
 
 Přičina je zwjetša zestarjeny wotkaz w stawiznach k stronje, kotraž je so zhašała.
 Podrobnosće móžeš w  [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow] namakać.',
@@ -1085,7 +1085,7 @@ Móžeš sej tutón rozdźěl wobhladać; podrobnosće namakaš w [{{fullurl:{{#
 'revdelete-show-file-submit' => 'Haj',
 'revdelete-selected-text' => '{{PLURAL:$1|Wubrana wersija|Wubranej wersiji|Wubrane wersije}} wot [[:$2]]:',
 'revdelete-selected-file' => '{{PLURAL:$1|Wubrana datajowa wersija|Wubranej datajowej wersiji|Wubrane datajowe wersije}} wot [[:$2]]:',
-'logdelete-selected' => "'''{{PLURAL:$1|Wubrany zapisk z protokola|Wubranej zapiskaj z protokola|Wubrane zapiski z protokola|Wubrane zapiski z protokola}} za '''$1:''''''",
+'logdelete-selected' => '{{PLURAL:$1|Wubrany zapisk z protokola|Wubranej zapiskaj z protokola|Wubrane zapiski z protokola|Wubrane zapiski z protokola}} za $1:',
 'revdelete-text-text' => 'Zhašane wersije wostanu hišće we wersijowej historiji, ale dźěle jich wobsaha njebudu přistupne zjawnosći.',
 'revdelete-text-file' => 'Zhašane datajowe wersije wostanu w datajowej historiji, ale dźěle jich wobsaha njebudu přistupne zjawnosći.',
 'logdelete-text' => 'Zhašane protokolowe zapiski wostanu hišće w protokolach, ale dźěle jich wobsaha njebudu přistupne zjawnosći.',

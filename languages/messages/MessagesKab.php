@@ -732,7 +732,7 @@ Ma tɣelṭeḍ, wekki kan ɣef tqeffalt "Back/Précédent" n browser/explorateu
 'noarticletext-nopermission' => 'Imira ulac aḍris deg usebter agi.
 Tzemreḍ [[Special:Search/{{PAGENAME}}|ad nadiḍ ɣef azwel agi]] deg isebtaren nniḍen,
 naɣ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|asebter={{FULLPAGENAMEE}}}} ad nadiḍ deg iɣmisen iqqenen]</span>.',
-'missing-revision' => 'Tacaggart #$1 n usebter s isem « {{PAGENAME}} » ulac-itt.
+'missing-revision' => 'Tacaggart #$1 n usebter s isem « {{FULLPAGENAME}} » ulac-itt.
 
 Acku azday n umezruy, ɣef wayen tsennedeḍ, d-aqbur. Asebter yemḥa.
 Tzemreḍ ad affeḍ tilɣa deg [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} uɣmis n isebtar yemḥan].',
@@ -956,7 +956,7 @@ Tzemreḍ att ẓṛeḍ ; tilɣa llant deg [{{fullurl:{{#Special:Log}}/delete|p
 'revdelete-no-file' => 'Afaylu id ssefruḍ ur yella ara.',
 'revdelete-show-file-confirm' => 'Tebɣriḍ ad mḥuḍ tacaggart n ufaylu « <nowiki>$1</nowiki> » n $2 af $3 ?',
 'revdelete-show-file-submit' => 'Ih',
-'logdelete-selected' => "'''{{PLURAL:$1|Tamirt n uɣmis tettwafren|Isallen n uɣmis ttwafernen}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Tamirt n uɣmis tettwafren|Isallen n uɣmis ttwafernen}}:',
 'revdelete-confirm' => 'Sergeg ma tebɣiḍ ad xedmeḍ tigawt agi, fehmeḍ inalkamen, dɣa temtawiḍ s [[{{MediaWiki:Policy-url}}|ilugan]].',
 'revdelete-suppress-text' => "Ilaq tukksa att illi \"kan\" deg tijṛa agi :
 * Tilɣa ahat tinergamin

@@ -659,7 +659,7 @@ Administratorn kinna se eensahn; Details stiehn eim [{{fullurl:{{#Special:Log}}/
 'revdelete-nooldid-text' => 'Du host entweder kenne Version oagegahn, uff de diese Aksjonn ausgefiehrt waan sull, de gewählte Version ies ne vorhanden oder du versichst, de aktuelle Version zu entferna.',
 'revdelete-no-file' => 'De oagegeahne Datei existiert ne.',
 'revdelete-show-file-submit' => 'Ju',
-'logdelete-selected' => "'''{{PLURAL:$1|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}}:',
 'revdelete-legend' => 'Setza der Sichtbarkeits-Einschränkunga',
 'revdelete-hide-text' => 'Text dar Version verstecka',
 'revdelete-hide-image' => 'Bildinhalt verstecka',

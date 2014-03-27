@@ -748,7 +748,7 @@ Ye can [[Special:Search/{{PAGENAME}}|rake fer this page teitle]] in ither pages,
  or [{{fullurl:{{FULLPAGENAME}}|action=edit}} eidit this page].</span>',
 'noarticletext-nopermission' => 'There isna oni tex in this page the nou.
 Ye can [[Special:Search/{{PAGENAME}}|rake fer this page title]] in ither pages, or <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rake the relatit logs]</span>, but ye dina hae permeession tae mak this page.',
-'missing-revision' => 'The reveesion #$1 o the page named "{{PAGENAME}}" disna exeest.
+'missing-revision' => 'The reveesion #$1 o the page named "{{FULLPAGENAME}}" disna exeest.
 
 This is uissuallie caused bi follaein aen ootdated histerie link til ae page that haes been delytit.
 Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} delytion log].',
@@ -975,7 +975,7 @@ Ye can view this diff; details can be foond in the [{{fullurl:{{#Special:Log}}/s
 'revdelete-no-file' => 'The file speceefied disna exeest.',
 'revdelete-show-file-confirm' => 'Ar ye sair ye wish tae see ae delytit reveesion o the file "<nowiki>$1</nowiki>" fae $2 at $3?',
 'revdelete-show-file-submit' => 'Ai',
-'logdelete-selected' => "'''{{PLURAL:$1|Selectit log event|Selectit log events}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Selectit log event|Selectit log events}}:',
 'revdelete-text-text' => 'Delytit reveesions will still kith in the page histerie, bit pairts o thair content will be onaccessible til the publeec.',
 'revdelete-text-file' => 'Delytit file versions will still kith in the file histerie, bit pairts o thair content will be onaccessible til the publeec.',
 'logdelete-text' => 'Delytit log events will still kith in the logs, bit pairts o thair content will be onaccessible til the publeec.',

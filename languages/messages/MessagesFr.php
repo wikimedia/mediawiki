@@ -1148,7 +1148,7 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} créer cette page]</span>.',
 'noarticletext-nopermission' => 'Il n\'y a pour l\'instant aucun texte sur cette page.
 Vous pouvez [[Special:Search/{{PAGENAME}}|faire une recherche sur ce titre]] dans les autres pages,
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechercher dans les journaux associés]</span>.',
-'missing-revision' => "La révision n° $1 de la page intitulée « {{PAGENAME}} » n'existe pas.
+'missing-revision' => "La révision n° $1 de la page intitulée « {{FULLPAGENAME}} » n'existe pas.
 
 Cela survient en général en suivant un lien historique obsolète vers une page qui a été supprimée.
 Vous pouvez trouver plus de détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
@@ -1374,7 +1374,9 @@ Vous pouvez voir ce diff ; des détails sont disponibles dans le [{{fullurl:{{#S
 'revdelete-no-file' => "Le fichier spécifié n'existe pas.",
 'revdelete-show-file-confirm' => 'Êtes-vous sûr de vouloir voir la révision supprimée du fichier « <nowiki>$1</nowiki> » datant du $2 à $3 ?',
 'revdelete-show-file-submit' => 'Oui',
-'logdelete-selected' => "'''{{PLURAL:$1|Événement d'historique sélectionné|Événements d'historique sélectionnés}} :'''",
+'revdelete-selected-text' => '{{PLURAL:$1|Révision sélectionnée|Révisions sélectionnées}} de [[:$2]] :',
+'revdelete-selected-file' => '{{PLURAL:$1|Version de fichier sélectionnée|Versions de fichier sélectionnées}} de [[:$2]] :',
+'logdelete-selected' => "{{PLURAL:$1|Événement d'historique sélectionné|Événements d'historique sélectionnés}} :",
 'revdelete-text-text' => "Les révisions supprimées continueront à apparaître dans l'historique de la page, mais une partie de leur contenu sera inaccessible au public.",
 'revdelete-text-file' => "Les versions de fichier supprimées continueront à apparaître dans l'historique des fichiers, mais une partie de leur contenu sera indisponible au public.",
 'logdelete-text' => 'Les évènements du journal supprimés continueront à apparaître dans les journaux, mais une partie de leur contenu sera indisponible au public.',

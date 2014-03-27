@@ -1021,7 +1021,7 @@ Vos pouede [[Special:Search/{{PAGENAME}}|fâre na rechèrche sur cél titro]] de
 ou ben [{{fullurl:{{FULLPAGENAME}}|action=edit}} fâre cela pâge]</span>.',
 'noarticletext-nopermission' => 'Ora y at gins de tèxto dedens cela pâge.
 Vos pouede [[Special:Search/{{PAGENAME}}|fâre na rechèrche sur cél titro]] dedens les ôtres pâges ou ben <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechèrchiér dedens los jornals liyês]</span>, mas vos éd pas la pèrmission de fâre cela pâge.',
-'missing-revision' => 'La vèrsion numerô $1 de la pâge apelâye « {{PAGENAME}} » ègziste pas.
+'missing-revision' => 'La vèrsion numerô $1 de la pâge apelâye « {{FULLPAGENAME}} » ègziste pas.
 
 En g·ènèral cen arreve en siuvent un lim d’un historico dèpassâ de vers na pâge qu’est étâye suprimâye.
 Vos pouede trovar més de dètalys sur lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].',
@@ -1255,7 +1255,7 @@ fonccion, la vèrsion spècifiâye ègziste pas ou ben vos èprovâd de cachiér
 'revdelete-no-file' => 'Lo fichiér spècifiâ ègziste pas.',
 'revdelete-show-file-confirm' => 'Est-o que vos éte de sûr de volêr vêre na vèrsion suprimâye du fichiér « <nowiki>$1</nowiki> » du $2 a $3 ?',
 'revdelete-show-file-submit' => 'Ouè',
-'logdelete-selected' => "'''{{PLURAL:$1|Èvènement du jornal chouèsi|Èvènements du jornal chouèsis}} :'''",
+'logdelete-selected' => '{{PLURAL:$1|Èvènement du jornal chouèsi|Èvènements du jornal chouèsis}} :',
 'revdelete-confirm' => 'Se vos plét, confirmâd qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et pués que vos o féte en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].',
 'revdelete-suppress-text' => "La rèprèssion dêt étre empleyêe '''ren que''' dens cetos câs :
 * Enformacions que pôvont étre difamatouères

@@ -666,7 +666,7 @@ Pamiegīkėt [[Special:Search|ėiškoutė pruojektė]] sosėjosiu naujū poslapi
 # Revision deletion
 'rev-delundel' => 'ruodītė/kavuotė',
 'revisiondelete' => 'Trintė/atkortė versėjės',
-'logdelete-selected' => "{{PLURAL:$2|Pasėrinkts|Pasėrinktė|Pasėrinktė}} '''$1''' istuorėjės {{PLURAL:$2|atėtėkims|atsėtėkimā|atsėtėkimā}}:",
+'logdelete-selected' => '{{PLURAL:$2|Pasėrinkts|Pasėrinktė|Pasėrinktė}} $1 istuorėjės {{PLURAL:$2|atėtėkims|atsėtėkimā|atsėtėkimā}}:',
 'revdelete-unsuppress' => 'Šalėntė apribuojėmos atkortuos versėjės',
 'revdel-restore' => 'Keistė veizėmuma',
 'revdelete-edit-reasonlist' => 'Keistė trīnėma prīžastis',

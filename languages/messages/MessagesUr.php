@@ -849,7 +849,7 @@ $1 نے پابندی لگائی تھی.
 'revisiondelete' => 'نظرثانی حذف کریں/واپس لائیں',
 'revdelete-nooldid-title' => 'ناقص مقصود نظرثانی',
 'revdelete-show-file-submit' => 'ہاں',
-'logdelete-selected' => "'''{{PLURAL:$1|منتخب واقعۂ نوشتہ|منتخب واقعاتِ نوشتہ}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|منتخب واقعۂ نوشتہ|منتخب واقعاتِ نوشتہ}}:',
 'revdelete-confirm' => 'برائے مہربانی! یقین دِہانی کرلیجئے کہ آپ واقعی ایسا کرنا چاہتے ہیں، آپ اِس کے نتائج سے باخبر ہیں، اور آپ یہ [[{{MediaWiki:Policy-url}}|پالیسی]] کے مطابق کررہے ہیں.',
 'revdelete-legend' => 'رویتی پابندیاں لگائیں',
 'revdelete-hide-text' => 'نظرثانی متن چھپاؤ',

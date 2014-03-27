@@ -748,7 +748,7 @@ utawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} nyunting kaca iki]</span>.',
 'noarticletext-nopermission' => 'Saiki ora ana tèks ing kaca iki. 
 Sampéyan bisa [[Special:Search/{{PAGENAME}}|nggolèki judhul kaca iki]] nèng kaca liya, 
 utawa <span class="plainlinks">[{{fullurl:{{#Special:Log}}|kaca={{urlencode:{{FULLPAGENAME}}}}}} nggolèki log sing kaitan]</span>, nanging Sampéyan ora nduwèni idin nggawé kaca iki.',
-'missing-revision' => 'Benahan #$1 saka kaca ajeneng "{{PAGENAME}}" ora ana.
+'missing-revision' => 'Benahan #$1 saka kaca ajeneng "{{FULLPAGENAME}}" ora ana.
 
 Iki biasané kasebabaké pranala riwayat sing kedaluwarsa saka kaca kuwi wis dibusak.
 Rinciané bisa ditemokaké nèng [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log pambusakan].',
@@ -962,7 +962,7 @@ Sampéyan isih bisa ndelok prabédan iki; rincian bisa ditemokaké nèng [{{full
 'revdelete-no-file' => 'Berkas sing dituju ora ana.',
 'revdelete-show-file-confirm' => 'Apa panjenengan yakin arep mirsani révisi sing wis kabusak saka berkas "<nowiki>$1</nowiki>" ing $2, jam $3?',
 'revdelete-show-file-submit' => 'Ya',
-'logdelete-selected' => "'''{{PLURAL:$1|Log kapilih|Log kapilih}} kanggo:'''",
+'logdelete-selected' => '{{PLURAL:$1|Log kapilih|Log kapilih}} kanggo:',
 'revdelete-confirm' => 'Mangga pesthèkaké yèn Sampéyan pancèn kudu nglakoni iki, yèn Sampéyan ngerti akibaté, lan yèn Sampéyan ngakoni iki cocok karo [[{{MediaWiki:Policy-url}}|kawicakan]].',
 'revdelete-suppress-text' => "Pandhelikan révisi '''mung''' bisa dipigunakaké kanggo kasus ing ngisor:
 * Informasi sing kagolong pitnah

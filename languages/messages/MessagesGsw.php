@@ -840,7 +840,7 @@ oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Syte bearbeite]</span>.',
 'noarticletext-nopermission' => 'In däre Syte het s zur Zyt no kei Text.
 Du chasch dää Titel uf andre Syte [[Special:Search/{{PAGENAME}}|sueche]]
 oder <span class="plainlinks">in dr zuegherige [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbiecher sueche].</span> Du derfsch aber die Syte nit aalege.',
-'missing-revision' => 'D Version $1 vu dr Syte mit Name „{{PAGENAME}}“ git s nit.
+'missing-revision' => 'D Version $1 vu dr Syte mit Name „{{FULLPAGENAME}}“ git s nit.
 
 Dää Fähler chunnt normalerwyys dur e veraltete Link zue dr Versionsgschicht vun ere Syte, wu in dr Zwischezyt glescht woren isch.
 Einzelheite chasch im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech] bschaue.',
@@ -1063,7 +1063,7 @@ Du chasch dää Unterschid allno aaluege; Details het's im [{{fullurl:{{#Special
 'revdelete-no-file' => 'D Datei, wu Du aagee hesch, git s nit.',
 'revdelete-show-file-confirm' => 'Bisch sicher, ass Du di glescht Version vu dr Datei „<nowiki>$1</nowiki>“ vum $2 am $3 witt aaluege?',
 'revdelete-show-file-submit' => 'Jo',
-'logdelete-selected' => "'''{{PLURAL:$1|Usgwehlte Logbuechyytrag|Usgwehlti Logbuechyytreg}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Usgwehlte Logbuechyytrag|Usgwehlti Logbuechyytreg}}:',
 'revdelete-confirm' => 'Bitte tue bstetige, ass Du vor hesch, des z mache, d Konsequänze drus verstohsch un s machsch in Inbereinstimmig mit dr [[{{MediaWiki:Policy-url}}|Richtlinie]].',
 'revdelete-suppress-text' => "Unterdruckige sotte '''nume''' in däne Fäll bruucht wäre:
 * Nit aabrochti Informatione

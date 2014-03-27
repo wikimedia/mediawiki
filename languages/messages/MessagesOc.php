@@ -1004,7 +1004,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear aquesta pagina]</span>.',
 'noarticletext-nopermission' => 'Actualament i a pas cap de tèxte dins aquesta pagina.
 Podètz [[Special:Search/{{PAGENAME}}|far una recèrca sul títol de la pagina]] dins las autras paginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} recercar dins los jornals associats]</span>.',
-'missing-revision' => "La revision n° $1 de la pagina intitulada « {{PAGENAME}} » existís pas.
+'missing-revision' => "La revision n° $1 de la pagina intitulada « {{FULLPAGENAME}} » existís pas.
 
 Aquò se produsís en general en seguent un ligam istoric obsolet cap a una pagina qu'es estada suprimida.
 Podètz trobar mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
@@ -1224,7 +1224,7 @@ Podètz veire aquesta diff ; i pòt aver mai de detalhs dins lo [{{fullurl:{{#Sp
 'revdelete-no-file' => 'Lo fichièr especificat existís pas.',
 'revdelete-show-file-confirm' => 'Sètz segur(a) que volètz veire la revision suprimida del fichièr « <nowiki>$1</nowiki> » datant del $2 a $3?',
 'revdelete-show-file-submit' => 'Òc',
-'logdelete-selected' => "'''{{PLURAL:$1|Eveniment d'istoric seleccionat|Eveniments d'istoric seleccionats}} :'''",
+'logdelete-selected' => "{{PLURAL:$1|Eveniment d'istoric seleccionat|Eveniments d'istoric seleccionats}} :",
 'revdelete-confirm' => "Confirmatz que volètz efectuar aquesta accion, que ne comprenètz las consequéncias, e qu'o fasètz en acòrd amb [[{{MediaWiki:Policy-url}}|las règlas]].",
 'revdelete-suppress-text' => "La supression deu èsser utilizada '''sonque''' dins los cases seguents :
 * Informacions potencialament difamatòrias

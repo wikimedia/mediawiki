@@ -943,7 +943,7 @@ Azonao atao ny [[Special:Search/{{PAGENAME}}|Tadiavo ny momba ny {{PAGENAME}}]].
 'noarticletext-nopermission' => "Mbola tsy misy lahatsoratra ao amin'io pejy io.
 
 Azonao atao ny [[Special:Search/{{PAGENAME}}|mikaroka ity lohateny ity]] eny amin'ny pejy hafa na <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mitady ao amin'ny laogy misy fifandraisana]</span>, fa tsy azonao atao ny mamorona ity pejy ity.",
-'missing-revision' => 'Tsy misy ny santiôna #$1 ny pejy "{{PAGENAME}}".
+'missing-revision' => 'Tsy misy ny santiôna #$1 ny pejy "{{FULLPAGENAME}}".
 
 Mitranga izany rehefa manaraka rohin-tantara tola mankany amina pejy voafafa. Ahitana fampahalalana fanampiny ny  [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} laogim-pamafana].',
 'userpage-userdoesnotexist' => 'Mbola tsy nisoratra anarana ato i « <nowiki>$1</nowiki> ». Marino raha tena hamorona ity pejy ity ianao.',
@@ -1170,7 +1170,7 @@ tsy misy ilay izy, na ny santiôna ankehitriny no andramana asitrika.',
 'revdelete-no-file' => 'Tsy misy ilay rakitra hofafàna.',
 'revdelete-show-file-confirm' => "Tapa-kevitra hamafa ny ''revision''-n'i rakitra <nowiki>$1</nowiki> tamin'ny $2 tamin'ny $3 ve ianao ?",
 'revdelete-show-file-submit' => 'Eny',
-'logdelete-selected' => "'''{{PLURAL:$1||}}Laogy voafidy :'''",
+'logdelete-selected' => '{{PLURAL:$1||}}Laogy voafidy :',
 'revdelete-confirm' => 'Amafiso eto ny hevitrao raha hanao io ianao, raha azonao sary an-tsaina ny mety ho vokany, ary raha araka ny [[{{MediaWiki:Policy-url}}|fepetra mihatra]] ny zavatra ataonao.',
 'revdelete-suppress-text' => "Ny famafàna pejy dia ampiasaina rehefa :
 * Fampahalalana mampiely lainga

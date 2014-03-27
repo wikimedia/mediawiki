@@ -1107,7 +1107,7 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 문서를 직접 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]</span>할 수 있습니다.',
 'noarticletext-nopermission' => '이 문서가 현재 존재하지 않습니다.
 이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색하거나]], 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인할 수 있습니다.</span> 그러나 이 문서를 만들 수 있는 권한은 없습니다.',
-'missing-revision' => '"{{PAGENAME}}"이라는 문서의 #$1판이 존재하지 않습니다.
+'missing-revision' => '"{{FULLPAGENAME}}"이라는 문서의 #$1판이 존재하지 않습니다.
 
 이 문제는 주로 삭제된 문서를 가리키는 오래된 문서 역사 링크로 인해 발생합니다.
 자세한 내용은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 확인할 수 있습니다.',
@@ -1345,7 +1345,7 @@ $2개 보다 적게 {{PLURAL:$2|써야}} 하지만 {{PLURAL:$1|지금은 $1개�
 'revdelete-no-file' => '해당 파일이 존재하지 않습니다.',
 'revdelete-show-file-confirm' => '정말 "<nowiki>$1</nowiki>" 파일의 삭제된 $2 $3 버전을 보시겠습니까?',
 'revdelete-show-file-submit' => '예',
-'logdelete-selected' => "'''{{PLURAL:$1|선택한 기록}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|선택한 기록}}:',
 'revdelete-text-text' => '삭제된 판은 여전히 문서 역사에 남게 되지만, 그 내용의 일부는 다른 사람들이 접근할 수 없게 됩니다.',
 'revdelete-text-file' => '삭제된 파일 버전은 계속 파일 역사에 남게 되지만, 내용의 일부는 다른 사람들이 접근할 수 없게 됩니다.',
 'logdelete-text' => '삭제된 로그 내용은 로그에 보여지겠지만, 내용의 일부는 다른 사람들이 접근할 수 없게 됩니다.',

@@ -899,7 +899,7 @@ Sekiranya anda adalah seorang pengguna tanpa nama dan berasa bahawa komen yang t
 'noarticletext-nopermission' => 'Tiada teks dalam laman ini ketika ini.
 Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk laman ini]] dalam laman lain,
 atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log yang berkaitan]</span>.',
-'missing-revision' => 'Semakan #$1 pada halaman "{{PAGENAME}}" tidak wujud.
+'missing-revision' => 'Semakan #$1 pada halaman "{{FULLPAGENAME}}" tidak wujud.
 
 Hal ini biasanya disebabkan oleh pautan sejarah yang lapuk ke halaman yang sudah dihapuskan.
 Butirannya boleh didapati di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].',
@@ -1128,7 +1128,7 @@ Anda boleh melihat perbezaan ini; butiran boleh didapati di [{{fullurl:{{#Specia
 'revdelete-no-file' => 'Fail yang dinyatakan tidak wujud.',
 'revdelete-show-file-confirm' => 'Anda pasti anda mahu paparkan semakan yang telah dihapuskan bagi fail "<nowiki>$1</nowiki>" dari $2 pada $3?',
 'revdelete-show-file-submit' => 'Ya',
-'logdelete-selected' => "'''{{PLURAL:$1|Peristiwa|Peristiwa-peristiwa}} log yang dipilih:'''",
+'logdelete-selected' => '{{PLURAL:$1|Peristiwa|Peristiwa-peristiwa}} log yang dipilih:',
 'revdelete-confirm' => 'Sila sahkan bahawa anda bertujuan melakukan ini, bahawa anda faham akibatnya, dan anda melakukannya menurut [[{{MediaWiki:Policy-url}}| polisi]].',
 'revdelete-suppress-text' => "Sekatan seharusnya digunakan '''hanya''' untuk kes-kes berikut:
 * maklumat yang mungkin berunsur fitnah

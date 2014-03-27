@@ -764,7 +764,7 @@ o purament [{{fullurl:{{FULLPAGENAME}}|action=edit}} modìfiché sta pàgina]</s
 'noarticletext-nopermission' => "Al moment a-i é gnun test ansima a costa pàgina.
 A peul [[Special:Search/{{PAGENAME}}|sërché ës tìtol ëd pàgina]] an d'àutre pàgine,
 o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sërché ant j'argistr colegà]</span>, ma a l'ha pa ël përmess ëd creé costa pàgina.",
-'missing-revision' => "La revision nùmer $1 dla pàgina antitolà «{{PAGENAME}}» a esist pa.
+'missing-revision' => "La revision nùmer $1 dla pàgina antitolà «{{FULLPAGENAME}}» a esist pa.
 
 Sòn a l'é normalment causà da l'andèje dapress a na vej liura stòrica a na pàgina ch'a l'é stàita scancelà. Ij detaj a peulo esse trovà ant ël [registr ëd jë scancelament ëd {{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}].",
 'userpage-userdoesnotexist' => "Lë stranòm «<nowiki>$1</nowiki>» a l'é pa registrà. Për piasì ch'a varda se da bon a veul creé o modifiché costa pàgina.",
@@ -994,7 +994,7 @@ Chiel a peul ancora s-ciairé costa diferensa; a peulo essje pì 'd detaj ant ë
 'revdelete-no-file' => "L'archivi sërcà a-i é pa.",
 'revdelete-show-file-confirm' => 'É-lo sigur ëd vorèj vëdde na vërsion scancelà dl\'archivi "<nowiki>$1</nowiki>" da $2 a $3?',
 'revdelete-show-file-submit' => 'Bò!',
-'logdelete-selected' => "'''{{PLURAL:$1|Event|Event}} dël registr selessionà:'''",
+'logdelete-selected' => '{{PLURAL:$1|Event|Event}} dël registr selessionà:',
 'revdelete-confirm' => "Për piasì, ch'a confema ch'a veul fé sòn, ch'as rend cont dle conseguense, e ch'a lo fa an acòrd con [[{{MediaWiki:Policy-url}}|le régole]].",
 'revdelete-suppress-text' => "La scancelassion a dovrìa '''mach''' esse dovrà an costi cas:
 * Anformassion ch'a podrìo esse difamatòrie

@@ -1109,7 +1109,7 @@ $2
 באפשרותכם [[Special:Search/{{PAGENAME}}|לחפש את כותרת הדף]] בדפים אחרים,
 או <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} לחפש ביומנים הרלוונטיים]</span>,
 אך אינכם מורשים ליצור את הדף.',
-'missing-revision' => 'גרסה #$1 של הדף "{{PAGENAME}}" אינה קיימת.
+'missing-revision' => 'גרסה #$1 של הדף "{{FULLPAGENAME}}" אינה קיימת.
 
 זה נגרם בדרך כלל על־ידי לחיצה על קישור ישן לגרסה קודמת של דף שנמחק.
 אפשר למצוא פרטים ב[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].',
@@ -1341,6 +1341,8 @@ $2
 'revdelete-no-file' => 'הקובץ שציינת אינו קיים.',
 'revdelete-show-file-confirm' => 'האם אתם בטוחים שברצונכם לצפות בגרסה המחוקה של הקובץ "<nowiki>$1</nowiki>" מתאריך $3, $2?',
 'revdelete-show-file-submit' => 'כן',
+'revdelete-selected-text' => '{{PLURAL:$1|הגרסה שנבחרה|הגרסאות שנבחרו}} מתוך [[:$2]]:',
+'revdelete-selected-file' => '{{PLURAL:$1|גרסת הקובץ שנבחרה|גרסאות הקובץ שנבחרו}} מתוך [[:$2]]:',
 'logdelete-selected' => '{{PLURAL:$1|פעולת היומן שנבחרה|פעולות היומן שנבחרו}}:',
 'revdelete-text-text' => 'גרסאות שנמחקו עדיין תופענה בהיסטוריית הדף, אך חלקים מהתוכן שלהן לא יהיו זמינים לציבור.',
 'revdelete-text-file' => 'גרסאות קבצים שנמחקו עדיין תופענה בהיסטוריית הקובץ, אך חלקים מהתוכן שלהן לא יהיו זמינים לציבור.',

@@ -863,7 +863,7 @@ walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} tbaddel essafħa hedhi]</span>',
 'revdelete-no-file' => 'الملف المحدد غير موجود.',
 'revdelete-show-file-confirm' => 'هل أنت متأكد أنك تريد رؤية مراجعة محذوفة للملف "<nowiki>$1</nowiki>" بتاريخ $2 الساعة $3؟',
 'revdelete-show-file-submit' => 'نعم',
-'logdelete-selected' => "'''{{PLURAL:$1|حدث السجل المختار|أحداث السجل المختارة}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|حدث السجل المختار|أحداث السجل المختارة}}:',
 'revdelete-confirm' => 'الإداريون الآخرون في {{SITENAME}} سيظل بإمكانهم رؤية المحتوى المخفي ويمكنهم استرجاعه مجددا من خلال هذه الواجهة نفسها، مالم يتم وضع قيود إضافية.
 من فضلك أكد أنك تنوي فعل هذا، وأنك تفهم العواقب، وأنك تفعل هذا بالتوافق مع [[{{MediaWiki:Policy-url}}|السياسة]].',
 'revdelete-suppress-text' => "الإخفاء ينبغي أن يتم استخدامه '''فقط''' في الحالات التالية:

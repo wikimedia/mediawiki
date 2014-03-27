@@ -1124,7 +1124,7 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロッ�
 または[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]</span>できます。',
 'noarticletext-nopermission' => '現在このページには内容がありません。
 他のページ内で[[Special:Search/{{PAGENAME}}|このページ名を検索]]、または<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連する記録を検索]</span>できますが、あなたにはこのページを作成する権限はありません。',
-'missing-revision' => '「{{PAGENAME}}」というページの版番号 $1 の版は存在しません。
+'missing-revision' => '「{{FULLPAGENAME}}」というページの版番号 $1 の版は存在しません。
 
 通常、削除されたページの版への古い差分表示や固定リンクをたどった際に、このようなことが起きます。 
 詳細は[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。',
@@ -1363,7 +1363,7 @@ $3 が示した理由: ''$2''",
 'revdelete-no-file' => '指定されたファイルは存在しません。',
 'revdelete-show-file-confirm' => 'ファイル「<nowiki>$1</nowiki>」の削除された$2$3の版を本当に閲覧しますか?',
 'revdelete-show-file-submit' => 'はい',
-'logdelete-selected' => '<strong>{{PLURAL:$1|選択された記録項目}}:</strong>',
+'logdelete-selected' => '{{PLURAL:$1|選択された記録項目}}:',
 'revdelete-text-others' => '追加の制限を設定しない限り、{{SITENAME}} の他の管理者は非表示コンテンツにまだアクセスでき、この同じインターフェースを通してそれを復元することができます。',
 'revdelete-confirm' => 'この操作を行おうとしていること、その結果を理解していること、[[{{MediaWiki:Policy-url}}|方針]]に従っていること、を確認してください。',
 'revdelete-suppress-text' => '秘匿は、<strong>以下の場合に限って</strong>使用すべきです:

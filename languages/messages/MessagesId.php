@@ -1059,7 +1059,7 @@ Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komenta
 Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log terkait], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting halaman ini]</span>.',
 'noarticletext-nopermission' => '!Saat ini tidak ada teks di halaman ini.
 Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log terkait]</span>, tapi Anda tidak memiliki izin untuk membuat halaman ini',
-'missing-revision' => 'Revisi #$1 halaman berjudul "{{PAGENAME}}" tidak eksks.
+'missing-revision' => 'Revisi #$1 halaman berjudul "{{FULLPAGENAME}}" tidak eksks.
 
 Hal ini biasanya disebabkan oleh tautan versi terdahulu menuju halaman yang sudah dihapus.
 Rinciannya dapat ditemukan di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].',
@@ -1287,7 +1287,7 @@ Sebagai seorang pengurus, Anda dapat melihat perbedaan ini; detail mungkin terse
 'revdelete-no-file' => 'Berkas yang dituju tidak ditemukan.',
 'revdelete-show-file-confirm' => 'Apakah Anda yakin ingin melihat revisi yang telah dihapus dari berkas "<nowiki>$1</nowiki>" per $3, $2?',
 'revdelete-show-file-submit' => 'Ya',
-'logdelete-selected' => "'''{{PLURAL:$1|Log|Log-log}} pilihan untuk:'''",
+'logdelete-selected' => '{{PLURAL:$1|Log|Log-log}} pilihan untuk:',
 'revdelete-confirm' => 'Tolong konfirmasi bahwa Anda memang bermaksud melakukan ini, memahami konsekuensinya, dan bahwa Anda melakukannya sesuai dengan [[{{MediaWiki:Policy-url}}|kebijakan]].',
 'revdelete-suppress-text' => "Penyembunyian revisi '''hanya''' boleh digunakan untuk kasus-kasus berikut:
 * Informasi yang berpotensi memfitnah

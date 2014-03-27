@@ -811,7 +811,7 @@ Pue [[Special:Search/{{PAGENAME}}|buscar esti títulu de páxina]] n\'otres páx
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta páxina]</span>.',
 'noarticletext-nopermission' => 'Nestos momentos nun hai testu nesta páxina.
 Pue [[Special:Search/{{PAGENAME}}|buscar esti títulu de páxina]] n\'otres páxines o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar los rexistros rellacionaos]</span>, pero nun tiene permisu pa crear esta páxina.',
-'missing-revision' => 'La revisión #$1 de la páxina llamada "{{PAGENAME}}" nun esiste.
+'missing-revision' => 'La revisión #$1 de la páxina llamada "{{FULLPAGENAME}}" nun esiste.
 
 De vezu la causa d\'esto ye siguir un enllaz antiguu del historial a una páxina que se desanició.
 Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].',
@@ -1045,7 +1045,7 @@ Pues ver el diff; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/supr
 'revdelete-no-file' => 'El ficheru conseñáu nun esiste.',
 'revdelete-show-file-confirm' => '¿Tas seguru de que quies ver una versión desaniciada del ficheru "<nowiki>$1</nowiki>" del $2 a les $3?',
 'revdelete-show-file-submit' => 'Sí',
-'logdelete-selected' => "'''{{PLURAL:$1|Socesu del rexistru seleicionáu|Socesos del rexistru seleicionaos}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Socesu del rexistru seleicionáu|Socesos del rexistru seleicionaos}}:',
 'revdelete-text-text' => 'Les revisiones desaniciaes inda apaecerán nel historial de la páxina, pero partes del conteníu nun sedrán accesibles al públicu.',
 'revdelete-text-file' => 'Les versiones del ficheru desaniciaes inda apaecerán nel historial del ficheru, pero partes del conteníu nun sedrán accesibles al públicu.',
 'logdelete-text' => 'Los socesos del rexistru desaniciaos inda apaecerán nos rexistros, pero partes del conteníu nun sedrán accesibles al públicu.',

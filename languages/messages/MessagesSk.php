@@ -1007,7 +1007,7 @@ Môžete [[Special:Search/{{PAGENAME}}|vyhľadávať názov tejto stránky]] v o
 'noarticletext-nopermission' => 'Táto stránka momentálne neobsahuje žiadny text.
 Môžete [[Special:Search/{{PAGENAME}}|hľadať názov tejto stránky]] v texte iných stránok
 alebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} hľadať v súvisiacich záznamoch]</span>, ale nemáte oprávnenie túto stránku vytvoriť.',
-'missing-revision' => 'Revízia #$1 stránky s názvom „{{PAGENAME}}“ neexistuje.
+'missing-revision' => 'Revízia #$1 stránky s názvom „{{FULLPAGENAME}}“ neexistuje.
 
 Pravdepodobne ste nasledovali zastaraný odkaz na historickú verziu stránky, ktorá bola medzičasom odstránená.
 Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname zmazaní].',
@@ -1232,7 +1232,7 @@ Ako správca si môžete tento rozdiel zobraziť; podrobnosti môžete nájsť v
 'revdelete-no-file' => 'Uvedený súbor neexistuje.',
 'revdelete-show-file-confirm' => 'Ste si istý, že chcete zobraziť zmazanú revíziu súboru „<nowiki>$1</nowiki>“ z $2 $3?',
 'revdelete-show-file-submit' => 'Áno',
-'logdelete-selected' => "'''{{PLURAL:$1|Vybraná udalosť záznamu|Vybrané udalosti záznamu}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Vybraná udalosť záznamu|Vybrané udalosti záznamu}}:',
 'revdelete-confirm' => 'Prosím, potvrďte, že to naozaj chcete vykonať, rozumiete následkom a že to robíte v súlade s [[{{MediaWiki:Policy-url}}|politikou]].',
 'revdelete-suppress-text' => "Zatajenie by sa malo používať '''výlučne''' v nasledovných prípadoch:
 * Potenciálne hanlivé informácie

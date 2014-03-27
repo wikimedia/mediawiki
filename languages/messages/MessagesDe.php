@@ -1153,7 +1153,7 @@ ihren Titel auf anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]]
 oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbücher betrachten]</span>.',
 'noarticletext-nopermission' => 'Diese Seite enthält momentan noch keinen Text, du bist auch nicht berechtigt diese Seite zu erstellen.
 Du kannst ihren Titel auf anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]] oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbücher betrachten].</span>',
-'missing-revision' => 'Die Version $1 der Seite namens „{{PAGENAME}}“ ist nicht vorhanden.
+'missing-revision' => 'Die Version $1 der Seite namens „{{FULLPAGENAME}}“ ist nicht vorhanden.
 
 Dieser Fehler wird normalerweise von einem veralteten Link zur Versionsgeschichte einer Seite verursacht, die zwischenzeitlich gelöscht wurde.
 Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch] einsehbar.',
@@ -1382,7 +1382,7 @@ Du kannst diesen Versionsunterschied einsehen, sofern du möchtest. Nähere Anga
 'revdelete-show-file-submit' => 'Ja',
 'revdelete-selected-text' => 'Ausgewählte {{PLURAL:$1|Version|Versionen}} von [[:$2]]:',
 'revdelete-selected-file' => 'Ausgewählte {{PLURAL:$1|Dateiversion|Dateiversionen}} von [[:$2]]:',
-'logdelete-selected' => "'''{{PLURAL:$1|Gewählter Logbucheintrag|Gewählte Logbucheinträge}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Gewählter Logbucheintrag|Gewählte Logbucheinträge}}:',
 'revdelete-text-text' => 'Gelöschte Versionen verbleiben noch in der Versionsgeschichte, jedoch sind Teile ihres Inhalts für die Öffentlichkeit nicht zugänglich.',
 'revdelete-text-file' => 'Gelöschte Dateiversionen verbleiben noch in der Datei-Versionsgeschichte, jedoch sind Teile ihres Inhalts für die Öffentlichkeit nicht zugänglich.',
 'logdelete-text' => 'Gelöschte Logbucheinträge verbleiben noch in den Logbüchern, jedoch sind Teile ihres Inhalts für die Öffentlichkeit nicht zugänglich.',

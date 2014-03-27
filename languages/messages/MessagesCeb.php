@@ -606,7 +606,7 @@ Isip tagdumala, puyde nimo [$1 tan-awon ang diff] kon gusto ka magpadayon.",
 'revdelete-no-file' => 'Ang gi-specify nga payl wala pa.',
 'revdelete-show-file-confirm' => 'Sigurado ka nga gusto nimong tan-awon ang napapas nga rebisyon sa payl "<nowiki>$1</nowiki>" sugod sa $2 sa $3?',
 'revdelete-show-file-submit' => 'Oo',
-'logdelete-selected' => "'''{{PLURAL:$1|Napiling log event|Mga napiling log event}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Napiling log event|Mga napiling log event}}:',
 'revdelete-suppress-text' => "Ang supresyon gamiton '''lamang''' asa mga mosunod nga kaso:
 * Dili maayo nga personal nga impormasyon
 *: ''adres sa panimalay ug numero sa telepono, social security number, ubp.''",

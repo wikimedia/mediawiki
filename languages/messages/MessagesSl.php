@@ -927,7 +927,7 @@ Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
 'noarticletext' => 'Na tej strani ni trenutno nobenega besedila. Naslov strani lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati]] na drugih straneh, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} v dnevniških zapisih] ali pa [{{fullurl:{{FULLPAGENAME}}|action=edit}} stran uredite]</span>.',
 'noarticletext-nopermission' => 'Na strani trenutno ni nobenega besedila.
 Lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati naslov strani]] na drugih straneh ali <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} v povezanih dnevniških zapisih]</span>, vendar za ustvarjanje strani nimate zadostnih dovoljenj.',
-'missing-revision' => 'Redakcija št. $1 strani »{{PAGENAME}}« ne obstaja.
+'missing-revision' => 'Redakcija št. $1 strani »{{FULLPAGENAME}}« ne obstaja.
 
 Po navadi se to zgodi, ko sledite zastareli povezavi na zgodovino strani, ki jo je nekdo izbrisal.
 Podrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].',
@@ -1160,7 +1160,9 @@ To redakcijo si lahko ogledate; podrobnosti lahko najdete v [{{fullurl:{{#Specia
 'revdelete-no-file' => 'Navedena datoteka ne obstaja.',
 'revdelete-show-file-confirm' => 'Ali ste prepričani da si želite ogledati izbrisano verzijo datoteke "<nowiki>$1</nowiki>" od $2 ob $3?',
 'revdelete-show-file-submit' => 'Da',
-'logdelete-selected' => "'''{{PLURAL:$1|Izbran dnevniški dogodek|Izbrana dnevniška dogodka|Izbrani dnevniški dogodki}}:'''",
+'revdelete-selected-text' => '{{PLURAL:$1|Izbrana redakcija|Izbrani redakciji|Izbrane redakcije}} [[:$2]]:',
+'revdelete-selected-file' => '{{PLURAL:$1|Izbrana redakcija|Izbrani redakciji|Izbrane redakcije}} datoteke [[:$2]]:',
+'logdelete-selected' => '{{PLURAL:$1|Izbran dnevniški dogodek|Izbrana dnevniška dogodka|Izbrani dnevniški dogodki}}:',
 'revdelete-text-text' => 'Izbrisane redakcije bodo še vedno prikazane v zgodovini strani, vendar bodo deli njihovih vsebin nedostopni javnosti.',
 'revdelete-text-file' => 'Izbrisane različice datoteke bodo še vedno prikazane v zgodovini datoteke, vendar bodo deli njihovih vsebin nedostopni javnosti.',
 'logdelete-text' => 'Izbrisani dnevniški vnosi bodo še vedno prikazani v dnevnikih, vendar bodo deli njihovih vsebin nedostopni javnosti.',

@@ -980,7 +980,7 @@ $2
 或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯此頁]</span>。',
 'noarticletext-nopermission' => '此頁目前沒有內容。
 您可以在其它頁[[Special:Search/{{PAGENAME}}|搜尋此頁標題]]，或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜尋有關日誌]</span>，但您沒有權限建立此頁。',
-'missing-revision' => '「{{PAGENAME}}」的#$1修訂版本不存在。
+'missing-revision' => '「{{FULLPAGENAME}}」的#$1修訂版本不存在。
 
 這通常是因為過時的頁面歷史鏈接被刪除。
 詳情請閱[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]。',
@@ -1201,7 +1201,9 @@ $3所述禁止原因為“$2”。",
 'revdelete-no-file' => '指定的檔案不存在。',
 'revdelete-show-file-confirm' => '{{GENDER:|你|妳|你}}是否真的是想去檢視於$2 $3刪除「<nowiki>$1</nowiki>」的檔案修訂？',
 'revdelete-show-file-submit' => '是',
-'logdelete-selected' => "'''{{PLURAL:$1|選取的日誌項目}}：'''",
+'revdelete-selected-text' => '已選定[[:$2]]之$1個版本：',
+'revdelete-selected-file' => '已選定檔案[[:$2]]之$1個版本：',
+'logdelete-selected' => '{{PLURAL:$1|選取的日誌項目}}：',
 'revdelete-text-text' => '已刪除修訂版本仍將出現於頁面歷史中，唯將不公開內容訪問。',
 'revdelete-text-file' => '已刪除檔案版本仍將出現於檔案歷史中，唯將不公開內容訪問。',
 'logdelete-text' => '已刪除日誌活動仍將出現於日誌中，唯將不公開內容訪問。',

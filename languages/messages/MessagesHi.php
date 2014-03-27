@@ -930,7 +930,7 @@ $2
 'noarticletext-nopermission' => 'फ़िलहाल इस पृष्ठ पर कोई सामग्री नहीं है।
 आप अन्य पृष्ठों में [[Special:Search/{{PAGENAME}}|इस शीर्षक की खोज]] कर सकते हैं,
 या <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} संबंधित लॉग खोज सकते हैं]</span>, परन्तु आपको यह पृष्ठ बनाने की अनुमति नहीं है।',
-'missing-revision' => '"{{PAGENAME}}" पृष्ठ का अवतरण #$1 मौजूद नहीं है।
+'missing-revision' => '"{{FULLPAGENAME}}" पृष्ठ का अवतरण #$1 मौजूद नहीं है।
 
 आम तौर पर यह एक हटाए गए पृष्ठ के पुराने लिंक पर क्लिक करने से होता है।
 अधिक जानकारी के लिए आप [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} हटाने का लॉग] देख सकते हैं।',
@@ -1169,7 +1169,7 @@ $2
 'revdelete-no-file' => 'निर्दिष्ट फ़ाइल मौजूद नहीं है।',
 'revdelete-show-file-confirm' => 'क्या आप वाकई फ़ाइल "<nowiki>$1</nowiki>" के $2 को $3 बजे बने, हटाए जा चुके अवतरण को देखना चाहते हैं?',
 'revdelete-show-file-submit' => 'हाँ',
-'logdelete-selected' => "'''{{PLURAL:$1|चुना हुआ|चुने हुए}} लॉग इवेंट:'''",
+'logdelete-selected' => '{{PLURAL:$1|चुना हुआ|चुने हुए}} लॉग इवेंट:',
 'revdelete-confirm' => 'पुष्टि करें कि आप यह कार्य करना चाहते हैं, आप इसका परिणाम समझते हैं, और आप ये [[{{MediaWiki:Policy-url}}|नीति]] के अनुसार कर रहे हैं।',
 'revdelete-suppress-text' => 'छिपाने का प्रयोग <strong>केवल</strong> इन परिस्थितियों में होना चाहिए:
 * संभावित अपमानजनक जानकारी

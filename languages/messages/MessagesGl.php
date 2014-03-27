@@ -1024,7 +1024,7 @@ Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar a páxina]</span>.',
 'noarticletext-nopermission' => 'Actualmente non hai ningún texto nesta páxina.
 Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ollar os rexistros relacionados]</span>, pero non ten os permisos necesarios para crear esta páxina.',
-'missing-revision' => 'A revisión nº$1 da páxina chamada "{{PAGENAME}}" non existe.
+'missing-revision' => 'A revisión nº$1 da páxina chamada "{{FULLPAGENAME}}" non existe.
 
 A miúdo, isto está provocado por seguir unha ligazón de historial obsoleta cara a unha páxina que foi borrada.
 O [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados] contén máis detalles.',
@@ -1260,7 +1260,7 @@ función, a revisión especificada non existe ou está intentando agochar a revi
 'revdelete-no-file' => 'O ficheiro especificado non existe.',
 'revdelete-show-file-confirm' => 'Está seguro de querer ver unha revisión borrada do ficheiro "<nowiki>$1</nowiki>" do día $2 ás $3?',
 'revdelete-show-file-submit' => 'Si',
-'logdelete-selected' => "'''{{PLURAL:$1|Rexistro de evento seleccionado|Rexistro de eventos seleccionados}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Rexistro de evento seleccionado|Rexistro de eventos seleccionados}}:',
 'revdelete-confirm' => 'Por favor, confirme que quere levar a cabo esta acción, que comprende as consecuencias e que o fai de acordo [[{{MediaWiki:Policy-url}}|coas políticas]].',
 'revdelete-suppress-text' => "A eliminación '''unicamente''' debería utilizarse nos seguintes casos:
 * Información potencialmente difamatoria

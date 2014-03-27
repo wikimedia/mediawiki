@@ -1217,7 +1217,7 @@ $2
 أو [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعديل هذه الصفحة]</span>.',
 'noarticletext-nopermission' => 'لا يوجد حاليا أي نص في هذه الصفحة.
 يمكنك [[Special:Search/{{PAGENAME}}|البحث عن عنوان هذه الصفحة]] في الصفحات الأخرى، أو <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} البحث في السجلات المتعلقة بها]</span>، لكنك لست مخولاً لإنشاء هذه الصفحة.',
-'missing-revision' => 'المراجعة #$1 من الصفحة المسماة "{{PAGENAME}}" غير موجودة.
+'missing-revision' => 'المراجعة #$1 من الصفحة المسماة "{{FULLPAGENAME}}" غير موجودة.
 
 هذا يحدث عادة عن طريق اتباع وصلة تاريخ قديمة لصفحة تم حذفها.
 التفاصيل يمكن إيجادها في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].',
@@ -1457,7 +1457,7 @@ $2
 'revdelete-no-file' => 'الملف المحدد غير موجود.',
 'revdelete-show-file-confirm' => 'هل أنت متأكد أنك تريد رؤية مراجعة محذوفة للملف "<nowiki>$1</nowiki>" بتاريخ $2 الساعة $3؟',
 'revdelete-show-file-submit' => 'نعم',
-'logdelete-selected' => "'''{{PLURAL:$1|حدث السجل المختار|أحداث السجل المختارة}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|حدث السجل المختار|أحداث السجل المختارة}}:',
 'revdelete-confirm' => 'الإداريون الآخرون في {{SITENAME}} سيظل بإمكانهم رؤية المحتوى المخفي ويمكنهم استرجاعه مجددا من خلال هذه الواجهة نفسها، مالم يتم وضع قيود إضافية.
 من فضلك أكد أنك تنوي فعل هذا، وأنك تفهم العواقب، وأنك تفعل هذا بالتوافق مع [[{{MediaWiki:Policy-url}}|السياسة]].',
 'revdelete-suppress-text' => "ينبغي للإخفاء أن يستخدم '''فقط''' في الحالات التالية:

@@ -1062,7 +1062,7 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} criar esta página]</span>.',
 'noarticletext-nopermission' => 'No momento, não há conteúdo nesta página
 Você pode [[Special:Search/{{PAGENAME}}|pesquisar pelo título desta página]] em outras páginas,
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar por registros relacionados] </span>. Note que, no entanto, você não tem permissão para criar esta página.',
-'missing-revision' => 'A revisão #$1 da página denominada "{{PAGENAME}}" não existe.
+'missing-revision' => 'A revisão #$1 da página denominada "{{FULLPAGENAME}}" não existe.
 
 Isto é geralmente causado por seguir um link de histórico desatualizado para uma página que foi eliminada.
 Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].',
@@ -1295,7 +1295,7 @@ Você pode ver esta comparação; detalhes podem ser encontrados no [{{fullurl:{
 'revdelete-no-file' => 'O arquivo especificado não existe.',
 'revdelete-show-file-confirm' => 'Tem a certeza de que quer visualizar uma revisão eliminada do arquivo "<nowiki>$1</nowiki>" de $2 em $3?',
 'revdelete-show-file-submit' => 'Sim',
-'logdelete-selected' => "'''{{PLURAL:$1|Evento de registro selecionado|Eventos de registro selecionados}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Evento de registro selecionado|Eventos de registro selecionados}}:',
 'revdelete-text-text' => 'Revisões apagadas continuarão a aparecer na página de histórico, mas parte de seus conteúdos estarão inacessíveis ao público.',
 'revdelete-text-file' => 'Versões dos arquivos apagados continuarão a aparecer no arquivo de histórico, mas parte de seus conteúdos estarão inacessíveis ao público.',
 'logdelete-text' => 'Eventos de log apagados continuarão a aparecer nos logs, mas parte de seus conteúdos estarão inacessíveis ao público.',

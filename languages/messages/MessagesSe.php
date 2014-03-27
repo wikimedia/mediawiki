@@ -325,7 +325,6 @@ $messages = array(
 'disclaimers' => 'Friijavuohta vástideamis',
 'disclaimerpage' => 'Project:Friijavuohta vástideamis',
 'edithelp' => 'Rievdadanrávvagat',
-'helppage' => 'Help:Sisdoallu',
 'mainpage' => 'Váldosiidu',
 'mainpage-description' => 'Váldosiidu',
 'portal' => 'Gáffestohpu',
@@ -564,11 +563,7 @@ Don fertet dahkat du rievdadusaid dálá tekstii.
 'rev-delundel' => 'čájet dahje čiega',
 'revisiondelete' => 'Sihko dahje máhcat veršuvnnaid',
 'revdelete-nooldid-title' => 'Ii veršuvdna',
-'revdelete-selected' => "'''{{PLURAL:$2|Válljejuvvon veršuvdna|Válljejuvvon veršuvnnat}} siiddus [[:$1]]'''",
-'logdelete-selected' => "'''{{PLURAL:$1|Válljejuvvon logmearkkastat|Válljejuvvon logmearkkastagat}}:'''",
-'revdelete-text' => "'''Sihkojuvvon veršuvnnat oidnojit siiddu siidohistorjjás, muhto daid sisdoallu ii leat álmmolaš.'''
-
-Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.",
+'logdelete-selected' => '{{PLURAL:$1|Válljejuvvon logmearkkastat|Válljejuvvon logmearkkastagat}}:',
 'revdelete-legend' => 'Veršuvnna rádjehusat',
 'revdelete-hide-text' => 'Čiega veršuvnna sisdoalu',
 'revdelete-hide-image' => 'Čiega fiilla sisdoalu',

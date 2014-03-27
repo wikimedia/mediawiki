@@ -920,7 +920,7 @@ eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} oprette siden]</span>.',
 Du kan [[Special:Search/{{PAGENAME}}|søge efter sidenavnet]] på andre sider,
 eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søge i relaterede loglister]</span>,
 men du har ikke tilladelse til at oprette denne side.',
-'missing-revision' => 'Revision #$1 af siden med navnet "{{PAGENAME}}" eksisterer ikke.
+'missing-revision' => 'Revision #$1 af siden med navnet "{{FULLPAGENAME}}" eksisterer ikke.
 
 Dette skyldes normalt at et forældet historik-link er fulgt til en side der er slettet.
 Detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].',
@@ -1144,7 +1144,7 @@ Du kan se denne forskel; der kan findes detaljer i [{{fullurl:{{#Special:Log}}/s
 'revdelete-no-file' => 'Den angivne fil findes ikke.',
 'revdelete-show-file-confirm' => 'Er du sikker på, at du vil vise en slettet version af filen "<nowiki>$1</nowiki>" fra den $2, klokken $3?',
 'revdelete-show-file-submit' => 'Ja',
-'logdelete-selected' => "'''{{PLURAL:$1|Valgt logindførsel|Valgte logindførsler}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Valgt logindførsel|Valgte logindførsler}}:',
 'revdelete-confirm' => 'Vær venlig at bekræfte at du vil gøre dette, at du forstår konsekvenserne, og at du gør det i overensstemmelse med [[{{MediaWiki:Policy-url}}|retningslinjerne]].',
 'revdelete-suppress-text' => "Der bør '''kun''' skjules i de følgende tilfælde:
 * Potentielt injurierende oplysninger

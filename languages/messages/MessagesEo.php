@@ -1048,7 +1048,7 @@ aŭ [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakti ĉi tiun paĝon]</span>.',
 'noarticletext-nopermission' => 'Estas neniom da teksto en ĉi tiu paĝo.
 Vi povas [[Special:Search/{{PAGENAME}}|serĉi ĉi tiun paĝan titolon]] en aliaj paĝoj,
 aŭ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serĉi la rilatajn protokolojn]</span>, sed vi ne rajtas krei ĉi tiun paĝon.',
-'missing-revision' => 'La revizio n-ro $1 de la paĝo nomata "{{PAGENAME}}" ne ekzistas.
+'missing-revision' => 'La revizio n-ro $1 de la paĝo nomata "{{FULLPAGENAME}}" ne ekzistas.
 
 Tio kutime estas kaŭzata per sekvado de malaktuala historio-ligilo al paĝo forigita.
 Detaloj troveblos en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de forigoj].',
@@ -1275,7 +1275,7 @@ funkcion, la specifita versio ne ekzistas, aŭ vi estas provanta kaŝi la nunan 
 'revdelete-no-file' => 'La specifita dosiero ne ekzistas.',
 'revdelete-show-file-confirm' => 'Ĉu vi certas ke vi volas vidi forigitan revizion de la dosiero "<nowiki>$1</nowiki>" de $2, $3?',
 'revdelete-show-file-submit' => 'Jes',
-'logdelete-selected' => "'''{{PLURAL:$1|Selektata protokola evento|Selektataj protokolaj eventoj}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Selektata protokola evento|Selektataj protokolaj eventoj}}:',
 'revdelete-confirm' => 'Bonvolu konfirmi ke vi intencias fari ĉi tion, ke vi komprenas la konsekvencojn kaj ke vi faras ĉi tion laŭ [[{{MediaWiki:Policy-url}}|la regularo]].',
 'revdelete-suppress-text' => "Subpremo '''nur''' estu uzata por la jenaj kazoj:
 * Ebla kalumnia informo

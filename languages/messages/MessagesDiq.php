@@ -1054,7 +1054,7 @@ Tı şenay zerreyê pelanê binan de [[Special:Search/{{PAGENAME}}|seba sernamey
 ya zi [{{fullurl:{{FULLPAGENAME}}|action=edit}} ena pele bıvurne]</span>.',
 'noarticletext-nopermission' => 'Ena pele de hewna theba çıniyo.
 Tı şenay zerreyê pelanê binan de [[Special:Search/{{PAGENAME}}|seba sernameyê na pele cı geyre]], ya zi <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} qeydan miyan de cı geyre]</span>, ema destur çıniyo ke na pele vırazê.',
-'missing-revision' => 'Rewizyonê name dê pela da #$1 "{{PAGENAME}}" dı çıniyo.
+'missing-revision' => 'Rewizyonê name dê pela da #$1 "{{FULLPAGENAME}}" dı çıniyo.
 
 No normal de tarix dê pelanê besterneyan dı ena xırabin asena.
 Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} tiya dı] aseno.',
@@ -1274,7 +1274,7 @@ Eke şıma serkari u devam bıkeri [$1 no vurnayiş şıma eşkeni bıvini].",
 'revdelete-no-file' => 'Dosya diyarkerdiye çıniya.',
 'revdelete-show-file-confirm' => 'Şıma eminê ke wazenê çımraviyarnayışê esterıtey na dosya "<nowiki>$1</nowiki>" $2 ra $3 de bıvênê?',
 'revdelete-show-file-submit' => 'E',
-'logdelete-selected' => "'''{{PLURAL:$1|Qeydbiyayışo weçinıte|Qeydbiyayışê weçinıtey}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Qeydbiyayışo weçinıte|Qeydbiyayışê weçinıtey}}:',
 'revdelete-confirm' => 'Ma rica keno testiq bike ti ena hereket keno u ti zano neticeyanê herketanê xo u ti ena hereket pê ena [[{{MediaWiki:Policy-url}}|polici]] ra keno.',
 'revdelete-suppress-text' => "Wedardış gani '''tenya''' nê halanê cêrênan de bıxebıtiyo:
 * Melumatê kıfırio mıhtemel

@@ -776,7 +776,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} igliwat ini nga pakli]</span>.',
 'noarticletext-nopermission' => 'Waray yana nahasurat hini nga pakli
 Puyde hi ikaw [[Special:Search/{{PAGENAME}}|magbiling han ngaran hini nga pakli]] ha iba nga mga pakli,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mamiling han mga nanginginlabot nga mga talaan]</span>, kundi diri ka gintutugotan hin paghímò hini nga pakli.',
-'missing-revision' => 'Waray na an rebisyon #$1 han pakli nga ginngaranan nga  "{{PAGENAME}}".
+'missing-revision' => 'Waray na an rebisyon #$1 han pakli nga ginngaranan nga  "{{FULLPAGENAME}}".
 
 Ini in agsob tungod han pagsunod hin daan nga sumpay hin kaagi ha pakli nga ginpara.
 An mga detalye in mabibilngan ha [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',

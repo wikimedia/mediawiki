@@ -1012,7 +1012,7 @@ $1',
 'revdelete-no-file' => '指定嘅檔案未存在。',
 'revdelete-show-file-confirm' => '你係咪真係想去睇響$2 $3刪咗 "$1" 嘅檔案修訂？',
 'revdelete-show-file-submit' => '係',
-'logdelete-selected' => "'''揀[[:$1]]嘅日誌事件：'''",
+'logdelete-selected' => '揀[[:$1]]嘅日誌事件：',
 'revdelete-confirm' => '請確認你肯定去做嘅話，你就要明白到後果，同埋呢個程序符合[[{{MediaWiki:Policy-url}}|政策]]。',
 'revdelete-suppress-text' => "壓制'''只'''應該響下面嘅情況之下進行:
 * 唔合適嘅個人資料

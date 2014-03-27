@@ -737,6 +737,7 @@ Molimo Vas da sačekate prije nego što pokušate ponovo.',
 'login-abort-generic' => 'Vaša prijava nije bila uspješna – Prekinuto',
 'loginlanguagelabel' => 'Jezik: $1',
 'suspicious-userlogout' => 'Vaš zahtjev za odjavu je odbijen jer je poslan preko pokvarenog preglednika ili keširanog proksija.',
+'pt-userlogout' => 'Odjavi se / Одјави се',
 
 # Email sending
 'php-mail-error-unknown' => 'Nepoznata greška u PHP funkciji mail()',
@@ -911,7 +912,7 @@ Možete [[Special:Search/{{PAGENAME}}|tražiti naslov ove stranice]] u drugim st
 ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu]</span>.',
 'noarticletext-nopermission' => 'Trenutno nema teksta na ovoj stranici.
 Možete [[Special:Search/{{PAGENAME}}|tražiti ovaj naslov stranice]] na drugim stranicama ili <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti povezane registre]</span>. alio nemate dozvolu za stvaranje ove stranice.',
-'missing-revision' => 'Ne mogu da pronađem izmenu br. $1 na stranici pod nazivom „{{PAGENAME}}“.
+'missing-revision' => 'Ne mogu da pronađem izmenu br. $1 na stranici pod nazivom „{{FULLPAGENAME}}“.
 
 Ovo se obično dešava kada pratite zastarjelu vezu do stranice koja je obrisana.
 Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].',
@@ -1145,7 +1146,7 @@ ili ta revizija ne postoji, ili pokušavate sakriti trenutnu reviziju.',
 'revdelete-no-file' => 'Navedena datoteka ne postoji.',
 'revdelete-show-file-confirm' => 'Da li ste sigurni da želite pogledati obrisanu reviziju datoteke "<nowiki>$1</nowiki>" od $2 u $3?',
 'revdelete-show-file-submit' => 'Da',
-'logdelete-selected' => "'''{{PLURAL:$1|Označena stavka registra|Označene stavke registra}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Označena stavka registra|Označene stavke registra}}:',
 'revdelete-confirm' => 'Molimo potvrdite da namjeravate ovo učiniti, da razumijete posljedice i da to činite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].',
 'revdelete-suppress-text' => "Ograničenja bi trebala biti korištena '''samo''' u sljedećim slučajevima:
 * Osjetljive korisničke informacije

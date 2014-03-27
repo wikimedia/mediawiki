@@ -861,7 +861,7 @@ Aby bok napórał, zapiš do kašćika dołojce (glědaj [$1 bok pomocy] za dal�
 'noarticletext-nopermission' => 'Tuchylu njejo žeden tekst na toś tom boku.
 Móžoš [[Special:Search/{{PAGENAME}}|toś ten bokowy titel]] na drugich bokach pytaś
 abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wótpowědne protokole pytaś]</span>, ale njamaš pšawo, toś ten bok napóraś.',
-'missing-revision' => 'Wersija #$1 boka z mjenim "{{PAGENAME}}" njeeksistěrujo.
+'missing-revision' => 'Wersija #$1 boka z mjenim "{{FULLPAGENAME}}" njeeksistěrujo.
 
 Pśicyna jo zwětšego zestarjony wótkaz w historiji k bokoju, kótaryž jo se wulašował.
 Drobnostki móžoš w  [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow] namakaś.',
@@ -1085,7 +1085,7 @@ Móžoš se toś ten rozdźěl woglědaś; drobnostki glědaj w [{{fullurl:{{#Sp
 'revdelete-show-file-submit' => 'Jo',
 'revdelete-selected-text' => '{{PLURAL:$1|Wubrana wersija|Wubranej wersiji|Wubrane wersije}} wót [[:$2]]:',
 'revdelete-selected-file' => '{{PLURAL:$1|Wubrana datajowa wersija|Wubranej datajowej wersiji|Wubrane datajowe wersije}} wót [[:$2]]:',
-'logdelete-selected' => "'''{{PLURAL:$1|Wuzwólony protokolowe tšojenje|Wuzwólonej protokolowe tšojeni|wuzwólone protokolowe tšojenja}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Wuzwólony protokolowe tšojenje|Wuzwólonej protokolowe tšojeni|wuzwólone protokolowe tšojenja}}:',
 'revdelete-text-text' => 'Wulašowane wersije wóstanu hyšći we wersijowej historiji, ale źěle jich wopśimjeśa njebudu pśistupne zjawnosći.',
 'revdelete-text-file' => 'Wulašowane datajowe wersije wóstanu w datajowej historiji, ale źěle jich wopśimjeśa njebudu pśistupne zjawnosći.',
 'logdelete-text' => 'Wulašowane protokolowe zapiski wóstanu hyšći w protokolach, ale źěle jich wopśimjeśa njebudu pśistupne zjawnosći.',

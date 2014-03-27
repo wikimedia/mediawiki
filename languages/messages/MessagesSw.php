@@ -974,7 +974,7 @@ Unaweza masasisho; maelezo mengine yapo kwenye [{{fullurl:{{#Special:Log}}/delet
 'revdelete-no-file' => 'Faili ulilotaja halipatikani.',
 'revdelete-show-file-confirm' => 'Ni kweli kwamba unataka kulitazama pitio lililofutwa la faili linaloitwa "<nowiki>$1</nowiki>" la tarehe $2 na saa $3?',
 'revdelete-show-file-submit' => 'Ndiyo',
-'logdelete-selected' => "'''{{PLURAL:$1|Tukio la kumbukumbu lililoteuliwa|Matukio ya kumbukumbu yaliyoteuliwa}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Tukio la kumbukumbu lililoteuliwa|Matukio ya kumbukumbu yaliyoteuliwa}}:',
 'revdelete-confirm' => 'Tafadhali uthibitishe kwamba unataka kufanya hivyo, pamoja na kwamba unaelewa matokeo yake, na unafanya hivyo kutokana na [[{{MediaWiki:Policy-url}}|sera yetu]].',
 'revdelete-suppress-text' => "Kuficha kunaruhisiwa '''tu''' wakati hizo:
 * Taarifa zinazowezekana kwamba ni za kukashifu

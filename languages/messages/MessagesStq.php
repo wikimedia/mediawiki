@@ -829,7 +829,7 @@ Du koast dissen Versionsunnerskeed bekiekje, wan du wolt. Details fiende sik in 
 'revdelete-no-file' => 'Ju anroate Doatäi bestoant nit.',
 'revdelete-show-file-confirm' => 'Bäst du sicher, dät du ju läskede Version fon ju Doatäi „<nowiki>$1</nowiki>“ fon dän $2 uum $3 Uure bekiekje wolt?',
 'revdelete-show-file-submit' => 'Jee',
-'logdelete-selected' => "'''{{PLURAL:$1|Uutwäälden Logboukiendraach|Uutwäälde Logboukiendraage}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Uutwäälden Logboukiendraach|Uutwäälde Logboukiendraage}}:',
 'revdelete-confirm' => 'Bestäätigje, dät du dit wuddelk dwo wolt, dät du do Konsequenze ferstoanst un dät in Uureenstimmenge mäd do [[{{MediaWiki:Policy-url}}|Gjuchtlienjen]] dääst.',
 'revdelete-suppress-text' => "Unnerdrukkengen skuulen '''bloot''' in do foulgjende Fälle foarnuumen waide:
 * Uunpaasende persöönelke Informatione

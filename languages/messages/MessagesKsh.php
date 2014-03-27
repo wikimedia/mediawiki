@@ -1013,7 +1013,7 @@ domet De dann donoh nit mieh met esu en Ömständ ze dun häs, wie de andere nam
 'noarticletext-nopermission' => 'Op dä Sigg es em Momang nix drop.
 Do kanns noh däm Tittel vun heh dä Sigg [[Special:Search/{{PAGENAME}}|em Tex op ander Sigge söhke]],
 udder en dä zopaß <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} Logbööscher nohloore]</span>.',
-'missing-revision' => 'En Version $1 vun dä Sigg „{{PAGENAME}}“ jidd_et nit.
+'missing-revision' => 'En Version $1 vun dä Sigg „{{FULLPAGENAME}}“ jidd_et nit.
 
 Esu jät kütt för jewöhnlesch, wam_mer enem övverhollte Lengk ob en Sigg follesch, di zweschedren fottjeschmeße woode es.
 Mieh doh drövver fengk mer em [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Logbooch vum Sigge Fottschmiiße].',
@@ -1275,7 +1275,7 @@ Als ene Wiki_Köbes kanns De de Ungerscheide ävver aankike wann De wells.",
 'revdelete-no-file' => 'De aanjejovve Dattei jidd_et nit.',
 'revdelete-show-file-confirm' => 'Beß De sescher, dat De de fottjeschmeße Version vun dä Dattei „<nowiki>$1</nowiki>“ vum $2 oö $3 Uhr aanloore wells?',
 'revdelete-show-file-submit' => 'Lohß Jonn!',
-'logdelete-selected' => "'''{{PLURAL:$1|Dä ußjewählte Logboch-Endrach|De Ußjewählte Logboch-Endrähsch}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Dä ußjewählte Logboch-Endrach|De Ußjewählte Logboch-Endrähsch}}:',
 'revdelete-confirm' => 'Bes esu joot un doon dat beschtääteje, un donn domet ongerschriive, dat De dat donn wells, dat De weiß, wat dobei eruß kütt, un dat De dat och noh de [[{{MediaWiki:Policy-url}}|Rääjelle]] deihß.',
 'revdelete-suppress-text' => "Dat sullt '''blooß''' jedonn wäde för:
 * onjesäzlesche Aanjaabe

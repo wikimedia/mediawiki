@@ -1038,7 +1038,7 @@ Administratzailea zarenez, diff hau ikus dezakezu. Xehetasunak ikusgai daude [{{
 'revdelete-no-file' => 'Zehazturiko fitxategia ez da existitzen.',
 'revdelete-show-file-confirm' => '"<nowiki>$1</nowiki>" fitxategiaren bertsio ezabatua (eguna: $2; ordua: $3) ikusi nahi duzu?',
 'revdelete-show-file-submit' => 'Bai',
-'logdelete-selected' => "'''{{PLURAL:$1|Aukeratutako log gertakaria|Aukeratutako log gertakariak}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Aukeratutako log gertakaria|Aukeratutako log gertakariak}}:',
 'revdelete-confirm' => 'Baiezta ezazu hori dela zure asmoa, ulertzen dituzula ondorioak, eta [[{{MediaWiki:Policy-url}}|irizpideak]] errespetatuz egiten ari zarela hau.',
 'revdelete-suppress-text' => "Ezabaketa '''bakarrik''' arrazoi hauek direla eta erabili beharko litzateke:
 * Informazio pertsonal desegokia

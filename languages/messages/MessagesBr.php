@@ -891,7 +891,7 @@ Gallout a rit [[Special:Search/{{PAGENAME}}|klask an titl anezhi]] e pajennoù a
 'noarticletext-nopermission' => "N'eus, evit ar mare, tamm testenn ebet war ar bajenn-mañ.
 Gallout a rit [[Special:Search/{{PAGENAME}}|klask titl ar bajenn-mañ]] war pajennoù all,
 pe <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} klask er marilhoù kar]</span>, met n'oc'h ket aotreet da grouiñ ar bajenn-mañ.",
-'missing-revision' => "N'eus ket eus adwel niv. $1 eus ar bajenn anvet « {{PAGENAME}} ».
+'missing-revision' => "N'eus ket eus adwel niv. $1 eus ar bajenn anvet « {{FULLPAGENAME}} ».
 
 C'hoarvezout a ra peurliesañ pa vez heuliet ul liamm istorel dispredet war-zu ur bajenn zo bet dilamet.
 Gallout a reot kavout muioc'h a vunudoù e [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} renabl an dilamadurioù].",
@@ -1115,7 +1115,7 @@ Gallout a ri gwelet an diforc'h-mañ ; titouroù zo war [{{fullurl:{{#Special:Lo
 'revdelete-no-file' => "N'eus ket eus ar restr spisaet ganeoc'h.",
 'revdelete-show-file-confirm' => 'Ha sur oc\'h e fell deoc\'h gwelet stumm diverket ar restr "<nowiki>$1</nowiki>" deiziataet eus an $2 da $3?',
 'revdelete-show-file-submit' => 'Ya',
-'logdelete-selected' => "'''{{PLURAL:$1|Darvoud eus ar marilh diuzet|Darvoud eus ar marilh diuzet}} :'''",
+'logdelete-selected' => '{{PLURAL:$1|Darvoud eus ar marilh diuzet|Darvoud eus ar marilh diuzet}} :',
 'revdelete-confirm' => "Kadarnait eo mat an dra-se a fell deoc'h ober, e komprenit mat ar pezh a empleg, hag en grit en ur zoujañ d'ar [[{{MediaWiki:Policy-url}}|reolennoù]].",
 'revdelete-suppress-text' => "Ne zlefe an dilemel bezañ implijet <strong>nemet</strong> abalamour d'an abegoù da-heul :
 * Titouroù personel dizere

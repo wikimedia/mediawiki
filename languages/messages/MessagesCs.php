@@ -1089,7 +1089,7 @@ Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko <strong>Zpě
 Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} prohlédnout si příslušné protokolovací záznamy] nebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tuto stránku založit]</span>.',
 'noarticletext-nopermission' => 'Tato stránka zatím neobsahuje žádný text.
 Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách nebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} si prohlédnout příslušné protokolovací záznamy]</span>, ale na založení této stránky nemáte oprávnění.',
-'missing-revision' => 'Revize #$1 stránky s názvem „{{PAGENAME}}“ neexistuje.
+'missing-revision' => 'Revize #$1 stránky s názvem „{{FULLPAGENAME}}“ neexistuje.
 
 Toto je obvykle způsobeno tím, že jste následovali zastaralý odkaz historickou verzi stránky, jež byla smazána.
 Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].',
@@ -1316,7 +1316,9 @@ Můžete si toto porovnání prohlédnout; podrobnosti jsou uvedeny v [{{fullurl
 'revdelete-no-file' => 'Uvedený soubor neexistuje.',
 'revdelete-show-file-confirm' => 'Určitě si chcete prohlédnout smazanou revizi souboru „<nowiki>$1</nowiki>“ z $2, $3?',
 'revdelete-show-file-submit' => 'Ano',
-'logdelete-selected' => "'''{{PLURAL:$1|Vybraná protokolovaná událost|Vybrané protokolované události}}:'''",
+'revdelete-selected-text' => '{{PLURAL:$1|Vybraná|Vybrané}} revize stránky [[:$2]]:',
+'revdelete-selected-file' => '{{PLURAL:$1|Vybraná|Vybrané}} verze souboru [[:$2]]:',
+'logdelete-selected' => '{{PLURAL:$1|Vybraná protokolovaná událost|Vybrané protokolované události}}:',
 'revdelete-text-text' => 'Smazané editace se budou i nadále zobrazovat v historii stránky, ale části jejich obsahu nebudou veřejně přístupné.',
 'revdelete-text-file' => 'Smazané verze souborů se budou i nadále zobrazovat v historii stránky, ale části jejich obsahu nebudou veřejně přístupné.',
 'logdelete-text' => 'Smazané protokolovací záznamy se budou i nadále zobrazovat v historii stránky, ale části jejich obsahu nebudou veřejně přístupné.',

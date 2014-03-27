@@ -766,7 +766,7 @@ $2
 باشقا صحیفه‌‌لرده عینی آددا صحیفه‌‌نی  [[Special:Search/{{PAGENAME}}| آختار]], علاقه‌‌لی قئيدلره 
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} باخا],
 و يا صحیفه‌‌نی  [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> ائده بیلرسینیز.',
-'missing-revision' => '«{{PAGENAME}}» صحیفه‌سی اوچون $1 نومره‌لی نوسخه یوخدور.
+'missing-revision' => '«{{FULLPAGENAME}}» صحیفه‌سی اوچون $1 نومره‌لی نوسخه یوخدور.
 
 عموماُ بو ایشکال، واختی گئچمیش بیر باغلانتی ایله سیلینمیش بیر صحیفه‌یه گلنده، قاباغا گلر.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سیلمک سیاهی]‌سینده باشقا بیلگیلر اولا بیلر.',

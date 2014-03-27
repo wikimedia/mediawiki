@@ -1028,7 +1028,7 @@ Võid [[Special:Search/{{PAGENAME}}|otsida pealkirjaks olevat fraasi]] teistelt 
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} uurida asjassepuutuvaid logisid] või [{{fullurl:{{FULLPAGENAME}}|action=edit}} puuduva lehekülje ise luua]</span>.',
 'noarticletext-nopermission' => 'Sellel leheküljel pole praegu teksti.
 Saad [[Special:Search/{{PAGENAME}}|otsida selle lehekülje pealkirja]] teistelt lehekülgedelt või <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} otsida seonduvatest logidest]</span>, aga sul pole õigust seda lehekülge alustada.',
-'missing-revision' => 'Lehekülje "{{PAGENAME}}" redaktsiooni $1 pole.
+'missing-revision' => 'Lehekülje "{{FULLPAGENAME}}" redaktsiooni $1 pole.
 
 Harilikult tähendab see seda, et sind siia juhatanud link on vananenud ja siin asunud lehekülg on kustutatud.
 Üksikasjad leiad [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamislogist].',
@@ -1254,7 +1254,9 @@ Saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAG
 'revdelete-no-file' => 'Faili ei ole.',
 'revdelete-show-file-confirm' => 'Kas oled kindel, et soovid häha faili "<nowiki>$1</nowiki>" kustutatud redaktsiooni, mis tehti $2 kell $3?',
 'revdelete-show-file-submit' => 'Jah',
-'logdelete-selected' => "'''Valitud {{PLURAL:$1|logisissekanne|logisissekanded}}:'''",
+'revdelete-selected-text' => 'Lehekülje [[:$2]] teksti valitud {{PLURAL:$1|redaktsioon|redaktsioonid}}:',
+'revdelete-selected-file' => 'Faili [[:$2]] valitud {{PLURAL:$1|versioon|versioonid}}:',
+'logdelete-selected' => 'Valitud {{PLURAL:$1|logisissekanne|logisissekanded}}:',
 'revdelete-text-text' => 'Kustutatud redaktsioonid jäävad lehekülje ajalukku alles, aga osa nende sisust pole kõigile juurdepääsetav.',
 'revdelete-text-file' => 'Kustutatud failiversioonid jäävad faili ajalukku alles, aga osa nende sisust pole kõigile juurdepääsetav.',
 'logdelete-text' => 'Kustutatud logisündmused jäävad logisse alles, aga osa nende sisust pole kõigile juurdepääsetav.',
@@ -2745,6 +2747,7 @@ Täida ka põhjuse väli, näiteks viidates lehekülgedele, mis rikuti.',
 Kehtivaid blokeeringuid vaata [[Special:BlockList|blokeerimisnimekirjast]].',
 'ipb-blockingself' => 'Sa blokeerid iseenda! Kas tahad tõesti seda teha?',
 'ipb-confirmhideuser' => 'Avaldasid soovi kasutaja blokeerida ja peita. Kasutaja nimi peidetakse kõigist loenditest ja logisissekannetest. Kas oled kindel, et soovid seda teha?',
+'ipb-confirmaction' => 'Kui oled tõesti kindel, et tahad seda teha, siis vali palun allpool "{{int:ipb-confirm}}".',
 'ipb-edit-dropdown' => 'Muuda blokeeringu põhjuseid',
 'ipb-unblock-addr' => 'Tühista kasutaja $1 blokeering',
 'ipb-unblock' => 'Kasutaja või IP-aadressi vabastamine blokeerimisest',

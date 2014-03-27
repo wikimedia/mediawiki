@@ -748,7 +748,7 @@ Dü könst didiar tiitel üüb ööder sidjen [[Special:Search/{{PAGENAME}}|sch�
 <span class="plainlinks">uun [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} logbuken schük] of detdiar sidj [{{fullurl:{{FULLPAGENAME}}|action=edit}} bewerke]</span>.',
 'noarticletext-nopermission' => 'Üüb detdiar sidj stäänt noch niks, oober dü mutst diar uk niks iinskriiw.
 Dü könst diar üüb ööder sidjen efter [[Special:Search/{{PAGENAME}}|schük]] of a <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAME}}}} logbuken uunluke].</span>',
-'missing-revision' => 'Det werjuun #$1 faan det sidj "{{PAGENAME}}" jaft at ei.
+'missing-revision' => 'Det werjuun #$1 faan det sidj "{{FULLPAGENAME}}" jaft at ei.
 
 Det komt diar miast faan, dat en ual ferwisang stregen wurden as.
 Dü könst det uun\'t [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} logbuk faan stregen sidjen] efterlees.',
@@ -973,7 +973,7 @@ Dü könst di ferskeel uunluke. Wan dü muar wed wel, luke iin uun't [{{fullurl:
 'revdelete-no-file' => 'Son dateinööm as ei diar.',
 'revdelete-show-file-confirm' => 'Wel dü würelk det stregen werjuun faan det datei „<nowiki>$1</nowiki>“ faan di $2, am a klook $3 uunluke?',
 'revdelete-show-file-submit' => 'Ja',
-'logdelete-selected' => "'''{{PLURAL:$1|Ütjsoocht logbukiindrach|Ütjsoocht logbukiindracher}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Ütjsoocht logbukiindrach|Ütjsoocht logbukiindracher}}:',
 'revdelete-text-text' => "Stregen werjuunen bliiw uun't werjuunshistoore, man dialen diarfaan san ei för arken tu sen.",
 'revdelete-text-file' => "Stregen datei-werjuunen bliiw uun't werjuunshistoore, man dialen diarfaan san ei för arken tu sen.",
 'logdelete-text' => 'Stregen logbuk-iindracher bliiw uun a logbuken, man dialen diarfaan san ei för arken tu sen.',

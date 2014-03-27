@@ -1024,7 +1024,7 @@ puteți <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAME
 sau puteți [{{fullurl:{{FULLPAGENAME}}|action=edit}} crea această pagină]</span>.',
 'noarticletext-nopermission' => 'Actualmente, această pagină este lipsită de conținut.
 Puteți [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini sau puteți <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale]</span>; nu aveți însă permisiunea de a crea această pagină.',
-'missing-revision' => 'Versiunea nr. $1 a paginii „{{PAGENAME}}” nu există.
+'missing-revision' => 'Versiunea nr. $1 a paginii „{{FULLPAGENAME}}” nu există.
 
 Acest lucru se întâmplă de obicei atunci când se accesează o legătură expirată către istoricul unei pagini șterse.
 Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ștergerilor].',
@@ -1262,7 +1262,7 @@ funcție, fie versiunea specificată nu există, ori sunteți pe cale să ascund
 'revdelete-no-file' => 'Fișierul specificat nu există.',
 'revdelete-show-file-confirm' => 'Sigur doriți să vedeți versiunea ștearsă a fișierului „<nowiki>$1</nowiki>” din $2 ora $3?',
 'revdelete-show-file-submit' => 'Da',
-'logdelete-selected' => "'''{{PLURAL:$1|Revizia aleasă|Reviziile alese}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Revizia aleasă|Reviziile alese}}:',
 'revdelete-text-text' => 'Versiunile șterse vor continua să fie vizibile în istoricul paginii, însă anumite părți ale conținutului acestora vor fi inaccesibile publicului.',
 'revdelete-text-file' => 'Versiunile șterse ale fișierului vor continua să fie vizibile în istoricul fișierului, însă anumite părți ale conținutului acestora vor fi inaccesibile publicului.',
 'logdelete-text' => 'Evenimentele șterse ale jurnalului vor continua să fie vizibile în jurnale, însă anumite părți ale conținutului acestora vor fi inaccesibile publicului.',

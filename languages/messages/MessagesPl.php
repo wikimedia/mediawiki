@@ -1056,7 +1056,7 @@ Możesz [[Special:Search/{{PAGENAME}}|poszukać „{{PAGENAME}}” na innych str
 'noarticletext-nopermission' => 'Ta strona nie posiada jeszcze zawartości.
 Możesz [[Special:Search/{{PAGENAME}}|wyszukać ten tytuł]] w treści innych stron
 lub <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przeszukać powiązane rejestry]</span>, ale nie masz uprawnień do utworzenia tej strony',
-'missing-revision' => 'Wersja #$1 strony "{{PAGENAME}}" nie istnieje.
+'missing-revision' => 'Wersja #$1 strony "{{FULLPAGENAME}}" nie istnieje.
 
 Zazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powód usunięcia znajduje się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze].',
 'userpage-userdoesnotexist' => 'Użytkownik „<nowiki>$1</nowiki>” nie jest zarejestrowany.
@@ -1290,7 +1290,7 @@ wybrana wersja nie istnieje lub próbowano ukryć wersję bieżącą.',
 'revdelete-no-file' => 'Wybrany plik nie istnieje.',
 'revdelete-show-file-confirm' => 'Czy jesteś pewien, że chcesz zobaczyć usuniętą wersję pliku „<nowiki>$1</nowiki>” z $2 o $3?',
 'revdelete-show-file-submit' => 'Tak',
-'logdelete-selected' => "'''Zaznaczone {{PLURAL:$1|zdarzenie|zdarzenia}} z rejestru:'''",
+'logdelete-selected' => 'Zaznaczone {{PLURAL:$1|zdarzenie|zdarzenia}} z rejestru:',
 'revdelete-text-text' => 'Usunięte wersje będą nadal widoczne w historii strony, ale niektóre fragmenty ich treści nie będą dostępne dla wszystkich.',
 'revdelete-text-file' => 'Usunięte wersje pliku będą nadal widoczne w historii pliku, ale niektóre fragmenty ich treści nie będą dostępne dla wszystkich.',
 'revdelete-confirm' => 'Potwierdź, że chcesz to zrobić zgodnie z [[{{MediaWiki:Policy-url}}|zasadami]] i że rozumiesz konsekwencje.',

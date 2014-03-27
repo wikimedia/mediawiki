@@ -842,6 +842,7 @@ $2',
 'gotaccountlink' => 'Пријава',
 'userlogin-resetlink' => 'Заборавили сте податке за пријаву?',
 'userlogin-resetpassword-link' => 'Заборавили сте лозинку?',
+'userlogin-helplink2' => 'Помоћ при пријављивању',
 'userlogin-loggedin' => 'Већ сте пријављени као {{GENDER:$1|$1}}.
 Користите доњи образац да бисте се пријавили као други корисник.',
 'userlogin-createanother' => 'Отвори још један налог',
@@ -1113,7 +1114,7 @@ $2
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} претражити сродне извештаје] или [{{fullurl:{{FULLPAGENAME}}|action=edit}} уредити страницу]</span>.',
 'noarticletext-nopermission' => 'На овој страници тренутно нема садржаја.
 Можете [[Special:Search/{{PAGENAME}}|потражити овај наслов]] на другим страницама или <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} претражити сродне дневнике]</span>, али немате дозволу да направите ову страницу.',
-'missing-revision' => 'Не могу да пронађем измену бр. $1 на страници под називом „{{PAGENAME}}“.
+'missing-revision' => 'Не могу да пронађем измену бр. $1 на страници под називом „{{FULLPAGENAME}}“.
 
 Ово се обично дешава када пратите застарелу везу до странице која је обрисана.
 Више информација можете пронаћи у [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} дневнику брисања].',
@@ -1347,7 +1348,7 @@ $2
 'revdelete-no-file' => 'Тражена датотека не постоји.',
 'revdelete-show-file-confirm' => 'Желите ли да видите обрисану измену датотеке „<nowiki>$1</nowiki>“ од $2; $3?',
 'revdelete-show-file-submit' => 'Да',
-'logdelete-selected' => "'''{{PLURAL:$1|Изабрана ставка у историји|Изабране ставке у историји}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Изабрана ставка у историји|Изабране ставке у историји}}:',
 'revdelete-confirm' => 'Потврдите да намеравате ово урадити, да разумете последице и да то чините у складу с [[{{MediaWiki:Policy-url}}|правилима]].',
 'revdelete-suppress-text' => "Сакривање измена би требало користити '''само''' у следећим случајевима:
 * Злонамерни или погрдни подаци

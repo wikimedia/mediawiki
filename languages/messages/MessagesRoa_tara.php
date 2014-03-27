@@ -759,7 +759,7 @@ Tu puè [[Special:Search/{{PAGENAME}}|cercà pe quiste titele]] jndr\'à otre p�
 'noarticletext-nopermission' => "Pe mò non ge stè teste jndr'à sta pàgene.
 Tu puè [[Special:Search/{{PAGENAME}}|cercà pe stu titole]] jndr'à otre pàggene,
 o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cirche jndr'à l'archivije cullegate]</span>, ma non ge tìne le permesse pe ccrejà sta pàgene.",
-'missing-revision' => "'A revisione #\$1 d'a pàgene chiamate \"{{PAGENAME}}\" non g'esiste.
+'missing-revision' => "'A revisione #\$1 d'a pàgene chiamate \"{{FULLPAGENAME}}\" non g'esiste.
 
 Quiste succede normalmende purcé 'u cunde jè collegate a 'na pàgene ca ha state scangellate.
 Le dettaglie le puè acchià jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} archivije de le scangellaziune].",
@@ -993,7 +993,7 @@ Tu puè vedè ste differenze; pò essere ca stonne cchiù 'mbormaziune jndr'à l
 'revdelete-no-file' => "'U file specificate non g'esiste.",
 'revdelete-show-file-confirm' => 'Si secure ca vuè ccu vide \'a revisione scangellate d\'u file "<nowiki>$1</nowiki>" \'u $2 a le $3?',
 'revdelete-show-file-submit' => 'Sìne',
-'logdelete-selected' => "'''{{PLURAL:$1|Fatte de l'archivije selezionete|Fatte de l'archivije selezionete}}:'''",
+'logdelete-selected' => "{{PLURAL:$1|Fatte de l'archivije selezionete|Fatte de l'archivije selezionete}}:",
 'revdelete-confirm' => 'Pe piacere conferme ca tu vuè ccu face sta cose, ce tu è capite le conseguenze e ce quidde ca ste face jè in accorde cu le [[{{MediaWiki:Policy-url}}|reghele]] de Uicchipèdie.',
 'revdelete-suppress-text' => "'A soppressione adda essere ausate '''sulamende''' jndr'à le case seguende:
 * 'Mbormaziune potenzialmende offenzive

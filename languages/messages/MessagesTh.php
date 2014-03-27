@@ -905,7 +905,7 @@ $2
 คุณสามารถ[[Special:Search/{{PAGENAME}}|ค้นหาชื่อหน้านี้]]ในหน้าอื่น หรือ<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ค้นหาปูมที่เกี่ยวข้อง] หรือ[{{fullurl:{{FULLPAGENAME}}|action=edit}} แก้ไขหน้านี้]</span>',
 'noarticletext-nopermission' => 'ปัจจุบันไม่มีเนื้อหาในหน้านี้
 คุณสามารถ[[Special:Search/{{PAGENAME}}|ค้นหาชื่อหน้านี้]]ในหน้าอื่น หรือ<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ค้นหาปูมที่เกี่ยวข้อง]</span> แต่คุณไม่มีสิทธิสร้างหน้านี้',
-'missing-revision' => 'ไม่มีรุ่น #$1 ของหน้าชื่อ "{{PAGENAME}}" 
+'missing-revision' => 'ไม่มีรุ่น #$1 ของหน้าชื่อ "{{FULLPAGENAME}}" 
 
 โดยปกติเกิดจากการเข้าลิงก์ประวัติเก่าของหน้าที่ถูกลบไปแล้ว
 ดูรายละเอียดได้ที่[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ปูมการลบ]',
@@ -1127,7 +1127,7 @@ $2
 'revdelete-no-file' => 'ไม่มีไฟล์ที่ระบุ',
 'revdelete-show-file-confirm' => 'คุณแน่ใจที่จะดูรุ่นที่ถูกลบของไฟล์ "<nowiki>$1</nowiki>" เมื่อวันที่ $2 เวลา $3 หรือไม่',
 'revdelete-show-file-submit' => 'ใช่',
-'logdelete-selected' => "'''{{PLURAL:$1|เหตุการณ์ปูมที่เลือก|เหตุการณ์ปูมที่เลือก}} :'''",
+'logdelete-selected' => '{{PLURAL:$1|เหตุการณ์ปูมที่เลือก|เหตุการณ์ปูมที่เลือก}} :',
 'revdelete-text-text' => 'รุ่นที่ถูกลบจะยังปรากฏในประวัติหน้า แต่สาธารณะจะไม่สามารถเข้าถึงเนื้อหาบางส่วนได้',
 'revdelete-text-file' => 'รุ่นที่ถูกลบจะยังปรากฏในประวัติไฟล์ แต่สาธารณะจะไม่สามารถเข้าถึงเนื้อหาบางส่วนได้',
 'logdelete-text' => 'รายการปูมที่ถูกลบจะยังปรากฏในปูม แต่สาธารณะจะไม่สามารถเข้าถึงเนื้อหาบางส่วนได้',

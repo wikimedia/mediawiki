@@ -958,7 +958,7 @@ As Administrater kannst du [$1 mit dissen Lenk] den Ünnerscheed ankieken.',
 'revdelete-no-file' => 'De angeven Datei gifft dat nich.',
 'revdelete-show-file-confirm' => 'Wullt du worraftig en wegsmeten Version vun de Datei „<nowiki>$1</nowiki>“ vun $2, $3 ankieken?',
 'revdelete-show-file-submit' => 'Jo',
-'logdelete-selected' => "'''{{PLURAL:$1|Wählt Logbook-Indrag|Wählte Logbook-Indrääg}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Wählt Logbook-Indrag|Wählte Logbook-Indrääg}}:',
 'revdelete-suppress-text' => "Ünnerdrücken schull '''blot''' bi disse Fäll bruukt warrn:
 * Nich passliche persönliche Information
 *: ''Adressen, Telefonnummern, Sozialversekerungsnummern etc.''",

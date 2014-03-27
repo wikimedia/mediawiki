@@ -1127,7 +1127,7 @@ U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s
 'noarticletext-nopermission' => 'Deze pagina bevat geen tekst.
 U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s of
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken]</span>, maar u mag de pagina niet aanmaken.',
-'missing-revision' => 'De versie #$1 van de pagina "{{PAGENAME}} bestaat niet.
+'missing-revision' => 'De versie #$1 van de pagina "{{FULLPAGENAME}} bestaat niet.
 
 Dit wordt meestal veroorzaakt door het volgen van een verouderde koppeling naar een pagina die is verwijderd.
 Meer gegevens zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].',
@@ -1367,7 +1367,9 @@ U kunt deze verschillen bekijken. Er kunnen details te vinden zijn in het [{{ful
 'revdelete-no-file' => 'Het opgegeven bestand bestaat niet.',
 'revdelete-show-file-confirm' => 'Weet u zeker dat u de verwijderde versie van het bestand "<nowiki>$1</nowiki>" van $2 om $3 wilt bekijken?',
 'revdelete-show-file-submit' => 'Ja',
-'logdelete-selected' => "'''{{PLURAL:$1|Geselecteerde logboekhandeling|Geselecteerde logboekhandelingen}}:'''",
+'revdelete-selected-text' => '{{PLURAL:$1|Geselecteerde versie|Geselecteerde versies}} van [[:$2]]:',
+'revdelete-selected-file' => '{{PLURAL:$1|Geselecteerde bestandsversie|Geselecteerde bestandsversies}} van [[:$2]]:',
+'logdelete-selected' => '{{PLURAL:$1|Geselecteerde logboekregel|Geselecteerde logboekregels}}:',
 'revdelete-text-text' => 'Verwijderde versies zijn nog zichtbaar in de geschiedenis, maar delen van de inhoud zijn niet openbaar.',
 'revdelete-text-file' => 'Verwijderde versies zijn nog zichtbaar in de bestandsgeschiedenis, maar delen van de inhoud zijn niet openbaar.',
 'logdelete-text' => 'Verwijderde logboekregels zijn nog zichtbaar in de logboeken, maar delen van de inhoud zijn niet openbaar.',

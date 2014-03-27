@@ -1013,7 +1013,7 @@ Se il collegamento è stato aperto per errore, è sufficiente fare clic sul puls
 ''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un'utenza o comunque non la sta usando. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:UserLogin/signup|crea una nuova utenza]] o [[Special:UserLogin|entra con quella che già hai]] per evitare di essere confuso con altri utenti anonimi in futuro.''",
 'noarticletext' => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati] oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificare la pagina ora]</span>.',
 'noarticletext-nopermission' => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati]</span>, ma non hai i permessi per creare questa pagina.',
-'missing-revision' => 'La revisione #$1 della pagina "{{PAGENAME}}" non esiste.
+'missing-revision' => 'La revisione #$1 della pagina "{{FULLPAGENAME}}" non esiste.
 
 Questo si verifica solitamente seguendo un collegamento a una pagina cancellata, in una cronologia non aggiornata.
 I dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro delle cancellazioni].',
@@ -1238,7 +1238,9 @@ In quanto amministratore puoi visualizzare questo confronto di versioni; potrebb
 'revdelete-no-file' => 'Il file specificato non esiste.',
 'revdelete-show-file-confirm' => 'Si desidera visualizzare la versione cancellata del file "<nowiki>$1</nowiki>" del $2 alle $3?',
 'revdelete-show-file-submit' => 'Sì',
-'logdelete-selected' => "'''{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:'''",
+'revdelete-selected-text' => '{{PLURAL:$2|Versione selezionata|Versioni selezionate}} di [[:$2]]:',
+'revdelete-selected-file' => '{{PLURAL:$2|Versione selezionata|Versioni selezionate}} del file di [[:$2]]:',
+'logdelete-selected' => '{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:',
 'revdelete-text-text' => 'Le versioni cancellate appariranno ancora nella cronologia della pagina, ma parti del loro contenuto sarà inaccessibile al pubblico.',
 'revdelete-text-file' => 'Le versioni di file cancellati appariranno ancora nella cronologia del file, ma parti del loro contenuto sarà inaccessibile al pubblico.',
 'logdelete-text' => 'Gli eventi cancellati appariranno ancora nei registri, ma parti del loro contenuto sarà inaccessibile al pubblico.',

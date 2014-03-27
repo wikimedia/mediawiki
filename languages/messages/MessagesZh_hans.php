@@ -1072,7 +1072,7 @@ $2
 'anontalkpagetext' => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:UserLogin/signup|创建新账户]]或[[Special:UserLogin|登录]]以避免在未来与其他匿名用户混淆。''",
 'noarticletext' => '本页面目前没有内容。你可以在其他页面中[[Special:Search/{{PAGENAME}}|搜索本页标题]]、<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编辑本页面]。</span>',
 'noarticletext-nopermission' => '本页面目前没有内容。你可以在其他页面中[[Special:Search/{{PAGENAME}}|搜索本页标题]]或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]</span>，但你没有权限创建本页面。',
-'missing-revision' => '“{{PAGENAME}}”的修订#$1不存在。
+'missing-revision' => '“{{FULLPAGENAME}}”的修订#$1不存在。
 
 这通常是因为进入了一个已被删除的页面的历史链接。
 详细信息可以在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中找到。',
@@ -1271,7 +1271,9 @@ $3给出的原因是“$2”。",
 'revdelete-no-file' => '指定的文件不存在。',
 'revdelete-show-file-confirm' => '确定要查看文件“<nowiki>$1</nowiki>”于$2$3被删除的版本吗？',
 'revdelete-show-file-submit' => '是',
-'logdelete-selected' => "'''{{PLURAL:$1|选取的日志项目}}：'''",
+'revdelete-selected-text' => '已选择[[:$2]]的$1个版本：',
+'revdelete-selected-file' => '已选择文件[[:$2]]的$1个版本：',
+'logdelete-selected' => '{{PLURAL:$1|选取的日志项目}}：',
 'revdelete-text-text' => '已删除修订仍将在页面历史中显示，但涉及部分的内容将对公众不可见。',
 'revdelete-text-file' => '已删除文件版本仍将在文件历史中显示，但涉及部分的内容将对公众不可见。',
 'logdelete-text' => '已删除日志事件仍将在日志中显示，但涉及部分的内容将对公众不可见。',
@@ -2022,7 +2024,7 @@ $1',
 'filehist-user' => '用户',
 'filehist-dimensions' => '大小',
 'filehist-filesize' => '文件大小',
-'filehist-comment' => '评论',
+'filehist-comment' => '备注',
 'filehist-missing' => '文件遗失',
 'imagelinks' => '文件用途',
 'linkstoimage' => '以下{{PLURAL:$1|页面|$1个页面}}链接至本文件：',

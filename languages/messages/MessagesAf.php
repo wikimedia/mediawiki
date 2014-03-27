@@ -914,7 +914,7 @@ of [{{fullurl:{{FULLPAGENAME}}|action=edit}} hierdie bladsy wysig]</span>.',
 'noarticletext-nopermission' => 'Hierdie bladsy bevat geen teks nie.
 U kan vir die term [[Special:Search/{{PAGENAME}}|in ander bladsye soek]] of
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} die verwante logboeke deursoek]</span>, maar u kan nie die bladsy skep nie.',
-'missing-revision' => 'Die weergawe #$1 van die bladsy "{{PAGENAME}} bestaan nie.
+'missing-revision' => 'Die weergawe #$1 van die bladsy "{{FULLPAGENAME}} bestaan nie.
 
 Dit word meestal veroorsaak deur die volg van \'n verouderde verwysing na \'n bladsy wat verwyder is.
 Meer gegewens kan moontlik in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] gevind word.',
@@ -1140,7 +1140,7 @@ U kan wel hierdie verskil sien. Meer details kan in die [{{fullurl:{{#Special:Lo
 'revdelete-no-file' => 'Die gespesifiseerde lêer bestaan nie.',
 'revdelete-show-file-confirm' => 'Is u seker u wil die geskrapte weergawe van die lêer "<nowiki>$1</nowiki>" van $2 om $3 sien?',
 'revdelete-show-file-submit' => 'Ja',
-'logdelete-selected' => "'''Geselekteerde {{PLURAL:$1|logboek aksie|logboek aksies}}:'''",
+'logdelete-selected' => 'Geselekteerde {{PLURAL:$1|logboek aksie|logboek aksies}}:',
 'revdelete-confirm' => 'Bevestig asseblief dat u dit wil doen, dat u die nagevolge verstaan en dat u dit doen in ooreenstemming met die [[{{MediaWiki:Policy-url}}|beleid]].',
 'revdelete-suppress-text' => "Verberging van weergawes mag '''slegs''' in die volgende gevalle gebruik word:
 * Potensieel lasterlike inligting

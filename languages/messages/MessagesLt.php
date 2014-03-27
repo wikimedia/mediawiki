@@ -1085,7 +1085,7 @@ Kaip administratorius, jūs galite ją pamatyti; daugiau detalių gali būti [{{
 'revdelete-no-file' => 'Nurodytas failas neegzistuoja.',
 'revdelete-show-file-confirm' => 'Ar tikrai norite peržiūrėti ištrintą failo „<nowiki>$1</nowiki>“ $2 $3 versiją?',
 'revdelete-show-file-submit' => 'Taip',
-'logdelete-selected' => "'''{{PLURAL:$1|Pasirinktas istorijos įvykis|Pasirinkti istorijos įvykiai}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Pasirinktas istorijos įvykis|Pasirinkti istorijos įvykiai}}:',
 'revdelete-confirm' => 'Prašome patvirtinti, kad jūs tai ketinate padaryti, kad jūs suprantate padarinius, ir kad jūs tai darote pagal [[{{MediaWiki:Policy-url}}|politiką]].',
 'revdelete-suppress-text' => "Ištrynimas turėtų būti taikomas '''tik''' šiais atvejais:
 * Netinkama asmeninė informacija

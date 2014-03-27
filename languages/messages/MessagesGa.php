@@ -732,7 +732,7 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'revisiondelete' => 'Scrios/díscrios leagain',
 'revdelete-show-file-confirm' => 'An bhfuil tú cinnte gur mhaith leat féach ar leasú scriosta don chomhad "<nowiki>$1</nowiki>" ó $2 ag $3?',
 'revdelete-show-file-submit' => 'Tá',
-'logdelete-selected' => "'''{{PLURAL:$1|Teagmhas log roghnaithe|Teagmhais log roghnaithe}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Teagmhas log roghnaithe|Teagmhais log roghnaithe}}:',
 'revdelete-hide-text' => 'Folaigh leagan téacs',
 'revdelete-radio-same' => 'ná hathraigh',
 'revdelete-radio-set' => 'Is ea',

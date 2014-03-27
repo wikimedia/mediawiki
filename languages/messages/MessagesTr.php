@@ -1077,7 +1077,7 @@ Bu başlığı [[Special:Search/{{PAGENAME}}|diğer sayfalarda arayabilir]],
 ya da bu sayfayı [{{fullurl:{{FULLPAGENAME}}|action=edit}} değiştirebilirsiniz]</span>.',
 'noarticletext-nopermission' => 'Bu sayfa şu anda boştur. 
 Bu başlığı [[Special:Search/{{PAGENAME}}|diğer sayfalarda arayabilir]] ya da <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ilgili kayıtları tarayabilirsiniz].</span>',
-'missing-revision' => '"{{PAGENAME}}" sayfasının #$1 sürümü yok.
+'missing-revision' => '"{{FULLPAGENAME}}" sayfasının #$1 sürümü yok.
 
 Bu duruma genellikle silinmiş bir sayfaya eski tarihli bir bağlantının takip edilmesi neden olur.
 
@@ -1305,7 +1305,7 @@ Bir hizmetli olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Log
 'revdelete-no-file' => 'Belirtilen dosya mevcut değil.',
 'revdelete-show-file-confirm' => '"<nowiki>$1</nowiki>" dosyasının $2 $3 tarihli silinmiş bir revizyonunu görmek istediğinize emin misiniz?',
 'revdelete-show-file-submit' => 'Evet',
-'logdelete-selected' => "'''{{PLURAL:$1|Seçili kayıt olayı|Seçili kayıt olayları}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Seçili kayıt olayı|Seçili kayıt olayları}}:',
 'revdelete-confirm' => 'Lütfen, bunu yapmak istediğinizi , sonuçlarını anladığınızı, ve bunu [[{{MediaWiki:Policy-url}}|ilkelere]] göre yapıyor olduğunuzu onaylayın.',
 'revdelete-suppress-text' => "Saklama '''sadece''' aşağıdaki durumlarda kullanılmalıdır:
 * Muhtemel iftira niteliğindeki bilgi

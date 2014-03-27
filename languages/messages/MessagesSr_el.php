@@ -990,7 +990,7 @@ Možete [[Special:Search/{{PAGENAME}}|potražiti ovaj naslov]] na drugim stranic
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti srodne izveštaje] ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti stranicu]</span>.',
 'noarticletext-nopermission' => 'Na ovoj stranici trenutno nema sadržaja.
 Možete [[Special:Search/{{PAGENAME}}|potražiti ovaj naslov]] na drugim stranicama ili <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti srodne dnevnike]</span>, ali nemate dozvolu da napravite ovu stranicu.',
-'missing-revision' => 'Ne mogu da pronađem izmenu br. $1 na stranici pod nazivom „{{PAGENAME}}“.
+'missing-revision' => 'Ne mogu da pronađem izmenu br. $1 na stranici pod nazivom „{{FULLPAGENAME}}“.
 
 Ovo se obično dešava kada pratite zastarelu vezu do stranice koja je obrisana.
 Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].',
@@ -1223,7 +1223,7 @@ Ipak možete da vidite ovu razliku; više detalja možete naći u [{{fullurl:{{#
 'revdelete-no-file' => 'Tražena datoteka ne postoji.',
 'revdelete-show-file-confirm' => 'Želite li da vidite obrisanu izmenu datoteke „<nowiki>$1</nowiki>“ od $2; $3?',
 'revdelete-show-file-submit' => 'Da',
-'logdelete-selected' => "'''{{PLURAL:$1|Izabrana stavka u istoriji|Izabrane stavke u istoriji}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Izabrana stavka u istoriji|Izabrane stavke u istoriji}}:',
 'revdelete-confirm' => 'Potvrdite da nameravate ovo uraditi, da razumete posledice i da to činite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].',
 'revdelete-suppress-text' => "Sakrivanje izmena bi trebalo koristiti '''samo''' u sledećim slučajevima:
 * Zlonamerni ili pogrdni podaci

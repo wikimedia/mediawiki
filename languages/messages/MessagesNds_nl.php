@@ -1031,7 +1031,7 @@ of [{{fullurl:{{FULLPAGENAME}}|action=edit}} disse zied bewarken]</span>.',
 'noarticletext-nopermission' => 'Op disse zied steet gien tekste.
 Je kunnen [[Special:Search/{{PAGENAME}}|zeuken naor disse term]] in aandere ziejen of
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken deurzeuken]</span>, mer je hebben gien rechten um disse zied an te maken.',
-'missing-revision' => 'De versie #$1 van de zied "{{PAGENAME}} besteet niet.
+'missing-revision' => 'De versie #$1 van de zied "{{FULLPAGENAME}} besteet niet.
 
 Dit kömp meestentieds deur t volgen van n verouwerde verwiezing naor n zied die vortedaon is.
 Waorschienlik ku\'j der meer gegevens over vienen in t [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} vortdologboek].',
@@ -1250,7 +1250,7 @@ Je kunnen disse verschillen bekieken. Misschien steet der over in t [{{fullurl:{
 'revdelete-no-file' => 't Op-egeven bestaand besteet niet.',
 'revdelete-show-file-confirm' => 'Bi\'j der wisse van da\'j de vortedaone versie van t bestaand "<nowiki>$1</nowiki>" van $2 um $3 bekieken willen?',
 'revdelete-show-file-submit' => 'Ja',
-'logdelete-selected' => "'''{{PLURAL:$1|Ekeuzen logboekboekaksie|Ekeuzen logboekaksies}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Ekeuzen logboekboekaksie|Ekeuzen logboekaksies}}:',
 'revdelete-confirm' => "Bevestig da'j dit doon wollen, da'j de gevolgen dervan begriepen en da'j t doon in overeenstemming mit t geldende [[{{MediaWiki:Policy-url}}|beleid]].",
 'revdelete-suppress-text' => "Onderdrokken ma'j '''allinnig''' gebruken in de volgende gevallen:
 * Ongepassen persoonlike informasie

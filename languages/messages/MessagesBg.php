@@ -933,7 +933,7 @@ $2
 'noarticletext' => 'Тази страница все още не съществува. Можете да [[Special:Search/{{PAGENAME}}|потърсите за заглавието на страницата]] в други страници, да <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} потърсите в дневниците] или [{{fullurl:{{FULLPAGENAME}}|action=edit}} да я създадете]</span>.',
 'noarticletext-nopermission' => 'Текущо в тази страница няма текст.
 Можете да [[Special:Search/{{PAGENAME}}|потърсите заглавието на тази страница ]] в други страници или да <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} потърсите в съответните дневници]</span>, но нямате права да създадете тази страница.',
-'missing-revision' => 'Версия #$1 на страницата „{{PAGENAME}}“ не съществува.
+'missing-revision' => 'Версия #$1 на страницата „{{FULLPAGENAME}}“ не съществува.
 
 Това обикновено се дължи на препратка от историята на страницата, която е била изтрита.
 Подробности могат да бъдат открити в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} дневника на изтриванията].',
@@ -1150,7 +1150,7 @@ $2
 'revdelete-no-file' => 'Посоченият файл не съществува.',
 'revdelete-show-file-confirm' => 'Необходимо е потвърждение, че желаете да прегледате изтритата версия на файла „<nowiki>$1</nowiki>“ от $2 $3.',
 'revdelete-show-file-submit' => 'Да',
-'logdelete-selected' => "'''{{PLURAL:$1|Избрано събитие|Избрани събития}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Избрано събитие|Избрани събития}}:',
 'revdelete-confirm' => 'Необходимо е да потвърдите, че велаете да извършите действието, разбирате последствията и го правите според [[{{MediaWiki:Policy-url}}|политиката]].',
 'revdelete-suppress-text' => "Премахването трябва да се използва '''само''' при следните случаи:
 *Неподходяща или неприемлива лична информация

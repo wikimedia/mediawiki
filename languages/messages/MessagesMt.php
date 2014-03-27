@@ -923,7 +923,7 @@ Jekk int utent anonimu u tħoss li qiegħed tirċievi kummenti irrelevanti jew l
 'noarticletext' => "Bħalissa m'hemm l-ebda test f'din il-paġna.
 Inti tista' [[Special:Search/{{PAGENAME}}|tfittex it-titlu ta' din il-paġna]] f'paġni oħra, jew <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tfittex ir-reġistri relatati], jew [{{fullurl:{{FULLPAGENAME}}|action=edit}} timmodifika din il-paġna]</span>.",
 'noarticletext-nopermission' => "Bħalissa m'hemm l-ebda test f'din il-paġna. Inti tista' [[Special:Search/{{PAGENAME}}|tfittex għal dan it-titlu tal-paġna]] f'paġni oħra, jew <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} fittex ir-reġistri relatati]</span>.",
-'missing-revision' => 'Ir-reviżjoni #$1 tal-paġna bl-isem "{{PAGENAME}}" ma teżistix.
+'missing-revision' => 'Ir-reviżjoni #$1 tal-paġna bl-isem "{{FULLPAGENAME}}" ma teżistix.
 
 Dan ħafna drabi jiġri minħabba li tkun segwejt ħolqa lejn paġna mħassra, f\'kronoloġija li mhix aġġornata.
 Id-detallji tista\' ssibhom fir-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir].',
@@ -1132,7 +1132,7 @@ Bħala amministratur inti xorta waħda tista' tarah dan il-konfront; ikkonsulta 
 'revdelete-no-file' => 'Il-fajl speċifikat ma jeżistix.',
 'revdelete-show-file-confirm' => 'Tinsab ċert li trid tara reviżjoni mħassra tal-fajl "<nowiki>$1</nowiki>" tal-$2 fil-$3?',
 'revdelete-show-file-submit' => 'Iva',
-'logdelete-selected' => "'''{{PLURAL:$1|Avveniment tar-reġistru magħżul|Avvenimenti tar-reġistri magħżula}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Avveniment tar-reġistru magħżul|Avvenimenti tar-reġistri magħżula}}:',
 'revdelete-confirm' => 'Jekk jogħġbok ikkonferma li dan hu dak li tixtieq tagħmel, li tifhem il-konsegwenzi, u li qed tagħmel dan skont il-[[{{MediaWiki:Policy-url}}|politika]].',
 'revdelete-suppress-text' => "It-trażżin għandu jintuża '''biss''' għall-każijiet segwenti:
 * Potenzjal ta' kontenut libelluż

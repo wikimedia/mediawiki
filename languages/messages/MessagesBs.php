@@ -980,7 +980,7 @@ Možete [[Special:Search/{{PAGENAME}}|tražiti naslov ove stranice]] na drugim s
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tražiti u povezanim zapisima] ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu]</span>.',
 'noarticletext-nopermission' => 'Trenutno nema teksta na ovoj stranici.
 Možete [[Special:Search/{{PAGENAME}}|tražiti ovaj naslov stranice]] na drugim stranicama ili <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti povezane zapisnike]</span>, ali nemate dozvolu da napravite ovu stranicu.',
-'missing-revision' => 'Uređivanje broj $1 na stranici "{{PAGENAME}}" ne postoji.
+'missing-revision' => 'Uređivanje broj $1 na stranici "{{FULLPAGENAME}}" ne postoji.
 
 Ovo se obično dešava kada pratite zastarjelu vezu na stranice koja je obrisana.
 Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokol brisanja].',
@@ -1212,7 +1212,7 @@ Vi možete vidjeti ovu razliku; detalji se mogu vidjeti u [{{fullurl:{{#Special:
 'revdelete-no-file' => 'Navedena datoteka ne postoji.',
 'revdelete-show-file-confirm' => 'Da li ste sigurni da želite pogledati obrisanu reviziju datoteke "<nowiki>$1</nowiki>" od $2 u $3?',
 'revdelete-show-file-submit' => 'Da',
-'logdelete-selected' => "'''{{PLURAL:$1|Označena stavka zapisa|Označene stavke zapisa}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Označena stavka zapisa|Označene stavke zapisa}}:',
 'revdelete-confirm' => 'Molimo potvrdite da namjeravate ovo učiniti, da razumijete posljedice i da to činite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].',
 'revdelete-suppress-text' => "Ograničenja bi trebala biti korištena '''samo''' u slijedećim slučajevima:
 * Osjetljive korisničke informacije

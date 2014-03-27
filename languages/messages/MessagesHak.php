@@ -806,7 +806,7 @@ Liá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he '
 所指定嘅修訂版本毋存在，或者汝嘗試去隱藏今下嘅修訂版本。',
 'revdelete-no-file' => '指定嘅文件毋存在',
 'revdelete-show-file-submit' => '係',
-'logdelete-selected' => "'''Chhí-chhṳ '''$1''' ke $2-ke ngit-ki hong-muk:'''",
+'logdelete-selected' => 'Chhí-chhṳ $1 ke $2-ke ngit-ki hong-muk:',
 'revdelete-legend' => 'Sat-thin siû-thin han-chṳ:',
 'revdelete-hide-text' => '隱藏修訂版本文字',
 'revdelete-hide-image' => '隱藏文件內容',

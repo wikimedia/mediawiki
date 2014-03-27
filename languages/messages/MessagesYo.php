@@ -750,7 +750,7 @@ Tó bá jẹ́ pé oníṣe aláìlórúkọ ni yín, tí ẹ sì ri pé wọ́n
 'noarticletext-nopermission' => 'Lọ́wọ́lọ́wọ́ kò sí ìkọ̀ nínú ojúewé yìí.
 Ẹ le [[Special:Search/{{PAGENAME}}|wá àkọlé ojúewé yìí]] nínú àwọn ojúewé mìíràn, tàbí
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wá àwọn àkọọ́lẹ̀ tó bámu]</span>, sùgbọ́n ẹ kò ní àṣẹ láti ṣ\'ẹ̀dá ojúewé yìí.',
-'missing-revision' => 'Àtúnyẹ̀wò #$1 ojúewé tó únjẹ́ "{{PAGENAME}}" kò sí.
+'missing-revision' => 'Àtúnyẹ̀wò #$1 ojúewé tó únjẹ́ "{{FULLPAGENAME}}" kò sí.
 
 Èyí únsábà ṣẹlẹ̀ nítorípé ẹ tẹ̀lé ìtàn àjápọ̀ tí kò ṣiṣẹ́ mọ́ wá sí orí ojúewé tó ti jẹ́ píparẹ́.
 Ẹ̀kúnrẹ́rẹ́ wà nínú [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} àkọọ́lẹ̀ ìparẹ́].',
@@ -982,7 +982,7 @@ Tó bá jẹ́ pé ẹ ti wọlé, ẹ lè dẹ́kun ìkìlọ̀ yìí nínù ab
 'revdelete-no-file' => 'Fáìlì tójẹ́ títọ́kasí kò sí.',
 'revdelete-show-file-confirm' => 'Ṣé ẹ ní ìdálójú pé ẹ fẹ́ wo àtúnyẹ̀wó píparẹ́ ti fáìlì "<nowiki>$1</nowiki>" látọjọ́ $2 ní ago $3?',
 'revdelete-show-file-submit' => 'Bẹ́ẹ̀ni',
-'logdelete-selected' => "'''{{PLURAL:$1|Àkọọ́lẹ̀ ìṣẹ̀lẹ̀ síṣàyàn|Àwọn àkọọ́lẹ̀ ìṣẹ̀lẹ̀ síṣàyàn}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Àkọọ́lẹ̀ ìṣẹ̀lẹ̀ síṣàyàn|Àwọn àkọọ́lẹ̀ ìṣẹ̀lẹ̀ síṣàyàn}}:',
 'revdelete-confirm' => 'Ẹ jọ̀wọ́ ẹ rídájú pé ohun tí ẹ fẹ́ ṣe nìyí, pé ohun tí yíò ṣẹlẹ̀ yé yín, bẹ́ẹ̀sìni pé ẹ̀ únṣe é lọ́nà tó bá  [[{{MediaWiki:Policy-url}}|àdéhùn]] mu.',
 'revdelete-suppress-text' => "Ìrẹ̀mọ́lẹ̀ gbọ́dọ̀ jẹ́ lílò fún àwọn ìṣẹ̀lẹ̀ ìsàlẹ̀ wọ̀nyí '''nìkan''':
 *Ọ̀rọ̀ tó le fa ẹjọ́ wá

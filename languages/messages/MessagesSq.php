@@ -874,7 +874,7 @@ Ju mund [[Special:Search/{{PAGENAME}}|ta kërkoni këtë titull]] në faqe tjera
 ose [{{fullurl:{{FULLPAGENAME}}|action=edit}} të redaktoni këtë faqe]</span>.',
 'noarticletext-nopermission' => 'Për momentin faqja e kërkuar është bosh.
 Ju mund të [[Special:Search/{{PAGENAME}}|kërkoni këtë titiull]] në faqet e tjera, ose të <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} këtkoni regjistrat e ngjashëm]</span>, por ju nuk mundeni ta krijoni këtë faqe.',
-'missing-revision' => 'Inspektimi #$1 i faqes me emrin "{{PAGENAME}}" nuk ekziston.
+'missing-revision' => 'Inspektimi #$1 i faqes me emrin "{{FULLPAGENAME}}" nuk ekziston.
 
 Kjo zakonisht shkaktuar duke ndjekur një lidhje të vjetër tek një faqe që është fshirë. Hollësitë mund të gjenden në [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} regjistrin e fshirjeve].',
 'userpage-userdoesnotexist' => 'Llogaria e përdoruesit "<nowiki>$1</nowiki>" nuk është e regjistruar. 
@@ -1084,7 +1084,7 @@ Ju mund ta shikoni këtë ndryshim; detajet mund të gjenden te [{{fullurl:{{#Sp
 'revdelete-no-file' => 'Skeda e dhënë nuk ekziston.',
 'revdelete-show-file-confirm' => 'Jeni i/e sigurt se dëshironi të shikoni një version të grisur të skedës "<nowiki>$1</nowiki>" nga $2 tek $3?',
 'revdelete-show-file-submit' => 'Po',
-'logdelete-selected' => "'''{{PLURAL:$1|Veprimi i zgjedhur në regjistër|Veprimet e zgjedhura në regjistër}}:'''",
+'logdelete-selected' => '{{PLURAL:$1|Veprimi i zgjedhur në regjistër|Veprimet e zgjedhura në regjistër}}:',
 'revdelete-confirm' => 'Ju lutem konfirmoni që keni ndër mënd ta bëni këtë, që i kuptoni pasojat, dhe që ju po veproni në përputhje me [[{{MediaWiki:Policy-url}}|politiken]].',
 'revdelete-suppress-text' => "Shuarje duhet'''vetëm'''të përdoret për rastet e mëposhtme: 
  * Potencialisht e informacionit shpifës 
