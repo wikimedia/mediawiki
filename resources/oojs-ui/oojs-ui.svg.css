@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (e9e435be5e)
+ * OOjs UI v0.1.0-pre (23fb1b6144)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Thu Mar 27 2014 11:42:46 GMT-0700 (PDT)
+ * Date: Thu Mar 27 2014 14:49:30 GMT-0700 (PDT)
  */
 
 /* Textures */
@@ -501,7 +501,6 @@
   display: block;
   height: 1.5em;
   padding: 0.25em;
-  cursor: pointer;
 }
 
 .oo-ui-barToolGroup .oo-ui-tool-link .oo-ui-iconedElement-icon {
@@ -521,6 +520,10 @@
 .oo-ui-barToolGroup .oo-ui-tool-title,
 .oo-ui-barToolGroup .oo-ui-tool-accel {
   display: none;
+}
+
+.oo-ui-barToolGroup.oo-ui-widget-enabled .oo-ui-tool-link {
+  cursor: pointer;
 }
 
 .oo-ui-listToolGroup .oo-ui-toolGroup-tools {
@@ -569,6 +572,10 @@
   background-image: /* @embed */ url(images/icons/check.png);
 }
 
+.oo-ui-menuToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-link {
+  cursor: default;
+}
+
 .oo-ui-popupToolGroup {
   position: relative;
   height: 2em;
@@ -606,6 +613,10 @@
   margin: 0 1em;
   font-size: 0.8em;
   line-height: 2.6em;
+}
+
+.oo-ui-popupToolGroup.oo-ui-widget-disabled .oo-ui-popupToolGroup-handle {
+  cursor: default;
 }
 
 .oo-ui-popupToolGroup.oo-ui-iconedElement .oo-ui-popupToolGroup-handle .oo-ui-labeledElement-label {

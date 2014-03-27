@@ -1,14 +1,14 @@
 /*!
- * OOjs UI v0.1.0-pre (e9e435be5e)
+ * OOjs UI v0.1.0-pre (23fb1b6144)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Thu Mar 27 2014 11:42:46 GMT-0700 (PDT)
+ * Date: Thu Mar 27 2014 14:49:30 GMT-0700 (PDT)
  */
-( function () {
+( function ( OO ) {
 
 'use strict';
 /**
@@ -2932,11 +2932,12 @@ OO.ui.Tool.prototype.destroy = function () {
  *
  * @constructor
  * @param {OO.ui.ToolFactory} toolFactory Factory for creating tools
+ * @param {OO.ui.ToolGroupFactory} toolGroupFactory Factory for creating tool groups
  * @param {Object} [config] Configuration options
  * @cfg {boolean} [actions] Add an actions section opposite to the tools
  * @cfg {boolean} [shadow] Add a shadow below the toolbar
  */
-OO.ui.Toolbar = function OoUiToolbar( toolFactory, config ) {
+OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 	// Configuration initialization
 	config = config || {};
 
@@ -2949,6 +2950,7 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, config ) {
 
 	// Properties
 	this.toolFactory = toolFactory;
+	this.toolGroupFactory = toolGroupFactory;
 	this.groups = [];
 	this.tools = {};
 	this.$bar = this.$( '<div>' );
@@ -2993,6 +2995,15 @@ OO.ui.Toolbar.prototype.getToolFactory = function () {
 };
 
 /**
+ * Get the tool group factory.
+ *
+ * @return {OO.Factory} Tool group factory
+ */
+OO.ui.Toolbar.prototype.getToolGroupFactory = function () {
+	return this.toolGroupFactory;
+};
+
+/**
  * Handles mouse down events.
  *
  * @param {jQuery.Event} e Mouse down event
@@ -3031,13 +3042,7 @@ OO.ui.Toolbar.prototype.initialize = function () {
 OO.ui.Toolbar.prototype.setup = function ( groups ) {
 	var i, len, type, group,
 		items = [],
-		// TODO: Use a registry instead
-		defaultType = 'bar',
-		constructors = {
-			'bar': OO.ui.BarToolGroup,
-			'list': OO.ui.ListToolGroup,
-			'menu': OO.ui.MenuToolGroup
-		};
+		defaultType = 'bar';
 
 	// Cleanup previous groups
 	this.reset();
@@ -3054,9 +3059,10 @@ OO.ui.Toolbar.prototype.setup = function ( groups ) {
 				group.label = 'ooui-toolbar-more';
 			}
 		}
-		type = constructors[group.type] ? group.type : defaultType;
+		// Check type has been registered
+		type = this.getToolGroupFactory().lookup( group.type ) ? group.type : defaultType;
 		items.push(
-			new constructors[type]( this, $.extend( { '$': this.$ }, group ) )
+			this.getToolGroupFactory().create( type, this, $.extend( { '$': this.$ }, group ) )
 		);
 	}
 	this.addItems( items );
@@ -3516,6 +3522,43 @@ OO.ui.ToolGroup.prototype.destroy = function () {
 		delete this.tools[name];
 	}
 	this.$element.remove();
+};
+/**
+ * Factory for tools.
+ *
+ * @class
+ * @extends OO.Factory
+ * @constructor
+ */
+OO.ui.ToolGroupFactory = function OoUiToolGroupFactory() {
+	// Parent constructor
+	OO.Factory.call( this );
+
+	var i, l,
+		defaultClasses = this.constructor.static.getDefaultClasses();
+
+	// Register default toolgroups
+	for ( i = 0, l = defaultClasses.length; i < l; i++ ) {
+		this.register( defaultClasses[i] );
+	}
+};
+
+/* Inheritance */
+
+OO.inheritClass( OO.ui.ToolGroupFactory, OO.Factory );
+
+/* Static Methods */
+
+/**
+ * Get a default set of classes to be registered on construction
+ * @return {Function[]} Default classes
+ */
+OO.ui.ToolGroupFactory.static.getDefaultClasses = function () {
+	return [
+		OO.ui.BarToolGroup,
+		OO.ui.ListToolGroup,
+		OO.ui.MenuToolGroup
+	];
 };
 /**
  * Layout made of a fieldset and optional legend.
@@ -4558,6 +4601,8 @@ OO.inheritClass( OO.ui.BarToolGroup, OO.ui.ToolGroup );
 OO.ui.BarToolGroup.static.titleTooltips = true;
 
 OO.ui.BarToolGroup.static.accelTooltips = true;
+
+OO.ui.BarToolGroup.static.name = 'bar';
 /**
  * Popup list of tools with an icon and optional label.
  *
@@ -4719,6 +4764,8 @@ OO.inheritClass( OO.ui.ListToolGroup, OO.ui.PopupToolGroup );
 /* Static Properties */
 
 OO.ui.ListToolGroup.static.accelTooltips = true;
+
+OO.ui.ListToolGroup.static.name = 'list';
 /**
  * Drop down menu layout of tools as selectable menu items.
  *
@@ -4752,6 +4799,8 @@ OO.inheritClass( OO.ui.MenuToolGroup, OO.ui.PopupToolGroup );
 
 OO.ui.MenuToolGroup.static.accelTooltips = true;
 
+OO.ui.MenuToolGroup.static.name = 'menu';
+
 /* Methods */
 
 /**
@@ -4772,7 +4821,7 @@ OO.ui.MenuToolGroup.prototype.onUpdateState = function () {
 		}
 	}
 
-	this.setLabel( labelTexts.join( ', ' ) );
+	this.setLabel( labelTexts.join( ', ' ) || ' ' );
 };
 /**
  * UserInterface popup tool.
@@ -4835,6 +4884,8 @@ OO.ui.PopupTool.prototype.onUpdateState = function () {
 /**
  * Group widget.
  *
+ * Mixin for OO.ui.Widget subclasses.
+ *
  * Use together with OO.ui.ItemWidget to make disabled state inheritable.
  *
  * @class
@@ -4869,6 +4920,8 @@ OO.ui.GroupWidget.prototype.setDisabled = function ( disabled ) {
 	var i, len;
 
 	// Parent method
+	// Note this is calling OO.ui.Widget; we're assuming the class this is mixed into
+	// is a subclass of OO.ui.Widget.
 	OO.ui.Widget.prototype.setDisabled.call( this, disabled );
 
 	// During construction, #setDisabled is called before the OO.ui.GroupElement constructor
@@ -7982,4 +8035,4 @@ OO.ui.ToggleSwitchWidget.prototype.onClick = function ( e ) {
 		this.setValue( !this.value );
 	}
 };
-}() );
+}( OO ) );
