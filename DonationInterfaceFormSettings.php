@@ -10,7 +10,6 @@ $form_dirs = array(
 	'gc' => $wgGlobalCollectGatewayHtmlFormDir,
 	'paypal' => $wgPaypalGatewayHtmlFormDir,
 	'amazon' => $wgAmazonGatewayHtmlFormDir,
-	'worldpay' => $wgWorldPayGatewayHtmlFormDir,
 //	'pfp' => $wgPayflowProGatewayHtmlFormDir,
 );
 
@@ -493,7 +492,7 @@ if ( $wgDonationInterfaceEnableWorldPay === true ) {
 		'file' => $form_dirs['worldpay'] . '/worldpay.html',
 		'gateway' => 'worldpay',
 		'countries' => array( '+' => 'US',),
-		'currencies' => array( '+' => 'USD',),
+		'currencies' => array( '+' => array( 'CAD', 'EUR', 'GBP' ) ),
 		'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'discover' )),
 		'selection_weight' => 0
 	);
