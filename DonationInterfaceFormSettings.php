@@ -10,7 +10,6 @@ $form_dirs = array(
 	'gc' => $wgGlobalCollectGatewayHtmlFormDir,
 	'paypal' => $wgPaypalGatewayHtmlFormDir,
 	'amazon' => $wgAmazonGatewayHtmlFormDir,
-	'worldpay' => $wgWorldPayGatewayHtmlFormDir,
 //	'pfp' => $wgPayflowProGatewayHtmlFormDir,
 );
 
@@ -492,9 +491,9 @@ if ( $wgDonationInterfaceEnableWorldPay === true ) {
 	$forms_whitelist['worldpay'] = array(
 		'file' => $form_dirs['worldpay'] . '/worldpay.html',
 		'gateway' => 'worldpay',
-		'countries' => array( '+' => 'US',),
-		'currencies' => array( '+' => 'USD',),
-		'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'discover' )),
+		'countries' => array( '+' => array( 'US', 'FR' ) ),
+		'currencies' => array( '+' => 'ALL' ),
+		'payment_methods' => array( 'cc' => 'ALL' ),
 		'selection_weight' => 0
 	);
 }
@@ -505,13 +504,13 @@ if ( $wgDonationInterfaceEnableWorldPay === true ) {
 
 $forms_whitelist['error-default'] = array (
 	'file' => $form_dirs['default'] . '/error-cc.html',
-	'gateway' => array ( 'globalcollect', 'adyen', 'amazon', 'paypal' ),
+	'gateway' => array ( 'globalcollect', 'adyen', 'amazon', 'paypal', 'worldpay' ),
 	'special_type' => 'error', //buuuurble
 );
 
 $forms_whitelist['error-cc'] = array (
 	'file' => $form_dirs['default'] . '/error-cc.html',
-	'gateway' => array ( 'globalcollect', 'adyen' ),
+	'gateway' => array ( 'globalcollect', 'adyen', 'worldpay' ),
 	'payment_methods' => array ( 'cc' => 'ALL' ),
 	'special_type' => 'error',
 );
