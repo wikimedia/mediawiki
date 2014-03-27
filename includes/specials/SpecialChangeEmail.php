@@ -239,7 +239,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 
 		global $wgRequirePasswordforEmailChange;
 		if ( $wgRequirePasswordforEmailChange && !$user->checkTemporaryPassword( $pass ) && !$user->checkPassword( $pass ) ) {
-			$this->error( 'wrongpassword' );
+			$this->error( 'changeemail-wrongpassword' );
 
 			return false;
 		}
