@@ -2,6 +2,12 @@
 
 class UIDGeneratorTest extends MediaWikiTestCase {
 
+	protected function tearDown() {
+		// Bug: 44850
+		UIDGenerator::unitTestTearDown();
+		parent::tearDown();
+	}
+
 	/**
 	 * @dataProvider provider_testTimestampedUID
 	 * @covers UIDGenerator::newTimestampedUID128
