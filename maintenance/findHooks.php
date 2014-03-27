@@ -86,7 +86,7 @@ class FindHooks extends Maintenance {
 			$IP . '/includes/htmlform/',
 			$IP . '/includes/installer/',
 			$IP . '/includes/interwiki/',
-			$IP . '/includes/job/',
+			$IP . '/includes/jobqueue/',
 			$IP . '/includes/json/',
 			$IP . '/includes/logging/',
 			$IP . '/includes/media/',
