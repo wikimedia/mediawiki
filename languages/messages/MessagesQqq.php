@@ -1717,6 +1717,7 @@ Parameters:
 
 {{Identical|None}}",
 'changeemail-password' => 'Label for password field in [[Special:ChangeEmail]].',
+'changeemail-wrongpassword' => 'Used as error message when the provided password is wrong.',
 'changeemail-submit' => 'Submit button on [[Special:ChangeEmail]]',
 'changeemail-cancel' => 'Cancel button on [[Special:ChangeEmail]]
 
