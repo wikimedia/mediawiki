@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (e697490c9b)
+ * OOjs UI v0.1.0-pre (e9e435be5e)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Mar 26 2014 17:40:12 GMT-0700 (PDT)
+ * Date: Thu Mar 27 2014 11:42:46 GMT-0700 (PDT)
  */
 
 /* Textures */
@@ -975,34 +975,6 @@
       -ms-user-select: none;
           user-select: none;
   -webkit-touch-callout: none;
-}
-
-.oo-ui-outlineItemWidget.oo-ui-indicatedElement .oo-ui-labeledElement-label {
-  padding-right: 1.5em;
-}
-
-.oo-ui-outlineItemWidget-level-0 {
-  padding-left: 3.5em;
-}
-
-.oo-ui-outlineItemWidget-level-0 .oo-ui-iconedElement-icon {
-  left: 1em;
-}
-
-.oo-ui-outlineItemWidget-level-1 {
-  padding-left: 5em;
-}
-
-.oo-ui-outlineItemWidget-level-1 .oo-ui-iconedElement-icon {
-  left: 2.5em;
-}
-
-.oo-ui-outlineItemWidget-level-2 {
-  padding-left: 6.5em;
-}
-
-.oo-ui-outlineItemWidget-level-2 .oo-ui-iconedElement-icon {
-  left: 4em;
 }
 
 .oo-ui-popupButtonWidget {

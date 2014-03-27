@@ -31,6 +31,34 @@
   border-bottom: 1px solid #dddddd;
 }
 
+.oo-ui-optionWidget.oo-ui-indicatedElement .oo-ui-labeledElement-label {
+  padding-right: 1.5em;
+}
+
+.oo-ui-optionWidget-level-0 {
+  padding-left: 3.5em;
+}
+
+.oo-ui-optionWidget-level-0 .oo-ui-iconedElement-icon {
+  left: 1em;
+}
+
+.oo-ui-optionWidget-level-1 {
+  padding-left: 5em;
+}
+
+.oo-ui-optionWidget-level-1 .oo-ui-iconedElement-icon {
+  left: 2.5em;
+}
+
+.oo-ui-optionWidget-level-2 {
+  padding-left: 6.5em;
+}
+
+.oo-ui-optionWidget-level-2 .oo-ui-iconedElement-icon {
+  left: 4em;
+}
+
 .oo-ui-buttonOptionWidget {
   padding: 0;
 }
