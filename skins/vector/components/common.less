@@ -101,13 +101,13 @@ div#content {
 	}
 
 	// Give extra long preformatted content horizontal scroll bars
-	pre {
+	pre:not(.javascript) {
 		overflow-x: auto;
 	}
 
 	// Prevent citations from interfering with the line-height
 	sup {
-		line-height: 0;
+		line-height: 1;
 	}
 }
 
