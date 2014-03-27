@@ -107,6 +107,17 @@ class SpecialChangePassword extends FormSpecialPage {
 			),
 		);
 
+		if ( !$this->getUser()->isLoggedIn() ) {
+			if ( !LoginForm::getLoginToken() ) {
+				LoginForm::setLoginToken();
+			}
+			$fields['LoginOnChangeToken'] = array(
+				'type' => 'hidden',
+				'label' => 'Change Password Token',
+				'default' => LoginForm::getLoginToken(),
+			);
+		}
+
 		$extraFields = array();
 		wfRunHooks( 'ChangePasswordForm', array( &$extraFields ) );
 		foreach ( $extraFields as $extra ) {
@@ -159,6 +170,14 @@ class SpecialChangePassword extends FormSpecialPage {
 			// This comes from Special:Userlogin when logging in with a temporary password
 			return false;
 		}
+
+		if ( !$this->getUser()->isLoggedIn()
+			&& $request->getVal( 'wpLoginOnChangeToken' ) !== LoginForm::getLoginToken()
+		) {
+			// Potential CSRF (bug 62497)
+			return false;
+		}
+
 
 		if ( $request->getCheck( 'wpCancel' ) ) {
 			$titleObj = Title::newFromText( $request->getVal( 'returnto' ) );
