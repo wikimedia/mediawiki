@@ -2813,6 +2813,16 @@ $templates
 			$scripts .= $this->getScriptsForBottomQueue( true );
 		}
 
+		$extraHeadScripts = array();
+
+		// Allow extensions to add their head inline scripts
+		// Only to be used when absolutely no other option is possible
+		wfRunHooks( 'MakeHeadScript', array( &$extraHeadScripts ) );
+
+		foreach ( $extraHeadScripts as $extraHeadScript ) {
+			$scripts .= Html::inlineScript( $extraHeadScript );
+		}
+
 		return $scripts;
 	}
 
