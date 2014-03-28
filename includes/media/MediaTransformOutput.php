@@ -374,6 +374,20 @@ class ThumbnailImage extends MediaTransformOutput {
 			'alt' => $alt,
 			'src' => $this->url,
 		);
+
+		if ( $this->file ) {
+			// At the moment all classes that extend File have getWidth() and getHeight()
+			// but since the File class doesn't have these methods defined, this check
+			// is more future-proof
+			if ( method_exists( $this->file, 'getWidth' ) ) {
+				$attribs['data-file-width'] = $this->file->getWidth();
+			}
+
+			if ( method_exists( $this->file, 'getHeight' ) ) {
+				$attribs['data-file-height'] = $this->file->getHeight();
+			}
+		}
+
 		if ( empty( $options['no-dimensions'] ) ) {
 			$attribs['width'] = $this->width;
 			$attribs['height'] = $this->height;
