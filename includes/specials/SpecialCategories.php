@@ -31,7 +31,7 @@ class SpecialCategories extends SpecialPage {
 	 */
 	protected $linkRenderer = null;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Categories' );
 
 		// Since we don't control the constructor parameters, we can't inject services that way.
@@ -65,7 +65,7 @@ class SpecialCategories extends SpecialPage {
 		}
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->initServices();
 
 		$this->setHeaders();
@@ -111,7 +111,7 @@ class CategoryPager extends AlphabeticPager {
 	 * @param string $from
 	 * @param PageLinkRenderer $linkRenderer
 	 */
-	function __construct( IContextSource $context, $from, PageLinkRenderer $linkRenderer
+	public function __construct( IContextSource $context, $from, PageLinkRenderer $linkRenderer
 	) {
 		parent::__construct( $context );
 		$from = str_replace( ' ', '_', $from );
