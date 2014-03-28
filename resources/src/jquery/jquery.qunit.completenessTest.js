@@ -34,36 +34,6 @@
 			}
 			return keys;
 		},
-		extend: function () {
-			var options, name, src, copy,
-				target = arguments[0] || {},
-				i = 1,
-				length = arguments.length;
-
-			for ( ; i < length; i++ ) {
-				options = arguments[ i ];
-				// Only deal with non-null/undefined values
-				if ( options !== null && options !== undefined ) {
-					// Extend the base object
-					for ( name in options ) {
-						src = target[ name ];
-						copy = options[ name ];
-
-						// Prevent never-ending loop
-						if ( target === copy ) {
-							continue;
-						}
-
-						if ( copy !== undefined ) {
-							target[ name ] = copy;
-						}
-					}
-				}
-			}
-
-			// Return the modified object
-			return target;
-		},
 		each: function ( object, callback ) {
 			var name;
 			for ( name in object ) {
@@ -222,20 +192,24 @@
 		 * @param action {Number} What is this function supposed to do (ACTION_INJECT or ACTION_CHECK)
 		 */
 		walkTheObject: function ( currName, currVar, masterVariable, parentPathArray, action ) {
-
-			var key, value, tmpPathArray,
+			var key, value, currPathArray,
 				type = util.type( currVar ),
 				that = this;
 
+			currPathArray = parentPathArray;
+			if ( currName ) {
+				currPathArray.push( currName );
+			}
+
 			// Hard ignores
-			if ( this.ignoreFn( currVar, that, parentPathArray ) ) {
+			if ( this.ignoreFn( currVar, that, currPathArray ) ) {
 				return null;
 			}
 
 			// Handle the lazy limit
 			this.lazyCounter++;
 			if ( this.lazyCounter > this.lazyLimit ) {
-				log( 'CompletenessTest.fn.walkTheObject> Limit reached: ' + this.lazyCounter, parentPathArray );
+				log( 'CompletenessTest.fn.walkTheObject> Limit reached: ' + this.lazyCounter, currPathArray );
 				return null;
 			}
 
@@ -246,9 +220,9 @@
 
 					if ( action === CompletenessTest.ACTION_INJECT ) {
 
-						that.injectionTracker[ parentPathArray.join( '.' ) ] = true;
-						that.injectCheck( masterVariable, parentPathArray, function () {
-							that.methodCallTracker[ parentPathArray.join( '.' ) ] = true;
+						that.injectionTracker[ currPathArray.join( '.' ) ] = true;
+						that.injectCheck( masterVariable, currPathArray, function () {
+							that.methodCallTracker[ currPathArray.join( '.' ) ] = true;
 						} );
 					}
 
@@ -264,12 +238,7 @@
 									continue;
 								}
 
-								// Clone and break reference to parentPathArray
-								tmpPathArray = util.extend( [], parentPathArray );
-								tmpPathArray.push( 'prototype' );
-								tmpPathArray.push( key );
-
-								that.walkTheObject( key, value, masterVariable, tmpPathArray, action );
+								that.walkTheObject( key, value, masterVariable, currPathArray.concat( 'prototype' ), action );
 							}
 						}
 
@@ -284,11 +253,7 @@
 					if ( hasOwn.call( currVar, key ) ) {
 						value = currVar[key];
 
-						// Clone and break reference to parentPathArray
-						tmpPathArray = util.extend( [], parentPathArray );
-						tmpPathArray.push( key );
-
-						that.walkTheObject( key, value, masterVariable, tmpPathArray, action );
+						that.walkTheObject( key, value, masterVariable, currPathArray.slice(), action );
 					}
 				}
 			}
