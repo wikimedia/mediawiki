@@ -975,6 +975,8 @@ Ye can view this diff; details can be foond in the [{{fullurl:{{#Special:Log}}/s
 'revdelete-no-file' => 'The file speceefied disna exeest.',
 'revdelete-show-file-confirm' => 'Ar ye sair ye wish tae see ae delytit reveesion o the file "<nowiki>$1</nowiki>" fae $2 at $3?',
 'revdelete-show-file-submit' => 'Ai',
+'revdelete-selected-text' => '{{PLURAL:$1|Selectit luikower|Selectit luikowers}} o [[:$2]]:',
+'revdelete-selected-file' => '{{PLURAL:$1|Selectit file version|Selectit file versions}} o [[:$2]]:',
 'logdelete-selected' => '{{PLURAL:$1|Selectit log event|Selectit log events}}:',
 'revdelete-text-text' => 'Delytit reveesions will still kith in the page histerie, bit pairts o thair content will be onaccessible til the publeec.',
 'revdelete-text-file' => 'Delytit file versions will still kith in the file histerie, bit pairts o thair content will be onaccessible til the publeec.',

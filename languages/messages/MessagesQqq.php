@@ -5229,6 +5229,7 @@ See also:
 * {{msg-mw|Booksources-text|text}}",
 'booksources-search-legend' => 'Box heading on [[Special:BookSources|book sources]] special page. The box is for searching for places where a particular book can be bought or viewed.',
 'booksources-isbn' => '{{optional}}
+This is a label that appears before a text input field on the Special:BookSources page.
 {{Identical|ISBN}}',
 'booksources-go' => 'Name of button in [[Special:BookSources]]
 

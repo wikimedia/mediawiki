@@ -1262,7 +1262,7 @@ Voit silti nähdä tämän muutoksen. Lisätietoja löytyy [{{fullurl:{{#Special
 'revdelete-show-file-confirm' => 'Haluatko varmasti nähdä poistetun version tiedostosta <nowiki>$1</nowiki>, joka on tallennettu $2 kello $3?',
 'revdelete-show-file-submit' => 'Kyllä',
 'revdelete-selected-text' => '{{PLURAL:$1|Valittu versio|Valitut versiot}} kohteesta [[:$2]]:',
-'revdelete-selected-file' => '{{PLURAL:$1|Valittu tiedoton versio|Valitut tiedoston versiot}} kohteesta [[:$2]]:',
+'revdelete-selected-file' => '{{PLURAL:$1|Valittu tiedoston versio|Valitut tiedoston versiot}} kohteesta [[:$2]]:',
 'logdelete-selected' => '{{PLURAL:$1|Valittu lokimerkintä|Valitut lokimerkinnät}}:',
 'revdelete-text-text' => 'Poistetut versiot näkyvät edelleen sivun historiassa, mutta osa niiden sisällöstä ei enää ole saatavilla julkisesti.',
 'revdelete-text-file' => 'Poistetut tiedostoversiot näkyvät yhä sivun historiassa, mutta osa niiden sisällöstä ei ole saatavilla julkisesti.',

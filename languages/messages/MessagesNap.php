@@ -252,7 +252,6 @@ $messages = array(
 'disclaimers' => 'Avvertimiènte',
 'disclaimerpage' => 'Project:Avvertimiènte generale',
 'edithelp' => 'Guida',
-'helppage' => 'Help:Ajùto',
 'mainpage' => 'Paggena prencepale',
 'mainpage-description' => 'Paggena prencepale',
 'policy-url' => 'Project:Policy',
