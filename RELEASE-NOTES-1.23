@@ -241,6 +241,7 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
 * Support was added for Northern Luri (lrc).
+* Support was added for Riograndenser Hunsrückisch (hrx).
 
 === Other changes in 1.23 ===
 * The rc_type field in the recentchanges table has been superseded by a new

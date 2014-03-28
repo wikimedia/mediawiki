@@ -167,6 +167,7 @@
 	'hil' => 'Ilonggo',	# Hiligaynon
 	'ho' => 'Hiri Motu',	# Hiri Motu
 	'hr' => 'hrvatski',		# Croatian
+	'hrx' => 'Hunsrik', # Riograndenser Hunsrückisch
 	'hsb' => 'hornjoserbsce',	# Upper Sorbian
 	'ht' => 'Kreyòl ayisyen',		# Haitian Creole French
 	'hu' => 'magyar',		# Hungarian
