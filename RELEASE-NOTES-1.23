@@ -240,6 +240,8 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
+* Support was added for Algerian Spoken Arabic (arq).
+* Support was added for Riograndenser Hunsrückisch (hrx).
 * Support was added for Northern Luri (lrc).
 
 === Other changes in 1.23 ===

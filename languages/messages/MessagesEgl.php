@@ -777,8 +777,19 @@ A sèmbra ch'la sìa stêda scanşlêda.",
 La ghé bèle.",
 'defaultmessagetext' => 'Tèst pre-stabilî',
 'content-failed-to-parse' => "L'é impusébil cunsidrêr $2 p'r al mudèl $1:$3",
+'invalid-content-data' => 'Al j infurmasiòn ché dèinter în mìa vâlidi.',
+'content-not-allowed-here' => 'Còl che gh\'é dèinter a"$1" an n\'é mìa permés int al pàgini [[$2]]',
+'editwarning-warning' => "Bandunêr cla pàgina ché a 's pré pêrder tóti 'l mudéfichi fâti. Se t'é fât l'ingrès, ét pō bluchêr cl' avîş ché int la sesiòun \"{{int:prefs-editing}}\" dal tō preferèinsi.",
+'editpage-notsupportedcontentformat-title' => "Cla fōrma ché an n'é mìa sostgnûda.",
+'editpage-notsupportedcontentformat-text' => 'La fōrma dal scrét in $1 la rispèta mìa al mudèl scrét in $2.',
+
+# Content models
+'content-model-wikitext' => 'wikitèst',
+'content-model-text' => 'tèst normêl',
 
 # Parser/template warnings
+'expensive-parserfunction-warning' => "'''Atensiòun:''' cla pàgina ché la gh'à trôpi ciamêdi ala funsiòun parse. A n' in duvré avèir mēno 'd $2, adèsa a {{PLURAL:$1|'gh n'é $1}}.",
+'expensive-parserfunction-category' => 'Pàgini cun trôpi ciamêdi a la funsiòun parser.',
 'post-expand-template-inclusion-warning' => "'''Atensiòun:''' la grandèsa di mudē més dèinter l'é trôp grôsa. Soquânt mudē gnirâ mìa més dèinter.",
 'post-expand-template-inclusion-category' => "Pàgini in dó la grandèsa di mudē més dèinter la và d'ed sōver dal lémit permés.",
 'post-expand-template-argument-warning' => "'''Atensiòun:''' cla pàgina ché la gh'à ûn o pió argumèint ed mudē trôp grôs per èser şlarghê. Chi argomèint ché a gnirân saltê.",

@@ -15,6 +15,7 @@
  * @author Kaganer
  * @author Purodha
  * @author Servien
+ * @author Sjoerddebruin
  * @author Slomox
  * @author Urhixidur
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>

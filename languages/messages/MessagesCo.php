@@ -185,7 +185,6 @@ $messages = array(
 'currentevents-url' => 'Project:Ultimi evenimenti',
 'disclaimers' => 'Avvertimenti',
 'disclaimerpage' => 'Project:Avertimenti generali',
-'helppage' => 'Help:Cuntenutu',
 'mainpage' => 'Pagina maestra',
 'mainpage-description' => 'Pagina maestra',
 'portal' => 'Purtone di a cumunità',
