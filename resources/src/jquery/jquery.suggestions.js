@@ -535,15 +535,20 @@ $.fn.suggestions = function () {
 							if ( $result.get( 0 ) !== $other.get( 0 ) ) {
 								return;
 							}
-							// do not interfere with non-left clicks or if modifier keys are pressed (e.g. ctrl-click)
+							// Do not interfere with non-left clicks or if modifier keys are pressed (e.g. ctrl-click).
 							if ( !( e.which !== 1 || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey ) ) {
 								$.suggestions.highlight( context, $result, true );
-								$.suggestions.hide( context );
 								if ( typeof context.config.result.select === 'function' ) {
 									context.config.result.select.call( $result, context.data.$textbox );
 								}
+								// This will hide the link we're just clicking on, which causes problems
+								// when done synchronously in at least Firefox 3.6 (bug 62858).
+								setTimeout( function () {
+									$.suggestions.hide( context );
+								}, 0 );
 							}
-							// but still restore focus to the textbox, so that the suggestions will be hidden properly
+							// Always bring focus to the textbox, as that's probably where the user expects it
+							// if they were just typing.
 							context.data.$textbox.focus();
 						} )
 				)
@@ -563,14 +568,19 @@ $.fn.suggestions = function () {
 							if ( $special.get( 0 ) !== $other.get( 0 ) ) {
 								return;
 							}
-							// do not interfere with non-left clicks or if modifier keys are pressed (e.g. ctrl-click)
+							// Do not interfere with non-left clicks or if modifier keys are pressed (e.g. ctrl-click).
 							if ( !( e.which !== 1 || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey ) ) {
-								$.suggestions.hide( context );
 								if ( typeof context.config.special.select === 'function' ) {
 									context.config.special.select.call( $special, context.data.$textbox );
 								}
+								// This will hide the link we're just clicking on, which causes problems
+								// when done synchronously in at least Firefox 3.6 (bug 62858).
+								setTimeout( function () {
+									$.suggestions.hide( context );
+								}, 0 );
 							}
-							// but still restore focus to the textbox, so that the suggestions will be hidden properly
+							// Always bring focus to the textbox, as that's probably where the user expects it
+							// if they were just typing.
 							context.data.$textbox.focus();
 						} )
 						.mousemove( function ( e ) {
