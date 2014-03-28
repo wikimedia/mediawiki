@@ -2049,10 +2049,27 @@ class EditPage {
 		}
 		# Try to add a custom edit intro, or use the standard one if this is not possible.
 		if ( !$this->showCustomIntro() && !$this->mTitle->exists() ) {
+			$helpLink = wfExpandUrl( Skin::makeInternalOrExternalUrl(
+				wfMessage( 'helppage' )->inContentLanguage()->text()
+			) );
 			if ( $wgUser->isLoggedIn() ) {
-				$wgOut->wrapWikiMsg( "<div class=\"mw-newarticletext\">\n$1\n</div>", 'newarticletext' );
+				$wgOut->wrapWikiMsg(
+					// Suppress the external link icon, consider the help url an internal one
+					"<div class=\"mw-newarticletext plainlinks\">\n$1\n</div>",
+					array(
+						'newarticletext',
+						$helpLink
+					)
+				);
 			} else {
-				$wgOut->wrapWikiMsg( "<div class=\"mw-newarticletextanon\">\n$1\n</div>", 'newarticletextanon' );
+				$wgOut->wrapWikiMsg(
+					// Suppress the external link icon, consider the help url an internal one
+					"<div class=\"mw-newarticletextanon plainlinks\">\n$1\n</div>",
+					array(
+						'newarticletextanon',
+						$helpLink
+					)
+				);
 			}
 		}
 		# Give a notice if the user is editing a deleted/moved page...

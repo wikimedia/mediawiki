@@ -1343,13 +1343,13 @@ The link points to the local [[Special:PasswordReset]].
 
 See example: [[Special:UserLogin]]
 
-userlogin-resetpassword-link may have to be shorter than the old {{msg-mw|userlogin-resetlink}}',
-'helplogin-url' => '{{doc-important|Do not translate the namespace name <code>Help</code>.}}
-Used as name of the page that provides information about logging into the wiki.
+userlogin-resetpassword-link may have to be shorter than the old {{msg-mw|userlogin-resetlink}}.
+{{Identical|Forgot your password}}',
+'helplogin-url' => '{{doc-important|Do not translate the target page, Special:MyLanguage handles it.}}
+Defines the URL to the page that provides information about logging into the wiki.
 
-Used as a link target in the message {{msg-mw|Userlogin-helplink}}.',
-'userlogin-helplink' => '{{doc-important|Do not change <code><nowiki>{{MediaWiki:helplogin-url}}</nowiki></code>.}}
-Wikitext linking to login help.
+Used as a link target for the link with label {{msg-mw|userlogin-helplink2}}; can be locally customised to be an URL or local page title.',
+'userlogin-helplink2' => 'Label for a link to login help.
 
 See example: [[Special:UserLogin]]
 
@@ -1881,10 +1881,9 @@ Parameters:
 * $1 - username
 * $2 - email address",
 'newarticle' => '{{Identical|New}}',
-'newarticletext' => '{{doc-important|Do not translate <code><nowiki>{{MediaWiki:Helppage}}</nowiki></code>.}}
-Text displayed above the edit box in editor when trying to create a new page.
-
-Refers to {{msg-mw|Helppage}}.',
+'newarticletext' => "Text displayed above the edit box in editor when trying to create a new page.
+Parameters:
+* $1 - The URL to the help page, defined in {{msg-mw|helppage}}",
 'anontalkpagetext' => 'Displayed at the bottom of talk pages of anonymous users.',
 'noarticletext' => 'This is the message that you get if you search for a term that has not yet got any entries on the wiki.
 
