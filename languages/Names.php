@@ -52,6 +52,7 @@
 	'ar' => 'العربية',	# Arabic
 	'arc' => 'ܐܪܡܝܐ',	# Aramaic
 	'arn' => 'mapudungun',	# Mapuche, Mapudungu, Araucanian (Araucano)
+	'arq' => 'جزائري', # Algerian Spoken Arabic
 	'ary' => 'Maġribi',	# Moroccan Spoken Arabic
 	'arz' => 'مصرى',	# Egyptian Spoken Arabic
 	'as' => 'অসমীয়া',	# Assamese
