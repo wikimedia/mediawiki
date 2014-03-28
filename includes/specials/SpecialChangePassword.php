@@ -151,7 +151,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		}
 		$loginOnChangeToken = '';
 		if ( !$user->isLoggedIn() ) {
-			$loginOnChangeToken = LoginForm::getLoginToken();
+			$loginOnChangeToken = Html::hidden( 'wpLoginOnChangeToken', LoginForm::getLoginToken() );
 		}
 		$this->getOutput()->addHTML(
 			Xml::fieldset( $this->msg( 'resetpass_header' )->text() ) .
