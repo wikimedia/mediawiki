@@ -370,7 +370,6 @@ return array(
 				'resources/jquery.ui/themes/vector/jquery.ui.theme.css',
 			),
 		),
-		'dependencies' => 'jquery',
 		'group' => 'jquery.ui',
 	),
 	'jquery.ui.widget' => array(
@@ -569,7 +568,6 @@ return array(
 	// Effects
 	'jquery.effects.core' => array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.core.js',
-		'dependencies' => 'jquery',
 		'group' => 'jquery.ui',
 	),
 	'jquery.effects.blind' => array(
