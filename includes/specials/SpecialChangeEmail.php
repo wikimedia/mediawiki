@@ -132,10 +132,14 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	 * @param $msg string
 	 */
 	protected function error( $msg ) {
-		$this->getOutput()->wrapWikiMsg( "<p class='error'>\n$1\n</p>", $msg );
+		$this->getOutput()->wrapWikiMsg(
+			"<div class='errorbox'>\n$1\n</div>", $msg 
+		);
 	}
 
 	protected function showForm() {
+		$this->getOutput()->addModuleStyles( 'mediawiki.ui' );
+		$this->getOutput()->addModuleStyles( 'mediawiki.ui.button' );
 		global $wgRequirePasswordforEmailChange;
 		$user = $this->getUser();
 
@@ -144,16 +148,15 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 			: $this->msg( 'changeemail-none' )->text();
 
 		$this->getOutput()->addHTML(
-			Xml::fieldset( $this->msg( 'changeemail-header' )->text() ) .
 				Xml::openElement( 'form',
 					array(
 						'method' => 'post',
 						'action' => $this->getPageTitle()->getLocalURL(),
-						'id' => 'mw-changeemail-form' ) ) . "\n" .
+						'id' => 'mw-changeemail-form',
+						'class' => 'mw-ui-vform mw-ui-container' ) ) . "\n" .
 				Html::hidden( 'token', $user->getEditToken() ) . "\n" .
 				Html::hidden( 'returnto', $this->getRequest()->getVal( 'returnto' ) ) . "\n" .
-				$this->msg( 'changeemail-text' )->parseAsBlock() . "\n" .
-				Xml::openElement( 'table', array( 'id' => 'mw-changeemail-table' ) ) . "\n"
+				$this->msg( 'changeemail-text' )->parseAsBlock() . "\n"
 		);
 		$items = array(
 			array( 'wpName', 'username', 'text', $user->getName() ),
@@ -165,18 +168,14 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		}
 
 		$this->getOutput()->addHTML(
-			$this->pretty( $items ) .
-				"\n" .
-				"<tr>\n" .
-				"<td></td>\n" .
-				'<td class="mw-input">' .
-				Xml::submitButton( $this->msg( 'changeemail-submit' )->text() ) .
-				Xml::submitButton( $this->msg( 'changeemail-cancel' )->text(), array( 'name' => 'wpCancel' ) ) .
-				"</td>\n" .
-				"</tr>\n" .
-				Xml::closeElement( 'table' ) .
-				Xml::closeElement( 'form' ) .
-				Xml::closeElement( 'fieldset' ) . "\n"
+			$this->pretty( $items ).
+				Xml::submitButton( $this->msg( 'changeemail-submit' )->text(),
+					array( 'class' => 'mw-ui-button mw-ui-constructive' ) ) . ' ' .
+				Xml::submitButton( $this->msg( 'changeemail-cancel' )->text(),
+					array( 'class' => 'mw-ui-button',
+						'name' => 'wpCancel'  ) ) .
+				Html::element( 'div', array( 'style' => 'clear:both' ) ) .				
+				Xml::closeElement( 'form' )
 		);
 	}
 
@@ -195,20 +194,24 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 				if ( $name == 'wpPassword' ) {
 					$attribs[] = 'autofocus';
 				}
-				$field = Html::input( $name, $value, $type, $attribs );
-			}
-			$out .= "<tr>\n";
-			$out .= "\t<td class='mw-label'>";
+				$field = Html::input( $name, $value, $type, $attribs);
+			}			
+			
+			// Construct the label, inputbox pairs.
+			$out .= Xml::openElement( 'div', array(
+						'class' => 'mw-htmlform-field-HTMLTextField mw-ui-vform-div') );
+
 			if ( $type != 'text' ) {
 				$out .= Xml::label( $this->msg( $label )->text(), $name );
 			} else {
 				$out .= $this->msg( $label )->escaped();
 			}
-			$out .= "</td>\n";
-			$out .= "\t<td class='mw-input'>";
-			$out .= $field;
-			$out .= "</td>\n";
-			$out .= "</tr>";
+
+			$out .=	Xml::openElement( 'div', array(
+						'class' => 'mw-input') ) .
+					$field .
+					Xml::closeElement( 'div' ) .
+					Xml::closeElement( 'div' );
 		}
 
 		return $out;
