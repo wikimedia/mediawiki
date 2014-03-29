@@ -176,6 +176,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 		# Initialise checkboxes
 		$this->checks = array(
+			# Messages: revdelete-hide-text, revdelete-hide-image, revdelete-hide-name
 			array( $this->typeLabels['check-label'], 'wpHidePrimary',
 				RevisionDeleter::getRevdelConstant( $this->typeName )
 			),
@@ -352,6 +353,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	protected function showForm() {
 		$userAllowed = true;
 
+		// Messages: revdelete-selected-text, revdelete-selected-file, logdelete-selected
 		$this->getOutput()->wrapWikiMsg( "<strong>$1</strong>", array( $this->typeLabels['selected'],
 			$this->getLanguage()->formatNum( count( $this->ids ) ), $this->targetObj->getPrefixedText() ) );
 
@@ -449,6 +451,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * @todo FIXME: Wikimedia-specific policy text
 	 */
 	protected function addUsageText() {
+		// Messages: revdelete-text-text, revdelete-text-file, logdelete-text
 		$this->getOutput()->wrapWikiMsg( "<strong>$1</strong>\n$2", $this->typeLabels['text'], 'revdelete-text-others' );
 		if ( $this->getUser()->isAllowed( 'suppressrevision' ) ) {
 			$this->getOutput()->addWikiMsg( 'revdelete-suppress-text' );
@@ -472,6 +475,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				$bitfield = RevisionDeleter::extractBitfield( $this->extractBitParams(), $bitfield );
 			}
 			foreach ( $this->checks as $item ) {
+				// Messages: revdelete-hide-text, revdelete-hide-image, revdelete-hide-name,
+				// revdelete-hide-comment, revdelete-hide-user, revdelete-hide-restricted
 				list( $message, $name, $field ) = $item;
 				$innerHTML = Xml::checkLabel( $this->msg( $message )->text(), $name, $name, $bitfield & $field );
 				if ( $field == Revision::DELETED_RESTRICTED ) {
@@ -488,6 +493,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$html .= '<th class="mw-revdel-checkbox">' . $this->msg( 'revdelete-radio-set' )->escaped() . '</th>';
 			$html .= "<th></th></tr>\n";
 			foreach ( $this->checks as $item ) {
+				// Messages: revdelete-hide-text, revdelete-hide-image, revdelete-hide-name,
+				// revdelete-hide-comment, revdelete-hide-user, revdelete-hide-restricted
 				list( $message, $name, $field ) = $item;
 				// If there are several items, use third state by default...
 				if ( $this->submitClicked ) {
@@ -556,6 +563,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * Report that the submit operation succeeded
 	 */
 	protected function success() {
+		// Messages: revdelete-success, logdelete-success
 		$this->getOutput()->setPageTitle( $this->msg( 'actioncomplete' ) );
 		$this->getOutput()->wrapWikiMsg( "<span class=\"success\">\n$1\n</span>", $this->typeLabels['success'] );
 		$this->wasSaved = true;
@@ -567,6 +575,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * Report that the submit operation failed
 	 */
 	protected function failure( $status ) {
+		// Messages: revdelete-failure, logdelete-failure
 		$this->getOutput()->setPageTitle( $this->msg( 'actionfailed' ) );
 		$this->getOutput()->addWikiText( $status->getWikiText( $this->typeLabels['failure'] ) );
 		$this->showForm();
