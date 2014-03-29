@@ -52,6 +52,10 @@ class ApiFeedRecentChanges extends ApiBase {
 			$this->dieUsage( 'Invalid subscription feed type', 'feed-invalid' );
 		}
 
+		if ( !Title::newFromText( $this->params['target'] ) ) {
+			$this->dieUsageMsg( array( 'invalidtitle', $this->params['target'] ) );
+		}
+
 		$feedFormat = $this->params['feedformat'];
 		$specialClass = $this->params['target'] !== null
 			? 'SpecialRecentchangeslinked'
