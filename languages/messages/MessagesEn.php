@@ -2994,7 +2994,7 @@ The email address you entered in [[Special:Preferences|your user preferences]] w
 'nowatchlist'          => 'You have no items on your watchlist.',
 'watchlistanontext'    => 'Please $1 to view or edit items on your watchlist.',
 'watchnologin'         => 'Not logged in',
-'watchnologintext'     => 'You must be [[Special:UserLogin|logged in]] to modify your watchlist.',
+'watchnologintext'     => '<span class="plainlinks">You must be [{{fullurl:Special:UserLogin|returnto={{FULLPAGENAMEE}}}} logged in] to modify your watchlist.</span>',
 'addwatch'             => 'Add to watchlist',
 'addedwatchtext'       => 'The page "[[:$1]]" has been added to your [[Special:Watchlist|watchlist]].
 Future changes to this page and its associated talk page will be listed there.',
