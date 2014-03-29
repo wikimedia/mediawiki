@@ -229,6 +229,7 @@ production.
 * (bug 42026) Deprecated uctoponly in favor of ucshow=top.
 * list=search no longer has a "srredirects" parameter. Redirects are now
   included in all searches.
+* (bug 63249) Cache RecentChanges Atom feed in varnish for 15 seconds.
 
 === Languages updated in 1.23 ===
 
