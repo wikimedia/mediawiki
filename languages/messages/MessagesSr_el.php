@@ -1669,7 +1669,7 @@ Ako izaberete da ga unesete, ono će biti korišćeno za pripisivanje vašeg rad
 'rcshowhidebots' => '$1 botove',
 'rcshowhidebots-show' => 'Prikaži',
 'rcshowhidebots-hide' => 'Sakrij',
-'rcshowhideliu' => '$1 prijavljene korisnike',
+'rcshowhideliu' => '$1 registrovane korisnike',
 'rcshowhideliu-show' => 'Prikaži',
 'rcshowhideliu-hide' => 'Sakrij',
 'rcshowhideanons' => '$1 anonimne korisnike',

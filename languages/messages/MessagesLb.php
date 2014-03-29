@@ -981,8 +981,8 @@ E 'workaround' gëtt agesat deen et erlaabt Säite sécher z'änneren: Net-ASCII
 Wann Dir net wëllt datt är Texter vun anere Mataarbechter verännert, geläscht a weiderverdeelt kënne ginn, da setzt näischt heihinner.<br />
 Dir verspriecht ausserdeem datt Dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder ähnleche Ressource kopéiert hutt.
 '''DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU OUNI ERLAABNES AN!'''",
-'copyrightwarning2' => "W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} vun anere Benotzer verännert oder geläscht kënne ginn. Wann dir dat net wëllt, da setzt näischt heihinner.<br />
-Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder anere fräie Quelle kopéiert hutt. (cf. $1 fir méi Detailler). '''DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU AN!'''",
+'copyrightwarning2' => "W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} vun anere Benotzer verännert oder geläscht kënne ginn. Wann Dir dat net wëllt, da setzt näischt heihinner.<br />
+Dir verspriecht ausserdeem datt Dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder anere fräie Quelle kopéiert hutt. (cf. $1 fir méi Detailer). '''DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU AN!'''",
 'longpageerror' => "'''FEELER: Den Text, den Dir Versicht ze späicheren, huet {{PLURAL:$1|1 Kilobyte|$1 Kilobytes}}. Dëst ass méi wéi den erlaabte Maximum vun  {{PLURAL:$2|1 Kilobyte|$2 Kilobytes}}''' Dofir kann den Text net gespäichert ginn.",
 'readonlywarning' => "'''OPGEPASST: D'Datebank gouf wéinst Maintenanceaarbechte gespaart, dofir kënnt Dir Är Ännerungen den Ament net ofspäicheren.'''
 Dir kënnt den Text kopéieren an an een Textfichier drasetzen an deen ofspäicheren fir méi spéit.
@@ -1095,7 +1095,7 @@ De Grond den den \$3 uginn huet ass ''\$2''",
 
 # Revision feed
 'history-feed-title' => 'Historique vun de Versiounen',
-'history-feed-description' => 'Versiounshistorique fir dës Säit op {{SITENAME}}',
+'history-feed-description' => 'Versiounshistorique fir dës Säit op der Wiki',
 'history-feed-item-nocomment' => '$1 ëm $2',
 'history-feed-empty' => 'Déi ugefrote Säit gëtt et net.
 Vläicht gouf se geläscht oder geréckelt.
@@ -1135,7 +1135,7 @@ Dir kënnt dësen Ënnerscheed gesinn; Detailer fannt Dir am [{{fullurl:{{#Speci
 'rev-showdeleted' => 'Weisen',
 'revisiondelete' => 'Versioune läschen/restauréieren',
 'revdelete-nooldid-title' => 'Ongülteg Zilversioun',
-'revdelete-nooldid-text' => 'Dir hutt entweder keng Versioun uginn fir dës Funktioun ze benotzen, déi Versioun déi Dir uginn hutt gëtt et net, oder dir versicht déi aktuell Versioun ze verstoppen.',
+'revdelete-nooldid-text' => 'Dir hutt entweder keng Versioun ugi fir dës Funktioun ze benotzen, déi Versioun déi Dir uginn hutt gëtt et net, oder Dir versicht déi aktuell Versioun ze verstoppen.',
 'revdelete-no-file' => 'De Fichier deen ugi war gëtt et net.',
 'revdelete-show-file-confirm' => 'Sidd Dir sécher datt Dir déi geläschte Versioun vum Fichier "<nowiki>$1</nowiki>" vum $2 ëm $3 gesi wëllt?',
 'revdelete-show-file-submit' => 'Jo',
@@ -1206,8 +1206,8 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'mergehistory-into' => 'Zilsäit:',
 'mergehistory-list' => 'Versiounen, déi zesummegeluecht kënne ginn',
 'mergehistory-merge' => "Dës Versioune vun [[:$1]] kënnen matt [[:$2]] zesummegeluecht ginn.
-Benotzt d'Radio-Knäppecher fir nëmmen déi Versiunen ze fusonnéieren déi zu engem spezifischen Zäitpunkt oder virdrun ugeluecht goufen.
-Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zrécksetzen.",
+Benotzt d'Radio-Knäppecher fir nëmmen déi Versiounen ze fusionéieren déi zu engem spezifeschen Zäitpunkt oder virdrun ugeluecht goufen.
+Denkt w.e.g drun datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zrécksetzen.",
 'mergehistory-go' => 'Weis déi Versiounen, déi zesummegeluecht kënne ginn',
 'mergehistory-submit' => 'Versioune verschmelzen',
 'mergehistory-empty' => 'Et kënne keng Versioune zesummegeluecht ginn.',
@@ -1727,7 +1727,7 @@ Fir datt Äre Resumé do opdaucht musst Dir e manuell änneren.
 Wielt w.e.g. en aneren Numm.',
 'fileexists-thumbnail-yes' => "Beim Fichier schéngt et sech ëm e klengt Bild ''(Miniatur)'' ze handelen. [[$1|thumb]]
 Kuckt de Fichier <strong>[[:$1]]</strong> w.e.g. no.
-Wann et sech ëm d'Bild an der Originalgréisst handelt, da brauch kee separat Bild als Minitaur eropgelueden ze ginn.",
+Wann et sech ëm d'Bild an der Originalgréisst handelt, da brauch kee separat Bild als Miniatur eropgelueden ze ginn.",
 'file-thumbnail-no' => "Den Numm vum Fichier fänkt mat <strong>$1</strong> un.
 Da deit drop hin datt et eng Minitaur ''(thumbnail)'' ass.
 Wann Dir dat Bild a méi enger grousser Opléisung hutt, da luet dëst erop, wann net dann ännert w.e.g. den Numm vum Fichier.",
@@ -1953,7 +1953,7 @@ Dir kënnt seng Beschreiwung op senger [$2 Beschreiwungssäit] änneren.',
 'filerevert-comment' => 'Bemierkung:',
 'filerevert-defaultcomment' => "zréckgesat op d'Versioun vum $1, $2 Auer",
 'filerevert-submit' => 'Zrécksetzen',
-'filerevert-success' => "'''[[Media:$1|$1]]''' gouf op d'[$4 Versioun vum $2, $3 Auer] zréckgesat.",
+'filerevert-success' => "<strong>[[Media:$1|$1]]</strong> gouf op d'[$4 Versioun vum $2, $3 Auer] zréckgesat.",
 'filerevert-badversion' => 'Et gëtt keng vireg lokal Versioun vun deem Fichier mat der Zäitinformatioun déi Dir uginn hutt.',
 
 # File deletion
@@ -2375,7 +2375,7 @@ W.e.g. confirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'actionfailed' => 'Aktioun huet net funktionéiert',
 'deletedtext' => '"$1" gouf geläscht. Kuckt $2 fir eng Lëscht vun de Säiten déi viru Kuerzem geläscht goufen.',
 'dellogpage' => 'Läschlëscht',
-'dellogpagetext' => 'Hei fannt dir eng Lëscht mat rezent geläschte Säiten. All Auerzäiten sinn déi vum Server.',
+'dellogpagetext' => 'Hei fannt dir eng Lëscht mat rezent geläschte Säiten. All Auerzäite sinn déi vum Server.',
 'deletionlog' => 'Läschlëscht',
 'reverted' => 'Op déi Versioun virdrun zréckgesat',
 'deletecomment' => 'Grond:',
@@ -2442,8 +2442,8 @@ Kuckt d'[[Special:ProtectedPages|Lëscht vun de gespaarte Säite]] fir eng Lësc
 'protect-text' => "Hei kënnt Dir de Protektiounsstatus fir d'Säit '''$1''' kucken an änneren.",
 'protect-locked-blocked' => "Dir kënnt den Niveau vun der Säiteprotektioun net änneren, well Äre Benotzerkont gespaart ass.
 Hei sinn déi aktuell Säiteprotektiounsastellunge fir d'Säit '''$1''':",
-'protect-locked-dblock' => "Den Niveau vun der Proectioun vun der Säit kann net geänenert ginn, well d'Datebank gespaart ass.
-Hei sinn déi aktuell Astellungen fir d'Säit '''$1''':",
+'protect-locked-dblock' => "Den Niveau vun der Proectioun vun der Säit kann net geännert ginn, well d'Datebank gespaart ass.
+Hei sinn déi aktuell Astellunge fir d'Säit '''$1''':",
 'protect-locked-access' => "Dir hutt net déi néideg Rechter fir de Protektiounsniveau vun dëser Säit z'änneren.
 Hei sinn déi aktuell Astellunge fir d'Säit '''$1''':",
 'protect-cascadeon' => "Dës Säit ass elo gespaart well si an déi folgend {{PLURAL:$1|Säit|Säiten}} agebonnen ass déi duerch eng Kaskadespär gespaart {{PLURAL:$1|ass|sinn}}. Ännerunge vum Protektiounsniveau fir dës Säit hu keen Afloss op d'Kaskadespär.",
@@ -2617,7 +2617,7 @@ $1',
 'ipboptions' => '2 Stonnen:2 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,6 Méint:6 months,1 Joer:1 year,onbegrenzt:infinite',
 'ipbhidename' => 'Benotzernumm op Lëschten a bei Ännerunge verstoppen',
 'ipbwatchuser' => 'Dësem Benotzer seng Benotzer- an Diskussiouns-Säit iwwerwaachen',
-'ipb-disableusertalk' => "Dëse Benotzer dorun hënnere fir seng eegen Diskussiounssäit z'ännere sou laang wéi et gespaart ass",
+'ipb-disableusertalk' => "Dëse Benotzer dorun hënnere fir seng eegen Diskussiounssäit z'ännere sou laang wéi e gespaart ass",
 'ipb-change-block' => 'De Benotzer mat dese Parameteren nees spären',
 'ipb-confirm' => 'Spär confirméieren',
 'badipaddress' => "D'IP-Adress huet dat falscht Format.",
@@ -3614,7 +3614,7 @@ Déi aner sinn am Standard verstoppt.
 # Email address confirmation
 'confirmemail' => 'E-Mailadress confirméieren',
 'confirmemail_noemail' => 'Dir hutt keng gëlteg E-Mail-Adress an Äre [[Special:Preferences|Benotzerastellungen]] agedro.',
-'confirmemail_text' => "Ier Dir d'E-Mailfunktioune vun {{SITENAME}} benotze kënnt musst Dir als éischt Är E-Mail-Adress confirméieren. Dréckt w.e.g. de Knäppchen hei ënnendrënner fir eng Confirmatiouns-E-Mail op déi Adress ze schécken déi Dir uginn hutt. An där E-Mail steet e Link mat engem Code, deen dir dann an Ärem Browser opmaache musst fir sou ze bestätegen, datt Är Adress och wierklech existéiert a valabel ass.",
+'confirmemail_text' => "Ier Dir d'E-Mailfunktioune vun {{SITENAME}} benotze kënnt musst Dir als éischt Är E-Mail-Adress confirméieren. Dréckt w.e.g. de Knäppchen hei ënnendrënner fir eng Confirmatiouns-E-Mail op déi Adress ze schécken déi Dir uginn hutt. An där E-Mail steet e Link mat engem Code, deen Dir dann an Ärem Browser opmaache musst fir sou ze bestätegen, datt Är Adress och wierklech existéiert a valabel ass.",
 'confirmemail_pending' => 'Dir krut schonn e Confirmatiouns-Code per E-Mail geschéckt. Wenn Dir Äre Benotzerkont eréischt elo kuerz opgemaach hutt, da gedëllegt Iech nach e puer Minutten bis Är E-Mail ukomm ass, ier Dir een neie Code ufrot.',
 'confirmemail_send' => 'Confirmatiouns-E-Mail schécken',
 'confirmemail_sent' => 'Confirmatiouns-E-Mail gouf geschéckt.',

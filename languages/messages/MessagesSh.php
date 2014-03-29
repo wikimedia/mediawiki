@@ -2374,7 +2374,7 @@ Posljednja izmjena je bila od korisnika [[User:$3|$3]] ([[User talk:$3|razgovor]
 'editcomment' => "Sažetak izmjene je bio: \"''\$1''\".",
 'revertpage' => 'Vraćene izmjene [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]]) na posljednju izmjenu korisnika [[User:$1|$1]]',
 'revertpage-nouser' => 'Vraćene izmjene skrivenog korisnika na posljednju reviziju koju je načinio [[User:$1|$1]]',
-'rollback-success' => 'Poništene izmjene korisnika $1;
+'rollback-success' => 'Vraćene su izmjene korisnika $1;
 vraćeno na posljednju verziju koju je snimio $2.',
 
 # Edit tokens

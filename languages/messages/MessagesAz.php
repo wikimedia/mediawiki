@@ -2346,6 +2346,10 @@ Zəhmət olmasa başqa ad seçin.',
 'pageinfo-lasttime' => 'Sonuncu redaktənin tarixi',
 'pageinfo-edits' => 'Redaktələrin sayı',
 'pageinfo-authors' => 'Fərqli müəlliflərin sayı',
+'pageinfo-toolboxlink' => 'Əsas məlumatlar',
+'pageinfo-redirectsto' => 'İstiqamətləndirmə',
+'pageinfo-redirectsto-info' => 'məlumat',
+'pageinfo-contentpage-yes' => 'Bəli',
 
 # Skin names
 'skinname-cologneblue' => 'Cologne Blue',

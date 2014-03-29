@@ -1326,7 +1326,7 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'shown-title' => 'Pokaži $1 {{PLURAL:$1|rezultat|rezultata}} po stranici',
 'viewprevnext' => 'Pogledaj ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Postoji stranica pod nazivom \"[[:\$1]]\" na ovoj wiki'''",
-'searchmenu-new' => "'''Napravi stranicu \"[[:\$1|\$1]]\" na ovoj wiki!'''",
+'searchmenu-new' => '<strong>Napravi stranicu "[[:$1]]" na ovoj wiki!</strong> {{PLURAL:$2|0=|Pogledajte također straniu pronađenu vašom pretragom.|Pogledajte također i vaše rezultate pretrage.}}',
 'searchprofile-articles' => 'Stranice sadržaja',
 'searchprofile-project' => 'Stranice pomoći i projekta',
 'searchprofile-images' => 'Multimedija',
@@ -2448,7 +2448,7 @@ nastavite s oprezom.',
 
 Posljednja izmjena je bila od korisnika [[User:$3|$3]] ([[User talk:$3|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Sažetak izmjene je bio: \"''\$1''\".",
-'revertpage' => 'Vraćene izmjene [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]]) na posljednju izmjenu korisnika [[User:$1|$1]]',
+'revertpage' => 'Vraćene izmjene korisnika [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]]) na posljednju izmjenu koju je načinio [[User:$1|$1]]',
 'revertpage-nouser' => 'Vraćene izmjene skrivenog korisnika na posljednju reviziju koju je {{GENDER:$1|načinio|načinila}} [[User:$1|$1]]',
 'rollback-success' => 'Poništene izmjene korisnika $1;
 vraćeno na posljednju verziju koju je sačuvao $2.',

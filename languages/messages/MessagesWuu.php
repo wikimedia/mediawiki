@@ -1439,7 +1439,7 @@ $1",
 # Undelete
 'undeletepage' => '查看搭仔恢复删脱个页面',
 'viewdeletedpage' => '望望相删脱个页面',
-'undeletelink' => '查看／恢复',
+'undeletelink' => '查看/还原',
 'undeleteviewlink' => '望',
 'undeletecomment' => '理由：',
 'undelete-search-submit' => '搜尋',
@@ -1751,7 +1751,7 @@ $5
 'table_pager_limit' => '显示 $1 条每页',
 
 # Auto-summaries
-'autoredircomment' => '重定向到 [[$1]]',
+'autoredircomment' => '重定向页面至[[$1]]',
 'autosumm-new' => '新页面：$1',
 
 # Watchlist editor

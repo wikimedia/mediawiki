@@ -1341,7 +1341,7 @@ $NEWPAGE
 'undelete-revision' => '删卟$1由$3（到$2）编写𠮶修改版本:',
 'undeleterevision-missing' => '冇用或跌掉𠮶修改版本。话伓定倷碰到只错误𠮶链接，要卟就系个只版本早从存盘恢复或换卟嘞。',
 'undelete-nodiff' => '冇寻到以前𠮶版本。',
-'undeletebtn' => '恢复',
+'undeletebtn' => '还原',
 'undeletelink' => '还原',
 'undeleteviewlink' => '望吖',
 'undeletecomment' => '评论:',
@@ -2092,7 +2092,7 @@ $3
 # Auto-summaries
 'autosumm-blank' => '移卟页面𠮶全部内容',
 'autosumm-replace' => "搦页面换到 '$1'",
-'autoredircomment' => '重定向到[[$1]]',
+'autoredircomment' => '重定向页面至[[$1]]',
 'autosumm-new' => '新页: $1',
 
 # Live preview

@@ -1262,6 +1262,8 @@ funcție, fie versiunea specificată nu există, ori sunteți pe cale să ascund
 'revdelete-no-file' => 'Fișierul specificat nu există.',
 'revdelete-show-file-confirm' => 'Sigur doriți să vedeți versiunea ștearsă a fișierului „<nowiki>$1</nowiki>” din $2 ora $3?',
 'revdelete-show-file-submit' => 'Da',
+'revdelete-selected-text' => '{{PLURAL:$1|Versiunea aleasă|Versiunile alese}} pentru [[:$2]]:',
+'revdelete-selected-file' => '{{PLURAL:$1|Versiunea fișierului aleasă|Versiunile fișierului alese}} pentru [[:$2]]:',
 'logdelete-selected' => '{{PLURAL:$1|Revizia aleasă|Reviziile alese}}:',
 'revdelete-text-text' => 'Versiunile șterse vor continua să fie vizibile în istoricul paginii, însă anumite părți ale conținutului acestora vor fi inaccesibile publicului.',
 'revdelete-text-file' => 'Versiunile șterse ale fișierului vor continua să fie vizibile în istoricul fișierului, însă anumite părți ale conținutului acestora vor fi inaccesibile publicului.',
@@ -2128,6 +2130,11 @@ Această pagină specială permite căutarea fișierelor în funcție de tipul M
 
 # List redirects
 'listredirects' => 'Lista de redirecționări',
+
+# List duplicated files special page
+'listduplicatedfiles' => 'Listă de fișiere cu duplicate',
+'listduplicatedfiles-summary' => 'Aceasta este o listă cu fișierele a căror cea mai recentă versiune este un duplicat al celei mai recente versiuni a altui fișier. Sunt examinate doar fișierele locale.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] are [[$3|{{PLURAL:$2|un duplicat|$2 duplicate|$2 de duplicate}}]].',
 
 # Unused templates
 'unusedtemplates' => 'Formate neutilizate',

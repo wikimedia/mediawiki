@@ -2114,7 +2114,7 @@ $3
 # Auto-summaries
 'autosumm-blank' => '移卟頁面嗰全部內容',
 'autosumm-replace' => "搦頁面換到 '$1'",
-'autoredircomment' => '重定向到[[$1]]',
+'autoredircomment' => '重定向页面至[[$1]]',
 'autosumm-new' => '新頁: $1',
 
 # Live preview

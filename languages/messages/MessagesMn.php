@@ -2262,7 +2262,7 @@ $1',
 # Namespace form on various pages
 'namespace' => 'Нэрний зай:',
 'invert' => 'Зааснаас бусад',
-'namespace_association' => 'Заасан төрлөөс',
+'namespace_association' => 'Заасантай холбоотой',
 'blanknamespace' => '(Гол)',
 
 # Contributions

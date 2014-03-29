@@ -1865,7 +1865,7 @@ $1',
 'listduplicatedfiles-entry' => 'Файлан [[:File:$1|$1]] — [[$3|{{PLURAL:$2|дубликат ю}}]].',
 
 # Unused templates
-'unusedtemplates' => 'Лелош доцу кепаш',
+'unusedtemplates' => 'Лелош йоцу кепаш',
 'unusedtemplatestext' => 'Кхузахь дагар йина «{{ns:template}}» цӀерийн меттиган агӀонаш, кхечу агӀонийн юкъа тоьхна йоцу.
 Диц ма делахь хьажа кеп агӀонашкахь лелош юй.',
 'unusedtemplateswlh' => 'кхин хьажоргаш',
@@ -1910,6 +1910,7 @@ $1',
 'doubleredirectstext' => 'ХӀокху агӀонехь ю дӀасахьажорашан тӀе хьажийна йолу дӀасахьажораш.
 <del>ТӀехула сиз хаькхна </del>нисйина чарна.',
 'double-redirect-fixed-move' => 'АгӀон [[$1]] цӀе хийцина, хӀинца иза дӀахьажийна оцу [[$2]]',
+'double-redirect-fixed-maintenance' => 'Шалха дӀасахьажинарг нисъяр [[$1]] → [[$2]].',
 'double-redirect-fixer' => 'ДӀасахьажинарш нисерг',
 
 'brokenredirects' => 'ДIахаьдна долу дIасахьажораш',
@@ -1942,7 +1943,7 @@ $1',
 'uncategorizedimages' => 'Категореш йоцу файлаш',
 'uncategorizedtemplates' => 'Категореш йоцу кепаш',
 'unusedcategories' => 'Йаьсса категореш',
-'unusedimages' => 'Лелош доцу файлаш',
+'unusedimages' => 'Лелош йоцу файлаш',
 'popularpages' => 'ГӀараяьлла агӀонаш',
 'wantedcategories' => 'Оьшуш йолу категореш',
 'wantedpages' => 'Оьшуш йолу агIонаш',
@@ -1950,7 +1951,7 @@ $1',
 'wantedfiletext-cat' => 'Лахара йоцу файлаш лело гӀерта. Оцу могӀам юкъа ца хууш файлаш кхета там бу, кхечу проекташ чохь йолу. Ишта ца хууш юкъа нийса елачарна тӀехула <del>сиз</del> хира ду.
 Кхин йоцу файлаш гойту [[:$1]] чохь',
 'wantedfiletext-nocat' => 'Лахара йоцу файлаш лело гӀерта. Оцу могӀам юкъа ца хууш файлаш кхета там бу, кхечу проекташ чохь йолу. Ишта ца хууш юкъа нийса елачарна тӀехула <del>сиз</del> хира ду.',
-'wantedtemplates' => 'Оьшуш долу кепаш',
+'wantedtemplates' => 'Оьшуш йолу кепаш',
 'mostlinked' => 'Дуккха хьажоргаш тӀе тоьхна йолу агӀонаш',
 'mostlinkedcategories' => 'Дуккха тӀе хьажораш йолу категореш',
 'mostlinkedtemplates' => 'Массарел дуккха а леладо кепаш',
@@ -3008,6 +3009,7 @@ MediaWiki яржош ю и шуна пайдане хир яц те аьлла, 
 'fileduplicatesearch-filename' => 'Файлан цӀе:',
 'fileduplicatesearch-submit' => 'Лаха',
 'fileduplicatesearch-info' => '$1 × $2 пиксель<br />Файлан барам: $3<br />MIME-тайп: $4',
+'fileduplicatesearch-noresults' => 'ЦӀе «$1» йолуш файл цакарий.',
 
 # Special:SpecialPages
 'specialpages' => 'Леррина агlонаш',

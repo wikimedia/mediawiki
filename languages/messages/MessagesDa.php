@@ -1315,7 +1315,7 @@ Detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'prefs-personal' => 'Brugerdata',
 'prefs-rc' => 'Seneste ændringer',
 'prefs-watchlist' => 'Overvågningsliste',
-'prefs-watchlist-days' => 'Antal dage, som overvågningslisten standardmæssigt skal omfatte:',
+'prefs-watchlist-days' => 'Antal dage der skal vises i overvågningslisten:',
 'prefs-watchlist-days-max' => 'Højst $1 {{PLURAL:$1|dag|dage}}',
 'prefs-watchlist-edits' => 'Antal redigeringer der vises i udvidet overvågningsliste:',
 'prefs-watchlist-edits-max' => 'Maks. 1000',
@@ -1339,7 +1339,7 @@ Detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'recentchangescount' => 'Antal redigeringer som skal vises som standard:',
 'prefs-help-recentchangescount' => 'Det gælder for seneste ændringer, historikker og logger.',
 'prefs-help-watchlist-token2' => 'Dette er den hemmelige nøgle til web-feed af din overvågningsliste.
-Hvis andre kender den, man vil være i stand til at læse din overvågningsliste, så del den ikke.
+Hvis andre kender den, vil man være i stand til at læse din overvågningsliste, så del den ikke.
 [[Special:ResetTokens|Klik her hvis du har brug at nulstille den]].',
 'savedprefs' => 'Dine indstillinger er blevet gemt.',
 'timezonelegend' => 'Tidszone:',

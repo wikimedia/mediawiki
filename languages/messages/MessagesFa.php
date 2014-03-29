@@ -905,6 +905,7 @@ $2',
 'gotaccountlink' => 'به سامانه وارد شوید',
 'userlogin-resetlink' => 'جزئیات ورود را فراموش کرده‌اید؟',
 'userlogin-resetpassword-link' => 'گذرواژه‌تان را فراموش کردید؟',
+'userlogin-helplink2' => 'کمک با ورود',
 'userlogin-loggedin' => 'شما در حال حاضر به‌عنوان {{GENDER:$1|$1}} وارد شده‌اید.
 از فرم پایین برای ورود به‌عنوان یک کاربر دیگر استفاده کنید.',
 'userlogin-createanother' => 'ایجاد یک حساب کاربری دیگر',

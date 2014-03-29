@@ -560,6 +560,7 @@ Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddec
 'gotaccountlink' => 'Mewngofnodi',
 'userlogin-resetlink' => 'Ydych chi wedi anghofio eich manylion mewngofnodi?',
 'userlogin-resetpassword-link' => 'Wedi anghofio eich cyfrinair?',
+'userlogin-helplink2' => 'Cymorth wrth fewngofnodi',
 'userlogin-loggedin' => 'Rydych eisoes wedi mewngofnodi wrth yr enw {{GENDER:$1|$1}}.
 Defnyddiwch y ffurflen isod i fewngofnodi wrth rhyw enw arall.',
 'userlogin-createanother' => 'Creu cyfrif ychwanegol',
@@ -645,6 +646,7 @@ Oedwch $1 cyn mentro eto.',
 'createacct-another-realname-tip' => "Gallwch ddewis roi eich enw go iawn.
 Os y gwnewch, fe gaiff yr enw go iawn ei defnyddio wrth dadogi'ch gwaith.",
 'pt-login' => 'Mewngofnodi',
+'pt-login-button' => 'Mewngofnoder',
 'pt-createaccount' => 'Creu cyfri',
 'pt-userlogout' => 'Allgofnodi',
 
@@ -1053,7 +1055,9 @@ Serch hyn, gallwch eu cymharu o hyd; cewch weld y manylion ar y [{{fullurl:{{#Sp
 'revdelete-no-file' => "Nid yw'r ffeil a nodwyd yn bod.",
 'revdelete-show-file-confirm' => 'Ydych chi\'n sicr eich bod am weld y diwygiad dilëedig o\'r ffeil "<nowiki>$1</nowiki>" a roddwyd ar gadw am $3 ar $2?',
 'revdelete-show-file-submit' => 'Ydw',
-'logdelete-selected' => "{{PLURAL:$1|Digwyddiad|Digwyddiad|Digwyddiadau|Digwyddiadau|Digwyddiadau|Digwyddiadau}} a ddewiswyd o'r lòg:",
+'revdelete-selected-text' => 'Dewisiwyd y {{PLURAL:$1|diwygiad|diwygiad|diwygiadau}} canlynol o [[:$2]]:',
+'revdelete-selected-file' => "Dewiswyd y {{PLURAL:$1|diwygiad|diwygiad|diwygiadau}} canlynol o'r ffeil [[:$2]]:",
+'logdelete-selected' => "{{PLURAL:$1|Digwyddiad|Digwyddiad|Digwyddiadau}} a ddewiswyd o'r lòg:",
 'revdelete-confirm' => "Byddwch gystal â chadarnhau eich bod yn bwriadu gwneud hyn, eich bod yn deall yr effaith a gaiff, a'ch bod yn ei wneud yn ôl y [[{{MediaWiki:Policy-url}}|y polisi]].",
 'revdelete-suppress-text' => "'''Dim ond''' yn yr achosion sy'n dilyn y dylech fentro cuddio gwybodaeth:
 * Gwybodaeth a all fod yn enllib
@@ -1906,6 +1910,9 @@ Mewnbwn: contenttype/subtype, e.e. <code>image/jpeg</code>.",
 # List redirects
 'listredirects' => "Rhestru'r ail-gyfeiriadau",
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Rhestr y ffeiliau sydd wedi eu dyblygu',
+
 # Unused templates
 'unusedtemplates' => 'Nodiadau heb eu defnyddio',
 'unusedtemplatestext' => "Dyma restr o'r holl dudalennau yn y parth {{ns:template}} nad ydynt wedi eu cynnwys yn unrhyw dudalen arall.
@@ -2358,7 +2365,7 @@ Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen '''$1''':",
 Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen '''$1''':",
 'protect-locked-access' => "Nid yw'r gallu i newid lefel diogelu ar dudalen ynghlwm wrth eich cyfrif defnyddiwr.
 Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen '''$1''':",
-'protect-cascadeon' => "Mae'r dudalen hon wedi ei diogelu ar hyn o bryd oherwydd ei bod wedi ei chynnwys yn y {{PLURAL:$1|dudalen|dudalen|tudalennau|tudalennau|tudalennau|tudalennau}} canlynol sydd wedi {{PLURAL:$1|ei|ei|eu|eu|eu|eu}} sgydol-diogelu.  Gallwch newid lefel diogelu'r dudalen hon, ond ni fydd hynny'n effeithio ar y sgydol-ddiogelu.",
+'protect-cascadeon' => "Mae'r dudalen hon wedi ei diogelu ar hyn o bryd oherwydd ei bod wedi ei chynnwys yn y {{PLURAL:$1|dudalen|dudalen|tudalennau}} canlynol sydd wedi {{PLURAL:$1|ei|ei|eu}} sgydol-diogelu.  Gallwch newid lefel diogelu'r dudalen hon, ond ni fydd hynny'n effeithio ar y sgydol-ddiogelu.",
 'protect-default' => "Caniatáu'r gallu i bob defnyddiwr",
 'protect-fallback' => 'Caniatau i\'r defnyddwyr gyda\'r gallu "$1" yn unig wneud hyn',
 'protect-level-autoconfirmed' => "Caniatau'r defnyddwyr sydd wedi eu cadarnhau'n awtomatig yn unig",

@@ -956,10 +956,10 @@ Si us plau, proveu-ho una altra vegada. Si continués sense funcionar, proveu de
 '''Si es tracta d'una contribució legítima, si us plau, intenteu-ho una altra vegada. Si continua havent-hi problemes, [[Special:UserLogout|finalitzeu la sessió]] i torneu a iniciar-ne una.'''",
 'token_suffix_mismatch' => "'''S'ha rebutjat la vostra modificació perquè el vostre client ha fet malbé els caràcters de puntuació en el testimoni d'edició. S'ha rebutjat la modificació per a evitar la corrupció del text de la pàgina. Açò passa a vegades quan s'utilitza un servei web de servidor intermediari anònim amb problemes.'''",
 'edit_form_incomplete' => "'''Certes parts del formulari de modificació no han arribat al servidor, verifiqueu que les vostres modificacions estan intactes i proveu-ho de nou.'''",
-'editing' => "S'està editant $1",
+'editing' => 'Edició de la pàgina «$1»',
 'creating' => "S'està creant $1",
-'editingsection' => "S'està editant $1 (secció)",
-'editingcomment' => "S'està editant $1 (nova secció)",
+'editingsection' => 'Edició de «$1» (secció)',
+'editingcomment' => 'Edició de «$1» (secció nova)',
 'editconflict' => "Conflicte d'edició: $1",
 'explainconflict' => "Algú més ha canviat aquesta pàgina des que l'heu editada.
 L'àrea de text superior conté el text de la pàgina com existeix actualment.

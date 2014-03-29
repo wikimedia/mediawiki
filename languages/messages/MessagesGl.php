@@ -731,6 +731,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'gotaccountlink' => 'Acceda ao sistema',
 'userlogin-resetlink' => 'Esqueceu os seus datos de rexistro?',
 'userlogin-resetpassword-link' => 'Esqueceu o contrasinal?',
+'userlogin-helplink2' => 'Axuda co rexistro',
 'userlogin-loggedin' => 'Xa accedeu ao sistema como {{GENDER:$1|$1}}.
 Utilice o formulario inferior para acceder como outro usuario.',
 'userlogin-createanother' => 'Crear outra conta',
@@ -833,6 +834,7 @@ Por favor, agarde $1 antes de probar outra vez.',
 'createacct-another-realname-tip' => 'O nome real é opcional.
 Se escolle dalo utilizarase para atribuír ao usuario o seu traballo.',
 'pt-login' => 'Acceder ao sistema',
+'pt-login-button' => 'Acceder ao sistema',
 'pt-createaccount' => 'Crear unha conta',
 'pt-userlogout' => 'Saír',
 
@@ -866,6 +868,9 @@ Para completar o acceso, defina un novo contrasinal aquí:',
 'resetpass-abort-generic' => 'Unha extensión cancelou a modificación do contrasinal.',
 'resetpass-expired' => 'O seu contrasinal caducou. Defina un novo contrasinal para acceder.',
 'resetpass-expired-soft' => 'O seu contrasinal caducou e debe restablecelo. Escolla un novo contrasinal ou prema en "{{int:resetpass-submit-cancel}}" para restablecelo máis tarde.',
+'resetpass-validity-soft' => 'O seu contrasinal non é válido: $1
+
+Escolla un novo contrasinal ou prema en "{{int:resetpass-submit-cancel}}" para restablecelo máis tarde.',
 
 # Special:PasswordReset
 'passwordreset' => 'Restablecer o contrasinal',
@@ -1015,7 +1020,7 @@ Poida que a movesen ou borrasen mentres ollaba a páxina.',
 'accmailtext' => 'Un contrasinal xerado ao chou para [[User talk:$1|$1]] foi enviado a $2. Pode modificarse na páxina de [[Special:ChangePassword|cambio de contrasinais]] tras acceder ao sistema.',
 'newarticle' => '(Novo)',
 'newarticletext' => "Seguiu unha ligazón a unha páxina que aínda non existe.
-Para crear a páxina, comece a escribir na caixa de embaixo (vexa a [$1 páxina de axuda] para obter máis información).
+Para crear a páxina, comece a escribir na caixa inferior (consulte a [$1 páxina de axuda] para obter máis información).
 Se chegou aquí por erro, simplemente prema no botón '''atrás''' do seu navegador.",
 'anontalkpagetext' => "----''Esta é a páxina de conversa dun usuario anónimo que aínda non creou unha conta ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódeno compartir varios usuarios distintos. Se pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor, [[Special:UserLogin/signup|cree unha conta]] ou [[Special:UserLogin|acceda ao sistema]] para evitar futuras confusións con outros usuarios anónimos.''",
 'noarticletext' => 'Actualmente non hai ningún texto nesta páxina.
@@ -1260,7 +1265,13 @@ función, a revisión especificada non existe ou está intentando agochar a revi
 'revdelete-no-file' => 'O ficheiro especificado non existe.',
 'revdelete-show-file-confirm' => 'Está seguro de querer ver unha revisión borrada do ficheiro "<nowiki>$1</nowiki>" do día $2 ás $3?',
 'revdelete-show-file-submit' => 'Si',
-'logdelete-selected' => '{{PLURAL:$1|Rexistro de evento seleccionado|Rexistro de eventos seleccionados}}:',
+'revdelete-selected-text' => '{{PLURAL:$2|Revisión seleccionada|Revisións seleccionadas}} de "[[:$2]]":',
+'revdelete-selected-file' => '{{PLURAL:$2|Revisión de ficheiro seleccionada|Revisións de ficheiro seleccionadas}} de "[[:$2]]":',
+'logdelete-selected' => '{{PLURAL:$1|Rexistro de eventos seleccionado|Rexistros de eventos seleccionados}}:',
+'revdelete-text-text' => 'As revisións borradas seguirán aparecendo no historial da páxina, pero partes do seu contido serán inaccesibles para o público.',
+'revdelete-text-file' => 'As revisións borradas do ficheiro seguirán aparecendo no historial do ficheiro, pero partes do seu contido serán inaccesibles para o público.',
+'logdelete-text' => 'Os rexistros de eventos borrados seguirán aparecendo nos rexistros, pero partes do seu contido serán inaccesibles para o público.',
+'revdelete-text-others' => 'Os outros administradores de {{SITENAME}} seguirán tendo acceso aos contidos agochados e poderán restauralos a través desta mesma interface, a menos que se definan restricións adicionais.',
 'revdelete-confirm' => 'Por favor, confirme que quere levar a cabo esta acción, que comprende as consecuencias e que o fai de acordo [[{{MediaWiki:Policy-url}}|coas políticas]].',
 'revdelete-suppress-text' => "A eliminación '''unicamente''' debería utilizarse nos seguintes casos:
 * Información potencialmente difamatoria
@@ -1395,7 +1406,7 @@ O [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrad
 'search-file-match' => '(coincide co contido do ficheiro)',
 'search-suggest' => 'Quizais quixo dicir: $1',
 'search-interwiki-caption' => 'Proxectos irmáns',
-'search-interwiki-default' => 'Resultados en $1:',
+'search-interwiki-default' => 'Resultados de $1:',
 'search-interwiki-more' => '(máis)',
 'search-relatedarticle' => 'Relacionado',
 'searcheverything-enable' => 'Procurar en todos os espazos de nomes',
@@ -2135,6 +2146,11 @@ Entrada: tipodecontido/subtipo, por exemplo <code>image/jpeg</code>.',
 # List redirects
 'listredirects' => 'Lista de redireccións',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Lista de ficheiros duplicados',
+'listduplicatedfiles-summary' => 'Esta é unha lista coas versións máis recentes de ficheiros que coinciden coa versión máis recente doutro ficheiro. Considéranse só os ficherios locais.',
+'listduplicatedfiles-entry' => '"[[:File:$1|$1]]" ten [[$3|{{PLURAL:$2|un duplicado|$2 duplicados}}]].',
+
 # Unused templates
 'unusedtemplates' => 'Modelos sen uso',
 'unusedtemplatestext' => 'Esta páxina contén unha lista de todas as páxinas no espazo de nomes {{ns:template}} que non están incluídas en ningunha outra páxina.
@@ -2591,8 +2607,8 @@ Vexa a [[Special:ProtectedPages|lista de páxinas protexidas]] se quere obter a 
 Velaquí a configuración actual da páxina '''$1''':",
 'protect-locked-access' => "A súa conta non dispón de permisos para mudar os niveis de protección.
 Velaquí a configuración actual da páxina '''$1''':",
-'protect-cascadeon' => 'Esta páxina está protexida neste momento porque está incluída {{PLURAL:$1|na seguinte páxina, que foi protexida|nas seguintes páxinas, que foron protexidas}} coa opción protección en serie activada.
-Pode mudar o nivel de protección da páxina pero iso non afectará á protección en serie.',
+'protect-cascadeon' => 'Esta páxina está protexida actualmente porque está incluída {{PLURAL:$1|na seguinte páxina, que foi protexida|nas seguintes páxinas, que foron protexidas}} coa opción "protección en serie" activada.
+Os cambios no nivel de protección desta páxina non afectarán á protección en serie.',
 'protect-default' => 'Permitir a todos os usuarios',
 'protect-fallback' => 'Permitir só aos usuarios con permisos de "$1"',
 'protect-level-autoconfirmed' => 'Permitir só aos usuarios autoconfirmados',

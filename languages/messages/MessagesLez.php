@@ -19,6 +19,7 @@
  * @author Ole Yves
  * @author Reedy
  * @author Soul Train
+ * @author Умар
  */
 
 $fallback = 'ru';
@@ -725,11 +726,21 @@ $messages = array(
 'rcnotefrom' => "Агъадихъ '''$2'''-ай эгечIна масакIавилер къалурнава ( '''$1''' кьван  къалурнава).",
 'rclistfrom' => '$1-й эгечIна цIийи масакIавилер къалурун',
 'rcshowhideminor' => '$1 гъвечlи дуьзар хъувунар',
+'rcshowhideminor-show' => 'Къалурун',
+'rcshowhideminor-hide' => 'Чуьнуьхун',
 'rcshowhidebots' => '$1 ботар',
-'rcshowhideliu' => '$1 чпин тlвар къалурнавай уртахар',
+'rcshowhidebots-show' => 'Къалурун',
+'rcshowhidebots-hide' => 'Чуьнуьхун',
+'rcshowhideliu' => '$1 чпин тӀвар къалурнавай уртахар',
+'rcshowhideliu-show' => 'Къалурун',
+'rcshowhideliu-hide' => 'Чуьнуьхун',
 'rcshowhideanons' => '$1 чуьнуьхай уртахар',
+'rcshowhideanons-show' => 'Къалурун',
+'rcshowhideanons-hide' => 'Чуьнуьхун',
 'rcshowhidepatr' => '$1 гуьзчивал авунвай дуьзар хъувунар',
 'rcshowhidemine' => '$1 зи  дуьзар хъувунар',
+'rcshowhidemine-show' => 'Къалурун',
+'rcshowhidemine-hide' => 'Чуьнуьхун',
 'rclinks' => 'Эхиримжи $2 йикъан къене $1 масакIавилер къалура <br />$3',
 'diff' => 'тафават',
 'hist' => 'тарих',

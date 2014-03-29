@@ -1278,9 +1278,9 @@ Jeśli chcesz, możesz [$1 obejrzeć porównanie wersji].",
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze ukrywania].
 Jeśli chcesz możesz [$1 obejrzeć porównanie wersji].",
 'rev-deleted-diff-view' => "Jedna z wersji użytych w porównaniu została '''usunięta'''.
-Jeśli chcesz możesz zobaczyć porównanie. Szczegóły mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+Jeśli chcesz, możesz zobaczyć porównanie. Szczegóły można znaleźć w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
 'rev-suppressed-diff-view' => "Jedna z wersji użytych w porównaniu została '''utajniona'''.
-Jeśli chcesz możesz zobaczyć porównanie. Szczegóły mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze utajniania].",
+Jeśli chcesz możesz zobaczyć porównanie. Szczegóły można znaleźć w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze utajniania].",
 'rev-delundel' => 'pokaż/ukryj',
 'rev-showdeleted' => 'pokaż',
 'revisiondelete' => 'Usuń/odtwórz wersje',

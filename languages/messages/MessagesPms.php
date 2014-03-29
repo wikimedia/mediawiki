@@ -485,6 +485,7 @@ Che a dësmentia pa ëd cambié ij [[Special:Preferences|sò gust për {{SITENAM
 'gotaccountlink' => "Ch'a rintra ant ël sistema",
 'userlogin-resetlink' => "A l'ha dësmentià ij sò detaj për intré ant ël sistema?",
 'userlogin-resetpassword-link' => 'Ciav dësmentià?',
+'userlogin-helplink2' => 'Agiut a la conession',
 'userlogin-loggedin' => "A l'é già rintrà an ël sistema tanme {{GENDER:$1|$1}}.
 Ch'a deuvra ël formolari sì-sota për rintré coma n'àutr n'utent.",
 'userlogin-createanother' => "Creé n'àutr cont",
@@ -579,6 +580,7 @@ Për piasì, ch'a speta $1 prima ëd prové torna.",
 'createacct-another-realname-tip' => "Ël nòm ver a l'é opsional.
 S'a decid ëd butelo, a sarà dovrà për dé a l'utent ël mérit ëd sò travaj.",
 'pt-login' => 'Rintré ant ël sistema',
+'pt-login-button' => 'Intré ant ël sistema',
 'pt-createaccount' => 'Creé un cont',
 'pt-userlogout' => 'Seurte dal sistema',
 
@@ -612,6 +614,9 @@ Për finì ëd rintré ant ël sistema, a dev definì na neuva ciav ambelessì:"
 'resetpass-abort-generic' => "La modìfica ëd la ciav a l'é stàita anulà da n'estension.",
 'resetpass-expired' => "Soa ciav a l'é scadùa. Për piasì, ch'a definissa na ciav neuva për rintré ant ël sistema.",
 'resetpass-expired-soft' => "Soa ciav a l'é scadùa e a l'ha damanca d'esse arnovà. Për piasì, ch'a serna na neuva ciav adess o ch'a sgnaca su «{{int:resetpass-submit-cancel}}» për cangela pi tard.",
+'resetpass-validity-soft' => "Soa ciav a l'é nen bon-a: $1
+
+Për piasì, ch'a serna na neuva ciav adess, opura ch'a sgnaca su «{{int:resetpass-submit-cancel}}» për riampostela pi tard.",
 
 # Special:PasswordReset
 'passwordreset' => 'Ri-inissialisassion ëd la ciav',
@@ -994,7 +999,11 @@ Chiel a peul ancora s-ciairé costa diferensa; a peulo essje pì 'd detaj ant ë
 'revdelete-no-file' => "L'archivi sërcà a-i é pa.",
 'revdelete-show-file-confirm' => 'É-lo sigur ëd vorèj vëdde na vërsion scancelà dl\'archivi "<nowiki>$1</nowiki>" da $2 a $3?',
 'revdelete-show-file-submit' => 'Bò!',
-'logdelete-selected' => '{{PLURAL:$1|Event|Event}} dël registr selessionà:',
+'revdelete-selected-text' => '{{PLURAL:$1|Revision selessionnà}} ëd [[:$2]] :',
+'revdelete-selected-file' => "{{PLURAL:$1|Version d'archivi selessionà}} ëd [[:$2]]:",
+'logdelete-selected' => '{{PLURAL:$1|Event}} dël registr selessionà:',
+'revdelete-text-text' => 'Le revision ëscancelà a compariran ancora ant la stòria dla pàgina, ma na part ëd sò contnù a sarà inacessìbil al pùblich.',
+'revdelete-text-file' => "Le version d'archivi scancelà a compariran ancora ant la stòria dj'archivi, ma na part ëd sò contnù a sarà inacessìbil al pùblich.",
 'revdelete-confirm' => "Për piasì, ch'a confema ch'a veul fé sòn, ch'as rend cont dle conseguense, e ch'a lo fa an acòrd con [[{{MediaWiki:Policy-url}}|le régole]].",
 'revdelete-suppress-text' => "La scancelassion a dovrìa '''mach''' esse dovrà an costi cas:
 * Anformassion ch'a podrìo esse difamatòrie

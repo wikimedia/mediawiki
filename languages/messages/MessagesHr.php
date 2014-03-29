@@ -844,6 +844,7 @@ Molimo Vas pričekajte $1 prije nego što pokušate ponovno.',
 'createacct-another-realname-tip' => 'Pravo ime nije obvezno. 
 Ako ga navedete, bit će korišteno za pripisivanje Vaših doprinosa.',
 'pt-login' => 'Prijavi se',
+'pt-login-button' => 'Prijavi se',
 'pt-createaccount' => 'Otvori novi suradnički račun',
 'pt-userlogout' => 'odjavi se',
 
@@ -2435,7 +2436,7 @@ Sva vremena su prema poslužiteljevom vremenu.',
 
 Posljednju promjenu napravio je [[User:$3|$3]] ([[User talk:$3|Razgovor]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Sažetak promjene je bio: \"''\$1''\".",
-'revertpage' => 'Uklonjena promjena suradnika $2, vraćeno na posljednju inačicu suradnika $1',
+'revertpage' => 'Uklonjena promjena suradnika [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]]), vraćeno na posljednju inačicu suradnika [[User:$1|$1]]',
 'revertpage-nouser' => 'Vraćene izmjene suradnika (suradničko ime uklonjeno) na posljednju inačicu suradnika [[User:$1|$1]]',
 'rollback-success' => 'Uklonjeno uređivanje {{GENDER:$1|suradnika|suradnice}} $1
 vraćeno na posljednju inačicu {{GENDER:$2|suradnika|suradnice}} $2.',

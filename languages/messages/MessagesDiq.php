@@ -2285,7 +2285,7 @@ Xo vira mekerê ke, sıteyê webiê bini şenê direkt ebe URLi yew dosya ra gı
 'querypage-disabled' => 'Na pelaya xısusi,sebeb de performansi ra qefılneyê.',
 
 # Book sources
-'booksources' => 'Çımey kitaban',
+'booksources' => 'Çımeyê kıtaban',
 'booksources-search-legend' => 'Seba çımeyanê kıtaban cı geyre',
 'booksources-isbn' => 'ISBN:',
 'booksources-go' => 'Şo',
@@ -4150,7 +4150,7 @@ Ti hem zi eşkeno [[Special:EditWatchlist|use the standard editor]].',
 'version-license-not-found' => 'Seba na derganiye melumatê lisansê detayıni nêvêniya.',
 'version-credits-title' => 'Semedê $1 ra krediy',
 'version-poweredby-credits' => "Ena wiki, dezginda '''[https://www.mediawiki.org/ MediaWiki]''' ya piya vıraziyaya, heqê telifi © 2001-$1 $2.",
-'version-poweredby-others' => 'Zewmi',
+'version-poweredby-others' => 'ê bini',
 'version-poweredby-translators' => "Açernere translatewiki.net'i",
 'version-credits-summary' => 'Ma qayılime ke [[Special:Version|MediaWiki]] rê ke kami destek dayo wa mayê vanime inan bışınasne.',
 'version-license-info' => "MediaWiki xoseri jew nuştereno; MediaWiki'yer, weqfê xoseri nuşteren GNU lisansiya merdumi şene ke vıla kerê, bıvurnê u timar kerê.

@@ -1085,7 +1085,7 @@ Móžeš sej tutón rozdźěl wobhladać; podrobnosće namakaš w [{{fullurl:{{#
 'revdelete-show-file-submit' => 'Haj',
 'revdelete-selected-text' => '{{PLURAL:$1|Wubrana wersija|Wubranej wersiji|Wubrane wersije}} wot [[:$2]]:',
 'revdelete-selected-file' => '{{PLURAL:$1|Wubrana datajowa wersija|Wubranej datajowej wersiji|Wubrane datajowe wersije}} wot [[:$2]]:',
-'logdelete-selected' => '{{PLURAL:$1|Wubrany zapisk z protokola|Wubranej zapiskaj z protokola|Wubrane zapiski z protokola|Wubrane zapiski z protokola}} za $1:',
+'logdelete-selected' => '{{PLURAL:$1|Wubrany zapisk z protokola|Wubranej zapiskaj z protokola|Wubrane zapiski z protokola}} za $1:',
 'revdelete-text-text' => 'Zhašane wersije wostanu hišće we wersijowej historiji, ale dźěle jich wobsaha njebudu přistupne zjawnosći.',
 'revdelete-text-file' => 'Zhašane datajowe wersije wostanu w datajowej historiji, ale dźěle jich wobsaha njebudu přistupne zjawnosći.',
 'logdelete-text' => 'Zhašane protokolowe zapiski wostanu hišće w protokolach, ale dźěle jich wobsaha njebudu přistupne zjawnosći.',

@@ -2479,13 +2479,13 @@ Parameters:
 'revdelete-show-file-submit' => 'Reply to {{msg-mw|Revdelete-show-file-confirm}}.
 
 {{Identical|Yes}}',
+'revdelete-selected-text' => '{{Related|Revdelete-selected}}',
+'revdelete-selected-file' => '{{Related|Revdelete-selected}}',
 'logdelete-selected' => '{{RevisionDelete}}
 Parameters:
 * $1 - number of log events
-* $2 - localized name of Special:Log, maybe with type as subpage [unused]
-See also:
-* {{msg-mw|Revdelete-selected-text}}
-* {{msg-mw|Revdelete-selected-file}}',
+* $2 - (Unused) localized name of Special:Log, maybe with type as subpage
+{{Related|Revdelete-selected}}',
 'revdelete-text-text' => '{{RevisionDelete}}
 This is the introduction explaining the feature.
 
@@ -2536,14 +2536,20 @@ See also:
 * {{msg-mw|Revdelete-otherreason|label for input box}}
 * {{msg-mw|Revdelete-submit|submit button}}',
 'revdelete-hide-text' => 'Option for oversight. This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature.
-[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
-'revdelete-hide-image' => 'Option for <del>oversight</del> [[:mw:RevisionDelete|RevisionDelete]] feature.',
-'revdelete-hide-name' => 'Option for oversight',
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
+{{Related|Revdelete-hide}}',
+'revdelete-hide-image' => 'Option for <del>oversight</del> [[:mw:RevisionDelete|RevisionDelete]] feature.
+{{Related|Revdelete-hide}}',
+'revdelete-hide-name' => 'Option for oversight.
+{{Related|Revdelete-hide}}',
 'revdelete-hide-comment' => 'Option for oversight. {{RevisionDelete}}
-[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
+{{Related|Revdelete-hide}}',
 'revdelete-hide-user' => 'Option for oversight. {{RevisionDelete}}
-[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
-'revdelete-hide-restricted' => 'Option for oversight.',
+[[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
+{{Related|Revdelete-hide}}',
+'revdelete-hide-restricted' => 'Option for oversight.
+{{Related|Revdelete-hide}}',
 'revdelete-radio-same' => 'This message is a part of the [[mw:RevisionDelete|RevisionDelete]] feature. The message is a caption for a column of radioboxes inside a box with {{msg-mw|Revdelete-legend}} as a title.
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]
 There are three radio buttons in each row, and the captions above each column read:
