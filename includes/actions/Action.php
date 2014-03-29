@@ -169,7 +169,7 @@ abstract class Action {
 			return $this->context;
 		} elseif ( $this->page instanceof Article ) {
 			// NOTE: $this->page can be a WikiPage, which does not have a context.
-			wfDebug( __METHOD__ . ': no context known, falling back to Article\'s context.' );
+			wfDebug( __METHOD__ . ": no context known, falling back to Article's context.\n" );
 			return $this->page->getContext();
 		}
 

@@ -127,7 +127,7 @@ class RedisConnectionPool {
 		// Initialize the object at the hash as needed...
 		if ( !isset( self::$instances[$id] ) ) {
 			self::$instances[$id] = new self( $options );
-			wfDebug( "Creating a new " . __CLASS__ . " instance with id $id." );
+			wfDebug( "Creating a new " . __CLASS__ . " instance with id $id.\n" );
 		}
 
 		return self::$instances[$id];
@@ -153,7 +153,7 @@ class RedisConnectionPool {
 			} else {
 				// Server is dead
 				wfDebug( "server $server is marked down for another " .
-					( $this->downServers[$server] - $now ) . " seconds, can't get connection" );
+					( $this->downServers[$server] - $now ) . " seconds, can't get connection\n" );
 
 				return false;
 			}

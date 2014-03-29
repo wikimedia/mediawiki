@@ -108,7 +108,8 @@ abstract class DataUpdate implements DeferrableUpdate {
 			}
 		} catch ( Exception $ex ) {
 			$exception = $ex;
-			wfDebug( "Caught exception, will rethrow after rollback: " . $ex->getMessage() );
+			wfDebug( "Caught exception, will rethrow after rollback: " .
+				$ex->getMessage() . "\n" );
 		}
 
 		// rollback remaining transactions

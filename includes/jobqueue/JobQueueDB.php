@@ -318,7 +318,7 @@ class JobQueueDB extends JobQueue {
 				$title = Title::makeTitleSafe( $row->job_namespace, $row->job_title );
 				if ( !$title ) {
 					$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
-					wfDebug( "Row has invalid title '{$row->job_title}'." );
+					wfDebug( "Row has invalid title '{$row->job_title}'.\n" );
 					continue; // try again
 				}
 				$job = Job::factory( $row->job_cmd, $title,
@@ -463,7 +463,7 @@ class JobQueueDB extends JobQueue {
 					array( 'job_cmd' => $this->type, 'job_token' => $uuid ), __METHOD__
 				);
 				if ( !$row ) { // raced out by duplicate job removal
-					wfDebug( "Row deleted as duplicate by another process." );
+					wfDebug( "Row deleted as duplicate by another process.\n" );
 				}
 			} else {
 				break; // nothing to do

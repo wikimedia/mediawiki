@@ -73,7 +73,7 @@ class CLDRPluralRuleEvaluator {
 		// Calculate the values of the operand symbols
 		$number = strval( $number );
 		if ( !preg_match( '/^ -? ( ([0-9]+) (?: \. ([0-9]+) )? )$/x', $number, $m ) ) {
-			wfDebug( __METHOD__ . ': invalid number input, returning "other"' );
+			wfDebug( __METHOD__ . ": invalid number input, returning 'other'\n" );
 			return count( $rules );
 		}
 		if ( !isset( $m[3] ) ) {

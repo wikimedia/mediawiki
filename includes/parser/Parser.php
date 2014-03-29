@@ -3416,7 +3416,8 @@ class Parser {
 					}
 				} elseif ( MWNamespace::isNonincludable( $title->getNamespace() ) ) {
 					$found = false; # access denied
-					wfDebug( __METHOD__ . ": template inclusion denied for " . $title->getPrefixedDBkey() );
+					wfDebug( __METHOD__ . ": template inclusion denied for " .
+						$title->getPrefixedDBkey() . "\n" );
 				} else {
 					list( $text, $title ) = $this->getTemplateDom( $title );
 					if ( $text !== false ) {
@@ -5206,7 +5207,7 @@ class Parser {
 								$handlerOptions[$paramName] = $match;
 							} else {
 								// Guess not. Append it to the caption.
-								wfDebug( "$parameterMatch failed parameter validation" );
+								wfDebug( "$parameterMatch failed parameter validation\n" );
 								$label .= '|' . $parameterMatch;
 							}
 						}

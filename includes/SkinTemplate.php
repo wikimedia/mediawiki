@@ -1202,7 +1202,8 @@ class SkinTemplate extends Skin {
 				}
 
 				if ( isset( $content_actions[$key] ) ) {
-					wfDebug( __METHOD__ . ": Found a duplicate key for $key while flattening content_navigation into content_actions." );
+					wfDebug( __METHOD__ . ": Found a duplicate key for $key while flattening " .
+						"content_navigation into content_actions.\n" );
 					continue;
 				}
 
