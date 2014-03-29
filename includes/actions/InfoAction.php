@@ -234,6 +234,7 @@ class InfoAction extends FormlessAction {
 			$sortKey = $pageProperties['defaultsort'];
 		}
 
+		$sortKey = htmlspecialchars( $sortKey );
 		$pageInfo['header-basic'][] = array( $this->msg( 'pageinfo-default-sort' ), $sortKey );
 
 		// Page length (in bytes)
