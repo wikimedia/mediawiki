@@ -889,8 +889,8 @@ $2',
 'userlogin-resetlink' => 'Забыли данные для входа?',
 'userlogin-resetpassword-link' => 'Сбросить ваш пароль?',
 'userlogin-helplink2' => 'Помощь по входу',
-'userlogin-loggedin' => 'Вы уже вошли как {{GENDER:$1|$1}}.
-Используйте форму ниже, чтобы войти под другой учётной записью.',
+'userlogin-loggedin' => 'Сиз {{GENDER:$1|$1}} ат бла системагъа кирибсиз.
+Башха аккаунт бла кирир ючюн тюбюрекдеги форманы хайырландырыгъыз.',
 'userlogin-createanother' => 'Создать другую учётную запись',
 'createacct-join' => 'Введите свои данные ниже.',
 'createacct-another-join' => 'Введите данные новой учётной записи ниже.',
@@ -1367,7 +1367,7 @@ $3 {{GENDER:$3|указал|указала}} следующую причину: 
 'histfirst' => 'старейшие',
 'histlast' => 'новейшие',
 'historysize' => '($1 {{PLURAL:$1|байт|байт|байта}})',
-'historyempty' => '(пусто)',
+'historyempty' => '(бошду)',
 
 # Revision feed
 'history-feed-title' => 'История изменений',

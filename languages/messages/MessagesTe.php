@@ -689,7 +689,7 @@ $2',
 మీరు దాన్ని ఇస్తే, వాడుకరి పనుల శ్రేయస్సు ఆ పేరుకు ఆపాదించబడుతుంది.',
 'pt-login' => 'లాగినవండి',
 'pt-login-button' => 'లాగినవండి',
-'pt-createaccount' => 'ఖాతా సృష్టించు',
+'pt-createaccount' => 'ఖాతా సృష్టించుకోండి',
 'pt-userlogout' => 'లాగౌటవండి',
 
 # Email sending
@@ -1098,6 +1098,8 @@ $3 ఇచ్చిన కారణం: ''$2''",
 'revdelete-no-file' => 'పేర్కొన్న ఫైలు ఉనికిలో లేదు.',
 'revdelete-show-file-confirm' => 'మీరు నిజంగానే "<nowiki>$1</nowiki>"  ఫైలు యొక్క $2 $3 నాటి తొలగించిన కూర్పుని చూడాలనుకుంటున్నారా?',
 'revdelete-show-file-submit' => 'అవును',
+'revdelete-selected-text' => '[[:$2]] లో {{PLURAL:$1|ఎంచుకున్న కూర్పు|ఎంచుకున్న కూర్పులు}}:',
+'revdelete-selected-file' => '[[:$2]] లో {{PLURAL:$1|ఎంచుకున్న ఫైలు కూర్పు|ఎంచుకున్న ఫైలు కూర్పులు}}:',
 'logdelete-selected' => '{{PLURAL:$1|ఎంచుకున్న చిట్టా ఘటన|ఎంచుకున్న చిట్టా ఘటనలు}}:',
 'revdelete-text-text' => 'తొలగించిన కూర్పులు పేజీ చరిత్రలో కనిపిస్తూనే ఉంటాయి. కానీ వాటి విషయసంగ్రహంలోని భాగాలు అందరికీ కనిపించవు.',
 'revdelete-text-file' => 'తొలగించిన ఫైలు కూర్పులు పేజీ చరిత్రలో కనిపిస్తూనే ఉంటాయి. కానీ వాటి విషయసంగ్రహంలోని భాగాలు అందరికీ కనిపించవు.',
@@ -1947,6 +1949,10 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 
 # List redirects
 'listredirects' => 'దారిమార్పుల జాబితా',
+
+# List duplicated files special page
+'listduplicatedfiles' => 'నకళ్ళు కలిగిన ఫైళ్ళ జాబితా',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] కు [[$3|{{PLURAL:$2|ఓ నకలు ఉంది|$2 నకళ్ళున్నాయి}}]].',
 
 # Unused templates
 'unusedtemplates' => 'వాడని మూసలు',

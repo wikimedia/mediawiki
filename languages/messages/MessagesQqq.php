@@ -78,6 +78,7 @@
  * @author Liuxinyu970226
  * @author Lloffiwr
  * @author MF-Warburg
+ * @author MIKHEIL
  * @author Malafaya
  * @author MarkvA
  * @author Matma Rex
@@ -362,13 +363,15 @@ One of the set: {{msg-mw|Jan}}, {{msg-mw|Feb}}, {{msg-mw|Mar}}, {{msg-mw|Apr}}, 
 'february-date' => 'A date in the Gregorian month of February. $1 is the numerical date, for example "23".',
 'march-date' => 'A date in the Gregorian month of March. $1 is the numerical date, for example "23".',
 'april-date' => 'A date in the Gregorian month of April. $1 is the numerical date, for example "23".',
-'may-date' => 'A date in the Gregorian month of May. $1 is the numerical date, for example "23". The month name is not abbreviated.',
+'may-date' => 'A date in the Gregorian month of May. $1 is the numerical date, for example "23". The month name is not abbreviated.
+{{Identical|May}}',
 'june-date' => 'A date in the Gregorian month of June. $1 is the numerical date, for example "23".',
 'july-date' => 'A date in the Gregorian month of July. $1 is the numerical date, for example "23".',
 'august-date' => 'A date in the Gregorian month of August. $1 is the numerical date, for example "23".',
 'september-date' => 'A date in the Gregorian month of September. $1 is the numerical date, for example "23".',
 'october-date' => 'A date in the Gregorian month of October. $1 is the numerical date, for example "23".',
-'november-date' => 'A date in the Gregorian month of November. $1 is the numerical date, for example "23".',
+'november-date' => 'A date in the Gregorian month of November. $1 is the numerical date, for example "23".
+{{Identical|November}}',
 'december-date' => 'A date in the Gregorian month of December. $1 is the numerical date, for example "23".',
 
 # Categories related messages
@@ -8302,7 +8305,7 @@ See example: [{{canonicalurl:Main page|action=info}} Main page?action=info]',
 * $3 - the number of subpages of the page that are not redirects',
 'pageinfo-firstuser' => 'The user who created the page.',
 'pageinfo-firsttime' => 'The date and time the page was created.',
-'pageinfo-lastuser' => 'The last user who edited the page.',
+'pageinfo-lastuser' => 'ბოლო მომხმარებელი, რომელმაც ეს გვერდი დაარედაქტირა.',
 'pageinfo-lasttime' => 'The date and time the page was last edited.',
 'pageinfo-edits' => 'Used as label in info page. See [{{canonicalurl:Support|action=info}} example].
 

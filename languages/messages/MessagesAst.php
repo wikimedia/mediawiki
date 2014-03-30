@@ -1045,6 +1045,8 @@ Pues ver el diff; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/supr
 'revdelete-no-file' => 'El ficheru conseñáu nun esiste.',
 'revdelete-show-file-confirm' => '¿Tas seguru de que quies ver una versión desaniciada del ficheru "<nowiki>$1</nowiki>" del $2 a les $3?',
 'revdelete-show-file-submit' => 'Sí',
+'revdelete-selected-text' => '{{PLURAL:$1|Revisión seleicionada|Revisiones seleicionaes}} de [[:$2]]:',
+'revdelete-selected-file' => '{{PLURAL:$1|Versión del ficheru seleicionada|Versiones del ficheru seleicionaes}} de [[:$2]]:',
 'logdelete-selected' => '{{PLURAL:$1|Socesu del rexistru seleicionáu|Socesos del rexistru seleicionaos}}:',
 'revdelete-text-text' => 'Les revisiones desaniciaes inda apaecerán nel historial de la páxina, pero partes del conteníu nun sedrán accesibles al públicu.',
 'revdelete-text-file' => 'Les versiones del ficheru desaniciaes inda apaecerán nel historial del ficheru, pero partes del conteníu nun sedrán accesibles al públicu.',
@@ -1918,6 +1920,11 @@ Seique quieras camudar la descripción de la so [páxina de descripción de fich
 # List redirects
 'listredirects' => 'Llista de redireiciones',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Llista de ficheros con duplicaos',
+'listduplicatedfiles-summary' => "Esta ye una llista de ficheros onde la versión más nueva del ficheru ye un duplicáu de la versión más nueva d'algún otru ficheru. Considérense sólo los ficheros llocales.",
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] tien [[$3|{{PLURAL:$2|un duplicáu|$2 duplicaos}}]].',
+
 # Unused templates
 'unusedtemplates' => 'Plantíes ensin usu',
 'unusedtemplatestext' => "Esta páxina llista toles páxines del espaciu de nomes {{ns:template}} que nun tán inxeríes n'otres páxines.
@@ -2373,7 +2380,8 @@ ye la configuración actual de la páxina '''$1''':",
 la base de datos. Esta ye la configuración actual de la páxina '''$1''':",
 'protect-locked-access' => "La to cuenta nun tien permisu pa camudar los niveles de proteición de páxina.
 Esta ye la configuración actual pa la páxina '''$1''':",
-'protect-cascadeon' => "Esta páxina ta protexida nestos momentos porque ta inxerida {{PLURAL:$1|na siguiente páxina, que tien|nes siguientes páxines, que tienen}} activada la proteición en cascada. Pues camudar el nivel de proteición d'esta páxina, pero nun va afeutar a la proteición en cascada.",
+'protect-cascadeon' => "Esta páxina ta protexida nestos momentos porque ta incluída {{PLURAL:$1|na siguiente páxina, que tien|nes siguientes páxines, que tienen}} activada la proteición en cascada.
+Los cambios nel nivel de proteición d'esta páxina nun afeutarán a la proteición en cascada.",
 'protect-default' => 'Permitir tolos usuarios',
 'protect-fallback' => 'Permitir namái usuarios con permisu "$1"',
 'protect-level-autoconfirmed' => 'Permitir namái usuarios autoconfirmaos',

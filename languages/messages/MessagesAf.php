@@ -13,6 +13,7 @@
  * @author Byeboer
  * @author Deadelf
  * @author Kaganer
+ * @author Kolega2357
  * @author Manie
  * @author Naudefj
  * @author Nemo bis
@@ -2379,7 +2380,7 @@ Iemand anders het reeds hierdie bladsy gewysig of teruggerol na 'n vroeëre weer
 
 Die mees onlangse wysiging is gemaak deur [[User:$3|$3]] ([[User talk:$3|bespreking]]{{int:pipe-separator}}[[Special:Contributions/$3|bydraes]]).",
 'editcomment' => "Die wysigsopsomming was: \"''\$1''\".",
-'revertpage' => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1',
+'revertpage' => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur [[User:$1|$1]]',
 'revertpage-nouser' => 'Rol wysigings deur versteekte gebruiker terug na die laaste weergawe deur [[User:$1|$1]]',
 'rollback-success' => 'Wysigings deur $1 is teruggerol.
 Die laaste weergawe van $2 is teruggeplaas.',

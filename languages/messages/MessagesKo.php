@@ -951,8 +951,8 @@ $1 뒤에 다시 시도하세요.',
 
 # Special:PasswordReset
 'passwordreset' => '비밀번호 재설정',
-'passwordreset-text-one' => '비밀번호를 재설정하려면 이 양식을 작성해주세요.',
-'passwordreset-text-many' => '{{PLURAL:$1|이메일로 임시 비밀번호를 발급받으려면 필드 중 하나를 채우세요.}}',
+'passwordreset-text-one' => '이메일을 통해 임시 비밀번호를 받으려면 이 양식을 채우세요.',
+'passwordreset-text-many' => '{{PLURAL:$1|이메일을 통해 임시 비밀번호를 받으려면 필드 중 하나를 채우세요.}}',
 'passwordreset-legend' => '비밀번호 재설정',
 'passwordreset-disabled' => '이 위키에서는 비밀번호를 재설정할 수 없습니다.',
 'passwordreset-emaildisabled' => '이 위키에서 이메일 기능이 비활성화되어 있습니다.',
@@ -989,7 +989,7 @@ $2
 # Special:ChangeEmail
 'changeemail' => '이메일 주소 바꾸기',
 'changeemail-header' => '계정 메일 주소 바꾸기',
-'changeemail-text' => '이메일 주소를 바꾸려면 이 양식을 작성해주세요. 바뀜을 확인하기 위해 비밀번호를 입력해야 합니다.',
+'changeemail-text' => '이메일 주소를 바꾸려면 이 양식을 채우세요. 이 바뀜을 확인하기 위해 비밀번호를 입력해야 합니다.',
 'changeemail-no-info' => '이 특수 문서에 직접 접근하려면 반드시 로그인해야 합니다.',
 'changeemail-oldemail' => '현재 이메일 주소 :',
 'changeemail-newemail' => '새 이메일 주소:',
@@ -1345,10 +1345,13 @@ $2개 보다 적게 {{PLURAL:$2|써야}} 하지만 {{PLURAL:$1|지금은 $1개�
 'revdelete-no-file' => '해당 파일이 존재하지 않습니다.',
 'revdelete-show-file-confirm' => '정말 "<nowiki>$1</nowiki>" 파일의 삭제된 $2 $3 버전을 보시겠습니까?',
 'revdelete-show-file-submit' => '예',
+'revdelete-selected-text' => '[[:$2]]의 {{PLURAL:$1|선택한 판}}:',
+'revdelete-selected-file' => '[[:$2]]의 {{PLURAL:$1|선택한 파일 판}}:',
 'logdelete-selected' => '{{PLURAL:$1|선택한 기록}}:',
 'revdelete-text-text' => '삭제된 판은 여전히 문서 역사에 남게 되지만, 그 내용의 일부는 다른 사람들이 접근할 수 없게 됩니다.',
 'revdelete-text-file' => '삭제된 파일 버전은 계속 파일 역사에 남게 되지만, 내용의 일부는 다른 사람들이 접근할 수 없게 됩니다.',
 'logdelete-text' => '삭제된 로그 내용은 로그에 보여지겠지만, 내용의 일부는 다른 사람들이 접근할 수 없게 됩니다.',
+'revdelete-text-others' => '{{SITENAME}}에 있는 다른 관리자는 여전히 숨겨진 내용에 접근할 수 있고 추가 제한이 설정되어 있지 않으면, 이 같은 인터페이스를 통해 다시 되살릴 수 있습니다.',
 'revdelete-confirm' => '이 작업을 수행하는 것의 결과를 알고 있으며, [[{{MediaWiki:Policy-url}}|정책]]에 맞는 행동인지 확인해주세요.',
 'revdelete-suppress-text' => "숨기기는 '''다음 경우에만''' 사용되어야 합니다:
 * 잠재적인 비방 정보
@@ -2230,6 +2233,11 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # List redirects
 'listredirects' => '넘겨주기 문서 목록',
 
+# List duplicated files special page
+'listduplicatedfiles' => '중복된 파일의 목록',
+'listduplicatedfiles-summary' => '파일의 가장 최근 판은 어떤 다른 파일의 가장 최근 판과 중복되는 파일의 목록입니다. 로컬 파일만 고려됩니다.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] 파일은 [[$3|{{PLURAL:$2|중복|$2번 중복}}]]이 있습니다.',
+
 # Unused templates
 'unusedtemplates' => '사용하지 않는 틀 목록',
 'unusedtemplatestext' => '다른 문서에서 사용하지 않는 {{ns:template}} 이름공간 문서의 목록입니다.
@@ -2345,7 +2353,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'deadendpagestext' => '{{SITENAME}} 내의 다른 문서로 나가는 링크가 없는 문서의 목록입니다.',
 'protectedpages' => '보호된 문서 목록',
 'protectedpages-indef' => '오른쪽 조건에 맞는 보호만 보기',
-'protectedpages-summary' => '이 문서는 현재 보호된 기존 문서를 나열합니다. 만들기 보호된 문서 제목 목록을 보려면 [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]]를 참조하세요.',
+'protectedpages-summary' => '이 페이지는 현재 보호된 기존 문서를 나열합니다. 만들기 보호된 문서 제목 목록을 보려면 [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]]를 보세요.',
 'protectedpages-cascade' => '연쇄적 보호만 보기',
 'protectedpages-noredirect' => '넘겨주기를 숨기기',
 'protectedpagesempty' => '보호되어 있는 문서가 없습니다.',
@@ -2358,7 +2366,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'protectedpages-unknown-timestamp' => '알 수 없음',
 'protectedpages-unknown-performer' => '알 수 없는 사용자',
 'protectedtitles' => '만들기 보호된 표제어 목록',
-'protectedtitles-summary' => '이 문서는 현재 만들기 보호가 설정되어 있는 문서 제목을 나열합니다. 보호된 기존 문서들의 목록을 보려면 [[{{#special:ProtectedPages}}|{{int:protectedpages}}]]을 참조하세요.',
+'protectedtitles-summary' => '이 페이지는 현재 만들기 보호가 설정되어 있는 문서 제목을 나열합니다. 보호된 기존 문서들의 목록을 보려면 [[{{#special:ProtectedPages}}|{{int:protectedpages}}]]을 보세요.',
 'protectedtitlesempty' => '해당 조건에 맞는 만들기 금지 표제어가 없습니다.',
 'listusers' => '사용자 목록',
 'listusers-editsonly' => '기여가 있는 사용자만 보기',
@@ -2691,7 +2699,7 @@ $UNWATCHURL
 'protect-locked-access' => "문서 보호 수준을 바꿀 권한이 없습니다.
 '''$1''' 문서의 권한은 다음과 같습니다.",
 'protect-cascadeon' => '다음 {{PLURAL:$1|문서}}에 연쇄적 보호가 작동하고 있어 그 문서에 속한 이 문서도 현재 보호됩니다.
-이 문서의 보호 설정의 변경은 연쇄적 보호에는 영향을 주지 않습니다.',
+이 문서의 보호 설정을 바꾸는 것은 연쇄적 보호에는 영향을 주지 않습니다.',
 'protect-default' => '모든 사용자에게 허용',
 'protect-fallback' => '"$1" 권한의 사용자만 허용',
 'protect-level-autoconfirmed' => '자동 인증된 사용자만 허용',

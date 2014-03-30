@@ -890,7 +890,7 @@ Benutze das unten stehende Formular, um dich unter einem anderen Benutzernamen a
 'createacct-reason-ph' => 'Warum erstellst du ein anderes Benutzerkonto?',
 'createacct-captcha' => 'Sicherheitsprüfung',
 'createacct-imgcaptcha-ph' => 'Gib den Text ein, den du oben siehst.',
-'createacct-submit' => 'Dein Benutzerkonto erstellen',
+'createacct-submit' => 'Benutzerkonto erstellen',
 'createacct-another-submit' => 'Anderes Benutzerkonto erstellen',
 'createacct-benefit-heading' => '{{SITENAME}} wird von Menschen wie dir geschaffen.',
 'createacct-benefit-body1' => '{{PLURAL:$1|Bearbeitung|Bearbeitungen}}',

@@ -1650,9 +1650,21 @@ Wenn das Problem weiter besteht, informier en [[Special:ListUsers/sysop|Administ
 'lockmanager-fail-openlock' => 'Die Sperrdatei für "$1" konnt net geschloss sin.',
 'lockmanager-fail-releaselock' => 'Die Sperr für "$1" konnt net freigemacht sin.',
 'lockmanager-fail-db-bucket' => 'Es konnte mit Sammelabruf $1 ken ausreichend Oonzoohl an Verbinnunge zu Sperrdatebanke heargestellt sin.',
+'lockmanager-fail-db-release' => 'Die Sperre uff Datebank $1 konnte net freigeb (gemach) sin.',
+'lockmanager-fail-svr-acquire' => 'Die Sperre uff Server $1 konnte net abgeruf sin.',
+'lockmanager-fail-svr-release' => 'Die Sperre uff Server $1 konnte net freigeb (gemach) sin.',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'Do ist en Fehler beim Öffne von der Datei zur ZIP-Üwerprüfung uffgetret (passiert).',
+'zip-wrong-format' => 'Die oongebne Datei ist ken ZIP-Datei.',
+'zip-bad' => 'Die Datei ist beschädigt orrer en aus annerweitiche Gründe net lesbare ZIP-Datei.
+Sie kann do drum ken ordnungsgemäss Sicherheitsüwerprüfung unnerzoh sin.',
+'zip-unsupported' => 'Die ZIP-Datei verfücht üwer Komprimierungseichenschafte, wo net von MediaWiki unnersteetzt sin.
+Sie kann dodrum ken ordnungsgemäss Sicherheitsüwerprüfung unnerzoh sin.',
 
 # Special:UploadStash
 'uploadstash' => 'Vorabspeichrung beim Hochloode',
+'uploadstash-summary' => 'Die Seit ermöchlicht den Zugriff uff Dateie, wo hochgelood worre, bzw. grood hochgelood werre, awer noch net uff dem Wiki publiziert worre. Die Dateie sind ausschliesslich für den hochloodende Benutzer sichtbar.',
 'uploadstash-clear' => 'Die voarab gespeicherte Dateie entferne',
 'uploadstash-nofiles' => 'Do sind ken voarab gespeicherte Dateie voarhand.',
 'uploadstash-badtoken' => 'Das Entferne der voarab gespeicherte Dateie woor erfollichlos, vielleicht weil deine Sitzungsdate abgeloof sind. Bittschön versuch das nochmo erneit.',
@@ -1662,19 +1674,47 @@ Wenn das Problem weiter besteht, informier en [[Special:ListUsers/sysop|Administ
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Zugriff verweichert',
+'img-auth-nopathinfo' => 'Die Oongäb PATH_INFO fehlt.
+Der Server ist net dafoar ingerichtet, die Information weiterzugebe.
+Sie könnt CGI-gestützt sin und kann dodrum "img_auth" (Authentifizierung von dem Dateiuffruf) net unnerstütze.
+Sieh ooch https://www.mediawiki.org/wiki/Manual:Image_Authorization (englisch).',
+'img-auth-notindir' => 'Der gewünschte Paad ist net im konfigurierte Uploadverzeichnis.',
+'img-auth-badtitle' => 'Aus "$1" kann ken gülticher Titel erstellt sin.',
+'img-auth-nologinnWL' => 'Du bist net oongemeldt und "$1" ist net in der weiss List.',
+'img-auth-nofile' => 'Datei "$1" existiert net.',
+'img-auth-isdir' => 'Du versuchst, uff en Verzeichnis "$1" zuzugreife.
+Nuar Dateizugriff ist erlaubt.',
+'img-auth-streaming' => 'Loode "$1".',
+'img-auth-public' => 'img_auth.php gibt Dateie von enem private Wiki aus.
+Dieses Wiki woard wie en öffentliches Wiki konfiguriert.
+Aus Sicherheitsgründe ist img_auth.php deaktiviert.',
+'img-auth-noread' => 'Benutzer hot keh Berechtichung, "$1" se lese.',
+'img-auth-bad-query-string' => 'Die URL weist en ungültiche Abfragezeichefolliche uff.',
 
 # HTTP errors
+'http-invalid-url' => 'Ungültiche URL: $1',
+'http-invalid-scheme' => 'URLs mit dem Schema "$1" werre net unnerstützt',
+'http-request-error' => 'Fehler beim Oonfrch schicke.',
 'http-read-error' => 'HTTP-Lesefehler.',
+'http-timed-out' => 'Zeitüwerschreitung bei der HTTP-Oofroch.',
+'http-curl-error' => 'Fehler beim Abruf von der URL: $1',
+'http-bad-status' => 'Während, im verloof von der HTTP-Oonfroch ist en Fehler uffgetret (passiert): $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL ist net erreichbar',
+'upload-curl-error6-text' => 'Die oongebne URL ist net erreichbar. Prüf sowohl die URL uff Fehler als ooch den Online-Status von der Seit',
 'upload-curl-error28' => 'Zeitüwerschreitung beim Hochloode',
+'upload-curl-error28-text' => 'Die Seit braucht zu lang für se antworte. Prüf, ob die Seit online ist, woort en koorz Moment und versuch es dann wieder erneit. Es kann sinnvoll sin, das zu enem andre Zeitpunkt ernet zu versuche.',
 
 'license' => 'Lizenz:',
 'license-header' => 'Lizenz',
 'nolicense' => 'Ken Voarauswahl',
+'license-nopreview' => '(do ist ken Voarschau verfüchbar)',
+'upload_source_url' => ' (gültiche, öffentlich zugängliche URL)',
+'upload_source_file' => ' (en Datei uff deinem Komputadoar)',
 
 # Special:ListFiles
+'listfiles-summary' => 'Die Spezialseit listiert alle hochuffgeloodne Dateie',
 'listfiles_search_for' => 'Such noh Datei:',
 'imgfile' => 'Datei',
 'listfiles' => 'Dateilist',
@@ -1717,6 +1757,7 @@ En [[Special:WhatLinksHere/$2|vollständiche List]] ist verfüchbar.',
 'linkstoimage-redirect' => '$1 (Dateiweiterleitung) $2',
 'duplicatesoffile' => 'Die {{PLURAL:$1|follichend Datei ist en Duplikat|follichende $1 Dateie sind Duplikate}} von der Datei ([[Special:FileDuplicateSearch/$2|weitre Detalhes]]):',
 'sharedupload' => 'Die Datei stammt aus $1 und därreft von annre Projekte verwendt sin.',
+'sharedupload-desc-there' => 'Die Datei stammt aus $1 und därref von annre Projekte verwendt sinn. Sieh uff der [$2 Dateibeschreibungsseit] noh weitre Informatione.',
 'sharedupload-desc-here' => 'Die Datei stammt aus $1 und kann von annre Projekte verwennet sin. Die Beschreibung von dene [$2 Dateibeschreibungsseit] weard unne oongezeicht.',
 'filepage-nofile' => 'Do gebts ken Datei mit dem Noome voarhand.',
 'filepage-nofile-link' => 'Do gebts ken Datei mit dem Noome voarhand. Du kannst jedoch [$1 die Datei hochloode].',
@@ -1778,6 +1819,9 @@ En [[Special:WhatLinksHere/$2|vollständiche List]] ist verfüchbar.',
 
 # Random page in category
 'randomincategory' => 'Zufälliche Seit von en Kategorie',
+'randomincategory-invalidcategory' => '"$1" ist ken gülticher Kategorieenoome.',
+'randomincategory-nopages' => 'Es gebt kene Seite in [[:Category:$1]].',
+'randomincategory-selectcategory' => 'Zufälliche Seit aus der Kategorie: $1 $2',
 'randomincategory-selectcategory-submit' => 'Geh, los',
 
 # Random redirect
@@ -2179,6 +2223,7 @@ $1',
 'sp-contributions-suppresslog' => 'Unnerdrückte Benutzerbeiträch',
 'sp-contributions-username' => 'IP-Adress orrer Benutzernoome:',
 'sp-contributions-toponly' => 'Nuar aktuelle Versione zeiche',
+'sp-contributions-newonly' => 'Nuar Seitererstellunge oonzeiche',
 'sp-contributions-submit' => 'Such',
 
 # What links here
@@ -2279,6 +2324,7 @@ $1',
 'locknoconfirm' => 'Du host das Bestätichungsfeld net markiert.',
 'lockdbsuccesssub' => 'Datebank woard erfollichreich gesperrt',
 'unlockdbsuccesssub' => 'Datebank woard erfollichreich freigemacht (entblockt)',
+'unlockdbsuccesstext' => 'Die {{SITENAME}}-Datebank woard freigeb (gemacht).',
 'databasenotlocked' => 'Die Datebank ist net gesperrt.',
 'lockedbyandtime' => '(von $1 am $2 um $3 Uhr)',
 
@@ -2286,6 +2332,7 @@ $1',
 'move-page' => 'Verschiebe von "$1"',
 'move-page-legend' => 'Seit verschiebe',
 'movearticle' => 'Seit verschiebe:',
+'movenotallowed' => 'Du host net die erforderliche Berechtichung, um Seite verschiebe zu könne.',
 'newtitle' => 'Ziel (zu neie Titel):',
 'move-watch' => 'Quell- und Zielseit beobachte',
 'movepagebtn' => 'Seit verschiebe',
@@ -2336,6 +2383,11 @@ $1',
 'thumbnail_error_remote' => 'Fehlermeldung von $1:
 $2',
 'djvu_page_error' => 'DjVu-Seit ausserhalleb von der Seitbereich',
+'thumbnail_invalid_params' => 'Ungültiche Thumbnail-Parameter',
+'thumbnail_dest_directory' => 'Zielverzeichnis kann net erstellt sin.',
+'thumbnail_image-type' => 'Bildtyp net unnersteetzt',
+'thumbnail_gd-library' => 'Unvollständiche Konfiguration von der GD-Bibliothek: Fehlende Funktion $1',
+'thumbnail_image-missing' => 'Datei scheint fehlend zu sin: $1',
 
 # Special:Import
 'import' => 'Seite importiere',
@@ -2349,18 +2401,24 @@ $2',
 'import-comment' => 'Grund:',
 'importstart' => 'Importiere Seite …',
 'importnopages' => 'Ken Seit zum Importiere voarhand.',
+'importunknownsource' => 'Unbekannte Importquell',
+'importcantopen' => 'Importdatei konnt net geöffnet sin',
 'importbadinterwiki' => 'Falscher Interwiki-Link',
 'importnotext' => 'Leer oder ken Text',
 'importsuccess' => 'Import abgeschloss.',
 'importnofile' => 'Es ist ken Importdatei ausgewählt worre.',
+'import-parse-failure' => 'Fehler beim XML-Import:',
 'import-noarticle' => 'Do woard ken zu importierend Seit oongeb!',
 'import-upload' => 'XML-Dateie importiere',
 
 # Import log
 'importlogpage' => 'Import-Logbuch',
+'import-logentry-interwiki' => 'importierte "$1" (Transwiki)',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Version|Versione}} von $2',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript-Test',
+'javascripttest-title' => '$1-Tests werre doorrichgeführt',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Dein Benutzerseit',
@@ -2376,6 +2434,7 @@ $2',
 'tooltip-ca-viewsource' => 'Die Seit ist geschützt. Ehr Quelltext kann dennoch oongesiehn und kopiert sin.',
 'tooltip-ca-history' => 'Frühre Versione von der Seit',
 'tooltip-ca-protect' => 'Die Seit schütze',
+'tooltip-ca-unprotect' => 'Seitschutz ännre',
 'tooltip-ca-delete' => 'Die Seit lösche',
 'tooltip-ca-move' => 'Die Seit verschiebe',
 'tooltip-ca-watch' => 'Die Seit zur persönliche Beobachtungslist hinzufüche',
@@ -2718,6 +2777,24 @@ Weitre werre standardmässich net oongezeicht.
 
 'exif-copyrighted-true' => 'Geschützt',
 'exif-copyrighted-false' => 'Uarheberrechtsstatus net festgeleht',
+
+'exif-unknowndate' => 'Unbekanntes Datum',
+
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Horizontal gespiechelt',
+'exif-orientation-3' => 'Um 180° gedreht',
+'exif-orientation-4' => 'Vertikal gespiechelt',
+'exif-orientation-5' => 'Entgeche dem Uahrzeichersinn um 90° gedreht und vertikal gespiechelt',
+'exif-orientation-6' => 'Um 90° entgeche dem Uahrzeichersinn gedreht',
+'exif-orientation-7' => 'Um 90° im Uahrzeigersinn gedreht und vertikal gespiechelt',
+'exif-orientation-8' => 'Um 90° im Uahrzeichersinn gedreht',
+
+'exif-planarconfiguration-1' => 'Grobformat',
+'exif-planarconfiguration-2' => 'Planarformat',
+
+'exif-colorspace-65535' => 'Net kalibriert',
+
+'exif-componentsconfiguration-0' => 'Existiert net',
 
 'exif-exposuremode-1' => 'Manuelle Belichtung',
 
