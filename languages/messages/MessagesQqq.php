@@ -10892,4 +10892,20 @@ test
 'expand_templates_generate_rawhtml' => 'Used as checkbox label.',
 'expand_templates_preview' => '{{Identical|Preview}}',
 
+# Tracking categories special page
+'trackingcategories' => 'Special:TrackingCategories page implementing list of Tracking categories [[mw:Help:Tracking categories|tracking category]]',
+'trackingcategories-summary' => 'Description for [[Special:TrackingCategories]] page [[mw:Help:Tracking categories|tracking category]]',
+'trackingcategories-msg' => 'Header for the message column of the table on [[Special:TrackingCategories]]. This column lists the mediawiki message that controls the tracking category in question.',
+'trackingcategories-name' => 'Header for the message column of the table on [[Special:TrackingCategories]]. This column lists the name of the tracking category in the content language.',
+'trackingcategories-desc' => 'Header for the message column of the table on [[Special:TrackingCategories]]. This column lists the inclusion criteria for the category.',
+'noindex-category-desc' => 'No-index category-description. Shown on [[Special:TrackingCategories]]',
+'index-category-desc' => 'Index category-description. Shown on [[Special:TrackingCategories]]',
+'post-expand-template-inclusion-category-desc' => 'Post expand template inclusion category description. Shown on [[Special:TrackingCategories]]',
+'post-expand-template-argument-category-desc' => 'Post expand template argument category description. Shown on [[Special:TrackingCategories]]',
+'expensive-parserfunction-category-desc' => 'Expensive parserfunction category description. Shown on [[Special:TrackingCategories]]',
+'broken-file-category-desc' => 'Broken file category description. Shown on [[Special:TrackingCategories]]',
+'hidden-category-category-desc' => 'Hidden-category category description. Shown on [[Special:TrackingCategories]]',
+'trackingcategories-nodesc' => 'Tracking category description not available message',
+'trackcategories-disabled' => 'Tracking category disabled message',
+
 );

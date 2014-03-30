@@ -467,6 +467,7 @@ $specialPageAliases = array(
 	'Specialpages'              => array( 'SpecialPages' ),
 	'Statistics'                => array( 'Statistics' ),
 	'Tags'                      => array( 'Tags' ),
+	'TrackingCategories'        => array( 'TrackingCategories' ),
 	'Unblock'                   => array( 'Unblock' ),
 	'Uncategorizedcategories'   => array( 'UncategorizedCategories' ),
 	'Uncategorizedimages'       => array( 'UncategorizedFiles', 'UncategorizedImages' ),
@@ -2946,6 +2947,22 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'listgrouprights-removegroup-self'     => 'Remove {{PLURAL:$2|group|groups}} from own account: $1',
 'listgrouprights-addgroup-self-all'    => 'Add all groups to own account',
 'listgrouprights-removegroup-self-all' => 'Remove all groups from own account',
+
+# Tracking categories page
+'trackingcategories'                           => 'Tracking categories',
+'trackingcategories-summary'                   => 'This page lists tracking categories which are automatically populated by the MediaWiki software. Their names can be changed by altering the relevant system messages in the {{ns:8}} namespace.',
+'trackingcategories-msg'                       => 'Tracking Category',
+'trackingcategories-name'                      => 'Message name',
+'trackingcategories-desc'                      => 'Category inclusion criteria',
+'noindex-category-desc'                        => 'The page has a <nowiki>__NOINDEX__</nowiki> magic word on it (and is in a namespace where that flag is allowed), and hence is not indexed by robots.',
+'index-category-desc'                          => 'The page has a <nowiki>__INDEX__</nowiki> on it (and is in a namespace where that flag is allowed), and hence is indexed by robots where it normally wouldn\'t be.',
+'post-expand-template-inclusion-category-desc' => 'After expanding all the templates, the page size is bigger than $wgMaxArticleSize, so some templates weren\'t expanded.',
+'post-expand-template-argument-category-desc'  => 'After expanding a template argument (something in triple braces, like {{{Foo}}}), the page is bigger than $wgMaxArticleSize.',
+'expensive-parserfunction-category-desc'       => 'Too many expensive parser functions (like #ifexists) included on a page. See [https://www.mediawiki.org/wiki/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].',
+'broken-file-category-desc'                    => 'Category added if the page contains a broken file link (a link to embed a file when the file does not exist).',
+'hidden-category-category-desc'                => 'This is a category with <nowiki>__HIDDENCAT__</nowiki> on it, which prevents it from showing up in the category links box on pages, by default.',
+'trackingcategories-nodesc'                    => 'Description not available',
+'trackingcategories-disabled'                     => 'Category is disabled',
 
 # Email user
 'mailnologin'              => 'No send address',
