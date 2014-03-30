@@ -430,7 +430,10 @@ class MediaWiki {
 			return;
 		}
 
-		if ( wfRunHooks( 'UnknownAction', array( $request->getVal( 'action', 'view' ), $page ) ) ) {
+		/**
+		* @deprecated since, 1.19
+		*/
+		if ( wfRunHooks( 'UnknownAction', array( $request->getVal( 'action', 'view' ), $page ), /* deprecated since */ '1.19' ) ) {
 			$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 		}
 
