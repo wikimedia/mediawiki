@@ -173,8 +173,7 @@ class MWException extends Exception {
 	 * @return string
 	 */
 	public function getPageTitle() {
-		global $wgSitename;
-		return $this->msg( 'pagetitle', "$1 - $wgSitename", $this->msg( 'internalerror', 'Internal error' ) );
+		return $this->msg( 'internalerror', 'Internal error' );
 	}
 
 	/**
@@ -206,7 +205,7 @@ class MWException extends Exception {
 	 * Output the exception report using HTML.
 	 */
 	public function reportHTML() {
-		global $wgOut;
+		global $wgOut, $wgSitename;
 		if ( $this->useOutputPage() ) {
 			$wgOut->prepareErrorPage( $this->getPageTitle() );
 
@@ -222,7 +221,8 @@ class MWException extends Exception {
 			header( 'Content-Type: text/html; charset=utf-8' );
 			echo "<!DOCTYPE html>\n" .
 				'<html><head>' .
-				'<title>' . htmlspecialchars( $this->getPageTitle() ) . '</title>' .
+				// Mimick OutputPage::setPageTitle behaviour
+				'<title>' . htmlspecialchars( $this->msg( 'pagetitle', "$1 - $wgSitename", $this->getPageTitle() ) ) . '</title>' .
 				'<style>body { font-family: sans-serif; margin: 0; padding: 0.5em 2em; }</style>' .
 				"</head><body>\n";
 
