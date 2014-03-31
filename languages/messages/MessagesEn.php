@@ -2961,8 +2961,8 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'expensive-parserfunction-category-desc'       => 'Too many expensive parser functions (like #ifexists) included on a page. See [https://www.mediawiki.org/wiki/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].',
 'broken-file-category-desc'                    => 'Category added if the page contains a broken file link (a link to embed a file when the file does not exist).',
 'hidden-category-category-desc'                => 'This is a category with <nowiki>__HIDDENCAT__</nowiki> on it, which prevents it from showing up in the category links box on pages, by default.',
-'trackingcategories-nodesc'                    => 'Description not available',
-'trackingcategories-disabled'                     => 'Category is disabled',
+'trackingcategories-nodesc'                    => 'No description available.',
+'trackingcategories-disabled'                  => 'Category is disabled',
 
 # Email user
 'mailnologin'              => 'No send address',

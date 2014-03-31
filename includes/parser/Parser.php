@@ -4150,6 +4150,10 @@ class Parser {
 	 * Add a tracking category, getting the title from a system message,
 	 * or print a debug message if the title is invalid.
 	 *
+	 * Please add any message that you use with this function to
+	 * $wgTrackingCategories. That way they will be listed on
+	 * Special:TrackingCategories.
+	 *
 	 * @param string $msg message key
 	 * @return Boolean: whether the addition was successful
 	 */
