@@ -414,7 +414,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$this->addFields( 'ipb_deleted' );
 
 		if ( $showBlockInfo ) {
-			$this->addFields( array( 'ipb_id', 'ipb_by', 'ipb_by_text', 'ipb_reason', 'ipb_expiry' ) );
+			$this->addFields( array( 'ipb_id', 'ipb_by', 'ipb_by_text', 'ipb_reason', 'ipb_expiry', 'ipb_timestamp' ) );
 		}
 
 		// Don't show hidden names
