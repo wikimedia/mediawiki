@@ -80,9 +80,11 @@ class ApiResult extends ApiBase {
 	/**
 	 * Call this function when special elements such as '_element'
 	 * are needed by the formatter, for example in XML printing.
+	 * @since 1.23 $flag parameter added
+	 * @param bool $flag Set the raw mode flag to this state
 	 */
-	public function setRawMode() {
-		$this->mIsRawMode = true;
+	public function setRawMode( $flag = true ) {
+		$this->mIsRawMode = $flag;
 	}
 
 	/**

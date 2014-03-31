@@ -644,6 +644,7 @@ class ApiMain extends ApiBase {
 		global $wgShowHostnames;
 
 		$result = $this->getResult();
+
 		// Printer may not be initialized if the extractRequestParams() fails for the main module
 		if ( !isset( $this->mPrinter ) ) {
 			// The printer has not been created yet. Try to manually get formatter value.
@@ -653,10 +654,17 @@ class ApiMain extends ApiBase {
 			}
 
 			$this->mPrinter = $this->createPrinterByName( $value );
-			if ( $this->mPrinter->getNeedsRawData() ) {
-				$result->setRawMode();
-			}
 		}
+
+		// Printer may not be able to handle errors. This is particularly
+		// likely if the module returns something for getCustomPrinter().
+		if ( !$this->mPrinter->canPrintErrors() ) {
+			$this->mPrinter->safeProfileOut();
+			$this->mPrinter = $this->createPrinterByName( self::API_DEFAULT_FORMAT );
+		}
+
+		// Update raw mode flag for the selected printer.
+		$result->setRawMode( $this->mPrinter->getNeedsRawData() );
 
 		if ( $e instanceof UsageException ) {
 			// User entered incorrect parameters - print usage screen
