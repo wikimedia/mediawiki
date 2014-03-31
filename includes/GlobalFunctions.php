@@ -1891,13 +1891,8 @@ function wfReportTime() {
 /**
  * Safety wrapper for debug_backtrace().
  *
- * With Zend Optimizer 3.2.0 loaded, this causes segfaults under somewhat
- * murky circumstances, which may be triggered in part by stub objects
- * or other fancy talking'.
- *
- * Will return an empty array if Zend Optimizer is detected or if
- * debug_backtrace is disabled, otherwise the output from
- * debug_backtrace() (trimmed).
+ * Will return an empty array if debug_backtrace is disabled, otherwise
+ * the output from debug_backtrace() (trimmed).
  *
  * @param int $limit This parameter can be used to limit the number of stack frames returned
  *
@@ -1906,19 +1901,10 @@ function wfReportTime() {
 function wfDebugBacktrace( $limit = 0 ) {
 	static $disabled = null;
 
-	if ( extension_loaded( 'Zend Optimizer' ) ) {
-		wfDebug( "Zend Optimizer detected; skipping debug_backtrace for safety.\n" );
-		return array();
-	}
-
 	if ( is_null( $disabled ) ) {
-		$disabled = false;
-		$functions = explode( ',', ini_get( 'disable_functions' ) );
-		$functions = array_map( 'trim', $functions );
-		$functions = array_map( 'strtolower', $functions );
-		if ( in_array( 'debug_backtrace', $functions ) ) {
-			wfDebug( "debug_backtrace is in disabled_functions\n" );
-			$disabled = true;
+		$disabled = !function_exists( 'debug_backtrace' );
+		if ( $disabled ) {
+			wfDebug( "debug_backtrace() is disabled\n" );
 		}
 	}
 	if ( $disabled ) {
@@ -2818,18 +2804,14 @@ function wfEscapeShellArg( /*...*/ ) {
 function wfShellExecDisabled() {
 	static $disabled = null;
 	if ( is_null( $disabled ) ) {
-		$disabled = false;
 		if ( wfIniGetBool( 'safe_mode' ) ) {
 			wfDebug( "wfShellExec can't run in safe_mode, PHP's exec functions are too broken.\n" );
 			$disabled = 'safemode';
+		} elseif ( !function_exists( 'proc_open' ) ) {
+			wfDebug( "proc_open() is disabled\n" );
+			$disabled = 'disabled';
 		} else {
-			$functions = explode( ',', ini_get( 'disable_functions' ) );
-			$functions = array_map( 'trim', $functions );
-			$functions = array_map( 'strtolower', $functions );
-			if ( in_array( 'proc_open', $functions ) ) {
-				wfDebug( "proc_open is in disabled_functions\n" );
-				$disabled = 'disabled';
-			}
+			$disabled = false;
 		}
 	}
 	return $disabled;
