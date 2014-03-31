@@ -78,6 +78,10 @@ production.
 === Action API internal changes in 1.27 ===
 * ApiQueryORM removed.
 
+=== Query API changes in 1.27 ===
+* Added difftotextpst to query=revisions which preforms a pre-save transform on
+  the text before diffing it.
+
 === Languages updated in 1.27 ===
 
 MediaWiki supports over 350 languages. Many localisations are updated
