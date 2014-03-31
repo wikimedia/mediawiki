@@ -2121,6 +2121,7 @@ Syöte: sisältötyyppi/alatyyppi, esimerkiksi <code>image/jpeg</code>.',
 
 # List duplicated files special page
 'listduplicatedfiles' => 'Luettelo tiedostoista, joista on kaksoiskappale.',
+'listduplicatedfiles-summary' => 'Tämä on luettelo niistä tiedostoista, joiden uusin versio on kaksoiskappale eli täysin sama jonkun toisen tiedoston uusimman version kanssa. Vain paikallisesti tallennetut tiedostot tutkitaan.',
 'listduplicatedfiles-entry' => 'Tiedostosta [[:File:$1|$1]] on olemassa [[$3|{{PLURAL:$2|kaksoiskappale|$2 kaksoiskappaletta}}]].',
 
 # Unused templates
@@ -3893,7 +3894,7 @@ Yritä normaalia esikatselua.',
 'watchlistedit-normal-submit' => 'Poista kohteet',
 'watchlistedit-normal-done' => '{{PLURAL:$1|Yksi sivu|$1 sivua}} poistettiin tarkkailulistaltasi:',
 'watchlistedit-raw-title' => 'Tarkkailulistan muokkaus',
-'watchlistedit-raw-legend' => 'Tarkkailulistan muokkaus',
+'watchlistedit-raw-legend' => 'Muokkaa tarkkailulistaa raakamuodossa',
 'watchlistedit-raw-explain' => 'Tarkkailulistasi sivut on lueteltu alla jokainen omalla rivillään. Voit muokata listaa lisäämällä ja poistamalla rivejä.
 Kun olet valmis, napsauta ”{{int:Watchlistedit-raw-submit}}”.
 Voit myös muokata listaa [[Special:EditWatchlist|tavalliseen tapaan]].',
@@ -3945,7 +3946,7 @@ Voit myös muokata listaa [[Special:EditWatchlist|tavalliseen tapaan]].',
 'version-poweredby-credits' => "Tämä wiki käyttää '''[https://www.mediawiki.org/ MediaWikiä]'''. Copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'muut',
 'version-poweredby-translators' => 'translatewiki.net-kääntäjät',
-'version-credits-summary' => 'Haluaisimme kiittää seuraavia henkilöitä heidän panoksestaan [[Special:Version|MediaWiki-ohjelmistoon]].',
+'version-credits-summary' => 'Haluamme kiittäen mainita seuraavat henkilöt, jotka ovat osallistuneet [[Special:Version|MediaWiki-ohjelmiston]] kehittämiseen.',
 'version-license-info' => 'MediaWiki on vapaa ohjelmisto – voit levittää sitä ja/tai muokata sitä Free Software Foundationin GNU General Public Licensen ehdoilla, joko version 2 tai halutessasi minkä tahansa myöhemmän version mukaisesti.
 
 MediaWikiä levitetään siinä toivossa, että se olisi hyödyllinen, mutta ilman mitään takuuta; ilman edes hiljaista takuuta kaupallisesti hyväksyttävästä laadusta tai soveltuvuudesta tiettyyn tarkoitukseen. Katso GPL-lisenssistä lisää yksityiskohtia.
@@ -4192,6 +4193,7 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'limitreport-walltime-value' => '$1 {{PLURAL:$1|sekunti|sekuntia}}',
 'limitreport-ppvisitednodes' => 'Esikääntäjän läpikäymien solmujen määrä<br />(preprocessor visited node count)',
 'limitreport-ppgeneratednodes' => 'Esikääntäjän synnyttämien solmujen määrä <br />(preprocessor generated node count)',
+'limitreport-postexpandincludesize' => 'Laajennuksen jälkeinen sisältyvä koko<br />(Post-expand include size)',
 'limitreport-postexpandincludesize-value' => '$1/$2 {{PLURAL:$2|tavu|tavua}}',
 'limitreport-templateargumentsize' => 'Mallineen argumenttien koko<br />(template argument size)',
 'limitreport-templateargumentsize-value' => '$1/$2 {{PLURAL:$2|tavu|tavua}}',
@@ -4217,4 +4219,14 @@ Käytännössä se laajentaa melkein kaiken, joka on kaksoisaaltosulkeiden sisä
 'expand_templates_generate_rawhtml' => 'Näytä raaka HTML',
 'expand_templates_preview' => 'Esikatselu',
 
+# Special:TrackingCategories
+'trackingcategories' => 'Tarkkailuluokat',
+'trackingcategories-summary' => 'Tällä sivulla on luettelo sellaisista jälkiä seuraavista luokista (tarkkailuluokat), joiden sisällön synnyttää automaattisesti MediaWiki-ohjelmisto. Luokkien nimiä voi vaihtaa muuttamalla asianomaista järjestelmäviestiä nimiavaruudessa {{ns:8}}.',
+'trackingcategories-msg' => 'Tarkkailuluokka',
+'trackingcategories-name' => 'Viestin nimi',
+'trackingcategories-desc' => 'Kriteerit luokkaan joutumiselle',
+'trackingcategories-nodesc' => 'Ei kuvausta olemassa.',
+
+# Unknown messages
+'trackingcategories-disabled' => 'Luokka on poistettu käytöstä',
 );

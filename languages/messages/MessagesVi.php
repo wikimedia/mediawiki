@@ -4364,7 +4364,7 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'limitreport-templateargumentsize' => 'Kích thước đối số bản mẫu',
 'limitreport-templateargumentsize-value' => '$1/$2 byte',
 'limitreport-expansiondepth' => 'Độ sâu bung cao nhất',
-'limitreport-expensivefunctioncount' => 'Số lời gọi hàm cú pháp tốn cần mức độ xử lý cao',
+'limitreport-expensivefunctioncount' => 'Số lời gọi hàm cú pháp cần mức độ xử lý cao',
 
 # Special:ExpandTemplates
 'expandtemplates' => 'Bung bản mẫu',
@@ -4381,4 +4381,21 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'expand_templates_generate_rawhtml' => 'Hiển thị HTML thô',
 'expand_templates_preview' => 'Xem trước',
 
+# Special:TrackingCategories
+'trackingcategories' => 'Thể loại phần mềm',
+'trackingcategories-summary' => 'Đây là danh sách các thể loại được phần mềm MediaWiki tự động xếp trang vào. Các tên thể loại được định rõ trong các thông điệp thuộc không gian tên {{ns:8}}.',
+'trackingcategories-msg' => 'Thể loại phần mềm',
+'trackingcategories-name' => 'Tên thông điệp',
+'trackingcategories-desc' => 'Tiêu chuẩn xếp thể loại',
+'noindex-category-desc' => 'Trang này có từ thần chú <nowiki>__NOINDEX__</nowiki> và nằm trong không gian tên cho phép từ thần chú này, nên không được các robot đánh chỉ mục.',
+'index-category-desc' => 'Trang này có từ thần chú <nowiki>__INDEX__</nowiki> và nằm trong một không gian tên cho phép từ thần chú này, nên được các robot đánh chỉ mục, trong khi bình thường nó không được đánh chỉ mục.',
+'post-expand-template-inclusion-category-desc' => 'Nếu bung tất cả các bản mẫu, kích thước trang sẽ vượt quá $wgMaxArticleSize, nên một số bản mẫu không được bung.',
+'post-expand-template-argument-category-desc' => 'Nếu bung một tham số bản mẫu (tức định danh có mỗi bên ba dấu ngoặc móc, thí dụ {{{Thí dụ}}}), trang này sẽ vượt quá $wgMaxArticleSize.',
+'expensive-parserfunction-category-desc' => 'Trang có quá nhiều hàm cú pháp cần mức độ xử lý cao (chẳng hạn như #ifexists). Xem [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit?uselang=vi Manual:$wgExpensiveParserFunctionLimit].',
+'broken-file-category-desc' => 'Trang này muốn nhúng một tập tin không tồn tại.',
+'hidden-category-category-desc' => 'Thể loại này có <nowiki>__HIDDENCAT__</nowiki>, nên, theo mặc định, thể loại không xuất hiện trong hộp thể loại trên các trang được xếp vào thể loại.',
+'trackingcategories-nodesc' => 'Không có miêu tả.',
+
+# Unknown messages
+'trackingcategories-disabled' => 'Thể loại bị tắt',
 );

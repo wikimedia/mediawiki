@@ -4502,4 +4502,21 @@ En fait, elle réalise l'expansion de pratiquement tout ce qui est encadré par 
 'expand_templates_generate_rawhtml' => 'Afficher le HTML brut',
 'expand_templates_preview' => 'Aperçu du rendu',
 
+# Special:TrackingCategories
+'trackingcategories' => 'Catégories de suivi',
+'trackingcategories-summary' => 'Cette page liste les catégories de suivi qui sont remplies automatiquement par le logiciel MédiaWiki. Leurs noms peuvent être changés en modifiant les messages systèmes correspondants dans l’espace de noms {{ns:8}}.',
+'trackingcategories-msg' => 'Catégorie de suivi',
+'trackingcategories-name' => 'Nom du message',
+'trackingcategories-desc' => 'Critère d’inclusion de la catégorie',
+'noindex-category-desc' => 'La page contient un mot magique <nowiki>__NOINDEX__</nowiki> (et est dans un espace de noms où ce marquage est autorisé), et donc ne sera pas indexée par les robots.',
+'index-category-desc' => 'La page contient un <nowiki>__INDEX__</nowiki> (et est dans un espace de noms où ce marquage est autorisé), et sera donc indexée par les robots alors qu’elle ne l’aurait pas été normalement.',
+'post-expand-template-inclusion-category-desc' => 'Après avoir développé tous les modèles, la taille de la page dépasse $wgMaxArticleSize ; certains modèles n’ont donc pas été développés.',
+'post-expand-template-argument-category-desc' => 'Après avoir développé l’argument d’un modèle (quelque chose entre accolades triples, comme {{{Foo}}}), la page dépasse $wgMaxArticleSize.',
+'expensive-parserfunction-category-desc' => 'Trop de fonctions coûteuses de l’analyseur (comme #ifexists) sont incluses dans une page. Voyez [https://www.mediawiki.org/wiki/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].',
+'broken-file-category-desc' => 'Catégorie ajoutée su la page contient un lien de fichier incorrect (un lien pour inclure un fichier alors que celui-ci n’existe pas).',
+'hidden-category-category-desc' => 'C’est une catégorie contenant <nowiki>__HIDDENCAT__</nowiki>, qui empêche son affichage dans la zone des liens de catégorie sur les pages, par défaut.',
+'trackingcategories-nodesc' => 'Aucune description disponible.',
+
+# Unknown messages
+'trackingcategories-disabled' => 'La catégorie est désactivée',
 );

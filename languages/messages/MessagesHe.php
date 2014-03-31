@@ -4426,4 +4426,21 @@ $5
 'expand_templates_generate_rawhtml' => 'הצגת HTML גולמי',
 'expand_templates_preview' => 'תצוגה מקדימה',
 
+# Special:TrackingCategories
+'trackingcategories' => 'קטגוריות מעקב',
+'trackingcategories-summary' => 'דף זה כולל רשימה של קטגוריות מעקב, שנוצרות אוטומטית על ידי תוכנת מדיה‏‏֫־ויקי. ניתן לשנות את שמותיהן על‏‏֫־ידי שינוי הודעות המערכת הרלוונטיות במרחב השם "{{ns:8}}".',
+'trackingcategories-msg' => 'קטגוריית מעקב',
+'trackingcategories-name' => 'שם ההודעה',
+'trackingcategories-desc' => 'הקריטריון להכללה בקטגוריה',
+'noindex-category-desc' => 'הדף כולל את מילת הקסם <nowiki>__לא_לחיפוש__</nowiki> (והוא במרחב שם שבו דגל כזה מותר לשימוש), ולכן אינו מאונדקס על‏‏֫־ידי רובוטים.',
+'index-category-desc' => 'הדף כולל את מילת הקסם <nowiki>__לחיפוש__</nowiki> (והוא במרחב שם שבו דגל כזה מותר לשימוש), ולכן הוא מאונדקס על‏‏֫־ידי רובוטים אף שכברירת מחדל הוא לא היה מאונדקס על ידם.',
+'post-expand-template-inclusion-category-desc' => 'לאחר הרחבת כל התבניות, גודל הדף גדול מ‏‏֫־$wgMaxArticleSize, ולכן מספר תבניות אינן מורחבות.',
+'post-expand-template-argument-category-desc' => 'לאחר הרחבת ארגומנט של תבנית (משהו בסוגריים משולשים, כגון {{{Foo}}}), הדף גדול מ‏‏֫‏‏֫־$wgMaxArticleSize.',
+'expensive-parserfunction-category-desc' => 'יותר מדי פונקציות מפענח יקרות לשימוש (כגון #קיים) מוכללות בדף. ראו [https://www.mediawiki.org/wiki/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].',
+'broken-file-category-desc' => 'הקטגוריה נוספת אם הדף כולל קישור שבור לקובץ (קישור להטמעת קובץ כאשר הקובץ אינו קיים).',
+'hidden-category-category-desc' => 'קטגוריה זו כוללת את מילת הקסם <nowiki>__קטגוריה_מוסתרת__</nowiki>, שגורמת לה לא להופיע בתיבת קישורי הקטגוריות בדפים כברירת מחדל.',
+'trackingcategories-nodesc' => 'התיאור אינו זמין.',
+
+# Unknown messages
+'trackingcategories-disabled' => 'הקטגוריה מבוטלת',
 );

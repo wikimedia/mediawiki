@@ -1262,7 +1262,7 @@ $1",
 'searchprofile-images-tooltip' => 'Файлаш лахар',
 'searchprofile-everything-tooltip' => 'Лаха массо агlонашкахь (дийцаре агlонашцани)',
 'searchprofile-advanced-tooltip' => 'Лаха дехарца хlокху ана цlерашкахь',
-'search-result-size' => '$1 ({{PLURAL:$2|$2 дош|$2 дешнаш|$2 дешнаш}})',
+'search-result-size' => '$1 ({{PLURAL:$2|$2 дош|$2 дешнаш}})',
 'search-result-category-size' => '$1 {{PLURAL:$1|юкъаяр}} ($2 {{PLURAL:$2|1=бухара категори|бухара категореш}}, $3 {{PLURAL:$3|1=файл|файлаш}}).',
 'search-result-score' => 'Релевант: $1%.',
 'search-redirect' => '(дlасахьажийна $1)',
@@ -1811,7 +1811,10 @@ $1',
 'filehist-comment' => 'Билгалдаккхар',
 'filehist-missing' => 'Файл яц',
 'imagelinks' => 'Файл лелор',
-'linkstoimage' => '{{PLURAL:$1|ТӀаьхьайогӀу $1 агӀо тӀетойжина|ТӀаьхьайогlу $1 агӀонаш тӀетойжина|ТӀаьхьайогӀу $1 агӀонаш тӀетойжина}} хӀокху файлан:',
+'linkstoimage' => '{{PLURAL:$1|ТӀаьхьайогӀу $1 агӀо тӀетевжина|ТӀаьхьайогӀу $1 агӀонаш тӀетевжина}} хӀокху файлан:',
+'linkstoimage-more' => '$1 дукха {{PLURAL:$1|агӀонаш}} чохь лелош ю хӀара файл.
+ХӀокху могӀам чохь {{PLURAL:$1|гойтуш ю $1 хьажорг|гойтуш ю $1 хьажоргаш}} хӀокху файланца.
+Кхин хьажа йиш ю [[Special:WhatLinksHere/$2|буьззина могӀаме]].',
 'nolinkstoimage' => 'АгӀонашчохь файл лелош яц.',
 'linkstoimage-redirect' => '$1 (файлан дӀасахьажораг) $2',
 'duplicatesoffile' => '{{PLURAL:$1|Лахара файл ю дубликат|Лахара $1 файлаш ю дубликаташ}} хӀокху файлан ([[Special:FileDuplicateSearch/$2|мадарра]]):',
@@ -1887,6 +1890,7 @@ $1',
 'statistics' => 'Бухехьдерг',
 'statistics-header-pages' => 'АгӀонийн жамӀ',
 'statistics-header-edits' => 'Нисдаран жамӀ',
+'statistics-header-views' => 'Хьажаран статистика',
 'statistics-header-users' => 'Декъашхойн жамӀа',
 'statistics-header-hooks' => 'Кхин статистика',
 'statistics-articles' => 'Яззамаш',
@@ -1896,10 +1900,11 @@ $1',
 'statistics-edits' => 'Нисдаран дукхалла {{grammar:genitive|{{SITENAME}}}} дlа йолайаларца',
 'statistics-edits-average' => 'Юккъера агӀонан нисдаран терахь',
 'statistics-views-total' => 'Массо хьажарш',
+'statistics-views-total-desc' => 'Ма лара дӀаяьхна а белхан а агӀонашка хьажар',
 'statistics-views-peredit' => 'Нисдаре хьажарш',
 'statistics-users' => '[[ВП:Дlаязвалар|Дlаязбелларш]] шаберигге декъашхой чохь болу [[Special:ListUsers|(могlам)]]',
 'statistics-users-active' => 'Жигара декъашхой',
-'statistics-users-active-desc' => 'Декъашхой, муьлха цхьа хlум дина болу, кху {{PLURAL:$1|1=тlаьххьара $1 динахь|тlаьххьара $1 дийнахь}}',
+'statistics-users-active-desc' => 'Декъашхой, муьлха цхьа хӀум дина болу, кху {{PLURAL:$1|1=тӀаьххьара $1 динахь|тӀаьххьара $1 дийнахь}}',
 'statistics-mostpopular' => 'Дукху хьоьжу агӀонаш',
 
 'pageswithprop' => 'АгӀонаш цхьадолу къастамашца',
@@ -2123,8 +2128,8 @@ $1',
 'watchlistanontext' => 'Тергаме могӀоме хьажа я тая кхочушде $1.',
 'watchnologin' => 'Системин чугӀо',
 'addwatch' => 'Тергаме могӀам юкъа тоха',
-'addedwatchtext' => 'Хlар агlо «[[:$1]]» тlетоьхна хьан [[Special:Watchlist|тидаме могlам чу]].
-Тlаьхьабогlу хийцамаш хlокх агlонна а кхунца дозуш долу дийцаре агlо а дlаяздийра ду кху могlамашкахь, ишта къастина хирду уьш шуьрочу элпашца хlокх агlон чохь [[Special:RecentChanges|керла хийцаме могlамашкахь]], бгlаьран га атту болуш.',
+'addedwatchtext' => 'ХӀара «[[:$1]]» агӀо тӀетоьхна хьан [[Special:Watchlist|тергаме могӀам чу]].
+Оцу могӀам чохь дӀаязбийр бу агӀона а цуьнца йолу дийцаре агӀона а бина хийцамаш.',
 'removewatch' => 'ДӀаяккха тергаме могӀам юкъар',
 'removedwatchtext' => 'АгӀо «[[:$1]]» дӀаяьккхина яра хьан [[Special:Watchlist|тергаме могӀанан юкъар]].',
 'watch' => 'Тидам бе',
@@ -2136,6 +2141,8 @@ $1',
 'watchlist-details' => 'Хьан тергаме могӀамца $1 {{PLURAL:$1|агӀо|агонаш}} ю, дийцаре агӀонаша йоцуш.',
 'wlheader-enotif' => 'Электронан почте хаамаш байтар латина ду.',
 'wlheader-showupdated' => "Хийцам бина агӀонаш '''Ӏаьржа''' шрифтцан билгальяха ю.",
+'watchlistcontains' => 'Хьан тергаме могӀам чохь ю $1 {{PLURAL:$1|агӀо|агӀонаш}}.',
+'iteminvalidname' => '«$1» элементаца гӀалат ду, магийна йоцу цӀе…',
 'wlnote2' => 'Лахахьа гайтина {{PLURAL:$1|тӀеххьара сахьт}} чохь бина хийцамаш $2 $3.',
 'wlshowlast' => 'Гайта тӀаьххьара $1 сахьт $2 де $3',
 'watchlist-options' => 'Тергаме могlаман гlирс нисбар',
@@ -2277,7 +2284,9 @@ $1',
 'undeleteinvert' => 'Къастае массо',
 'undeletecomment' => 'Бахьна:',
 'undeletedrevisions' => '{{PLURAL:$1|меттахӀоттайина}} $1 {{PLURAL:$1|хийцам}}',
-'undeletedfiles' => '$1 {{PLURAL:$1|файл меттахӀоттайина|файлаш меттахӀоттайина|файлаш меттахӀоттайина}}',
+'undeletedfiles' => '$1 {{PLURAL:$1|файл меттахӀоттайина|файлаш меттахӀоттайина}}',
+'cannotundelete' => 'ГӀалат меттахӀоттайина:
+$1',
 'undeletedpage' => "'''МеттахӀоттайина агӀо «$1».'''
 
 ДӀадяхнарш долу могӀане [[Special:Log/delete|тéптаре хьажа]].",
@@ -2345,6 +2354,7 @@ $1',
 'whatlinkshere-filters' => 'Литтарш',
 
 # Block/unblock
+'autoblockid' => 'Ша блоккхетар #$1',
 'block' => 'Декъашхочун блоктохар',
 'unblock' => 'ДекъашхонтӀера блокдӀаякхар',
 'blockip' => 'Блоктоха',
@@ -2558,6 +2568,7 @@ $2',
 'import-interwiki-submit' => 'Импорт ян',
 'import-upload-filename' => 'Файлан цӀе:',
 'import-comment' => 'Билгалдаккхар:',
+'importstart' => 'АгӀонаш импорт яр…',
 'import-revision-count' => '$1 {{PLURAL:$1|верси|версеш}}',
 'importnopages' => 'Импорт ян агӀонаш яц.',
 'imported-log-entries' => '{{PLURAL:$1|Тептар чура импорт дина $1 дӀаяздар|Тептар чура импорт дина $1 дӀаяздарш}}.',
@@ -2568,6 +2579,13 @@ $2',
 # Import log
 'importlogpage' => 'Импортан тептар',
 'importlogpagetext' => 'Куьйгалхоша агӀонаш импорт яр царна бина хийцамашца кхечу википедеш чура.',
+'import-logentry-upload-detail' => '$1 {{PLURAL:$1|верси|версеш}}',
+'import-logentry-interwiki' => '«$1» — викиюкъара импорт',
+'import-logentry-interwiki-detail' => '$2 чура $1 {{PLURAL:$1|верси|версеш}}',
+
+# JavaScriptTest
+'javascripttest' => 'JavaScript хьажар',
+'javascripttest-title' => '$1 хьожуш бу',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Декъашхочуьна агlо',
@@ -2640,7 +2658,11 @@ $2',
 'monobook.js' => '/* Кхузе чу язийна йолу JavaScript код, чу ера ю, массо MonoBook хатl лелош болу декъашхошна */',
 
 # Attribution
+'anonymous' => '{{PLURAL:$1|1=ЦӀе хьулйина декъашхо|ЦӀе хьулйина декъашхой}} {{grammar:genitive|{{SITENAME}}}}',
 'siteuser' => 'декъашхо {{grammar:genitive|{{SITENAME}}}} $1',
+'anonuser' => 'цӀе хьулйина декъашхо {{grammar:genitive|{{SITENAME}}}} $1',
+'lastmodifiedatby' => 'ХӀокху агӀон тӀаьххьаралера хийцам: $1 $2. — $3',
+'othercontribs' => 'Кхуллуш дакъалецира декъашхоша: $1.',
 'others' => 'кхин',
 'siteusers' => '{{PLURAL:$2|1=декъашхо|декъашхой}} {{grammar:genitive|{{SITENAME}}}} $1',
 'anonusers' => '{{PLURAL:$2|1=цӀе хьулйина декъашхо|цӀе хьулйина декъашхой}} {{grammar:genitive|{{SITENAME}}}} $1',
@@ -2746,6 +2768,7 @@ $2',
 'minutes-ago' => '$1 {{PLURAL:$1|минут}} хьалха',
 'seconds-ago' => '$1 {{PLURAL:$1|секунд}} хьалха',
 'monday-at' => 'оршотан дийнахь $1',
+'tuesday-at' => 'шинара дийнахь $1',
 'wednesday-at' => 'кхаарин дийнахь $1',
 'thursday-at' => 'еарин дийнахь $1',
 'friday-at' => 'пӀераскан дийнахь $1',
@@ -2806,7 +2829,9 @@ $2',
 'exif-datetimedigitized' => 'Оцифровк йина терахь а хан а',
 'exif-subsectime' => 'Файлан хийцам баран хан секундашкахь',
 'exif-exposuretime' => 'Сурт доккхуш йолу серлон хьал',
+'exif-exposuretime-format' => '$1 ($2) чура',
 'exif-fnumber' => 'Диафрагмин дукхалла',
+'exif-exposureprogram' => 'Экспозицин программа',
 'exif-shutterspeedvalue' => 'APEX чура дешнаш',
 'exif-aperturevalue' => 'APEX чура оьз',
 'exif-exposurebiasvalue' => 'Сурт доккхуш яла оьшу серло меттаяло',
@@ -2859,12 +2884,24 @@ $2',
 'exif-xyresolution-i' => '$1 тӏадамаш дюйман',
 'exif-xyresolution-c' => '$1 тӀадамаш сантиметрна',
 
-'exif-meteringmode-5' => 'Матрин',
+'exif-subjectdistance-value' => '$1 {{PLURAL:$1|метр}}',
 
+'exif-meteringmode-0' => 'Хууш дац',
+'exif-meteringmode-1' => 'Юкъара',
+'exif-meteringmode-2' => 'Юкъахь леррина',
+'exif-meteringmode-3' => 'Билгала',
+'exif-meteringmode-4' => 'Мульти билгала',
+'exif-meteringmode-5' => 'Матрин',
+'exif-meteringmode-6' => 'Ах',
+'exif-meteringmode-255' => 'Кхиерг',
+
+'exif-lightsource-0' => 'Хууш дац',
 'exif-lightsource-1' => 'Ден хьехам',
+'exif-lightsource-2' => 'Дена серлонан чиркх',
 'exif-lightsource-4' => 'Серло',
 'exif-lightsource-9' => 'Хаза хенан хӀоттам',
 'exif-lightsource-10' => 'Мархаш йолу',
+'exif-lightsource-11' => 'ӀиндагӀ',
 
 'exif-focalplaneresolutionunit-2' => 'дюйм',
 
@@ -2888,10 +2925,46 @@ $2',
 
 'exif-sharpness-0' => 'Лартӏахь',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => 'Хи хIоттарал локхалла $1 {{PLURAL:$1|метр}}',
+'exif-gpsaltitude-below-sealevel' => 'Хи хIоттарал локхаллин $1 {{PLURAL:$1|метр}} лахахь',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'км/сахьтехь',
+'exif-gpsspeed-m' => 'миль/сахьтехь',
+'exif-gpsspeed-n' => 'шеддаш',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Километр',
+'exif-gpsdestdistance-n' => 'ХӀордаца йолу миль',
+
+'exif-gpsdop-excellent' => 'Дика ($1)',
+'exif-gpsdop-good' => 'Хаза ($1)',
+'exif-gpsdop-moderate' => 'Юкъара ($1)',
+'exif-gpsdop-fair' => 'Юкъарал лахара ($1)',
+'exif-gpsdop-poor' => 'Во ($1)',
+
+'exif-objectcycle-a' => 'Ӏуьранна бен',
+'exif-objectcycle-p' => 'Суьйранна бен',
+'exif-objectcycle-b' => 'Ӏуьранна а суьйранна а',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'бакъалла',
+'exif-gpsdirection-m' => 'магнитан',
+
 'exif-ycbcrpositioning-1' => 'Юкъйина',
 
+'exif-dc-contributor' => 'Дакъалаьцнарг',
 'exif-dc-date' => 'Терахь(ш)',
+'exif-dc-publisher' => 'Арахецархо',
+'exif-dc-relation' => 'Йихкина медиа',
 'exif-dc-rights' => 'Бакъонаш',
+'exif-dc-source' => 'ДӀайолалун медиа',
+'exif-dc-type' => 'Медиан тайп',
+
+'exif-rating-rejected' => 'ДӀайайина',
+
+'exif-isospeedratings-overflow' => '65535 дукха',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'массо',
@@ -2903,9 +2976,15 @@ $2',
 : ''$2''
 Дехар до, тешал де, хьо иза агӀо меттахӀотто лууш ву/ю але.",
 'confirmrecreate-noreason' => 'Декъашхочо [[User:$1|$1]] ([[User talk:$1|дийцаре]]) хӀара агӀо дӀаяьккхина, ахьа иза тая йолийча. Дехар до, тешал де, хьо иза агӀо меттахӀотто лууш ву/ю але.',
+'recreate' => 'Юха кхолла',
+
+# action=purge
+'confirm_purge_button' => 'ХӀаъ',
 
 # action=watch/unwatch
+'confirm-watch-button' => 'ХӀаъ',
 'confirm-watch-top' => 'ТӀетоха хӀара агӀо хьан тергаме могӀам юкъа?',
+'confirm-unwatch-button' => 'ХӀаъ',
 'confirm-unwatch-top' => 'ДӀаяккха хӀара агӀо хьай тергаме могӀанан юкъар?',
 
 # Separators for various lists, etc.
@@ -2916,6 +2995,10 @@ $2',
 'imgmultipagenext' => 'тlаьхьара агlо →',
 'imgmultigo' => 'ДехьагӀо!',
 'imgmultigoto' => 'АгӀончу $1 гӀо',
+
+# Language selector for translatable SVGs
+'img-lang-default' => '(Ӏад битарца болу мотт)',
+'img-lang-go' => 'Кхочушдé',
 
 # Table pager
 'table_pager_next' => 'Тlаьхьа йогlу агlо',
@@ -2944,6 +3027,7 @@ $2',
 ДӀаяздарш дӀадаха билгалде уьш такха тӀетаӀе кнопка «{{int:Watchlistedit-normal-submit}}».
 Кхин хьа йиш ю [[Special:EditWatchlist/raw|йозан кепар могӀом нисба ]].',
 'watchlistedit-normal-submit' => 'ДӀадаха дӀаяздарш',
+'watchlistedit-normal-done' => 'Хьан тергаме могӀам чура {{PLURAL:$1|дӀадаьккхина|дӀадяьхна}} $1 {{PLURAL:$1|дӀаяздар|дӀаяздарш}}:',
 'watchlistedit-raw-title' => 'Тергаме могӀам йоза санна нисбар',
 'watchlistedit-raw-legend' => 'Тергаме могӀам нисбар',
 'watchlistedit-raw-explain' => 'Лахахь гойтуш ю хьа тергаме могӀанийн юкъахь йолу агӀонаш. Хьан йиш ю могӀан хийцам ба, оьцу чура цӀераш тӀетухуш а дӀайохкуш а.
@@ -2951,6 +3035,8 @@ $2',
 Хьа кхин йиш ю [[Special:EditWatchlist|лело стандартни тадар]].',
 'watchlistedit-raw-titles' => 'ДӀаяздарш:',
 'watchlistedit-raw-submit' => 'МогӀам Ӏалашбар',
+'watchlistedit-raw-added' => '{{PLURAL:$1|ТӀетоьхна}} $1 {{PLURAL:$1|дӀаяздар|дӀаяздарш}}:',
+'watchlistedit-raw-removed' => '{{PLURAL:$1|ДӀаяьккхина|ДӀаяьхна}} $1 {{PLURAL:$1|дӀаяздар|дӀаяздарш}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'МогӀам чура агӀонашан хийцамаш',
@@ -2966,6 +3052,7 @@ $2',
 'version-specialpages' => 'Белхан агӀонаш',
 'version-parserhooks' => 'Cинтаксисан къастор схьалоцурш',
 'version-variables' => 'Хийцаме',
+'version-skins' => 'Кечяран темаш',
 'version-other' => 'Кхин',
 'version-mediahandlers' => 'Медиа кеч ерраш',
 'version-parser-extensiontags' => 'Cинтаксисан къасторан шораллин тегаш',
@@ -3046,8 +3133,9 @@ MediaWiki яржош ю и шуна пайдане хир яц те аьлла, 
 'tags-active-header' => 'Жигара?',
 'tags-hitcount-header' => 'Къастам бина нисдарш',
 'tags-active-yes' => 'ХӀаъ',
+'tags-active-no' => 'ХӀахӀа',
 'tags-edit' => 'нисъе',
-'tags-hitcount' => '$1 {{PLURAL:$1|хийцам|хийцамаш|хийцамаш}}',
+'tags-hitcount' => '$1 {{PLURAL:$1|хийцам|хийцамаш}}',
 
 # Special:ComparePages
 'comparepages' => 'АгӀонаш муха ю хьажар',
@@ -3056,12 +3144,15 @@ MediaWiki яржош ю и шуна пайдане хир яц те аьлла, 
 'compare-rev1' => 'Дуьххьаралера верси',
 'compare-rev2' => 'ШолгӀа верси',
 'compare-submit' => 'Муха ю хьажа',
+'compare-invalid-title' => 'Ахьа язйина йолу цӀе ца магайо.',
+'compare-title-not-exists' => 'Иштта цӀе яц.',
+'compare-revision-not-exists' => 'Иштта версеш яц.',
 
 # Database error messages
 'dberr-header' => 'ХӀара вики ловш ю халона бала',
 'dberr-problems' => 'Бехк ма бил! Хlинц машан меттиган хилла гlирсаца халонаш.',
 'dberr-again' => 'Хьажа карла йаккха агlо массех минот йаьлча.',
-'dberr-info' => '(аьтто ца хили зlе хlотта гlулкхдечуьнца бухара хаамашца: $1)',
+'dberr-info' => '(аьтто ца хили зӀе хӀотта серверца бухара хаамашца: $1)',
 'dberr-usegoogle' => 'ЦӀачун хьо хьажа лаха гӀоьнца Google.',
 'dberr-outofdate' => 'Хьуна хаалахь, цуьна йолу меттиг хила мега тишйелла черахь.',
 
@@ -3076,7 +3167,9 @@ MediaWiki яржош ю и шуна пайдане хир яц те аьлла, 
 'htmlform-submit' => 'ДӀадахьийта',
 'htmlform-reset' => 'Цаоьшу хийцамаш',
 'htmlform-selectorother-other' => 'Кхин',
+'htmlform-no' => 'ХӀахӀа',
 'htmlform-yes' => 'ХӀаъ',
+'htmlform-chosen-placeholder' => 'Харжа кеп',
 
 # New logging system
 'logentry-delete-delete' => '$1 {{GENDER:$2|дӀаяьккхина}} агӀо $3',
@@ -3117,12 +3210,23 @@ MediaWiki яржош ю и шуна пайдане хир яц те аьлла, 
 'searchsuggest-search' => 'Лаха',
 'searchsuggest-containing' => 'чуьраниг…',
 
+# API errors
+'api-error-duplicate-popup-title' => '{{PLURAL:$1|1=Файлан|Файлийн}} дубликат.',
+'api-error-empty-file' => 'Ахьа яхьийтина файл еса ю.',
+
 # Durations
 'duration-seconds' => '$1 {{PLURAL:$1|секунд}}',
 'duration-minutes' => '$1 {{PLURAL:$1|минут}}',
 'duration-hours' => '$1 {{PLURAL:$1|сахьт}}',
 'duration-days' => '$1 {{PLURAL:$1|де}}',
+'duration-weeks' => '$1 {{PLURAL:$1|кӀира}}',
 'duration-years' => '$1 {{PLURAL:$1|шо}}',
+'duration-decades' => '$1 {{PLURAL:$1|итт шо|итт шераш}}',
+'duration-centuries' => '$1 {{PLURAL:$1|бӀешо|бӀешераш}}',
+'duration-millennia' => '$1 {{PLURAL:$1|эзар шо|эзар шераш}}',
+
+# Image rotation
+'rotate-comment' => 'Сурт дерзина $1 {{PLURAL:$1|градус}} сахьтан цамзаца',
 
 # Limit report
 'limitreport-title' => 'АгӀона хӀоттам къасторан хаамаш:',
@@ -3148,9 +3252,11 @@ MediaWiki яржош ю и шуна пайдане хир яц те аьлла, 
 'expand_templates_title' => 'АгӀона {{FULLPAGENAME}} корта кхин а:',
 'expand_templates_input' => 'Чудолу йоза:',
 'expand_templates_output' => 'Хилам',
+'expand_templates_ok' => 'ХӀаъ',
 'expand_templates_remove_comments' => 'ДӀаяха комментареш',
 'expand_templates_remove_nowiki' => 'ДӀайоху тегаш <nowiki> хилча',
 'expand_templates_generate_xml' => 'Гойту дитта цу XML',
+'expand_templates_generate_rawhtml' => 'Гайта HTML',
 'expand_templates_preview' => 'Хьалха муха ю хьажа',
 
 );

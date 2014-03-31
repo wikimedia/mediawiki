@@ -4546,4 +4546,11 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'expand_templates_generate_rawhtml' => 'HTML ソースを表示',
 'expand_templates_preview' => 'プレビュー',
 
+# Special:TrackingCategories
+'trackingcategories' => '追跡用カテゴリ',
+'trackingcategories-summary' => 'このページでは、MediaWiki ソフトウェアが自動的に追加した追跡用カテゴリを列挙します。これらの名前は、{{ns:8}} 名前空間内の対応するシステム メッセージを修正することで変更できます。',
+'trackingcategories-msg' => '追跡用カテゴリ',
+'trackingcategories-name' => 'メッセージ名',
+'trackingcategories-nodesc' => '説明はありません。',
+
 );

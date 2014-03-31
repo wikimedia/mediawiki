@@ -2637,8 +2637,8 @@ $1',
 'year' => '截止年份：',
 
 'sp-contributions-newbies' => '只显示新账户的贡献',
-'sp-contributions-newbies-sub' => '新手',
-'sp-contributions-newbies-title' => '新手的用户贡献',
+'sp-contributions-newbies-sub' => '新账户的贡献',
+'sp-contributions-newbies-title' => '新账户的用户贡献',
 'sp-contributions-blocklog' => '封禁日志',
 'sp-contributions-deleted' => '已被删除的用户贡献',
 'sp-contributions-uploads' => '上传',
@@ -4201,4 +4201,21 @@ MediaWiki发表时预期有用，但对此'''无任何保证'''，亦无隐含�
 'expand_templates_generate_rawhtml' => '显示原始HTML',
 'expand_templates_preview' => '预览',
 
+# Special:TrackingCategories
+'trackingcategories' => '跟踪分类',
+'trackingcategories-summary' => '本页面列举由MediaWiki软件自动添加的跟踪分类。它们的名字可通过修改{{ns:8}}名字空间对应的系统信息而变更。',
+'trackingcategories-msg' => '跟踪分类',
+'trackingcategories-name' => '信息名',
+'trackingcategories-desc' => '分类收录标准',
+'noindex-category-desc' => '页面中有<nowiki>__NOINDEX__</nowiki>魔术字（并且在标记允许的名字空间）且因此未被机器人索引的。',
+'index-category-desc' => '页面中有<nowiki>__INDEX__</nowiki>魔术字（并且在标记允许的名字空间）且因此被机器人索引但本不应索引的。',
+'post-expand-template-inclusion-category-desc' => '在展开了所有模板后，页面大小大于$wgMaxArticleSize，所以一些模板未展开。',
+'post-expand-template-argument-category-desc' => '展开了模板参数（三对花括号内，例如{{{Foo}}}）之后，页面大于$wgMaxArticleSize。',
+'expensive-parserfunction-category-desc' => '页面包含了太多的高开销函数解析器（例如#ifexists）。参见[https://www.mediawiki.org/wiki/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit]。',
+'broken-file-category-desc' => '当页面包含损坏文件连接（连接至嵌入的一个不存在文件）时分类被加入。',
+'hidden-category-category-desc' => '这是一个带<nowiki>__HIDDENCAT__</nowiki>的分类，它默认防止在页面的分类连接盒中显示。',
+'trackingcategories-nodesc' => '没有说明。',
+
+# Unknown messages
+'trackingcategories-disabled' => '分类被禁用',
 );

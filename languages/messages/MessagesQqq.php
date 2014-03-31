@@ -10892,10 +10892,12 @@ test
 'expand_templates_generate_rawhtml' => 'Used as checkbox label.',
 'expand_templates_preview' => '{{Identical|Preview}}',
 
-# Tracking categories special page
-'trackingcategories' => 'Special:TrackingCategories page implementing list of Tracking categories [[mw:Help:Tracking categories|tracking category]]',
+# Special:TrackingCategories
+'trackingcategories' => '[[Special:TrackingCategories]] page implementing list of Tracking categories [[mw:Special:MyLanguage/Help:Tracking categories|tracking category]].
+{{Identical|Tracking category}}',
 'trackingcategories-summary' => 'Description for [[Special:TrackingCategories]] page [[mw:Help:Tracking categories|tracking category]]',
-'trackingcategories-msg' => 'Header for the message column of the table on [[Special:TrackingCategories]]. This column lists the mediawiki message that controls the tracking category in question.',
+'trackingcategories-msg' => 'Header for the message column of the table on [[Special:TrackingCategories]]. This column lists the mediawiki message that controls the tracking category in question.
+{{Identical|Tracking category}}',
 'trackingcategories-name' => 'Header for the message column of the table on [[Special:TrackingCategories]]. This column lists the name of the tracking category in the content language.',
 'trackingcategories-desc' => 'Header for the message column of the table on [[Special:TrackingCategories]]. This column lists the inclusion criteria for the category.',
 'noindex-category-desc' => 'No-index category-description. Shown on [[Special:TrackingCategories]]',
@@ -10906,6 +10908,5 @@ test
 'broken-file-category-desc' => 'Broken file category description. Shown on [[Special:TrackingCategories]]',
 'hidden-category-category-desc' => 'Hidden-category category description. Shown on [[Special:TrackingCategories]]',
 'trackingcategories-nodesc' => 'Tracking category description not available message',
-'trackcategories-disabled' => 'Tracking category disabled message',
 
 );

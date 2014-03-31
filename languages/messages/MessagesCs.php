@@ -4344,4 +4344,21 @@ V podstatě rozbalí prakticky všechno v dvojitých složených závorkách.',
 'expand_templates_generate_rawhtml' => 'Zobrazit surové HTML',
 'expand_templates_preview' => 'Náhled',
 
+# Special:TrackingCategories
+'trackingcategories' => 'Sledovací kategorie',
+'trackingcategories-summary' => 'Tato stránka obsahuje seznam sledovacích kategorií, které automaticky přidává software MediaWiki. Jejich jména lze změnit úpravou příslušných systémových hlášení ve jmenném prostoru {{ns:8}}.',
+'trackingcategories-msg' => 'Sledovací kategorie',
+'trackingcategories-name' => 'Název hlášení',
+'trackingcategories-desc' => 'Kritéria pro vložení do kategorie',
+'noindex-category-desc' => 'Stránka obsahuje kouzelné slovo <nowiki>__NOINDEX__</nowiki> (a je ve jmenném prostoru, ve kterém je tento příznak dovolen), takže není indexována roboty.',
+'index-category-desc' => 'Stránka obsahuje kouzelné slovo <nowiki>__INDEX__</nowiki> (a je ve jmenném prostoru, ve kterém je tento příznak dovolen), takže je indexována roboty, přestože by normálně nebyla.',
+'post-expand-template-inclusion-category-desc' => 'Po rozbalení všech šablon je stránka větší než $wgMaxArticleSize, takže některé šablony rozbaleny nebyly.',
+'post-expand-template-argument-category-desc' => 'Po rozbalení argumentu šablony (něco v trojitých závorkách, např. {{{Foo}}}) je stránka větší než $wgMaxArticleSize.',
+'expensive-parserfunction-category-desc' => 'Na stránce je použito příliš mnoho náročných funkcí parseru (jako #ifexists). Vizte [https://www.mediawiki.org/wiki/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].',
+'broken-file-category-desc' => 'Kategorie přidaná pokud stránka obsahuje nefunkční odkaz na soubor (odkaz pro vložení souboru, který neexistuje).',
+'hidden-category-category-desc' => 'Toto je kategorie, která obsahuje <nowiki>__HIDDENCAT__</nowiki>, což způsobuje, že se na stránkách implicitně nezobrazuje v rámečku odkazů na kategorie.',
+'trackingcategories-nodesc' => 'Popis není k dispozici.',
+
+# Unknown messages
+'trackingcategories-disabled' => 'Kategorie je vypnuta',
 );

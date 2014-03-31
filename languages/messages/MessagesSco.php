@@ -42,7 +42,7 @@ $messages = array(
 'tog-watchmoves' => 'Eik pages n files that Ah muiv til ma watchleet',
 'tog-watchdeletion' => 'Eik pages n files that Ah get rid o til ma watchleet',
 'tog-minordefault' => 'Mairk aa edits "smaa" bi defaut',
-'tog-previewontop' => 'Shaw owerview afore eedit kist n naw efter it',
+'tog-previewontop' => 'Shaw luikower afore eedit kist n naw efter it',
 'tog-previewonfirst' => 'Shaw luikower oan firstwhile eidit',
 'tog-enotifwatchlistpages' => 'Wab-mail me whan ae page or file on ma watchleet is chynged',
 'tog-enotifusertalkpages' => 'Send me ae wab-mail whan ma uiser tauk page is chynged',
@@ -191,7 +191,7 @@ $messages = array(
 'vector-view-edit' => 'Eedit',
 'vector-view-history' => 'See histerie',
 'vector-view-view' => 'Read',
-'vector-view-viewsource' => 'View soorce',
+'vector-view-viewsource' => 'See Soorce',
 'actions' => 'Actions',
 'namespaces' => 'Namespaces',
 'variants' => 'Variants',
@@ -211,7 +211,7 @@ $messages = array(
 'printableversion' => 'Prent version',
 'permalink' => 'Permanent airtin',
 'print' => 'Prent',
-'view' => 'View.',
+'view' => 'See',
 'edit' => 'Eedit',
 'create' => 'Mak',
 'editthispage' => 'Eedit this page',
@@ -233,15 +233,15 @@ $messages = array(
 'personaltools' => 'Personal tuils',
 'postcomment' => 'New section',
 'articlepage' => 'Leuk at content page',
-'talk' => 'Collogue',
+'talk' => 'Tauk',
 'views' => 'Views',
 'toolbox' => 'Tuilkist',
-'userpage' => 'View uiser page',
+'userpage' => 'See the uiser page',
 'projectpage' => 'See waurk page',
-'imagepage' => 'look ower image page',
-'mediawikipage' => 'View message page',
-'templatepage' => 'View template page',
-'viewhelppage' => 'View help page',
+'imagepage' => 'See the file page',
+'mediawikipage' => 'See the message page',
+'templatepage' => 'See the template page',
+'viewhelppage' => 'See the heelp page',
 'categorypage' => 'See categerie page',
 'viewtalkpage' => 'See tauk',
 'otherlanguages' => 'In ither leids',
@@ -253,9 +253,9 @@ $messages = array(
 'jumpto' => 'Jump til:',
 'jumptonavigation' => 'navigation',
 'jumptosearch' => 'rake',
-'view-pool-error' => 'Sorrie, the servers ar owerlaided at the moment.
-Ower mony uisers ar trying tae view this page.
-Please wait ae while afore ye try tae access this page again.
+'view-pool-error' => 'Sarrie, the servers ar owerlaided at the moment.
+Ower monie uisers ar ettlin tae see this page.
+Please wait ae while afore ye ettle tae access this page again.
 
 $1',
 'pool-timeout' => 'Timeout waitin fer the lock',
@@ -282,7 +282,7 @@ $1',
 
 'badaccess' => 'Permeission mishanter',
 'badaccess-group0' => "Ye'r no permited tae dae whit ye hae requestit!",
-'badaccess-groups' => 'The action ye hae requestit is limitit tae uisers in {{PLURAL:$2|the group|ane o the groups}}: $1.',
+'badaccess-groups' => 'The action that ye hae requestit is leemitit til uisers in {{PLURAL:$2|the groop|yin o the groops}}: $1.',
 
 'versionrequired' => 'Version $1 o MediaWiki needit',
 'versionrequiredtext' => 'Version $1 o MediaWiki is requirit tae uise this page. Tak a keek at the [[Special:Version|version page]].',
@@ -306,8 +306,8 @@ $1',
 'hidetoc' => 'scouk',
 'collapsible-collapse' => 'Collapse.',
 'collapsible-expand' => 'Mak mair muckle',
-'thisisdeleted' => 'View or cower $1?',
-'viewdeleted' => 'View $1?',
+'thisisdeleted' => 'See or restore $1?',
+'viewdeleted' => 'See $1?',
 'restorelink' => '{{PLURAL:$1|yin delytit eidit|$1 delytit eidits}}',
 'feedlinks' => 'Feed:',
 'feed-invalid' => "This feeds subscrieve's teep isnae habile.",
@@ -326,7 +326,7 @@ $1',
 'nstab-media' => 'Eetem page',
 'nstab-special' => 'Byordinar page',
 'nstab-project' => 'Waurk page',
-'nstab-image' => 'Eimage',
+'nstab-image' => 'Eemage',
 'nstab-mediawiki' => 'Message',
 'nstab-template' => 'Template',
 'nstab-help' => 'Help page',
@@ -386,11 +386,11 @@ It micht awreadie hae been delytit bi some ither bodie.',
 It gae nae explanâtion.',
 'no-null-revision' => 'Coudna mak new null reveesion fer page "$1"',
 'badtitle' => 'Bad teitle',
-'badtitletext' => 'The requestit page teitle wis invalid, tuim, or a wranglie airtit inter-leid or inter-wiki teitle. It mibbe haes ane or mair chairacters that canna be uised in teitles.',
+'badtitletext' => 'The requestit page teitle wis onvalid, tuim, or ae wranglie airtit inter-leid or inter-wiki teitle. It micht contain yin or mair chairacters that canna be uised in teitles.',
 'perfcached' => 'The follaein data is cached n michtna be richt up til date. Ae maist muckle o {{PLURAL:$1|yin result is|$1 results ar}} available in the cache.',
 'perfcachedts' => 'The follaein data is cached, n wis hindermaist updated $1. Ae maist muckkle o {{PLURAL:$4|yin result is|$4 results ar}} available in the cache.',
 'querypage-no-updates' => 'Updates for this page ar disablit at the meenit. Data here wilnae be refreshit at the meenit.',
-'viewsource' => 'View soorce',
+'viewsource' => 'See soorce',
 'viewsource-title' => 'See soorce fer $1',
 'actionthrottled' => 'Action devalit',
 'actionthrottledtext' => "Aes aen anti-spam meisur, ye'r limitit fae daein this action ower monie times in aen ower short time, n ye'v exceedit this limit. Please try again in ae few minutes.",
@@ -605,8 +605,8 @@ Please chuise ae new passwaird nou, or clap "{{int:resetpass-submit-cancel}}" ta
 'passwordreset-disabled' => 'Passwaird resets hae been disabled oan this wiki.',
 'passwordreset-emaildisabled' => 'Wab-mail features hae been disabled oan this wiki.',
 'passwordreset-username' => 'Uisername:',
-'passwordreset-capture' => 'View the resultin wab-mail?',
-'passwordreset-capture-help' => 'Gif ye check this kist, the wab-mail (wi the temperie passwaird) will be shawn til ye n be sent til the uiser ava.',
+'passwordreset-capture' => 'See the ootcomin e-mail?',
+'passwordreset-capture-help' => 'Gif ye check this kist, the e-mail (wi the temperie passwaird) will be shawn til ye n be sent til the uiser ava.',
 'passwordreset-email' => 'Wab-mail address:',
 'passwordreset-emailtitle' => 'Accoont details oan {{SITENAME}}',
 'passwordreset-emailtext-ip' => "Somebodie (likely ye, fae IP address $1) requested ae reset o yer passwaird fer {{SITENAME}} ($4). The follaein uiser {{PLURAL:$3|accoont is|accoonts ar}}
@@ -671,7 +671,7 @@ Ye shid dae it gif ye accidentally shaired theim wi somebodie or gif yer accoont
 'nowiki_sample' => 'Insert non-formattit tex here',
 'nowiki_tip' => 'Ignore wiki formattin',
 'image_sample' => 'Exemplar.jpg',
-'image_tip' => 'Embeddit eimage',
+'image_tip' => 'Embeddit eemage',
 'media_sample' => 'Exemplar.ogg',
 'media_tip' => 'Media file airtin',
 'sig_tip' => 'Yer seignatur wi timestamp',
@@ -746,8 +746,8 @@ Gif ye'r aen anonymos uiser n feel that onreelavant comments hae been directed a
 Ye can [[Special:Search/{{PAGENAME}}|rake fer this page teitle]] in ither pages,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rake the related logs],
  or [{{fullurl:{{FULLPAGENAME}}|action=edit}} eidit this page].</span>',
-'noarticletext-nopermission' => 'There isna oni tex in this page the nou.
-Ye can [[Special:Search/{{PAGENAME}}|rake fer this page title]] in ither pages, or <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rake the relatit logs]</span>, but ye dina hae permeession tae mak this page.',
+'noarticletext-nopermission' => 'Thaur\'s nae tex in this page the nou.
+Ye can [[Special:Search/{{PAGENAME}}|rake fer this page title]] in ither pages, or <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rake the relatit logs]</span>, but ye dinna hae permeession tae cræft this page.',
 'missing-revision' => 'The reveesion #$1 o the page named "{{FULLPAGENAME}}" disna exeest.
 
 This is uissuallie caused bi follaein aen ootdated histerie link til ae page that haes been delytit.
@@ -770,11 +770,11 @@ It haesna been hained yet!</strong>",
 It's no been hained yet!</strong>",
 'sitejspreview' => "<strong>Mynd that ye'r yinly previewing this JavaScript code.
 It's no been hained yet!</strong>",
-'userinvalidcssjstitle' => '<strong>Warnishment</strong> There isnae ae skin "$1". Mynd that yer ain .css an .js pages uise a lowercase teetle, e.g. {{ns:user}}:Foo/vector.css instead o {{ns:user}}:Foo/Vector.css.',
+'userinvalidcssjstitle' => '<strong>Warnishmant</strong> Thaur\'s na ae skin "$1". Mynd that yer ain .css n .js pages uise ae lowercase teetle, e.g. {{ns:user}}:Foo/vector.css in steid o {{ns:user}}:Foo/Vector.css.',
 'updated' => '(Updatit)',
 'note' => "'''Mynd:'''",
-'previewnote' => '<strong>Mynd that this is yinly ae scænce-ower.</strong>
-Yer chynges hae no been hained yet!',
+'previewnote' => '<strong>Mynd that this is yinlie ae luikower.</strong>
+Yer chynges hae na been hained yet!',
 'continue-editing' => 'Gae til eiditing area',
 'previewconflict' => 'This luikower reflects the tex in the upper tex eeditin airt like it will kith gif ye chuise tae hain.',
 'session_fail_preview' => "'''Sairy! We culdnae process yer eidit acause o ae loss o term data.'''
@@ -801,7 +801,7 @@ Ye\'ll hae tae merge yer chynges intil the exeestin tex.
 <strong>Juist</strong> the tex in the upper tex area will be hained whan ye press "{{int:savearticle}}".',
 'yourtext' => 'Yer tex',
 'storedversion' => 'Storit version',
-'nonunicodebrowser' => '<strong>Warnishment: Yer brouser isna unicode compliant.</strong> Ae wairkaroond is in place tae permit ye tae sauflie eedit airticles: non-ASCII chairacters will kythe in the eedit kist aes hexadecimal codes.',
+'nonunicodebrowser' => '<strong>Warnishmant: Yer brouser isna unicode compliant.</strong> Ae wairkaroond is in place tae lat ye sauflie eedit airticles: non-ASCII chairacters will kythe in the eedit kist aes hexadecimal codes.',
 'editingold' => "<strong>Warnishment:</strong> Ye'r eiditin aen oot-o-date reveesion o this page. Gin ye hain it, onie chynges makit sin this reveesion will be lost.",
 'yourdiff' => 'Differs',
 'copyrightwarning' => "Please mynd that aw contreebutions til {{SITENAME}} is conseedert tae be released unner the $2 (see $1 for details). Gif ye dinna want yer writin tae be eeditit wioot mercie n redistreebuted at will, than dinna haun it it here.<br /> Forbye thon, ye'r promisin us that ye wrat this yersel, or copied it fae ae publeec domain or siclike free resoorce. <strong>Dinna haun in copierichtit wark wioot permeession!</strong>",
@@ -824,7 +824,7 @@ The latest log entrie is gien ablo fer referance:',
 'titleprotectedwarning' => '<strong>Warnishment: This page haes been protectit sae that [[Special:ListGroupRights|speceefic richts]] ar needed tae cræft it.</strong>
 The laitest log entrie is gien ablo fer referance:',
 'templatesused' => '{{PLURAL:$1|Template|Templates}} uised oan this page:',
-'templatesusedpreview' => '{{PLURAL:$1|Template|Templates}} uised in this scænce-ower:',
+'templatesusedpreview' => '{{PLURAL:$1|Template|Templates}} uised in this luikower:',
 'templatesusedsection' => '{{PLURAL:$1|Template|Templates}} uised in this section:',
 'template-protected' => '(protectit)',
 'template-semiprotected' => '(semi-protectit)',
@@ -843,7 +843,7 @@ Ye shid check that it is guid tae keep eeditin this page.
 The delytion n muiv log fer this page is providit here fer conveeniance:",
 'moveddeleted-notice' => 'This page haes been delytit. 
 The delytion n muiv log fer the page ar gien ablo fer referance.',
-'log-fulllog' => 'View ful log',
+'log-fulllog' => 'See the ful log',
 'edit-hook-aborted' => 'Eedit abortit bi huik.
 It gae naw explanation.',
 'edit-gone-missing' => 'Coudna update the page.
@@ -938,35 +938,35 @@ It micht hae been delytit fae the wiki, or the name micht hae been chynged.
 Try [[Special:Search|rakin oan the wiki]] fer new pages ye micht be interestit in.',
 
 # Revision deletion
-'rev-deleted-comment' => '(eidit summarie remuived)',
+'rev-deleted-comment' => '(eedit ootline remuived)',
 'rev-deleted-user' => '(uisername removit)',
 'rev-deleted-event' => '(log action remuived)',
 'rev-deleted-user-contribs' => "[uisername or IP address remuived - eidit skauk't fae contreebutions]",
 'rev-deleted-text-permission' => 'This page reveesion haes been <strong>delytit</strong>.
 Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} delytion log].',
-'rev-deleted-text-unhide' => 'This page reveesion haes been <strong>delytit</strong>.
+'rev-deleted-text-unhide' => 'This page luikower haes been <strong>delytit</strong>.
 Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} delytion log].
-Ye can still [$1 view this reveesion] gif ye wish tae proceed.',
-'rev-suppressed-text-unhide' => 'This page reveesion haes been <strong>suppressed</strong>.
+Ye can still [$1 see this luikower] gif ye wish tae proceed.',
+'rev-suppressed-text-unhide' => 'This page luikower haes been <strong>suppressed</strong>.
 Details can be foond in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].
-Ye can still [$1 view this reveesion] gif ye wish tae proceed.',
-'rev-deleted-text-view' => 'This page reveesion haes been <strong>delytit</strong>.
-Ye can view it; details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} delytion log].',
-'rev-suppressed-text-view' => 'This page reveesion haes been <strong>suppressed</strong>.
-Ye can view it; details can be foond in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].',
-'rev-deleted-no-diff' => 'Ye canna view this diff cause yin o the reveesions haes been <strong>delytit</strong>.
+Ye can still [$1 see this luikower] gif ye wish tae proceed.',
+'rev-deleted-text-view' => 'This page luikower haes been <strong>delytit</strong>.
+Ye can see it; the details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} delytion log].',
+'rev-suppressed-text-view' => 'This page luikower haes been <strong>suppressed</strong>.
+Ye can see it; details can be foond in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].',
+'rev-deleted-no-diff' => 'Ye canna see this diff cause yin o the luikowers haes been <strong>delytit</strong>.
 Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} delytion log].',
 'rev-suppressed-no-diff' => 'Ye cannae see this diff cause yin o the reveesions haes been <strong>delytit</strong>.',
 'rev-deleted-unhide-diff' => 'Yin o the reveesions o this diff haes been <strong>delytit</strong>.
 Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} delytion log].
-Ye can still [$1 view this diff] gif ye wish tae proceed.',
-'rev-suppressed-unhide-diff' => 'Yin o the reveesions o this diff haes been <strong>suppressed</strong>.
+Ye can still [$1 see this diff] gif ye wish tae proceed.',
+'rev-suppressed-unhide-diff' => 'Yin o the luikowers o this diff haes been <strong>suppressed</strong>.
 Details can be foond in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].
-Ye can still [$1 view this diff] gif ye wish tee proceed.',
+Ye can still [$1 see this diff] gif ye wish tae proceed.',
 'rev-deleted-diff-view' => "Ane o the reveesions o this diff haes been '''delytit'''.
 Ye can see this diff; details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} delytion log].",
-'rev-suppressed-diff-view' => 'Yin o the reveesions o this diff haes been <strong>suppressed</strong>.
-Ye can view this diff; details can be foond in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].',
+'rev-suppressed-diff-view' => 'Yin o the luikowers o this diff haes been <strong>suppressed</strong>.
+Ye can see this diff; the details can be foond in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].',
 'rev-delundel' => 'chynge veesibilitie',
 'rev-showdeleted' => 'shaw',
 'revisiondelete' => 'Delyte/ondelyte reveesions',
@@ -991,7 +991,7 @@ Ye can view this diff; details can be foond in the [{{fullurl:{{#Special:Log}}/s
 'revdelete-hide-text' => 'Reveesion tex',
 'revdelete-hide-image' => 'Skauk file content.',
 'revdelete-hide-name' => 'Skauk aiction n tairget',
-'revdelete-hide-comment' => 'Eidit summarie',
+'revdelete-hide-comment' => 'Eedit the ootline',
 'revdelete-hide-user' => "Eiditer's uisername/IP address",
 'revdelete-hide-restricted' => 'Suppress data fae admeenistraters aes weel aes ithers',
 'revdelete-radio-same' => '(dinna chynge)',
@@ -1038,8 +1038,8 @@ See the [[Special:BlockList|block leet]] fer the leet o currentlie operational b
 
 # History merging
 'mergehistory' => 'Merge page histeries',
-'mergehistory-header' => 'This page lets ye merge reveesions o the histerie o yin source page intil ae newer page.
-Mak sair that this chynge will maintain historical page conteenuitie.',
+'mergehistory-header' => 'This page lats ye merge the luikowers o the histerie o yin soorce page intil ae newer page.
+Mak sair that this chynge will maintain histerical page conteenuitie.',
 'mergehistory-box' => 'Merge reveesions o twa pages:',
 'mergehistory-from' => 'Soorce page:',
 'mergehistory-into' => 'Destinâtion page:',
@@ -1054,7 +1054,7 @@ Mynd that uisin the naveegation airtins will reset this column.',
 'mergehistory-fail' => 'Onable tae perform histerie merge, please recheck the page n time parameters.',
 'mergehistory-no-source' => 'Soorce page $1 disna exeest.',
 'mergehistory-no-destination' => 'Destination page $1 disna exeest.',
-'mergehistory-invalid-source' => 'Source page maun be ae valid title.',
+'mergehistory-invalid-source' => 'Soorce page maun be ae valid title.',
 'mergehistory-invalid-destination' => 'Destinâtion page maun be ae valid title.',
 'mergehistory-autocomment' => 'Merged [[:$1]] intil [[:$2]]',
 'mergehistory-comment' => 'Merged [[:$1]] intil [[:$2]]: $3',
@@ -1097,8 +1097,8 @@ Details can be foond in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'prevn-title' => 'Previous $1 {{PLURAL:$1|ootcome|ootcomes}}',
 'nextn-title' => 'Next $1 {{PLURAL:$1|ootcome|ootcomes}}',
 'shown-title' => 'Shaw $1 {{PLURAL:$1|ootcome|ootcomes}} per page',
-'viewprevnext' => 'View ($1 {{int:pipe-separator}} $2) ($3)',
-'searchmenu-exists' => "'''There is a page named \"[[:\$1]]\" oan this wiki.'''",
+'viewprevnext' => 'See the ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-exists' => '<strong>Thaur\'s ae page named "[[:$1]]" oan this wiki.</strong> {{PLURAL:$2|0=|See the ither rake ootcomes foond aes weel.}}',
 'searchmenu-new' => '<strong>Cræft the page "[[:$1]]" oan this wiki!</strong> {{PLURAL:$2|0=|See the page foond wi yer rake ava.|See the rake ootcome foond ava.}}',
 'searchprofile-articles' => 'Content pages',
 'searchprofile-project' => 'Heelp n Waurk pages',
@@ -1205,7 +1205,7 @@ This canna be ondun.',
 'youremail' => 'Yer email:',
 'username' => '{{GENDER:$1|Uisername}}:',
 'uid' => '{{GENDER:$1|Uiser}} ID:',
-'prefs-memberingroups' => '{{GENDER:$2|Member}} o {{PLURAL:$1|group|groups}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Memmer}} o {{PLURAL:$1|groop|groops}}:',
 'prefs-registration' => 'Regeestration time:',
 'yourrealname' => 'Yer real name:',
 'yourlanguage' => 'Interface leid:',
@@ -1537,9 +1537,9 @@ Please check whether ye reallie want tae uplaid this file.',
 'windows-nonascii-filename' => 'This wiki disna support filenames wi speecial chairacters.',
 'fileexists' => "Ae file wi this name exeests aareadies, please check <strong>[[:$1]]</strong> gif ye'r no sair that ye want tae chynge it.
 [[$1|thumb]]",
-'filepageexists' => "The descreeption page fer this file haes awreadie been cræftit at <strong>[[:$1]]</strong>, but naw file wi this name exeests the nou.
-The ootline that ye enter willna kith oan the descreeption page.
-Tae mak yer ootlline kith there, ye'll need tae manuallie eedit it.
+'filepageexists' => "The descreeption page fer this file haes awreadie been cræftit at <strong>[[:$1]]</strong>, bit nae file wi this name exeests the nou.
+The ootline that ye enter will na kith oan the descreeption page.
+Tae mak yer ootline kith thaur, ye'll need tae manuallie eedit it.
 [[$1|thumb]]",
 'fileexists-extension' => 'Ae file wi ae siclike name exeests: [[$2|thumb]]
 * Name o the uplaidin file: <strong>[[:$1]]</strong>
@@ -1724,7 +1724,7 @@ Ye micht want tae try at ae less busie time.',
 'listfiles-summary' => 'This speecial page shaws aw uplaided files.',
 'listfiles_search_for' => 'Rake fer media name:',
 'imgfile' => 'file',
-'listfiles' => 'Eimage leet',
+'listfiles' => 'The file leet',
 'listfiles_thumb' => 'Thummnail',
 'listfiles_name' => 'Name',
 'listfiles_user' => 'Uiser',
@@ -1736,9 +1736,9 @@ Ye micht want tae try at ae less busie time.',
 'listfiles-latestversion-no' => 'Naw',
 
 # File description page
-'file-anchor-link' => 'Eimage',
+'file-anchor-link' => 'File',
 'filehist' => 'File histerie',
-'filehist-help' => 'Clap oan ae date/time tae view the file aes it appeared at that time.',
+'filehist-help' => 'Clap oan ae date/time fer tae see the file aes it kithed at that time.',
 'filehist-deleteall' => 'delyte aw',
 'filehist-deleteone' => 'delyte',
 'filehist-revert' => 'revert',
@@ -1809,7 +1809,7 @@ Perhaps ye want tae eedit the deescreeption oan its [$2 file deescreeption page]
 # MIME search
 'mimesearch' => 'MIME rake',
 'mimesearch-summary' => 'This page enables the filterin o files fer thair MIME type.
-Input: contenttype/subtype, e.g. <code>image/jpeg</code>.',
+Input: contenttype/subtype, e.g. <code>eemage/jpeg</code>.',
 'mimetype' => 'MIME type:',
 'download' => 'dounlaid',
 
@@ -1848,7 +1848,7 @@ Input: contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'statistics' => 'Stateestics',
 'statistics-header-pages' => 'Page stateestics',
 'statistics-header-edits' => 'Eidit stateestics',
-'statistics-header-views' => 'View stateestics',
+'statistics-header-views' => 'See stateesteecs',
 'statistics-header-users' => 'Uiser stateestics',
 'statistics-header-hooks' => 'Ither stateestics',
 'statistics-pages' => 'Pages',
@@ -1900,7 +1900,7 @@ It nou reguides til [[$2]].',
 'nmembers' => '$1 {{PLURAL:$1|membir|membirs}}',
 'nmemberschanged' => '$1 → $2 {{PLURAL:$2|memmer|memmers}}',
 'nrevisions' => '$1 {{PLURAL:$1|reveesion|reveesions}}',
-'nviews' => '$1 {{PLURAL:$1|view|views}}',
+'nviews' => '$1 {{PLURAL:$1|luik|luiks}}',
 'nimagelinks' => 'Uised oan $1 {{PLURAL:$1|page|pages}}',
 'ntransclusions' => 'uised oan $1 {{PLURAL:$1|page|pages}}',
 'specialpage-empty' => "Thaur's naw ootcomes fer this report.",
@@ -1911,7 +1911,7 @@ It nou reguides til [[$2]].',
 'uncategorizedimages' => 'Oncategerized files',
 'uncategorizedtemplates' => 'Oncategerized templates',
 'unusedcategories' => 'Unuised categories',
-'unusedimages' => 'Unuised images',
+'unusedimages' => 'Unuised eemages',
 'wantedcategories' => 'Wantit categories',
 'wantedpages' => 'Wantit pages',
 'wantedpages-badtitle' => 'Onvalid title in ootcome set: $1',
@@ -1923,7 +1923,7 @@ It nou reguides til [[$2]].',
 'mostlinkedcategories' => 'Maist airtit-til categories',
 'mostlinkedtemplates' => 'Maist linkt-til templates',
 'mostcategories' => 'Airticles wi the maist categeries',
-'mostimages' => 'Maist uised eimages',
+'mostimages' => 'Maist uised eemages',
 'mostinterwikis' => 'Pages wi the maist interwikis',
 'mostrevisions' => 'Maist revised airticles',
 'prefixindex' => 'Aw pages wi prefix',
@@ -1973,7 +1973,7 @@ Please mynd that ither wab sites micht link til ae file wi ae direct URL, n sae 
 'querypage-disabled' => 'This speecial page is disablit fer performance raisons.',
 
 # Book sources
-'booksources' => 'Beuk sources',
+'booksources' => 'Buik soorces',
 'booksources-search-legend' => 'Rake fer buik soorces',
 'booksources-go' => 'Gang',
 'booksources-text' => "Ablo is ae leet o airtins til ither steids that sell new n uised buiks, n micht hae further information aneat buiks that ye'r seekin ava:",
@@ -2052,8 +2052,8 @@ Supported {{PLURAL:$2|protocol|protocols}}: <code>$1</code> (defaults to http://
 
 # Special:ListGroupRights
 'listgrouprights' => 'Uiser groop richts',
-'listgrouprights-summary' => 'The follaein is aae leet o uiser groops defined oan this wiki, wi thair associated access richts.
-There micht be [[{{MediaWiki:Listgrouprights-helppage}}|addeetional information]] aneat indiveedual richts.',
+'listgrouprights-summary' => 'The follaein is ae leet o uiser groops defined oan this wiki, wi thair associatit access richts.
+Thaur micht be [[{{MediaWiki:Listgrouprights-helppage}}|addeetional information]] aneat indiveedual richts.',
 'listgrouprights-key' => 'Legend:
 * <span class="listgrouprights-granted">Grantit richt</span>
 * <span class="listgrouprights-revoked">Revokt richt</span>',
@@ -2234,7 +2234,7 @@ proceed wi caution.',
 some ither bodie haes eidited or rolled back the page awreadie.
 
 The laist eidit til the page wis bi [[User:$3|$3]] ([[User talk:$3|tauk]]{{int:pipe-separater}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment' => "The eidit summarie wis: \"''\$1''\".",
+'editcomment' => "The eedit ootline wis: \"''\$1''\".",
 'revertpage' => 'Reverted eidits bi [[Special:Contributions/$2|$2]] ([[User talk:$2|tauk]]) til laist reveesion bi [[User:$1|$1]]',
 'revertpage-nouser' => 'Reverted eedits bi ae skaukt uiser til laist revesion bi {{GENDER:$1|[[User:$1|$1]]}}',
 'rollback-success' => 'Reverted eedits b $1;
@@ -2314,7 +2314,7 @@ Chynges til this page's protection level will na affect the cascadin protection.
 'undelete' => 'See delytit page',
 'undeletepage' => 'See n restore delytit pages',
 'undeletepagetitle' => '<strong>The follaein conseests o delytit reveesions o [[:$1|$1]]</strong>.',
-'viewdeletedpage' => 'View delyte pages',
+'viewdeletedpage' => 'See the delytit pages',
 'undeletepagetext' => 'The follaein {{PLURAL:$1|page haes been delytit but is|$1 pages hae been delytit but ar}} still in the archive n can be restored.
 The archive micht be cleaned oot nou n than.',
 'undelete-fieldset-title' => 'Restore reveesions',
@@ -2332,7 +2332,7 @@ shawn in the owerview ablo, alang wi parteeculars o the uisers that haed eiditit
 Ye micht hae ae bad link, or the reveesion micht hae been restored or remuived fae the archive.',
 'undelete-nodiff' => 'Naw preeveeoos reveesion foond.',
 'undeletelink' => 'see/restore',
-'undeleteviewlink' => 'view',
+'undeleteviewlink' => 'see',
 'undeletecomment' => 'Raison:',
 'undeletedrevisions' => '{{PLURAL:$1|1 reveesion|$1 reveesions}} restored',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 reveesion|$1 reveesions}} n {{PLURAL:$2|1 file|$2 files}} restored',
@@ -2363,8 +2363,8 @@ $1',
 # Namespace form on various pages
 'namespace' => 'Namespace:',
 'invert' => 'Invert selection',
-'tooltip-invert' => 'Check this kist tae skauk chynges til pages wiin the selectit namespace (n the associated namespace gif checked)',
-'tooltip-namespace_association' => 'Check this kist forby tae incluid the tauk or subject namespace associated wi the selectit namespace',
+'tooltip-invert' => 'Check this kist tae skauk chynges til pages wiin the selectit namespace (n the associatit namespace gif checked)',
+'tooltip-namespace_association' => 'Check this kist foreby tae incluid the tauk or subject namespace associatit wi the selectit namespace',
 'blanknamespace' => '(Main)',
 
 # Contributions
@@ -2540,7 +2540,7 @@ Aes ye dinna hae the skaukuiser richt, ye canna see or eedit the uiser's block."
 'lockconfirm' => 'Ai, Ah reellie want tae lock the database.',
 'unlockconfirm' => 'Ai, Ah reellie want tae lowse the database.',
 'unlockbtn' => 'Lowse database',
-'locknoconfirm' => 'Ye didna tick the confirmâtion kist.',
+'locknoconfirm' => 'Ye didna tick the confirmation kist.',
 'lockdbsuccesssub' => 'Database lock fine',
 'unlockdbsuccesssub' => 'Database lowsed',
 'lockdbsuccesstext' => 'The database haes been lockit. <br />Mynd an tak the lock aff efter yer maintenance is feinisht.',
@@ -2689,7 +2689,7 @@ $2',
 'thumbnail_image-type' => 'Eemage type na supported',
 'thumbnail_gd-library' => 'Oncompleate GD librie confeeguration: Missin function $1',
 'thumbnail_image-missing' => 'File seems tae be missin: $1',
-'thumbnail_image-failure-limit' => 'There hae been ower moni recent failed attempts ($1 or mair) tae render this thumbnail. Please try again later.',
+'thumbnail_image-failure-limit' => 'Thaur hae been ower monie recynt failed attempts ($1 or mair) tae render this thummnail. Please ettle again later.',
 
 # Special:Import
 'import-interwiki-text' => "Select ae wiki n page title tae import.
@@ -2765,7 +2765,7 @@ Please gie it anither gae.',
 'tooltip-ca-edit' => 'Ye can eedit this page. Please uise the luikower button afore hainin',
 'tooltip-ca-addsection' => 'Stairt ae new section',
 'tooltip-ca-viewsource' => 'This page is protectit.
-Ye can view its soorce',
+Ye can see its soorce',
 'tooltip-ca-history' => 'Bygane reveesions o this page',
 'tooltip-ca-protect' => 'Fend this page',
 'tooltip-ca-unprotect' => 'Chynge protection o this page',
@@ -2789,22 +2789,22 @@ Ye can view its soorce',
 'tooltip-t-recentchangeslinked' => 'Recynt chynges in pages linkt fae this page',
 'tooltip-feed-rss' => 'RSS feed fer this page',
 'tooltip-feed-atom' => 'Atom feed fer this page',
-'tooltip-t-contributions' => "View this uiser's contreebutions",
+'tooltip-t-contributions' => "See ae leet o this uiser's contreebutions",
 'tooltip-t-emailuser' => 'Send ae wab-mail til this uiser',
 'tooltip-t-upload' => 'Uplaid files',
 'tooltip-t-specialpages' => 'Leet o byordinar pages',
 'tooltip-t-print' => "Printable version o' this page",
 'tooltip-t-permalink' => 'Permanent link til this reveesion o the page',
 'tooltip-ca-nstab-main' => 'Leuk at content page',
-'tooltip-ca-nstab-user' => 'View the uiser page',
+'tooltip-ca-nstab-user' => 'See the uiser page',
 'tooltip-ca-nstab-media' => 'See the media page',
 'tooltip-ca-nstab-special' => 'This is ae byordinair page, ye canna eedit the page itsel',
 'tooltip-ca-nstab-project' => 'See the waurk page',
-'tooltip-ca-nstab-image' => 'View the file page',
+'tooltip-ca-nstab-image' => 'See the file page',
 'tooltip-ca-nstab-mediawiki' => 'See the system message',
-'tooltip-ca-nstab-template' => 'View the template',
+'tooltip-ca-nstab-template' => 'See the template',
 'tooltip-ca-nstab-help' => 'See the heelp page',
-'tooltip-ca-nstab-category' => 'View the categerie page',
+'tooltip-ca-nstab-category' => 'See the categerie page',
 'tooltip-minoredit' => 'Mairk this as a smaa edit',
 'tooltip-save' => 'Hain yer chynges',
 'tooltip-preview' => 'Luikower yer chynges, please uise this afore hainin!',
@@ -2920,7 +2920,7 @@ $1',
 # Media information
 'mediawarning' => '<strong>Warnishment:</strong> This file type micht contain maleecious code.
 Bi executin it, yer system micht be compromised.',
-'imagemaxsize' => 'Eimage size limit:<br /><em>(fer file description pages)</em>',
+'imagemaxsize' => 'Eemage size leemit:<br /><em>(fer file descreeption pages)</em>',
 'thumbsize' => 'Thummnail size:',
 'file-info-size' => '$1 × $2 pixels, file size: $3, MIME type: $4',
 'file-nohires' => 'Na higher resolution available.',
@@ -2938,7 +2938,7 @@ Bi executin it, yer system micht be compromised.',
 
 # Special:NewFiles
 'newimages' => 'Gallery o new files',
-'imagelisttext' => 'Ablo is a leet o $1 {{PLURAL:$1|eimage|eimages}} sortit $2.',
+'imagelisttext' => 'Ablo is a leet o $1 {{PLURAL:$1|eemage|eemages}} sortit $2.',
 'newimages-summary' => 'This byordinair page shaws the last uplaidit files.',
 'newimages-label' => 'Filename (or ae pairt o it):',
 'noimages' => 'Nawthing tae see.',
@@ -3010,13 +3010,13 @@ Gif the file haes bin modeefied fae its oreeginal state, some details micht na f
 'exif-flashpixversion' => 'Supportit Flashpix version',
 'exif-colorspace' => 'Colour space',
 'exif-componentsconfiguration' => 'Meanin o ilka component',
-'exif-compressedbitsperpixel' => 'Eimage compression mode',
+'exif-compressedbitsperpixel' => 'Eemage compression mode',
 'exif-pixelydimension' => 'Eemage width',
 'exif-pixelxdimension' => 'Eemage heicht',
 'exif-usercomment' => 'Uiser comments',
 'exif-relatedsoundfile' => 'Relatit audío file',
 'exif-datetimeoriginal' => 'Date n time o data generation',
-'exif-datetimedigitized' => 'Date n time o deegeetizin',
+'exif-datetimedigitized' => 'Date n time o deegeetisin',
 'exif-subsectime' => 'DateTime subseiconts',
 'exif-subsectimeoriginal' => 'DateTimeOreeginal subseiconts',
 'exif-subsectimedigitized' => 'DateTimeDeegeetized subseiconts',
@@ -3267,7 +3267,7 @@ Gif the file haes bin modeefied fae its oreeginal state, some details micht na f
 
 'exif-isospeedratings-overflow' => 'Muckler than 65535',
 
-'exif-iimcategory-ace' => 'Arts, cultur n entertainmant',
+'exif-iimcategory-ace' => 'Airts, cultur n entertainmant',
 'exif-iimcategory-clj' => 'Crime n law',
 'exif-iimcategory-dis' => 'Disasters n accidants',
 'exif-iimcategory-fin' => 'Economie n business',
@@ -3307,7 +3307,8 @@ This code isna required tae log in, but ye'll need tae gie it afore enablin onie
 Please check yer wab-mail address fer onvalid chairacters.
 
 Mailer returned: $1',
-'confirmemail_invalid' => 'Confirmation code nae guid. The code haes mibbe expired.',
+'confirmemail_invalid' => 'Onvalid confirmation code.
+The code micht hae expired.',
 'confirmemail_needlogin' => 'Please $1 fer tae confirm yer wab-mail address.',
 'confirmemail_success' => 'Yer wab-mail address haes been confirmed. Ye can nou [[Special:UserLogin|login]]  n enjoy the wiki.',
 'confirmemail_loggedin' => 'Yer e-mail address haes noo been confirmed.',
@@ -3424,7 +3425,7 @@ Gie normal luikower ae gae.',
 'watchlistedit-normal-legend' => 'Remuiv titles fae watchleet',
 'watchlistedit-normal-explain' => 'Titles oan yer watchleet ar shawn ablo.
 Tae remuiv ae title, check the kist nex til it, n clap "{{int:Watchlistedit-normal-submit}}".
-Ye can [[Special:EditWatchlist/raw|eedit the raw leet]] ava.',
+Ye can [[Special:EditWatchlist/raw|eedit the raw leet]] aes weel.',
 'watchlistedit-normal-submit' => 'Remuiv titles',
 'watchlistedit-normal-done' => '{{PLURAL:$1|1 title wis|$1 titles were}} remuived fae yer watchleet:',
 'watchlistedit-raw-title' => 'Eedit raw watchleet',

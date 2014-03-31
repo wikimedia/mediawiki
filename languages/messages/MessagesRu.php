@@ -889,8 +889,8 @@ $2',
 'userlogin-resetlink' => 'Забыли данные для входа?',
 'userlogin-resetpassword-link' => 'Сбросить ваш пароль?',
 'userlogin-helplink2' => 'Помощь по входу',
-'userlogin-loggedin' => 'Сиз {{GENDER:$1|$1}} ат бла системагъа кирибсиз.
-Башха аккаунт бла кирир ючюн тюбюрекдеги форманы хайырландырыгъыз.',
+'userlogin-loggedin' => 'Вы уже вошли как {{GENDER:$1|$1}}.
+Используйте форму ниже, чтобы войти под другой учётной записью.',
 'userlogin-createanother' => 'Создать другую учётную запись',
 'createacct-join' => 'Введите свои данные ниже.',
 'createacct-another-join' => 'Введите данные новой учётной записи ниже.',
@@ -1367,7 +1367,7 @@ $3 {{GENDER:$3|указал|указала}} следующую причину: 
 'histfirst' => 'старейшие',
 'histlast' => 'новейшие',
 'historysize' => '($1 {{PLURAL:$1|байт|байт|байта}})',
-'historyempty' => '(бошду)',
+'historyempty' => '(пусто)',
 
 # Revision feed
 'history-feed-title' => 'История изменений',
@@ -4496,4 +4496,15 @@ MediaWiki распространяется в надежде, что она бу
 'expand_templates_generate_rawhtml' => 'Показать HTML',
 'expand_templates_preview' => 'Предпросмотр',
 
+# Special:TrackingCategories
+'trackingcategories' => 'Отслеживающие категории',
+'trackingcategories-summary' => 'На этой странице перечислены отслеживающие категории, которые автоматически заполняются программным обеспечением MediaWiki. Их можно переименовать, изменив соответствующие системные сообщения в пространстве имён {{ns:8}}.',
+'trackingcategories-msg' => 'Отслеживающая категория',
+'trackingcategories-name' => 'Имя сообщения',
+'trackingcategories-desc' => 'Критерий включения в категорию',
+'broken-file-category-desc' => 'Категория добавляется, если страница содержит некорректную файловую ссылку (ссылку на несуществующий файл).',
+'trackingcategories-nodesc' => 'Описание отсутствует.',
+
+# Unknown messages
+'trackingcategories-disabled' => 'Категория отключена',
 );

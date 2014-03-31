@@ -4179,4 +4179,7 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'expand_templates_generate_xml' => 'Паказаць дрэва аналізу XML',
 'expand_templates_preview' => 'Папярэдні прагляд',
 
+# Special:TrackingCategories
+'trackingcategories' => 'Катэгорыі, якія патрабуюць увагі',
+
 );

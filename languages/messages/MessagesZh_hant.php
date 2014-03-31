@@ -4163,4 +4163,21 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'expand_templates_generate_rawhtml' => '顯示原始HTML',
 'expand_templates_preview' => '預覽',
 
+# Special:TrackingCategories
+'trackingcategories' => '跟蹤分類',
+'trackingcategories-summary' => '當前頁面收錄由MediaWiki軟體自動加入的跟蹤分類。名稱可經由{{ns:8}}名字空間對於系統資訊修改之。',
+'trackingcategories-msg' => '跟蹤分類',
+'trackingcategories-name' => '資訊名',
+'trackingcategories-desc' => '分類收錄準則',
+'noindex-category-desc' => '頁面中存在<nowiki>__NOINDEX__</nowiki>魔術字（並且於標記允許名字空間）並藉此未被機械人索引。',
+'index-category-desc' => '頁面中存在<nowiki>__INDEX__</nowiki>魔術字（並且於標記允許名字空間）並藉此被機械人錯誤索引。',
+'post-expand-template-inclusion-category-desc' => '展開所有模板后，頁面大小大於$wgMaxArticleSize，藉此某些模板未展開。',
+'post-expand-template-argument-category-desc' => '展開模板參數（三隊花括弧內，例如{{{Foo}}}）後，頁面大於$wgMaxArticleSize。',
+'expensive-parserfunction-category-desc' => '頁面包含太多高開銷函數解析器（例如#ifexists）。參見[https://www.mediawiki.org/wiki/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit]。',
+'broken-file-category-desc' => '黨頁面包含受損檔案連接（連入被嵌入之不存在檔案）時。',
+'hidden-category-category-desc' => '此分類帶有<nowiki>__HIDDENCAT__</nowiki>，它預設防止於頁面分類連接盒中顯示。',
+'trackingcategories-nodesc' => '並無說明。',
+
+# Unknown messages
+'trackingcategories-disabled' => '分類被禁用',
 );

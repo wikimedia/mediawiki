@@ -4523,4 +4523,21 @@ $5
 'expand_templates_generate_rawhtml' => 'Прикажувај сиров HTML',
 'expand_templates_preview' => 'Преглед',
 
+# Special:TrackingCategories
+'trackingcategories' => 'Следачки категории',
+'trackingcategories-summary' => 'На страницава се наведени следачки категории што автоматски се пополнуваат од програмот на МедијаВики. Нивните називи можат да се сменат со измена на соодветните системски пораки во именскиот простор {{ns:8}}.',
+'trackingcategories-msg' => 'Следачка категорија',
+'trackingcategories-name' => 'Назив на пораката',
+'trackingcategories-desc' => 'Критериуми за вклучување',
+'noindex-category-desc' => 'Страницата содржи волшебен збор <nowiki>__NOINDEX__</nowiki> (и се наоѓа во именски простор кајшто е дозволен), па затоа не се индексира од роботи.',
+'index-category-desc' => 'Страницата содржи <nowiki>__INDEX__</nowiki> (и се наоѓа во именски простор кајшто ова е дозволено), па затоа се индексира од роботи, што инаку не би било.',
+'post-expand-template-inclusion-category-desc' => 'По проширувањето на сите шаблони, страницата е поголема од $wgMaxArticleSize, па затоа некои шаблони не се проширени.',
+'post-expand-template-argument-category-desc' => 'По проширување на шаблонски аргумент (нешто во тројни кадрави загради, како на пр. {{{Foo}}}), страницата е поголема од $wgMaxArticleSize.',
+'expensive-parserfunction-category-desc' => 'Во страницата има премногу оптоварувачки расчленувачки функции (како #ifexists). Погл. [https://www.mediawiki.org/wiki/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].',
+'broken-file-category-desc' => 'Категорјата се става ако страницата содржи неисправна податотечка врска (врска за вметнување на податотека што не постои).',
+'hidden-category-category-desc' => 'Ова е категорија што содржи <nowiki>__HIDDENCAT__</nowiki>, што значи дека по основно не се прикажува во страниците.',
+'trackingcategories-nodesc' => 'Нема опис.',
+
+# Unknown messages
+'trackingcategories-disabled' => 'Категоријата е оневозможена',
 );

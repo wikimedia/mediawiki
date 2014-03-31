@@ -4381,4 +4381,21 @@ faktisch alles was in doppelten geschweiften Klammern enthalten ist.',
 'expand_templates_generate_rawhtml' => 'Rohes HTML anzeigen',
 'expand_templates_preview' => 'Vorschau',
 
+# Special:TrackingCategories
+'trackingcategories' => 'Tracking-Kategorien',
+'trackingcategories-summary' => 'Diese Seite listet Tracking-Kategorien auf, die von der MediaWiki-Software automatisch eingepflegt werden. Ihre Namen können durch Änderung der entsprechenden Systemnachrichten im {{ns:8}}-Namensraum angepasst werden.',
+'trackingcategories-msg' => 'Tracking-Kategorie',
+'trackingcategories-name' => 'Name der Nachricht',
+'trackingcategories-desc' => 'Kategorieeinbindungskriterien',
+'noindex-category-desc' => 'Die Seite hat das magische Wort <nowiki>__NOINDEX__</nowiki> und befindet sich in einem Namensraum, wo dieses Flag erlaubt ist und wird daher nicht von Bots indexiert.',
+'index-category-desc' => 'Die Seite enthält ein <nowiki>__INDEX__</nowiki> und befindet sich in einem Namensraum, in dem dieses Flag nicht erlaubt ist und wird daher von Bots ausnahmsweise indexiert.',
+'post-expand-template-inclusion-category-desc' => 'Nach dem Expandieren aller Vorlagen ist die Seitengröße größer als $wgMaxArticleSize, sodass einige Vorlagen nicht expandiert werden.',
+'post-expand-template-argument-category-desc' => 'Nach dem Expandieren eines Vorlagenargumentes (etwas in dreifach geschweiften Klammern, z.&nbsp;B. {{{Foo}}}) ist die Seite größer als $wgMaxArticleSize.',
+'expensive-parserfunction-category-desc' => 'Zu viele aufwändige Parserfunktionen (wie #ifexists) sind in der Seite eingebunden. Siehe das [https://www.mediawiki.org/wiki/Manual:$wgExpensiveParserFunctionLimit Benutzerhandbuch].',
+'broken-file-category-desc' => 'Kategorie, die hinzugefügt wird, falls die Seite einen defekten Dateilink enthält (einen Link zu einer eingebetteten Datei, die nicht vorhanden ist).',
+'hidden-category-category-desc' => 'Dies ist eine Kategorie mit <nowiki>__HIDDENCAT__</nowiki>, die standardmäßig nicht auf Seiten im Kategorienbereich angezeigt wird.',
+'trackingcategories-nodesc' => 'Keine Beschreibung verfügbar.',
+
+# Unknown messages
+'trackingcategories-disabled' => 'Kategorie ist deaktiviert',
 );

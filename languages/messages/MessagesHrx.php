@@ -1759,6 +1759,10 @@ En [[Special:WhatLinksHere/$2|vollständiche List]] ist verfüchbar.',
 'sharedupload' => 'Die Datei stammt aus $1 und därreft von annre Projekte verwendt sin.',
 'sharedupload-desc-there' => 'Die Datei stammt aus $1 und därref von annre Projekte verwendt sinn. Sieh uff der [$2 Dateibeschreibungsseit] noh weitre Informatione.',
 'sharedupload-desc-here' => 'Die Datei stammt aus $1 und kann von annre Projekte verwennet sin. Die Beschreibung von dene [$2 Dateibeschreibungsseit] weard unne oongezeicht.',
+'sharedupload-desc-edit' => 'Die Datei stammt aus $1 und kann uff annre Projekte verwendt sin.
+Vielleicht möchst du die Beschreibung uff der dortiche [$2 Dateibeschreibungsseit] beoorbeite.',
+'sharedupload-desc-create' => 'Die Datei stammt aus $1 und kann von annre Projekte verwendt sin.
+Vielleicht möchst du die Beschreibung uff der dortiche [$2 Dateibeschreibungsseit] beoorbeite.',
 'filepage-nofile' => 'Do gebts ken Datei mit dem Noome voarhand.',
 'filepage-nofile-link' => 'Do gebts ken Datei mit dem Noome voarhand. Du kannst jedoch [$1 die Datei hochloode].',
 'uploadnewversion-linktext' => 'En neie Version von der Datei hochloode',
@@ -1798,6 +1802,7 @@ En [[Special:WhatLinksHere/$2|vollständiche List]] ist verfüchbar.',
 
 # MIME search
 'mimesearch' => 'Such noh MIME-Typ',
+'mimesearch-summary' => 'Uff der Spezialseit könne die Dateie noh dem MIME-Typ gefiltert sin. Die Eingäb muss immer den Medie- und Subtyp beinhalle: <code>image/jpeg</code> (siehe Dateibeschreibungsseit).',
 'mimetype' => 'MIME-Typ:',
 'download' => 'Herunnerloode',
 
@@ -1809,13 +1814,18 @@ En [[Special:WhatLinksHere/$2|vollständiche List]] ist verfüchbar.',
 
 # List duplicated files special page
 'listduplicatedfiles' => 'List von der Dateie mit Duplikate',
+'listduplicatedfiles-summary' => 'Dies ist en List der Dateie, wos aktuelle Dateiversion en Duplikat von der aktuelle Version von en anner Datei ist. Es werre nuar lokale Dateie berücksichticht.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] hot [[$3|{{PLURAL:$2|en Duplikat|$2 Duplikate}}]].',
 
 # Unused templates
 'unusedtemplates' => 'Unbenutzte Vorlooche',
+'unusedtemplatestext' => 'Die Seit listiert alle Seite im {{ns:template}}-Noomeraum uff, wo net in en anner Seit ingebund sind.
+Üwerprüf annre Links zu den Voarlooche, bevoar du die abwische tust.',
 'unusedtemplateswlh' => 'Annre Links',
 
 # Random page
 'randompage' => 'Zufälliche Seite',
+'randompage-nopages' => 'Do sind ken Seite {{PLURAL:$2|im follichend Noomeraum|in den follichende Noomeräime}} enthalt: "$1"',
 
 # Random page in category
 'randomincategory' => 'Zufälliche Seit von en Kategorie',
@@ -1842,6 +1852,7 @@ En [[Special:WhatLinksHere/$2|vollständiche List]] ist verfüchbar.',
 'statistics-edits' => 'Seitebeoorbeitunge',
 'statistics-edits-average' => 'Beoorbeitunge pro Seit im Doorrichschnitt',
 'statistics-views-total' => 'Seitenuffrufe gesamt',
+'statistics-views-total-desc' => 'Uffruf net voarhandner Seite und von Spezialseite werre net berücksichticht.',
 'statistics-views-peredit' => 'Jede Beoorbeitung ehre Seiteuffrufe',
 'statistics-users' => 'Registrierte [[Special:ListUsers|Benutzer]]',
 'statistics-users-active' => 'Aktive Benutzer',
@@ -1857,6 +1868,10 @@ En [[Special:WhatLinksHere/$2|vollständiche List]] ist verfüchbar.',
 'pageswithprop-prophidden-binary' => 'Binäreichenschaftsweart versteckt ($1)',
 
 'doubleredirects' => 'Doppelte Weiterleitunge',
+'doubleredirectstext' => 'Diese Liste enthält Weiterleitungen, die auf Weiterleitungen verlinken.
+Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel der zweiten Weiterleitung, welches für gewöhnlich die gewünschte Zielseite ist, auf die bereits die erste Weiterleitung zeigen sollte.
+<del>Durchgestrichene</del> Einträge wurden bereits erfolgreich bearbeitet.',
+'double-redirect-fixed-maintenance' => 'Bereinichung von der doppelte Weiterleitung von [[$1]] noh [[$2]].',
 'double-redirect-fixer' => 'RedirectBot',
 
 'brokenredirects' => 'Defekte Weiterleitunge',
@@ -2074,6 +2089,7 @@ Die Ausgäb kann doorrich die Auswahl von der Logbuchtyp, von der Benutzer orrer
 'watchnologin' => 'Net oongemeldt',
 'watchnologintext' => 'Du musst [[Special:UserLogin|oongemeldt]] sin, um dein Beobachtungslist beoorbeite könne.',
 'addwatch' => 'Zur Beobachtungslist hinzufüche',
+'removewatch' => 'Von der Beobachtungslist entferne',
 'watch' => 'Beobachte',
 'watchthispage' => 'Die Seit beobachte',
 'unwatch' => 'Net mehr beobachte',
@@ -2101,6 +2117,7 @@ Die Ausgäb kann doorrich die Auswahl von der Logbuchtyp, von der Benutzer orrer
 'enotif_subject_changed' => '{{SITENAME}}-Seit $1 woard von {{GENDER:$2|$2}} geännert',
 'enotif_body_intro_deleted' => 'Die {{SITENAME}}-Seit $1 woard am $PAGEEDITDATE von {{GENDER:$2|$2}} abgewischt. Sieh $3.',
 'enotif_body_intro_created' => 'Die {{SITENAME}}-Seit $1 woard am $PAGEEDITDATE von {{GENDER:$2|$2}} erstellt. Sieh $3 für die aktuelle Version.',
+'enotif_lastdiff' => 'Sieh $1 noh der Ännrung.',
 'enotif_anon_editor' => 'Anonymer Benutzer $1',
 
 # Delete
@@ -2113,6 +2130,7 @@ Die Ausgäb kann doorrich die Auswahl von der Logbuchtyp, von der Benutzer orrer
 'actioncomplete' => 'Aktion beennet',
 'actionfailed' => 'Aktion fehlgeschloohn',
 'dellogpage' => 'Lösch-Logbuch',
+'dellogpagetext' => 'Das ist das Logbuch von der abgewischte Seite und Dateie.',
 'deletionlog' => 'Abwäsch-Logbuch',
 'reverted' => 'Uff en alte Version zurückgesetzt',
 'deletecomment' => 'Grund:',
@@ -2124,7 +2142,9 @@ Die Ausgäb kann doorrich die Auswahl von der Logbuchtyp, von der Benutzer orrer
 'rollback' => 'Zurücksetze von der Ännrunge',
 'rollback_short' => 'Zurücksetze',
 'rollbacklink' => 'Zurücksetze',
+'rollbacklinkcount' => '{{PLURAL:$1|En Version|$1 Versione}} zurücksetze',
 'rollbackfailed' => 'Zurücksetze gescheitert',
+'editcomment' => "Die Ännrungszusammerfassung lautet: ''\"\$1\"''.",
 
 # Edit tokens
 'sessionfailure-title' => 'Sitzungsfehler',
@@ -2132,6 +2152,8 @@ Die Ausgäb kann doorrich die Auswahl von der Logbuchtyp, von der Benutzer orrer
 # Protect
 'protectlogpage' => 'Seiteschutz-Logbuch',
 'protectedarticle' => 'geschützt „[[$1]]“',
+'protect-title-notallowed' => 'Schutz oonsiehn von "$1"',
+'prot_1movedto2' => 'hat "[[$1]]" noh "[[$2]]" verschobe',
 'protect-badnamespace-title' => 'Net-schützbarer Noomeraum',
 'protect-badnamespace-text' => 'Seite von dem Noomeraums könne net geschützt sin.',
 'protect-norestrictiontypes-text' => 'Die Seit kann net geschützt sin, weil ken Beschränkungstype verfüchbar sind.',
@@ -2144,6 +2166,7 @@ Die Ausgäb kann doorrich die Auswahl von der Logbuchtyp, von der Benutzer orrer
 'protect-unchain-permissions' => 'Separate Sperroptione aktiviere',
 'protect-text' => 'Hier kannst du den Schutzstatus der Seite "$1" insiehn und ännre.',
 'protect-default' => 'Alle Benutzer',
+'protect-level-autoconfirmed' => 'Nuar automatisch bestätichte Benutzer erlaube',
 'protect-level-sysop' => 'Nuar Administratore erlaube',
 'protect-summary-cascade' => 'kaskadierend',
 'protect-expiring' => 'bis $2, $3 Uhr (UTC)',
@@ -2156,6 +2179,7 @@ Die Ausgäb kann doorrich die Auswahl von der Logbuchtyp, von der Benutzer orrer
 'protect-existing-expiry' => 'Aktuelles Seiteschutzend: $2, $3 Uhr',
 'protect-otherreason' => 'Annre/ergänzender Grund:',
 'protect-otherreason-op' => 'Annrer Grund',
+'protect-edit-reasonlist' => 'Schutzgründe beoorbeite',
 'restriction-type' => 'Schutzstatus:',
 'restriction-level' => 'Schutzhöch:',
 'minimum-size' => 'Mindestgröss',
@@ -2191,6 +2215,7 @@ $1',
 'undelete-search-prefix' => 'Suchbegriff (Wortoonfang ohne Wildcards):',
 'undelete-search-submit' => 'Such',
 'undelete-no-results' => 'Do woard im Archiv ken zum Suchbegriff passend Seit gefund.',
+'undelete-cleanup-error' => 'Fehler beim Abwisch von der unbenutzte Archiv-Version $1.',
 'undelete-error' => 'Beim Wiederhearstelle von der Seit ist en Fehler uffgetret.',
 'undelete-error-short' => 'Fehler beim Wiederhearstell von der Datei $1',
 'undelete-show-file-submit' => 'Jo',
@@ -2206,6 +2231,7 @@ $1',
 'contributions-title' => 'Benutzerbeiträche von „$1“',
 'mycontris' => 'Beiträche',
 'contribsub2' => 'Von {{GENDER:$3|$1}} ($2)',
+'nocontribs' => 'Do woard ken Benutzerbeiträche mit den Kriterie gefund.',
 'uctop' => '(aktuell)',
 'month' => 'und Monat:',
 'year' => 'bis Joahr (und früher):',
@@ -2232,6 +2258,7 @@ $1',
 'whatlinkshere-page' => 'Seit:',
 'linkshere' => "Die follichende Seite verlinke uff '''\"[[:\$1]]\"''':",
 'nolinkshere' => "Ken Seit verlinkt uff '''„[[:$1]]“'''.",
+'nolinkshere-ns' => "Ken Seit verlinkt uff '''\"[[:\$1]]\"''' im gewählte Noomeraum.",
 'isredirect' => 'Weiterleitungsseit',
 'istemplate' => 'Voarlooche-einbinnunge (transclusões)',
 'isimage' => 'Dateilink',
@@ -2250,24 +2277,50 @@ $1',
 'unblock' => 'Benutzer frei mache',
 'blockip' => 'IP-Adress/Benutzer sperre',
 'blockip-legend' => 'IP-Adress/Benutzer sperre',
+'blockiptext' => 'Mit dem Formular sperrst du en IP-Adress orrer en Benutzernoome, so dass von dort ken Ännrunge meh voargenomm sin könne.
+Das sollt nuar erfolche, um Vandalismus zu verhinnre und in Üwereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinie]].
+Bittschön tue den Grund für die Sperr gebe.',
 'ipadressorusername' => 'IP-Adress orrer Benutzernoome:',
 'ipbexpiry' => 'Sperrdauer:',
 'ipbreason' => 'Grund:',
+'ipbreason-dropdown' => '* Allgemein Sperrgründe
+** Infüchung von falscher Informatione
+** Leere von Seite
+** Massweises infüchung von externer Links
+** Instellung von unsinnicher Inhalte in Seite
+** Ungebührliches Verhalte
+** Missbrauch mit mehrre Benutzerkonte
+** Ungeeichneter Benutzernoome',
+'ipb-hardblock' => 'Angemeldte Benutzer droon hinnre, Beoorbeitunge unner der IP-Adress voarzunehme',
 'ipbcreateaccount' => 'Erstellung von Benutzerkonte verhinnre',
+'ipbemailban' => 'E-Mail-Versand sperre',
+'ipbenableautoblock' => 'Sperr die aktuell von dem Benutzer benutzte IP-Adress sowie automatisch alle follichende, von dene aus er Beoorbeitunge orrer das Oonlehn von Benutzerkonte versucht',
 'ipbsubmit' => 'IP-Adress/Benutzer sperre',
 'ipbother' => 'Annr Dauer:',
 'ipboptions' => '2 Stunne:2 hours,1 Tooch:1 day,3 Tooch:3 days,1 Woch:1 week,2 Woche:2 weeks,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Joahr:1 year,unbeschränkt:infinite',
+'ipbhidename' => 'Benutzernoome in Beoorbeitunge und Liste verstecke',
+'ipbwatchuser' => 'Benutzer(diskussions)seite beobachte',
+'ipb-disableusertalk' => 'Den Benutzer droon hinnre sein eichne Diskussionsseit zu beoorbeite, solang ear gesperrt ist',
+'ipb-change-block' => 'Wieder-Sperr der Benutzer mit die Sperrparameter dohie',
 'ipb-confirm' => 'Sperrung bestätiche',
 'badipaddress' => 'Die IP-Adress hot en falsches Format.',
 'blockipsuccesssub' => 'Die Sperrung woor erfollichreich.',
+'blockipsuccesstext' => 'Der Benutzer / die IP-Adress [[Special:Contributions/$1|$1]] woard gesperrt.<br />
+Zur Uffhebung von der Sperr sieh die [[Special:BlockList|List von aller aktive Sperre]].',
+'ipb-blockingself' => 'Du bist groode dabei, dich sellebst zu sperre! Möchst du das weerklich tun?',
+'ipb-confirmhideuser' => 'Du bist grood dabei, en Benutzer im Modus "Benutzer verstecke" zu sperre. Das führt dozu, dass der Benutzernoome in alle Liste und Logbücher unnerdrückt weard. Möchst du das weerklich tun?',
+'ipb-confirmaction' => 'Wenn du dir sicher bist, dass du das weerklich tun möchst, üwerprüf bittschön do unne das Feld/Kamp "{{int:ipb-confirm}}".',
 'ipb-edit-dropdown' => 'Sperrgründe beoorbeite',
 'ipb-unblock-addr' => '„$1“ freigebe (mache)',
+'ipb-unblock' => 'IP-Adress/Benutzer freigebe (frei mache)',
 'ipb-blocklist' => 'Alle aktuelle Sperre oonzeiche',
 'ipb-blocklist-contribs' => 'Benutzerbeiträche von "$1"',
 'unblockip' => 'Benutzer frei mache',
+'unblockiptext' => 'Mit dem Formular kannst du en IP-Adress orrer en Benutzer freigebe (frei mache).',
 'ipusubmit' => 'Freigewe (frei mache)',
 'unblocked' => '[[User:$1|$1]] woard freigeb (gemacht)',
 'unblocked-range' => 'Sperr für $1 woard uffgehob',
+'unblocked-id' => 'Sperr-ID $1 woard freigeb (frei gemacht)',
 'blocklist' => 'Gesperrte Benutzer',
 'ipblocklist' => 'Gesperrte Benutzer',
 'ipblocklist-legend' => 'Such noh en gesperrte Benutzer',
@@ -2298,8 +2351,17 @@ $1',
 'change-blocklink' => 'Sperre ännre',
 'contribslink' => 'Beiträche',
 'emaillink' => 'E-Mail sende',
+'autoblocker' => 'Automatisch gesperrt, weils du en gemeinsam IP-Adress mit [[User:$1|$1]] benutzt.
+Benutzersperr Grund: "$2"',
 'blocklogpage' => 'Benutzersperr-Logbuch',
+'blocklog-showlog' => '{{GENDER:$1|Dier Benutzer|Die Benutzrin|Der Benutzer}} woard schon früher gesperrt. Es follicht der Eintrooch aus dem Benutzersperr-Logbuch:',
+'blocklog-showsuppresslog' => '{{GENDER:$1|Der Benutzer|Die Benutzrin|Der Benutzer}} woard schon früher gesperrt und versteckt.
+Es follicht der Eintrooch aus dem Unnerdrückungs-Logbuch:',
 'blocklogentry' => 'sperrte „[[$1]]“ für den Zeitraum: $2 $3',
+'reblock-logentry' => 'ännerte die Sperr von "[[$1]]" für den Zeitraum: $2 $3',
+'blocklogtext' => 'Das ist das Logbuch üwer Sperrunge und Entsperrunge von Benutzer und IP-Adresse.
+Automatisch gesperrte IP-Adresse werre net erfasst.
+Sieh die [[Special:BlockList|List von der gesperrte IP-Adresse und Benutzernoome]] für alle aktive Sperre.',
 'unblocklogentry' => 'hob die Sperr von "$1" uff',
 'block-log-flags-anononly' => 'nuar Anonyme',
 'block-log-flags-nocreate' => 'Erstellung von Benutzerkonte gesperrt',
@@ -2311,12 +2373,29 @@ $1',
 'range_block_disabled' => 'Die Möchlichkeit, ganze Adressräume zu sperre, ist net aktiviert.',
 'ipb_expiry_invalid' => 'Die eingebne Dauer ist ungültich.',
 'ipb_expiry_temp' => 'Benutzernoome-Sperre mit der Verstecke-Option müsse permanent sin.',
+'ipb_hide_invalid' => 'Das Konto kann net unnerdrücktt sin, weil das meahr als {{PLURAL:$1|en Beoorbeitung|$1 Beoorbeitunge}} uffweist.',
+'ipb_already_blocked' => '"$1" ist schon gesperrt',
+'ipb-needreblock' => '"$1" ist schon gesperrt. Möchst du die Sperrparameter ännre?',
+'ipb-otherblocks-header' => 'Annrer {{PLURAL:$1|Sperr|Sperre}}',
+'unblock-hideuser' => 'Der Benutzer kann net entsperrt werre, weil sein Benutzernoome versteckt woard.',
+'ipb_cant_unblock' => 'Fehler: Sperr-ID $1 net gefund. Die Sperr woard schon uffgehob.',
+'ipb_blocked_as_range' => 'Fehler: Die IP-Adress $1 woard wie en Tel von der Bereichssperr $2 indirekt gesperrt. En Entsperrung von $1 allein ist net möchlich.',
 'ip_range_invalid' => 'Ungülticher IP-Adressbereich.',
+'ip_range_toolarge' => 'Adressbereiche, wo grösser als /$1 sind, sind net erlaubt.',
 'proxyblocker' => 'Proxy blocker',
+'proxyblockreason' => 'Dein IP-Adress woard gesperrt, weil die en offner Proxy ist. Bittschön kontaktier dein Internet-Provider orrer dein Systemadministratore und informiere sie üwer das möchliche Sicherheitsproblem.',
+'sorbsreason' => 'Die IP-Adress ist in der DNSBL von {{SITENAME}} wie en offner PROXY gelistet (listiert).',
+'sorbs_create_account_reason' => 'Die IP-Adress ist in der DNSBL von {{SITENAME}} wie en offner PROXY gelistet (listiert). Das Oonlehn neier Benutzer ist net möchlich.',
+'xffblockreason' => 'En IP-Adress im X-Forwarded-For-Header woard gesperrt, entweder von deine orrer die von der benutzte Proxyserver. Der uarsprünglich Sperrgrund woor: $1',
+'cant-see-hidden-user' => 'Der Benutzer, wo du versuchst zu sperre, woard schon gesperrt und verricht (versteckt). Weil du das "hideuser" (Englisch für Benutzer verstecke) -Recht net host, kannst du die Benutzersperr net siehn und net beoorbeite.',
+'ipbblocked' => 'Du kannst ken annre Benutzer sperre orrer entsperre, weils du sellebst gesperrt bist',
+'ipbnounblockself' => 'Du host net die Berechtichung, dich sellebst zu entsperre',
 
 # Developer tools
 'lockdb' => 'Datebank sperre',
 'unlockdb' => 'Datebank freigebe (mache)',
+'lockdbtext' => 'Mit dem Sperre von der Datebank werre alle Ännrunge an Benutzereinstellunge, Beobachtungsliste, Seite usw. verhinnert. Bittschön tue die Sperrung bestätiche.',
+'unlockdbtext' => 'Das Uffhebe von der Datebank-Sperr weard alle Ännrunge wieder zulosse. Bittschön die Uffhebung bestätiche.',
 'lockconfirm' => 'Jo, ich möcht die Datebank sperre.',
 'unlockconfirm' => 'Jo, ich möcht die Datebank entblocke.',
 'lockbtn' => 'Datebank sperre',
@@ -2324,7 +2403,9 @@ $1',
 'locknoconfirm' => 'Du host das Bestätichungsfeld net markiert.',
 'lockdbsuccesssub' => 'Datebank woard erfollichreich gesperrt',
 'unlockdbsuccesssub' => 'Datebank woard erfollichreich freigemacht (entblockt)',
+'lockdbsuccesstext' => 'Die {{SITENAME}}-Datebank woard gesperrt.<br />Bittschön geb die Datebank [[Special:UnlockDB|wieder frei]], sobald die Woortung abgeschloss ist.',
 'unlockdbsuccesstext' => 'Die {{SITENAME}}-Datebank woard freigeb (gemacht).',
+'lockfilenotwritable' => 'Die Datebank-Sperrdatei ist net beschreibbar. Zum Sperre orrer Freigebe von der Datebank muss die für den Webserver beschreibbar sin.',
 'databasenotlocked' => 'Die Datebank ist net gesperrt.',
 'lockedbyandtime' => '(von $1 am $2 um $3 Uhr)',
 
@@ -2333,25 +2414,46 @@ $1',
 'move-page-legend' => 'Seit verschiebe',
 'movearticle' => 'Seit verschiebe:',
 'movenotallowed' => 'Du host net die erforderliche Berechtichung, um Seite verschiebe zu könne.',
+'movenotallowedfile' => 'Du hoost net die erforderliche Berechtichung, um Dateie verschiebe se könne.',
 'newtitle' => 'Ziel (zu neie Titel):',
 'move-watch' => 'Quell- und Zielseit beobachte',
 'movepagebtn' => 'Seit verschiebe',
 'pagemovedsub' => 'Verschiebung erfollichreich',
+'movepage-moved' => '\'\'\'Die Seit "$1" woard noh "$2" verschob.\'\'\'',
 'movepage-moved-redirect' => 'En Weiterleitung woard erstellt.',
 'movepage-moved-noredirect' => 'Die Erstellung von en Weiterleitung woard unnerdrückt.',
 'articleexists' => 'Unner dem Noome existiert schon en Seit. Bittschön wähl en annre Noome.',
+'movetalk' => 'Soweit möchlich, die Diskussionsseit mitverschiebe',
+'move-subpages' => 'Unnerseite verschiebe (bis zu $1)',
+'move-talk-subpages' => 'Unnerseite von der Diskussionsseit verschiebe (bis zu $1)',
+'movepage-page-exists' => 'Die Seit "$1" ist schon voarhand und kann net automatisch üwerschrieb sin.',
+'movepage-page-moved' => 'Die Seit "$1" woard noh "$2" verschob.',
+'movepage-page-unmoved' => 'Die Seit "$1" konnt net noh "$2" verschob sin.',
 'movelogpage' => 'Verschiebungs-Logbuch',
+'movelogpagetext' => 'Das ist en List von aller verschobne Seite.',
+'movenosubpage' => 'Die Seit hot ken Unnerseite.',
 'movereason' => 'Grund:',
 'revertmove' => 'zurück verschiebe',
 'delete_and_move' => 'Abwische und verschiebe',
+'delete_and_move_text' => '== Abwischung erforderlich ==
+
+Die Seit "[[:$1]]" existiert schon. Möchst du die abwische, um die Seit verschiebe se könne?',
 'delete_and_move_confirm' => 'Jo, Seit abwische',
+'delete_and_move_reason' => 'abgewischt, um Platz für die Verschiebung von "[[$1]]" se mache',
 'immobile-source-page' => 'Die Seit ist net verschiebbar.',
 'immobile-target-page' => 'Es kann net uff die Zielseit verschob sin.',
+'imagenocrossnamespace' => 'Dateie könne net aus dem {{ns:file}}-Nameraum heraus verschob sin',
+'nonfile-cannot-move-to-file' => 'Nichtdateie könne net in den {{ns:file}}-Nameraum hinein verschob sin',
+'imagetypemismatch' => 'Die neie Dateierweitrung ist net mit der alte identisch',
+'imageinvalidfilename' => 'Der Ziel-Dateinoome ist ungültich',
+'fix-double-redirects' => 'Noh dem Verschiebe alle Weiterleitunge uff die Uarsprungsseit bereiniche',
 'move-leave-redirect' => 'Weiterleitung erstelle',
 
 # Export
 'export' => 'Seite exportiere',
 'exportall' => 'Alle Seite exportiere',
+'exportcuronly' => 'Nuar die aktuelle Version von der Seit exportiere',
+'exportlistauthors' => 'Für jede Seit die jeweils vollständiche List  von der Beoorbeiter inbeziehe',
 'export-submit' => 'Seite exportiere',
 'export-addcattext' => 'Seite aus follichender Kategorie hinzufüche:',
 'export-addcat' => 'Hinzufüche',
@@ -2383,6 +2485,7 @@ $1',
 'thumbnail_error_remote' => 'Fehlermeldung von $1:
 $2',
 'djvu_page_error' => 'DjVu-Seit ausserhalleb von der Seitbereich',
+'djvu_no_xml' => 'XML-Date könne für die DjVu-Datei net abgeruf sin',
 'thumbnail_invalid_params' => 'Ungültiche Thumbnail-Parameter',
 'thumbnail_dest_directory' => 'Zielverzeichnis kann net erstellt sin.',
 'thumbnail_image-type' => 'Bildtyp net unnersteetzt',
@@ -2397,10 +2500,12 @@ $2',
 'import-interwiki-templates' => 'Alle Vorlooche einschliesse',
 'import-interwiki-submit' => 'Importiere',
 'import-interwiki-namespace' => 'Zielnoomeraum:',
+'import-interwiki-rootpage' => 'Zielstammseit (optional):',
 'import-upload-filename' => 'Dateinoome:',
 'import-comment' => 'Grund:',
 'importstart' => 'Importiere Seite …',
 'importnopages' => 'Ken Seit zum Importiere voarhand.',
+'importfailed' => 'Import fehlgeschlooht: $1',
 'importunknownsource' => 'Unbekannte Importquell',
 'importcantopen' => 'Importdatei konnt net geöffnet sin',
 'importbadinterwiki' => 'Falscher Interwiki-Link',
@@ -2410,9 +2515,13 @@ $2',
 'import-parse-failure' => 'Fehler beim XML-Import:',
 'import-noarticle' => 'Do woard ken zu importierend Seit oongeb!',
 'import-upload' => 'XML-Dateie importiere',
+'import-rootpage-invalid' => 'Der oongebne Stammseitnoome ist ungültich.',
+'import-rootpage-nosubpage' => 'Im Noomeraum "$1" von der Stammseit sind ken Unnerseite erlaubt.',
 
 # Import log
 'importlogpage' => 'Import-Logbuch',
+'importlogpagetext' => 'Administrativer Import von Seite mit Versionsgeschicht von annre Wikis.',
+'import-logentry-upload' => 'importierte "[[$1]]" von en Datei',
 'import-logentry-interwiki' => 'importierte "$1" (Transwiki)',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Version|Versione}} von $2',
 
@@ -2452,6 +2561,7 @@ $2',
 'tooltip-n-help' => 'Hellefseit oonzeiche',
 'tooltip-t-whatlinkshere' => 'List von aller Seite, wo hierher verlinken',
 'tooltip-t-recentchangeslinked' => 'Letzt Ännrunge an Seite, wo von hier verlinkt sind',
+'tooltip-feed-rss' => 'RSS-Feed der Seit',
 'tooltip-feed-atom' => 'Atom-Feed die Seit',
 'tooltip-t-contributions' => 'List von dem Benutzer sein Beiträche oonsiehn',
 'tooltip-t-emailuser' => 'En E-Mail an den Benutzer sende',
@@ -2493,6 +2603,7 @@ $2',
 'spamprotectiontitle' => 'Spamschutzfilter',
 
 # Info page
+'pageinfo-title' => 'Informatione zu "$1"',
 'pageinfo-header-basic' => 'Basisinformatione',
 'pageinfo-header-edits' => 'Beoorbeitungsgeschicht',
 'pageinfo-header-restrictions' => 'Seiteschutz',
@@ -2534,9 +2645,22 @@ $2',
 # Patrolling
 'markaspatrolleddiff' => 'Wie kontrolliert markiere',
 'markedaspatrolled' => 'Wie kontrolliert markiert',
+'rcpatroldisabled' => 'Kontrolle von der letzte Ändrunge gesperrt',
+'rcpatroldisabledtext' => 'Die Kontrolle von der letzte Ändrunge ist zurzeit gesperrt.',
+'markedaspatrollederror' => 'Markierung als wie "kontrolliert" net möchlich.',
+'markedaspatrollederrortext' => 'Du musst en Seiteännrung auswähle.',
+'markedaspatrollederror-noautopatrol' => 'Es ist net erlaubt, eichne Beoorbeitunge als wie kontrolliert zu markiere.',
+'markedaspatrollednotify' => 'Die Ännrung an $1 woard als wie kontrolliert markiert.',
+'markedaspatrollederrornotify' => 'Der Versuch, die Version als wie kontrolliert se markiere, ist fehlgeschlooht.',
 
 # Patrol log
 'patrol-log-page' => 'Kontroll-Logbuch',
+'patrol-log-header' => 'Das ist das Kontroll-Logbuch.',
+'log-show-hide-patrol' => 'Kontroll-Logbuch $1',
+
+# Image deletion
+'deletedrevision' => 'alte Version $1 abgewischt',
+'filedeleteerror-short' => 'Fehler bei Datei-Abwäsch: $1',
 
 # Browsing diffs
 'previousdiff' => '← Zum voarherichen Versionsunnerschied',
@@ -2548,11 +2672,14 @@ $2',
 'svg-long-desc' => 'SVG-Datei, Basisgröss: $1 × $2 Pixel, Dateigröss: $3',
 'show-big-image' => 'Originaldatei',
 'file-info-gif-looped' => 'Endlosschleif',
+'file-info-png-looped' => 'Endlosschleif',
 
 # Special:NewFiles
 'newimages-legend' => 'Filter',
 'newimages-label' => 'Dateinoome (orrer ein Tel davon):',
 'showhidebots' => '(Bots $1)',
+'ilsubmit' => 'Suche',
+'bydate' => 'noh Datum',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'ago' => 'vor $1',
@@ -2763,6 +2890,7 @@ Weitre werre standardmässich net oongezeicht.
 'exif-pngfilecomment' => 'PNG-Dateikommentar',
 'exif-disclaimer' => 'Haftungsausschluss',
 'exif-contentwarning' => 'Inhaltswarnung',
+'exif-giffilecomment' => 'GIF-Dateikommentar',
 'exif-intellectualgenre' => 'Der Medium sein Oort',
 'exif-subjectnewscode' => 'Themecode',
 'exif-scenecode' => 'IPTC-Oonsichtcode',
@@ -2796,12 +2924,138 @@ Weitre werre standardmässich net oongezeicht.
 
 'exif-componentsconfiguration-0' => 'Existiert net',
 
+'exif-exposureprogram-0' => 'Unbekannt',
+'exif-exposureprogram-1' => 'Manuell',
+'exif-exposureprogram-2' => 'Standardprogramm',
+'exif-exposureprogram-3' => 'Zeitautomatik',
+'exif-exposureprogram-4' => 'Blendenautomatik',
+'exif-exposureprogram-5' => 'Kreativprogramm mit Bevoarzuchung höcher Schärfentief',
+'exif-exposureprogram-6' => 'Action-Programm mit Bevoarzuchung von en koorzer Belichtungszeit',
+'exif-exposureprogram-7' => 'Portrait-Programm',
+'exif-exposureprogram-8' => 'Landschaftsaufnahmen',
+
+'exif-subjectdistance-value' => '$1 Meter',
+
+'exif-meteringmode-0' => 'Unbekannt',
+'exif-meteringmode-1' => 'Doorrichschnittlich',
+'exif-meteringmode-2' => 'Mittezentriert',
+'exif-meteringmode-3' => 'Spotmessung',
+'exif-meteringmode-4' => 'Mehrfachspotmessung',
+'exif-meteringmode-5' => 'Muster',
+'exif-meteringmode-6' => 'Bildtel',
+'exif-meteringmode-255' => 'Unbekannt',
+
+'exif-lightsource-0' => 'Unbekannt',
+'exif-lightsource-1' => 'Toochlicht',
+'exif-lightsource-2' => 'Fluoreszierend',
+'exif-lightsource-3' => 'Glühlamp',
+'exif-lightsource-4' => 'Blitz',
+'exif-lightsource-9' => 'Schönes Wetter',
+'exif-lightsource-10' => 'Bewölkt',
+'exif-lightsource-11' => 'Schatte',
+'exif-lightsource-12' => 'Toochlicht fluoreszierend (D 5700–7100 K)',
+'exif-lightsource-13' => 'Toochweiss fluoreszierend (N 4600–5400 K)',
+'exif-lightsource-14' => 'Kaltweiss fluoreszierend (W 3900–4500 K)',
+'exif-lightsource-15' => 'Weiss fluoreszierend (WW 3200–3700 K)',
+'exif-lightsource-17' => 'Standardlicht A',
+'exif-lightsource-18' => 'Standardlicht B',
+'exif-lightsource-19' => 'Standardlicht C',
+'exif-lightsource-24' => 'ISO Studio Kunstlicht',
+'exif-lightsource-255' => 'Anner Lichtquell',
+
+# Flash modes
+'exif-flash-fired-0' => 'ken Blitz',
+'exif-flash-fired-1' => 'Blitz abgewischt',
+'exif-flash-return-0' => 'Blitz schickt ken Date',
+'exif-flash-return-2' => 'ken Reflexion von Blitz festgestellt',
+'exif-flash-return-3' => 'Reflexion des Blitz festgestellt',
+'exif-flash-mode-1' => 'erzwungnes Blitz',
+'exif-flash-mode-2' => 'Blitz abgeschaltet',
+'exif-flash-mode-3' => 'Automatik',
+'exif-flash-function-1' => 'Ken Blitzfunktion',
+'exif-flash-redeye-1' => 'Rotauge Reduktion',
+
+'exif-focalplaneresolutionunit-2' => 'Zoll',
+
+'exif-sensingmethod-1' => 'Net oongeb',
+'exif-sensingmethod-2' => 'En-Chip-Farrebsensoar',
+'exif-sensingmethod-3' => 'Zwooi-Chip-Farbsensoar',
+'exif-sensingmethod-4' => 'Drei-Chip-Farbsensoar',
+'exif-sensingmethod-5' => 'Farrebraum sequentiell Sensor',
+'exif-sensingmethod-7' => 'Trilinearer Sensoar',
+'exif-sensingmethod-8' => 'Farrebraum linear sequentieller Sensoar',
+
+'exif-filesource-3' => 'Digital Standbildkamera',
+
+'exif-scenetype-1' => 'Normal',
+
+'exif-customrendered-0' => 'Standard',
+'exif-customrendered-1' => 'Benutzerdefiniert',
+
+'exif-exposuremode-0' => 'Automatische Belichtung',
 'exif-exposuremode-1' => 'Manuelle Belichtung',
+'exif-exposuremode-2' => 'Belichtungsreih',
+
+'exif-whitebalance-0' => 'Automatisch',
+'exif-whitebalance-1' => 'Manuell',
+
+'exif-scenecapturetype-0' => 'Standard',
+'exif-scenecapturetype-1' => 'Landschaft',
+'exif-scenecapturetype-2' => 'Portrait',
+'exif-scenecapturetype-3' => 'Nachtszen',
 
 'exif-gaincontrol-0' => 'Ken',
 'exif-gaincontrol-1' => 'Gering',
+'exif-gaincontrol-2' => 'High gain up',
+'exif-gaincontrol-3' => 'Low gain down',
+'exif-gaincontrol-4' => 'High gain down',
 
+'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Schwach',
+'exif-contrast-2' => 'Stark',
+
+'exif-saturation-0' => 'Normal',
+'exif-saturation-1' => 'Gering',
+'exif-saturation-2' => 'Hoch',
+
+'exif-sharpness-0' => 'Normal',
+'exif-sharpness-1' => 'Gering',
+'exif-sharpness-2' => 'Starrek',
+
+'exif-subjectdistancerange-0' => 'Unbekannt',
+'exif-subjectdistancerange-1' => 'Makro',
+'exif-subjectdistancerange-2' => 'Näh',
+'exif-subjectdistancerange-3' => 'Entfernt',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'nördl. Breit',
+'exif-gpslatitude-s' => 'südl. Breit',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'östl. Läng',
+'exif-gpslongitude-w' => 'westl. Läng',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-n' => 'Knote',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-m' => 'Meile',
+'exif-gpsdestdistance-n' => 'Nautische Meile',
+
+'exif-gpsdop-good' => 'Gut ($1)',
+
+'exif-objectcycle-a' => 'Nuar moints',
+'exif-objectcycle-p' => 'Nuar oments',
+'exif-objectcycle-b' => 'Sowohl moints und obments',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Tatsächliche Richtung',
+'exif-gpsdirection-m' => 'Magnetische Richtung',
+
+'exif-ycbcrpositioning-1' => 'Zentriert',
+'exif-ycbcrpositioning-2' => 'Benochbarscht',
+
+'exif-iimcategory-pol' => 'Politik',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'all',
@@ -2832,4 +3086,14 @@ Weitre werre standardmässich net oongezeicht.
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Markierungs]]-Filter:',
 
+# Special:TrackingCategories
+'trackingcategories' => 'Tracking-Kategorie',
+'trackingcategories-summary' => 'Die Seit listiert Tracking-Kategorie uff, wo von der MediaWiki-Software automatisch ingepflecht werre. Ehre Noome könne doorrich Ännrung von der entsprechende Systemnachrichte im {{ns:8}}-Noomeraum oongepasst sin.',
+'trackingcategories-msg' => 'Tracking-Kategorie',
+'trackingcategories-name' => 'Noome von der Nachricht',
+'trackingcategories-desc' => 'Kategorieinbinnungskriterie',
+'trackingcategories-nodesc' => 'Ken Beschreibung verfüchbar.',
+
+# Unknown messages
+'trackingcategories-disabled' => 'Kategorie ist deaktiviert',
 );

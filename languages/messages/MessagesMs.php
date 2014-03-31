@@ -644,6 +644,7 @@ Jangan lupa untuk mengubah [[Special:Preferences|keutamaan anda di {{SITENAME}}]
 'gotaccountlink' => 'Log masuk',
 'userlogin-resetlink' => 'Lupa nama pengguna/kata laluan anda?',
 'userlogin-resetpassword-link' => 'Lupa kata laluan anda?',
+'userlogin-helplink2' => 'Bantuan untuk log masuk',
 'userlogin-loggedin' => 'Anda sudah log masuk sebagai {{GENDER:$1|$1}}. Gunakan borang di bawah untuk log masuk sebagai pengguna lain.',
 'userlogin-createanother' => 'Buka satu lagi akaun',
 'createacct-join' => 'Isikan keterangan anda di bawah.',
@@ -730,6 +731,10 @@ Sila tunggu $1 dan cuba lagi.',
 'suspicious-userlogout' => 'Permintaan anda untuk log keluar ditolak kerana ia kelihatan seperti dihantar oleh pelayar rosak atau proksi pengagregatan.',
 'createacct-another-realname-tip' => 'Nama sebenar adalah tidak wajib.
 Jika anda memilih untuk menyatakannya, ini akan digunakan untuk memberikan atribusi kepada pengguna atas sumbangan mereka.',
+'pt-login' => 'Log masuk',
+'pt-login-button' => 'Log masuk',
+'pt-createaccount' => 'Buka akaun',
+'pt-userlogout' => 'Log keluar',
 
 # Email sending
 'php-mail-error-unknown' => 'Ralat tak diketahui dalam fungsi mail() PHP',
@@ -738,7 +743,7 @@ Jika anda memilih untuk menyatakannya, ini akan digunakan untuk memberikan atrib
 
 # Change password dialog
 'changepassword' => 'Tukar kata laluan',
-'resetpass_announce' => 'Anda sedang log masuk dengan kata laluan sementara. Untuk log masuk dengan sempurna, sila tetapkan kata laluan baru di sini:',
+'resetpass_announce' => 'Untuk selesai log masuk, anda mesti menetapkan kata laluan yang baru.',
 'resetpass_text' => '<!-- Tambah teks di sini -->',
 'resetpass_header' => 'Tukar kata laluan',
 'oldpassword' => 'Kata laluan lama:',
@@ -746,14 +751,24 @@ Jika anda memilih untuk menyatakannya, ini akan digunakan untuk memberikan atrib
 'retypenew' => 'Ulangi kata laluan baru:',
 'resetpass_submit' => 'Tetapkan kata laluan dan log masuk',
 'changepassword-success' => 'Kata laluan anda berjaya ditukar!',
+'changepassword-throttled' => 'Anda telah melakukan terlalu banyak cubaan log masuk baru-baru ini.
+Sila tunggu $1 dan cuba lagi.',
 'resetpass_forbidden' => 'Kata laluan tidak boleh ditukar',
 'resetpass-no-info' => 'Anda hendaklah log masuk terlebih dahulu untuk mencapai laman ini secara terus.',
 'resetpass-submit-loggedin' => 'Tukar kata laluan',
 'resetpass-submit-cancel' => 'Batalkan',
 'resetpass-wrong-oldpass' => 'Kata laluan sementara atau semasa tidak sah.
 Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan sementara yang baru.',
+'resetpass-recycled' => 'Sila tukar kata laluan anda kepada yang lain daripada kata laluan semasa.',
+'resetpass-temp-emailed' => 'Anda telah log masuk dengan kod sementara yang dikirim secara e-mel.
+Untuk selesai log masuk, anda mesti menetapkan kata laluan yang baru di sini:',
 'resetpass-temp-password' => 'Kata laluan sementara:',
 'resetpass-abort-generic' => 'Penukaran kata laluan telah dihenti paksa oleh sambungan.',
+'resetpass-expired' => 'Kata laluan anda sudah tamat tempoh. Sila tetapkan kata laluan baru untuk log masuk.',
+'resetpass-expired-soft' => 'Kata laluan anda sudah tamat tempoh dan perlu direset. Sila buat kata laluan baru sekarang, atau klik "{{int:resetpass-submit-cancel}}" untuk reset di masa yang akan datang.',
+'resetpass-validity-soft' => 'Kata laluan anda tidak sah: $1.
+
+Sila buat kata laluan yang baru sekarang, atau klik "{{int:resetpass-submit-cancel}}" untuk reset di masa yang akan datang.',
 
 # Special:PasswordReset
 'passwordreset' => 'Set semula kata laluan',
@@ -797,6 +812,8 @@ Kata laluan sementara: $2',
 'changeemail-password' => 'Kata laluan anda di {{SITENAME}}:',
 'changeemail-submit' => 'Tukar E-mel',
 'changeemail-cancel' => 'Batalkan',
+'changeemail-throttled' => 'Anda telah melakukan terlalu banyak cubaan log masuk.
+Sila tunggu $1 dan cuba lagi.',
 
 # Special:ResetTokens
 'resettokens' => 'Set semula token',
@@ -1128,7 +1145,13 @@ Anda boleh melihat perbezaan ini; butiran boleh didapati di [{{fullurl:{{#Specia
 'revdelete-no-file' => 'Fail yang dinyatakan tidak wujud.',
 'revdelete-show-file-confirm' => 'Anda pasti anda mahu paparkan semakan yang telah dihapuskan bagi fail "<nowiki>$1</nowiki>" dari $2 pada $3?',
 'revdelete-show-file-submit' => 'Ya',
+'revdelete-selected-text' => '{{PLURAL:$1|Semakan terpilih|Semakan-semakan terpilih}} bagi [[:$2]]:',
+'revdelete-selected-file' => '{{PLURAL:$1|Versi fail terpilih|Versi-versi fail terpilih}} bagi [[:$2]]:',
 'logdelete-selected' => '{{PLURAL:$1|Peristiwa|Peristiwa-peristiwa}} log yang dipilih:',
+'revdelete-text-text' => 'Semakan-semakan yang terhapus masih akan terdapat dalam sejarah halaman, tetapi sesetengah isi kandungannya tidak akan boleh diakses oleh orang awam.',
+'revdelete-text-file' => 'Versi-versi yang terhapus masih akan terdapat dalam sejarah fail, tetapi sesetengah isi kandungannya tidak akan boleh diakses oleh orang awam.',
+'logdelete-text' => 'Peristiwa-peristiwa log yang terhapus masih akan terdapat dalam log, tetapi sesetengah isi kandungannya tidak akan boleh diakses oleh orang awam.',
+'revdelete-text-others' => 'Penyelia-penyelia yang lain di {{SITENAME}} masih akan dapat mengakses dan memulihkan kandungan yang tersembunyi menerusi antaramuka yang sama ini, melainkan ditetapkannya sekatan tambahan.',
 'revdelete-confirm' => 'Sila sahkan bahawa anda bertujuan melakukan ini, bahawa anda faham akibatnya, dan anda melakukannya menurut [[{{MediaWiki:Policy-url}}| polisi]].',
 'revdelete-suppress-text' => "Sekatan seharusnya digunakan '''hanya''' untuk kes-kes berikut:
 * maklumat yang mungkin berunsur fitnah
@@ -1266,7 +1289,7 @@ Butirannya boleh didapati di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGEN
 'search-file-match' => '(sepadan dengan kandungan fail)',
 'search-suggest' => 'Maksud anda, $1?',
 'search-interwiki-caption' => 'Projek-projek lain',
-'search-interwiki-default' => 'Keputusan daripada $1:',
+'search-interwiki-default' => 'Hasil dari $1:',
 'search-interwiki-more' => '(lagi)',
 'search-relatedarticle' => 'Berkaitan',
 'searcheverything-enable' => 'Cari dalam semua ruang nama',
@@ -1589,14 +1612,26 @@ Tindakan ini tidak boleh dibatalkan.',
 'recentchanges-label-plusminus' => 'Saiz halaman telah berubah sebanyak jumlah bait ini',
 'recentchanges-legend-heading' => "'''Petunjuk:'''",
 'recentchanges-legend-newpage' => '(lihat juga [[Special:NewPages|senarai halaman baru]])',
-'rcnotefrom' => 'Yang berikut ialah semua perubahan sejak <b>$2</b> (sehingga <b>$1</b>).',
+'rcnotefrom' => 'Yang berikut adalah semua suntingan sejak <b>$2</b> (yang dipaparkan sehingga <b>$1</b>).',
 'rclistfrom' => 'Papar perubahan sejak $1',
 'rcshowhideminor' => '$1 suntingan kecil',
+'rcshowhideminor-show' => 'Paparkan',
+'rcshowhideminor-hide' => 'Sorokkan',
 'rcshowhidebots' => '$1 bot',
+'rcshowhidebots-show' => 'Paparkan',
+'rcshowhidebots-hide' => 'Sorokkan',
 'rcshowhideliu' => '$1 pengguna berdaftar',
+'rcshowhideliu-show' => 'Paparkan',
+'rcshowhideliu-hide' => 'Sorokkan',
 'rcshowhideanons' => '$1 pengguna tanpa nama',
+'rcshowhideanons-show' => 'Paparkan',
+'rcshowhideanons-hide' => 'Sorokkan',
 'rcshowhidepatr' => '$1 suntingan dirondai',
+'rcshowhidepatr-show' => 'Paparkan',
+'rcshowhidepatr-hide' => 'Sorokkan',
 'rcshowhidemine' => '$1 suntingan saya',
+'rcshowhidemine-show' => 'Paparkan',
+'rcshowhidemine-hide' => 'Sorokkan',
 'rclinks' => 'Paparkan $1 perubahan terakhir sejak $2 hari yang lalu<br />$3',
 'diff' => 'beza',
 'hist' => 'sej',
@@ -1717,6 +1752,7 @@ Jika anda memiliki imej ini dalam leraian penuh, sila muat naik fail tersebut. J
 'uploaddisabledtext' => 'Ciri muat naik fail dimatikan.',
 'php-uploaddisabledtext' => 'Pemuatnaikan fail PHP dilumpuhkan. Sila semak tetapan file_uploads.',
 'uploadscripted' => 'Fail ini mengandungi kod HTML atau skrip yang boleh disalahtafsirkan oleh pelayar web.',
+'uploadscriptednamespace' => 'Fail SVG ini mengandungi ruang nama terlarang "$1"',
 'uploadinvalidxml' => 'XML dalam fail yang dimuat naik ini tidak dapat dihuraikan.',
 'uploadvirus' => 'Fail tersebut mengandungi virus! Butiran: $1',
 'uploadjava' => 'Fail ini ialah fail ZIP yang mengandungi fail .class Java.
@@ -1971,6 +2007,11 @@ Mungkin anda ingin menyunting keterangan pada [$2 laman penerangan failnya] di s
 # List redirects
 'listredirects' => 'Senarai lencongan',
 
+# List duplicated files special page
+'listduplicatedfiles' => 'Senarai fail dengan pendua',
+'listduplicatedfiles-summary' => 'Ini ialah senarai fail yang mana versi terkini fail itu merupakan pendua bagi versi terkini fail lain. Hanya fail setempat yang dipertimbangkan.',
+'listduplicatedfiles-entry' => '[[:File:$1|$1]] ada [[$3|{{PLURAL:$2|pendua|$2 pendua}}]].',
+
 # Unused templates
 'unusedtemplates' => 'Templat tidak digunakan',
 'unusedtemplatestext' => 'Yang berikut ialah senarai laman dalam ruang nama {{ns:template}} yang tidak disertakan dalam laman lain. Sila pastikan bahawa anda menyemak pautan lain ke templat-templat tersebut sebelum menghapuskannya.',
@@ -2083,9 +2124,18 @@ Masukan yang <del>dipotong</del> telah diselesaikan.',
 'deadendpagestext' => 'Laman-laman berikut tidak mengandungi pautan ke laman lain di {{SITENAME}}.',
 'protectedpages' => 'Laman dilindungi',
 'protectedpages-indef' => 'Perlindungan tanpa had sahaja',
+'protectedpages-summary' => 'Halaman ini menyenaraikan halaman-halaman sedia anda yang sedang dilindungi. Untuk senarai tajuk yang dilindungi dari pembukaan, rujuk [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].',
 'protectedpages-cascade' => 'Perlindungan separa sahaja',
 'protectedpages-noredirect' => 'Sorokkan lencongan',
 'protectedpagesempty' => 'Tiada laman yang dilindungi dengan kriteria ini.',
+'protectedpages-timestamp' => 'Cap masa',
+'protectedpages-page' => 'Halaman',
+'protectedpages-expiry' => 'Tamat tempoh',
+'protectedpages-performer' => 'Pelindung',
+'protectedpages-params' => 'Parameter perlindungan',
+'protectedpages-reason' => 'Sebab',
+'protectedpages-unknown-timestamp' => 'Tidak diketahui',
+'protectedpages-unknown-performer' => 'Pengguna tidak dikenali',
 'protectedtitles' => 'Tajuk dilindungi',
 'protectedtitlesempty' => 'Tiada tajuk yang dilindungi yang sepadan dengan kriteria yang diberikan.',
 'listusers' => 'Senarai pengguna',
