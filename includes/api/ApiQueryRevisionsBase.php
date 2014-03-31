@@ -31,8 +31,8 @@
  */
 abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
-	protected $limit, $diffto, $difftotext, $expandTemplates, $generateXML, $section,
-		$parseContent, $fetchContent, $contentFormat, $setParsedLimit = true;
+	protected $limit, $diffto, $difftotext, $difftotextpst, $expandTemplates, $generateXML,
+		$section, $parseContent, $fetchContent, $contentFormat, $setParsedLimit = true;
 
 	protected $fld_ids = false, $fld_flags = false, $fld_timestamp = false,
 		$fld_size = false, $fld_sha1 = false, $fld_comment = false,
@@ -61,6 +61,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	protected function parseParameters( $params ) {
 		if ( !is_null( $params['difftotext'] ) ) {
 			$this->difftotext = $params['difftotext'];
+			$this->difftotextpst = $params['difftotextpst'];
 		} elseif ( !is_null( $params['diffto'] ) ) {
 			if ( $params['diffto'] == 'cur' ) {
 				$params['diffto'] = 0;
@@ -385,6 +386,11 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 							$this->contentFormat
 						);
 
+						if ( $this->difftotextpst ) {
+							$popts = ParserOptions::newFromContext( $this->getContext() );
+							$difftocontent = $difftocontent->preSaveTransform( $title, $user, $popts );
+						}
+
 						$engine = $handler->createDifferenceEngine( $context );
 						$engine->setContent( $content, $difftocontent );
 					}
@@ -489,6 +495,10 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			'difftotext' => array(
 				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-difftotext',
+			),
+			'difftotextpst' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-difftotextpst',
 			),
 			'contentformat' => array(
 				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
