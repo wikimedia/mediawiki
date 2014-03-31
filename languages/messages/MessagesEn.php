@@ -2958,7 +2958,7 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'index-category-desc'                          => 'The page has a <nowiki>__INDEX__</nowiki> on it (and is in a namespace where that flag is allowed), and hence is indexed by robots where it normally wouldn\'t be.',
 'post-expand-template-inclusion-category-desc' => 'After expanding all the templates, the page size is bigger than $wgMaxArticleSize, so some templates weren\'t expanded.',
 'post-expand-template-argument-category-desc'  => 'After expanding a template argument (something in triple braces, like {{{Foo}}}), the page is bigger than $wgMaxArticleSize.',
-'expensive-parserfunction-category-desc'       => 'Too many expensive parser functions (like #ifexists) included on a page. See [https://www.mediawiki.org/wiki/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].',
+'expensive-parserfunction-category-desc'       => 'Too many expensive parser functions (like #ifexists) included on a page. See [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].',
 'broken-file-category-desc'                    => 'Category added if the page contains a broken file link (a link to embed a file when the file does not exist).',
 'hidden-category-category-desc'                => 'This is a category with <nowiki>__HIDDENCAT__</nowiki> on it, which prevents it from showing up in the category links box on pages, by default.',
 'trackingcategories-nodesc'                    => 'No description available.',
@@ -3608,7 +3608,7 @@ In the latter case you can also use a link, for example [[{{#Special:Export}}/{{
 'allmessagesdefault'            => 'Default message text',
 'allmessagescurrent'            => 'Current message text',
 'allmessagestext'               => 'This is a list of system messages available in the MediaWiki namespace.
-Please visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB'     => 'This page cannot be used because <strong>$wgUseDatabaseMessages</strong> has been disabled.',
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filter by customization state:',
@@ -4930,11 +4930,11 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'version-entrypoints'                   => 'Entry point URLs',
 'version-entrypoints-header-entrypoint' => 'Entry point',
 'version-entrypoints-header-url'        => 'URL',
-'version-entrypoints-articlepath'       => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Article path]', # only translate this message to other languages if you have to change it
-'version-entrypoints-scriptpath'        => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Script path]', # only translate this message to other languages if you have to change it
-'version-entrypoints-index-php'         => '[https://www.mediawiki.org/wiki/Manual:index.php index.php]', # do not translate or duplicate this message to other languages
-'version-entrypoints-api-php'           => '[https://www.mediawiki.org/wiki/Manual:api.php api.php]', # do not translate or duplicate this message to other languages
-'version-entrypoints-load-php'          => '[https://www.mediawiki.org/wiki/Manual:load.php load.php]', # do not translate or duplicate this message to other languages
+'version-entrypoints-articlepath'       => '[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath Article path]', # only translate this message to other languages if you have to change it
+'version-entrypoints-scriptpath'        => '[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath Script path]', # only translate this message to other languages if you have to change it
+'version-entrypoints-index-php'         => '[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:index.php index.php]', # do not translate or duplicate this message to other languages
+'version-entrypoints-api-php'           => '[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:api.php api.php]', # do not translate or duplicate this message to other languages
+'version-entrypoints-load-php'          => '[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:load.php load.php]', # do not translate or duplicate this message to other languages
 
 # Special:Redirect
 'redirect'            => 'Redirect by file, user, page or revision ID',
