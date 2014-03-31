@@ -461,6 +461,11 @@ if ( $wgRateLimitLog && ! array_key_exists( 'ratelimit', $wgDebugLogGroups ) ) {
 	$wgDebugLogGroups['ratelimit'] = $wgRateLimitLog;
 }
 
+if ( $wgProfileOnly ) {
+	$wgDebugLogGroups['profileoutput'] = $wgDebugLogFile;
+	$wgDebugLogFile = '';
+}
+
 wfProfileOut( $fname . '-defaults2' );
 wfProfileIn( $fname . '-misc1' );
 
