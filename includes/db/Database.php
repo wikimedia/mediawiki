@@ -3452,7 +3452,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			);
 		}
 
-		if ( $flush != 'flush' ) {
+		if ( $flush !== 'flush' ) {
 			if ( !$this->mTrxLevel ) {
 				wfWarn( "$fname: No transaction to commit, something got out of sync!" );
 			} elseif ( $this->mTrxAutomatic ) {
@@ -3494,11 +3494,27 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * No-op on non-transactional databases.
 	 *
 	 * @param string $fname
+	 * @param string $flush Flush flag, set to 'flush' to disable warnings about
+	 *   calling rollback when no transaction is in progress. This will silently
+	 *   break any ongoing explicit transaction. Only set the flush flag if you
+	 *   are sure that it is safe to ignore these warnings in your context.
+	 * @since 1.23 Added $flush parameter
 	 */
-	final public function rollback( $fname = __METHOD__ ) {
-		if ( !$this->mTrxLevel ) {
-			wfWarn( "$fname: No transaction to rollback, something got out of sync!" );
+	final public function rollback( $fname = __METHOD__, $flush = '' ) {
+		if ( $flush !== 'flush' ) {
+			if ( !$this->mTrxLevel ) {
+				wfWarn( "$fname: No transaction to rollback, something got out of sync!" );
+			} elseif ( $this->mTrxAutomatic ) {
+				wfWarn( "$fname: Explicit rollback of implicit transaction. Something may be out of sync!" );
+			}
+		} else {
+			if ( !$this->mTrxLevel ) {
+				return; // nothing to do
+			} elseif ( !$this->mTrxAutomatic ) {
+				wfWarn( "$fname: Flushing an explicit transaction, getting out of sync!" );
+			}
 		}
+
 		$this->doRollback( $fname );
 		$this->mTrxIdleCallbacks = array(); // cancel
 		$this->mTrxPreCommitCallbacks = array(); // cancel

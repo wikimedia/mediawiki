@@ -102,6 +102,25 @@ class MWExceptionHandler {
 	}
 
 	/**
+	 * If there are any open database transactions, roll them back and log
+	 * the stack trace of the exception that should have been caught so the
+	 * transaction could be aborted properly.
+	 * @since 1.23
+	 * @param Exception $e
+	 */
+	public static function rollbackMasterChangesAndLog( Exception $e ) {
+		$factory = wfGetLBFactory();
+		if ( $factory->hasMasterChanges() ) {
+			wfDebugLog( 'Bug56269',
+				'Exception thrown with an uncommited database transaction: ' .
+					MWExceptionHandler::getLogMessage( $e ) . "\n" .
+					$e->getTraceAsString()
+			);
+			$factory->rollbackMasterChanges();
+		}
+	}
+
+	/**
 	 * Exception handler which simulates the appropriate catch() handling:
 	 *
 	 *   try {
@@ -114,6 +133,8 @@ class MWExceptionHandler {
 	 */
 	public static function handle( $e ) {
 		global $wgFullyInitialised;
+
+		self::rollbackMasterChangesAndLog( $e );
 
 		self::report( $e );
 

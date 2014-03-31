@@ -191,6 +191,27 @@ abstract class LBFactory {
 	function commitMasterChanges() {
 		$this->forEachLBCallMethod( 'commitMasterChanges' );
 	}
+
+	/**
+	 * Rollback changes on all master connections
+	 * @since 1.23
+	 */
+	function rollbackMasterChanges() {
+		$this->forEachLBCallMethod( 'rollbackMasterChanges' );
+	}
+
+	/**
+	 * Detemine if any master connection has pending changes.
+	 * @since 1.23
+	 * @return bool
+	 */
+	function hasMasterChanges() {
+		$ret = false;
+		$this->forEachLB( function ( $lb ) use ( &$ret ) {
+			$ret = $ret || $lb->hasMasterChanges();
+		} );
+		return $ret;
+	}
 }
 
 /**
