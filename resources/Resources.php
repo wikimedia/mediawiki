@@ -1130,6 +1130,9 @@ return array(
 	'mediawiki.special' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.js',
 		'styles' => 'resources/mediawiki.special/mediawiki.special.css',
+		'skinStyles' => array(
+			'vector' => 'skins/vector/special.less',
+		),
 	),
 	'mediawiki.special.block' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.block.js',
