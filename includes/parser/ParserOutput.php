@@ -398,6 +398,9 @@ class ParserOutput extends CacheTime {
 	 * retrieved given the page ID or via a DB join when given the page
 	 * title.
 	 *
+	 * Since 1.23, page_props are also indexed by numeric value, to allow
+	 * for efficient "top k" queries of pages wrt a given property.
+	 *
 	 * setProperty() is thus used to propagate properties from the parsed
 	 * page to request contexts other than a page view of the currently parsed
 	 * article.
