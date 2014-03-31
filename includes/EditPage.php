@@ -1204,8 +1204,6 @@ class EditPage {
 	 * marked HttpOnly. The JavaScript code converts the cookie to a wgPostEdit config
 	 * variable.
 	 *
-	 * We use a path of '/' since wgCookiePath is not exposed to JS
-	 *
 	 * If the variable were set on the server, it would be cached, which is unwanted
 	 * since the post-edit state should only apply to the load right after the save.
 	 */
@@ -1215,7 +1213,6 @@ class EditPage {
 
 		$response = RequestContext::getMain()->getRequest()->response();
 		$response->setcookie( $postEditKey, '1', time() + self::POST_EDIT_COOKIE_DURATION, array(
-			'path' => '/',
 			'httpOnly' => false,
 		) );
 	}
