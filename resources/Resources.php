@@ -978,7 +978,7 @@ return array(
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.postEdit.js',
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.postEdit.css',
 		'dependencies' => array(
-			'jquery.cookie',
+			'mediawiki.cookie',
 			'mediawiki.jqueryMsg'
 		),
 		'messages' => array(

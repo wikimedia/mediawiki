@@ -18,9 +18,9 @@
 	 * @member mw.hook
 	 */
 
-	var config = mw.config.get( [ 'wgAction', 'wgCookiePrefix', 'wgCurRevisionId' ] ),
+	var config = mw.config.get( [ 'wgAction', 'wgCurRevisionId' ] ),
 		// This should match EditPage::POST_EDIT_COOKIE_KEY_PREFIX:
-		cookieKey = config.wgCookiePrefix + 'PostEditRevision' + config.wgCurRevisionId,
+		cookieKey = 'PostEditRevision' + config.wgCurRevisionId,
 		$div, id;
 
 	function showConfirmation( data ) {
@@ -66,8 +66,8 @@
 
 	mw.hook( 'postEdit' ).add( showConfirmation );
 
-	if ( config.wgAction === 'view' && $.cookie( cookieKey ) === '1' ) {
-		$.cookie( cookieKey, null, { path: '/' } );
+	if ( config.wgAction === 'view' && mw.cookie.get( cookieKey ) === '1' ) {
+		mw.cookie.set( cookieKey, null );
 		mw.config.set( 'wgPostEdit', true );
 
 		mw.hook( 'postEdit' ).fire();
