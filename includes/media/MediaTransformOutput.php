@@ -71,6 +71,13 @@ abstract class MediaTransformOutput {
 	}
 
 	/**
+	 * @return File file
+	 */
+	public function getFile() {
+		return $this->file;
+	}
+
+	/**
 	 * Get the final extension of the thumbnail.
 	 * Returns false for scripted transformations.
 	 * @return string|false
@@ -374,6 +381,7 @@ class ThumbnailImage extends MediaTransformOutput {
 			'alt' => $alt,
 			'src' => $this->url,
 		);
+
 		if ( empty( $options['no-dimensions'] ) ) {
 			$attribs['width'] = $this->width;
 			$attribs['height'] = $this->height;
