@@ -76,6 +76,8 @@ production.
   into the redirect destination.
 * prop=imageinfo&iiprop=uploadwarning will no longer include the possibility of
   "was-deleted" warning.
+* Added difftotextpst to query=revisions which preforms a pre-save transform on
+  the text before diffing it.
 
 === Action API internal changes in 1.27 ===
 * ApiQueryORM removed.

@@ -958,6 +958,7 @@
 	"apihelp-query+revisions+base-param-section": "{{doc-apihelp-param|query+revisions+base|section|description=the \"section\" parameter to revision querying modules|noseealso=1}}",
 	"apihelp-query+revisions+base-param-diffto": "{{doc-apihelp-param|query+revisions+base|diffto|description=the \"diffto\" parameter to revision querying modules|noseealso=1}}",
 	"apihelp-query+revisions+base-param-difftotext": "{{doc-apihelp-param|query+revisions+base|difftotext|description=the \"difftotext\" parameter to revision querying modules|noseealso=1}}",
+	"apihelp-query+revisions+base-param-difftotextpst": "{{doc-apihelp-param|query+revisions+base|difftotextpst|description=the \"difftotextpst\" parameter to revision querying modules|noseealso=1}}",
 	"apihelp-query+revisions+base-param-contentformat": "{{doc-apihelp-param|query+revisions+base|contentformat|description=the \"contentformat\" parameter to revision querying modules|noseealso=1}}",
 	"apihelp-query+search-description": "{{doc-apihelp-description|query+search}}",
 	"apihelp-query+search-param-search": "{{doc-apihelp-param|query+search|search}}",
