@@ -239,6 +239,7 @@ production.
 * The deprecated action=parse&prop=languageshtml has been removed.
 * (bug 48071) action=setnotificationtimestamp no longer throws PHP or database
   errors when no pages are given.
+<<<<<<< .merge_file_v8JCsz
 * (bug 60734) Actions that use ApiPageSet (e.g. purge, watch,
   setnotificationtimestamp) will now include continuation information when
   using a generator.
@@ -328,6 +329,8 @@ production.
   * ApiFormatWddx
   * ApiFormatYaml
   * ApiTokens
+* (bug 63326) Add blockedtimestamp field to output of blockinfo property for
+  the list=allusers and list=users modules.
 
 === Languages updated in 1.24 ===
 
