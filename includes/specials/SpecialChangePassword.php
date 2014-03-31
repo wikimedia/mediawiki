@@ -52,6 +52,11 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		$this->mDomain = $request->getVal( 'wpDomain' );
 
 		$user = $this->getUser();
+
+		if ( !$user->isLoggedIn() && !LoginForm::getLoginToken() ) {
+			LoginForm::setLoginToken();
+		}
+
 		if ( !$request->wasPosted() && !$user->isLoggedIn() ) {
 			$this->error( $this->msg( 'resetpass-no-info' )->text() );
 
@@ -79,6 +84,14 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 					$this->error( $this->msg( 'resetpass_forbidden' )->text() );
 
 					return;
+				}
+
+				if ( !$user->isLoggedIn()
+					&& $request->getVal( 'wpLoginOnChangeToken' ) !== LoginForm::getLoginToken()
+				) {
+					// Potential CSRF (bug 62497)
+					$this->error( $this->msg( 'sessionfailure' )->text() );
+					return false;
 				}
 
 				$this->attemptReset( $this->mNewpass, $this->mRetype );
@@ -157,6 +170,9 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			'wpName' => $this->mUserName,
 			'wpDomain' => $this->mDomain,
 		) + $this->getRequest()->getValues( 'returnto', 'returntoquery' );
+		if ( !$user->isLoggedIn() ) {
+			$hiddenFields['wpLoginOnChangeToken'] = LoginForm::getLoginToken();
+		}
 		$hiddenFieldsStr = '';
 		foreach ( $hiddenFields as $fieldname => $fieldvalue ) {
 			$hiddenFieldsStr .= Html::hidden( $fieldname, $fieldvalue ) . "\n";

@@ -3,17 +3,66 @@
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
-== MediaWiki 1.22.3 ==
+== MediaWiki 1.22.5 ==
 
-NOT A RELEASE YET!
+This is a security and maintenance release of the MediaWiki 1.22 branch.
+
+=== Changes since 1.22.4 ===
+
+* (bug 62497) SECURITY: Add CSRF token on Special:ChangePassword.
+* (bug 62467) Set a title for the context during import on the cli.
+* Fix custom local MediaWiki:Helppage values.
+* mediawiki.js: Fix documentation breakage.
+* (bug 58153) Make MySQLi work with non standard port.
+* (bug 53887) Reintroduced a link to help pages in the default sidebar, that
+  any sysop can customize by editing [[MediaWiki:Sidebar]] locally. The link
+  now points to a mediawiki.org page which is guaranteed to exist. Nothing needs
+  to be done on your end, but remember to adjust [[MediaWiki:Sidebar]] for the
+  needs of your wikis. Everyone can help with the shared documentation by
+  translating: https://www.mediawiki.org/wiki/Special:Translate/agg-Help_pages .
+* (bug 53888) Corrected a regression in 1.22 which introduced red links on the
+  login page. If you previously installed 1.22.x and have created a local page
+  to make the red link blue, write its title as in [[MediaWiki:helplogin-url]]
+  if you didn't already. Otherwise, you don't need to do anything, but you can
+  translate the help page at https://www.mediawiki.org/wiki/Help:Logging_in .
+
+== MediaWiki 1.22.4 ==
+
+This is a maintenance release of the MediaWiki 1.22 branch.
+
+=== Changes since 1.22.3 ===
+
+* Use the correct branch of the extensions' git repositories.
+
+== MediaWiki 1.22.3 ==
 
 This is a security and bugfix release of the MediaWiki 1.22 branch.
 
 === Changes since 1.22.2 ===
 
-* (bug 60094) Make rebuildall.php work with PostgreSQL.
+* (bug 60771) SECURITY: Disallow uploading SVG files using non-whitelisted
+  namespaces. Also disallow iframe elements. User will get an error
+  including the namespace name if they use a non- whitelisted namespace.
+* (bug 61346) SECURITY: Make token comparison use constant time. It seems like
+  our token comparison would be vulnerable to timing attacks. This will take
+  constant time.
+* (bug 61362) SECURITY: API: Don't find links in the middle of api.php links.
+* (bug 53710) Add sequence support for upsert in DatabaseOracle in the same way
+  as in selectInsert
+* (bug 60231, 58719) Various fixes to job running code in Wiki.php: Make it
+  async on Windows. Fixed possible "invalid filename" errors on Windows.
+  Redirect output to dev/null to avoid hanging PHP.
+* (bug 60083) Correct sequence name for fresh Postgres installation. Spotted
+  by gebhkla
 * (bug 60531) Avoid variable naming conflicts in
-  DatabasePostgres::selectSQLText.
+  DatabasePostgres::selectSQLText. Spotted by gebhkla
+* (bug 60094) Fix rebuildall.php fatal error with PostgreSQL. The fix for
+  47055 introduced a fatal error when running rebuildall.php. This is a
+  workaround suggested by gebhkla on Bugzilla. It just checks to make sure
+  $options is actually an array before calling array_search on it.
+* (bug 43817c12) Add error handling if descriptionmsg isn't defined for
+  extension.
+* (bug 60543) Special:PrefixIndex omits stripprefix=1 for "Next page" link.
 
 == MediaWiki 1.22.2 ==
 

@@ -21,6 +21,7 @@ var mw = ( function ( $, undefined ) {
 	 * fine. No need for optimization here, which would only result in losing logs.
 	 *
 	 * @private
+	 * @method log_
 	 * @param {string} msg text for the log entry.
 	 * @param {Error} [e]
 	 */
@@ -318,6 +319,9 @@ var mw = ( function ( $, undefined ) {
 		}
 	};
 
+	/**
+	 * @class mw
+	 */
 	return {
 		/* Public Members */
 
@@ -1446,16 +1450,19 @@ var mw = ( function ( $, undefined ) {
 				 * @param {Function|Array} script Function with module code or Array of URLs to
 				 *  be used as the src attribute of a new `<script>` tag.
 				 * @param {Object} style Should follow one of the following patterns:
+				 *
 				 *     { "css": [css, ..] }
 				 *     { "url": { <media>: [url, ..] } }
+				 *
 				 * And for backwards compatibility (needs to be supported forever due to caching):
+				 *
 				 *     { <media>: css }
 				 *     { <media>: [url, ..] }
 				 *
 				 * The reason css strings are not concatenated anymore is bug 31676. We now check
 				 * whether it's safe to extend the stylesheet (see #canExpandStylesheetWith).
 				 *
-				 * @param {Object} msgs List of key/value pairs to be added to {@link mw#messages}.
+				 * @param {Object} msgs List of key/value pairs to be added to mw#messages.
 				 */
 				implement: function ( module, script, style, msgs ) {
 					// Validate input
