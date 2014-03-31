@@ -1830,7 +1830,7 @@ class LocalFile extends File {
 			// SELECT FOR UPDATE only locks records not the gaps where there are none.
 			$cache = wfGetMainCache();
 			$key = $this->getCacheKey();
-			if ( !$cache->lock( $key, 60 ) ) {
+			if ( !$cache->lock( $key, 5 ) ) {
 				throw new MWException( "Could not acquire lock for '{$this->getName()}.'" );
 			}
 			$dbw->onTransactionIdle( function () use ( $cache, $key ) {
@@ -1873,6 +1873,13 @@ class LocalFile extends File {
 	protected function readOnlyFatalStatus() {
 		return $this->getRepo()->newFatal( 'filereadonlyerror', $this->getName(),
 			$this->getRepo()->getName(), $this->getRepo()->getReadOnlyReason() );
+	}
+
+	/**
+	 * Clean up any dangling locks
+	 */
+	function __destruct() {
+		$this->unlock();
 	}
 } // LocalFile class
 
@@ -2714,8 +2721,10 @@ class LocalFileMoveBatch {
 
 		$triplets = $this->getMoveTriplets();
 		$triplets = $this->removeNonexistentFiles( $triplets );
+		$destFile = wfLocalFile( $this->target );
 
 		$this->file->lock(); // begin
+		$destFile->lock(); // quickly fail if destination is not available
 		// Rename the file versions metadata in the DB.
 		// This implicitly locks the destination file, which avoids race conditions.
 		// If we moved the files from A -> C before DB updates, another process could
@@ -2746,6 +2755,7 @@ class LocalFileMoveBatch {
 
 			return $statusMove;
 		}
+		$destFile->unlock();
 		$this->file->unlock(); // done
 
 		// Everything went ok, remove the source files
