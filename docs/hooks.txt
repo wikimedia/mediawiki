@@ -1441,6 +1441,7 @@ $user: user (object) whose email is being invalidated
 Callee may modify $url and $query, URL will be constructed as $url . $query
 &$url: URL to index.php
 &$query: Query string
+$rc: RecentChange object that triggered url generation
 
 'IsFileCacheable': Override the result of Article::isFileCacheable() (if true)
 $article: article (object) being checked
