@@ -61,6 +61,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	protected function parseParameters( $params ) {
 		if ( !is_null( $params['difftotext'] ) ) {
 			$this->difftotext = $params['difftotext'];
+			$this->difftotextpst = $params['difftotextpst'];
 		} elseif ( !is_null( $params['diffto'] ) ) {
 			if ( $params['diffto'] == 'cur' ) {
 				$params['diffto'] = 0;
@@ -384,6 +385,13 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 							$model,
 							$this->contentFormat
 						);
+						
+						if ( $this->difftotextpst ) {
+							$page = WikiPage::factory( $title );
+							$popts = $page->makeParserOptions( $this->getContext() );
+							
+							$difftocontent = $difftocontent->preSaveTransform( $title, $user, $popts );
+						}
 
 						$engine = $handler->createDifferenceEngine( $context );
 						$engine->setContent( $content, $difftocontent );
@@ -489,6 +497,10 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			'difftotext' => array(
 				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-difftotext',
+			),
+			'difftotextpst' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-difftotextpst',
 			),
 			'contentformat' => array(
 				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
