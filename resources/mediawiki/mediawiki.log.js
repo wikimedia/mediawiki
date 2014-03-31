@@ -33,7 +33,7 @@
 		// Try to use an existing console
 		// Generally we can cache this, but in this case we want to re-evaluate this as a
 		// global property live so that things like Firebug Lite can take precedence.
-		if ( window.console && window.console.log ) {
+		if ( window.console && window.console.log && window.console.log.apply ) {
 			args.unshift( prefix );
 			window.console.log.apply( window.console, args );
 			return;
