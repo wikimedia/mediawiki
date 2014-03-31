@@ -1281,7 +1281,7 @@ class LCStoreCDB implements LCStore {
 				try {
 					$this->readers[$code] = CdbReader::open( $fileName );
 				} catch ( CdbException $e ) {
-					wfDebug( __METHOD__ . ": unable to open cdb file for reading" );
+					wfDebug( __METHOD__ . ": unable to open cdb file for reading\n" );
 				}
 			}
 		}
@@ -1294,7 +1294,7 @@ class LCStoreCDB implements LCStore {
 				$value = $this->readers[$code]->get( $key );
 			} catch ( CdbException $e ) {
 				wfDebug( __METHOD__ . ": CdbException caught, error message was "
-					. $e->getMessage() );
+					. $e->getMessage() . "\n" );
 			}
 			if ( $value === false ) {
 				return null;

@@ -186,7 +186,7 @@ class SpecialUpload extends SpecialPage {
 		} else {
 			# Backwards compatibility hook
 			if ( !wfRunHooks( 'UploadForm:initial', array( &$this ) ) ) {
-				wfDebug( "Hook 'UploadForm:initial' broke output of the upload form" );
+				wfDebug( "Hook 'UploadForm:initial' broke output of the upload form\n" );
 
 				return;
 			}

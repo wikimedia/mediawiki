@@ -92,7 +92,7 @@ class ApiUpload extends ApiBase {
 		} elseif ( $this->mParams['async'] && $this->mParams['filekey'] ) {
 			// defer verification to background process
 		} else {
-			wfDebug( __METHOD__ . 'about to verify' );
+			wfDebug( __METHOD__ . " about to verify\n" );
 			$this->verifyUpload();
 		}
 

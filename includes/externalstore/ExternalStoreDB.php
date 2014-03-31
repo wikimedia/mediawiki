@@ -128,10 +128,10 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		$lb = $this->getLoadBalancer( $cluster );
 
 		if ( !in_array( "DB://" . $cluster, (array)$wgDefaultExternalStore ) ) {
-			wfDebug( "read only external store" );
+			wfDebug( "read only external store\n" );
 			$lb->allowLagged( true );
 		} else {
-			wfDebug( "writable external store" );
+			wfDebug( "writable external store\n" );
 		}
 
 		return $lb->getConnection( DB_SLAVE, array(), $wiki );

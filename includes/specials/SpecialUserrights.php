@@ -265,8 +265,8 @@ class UserrightsPage extends SpecialPage {
 		// update groups in external authentication database
 		$wgAuth->updateExternalDBGroups( $user, $add, $remove );
 
-		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) );
-		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) );
+		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) . "\n" );
+		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) . "\n" );
 		wfRunHooks( 'UserRights', array( &$user, $add, $remove ) );
 
 		if ( $newGroups != $oldGroups ) {

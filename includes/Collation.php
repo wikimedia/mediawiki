@@ -470,7 +470,7 @@ class IcuCollation extends Collation {
 			$prev = $trimmedKey;
 		}
 		foreach ( $duplicatePrefixes as $badKey ) {
-			wfDebug( "Removing '{$letterMap[$badKey]}' from first letters." );
+			wfDebug( "Removing '{$letterMap[$badKey]}' from first letters.\n" );
 			unset( $letterMap[$badKey] );
 			// This code assumes that unsetting does not change sort order.
 		}

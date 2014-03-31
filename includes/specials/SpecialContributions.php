@@ -1095,7 +1095,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		wfRunHooks( 'ContributionsLineEnding', array( $this, &$ret, $row, &$classes ) );
 
 		if ( $classes === array() && $ret === '' ) {
-			wfDebug( 'Dropping Special:Contribution row that could not be formatted' );
+			wfDebug( "Dropping Special:Contribution row that could not be formatted\n" );
 			$ret = "<!-- Could not format Special:Contribution row. -->\n";
 		} else {
 			$ret = Html::rawElement( 'li', array( 'class' => $classes ), $ret ) . "\n";
