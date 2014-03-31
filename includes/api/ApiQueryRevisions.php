@@ -127,6 +127,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		if ( !is_null( $params['difftotext'] ) ) {
 			$this->difftotext = $params['difftotext'];
+			$this->difftotextpst = $params['difftotextpst'];
 		} elseif ( !is_null( $params['diffto'] ) ) {
 			if ( $params['diffto'] == 'cur' ) {
 				$params['diffto'] = 0;
@@ -653,6 +654,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 						$this->contentFormat
 					);
 
+					if ( $this->difftotextpst ) {
+						$page = WikiPage::factory( $title );
+						$popts = $page->makeParserOptions( $this->getContext() );
+
+						$difftocontent = $difftocontent->preSaveTransform( $title, $user, $popts );
+					}
+
 					$engine = $handler->createDifferenceEngine( $context );
 					$engine->setContent( $content, $difftocontent );
 				} else {
@@ -755,6 +763,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'continue' => null,
 			'diffto' => null,
 			'difftotext' => null,
+			'difftotextpst' => false,
 			'contentformat' => array(
 				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
 				ApiBase::PARAM_DFLT => null
@@ -802,6 +811,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 				'Text to diff each revision to. Only diffs a limited number of revisions.',
 				"Overrides {$p}diffto. If {$p}section is set, only that section will be",
 				'diffed against this text',
+			),
+			'difftotextpst' => array(
+				'Do a pre-save transform on the text before diffing it',
+				"Only valid when used with {$p}difftotext",
 			),
 			'tag' => 'Only list revisions tagged with this tag',
 			'contentformat' => 'Serialization format used for difftotext and expected for output of content',
