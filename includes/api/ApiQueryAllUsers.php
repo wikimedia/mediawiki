@@ -232,6 +232,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					$lastUserData['blockid'] = $row->ipb_id;
 					$lastUserData['blockedby'] = $row->ipb_by_text;
 					$lastUserData['blockedbyid'] = $row->ipb_by;
+					$lastUserData['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $row->ipb_timestamp );
 					$lastUserData['blockreason'] = $row->ipb_reason;
 					$lastUserData['blockexpiry'] = $row->ipb_expiry;
 				}
@@ -416,6 +417,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				),
 				'blockedbyid' => array(
 					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'blockedtimestamp' => array(
+					ApiBase::PROP_TYPE => 'timestamp',
 					ApiBase::PROP_NULLABLE => true
 				),
 				'blockedreason' => array(
