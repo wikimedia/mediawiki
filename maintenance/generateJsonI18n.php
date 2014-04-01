@@ -83,7 +83,7 @@ class GenerateJsonI18n extends Maintenance {
 			$jsonfile = "$jsondir/$langcode.json";
 			$success = file_put_contents(
 				$jsonfile,
-				FormatJson::encode( $langmsgs, true, FormatJson::ALL_OK )
+				FormatJson::encode( $langmsgs, true, FormatJson::ALL_OK ) . "\n"
 			);
 			if ( $success === false ) {
 				$this->error( "FAILED to write $jsonfile", 1 );
