@@ -86,6 +86,7 @@ class ApiQuery extends ApiBase {
 		'logevents' => 'ApiQueryLogEvents',
 		'pageswithprop' => 'ApiQueryPagesWithProp',
 		'pagepropnames' => 'ApiQueryPagePropNames',
+		'prefixsearch' => 'ApiQueryPrefixSearch',
 		'protectedtitles' => 'ApiQueryProtectedTitles',
 		'querypage' => 'ApiQueryQueryPage',
 		'random' => 'ApiQueryRandom',
