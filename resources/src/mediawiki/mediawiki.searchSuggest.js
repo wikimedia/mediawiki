@@ -22,8 +22,8 @@
 			konqueror: [['>=', '4.11']],
 			docomo: false,
 			blackberry: false,
-			ipod: false,
-			iphone: false
+			ipod: [['>=', 6]],
+			iphone: [['>=', 6]]
 		};
 
 		if ( !$.client.test( map ) ) {
