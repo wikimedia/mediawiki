@@ -42,6 +42,8 @@ class GenerateJsonI18n extends Maintenance {
 			false, true );
 		$this->addOption( 'extension', 'Perform default conversion on an extension',
 			false, true );
+		$this->addOption( 'supplementary', 'Find supplementary i18n files in subdirs and convert those',
+			false, false );
 	}
 
 	public function execute() {
@@ -50,6 +52,7 @@ class GenerateJsonI18n extends Maintenance {
 		$phpfile = $this->getArg( 0 );
 		$jsondir = $this->getArg( 1 );
 		$extension = $this->getOption( 'extension' );
+		$convertSupplementaryI18nFiles = $this->hasOption( 'supplementary' );
 
 		if ( $extension and !$phpfile ) {
 			$phpfile = "$IP/extensions/$extension/$extension.i18n.php";
@@ -62,6 +65,18 @@ class GenerateJsonI18n extends Maintenance {
 		}
 
 		$this->transformI18nFile( $phpfile, $jsondir );
+
+		if ( $convertSupplementaryI18nFiles ) {
+			$this->output( "Searching for supplementary i18n files...\n" );
+			$dir_iterator = new RecursiveDirectoryIterator( dirname( $phpfile ) );
+			$iterator = new RecursiveIteratorIterator( $dir_iterator, RecursiveIteratorIterator::LEAVES_ONLY );
+			foreach ( $iterator as $path => $fileObject ) {
+				if ( preg_match( "/\.i18n\.php$/", $fileObject->getFilename() ) ) {
+					$this->output( "Converting $path.\n" );
+					$this->transformI18nFile( $path );
+				}
+			}
+		}
 	}
 
 	public function transformI18nFile( $phpfile, $jsondir = null ) {
@@ -76,7 +91,8 @@ class GenerateJsonI18n extends Maintenance {
 		}
 
 		if ( !is_readable( $phpfile ) ) {
-			$this->error( "Error reading $phpfile\n", 1 );
+			$this->error( "Error reading $phpfile\n" );
+			return;
 		}
 		include $phpfile;
 		$phpfileContents = file_get_contents( $phpfile );
