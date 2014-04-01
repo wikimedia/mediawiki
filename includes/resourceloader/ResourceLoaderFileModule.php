@@ -638,20 +638,66 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Returns all style files used by this module
+	 * Gets a list of file paths for all styles in the module used by the
+	 * skin.
+	 *
+	 * @param string $skinName The name of the skin
 	 * @return array
 	 */
-	public function getAllStyleFiles() {
-		$files = array();
-		foreach ( (array)$this->styles as $key => $value ) {
-			if ( is_array( $value ) ) {
-				$path = $key;
-			} else {
-				$path = $value;
-			}
-			$files[] = $this->getLocalPath( $path );
+	protected function getSkinStyleFiles( $skinName ) {
+		return self::collateFilePathListByOption(
+			self::tryForKey( $this->skinStyles, $skinName, 'default' ),
+			'media',
+			'all'
+		);
+	}
+
+	/**
+	 * Gets a list of file paths for all style files in the module used by
+	 * all skins.
+	 *
+	 * @return array
+	 */
+	protected function getAllSkinStyleFiles() {
+		$styleFiles = array();
+
+		foreach ( Skin::getSkinNames() as $skinName ) {
+			$styleFiles = array_merge_recursive(
+				$styleFiles,
+				$this->getSkinStyleFiles( $skinName )
+			);
 		}
-		return $files;
+
+		return $styleFiles;
+	}
+
+	/**
+	 * Returns all style files used by this module
+	 *
+	 * @param boolean $includeSkinStyleFiles Whether or not to include
+	 *   skinStyles files for all skins. Defaults to false for backwards
+	 *   compatibility
+	 * @return array
+	 */
+	public function getAllStyleFiles( $includeSkinStyleFiles = false ) {
+		$collatedStyleFiles = self::collateFilePathListByOption( $this->styles, 'media', 'all' );
+
+		if ( $includeSkinStyleFiles ) {
+			$collatedStyleFiles = array_merge_recursive(
+				$collatedStyleFiles,
+				$this->getAllSkinStyleFiles()
+			);
+		}
+
+		$result = array();
+
+		foreach ( $collatedStyleFiles as $media => $styleFiles ) {
+			foreach ( $styleFiles as $styleFile ) {
+				$result[] = $this->getLocalPath( $styleFile );
+			}
+		}
+
+		return $result;
 	}
 
 	/**
