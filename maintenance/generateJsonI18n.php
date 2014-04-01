@@ -36,17 +36,52 @@ class GenerateJsonI18n extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Build JSON messages files from a PHP messages file";
-		$this->addArg( 'phpfile', 'PHP file defining a $messages array', true );
-		$this->addArg( 'jsondir', 'Directory to write JSON files to. ' .
-			'Required unless <phpfile> exists and --shim-only is specified', false );
+
+		$this->addArg( 'phpfile', 'PHP file defining a $messages array', false );
+		$this->addArg( 'jsondir', 'Directory to write JSON files to', false );
 		$this->addOption( 'langcode', 'Language code; only needed for converting core i18n files',
+			false, true );
+		$this->addOption( 'extension', 'Perform default conversion on an extension',
 			false, true );
 		$this->addOption( 'shim-only', 'Only create or update the backward-compatibility shim' );
 	}
 
 	public function execute() {
+		global $IP;
+
 		$phpfile = $this->getArg( 0 );
 		$jsondir = $this->getArg( 1 );
+		$extension = $this->getOption( 'extension' );
+
+		if ( $extension ) {
+			if ( $phpfile ) {
+				$this->error( "The phpfile is already specified, conflicts with --extension.\n", 1 );
+			}
+			$phpfile = "$IP/extensions/$extension/$extension.i18n.php";
+		}
+
+		if ( !$phpfile ) {
+			$this->error( "I'm here for an argument!\n" );
+			$this->maybeHelp( true );
+			// dies.
+		}
+
+		$this->transformI18nFile( $phpfile, $jsondir );
+	}
+
+	public function transformI18nFile( $phpfile, $jsondir = null ) {
+		if ( !$jsondir ) {
+			// Assume the json directory should be in the same directory as the
+			// .i18n.php file.
+			$jsondir = dirname( $phpfile ) . "/i18n";
+		}
+		if ( !is_dir( $jsondir ) ) {
+			$this->output( "Creating directory $jsondir.\n" );
+			$success = mkdir( $jsondir );
+			if ( !$success ) {
+				$this->error( "Could not create directory $jsondir\n", 1 );
+			}
+		}
 
 		if ( $this->hasOption( 'shim-only' ) ) {
 			$this->shimOnly( $phpfile, $jsondir );
