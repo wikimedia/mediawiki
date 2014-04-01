@@ -855,10 +855,7 @@ class LocalisationCache {
 
 		$codeSequence = array_merge( array( $code ), $coreData['fallbackSequence'] );
 
-		# Load the extension localisations
-		# This is done after the core because we know the fallback sequence now.
-		# But it has a higher precedence for merging so that we can support things
-		# like site-specific message overrides.
+		# Load core messages and the extension localisations.
 		wfProfileIn( __METHOD__ . '-extensions' );
 		$allData = $initialData;
 		foreach ( $wgMessagesDirs as $dirs ) {
