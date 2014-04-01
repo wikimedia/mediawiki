@@ -517,9 +517,9 @@ $messageMemc = wfGetMessageCacheStorage();
 $parserMemc = wfGetParserCacheStorage();
 $wgLangConvMemc = wfGetLangConverterCacheStorage();
 
-wfDebugLog( 'caches', get_class( $wgMemc ) . '[main] ' .
-	get_class( $messageMemc ) . '[message] ' .
-	get_class( $parserMemc ) . '[parser]' );
+wfDebugLog( 'caches', 'main: ' . get_class( $wgMemc ) .
+	', message: ' . get_class( $messageMemc ) .
+	', parser: ' . get_class( $parserMemc ) );
 
 wfProfileOut( $fname . '-memcached' );
 
