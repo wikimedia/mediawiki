@@ -261,7 +261,10 @@ class Language {
 	 * @since 1.21
 	 */
 	public static function isSupportedLanguage( $code ) {
-		return $code === strtolower( $code ) && is_readable( self::getMessagesFileName( $code ) );
+		return $code === strtolower( $code )
+			&& ( is_readable( self::getMessagesFileName( $code ) )
+				|| is_readable( self:: getJsonMessagesFileName( $code ) )
+		);
 	}
 
 	/**
@@ -910,12 +913,16 @@ class Language {
 			# We do this using a foreach over the codes instead of a directory
 			# loop so that messages files in extensions will work correctly.
 			foreach ( $returnMw as $code => $value ) {
-				if ( is_readable( self::getMessagesFileName( $code ) ) ) {
+				if ( is_readable( self::getMessagesFileName( $code ) )
+					|| is_readable( self::getJsonMessagesFileName( $code ) )
+				) {
 					$namesMwFile[$code] = $names[$code];
 				}
 			}
+
 			return $namesMwFile;
 		}
+
 		# 'mw' option; default if it's not one of the other two options (all/mwfile)
 		return $returnMw;
 	}
@@ -4084,6 +4091,17 @@ class Language {
 		$file = self::getFileName( "$IP/languages/messages/Messages", $code, '.php' );
 		wfRunHooks( 'Language::getMessagesFileName', array( $code, &$file ) );
 		return $file;
+	}
+
+	/**
+	 * @param $code string
+	 * @return string
+	 * @since 1.23
+	 */
+	public static function getJsonMessagesFileName( $code ) {
+		global $IP;
+
+		return self::getFileName( "$IP/languages/i18n/", $code, '.json' );
 	}
 
 	/**
