@@ -626,8 +626,10 @@ class SqlBagOStuff extends BagOStuff {
 		}
 		wfDebugLog( 'SQLBagOStuff', "DBError: {$exception->getMessage()}" );
 		if ( $exception instanceof DBConnectionError ) {
+			$this->setLastError( BagOStuff::ERR_UNREACHABLE );
 			wfDebug( __METHOD__ . ": ignoring connection error\n" );
 		} else {
+			$this->setLastError( BagOStuff::ERR_UNEXPECTED );
 			wfDebug( __METHOD__ . ": ignoring query error\n" );
 		}
 	}
@@ -646,8 +648,10 @@ class SqlBagOStuff extends BagOStuff {
 		}
 		wfDebugLog( 'SQLBagOStuff', "DBError: {$exception->getMessage()}" );
 		if ( $exception instanceof DBConnectionError ) {
+			$this->setLastError( BagOStuff::ERR_UNREACHABLE );
 			wfDebug( __METHOD__ . ": ignoring connection error\n" );
 		} else {
+			$this->setLastError( BagOStuff::ERR_UNEXPECTED );
 			wfDebug( __METHOD__ . ": ignoring query error\n" );
 		}
 	}

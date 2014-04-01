@@ -305,6 +305,7 @@ class RedisBagOStuff extends BagOStuff {
 				return array( $server, $conn );
 			}
 		}
+		$this->setLastError( BagOStuff::ERR_UNREACHABLE );
 		return array( false, false );
 	}
 
@@ -322,6 +323,7 @@ class RedisBagOStuff extends BagOStuff {
 	 * object and let it be reopened during the next request.
 	 */
 	protected function handleException( RedisConnRef $conn, $e ) {
+		$this->setLastError( BagOStuff::ERR_UNEXPECTED );
 		$this->redisPool->handleError( $conn, $e );
 	}
 

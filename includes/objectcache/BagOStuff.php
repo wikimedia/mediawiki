@@ -43,6 +43,14 @@
 abstract class BagOStuff {
 	private $debugMode = false;
 
+	protected $lastError = self::ERR_NONE;
+
+	/** Possible values for getLastError() */
+	const ERR_NONE        = 0; // no error
+	const ERR_NO_RESPONSE = 1; // no response
+	const ERR_UNREACHABLE = 2; // can't connect
+	const ERR_UNEXPECTED  = 3; // response gave some error
+
 	/**
 	 * @param $bool bool
 	 */
@@ -169,9 +177,12 @@ abstract class BagOStuff {
 	 * @return bool success
 	 */
 	public function lock( $key, $timeout = 6 ) {
+		$this->clearLastError();
 		$timestamp = microtime( true ); // starting UNIX timestamp
 		if ( $this->add( "{$key}:lock", 1, $timeout ) ) {
 			return true;
+		} elseif ( $this->getLastError() ) {
+			return false;
 		}
 
 		$uRTT = ceil( 1e6 * ( microtime( true ) - $timestamp ) ); // estimate RTT (us)
@@ -186,7 +197,11 @@ abstract class BagOStuff {
 				$sleep *= 2;
 			}
 			usleep( $sleep ); // back off
+			$this->clearLastError();
 			$locked = $this->add( "{$key}:lock", 1, $timeout );
+			if ( $this->getLastError() ) {
+				return false;
+			}
 		} while ( !$locked );
 
 		return $locked;
@@ -290,6 +305,32 @@ abstract class BagOStuff {
 	 */
 	public function decr( $key, $value = 1 ) {
 		return $this->incr( $key, - $value );
+	}
+
+	/**
+	 * Get the "last error" registered; clearLastError() should be called manually
+	 * @return integer ERR_* constant for the "last error" registry
+	 * @since 1.23
+	 */
+	public function getLastError() {
+		return $this->lastError;
+	}
+
+	/**
+	 * Clear the "last error" registry
+	 * @since 1.23
+	 */
+	public function clearLastError() {
+		$this->lastError = self::ERR_NONE;
+	}
+
+	/**
+	 * Set the "last error" registry
+	 * @param $err integer ERR_* constant
+	 * @since 1.23
+	 */
+	protected function setLastError( $err ) {
+		$this->lastError = $err;
 	}
 
 	/**
