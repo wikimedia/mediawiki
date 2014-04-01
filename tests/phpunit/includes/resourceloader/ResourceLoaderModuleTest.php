@@ -3,6 +3,52 @@
 class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 
 	/**
+	 * @covers ResourceLoaderFileModule::getAllSkinStyleFiles
+	 */
+	public function testGetAllSkinStyleFiles() {
+		$context = self::getResourceLoaderContext();
+
+		$baseParams = array(
+			'scripts' => array(
+				'foo.js',
+				'bar.js',
+			),
+			'styles' => array(
+				'foo.css',
+				'bar.css' => array( 'media' => 'print' ),
+				'screen.less' => array( 'media' => 'screen' ),
+				'screen-query.css' => array( 'media' => 'screen and (min-width: 400px)' ),
+			),
+			'skinStyles' => array(
+				'default' => 'quux-fallback.less',
+				'vector' => array(
+					'baz-vector.css',
+					'quux-vector.less',
+				),
+			),
+			'messages' => array(
+				'hello',
+				'world',
+			),
+		);
+
+		$module = new ResourceLoaderFileModule( $baseParams );
+
+		$this->assertEquals(
+			array(
+				'foo.css',
+				'baz-vector.css',
+				'quux-vector.less',
+				'quux-fallback.less',
+				'bar.css',
+				'screen.less',
+				'screen-query.css',
+			),
+			array_map( 'basename', $module->getAllStyleFiles() )
+		);
+	}
+
+	/**
 	 * @covers ResourceLoaderModule::getDefinitionSummary
 	 * @covers ResourceLoaderFileModule::getDefinitionSummary
 	 */
