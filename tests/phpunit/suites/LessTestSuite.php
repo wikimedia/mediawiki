@@ -15,7 +15,7 @@ class LessTestSuite extends PHPUnit_Framework_TestSuite {
 				continue;
 			}
 
-			foreach ( $module->getAllStyleFiles() as $styleFile ) {
+			foreach ( $module->getAllStyleFiles( true ) as $styleFile ) {
 				// TODO (phuedx, 2014-03-19) The
 				// ResourceLoaderFileModule class shouldn't
 				// know how to get a file's extension.
