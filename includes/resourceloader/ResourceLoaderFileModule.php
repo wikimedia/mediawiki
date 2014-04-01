@@ -638,20 +638,59 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Returns all style files used by this module
+	 * Gets a list of file paths for all styles in the module used by the
+	 * skin.
+	 *
+	 * @param string $skinName The name of the skin
+	 * @return array
+	 */
+	protected function getSkinStyleFiles( $skinName ) {
+		return self::collateFilePathListByOption(
+			self::tryForKey( $this->skinStyles, $skinName, 'default' ),
+			'media',
+			'all'
+		);
+	}
+
+	/**
+	 * Gets a list of file paths for all style files in the module used by
+	 * all skins.
+	 *
+	 * @return array
+	 */
+	protected function getAllSkinStyleFiles() {
+		$styleFiles = array();
+
+		foreach ( Skin::getSkinNames() as $skinName ) {
+			$styleFiles = array_merge_recursive(
+				$styleFiles,
+				$this->getSkinStyleFiles( $skinName )
+			);
+		}
+
+		return $styleFiles;
+	}
+
+	/**
+	 * Returns all style files, including skin style files, used by this module.
+	 *
 	 * @return array
 	 */
 	public function getAllStyleFiles() {
-		$files = array();
-		foreach ( (array)$this->styles as $key => $value ) {
-			if ( is_array( $value ) ) {
-				$path = $key;
-			} else {
-				$path = $value;
+		$collatedStyleFiles = array_merge_recursive(
+			self::collateFilePathListByOption( $this->styles, 'media', 'all' ),
+			$this->getAllSkinStyleFiles()
+		);
+
+		$result = array();
+
+		foreach ( $collatedStyleFiles as $media => $styleFiles ) {
+			foreach ( $styleFiles as $styleFile ) {
+				$result[] = $this->getLocalPath( $styleFile );
 			}
-			$files[] = $this->getLocalPath( $path );
 		}
-		return $files;
+
+		return $result;
 	}
 
 	/**
