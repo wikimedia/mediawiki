@@ -1734,9 +1734,10 @@ class FileRepo {
 	 * @return string
 	 */
 	public function getDisplayName() {
-		// We don't name our own repo, return nothing
+		global $wgSitename;
+
 		if ( $this->isLocal() ) {
-			return null;
+			return $wgSitename;
 		}
 
 		// 'shared-repo-name-wikimediacommons' is used when $wgUseInstantCommons = true
