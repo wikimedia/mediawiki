@@ -91,6 +91,9 @@ STR;
 		if ( !array_key_exists( 'action', $req ) ) {
 			$req['action'] = 'query';
 		}
+		if ( !array_key_exists( 'pages', $exp ) ) {
+			$exp['pages'] = array();;
+		}
 		foreach ( $req as &$val ) {
 			if ( is_array( $val ) ) {
 				$val = implode( '|', array_unique( $val ) );

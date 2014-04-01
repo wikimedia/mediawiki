@@ -541,18 +541,18 @@ class ApiQuery extends ApiBase {
 			$pages[$pageid] = $vals;
 		}
 
-		if ( count( $pages ) ) {
-			if ( $this->mParams['indexpageids'] ) {
-				$pageIDs = array_keys( $pages );
-				// json treats all map keys as strings - converting to match
-				$pageIDs = array_map( 'strval', $pageIDs );
-				$result->setIndexedTagName( $pageIDs, 'id' );
-				$result->addValue( 'query', 'pageids', $pageIDs );
-			}
-
-			$result->setIndexedTagName( $pages, 'page' );
-			$result->addValue( 'query', 'pages', $pages );
+		if ( $this->mParams['indexpageids'] ) {
+			$pageIDs = array_keys( $pages );
+			// json treats all map keys as strings - converting to match
+			$pageIDs = array_map( 'strval', $pageIDs );
+			$result->setIndexedTagName( $pageIDs, 'id' );
+			$result->addValue( 'query', 'pageids', $pageIDs );
 		}
+
+		// Respond with query/pages even if there are no titles (bug 31901)
+		$result->setIndexedTagName( $pages, 'page' );
+		$result->addValue( 'query', 'pages', $pages );
+
 		if ( $this->mParams['export'] ) {
 			$this->doExport( $pageSet, $result );
 		}
