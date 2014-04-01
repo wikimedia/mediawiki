@@ -137,6 +137,8 @@ changes to languages because of Bugzilla reports.
   All special pages should subclass SpecialPage and implement the execute() method.
 * (bug 63755) The deprecated constants RC_MOVE and RC_MOVE_OVER_REDIRECT were
   removed.
+* ResourceLoaderFileModule#getAllStyleFiles now returns all style files and all
+  skin style files used by the module.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
