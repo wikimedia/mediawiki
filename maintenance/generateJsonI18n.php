@@ -36,15 +36,46 @@ class GenerateJsonI18n extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Build JSON messages files from a PHP messages file";
-		$this->addArg( 'phpfile', 'PHP file defining a $messages array', true );
-		$this->addArg( 'jsondir', 'Directory to write JSON files to', true );
+		$this->addArg( 'phpfile', 'PHP file defining a $messages array', false );
+		$this->addArg( 'jsondir', 'Directory to write JSON files to', false );
 		$this->addOption( 'langcode', 'Language code; only needed for converting core i18n files',
+			false, true );
+		$this->addOption( 'extension', 'Perform default conversion on an extension',
 			false, true );
 	}
 
 	public function execute() {
+		global $IP;
+
 		$phpfile = $this->getArg( 0 );
 		$jsondir = $this->getArg( 1 );
+		$extension = $this->getOption( 'extension' );
+		$hasAdditionalI18nFiles = $this->getOption( 'supplements' );
+
+		if ( $extension and !$phpfile ) {
+			$phpfile = "$IP/extensions/$extension/$extension.i18n.php";
+		}
+
+		if ( !$phpfile ) {
+			$this->error( "I'm here for an argument!" );
+			$this->maybeHelp( true );
+			// dies.
+		}
+
+		$this->transformI18nFile( $phpfile, $jsondir );
+	}
+
+	public function transformI18nFile( $phpfile, $jsondir = null ) {
+		$phpfile = realpath( $phpfile );
+		if ( !$jsondir ) {
+			// Assume the json directory should be in the same directory as the
+			// .i18n.php file.
+			$jsondir = dirname( $phpfile ) . "/i18n";
+		}
+		if ( !is_dir( $jsondir ) ) {
+			$this->output( "Creating directory $jsondir.\n" );
+			mkdir( $jsondir );
+		}
 
 		if ( !is_readable( $phpfile ) ) {
 			$this->error( "Error reading $phpfile\n", 1 );
