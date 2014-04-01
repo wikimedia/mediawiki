@@ -107,10 +107,10 @@ class ProfilerSimple extends Profiler {
 			if ( $functionname == 'close' ) {
 				if ( $ofname != '-total' ) {
 					$message = "Profile section ended by close(): {$ofname}";
-					$functionname = $ofname;
 					$this->debugGroup( 'profileerror', $message );
 					$this->mCollated[$message] = $this->errorEntry;
 				}
+				$functionname = $ofname;
 			} elseif ( $ofname != $functionname ) {
 				$message = "Profiling error: in({$ofname}), out($functionname)";
 				$this->debugGroup( 'profileerror', $message );
