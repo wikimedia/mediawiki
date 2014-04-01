@@ -146,6 +146,12 @@ class ParserCache {
 				$cacheTime = $optionsKey->getCacheTime();
 				wfDebug( "Parser options key expired, touched " . $article->getTouched() . ", epoch $wgCacheEpoch, cached $cacheTime\n" );
 				return false;
+			} elseif ( $optionsKey->isDifferentRevision( $article->getLatest() ) ) {
+				wfIncrStats( "pcache_miss_revid" );
+				$revId = $article->getLatest();
+				$cachedRevId = $optionsKey->getCacheRevisionId();
+				wfDebug( "ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n" );
+				return false;
 			}
 
 			// $optionsKey->mUsedOptions is set by save() by calling ParserOutput::getUsedOptions()
@@ -211,6 +217,12 @@ class ParserCache {
 			$cacheTime = $value->getCacheTime();
 			wfDebug( "ParserOutput key expired, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
 			$value = false;
+		} elseif ( $value->isDifferentRevision( $article->getLatest() ) ) {
+			wfIncrStats( "pcache_miss_revid" );
+			$revId = $article->getLatest();
+			$cachedRevId = $value->getCacheRevisionId();
+			wfDebug( "ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n" );
+			$value = false;
 		} else {
 			wfIncrStats( "pcache_hit" );
 		}
@@ -224,11 +236,16 @@ class ParserCache {
 	 * @param WikiPage $page
 	 * @param ParserOptions $popts
 	 * @param string $cacheTime Time when the cache was generated
+	 * @param int $revId Revision ID that was parsed
 	 */
-	public function save( $parserOutput, $page, $popts, $cacheTime = null ) {
+	public function save( $parserOutput, $page, $popts, $cacheTime = null, $revId = null ) {
 		$expire = $parserOutput->getCacheExpiry();
 		if ( $expire > 0 ) {
 			$cacheTime = $cacheTime ?: wfTimestampNow();
+			if ( !$revId ) {
+				$revision = $page->getRevision();
+				$revId = $revision ? $revision->getId() : null;
+			}
 
 			$optionsKey = new CacheTime;
 			$optionsKey->mUsedOptions = $parserOutput->getUsedOptions();
@@ -236,6 +253,8 @@ class ParserCache {
 
 			$optionsKey->setCacheTime( $cacheTime );
 			$parserOutput->setCacheTime( $cacheTime );
+			$optionsKey->setCacheRevisionId( $revId );
+			$parserOutput->setCacheRevisionId( $revId );
 
 			$optionsKey->setContainsOldMagic( $parserOutput->containsOldMagic() );
 
@@ -245,8 +264,13 @@ class ParserCache {
 			// Save the timestamp so that we don't have to load the revision row on view
 			$parserOutput->setTimestamp( $page->getTimestamp() );
 
-			$parserOutput->mText .= "\n<!-- Saved in parser cache with key $parserOutputKey and timestamp $cacheTime\n -->\n";
-			wfDebug( "Saved in parser cache with key $parserOutputKey and timestamp $cacheTime\n" );
+			$msg = "Saved in parser cache with key $parserOutputKey" .
+				" and timestamp $cacheTime" .
+				" and revision id $revId" .
+				"\n";
+
+			$parserOutput->mText .= "\n<!-- $msg -->\n";
+			wfDebug( $msg );
 
 			// Save the parser output
 			$this->mMemc->set( $parserOutputKey, $parserOutput, $expire );
