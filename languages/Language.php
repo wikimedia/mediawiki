@@ -609,6 +609,7 @@ class Language {
 
 	/**
 	 * Returns gender-dependent namespace alias if available.
+	 * See https://www.mediawiki.org/wiki/Manual:$wgExtraGenderNamespaces
 	 * @param $index Int: namespace index
 	 * @param $gender String: gender key (male, female... )
 	 * @return String
@@ -622,8 +623,8 @@ class Language {
 	}
 
 	/**
-	 * Whether this language makes distinguishes genders for example in
-	 * namespaces.
+	 * Whether this wiki uses gender-dependent namespace aliases.
+	 * See https://www.mediawiki.org/wiki/Manual:$wgExtraGenderNamespaces
 	 * @return bool
 	 * @since 1.18
 	 */
@@ -3583,7 +3584,7 @@ class Language {
 	}
 	/**
 	 * Provides an alternative text depending on specified gender.
-	 * Usage {{gender:username|masculine|feminine|neutral}}.
+	 * Usage {{gender:username|masculine|feminine|unknown}}.
 	 * username is optional, in which case the gender of current user is used,
 	 * but only in (some) interface messages; otherwise default gender is used.
 	 *
@@ -3591,9 +3592,9 @@ class Language {
 	 * given, it will be returned unconditionally. These details are implied by
 	 * the caller and cannot be overridden in subclasses.
 	 *
-	 * If more than one form is given, the default is to use the neutral one
-	 * if it is specified, and to use the masculine one otherwise. These
-	 * details can be overridden in subclasses.
+	 * If three forms are given, the default is to use the third (unknown) form.
+	 * If fewer than three forms are given, the default is to use the first (masculine) form.
+	 * These details can be overridden in subclasses.
 	 *
 	 * @param $gender string
 	 * @param $forms array
