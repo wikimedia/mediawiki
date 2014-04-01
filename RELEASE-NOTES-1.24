@@ -154,6 +154,8 @@ changes to languages because of Bugzilla reports.
 * The skin autodiscovery mechanism has been deprecated and will be removed in
   MediaWiki 1.25. See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery
   for migration guide for creators and users of custom skins that relied on it.
+* ResourceLoaderFileModule#getAllStyleFiles now returns all style files and all
+  skin style files used by the module.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
