@@ -1,8 +1,6 @@
 /**
- * jQuery fullscreen plugin v2.0.0
- * https://github.com/theopolisme/jquery-fullscreen/tree/v2.0.0
- *
- * Documentation at <https://github.com/theopolisme/jquery-fullscreen/blob/v2.0.0/README.md>
+ * jQuery fullscreen plugin v2.0.0-git (9f8f97d127)
+ * https://github.com/theopolisme/jquery-fullscreen
  *
  * Copyright (c) 2013 Theopolisme <theopolismewiki@gmail.com>
  *
@@ -97,8 +95,8 @@
 				document.mozCancelFullScreen();
 			} else if ( document.webkitCancelFullScreen ) {
 				document.webkitCancelFullScreen();
-			} else if ( document.msCancelFullScreen ) {
-				document.msCancelFullScreen();
+			} else if ( document.msExitFullscreen ) {
+				document.msExitFullscreen();
 			} else {
 				// Unable to cancel fullscreen mode
 				return this;
@@ -122,10 +120,10 @@
 			// When the fullscreen mode is changed, trigger the
 			// fullscreen events (and when exiting,
 			// also remove the fullscreen class)
-			$( document ).on( 'fullscreenchange webkitfullscreenchange mozfullscreenchange msfullscreenchange', handleFullscreenChange);
+			$( document ).on( 'fullscreenchange webkitfullscreenchange mozfullscreenchange MSFullscreenChange', handleFullscreenChange);
 			// Convenience wrapper so that one only needs to listen for
 			// 'fullscreenerror', not all of the prefixed versions
-			$( document ).on( 'webkitfullscreenerror mozfullscreenerror msfullscreenerror', function () {
+			$( document ).on( 'webkitfullscreenerror mozfullscreenerror MSFullscreenError', function () {
 				$( document ).trigger( $.Event( 'fullscreenerror' ) );
 			} );
 			// Fullscreen has been set up, so always return true
@@ -133,7 +131,7 @@
 			return true;
 		} else {
 			// Always return false from now on, since fullscreen is not supported
-			setupFullscreen = function() { return false; };
+			setupFullscreen = function () { return false; };
 			return false;
 		}
 	};
@@ -169,7 +167,7 @@
 			return this;
 		}
 	};
-	
+
 	$.support.fullscreen = document.fullscreenEnabled ||
 		document.webkitFullscreenEnabled ||
 		document.mozFullScreenEnabled ||
