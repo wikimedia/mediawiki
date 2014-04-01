@@ -215,7 +215,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$newtext = WikiPage::factory( Title::newFromText( $name ) )
 			->getContent( Revision::RAW )
 			->getNativeData();
-		$this->assertEquals( $newtext, "==section 1==\nnew content 1\n\n==section 2==\ncontent2" );
+		$this->assertEquals( "==section 1==\nnew content 1\n\n==section 2==\ncontent2", $newtext );
 
 		// Test that we raise a 'nosuchsection' error
 		try {
@@ -227,7 +227,7 @@ class ApiEditPageTest extends ApiTestCase {
 			) );
 			$this->fail( "Should have raised a UsageException" );
 		} catch ( UsageException $e ) {
-			$this->assertEquals( $e->getCodeString(), 'nosuchsection' );
+			$this->assertEquals( 'nosuchsection', $e->getCodeString() );
 		}
 	}
 
@@ -255,7 +255,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$text = WikiPage::factory( Title::newFromText( $name ) )
 			->getContent( Revision::RAW )
 			->getNativeData();
-		$this->assertEquals( $text, "== header ==\n\ntest" );
+		$this->assertEquals( "== header ==\n\ntest", $text );
 
 		// Now on one that does
 		$this->assertTrue( Title::newFromText( $name )->exists() );
@@ -271,7 +271,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$text = WikiPage::factory( Title::newFromText( $name ) )
 			->getContent( Revision::RAW )
 			->getNativeData();
-		$this->assertEquals( $text, "== header ==\n\ntest\n\n== header ==\n\ntest" );
+		$this->assertEquals( "== header ==\n\ntest\n\n== header ==\n\ntest", $text );
 	}
 
 	public function testEditConflict() {
