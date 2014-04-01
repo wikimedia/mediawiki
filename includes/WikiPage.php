@@ -2070,6 +2070,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$edit = (object)array();
 		$edit->revid = $revid;
+		$edit->timestamp = wfTimestampNow();
 
 		$edit->pstContent = $content ? $content->preSaveTransform( $this->mTitle, $user, $popts ) : null;
 
@@ -2127,7 +2128,9 @@ class WikiPage implements Page, IDBAccessObject {
 		// Save it to the parser cache
 		if ( $wgEnableParserCache ) {
 			$parserCache = ParserCache::singleton();
-			$parserCache->save( $editInfo->output, $this, $editInfo->popts );
+			$parserCache->save(
+				$editInfo->output, $this, $editInfo->popts, $editInfo->timestamp, $editInfo->revid
+			);
 		}
 
 		// Update the links tables and other secondary data
@@ -3605,9 +3608,9 @@ class PoolWorkArticleView extends PoolCounterWork {
 				$this->page->getTitle()->getPrefixedDBkey() ) );
 		}
 
-		if ( $this->cacheable && $this->parserOutput->isCacheable() ) {
+		if ( $this->cacheable && $this->parserOutput->isCacheable() && $isCurrent ) {
 			ParserCache::singleton()->save(
-				$this->parserOutput, $this->page, $this->parserOptions, $cacheTime );
+				$this->parserOutput, $this->page, $this->parserOptions, $cacheTime, $this->revid );
 		}
 
 		// Make sure file cache is not used on uncacheable content.

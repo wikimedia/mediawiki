@@ -163,7 +163,9 @@ class RefreshLinksJob extends Job {
 				&& $parserOutput->isCacheable()
 			) {
 				$ctime = wfTimestamp( TS_MW, (int)$start ); // cache time
-				ParserCache::singleton()->save( $parserOutput, $page, $parserOptions, $ctime );
+				ParserCache::singleton()->save(
+					$parserOutput, $page, $parserOptions, $ctime, $revision->getId()
+				);
 			}
 		}
 
