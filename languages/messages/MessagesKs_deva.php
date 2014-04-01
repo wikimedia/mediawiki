@@ -43,16 +43,3 @@ $digitTransformTable = array(
 	'9' => '९', # &#x096f;
 );
 
-$messages = array(
-'help' => 'मदद',
-
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
-'mainpage' => 'आहम सफ़ा',
-
-'editsectionhint' => '$1 शाबह तर तैयब दीउ',
-'red-link-title' => '$1 (सफ़ा ना आसुन)',
-
-# Recent changes
-'recentchanges' => 'नवि तबदीली',
-
-);

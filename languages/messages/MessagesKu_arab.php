@@ -34,24 +34,3 @@ $digitTransformTable = array(
 	',' => '٬', # &#x066c;
 );
 
-$messages = array(
-'underline-never' => 'Qet na',
-
-# Dates
-'january' => 'کانوونی دووەم',
-'january-gen' => 'کانوونی دووەم',
-
-# Categories related messages
-'hidden-category-category' => 'هاوپۆلە شاردراوەکان',
-
-'talkpagelinktext' => 'لێدوان',
-
-# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage).
-'aboutsite' => 'دەربارەی {{SITENAME}}',
-'mainpage' => 'دەستپێک',
-'mainpage-description' => 'دەستپێک',
-
-'youhavenewmessagesmulti' => 'شما یه گل پیغوم تازه د $1 داریتو',
-'red-link-title' => '$1 (پەڕە بوونی نییە)',
-
-);

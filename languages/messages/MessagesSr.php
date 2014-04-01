@@ -17,24 +17,3 @@
 $fallback = 'sr-ec';
 $linkTrail = '/^([abvgdđežzijklljmnnjoprstćufhcčdžšабвгдђежзијклљмнњопрстћуфхцчџш]+)(.*)$/usD';
 
-$messages = array(
-# Vector skin
-'vector-view-viewsource' => '#REDIRECT[[MediaWiki:Vector-view-viewsource/sr-ec]]',
-
-# Edit pages
-'postedit-confirmation' => '',
-
-# Special:Log/newusers
-'newuserlogpage' => 'историја креирања корисника',
-'newuserlogpagetext' => 'Ово је историја скорашњих креирања корисника.',
-
-# Special:LinkSearch
-'linksearch' => '#REDIRECT[[MediaWiki:Linksearch/sr-ec]]',
-'linksearch-text' => '#REDIRECT[[MediaWiki:Linksearch-text/sr-ec]]',
-'linksearch-line' => '$1 повезана са $2',
-'linksearch-error' => 'Џокери могу да се појављују само на почетку домена.',
-
-# Contributions
-'uctop' => '‎',
-
-);
