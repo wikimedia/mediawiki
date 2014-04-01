@@ -66,7 +66,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 
 		$namespaces = $wgContLang->getNamespaces();
 		$out->setPageTitle(
-			( $namespace > 0 && in_array( $namespace, array_keys( $namespaces ) ) )
+			( $namespace > 0 && array_key_exists( $namespace, $namespaces ) )
 				? $this->msg( 'prefixindex-namespace', str_replace( '_', ' ', $namespaces[$namespace] ) )
 				: $this->msg( 'prefixindex' )
 		);
@@ -166,7 +166,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 
 		if ( !$prefixList || !$fromList ) {
 			$out = $this->msg( 'allpagesbadtitle' )->parseAsBlock();
-		} elseif ( !in_array( $namespace, array_keys( $namespaces ) ) ) {
+		} elseif ( !array_key_exists( $namespace, $namespaces ) ) {
 			// Show errormessage and reset to NS_MAIN
 			$out = $this->msg( 'allpages-bad-ns', $namespace )->parse();
 			$namespace = NS_MAIN;

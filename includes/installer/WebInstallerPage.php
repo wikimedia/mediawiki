@@ -1144,8 +1144,7 @@ class WebInstaller_Options extends WebInstallerPage {
 			'wgEmailAuthentication', 'wgMainCacheType', '_MemCachedServers',
 			'wgUseInstantCommons' ) );
 
-		if ( !in_array( $this->getVar( '_RightsProfile' ),
-			array_keys( $this->parent->rightsProfiles ) )
+		if ( !array_key_exists( $this->getVar( '_RightsProfile' ), $this->parent->rightsProfiles )
 		) {
 			reset( $this->parent->rightsProfiles );
 			$this->setVar( '_RightsProfile', key( $this->parent->rightsProfiles ) );
@@ -1158,7 +1157,7 @@ class WebInstaller_Options extends WebInstallerPage {
 
 				return false;
 			}
-		} elseif ( in_array( $code, array_keys( $this->parent->licenses ) ) ) {
+		} elseif ( array_key_exists( $code, $this->parent->licenses ) ) {
 			// Messages:
 			// config-license-cc-by, config-license-cc-by-sa, config-license-cc-by-nc-sa,
 			// config-license-cc-0, config-license-pd, config-license-gfdl, config-license-none,
