@@ -50,7 +50,7 @@ abstract class LanguageClassesTestCase extends MediaWikiTestCase {
 		$found = preg_match( '/Language(.+)Test/', get_called_class(), $m );
 		if ( $found ) {
 			# Normalize language code since classes uses underscores
-			$m[1] = str_replace( '_', '-', $m[1] );
+			$m[1] = strtolower( str_replace( '_', '-', $m[1] ) );
 		} else {
 			# Fallback to english language
 			$m[1] = 'en';

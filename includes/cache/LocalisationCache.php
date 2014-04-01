@@ -448,7 +448,7 @@ class LocalisationCache {
 
 		# Recache the data if necessary
 		if ( !$this->manualRecache && $this->isExpired( $code ) ) {
-			if ( file_exists( Language::getMessagesFileName( $code ) ) ) {
+			if ( Language::isSupportedLanguage( $code ) ) {
 				$this->recache( $code );
 			} elseif ( $code === 'en' ) {
 				throw new MWException( 'MessagesEn.php is missing.' );
@@ -680,15 +680,14 @@ class LocalisationCache {
 		global $IP;
 		wfProfileIn( __METHOD__ );
 
+		$data = array();
+
+		// This reads in the PHP i18n file with non-messages l10n data
 		$fileName = Language::getMessagesFileName( $code );
-		if ( !file_exists( $fileName ) ) {
-			wfProfileOut( __METHOD__ );
-
-			return false;
+		if ( file_exists( $fileName ) ) {
+			$deps[] = new FileDependency( $fileName );
+			$data = $this->readPHPFile( $fileName, 'core' );
 		}
-
-		$deps[] = new FileDependency( $fileName );
-		$data = $this->readPHPFile( $fileName, 'core' );
 
 		# Load CLDR plural rules for JavaScript
 		$data['pluralRules'] = $this->getPluralRules( $code );
