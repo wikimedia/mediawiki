@@ -7,7 +7,6 @@
  * @ingroup Language
  * @file
  *
- * @author Alessandro
  */
 
 $fallback = 'crh-latn';
