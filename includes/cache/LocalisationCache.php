@@ -448,7 +448,7 @@ class LocalisationCache {
 
 		# Recache the data if necessary
 		if ( !$this->manualRecache && $this->isExpired( $code ) ) {
-			if ( file_exists( Language::getMessagesFileName( $code ) ) ) {
+			if ( Language::isSupportedLanguage( $code ) ) {
 				$this->recache( $code );
 			} elseif ( $code === 'en' ) {
 				throw new MWException( 'MessagesEn.php is missing.' );
@@ -680,15 +680,15 @@ class LocalisationCache {
 		global $IP;
 		wfProfileIn( __METHOD__ );
 
+
+		// This reads in the PHP i18n file with non-messages l10n data
 		$fileName = Language::getMessagesFileName( $code );
 		if ( !file_exists( $fileName ) ) {
-			wfProfileOut( __METHOD__ );
-
-			return false;
+			$data = array();
+		} else {
+			$deps[] = new FileDependency( $fileName );
+			$data = $this->readPHPFile( $fileName, 'core' );
 		}
-
-		$deps[] = new FileDependency( $fileName );
-		$data = $this->readPHPFile( $fileName, 'core' );
 
 		# Load CLDR plural rules for JavaScript
 		$data['pluralRules'] = $this->getPluralRules( $code );
@@ -856,10 +856,7 @@ class LocalisationCache {
 
 		$codeSequence = array_merge( array( $code ), $coreData['fallbackSequence'] );
 
-		# Load the extension localisations
-		# This is done after the core because we know the fallback sequence now.
-		# But it has a higher precedence for merging so that we can support things
-		# like site-specific message overrides.
+		# Load core messages and the extension localisations.
 		wfProfileIn( __METHOD__ . '-extensions' );
 		$allData = $initialData;
 		foreach ( $wgMessagesDirs as $dirs ) {
