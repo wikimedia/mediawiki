@@ -167,36 +167,36 @@ class SpecialSearch extends SpecialPage {
 	public function goResult( $term ) {
 		$this->setupPage( $term );
 		# Try to go to page as entered.
-		$t = Title::newFromText( $term );
+		$title = Title::newFromText( $term );
 		# If the string cannot be used to create a title
-		if ( is_null( $t ) ) {
+		if ( is_null( $title ) ) {
 			$this->showResults( $term );
 
 			return;
 		}
 		# If there's an exact or very near match, jump right there.
-		$t = SearchEngine::getNearMatch( $term );
+		$title = SearchEngine::getNearMatch( $term );
 
-		if ( !wfRunHooks( 'SpecialSearchGo', array( &$t, &$term ) ) ) {
+		if ( !wfRunHooks( 'SpecialSearchGo', array( &$title, &$term ) ) ) {
 			# Hook requested termination
 			return;
 		}
 
-		if ( !is_null( $t ) ) {
-			$this->getOutput()->redirect( $t->getFullURL() );
+		if ( !is_null( $title ) ) {
+			$this->getOutput()->redirect( $title->getFullURL() );
 
 			return;
 		}
 		# No match, generate an edit URL
-		$t = Title::newFromText( $term );
-		if ( !is_null( $t ) ) {
+		$title = Title::newFromText( $term );
+		if ( !is_null( $title ) ) {
 			global $wgGoToEdit;
-			wfRunHooks( 'SpecialSearchNogomatch', array( &$t ) );
-			wfDebugLog( 'nogomatch', $t->getFullText(), 'private' );
+			wfRunHooks( 'SpecialSearchNogomatch', array( &$title ) );
+			wfDebugLog( 'nogomatch', $title->getFullText(), 'private' );
 
 			# If the feature is enabled, go straight to the edit page
 			if ( $wgGoToEdit ) {
-				$this->getOutput()->redirect( $t->getFullURL( array( 'action' => 'edit' ) ) );
+				$this->getOutput()->redirect( $title->getFullURL( array( 'action' => 'edit' ) ) );
 
 				return;
 			}
@@ -244,8 +244,8 @@ class SpecialSearch extends SpecialPage {
 			return;
 		}
 
-		$t = Title::newFromText( $term );
-		$showSuggestion = $t === null || !$t->isKnown();
+		$title = Title::newFromText( $term );
+		$showSuggestion = $title === null || !$title->isKnown();
 		$search->setShowSuggestion( $showSuggestion );
 
 		// fetch search results
@@ -367,7 +367,7 @@ class SpecialSearch extends SpecialPage {
 		// prev/next links
 		if ( $num || $this->offset ) {
 			// Show the create link ahead
-			$this->showCreateLink( $t, $num, $titleMatches, $textMatches );
+			$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
 			$prevnext = $this->getLanguage()->viewPrevNext( $this->getPageTitle(), $this->offset, $this->limit,
 				$this->powerSearchOptions() + array( 'search' => $term ),
 				max( $titleMatchesNum, $textMatchesNum ) < $this->limit
@@ -413,7 +413,7 @@ class SpecialSearch extends SpecialPage {
 			} else {
 				$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>",
 					array( 'search-nonefound', wfEscapeWikiText( $term ) ) );
-				$this->showCreateLink( $t, $num, $titleMatches, $textMatches );
+				$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
 			}
 		}
 		$out->addHtml( "</div>" );
@@ -425,16 +425,16 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
-	 * @param $t Title
+	 * @param $title Title
 	 * @param int $num The number of search results found
 	 * @param $titleMatches null|SearchResultSet results from title search
 	 * @param $textMatches null|SearchResultSet results from text search
 	 */
-	protected function showCreateLink( $t, $num, $titleMatches, $textMatches ) {
+	protected function showCreateLink( $title, $num, $titleMatches, $textMatches ) {
 		// show direct page/create link if applicable
 
 		// Check DBkey !== '' in case of fragment link only.
-		if ( is_null( $t ) || $t->getDBkey() === ''
+		if ( is_null( $title ) || $title->getDBkey() === ''
 			|| ( $titleMatches !== null && $titleMatches->searchContainedSyntax() )
 			|| ( $textMatches !== null && $textMatches->searchContainedSyntax() )
 		) {
@@ -445,15 +445,15 @@ class SpecialSearch extends SpecialPage {
 			return;
 		}
 
-		if ( $t->isKnown() ) {
+		if ( $title->isKnown() ) {
 			$messageName = 'searchmenu-exists';
-		} elseif ( $t->userCan( 'create', $this->getUser() ) ) {
+		} elseif ( $title->userCan( 'create', $this->getUser() ) ) {
 			$messageName = 'searchmenu-new';
 		} else {
 			$messageName = 'searchmenu-new-nocreate';
 		}
-		$params = array( $messageName, wfEscapeWikiText( $t->getPrefixedText() ), Message::numParam( $num ) );
-		wfRunHooks( 'SpecialSearchCreateLink', array( $t, &$params ) );
+		$params = array( $messageName, wfEscapeWikiText( $title->getPrefixedText() ), Message::numParam( $num ) );
+		wfRunHooks( 'SpecialSearchCreateLink', array( $title, &$params ) );
 
 		// Extensions using the hook might still return an empty $messageName
 		if ( $messageName ) {
@@ -560,7 +560,7 @@ class SpecialSearch extends SpecialPage {
 			return "<!-- Broken link in search result -->\n";
 		}
 
-		$t = $result->getTitle();
+		$title = $result->getTitle();
 
 		$titleSnippet = $result->getTitleSnippet( $terms );
 
@@ -581,7 +581,7 @@ class SpecialSearch extends SpecialPage {
 		//If page content is not readable, just return the title.
 		//This is not quite safe, but better than showing excerpts from non-readable pages
 		//Note that hiding the entry entirely would screw up paging.
-		if ( !$t->userCan( 'read', $this->getUser() ) ) {
+		if ( !$title->userCan( 'read', $this->getUser() ) ) {
 			return "<li>{$link}</li>\n";
 		}
 
@@ -589,7 +589,7 @@ class SpecialSearch extends SpecialPage {
 		// The least confusing at this point is to drop the result.
 		// You may get less results, but... oh well. :P
 		if ( $result->isMissingRevision() ) {
-			return "<!-- missing page " . htmlspecialchars( $t->getPrefixedText() ) . "-->\n";
+			return "<!-- missing page " . htmlspecialchars( $title->getPrefixedText() ) . "-->\n";
 		}
 
 		// format redirects / relevant sections
@@ -645,8 +645,8 @@ class SpecialSearch extends SpecialPage {
 		$size = $this->msg( 'search-result-size', $lang->formatSize( $byteSize ) )
 			->numParams( $wordCount )->escaped();
 
-		if ( $t->getNamespace() == NS_CATEGORY ) {
-			$cat = Category::newFromTitle( $t );
+		if ( $title->getNamespace() == NS_CATEGORY ) {
+			$cat = Category::newFromTitle( $title );
 			$size = $this->msg( 'search-result-category-size' )
 				->numParams( $cat->getPageCount(), $cat->getSubcatCount(), $cat->getFileCount() )
 				->escaped();
@@ -662,7 +662,7 @@ class SpecialSearch extends SpecialPage {
 				$this->powerSearchOptions(),
 				array(
 					'search' => $this->msg( 'searchrelated' )->inContentLanguage()->text() .
-						':' . $t->getPrefixedText(),
+						':' . $title->getPrefixedText(),
 					'fulltext' => $this->msg( 'search' )->text()
 				)
 			);
@@ -677,9 +677,9 @@ class SpecialSearch extends SpecialPage {
 
 		$fileMatch = '';
 		// Include a thumbnail for media files...
-		if ( $t->getNamespace() == NS_FILE ) {
+		if ( $title->getNamespace() == NS_FILE ) {
 			$img = $result->getFile();
-			$img = $img ?: wfFindFile( $t );
+			$img = $img ?: wfFindFile( $title );
 			if ( $result->isFileMatch() ) {
 				$fileMatch = "<span class='searchalttitle'>" .
 					$this->msg( 'search-file-match' )->escaped() . "</span>";
@@ -792,7 +792,7 @@ class SpecialSearch extends SpecialPage {
 			return "<!-- Broken link in search result -->\n";
 		}
 
-		$t = $result->getTitle();
+		$title = $result->getTitle();
 
 		$titleSnippet = $result->getTitleSnippet();
 
@@ -801,7 +801,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$link = Linker::linkKnown(
-			$t,
+			$title,
 			$titleSnippet
 		);
 
@@ -822,18 +822,18 @@ class SpecialSearch extends SpecialPage {
 
 		$out = "";
 		// display project name
-		if ( is_null( $lastInterwiki ) || $lastInterwiki != $t->getInterwiki() ) {
-			if ( array_key_exists( $t->getInterwiki(), $customCaptions ) ) {
+		if ( is_null( $lastInterwiki ) || $lastInterwiki != $title->getInterwiki() ) {
+			if ( array_key_exists( $title->getInterwiki(), $customCaptions ) ) {
 				// captions from 'search-interwiki-custom'
-				$caption = $customCaptions[$t->getInterwiki()];
+				$caption = $customCaptions[$title->getInterwiki()];
 			} else {
 				// default is to show the hostname of the other wiki which might suck
 				// if there are many wikis on one hostname
-				$parsed = wfParseUrl( $t->getFullURL() );
+				$parsed = wfParseUrl( $title->getFullURL() );
 				$caption = $this->msg( 'search-interwiki-default', $parsed['host'] )->text();
 			}
 			// "more results" link (special page stuff could be localized, but we might not know target lang)
-			$searchTitle = Title::newFromText( $t->getInterwiki() . ":Special:Search" );
+			$searchTitle = Title::newFromText( $title->getInterwiki() . ":Special:Search" );
 			$searchLink = Linker::linkKnown(
 				$searchTitle,
 				$this->msg( 'search-interwiki-more' )->text(),
