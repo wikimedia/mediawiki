@@ -61,7 +61,8 @@ class ApiOptions extends ApiBase {
 		if ( count( $params['change'] ) ) {
 			foreach ( $params['change'] as $entry ) {
 				$array = explode( '=', $entry, 2 );
-				$changes[$array[0]] = isset( $array[1] ) ? $array[1] : null;
+				$default = User::getDefaultOption( $array[0] );
+				$changes[$array[0]] = isset( $array[1] ) ? $array[1] : $default;
 			}
 		}
 		if ( isset( $params['optionname'] ) ) {
