@@ -40,45 +40,46 @@
 	width: @defaultFormWidth;
 
 	// Immediate divs in a vform are block and spaced-out.
+	// XXX: We shouldn't depend on the tag name here...
 	& > div {
 		display: block;
 		margin: 0 0 15px 0;
 		padding: 0;
 		width: 100%;
-
-		// MW currently doesn't use the type attribute everywhere on inputs.
-		input,
-		.mw-ui-button {
-			display: block;
-			.box-sizing(border-box);
-			margin: 0;
-			width: 100%;
-		}
-
-		// We exclude these because they'll generally use mw-ui-button.
-		// Otherwise, we'll unintentionally override that.
-		input:not([type=button]):not([type=submit]):not([type=file]), {
-			.agora-field-styling(); // mixins/forms.less
-		}
-
-		label {
-			display: block;
-			.box-sizing(border-box);
-			.agora-label-styling();
-			width: auto;
-			margin: 0 0 0.2em;
-			padding: 0;
-		}
-
-		// Override input styling just for checkboxes and radio inputs.
-		input[type="checkbox"],
-		input[type="radio"] {
-			display: inline;
-			.box-sizing(content-box);
-			width: auto;
-		}
-
 	}
+
+	// MW currently doesn't use the type attribute everywhere on inputs.
+	input,
+	.mw-ui-button {
+		display: block;
+		.box-sizing(border-box);
+		margin: 0;
+		width: 100%;
+	}
+
+	// We exclude these because they'll generally use mw-ui-button.
+	// Otherwise, we'll unintentionally override that.
+	input:not([type=button]):not([type=submit]):not([type=file]), {
+		.agora-field-styling(); // mixins/forms.less
+	}
+
+	label {
+		display: block;
+		.box-sizing(border-box);
+		.agora-label-styling();
+		width: auto;
+		margin: 0 0 0.2em;
+		padding: 0;
+	}
+
+	// Override input styling just for checkboxes and radio inputs.
+	input[type="checkbox"],
+	input[type="radio"] {
+		display: inline;
+		.box-sizing(content-box);
+		width: auto;
+	}
+
 
 	// Styles for information boxes
 	//
@@ -132,6 +133,7 @@
 // You generally don't need to use this class on divs within an Agora
 // form container such as mw-ui-vform
 // XXX DRY: This repeats earlier styling, use an @include agora-div-styling ?
+// XXX: What is this even for?
 .mw-ui-vform-div {
 	display: block;
 	margin: 0 0 15px;
