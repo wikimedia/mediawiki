@@ -228,7 +228,7 @@
     "pool-timeout": "Timeout waiting for the lock",
     "pool-queuefull": "Pool queue is full",
     "pool-errorunknown": "Unknown error",
-    "pool-servererror": "The pool counter service is not available ($1)",
+    "pool-servererror": "The pool counter service is not available ($1).",
     "aboutsite": "About {{SITENAME}}",
     "aboutpage": "Project:About",
     "copyright": "Content is available under $1 unless otherwise noted.",
