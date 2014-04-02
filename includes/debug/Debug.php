@@ -530,6 +530,12 @@ class MWDebug {
 		global $wgVersion, $wgRequestTime;
 		$request = $context->getRequest();
 
+		// HHVM's reported memory usage from memory_get_peak_usage()
+		// is not useful when passing false, but we continue passing
+		// false for consistency of historical data in zend.
+		// see: https://github.com/facebook/hhvm/issues/2257#issuecomment-39362246
+		$realMemoryUsage = wfIsHHVM();
+
 		return array(
 			'mwVersion' => $wgVersion,
 			'phpVersion' => PHP_VERSION,
@@ -546,8 +552,8 @@ class MWDebug {
 				'headers' => $request->getAllHeaders(),
 				'params' => $request->getValues(),
 			),
-			'memory' => $context->getLanguage()->formatSize( memory_get_usage() ),
-			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage() ),
+			'memory' => $context->getLanguage()->formatSize( memory_get_usage( $realMemoryUsage ) ),
+			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage( $realMemoryUsage ) ),
 			'includes' => self::getFilesIncluded( $context ),
 			'profile' => Profiler::instance()->getRawData(),
 		);
