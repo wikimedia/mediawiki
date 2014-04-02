@@ -568,7 +568,7 @@ class SpecialSearch extends SpecialPage {
 			$titleSnippet = null;
 		}
 
-		$link_t = clone $t;
+		$link_t = clone $title;
 
 		wfRunHooks( 'ShowSearchHitTitle',
 			array( &$link_t, &$titleSnippet, $result, $terms, $this ) );
