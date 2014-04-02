@@ -114,4 +114,15 @@ if ( PHPUnit_Runner_Version::id() !== '@package_version@'
 if ( !class_exists( 'PHPUnit_TextUI_Command' ) ) {
 	require_once 'PHPUnit/Autoload.php';
 }
+
+// Prevent segfault when we have lots of unit tests (bug 62623)
+if ( version_compare( PHP_VERSION, '5.4.0', '<' )
+	&& version_compare( PHP_VERSION, '5.3.0', '>=' )
+) {
+	register_shutdown_function( function() {
+		gc_collect_cycles();
+		gc_disable();
+	} );
+}
+
 MediaWikiPHPUnitCommand::main();
