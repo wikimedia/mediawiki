@@ -179,6 +179,16 @@ class MultiWriteBagOStuff extends BagOStuff {
 		return $this->doWrite( 'merge', $key, $callback, $exptime );
 	}
 
+	public function getLastError() {
+		return isset( $this->caches[0] ) ? $this->caches[0]->getLastError() : self::ERR_NONE;
+	}
+
+	public function clearLastError() {
+		if ( isset( $this->caches[0] ) ) {
+			$this->caches[0]->clearLastError();
+		}
+	}
+
 	/**
 	 * @param $method string
 	 * @return bool

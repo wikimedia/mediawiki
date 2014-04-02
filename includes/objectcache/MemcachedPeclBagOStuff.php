@@ -231,6 +231,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 					$msg = "Memcached error: $msg";
 				}
 				wfDebugLog( 'memcached-serious', $msg );
+				$this->setLastError( BagOStuff::ERR_UNEXPECTED );
 		}
 		return $result;
 	}
