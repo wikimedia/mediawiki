@@ -1143,9 +1143,9 @@ class SpecialSearch extends SpecialPage {
 	protected function startsWithImage( $term ) {
 		global $wgContLang;
 
-		$p = explode( ':', $term );
-		if ( count( $p ) > 1 ) {
-			return $wgContLang->getNsIndex( $p[0] ) == NS_FILE;
+		$parts = explode( ':', $term );
+		if ( count( $parts ) > 1 ) {
+			return $wgContLang->getNsIndex( $parts[0] ) == NS_FILE;
 		}
 
 		return false;
@@ -1161,9 +1161,9 @@ class SpecialSearch extends SpecialPage {
 
 		$allkeyword = $this->msg( 'searchall' )->inContentLanguage()->text();
 
-		$p = explode( ':', $term );
-		if ( count( $p ) > 1 ) {
-			return $p[0] == $allkeyword;
+		$parts = explode( ':', $term );
+		if ( count( $parts ) > 1 ) {
+			return $parts[0] == $allkeyword;
 		}
 
 		return false;
