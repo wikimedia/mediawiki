@@ -1,12 +1,12 @@
 /*!
- * OOjs v1.0.8
+ * OOjs v1.0.9
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Tue Mar 11 2014 19:27:31 GMT+0100 (CET)
+ * Date: Wed Apr 02 2014 14:29:36 GMT-0700 (PDT)
  */
 ( function ( global ) {
 
@@ -48,6 +48,17 @@ oo.isPlainObject = function ( obj ) {
 	}
 
 	return true;
+};
+
+/**
+ * Utility to initialize a class for OO inheritance.
+ *
+ * Currently this just initializes an empty static object.
+ *
+ * @param {Function} fn
+ */
+oo.initClass = function ( fn ) {
+	fn.static = fn.static || {};
 };
 
 /**
@@ -107,7 +118,7 @@ oo.inheritClass = function ( targetFn, originFn ) {
 	} );
 
 	// Extend static properties - always initialize both sides
-	originFn.static = originFn.static || {};
+	oo.initClass( originFn );
 	targetFn.static = Object.create( originFn.static );
 };
 
@@ -151,7 +162,7 @@ oo.mixinClass = function ( targetFn, originFn ) {
 	}
 
 	// Copy static properties - always initialize both sides
-	targetFn.static = targetFn.static || {};
+	oo.initClass( targetFn );
 	if ( originFn.static ) {
 		for ( key in originFn.static ) {
 			if ( hasOwn.call( originFn.static, key ) ) {
@@ -159,7 +170,7 @@ oo.mixinClass = function ( targetFn, originFn ) {
 			}
 		}
 	} else {
-		originFn.static = {};
+		oo.initClass( originFn );
 	}
 };
 
@@ -768,8 +779,9 @@ oo.inheritClass( oo.Factory, oo.Registry );
  * Classes must have a static `name` property to be registered.
  *
  *     function MyClass() {};
+ *     OO.initClass( MyClass );
  *     // Adds a static property to the class defining a symbolic name
- *     MyClass.static = { 'name': 'mine' };
+ *     MyClass.static.name = 'mine';
  *     // Registers class with factory, available via symbolic name 'mine'
  *     factory.register( MyClass );
  *
