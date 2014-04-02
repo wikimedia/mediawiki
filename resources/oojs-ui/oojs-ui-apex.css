@@ -264,6 +264,7 @@
 .oo-ui-buttonedElement-framed.oo-ui-widget-disabled .oo-ui-buttonedElement-button.oo-ui-buttonedElement-pressed {
   color: #333;
   background: #eee;
+  border-color: #ccc;
   opacity: 0.5;
   box-shadow: none;
 }
