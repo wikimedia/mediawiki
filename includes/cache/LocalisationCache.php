@@ -539,7 +539,7 @@ class LocalisationCache {
 	 * @throws MWException if there is a syntax error in the JSON file
 	 * @return array with a 'messages' key, or empty array if the file doesn't exist
 	 */
-	protected function readJSONFile( $fileName ) {
+	public function readJSONFile( $fileName ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( !is_readable( $fileName ) ) {

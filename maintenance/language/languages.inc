@@ -125,12 +125,16 @@ class Languages {
 		$this->mNamespaceAliases[$code] = array();
 		$this->mMagicWords[$code] = array();
 		$this->mSpecialPageAliases[$code] = array();
+
+		$jsonfilename = Language::getJsonMessagesFileName( $code );
+		if ( file_exists( $jsonfilename ) ) {
+			$json = Language::getLocalisationCache()->readJSONFile( $jsonfilename );
+			$this->mRawMessages[$code] = $json['messages'];
+		}
+
 		$filename = Language::getMessagesFileName( $code );
 		if ( file_exists( $filename ) ) {
 			require $filename;
-			if ( isset( $messages ) ) {
-				$this->mRawMessages[$code] = $messages;
-			}
 			if ( isset( $fallback ) ) {
 				$this->mFallback[$code] = $fallback;
 			}
