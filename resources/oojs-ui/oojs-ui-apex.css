@@ -484,7 +484,11 @@
   background-color: #e1f3ff;
 }
 
-.oo-ui-optionWidget-selected {
+.oo-ui-selectWidget-depressed .oo-ui-optionWidget-selected {
+  background-color: #a7dcff;
+}
+
+.oo-ui-selectWidget-pressed .oo-ui-optionWidget-pressed {
   background-color: #a7dcff;
 }
 
@@ -536,6 +540,7 @@
 }
 
 .oo-ui-buttonOptionWidget.oo-ui-optionWidget-selected,
+.oo-ui-buttonOptionWidget.oo-ui-optionWidget-pressed,
 .oo-ui-buttonOptionWidget.oo-ui-optionWidget-highlighted {
   background-color: transparent;
 }
@@ -634,7 +639,7 @@
   left: 4em;
 }
 
-.oo-ui-outlineItemWidget.oo-ui-optionWidget-selected {
+.oo-ui-selectWidget-depressed .oo-ui-outlineItemWidget.oo-ui-optionWidget-selected {
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
   background-color: #a7dcff;
 }
