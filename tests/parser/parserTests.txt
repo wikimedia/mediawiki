@@ -8743,20 +8743,24 @@ Template:MSGNW test
 * interpreted
  but rather passed unmodified
 {{test}}
+<gallery>
+File:Foobar.jpg
+</gallery>
 !! endarticle
 
 # hmm, fix this or just deprecate msgnw and document its behavior?
 !! test
 msgnw keyword
-!! options
-disabled
 !! wikitext
 {{msgnw:MSGNW test}}
 !! html
-<p>''None'' of '''this''' should be 
-* interpreted
- but rather passed unmodified
-{{test}}
+<p>&#39;&#39;None&#39;&#39; of &#39;&#39;&#39;this&#39;&#39;&#39; should be 
+&#42; interpreted
+&#32;but rather passed unmodified
+&#123;&#123;test&#125;&#125;
+&#60;gallery&#62;
+File:Foobar.jpg
+&#60;/gallery&#62;
 </p>
 !! end
 
