@@ -11,6 +11,8 @@ production.
 === Configuration changes in 1.24 ===
 
 === New features in 1.24 ===
+* (bug 63444) Made it possible to change the indent string (default: 4 spaces)
+  used by FormatJson::encode().
 
 === Bug fixes in 1.24 ===
 * (bug 62258) A bug was fixed in File::getUnscaledThumb when a height
