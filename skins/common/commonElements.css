@@ -185,12 +185,6 @@ table {
 	font-size: 100%;
 }
 
-/* Prevent citations and subscripts from interfering with the line-height */
-sup,
-sub {
-	line-height: 1;
-}
-
 /* Forms */
 fieldset {
 	border: 1px solid #2f6fab;
