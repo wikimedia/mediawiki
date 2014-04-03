@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (23fb1b6144)
+ * OOjs UI v0.1.0-pre (8986c46d35)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Thu Mar 27 2014 14:49:30 GMT-0700 (PDT)
+ * Date: Tue Apr 01 2014 19:33:39 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -237,13 +237,11 @@ OO.ui.Element.getJQuery = function ( context, frame ) {
  *
  * @static
  * @param {jQuery|HTMLElement|HTMLDocument|Window} obj Object to get the document for
- * @return {HTMLDocument} Document object
- * @throws {Error} If context is invalid
+ * @return {HTMLDocument|null} Document object
  */
 OO.ui.Element.getDocument = function ( obj ) {
-	var doc =
-		// jQuery - selections created "offscreen" won't have a context, so .context isn't reliable
-		( obj[0] && obj[0].ownerDocument ) ||
+	// jQuery - selections created "offscreen" won't have a context, so .context isn't reliable
+	return ( obj[0] && obj[0].ownerDocument ) ||
 		// Empty jQuery selections might have a context
 		obj.context ||
 		// HTMLElement
@@ -251,13 +249,8 @@ OO.ui.Element.getDocument = function ( obj ) {
 		// Window
 		obj.document ||
 		// HTMLDocument
-		( obj.nodeType === 9 && obj );
-
-	if ( doc ) {
-		return doc;
-	}
-
-	throw new Error( 'Invalid context' );
+		( obj.nodeType === 9 && obj ) ||
+		null;
 };
 
 /**
@@ -531,6 +524,14 @@ OO.ui.Element.scrollIntoView = function ( el, config ) {
  */
 OO.ui.Element.prototype.getTagName = function () {
 	return this.constructor.static.tagName;
+};
+
+/**
+ * Check if the element is attached to the DOM
+ * @return {boolean} The element is attached to the DOM
+ */
+OO.ui.Element.prototype.isElementAttached = function () {
+	return $.contains( this.getElementDocument(), this.$element[0] );
 };
 
 /**
@@ -1787,7 +1788,7 @@ OO.ui.Widget.prototype.updateDisabled = function () {
 /**
  * Set the disabled state of the widget.
  *
- * This should probably change the widgets's appearance and prevent it from being used.
+ * This should probably change the widgets' appearance and prevent it from being used.
  *
  * @param {boolean} disabled Disable widget
  * @chainable
@@ -3231,9 +3232,8 @@ OO.ui.ToolFactory.prototype.extract = function ( collection, used ) {
 							}
 						}
 					}
-				}
 				// Include tools with matching name and exclude already used tools
-				else if ( item.name && ( !used || !used[item.name] ) ) {
+				} else if ( item.name && ( !used || !used[item.name] ) ) {
 					names.push( item.name );
 					if ( used ) {
 						used[item.name] = true;
@@ -3268,7 +3268,9 @@ OO.ui.ToolFactory.prototype.extract = function ( collection, used ) {
  */
 OO.ui.ToolGroup = function OoUiToolGroup( toolbar, config ) {
 	// Configuration initialization
-	config = config || {};
+	config = $.extend( true, {
+		'aggregations': { 'disable': 'itemDisable' }
+	}, config );
 
 	// Parent constructor
 	OO.ui.ToolGroup.super.call( this, config );
@@ -3280,6 +3282,7 @@ OO.ui.ToolGroup = function OoUiToolGroup( toolbar, config ) {
 	this.toolbar = toolbar;
 	this.tools = {};
 	this.pressed = null;
+	this.autoDisabled = false;
 	this.include = config.include || [];
 	this.exclude = config.exclude || [];
 	this.promote = config.promote || [];
@@ -3294,6 +3297,7 @@ OO.ui.ToolGroup = function OoUiToolGroup( toolbar, config ) {
 		'mouseout': OO.ui.bind( this.onMouseOut, this )
 	} );
 	this.toolbar.getToolFactory().connect( this, { 'register': 'onToolFactoryRegister' } );
+	this.connect( this, { 'itemDisable': 'updateDisabled' } );
 
 	// Initialization
 	this.$group.addClass( 'oo-ui-toolGroup-tools' );
@@ -3335,7 +3339,42 @@ OO.ui.ToolGroup.static.titleTooltips = false;
  */
 OO.ui.ToolGroup.static.accelTooltips = false;
 
+/**
+ * Automatically disable the toolgroup when all tools are disabled
+ *
+ * @static
+ * @property {boolean}
+ * @inheritable
+ */
+OO.ui.ToolGroup.static.autoDisable = true;
+
 /* Methods */
+
+/**
+ * @inheritdoc
+ */
+OO.ui.ToolGroup.prototype.isDisabled = function () {
+	return this.autoDisabled || OO.ui.ToolGroup.super.prototype.isDisabled.apply( this, arguments );
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.ToolGroup.prototype.updateDisabled = function () {
+	var i, item, allDisabled = true;
+
+	if ( this.constructor.static.autoDisable ) {
+		for ( i = this.items.length - 1; i >= 0; i-- ) {
+			item = this.items[i];
+			if ( !item.isDisabled() ) {
+				allDisabled = false;
+				break;
+			}
+		}
+		this.autoDisabled = allDisabled;
+	}
+	OO.ui.ToolGroup.super.prototype.updateDisabled.apply( this, arguments );
+};
 
 /**
  * Handle mouse down events.
@@ -3506,6 +3545,8 @@ OO.ui.ToolGroup.prototype.populate = function () {
 	}
 	// Re-add tools (moving existing ones to new locations)
 	this.addItems( add );
+	// Disabled state may depend on items
+	this.updateDisabled();
 };
 
 /**
@@ -4667,6 +4708,18 @@ OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.ClippableElement );
 /* Static Properties */
 
 /* Methods */
+
+/**
+ * @inheritdoc
+ */
+OO.ui.PopupToolGroup.prototype.setDisabled = function () {
+	// Parent method
+	OO.ui.PopupToolGroup.super.prototype.setDisabled.apply( this, arguments );
+
+	if ( this.isDisabled() && this.isElementAttached() ) {
+		this.setActive( false );
+	}
+};
 
 /**
  * Handle focus being lost.
@@ -6167,12 +6220,19 @@ OO.ui.SelectWidget.prototype.getItemFromData = function ( data ) {
  * @chainable
  */
 OO.ui.SelectWidget.prototype.highlightItem = function ( item ) {
-	var i, len;
+	var i, len, highlighted,
+		changed = false;
 
 	for ( i = 0, len = this.items.length; i < len; i++ ) {
-		this.items[i].setHighlighted( this.items[i] === item );
+		highlighted = this.items[i] === item;
+		if ( this.items[i].isHighlighted() !== highlighted ) {
+			this.items[i].setHighlighted( highlighted );
+			changed = true;
+		}
 	}
-	this.emit( 'highlight', item );
+	if ( changed ) {
+		this.emit( 'highlight', item );
+	}
 
 	return this;
 };
@@ -6186,12 +6246,19 @@ OO.ui.SelectWidget.prototype.highlightItem = function ( item ) {
  * @chainable
  */
 OO.ui.SelectWidget.prototype.selectItem = function ( item ) {
-	var i, len;
+	var i, len, selected,
+		changed = false;
 
 	for ( i = 0, len = this.items.length; i < len; i++ ) {
-		this.items[i].setSelected( this.items[i] === item );
+		selected = this.items[i] === item;
+		if ( this.items[i].isSelected() !== selected ) {
+			this.items[i].setSelected( selected );
+			changed = true;
+		}
 	}
-	this.emit( 'select', item );
+	if ( changed ) {
+		this.emit( 'select', item );
+	}
 
 	return this;
 };
@@ -6205,7 +6272,7 @@ OO.ui.SelectWidget.prototype.selectItem = function ( item ) {
  * @param {OO.ui.OptionWidget} [item] Item to select
  * @chainable
  */
-OO.ui.SelectWidget.prototype.intializeSelection = function( item ) {
+OO.ui.SelectWidget.prototype.intializeSelection = function ( item ) {
 	var i, len, selected;
 
 	for ( i = 0, len = this.items.length; i < len; i++ ) {
@@ -7659,7 +7726,7 @@ OO.ui.TextInputWidget.prototype.onEdit = function () {
  *
  * @chainable
  */
-OO.ui.TextInputWidget.prototype.adjustSize = function() {
+OO.ui.TextInputWidget.prototype.adjustSize = function () {
 	var $clone, scrollHeight, innerHeight, outerHeight, maxInnerHeight, idealHeight;
 
 	if ( this.multiline && this.autosize ) {

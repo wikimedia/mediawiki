@@ -12,7 +12,8 @@
         ]
     },
     "ooui-dialog-action-close": "Κλείσιμο",
-    "ooui-outline-control-move-down": "Μετακίνηση προς τα κάτω",
-    "ooui-outline-control-move-up": "Μετακίνηση προς τα πάνω",
+    "ooui-outline-control-move-down": "Μετακίνηση στοιχείου προς τα κάτω",
+    "ooui-outline-control-move-up": "Μετακίνηση στοιχείου προς τα επάνω",
+    "ooui-outline-control-remove": "Αφαίρεση στοιχείου",
     "ooui-toolbar-more": "Περισσότερα"
 }
