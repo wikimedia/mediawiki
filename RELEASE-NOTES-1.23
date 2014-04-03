@@ -142,6 +142,8 @@ production.
   process the result set prior to rendering.
 * A PoolCounterRedis class was added which can be make use of in $wgPoolCounterConf.
   This requires at least one Redis 2.6+ server.
+* (bug 63444) Made it possible to change the indent string (default: 4 spaces)
+  used by FormatJson::encode().
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
