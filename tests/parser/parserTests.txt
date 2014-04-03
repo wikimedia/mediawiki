@@ -7995,6 +7995,9 @@ Template:MSGNW test
 * interpreted
  but rather passed unmodified
 {{test}}
+<gallery>
+File:Foobar.jpg
+</gallery>
 !! endarticle
 
 # hmm, fix this or just deprecate msgnw and document its behavior?
@@ -8009,6 +8012,9 @@ disabled
 * interpreted
  but rather passed unmodified
 {{test}}
+<gallery>
+File:Foobar.jpg
+</gallery>
 </p>
 !! end
 
