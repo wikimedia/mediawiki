@@ -13,52 +13,6 @@
 		 * (don't call before document ready)
 		 */
 		init: function () {
-			var profile;
-
-			/* Set tooltipAccessKeyPrefix */
-			profile = $.client.profile();
-
-			// Opera on any platform
-			if ( profile.name === 'opera' ) {
-				util.tooltipAccessKeyPrefix = 'shift-esc-';
-
-			// Chrome on any platform
-			} else if ( profile.name === 'chrome' ) {
-
-				util.tooltipAccessKeyPrefix = (
-					profile.platform === 'mac'
-						// Chrome on Mac
-						? 'ctrl-option-'
-						// Chrome on Windows or Linux
-						// (both alt- and alt-shift work, but alt with E, D, F etc does not
-						// work since they are browser shortcuts)
-						: 'alt-shift-'
-				);
-
-			// Non-Windows Safari with webkit_version > 526
-			} else if ( profile.platform !== 'win'
-				&& profile.name === 'safari'
-				&& profile.layoutVersion > 526 ) {
-				util.tooltipAccessKeyPrefix = 'ctrl-alt-';
-			// Firefox 14+ on Mac
-			} else if ( profile.platform === 'mac'
-				&& profile.name === 'firefox'
-				&& profile.versionNumber >= 14 ) {
-				util.tooltipAccessKeyPrefix = 'ctrl-option-';
-			// Safari/Konqueror on any platform, or any browser on Mac
-			// (but not Safari on Windows)
-			} else if ( !( profile.platform === 'win' && profile.name === 'safari' )
-							&& ( profile.name === 'safari'
-							|| profile.platform === 'mac'
-							|| profile.name === 'konqueror' ) ) {
-				util.tooltipAccessKeyPrefix = 'ctrl-';
-
-			// Firefox/Iceweasel 2.x and later
-			} else if ( ( profile.name === 'firefox' || profile.name === 'iceweasel' )
-				&& profile.versionBase > '1' ) {
-				util.tooltipAccessKeyPrefix = 'alt-shift-';
-			}
-
 			/* Fill $content var */
 			util.$content = ( function () {
 				var i, l, $content, selectors;
@@ -242,10 +196,59 @@
 
 		/**
 		 * @property {string}
-		 * Access key prefix. Will be re-defined based on browser/operating system
-		 * detection in mw.util#init.
+		 * Access key prefix.
 		 */
-		tooltipAccessKeyPrefix: 'alt-',
+		tooltipAccessKeyPrefix: ( function () {
+			var profile = $.client.profile();
+
+			// Opera on any platform
+			if ( profile.name === 'opera' ) {
+				return 'shift-esc-';
+			}
+
+			// Chrome on any platform
+			if ( profile.name === 'chrome' ) {
+				if ( profile.platform === 'mac' ) {
+					// Chrome on Mac
+					return 'ctrl-option-';
+				}
+				// Chrome on Windows or Linux
+				// (both alt- and alt-shift work, but alt with E, D, F etc does not
+				// work since they are browser shortcuts)
+				return 'alt-shift-';
+			}
+
+			// Non-Windows Safari with webkit_version > 526
+			if ( profile.platform !== 'win'
+				&& profile.name === 'safari'
+				&& profile.layoutVersion > 526 ) {
+				return 'ctrl-alt-';
+			}
+
+			// Firefox 14+ on Mac
+			if ( profile.platform === 'mac'
+				&& profile.name === 'firefox'
+				&& profile.versionNumber >= 14 ) {
+				return 'ctrl-option-';
+			}
+
+			// Safari/Konqueror on any platform, or any browser on Mac
+			// (but not Safari on Windows)
+			if ( !( profile.platform === 'win' && profile.name === 'safari' )
+							&& ( profile.name === 'safari'
+							|| profile.platform === 'mac'
+							|| profile.name === 'konqueror' ) ) {
+				return 'ctrl-';
+			}
+
+			// Firefox/Iceweasel 2.x and later
+			if ( ( profile.name === 'firefox' || profile.name === 'iceweasel' )
+				&& profile.versionBase > '1' ) {
+				return 'alt-shift-';
+			}
+
+			return 'alt-';
+		} )(),
 
 		/**
 		 * @property {RegExp}
