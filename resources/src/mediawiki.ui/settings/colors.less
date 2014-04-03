@@ -1,10 +1,35 @@
-@colorWhite: #fff;
-@colorGrayLight: #ccc;
-@colorGrayDark: #898989;
-@colorText: #252525;
-@colorProgressive: #347bff;
 // FIXME: remove @colorProgressiveShadow (shadows should be generated
 // in LESS by dimming the original colors)
 @colorProgressiveShadow: #4091ed;
+
+// White; for background use, and text use on dark backgrounds
+@colorWhite: #fff;
+// Off-white; for background use on white backgrounds
+@colorOffWhite: #fafafa;
+// Dark gray; for non-text use
+@colorGrayDark: #898989;
+// Light gray; for non-text use
+@colorGrayLight: #ccc;
+// Very light gray; for non-text use
+@colorGrayLighter: #ddd;
+// Lightest gray; for non-text use
+@colorGrayLightest: #eee;
+
+// Dark gray; for body text
+@colorText: #252525;
+// Light gray; for less important body text and links
+@colorTextLight: #696969;
+
+// Blue; for contextual use of a continuing action
+@colorProgressive: #347bff;
+// Orange; for contextual use of returning to a past action
+@colorRegressive: #ff7e1e;
+// Green; for contextual use of a positive finalizing action
 @colorConstructive: #00af89;
+// Red; for contextual use of a negative finalizing action
 @colorDestructive: #d11d13;
+
+// Used in mixins to darken contextual colors by the same amount (eg. focus)
+@colorDarkenPercentage: 13.5%;
+// Used in mixins to lighten contextual colors by the same amount (eg. hover)
+@colorLightenPercentage: 13.5%;
