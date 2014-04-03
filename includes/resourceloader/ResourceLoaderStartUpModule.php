@@ -265,7 +265,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	public function getScript( ResourceLoaderContext $context ) {
 		global $IP, $wgLegacyJavaScriptGlobals;
 
-		$out = file_get_contents( "$IP/resources/startup.js" );
+		$out = file_get_contents( "$IP/resources/src/startup.js" );
 		if ( $context->getOnly() === 'scripts' ) {
 
 			// Startup function
@@ -315,7 +315,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		$time = max(
 			wfTimestamp( TS_UNIX, $wgCacheEpoch ),
-			filemtime( "$IP/resources/startup.js" ),
+			filemtime( "$IP/resources/src/startup.js" ),
 			$this->getHashMtime( $context )
 		);
 
