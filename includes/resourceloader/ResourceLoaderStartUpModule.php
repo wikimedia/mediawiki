@@ -176,7 +176,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				continue;
 			}
 
-			if ( !count( $data['dependencies'] ) && $data['group'] === null && $data['source'] === 'local' ) {
+			if (
+				!count( $data['dependencies'] ) &&
+				$data['group'] === null &&
+				$data['source'] === 'local'
+			) {
 				// Modules without dependencies, a group or a foreign source;
 				// call mw.loader.register(name, timestamp)
 				$registrations[] = array( $name, $data['version'] );
@@ -265,7 +269,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	public function getScript( ResourceLoaderContext $context ) {
 		global $IP, $wgLegacyJavaScriptGlobals;
 
-		$out = file_get_contents( "$IP/resources/startup.js" );
+		$out = file_get_contents( "$IP/resources/src/startup.js" );
 		if ( $context->getOnly() === 'scripts' ) {
 
 			// Startup function
@@ -274,7 +278,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// Fix indentation
 			$registrations = str_replace( "\n", "\n\t", trim( $registrations ) );
 			$out .= "var startUp = function () {\n" .
-				"\tmw.config = new " . Xml::encodeJsCall( 'mw.Map', array( $wgLegacyJavaScriptGlobals ) ) . "\n" .
+				"\tmw.config = new " .
+				Xml::encodeJsCall( 'mw.Map', array( $wgLegacyJavaScriptGlobals ) ) . "\n" .
 				"\t$registrations\n" .
 				"\t" . Xml::encodeJsCall( 'mw.config.set', array( $configuration ) ) .
 				"};\n";
@@ -315,7 +320,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		$time = max(
 			wfTimestamp( TS_UNIX, $wgCacheEpoch ),
-			filemtime( "$IP/resources/startup.js" ),
+			filemtime( "$IP/resources/src/startup.js" ),
 			$this->getHashMtime( $context )
 		);
 
