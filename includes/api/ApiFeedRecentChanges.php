@@ -80,6 +80,10 @@ class ApiFeedRecentChanges extends ApiBase {
 	public function getFeedObject( $feedFormat, $specialClass ) {
 		if ( $specialClass === 'SpecialRecentchangeslinked' ) {
 			$title = Title::newFromText( $this->params['target'] );
+			if ( !$title ) {
+				$this->dieUsageMsg( array( 'invalidtitle', $this->params['target'] ) );
+			}
+
 			$feed = new ChangesFeed( $feedFormat, false );
 			$feedObj = $feed->getFeedObject(
 				$this->msg( 'recentchangeslinked-title', $title->getPrefixedText() )
