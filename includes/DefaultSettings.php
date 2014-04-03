@@ -3362,7 +3362,7 @@ $wgResourceLoaderLESSFunctions = array(
  * @since 1.22
  */
 $wgResourceLoaderLESSImportPaths = array(
-	"$IP/resources/mediawiki.less/",
+	"$IP/resources/src/mediawiki.less/",
 	"$IP/skins/vector/",
 );
 
@@ -6028,7 +6028,7 @@ $wgExtensionMessagesFiles = array();
  */
 $wgMessagesDirs = array(
 	'core' => "$IP/languages/i18n",
-	'oojs-ui' => "$IP/resources/oojs-ui/i18n",
+	'oojs-ui' => "$IP/resources/lib/oojs-ui/i18n",
 );
 
 /**
