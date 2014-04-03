@@ -98,21 +98,26 @@ class ResourceLoader {
 		// Set modules' dependencies
 		$modulesWithDeps = array();
 		foreach ( $res as $row ) {
-			$this->getModule( $row->md_module )->setFileDependencies( $skin,
-				FormatJson::decode( $row->md_deps, true )
-			);
-			$modulesWithDeps[] = $row->md_module;
+			$module = $this->getModule( $row->md_module );
+			if ( $module ) {
+				$module->setFileDependencies( $skin, FormatJson::decode( $row->md_deps, true ) );
+				$modulesWithDeps[] = $row->md_module;
+			}
 		}
 
 		// Register the absence of a dependency row too
 		foreach ( array_diff( $modules, $modulesWithDeps ) as $name ) {
-			$this->getModule( $name )->setFileDependencies( $skin, array() );
+			$module = $this->getModule( $name );
+			if ( $module ) {
+				$this->getModule( $name )->setFileDependencies( $skin, array() );
+			}
 		}
 
 		// Get message blob mtimes. Only do this for modules with messages
 		$modulesWithMessages = array();
 		foreach ( $modules as $name ) {
-			if ( count( $this->getModule( $name )->getMessages() ) ) {
+			$module = $this->getModule( $name );
+			if ( $module && count( $module->getMessages() ) ) {
 				$modulesWithMessages[] = $name;
 			}
 		}
@@ -124,13 +129,18 @@ class ResourceLoader {
 				), __METHOD__
 			);
 			foreach ( $res as $row ) {
-				$this->getModule( $row->mr_resource )->setMsgBlobMtime( $lang,
-					wfTimestamp( TS_UNIX, $row->mr_timestamp ) );
-				unset( $modulesWithoutMessages[$row->mr_resource] );
+				$module = $this->getModule( $row->mr_resource );
+				if ( $module ) {
+					$module->setMsgBlobMtime( $lang, wfTimestamp( TS_UNIX, $row->mr_timestamp ) );
+					unset( $modulesWithoutMessages[$row->mr_resource] );
+				}
 			}
 		}
 		foreach ( array_keys( $modulesWithoutMessages ) as $name ) {
-			$this->getModule( $name )->setMsgBlobMtime( $lang, 0 );
+			$module = $this->getModule( $name );
+			if ( $module ) {
+				$module->setMsgBlobMtime( $lang, 0 );
+			}
 		}
 	}
 
@@ -269,21 +279,19 @@ class ResourceLoader {
 			}
 
 			// Attach module
-			if ( is_object( $info ) ) {
-				// Old calling convention
-				// Validate the input
-				if ( !( $info instanceof ResourceLoaderModule ) ) {
-					wfProfileOut( __METHOD__ );
-					throw new MWException( 'ResourceLoader invalid module error. ' .
-						'Instances of ResourceLoaderModule expected.' );
-				}
-
+			if ( $info instanceof ResourceLoaderModule ) {
 				$this->moduleInfos[$name] = array( 'object' => $info );
 				$info->setName( $name );
 				$this->modules[$name] = $info;
-			} else {
+			} elseif ( is_array( $info ) ) {
 				// New calling convention
 				$this->moduleInfos[$name] = $info;
+			} else {
+				wfProfileOut( __METHOD__ );
+				throw new MWException(
+					'ResourceLoader module info type error for module \'' . $name .
+					'\': expected ResourceLoaderModule or array (got: ' . gettype( $info ) . ')'
+				);
 			}
 		}
 
@@ -400,8 +408,13 @@ class ResourceLoader {
 	/**
 	 * Get the ResourceLoaderModule object for a given module name.
 	 *
+	 * If an array of module parameters exists but a ResourceLoaderModule object has not
+	 * yet been instantiated, this method will instantiate and cache that object such that
+	 * subsequent calls simply return the same object.
+	 *
 	 * @param string $name Module name
-	 * @return ResourceLoaderModule if module has been registered, null otherwise
+	 * @return ResourceLoaderModule|null If module has been registered, return a
+	 *  ResourceLoaderModule instance. Otherwise, return null.
 	 */
 	public function getModule( $name ) {
 		if ( !isset( $this->modules[$name] ) ) {
@@ -469,10 +482,9 @@ class ResourceLoader {
 
 		// Find out which modules are missing and instantiate the others
 		$modules = array();
-		$missing = array();
 		foreach ( $context->getModules() as $name ) {
-			if ( isset( $this->moduleInfos[$name] ) ) {
-				$module = $this->getModule( $name );
+			$module = $this->getModule( $name );
+			if ( $module ) {
 				// Do not allow private modules to be loaded from the web.
 				// This is a security issue, see bug 34907.
 				if ( $module->getGroup() === 'private' ) {
