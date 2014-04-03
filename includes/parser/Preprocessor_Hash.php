@@ -1137,7 +1137,23 @@ class PPFrame_Hash implements PPFrame {
 				} elseif ( $contextNode->name == 'ext' ) {
 					# Extension tag
 					$bits = $contextNode->splitExt() + array( 'attr' => null, 'inner' => null, 'close' => null );
-					$out .= $this->parser->extensionSubstitution( $bits, $this );
+					if ( $flags & PPFrame::NO_TAGS ) {
+						$s = '<' . $bits['name']->firstChild->value;
+						if ( $bits['attr'] ) {
+							$s .= $bits['attr']->firstChild->value;
+						}
+						if ( $bits['inner'] ) {
+							$s .= '>' . $bits['inner']->firstChild->value;
+							if ( $bits['close'] ) {
+								$s .= $bits['close']->firstChild->value;
+							}
+						} else {
+							$s .= '/>';
+						}
+						$out .= $s;
+					} else {
+						$out .= $this->parser->extensionSubstitution( $bits, $this );
+					}
 				} elseif ( $contextNode->name == 'h' ) {
 					# Heading
 					if ( $this->parser->ot['html'] ) {
