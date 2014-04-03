@@ -13,7 +13,7 @@
 		 * (don't call before document ready)
 		 */
 		init: function () {
-			var profile;
+			var profile, $content;
 
 			/* Set tooltipAccessKeyPrefix */
 			profile = $.client.profile();
@@ -59,8 +59,7 @@
 				util.tooltipAccessKeyPrefix = 'alt-shift-';
 			}
 
-			/* Fill $content var */
-			util.$content = ( function () {
+			$content = ( function () {
 				var i, l, $content, selectors;
 				selectors = [
 					// The preferred standard for setting $content (class="mw-body")
@@ -101,9 +100,11 @@
 					}
 				}
 
-				// Make sure we don't unset util.$content if it was preset and we don't find anything
+				// Make sure we don't unset util.$content if it was preset and we couldn't find anything
 				return util.$content;
 			} )();
+
+			mw.log.deprecate( util, '$content', $content, 'Use mw.hook( \'wikipage.content\' ) instead.' );
 		},
 
 		/* Main body */
@@ -301,9 +302,10 @@
 		},
 
 		/*
+		 * The content area element (populated by #init).
+		 *
+		 * @deprecated since 1.23 Use mw.hook#wikipage_content instead.
 		 * @property {jQuery}
-		 * A jQuery object that refers to the content area element.
-		 * Populated by #init.
 		 */
 		$content: null,
 
