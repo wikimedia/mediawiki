@@ -1203,7 +1203,7 @@
 	// But moving it to extensions breaks it (?!)
 	// Need to fix plugin so it could do attributes as well, then will be okay to remove this.
 	// @deprecated since 1.23
-	mw.log.deprecate( window, 'gM', mw.jqueryMsg.getMessageFunction(), 'Use mw.message( ... ).parse() instead' );
+	mw.log.deprecate( window, 'gM', mw.jqueryMsg.getMessageFunction(), 'Use mw.message( ... ).parse() instead.' );
 
 	/**
 	 * @method

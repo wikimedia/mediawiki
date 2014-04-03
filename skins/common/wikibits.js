@@ -62,7 +62,7 @@ mw.log.deprecate( win, 'redirectToFragment', function ( fragment ) {
  * @deprecated since 1.17 Use jquery.client instead
  */
 
-msg = 'Use feature detection or module jquery.client instead';
+msg = 'Use feature detection or module jquery.client instead.';
 
 mw.log.deprecate( win, 'clientPC', ua, msg );
 
@@ -93,7 +93,7 @@ mw.log.deprecate( win, 'ie6_bugs', false, msg );
  *
  * @deprecated since 1.17 Use jQuery instead
  */
-msg = 'Use jQuery instead';
+msg = 'Use jQuery instead.';
 
 // Ignored dummy values
 mw.log.deprecate( win, 'doneOnloadHook', undefined, msg );
@@ -146,7 +146,7 @@ $( win ).on( 'load', function () {
  *
  * @deprecated since 1.17 Use jquery.checkboxShiftClick instead
  */
-msg = 'Use jquery.checkboxShiftClick instead';
+msg = 'Use jquery.checkboxShiftClick instead.';
 mw.log.deprecate( win, 'checkboxes', [], msg );
 mw.log.deprecate( win, 'lastCheckbox', null, msg );
 mw.log.deprecate( win, 'setupCheckboxShiftClick', $.noop, msg );
@@ -160,8 +160,8 @@ mw.log.deprecate( win, 'checkboxClickHandler', $.noop, msg );
  *
  * @deprecated since 1.17 Use mw.toolbar instead
  */
-mw.log.deprecate( win, 'mwEditButtons', [], 'Use mw.toolbar instead' );
-mw.log.deprecate( win, 'mwCustomEditButtons', [], 'Use mw.toolbar instead' );
+mw.log.deprecate( win, 'mwEditButtons', [], 'Use mw.toolbar instead.' );
+mw.log.deprecate( win, 'mwCustomEditButtons', [], 'Use mw.toolbar instead.' );
 
 /**
  * Spinner creation, injection and removal
@@ -170,8 +170,8 @@ mw.log.deprecate( win, 'mwCustomEditButtons', [], 'Use mw.toolbar instead' );
  *
  * @deprecated since 1.18 Use jquery.spinner instead
  */
-mw.log.deprecate( win, 'injectSpinner', $.noop, 'Use jquery.spinner instead' );
-mw.log.deprecate( win, 'removeSpinner', $.noop, 'Use jquery.spinner instead' );
+mw.log.deprecate( win, 'injectSpinner', $.noop, 'Use jquery.spinner instead.' );
+mw.log.deprecate( win, 'removeSpinner', $.noop, 'Use jquery.spinner instead.' );
 
 /**
  * Escape utilities
@@ -180,8 +180,8 @@ mw.log.deprecate( win, 'removeSpinner', $.noop, 'Use jquery.spinner instead' );
  *
  * @deprecated since 1.18 Use mw.html instead
  */
-mw.log.deprecate( win, 'escapeQuotes', $.noop,'Use mw.html instead' );
-mw.log.deprecate( win, 'escapeQuotesHTML', $.noop,'Use mw.html instead' );
+mw.log.deprecate( win, 'escapeQuotes', $.noop, 'Use mw.html instead.' );
+mw.log.deprecate( win, 'escapeQuotesHTML', $.noop, 'Use mw.html instead.' );
 
 /**
  * Display a message to the user
@@ -191,7 +191,7 @@ mw.log.deprecate( win, 'escapeQuotesHTML', $.noop,'Use mw.html instead' );
  * @deprecated since 1.17 Use mediawiki.notify instead
  * @param {string|HTMLElement} message To be put inside the message box
  */
-mw.log.deprecate( win, 'jsMsg', mw.util.jsMessage, 'Use mediawiki.notify instead' );
+mw.log.deprecate( win, 'jsMsg', mw.util.jsMessage, 'Use mediawiki.notify instead.' );
 
 /**
  * Misc. utilities
@@ -200,7 +200,7 @@ mw.log.deprecate( win, 'jsMsg', mw.util.jsMessage, 'Use mediawiki.notify instead
  *
  * @deprecated since 1.17 Use mediawiki.util instead
  */
-msg = 'Use mediawiki.util instead';
+msg = 'Use mediawiki.util instead.';
 mw.log.deprecate( win, 'tooltipAccessKeyPrefix', 'alt-', msg );
 mw.log.deprecate( win, 'tooltipAccessKeyRegexp', /\[(alt-)?(.)\]$/, msg );
 mw.log.deprecate( win, 'updateTooltipAccessKeys', mw.util.updateTooltipAccessKeys, msg );
