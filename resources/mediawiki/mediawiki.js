@@ -2218,12 +2218,15 @@ var mw = ( function ( $, undefined ) {
 
 			return {
 				/**
-				 * Escape a string for HTML. Converts special characters to HTML entities.
+				 * Escape a string for HTML.
+				 *
+				 * Converts special characters to HTML entities.
 				 *
 				 *     mw.html.escape( '< > \' & "' );
 				 *     // Returns &lt; &gt; &#039; &amp; &quot;
 				 *
 				 * @param {string} s The string to escape
+				 * @return {string} HTML
 				 */
 				escape: function ( s ) {
 					return s.replace( /['"<>&]/g, escapeCallback );
@@ -2242,6 +2245,7 @@ var mw = ( function ( $, undefined ) {
 				 *  - this.Cdata: The value attribute is included, and an exception is
 				 *   thrown if it contains an illegal ETAGO delimiter.
 				 *   See <http://www.w3.org/TR/1999/REC-html401-19991224/appendix/notes.html#h-B.3.2>.
+				 * @return {string} HTML
 				 */
 				element: function ( name, attrs, contents ) {
 					var v, attrName, s = '<' + name;
