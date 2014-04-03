@@ -60,13 +60,21 @@
 	list-style-image: url(@url);
 }
 
-.transition(@string) {
-	-webkit-transition: @string;
-	transition: @string;
+.transition(@value) {
+	-webkit-backface-visibility: hidden; // fixes Chrome 1px movement bug
+	-webkit-transition:          @value;
+	-moz-transition:             @value;
+	-o-transition:               @value;
+	transition:                  @value;
 }
 
 .box-sizing(@value) {
-	-moz-box-sizing: @value;
 	-webkit-box-sizing: @value;
-	box-sizing: @value;
+	-moz-box-sizing:    @value;
+	box-sizing:         @value;
+}
+
+.box-shadow(@value) {
+	-webkit-box-shadow: @value; // Android 2.3+, iOS 4.0.2-4.2, Safari 3-4
+	box-shadow:         @value; // Chrome 6+, Firefox 4+, IE 9+, iOS 5+, Opera 10.50+
 }
