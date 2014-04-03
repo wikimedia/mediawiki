@@ -104,6 +104,11 @@
 				// Make sure we don't unset util.$content if it was preset and we don't find anything
 				return util.$content;
 			} )();
+
+			/**
+			 * @deprecated since 1.23 Use mw.hook( 'wikipage.content' ).add( function ( $content ) { ... } ); instead.
+			 */
+			mw.log.deprecate( util, '$content', util.$content, 'Use mw.hook( \'wikipage.content\' ).add( function ( $content ) { ... } ); instead.' );
 		},
 
 		/* Main body */
