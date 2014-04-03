@@ -1213,13 +1213,29 @@ class PPFrame_DOM implements PPFrame {
 					$attrs = $xpath->query( 'attr', $contextNode );
 					$inners = $xpath->query( 'inner', $contextNode );
 					$closes = $xpath->query( 'close', $contextNode );
-					$params = array(
-						'name' => new PPNode_DOM( $names->item( 0 ) ),
-						'attr' => $attrs->length > 0 ? new PPNode_DOM( $attrs->item( 0 ) ) : null,
-						'inner' => $inners->length > 0 ? new PPNode_DOM( $inners->item( 0 ) ) : null,
-						'close' => $closes->length > 0 ? new PPNode_DOM( $closes->item( 0 ) ) : null,
-					);
-					$out .= $this->parser->extensionSubstitution( $params, $this );
+					if ( $flags & PPFrame::NO_TAGS ) {
+						$s = '<' . $this->expand( $names->item( 0 ), $flags );
+						if ( $attrs->length > 0 ) {
+							$s .= $this->expand( $attrs->item( 0 ), $flags );
+						}
+						if ( $inners->length > 0 ) {
+							$s .= '>' . $this->expand( $inners->item( 0 ), $flags );
+							if ( $closes->length > 0 ) {
+								$s .= $this->expand( $closes->item( 0 ), $flags );
+							}
+						} else {
+							$s .= '/>';
+						}
+						$out .= $s;
+					} else {
+						$params = array(
+							'name' => new PPNode_DOM( $names->item( 0 ) ),
+							'attr' => $attrs->length > 0 ? new PPNode_DOM( $attrs->item( 0 ) ) : null,
+							'inner' => $inners->length > 0 ? new PPNode_DOM( $inners->item( 0 ) ) : null,
+							'close' => $closes->length > 0 ? new PPNode_DOM( $closes->item( 0 ) ) : null,
+						);
+						$out .= $this->parser->extensionSubstitution( $params, $this );
+					}
 				} elseif ( $contextNode->nodeName == 'h' ) {
 					# Heading
 					$s = $this->expand( $contextNode->childNodes, $flags );

@@ -77,8 +77,9 @@ interface PPFrame {
 	const STRIP_COMMENTS = 4;
 	const NO_IGNORE = 8;
 	const RECOVER_COMMENTS = 16;
+	const NO_TAGS = 32;
 
-	const RECOVER_ORIG = 27; // = 1|2|8|16 no constant expression support in PHP yet
+	const RECOVER_ORIG = 59; // = 1|2|8|16|32 no constant expression support in PHP yet
 
 	/** This constant exists when $indexOffset is supported in newChild() */
 	const SUPPORTS_INDEX_OFFSET = 1;
