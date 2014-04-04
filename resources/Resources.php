@@ -87,16 +87,42 @@ return array(
 	'skins.common.content' => array(
 		'styles' => array(
 			'common/commonElements.css' => array( 'media' => 'screen' ),
-			'common/commonContent.css' => array( 'media' => 'screen' ),
+			'common/content/warnings.less' => array( 'media' => 'screen' ),
+			'common/content/toc.less' => array( 'media' => 'screen' ),
+			'common/content/thumbnails.less' => array( 'media' => 'screen' ),
 		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
+	// FIXME: Deprecate of more modularised skins.components
 	'skins.common.interface' => array(
 		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array(
 			'common/commonElements.css' => array( 'media' => 'screen' ),
-			'common/commonContent.css' => array( 'media' => 'screen' ),
+			'common/content/warnings.less' => array( 'media' => 'screen' ),
+			'common/content/toc.less' => array( 'media' => 'screen' ),
+			'common/content/thumbnails.less' => array( 'media' => 'screen' ),
+			'common/commonInterface.css' => array( 'media' => 'screen' ),
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	'skins.components.content.toc' => array(
+		'styles' => array(
+			'common/content/toc.less' => array( 'media' => 'screen' ),
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	'skins.components.content.warnings' => array(
+		'styles' => array(
+			'common/content/toc.less' => array( 'media' => 'screen' ),
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	'skins.components.interface' => array(
+		'styles' => array(
 			'common/commonInterface.css' => array( 'media' => 'screen' ),
 		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
