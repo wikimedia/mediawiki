@@ -1,0 +1,32 @@
+// FIXME: Due to commonContent.css we have to use html tag to make sure these are more specific
+html .thumb {
+	&.tright {
+		padding: 1px 0 0 15px;
+	}
+
+	&.tleft {
+		padding: 1px 15px 0 0;
+	}
+
+	// these resets should be unnecessary
+	div.thumbinner {
+		border: none;
+		background: none;
+		font-size: 100%;
+	}
+
+	.thumbcaption {
+		line-height: 1.5em;
+		font-size: .85em;
+		padding: 3px 0 0 0;
+		color: #333;
+	}
+
+	.magnify {
+		display: none;
+	}
+
+	.thumbimage {
+		border: none;
+	}
+}
