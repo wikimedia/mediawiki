@@ -1825,7 +1825,6 @@
     "nowatchlist": "You have no items on your watchlist.",
     "watchlistanontext": "Please $1 to view or edit items on your watchlist.",
     "watchnologin": "Not logged in",
-    "watchnologintext": "You must be [[Special:UserLogin|logged in]] to modify your watchlist.",
     "addwatch": "Add to watchlist",
     "addedwatchtext": "The page \"[[:$1]]\" has been added to your [[Special:Watchlist|watchlist]].\nFuture changes to this page and its associated talk page will be listed there.",
     "removewatch": "Remove from watchlist",
