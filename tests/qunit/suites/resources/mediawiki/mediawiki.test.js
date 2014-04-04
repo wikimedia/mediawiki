@@ -942,8 +942,9 @@
 
 	} );
 
-	QUnit.test( 'mw.hook', 13, function ( assert ) {
-		var hook, add, fire, chars, callback;
+	QUnit.test( 'mw.hook', 16, function ( assert ) {
+		var hook, add, fire, chars, callback,
+			noop = function () {};
 
 		mw.hook( 'test.hook.unfired' ).add( function () {
 			assert.ok( false, 'Unfired hook' );
@@ -967,14 +968,19 @@
 
 		hook = mw.hook( 'test.hook.chainable' );
 		assert.strictEqual( hook.add(), hook, 'hook.add is chainable' );
+		assert.strictEqual( hook.once( noop ), hook, 'hook.once is chainable' );
 		assert.strictEqual( hook.remove(), hook, 'hook.remove is chainable' );
 		assert.strictEqual( hook.fire(), hook, 'hook.fire is chainable' );
 
 		hook = mw.hook( 'test.hook.detach' );
 		add = hook.add;
+		once = hook.add;
 		fire = hook.fire;
 		add( function ( x, y ) {
 			assert.deepEqual( [x, y], ['x', 'y'], 'Detached (contextless) with data' );
+		} );
+		once( function ( x, y ) {
+			assert.deepEqual( [x, y], ['x', 'y'], 'Detached (contextless) with data, once' );
 		} );
 		fire( 'x', 'y' );
 
@@ -1032,6 +1038,25 @@
 				'"remove" removes all equal by reference. ' +
 				'"remove" is silent if the function is not found'
 		);
+
+		chars = [];
+		mw.hook( 'test.hook.once-after' )
+			.once( function ( chr ) {
+				chars.push( chr );
+			} )
+			.fire( 'x' )
+			.fire( 'y' )
+			.fire( 'z' );
+
+		mw.hook( 'test.hook.once-surrounded' )
+			.fire( 'a' )
+			.once( function ( chr ) {
+				chars.push( chr );
+			} )
+			.fire( 'b' )
+			.fire( 'c' );
+
+		assert.deepEqual( chars, ['x', 'a'], '.once() only fires callback once (either with last seen data, or first data)' );
 	} );
 
 }( mediaWiki, jQuery ) );
