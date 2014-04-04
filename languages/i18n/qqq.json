@@ -1851,7 +1851,6 @@
     "nowatchlist": "Displayed when there is no pages in the watchlist.",
     "watchlistanontext": "Parameters:\n* $1 - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description",
     "watchnologin": "Used as error page title.\n\nThe error message for this title is:\n* {{msg-mw|Watchnologintext}}\n{{Identical|Not logged in}}",
-    "watchnologintext": "Used as error message.\n\nThe title for this error is {{msg-mw|Watchnologin}}.",
     "addwatch": "Link to a dialog box, displayed at the end of the list of categories at the foot of each page.\n\nSee also:\n* {{msg-mw|Removewatch}}",
     "addedwatchtext": "Explanation shown when clicking on the {{msg-mw|Watch}} tab. Parameters:\n* $1 - page title\nSee also:\n* {{msg-mw|Addedwatch}}",
     "removewatch": "Link to a dialog box, displayed at the end of the list of categories at the foot of each page.\n\nSee also:\n* {{msg-mw|Addwatch}}",
