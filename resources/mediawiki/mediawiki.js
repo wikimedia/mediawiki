@@ -2375,21 +2375,38 @@ var mw = ( function ( $, undefined ) {
 
 				return {
 					/**
-					 * Register a hook handler
+					 * Register a handler.
+					 *
 					 * @param {Function...} handler Function to bind.
 					 * @chainable
 					 */
 					add: list.add,
 
 					/**
-					 * Unregister a hook handler
+					 * Register a handler that will be fired no more than once.
+					 *
+					 * @since 1.23
+					 * @param {Function} handler Function to bind.
+					 * @chainable
+					 */
+					once: function ( handler ) {
+						return list.add.call( this, function wrapper() {
+							list.remove( wrapper );
+							handler.apply( this, arguments );
+						} );
+					},
+
+					/**
+					 * Unregister a handler.
+					 *
 					 * @param {Function...} handler Function to unbind.
 					 * @chainable
 					 */
 					remove: list.remove,
 
 					/**
-					 * Run a hook.
+					 * Run this hook.
+					 *
 					 * @param {Mixed...} data
 					 * @chainable
 					 */

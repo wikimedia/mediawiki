@@ -851,7 +851,7 @@
 
 	} );
 
-	QUnit.test( 'mw.hook', 12, function ( assert ) {
+	QUnit.test( 'mw.hook', 14, function ( assert ) {
 		var hook, add, fire, chars, callback;
 
 		mw.hook( 'test.hook.unfired' ).add( function () {
@@ -871,6 +871,7 @@
 
 		hook = mw.hook( 'test.hook.chainable' );
 		assert.strictEqual( hook.add(), hook, 'hook.add is chainable' );
+		assert.strictEqual( hook.once( function () {} ), hook, 'hook.once is chainable' );
 		assert.strictEqual( hook.remove(), hook, 'hook.remove is chainable' );
 		assert.strictEqual( hook.fire(), hook, 'hook.fire is chainable' );
 
@@ -936,6 +937,25 @@
 				'"remove" removes all equal by reference. ' +
 				'"remove" is silent if the function is not found'
 		);
+
+		chars = [];
+		mw.hook( 'test.hook.once-after' )
+			.once( function ( chr ) {
+				chars.push( chr );
+			} )
+			.fire( 'x' )
+			.fire( 'y' )
+			.fire( 'z' );
+
+		mw.hook( 'test.hook.once-surrounded' )
+			.fire( 'a' )
+			.once( function ( chr ) {
+				chars.push( chr );
+			} )
+			.fire( 'b' )
+			.fire( 'c' );
+
+		assert.deepEqual( chars, ['x', 'a'], '.once() only fires callback once (either with last seen data, or first data)' );
 	} );
 
 }( mediaWiki, jQuery ) );
