@@ -795,9 +795,11 @@ class ResourceLoader {
 						$scripts = $module->getScriptURLsForDebug( $context );
 					} else {
 						$scripts = $module->getScript( $context );
-						if ( is_string( $scripts ) && strlen( $scripts ) && substr( $scripts, -1 ) !== ';' ) {
-							// bug 27054: Append semicolon to prevent weird bugs
-							// caused by files not terminating their statements right
+						// rtrim() because there is usually two line breaks after the last ';' (one new line
+						// at EOF, and one new line added by e.g. ResourceLoaderFileModule::readScriptFiles)
+						if ( is_string( $scripts ) && strlen( $scripts ) && substr( rtrim( $scripts ), -1 ) !== ';' ) {
+							// Append semicolon to prevent weird bugs caused by files not
+							// terminating their statements right (bug 27054)
 							$scripts .= ";\n";
 						}
 					}
