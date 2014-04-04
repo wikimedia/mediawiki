@@ -851,7 +851,7 @@
 
 	} );
 
-	QUnit.test( 'mw.hook', 10, function ( assert ) {
+	QUnit.test( 'mw.hook', 12, function ( assert ) {
 		var hook, add, fire, chars, callback;
 
 		mw.hook( 'test.hook.unfired' ).add( function () {
@@ -869,9 +869,10 @@
 		} );
 		mw.hook( 'test.hook.data' ).fire( 'example', ['two'] );
 
-		mw.hook( 'test.hook.chainable' ).add( function () {
-			assert.ok( true, 'Chainable' );
-		} ).fire();
+		hook = mw.hook( 'test.hook.chainable' );
+		assert.strictEqual( hook.add(), hook, 'hook.add is chainable' );
+		assert.strictEqual( hook.remove(), hook, 'hook.remove is chainable' );
+		assert.strictEqual( hook.fire(), hook, 'hook.fire is chainable' );
 
 		hook = mw.hook( 'test.hook.detach' );
 		add = hook.add;
