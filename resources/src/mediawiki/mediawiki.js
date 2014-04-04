@@ -2500,21 +2500,39 @@
 
 				return {
 					/**
-					 * Register a hook handler
+					 * Register a hook handler.
+					 *
 					 * @param {Function...} handler Function to bind.
 					 * @chainable
 					 */
 					add: list.add,
 
 					/**
-					 * Unregister a hook handler
+					 * Register a hook handler that will be fired no more than once.
+					 *
+					 * @since 1.25
+					 * @param {Function} handler Function to bind.
+					 * @chainable
+					 */
+					once: function ( handler ) {
+						var wrapper = function () {
+							list.remove( wrapper );
+							return handler.apply( this, arguments );
+						};
+						return list.add.call( this, wrapper );
+					},
+
+					/**
+					 * Unregister a hook handler.
+					 *
 					 * @param {Function...} handler Function to unbind.
 					 * @chainable
 					 */
 					remove: list.remove,
 
 					/**
-					 * Run a hook.
+					 * Run this hook.
+					 *
 					 * @param {Mixed...} data
 					 * @chainable
 					 */

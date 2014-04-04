@@ -942,8 +942,9 @@
 
 	} );
 
-	QUnit.test( 'mw.hook', 13, function ( assert ) {
-		var hook, add, fire, chars, callback;
+	QUnit.test( 'mw.hook', 15, function ( assert ) {
+		var hook, add, once, fire, chars, callback,
+			noop = function () {};
 
 		mw.hook( 'test.hook.unfired' ).add( function () {
 			assert.ok( false, 'Unfired hook' );
@@ -967,16 +968,26 @@
 
 		hook = mw.hook( 'test.hook.chainable' );
 		assert.strictEqual( hook.add(), hook, 'hook.add is chainable' );
+		assert.strictEqual( hook.once( noop ), hook, 'hook.once is chainable' );
 		assert.strictEqual( hook.remove(), hook, 'hook.remove is chainable' );
 		assert.strictEqual( hook.fire(), hook, 'hook.fire is chainable' );
 
+		chars = [];
+
 		hook = mw.hook( 'test.hook.detach' );
 		add = hook.add;
+		once = hook.once;
 		fire = hook.fire;
-		add( function ( x, y ) {
-			assert.deepEqual( [x, y], ['x', 'y'], 'Detached (contextless) with data' );
+		add( function ( chr ) {
+			chars.push( 'add-' + chr );
 		} );
-		fire( 'x', 'y' );
+		fire( 'x' );
+		once( function ( chr ) {
+			chars.push( 'once-' + chr );
+		} );
+		fire( 'y' );
+
+		assert.deepEqual( chars, ['add-x', 'once-x', 'add-y'], 'Detached (contextless) with data' );
 
 		mw.hook( 'test.hook.fireBefore' ).fire().add( function () {
 			assert.ok( true, 'Invoke handler right away if it was fired before' );
@@ -1032,6 +1043,25 @@
 				'"remove" removes all equal by reference. ' +
 				'"remove" is silent if the function is not found'
 		);
+
+		chars = [];
+		mw.hook( 'test.hook.once-after' )
+			.once( function ( chr ) {
+				chars.push( chr );
+			} )
+			.fire( 'x' )
+			.fire( 'y' )
+			.fire( 'z' );
+
+		mw.hook( 'test.hook.once-surrounded' )
+			.fire( 'a' )
+			.once( function ( chr ) {
+				chars.push( chr );
+			} )
+			.fire( 'b' )
+			.fire( 'c' );
+
+		assert.deepEqual( chars, ['x', 'a'], '.once() only fires callback once (either with last seen data, or first data)' );
 	} );
 
 }( mediaWiki, jQuery ) );
