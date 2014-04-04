@@ -38,19 +38,24 @@
 			// Non-Windows Safari with webkit_version > 526
 			} else if ( profile.platform !== 'win'
 				&& profile.name === 'safari'
-				&& profile.layoutVersion > 526 ) {
+				&& profile.layoutVersion > 526
+			) {
 				util.tooltipAccessKeyPrefix = 'ctrl-alt-';
+
 			// Firefox 14+ on Mac
 			} else if ( profile.platform === 'mac'
 				&& profile.name === 'firefox'
-				&& profile.versionNumber >= 14 ) {
+				&& profile.versionNumber >= 14
+			) {
 				util.tooltipAccessKeyPrefix = 'ctrl-option-';
+
 			// Safari/Konqueror on any platform, or any browser on Mac
 			// (but not Safari on Windows)
 			} else if ( !( profile.platform === 'win' && profile.name === 'safari' )
-							&& ( profile.name === 'safari'
-							|| profile.platform === 'mac'
-							|| profile.name === 'konqueror' ) ) {
+				&& ( profile.name === 'safari'
+				|| profile.platform === 'mac'
+				|| profile.name === 'konqueror' )
+			) {
 				util.tooltipAccessKeyPrefix = 'ctrl-';
 
 			// Firefox/Iceweasel 2.x and later
