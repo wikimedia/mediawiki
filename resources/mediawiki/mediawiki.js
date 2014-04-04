@@ -2394,7 +2394,7 @@ var mw = ( function ( $, undefined ) {
 					 * @chainable
 					 */
 					fire: function () {
-						return list.fireWith( null, slice.call( arguments ) );
+						return list.fireWith.call( this, null, slice.call( arguments ) );
 					}
 				};
 			};
