@@ -82,7 +82,14 @@ class WatchAction extends FormAction {
 	protected function checkCanExecute( User $user ) {
 		// Must be logged in
 		if ( $user->isAnon() ) {
-			throw new ErrorPageError( 'watchnologin', 'watchnologintext' );
+			$loginreqlink = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Userlogin' ),
+				$this->msg( 'loginreqlink' )->escaped(),
+				array(),
+				array( 'returnto' => $this->getPageTitle() )
+			);
+			$reasonMsg = $this->msg( 'watchnologintext' )->rawParams( $loginreqlink );
+			throw new UserNotLoggedIn( $reasonMsg, 'watchnologin' );
 		}
 
 		return parent::checkCanExecute( $user );
