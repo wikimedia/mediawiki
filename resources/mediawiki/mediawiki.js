@@ -2371,7 +2371,9 @@ var mw = ( function ( $, undefined ) {
 			 * @return {mw.hook}
 			 */
 			return function ( name ) {
-				var list = lists[name] || ( lists[name] = $.Callbacks( 'memory' ) );
+				var list = hasOwn.call( lists, name ) ?
+					lists[name] :				
+					lists[name] = $.Callbacks( 'memory' );
 
 				return {
 					/**
