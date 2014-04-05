@@ -1731,10 +1731,10 @@ class Parser {
 	 * @param $url String
 	 * @return String
 	 *
-	 * @todo  This can merge genuinely required bits in the path or query string,
-	 *        breaking legit URLs. A proper fix would treat the various parts of
-	 *        the URL differently; as a workaround, just use the output for
-	 *        statistical records, not for actual linking/output.
+	 * @todo This can merge genuinely required bits in the path or query string,
+	 *       breaking legit URLs. A proper fix would treat the various parts of
+	 *       the URL differently; as a workaround, just use the output for
+	 *       statistical records, not for actual linking/output.
 	 */
 	static function replaceUnusualEscapes( $url ) {
 		return preg_replace_callback( '/%[0-9A-Fa-f]{2}/',

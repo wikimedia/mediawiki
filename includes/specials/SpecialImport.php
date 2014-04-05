@@ -448,8 +448,8 @@ class ImportReporter extends ContextSource {
 	 * @param Title $title
 	 * @param Title $origTitle
 	 * @param int $revisionCount
-	 * @param  $successCount
-	 * @param  $pageInfo
+	 * @param $successCount
+	 * @param $pageInfo
 	 * @return void
 	 */
 	function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {

@@ -148,8 +148,8 @@ class ApiMove extends ApiBase {
 	/**
 	 * @param Title $fromTitle
 	 * @param Title $toTitle
-	 * @param  $reason
-	 * @param  $noredirect
+	 * @param $reason
+	 * @param $noredirect
 	 * @return array
 	 */
 	public function moveSubpages( $fromTitle, $toTitle, $reason, $noredirect ) {

@@ -35,7 +35,7 @@ class SpecialBlock extends FormSpecialPage {
 	/// @var Block::TYPE_ constant
 	protected $type;
 
-	/// @var  User|String the previous block target
+	/// @var User|String the previous block target
 	protected $previousTarget;
 
 	/// @var Bool whether the previous submission of the form asked for HideUser
@@ -593,8 +593,8 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Given the form data, actually implement a block
-	 * @param  $data Array
-	 * @param  $context IContextSource
+	 * @param $data Array
+	 * @param $context IContextSource
 	 * @return Bool|String
 	 */
 	public static function processForm( array $data, IContextSource $context ) {
@@ -947,7 +947,7 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Process the form on POST submission.
-	 * @param  $data Array
+	 * @param $data Array
 	 * @return Bool|Array true for success, false for didn't-try, array of errors on failure
 	 */
 	public function onSubmit( array $data ) {

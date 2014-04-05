@@ -62,7 +62,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 	}
 
 	/**
-	 * @param  $request WebRequest
+	 * @param $request WebRequest
 	 *
 	 * @return String
 	 */

@@ -113,7 +113,7 @@ abstract class FormSpecialPage extends SpecialPage {
 
 	/**
 	 * Process the form on POST submission.
-	 * @param  $data Array
+	 * @param $data Array
 	 * @return Bool|Array true for success, false for didn't-try, array of errors on failure
 	 */
 	abstract public function onSubmit( array $data );

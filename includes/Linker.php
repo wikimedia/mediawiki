@@ -742,7 +742,7 @@ class Linker {
 
 	/**
 	 * @param $title Title
-	 * @param  $file File
+	 * @param $file File
 	 * @param array $frameParams
 	 * @param array $handlerParams
 	 * @param bool $time
@@ -1467,8 +1467,8 @@ class Linker {
 
 	/**
 	 * @param $contextTitle Title
-	 * @param  $target
-	 * @param  $text
+	 * @param $target
+	 * @param $text
 	 * @return string
 	 */
 	public static function normalizeSubpageLink( $contextTitle, $target, &$text ) {

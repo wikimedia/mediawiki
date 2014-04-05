@@ -682,7 +682,7 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	/**
-	 * @param  $group String: the name of the group to check
+	 * @param $group String: the name of the group to check
 	 * @return bool Can we remove the group?
 	 */
 	private function canRemove( $group ) {

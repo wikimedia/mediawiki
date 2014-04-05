@@ -50,7 +50,7 @@ class HTMLCheckField extends HTMLFormField {
 	}
 
 	/**
-	 * @param  $request WebRequest
+	 * @param $request WebRequest
 	 *
 	 * @return String
 	 */

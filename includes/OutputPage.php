@@ -1315,8 +1315,8 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Set the highest level of CSS/JS untrustworthiness allowed
-	 * @param  $type String ResourceLoaderModule TYPE_ constant
-	 * @param  $level Int ResourceLoaderModule class constant
+	 * @param $type String ResourceLoaderModule TYPE_ constant
+	 * @param $level Int ResourceLoaderModule class constant
 	 */
 	public function setAllowedModules( $type, $level ) {
 		$this->mAllowedModules[$type] = $level;
@@ -1324,8 +1324,8 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * As for setAllowedModules(), but don't inadvertently make the page more accessible
-	 * @param  $type String
-	 * @param  $level Int ResourceLoaderModule class constant
+	 * @param $type String
+	 * @param $level Int ResourceLoaderModule class constant
 	 */
 	public function reduceAllowedModules( $type, $level ) {
 		$this->mAllowedModules[$type] = min( $this->getAllowedModules( $type ), $level );

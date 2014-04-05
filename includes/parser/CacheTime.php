@@ -27,7 +27,7 @@
  * @ingroup Parser
  */
 class CacheTime {
-	/** @var  array|bool ParserOptions which have been taken into account to
+	/** @var array|bool ParserOptions which have been taken into account to
 	 * produce output or false if not available.
 	 */
 	public $mUsedOptions;

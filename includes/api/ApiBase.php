@@ -896,7 +896,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Callback function used in requireOnlyOneParameter to check whether required parameters are set
 	 *
-	 * @param  $x object Parameter to check is not null/false
+	 * @param $x object Parameter to check is not null/false
 	 * @return bool
 	 */
 	private function parameterNotEmpty( $x ) {
@@ -1322,8 +1322,8 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Adds a warning to the output, else dies
 	 *
-	 * @param  $msg String Message to show as a warning, or error message if dying
-	 * @param  $enforceLimits Boolean Whether this is an enforce (die)
+	 * @param $msg String Message to show as a warning, or error message if dying
+	 * @param $enforceLimits Boolean Whether this is an enforce (die)
 	 */
 	private function warnOrDie( $msg, $enforceLimits = false ) {
 		if ( $enforceLimits ) {

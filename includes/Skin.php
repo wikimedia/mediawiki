@@ -1573,14 +1573,14 @@ abstract class Skin extends ContextSource {
 	 * Create a section edit link.  This supersedes editSectionLink() and
 	 * editSectionLinkForOther().
 	 *
-	 * @param $nt      Title  The title being linked to (may not be the same as
+	 * @param $nt Title  The title being linked to (may not be the same as
 	 *   the current page, if the section is included from a template)
 	 * @param string $section The designation of the section being pointed to,
 	 *   to be included in the link, like "&section=$section"
 	 * @param string $tooltip The tooltip to use for the link: will be escaped
 	 *   and wrapped in the 'editsectionhint' message
-	 * @param $lang    string Language code
-	 * @return         string HTML to use for edit link
+	 * @param $lang string Language code
+	 * @return string HTML to use for edit link
 	 */
 	public function doEditSectionLink( Title $nt, $section, $tooltip = null, $lang = false ) {
 		// HTML generated here should probably have userlangattributes

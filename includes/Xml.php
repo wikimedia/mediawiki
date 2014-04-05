@@ -901,7 +901,7 @@ class XmlSelect {
 	 * label => value
 	 * label => ( label => value, label => value )
 	 *
-	 * @param  $options
+	 * @param $options
 	 */
 	public function addOptions( $options ) {
 		$this->options[] = $options;
@@ -912,7 +912,7 @@ class XmlSelect {
 	 * label => value
 	 * label => ( label => value, label => value )
 	 *
-	 * @param  $options
+	 * @param $options
 	 * @param bool $default
 	 * @return string
 	 */

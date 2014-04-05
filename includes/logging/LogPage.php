@@ -358,10 +358,10 @@ class LogPage {
 
 	/**
 	 * @todo Document
-	 * @param  string $type
-	 * @param  Language|null $lang
-	 * @param  Title $title
-	 * @param  array $params
+	 * @param string $type
+	 * @param Language|null $lang
+	 * @param Title $title
+	 * @param array $params
 	 * @return string
 	 */
 	protected static function getTitleLink( $type, $lang, $title, &$params ) {

@@ -512,7 +512,7 @@ class MagicWord {
 	}
 
 	/**
-	 * @param  $text
+	 * @param $text
 	 * @return bool
 	 */
 	function matchStartAndRemove( &$text ) {

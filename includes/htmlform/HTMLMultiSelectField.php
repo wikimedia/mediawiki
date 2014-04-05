@@ -70,7 +70,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	}
 
 	/**
-	 * @param  $request WebRequest
+	 * @param $request WebRequest
 	 *
 	 * @return String
 	 */

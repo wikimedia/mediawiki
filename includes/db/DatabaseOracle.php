@@ -1133,8 +1133,8 @@ class DatabaseOracle extends DatabaseBase {
 
 	/**
 	 * @throws DBUnexpectedError
-	 * @param  string $table
-	 * @param  string $field
+	 * @param string $table
+	 * @param string $field
 	 * @return ORAField
 	 */
 	function fieldInfo( $table, $field ) {
