@@ -32,7 +32,7 @@
 class BitmapHandler_ClientOnly extends BitmapHandler {
 	/**
 	 * @param $image File
-	 * @param  $params
+	 * @param $params
 	 * @return bool
 	 */
 	function normaliseParams( $image, &$params ) {

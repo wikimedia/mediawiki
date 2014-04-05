@@ -38,7 +38,7 @@ class UserArrayFromResult extends UserArray implements Countable {
 	}
 
 	/**
-	 * @param  $row
+	 * @param $row
 	 * @return void
 	 */
 	protected function setCurrent( $row ) {

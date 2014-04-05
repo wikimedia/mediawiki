@@ -53,16 +53,16 @@ class DifferenceEngine extends ContextSource {
 	/** @var Language */
 	protected $mDiffLang;
 
-	/** @var  Title */
+	/** @var Title */
 	public $mOldPage;
 
-	/** @var  Title */
+	/** @var Title */
 	public $mNewPage;
 
 	/** @var Revision */
 	public $mOldRev;
 
-	/** @var  Revision */
+	/** @var Revision */
 	public $mNewRev;
 
 	/** @var bool Have the revisions IDs been loaded */

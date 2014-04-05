@@ -91,7 +91,7 @@ abstract class FormAction extends Action {
 	 * Process the form on POST submission.  If you return false from getFormFields(),
 	 * this will obviously never be reached.  If you don't want to do anything with the
 	 * form, just return false here
-	 * @param  $data Array
+	 * @param $data Array
 	 * @return Bool|Array true for success, false for didn't-try, array of errors on failure
 	 */
 	abstract public function onSubmit( $data );

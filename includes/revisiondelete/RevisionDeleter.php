@@ -207,7 +207,7 @@ class RevisionDeleter {
 	 * so that this key can be used instead.
 	 *
 	 * @param $title Title
-	 * @param  $revid
+	 * @param $revid
 	 * @return bool|mixed
 	 */
 	public static function checkRevisionExistence( $title, $revid ) {

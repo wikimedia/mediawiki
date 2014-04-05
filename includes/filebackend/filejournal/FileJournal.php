@@ -36,7 +36,7 @@
  * @since 1.20
  */
 abstract class FileJournal {
-	/** @var  string */
+	/** @var string */
 	protected $backend;
 
 	/** @var int */

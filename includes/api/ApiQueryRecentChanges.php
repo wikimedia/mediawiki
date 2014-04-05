@@ -69,8 +69,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param  $pageid
-	 * @param  $title
+	 * @param $pageid
+	 * @param $title
 	 * @param $rc RecentChange (optional)
 	 * @return bool|string
 	 */

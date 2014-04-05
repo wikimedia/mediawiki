@@ -92,7 +92,7 @@ class CoreParserFunctions {
 
 	/**
 	 * @param $parser Parser
-	 * @param  $date
+	 * @param $date
 	 * @param null $defaultPref
 	 * @return mixed|string
 	 */
@@ -787,7 +787,7 @@ class CoreParserFunctions {
 
 	/**
 	 * @param $parser Parser
-	 * @param  $text
+	 * @param $text
 	 * @return string
 	 */
 	static function anchorencode( $parser, $text ) {

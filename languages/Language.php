@@ -814,7 +814,7 @@ class Language {
 	}
 
 	/**
-	 * @param  $image
+	 * @param $image
 	 * @return array|null
 	 */
 	function getImageFile( $image ) {
@@ -829,7 +829,7 @@ class Language {
 	}
 
 	/**
-	 * @param  $tog
+	 * @param $tog
 	 * @return string
 	 */
 	function getUserToggle( $tog ) {

@@ -46,11 +46,11 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param  $randstr
-	 * @param  $limit
-	 * @param  $namespace
+	 * @param $randstr
+	 * @param $limit
+	 * @param $namespace
 	 * @param $resultPageSet ApiPageSet
-	 * @param  $redirect
+	 * @param $redirect
 	 * @return void
 	 */
 	protected function prepareQuery( $randstr, $limit, $namespace, &$resultPageSet, $redirect ) {

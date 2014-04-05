@@ -1619,7 +1619,7 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 
 	/**
-	 * @param  $i
+	 * @param $i
 	 * @return bool
 	 */
 	function item( $i ) {

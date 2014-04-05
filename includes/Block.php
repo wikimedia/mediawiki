@@ -312,7 +312,7 @@ class Block {
 	/**
 	 * Get the component of an IP address which is certain to be the same between an IP
 	 * address and a rangeblock containing that IP address.
-	 * @param  $hex String Hexadecimal IP representation
+	 * @param $hex String Hexadecimal IP representation
 	 * @return String
 	 */
 	protected static function getIpFragment( $hex ) {
@@ -362,7 +362,7 @@ class Block {
 
 	/**
 	 * Create a new Block object from a database row
-	 * @param  $row ResultWrapper row from the ipblocks table
+	 * @param $row ResultWrapper row from the ipblocks table
 	 * @return Block
 	 */
 	public static function newFromRow( $row ) {
@@ -862,7 +862,7 @@ class Block {
 	/**
 	 * Get/set whether the Block is a hardblock (affects logged-in users on a given IP/range
 	 * @param $x Bool
-	 * @return  Bool
+	 * @return Bool
 	 */
 	public function isHardblock( $x = null ) {
 		wfSetVar( $this->isHardblock, $x );

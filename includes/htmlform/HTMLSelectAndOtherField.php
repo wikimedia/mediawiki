@@ -60,7 +60,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	}
 
 	/**
-	 * @param  $request WebRequest
+	 * @param $request WebRequest
 	 *
 	 * @return Array("<overall message>","<select value>","<text field value>")
 	 */
