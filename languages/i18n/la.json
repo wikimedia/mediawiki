@@ -545,6 +545,8 @@
     "revisiondelete": "Emendationem delere",
     "revdelete-nooldid-title": "Emendatio-scopus invalida",
     "revdelete-show-file-submit": "Sic",
+    "revdelete-selected-text": "{{PLURAL:$1|Emendatio selecta|Emendationes selectae}} paginae [[:$2]]:",
+    "revdelete-selected-file": "{{PLURAL:$1|Emendatio selecta|Emendationes selectae}} fasciculi [[:$2]]:",
     "revdelete-legend": "Modificare cohibitiones visibilitatis",
     "revdelete-hide-text": "Textus emendationis",
     "revdelete-hide-image": "Celare contentum fasciculi",

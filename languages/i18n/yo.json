@@ -1982,7 +1982,7 @@
     "allmessagesname": "Orúkọ",
     "allmessagesdefault": "Ìkọ ìránṣẹ́ àtìbẹ̀rẹ̀",
     "allmessagescurrent": "Ìkọ ìránṣẹ́ lọ́wọ́",
-    "allmessagestext": "Èyí ni àtòjọ àwọn ìránṣẹ́ sístẹ́mù tó wà nínú orúkọàyè MediaWiki.\nẸ lọ sí [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] àti [//translatewiki.net translatewiki.net] tí ẹ bá fẹ́ kópa nínú ìyèdèpadà ìsiṣẹ́ MediaWiki.",
+    "allmessagestext": "Èyí ni àtòjọ àwọn ìránṣẹ́ sístẹ́mù tó wà nínú orúkọàyè MediaWiki.\nẸ lọ sí [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] àti [//translatewiki.net translatewiki.net] tí ẹ bá fẹ́ kópa nínú ìyèdèpadà ìsiṣẹ́ MediaWiki.",
     "allmessagesnotsupportedDB": "Ojúewé yìí kò ṣe é lò nítorípé '''$wgUseDatabaseMessages''' ti jẹ́ dídálẹkun.",
     "allmessages-filter-legend": "Ajọ̀",
     "allmessages-filter": "Ajọ̀ gẹ́gẹ́bí ipò ìṣàyàn:",

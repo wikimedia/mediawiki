@@ -1,6 +1,23 @@
 {
     "@metadata": {
-        "authors": []
+        "authors": [
+            "Algazel-ms",
+            "Anakmalaysia",
+            "Aurora",
+            "Aviator",
+            "CoolCityCat",
+            "Diagramma Della Verita",
+            "Hydra",
+            "Izzudin",
+            "Kaganer",
+            "Kurniasan",
+            "Meno25",
+            "Putera Luqman Tunku Andre",
+            "SNN95",
+            "Yosri",
+            "Zamwan",
+            "לערי ריינהארט"
+        ]
     },
     "tog-underline": "Garis bawah pautan:",
     "tog-hideminor": "Sembunyikan suntingan kecil dalam laman perubahan terkini",
@@ -2104,7 +2121,7 @@
     "allmessagesname": "Nama",
     "allmessagesdefault": "Teks mesej asal",
     "allmessagescurrent": "Teks pesanan semasa",
-    "allmessagestext": "Ini ialah senarai pesanan sistem yang terdapat dalam ruang nama MediaWiki.\nSila lawat [https://www.mediawiki.org/wiki/Localisation Penyetempatan MediaWiki] dan [//translatewiki.net translatewiki.net] sekiranya anda mahu menyumbang dalam menyetempatkan dan menterjemah perisian MediaWiki.",
+    "allmessagestext": "Ini ialah senarai pesanan sistem yang terdapat dalam ruang nama MediaWiki.\nSila lawat [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Penyetempatan MediaWiki] dan [//translatewiki.net translatewiki.net] sekiranya anda mahu menyumbang dalam menyetempatkan dan menterjemah perisian MediaWiki.",
     "allmessagesnotsupportedDB": "'''{{ns:special}}:Allmessages''' tidak boleh digunakan kerana '''$wgUseDatabaseMessages''' dipadamkan.",
     "allmessages-filter-legend": "Penapisan",
     "allmessages-filter": "Tapis berdasarkan keadaan penempahan:",
@@ -2882,8 +2899,8 @@
     "version-entrypoints": "URL titik permulaan",
     "version-entrypoints-header-entrypoint": "Titik permulaan",
     "version-entrypoints-header-url": "URL",
-    "version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Laluan rencana]",
-    "version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Laluan skrip]",
+    "version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath Laluan rencana]",
+    "version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath Laluan skrip]",
     "redirect": "Lencongkan mengikut ID fail, pengguna, halaman atau semakan",
     "redirect-legend": "Lencongkan ke fail atau halaman",
     "redirect-summary": "Halaman khas ini melencong kepada fail (dengan nama fail), halaman (dengan ID semakan atau ID halaman) atau halaman pengguna (dengan ID pengguna berangka). Penggunaan: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], atau [[{{#Special:Redirect}}/user/101]].",

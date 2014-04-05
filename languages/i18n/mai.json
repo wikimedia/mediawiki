@@ -1826,7 +1826,7 @@
     "allmessagesname": "नाम",
     "allmessagesdefault": "पूर्वनिर्धारित संदेश पाठ",
     "allmessagescurrent": "अखुनका संदेश पाठ",
-    "allmessagestext": "ई मीडियाविकी नामस्थानमे उपलब्ध संस्थागत संदेशक सूची छी।\nकृपा कऽ देखू [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] आ [//translatewiki.net translatewiki.net] जँ अहाँ मीडियाविकीक स्थानिकीकरणक मूलक अनुवादमे योगदान करए चाहै छी।",
+    "allmessagestext": "ई मीडियाविकी नामस्थानमे उपलब्ध संस्थागत संदेशक सूची छी।\nकृपा कऽ देखू [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] आ [//translatewiki.net translatewiki.net] जँ अहाँ मीडियाविकीक स्थानिकीकरणक मूलक अनुवादमे योगदान करए चाहै छी।",
     "allmessagesnotsupportedDB": "ई पन्ना प्रयोगमे नै आनल जा सकैए कारण '''$wgUseDatabaseMessages''' अशक्त कएल अछि।",
     "allmessages-filter-legend": "चलनी",
     "allmessages-filter": "अपन हिसाबे अनुकूलित कऽ छाँटू:",

@@ -2055,7 +2055,7 @@
     "allmessagesname": "নাম",
     "allmessagesdefault": "সাধাৰণ বাৰ্তা পাঠ্য",
     "allmessagescurrent": "বৰ্তমানৰ বাৰ্তাৰ পাঠ",
-    "allmessagestext": "মিডিয়াৱিকি নামস্থানত থকা প্ৰণালী বাৰ্তাসমূহৰ তালিকা ইয়াত দিয়া হৈছে ।\nযদি আপুনি মিডিয়াৱিকিৰ স্থানীয়কৰণত আগ্ৰহী, তেন্তে অনুগ্ৰহ কৰি [https://www.mediawiki.org/wiki/Localisation মিডিয়াৱিকি স্থানীয়কৰণ] আৰু [//translatewiki.net translatewiki.net] চাওক ।",
+    "allmessagestext": "মিডিয়াৱিকি নামস্থানত থকা প্ৰণালী বাৰ্তাসমূহৰ তালিকা ইয়াত দিয়া হৈছে ।\nযদি আপুনি মিডিয়াৱিকিৰ স্থানীয়কৰণত আগ্ৰহী, তেন্তে অনুগ্ৰহ কৰি [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation মিডিয়াৱিকি স্থানীয়কৰণ] আৰু [//translatewiki.net translatewiki.net] চাওক ।",
     "allmessagesnotsupportedDB": "এই পৃষ্ঠা ব্যৱহাৰ কৰিব নোৱাৰি কাৰণ '''$wgUseDatabaseMessages''' নিষ্ক্ৰিয় কৰা হৈছে ।",
     "allmessages-filter-legend": "ছেকনী",
     "allmessages-filter": "স্বনিৰ্বাচন অৱস্থাৰে পৰিস্ৰাৱন কৰক:",

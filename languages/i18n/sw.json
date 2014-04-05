@@ -1745,7 +1745,7 @@
     "allmessagesname": "Jina",
     "allmessagesdefault": "Ujumbe uliopo bidhaa pepe",
     "allmessagescurrent": "Ujumbe unapo sasa hivi",
-    "allmessagestext": "Hii ni orodha ya jumbe za mfumo zilizopo katika eneo la MediaWiki.\nUkitaka kusaidia kazi ya kutohoa MediaWiki yote katika lugha nyingi, tafadhali uende tovuti ya [https://www.mediawiki.org/wiki/Localisation Kutohoa MediaWiki Kwenye Lugha Nyingi] na [//translatewiki.net translatewiki.net].",
+    "allmessagestext": "Hii ni orodha ya jumbe za mfumo zilizopo katika eneo la MediaWiki.\nUkitaka kusaidia kazi ya kutohoa MediaWiki yote katika lugha nyingi, tafadhali uende tovuti ya [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Kutohoa MediaWiki Kwenye Lugha Nyingi] na [//translatewiki.net translatewiki.net].",
     "allmessagesnotsupportedDB": "Ukurasa huu hauwezi kutumika kwa sababu '''$wgUseDatabaseMessages''' imelemazwa.",
     "allmessages-filter-legend": "Chuja",
     "allmessages-filter": "Zichujwe kwa hali ya kutengenezwa:",

@@ -1247,7 +1247,7 @@
     "allmessages": "Teachdaireachdan an t-siostaim",
     "allmessagesname": "Ainm",
     "allmessagesdefault": "Teacsa bunaiteach na teachdaireachd",
-    "allmessagestext": "Seo liosta de theachdaireachdan an t-siostaim a tha ri làimh ann an namespace MediaWiki.\nTadhail air [https://www.mediawiki.org/wiki/Localisation Ionadaileadh MediaWiki] is [//translatewiki.net translatewiki.net] ma tha thu airson pàirt a ghabhail ann an ionadaileadh MediaWiki.",
+    "allmessagestext": "Seo liosta de theachdaireachdan an t-siostaim a tha ri làimh ann an namespace MediaWiki.\nTadhail air [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Ionadaileadh MediaWiki] is [//translatewiki.net translatewiki.net] ma tha thu airson pàirt a ghabhail ann an ionadaileadh MediaWiki.",
     "thumbnail-more": "Meudaich",
     "filemissing": "Faidhle a dhìth",
     "thumbnail_error": "Mearachd le cruthachadh na h-ìomhaigheige: $1",

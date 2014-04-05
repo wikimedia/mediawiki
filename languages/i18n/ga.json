@@ -1157,7 +1157,7 @@
     "allmessagesname": "Ainm",
     "allmessagesdefault": "Téacs réamhshocraithe",
     "allmessagescurrent": "Téacs reatha",
-    "allmessagestext": "Is liosta é seo de theachtaireachtaí córais atá le fáil san ainmspás MediaWiki.\nTabhair cuairt ar [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] agus [//translatewiki.net translatewiki.net] le do thoil más mian leat cur leis an logánú ginearálta MediaWiki.",
+    "allmessagestext": "Is liosta é seo de theachtaireachtaí córais atá le fáil san ainmspás MediaWiki.\nTabhair cuairt ar [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] agus [//translatewiki.net translatewiki.net] le do thoil más mian leat cur leis an logánú ginearálta MediaWiki.",
     "allmessagesnotsupportedDB": "Ní féidir an leathanach seo a úsáid dá bharr gur díchumasaíodh '''$wgUseDatabaseMessages'''.",
     "allmessages-filter-all": "Uile",
     "allmessages-language": "Teanga:",

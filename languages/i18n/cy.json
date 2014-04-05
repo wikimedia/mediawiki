@@ -2095,7 +2095,7 @@
     "allmessagesname": "Enw",
     "allmessagesdefault": "Testun rhagosodedig",
     "allmessagescurrent": "Testun cyfredol",
-    "allmessagestext": "Dyma restr o'r holl negeseuon yn y parth MediaWici.\nOs ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau MediaWiki ar y cyd, mae croeso i chi ymweld â [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] a [//translatewiki.net translatewiki.net].",
+    "allmessagestext": "Dyma restr o'r holl negeseuon yn y parth MediaWici.\nOs ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau MediaWiki ar y cyd, mae croeso i chi ymweld â [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] a [//translatewiki.net translatewiki.net].",
     "allmessagesnotsupportedDB": "Nid yw '''{{ns:special}}:PobNeges''' yn cael ei gynnal gan fod '''$wgUseDatabaseMessages''' wedi ei ddiffodd.",
     "allmessages-filter-legend": "Hidl",
     "allmessages-filter": "Hidlo yn ôl eu cyflwr addasu:",

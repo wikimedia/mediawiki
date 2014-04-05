@@ -2000,7 +2000,7 @@
     "allmessagesname": "Nome",
     "allmessagesdefault": "Testo predefinìo",
     "allmessagescurrent": "Testo come che el xe desso",
-    "allmessagestext": "Sta quà l'è na lista de tuti i messagi disponibili nel namespace MediaWiki.\nPar piaser visita [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//translatewiki.net translatewiki.net] se te voli jutarne par la traduzion del software MediaWiki ne le varie lengue.",
+    "allmessagestext": "Sta quà l'è na lista de tuti i messagi disponibili nel namespace MediaWiki.\nPar piaser visita [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] e [//translatewiki.net translatewiki.net] se te voli jutarne par la traduzion del software MediaWiki ne le varie lengue.",
     "allmessagesnotsupportedDB": "'''{{ns:special}}:Allmessages''' no'l xè supportà parché '''$wgUseDatabaseMessages''' no'l xè ativo.",
     "allmessages-filter-legend": "Filtro",
     "allmessages-filter": "Filtra par stato de personalixassion:",

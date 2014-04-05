@@ -1,6 +1,26 @@
 {
     "@metadata": {
-        "authors": []
+        "authors": [
+            "Admresdeserv.",
+            "Dark Eagle",
+            "Edgars2007",
+            "FnTmLV",
+            "Geimeris",
+            "Geitost",
+            "GreenZeb",
+            "Kaganer",
+            "Karlis",
+            "Kikos",
+            "Knakts",
+            "Marozols",
+            "Papuass",
+            "Reedy",
+            "Shirayuki",
+            "Srolanh",
+            "Xil",
+            "Yyy",
+            "לערי ריינהארט"
+        ]
     },
     "tog-underline": "Pasvītrot saites:",
     "tog-hideminor": "Paslēpt maznozīmīgus labojumus pēdējo izmaiņu lapā",
@@ -1779,7 +1799,7 @@
     "allmessagesname": "Nosaukums",
     "allmessagesdefault": "Noklusētais ziņojuma teksts",
     "allmessagescurrent": "Pašreizējais teksts",
-    "allmessagestext": "Šajā lapā ir visu \"'''MediaWiki:'''\" lapās atrodamo sistēmas paziņojumu uzskaitījums.\nŠos paziņojumus var izmainīt tikai admini. Izmainot tos šeit, tie tiks izmainīti tikai šajā mediawiki instalācijā. Lai tos izmainītu visām pārējām, apskatieties [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [//translatewiki.net translatewiki.net].",
+    "allmessagestext": "Šajā lapā ir visu \"'''MediaWiki:'''\" lapās atrodamo sistēmas paziņojumu uzskaitījums.\nŠos paziņojumus var izmainīt tikai admini. Izmainot tos šeit, tie tiks izmainīti tikai šajā mediawiki instalācijā. Lai tos izmainītu visām pārējām, apskatieties [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] un [//translatewiki.net translatewiki.net].",
     "allmessagesnotsupportedDB": "Šī lapa nedarbojas, tāpēc, ka '''wgUseDatabaseMessages''' nedarbojas.",
     "allmessages-filter-legend": "Filtrs",
     "allmessages-filter": "Filtrēt pēc izmainīšanas statusa:",

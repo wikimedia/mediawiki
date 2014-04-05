@@ -275,6 +275,7 @@
     "pool-timeout": "तालाबन्दी के लिए प्रतीक्षा समय समाप्त",
     "pool-queuefull": "पूल पंक्ति भरी हुई है",
     "pool-errorunknown": "अज्ञात त्रुटि",
+    "pool-servererror": "पूल काउंटर सेवा उपलब्ध नहीं है ($1)।",
     "aboutsite": "{{SITENAME}} के बारे में",
     "aboutpage": "Project:परिचय",
     "copyright": "उपलब्ध सामग्री $1 के अधीन है जब तक अलग से उल्लेख ना किया गया हो।",
@@ -1681,6 +1682,7 @@
     "listgrouprights-removegroup-self": " अपने  खाते से {{PLURAL:$2|समूह}} हटाएँ: $1",
     "listgrouprights-addgroup-self-all": "अपने खाते में सभी समूह शामिल करें",
     "listgrouprights-removegroup-self-all": "अपने खाते से सभी समूह हटाएँ",
+    "trackingcategories-nodesc": "कोई वर्णन उपलब्ध नहीं।",
     "mailnologin": "पाने वाले का एड्रेस दिया नहीं",
     "mailnologintext": "अन्य सदस्यों को इ-मेल भेजने के लिये [[Special:UserLogin|लॉग इन]] करना आवश्यक है और आपकी [[Special:Preferences|वरीयताओं]] में वैध ई-मेल पता होना आवश्यक है।",
     "emailuser": "इस सदस्य को ई-मेल भेजें",
@@ -1922,6 +1924,7 @@
     "sp-contributions-search": "योगदान के लिये खोज",
     "sp-contributions-username": "आईपी एड्रेस या सदस्यनाम:",
     "sp-contributions-toponly": "केवल उन सम्पादनों को दिखाएँ जो नवीनतम संशोधन हैं",
+    "sp-contributions-newonly": "केवल वे सम्पादन दिखाएँ जिनसे पृष्ठ निर्मित हुए हों",
     "sp-contributions-submit": "खोजें",
     "whatlinkshere": "यहाँ के हवाले कहाँ कहाँ हैं",
     "whatlinkshere-title": "$1 से जुड़े हुए पृष्ठ",
@@ -2130,7 +2133,7 @@
     "allmessagesname": "नाम",
     "allmessagesdefault": "डिफॉल्ट पाठ",
     "allmessagescurrent": "वर्तमान पाठ",
-    "allmessagestext": "ये मीडियाविकि नामस्थान में उपलब्ध प्रणाली संदेशों की एक सूची है। यदि आप सामान्य मीडियाविकि क्षेत्रीयकरण में योगदान देना चाहें तो कृपया [https://www.mediawiki.org/wiki/Localisation मीडियाविकि क्षेत्रीयकरण] व [//translatewiki.net translatewiki.net] को देखें।",
+    "allmessagestext": "ये मीडियाविकि नामस्थान में उपलब्ध प्रणाली संदेशों की एक सूची है। यदि आप सामान्य मीडियाविकि क्षेत्रीयकरण में योगदान देना चाहें तो कृपया [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation मीडियाविकि क्षेत्रीयकरण] व [//translatewiki.net translatewiki.net] को देखें।",
     "allmessagesnotsupportedDB": "इस पृष्ठ का इस्तेमाल नहीं कर सकते क्योंकी '''$wgUseDatabaseMessages''' बंद हैं।",
     "allmessages-filter-legend": "छानें",
     "allmessages-filter": "अनुकूलन स्थिति के आधार पर छानें:",
@@ -3111,6 +3114,5 @@
     "expand_templates_remove_comments": "टिप्पणी हटायें",
     "expand_templates_remove_nowiki": "परिणाम में <nowiki> टैग हटाएँ",
     "expand_templates_generate_xml": "XML का पार्स (parse) वृक्ष दर्शायें",
-    "expand_templates_preview": "झलक",
-    "trackingcategories-nodesc": "कोई वर्णन उपलब्ध नहीं।"
+    "expand_templates_preview": "झलक"
 }

@@ -1838,7 +1838,7 @@
     "allmessagesname": "ناں",
     "allmessagesdefault": "ڈیفالٹ لکھائی",
     "allmessagescurrent": "موجودہ لکھائی",
-    "allmessagestext": "ایہ لسٹ اے پربندھ سنیعیاں دی  جیہڑے میڈیاوکی دی ناں تھاں تے ہیگے نیں۔\nمہربانی کرکے [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] تے [//translatewiki.net translatewiki.net] تے جاؤ۔\nاگر تسیں میڈیا وکی دے بولی وٹاندرے چ کم کرنا چاندے او۔",
+    "allmessagestext": "ایہ لسٹ اے پربندھ سنیعیاں دی  جیہڑے میڈیاوکی دی ناں تھاں تے ہیگے نیں۔\nمہربانی کرکے [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] تے [//translatewiki.net translatewiki.net] تے جاؤ۔\nاگر تسیں میڈیا وکی دے بولی وٹاندرے چ کم کرنا چاندے او۔",
     "allmessagesnotsupportedDB": "اے صفہ نئیں ورتیا جاسکدا کیوں جے '''$wgUseDatabaseMessages''' روک دتا گیا اے۔",
     "allmessages-filter-legend": "فلٹر",
     "allmessages-filter": "کسٹمائزیشن سٹیٹ فلٹر ہوئي:",

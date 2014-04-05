@@ -2044,7 +2044,7 @@
     "allmessagesname": "Naam",
     "allmessagesdefault": "Standardtekste",
     "allmessagescurrent": "De leste versie",
-    "allmessagestext": "Hieronder steet n lieste mit alle systeemteksten in de MediaWiki-naamruumte.\nKiek oek effen bie [https://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [//translatewiki.net translatewiki.net] a'j biedragen willen an de algemene vertaling veur MediaWiki.",
+    "allmessagestext": "Hieronder steet n lieste mit alle systeemteksten in de MediaWiki-naamruumte.\nKiek oek effen bie [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki-lokalisasie] en [//translatewiki.net translatewiki.net] a'j biedragen willen an de algemene vertaling veur MediaWiki.",
     "allmessagesnotsupportedDB": "Disse zied kan niet gebruukt wörden umdat '''$wgUseDatabaseMessages''' uutezet is.",
     "allmessages-filter-legend": "Filter",
     "allmessages-filter": "Filtreer op wiezigingen:",

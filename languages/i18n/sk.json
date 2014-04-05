@@ -2083,7 +2083,7 @@
     "allmessagesname": "Názov",
     "allmessagesdefault": "štandardný text",
     "allmessagescurrent": "aktuálny text",
-    "allmessagestext": "Toto je zoznam všetkých správ dostupných v mennom priestore MediaWiki.\nProsím, navštívte [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] a [//translatewiki.net translatewiki.net] ak chcete prispieť k všeobecnej lokalizácii MediaWiki.",
+    "allmessagestext": "Toto je zoznam všetkých správ dostupných v mennom priestore MediaWiki.\nProsím, navštívte [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] a [//translatewiki.net translatewiki.net] ak chcete prispieť k všeobecnej lokalizácii MediaWiki.",
     "allmessagesnotsupportedDB": "Túto stránku nemožno použiť, pretože '''$wgUseDatabaseMessages''' je vypnuté.",
     "allmessages-filter-legend": "Filter",
     "allmessages-filter": "Filter podľa stavu prispôsobenia:",

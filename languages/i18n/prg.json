@@ -1508,7 +1508,7 @@
     "allmessagesname": "Emmens",
     "allmessagesdefault": "Auprestamins teksts",
     "allmessagescurrent": "Bigānts teksts",
-    "allmessagestext": "Sta ast listi wisēisan waīstin preiēiminan en MediaWikis tītelin plattibin.\nMadli kāimalukeis [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] be [//translatewiki.net translatewiki.net] ik tu kwaitēi delīkan īmtun en MediaWikis prōgraminin tulkausnai.",
+    "allmessagestext": "Sta ast listi wisēisan waīstin preiēiminan en MediaWikis tītelin plattibin.\nMadli kāimalukeis [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] be [//translatewiki.net translatewiki.net] ik tu kwaitēi delīkan īmtun en MediaWikis prōgraminin tulkausnai.",
     "allmessagesnotsupportedDB": "Šī pāusan ni mazzi būtwei tērpautan, beggi wariābli '''$wgUseDatabaseMessages''' ast izklaūtan.",
     "allmessages-filter-legend": "Filtrīs",
     "allmessages-filter": "Filtrīs pa būsenin:",

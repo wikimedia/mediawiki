@@ -2027,7 +2027,7 @@
     "allmessagesname": "Биллэрии",
     "allmessagesdefault": "Туспа этиллибэтэҕинэ суруллар тиэкис",
     "allmessagescurrent": "Билиҥҥи тиэкис",
-    "allmessagestext": "Манна MediaWiki биллэриилэрин испииһэгэ көстөр.\nЭн MediaWiki движогун тылбаастыырга көмөлөһүөххүн баҕарар буоллаххына манна [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] уонна манна [//translatewiki.net translatewiki.net] киир.",
+    "allmessagestext": "Манна MediaWiki биллэриилэрин испииһэгэ көстөр.\nЭн MediaWiki движогун тылбаастыырга көмөлөһүөххүн баҕарар буоллаххына манна [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] уонна манна [//translatewiki.net translatewiki.net] киир.",
     "allmessagesnotsupportedDB": "'''{{ns:special}}:Allmessages''' туттуллар кыаҕа суох, тоҕо диэтэххэ '''$wgUseDatabaseMessages''' араарыллыбыт.",
     "allmessages-filter-legend": "Сиидэ",
     "allmessages-filter": "Уларытыы көрүҥүнэн наардыыр сиидэ:",

@@ -1982,7 +1982,7 @@
     "allmessagesname": "Име",
     "allmessagesdefault": "Текст по подразбиране",
     "allmessagescurrent": "Текущ текст",
-    "allmessagestext": "Тази страница съдържа списък на системните съобщения от именното пространство „МедияУики“.\nПосетете [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] и [//translatewiki.net translatewiki.net], ако желаете да допринесете за общата локализация на софтуера МедияУики.",
+    "allmessagestext": "Тази страница съдържа списък на системните съобщения от именното пространство „МедияУики“.\nПосетете [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] и [//translatewiki.net translatewiki.net], ако желаете да допринесете за общата локализация на софтуера МедияУики.",
     "allmessagesnotsupportedDB": "Тази страница не може да бъде използвана, тъй като е изключена възможността '''$wgUseDatabaseMessages'''.",
     "allmessages-filter-legend": "Филтър",
     "allmessages-filter": "Филтриране по ниво на персонализация:",

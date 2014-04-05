@@ -1455,7 +1455,7 @@
     "allmessagesname": "Namme",
     "allmessagesdefault": "Standerttekst",
     "allmessagescurrent": "Tekst yn de nijste ferzje",
-    "allmessagestext": "Dit is in list fan alle systeemberjochten beskikber yn de MediaWiki-nammeromte.\nSjoch: [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [//translatewiki.net translatewiki.net].",
+    "allmessagestext": "Dit is in list fan alle systeemberjochten beskikber yn de MediaWiki-nammeromte.\nSjoch: [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation], [//translatewiki.net translatewiki.net].",
     "thumbnail-more": "Fergrutsje",
     "filemissing": "Triem net fûn",
     "thumbnail_error": "Flater by it oanmeitsjen fan thumbnail: $1",

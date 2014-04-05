@@ -2021,7 +2021,7 @@
     "allmessagesname": "Naam",
     "allmessagesdefault": "Default text",
     "allmessagescurrent": "Abhi ke text",
-    "allmessagestext": "Ii ek system sandes ke suchi hai jon ki MediaWiki namespace me pawa jaae sake hai.\nAgar aap generic MediaWiki localisation ke yogdaan de mangtaa hai tab meharbani kar ke [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] aur [//translatewiki.net translatewiki.net]  pe jao.",
+    "allmessagestext": "Ii ek system sandes ke suchi hai jon ki MediaWiki namespace me pawa jaae sake hai.\nAgar aap generic MediaWiki localisation ke yogdaan de mangtaa hai tab meharbani kar ke [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] aur [//translatewiki.net translatewiki.net]  pe jao.",
     "allmessagesnotsupportedDB": "Ii panna ke kaam me nai lawa jaae sake hai kahe ki '''$wgUseDatabaseMessages''' ke band kar dewa gais hai.",
     "allmessages-filter-legend": "Chaalo",
     "allmessages-filter": "Customisation state se chhaano",

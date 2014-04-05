@@ -1885,7 +1885,7 @@
     "allmessagesname": "Ngaran",
     "allmessagesdefault": "Naskah baku pasan",
     "allmessagescurrent": "Naskah pasan wayahini.",
-    "allmessagestext": "Ngini adalah sabuah daptar pasan sistem tasadia dalam ruang-ngaran MediaWiki.\nMuhun ilangi [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] wan [//translatewiki.net translatewiki.net] amun Pian hakun manyumbang palukalan umum MediaWiki.",
+    "allmessagestext": "Ngini adalah sabuah daptar pasan sistem tasadia dalam ruang-ngaran MediaWiki.\nMuhun ilangi [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] wan [//translatewiki.net translatewiki.net] amun Pian hakun manyumbang palukalan umum MediaWiki.",
     "allmessagesnotsupportedDB": "Tungkaran ngini kada kawa dipuruk karana '''$wgUseDatabaseMessages''' sudah dipajahakan.",
     "allmessages-filter-legend": "Saringan",
     "allmessages-filter": "Saringan lawan kaadaan kustom:",

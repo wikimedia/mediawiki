@@ -1994,7 +1994,7 @@
     "allmessagesname": "Naziv",
     "allmessagesdefault": "Uobičajeni tekst",
     "allmessagescurrent": "Trenutni tekst",
-    "allmessagestext": "Ovo je spisak svih sistemskih poruka u dostupnih u MediaWiki imenskom prostoru.\nMolimo posjetite [https://www.mediawiki.org/wiki/Localisation MediaWiki lokalizaciju] i [//translatewiki.net translatewiki.net] ako želite doprinijeti općoj lokalizaciji MediaWikija.",
+    "allmessagestext": "Ovo je spisak svih sistemskih poruka u dostupnih u MediaWiki imenskom prostoru.\nMolimo posjetite [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki lokalizaciju] i [//translatewiki.net translatewiki.net] ako želite doprinijeti općoj lokalizaciji MediaWikija.",
     "allmessagesnotsupportedDB": "Ova stranica ne može biti korištena jer je '''$wgUseDatabaseMessages''' isključen.",
     "allmessages-filter-legend": "Filter",
     "allmessages-filter": "Filter po stanju podešavanja:",

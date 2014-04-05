@@ -1987,7 +1987,7 @@
     "allmessagesname": "آد",
     "allmessagesdefault": "دفالت دانیشیق متنی",
     "allmessagescurrent": "ایندیکی متن",
-    "allmessagestext": "بو مئدیا ویکی-ده اولان سیستئم مئساژلارینین سیاهی‌سی‌دیر. اگر مئدیا ویکی-نی لوکاللاش‌دیرماق ایشینده کؤمک ائتمک ایسییرسینیزسه، لطفاً [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] و [//translatewiki.net translatewiki.net]-ا باش چکین.",
+    "allmessagestext": "بو مئدیا ویکی-ده اولان سیستئم مئساژلارینین سیاهی‌سی‌دیر. اگر مئدیا ویکی-نی لوکاللاش‌دیرماق ایشینده کؤمک ائتمک ایسییرسینیزسه، لطفاً [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] و [//translatewiki.net translatewiki.net]-ا باش چکین.",
     "allmessagesnotsupportedDB": "'''$ wgUseDatabaseMessages''' باغ‌لی اولدوغو اوچون '{{ns:special}}: Allmessages ایستیفاده‌یه آچیق دئییل.",
     "allmessages-filter-legend": "سۆزگَج",
     "allmessages-filter": "خصوصی ائتمک وضعیتینه گؤره فیلترلی:",

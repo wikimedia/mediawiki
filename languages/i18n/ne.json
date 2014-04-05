@@ -1853,7 +1853,7 @@
     "allmessagesname": "नाम",
     "allmessagesdefault": "डिफल्ट सन्देश पाठ",
     "allmessagescurrent": "वर्तमान सन्देश पाठ",
-    "allmessagestext": "यो मीडियाविकि नेमस्पेसमा पाइने सिस्टम सन्देशहरूको सूची हो।\nयदि तपाईं व्यापक मीडिया विकि स्थानीयकरणमा योगदान गर्न चाहनुहुन्छ भनें कृपया [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]मा र [//translatewiki.net translatewiki.net]मा जानुहोस्।",
+    "allmessagestext": "यो मीडियाविकि नेमस्पेसमा पाइने सिस्टम सन्देशहरूको सूची हो।\nयदि तपाईं व्यापक मीडिया विकि स्थानीयकरणमा योगदान गर्न चाहनुहुन्छ भनें कृपया [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation]मा र [//translatewiki.net translatewiki.net]मा जानुहोस्।",
     "allmessages-filter-legend": "फिल्टर",
     "allmessages-filter-unmodified": "असंशोधित",
     "allmessages-filter-all": "सबै",

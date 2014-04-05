@@ -1,6 +1,9 @@
 {
     "@metadata": {
-        "authors": []
+        "authors": [
+            "GaiJin",
+            "Kaztrans"
+        ]
     },
     "tog-underline": "سىلتەمەنىڭ استىن سىز:",
     "tog-hideminor": "جۋىقتاعى وزگەرىستەردەن شاعىن وڭدەمەلەردى جاسىر",
@@ -1257,7 +1260,7 @@
     "allmessagesname": "اتاۋى",
     "allmessagesdefault": "ادەپكى ٴماتىنى",
     "allmessagescurrent": "اعىمدىق ٴماتىنى",
-    "allmessagestext": "مىندا {{ns:mediawiki}} ەسىم اياسىندا جەتىمدى جۇيە حابار ٴتىزىمى بەرىلەدى.\nەگەر امبەباپ MediaWiki جەرسىندىرۋگە ۇلەس قوسقىڭىز كەلسە [https://www.mediawiki.org/wiki/Localisation MediaWiki جەرسىندىرۋ بەتىنە] جانە [//translatewiki.net translatewiki.net جوباسىنا] بارىپ شىعىڭىز.",
+    "allmessagestext": "مىندا {{ns:mediawiki}} ەسىم اياسىندا جەتىمدى جۇيە حابار ٴتىزىمى بەرىلەدى.\nەگەر امبەباپ MediaWiki جەرسىندىرۋگە ۇلەس قوسقىڭىز كەلسە [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki جەرسىندىرۋ بەتىنە] جانە [//translatewiki.net translatewiki.net جوباسىنا] بارىپ شىعىڭىز.",
     "allmessagesnotsupportedDB": "'''$wgUseDatabaseMessages''' وشىرىلگەن سەبەبىنەن '''{{ns:special}}:AllMessages''' بەتى قولدانىلمايدى.",
     "thumbnail-more": "ۇلكەيتۋ",
     "filemissing": "جوعالعان فايل",

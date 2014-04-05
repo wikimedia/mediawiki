@@ -1683,7 +1683,7 @@
     "allmessagesname": "Nomu",
     "allmessagesdefault": "Testu pridifinitu",
     "allmessagescurrent": "Testu attuali",
-    "allmessagestext": "Chista è na lista di missaggi di sistema chi s'attròvanu sutta MediaWiki:''nomu''.\nVisita [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//translatewiki.net translatewiki.net] si voi cuntribbuiri â localizzazioni generica di MediaWiki.",
+    "allmessagestext": "Chista è na lista di missaggi di sistema chi s'attròvanu sutta MediaWiki:''nomu''.\nVisita [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] e [//translatewiki.net translatewiki.net] si voi cuntribbuiri â localizzazioni generica di MediaWiki.",
     "allmessagesnotsupportedDB": "'''{{ns:special}}:Allmessages''' nun è suppurtatu pirchì lu flag '''$wgUseDatabaseMessages''' nun è attivu.",
     "allmessages-filter-legend": "Filtru",
     "allmessages-filter": "Filtru pi statu di canciamentu:",

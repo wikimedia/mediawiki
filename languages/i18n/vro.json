@@ -1290,7 +1290,7 @@
     "allmessagesname": "Nimi",
     "allmessagesdefault": "Vaikimiisi tekst",
     "allmessagescurrent": "Parhillanõ tekst",
-    "allmessagestext": "Taan nimekirän ommaq kõik MediaWiki nimeruumi tallitusteedüseq.\nPlease visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.",
+    "allmessagestext": "Taan nimekirän ommaq kõik MediaWiki nimeruumi tallitusteedüseq.\nPlease visit [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.",
     "allmessagesnotsupportedDB": "Taad lehte saa-i pruukiq, selle et '''$wgUseDatabaseMessages'''-säädmine om välän.",
     "thumbnail-more": "Suurõndaq",
     "filemissing": "Olõ-i teedüstüt",

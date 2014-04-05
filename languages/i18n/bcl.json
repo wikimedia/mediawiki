@@ -2054,7 +2054,7 @@
     "allmessagesname": "Pangaran",
     "allmessagesdefault": "Panugmad na tekstong mensahe",
     "allmessagescurrent": "Presenteng teksto",
-    "allmessagestext": "Ini sarong listahan nin pansistemang mga mensahe na mananagboan sa espasyong-pangaran kan MediaWiki.\nPakibisita an [https://www.mediawiki.org/wiki/Localisation Mediawiki Lokalisasyon] asin [//translatewiki.net translatewiki.net] kun boot mong mag-ambag sa henerikong lokalisasyon kan MediaWiki.",
+    "allmessagestext": "Ini sarong listahan nin pansistemang mga mensahe na mananagboan sa espasyong-pangaran kan MediaWiki.\nPakibisita an [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Mediawiki Lokalisasyon] asin [//translatewiki.net translatewiki.net] kun boot mong mag-ambag sa henerikong lokalisasyon kan MediaWiki.",
     "allmessagesnotsupportedDB": "Dai pwedeng gamiton an '''{{ns:special}}:Allmessages''' ta sarado an '''$wgUseDatabaseMessages'''.",
     "allmessages-filter-legend": "An Pansara",
     "allmessages-filter": "Pansara sa paagi kan estado nin kustomisasyon:",

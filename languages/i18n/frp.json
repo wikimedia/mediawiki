@@ -1981,7 +1981,7 @@
     "allmessagesname": "Nom du mèssâjo",
     "allmessagesdefault": "Mèssâjo per dèfôt",
     "allmessagescurrent": "Tèxto d’ora",
-    "allmessagestext": "O est la lista des mèssâjos sistèmo disponiblos dens l’èspâço MediaWiki.\nVolyéd visitar la [https://www.mediawiki.org/wiki/Localisation localisacion de MediaWiki] et pués [//translatewiki.net translatewiki.net] se vos voléd contribuar a la localisacion g·ènèrica de MediaWiki.",
+    "allmessagestext": "O est la lista des mèssâjos sistèmo disponiblos dens l’èspâço MediaWiki.\nVolyéd visitar la [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation localisacion de MediaWiki] et pués [//translatewiki.net translatewiki.net] se vos voléd contribuar a la localisacion g·ènèrica de MediaWiki.",
     "allmessagesnotsupportedDB": "Ceta pâge '''{{ns:special}}:Allmessages''' est inutilisâbla perce que '''$wgUseDatabaseMessages''' at étâ dèsactivâ.",
     "allmessages-filter-legend": "Filtro",
     "allmessages-filter": "Filtrar per ètat de changement :",

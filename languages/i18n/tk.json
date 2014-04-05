@@ -1705,7 +1705,7 @@
     "allmessagesname": "At",
     "allmessagesdefault": "Gaýybana habarlaşyk teksti",
     "allmessagescurrent": "Häzirki habarlaşyk teksti",
-    "allmessagestext": "Bu sanaw MediaWiki at giňişliginde bar bolan ulgam habarlaşyklarynyň sanawydyr.\nUmumy MediaWiki lokalizasiýasyna goşan goşmak isleýän bolsaňyz, [https://www.mediawiki.org/wiki/Localisation MediaWiki lokalizasiýasy] we [//translatewiki.net translatewiki.net] sahypalaryna baryp görmegiňizi haýyş edýäris.",
+    "allmessagestext": "Bu sanaw MediaWiki at giňişliginde bar bolan ulgam habarlaşyklarynyň sanawydyr.\nUmumy MediaWiki lokalizasiýasyna goşan goşmak isleýän bolsaňyz, [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki lokalizasiýasy] we [//translatewiki.net translatewiki.net] sahypalaryna baryp görmegiňizi haýyş edýäris.",
     "allmessagesnotsupportedDB": "'''$wgUseDatabaseMessages''' ýapykdygy zerarly bu sahypany ulanyp bolmaýar.",
     "allmessages-filter-legend": "Filtr",
     "allmessages-filter": "Üýtgediş statusy boýunça filtr:",

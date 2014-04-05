@@ -1959,7 +1959,7 @@
     "allmessagesname": "num",
     "allmessagesdefault": "text original",
     "allmessagescurrent": "text actual",
-    "allmessagestext": "Quai è ina glista da tut ils messadis dals differents tips da paginas da MediaWiki che vegnan utilisadas da la software MediaWiki.\nFai ina visita sin [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//translatewiki.net translatewiki.net] sche ti vuls gidar da translatar la software MediaWiki.",
+    "allmessagestext": "Quai è ina glista da tut ils messadis dals differents tips da paginas da MediaWiki che vegnan utilisadas da la software MediaWiki.\nFai ina visita sin [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] e [//translatewiki.net translatewiki.net] sche ti vuls gidar da translatar la software MediaWiki.",
     "allmessagesnotsupportedDB": "Questa pagina na po betg vegnir mussada, perquai che '''$wgUseDatabaseMessages''' è vegnì deactivà.",
     "allmessages-filter-legend": "Filtrar",
     "allmessages-filter": "Filtrar tenor standi da modificaziun:",

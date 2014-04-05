@@ -1354,7 +1354,7 @@
     "allmessagesname": "Yolt",
     "allmessagesdefault": "Omavaf krent",
     "allmessagescurrent": "Noelaf krent",
-    "allmessagestext": "Batcoba tir vexala dem bolkstakseem koe MediaWiki yoltxo.\n\nVa [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] is [//translatewiki.net translatewiki.net] vay woral ede va tulizukara va Mediawiki co-rowebel.",
+    "allmessagestext": "Batcoba tir vexala dem bolkstakseem koe MediaWiki yoltxo.\n\nVa [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] is [//translatewiki.net translatewiki.net] vay woral ede va tulizukara va Mediawiki co-rowebel.",
     "allmessagesnotsupportedDB": "Batu bu me zo rofaver kire '''$wgUseDatabaseMessages''' mea tir tegis.",
     "thumbnail-more": "Tulogijara",
     "filemissing": "Gracaf iyeltak",

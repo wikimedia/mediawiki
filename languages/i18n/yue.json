@@ -1760,7 +1760,7 @@
     "allmessagesname": "名稱",
     "allmessagesdefault": "預設訊息文字",
     "allmessagescurrent": "現時訊息文字",
-    "allmessagestext": "以下係 MediaWiki 空間名入邊現有系統信息嘅清單。\n如果想貢獻正宗嘅MediaWiki本地化嘅話，請參閱[https://www.mediawiki.org/wiki/Localisation MediaWiki本地化]同埋[//translatewiki.net translatewiki.net]。",
+    "allmessagestext": "以下係 MediaWiki 空間名入邊現有系統信息嘅清單。\n如果想貢獻正宗嘅MediaWiki本地化嘅話，請參閱[https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki本地化]同埋[//translatewiki.net translatewiki.net]。",
     "allmessagesnotsupportedDB": "呢一版唔可以用，因為'''$wgUseDatabaseMessages'''已經閂咗。",
     "allmessages-filter-legend": "過濾",
     "allmessages-filter": "以自定狀況過濾：",

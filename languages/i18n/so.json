@@ -986,7 +986,7 @@
     "allmessagesname": "Magac",
     "allmessagesdefault": "Qoraalka la'isku ogyahay",
     "allmessagescurrent": "Qoraalka hada qoran",
-    "allmessagestext": "Kan waa liiska fariimaha systemka oo laga heli karo xarun magaceedka MediaWiki.\nFadlan booqo [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] iyo [//translatewiki.net translatewiki.net] hadii aad rabto in aad wax ku darsatid guud ahaanba MediaWiki ku fasirida luqadaada.",
+    "allmessagestext": "Kan waa liiska fariimaha systemka oo laga heli karo xarun magaceedka MediaWiki.\nFadlan booqo [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] iyo [//translatewiki.net translatewiki.net] hadii aad rabto in aad wax ku darsatid guud ahaanba MediaWiki ku fasirida luqadaada.",
     "allmessagesnotsupportedDB": "'''{{ns:special}}:Allmessages''' la'ma isticmaalikaro, '''$wgUseDatabaseMessages''' oo dansan daraadeed.",
     "allmessages-language": "Luqad:",
     "allmessages-filter-submit": "Soco",

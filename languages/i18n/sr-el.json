@@ -2016,7 +2016,7 @@
     "allmessagesname": "Naziv",
     "allmessagesdefault": "Podrazumevani tekst",
     "allmessagescurrent": "Trenutni tekst poruke",
-    "allmessagestext": "Ovo je spisak svih sistemskih poruka koje su dostupne u imenskom prostoru „Medijaviki“.\nPosetite [https://www.mediawiki.org/wiki/Localisation Medijaviki lokalizaciju] i [//translatewiki.net Translejtviki] ako želite da pomognete u prevođenju.",
+    "allmessagestext": "Ovo je spisak svih sistemskih poruka koje su dostupne u imenskom prostoru „Medijaviki“.\nPosetite [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Medijaviki lokalizaciju] i [//translatewiki.net Translejtviki] ako želite da pomognete u prevođenju.",
     "allmessagesnotsupportedDB": "Ova stranica ne može da se koristi jer je '''$wgUseDatabaseMessages''' onemogućen.",
     "allmessages-filter-legend": "Filter",
     "allmessages-filter": "Filtriraj po stanju:",

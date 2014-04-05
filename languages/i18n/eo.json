@@ -2081,7 +2081,7 @@
     "allmessagesname": "Nomo",
     "allmessagesdefault": "Defaŭlta teksto",
     "allmessagescurrent": "Nuna teksto",
-    "allmessagestext": "Ĉi tio estas listo de ĉiuj mesaĝoj haveblaj en la MediaWiki-nomspaco.\nBonvolu aliri [https://www.mediawiki.org/wiki/Localisation MediaWiki-Asimilado] kaj [//translatewiki.net translatewiki.net]\nse vi volus kontribui al la komuna MediaWiki-asimilado.",
+    "allmessagestext": "Ĉi tio estas listo de ĉiuj mesaĝoj haveblaj en la MediaWiki-nomspaco.\nBonvolu aliri [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki-Asimilado] kaj [//translatewiki.net translatewiki.net]\nse vi volus kontribui al la komuna MediaWiki-asimilado.",
     "allmessagesnotsupportedDB": "{{ns:special}}:Allmessages ne subtenata ĉar la variablo wgUseDatabaseMessages estas malkonektita.",
     "allmessages-filter-legend": "Filtri",
     "allmessages-filter": "Filtri laŭ ŝanĝada stato",

@@ -1880,7 +1880,7 @@
     "allmessagesname": "Naam",
     "allmessagesdefault": "Obligaten teks",
     "allmessagescurrent": "Hujige teks",
-    "allmessagestext": "Dit is 'n lies van alle systeemberichte besjikbaar in de MediaWiki-naamruumde.\nBezeuk [https://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisatie] en [//translatewiki.net translatewiki.net] es doe wils biedrage aon lokalisatie.",
+    "allmessagestext": "Dit is 'n lies van alle systeemberichte besjikbaar in de MediaWiki-naamruumde.\nBezeuk [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki-lokalisatie] en [//translatewiki.net translatewiki.net] es doe wils biedrage aon lokalisatie.",
     "allmessagesnotsupportedDB": "Deze pagina kan neet gebroek waere omdet '''$wgUseDatabaseMessages''' oet steit.",
     "allmessages-filter-legend": "Filter",
     "allmessages-filter": "Filter óp aangepas:",

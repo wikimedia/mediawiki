@@ -1707,7 +1707,7 @@
     "allmessagesname": "اسم",
     "allmessagesdefault": "النص الاوتوماتيكي",
     "allmessagescurrent": "النص دلوقتى",
-    "allmessagestext": "دى لستة برسايل النظام المتوفرة فى نطاق ميدياويكي.\nلو سمحت تزور[https://www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [//translatewiki.net بيتاويكي] لو كنت عايز تساهم فى ترجمة ميدياويكى الاصلية.",
+    "allmessagestext": "دى لستة برسايل النظام المتوفرة فى نطاق ميدياويكي.\nلو سمحت تزور[https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation ترجمة ميدياويكي] و [//translatewiki.net بيتاويكي] لو كنت عايز تساهم فى ترجمة ميدياويكى الاصلية.",
     "allmessagesnotsupportedDB": "الصفحة دى مش يمكن حد يستعملها علشان'''$wgUseDatabaseMessages''' متعطل.",
     "allmessages-filter-legend": "فيلتر",
     "allmessages-filter": "فلتره بحالة التهيئه:",

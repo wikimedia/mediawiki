@@ -1,6 +1,10 @@
 {
     "@metadata": {
-        "authors": []
+        "authors": [
+            "Atabek",
+            "GaiJin",
+            "Kaztrans"
+        ]
     },
     "tog-underline": "Siltemeniñ astın sız:",
     "tog-hideminor": "Jwıqtağı özgeristerden şağın öñdemelerdi jasır",
@@ -1258,7 +1262,7 @@
     "allmessagesname": "Atawı",
     "allmessagesdefault": "Ädepki mätini",
     "allmessagescurrent": "Ağımdıq mätini",
-    "allmessagestext": "Mında {{ns:mediawiki}} esim ayasında jetimdi jüýe xabar tizimi beriledi.\nEger ämbebap MediaWiki jersindirwge üles qosqıñız kelse [https://www.mediawiki.org/wiki/Localisation MediaWiki jersindirw betine] jäne [//translatewiki.net translatewiki.net jobasına] barıp şığıñız.",
+    "allmessagestext": "Mında {{ns:mediawiki}} esim ayasında jetimdi jüýe xabar tizimi beriledi.\nEger ämbebap MediaWiki jersindirwge üles qosqıñız kelse [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki jersindirw betine] jäne [//translatewiki.net translatewiki.net jobasına] barıp şığıñız.",
     "allmessagesnotsupportedDB": "'''$wgUseDatabaseMessages''' öşirilgen sebebinen '''{{ns:special}}:AllMessages''' beti qoldanılmaýdı.",
     "thumbnail-more": "Ülkeýtw",
     "filemissing": "Joğalğan faýl",
