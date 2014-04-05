@@ -1088,7 +1088,6 @@ return array(
 	'mediawiki.page.startup' => array(
 		'scripts' => 'resources/mediawiki.page/mediawiki.page.startup.js',
 		'dependencies' => array(
-			'jquery.client',
 			'mediawiki.util',
 		),
 		'position' => 'top',
