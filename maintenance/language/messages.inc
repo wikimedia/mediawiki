@@ -1031,7 +1031,6 @@ $wgMessageStructure = array(
 		'prefs-skin',
 		'skin-preview',
 		'datedefault',
-		'prefs-beta',
 		'prefs-datetime',
 		'prefs-labs',
 		'prefs-user-pages',
