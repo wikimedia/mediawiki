@@ -243,7 +243,10 @@ class LBFactorySimple extends LBFactory {
 			global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype, $wgDebugDumpSql;
 			global $wgDBssl, $wgDBcompress;
 
-			$flags = ( $wgDebugDumpSql ? DBO_DEBUG : 0 ) | DBO_DEFAULT;
+			$flags = DBO_DEFAULT;
+			if ( $wgDebugDumpSql ) {
+				$flags |= DBO_DEBUG;
+			}
 			if ( $wgDBssl ) {
 				$flags |= DBO_SSL;
 			}
