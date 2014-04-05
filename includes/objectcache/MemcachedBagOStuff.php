@@ -168,9 +168,6 @@ class MemcachedBagOStuff extends BagOStuff {
 	 * Send a debug message to the log
 	 */
 	protected function debugLog( $text ) {
-		if ( substr( $text, -1 ) !== "\n" ) {
-			$text .= "\n";
-		}
 		wfDebugLog( 'memcached', $text );
 	}
 }
