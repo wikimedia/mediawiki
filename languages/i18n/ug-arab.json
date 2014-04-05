@@ -2040,7 +2040,7 @@
     "allmessagesname": "ئاتى",
     "allmessagesdefault": "كۆڭۈلدىكى ئۇچۇر تېكستى",
     "allmessagescurrent": "نۆۋەتتىكى ئۇچۇر تېكستى",
-    "allmessagestext": "بۇ جايدا تەڭشىگىلى بولىدىغان ھەممە سىستېما كۆرۈنۈش ئۇچۇرلىرى كۆرسىتىلدى.\nئەگەر ھەقىقىي يەرلەشتۈرۈلگەن MediaWiki غا تۆھپە قوشماقچى بولسىڭىز[https://www.mediawiki.org/wiki/Localisation MediaWiki يەرلىكلەشتۈرۈش] ۋە [//translatewiki.net translatewiki.net] نى زىيارەت قىلىڭ.",
+    "allmessagestext": "بۇ جايدا تەڭشىگىلى بولىدىغان ھەممە سىستېما كۆرۈنۈش ئۇچۇرلىرى كۆرسىتىلدى.\nئەگەر ھەقىقىي يەرلەشتۈرۈلگەن MediaWiki غا تۆھپە قوشماقچى بولسىڭىز[https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki يەرلىكلەشتۈرۈش] ۋە [//translatewiki.net translatewiki.net] نى زىيارەت قىلىڭ.",
     "allmessagesnotsupportedDB": "بۇ بەتنى ئىشلەتكىلى بولمايدۇ، سەۋەبى '''$wgUseDatabaseMessages''' چەكلەنگەن.",
     "allmessages-filter-legend": "سۈزگۈچ",
     "allmessages-filter": "ئىختىيارىچە سۈزگۈچ ھالىتى:",

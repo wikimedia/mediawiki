@@ -1539,7 +1539,7 @@
     "allmessagesname": "Лем",
     "allmessagesdefault": "Апак полафтт текст",
     "allmessagescurrent": "Тяниень текст",
-    "allmessagestext": "Тя MediaWiki-са васьфневи системонь пачфтематнень лувомась.\nЭняльттяма, сувак [https://www.mediawiki.org/wiki/Localisation MediaWiki Локализациес] ди [//translatewiki.net translatewiki.net-с] кда тонь мяльце тиемс эсь путксце марстонь MediaWiki локализациес.",
+    "allmessagestext": "Тя MediaWiki-са васьфневи системонь пачфтематнень лувомась.\nЭняльттяма, сувак [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Локализациес] ди [//translatewiki.net translatewiki.net-с] кда тонь мяльце тиемс эсь путксце марстонь MediaWiki локализациес.",
     "allmessagesnotsupportedDB": "Тя лопас аш кода кунцемс сяс мес '''$wgUseDatabaseMessages'''лоткафоль.",
     "allmessages-language": "Кяль:",
     "allmessages-filter-submit": "Ётамс",

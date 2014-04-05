@@ -2014,7 +2014,7 @@
     "allmessagesname": "Pavadinimas",
     "allmessagesdefault": "Pradinis tekstas",
     "allmessagescurrent": "Dabartinis tekstas",
-    "allmessagestext": "Čia pateikiamas sisteminių pranešimų sąrašas, esančių MediaWiki vardų srityje.\nAplankykite [https://www.mediawiki.org/wiki/Localisation „MediaWiki“ lokaliziciją] ir [//translatewiki.net „translatewiki.net“], jei norite prisidėti prie bendrojo „MediaWiki“ lokalizavimo.",
+    "allmessagestext": "Čia pateikiamas sisteminių pranešimų sąrašas, esančių MediaWiki vardų srityje.\nAplankykite [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation „MediaWiki“ lokaliziciją] ir [//translatewiki.net „translatewiki.net“], jei norite prisidėti prie bendrojo „MediaWiki“ lokalizavimo.",
     "allmessagesnotsupportedDB": "Šis puslapis nepalaikomas, nes nuostata '''$wgUseDatabaseMessages''' yra išjungtas.",
     "allmessages-filter-legend": "Filtras",
     "allmessages-filter": "Filtruoti pagal būseną:",

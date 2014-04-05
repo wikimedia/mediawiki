@@ -1212,7 +1212,7 @@
     "allmessagesname": "Исим",
     "allmessagesdefault": "Оригиналь метин",
     "allmessagescurrent": "Шимди къулланылгъан метин",
-    "allmessagestext": "Ишбу джедвель MediaWiki-де мевджут олгъан бутюн система беянатларынынъ джедвелидир.\nMediaWiki интерфейсининъ чешит тиллерге терджиме этювде иштирак этмеге истесенъиз [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ве [//translatewiki.net translatewiki.net] саифелерине зиярет этинъиз.",
+    "allmessagestext": "Ишбу джедвель MediaWiki-де мевджут олгъан бутюн система беянатларынынъ джедвелидир.\nMediaWiki интерфейсининъ чешит тиллерге терджиме этювде иштирак этмеге истесенъиз [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] ве [//translatewiki.net translatewiki.net] саифелерине зиярет этинъиз.",
     "thumbnail-more": "Буют",
     "filemissing": "Файл тапылмады",
     "thumbnail_error": "Кичик ресим (thumbnail) яратылгъанда бир хата чыкъты: $1",

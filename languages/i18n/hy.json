@@ -1564,7 +1564,7 @@
     "allmessagesname": "Անուն",
     "allmessagesdefault": "Ուղերձի լռելյայն տեքստ",
     "allmessagescurrent": "Ընթացիկ տեքստ",
-    "allmessagestext": "Ստորև բերված է «MediaWiki» անվանատարածքի բոլոր համակարգային ուղերձների ցանկը։\nPlease visit [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.",
+    "allmessagestext": "Ստորև բերված է «MediaWiki» անվանատարածքի բոլոր համակարգային ուղերձների ցանկը։\nPlease visit [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.",
     "allmessagesnotsupportedDB": "Այս էջը չի գործում, քանի որ '''$wgUseDatabaseMessages''' հատկանիշը անջատված է։",
     "allmessages-filter-all": "Բոլորը",
     "allmessages-language": "Լեզու",

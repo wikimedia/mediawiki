@@ -1994,7 +1994,7 @@
     "allmessagesname": "නම",
     "allmessagesdefault": "සාමාන්‍ය පණිවුඩ පෙළ",
     "allmessagescurrent": "වත්මන් පෙළ",
-    "allmessagestext": "මේ මාධ්‍යවිකි නාමඅවකාශයෙහිදී  හමුවන පද්ධති පණිවුඩයන් ලැයිස්තුවකි.\nවර්ගීය මාධ්‍යවිකි ප්‍රාදේශීයකරණයට දායක වීමට ඔබ රිසි නම් කරුණාකර [https://www.mediawiki.org/wiki/Localisation මාධ්‍යවිකි ප්‍රාදේශීයකරණය]  සහ [//translatewiki.net බීටාවිකි] වෙත පිවිසෙන්න.",
+    "allmessagestext": "මේ මාධ්‍යවිකි නාමඅවකාශයෙහිදී  හමුවන පද්ධති පණිවුඩයන් ලැයිස්තුවකි.\nවර්ගීය මාධ්‍යවිකි ප්‍රාදේශීයකරණයට දායක වීමට ඔබ රිසි නම් කරුණාකර [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation මාධ්‍යවිකි ප්‍රාදේශීයකරණය]  සහ [//translatewiki.net බීටාවිකි] වෙත පිවිසෙන්න.",
     "allmessagesnotsupportedDB": "'''$wgUseDatabaseMessages''' අක්‍රීය කොට ඇති බැවින්, මෙම පිටුව භාවිතා කල නොහැක.",
     "allmessages-filter-legend": "පෙරහන",
     "allmessages-filter": "පාරිභෝගීකරණ තත්ත්වය අනුව පෙරීම:",

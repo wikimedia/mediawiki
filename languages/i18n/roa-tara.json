@@ -2058,7 +2058,7 @@
     "allmessagesname": "Nome",
     "allmessagesdefault": "Teste de default",
     "allmessagescurrent": "Teste corrende",
-    "allmessagestext": "Queste jè 'na liste de tutte le messagge d'u sisteme ca se ponne acchià jndr'à le namespace de MediaUicchi.\nPe piacere vè vide [https://www.mediawiki.org/wiki/Localisation Localizzazione de MediaUicchi] e [//translatewiki.net translatewiki.net] ce tu vuè ccu condrebbuisce a 'a localizzazione de MediaUicchi.",
+    "allmessagestext": "Queste jè 'na liste de tutte le messagge d'u sisteme ca se ponne acchià jndr'à le namespace de MediaUicchi.\nPe piacere vè vide [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Localizzazione de MediaUicchi] e [//translatewiki.net translatewiki.net] ce tu vuè ccu condrebbuisce a 'a localizzazione de MediaUicchi.",
     "allmessagesnotsupportedDB": "Sta pàgene non ge pò essere ausate purcè '''$wgUseDatabaseMessages''' ha state disabbilitate.",
     "allmessages-filter-legend": "Filtre",
     "allmessages-filter": "Filtre cu 'nu state personalizzate:",

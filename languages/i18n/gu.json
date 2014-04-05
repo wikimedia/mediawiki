@@ -2031,7 +2031,7 @@
     "allmessagesname": "નામ",
     "allmessagesdefault": "મૂળ સંદેશ",
     "allmessagescurrent": "વર્તમાન દસ્તાવેજ",
-    "allmessagestext": "આ મિડિયાવિકિ નામસ્થળમાં આવેલ પ્રણાલીજનિત સંદેશાની યાદી આ મુજબ છે.\nજો તમે મિડિયાયાવિકિના સ્થાનીયકરણમાં મદદરૂપ થવા ઇચ્છતા હોવ તો કૃપયા [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] અને [//translatewiki.net translatewiki.net]ની મુલાકાત લો.",
+    "allmessagestext": "આ મિડિયાવિકિ નામસ્થળમાં આવેલ પ્રણાલીજનિત સંદેશાની યાદી આ મુજબ છે.\nજો તમે મિડિયાયાવિકિના સ્થાનીયકરણમાં મદદરૂપ થવા ઇચ્છતા હોવ તો કૃપયા [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] અને [//translatewiki.net translatewiki.net]ની મુલાકાત લો.",
     "allmessagesnotsupportedDB": "આ પાનું ન વાપરી શકાશે કેમકે '''$wgUseDatabaseMessages'''  નિષ્ક્રીય કરાયું છે",
     "allmessages-filter-legend": "ચાળણી",
     "allmessages-filter": "સ્થાનીયકરણ સ્થિતિ દ્વારા ચાળો",

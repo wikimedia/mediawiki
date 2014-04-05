@@ -1401,7 +1401,7 @@
     "allmessagesname": "Ном",
     "allmessagesdefault": "Матни қарордодӣ",
     "allmessagescurrent": "Матни кунунӣ",
-    "allmessagestext": "Ин феҳристи паёмҳои системавии дастрас дар фазои номи MediaWiki мебошад.\nАгар майли ҳиссагузорӣ карданро ба маҳалликунонии MediaWiki доред, пас лутан саҳифаҳои [https://www.mediawiki.org/wiki/Localisation Маҳалликунонии MediaWiki] ва [//translatewiki.net translatewiki.net] нигаред.",
+    "allmessagestext": "Ин феҳристи паёмҳои системавии дастрас дар фазои номи MediaWiki мебошад.\nАгар майли ҳиссагузорӣ карданро ба маҳалликунонии MediaWiki доред, пас лутан саҳифаҳои [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Маҳалликунонии MediaWiki] ва [//translatewiki.net translatewiki.net] нигаред.",
     "allmessagesnotsupportedDB": "Аз ин саҳифа наметавон истифода бурд, чун '''$wgUseDatabaseMessages''' ғайрифаъол гардонида шудааст.",
     "allmessages-filter-legend": "Филтр",
     "allmessages-filter-all": "Ҳама",

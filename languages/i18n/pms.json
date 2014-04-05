@@ -11,7 +11,8 @@
             "Teak",
             "The Evil IP address",
             "Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank",
-            "לערי ריינהארט"
+            "לערי ריינהארט",
+            "Shirayuki"
         ]
     },
     "tog-underline": "Anliure con la sotliniadura",
@@ -2106,7 +2107,7 @@
     "allmessagesname": "Nòm",
     "allmessagesdefault": "Test che a-i sarìa se a-i fusso pa 'd modìfiche",
     "allmessagescurrent": "Test corent",
-    "allmessagestext": "Costa-sì a l'é na lista dij mëssagi ëd sistema disponìbij ant lë spassi nominal MediaWiki.\nPër piasì, ch'a vìsita la [https://www.mediawiki.org/wiki/Localisation Localisassion ëd MediaWiki] e [//translatewiki.net translatewiki.net] se a veul contribuì a la localisassion general ëd MediaWiki.",
+    "allmessagestext": "Costa-sì a l'é na lista dij mëssagi ëd sistema disponìbij ant lë spassi nominal MediaWiki.\nPër piasì, ch'a vìsita la [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Localisassion ëd MediaWiki] e [//translatewiki.net translatewiki.net] se a veul contribuì a la localisassion general ëd MediaWiki.",
     "allmessagesnotsupportedDB": "Sta pàgina-sì a peul pa esse dovrà përchè '''$wgUseDatabaseMessages''' a l'é stàit disabilità.",
     "allmessages-filter-legend": "Filtr",
     "allmessages-filter": "Filtré për stat ëd përsonalisassion:",
@@ -2887,7 +2888,7 @@
     "version-entrypoints": "Anliure dij pont d'intrada",
     "version-entrypoints-header-entrypoint": "Pont d'intrada",
     "version-entrypoints-header-url": "Adrëssa an sl'aragnà",
-    "version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Senté d'artìcol]",
+    "version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath Senté d'artìcol]",
     "redirect": "Ridirigiù da archivi, utent, pàgina o ID ëd revision",
     "redirect-legend": "Ridirige a n'archivi o na pàgina",
     "redirect-summary": "Costa pàgina special a ponta a n'archivi (dàit ël nòm dl'archivi), na pàgina (dàit n'ID ëd revision o n'ID ëd pàgina) o na pàgina d'utent (dàit n'identificativ numérich a l'utent). Usagi: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/revision/328429]], o [[{{#Special:Redirect}}/user/101]].",

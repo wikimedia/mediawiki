@@ -1,6 +1,13 @@
 {
     "@metadata": {
-        "authors": []
+        "authors": [
+            "Geitost",
+            "Matma Rex",
+            "Purodha",
+            "Reedy",
+            "Rentenirer",
+            "לערי ריינהארט"
+        ]
     },
     "tog-underline": "Dun de Links ungerstriche:",
     "tog-hideminor": "Dun de klein Mini-Änderunge (<strong>M</strong>) en de Liss  met „{{int:Recentchanges}}“ <strong>nit</strong> aanzeije",
@@ -1867,6 +1874,7 @@
     "sp-contributions-newbies-sub": "För neu Metmaacher",
     "sp-contributions-newbies-title": "Neu Metmaacher ier Beidräsch",
     "sp-contributions-blocklog": "Logboch met Metmaacher-Sperre",
+    "sp-contributions-suppresslog": "verschtoche Beidrääch",
     "sp-contributions-deleted": "Fottjeschmesse Beidrääsch",
     "sp-contributions-uploads": "huhjelaade Dateie",
     "sp-contributions-logs": "Logböcher",
@@ -1875,7 +1883,6 @@
     "sp-contributions-blocked-notice": "Heh dä Metmaacher es em Momang jespert, Dä letzte Enndraach em Logbooch doh drövver kütt jez als ene Henwiiß:",
     "sp-contributions-blocked-notice-anon": "Heh di <i lang=\"en\">IP</i>-Address es em Momang jesperrt.\nDe neuste Sperr ier Enndraach em Logbooch es:",
     "sp-contributions-search": "Söök noh Metmaacher ier Beidräg",
-    "sp-contributions-suppresslog": "verschtoche Beidrääch",
     "sp-contributions-username": "Metmaachername odder IP-Address:",
     "sp-contributions-toponly": "Bloß neuste Versione zeije",
     "sp-contributions-newonly": "Blohß neu aanjelaate Sigge zeije.",
@@ -2092,7 +2099,7 @@
     "allmessagesname": "Name",
     "allmessagesdefault": "Dä standaadmäßije Tex",
     "allmessagescurrent": "Esu es dä Tex jetz",
-    "allmessagestext": "Heh kütt en Liss met Texte, Texstöck, un Nohreechte em Appachtemeng „MediaWiki“ — Do draan Ändere löht et Wiki anders ußsin, dat darf dröm nit Jede maache.\nWenn De jenerell aan [https://www.mediawiki.org/wiki/Localisation MediaWiki singe Översezung] jet anders han wells, do jangk noh [//translatewiki.net translatewiki.net].",
+    "allmessagestext": "Heh kütt en Liss met Texte, Texstöck, un Nohreechte em Appachtemeng „MediaWiki“ — Do draan Ändere löht et Wiki anders ußsin, dat darf dröm nit Jede maache.\nWenn De jenerell aan [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki singe Översezung] jet anders han wells, do jangk noh [//translatewiki.net translatewiki.net].",
     "allmessagesnotsupportedDB": "<strong>Dat wor nix!</strong> Mer künne „{{#special:allmessages}}“ nit zeije, <code>$wgUseDatabaseMessages</code> es usjeschalt!",
     "allmessages-filter-legend": "Ußsöhke — wat för en Täxte o Nohreeshte aazeije?",
     "allmessages-filter": "Zohshtand:",
@@ -2930,8 +2937,8 @@
     "version-entrypoints": "<i lang=\"en\" xml:lang=\"en\">URL</i>s för enzeschteije",
     "version-entrypoints-header-entrypoint": "Enschteesch",
     "version-entrypoints-header-url": "<i lang=\"en\">URL</i>",
-    "version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Der Pad noh de Atikele]",
-    "version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Der Pad noh de Skrepte]",
+    "version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath Der Pad noh de Atikele]",
+    "version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath Der Pad noh de Skrepte]",
     "redirect": "Ömleide op en Dattei, ene Metmaacher udder de Väsjohn vun ener Sigg",
     "redirect-legend": "Ömleide ob_en Dattei udder Sigg",
     "redirect-summary": "Heh di {{int:specialpage}} leidt öm ob_en Dattei — doh mößd_Er ene Nahme aanjävve, för e Beischpell:[[{{#Special:Redirect}}/file/Example.jpg]] — udder en Sigg — doh mößd_Er en Kännong för, udder en Väsjuhn aanjävve, för e Beischpell esu: [[{{#Special:Redirect}}/page/64308]] udder [[{{#Special:Redirect}}/revision/328429]] — udder en Metmaachersigg — doh mößd_Er enem Metmaacher sing Kännong aanjävve, för e Beischpell: [[{{#Special:Redirect}}/user/101]].",

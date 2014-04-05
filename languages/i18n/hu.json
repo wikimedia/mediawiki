@@ -2059,7 +2059,7 @@
     "allmessagesname": "Név",
     "allmessagesdefault": "Alapértelmezett szöveg",
     "allmessagescurrent": "Jelenlegi szöveg",
-    "allmessagestext": "Ezen a lapon a MediaWiki-névtérben elérhető rendszerüzenetek listája látható.\nHa részt szeretnél venni a MediaWiki fordításában, látogass el a [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], valamint a [//translatewiki.net translatewiki.net] oldalra.",
+    "allmessagestext": "Ezen a lapon a MediaWiki-névtérben elérhető rendszerüzenetek listája látható.\nHa részt szeretnél venni a MediaWiki fordításában, látogass el a [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation], valamint a [//translatewiki.net translatewiki.net] oldalra.",
     "allmessagesnotsupportedDB": "A '''''{{ns:special}}:Allmessages''''' lap nem használható, mert a '''$wgUseDatabaseMessages''' ki van kapcsolva.",
     "allmessages-filter-legend": "Elemek szűrése",
     "allmessages-filter": "Módosítás állapota:",

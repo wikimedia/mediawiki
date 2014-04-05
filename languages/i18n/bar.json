@@ -1054,7 +1054,7 @@
     "allmessagesname": "Nama:",
     "allmessagesdefault": "Standardtext",
     "allmessagescurrent": "Aktuella Text",
-    "allmessagestext": "Des is a Listen vo de MediaWiki-Systemtextt.\nBsuach bittschee de Saiten [https://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisiarung] und [//translatewiki.net translatewiki.net], wånn du de ån da Lokalisiarung vo MediaWiki betailing mechadst.",
+    "allmessagestext": "Des is a Listen vo de MediaWiki-Systemtextt.\nBsuach bittschee de Saiten [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki-Lokalisiarung] und [//translatewiki.net translatewiki.net], wånn du de ån da Lokalisiarung vo MediaWiki betailing mechadst.",
     "allmessagesnotsupportedDB": "'''Special:Allmessages''' is im Moment net möglich, wei de Datenbank offline is.",
     "thumbnail-more": "vagressan",
     "thumbnail_error": "Fehla ban Estejn vom Vorschaubuidl: $1",

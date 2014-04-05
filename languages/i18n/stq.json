@@ -1790,7 +1790,7 @@
     "allmessagesname": "Noome",
     "allmessagesdefault": "Standardtext",
     "allmessagescurrent": "Dissen Text",
-    "allmessagestext": "Dit is ne Lieste fon aal System-Ättergjuchte do in dän MediaWiki-Noomenruum tou Ferföigenge stounde.\nBesäik jädden [https://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [//translatewiki.net translatewiki.net], wan du mee-oarbaidje wolt an ju MediaWiki-Sortierenge.",
+    "allmessagestext": "Dit is ne Lieste fon aal System-Ättergjuchte do in dän MediaWiki-Noomenruum tou Ferföigenge stounde.\nBesäik jädden [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] un [//translatewiki.net translatewiki.net], wan du mee-oarbaidje wolt an ju MediaWiki-Sortierenge.",
     "allmessagesnotsupportedDB": "Disse Spezioalsiede stoant nit tou Ferföigenge, deer ju uur dän Parameter <tt>$wgUseDatabaseMessages</tt> deaktivierd wuude.",
     "allmessages-filter-legend": "Sieuwe",
     "allmessages-filter": "Sieuwe foar anpaaseden Toustand:",

@@ -1858,7 +1858,7 @@
     "allmessagesname": "Nombre",
     "allmessagesdefault": "texto por defecto",
     "allmessagescurrent": "texto actual",
-    "allmessagestext": "Ista ye una lista de totz os mensaches disponibles en o espacio de nombres MediaWiki.\nVesite por favor [https://www.mediawiki.org/wiki/Localisation a pachina sobre localización de MediaWiki] y  [//translatewiki.net translatewiki.net] si deseya contrebuyir t'a localización cheneral de MediaWiki.",
+    "allmessagestext": "Ista ye una lista de totz os mensaches disponibles en o espacio de nombres MediaWiki.\nVesite por favor [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation a pachina sobre localización de MediaWiki] y  [//translatewiki.net translatewiki.net] si deseya contrebuyir t'a localización cheneral de MediaWiki.",
     "allmessagesnotsupportedDB": "Ista pachina no ye disponible porque wgUseDatabaseMessages ye desactivato.",
     "allmessages-filter-legend": "Filtro",
     "allmessages-filter": "Filtrar por estau de personalización:",

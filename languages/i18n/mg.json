@@ -2024,7 +2024,7 @@
     "allmessagesname": "Anarana",
     "allmessagesdefault": "Dikan-teny tany am-boalohany",
     "allmessagescurrent": "Dikan-teny miasa ankehitriny",
-    "allmessagestext": "Ity dia lisitry ny hafatra hita ao amin'ny anaran-tsehatra MediaWiki.\nAndana vangio ny [https://www.mediawiki.org/wiki/Localisation Fandikana an'i Mediawiki] ary [//translatewiki.net/ translatewiki.net] raha tia handray anjara amin'ny fandikana an'i Mediawiki amin'ny ankapobeny.",
+    "allmessagestext": "Ity dia lisitry ny hafatra hita ao amin'ny anaran-tsehatra MediaWiki.\nAndana vangio ny [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Fandikana an'i Mediawiki] ary [//translatewiki.net/ translatewiki.net] raha tia handray anjara amin'ny fandikana an'i Mediawiki amin'ny ankapobeny.",
     "allmessagesnotsupportedDB": "Tsy mbola mandeha ny '''{{ns:special}}:Allmessages''' satria tsy mandeha koa ny '''$wgUseDatabaseMessages'''.",
     "allmessages-filter-legend": "Tantavanina",
     "allmessages-filter": "Hanasivana araka ny satam-panovana :",

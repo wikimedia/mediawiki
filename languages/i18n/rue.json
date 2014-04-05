@@ -2057,7 +2057,7 @@
     "allmessagesname": "Назва",
     "allmessagesdefault": "Штандартный текст",
     "allmessagescurrent": "Актуалный текст",
-    "allmessagestext": "Тото є список вшыткых повідомлїнь доступных в просторї назв «MediaWiki».\nКідь хочете приспівати ку локалізації софтверу MediaWiki, навщівте [https://www.mediawiki.org/wiki/Localisation локалізачну сторінку на mediawiki.org] і [//translatewiki.net сервер server translatewiki.net].",
+    "allmessagestext": "Тото є список вшыткых повідомлїнь доступных в просторї назв «MediaWiki».\nКідь хочете приспівати ку локалізації софтверу MediaWiki, навщівте [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation локалізачну сторінку на mediawiki.org] і [//translatewiki.net сервер server translatewiki.net].",
     "allmessagesnotsupportedDB": "{{ns:special}}:AllMessages не є підпороване, бо wgUseDatabaseMessages є выпнуте.",
     "allmessages-filter-legend": "Філтер",
     "allmessages-filter": "Філтер за станом:",

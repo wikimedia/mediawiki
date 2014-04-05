@@ -2035,7 +2035,7 @@
     "allmessagesname": "Naam",
     "allmessagesdefault": "Verstekteks",
     "allmessagescurrent": "Huidige teks",
-    "allmessagestext": "Hier is 'n lys boodskappe wat in die ''MediaWiki''-naamruimte teenwoordig is.\nGaan na [https://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [//translatewiki.net translatewiki.net] as u wil help om MediaWiki te vertaal.",
+    "allmessagestext": "Hier is 'n lys boodskappe wat in die ''MediaWiki''-naamruimte teenwoordig is.\nGaan na [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki-lokalisasie] en [//translatewiki.net translatewiki.net] as u wil help om MediaWiki te vertaal.",
     "allmessagesnotsupportedDB": "Daar is geen ondersteuning vir '''{{ns:special}}:Allmessages''' omdat '''$wgUseDatabaseMessages''' uitgeskakel is.",
     "allmessages-filter-legend": "Filter",
     "allmessages-filter": "Filtreer op staat van verandering:",

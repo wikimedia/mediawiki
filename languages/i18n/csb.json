@@ -802,7 +802,7 @@
     "allmessagesname": "Miono",
     "allmessagesdefault": "Domëslny tekst",
     "allmessagescurrent": "Aktualny tekst",
-    "allmessagestext": "To je zestôwk systemòwëch ògłosów przistãpnëch w rumie mionów MediaWiki.\nProszã zazdrzë na [https://www.mediawiki.org/wiki/Localisation Lokalizacëjô MediaWiki] ë [//translatewiki.net translatewiki.net] jeżlë chcesz dolmaczëc softwôrã MediaWiki.",
+    "allmessagestext": "To je zestôwk systemòwëch ògłosów przistãpnëch w rumie mionów MediaWiki.\nProszã zazdrzë na [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Lokalizacëjô MediaWiki] ë [//translatewiki.net translatewiki.net] jeżlë chcesz dolmaczëc softwôrã MediaWiki.",
     "allmessagesnotsupportedDB": "'''{{ns:special}}:Allmessages''' nie mòże bëc brëkòwónô, temù że '''$wgUseDatabaseMessages''' je wëłączony.",
     "thumbnail-more": "Zwiszi",
     "import": "Impòrtëjë starnë",

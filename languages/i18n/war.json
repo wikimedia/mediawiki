@@ -6,7 +6,8 @@
             "JinJian",
             "Kaganer",
             "Wiki indio",
-            "לערי ריינהארט"
+            "לערי ריינהארט",
+            "Kolega2357"
         ]
     },
     "tog-underline": "Bagisa ha ilarom an mga sumpay:",
@@ -1348,6 +1349,7 @@
     "rollback_short": "Libot-pabalik",
     "rollbacklink": "libot-pabalik",
     "rollbackfailed": "Diri malinamposon an paglibot-pabalik",
+    "revertpage": "Ginpabalik an ginliwat ni [[Special:Contributions/|$2]] ([[User talk:$2|hiruhimangraw]]) ngadto ha urhi nga rebisyon ni [[User:$1|$1]] ngan",
     "sessionfailure-title": "Pakyas an sesyon",
     "protectlogpage": "Talaan han pinasaliporan",
     "protectedarticle": "pinasaliporan \"[[$1]]\"",
@@ -1866,6 +1868,7 @@
     "watchlisttools-view": "Kitaa an mga nanginginlabot nga mga pagbabag-o",
     "watchlisttools-edit": "Kitaa ngan igliwat an talaan han binabantayan",
     "watchlisttools-raw": "Igliwat an hilaw nga talaan han binabantayan",
+    "signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|hiruhimangraw]])",
     "duplicate-defaultsort": "'''Pahimatngon:''' An daan-aada nga paglainlain nga piridlitan nga \"$2\" in igsasapaw an durudaan nga daan-aada nga paglainlain nga piridlitan nga \"$1\".",
     "version": "Bersyon",
     "version-specialpages": "Mga pinaurog nga pakli",

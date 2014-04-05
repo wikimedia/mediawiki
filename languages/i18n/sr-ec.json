@@ -2085,7 +2085,7 @@
     "allmessagesname": "Назив",
     "allmessagesdefault": "Подразумевани текст",
     "allmessagescurrent": "Тренутни текст поруке",
-    "allmessagestext": "Ово је списак свих системских порука које су доступне у именском простору „Медијавики“.\nПосетите [https://www.mediawiki.org/wiki/Localisation Медијавики локализацију] и [//translatewiki.net Транслејтвики] ако желите да помогнете у превођењу.",
+    "allmessagestext": "Ово је списак свих системских порука које су доступне у именском простору „Медијавики“.\nПосетите [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Медијавики локализацију] и [//translatewiki.net Транслејтвики] ако желите да помогнете у превођењу.",
     "allmessagesnotsupportedDB": "Ова страница не може да се користи јер је '''$wgUseDatabaseMessages''' онемогућен.",
     "allmessages-filter-legend": "Филтер",
     "allmessages-filter": "Филтрирај по стању:",

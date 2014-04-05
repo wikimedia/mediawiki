@@ -1614,7 +1614,7 @@
     "allmessagesname": "Nem",
     "allmessagesdefault": "Vödem rigädik",
     "allmessagescurrent": "Vödem nuik",
-    "allmessagestext": "Is binon lised sitanunas valik lonöföl in nemaspad: Sitanuns.\nGebolös [https://www.mediawiki.org/wiki/Localisation Topükami ela MediaWiki] ed el [//translatewiki.net translatewiki.net] if vilol keblünön topükame valemik ela MediaWiki.",
+    "allmessagestext": "Is binon lised sitanunas valik lonöföl in nemaspad: Sitanuns.\nGebolös [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation Topükami ela MediaWiki] ed el [//translatewiki.net translatewiki.net] if vilol keblünön topükame valemik ela MediaWiki.",
     "allmessagesnotsupportedDB": "Pad at no kanon pagebön bi el '''$wgUseDatabaseMessages''' penemögükon.",
     "allmessages-filter-legend": "Sul",
     "allmessages-filter-unmodified": "Penevotüköl",

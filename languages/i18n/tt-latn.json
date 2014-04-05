@@ -1250,7 +1250,7 @@
     "allmessagesname": "İsem",
     "allmessagesdefault": "Töpcay yazma",
     "allmessagescurrent": "Eligi yazma",
-    "allmessagestext": "Bu isemlek MediaWiki isemnär mäydanında bulğan sistema xäbärläreneñ isemlege.\nĞomumi MediaWiki lokalizatsiäsendä qatnaşırğa teläsägez, zinhar [https://www.mediawiki.org/wiki/Localisation MediaWiki Lokalizatsiäse] häm [//translatewiki.net translatewiki.net] säxifälärne qullanığız.",
+    "allmessagestext": "Bu isemlek MediaWiki isemnär mäydanında bulğan sistema xäbärläreneñ isemlege.\nĞomumi MediaWiki lokalizatsiäsendä qatnaşırğa teläsägez, zinhar [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Lokalizatsiäse] häm [//translatewiki.net translatewiki.net] säxifälärne qullanığız.",
     "allmessages-filter-legend": "Filtr",
     "allmessages-filter-unmodified": "Üzgärtelmägän",
     "allmessages-filter-all": "Barısı",

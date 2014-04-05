@@ -617,6 +617,7 @@
     "version-specialpages": "Pagine spiciale",
     "specialpages": "Pagine spiciale",
     "tags-edit": "mudificà",
+    "logentry-delete-delete": "$1 ha cancellatu a pagina $3",
     "logentry-move-move": "$1 {{GENDER:$2|hà spustatu}} a pagina $3 à $4",
     "rightsnone": "(nessunu)",
     "expand_templates_output": "Risultatu"
