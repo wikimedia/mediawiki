@@ -515,7 +515,7 @@
 		/**
 		 * Get the full page name
 		 *
-		 * Eaxample: "File:Example_image.svg".
+		 * Example: "File:Example_image.svg".
 		 * Most useful for API calls, anything that must identify the "title".
 		 *
 		 * @return {string}
