@@ -1507,11 +1507,11 @@ class Sanitizer {
 	 */
 	static function setupAttributeWhitelist() {
 		global $wgAllowRdfaAttributes, $wgAllowMicrodataAttributes;
-
 		static $whitelist, $staticInitialised;
+
 		$globalContext = implode( '-', compact( 'wgAllowRdfaAttributes', 'wgAllowMicrodataAttributes' ) );
 
-		if ( isset( $whitelist ) && $staticInitialised == $globalContext ) {
+		if ( $whitelist !== null && $staticInitialised == $globalContext ) {
 			return $whitelist;
 		}
 
