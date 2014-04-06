@@ -1399,6 +1399,12 @@ class LocalFile extends File {
 		#       to after $wikiPage->doEdit has been called.
 		$dbw->commit( __METHOD__ );
 
+		# Save to memcache.
+		# We shall not saveToCache before the commit since otherwise
+		# in case of a rollback there is an usable file from memcached
+		# which in fact doesn't really exist (bug 24978)
+		$this->saveToCache();
+
 		if ( $exists ) {
 			# Invalidate the cache for the description page
 			$descTitle->invalidateCache();
@@ -1431,11 +1437,6 @@ class LocalFile extends File {
 
 		wfProfileOut( __METHOD__ . '-edit' );
 
-		# Save to cache and purge the squid
-		# We shall not saveToCache before the commit since otherwise
-		# in case of a rollback there is an usable file from memcached
-		# which in fact doesn't really exist (bug 24978)
-		$this->saveToCache();
 
 		if ( $reupload ) {
 			# Delete old thumbnails
