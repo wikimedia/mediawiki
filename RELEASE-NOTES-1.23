@@ -54,6 +54,9 @@ production.
 * $wgLicenseTerms has been removed as it was unused.
 * $wgProfileOnly is now deprecated; set the log file in
   $wgDebugLogGroups['profileoutput'] to replace it.
+* $wgImportSources can now either be a regular array, or an associative map
+  specifying subprojects on the interwiki map of the target wiki, or a mix of
+  the two. Existing configurations will still work.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
