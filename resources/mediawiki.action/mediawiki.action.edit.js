@@ -137,9 +137,9 @@
 	mw.toolbar = toolbar;
 
 	$( function () {
-		var i, b, $iframe, editBox, scrollTop, $editForm;
+		var i, b, editBox, scrollTop, $editForm;
 
-		// currentFocus is used to determine where to insert tags
+		// Used to determine where to insert tags
 		$currentFocused = $( '#wpTextbox1' );
 
 		// Populate the selector cache for $toolbar
@@ -186,19 +186,6 @@
 		$( document ).on( 'focus', 'textarea, input:text', function () {
 			$currentFocused = $( this );
 		} );
-
-		// HACK: make $currentFocused work with the usability iframe
-		// With proper focus detection support (HTML 5!) this'll be much cleaner
-		// TODO: Get rid of this WikiEditor code from MediaWiki core!
-		$iframe = $( '.wikiEditor-ui-text iframe' );
-		if ( $iframe.length > 0 ) {
-			$( $iframe.get( 0 ).contentWindow.document )
-				// for IE
-				.add( $iframe.get( 0 ).contentWindow.document.body )
-				.focus( function () {
-					$currentFocused = $iframe;
-				} );
-		}
 	});
 
 }( mediaWiki, jQuery ) );
