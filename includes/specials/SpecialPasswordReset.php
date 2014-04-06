@@ -63,6 +63,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 	protected function getFormFields() {
 		global $wgPasswordResetRoutes, $wgAuth;
+		$this->getOutput()->addModules( 'mediawiki.special.passwordreset' );
 		$a = array();
 		if ( isset( $wgPasswordResetRoutes['username'] ) && $wgPasswordResetRoutes['username'] ) {
 			$a['Username'] = array(
@@ -164,7 +165,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		if ( isset( $data['Username'] ) && $data['Username'] !== '' ) {
 			$method = 'username';
-			$users = array( User::newFromName( $data['Username'] ) );
+			$users = array( User::newFromName( $data['Username'], 'valid' ) );
 		} elseif ( isset( $data['Email'] )
 			&& $data['Email'] !== ''
 			&& Sanitizer::validateEmail( $data['Email'] )
