@@ -32,19 +32,19 @@ class SpecialBlock extends FormSpecialPage {
 	 * or as subpage (Special:Block/Foo) */
 	protected $target;
 
-	/// @var Block::TYPE_ constant
+	/** @var Integer Block::TYPE_ constant */
 	protected $type;
 
-	/// @var User|String the previous block target
+	/** @var User|String the previous block target */
 	protected $previousTarget;
 
-	/// @var Bool whether the previous submission of the form asked for HideUser
+	/** @var Bool whether the previous submission of the form asked for HideUser */
 	protected $requestedHideUser;
 
-	/// @var Bool
+	/** @var Bool */
 	protected $alreadyBlocked;
 
-	/// @var Array
+	/** @var Array */
 	protected $preErrors = array();
 
 	public function __construct() {
