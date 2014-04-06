@@ -850,7 +850,6 @@
     "nowatchlist": "Waxba kuma jiraan liiskaaga waardiyeynta.",
     "watchlistanontext": "Fadlan $1 si aad u fiirisid ama wax uga bedeshid qoraalada ku jira liiska waardiyeyska.",
     "watchnologin": "Gudaha kuma jirtid",
-    "watchnologintext": "Waa ina aad [[Special:UserLogin|gudaha ku jirtaa]] si aad wax uga bedeshid liiskaaga waardiyeynta.",
     "addedwatchtext": "Bogga \"[[:$1]]\" waxaa lagudaray [[Special:Watchlist|liiska-waardiyahaaga]].\nIsbedelka mustaqbalka ku dhaca boggan iyo bogga wadahadalka la'xiriira waxaa lagu soo qoridoonaa inta,\nboggana wuxuu noqonaayaa mid la' '''nuuriyey''' dhinaca [[Special:RecentChanges|Liiska isbedelada show]] si\nay u fududdayso sidii loo dalbanlahaa.\n\nHadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeynin\" oo ku yaala dhinaca.",
     "removedwatchtext": "Bogga \"[[:$1]]\" waa laga saaray [[Special:Watchlist|liiskaaga waardiyaha]].",
     "watch": "Waardiyey",

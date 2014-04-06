@@ -763,7 +763,6 @@
     "mywatchlist": "Surveyaji",
     "nowatchlist": "Vu ne havas objekti en vua listo di surveyaji.",
     "watchnologin": "Vu ne startis sesiono",
-    "watchnologintext": "Vu mustas [[Special:UserLogin|enirir]] por modifikar vua surveyaji.",
     "addedwatchtext": "La pagino \"<nowiki>$1</nowiki>\" atachesis a vua [[Special:Watchlist|listo de surveyaji]]. Futura chanji di ica pagino ed olua relatanta debato-pagini montresos ibe, ed la pagino aparos per '''dika literi''' en la [[Special:RecentChanges|listo de recenta chanji]] por faciligar sua trovebleso.\n\n<p> Se vu volas efacar la pagino de vua listo de surveyaji pose, presez \"Ne plus surveyar\" en la selektaro.",
     "removedwatchtext": "La pagino \"[[:$1]]\" forigesis de [[Special:Watchlist|vua surveyado]].",
     "watch": "Surveyar",

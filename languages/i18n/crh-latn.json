@@ -1008,7 +1008,6 @@
     "nowatchlist": "Siziñ közetüv cedveliñiz boştır.",
     "watchlistanontext": "Közetüv cedvelini baqmaq ya da deñiştirmek içün $1 borclusıñız.",
     "watchnologin": "Oturım açmaq kerek",
-    "watchnologintext": "Öz közetüv cedveliñizni deñiştirmek içün [[Special:UserLogin|oturım açıñız]]",
     "addedwatchtext": "\"[[:$1]]\" saifesi [[Special:Watchlist|közetüv cevdeliñizge]] kirsetildi.\nBundan soñ, bu saifede ve onıñ muzakere saifesinde yapılacaq deñiştirmeler anda kösterilecek.",
     "removedwatchtext": "\"[[:$1]]\" saifesi [[Special:Watchlist|közetüv cedveliñizden]] yoq etildi.",
     "watch": "Közet",

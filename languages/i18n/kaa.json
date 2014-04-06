@@ -979,7 +979,6 @@
     "nowatchlist": "Baqlaw dizimin'iz bos.",
     "watchlistanontext": "Baqlaw dizimin'izdegilerdi qaraw yamasa o'zgertiw ushın $1 kerek.",
     "watchnologin": "Kirilmegen",
-    "watchnologintext": "Baqlaw dizimin'izdi o'zgertiw ushın [[Special:UserLogin|kiriwin'iz]] kerek.",
     "addedwatchtext": "\"[[:$1]]\" beti [[Special:Watchlist|baqlaw dizimin'izge]] qosıldı.\nUsı ha'm og'an baylanıslı bolg'an sa'wbet betlerinde bolatug'ın keleshektegi o'zgerisler usı dizimde ko'rsetiledi ha'mde betti tabıwdı an'satlastırıw ushın [[Special:RecentChanges|taza o'zgerisler diziminde]] '''juwan ha'ripte''' ko'rsetiledi.\nEger siz bul betti baqlaw dizimin'izden o'shirmekshi bolsan'ız bettin' joqarg'ı on' jag'ındag'ı \"Baqlamaw\" jazıwın basın'.",
     "removedwatchtext": "\"[[:$1]]\" beti [[Special:Watchlist|sizin' baqlaw dizimin'izden]] o'shirildi.",
     "watch": "Baqlaw",

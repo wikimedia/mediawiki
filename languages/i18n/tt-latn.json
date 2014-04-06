@@ -1050,7 +1050,6 @@
     "mywatchlist": "Küzätü isemlegem",
     "nowatchlist": "Küzätü isemlegegezdä bitlär yuq.",
     "watchnologin": "Kermädegez",
-    "watchnologintext": "Küzätü isemlegegezne üzgärtü öçen, sez [[Special:UserLogin|kerergä]] tieşsez.",
     "addedwatchtext": "\"[[:$1]]\" bite [[Special:Watchlist|küzätü isemlegegezgä]] östälde.\nBu bittä häm anıñ bäxäslegendä barlıq bulaçaq üzgärtülär şunda kürsäteler, häm, [[Special:RecentChanges|soñğı üzgärtülär]] isemlegendä bu bitne ciñelräk tabu öçen, ul '''qalın mäten''' belän kürsäteler.",
     "removedwatchtext": "«[[:$1]]» bite [[Special:Watchlist|sezneñ küzätü isemlegennän]] beterelde.",
     "watch": "Küzätü",

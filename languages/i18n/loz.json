@@ -544,7 +544,6 @@
     "watchlist": "Zwa mukoloko di kentezi",
     "mywatchlist": "Zwa mukoloko di kentezi",
     "watchnologin": "A ni sa menuhile",
-    "watchnologintext": "A sa [[Special:UserLogin|menuhile]] di hloli ye ng'i zwa mukoloko di kentezi.",
     "addedwatchtext": "Petulo \"[[:$1]]\" sa vugisize di zwa [[Special:Watchlist|mukoloko di kentezi]].\nPetuhoni di bye petulo e sa bulelezi sa mukolokosize ta, e '''ombelu''' kwa [[Special:RecentChanges|petuho nca]] di kwazidisize akusize.\n\nA sa afi kulobala di zwa mukoloko di kentezi, tampi \"ngambu kentezi\".",
     "removedwatchtext": "Petulo \"[[:$1]]\" sa afi kulobala di zwa mukoloko di kentezi.",
     "watch": "Kentezi",

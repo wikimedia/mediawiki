@@ -982,7 +982,6 @@
     "nowatchlist": "Dar fehristi pajgirihoi şumo heç mavride nest.",
     "watchlistanontext": "Lutfan baroi muşohida va viroişi fehristi pajgirihoi xud az $1 istifoda kuned.",
     "watchnologin": "Vurud naşuda",
-    "watchnologintext": "Baroi taƣjiri fehristi pajgirihoi xud bojad [[Special:UserLogin|ba sistem vorid şaved]].",
     "addedwatchtext": "In sahifa \"[[:$1]]\" va [[Special:Watchlist|fehristi nazaroti]] Şumo ilova şud.\nDigargunihoi ojandai in sahifa va sahifi bahsi aloqamand dar rūixati onço xohad şud,\nva sahifa '''ƣafs''' dar [[Special:RecentChanges|rūixati taƣjiroti oxirin]] baroi bo osoni darjoft kardan xohad ba nazar rasid.\n\nAgar şumo dertar az fehristi nazarotaton in sahifaro hazv kardan xohed, dar menju \"Nazar nakardan\"-ro paxş kuned.",
     "removedwatchtext": "Sahifai \"[[:$1]]\" az [[Special:Watchlist|fehristi pajgirihoi şumo]] bardoşta şud.",
     "watch": "Nazar kardan",

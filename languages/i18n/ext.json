@@ -1042,7 +1042,6 @@
     "nowatchlist": "La tu lista e seguimientu está vacia.",
     "watchlistanontext": "Pa vel u eital las entrás ena tu lista e seguimientu es mestel $1.",
     "watchnologin": "Nu estás rustriu",
-    "watchnologintext": "Ebis [[Special:UserLogin|abril la tu cuenta]] pa puel hazel chambus ena tu lista e seguimientu.",
     "addedwatchtext": "S´á añiiu la páhina \"[[:$1]]\" a la tu [[Special:Watchlist|lista e seguimientu]].\nLos huturus chambus de la páhina i ena su caraba se muestrarán aquí,\ni el su entítulu apaicirá en '''negrina''' ena [[Special:RecentChanges|lista d´úrtimus chambus]].\n\nSi quieis ehal de vehilal la páhina, pursa sobri \"Ehal de vehilal\".",
     "removedwatchtext": "La página \"[[:$1]]\" á siu esborrá de la tu [[Special:Watchlist|lista de seguimientu]].",
     "watch": "Vegilal",

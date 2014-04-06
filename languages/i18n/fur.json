@@ -906,7 +906,6 @@
     "watchlistfor2": "Par $1 $2",
     "nowatchlist": "Nissun element al è tignût di voli.",
     "watchnologin": "No tu sês jentrât",
-    "watchnologintext": "Tu 'nd âs di [[Special:UserLogin|jentrâ]] par modificâ la liste des pagjinis tignudis di voli.",
     "addedwatchtext": "La pagjine \"<nowiki>$1</nowiki>\" e je stade zontade ae [[Special:Watchlist|liste di chês tignudis di voli]].\nTal futûr i cambiaments a cheste pagjine e ae pagjine di discussion relative a saran segnalâts ca,\ne la pagjine e sarà '''gruessute''' te [[Special:RecentChanges|liste dai ultins cambiaments]] cussì che tu puedis notâle daurman.\n\n<p>Se tu vuelis gjavâle de liste pi indevant, frache su \"No stâ tignî di voli\" te sbare in alt.",
     "removedwatchtext": "La pagjine \"[[:$1]]\" e je stade gjavade de [[Special:Watchlist|liste di chês tignudis di voli]].",
     "watch": "Ten di voli",

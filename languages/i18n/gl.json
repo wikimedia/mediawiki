@@ -13,7 +13,8 @@
             "Toliño",
             "Vivaelcelta",
             "Xosé",
-            "לערי ריינהארט"
+            "לערי ריינהארט",
+            "Fitoschido"
         ]
     },
     "tog-underline": "Subliñar as ligazóns:",
@@ -881,7 +882,6 @@
     "prefs-skin": "Aparencia",
     "skin-preview": "Vista previa",
     "datedefault": "Ningunha preferencia",
-    "prefs-beta": "Características en probas",
     "prefs-datetime": "Data e hora",
     "prefs-labs": "Características experimentais",
     "prefs-user-pages": "Páxinas de usuario",
@@ -1709,7 +1709,6 @@
     "nowatchlist": "Non ten elementos na súa lista de vixilancia.",
     "watchlistanontext": "Debe $1 para ver ou editar os elementos da súa lista de vixilancia.",
     "watchnologin": "Non accedeu ao sistema",
-    "watchnologintext": "Debe [[Special:UserLogin|acceder ao sistema]] para modificar a súa lista de vixilancia.",
     "addwatch": "Engadir á lista vixilancia",
     "addedwatchtext": "A páxina \"[[:$1]]\" foi engadida á súa [[Special:Watchlist|lista de vixilancia]].\nOs cambios futuros nesta páxina e na súa páxina de conversa asociada serán listados alí.",
     "removewatch": "Eliminar da lista de vixilancia",
@@ -2917,7 +2916,7 @@
     "redirect-submit": "Continuar",
     "redirect-lookup": "Procurar:",
     "redirect-value": "Valor:",
-    "redirect-user": "ID de usuario",
+    "redirect-user": "Id. do usuario",
     "redirect-page": "ID de páxina",
     "redirect-revision": "Revisión de páxina",
     "redirect-file": "Nome de ficheiro",

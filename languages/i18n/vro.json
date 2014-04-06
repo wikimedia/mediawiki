@@ -1028,7 +1028,6 @@
     "nowatchlist": "Perräkaemisnimekiri om tühi.",
     "watchlistanontext": "Perräkaemisnimekirä pruukmisõs $1.",
     "watchnologin": "Olõ-i nimega sisse mint",
-    "watchnologintext": "Perräkaemisnimekirä muutmisõs piät [[Special:UserLogin|nimega sisse minemä]].",
     "addedwatchtext": "Lehekülg \"<nowiki>$1</nowiki>\" om pant su [[Special:Watchlist|perräkaemisnimekirjä]]. Edespididseq muutmisõq seo lehe ja tä arotuskülgi pääl pandasõq ritta siin ja [[Special:RecentChanges|viimätside muutmiisi lehe pääl]] tuvvasõq '''paksun kirän'''. Ku tahat taad lehte perräkaemisnimekiräst vällä võttaq, klõpsaq nuppi \"Lõpõdaq perräkaeminõ ärq\".",
     "removedwatchtext": "Leht \"[[:$1]]\" om [[Special:Watchlist|perräkaemisnimekiräst]] maaha võet.",
     "watch": "Kaeq perrä",

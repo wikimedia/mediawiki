@@ -918,7 +918,6 @@
     "nowatchlist": "Níl aon rud ar do liosta faire.",
     "watchlistanontext": "$1, le d'thoil, chun míreanna ar do liosta faire a fheiceáil ná a athrú.",
     "watchnologin": "Níl tú logáilte isteach",
-    "watchnologintext": "Tá ort a bheith [[Special:UserLogin|logáilte isteach]] chun do liosta faire a athrú.",
     "addedwatchtext": "Cuireadh an leathanach \"<nowiki>$1</nowiki>\" le do [[Special:Watchlist|liosta faire]].\nAmach anseo liostálfar athruithe don leathanach seo agus dá leathanach plé ansin,\nagus beidh '''cló trom''' ar a theideal san [[Special:RecentChanges|liosta de na hathruithe is déanaí]] sa chaoi go bhfeicfeá iad go héasca.",
     "removedwatchtext": "Baineadh an leathanach \"[[:$1]]\" as [[Special:Watchlist|do liosta faire]].",
     "watch": "Déan faire",

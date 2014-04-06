@@ -974,7 +974,6 @@
     "nowatchlist": "Baqılaw tizimiñizde eş dana joq",
     "watchlistanontext": "Baqılaw tizimiñizdegi danalardı qaraw, ne öñdew üşin $1 kerek.",
     "watchnologin": "Kirmegensiz",
-    "watchnologintext": "Baqılaw tizimiñizdi özgertw üşin [[Special:UserLogin|kirwiñiz]] jön.",
     "addedwatchtext": "«[[:$1]]» beti [[{{#special:Watchlist}}|baqılaw tizimiñizge]] üsteldi.\nBul bettiñ jäne baýlanıstı talqılaw betiniñ keleşektegi özgeristeri mında tizimdelinedi de, jäne bettiñ atawı jeñil tabılw üşin [[{{#special:Recentchanges}}|jwıqtağı özgerister tiziminde]] '''jwan ärpimen''' körsetiledi.",
     "removedwatchtext": "«[[:$1]]» beti baqılaw tizimiñizden alastaldı.",
     "watch": "Baqılaw",

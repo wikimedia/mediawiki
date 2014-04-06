@@ -1179,7 +1179,6 @@
     "nowatchlist": "Twajā listi stēisan nadirītan pāusan ast pāustan.",
     "watchlistanontext": "Madli $1, kāi widālai elamēntans stesse listin stēisan nadirītan.",
     "watchnologin": "Ni assei engūbun",
-    "watchnologintext": "Tū turri būtwei[[Special:UserLogin|engūbun]], kāi kitawīdintun listin stēisan nadirītan.",
     "addedwatchtext": "Pāusan \"[[:$1]]\" pastāi preidātan prei twajjan [[Special:Watchlist|nadirītan listin]].\nEraīna šisse pāusas ēnturas kitawīdinsna anga diskusiōnis pāusas sēitan sen tennan kitawīdinsna wīrst būwusi enpeisātan en šissei listin. Pāusas tītels wīrst būwuns '''pastarīntan''' en [[Special:RecentChanges|listei stēisan panzdauman kitawīdinsnan]], kāi lānginlai ti endirītun kitawīdinsnan.",
     "removedwatchtext": "Pāusan \"[[:$1]]\" pastāi āupausintan iz [[Special:Watchlist|twajjan listin stēisan āupausintan]].",
     "watch": "Nadirēis",

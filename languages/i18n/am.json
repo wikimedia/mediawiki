@@ -1217,7 +1217,6 @@
     "nowatchlist": "ዝርዝርዎ ባዶ ነው። ምንም ገጽ ገና አልተጨመረም።",
     "watchlistanontext": "የሚከታተሉት ገጾች ዝርዝርዎን ለመመልከት ወይም ለማስተካከል እባክዎ $1።",
     "watchnologin": "ገና አልገቡም",
-    "watchnologintext": "የሚከታተሏቸውን ገጾች ዝርዝር ለመቀየር [[Special:UserLogin|መግባት]] ይኖርብዎታል።",
     "addedwatchtext": "ገጹ «$1» [[Special:Watchlist|ለሚከታተሉት ገጾች]] ተጨምሯል። ወደፊት ይህ ገጽ ወይም የውይይቱ ገጽ ሲቀየር፣ በዚያ ዝርዝር ላይ ይታያል። በተጨማሪም [[Special:RecentChanges|«በቅርብ ጊዜ በተለወጡ» ገጾች]] ዝርዝር፣ በቀላሉ እንዲታይ በ'''ጉልህ ፊደላት''' ተጽፎ ይገኛል።\n\nበኋላ ጊዜ ገጹን ከሚከታተሉት ገጾች ለማስወግድ የፈለጉ እንደሆነ፣ በጫፉ ዳርቻ «አለመከታተል» የሚለውን ይጫኑ።",
     "removedwatchtext": "ይህ ገፅ \"[[:$1]]\" ከ [[Special:Watchlist|your watchlist]] ተወግዷል።",
     "watch": "ለመከታተል",

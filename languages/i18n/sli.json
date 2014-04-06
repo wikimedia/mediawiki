@@ -1062,7 +1062,6 @@
     "nowatchlist": "Du host kenne Einträge uff denner Beobachtungsliste.",
     "watchlistanontext": "Du muoßt diech $1, im denne Beobachtungsliste zu sahn oder Einträge uff ihr zu bearbta.",
     "watchnologin": "Du best ne oagemeldet",
-    "watchnologintext": "Du muoßt [[Special:UserLogin|oagemeldet]] sei, im denne Beobachtungsliste bearbta zu kinna.",
     "addedwatchtext": "De Seite „<nowiki>$1</nowiki>“ wurde zu denner [[Special:Watchlist|Beobachtungsliste]] hinzugefiegt.\n\nSpätere Änneronga oa dieser Seite und der dazugeheeriga Dischkursseite waan durt gelistet und\nei der Iebersicht der [[Special:RecentChanges|letzta Änneronga]] ei Fettschrift dargestellt.\n\nWenn du de Seite wieder vu denner Beobachtungsliste entferna mechtest, klicke uff der jeweiligen Seite uff „nee meh beobachta“.",
     "removedwatchtext": "De Seite „[[:$1]]“ wurde vun denner [[Special:Watchlist|Beobachtungsliste]] entfernt.",
     "watch": "Beobachta",
