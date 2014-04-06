@@ -1232,6 +1232,11 @@ return array(
 			'mediawiki.util',
 		),
 	),
+	'mediawiki.special.passwordreset' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.passwordreset.js',
+		'messages' => array('nosuchuser'),
+		'dependencies' => array('mediawiki.jqueryMsg'),
+	),
 	'mediawiki.special.userlogin.common.styles' => array(
 		'styles' => array(
 			'resources/mediawiki.special/mediawiki.special.userlogin.common.css',
