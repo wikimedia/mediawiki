@@ -518,7 +518,6 @@ $imageFiles = array(
 	'button-headline' => 'button_headline.png',
 	'button-image'    => 'button_image.png',
 	'button-media'    => 'button_media.png',
-	'button-math'     => 'button_math.png',
 	'button-nowiki'   => 'button_nowiki.png',
 	'button-sig'      => 'button_sig.png',
 	'button-hr'       => 'button_hr.png',
