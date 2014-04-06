@@ -1208,3 +1208,9 @@ table.floatleft {
 .mw-content-ltr .mw-content-rtl .mw-editsection {
 	margin-right: 1em;
 }
+
+/* Prevent citations and subscripts from interfering with the line-height */
+sup,
+sub {
+	line-height: 1;
+}
