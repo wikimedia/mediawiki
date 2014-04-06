@@ -103,6 +103,7 @@ class RunJobs extends Maintenance {
 					$status = $job->run();
 					$error = $job->getLastError();
 				} catch ( MWException $e ) {
+					MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 					$status = false;
 					$error = get_class( $e ) . ': ' . $e->getMessage();
 					$e->report(); // write error to STDERR and the log
