@@ -2136,6 +2136,13 @@ $title : Current Title object being displayed in search results.
 'SearchableNamespaces': An option to modify which namespaces are searchable.
 &$arr : Array of namespaces ($nsId => $name) which will be used.
 
+'SelfLinkBegin': Called before a link to the current article is displayed to
+allow the display of the link to be customized.
+$nt: the Title object
+&$html: html to display for the link
+&$trail: optional text to display before $html
+&$prefix: optional text to display after $html
+
 'SetupAfterCache': Called in Setup.php, after cache objects are set
 
 'ShowMissingArticle': Called when generating the output for a non-existent page.
