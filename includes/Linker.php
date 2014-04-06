@@ -411,6 +411,12 @@ class Linker {
 			$html = htmlspecialchars( $nt->getPrefixedText() );
 		}
 		list( $inside, $trail ) = self::splitTrail( $trail );
+
+		$ret = "<strong class=\"selflink\">{$prefix}{$html}{$inside}</strong>{$trail}";
+		if ( !wfRunHooks( 'SelfLinkBegin', array( $nt, &$html, &$trail, &$prefix, &$ret ) ) ) {
+			return $ret;
+		}
+
 		return "<strong class=\"selflink\">{$prefix}{$html}{$inside}</strong>{$trail}";
 	}
 
