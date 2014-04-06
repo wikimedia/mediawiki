@@ -41,10 +41,10 @@ class Languages {
 	protected $mGeneralMessages;
 
 	/** @var array All the messages which should be exist only in the English file */
-	protected $mIgnoredMessages;
+	protected $mIgnoredMessages = array();
 
 	/** @var array All the messages which may be translated or not, depending on the language */
-	protected $mOptionalMessages;
+	protected $mOptionalMessages = array();
 
 	/** @var array Namespace names */
 	protected $mNamespaceNames;
@@ -65,14 +65,6 @@ class Languages {
 	 * @param $exif bool Treat the Exif messages?
 	 */
 	function __construct( $exif = true ) {
-		require __DIR__ . '/messageTypes.inc';
-		$this->mIgnoredMessages = $wgIgnoredMessages;
-		if ( $exif ) {
-			$this->mOptionalMessages = array_merge( $wgOptionalMessages );
-		} else {
-			$this->mOptionalMessages = array_merge( $wgOptionalMessages, $wgEXIFMessages );
-		}
-
 		$this->mLanguages = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
 		sort( $this->mLanguages );
 	}

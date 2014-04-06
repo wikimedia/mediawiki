@@ -1164,7 +1164,6 @@ $wgAutoloadLocalClasses = array(
 	'CsvStatsOutput' => 'maintenance/language/StatOutputs.php',
 	'ExtensionLanguages' => 'maintenance/language/languages.inc',
 	'Languages' => 'maintenance/language/languages.inc',
-	'MessageWriter' => 'maintenance/language/writeMessagesArray.inc',
 	'StatsOutput' => 'maintenance/language/StatOutputs.php',
 	'TextStatsOutput' => 'maintenance/language/StatOutputs.php',
 	'WikiStatsOutput' => 'maintenance/language/StatOutputs.php',
