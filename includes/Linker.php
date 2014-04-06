@@ -407,6 +407,9 @@ class Linker {
 	 * @return string
 	 */
 	public static function makeSelfLinkObj( $nt, $html = '', $query = '', $trail = '', $prefix = '' ) {
+		if ( !wfRunHooks( 'SelfLinkBegin', array( $nt, &$html, &$trail, &$prefix ) ) ) {
+			wfProfileOut( __METHOD__ );
+		}
 		if ( $html == '' ) {
 			$html = htmlspecialchars( $nt->getPrefixedText() );
 		}
