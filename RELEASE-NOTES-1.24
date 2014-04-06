@@ -33,6 +33,9 @@ production.
   of search, you should use something like CirrusSearch instead of built in
   search.
 * Users in the 'sysop' group have access to Special:MergeHistory by default.
+* $wgImportSources can now either be a regular array, or an associative map
+  specifying subprojects on the interwiki map of the target wiki, or a mix of
+  the two. Existing configurations will still work.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
