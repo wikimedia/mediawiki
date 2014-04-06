@@ -4916,7 +4916,7 @@ class Title {
 	 * they will already be wrapped in paragraphs.
 	 *
 	 * @since 1.21
-	 * @param int oldid Revision ID that's being edited
+	 * @param int $oldid Revision ID that's being edited
 	 * @return Array
 	 */
 	public function getEditNotices( $oldid = 0 ) {

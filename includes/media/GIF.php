@@ -78,7 +78,7 @@ class GIFHandler extends BitmapHandler {
 	/**
 	 * @todo Add unit tests
 	 *
-	 * @param File$image
+	 * @param File $image
 	 * @return bool
 	 */
 	function getImageArea( $image ) {

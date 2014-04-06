@@ -267,7 +267,7 @@ LUA;
 
 	/**
 	 * @param RedisConnRef $conn
-	 * @param float UNIX timestamp
+	 * @param float $now UNIX timestamp
 	 * @return string|bool False on failure
 	 */
 	protected function initAndPopPoolSlotList( RedisConnRef $conn, $now ) {
