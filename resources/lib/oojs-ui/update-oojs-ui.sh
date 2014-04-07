@@ -6,7 +6,7 @@
 # ./bin/update-oojs-ui.sh path/to/repo/for/oojs-ui
 
 function oojsuihash() {
-	grep "OOjs UI v" resources/oojs-ui/oojs-ui.js \
+	grep "OOjs UI v" resources/lib/oojs-ui/oojs-ui.js \
 		| head -n 1 \
 		| grep -Eo '\([a-z0-9]+\)' \
 		| sed 's/^(//' \
@@ -14,13 +14,13 @@ function oojsuihash() {
 }
 
 function oojsuitag() {
-	grep "OOjs UI v" resources/oojs-ui/oojs-ui.js \
+	grep "OOjs UI v" resources/lib/oojs-ui/oojs-ui.js \
 		| head -n 1 \
 		| grep -Eo '\bv[0-9a-z.-]+\b'
 }
 
 function oojsuiversion() {
-	grep "OOjs UI v" resources/oojs-ui/oojs-ui.js \
+	grep "OOjs UI v" resources/lib/oojs-ui/oojs-ui.js \
 		| head -n 1 \
 		| grep -Eo '\bv[0-9a-z.-]+\b.*$'
 }
@@ -35,8 +35,8 @@ then
 fi
 
 # Undo any changes in the oojs-ui directory
-git reset resources/oojs-ui/
-git checkout resources/oojs-ui/
+git reset resources/lib/oojs-ui/
+git checkout resources/lib/oojs-ui/
 
 git fetch origin
 # Create a branch of MW if needed, and reset it to master
@@ -77,8 +77,8 @@ NEWCHANGESDISPLAY=$(git log $OLDVERSION.. --oneline --no-merges --reverse --colo
 # cd back to the VisualEditor directory
 cd -
 
-# Copy files from dist/ to resources/oojs-ui
-cp -a $1/dist/{oojs-ui.js,oojs-ui.svg.css,oojs-ui-apex.css,oojs-ui-agora.css,images,i18n} resources/oojs-ui/
+# Copy files from dist/ to resources/lib/oojs-ui
+cp -a $1/dist/{oojs-ui.js,oojs-ui.svg.css,oojs-ui-apex.css,oojs-ui-agora.css,images,i18n} resources/lib/oojs-ui/
 # Figure out what the new version is
 NEWVERSION=$(oojsuiversion)
 # Generate commit summary
@@ -90,7 +90,7 @@ $NEWCHANGES
 END
 )
 # Commit
-git commit resources/oojs-ui/ -m "$COMMITMSG"
+git commit resources/lib/oojs-ui/ -m "$COMMITMSG"
 cat >&2 <<END
 
 
