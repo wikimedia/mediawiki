@@ -467,7 +467,7 @@
     "userlogin-resetlink": "忘记你的登录信息？",
     "userlogin-resetpassword-link": "忘记密码？",
     "userlogin-helplink2": "登录帮助",
-    "userlogin-loggedin": "你已经以{{GENDER:$1|$1}}的身份登录。使用下面的表格以其他用户的身份登录。",
+    "userlogin-loggedin": "您已经以{{GENDER:$1|$1}}的身份登录。使用以下表格以其他用户的身份登录。",
     "userlogin-createanother": "创建另一个账户",
     "createacct-join": "请在下面输入你的信息。",
     "createacct-another-join": "在下方输入新帐户信息。",

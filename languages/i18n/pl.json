@@ -61,7 +61,8 @@
             "Wpedzich",
             "Ymar",
             "Žekřil71pl",
-            "לערי ריינהארט"
+            "לערי ריינהארט",
+            "Pan Cube"
         ]
     },
     "tog-underline": "Podkreślenie linków:",
@@ -283,6 +284,7 @@
     "pool-timeout": "Zbyt długi czas oczekiwania na blokadę",
     "pool-queuefull": "Kolejka zadań jest pełna",
     "pool-errorunknown": "Błąd nieznany",
+    "pool-servererror": "Usługa licznika nie jest dostępna ($1).",
     "aboutsite": "O {{GRAMMAR:MS.lp|{{SITENAME}}}}",
     "aboutpage": "Project:O {{GRAMMAR:MS.lp|{{SITENAME}}}}",
     "copyright": "Treść udostępniana na licencji $1, jeśli nie podano inaczej.",
@@ -1702,6 +1704,8 @@
     "listgrouprights-removegroup-self": "Możliwość usunięcia własnego konta z {{PLURAL:$2|grupy|grup:}} $1",
     "listgrouprights-addgroup-self-all": "Może dodać własne konto do wszystkich grup",
     "listgrouprights-removegroup-self-all": "Może usunąć własne konto ze wszystkich grup",
+    "trackingcategories": "Śledzenie kategorii",
+    "trackingcategories-msg": "Śledzenie kategorii",
     "trackingcategories-name": "Nazwa komunikatu",
     "post-expand-template-inclusion-category-desc": "Po rozwinięciu wszystkich szablonów, rozmiar strony jest większe niż $wgMaxArticleSize, więc niektóre szablony nie zostały rozwinięte.",
     "expensive-parserfunction-category-desc": "Na stronie używanych jest zbyt wiele wymagających funkcji parsera (takich jak <code>#ifexist</code>). Więcej informacji na stronie [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].",
@@ -1937,6 +1941,7 @@
     "sp-contributions-newbies-sub": "Dla nowych użytkowników",
     "sp-contributions-newbies-title": "Wkład nowych użytkowników",
     "sp-contributions-blocklog": "blokady",
+    "sp-contributions-suppresslog": "stłumiony wkład użytkownika",
     "sp-contributions-deleted": "usunięty wkład użytkownika",
     "sp-contributions-uploads": "przesłane pliki",
     "sp-contributions-logs": "rejestry",

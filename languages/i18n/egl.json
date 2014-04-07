@@ -2,7 +2,8 @@
     "@metadata": {
         "authors": [
             "Lévi",
-            "Reder"
+            "Reder",
+            "Geitost"
         ]
     },
     "tog-underline": "Tîra 'na rîga sòta i colegamèint.",
@@ -638,7 +639,7 @@
     "log-fulllog": "Guêrda la stòria dal registrasiòun",
     "edit-hook-aborted": "La mudéfica l'é stêda scanşlêda da l' hook.\nAn n'é mìa stê dê nisóna spiegasiòun.",
     "edit-gone-missing": "Impusébil arnuvêr la pàgina. \nA sèmbra ch'la sìa stêda scanşlêda.",
-    "edit-conflict": "Cuntrâst 'd edisiòun",
+    "edit-conflict": "Cuntrâst 'd edisiòun.",
     "edit-no-change": "La mudéfica an n'é mìa stêda cunsidrêda perchè an n'é mìa stê fât di cambiamèint al tèst.",
     "postedit-confirmation": "La mudéfica l'é stêda salvêda.",
     "edit-already-exists": "L'é impusébil fêr 'na pàgina nōva.\nLa ghé bèle.",
