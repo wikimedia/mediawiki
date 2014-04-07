@@ -164,8 +164,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * @throws DBUnexpectedError
 	 */
 	protected function doQuery( $sql ) {
-		global $wgDebugDumpSql;
-		if ( $wgDebugDumpSql ) {
+		if ( $this->debug() ) {
 			wfDebug( "SQL: [$sql]\n" );
 		}
 		$this->offset = 0;
