@@ -30,6 +30,7 @@ class UIDGenerator {
 	/** @var UIDGenerator */
 	protected static $instance = null;
 
+	protected $nodeIdFile; // string; local file path
 	protected $nodeId32; // string; node ID in binary (32 bits)
 	protected $nodeId48; // string; node ID in binary (48 bits)
 
@@ -43,8 +44,11 @@ class UIDGenerator {
 	const QUICK_VOLATILE = 2; // use an APC like in-memory counter if available
 
 	protected function __construct() {
-		$idFile = wfTempDir() . '/mw-' . __CLASS__ . '-UID-nodeid';
-		$nodeId = is_file( $idFile ) ? file_get_contents( $idFile ) : '';
+		$this->nodeIdFile = wfTempDir() . '/mw-' . __CLASS__ . '-UID-nodeid';
+		$nodeId = '';
+		if ( is_file( $this->nodeIdFile ) ) {
+			$nodeId = file_get_contents( $this->nodeIdFile );
+		}
 		// Try to get some ID that uniquely identifies this machine (RFC 4122)...
 		if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
 			wfSuppressWarnings();
@@ -66,7 +70,7 @@ class UIDGenerator {
 				$nodeId = MWCryptRand::generateHex( 12, true );
 				$nodeId[1] = dechex( hexdec( $nodeId[1] ) | 0x1 ); // set multicast bit
 			}
-			file_put_contents( $idFile, $nodeId ); // cache
+			file_put_contents( $this->nodeIdFile, $nodeId ); // cache
 		}
 		$this->nodeId32 = wfBaseConvert( substr( sha1( $nodeId ), 0, 8 ), 16, 2, 32 );
 		$this->nodeId48 = wfBaseConvert( $nodeId, 16, 2, 48 );
@@ -338,11 +342,12 @@ class UIDGenerator {
 	 */
 	protected function getTimestampAndDelay( $lockFile, $clockSeqSize, $counterSize ) {
 		// Get the UID lock file handle
-		if ( isset( $this->fileHandles[$lockFile] ) ) {
-			$handle = $this->fileHandles[$lockFile];
+		$path = $this->$lockFile;
+		if ( isset( $this->fileHandles[$path] ) ) {
+			$handle = $this->fileHandles[$path];
 		} else {
-			$handle = fopen( $this->$lockFile, 'cb+' );
-			$this->fileHandles[$lockFile] = $handle ?: null; // cache
+			$handle = fopen( $path, 'cb+' );
+			$this->fileHandles[$path] = $handle ?: null; // cache
 		}
 		// Acquire the UID lock file
 		if ( $handle === false ) {
@@ -448,6 +453,50 @@ class UIDGenerator {
 		list( $msec, $sec ) = explode( ' ', microtime() );
 
 		return array( (int)$sec, (int)( $msec * 1000 ) );
+	}
+
+	/**
+	 * Delete all cache files that have been created.
+	 *
+	 * This is a cleanup method primarily meant to be used from unit tests to
+	 * avoid poluting the local filesystem. If used outside of a unit test
+	 * environment it should be used with caution as it may destroy state saved
+	 * in the files.
+	 *
+	 * @see unitTestTearDown
+	 * @since 1.23
+	 */
+	protected function deleteCacheFiles() {
+		// Bug: 44850
+		foreach ( $this->fileHandles as $path => $handle ) {
+			if ( $handle !== null ) {
+				fclose( $handle );
+			}
+			if ( is_file( $path ) ) {
+				unlink( $path );
+			}
+			unset( $this->fileHandles[$path] );
+		}
+		if ( is_file( $this->nodeIdFile ) ) {
+			unlink( $this->nodeIdFile );
+		}
+	}
+
+	/**
+	 * Cleanup resources when tearing down after a unit test.
+	 *
+	 * This is a cleanup method primarily meant to be used from unit tests to
+	 * avoid poluting the local filesystem. If used outside of a unit test
+	 * environment it should be used with caution as it may destroy state saved
+	 * in the files.
+	 *
+	 * @see deleteCacheFiles
+	 * @since 1.23
+	 */
+	public static function unitTestTearDown() {
+		// Bug: 44850
+		$gen = self::singleton();
+		$gen->deleteCacheFiles();
 	}
 
 	function __destruct() {
