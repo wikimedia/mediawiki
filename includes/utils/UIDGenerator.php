@@ -500,6 +500,6 @@ class UIDGenerator {
 	}
 
 	function __destruct() {
-		array_map( 'fclose', $this->fileHandles );
+		array_map( 'fclose', array_filter( $this->fileHandles ) );
 	}
 }
