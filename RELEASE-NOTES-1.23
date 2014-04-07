@@ -54,6 +54,9 @@ production.
 * $wgLicenseTerms has been removed as it was unused.
 * $wgProfileOnly is now deprecated; set the log file in
   $wgDebugLogGroups['profileoutput'] to replace it.
+* (bug 35785) Enhanced recent changes and extended watchlist are now default.
+  Documentation: https://meta.wikimedia.org/wiki/Help:Enhanced_recent_changes
+  and https://www.mediawiki.org/wiki/Manual:$wgDefaultUserOptions.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
