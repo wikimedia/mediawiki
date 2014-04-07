@@ -494,8 +494,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			'Operates in three modes:',
 			' 1) List deleted revisions for the given title(s), sorted by timestamp.',
 			' 2) List deleted contributions for the given user, sorted by timestamp (no titles specified).',
-			" 3) List all deleted revisions in the given namespace, sorted by title and timestamp',
-			'    (no titles specified, {$p}user not set).",
+			' 3) List all deleted revisions in the given namespace, sorted by title and timestamp',
+			"    (no titles specified, {$p}user not set).",
 			'Certain parameters only apply to some modes and are ignored in others.',
 			'For instance, a parameter marked (1) only applies to mode 1 and is ignored in modes 2 and 3.',
 		);
