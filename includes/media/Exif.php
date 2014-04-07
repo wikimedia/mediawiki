@@ -319,13 +319,13 @@ class Exif {
 		$this->mFilteredExifData = array();
 
 		foreach ( array_keys( $this->mRawExifData ) as $section ) {
-			if ( !in_array( $section, array_keys( $this->mExifTags ) ) ) {
+			if ( !array_key_exists( $section, $this->mExifTags ) ) {
 				$this->debug( $section, __FUNCTION__, "'$section' is not a valid Exif section" );
 				continue;
 			}
 
 			foreach ( array_keys( $this->mRawExifData[$section] ) as $tag ) {
-				if ( !in_array( $tag, array_keys( $this->mExifTags[$section] ) ) ) {
+				if ( !array_key_exists( $tag, $this->mExifTags[$section] ) ) {
 					$this->debug( $tag, __FUNCTION__, "'$tag' is not a valid tag in '$section'" );
 					continue;
 				}
