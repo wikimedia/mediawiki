@@ -158,27 +158,37 @@
 	 * </code>
 	 */
 	QUnit.newMwEnvironment = ( function () {
-		var log, liveConfig, liveMessages;
+		var warn, log, liveConfig, liveMessages;
 
 		liveConfig = mw.config.values;
 		liveMessages = mw.messages.values;
 
+		function suppressWarnings() {
+			warn = mw.log.warn;
+			mw.log.warn = $.noop;
+		}
+
+		function restoreWarnings() {
+			if ( warn !== undefined ) {
+				mw.log.warn = warn;
+				warn = undefined;
+			}
+		}
+
+
 		function freshConfigCopy( custom ) {
-			var copy, warn;
+			var copy;
 			// Tests should mock all factors that directly influence the tested code.
 			// For backwards compatibility though we set mw.config to a fresh copy of the live
 			// config. This way any modifications made to mw.config during the test will not
 			// affect other tests, nor the global scope outside the test runner.
 			// This is a shallow copy, since overriding an array or object value via "custom"
 			// should replace it. Setting a config property means you override it, not extend it.
-			// NOTE: It is important that we temporarily disable mw.log#warn as extend() will
-			// trigger MWDeprecationWarning for each of the deprecated properties.
-			warn = mw.log.warn;
-			mw.log.warn = $.noop;
-
+			// NOTE: It is important that we suppress warnings because extend() will also access
+			// deprecated properties and trigger deprecation warnings from mw.log#deprecate.
+			suppressWarnings();
 			copy = $.extend( {}, liveConfig, custom );
-
-			mw.log.warn = warn;
+			restoreWarnings();
 
 			return copy;
 		}
@@ -207,6 +217,8 @@
 					// Greetings, mock environment!
 					mw.config.values = freshConfigCopy( localEnv.config );
 					mw.messages.values = freshMessagesCopy( localEnv.messages );
+					this.suppressWarnings = suppressWarnings;
+					this.restoreWarnings = restoreWarnings;
 
 					localEnv.setup.call( this );
 				},
@@ -220,6 +232,10 @@
 					// Farewell, mock environment!
 					mw.config.values = liveConfig;
 					mw.messages.values = liveMessages;
+
+					// As a convenienice feature, automatically restore warnings if they're
+					// still surpressed by the end of the test.
+					restoreWarnings();
 				}
 			};
 		};
