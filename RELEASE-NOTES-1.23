@@ -328,6 +328,8 @@ changes to languages because of Bugzilla reports.
 * Special:Search no longer has an "include redirects" option on the advanced
   tab. Redirects are now included in all searches.
 * mediawiki.api.category's getCategories() 'async' parameter was deprecated.
+* The unmaintained WikiEditor modules highlighter, template editor and navigable
+  toc were removed.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
