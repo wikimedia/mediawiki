@@ -6177,64 +6177,6 @@ $wgAuth = null;
 $wgHooks = array();
 
 /**
- * Maps jobs to their handling classes; extensions
- * can add to this to provide custom jobs
- */
-$wgJobClasses = array(
-	'refreshLinks' => 'RefreshLinksJob',
-	'refreshLinks2' => 'RefreshLinksJob2', // b/c
-	'htmlCacheUpdate' => 'HTMLCacheUpdateJob',
-	'sendMail' => 'EmaillingJob',
-	'enotifNotify' => 'EnotifNotifyJob',
-	'fixDoubleRedirect' => 'DoubleRedirectJob',
-	'uploadFromUrl' => 'UploadFromUrlJob',
-	'AssembleUploadChunks' => 'AssembleUploadChunksJob',
-	'PublishStashedFile' => 'PublishStashedFileJob',
-	'null' => 'NullJob'
-);
-
-/**
- * Jobs that must be explicitly requested, i.e. aren't run by job runners unless
- * special flags are set. The values here are keys of $wgJobClasses.
- *
- * These can be:
- * - Very long-running jobs.
- * - Jobs that you would never want to run as part of a page rendering request.
- * - Jobs that you want to run on specialized machines ( like transcoding, or a particular
- *   machine on your cluster has 'outside' web access you could restrict uploadFromUrl )
- * These settings should be global to all wikis.
- */
-$wgJobTypesExcludedFromDefaultQueue = array( 'AssembleUploadChunks', 'PublishStashedFile' );
-
-/**
- * Map of job types to how many job "work items" should be run per second
- * on each job runner process. The meaning of "work items" varies per job,
- * but typically would be something like "pages to update". A single job
- * may have a variable number of work items, as is the case with batch jobs.
- * This is used by runJobs.php and not jobs run via $wgJobRunRate.
- * These settings should be global to all wikis.
- */
-$wgJobBackoffThrottling = array();
-
-/**
- * Map of job types to configuration arrays.
- * This determines which queue class and storage system is used for each job type.
- * Job types that do not have explicit configuration will use the 'default' config.
- * These settings should be global to all wikis.
- */
-$wgJobTypeConf = array(
-	'default' => array( 'class' => 'JobQueueDB', 'order' => 'random' ),
-);
-
-/**
- * Which aggregator to use for tracking which queues have jobs.
- * These settings should be global to all wikis.
- */
-$wgJobQueueAggregator = array(
-	'class' => 'JobQueueAggregatorMemc'
-);
-
-/**
  * Additional functions to be performed with updateSpecialPages.
  * Expensive Querypages are already updated.
  */
@@ -6915,12 +6857,135 @@ $wgHTTPConnectTimeout = 5e0;
  */
 
 /**
+ * Maps jobs to their handling classes; extensions
+ * can add to this to provide custom jobs
+ */
+$wgJobClasses = array(
+	'refreshLinks' => 'RefreshLinksJob',
+	'refreshLinks2' => 'RefreshLinksJob2', // b/c
+	'htmlCacheUpdate' => 'HTMLCacheUpdateJob',
+	'sendMail' => 'EmaillingJob',
+	'enotifNotify' => 'EnotifNotifyJob',
+	'fixDoubleRedirect' => 'DoubleRedirectJob',
+	'uploadFromUrl' => 'UploadFromUrlJob',
+	'AssembleUploadChunks' => 'AssembleUploadChunksJob',
+	'PublishStashedFile' => 'PublishStashedFileJob',
+	'null' => 'NullJob'
+);
+
+/**
+ * Jobs that must be explicitly requested, i.e. aren't run by job runners unless
+ * special flags are set. The values here are keys of $wgJobClasses.
+ *
+ * These can be:
+ * - Very long-running jobs.
+ * - Jobs that you would never want to run as part of a page rendering request.
+ * - Jobs that you want to run on specialized machines ( like transcoding, or a particular
+ *   machine on your cluster has 'outside' web access you could restrict uploadFromUrl )
+ * These settings should be global to all wikis.
+ */
+$wgJobTypesExcludedFromDefaultQueue = array( 'AssembleUploadChunks', 'PublishStashedFile' );
+
+/**
+ * Map of job types to how many job "work items" should be run per second
+ * on each job runner process. The meaning of "work items" varies per job,
+ * but typically would be something like "pages to update". A single job
+ * may have a variable number of work items, as is the case with batch jobs.
+ * This is used by runJobs.php and not jobs run via $wgJobRunRate.
+ * These settings should be global to all wikis.
+ */
+$wgJobBackoffThrottling = array();
+
+/**
+ * Map of job types to configuration arrays.
+ * This determines which queue class and storage system is used for each job type.
+ * Job types that do not have explicit configuration will use the 'default' config.
+ * These settings should be global to all wikis.
+ */
+$wgJobTypeConf = array(
+	'default' => array( 'class' => 'JobQueueDB', 'order' => 'random' ),
+);
+
+/**
+ * Which aggregator to use for tracking which queues have jobs.
+ * These settings should be global to all wikis.
+ */
+$wgJobQueueAggregator = array(
+	'class' => 'JobQueueAggregatorMemc'
+);
+
+/**
+ * Maps jobs to their handling classes; extensions
+ * can add to this to provide custom jobs
+ */
+$wgJobClasses = array(
+	'refreshLinks' => 'RefreshLinksJob',
+	'refreshLinks2' => 'RefreshLinksJob2', // b/c
+	'htmlCacheUpdate' => 'HTMLCacheUpdateJob',
+	'sendMail' => 'EmaillingJob',
+	'enotifNotify' => 'EnotifNotifyJob',
+	'fixDoubleRedirect' => 'DoubleRedirectJob',
+	'uploadFromUrl' => 'UploadFromUrlJob',
+	'AssembleUploadChunks' => 'AssembleUploadChunksJob',
+	'PublishStashedFile' => 'PublishStashedFileJob',
+	'null' => 'NullJob'
+);
+
+/**
+ * Jobs that must be explicitly requested, i.e. aren't run by job runners unless
+ * special flags are set. The values here are keys of $wgJobClasses.
+ *
+ * These can be:
+ * - Very long-running jobs.
+ * - Jobs that you would never want to run as part of a page rendering request.
+ * - Jobs that you want to run on specialized machines ( like transcoding, or a particular
+ *   machine on your cluster has 'outside' web access you could restrict uploadFromUrl )
+ * These settings should be global to all wikis.
+ */
+$wgJobTypesExcludedFromDefaultQueue = array( 'AssembleUploadChunks', 'PublishStashedFile' );
+
+/**
+ * Map of job types to how many job "work items" should be run per second
+ * on each job runner process. The meaning of "work items" varies per job,
+ * but typically would be something like "pages to update". A single job
+ * may have a variable number of work items, as is the case with batch jobs.
+ * These settings should be global to all wikis.
+ */
+$wgJobBackoffThrottling = array();
+
+/**
+ * Map of job types to configuration arrays.
+ * This determines which queue class and storage system is used for each job type.
+ * Job types that do not have explicit configuration will use the 'default' config.
+ * These settings should be global to all wikis.
+ */
+$wgJobTypeConf = array(
+	'default' => array( 'class' => 'JobQueueDB', 'order' => 'random' ),
+);
+
+/**
+ * Which aggregator to use for tracking which queues have jobs.
+ * These settings should be global to all wikis.
+ */
+$wgJobQueueAggregator = array(
+	'class' => 'JobQueueAggregatorMemc'
+);
+
+/**
  * Number of jobs to perform per request. May be less than one in which case
  * jobs are performed probabalistically. If this is zero, jobs will not be done
  * during ordinary apache requests. In this case, maintenance/runJobs.php should
  * be run periodically.
  */
 $wgJobRunRate = 1;
+
+/**
+ * When $wgJobRunRate > 0, try to run jobs asynchronously, spawning a new process
+ * to handle the job execution, instead of blocking the request until the job
+ * execution finishes.
+ * @since 1.23
+ */
+$wgRunJobsAsync = true;
 
 /**
  * Number of rows to update per job

@@ -624,7 +624,7 @@ class MediaWiki {
 	 * the socket once it's done.
 	 */
 	protected function triggerJobs() {
-		global $wgJobRunRate, $wgServer;
+		global $wgJobRunRate, $wgServer, $wgRunJobsAsync;
 
 		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
 			return;
@@ -650,6 +650,11 @@ class MediaWiki {
 
 		$errno = $errstr = null;
 		$info = wfParseUrl( $wgServer );
+		if ( !$wgRunJobsAsync ) {
+			// Run the job here while the user waits
+			SpecialRunJobs::executeJobs( $n );
+			return;
+		}
 		wfSuppressWarnings();
 		$sock = fsockopen(
 			$info['host'],
