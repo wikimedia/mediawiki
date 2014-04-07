@@ -51,6 +51,7 @@
 
 	// MW currently doesn't use the type attribute everywhere on inputs.
 	input,
+	select,
 	.mw-ui-button {
 		display: block;
 		.box-sizing(border-box);
@@ -58,10 +59,17 @@
 		width: 100%;
 	}
 
-	// We exclude these because they'll generally use mw-ui-button.
+	// We exclude buttons because they'll generally use mw-ui-button.
 	// Otherwise, we'll unintentionally override that.
-	input:not([type=button]):not([type=submit]):not([type=file]), {
+	input:not([type=button]):not([type=submit]):not([type=file]) {
 		.agora-field-styling(); // mixins/forms.less
+	}
+
+	// Give dropdown lists the same spacing as input fields for consistency.
+	// Values taken from .agora-field-styling() in mixins/form.less
+	select {
+		padding: 0.35em 0.5em 0.35em 0.5em;
+		vertical-align: middle;
 	}
 
 	label {
@@ -93,27 +101,26 @@
 	//   <div class="warningbox">A warning to be noted</div>
 	//   <div class="successbox">Action successful!</div>
 	//   <div class="error">A different kind of error</div>
+	//   <div class="error">
+	//     <ul><li>There are problems with some of your input.</li></ul>
+	//   </div>
 	//   <div>
 	//     <input type="text" value="input" class="mw-ui-input">
-	//   <div>
 	//   </div>
+	//   <div>
+	//     <select>
+	//       <option value="1">Option 1</option>
+	//       <option value="2">Option 2</option>
+	//     </select>
+	//     <span class="error">The value you specified is not a valid option.</span>
+	//   </div>
+	//   <div>
 	//     <button class="mw-ui-button">Button in vform</button>
 	//   </div>
 	// </form>
 	//
 	// Styleguide 3.1.
-	.error {
-		.box-sizing(border-box);
-		font-size: 0.9em;
-		margin: 0 0 1em;
-		padding: 0.5em;
-		color: #cc0000;
-		border: 1px solid #fac5c5;
-		background-color: #fae3e3;
-		text-shadow: 0 1px #fae3e3;
-		word-wrap: break-word;
-	}
-
+	.error,
 	.errorbox,
 	.warningbox,
 	.successbox {
@@ -122,6 +129,22 @@
 		margin: 0 0 1em 0;
 		padding: 0.5em;
 		word-wrap: break-word;
+	}
+
+	// Colours taken from those for .errorbox in skins/common/shared.css
+	.error {
+		color: #cc0000;
+		border: 1px solid #fac5c5;
+		background-color: #fae3e3;
+		text-shadow: 0 1px #fae3e3;
+	}
+
+	// This specifies styling for individual field validation error messages.
+	// Show them below the fields to prevent line break glitches, and leave
+	// some space between the field and the error message box.
+	.mw-ui-vform-div .error {
+		display: block;
+		margin-top: 5px;
 	}
 
 }
