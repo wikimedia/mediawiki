@@ -77,14 +77,15 @@ oo.initClass = function ( fn ) {
  *     Thing.prototype.exists = function () {};
  *
  *     function Person() {
- *         Person.super.apply( this, arguments );
+ *         // [] notation used for ES3 compatibility - 'super' is a reserved word
+ *         Person['super'].apply( this, arguments );
  *     }
  *     OO.inheritClass( Person, Thing );
  *     Person.static.defaultEyeCount = 2;
  *     Person.prototype.walk = function () {};
  *
  *     function Jumper() {
- *         Jumper.super.apply( this, arguments );
+ *         Jumper['super'].apply( this, arguments );
  *     }
  *     OO.inheritClass( Jumper, Person );
  *     Jumper.prototype.jump = function () {};
@@ -106,7 +107,7 @@ oo.inheritClass = function ( targetFn, originFn ) {
 
 	var targetConstructor = targetFn.prototype.constructor;
 
-	targetFn.super = originFn;
+	targetFn['super'] = originFn;
 	targetFn.prototype = Object.create( originFn.prototype, {
 		// Restore constructor property of targetFn
 		constructor: {
@@ -761,7 +762,7 @@ oo.Registry.prototype.lookup = function ( name ) {
  * @constructor
  */
 oo.Factory = function OoFactory() {
-	oo.Factory.super.call( this );
+	oo.Factory['super'].call( this );
 
 	// Properties
 	this.entries = [];
@@ -801,7 +802,7 @@ oo.Factory.prototype.register = function ( constructor ) {
 	}
 	this.entries.push( name );
 
-	oo.Factory.super.prototype.register.call( this, name, constructor );
+	oo.Factory['super'].prototype.register.call( this, name, constructor );
 };
 
 /**
