@@ -536,7 +536,7 @@ class MimeMagic {
 	 * based formats like OPC/ODF files).
 	 *
 	 * @param string $file the file to check
-	 * @param $ext Mixed: the file extension, or true (default) to extract it from the filename.
+	 * @param string|bool $ext the file extension, or true (default) to extract it from the filename.
 	 *             Set it to false to ignore the extension. DEPRECATED! Set to false, use
 	 *             improveTypeFromExtension($mime, $ext) later to improve mime type.
 	 *
@@ -745,8 +745,8 @@ class MimeMagic {
 	 * If can't tell, returns 'application/zip'.
 	 *
 	 * @param string $header some reasonably-sized chunk of file header
-	 * @param $tail   String: the tail of the file
-	 * @param $ext Mixed: the file extension, or true to extract it from the filename.
+	 * @param String|null $tail the tail of the file
+	 * @param string|bool $ext the file extension, or true to extract it from the filename.
 	 *             Set it to false (default) to ignore the extension. DEPRECATED! Set to false,
 	 *             use improveTypeFromExtension($mime, $ext) later to improve mime type.
 	 *
@@ -851,7 +851,7 @@ class MimeMagic {
 	 * this function returns 'unknown/unknown'.
 	 *
 	 * @param string $file the file to check
-	 * @param $ext Mixed: the file extension, or true (default) to extract it from the filename.
+	 * @param string|bool $ext the file extension, or true (default) to extract it from the filename.
 	 *             Set it to false to ignore the extension. DEPRECATED! Set to false, use
 	 *             improveTypeFromExtension($mime, $ext) later to improve mime type.
 	 *

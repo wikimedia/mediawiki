@@ -437,11 +437,11 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param String $old: Text as it was in the database
-	 * @param String $mine: Text submitted while user was editing
-	 * @param String $yours: Text submitted by the user
+	 * @param String $old Text as it was in the database
+	 * @param String $mine Text submitted while user was editing
+	 * @param String $yours Text submitted by the user
 	 * @param Boolean $expectedMergeResult Whether the merge should be a success
-	 * @param String $expectedText: Text after merge has been completed
+	 * @param String $expectedText Text after merge has been completed
 	 *
 	 * @dataProvider provideMerge()
 	 * @group medium

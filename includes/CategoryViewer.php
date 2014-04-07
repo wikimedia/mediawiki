@@ -449,7 +449,7 @@ class CategoryViewer extends ContextSource {
 	 * of the output.
 	 *
 	 * @param string $type 'page', 'subcat', or 'file'
-	 * @return String: HTML output, possibly empty if there are no other pages
+	 * @return String HTML output, possibly empty if there are no other pages
 	 */
 	private function getSectionPagingLinks( $type ) {
 		if ( isset( $this->until[$type] ) && $this->until[$type] !== null ) {
@@ -628,8 +628,8 @@ class CategoryViewer extends ContextSource {
 	 * Takes a title, and adds the fragment identifier that
 	 * corresponds to the correct segment of the category.
 	 *
-	 * @param Title $title: The title (usually $this->title)
-	 * @param string $section: Which section
+	 * @param Title $title The title (usually $this->title)
+	 * @param string $section Which section
 	 * @throws MWException
 	 * @return Title
 	 */
@@ -661,7 +661,7 @@ class CategoryViewer extends ContextSource {
 	 * @param int $rescnt The number of items returned by our database query.
 	 * @param int $dbcnt The number of items according to the category table.
 	 * @param string $type 'subcat', 'article', or 'file'
-	 * @return string: A message giving the number of items, to output to HTML.
+	 * @return string A message giving the number of items, to output to HTML.
 	 */
 	private function getCountMessage( $rescnt, $dbcnt, $type ) {
 		// There are three cases:
