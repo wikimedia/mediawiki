@@ -1344,8 +1344,8 @@ class EditPage {
 	 * Run hooks that can filter edits just before they get saved.
 	 *
 	 * @param Content $content the Content to filter.
-	 * @param Status  $status for reporting the outcome to the caller
-	 * @param User    $user the user performing the edit
+	 * @param Status $status for reporting the outcome to the caller
+	 * @param User $user the user performing the edit
 	 *
 	 * @return bool
 	 */
@@ -2606,7 +2606,7 @@ class EditPage {
 	}
 
 	/**
-	 * @param $isSubjectPreview Boolean: true if this is the section subject/title
+	 * @param Boolean $isSubjectPreview true if this is the section subject/title
 	 *                          up top, or false if this is the comment summary
 	 *                          down below the textarea
 	 * @param string $summary The text of the summary to display
@@ -2632,7 +2632,7 @@ class EditPage {
 	}
 
 	/**
-	 * @param $isSubjectPreview Boolean: true if this is the section subject/title
+	 * @param Boolean $isSubjectPreview true if this is the section subject/title
 	 *                          up top, or false if this is the comment summary
 	 *                          down below the textarea
 	 * @param string $summary the text of the summary to display

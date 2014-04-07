@@ -48,7 +48,7 @@ class FileDeleteForm {
 	/**
 	 * Constructor
 	 *
-	 * @param $file File object we're deleting
+	 * @param File $file File object we're deleting
 	 */
 	public function __construct( $file ) {
 		$this->title = $file->getTitle();
@@ -132,12 +132,12 @@ class FileDeleteForm {
 	/**
 	 * Really delete the file
 	 *
-	 * @param $title Title object
-	 * @param File $file: file object
+	 * @param Title $title Title object
+	 * @param File $file file object
 	 * @param string $oldimage archive name
 	 * @param string $reason reason of the deletion
-	 * @param $suppress Boolean: whether to mark all deleted versions as restricted
-	 * @param $user User object performing the request
+	 * @param Boolean $suppress whether to mark all deleted versions as restricted
+	 * @param User $user User object performing the request
 	 * @throws MWException
 	 * @return bool|Status
 	 */

@@ -286,7 +286,7 @@ class ParserOptions {
 	/**
 	 * Same as getUserLangObj() but returns a string instead.
 	 *
-	 * @return String   Language code
+	 * @return String Language code
 	 * @since 1.17
 	 */
 	function getUserLang() {
@@ -478,8 +478,8 @@ class ParserOptions {
 	 * settings.
 	 *
 	 * @since 1.17
-	 * @param $forOptions Array
-	 * @param $title Title: used to get the content language of the page (since r97636)
+	 * @param Array $forOptions
+	 * @param Title $title used to get the content language of the page (since r97636)
 	 * @return string Page rendering hash
 	 */
 	public function optionsHash( $forOptions, $title = null ) {
