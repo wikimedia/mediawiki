@@ -67,7 +67,7 @@ class UserrightsPage extends SpecialPage {
 	 * Manage forms to be shown according to posted data.
 	 * Depending on the submit button used, call a form or a save function.
 	 *
-	 * @param $par Mixed: string if any subpage provided, else null
+	 * @param string|null $par string if any subpage provided, else null
 	 * @throws UserBlockedError|PermissionsError
 	 */
 	public function execute( $par ) {
@@ -218,11 +218,11 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Save user groups changes in the database.
 	 *
-	 * @param $user User object
+	 * @param User $user User object
 	 * @param array $add of groups to add
 	 * @param array $remove of groups to remove
 	 * @param string $reason reason for group change
-	 * @return Array: Tuple of added, then removed groups
+	 * @return Array Tuple of added, then removed groups
 	 */
 	function doSaveUserGroups( $user, $add, $remove, $reason = '' ) {
 		global $wgAuth;
@@ -446,7 +446,7 @@ class UserrightsPage extends SpecialPage {
 	 * permissions.
 	 *
 	 * @param array $groups list of groups the given user is in
-	 * @return Array:  Tuple of addable, then removable groups
+	 * @return Array Tuple of addable, then removable groups
 	 */
 	protected function splitGroups( $groups ) {
 		list( $addable, $removable, $addself, $removeself ) = array_values( $this->changeableGroups() );
@@ -466,8 +466,8 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Show the form to edit group memberships.
 	 *
-	 * @param $user      User or UserRightsProxy you're editing
-	 * @param $groups    Array:  Array of groups the user is in
+	 * @param User|UserRightsProxy $user User or UserRightsProxy you're editing
+	 * @param Array $groups Array of groups the user is in
 	 */
 	protected function showEditUserGroupsForm( $user, $groups ) {
 		$list = array();
@@ -682,7 +682,7 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	/**
-	 * @param $group String: the name of the group to check
+	 * @param String $group the name of the group to check
 	 * @return bool Can we remove the group?
 	 */
 	private function canRemove( $group ) {

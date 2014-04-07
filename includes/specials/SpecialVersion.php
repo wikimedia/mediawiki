@@ -417,7 +417,7 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Generate wikitext showing extensions name, URL, author and description.
 	 *
-	 * @return String: Wikitext
+	 * @return String Wikitext
 	 */
 	function getExtensionCredits() {
 		global $wgExtensionCredits;
@@ -733,7 +733,7 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Generate wikitext showing hooks in $wgHooks.
 	 *
-	 * @return String: wikitext
+	 * @return String wikitext
 	 */
 	private function getWgHooks() {
 		global $wgSpecialVersionShowHooks, $wgHooks;
@@ -804,7 +804,7 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Get information about client's IP address.
 	 *
-	 * @return String: HTML fragment
+	 * @return String HTML fragment
 	 */
 	private function IPInfo() {
 		$ip = str_replace( '--', ' - ', htmlspecialchars( $this->getRequest()->getIP() ) );
@@ -826,11 +826,11 @@ class SpecialVersion extends SpecialPage {
 	 *   If no '...' string variant is found, but an authors file is found an
 	 *   'and others' will be added to the end of the credits.
 	 *
-	 * @param $authors mixed: string or array of strings
-	 * @param $extName string: name of the extension for link creation
-	 * @param $extDir  string: path to the extension root directory
+	 * @param string|array $authors string or array of strings
+	 * @param string $extName name of the extension for link creation
+	 * @param string $extDir path to the extension root directory
 	 *
-	 * @return String: HTML fragment
+	 * @return String HTML fragment
 	 */
 	function listAuthors( $authors, $extName, $extDir ) {
 		$hasOthers = false;
@@ -930,8 +930,8 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Convert an array of items into a list for display.
 	 *
-	 * @param array $list of elements to display
-	 * @param $sort Boolean: whether to sort the items in $list
+	 * @param array $list list of elements to display
+	 * @param Boolean $sort whether to sort the items in $list
 	 *
 	 * @return String
 	 */
@@ -956,7 +956,7 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Convert an array or object to a string for display.
 	 *
-	 * @param $list Mixed: will convert an array to string if given and return
+	 * @param Mixed $list will convert an array to string if given and return
 	 *              the paramater unaltered otherwise
 	 *
 	 * @return Mixed
@@ -1070,7 +1070,7 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @param string $dir directory of the svn checkout
 	 *
-	 * @return Integer: revision number as int
+	 * @return Integer revision number as int
 	 */
 	public static function getSvnRevision( $dir ) {
 		$info = self::getSvnInfo( $dir );

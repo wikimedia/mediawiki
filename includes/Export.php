@@ -73,8 +73,8 @@ class WikiExporter {
 	 * make additional queries to pull source data while the
 	 * main query is still running.
 	 *
-	 * @param $db DatabaseBase
-	 * @param $history Mixed: one of WikiExporter::FULL, WikiExporter::CURRENT,
+	 * @param DatabaseBase $db
+	 * @param Mixed $history one of WikiExporter::FULL, WikiExporter::CURRENT,
 	 *                 WikiExporter::RANGE or WikiExporter::STABLE,
 	 *                 or an associative array:
 	 *                   offset: non-inclusive offset at which to start the query
@@ -127,7 +127,7 @@ class WikiExporter {
 	 * Dumps a series of page and revision records for those pages
 	 * in the database falling within the page_id range given.
 	 * @param int $start inclusive lower limit (this id is included)
-	 * @param $end   Int: Exclusive upper limit (this id is not included)
+	 * @param int $end Exclusive upper limit (this id is not included)
 	 *                   If 0, no upper limit.
 	 */
 	public function pagesByRange( $start, $end ) {
@@ -142,7 +142,7 @@ class WikiExporter {
 	 * Dumps a series of page and revision records for those pages
 	 * in the database with revisions falling within the rev_id range given.
 	 * @param int $start inclusive lower limit (this id is included)
-	 * @param $end   Int: Exclusive upper limit (this id is not included)
+	 * @param int $end Exclusive upper limit (this id is not included)
 	 *                   If 0, no upper limit.
 	 */
 	public function revsByRange( $start, $end ) {

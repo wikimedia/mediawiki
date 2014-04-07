@@ -125,9 +125,9 @@ class ParserCache {
 	 *
 	 * @todo Document parameter $useOutdated
 	 *
-	 * @param $article     Article
-	 * @param $popts       ParserOptions
-	 * @param $useOutdated Boolean (default true)
+	 * @param Article $article
+	 * @param ParserOptions $popts
+	 * @param Boolean $useOutdated (default true)
 	 * @return bool|mixed|string
 	 */
 	public function getKey( $article, $popts, $useOutdated = true ) {
@@ -171,9 +171,9 @@ class ParserCache {
 	 * Retrieve the ParserOutput from ParserCache.
 	 * false if not found or outdated.
 	 *
-	 * @param $article     Article
-	 * @param $popts       ParserOptions
-	 * @param $useOutdated Boolean (default false)
+	 * @param Article $article
+	 * @param ParserOptions $popts
+	 * @param Boolean $useOutdated (default false)
 	 *
 	 * @return ParserOutput|bool False on failure
 	 */

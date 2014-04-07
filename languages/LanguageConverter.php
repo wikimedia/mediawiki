@@ -55,7 +55,7 @@ class LanguageConverter {
 	public $mManualLevel;
 
 	/**
-	 * @var String: memcached key name
+	 * @var String memcached key name
 	 */
 	public $mCacheKey;
 
@@ -75,12 +75,12 @@ class LanguageConverter {
 	/**
 	 * Constructor
 	 *
-	 * @param $langobj Language: the Language Object
-	 * @param $maincode String: the main language code of this language
-	 * @param $variants Array: the supported variants of this language
-	 * @param $variantfallbacks Array: the fallback language of each variant
-	 * @param $flags Array: defining the custom strings that maps to the flags
-	 * @param $manualLevel Array: limit for supported variants
+	 * @param Language $langobj the Language Object
+	 * @param String $maincode the main language code of this language
+	 * @param Array $variants the supported variants of this language
+	 * @param Array $variantfallbacks the fallback language of each variant
+	 * @param Array $flags defining the custom strings that maps to the flags
+	 * @param Array $manualLevel limit for supported variants
 	 */
 	public function __construct( $langobj, $maincode, $variants = array(),
 								$variantfallbacks = array(), $flags = array(),
@@ -120,7 +120,7 @@ class LanguageConverter {
 	 * Get all valid variants.
 	 * Call this instead of using $this->mVariants directly.
 	 *
-	 * @return Array: contains all valid variants
+	 * @return Array contains all valid variants
 	 */
 	public function getVariants() {
 		return $this->mVariants;
@@ -133,8 +133,8 @@ class LanguageConverter {
 	 * when zh-sg is preferred but not defined, we will pick zh-hans
 	 * in this case. Right now this is only used by zh.
 	 *
-	 * @param $variant String: the language code of the variant
-	 * @return String|array: The code of the fallback language or the
+	 * @param String $variant the language code of the variant
+	 * @return String|array The code of the fallback language or the
 	 *				 main code if there is no fallback
 	 */
 	public function getVariantFallbacks( $variant ) {
@@ -146,7 +146,7 @@ class LanguageConverter {
 
 	/**
 	 * Get the title produced by the conversion rule.
-	 * @return String: The converted title text
+	 * @return String The converted title text
 	 */
 	public function getConvRuleTitle() {
 		return $this->mConvRuleTitle;
@@ -154,7 +154,7 @@ class LanguageConverter {
 
 	/**
 	 * Get preferred language variant.
-	 * @return String: the preferred language code
+	 * @return String the preferred language code
 	 */
 	public function getPreferredVariant() {
 		global $wgDefaultLanguageVariant, $wgUser;
@@ -184,7 +184,7 @@ class LanguageConverter {
 	/**
 	 * Get default variant.
 	 * This function would not be affected by user's settings
-	 * @return String: the default variant code
+	 * @return String the default variant code
 	 */
 	public function getDefaultVariant() {
 		global $wgDefaultLanguageVariant;
@@ -207,8 +207,8 @@ class LanguageConverter {
 
 	/**
 	 * Validate the variant
-	 * @param $variant String: the variant to validate
-	 * @return Mixed: returns the variant if it is valid, null otherwise
+	 * @param String $variant the variant to validate
+	 * @return Mixed returns the variant if it is valid, null otherwise
 	 */
 	public function validateVariant( $variant = null ) {
 		if ( $variant !== null && in_array( $variant, $this->mVariants ) ) {
@@ -220,7 +220,7 @@ class LanguageConverter {
 	/**
 	 * Get the variant specified in the URL
 	 *
-	 * @return Mixed: variant if one found, false otherwise.
+	 * @return Mixed variant if one found, false otherwise.
 	 */
 	public function getURLVariant() {
 		global $wgRequest;
@@ -243,7 +243,7 @@ class LanguageConverter {
 	/**
 	 * Determine if the user has a variant set.
 	 *
-	 * @return Mixed: variant if one found, false otherwise.
+	 * @return Mixed variant if one found, false otherwise.
 	 */
 	protected function getUserVariant() {
 		global $wgUser, $wgContLang;
@@ -277,7 +277,7 @@ class LanguageConverter {
 	/**
 	 * Determine the language variant from the Accept-Language header.
 	 *
-	 * @return Mixed: variant if one found, false otherwise.
+	 * @return Mixed variant if one found, false otherwise.
 	 */
 	protected function getHeaderVariant() {
 		global $wgRequest;
@@ -456,9 +456,9 @@ class LanguageConverter {
 	 * Doesn't parse rules or do any of that other stuff, for that use
 	 * convert() or convertTo().
 	 *
-	 * @param $text String: text to convert
-	 * @param $variant String: variant language code
-	 * @return String: translated text
+	 * @param String $text text to convert
+	 * @param String $variant variant language code
+	 * @return String translated text
 	 */
 	public function translate( $text, $variant ) {
 		wfProfileIn( __METHOD__ );
@@ -475,8 +475,8 @@ class LanguageConverter {
 	/**
 	 * Call translate() to convert text to all valid variants.
 	 *
-	 * @param $text String: the text to be converted
-	 * @return Array: variant => converted text
+	 * @param String $text the text to be converted
+	 * @return Array variant => converted text
 	 */
 	public function autoConvertToAllVariants( $text ) {
 		wfProfileIn( __METHOD__ );
@@ -534,8 +534,8 @@ class LanguageConverter {
 	 * Auto convert a Title object to a readable string in the
 	 * preferred variant.
 	 *
-	 * @param $title Title a object of Title
-	 * @return String: converted title text
+	 * @param Title $title a object of Title
+	 * @return String converted title text
 	 */
 	public function convertTitle( $title ) {
 		$variant = $this->getPreferredVariant();
@@ -552,9 +552,9 @@ class LanguageConverter {
 	/**
 	 * Get the namespace display name in the preferred variant.
 	 *
-	 * @param $index int namespace id
-	 * @param $variant string|null variant code or null for preferred variant
-	 * @return String: namespace name for display
+	 * @param int $index namespace id
+	 * @param string|null $variant variant code or null for preferred variant
+	 * @return String namespace name for display
 	 */
 	public function convertNamespace( $index, $variant = null ) {
 		if ( $variant === null ) {
@@ -591,8 +591,8 @@ class LanguageConverter {
 	 * -{flags|code1:text1;code2:text2;...}-  or
 	 * -{text}- in which case no conversion should take place for text
 	 *
-	 * @param $text String: text to be converted
-	 * @return String: converted text
+	 * @param String $text text to be converted
+	 * @return String converted text
 	 */
 	public function convert( $text ) {
 		$variant = $this->getPreferredVariant();
@@ -602,9 +602,9 @@ class LanguageConverter {
 	/**
 	 * Same as convert() except a extra parameter to custom variant.
 	 *
-	 * @param $text String: text to be converted
-	 * @param $variant String: the target variant code
-	 * @return String: converted text
+	 * @param String $text text to be converted
+	 * @param String $variant the target variant code
+	 * @return String converted text
 	 */
 	public function convertTo( $text, $variant ) {
 		global $wgDisableLangConversion;
@@ -620,10 +620,10 @@ class LanguageConverter {
 	 * Recursively convert text on the outside. Allow to use nested
 	 * markups to custom rules.
 	 *
-	 * @param $text String: text to be converted
-	 * @param $variant String: the target variant code
-	 * @param $depth Integer: depth of recursion
-	 * @return String: converted text
+	 * @param String $text text to be converted
+	 * @param String $variant the target variant code
+	 * @param Integer $depth depth of recursion
+	 * @return String converted text
 	 */
 	protected function recursiveConvertTopLevel( $text, $variant, $depth = 0 ) {
 		$startPos = 0;
@@ -659,13 +659,13 @@ class LanguageConverter {
 	/**
 	 * Recursively convert text on the inside.
 	 *
-	 * @param $text String: text to be converted
-	 * @param $variant String: the target variant code
-	 * @param $startPos int
-	 * @param $depth Integer: depth of recursion
+	 * @param String $text text to be converted
+	 * @param String $variant the target variant code
+	 * @param int $startPos
+	 * @param Integer $depth depth of recursion
 	 *
 	 * @throws MWException
-	 * @return String: converted text
+	 * @return String converted text
 	 */
 	protected function recursiveConvertRule( $text, $variant, &$startPos, $depth = 0 ) {
 		// Quick sanity check (no function calls)
@@ -739,9 +739,9 @@ class LanguageConverter {
 	 * non-existing link in one variant actually exists in another variant.
 	 * This function tries to find it. See e.g. LanguageZh.php
 	 *
-	 * @param $link String: the name of the link
-	 * @param $nt Mixed: the title object of the link
-	 * @param $ignoreOtherCond Boolean: to disable other conditions when
+	 * @param String $link the name of the link
+	 * @param Mixed $nt the title object of the link
+	 * @param Boolean $ignoreOtherCond to disable other conditions when
 	 *		we need to transclude a template or update a category's link
 	 * @return Null, the input parameters may be modified upon return
 	 */
@@ -843,7 +843,7 @@ class LanguageConverter {
 	/**
 	 * Load conversion tables either from the cache or the disk.
 	 * @private
-	 * @param $fromCache Boolean: load from memcached? Defaults to true.
+	 * @param Boolean $fromCache load from memcached? Defaults to true.
 	 */
 	function loadTables( $fromCache = true ) {
 		global $wgLangConvMemc;
@@ -911,9 +911,9 @@ class LanguageConverter {
 	 * To make the tables more manageable, subpages are allowed
 	 * and will be parsed recursively if $recursive == true.
 	 *
-	 * @param $code String: language code
-	 * @param $subpage String: subpage name
-	 * @param $recursive Boolean: parse subpages recursively? Defaults to true.
+	 * @param String $code language code
+	 * @param String $subpage subpage name
+	 * @param Boolean $recursive parse subpages recursively? Defaults to true.
 	 *
 	 * @return array
 	 */
@@ -1020,9 +1020,9 @@ class LanguageConverter {
 	 * Enclose a string with the "no conversion" tag. This is used by
 	 * various functions in the Parser.
 	 *
-	 * @param $text String: text to be tagged for no conversion
-	 * @param $noParse Boolean: unused
-	 * @return String: the tagged text
+	 * @param String $text text to be tagged for no conversion
+	 * @param Boolean $noParse unused
+	 * @return String the tagged text
 	 */
 	public function markNoConversion( $text, $noParse = false ) {
 		# don't mark if already marked
@@ -1051,16 +1051,16 @@ class LanguageConverter {
 	 * MediaWiki:Conversiontable* is updated.
 	 * @private
 	 *
-	 * @param $page WikiPage object
-	 * @param $user Object: User object for the current user
-	 * @param $content Content: new page content
-	 * @param $summary String: edit summary of the edit
-	 * @param $isMinor Boolean: was the edit marked as minor?
-	 * @param $isWatch Boolean: did the user watch this page or not?
-	 * @param $section
-	 * @param $flags int Bitfield
-	 * @param $revision Object: new Revision object or null
-	 * @return Boolean: true
+	 * @param WikiPage $page WikiPage object
+	 * @param Object $user User object for the current user
+	 * @param Content $content new page content
+	 * @param String $summary edit summary of the edit
+	 * @param Boolean $isMinor was the edit marked as minor?
+	 * @param Boolean $isWatch did the user watch this page or not?
+	 * @param string|int $section
+	 * @param int $flags Bitfield
+	 * @param Revision $revision new Revision object or null
+	 * @return Boolean true
 	 */
 	function OnPageContentSaveComplete( $page, $user, $content, $summary, $isMinor,
 			$isWatch, $section, $flags, $revision ) {
@@ -1082,8 +1082,8 @@ class LanguageConverter {
 	 * Armour rendered math against conversion.
 	 * Escape special chars in parsed math text. (in most cases are img elements)
 	 *
-	 * @param $text String: text to armour against conversion
-	 * @return String: armoured text where { and } have been converted to
+	 * @param String $text text to armour against conversion
+	 * @return String armoured text where { and } have been converted to
 	 *                 &#123; and &#125;
 	 * @deprecated since 1.22 is no longer used
 	 */
@@ -1145,8 +1145,8 @@ class ConverterRule {
 	/**
 	 * Constructor
 	 *
-	 * @param $text String: the text between -{ and }-
-	 * @param $converter LanguageConverter object
+	 * @param String $text the text between -{ and }-
+	 * @param LanguageConverter $converter LanguageConverter object
 	 */
 	public function __construct( $text, $converter ) {
 		$this->mText = $text;
@@ -1156,8 +1156,8 @@ class ConverterRule {
 	/**
 	 * Check if variants array in convert array.
 	 *
-	 * @param $variants Array or string: variant language code
-	 * @return String: translated text
+	 * @param Array|string $variants variant language code
+	 * @return String translated text
 	 */
 	public function getTextInBidtable( $variants ) {
 		$variants = (array)$variants;
@@ -1440,7 +1440,7 @@ class ConverterRule {
 
 	/**
 	 * Parse rules and flags.
-	 * @param $variant String: variant language code
+	 * @param String $variant variant language code
 	 */
 	public function parse( $variant = null ) {
 		if ( !$variant ) {

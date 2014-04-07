@@ -182,7 +182,7 @@ class UploadStash {
 	 * @throws UploadStashBadPathException
 	 * @throws UploadStashFileException
 	 * @throws UploadStashNotLoggedInException
-	 * @return UploadStashFile: file, or null on failure
+	 * @return UploadStashFile|null file, or null on failure
 	 */
 	public function stashFile( $path, $sourceType = null ) {
 		if ( !is_file( $path ) ) {
@@ -293,7 +293,7 @@ class UploadStash {
 	 * Does not clean up files in the repo, just the record of them.
 	 *
 	 * @throws UploadStashNotLoggedInException
-	 * @return boolean: success
+	 * @return boolean success
 	 */
 	public function clear() {
 		if ( !$this->isLoggedIn ) {
@@ -318,9 +318,9 @@ class UploadStash {
 	/**
 	 * Remove a particular file from the stash.  Also removes it from the repo.
 	 *
-	 * @param $key
+	 * @param string $key
 	 * @throws UploadStashNoSuchKeyException|UploadStashNotLoggedInException|UploadStashWrongOwnerException
-	 * @return boolean: success
+	 * @return boolean success
 	 */
 	public function removeFile( $key ) {
 		if ( !$this->isLoggedIn ) {
@@ -352,7 +352,8 @@ class UploadStash {
 	/**
 	 * Remove a file (see removeFile), but doesn't check ownership first.
 	 *
-	 * @return boolean: success
+	 * @param string $key
+	 * @return boolean success
 	 */
 	public function removeFileNoAuth( $key ) {
 		wfDebug( __METHOD__ . " clearing row $key\n" );
@@ -457,7 +458,7 @@ class UploadStash {
 	 * Helper function: do the actual database query to fetch file metadata.
 	 *
 	 * @param string $key key
-	 * @param $readFromDB: constant (default: DB_SLAVE)
+	 * @param integer $readFromDB constant (default: DB_SLAVE)
 	 * @return boolean
 	 */
 	protected function fetchFileMetadata( $key, $readFromDB = DB_SLAVE ) {
@@ -514,7 +515,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * A LocalFile wrapper around a file that has been temporarily stashed, so we can do things like create thumbnails for it
 	 * Arguably UnregisteredLocalFile should be handling its own file repo but that class is a bit retarded currently
 	 *
-	 * @param $repo FileRepo: repository where we should find the path
+	 * @param FileRepo $repo repository where we should find the path
 	 * @param string $path path to file
 	 * @param string $key key to store the path and any stashed data under
 	 * @throws UploadStashBadPathException
@@ -554,7 +555,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * However, we also can't return the empty string, as the rest of MediaWiki demands this (and calls to imagemagick
 	 * convert require it to be there)
 	 *
-	 * @return String: dummy value
+	 * @return String dummy value
 	 */
 	public function getDescriptionUrl() {
 		return $this->getUrl();
@@ -566,7 +567,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * buggy code elsewhere that expects a boolean 'suffix'
 	 *
 	 * @param string $thumbName name of thumbnail (e.g. "120px-123456.jpg" ), or false to just get the path
-	 * @return String: path thumbnail should take on filesystem, or containing directory if thumbname is false
+	 * @return String path thumbnail should take on filesystem, or containing directory if thumbname is false
 	 */
 	public function getThumbPath( $thumbName = false ) {
 		$path = dirname( $this->path );
@@ -582,8 +583,8 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * ugly file name.
 	 *
 	 * @param array $params handler-specific parameters
-	 * @param $flags integer Bitfield that supports THUMB_* constants
-	 * @return String: base name for URL, like '120px-12345.jpg', or null if there is no handler
+	 * @param integer $flags integer Bitfield that supports THUMB_* constants
+	 * @return String base name for URL, like '120px-12345.jpg', or null if there is no handler
 	 */
 	function thumbName( $params, $flags = 0 ) {
 		return $this->generateThumbName( $this->getUrlName(), $params );
@@ -591,8 +592,8 @@ class UploadStashFile extends UnregisteredLocalFile {
 
 	/**
 	 * Helper function -- given a 'subpage', return the local URL e.g. /wiki/Special:UploadStash/subpage
-	 * @param $subPage String
-	 * @return String: local URL for this subpage in the Special:UploadStash space.
+	 * @param String $subPage
+	 * @return String local URL for this subpage in the Special:UploadStash space.
 	 */
 	private function getSpecialUrl( $subPage ) {
 		return SpecialPage::getTitleFor( 'UploadStash', $subPage )->getLocalURL();
@@ -605,7 +606,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * (that's hidden in the db)
 	 *
 	 * @param string $thumbName basename of thumbnail file -- however, we don't want to use the file exactly
-	 * @return String: URL to access thumbnail, or URL with partial path
+	 * @return String URL to access thumbnail, or URL with partial path
 	 */
 	public function getThumbUrl( $thumbName = false ) {
 		wfDebug( __METHOD__ . " getting for $thumbName \n" );
@@ -616,7 +617,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * The basename for the URL, which we want to not be related to the filename.
 	 * Will also be used as the lookup key for a thumbnail file.
 	 *
-	 * @return String: base url name, like '120px-123456.jpg'
+	 * @return String base url name, like '120px-123456.jpg'
 	 */
 	public function getUrlName() {
 		if ( ! $this->urlName ) {
@@ -629,7 +630,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * Return the URL of the file, if for some reason we wanted to download it
 	 * We tend not to do this for the original file, but we do want thumb icons
 	 *
-	 * @return String: url
+	 * @return String url
 	 */
 	public function getUrl() {
 		if ( !isset( $this->url ) ) {
@@ -642,7 +643,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * Parent classes use this method, for no obvious reason, to return the path (relative to wiki root, I assume).
 	 * But with this class, the URL is unrelated to the path.
 	 *
-	 * @return String: url
+	 * @return String url
 	 */
 	public function getFullUrl() {
 		return $this->getUrl();
@@ -651,7 +652,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	/**
 	 * Getter for file key (the unique id by which this file's location & metadata is stored in the db)
 	 *
-	 * @return String: file key
+	 * @return String file key
 	 */
 	public function getFileKey() {
 		return $this->fileKey;
@@ -659,7 +660,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 
 	/**
 	 * Remove the associated temporary file
-	 * @return Status: success
+	 * @return Status success
 	 */
 	public function remove() {
 		if ( !$this->repo->fileExists( $this->path ) ) {
