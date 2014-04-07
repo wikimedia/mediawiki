@@ -33,10 +33,13 @@
 
 	QUnit.test( 'Initial check', 8, function ( assert ) {
 		assert.ok( window.jQuery, 'jQuery defined' );
-		assert.ok( window.$, '$j defined' );
-		assert.ok( window.$j, '$j defined' );
+		assert.ok( window.$, '$ defined' );
 		assert.strictEqual( window.$, window.jQuery, '$ alias to jQuery' );
+
+		this.suppressWarnings();
+		assert.ok( window.$j, '$j defined' );
 		assert.strictEqual( window.$j, window.jQuery, '$j alias to jQuery' );
+		this.restoreWarnings();
 
 		assert.ok( window.mediaWiki, 'mediaWiki defined' );
 		assert.ok( window.mw, 'mw defined' );
