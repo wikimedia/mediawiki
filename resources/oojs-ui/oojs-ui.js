@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (eaa1b7f06d)
+ * OOjs UI v0.1.0-pre (4975b8db90)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Thu Apr 03 2014 16:56:21 GMT-0700 (PDT)
+ * Date: Mon Apr 07 2014 15:17:10 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -193,9 +193,11 @@ OO.ui.Element = function OoUiElement( config ) {
 	}
 };
 
-/* Static Properties */
+/* Setup */
 
-OO.ui.Element.static = {};
+OO.initClass( OO.ui.Element );
+
+/* Static Properties */
 
 /**
  * HTML tag name.
@@ -702,10 +704,9 @@ OO.ui.Frame = function OoUiFrame( config ) {
 
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.Frame, OO.ui.Element );
-
 OO.mixinClass( OO.ui.Frame, OO.EventEmitter );
 
 /* Static Properties */
@@ -968,10 +969,9 @@ OO.ui.Window = function OoUiWindow( config ) {
 	this.frame.connect( this, { 'load': 'initialize' } );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.Window, OO.ui.Element );
-
 OO.mixinClass( OO.ui.Window, OO.EventEmitter );
 
 /* Events */
@@ -1339,10 +1339,9 @@ OO.ui.WindowSet = function OoUiWindowSet( factory, config ) {
 	this.$element.addClass( 'oo-ui-windowSet' );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.WindowSet, OO.ui.Element );
-
 OO.mixinClass( OO.ui.WindowSet, OO.EventEmitter );
 
 /* Events */
@@ -1516,7 +1515,7 @@ OO.ui.Dialog = function OoUiDialog( config ) {
 	this.setSize( config.size );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.Dialog, OO.ui.Window );
 
@@ -1715,10 +1714,9 @@ OO.ui.Layout = function OoUiLayout( config ) {
 	this.$element.addClass( 'oo-ui-layout' );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.Layout, OO.ui.Element );
-
 OO.mixinClass( OO.ui.Layout, OO.EventEmitter );
 /**
  * User interface control.
@@ -1751,10 +1749,9 @@ OO.ui.Widget = function OoUiWidget( config ) {
 	this.setDisabled( !!config.disabled );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.Widget, OO.ui.Element );
-
 OO.mixinClass( OO.ui.Widget, OO.EventEmitter );
 
 /* Events */
@@ -2274,9 +2271,11 @@ OO.ui.IconedElement = function OoUiIconedElement( $icon, config ) {
 	this.setIcon( config.icon || this.constructor.static.icon );
 };
 
-/* Static Properties */
+/* Setup */
 
-OO.ui.IconedElement.static = {};
+OO.initClass( OO.ui.IconedElement );
+
+/* Static Properties */
 
 /**
  * Icon.
@@ -2362,9 +2361,11 @@ OO.ui.IndicatedElement = function OoUiIndicatedElement( $indicator, config ) {
 	this.setIndicatorTitle( config.indicatorTitle  || this.constructor.static.indicatorTitle );
 };
 
-/* Static Properties */
+/* Setup */
 
-OO.ui.IndicatedElement.static = {};
+OO.initClass( OO.ui.IndicatedElement );
+
+/* Static Properties */
 
 /**
  * indicator.
@@ -2476,9 +2477,11 @@ OO.ui.LabeledElement = function OoUiLabeledElement( $label, config ) {
 	this.autoFitLabel = config.autoFitLabel === undefined || !!config.autoFitLabel;
 };
 
-/* Static Properties */
+/* Setup */
 
-OO.ui.LabeledElement.static = {};
+OO.initClass( OO.ui.LabeledElement );
+
+/* Static Properties */
 
 /**
  * Label.
@@ -2627,9 +2630,11 @@ OO.ui.TitledElement = function OoUiTitledElement( $titled, config ) {
 	this.setTitle( config.title || this.constructor.static.title );
 };
 
-/* Static Properties */
+/* Setup */
 
-OO.ui.TitledElement.static = {};
+OO.initClass( OO.ui.TitledElement );
+
+/* Static Properties */
 
 /**
  * Title.
@@ -2719,10 +2724,9 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	this.setTitle( config.title || this.constructor.static.title );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.Tool, OO.ui.Widget );
-
 OO.mixinClass( OO.ui.Tool, OO.ui.IconedElement );
 
 /* Events */
@@ -2977,10 +2981,9 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 	this.$element.addClass( 'oo-ui-toolbar' ).append( this.$bar );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.Toolbar, OO.ui.Element );
-
 OO.mixinClass( OO.ui.Toolbar, OO.EventEmitter );
 OO.mixinClass( OO.ui.Toolbar, OO.ui.GroupElement );
 
@@ -3144,7 +3147,7 @@ OO.ui.ToolFactory = function OoUiToolFactory() {
 	OO.ui.ToolFactory.super.call( this );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.ToolFactory, OO.Factory );
 
@@ -3307,10 +3310,9 @@ OO.ui.ToolGroup = function OoUiToolGroup( toolbar, config ) {
 	this.populate();
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.ToolGroup, OO.ui.Widget );
-
 OO.mixinClass( OO.ui.ToolGroup, OO.ui.GroupElement );
 
 /* Events */
@@ -3584,7 +3586,7 @@ OO.ui.ToolGroupFactory = function OoUiToolGroupFactory() {
 	}
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.ToolGroupFactory, OO.Factory );
 
@@ -3638,10 +3640,9 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 	}
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.FieldsetLayout, OO.ui.Layout );
-
 OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.IconedElement );
 OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.LabeledElement );
 OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.GroupElement );
@@ -3699,10 +3700,9 @@ OO.ui.FieldLayout = function OoUiFieldLayout( field, config ) {
 	this.setAlignment( config.align );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.FieldLayout, OO.ui.Layout );
-
 OO.mixinClass( OO.ui.FieldLayout, OO.ui.LabeledElement );
 
 /* Methods */
@@ -3799,7 +3799,7 @@ OO.ui.GridLayout = function OoUiGridLayout( panels, config ) {
 	}
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.GridLayout, OO.ui.Layout );
 
@@ -3993,7 +3993,7 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 	}
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.BookletLayout, OO.ui.Layout );
 
@@ -4383,7 +4383,7 @@ OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 	this.$element.addClass( 'oo-ui-' + OO.ui.Element.getDir( this.$.context ) );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.PanelLayout, OO.ui.Layout );
 /**
@@ -4413,7 +4413,7 @@ OO.ui.PageLayout = function OoUiPageLayout( name, config ) {
 	this.$element.addClass( 'oo-ui-pageLayout' );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.PageLayout, OO.ui.PanelLayout );
 
@@ -4516,10 +4516,9 @@ OO.ui.StackLayout = function OoUiStackLayout( config ) {
 	}
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.StackLayout, OO.ui.PanelLayout );
-
 OO.mixinClass( OO.ui.StackLayout, OO.ui.GroupElement );
 
 /* Events */
@@ -4633,7 +4632,7 @@ OO.ui.BarToolGroup = function OoUiBarToolGroup( toolbar, config ) {
 	this.$element.addClass( 'oo-ui-barToolGroup' );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.BarToolGroup, OO.ui.ToolGroup );
 
@@ -4695,10 +4694,9 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 		.prepend( this.$handle );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.PopupToolGroup, OO.ui.ToolGroup );
-
 OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.IconedElement );
 OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.IndicatedElement );
 OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.LabeledElement );
@@ -4810,7 +4808,7 @@ OO.ui.ListToolGroup = function OoUiListToolGroup( toolbar, config ) {
 	this.$element.addClass( 'oo-ui-listToolGroup' );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.ListToolGroup, OO.ui.PopupToolGroup );
 
@@ -4844,7 +4842,7 @@ OO.ui.MenuToolGroup = function OoUiMenuToolGroup( toolbar, config ) {
 	this.$element.addClass( 'oo-ui-menuToolGroup' );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.MenuToolGroup, OO.ui.PopupToolGroup );
 
@@ -4901,10 +4899,9 @@ OO.ui.PopupTool = function OoUiPopupTool( toolbar, config ) {
 		.append( this.popup.$element );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.PopupTool, OO.ui.Tool );
-
 OO.mixinClass( OO.ui.PopupTool, OO.ui.PopuppableElement );
 
 /* Methods */
@@ -4954,7 +4951,7 @@ OO.ui.GroupWidget = function OoUiGroupWidget( $element, config ) {
 	OO.ui.GroupWidget.super.call( this, $element, config );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.GroupWidget, OO.ui.GroupElement );
 
@@ -5055,10 +5052,9 @@ OO.ui.IconWidget = function OoUiIconWidget( config ) {
 	this.$element.addClass( 'oo-ui-iconWidget' );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.IconWidget, OO.ui.Widget );
-
 OO.mixinClass( OO.ui.IconWidget, OO.ui.IconedElement );
 OO.mixinClass( OO.ui.IconWidget, OO.ui.TitledElement );
 
@@ -5091,10 +5087,9 @@ OO.ui.IndicatorWidget = function OoUiIndicatorWidget( config ) {
 	this.$element.addClass( 'oo-ui-indicatorWidget' );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.IndicatorWidget, OO.ui.Widget );
-
 OO.mixinClass( OO.ui.IndicatorWidget, OO.ui.IndicatedElement );
 OO.mixinClass( OO.ui.IndicatorWidget, OO.ui.TitledElement );
 
@@ -5126,10 +5121,9 @@ OO.ui.ButtonGroupWidget = function OoUiButtonGroupWidget( config ) {
 	}
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.ButtonGroupWidget, OO.ui.Widget );
-
 OO.mixinClass( OO.ui.ButtonGroupWidget, OO.ui.GroupElement );
 /**
  * Creates an OO.ui.ButtonWidget object.
@@ -5183,10 +5177,9 @@ OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 		.append( this.$button );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.ButtonWidget, OO.ui.Widget );
-
 OO.mixinClass( OO.ui.ButtonWidget, OO.ui.ButtonedElement );
 OO.mixinClass( OO.ui.ButtonWidget, OO.ui.IconedElement );
 OO.mixinClass( OO.ui.ButtonWidget, OO.ui.IndicatedElement );
@@ -5274,7 +5267,7 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 	this.setValue( config.value );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.InputWidget, OO.ui.Widget );
 
@@ -5447,7 +5440,7 @@ OO.ui.CheckboxInputWidget = function OoUiCheckboxInputWidget( config ) {
 	this.$element.addClass( 'oo-ui-checkboxInputWidget' );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.CheckboxInputWidget, OO.ui.InputWidget );
 
@@ -5528,10 +5521,9 @@ OO.ui.LabelWidget = function OoUiLabelWidget( config ) {
 	this.$element.addClass( 'oo-ui-labelWidget' );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.LabelWidget, OO.ui.Widget );
-
 OO.mixinClass( OO.ui.LabelWidget, OO.ui.LabeledElement );
 
 /* Static Properties */
@@ -5554,7 +5546,7 @@ OO.ui.LabelWidget.prototype.onClick = function () {
  * Lookup input widget.
  *
  * Mixin that adds a menu showing suggested values to a text input. Subclasses must handle `select`
- * events on #lookupMenu to make use of selections.
+ * and `choose` events on #lookupMenu to make use of selections.
  *
  * @class
  * @abstract
@@ -5699,7 +5691,7 @@ OO.ui.LookupInputWidget.prototype.populateLookupMenu = function () {
  */
 OO.ui.LookupInputWidget.prototype.initializeLookupMenuSelection = function () {
 	if ( !this.lookupMenu.getSelectedItem() ) {
-		this.lookupMenu.intializeSelection( this.lookupMenu.getFirstSelectableItem() );
+		this.lookupMenu.selectItem( this.lookupMenu.getFirstSelectableItem() );
 	}
 	this.lookupMenu.highlightItem( this.lookupMenu.getSelectedItem() );
 };
@@ -5832,10 +5824,9 @@ OO.ui.OptionWidget = function OoUiOptionWidget( data, config ) {
 		.append( this.$indicator );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.OptionWidget, OO.ui.Widget );
-
 OO.mixinClass( OO.ui.OptionWidget, OO.ui.ItemWidget );
 OO.mixinClass( OO.ui.OptionWidget, OO.ui.IconedElement );
 OO.mixinClass( OO.ui.OptionWidget, OO.ui.LabeledElement );
@@ -6054,13 +6045,12 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	}
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.SelectWidget, OO.ui.Widget );
 
 // Need to mixin base class as well
 OO.mixinClass( OO.ui.SelectWidget, OO.ui.GroupElement );
-
 OO.mixinClass( OO.ui.SelectWidget, OO.ui.GroupWidget );
 
 /* Events */
@@ -6078,6 +6068,11 @@ OO.mixinClass( OO.ui.SelectWidget, OO.ui.GroupWidget );
 /**
  * @event select
  * @param {OO.ui.OptionWidget|null} item Selected item
+ */
+
+/**
+ * @event choose
+ * @param {OO.ui.OptionWidget|null} item Chosen item
  */
 
 /**
@@ -6138,7 +6133,7 @@ OO.ui.SelectWidget.prototype.onMouseUp = function ( e ) {
 	}
 	if ( !this.disabled && e.which === 1 && this.selecting ) {
 		this.pressItem( null );
-		this.selectItem( this.selecting );
+		this.chooseItem( this.selecting );
 		this.selecting = null;
 	}
 
@@ -6177,9 +6172,7 @@ OO.ui.SelectWidget.prototype.onMouseOver = function ( e ) {
 
 	if ( !this.disabled ) {
 		item = this.getTargetItem( e );
-		if ( item && item.isHighlightable() ) {
-			this.highlightItem( item );
-		}
+		this.highlightItem( item && item.isHighlightable() ? item : null );
 	}
 	return false;
 };
@@ -6362,22 +6355,19 @@ OO.ui.SelectWidget.prototype.pressItem = function ( item ) {
 };
 
 /**
- * Setup selection and highlighting.
+ * Choose an item.
  *
- * This should be used to synchronize the UI with the model without emitting events that would in
- * turn update the model.
+ * Identical to #selectItem, but may vary in subclasses that want to take additional action when
+ * an item is selected using the keyboard or mouse.
  *
- * @param {OO.ui.OptionWidget} [item] Item to select
+ * @method
+ * @param {OO.ui.OptionWidget} item Item to choose
+ * @fires choose
  * @chainable
  */
-OO.ui.SelectWidget.prototype.intializeSelection = function ( item ) {
-	var i, len, selected;
-
-	for ( i = 0, len = this.items.length; i < len; i++ ) {
-		selected = this.items[i] === item;
-		this.items[i].setSelected( selected );
-		this.items[i].setHighlighted( selected );
-	}
+OO.ui.SelectWidget.prototype.chooseItem = function ( item ) {
+	this.selectItem( item );
+	this.emit( 'choose', item );
 
 	return this;
 };
@@ -6545,7 +6535,7 @@ OO.ui.MenuItemWidget = function OoUiMenuItemWidget( data, config ) {
 	this.$element.addClass( 'oo-ui-menuItemWidget' );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.MenuItemWidget, OO.ui.OptionWidget );
 /**
@@ -6575,16 +6565,16 @@ OO.ui.MenuWidget = function OoUiMenuWidget( config ) {
 	this.$previousFocus = null;
 	this.isolated = !config.input;
 	this.visible = false;
+	this.flashing = false;
 	this.onKeyDownHandler = OO.ui.bind( this.onKeyDown, this );
 
 	// Initialization
 	this.$element.hide().addClass( 'oo-ui-menuWidget' );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.MenuWidget, OO.ui.SelectWidget );
-
 OO.mixinClass( OO.ui.MenuWidget, OO.ui.ClippableElement );
 
 /* Methods */
@@ -6606,7 +6596,7 @@ OO.ui.MenuWidget.prototype.onKeyDown = function ( e ) {
 		}
 		switch ( e.keyCode ) {
 			case OO.ui.Keys.ENTER:
-				this.selectItem( highlightItem );
+				this.chooseItem( highlightItem );
 				handled = true;
 				break;
 			case OO.ui.Keys.UP:
@@ -6677,28 +6667,26 @@ OO.ui.MenuWidget.prototype.unbindKeyDownListener = function () {
 };
 
 /**
- * Select an item.
+ * Choose an item.
  *
- * The menu will stay open if an item is silently selected.
+ * This will close the menu when done, unlike selectItem which only changes selection.
  *
  * @method
- * @param {OO.ui.OptionWidget} [item] Item to select, omit to deselect all
+ * @param {OO.ui.OptionWidget} item Item to choose
  * @chainable
  */
-OO.ui.MenuWidget.prototype.selectItem = function ( item ) {
+OO.ui.MenuWidget.prototype.chooseItem = function ( item ) {
 	// Parent method
-	OO.ui.SelectWidget.prototype.selectItem.call( this, item );
+	OO.ui.MenuWidget.super.prototype.chooseItem.call( this, item );
 
-	if ( !this.disabled ) {
-		if ( item ) {
-			this.disabled = true;
-			item.flash( OO.ui.bind( function () {
-				this.hide();
-				this.disabled = false;
-			}, this ) );
-		} else {
+	if ( item && !this.flashing ) {
+		this.flashing = true;
+		item.flash( OO.ui.bind( function () {
 			this.hide();
-		}
+			this.flashing = false;
+		}, this ) );
+	} else {
+		this.hide();
 	}
 
 	return this;
@@ -6834,10 +6822,9 @@ OO.ui.InlineMenuWidget = function OoUiInlineMenuWidget( config ) {
 		.append( this.$handle, this.menu.$element );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.InlineMenuWidget, OO.ui.Widget );
-
 OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.IconedElement );
 OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.IndicatedElement );
 OO.mixinClass( OO.ui.InlineMenuWidget, OO.ui.LabeledElement );
@@ -6910,9 +6897,11 @@ OO.ui.MenuSectionItemWidget = function OoUiMenuSectionItemWidget( data, config )
 	this.$element.addClass( 'oo-ui-menuSectionItemWidget' );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.MenuSectionItemWidget, OO.ui.OptionWidget );
+
+/* Static Properties */
 
 OO.ui.MenuSectionItemWidget.static.selectable = false;
 
@@ -6937,7 +6926,7 @@ OO.ui.OutlineWidget = function OoUiOutlineWidget( config ) {
 	this.$element.addClass( 'oo-ui-outlineWidget' );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.OutlineWidget, OO.ui.SelectWidget );
 /**
@@ -7001,10 +6990,9 @@ OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, confi
 	this.$element.append( this.$icon, this.$group, this.$movers );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.OutlineControlsWidget, OO.ui.Widget );
-
 OO.mixinClass( OO.ui.OutlineControlsWidget, OO.ui.GroupElement );
 OO.mixinClass( OO.ui.OutlineControlsWidget, OO.ui.IconedElement );
 
@@ -7083,7 +7071,7 @@ OO.ui.OutlineItemWidget = function OoUiOutlineItemWidget( data, config ) {
 	this.setLevel( config.level );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.OutlineItemWidget, OO.ui.OptionWidget );
 
@@ -7205,10 +7193,9 @@ OO.ui.ButtonOptionWidget = function OoUiButtonOptionWidget( data, config ) {
 	this.$element.append( this.$button );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.ButtonOptionWidget, OO.ui.OptionWidget );
-
 OO.mixinClass( OO.ui.ButtonOptionWidget, OO.ui.ButtonedElement );
 OO.mixinClass( OO.ui.ButtonOptionWidget, OO.ui.FlaggableElement );
 
@@ -7241,7 +7228,7 @@ OO.ui.ButtonSelectWidget = function OoUiButtonSelectWidget( config ) {
 	this.$element.addClass( 'oo-ui-buttonSelectWidget' );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.ButtonSelectWidget, OO.ui.SelectWidget );
 /**
@@ -7307,12 +7294,10 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 		.append( this.$popup, this.$tail );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.PopupWidget, OO.ui.Widget );
-
 OO.mixinClass( OO.ui.PopupWidget, OO.ui.LabeledElement );
-
 OO.mixinClass( OO.ui.PopupWidget, OO.ui.ClippableElement );
 
 /* Events */
@@ -7527,10 +7512,9 @@ OO.ui.PopupButtonWidget = function OoUiPopupButtonWidget( config ) {
 		.append( this.popup.$element );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.PopupButtonWidget, OO.ui.ButtonWidget );
-
 OO.mixinClass( OO.ui.PopupButtonWidget, OO.ui.PopuppableElement );
 
 /* Methods */
@@ -7609,7 +7593,7 @@ OO.ui.SearchWidget = function OoUiSearchWidget( config ) {
 		.append( this.$results, this.$query );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.SearchWidget, OO.ui.Widget );
 
@@ -7770,7 +7754,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	}
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.TextInputWidget, OO.ui.InputWidget );
 
@@ -7950,7 +7934,7 @@ OO.ui.TextInputMenuWidget = function OoUiTextInputMenuWidget( input, config ) {
 	this.$element.addClass( 'oo-ui-textInputMenuWidget' );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.TextInputMenuWidget, OO.ui.MenuWidget );
 
@@ -8112,10 +8096,9 @@ OO.ui.ToggleButtonWidget = function OoUiToggleButtonWidget( config ) {
 	this.$element.addClass( 'oo-ui-toggleButtonWidget' );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.ToggleButtonWidget, OO.ui.ButtonWidget );
-
 OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.ToggleWidget );
 
 /* Methods */
@@ -8181,10 +8164,9 @@ OO.ui.ToggleSwitchWidget = function OoUiToggleSwitchWidget( config ) {
 		.append( this.$glow, this.$grip );
 };
 
-/* Inheritance */
+/* Setup */
 
 OO.inheritClass( OO.ui.ToggleSwitchWidget, OO.ui.Widget );
-
 OO.mixinClass( OO.ui.ToggleSwitchWidget, OO.ui.ToggleWidget );
 
 /* Methods */

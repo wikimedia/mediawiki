@@ -590,7 +590,12 @@
   opacity: 0.2;
 }
 
-.oo-ui-menuItemWidget.oo-ui-optionWidget-highlighted {
+.oo-ui-menuItemWidget.oo-ui-optionWidget-selected {
+  background-color: transparent;
+}
+
+.oo-ui-menuItemWidget.oo-ui-optionWidget-highlighted,
+.oo-ui-menuItemWidget.oo-ui-optionWidget-highlighted.oo-ui-optionWidget-selected {
   background-color: #e1f3ff;
 }
 
