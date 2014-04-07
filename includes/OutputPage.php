@@ -252,17 +252,17 @@ class OutputPage extends ContextSource {
 	private $mProperties = array();
 
 	/**
-	 * @var string|null: ResourceLoader target for load.php links. If null, will be omitted
+	 * @var string|null ResourceLoader target for load.php links. If null, will be omitted
 	 */
 	private $mTarget = null;
 
 	/**
-	 * @var bool: Whether parser output should contain table of contents
+	 * @var bool Whether parser output should contain table of contents
 	 */
 	private $mEnableTOC = true;
 
 	/**
-	 * @var bool: Whether parser output should contain section edit links
+	 * @var bool Whether parser output should contain section edit links
 	 */
 	private $mEnableSectionEditLinks = true;
 
@@ -481,7 +481,7 @@ class OutputPage extends ContextSource {
 	 * through this function will be loaded by the resource loader when the
 	 * page loads.
 	 *
-	 * @param $modules Mixed: module name (string) or array of module names
+	 * @param string|array $modules Module name (string) or array of module names
 	 */
 	public function addModules( $modules ) {
 		$this->mModules = array_merge( $this->mModules, (array)$modules );
@@ -504,7 +504,7 @@ class OutputPage extends ContextSource {
 	 * scripts added through this function will be loaded by the resource loader when
 	 * the page loads.
 	 *
-	 * @param $modules Mixed: module name (string) or array of module names
+	 * @param string|array $modules Module name (string) or array of module names
 	 */
 	public function addModuleScripts( $modules ) {
 		$this->mModuleScripts = array_merge( $this->mModuleScripts, (array)$modules );
@@ -529,7 +529,7 @@ class OutputPage extends ContextSource {
 	 * tags, rather than as a combined Javascript and CSS package. Thus, they will
 	 * load when JavaScript is disabled (unless CSS also happens to be disabled).
 	 *
-	 * @param $modules Mixed: module name (string) or array of module names
+	 * @param string|array $modules Module name (string) or array of module names
 	 */
 	public function addModuleStyles( $modules ) {
 		$this->mModuleStyles = array_merge( $this->mModuleStyles, (array)$modules );
@@ -552,14 +552,14 @@ class OutputPage extends ContextSource {
 	 * Module messages added through this function will be loaded by the resource
 	 * loader when the page loads.
 	 *
-	 * @param $modules Mixed: module name (string) or array of module names
+	 * @param string|array $modules Module name (string) or array of module names
 	 */
 	public function addModuleMessages( $modules ) {
 		$this->mModuleMessages = array_merge( $this->mModuleMessages, (array)$modules );
 	}
 
 	/**
-	 * @return null|string: ResourceLoader target
+	 * @return null|string ResourceLoader target
 	 */
 	public function getTarget() {
 		return $this->mTarget;
@@ -630,7 +630,7 @@ class OutputPage extends ContextSource {
 	 * without any skin, sidebar, etc.
 	 * Used e.g. when calling with "action=render".
 	 *
-	 * @param $only Boolean: whether to output only the body of the article
+	 * @param bool $only Whether to output only the body of the article
 	 */
 	public function setArticleBodyOnly( $only ) {
 		$this->mArticleBodyOnly = $only;
@@ -660,8 +660,8 @@ class OutputPage extends ContextSource {
 	 * Get an additional output property
 	 * @since 1.21
 	 *
-	 * @param $name
-	 * @return mixed: Property value or null if not found
+	 * @param string $name
+	 * @return mixed Property value or null if not found
 	 */
 	public function getProperty( $name ) {
 		if ( isset( $this->mProperties[$name] ) ) {
@@ -678,9 +678,9 @@ class OutputPage extends ContextSource {
 	 *
 	 * Side effect: sets mLastModified for Last-Modified header
 	 *
-	 * @param $timestamp string
+	 * @param string $timestamp
 	 *
-	 * @return Boolean: true if cache-ok headers was sent.
+	 * @return bool True if cache-ok headers was sent.
 	 */
 	public function checkLastModified( $timestamp ) {
 		global $wgCachePages, $wgCacheEpoch, $wgUseSquid, $wgSquidMaxage;
@@ -1036,7 +1036,7 @@ class OutputPage extends ContextSource {
 	 * for the new version
 	 * @see addFeedLink()
 	 *
-	 * @param $show Boolean: true: add default feeds, false: remove all feeds
+	 * @param bool $show true: add default feeds, false: remove all feeds
 	 */
 	public function setSyndicated( $show = true ) {
 		if ( $show ) {
@@ -1372,7 +1372,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the body HTML
 	 *
-	 * @return String: HTML
+	 * @return string HTML
 	 */
 	public function getHTML() {
 		return $this->mBodytext;
@@ -1397,8 +1397,8 @@ class OutputPage extends ContextSource {
 	 * Set the revision ID which will be seen by the wiki text parser
 	 * for things such as embedded {{REVISIONID}} variable use.
 	 *
-	 * @param $revid Mixed: an positive integer, or null
-	 * @return Mixed: previous value
+	 * @param int|null $revid An positive integer, or null
+	 * @return mixed Previous value
 	 */
 	public function setRevisionId( $revid ) {
 		$val = is_null( $revid ) ? null : intval( $revid );
@@ -1418,8 +1418,8 @@ class OutputPage extends ContextSource {
 	 * Set the timestamp of the revision which will be displayed. This is used
 	 * to avoid a extra DB call in Skin::lastModified().
 	 *
-	 * @param $timestamp Mixed: string, or null
-	 * @return Mixed: previous value
+	 * @param string|null $timestamp
+	 * @return mixed Previous value
 	 */
 	public function setRevisionTimestamp( $timestamp ) {
 		return wfSetVar( $this->mRevisionTimestamp, $timestamp );
@@ -1438,8 +1438,8 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set the displayed file version
 	 *
-	 * @param $file File|bool
-	 * @return Mixed: previous value
+	 * @param File|bool $file
+	 * @return mixed Previous value
 	 */
 	public function setFileVersion( $file ) {
 		$val = null;
@@ -1482,9 +1482,9 @@ class OutputPage extends ContextSource {
 	 * Convert wikitext to HTML and add it to the buffer
 	 * Default assumes that the current page title will be used.
 	 *
-	 * @param $text String
-	 * @param $linestart Boolean: is this the start of a line?
-	 * @param $interface Boolean: is this text in the user interface language?
+	 * @param string $text
+	 * @param bool $linestart Is this the start of a line?
+	 * @param bool $interface Is this text in the user interface language?
 	 */
 	public function addWikiText( $text, $linestart = true, $interface = true ) {
 		$title = $this->getTitle(); // Work around E_STRICT
@@ -1497,9 +1497,9 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add wikitext with a custom Title object
 	 *
-	 * @param string $text wikitext
-	 * @param $title Title object
-	 * @param $linestart Boolean: is this the start of a line?
+	 * @param string $text Wikitext
+	 * @param Title $title
+	 * @param bool $linestart Is this the start of a line?
 	 */
 	public function addWikiTextWithTitle( $text, &$title, $linestart = true ) {
 		$this->addWikiTextTitle( $text, $title, $linestart );
@@ -1508,9 +1508,9 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add wikitext with a custom Title object and tidy enabled.
 	 *
-	 * @param string $text wikitext
-	 * @param $title Title object
-	 * @param $linestart Boolean: is this the start of a line?
+	 * @param string $text Wikitext
+	 * @param Title $title
+	 * @param bool $linestart Is this the start of a line?
 	 */
 	function addWikiTextTitleTidy( $text, &$title, $linestart = true ) {
 		$this->addWikiTextTitle( $text, $title, $linestart, true );
@@ -1519,8 +1519,8 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add wikitext with tidy enabled
 	 *
-	 * @param string $text wikitext
-	 * @param $linestart Boolean: is this the start of a line?
+	 * @param string $text Wikitext
+	 * @param bool $linestart Is this the start of a line?
 	 */
 	public function addWikiTextTidy( $text, $linestart = true ) {
 		$title = $this->getTitle();
@@ -1530,12 +1530,12 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add wikitext with a custom Title object
 	 *
-	 * @param string $text wikitext
-	 * @param $title Title object
-	 * @param $linestart Boolean: is this the start of a line?
-	 * @param $tidy Boolean: whether to use tidy
-	 * @param $interface Boolean: whether it is an interface message
-	 *								(for example disables conversion)
+	 * @param string $text Wikitext
+	 * @param Title $title
+	 * @param bool $linestart Is this the start of a line?
+	 * @param bool $tidy Whether to use tidy
+	 * @param bool $interface Whether it is an interface message
+	 *   (for example disables conversion)
 	 */
 	public function addWikiTextTitle( $text, Title $title, $linestart, $tidy = false, $interface = false ) {
 		global $wgParser;
@@ -1640,16 +1640,14 @@ class OutputPage extends ContextSource {
 	/**
 	 * Parse wikitext and return the HTML.
 	 *
-	 * @param $text String
-	 * @param $linestart Boolean: is this the start of a line?
-	 * @param $interface Boolean: use interface language ($wgLang instead of
-	 *                   $wgContLang) while parsing language sensitive magic
-	 *                   words like GRAMMAR and PLURAL. This also disables
-	 *                   LanguageConverter.
-	 * @param $language  Language object: target language object, will override
-	 *                   $interface
+	 * @param String $text
+	 * @param bool $linestart Is this the start of a line?
+	 * @param bool $interface Use interface language ($wgLang instead of
+	 *   $wgContLang) while parsing language sensitive magic words like GRAMMAR and PLURAL.
+	 *   This also disables LanguageConverter.
+	 * @param Language $language Target language object, will override $interface
 	 * @throws MWException
-	 * @return String: HTML
+	 * @return string HTML
 	 */
 	public function parse( $text, $linestart = true, $interface = false, $language = null ) {
 		global $wgParser;
@@ -1684,12 +1682,12 @@ class OutputPage extends ContextSource {
 	/**
 	 * Parse wikitext, strip paragraphs, and return the HTML.
 	 *
-	 * @param $text String
-	 * @param $linestart Boolean: is this the start of a line?
-	 * @param $interface Boolean: use interface language ($wgLang instead of
-	 *                   $wgContLang) while parsing language sensitive magic
-	 *                   words like GRAMMAR and PLURAL
-	 * @return String: HTML
+	 * @param string $text
+	 * @param bool $linestart Is this the start of a line?
+	 * @param bool $interface Use interface language ($wgLang instead of
+	 *   $wgContLang) while parsing language sensitive magic
+	 *   words like GRAMMAR and PLURAL
+	 * @return string HTML
 	 */
 	public function parseInline( $text, $linestart = true, $interface = false ) {
 		$parsed = $this->parse( $text, $linestart, $interface );
@@ -1705,7 +1703,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set the value of the "s-maxage" part of the "Cache-control" HTTP header
 	 *
-	 * @param $maxage Integer: maximum cache time on the Squid, in seconds.
+	 * @param int $maxage Maximum cache time on the Squid, in seconds.
 	 */
 	public function setSquidMaxage( $maxage ) {
 		$this->mSquidMaxage = $maxage;
@@ -1969,9 +1967,8 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the message associated with the HTTP response code $code
 	 *
-	 * @param $code Integer: status code
-	 * @return String or null: message or null if $code is not in the list of
-	 *         messages
+	 * @param int $code Status code
+	 * @return string|null Message or null if $code is not in the list of messages
 	 *
 	 * @deprecated since 1.18 Use HttpStatus::getMessage() instead.
 	 */
@@ -2147,9 +2144,9 @@ class OutputPage extends ContextSource {
 	 * showErrorPage( 'titlemsg', $messageObject );
 	 * showErrorPage( $titleMessageObject, $messageObject );
 	 *
-	 * @param $title Mixed: message key (string) for page title, or a Message object
-	 * @param $msg Mixed: message key (string) for page text, or a Message object
-	 * @param array $params message parameters; ignored if $msg is a Message object
+	 * @param string|Message $title Message key (string) for page title, or a Message object
+	 * @param string|Message $msg Message key (string) for page text, or a Message object
+	 * @param array $params Message parameters; ignored if $msg is a Message object
 	 */
 	public function showErrorPage( $title, $msg, $params = array() ) {
 		if ( !$title instanceof Message ) {
@@ -2246,7 +2243,7 @@ class OutputPage extends ContextSource {
 	 * Display an error page indicating that a given version of MediaWiki is
 	 * required to use it
 	 *
-	 * @param $version Mixed: the version of MediaWiki needed to use the page
+	 * @param mixed $version The version of MediaWiki needed to use the page
 	 */
 	public function versionRequired( $version ) {
 		$this->prepareErrorPage( $this->msg( 'versionrequired', $version ) );
@@ -2277,9 +2274,9 @@ class OutputPage extends ContextSource {
 	/**
 	 * Format a list of error messages
 	 *
-	 * @param array $errors of arrays returned by Title::getUserPermissionsErrors
-	 * @param string $action action that was denied or null if unknown
-	 * @return String: the wikitext error-messages, formatted into a list.
+	 * @param array $errors Array of arrays returned by Title::getUserPermissionsErrors
+	 * @param string $action Action that was denied or null if unknown
+	 * @return string The wikitext error-messages, formatted into a list.
 	 */
 	public function formatPermissionsErrorMessage( $errors, $action = null ) {
 		if ( $action == null ) {
@@ -2326,10 +2323,10 @@ class OutputPage extends ContextSource {
 	 *
 	 * @todo Needs to be split into multiple functions.
 	 *
-	 * @param $source    String: source code to show (or null).
-	 * @param $protected Boolean: is this a permissions error?
-	 * @param $reasons   Array: list of reasons for this error, as returned by Title::getUserPermissionsErrors().
-	 * @param $action    String: action that was denied or null if unknown
+	 * @param string $source Source code to show (or null).
+	 * @param bool $protected Is this a permissions error?
+	 * @param array $reasons List of reasons for this error, as returned by Title::getUserPermissionsErrors().
+	 * @param string $action Action that was denied or null if unknown
 	 * @throws ReadOnlyError
 	 */
 	public function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
@@ -2403,7 +2400,7 @@ $templates
 	 * then the warning is a bit more obvious. If the lag is
 	 * lower than $wgSlaveLagWarning, then no warning is shown.
 	 *
-	 * @param $lag Integer: slave lag
+	 * @param int $lag Slave lag
 	 */
 	public function showLagWarning( $lag ) {
 		global $wgSlaveLagWarning, $wgSlaveLagCritical;
@@ -2490,9 +2487,9 @@ $templates
 	}
 
 	/**
-	 * @param $sk Skin The given Skin
-	 * @param $includeStyle Boolean: unused
-	 * @return String: The doctype, opening "<html>", and head element.
+	 * @param Skin $sk The given Skin
+	 * @param bool $includeStyle Unused
+	 * @return string The doctype, opening "<html>", and head element.
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
 		global $wgContLang, $wgMimeType;
@@ -2816,7 +2813,7 @@ $templates
 	 * JS stuff to put in the "<head>". This is the startup module, config
 	 * vars and modules marked with position 'top'
 	 *
-	 * @return String: HTML fragment
+	 * @return string HTML fragment
 	 */
 	function getHeadScripts() {
 		global $wgResourceLoaderExperimentalAsyncLoading;
@@ -3348,10 +3345,10 @@ $templates
 	/**
 	 * Generate a "<link rel/>" for a feed.
 	 *
-	 * @param string $type feed type
+	 * @param string $type Feed type
 	 * @param string $url URL to the feed
-	 * @param string $text value of the "title" attribute
-	 * @return String: HTML fragment
+	 * @param string $text Value of the "title" attribute
+	 * @return string HTML fragment
 	 */
 	private function feedLink( $type, $url, $text ) {
 		return Html::element( 'link', array(
@@ -3389,7 +3386,7 @@ $templates
 
 	/**
 	 * Adds inline CSS styles
-	 * @param $style_css Mixed: inline CSS
+	 * @param mixed $style_css Inline CSS
 	 * @param string $flip Set to 'flip' to flip the CSS if needed
 	 */
 	public function addInlineStyle( $style_css, $flip = 'noflip' ) {
@@ -3510,9 +3507,8 @@ $templates
 	 * Generate \<link\> tags for stylesheets
 	 *
 	 * @param string $style URL to the file
-	 * @param array $options option, can contain 'condition', 'dir', 'media'
-	 *                 keys
-	 * @return String: HTML fragment
+	 * @param array $options Option, can contain 'condition', 'dir', 'media' keys
+	 * @return string HTML fragment
 	 */
 	protected function styleLink( $style, $options ) {
 		if ( isset( $options['dir'] ) ) {
@@ -3551,8 +3547,8 @@ $templates
 	/**
 	 * Transform "media" attribute based on request parameters
 	 *
-	 * @param string $media current value of the "media" attribute
-	 * @return String: modified value of the "media" attribute, or null to skip
+	 * @param string $media Current value of the "media" attribute
+	 * @return string Modified value of the "media" attribute, or null to skip
 	 * this stylesheet
 	 */
 	public static function transformCssMedia( $media ) {
@@ -3667,8 +3663,8 @@ $templates
 	 * Include jQuery core. Use this to avoid loading it multiple times
 	 * before we get a usable script loader.
 	 *
-	 * @param array $modules list of jQuery modules which should be loaded
-	 * @return Array: the list of modules which were not loaded.
+	 * @param array $modules List of jQuery modules which should be loaded
+	 * @return array The list of modules which were not loaded.
 	 * @since 1.16
 	 * @deprecated since 1.17
 	 */

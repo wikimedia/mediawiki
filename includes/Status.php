@@ -41,7 +41,7 @@ class Status {
 	/** @var bool */
 	public $ok = true;
 
-	/** @var mixed  */
+	/** @var mixed */
 	public $value;
 
 	/** Counters for batch operations */
@@ -52,7 +52,7 @@ class Status {
 	public $failCount = 0;
 
 	/** Array to indicate which items of the batch operations were successful */
-	/** @var array  */
+	/** @var array */
 	public $success = array();
 
 	/** @var array */
@@ -90,8 +90,8 @@ class Status {
 	/**
 	 * Change operation result
 	 *
-	 * @param $ok Boolean: whether the operation completed
-	 * @param $value Mixed
+	 * @param bool $ok Whether the operation completed
+	 * @param Mixed $value
 	 */
 	public function setResult( $ok, $value = null ) {
 		$this->ok = $ok;
@@ -326,8 +326,8 @@ class Status {
 	/**
 	 * Merge another status object into this one
 	 *
-	 * @param $other Status Other Status object
-	 * @param $overwriteValue Boolean: whether to override the "value" member
+	 * @param Status $other Other Status object
+	 * @param bool $overwriteValue Whether to override the "value" member
 	 */
 	public function merge( $other, $overwriteValue = false ) {
 		$this->errors = array_merge( $this->errors, $other->errors );
@@ -427,8 +427,8 @@ class Status {
 	 * Note, due to the lack of tools for comparing Message objects, this
 	 * function will not work when using a Message object as the search parameter.
 	 *
-	 * @param $source Message|String: Message key or object to search for
-	 * @param $dest Message|String: Replacement message key or object
+	 * @param Message|string $source Message key or object to search for
+	 * @param Message|string $dest Replacement message key or object
 	 * @return bool Return true if the replacement was done, false otherwise.
 	 */
 	public function replaceMessage( $source, $dest ) {
