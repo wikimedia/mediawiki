@@ -4343,7 +4343,7 @@ class Title {
 	 * @param int|Revision $new New revision or rev ID (first after range)
 	 * @return Int Number of revisions between these revisions.
 	 */
-	public function countRevisionsBetween( $old, $new ) {
+	public function countRevisionsBetween( $old, $new, $max = null ) {
 		if ( !( $old instanceof Revision ) ) {
 			$old = Revision::newFromTitle( $this, (int)$old );
 		}
@@ -4354,14 +4354,21 @@ class Title {
 			return 0; // nothing to compare
 		}
 		$dbr = wfGetDB( DB_SLAVE );
-		return (int)$dbr->selectField( 'revision', 'count(*)',
-			array(
-				'rev_page' => $this->getArticleID(),
-				'rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
-				'rev_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
-			),
-			__METHOD__
+		$conds = array(
+			'rev_page' => $this->getArticleID(),
+			'rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
+			'rev_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
 		);
+		if ( $max !== null ) {
+			$res = $dbr->select( 'revision', '1',
+				$conds,
+				__METHOD__,
+				array( 'LIMIT' => $max + 1 ) // extra to detect truncation
+			);
+			return $res->numRows();
+		} else {
+			return (int)$dbr->selectField( 'revision', 'count(*)', $conds, __METHOD__ );
+		}
 	}
 
 	/**
