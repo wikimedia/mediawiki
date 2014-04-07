@@ -37,7 +37,7 @@ class SearchEngine {
 	var $namespaces = array( NS_MAIN );
 	protected $showSuggestion = true;
 
-	/// Feature values
+	/** @var Array Feature values */
 	protected $features = array();
 
 	/**
