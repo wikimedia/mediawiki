@@ -624,7 +624,7 @@ class MediaWiki {
 	 * the socket once it's done.
 	 */
 	protected function triggerJobs() {
-		global $wgJobRunRate, $wgServer;
+		global $wgJobRunRate, $wgServer, $wgRunJobsAsync;
 
 		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
 			return;
@@ -650,19 +650,24 @@ class MediaWiki {
 
 		$errno = $errstr = null;
 		$info = wfParseUrl( $wgServer );
-		wfSuppressWarnings();
-		$sock = fsockopen(
-			$info['host'],
-			isset( $info['port'] ) ? $info['port'] : 80,
-			$errno,
-			$errstr,
-			// If it takes more than 100ms to connect to ourselves there
-			// is a problem elsewhere.
-			0.1
-		);
-		wfRestoreWarnings();
+		$sock = false;
+		if ( $wgRunJobsAsync ) {
+			wfSuppressWarnings();
+			$sock = fsockopen(
+				$info['host'],
+				isset( $info['port'] ) ? $info['port'] : 80,
+				$errno,
+				$errstr,
+				// If it takes more than 100ms to connect to ourselves there
+				// is a problem elsewhere.
+				0.1
+			);
+			wfRestoreWarnings();
+			if ( !$sock ) {
+				wfDebugLog( 'runJobs', "Failed to start cron API (socket error $errno): $errstr\n" );
+			}
+		}
 		if ( !$sock ) {
-			wfDebugLog( 'runJobs', "Failed to start cron API (socket error $errno): $errstr\n" );
 			// Fall back to running the job here while the user waits
 			SpecialRunJobs::executeJobs( $n );
 			return;
