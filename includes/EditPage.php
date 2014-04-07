@@ -3419,15 +3419,6 @@ HTML
 				'tip'    => wfMessage( 'media_tip' )->text(),
 				'key'    => 'M'
 			) : false,
-			class_exists( 'MathRenderer' ) ? array(
-				'image'  => $wgLang->getImageFile( 'button-math' ),
-				'id'     => 'mw-editbutton-math',
-				'open'   => "<math>",
-				'close'  => "</math>",
-				'sample' => wfMessage( 'math_sample' )->text(),
-				'tip'    => wfMessage( 'math_tip' )->text(),
-				'key'    => 'C'
-			) : false,
 			array(
 				'image'  => $wgLang->getImageFile( 'button-nowiki' ),
 				'id'     => 'mw-editbutton-nowiki',
