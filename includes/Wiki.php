@@ -624,7 +624,7 @@ class MediaWiki {
 	 * the socket once it's done.
 	 */
 	protected function triggerJobs() {
-		global $wgJobRunRate, $wgServer;
+		global $wgJobRunRate, $wgServer, $wgRunJobsAsync;
 
 		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
 			return;
@@ -642,6 +642,12 @@ class MediaWiki {
 			$n = 1;
 		} else {
 			$n = intval( $wgJobRunRate );
+		}
+
+		if ( !$wgRunJobsAsync ) {
+			// If running jobs asynchronously has been disabled, run the job here while the user waits
+			SpecialRunJobs::executeJobs( $n );
+			return;
 		}
 
 		$query = array( 'title' => 'Special:RunJobs',
