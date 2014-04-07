@@ -437,10 +437,11 @@ interface Content {
 	 *
 	 * @param Title $title
 	 * @param ParserOptions $parserOptions
+	 * @param array $params
 	 *
 	 * @return Content
 	 */
-	public function preloadTransform( Title $title, ParserOptions $parserOptions );
+	public function preloadTransform( Title $title, ParserOptions $parserOptions, $params = array() );
 
 	/**
 	 * Prepare Content for saving. Called before Content is saved by WikiPage::doEditContent() and in

@@ -154,14 +154,15 @@ class WikitextContent extends TextContent {
 	 *
 	 * @param Title $title
 	 * @param ParserOptions $popts
+	 * @param array $params
 	 *
 	 * @return Content
 	 */
-	public function preloadTransform( Title $title, ParserOptions $popts ) {
+	public function preloadTransform( Title $title, ParserOptions $popts, $params = array() ) {
 		global $wgParser;
 
 		$text = $this->getNativeData();
-		$plt = $wgParser->getPreloadText( $text, $title, $popts );
+		$plt = $wgParser->getPreloadText( $text, $title, $popts, $params );
 
 		return new WikitextContent( $plt );
 	}
