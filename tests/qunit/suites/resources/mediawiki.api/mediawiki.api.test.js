@@ -51,6 +51,8 @@
 
 		var api = new mw.Api();
 
+		this.suppressWarnings();
+
 		api.get( {}, function () {
 			assert.ok( true, 'Function argument treated as success callback.' );
 		} );
@@ -66,6 +68,8 @@
 				assert.ok( true, '"err" property treated as error callback.' );
 			}
 		} );
+
+		this.restoreWarnings();
 
 		this.server.respondWith( /action=query/, function ( request ) {
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
