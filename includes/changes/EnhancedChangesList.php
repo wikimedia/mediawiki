@@ -104,10 +104,20 @@ class EnhancedChangesList extends ChangesList {
 			$this->rc_cache = array();
 			$ret .= Xml::element( 'h4', null, $date ) . "\n";
 			$this->lastdate = $date;
+		} else {
+			$cacheEntry = $this->cacheEntryFactory->newFromRecentChange( $baseRC, $watched );
+			$this->addCacheEntry( $cacheEntry );
 		}
 
-		$cacheEntry = $this->cacheEntryFactory->newFromRecentChange( $baseRC, $watched );
+		wfProfileOut( __METHOD__ );
 
+		return $ret;
+	}
+
+	/**
+	 * @param RCCacheEntry $cacheEntry
+	 */
+	protected function addCacheEntry( RCCacheEntry $cacheEntry ) {
 		# Put accumulated information into the cache, for later display
 		# Page moves go on their own line
 		$title = $cacheEntry->getTitle();
@@ -132,10 +142,6 @@ class EnhancedChangesList extends ChangesList {
 
 			array_push( $this->rc_cache[$secureName], $cacheEntry );
 		}
-
-		wfProfileOut( __METHOD__ );
-
-		return $ret;
 	}
 
 	/**
