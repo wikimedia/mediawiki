@@ -6211,6 +6211,7 @@ $wgJobTypesExcludedFromDefaultQueue = array( 'AssembleUploadChunks', 'PublishSta
  * on each job runner process. The meaning of "work items" varies per job,
  * but typically would be something like "pages to update". A single job
  * may have a variable number of work items, as is the case with batch jobs.
+ * This is used by runJobs.php and not jobs run via $wgJobRunRate.
  * These settings should be global to all wikis.
  */
 $wgJobBackoffThrottling = array();

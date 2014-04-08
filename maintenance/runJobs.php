@@ -36,6 +36,7 @@ class RunJobs extends Maintenance {
 		$this->addOption( 'maxtime', 'Maximum amount of wall-clock time', false, true );
 		$this->addOption( 'type', 'Type of job to run', false, true );
 		$this->addOption( 'procs', 'Number of processes to use', false, true );
+		$this->addOption( 'nothrottle', 'Ignore job throttling configuration', false, false );
 	}
 
 	public function memoryLimit() {
@@ -66,6 +67,7 @@ class RunJobs extends Maintenance {
 		$type = $this->getOption( 'type', false );
 		$maxJobs = $this->getOption( 'maxjobs', false );
 		$maxTime = $this->getOption( 'maxtime', false );
+		$noThrottle = $this->hasOption( 'nothrottle' );
 		$startTime = time();
 
 		$group = JobQueueGroup::singleton();
@@ -83,10 +85,12 @@ class RunJobs extends Maintenance {
 		$flags = JobQueueGroup::USE_CACHE;
 		$lastTime = time(); // time since last slave check
 		do {
+			$backoffs = array_filter( $backoffs, $backoffExpireFunc );
+			$blacklist = $noThrottle ? array() : array_keys( $backoffs );
 			if ( $type === false ) {
-				$backoffs = array_filter( $backoffs, $backoffExpireFunc );
-				$blacklist = array_keys( $backoffs );
 				$job = $group->pop( JobQueueGroup::TYPE_DEFAULT, $flags, $blacklist );
+			} elseif ( in_array( $type, $blacklist ) ) {
+				$job = false; // requested queue in backoff state
 			} else {
 				$job = $group->pop( $type ); // job from a single queue
 			}
