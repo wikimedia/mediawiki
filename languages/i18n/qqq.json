@@ -1894,6 +1894,7 @@
     "broken-file-category-desc": "Broken file category description. Shown on [[Special:TrackingCategories]]",
     "hidden-category-category-desc": "Hidden-category category description. Shown on [[Special:TrackingCategories]]",
     "trackingcategories-nodesc": "Tracking category description not available message",
+    "trackingcategories-disabled": "This message is used as the contents of the column \"Tracking category\" on [[Special:TrackingCategories]] when a particular tracking category has been disabled.",
     "mailnologin": "Used in [[Special:EmailUser]].\n\nUsed as title of the error message {{msg-mw|Mailnologintext}}.",
     "mailnologintext": "Used as error message in [[Special:EmailUser]].\n\nThe title of this error message is {{msg-mw|Mailnologin}}.",
     "emailuser": "Link in the sidebar to send an e-mail to a user.\n\nSee also:\n* {{msg-mw|Emailuser}}\n* {{msg-mw|Accesskey-t-emailuser}}\n* {{msg-mw|Tooltip-t-emailuser}}",
