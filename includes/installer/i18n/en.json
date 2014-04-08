@@ -76,7 +76,7 @@
     "config-gd": "Found GD graphics library built-in.\nImage thumbnailing will be enabled if you enable uploads.",
     "config-no-scaling": "Could not find GD library or ImageMagick.\nImage thumbnailing will be disabled.",
     "config-no-uri": "<strong>Error:</strong> Could not determine the current URI.\nInstallation aborted.",
-    "config-no-cli-uri": "<strong>Warning:</strong> No --scriptpath specified, using default: <code>$1</code>.",
+    "config-no-cli-uri": "<strong>Warning:</strong> No <code>--scriptpath</code> specified, using default: <code>$1</code>.",
     "config-using-server": "Using server name \"<nowiki>$1</nowiki>\".",
     "config-using-uri": "Using server URL \"<nowiki>$1$2</nowiki>\".",
     "config-uploads-not-safe": "<strong>Warning:</strong> Your default directory for uploads <code>$1</code> is vulnerable to arbitrary scripts execution.\nAlthough MediaWiki checks all uploaded files for security threats, it is highly recommended to [//www.mediawiki.org/wiki/Manual:Security#Upload_security close this security vulnerability] before enabling uploads.",
