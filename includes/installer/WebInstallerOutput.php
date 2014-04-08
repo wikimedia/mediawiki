@@ -33,6 +33,7 @@
  * @since 1.17
  */
 class WebInstallerOutput {
+
 	/**
 	 * The WebInstaller object this WebInstallerOutput is used by.
 	 *
@@ -52,6 +53,9 @@ class WebInstallerOutput {
 	 */
 	private $headerDone = false;
 
+	/**
+	 * @var string
+	 */
 	public $redirectTarget;
 
 	/**
@@ -69,27 +73,39 @@ class WebInstallerOutput {
 	private $useShortHeader = false;
 
 	/**
-	 * Constructor.
-	 *
-	 * @param $parent WebInstaller
+	 * @param WebInstaller $parent
 	 */
 	public function __construct( WebInstaller $parent ) {
 		$this->parent = $parent;
 	}
 
+	/**
+	 * @param string $html
+	 */
 	public function addHTML( $html ) {
 		$this->contents .= $html;
 		$this->flush();
 	}
 
+	/**
+	 * @param string $text
+	 */
 	public function addWikiText( $text ) {
 		$this->addHTML( $this->parent->parse( $text ) );
 	}
 
+	/**
+	 * @param string $html
+	 */
 	public function addHTMLNoFlush( $html ) {
 		$this->contents .= $html;
 	}
 
+	/**
+	 * @param string $url
+	 *
+	 * @throws MWException
+	 */
 	public function redirect( $url ) {
 		if ( $this->headerDone ) {
 			throw new MWException( __METHOD__ . ' called after sending headers' );
@@ -110,6 +126,7 @@ class WebInstallerOutput {
 	 *   and not properly handling such details as media types in module definitions.
 	 *
 	 * @param string $dir 'ltr' or 'rtl'
+	 *
 	 * @return String
 	 */
 	public function getCSS( $dir ) {
@@ -192,6 +209,7 @@ class WebInstallerOutput {
 
 	/**
 	 * "<link>" to index.php?css=foobar for the "<head>"
+	 *
 	 * @return String
 	 */
 	private function getCssUrl() {
@@ -236,7 +254,7 @@ class WebInstallerOutput {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	public function getHeadAttribs() {
 		return array(
@@ -247,6 +265,7 @@ class WebInstallerOutput {
 
 	/**
 	 * Get whether the header has been output
+	 *
 	 * @return bool
 	 */
 	public function headerDone() {
@@ -341,7 +360,11 @@ class WebInstallerOutput {
 		echo wfMessage( 'config-title', $wgVersion )->escaped();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getJQuery() {
 		return Html::linkedScript( "../resources/jquery/jquery.js" );
 	}
+
 }
