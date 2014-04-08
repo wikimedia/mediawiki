@@ -329,7 +329,7 @@ class LinksUpdate extends SqlDataUpdate {
 				$toField = $prefix . '_to';
 			}
 			if ( count( $deletions ) ) {
-				$where[] = "$toField IN (" . $this->mDb->makeList( array_keys( $deletions ) ) . ')';
+				$where[$toField] = array_keys( $deletions );
 			} else {
 				$where = false;
 			}
