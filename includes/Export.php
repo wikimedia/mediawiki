@@ -73,15 +73,14 @@ class WikiExporter {
 	 * make additional queries to pull source data while the
 	 * main query is still running.
 	 *
-	 * @param $db DatabaseBase
-	 * @param $history Mixed: one of WikiExporter::FULL, WikiExporter::CURRENT,
-	 *                 WikiExporter::RANGE or WikiExporter::STABLE,
-	 *                 or an associative array:
-	 *                   offset: non-inclusive offset at which to start the query
-	 *                   limit: maximum number of rows to return
-	 *                   dir: "asc" or "desc" timestamp order
-	 * @param int $buffer one of WikiExporter::BUFFER or WikiExporter::STREAM
-	 * @param int $text one of WikiExporter::TEXT or WikiExporter::STUB
+	 * @param DatabaseBase $db
+	 * @param int|array $history One of WikiExporter::FULL, WikiExporter::CURRENT,
+	 *   WikiExporter::RANGE or WikiExporter::STABLE, or an associative array:
+	 *   - offset: non-inclusive offset at which to start the query
+	 *   - limit: maximum number of rows to return
+	 *   - dir: "asc" or "desc" timestamp order
+	 * @param int $buffer One of WikiExporter::BUFFER or WikiExporter::STREAM
+	 * @param int $text One of WikiExporter::TEXT or WikiExporter::STUB
 	 */
 	function __construct( $db, $history = WikiExporter::CURRENT,
 			$buffer = WikiExporter::BUFFER, $text = WikiExporter::TEXT ) {
@@ -127,8 +126,8 @@ class WikiExporter {
 	 * Dumps a series of page and revision records for those pages
 	 * in the database falling within the page_id range given.
 	 * @param int $start inclusive lower limit (this id is included)
-	 * @param $end   Int: Exclusive upper limit (this id is not included)
-	 *                   If 0, no upper limit.
+	 * @param int $end Exclusive upper limit (this id is not included)
+	 *   If 0, no upper limit.
 	 */
 	public function pagesByRange( $start, $end ) {
 		$condition = 'page_id >= ' . intval( $start );
@@ -142,8 +141,8 @@ class WikiExporter {
 	 * Dumps a series of page and revision records for those pages
 	 * in the database with revisions falling within the rev_id range given.
 	 * @param int $start inclusive lower limit (this id is included)
-	 * @param $end   Int: Exclusive upper limit (this id is not included)
-	 *                   If 0, no upper limit.
+	 * @param int $end Exclusive upper limit (this id is not included)
+	 *   If 0, no upper limit.
 	 */
 	public function revsByRange( $start, $end ) {
 		$condition = 'rev_id >= ' . intval( $start );

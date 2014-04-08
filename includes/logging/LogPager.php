@@ -42,7 +42,7 @@ class LogPager extends ReverseChronologicalPager {
 	/** @var string */
 	private $typeCGI = '';
 
-	/** @var LogEventsList  */
+	/** @var LogEventsList */
 	public $mLogEventsList;
 
 	/**
