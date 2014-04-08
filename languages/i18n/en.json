@@ -1774,7 +1774,7 @@
     "listgrouprights-removegroup-self-all": "Remove all groups from own account",
     "trackingcategories": "Tracking categories",
     "trackingcategories-summary": "This page lists tracking categories which are automatically populated by the MediaWiki software. Their names can be changed by altering the relevant system messages in the {{ns:8}} namespace.",
-    "trackingcategories-msg": "Tracking Category",
+    "trackingcategories-msg": "Tracking category",
     "trackingcategories-name": "Message name",
     "trackingcategories-desc": "Category inclusion criteria",
     "noindex-category-desc": "The page has a <nowiki>__NOINDEX__</nowiki> magic word on it (and is in a namespace where that flag is allowed), and hence is not indexed by robots.",
