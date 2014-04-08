@@ -138,6 +138,9 @@ production.
   installer has been updated to use it.
 * Changes to content typography (fonts, line-height, etc.). See
   https://www.mediawiki.org/wiki/Typography_refresh for further information.
+* The Vector skin's visual treatment of external links has been simplified to a
+  single icon (from nine). This should not affect local rules unless they were
+  re-using these icons, which have now been deleted.
 * ResourceLoader: mw.loader.using() now implements a Promise interface.
 * Add new hook ChangesListInitRows accessed via ChangesList::initChangesListRows.
   If called by the ChangesList consumer this gives extensions a chance to batch
