@@ -651,6 +651,10 @@ class MediaWiki {
 			return;
 		}
 
+		if ( !JobQueueGroup::singleton()->queuesHaveJobs( JobQueueGroup::TYPE_DEFAULT ) ) {
+			return; // do not send request if there are probably no jobs
+		}
+
 		$query = array( 'title' => 'Special:RunJobs',
 			'tasks' => 'jobs', 'maxjobs' => $n, 'sigexpiry' => time() + 5 );
 		$query['signature'] = SpecialRunJobs::getQuerySignature( $query );

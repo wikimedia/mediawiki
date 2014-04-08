@@ -255,6 +255,31 @@ class JobQueueGroup {
 	}
 
 	/**
+	 * Check if there are any queues with jobs (this is cached)
+	 *
+	 * @param integer $type JobQueueGroup::TYPE_* constant
+	 * @return bool
+	 * @since 1.23
+	 */
+	public function queuesHaveJobs( $type = self::TYPE_ANY ) {
+		global $wgMemc;
+
+		$key = wfMemcKey( 'jobqueue', 'queueshavejobs', $type );
+
+		$value = $wgMemc->get( $key );
+		if ( $value === false ) {
+			$queues = $this->getQueuesWithJobs();
+			if ( $type == self::TYPE_DEFAULT ) {
+				$queues = array_intersect( $queues, $this->getDefaultQueueTypes() );
+			}
+			$value = count( $queues ) ? 'true' : 'false';
+			$wgMemc->add( $key, $value, 15 );
+		}
+
+		return ( $value === 'true' );
+	}
+
+	/**
 	 * Get the list of job types that have non-empty queues
 	 *
 	 * @return array List of job types that have non-empty queues
