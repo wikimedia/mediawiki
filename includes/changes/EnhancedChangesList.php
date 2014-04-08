@@ -121,28 +121,28 @@ class EnhancedChangesList extends ChangesList {
 	 * @param RCCacheEntry $cacheEntry
 	 */
 	protected function addCacheEntry( RCCacheEntry $cacheEntry ) {
-		$title = $cacheEntry->getTitle();
-		$secureName = $title->getPrefixedDBkey();
-
 		$type = $cacheEntry->mAttribs['rc_type'];
 
 		if ( $type == RC_MOVE || $type == RC_MOVE_OVER_REDIRECT ) {
-			# Use an @ character to prevent collision with page names
-			$this->rc_cache['@@' . ( $this->rcMoveIndex++ )] = array( $cacheEntry );
-		} else {
-			# Logs are grouped by type
-			if ( $type == RC_LOG ) {
-				$secureName = SpecialPage::getTitleFor(
-					'Log',
-					$cacheEntry->mAttribs['rc_log_type']
-				)->getPrefixedDBkey();
-			}
-			if ( !isset( $this->rc_cache[$secureName] ) ) {
-				$this->rc_cache[$secureName] = array();
-			}
-
-			array_push( $this->rc_cache[$secureName], $cacheEntry );
+			return;
 		}
+
+		$title = $cacheEntry->getTitle();
+		$secureName = $title->getPrefixedDBkey();
+
+		# Logs are grouped by type
+		if ( $cacheEntry->mAttribs['rc_type'] == RC_LOG ) {
+			$secureName = SpecialPage::getTitleFor(
+				'Log',
+				$cacheEntry->mAttribs['rc_log_type']
+			)->getPrefixedDBkey();
+		}
+
+		if ( !isset( $this->rc_cache[$secureName] ) ) {
+			$this->rc_cache[$secureName] = array();
+		}
+
+		array_push( $this->rc_cache[$secureName], $cacheEntry );
 	}
 
 	/**
@@ -537,17 +537,15 @@ class EnhancedChangesList extends ChangesList {
 			Html::openElement( 'tr' );
 
 		$r .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow-space"></span>';
+
 		# Flag and Timestamp
-		if ( $type == RC_MOVE || $type == RC_MOVE_OVER_REDIRECT ) {
-			$r .= $this->recentChangesFlags( array() ); // no flags, but need the placeholders
-		} else {
-			$r .= $this->recentChangesFlags( array(
-				'newpage' => $type == RC_NEW,
-				'minor' => $rcObj->mAttribs['rc_minor'],
-				'unpatrolled' => $rcObj->unpatrolled,
-				'bot' => $rcObj->mAttribs['rc_bot'],
-			) );
-		}
+		$r .= $this->recentChangesFlags( array(
+			'newpage' => $type == RC_NEW,
+			'minor' => $rcObj->mAttribs['rc_minor'],
+			'unpatrolled' => $rcObj->unpatrolled,
+			'bot' => $rcObj->mAttribs['rc_bot'],
+		) );
+
 		$r .= '&#160;' . $rcObj->timestamp . '&#160;</td><td>';
 		# Article or log link
 		if ( $logType ) {
