@@ -211,7 +211,8 @@ class MultiHttpClient {
 			$ch = $handles[$index];
 			curl_multi_remove_handle( $chm, $ch );
 			if ( curl_errno( $ch ) !== 0 ) {
-				$req['error'] = "(curl error: " . curl_errno( $ch ) . ") " . curl_error( $ch );
+				$req['response']['error'] = "(curl error: " .
+					curl_errno( $ch ) . ") " . curl_error( $ch );
 			}
 			// For convenience with the list() operator
 			$req['response'][0] = $req['response']['code'];
