@@ -20,7 +20,7 @@ else if ( has_binary pear ); then
     pear channel-discover components.ez.no
     pear channel-discover pear.symfony.com
     pear update-channels
-    pear install --alldeps phpunit/PHPUnit
+    pear install --alldeps pear.phpunit.de/PHPUnit-3.7.2
 else if ( has_binary apt-get ); then
     echo Installing phpunit with apt-get
     apt-get install phpunit
