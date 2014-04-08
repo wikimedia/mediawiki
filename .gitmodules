@@ -310,3 +310,18 @@
 [submodule "skins/monaco"]
 	path = skins/monaco
   url = https://github.com/dantman/monaco-port.git
+[submodule "extensions/MediaWikiChat"]
+	path = extensions/MediaWikiChat
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MediaWikiChat.git
+[submodule "extensions/SocialProfile"]
+	path = extensions/SocialProfile
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SocialProfile.git
+[submodule "extensions/BlogPage"]
+	path = extensions/BlogPage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/BlogPage.git
+[submodule "extensions/PollNY"]
+	path = extensions/PollNY
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/PollNY.git
+[submodule "extensions/WikiForum"]
+	path = extensions/WikiForum
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikiForum.git
