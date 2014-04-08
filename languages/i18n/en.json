@@ -1777,7 +1777,7 @@
     "trackingcategories-msg": "Tracking Category",
     "trackingcategories-name": "Message name",
     "trackingcategories-desc": "Category inclusion criteria",
-    "noindex-category-desc": "The page has a <nowiki>__NOINDEX__</nowiki> magic word on it (and is in a namespace where that flag is allowed), and hence is not indexed by robots.",
+    "noindex-category-desc": "The page is not indexed by robots because it has the magic word <nowiki>__NOINDEX__</nowiki> on it and is in a namespace where that flag is allowed.",
     "index-category-desc": "The page has a <nowiki>__INDEX__</nowiki> on it (and is in a namespace where that flag is allowed), and hence is indexed by robots where it normally wouldn't be.",
     "post-expand-template-inclusion-category-desc": "After expanding all the templates, the page size is bigger than $wgMaxArticleSize, so some templates weren't expanded.",
     "post-expand-template-argument-category-desc": "After expanding a template argument (something in triple braces, like {{{Foo}}}), the page is bigger than $wgMaxArticleSize.",
