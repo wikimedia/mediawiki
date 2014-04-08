@@ -96,10 +96,10 @@ class RandomImageGenerator {
 	/**
 	 * Writes random images with random filenames to disk in the directory you specify, or current working directory
 	 *
-	 * @param $number Integer: number of filenames to write
-	 * @param $format String: optional, must be understood by ImageMagick, such as 'jpg' or 'gif'
-	 * @param $dir String: directory, optional (will default to current working directory)
-	 * @return Array: filenames we just wrote
+	 * @param int $number number of filenames to write
+	 * @param string $format optional, must be understood by ImageMagick, such as 'jpg' or 'gif'
+	 * @param string $dir directory, optional (will default to current working directory)
+	 * @return array filenames we just wrote
 	 */
 	function writeImages( $number, $format = 'jpg', $dir = null ) {
 		$filenames = $this->getRandomFilenames( $number, $format, $dir );
@@ -139,10 +139,10 @@ class RandomImageGenerator {
 	 * Return a number of randomly-generated filenames
 	 * Each filename uses two words randomly drawn from the dictionary, like elephantine_spatula.jpg
 	 *
-	 * @param $number Integer: of filenames to generate
-	 * @param $extension String: optional, defaults to 'jpg'
-	 * @param $dir String: optional, defaults to current working directory
-	 * @return Array: of filenames
+	 * @param int $number Number of filenames to generate
+	 * @param string $extension Optional, defaults to 'jpg'
+	 * @param string $dir Optional, defaults to current working directory
+	 * @return array Array of filenames
 	 */
 	private function getRandomFilenames( $number, $extension = 'jpg', $dir = null ) {
 		if ( is_null( $dir ) ) {
@@ -208,7 +208,7 @@ class RandomImageGenerator {
 	 * Given array( array('x' => 10, 'y' => 20), array( 'x' => 30, y=> 5 ) )
 	 * returns "10,20 30,5"
 	 * Useful for SVG and imagemagick command line arguments
-	 * @param $shape: Array of arrays, each array containing x & y keys mapped to numeric values
+	 * @param array $shape Array of arrays, each array containing x & y keys mapped to numeric values
 	 * @return string
 	 */
 	static function shapePointsToString( $shape ) {
@@ -347,10 +347,10 @@ class RandomImageGenerator {
 
 	/**
 	 * Given a matrix and a pair of images, return new position
-	 * @param $matrix: 2x2 rotation matrix
-	 * @param $x: x-coordinate number
-	 * @param $y: y-coordinate number
-	 * @return Array transformed with properties x, y
+	 * @param array $matrix 2x2 rotation matrix
+	 * @param int $x x-coordinate number
+	 * @param int $y y-coordinate number
+	 * @return array Transformed with properties x, y
 	 */
 	private static function matrixMultiply2x2( $matrix, $x, $y ) {
 		return array(
@@ -412,8 +412,8 @@ class RandomImageGenerator {
 	/**
 	 * Get an array of random pairs of random words, like array( array( 'foo', 'bar' ), array( 'quux', 'baz' ) );
 	 *
-	 * @param $number Integer: number of pairs
-	 * @return Array: of two-element arrays
+	 * @param int $number Number of pairs
+	 * @return array two-element arrays
 	 */
 	private function getRandomWordPairs( $number ) {
 		$lines = $this->getRandomLines( $number * 2 );
