@@ -8,7 +8,7 @@
 	 * and given a safe start position. It supports insertion anywhere
 	 * in the string, so "foo" to "fobaro" if limit is 4 will result in
 	 * "fobo", not "foba". Basically emulating the native maxlength by
-	 * reconstructing where the insertion occured.
+	 * reconstructing where the insertion occurred.
 	 *
 	 * @private
 	 * @param {string} safeVal Known value that was previously returned by this

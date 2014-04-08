@@ -506,7 +506,7 @@ $.fn.suggestions = function () {
 				// Number of results visible without scrolling
 				visibleResults: 0,
 
-				// Suggestion the last mousedown event occured on
+				// Suggestion the last mousedown event occurred on
 				mouseDownOn: $( [] ),
 				$textbox: $(this),
 				selectedWithMouse: false

@@ -421,7 +421,7 @@ class RedisConnRef {
 		$conn->clearLastError();
 		$res = $conn->evalSha( $sha1, $params, $numKeys );
 		// If we got a permission error reply that means that (a) we are not in
-		// multi()/pipeline() and (b) some connection problem likely occured. If
+		// multi()/pipeline() and (b) some connection problem likely occurred. If
 		// the password the client gave was just wrong, an exception should have
 		// been thrown back in getConnection() previously.
 		if ( preg_match( '/^ERR operation not permitted\b/', $conn->getLastError() ) ) {
