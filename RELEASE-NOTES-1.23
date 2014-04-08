@@ -136,6 +136,7 @@ production.
   installer has been updated to use it.
 * Changes to content typography (fonts, line-height, etc.). See
   https://www.mediawiki.org/wiki/Typography_refresh for further information.
+* Simplification of external links css
 * ResourceLoader: mw.loader.using() now implements a Promise interface.
 * Add new hook ChangesListInitRows accessed via ChangesList::initChangesListRows.
   If called by the ChangesList consumer this gives extensions a chance to batch
