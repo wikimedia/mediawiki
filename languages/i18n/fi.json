@@ -1685,7 +1685,7 @@
     "trackingcategories-msg": "Tarkkailuluokka",
     "trackingcategories-name": "Viestin nimi",
     "trackingcategories-desc": "Kriteerit luokkaan joutumiselle",
-    "post-expand-template-argument-category-desc": "Kun mallineen argumentti on laajennettu (argumentti on merkkijono kolmen kaarisulun sisällä kuten {{{Foo}}}), sivu on suurempi kuin $wgMaxArticleSize.",
+    "post-expand-template-argument-category-desc": "Kun mallineen argumentti on laajennettu (argumentti on merkkijono kolmen kaarisulun sisällä kuten <code>{{{Foo}}})</code>, sivu on suurempi kuin <code>$wgMaxArticleSize</code>.",
     "trackingcategories-nodesc": "Ei kuvausta olemassa.",
     "trackingcategories-disabled": "Luokka on poistettu käytöstä",
     "mailnologin": "Lähettäjän osoite puuttuu",
