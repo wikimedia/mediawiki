@@ -107,9 +107,20 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		$cacheEntry = $this->cacheEntryFactory->newFromRecentChange( $baseRC, $watched );
+		$this->addCacheEntry( $cacheEntry );
 
-		# Put accumulated information into the cache, for later display
-		# Page moves go on their own line
+		wfProfileOut( __METHOD__ );
+
+		return $ret;
+	}
+
+	/**
+	 * Put accumulated information into the cache, for later display.
+	 * Page moves go on their own line.
+	 *
+	 * @param RCCacheEntry $cacheEntry
+	 */
+	protected function addCacheEntry( RCCacheEntry $cacheEntry ) {
 		$title = $cacheEntry->getTitle();
 		$secureName = $title->getPrefixedDBkey();
 
@@ -132,10 +143,6 @@ class EnhancedChangesList extends ChangesList {
 
 			array_push( $this->rc_cache[$secureName], $cacheEntry );
 		}
-
-		wfProfileOut( __METHOD__ );
-
-		return $ret;
 	}
 
 	/**
