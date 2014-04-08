@@ -536,9 +536,9 @@ class MimeMagic {
 	 * based formats like OPC/ODF files).
 	 *
 	 * @param string $file the file to check
-	 * @param $ext Mixed: the file extension, or true (default) to extract it from the filename.
-	 *             Set it to false to ignore the extension. DEPRECATED! Set to false, use
-	 *             improveTypeFromExtension($mime, $ext) later to improve mime type.
+	 * @param string|bool $ext The file extension, or true (default) to extract it from the filename.
+	 *   Set it to false to ignore the extension. DEPRECATED! Set to false, use
+	 *   improveTypeFromExtension($mime, $ext) later to improve mime type.
 	 *
 	 * @return string the mime type of $file
 	 */
@@ -744,11 +744,11 @@ class MimeMagic {
 	 * header data.  Currently works for OpenDocument and OpenXML types...
 	 * If can't tell, returns 'application/zip'.
 	 *
-	 * @param string $header some reasonably-sized chunk of file header
-	 * @param $tail   String: the tail of the file
-	 * @param $ext Mixed: the file extension, or true to extract it from the filename.
-	 *             Set it to false (default) to ignore the extension. DEPRECATED! Set to false,
-	 *             use improveTypeFromExtension($mime, $ext) later to improve mime type.
+	 * @param string $header Some reasonably-sized chunk of file header
+	 * @param string|null $tail The tail of the file
+	 * @param string|bool $ext The file extension, or true to extract it from the filename.
+	 *   Set it to false (default) to ignore the extension. DEPRECATED! Set to false,
+	 *   use improveTypeFromExtension($mime, $ext) later to improve mime type.
 	 *
 	 * @return string
 	 */
@@ -850,10 +850,10 @@ class MimeMagic {
 	 * mime type if the file is an image. If no mime type can be determined,
 	 * this function returns 'unknown/unknown'.
 	 *
-	 * @param string $file the file to check
-	 * @param $ext Mixed: the file extension, or true (default) to extract it from the filename.
-	 *             Set it to false to ignore the extension. DEPRECATED! Set to false, use
-	 *             improveTypeFromExtension($mime, $ext) later to improve mime type.
+	 * @param string $file The file to check
+	 * @param string|bool $ext The file extension, or true (default) to extract it from the filename.
+	 *   Set it to false to ignore the extension. DEPRECATED! Set to false, use
+	 *   improveTypeFromExtension($mime, $ext) later to improve mime type.
 	 *
 	 * @return string the mime type of $file
 	 */

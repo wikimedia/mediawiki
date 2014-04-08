@@ -84,7 +84,7 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public $enableDebugComment = false;
 
-	/** @var bool  If true, line X is not displayed when X is 1, for example
+	/** @var bool If true, line X is not displayed when X is 1, for example
 	 *    to increase readability and conserve space with many small diffs.
 	 */
 	protected $mReducedLineNumbers = false;

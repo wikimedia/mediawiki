@@ -190,9 +190,9 @@ class SrConverter extends LanguageConverter {
 	 * Guess if a text is written in Cyrillic or Latin.
 	 * Overrides LanguageConverter::guessVariant()
 	 *
-	 * @param string  $text The text to be checked
-	 * @param string  $variant Language code of the variant to be checked for
-	 * @return bool  true if $text appears to be written in $variant
+	 * @param string $text The text to be checked
+	 * @param string $variant Language code of the variant to be checked for
+	 * @return bool true if $text appears to be written in $variant
 	 *
 	 * @author Nikola Smolenski <smolensk@eunet.rs>
 	 * @since 1.19
