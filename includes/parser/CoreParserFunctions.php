@@ -91,10 +91,11 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
-	 * @param $date
-	 * @param null $defaultPref
-	 * @return mixed|string
+	 * @param Parser $parser
+	 * @param string $date
+	 * @param string $defaultPref
+	 *
+	 * @return string
 	 */
 	static function formatDate( $parser, $date, $defaultPref = null ) {
 		$lang = $parser->getFunctionLang();

@@ -155,10 +155,11 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * @throws MWException
 	 * @param DatabaseBase $db
 	 * @param bool $shared
-	 * @param null $maintenance
+	 * @param Maintenance $maintenance
+	 *
+	 * @throws MWException
 	 * @return DatabaseUpdater
 	 */
 	public static function newForDB( &$db, $shared = false, $maintenance = null ) {

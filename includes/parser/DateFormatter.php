@@ -143,7 +143,8 @@ class DateFormatter {
 	 * @param string $preference User preference
 	 * @param string $text Text to reformat
 	 * @param array $options can contain 'linked' and/or 'match-whole'
-	 * @return mixed|String
+	 *
+	 * @return string
 	 */
 	function reformat( $preference, $text, $options = array( 'linked' ) ) {
 		$linked = in_array( 'linked', $options );
