@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (4975b8db90)
+ * OOjs UI v0.1.0-pre (70932872ba)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Mon Apr 07 2014 15:17:10 GMT-0700 (PDT)
+ * Date: Tue Apr 08 2014 12:42:30 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -6848,7 +6848,13 @@ OO.ui.InlineMenuWidget.prototype.getMenu = function () {
  * @param {OO.ui.MenuItemWidget} item Selected menu item
  */
 OO.ui.InlineMenuWidget.prototype.onMenuSelect = function ( item ) {
-	var selectedLabel = item.getLabel();
+	var selectedLabel;
+
+	if ( !item ) {
+		return;
+	}
+
+	selectedLabel = item.getLabel();
 
 	// If the label is a DOM element, clone it, because setLabel will append() it
 	if ( selectedLabel instanceof jQuery ) {
