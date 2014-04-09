@@ -491,7 +491,7 @@
 		},
 
 		/**
-		 * Get the main page name (transformed by #text)
+		 * Get the main page name
 		 *
 		 * Example: "Example_image.svg" for "File:Example_image.svg".
 		 *
