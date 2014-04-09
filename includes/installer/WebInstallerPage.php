@@ -1183,7 +1183,7 @@ class WebInstallerOptions extends WebInstallerPage {
 		) );
 		$styleUrl = $server . dirname( dirname( $this->parent->getUrl() ) ) .
 			'/mw-config/config-cc.css';
-		$iframeUrl = 'http://creativecommons.org/license/?' .
+		$iframeUrl = 'https://creativecommons.org/license/?' .
 			wfArrayToCgi( array(
 				'partner' => 'MediaWiki',
 				'exit_url' => $exitUrl,
