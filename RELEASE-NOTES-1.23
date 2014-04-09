@@ -56,6 +56,7 @@ production.
 * $wgLicenseTerms has been removed as it was unused.
 * $wgProfileOnly is now deprecated; set the log file in
   $wgDebugLogGroups['profileoutput'] to replace it.
+* $wgMaxBacklinksInvalidate was removed; use $wgJobBackoffThrottling instead
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
