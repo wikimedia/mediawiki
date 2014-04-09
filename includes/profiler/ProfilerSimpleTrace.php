@@ -22,28 +22,24 @@
  */
 
 /**
- * Execution trace
+ * Execution trace profiler
  * @todo document methods (?)
  * @ingroup Profiler
  */
 class ProfilerSimpleTrace extends ProfilerSimple {
-	var $trace = "Beginning trace: \n";
-	var $memory = 0;
+	protected $trace = "Beginning trace: \n";
+	protected $memory = 0;
 
 	function profileIn( $functionname ) {
 		parent::profileIn( $functionname );
+
 		$this->trace .= "         " . sprintf( "%6.1f", $this->memoryDiff() ) .
 				str_repeat( " ", count( $this->mWorkStack ) ) . " > " . $functionname . "\n";
 	}
 
 	function profileOut( $functionname ) {
-		global $wgDebugFunctionEntry;
-
-		if ( $wgDebugFunctionEntry ) {
-			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) - 1 ) . 'Exiting ' . $functionname . "\n" );
-		}
-
-		list( $ofname, /* $ocount */, $ortime ) = array_pop( $this->mWorkStack );
+		$item = end( $this->mWorkStack );
+		list( $ofname, /* $ocount */, $ortime ) = $item;
 
 		if ( !$ofname ) {
 			$this->trace .= "Profiling error: $functionname\n";
@@ -59,9 +55,9 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 			$elapsedreal = $this->getTime() - $ortime;
 			$this->trace .= sprintf( "%03.6f %6.1f", $elapsedreal, $this->memoryDiff() ) .
 					str_repeat( " ", count( $this->mWorkStack ) + 1 ) . " < " . $functionname . "\n";
-
-			$this->updateTrxProfiling( $functionname, $elapsedreal );
 		}
+
+		parent::profileOut( $functionname );
 	}
 
 	function memoryDiff() {
@@ -70,15 +66,18 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 		return $diff / 1024;
 	}
 
+
 	function logData() {
-		if ( PHP_SAPI === 'cli' ) {
-			print "<!-- \n {$this->trace} \n -->";
-		} elseif ( $this->getContentType() === 'text/html' ) {
-			print "<!-- \n {$this->trace} \n -->";
-		} elseif ( $this->getContentType() === 'text/javascript' ) {
-			print "\n/*\n {$this->trace}\n*/";
-		} elseif ( $this->getContentType() === 'text/css' ) {
-			print "\n/*\n {$this->trace}\n*/";
+		if ( $this->mTemplated ) {
+			if ( PHP_SAPI === 'cli' ) {
+				print "<!-- \n {$this->trace} \n -->";
+			} elseif ( $this->getContentType() === 'text/html' ) {
+				print "<!-- \n {$this->trace} \n -->";
+			} elseif ( $this->getContentType() === 'text/javascript' ) {
+				print "\n/*\n {$this->trace}\n*/";
+			} elseif ( $this->getContentType() === 'text/css' ) {
+				print "\n/*\n {$this->trace}\n*/";
+			}
 		}
 	}
 }
