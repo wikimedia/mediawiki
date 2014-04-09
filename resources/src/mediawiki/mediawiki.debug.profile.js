@@ -70,7 +70,10 @@
 		 * @param string tag to create
 		 * @return DOMElement
 		 */
-		createSvgElement: document.createElementNS.bind( document, 'http://www.w3.org/2000/svg' ),
+		createSvgElement: document.createElementNS
+			? document.createElementNS.bind( document, 'http://www.w3.org/2000/svg' )
+			// use a nop for browsers does not support document.createElementNS (IE<8)
+			: function () {return null;},
 
 		/**
 		 * @param DOMElement|undefined
