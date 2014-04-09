@@ -36,7 +36,8 @@
             "Yknok29",
             "לערי ריינהארט",
             "관인생략",
-            "아라"
+            "아라",
+            "Keysuck"
         ]
     },
     "tog-underline": "링크에 밑줄:",
@@ -214,7 +215,9 @@
     "print": "인쇄",
     "view": "보기",
     "edit": "편집",
+    "edit-local": "로컬 설명 편집",
     "create": "만들기",
+    "create-local": "로컬 설명 추가",
     "editthispage": "이 문서 편집하기",
     "create-this-page": "이 문서 만들기",
     "delete": "삭제",
@@ -1678,6 +1681,7 @@
     "listgrouprights-removegroup-self": "자신에게서 다음 {{PLURAL:$2|권한}}을 해제: $1",
     "listgrouprights-addgroup-self-all": "자신에게 모든 권한을 부여",
     "listgrouprights-removegroup-self-all": "자신의 계정에서 모든 권한을 해제",
+    "trackingcategories-name": "메시지명",
     "mailnologin": "보낼 이메일 주소가 없음",
     "mailnologintext": "다른 사용자에게 이메일을 보내려면 [[Special:UserLogin|로그인]]한 다음 [[Special:Preferences|사용자 환경 설정]]에서 자신의 이메일 주소를 저장해야 합니다.",
     "emailuser": "이메일 보내기",

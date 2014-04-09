@@ -104,7 +104,8 @@
             "Wilfredor",
             "XalD",
             "XanaG",
-            "לערי ריינהארט"
+            "לערי ריינהארט",
+            "Chocolate con galleta"
         ]
     },
     "tog-underline": "Subrayar los enlaces:",
@@ -281,8 +282,11 @@
     "permalink": "Enlace permanente",
     "print": "Imprimir",
     "view": "Ver",
+    "view-foreign": "Ver en $1",
     "edit": "Editar",
+    "edit-local": "Editar descripción local",
     "create": "Crear",
+    "create-local": "Añadir descripción local",
     "editthispage": "Editar esta página",
     "create-this-page": "Crear esta página",
     "delete": "Borrar",
@@ -1746,7 +1750,9 @@
     "trackingcategories-msg": "Categoría de seguimiento",
     "trackingcategories-name": "Nombre del mensaje",
     "trackingcategories-desc": "Criterios de inclusión de categoría",
-    "noindex-category-desc": "La página contiene la palabra mágica <nowiki>__NOINDEX__</nowiki> (y está en un espacio de nombres donde la función está activada); y por ello los robots no la indizan.",
+    "noindex-category-desc": "La página contiene la palabra mágica <code><nowiki>__NOINDEX__</nowiki></code> (y está en un espacio de nombres donde la función está activada); y por ello los robots no la indizan.",
+    "post-expand-template-inclusion-category-desc": "Después de expandir todas las plantillas, el tamaño de la página es más grande que <code>$wgMaxArticleSize</code>, así que algunas plantillas no se expandieron.",
+    "post-expand-template-argument-category-desc": "Después de expandir un argumento de plantilla (algunos en tres llaves, como <code>{{{Foo}}})</code>, la página es más grande que <code>$wgMaxArticleSize</code>.",
     "trackingcategories-nodesc": "No hay descripción disponible.",
     "trackingcategories-disabled": "La categoría está desactivada",
     "mailnologin": "Ninguna dirección de envio",

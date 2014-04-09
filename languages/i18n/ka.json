@@ -1126,6 +1126,8 @@
     "rclistfrom": "ახალი ცვლილებების ჩვენება დაწყებული $1-დან",
     "rcshowhideminor": "მცირე რედაქტირების $1",
     "rcshowhidebots": "რობოტების  $1",
+    "rcshowhidebots-show": "ჩვენება",
+    "rcshowhidebots-hide": "დამალვა",
     "rcshowhideliu": "$1 რეგისტრირებული მომხმარებელი",
     "rcshowhideanons": "ანონიმური მომხმარებლების $1",
     "rcshowhidepatr": "გაკონტროლებული ცვლილებების $1",
