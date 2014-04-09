@@ -123,6 +123,12 @@ class ProfilerSimple extends Profiler {
 		}
 	}
 
+	public function getRawData() {
+		// Calling the method of the parent class results in fatal error.
+		// @todo Implement this correctly.
+		return array();
+	}
+
 	public function getFunctionReport() {
 		/* Implement in output subclasses */
 		return '';
