@@ -27,7 +27,11 @@
  *  http://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile)
  * @ingroup Profiler
  */
-class ProfilerSimpleUDP extends ProfilerSimple {
+class ProfilerSimpleUDP extends Profiler {
+	protected function collateOnly() {
+		return true;
+	}
+
 	public function isPersistent() {
 		return true;
 	}
@@ -37,7 +41,7 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 
 		$this->close();
 
-		if ( isset( $this->mCollated['-total'] ) && $this->mCollated['-total']['real'] < $this->mMinimumTime ) {
+		if ( isset( $this->mCollated['-total'] ) ) {
 			# Less than minimum, ignore
 			return;
 		}
