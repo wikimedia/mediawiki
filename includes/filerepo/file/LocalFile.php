@@ -1990,7 +1990,7 @@ class LocalFileDeleteBatch {
 			$res = $dbw->select(
 				'oldimage',
 				array( 'oi_archive_name', 'oi_sha1' ),
-				'oi_archive_name IN (' . $dbw->makeList( array_keys( $oldRels ) ) . ')',
+				array( 'oi_archive_name' => array_keys( $oldRels ) ),
 				__METHOD__
 			);
 
@@ -2091,7 +2091,7 @@ class LocalFileDeleteBatch {
 			$concat = $dbw->buildConcat( array( "oi_sha1", $encExt ) );
 			$where = array(
 				'oi_name' => $this->file->getName(),
-				'oi_archive_name IN (' . $dbw->makeList( array_keys( $oldRels ) ) . ')' );
+				'oi_archive_name' => array_keys( $oldRels ) );
 			$dbw->insertSelect( 'filearchive', 'oldimage',
 				array(
 					'fa_storage_group' => $encGroup,
@@ -2154,7 +2154,7 @@ class LocalFileDeleteBatch {
 			$res = $dbw->select( 'oldimage',
 				array( 'oi_archive_name' ),
 				array( 'oi_name' => $this->file->getName(),
-					'oi_archive_name IN (' . $dbw->makeList( array_keys( $oldRels ) ) . ')',
+					'oi_archive_name' => array_keys( $oldRels ),
 					$dbw->bitAnd( 'oi_deleted', File::DELETED_FILE ) => File::DELETED_FILE ),
 				__METHOD__ );
 
@@ -2321,7 +2321,7 @@ class LocalFileRestoreBatch {
 		$conditions = array( 'fa_name' => $this->file->getName() );
 
 		if ( !$this->all ) {
-			$conditions[] = 'fa_id IN (' . $dbw->makeList( $this->ids ) . ')';
+			$conditions['fa_id'] = $this->ids;
 		}
 
 		$result = $dbw->select(
@@ -2506,7 +2506,7 @@ class LocalFileRestoreBatch {
 
 		if ( $deleteIds ) {
 			$dbw->delete( 'filearchive',
-				array( 'fa_id IN (' . $dbw->makeList( $deleteIds ) . ')' ),
+				array( 'fa_id' => $deleteIds ),
 				__METHOD__ );
 		}
 
