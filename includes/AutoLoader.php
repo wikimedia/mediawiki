@@ -1121,7 +1121,7 @@ $wgAutoloadLocalClasses = array(
 	'ZipDirectoryReaderError' => 'includes/utils/ZipDirectoryReader.php',
 
 	# languages
-	'ConverterRule' => 'languages/LanguageConverter.php',
+	'ConverterRule' => 'languages/ConverterRule.php',
 	'FakeConverter' => 'languages/Language.php',
 	'Language' => 'languages/Language.php',
 	'LanguageConverter' => 'languages/LanguageConverter.php',
