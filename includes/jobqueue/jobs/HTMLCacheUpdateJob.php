@@ -40,7 +40,7 @@ class HTMLCacheUpdateJob extends Job {
 	}
 
 	function run() {
-		global $wgUpdateRowsPerJob, $wgUpdateRowsPerQuery, $wgMaxBacklinksInvalidate;
+		global $wgUpdateRowsPerJob, $wgUpdateRowsPerQuery;
 
 		static $expected = array( 'recursive', 'pages' ); // new jobs have one of these
 
@@ -57,14 +57,6 @@ class HTMLCacheUpdateJob extends Job {
 
 		// Job to purge all (or a range of) backlink pages for a page
 		if ( !empty( $this->params['recursive'] ) ) {
-			// @TODO: try to use delayed jobs if possible?
-			if ( !isset( $this->params['range'] ) && $wgMaxBacklinksInvalidate !== false ) {
-				$numRows = $this->title->getBacklinkCache()->getNumLinks(
-					$this->params['table'], $wgMaxBacklinksInvalidate );
-				if ( $numRows > $wgMaxBacklinksInvalidate ) {
-					return true;
-				}
-			}
 			// Convert this into no more than $wgUpdateRowsPerJob HTMLCacheUpdateJob per-title
 			// jobs and possibly a recursive HTMLCacheUpdateJob job for the rest of the backlinks
 			$jobs = BacklinkJobUtils::partitionBacklinkJob(
