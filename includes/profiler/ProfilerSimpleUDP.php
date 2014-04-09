@@ -37,7 +37,7 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 
 		$this->close();
 
-		if ( isset( $this->mCollated['-total'] ) && $this->mCollated['-total']['real'] < $this->mMinimumTime ) {
+		if ( isset( $this->mCollated['-total'] ) ) {
 			# Less than minimum, ignore
 			return;
 		}

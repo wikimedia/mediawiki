@@ -22,7 +22,7 @@
  */
 
 /**
- * Execution trace
+ * Execution trace profiler
  * @todo document methods (?)
  * @ingroup Profiler
  */
