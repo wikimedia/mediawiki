@@ -74,7 +74,9 @@ class SpecialTrackingCategories extends SpecialPage {
 				htmlspecialchars( $catMsg )
 			);
 
-			if ( strpos( $msgObj->plain(), '{{NAMESPACE}}' ) !== false ) {
+			// Match things like {{NAMESPACE}} and {{NAMESPACENUMBER}}.
+			// False positives are ok, this is just an efficiency shortcut
+			if ( strpos( $msgObj->plain(), '{{' ) !== false ) {
 				$ns = MWNamespace::getValidNamespaces();
 				foreach ( $ns as $namesp ) {
 					$tempTitle = Title::makeTitleSafe( $namesp, $catMsg );
