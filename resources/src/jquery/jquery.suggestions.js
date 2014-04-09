@@ -89,9 +89,9 @@ $.suggestions = {
 	 * @param {Boolean} delayed Whether or not to delay this by the currently configured amount of time
 	 */
 	update: function ( context, delayed ) {
-		// Only fetch if the value in the textbox changed and is not empty, or if the results were hidden
-		// if the textbox is empty then clear the result div, but leave other settings intouched
 		function maybeFetch() {
+			// Only fetch if the value in the textbox changed and is not empty, or if the results were hidden
+			// if the textbox is empty then clear the result div, but leave other settings intouched
 			if ( context.data.$textbox.val().length === 0 ) {
 				$.suggestions.hide( context );
 				context.data.prevText = '';
@@ -104,6 +104,9 @@ $.suggestions = {
 					context.config.fetch.call( context.data.$textbox, context.data.$textbox.val() );
 				}
 			}
+
+			// Always update special rendering
+			$.suggestions.special( context );
 		}
 
 		// Cancels any delayed maybeFetch call, and invokes context.config.cancel.
@@ -116,7 +119,6 @@ $.suggestions = {
 		} else {
 			maybeFetch();
 		}
-		$.suggestions.special( context );
 	},
 
 	special: function ( context ) {
