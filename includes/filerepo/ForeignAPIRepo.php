@@ -252,8 +252,9 @@ class ForeignAPIRepo extends FileRepo {
 	 * @param string $name
 	 * @param int $width
 	 * @param int $height
-	 * @param null $result
+	 * @param array $result Out parameter that will be changed by the function.
 	 * @param string $otherParams
+	 *
 	 * @return bool
 	 */
 	function getThumbUrl( $name, $width = -1, $height = -1, &$result = null, $otherParams = '' ) {

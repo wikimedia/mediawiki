@@ -179,7 +179,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @param string $text
 	 * @param string $title
 	 * @param string $model
-	 * @param null $format
+	 * @param string $format
 	 *
 	 * @return Revision
 	 */
