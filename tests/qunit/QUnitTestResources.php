@@ -94,7 +94,6 @@ return array(
 			'jquery.tabIndex',
 			'jquery.tablesorter',
 			'jquery.textSelection',
-			'mediawiki',
 			'mediawiki.api',
 			'mediawiki.api.parse',
 			'mediawiki.api.watch',
