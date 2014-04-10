@@ -26,7 +26,8 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			throw new MWException( 'HTMLSelectAndOtherField called without any options' );
 		}
 		if ( !in_array( 'other', $this->mOptions, true ) ) {
-			$this->mOptions[$params['other']] = 'other';
+			// Have 'other' always as first element
+			$this->mOptions = array( $params['other'] => 'other' ) + $this->mOptions;
 		}
 		$this->mFlatOptions = self::flattenOptions( $this->getOptions() );
 
