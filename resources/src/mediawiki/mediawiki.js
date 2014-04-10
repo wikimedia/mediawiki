@@ -16,7 +16,15 @@ var mw = ( function ( $, undefined ) {
 	var hasOwn = Object.prototype.hasOwnProperty,
 		slice = Array.prototype.slice,
 		trackCallbacks = $.Callbacks( 'memory' ),
-		trackQueue = [];
+		trackQueue = [],
+		console = window.console;
+
+	if ( Function.prototype.bind && console && typeof console.log === 'object' ) {
+		[ 'log', 'info', 'warn', 'error', 'assert', 'dir', 'clear', 'profile', 'profileEnd' ]
+			.forEach( function ( method ) {
+				console[method] = this.call( console[method], console );
+			}, Function.prototype.bind );
+	}
 
 	/**
 	 * Log a message to window.console, if possible. Useful to force logging of some
@@ -31,6 +39,14 @@ var mw = ( function ( $, undefined ) {
 	 */
 	function log( msg, e ) {
 		var console = window.console;
+		if ( Function.prototype.bind && console && typeof console.log === 'object' ) {
+			[
+				'log', 'info', 'warn', 'error', 'assert', 'dir', 'clear', 'profile', 'profileEnd'
+			].forEach(function (method) {
+				console[method] = this.call(console[method], console);
+			}, Function.prototype.bind);
+		}
+
 		if ( console && console.log ) {
 			console.log( msg );
 			// If we have an exception object, log it through .error() to trigger
@@ -538,7 +554,17 @@ var mw = ( function ( $, undefined ) {
 			 */
 			log.warn = function () {
 				var console = window.console;
-				if ( console && console.warn ) {
+				if ( Function.prototype.bind && console
+					&& typeof console.log === 'object' ) {
+					[
+						'log', 'info', 'warn', 'error', 'assert', 'dir', 'clear',
+						'profile', 'profileEnd'
+					].forEach(function (method) {
+						console[method] = this.call( console[method], console );
+					}, Function.prototype.bind);
+				}
+
+				if ( console && console.warn && console.warn.apply ) {
 					console.warn.apply( console, arguments );
 					if ( console.trace ) {
 						console.trace();
