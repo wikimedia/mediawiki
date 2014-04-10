@@ -30,7 +30,7 @@ class CategoryPage extends Article {
 	protected $mCategoryViewerClass = 'CategoryViewer';
 
 	/**
-	 * @param $title Title
+	 * @param Title $title
 	 * @return WikiCategoryPage
 	 */
 	protected function newPage( Title $title ) {
@@ -40,7 +40,7 @@ class CategoryPage extends Article {
 
 	/**
 	 * Constructor from a page id
-	 * @param int $id article ID to load
+	 * @param int $id Article ID to load
 	 * @return CategoryPage|null
 	 */
 	public static function newFromID( $id ) {

@@ -30,13 +30,13 @@ abstract class FormAction extends Action {
 
 	/**
 	 * Get an HTMLForm descriptor array
-	 * @return Array
+	 * @return array
 	 */
 	abstract protected function getFormFields();
 
 	/**
 	 * Add pre- or post-text to the form
-	 * @return String HTML which will be sent to $form->addPreText()
+	 * @return string HTML which will be sent to $form->addPreText()
 	 */
 	protected function preText() {
 		return '';
@@ -51,7 +51,7 @@ abstract class FormAction extends Action {
 
 	/**
 	 * Play with the HTMLForm if you need to more substantially
-	 * @param $form HTMLForm
+	 * @param HTMLForm $form
 	 */
 	protected function alterForm( HTMLForm $form ) {
 	}
@@ -91,8 +91,8 @@ abstract class FormAction extends Action {
 	 * Process the form on POST submission.  If you return false from getFormFields(),
 	 * this will obviously never be reached.  If you don't want to do anything with the
 	 * form, just return false here
-	 * @param $data Array
-	 * @return Bool|Array true for success, false for didn't-try, array of errors on failure
+	 * @param array $data
+	 * @return bool|array True for success, false for didn't-try, array of errors on failure
 	 */
 	abstract public function onSubmit( $data );
 
@@ -125,8 +125,8 @@ abstract class FormAction extends Action {
 	/**
 	 * @see Action::execute()
 	 *
-	 * @param $data array|null
-	 * @param $captureErrors bool
+	 * @param array|null $data
+	 * @param bool $captureErrors
 	 * @throws ErrorPageError|Exception
 	 * @return bool
 	 */
