@@ -2617,9 +2617,18 @@ class EditPage {
 			);
 		} elseif ( $wgUser->isAnon() ) {
 			if ( $this->formtype != 'preview' ) {
-				$wgOut->wrapWikiMsg( "<div id=\"mw-anon-edit-warning\">\n$1</div>", 'anoneditwarning' );
+				$wgOut->wrapWikiMsg(
+					"<div id='mw-anon-edit-warning'>\n$1\n</div>",
+					array( 'anoneditwarning',
+						// Log-in link
+						'{{fullurl:Special:UserLogin|returnto={{FULLPAGENAMEE}}}}',
+						// Sign-up link
+						'{{fullurl:Special:UserLogin/signup|returnto={{FULLPAGENAMEE}}}}' )
+				);
 			} else {
-				$wgOut->wrapWikiMsg( "<div id=\"mw-anon-preview-warning\">\n$1</div>", 'anonpreviewwarning' );
+				$wgOut->wrapWikiMsg( "<div id=\"mw-anon-preview-warning\">\n$1</div>",
+					'anonpreviewwarning'
+				);
 			}
 		} else {
 			if ( $this->isCssJsSubpage ) {
