@@ -465,7 +465,7 @@ class ProtectedPagesPager extends TablePager {
 				break;
 
 			case 'log_comment':
-				// when timestamp is null, this is a old protection row
+				// when timestamp is null, this is an old protection row
 				if ( $row->log_timestamp === null ) {
 					$formatted = Html::rawElement(
 						'span',
