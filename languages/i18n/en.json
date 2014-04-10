@@ -2307,7 +2307,6 @@
     "importbadinterwiki": "Bad interwiki link",
     "importnotext": "Empty or no text",
     "importsuccess": "Import finished!",
-    "importhistoryconflict": "Conflicting history revision exists (may have imported this page before)",
     "importnosources": "No transwiki import sources have been defined and direct history uploads are disabled.",
     "importnofile": "No import file was uploaded.",
     "importuploaderrorsize": "Upload of import file failed.\nThe file is bigger than the allowed upload size.",
