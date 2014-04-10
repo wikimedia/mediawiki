@@ -30,7 +30,6 @@ var mw = ( function ( $, undefined ) {
 	 * @param {Error} [e]
 	 */
 	function log( msg, e ) {
-		var console = window.console;
 		if ( console && console.log ) {
 			console.log( msg );
 			// If we have an exception object, log it through .error() to trigger
@@ -537,8 +536,7 @@ var mw = ( function ( $, undefined ) {
 			 * @param {string...} msg Messages to output to console
 			 */
 			log.warn = function () {
-				var console = window.console;
-				if ( console && console.warn ) {
+				if ( console && console.warn && console.warn.apply ) {
 					console.warn.apply( console, arguments );
 					if ( console.trace ) {
 						console.trace();
