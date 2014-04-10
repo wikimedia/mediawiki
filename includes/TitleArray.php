@@ -30,7 +30,7 @@
  */
 abstract class TitleArray implements Iterator {
 	/**
-	 * @param $res ResultWrapper A SQL result including at least page_namespace and
+	 * @param ResultWrapper $res A SQL result including at least page_namespace and
 	 *   page_title -- also can have page_id, page_len, page_is_redirect,
 	 *   page_latest (if those will be used).  See Title::newFromRow.
 	 * @return TitleArrayFromResult
@@ -47,7 +47,7 @@ abstract class TitleArray implements Iterator {
 	}
 
 	/**
-	 * @param $res ResultWrapper
+	 * @param ResultWrapper $res
 	 * @return TitleArrayFromResult
 	 */
 	protected static function newFromResult_internal( $res ) {

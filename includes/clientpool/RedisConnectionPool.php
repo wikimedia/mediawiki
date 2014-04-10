@@ -48,7 +48,7 @@ class RedisConnectionPool {
 	protected $password;
 	/** @var bool Whether connections persist */
 	protected $persistent;
-	/** @var integer Serializer to use (Redis::SERIALIZER_*) */
+	/** @var int Serializer to use (Redis::SERIALIZER_*) */
 	protected $serializer;
 	/** @} */
 
@@ -408,7 +408,7 @@ class RedisConnRef {
 	/**
 	 * @param string $script
 	 * @param array $params
-	 * @param integer $numKeys
+	 * @param int $numKeys
 	 * @return mixed
 	 * @throws RedisException
 	 */

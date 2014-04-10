@@ -39,7 +39,7 @@ class CreditsAction extends FormlessAction {
 	/**
 	 * This is largely cadged from PageHistory::history
 	 *
-	 * @return String HTML
+	 * @return string HTML
 	 */
 	public function onView() {
 		wfProfileIn( __METHOD__ );
@@ -58,9 +58,9 @@ class CreditsAction extends FormlessAction {
 	/**
 	 * Get a list of contributors
 	 *
-	 * @param int $cnt maximum list of contributors to show
-	 * @param bool $showIfMax whether to contributors if there more than $cnt
-	 * @return String: html
+	 * @param int $cnt Maximum list of contributors to show
+	 * @param bool $showIfMax Whether to contributors if there more than $cnt
+	 * @return string html
 	 */
 	public function getCredits( $cnt, $showIfMax = true ) {
 		wfProfileIn( __METHOD__ );
@@ -81,7 +81,7 @@ class CreditsAction extends FormlessAction {
 	/**
 	 * Get the last author with the last modification time
 	 * @param Page $page
-	 * @return String HTML
+	 * @return string HTML
 	 */
 	protected function getAuthor( Page $page ) {
 		$user = User::newFromName( $page->getUserText(), false );
@@ -102,9 +102,9 @@ class CreditsAction extends FormlessAction {
 
 	/**
 	 * Get a list of contributors of $article
-	 * @param int $cnt maximum list of contributors to show
-	 * @param bool $showIfMax whether to contributors if there more than $cnt
-	 * @return String: html
+	 * @param int $cnt Maximum list of contributors to show
+	 * @param bool $showIfMax Whether to contributors if there more than $cnt
+	 * @return string html
 	 */
 	protected function getContributors( $cnt, $showIfMax ) {
 		global $wgHiddenPrefs;
@@ -188,8 +188,8 @@ class CreditsAction extends FormlessAction {
 
 	/**
 	 * Get a link to $user's user page
-	 * @param $user User object
-	 * @return String: html
+	 * @param User $user
+	 * @return string Html
 	 */
 	protected function link( User $user ) {
 		global $wgHiddenPrefs;
@@ -208,8 +208,8 @@ class CreditsAction extends FormlessAction {
 
 	/**
 	 * Get a link to $user's user page
-	 * @param $user User object
-	 * @return String: html
+	 * @param User $user
+	 * @return string Html
 	 */
 	protected function userLink( User $user ) {
 		$link = $this->link( $user );
@@ -227,7 +227,7 @@ class CreditsAction extends FormlessAction {
 
 	/**
 	 * Get a link to action=credits of $article page
-	 * @return String: HTML link
+	 * @return string HTML link
 	 */
 	protected function othersLink() {
 		return Linker::linkKnown(

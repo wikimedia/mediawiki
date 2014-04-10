@@ -50,15 +50,15 @@ abstract class Action {
 
 	/**
 	 * The fields used to create the HTMLForm
-	 * @var Array $fields
+	 * @var array $fields
 	 */
 	protected $fields;
 
 	/**
 	 * Get the Action subclass which should be used to handle this action, false if
 	 * the action is disabled, or null if it's not recognised
-	 * @param $action String
-	 * @param $overrides Array
+	 * @param string $action
+	 * @param array $overrides
 	 * @return bool|null|string|callable
 	 */
 	final private static function getClass( $action, array $overrides ) {
@@ -82,10 +82,10 @@ abstract class Action {
 
 	/**
 	 * Get an appropriate Action subclass for the given action
-	 * @param $action String
-	 * @param $page Page
-	 * @param $context IContextSource
-	 * @return Action|bool|null false if the action is disabled, null
+	 * @param string $action
+	 * @param Page $page
+	 * @param IContextSource $context
+	 * @return Action|bool|null False if the action is disabled, null
 	 *     if it is not recognised
 	 */
 	final public static function factory( $action, Page $page, IContextSource $context = null ) {
@@ -109,8 +109,8 @@ abstract class Action {
 	 * $wgActions will be replaced by "nosuchaction".
 	 *
 	 * @since 1.19
-	 * @param $context IContextSource
-	 * @return string: action name
+	 * @param IContextSource $context
+	 * @return string Action name
 	 */
 	final public static function getActionName( IContextSource $context ) {
 		global $wgActions;
@@ -153,8 +153,8 @@ abstract class Action {
 	/**
 	 * Check if a given action is recognised, even if it's disabled
 	 *
-	 * @param string $name name of an action
-	 * @return Bool
+	 * @param string $name Name of an action
+	 * @return bool
 	 */
 	final public static function exists( $name ) {
 		return self::getClass( $name, array() ) !== null;
@@ -245,7 +245,7 @@ abstract class Action {
 	 * Get a Message object with context set
 	 * Parameters are the same as wfMessage()
 	 *
-	 * @return Message object
+	 * @return Message
 	 */
 	final public function msg() {
 		$params = func_get_args();
@@ -257,8 +257,8 @@ abstract class Action {
 	 *
 	 * Only public since 1.21
 	 *
-	 * @param $page Page
-	 * @param $context IContextSource
+	 * @param Page $page
+	 * @param IContextSource $context
 	 */
 	public function __construct( Page $page, IContextSource $context = null ) {
 		if ( $context === null ) {
@@ -273,14 +273,14 @@ abstract class Action {
 
 	/**
 	 * Return the name of the action this object responds to
-	 * @return String lowercase
+	 * @return string Lowercase name
 	 */
 	abstract public function getName();
 
 	/**
 	 * Get the permission required to perform this action.  Often, but not always,
 	 * the same as the action name
-	 * @return String|null
+	 * @return string|null
 	 */
 	public function getRestriction() {
 		return null;
@@ -291,7 +291,7 @@ abstract class Action {
 	 * overridden by sub-classes with more complicated permissions schemes.  Failures here
 	 * must throw subclasses of ErrorPageError
 	 *
-	 * @param $user User: the user to check, or null to use the context user
+	 * @param User $user The user to check, or null to use the context user
 	 * @throws UserBlockedError|ReadOnlyError|PermissionsError
 	 * @return bool True on success
 	 */
@@ -320,7 +320,7 @@ abstract class Action {
 
 	/**
 	 * Whether this action requires the wiki not to be locked
-	 * @return Bool
+	 * @return bool
 	 */
 	public function requiresWrite() {
 		return true;
@@ -328,7 +328,7 @@ abstract class Action {
 
 	/**
 	 * Whether this action can still be executed by a blocked user
-	 * @return Bool
+	 * @return bool
 	 */
 	public function requiresUnblock() {
 		return true;
@@ -349,7 +349,7 @@ abstract class Action {
 	/**
 	 * Returns the name that goes in the \<h1\> page title
 	 *
-	 * @return String
+	 * @return string
 	 */
 	protected function getPageTitle() {
 		return $this->getTitle()->getPrefixedText();
@@ -358,7 +358,7 @@ abstract class Action {
 	/**
 	 * Returns the description that goes below the \<h1\> tag
 	 *
-	 * @return String
+	 * @return string
 	 */
 	protected function getDescription() {
 		return $this->msg( strtolower( $this->getName() ) )->escaped();
@@ -374,7 +374,7 @@ abstract class Action {
 
 	/**
 	 * Execute the action in a silent fashion: do not display anything or release any errors.
-	 * @return Bool whether execution was successful
+	 * @return bool whether execution was successful
 	 */
 	abstract public function execute();
 }

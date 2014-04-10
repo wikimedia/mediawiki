@@ -22,7 +22,7 @@
 
 abstract class UserArray implements Iterator {
 	/**
-	 * @param $res ResultWrapper
+	 * @param ResultWrapper $res
 	 * @return UserArrayFromResult
 	 */
 	static function newFromResult( $res ) {
@@ -37,7 +37,7 @@ abstract class UserArray implements Iterator {
 	}
 
 	/**
-	 * @param $ids array
+	 * @param array $ids
 	 * @return UserArrayFromResult
 	 */
 	static function newFromIDs( $ids ) {
@@ -57,7 +57,7 @@ abstract class UserArray implements Iterator {
 	}
 
 	/**
-	 * @param $res
+	 * @param ResultWrapper $res
 	 * @return UserArrayFromResult
 	 */
 	protected static function newFromResult_internal( $res ) {
