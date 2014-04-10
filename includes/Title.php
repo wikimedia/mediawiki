@@ -4341,6 +4341,7 @@ class Title {
 	 *
 	 * @param int|Revision $old Old revision or rev ID (first before range)
 	 * @param int|Revision $new New revision or rev ID (first after range)
+	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations
 	 * @return Int Number of revisions between these revisions.
 	 */
 	public function countRevisionsBetween( $old, $new, $max = null ) {
