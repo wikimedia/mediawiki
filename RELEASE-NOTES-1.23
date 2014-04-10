@@ -57,6 +57,9 @@ production.
 * $wgProfileOnly is now deprecated; set the log file in
   $wgDebugLogGroups['profileoutput'] to replace it.
 * $wgMaxBacklinksInvalidate was removed; use $wgJobBackoffThrottling instead
+* If you customized [[MediaWiki:Enotif body]] (the text of email notifications),
+  you'll need to edit it locally to include the URL via the new variable
+  $HELPPAGE instead of the parser functions fullurl and canonicalurl.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
