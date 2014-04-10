@@ -8,6 +8,13 @@
  * @singleton
  */
 
+if ( Function.prototype.bind && console && typeof console.log == "object" ) {
+  [ "log", "info", "warn", "error", "assert", "dir", "clear", "profile", "profileEnd" ]
+        .forEach( function ( method ) {
+            console[method] = this.call( console[method], console );
+        }, Function.prototype.bind );
+}
+
 var mw = ( function ( $, undefined ) {
 	'use strict';
 
@@ -538,7 +545,7 @@ var mw = ( function ( $, undefined ) {
 			 */
 			log.warn = function () {
 				var console = window.console;
-				if ( console && console.warn ) {
+				if ( console && console.warn && console.warn.apply ) {
 					console.warn.apply( console, arguments );
 					if ( console.trace ) {
 						console.trace();
