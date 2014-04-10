@@ -179,13 +179,13 @@
 			}
 			$editForm.submit( function () {
 				scrollTop.value = editBox.scrollTop;
-			});
+			} );
 		}
 
 		// Apply to dynamically created textboxes as well as normal ones
 		$( document ).on( 'focus', 'textarea, input:text', function () {
 			$currentFocused = $( this );
 		} );
-	});
+	} );
 
 }( mediaWiki, jQuery ) );

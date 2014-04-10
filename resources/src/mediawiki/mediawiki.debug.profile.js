@@ -414,11 +414,11 @@
 				result[result.length - 1].contained.push( period );
 			} else {
 				// period is next result
-				result.push({
+				result.push( {
 					start: period.start,
 					end: period.end,
 					contained: [period]
-				});
+				} );
 			}
 			return result;
 		};

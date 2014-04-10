@@ -123,7 +123,7 @@ $.fn.localize = function ( options ) {
 	// for 'html:msg' turns up the 'html:msg', but searching for 'msg' doesn't. So searching for
 	// both 'msg' and 'html:msg' seems to get the job done. This feels pretty icky, though.
 	$target.find( 'msg,html\\:msg' ).each( function () {
-		var $el = $(this);
+		var $el = $( this );
 		// Escape by default
 		if ( $el.attr( 'raw' ) ) {
 			$el.html( msg( options, $el.attr( 'key' ) ) );
@@ -140,7 +140,7 @@ $.fn.localize = function ( options ) {
 	$.each( attributes, function ( i, attr ) {
 		var msgAttr = attr + '-msg';
 		$target.find( '[' + msgAttr + ']' ).each( function () {
-			var $el = $(this);
+			var $el = $( this );
 			$el.attr( attr, msg( options, $el.attr( msgAttr ) ) ).removeAttr( msgAttr );
 		} );
 	} );
