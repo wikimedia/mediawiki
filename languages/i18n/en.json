@@ -2308,7 +2308,6 @@
     "importunknownsource": "Unknown import source type",
     "importcantopen": "Could not open import file",
     "importbadinterwiki": "Bad interwiki link",
-    "importnotext": "Empty or no text",
     "importsuccess": "Import finished!",
     "importhistoryconflict": "Conflicting history revision exists (may have imported this page before)",
     "importnosources": "No transwiki import sources have been defined and direct history uploads are disabled.",
