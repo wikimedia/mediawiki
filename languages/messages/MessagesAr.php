@@ -129,7 +129,7 @@ $namespaceGenderAliases = array(
 	NS_USER_TALK => array(
 		'male' => 'نقاش_المستخدم',
 		'female' => 'نقاش_المستخدمة'
-	), 
+	),
 );
 
 $magicWords = array(
