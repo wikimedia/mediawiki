@@ -18,6 +18,14 @@ var mw = ( function ( $, undefined ) {
 		trackCallbacks = $.Callbacks( 'memory' ),
 		trackQueue = [];
 
+	var console = window.console;
+	if ( Function.prototype.bind && console && typeof console.log === "object" ) {
+		[ "log", "info", "warn", "error", "assert", "dir", "clear", "profile", "profileEnd" ]
+			.forEach( function ( method ) {
+				console[method] = this.call( console[method], console );
+			}, Function.prototype.bind );
+	}
+
 	/**
 	 * Log a message to window.console, if possible. Useful to force logging of some
 	 * errors that are otherwise hard to detect (I.e., this logs also in production mode).
@@ -28,12 +36,20 @@ var mw = ( function ( $, undefined ) {
 	 * @method log_
 	 * @param {string} msg text for the log entry.
 	 * @param {Error} [e]
-	 */
-	function log( msg, e ) {
-		var console = window.console;
-		if ( console && console.log ) {
-			console.log( msg );
-			// If we have an exception object, log it through .error() to trigger
+        */
+       function log( msg, e ) {
+               var console = window.console;
+               if (Function.prototype.bind && console && typeof console.log === "object") {
+                   [
+                       "log","info","warn","error","assert","dir","clear","profile","profileEnd"
+                   ].forEach(function (method) {
+                       console[method] = this.call(console[method], console);
+                   }, Function.prototype.bind);
+               }
+
+               if ( console && console.log ) {
+                       console.log( msg );
+                       // If we have an exception object, log it through .error() to trigger
 			// proper stacktraces in browsers that support it. There are no (known)
 			// browsers that don't support .error(), that do support .log() and
 			// have useful exception handling through .log().
@@ -538,7 +554,16 @@ var mw = ( function ( $, undefined ) {
 			 */
 			log.warn = function () {
 				var console = window.console;
-				if ( console && console.warn ) {
+                                if (Function.prototype.bind && console
+                                    && typeof console.log === "object") {
+                                    [
+                                        "log","info","warn","error","assert","dir","clear",
+                                        "profile","profileEnd"
+                                    ].forEach(function (method) {
+                                        console[method] = this.call(console[method], console);
+                                    }, Function.prototype.bind);
+                                }
+				if ( console && console.warn && console.warn.apply ) {
 					console.warn.apply( console, arguments );
 					if ( console.trace ) {
 						console.trace();
