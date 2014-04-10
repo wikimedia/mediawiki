@@ -36,7 +36,7 @@ abstract class Collation {
 
 	/**
 	 * @throws MWException
-	 * @param $collationName string
+	 * @param string $collationName
 	 * @return Collation
 	 */
 	static function factory( $collationName ) {

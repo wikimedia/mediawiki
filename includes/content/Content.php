@@ -98,7 +98,7 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @return String The model id
+	 * @return string The model id
 	 */
 	public function getModel();
 
@@ -122,7 +122,7 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getDefaultFormat();
 
@@ -232,7 +232,7 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @return Content. A copy of this object
+	 * @return Content A copy of this object
 	 */
 	public function copy();
 

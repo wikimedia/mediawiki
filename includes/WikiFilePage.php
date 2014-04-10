@@ -47,7 +47,7 @@ class WikiFilePage extends WikiPage {
 	}
 
 	/**
-	 * @param $file File:
+	 * @param File $file
 	 */
 	public function setFile( $file ) {
 		$this->mFile = $file;
