@@ -1782,7 +1782,7 @@
     "noindex-category-desc": "The page is not indexed by robots because it has the magic word <code><nowiki>__NOINDEX__</nowiki></code> on it and is in a namespace where that flag is allowed.",
     "index-category-desc": "The page has a <code><nowiki>__INDEX__</nowiki></code> on it (and is in a namespace where that flag is allowed), and hence is indexed by robots where it normally wouldn't be.",
     "post-expand-template-inclusion-category-desc": "After expanding all the templates, the page size is bigger than <code>$wgMaxArticleSize</code>, so some templates weren't expanded.",
-    "post-expand-template-argument-category-desc": "After expanding a template argument (something in triple braces, like <code>{{{Foo}}})</code>, the page is bigger than <code>$wgMaxArticleSize</code>.",
+    "post-expand-template-argument-category-desc": "After expanding a template argument (something in triple braces, like <code>{{{Foo}}}</code>), the page is bigger than <code>$wgMaxArticleSize</code>.",
     "expensive-parserfunction-category-desc": "Too many expensive parser functions (like <code>#ifexist</code>) included on a page. See [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].",
     "broken-file-category-desc": "Category added if the page contains a broken file link (a link to embed a file when the file does not exist).",
     "hidden-category-category-desc": "This is a category with <code><nowiki>__HIDDENCAT__</nowiki></code> on it, which prevents it from showing up in the category links box on pages, by default.",
