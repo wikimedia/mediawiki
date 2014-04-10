@@ -538,7 +538,7 @@ var mw = ( function ( $, undefined ) {
 			 */
 			log.warn = function () {
 				var console = window.console;
-				if ( console && console.warn ) {
+				if ( console && console.warn && console.warn.apply ) {
 					console.warn.apply( console, arguments );
 					if ( console.trace ) {
 						console.trace();
