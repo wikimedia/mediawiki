@@ -495,7 +495,6 @@
     "accountcreatedtext": "The user account for [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|talk]]) has been created.",
     "createaccount-title": "Account creation for {{SITENAME}}",
     "createaccount-text": "Someone created an account for your email address on {{SITENAME}} ($4) named \"$2\", with password \"$3\".\nYou should log in and change your password now.\n\nYou may ignore this message, if this account was created in error.",
-    "usernamehasherror": "Username cannot contain hash characters",
     "login-throttled": "You have made too many recent login attempts.\nPlease wait $1 before trying again.",
     "login-abort-generic": "Your login was unsuccessful - Aborted",
     "loginlanguagelabel": "Language: $1",
