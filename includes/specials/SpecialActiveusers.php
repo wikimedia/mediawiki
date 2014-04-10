@@ -97,7 +97,8 @@ class ActiveUsersPager extends UsersPager {
 			'qcc_type' => 'activeusers',
 			'qcc_namespace' => NS_USER,
 			'user_name = qcc_title',
-			'rc_user_text = qcc_title'
+			'rc_user_text = qcc_title',
+			'rc_type != ' . $dbr->addQuotes( RC_EXTERNAL ) // Don't count wikidata.
 		);
 		if ( $this->requestedUser != '' ) {
 			$conds[] = 'qcc_title >= ' . $dbr->addQuotes( $this->requestedUser );
@@ -340,6 +341,7 @@ class SpecialActiveUsers extends SpecialPage {
 			array( 'rc_user_text', 'lastedittime' => 'MAX(rc_timestamp)' ),
 			array(
 				'rc_user > 0', // actual accounts
+				'rc_type != ' . $dbw->addQuotes( RC_EXTERNAL ), // no wikidata
 				'rc_log_type IS NULL OR rc_log_type != ' . $dbw->addQuotes( 'newusers' ),
 				'rc_timestamp >= ' . $dbw->addQuotes( $dbw->timestamp( $sTimestamp ) ),
 				'rc_timestamp <= ' . $dbw->addQuotes( $dbw->timestamp( $eTimestamp ) )
