@@ -1353,7 +1353,6 @@
     "upload-misc-error": "Unknown upload error",
     "upload-misc-error-text": "An unknown error occurred during the upload.\nPlease verify that the URL is valid and accessible and try again.\nIf the problem persists, contact an [[Special:ListUsers/sysop|administrator]].",
     "upload-too-many-redirects": "The URL contained too many redirects",
-    "upload-unknown-size": "Unknown size",
     "upload-http-error": "An HTTP error occurred: $1",
     "upload-copy-upload-invalid-domain": "Copy uploads are not available from this domain.",
     "backend-fail-stream": "Could not stream file \"$1\".",
