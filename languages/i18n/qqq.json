@@ -2137,6 +2137,7 @@
     "sp-contributions-explain": "{{optional}}",
     "sp-contributions-footer": "{{notranslate}}",
     "sp-contributions-footer-anon": "{{notranslate}}",
+    "contributions-userdoesnotexist": "This message is used in [[Special:Contributions]]. It is used to tell the user that the name he searched for doesn\\'t exists. Parameters: \n* $1 is the name that was searched for",
     "whatlinkshere": "The text of the link in the toolbox (on the left, below the search menu) going to [[Special:WhatLinksHere]].\n\nSee also:\n* {{msg-mw|Whatlinkshere}}\n* {{msg-mw|Accesskey-t-whatlinkshere}}\n* {{msg-mw|Tooltip-t-whatlinkshere}}",
     "whatlinkshere-title": "Title of the special page [[Special:WhatLinksHere]]. This page appears when you click on the 'What links here' button in the toolbox. $1 is the name of the page concerned.",
     "whatlinkshere-page": "{{Identical|Page}}",
