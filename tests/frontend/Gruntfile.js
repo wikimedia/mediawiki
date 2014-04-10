@@ -5,6 +5,7 @@
 /*jshint node:true */
 module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
+	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-jscs-checker' );
 
@@ -36,6 +37,10 @@ module.exports = function ( grunt ) {
 				return patterns;
 			}, [] ) )
 		},
+		banana: {
+			core: 'languages/i18n/',
+			installer: 'includes/installer/i18n/'
+		},
 		watch: {
 			files: [
 				'.{jshintrc,jscs.json,jshintignore,csslintrc}',
@@ -45,7 +50,7 @@ module.exports = function ( grunt ) {
 		}
 	} );
 
-	grunt.registerTask( 'lint', ['jshint', 'jscs'] );
+	grunt.registerTask( 'lint', ['jshint', 'jscs', 'banana'] );
 	grunt.registerTask( 'test', ['lint'] );
 	grunt.registerTask( 'default', ['test'] );
 };
