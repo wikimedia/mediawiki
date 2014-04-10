@@ -1271,7 +1271,6 @@
     "upload-prohibited": "Prohibited file types: $1.",
     "uploadfooter": "-",
     "upload-default-description": "-",
-    "uploadlog": "upload log",
     "uploadlogpage": "Upload log",
     "uploadlogpagetext": "Below is a list of the most recent file uploads.\nSee the [[Special:NewFiles|gallery of new files]] for a more visual overview.",
     "filename": "Filename",
