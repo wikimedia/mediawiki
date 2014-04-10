@@ -1835,7 +1835,7 @@
     "unwatchthispage": "Stop watching",
     "notanarticle": "Not a content page",
     "notvisiblerev": "The last revision by a different user has been deleted",
-    "watchlist-details": "{{PLURAL:$1|$1 page|$1 pages}} on your watchlist, not counting talk pages.",
+    "watchlist-details": "{{PLURAL:$1|$1 page|$1 pages}} on your watchlist, not separately counting talk pages.",
     "wlheader-enotif": "Email notification is enabled.",
     "wlheader-showupdated": "Pages that have been changed since you last visited them are shown in <strong>bold</strong>.",
     "watchmethod-recent": "checking recent edits for watched pages",
