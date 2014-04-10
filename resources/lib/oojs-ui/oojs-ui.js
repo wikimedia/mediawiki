@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (70932872ba)
+ * OOjs UI v0.1.0-pre (ac6848398c)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Tue Apr 08 2014 12:42:30 GMT-0700 (PDT)
+ * Date: Wed Apr 09 2014 17:58:17 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -1483,6 +1483,8 @@ OO.ui.WindowSet.prototype.addWindow = function ( win ) {
 	this.$element.append( win.$element );
 };
 /**
+ * Modal dialog window.
+ *
  * @abstract
  * @class
  * @extends OO.ui.Window
@@ -2028,7 +2030,10 @@ OO.ui.ClippableElement.prototype.clip = function () {
 	return this;
 };
 /**
- * Element with named flags, used for styling, that can be added, removed and listed and checked.
+ * Element with named flags that can be added, removed, listed and checked.
+ *
+ * A flag, when set, adds a CSS class on the `$element` by combing `oo-ui-flaggableElement-` with
+ * the flag name. Flags are primarily useful for styling.
  *
  * @class
  * @abstract
@@ -3567,7 +3572,7 @@ OO.ui.ToolGroup.prototype.destroy = function () {
 	this.$element.remove();
 };
 /**
- * Factory for tools.
+ * Factory for tool groups.
  *
  * @class
  * @extends OO.Factory
@@ -3691,11 +3696,13 @@ OO.ui.FieldLayout = function OoUiFieldLayout( field, config ) {
 	if ( this.field instanceof OO.ui.InputWidget ) {
 		this.$label.on( 'click', OO.ui.bind( this.onLabelClick, this ) );
 	}
+	this.field.connect( this, { 'disable': 'onFieldDisable' } );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-fieldLayout' );
 	this.$field
 		.addClass( 'oo-ui-fieldLayout-field' )
+		.toggleClass( 'oo-ui-fieldLayout-disable', this.field.isDisabled() )
 		.append( this.field.$element );
 	this.setAlignment( config.align );
 };
@@ -3708,7 +3715,16 @@ OO.mixinClass( OO.ui.FieldLayout, OO.ui.LabeledElement );
 /* Methods */
 
 /**
- * Handles label mouse click events.
+ * Handle field disable events.
+ *
+ * @param {boolean} value Field is disabled
+ */
+OO.ui.FieldLayout.prototype.onFieldDisable = function ( value ) {
+	this.$element.toggleClass( 'oo-ui-fieldLayout-disabled', value );
+};
+
+/**
+ * Handle label mouse click events.
  *
  * @method
  * @param {jQuery.Event} e Mouse click event
@@ -4387,7 +4403,7 @@ OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 
 OO.inheritClass( OO.ui.PanelLayout, OO.ui.Layout );
 /**
- * Page within an OO.ui.BookletLayout.
+ * Page within an booklet layout.
  *
  * @class
  * @extends OO.ui.PanelLayout
@@ -4875,7 +4891,7 @@ OO.ui.MenuToolGroup.prototype.onUpdateState = function () {
 	this.setLabel( labelTexts.join( ', ' ) || ' ' );
 };
 /**
- * UserInterface popup tool.
+ * Tool that shows a popup when selected.
  *
  * @abstract
  * @class
@@ -5027,7 +5043,7 @@ OO.ui.ItemWidget.prototype.setElementGroup = function ( group ) {
 	return this;
 };
 /**
- * Creates an OO.ui.IconWidget object.
+ * Icon widget.
  *
  * @class
  * @extends OO.ui.Widget
@@ -5062,7 +5078,7 @@ OO.mixinClass( OO.ui.IconWidget, OO.ui.TitledElement );
 
 OO.ui.IconWidget.static.tagName = 'span';
 /**
- * Creates an OO.ui.IndicatorWidget object.
+ * Indicator widget.
  *
  * @class
  * @extends OO.ui.Widget
@@ -5099,6 +5115,8 @@ OO.ui.IndicatorWidget.static.tagName = 'span';
 /**
  * Container for multiple related buttons.
  *
+ * Use together with OO.ui.ButtonWidget.
+ *
  * @class
  * @extends OO.ui.Widget
  * @mixins OO.ui.GroupElement
@@ -5126,7 +5144,7 @@ OO.ui.ButtonGroupWidget = function OoUiButtonGroupWidget( config ) {
 OO.inheritClass( OO.ui.ButtonGroupWidget, OO.ui.Widget );
 OO.mixinClass( OO.ui.ButtonGroupWidget, OO.ui.GroupElement );
 /**
- * Creates an OO.ui.ButtonWidget object.
+ * Button widget.
  *
  * @class
  * @abstract
@@ -5229,7 +5247,7 @@ OO.ui.ButtonWidget.prototype.onKeyPress = function ( e ) {
 	return false;
 };
 /**
- * Creates an OO.ui.InputWidget object.
+ * Input widget.
  *
  * @class
  * @abstract
@@ -5424,7 +5442,7 @@ OO.ui.InputWidget.prototype.setDisabled = function ( state ) {
 	return this;
 };
 /**
- * Creates an OO.ui.CheckboxInputWidget object.
+ * Checkbox widget.
  *
  * @class
  * @extends OO.ui.InputWidget
@@ -5490,7 +5508,7 @@ OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
 	}
 };
 /**
- * Creates an OO.ui.LabelWidget object.
+ * Label widget.
  *
  * @class
  * @extends OO.ui.Widget
@@ -5778,7 +5796,9 @@ OO.ui.LookupInputWidget.prototype.getLookupMenuItemsFromData = function () {
 	return [];
 };
 /**
- * Creates an OO.ui.OptionWidget object.
+ * Option widget.
+ *
+ * Use with OO.ui.SelectWidget.
  *
  * @class
  * @abstract
@@ -6003,7 +6023,9 @@ OO.ui.OptionWidget.prototype.getData = function () {
 	return this.data;
 };
 /**
- * Create an OO.ui.SelectWidget object.
+ * Selection of options.
+ *
+ * Use together with OO.ui.OptionWidget.
  *
  * @class
  * @abstract
@@ -6515,7 +6537,9 @@ OO.ui.SelectWidget.prototype.clearItems = function () {
 	return this;
 };
 /**
- * Creates an OO.ui.MenuItemWidget object.
+ * Menu item widget.
+ *
+ * Use with OO.ui.MenuWidget.
  *
  * @class
  * @extends OO.ui.OptionWidget
@@ -6539,7 +6563,9 @@ OO.ui.MenuItemWidget = function OoUiMenuItemWidget( data, config ) {
 
 OO.inheritClass( OO.ui.MenuItemWidget, OO.ui.OptionWidget );
 /**
- * Create an OO.ui.MenuWidget object.
+ * Menu widget.
+ *
+ * Use together with OO.ui.MenuItemWidget.
  *
  * @class
  * @extends OO.ui.SelectWidget
@@ -6781,6 +6807,8 @@ OO.ui.MenuWidget.prototype.hide = function () {
 /**
  * Inline menu of options.
  *
+ * Use with OO.ui.MenuOptionWidget.
+ *
  * @class
  * @extends OO.ui.Widget
  * @mixins OO.ui.IconedElement
@@ -6886,7 +6914,9 @@ OO.ui.InlineMenuWidget.prototype.onClick = function ( e ) {
 	return false;
 };
 /**
- * Creates an OO.ui.MenuSectionItemWidget object.
+ * Menu section item widget.
+ *
+ * Use with OO.ui.MenuWidget.
  *
  * @class
  * @extends OO.ui.OptionWidget
@@ -6915,6 +6945,8 @@ OO.ui.MenuSectionItemWidget.static.highlightable = false;
 /**
  * Create an OO.ui.OutlineWidget object.
  *
+ * Use with OO.ui.OutlineItemWidget.
+ *
  * @class
  * @extends OO.ui.SelectWidget
  *
@@ -6937,6 +6969,8 @@ OO.ui.OutlineWidget = function OoUiOutlineWidget( config ) {
 OO.inheritClass( OO.ui.OutlineWidget, OO.ui.SelectWidget );
 /**
  * Creates an OO.ui.OutlineControlsWidget object.
+ *
+ * Use together with OO.ui.OutlineWidget.js
  *
  * @class
  *
@@ -7050,6 +7084,8 @@ OO.ui.OutlineControlsWidget.prototype.onOutlineChange = function () {
 };
 /**
  * Creates an OO.ui.OutlineItemWidget object.
+ *
+ * Use with OO.ui.OutlineWidget.
  *
  * @class
  * @extends OO.ui.OptionWidget
@@ -7174,7 +7210,9 @@ OO.ui.OutlineItemWidget.prototype.setLevel = function ( level ) {
 	return this;
 };
 /**
- * Create an OO.ui.ButtonOptionWidget object.
+ * Option widget that looks like a button.
+ *
+ * Use together with OO.ui.ButtonSelectWidget.
  *
  * @class
  * @extends OO.ui.OptionWidget
@@ -7218,7 +7256,9 @@ OO.ui.ButtonOptionWidget.prototype.setSelected = function ( state ) {
 	return this;
 };
 /**
- * Create an OO.ui.ButtonSelect object.
+ * Select widget containing button options.
+ *
+ * Use together with OO.ui.ButtonOptionWidget.
  *
  * @class
  * @extends OO.ui.SelectWidget
@@ -7238,7 +7278,7 @@ OO.ui.ButtonSelectWidget = function OoUiButtonSelectWidget( config ) {
 
 OO.inheritClass( OO.ui.ButtonSelectWidget, OO.ui.SelectWidget );
 /**
- * Creates an OO.ui.PopupWidget object.
+ * Container for content that is overlaid and positioned absolutely.
  *
  * @class
  * @extends OO.ui.Widget
@@ -7548,7 +7588,9 @@ OO.ui.PopupButtonWidget.prototype.onClick = function ( e ) {
 	return false;
 };
 /**
- * Creates an OO.ui.SearchWidget object.
+ * Search widget.
+ *
+ * Combines query and results selection widgets.
  *
  * @class
  * @extends OO.ui.Widget
@@ -7713,7 +7755,7 @@ OO.ui.SearchWidget.prototype.getResults = function () {
 	return this.results;
 };
 /**
- * Creates an OO.ui.TextInputWidget object.
+ * Text input widget.
  *
  * @class
  * @extends OO.ui.InputWidget
@@ -7917,7 +7959,7 @@ OO.ui.TextInputWidget.prototype.popPending = function () {
 	return this;
 };
 /**
- * Creates an OO.ui.TextInputMenuWidget object.
+ * Menu for a text input widget.
  *
  * @class
  * @extends OO.ui.MenuWidget
@@ -8021,6 +8063,8 @@ OO.ui.TextInputMenuWidget.prototype.position = function () {
 	return this;
 };
 /**
+ * Width with on and off states.
+ *
  * Mixin for widgets with a boolean state.
  *
  * @class
@@ -8080,6 +8124,8 @@ OO.ui.ToggleWidget.prototype.setValue = function ( value ) {
 	return this;
 };
 /**
+ * Button that toggles on and off.
+ *
  * @class
  * @extends OO.ui.ButtonWidget
  * @mixins OO.ui.ToggleWidget
@@ -8136,6 +8182,8 @@ OO.ui.ToggleButtonWidget.prototype.setValue = function ( value ) {
 	return this;
 };
 /**
+ * Switch that slides on and off.
+ *
  * @class
  * @abstract
  * @extends OO.ui.Widget

@@ -295,6 +295,10 @@
   box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.25);
 }
 
+.oo-ui-fieldLayout-disabled .oo-ui-labeledElement-label {
+  color: #ccc;
+}
+
 .oo-ui-fieldsetLayout {
   border: none;
 }
@@ -442,8 +446,7 @@
 .oo-ui-menuToolGroup.oo-ui-widget-disabled {
   color: #ccc;
   text-shadow: 0 1px 1px #fff;
-  background-color: #f3f3f3;
-  border-color: #ddd;
+  border-color: rgba(0, 0, 0, 0.05);
 }
 
 .oo-ui-menuToolGroup.oo-ui-widget-disabled .oo-ui-indicatedElement-indicator,
