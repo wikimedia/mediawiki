@@ -84,8 +84,8 @@ class Preferences {
 
 		self::profilePreferences( $user, $context, $defaultPreferences );
 		self::skinPreferences( $user, $context, $defaultPreferences );
-		self::filesPreferences( $user, $context, $defaultPreferences );
 		self::datetimePreferences( $user, $context, $defaultPreferences );
+		self::filesPreferences( $user, $context, $defaultPreferences );
 		self::renderingPreferences( $user, $context, $defaultPreferences );
 		self::editingPreferences( $user, $context, $defaultPreferences );
 		self::rcPreferences( $user, $context, $defaultPreferences );
@@ -648,7 +648,7 @@ class Preferences {
 				'type' => 'radio',
 				'options' => $dateOptions,
 				'label' => '&#160;',
-				'section' => 'datetime/dateformat',
+				'section' => 'rendering/dateformat',
 			);
 		}
 
@@ -665,7 +665,7 @@ class Preferences {
 			'raw' => 1,
 			'label-message' => 'servertime',
 			'default' => $nowserver,
-			'section' => 'datetime/timeoffset',
+			'section' => 'rendering/timeoffset',
 		);
 
 		$defaultPreferences['nowlocal'] = array(
@@ -673,7 +673,7 @@ class Preferences {
 			'raw' => 1,
 			'label-message' => 'localtime',
 			'default' => $nowlocal,
-			'section' => 'datetime/timeoffset',
+			'section' => 'rendering/timeoffset',
 		);
 
 		// Grab existing pref.
@@ -703,7 +703,7 @@ class Preferences {
 			'options' => $tzOptions,
 			'default' => $tzSetting,
 			'size' => 20,
-			'section' => 'datetime/timeoffset',
+			'section' => 'rendering/timeoffset',
 		);
 	}
 

@@ -1084,7 +1084,6 @@
     "prefs-skin": "Used in user preferences.\n{{Identical|Skin}}",
     "skin-preview": "{{doc-actionlink}}\nThe link beside each skin name in [[Special:Preferences|your user preferences]], tab \"skin\".\n{{Identical|Preview}}",
     "datedefault": "Used as checkbox label in [[Special:Preferences#mw-prefsection-datetime|user preferences]], {{msg-mw|prefs-datetime}} tab.\n\nThis message indicates {{msg-mw|prefs-dateformat}} is default (= not specified).",
-    "prefs-datetime": "{{Identical|Date}}",
     "prefs-labs": "Header of a subsection at [[Special:Preferences]], tab ''{{int:prefs-editing}}'', listing features that are experimental",
     "prefs-user-pages": "Header of a subsection at [[Special:Preferences]], tab ''{{int:prefs-misc}}'', listing features that are related to user pages",
     "prefs-personal": "Title of a tab in [[Special:Preferences]].\n{{Identical|User profile}}",
