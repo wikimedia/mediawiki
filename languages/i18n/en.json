@@ -1418,7 +1418,6 @@
     "img-auth-streaming": "Streaming \"$1\".",
     "img-auth-public": "The function of img_auth.php is to output files from a private wiki.\nThis wiki is configured as a public wiki.\nFor optimal security, img_auth.php is disabled.",
     "img-auth-noread": "User does not have access to read \"$1\".",
-    "img-auth-bad-query-string": "The URL has an invalid query string.",
     "http-invalid-url": "Invalid URL: $1",
     "http-invalid-scheme": "URLs with the \"$1\" scheme are not supported.",
     "http-request-error": "HTTP request failed due to unknown error.",
