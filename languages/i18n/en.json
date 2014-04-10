@@ -1877,7 +1877,6 @@
     "excontent": "content was: \"$1\"",
     "excontentauthor": "content was: \"$1\" (and the only contributor was \"[[Special:Contributions/$2|$2]]\")",
     "exbeforeblank": "content before blanking was: \"$1\"",
-    "exblank": "page was empty",
     "delete-confirm": "Delete \"$1\"",
     "delete-legend": "Delete",
     "historywarning": "<strong>Warning:</strong> The page you are about to delete has a history with approximately $1 {{PLURAL:$1|revision|revisions}}:",
