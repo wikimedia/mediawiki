@@ -1801,7 +1801,6 @@
     "usermaildisabledtext": "You cannot send email to other users on this wiki",
     "noemailtitle": "No email address",
     "noemailtext": "This user has not specified a valid email address.",
-    "nowikiemailtitle": "No email allowed",
     "nowikiemailtext": "This user has chosen not to receive email from other users.",
     "emailnotarget": "Non-existent or invalid username for recipient.",
     "emailtarget": "Enter username of recipient",
