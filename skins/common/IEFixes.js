@@ -2,7 +2,7 @@
  * IE fixes javascript loaded by wikibits.js for IE <= 6.0
  */
 /*global isMSIE55:true, doneIETransform:true, doneIEAlphaFix:true */
-/*global hookit:true, fixalpha:true, relativeforfloats:true, setrelative:true */
+/*global hookit:true, fixalpha:true */
 ( function ( mw, $ ) {
 
 var expandedURLs, hasClass;
@@ -17,7 +17,6 @@ doneIEAlphaFix = false;
 hookit = function () {
 	if ( !doneIETransform && document.getElementById && document.getElementById( 'bodyContent' ) ) {
 		doneIETransform = true;
-		relativeforfloats();
 		fixalpha();
 	}
 };
@@ -78,31 +77,6 @@ if ( isMSIE55 ) {
 	// ondomready
 	$( fixalpha );
 }
-
-// fix ie6 disappering float bug
-relativeforfloats = function () {
-	var bc, tables, divs;
-	bc = document.getElementById( 'bodyContent' );
-	if ( bc ) {
-		tables = bc.getElementsByTagName( 'table' );
-		divs = bc.getElementsByTagName( 'div' );
-		setrelative( tables );
-		setrelative( divs );
-	}
-};
-
-setrelative = function () {
-	var i = 0;
-	while ( i < nodes.length ) {
-		if ( ( ( nodes[i].style['float'] && nodes[i].style['float'] !== ( 'none' ) ||
-			( nodes[i].align && nodes[i].align !== ( 'none' ) ) ) &&
-			( !nodes[i].style.position || nodes[i].style.position !== 'relative' ) ) )
-		{
-			nodes[i].style.position = 'relative';
-		}
-		i++;
-	}
-};
 
 // Expand links for printing
 hasClass = function ( classText, classWanted ) {
