@@ -138,6 +138,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$ret = self::getTarget( $this->mTarget );
 		if ( !$ret instanceof User ) {
 			if ( $this->mTarget != '' ) {
+				// Messages used here: notargettext, noemailtext, nowikiemailtext
 				$ret = ( $ret == 'notarget' ) ? 'emailnotarget' : ( $ret . 'text' );
 				$out->wrapWikiMsg( "<p class='error'>$1</p>", $ret );
 			}
@@ -305,6 +306,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 		$target = self::getTarget( $data['Target'] );
 		if ( !$target instanceof User ) {
+			// Messages used here: notargettext, noemailtext, nowikiemailtext
 			return $context->msg( $target . 'text' )->parseAsBlock();
 		}
 
