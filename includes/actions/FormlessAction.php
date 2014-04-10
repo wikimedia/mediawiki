@@ -30,7 +30,7 @@ abstract class FormlessAction extends Action {
 
 	/**
 	 * Show something on GET request.
-	 * @return String|null will be added to the HTMLForm if present, or just added to the
+	 * @return string|null Will be added to the HTMLForm if present, or just added to the
 	 *     output if not.  Return null to not add anything
 	 */
 	abstract public function onView();
@@ -44,7 +44,7 @@ abstract class FormlessAction extends Action {
 	}
 
 	/**
-	 * @param $data Array
+	 * @param array $data
 	 * @return bool
 	 */
 	public function onSubmit( $data ) {
@@ -70,10 +70,10 @@ abstract class FormlessAction extends Action {
 	/**
 	 * Execute the action silently, not giving any output.  Since these actions don't have
 	 * forms, they probably won't have any data, but some (eg rollback) may do
-	 * @param array $data values that would normally be in the GET request
-	 * @param bool $captureErrors whether to catch exceptions and just return false
+	 * @param array $data Values that would normally be in the GET request
+	 * @param bool $captureErrors Whether to catch exceptions and just return false
 	 * @throws ErrorPageError|Exception
-	 * @return Bool whether execution was successful
+	 * @return bool Whether execution was successful
 	 */
 	public function execute( array $data = null, $captureErrors = true ) {
 		try {

@@ -29,7 +29,7 @@ class UserArrayFromResult extends UserArray implements Countable {
 	var $key, $current;
 
 	/**
-	 * @param $res ResultWrapper
+	 * @param ResultWrapper $res
 	 */
 	function __construct( $res ) {
 		$this->res = $res;
@@ -38,7 +38,7 @@ class UserArrayFromResult extends UserArray implements Countable {
 	}
 
 	/**
-	 * @param $row
+	 * @param bool|stdClass $row
 	 * @return void
 	 */
 	protected function setCurrent( $row ) {

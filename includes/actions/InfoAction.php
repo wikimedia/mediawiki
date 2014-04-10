@@ -33,7 +33,7 @@ class InfoAction extends FormlessAction {
 	/**
 	 * Returns the name of the action this object responds to.
 	 *
-	 * @return string lowercase
+	 * @return string Lowercase name
 	 */
 	public function getName() {
 		return 'info';
@@ -763,7 +763,7 @@ class InfoAction extends FormlessAction {
 
 	/**
 	 * Get a list of contributors of $article
-	 * @return string: html
+	 * @return string Html
 	 */
 	protected function getContributors() {
 		global $wgHiddenPrefs;

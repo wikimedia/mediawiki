@@ -295,7 +295,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the URL to redirect to, or an empty string if not redirect URL set
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getRedirect() {
 		return $this->mRedirect;
@@ -304,7 +304,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set the HTTP status code to send with the output.
 	 *
-	 * @param $statusCode Integer
+	 * @param int $statusCode
 	 */
 	public function setStatusCode( $statusCode ) {
 		$this->mStatusCode = $statusCode;
@@ -355,7 +355,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the value of the "rel" attribute for metadata links
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getMetadataAttribute() {
 		# note: buggy CC software only reads first "meta" link
@@ -392,7 +392,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get all styles added by extensions
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	function getExtStyle() {
 		return $this->mExtStyles;
@@ -431,7 +431,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get all registered JS and CSS tags for the header.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function getScript() {
 		return $this->mScripts . $this->getHeadItems();
@@ -440,10 +440,10 @@ class OutputPage extends ContextSource {
 	/**
 	 * Filter an array of modules to remove insufficiently trustworthy members, and modules
 	 * which are no longer registered (eg a page is cached before an extension is disabled)
-	 * @param $modules Array
-	 * @param string $position if not null, only return modules with this position
-	 * @param $type string
-	 * @return Array
+	 * @param array $modules
+	 * @param string|null $position if not null, only return modules with this position
+	 * @param string $type
+	 * @return array
 	 */
 	protected function filterModules( $modules, $position = null, $type = ResourceLoaderModule::TYPE_COMBINED ) {
 		$resourceLoader = $this->getResourceLoader();
@@ -464,10 +464,10 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the list of modules to include on this page
 	 *
-	 * @param bool $filter whether to filter out insufficiently trustworthy modules
-	 * @param string $position if not null, only return modules with this position
-	 * @param $param string
-	 * @return Array of module names
+	 * @param bool $filter Whether to filter out insufficiently trustworthy modules
+	 * @param string|null $position If not null, only return modules with this position
+	 * @param string $param
+	 * @return array Array of module names
 	 */
 	public function getModules( $filter = false, $position = null, $param = 'mModules' ) {
 		$modules = array_values( array_unique( $this->$param ) );
@@ -490,10 +490,10 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the list of module JS to include on this page
 	 *
-	 * @param $filter
-	 * @param $position
+	 * @param bool $filter
+	 * @param string|null $position
 	 *
-	 * @return array of module names
+	 * @return array Array of module names
 	 */
 	public function getModuleScripts( $filter = false, $position = null ) {
 		return $this->getModules( $filter, $position, 'mModuleScripts' );
@@ -513,10 +513,10 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the list of module CSS to include on this page
 	 *
-	 * @param $filter
-	 * @param $position
+	 * @param bool $filter
+	 * @param string|null $position
 	 *
-	 * @return Array of module names
+	 * @return array Array of module names
 	 */
 	public function getModuleStyles( $filter = false, $position = null ) {
 		return $this->getModules( $filter, $position, 'mModuleStyles' );
@@ -538,10 +538,10 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the list of module messages to include on this page
 	 *
-	 * @param $filter
-	 * @param $position
+	 * @param bool $filter
+	 * @param string|null $position
 	 *
-	 * @return Array of module names
+	 * @return array Array of module names
 	 */
 	public function getModuleMessages( $filter = false, $position = null ) {
 		return $this->getModules( $filter, $position, 'mModuleMessages' );
@@ -568,7 +568,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Sets ResourceLoader target for load.php links. If null, will be omitted
 	 *
-	 * @param $target string|null
+	 * @param string|null $target
 	 */
 	public function setTarget( $target ) {
 		$this->mTarget = $target;
@@ -577,7 +577,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get an array of head items
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	function getHeadItemsArray() {
 		return $this->mHeadItems;
@@ -586,7 +586,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get all header items in a string
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function getHeadItems() {
 		$s = '';
@@ -609,8 +609,8 @@ class OutputPage extends ContextSource {
 	/**
 	 * Check if the header item $name is already set
 	 *
-	 * @param string $name item name
-	 * @return Boolean
+	 * @param string $name Item name
+	 * @return bool
 	 */
 	public function hasHeadItem( $name ) {
 		return isset( $this->mHeadItems[$name] );
@@ -639,7 +639,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Return whether the output will contain only the body of the article
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function getArticleBodyOnly() {
 		return $this->mArticleBodyOnly;
@@ -833,7 +833,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the value of the "action text"
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getPageTitleActionText() {
 		if ( isset( $this->mPageTitleActionText ) ) {
@@ -846,7 +846,7 @@ class OutputPage extends ContextSource {
 	 * "HTML title" means the contents of "<title>".
 	 * It is stored as plain, unescaped text and will be run through htmlspecialchars in the skin file.
 	 *
-	 * @param $name string
+	 * @param string $name
 	 */
 	public function setHTMLTitle( $name ) {
 		if ( $name instanceof Message ) {
@@ -859,7 +859,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Return the "HTML title", i.e. the content of the "<title>" tag.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getHTMLTitle() {
 		return $this->mHTMLtitle;
@@ -868,7 +868,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set $mRedirectedFrom, the Title of the page which redirected us to the current page.
 	 *
-	 * @param $t Title
+	 * @param Title $t
 	 */
 	public function setRedirectedFrom( $t ) {
 		$this->mRedirectedFrom = $t;
@@ -880,7 +880,7 @@ class OutputPage extends ContextSource {
 	 * This function automatically sets \<title\> to the same content as \<h1\> but with all tags removed.
 	 * Bad tags that were escaped in \<h1\> will still be escaped in \<title\>, and good tags like \<i\> will be dropped entirely.
 	 *
-	 * @param $name string|Message
+	 * @param string|Message $name
 	 */
 	public function setPageTitle( $name ) {
 		if ( $name instanceof Message ) {
@@ -902,7 +902,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Return the "page title", i.e. the content of the \<h1\> tag.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getPageTitle() {
 		return $this->mPagetitle;
@@ -911,7 +911,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set the Title object to use
 	 *
-	 * @param $t Title object
+	 * @param Title $t
 	 */
 	public function setTitle( Title $t ) {
 		$this->getContext()->setTitle( $t );
@@ -953,7 +953,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add a subtitle containing a backlink to a page
 	 *
-	 * @param $title Title to link to
+	 * @param Title $title Title to link to
 	 */
 	public function addBacklinkSubtitle( Title $title ) {
 		$query = array();
@@ -973,7 +973,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the subtitle
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getSubtitle() {
 		return implode( "<br />\n\t\t\t\t", $this->mSubtitle );
@@ -990,7 +990,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Return whether the page is "printable"
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isPrintable() {
 		return $this->mPrintable;
@@ -1006,7 +1006,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Return whether the output will be completely disabled
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isDisabled() {
 		return $this->mDoNothing;
@@ -1015,7 +1015,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Show an "add new section" link?
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function showNewSectionLink() {
 		return $this->mNewSectionLink;
@@ -1024,7 +1024,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Forcibly hide the new section link?
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function forceHideNewSectionLink() {
 		return $this->mHideNewSectionLink;
@@ -1085,7 +1085,7 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Should we output feed links for this page?
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isSyndicated() {
 		return count( $this->mFeedLinks ) > 0;
@@ -1113,7 +1113,7 @@ class OutputPage extends ContextSource {
 	 * corresponding article on the wiki
 	 * Setting true will cause the change "article related" toggle to true
 	 *
-	 * @param $v Boolean
+	 * @param bool $v
 	 */
 	public function setArticleFlag( $v ) {
 		$this->mIsarticle = $v;
@@ -1126,7 +1126,7 @@ class OutputPage extends ContextSource {
 	 * Return whether the content displayed page is related to the source of
 	 * the corresponding article on the wiki
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isArticle() {
 		return $this->mIsarticle;
@@ -1136,7 +1136,7 @@ class OutputPage extends ContextSource {
 	 * Set whether this page is related an article on the wiki
 	 * Setting false will cause the change of "article flag" toggle to false
 	 *
-	 * @param $v Boolean
+	 * @param bool $v
 	 */
 	public function setArticleRelated( $v ) {
 		$this->mIsArticleRelated = $v;
@@ -1148,7 +1148,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Return whether this page is related an article on the wiki
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isArticleRelated() {
 		return $this->mIsArticleRelated;
@@ -1177,7 +1177,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the list of language links
 	 *
-	 * @return Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page')
+	 * @return array Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page')
 	 */
 	public function getLanguageLinks() {
 		return $this->mLanguageLinks;
@@ -1260,7 +1260,7 @@ class OutputPage extends ContextSource {
 	 * hidden categories) and $link a HTML fragment with a link to the category
 	 * page
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	public function getCategoryLinks() {
 		return $this->mCategoryLinks;
@@ -1269,7 +1269,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the list of category names this page belongs to
 	 *
-	 * @return Array of strings
+	 * @return array Array of strings
 	 */
 	public function getCategories() {
 		return $this->mCategories;
@@ -1290,7 +1290,7 @@ class OutputPage extends ContextSource {
 	 * Return whether user JavaScript is allowed for this page
 	 * @deprecated since 1.18 Load modules with ResourceLoader, and origin and
 	 *     trustworthiness is identified and enforced automagically.
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isUserJsAllowed() {
 		wfDeprecated( __METHOD__, '1.18' );
@@ -1301,7 +1301,7 @@ class OutputPage extends ContextSource {
 	 * Show what level of JavaScript / CSS untrustworthiness is allowed on this page
 	 * @see ResourceLoaderModule::$origin
 	 * @param string $type ResourceLoaderModule TYPE_ constant
-	 * @return Int ResourceLoaderModule ORIGIN_ class constant
+	 * @return int ResourceLoaderModule ORIGIN_ class constant
 	 */
 	public function getAllowedModules( $type ) {
 		if ( $type == ResourceLoaderModule::TYPE_COMBINED ) {
@@ -1315,8 +1315,8 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Set the highest level of CSS/JS untrustworthiness allowed
-	 * @param $type String ResourceLoaderModule TYPE_ constant
-	 * @param $level Int ResourceLoaderModule class constant
+	 * @param string $type ResourceLoaderModule TYPE_ constant
+	 * @param int $level ResourceLoaderModule class constant
 	 */
 	public function setAllowedModules( $type, $level ) {
 		$this->mAllowedModules[$type] = $level;
@@ -1324,8 +1324,8 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * As for setAllowedModules(), but don't inadvertently make the page more accessible
-	 * @param $type String
-	 * @param $level Int ResourceLoaderModule class constant
+	 * @param string $type
+	 * @param int $level ResourceLoaderModule class constant
 	 */
 	public function reduceAllowedModules( $type, $level ) {
 		$this->mAllowedModules[$type] = min( $this->getAllowedModules( $type ), $level );
@@ -1354,9 +1354,9 @@ class OutputPage extends ContextSource {
 	 *
 	 * @since 1.19
 	 *
-	 * @param $element string
-	 * @param $attribs array
-	 * @param $contents string
+	 * @param string $element
+	 * @param array $attribs
+	 * @param string $contents
 	 */
 	public function addElement( $element, $attribs = array(), $contents = '' ) {
 		$this->addHTML( Html::element( $element, $attribs, $contents ) );
@@ -1381,9 +1381,9 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get/set the ParserOptions object to use for wikitext parsing
 	 *
-	 * @param $options ParserOptions|null either the ParserOption to use or null to only get the
-	 *                 current ParserOption object
-	 * @return ParserOptions object
+	 * @param ParserOptions|null $options Either the ParserOption to use or null to only get the
+	 *   current ParserOption object
+	 * @return ParserOptions
 	 */
 	public function parserOptions( $options = null ) {
 		if ( !$this->mParserOptions ) {
@@ -1408,7 +1408,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the displayed revision ID
 	 *
-	 * @return Integer
+	 * @return int
 	 */
 	public function getRevisionId() {
 		return $this->mRevisionId;
@@ -1429,7 +1429,7 @@ class OutputPage extends ContextSource {
 	 * Get the timestamp of displayed revision.
 	 * This will be null if not filled by setRevisionTimestamp().
 	 *
-	 * @return String or null
+	 * @return string|null
 	 */
 	public function getRevisionTimestamp() {
 		return $this->mRevisionTimestamp;
@@ -1452,7 +1452,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the displayed file version
 	 *
-	 * @return Array|null ('time' => MW timestamp, 'sha1' => sha1)
+	 * @return array|null ('time' => MW timestamp, 'sha1' => sha1)
 	 */
 	public function getFileVersion() {
 		return $this->mFileVersion;
@@ -1461,7 +1461,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the templates used on this page
 	 *
-	 * @return Array (namespace => dbKey => revId)
+	 * @return array (namespace => dbKey => revId)
 	 * @since 1.18
 	 */
 	public function getTemplateIds() {
@@ -1471,7 +1471,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the files used on this page
 	 *
-	 * @return Array (dbKey => array('time' => MW timestamp or null, 'sha1' => sha1 or ''))
+	 * @return array (dbKey => array('time' => MW timestamp or null, 'sha1' => sha1 or ''))
 	 * @since 1.18
 	 */
 	public function getFileSearchOptions() {
@@ -1561,7 +1561,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add a ParserOutput object, but without Html
 	 *
-	 * @param $parserOutput ParserOutput object
+	 * @param ParserOutput $parserOutput
 	 */
 	public function addParserOutputNoText( &$parserOutput ) {
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
@@ -1613,7 +1613,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add a ParserOutput object
 	 *
-	 * @param $parserOutput ParserOutput
+	 * @param ParserOutput $parserOutput
 	 */
 	function addParserOutput( &$parserOutput ) {
 		$this->addParserOutputNoText( $parserOutput );
@@ -1631,7 +1631,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add the output of a QuickTemplate to the output buffer
 	 *
-	 * @param $template QuickTemplate
+	 * @param QuickTemplate $template
 	 */
 	public function addTemplate( &$template ) {
 		$this->addHTML( $template->getHTML() );
@@ -1640,7 +1640,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Parse wikitext and return the HTML.
 	 *
-	 * @param String $text
+	 * @param string $text
 	 * @param bool $linestart Is this the start of a line?
 	 * @param bool $interface Use interface language ($wgLang instead of
 	 *   $wgContLang) while parsing language sensitive magic words like GRAMMAR and PLURAL.
@@ -1712,7 +1712,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Use enableClientCache(false) to force it to send nocache headers
 	 *
-	 * @param $state bool
+	 * @param bool $state
 	 *
 	 * @return bool
 	 */
@@ -1723,7 +1723,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the list of cookies that will influence on the cache
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	function getCacheVaryCookies() {
 		global $wgCookiePrefix, $wgCacheVaryCookies;
@@ -1747,7 +1747,7 @@ class OutputPage extends ContextSource {
 	 * Check if the request has a cache-varying cookie header
 	 * If it does, it's very important that we don't allow public caching
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	function haveCacheVaryCookies() {
 		$cookieHeader = $this->getRequest()->getHeader( 'cookie' );
@@ -1770,7 +1770,7 @@ class OutputPage extends ContextSource {
 	 * Add an HTTP header that will influence on the cache
 	 *
 	 * @param string $header header name
-	 * @param $option Array|null
+	 * @param array|null $option
 	 * @todo FIXME: Document the $option parameter; it appears to be for
 	 *        X-Vary-Options but what format is acceptable?
 	 */
@@ -1791,7 +1791,7 @@ class OutputPage extends ContextSource {
 	 * Return a Vary: header on which to vary caches. Based on the keys of $mVaryHeader,
 	 * such as Accept-Encoding or Cookie
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getVaryHeader() {
 		return 'Vary: ' . join( ', ', array_keys( $this->mVaryHeader ) );
@@ -1800,7 +1800,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get a complete X-Vary-Options header
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getXVO() {
 		$cvCookies = $this->getCacheVaryCookies();
@@ -1864,7 +1864,7 @@ class OutputPage extends ContextSource {
 	 * This is the default for special pages. If you display a CSRF-protected
 	 * form on an ordinary view page, then you need to call this function.
 	 *
-	 * @param $enable bool
+	 * @param bool $enable
 	 */
 	public function preventClickjacking( $enable = true ) {
 		$this->mPreventClickjacking = $enable;
@@ -2442,10 +2442,10 @@ $templates
 	/**
 	 * Add a "return to" link pointing to a specified title
 	 *
-	 * @param $title Title to link
-	 * @param array $query query string parameters
-	 * @param string $text text of the link (input is not escaped)
-	 * @param $options Options array to pass to Linker
+	 * @param Title $title Title to link
+	 * @param array $query Query string parameters
+	 * @param string $text Text of the link (input is not escaped)
+	 * @param array $options Options array to pass to Linker
 	 */
 	public function addReturnTo( $title, $query = array(), $text = null, $options = array() ) {
 		$link = $this->msg( 'returnto' )->rawParams(
@@ -2457,9 +2457,9 @@ $templates
 	 * Add a "return to" link pointing to a specified title,
 	 * or the title indicated in the request, or else the main page
 	 *
-	 * @param $unused
-	 * @param $returnto Title or String to return to
-	 * @param string $returntoquery query string for the return to link
+	 * @param mixed $unused
+	 * @param Title|string $returnto Title or String to return to
+	 * @param string $returntoquery Query string for the return to link
 	 */
 	public function returnToMain( $unused = null, $returnto = null, $returntoquery = null ) {
 		if ( $returnto == null ) {
@@ -2588,9 +2588,9 @@ $templates
 	 * TODO: Document
 	 * @param array|string $modules One or more module names
 	 * @param string $only ResourceLoaderModule TYPE_ class constant
-	 * @param boolean $useESI
-	 * @param array $extraQuery with extra query parameters to add to each request. array( param => value )
-	 * @param boolean $loadCall If true, output an (asynchronous) mw.loader.load() call rather than a "<script src='...'>" tag
+	 * @param bool $useESI
+	 * @param array $extraQuery Array with extra query parameters to add to each request. array( param => value )
+	 * @param bool $loadCall If true, output an (asynchronous) mw.loader.load() call rather than a "<script src='...'>" tag
 	 * @return string The html "<script>", "<link>" and "<style>" tags
 	 */
 	protected function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array(), $loadCall = false ) {
@@ -2864,7 +2864,7 @@ $templates
 	 * modules marked with position 'bottom', legacy scripts ($this->mScripts),
 	 * user preferences, site JS and user JS.
 	 *
-	 * @param $inHead boolean If true, this HTML goes into the "<head>", if false it goes into the "<body>"
+	 * @param bool $inHead If true, this HTML goes into the "<head>", if false it goes into the "<body>"
 	 * @return string
 	 */
 	function getScriptsForBottomQueue( $inHead ) {
@@ -2954,7 +2954,7 @@ $templates
 	/**
 	 * Get the javascript config vars to include on this page
 	 *
-	 * @return Array of javascript config vars
+	 * @return array Array of javascript config vars
 	 * @since 1.23
 	 */
 	public function getJsConfigVars() {
@@ -2962,10 +2962,10 @@ $templates
 	}
 
 	/**
-	 * Add one or more variables to be set in mw.config in JavaScript.
+	 * Add one or more variables to be set in mw.config in JavaScript
 	 *
-	 * @param $keys {String|Array} Key or array of key/value pairs.
-	 * @param $value {Mixed} [optional] Value of the configuration variable.
+	 * @param string|array $keys Key or array of key/value pairs
+	 * @param mixed $value [optional] Value of the configuration variable
 	 */
 	public function addJsConfigVars( $keys, $value = null ) {
 		if ( is_array( $keys ) ) {
@@ -3483,7 +3483,7 @@ $templates
 	}
 
 	/**
-	 * @return Array
+	 * @return array
 	 */
 	public function buildCssLinksArray() {
 		$links = array();
@@ -3604,8 +3604,8 @@ $templates
 	 * Like addWikiMsg() except the parameters are taken as an array
 	 * instead of a variable argument list.
 	 *
-	 * @param $name string
-	 * @param $args array
+	 * @param string $name
+	 * @param array $args
 	 */
 	public function addWikiMsgArray( $name, $args ) {
 		$this->addHTML( $this->msg( $name, $args )->parseAsBlock() );
@@ -3632,7 +3632,7 @@ $templates
 	 *
 	 * The newline after opening div is needed in some wikitext. See bug 19226.
 	 *
-	 * @param $wrap string
+	 * @param string $wrap
 	 */
 	public function wrapWikiMsg( $wrap /*, ...*/ ) {
 		$msgSpecs = func_get_args();

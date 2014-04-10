@@ -125,7 +125,7 @@ class RawAction extends FormlessAction {
 	 * Get the text that should be returned, or false if the page or revision
 	 * was not found.
 	 *
-	 * @return String|Bool
+	 * @return string|bool
 	 */
 	public function getRawText() {
 		global $wgParser;
@@ -198,7 +198,7 @@ class RawAction extends FormlessAction {
 	/**
 	 * Get the ID of the revision that should used to get the text.
 	 *
-	 * @return Integer
+	 * @return int
 	 */
 	public function getOldId() {
 		$oldid = $this->getRequest()->getInt( 'oldid' );
@@ -230,7 +230,7 @@ class RawAction extends FormlessAction {
 	/**
 	 * Get the content type to use for the response
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getContentType() {
 		$ctype = $this->getRequest()->getVal( 'ctype' );
