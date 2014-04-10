@@ -459,7 +459,6 @@
     "accountcreatedtext": "È stê fât 'n'utèisa per [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|msg]]).",
     "createaccount-title": "Per fêr un inscrisiòun a {{SITENAME}}",
     "createaccount-text": "Quelchidûn l'à fât un inscrisiòun a  {{SITENAME}} ($4) a nòm ed $2 coleghê a cl'indirés ed pôsta eletrônica ché. La cêva 'd ingrès per l'utèint \"$2\" l'é  impustêda a \"$3\". \nÉ necesâri fêr un ingrès préma ch' es pôl e cambiêr subét la cêva 'd ingrès. \nSe l'inscrisiòun l'é stêda fâta per şbâli, es pōl scanşlêr sté mesâg.",
-    "usernamehasherror": "Al nòm utèint al pōl mìa avèir i carâter hash",
     "login-throttled": "În stê fât trôp tentatîv 'd ingrès in pôch tèimp. Spèta $1 e pó tōrna pruvêr.",
     "login-abort-generic": "An t'é mìa stê arcgnusû - Scanşlê",
     "loginlanguagelabel": "Léngva: $1",
