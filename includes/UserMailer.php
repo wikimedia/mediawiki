@@ -767,6 +767,7 @@ class EmailNotification {
 		}
 
 		$keys['$PAGEEDITOR_WIKI'] = $this->editor->getUserPage()->getCanonicalURL();
+		$keys['$HELPPAGE'] = Skin::makeInternalOrExternalUrl( wfMessage( 'helppage' )->inContentLanguage()->text() );
 
 		# Replace this after transforming the message, bug 35019
 		$postTransformKeys['$PAGESUMMARY'] = $this->summary == '' ? ' - ' : $this->summary;
