@@ -3031,7 +3031,7 @@ To delete the page from your watchlist, visit
 $UNWATCHURL
 
 Feedback and further assistance:
-{{canonicalurl:{{MediaWiki:Helppage}}}}',
+$HELPPAGE',
 'created'                      => 'created', # only translate this message to other languages if you have to change it
 'changed'                      => 'changed', # only translate this message to other languages if you have to change it
 
