@@ -36,7 +36,7 @@ $digitTransformTable = array(
 
 $linkTrail = "/^([a-z\x{0B00}-\x{0B7F}]+)(.*)$/sDu";
 
-/** namespace translations from translatewiki.net 
+/** namespace translations from translatewiki.net
  * @author Shijualex
  * @author Psubhashish
  */
