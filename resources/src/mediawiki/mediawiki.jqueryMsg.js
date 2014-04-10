@@ -1179,7 +1179,7 @@
 		 * @param {Array} nodes List of nodes
 		 * @return {string} Other message
 		 */
-		int: function ( nodes ) {
+		'int': function ( nodes ) {
 			return mw.jqueryMsg.getMessageFunction()( nodes[0].toLowerCase() );
 		},
 
