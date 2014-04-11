@@ -129,6 +129,7 @@
 
 	QUnit.module( 'mediawiki.Title', QUnit.newMwEnvironment( { config: config } ) );
 
+	/*jshint es3:false */
 	QUnit.test( 'constructor', cases.invalid.length, function ( assert ) {
 		var i, title;
 		for ( i = 0; i < cases.valid.length; i++ ) {
