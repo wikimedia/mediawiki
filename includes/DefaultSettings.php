@@ -5105,6 +5105,9 @@ $wgProfilePerHost = false;
 /**
  * Host for UDP profiler.
  *
+ * Either an host name or an IP address. IPv6 addresses are accepted, but must
+ * be enclosed in square brackets (like "[::1]").
+ *
  * The host should be running a daemon which can be obtained from MediaWiki
  * Git at:
  * http://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile

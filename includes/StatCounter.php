@@ -94,43 +94,18 @@ class StatCounter {
 		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgAggregateStatsID,
 			$wgStatsFormatString;
 
+		if ( !count( $deltas ) ) {
+			return;
+		}
+
 		$id = strlen( $wgAggregateStatsID ) ? $wgAggregateStatsID : wfWikiID();
 
-		$lines = array();
+		$text = '';
 		foreach ( $deltas as $key => $count ) {
-			$lines[] = sprintf( $wgStatsFormatString, $id, $count, $key );
+			$text .= sprintf( $wgStatsFormatString, $id, $count, $key );
 		}
 
-		if ( count( $lines ) ) {
-			static $socket = null;
-			if ( !$socket ) {
-				$socket = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
-			}
-			$packet = '';
-			$packets = array();
-			foreach ( $lines as $line ) {
-				if ( ( strlen( $packet ) + strlen( $line ) ) > 1450 ) {
-					$packets[] = $packet;
-					$packet = '';
-				}
-				$packet .= $line;
-			}
-			if ( $packet != '' ) {
-				$packets[] = $packet;
-			}
-			foreach ( $packets as $packet ) {
-				wfSuppressWarnings();
-				socket_sendto(
-					$socket,
-					$packet,
-					strlen( $packet ),
-					0,
-					$wgUDPProfilerHost,
-					$wgUDPProfilerPort
-				);
-				wfRestoreWarnings();
-			}
-		}
+		wfSendMessage( $text, "udp://$wgUDPProfilerHost:$wgUDPProfilerPort" );
 	}
 
 	/**
