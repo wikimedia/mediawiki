@@ -651,8 +651,13 @@ class MediaWiki {
 			return;
 		}
 
-		if ( !JobQueueGroup::singleton()->queuesHaveJobs( JobQueueGroup::TYPE_DEFAULT ) ) {
-			return; // do not send request if there are probably no jobs
+		try {
+			if ( !JobQueueGroup::singleton()->queuesHaveJobs( JobQueueGroup::TYPE_DEFAULT ) ) {
+				return; // do not send request if there are probably no jobs
+			}
+		} catch ( JobQueueError $e ) {
+			MWExceptionHandler::logException( $e );
+			return; // do not make the site unavailable
 		}
 
 		$query = array( 'title' => 'Special:RunJobs',
