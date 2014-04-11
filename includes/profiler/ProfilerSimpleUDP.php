@@ -42,14 +42,7 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 			return;
 		}
 
-		if ( !function_exists( 'socket_create' ) ) {
-			# Sockets are not enabled
-			return;
-		}
-
-		$sock = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
-		$plength = 0;
-		$packet = "";
+		$text = '';
 		foreach ( $this->mCollated as $entry => $pfdata ) {
 			if ( !isset( $pfdata['count'] )
 				|| !isset( $pfdata['cpu'] )
@@ -58,18 +51,10 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 				|| !isset( $pfdata['real_sq'] ) ) {
 				continue;
 			}
-			$pfline = sprintf( $wgUDPProfilerFormatString, $this->getProfileID(), $pfdata['count'],
+			$text .= sprintf( $wgUDPProfilerFormatString, $this->getProfileID(), $pfdata['count'],
 				$pfdata['cpu'], $pfdata['cpu_sq'], $pfdata['real'], $pfdata['real_sq'], $entry );
-			$length = strlen( $pfline );
-			/* printf("<!-- $pfline -->"); */
-			if ( $length + $plength > 1400 ) {
-				socket_sendto( $sock, $packet, $plength, 0, $wgUDPProfilerHost, $wgUDPProfilerPort );
-				$packet = "";
-				$plength = 0;
-			}
-			$packet .= $pfline;
-			$plength += $length;
 		}
-		socket_sendto( $sock, $packet, $plength, 0x100, $wgUDPProfilerHost, $wgUDPProfilerPort );
+
+		wfSendMessage( $text, "udp://$wgUDPProfilerHost:$wgUDPProfilerPort" );
 	}
 }

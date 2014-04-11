@@ -960,7 +960,7 @@ function wfDebug( $text, $dest = 'all' ) {
 		# gets dumped, which is pretty annoying.
 		$text = preg_replace( '![\x00-\x08\x0b\x0c\x0e-\x1f]!', ' ', $text );
 		$text = $wgDebugLogPrefix . $text;
-		wfErrorLog( $text, $wgDebugLogFile );
+		wfSendMessage( $text, $wgDebugLogFile );
 	}
 }
 
@@ -1078,7 +1078,7 @@ function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
 	$time = wfTimestamp( TS_DB );
 	$wiki = wfWikiID();
 	$host = wfHostname();
-	wfErrorLog( "$time $host $wiki: $text", $destination );
+	wfSendMessage( "$time $host $wiki: $text", $destination );
 }
 
 /**
@@ -1109,7 +1109,7 @@ function wfLogDBError( $text ) {
 		$date = $d->format( 'D M j G:i:s T Y' );
 
 		$text = "$date\t$host\t$wiki\t" . trim( $text ) . "\n";
-		wfErrorLog( $text, $wgDBerrorLog );
+		wfSendMessage( $text, $wgDBerrorLog );
 	}
 }
 
@@ -1158,65 +1158,95 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
 }
 
 /**
- * Log to a file without getting "file size exceeded" signals.
+ * Wrapper for wfSendMessage().
  *
- * Can also log to TCP or UDP with the syntax udp://host:port/prefix. This will
- * send lines to the specified port, prefixed by the specified prefix and a space.
- *
- * @param $text String
- * @param string $file filename
- * @throws MWException
+ * @see wfSendMessage() for documentation.
+ * @deprecated since 1.23; use wfSendMessage() instead.
+ * @param string $text
+ * @param string $file
  */
 function wfErrorLog( $text, $file ) {
-	if ( substr( $file, 0, 4 ) == 'udp:' ) {
-		# Needs the sockets extension
-		if ( preg_match( '!^(tcp|udp):(?://)?\[([0-9a-fA-F:]+)\]:(\d+)(?:/(.*))?$!', $file, $m ) ) {
+	wfDeprecated( __METHOD__, '1.23' );
+	wfSendMessage( $text, $file );
+}
+
+/**
+ * Send the given message to a logging facility.
+ *
+ * Two formats are accepted for the $dest parameter:
+ * - A local file name, in which case the message will be appended to the file,
+ *   without getting "file size exceeded" signals.
+ * - A string in the "udp://host:port/prefix" format. This will send lines over
+ *   UDP datagrams to the specified port, prefixed by the specified prefix and
+ *   a space.
+ *
+ * @param string $text Message to send
+ * @param string $dest Destination of the message: file name to which it will be
+ *        appended or "udp://host:port/prefix" to send it over UDP datagrams.
+ * @throws MWException
+ */
+function wfSendMessage( $text, $dest ) {
+	if ( substr( $dest, 0, 4 ) == 'udp:' ) {
+		if ( preg_match( '!^(tcp|udp):(?://)?(\[[0-9a-fA-F:]+\]):(\d+)(?:/(.*))?$!', $dest, $m ) ) {
 			// IPv6 bracketed host
+			$protocol = $m[1];
 			$host = $m[2];
-			$port = intval( $m[3] );
+			$port = $m[3];
 			$prefix = isset( $m[4] ) ? $m[4] : false;
-			$domain = AF_INET6;
-		} elseif ( preg_match( '!^(tcp|udp):(?://)?([a-zA-Z0-9.-]+):(\d+)(?:/(.*))?$!', $file, $m ) ) {
+		} elseif ( preg_match( '!^(tcp|udp):(?://)?([a-zA-Z0-9.-]+):(\d+)(?:/(.*))?$!', $dest, $m ) ) {
+			$protocol = $m[1];
 			$host = $m[2];
-			if ( !IP::isIPv4( $host ) ) {
-				$host = gethostbyname( $host );
-			}
-			$port = intval( $m[3] );
+			$port = $m[3];
 			$prefix = isset( $m[4] ) ? $m[4] : false;
-			$domain = AF_INET;
 		} else {
 			throw new MWException( __METHOD__ . ': Invalid UDP specification' );
 		}
 
-		// Clean it up for the multiplexer
-		if ( strval( $prefix ) !== '' ) {
-			$text = preg_replace( '/^/m', $prefix . ' ', $text );
-
-			// Limit to 64KB
-			if ( strlen( $text ) > 65506 ) {
-				$text = substr( $text, 0, 65506 );
-			}
-
-			if ( substr( $text, -1 ) != "\n" ) {
-				$text .= "\n";
-			}
-		} elseif ( strlen( $text ) > 65507 ) {
-			$text = substr( $text, 0, 65507 );
-		}
-
-		$sock = socket_create( $domain, SOCK_DGRAM, SOL_UDP );
-		if ( !$sock ) {
+		$socket = stream_socket_client( "$protocol://$host:$port" );
+		if ( !$socket ) {
 			return;
 		}
 
-		socket_sendto( $sock, $text, strlen( $text ), 0, $host, $port );
-		socket_close( $sock );
+		// Clean it up for the multiplexer
+		if ( $prefix !== false && $prefix !== '' ) {
+			$text = preg_replace( '/^/m', $prefix . ' ', $text );
+		}
+
+		if ( substr( $text, -1 ) != "\n" ) {
+			$text .= "\n";
+		}
+
+		if ( strlen( $text ) <= 1400 ) {
+			fwrite( $socket, $text );
+		} else {
+			// Remove the last item from the array since we ensured 10 lines
+			// above that the string was ending by a new line.
+			$lines = array_slice( explode( "\n", $text ), 0, -1 );
+			$packet = '';
+			$packetLen = 0;
+			foreach ( $lines as $line ) {
+				// One is for the extra "\n"
+				$lineLen = strlen( $line ) + 1;
+				if ( $packetLen + $lineLen > 1400 ) {
+					fwrite( $socket, $packet );
+					$packet = '';
+					$packetLen = 0;
+				}
+				$packet .= $line . "\n";
+				$packetLen += $lineLen;
+			}
+			if ( $packet != '' ) {
+				fwrite( $socket, $packet );
+			}
+		}
+
+		fclose( $socket );
 	} else {
 		wfSuppressWarnings();
-		$exists = file_exists( $file );
-		$size = $exists ? filesize( $file ) : false;
+		$exists = file_exists( $dest );
+		$size = $exists ? filesize( $dest ) : false;
 		if ( !$exists || ( $size !== false && $size + strlen( $text ) < 0x7fffffff ) ) {
-			file_put_contents( $file, $text, FILE_APPEND );
+			file_put_contents( $dest, $text, FILE_APPEND );
 		}
 		wfRestoreWarnings();
 	}

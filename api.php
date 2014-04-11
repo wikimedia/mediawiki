@@ -117,7 +117,7 @@ if ( $wgAPIRequestLog ) {
 	} else {
 		$items[] = "failed in ApiBeforeMain";
 	}
-	wfErrorLog( implode( ',', $items ) . "\n", $wgAPIRequestLog );
+	wfSendMessage( implode( ',', $items ) . "\n", $wgAPIRequestLog );
 	wfDebug( "Logged API request to $wgAPIRequestLog\n" );
 }
 
