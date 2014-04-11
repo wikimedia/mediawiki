@@ -195,80 +195,6 @@
 		},
 
 		/**
-		 * @property {string}
-		 * Access key prefix.
-		 */
-		tooltipAccessKeyPrefix: ( function () {
-			var profile = $.client.profile();
-
-			// Opera on any platform
-			if ( profile.name === 'opera' ) {
-				return 'shift-esc-';
-			}
-
-			// Chrome on any platform
-			if ( profile.name === 'chrome' ) {
-				if ( profile.platform === 'mac' ) {
-					// Chrome on Mac
-					return 'ctrl-option-';
-				}
-				// Chrome on Windows or Linux
-				// (both alt- and alt-shift work, but alt with E, D, F etc does not
-				// work since they are browser shortcuts)
-				return 'alt-shift-';
-			}
-
-			// Non-Windows Safari with webkit_version > 526
-			if ( profile.platform !== 'win'
-				&& profile.name === 'safari'
-				&& profile.layoutVersion > 526
-			) {
-				return 'ctrl-alt-';
-			}
-
-			// Firefox 14+ on Mac
-			if ( profile.platform === 'mac'
-				&& profile.name === 'firefox'
-				&& profile.versionNumber >= 14
-			) {
-				return 'ctrl-option-';
-			}
-
-			// Safari/Konqueror on any platform, or any browser on Mac
-			// (but not Safari on Windows)
-			if ( !( profile.platform === 'win' && profile.name === 'safari' )
-				&& ( profile.name === 'safari'
-				|| profile.platform === 'mac'
-				|| profile.name === 'konqueror' )
-			) {
-				return 'ctrl-';
-			}
-
-			// Firefox/Iceweasel 2.x and later
-			if ( ( profile.name === 'firefox' || profile.name === 'iceweasel' )
-				&& profile.versionBase > '1' ) {
-				return 'alt-shift-';
-			}
-
-			return 'alt-';
-		} )(),
-
-		/**
-		 * @property {RegExp}
-		 * Regex to match accesskey tooltips.
-		 *
-		 * Should match:
-		 *
-		 * - "ctrl-option-"
-		 * - "alt-shift-"
-		 * - "ctrl-alt-"
-		 * - "ctrl-"
-		 *
-		 * The accesskey is matched in group $6.
-		 */
-		tooltipAccessKeyRegexp: /\[(ctrl-)?(option-)?(alt-)?(shift-)?(esc-)?(.)\]$/,
-
-		/**
 		 * Add the appropriate prefix to the accesskey shown in the tooltip.
 		 *
 		 * If the `$nodes` parameter is given, only those nodes are updated;
@@ -297,13 +223,7 @@
 				$nodes = $( $nodes );
 			}
 
-			$nodes.attr( 'title', function ( i, val ) {
-				if ( val && util.tooltipAccessKeyRegexp.test( val ) ) {
-					return val.replace( util.tooltipAccessKeyRegexp,
-						'[' + util.tooltipAccessKeyPrefix + '$6]' );
-				}
-				return val;
-			} );
+			$nodes.updateTooltipAccessKeys();
 		},
 
 		/*
@@ -404,20 +324,12 @@
 				$item.attr( 'id', id );
 			}
 
-			if ( tooltip ) {
-				// Trim any existing accesskey hint and the trailing space
-				tooltip = $.trim( tooltip.replace( util.tooltipAccessKeyRegexp, '' ) );
-				if ( accesskey ) {
-					tooltip += ' [' + accesskey + ']';
-				}
-				$link.attr( 'title', tooltip );
-				if ( accesskey ) {
-					util.updateTooltipAccessKeys( $link );
-				}
-			}
-
 			if ( accesskey ) {
 				$link.attr( 'accesskey', accesskey );
+			}
+
+			if ( tooltip ) {
+				$link.attr( 'title', tooltip ).updateTooltipAccessKeys();
 			}
 
 			if ( nextnode ) {
@@ -595,6 +507,32 @@
 	 * @deprecated since 1.23 Use #getUrl instead.
 	 */
 	mw.log.deprecate( util, 'wikiGetlink', util.getUrl, 'Use mw.util.getUrl instead.' );
+
+	/**
+	 * @property {string} tooltipAccessKeyPrefix
+	 * Access key prefix. Might be wrong for browsers implementing the accessKeyLabel property.
+	 * @deprecated since 1.23 Use the module jquery.accessKeyLabel instead.
+	 */
+	mw.log.deprecate( util, 'tooltipAccessKeyPrefix', $.fn.updateTooltipAccessKeys.getAccessKeyPrefix(), 'Use the module jquery.accessKeyLabel instead.' );
+
+	/**
+	 * @property {RegExp} tooltipAccessKeyRegexp
+	 * Regex to match accesskey tooltips.
+	 *
+	 * Should match:
+	 *
+	 * - "ctrl-option-"
+	 * - "alt-shift-"
+	 * - "ctrl-alt-"
+	 * - "ctrl-"
+	 *
+	 * The accesskey is matched in group $6.
+	 *
+	 * Will probably not work for browsers implementing the accessKeyLabel property.
+	 *
+	 * @deprecated since 1.23 Use the module jquery.accessKeyLabel instead.
+	 */
+	mw.log.deprecate( util, 'tooltipAccessKeyRegexp', /\[(ctrl-)?(option-)?(alt-)?(shift-)?(esc-)?(.)\]$/, 'Use the module jquery.accessKeyLabel instead.' );
 
 	mw.util = util;
 

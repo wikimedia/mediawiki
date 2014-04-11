@@ -1,11 +1,10 @@
 ( function ( mw, $ ) {
 	QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		setup: function () {
-			this.taPrefix = mw.util.tooltipAccessKeyPrefix;
-			mw.util.tooltipAccessKeyPrefix = 'ctrl-alt-';
+			$.fn.updateTooltipAccessKeys.setTestMode( true );
 		},
 		teardown: function () {
-			mw.util.tooltipAccessKeyPrefix = this.taPrefix;
+			$.fn.updateTooltipAccessKeys.setTestMode( false );
 		}
 	} ) );
 
@@ -192,7 +191,7 @@
 			$tbMW.find( 'a' ).getAttrs(),
 			{
 				href: '//mediawiki.org/',
-				title: 'Go to MediaWiki.org [ctrl-alt-m]',
+				title: 'Go to MediaWiki.org [test-m]',
 				accesskey: 'm'
 			},
 			'Validate attributes of anchor tag in created element'
@@ -204,7 +203,7 @@
 		cuQuux = mw.util.addPortletLink( 'p-test-custom', '#', 'Quux', null, 'Example [shift-x]', 'q' );
 		$cuQuux = $( cuQuux );
 
-		assert.equal( $cuQuux.find( 'a' ).attr( 'title' ), 'Example [ctrl-alt-q]', 'Existing accesskey is stripped and updated' );
+		assert.equal( $cuQuux.find( 'a' ).attr( 'title' ), 'Example [test-q]', 'Existing accesskey is stripped and updated' );
 
 		assert.equal(
 			$( '#p-test-custom #c-barmenu ul li' ).length,
