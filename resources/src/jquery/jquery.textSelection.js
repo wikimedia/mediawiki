@@ -5,7 +5,7 @@
 	if ( document.selection && document.selection.createRange ) {
 		// On IE, patch the focus() method to restore the windows' scroll position
 		// (bug 32241)
-		$.fn.extend({
+		$.fn.extend( {
 			focus: ( function ( jqFocus ) {
 				return function () {
 					var $w, state, result;
@@ -19,7 +19,7 @@
 					return jqFocus.apply( this, arguments );
 				};
 			}( $.fn.focus ) )
-		});
+		} );
 	}
 
 	$.fn.textSelection = function ( command, options ) {
@@ -70,7 +70,7 @@
 				var retval, range,
 					el = this.get( 0 );
 
-				if ( $(el).is( ':hidden' ) ) {
+				if ( $( el ).is( ':hidden' ) ) {
 					retval = '';
 				} else if ( document.selection && document.selection.createRange ) {
 					activateElementOnIE( el );
@@ -153,10 +153,10 @@
 								context.fn.restoreCursorAndScrollTop();
 							}
 							if ( options.selectionStart !== undefined ) {
-								$(this).textSelection( 'setSelection', { 'start': options.selectionStart, 'end': options.selectionEnd } );
+								$( this ).textSelection( 'setSelection', { 'start': options.selectionStart, 'end': options.selectionEnd } );
 							}
 
-							selText = $(this).textSelection( 'getSelection' );
+							selText = $( this ).textSelection( 'getSelection' );
 							scrollTop = this.scrollTop;
 							range = document.selection.createRange();
 
@@ -194,12 +194,12 @@
 						} else if ( this.selectionStart || this.selectionStart === 0 ) {
 							// Mozilla/Opera
 
-							$(this).focus();
+							$( this ).focus();
 							if ( options.selectionStart !== undefined ) {
-								$(this).textSelection( 'setSelection', { 'start': options.selectionStart, 'end': options.selectionEnd } );
+								$( this ).textSelection( 'setSelection', { 'start': options.selectionStart, 'end': options.selectionEnd } );
 							}
 
-							selText = $(this).textSelection( 'getSelection' );
+							selText = $( this ).textSelection( 'getSelection' );
 							startPos = this.selectionStart;
 							endPos = this.selectionEnd;
 							scrollTop = this.scrollTop;
@@ -245,9 +245,9 @@
 							}
 						}
 					}
-					$(this).trigger( 'encapsulateSelection', [ options.pre, options.peri, options.post, options.ownline,
+					$( this ).trigger( 'encapsulateSelection', [ options.pre, options.peri, options.post, options.ownline,
 						options.replace, options.spitlines ] );
-				});
+				} );
 			},
 			/**
 			 * Ported from Wikia's LinkSuggest extension
@@ -365,7 +365,7 @@
 				return this.each( function () {
 					var selection, length, newLines;
 					// Do nothing if hidden
-					if ( !$(this).is( ':hidden' ) ) {
+					if ( !$( this ).is( ':hidden' ) ) {
 						if ( this.selectionStart || this.selectionStart === 0 ) {
 							// Opera 9.0 doesn't allow setting selectionStart past
 							// selectionEnd; any attempts to do that will be ignored
@@ -395,7 +395,7 @@
 							} catch ( e ) { }
 						}
 					}
-				});
+				} );
 			},
 			/**
 			 * Ported from Wikia's LinkSuggest extension
@@ -458,16 +458,16 @@
 					}
 					return ( $.client.profile().platform === 'mac' ? 13 : ( $.client.profile().platform === 'linux' ? 15 : 16 ) ) * row;
 				}
-				return this.each(function () {
+				return this.each( function () {
 					var scroll, range, savedRange, pos, oldScrollTop;
 					// Do nothing if hidden
-					if ( !$(this).is( ':hidden' ) ) {
+					if ( !$( this ).is( ':hidden' ) ) {
 						if ( this.selectionStart || this.selectionStart === 0 ) {
 							// Mozilla
 							scroll = getCaretScrollPosition( this );
-							if ( options.force || scroll < $(this).scrollTop() ||
-									scroll > $(this).scrollTop() + $(this).height() ) {
-								$(this).scrollTop( scroll );
+							if ( options.force || scroll < $( this ).scrollTop() ||
+									scroll > $( this ).scrollTop() + $( this ).height() ) {
+								$( this ).scrollTop( scroll );
 							}
 						} else if ( document.selection && document.selection.createRange ) {
 							// IE / Opera
@@ -481,11 +481,11 @@
 							 */
 							range = document.body.createTextRange();
 							savedRange = document.selection.createRange();
-							pos = $(this).textSelection( 'getCaretPosition' );
+							pos = $( this ).textSelection( 'getCaretPosition' );
 							oldScrollTop = this.scrollTop;
 							range.moveToElementText( this );
 							range.collapse();
-							range.move( 'character', pos + 1);
+							range.move( 'character', pos + 1 );
 							range.select();
 							if ( this.scrollTop !== oldScrollTop ) {
 								this.scrollTop += range.offsetTop;
@@ -496,7 +496,7 @@
 							savedRange.select();
 						}
 					}
-					$(this).trigger( 'scrollToPosition' );
+					$( this ).trigger( 'scrollToPosition' );
 				} );
 			}
 		};
@@ -553,7 +553,7 @@
 				break;
 		}
 
-		context = $(this).data( 'wikiEditor-context' );
+		context = $( this ).data( 'wikiEditor-context' );
 		hasIframe = context !== undefined && context && context.$iframe !== undefined;
 
 		// IE selection restore voodoo

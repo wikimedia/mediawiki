@@ -6,9 +6,9 @@ jQuery( function ( $ ) {
 	$( '.mw-jump' ).on( 'focus blur', 'a', function ( e ) {
 		// Confusingly jQuery leaves e.type as focusout for delegated blur events
 		if ( e.type === 'blur' || e.type === 'focusout' ) {
-			$( this ).closest( '.mw-jump' ).css({ height: 0 });
+			$( this ).closest( '.mw-jump' ).css( { height: 0 } );
 		} else {
-			$( this ).closest( '.mw-jump' ).css({ height: 'auto' });
+			$( this ).closest( '.mw-jump' ).css( { height: 'auto' } );
 		}
 	} );
 
