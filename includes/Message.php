@@ -545,6 +545,7 @@ class Message {
 				. "passed a String or Language object; $type given"
 			);
 		}
+		$this->message = null;
 		$this->interface = false;
 		return $this;
 	}

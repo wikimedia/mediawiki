@@ -120,8 +120,11 @@ class MessageTest extends MediaWikiLangTestCase {
 	public function testInLanguage() {
 		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->inLanguage( 'en' )->text() );
 		$this->assertEquals( 'Заглавная страница', wfMessage( 'mainpage' )->inLanguage( 'ru' )->text() );
-		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->inLanguage( Language::factory( 'en' ) )->text() );
-		$this->assertEquals( 'Заглавная страница', wfMessage( 'mainpage' )->inLanguage( Language::factory( 'ru' ) )->text() );
+
+		// Try getting different languages from the same Message object
+		$msg = wfMessage( 'mainpage' );
+		$this->assertEquals( 'Main Page', $msg->inLanguage( Language::factory( 'en' ) )->text() );
+		$this->assertEquals( 'Заглавная страница', $msg->inLanguage( Language::factory( 'ru' ) )->text() );
 	}
 
 	/**
