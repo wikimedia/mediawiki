@@ -781,6 +781,7 @@
 		mw.loader.load( target );
 	} );
 
+	/*jshint es3:false */
 	QUnit.test( 'mw.html', 13, function ( assert ) {
 		assert.throws( function () {
 			mw.html.escape();
