@@ -5,7 +5,6 @@
 
 	var mwTestIgnore, mwTester,
 		addons,
-		envExecCount,
 		ELEMENT_NODE = 1,
 		TEXT_NODE = 3;
 
@@ -387,14 +386,12 @@
 	 * Small test suite to confirm proper functionality of the utilities and
 	 * initializations defined above in this file.
 	 */
-	envExecCount = 0;
 	QUnit.module( 'test.mediawiki.qunit.testrunner', QUnit.newMwEnvironment( {
 		setup: function () {
-			envExecCount += 1;
 			this.mwHtmlLive = mw.html;
 			mw.html = {
 				escape: function () {
-					return 'mocked-' + envExecCount;
+					return 'mocked';
 				}
 			};
 		},
@@ -410,7 +407,7 @@
 	} ) );
 
 	QUnit.test( 'Setup', 3, function ( assert ) {
-		assert.equal( mw.html.escape( 'foo' ), 'mocked-1', 'extra setup() callback was ran.' );
+		assert.equal( mw.html.escape( 'foo' ), 'mocked', 'setup() callback was ran.' );
 		assert.equal( mw.config.get( 'testVar' ), 'foo', 'config object applied' );
 		assert.equal( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object applied' );
 
@@ -418,8 +415,7 @@
 		mw.messages.set( 'testMsg', 'Bar.' );
 	} );
 
-	QUnit.test( 'Teardown', 3, function ( assert ) {
-		assert.equal( mw.html.escape( 'foo' ), 'mocked-2', 'extra setup() callback was re-ran.' );
+	QUnit.test( 'Teardown', 2, function ( assert ) {
 		assert.equal( mw.config.get( 'testVar' ), 'foo', 'config object restored and re-applied after test()' );
 		assert.equal( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object restored and re-applied after test()' );
 	} );
@@ -496,7 +492,7 @@
 	QUnit.module( 'test.mediawiki.qunit.testrunner-after', QUnit.newMwEnvironment() );
 
 	QUnit.test( 'Teardown', 3, function ( assert ) {
-		assert.equal( mw.html.escape( '<' ), '&lt;', 'extra teardown() callback was ran.' );
+		assert.equal( mw.html.escape( '<' ), '&lt;', 'teardown() callback was ran.' );
 		assert.equal( mw.config.get( 'testVar' ), null, 'config object restored to live in next module()' );
 		assert.equal( mw.messages.get( 'testMsg' ), null, 'messages object restored to live in next module()' );
 	} );
