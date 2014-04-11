@@ -60,6 +60,7 @@
 		} );
 	} );
 
+	/*jshint es3:false */
 	QUnit.test( 'Constructor( String[, Object ] )', 10, function ( assert ) {
 		var uri;
 
