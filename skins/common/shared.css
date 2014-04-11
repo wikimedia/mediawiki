@@ -1174,6 +1174,8 @@ table.floatleft {
 
 .mw-editsection,
 .toctoggle,
+.tochidden,
+.magnify,
 #jump-to-nav {
 	-moz-user-select: none;
 	-webkit-user-select: none;

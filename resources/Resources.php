@@ -957,6 +957,7 @@ return array(
 	),
 	'mediawiki.action.view.metadata' => array(
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.metadata.js',
+		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.metadata.css',
 		'messages' => array(
 			'metadata-expand',
 			'metadata-collapse',
