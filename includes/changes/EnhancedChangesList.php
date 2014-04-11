@@ -90,7 +90,6 @@ class EnhancedChangesList extends ChangesList {
 	public function recentChangesLine( &$baseRC, $watched = false ) {
 		wfProfileIn( __METHOD__ );
 
-		# If it's a new day, add the headline and flush the cache
 		$date = $this->getLanguage()->userDate(
 			$baseRC->mAttribs['rc_timestamp'],
 			$this->getUser()
@@ -98,6 +97,7 @@ class EnhancedChangesList extends ChangesList {
 
 		$ret = '';
 
+		# If it's a new day, add the headline and flush the cache
 		if ( $date != $this->lastdate ) {
 			# Process current cache
 			$ret = $this->recentChangesBlock();
@@ -121,28 +121,41 @@ class EnhancedChangesList extends ChangesList {
 	 * @param RCCacheEntry $cacheEntry
 	 */
 	protected function addCacheEntry( RCCacheEntry $cacheEntry ) {
+		$cacheGroupingKey = $this->makeCacheGroupingKey( $cacheEntry );
+
+		if ( !isset( $this->rc_cache[$cacheGroupingKey] ) ) {
+			$this->rc_cache[$cacheGroupingKey] = array();
+		}
+
+		array_push( $this->rc_cache[$cacheGroupingKey], $cacheEntry );
+	}
+
+	/**
+	 * @todo use rc_source to group, if set; fallback to rc_type
+	 *
+	 * @param RCCacheEntry $cacheEntry
+	 *
+	 * @return string
+	 */
+	protected function makeCacheGroupingKey( RCCacheEntry $cacheEntry ) {
 		$title = $cacheEntry->getTitle();
-		$secureName = $title->getPrefixedDBkey();
+		$cacheGroupingKey = $title->getPrefixedDBkey();
 
 		$type = $cacheEntry->mAttribs['rc_type'];
 
+		// @todo remove handling for RC_MOVE and RC_MOVE_OVER_REDIRECT (bug 63755)
 		if ( $type == RC_MOVE || $type == RC_MOVE_OVER_REDIRECT ) {
-			# Use an @ character to prevent collision with page names
-			$this->rc_cache['@@' . ( $this->rcMoveIndex++ )] = array( $cacheEntry );
-		} else {
-			# Logs are grouped by type
-			if ( $type == RC_LOG ) {
-				$secureName = SpecialPage::getTitleFor(
-					'Log',
-					$cacheEntry->mAttribs['rc_log_type']
-				)->getPrefixedDBkey();
-			}
-			if ( !isset( $this->rc_cache[$secureName] ) ) {
-				$this->rc_cache[$secureName] = array();
-			}
-
-			array_push( $this->rc_cache[$secureName], $cacheEntry );
+			// Use an # character to prevent collision with page names
+			$cacheGroupingKey = '##' . ( $this->rcMoveIndex++ );
+		} elseif ( $type == RC_LOG ) {
+			// Group by log type
+			$cacheGroupingKey = SpecialPage::getTitleFor(
+				'Log',
+				$cacheEntry->mAttribs['rc_log_type']
+			)->getPrefixedDBkey();
 		}
+
+		return $cacheGroupingKey;
 	}
 
 	/**
