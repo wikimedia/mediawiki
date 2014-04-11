@@ -1372,6 +1372,14 @@ return array(
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	// Module for grid system
+	'mediawiki.ui.grid' => array(
+		'styles' => array(
+			'resources/src/mediawiki.ui/mixins/grid.less',
+		),
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 
 	/* OOjs */
 	// WARNING: OOjs and OOjs-UI are NOT COMPATIBLE with older browsers and
