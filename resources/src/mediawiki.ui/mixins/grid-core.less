@@ -1,0 +1,192 @@
+@import "../settings/grid";
+
+// Grid - core
+//
+// Mixins to indicate that an element should behave as a grid (.mw-ui-grid) or a grid item (.mw-ui-item)
+// and a series of proportional mixins with predefined widths (e.g., .mw-ui-tho-thirds) and visibility (.mw-ui-hidden).
+//
+
+//Clearfix-hack used by grids to properly contain grid items.
+//Based on http://nicolasgallagher.com/micro-clearfix-hack/
+.mw-ui-clear-fix() {
+	&:before, &:after {
+		content: " ";
+		display: table;
+	}
+
+	&:after {
+		clear: both;
+	}
+
+	*zoom: 1;
+}
+
+//Grid. Container for grid items, that can be nested.
+.mw-ui-grid() {
+	.mw-ui-clear-fix;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+	clear: both;
+ }
+
+//Grid item. Basic properties for an item inside a grid.
+//The width of the item is based on a given proportion,
+// and the gutter (margin) used for each element can be overriden.
+.mw-ui-item(@proportion:1; @gutter:@grid-gutter) {
+	float: left;
+	.mw-ui-gutter(@gutter / 2);
+	width: (@proportion * 100%);
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	&.mw-ui-right {
+		float: right;
+	}
+}
+
+
+//Sets the margin for each element.
+//Margin is balanced to both sides.
+.mw-ui-gutter(@gutter){
+	padding-left: (@gutter / 2);
+	padding-right: (@gutter / 2);
+}
+
+//Proportions. Mixins with predefined widths
+
+.mw-ui-one-whole(){
+	.mw-ui-item(1);
+}
+.mw-ui-one-half(){
+	.mw-ui-item(1/2);
+}
+.mw-ui-one-third(){
+	.mw-ui-item(1/3);
+}
+.mw-ui-two-thirds(){
+	.mw-ui-item(2/3);
+}
+.mw-ui-one-quarter(){
+	.mw-ui-item(1/4);
+}
+.mw-ui-two-quarters(){
+	.mw-ui-item(2/4);
+}
+.mw-ui-three-quarters(){
+	.mw-ui-item(3/4);
+}
+.mw-ui-one-fifth(){
+	.mw-ui-item(1/5);
+}
+.mw-ui-two-fifths(){
+	.mw-ui-item(2/5);
+}
+.mw-ui-three-fifths(){
+	.mw-ui-item;
+	width: 60%(3/5);
+}
+.mw-ui-four-fifths(){
+	.mw-ui-item(4/5);
+}
+.mw-ui-one-sixth(){
+	.mw-ui-item(1/6);
+}
+.mw-ui-two-sixths(){
+	.mw-ui-item(2/6);
+}
+.mw-ui-three-sixths(){
+	.mw-ui-item(3/6);
+}
+.mw-ui-four-sixths(){
+	.mw-ui-item(4/6);
+}
+.mw-ui-five-sixths(){
+	.mw-ui-item(5/6);
+}
+.mw-ui-one-eighth(){
+	.mw-ui-item(1/8);
+}
+.mw-ui-two-eighths(){
+	.mw-ui-item(2/8);
+}
+.mw-ui-three-eighths(){
+	.mw-ui-item(3/8);
+}
+.mw-ui-four-eighths(){
+	.mw-ui-item(4/8);
+}
+.mw-ui-five-eighths(){
+	.mw-ui-item(5/8);
+}
+.mw-ui-six-eighths(){
+	.mw-ui-item(6/8);
+}
+.mw-ui-seven-eighths(){
+	.mw-ui-item(7/8);
+}
+.mw-ui-one-tenth(){
+	.mw-ui-item(1/10);
+}
+.mw-ui-two-tenths(){
+	.mw-ui-item(2/10);
+}
+.mw-ui-three-tenths(){
+	.mw-ui-item(3/10);
+}
+.mw-ui-four-tenths(){
+	.mw-ui-item(4/10);
+}
+.mw-ui-five-tenths(){
+	.mw-ui-item(5/10);
+}
+.mw-ui-six-tenths(){
+	.mw-ui-item(6/10);
+}
+.mw-ui-seven-tenths(){
+	.mw-ui-item(7/10);
+}
+.mw-ui-eight-tenths(){
+	.mw-ui-item(8/10);
+}
+.mw-ui-nine-tenths(){
+	.mw-ui-item(9/10);
+}
+.mw-ui-one-twelfth(){
+	.mw-ui-item(1/12);
+}
+.mw-ui-two-twelfths(){
+	.mw-ui-item(2/12);
+}
+.mw-ui-three-twelfths(){
+	.mw-ui-item(3/12);
+}
+.mw-ui-four-twelfths(){
+	.mw-ui-item(4/12);
+}
+.mw-ui-five-twelfths(){
+	.mw-ui-item(5/12);
+}
+.mw-ui-six-twelfths(){
+	.mw-ui-item(6/12);
+}
+.mw-ui-seven-twelfths(){
+	.mw-ui-item(7/12);
+}
+.mw-ui-eight-twelfths(){
+	.mw-ui-item(8/12);
+}
+.mw-ui-nine-twelfths(){
+	.mw-ui-item(9/12);
+}
+.mw-ui-ten-twelfths(){
+	.mw-ui-item(10/12);
+}
+.mw-ui-eleven-twelfths(){
+	.mw-ui-item(11/12);
+}
+
+//Visibility control.
+.mw-ui-hidden(){
+	display: none;
+}
