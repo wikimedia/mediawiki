@@ -238,6 +238,39 @@ class SpecialContributions extends IncludableSpecialPage {
 	}
 
 	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * @param string $search Prefix to search for
+	 * @param integer $limit Maximum number of results to return
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit = 10 ) {
+		// Prepare parameters for nested request
+		$fauxReqArr = array(
+			'action' => 'query',
+			'list' => 'allusers',
+			'aulimit' => $limit,
+			'auprefix' => $search,
+		);
+
+		// Create the request
+		$fauxReq = new FauxRequest( $fauxReqArr );
+
+		// Execute
+		$module = new ApiMain( $fauxReq );
+		$module->execute();
+
+		// Get data array
+		$data = $module->getResultData();
+
+		$data = array_map( function ( $userinfo ) {
+			return $userinfo['name'];
+		}, $data['query']['allusers'] );
+		
+		return $data;
+	}
+
+	/**
 	 * Generates the subheading with links
 	 * @param User $userObj User object for the target
 	 * @return string Appropriately-escaped HTML to be output literally

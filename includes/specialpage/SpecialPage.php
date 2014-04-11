@@ -330,6 +330,25 @@ class SpecialPage {
 	}
 
 	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * For example, if a page supports subpages "foo", "bar" and "baz" (as in Special:PageName/foo,
+	 * etc.):
+	 *
+	 *   - `prefixSearchSubpages( "ba" )` should return `array( "bar", "baz" )`
+	 *   - `prefixSearchSubpages( "f" )` should return `array( "foo" )`
+	 *   - `prefixSearchSubpages( "z" )` should return `array()`
+	 *   - `prefixSearchSubpages( "" )` should return `array( foo", "bar", "baz" )`
+	 *
+	 * @param string $search Prefix to search for
+	 * @param integer $limit Maximum number of results to return
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit = 10 ) {
+		return array();
+	}
+
+	/**
 	 * Sets headers - this should be called from the execute() method of all derived classes!
 	 */
 	function setHeaders() {

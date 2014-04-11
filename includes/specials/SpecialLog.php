@@ -115,6 +115,22 @@ class SpecialLog extends SpecialPage {
 		$this->show( $opts, $qc );
 	}
 
+	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * @param string $search Prefix to search for
+	 * @param integer $limit Maximum number of results to return
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit = 10 ) {
+		global $wgLogTypes;
+		$subpages = $wgLogTypes;
+		$subpages[] = 'all';
+		sort( $subpages );
+		$escaped = preg_quote( $search );
+		return array_slice( preg_grep( "/^$escaped/i", $subpages ), 0, $limit );
+	}
+
 	private function parseParams( FormOptions $opts, $par ) {
 		global $wgLogTypes;
 
