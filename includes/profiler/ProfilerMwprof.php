@@ -151,9 +151,6 @@ class ProfilerMwprof extends Profiler {
 
 		$this->close();
 
-		$sock = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
-		socket_connect( $sock, $wgUDPProfilerHost, $wgUDPProfilerPort );
-		$bufferLength = 0;
 		$buffer = '';
 		foreach ( $this->mCollated as $name => $entry ) {
 			$count = $entry['count'];
@@ -168,23 +165,9 @@ class ProfilerMwprof extends Profiler {
 					$wall->m1, $wall->m2, $wall->min, $wall->max );
 			}
 
-			$encoded = MWMessagePack::pack( $data );
-			$length = strlen( $encoded );
+			$buffer .= MWMessagePack::pack( $data );
+		}
 
-			// If adding this entry would cause the size of the buffer to
-			// exceed the standard ethernet MTU size less the UDP header,
-			// send all pending data and reset the buffer. Otherwise, continue
-			// accumulating entries into the current buffer.
-			if ( $length + $bufferLength > 1450 ) {
-				socket_send( $sock, $buffer, $bufferLength, 0 );
-				$buffer = '';
-				$bufferLength = 0;
-			}
-			$buffer .= $encoded;
-			$bufferLength += $length;
-		}
-		if ( $bufferLength !== 0 ) {
-			socket_send( $sock, $buffer, $bufferLength, 0 );
-		}
+		wfErrorLog( $buffer, "udp://$wgUDPProfilerHost:$wgUDPProfilerPort" );
 	}
 }

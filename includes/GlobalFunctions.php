@@ -1169,48 +1169,60 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
  */
 function wfErrorLog( $text, $file ) {
 	if ( substr( $file, 0, 4 ) == 'udp:' ) {
-		# Needs the sockets extension
-		if ( preg_match( '!^(tcp|udp):(?://)?\[([0-9a-fA-F:]+)\]:(\d+)(?:/(.*))?$!', $file, $m ) ) {
+		if ( preg_match( '!^(tcp|udp):(?://)?(\[[0-9a-fA-F:]+\]):(\d+)(?:/(.*))?$!', $file, $m ) ) {
 			// IPv6 bracketed host
+			$protocol = $m[1];
 			$host = $m[2];
-			$port = intval( $m[3] );
+			$port = $m[3];
 			$prefix = isset( $m[4] ) ? $m[4] : false;
-			$domain = AF_INET6;
 		} elseif ( preg_match( '!^(tcp|udp):(?://)?([a-zA-Z0-9.-]+):(\d+)(?:/(.*))?$!', $file, $m ) ) {
+			$protocol = $m[1];
 			$host = $m[2];
-			if ( !IP::isIPv4( $host ) ) {
-				$host = gethostbyname( $host );
-			}
-			$port = intval( $m[3] );
+			$port = $m[3];
 			$prefix = isset( $m[4] ) ? $m[4] : false;
-			$domain = AF_INET;
 		} else {
 			throw new MWException( __METHOD__ . ': Invalid UDP specification' );
 		}
 
-		// Clean it up for the multiplexer
-		if ( strval( $prefix ) !== '' ) {
-			$text = preg_replace( '/^/m', $prefix . ' ', $text );
-
-			// Limit to 64KB
-			if ( strlen( $text ) > 65506 ) {
-				$text = substr( $text, 0, 65506 );
-			}
-
-			if ( substr( $text, -1 ) != "\n" ) {
-				$text .= "\n";
-			}
-		} elseif ( strlen( $text ) > 65507 ) {
-			$text = substr( $text, 0, 65507 );
-		}
-
-		$sock = socket_create( $domain, SOCK_DGRAM, SOL_UDP );
-		if ( !$sock ) {
+		$socket = stream_socket_client( "$protocol://$host:$port" );
+		if ( !$socket ) {
 			return;
 		}
 
-		socket_sendto( $sock, $text, strlen( $text ), 0, $host, $port );
-		socket_close( $sock );
+		// Clean it up for the multiplexer
+		if ( $prefix !== false && $prefix !== '' ) {
+			$text = preg_replace( '/^/m', $prefix . ' ', $text );
+		}
+
+		if ( substr( $text, -1 ) != "\n" ) {
+			$text .= "\n";
+		}
+
+		if ( strlen( $text ) <= 1400 ) {
+			fwrite( $socket, $text );
+		} else {
+			// Remove the last item from the array since we ensured 10 lines
+			// above that the string was ending by a new line.
+			$lines = array_slice( explode( "\n", $text ), 0, -1 );
+			$packet = '';
+			$packetLen = 0;
+			foreach ( $lines as $line ) {
+				// One is for the extra "\n"
+				$lineLen = strlen( $line ) + 1;
+				if ( $packetLen + $lineLen > 1400 ) {
+					fwrite( $socket, $packet );
+					$packet = '';
+					$packetLen = 0;
+				}
+				$packet .= $line . "\n";
+				$packetLen += $lineLen;
+			}
+			if ( $packet != '' ) {
+				fwrite( $socket, $packet );
+			}
+		}
+
+		fclose( $socket );
 	} else {
 		wfSuppressWarnings();
 		$exists = file_exists( $file );
