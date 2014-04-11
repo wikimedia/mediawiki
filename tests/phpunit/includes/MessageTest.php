@@ -120,8 +120,11 @@ class MessageTest extends MediaWikiLangTestCase {
 	public function testInLanguage() {
 		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->inLanguage( 'en' )->text() );
 		$this->assertEquals( 'Заглавная страница', wfMessage( 'mainpage' )->inLanguage( 'ru' )->text() );
-		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->inLanguage( Language::factory( 'en' ) )->text() );
-		$this->assertEquals( 'Заглавная страница', wfMessage( 'mainpage' )->inLanguage( Language::factory( 'ru' ) )->text() );
+
+		// NOTE: make sure internal caching of the message text is reset appropriately
+		$msg = wfMessage( 'mainpage' );
+		$this->assertEquals( 'Main Page', $msg->inLanguage( Language::factory( 'en' ) )->text() );
+		$this->assertEquals( 'Заглавная страница', $msg->inLanguage( Language::factory( 'ru' ) )->text() );
 	}
 
 	/**
@@ -245,22 +248,32 @@ class MessageTest extends MediaWikiLangTestCase {
 	/**
 	 * @covers Message::inContentLanguage
 	 */
-	public function testInContentLanguageDisabled() {
+	public function testInContentLanguage() {
 		$this->setMwGlobals( 'wgLang', Language::factory( 'fr' ) );
 
-		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->inContentLanguage()->plain(), 'ForceUIMsg disabled' );
+		// NOTE: make sure internal caching of the message text is reset appropriately
+		$msg = wfMessage( 'mainpage' );
+		$this->assertEquals( 'Hauptseite', $msg->inLanguage( 'de' )->plain(), "inLanguage( 'de' )" );
+		$this->assertEquals( 'Main Page', $msg->inContentLanguage()->plain(), "inContentLanguage()" );
+		$this->assertEquals( 'Accueil', $msg->inLanguage( 'fr' )->plain(), "inLanguage( 'fr' )" );
 	}
 
 	/**
 	 * @covers Message::inContentLanguage
 	 */
-	public function testInContentLanguageEnabled() {
+	public function testInContentLanguageOverride() {
 		$this->setMwGlobals( array(
 			'wgLang' => Language::factory( 'fr' ),
 			'wgForceUIMsgAsContentMsg' => array( 'mainpage' ),
 		) );
 
-		$this->assertEquals( 'Accueil', wfMessage( 'mainpage' )->inContentLanguage()->plain(), 'ForceUIMsg enabled' );
+		// NOTE: make sure internal caching of the message text is reset appropriately.
+		// NOTE: wgForceUIMsgAsContentMsg forces the messages *current* language to be used.
+		$msg = wfMessage( 'mainpage' );
+		$this->assertEquals( 'Accueil', $msg->inContentLanguage()->plain(), 'inContentLanguage() with ForceUIMsg override enabled' );
+		$this->assertEquals( 'Main Page', $msg->inLanguage( 'en' )->plain(), "inLanguage( 'en' )" );
+		$this->assertEquals( 'Main Page', $msg->inContentLanguage()->plain(), 'inContentLanguage() with ForceUIMsg override enabled' );
+		$this->assertEquals( 'Hauptseite', $msg->inLanguage( 'de' )->plain(), "inLanguage( 'de' )" );
 	}
 
 	/**
