@@ -94,7 +94,6 @@ class FixDoubleRedirects extends Maintenance {
 		foreach ( $res as $row ) {
 			$titleA = Title::makeTitle( $row->pa_namespace, $row->pa_title );
 			$titleB = Title::makeTitle( $row->pb_namespace, $row->pb_title );
-			RequestContext::getMain()->setTitle( $titleA );
 
 			$processedTitles .= "* [[$titleA]]\n";
 
