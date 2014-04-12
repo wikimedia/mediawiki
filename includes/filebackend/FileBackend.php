@@ -104,9 +104,10 @@ abstract class FileBackend {
 	/** @var FileJournal */
 	protected $fileJournal;
 
-	/** Flags for supported features */
-	const ATTR_HEADERS = 1;
-	const ATTR_METADATA = 2;
+	/** Bitfield flags for supported features */
+	const ATTR_HEADERS = 1; // files can be tagged with standard HTTP headers
+	const ATTR_METADATA = 2; // files can be stored with metadata key/values
+	const ATTR_UNICODE_PATHS = 4; // files can have Unicode paths (not just ASCII)
 
 	/**
 	 * Create a new backend instance from configuration.
@@ -211,7 +212,7 @@ abstract class FileBackend {
 	 * @since 1.23
 	 */
 	public function getFeatures() {
-		return 0;
+		return self::ATTR_UNICODE_PATHS;
 	}
 
 	/**
@@ -1298,6 +1299,29 @@ abstract class FileBackend {
 	 */
 	abstract public function getScopedLocksForOps( array $ops, Status $status );
 
+	/**
+	 * Encode a container-relative path to match what backend server expects
+	 *
+	 * This path does not have to be one that starts at the root of a container.
+	 * This is useful for generating URLs that point directly to a backend server.
+	 * Note that this does not handle URL encoding.
+	 *
+	 * @param string $path
+	 * @return string
+	 */
+	abstract public function encodeContainerRelativePath( $path );
+
+	/**
+	 * Decode a container-relative path from what the backend server expects
+	 *
+	 * This path does not have to be one that starts at the root of a container.
+	 * This is useful for handling URLs that point directly to a backend server.
+	 * Note that this does not handle URL decoding.
+	 *
+	 * @param string $path
+	 * @return string
+	 */
+	abstract public function decodeContainerRelativePath( $path );
 	/**
 	 * Get the root storage path of this backend.
 	 * All container paths are "subdirectories" of this path.

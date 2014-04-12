@@ -1285,7 +1285,8 @@ abstract class File {
 	 * @return string
 	 */
 	function getUrlRel() {
-		return $this->getHashPath() . rawurlencode( $this->getName() );
+		return $this->repo->encodeRelForBackend( $this->getHashPath() ) .
+			rawurlencode( $this->repo->encodeRelForBackend( $this->getName() ) );
 	}
 
 	/**
@@ -1366,11 +1367,12 @@ abstract class File {
 	function getArchiveUrl( $suffix = false ) {
 		$this->assertRepoDefined();
 		$ext = $this->getExtension();
-		$path = $this->repo->getZoneUrl( 'public', $ext ) . '/archive/' . $this->getHashPath();
+		$path = $this->repo->getZoneUrl( 'public', $ext ) . '/' .
+			$this->repo->encodeRelForBackend( 'archive/' . $this->getHashPath() );
 		if ( $suffix === false ) {
 			$path = substr( $path, 0, -1 );
 		} else {
-			$path .= rawurlencode( $suffix );
+			$path .= rawurlencode( $this->repo->encodeRelForBackend( $suffix ) );
 		}
 
 		return $path;
@@ -1386,12 +1388,13 @@ abstract class File {
 	function getArchiveThumbUrl( $archiveName, $suffix = false ) {
 		$this->assertRepoDefined();
 		$ext = $this->getExtension();
-		$path = $this->repo->getZoneUrl( 'thumb', $ext ) . '/archive/' .
-			$this->getHashPath() . rawurlencode( $archiveName ) . "/";
+		$path = $this->repo->getZoneUrl( 'thumb', $ext ) . '/' .
+			$this->repo->encodeRelForBackend( 'archive/' . $this->getHashPath() ) .
+			rawurlencode( $this->repo->encodeRelForBackend( $archiveName ) ) . "/";
 		if ( $suffix === false ) {
 			$path = substr( $path, 0, -1 );
 		} else {
-			$path .= rawurlencode( $suffix );
+			$path .= rawurlencode( $this->repo->encodeRelForBackend( $suffix ) );
 		}
 
 		return $path;
@@ -1409,7 +1412,7 @@ abstract class File {
 		$ext = $this->getExtension();
 		$path = $this->repo->getZoneUrl( $zone, $ext ) . '/' . $this->getUrlRel();
 		if ( $suffix !== false ) {
-			$path .= '/' . rawurlencode( $suffix );
+			$path .= '/' . rawurlencode( $this->repo->encodeRelForBackend( $suffix ) );
 		}
 
 		return $path;
