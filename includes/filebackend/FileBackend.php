@@ -1196,8 +1196,7 @@ abstract class FileBackend {
 	 *
 	 * @param array $paths Storage paths
 	 */
-	public function preloadCache( array $paths ) {
-	}
+	abstract public function preloadCache( array $paths );
 
 	/**
 	 * Invalidate any in-process file stat and property cache.
@@ -1207,8 +1206,7 @@ abstract class FileBackend {
 	 *
 	 * @param array $paths Storage paths (optional)
 	 */
-	public function clearCache( array $paths = null ) {
-	}
+	abstract public function clearCache( array $paths = null );
 
 	/**
 	 * Preload file stat information (concurrently if possible) into in-process cache.
