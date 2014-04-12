@@ -1,0 +1,2 @@
+This directory is for auto-generated CSS and LESS documentation, a "style guide."
+Run make in the docs/kss subdirectory to build the style guide.

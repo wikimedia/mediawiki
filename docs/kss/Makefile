@@ -7,7 +7,7 @@ kss: nodecheck
 # KSS style guide
 	$(eval KSS_RL_TMP := $(shell mktemp /tmp/tmp.XXXXXXXXXX))
 	@curl -sG "${MEDIAWIKI_LOAD_URL}?modules=mediawiki.ui|mediawiki.ui.button&only=styles" > $(KSS_RL_TMP)
-	@node_modules/.bin/kss-node mediawiki.ui mediawiki.ui/docs --css $(KSS_RL_TMP) -t styleguide-template
+	@node_modules/.bin/kss-node ../../resources/src/mediawiki.ui ../styleguide --css $(KSS_RL_TMP) -t styleguide-template
 	@rm $(KSS_RL_TMP)
 
 kssopen: kss
