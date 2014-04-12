@@ -319,6 +319,25 @@ class FileRepo {
 	}
 
 	/**
+	 * @return bool Whether non-ASCII path characters are allowed
+	 */
+	public function backendSupportsUnicodePaths() {
+		return ( $this->getBackend()->getFeatures() & FileBackend::ATTR_UNICODE_PATHS );
+	}
+
+	/**
+	 * Encode a zone-relative path in case the FileBackend does automatic encoding.
+	 *
+	 * This path does not have to be one that starts at the root of a zone.
+	 *
+	 * @param string $path
+	 * @return string
+	 */
+	public function encodeRelForBackend( $path ) {
+		return $this->getBackend()->encodeContainerRelativePath( $path );
+	}
+
+	/**
 	 * Get the backend storage path corresponding to a virtual URL.
 	 * Use this function wisely.
 	 *

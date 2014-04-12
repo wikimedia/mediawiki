@@ -680,4 +680,12 @@ class FileBackendMultiWrite extends FileBackend {
 		// Actually acquire the locks
 		return array( $this->getScopedFileLocks( $pbPaths, 'mixed', $status ) );
 	}
+
+	public function encodeContainerRelativePath( $path ) {
+		$this->backends[$this->masterIndex]->encodeContainerRelativePath( $path );
+	}
+
+	public function decodeContainerRelativePath( $path ) {
+		$this->backends[$this->masterIndex]->decodeContainerRelativePath( $path );
+	}
 }
