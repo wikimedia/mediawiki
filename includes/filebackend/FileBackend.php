@@ -104,9 +104,10 @@ abstract class FileBackend {
 	/** @var FileJournal */
 	protected $fileJournal;
 
-	/** Flags for supported features */
-	const ATTR_HEADERS = 1;
-	const ATTR_METADATA = 2;
+	/** Bitfield flags for supported features */
+	const ATTR_HEADERS = 1; // files can be tagged with standard HTTP headers
+	const ATTR_METADATA = 2; // files can be stored with metadata key/values
+	const ATTR_UNICODE_PATHS = 4; // files can have Unicode paths (not just ASCII)
 
 	/**
 	 * Create a new backend instance from configuration.
@@ -211,7 +212,7 @@ abstract class FileBackend {
 	 * @since 1.23
 	 */
 	public function getFeatures() {
-		return 0;
+		return self::ATTR_UNICODE_PATHS;
 	}
 
 	/**
