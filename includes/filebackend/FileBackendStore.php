@@ -46,6 +46,10 @@ abstract class FileBackendStore extends FileBackend {
 	/** @var array Map of container names to sharding config */
 	protected $shardViaHashLevels = array();
 
+	/** @var callback|null Method to encode path elements */
+	protected $pathEncoderCallback;
+	/** @var callback|null Method to decode path elements */
+	protected $pathDecoderCallback;
 	/** @var callable Method to get the MIME type of files */
 	protected $mimeCallback;
 
@@ -58,6 +62,9 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackend::__construct()
 	 * Additional $config params include:
+	 *   - pathEncoding : One of (none,base64url). Any encoding will be a URL-safe and
+	 *                    will not use "/" nor "." as encoding output. Forward slashes will
+	 *                    always be preserved. The final file extension will be preserved.
 	 *   - mimeCallback : Callback that takes (storage path, content, file system path) and
 	 *                    returns the MIME type of the file or 'unknown/unknown'. The file
 	 *                    system path parameter should be used if the content one is null.
@@ -66,6 +73,18 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
+		$encoding = isset( $config['pathEncoding'] ) ? $config['pathEncoding'] : 'none';
+		if ( $encoding === 'base64url' ) {
+			$this->pathEncoderCallback = function( $p ) {
+				return rtrim( strtr( base64_encode( $p ), '+/', '-_' ), '=' );
+			};
+			$this->pathDecoderCallback = function( $p ) {
+				return base64_decode(
+					str_pad( strtr( $p , '-_', '+/' ), strlen( $p ) % 4, '=', STR_PAD_RIGHT ) );
+			};
+		} elseif ( $encoding !== 'none' ) {
+			throw new FileBackendError( "Invalid path encoding '$encoding'." );
+		}
 		$this->mimeCallback = isset( $config['mimeCallback'] )
 			? $config['mimeCallback']
 			: function ( $storagePath, $content, $fsPath ) {
@@ -943,14 +962,20 @@ abstract class FileBackendStore extends FileBackend {
 		}
 		if ( $shard !== null ) {
 			// File listing is confined to a single container/shard
-			return $this->getDirectoryListInternal( $fullCont, $dir, $params );
+			$iter = $this->getDirectoryListInternal( $fullCont, $dir, $params );
 		} else {
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
 			// File listing spans multiple containers/shards
 			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
 
-			return new FileBackendStoreShardDirIterator( $this,
+			$iter = new FileBackendStoreShardDirIterator( $this,
 				$fullCont, $dir, $this->getContainerSuffixes( $shortCont ), $params );
+		}
+
+		if ( $iter === null ) {
+			return null;
+		} else {
+			return new MappedIterator( $iter, array( $this, 'decodeContainerRelPathInternal' ) );
 		}
 	}
 
@@ -973,14 +998,20 @@ abstract class FileBackendStore extends FileBackend {
 		}
 		if ( $shard !== null ) {
 			// File listing is confined to a single container/shard
-			return $this->getFileListInternal( $fullCont, $dir, $params );
+			$iter = $this->getFileListInternal( $fullCont, $dir, $params );
 		} else {
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
 			// File listing spans multiple containers/shards
 			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
 
-			return new FileBackendStoreShardFileIterator( $this,
+			$iter = new FileBackendStoreShardFileIterator( $this,
 				$fullCont, $dir, $this->getContainerSuffixes( $shortCont ), $params );
+		}
+
+		if ( $iter === null ) {
+			return null;
+		} else {
+			return new MappedIterator( $iter, array( $this, 'decodeContainerRelPathInternal' ) );
 		}
 	}
 
@@ -1008,7 +1039,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @throws FileBackendError
 	 */
 	final public function getOperationsInternal( array $ops ) {
-		$supportedOps = array(
+		static $supportedOps = array(
 			'store' => 'StoreFileOp',
 			'copy' => 'CopyFileOp',
 			'move' => 'MoveFileOp',
@@ -1580,7 +1611,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return string|null Path or null if not valid
 	 */
 	protected function resolveContainerPath( $container, $relStoragePath ) {
-		return $relStoragePath;
+		return $this->encodeContainerRelPathInternal( $relStoragePath );
 	}
 
 	/**
@@ -1823,6 +1854,74 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	protected function getContentType( $storagePath, $content, $fsPath ) {
 		return call_user_func_array( $this->mimeCallback, func_get_args() );
+	}
+
+	/**
+	 * Encode a container-relative path to match what backend server expects
+	 *
+	 * This path does not have to be one that starts at the root of a container.
+	 * This is useful for generating URLs that point directly to a backend server.
+	 * Note that this does not handle URL encoding.
+	 *
+	 * Do not call this function from places outside FileBackendStore.
+	 *
+	 * @param string $path
+	 * @return string
+	 */
+	public function encodeContainerRelPathInternal( $path ) {
+		$encoder = $this->pathEncoderCallback;
+		if ( $encoder === null ) {
+			return $path;
+		}
+
+		$parts = array();
+		if ( strlen( $path ) ) {
+			foreach ( explode( '/', $path ) as $relPart ) {
+				$i = strrpos( $relPart, '.' );
+				// Do not encode the final extension
+				$encRelPart = $encoder( ( $i !== false ) ? substr( $relPart, 0, $i ) : $relPart );
+				if ( $i !== false ) { // preserve extension
+					$encRelPart .= substr( $relPart, $i );
+				}
+				$parts[] = $encRelPart;
+			}
+		}
+
+		return implode( '/', $parts );
+	}
+
+	/**
+	 * Decode a container-relative path from what the backend server expects
+	 *
+	 * This path does not have to be one that starts at the root of a container.
+	 * This is useful for handling URLs that point directly to a backend server.
+	 * Note that this does not handle URL decoding.
+	 *
+	 * Do not call this function from places outside FileBackendStore.
+	 *
+	 * @param string $path
+	 * @return string
+	 */
+	public function decodeContainerRelPathInternal( $path ) {
+		$decoder = $this->pathDecoderCallback;
+		if ( $decoder === null ) {
+			return $path;
+		}
+
+		$parts = array();
+		if ( strlen( $path ) ) {
+			foreach ( explode( '/', $path ) as $relPart ) {
+				$i = strrpos( $relPart, '.' );
+				// Do not encode the final extension
+				$decRelPart = $decoder( ( $i !== false ) ? substr( $relPart, 0, $i ) : $relPart );
+				if ( $i !== false ) { // preserve extension
+					$decRelPart .= substr( $relPart, $i );
+				}
+				$parts[] = $decRelPart;
+			}
+		}
+
+		return implode( '/', $parts );
 	}
 }
 

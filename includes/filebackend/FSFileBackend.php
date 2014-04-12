@@ -91,10 +91,13 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	public function getFeatures() {
-		return !wfIsWindows() ? FileBackend::ATTR_UNICODE_PATHS : 0;
+		return ( !wfIsWindows() || $this->pathEncoderCallback )
+			? FileBackend::ATTR_UNICODE_PATHS
+			: 0;
 	}
 
 	protected function resolveContainerPath( $container, $relStoragePath ) {
+		$relStoragePath = parent::resolveContainerPath( $container, $relStoragePath );
 		// Check that container has a root directory
 		if ( isset( $this->containerPaths[$container] ) || isset( $this->basePath ) ) {
 			// Check for sane relative paths (assume the base paths are OK)
