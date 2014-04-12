@@ -125,10 +125,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			$script = $this->getContent( $title );
 			if ( strval( $script ) !== '' ) {
 				$script = $this->validateScriptFile( $titleText, $script );
-				if ( strpos( $titleText, '*/' ) === false ) {
-					$scripts .= "/* $titleText */\n";
-				}
-				$scripts .= $script . "\n";
+				$scripts .= ResourceLoader::makeComment( $titleText ) . $script . "\n";
 			}
 		}
 		return $scripts;
@@ -162,9 +159,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( !isset( $styles[$media] ) ) {
 				$styles[$media] = array();
 			}
-			if ( strpos( $titleText, '*/' ) === false ) {
-				$style = "/* $titleText */\n" . $style;
-			}
+			$style = ResourceLoader::makeComment( $titleText ) . $style;
 			$styles[$media][] = $style;
 		}
 		return $styles;
