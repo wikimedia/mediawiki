@@ -406,6 +406,9 @@ function wfThumbAttemptKey( File $img, $thumbName ) {
 function wfExtractThumbRequestInfo( $thumbRel ) {
 	$repo = RepoGroup::singleton()->getLocalRepo();
 
+	// Handle and FileBackend decoding to get the UTF8 file name
+	$thumbRel = $repo->getBackend()->decodeContainerRelativePath( $thumbRel );
+
 	$hashDirReg = $subdirReg = '';
 	for ( $i = 0; $i < $repo->getHashLevels(); $i++ ) {
 		$subdirReg .= '[0-9a-f]';

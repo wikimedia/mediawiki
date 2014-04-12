@@ -255,7 +255,8 @@ class OldLocalFile extends LocalFile {
 	 * @return string
 	 */
 	function getUrlRel() {
-		return 'archive/' . $this->getHashPath() . rawurlencode( $this->getArchiveName() );
+		return $this->repo->encodeRelForBackend( 'archive/' . $this->getHashPath() ) .
+			rawurlencode( $this->repo->encodeRelForBackend( $this->getArchiveName() ) );
 	}
 
 	function upgradeRow() {
