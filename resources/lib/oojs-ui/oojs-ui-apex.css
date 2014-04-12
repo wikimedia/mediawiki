@@ -414,6 +414,10 @@
   opacity: 0.2;
 }
 
+.oo-ui-listToolGroup.oo-ui-widget-disabled {
+  color: #ccc;
+}
+
 .oo-ui-listToolGroup.oo-ui-widget-disabled .oo-ui-indicatedElement-indicator,
 .oo-ui-listToolGroup.oo-ui-widget-disabled .oo-ui-iconedElement-icon {
   opacity: 0.2;
@@ -445,7 +449,6 @@
 
 .oo-ui-menuToolGroup.oo-ui-widget-disabled {
   color: #ccc;
-  text-shadow: 0 1px 1px #fff;
   border-color: rgba(0, 0, 0, 0.05);
 }
 

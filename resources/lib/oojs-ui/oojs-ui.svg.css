@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (ac6848398c)
+ * OOjs UI v0.1.0-pre (eca1fc20e7)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Apr 09 2014 17:58:17 GMT-0700 (PDT)
+ * Date: Fri Apr 11 2014 16:47:56 GMT-0700 (PDT)
  */
 
 /* Textures */
@@ -156,6 +156,10 @@
   padding: 0;
   margin: 0;
   background: none;
+}
+
+.oo-ui-frame-content:focus {
+  outline: none;
 }
 
 .oo-ui-toolbar {
