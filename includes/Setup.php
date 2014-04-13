@@ -1,6 +1,10 @@
 <?php
 /**
- * Include most things that's need to customize the site.
+ * Include most things that are needed to make %MediaWiki work.
+ *
+ * This file is included by WebStart.php and doMaintenance.php so that both
+ * web and maintenance scripts share a final set up phase to include necessary
+ * files and create global object variables.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,12 +31,6 @@
 if ( !defined( 'MEDIAWIKI' ) ) {
 	exit( 1 );
 }
-
-# The main wiki script and things like database
-# conversion and maintenance scripts all share a
-# common setup of including lots of classes and
-# setting up a few globals.
-#
 
 $fname = 'Setup.php';
 wfProfileIn( $fname );
@@ -61,8 +59,8 @@ if ( $wgArticlePath === false ) {
 }
 
 if ( !empty( $wgActionPaths ) && !isset( $wgActionPaths['view'] ) ) {
-	# 'view' is assumed the default action path everywhere in the code
-	# but is rarely filled in $wgActionPaths
+	// 'view' is assumed the default action path everywhere in the code
+	// but is rarely filled in $wgActionPaths
 	$wgActionPaths['view'] = $wgArticlePath;
 }
 
@@ -249,9 +247,9 @@ foreach ( $wgForeignFileRepos as &$repo ) {
 unset( $repo ); // no global pollution; destroy reference
 
 if ( $wgRCFilterByAge ) {
-	# # Trim down $wgRCLinkDays so that it only lists links which are valid
-	# # as determined by $wgRCMaxAge.
-	# # Note that we allow 1 link higher than the max for things like 56 days but a 60 day link.
+	// Trim down $wgRCLinkDays so that it only lists links which are valid
+	// as determined by $wgRCMaxAge.
+	// Note that we allow 1 link higher than the max for things like 56 days but a 60 day link.
 	sort( $wgRCLinkDays );
 	for ( $i = 0; $i < count( $wgRCLinkDays ); $i++ ) {
 		if ( $wgRCLinkDays[$i] >= $wgRCMaxAge / ( 3600 * 24 ) ) {
@@ -269,7 +267,7 @@ if ( $wgLocalInterwiki ) {
 	array_unshift( $wgLocalInterwikis, $wgLocalInterwiki );
 }
 
-# Set default shared prefix
+// Set default shared prefix
 if ( $wgSharedPrefix === false ) {
 	$wgSharedPrefix = $wgDBprefix;
 }
@@ -328,31 +326,31 @@ if ( is_array( $wgExtraNamespaces ) ) {
 	$wgCanonicalNamespaceNames = $wgCanonicalNamespaceNames + $wgExtraNamespaces;
 }
 
-# These are now the same, always
-# To determine the user language, use $wgLang->getCode()
+// These are now the same, always
+// To determine the user language, use $wgLang->getCode()
 $wgContLanguageCode = $wgLanguageCode;
 
-# Easy to forget to falsify $wgShowIPinHeader for static caches.
-# If file cache or squid cache is on, just disable this (DWIMD).
-# Do the same for $wgDebugToolbar.
+// Easy to forget to falsify $wgShowIPinHeader for static caches.
+// If file cache or squid cache is on, just disable this (DWIMD).
+// Do the same for $wgDebugToolbar.
 if ( $wgUseFileCache || $wgUseSquid ) {
 	$wgShowIPinHeader = false;
 	$wgDebugToolbar = false;
 }
 
-# Doesn't make sense to have if disabled.
+// Doesn't make sense to have if disabled.
 if ( !$wgEnotifMinorEdits ) {
 	$wgHiddenPrefs[] = 'enotifminoredits';
 }
 
-# We always output HTML5 since 1.22, overriding these is no longer supported
-# we set them here for extensions that depend on its value.
+// We always output HTML5 since 1.22, overriding these is no longer supported
+// we set them here for extensions that depend on its value.
 $wgHtml5 = true;
 $wgXhtmlDefaultNamespace = 'http://www.w3.org/1999/xhtml';
 $wgJsMimeType = 'text/javascript';
 
 if ( !$wgHtml5Version && $wgAllowRdfaAttributes ) {
-	# see http://www.w3.org/TR/rdfa-in-html/#document-conformance
+	// see http://www.w3.org/TR/rdfa-in-html/#document-conformance
 	if ( $wgMimeType == 'application/xhtml+xml' ) {
 		$wgHtml5Version = 'XHTML+RDFa 1.0';
 	} else {
@@ -360,7 +358,7 @@ if ( !$wgHtml5Version && $wgAllowRdfaAttributes ) {
 	}
 }
 
-# Blacklisted file extensions shouldn't appear on the "allowed" list
+// Blacklisted file extensions shouldn't appear on the "allowed" list
 $wgFileExtensions = array_values( array_diff ( $wgFileExtensions, $wgFileBlacklist ) );
 
 if ( $wgArticleCountMethod === null ) {
@@ -372,7 +370,7 @@ if ( $wgInvalidateCacheOnLocalSettingsChange ) {
 }
 
 if ( $wgNewUserLog ) {
-	# Add a new log type
+	// Add a new log type
 	$wgLogTypes[] = 'newusers';
 	$wgLogNames['newusers'] = 'newuserlogpage';
 	$wgLogHeaders['newusers'] = 'newuserlogpagetext';
@@ -427,8 +425,8 @@ if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
 	wfWarn( 'Secure login was enabled on a server that only supports HTTP or HTTPS. Disabling secure login.' );
 }
 
-# Now that GlobalFunctions is loaded, set defaults that depend
-# on it.
+// Now that GlobalFunctions is loaded, set defaults that depend
+// on it.
 if ( $wgTmpDirectory === false ) {
 	wfProfileIn( $fname . '-tempDir' );
 	$wgTmpDirectory = wfTempDir();
@@ -469,7 +467,7 @@ if ( $wgProfileOnly ) {
 wfProfileOut( $fname . '-defaults2' );
 wfProfileIn( $fname . '-misc1' );
 
-# Raise the memory limit if it's too low
+// Raise the memory limit if it's too low
 wfMemoryLimit();
 
 /**
@@ -488,13 +486,13 @@ if ( is_null( $wgLocalTZoffset ) ) {
 	$wgLocalTZoffset = date( 'Z' ) / 60;
 }
 
-# Useful debug output
+// Useful debug output
 if ( $wgCommandLineMode ) {
 	$wgRequest = new FauxRequest( array() );
 
 	wfDebug( "\n\nStart command line script $self\n" );
 } else {
-	# Can't stub this one, it sets up $_GET and $_REQUEST in its constructor
+	// Can't stub this one, it sets up $_GET and $_REQUEST in its constructor
 	$wgRequest = new WebRequest;
 
 	$debug = "\n\nStart request {$wgRequest->getMethod()} {$wgRequest->getRequestURL()}\n";
@@ -523,12 +521,12 @@ wfDebugLog( 'caches', 'main: ' . get_class( $wgMemc ) .
 
 wfProfileOut( $fname . '-memcached' );
 
-# # Most of the config is out, some might want to run hooks here.
+// Most of the config is out, some might want to run hooks here.
 wfRunHooks( 'SetupAfterCache' );
 
 wfProfileIn( $fname . '-session' );
 
-# If session.auto_start is there, we can't touch session name
+// If session.auto_start is there, we can't touch session name
 if ( !wfIniGetBool( 'session.auto_start' ) ) {
 	session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
 }
@@ -551,7 +549,7 @@ $wgContLang->initContLang();
 
 // Now that variant lists may be available...
 $wgRequest->interpolateTitle();
-$wgUser = RequestContext::getMain()->getUser(); # BackCompat
+$wgUser = RequestContext::getMain()->getUser(); // BackCompat
 
 /**
  * @var $wgLang Language
@@ -561,7 +559,7 @@ $wgLang = new StubUserLang;
 /**
  * @var OutputPage
  */
-$wgOut = RequestContext::getMain()->getOutput(); # BackCompat
+$wgOut = RequestContext::getMain()->getOutput(); // BackCompat
 
 /**
  * @var $wgParser Parser
@@ -581,12 +579,12 @@ $wgDeferredUpdateList = array();
 wfProfileOut( $fname . '-globals' );
 wfProfileIn( $fname . '-extensions' );
 
-# Extension setup functions for extensions other than skins
-# Entries should be added to this variable during the inclusion
-# of the extension file. This allows the extension to perform
-# any necessary initialisation in the fully initialised environment
+// Extension setup functions for extensions other than skins
+// Entries should be added to this variable during the inclusion
+// of the extension file. This allows the extension to perform
+// any necessary initialisation in the fully initialised environment
 foreach ( $wgExtensionFunctions as $func ) {
-	# Allow closures in PHP 5.3+
+	// Allow closures in PHP 5.3+
 	if ( is_object( $func ) && $func instanceof Closure ) {
 		$profName = $fname . '-extensions-closure';
 	} elseif ( is_array( $func ) ) {
