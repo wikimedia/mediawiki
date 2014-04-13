@@ -382,17 +382,17 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$this->setTitle( NS_USER );
 		$this->setUserPerm( '' );
-		$this->assertEquals( array( array( 'badaccess-group0' ), array( 'namespaceprotected', 'User' ) ),
+		$this->assertEquals( array( array( 'badaccess-group0' ), array( 'namespaceprotected', 'User', 'bogus' ) ),
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$this->setTitle( NS_MEDIAWIKI );
 		$this->setUserPerm( 'bogus' );
-		$this->assertEquals( array( array( 'protectedinterface' ) ),
+		$this->assertEquals( array( array( 'protectedinterface', 'bogus' ) ),
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$this->setTitle( NS_MEDIAWIKI );
 		$this->setUserPerm( 'bogus' );
-		$this->assertEquals( array( array( 'protectedinterface' ) ),
+		$this->assertEquals( array( array( 'protectedinterface', 'bogus' ) ),
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$wgNamespaceProtection = null;
@@ -419,38 +419,38 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$this->setTitle( NS_USER, $this->userName . '/test.js' );
 		$this->runCSSandJSPermissions(
-			array( array( 'badaccess-group0' ), array( 'mycustomjsprotected' ) ),
-			array( array( 'badaccess-group0' ), array( 'mycustomjsprotected' ) ),
+			array( array( 'badaccess-group0' ), array( 'mycustomjsprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'mycustomjsprotected', 'bogus' ) ),
 			array( array( 'badaccess-group0' ) ),
-			array( array( 'badaccess-group0' ), array( 'mycustomjsprotected' ) ),
+			array( array( 'badaccess-group0' ), array( 'mycustomjsprotected', 'bogus' ) ),
 			array( array( 'badaccess-group0' ) )
 		);
 
 		$this->setTitle( NS_USER, $this->userName . '/test.css' );
 		$this->runCSSandJSPermissions(
-			array( array( 'badaccess-group0' ), array( 'mycustomcssprotected' ) ),
+			array( array( 'badaccess-group0' ), array( 'mycustomcssprotected', 'bogus' ) ),
 			array( array( 'badaccess-group0' ) ),
-			array( array( 'badaccess-group0' ), array( 'mycustomcssprotected' ) ),
+			array( array( 'badaccess-group0' ), array( 'mycustomcssprotected', 'bogus' ) ),
 			array( array( 'badaccess-group0' ) ),
-			array( array( 'badaccess-group0' ), array( 'mycustomcssprotected' ) )
+			array( array( 'badaccess-group0' ), array( 'mycustomcssprotected', 'bogus' ) )
 		);
 
 		$this->setTitle( NS_USER, $this->altUserName . '/test.js' );
 		$this->runCSSandJSPermissions(
-			array( array( 'badaccess-group0' ), array( 'customjsprotected' ) ),
-			array( array( 'badaccess-group0' ), array( 'customjsprotected' ) ),
-			array( array( 'badaccess-group0' ), array( 'customjsprotected' ) ),
-			array( array( 'badaccess-group0' ), array( 'customjsprotected' ) ),
+			array( array( 'badaccess-group0' ), array( 'customjsprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'customjsprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'customjsprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'customjsprotected', 'bogus' ) ),
 			array( array( 'badaccess-group0' ) )
 		);
 
 		$this->setTitle( NS_USER, $this->altUserName . '/test.css' );
 		$this->runCSSandJSPermissions(
-			array( array( 'badaccess-group0' ), array( 'customcssprotected' ) ),
-			array( array( 'badaccess-group0' ), array( 'customcssprotected' ) ),
-			array( array( 'badaccess-group0' ), array( 'customcssprotected' ) ),
+			array( array( 'badaccess-group0' ), array( 'customcssprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'customcssprotected', 'bogus' ) ),
+			array( array( 'badaccess-group0' ), array( 'customcssprotected', 'bogus' ) ),
 			array( array( 'badaccess-group0' ) ),
-			array( array( 'badaccess-group0' ), array( 'customcssprotected' ) )
+			array( array( 'badaccess-group0' ), array( 'customcssprotected', 'bogus' ) )
 		);
 
 		$this->setTitle( NS_USER, $this->altUserName . '/tempo' );
@@ -524,38 +524,38 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			"bogus" => array( 'bogus', "sysop", "protect", "" ) );
 
 		$this->assertEquals( array( array( 'badaccess-group0' ),
-				array( 'protectedpagetext', 'bogus' ),
-				array( 'protectedpagetext', 'editprotected' ),
-				array( 'protectedpagetext', 'protect' ) ),
+				array( 'protectedpagetext', 'bogus', 'bogus' ),
+				array( 'protectedpagetext', 'editprotected', 'bogus' ),
+				array( 'protectedpagetext', 'protect', 'bogus' ) ),
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
-		$this->assertEquals( array( array( 'protectedpagetext', 'bogus' ),
-				array( 'protectedpagetext', 'editprotected' ),
-				array( 'protectedpagetext', 'protect' ) ),
+		$this->assertEquals( array( array( 'protectedpagetext', 'bogus', 'edit' ),
+				array( 'protectedpagetext', 'editprotected', 'edit' ),
+				array( 'protectedpagetext', 'protect', 'edit' ) ),
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
 		$this->setUserPerm( "" );
 		$this->assertEquals( array( array( 'badaccess-group0' ),
-				array( 'protectedpagetext', 'bogus' ),
-				array( 'protectedpagetext', 'editprotected' ),
-				array( 'protectedpagetext', 'protect' ) ),
+				array( 'protectedpagetext', 'bogus', 'bogus' ),
+				array( 'protectedpagetext', 'editprotected', 'bogus' ),
+				array( 'protectedpagetext', 'protect', 'bogus' ) ),
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
 		$this->assertEquals( array( array( 'badaccess-groups', "*, [[$prefix:Users|Users]]", 2 ),
-				array( 'protectedpagetext', 'bogus' ),
-				array( 'protectedpagetext', 'editprotected' ),
-				array( 'protectedpagetext', 'protect' ) ),
+				array( 'protectedpagetext', 'bogus', 'edit' ),
+				array( 'protectedpagetext', 'editprotected', 'edit' ),
+				array( 'protectedpagetext', 'protect', 'edit' ) ),
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
 		$this->setUserPerm( array( "edit", "editprotected" ) );
 		$this->assertEquals( array( array( 'badaccess-group0' ),
-				array( 'protectedpagetext', 'bogus' ),
-				array( 'protectedpagetext', 'protect' ) ),
+				array( 'protectedpagetext', 'bogus', 'bogus' ),
+				array( 'protectedpagetext', 'protect', 'bogus' ) ),
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
 		$this->assertEquals( array(
-				array( 'protectedpagetext', 'bogus' ),
-				array( 'protectedpagetext', 'protect' ) ),
+				array( 'protectedpagetext', 'bogus', 'edit' ),
+				array( 'protectedpagetext', 'protect', 'edit' ) ),
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
 
@@ -566,14 +566,14 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->assertEquals( false,
 			$this->title->quickUserCan( 'edit', $this->user ) );
 		$this->assertEquals( array( array( 'badaccess-group0' ),
-				array( 'protectedpagetext', 'bogus' ),
-				array( 'protectedpagetext', 'editprotected' ),
-				array( 'protectedpagetext', 'protect' ) ),
+				array( 'protectedpagetext', 'bogus', 'bogus' ),
+				array( 'protectedpagetext', 'editprotected', 'bogus' ),
+				array( 'protectedpagetext', 'protect', 'bogus' ) ),
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
-		$this->assertEquals( array( array( 'protectedpagetext', 'bogus' ),
-				array( 'protectedpagetext', 'editprotected' ),
-				array( 'protectedpagetext', 'protect' ) ),
+		$this->assertEquals( array( array( 'protectedpagetext', 'bogus', 'edit' ),
+				array( 'protectedpagetext', 'editprotected', 'edit' ),
+				array( 'protectedpagetext', 'protect', 'edit' ) ),
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
 
@@ -583,14 +583,14 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->assertEquals( false,
 			$this->title->quickUserCan( 'edit', $this->user ) );
 		$this->assertEquals( array( array( 'badaccess-group0' ),
-				array( 'protectedpagetext', 'bogus' ),
-				array( 'protectedpagetext', 'protect' ),
-				array( 'protectedpagetext', 'protect' ) ),
+				array( 'protectedpagetext', 'bogus', 'bogus' ),
+				array( 'protectedpagetext', 'protect', 'bogus' ),
+				array( 'protectedpagetext', 'protect', 'bogus' ) ),
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
-		$this->assertEquals( array( array( 'protectedpagetext', 'bogus' ),
-				array( 'protectedpagetext', 'protect' ),
-				array( 'protectedpagetext', 'protect' ) ),
+		$this->assertEquals( array( array( 'protectedpagetext', 'bogus', 'edit' ),
+				array( 'protectedpagetext', 'protect', 'edit' ),
+				array( 'protectedpagetext', 'protect', 'edit' ) ),
 			$this->title->getUserPermissionsErrors( 'edit',
 				$this->user ) );
 	}
@@ -604,9 +604,9 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals( false,
 			$this->title->userCan( 'bogus', $this->user ) );
-		$this->assertEquals( array( array( "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n" ),
-				array( "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n" ),
-				array( "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n" ) ),
+		$this->assertEquals( array( array( "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ),
+				array( "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ),
+				array( "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ) ),
 			$this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$this->assertEquals( true,
