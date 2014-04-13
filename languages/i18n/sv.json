@@ -1758,7 +1758,7 @@
     "unwatchthispage": "Sluta bevaka",
     "notanarticle": "Inte en artikel",
     "notvisiblerev": "Sidversionen har raderats",
-    "watchlist-details": "Du har $1 {{PLURAL:$1|sida|sidor}} på din bevakningslista (diskussionssidor är inte medräknade).",
+    "watchlist-details": "Du har {{PLURAL:$1|en sida|$1 sidor}} på din bevakningslista (diskussionssidor är inte separat medräknade).",
     "wlheader-enotif": "E-postmeddelanden är aktiverade.",
     "wlheader-showupdated": "Sidor som har ändrats sedan ditt senaste besök visas i '''fetstil.'''",
     "watchmethod-recent": "letar efter bevakade sidor bland senaste ändringar",

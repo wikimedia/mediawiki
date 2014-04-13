@@ -1698,6 +1698,7 @@
     "listgrouprights-removegroup-self": "自身のアカウントから{{PLURAL:$2|グループ}}を除去: $1",
     "listgrouprights-addgroup-self-all": "自身のアカウントに全グループを追加可能",
     "listgrouprights-removegroup-self-all": "自身のアカウントから全グループを除去可能",
+    "listgrouprights-namespaceprotection-namespace": "名前空間",
     "trackingcategories": "追跡用カテゴリ",
     "trackingcategories-summary": "このページでは、MediaWiki ソフトウェアが自動的に追加した追跡用カテゴリを列挙します。これらの名前は、{{ns:8}} 名前空間内の対応するシステム メッセージを修正することで変更できます。",
     "trackingcategories-msg": "追跡用カテゴリ",

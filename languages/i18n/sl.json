@@ -1709,7 +1709,7 @@
     "unwatchthispage": "Prenehaj opazovati stran",
     "notanarticle": "Ni članek",
     "notvisiblerev": "Redakcija je bila izbrisana",
-    "watchlist-details": "Spremljate $1 {{PLURAL:$1|stran|strani|strani|strani|strani}} (pogovorne strani niso vštete).",
+    "watchlist-details": "Na vašem spisku nadzorov je $1 {{PLURAL:$1|stran|strani|strani}}; pogovorne strani niso štete posebej.",
     "wlheader-enotif": "Obveščanje po elektronski pošti je omogočeno.",
     "wlheader-showupdated": "Strani, spremenjene od vašega zadnjega ogleda, so prikazane '''krepko'''.",
     "watchmethod-recent": "med nedavnimi urejanji iščem spremljane strani",

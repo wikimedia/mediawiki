@@ -1900,6 +1900,7 @@
     "contributions-title": "תרומות של ה{{GENDER:$1|משתמש|משתמשת}} $1",
     "mycontris": "תרומות",
     "contribsub2": "עבור {{GENDER:$3|$1}} ($2)",
+    "contributions-userdoesnotexist": "החשבון \"$1\" אינו רשום.",
     "nocontribs": "לא נמצאו שינויים המתאימים לקריטריונים אלו.",
     "uctop": "(נוכחי)",
     "month": "עד החודש:",
