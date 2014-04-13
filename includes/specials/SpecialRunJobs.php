@@ -64,19 +64,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 		$cSig = self::getQuerySignature( $squery ); // correct signature
 		$rSig = $params['signature']; // provided signature
 
-		// Constant-time signature verification
-		// http://www.emerose.com/timing-attacks-explained
-		// @todo Make a common method for this
-		if ( !is_string( $rSig ) || strlen( $rSig ) !== strlen( $cSig ) ) {
-			$verified = false;
-		} else {
-			$result = 0;
-			$cSigLength = strlen( $cSig );
-			for ( $i = 0; $i < $cSigLength; $i++ ) {
-				$result |= ord( $cSig[$i] ) ^ ord( $rSig[$i] );
-			}
-			$verified = ( $result == 0 );
-		}
+		$verified = is_string( $rSig ) && hash_equals( $cSig, $rSig );
 		if ( !$verified || $params['sigexpiry'] < time() ) {
 			header( "HTTP/1.0 400 Bad Request" );
 			print 'Invalid or stale signature provided';

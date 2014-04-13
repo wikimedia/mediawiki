@@ -104,6 +104,44 @@ if ( !function_exists( 'gzdecode' ) ) {
 		return gzinflate( substr( $data, 10, -8 ) );
 	}
 }
+
+// hash_equals function only exists in PHP >= 5.6.0
+if ( !function_exists( 'hash_equals' ) ) {
+	/**
+	 * @codeCoverageIgnore
+	 * @return bool
+	 */
+	function hash_equals( $known_string, $user_string ) {
+		// Strict type checking as in the native implementation
+		if ( !is_string( $known_string ) ) {
+			trigger_error( 'hash_equals(): Expected known_string to be a string, ' .
+				gettype( $known_string ) . ' given', E_USER_WARNING );
+
+			return false;
+		}
+
+		if ( !is_string( $user_string ) ) {
+			trigger_error( 'hash_equals(): Expected user_string to be a string, ' .
+				gettype( $user_string ) . ' given', E_USER_WARNING );
+
+			return false;
+		}
+
+		$known_string_len = strlen( $known_string );
+		if ( $known_string_len !== strlen( $user_string ) ) {
+			return false;
+		}
+
+		// Constant-time comparison of equal-length strings
+		// http://www.emerose.com/timing-attacks-explained
+		$result = 0;
+		for ( $i = 0; $i < $known_string_len; $i++ ) {
+			$result |= ord( $known_string[$i] ) ^ ord( $user_string[$i] );
+		}
+
+		return ( $result === 0 );
+	}
+}
 /// @endcond
 
 /**
