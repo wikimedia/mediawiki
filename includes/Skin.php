@@ -107,11 +107,11 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @deprecated since 1.22, use getAllowedSkins
+	 * @deprecated since 1.23, use getAllowedSkins
 	 * @return string[]
 	 */
 	public static function getUsableSkins() {
-		wfDeprecated( __METHOD__, '1.22' );
+		wfDeprecated( __METHOD__, '1.23' );
 		return self::getAllowedSkins();
 	}
 
