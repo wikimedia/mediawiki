@@ -39,7 +39,7 @@ $.fn.autoEllipsis = function ( options ) {
 			text, trimmableText, w, pw,
 			l, r, i, side, m,
 			// container element - used for measuring against
-			$container = $(this);
+			$container = $( this );
 
 		if ( options.restoreText ) {
 			if ( !$container.data( 'autoEllipsis.originalText' ) ) {

@@ -15,7 +15,7 @@
 		type: 'inline'
 	};
 
-	$.extend({
+	$.extend( {
 		/**
 		 * Create a spinner element
 		 *
@@ -34,18 +34,18 @@
 		 * Example:
 		 *
 		 *     // Create a large spinner reserving all available horizontal space.
-		 *     var $spinner = $.createSpinner({ size: 'large', type: 'block' });
+		 *     var $spinner = $.createSpinner( { size: 'large', type: 'block' } );
 		 *     // Insert above page content.
 		 *     $( '#mw-content-text' ).prepend( $spinner );
 		 *
 		 *     // Place a small inline spinner next to the "Save" button
-		 *     var $spinner = $.createSpinner({ size: 'small', type: 'inline' });
+		 *     var $spinner = $.createSpinner( { size: 'small', type: 'inline' } );
 		 *     // Alternatively, just `$.createSpinner();` as these are the default options.
 		 *     $( '#wpSave' ).after( $spinner );
 		 *
 		 *     // The following two are equivalent:
 		 *     $.createSpinner( 'magic' );
-		 *     $.createSpinner({ id: 'magic' });
+		 *     $.createSpinner( { id: 'magic' } );
 		 *
 		 * @static
 		 * @inheritable
@@ -89,7 +89,7 @@
 		removeSpinner: function ( id ) {
 			return $( '#mw-spinner-' + id ).remove();
 		}
-	});
+	} );
 
 	/**
 	 * Inject a spinner after each element in the collection

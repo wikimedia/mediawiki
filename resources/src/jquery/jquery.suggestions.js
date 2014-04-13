@@ -24,7 +24,7 @@
  * result: Set of callbacks for rendering and selecting
  *		Type: Object of Functions 'render' and 'select'
  * $region: jQuery selection of element to place the suggestions below and match width of
- *		Type: jQuery Object, Default: $(this)
+ *		Type: jQuery Object, Default: $( this )
  * suggestions: Suggestions to display
  *		Type: Array of strings
  * maxRows: Maximum number of suggestions to display at one time
@@ -250,7 +250,7 @@ $.suggestions = {
 									context.data.selectedWithMouse = true;
 									$.suggestions.highlight(
 										context,
-										$(this).closest( '.suggestions-results .suggestions-result' ),
+										$( this ).closest( '.suggestions-results .suggestions-result' ),
 										false
 									);
 								} )
@@ -309,13 +309,13 @@ $.suggestions = {
 		var selected = context.data.$container.find( '.suggestions-result-current' );
 		if ( !result.get || selected.get( 0 ) !== result.get( 0 ) ) {
 			if ( result === 'prev' ) {
-				if( selected.hasClass( 'suggestions-special' ) ) {
+				if ( selected.hasClass( 'suggestions-special' ) ) {
 					result = context.data.$container.find( '.suggestions-result:last' );
 				} else {
 					result = selected.prev();
 					if ( !( result.length && result.hasClass( 'suggestions-result' ) ) ) {
 						// there is something in the DOM between selected element and the wrapper, bypass it
-						result = selected.parents( '.suggestions-results > *' ).prev().find( '.suggestions-result' ).eq(0);
+						result = selected.parents( '.suggestions-results > *' ).prev().find( '.suggestions-result' ).eq( 0 );
 					}
 
 					if ( selected.length === 0 ) {
@@ -339,7 +339,7 @@ $.suggestions = {
 					result = selected.next();
 					if ( !( result.length && result.hasClass( 'suggestions-result' ) ) ) {
 						// there is something in the DOM between selected element and the wrapper, bypass it
-						result = selected.parents( '.suggestions-results > *' ).next().find( '.suggestions-result' ).eq(0);
+						result = selected.parents( '.suggestions-results > *' ).next().find( '.suggestions-result' ).eq( 0 );
 					}
 
 					if ( selected.hasClass( 'suggestions-special' ) ) {
@@ -450,12 +450,12 @@ $.fn.suggestions = function () {
 	var returnValue,
 		args = arguments;
 
-	$(this).each( function () {
+	$( this ).each( function () {
 		var context, key;
 
 		/* Construction / Loading */
 
-		context = $(this).data( 'suggestions-context' );
+		context = $( this ).data( 'suggestions-context' );
 		if ( context === undefined || context === null ) {
 			context = {
 				config: {
@@ -463,7 +463,7 @@ $.fn.suggestions = function () {
 					cancel: function () {},
 					special: {},
 					result: {},
-					$region: $(this),
+					$region: $( this ),
 					suggestions: [],
 					maxRows: 7,
 					delay: 120,
@@ -510,7 +510,7 @@ $.fn.suggestions = function () {
 
 				// Suggestion the last mousedown event occurred on
 				mouseDownOn: $( [] ),
-				$textbox: $(this),
+				$textbox: $( this ),
 				selectedWithMouse: false
 			};
 
@@ -580,9 +580,9 @@ $.fn.suggestions = function () {
 				)
 				.appendTo( $( 'body' ) );
 
-			$(this)
+			$( this )
 				// Stop browser autocomplete from interfering
-				.attr( 'autocomplete', 'off')
+				.attr( 'autocomplete', 'off' )
 				.keydown( function ( e ) {
 					// Store key pressed to handle later
 					context.data.keypressed = e.which;
@@ -611,9 +611,9 @@ $.fn.suggestions = function () {
 		}
 
 		// Store the context for next time
-		$(this).data( 'suggestions-context', context );
+		$( this ).data( 'suggestions-context', context );
 	} );
-	return returnValue !== undefined ? returnValue : $(this);
+	return returnValue !== undefined ? returnValue : $( this );
 };
 
 }( jQuery ) );

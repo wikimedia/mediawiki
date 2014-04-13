@@ -3,7 +3,7 @@
  */
 ( function ( $ ) {
 
-	$.extend({
+	$.extend( {
 		trimLeft: function ( str ) {
 			return str === null ? '' : str.toString().replace( /^\s+/, '' );
 		},
@@ -117,6 +117,6 @@
 			}
 			return true;
 		}
-	});
+	} );
 
 }( jQuery ) );

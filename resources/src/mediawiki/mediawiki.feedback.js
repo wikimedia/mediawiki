@@ -143,16 +143,16 @@
 					color: '#0645ad'
 				} );
 
-				this.$dialog.dialog({
+				this.$dialog.dialog( {
 					width: 500,
 					autoOpen: false,
 					title: mw.msg( this.dialogTitleMessageKey ),
 					modal: true,
 					buttons: fb.buttons
-				});
+				} );
 
-			this.subjectInput = this.$dialog.find( 'input.feedback-subject' ).get(0);
-			this.messageInput = this.$dialog.find( 'textarea.feedback-message' ).get(0);
+			this.subjectInput = this.$dialog.find( 'input.feedback-subject' ).get( 0 );
+			this.messageInput = this.$dialog.find( 'textarea.feedback-message' ).get( 0 );
 
 		},
 
