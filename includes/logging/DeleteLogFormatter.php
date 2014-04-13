@@ -63,9 +63,11 @@ class DeleteLogFormatter extends LogFormatter {
 				$new = $this->parseBitField( $params[$paramStart + 2] );
 				list( $hid, $unhid, $extra ) = RevisionDeleter::getChanges( $new, $old );
 				$changes = array();
+				// messages used: revdelete-content-hid, revdelete-summary-hid, revdelete-uname-hid
 				foreach ( $hid as $v ) {
 					$changes[] = $this->msg( "$v-hid" )->plain();
 				}
+				// messages used: revdelete-content-unhid, revdelete-summary-unhid, revdelete-uname-unhid
 				foreach ( $unhid as $v ) {
 					$changes[] = $this->msg( "$v-unhid" )->plain();
 				}
