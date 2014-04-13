@@ -1146,7 +1146,7 @@ class User {
 			$token = rtrim( $proposedUser->getToken( false ) ); // correct token
 			// Make comparison in constant time (bug 61346)
 			$passwordCorrect = strlen( $token )
-				&& $this->compareSecrets( $token, $request->getCookie( 'Token' ) );
+				&& hash_equals( $token, $request->getCookie( 'Token' ) );
 			$from = 'cookie';
 		} else {
 			// No session or persistent login cookie
@@ -1163,27 +1163,6 @@ class User {
 			wfDebug( "User: can't log in from $from, invalid credentials\n" );
 			return false;
 		}
-	}
-
-	/**
-	 * A comparison of two strings, not vulnerable to timing attacks
-	 * @param string $answer The secret string that you are comparing against.
-	 * @param string $test Compare this string to the $answer.
-	 * @return bool True if the strings are the same, false otherwise
-	 */
-	protected function compareSecrets( $answer, $test ) {
-		if ( strlen( $answer ) !== strlen( $test ) ) {
-			$passwordCorrect = false;
-		} else {
-			$result = 0;
-			$answerLength = strlen( $answer );
-			for ( $i = 0; $i < $answerLength; $i++ ) {
-				$result |= ord( $answer[$i] ) ^ ord( $test[$i] );
-			}
-			$passwordCorrect = ( $result == 0 );
-		}
-
-		return $passwordCorrect;
 	}
 
 	/**
