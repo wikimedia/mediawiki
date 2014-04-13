@@ -855,7 +855,7 @@
 
 	} );
 
-	QUnit.test( 'mw.hook', 12, function ( assert ) {
+	QUnit.test( 'mw.hook', 13, function ( assert ) {
 		var hook, add, fire, chars, callback;
 
 		mw.hook( 'test.hook.unfired' ).add( function () {
@@ -866,6 +866,11 @@
 			assert.ok( true, 'Basic callback' );
 		} );
 		mw.hook( 'test.hook.basic' ).fire();
+
+		mw.hook( 'hasOwnProperty' ).add( function () {
+			assert.ok( true, 'hook with name of predefined method' );
+		} );
+		mw.hook( 'hasOwnProperty' ).fire();
 
 		mw.hook( 'test.hook.data' ).add( function ( data1, data2 ) {
 			assert.equal( data1, 'example', 'Fire with data (string param)' );
