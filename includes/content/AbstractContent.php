@@ -235,11 +235,13 @@ abstract class AbstractContent implements Content {
 	/**
 	 * @since 1.21
 	 *
+	 * @param bool $throwOnLoop
 	 * @return Title[]|null
+	 * @throws MWException
 	 *
 	 * @see Content::getRedirectChain
 	 */
-	public function getRedirectChain() {
+	public function getRedirectChain( $throwOnLoop = false ) {
 		global $wgMaxRedirects;
 		$title = $this->getRedirectTarget();
 		if ( is_null( $title ) ) {
@@ -247,8 +249,9 @@ abstract class AbstractContent implements Content {
 		}
 		// recursive check to follow double redirects
 		$recurse = $wgMaxRedirects;
+		$seen = array( $title->getPrefixedText() => 1 );
 		$titles = array( $title );
-		while ( --$recurse > 0 ) {
+		while ( $throwOnLoop || --$recurse > 0 ) {
 			if ( $title->isRedirect() ) {
 				$page = WikiPage::factory( $title );
 				$newtitle = $page->getRedirectTarget();
@@ -263,6 +266,14 @@ abstract class AbstractContent implements Content {
 				$titles[] = $newtitle;
 			} else {
 				break;
+			}
+			if ( $throwOnLoop ) {
+				$key = $title->getPrefixedText();
+				if ( isset( $seen[$key] ) ) {
+					throw new MWException( "Circular redirect found from $key." );
+				} else {
+					$seen[$key] = 1;
+				}
 			}
 		}
 

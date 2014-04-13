@@ -125,10 +125,18 @@ class DoubleRedirectJob extends Job {
 		}
 
 		// Find the current final destination
-		$newTitle = self::getFinalDestination( $this->redirTitle );
+		$newTitle = null;
+		try {
+			$newTitle = self::getFinalDestination( $content->getNativeData() );
+		} catch ( MWException $e ) {
+			$msg = $e->getMessage();
+			wfDebug( __METHOD__.": ".$msg );
+			$this->setLastError( $msg );
+			return false;
+		}
 		if ( !$newTitle ) {
 			wfDebug( __METHOD__ .
-				": skipping: single redirect, circular redirect or invalid redirect destination\n" );
+				": skipping: single redirect or invalid redirect destination\n" );
 
 			return true;
 		}
@@ -177,56 +185,20 @@ class DoubleRedirectJob extends Job {
 	/**
 	 * Get the final destination of a redirect
 	 *
-	 * @param $title Title
+	 * @param $text Text of redirect
 	 *
-	 * @return bool if the specified title is not a redirect, or if it is a circular redirect
+	 * @return mixed Bool false if the specified title is not a redirect
+	 *               Title object of the final destination
 	 */
-	public static function getFinalDestination( $title ) {
-		$dbw = wfGetDB( DB_MASTER );
-
-		// Circular redirect check
-		$seenTitles = array();
-		$dest = false;
-
-		while ( true ) {
-			$titleText = $title->getPrefixedDBkey();
-			if ( isset( $seenTitles[$titleText] ) ) {
-				wfDebug( __METHOD__, "Circular redirect detected, aborting\n" );
-
-				return false;
-			}
-			$seenTitles[$titleText] = true;
-
-			if ( $title->isExternal() ) {
-				// If the target is interwiki, we have to break early (bug 40352).
-				// Otherwise it will look up a row in the local page table
-				// with the namespace/page of the interwiki target which can cause
-				// unexpected results (e.g. X -> foo:Bar -> Bar -> .. )
-				break;
-			}
-
-			$row = $dbw->selectRow(
-				array( 'redirect', 'page' ),
-				array( 'rd_namespace', 'rd_title', 'rd_interwiki' ),
-				array(
-					'rd_from=page_id',
-					'page_namespace' => $title->getNamespace(),
-					'page_title' => $title->getDBkey()
-				), __METHOD__ );
-			if ( !$row ) {
-				# No redirect from here, chain terminates
-				break;
-			} else {
-				$dest = $title = Title::makeTitle(
-					$row->rd_namespace,
-					$row->rd_title,
-					'',
-					$row->rd_interwiki
-				);
-			}
+	public static function getFinalDestination( $text ) {
+		$content = ContentHandler::makeContent( $text, null,
+			CONTENT_MODEL_WIKITEXT );
+		$titleList = $content->getRedirectChain( true );
+		if( $titleList ) {
+			return array_pop( $titleList );
+		} else {
+			return null;
 		}
-
-		return $dest;
 	}
 
 	/**

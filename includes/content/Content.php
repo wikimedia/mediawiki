@@ -317,9 +317,13 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
+	 * @param bool $throwOnLoop True if searching for loops.
+	 *   Ignores wgMaxRedirect if this is true.  If a loop is found,
+	 *   an exception is thrown.
 	 * @return Title[]|null List of Titles, with the destination last.
+	 * @throws MWException if a circular redirect is found.
 	 */
-	public function getRedirectChain();
+	public function getRedirectChain( $throwOnLoop = false );
 
 	/**
 	 * Construct the redirect destination from this content and return a Title,
