@@ -2946,7 +2946,8 @@ class Title {
 					'page_restrictions',
 					array( 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ),
 					array( 'pr_page' => $this->getArticleID() ),
-					__METHOD__
+					__METHOD__,
+					array( 'USE INDEX' => 'pr_page' )
 				);
 
 				$this->loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions );
