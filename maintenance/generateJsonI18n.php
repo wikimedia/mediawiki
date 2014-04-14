@@ -40,11 +40,20 @@ class GenerateJsonI18n extends Maintenance {
 		$this->addArg( 'jsondir', 'Directory to write JSON files to', true );
 		$this->addOption( 'langcode', 'Language code; only needed for converting core i18n files',
 			false, true );
+		$this->addOption( 'shim-only', 'Only generate a backward-compatibility shim. ' .
+			'THIS OPTION WILL DESTROY ANY EXISTING MESSAGES IN THE PHP FILE.' );
 	}
 
 	public function execute() {
 		$phpfile = $this->getArg( 0 );
 		$jsondir = $this->getArg( 1 );
+
+		if ( $this->hasOption( 'shim-only' ) ) {
+			$shim = $this->doShim( $jsondir );
+			file_put_contents( $phpfile, $shim );
+			$this->output( "All done.\n" );
+			return;
+		}
 
 		if ( !is_readable( $phpfile ) ) {
 			$this->error( "Error reading $phpfile\n", 1 );
@@ -115,29 +124,36 @@ class GenerateJsonI18n extends Maintenance {
  * This shim maintains compatibility back to MediaWiki 1.17.
  */
 $messages = array();
-$GLOBALS['wgHooks']['LocalisationCacheRecache'][] = function ( $cache, $code, &$cachedData ) {
-	$codeSequence = array_merge( array( $code ), $cachedData['fallbackSequence'] );
-	foreach ( $codeSequence as $csCode ) {
-		$fileName = __DIR__ . "/{{OUT}}/$csCode.json";
-		if ( is_readable( $fileName ) ) {
-			$data = FormatJson::decode( file_get_contents( $fileName ), true );
-			foreach ( array_keys( $data ) as $key ) {
-				if ( $key === '' || $key[0] === '@' ) {
-					unset( $data[$key] );
+if ( !method_exists( 'LocalisationCache', 'readJSONFile' )
+	&& !function_exists( '{{FUNC}}' )
+) {
+	function {{FUNC}}( $cache, $code, &$cachedData ) {
+		$codeSequence = array_merge( array( $code ), $cachedData['fallbackSequence'] );
+		foreach ( $codeSequence as $csCode ) {
+			$fileName = dirname( __FILE__ ) . "/{{OUT}}/$csCode.json";
+			if ( is_readable( $fileName ) ) {
+				$data = FormatJson::decode( file_get_contents( $fileName ), true );
+				foreach ( array_keys( $data ) as $key ) {
+					if ( $key === '' || $key[0] === '@' ) {
+						unset( $data[$key] );
+					}
 				}
+				$cachedData['messages'] = array_merge( $data, $cachedData['messages'] );
 			}
-			$cachedData['messages'] = array_merge( $data, $cachedData['messages'] );
-		}
 
-		$cachedData['deps'][] = new FileDependency( $fileName );
-	}
-	return true;
-};
+			$cachedData['deps'][] = new FileDependency( $fileName );
+		}
+		return true;
+	};
+
+	$GLOBALS['wgHooks']['LocalisationCacheRecache'][] = '{{FUNC}}';
+}
 
 PHP;
 
 		$jsondir = str_replace( '\\', '/', $jsondir );
 		$shim = str_replace( '{{OUT}}', $jsondir, $shim );
+		$shim = str_replace( '{{FUNC}}', 'wfJsonI18nShim' . wfRandomString( 16 ), $shim );
 		return $shim;
 	}
 
