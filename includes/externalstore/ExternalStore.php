@@ -131,7 +131,7 @@ class ExternalStore {
 	 * class itself as a parameter.
 	 *
 	 * @param string $url A partial external store URL ("<store type>://<location>")
-	 * @param $data string
+	 * @param string $data
 	 * @param array $params Associative array of ExternalStoreMedium parameters
 	 * @return string|bool The URL of the stored data item, or false on error
 	 * @throws MWException
@@ -218,8 +218,8 @@ class ExternalStore {
 	}
 
 	/**
-	 * @param $data string
-	 * @param $wiki string
+	 * @param string $data
+	 * @param string $wiki
 	 * @return string|bool The URL of the stored data item, or false on error
 	 * @throws MWException
 	 */

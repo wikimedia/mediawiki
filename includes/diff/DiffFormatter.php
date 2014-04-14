@@ -52,7 +52,7 @@ abstract class DiffFormatter {
 	/**
 	 * Format a diff.
 	 *
-	 * @param Diff $diff A Diff object.
+	 * @param Diff $diff
 	 *
 	 * @return string The formatted output.
 	 */
@@ -125,7 +125,7 @@ abstract class DiffFormatter {
 	 * @param int $xlen
 	 * @param int $ybeg
 	 * @param int $ylen
-	 * @param $edits
+	 * @param array $edits
 	 *
 	 * @throws MWException If the edit type is not known.
 	 */

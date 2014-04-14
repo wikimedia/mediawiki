@@ -31,9 +31,9 @@ class HttpError extends MWException {
 	/**
 	 * Constructor
 	 *
-	 * @param $httpCode Integer: HTTP status code to send to the client
-	 * @param string|Message $content content of the message
-	 * @param string|Message $header content of the header (\<title\> and \<h1\>)
+	 * @param int $httpCode HTTP status code to send to the client
+	 * @param string|Message $content Content of the message
+	 * @param string|Message $header Content of the header (\<title\> and \<h1\>)
 	 */
 	public function __construct( $httpCode, $content, $header = null ) {
 		parent::__construct( $content );
