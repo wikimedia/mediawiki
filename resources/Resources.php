@@ -1353,6 +1353,9 @@ return array(
 	/* MediaWiki UI */
 
 	'mediawiki.ui' => array(
+		'scripts' => array(
+			'resources/src/mediawiki.ui.js/mediawiki.ui.enhance.js',
+		),
 		'skinStyles' => array(
 			'default' => 'resources/src/mediawiki.ui/default.less',
 			'vector' => 'resources/src/mediawiki.ui/vector.less',
