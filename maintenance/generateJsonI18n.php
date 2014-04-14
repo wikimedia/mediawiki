@@ -37,14 +37,26 @@ class GenerateJsonI18n extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Build JSON messages files from a PHP messages file";
 		$this->addArg( 'phpfile', 'PHP file defining a $messages array', true );
-		$this->addArg( 'jsondir', 'Directory to write JSON files to', true );
+		$this->addArg( 'jsondir', 'Directory to write JSON files to. ' .
+			'Required unless <phpfile> exists and --shim-only is specified', false );
 		$this->addOption( 'langcode', 'Language code; only needed for converting core i18n files',
 			false, true );
+		$this->addOption( 'shim-only', 'Only create or update the backward-compatibility shim' );
 	}
 
 	public function execute() {
 		$phpfile = $this->getArg( 0 );
 		$jsondir = $this->getArg( 1 );
+
+		if ( $this->hasOption( 'shim-only' ) ) {
+			$this->shimOnly( $phpfile, $jsondir );
+			return;
+		}
+
+		if ( $jsondir === null ) {
+			$this->error( 'Argument [jsondir] is required unless --shim-only is specified.' );
+			$this->maybeHelp( true );
+		}
 
 		if ( !is_readable( $phpfile ) ) {
 			$this->error( "Error reading $phpfile\n", 1 );
@@ -100,6 +112,35 @@ class GenerateJsonI18n extends Maintenance {
 		$this->output( "Also add \$wgMessagesDirs['YourExtension'] = __DIR__ . '/i18n';\n" );
 	}
 
+	protected function shimOnly( $phpfile, $jsondir ) {
+		if ( file_exists( $phpfile ) ) {
+			if ( !is_readable( $phpfile ) ) {
+				$this->error( "Error reading $phpfile\n", 1 );
+			}
+
+			$phpfileContents = file_get_contents( $phpfile );
+			$m = array();
+			if ( !preg_match( '!"/([^"$]+)/\$csCode.json";!', $phpfileContents, $m ) ) {
+				$this->error( "Cannot recognize $phpfile as a shim.\n", 1 );
+			}
+
+			if ( $jsondir === null ) {
+				$jsondir = $m[1];
+			}
+
+			$this->output( "Updating existing shim $phpfile\n" );
+		} elseif ( $jsondir === null ) {
+			$this->error( "$phpfile does not exist.\n" .
+				"Argument [jsondir] is required in order to create a new shim.\n", 1 );
+		} else {
+			$this->output( "Creating new shim $phpfile\n" );
+		}
+
+		$shim = $this->doShim( $jsondir );
+		file_put_contents( $phpfile, $shim );
+		$this->output( "All done.\n" );
+	}
+
 	protected function doShim( $jsondir ) {
 		$shim = <<<'PHP'
 <?php
@@ -115,29 +156,34 @@ class GenerateJsonI18n extends Maintenance {
  * This shim maintains compatibility back to MediaWiki 1.17.
  */
 $messages = array();
-$GLOBALS['wgHooks']['LocalisationCacheRecache'][] = function ( $cache, $code, &$cachedData ) {
-	$codeSequence = array_merge( array( $code ), $cachedData['fallbackSequence'] );
-	foreach ( $codeSequence as $csCode ) {
-		$fileName = __DIR__ . "/{{OUT}}/$csCode.json";
-		if ( is_readable( $fileName ) ) {
-			$data = FormatJson::decode( file_get_contents( $fileName ), true );
-			foreach ( array_keys( $data ) as $key ) {
-				if ( $key === '' || $key[0] === '@' ) {
-					unset( $data[$key] );
+if ( !function_exists( '{{FUNC}}' ) ) {
+	function {{FUNC}}( $cache, $code, &$cachedData ) {
+		$codeSequence = array_merge( array( $code ), $cachedData['fallbackSequence'] );
+		foreach ( $codeSequence as $csCode ) {
+			$fileName = dirname( __FILE__ ) . "/{{OUT}}/$csCode.json";
+			if ( is_readable( $fileName ) ) {
+				$data = FormatJson::decode( file_get_contents( $fileName ), true );
+				foreach ( array_keys( $data ) as $key ) {
+					if ( $key === '' || $key[0] === '@' ) {
+						unset( $data[$key] );
+					}
 				}
+				$cachedData['messages'] = array_merge( $data, $cachedData['messages'] );
 			}
-			$cachedData['messages'] = array_merge( $data, $cachedData['messages'] );
-		}
 
-		$cachedData['deps'][] = new FileDependency( $fileName );
+			$cachedData['deps'][] = new FileDependency( $fileName );
+		}
+		return true;
 	}
-	return true;
-};
+
+	$GLOBALS['wgHooks']['LocalisationCacheRecache'][] = '{{FUNC}}';
+}
 
 PHP;
 
 		$jsondir = str_replace( '\\', '/', $jsondir );
 		$shim = str_replace( '{{OUT}}', $jsondir, $shim );
+		$shim = str_replace( '{{FUNC}}', 'wfJsonI18nShim' . wfRandomString( 16 ), $shim );
 		return $shim;
 	}
 
