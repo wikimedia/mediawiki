@@ -139,6 +139,15 @@ return array(
 		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'lessVariables' => array(
+			'content-font-family' => array(
+				'en' => '"Nimbus Sans L", "Helvetica Neue", Arial, Helvetica, sans-serif',
+				'default' => 'sans-serif',
+			),
+			'content-heading-font-family' => array(
+				'default' => '"Linux Libertine", Georgia, Times, serif',
+			),
+		),
 	),
 	'skins.monobook.styles' => array(
 		'styles' => array(

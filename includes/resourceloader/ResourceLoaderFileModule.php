@@ -90,6 +90,15 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected $skinStyles = array();
 	/**
+	 * Array: List of variables that can be used in LESS that are specific
+	 * to a certain language. Defaults to the 'default' keyword
+	 * @par Usage:
+	 * @code
+	 * array( [less-variable-name] => array( [language-code] => [value],)
+	 * @endcode
+	 */
+	protected $lessVariables = array();
+	/**
 	 * Array: List of modules this module depends on
 	 * @par Usage:
 	 * @code
@@ -113,6 +122,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected $debugRaw = true;
 	/** Boolean: Whether mw.loader.state() call should be omitted */
 	protected $raw = false;
+	/** String: The language code representing the language that the module is being compiled under */
+	protected $languageCode;
 	protected $targets = array( 'desktop' );
 
 	/**
@@ -220,6 +231,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				// Collated lists of file paths
 				case 'languageScripts':
 				case 'skinScripts':
+				case 'lessVariables':
 				case 'skinStyles':
 					if ( !is_array( $option ) ) {
 						throw new MWException(
@@ -315,6 +327,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return string: CSS code for $context
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
+		$this->languageCode = $context->getLanguage();
 		$styles = $this->readStyleFiles(
 			$this->getStyleFiles( $context ),
 			$this->getFlip( $context )
@@ -587,6 +600,26 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Gets a string that match a key, optionally using a fallback key.
+	 * Similar to tryForKey only deals with strings
+	 * @param array $list List of lists to select from
+	 * @param string $key Key to look for in $map
+	 * @param string $fallback Key to look for in $list if $key doesn't exist
+	 * @return string: String for the given key
+	 */
+	protected static function tryForKeyValue( array $list, $key, $fallback = null ) {
+		if ( isset( $list[$key] ) && is_string( $list[$key] ) ) {
+			return $list[$key];
+		} elseif ( is_string( $fallback )
+			&& isset( $list[$fallback] )
+			&& is_string( $list[$fallback] )
+		) {
+			return $list[$fallback];
+		}
+		return '';
+	}
+
+	/**
 	 * Gets a list of file paths for all scripts in this module, in order of propper execution.
 	 *
 	 * @param ResourceLoaderContext $context
@@ -804,6 +837,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 
 		$compiler = ResourceLoader::getLessCompiler();
+		$localVars = array();
+		foreach( $this->lessVariables as $key => $values ) {
+			$localVars[$key] = self::tryForKeyValue( $values, $this->languageCode, 'default' );
+		}
+		$compiler->setVariables( $localVars );
 		$result = null;
 
 		$result = $compiler->cachedCompile( $source );
