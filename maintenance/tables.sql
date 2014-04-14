@@ -1035,11 +1035,6 @@ CREATE TABLE /*_*/recentchanges (
   rc_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   rc_timestamp varbinary(14) NOT NULL default '',
 
-  -- This is no longer used
-  -- Field kept in database for downgrades
-  -- @todo: add drop patch with 1.24
-  rc_cur_time varbinary(14) NOT NULL default '',
-
   -- As in revision
   rc_user int unsigned NOT NULL default 0,
   rc_user_text varchar(255) binary NOT NULL,
