@@ -359,7 +359,6 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 			'rc_title' => $title,
 			'rc_namespace' => 0,
 			'rc_timestamp' => $timestamp,
-			'rc_cur_time' => $timestamp,
 			'rc_old_len' => 212,
 			'rc_new_len' => 188,
 			'rc_comment' => '',
