@@ -464,7 +464,7 @@ class Preferences {
 					'raw' => true,
 					'default' => $emailAddress,
 					'label-message' => 'youremail',
-					'section' => 'personal/email',
+					'section' => 'personal/info',
 					'help-messages' => $helpMessages,
 					# 'cssclass' chosen below
 				);
@@ -507,7 +507,7 @@ class Preferences {
 					$defaultPreferences['emailauthentication'] = array(
 						'type' => 'info',
 						'raw' => true,
-						'section' => 'personal/email',
+						'section' => 'watchlist/email',
 						'label-message' => 'prefs-emailconfirm-label',
 						'default' => $emailauthenticated,
 						# Apply the same CSS class used on the input to the message:
@@ -521,13 +521,13 @@ class Preferences {
 				$defaultPreferences['disablemail'] = array(
 					'type' => 'toggle',
 					'invert' => true,
-					'section' => 'personal/email',
+					'section' => 'watchlist/email',
 					'label-message' => 'allowemail',
 					'disabled' => $disableEmailPrefs,
 				);
 				$defaultPreferences['ccmeonemails'] = array(
 					'type' => 'toggle',
-					'section' => 'personal/email',
+					'section' => 'watchlist/email',
 					'label-message' => 'tog-ccmeonemails',
 					'disabled' => $disableEmailPrefs,
 				);
@@ -536,7 +536,7 @@ class Preferences {
 			if ( $wgEnotifWatchlist ) {
 				$defaultPreferences['enotifwatchlistpages'] = array(
 					'type' => 'toggle',
-					'section' => 'personal/email',
+					'section' => 'watchlist/email',
 					'label-message' => 'tog-enotifwatchlistpages',
 					'disabled' => $disableEmailPrefs,
 				);
@@ -544,7 +544,7 @@ class Preferences {
 			if ( $wgEnotifUserTalk ) {
 				$defaultPreferences['enotifusertalkpages'] = array(
 					'type' => 'toggle',
-					'section' => 'personal/email',
+					'section' => 'watchlist/email',
 					'label-message' => 'tog-enotifusertalkpages',
 					'disabled' => $disableEmailPrefs,
 				);
@@ -552,7 +552,7 @@ class Preferences {
 			if ( $wgEnotifUserTalk || $wgEnotifWatchlist ) {
 				$defaultPreferences['enotifminoredits'] = array(
 					'type' => 'toggle',
-					'section' => 'personal/email',
+					'section' => 'watchlist/email',
 					'label-message' => 'tog-enotifminoredits',
 					'disabled' => $disableEmailPrefs,
 				);
@@ -560,7 +560,7 @@ class Preferences {
 				if ( $wgEnotifRevealEditorAddress ) {
 					$defaultPreferences['enotifrevealaddr'] = array(
 						'type' => 'toggle',
-						'section' => 'personal/email',
+						'section' => 'watchlist/email',
 						'label-message' => 'tog-enotifrevealaddr',
 						'disabled' => $disableEmailPrefs,
 					);
@@ -927,7 +927,7 @@ class Preferences {
 			'type' => 'float',
 			'min' => 0,
 			'max' => $watchlistdaysMax,
-			'section' => 'watchlist/displaywatchlist',
+			'section' => 'rc/displayrc',
 			'help' => $context->msg( 'prefs-watchlist-days-max' )->numParams(
 				$watchlistdaysMax )->text(),
 			'label-message' => 'prefs-watchlist-days',
@@ -938,43 +938,43 @@ class Preferences {
 			'max' => 1000,
 			'label-message' => 'prefs-watchlist-edits',
 			'help' => $context->msg( 'prefs-watchlist-edits-max' )->escaped(),
-			'section' => 'watchlist/displaywatchlist',
+			'section' => 'rc/displayrc',
 		);
 		$defaultPreferences['extendwatchlist'] = array(
 			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
+			'section' => 'rc/watchlistfilters',
 			'label-message' => 'tog-extendwatchlist',
 		);
 		$defaultPreferences['watchlisthideminor'] = array(
 			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
+			'section' => 'rc/watchlistfilters',
 			'label-message' => 'tog-watchlisthideminor',
 		);
 		$defaultPreferences['watchlisthidebots'] = array(
 			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
+			'section' => 'rc/watchlistfilters',
 			'label-message' => 'tog-watchlisthidebots',
 		);
 		$defaultPreferences['watchlisthideown'] = array(
 			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
+			'section' => 'rc/watchlistfilters',
 			'label-message' => 'tog-watchlisthideown',
 		);
 		$defaultPreferences['watchlisthideanons'] = array(
 			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
+			'section' => 'rc/watchlistfilters',
 			'label-message' => 'tog-watchlisthideanons',
 		);
 		$defaultPreferences['watchlisthideliu'] = array(
 			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
+			'section' => 'rc/watchlistfilters',
 			'label-message' => 'tog-watchlisthideliu',
 		);
 
 		if ( $wgUseRCPatrol ) {
 			$defaultPreferences['watchlisthidepatrolled'] = array(
 				'type' => 'toggle',
-				'section' => 'watchlist/advancedwatchlist',
+				'section' => 'rc/watchlistfilters',
 				'label-message' => 'tog-watchlisthidepatrolled',
 			);
 		}
