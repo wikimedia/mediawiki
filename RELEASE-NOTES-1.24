@@ -78,7 +78,7 @@ The supported versions are:
 
 == Upgrading ==
 
-1.24 has several database changes since 1.22, and will not work without schema
+1.24 has several database changes since 1.23, and will not work without schema
 updates. Note that due to changes to some very large tables like the revision
 table, the schema update may take quite long (minutes on a medium sized site,
 many hours on a large site).
