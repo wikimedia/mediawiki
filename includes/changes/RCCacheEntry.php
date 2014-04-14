@@ -30,7 +30,7 @@ class RCCacheEntry extends RecentChange {
 	public $watched;
 
 	/**
-	 * @param $rc RecentChange
+	 * @param RecentChange $rc
 	 * @return RCCacheEntry
 	 */
 	static function newFromParent( $rc ) {

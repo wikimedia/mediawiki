@@ -40,7 +40,7 @@ class MWException extends Exception {
 	 * Whether to log this exception in the exception debug log.
 	 *
 	 * @since 1.23
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isLoggable() {
 		return true;
@@ -66,9 +66,9 @@ class MWException extends Exception {
 	/**
 	 * Run hook to allow extensions to modify the text of the exception
 	 *
-	 * @param string $name class name of the exception
-	 * @param array $args arguments to pass to the callback functions
-	 * @return string|null string to output or null if any hook has been called
+	 * @param string $name Class name of the exception
+	 * @param array $args Arguments to pass to the callback functions
+	 * @return string|null String to output or null if any hook has been called
 	 */
 	public function runHooks( $name, $args = array() ) {
 		global $wgExceptionHooks;
@@ -107,11 +107,11 @@ class MWException extends Exception {
 	/**
 	 * Get a message from i18n
 	 *
-	 * @param string $key message name
-	 * @param string $fallback default message if the message cache can't be
+	 * @param string $key Message name
+	 * @param string $fallback Default message if the message cache can't be
 	 *                  called by the exception
 	 * The function also has other parameters that are arguments for the message
-	 * @return string message with arguments replaced
+	 * @return string Message with arguments replaced
 	 */
 	public function msg( $key, $fallback /*[, params...] */ ) {
 		$args = array_slice( func_get_args(), 2 );
@@ -128,7 +128,7 @@ class MWException extends Exception {
 	 * backtrace to the error, otherwise show a message to ask to set it to true
 	 * to show that information.
 	 *
-	 * @return string html to output
+	 * @return string Html to output
 	 */
 	public function getHTML() {
 		global $wgShowExceptionDetails;

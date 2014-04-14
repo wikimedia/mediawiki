@@ -163,8 +163,8 @@ function wfImageAuthMain() {
  * Issue a standard HTTP 403 Forbidden header ($msg1-a message index, not a message) and an
  * error message ($msg2, also a message index), (both required) then end the script
  * subsequent arguments to $msg2 will be passed as parameters only for replacing in $msg2
- * @param $msg1
- * @param $msg2
+ * @param string $msg1
+ * @param string $msg2
  */
 function wfForbidden( $msg1, $msg2 ) {
 	global $wgImgAuthDetails;

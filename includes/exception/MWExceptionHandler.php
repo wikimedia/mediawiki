@@ -32,6 +32,7 @@ class MWExceptionHandler {
 
 	/**
 	 * Report an exception to the user
+	 * @param Exception $e
 	 */
 	protected static function report( Exception $e ) {
 		global $wgShowExceptionDetails;
@@ -130,6 +131,7 @@ class MWExceptionHandler {
 	 *   } catch ( Exception $e ) {
 	 *       echo $e->__toString();
 	 *   }
+	 * @param Exception $e
 	 */
 	public static function handle( $e ) {
 		global $wgFullyInitialised;
@@ -313,7 +315,7 @@ class MWExceptionHandler {
 	 * @param Exception $e
 	 * @param bool $pretty Add non-significant whitespace to improve readability (default: false).
 	 * @param int $escaping Bitfield consisting of FormatJson::.*_OK class constants.
-	 * @return string|bool: JSON string if successful; false upon failure
+	 * @return string|bool JSON string if successful; false upon failure
 	 */
 	public static function jsonSerializeException( Exception $e, $pretty = false, $escaping = 0 ) {
 		global $wgLogExceptionBacktrace;
