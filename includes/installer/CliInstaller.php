@@ -138,7 +138,8 @@ class CliInstaller extends Installer {
 
 	public function startStage( $step ) {
 		// Messages: config-install-database, config-install-tables, config-install-interwiki,
-		// config-install-stats, config-install-keys, config-install-sysop, config-install-mainpage
+		// config-install-stats, config-install-keys, config-install-sysop, config-install-mainpage,
+		// config-install-extensions
 		$this->showMessage( "config-install-$step" );
 	}
 
