@@ -41,11 +41,6 @@ class ProfilerSimpleUDP extends Profiler {
 
 		$this->close();
 
-		if ( isset( $this->mCollated['-total'] ) ) {
-			# Less than minimum, ignore
-			return;
-		}
-
 		if ( !function_exists( 'socket_create' ) ) {
 			# Sockets are not enabled
 			return;
