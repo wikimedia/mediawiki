@@ -1360,6 +1360,13 @@ return array(
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	// Module for MediaWiki UI JS progressive enhancement
+	'mediawiki.ui.js' => array(
+		'scripts' => array(
+			'resources/src/mediawiki.ui.js/mediawiki.ui.enhance.js',
+		),
+		'position' => 'bottom',
+	),
 	// Lightweight module for button styles
 	'mediawiki.ui.button' => array(
 		'skinStyles' => array(
