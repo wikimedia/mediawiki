@@ -375,30 +375,29 @@
 		return null;
 	};
 
+	/**
+	 * Store page existence
+	 *
+     * @static
+     * @property {Object} exist
+     * @property {Object} exist.pages Keyed by title. Boolean true value indicates page does exist.
+     *
+     * @property {Function} exist.set The setter function.
+	 * @example
+	 *	Example to declare existing titles:
+	 *
+	 *		Title.exist.set( ['User:John_Doe', ...] );
+	 *
+	 *	Example to declare titles nonexistent:
+	 *
+	 *		Title.exist.set( ['File:Foo_bar.jpg', ...], false );
+     * @property {string|Array} exist.set.titles Title(s) in strict prefixedDb title form
+     * @property {boolean} [exist.set.state=true] State of the given titles.
+     * @return {boolean}
+	 */
 	Title.exist = {
-		/**
-		 * Boolean true value indicates page does exist.
-		 *
-		 * @static
-		 * @property {Object} exist.pages Keyed by PrefixedDb title.
-		 */
 		pages: {},
 
-		/**
-		 * Example to declare existing titles:
-		 *
-		 *     Title.exist.set( ['User:John_Doe', ...] );
-		 *
-		 * Example to declare titles nonexistent:
-		 *
-		 *     Title.exist.set( ['File:Foo_bar.jpg', ...], false );
-		 *
-		 * @static
-		 * @property exist.set
-		 * @param {string|Array} titles Title(s) in strict prefixedDb title form
-		 * @param {boolean} [state=true] State of the given titles
-		 * @return {boolean}
-		 */
 		set: function ( titles, state ) {
 			titles = $.isArray( titles ) ? titles : [titles];
 			state = state === undefined ? true : !!state;
