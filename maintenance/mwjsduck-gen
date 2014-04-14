@@ -6,20 +6,21 @@ then
 	JSDUCK_MWVERSION="$2"
 elif [[ "$*" != "" ]]
 then
-	echo "Usage: $0 [--version <mediawiki version>]"
+	FILENAME=$(basename $0)
+	echo "Usage: $FILENAME [--version <mediawiki version>]"
 	echo
 	exit 1
 fi
 
+MWCORE_DIR=$(cd $(dirname $0)/..; pwd)
+
 # Support jsduck 4.x and 5.x
 JSDUCK_VERSION="$(jsduck --version | sed -e 's/[.].*//')"
 if [  "$JSDUCK_VERSION" = "JSDuck 4" ]; then
-	JSDUCK_VERSION_OPT="--meta-tags ./maintenance/jsduck/MetaTags.rb --warnings=-no_doc"
+	JSDUCK_VERSION_OPT="--meta-tags $MWCORE_DIR/maintenance/jsduck/MetaTags.rb --warnings=-no_doc"
 else
-	JSDUCK_VERSION_OPT="--tags ./maintenance/jsduck/CustomTags.rb --warnings=-nodoc(class,public)"
+	JSDUCK_VERSION_OPT="--tags $MWCORE_DIR/maintenance/jsduck/CustomTags.rb --warnings=-nodoc(class,public)"
 fi
-
-MWCORE_DIR=$(cd $(dirname $0)/..; pwd)
 
 jsduck \
 --config=$MWCORE_DIR/maintenance/jsduck/config.json \
