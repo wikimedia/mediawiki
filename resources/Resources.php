@@ -898,7 +898,6 @@ return array(
 			'jquery.client',
 			'jquery.mwExtension',
 			'mediawiki.notify',
-			'mediawiki.toc',
 		),
 		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
 		'targets' => array( 'desktop', 'mobile' ),
