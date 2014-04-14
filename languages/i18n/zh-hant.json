@@ -1921,6 +1921,7 @@
     "contributions-title": "$1 的使用者貢獻",
     "mycontris": "我的貢獻",
     "contribsub2": "{{GENDER:$3|$1}} 的貢獻 （$2）",
+    "contributions-userdoesnotexist": "用戶賬戶「$1」未曾註冊。",
     "nocontribs": "沒有找到符合特徵的更改。",
     "uctop": "（最新修改）",
     "month": "截止月份：",

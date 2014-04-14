@@ -1944,6 +1944,7 @@
     "contributions-title": "Contributi di $1",
     "mycontris": "contributi",
     "contribsub2": "Per {{GENDER:$3|$1}} ($2)",
+    "contributions-userdoesnotexist": "L'account utente \"$1\" non è registrato.",
     "nocontribs": "Non sono state trovate modifiche che soddisfino i criteri di ricerca.",
     "uctop": "(attuale)",
     "month": "Dal mese (e precedenti):",

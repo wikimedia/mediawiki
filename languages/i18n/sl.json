@@ -1881,6 +1881,7 @@
     "contributions-title": "Prispevki uporabnika $1",
     "mycontris": "Prispevki",
     "contribsub2": "Za {{GENDER:$3|$1}} ($2)",
+    "contributions-userdoesnotexist": "Uporabniški račun »$1« ni registriran.",
     "nocontribs": "Ne najdem nobene merilom ustrezajoče spremembe.",
     "uctop": "(trenutno)",
     "month": "Od meseca (in prej):",

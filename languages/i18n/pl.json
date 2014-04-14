@@ -1926,6 +1926,7 @@
     "contributions-title": "Wkład {{GENDER:$1|użytkownika|użytkowniczki}} $1",
     "mycontris": "Edycje",
     "contribsub2": "Dla {{GENDER:$3|użytkownika|użytkowniczki}} $1 ($2)",
+    "contributions-userdoesnotexist": "Konto użytkownika „$1” nie jest zarejestrowane.",
     "nocontribs": "Brak zmian odpowiadających tym kryteriom.",
     "uctop": "(ostatnia)",
     "month": "Do miesiąca (włącznie)",
