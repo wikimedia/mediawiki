@@ -27,7 +27,7 @@
  *  http://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile)
  * @ingroup Profiler
  */
-class ProfilerSimpleUDP extends Profiler {
+class ProfilerSimpleUDP extends ProfilerStandard {
 	protected function collateOnly() {
 		return true;
 	}
