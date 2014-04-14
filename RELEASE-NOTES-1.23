@@ -249,6 +249,7 @@ production.
 * Added list=prefixsearch that works like action=opensearch but can be used as
   a generator.
 * (bug 24782) Various modules will now use unique continuation parameters.
+* (bug 63249) Cache RecentChanges Atom feed in varnish for 15 seconds.
 
 === Languages updated in 1.23 ===
 

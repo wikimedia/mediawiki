@@ -52,6 +52,12 @@ class ApiFeedRecentChanges extends ApiBase {
 			$this->dieUsage( 'Invalid subscription feed type', 'feed-invalid' );
 		}
 
+		$this->getMain()->setCacheMode( 'public' );
+		if ( !$this->getMain()->getParameter( 'smaxage' ) ) {
+			// bug 63249: This page gets hit a lot, cache at least 15 seconds.
+			$this->getMain()->setCacheMaxAge( 15 );
+		}
+
 		$feedFormat = $this->params['feedformat'];
 		$specialClass = $this->params['target'] !== null
 			? 'SpecialRecentchangeslinked'
