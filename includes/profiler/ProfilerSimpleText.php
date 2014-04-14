@@ -31,7 +31,7 @@
  *
  * @ingroup Profiler
  */
-class ProfilerSimpleText extends Profiler {
+class ProfilerSimpleText extends ProfilerStandard {
 	public $visible = false; /* Show as <PRE> or <!-- ? */
 	static private $out;
 

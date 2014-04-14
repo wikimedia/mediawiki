@@ -26,7 +26,7 @@
  * @todo document methods (?)
  * @ingroup Profiler
  */
-class ProfilerSimpleTrace extends Profiler {
+class ProfilerSimpleTrace extends ProfilerStandard {
 	protected $trace = "Beginning trace: \n";
 	protected $memory = 0;
 
