@@ -136,6 +136,11 @@ class FormatJson {
 	 * @return string|bool
 	 */
 	private static function encode54( $value, $pretty, $escaping ) {
+		static $bug66021;
+		if ( $pretty !== false && $bug66021 === null ) {
+			$bug66021 = json_encode( array(), JSON_PRETTY_PRINT ) !== '[]';
+		}
+
 		// PHP escapes '/' to prevent breaking out of inline script blocks using '</script>',
 		// which is hardly useful when '<' and '>' are escaped (and inadequate), and such
 		// escaping negatively impacts the human readability of URLs and similar strings.
@@ -149,9 +154,11 @@ class FormatJson {
 		}
 
 		if ( $pretty !== false ) {
-			// Remove whitespace inside empty arrays/objects; different JSON encoders
-			// vary on this, and we want our output to be consistent across implementations.
-			$json = preg_replace( self::WS_CLEANUP_REGEX, '', $json );
+			// Workaround for <https://bugs.php.net/bug.php?id=66021>
+			// Can be removed once we require PHP >= 5.4.28, 5.5.12, 5.6.0
+			if ( $bug66021 ) {
+				$json = preg_replace( self::WS_CLEANUP_REGEX, '', $json );
+			}
 			if ( $pretty !== '    ' ) {
 				// Change the four-space indent to a tab indent
 				$json = str_replace( "\n    ", "\n\t", $json );
