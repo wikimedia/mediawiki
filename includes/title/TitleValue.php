@@ -157,6 +157,6 @@ class TitleValue {
 			$name .= '#' . $this->fragment;
 		}
 
-		return  $name;
+		return $name;
 	}
 }
