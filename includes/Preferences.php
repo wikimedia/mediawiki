@@ -433,6 +433,7 @@ class Preferences {
 		);
 
 		## Email stuff
+		//Moved to new 'Notifications' preference tab
 
 		if ( $wgEnableEmail ) {
 			if ( $canViewPrivateInfo ) {
@@ -464,7 +465,7 @@ class Preferences {
 					'raw' => true,
 					'default' => $emailAddress,
 					'label-message' => 'youremail',
-					'section' => 'personal/email',
+					'section' => 'notifications/email',
 					'help-messages' => $helpMessages,
 					# 'cssclass' chosen below
 				);
@@ -507,7 +508,7 @@ class Preferences {
 					$defaultPreferences['emailauthentication'] = array(
 						'type' => 'info',
 						'raw' => true,
-						'section' => 'personal/email',
+						'section' => 'notifications/email',
 						'label-message' => 'prefs-emailconfirm-label',
 						'default' => $emailauthenticated,
 						# Apply the same CSS class used on the input to the message:
@@ -521,13 +522,13 @@ class Preferences {
 				$defaultPreferences['disablemail'] = array(
 					'type' => 'toggle',
 					'invert' => true,
-					'section' => 'personal/email',
+					'section' => 'notifications/email',
 					'label-message' => 'allowemail',
 					'disabled' => $disableEmailPrefs,
 				);
 				$defaultPreferences['ccmeonemails'] = array(
 					'type' => 'toggle',
-					'section' => 'personal/email',
+					'section' => 'notifications/email',
 					'label-message' => 'tog-ccmeonemails',
 					'disabled' => $disableEmailPrefs,
 				);
@@ -536,7 +537,7 @@ class Preferences {
 			if ( $wgEnotifWatchlist ) {
 				$defaultPreferences['enotifwatchlistpages'] = array(
 					'type' => 'toggle',
-					'section' => 'personal/email',
+					'section' => 'notifications/email',
 					'label-message' => 'tog-enotifwatchlistpages',
 					'disabled' => $disableEmailPrefs,
 				);
@@ -544,7 +545,7 @@ class Preferences {
 			if ( $wgEnotifUserTalk ) {
 				$defaultPreferences['enotifusertalkpages'] = array(
 					'type' => 'toggle',
-					'section' => 'personal/email',
+					'section' => 'notifications/email',
 					'label-message' => 'tog-enotifusertalkpages',
 					'disabled' => $disableEmailPrefs,
 				);
@@ -552,7 +553,7 @@ class Preferences {
 			if ( $wgEnotifUserTalk || $wgEnotifWatchlist ) {
 				$defaultPreferences['enotifminoredits'] = array(
 					'type' => 'toggle',
-					'section' => 'personal/email',
+					'section' => 'notifications/email',
 					'label-message' => 'tog-enotifminoredits',
 					'disabled' => $disableEmailPrefs,
 				);
@@ -560,7 +561,7 @@ class Preferences {
 				if ( $wgEnotifRevealEditorAddress ) {
 					$defaultPreferences['enotifrevealaddr'] = array(
 						'type' => 'toggle',
-						'section' => 'personal/email',
+						'section' => 'notifications/email',
 						'label-message' => 'tog-enotifrevealaddr',
 						'disabled' => $disableEmailPrefs,
 					);
