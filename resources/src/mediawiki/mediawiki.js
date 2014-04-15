@@ -786,7 +786,7 @@ var mw = ( function ( $, undefined ) {
 							try {
 								styleEl.styleSheet.cssText += cssText; // IE
 							} catch ( e ) {
-								log( 'addEmbeddedCSS fail', e );
+								log( 'Stylesheet error', e );
 							}
 						} else {
 							styleEl.appendChild( document.createTextNode( String( cssText ) ) );
@@ -2025,7 +2025,9 @@ var mw = ( function ( $, undefined ) {
 								mw.loader.store.items = data.items;
 								return;
 							}
-						} catch ( e ) {}
+						} catch ( e ) {
+							log( 'Storage error', e );
+						}
 
 						if ( raw === undefined ) {
 							// localStorage failed; disable store
@@ -2102,6 +2104,7 @@ var mw = ( function ( $, undefined ) {
 								log( 'Detected malformed function stringification (bug 57567)' );
 							}
 						} catch ( e ) {
+							log( 'Storage error', e );
 							return;
 						}
 
@@ -2172,7 +2175,9 @@ var mw = ( function ( $, undefined ) {
 								localStorage.removeItem( key );
 								data = JSON.stringify( mw.loader.store );
 								localStorage.setItem( key, data );
-							} catch ( e ) {}
+							} catch ( e ) {
+								log( 'Storage error', e );
+							}
 						}
 
 						return function () {
