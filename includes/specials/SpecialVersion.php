@@ -433,10 +433,7 @@ class SpecialVersion extends SpecialPage {
 
 		$extensionTypes = self::getExtensionTypes();
 
-		/**
-		 * @deprecated as of 1.17, use hook ExtensionTypes instead.
-		 */
-		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ) );
+		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ), '1.17' );
 
 		$out = Xml::element(
 				'h2',
