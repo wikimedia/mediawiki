@@ -2221,7 +2221,7 @@ class EditPage {
 			$previewOutput = $this->getPreviewText();
 		}
 
-		wfRunHooks( 'EditPage::showEditForm:initial', array( &$this, &$wgOut ) );
+		wfRunHooks( 'EditPage::showEditForm:initial', array( $this, &$wgOut ) );
 
 		$this->setHeaders();
 
@@ -2268,7 +2268,7 @@ class EditPage {
 			. Xml::closeElement( 'div' )
 		);
 
-		wfRunHooks( 'EditPage::showEditForm:fields', array( &$this, &$wgOut ) );
+		wfRunHooks( 'EditPage::showEditForm:fields', array( $this, &$wgOut ) );
 
 		// Put these up at the top to ensure they aren't lost on early form submission
 		$this->showFormBeforeText();
@@ -3062,7 +3062,7 @@ HTML
 	protected function showConflict() {
 		global $wgOut;
 
-		if ( wfRunHooks( 'EditPageBeforeConflictDiff', array( &$this, &$wgOut ) ) ) {
+		if ( wfRunHooks( 'EditPageBeforeConflictDiff', array( $this, &$wgOut ) ) ) {
 			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
 
 			$content1 = $this->toEditContent( $this->textbox1 );
@@ -3534,7 +3534,7 @@ HTML
 				Xml::expandAttributes( array( 'title' => Linker::titleAttrib( 'watch', 'withaccess' ) ) ) .
 				">{$watchLabel}</label>";
 		}
-		wfRunHooks( 'EditPageBeforeEditChecks', array( &$this, &$checkboxes, &$tabindex ) );
+		wfRunHooks( 'EditPageBeforeEditChecks', array( $this, &$checkboxes, &$tabindex ) );
 		return $checkboxes;
 	}
 
@@ -3584,7 +3584,7 @@ HTML
 		);
 		$buttons['diff'] = Xml::element( 'input', $temp, '' );
 
-		wfRunHooks( 'EditPageBeforeEditButtons', array( &$this, &$buttons, &$tabindex ) );
+		wfRunHooks( 'EditPageBeforeEditButtons', array( $this, &$buttons, &$tabindex ) );
 		return $buttons;
 	}
 
@@ -3662,7 +3662,7 @@ HTML
 		$wgOut->prepareErrorPage( wfMessage( 'nosuchsectiontitle' ) );
 
 		$res = wfMessage( 'nosuchsectiontext', $this->section )->parseAsBlock();
-		wfRunHooks( 'EditPageNoSuchSection', array( &$this, &$res ) );
+		wfRunHooks( 'EditPageNoSuchSection', array( $this, &$res ) );
 		$wgOut->addHTML( $res );
 
 		$wgOut->returnToMain( false, $this->mTitle );
