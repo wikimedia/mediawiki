@@ -36,7 +36,7 @@ abstract class ApiFormatBase extends ApiBase {
 	/**
 	 * Constructor
 	 * If $format ends with 'fm', pretty-print the output in HTML.
-	 * @param $main ApiMain
+	 * @param ApiMain $main
 	 * @param string $format Format name
 	 */
 	public function __construct( $main, $format ) {
@@ -224,7 +224,7 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 	 * The main format printing function. Call it to output the result
 	 * string to the user. This function will automatically output HTML
 	 * when format name ends in 'fm'.
-	 * @param $text string
+	 * @param string $text
 	 */
 	public function printText( $text ) {
 		if ( $this->mDisabled ) {
@@ -255,7 +255,7 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 
 	/**
 	 * Set the flag to buffer the result instead of printing it.
-	 * @param $value bool
+	 * @param bool $value
 	 */
 	public function setBufferResult( $value ) {
 		$this->mBufferResult = $value;
@@ -263,7 +263,7 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 
 	/**
 	 * Sets whether the pretty-printer should format *bold*
-	 * @param $help bool
+	 * @param bool $help
 	 */
 	public function setHelp( $help = true ) {
 		$this->mHelp = $help;
@@ -272,7 +272,7 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 	/**
 	 * Pretty-print various elements in HTML format, such as xml tags and
 	 * URLs. This method also escapes characters like <
-	 * @param $text string
+	 * @param string $text
 	 * @return string
 	 */
 	protected function formatHTML( $text ) {
@@ -353,8 +353,8 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 
 	/**
 	 * Call this method to initialize output data. See execute()
-	 * @param $result ApiResult
-	 * @param $feed object an instance of one of the $wgFeedClasses classes
+	 * @param ApiResult $result
+	 * @param object $feed An instance of one of the $wgFeedClasses classes
 	 * @param array $feedItems of FeedItem objects
 	 */
 	public static function setResult( $result, $feed, $feedItems ) {

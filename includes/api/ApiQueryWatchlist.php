@@ -51,7 +51,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$fld_loginfo = false;
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {

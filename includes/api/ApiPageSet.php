@@ -75,10 +75,10 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Add all items from $values into the result
-	 * @param array $result output
-	 * @param array $values values to add
-	 * @param string $flag the name of the boolean flag to mark this element
-	 * @param string $name if given, name of the value
+	 * @param array $result Output
+	 * @param array $values Values to add
+	 * @param string $flag The name of the boolean flag to mark this element
+	 * @param string $name If given, name of the value
 	 */
 	private static function addValues( array &$result, $values, $flag = null, $name = null ) {
 		foreach ( $values as $val ) {
@@ -99,10 +99,10 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Constructor
-	 * @param $dbSource ApiBase Module implementing getDB().
+	 * @param ApiBase $dbSource Module implementing getDB().
 	 *        Allows PageSet to reuse existing db connection from the shared state like ApiQuery.
 	 * @param int $flags Zero or more flags like DISABLE_GENERATORS
-	 * @param int $defaultNamespace the namespace to use if none is specified by a prefix.
+	 * @param int $defaultNamespace The namespace to use if none is specified by a prefix.
 	 * @since 1.21 accepts $flags instead of two boolean values
 	 */
 	public function __construct( ApiBase $dbSource, $flags = 0, $defaultNamespace = NS_MAIN ) {
@@ -296,7 +296,7 @@ class ApiPageSet extends ApiBase {
 	 * Get the fields that have to be queried from the page table:
 	 * the ones requested through requestField() and a few basic ones
 	 * we always need
-	 * @return array of field names
+	 * @return array Array of field names
 	 */
 	public function getPageTableFields() {
 		// Ensure we get minimum required fields
@@ -381,7 +381,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Page IDs that were not found in the database
-	 * @return array of page IDs
+	 * @return array Array of page IDs
 	 */
 	public function getMissingPageIDs() {
 		return $this->mMissingPageIDs;
@@ -399,8 +399,8 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Get a list of redirect resolutions - maps a title to its redirect
 	 * target.
-	 * @param $result ApiResult
-	 * @return array of prefixed_title (string) => Title object
+	 * @param ApiResult $result
+	 * @return array Array of prefixed_title (string) => Title object
 	 * @since 1.21
 	 */
 	public function getRedirectTitlesAsResult( $result = null ) {
@@ -425,7 +425,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Get a list of title normalizations - maps a title to its normalized
 	 * version.
-	 * @return array raw_prefixed_title (string) => prefixed_title (string)
+	 * @return array Array of raw_prefixed_title (string) => prefixed_title (string)
 	 */
 	public function getNormalizedTitles() {
 		return $this->mNormalizedTitles;
@@ -434,8 +434,8 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Get a list of title normalizations - maps a title to its normalized
 	 * version in the form of result array.
-	 * @param $result ApiResult
-	 * @return array of raw_prefixed_title (string) => prefixed_title (string)
+	 * @param ApiResult $result
+	 * @return array Array of raw_prefixed_title (string) => prefixed_title (string)
 	 * @since 1.21
 	 */
 	public function getNormalizedTitlesAsResult( $result = null ) {
@@ -456,7 +456,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Get a list of title conversions - maps a title to its converted
 	 * version.
-	 * @return array raw_prefixed_title (string) => prefixed_title (string)
+	 * @return array Array of raw_prefixed_title (string) => prefixed_title (string)
 	 */
 	public function getConvertedTitles() {
 		return $this->mConvertedTitles;
@@ -465,8 +465,8 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Get a list of title conversions - maps a title to its converted
 	 * version as a result array.
-	 * @param $result ApiResult
-	 * @return array of (from, to) strings
+	 * @param ApiResult $result
+	 * @return array Array of (from, to) strings
 	 * @since 1.21
 	 */
 	public function getConvertedTitlesAsResult( $result = null ) {
@@ -487,7 +487,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Get a list of interwiki titles - maps a title to its interwiki
 	 * prefix.
-	 * @return array raw_prefixed_title (string) => interwiki_prefix (string)
+	 * @return array Array of raw_prefixed_title (string) => interwiki_prefix (string)
 	 */
 	public function getInterwikiTitles() {
 		return $this->mInterwikiTitles;
@@ -496,9 +496,9 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Get a list of interwiki titles - maps a title to its interwiki
 	 * prefix as result.
-	 * @param $result ApiResult
-	 * @param $iwUrl boolean
-	 * @return array raw_prefixed_title (string) => interwiki_prefix (string)
+	 * @param ApiResult $result
+	 * @param bool $iwUrl
+	 * @return array Array of raw_prefixed_title (string) => interwiki_prefix (string)
 	 * @since 1.21
 	 */
 	public function getInterwikiTitlesAsResult( $result = null, $iwUrl = false ) {
@@ -524,7 +524,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Get an array of invalid/special/missing titles.
 	 *
-	 * @param $invalidChecks List of types of invalid titles to include.
+	 * @param array $invalidChecks List of types of invalid titles to include.
 	 *   Recognized values are:
 	 *   - invalidTitles: Titles from $this->getInvalidTitles()
 	 *   - special: Titles from $this->getSpecialTitles()
@@ -563,7 +563,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Get the list of revision IDs (requested with the revids= parameter)
-	 * @return array revID (int) => pageID (int)
+	 * @return array Array of revID (int) => pageID (int)
 	 */
 	public function getRevisionIDs() {
 		return $this->mGoodRevIDs;
@@ -571,7 +571,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Revision IDs that were not found in the database
-	 * @return array of revision IDs
+	 * @return array Array of revision IDs
 	 */
 	public function getMissingRevisionIDs() {
 		return $this->mMissingRevIDs;
@@ -579,8 +579,8 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Revision IDs that were not found in the database as result array.
-	 * @param $result ApiResult
-	 * @return array of revision IDs
+	 * @param ApiResult $result
+	 * @return array Array of revision IDs
 	 * @since 1.21
 	 */
 	public function getMissingRevisionIDsAsResult( $result = null ) {
@@ -615,7 +615,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Populate this PageSet from a list of Titles
-	 * @param array $titles of Title objects
+	 * @param array $titles Array of Title objects
 	 */
 	public function populateFromTitles( $titles ) {
 		$this->profileIn();
@@ -625,7 +625,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Populate this PageSet from a list of page IDs
-	 * @param array $pageIDs of page IDs
+	 * @param array $pageIDs Array of page IDs
 	 */
 	public function populateFromPageIDs( $pageIDs ) {
 		$this->profileIn();
@@ -635,8 +635,8 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Populate this PageSet from a rowset returned from the database
-	 * @param $db DatabaseBase object
-	 * @param $queryResult ResultWrapper Query result object
+	 * @param DatabaseBase $db
+	 * @param ResultWrapper $queryResult Query result object
 	 */
 	public function populateFromQueryResult( $db, $queryResult ) {
 		$this->profileIn();
@@ -646,7 +646,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Populate this PageSet from a list of revision IDs
-	 * @param array $revIDs of revision IDs
+	 * @param array $revIDs Array of revision IDs
 	 */
 	public function populateFromRevisionIDs( $revIDs ) {
 		$this->profileIn();
@@ -699,7 +699,7 @@ class ApiPageSet extends ApiBase {
 	 * #5 Substitute the original LinkBatch object with the new list
 	 * #6 Repeat from step #1
 	 *
-	 * @param array $titles of Title objects or strings
+	 * @param array $titles Array of Title objects or strings
 	 */
 	private function initFromTitles( $titles ) {
 		// Get validated and normalized title objects
@@ -726,7 +726,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Does the same as initFromTitles(), but is based on page IDs instead
-	 * @param array $pageids of page IDs
+	 * @param array $pageids Array of page IDs
 	 */
 	private function initFromPageIds( $pageids ) {
 		if ( !$pageids ) {
@@ -761,8 +761,8 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Iterate through the result of the query on 'page' table,
 	 * and for each row create and store title object and save any extra fields requested.
-	 * @param $res ResultWrapper DB Query result
-	 * @param array $remaining of either pageID or ns/title elements (optional).
+	 * @param ResultWrapper $res DB Query result
+	 * @param array $remaining Array of either pageID or ns/title elements (optional).
 	 *        If given, any missing items will go to $mMissingPageIDs and $mMissingTitles
 	 * @param bool $processTitles Must be provided together with $remaining.
 	 *        If true, treat $remaining as an array of [ns][title]
@@ -833,7 +833,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Does the same as initFromTitles(), but is based on revision IDs
 	 * instead
-	 * @param array $revids of revision IDs
+	 * @param array $revids Array of revision IDs
 	 */
 	private function initFromRevIDs( $revids ) {
 		if ( !$revids ) {
@@ -976,7 +976,7 @@ class ApiPageSet extends ApiBase {
 	 * Public caching will only be allowed if *all* the modules that supply
 	 * data for a given request return a cache mode of public.
 	 *
-	 * @param $params
+	 * @param array|null $params
 	 * @return string
 	 * @since 1.21
 	 */
@@ -990,7 +990,7 @@ class ApiPageSet extends ApiBase {
 	 * This method validates access rights for the title,
 	 * and appends normalization values to the output.
 	 *
-	 * @param array $titles of Title objects or strings
+	 * @param array $titles Array of Title objects or strings
 	 * @return LinkBatch
 	 */
 	private function processTitlesArray( $titles ) {
@@ -1078,7 +1078,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Returns the input array of integers with all values < 0 removed
 	 *
-	 * @param $array array
+	 * @param array $array
 	 * @return array
 	 */
 	private static function getPositiveIntegers( $array ) {

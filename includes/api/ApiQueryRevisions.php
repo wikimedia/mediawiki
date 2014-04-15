@@ -72,10 +72,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 	}
 
 	/**
-	 * @param $pageid
-	 * @param $title Title
-	 * @param $rev Revision
-	 * @return bool|String
+	 * @param int $pageid
+	 * @param Title $title
+	 * @param Revision $rev
+	 * @return bool|string
 	 */
 	public static function getRollbackToken( $pageid, $title, $rev ) {
 		global $wgUser;

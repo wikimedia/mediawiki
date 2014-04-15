@@ -104,9 +104,9 @@ class ApiQueryPageProps extends ApiQueryBase {
 	 * Add page properties to an ApiResult, adding a continue
 	 * parameter if it doesn't fit.
 	 *
-	 * @param $result ApiResult
-	 * @param $page int
-	 * @param $props array
+	 * @param ApiResult $result
+	 * @param int $page
+	 * @param array $props
 	 * @return bool True if it fits in the result
 	 */
 	private function addPageProps( $result, $page, $props ) {
