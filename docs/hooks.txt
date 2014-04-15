@@ -1037,18 +1037,18 @@ when there's an edit conflict.  Return false to halt normal diff output; in
 this case you're responsible for computing and outputting the entire "conflict"
 part, i.e., the "difference between revisions" and "your text" headers and
 sections.
-&$editor: EditPage instance
+$editor: EditPage instance
 &$out: OutputPage instance
 
 'EditPageBeforeEditButtons': Allows modifying the edit buttons below the
 textarea in the edit form.
-&$editpage: The current EditPage object
+$editpage: The current EditPage object
 &$buttons: Array of edit buttons "Save", "Preview", "Live", and "Diff"
 &$tabindex: HTML tabindex of the last edit check/button
 
 'EditPageBeforeEditChecks': Allows modifying the edit checks below the textarea
 in the edit form.
-&$editpage: The current EditPage object
+$editpage: The current EditPage object
 &$checks: Array of edit checks like "watch this page"/"minor edit"
 &$tabindex: HTML tabindex of the last edit check/button
 
@@ -1089,7 +1089,7 @@ $editPage: EditPage object
 &$content: Content object to be previewed (may be replaced by hook function)
 
 'EditPageNoSuchSection': When a section edit request is given for an non-existent section
-&$editpage: The current EditPage object
+$editpage: The current EditPage object
 &$res: the HTML of the error text
 
 'EditPageTosSummary': Give a chance for site and per-namespace customizations
