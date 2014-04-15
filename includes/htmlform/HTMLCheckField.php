@@ -24,8 +24,7 @@ class HTMLCheckField extends HTMLFormField {
 				array(
 					'class' => 'mw-ui-checkbox-label'
 				),
-				Xml::check( $this->mName, $value, $attr ) . // Html:rawElement doesn't escape contents.
-				htmlspecialchars( $this->mLabel ) );
+				Xml::check( $this->mName, $value, $attr ) . $this->mLabel );
 		} else {
 			return Xml::check( $this->mName, $value, $attr )
 			. '&#160;'
