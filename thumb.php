@@ -243,8 +243,10 @@ function wfStreamThumb( array $params ) {
 		}
 	}
 
+	$rel404 = isset( $params['rel404'] ) ? $params['rel404'] : null;
 	unset( $params['r'] ); // ignore 'r' because we unconditionally pass File::RENDER
 	unset( $params['f'] ); // We're done with 'f' parameter.
+	unset( $params['rel404'] ); // moved to $rel404
 
 	// Get the normalized thumbnail name from the parameters...
 	try {
@@ -263,10 +265,10 @@ function wfStreamThumb( array $params ) {
 	// for the thumb params and the parent directory for the source file name.
 	// Check that the zone relative path matches up so squid caches won't pick
 	// up thumbs that would not be purged on source file deletion (bug 34231).
-	if ( isset( $params['rel404'] ) ) { // thumbnail was handled via 404
-		if ( rawurldecode( $params['rel404'] ) === $img->getThumbRel( $thumbName ) ) {
+	if ( $rel404 !== null ) { // thumbnail was handled via 404
+		if ( rawurldecode( $rel404 ) === $img->getThumbRel( $thumbName ) ) {
 			// Request for the canonical thumbnail name
-		} elseif ( rawurldecode( $params['rel404'] ) === $img->getThumbRel( $thumbName2 ) ) {
+		} elseif ( rawurldecode( $rel404 ) === $img->getThumbRel( $thumbName2 ) ) {
 			// Request for the "long" thumbnail name; redirect to canonical name
 			$response = RequestContext::getMain()->getRequest()->response();
 			$response->header( "HTTP/1.1 301 " . HttpStatus::getMessage( 301 ) );
@@ -284,7 +286,7 @@ function wfStreamThumb( array $params ) {
 		} else {
 			wfThumbError( 404, "The given path of the specified thumbnail is incorrect;
 				expected '" . $img->getThumbRel( $thumbName ) . "' but got '" .
-				rawurldecode( $params['rel404'] ) . "'." );
+				rawurldecode( $rel404 ) . "'." );
 			return;
 		}
 	}
@@ -306,7 +308,10 @@ function wfStreamThumb( array $params ) {
 	}
 
 	$user = RequestContext::getMain()->getUser();
-	if ( $user->pingLimiter( 'renderfile' ) ) {
+	if ( !wfThumbIsStandard( $img, $params ) && $user->pingLimiter( 'renderfile-nonstandard' ) ) {
+		wfThumbError( 500, wfMessage( 'actionthrottledtext' ) );
+		return;
+	} elseif ( $user->pingLimiter( 'renderfile' ) ) {
 		wfThumbError( 500, wfMessage( 'actionthrottledtext' ) );
 		return;
 	} elseif ( wfThumbIsAttemptThrottled( $img, $thumbName, 5 ) ) {
@@ -343,6 +348,37 @@ function wfStreamThumb( array $params ) {
 		// Stream the file if there were no errors
 		$thumb->streamFile( $headers );
 	}
+}
+
+/**
+ * Returns true if this thumbnail is one that MediaWiki generates
+ * links to on file description pages and possibly parser output.
+ *
+ * $params is considered non-standard if they involve a non-standard
+ * width or any parameter aside from width and page number. The number
+ * of possible files with standard parameters is far less than that of all
+ * possible combinations; rate-limiting for them can thus be more generious.
+ *
+ * @param File $img
+ * @param array $params
+ * @return bool
+ */
+function wfThumbIsStandard( File $img, array $params ) {
+	global $wgThumbLimits, $wgImageLimits;
+	// @TODO: use polymorphism with media handler here
+	if ( array_diff( array_keys( $params ), array( 'width', 'page' ) ) ) {
+		return false; // extra parameters present
+	}
+	if ( isset( $params['width'] ) ) {
+		$widths = $wgThumbLimits;
+		foreach ( $wgImageLimits as $pair ) {
+			$widths[] = $pair[0];
+		}
+		if ( !in_array( $params['width'], $widths ) ) {
+			return false;
+		}
+	}
+	return true;
 }
 
 /**
