@@ -269,7 +269,7 @@ class LinksUpdate extends SqlDataUpdate {
 	}
 
 	/**
-	 * @param $cats
+	 * @param array $cats
 	 */
 	function invalidateCategories( $cats ) {
 		$this->invalidatePages( NS_CATEGORY, array_keys( $cats ) );
@@ -288,7 +288,7 @@ class LinksUpdate extends SqlDataUpdate {
 	}
 
 	/**
-	 * @param $images
+	 * @param array $images
 	 */
 	function invalidateImageDescriptions( $images ) {
 		$this->invalidatePages( NS_FILE, array_keys( $images ) );
@@ -432,7 +432,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Get an array of category insertions
 	 *
-	 * @param array $existing mapping existing category names to sort keys. If both
+	 * @param array $existing Mapping existing category names to sort keys. If both
 	 * match a link in $this, the link will be omitted from the output
 	 *
 	 * @return array
@@ -477,7 +477,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Get an array of interlanguage link insertions
 	 *
-	 * @param array $existing mapping existing language codes to titles
+	 * @param array $existing Mapping existing language codes to titles
 	 *
 	 * @return array
 	 */
@@ -769,7 +769,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Get an array of existing categories, with the name in the key and sort key in the value.
 	 *
-	 * @return array of property names and values
+	 * @return array Array of property names and values
 	 */
 	private function getExistingProperties() {
 		$res = $this->mDb->select( 'page_props', array( 'pp_propname', 'pp_value' ),
@@ -831,7 +831,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Fetch page links added by this LinksUpdate.  Only available after the update is complete.
 	 * @since 1.22
-	 * @return null|array of Titles
+	 * @return null|array Array of Titles
 	 */
 	public function getAddedLinks() {
 		if ( $this->linkInsertions === null ) {
@@ -848,7 +848,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Fetch page links removed by this LinksUpdate.  Only available after the update is complete.
 	 * @since 1.22
-	 * @return null|array of Titles
+	 * @return null|array Array of Titles
 	 */
 	public function getRemovedLinks() {
 		if ( $this->linkDeletions === null ) {

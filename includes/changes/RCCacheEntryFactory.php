@@ -39,7 +39,7 @@ class RCCacheEntryFactory {
 
 	/**
 	 * @param RecentChange $baseRC
-	 * @param boolean $watched
+	 * @param bool $watched
 	 *
 	 * @return RCCacheEntry
 	 */
@@ -83,7 +83,7 @@ class RCCacheEntryFactory {
 	 * @param RecentChange $cacheEntry
 	 * @param User $user
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	private function showDiffLinks( RecentChange $cacheEntry, User $user ) {
 		return ChangesList::userCan( $cacheEntry, Revision::DELETED_TEXT, $user );
@@ -163,7 +163,7 @@ class RCCacheEntryFactory {
 
 	/**
 	 * @param RecentChange $cacheEntry
-	 * @param boolean $showDiffLinks
+	 * @param bool $showDiffLinks
 	 * @param int $counter
 	 *
 	 * @return string
@@ -198,7 +198,7 @@ class RCCacheEntryFactory {
 
 	/**
 	 * @param RecentChange $cacheEntry
-	 * @param boolean $showDiffLinks
+	 * @param bool $showDiffLinks
 	 * @param int $counter
 	 *
 	 * @return string
@@ -222,7 +222,7 @@ class RCCacheEntryFactory {
 
 	/**
 	 * @param RecentChange $cacheEntry
-	 * @param boolean $showDiffLinks
+	 * @param bool $showDiffLinks
 	 *
 	 * @return string
 	 */

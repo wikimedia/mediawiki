@@ -69,7 +69,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * Get a new image gallery. This is the method other callers
 	 * should use to get a gallery.
 	 *
-	 * @param string|bool $mode Mode to use. False to use the default.
+	 * @param string|bool $mode Mode to use. False to use the default
 	 * @throws MWException
 	 */
 	static function factory( $mode = false ) {
@@ -130,7 +130,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @note This also triggers using the page's target
 	 *  language instead of the user language.
 	 *
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 */
 	function setParser( $parser ) {
 		$this->mParser = $parser;
@@ -200,7 +200,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * to allow extensions to add additional parameters to
 	 * <gallery> parser tag.
 	 *
-	 * @param array $options Attributes of gallery tag.
+	 * @param array $options Attributes of gallery tag
 	 */
 	public function setAdditionalOptions( $options ) {
 	}
@@ -265,7 +265,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * Enable/Disable showing of the file size of an image in the gallery.
 	 * Enabled by default.
 	 *
-	 * @param bool $f Set to false to disable.
+	 * @param bool $f Set to false to disable
 	 */
 	function setShowBytes( $f ) {
 		$this->mShowBytes = (bool)$f;
@@ -275,7 +275,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * Enable/Disable showing of the filename of an image in the gallery.
 	 * Enabled by default.
 	 *
-	 * @param bool $f Set to false to disable.
+	 * @param bool $f Set to false to disable
 	 */
 	function setShowFilename( $f ) {
 		$this->mShowFilename = (bool)$f;

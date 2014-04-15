@@ -88,7 +88,7 @@ function wfThumbHandle404() {
 /**
  * Stream a thumbnail specified by parameters
  *
- * @param $params Array List of thumbnailing parameters. In addition to parameters
+ * @param array $params List of thumbnailing parameters. In addition to parameters
  *  passed to the MediaHandler, this may also includes the keys:
  *   f (for filename), archived (if archived file), temp (if temp file),
  *   w (alias for width), p (alias for page), r (ignored; historical),
@@ -400,8 +400,8 @@ function wfThumbAttemptKey( File $img, $thumbName ) {
  *
  * Transform specific parameters are set later via wfExtractThumbParams().
  *
- * @param $thumbRel String Thumbnail path relative to the thumb zone
- * @return Array|null associative params array or null
+ * @param string $thumbRel Thumbnail path relative to the thumb zone
+ * @return array|null Associative params array or null
  */
 function wfExtractThumbRequestInfo( $thumbRel ) {
 	$repo = RepoGroup::singleton()->getLocalRepo();
@@ -437,9 +437,9 @@ function wfExtractThumbRequestInfo( $thumbRel ) {
  * Convert a thumbnail name (122px-foo.png) to parameters, using
  * file handler.
  *
- * @param File $file File object for file in question.
- * @param $param Array Array of parameters so far.
- * @return Array parameters array with more parameters.
+ * @param File $file File object for file in question
+ * @param array $param Array of parameters so far
+ * @return array Parameters array with more parameters
  */
 function wfExtractThumbParams( $file, $params ) {
 	if ( !isset( $params['thumbName'] ) ) {
@@ -495,8 +495,8 @@ function wfExtractThumbParams( $file, $params ) {
 /**
  * Output a thumbnail generation error message
  *
- * @param $status integer
- * @param $msg string
+ * @param int $status
+ * @param string $msg
  * @return void
  */
 function wfThumbError( $status, $msg ) {

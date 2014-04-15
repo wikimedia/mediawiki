@@ -204,7 +204,7 @@ class RequestContext implements IContextSource {
 	}
 
 	/**
-	 * @param $o OutputPage
+	 * @param OutputPage $o
 	 */
 	public function setOutput( OutputPage $o ) {
 		$this->output = $o;
@@ -436,7 +436,7 @@ class RequestContext implements IContextSource {
 	 * Export the resolved user IP, HTTP headers, user ID, and session ID.
 	 * The result will be reasonably sized to allow for serialization.
 	 *
-	 * @return Array
+	 * @return array
 	 * @since 1.21
 	 */
 	public function exportSession() {
