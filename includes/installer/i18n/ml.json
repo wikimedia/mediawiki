@@ -72,7 +72,6 @@
     "config-admin-name-blank": "ഒരു കാര്യനിർവാഹക ഉപയോക്തൃനാമം നൽകുക.",
     "config-admin-name-invalid": "നൽകിയിട്ടുള്ള ഉപയോക്തൃനാമം \"<nowiki>$1</nowiki>\" അസാധുവാണ്.\nമറ്റൊരു ഉപയോക്തൃനാമം നൽകുക.",
     "config-admin-password-blank": "കാര്യനിർവാഹക അംഗത്വത്തിനുള്ള രഹസ്യവാക്ക് നൽകുക.",
-    "config-admin-password-same": "രഹസ്യവാക്കും ഉപയോക്തൃനാമവും ഒന്നാകരുത്.",
     "config-admin-password-mismatch": "താങ്കൾ നൽകിയ രഹസ്യവാക്കുകൾ രണ്ടും തമ്മിൽ യോജിക്കുന്നില്ല.",
     "config-admin-email": "ഇമെയിൽ വിലാസം:",
     "config-admin-error-user": "\"<nowiki>$1</nowiki>\" എന്ന പേരിലുള്ള കാര്യനിർവഹണ അംഗത്വ നിർമ്മിതിയ്ക്കിടെ ആന്തരികമായ പിഴവുണ്ടായി.",

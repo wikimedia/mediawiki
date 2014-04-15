@@ -2,7 +2,8 @@
     "@metadata": {
         "authors": [
             "Bellayet",
-            "Wikitanvir"
+            "Wikitanvir",
+            "Aftab1995"
         ]
     },
     "config-desc": "মিডিয়াউইকির জন্য ইন্সটলার",
@@ -57,6 +58,7 @@
     "config-mysql-charset": "ডেটাবেজের অক্ষর সেট",
     "config-mysql-binary": "বাইনারি",
     "config-mysql-utf8": "ইউটিএফ-৮",
+    "config-mssql-windowsauth": "উইন্ডোজ প্রমাণীকরণ",
     "config-site-name": "উইকির নাম:",
     "config-site-name-blank": "একটি সাইটের নাম প্রবেশ করান।",
     "config-project-namespace": "প্রকল্প নামস্থান:",
@@ -65,18 +67,17 @@
     "config-ns-other": "অন্যান্য (নির্দিষ্ট করুন)",
     "config-ns-other-default": "মাইউইকি",
     "config-admin-box": "প্রশাসক অ্যাকাউন্ট",
-    "config-admin-name": "আপনার নাম:",
+    "config-admin-name": "আপনার ব্যবহারকারী নাম:",
     "config-admin-password": "শব্দচাবি:",
     "config-admin-password-confirm": "শব্দচাবি আবারও প্রবেশ করান:",
     "config-admin-name-blank": "একটি প্রশাসক ব্যবহারকারী নাম প্রবেশ করান",
     "config-admin-password-blank": "প্রশাসক অ্যাকাউন্টের জন্য পাসওয়ার্ড প্রবেশ করান।",
-    "config-admin-password-same": "পাসওয়ার্ড অবশ্যই ব্যবহারকারী নামের অনুরুপ হওয়া চলবে না।",
     "config-admin-password-mismatch": "আপনি যে দুটি শব্দচাবি দিয়েছেন তারা পরস্পর মেলেনি।",
     "config-admin-email": "ইমেইল ঠিকানা:",
     "config-optional-continue": "আরও প্রশ্ন জিজ্ঞেস করুন।",
     "config-optional-skip": "আমি ইতিমধ্যেই বিরক্ত হয়ে গেছি, উইকিটি ইন্সটল করো।",
     "config-profile": "ব্যবহারকারী অধিকার প্রোফাইল:",
-    "config-profile-wiki": "গতানুগতিক উইকি",
+    "config-profile-wiki": "উন্মুক্ত উইকি",
     "config-profile-no-anon": "অ্যাকাউন্ট তৈরি করা বাধ্যতামূলক",
     "config-profile-fishbowl": "শুধুমাত্র নির্ধারিত সম্পাদকদের  জন্যই",
     "config-profile-private": "ব্যক্তিগত উইকি",
@@ -84,7 +85,7 @@
     "config-license-none": "কোনো লাইসেন্স ফুটার নেই",
     "config-license-cc-by-sa": "ক্রিয়েটিভ কমন্স অ্যাট্রিবিউশন শেয়ার অ্যালাইক",
     "config-license-cc-by-nc-sa": "ক্রিয়েটিভ কমন্স অ্যাট্রিবিউশন নন-কমার্শিয়াল শেয়ার অ্যালাইক",
-    "config-license-cc-0": "ক্রিয়েটিভ কমন্স জিরো",
+    "config-license-cc-0": "ক্রিয়েটিভ কমন্স জিরো (পাবলিক ডোমেইন)",
     "config-license-pd": "পাবলিক ডোমেইন",
     "config-license-cc-choose": "একটি স্বনির্ধারিত ক্রিয়েটিভ কমন্স লাইসেন্ট নির্বাচন করুন",
     "config-email-settings": "ই-মেইল সেটিংস",

@@ -3,7 +3,8 @@
         "authors": [
             "Karthi.dr",
             "TRYPPN",
-            "மதனாஹரன்"
+            "மதனாஹரன்",
+            "Jayarathina"
         ]
     },
     "config-title": "மீடியாவிக்கி $1 நிறுவுதல்",
@@ -50,12 +51,11 @@
     "config-ns-generic": "திட்டம்",
     "config-ns-other": "ஏனையவை (குறிப்பிடவும்)",
     "config-admin-box": "நிருவாகி கணக்கு",
-    "config-admin-name": "தங்களது பெயர்:",
+    "config-admin-name": "உங்களின் பயனர் பெயர்:",
     "config-admin-password": "கடவுச்சொல்:",
     "config-admin-password-confirm": "கடவுச்சொல் மறுமுறையும்:",
     "config-admin-name-blank": "நிருவாக அணுக்கம் உள்ள பயனர் பெயரை இடுக.",
     "config-admin-password-blank": "நிருவாகி கணக்குக்கு கடவுச்சொல் ஒன்றை உள்ளிடவும்.",
-    "config-admin-password-same": "பயனர் பெயரையே கடவுச்சொல்லாக வைத்துக் கொள்ள முடியாது.",
     "config-admin-password-mismatch": "நீங்கள் பதிந்த கடவுச்சொற்கள் ஒன்றுக்கொன்று பொருந்தவில்லை.",
     "config-admin-email": "மின்னஞ்சல் முகவரி:",
     "config-admin-error-bademail": "நீங்கள் செல்லாத ஒரு மின்னஞ்சல் முகவரியைத் தந்துள்ளீர்கள்.",

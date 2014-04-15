@@ -2,7 +2,8 @@
     "@metadata": {
         "authors": [
             "Singhalawap",
-            "පසිඳු කාවින්ද"
+            "පසිඳු කාවින්ද",
+            "Sahan.ssw"
         ]
     },
     "config-desc": "මාධ්‍යවිකි සඳහා වූ ස්ථාපකය",
@@ -66,6 +67,7 @@
     "config-mysql-myisam": "MyISAM",
     "config-mysql-binary": "ද්විමය",
     "config-mysql-utf8": "UTF-8",
+    "config-mssql-windowsauth": "windows සහතික කිරීම.",
     "config-site-name": "විකියෙහි නම:",
     "config-site-name-blank": "අඩවි නාමයක් යොදන්න.",
     "config-project-namespace": "ව්‍යාපෘතියේ නාමඅවකාශය:",
@@ -74,12 +76,11 @@
     "config-ns-other": "වෙනත් (විශේෂණය කරන්න)",
     "config-ns-other-default": "මගේවිකිය",
     "config-admin-box": "පරිපාලක ගිණුම",
-    "config-admin-name": "ඔබේ නම:",
+    "config-admin-name": "ඔබේ පරිශීලක නාමය:",
     "config-admin-password": "මුරපදය:",
     "config-admin-password-confirm": "මුරපදය නැවතත්:",
     "config-admin-name-blank": "පරිපාලක පරිශීලක නාමය යොදන්න.",
     "config-admin-password-blank": "පරිපාලක ගිණුම සඳහා මුරපදය යොදන්න.",
-    "config-admin-password-same": "මුරපදය හා පරිශීලක නාමය එක සමාන නොවිය යුතුය.",
     "config-admin-password-mismatch": "ඔබ ඇතුළු කල මුරපද දෙක නොගැලපේ.",
     "config-admin-email": "විද්‍යුත්-තැපැල් ලිපිනය:",
     "config-admin-error-bademail": "ඔබ විසින් වලංගු නොවන විද්‍යුත්-ලිපිනයක් යොදා ඇත.",

@@ -41,7 +41,6 @@
     "config-admin-password-confirm": "Parool uuesti:",
     "config-admin-name-blank": "Sisesta administraatori kasutajanimi.",
     "config-admin-password-blank": "Sisesta administraatorikonto parool.",
-    "config-admin-password-same": "Parool ei tohi kattuda kasutajanimega.",
     "config-admin-password-mismatch": "Sisestatud kaks parooli ei lange kokku.",
     "config-admin-email": "E-posti aadress:",
     "config-admin-error-bademail": "Sisestasid vigase e-posti aadressi.",

@@ -83,7 +83,6 @@
     "config-admin-password": "Parolă:",
     "config-admin-password-confirm": "Parola, din nou:",
     "config-admin-password-blank": "Introduceți o parolă pentru contul de administrator.",
-    "config-admin-password-same": "Parola trebuie să difere de numele de utilizator.",
     "config-admin-password-mismatch": "Cele două parole introduse nu corespund.",
     "config-admin-email": "Adresa de e-mail:",
     "config-admin-error-bademail": "Ați introdus o adresă de e-mail incorectă.",

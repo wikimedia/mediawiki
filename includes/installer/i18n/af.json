@@ -1,7 +1,8 @@
 {
     "@metadata": {
         "authors": [
-            "Naudefj"
+            "Naudefj",
+            "Winstonza"
         ]
     },
     "config-desc": "Die Installasieprogram vir MediaWiki",
@@ -89,11 +90,10 @@
     "config-ns-other": "Ander (spesifiseer)",
     "config-ns-other-default": "MyWiki",
     "config-admin-box": "Administrateur se gebruiker",
-    "config-admin-name": "U naam:",
+    "config-admin-name": "U gebruikersnaam:",
     "config-admin-password": "Wagwoord:",
     "config-admin-password-confirm": "Wagwoord weer:",
     "config-admin-password-blank": "Verskaf 'n wagwoord vir die administrateur in.",
-    "config-admin-password-same": "Die wagwoord mag nie dieselfde as die gebruikersnaam wees nie.",
     "config-admin-password-mismatch": "Die twee wagwoorde wat u ingetik het stem nie ooreen nie.",
     "config-admin-email": "E-posadres:",
     "config-optional-continue": "Vra my meer vrae.",
@@ -107,6 +107,10 @@
     "config-license-pd": "Publieke Domein",
     "config-license-cc-choose": "Kies 'n Creative Commons-lisensie",
     "config-email-settings": "E-posinstellings",
+    "config-email-user": "Laat e-pos tussen gebruikers toe",
+    "config-email-user-help": "Stel alle gebruikers in staat om aan mekaar e-pos te stuur indien dit so in hul voorkeure aangedui is.",
+    "config-email-usertalk": "Laat kennisgewings op gebruikersbesprekingsblad toe.",
+    "config-email-auth": "Laat e-pos-verifikasie toe",
     "config-email-sender": "E-posadres vir antwoorde:",
     "config-upload-settings": "Oplaai van beelde en lêer",
     "config-upload-enable": "Aktiveer die oplaai van lêers",

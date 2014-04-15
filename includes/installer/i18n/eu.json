@@ -2,7 +2,8 @@
     "@metadata": {
         "authors": [
             "An13sa",
-            "පසිඳු කාවින්ද"
+            "පසිඳු කාවින්ද",
+            "Subi"
         ]
     },
     "config-desc": "MediaWiki instalatzailea",
@@ -58,11 +59,12 @@
     "config-ns-other": "Bestelakoa (zehaztu)",
     "config-ns-other-default": "MyWiki",
     "config-admin-box": "Administratzaile kontua",
-    "config-admin-name": "Zure izena:",
+    "config-admin-name": "Zure erabiltzaile-izena:",
     "config-admin-password": "Pasahitza:",
     "config-admin-password-confirm": "Pasahitza berriz:",
+    "config-admin-password-mismatch": "Sartutako bi pasahitzak ez datoz bat.",
     "config-admin-email": "E-posta helbidea:",
-    "config-profile-wiki": "Wiki tradizionala",
+    "config-profile-wiki": "Wikia ireki",
     "config-profile-private": "Wiki pribatua",
     "config-license": "Copyright eta lizentzia:",
     "config-license-pd": "Domeinu Askea",

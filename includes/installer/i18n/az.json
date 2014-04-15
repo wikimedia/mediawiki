@@ -3,9 +3,12 @@
         "authors": [
             "Cekli829",
             "Vago",
-            "Wertuose"
+            "Wertuose",
+            "Khan27"
         ]
     },
+    "config-desc": "MediaWiki yükləyicisi",
+    "config-information": "Məlumat",
     "config-back": "← Geri",
     "config-continue": "Davam et →",
     "config-page-language": "Dil",
@@ -23,6 +26,7 @@
     "config-admin-name": "Sizin adınız:",
     "config-admin-password": "Parol:",
     "config-admin-email": "E-poçt ünvanı",
+    "config-license-pd": "İctimai istifadə",
     "config-help": "kömək",
     "mainpagetext": "'''MediaWiki müvəffəqiyyətlə quraşdırıldı.'''",
     "mainpagedocfooter": "Bu vikinin istifadəsi ilə bağlı məlumat almaq üçün [//meta.wikimedia.org/wiki/Help:Contents İstifadəçi məlumat səhifəsinə] baxın.\n\n== Faydalı keçidlər ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Tənzimləmələrin siyahısı]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki haqqında tez-tez soruşulan suallar]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-poçt siyahısı]"

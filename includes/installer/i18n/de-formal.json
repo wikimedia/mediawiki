@@ -1,8 +1,12 @@
 {
     "@metadata": {
         "authors": [
-            "MichaelFrey"
+            "MichaelFrey",
+            "Kghbln",
+            "Umherirrender"
         ]
     },
-    "mainpagedocfooter": "Hilfe zur Benutzung und Konfiguration der Wiki-Software finden Sie im [//meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].\n\n== Starthilfen ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]"
+    "config-welcome": "=== Prüfung der Installationsumgebung ===\nDie Basisprüfungen werden jetzt durchgeführt, um festzustellen, ob die Installationsumgebung für MediaWiki geeignet ist.\nNotieren Sie diese Informationen und geben Sie sie an, sofern Sie Hilfe beim Installieren benötigen.",
+    "config-extension-link": "Wussten Sie, dass Ihr Wiki die Nutzung von [//www.mediawiki.org/wiki/Manual:Extensions Erweiterungen] unterstützt?\n\nSie können [//www.mediawiki.org/wiki/Category:Extensions_by_category Erweiterungen nach Kategorie] durchsuchen oder die [//www.mediawiki.org/wiki/Extension_Matrix Matrix der Erweiterungen] ansehen, um eine Übersicht zu verfügbaren Erweiterungen zu erhalten.",
+    "mainpagedocfooter": "Hilfe zur Benutzung und Konfiguration der Wiki-Software finden Sie im [//meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].\n\n== Starthilfen ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]\n* [//www.mediawiki.org/wiki/Localisation#Translation_resources Lokalisieren Sie MediaWiki für Ihre Sprache]"
 }

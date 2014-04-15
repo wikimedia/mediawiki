@@ -61,7 +61,6 @@
     "config-admin-name-blank": "Daħħal isem tal-utent għall-amministratur.",
     "config-admin-name-invalid": "L-isem tal-utent speċifikat \"<nowiki>$1</nowiki>\" huwa ħażin.\nSpeċifika isem tal-utent differenti.",
     "config-admin-password-blank": "Daħħal password għall-kont tal-amministratur.",
-    "config-admin-password-same": "Il-password ma tistax tkun l-istess bħall-isem tal-utent.",
     "config-admin-password-mismatch": "Il-passwords li daħħalt ma jaqblux.",
     "config-admin-email": "Indirizz elettroniku:",
     "config-admin-error-bademail": "Daħħalt indirizz elettroniku ħażin.",
