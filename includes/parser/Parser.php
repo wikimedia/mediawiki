@@ -5338,6 +5338,7 @@ class Parser {
 		$caption = '';
 		$params = array( 'frame' => array(), 'handler' => array(),
 			'horizAlign' => array(), 'vertAlign' => array() );
+		$seenformat = false;
 		foreach ( $parts as $part ) {
 			$part = trim( $part );
 			list( $magicName, $value ) = $mwArray->matchVariableStartToEnd( $part );
@@ -5404,6 +5405,13 @@ class Parser {
 									$validated = true;
 								}
 							}
+							break;
+						case 'frameless':
+						case 'framed':
+						case 'thumbnail':
+							// use first appearing option, discard others.
+							$validated = ! $seenformat;
+							$seenformat = true;
 							break;
 						default:
 							# Most other things appear to be empty or numeric...
