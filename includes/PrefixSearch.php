@@ -37,8 +37,8 @@ abstract class PrefixSearch {
 	 * @return Array of strings
 	 */
 	public static function titleSearch( $search, $limit, $namespaces = array() ) {
-		$search = new StringPrefixSearch;
-		return $search->search( $search, $limit, $namespaces );
+		$prefixSearch = new StringPrefixSearch;
+		return $prefixSearch->search( $search, $limit, $namespaces );
 	}
 
 	/**
