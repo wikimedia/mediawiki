@@ -245,7 +245,7 @@ class SpecialContributions extends IncludableSpecialPage {
 	protected function contributionsSub( $userObj ) {
 		if ( $userObj->isAnon() ) {
 			// Show a warning message that the user being searched for doesn't exists
-			if ( !User::isIP( $userObj ) ) {
+			if ( !User::isIP( $userObj->getName() ) ) {
 				$this->getOutput()->wrapWikiMsg(
 					"<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
 					array(
