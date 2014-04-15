@@ -6,7 +6,6 @@
 		win = window,
 		ua = navigator.userAgent.toLowerCase(),
 		isIE6 = ( /msie ([0-9]{1,}[\.0-9]{0,})/.exec( ua ) && parseFloat( RegExp.$1 ) <= 6.0 ),
-		isGecko = /gecko/.test( ua ) && !/khtml|spoofer|netscape\/7\.0/.test( ua ),
 		onloadFuncts = [];
 
 if ( mw.config.get( 'wgBreakFrames' ) ) {
@@ -17,43 +16,6 @@ if ( mw.config.get( 'wgBreakFrames' ) ) {
 		win.top.location = win.location;
 	}
 }
-
-/**
- * Legacy function to scroll to an id while viewing the page over a redirect.
- * Superseeded by module 'mediawiki.action.view.redirectToFragment' in version 1.23.
- * Kepted because cache can contain still inline script calls to this function.
- * Should be removed in version 1.24.
- * @deprecated since 1.23 Use mediawiki.action.view.redirectToFragment instead
- */
-mw.log.deprecate( win, 'redirectToFragment', function ( fragment ) {
-	var webKitVersion,
-		match = navigator.userAgent.match( /AppleWebKit\/(\d+)/ );
-	if ( match ) {
-		webKitVersion = parseInt( match[1], 10 );
-		if ( webKitVersion < 420 ) {
-			// Released Safari w/ WebKit 418.9.1 messes up horribly
-			// Nightlies of 420+ are ok
-			return;
-		}
-	}
-	if ( !win.location.hash ) {
-		win.location.hash = fragment;
-
-		// Mozilla needs to wait until after load, otherwise the window doesn't
-		// scroll.  See <https://bugzilla.mozilla.org/show_bug.cgi?id=516293>.
-		// There's no obvious way to detect this programmatically, so we use
-		// version-testing.  If Firefox fixes the bug, they'll jump twice, but
-		// better twice than not at all, so make the fix hit future versions as
-		// well.
-		if ( isGecko ) {
-			$( function () {
-				if ( win.location.hash === fragment ) {
-					win.location.hash = fragment;
-				}
-			} );
-		}
-	}
-}, 'Use the module mediawiki.action.view.redirectToFragment instead.' );
 
 /**
  * User-agent sniffing.
