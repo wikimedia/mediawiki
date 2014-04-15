@@ -93,6 +93,7 @@ abstract class Skin extends ContextSource {
 	 * Useful for Special:Preferences and other places where you
 	 * only want to show skins users _can_ use.
 	 * @return string[]
+	 * @since 1.23
 	 */
 	public static function getAllowedSkins() {
 		global $wgSkipSkins;
