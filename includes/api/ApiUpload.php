@@ -275,7 +275,7 @@ class ApiUpload extends ApiBase {
 	 * Stash the file and return the file key
 	 * Also re-raises exceptions with slightly more informative message strings (useful for API)
 	 * @throws MWException
-	 * @return String file key
+	 * @return string File key
 	 */
 	private function performStash() {
 		try {
@@ -446,7 +446,7 @@ class ApiUpload extends ApiBase {
 	/**
 	 * Checks that the user has permissions to perform this upload.
 	 * Dies with usage message on inadequate permissions.
-	 * @param $user User The user to check.
+	 * @param User $user The user to check.
 	 */
 	protected function checkPermissions( $user ) {
 		// Check whether the user has the appropriate permissions to upload anyway

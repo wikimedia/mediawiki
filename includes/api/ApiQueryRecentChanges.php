@@ -69,9 +69,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $pageid
-	 * @param $title
-	 * @param $rc RecentChange (optional)
+	 * @param int $pageid
+	 * @param Title $title
+	 * @param RecentChange|null $rc
 	 * @return bool|string
 	 */
 	public static function getPatrolToken( $pageid, $title, $rc = null ) {
@@ -135,7 +135,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	/**
 	 * Generates and outputs the result of this query based upon the provided parameters.
 	 *
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 */
 	public function run( $resultPageSet = null ) {
 		$user = $this->getUser();

@@ -32,7 +32,7 @@
 class ApiQueryBlocks extends ApiQueryBase {
 
 	/**
-	 * @var Array
+	 * @var array
 	 */
 	protected $usernames;
 

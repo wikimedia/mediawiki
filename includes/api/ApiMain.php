@@ -147,9 +147,9 @@ class ApiMain extends ApiBase {
 	/**
 	 * Constructs an instance of ApiMain that utilizes the module and format specified by $request.
 	 *
-	 * @param $context IContextSource|WebRequest - if this is an instance of
+	 * @param IContextSource|WebRequest $context If this is an instance of
 	 *    FauxRequest, errors are thrown and no printing occurs
-	 * @param bool $enableWrite should be set to true if the api may modify data
+	 * @param bool $enableWrite Should be set to true if the api may modify data
 	 */
 	public function __construct( $context = null, $enableWrite = false ) {
 		if ( $context === null ) {
@@ -238,7 +238,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * Set how long the response should be cached.
 	 *
-	 * @param $maxage
+	 * @param int $maxage
 	 */
 	public function setCacheMaxAge( $maxage ) {
 		$this->setCacheControl( array(
@@ -301,7 +301,7 @@ class ApiMain extends ApiBase {
 	 * Cache control values set here will only be used if the cache mode is not
 	 * private, see setCacheMode().
 	 *
-	 * @param $directives array
+	 * @param array $directives
 	 */
 	public function setCacheControl( $directives ) {
 		$this->mCacheControl = $directives + $this->mCacheControl;
@@ -310,7 +310,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * Create an instance of an output formatter by its name
 	 *
-	 * @param $format string
+	 * @param string $format
 	 *
 	 * @return ApiFormatBase
 	 */
@@ -637,7 +637,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * Replace the result data with the information about an exception.
 	 * Returns the error code
-	 * @param $e Exception
+	 * @param Exception $e
 	 * @return string
 	 */
 	protected function substituteResultWithError( $e ) {
@@ -782,9 +782,9 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Check the max lag if necessary
-	 * @param $module ApiBase object: Api module being used
-	 * @param array $params an array containing the request parameters.
-	 * @return boolean True on success, false should exit immediately
+	 * @param ApiBase $module Api module being used
+	 * @param array $params Array an array containing the request parameters.
+	 * @return bool True on success, false should exit immediately
 	 */
 	protected function checkMaxLag( $module, $params ) {
 		if ( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
@@ -811,7 +811,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Check for sufficient permissions to execute
-	 * @param $module ApiBase An Api module
+	 * @param ApiBase $module An Api module
 	 */
 	protected function checkExecutePermissions( $module ) {
 		$user = $this->getUser();
@@ -841,7 +841,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Check asserts of the user's rights
-	 * @param $params array
+	 * @param array $params
 	 */
 	protected function checkAsserts( $params ) {
 		if ( isset( $params['assert'] ) ) {
@@ -863,7 +863,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Check POST for external response and setup result printer
-	 * @param $module ApiBase An Api module
+	 * @param ApiBase $module An Api module
 	 * @param array $params an array with the request parameters
 	 */
 	protected function setupExternalResponse( $module, $params ) {
@@ -953,6 +953,8 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Encode a value in a format suitable for a space-separated log line.
+	 * @param string $s
+	 * return string
 	 */
 	protected function encodeRequestLogValue( $s ) {
 		static $table;
@@ -969,6 +971,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Get the request parameters used in the course of the preceding execute() request
+	 * @return array
 	 */
 	protected function getParamsUsed() {
 		return array_keys( $this->mParamsUsed );
@@ -976,6 +979,9 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Get a request value, and register the fact that it was used, for logging.
+	 * @param string $name
+	 * @param mixed $default
+	 * @return mixed
 	 */
 	public function getVal( $name, $default = null ) {
 		$this->mParamsUsed[$name] = true;
@@ -986,6 +992,8 @@ class ApiMain extends ApiBase {
 	/**
 	 * Get a boolean request value, and register the fact that the parameter
 	 * was used, for logging.
+	 * @param string $name
+	 * @return bool
 	 */
 	public function getCheck( $name ) {
 		$this->mParamsUsed[$name] = true;
@@ -1034,7 +1042,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * Print results using the current printer
 	 *
-	 * @param $isError bool
+	 * @param bool $isError
 	 */
 	protected function printResult( $isError ) {
 		global $wgDebugAPI;
@@ -1224,7 +1232,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * Sets whether the pretty-printer should format *bold* and $italics$
 	 *
-	 * @param $help bool
+	 * @param bool $help
 	 */
 	public function setHelp( $help = true ) {
 		$this->mPrinter->setHelp( $help );
@@ -1302,7 +1310,7 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * @param $module ApiBase
+	 * @param ApiBase $module
 	 * @param string $paramName What type of request is this? e.g. action,
 	 *    query, list, prop, meta, format
 	 * @return string
@@ -1356,7 +1364,7 @@ class ApiMain extends ApiBase {
 	 *
 	 * @deprecated since 1.21, Use getModuleManager()->addModule() instead.
 	 * @param string $name The identifier for this module.
-	 * @param $class ApiBase The class where this module is implemented.
+	 * @param ApiBase $class The class where this module is implemented.
 	 */
 	protected function addModule( $name, $class ) {
 		$this->getModuleManager()->addModule( $name, 'action', $class );
@@ -1368,7 +1376,7 @@ class ApiMain extends ApiBase {
 	 *
 	 * @deprecated since 1.21, Use getModuleManager()->addModule() instead.
 	 * @param string $name The identifier for this format.
-	 * @param $class ApiFormatBase The class implementing this format.
+	 * @param ApiFormatBase $class The class implementing this format.
 	 */
 	protected function addFormat( $name, $class ) {
 		$this->getModuleManager()->addModule( $name, 'format', $class );
@@ -1411,10 +1419,10 @@ class UsageException extends MWException {
 	private $mExtraData;
 
 	/**
-	 * @param $message string
-	 * @param $codestr string
-	 * @param $code int
-	 * @param $extradata array|null
+	 * @param string $message
+	 * @param string $codestr
+	 * @param int $code
+	 * @param array|null $extradata
 	 */
 	public function __construct( $message, $codestr, $code = 0, $extradata = null ) {
 		parent::__construct( $message, $code );

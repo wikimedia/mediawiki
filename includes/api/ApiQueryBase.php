@@ -36,9 +36,9 @@ abstract class ApiQueryBase extends ApiBase {
 	private $mQueryModule, $mDb, $tables, $where, $fields, $options, $join_conds;
 
 	/**
-	 * @param $query ApiBase
-	 * @param $moduleName string
-	 * @param $paramPrefix string
+	 * @param ApiBase $query
+	 * @param string $moduleName
+	 * @param string $paramPrefix
 	 */
 	public function __construct( ApiBase $query, $moduleName, $paramPrefix = '' ) {
 		parent::__construct( $query->getMain(), $moduleName, $paramPrefix );
@@ -55,7 +55,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Public caching will only be allowed if *all* the modules that supply
 	 * data for a given request return a cache mode of public.
 	 *
-	 * @param $params
+	 * @param array $params
 	 * @return string
 	 */
 	public function getCacheMode( $params ) {
@@ -75,8 +75,8 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Add a set of tables to the internal array
-	 * @param $tables mixed Table name or array of table names
-	 * @param $alias mixed Table alias, or null for no alias. Cannot be
+	 * @param mixed $tables Table name or array of table names
+	 * @param mixed $alias Table alias, or null for no alias. Cannot be
 	 *  used with multiple tables
 	 */
 	protected function addTables( $tables, $alias = null ) {
@@ -101,7 +101,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * conditions) e.g. array('page' => array('LEFT JOIN',
 	 * 'page_id=rev_page')) . conditions may be a string or an
 	 * addWhere()-style array
-	 * @param $join_conds array JOIN conditions
+	 * @param array $join_conds JOIN conditions
 	 */
 	protected function addJoinConds( $join_conds ) {
 		if ( !is_array( $join_conds ) ) {
@@ -147,7 +147,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 *
 	 * For example, array('foo=bar', 'baz' => 3, 'bla' => 'foo') translates
 	 * to "foo=bar AND baz='3' AND bla='foo'"
-	 * @param $value mixed String or array
+	 * @param string|array $value
 	 */
 	protected function addWhere( $value ) {
 		if ( is_array( $value ) ) {
@@ -163,7 +163,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Same as addWhere(), but add the WHERE clauses only if a condition is met
-	 * @param $value mixed See addWhere()
+	 * @param string|array $value
 	 * @param bool $condition If false, do nothing
 	 * @return bool $condition
 	 */
@@ -231,11 +231,11 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Add a WHERE clause corresponding to a range, similar to addWhereRange,
 	 * but converts $start and $end to database timestamps.
 	 * @see addWhereRange
-	 * @param $field
-	 * @param $dir
-	 * @param $start
-	 * @param $end
-	 * @param $sort bool
+	 * @param string $field
+	 * @param string $dir
+	 * @param string $start
+	 * @param string $end
+	 * @param bool $sort
 	 */
 	protected function addTimestampWhereRange( $field, $dir, $start, $end, $sort = true ) {
 		$db = $this->getDb();
@@ -307,7 +307,7 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Estimate the row count for the SELECT query that would be run if we
 	 * called select() right now, and check if it's acceptable.
-	 * @return bool true if acceptable, false otherwise
+	 * @return bool True if acceptable, false otherwise
 	 */
 	protected function checkRowCount() {
 		$db = $this->getDB();
@@ -333,7 +333,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Add information (title and namespace) about a Title object to a
 	 * result array
 	 * @param array $arr Result array à la ApiResult
-	 * @param $title Title
+	 * @param Title $title
 	 * @param string $prefix Module prefix
 	 */
 	public static function addTitleInfo( &$arr, $title, $prefix = '' ) {
@@ -344,7 +344,7 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Override this method to request extra fields from the pageSet
 	 * using $pageSet->requestField('fieldName')
-	 * @param $pageSet ApiPageSet
+	 * @param ApiPageSet $pageSet
 	 */
 	public function requestExtraData( $pageSet ) {
 	}
@@ -485,7 +485,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * namespace. It is advisable to pass the namespace parameter in order to
 	 * handle per-namespace capitalization settings.
 	 * @param string $titlePart Title part with spaces
-	 * @param $defaultNamespace int Namespace to assume
+	 * @param int $defaultNamespace Namespace to assume
 	 * @return string Title part with underscores
 	 */
 	public function titlePartToKey( $titlePart, $defaultNamespace = NS_MAIN ) {
@@ -530,8 +530,8 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * @param $query String
-	 * @param $protocol String
+	 * @param string $query
+	 * @param string $protocol
 	 * @return null|string
 	 */
 	public function prepareUrlQuerySearchString( $query = null, $protocol = null ) {
@@ -582,7 +582,7 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * @param $hash string
+	 * @param string $hash
 	 * @return bool
 	 */
 	public function validateSha1Hash( $hash ) {
@@ -590,7 +590,7 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * @param $hash string
+	 * @param string $hash
 	 * @return bool
 	 */
 	public function validateSha1Base36Hash( $hash ) {
@@ -631,7 +631,7 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 	 * Switch this module to generator mode. By default, generator mode is
 	 * switched off and the module acts like a normal query module.
 	 * @since 1.21 requires pageset parameter
-	 * @param $generatorPageSet ApiPageSet object that the module will get
+	 * @param ApiPageSet $generatorPageSet ApiPageSet object that the module will get
 	 *        by calling getPageSet() when in generator mode.
 	 */
 	public function setGeneratorMode( ApiPageSet $generatorPageSet ) {
@@ -684,8 +684,7 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 
 	/**
 	 * Execute this module as a generator
-	 * @param $resultPageSet ApiPageSet: All output should be appended to
-	 *  this object
+	 * @param ApiPageSet $resultPageSet All output should be appended to this object
 	 */
 	abstract public function executeGenerator( $resultPageSet );
 }
