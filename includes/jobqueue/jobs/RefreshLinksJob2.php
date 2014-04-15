@@ -26,7 +26,7 @@
  * Newer version for high use templates. This is deprecated by RefreshLinksPartitionJob.
  *
  * @ingroup JobQueue
- * @deprecated 1.23
+ * @deprecated since 1.23
  */
 class RefreshLinksJob2 extends Job {
 	function __construct( $title, $params ) {

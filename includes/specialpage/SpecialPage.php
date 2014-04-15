@@ -473,7 +473,7 @@ class SpecialPage {
 	 *
 	 * @param string|bool $subpage
 	 * @return Title
-	 * @deprecated in 1.23, use SpecialPage::getPageTitle
+	 * @deprecated since 1.23, use SpecialPage::getPageTitle
 	 */
 	function getTitle( $subpage = false ) {
 		return $this->getPageTitle( $subpage );

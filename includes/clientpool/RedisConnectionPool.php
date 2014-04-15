@@ -277,7 +277,7 @@ class RedisConnectionPool {
 	 * @param string $server
 	 * @param RedisConnRef $cref
 	 * @param RedisException $e
-	 * @deprecated 1.23
+	 * @deprecated since 1.23
 	 */
 	public function handleException( $server, RedisConnRef $cref, RedisException $e ) {
 		return $this->handleError( $cref, $e );

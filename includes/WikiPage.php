@@ -687,7 +687,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter
 	 * @return String|false The text of the current revision
-	 * @deprecated as of 1.21, getContent() should be used instead.
+	 * @deprecated since 1.21, getContent() should be used instead.
 	 */
 	public function getText( $audience = Revision::FOR_PUBLIC, User $user = null ) { // @todo deprecated, replace usage!
 		ContentHandler::deprecated( __METHOD__, '1.21' );
@@ -703,7 +703,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Get the text of the current revision. No side-effects...
 	 *
 	 * @return String|bool The text of the current revision. False on failure
-	 * @deprecated as of 1.21, getContent() should be used instead.
+	 * @deprecated since 1.21, getContent() should be used instead.
 	 */
 	public function getRawText() {
 		ContentHandler::deprecated( __METHOD__, '1.21' );
@@ -2033,7 +2033,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Prepare text which is about to be saved.
 	 * Returns a stdclass with source, pst and output members
 	 *
-	 * @deprecated in 1.21: use prepareContentForEdit instead.
+	 * @deprecated since 1.21: use prepareContentForEdit instead.
 	 */
 	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
 		ContentHandler::deprecated( __METHOD__, '1.21' );
@@ -3380,7 +3380,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Return a list of templates used by this article.
 	 * Uses the templatelinks table
 	 *
-	 * @deprecated in 1.19; use Title::getTemplateLinksFrom()
+	 * @deprecated since 1.19; use Title::getTemplateLinksFrom()
 	 * @return Array of Title objects
 	 */
 	public function getUsedTemplates() {
@@ -3391,7 +3391,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * This function is called right before saving the wikitext,
 	 * so we can do things like signatures and links-in-context.
 	 *
-	 * @deprecated in 1.19; use Parser::preSaveTransform() instead
+	 * @deprecated since 1.19; use Parser::preSaveTransform() instead
 	 * @param string $text article contents
 	 * @param $user User object: user doing the edit
 	 * @param $popts ParserOptions object: parser options, default options for
@@ -3416,7 +3416,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Check whether the number of revisions of this page surpasses $wgDeleteRevisionsLimit
 	 *
-	 * @deprecated in 1.19; use Title::isBigDeletion() instead.
+	 * @deprecated since 1.19; use Title::isBigDeletion() instead.
 	 * @return bool
 	 */
 	public function isBigDeletion() {
@@ -3427,7 +3427,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Get the  approximate revision count of this page.
 	 *
-	 * @deprecated in 1.19; use Title::estimateRevisionCount() instead.
+	 * @deprecated since 1.19; use Title::estimateRevisionCount() instead.
 	 * @return int
 	 */
 	public function estimateRevisionCount() {

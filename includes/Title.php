@@ -1837,7 +1837,7 @@ class Title {
 	/**
 	 * Is $wgUser watching this page?
 	 *
-	 * @deprecated in 1.20; use User::isWatched() instead.
+	 * @deprecated since 1.20; use User::isWatched() instead.
 	 * @return Bool
 	 */
 	public function userIsWatching() {
@@ -1856,7 +1856,7 @@ class Title {
 	/**
 	 * Can $wgUser read this page?
 	 *
-	 * @deprecated in 1.19; use userCan(), quickUserCan() or getUserPermissionsErrors() instead
+	 * @deprecated since 1.19; use userCan(), quickUserCan() or getUserPermissionsErrors() instead
 	 * @return Bool
 	 */
 	public function userCanRead() {
@@ -2521,7 +2521,7 @@ class Title {
 	/**
 	 * Update the title protection status
 	 *
-	 * @deprecated in 1.19; use WikiPage::doUpdateRestrictions() instead.
+	 * @deprecated since 1.19; use WikiPage::doUpdateRestrictions() instead.
 	 * @param $create_perm String Permission required for creation
 	 * @param string $reason Reason for protection
 	 * @param string $expiry Expiry timestamp

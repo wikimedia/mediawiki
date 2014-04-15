@@ -881,7 +881,7 @@ class LoadBalancer {
 	/**
 	 * Deprecated function, typo in function name
 	 *
-	 * @deprecated in 1.18
+	 * @deprecated since 1.18
 	 * @param DatabaseBase $conn
 	 */
 	function closeConnecton( $conn ) {

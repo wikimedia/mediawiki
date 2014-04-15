@@ -397,7 +397,7 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Make a "<script>" tag containing global variables
 	 *
-	 * @deprecated in 1.19
+	 * @deprecated since 1.19
 	 * @param $unused
 	 * @return string HTML fragment
 	 */

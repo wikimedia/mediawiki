@@ -395,7 +395,7 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Make a list of group names to be stored as parameter for log entries
 	 *
-	 * @deprecated in 1.21; use LogFormatter instead.
+	 * @deprecated since 1.21; use LogFormatter instead.
 	 * @param $ids array
 	 * @return string
 	 */

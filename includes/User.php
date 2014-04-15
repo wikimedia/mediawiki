@@ -3258,7 +3258,7 @@ class User {
 	 * Set this user's options from an encoded string
 	 * @param string $str Encoded options to import
 	 *
-	 * @deprecated in 1.19 due to removal of user_options from the user table
+	 * @deprecated since 1.19 due to removal of user_options from the user table
 	 */
 	private function decodeOptions( $str ) {
 		wfDeprecated( __METHOD__, '1.19' );

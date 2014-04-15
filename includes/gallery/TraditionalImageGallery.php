@@ -328,7 +328,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
  * if called the old way, for extensions that may expect traditional
  * mode.
  *
- * @deprecated 1.22 Use ImageGalleryBase::factory instead.
+ * @deprecated since 1.22 Use ImageGalleryBase::factory instead.
  */
 class ImageGallery extends TraditionalImageGallery {
 	function __construct( $mode = 'traditional' ) {

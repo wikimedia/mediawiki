@@ -104,7 +104,7 @@ class RecentChange {
 
 	/**
 	 * No uses left in Gerrit on 2013-11-19.
-	 * @deprecated in 1.22
+	 * @deprecated since 1.22
 	 * @param mixed $row
 	 * @return RecentChange
 	 */
@@ -734,7 +734,7 @@ class RecentChange {
 	/**
 	 * Makes a pseudo-RC entry from a cur row
 	 *
-	 * @deprecated in 1.22
+	 * @deprecated since 1.22
 	 * @param mixed $row
 	 */
 	public function loadFromCurRow( $row ) {

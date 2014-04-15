@@ -475,7 +475,7 @@ class ArchivedFile {
 	/**
 	 * Return the user name of the uploader.
 	 *
-	 * @deprecated 1.23 Use getUser( 'text' ) instead.
+	 * @deprecated since 1.23 Use getUser( 'text' ) instead.
 	 * @return string
 	 */
 	public function getUserText() {

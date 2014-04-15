@@ -930,7 +930,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add $str to the subtitle
 	 *
-	 * @deprecated in 1.19; use addSubtitle() instead
+	 * @deprecated since 1.19; use addSubtitle() instead
 	 * @param string|Message $str to add to the subtitle
 	 */
 	public function appendSubtitle( $str ) {
@@ -2265,7 +2265,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Produce the stock "please login to use the wiki" page
 	 *
-	 * @deprecated in 1.19; throw the exception directly
+	 * @deprecated since 1.19; throw the exception directly
 	 */
 	public function loginToUse() {
 		throw new PermissionsError( 'read' );

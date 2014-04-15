@@ -2000,7 +2000,7 @@ function wfShowingResults( $offset, $limit ) {
  * @param string $query optional URL query parameter string
  * @param bool $atend optional param for specified if this is the last page
  * @return string
- * @deprecated in 1.19; use Language::viewPrevNext() instead
+ * @deprecated since 1.19; use Language::viewPrevNext() instead
  */
 function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 	wfDeprecated( __METHOD__, '1.19' );
@@ -4138,7 +4138,7 @@ function wfCanIPUseHTTPS( $ip ) {
  * Work out the IP address based on various globals
  * For trusted proxies, use the XFF client IP (first of the chain)
  *
- * @deprecated in 1.19; call $wgRequest->getIP() directly.
+ * @deprecated since 1.19; call $wgRequest->getIP() directly.
  * @return string
  */
 function wfGetIP() {

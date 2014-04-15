@@ -256,7 +256,7 @@ class RawAction extends FormlessAction {
 /**
  * Backward compatibility for extensions
  *
- * @deprecated in 1.19
+ * @deprecated since 1.19
  */
 class RawPage extends RawAction {
 	public $mOldId;
