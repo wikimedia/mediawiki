@@ -78,9 +78,9 @@ class ApiComparePages extends ApiBase {
 	}
 
 	/**
-	 * @param $revision int
-	 * @param $titleText string
-	 * @param $titleId int
+	 * @param int $revision
+	 * @param string $titleText
+	 * @param int $titleId
 	 * @return int
 	 */
 	private function revisionOrTitleOrId( $revision, $titleText, $titleId ) {

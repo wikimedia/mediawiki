@@ -196,11 +196,11 @@ class ApiImportReporter extends ImportReporter {
 	private $mResultArr = array();
 
 	/**
-	 * @param $title Title
-	 * @param $origTitle Title
-	 * @param $revisionCount int
-	 * @param $successCount int
-	 * @param $pageInfo
+	 * @param Title $title
+	 * @param Title $origTitle
+	 * @param int $revisionCount
+	 * @param int $successCount
+	 * @param array $pageInfo
 	 * @return void
 	 */
 	function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {

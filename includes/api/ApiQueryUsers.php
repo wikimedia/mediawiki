@@ -41,7 +41,7 @@ class ApiQueryUsers extends ApiQueryBase {
 	 * Get an array mapping token names to their handler functions.
 	 * The prototype for a token function is func($user)
 	 * it should return a token or false (permission denied)
-	 * @return Array tokenname => function
+	 * @return array Array of tokenname => function
 	 */
 	protected function getTokenFunctions() {
 		// Don't call the hooks twice
@@ -63,8 +63,8 @@ class ApiQueryUsers extends ApiQueryBase {
 	}
 
 	/**
-	 * @param $user User
-	 * @return String
+	 * @param User $user
+	 * @return string
 	 */
 	public static function getUserrightsToken( $user ) {
 		global $wgUser;
@@ -261,7 +261,7 @@ class ApiQueryUsers extends ApiQueryBase {
 	 * Gets all the groups that a user is automatically a member of (implicit groups)
 	 *
 	 * @deprecated since 1.20; call User::getAutomaticGroups() directly.
-	 * @param $user User
+	 * @param User $user
 	 * @return array
 	 */
 	public static function getAutoGroups( $user ) {

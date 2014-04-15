@@ -116,7 +116,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	private function prepareFirstQuery( $resultPageSet = null ) {
@@ -161,7 +161,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	private function prepareSecondQuery( $resultPageSet = null ) {
@@ -242,7 +242,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {

@@ -111,9 +111,9 @@ class ApiFormatXml extends ApiFormatBase {
 	 * @note The method is recursive, so the same rules apply to any
 	 * sub-arrays.
 	 *
-	 * @param $elemName
-	 * @param $elemValue
-	 * @param $indent
+	 * @param string $elemName
+	 * @param mixed $elemValue
+	 * @param int $indent
 	 *
 	 * @return string
 	 */

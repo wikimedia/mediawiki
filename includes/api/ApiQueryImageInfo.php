@@ -222,7 +222,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	/**
 	 * From parameters, construct a 'scale' array
 	 * @param array $params Parameters passed to api.
-	 * @return Array or Null: key-val array of 'width' and 'height', or null
+	 * @return array|null Key-val array of 'width' and 'height', or null
 	 */
 	public function getScale( $params ) {
 		$p = $this->getModulePrefix();
@@ -251,9 +251,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * We do this later than getScale, since we need the image
 	 * to know which handler, since handlers can make their own parameters.
 	 * @param File $image Image that params are for.
-	 * @param array $thumbParams thumbnail parameters from getScale
-	 * @param string $otherParams of otherParams (iiurlparam).
-	 * @return Array of parameters for transform.
+	 * @param array $thumbParams Thumbnail parameters from getScale
+	 * @param string $otherParams String of otherParams (iiurlparam).
+	 * @return array Array of parameters for transform.
 	 */
 	protected function mergeThumbParams( $image, $thumbParams, $otherParams ) {
 		global $wgThumbLimits;
@@ -315,17 +315,17 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	/**
 	 * Get result information for an image revision
 	 *
-	 * @param $file File object
-	 * @param array $prop of properties to get (in the keys)
-	 * @param $result ApiResult object
-	 * @param array $thumbParams containing 'width' and 'height' items, or null
+	 * @param File $file
+	 * @param array $prop Array of properties to get (in the keys)
+	 * @param ApiResult $result
+	 * @param array $thumbParams Containing 'width' and 'height' items, or null
 	 * @param array|bool|string $opts Options for data fetching.
 	 *   This is an array consisting of the keys:
 	 *    'version': The metadata version for the metadata option
 	 *    'language': The language for extmetadata property
 	 *    'multilang': Return all translations in extmetadata property
 	 *    'revdelUser': User to use when checking whether to show revision-deleted fields.
-	 * @return Array: result array
+	 * @return array Result array
 	 */
 	static function getInfo( $file, $prop, $result, $thumbParams = null, $opts = false ) {
 		global $wgContLang;
@@ -536,7 +536,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 *
 	 * If this is >= TRANSFORM_LIMIT, you should probably stop processing images.
 	 *
-	 * @return integer count
+	 * @return int count
 	 */
 	static function getTransformCount() {
 		return self::$transformCount;
@@ -544,9 +544,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 	/**
 	 *
-	 * @param $metadata Array
-	 * @param $result ApiResult
-	 * @return Array
+	 * @param array $metadata
+	 * @param ApiResult $result
+	 * @return array
 	 */
 	public static function processMetaData( $metadata, $result ) {
 		$retval = array();
@@ -575,7 +575,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	}
 
 	/**
-	 * @param $img File
+	 * @param File $img
 	 * @param null|string $start
 	 * @return string
 	 */
@@ -647,7 +647,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 *
 	 * @param array $filter List of properties to filter out
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	public static function getPropertyNames( $filter = array() ) {
 		return array_diff( array_keys( self::getProperties() ), $filter );
@@ -705,7 +705,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 	/**
 	 * Return the API documentation for the parameters.
-	 * @return Array parameter documentation.
+	 * @return array Parameter documentation.
 	 */
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();

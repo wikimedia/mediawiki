@@ -53,7 +53,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 */
 	public function run( $resultPageSet = null ) {
 		global $wgQueryCacheLimit;

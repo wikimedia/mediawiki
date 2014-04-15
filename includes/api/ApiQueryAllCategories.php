@@ -49,7 +49,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 */
 	private function run( $resultPageSet = null ) {
 		$db = $this->getDB();
