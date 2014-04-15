@@ -348,6 +348,8 @@ changes to languages because of Bugzilla reports.
   scope (like Zepto.js or document.querySelectorAll, for example) you will need
   to use different names to or re-bind them at the top of each
   ResourceLoader-loaded module.
+* The $CHANGEDORCREATED parameter to the 'enotif_body' message, deprecated in
+  MediaWiki 1.21, has been removed.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
