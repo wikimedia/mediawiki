@@ -522,27 +522,55 @@ Italics and bold: 2-quote opening sequence: (2,2)
 
 !! test
 Italics and bold: 2-quote opening sequence: (2,3)
+!! options
+parsoid=wt2html
 !! wikitext
 ''foo'''
-!! html
+!! html/*
 <p><i>foo'</i>
 </p>
 !!end
 
 
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 2-quote opening sequence: (2,3) w/ nowiki
+!! wikitext
+''<nowiki>foo'</nowiki>''
+!! html
+<p><i>foo'</i>
+</p>
+!! end
+
+
 !! test
 Italics and bold: 2-quote opening sequence: (2,4)
+!! options
+parsoid=wt2html
 !! wikitext
 ''foo''''
-!! html
+!! html/*
 <p><i>foo''</i>
 </p>
 !!end
 
 
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 2-quote opening sequence: (2,4) w/ nowiki
+!! wikitext
+''<nowiki>foo''</nowiki>''
+!! html
+<p><i>foo''</i>
+</p>
+!! end
+
+
 # The PHP parser strips the empty tags out for giggles; parsoid doesn't.
 !! test
 Italics and bold: 2-quote opening sequence: (2,5)
+!! options
+parsoid=wt2html
 !! wikitext
 ''foo'''''
 !! html/php
@@ -552,6 +580,19 @@ Italics and bold: 2-quote opening sequence: (2,5)
 <p><i>foo</i><b></b>
 </p>
 !!end
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 2-quote opening sequence: (2,5+3) w/ nowiki
+!! wikitext
+''foo'''''<nowiki/>'''
+!! html/php
+<p><i>foo</i>
+</p>
+!! html/parsoid
+<p><i>foo</i><b></b>
+</p>
+!! end
 
 
 ###
@@ -580,17 +621,32 @@ Italics and bold: 3-quote opening sequence: (3,3)
 
 !! test
 Italics and bold: 3-quote opening sequence: (3,4)
+!! options
+parsoid=wt2html
 !! wikitext
 '''foo''''
-!! html
+!! html/*
 <p><b>foo'</b>
 </p>
 !!end
 
 
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 3-quote opening sequence: (3,4) w/ nowiki
+!! wikitext
+'''<nowiki>foo'</nowiki>'''
+!! html
+<p><b>foo'</b>
+</p>
+!! end
+
+
 # The PHP parser strips the empty tags out for giggles; parsoid doesn't.
 !! test
 Italics and bold: 3-quote opening sequence: (3,5)
+!! options
+parsoid=wt2html
 !! wikitext
 '''foo'''''
 !! html/php
@@ -601,6 +657,19 @@ Italics and bold: 3-quote opening sequence: (3,5)
 </p>
 !!end
 
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 3-quote opening sequence: (3,5+2) w/ nowiki
+!! wikitext
+'''foo'''''<nowiki/>''
+!! html/php
+<p><b>foo</b>
+</p>
+!! html/parsoid
+<p><b>foo</b><i></i>
+</p>
+!! end
+
 
 ###
 ### 4-quote opening sequence tests
@@ -608,12 +677,25 @@ Italics and bold: 3-quote opening sequence: (3,5)
 
 !! test
 Italics and bold: 4-quote opening sequence: (4,2)
+!! options
+parsoid=wt2html
 !! wikitext
 ''''foo''
-!! html
+!! html/*
 <p>''<i>foo</i>
 </p>
 !!end
+
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 4-quote opening sequence: (4,2) w/ nowiki
+!! wikitext
+<nowiki>''</nowiki>''foo''
+!! html
+<p>''<i>foo</i>
+</p>
+!! end
 
 
 !! test
@@ -628,17 +710,32 @@ Italics and bold: 4-quote opening sequence: (4,3)
 
 !! test
 Italics and bold: 4-quote opening sequence: (4,4)
+!! options
+parsoid=wt2html
 !! wikitext
 ''''foo''''
-!! html
+!! html/*
 <p>'<b>foo'</b>
 </p>
 !!end
 
 
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 4-quote opening sequence: (4,4) w/ nowiki
+!! wikitext
+''''<nowiki>foo'</nowiki>'''
+!! html
+<p>'<b>foo'</b>
+</p>
+!! end
+
+
 # The PHP parser strips the empty tags out for giggles; parsoid doesn't.
 !! test
 Italics and bold: 4-quote opening sequence: (4,5)
+!! options
+parsoid=wt2html
 !! wikitext
 ''''foo'''''
 !! html/php
@@ -649,6 +746,19 @@ Italics and bold: 4-quote opening sequence: (4,5)
 </p>
 !!end
 
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 4-quote opening sequence: (4,5+2) w/ nowiki
+!! wikitext
+''''foo'''''<nowiki/>''
+!! html/php
+<p>'<b>foo</b>
+</p>
+!! html/parsoid
+<p>'<b>foo</b><i></i>
+</p>
+!! end
+
 
 ###
 ### 5-quote opening sequence tests
@@ -657,32 +767,72 @@ Italics and bold: 4-quote opening sequence: (4,5)
 !! test
 Italics and bold: 5-quote opening sequence: (5,2)
 !! options
+parsoid=wt2html
 !! wikitext
 '''''foo''
-!! html
+!! html/*
 <p><b><i>foo</i></b>
 </p>
 !!end
 
 
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+# skipping wt2html and html2html because it wants to put <i> before <b>
+!! test
+Italics and bold: 5-quote opening sequence: (5,2+3)
+!! options
+parsoid=wt2wt,html2wt
+!! wikitext
+'''''foo'''''
+!! html/*
+<p><b><i>foo</i></b>
+</p>
+!! end
+
 !! test
 Italics and bold: 5-quote opening sequence: (5,3)
+!! options
+parsoid=wt2html
 !! wikitext
 '''''foo'''
-!! html
+!! html/*
 <p><i><b>foo</b></i>
 </p>
 !!end
 
 
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 5-quote opening sequence: (5,3+2)
+!! wikitext
+'''''foo'''''
+!! html
+<p><i><b>foo</b></i>
+</p>
+!! end
+
+
 !! test
 Italics and bold: 5-quote opening sequence: (5,4)
+!! options
+parsoid=wt2html
 !! wikitext
 '''''foo''''
-!! html
+!! html/*
 <p><i><b>foo'</b></i>
 </p>
 !!end
+
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 5-quote opening sequence: (5,4+2) w/ nowiki
+!! wikitext
+'''''<nowiki>foo'</nowiki>'''''
+!! html
+<p><i><b>foo'</b></i>
+</p>
+!! end
 
 
 !! test
@@ -699,37 +849,78 @@ Italics and bold: 5-quote opening sequence: (5,5)
 ###
 !! test
 Italics and bold: multiple quote sequences: (2,4,2)
+!! options
+parsoid=wt2html
 !! wikitext
 ''foo''''bar''
-!! html
+!! html/*
 <p><i>foo'<b>bar</b></i>
 </p>
 !!end
+
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: multiple quote sequences: (2,4,2+3) w/ nowiki
+!! wikitext
+''<nowiki>foo'</nowiki>'''bar'''''
+!! html
+<p><i>foo'<b>bar</b></i>
+</p>
+!! end
 
 
 !! test
 Italics and bold: multiple quote sequences: (2,4,3)
+!! options
+parsoid=wt2html
 !! wikitext
 ''foo''''bar'''
-!! html
+!! html/*
 <p><i>foo'<b>bar</b></i>
 </p>
 !!end
 
 
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: multiple quote sequences: (2,4,3+2) w/ nowiki
+!! wikitext
+''<nowiki>foo'</nowiki>'''bar'''''
+!! html
+<p><i>foo'<b>bar</b></i>
+</p>
+!! end
+
+
 !! test
 Italics and bold: multiple quote sequences: (2,4,4)
+!! options
+parsoid=wt2html
 !! wikitext
 ''foo''''bar''''
-!! html
+!! html/*
 <p><i>foo'<b>bar'</b></i>
 </p>
 !!end
 
 
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: multiple quote sequences: (2,4,4+2) w/ nowiki
+!! wikitext
+''<nowiki>foo'</nowiki>'''<nowiki>bar'</nowiki>'''''
+!! html
+<p><i>foo'<b>bar'</b></i>
+</p>
+!! end
+
+
 # The PHP parser strips the empty tags out for giggles; parsoid doesn't.
 !! test
 Italics and bold: multiple quote sequences: (3,4,2)
+!! options
+parsoid=wt2html
 !! wikitext
 '''foo''''bar''
 !! html/php
@@ -740,10 +931,27 @@ Italics and bold: multiple quote sequences: (3,4,2)
 </p>
 !!end
 
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: multiple quote sequences: (3,4,2+2) w/ nowiki
+!! options
+parsoid
+!! wikitext
+'''<nowiki>foo'</nowiki>'''bar''<nowiki/>''
+!! html/php
+<p><b>foo'</b>bar
+</p>
+!! html/parsoid
+<p><b><span typeof="mw:Nowiki">foo'</span></b>bar<i></i>
+</p>
+!! end
+
 
 # The PHP parser strips the empty tags out for giggles; parsoid doesn't.
 !! test
 Italics and bold: multiple quote sequences: (3,4,3)
+!! options
+parsoid=wt2html
 !! wikitext
 '''foo''''bar'''
 !! html/php
@@ -753,6 +961,19 @@ Italics and bold: multiple quote sequences: (3,4,3)
 <p><b>foo'</b>bar<b></b>
 </p>
 !!end
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: multiple quote sequences: (3,4,3+3) w/ nowiki
+!! wikitext
+'''<nowiki>foo'</nowiki>'''bar'''<nowiki/>'''
+!! html/php
+<p><b>foo'</b>bar
+</p>
+!! html/parsoid
+<p><b><span typeof="mw:Nowiki">foo'</span></b>bar<b></b>
+</p>
+!! end
 
 ###
 ### other quote tests
@@ -779,12 +1000,28 @@ Italics and bold: other quote tests: (2,(3,3),2)
 
 !! test
 Italics and bold: other quote tests: (3,2,3,2)
+!! options
+parsoid=wt2html
 !! wikitext
 '''this is about ''foo'''s family''
-!! html
+!! html/*
 <p><b>this is about <i>foo</i></b><i>s family</i>
 </p>
 !!end
+
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+# add 'parsoid' option to use 'parsoid' normalization of the placeholder
+!! test
+Italics and bold: other quote tests: (3,2,3+2+2,2)
+!! options
+parsoid
+!! wikitext
+'''this is about ''foo'''''<nowiki/>''s family''
+!! html/*
+<p><b>this is about <i>foo</i></b><i>s family</i>
+</p>
+!! end
 
 
 !! test
@@ -1196,6 +1433,22 @@ b
 <p>a
 </p><p>b
 </p>
+!! end
+
+!! test
+Multiple comments should still parse as SOL-transparent
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+<!--c1-->*a
+<!--c2--><!--c3--><!--c4-->*b
+!! html
+<ul>
+<li>a
+</li>
+<li>b
+</li>
+</ul>
 !! end
 
 ###
@@ -1898,6 +2151,29 @@ bar}}
 bar
 </p>
 !! end
+
+!! test
+Templates: Handle comments in the target
+!! wikitext
+{{echo
+<!-- should be ignored -->
+|foo}}
+
+{{echo<!-- should be ignored -->
+|foo}}
+
+{{echo<!-- should be ignored -->|foo}}
+
+{{<!-- should be ignored -->echo|foo}}
+!!html/parsoid
+<p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo\n&lt;!-- should be ignored -->\n","href":"./Template:Echo"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</p>
+
+<p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo&lt;!-- should be ignored -->\n","href":"./Template:Echo"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</p>
+
+<p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo&lt;!-- should be ignored -->","href":"./Template:Echo"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</p>
+
+<p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</p>
+!!end
 
 #--------------------------------------------------------------------
 # Transclusion parameter escaping tests
@@ -5513,6 +5789,17 @@ language=kaa
 !! end
 
 !! test
+Link with multiple ":" in a subpage-supporting namespace (bug 63636)
+!! wikitext
+[[User:Foo/Test/63636:Bar|Test]]
+!! html/php
+<p><a href="/index.php?title=User:Foo/Test/63636:Bar&amp;action=edit&amp;redlink=1" class="new" title="User:Foo/Test/63636:Bar (page does not exist)">Test</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./User:Foo/Test/63636:Bar">Test</a></p>
+!! end
+
+!! test
 1. Interaction of linktrail and template encapsulation
 !! options
 parsoid
@@ -5682,16 +5969,30 @@ Interwiki link with fragment (bug 2130)
 # Ideally the wikipedia: prefix here should be proto-relative too
 !! test
 Different interwiki prefixes mapping to the same URL
-!! options
-parsoid
 !! wikitext
+[[:en:Foo]]
+
+[[:en:Foo|Foo]]
+
 [[wikipedia:Foo]]
 
-[[:en:Foo]]
-!! html
+[[:wikipedia:Foo|Foo]]
+
+[[wikipedia:en:Foo]]
+
+[[:wikipedia:en:Foo]]
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="//en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"simple","a":{"href":"//en.wikipedia.org/wiki/Foo"},"sa":{"href":":en:Foo"},"isIW":true}'>en:Foo</a></p>
+
+<p><a rel="mw:ExtLink" href="//en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"piped","a":{"href":"//en.wikipedia.org/wiki/Foo"},"sa":{"href":":en:Foo"},"isIW":true}'>Foo</a></p>
+
 <p><a rel="mw:ExtLink" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"simple","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":"wikipedia:Foo"},"isIW":true}'>wikipedia:Foo</a></p>
 
-<p><a rel="mw:ExtLink" href="//en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"simple","a":{"href":"//en.wikipedia.org/wiki/Foo"},"sa":{"href":":en:Foo"},"isIW":true}'>en:Foo</a></p>
+<p><a rel="mw:ExtLink" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"piped","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":":wikipedia:Foo"},"isIW":true}'>Foo</a></p>
+
+<p><a rel="mw:ExtLink" href="http://en.wikipedia.org/wiki/en:Foo" data-parsoid='{"stx":"simple","a":{"href":"http://en.wikipedia.org/wiki/en:Foo"},"sa":{"href":"wikipedia:en:Foo"},"isIW":true}'>wikipedia:en:Foo</a></p>
+
+<p><a rel="mw:ExtLink" href="http://en.wikipedia.org/wiki/en:Foo" data-parsoid='{"stx":"simple","a":{"href":"http://en.wikipedia.org/wiki/en:Foo"},"sa":{"href":":wikipedia:en:Foo"},"isIW":true}'>wikipedia:en:Foo</a></p>
 !! end
 
 !! test
@@ -10800,46 +11101,34 @@ valign, and caption (existing content)
 
 !! test
 Parsoid-specific image handling - framed image with specific size and caption
+(size is ignored)
+!! options
+parsoid=wt2html,wt2wt,html2html
 !! wikitext
-[[Image:Foobar.jpg|frame|500x50px|caption]]
+[[File:Foobar.jpg|frame|500x50px|caption]]
 !! html/parsoid
 <figure typeof="mw:Image/Frame">
 <a href="File:Foobar.jpg">
-<img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" />
+<img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941" />
 </a>
 <figcaption>caption</figcaption>
 </figure>
-!! end
-
-!! test
-Parsoid-specific image handling - framed image with specific size and caption
-(existing content)
-!! wikitext
-[[File:Foobar.jpg|442x50px|frame|caption]]
-!! html/parsoid
-<figure typeof="mw:Image/Frame" data-parsoid='{"optList":[{"ck":"width","ak":"442x50px"},{"ck":"framed","ak":"frame"},{"ck":"caption","ak":"caption"}],"size":"442x50"}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"50","width":"442"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>caption</figcaption></figure>
 !! end
 
 !! test
 Parsoid-specific image handling - framed image with specific size, halign, valign, and caption
+(size is ignored)
+!! options
+parsoid=wt2html,wt2wt,html2html
 !! wikitext
-[[Image:Foobar.jpg|left|baseline|frame|500x50px|caption]]
+[[File:Foobar.jpg|left|baseline|frame|500x50px|caption]]
 !! html/parsoid
 <figure class="mw-halign-left mw-valign-baseline" typeof="mw:Image/Frame">
 <a href="File:Foobar.jpg">
-<img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" />
+<img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941" />
 </a>
 <figcaption>caption</figcaption>
 </figure>
-!! end
-
-!! test
-Parsoid-specific image handling - framed image with specific size, halign,
-valign, and caption (existing content)
-!! wikitext
-[[File:Foobar.jpg|442x50px|frame|left|baseline|caption]]
-!! html/parsoid
-<figure class="mw-halign-left mw-valign-baseline" typeof="mw:Image/Frame" data-parsoid='{"optList":[{"ck":"width","ak":"442x50px"},{"ck":"framed","ak":"frame"},{"ck":"left","ak":"left"},{"ck":"baseline","ak":"baseline"},{"ck":"caption","ak":"caption"}],"size":"442x50"}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/442px-Foobar.jpg" height="50" width="442" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"50","width":"442"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>caption</figcaption></figure>
 !! end
 
 !! test
@@ -10884,11 +11173,31 @@ bar
 !! end
 
 !! test
-Parsoid-specific image handling - empty caption
+Parsoid-specific image handling - empty caption (1)
+!! options
+parsoid=wt2html,wt2wt
 !! wikitext
 [[File:Foobar.jpg|thumb|]]
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="25" width="220"/></a><figcaption></figcaption></figure>
+!! end
+
+# empty captions don't get serialized unless we're in the "round trip" case
+!! test
+Parsoid-specific image handling - empty caption (2)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:Image/Thumb">
+  <a href="File:Foobar.jpg">
+    <img resource="./File:Foobar.jpg"
+         src="//example.com/images/3/3a/Foobar.jpg"
+         height="25" width="220"/>
+  </a>
+  <figcaption></figcaption>
+</figure>
+!! wikitext
+[[File:Foobar.jpg|thumb]]
 !! end
 
 !! test
@@ -10958,22 +11267,78 @@ subpage title=[[Subpage test/1/2/3/4]]
 <p><a rel="mw:WikiLink" href="Subpage_test/1/2/subpage">Subpage_test/1/2/subpage</a></p>
 !! end
 
-# TODO: make this PHP-parser compatible!
 !! test
 Parsoid: dot-slash prefixed wikilinks
-!! options
-parsoid=wt2wt,wt2html,html2html
 !! wikitext
 [[./foo]]
 
 [[././bar]]
 
 [[././baz/]]
-!! html
-<p><a rel="mw:WikiLink" href="./Foo">foo</a></p>
-<p><a rel="mw:WikiLink" href="./Bar">bar</a></p>
-<p><a rel="mw:WikiLink" href="./Baz/">baz/</a></p>
+!! html/php
+<p>[[./foo]]
+</p><p>[[././bar]]
+</p><p>[[././baz/]]
+</p>
+!! html/parsoid
+<p>[[./foo]]
+</p><p>[[././bar]]
+</p><p>[[././baz/]]
+</p>
 !! end
+
+!! test
+Render invalid page names as plain text (bug 51090)
+!! wikitext
+[[./../foo|bar]]
+[[foo�|bar]]
+[[foo/.|bar]]
+[[foo/..|bar]]
+[[foo~~~bar]]
+[[foo>bar]]
+[[foo[bar]]
+[[.]]
+[[..]]
+[[foo././bar]]
+
+[[{{echo|./../foo}}|bar]]
+[[{{echo|foo/.}}|bar]]
+[[{{echo|foo/..}}|bar]]
+[[{{echo|foo~~~~bar}}]]
+[[{{echo|foo>bar}}]]
+[[{{echo|foo././bar}}]]
+[[{{echo|foo{bar}}]]
+[[{{echo|foo}bar}}]]
+[[{{echo|foo[bar}}]]
+[[{{echo|foo]bar}}]]
+[[{{echo|foo<bar}}]]
+!!html/php
+<p>[[./../foo|bar]]
+[[foo�|bar]]
+[[foo/.|bar]]
+[[foo/..|bar]]
+[[foo~~~bar]]
+[[foo&gt;bar]]
+[[foo[bar]]
+[[.]]
+[[..]]
+[[foo././bar]]
+</p><p>[[./../foo|bar]]
+[[foo/.|bar]]
+[[foo/..|bar]]
+[[foo~~~~bar]]
+[[foo&gt;bar]]
+[[foo././bar]]
+[[foo{bar]]
+[[foo}bar]]
+[[foo[bar]]
+[[foo]bar]]
+[[foo&lt;bar]]
+</p>
+!!html/parsoid
+<p>[[./../foo|bar]][[foo�|bar]][[foo/.|bar]][[foo/..|bar]][[foo~~~bar]][[foo>bar]][[foo[bar]][[.]][[..]][[foo././bar]]</p>
+<p>[[<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"./../foo"}},"i":0}}]}'>./../foo</span>|bar]][[<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo/."}},"i":0}}]}'>foo/.</span>|bar]][[<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo/.."}},"i":0}}]}'>foo/..</span>|bar]][[<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo~~~~bar"}},"i":0}}]}'>foo~~~~bar</span>]][[<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo>bar"}},"i":0}}]}'>foo>bar</span>]][[<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo././bar"}},"i":0}}]}'>foo././bar</span>]][[<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo{bar"}},"i":0}}]}'>foo{bar</span>]][[<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo}bar"}},"i":0}}]}'>foo}bar</span>]][[<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo[bar"}},"i":0}}]}'>foo[bar</span>]][[<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo]bar"}},"i":0}}]}'>foo]bar</span>]][[<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo&lt;bar"}},"i":0}}]}'>foo&lt;bar</span>]]</p>
+!!end
 
 !! test
 Disabled subpages
@@ -11712,6 +12077,23 @@ __NOEDITSECTION__
 <h1><span class="mw-headline" id="Header_2">Header 2</span></h1>
 <h2><span class="mw-headline" id="Header_2.1">Header 2.1</span></h2>
 <h2><span class="mw-headline" id="Header_2.2">Header 2.2</span></h2>
+
+!! end
+
+!! test
+Single-line or multiline-comments can follow headings
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+==foo==<!---->
+==bar==<!--c1-->
+==baz==<!--
+c2
+c3-->
+!! html
+<h2><span class="mw-headline" id="foo">foo</span></h2>
+<h2><span class="mw-headline" id="bar">bar</span></h2>
+<h2><span class="mw-headline" id="baz">baz</span></h2>
 
 !! end
 
@@ -14373,11 +14755,40 @@ Handling of &#x0A; in URLs
 # The PHP parser strips the empty tags out for giggles; parsoid doesn't.
 !! test
 5 quotes, code coverage +1 line
+!! options
+parsoid=wt2html
 !! wikitext
 '''''
 !! html/php
 !! html/parsoid
 <p><b><i></i></b></p>
+!! end
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+# note that wt2html and html2html will put the <i> before the <b>
+!! test
+5 quotes, code coverage +1 line w/ nowiki (1)
+!! options
+parsoid=wt2wt,html2wt
+!! wikitext
+'''''<nowiki/>'''''
+!! html/php
+<p><i></i>
+</p>
+!! html/parsoid
+<p><b><i></i></b></p>
+!! end
+
+# same as previous, just swapping the <i> and <b>
+!! test
+5 quotes, code coverage +1 line w/ nowiki (2)
+!! wikitext
+'''''<nowiki/>'''''
+!! html/php
+<p><i></i>
+</p>
+!! html/parsoid
+<p><i><b></b></i></p>
 !! end
 
 !! test
@@ -19139,6 +19550,23 @@ parsoid
 
 !!end
 
+!! test
+New element inserted (without intervening newlines) after an old sol-transparent node should serialize correctly
+!! options
+parsoid=html2wt
+!! wikitext
+<includeonly>foo</includeonly>
+new para
+
+[[./Category:Foo]]
+
+= new heading =
+!! html
+<meta typeof="mw:Includes/IncludeOnly" data-parsoid='{"src":"&lt;includeonly>foo&lt;/includeonly>"}'/><meta typeof="mw:Includes/IncludeOnly/End" data-parsoid='{"src":""}'/><p>new para</p>
+
+<link rel="mw:PageProp/Category" href="./Category:Foo" data-parsoid=''/><h1>new heading</h1>
+!! end
+
 ## PHP emits broken html for this, and since this is primarily
 ## a Parsoid serializer test, marking this Parsoid only
 !!test
@@ -19165,7 +19593,7 @@ parsoid
 </body>
 !!end
 
-## Currently the p-wrapper is fragile in how adds / removes transformations.
+## Currently the p-wrapper is fragile in how it adds / removes transformations.
 ## Having nested or stray pre tags results in the attempt to add duplicates,
 ## causing an assertion fail. This test tries to prevent that situation.
 !!test
@@ -19377,6 +19805,17 @@ parsoid=wt2wt,wt2html
 <tbody>
 <tr>
 <td>b</td></tr></tbody></table>
+!!end
+
+!!test
+9. Encapsulate foster-parented transclusion content
+!!options
+parsoid=wt2wt,wt2html
+!! wikitext
+<table>{{echo|hi</table>hello}}
+!! html
+<span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":["&lt;table>",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"hi&lt;/table>hello"}},"i":0}}]}' data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true,"pi":[[{"k":"1","spc":["","","",""]}]]}'>hi</span>
+<table about="#mwt2" data-parsoid='{"stx":"html"}'></table><span about="#mwt2" data-parsoid="{}">hello</span>
 !!end
 
 !!test
