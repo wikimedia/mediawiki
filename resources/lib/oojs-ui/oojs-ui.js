@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (eca1fc20e7)
+ * OOjs UI v0.1.0-pre (8197f2cd2e)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri Apr 11 2014 16:47:56 GMT-0700 (PDT)
+ * Date: Tue Apr 15 2014 11:07:39 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -1293,12 +1293,13 @@ OO.ui.Window.prototype.open = function ( data ) {
 			this.visible = true;
 			this.emit( 'opening', data );
 			this.setup( data );
-			this.emit( 'open', data );
-			this.opening = false;
 			// Focus the content div (which has a tabIndex) to inactivate
 			// (but not clear) selections in the parent frame.
-			// Must happen after the window has opened.
+			// Must happen after setup runs (otherwise focusing it doesn't work)
+			// but before 'open' is emitted (so subclasses can give focus to something else)
 			this.frame.$content.focus();
+			this.emit( 'open', data );
+			this.opening = false;
 		}, this ) );
 	}
 
@@ -1453,7 +1454,7 @@ OO.ui.WindowSet.prototype.onWindowClose = function ( win, config ) {
 /**
  * Get the current window.
  *
- * @return {OO.ui.Window} Current window
+ * @return {OO.ui.Window|null} Current window or null if none open
  */
 OO.ui.WindowSet.prototype.getCurrentWindow = function () {
 	return this.currentWindow;
