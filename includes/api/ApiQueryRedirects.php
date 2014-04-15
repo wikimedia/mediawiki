@@ -45,7 +45,7 @@ class ApiQueryRedirects extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 */
 	private function run( ApiPageSet $resultPageSet = null ) {
 		$db = $this->getDB();

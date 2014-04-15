@@ -130,7 +130,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	 * Validate the 'user' parameter and set the value to compare
 	 * against `revision`.`rev_user_text`
 	 *
-	 * @param $user string
+	 * @param string $user
 	 */
 	private function prepareUsername( $user ) {
 		if ( !is_null( $user ) && $user !== '' ) {
@@ -326,7 +326,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	/**
 	 * Extract fields from the database row and append them to a result array
 	 *
-	 * @param $row
+	 * @param mixed $row
 	 * @return array
 	 */
 	private function extractRowInfo( $row ) {

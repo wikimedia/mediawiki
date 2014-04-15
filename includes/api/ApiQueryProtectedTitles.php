@@ -44,7 +44,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {

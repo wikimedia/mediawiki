@@ -27,7 +27,7 @@
  */
 class ApiParse extends ApiBase {
 
-	/** @var String $section */
+	/** @var string $section */
 	private $section = null;
 
 	/** @var Content $content */
@@ -431,10 +431,10 @@ class ApiParse extends ApiBase {
 	}
 
 	/**
-	 * @param $page WikiPage
-	 * @param $popts ParserOptions
-	 * @param $pageId Int
-	 * @param $getWikitext Bool
+	 * @param WikiPage $page
+	 * @param ParserOptions $popts
+	 * @param int $pageId
+	 * @param bool $getWikitext
 	 * @return ParserOutput
 	 */
 	private function getParsedContent( WikiPage $page, $popts, $pageId = null, $getWikitext = false ) {
@@ -549,7 +549,7 @@ class ApiParse extends ApiBase {
 	/**
 	 * @deprecated since 1.18 No modern skin generates language links this way,
 	 * please use language links data to generate your own HTML.
-	 * @param $languages array
+	 * @param array $languages
 	 * @return string
 	 */
 	private function languagesHtml( $languages ) {

@@ -44,7 +44,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	public function run( $resultPageSet = null ) {

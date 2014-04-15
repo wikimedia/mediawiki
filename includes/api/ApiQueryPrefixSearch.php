@@ -36,7 +36,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 */
 	private function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();

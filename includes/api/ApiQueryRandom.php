@@ -46,11 +46,11 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $randstr
-	 * @param $limit
-	 * @param $namespace
-	 * @param $resultPageSet ApiPageSet
-	 * @param $redirect
+	 * @param string $randstr
+	 * @param int $limit
+	 * @param int $namespace
+	 * @param ApiPageSet $resultPageSet
+	 * @param bool $redirect
 	 * @return void
 	 */
 	protected function prepareQuery( $randstr, $limit, $namespace, &$resultPageSet, $redirect ) {
@@ -68,7 +68,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return int
 	 */
 	protected function runQuery( $resultPageSet = null ) {
@@ -99,7 +99,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	public function run( $resultPageSet = null ) {
