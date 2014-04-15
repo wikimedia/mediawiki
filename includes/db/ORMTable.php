@@ -888,7 +888,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	/**
 	 * @see ORMTable::newRowFromFromDBResult
 	 *
-	 * @deprecated use newRowFromDBResult instead
+	 * @deprecated since 1.20 use newRowFromDBResult instead
 	 * @since 1.20
 	 *
 	 * @param stdClass $result
@@ -915,7 +915,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	/**
 	 * @see ORMTable::newRow
 	 *
-	 * @deprecated use newRow instead
+	 * @deprecated since 1.20 use newRow instead
 	 * @since 1.20
 	 *
 	 * @param array $data
