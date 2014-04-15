@@ -1760,7 +1760,7 @@
     "post-expand-template-argument-category-desc": "Après avoir développé l’argument d’un modèle (quelque chose entre accolades triples, comme <code>{{{Foo}}}</code>), la page dépasse <code>$wgMaxArticleSize</code>.",
     "expensive-parserfunction-category-desc": "Trop de fonctions coûteuses de l’analyseur (comme <code>#ifexist</code>) sont incluses dans une page. Voyez [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].",
     "broken-file-category-desc": "La catégorie ajoutée sur la page contient un lien de fichier incorrect (un lien pour inclure un fichier alors que celui-ci n’existe pas).",
-    "hidden-category-category-desc": "Catégorie contenant <code><nowiki>__HIDDENCAT__</nowiki></code>, qui empêche son affichage dans la zone des liens de catégorie sur les pages, par défaut.",
+    "hidden-category-category-desc": "Catégorie contenant <code><nowiki>__HIDDENCAT__</nowiki></code>, ce qui empêche son affichage dans la zone des liens de catégorie sur les pages, par défaut.",
     "trackingcategories-nodesc": "Aucune description disponible.",
     "trackingcategories-disabled": "La catégorie est désactivée",
     "mailnologin": "Pas d'adresse d'expéditeur",

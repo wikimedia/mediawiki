@@ -1103,6 +1103,7 @@
     "recentchanges-label-bot": "આ ફેરફાર બોટ દ્વારા કરાયો છે",
     "recentchanges-label-unpatrolled": "આ ફેરફાર હજી ચકાસાયો નથી",
     "recentchanges-label-plusminus": "પાનાનું કદ આપેલા અંકો જેટલાં બાઈટ્સ જેટલું બદલ્યુ છે.",
+    "recentchanges-legend-heading": "'''કળ:'''",
     "recentchanges-legend-newpage": "([[Special:NewPages|નવા પાનાઓની યાદી]] પણ જુઓ)",
     "rcnotefrom": "નીચે <strong>$2</strong> થી ફેરફારો દર્શાવેલ છે (<strong>$1</strong> સુધી દર્શાવલે છે).",
     "rclistfrom": "$1 બાદ થયેલા નવા ફેરફારો બતાવો",
