@@ -346,6 +346,13 @@ class ApiParse extends ApiBase {
 			}
 		}
 
+		if ( isset( $prop['modules'] ) ) {
+			$result_array['modules'] = array_values( array_unique( $p_result->getModules() ) );
+			$result_array['modulescripts'] = array_values( array_unique( $p_result->getModuleScripts() ) );
+			$result_array['modulestyles'] = array_values( array_unique( $p_result->getModuleStyles() ) );
+			$result_array['modulemessages'] = array_values( array_unique( $p_result->getModuleMessages() ) );
+		}
+
 		if ( isset( $prop['iwlinks'] ) ) {
 			$result_array['iwlinks'] = $this->formatIWLinks( $p_result->getInterwikiLinks() );
 		}
@@ -398,6 +405,10 @@ class ApiParse extends ApiBase {
 			'iwlinks' => 'iw',
 			'sections' => 's',
 			'headitems' => 'hi',
+			'modules' => 'm',
+			'modulescripts' => 'mj',
+			'modulestyles' => 'mc',
+			'modulemessages' => 'mm',
 			'properties' => 'pp',
 			'limitreportdata' => 'lr',
 		);
@@ -718,6 +729,7 @@ class ApiParse extends ApiBase {
 					'displaytitle',
 					'headitems',
 					'headhtml',
+					'modules',
 					'iwlinks',
 					'wikitext',
 					'properties',
@@ -774,6 +786,7 @@ class ApiParse extends ApiBase {
 				' displaytitle   - Adds the title of the parsed wikitext',
 				' headitems      - Gives items to put in the <head> of the page',
 				' headhtml       - Gives parsed <head> of the page',
+				' modules        - Gives the ResourceLoader modules used on the page',
 				' iwlinks        - Gives interwiki links in the parsed wikitext',
 				' wikitext       - Gives the original wikitext that was parsed',
 				' properties     - Gives various properties defined in the parsed wikitext',
