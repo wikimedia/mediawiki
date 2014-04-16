@@ -224,8 +224,6 @@ class JobQueueFederated extends JobQueue {
 			throw new JobQueueError(
 				"Could not insert job(s), {$this->maxPartitionsTry} partitions tried." );
 		}
-
-		return true;
 	}
 
 	/**
