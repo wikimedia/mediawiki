@@ -1,5 +1,9 @@
 {
-    "@metadata": [],
-    "mainpagetext": "'''Нармафзори МедиаВики бо муваффақият насб шуд.'''",
-    "mainpagedocfooter": "Аз [//meta.wikimedia.org/wiki/Help:Contents Роҳнамои Корбарон] барои истифодаи нармафзори вики кӯмак бигиред.\n\n== Оғоз ба кор ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Феҳристи танзимоти пайгирбандӣ]\n* [//www.mediawiki.org/wiki/Manual:FAQ Пурсишҳои МедиаВики]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Феҳристи ройномаҳои нусхаҳои МедиаВики]"
+	"@metadata": {
+		"authors": [
+			"Ibrahim"
+		]
+	},
+	"mainpagetext": "'''Нармафзори МедиаВики бо муваффақият насб шуд.'''",
+	"mainpagedocfooter": "Барои иттилоот дар бораи истифода нармафзори вики аз //meta.wikimedia.org/wiki/Help:Contents User's Guide] истифода баред.\n\n== Оғоз ба кор ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Феҳристи танзимоти пайгирбандӣ]\n* [//www.mediawiki.org/wiki/Manual:FAQ Пурсишҳои МедиаВики]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Феҳристи роҳнамои МедиаВики]\n* [//www.mediawiki.org/wiki/Localisation#Translation_resources Маҳалликунонии МедиаВики ба забони шумо]"
 }
