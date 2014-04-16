@@ -686,6 +686,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->assertEquals( array( 0 => true ), $status->success,
 				"Describe of file at $source has proper 'success' field in Status ($backendName)." );
 			if ( $this->backend->hasFeatures( FileBackend::ATTR_HEADERS ) ) {
+				$attr = $this->backend->getFileXAttributes( array( 'src' => $source ) );
 				$this->assertHasHeaders( $op['headers'], $attr );
 			}
 		} else {
