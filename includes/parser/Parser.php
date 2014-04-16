@@ -710,7 +710,7 @@ class Parser {
 	 * @param $t Title
 	 */
 	function setTitle( $t ) {
-		if ( !$t || $t instanceof FakeTitle ) {
+		if ( !$t ) {
 			$t = Title::newFromText( 'NO TITLE' );
 		}
 
