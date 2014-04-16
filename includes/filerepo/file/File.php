@@ -993,7 +993,9 @@ abstract class File {
 				$this->migrateThumbFile( $thumbName );
 				// Check if an up-to-date thumbnail already exists...
 				wfDebug( __METHOD__ . ": Doing stat for $thumbPath\n" );
-				if ( !( $flags & self::RENDER_FORCE ) && $this->repo->fileExists( $thumbPath ) ) {
+				if ( !( $flags & self::RENDER_FORCE ) && !$this->repo->cdnThumbnails()
+					&& $this->repo->fileExists( $thumbPath )
+				) {
 					$timestamp = $this->repo->getFileTimestamp( $thumbPath );
 					if ( $timestamp !== false && $timestamp >= $wgThumbnailEpoch ) {
 						// XXX: Pass in the storage path even though we are not rendering anything
@@ -1010,7 +1012,7 @@ abstract class File {
 
 			// If the backend is ready-only, don't keep generating thumbnails
 			// only to return transformation errors, just return the error now.
-			if ( $this->repo->getReadOnlyReason() !== false ) {
+			if ( !$this->repo->cdnThumbnails() && $this->repo->getReadOnlyReason() !== false ) {
 				$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
 				break;
 			}
@@ -1039,13 +1041,16 @@ abstract class File {
 					$thumb = $handler->getTransform( $this, $tmpThumbPath, $thumbUrl, $params );
 				}
 			} elseif ( $this->repo && $thumb->hasFile() && !$thumb->fileIsSource() ) {
-				// Copy the thumbnail from the file system into storage...
-				$disposition = $this->getThumbDisposition( $thumbName );
-				$status = $this->repo->quickImport( $tmpThumbPath, $thumbPath, $disposition );
-				if ( $status->isOK() ) {
-					$thumb->setStoragePath( $thumbPath );
-				} else {
-					$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
+				if ( !$this->repo->cdnThumbnails() ) {
+					// Copy the thumbnail from the file system into storage...
+					$disposition = $this->getThumbDisposition( $thumbName );
+					$status = $this->repo->quickImport( $tmpThumbPath, $thumbPath, $disposition );
+					if ( $status->isOK() ) {
+						$thumb->setStoragePath( $thumbPath );
+					} else {
+						$thumb = $this->transformErrorOutput(
+							$thumbPath, $thumbUrl, $params, $flags );
+					}
 				}
 				// Give extensions a chance to do something with this thumbnail...
 				wfRunHooks( 'FileTransformed', array( $this, $thumb, $tmpThumbPath, $thumbPath ) );

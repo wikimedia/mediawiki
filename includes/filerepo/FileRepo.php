@@ -111,6 +111,9 @@ class FileRepo {
 	 */
 	protected $abbrvThreshold;
 
+	/** @var bool Whether thumbnails are stored CDN only and collated by source file name */
+	protected $cdnThumbnails = false;
+
 	/** @var string The URL of the repo's favicon, if any */
 	protected $favicon;
 
@@ -150,7 +153,7 @@ class FileRepo {
 		$optionalSettings = array(
 			'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription',
 			'thumbScriptUrl', 'pathDisclosureProtection', 'descriptionCacheExpiry',
-			'scriptExtension', 'favicon'
+			'scriptExtension', 'favicon', 'cdnThumbnails'
 		);
 		foreach ( $optionalSettings as $var ) {
 			if ( isset( $info[$var] ) ) {
@@ -625,6 +628,18 @@ class FileRepo {
 	 */
 	public function canTransformVia404() {
 		return $this->transformVia404;
+	}
+
+	/**
+	 * Returns true if the repository relies only on CDN for thumbnail storage
+	 *
+	 * CDN-only storage requires that a cache PURGE request to the parent
+	 * directory of thumbnails for a file results in purging all such thumbnails
+	 *
+	 * @return bool
+	 */
+	public function cdnThumbnails() {
+		return $this->cdnThumbnails;
 	}
 
 	/**

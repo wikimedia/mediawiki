@@ -417,6 +417,10 @@ $wgImgAuthUrlPathMap = array();
  *   - thumbScriptUrl   The URL for thumb.php (optional, not recommended)
  *   - transformVia404  Whether to skip media file transformation on parse and rely on a 404
  *                      handler instead.
+ *   - cdnThumbnails    Do not store thumbnails in the backend. This assumes that any CDN
+ *                      cache collates all thumbnails for a file under the directory for
+ *                      thumbnails for that file. PURGE requests are sent to that directory.
+ *                      This only has an effect if "transformVia404" is also enabled.
  *   - initialCapital   Equivalent to $wgCapitalLinks (or $wgCapitalLinkOverrides[NS_FILE],
  *                      determines whether filenames implicitly start with a capital letter.
  *                      The current implementation may give incorrect description page links

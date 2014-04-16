@@ -901,22 +901,32 @@ class LocalFile extends File {
 		global $wgUseSquid;
 		wfProfileIn( __METHOD__ );
 
-		// Get a list of old thumbnails and URLs
-		$files = $this->getThumbnails( $archiveName );
+		// Get a list of old thumbnails
+		if ( $this->repo->cdnThumbnails() ) {
+			$files = array( $this->getArchiveThumbPath( $archiveName ) );
+		} else {
+			$files = $this->getThumbnails( $archiveName );
+		}
 
 		// Purge any custom thumbnail caches
 		wfRunHooks( 'LocalFilePurgeThumbnails', array( $this, $archiveName ) );
 
+		// Purge from permanent storage
 		$dir = array_shift( $files );
 		$this->purgeThumbList( $dir, $files );
 
 		// Purge the squid
 		if ( $wgUseSquid ) {
-			$urls = array();
-			foreach ( $files as $file ) {
-				$urls[] = $this->getArchiveThumbUrl( $archiveName, $file );
+			if ( $this->repo->cdnThumbnails() ) {
+				// Purge base URL to clear all thumbnails
+				SquidUpdate::purge( array( $this->getArchiveThumbUrl( $archiveName ) ) );
+			} else {
+				$urls = array();
+				foreach ( $files as $file ) {
+					$urls[] = $this->getArchiveThumbUrl( $archiveName, $file );
+				}
+				SquidUpdate::purge( $urls );
 			}
-			SquidUpdate::purge( $urls );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -929,8 +939,13 @@ class LocalFile extends File {
 		global $wgUseSquid;
 		wfProfileIn( __METHOD__ );
 
-		// Delete thumbnails
-		$files = $this->getThumbnails();
+		// Get a list of old thumbnails
+		if ( $this->repo->cdnThumbnails() ) {
+			$files = array( $this->getThumbPath() );
+		} else {
+			$files = $this->getThumbnails();
+		}
+
 		// Always purge all files from squid regardless of handler filters
 		$urls = array();
 		if ( $wgUseSquid ) {
@@ -956,7 +971,12 @@ class LocalFile extends File {
 
 		// Purge the squid
 		if ( $wgUseSquid ) {
-			SquidUpdate::purge( $urls );
+			if ( $this->repo->cdnThumbnails() ) {
+				// Purge base URL to clear all thumbnails
+				SquidUpdate::purge( array( $this->getThumbUrl() ) );
+			} else {
+				SquidUpdate::purge( $urls );
+			}
 		}
 
 		wfProfileOut( __METHOD__ );
