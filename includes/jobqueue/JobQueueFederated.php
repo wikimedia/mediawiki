@@ -265,7 +265,8 @@ class JobQueueFederated extends JobQueue {
 			/** @var JobQueue $queue */
 			$queue = $this->partitionQueues[$partition];
 			try {
-				$ok = $queue->doBatchPush( $jobBatch, $flags | self::QOS_ATOMIC );
+				$ok = true;
+				$queue->doBatchPush( $jobBatch, $flags | self::QOS_ATOMIC );
 			} catch ( JobQueueError $e ) {
 				$ok = false;
 				MWExceptionHandler::logException( $e );
@@ -287,7 +288,8 @@ class JobQueueFederated extends JobQueue {
 			$partition = ArrayUtils::pickRandom( $partitionRing->getLocationWeights() );
 			$queue = $this->partitionQueues[$partition];
 			try {
-				$ok = $queue->doBatchPush( $jobBatch, $flags | self::QOS_ATOMIC );
+				$ok = true;
+				$queue->doBatchPush( $jobBatch, $flags | self::QOS_ATOMIC );
 			} catch ( JobQueueError $e ) {
 				$ok = false;
 				MWExceptionHandler::logException( $e );
