@@ -70,7 +70,6 @@ $wgAutoloadLocalClasses = array(
 	'DumpPipeOutput' => 'includes/Export.php',
 	'EditPage' => 'includes/EditPage.php',
 	'EmailNotification' => 'includes/UserMailer.php',
-	'FakeTitle' => 'includes/FakeTitle.php',
 	'Fallback' => 'includes/Fallback.php',
 	'FauxRequest' => 'includes/WebRequest.php',
 	'FauxResponse' => 'includes/WebResponse.php',
