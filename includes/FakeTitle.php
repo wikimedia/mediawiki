@@ -42,7 +42,6 @@ class FakeTitle extends Title {
 	function hasFragment() { $this->error(); }
 	function getFragmentForURL() { $this->error(); }
 	function getDefaultNamespace() { $this->error(); }
-	function getIndexTitle() { $this->error(); }
 	function getPrefixedDBkey() { $this->error(); }
 	function getPrefixedText() { $this->error(); }
 	function getFullText() { $this->error(); }
