@@ -531,7 +531,12 @@ abstract class DatabaseUpdater {
 			return true;
 		}
 
-		return !in_array( $name, $wgSharedTables );
+		if ( in_array( $name, $wgSharedTables ) ) {
+			$this->output( "...skipping update to shared table $name.\n" );
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	/**
