@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (8197f2cd2e)
+ * OOjs UI v0.1.0-pre (5c1c6de63a)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Tue Apr 15 2014 11:07:39 GMT-0700 (PDT)
+ * Date: Wed Apr 16 2014 08:35:54 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -1890,6 +1890,7 @@ OO.ui.ButtonedElement.prototype.onMouseDown = function () {
 		.removeAttr( 'tabindex' )
 		.addClass( 'oo-ui-buttonedElement-pressed' );
 	this.getElementDocument().addEventListener( 'mouseup', this.onMouseUpHandler, true );
+	return false;
 };
 
 /**
@@ -3637,7 +3638,7 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 
 	// Mixin constructors
 	OO.ui.IconedElement.call( this, this.$( '<div>' ), config );
-	OO.ui.LabeledElement.call( this, this.$( '<legend>' ), config );
+	OO.ui.LabeledElement.call( this, this.$( '<div>' ), config );
 	OO.ui.GroupElement.call( this, this.$( '<div>' ), config );
 
 	// Initialization
@@ -3658,7 +3659,7 @@ OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.GroupElement );
 
 /* Static Properties */
 
-OO.ui.FieldsetLayout.static.tagName = 'fieldset';
+OO.ui.FieldsetLayout.static.tagName = 'div';
 /**
  * Layout made of a field and optional label.
  *

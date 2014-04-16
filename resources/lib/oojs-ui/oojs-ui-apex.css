@@ -303,7 +303,7 @@
   border: none;
 }
 
-.oo-ui-fieldsetLayout > legend.oo-ui-labeledElement-label {
+.oo-ui-fieldsetLayout > .oo-ui-labeledElement-label {
   font-size: 1.5em;
 }
 

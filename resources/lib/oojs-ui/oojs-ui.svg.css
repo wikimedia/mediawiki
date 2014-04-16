@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (8197f2cd2e)
+ * OOjs UI v0.1.0-pre (5c1c6de63a)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Tue Apr 15 2014 11:07:39 GMT-0700 (PDT)
+ * Date: Wed Apr 16 2014 08:35:54 GMT-0700 (PDT)
  */
 
 /* Textures */
@@ -433,18 +433,19 @@
   margin-top: -0.75em;
 }
 
-.oo-ui-fieldsetLayout > legend.oo-ui-labeledElement-label {
+.oo-ui-fieldsetLayout > .oo-ui-labeledElement-label {
   padding: 0.25em 0;
   margin-bottom: 0.5em;
 }
 
-.oo-ui-fieldsetLayout.oo-ui-iconedElement > legend.oo-ui-labeledElement-label {
+.oo-ui-fieldsetLayout.oo-ui-iconedElement > .oo-ui-labeledElement-label {
   padding-left: 1.75em;
+  line-height: 1.33em;
 }
 
 .oo-ui-fieldsetLayout.oo-ui-iconedElement > .oo-ui-iconedElement-icon {
   position: absolute;
-  top: 0;
+  top: 0.25em;
   left: 0;
   display: block;
   width: 2em;
