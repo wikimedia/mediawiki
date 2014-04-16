@@ -259,7 +259,10 @@ class StatusTest extends MediaWikiLangTestCase {
 	public function testHasMessage() {
 		$status = new Status();
 		$status->fatal( 'bad' );
+		$status->fatal( wfMessage( 'bad-msg' ) );
+		$status->fatal( new Exception( 'None-Message objets shouldn\'t fail' ) );
 		$this->assertTrue( $status->hasMessage( 'bad' ) );
+		$this->assertTrue( $status->hasMessage( 'bad-msg' ) );
 		$this->assertFalse( $status->hasMessage( 'good' ) );
 	}
 
