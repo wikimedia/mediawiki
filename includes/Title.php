@@ -663,34 +663,6 @@ class Title {
 	}
 
 	/**
-	 * Get a string representation of a title suitable for
-	 * including in a search index
-	 *
-	 * @param int $ns a namespace index
-	 * @param string $title text-form main part
-	 * @return String a stripped-down title string ready for the search index
-	 */
-	public static function indexTitle( $ns, $title ) {
-		global $wgContLang;
-
-		$lc = SearchEngine::legalSearchChars() . '&#;';
-		$t = $wgContLang->normalizeForSearch( $title );
-		$t = preg_replace( "/[^{$lc}]+/", ' ', $t );
-		$t = $wgContLang->lc( $t );
-
-		# Handle 's, s'
-		$t = preg_replace( "/([{$lc}]+)'s( |$)/", "\\1 \\1's ", $t );
-		$t = preg_replace( "/([{$lc}]+)s'( |$)/", "\\1s ", $t );
-
-		$t = preg_replace( "/\\s+/", ' ', $t );
-
-		if ( $ns == NS_FILE ) {
-			$t = preg_replace( "/ (png|gif|jpg|jpeg|ogg)$/", "", $t );
-		}
-		return trim( $t );
-	}
-
-	/**
 	 * Make a prefixed DB key from a DB key and a namespace index
 	 *
 	 * @param int $ns numerical representation of the namespace
@@ -1269,16 +1241,6 @@ class Title {
 	 */
 	public function getDefaultNamespace() {
 		return $this->mDefaultNamespace;
-	}
-
-	/**
-	 * Get title for search index
-	 *
-	 * @return String a stripped-down title string ready for the
-	 *  search index
-	 */
-	public function getIndexTitle() {
-		return Title::indexTitle( $this->mNamespace, $this->mTextform );
 	}
 
 	/**
