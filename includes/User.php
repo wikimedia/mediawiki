@@ -4133,7 +4133,7 @@ class User {
 	 * @return Array of Strings List of permission key names for given groups combined
 	 */
 	public static function getGroupPermissions( $groups ) {
-		global $wgGroupPermissions, $wgRevokePermissions;
+		global $wgGroupPermissions, $wgRevokePermissions, $wgTitle, $wgWhitelistRead;
 		$rights = array();
 		// grant every granted permission first
 		foreach ( $groups as $group ) {
@@ -4149,6 +4149,10 @@ class User {
 				$rights = array_diff( $rights,
 					array_keys( array_filter( $wgRevokePermissions[$group] ) ) );
 			}
+		}
+		//Regrant read if whitelisted
+		if ( in_array ( (string)$wgTitle , $wgWhitelistRead ) ) {
+			array_push ( $rights , "Read" );
 		}
 		return array_unique( $rights );
 	}
