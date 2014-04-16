@@ -304,11 +304,11 @@ abstract class JobQueue {
 	 *
 	 * @param Job|array $jobs A single job or an array of Jobs
 	 * @param int $flags Bitfield (supports JobQueue::QOS_ATOMIC)
-	 * @return void
+	 * @return bool Returns false on failure
 	 * @throws JobQueueError
 	 */
 	final public function push( $jobs, $flags = 0 ) {
-		$this->batchPush( is_array( $jobs ) ? $jobs : array( $jobs ), $flags );
+		return $this->batchPush( is_array( $jobs ) ? $jobs : array( $jobs ), $flags );
 	}
 
 	/**
@@ -318,8 +318,8 @@ abstract class JobQueue {
 	 *
 	 * @param array $jobs List of Jobs
 	 * @param int $flags Bitfield (supports JobQueue::QOS_ATOMIC)
-	 * @return void
 	 * @throws MWException
+	 * @return bool Returns false on failure
 	 */
 	final public function batchPush( array $jobs, $flags = 0 ) {
 		if ( !count( $jobs ) ) {
@@ -337,14 +337,17 @@ abstract class JobQueue {
 		}
 
 		wfProfileIn( __METHOD__ );
-		$this->doBatchPush( $jobs, $flags );
+		$ok = $this->doBatchPush( $jobs, $flags );
 		wfProfileOut( __METHOD__ );
+
+		return $ok;
 	}
 
 	/**
 	 * @see JobQueue::batchPush()
 	 * @param array $jobs
 	 * @param $flags
+	 * @return bool
 	 */
 	abstract protected function doBatchPush( array $jobs, $flags );
 
@@ -396,21 +399,24 @@ abstract class JobQueue {
 	 * Outside callers should use JobQueueGroup::ack() instead of this function.
 	 *
 	 * @param Job $job
-	 * @return void
 	 * @throws MWException
+	 * @return bool
 	 */
 	final public function ack( Job $job ) {
 		if ( $job->getType() !== $this->type ) {
 			throw new MWException( "Got '{$job->getType()}' job; expected '{$this->type}'." );
 		}
 		wfProfileIn( __METHOD__ );
-		$this->doAck( $job );
+		$ok = $this->doAck( $job );
 		wfProfileOut( __METHOD__ );
+
+		return $ok;
 	}
 
 	/**
 	 * @see JobQueue::ack()
 	 * @param Job $job
+	 * @return bool
 	 */
 	abstract protected function doAck( Job $job );
 
@@ -533,19 +539,22 @@ abstract class JobQueue {
 	/**
 	 * Deleted all unclaimed and delayed jobs from the queue
 	 *
+	 * @return bool Success
 	 * @throws JobQueueError
 	 * @since 1.22
-	 * @return void
 	 */
 	final public function delete() {
 		wfProfileIn( __METHOD__ );
-		$this->doDelete();
+		$res = $this->doDelete();
 		wfProfileOut( __METHOD__ );
+
+		return $res;
 	}
 
 	/**
 	 * @see JobQueue::delete()
 	 * @throws MWException
+	 * @return bool Success
 	 */
 	protected function doDelete() {
 		throw new MWException( "This method is not implemented." );
