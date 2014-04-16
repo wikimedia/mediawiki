@@ -29,6 +29,8 @@ changes to languages because of Bugzilla reports.
 
 === Other changes in 1.24 ===
 * The deprecated jquery.delayedBind ResourceLoader module was removed.
+* The Special:Search hooks SpecialSearchGo and SpecialSearchResultsAppend
+  were removed as they were unused.
 
 == Compatibility ==
 

@@ -2421,10 +2421,6 @@ go to the existing page.
 $t: title object searched for
 &$params: an array of the default message name and page title (as parameter)
 
-'SpecialSearchGo': Called when user clicked the "Go".
-&$title: title object generated from the text entered by the user
-&$term: the search term entered by the user
-
 'SpecialSearchNogomatch': Called when user clicked the "Go" button but the
 target doesn't exist.
 &$title: title object generated from the text entered by the user
@@ -2454,14 +2450,6 @@ $engine: the search engine
 on the search results page.  Useful for including an external search
 provider.  To disable the output of MediaWiki search output, return
 false.
-$specialSearch: SpecialSearch object ($this)
-$output: $wgOut
-$term: Search term specified by the user
-
-'SpecialSearchResultsAppend': Called after all search results HTML has
-been output.  Note that in some cases, this hook will not be called (no
-results, too many results, SpecialSearchResultsPrepend returned false,
-etc).
 $specialSearch: SpecialSearch object ($this)
 $output: $wgOut
 $term: Search term specified by the user
