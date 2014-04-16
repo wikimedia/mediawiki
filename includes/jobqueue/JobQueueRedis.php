@@ -229,6 +229,12 @@ class JobQueueRedis extends JobQueue {
 				if ( is_int( $added ) ) {
 					$pushed += $added;
 				} else {
+					wfDebugLog( 'JobQueueRedis', "Failed to insert {$this->type} job(s): "
+						. $conn->getLastError() );
+
+					wfLogWarning( __METHOD__ . ": Failed to insert {$this->type} job(s): "
+						. $conn->getLastError() );
+
 					$failed += count( $itemBatch );
 				}
 			}
