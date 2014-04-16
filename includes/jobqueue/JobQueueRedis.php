@@ -182,8 +182,8 @@ class JobQueueRedis extends JobQueue {
 	/**
 	 * @see JobQueue::doBatchPush()
 	 * @param array $jobs
-	 * @param array $flags
-	 * @return bool
+	 * @param int $flags
+	 * @return void
 	 * @throws JobQueueError
 	 */
 	protected function doBatchPush( array $jobs, $flags ) {
@@ -199,7 +199,7 @@ class JobQueueRedis extends JobQueue {
 		}
 
 		if ( !count( $items ) ) {
-			return true; // nothing to do
+			return; // nothing to do
 		}
 
 		$conn = $this->getConnection();
@@ -223,7 +223,7 @@ class JobQueueRedis extends JobQueue {
 			if ( $failed > 0 ) {
 				wfDebugLog( 'JobQueueRedis', "Could not insert {$failed} {$this->type} job(s)." );
 
-				return false;
+				throw new RedisException( "Could not insert {$failed} {$this->type} job(s)." );
 			}
 			JobQueue::incrStats( 'job-insert', $this->type, count( $items ), $this->wiki );
 			JobQueue::incrStats( 'job-insert-duplicate', $this->type,
@@ -231,8 +231,6 @@ class JobQueueRedis extends JobQueue {
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $conn, $e );
 		}
-
-		return true;
 	}
 
 	/**

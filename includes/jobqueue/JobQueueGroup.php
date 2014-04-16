@@ -106,13 +106,12 @@ class JobQueueGroup {
 	 *
 	 * @param Job|array $jobs A single Job or a list of Jobs
 	 * @throws MWException
-	 * @return bool
-	 * @todo Return value here is not useful
+	 * @return void
 	 */
 	public function push( $jobs ) {
 		$jobs = is_array( $jobs ) ? $jobs : array( $jobs );
 		if ( !count( $jobs ) ) {
-			return true;
+			return;
 		}
 
 		$jobsByType = array(); // (job type => list of jobs)
@@ -135,8 +134,6 @@ class JobQueueGroup {
 				$this->cache->clear( 'queues-ready' );
 			}
 		}
-
-		return true;
 	}
 
 	/**

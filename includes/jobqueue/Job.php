@@ -92,7 +92,8 @@ abstract class Job implements IJobSpecification {
 	 * @deprecated since 1.21
 	 */
 	public static function batchInsert( $jobs ) {
-		return JobQueueGroup::singleton()->push( $jobs );
+		JobQueueGroup::singleton()->push( $jobs );
+		return true;
 	}
 
 	/**
@@ -107,7 +108,8 @@ abstract class Job implements IJobSpecification {
 	 * @deprecated since 1.21
 	 */
 	public static function safeBatchInsert( $jobs ) {
-		return JobQueueGroup::singleton()->push( $jobs, JobQueue::QOS_ATOMIC );
+		JobQueueGroup::singleton()->push( $jobs, JobQueue::QOS_ATOMIC );
+		return true;
 	}
 
 	/**
@@ -281,7 +283,8 @@ abstract class Job implements IJobSpecification {
 	 * @deprecated since 1.21
 	 */
 	public function insert() {
-		return JobQueueGroup::singleton()->push( $this );
+		JobQueueGroup::singleton()->push( $this );
+		return true;
 	}
 
 	/**

@@ -234,7 +234,7 @@ class ApiUpload extends ApiBase {
 					array( 'result' => 'Poll',
 						'stage' => 'queued', 'status' => Status::newGood() )
 				);
-				$ok = JobQueueGroup::singleton()->push( new AssembleUploadChunksJob(
+				JobQueueGroup::singleton()->push( new AssembleUploadChunksJob(
 					Title::makeTitle( NS_FILE, $filekey ),
 					array(
 						'filename' => $this->mParams['filename'],
@@ -242,13 +242,7 @@ class ApiUpload extends ApiBase {
 						'session' => $this->getContext()->exportSession()
 					)
 				) );
-				if ( $ok ) {
-					$result['result'] = 'Poll';
-				} else {
-					UploadBase::setSessionStatus( $filekey, false );
-					$this->dieUsage(
-						"Failed to start AssembleUploadChunks.php", 'stashfailed' );
-				}
+				$result['result'] = 'Poll';
 			} else {
 				$status = $this->mUpload->concatenateChunks();
 				if ( !$status->isGood() ) {
@@ -625,7 +619,7 @@ class ApiUpload extends ApiBase {
 				$this->mParams['filekey'],
 				array( 'result' => 'Poll', 'stage' => 'queued', 'status' => Status::newGood() )
 			);
-			$ok = JobQueueGroup::singleton()->push( new PublishStashedFileJob(
+			JobQueueGroup::singleton()->push( new PublishStashedFileJob(
 				Title::makeTitle( NS_FILE, $this->mParams['filename'] ),
 				array(
 					'filename' => $this->mParams['filename'],
@@ -636,13 +630,7 @@ class ApiUpload extends ApiBase {
 					'session' => $this->getContext()->exportSession()
 				)
 			) );
-			if ( $ok ) {
-				$result['result'] = 'Poll';
-			} else {
-				UploadBase::setSessionStatus( $this->mParams['filekey'], false );
-				$this->dieUsage(
-					"Failed to start PublishStashedFile.php", 'publishfailed' );
-			}
+			$result['result'] = 'Poll';
 		} else {
 			/** @var $status Status */
 			$status = $this->mUpload->performUpload( $this->mParams['comment'],
