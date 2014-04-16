@@ -451,6 +451,13 @@ class ParserOutput extends CacheTime {
 		$this->mProperties[$name] = $value;
 	}
 
+	/**
+	 * Gets a property previously stored in the page_props database table.
+	 *
+	 * @param string $name The key to look up.
+	 *
+	 * @return string|false A serialized string value or false if no value was set for this key.
+	 */
 	public function getProperty( $name ) {
 		return isset( $this->mProperties[$name] ) ? $this->mProperties[$name] : false;
 	}
