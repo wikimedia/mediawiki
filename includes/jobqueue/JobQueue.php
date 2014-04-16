@@ -323,7 +323,7 @@ abstract class JobQueue {
 	 */
 	final public function batchPush( array $jobs, $flags = 0 ) {
 		if ( !count( $jobs ) ) {
-			return true; // nothing to do
+			return; // nothing to do
 		}
 
 		foreach ( $jobs as $job ) {

@@ -191,7 +191,7 @@ class JobQueueDB extends JobQueue {
 	 * @param array $jobs
 	 * @param $flags
 	 * @throws DBError|Exception
-	 * @return bool
+	 * @return void
 	 */
 	protected function doBatchPush( array $jobs, $flags ) {
 		$dbw = $this->getMasterDB();
@@ -203,8 +203,6 @@ class JobQueueDB extends JobQueue {
 				$that->doBatchPushInternal( $dbw, $jobs, $flags, $method );
 			}
 		);
-
-		return true;
 	}
 
 	/**
@@ -215,11 +213,11 @@ class JobQueueDB extends JobQueue {
 	 * @param int $flags
 	 * @param string $method
 	 * @throws DBError
-	 * @return bool
+	 * @return void
 	 */
 	public function doBatchPushInternal( IDatabase $dbw, array $jobs, $flags, $method ) {
 		if ( !count( $jobs ) ) {
-			return true;
+			return;
 		}
 
 		$rowSet = array(); // (sha1 => job) map for jobs that are de-duplicated
@@ -277,7 +275,7 @@ class JobQueueDB extends JobQueue {
 
 		$this->cache->set( $this->getCacheKey( 'empty' ), 'false', JobQueueDB::CACHE_TTL_LONG );
 
-		return true;
+		return;
 	}
 
 	/**
