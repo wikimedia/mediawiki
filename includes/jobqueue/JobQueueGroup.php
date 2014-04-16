@@ -107,6 +107,7 @@ class JobQueueGroup {
 	 * @param Job|array $jobs A single Job or a list of Jobs
 	 * @throws MWException
 	 * @return bool
+	 * @todo Return value here is not useful
 	 */
 	public function push( $jobs ) {
 		$jobs = is_array( $jobs ) ? $jobs : array( $jobs );
@@ -123,13 +124,9 @@ class JobQueueGroup {
 			}
 		}
 
-		$ok = true;
 		foreach ( $jobsByType as $type => $jobs ) {
-			if ( $this->get( $type )->push( $jobs ) ) {
-				JobQueueAggregator::singleton()->notifyQueueNonEmpty( $this->wiki, $type );
-			} else {
-				$ok = false;
-			}
+			$this->get( $type )->push( $jobs );
+			JobQueueAggregator::singleton()->notifyQueueNonEmpty( $this->wiki, $type );
 		}
 
 		if ( $this->cache->has( 'queues-ready', 'list' ) ) {
@@ -139,7 +136,7 @@ class JobQueueGroup {
 			}
 		}
 
-		return $ok;
+		return true;
 	}
 
 	/**
