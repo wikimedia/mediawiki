@@ -405,15 +405,16 @@ class Status {
 	/**
 	 * Returns true if the specified message is present as a warning or error
 	 *
-	 * Note, due to the lack of tools for comparing Message objects, this
-	 * function will not work when using a Message object as a parameter.
-	 *
 	 * @param string $msg message name
 	 * @return Boolean
 	 */
 	public function hasMessage( $msg ) {
 		foreach ( $this->errors as $error ) {
-			if ( $error['message'] === $msg ) {
+			if ( is_object( $error['message'] )
+				&& $error['message']->getKey() === $msg
+			) {
+				return true;
+			} elseif ( $error['message'] === $msg ) {
 				return true;
 			}
 		}
