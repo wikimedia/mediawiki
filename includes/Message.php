@@ -545,6 +545,7 @@ class Message {
 				. "passed a String or Language object; $type given"
 			);
 		}
+		$this->message = null;
 		$this->interface = false;
 		return $this;
 	}
@@ -565,8 +566,7 @@ class Message {
 		}
 
 		global $wgContLang;
-		$this->interface = false;
-		$this->language = $wgContLang;
+		$this->inLanguage( $wgContLang );
 		return $this;
 	}
 
