@@ -86,7 +86,6 @@
 	"tog-showtoolbar": "Bearbeiten-Werkzeugleiste anzeigen",
 	"tog-editondblclick": "Seiten mit Doppelklick bearbeiten",
 	"tog-editsectiononrightclick": "Einzelne Abschnitte per Rechtsklick bearbeiten",
-	"tog-rememberpassword": "Mit diesem Browser dauerhaft angemeldet bleiben (maximal $1 {{PLURAL:$1|Tag|Tage}})",
 	"tog-watchcreations": "Selbst erstellte Seiten und hochgeladene Dateien automatisch beobachten",
 	"tog-watchdefault": "Selbst geänderte Seiten und Dateien automatisch beobachten",
 	"tog-watchmoves": "Selbst verschobene Seiten und Dateien automatisch beobachten",

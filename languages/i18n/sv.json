@@ -69,7 +69,6 @@
 	"tog-showtoolbar": "Visa redigeringsverktygsraden",
 	"tog-editondblclick": "Redigera sidor med dubbelklick",
 	"tog-editsectiononrightclick": "Aktivera redigering av avsnitt genom högerklick på underrubriker",
-	"tog-rememberpassword": "Kom ihåg min inloggning på den här webbläsaren (i maximalt $1 {{PLURAL:$1|dygn|dygn}})",
 	"tog-watchcreations": "Lägg till sidor jag skapar och filer jag laddar upp till min bevakningslista",
 	"tog-watchdefault": "Lägg till sidor och filer jag redigerar i min bevakningslista",
 	"tog-watchmoves": "Lägg till sidor och filer jag flyttar i min bevakningslista",

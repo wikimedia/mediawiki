@@ -18,7 +18,6 @@
 	"tog-showtoolbar": "Pokaži alatnu traku (potreban JavaScript)",
 	"tog-editondblclick": "Izmijeni stranice dvostrukim klikom (potreban JavaScript)",
 	"tog-editsectiononrightclick": "Uključite uređivanje odjeljka sa pritiskom na desno dugme miša u naslovu odjeljka (JavaScript)",
-	"tog-rememberpassword": "Upamti moju prijavu za ovaj preglednik (za maksimum od $1 {{PLURAL:$1|dan|dana}})",
 	"tog-watchcreations": "Dodaj stranice koje sam stvorio i dadtoteke koje sam poslao u moj spisak praćenih stranica",
 	"tog-watchdefault": "Dodaj stranice i datoteke koje izmijenim u spisak praćenja",
 	"tog-watchmoves": "Dodaj stranice i datoteke koje premjestim na moj spisak praćenja",

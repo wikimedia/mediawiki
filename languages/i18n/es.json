@@ -119,7 +119,6 @@
 	"tog-showtoolbar": "Mostrar la barra de edición",
 	"tog-editondblclick": "Editar las páginas al pulsar dos veces en ellos con el ratón",
 	"tog-editsectiononrightclick": "Activar la edición de secciones pulsando el botón derecho en los títulos de secciones",
-	"tog-rememberpassword": "Recordar mi nombre de usuario y contraseña entre sesiones en este navegador (por un máximo de $1 {{PLURAL:$1|día|días}})",
 	"tog-watchcreations": "Añadir las páginas que cree y los archivos que suba a mi lista de seguimento",
 	"tog-watchdefault": "Añadir las páginas y archivos que edite a mi lista de seguimiento",
 	"tog-watchmoves": "Añadir las páginas y archivos que mueva a mi lista de seguimiento",

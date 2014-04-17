@@ -38,7 +38,6 @@
 	"tog-showtoolbar": "Zobrazit panel nástrojů",
 	"tog-editondblclick": "Editovat stránky dvojklikem",
 	"tog-editsectiononrightclick": "Umožnit editaci části stránky kliknutím pravým tlačítkem na nadpisy sekcí",
-	"tog-rememberpassword": "Zapamatovat si mé přihlášení v tomto prohlížeči (maximálně $1 {{PLURAL:$1|den|dny|dní}})",
 	"tog-watchcreations": "Přidávat mnou založené stránky a načtené soubory ke sledovaným",
 	"tog-watchdefault": "Přidávat mnou editované stránky a soubory ke sledovaným",
 	"tog-watchmoves": "Přidávat mnou přesouvané stránky a soubory mezi sledované",

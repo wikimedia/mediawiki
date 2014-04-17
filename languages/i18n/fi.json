@@ -50,7 +50,6 @@
 	"tog-showtoolbar": "Näytä työkalupalkki",
 	"tog-editondblclick": "Muokkaa sivuja kaksoisnapsautuksella",
 	"tog-editsectiononrightclick": "Muokkaa osioita napsauttamalla osion otsikkoa hiiren oikealla painikkeella",
-	"tog-rememberpassword": "Muista kirjautuminen tässä selaimessa (enintään $1 {{PLURAL:$1|päivä|päivää}})",
 	"tog-watchcreations": "Lisää luomani sivut ja tallentamani tiedostot tarkkailulistalleni",
 	"tog-watchdefault": "Lisää muokkaamani sivut ja tiedostot tarkkailulistalleni",
 	"tog-watchmoves": "Lisää siirtämäni sivut ja tiedostot tarkkailulistalleni",

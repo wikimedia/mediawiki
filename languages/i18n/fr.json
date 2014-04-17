@@ -116,7 +116,6 @@
 	"tog-showtoolbar": "Afficher la barre d'outils de modification (nécessite JavaScript)",
 	"tog-editondblclick": "Modifier des pages sur double-clic (nécessite JavaScript)",
 	"tog-editsectiononrightclick": "Activer la modification de sections par clic droit sur les titres (nécessite JavaScript)",
-	"tog-rememberpassword": "Me reconnecter automatiquement lors des prochaines visites avec ce navigateur (au maximum $1&nbsp;{{PLURAL:$1|jour|jours}})",
 	"tog-watchcreations": "Ajouter les pages que je crée et les fichiers que j'importe à ma liste de suivi",
 	"tog-watchdefault": "Ajouter les pages et les fichiers que je modifie à ma liste de suivi",
 	"tog-watchmoves": "Ajouter les pages et les fichiers que je renomme à ma liste de suivi",

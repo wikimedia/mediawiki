@@ -34,7 +34,6 @@
 	"tog-showtoolbar": "Näita redigeerimise tööriistariba",
 	"tog-editondblclick": "Redigeeri lehekülgi topeltklõpsu peale",
 	"tog-editsectiononrightclick": "Alusta alaosa redigeerimist paremklõpsuga alaosa pealkirjal",
-	"tog-rememberpassword": "Parooli meeldejätmine tulevasteks seanssideks (kuni $1 {{PLURAL:$1|päevaks|päevaks}})",
 	"tog-watchcreations": "Lisa jälgimisloendisse minu alustatud leheküljed ja minu üles laaditud failid",
 	"tog-watchdefault": "Lisa jälgimisloendisse minu muudetud leheküljed ja failid",
 	"tog-watchmoves": "Lisa jälgimisloendisse minu teisaldatud leheküljed ja failid",
