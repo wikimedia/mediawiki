@@ -42,11 +42,11 @@ class KkConverter extends LanguageConverter {
 	protected $mCyrl2Latn, $mLatn2Cyrl, $mCyLa2Arab;
 
 	/**
-	 * @param $langobj Language
-	 * @param $maincode string
-	 * @param $variants array
-	 * @param $variantfallbacks array
-	 * @param $flags array
+	 * @param Language $langobj
+	 * @param string $maincode
+	 * @param array $variants
+	 * @param array $variantfallbacks
+	 * @param array $flags
 	 */
 	function __construct( $langobj, $maincode,
 								$variants = array(),
@@ -227,8 +227,8 @@ class KkConverter extends LanguageConverter {
 	 * update: delete all rule parsing because it's not used
 	 *      currently, and just produces a couple of bugs
 	 *
-	 * @param $rule string
-	 * @param $flags array
+	 * @param string $rule
+	 * @param array $flags
 	 * @return array
 	 */
 	function parseManualRule( $rule, $flags = array() ) {
@@ -251,8 +251,8 @@ class KkConverter extends LanguageConverter {
 	 *    names as they were
 	 *  - do not try to find variants for usernames
 	 *
-	 * @param $link string
-	 * @param $nt Title
+	 * @param string $link
+	 * @param Title $nt
 	 * @param bool $ignoreOtherCond
 	 */
 	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
@@ -275,8 +275,8 @@ class KkConverter extends LanguageConverter {
 	 * An ugly function wrapper for parsing Image titles
 	 * (to prevent image name conversion)
 	 *
-	 * @param $text string
-	 * @param $toVariant bool
+	 * @param string $text
+	 * @param bool $toVariant
 	 *
 	 * @return string
 	 */
@@ -294,8 +294,8 @@ class KkConverter extends LanguageConverter {
 	/**
 	 *  It translates text into variant
 	 *
-	 * @param $text string
-	 * @param $toVariant string
+	 * @param string $text
+	 * @param string $toVariant
 	 *
 	 * @return string
 	 */
@@ -338,8 +338,8 @@ class KkConverter extends LanguageConverter {
 	}
 
 	/**
-	 * @param $text string
-	 * @param $toVariant string
+	 * @param string $text
+	 * @param string $toVariant
 	 * @return mixed|string
 	 */
 	function regsConverter( $text, $toVariant ) {
@@ -395,8 +395,8 @@ class KkConverter extends LanguageConverter {
 	}
 
 	/**
-	 * @param $key string
-	 * @return String
+	 * @param string $key
+	 * @return string
 	 */
 	function convertCategoryKey( $key ) {
 		return $this->autoConvert( $key, 'kk' );
@@ -435,7 +435,7 @@ class LanguageKk extends LanguageKk_cyrl {
 	/**
 	 * It fixes issue with ucfirst for transforming 'i' to 'İ'
 	 *
-	 * @param $string string
+	 * @param string $string
 	 *
 	 * @return string
 	 */
@@ -452,7 +452,7 @@ class LanguageKk extends LanguageKk_cyrl {
 	/**
 	 * It fixes issue with  lcfirst for transforming 'I' to 'ı'
 	 *
-	 * @param $string string
+	 * @param string $string
 	 *
 	 * @return string
 	 */
@@ -467,8 +467,8 @@ class LanguageKk extends LanguageKk_cyrl {
 	}
 
 	/**
-	 * @param $word string
-	 * @param $case string
+	 * @param string $word
+	 * @param string $case
 	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {

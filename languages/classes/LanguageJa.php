@@ -29,7 +29,7 @@
 class LanguageJa extends Language {
 
 	/**
-	 * @param $string string
+	 * @param string $string
 	 * @return string
 	 */
 	function segmentByWord( $string ) {
@@ -53,7 +53,7 @@ class LanguageJa extends Language {
 	 * Italic is not appropriate for Japanese script
 	 * Unfortunately most browsers do not recognise this, and render <em> as italic
 	 *
-	 * @param $text string
+	 * @param string $text
 	 * @return string
 	 */
 	function emphasize( $text ) {

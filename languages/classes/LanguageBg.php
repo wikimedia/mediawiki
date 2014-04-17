@@ -31,7 +31,7 @@ class LanguageBg extends Language {
 	 * ISO number formatting: 123 456 789,99.
 	 * Avoid tripple grouping by numbers with whole part up to 4 digits.
 	 *
-	 * @param $_ string
+	 * @param string $_
 	 *
 	 * @return string
 	 */

@@ -102,8 +102,8 @@ class IuConverter extends LanguageConverter {
 	 * update: delete all rule parsing because it's not used
 	 * currently, and just produces a couple of bugs
 	 *
-	 * @param $rule string
-	 * @param $flags array
+	 * @param string $rule
+	 * @param array $flags
 	 * @return array
 	 */
 	function parseManualRule( $rule, $flags = array() ) {
@@ -123,8 +123,8 @@ class IuConverter extends LanguageConverter {
 	/**
 	 * Do not convert content on talk pages
 	 *
-	 * @param $text string
-	 * @param $parser Parser
+	 * @param string $text
+	 * @param Parser $parser
 	 * @return string
 	 */
 	function parserConvert( $text, &$parser ) {
@@ -139,9 +139,9 @@ class IuConverter extends LanguageConverter {
 	 *     names as they were
 	 *   - do not try to find variants for usernames
 	 *
-	 * @param $link string
-	 * @param $nt Title
-	 * @param $ignoreOtherCond bool
+	 * @param string $link
+	 * @param Title $nt
+	 * @param bool $ignoreOtherCond
 	 */
 	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		// check for user namespace
@@ -163,8 +163,8 @@ class IuConverter extends LanguageConverter {
 	 * An ugly function wrapper for parsing Image titles
 	 * (to prevent image name conversion)
 	 *
-	 * @param $text string
-	 * @param $toVariant bool
+	 * @param string $text
+	 * @param bool $toVariant
 	 *
 	 * @return string
 	 */
@@ -182,8 +182,8 @@ class IuConverter extends LanguageConverter {
 	/**
 	 * It translates text into variant
 	 *
-	 * @param $text string
-	 * @param $toVariant bool
+	 * @param string $text
+	 * @param bool $toVariant
 	 *
 	 * @return string
 	 */

@@ -32,8 +32,8 @@ class LanguageSl extends Language {
 	/**
 	 * Cases: rodilnik, dajalnik, tožilnik, mestnik, orodnik
 	 *
-	 * @param $word string
-	 * @param $case string
+	 * @param string $word
+	 * @param string $case
 	 *
 	 * @return string
 	 */

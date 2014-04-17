@@ -33,8 +33,8 @@ class LanguageKaa extends Language {
 	/**
 	 * Cases: genitive, dative, accusative, locative, ablative, comitative + possessive forms
 	 *
-	 * @param $word string
-	 * @param $case string
+	 * @param string $word
+	 * @param string $case
 	 *
 	 * @return string
 	 */
@@ -50,7 +50,7 @@ class LanguageKaa extends Language {
 	/**
 	 * It fixes issue with ucfirst for transforming 'i' to 'İ'
 	 *
-	 * @param $string string
+	 * @param string $string
 	 *
 	 * @return string
 	 */
@@ -65,7 +65,7 @@ class LanguageKaa extends Language {
 	/**
 	 * It fixes issue with lcfirst for transforming 'I' to 'ı'
 	 *
-	 * @param $string string
+	 * @param string $string
 	 *
 	 * @return mixed|string
 	 */
@@ -80,7 +80,7 @@ class LanguageKaa extends Language {
 	/**
 	 * Avoid grouping whole numbers between 0 to 9999
 	 *
-	 * @param $_ string
+	 * @param string $_
 	 *
 	 * @return string
 	 */

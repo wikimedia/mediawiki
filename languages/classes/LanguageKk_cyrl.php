@@ -33,8 +33,8 @@ class LanguageKk_cyrl extends Language {
 	/**
 	 * Cases: genitive, dative, accusative, locative, ablative, comitative + possessive forms
 	 *
-	 * @param $word string
-	 * @param $case string
+	 * @param string $word
+	 * @param string $case
 	 *
 	 * @return string
 	 */
@@ -259,8 +259,8 @@ class LanguageKk_cyrl extends Language {
 	}
 
 	/**
-	 * @param $word string
-	 * @param $case string
+	 * @param string $word
+	 * @param string $case
 	 * @return string
 	 */
 	function convertGrammarKk_latn( $word, $case ) {
@@ -484,8 +484,8 @@ class LanguageKk_cyrl extends Language {
 	}
 
 	/**
-	 * @param $word string
-	 * @param $case string
+	 * @param string $word
+	 * @param string $case
 	 * @return string
 	 */
 	function convertGrammarKk_arab( $word, $case ) {
@@ -709,8 +709,8 @@ class LanguageKk_cyrl extends Language {
 	}
 
 	/**
-	 * @param $word string
-	 * @param $allVowels array
+	 * @param string $word
+	 * @param array $allVowels
 	 * @return array
 	 */
 	function lastLetter( $word, $allVowels ) {
@@ -750,7 +750,7 @@ class LanguageKk_cyrl extends Language {
 	/**
 	 * Avoid grouping whole numbers between 0 to 9999
 	 *
-	 * @param $_ string
+	 * @param string $_
 	 *
 	 * @return string
 	 */
