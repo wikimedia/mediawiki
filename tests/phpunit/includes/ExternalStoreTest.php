@@ -57,7 +57,7 @@ class ExternalStoreFOO {
 
 	/**
 	 * Fetch data from given URL
-	 * @param $url String: an url of the form FOO://cluster/id or FOO://cluster/id/itemid.
+	 * @param string $url An url of the form FOO://cluster/id or FOO://cluster/id/itemid.
 	 * @return mixed
 	 */
 	function fetchFromURL( $url ) {

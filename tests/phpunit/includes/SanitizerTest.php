@@ -91,8 +91,8 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @covers Sanitizer::removeHTMLtags
 	 * @dataProvider provideHtml5Tags
 	 *
-	 * @param String $tag Name of an HTML5 element (ie: 'video')
-	 * @param Boolean $escaped Wheter sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
+	 * @param string $tag Name of an HTML5 element (ie: 'video')
+	 * @param bool $escaped Whether sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
 	 */
 	public function testRemovehtmltagsOnHtml5Tags( $tag, $escaped ) {
 		$this->setMwGlobals( array(

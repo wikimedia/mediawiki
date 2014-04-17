@@ -27,9 +27,9 @@ class ParserTestResult {
 	public $actual;
 
 	/**
-	 * @param $description string A short text describing the parser test
-	 *        usually the text in the parser test .txt file.  The description
-	 *        is later available using the property $description.
+	 * @param string $description A short text describing the parser test
+	 *   usually the text in the parser test .txt file.  The description
+	 *   is later available using the property $description.
 	 */
 	public function __construct( $description ) {
 		$this->description = $description;

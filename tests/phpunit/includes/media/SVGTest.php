@@ -24,8 +24,8 @@ class SvgTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $filename String
-	 * @param $expected Array The expected independent metadata
+	 * @param string $filename
+	 * @param array $expected The expected independent metadata
 	 * @dataProvider providerGetIndependentMetaArray
 	 * @covers SvgHandler::getCommonMetaArray
 	 */

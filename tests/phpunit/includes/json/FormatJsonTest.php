@@ -127,7 +127,7 @@ class FormatJsonTest extends MediaWikiTestCase {
 	 * Generate a set of test cases for a particular combination of encoder options.
 	 *
 	 * @param array $unescapedGroups List of character groups to leave unescaped
-	 * @return array: Arrays of unencoded strings and corresponding encoded strings
+	 * @return array Arrays of unencoded strings and corresponding encoded strings
 	 */
 	private static function getEncodeTestCases( array $unescapedGroups ) {
 		$groups = array(
