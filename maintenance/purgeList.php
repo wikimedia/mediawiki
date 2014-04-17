@@ -82,6 +82,8 @@ class PurgeList extends Maintenance {
 
 	/**
 	 * Purge a namespace or all pages
+	 *
+	 * @param int|bool $namespace
 	 */
 	private function purgeNamespace( $namespace = false ) {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -118,7 +120,7 @@ class PurgeList extends Maintenance {
 
 	/**
 	 * Helper to purge an array of $urls
-	 * @param $urls array List of URLS to purge from squids
+	 * @param array $urls List of URLS to purge from squids
 	 */
 	private function sendPurgeRequest( $urls ) {
 		if ( $this->hasOption( 'delay' ) ) {

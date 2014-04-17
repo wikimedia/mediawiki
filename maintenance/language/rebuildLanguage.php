@@ -29,14 +29,14 @@ require_once 'writeMessagesArray.inc';
 /**
  * Rewrite a messages array.
  *
- * @param $languages
- * @param $code string The language code.
+ * @param Languages $languages
+ * @param string $code The language code.
  * @param bool $write Write to the messages file?
  * @param bool $listUnknown List the unknown messages?
  * @param bool $removeUnknown Remove the unknown messages?
  * @param bool $removeDupes Remove the duplicated messages?
- * @param $dupeMsgSource string The source file intended to remove from the array.
- * @param $messagesFolder String: path to a folder to store the MediaWiki messages.
+ * @param string $dupeMsgSource The source file intended to remove from the array.
+ * @param string $messagesFolder Path to a folder to store the MediaWiki messages.
  */
 function rebuildLanguage( $languages, $code, $write, $listUnknown, $removeUnknown,
 	$removeDupes, $dupeMsgSource, $messagesFolder
@@ -59,9 +59,9 @@ function rebuildLanguage( $languages, $code, $write, $listUnknown, $removeUnknow
 /**
  * Remove duplicates from a message array.
  *
- * @param $oldMsgArray array The input message array.
- * @param $dupeMsgSource string The source file path for duplicates.
- * @return Array $newMsgArray The output message array, with duplicates removed.
+ * @param array $oldMsgArray The input message array.
+ * @param string $dupeMsgSource The source file path for duplicates.
+ * @return array The output message array, with duplicates removed.
  */
 function removeDupes( $oldMsgArray, $dupeMsgSource ) {
 	if ( file_exists( $dupeMsgSource ) ) {

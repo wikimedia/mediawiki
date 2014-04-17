@@ -66,10 +66,10 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	}
 
 	/**
-	 * @param $table string
-	 * @param $idCol
-	 * @param $prefix string
-	 * @return Integer Rows changed
+	 * @param string $table
+	 * @param string $idCol
+	 * @param string $prefix
+	 * @return int Rows changed
 	 */
 	protected function doSha1Updates( $table, $idCol, $prefix ) {
 		$db = $this->getDB( DB_MASTER );
@@ -134,10 +134,10 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	}
 
 	/**
-	 * @param $row
-	 * @param $table
-	 * @param $idCol
-	 * @param $prefix
+	 * @param stdClass $row
+	 * @param string $table
+	 * @param string $idCol
+	 * @param string $prefix
 	 * @return bool
 	 */
 	protected function upgradeRow( $row, $table, $idCol, $prefix ) {
@@ -166,7 +166,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	}
 
 	/**
-	 * @param $row
+	 * @param stdClass $row
 	 * @return bool
 	 */
 	protected function upgradeLegacyArchiveRow( $row ) {

@@ -67,11 +67,11 @@ class ReassignEdits extends Maintenance {
 	/**
 	 * Reassign edits from one user to another
 	 *
-	 * @param $from User to take edits from
-	 * @param $to User to assign edits to
-	 * @param $rc bool Update the recent changes table
-	 * @param $report bool Don't change things; just echo numbers
-	 * @return integer Number of entries changed, or that would be changed
+	 * @param User $from User to take edits from
+	 * @param User $to User to assign edits to
+	 * @param bool $rc Update the recent changes table
+	 * @param bool $report Don't change things; just echo numbers
+	 * @return int Number of entries changed, or that would be changed
 	 */
 	private function doReassignEdits( &$from, &$to, $rc = false, $report = false ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -132,9 +132,9 @@ class ReassignEdits extends Maintenance {
 	 * Return the most efficient set of user conditions
 	 * i.e. a user => id mapping, or a user_text => text mapping
 	 *
-	 * @param $user User for the condition
-	 * @param $idfield string Field name containing the identifier
-	 * @param $utfield string Field name containing the user text
+	 * @param User $user User for the condition
+	 * @param string $idfield Field name containing the identifier
+	 * @param string $utfield Field name containing the user text
 	 * @return array
 	 */
 	private function userConditions( &$user, $idfield, $utfield ) {
@@ -145,9 +145,9 @@ class ReassignEdits extends Maintenance {
 	 * Return user specifications
 	 * i.e. user => id, user_text => text
 	 *
-	 * @param $user User for the spec
-	 * @param $idfield string Field name containing the identifier
-	 * @param $utfield string Field name containing the user text
+	 * @param User $user User for the spec
+	 * @param string $idfield Field name containing the identifier
+	 * @param string $utfield Field name containing the user text
 	 * @return array
 	 */
 	private function userSpecification( &$user, $idfield, $utfield ) {
@@ -157,7 +157,7 @@ class ReassignEdits extends Maintenance {
 	/**
 	 * Initialise the user object
 	 *
-	 * @param $username string Username or IP address
+	 * @param string $username Username or IP address
 	 * @return User
 	 */
 	private function initialiseUser( $username ) {

@@ -112,7 +112,7 @@ abstract class DumpIterator extends Maintenance {
 	/**
 	 * Callback function for each revision, child classes should override
 	 * processRevision instead.
-	 * @param $rev Revision
+	 * @param DatabaseBase $rev
 	 */
 	public function handleRevision( $rev ) {
 		$title = $rev->getTitle();
@@ -167,7 +167,7 @@ class SearchDump extends DumpIterator {
 	}
 
 	/**
-	 * @param $rev Revision
+	 * @param Revision $rev
 	 */
 	public function processRevision( $rev ) {
 		if ( preg_match( $this->getOption( 'regex' ), $rev->getContent()->getTextForSearchIndex() ) ) {

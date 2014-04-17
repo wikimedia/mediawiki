@@ -57,8 +57,8 @@ class BenchmarkPurge extends Benchmarker {
 	/**
 	 * Run a bunch of URLs through SquidUpdate::purge()
 	 * to benchmark Squid response times.
-	 * @param $urls array A bunch of URLs to purge
-	 * @param $trials int How many times to run the test?
+	 * @param array $urls A bunch of URLs to purge
+	 * @param int $trials How many times to run the test?
 	 * @return string
 	 */
 	private function benchSquid( $urls, $trials = 1 ) {
@@ -75,7 +75,7 @@ class BenchmarkPurge extends Benchmarker {
 
 	/**
 	 * Get an array of randomUrl()'s.
-	 * @param $length int How many urls to add to the array
+	 * @param int $length How many urls to add to the array
 	 * @return array
 	 */
 	private function randomUrlList( $length ) {

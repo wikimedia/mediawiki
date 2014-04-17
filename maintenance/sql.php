@@ -134,8 +134,8 @@ class MwSql extends Maintenance {
 
 	/**
 	 * Print the results, callback for $db->sourceStream()
-	 * @param $res ResultWrapper The results object
-	 * @param $db DatabaseBase object
+	 * @param ResultWrapper $res The results object
+	 * @param DatabaseBase $db object
 	 */
 	public function sqlPrintResult( $res, $db ) {
 		if ( !$res ) {

@@ -141,12 +141,12 @@ class SyncFileBackend extends Maintenance {
 	 * Sync $dst backend to $src backend based on the $src logs given after $start.
 	 * Returns the journal entry ID this advanced to and handled (inclusive).
 	 *
-	 * @param $src FileBackend
-	 * @param $dst FileBackend
-	 * @param $start integer Starting journal position
-	 * @param $end integer Starting journal position
-	 * @param $callback Closure Callback to update any position file
-	 * @return integer|false Journal entry ID or false if there are none
+	 * @param FileBackend $src
+	 * @param FileBackend $dst
+	 * @param int $start Starting journal position
+	 * @param int $end Starting journal position
+	 * @param Closure $callback Callback to update any position file
+	 * @return int|bool Journal entry ID or false if there are none
 	 */
 	protected function syncBackends(
 		FileBackend $src, FileBackend $dst, $start, $end, Closure $callback
@@ -198,9 +198,9 @@ class SyncFileBackend extends Maintenance {
 	/**
 	 * Sync particular files of backend $src to the corresponding $dst backend files
 	 *
-	 * @param $paths Array
-	 * @param $src FileBackend
-	 * @param $dst FileBackend
+	 * @param array $paths
+	 * @param FileBackend $src
+	 * @param FileBackend $dst
 	 * @return Status
 	 */
 	protected function syncFileBatch( array $paths, FileBackend $src, FileBackend $dst ) {
@@ -276,8 +276,8 @@ class SyncFileBackend extends Maintenance {
 	/**
 	 * Substitute the backend name of storage paths with that of a given one
 	 *
-	 * @param $paths Array|string List of paths or single string path
-	 * @return Array|string
+	 * @param array|string $paths List of paths or single string path
+	 * @return array|string
 	 */
 	protected function replaceNamePaths( $paths, FileBackend $backend ) {
 		return preg_replace(

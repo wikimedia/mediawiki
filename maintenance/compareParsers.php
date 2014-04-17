@@ -101,7 +101,7 @@ class CompareParsers extends DumpIterator {
 
 	/**
 	 * Callback function for each revision, parse with both parsers and compare
-	 * @param $rev Revision
+	 * @param Revision $rev
 	 */
 	public function processRevision( $rev ) {
 		$title = $rev->getTitle();

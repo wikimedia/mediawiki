@@ -78,7 +78,7 @@ class DumpRenderer extends Maintenance {
 
 	/**
 	 * Callback function for each revision, turn into HTML and save
-	 * @param $rev Revision
+	 * @param Revision $rev
 	 */
 	public function handleRevision( $rev ) {
 		$title = $rev->getTitle();

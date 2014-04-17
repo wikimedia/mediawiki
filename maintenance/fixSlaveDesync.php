@@ -92,7 +92,7 @@ class FixSlaveDesync extends Maintenance {
 
 	/**
 	 * Fix a broken page entry
-	 * @param $pageID int The page_id to fix
+	 * @param int $pageID The page_id to fix
 	 */
 	private function desyncFixPage( $pageID ) {
 		# Check for a corrupted page_latest

@@ -69,9 +69,9 @@ class FetchText extends Maintenance {
 
 	/**
 	 * May throw a database error if, say, the server dies during query.
-	 * @param $db DatabaseBase object
-	 * @param $id int The old_id
-	 * @return String
+	 * @param DatabaseBase $db
+	 * @param int $id The old_id
+	 * @return string
 	 */
 	private function doGetText( $db, $id ) {
 		$id = intval( $id );

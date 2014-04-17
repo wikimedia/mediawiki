@@ -167,7 +167,7 @@ class RunJobs extends Maintenance {
 
 	/**
 	 * @param Job $job
-	 * @return integer Seconds for this runner to avoid doing more jobs of this type
+	 * @return int Seconds for this runner to avoid doing more jobs of this type
 	 * @see $wgJobBackoffThrottling
 	 */
 	private function getBackoffTimeToWait( Job $job ) {
@@ -261,7 +261,7 @@ class RunJobs extends Maintenance {
 
 	/**
 	 * Log the job message
-	 * @param $msg String The message to log
+	 * @param string $msg The message to log
 	 */
 	private function runJobsLog( $msg ) {
 		$this->output( wfTimestamp( TS_DB ) . " $msg\n" );

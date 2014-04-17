@@ -114,7 +114,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	}
 
 	/**
-	 * @param $row
+	 * @param stdClass $row
 	 * @param string $table
 	 * @param string $idCol
 	 * @param string $prefix

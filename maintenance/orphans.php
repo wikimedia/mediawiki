@@ -55,8 +55,8 @@ class Orphans extends Maintenance {
 
 	/**
 	 * Lock the appropriate tables for the script
-	 * @param $db DatabaseBase object
-	 * @param $extraTable String The name of any extra tables to lock (eg: text)
+	 * @param DatabaseBase $db
+	 * @param string $extraTable The name of any extra tables to lock (eg: text)
 	 */
 	private function lockTables( $db, $extraTable = array() ) {
 		$tbls = array( 'page', 'revision', 'redirect' );
@@ -68,7 +68,7 @@ class Orphans extends Maintenance {
 
 	/**
 	 * Check for orphan revisions
-	 * @param $fix bool Whether to fix broken revisions when found
+	 * @param bool $fix Whether to fix broken revisions when found
 	 */
 	private function checkOrphans( $fix ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -117,7 +117,7 @@ class Orphans extends Maintenance {
 	}
 
 	/**
-	 * @param $fix bool
+	 * @param bool $fix
 	 * @todo DON'T USE THIS YET! It will remove entries which have children,
 	 *       but which aren't properly attached (eg if page_latest is bogus
 	 *       but valid revisions do exist)
@@ -165,7 +165,7 @@ class Orphans extends Maintenance {
 
 	/**
 	 * Check for pages where page_latest is wrong
-	 * @param $fix bool Whether to fix broken entries
+	 * @param bool $fix Whether to fix broken entries
 	 */
 	private function checkSeparation( $fix ) {
 		$dbw = wfGetDB( DB_MASTER );
