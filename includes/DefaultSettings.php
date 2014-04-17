@@ -4087,6 +4087,7 @@ $wgDefaultUserOptions = array(
 	'underline' => 2,
 	'uselivepreview' => 0,
 	'usenewrc' => 0,
+	'warnonexit' => 1,
 	'watchcreations' => 1,
 	'watchdefault' => 1,
 	'watchdeletion' => 0,

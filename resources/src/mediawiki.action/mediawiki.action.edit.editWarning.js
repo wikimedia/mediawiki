@@ -19,9 +19,12 @@
 				// Check if the current values of some form elements are the same as
 				// the original values
 				if (
-					mw.config.get( 'wgAction' ) === 'submit' ||
+					mw.user.options.get( 'warnonexit' ) &&
+					(
+						mw.config.get( 'wgAction' ) === 'submit' ||
 						$( '#wpTextbox1' ).data( 'origtext' ) !== $( '#wpTextbox1' ).val() ||
 						$( '#wpSummary' ).data( 'origtext' ) !== $( '#wpSummary' ).val()
+					)
 				) {
 					// Return our message
 					retval = mw.msg( 'editwarning-warning' );

@@ -786,6 +786,11 @@ class Preferences {
 			'section' => 'editing/advancedediting',
 			'label-message' => 'tog-editondblclick',
 		);
+		$defaultPreferences['warnonexit'] = array(
+			'type' => 'toggle',
+			'section' => 'editing/advancedediting',
+			'label-message' => 'tog-warnonexit',
+		);
 
 		if ( $wgAllowUserCssPrefs ) {
 			$defaultPreferences['editfont'] = array(

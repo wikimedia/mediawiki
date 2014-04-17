@@ -175,6 +175,7 @@
 	"tog-showtoolbar": "{{Gender}}\n[[Special:Preferences]], tab 'Edit'. Offers user to show edit toolbar in page edit screen.\n\nThis is the toolbar: [[Image:Toolbar.png]]",
 	"tog-editondblclick": "{{Gender}}\n[[Special:Preferences]], tab 'Edit'. Offers user to open edit page on double click.",
 	"tog-editsectiononrightclick": "{{Gender}}\n[[Special:Preferences]], tab 'Edit'. Offers user to edit a section by clicking on a section title.",
+	"tog-warnonexit": "{{Gender}}\n[[Special:Preferences]], tab 'Edit'. Offers user to warn them if they try to browse away from the editing page if they have unsaved changes.",
 	"tog-rememberpassword": "{{Gender}}\n[[Special:Preferences]], tab 'User profile', section 'Change password'. Offers user remember login details.\nParameters:\n* $1 - the number of days the login details are remembered\n{{Identical|Remember my login on this computer}}",
 	"tog-watchcreations": "[[Special:Preferences]], tab 'Watchlist'. Offers user to add created pages to watchlist. {{Gender}}",
 	"tog-watchdefault": "[[Special:Preferences]], tab 'Watchlist'. Offers user to add edited pages to watchlist. {{Gender}}",
