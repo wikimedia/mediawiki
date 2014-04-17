@@ -96,10 +96,10 @@ class RandomImageGenerator {
 	/**
 	 * Writes random images with random filenames to disk in the directory you specify, or current working directory
 	 *
-	 * @param int $number number of filenames to write
-	 * @param string $format optional, must be understood by ImageMagick, such as 'jpg' or 'gif'
-	 * @param string $dir directory, optional (will default to current working directory)
-	 * @return array filenames we just wrote
+	 * @param int $number Number of filenames to write
+	 * @param string $format Optional, must be understood by ImageMagick, such as 'jpg' or 'gif'
+	 * @param string $dir Directory, optional (will default to current working directory)
+	 * @return array Filenames we just wrote
 	 */
 	function writeImages( $number, $format = 'jpg', $dir = null ) {
 		$filenames = $this->getRandomFilenames( $number, $format, $dir );
@@ -224,9 +224,9 @@ class RandomImageGenerator {
 	 * Based on image specification, write a very simple SVG file to disk.
 	 * Ignores the background spec because transparency is cool. :)
 	 *
-	 * @param array $spec spec describing background and shapes to draw
-	 * @param string $format file format to write (which is obviously always svg here)
-	 * @param string $filename filename to write to
+	 * @param array $spec Spec describing background and shapes to draw
+	 * @param string $format File format to write (which is obviously always svg here)
+	 * @param string $filename Filename to write to
 	 *
 	 * @throws Exception
 	 */
@@ -254,9 +254,9 @@ class RandomImageGenerator {
 
 	/**
 	 * Based on an image specification, write such an image to disk, using Imagick PHP extension
-	 * @param array $spec spec describing background and circles to draw
-	 * @param string $format file format to write
-	 * @param string $filename filename to write to
+	 * @param array $spec Spec describing background and circles to draw
+	 * @param string $format File format to write
+	 * @param string $filename Filename to write to
 	 */
 	public function writeImageWithApi( $spec, $format, $filename ) {
 		// this is a hack because I can't get setImageOrientation() to work. See below.
@@ -309,8 +309,8 @@ class RandomImageGenerator {
 	/**
 	 * Given an image specification, produce rotated version
 	 * This is used when simulating a rotated image capture with Exif orientation
-	 * @param $spec Object returned by getImageSpec
-	 * @param $matrix 2x2 transformation matrix
+	 * @param array $spec Returned by getImageSpec
+	 * @param array $matrix 2x2 transformation matrix
 	 * @return array transformed Spec
 	 */
 	private static function rotateImageSpec( &$spec, $matrix ) {
@@ -368,10 +368,10 @@ class RandomImageGenerator {
 	 *   -draw 'fill rgb(99,123,231) circle 59,39 56,57' \
 	 *   -draw 'fill rgb(240,12,32)  circle 50,21 50,3'  filename.png
 	 *
-	 * @param array $spec spec describing background and shapes to draw
-	 * @param string $format file format to write (unused by this method but kept so it has the same signature as
+	 * @param array $spec Spec describing background and shapes to draw
+	 * @param string $format File format to write (unused by this method but kept so it has the same signature as
 	 * writeImageWithApi)
-	 * @param string $filename filename to write to
+	 * @param string $filename Filename to write to
 	 *
 	 * @return bool
 	 */
@@ -435,7 +435,7 @@ class RandomImageGenerator {
 	 * @param int $number_desired number of lines desired
 	 *
 	 * @throws Exception
-	 * @return array of exactly n elements, drawn randomly from lines the file
+	 * @return array Array of exactly n elements, drawn randomly from lines the file
 	 */
 	private function getRandomLines( $number_desired ) {
 		$filepath = $this->dictionaryFile;

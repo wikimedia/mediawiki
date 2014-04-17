@@ -33,6 +33,12 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 
 	/**
 	 * Run query() and compare against expected values
+	 * @param array $expected
+	 * @param array $params Api parameters
+	 * @param int $expectedCount Max number of iterations
+	 * @param string $id Unit test id
+	 * @param bool $useContinue true to use smart continue
+	 * @return mixed Merged results data array
 	 */
 	protected function checkC( $expected, $params, $expectedCount, $id, $continue = true ) {
 		$result = $this->query( $params, $expectedCount, $id, $continue );
@@ -41,11 +47,11 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 
 	/**
 	 * Run query in a loop until no more values are available
-	 * @param array $params api parameters
-	 * @param int $expectedCount max number of iterations
-	 * @param string $id unit test id
-	 * @param boolean $useContinue true to use smart continue
-	 * @return mixed: merged results data array
+	 * @param array $params Api parameters
+	 * @param int $expectedCount Max number of iterations
+	 * @param string $id Unit test id
+	 * @param bool $useContinue true to use smart continue
+	 * @return mixed Merged results data array
 	 * @throws Exception
 	 */
 	protected function query( $params, $expectedCount, $id, $useContinue = true ) {

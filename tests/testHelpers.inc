@@ -333,8 +333,8 @@ class DbTestRecorder extends DbTestPreviewer {
 	/**
 	 * Record an individual test item's success or failure to the db
 	 *
-	 * @param $test String
-	 * @param $result Boolean
+	 * @param string $test
+	 * @param bool $result
 	 */
 	function record( $test, $result ) {
 		parent::record( $test, $result );
@@ -545,9 +545,9 @@ class TestFileIterator implements Iterator {
 	 * Throw an exception if it is not set, referencing current section
 	 * and adding the current file name and line number
 	 *
-	 * @param $token String|Array: expected token(s) that should have been
+	 * @param string|array $token Expected token(s) that should have been
 	 * mentioned before closing this section
-	 * @param $fatal Boolean: true iff an exception should be thrown if
+	 * @param bool $fatal True iff an exception should be thrown if
 	 * the section is not found.
 	 */
 	private function checkSection( $tokens, $fatal = true ) {
@@ -618,6 +618,7 @@ class DelayedParserTest {
 	/**
 	 * Called whenever we actually want to run the hook.
 	 * Should be the case if we found the parserTest is not disabled
+	 * @param ParserTest|NewParserTest $parserTest
 	 */
 	public function unleash( &$parserTest ) {
 		if ( !( $parserTest instanceof ParserTest || $parserTest instanceof NewParserTest )	) {
@@ -647,6 +648,7 @@ class DelayedParserTest {
 	/**
 	 * Similar to ParserTest object but does not run anything
 	 * Use unleash() to really execute the hook
+	 * @param string $hook
 	 */
 	public function requireHook( $hook ) {
 		$this->hooks[] = $hook;
@@ -655,6 +657,7 @@ class DelayedParserTest {
 	/**
 	 * Similar to ParserTest object but does not run anything
 	 * Use unleash() to really execute the hook function
+	 * @param string $fnHook
 	 */
 	public function requireFunctionHook( $fnHook ) {
 		$this->fnHooks[] = $fnHook;

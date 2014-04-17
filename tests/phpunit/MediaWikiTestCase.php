@@ -157,7 +157,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @since 1.20
 	 *
-	 * @return string absolute name of the temporary file
+	 * @return string Absolute name of the temporary file
 	 */
 	protected function getNewTempFile() {
 		$fileName = tempnam( wfTempDir(), 'MW_PHPUnit_' . get_class( $this ) . '_' );
@@ -512,7 +512,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * even if using different parameters.
 	 *
 	 * @param DatabaseBase $db The database connection
-	 * @param String $prefix The prefix to use for the new table set (aka schema).
+	 * @param string $prefix The prefix to use for the new table set (aka schema).
 	 *
 	 * @throws MWException if the database table prefix is already $prefix
 	 */
@@ -599,6 +599,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Used as a compatibility method for phpunit < 3.7.32
+	 * @param string $value
+	 * @param string $msg
 	 */
 	private function assertEmpty2( $value, $msg ) {
 		return $this->assertTrue( $value == '', $msg );
@@ -660,6 +662,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @since 1.18
+	 * @param string $offset
+	 * @return mixed
 	 */
 	public function getCliArg( $offset ) {
 		if ( isset( MediaWikiPHPUnitCommand::$additionalOptions[$offset] ) ) {
@@ -669,6 +673,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @since 1.18
+	 * @param string $offset
+	 * @param mixed $value
 	 */
 	public function setCliArg( $offset, $value ) {
 		MediaWikiPHPUnitCommand::$additionalOptions[$offset] = $value;
@@ -680,7 +686,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @since 1.19
 	 *
 	 * @param string $function
-	 * @return null
 	 */
 	public function hideDeprecated( $function ) {
 		wfSuppressWarnings();
@@ -1007,6 +1012,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * test whenever it is not loaded.
 	 *
 	 * @since 1.21
+	 * @param string $extName
+	 * @return bool
 	 */
 	protected function checkPHPExtension( $extName ) {
 		$loaded = extension_loaded( $extName );

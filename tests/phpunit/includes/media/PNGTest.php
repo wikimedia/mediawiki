@@ -36,8 +36,8 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $filename String basename of the file to check
-	 * @param $expected boolean Expected result.
+	 * @param string $filename basename of the file to check
+	 * @param bool $expected Expected result.
 	 * @dataProvider provideIsAnimated
 	 * @covers PNGHandler::isAnimatedImage
 	 */
@@ -55,8 +55,8 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $filename String
-	 * @param $expected Integer Total image area
+	 * @param string $filename
+	 * @param int $expected Total image area
 	 * @dataProvider provideGetImageArea
 	 * @covers PNGHandler::getImageArea
 	 */
@@ -76,8 +76,8 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $metadata String Serialized metadata
-	 * @param $expected Integer One of the class constants of PNGHandler
+	 * @param string $metadata Serialized metadata
+	 * @param int $expected One of the class constants of PNGHandler
 	 * @dataProvider provideIsMetadataValid
 	 * @covers PNGHandler::isMetadataValid
 	 */
@@ -97,8 +97,8 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $filename String
-	 * @param $expected String Serialized array
+	 * @param string $filename
+	 * @param string $expected Serialized array
 	 * @dataProvider provideGetMetadata
 	 * @covers PNGHandler::getMetadata
 	 */
@@ -117,8 +117,8 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $filename String
-	 * @param $expected Array Expected standard metadata
+	 * @param string $filename
+	 * @param array $expected Expected standard metadata
 	 * @dataProvider provideGetIndependentMetaArray
 	 * @covers PNGHandler::getCommonMetaArray
 	 */

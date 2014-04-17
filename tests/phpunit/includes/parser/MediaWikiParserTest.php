@@ -45,7 +45,7 @@ class MediaWikiParserTest {
 	 * MediaWikiParserTest::suite( MediaWikiParserTest::WITH_ALL );
 	 * @endcode
 	 *
-	 * @param $flags bitwise flag to filter out the $wgParserTestFiles that
+	 * @param int $flags bitwise flag to filter out the $wgParserTestFiles that
 	 * will be included.  Default: MediaWikiParserTest::CORE_ONLY
 	 *
 	 * @return PHPUnit_Framework_TestSuite

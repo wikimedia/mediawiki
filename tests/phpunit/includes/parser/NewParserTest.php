@@ -400,7 +400,7 @@ class NewParserTest extends MediaWikiTestCase {
 	/**
 	 * Get an FS upload directory (only applies to FSFileBackend)
 	 *
-	 * @return String: the directory
+	 * @return string The directory
 	 */
 	protected function getUploadDir() {
 		if ( $this->keepUploads ) {
@@ -427,7 +427,7 @@ class NewParserTest extends MediaWikiTestCase {
 	 * Create a dummy uploads directory which will contain a couple
 	 * of files in order to pass existence tests.
 	 *
-	 * @return String: the directory
+	 * @return string The directory
 	 */
 	protected function setupUploads() {
 		global $IP;
@@ -543,7 +543,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 	/**
 	 * Delete the specified files, if they exist.
-	 * @param $files Array: full paths to files to delete.
+	 * @param array $files Full paths to files to delete.
 	 */
 	private static function deleteFiles( $files ) {
 		$backend = RepoGroup::singleton()->getLocalRepo()->getBackend();
@@ -575,6 +575,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 	/**
 	 * Set the file from whose tests will be run by this instance
+	 * @param string $filename
 	 */
 	public function setParserTestFile( $filename ) {
 		$this->file = $filename;
@@ -583,6 +584,11 @@ class NewParserTest extends MediaWikiTestCase {
 	/**
 	 * @group medium
 	 * @dataProvider parserTestProvider
+	 * @param string $desc
+	 * @param string $input
+	 * @param string $result
+	 * @param array $opts
+	 * @param array $config
 	 */
 	public function testParserTest( $desc, $input, $result, $opts, $config ) {
 		if ( $this->regex != '' && !preg_match( '/' . $this->regex . '/', $desc ) ) {
@@ -768,6 +774,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 	/**
 	 * Get an input dictionary from a set of parser test files
+	 * @param array $filenames
 	 */
 	function getFuzzInput( $filenames ) {
 		$dict = '';
@@ -821,6 +828,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 	/**
 	 * Get a Parser object
+	 * @param Preprocessor $preprocessor
 	 */
 	function getParser( $preprocessor = null ) {
 		global $wgParserConf;
@@ -855,8 +863,8 @@ class NewParserTest extends MediaWikiTestCase {
 	 * application to our scary parser. If the hook is not installed,
 	 * abort processing of this file.
 	 *
-	 * @param $name String
-	 * @return Bool true if tag hook is present
+	 * @param string $name
+	 * @return bool True if tag hook is present
 	 */
 	public function requireHook( $name ) {
 		global $wgParser;
@@ -876,8 +884,8 @@ class NewParserTest extends MediaWikiTestCase {
 	 * Run the "tidy" command on text if the $wgUseTidy
 	 * global is true
 	 *
-	 * @param $text String: the text to tidy
-	 * @return String
+	 * @param string $text The text to tidy
+	 * @return string
 	 */
 	protected function tidy( $text ) {
 		global $wgUseTidy;
@@ -891,6 +899,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 	/**
 	 * Remove last character if it is a newline
+	 * @param string $s
 	 */
 	public function removeEndingNewline( $s ) {
 		if ( substr( $s, -1 ) === "\n" ) {
@@ -972,9 +981,9 @@ class NewParserTest extends MediaWikiTestCase {
 
 	/**
 	 * Use a regex to find out the value of an option
-	 * @param $key String: name of option val to retrieve
-	 * @param $opts Options array to look in
-	 * @param $default Mixed: default value returned if not found
+	 * @param string $key Name of option val to retrieve
+	 * @param array $opts Options array to look in
+	 * @param mixed $default Default value returned if not found
 	 */
 	protected static function getOptionValue( $key, $opts, $default ) {
 		$key = strtolower( $key );

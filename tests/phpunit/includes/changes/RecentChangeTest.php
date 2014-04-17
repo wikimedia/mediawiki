@@ -253,12 +253,12 @@ class RecentChangeTest extends MediaWikiTestCase {
 	*/
 
 	/**
-	 * @param $expected String Expected IRC text without colors codes
-	 * @param $type String Log type (move, delete, suppress, patrol ...)
-	 * @param $action String A log type action
-	 * @param $params
-	 * @param $comment String (optional) A comment for the log action
-	 * @param $msg String (optional) A message for PHPUnit :-)
+	 * @param string $expected Expected IRC text without colors codes
+	 * @param string $type Log type (move, delete, suppress, patrol ...)
+	 * @param string $action A log type action
+	 * @param array $params
+	 * @param string $comment (optional) A comment for the log action
+	 * @param string $msg (optional) A message for PHPUnit :-)
 	 */
 	protected function assertIRCComment( $expected, $type, $action, $params,
 		$comment = null, $msg = ''

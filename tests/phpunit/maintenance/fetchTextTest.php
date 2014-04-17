@@ -11,7 +11,7 @@ require_once __DIR__ . "/../../../maintenance/fetchText.php";
 class SemiMockedFetchText extends FetchText {
 
 	/**
-	 * @var String|null Text to pass as stdin
+	 * @var string|null Text to pass as stdin
 	 */
 	private $mockStdinText = null;
 
@@ -21,14 +21,14 @@ class SemiMockedFetchText extends FetchText {
 	private $mockSetUp = false;
 
 	/**
-	 * @var Array Invocation counters for the mocked aspects
+	 * @var array Invocation counters for the mocked aspects
 	 */
 	private $mockInvocations = array( 'getStdin' => 0 );
 
 	/**
 	 * Data for the fake stdin
 	 *
-	 * @param $stdin String The string to be used instead of stdin
+	 * @param string $stdin The string to be used instead of stdin
 	 */
 	function mockStdin( $stdin ) {
 		$this->mockStdinText = $stdin;
@@ -38,7 +38,7 @@ class SemiMockedFetchText extends FetchText {
 	/**
 	 * Gets invocation counters for mocked methods.
 	 *
-	 * @return Array An array, whose keys are function names. The corresponding values
+	 * @return array An array, whose keys are function names. The corresponding values
 	 * denote the number of times the function has been invoked.
 	 */
 	function mockGetInvocations() {
@@ -98,9 +98,9 @@ class FetchTextTest extends MediaWikiTestCase {
 	/**
 	 * Adds a revision to a page, while returning the resuting text's id
 	 *
-	 * @param $page WikiPage The page to add the revision to
-	 * @param $text String The revisions text
-	 * @param $text String The revisions summare
+	 * @param WikiPage $page The page to add the revision to
+	 * @param string $text The revisions text
+	 * @param string $text The revisions summare
 	 *
 	 * @throws MWExcepion
 	 */
@@ -155,6 +155,8 @@ class FetchTextTest extends MediaWikiTestCase {
 
 	/**
 	 * Helper to relate FetchText's input and output
+	 * @param string $input
+	 * @param string $expectedOutput
 	 */
 	private function assertFilter( $input, $expectedOutput ) {
 		$this->fetchText->mockStdin( $input );

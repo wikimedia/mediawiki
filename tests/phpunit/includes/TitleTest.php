@@ -580,8 +580,8 @@ class TitleTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideGetFragment
 	 *
-	 * @param $full
-	 * @param $fragment
+	 * @param string $full
+	 * @param string $fragment
 	 */
 	public function testGetFragment( $full, $fragment ) {
 		$title = Title::newFromText( $full );

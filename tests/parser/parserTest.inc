@@ -80,6 +80,7 @@ class ParserTest {
 	/**
 	 * Sets terminal colorization and diff/quick modes depending on OS and
 	 * command-line options (--color and --quick).
+	 * @param array $options
 	 */
 	public function __construct( $options = array() ) {
 		# Only colorize output if stdout is a terminal.
@@ -299,6 +300,7 @@ class ParserTest {
 	/**
 	 * Remove last character if it is a newline
 	 * @group utility
+	 * @param string $s
 	 */
 	public static function chomp( $s ) {
 		if ( substr( $s, -1 ) === "\n" ) {
@@ -311,6 +313,7 @@ class ParserTest {
 	/**
 	 * Run a fuzz test series
 	 * Draw input from a set of test files
+	 * @param array $filenames
 	 */
 	function fuzzTest( $filenames ) {
 		$GLOBALS['wgContLang'] = Language::factory( 'en' );
@@ -381,6 +384,7 @@ class ParserTest {
 
 	/**
 	 * Get an input dictionary from a set of parser test files
+	 * @param array $filenames
 	 */
 	function getFuzzInput( $filenames ) {
 		$dict = '';
@@ -444,8 +448,8 @@ class ParserTest {
 	 * Prints status updates on stdout and counts up the total
 	 * number and percentage of passed tests.
 	 *
-	 * @param $filenames Array of strings
-	 * @return Boolean: true if passed all tests, false if any tests failed.
+	 * @param array $filenames Array of strings
+	 * @return bool True if passed all tests, false if any tests failed.
 	 */
 	public function runTestsFromFiles( $filenames ) {
 		$ok = false;
@@ -523,12 +527,12 @@ class ParserTest {
 	 * and compare the output against the expected results.
 	 * Prints status and explanatory messages to stdout.
 	 *
-	 * @param $desc String: test's description
-	 * @param $input String: wikitext to try rendering
-	 * @param $result String: result to output
-	 * @param $opts Array: test's options
-	 * @param $config String: overrides for global variables, one per line
-	 * @return Boolean
+	 * @param string $desc Test's description
+	 * @param string $input Wikitext to try rendering
+	 * @param string $result Result to output
+	 * @param array $opts Test's options
+	 * @param string $config Overrides for global variables, one per line
+	 * @return bool
 	 */
 	public function runTest( $desc, $input, $result, $opts, $config ) {
 		if ( $this->showProgress ) {
@@ -608,6 +612,7 @@ class ParserTest {
 
 	/**
 	 * Refactored in 1.22 to use ParserTestResult
+	 * @param ParserTestResult $testResult
 	 */
 	function showTestResult( ParserTestResult $testResult ) {
 		if ( $testResult->isSuccess() ) {
@@ -621,9 +626,9 @@ class ParserTest {
 
 	/**
 	 * Use a regex to find out the value of an option
-	 * @param $key String: name of option val to retrieve
-	 * @param $opts array: Options array to look in
-	 * @param $default Mixed: default value returned if not found
+	 * @param string $key Name of option val to retrieve
+	 * @param array $opts Options array to look in
+	 * @param mixed $default Default value returned if not found
 	 */
 	private static function getOptionValue( $key, $opts, $default ) {
 		$key = strtolower( $key );
@@ -725,6 +730,8 @@ class ParserTest {
 	/**
 	 * Set up the global variables for a consistent environment for each test.
 	 * Ideally this should replace the global configuration entirely.
+	 * @param string $opts
+	 * @param string $config
 	 */
 	private function setupGlobals( $opts = '', $config = '' ) {
 		# Find out values for some special options.
@@ -1049,7 +1056,7 @@ class ParserTest {
 	 * Create a dummy uploads directory which will contain a couple
 	 * of files in order to pass existence tests.
 	 *
-	 * @return String: the directory
+	 * @return string The directory
 	 */
 	private function setupUploadDir() {
 		global $IP;
@@ -1101,6 +1108,7 @@ class ParserTest {
 
 	/**
 	 * Remove the dummy uploads directory
+	 * @param string $dir
 	 */
 	private function teardownUploadDir( $dir ) {
 		if ( $this->keepUploads ) {
@@ -1190,7 +1198,7 @@ class ParserTest {
 
 	/**
 	 * Delete the specified files, if they exist.
-	 * @param $files Array: full paths to files to delete.
+	 * @param array $files Full paths to files to delete.
 	 */
 	private static function deleteFiles( $files ) {
 		foreach ( $files as $file ) {
@@ -1202,7 +1210,7 @@ class ParserTest {
 
 	/**
 	 * Delete the specified directories, if they exist. Must be empty.
-	 * @param $dirs Array: full paths to directories to delete.
+	 * @param array $dirs Full paths to directories to delete.
 	 */
 	private static function deleteDirs( $dirs ) {
 		foreach ( $dirs as $dir ) {
@@ -1214,6 +1222,7 @@ class ParserTest {
 
 	/**
 	 * "Running test $desc..."
+	 * @param string $desc
 	 */
 	protected function showTesting( $desc ) {
 		print "Running test $desc... ";
@@ -1224,8 +1233,8 @@ class ParserTest {
 	 *
 	 * Refactored in 1.22 to use ParserTestResult
 	 *
-	 * @param $testResult ParserTestResult
-	 * @return Boolean
+	 * @param ParserTestResult $testResult
+	 * @return bool
 	 */
 	protected function showSuccess( ParserTestResult $testResult ) {
 		if ( $this->showProgress ) {
@@ -1241,8 +1250,8 @@ class ParserTest {
 	 *
 	 * Refactored in 1.22 to use ParserTestResult
 	 *
-	 * @param $testResult ParserTestResult
-	 * @return Boolean
+	 * @param ParserTestResult $testResult
+	 * @return bool
 	 */
 	protected function showFailure( ParserTestResult $testResult ) {
 		if ( $this->showFailure ) {
@@ -1274,11 +1283,11 @@ class ParserTest {
 	 * Run given strings through a diff and return the (colorized) output.
 	 * Requires writable /tmp directory and a 'diff' command in the PATH.
 	 *
-	 * @param $input String
-	 * @param $output String
-	 * @param $inFileTail String: tailing for the input file name
-	 * @param $outFileTail String: tailing for the output file name
-	 * @return String
+	 * @param string $input
+	 * @param string $output
+	 * @param string $inFileTail Tailing for the input file name
+	 * @param string $outFileTail Tailing for the output file name
+	 * @return string
 	 */
 	protected function quickDiff( $input, $output,
 		$inFileTail = 'expected', $outFileTail = 'actual'
@@ -1311,8 +1320,8 @@ class ParserTest {
 	/**
 	 * Write the given string to a file, adding a final newline.
 	 *
-	 * @param $data String
-	 * @param $filename String
+	 * @param string $data
+	 * @param string $filename
 	 */
 	private function dumpToFile( $data, $filename ) {
 		$file = fopen( $filename, "wt" );
@@ -1324,8 +1333,8 @@ class ParserTest {
 	 * Colorize unified diff output if set for ANSI color output.
 	 * Subtractions are colored blue, additions red.
 	 *
-	 * @param $text String
-	 * @return String
+	 * @param string $text
+	 * @return string
 	 */
 	protected function colorDiff( $text ) {
 		return preg_replace(
@@ -1338,7 +1347,7 @@ class ParserTest {
 	/**
 	 * Show "Reading tests from ..."
 	 *
-	 * @param $path String
+	 * @param string $path
 	 */
 	public function showRunFile( $path ) {
 		print $this->term->color( 1 ) .
@@ -1349,10 +1358,10 @@ class ParserTest {
 
 	/**
 	 * Insert a temporary test article
-	 * @param $name String: the title, including any prefix
-	 * @param $text String: the article text
-	 * @param $line Integer: the input line number, for reporting errors
-	 * @param $ignoreDuplicate Boolean: whether to silently ignore duplicate pages
+	 * @param string $name The title, including any prefix
+	 * @param string $text The article text
+	 * @param int $line The input line number, for reporting errors
+	 * @param bool $ignoreDuplicate Whether to silently ignore duplicate pages
 	 */
 	public static function addArticle( $name, $text, $line = 'unknown', $ignoreDuplicate = '' ) {
 		global $wgCapitalLinks;
@@ -1390,8 +1399,8 @@ class ParserTest {
 	 * application to our scary parser. If the hook is not installed,
 	 * abort processing of this file.
 	 *
-	 * @param $name String
-	 * @return Bool true if tag hook is present
+	 * @param string $name
+	 * @return bool True if tag hook is present
 	 */
 	public function requireHook( $name ) {
 		global $wgParser;
@@ -1413,8 +1422,8 @@ class ParserTest {
 	 * application to our scary parser. If the hook is not installed,
 	 * abort processing of this file.
 	 *
-	 * @param $name String
-	 * @return Bool true if function hook is present
+	 * @param string $name
+	 * @return bool True if function hook is present
 	 */
 	public function requireFunctionHook( $name ) {
 		global $wgParser;
@@ -1435,8 +1444,8 @@ class ParserTest {
 	 * Run the "tidy" command on text if the $wgUseTidy
 	 * global is true
 	 *
-	 * @param $text String: the text to tidy
-	 * @return String
+	 * @param string $text The text to tidy
+	 * @return string
 	 */
 	private function tidy( $text ) {
 		global $wgUseTidy;

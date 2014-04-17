@@ -16,7 +16,7 @@ class GetSlaveServerTest extends MediaWikiTestCase {
 	 * It matches IPs or hostnames, both optionally followed by a
 	 * port specification
 	 *
-	 * @return String the regular expression
+	 * @return string The regular expression
 	 */
 	private function getServerRE() {
 		if ( $this->db->getType() === 'sqlite' ) {

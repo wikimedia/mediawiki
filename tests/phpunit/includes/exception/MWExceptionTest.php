@@ -167,9 +167,9 @@ class MWExceptionTest extends MediaWikiTestCase {
 	 *
 	 * @covers MWExceptionHandler::jsonSerializeException
 	 *
-	 * @param $expectedKeyType String Type expected as returned by gettype()
-	 * @param $exClass String An exception class (ie: Exception, MWException)
-	 * @param $key String Name of the key to validate in the serialized JSON
+	 * @param string $expectedKeyType Type expected as returned by gettype()
+	 * @param string $exClass An exception class (ie: Exception, MWException)
+	 * @param string $key Name of the key to validate in the serialized JSON
 	 * @dataProvider provideJsonSerializedKeys
 	 */
 	public function testJsonserializeexceptionKeys( $expectedKeyType, $exClass, $key ) {
