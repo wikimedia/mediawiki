@@ -1084,11 +1084,13 @@ class Linker {
 	 * @since 1.19 Method exists for a long time. $altUserName was added in 1.19.
 	 */
 	public static function userLink( $userId, $userName, $altUserName = false ) {
+		$classes = 'mw-userlink';
 		if ( $userId == 0 ) {
 			$page = SpecialPage::getTitleFor( 'Contributions', $userName );
 			if ( $altUserName === false ) {
 				$altUserName = IP::prettifyIP( $userName );
 			}
+			$classes .= ' mw-anonuserlink'; // Separate link class for anons (bug 43179)
 		} else {
 			$page = Title::makeTitle( NS_USER, $userName );
 		}
@@ -1096,7 +1098,7 @@ class Linker {
 		return self::link(
 			$page,
 			htmlspecialchars( $altUserName !== false ? $altUserName : $userName ),
-			array( 'class' => 'mw-userlink' )
+			array( 'class' => $classes )
 		);
 	}
 
