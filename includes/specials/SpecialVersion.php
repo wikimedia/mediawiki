@@ -961,21 +961,15 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	function listToText( $list, $sort = true ) {
-		$cnt = count( $list );
-
-		if ( $cnt == 1 ) {
-			// Enforce always returning a string
-			return (string)self::arrayToString( $list[0] );
-		} elseif ( $cnt == 0 ) {
+		if ( !count( $list ) ) {
 			return '';
-		} else {
-			if ( $sort ) {
-				sort( $list );
-			}
-
-			return $this->getLanguage()
-				->listToText( array_map( array( __CLASS__, 'arrayToString' ), $list ) );
 		}
+		if ( $sort ) {
+			sort( $list );
+		}
+
+		return $this->getLanguage()
+			->listToText( array_map( array( __CLASS__, 'arrayToString' ), $list ) );
 	}
 
 	/**
