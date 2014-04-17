@@ -283,4 +283,52 @@ class MessageTest extends MediaWikiLangTestCase {
 	public function testInLanguageThrows() {
 		wfMessage( 'foo' )->inLanguage( 123 );
 	}
+
+	public function keyProvider() {
+		return array(
+			'string' => array(
+				'key' => 'mainpage',
+				'expected' => array( 'mainpage' ),
+			),
+			'single' => array(
+				'key' => array( 'mainpage' ),
+				'expected' => array( 'mainpage' ),
+			),
+			'multi' => array(
+				'key' => array( 'mainpage-foo', 'mainpage-bar', 'mainpage' ),
+				'expected' => array( 'mainpage-foo', 'mainpage-bar', 'mainpage' ),
+			),
+			'empty' => array(
+				'key' => array(),
+				'expected' => null,
+				'exception' => 'InvalidArgumentException',
+			),
+			'null' => array(
+				'key' => null,
+				'expected' => null,
+				'exception' => 'InvalidArgumentException',
+			),
+			'bad type' => array(
+				'key' => 17,
+				'expected' => null,
+				'exception' => 'InvalidArgumentException',
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider keyProvider()
+	 *
+	 * @covers Message::getKey
+	 */
+	public function testGetKey( $key, $expected, $exception = null ) {
+		if ( $exception ) {
+			$this->setExpectedException( $exception );
+		}
+
+		$msg = new Message( $key );
+		$this->assertEquals( $expected, $msg->getKeysToTry() );
+		$this->assertEquals( count( $expected ) > 1, $msg->isMultiKey() );
+		$this->assertContains( $msg->getKey(), $expected );
+	}
 }

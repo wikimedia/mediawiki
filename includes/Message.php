@@ -175,9 +175,15 @@ class Message {
 	protected $language = null;
 
 	/**
-	 * @var string|string[] The message key or array of keys.
+	 * @var string The message key. If $keysToTry has more than one element,
+	 * this may change to one of the keys to try when fetching the message text.
 	 */
 	protected $key;
+
+	/**
+	 * @var string[] List of keys to try when fetching the message.
+	 */
+	protected $keysToTry;
 
 	/**
 	 * @var array List of parameters which will be substituted into the message.
@@ -224,30 +230,61 @@ class Message {
 	 * non-empty message for.
 	 * @param array $params Message parameters.
 	 * @param Language $language Optional language of the message, defaults to $wgLang.
+	 *
+	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $key, $params = array(), Language $language = null ) {
 		global $wgLang;
 
-		$this->key = $key;
+		if ( !is_string( $key ) && !is_array( $key ) ) {
+			throw new InvalidArgumentException( '$key must be a string or an array' );
+		}
+
+		$this->keysToTry = (array)$key;
+
+		if ( empty( $this->keysToTry ) ) {
+			throw new InvalidArgumentException( '$key must not be an empty list' );
+		}
+
+		$this->key = reset( $this->keysToTry );
+
 		$this->parameters = array_values( $params );
 		$this->language = $language ? $language : $wgLang;
 	}
 
 	/**
-	 * Returns the message key or the first from an array of message keys.
+	 * @since 1.23
+	 *
+	 * @return bool True if this is a multi-key message, that is, if the key provided to the
+	 * constructor was a fallback list of keys to try.
+	 */
+	public function isMultiKey() {
+		return count( $this->keysToTry ) > 1;
+	}
+
+	/**
+	 * @since 1.23
+	 *
+	 * @return string[] The list of keys to try when fetching the message text,
+	 * in order of preference.
+	 */
+	public function getKeysToTry() {
+		return $this->keysToTry;
+	}
+
+	/**
+	 * Returns the message key.
+	 *
+	 * If a list of multiple possible keys was supplied to the constructor, this method may
+	 * return any of these keys. After the message ahs been fetched, this method will return
+	 * the key that was actually used to fetch the message.
 	 *
 	 * @since 1.21
 	 *
 	 * @return string
 	 */
 	public function getKey() {
-		if ( is_array( $this->key ) ) {
-			// May happen if some kind of fallback is applied.
-			// For now, just use the first key. We really need a better solution.
-			return $this->key[0];
-		} else {
-			return $this->key;
-		}
+		return $this->key;
 	}
 
 	/**
@@ -637,7 +674,7 @@ class Message {
 		$string = $this->fetchMessage();
 
 		if ( $string === false ) {
-			$key = htmlspecialchars( is_array( $this->key ) ? $this->key[0] : $this->key );
+			$key = htmlspecialchars( $this->key );
 			if ( $this->format === 'plain' ) {
 				return '<' . $key . '>';
 			}
@@ -988,20 +1025,18 @@ class Message {
 	protected function fetchMessage() {
 		if ( !isset( $this->message ) ) {
 			$cache = MessageCache::singleton();
-			if ( is_array( $this->key ) ) {
-				if ( !count( $this->key ) ) {
-					throw new MWException( "Given empty message key array." );
+
+			foreach ( $this->keysToTry as $key ) {
+				$message = $cache->get( $key, $this->useDatabase, $this->language );
+				if ( $message !== false && $message !== '' ) {
+					break;
 				}
-				foreach ( $this->key as $key ) {
-					$message = $cache->get( $key, $this->useDatabase, $this->language );
-					if ( $message !== false && $message !== '' ) {
-						break;
-					}
-				}
-				$this->message = $message;
-			} else {
-				$this->message = $cache->get( $this->key, $this->useDatabase, $this->language );
 			}
+
+			// NOTE: The constructor makes sure keysToTry isn't empty,
+			//       so we know that $key and $message are initialized.
+			$this->key = $key;
+			$this->message = $message;
 		}
 		return $this->message;
 	}
@@ -1029,13 +1064,20 @@ class RawMessage extends Message {
 	 *
 	 * @see Message::__construct
 	 *
-	 * @param string|string[] $key Message to use.
+	 * @param string $text Message to use.
 	 * @param array $params Parameters for the message.
+	 *
+	 * @throws InvalidArgumentException
 	 */
-	public function __construct( $key, $params = array() ) {
-		parent::__construct( $key, $params );
+	public function __construct( $text, $params = array() ) {
+		if ( !is_string( $text ) ) {
+			throw new InvalidArgumentException( '$text must be a string' );
+		}
+
+		parent::__construct( $text, $params );
+
 		// The key is the message.
-		$this->message = $key;
+		$this->message = $text;
 	}
 
 	/**
@@ -1048,6 +1090,7 @@ class RawMessage extends Message {
 		if ( !isset( $this->message ) ) {
 			$this->message = $this->key;
 		}
+
 		return $this->message;
 	}
 
