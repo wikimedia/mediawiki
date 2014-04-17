@@ -980,7 +980,18 @@ class ApiMain extends ApiBase {
 	public function getVal( $name, $default = null ) {
 		$this->mParamsUsed[$name] = true;
 
-		return $this->getRequest()->getVal( $name, $default );
+		$ret = $this->getRequest()->getVal( $name );
+		if ( $ret === null ) {
+			if ( $this->getRequest()->getArray( $name ) !== null ) {
+				// See bug 10262 for why we don't just join( '|', ... ) the
+				// array.
+				$this->setWarning(
+					"Parameter '$name' uses unsupported PHP array syntax"
+				);
+			}
+			$ret = $default;
+		}
+		return $ret;
 	}
 
 	/**
@@ -988,9 +999,7 @@ class ApiMain extends ApiBase {
 	 * was used, for logging.
 	 */
 	public function getCheck( $name ) {
-		$this->mParamsUsed[$name] = true;
-
-		return $this->getRequest()->getCheck( $name );
+		return $this->getVal( $name, null ) !== null;
 	}
 
 	/**
