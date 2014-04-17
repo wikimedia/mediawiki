@@ -356,10 +356,10 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideGetNamespaceName
 	 *
-	 * @param $namespace
-	 * @param $text
-	 * @param $lang
-	 * @param $expected
+	 * @param int $namespace
+	 * @param string $text
+	 * @param string $lang
+	 * @param string $expected
 	 *
 	 * @internal param \TitleValue $title
 	 */

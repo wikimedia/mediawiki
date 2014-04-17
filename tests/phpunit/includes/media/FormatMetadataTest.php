@@ -51,8 +51,8 @@ class FormatMetadataTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $filename String
-	 * @param $expected Integer Total image area
+	 * @param string $filename
+	 * @param int $expected Total image area
 	 * @dataProvider provideFlattenArray
 	 * @covers FormatMetadata::flattenArray
 	 */

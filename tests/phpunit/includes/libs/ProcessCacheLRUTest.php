@@ -114,8 +114,8 @@ class ProcessCacheLRUTest extends MediaWikiTestCase {
 	 * delete the older key.
 	 *
 	 * @dataProvider provideCacheFilling
-	 * @param $cacheMaxEntries Maximum entry the created cache will hold
-	 * @param $entryToFill Number of entries to insert in the created cache.
+	 * @param int $cacheMaxEntries Maximum entry the created cache will hold
+	 * @param int $entryToFill Number of entries to insert in the created cache.
 	 */
 	public function testFillingCache( $cacheMaxEntries, $entryToFill, $msg = '' ) {
 		$cache = new ProcessCacheLRUTestable( $cacheMaxEntries );

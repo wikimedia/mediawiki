@@ -67,9 +67,9 @@ class EditPageTest extends MediaWikiLangTestCase {
 	/**
 	 * Performs an edit and checks the result.
 	 *
-	 * @param String|Title $title The title of the page to edit
-	 * @param String|null $baseText Some text to create the page with before attempting the edit.
-	 * @param User|String|null $user The user to perform the edit as.
+	 * @param string|Title $title The title of the page to edit
+	 * @param string|null $baseText Some text to create the page with before attempting the edit.
+	 * @param User|string|null $user The user to perform the edit as.
 	 * @param array $edit An array of request parameters used to define the edit to perform.
 	 *              Some well known fields are:
 	 *              * wpTextbox1: the text to submit
@@ -82,9 +82,9 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 *              * wpWatchthis: whether to watch the page
 	 * @param int|null $expectedCode The expected result code (EditPage::AS_XXX constants).
 	 *                  Set to null to skip the check. Defaults to EditPage::AS_OK.
-	 * @param String|null $expectedText The text expected to be on the page after the edit.
+	 * @param string|null $expectedText The text expected to be on the page after the edit.
 	 *                  Set to null to skip the check.
-	 * @param String|null $message An optional message to show along with any error message.
+	 * @param string|null $message An optional message to show along with any error message.
 	 *
 	 * @return WikiPage The page that was just edited, useful for getting the edit's rev_id, etc.
 	 */

@@ -20,9 +20,9 @@ class CollationTest extends MediaWikiLangTestCase {
 	 * prefix of "XY". Our collation
 	 * code makes this assumption.
 	 *
-	 * @param $lang String Language code for collator
-	 * @param $base String Base string
-	 * @param $extended String String containing base as a prefix.
+	 * @param string $lang Language code for collator
+	 * @param string $base Base string
+	 * @param string $extended String containing base as a prefix.
 	 *
 	 * @dataProvider prefixDataProvider
 	 */
@@ -81,9 +81,9 @@ class CollationTest extends MediaWikiLangTestCase {
 	/**
 	 * Test correct first letter is fetched.
 	 *
-	 * @param $collation String Collation name (aka uca-en)
-	 * @param $string String String to get first letter of
-	 * @param $firstLetter String Expected first letter.
+	 * @param string $collation Collation name (aka uca-en)
+	 * @param string $string String to get first letter of
+	 * @param string $firstLetter Expected first letter.
 	 *
 	 * @dataProvider firstLetterProvider
 	 */

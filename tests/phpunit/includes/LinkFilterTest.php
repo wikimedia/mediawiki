@@ -34,7 +34,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 	 *
 	 * Takes an array as created by LinkFilter::makeLikeArray() and creates a regex from it
 	 *
-	 * @param Array $like Array as created by LinkFilter::makeLikeArray()
+	 * @param array $like Array as created by LinkFilter::makeLikeArray()
 	 * @return string Regex
 	 */
 	function createRegexFromLIKE( $like ) {
@@ -185,9 +185,9 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider provideValidPatterns
 	 *
-	 * @param String $protocol Protocol, e.g. 'http://' or 'mailto:'
-	 * @param String $pattern Search pattern to feed to LinkFilter::makeLikeArray
-	 * @param String $url URL to feed to wfMakeUrlIndexes
+	 * @param string $protocol Protocol, e.g. 'http://' or 'mailto:'
+	 * @param string $pattern Search pattern to feed to LinkFilter::makeLikeArray
+	 * @param string $url URL to feed to wfMakeUrlIndexes
 	 * @param bool $shouldBeFound Should the URL be found? (defaults true)
 	 */
 	function testMakeLikeArrayWithValidPatterns( $protocol, $pattern, $url, $shouldBeFound = true ) {
@@ -260,7 +260,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider provideInvalidPatterns
 	 *
-	 * @param $pattern string: Invalid search pattern
+	 * @param string $pattern Invalid search pattern
 	 */
 	function testMakeLikeArrayWithInvalidPatterns( $pattern ) {
 

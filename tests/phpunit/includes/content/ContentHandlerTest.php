@@ -362,16 +362,16 @@ class DummyContentForTesting extends AbstractContent {
 	}
 
 	/**
-	 * @return String a string representing the content in a way useful for building a full text search index.
-	 *         If no useful representation exists, this method returns an empty string.
+	 * @return string A string representing the content in a way useful for building a full text search index.
+	 *   If no useful representation exists, this method returns an empty string.
 	 */
 	public function getTextForSearchIndex() {
 		return '';
 	}
 
 	/**
-	 * @return String the wikitext to include when another page includes this  content, or false if the content is not
-	 *  includable in a wikitext page.
+	 * @return string|bool The wikitext to include when another page includes this  content,
+	 *  or false if the content is not includable in a wikitext page.
 	 */
 	public function getWikitextForTransclusion() {
 		return false;
@@ -429,9 +429,9 @@ class DummyContentForTesting extends AbstractContent {
 	 * Returns true if this content is countable as a "real" wiki page, provided
 	 * that it's also in a countable location (e.g. a current revision in the main namespace).
 	 *
-	 * @param boolean $hasLinks if it is known whether this content contains links, provide this information here,
+	 * @param bool $hasLinks if it is known whether this content contains links, provide this information here,
 	 *  to avoid redundant parsing to find out.
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isCountable( $hasLinks = null ) {
 		return false;
@@ -441,9 +441,8 @@ class DummyContentForTesting extends AbstractContent {
 	 * @param Title $title
 	 * @param int $revId Unused.
 	 * @param null|ParserOptions $options
-	 * @param boolean $generateHtml whether to generate Html (default: true). If false,
-	 *  the result of calling getText() on the ParserOutput object returned by
-	 *   this method is undefined.
+	 * @param bool $generateHtml whether to generate Html (default: true). If false, the result
+	 *  of calling getText() on the ParserOutput object returned by this method is undefined.
 	 *
 	 * @return ParserOutput
 	 */

@@ -7,7 +7,7 @@
  */
 class UploadStashTest extends MediaWikiTestCase {
 	/**
-	 * @var Array of UploadStashTestUser
+	 * @var array Array of UploadStashTestUser
 	 */
 	public static $users;
 

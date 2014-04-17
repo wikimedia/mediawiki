@@ -219,8 +219,8 @@ class TextPassDumperTest extends DumpTestCase {
 	 * Ensures that checkpoint dumps are used and written, by successively increasing the
 	 * stub size and dumping until the duration crosses a threshold.
 	 *
-	 * @param $checkpointFormat string: Either "file" for plain text or "gzip" for gzipped
-	 *                checkpoint files.
+	 * @param string $checkpointFormat Either "file" for plain text or "gzip" for gzipped
+	 *   checkpoint files.
 	 */
 	private function checkpointHelper( $checkpointFormat = "file" ) {
 		// Getting temporary names
@@ -421,16 +421,14 @@ class TextPassDumperTest extends DumpTestCase {
 	/**
 	 * Creates a stub file that is used for testing the text pass of dumps
 	 *
-	 * @param $fname string: (Optional) Absolute name of the file to write
-	 *           the stub into. If this parameter is null, a new temporary
-	 *           file is generated that is automatically removed upon
-	 *           tearDown.
-	 * @param $iterations integer: (Optional) specifies how often the block
-	 *           of 3 pages should go into the stub file. The page and
-	 *           revision id increase further and further, while the text
-	 *           id of the first iteration is reused. The pages and revision
-	 *           of iteration > 1 have no corresponding representation in the
-	 *           database.
+	 * @param string $fname (Optional) Absolute name of the file to write
+	 *   the stub into. If this parameter is null, a new temporary
+	 *   file is generated that is automatically removed upon tearDown.
+	 * @param int $iterations (Optional) specifies how often the block
+	 *   of 3 pages should go into the stub file. The page and
+	 *   revision id increase further and further, while the text
+	 *   id of the first iteration is reused. The pages and revision
+	 *   of iteration > 1 have no corresponding representation in the database.
 	 * @return string absolute filename of the stub
 	 */
 	private function setUpStub( $fname = null, $iterations = 1 ) {

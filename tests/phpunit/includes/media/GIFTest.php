@@ -36,8 +36,8 @@ class GIFHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $filename String basename of the file to check
-	 * @param $expected boolean Expected result.
+	 * @param string $filename Basename of the file to check
+	 * @param bool $expected Expected result.
 	 * @dataProvider provideIsAnimated
 	 * @covers GIFHandler::isAnimatedImage
 	 */
@@ -55,8 +55,8 @@ class GIFHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $filename String
-	 * @param $expected Integer Total image area
+	 * @param string $filename
+	 * @param int $expected Total image area
 	 * @dataProvider provideGetImageArea
 	 * @covers GIFHandler::getImageArea
 	 */
@@ -74,8 +74,8 @@ class GIFHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $metadata String Serialized metadata
-	 * @param $expected Integer One of the class constants of GIFHandler
+	 * @param string $metadata Serialized metadata
+	 * @param int $expected One of the class constants of GIFHandler
 	 * @dataProvider provideIsMetadataValid
 	 * @covers GIFHandler::isMetadataValid
 	 */
@@ -95,8 +95,8 @@ class GIFHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $filename String
-	 * @param $expected String Serialized array
+	 * @param string $filename
+	 * @param string $expected Serialized array
 	 * @dataProvider provideGetMetadata
 	 * @covers GIFHandler::getMetadata
 	 */
@@ -114,8 +114,8 @@ class GIFHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $filename String
-	 * @param $expected String Serialized array
+	 * @param string $filename
+	 * @param string $expected Serialized array
 	 * @dataProvider provideGetIndependentMetaArray
 	 * @covers GIFHandler::getCommonMetaArray
 	 */

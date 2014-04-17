@@ -13,9 +13,9 @@ class XMPTest extends MediaWikiTestCase {
 	/**
 	 * Put XMP in, compare what comes out...
 	 *
-	 * @param $xmp String the actual xml data.
-	 * @param $expected Array expected result of parsing the xmp.
-	 * @param $info String Short sentence on what's being tested.
+	 * @param string $xmp The actual xml data.
+	 * @param array $expected Expected result of parsing the xmp.
+	 * @param string $info Short sentence on what's being tested.
 	 *
 	 * @throws Exception
 	 * @dataProvider provideXMPParse
