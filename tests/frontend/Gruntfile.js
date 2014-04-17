@@ -51,8 +51,10 @@ module.exports = function ( grunt ) {
 		},
 		watch: {
 			files: [
-				'.{jshintrc,jscs.json,jshintignore,csslintrc}',
-				'<%= jshint.all %>'
+				'<%= jscs.all %>',
+				'<%= jsonlint.all %>',
+				'.jshintignore',
+				'.jshintrc'
 			],
 			tasks: ['test']
 		}
