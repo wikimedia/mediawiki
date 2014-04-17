@@ -8,6 +8,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-jscs-checker' );
+	grunt.loadNpmTasks( 'grunt-jsonlint' );
 
 	grunt.file.setBase(  __dirname + '/../..' );
 
@@ -37,6 +38,13 @@ module.exports = function ( grunt ) {
 				return patterns;
 			}, [] ) )
 		},
+		jsonlint: {
+			all: [
+				'.jscsrc',
+				'{languages,languages,maintenance,resources}/**/*.json',
+				'tests/frontend/package.json'
+			]
+		},
 		banana: {
 			core: 'languages/i18n/',
 			installer: 'includes/installer/i18n/'
@@ -50,7 +58,7 @@ module.exports = function ( grunt ) {
 		}
 	} );
 
-	grunt.registerTask( 'lint', ['jshint', 'jscs', 'banana'] );
+	grunt.registerTask( 'lint', ['jshint', 'jscs', 'jsonlint', 'banana'] );
 	grunt.registerTask( 'test', ['lint'] );
 	grunt.registerTask( 'default', ['test'] );
 };
