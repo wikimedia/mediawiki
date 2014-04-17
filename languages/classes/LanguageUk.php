@@ -32,8 +32,8 @@ class LanguageUk extends Language {
 	 * Convert from the nominative form of a noun to some other case
 	 * Invoked with {{grammar:case|word}}
 	 *
-	 * @param $word string
-	 * @param $case string
+	 * @param string $word
+	 * @param string $case
 	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {
@@ -89,7 +89,7 @@ class LanguageUk extends Language {
 	/**
 	 * Ukrainian numeric format is "12 345,67" but "1234,56"
 	 *
-	 * @param $_ string
+	 * @param string $_
 	 *
 	 * @return string
 	 */

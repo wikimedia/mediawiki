@@ -36,10 +36,10 @@ class LanguageWa extends Language {
 	 * "<day> di <monthname>" for months starting by a consoun, and
 	 * "<day> d' <monthname>" for months starting with a vowel
 	 *
-	 * @param $ts string
-	 * @param $adj bool
-	 * @param $format bool
-	 * @param $tc bool
+	 * @param string $ts
+	 * @param bool $adj
+	 * @param bool $format
+	 * @param bool $tc
 	 * @return string
 	 */
 	function date( $ts, $adj = false, $format = true, $tc = false ) {
@@ -85,10 +85,10 @@ class LanguageWa extends Language {
 	}
 
 	/**
-	 * @param $ts string
-	 * @param $adj bool
-	 * @param $format bool
-	 * @param $tc bool
+	 * @param string $ts
+	 * @param bool $adj
+	 * @param bool $format
+	 * @param bool $tc
 	 * @return string
 	 */
 	function timeanddate( $ts, $adj = false, $format = true, $tc = false ) {

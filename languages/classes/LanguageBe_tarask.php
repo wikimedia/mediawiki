@@ -37,7 +37,7 @@ class LanguageBe_tarask extends Language {
 	 * This function unifies apostrophe sign in search index values
 	 * to enable seach using both apostrophe signs.
 	 *
-	 * @param $string string
+	 * @param string $string
 	 *
 	 * @return string
 	 */
@@ -60,7 +60,7 @@ class LanguageBe_tarask extends Language {
 	 * Four-digit number should be without group commas (spaces)
 	 * So "1 234 567", "12 345" but "1234"
 	 *
-	 * @param $_ string
+	 * @param string $_
 	 *
 	 * @return string
 	 */

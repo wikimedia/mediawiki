@@ -36,7 +36,7 @@ class LanguageAr extends Language {
 	 * @todo FIXME: This is language-specific for now only to avoid the negative
 	 * performance impact of enabling it for all languages.
 	 *
-	 * @param $s string
+	 * @param string $s
 	 *
 	 * @return string
 	 */
