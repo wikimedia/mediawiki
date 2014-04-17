@@ -33,8 +33,8 @@ class LanguageFi extends Language {
 	 * Convert from the nominative form of a noun to some other case
 	 * Invoked with {{grammar:case|word}}
 	 *
-	 * @param $word string
-	 * @param $case string
+	 * @param string $word
+	 * @param string $case
 	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {
@@ -85,8 +85,8 @@ class LanguageFi extends Language {
 	}
 
 	/**
-	 * @param $str string
-	 * @param $forContent bool
+	 * @param string $str
+	 * @param bool $forContent
 	 * @return string
 	 */
 	function translateBlockExpiry( $str, $forContent = false ) {

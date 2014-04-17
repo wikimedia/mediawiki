@@ -84,8 +84,8 @@ class SrConverter extends LanguageConverter {
 	 * update: delete all rule parsing because it's not used
 	 * currently, and just produces a couple of bugs
 	 *
-	 * @param $rule string
-	 * @param $flags array
+	 * @param string $rule
+	 * @param array $flags
 	 * @return array
 	 */
 	function parseManualRule( $rule, $flags = array() ) {
@@ -108,9 +108,9 @@ class SrConverter extends LanguageConverter {
 	 *     names as they were
 	 *   - do not try to find variants for usernames
 	 *
-	 * @param $link string
-	 * @param $nt Title
-	 * @param $ignoreOtherCond bool
+	 * @param string $link
+	 * @param Title $nt
+	 * @param bool $ignoreOtherCond
 	 */
 	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		// check for user namespace
@@ -132,8 +132,8 @@ class SrConverter extends LanguageConverter {
 	 * An ugly function wrapper for parsing Image titles
 	 * (to prevent image name conversion)
 	 *
-	 * @param $text string
-	 * @param $toVariant bool
+	 * @param string $text
+	 * @param bool $toVariant
 	 *
 	 * @return string
 	 */
@@ -152,8 +152,8 @@ class SrConverter extends LanguageConverter {
 	 *  It translates text into variant, specials:
 	 *    - ommiting roman numbers
 	 *
-	 * @param $text string
-	 * @param $toVariant string
+	 * @param string $text
+	 * @param string $toVariant
 	 *
 	 * @throws MWException
 	 * @return string
@@ -192,7 +192,7 @@ class SrConverter extends LanguageConverter {
 	 *
 	 * @param string $text The text to be checked
 	 * @param string $variant Language code of the variant to be checked for
-	 * @return bool true if $text appears to be written in $variant
+	 * @return bool True if $text appears to be written in $variant
 	 *
 	 * @author Nikola Smolenski <smolensk@eunet.rs>
 	 * @since 1.19

@@ -49,8 +49,8 @@ class LanguageOs extends Language {
 	 * 		Then result word is: word + 'й' + case ending for cases != allative or comitative
 	 * 		and word + case ending for allative or comitative. Ending of allative case here is 'æ'.
 	 *
-	 * @param $word string
-	 * @param $case string
+	 * @param string $word
+	 * @param string $case
 	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {

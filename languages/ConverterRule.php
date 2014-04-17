@@ -206,7 +206,7 @@ class ConverterRule {
 	 * Parse rules conversion.
 	 * @private
 	 *
-	 * @param $variant
+	 * @param string $variant
 	 *
 	 * @return string
 	 */
@@ -251,8 +251,8 @@ class ConverterRule {
 	 * will be ignored and the original title is shown).
 	 *
 	 * @since 1.22
-	 * @param $variant The variant code to display page title in
-	 * @return String|false The converted title or false if just page name
+	 * @param string $variant The variant code to display page title in
+	 * @return string|bool The converted title or false if just page name
 	 */
 	function getRuleConvertedTitle( $variant ) {
 		if ( $variant === $this->mConverter->mMainLanguageCode ) {

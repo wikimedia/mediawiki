@@ -30,12 +30,12 @@ require_once __DIR__ . '/LanguageZh.php';
 class GanConverter extends LanguageConverter {
 
 	/**
-	 * @param $langobj Language
-	 * @param $maincode string
-	 * @param $variants array
-	 * @param $variantfallbacks array
-	 * @param $flags array
-	 * @param $manualLevel array
+	 * @param Language $langobj
+	 * @param string $maincode
+	 * @param array $variants
+	 * @param array $variantfallbacks
+	 * @param array $flags
+	 * @param array $manualLevel
 	 */
 	function __construct( $langobj, $maincode,
 								$variants = array(),
@@ -67,8 +67,8 @@ class GanConverter extends LanguageConverter {
 	}
 
 	/**
-	 * @param $key string
-	 * @return String
+	 * @param string $key
+	 * @return string
 	 */
 	function convertCategoryKey( $key ) {
 		return $this->autoConvert( $key, 'gan' );
@@ -108,9 +108,9 @@ class LanguageGan extends LanguageZh {
 	/**
 	 * word segmentation
 	 *
-	 * @param $string string
-	 * @param $autoVariant string
-	 * @return String
+	 * @param string $string
+	 * @param string $autoVariant
+	 * @return string
 	 */
 	function normalizeForSearch( $string, $autoVariant = 'gan-hans' ) {
 		// LanguageZh::normalizeForSearch

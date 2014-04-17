@@ -34,8 +34,8 @@ class LanguageRu extends Language {
 	 * Convert from the nominative form of a noun to some other case
 	 * Invoked with {{grammar:case|word}}
 	 *
-	 * @param $word string
-	 * @param $case string
+	 * @param string $word
+	 * @param string $case
 	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {
@@ -108,7 +108,7 @@ class LanguageRu extends Language {
 	 * See manual of style at http://ru.wikipedia.org/wiki/Википедия:Оформление_статей
 	 * So "1 234 567", "12 345" but "1234"
 	 *
-	 * @param $_ string
+	 * @param string $_
 	 *
 	 * @return string
 	 */

@@ -35,8 +35,8 @@ class LanguageLa extends Language {
 	 *
 	 * Cases: genitive, accusative, ablative
 	 *
-	 * @param $word string
-	 * @param $case string
+	 * @param string $word
+	 * @param string $case
 	 *
 	 * @return string
 	 */

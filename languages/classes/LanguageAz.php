@@ -29,7 +29,7 @@
 class LanguageAz extends Language {
 
 	/**
-	 * @param $string string
+	 * @param string $string
 	 * @return mixed|string
 	 */
 	function ucfirst( $string ) {

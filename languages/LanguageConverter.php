@@ -330,9 +330,9 @@ class LanguageConverter {
 	 * If you want to parse rules, try to use convert() or
 	 * convertTo().
 	 *
-	 * @param $text String the text to be converted
-	 * @param $toVariant bool|string the target language code
-	 * @return String the converted text
+	 * @param string $text The text to be converted
+	 * @param bool|string $toVariant The target language code
+	 * @return string The converted text
 	 */
 	public function autoConvert( $text, $toVariant = false ) {
 		wfProfileIn( __METHOD__ );
@@ -492,7 +492,7 @@ class LanguageConverter {
 	/**
 	 * Apply manual conversion rules.
 	 *
-	 * @param $convRule ConverterRule Object of ConverterRule
+	 * @param ConverterRule $convRule
 	 */
 	protected function applyManualConv( $convRule ) {
 		// Use syntax -{T|zh-cn:TitleCN; zh-tw:TitleTw}- to custom
@@ -815,9 +815,9 @@ class LanguageConverter {
 	/**
 	 * Guess if a text is written in a variant. This should be implemented in subclasses.
 	 *
-	 * @param string $text the text to be checked
-	 * @param string $variant language code of the variant to be checked for
-	 * @return bool true if $text appears to be written in $variant, false if not
+	 * @param string $text The text to be checked
+	 * @param string $variant Language code of the variant to be checked for
+	 * @return bool True if $text appears to be written in $variant, false if not
 	 *
 	 * @author Nikola Smolenski <smolensk@eunet.rs>
 	 * @since 1.19
@@ -1036,7 +1036,7 @@ class LanguageConverter {
 	 * Convert the sorting key for category links. This should make different
 	 * keys that are variants of each other map to the same key.
 	 *
-	 * @param $key string
+	 * @param string $key
 	 *
 	 * @return string
 	 */
@@ -1051,14 +1051,14 @@ class LanguageConverter {
 	 *
 	 * @param WikiPage $page
 	 * @param User $user User object for the current user
-	 * @param Content $content new page content
-	 * @param string $summary edit summary of the edit
-	 * @param bool $isMinor was the edit marked as minor?
-	 * @param bool $isWatch did the user watch this page or not?
+	 * @param Content $content New page content
+	 * @param string $summary Edit summary of the edit
+	 * @param bool $isMinor Was the edit marked as minor?
+	 * @param bool $isWatch Did the user watch this page or not?
 	 * @param string|int $section
 	 * @param int $flags Bitfield
-	 * @param Revision $revision new Revision object or null
-	 * @return bool true
+	 * @param Revision|null $revision New Revision object or null
+	 * @return bool True
 	 */
 	function OnPageContentSaveComplete( $page, $user, $content, $summary, $isMinor,
 			$isWatch, $section, $flags, $revision ) {

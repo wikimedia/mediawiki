@@ -34,8 +34,8 @@ class LanguageBs extends Language {
 	 *
 	 * Cases: genitiv, dativ, akuzativ, vokativ, instrumental, lokativ
 	 *
-	 * @param $word string
-	 * @param $case string
+	 * @param string $word
+	 * @param string $case
 	 *
 	 * @return string
 	 */
