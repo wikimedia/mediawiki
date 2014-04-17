@@ -3319,8 +3319,9 @@ class User {
 	 * @param $request WebRequest object to use; $wgRequest will be used if null
 	 *        is passed.
 	 * @param bool $secure Whether to force secure/insecure cookies or use default
+	 * @param bool $rememberMe Whether to add a Token cookie for elongated sessions
 	 */
-	public function setCookies( $request = null, $secure = null ) {
+	public function setCookies( $request = null, $secure = null, $rememberMe = false ) {
 		if ( $request === null ) {
 			$request = $this->getRequest();
 		}
@@ -3346,7 +3347,7 @@ class User {
 			'UserID' => $this->mId,
 			'UserName' => $this->getName(),
 		);
-		if ( 1 == $this->getOption( 'rememberpassword' ) ) {
+		if ( $rememberMe ) {
 			$cookies['Token'] = $this->mToken;
 		} else {
 			$cookies['Token'] = false;
@@ -3373,14 +3374,10 @@ class User {
 		 * standard time setting, based on if rememberme was set.
 		 */
 		if ( $request->getCheck( 'wpStickHTTPS' ) || $this->requiresHTTPS() ) {
-			$time = null;
-			if ( ( 1 == $this->getOption( 'rememberpassword' ) ) ) {
-				$time = 0; // set to $wgCookieExpiration
-			}
 			$this->setCookie(
 				'forceHTTPS',
 				'true',
-				$time,
+				$rememberMe ? 0 : null,
 				false,
 				array( 'prefix' => '' ) // no prefix
 			);
@@ -4786,11 +4783,13 @@ class User {
 			$priorKeys[] = $row->up_property;
 		}
 		if ( count( $priorKeys ) ) {
-			// Do the DELETE by PRIMARY KEY for prior rows. A very large portion of
-			// calls to this function are for setting 'rememberpassword' for new accounts.
+			// Do the DELETE by PRIMARY KEY for prior rows.
+			// In the past a very large portion of calls to this function are for setting
+			// 'rememberpassword' for new accounts (a preference that has since been removed).
 			// Doing a blanket per-user DELETE for new accounts with no rows in the table
-			// causes gap locks on [max user ID,+infinity) which causes high contention since
-			// updates will pile up on each other as they are for higher (newer) user IDs.
+			// caused gap locks on [max user ID,+infinity) which caused high contention since
+			// updates would pile up on each other as they are for higher (newer) user IDs.
+			// It might not be necessary these days, but it shouldn't hurt either.
 			$dbw->delete( 'user_properties',
 				array( 'up_user' => $userId, 'up_property' => $priorKeys ), __METHOD__ );
 		}
