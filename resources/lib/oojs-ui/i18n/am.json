@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Elfalem"
-        ]
-    },
-    "ooui-dialog-action-close": "ለመዝጋት"
+	"@metadata": {
+		"authors": [
+			"Elfalem"
+		]
+	},
+	"ooui-dialog-action-close": "ለመዝጋት"
 }

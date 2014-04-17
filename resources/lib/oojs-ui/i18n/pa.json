@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "Amikeco",
-            "Babanwalia",
-            "Bouron",
-            "Nasir8891"
-        ]
-    },
-    "ooui-dialog-action-close": "বন্ধ"
+	"@metadata": {
+		"authors": [
+			"Amikeco",
+			"Babanwalia",
+			"Bouron",
+			"Nasir8891"
+		]
+	},
+	"ooui-dialog-action-close": "বন্ধ"
 }

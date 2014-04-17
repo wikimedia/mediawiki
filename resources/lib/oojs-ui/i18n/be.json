@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Чаховіч Уладзіслаў"
-        ]
-    },
-    "ooui-dialog-action-close": "Закрыць"
+	"@metadata": {
+		"authors": [
+			"Чаховіч Уладзіслаў"
+		]
+	},
+	"ooui-dialog-action-close": "Закрыць"
 }

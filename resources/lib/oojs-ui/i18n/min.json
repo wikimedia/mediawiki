@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "Iwan Novirion",
-            "Jagwar"
-        ]
-    },
-    "ooui-dialog-action-close": "Tutuik"
+	"@metadata": {
+		"authors": [
+			"Iwan Novirion",
+			"Jagwar"
+		]
+	},
+	"ooui-dialog-action-close": "Tutuik"
 }

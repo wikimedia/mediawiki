@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (c58b498573)
+ * OOjs UI v0.1.0-pre (9d291a9222)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Apr 16 2014 11:09:39 GMT-0700 (PDT)
+ * Date: Wed Apr 16 2014 18:45:32 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -1880,7 +1880,10 @@ OO.ui.ButtonedElement = function OoUiButtonedElement( $button, config ) {
  *
  * @param {jQuery.Event} e Mouse down event
  */
-OO.ui.ButtonedElement.prototype.onMouseDown = function () {
+OO.ui.ButtonedElement.prototype.onMouseDown = function ( e ) {
+	if ( this.disabled || e.which !== 1 ) {
+		return false;
+	}
 	// tabIndex should generally be interacted with via the property,
 	// but it's not possible to reliably unset a tabIndex via a property
 	// so we use the (lowercase) "tabindex" attribute instead.
@@ -1898,7 +1901,10 @@ OO.ui.ButtonedElement.prototype.onMouseDown = function () {
  *
  * @param {jQuery.Event} e Mouse up event
  */
-OO.ui.ButtonedElement.prototype.onMouseUp = function () {
+OO.ui.ButtonedElement.prototype.onMouseUp = function ( e ) {
+	if ( this.disabled || e.which !== 1 ) {
+		return false;
+	}
 	// Restore the tab-index after the button is up to restore the button's accesssibility
 	this.$button
 		.attr( 'tabindex', this.tabIndex )
@@ -3644,7 +3650,7 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 	// Initialization
 	this.$element
 		.addClass( 'oo-ui-fieldsetLayout' )
-		.append( this.$icon, this.$label, this.$group );
+		.prepend( this.$icon, this.$label, this.$group );
 	if ( $.isArray( config.items ) ) {
 		this.addItems( config.items );
 	}

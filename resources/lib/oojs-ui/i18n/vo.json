@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "Malafaya"
-        ]
-    },
-    "ooui-dialog-action-close": "Färmükön",
-    "ooui-toolbar-more": "Pluikos"
+	"@metadata": {
+		"authors": [
+			"Malafaya"
+		]
+	},
+	"ooui-dialog-action-close": "Färmükön",
+	"ooui-toolbar-more": "Pluikos"
 }
