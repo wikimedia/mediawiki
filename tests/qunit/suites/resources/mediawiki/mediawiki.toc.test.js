@@ -4,23 +4,7 @@
 	QUnit.asyncTest( 'toggleToc', 4, function ( assert ) {
 		var tocHtml, $toggleLink, $tocList;
 
-		function actionC() {
-			QUnit.start();
-		}
-
-		function actionB() {
-			assert.strictEqual( $tocList.is( ':hidden' ), true, 'Return boolean true if the TOC is now visible.' );
-			$toggleLink.click();
-			$tocList.promise().done( actionC );
-		}
-
-		function actionA() {
-			assert.strictEqual( $tocList.is( ':hidden' ), false, 'Return boolean false if the TOC is now hidden.' );
-			$toggleLink.click();
-			$tocList.promise().done( actionB );
-		}
-
-		assert.strictEqual( $( '#toc' ).length, 0, 'Return 0 if there is no table of contents on the page.' );
+		assert.strictEqual( $( '#toc' ).length, 0, 'There is no table of contents on the page at the beginning' );
 
 		tocHtml = '<div id="toc" class="toc">' +
 			'<div id="toctitle">' +
@@ -30,11 +14,22 @@
 			'</div>';
 		$( tocHtml ).appendTo( '#qunit-fixture' );
 		mw.hook( 'wikipage.content' ).fire( $( '#qunit-fixture' ) );
+
 		$tocList = $( '#toc ul:first' );
 		$toggleLink = $( '#togglelink' );
 
-		assert.strictEqual( $toggleLink.length, 1, 'Toggle link is appended to the page.' );
+		assert.strictEqual( $toggleLink.length, 1, 'Toggle link is added to the table of contents' );
 
-		actionA();
+		assert.strictEqual( $tocList.is( ':hidden' ), false, 'The table of contents is now visible' );
+
+		$toggleLink.click();
+		$tocList.promise().done( function () {
+			assert.strictEqual( $tocList.is( ':hidden' ), true, 'The table of contents is now hidden' );
+
+			$toggleLink.click();
+			$tocList.promise().done( function () {
+				QUnit.start();
+			} );
+		} );
 	} );
 }( mediaWiki, jQuery ) );
