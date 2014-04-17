@@ -638,7 +638,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * @deprecated in 1.19, use getLagFromSlaveStatus
+	 * @deprecated since 1.19, use getLagFromSlaveStatus
 	 *
 	 * @return bool|int
 	 */

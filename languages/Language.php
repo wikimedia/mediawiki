@@ -480,7 +480,7 @@ class Language {
 	/**
 	 * Same as getFallbacksFor for current language.
 	 * @return array|bool
-	 * @deprecated in 1.19
+	 * @deprecated since 1.19
 	 */
 	function getFallbackLanguageCode() {
 		wfDeprecated( __METHOD__, '1.19' );
@@ -844,7 +844,7 @@ class Language {
 	 * @param $customisedOnly bool
 	 *
 	 * @return array
-	 * @deprecated in 1.20, use fetchLanguageNames()
+	 * @deprecated since 1.20, use fetchLanguageNames()
 	 */
 	public static function getLanguageNames( $customisedOnly = false ) {
 		return self::fetchLanguageNames( null, $customisedOnly ? 'mwfile' : 'mw' );
@@ -857,7 +857,7 @@ class Language {
 	 * @param $code String Language code.
 	 * @return Array language code => language name
 	 * @since 1.18.0
-	 * @deprecated in 1.20, use fetchLanguageNames()
+	 * @deprecated since 1.20, use fetchLanguageNames()
 	 */
 	public static function getTranslatedLanguageNames( $code ) {
 		return self::fetchLanguageNames( $code, 'all' );
@@ -956,7 +956,7 @@ class Language {
 	 * Only if defined in MediaWiki, no other data like CLDR.
 	 * @param $code string
 	 * @return string
-	 * @deprecated in 1.20, use fetchLanguageName()
+	 * @deprecated since 1.20, use fetchLanguageName()
 	 */
 	function getLanguageName( $code ) {
 		return self::fetchLanguageName( $code );

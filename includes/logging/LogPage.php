@@ -215,7 +215,7 @@ class LogPage {
 	 *
 	 * @param string $type Log type
 	 * @return string Log name
-	 * @deprecated in 1.19, warnings in 1.21. Use getName()
+	 * @deprecated since 1.19, warnings in 1.21. Use getName()
 	 */
 	public static function logName( $type ) {
 		global $wgLogNames;
@@ -236,7 +236,7 @@ class LogPage {
 	 * @todo handle missing log types
 	 * @param string $type logtype
 	 * @return string Header text of this logtype
-	 * @deprecated in 1.19, warnings in 1.21. Use getDescription()
+	 * @deprecated since 1.19, warnings in 1.21. Use getDescription()
 	 */
 	public static function logHeader( $type ) {
 		global $wgLogHeaders;

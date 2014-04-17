@@ -1475,7 +1475,7 @@ class Preferences {
 	 * Caller is responsible for checking $wgAuth and 'editmyprivateinfo'
 	 * right.
 	 *
-	 * @deprecated in 1.20; use User::setEmailWithConfirmation() instead.
+	 * @deprecated since 1.20; use User::setEmailWithConfirmation() instead.
 	 * @param $user User
 	 * @param string $newaddr New email address
 	 * @return Array (true on success or Status on failure, info string)
@@ -1492,7 +1492,7 @@ class Preferences {
 	}
 
 	/**
-	 * @deprecated in 1.19
+	 * @deprecated since 1.19
 	 * @param $user User
 	 * @return array
 	 */

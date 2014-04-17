@@ -975,7 +975,7 @@ class Revision implements IDBAccessObject {
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter
 	 *
-	 * @deprecated in 1.21, use getContent() instead
+	 * @deprecated since 1.21, use getContent() instead
 	 * @todo Replace usage in core
 	 * @return String
 	 */

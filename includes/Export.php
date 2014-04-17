@@ -477,7 +477,7 @@ class WikiExporter {
 class XmlDumpWriter {
 	/**
 	 * Returns the export schema version.
-	 * @deprecated in 1.20; use WikiExporter::schemaVersion() instead
+	 * @deprecated since 1.20; use WikiExporter::schemaVersion() instead
 	 * @return string
 	 */
 	function schemaVersion() {

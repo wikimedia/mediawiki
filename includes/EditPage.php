@@ -545,7 +545,7 @@ class EditPage {
 	 * Show a read-only error
 	 * Parameters are the same as OutputPage:readOnlyPage()
 	 * Redirect to the article page if redlink=1
-	 * @deprecated in 1.19; use displayPermissionsError() instead
+	 * @deprecated since 1.19; use displayPermissionsError() instead
 	 */
 	function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
 		wfDeprecated( __METHOD__, '1.19' );
@@ -3623,7 +3623,7 @@ HTML
 	/**
 	 * Call the stock "user is blocked" page
 	 *
-	 * @deprecated in 1.19; throw an exception directly instead
+	 * @deprecated since 1.19; throw an exception directly instead
 	 */
 	function blockedPage() {
 		wfDeprecated( __METHOD__, '1.19' );
@@ -3635,7 +3635,7 @@ HTML
 	/**
 	 * Produce the stock "please login to edit pages" page
 	 *
-	 * @deprecated in 1.19; throw an exception directly instead
+	 * @deprecated since 1.19; throw an exception directly instead
 	 */
 	function userNotLoggedInPage() {
 		wfDeprecated( __METHOD__, '1.19' );
@@ -3646,7 +3646,7 @@ HTML
 	 * Show an error page saying to the user that he has insufficient permissions
 	 * to create a new page
 	 *
-	 * @deprecated in 1.19; throw an exception directly instead
+	 * @deprecated since 1.19; throw an exception directly instead
 	 */
 	function noCreatePermission() {
 		wfDeprecated( __METHOD__, '1.19' );

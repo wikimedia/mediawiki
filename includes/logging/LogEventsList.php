@@ -60,7 +60,7 @@ class LogEventsList extends ContextSource {
 	/**
 	 * Deprecated alias for getTitle(); do not use.
 	 *
-	 * @deprecated in 1.20; use getTitle() instead.
+	 * @deprecated since 1.20; use getTitle() instead.
 	 * @return Title
 	 */
 	public function getDisplayTitle() {
@@ -71,7 +71,7 @@ class LogEventsList extends ContextSource {
 	/**
 	 * Set page title and show header for this log type
 	 * @param array $type
-	 * @deprecated in 1.19
+	 * @deprecated since 1.19
 	 */
 	public function showHeader( $type ) {
 		wfDeprecated( __METHOD__, '1.19' );

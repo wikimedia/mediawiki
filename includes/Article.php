@@ -238,7 +238,7 @@ class Article implements Page {
 	 * This function has side effects! Do not use this function if you
 	 * only want the real revision text if any.
 	 *
-	 * @deprecated in 1.21; use WikiPage::getContent() instead
+	 * @deprecated since 1.21; use WikiPage::getContent() instead
 	 *
 	 * @return string Return the text of this revision
 	 */
@@ -355,7 +355,7 @@ class Article implements Page {
 	/**
 	 * Load the revision (including text) into this object
 	 *
-	 * @deprecated in 1.19; use fetchContent()
+	 * @deprecated since 1.19; use fetchContent()
 	 */
 	function loadContent() {
 		wfDeprecated( __METHOD__, '1.19' );
@@ -374,7 +374,7 @@ class Article implements Page {
 	 * has to remain public for now.
 	 *
 	 * @return mixed string containing article contents, or false if null
-	 * @deprecated in 1.21, use WikiPage::getContent() instead
+	 * @deprecated since 1.21, use WikiPage::getContent() instead
 	 */
 	function fetchContent() { #BC cruft!
 		ContentHandler::deprecated( __METHOD__, '1.21' );
