@@ -40,7 +40,7 @@ class SkinVector extends SkinTemplate {
 
 	/**
 	 * Initializes output page and sets up skin-specific parameters
-	 * @param $out OutputPage object to initialize
+	 * @param OutputPage $out Object to initialize
 	 */
 	public function initPage( OutputPage $out ) {
 		global $wgLocalStylePath;
@@ -62,7 +62,7 @@ class SkinVector extends SkinTemplate {
 
 	/**
 	 * Loads skin and user CSS files.
-	 * @param $out OutputPage object
+	 * @param OutputPage $out
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
@@ -75,8 +75,8 @@ class SkinVector extends SkinTemplate {
 	/**
 	 * Adds classes to the body element.
 	 *
-	 * @param $out OutputPage object
-	 * @param &$bodyAttrs Array of attributes that will be set on the body element
+	 * @param OutputPage $out
+	 * @param array &$bodyAttrs Array of attributes that will be set on the body element
 	 */
 	function addToBodyAttributes( $out, &$bodyAttrs ) {
 		if ( isset( $bodyAttrs['class'] ) && strlen( $bodyAttrs['class'] ) > 0 ) {
@@ -249,7 +249,7 @@ class VectorTemplate extends BaseTemplate {
 	/**
 	 * Render a series of portals
 	 *
-	 * @param $portals array
+	 * @param array $portals
 	 */
 	protected function renderPortals( $portals ) {
 		// Force the rendering of the following portals
@@ -287,10 +287,10 @@ class VectorTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * @param $name string
-	 * @param $content array
-	 * @param $msg null|string
-	 * @param $hook null|string|array
+	 * @param string $name
+	 * @param array $content
+	 * @param null|string $msg
+	 * @param null|string|array $hook
 	 */
 	protected function renderPortal( $name, $content, $msg = null, $hook = null ) {
 		if ( $msg === null ) {
@@ -332,7 +332,7 @@ class VectorTemplate extends BaseTemplate {
 	 * Render one or more navigations elements by name, automatically reveresed
 	 * when UI is in RTL mode
 	 *
-	 * @param $elements array
+	 * @param array $elements
 	 */
 	protected function renderNavigation( $elements ) {
 		global $wgVectorUseSimpleSearch;

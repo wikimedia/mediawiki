@@ -40,7 +40,7 @@ class SkinMonoBook extends SkinTemplate {
 		$template = 'MonoBookTemplate', $useHeadElement = true;
 
 	/**
-	 * @param $out OutputPage
+	 * @param OutputPage $out
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
@@ -172,7 +172,7 @@ echo $footerEnd;
 	/*************************************************************************************************/
 
 	/**
-	 * @param $sidebar array
+	 * @param array $sidebar
 	 */
 	protected function renderPortals( $sidebar ) {
 		if ( !isset( $sidebar['SEARCH'] ) ) {
@@ -295,8 +295,8 @@ echo $footerEnd;
 
 	/*************************************************************************************************/
 	/**
-	 * @param $bar string
-	 * @param $cont array|string
+	 * @param string $bar
+	 * @param array|string $cont
 	 */
 	function customBox( $bar, $cont ) {
 		$portletAttribs = array( 'class' => 'generated-sidebar portlet', 'id' => Sanitizer::escapeId( "p-$bar" ), 'role' => 'navigation' );

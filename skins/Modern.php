@@ -36,7 +36,7 @@ class SkinModern extends SkinTemplate {
 		$template = 'ModernTemplate', $useHeadElement = true;
 
 	/**
-	 * @param $out OutputPage
+	 * @param OutputPage $out
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
