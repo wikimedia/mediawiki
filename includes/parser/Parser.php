@@ -4524,6 +4524,7 @@ class Parser {
 			$toc = Linker::tocList( $toc, $this->mOptions->getUserLangObj() );
 			$this->mOutput->setTOCHTML( $toc );
 			$toc = self::TOC_START . $toc . self::TOC_END;
+			$this->mOutput->addModules( 'mediawiki.toc' );
 		}
 
 		if ( $isMain ) {

@@ -98,6 +98,7 @@ return array(
 			'mediawiki.api.watch',
 			'mediawiki.jqueryMsg',
 			'mediawiki.Title',
+			'mediawiki.toc',
 			'mediawiki.Uri',
 			'mediawiki.user',
 			'mediawiki.util',
