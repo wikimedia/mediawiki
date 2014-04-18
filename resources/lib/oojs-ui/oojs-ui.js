@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (9d291a9222)
+ * OOjs UI v0.1.0-pre (989950a4db)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Apr 16 2014 18:45:32 GMT-0700 (PDT)
+ * Date: Fri Apr 18 2014 13:02:46 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -1535,6 +1535,7 @@ OO.ui.Dialog = function OoUiDialog( config ) {
 	this.visible = false;
 	this.footless = !!config.footless;
 	this.size = null;
+	this.pending = 0;
 	this.onWindowMouseWheelHandler = OO.ui.bind( this.onWindowMouseWheel, this );
 	this.onDocumentKeyDownHandler = OO.ui.bind( this.onDocumentKeyDown, this );
 
@@ -1720,6 +1721,49 @@ OO.ui.Dialog.prototype.close = function ( data ) {
 			OO.ui.Window.prototype.close.call( dialog, data );
 		}, 250 );
 	}
+};
+
+/**
+ * Check if input is pending.
+ *
+ * @return {boolean}
+ */
+OO.ui.Dialog.prototype.isPending = function () {
+	return !!this.pending;
+};
+
+/**
+ * Increase the pending stack.
+ *
+ * @chainable
+ */
+OO.ui.Dialog.prototype.pushPending = function () {
+	if ( this.pending === 0 ) {
+		this.frame.$content.addClass( 'oo-ui-dialog-pending' );
+		this.$head.addClass( 'oo-ui-texture-pending' );
+		this.$foot.addClass( 'oo-ui-texture-pending' );
+	}
+	this.pending++;
+
+	return this;
+};
+
+/**
+ * Reduce the pending stack.
+ *
+ * Clamped at zero.
+ *
+ * @chainable
+ */
+OO.ui.Dialog.prototype.popPending = function () {
+	if ( this.pending === 1 ) {
+		this.frame.$content.removeClass( 'oo-ui-dialog-pending' );
+		this.$head.removeClass( 'oo-ui-texture-pending' );
+		this.$foot.removeClass( 'oo-ui-texture-pending' );
+	}
+	this.pending = Math.max( 0, this.pending - 1 );
+
+	return this;
 };
 /**
  * Container for elements.
@@ -2148,7 +2192,6 @@ OO.ui.FlaggableElement.prototype.setFlags = function ( flags ) {
  * @constructor
  * @param {jQuery} $group Container node, assigned to #$group
  * @param {Object} [config] Configuration options
- * @cfg {Object.<string,string>} [aggregations] Events to aggregate, keyed by item event name
  */
 OO.ui.GroupElement = function OoUiGroupElement( $group, config ) {
 	// Configuration
@@ -2158,8 +2201,7 @@ OO.ui.GroupElement = function OoUiGroupElement( $group, config ) {
 	this.$group = $group;
 	this.items = [];
 	this.$items = this.$( [] );
-	this.aggregate = !$.isEmptyObject( config.aggregations );
-	this.aggregations = config.aggregations || {};
+	this.aggregateItemEvents = {};
 };
 
 /* Methods */
@@ -2171,6 +2213,54 @@ OO.ui.GroupElement = function OoUiGroupElement( $group, config ) {
  */
 OO.ui.GroupElement.prototype.getItems = function () {
 	return this.items.slice( 0 );
+};
+
+/**
+ * Add an aggregate item event.
+ *
+ * Aggregated events are listened to on each item and then emitted by the group under a new name,
+ * and with an additional leading parameter containing the item that emitted the original event.
+ * Other arguments that were emitted from the original event are passed through.
+ *
+ * @param {Object.<string,string|null>} events Aggregate events emitted by group, keyed by item
+ *   event, use null value to remove aggregation
+ * @throws {Error} If aggregation already exists
+ */
+OO.ui.GroupElement.prototype.aggregate = function ( events ) {
+	var i, len, item, add, remove, itemEvent, groupEvent;
+
+	for ( itemEvent in events ) {
+		groupEvent = events[itemEvent];
+
+		// Remove existing aggregated event
+		if ( itemEvent in this.aggregateItemEvents ) {
+			// Don't allow duplicate aggregations
+			if ( groupEvent ) {
+				throw new Error( 'Duplicate item event aggregation for ' + itemEvent );
+			}
+			// Remove event aggregation from existing items
+			remove = {};
+			remove[itemEvent] = this.aggregateItemEvents[itemEvent];
+			for ( i = 0, len = this.items.length; i < len; i++ ) {
+				this.items[i].disconnect( this, remove );
+			}
+			// Prevent future items from aggregating event
+			delete this.aggregateItemEvents[itemEvent];
+		}
+
+		// Add new aggregate event
+		if ( groupEvent ) {
+			// Make future items aggregate event
+			this.aggregateItemEvents[itemEvent] = groupEvent;
+			// Add event aggregation to existing items
+			for ( i = 0, len = this.items.length; i < len; i++ ) {
+				item = this.items[i];
+				add = {};
+				add[itemEvent] = [ 'emit', groupEvent, item ];
+				item.connect( this, add );
+			}
+		}
+	}
 };
 
 /**
@@ -2197,10 +2287,10 @@ OO.ui.GroupElement.prototype.addItems = function ( items, index ) {
 			}
 		}
 		// Add the item
-		if ( this.aggregate ) {
+		if ( !$.isEmptyObject( this.aggregateItemEvents ) ) {
 			events = {};
-			for ( event in this.aggregations ) {
-				events[event] = [ 'emit', this.aggregations[event], item ];
+			for ( event in this.aggregateItemEvents ) {
+				events[event] = [ 'emit', this.aggregateItemEvents[event], item ];
 			}
 			item.connect( this, events );
 		}
@@ -2240,7 +2330,7 @@ OO.ui.GroupElement.prototype.removeItems = function ( items ) {
 		item = items[i];
 		index = $.inArray( item, this.items );
 		if ( index !== -1 ) {
-			if ( this.aggregate ) {
+			if ( !$.isEmptyObject( this.aggregateItemEvents ) ) {
 				item.disconnect( this );
 			}
 			item.setElementGroup( null );
@@ -2266,7 +2356,7 @@ OO.ui.GroupElement.prototype.clearItems = function () {
 	// Remove all items
 	for ( i = 0, len = this.items.length; i < len; i++ ) {
 		item = this.items[i];
-		if ( this.aggregate ) {
+		if ( !$.isEmptyObject( this.aggregateItemEvents ) ) {
 			item.disconnect( this );
 		}
 		item.setElementGroup( null );
@@ -4535,17 +4625,26 @@ OO.mixinClass( OO.ui.StackLayout, OO.ui.GroupElement );
 
 /**
  * @event set
- * @param {OO.ui.PanelLayout|null} [item] Current item
+ * @param {OO.ui.Layout|null} [item] Current item
  */
 
 /* Methods */
+
+/**
+ * Get the current item.
+ *
+ * @return {OO.ui.Layout|null} [description]
+ */
+OO.ui.StackLayout.prototype.getCurrentItem = function () {
+	return this.currentItem;
+};
 
 /**
  * Add items.
  *
  * Adding an existing item (by value) will move it.
  *
- * @param {OO.ui.PanelLayout[]} items Items to add
+ * @param {OO.ui.Layout[]} items Items to add
  * @param {number} [index] Index to insert items after
  * @chainable
  */
@@ -4564,7 +4663,7 @@ OO.ui.StackLayout.prototype.addItems = function ( items, index ) {
  *
  * Items will be detached, not removed, so they can be used later.
  *
- * @param {OO.ui.PanelLayout[]} items Items to remove
+ * @param {OO.ui.Layout[]} items Items to remove
  * @chainable
  */
 OO.ui.StackLayout.prototype.removeItems = function ( items ) {
@@ -4598,7 +4697,7 @@ OO.ui.StackLayout.prototype.clearItems = function () {
  *
  * Any currently shown item will be hidden.
  *
- * @param {OO.ui.PanelLayout} item Item to show
+ * @param {OO.ui.Layout} item Item to show
  * @chainable
  */
 OO.ui.StackLayout.prototype.setItem = function ( item ) {
@@ -7824,9 +7923,12 @@ OO.ui.TextInputWidget.prototype.isPending = function () {
  * @chainable
  */
 OO.ui.TextInputWidget.prototype.pushPending = function () {
+	if ( this.pending === 0 ) {
+		this.$element.addClass( 'oo-ui-textInputWidget-pending' );
+		this.$input.addClass( 'oo-ui-texture-pending' );
+	}
 	this.pending++;
-	this.$element.addClass( 'oo-ui-textInputWidget-pending' );
-	this.$input.addClass( 'oo-ui-texture-pending' );
+
 	return this;
 };
 
@@ -7838,11 +7940,12 @@ OO.ui.TextInputWidget.prototype.pushPending = function () {
  * @chainable
  */
 OO.ui.TextInputWidget.prototype.popPending = function () {
-	this.pending = Math.max( 0, this.pending - 1 );
-	if ( !this.pending ) {
+	if ( this.pending === 1 ) {
 		this.$element.removeClass( 'oo-ui-textInputWidget-pending' );
 		this.$input.removeClass( 'oo-ui-texture-pending' );
 	}
+	this.pending = Math.max( 0, this.pending - 1 );
+
 	return this;
 };
 /**

@@ -17,8 +17,8 @@
 		]
 	},
 	"ooui-dialog-action-close": "Cerrar",
-	"ooui-outline-control-move-down": "Mover abajo",
-	"ooui-outline-control-move-up": "Mover arriba",
+	"ooui-outline-control-move-down": "Bajar elemento",
+	"ooui-outline-control-move-up": "Subir elemento",
 	"ooui-outline-control-remove": "Eliminar elemento",
 	"ooui-toolbar-more": "Más"
 }

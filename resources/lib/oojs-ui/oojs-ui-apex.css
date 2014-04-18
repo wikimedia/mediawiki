@@ -38,8 +38,18 @@
           transform: scale(1);
 }
 
+.oo-ui-dialog-content .oo-ui-window-head,
+.oo-ui-dialog-content .oo-ui-window-foot {
+  z-index: 1;
+}
+
 .oo-ui-dialog-content .oo-ui-window-body {
+  z-index: 2;
   box-shadow: 0 0 0.66em rgba(0, 0, 0, 0.25);
+}
+
+.oo-ui-dialog-content .oo-ui-window-overlay {
+  z-index: 3;
 }
 
 .oo-ui-frame-content {
@@ -277,14 +287,6 @@
 .oo-ui-buttonedElement-framed.oo-ui-widget-disabled .oo-ui-buttonedElement-button.oo-ui-buttonedElement-pressed:focus {
   border-color: #ccc;
   box-shadow: none;
-}
-
-.oo-ui-bookletLayout > .oo-ui-gridLayout > .oo-ui-panelLayout {
-  -webkit-transition: width 250ms ease-in-out, height 250ms ease-in-out, top 250ms ease-in-out, left 250ms ease-in-out;
-     -moz-transition: width 250ms ease-in-out, height 250ms ease-in-out, top 250ms ease-in-out, left 250ms ease-in-out;
-      -ms-transition: width 250ms ease-in-out, height 250ms ease-in-out, top 250ms ease-in-out, left 250ms ease-in-out;
-       -o-transition: width 250ms ease-in-out, height 250ms ease-in-out, top 250ms ease-in-out, left 250ms ease-in-out;
-          transition: width 250ms ease-in-out, height 250ms ease-in-out, top 250ms ease-in-out, left 250ms ease-in-out;
 }
 
 .oo-ui-bookletLayout-outlinePanel {
