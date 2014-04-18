@@ -1159,16 +1159,19 @@ class LocalFile extends File {
 		// Trim spaces on user supplied text
 		$comment = trim( $comment );
 
-		// truncate nicely or the DB will do it for us
+		// Truncate nicely or the DB will do it for us
 		// non-nicely (dangling multi-byte chars, non-truncated version in cache).
 		$comment = $wgContLang->truncate( $comment, 255 );
 		$this->lock(); // begin
 		$status = $this->publish( $srcPath, $flags, $options );
 
-		if ( $status->successCount > 0 ) {
-			# Essentially we are displacing any existing current file and saving
-			# a new current file at the old location. If just the first succeeded,
-			# we still need to displace the current DB entry and put in a new one.
+		if ( $status->successCount >= 2 ) {
+			// There will be a copy+(one of move,copy,store).
+			// The first succeeding does not commit us to updating the DB
+			// since it simply copied the current version to a timestamped file name.
+			// It is only *preferable* to avoid leaving such files orphaned.
+			// Once the second operation goes through, then the current version was
+			// updated and we must therefore update the DB too.
 			if ( !$this->recordUpload2( $status->value, $comment, $pageText, $props, $timestamp, $user ) ) {
 				$status->fatal( 'filenotfound', $srcPath );
 			}
