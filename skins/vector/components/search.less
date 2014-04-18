@@ -44,8 +44,11 @@ div#simpleSearch {
 	#searchInput {
 		top: 0;
 		left: 0;
-		width: 90%;
-		padding: 0.2em 0 0.2em 0.2em;
+		width: 100%;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+		padding: 0.2em 2em 0.2em 0.2em;
 		font-size: 13px;
 		direction: ltr;
 
@@ -89,7 +92,7 @@ div#simpleSearch {
 	#mw-searchButton {
 		top: 0;
 		right: 0;
-		width: 10%;
+		width: 2em;
 		height: 100%;
 		cursor: pointer;
 		/* Hide button text and replace it with the image. */
