@@ -128,7 +128,9 @@ class HtmlFormatter {
 	}
 
 	/**
-	 * Removes content we've chosen to remove
+	 * Removes content we've chosen to remove.  The text of the removed elements can be
+	 * extracted with the getText method.
+	 * @return array of removed DOMElements
 	 */
 	public function filterContent() {
 		wfProfileIn( __METHOD__ );
@@ -156,8 +158,7 @@ class HtmlFormatter {
 				}
 			}
 		}
-
-		$this->removeElements( $domElemsToRemove );
+		$removed = $this->removeElements( $domElemsToRemove );
 
 		// Elements with named IDs
 		$domElemsToRemove = array();
@@ -167,7 +168,7 @@ class HtmlFormatter {
 				$domElemsToRemove[] = $itemToRemoveNode;
 			}
 		}
-		$this->removeElements( $domElemsToRemove );
+		$removed = array_merge( $removed, $this->removeElements( $domElemsToRemove ) );
 
 		// CSS Classes
 		$domElemsToRemove = array();
@@ -183,7 +184,7 @@ class HtmlFormatter {
 				}
 			}
 		}
-		$this->removeElements( $domElemsToRemove );
+		$removed = array_merge( $removed, $this->removeElements( $domElemsToRemove ) );
 
 		// Tags with CSS Classes
 		foreach ( $removals['TAG_CLASS'] as $classToRemove ) {
@@ -192,16 +193,17 @@ class HtmlFormatter {
 			$elements = $xpath->query(
 				'//' . $parts[0] . '[@class="' . $parts[1] . '"]'
 			);
-
-			$this->removeElements( $elements );
+			$removed = array_merge( $removed, $this->removeElements( $elements ) );
 		}
 
 		wfProfileOut( __METHOD__ );
+		return $removed;
 	}
 
 	/**
 	 * Removes a list of elelments from DOMDocument
 	 * @param array|DOMNodeList $elements
+	 * @return array of removed elements
 	 */
 	private function removeElements( $elements ) {
 		$list = $elements;
@@ -217,6 +219,7 @@ class HtmlFormatter {
 				$element->parentNode->removeChild( $element );
 			}
 		}
+		return $list;
 	}
 
 	/**
@@ -245,7 +248,10 @@ class HtmlFormatter {
 	}
 
 	/**
-	 * Performs final transformations and returns resulting HTML
+	 * Performs final transformations and returns resulting HTML.  Note that if you want to call this
+	 * both without an element and with an element you should call it without an element first.  If you
+	 * specify the $element in the method it'll change the underlying dom and you won't be able to get
+	 * it back.
 	 *
 	 * @param DOMElement|string|null $element ID of element to get HTML from or false to get it from the whole tree
 	 * @return string Processed HTML

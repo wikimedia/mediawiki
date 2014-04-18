@@ -8,17 +8,23 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 	 * @dataProvider getHtmlData
 	 * @covers HtmlFormatter::getText
 	 */
-	public function testTransform( $input, $expected, $callback = false ) {
+	public function testTransform( $input, $expectedText, $expectedRemoved = array(), $callback = false ) {
 		$input = self::normalize( $input );
 		$formatter = new HtmlFormatter( HtmlFormatter::wrapHTML( $input ) );
 		if ( $callback ) {
 			$callback( $formatter );
 		}
-		$formatter->filterContent();
+		$removedElements = $formatter->filterContent();
 		$html = $formatter->getText();
+		$removed = array();
+		foreach ( $removedElements as $removedElement ) {
+			$removed[] = self::normalize( $formatter->getText( $removedElement ) );
+		}
+		$expectedRemoved = array_map( 'self::normalize', $expectedRemoved );
 
 		$this->assertValidHtmlSnippet( $html );
-		$this->assertEquals( self::normalize( $expected ), self::normalize( $html ) );
+		$this->assertEquals( self::normalize( $expectedText ), self::normalize( $html ) );
+		$this->assertEquals( asort( $expectedRemoved ), asort( $removed ) );
 	}
 
 	private static function normalize( $s ) {
@@ -45,6 +51,7 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 			array(
 				'<img src="/foo/bar.jpg" alt="Blah"/>',
 				'',
+				array( '<img src="/foo/bar.jpg" alt="Blah">' ),
 				$removeImages,
 			),
 			// basic tag removal
@@ -52,21 +59,30 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 				'<table><tr><td>foo</td></tr></table><div class="foo">foo</div><div class="foo quux">foo</div><span id="bar">bar</span>
 <strong class="foo" id="bar">foobar</strong><div class="notfoo">test</div><div class="baz"/>
 <span class="baz">baz</span>',
-
 				'<div class="notfoo">test</div>
 <span class="baz">baz</span>',
+				array(
+					'<table><tr><td>foo</td></tr></table>',
+					'<div class="foo">foo</div>',
+					'<div class="foo quux">foo</div>',
+					'<span id="bar">bar</span>',
+					'<strong class="foo" id="bar">foobar</strong>',
+					'<div class="baz"/>',
+				),
 				$removeTags,
 			),
 			// don't flatten tags that start like chosen ones
 			array(
 				'<div><s>foo</s> <span>bar</span></div>',
 				'foo <span>bar</span>',
+				array(),
 				$flattenSomeStuff,
 			),
 			// total flattening
 			array(
 				'<div style="foo">bar<sup>2</sup></div>',
 				'bar2',
+				array(),
 				$flattenEverything,
 			),
 			// UTF-8 preservation and security
