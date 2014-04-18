@@ -16,7 +16,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @dataProvider provideFormattableTimes#
+	 * @dataProvider provideFormattableTimes
 	 * @covers Language::formatTimePeriod
 	 */
 	public function testFormatTimePeriod( $seconds, $format, $expected, $desc ) {
