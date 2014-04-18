@@ -69,6 +69,10 @@ class ApiRsd extends ApiBase {
 		);
 	}
 
+	public function isReadMode() {
+		return false;
+	}
+
 	/**
 	 * Builds an internal list of APIs to expose information about.
 	 * Normally this only lists the MediaWiki API, with its base URL,
