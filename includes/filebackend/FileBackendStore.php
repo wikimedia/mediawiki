@@ -1105,11 +1105,20 @@ abstract class FileBackendStore extends FileBackend {
 		// Load from the persistent container caches
 		$this->primeContainerCache( $paths );
 		// Get the latest stat info for all the files (having locked them)
-		$this->preloadFileStat( array( 'srcs' => $paths, 'latest' => true ) );
+		$ok = $this->preloadFileStat( array( 'srcs' => $paths, 'latest' => true ) );
 
-		// Actually attempt the operation batch...
-		$opts = $this->setConcurrencyFlags( $opts );
-		$subStatus = FileOpBatch::attempt( $performOps, $opts, $this->fileJournal );
+		if ( $ok ) {
+			// Actually attempt the operation batch...
+			$opts = $this->setConcurrencyFlags( $opts );
+			$subStatus = FileOpBatch::attempt( $performOps, $opts, $this->fileJournal );
+		} else {
+			// If we could not even stat some files, then bail out...
+			$subStatus = Status::newFatal( 'backend-fail-internal', $this->name );
+			foreach ( $ops as $i => $op ) { // mark each op as failed
+				$subStatus->success[$i] = false;
+				++$subStatus->failCount;
+			}
+		}
 
 		// Merge errors into status fields
 		$status->merge( $subStatus );
@@ -1282,6 +1291,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	final public function preloadFileStat( array $params ) {
 		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$success = true; // no network errors
 
 		$params['concurrency'] = ( $this->parallelize !== 'off' ) ? $this->concurrency : 1;
 		$stats = $this->doGetFileStatMulti( $params );
@@ -1318,9 +1328,12 @@ abstract class FileBackendStore extends FileBackend {
 					array( 'hash' => false, 'latest' => $latest ) );
 				wfDebug( __METHOD__ . ": File $path does not exist.\n" );
 			} else { // an error occurred
+				$success = false;
 				wfDebug( __METHOD__ . ": Could not stat file $path.\n" );
 			}
 		}
+
+		return $success;
 	}
 
 	/**
