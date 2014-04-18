@@ -206,6 +206,12 @@ a:link, a:visited {
 	content: " (" attr(href) ")";
 }
 
+#content a.external.text[href^='//']:after,
+#content a.external.autonumber[href^='//']:after {
+	/* Expand URLs for printing */
+	content: " (https:" attr(href) ")";
+}
+
 #globalWrapper {
 	width: 100% !important;
 	min-width: 0 !important;
