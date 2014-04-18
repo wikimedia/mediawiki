@@ -1319,12 +1319,9 @@ class ResourceLoader {
 	public static function getLESSVars() {
 		global $wgResourceLoaderLESSVars;
 
-		static $lessVars = null;
-		if ( $lessVars === null ) {
-			$lessVars = $wgResourceLoaderLESSVars;
-			// Sort by key to ensure consistent hashing for cache lookups.
-			ksort( $lessVars );
-		}
+		$lessVars = $wgResourceLoaderLESSVars;
+		// Sort by key to ensure consistent hashing for cache lookups.
+		ksort( $lessVars );
 		return $lessVars;
 	}
 }
