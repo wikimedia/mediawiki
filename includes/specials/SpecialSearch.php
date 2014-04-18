@@ -177,11 +177,6 @@ class SpecialSearch extends SpecialPage {
 		# If there's an exact or very near match, jump right there.
 		$title = SearchEngine::getNearMatch( $term );
 
-		if ( !wfRunHooks( 'SpecialSearchGo', array( &$title, &$term ) ) ) {
-			# Hook requested termination
-			return;
-		}
-
 		if ( !is_null( $title ) ) {
 			$this->getOutput()->redirect( $title->getFullURL() );
 
@@ -421,7 +416,6 @@ class SpecialSearch extends SpecialPage {
 		if ( $num || $this->offset ) {
 			$out->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
 		}
-		wfRunHooks( 'SpecialSearchResultsAppend', array( $this, $out, $term ) );
 	}
 
 	/**
