@@ -138,7 +138,7 @@ $.suggestions = {
 	 */
 	configure: function ( context, property, value ) {
 		var newCSS,
-			$result, $results, childrenWidth,
+			$result, $results, $spanForWidth, childrenWidth,
 			i, expWidth, maxWidth, text;
 
 		// Validate creation using fallback values
@@ -264,9 +264,11 @@ $.suggestions = {
 								$result.highlightText( context.data.prevText );
 							}
 
-							// Widen results box if needed
-							// New width is only calculated here, applied later
-							childrenWidth = $result.children().outerWidth();
+							// Widen results box if needed (new width is only calculated here, applied later).
+							// We need this awful hack to calculate the actual pre-ellipsis width.
+							$spanForWidth = $result.wrapInner( '<span>' ).children();
+							childrenWidth = $spanForWidth.outerWidth();
+							$spanForWidth.contents().unwrap();
 							if ( childrenWidth > $result.width() && childrenWidth > expWidth ) {
 								// factor in any padding, margin, or border space on the parent
 								expWidth = childrenWidth + ( context.data.$container.width() - $result.width() );
