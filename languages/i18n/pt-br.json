@@ -246,6 +246,7 @@
 	"permalink": "Link permanente",
 	"print": "Imprimir",
 	"view": "Ver",
+	"view-foreign": "Ver no $1",
 	"edit": "Editar",
 	"edit-local": "Editar descrição local",
 	"create": "Criar",

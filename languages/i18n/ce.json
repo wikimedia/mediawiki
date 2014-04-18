@@ -649,6 +649,8 @@
 	"post-expand-template-argument-category": "Кепашан аргументаш юкъахь йитина агӀонаш",
 	"parser-template-loop-warning": "Карийна кепаш юкъахь хилла шад: [[$1]]",
 	"parser-template-recursion-depth-warning": "Дозанал хьаладаьлла кӀоргенца юх юха дина кеп ($1)",
+	"expansion-depth-exceeded-category": "Схьаелларан кӀоргалла тӀех даьккхина агӀонаш",
+	"expansion-depth-exceeded-warning": "АгӀонгахь чуйихкар тӀехдаьккхина",
 	"parser-unstrip-loop-warning": "ДӀачӀагӀанца pre карина",
 	"undo-success": "Нисйинарг а тlе цалаца мега. Дехар до, хьажа цхьатерра йуй башхо, тешна хила, баккъалла иза хийцам буйте хьуна безарг, тlакха тlе таlайе «дlайазйе агlо», хийцам хlотта ба.",
 	"undo-failure": "Юккъера хийцамаш бахьнехь нисдар юхадаккха йиш яц.",

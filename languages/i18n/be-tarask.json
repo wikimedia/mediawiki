@@ -1647,6 +1647,7 @@
 	"listgrouprights-removegroup-self": "можа выдаліць уласны рахунак з {{PLURAL:$2|1=групы|групаў}}: $1",
 	"listgrouprights-addgroup-self-all": "Можа дадаць уласны рахунак да ўсіх груп",
 	"listgrouprights-removegroup-self-all": "Можа выдаліць уласны рахунак з ўсіх груп",
+	"listgrouprights-namespaceprotection-header": "Абмежаваньні прасторы назваў",
 	"trackingcategories": "Катэгорыі, якія патрабуюць увагі",
 	"trackingcategories-summary": "На гэтай старонцы пералічаныя катэгорыя, які патрабуюць увагі і якія аўтаматычна запаўняюцца праграмным забесьяпчэньнем MediaWiki. Іх назвы могуць быць зьмененыя рэдагаваньнем сыстэмных паведамленьняў у прасторы назваў {{ns:8}}.",
 	"mailnologin": "Няма адрасу атрымальніка",
