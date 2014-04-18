@@ -49,6 +49,7 @@ class ObjectCacheSessionHandler {
 
 	/**
 	 * Get the cache storage object to use for session storage
+	 * @return ObjectCache
 	 */
 	static function getCache() {
 		global $wgSessionCacheType;
@@ -58,8 +59,8 @@ class ObjectCacheSessionHandler {
 	/**
 	 * Get a cache key for the given session id.
 	 *
-	 * @param string $id session id
-	 * @return String: cache key
+	 * @param string $id Session id
+	 * @return string Cache key
 	 */
 	static function getKey( $id ) {
 		return wfMemcKey( 'session', $id );
@@ -68,9 +69,9 @@ class ObjectCacheSessionHandler {
 	/**
 	 * Callback when opening a session.
 	 *
-	 * @param $save_path String: path used to store session files, unused
-	 * @param $session_name String: session name
-	 * @return Boolean: success
+	 * @param string $save_path Path used to store session files, unused
+	 * @param string $session_name Session name
+	 * @return bool Success
 	 */
 	static function open( $save_path, $session_name ) {
 		return true;
@@ -80,7 +81,7 @@ class ObjectCacheSessionHandler {
 	 * Callback when closing a session.
 	 * NOP.
 	 *
-	 * @return Boolean: success
+	 * @return bool Success
 	 */
 	static function close() {
 		return true;
@@ -89,8 +90,8 @@ class ObjectCacheSessionHandler {
 	/**
 	 * Callback when reading session data.
 	 *
-	 * @param string $id session id
-	 * @return Mixed: session data
+	 * @param string $id Session id
+	 * @return mixed Session data
 	 */
 	static function read( $id ) {
 		$data = self::getCache()->get( self::getKey( $id ) );
@@ -103,9 +104,9 @@ class ObjectCacheSessionHandler {
 	/**
 	 * Callback when writing session data.
 	 *
-	 * @param string $id session id
-	 * @param $data Mixed: session data
-	 * @return Boolean: success
+	 * @param string $id Session id
+	 * @param mixed $data Session data
+	 * @return bool Success
 	 */
 	static function write( $id, $data ) {
 		global $wgObjectCacheSessionExpiry;
@@ -116,8 +117,8 @@ class ObjectCacheSessionHandler {
 	/**
 	 * Callback to destroy a session when calling session_destroy().
 	 *
-	 * @param string $id session id
-	 * @return Boolean: success
+	 * @param string $id Session id
+	 * @return bool Success
 	 */
 	static function destroy( $id ) {
 		self::getCache()->delete( self::getKey( $id ) );
@@ -128,8 +129,8 @@ class ObjectCacheSessionHandler {
 	 * Callback to execute garbage collection.
 	 * NOP: Object caches perform garbage collection implicitly
 	 *
-	 * @param $maxlifetime Integer: maximum session life time
-	 * @return Boolean: success
+	 * @param int $maxlifetime Maximum session life time
+	 * @return bool Success
 	 */
 	static function gc( $maxlifetime ) {
 		return true;
