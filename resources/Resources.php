@@ -135,7 +135,6 @@ return array(
 	'skins.vector.styles' => array(
 		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array(
-			'vector/styles.less',
 		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
