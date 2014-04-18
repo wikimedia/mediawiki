@@ -669,7 +669,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	public function preloadFileStat( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
-		$this->backends[$this->masterIndex]->preloadFileStat( $realParams );
+		return $this->backends[$this->masterIndex]->preloadFileStat( $realParams );
 	}
 
 	public function getScopedLocksForOps( array $ops, Status $status ) {

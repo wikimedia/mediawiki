@@ -1217,10 +1217,10 @@ abstract class FileBackend {
 	 * @param array $params Parameters include:
 	 *   - srcs        : list of source storage paths
 	 *   - latest      : use the latest available data
+	 * @return bool All requests proceeded without I/O errors (since 1.24)
 	 * @since 1.23
 	 */
-	public function preloadFileStat( array $params ) {
-	}
+	abstract public function preloadFileStat( array $params );
 
 	/**
 	 * Lock the files at the given storage paths in the backend.

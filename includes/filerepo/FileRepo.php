@@ -1244,7 +1244,7 @@ class FileRepo {
 			// This will check if the archive file also exists and fail if does.
 			// This is a sanity check to avoid data loss. On Windows and Linux,
 			// copy() will overwrite, so the existence check is vulnerable to
-			// race conditions unless an functioning LockManager is used.
+			// race conditions unless a functioning LockManager is used.
 			// LocalFile also uses SELECT FOR UPDATE for synchronization.
 			$operations[] = array(
 				'op' => 'copy',
