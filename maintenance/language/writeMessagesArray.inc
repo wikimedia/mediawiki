@@ -37,13 +37,13 @@ class MessageWriter {
 	/**
 	 * Write a messages array as a PHP text and write it to the messages file.
 	 *
-	 * @param $messages Array: the messages array.
-	 * @param $code String: the language code.
-	 * @param $write Boolean: write to the messages file?
-	 * @param $listUnknown Boolean: list the unknown messages?
-	 * @param $removeUnknown Boolean: whether to remove unkown messages
-	 * @param $messagesFolder String: path to a folder to store the MediaWiki messages.
-	 *        Defaults to the current install.
+	 * @param array $messages The messages array.
+	 * @param string $code The language code.
+	 * @param bool $write Write to the messages file?
+	 * @param bool $listUnknown List the unknown messages?
+	 * @param bool $removeUnknown Whether to remove unkown messages
+	 * @param string $messagesFolder Path to a folder to store the MediaWiki messages.
+	 *   Defaults to the current install.
 	 */
 	public static function writeMessagesToFile( $messages, $code, $write, $listUnknown,
 		$removeUnknown, $messagesFolder = false
@@ -107,14 +107,14 @@ $messages = array(
 	/**
 	 * Write a messages array as a PHP text.
 	 *
-	 * @param $messages Array: the messages array.
-	 * @param $ignoredComments Boolean: show comments about ignored and optional
-	 *                         messages? (For English.)
-	 * @param $prefix String: base path for messages.inc and messageTypes.inc files
-	 *                or false for default path (this directory)
-	 * @param $removeUnknown Boolean: whether to remove unkown messages
+	 * @param array $messages The messages array.
+	 * @param bool $ignoredComments Show comments about ignored and optional
+	 *   messages? (For English.)
+	 * @param string $prefix Base path for messages.inc and messageTypes.inc files
+	 *   or false for default path (this directory)
+	 * @param bool $removeUnknown Whether to remove unkown messages
 	 *
-	 * @return Array of the PHP text and the sorted messages array.
+	 * @return array Array of the PHP text and the sorted messages array.
 	 */
 	public static function writeMessagesArray( $messages, $ignoredComments = false,
 		$prefix = false, $removeUnknown = false
@@ -181,9 +181,9 @@ $messages = array(
 	/**
 	 * Generates an array of comments for messages.
 	 *
-	 * @param $messages Array: key of messages.
-	 * @param $ignored Array: list of ingored message keys.
-	 * @param $optional Array: list of optional message keys.
+	 * @param array $messages Key of messages.
+	 * @param array $ignored List of ingored message keys.
+	 * @param array $optional List of optional message keys.
 	 * @return array
 	 */
 	public static function makeComments( $messages, $ignored, $optional ) {
@@ -205,10 +205,10 @@ $messages = array(
 	/**
 	 * Write a block of messages to PHP.
 	 *
-	 * @param $blockComment String: the comment of whole block.
-	 * @param $messages Array: the block messages.
-	 * @param $messageComments Array: optional comments for messages in this block.
-	 * @param $prefix String: prefix for every line, for indenting purposes.
+	 * @param string $blockComment The comment of whole block.
+	 * @param array $messages The block messages.
+	 * @param array $messageComments Optional comments for messages in this block.
+	 * @param string $prefix Prefix for every line, for indenting purposes.
 	 *
 	 * @return string The block, formatted in PHP.
 	 */

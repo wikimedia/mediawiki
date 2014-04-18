@@ -142,8 +142,8 @@ class FindHooks extends Maintenance {
 
 	/**
 	 * Get hooks from a local file (for example docs/hooks.txt)
-	 * @param $doc string: filename to look in
-	 * @return array of documented hooks
+	 * @param string $doc filename to look in
+	 * @return array Array of documented hooks
 	 */
 	private function getHooksFromLocalDoc( $doc ) {
 			$m = array();
@@ -184,7 +184,7 @@ class FindHooks extends Maintenance {
 
 	/**
 	 * Get hooks from a PHP file
-	 * @param $file string Full filename to the PHP file.
+	 * @param string $file Full filename to the PHP file.
 	 * @return array of hooks found.
 	 */
 	private function getHooksFromFile( $file ) {
@@ -196,8 +196,8 @@ class FindHooks extends Maintenance {
 
 	/**
 	 * Get hooks from the source code.
-	 * @param $path Directory where the include files can be found
-	 * @return array of hooks found.
+	 * @param string $path Directory where the include files can be found
+	 * @return array Array of hooks found.
 	 */
 	private function getHooksFromPath( $path ) {
 		$hooks = array();
@@ -215,8 +215,8 @@ class FindHooks extends Maintenance {
 
 	/**
 	 * Get bad hooks (where the hook name could not be determined) from a PHP file
-	 * @param $file string Full filename to the PHP file.
-	 * @return array of bad wfRunHooks() lines
+	 * @param string $file Full filename to the PHP file.
+	 * @return array Array of bad wfRunHooks() lines
 	 */
 	private function getBadHooksFromFile( $file ) {
 		$content = file_get_contents( $file );
@@ -232,8 +232,8 @@ class FindHooks extends Maintenance {
 
 	/**
 	 * Get bad hooks from the source code.
-	 * @param $path Directory where the include files can be found
-	 * @return array of bad wfRunHooks() lines
+	 * @param string $path Directory where the include files can be found
+	 * @return array Array of bad wfRunHooks() lines
 	 */
 	private function getBadHooksFromPath( $path ) {
 		$hooks = array();
@@ -252,9 +252,9 @@ class FindHooks extends Maintenance {
 
 	/**
 	 * Nicely output the array
-	 * @param $msg String: a message to show before the value
-	 * @param $arr Array: an array
-	 * @param $sort Boolean: whether to sort the array (Default: true)
+	 * @param string $msg A message to show before the value
+	 * @param array $arr
+	 * @param bool $sort Whether to sort the array (Default: true)
 	 */
 	private function printArray( $msg, $arr, $sort = true ) {
 		if ( $sort ) {

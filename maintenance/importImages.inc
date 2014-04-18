@@ -26,10 +26,10 @@
 /**
  * Search a directory for files with one of a set of extensions
  *
- * @param $dir string Path to directory to search
- * @param $exts Array of extensions to search for
- * @param $recurse Bool Search subdirectories recursively
- * @return mixed Array of filenames on success, or false on failure
+ * @param string $dir Path to directory to search
+ * @param array $exts Array of extensions to search for
+ * @param bool $recurse Search subdirectories recursively
+ * @return array|bool Array of filenames on success, or false on failure
  */
 function findFiles( $dir, $exts, $recurse = false ) {
 	if ( is_dir( $dir ) ) {
@@ -58,7 +58,7 @@ function findFiles( $dir, $exts, $recurse = false ) {
 /**
  * Split a filename into filename and extension
  *
- * @param $filename string Filename
+ * @param string $filename Filename
  * @return array
  */
 function splitFilename( $filename ) {
@@ -78,10 +78,10 @@ function splitFilename( $filename ) {
  * files for acme.foo.bar and the extension ".txt". With $maxStrip = 2,
  * acme.txt would also be acceptable.
  *
- * @param $file string base path
- * @param $auxExtension string the extension to be appended to the base path
- * @param $maxStrip int the maximum number of extensions to strip from the base path (default: 1)
- * @return string or false
+ * @param string $file Base path
+ * @param string $auxExtension The extension to be appended to the base path
+ * @param int $maxStrip The maximum number of extensions to strip from the base path (default: 1)
+ * @return string|bool
  */
 function findAuxFile( $file, $auxExtension, $maxStrip = 1 ) {
 	if ( strpos( $auxExtension, '.' ) !== 0 ) {

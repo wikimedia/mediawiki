@@ -61,7 +61,7 @@ class BenchmarkHooks extends Benchmarker {
 	}
 
 	/**
-	 * @param $trials int
+	 * @param int $trials
 	 * @return string
 	 */
 	private function benchHooks( $trials = 10 ) {

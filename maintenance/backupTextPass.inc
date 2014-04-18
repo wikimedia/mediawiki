@@ -405,7 +405,7 @@ class TextPassDumper extends BackupDumper {
 	 * $this->maxConsecutiveFailedTextRetrievals consecutive calls to getText, MWException
 	 * is thrown.
 	 *
-	 * @param $id string The revision id to get the text for
+	 * @param string $id The revision id to get the text for
 	 *
 	 * @return string The revision text for $id, or ""
 	 * @throws MWException
@@ -555,7 +555,7 @@ class TextPassDumper extends BackupDumper {
 
 	/**
 	 * May throw a database error if, say, the server dies during query.
-	 * @param $id
+	 * @param int $id
 	 * @return bool|string
 	 * @throws MWException
 	 */

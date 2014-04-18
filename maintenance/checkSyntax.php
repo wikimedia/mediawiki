@@ -159,8 +159,8 @@ class CheckSyntax extends Maintenance {
 
 	/**
 	 * Returns a list of tracked files in a Git work tree differing from the master branch.
-	 * @param $path string: Path to the repository
-	 * @return array: Resulting list of changed files
+	 * @param string $path Path to the repository
+	 * @return array Resulting list of changed files
 	 */
 	private function getGitModifiedFiles( $path ) {
 
@@ -212,7 +212,7 @@ class CheckSyntax extends Maintenance {
 
 	/**
 	 * Returns true if $file is of a type we can check
-	 * @param $file string
+	 * @param string $file
 	 * @return bool
 	 */
 	private function isSuitableFile( $file ) {
@@ -232,7 +232,7 @@ class CheckSyntax extends Maintenance {
 
 	/**
 	 * Add given path to file list, searching it in include path if needed
-	 * @param $path string
+	 * @param string $path
 	 * @return bool
 	 */
 	private function addPath( $path ) {
@@ -242,7 +242,7 @@ class CheckSyntax extends Maintenance {
 
 	/**
 	 * Add given file to file list, or, if it's a directory, add its content
-	 * @param $path string
+	 * @param string $path
 	 * @return bool
 	 */
 	private function addFileOrDir( $path ) {
@@ -259,7 +259,7 @@ class CheckSyntax extends Maintenance {
 	/**
 	 * Add all suitable files in given directory or its subdirectories to the file list
 	 *
-	 * @param $dir String: directory to process
+	 * @param string $dir Directory to process
 	 */
 	private function addDirectoryContent( $dir ) {
 		$iterator = new RecursiveIteratorIterator(
@@ -276,8 +276,8 @@ class CheckSyntax extends Maintenance {
 	/**
 	 * Check a file for syntax errors using Parsekit. Shamelessly stolen
 	 * from tools/lint.php by TimStarling
-	 * @param $file String Path to a file to check for syntax errors
-	 * @return boolean
+	 * @param string $file Path to a file to check for syntax errors
+	 * @return bool
 	 */
 	private function checkFileWithParsekit( $file ) {
 		static $okErrors = array(
@@ -304,8 +304,8 @@ class CheckSyntax extends Maintenance {
 
 	/**
 	 * Check a file for syntax errors using php -l
-	 * @param $file String Path to a file to check for syntax errors
-	 * @return boolean
+	 * @param string $file Path to a file to check for syntax errors
+	 * @return bool
 	 */
 	private function checkFileWithCli( $file ) {
 		$res = exec( 'php -l ' . wfEscapeShellArg( $file ) );
@@ -321,8 +321,8 @@ class CheckSyntax extends Maintenance {
 	 * Check a file for non-fatal coding errors, such as byte-order marks in the beginning
 	 * or pointless ?> closing tags at the end.
 	 *
-	 * @param $file String String Path to a file to check for errors
-	 * @return boolean
+	 * @param string $file String Path to a file to check for errors
+	 * @return bool
 	 */
 	private function checkForMistakes( $file ) {
 		foreach ( $this->mNoStyleCheckPaths as $regex ) {

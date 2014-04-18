@@ -52,8 +52,8 @@ class UserOptions {
 	/**
 	 * This is used to check options. Only needed on construction
 	 *
-	 * @param $opts array
-	 * @param $args array
+	 * @param array $opts
+	 * @param array $args
 	 *
 	 * @return bool
 	 */
@@ -72,8 +72,8 @@ class UserOptions {
 	/**
 	 * load script options in the object
 	 *
-	 * @param $opts array
-	 * @param $args array
+	 * @param array $opts
+	 * @param array $args
 	 *
 	 * @return bool
 	 */

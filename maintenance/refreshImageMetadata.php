@@ -162,7 +162,7 @@ class RefreshImageMetadata extends Maintenance {
 	}
 
 	/**
-	 * @param $dbw DatabaseBase
+	 * @param DatabaseBase $dbw
 	 * @return array
 	 */
 	function getConditions( $dbw ) {
@@ -189,8 +189,8 @@ class RefreshImageMetadata extends Maintenance {
 	}
 
 	/**
-	 * @param $force bool
-	 * @param $brokenOnly bool
+	 * @param bool $force
+	 * @param bool $brokenOnly
 	 */
 	function setupParameters( $force, $brokenOnly ) {
 		global $wgUpdateCompatibleMetadata;

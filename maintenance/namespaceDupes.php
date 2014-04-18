@@ -72,8 +72,8 @@ class NamespaceConflictChecker extends Maintenance {
 
 	/**
 	 * @todo Document
-	 * @param $fix Boolean: whether or not to fix broken entries
-	 * @param $suffix String: suffix to append to renamed articles
+	 * @param bool $fix Whether or not to fix broken entries
+	 * @param string $suffix Suffix to append to renamed articles
 	 *
 	 * @return bool
 	 */
@@ -144,7 +144,7 @@ class NamespaceConflictChecker extends Maintenance {
 	/**
 	 * Get the interwiki list
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	private function getInterwikiList() {
 		$result = Interwiki::getAllPrefixes();
@@ -157,10 +157,10 @@ class NamespaceConflictChecker extends Maintenance {
 
 	/**
 	 * @todo Document
-	 * @param $ns Integer: a namespace id
-	 * @param $name String
-	 * @param $fix Boolean: whether to fix broken entries
-	 * @param $suffix String: suffix to append to renamed articles
+	 * @param int $ns A namespace id
+	 * @param string $name
+	 * @param bool $fix Whether to fix broken entries
+	 * @param string $suffix Suffix to append to renamed articles
 	 * @return bool
 	 */
 	private function checkNamespace( $ns, $name, $fix, $suffix = '' ) {
@@ -183,10 +183,10 @@ class NamespaceConflictChecker extends Maintenance {
 
 	/**
 	 * @todo Do this for real
-	 * @param $key
-	 * @param $prefix
-	 * @param $fix
-	 * @param $suffix string
+	 * @param int $ns
+	 * @param string $name
+	 * @param bool $fix
+	 * @param string $suffix
 	 * @return bool
 	 */
 	private function checkPrefix( $key, $prefix, $fix, $suffix = '' ) {
@@ -198,8 +198,8 @@ class NamespaceConflictChecker extends Maintenance {
 	 * Find pages in mainspace that have a prefix of the new namespace
 	 * so we know titles that will need migrating
 	 *
-	 * @param $ns Integer: namespace id (id for new namespace?)
-	 * @param $name String: prefix that is being made a namespace
+	 * @param int $ns Namespace id (id for new namespace?)
+	 * @param string $name Prefix that is being made a namespace
 	 *
 	 * @return array
 	 */
@@ -237,6 +237,8 @@ class NamespaceConflictChecker extends Maintenance {
 	/**
 	 * Report any conflicts we find
 	 *
+	 * @param stdClass $row
+	 * @param string $suffix
 	 * @return bool
 	 */
 	private function reportConflict( $row, $suffix ) {
@@ -272,9 +274,9 @@ class NamespaceConflictChecker extends Maintenance {
 	/**
 	 * Resolve any conflicts
 	 *
-	 * @param $row Object: row from the page table to fix
-	 * @param $resolvable Boolean
-	 * @param $suffix String: suffix to append to the fixed page
+	 * @param stClass $row Row from the page table to fix
+	 * @param bool $resolvable
+	 * @param string $suffix Suffix to append to the fixed page
 	 * @return bool
 	 */
 	private function resolveConflict( $row, $resolvable, $suffix ) {
@@ -304,9 +306,9 @@ class NamespaceConflictChecker extends Maintenance {
 	/**
 	 * Resolve a given conflict
 	 *
-	 * @param $row Object: row from the old broken entry
-	 * @param $table String: table to update
-	 * @param $prefix String: prefix for column name, like page or ar
+	 * @param stdClass $row Row from the old broken entry
+	 * @param string $table Table to update
+	 * @param string $prefix Prefix for column name, like page or ar
 	 * @return bool
 	 */
 	private function resolveConflictOn( $row, $table, $prefix ) {

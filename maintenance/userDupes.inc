@@ -46,7 +46,7 @@ class UserDupes {
 
 	/**
 	 * Output some text via the output callback provided
-	 * @param $str String Text to print
+	 * @param string $str Text to print
 	 */
 	private function out( $str ) {
 		call_user_func( $this->outputCallback, $str );
@@ -95,8 +95,8 @@ class UserDupes {
 	 * not requested. (If doing resolution, edits may be reassigned.)
 	 * Status information will be echo'd to stdout.
 	 *
-	 * @param $doDelete bool: pass true to actually remove things
-	 *                  from the database; false to just check.
+	 * @param bool $doDelete Pass true to actually remove things
+	 *   from the database; false to just check.
 	 * @return bool
 	 */
 	function checkDupes( $doDelete = false ) {
@@ -200,8 +200,8 @@ class UserDupes {
 	 * Examine user records for the given name. Try to see which record
 	 * will be the one that actually gets used, then check remaining records
 	 * for edits. If the dupes have no edits, we can safely remove them.
-	 * @param $name string
-	 * @param $doDelete bool
+	 * @param string $name
+	 * @param bool $doDelete
 	 * @access private
 	 */
 	function examine( $name, $doDelete ) {
@@ -249,7 +249,7 @@ class UserDupes {
 	 * Count the number of edits attributed to this user.
 	 * Does not currently check log table or other things
 	 * where it might show up...
-	 * @param $userid int
+	 * @param int $userid
 	 * @return int
 	 * @access private
 	 */
@@ -262,8 +262,8 @@ class UserDupes {
 	}
 
 	/**
-	 * @param $from int
-	 * @param $to int
+	 * @param int $from
+	 * @param int $to
 	 * @access private
 	 */
 	function reassignEdits( $from, $to ) {
@@ -277,7 +277,7 @@ class UserDupes {
 
 	/**
 	 * Remove a user account line.
-	 * @param $userid int
+	 * @param int $userid
 	 * @access private
 	 */
 	function trimAccount( $userid ) {

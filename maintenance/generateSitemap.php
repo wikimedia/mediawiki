@@ -218,7 +218,7 @@ class GenerateSitemap extends Maintenance {
 
 	/**
 	 * Create directory if it does not exist and return pathname with a trailing slash
-	 * @param $fspath string
+	 * @param string $fspath
 	 * @return null|string
 	 */
 	private static function init_path( $fspath ) {
@@ -262,8 +262,8 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Get the priority of a given namespace
 	 *
-	 * @param $namespace Integer: the namespace to get the priority for
-	 * @return String
+	 * @param int $namespace The namespace to get the priority for
+	 * @return string
 	 */
 	function priority( $namespace ) {
 		return isset( $this->priorities[$namespace] ) ? $this->priorities[$namespace] : $this->guessPriority( $namespace );
@@ -274,8 +274,8 @@ class GenerateSitemap extends Maintenance {
 	 * default priority for the namespace, varies depending on whether it's
 	 * a talkpage or not.
 	 *
-	 * @param $namespace Integer: the namespace to get the priority for
-	 * @return String
+	 * @param int $namespace The namespace to get the priority for
+	 * @return string
 	 */
 	function guessPriority( $namespace ) {
 		return MWNamespace::isSubject( $namespace ) ? $this->priorities[self::GS_MAIN] : $this->priorities[self::GS_TALK];
@@ -284,7 +284,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return a database resolution of all the pages in a given namespace
 	 *
-	 * @param $namespace Integer: limit the query to this namespace
+	 * @param int $namespace Limit the query to this namespace
 	 * @return Resource
 	 */
 	function getPageRes( $namespace ) {
@@ -372,7 +372,9 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * gzopen() / fopen() wrapper
 	 *
-	 * @return Resource
+	 * @param string $file
+	 * @param string $flags
+	 * @return resource
 	 */
 	function open( $file, $flags ) {
 		$resource = $this->compress ? gzopen( $file, $flags ) : fopen( $file, $flags );
@@ -384,6 +386,9 @@ class GenerateSitemap extends Maintenance {
 
 	/**
 	 * gzwrite() / fwrite() wrapper
+	 *
+	 * @param resource $handle
+	 * @param string $str
 	 */
 	function write( &$handle, $str ) {
 		if ( $handle === true || $handle === false ) {
@@ -398,6 +403,8 @@ class GenerateSitemap extends Maintenance {
 
 	/**
 	 * gzclose() / fclose() wrapper
+	 *
+	 * @param resource $handle
 	 */
 	function close( &$handle ) {
 		if ( $this->compress ) {
@@ -410,9 +417,9 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Get a sitemap filename
 	 *
-	 * @param $namespace Integer: the namespace
-	 * @param $count Integer: the count
-	 * @return String
+	 * @param int $namespace The namespace
+	 * @param int $count The count
+	 * @return string
 	 */
 	function sitemapFilename( $namespace, $count ) {
 		$ext = $this->compress ? '.gz' : '';
@@ -431,7 +438,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML schema being used
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function xmlSchema() {
 		return 'http://www.sitemaps.org/schemas/sitemap/0.9';
@@ -440,7 +447,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML required to open a sitemap index file
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function openIndex() {
 		return $this->xmlHead() . '<sitemapindex xmlns="' . $this->xmlSchema() . '">' . "\n";
@@ -449,8 +456,8 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML for a single sitemap indexfile entry
 	 *
-	 * @param $filename String: the filename of the sitemap file
-	 * @return String
+	 * @param string $filename The filename of the sitemap file
+	 * @return string
 	 */
 	function indexEntry( $filename ) {
 		return
@@ -463,7 +470,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML required to close a sitemap index file
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function closeIndex() {
 		return "</sitemapindex>\n";
@@ -472,7 +479,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML required to open a sitemap file
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function openFile() {
 		return $this->xmlHead() . '<urlset xmlns="' . $this->xmlSchema() . '">' . "\n";
@@ -481,10 +488,10 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML for a single sitemap entry
 	 *
-	 * @param $url String: an RFC 2396 compliant URL
-	 * @param $date String: a ISO 8601 date
-	 * @param $priority String: a priority indicator, 0.0 - 1.0 inclusive with a 0.1 stepsize
-	 * @return String
+	 * @param string $url An RFC 2396 compliant URL
+	 * @param string $date A ISO 8601 date
+	 * @param string $priority A priority indicator, 0.0 - 1.0 inclusive with a 0.1 stepsize
+	 * @return string
 	 */
 	function fileEntry( $url, $date, $priority ) {
 		return
@@ -499,7 +506,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML required to close sitemap file
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function closeFile() {
 		return "</urlset>\n";
@@ -507,6 +514,8 @@ class GenerateSitemap extends Maintenance {
 
 	/**
 	 * Populate $this->limit
+	 *
+	 * @param int $namespace
 	 */
 	function generateLimit( $namespace ) {
 		// bug 17961: make a title with the longest possible URL in this namespace

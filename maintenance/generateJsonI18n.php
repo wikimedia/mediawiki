@@ -165,7 +165,7 @@ PHP;
 	/**
 	 * Get an array of author names from a documentation comment containing @author declarations.
 	 * @param string $comment Documentation comment
-	 * @return Array of author names (strings)
+	 * @return array Array of author names (strings)
 	 */
 	protected function getAuthorsFromComment( $comment ) {
 		$matches = null;

@@ -64,9 +64,9 @@ class BaseDump {
 	 * from the dump stream. May return null if the page is
 	 * unavailable.
 	 *
-	 * @param $page Integer: ID number of page to read
-	 * @param $rev Integer: ID number of revision to read
-	 * @return string or null
+	 * @param int $page ID number of page to read
+	 * @param int $rev ID number of revision to read
+	 * @return string|null
 	 */
 	function prefetch( $page, $rev ) {
 		$page = intval( $page );
@@ -142,8 +142,8 @@ class BaseDump {
 
 	/**
 	 * @access private
-	 * @param $name string
-	 * @param $parent string
+	 * @param string $name
+	 * @param string $parent
 	 * @return bool|null
 	 */
 	function skipTo( $name, $parent = 'page' ) {
@@ -169,7 +169,7 @@ class BaseDump {
 	 * Fetches text contents of the current element, assuming
 	 * no sub-elements or such scary things.
 	 *
-	 * @return String
+	 * @return string
 	 * @access private
 	 */
 	function nodeContents() {

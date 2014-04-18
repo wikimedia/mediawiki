@@ -96,7 +96,7 @@ class ImageCleanup extends TableCleanup {
 	}
 
 	/**
-	 * @param $name string
+	 * @param string $name
 	 */
 	private function killRow( $name ) {
 		if ( $this->dryrun ) {

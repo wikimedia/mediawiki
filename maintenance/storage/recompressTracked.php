@@ -449,6 +449,8 @@ class RecompressTracked {
 
 	/**
 	 * Move tracked text in a given page
+	 *
+	 * @param int $pageId
 	 */
 	function doPage( $pageId ) {
 		$title = Title::newFromId( $pageId );
@@ -527,6 +529,9 @@ class RecompressTracked {
 	 * without data loss.
 	 *
 	 * The transaction is kept short to reduce locking.
+	 *
+	 * @param int $textId
+	 * @param string $url
 	 */
 	function moveTextRow( $textId, $url ) {
 		if ( $this->copyOnly ) {
@@ -560,6 +565,8 @@ class RecompressTracked {
 	 *
 	 * This function completes any moves that only have done bt_new_url. This
 	 * can happen when the script is interrupted, or when --copy-only is used.
+	 *
+	 * @param array $conds
 	 */
 	function finishIncompleteMoves( $conds ) {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -607,7 +614,7 @@ class RecompressTracked {
 
 	/**
 	 * Gets a DB master connection for the given external cluster name
-	 * @param $cluster string
+	 * @param string $cluster
 	 * @return DatabaseBase
 	 */
 	function getExtDB( $cluster ) {
@@ -617,6 +624,8 @@ class RecompressTracked {
 
 	/**
 	 * Move an orphan text_id to the new cluster
+	 *
+	 * @param array $textIds
 	 */
 	function doOrphanList( $textIds ) {
 		// Finish incomplete moves
@@ -694,8 +703,8 @@ class CgzCopyTransaction {
 	/**
 	 * Add text.
 	 * Returns false if it's ready to commit.
-	 * @param $text string
-	 * @param $textId
+	 * @param string $text
+	 * @param int $textId
 	 * @return bool
 	 */
 	function addItem( $text, $textId ) {

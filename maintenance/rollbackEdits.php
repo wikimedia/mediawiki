@@ -84,7 +84,7 @@ class RollbackEdits extends Maintenance {
 
 	/**
 	 * Get all pages that should be rolled back for a given user
-	 * @param $user String a name to check against rev_user_text
+	 * @param string $user A name to check against rev_user_text
 	 * @return array
 	 */
 	private function getRollbackTitles( $user ) {

@@ -75,7 +75,7 @@ class PreprocessDump extends DumpIterator {
 
 	/**
 	 * Callback function for each revision, preprocessToObj()
-	 * @param $rev Revision
+	 * @param Revision $rev
 	 */
 	public function processRevision( $rev ) {
 		$content = $rev->getContent( Revision::RAW );

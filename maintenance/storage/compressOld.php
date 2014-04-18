@@ -131,8 +131,8 @@ class CompressOld extends Maintenance {
 
 	/**
 	 * @todo document
-	 * @param $row
-	 * @param $extdb
+	 * @param stdClass $row
+	 * @param string $extdb
 	 * @return bool
 	 */
 	private function compressPage( $row, $extdb ) {
@@ -168,12 +168,12 @@ class CompressOld extends Maintenance {
 	}
 
 	/**
-	 * @param $startId
-	 * @param $maxChunkSize
-	 * @param $beginDate
-	 * @param $endDate
-	 * @param $extdb string
-	 * @param $maxPageId bool|int
+	 * @param int $startId
+	 * @param int $maxChunkSize
+	 * @param string $beginDate
+	 * @param string $endDate
+	 * @param string $extdb
+	 * @param bool|int $maxPageId
 	 * @return bool
 	 */
 	private function compressWithConcat( $startId, $maxChunkSize, $beginDate,

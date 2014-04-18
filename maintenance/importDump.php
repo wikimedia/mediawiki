@@ -122,7 +122,7 @@ TEXT;
 	}
 
 	/**
-	 * @param $obj Title|Revision
+	 * @param Title|Revision $obj
 	 * @return bool
 	 */
 	private function skippedNamespace( $obj ) {
@@ -144,8 +144,7 @@ TEXT;
 	}
 
 	/**
-	 * @param $rev Revision
-	 * @return mixed
+	 * @param Revision $rev
 	 */
 	function handleRevision( $rev ) {
 		$title = $rev->getTitle();
@@ -167,7 +166,7 @@ TEXT;
 	}
 
 	/**
-	 * @param $revision Revision
+	 * @param Revision $revision
 	 * @return bool
 	 */
 	function handleUpload( $revision ) {

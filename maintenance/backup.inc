@@ -92,16 +92,16 @@ class BackupDumper {
 	}
 
 	/**
-	 * @param $name String
-	 * @param $class String: name of output filter plugin class
+	 * @param string $name
+	 * @param string $class Name of output filter plugin class
 	 */
 	function registerOutput( $name, $class ) {
 		$this->outputTypes[$name] = $class;
 	}
 
 	/**
-	 * @param $name String
-	 * @param $class String: name of filter plugin class
+	 * @param string $name
+	 * @param string $class Name of filter plugin class
 	 */
 	function registerFilter( $name, $class ) {
 		$this->filterTypes[$name] = $class;
@@ -110,9 +110,9 @@ class BackupDumper {
 	/**
 	 * Load a plugin and register it
 	 *
-	 * @param $class String: name of plugin class; must have a static 'register'
-	 *               method that takes a BackupDumper as a parameter.
-	 * @param $file String: full or relative path to the PHP file to load, or empty
+	 * @param string $class Name of plugin class; must have a static 'register'
+	 *   method that takes a BackupDumper as a parameter.
+	 * @param string $file Full or relative path to the PHP file to load, or empty
 	 */
 	function loadPlugin( $class, $file ) {
 		if ( $file != '' ) {
@@ -123,8 +123,8 @@ class BackupDumper {
 	}
 
 	/**
-	 * @param $args Array
-	 * @return Array
+	 * @param array $args
+	 * @return array
 	 */
 	function processArgs( $args ) {
 		$sink = null;
@@ -248,7 +248,7 @@ class BackupDumper {
 	 * Initialise starting time and maximum revision count.
 	 * We'll make ETA calculations based an progress, assuming relatively
 	 * constant per-revision rate.
-	 * @param $history Integer: WikiExporter::CURRENT or WikiExporter::FULL
+	 * @param int $history WikiExporter::CURRENT or WikiExporter::FULL
 	 */
 	function initProgress( $history = WikiExporter::FULL ) {
 		$table = ( $history == WikiExporter::CURRENT ) ? 'page' : 'revision';
@@ -289,9 +289,8 @@ class BackupDumper {
 	 * Force the dump to use the provided database connection for database
 	 * operations, wherever possible.
 	 *
-	 * @param $db DatabaseBase|null: (Optional) the database connection to
-	 *            use. If null, resort to use the globally provided ways to
-	 *            get database connections.
+	 * @param DatabaseBase|null $db (Optional) the database connection to use. If null, resort to
+	 *   use the globally provided ways to get database connections.
 	 */
 	function setDb( DatabaseBase $db = null ) {
 		$this->forcedDb = $db;
