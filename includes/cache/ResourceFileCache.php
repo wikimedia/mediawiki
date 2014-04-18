@@ -34,7 +34,7 @@ class ResourceFileCache extends FileCacheBase {
 
 	/**
 	 * Construct an ResourceFileCache from a context
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return ResourceFileCache
 	 */
 	public static function newFromContext( ResourceLoaderContext $context ) {
@@ -58,7 +58,7 @@ class ResourceFileCache extends FileCacheBase {
 	/**
 	 * Check if an RL request can be cached.
 	 * Caller is responsible for checking if any modules are private.
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return bool
 	 */
 	public static function useFileCache( ResourceLoaderContext $context ) {

@@ -23,7 +23,7 @@
 class RedisBagOStuff extends BagOStuff {
 	/** @var RedisConnectionPool */
 	protected $redisPool;
-	/** @var Array List of server names */
+	/** @var array List of server names */
 	protected $servers;
 	/** @var bool */
 	protected $automaticFailover;
@@ -53,6 +53,7 @@ class RedisBagOStuff extends BagOStuff {
 	 *     consistent hashing algorithm). True by default. This has the
 	 *     potential to create consistency issues if a server is slow enough to
 	 *     flap, for example if it is in swap death.
+	 * @param array $params
 	 */
 	function __construct( $params ) {
 		$redisConf = array( 'serializer' => 'none' ); // manage that in this class
@@ -244,6 +245,9 @@ class RedisBagOStuff extends BagOStuff {
 	 * command. But we are constrained by the memcached-like interface to
 	 * return null in that case. Once the key exists, further increments are
 	 * atomic.
+	 * @param string $key
+	 * @param int $value
+	 * @param bool|mixed
 	 */
 	public function incr( $key, $value = 1 ) {
 		$section = new ProfileSection( __METHOD__ );
@@ -286,7 +290,7 @@ class RedisBagOStuff extends BagOStuff {
 
 	/**
 	 * Get a Redis object with a connection suitable for fetching the specified key
-	 * @return Array (server, RedisConnRef) or (false, false)
+	 * @return array (server, RedisConnRef) or (false, false)
 	 */
 	protected function getConnection( $key ) {
 		if ( count( $this->servers ) === 1 ) {
@@ -311,6 +315,7 @@ class RedisBagOStuff extends BagOStuff {
 
 	/**
 	 * Log a fatal error
+	 * @param string $msg
 	 */
 	protected function logError( $msg ) {
 		wfDebugLog( 'redis', "Redis error: $msg" );
@@ -321,6 +326,8 @@ class RedisBagOStuff extends BagOStuff {
 	 * and protocol errors. Sometimes it also closes the connection, sometimes
 	 * not. The safest response for us is to explicitly destroy the connection
 	 * object and let it be reopened during the next request.
+	 * @param RedisConnRef $conn
+	 * @param Exception $e
 	 */
 	protected function handleException( RedisConnRef $conn, $e ) {
 		$this->setLastError( BagOStuff::ERR_UNEXPECTED );
@@ -329,6 +336,10 @@ class RedisBagOStuff extends BagOStuff {
 
 	/**
 	 * Send information about a single request to the debug log
+	 * @param string $method
+	 * @param string $key
+	 * @param string $server
+	 * @param bool $result
 	 */
 	public function logRequest( $method, $key, $server, $result ) {
 		$this->debug( "$method $key on $server: " .

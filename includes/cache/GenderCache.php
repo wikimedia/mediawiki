@@ -50,7 +50,7 @@ class GenderCache {
 
 	/**
 	 * Returns the default gender option in this wiki.
-	 * @return String
+	 * @return string
 	 */
 	protected function getDefault() {
 		if ( $this->default === null ) {
@@ -62,9 +62,9 @@ class GenderCache {
 
 	/**
 	 * Returns the gender for given username.
-	 * @param string $username or User: username
-	 * @param string $caller the calling method
-	 * @return String
+	 * @param string|User $username Username
+	 * @param string $caller The calling method
+	 * @return string
 	 */
 	public function getGenderOf( $username, $caller = '' ) {
 		global $wgUser;
@@ -97,8 +97,8 @@ class GenderCache {
 	/**
 	 * Wrapper for doQuery that processes raw LinkBatch data.
 	 *
-	 * @param $data
-	 * @param $caller
+	 * @param array $data
+	 * @param string $caller
 	 */
 	public function doLinkBatch( $data, $caller = '' ) {
 		$users = array();
@@ -118,8 +118,8 @@ class GenderCache {
 	 * Wrapper for doQuery that processes a title or string array.
 	 *
 	 * @since 1.20
-	 * @param $titles List: array of Title objects or strings
-	 * @param string $caller the calling method
+	 * @param array $titles Array of Title objects or strings
+	 * @param string $caller The calling method
 	 */
 	public function doTitlesArray( $titles, $caller = '' ) {
 		$users = array();
@@ -139,8 +139,8 @@ class GenderCache {
 
 	/**
 	 * Preloads genders for given list of users.
-	 * @param $users List|String: usernames
-	 * @param string $caller the calling method
+	 * @param array|string $users Usernames
+	 * @param string $caller The calling method
 	 */
 	public function doQuery( $users, $caller = '' ) {
 		$default = $this->getDefault();

@@ -35,7 +35,7 @@ class HashBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
+	 * @param string $key
 	 * @return bool
 	 */
 	protected function expire( $key ) {
@@ -51,8 +51,8 @@ class HashBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $casToken[optional] mixed
+	 * @param string $key
+	 * @param mixed $casToken [optional]
 	 * @return bool|mixed
 	 */
 	function get( $key, &$casToken = null ) {
@@ -70,9 +70,9 @@ class HashBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $value mixed
-	 * @param $exptime int
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exptime
 	 * @return bool
 	 */
 	function set( $key, $value, $exptime = 0 ) {
@@ -81,10 +81,10 @@ class HashBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $casToken mixed
-	 * @param $key string
-	 * @param $value mixed
-	 * @param $exptime int
+	 * @param mixed $casToken
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exptime
 	 * @return bool
 	 */
 	function cas( $casToken, $key, $value, $exptime = 0 ) {
@@ -96,8 +96,8 @@ class HashBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $time int
+	 * @param string $key
+	 * @param int $time
 	 * @return bool
 	 */
 	function delete( $key, $time = 0 ) {

@@ -32,7 +32,7 @@ class ObjectCache {
 	/**
 	 * Get a cached instance of the specified type of cache object.
 	 *
-	 * @param $id string
+	 * @param string $id
 	 *
 	 * @return BagOStuff
 	 */
@@ -56,7 +56,7 @@ class ObjectCache {
 	/**
 	 * Create a new cache object of the specified type.
 	 *
-	 * @param $id string
+	 * @param string $id
 	 *
 	 * @throws MWException
 	 * @return BagOStuff
@@ -75,7 +75,7 @@ class ObjectCache {
 	/**
 	 * Create a new cache object from parameters
 	 *
-	 * @param $params array
+	 * @param array $params
 	 *
 	 * @throws MWException
 	 * @return BagOStuff
@@ -101,7 +101,7 @@ class ObjectCache {
 	 * be an alias to the configured cache choice for that.
 	 * If no cache choice is configured (by default $wgMainCacheType is CACHE_NONE),
 	 * then CACHE_ANYTHING will forward to CACHE_DB.
-	 * @param $params array
+	 * @param array $params
 	 * @return BagOStuff
 	 */
 	static function newAnything( $params ) {
@@ -118,7 +118,7 @@ class ObjectCache {
 	/**
 	 * Factory function referenced from DefaultSettings.php for CACHE_ACCEL.
 	 *
-	 * @param $params array
+	 * @param array $params
 	 * @throws MWException
 	 * @return BagOStuff
 	 */
@@ -143,7 +143,7 @@ class ObjectCache {
 	 * hashing scheme and a different interpretation of the flags bitfield, so
 	 * switching between the two clients randomly would be disastrous.
 	 *
-	 * @param $params array
+	 * @param array $params
 	 *
 	 * @return MemcachedPhpBagOStuff
 	 */

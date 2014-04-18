@@ -29,8 +29,8 @@
 class ObjectFileCache extends FileCacheBase {
 	/**
 	 * Construct an ObjectFileCache from a key and a type
-	 * @param $key string
-	 * @param $type string
+	 * @param string $key
+	 * @param string $type
 	 * @return ObjectFileCache
 	 */
 	public static function newFromKey( $key, $type ) {
