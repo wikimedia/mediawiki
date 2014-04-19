@@ -197,6 +197,15 @@ class FileRepo {
 	}
 
 	/**
+	 * How files layed out on the backend
+	 *
+	 * @return string One of (name,sha1,uuid)
+	 */
+	public function storagePathLayout() {
+		return 'name';
+	}
+
+	/**
 	 * Get the file backend instance. Use this function wisely.
 	 *
 	 * @return FileBackend
@@ -816,6 +825,9 @@ class FileRepo {
 	 */
 	public function store( $srcPath, $dstZone, $dstRel, $flags = 0 ) {
 		$this->assertWritableRepo(); // fail out if read-only
+		if ( $this->storagePathLayout() !== 'name' ) {
+			throw new MWException( __METHOD__ . ' disabled; files stored under immutable paths.' );
+		}
 
 		$status = $this->storeBatch( array( array( $srcPath, $dstZone, $dstRel ) ), $flags );
 		if ( $status->successCount == 0 ) {
@@ -840,6 +852,9 @@ class FileRepo {
 	 */
 	public function storeBatch( array $triplets, $flags = 0 ) {
 		$this->assertWritableRepo(); // fail out if read-only
+		if ( $this->storagePathLayout() !== 'name' ) {
+			throw new MWException( __METHOD__ . ' disabled; files stored under immutable paths.' );
+		}
 
 		$status = $this->newGood();
 		$backend = $this->backend; // convenience
@@ -917,6 +932,9 @@ class FileRepo {
 	 */
 	public function cleanupBatch( array $files, $flags = 0 ) {
 		$this->assertWritableRepo(); // fail out if read-only
+		if ( $this->storagePathLayout() !== 'name' ) {
+			throw new MWException( __METHOD__ . ' disabled; files stored under immutable paths.' );
+		}
 
 		$status = $this->newGood();
 
@@ -1155,6 +1173,9 @@ class FileRepo {
 		$srcPath, $dstRel, $archiveRel, $flags = 0, array $options = array()
 	) {
 		$this->assertWritableRepo(); // fail out if read-only
+		if ( $this->storagePathLayout() !== 'name' ) {
+			throw new MWException( __METHOD__ . ' disabled; files stored under immutable paths.' );
+		}
 
 		$status = $this->publishBatch(
 			array( array( $srcPath, $dstRel, $archiveRel, $options ) ), $flags );
@@ -1182,6 +1203,9 @@ class FileRepo {
 	 */
 	public function publishBatch( array $ntuples, $flags = 0 ) {
 		$this->assertWritableRepo(); // fail out if read-only
+		if ( $this->storagePathLayout() !== 'name' ) {
+			throw new MWException( __METHOD__ . ' disabled; files stored under immutable paths.' );
+		}
 
 		$backend = $this->backend; // convenience
 		// Try creating directories
@@ -1369,6 +1393,9 @@ class FileRepo {
 	 */
 	public function delete( $srcRel, $archiveRel ) {
 		$this->assertWritableRepo(); // fail out if read-only
+		if ( $this->storagePathLayout() !== 'name' ) {
+			throw new MWException( __METHOD__ . ' disabled; files stored under immutable paths.' );
+		}
 
 		return $this->deleteBatch( array( array( $srcRel, $archiveRel ) ) );
 	}
@@ -1392,6 +1419,9 @@ class FileRepo {
 	 */
 	public function deleteBatch( array $sourceDestPairs ) {
 		$this->assertWritableRepo(); // fail out if read-only
+		if ( $this->storagePathLayout() !== 'name' ) {
+			throw new MWException( __METHOD__ . ' disabled; files stored under immutable paths.' );
+		}
 
 		// Try creating directories
 		$status = $this->initZones( array( 'public', 'deleted' ) );
@@ -1450,6 +1480,9 @@ class FileRepo {
 	 */
 	public function cleanupDeletedBatch( array $storageKeys ) {
 		$this->assertWritableRepo();
+		if ( $this->storagePathLayout() !== 'name' ) {
+			throw new MWException( __METHOD__ . ' disabled; files stored under immutable paths.' );
+		}
 	}
 
 	/**

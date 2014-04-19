@@ -530,19 +530,22 @@ class RevDelFileList extends RevDelList {
 	public function doPreCommitUpdates() {
 		$status = Status::newGood();
 		$repo = RepoGroup::singleton()->getLocalRepo();
+		if ( $repo->storagePathLayout() !== 'name' ) {
+			return $status; // nothing to do
+		}
 		if ( $this->storeBatch ) {
 			$status->merge( $repo->storeBatch( $this->storeBatch, FileRepo::OVERWRITE_SAME ) );
-		}
-		if ( !$status->isOK() ) {
-			return $status;
+			if ( !$status->isOK() ) {
+				return $status;
+			}
 		}
 		if ( $this->deleteBatch ) {
 			$status->merge( $repo->deleteBatch( $this->deleteBatch ) );
-		}
-		if ( !$status->isOK() ) {
-			// Running cleanupDeletedBatch() after a failed storeBatch() with the DB already
-			// modified (but destined for rollback) causes data loss
-			return $status;
+			if ( !$status->isOK() ) {
+				// Running cleanupDeletedBatch() after a failed storeBatch() with the DB already
+				// modified (but destined for rollback) causes data loss
+				return $status;
+			}
 		}
 		if ( $this->cleanupBatch ) {
 			$status->merge( $repo->cleanupDeletedBatch( $this->cleanupBatch ) );
