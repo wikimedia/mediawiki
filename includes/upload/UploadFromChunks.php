@@ -36,9 +36,9 @@ class UploadFromChunks extends UploadFromFile {
 	/**
 	 * Setup local pointers to stash, repo and user (similar to UploadFromStash)
 	 *
-	 * @param $user User|null Default: null
-	 * @param $stash UploadStash|bool Default: false
-	 * @param $repo FileRepo|bool Default: false
+	 * @param User|null $user Default: null
+	 * @param UploadStash|bool $stash Default: false
+	 * @param FileRepo|bool $repo Default: false
 	 */
 	public function __construct( $user = null, $stash = false, $repo = false ) {
 		// user object. sometimes this won't exist, as when running from cron.
@@ -67,6 +67,7 @@ class UploadFromChunks extends UploadFromFile {
 	/**
 	 * Calls the parent stashFile and updates the uploadsession table to handle "chunks"
 	 *
+	 * @param User|null $user
 	 * @return UploadStashFile stashed file
 	 */
 	public function stashFile( User $user = null ) {
@@ -91,6 +92,10 @@ class UploadFromChunks extends UploadFromFile {
 
 	/**
 	 * Continue chunk uploading
+	 *
+	 * @param string $name
+	 * @param string $key
+	 * @param WebRequestUpload $webRequestUpload
 	 */
 	public function continueChunks( $name, $key, $webRequestUpload ) {
 		$this->mFileKey = $key;
@@ -165,10 +170,10 @@ class UploadFromChunks extends UploadFromFile {
 
 	/**
 	 * Perform the upload, then remove the temp copy afterward
-	 * @param $comment string
-	 * @param $pageText string
-	 * @param $watch bool
-	 * @param $user User
+	 * @param string $comment
+	 * @param string $pageText
+	 * @param bool $watch
+	 * @param User $user
 	 * @return Status
 	 */
 	public function performUpload( $comment, $pageText, $watch, $user ) {
@@ -178,7 +183,7 @@ class UploadFromChunks extends UploadFromFile {
 
 	/**
 	 * Returns the virtual chunk location:
-	 * @param $index
+	 * @param int $index
 	 * @return string
 	 */
 	function getVirtualChunkLocation( $index ) {
@@ -283,7 +288,7 @@ class UploadFromChunks extends UploadFromFile {
 
 	/**
 	 * Get the current Chunk index
-	 * @return Integer index of the current chunk
+	 * @return int Index of the current chunk
 	 */
 	private function getChunkIndex() {
 		if ( $this->mChunkIndex !== null ) {
@@ -294,7 +299,7 @@ class UploadFromChunks extends UploadFromFile {
 
 	/**
 	 * Gets the current offset in fromt the stashedupload table
-	 * @return Integer current byte offset of the chunk file set
+	 * @return int Current byte offset of the chunk file set
 	 */
 	private function getOffset() {
 		if ( $this->mOffset !== null ) {
@@ -306,7 +311,7 @@ class UploadFromChunks extends UploadFromFile {
 	/**
 	 * Output the chunk to disk
 	 *
-	 * @param $chunkPath string
+	 * @param string $chunkPath
 	 * @throws UploadChunkFileException
 	 * @return FileRepoStatus
 	 */

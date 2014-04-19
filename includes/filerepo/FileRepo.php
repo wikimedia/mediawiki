@@ -52,7 +52,7 @@ class FileRepo {
 	/** @var FileBackend */
 	protected $backend;
 
-	/** @var Array Map of zones to config */
+	/** @var array Map of zones to config */
 	protected $zones = array();
 
 	/** @var string URL of thumb.php */
@@ -305,7 +305,7 @@ class FileRepo {
 	 * from the URL path, one can configure thumb_handler.php to recognize a special path on the
 	 * same host name as the wiki that is used for viewing thumbnails.
 	 *
-	 * @param string $zone one of: public, deleted, temp, thumb
+	 * @param string $zone One of: public, deleted, temp, thumb
 	 * @return string|bool String or false
 	 */
 	public function getZoneHandlerUrl( $zone ) {
@@ -966,7 +966,7 @@ class FileRepo {
 	 *
 	 * @param string $src Source file system path, storage path, or virtual URL
 	 * @param string $dst Virtual URL or storage path
-	 * @param Array|string|null $options An array consisting of a key named headers
+	 * @param array|string|null $options An array consisting of a key named headers
 	 *   listing extra headers. If a string, taken as content-disposition header.
 	 *   (Support for array of options new in 1.23)
 	 * @return FileRepoStatus
@@ -1381,7 +1381,7 @@ class FileRepo {
 	 * @param mixed $srcRel Relative path for the file to be deleted
 	 * @param mixed $archiveRel Relative path for the archive location.
 	 *   Relative to a private archive directory.
-	 * @return FileRepoStatus object
+	 * @return FileRepoStatus
 	 */
 	public function delete( $srcRel, $archiveRel ) {
 		$this->assertWritableRepo(); // fail out if read-only
@@ -1536,7 +1536,7 @@ class FileRepo {
 	 * Properties should ultimately be obtained via FSFile::getProps().
 	 *
 	 * @param string $virtualUrl
-	 * @return Array
+	 * @return array
 	 */
 	public function getFileProps( $virtualUrl ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );
@@ -1560,7 +1560,7 @@ class FileRepo {
 	 * Get the size of a file with a given virtual URL/storage path
 	 *
 	 * @param string $virtualUrl
-	 * @return integer|bool False on failure
+	 * @return int|bool False on failure
 	 */
 	public function getFileSize( $virtualUrl ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );
@@ -1635,7 +1635,7 @@ class FileRepo {
 	/**
 	 * Determine if a relative path is valid, i.e. not blank or involving directory traveral
 	 *
-	 * @param $filename string
+	 * @param string $filename
 	 * @return bool
 	 */
 	public function validateFilename( $filename ) {
@@ -1686,7 +1686,7 @@ class FileRepo {
 	/**
 	 * Create a new fatal error
 	 *
-	 * @param $message
+	 * @param string $message
 	 * @return FileRepoStatus
 	 */
 	public function newFatal( $message /*, parameters...*/ ) {
@@ -1747,7 +1747,7 @@ class FileRepo {
 	 * Get the portion of the file that contains the origin file name.
 	 * If that name is too long, then the name "thumbnail.<ext>" will be given.
 	 *
-	 * @param $name string
+	 * @param string $name
 	 * @return string
 	 */
 	public function nameForThumb( $name ) {

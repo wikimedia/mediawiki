@@ -195,7 +195,7 @@ abstract class DBLockManager extends QuorumLockManager {
 	 * Checks if the DB has not recently had connection/query errors.
 	 * This just avoids wasting time on doomed connection attempts.
 	 *
-	 * @param $lockDb string
+	 * @param string $lockDb
 	 * @return bool
 	 */
 	protected function cacheCheckFailures( $lockDb ) {

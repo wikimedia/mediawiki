@@ -45,7 +45,7 @@ class FSFile {
 	/**
 	 * Returns the file system path
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getPath() {
 		return $this->path;

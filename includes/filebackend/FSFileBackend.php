@@ -454,7 +454,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @param string $fullCont
-	 * @param $dirRel
+	 * @param string $dirRel
 	 * @param array $params
 	 * @return Status
 	 */

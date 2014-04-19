@@ -66,7 +66,7 @@ class ForeignAPIRepo extends FileRepo {
 	private $mQueryCache = array();
 
 	/**
-	 * @param $info array|null
+	 * @param array|null $info
 	 */
 	function __construct( $info ) {
 		global $wgLocalFileRepo;
@@ -319,7 +319,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * If the url has been requested today, get it from cache
 	 * Otherwise retrieve remote thumb url, check for local file.
 	 *
-	 * @param string $name is a dbkey form of a title
+	 * @param string $name Is a dbkey form of a title
 	 * @param int $width
 	 * @param int $height
 	 * @param string $params Other rendering parameters (page number, etc)
@@ -418,7 +418,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @see FileRepo::getZoneUrl()
 	 * @param string $zone
 	 * @param string|null $ext Optional file extension
-	 * @return String
+	 * @return string
 	 */
 	function getZoneUrl( $zone, $ext = null ) {
 		switch ( $zone ) {
@@ -501,7 +501,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @param string $url
 	 * @param string $timeout
 	 * @param array $options
-	 * @return bool|String
+	 * @return bool|string
 	 */
 	public static function httpGet( $url, $timeout = 'default', $options = array() ) {
 		$options['timeout'] = $timeout;
