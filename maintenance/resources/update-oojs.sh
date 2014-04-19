@@ -7,20 +7,20 @@ then
 	exit 1
 fi
 
-REPO_DIR=$(cd $(dirname $0)/../..; pwd) # Root dir of the git repo working tree
+REPO_DIR=$(cd "$(dirname "$0")/../..;" pwd) # Root dir of the git repo working tree
 TARGET_DIR=resources/lib/oojs # Destination relative to the root of the repo
-NPM_DIR=`mktemp -d 2>/dev/null || mktemp -d -t 'update-oojs'` # e.g. /tmp/update-oojs.rI0I5Vir
+NPM_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'update-oojs') # e.g. /tmp/update-oojs.rI0I5Vir
 
 # Prepare working tree
-cd $REPO_DIR &&
+cd "$REPO_DIR" &&
 git reset $TARGET_DIR && git checkout $TARGET_DIR && git fetch origin &&
 git checkout -B upstream-oojs origin/master || exit 1
 
 # Fetch upstream version
-cd $NPM_DIR
+cd "$NPM_DIR"
 if [ -n "$1" ]
 then
-	npm install oojs@$1 || exit 1
+	npm install "oojs@$1" || exit 1
 else
 	npm install oojs || exit 1
 fi
@@ -33,13 +33,13 @@ then
 fi
 
 # Copy file(s)
-rsync --recursive --delete --force ./node_modules/oojs/dist $REPO_DIR/$TARGET_DIR || exit 1
+rsync --recursive --delete --force ./node_modules/oojs/dist "$REPO_DIR/$TARGET_DIR" || exit 1
 
 # Clean up temporary area
-rm -rf $NPM_DIR
+rm -rf "$NPM_DIR"
 
 # Generate commit
-cd $REPO_DIR || exit 1
+cd "$REPO_DIR" || exit 1
 
 COMMITMSG=$(cat <<END
 Update OOjs to v$OOJS_VERSION
