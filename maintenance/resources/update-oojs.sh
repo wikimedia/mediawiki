@@ -6,13 +6,13 @@ then
 	exit 1
 fi
 
-MW_DIR=$(cd $(dirname $0)/../..; pwd) # e.g. mediawiki-core/
-NPM_DIR=`mktemp -d 2>/dev/null || mktemp -d -t 'mw-update-oojs'` # e.g. /tmp/mw-update-oojs.rI0I5Vir
+REPO_DIR=$(cd $(dirname $0)/../..; pwd) # Root dir of the git repo working tree
+TARGET_DIR=resources/lib/oojs # Destination relative to the root of the repo
+NPM_DIR=`mktemp -d 2>/dev/null || mktemp -d -t 'update-oojs'` # e.g. /tmp/update-oojs.rI0I5Vir
 
-# Prepare MediaWiki working copy
-cd $MW_DIR
-git reset resources/lib/oojs/ && git checkout resources/lib/oojs/ && git fetch origin || exit 1
-
+# Prepare working tree
+cd $REPO_DIR &&
+git reset $TARGET_DIR && git checkout $TARGET_DIR && git fetch origin &&
 git checkout -B upstream-oojs origin/master || exit 1
 
 # Fetch upstream version
@@ -32,13 +32,13 @@ then
 fi
 
 # Copy file(s)
-mv ./node_modules/oojs/dist/* $MW_DIR/resources/lib/oojs/ || exit 1
-
-# Generate commit
-cd $MW_DIR || exit 1
+rsync --recursive --delete --force ./node_modules/oojs/dist $REPO_DIR/$TARGET_DIR || exit 1
 
 # Clean up temporary area
 rm -rf $NPM_DIR
+
+# Generate commit
+cd $REPO_DIR || exit 1
 
 COMMITMSG=$(cat <<END
 Update OOjs to v$OOJS_VERSION
@@ -48,4 +48,5 @@ Release notes:
 END
 )
 
-git commit resources/lib/oojs/ -m "$COMMITMSG" || exit 1
+# Stage deletion, modification and creation of files. Then commit.
+git add --update $TARGET_DIR && git add $TARGET_DIR && git commit -m "$COMMITMSG" || exit 1
