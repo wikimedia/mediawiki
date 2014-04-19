@@ -579,6 +579,7 @@ $wgAutoloadLocalClasses = array(
 	'NullFileOp' => 'includes/filebackend/FileOp.php',
 
 	# includes/filerepo
+	'FileBackendDBRepoWrapper' => 'includes/filerepo/FileBackendDBRepoWrapper.php',
 	'FileRepo' => 'includes/filerepo/FileRepo.php',
 	'FileRepoStatus' => 'includes/filerepo/FileRepoStatus.php',
 	'ForeignAPIRepo' => 'includes/filerepo/ForeignAPIRepo.php',
