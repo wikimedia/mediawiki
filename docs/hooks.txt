@@ -1824,6 +1824,12 @@ $categories: associative array, keys are category names, values are category
 $links: array, intended to hold the result. Must be an associative array with
   category types as keys and arrays of HTML links as values.
 
+'OutputPageScriptsForBottomQueue': Add ResourceLoader modules to be added to
+the bottom queue
+$out: OutputPage object
+&$links: Array of modules to load created with OutputPage::makeResourceLoaderLink
+$inHead: boolean indicating whether the HTML will go into <head>
+
 'PageContentInsertComplete': After a new article is created.
 $wikiPage: WikiPage created
 $user: User creating the article

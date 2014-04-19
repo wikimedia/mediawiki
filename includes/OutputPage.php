@@ -2928,6 +2928,8 @@ $templates
 			/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
 		);
 
+		wfRunHooks( 'OutputPageScriptsForBottomQueue', array( $this, &$links, $inHead ) );
+
 		return self::getHtmlFromLoaderLinks( $links );
 	}
 
