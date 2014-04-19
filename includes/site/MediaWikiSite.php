@@ -41,7 +41,7 @@ class MediaWikiSite extends Site {
 	 * @since 1.21
 	 * @deprecated Just use the constructor or the factory Site::newForType
 	 *
-	 * @param integer $globalId
+	 * @param int $globalId
 	 *
 	 * @return MediaWikiSite
 	 */
@@ -67,9 +67,9 @@ class MediaWikiSite extends Site {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string $title the target page's title, in normalized form.
+	 * @param string $title The target page's title, in normalized form.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function toDBKey( $title ) {
 		return str_replace( ' ', '_', $title );
@@ -177,7 +177,7 @@ class MediaWikiSite extends Site {
 	 * @param array $externalData A reply from the API on a external server.
 	 * @param string $pageTitle Identifies the page at the external site, needing normalization.
 	 *
-	 * @return array|boolean a 'page' structure representing the page identified by $pageTitle.
+	 * @return array|bool A 'page' structure representing the page identified by $pageTitle.
 	 */
 	private static function extractPageRecord( $externalData, $pageTitle ) {
 		// If there is a special case with only one returned page
@@ -309,7 +309,7 @@ class MediaWikiSite extends Site {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string|boolean $pageName Page name or false (default: false)
+	 * @param string|bool $pageName Page name or false (default: false)
 	 *
 	 * @return string
 	 */
@@ -335,7 +335,7 @@ class MediaWikiSite extends Site {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string|boolean $path
+	 * @param string|bool $path
 	 *
 	 * @return string
 	 */

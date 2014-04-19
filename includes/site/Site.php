@@ -234,7 +234,7 @@ class Site implements Serializable {
 	 *
 	 * @since 1.21
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function shouldForward() {
 		return $this->forward;
@@ -246,7 +246,7 @@ class Site implements Serializable {
 	 *
 	 * @since 1.21
 	 *
-	 * @param boolean $shouldForward
+	 * @param bool $shouldForward
 	 *
 	 * @throws MWException
 	 */
@@ -365,9 +365,9 @@ class Site implements Serializable {
 	 *
 	 * @since 1.21
 	 *
-	 * @param bool|String $pageName
+	 * @param bool|string $pageName
 	 *
-	 * @return string|boolean false
+	 * @return string|bool
 	 */
 	public function getPageUrl( $pageName = false ) {
 		$url = $this->getLinkPath();

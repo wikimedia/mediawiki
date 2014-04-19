@@ -82,7 +82,7 @@ class MWDebug {
 	 * enabled.
 	 *
 	 * @since 1.19
-	 * @param $out OutputPage
+	 * @param OutputPage $out
 	 */
 	public static function addModules( OutputPage $out ) {
 		if ( self::$enabled ) {
@@ -96,7 +96,7 @@ class MWDebug {
 	 * @todo Add support for passing objects
 	 *
 	 * @since 1.19
-	 * @param $str string
+	 * @param string $str
 	 */
 	public static function log( $str ) {
 		if ( !self::$enabled ) {
@@ -132,12 +132,12 @@ class MWDebug {
 	 * Adds a warning entry to the log
 	 *
 	 * @since 1.19
-	 * @param $msg string
-	 * @param $callerOffset int
-	 * @param $level int A PHP error level. See sendMessage()
-	 * @param $log string: 'production' will always trigger a php error, 'auto'
-	 *        will trigger an error if $wgDevelopmentWarnings is true, and 'debug'
-	 *        will only write to the debug log(s).
+	 * @param string $msg
+	 * @param int $callerOffset
+	 * @param int $level A PHP error level. See sendMessage()
+	 * @param string $log 'production' will always trigger a php error, 'auto'
+	 *    will trigger an error if $wgDevelopmentWarnings is true, and 'debug'
+	 *    will only write to the debug log(s).
 	 *
 	 * @return mixed
 	 */
@@ -178,8 +178,8 @@ class MWDebug {
 	 * @param string $function Function that is deprecated.
 	 * @param string|bool $version Version in which the function was deprecated.
 	 * @param string|bool $component Component to which the function belongs.
-	 *     If false, it is assumbed the function is in MediaWiki core.
-	 * @param $callerOffset integer: How far up the callstack is the original
+	 *    If false, it is assumbed the function is in MediaWiki core.
+	 * @param int $callerOffset How far up the callstack is the original
 	 *    caller. 2 = function that called the function that called
 	 *    MWDebug::deprecated() (Added in 1.20).
 	 * @return mixed
@@ -253,9 +253,9 @@ class MWDebug {
 	/**
 	 * Get an array describing the calling function at a specified offset.
 	 *
-	 * @param $callerOffset integer: How far up the callstack is the original
+	 * @param int $callerOffset How far up the callstack is the original
 	 *    caller. 0 = function that called getCallerDescription()
-	 * @return array with two keys: 'file' and 'func'
+	 * @return array Array with two keys: 'file' and 'func'
 	 */
 	private static function getCallerDescription( $callerOffset ) {
 		$callers = wfDebugBacktrace();
@@ -291,10 +291,10 @@ class MWDebug {
 	 * Send a message to the debug log and optionally also trigger a PHP
 	 * error, depending on the $level argument.
 	 *
-	 * @param $msg string Message to send
-	 * @param $caller array caller description get from getCallerDescription()
-	 * @param $group string log group on which to send the message
-	 * @param $level int|bool error level to use; set to false to not trigger an error
+	 * @param string $msg Message to send
+	 * @param array $caller Caller description get from getCallerDescription()
+	 * @param string $group Log group on which to send the message
+	 * @param int|bool $level Error level to use; set to false to not trigger an error
 	 */
 	private static function sendMessage( $msg, $caller, $group, $level ) {
 		$msg .= ' [Called from ' . $caller['func'] . ' in ' . $caller['file'] . ']';
@@ -311,7 +311,7 @@ class MWDebug {
 	 * Do NOT use this method, use MWDebug::log or wfDebug()
 	 *
 	 * @since 1.19
-	 * @param $str string
+	 * @param string $str
 	 */
 	public static function debugMsg( $str ) {
 		global $wgDebugComments, $wgShowDebug;
@@ -325,9 +325,9 @@ class MWDebug {
 	 * Begins profiling on a database query
 	 *
 	 * @since 1.19
-	 * @param $sql string
-	 * @param $function string
-	 * @param $isMaster bool
+	 * @param string $sql
+	 * @param string $function
+	 * @param bool $isMaster
 	 * @return int ID number of the query to pass to queryTime or -1 if the
 	 *  debugger is disabled
 	 */
@@ -351,7 +351,7 @@ class MWDebug {
 	 * Calculates how long a query took.
 	 *
 	 * @since 1.19
-	 * @param $id int
+	 * @param int $id
 	 */
 	public static function queryTime( $id ) {
 		if ( $id === -1 || !self::$enabled ) {
@@ -365,7 +365,7 @@ class MWDebug {
 	/**
 	 * Returns a list of files included, along with their size
 	 *
-	 * @param $context IContextSource
+	 * @param IContextSource $context
 	 * @return array
 	 */
 	protected static function getFilesIncluded( IContextSource $context ) {
@@ -386,7 +386,7 @@ class MWDebug {
 	 * Returns the HTML to add to the page for the toolbar
 	 *
 	 * @since 1.19
-	 * @param $context IContextSource
+	 * @param IContextSource $context
 	 * @return string
 	 */
 	public static function getDebugHTML( IContextSource $context ) {
@@ -485,8 +485,8 @@ class MWDebug {
 	/**
 	 * Append the debug info to given ApiResult
 	 *
-	 * @param $context IContextSource
-	 * @param $result ApiResult
+	 * @param IContextSource $context
+	 * @param ApiResult $result
 	 */
 	public static function appendDebugInfoToApiResult( IContextSource $context, ApiResult $result ) {
 		if ( !self::$enabled ) {
@@ -519,7 +519,7 @@ class MWDebug {
 	/**
 	 * Returns the HTML to add to the page for the toolbar
 	 *
-	 * @param $context IContextSource
+	 * @param IContextSource $context
 	 * @return array
 	 */
 	public static function getDebugInfo( IContextSource $context ) {

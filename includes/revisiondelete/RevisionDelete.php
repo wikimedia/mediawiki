@@ -55,7 +55,7 @@ class RevDel_RevisionList extends RevDel_List {
 	}
 
 	/**
-	 * @param $db DatabaseBase
+	 * @param DatabaseBase $db
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {
@@ -318,7 +318,7 @@ class RevDel_ArchiveList extends RevDel_RevisionList {
 	}
 
 	/**
-	 * @param $db DatabaseBase
+	 * @param DatabaseBase $db
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {
@@ -489,7 +489,7 @@ class RevDel_FileList extends RevDel_List {
 	var $storeBatch, $deleteBatch, $cleanupBatch;
 
 	/**
-	 * @param $db DatabaseBase
+	 * @param DatabaseBase $db
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {
@@ -792,7 +792,7 @@ class RevDel_ArchivedFileList extends RevDel_FileList {
 	}
 
 	/**
-	 * @param $db DatabaseBase
+	 * @param DatabaseBase $db
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {
@@ -916,7 +916,7 @@ class RevDel_LogList extends RevDel_List {
 	}
 
 	/**
-	 * @param $db DatabaseBase
+	 * @param DatabaseBase $db
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {

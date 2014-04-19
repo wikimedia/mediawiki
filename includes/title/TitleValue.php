@@ -59,10 +59,10 @@ class TitleValue {
 	 * un-normalized text when constructing TitleValues. For constructing a TitleValue from
 	 * user input or external sources, use a TitleParser.
 	 *
-	 * @param $namespace int The namespace ID. This is not validated.
-	 * @param $dbkey string The page title in valid DBkey form. No normalization is applied.
-	 * @param $fragment string The fragment title. Use '' to represent the whole page.
-	 *        No validation or normalization is applied.
+	 * @param int $namespace The namespace ID. This is not validated.
+	 * @param string $dbkey The page title in valid DBkey form. No normalization is applied.
+	 * @param string $fragment The fragment title. Use '' to represent the whole page.
+	 *   No validation or normalization is applied.
 	 *
 	 * @throws InvalidArgumentException
 	 */

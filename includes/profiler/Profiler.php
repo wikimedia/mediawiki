@@ -118,9 +118,9 @@ class Profiler {
 
 	/** @var float seconds */
 	protected $mDBLockThreshold = 5.0;
-	/** @var Array DB/server name => (active trx count,timestamp) */
+	/** @var array DB/server name => (active trx count,timestamp) */
 	protected $mDBTrxHoldingLocks = array();
-	/** @var Array DB/server name => list of (function name, elapsed time) */
+	/** @var array DB/server name => list of (function name, elapsed time) */
 	protected $mDBTrxMethodTimes = array();
 
 	/** @var Profiler */
@@ -167,7 +167,7 @@ class Profiler {
 
 	/**
 	 * Set the profiler to a specific profiler instance. Mostly for dumpHTML
-	 * @param $p Profiler object
+	 * @param Profiler $p
 	 */
 	public static function setInstance( Profiler $p ) {
 		self::$__instance = $p;
@@ -176,7 +176,7 @@ class Profiler {
 	/**
 	 * Return whether this a stub profiler
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isStub() {
 		return false;
@@ -186,7 +186,7 @@ class Profiler {
 	 * Return whether this profiler stores data
 	 *
 	 * @see Profiler::logData()
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isPersistent() {
 		return false;
@@ -213,7 +213,7 @@ class Profiler {
 	/**
 	 * Whether to internally just track aggregates and ignore the full stack trace
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	protected function collateOnly() {
 		return false;
@@ -276,8 +276,8 @@ class Profiler {
 	 * @param string $name
 	 * @param float $elapsedCpu
 	 * @param float $elapsedReal
-	 * @param integer $memChange
-	 * @param integer $subcalls
+	 * @param int $memChange
+	 * @param int $subcalls
 	 * @param array|null $period Map of ('start','end','memory','subcalls')
 	 */
 	protected function updateEntry(
@@ -308,7 +308,7 @@ class Profiler {
 	/**
 	 * Called by wfProfieIn()
 	 *
-	 * @param $functionname String
+	 * @param string $functionname
 	 */
 	public function profileIn( $functionname ) {
 		global $wgDebugFunctionEntry;
@@ -330,7 +330,7 @@ class Profiler {
 	/**
 	 * Called by wfProfieOut()
 	 *
-	 * @param $functionname String
+	 * @param  string $functionname
 	 */
 	public function profileOut( $functionname ) {
 		global $wgDebugFunctionEntry;
@@ -477,7 +477,7 @@ class Profiler {
 	/**
 	 * Mark this call as templated or not
 	 *
-	 * @param $t Boolean
+	 * @param bool $t
 	 */
 	public function setTemplated( $t ) {
 		$this->mTemplated = $t;
@@ -486,7 +486,7 @@ class Profiler {
 	/**
 	 * Returns a profiling output to be stored in debug file
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getOutput() {
 		global $wgDebugFunctionEntry, $wgProfileCallTree;
@@ -573,7 +573,7 @@ class Profiler {
 	 * Get the initial time of the request, based either on $wgRequestTime or
 	 * $wgRUstart. Will return null if not able to find data.
 	 *
-	 * @param string|false $metric metric to use, with the following possibilities:
+	 * @param string|false $metric Metric to use, with the following possibilities:
 	 *   - user: User CPU time (without system calls)
 	 *   - cpu: Total CPU time (user and system calls)
 	 *   - wall (or any other string): elapsed time
@@ -606,7 +606,7 @@ class Profiler {
 	 * Get the initial time of the request, based either on $wgRequestTime or
 	 * $wgRUstart. Will return null if not able to find data.
 	 *
-	 * @param string|false $metric metric to use, with the following possibilities:
+	 * @param string|false $metric Metric to use, with the following possibilities:
 	 *   - user: User CPU time (without system calls)
 	 *   - cpu: Total CPU time (user and system calls)
 	 *   - wall (or any other string): elapsed time
@@ -804,6 +804,8 @@ class Profiler {
 
 	/**
 	 * Dummy calls to wfProfileIn/wfProfileOut to calculate its overhead
+	 *
+	 * @param int $profileCount
 	 */
 	protected static function calculateOverhead( $profileCount ) {
 		wfProfileIn( '-overhead-total' );
@@ -818,9 +820,9 @@ class Profiler {
 	 * Counts the number of profiled function calls sitting under
 	 * the given point in the call graph. Not the most efficient algo.
 	 *
-	 * @param $stack Array:
-	 * @param $start Integer:
-	 * @return Integer
+	 * @param array $stack
+	 * @param int $start
+	 * @return int
 	 */
 	protected function calltreeCount( $stack, $start ) {
 		$level = $stack[$start][1];
@@ -834,7 +836,7 @@ class Profiler {
 	/**
 	 * Add an entry in the debug log file
 	 *
-	 * @param string $s to output
+	 * @param string $s String to output
 	 */
 	protected function debug( $s ) {
 		if ( function_exists( 'wfDebug' ) ) {
@@ -846,7 +848,7 @@ class Profiler {
 	 * Add an entry in the debug log group
 	 *
 	 * @param string $group Group to send the message to
-	 * @param string $s to output
+	 * @param string $s String to output
 	 */
 	protected function debugGroup( $group, $s ) {
 		if ( function_exists( 'wfDebugLog' ) ) {

@@ -67,7 +67,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @param string $text
 	 *
 	 * @throws InvalidArgumentException if the namespace is invalid
-	 * @return String
+	 * @return string
 	 */
 	public function getNamespaceName( $namespace, $text ) {
 		if ( $this->language->needsGenderDistinction() &&
@@ -120,8 +120,8 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * Parses the given text and constructs a TitleValue. Normalization
 	 * is applied according to the rules appropriate for the form specified by $form.
 	 *
-	 * @param string $text the text to parse
-	 * @param int $defaultNamespace namespace to assume per default (usually NS_MAIN)
+	 * @param string $text The text to parse
+	 * @param int $defaultNamespace Namespace to assume per default (usually NS_MAIN)
 	 *
 	 * @throws MalformedTitleException
 	 * @return TitleValue

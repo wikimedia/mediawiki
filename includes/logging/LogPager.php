@@ -50,13 +50,13 @@ class LogPager extends ReverseChronologicalPager {
 	 *
 	 * @param LogEventsList $list
 	 * @param string|array $types Log types to show
-	 * @param string $performer the user who made the log entries
-	 * @param string|Title $title the page title the log entries are for
-	 * @param string $pattern do a prefix search rather than an exact title match
-	 * @param array $conds extra conditions for the query
+	 * @param string $performer The user who made the log entries
+	 * @param string|Title $title The page title the log entries are for
+	 * @param string $pattern Do a prefix search rather than an exact title match
+	 * @param array $conds Extra conditions for the query
 	 * @param int|bool $year The year to start from. Default: false
 	 * @param int|bool $month The month to start from. Default: false
-	 * @param string $tagFilter tag
+	 * @param string $tagFilter Tag
 	 */
 	public function __construct( $list, $types = array(), $performer = '', $title = '', $pattern = '',
 		$conds = array(), $year = false, $month = false, $tagFilter = '' ) {
@@ -289,7 +289,7 @@ class LogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Checks if $this->mConds has $field matched to a *single* value
-	 * @param $field
+	 * @param string $field
 	 * @return bool
 	 */
 	protected function hasEqualsClause( $field ) {
