@@ -417,7 +417,7 @@
 	"versionrequired": "This message is not used in the MediaWiki core, but was introduced with the reason that it could be useful for extensions.\n\nParameters:\n* $1 - MediaWiki version number\nSee also:\n* {{msg-mw|Versionrequiredtext}}",
 	"versionrequiredtext": "This message is not used in the MediaWiki core, but was introduced with the reason that it could be useful for extensions.\n\nParameters:\n* $1 - MediaWiki version number\nSee also:\n* {{msg-mw|Versionrequired}}",
 	"ok": "{{Identical|OK}}",
-	"pagetitle": "{{Optional}}\n{{doc-important|You most probably do not need to translate this message.}}\nDo '''not''' replace SITENAME with a translation of Wikipedia or some encycopedic additions. The message has to be neutral for all projects.\n\nParameters:\n* $1 - page title or any one of the following messages:\n** {{msg-mw|Contributions-title}}\n** {{msg-mw|Searchresults-title}}\n** {{msg-mw|Sp-contributions-newbies-title}}",
+	"pagetitle": "{{Optional}}\n{{doc-important|You most probably do not need to translate this message.}}\nDo '''not''' replace SITENAME with a translation of Wikipedia or some encyclopedic additions. The message has to be neutral for all projects.\n\nParameters:\n* $1 - page title or any one of the following messages:\n** {{msg-mw|Contributions-title}}\n** {{msg-mw|Searchresults-title}}\n** {{msg-mw|Sp-contributions-newbies-title}}",
 	"pagetitle-view-mainpage": "{{optional}}",
 	"backlinksubtitle": "{{optional}}\nAppears in subtitle. Parameters:\n* $1 - a link to the page (HTML)",
 	"retrievedfrom": "Message which appears in the source of every page, but it is hidden. It is shown when printing.\n\nParameters:\n* $1 - a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}",
