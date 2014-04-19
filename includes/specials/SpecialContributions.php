@@ -237,8 +237,8 @@ class SpecialContributions extends IncludableSpecialPage {
 
 	/**
 	 * Generates the subheading with links
-	 * @param $userObj User object for the target
-	 * @return String: appropriately-escaped HTML to be output literally
+	 * @param User $userObj User object for the target
+	 * @return string Appropriately-escaped HTML to be output literally
 	 * @todo FIXME: Almost the same as getSubTitle in SpecialDeletedContributions.php.
 	 * Could be combined.
 	 */
@@ -295,9 +295,9 @@ class SpecialContributions extends IncludableSpecialPage {
 
 	/**
 	 * Links to different places.
-	 * @param $userpage Title: Target user page
-	 * @param $talkpage Title: Talk page
-	 * @param $target User: Target user object
+	 * @param Title $userpage Target user page
+	 * @param Title $talkpage Talk page
+	 * @param User $target Target user object
 	 * @return array
 	 */
 	public function getUserLinks( Title $userpage, Title $talkpage, User $target ) {
@@ -381,7 +381,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 	/**
 	 * Generates the namespace selector form with hidden attributes.
-	 * @return String: HTML fragment
+	 * @return string HTML fragment
 	 */
 	protected function getForm() {
 		global $wgScript;
@@ -707,9 +707,9 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * This method basically executes the exact same code as the parent class, though with
 	 * a hook added, to allow extentions to add additional queries.
 	 *
-	 * @param string $offset index offset, inclusive
-	 * @param $limit Integer: exact query limit
-	 * @param $descending Boolean: query direction, false for ascending, true for descending
+	 * @param string $offset Index offset, inclusive
+	 * @param int $limit Exact query limit
+	 * @param bool $descending Query direction, false for ascending, true for descending
 	 * @return ResultWrapper
 	 */
 	function reallyDoQuery( $offset, $limit, $descending ) {
@@ -944,7 +944,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * was not written by the target user.
 	 *
 	 * @todo This would probably look a lot nicer in a table.
-	 * @param $row
+	 * @param object $row
 	 * @return string
 	 */
 	function formatRow( $row ) {

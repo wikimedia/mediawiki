@@ -120,7 +120,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * Maps old pre-1.23 request parameters Watchlist used to use (different from Recentchanges' ones)
 	 * to the current ones.
 	 *
-	 * @param FormOptions $parameters
+	 * @param FormOptions $opts
 	 * @return FormOptions
 	 */
 	protected function fetchOptionsFromRequest( $opts ) {
@@ -577,7 +577,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * Count the number of items on a user's watchlist
 	 *
 	 * @param DatabaseBase $dbr A database connection
-	 * @return Integer
+	 * @return int
 	 */
 	protected function countItems( $dbr ) {
 		# Fetch the raw count

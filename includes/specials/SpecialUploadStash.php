@@ -59,7 +59,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 *
 	 * @param string $subPage subpage, e.g. in
 	 *   http://example.com/wiki/Special:UploadStash/foo.jpg, the "foo.jpg" part
-	 * @return Boolean: success
+	 * @return bool Success
 	 */
 	public function execute( $subPage ) {
 		$this->checkPermissions();
@@ -153,10 +153,10 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * Get a thumbnail for file, either generated locally or remotely, and stream it out
 	 *
-	 * @param $file
-	 * @param $params array
+	 * @param File $file
+	 * @param array $params
 	 *
-	 * @return boolean success
+	 * @return bool Success
 	 */
 	private function outputThumbFromStash( $file, $params ) {
 		// this global, if it exists, points to a "scaler", as you might find in
@@ -177,11 +177,11 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * Scale a file (probably with a locally installed imagemagick, or similar)
 	 * and output it to STDOUT.
-	 * @param $file File
+	 * @param File $file
 	 * @param array $params Scaling parameters ( e.g. array( width => '50' ) );
 	 * @param int $flags Scaling flags ( see File:: constants )
 	 * @throws MWException|UploadStashFileNotFoundException
-	 * @return boolean success
+	 * @return bool Success
 	 */
 	private function outputLocallyScaledThumb( $file, $params, $flags ) {
 		// n.b. this is stupid, we insist on re-transforming the file every time we are invoked. We rely
@@ -227,7 +227,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @param array $params Scaling parameters ( e.g. array( width => '50' ) );
 	 * @param int $flags Scaling flags ( see File:: constants )
 	 * @throws MWException
-	 * @return boolean success
+	 * @return bool success
 	 */
 	private function outputRemoteScaledThumb( $file, $params, $flags ) {
 		// This global probably looks something like
@@ -294,8 +294,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * Output HTTP response of raw content
 	 * Side effect: writes HTTP response to STDOUT.
-	 * @param string $content content
-	 * @param string $contentType mime type
+	 * @param string $content Content
+	 * @param string $contentType Mime type
 	 * @throws SpecialUploadStashTooLargeException
 	 * @return bool
 	 */

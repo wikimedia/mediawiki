@@ -413,8 +413,8 @@ class ImportReporter extends ContextSource {
 
 	/**
 	 * @param WikiImporter $importer
-	 * @param $upload
-	 * @param $interwiki
+	 * @param bool $upload
+	 * @param string $interwiki
 	 * @param string|bool $reason
 	 */
 	function __construct( $importer, $upload, $interwiki, $reason = false ) {
@@ -448,8 +448,8 @@ class ImportReporter extends ContextSource {
 	 * @param Title $title
 	 * @param Title $origTitle
 	 * @param int $revisionCount
-	 * @param $successCount
-	 * @param $pageInfo
+	 * @param int $successCount
+	 * @param array $pageInfo
 	 * @return void
 	 */
 	function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {

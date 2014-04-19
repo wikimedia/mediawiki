@@ -190,8 +190,8 @@ class UserrightsPage extends SpecialPage {
 	 * Save user groups changes in the database.
 	 * Data comes from the editUserGroupsForm() form function
 	 *
-	 * @param string $username username to apply changes to.
-	 * @param string $reason reason for group change
+	 * @param string $username Username to apply changes to.
+	 * @param string $reason Reason for group change
 	 * @param User|UserRightsProxy $user Target user object.
 	 * @return null
 	 */
@@ -278,6 +278,10 @@ class UserrightsPage extends SpecialPage {
 
 	/**
 	 * Add a rights log entry for an action.
+	 * @param User $user
+	 * @param array $oldGroups
+	 * @param array $newGroups
+	 * @param array $reason
 	 */
 	function addLogEntry( $user, $oldGroups, $newGroups, $reason ) {
 		$logEntry = new ManualLogEntry( 'rights', 'rights' );
@@ -294,7 +298,7 @@ class UserrightsPage extends SpecialPage {
 
 	/**
 	 * Edit user groups membership
-	 * @param string $username name of the user.
+	 * @param string $username Name of the user.
 	 */
 	function editUserGroupsForm( $username ) {
 		$status = $this->fetchUser( $username );
@@ -321,7 +325,7 @@ class UserrightsPage extends SpecialPage {
 	 *
 	 * Side effects: error output for invalid access
 	 * @param string $username
-	 * @return Status object
+	 * @return Status
 	 */
 	public function fetchUser( $username ) {
 		global $wgUserrightsInterwikiDelimiter;
@@ -396,7 +400,7 @@ class UserrightsPage extends SpecialPage {
 	 * Make a list of group names to be stored as parameter for log entries
 	 *
 	 * @deprecated since 1.21; use LogFormatter instead.
-	 * @param $ids array
+	 * @param array $ids
 	 * @return string
 	 */
 	function makeGroupNameListForLog( $ids ) {
@@ -572,7 +576,7 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Format a link to a group description page
 	 *
-	 * @param $group string
+	 * @param string $group
 	 * @return string
 	 */
 	private static function buildGroupLink( $group ) {
@@ -582,7 +586,7 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Format a link to a group member description page
 	 *
-	 * @param $group string
+	 * @param string $group
 	 * @return string
 	 */
 	private static function buildGroupMemberLink( $group ) {
@@ -601,8 +605,8 @@ class UserrightsPage extends SpecialPage {
 	 * Adds a table with checkboxes where you can select what groups to add/remove
 	 *
 	 * @todo Just pass the username string?
-	 * @param array $usergroups groups the user belongs to
-	 * @param $user User a user object
+	 * @param array $usergroups Groups the user belongs to
+	 * @param User $user
 	 * @return string XHTML table element with checkboxes
 	 */
 	private function groupCheckboxes( $usergroups, $user ) {
@@ -696,7 +700,7 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	/**
-	 * @param string $group the name of the group to check
+	 * @param string $group The name of the group to check
 	 * @return bool Can we add the group?
 	 */
 	private function canAdd( $group ) {
@@ -725,8 +729,8 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Show a rights log fragment for the specified user
 	 *
-	 * @param $user User to show log for
-	 * @param $output OutputPage to use
+	 * @param User $user User to show log for
+	 * @param OutputPage $output OutputPage to use
 	 */
 	protected function showLogFragment( $user, $output ) {
 		$rightsLogPage = new LogPage( 'rights' );

@@ -93,9 +93,9 @@ class MostlinkedPage extends QueryPage {
 	/**
 	 * Make a link to "what links here" for the specified title
 	 *
-	 * @param $title Title being queried
-	 * @param string $caption text to display on the link
-	 * @return String
+	 * @param Title $title Title being queried
+	 * @param string $caption Text to display on the link
+	 * @return string
 	 */
 	function makeWlhLink( $title, $caption ) {
 		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedDBkey() );

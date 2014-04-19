@@ -47,7 +47,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 
 	/**
 	 * Entry point : initialise variables and call subfunctions.
-	 * @param string $par becomes "FOO" when called like Special:Prefixindex/FOO (default null)
+	 * @param string $par Becomes "FOO" when called like Special:Prefixindex/FOO (default null)
 	 */
 	function execute( $par ) {
 		global $wgContLang;
@@ -96,8 +96,8 @@ class SpecialPrefixindex extends SpecialAllpages {
 
 	/**
 	 * HTML for the top form
-	 * @param $namespace Integer: a namespace constant (default NS_MAIN).
-	 * @param string $from dbKey we are starting listing at.
+	 * @param int $namespace A namespace constant (default NS_MAIN).
+	 * @param string $from DbKey we are starting listing at.
 	 * @return string
 	 */
 	protected function namespacePrefixForm( $namespace = NS_MAIN, $from = '' ) {
@@ -153,9 +153,9 @@ class SpecialPrefixindex extends SpecialAllpages {
 	}
 
 	/**
-	 * @param $namespace Integer, default NS_MAIN
-	 * @param $prefix String
-	 * @param string $from list all pages from this name (default FALSE)
+	 * @param int $namespace Default NS_MAIN
+	 * @param string $prefix
+	 * @param string $from List all pages from this name (default FALSE)
 	 */
 	protected function showPrefixChunk( $namespace = NS_MAIN, $prefix, $from = null ) {
 		global $wgContLang;

@@ -58,7 +58,7 @@ class ShortPagesPage extends QueryPage {
 	}
 
 	/**
-	 * @param $db DatabaseBase
+	 * @param DatabaseBase $db
 	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {

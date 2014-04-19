@@ -147,7 +147,7 @@ class DeletedContribsPager extends IndexPager {
 	 * written by the target user.
 	 *
 	 * @todo This would probably look a lot nicer in a table.
-	 * @param $row
+	 * @param stdClass $row
 	 * @return string
 	 */
 	function formatRow( $row ) {
@@ -375,8 +375,8 @@ class DeletedContributionsPage extends SpecialPage {
 
 	/**
 	 * Generates the subheading with links
-	 * @param $userObj User object for the target
-	 * @return String: appropriately-escaped HTML to be output literally
+	 * @param User $userObj User object for the target
+	 * @return string Appropriately-escaped HTML to be output literally
 	 * @todo FIXME: Almost the same as contributionsSub in SpecialContributions.php. Could be combined.
 	 */
 	function getSubTitle( $userObj ) {
@@ -498,7 +498,7 @@ class DeletedContributionsPage extends SpecialPage {
 
 	/**
 	 * Generates the namespace selector form with hidden attributes.
-	 * @param array $options the options to be included.
+	 * @param array $options The options to be included.
 	 * @return string
 	 */
 	function getForm( $options ) {

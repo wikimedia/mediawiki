@@ -218,7 +218,7 @@ class SpecialLog extends SpecialPage {
 
 	/**
 	 * Set page title and show header for this log type
-	 * @param $type string
+	 * @param string $type
 	 * @since 1.19
 	 */
 	protected function addHeader( $type ) {

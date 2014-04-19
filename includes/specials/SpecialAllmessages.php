@@ -43,7 +43,7 @@ class SpecialAllmessages extends SpecialPage {
 	/**
 	 * Show the special page
 	 *
-	 * @param $par Mixed: parameter passed to the page or null
+	 * @param string $par Parameter passed to the page or null
 	 */
 	public function execute( $par ) {
 		$request = $this->getRequest();
@@ -253,7 +253,7 @@ class AllmessagesTablePager extends TablePager {
 	 * @param array $messageNames
 	 * @param string $langcode What language code
 	 * @param bool $foreign Whether the $langcode is not the content language
-	 * @return array: a 'pages' and 'talks' array with the keys of existing pages
+	 * @return array A 'pages' and 'talks' array with the keys of existing pages
 	 */
 	public static function getCustomisedStatuses( $messageNames, $langcode = 'en', $foreign = false ) {
 		// FIXME: This function should be moved to Language:: or something.

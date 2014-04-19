@@ -331,7 +331,7 @@ class PageArchive {
 	/**
 	 * Quick check if any archived revisions are present for the page.
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	function isDeleted() {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -439,7 +439,7 @@ class PageArchive {
 	 * @param bool $unsuppress Remove all ar_deleted/fa_deleted restrictions of seletected revs
 	 * @param string $comment
 	 * @throws ReadOnlyError
-	 * @return Status Object containing the number of revisions restored on success
+	 * @return Status Status object containing the number of revisions restored on success
 	 */
 	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {
 		global $wgContentHandlerUseDB;
@@ -1147,6 +1147,7 @@ class SpecialUndelete extends SpecialPage {
 
 	/**
 	 * Show a form confirming whether a tokenless user really wants to see a file
+	 * @param string $key
 	 */
 	private function showFileConfirmationForm( $key ) {
 		$out = $this->getOutput();
@@ -1174,6 +1175,7 @@ class SpecialUndelete extends SpecialPage {
 
 	/**
 	 * Show a deleted file version requested by the visitor.
+	 * @param string $key
 	 */
 	private function showFile( $key ) {
 		$this->getOutput()->disable();
@@ -1539,7 +1541,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @param File|ArchivedFile $file
 	 * @param Title $titleObj
 	 * @param string $ts A timestamp
-	 * @param string $key a storage key
+	 * @param string $key A storage key
 	 *
 	 * @return string HTML fragment
 	 */

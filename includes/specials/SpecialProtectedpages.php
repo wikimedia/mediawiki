@@ -99,7 +99,7 @@ class SpecialProtectedpages extends SpecialPage {
 	 * @param bool $indefOnly Only indefinite protection
 	 * @param bool $cascadeOnly Only cascading protection
 	 * @param bool $noRedirect Don't show redirects
-	 * @return String: input form
+	 * @return string Input form
 	 */
 	protected function showOptions( $namespace, $type = 'edit', $level, $sizetype,
 		$size, $indefOnly, $cascadeOnly, $noRedirect
@@ -131,8 +131,8 @@ class SpecialProtectedpages extends SpecialPage {
 	 * Prepare the namespace filter drop-down; standard namespace
 	 * selector, sans the MediaWiki namespace
 	 *
-	 * @param $namespace Mixed: pre-select namespace
-	 * @return String
+	 * @param string|null $namespace Pre-select namespace
+	 * @return string
 	 */
 	protected function getNamespaceMenu( $namespace = null ) {
 		return Html::rawElement( 'span', array( 'style' => 'white-space: nowrap;' ),
@@ -220,7 +220,7 @@ class SpecialProtectedpages extends SpecialPage {
 
 	/**
 	 * Creates the input label of the restriction type
-	 * @param $pr_type string Protection type
+	 * @param string $pr_type Protection type
 	 * @return string Formatted HTML
 	 */
 	protected function getTypeMenu( $pr_type ) {
@@ -249,7 +249,7 @@ class SpecialProtectedpages extends SpecialPage {
 
 	/**
 	 * Creates the input label of the restriction level
-	 * @param $pr_level string Protection level
+	 * @param string $pr_level Protection level
 	 * @return string Formatted HTML
 	 */
 	protected function getLevelMenu( $pr_level ) {

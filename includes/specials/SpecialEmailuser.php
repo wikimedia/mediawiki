@@ -176,7 +176,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * Validate target User
 	 *
 	 * @param string $target target user name
-	 * @return User object on success or a string on error
+	 * @return User User object on success or a string on error
 	 */
 	public static function getTarget( $target ) {
 		if ( $target == '' ) {
@@ -206,9 +206,9 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	/**
 	 * Check whether a user is allowed to send email
 	 *
-	 * @param $user User object
-	 * @param string $editToken edit token
-	 * @return null on success or string on error
+	 * @param User $user
+	 * @param string $editToken Edit token
+	 * @return string|null Null on success or string on error
 	 */
 	public static function getPermissionsError( $user, $editToken ) {
 		global $wgEnableEmail, $wgEnableUserEmail;
@@ -252,8 +252,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	/**
 	 * Form to ask for target user name.
 	 *
-	 * @param string $name user name submitted.
-	 * @return String: form asking for user name.
+	 * @param string $name User name submitted.
+	 * @return string Form asking for user name.
 	 */
 	protected function userForm( $name ) {
 		global $wgScript;
@@ -283,8 +283,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * Submit callback for an HTMLForm object, will simply call submit().
 	 *
 	 * @since 1.20
-	 * @param $data array
-	 * @param $form HTMLForm object
+	 * @param array $data
+	 * @param HTMLForm $form
 	 * @return Status|string|bool
 	 */
 	public static function uiSubmit( array $data, HTMLForm $form ) {
@@ -298,7 +298,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 *
 	 * @param array $data
 	 * @param IContextSource $context
-	 * @return Mixed: Status object, or potentially a String on error
+	 * @return Status|string|bool Status object, or potentially a String on error
 	 * or maybe even true on success if anything uses the EmailUser hook.
 	 */
 	public static function submit( array $data, IContextSource $context ) {

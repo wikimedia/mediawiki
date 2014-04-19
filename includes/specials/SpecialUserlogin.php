@@ -166,7 +166,7 @@ class LoginForm extends SpecialPage {
 	}
 
 	/*
-	 * @param $subPage string|null
+	 * @param string|null $subPage
 	 */
 	public function execute( $subPage ) {
 		if ( session_id() == '' ) {
@@ -536,9 +536,9 @@ class LoginForm extends SpecialPage {
 	 * Actually add a user to the database.
 	 * Give it a User object that has been initialised with a name.
 	 *
-	 * @param $u User object.
-	 * @param $autocreate boolean -- true if this is an autocreation via auth plugin
-	 * @return Status object, with the User object in the value member on success
+	 * @param User $u
+	 * @param bool $autocreate True if this is an autocreation via auth plugin
+	 * @return Status Status object, with the User object in the value member on success
 	 * @private
 	 */
 	function initUser( $u, $autocreate ) {
@@ -720,7 +720,7 @@ class LoginForm extends SpecialPage {
 	 * Increment the login attempt throttle hit count for the (username,current IP)
 	 * tuple unless the throttle was already reached.
 	 * @param string $username The user name
-	 * @return Bool|Integer The integer hit count or True if it is already at the limit
+	 * @return bool|int The integer hit count or True if it is already at the limit
 	 */
 	public static function incLoginThrottle( $username ) {
 		global $wgPasswordAttemptThrottle, $wgMemc, $wgRequest;
@@ -762,9 +762,9 @@ class LoginForm extends SpecialPage {
 	 * Attempt to automatically create a user on login. Only succeeds if there
 	 * is an external authentication method which allows it.
 	 *
-	 * @param $user User
+	 * @param User $user
 	 *
-	 * @return integer Status code
+	 * @return int Status code
 	 */
 	function attemptAutoCreate( $user ) {
 		global $wgAuth;
@@ -948,11 +948,11 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
-	 * @param $u User object
-	 * @param $throttle Boolean
-	 * @param string $emailTitle message name of email title
-	 * @param string $emailText message name of email text
-	 * @return Status object
+	 * @param User $u
+	 * @param bool $throttle
+	 * @param string $emailTitle Message name of email title
+	 * @param string $emailText Message name of email text
+	 * @return Status
 	 */
 	function mailPasswordInternal( $u, $throttle = true, $emailTitle = 'passwordremindertitle',
 		$emailText = 'passwordremindertext'
@@ -1037,9 +1037,9 @@ class LoginForm extends SpecialPage {
 	/**
 	 * Display an "successful action" page.
 	 *
-	 * @param string|Message $title page's title
-	 * @param $msgname string
-	 * @param $injected_html string
+	 * @param string|Message $title Page's title
+	 * @param string $msgname
+	 * @param string $injected_html
 	 */
 	private function displaySuccessfulAction( $title, $msgname, $injected_html ) {
 		$out = $this->getOutput();
@@ -1058,7 +1058,7 @@ class LoginForm extends SpecialPage {
 	 * there is a block on them or their IP which prevents account creation.  Note that
 	 * User::isBlockedFromCreateAccount(), which gets this block, ignores the 'hardblock'
 	 * setting on blocks (bug 13611).
-	 * @param $block Block the block causing this error
+	 * @param Block $block The block causing this error
 	 * @throws ErrorPageError
 	 */
 	function userBlockedMessage( Block $block ) {
@@ -1094,7 +1094,7 @@ class LoginForm extends SpecialPage {
 	 * Extensions can use this to reuse the "return to" logic after
 	 * inject steps (such as redirection) into the login process.
 	 *
-	 * @param $type string, one of the following:
+	 * @param string $type One of the following:
 	 *    - error: display a return to link ignoring $wgRedirectOnLogin
 	 *    - success: display a return to link using $wgRedirectOnLogin if needed
 	 *    - successredirect: send an HTTP redirect using $wgRedirectOnLogin if needed
@@ -1115,7 +1115,7 @@ class LoginForm extends SpecialPage {
 	/**
 	 * Add a "return to" link or redirect to it.
 	 *
-	 * @param $type string, one of the following:
+	 * @param string $type One of the following:
 	 *    - error: display a return to link ignoring $wgRedirectOnLogin
 	 *    - success: display a return to link using $wgRedirectOnLogin if needed
 	 *    - successredirect: send an HTTP redirect using $wgRedirectOnLogin if needed
@@ -1344,7 +1344,7 @@ class LoginForm extends SpecialPage {
 	 * Whether the login/create account form should display a link to the
 	 * other form (in addition to whatever the skin provides).
 	 *
-	 * @param $user User
+	 * @param User $user
 	 * @return bool
 	 */
 	private function showCreateOrLoginLink( &$user ) {
@@ -1375,7 +1375,7 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * Get the login token from the current session
-	 * @return Mixed
+	 * @return mixed
 	 */
 	public static function getLoginToken() {
 		global $wgRequest;
@@ -1403,7 +1403,7 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * Get the createaccount token from the current session
-	 * @return Mixed
+	 * @return mixed
 	 */
 	public static function getCreateaccountToken() {
 		global $wgRequest;

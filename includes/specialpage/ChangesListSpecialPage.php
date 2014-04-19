@@ -164,7 +164,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *
 	 * Intended for subclassing, e.g. to add a backwards-compatibility layer.
 	 *
-	 * @param FormOptions $parameters
+	 * @param FormOptions $opts
 	 * @return FormOptions
 	 */
 	protected function fetchOptionsFromRequest( $opts ) {
@@ -398,7 +398,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @todo This should not be static, then we can drop the parameter
 	 * @todo Not called by anything, should be called by doHeader()
 	 *
-	 * @param $context the object available as $this in non-static functions
+	 * @param IContextSource $context The object available as $this in non-static functions
 	 * @return string
 	 */
 	public static function makeLegend( IContextSource $context ) {
