@@ -37,7 +37,7 @@ class SpecialBlockList extends SpecialPage {
 	/**
 	 * Main execution point
 	 *
-	 * @param string $par title fragment
+	 * @param string $par Title fragment
 	 */
 	public function execute( $par ) {
 		$this->setHeaders();
@@ -217,8 +217,8 @@ class BlockListPager extends TablePager {
 	protected $page;
 
 	/**
-	 * @param $page SpecialPage
-	 * @param $conds Array
+	 * @param SpecialPage $page
+	 * @param array $conds
 	 */
 	function __construct( $page, $conds ) {
 		$this->page = $page;
@@ -461,8 +461,8 @@ class HTMLBlockedUsersItemSelect extends HTMLSelectField {
 	 * Basically don't do any validation. If it's a number that's fine. Also,
 	 * add it to the list if it's not there already
 	 *
-	 * @param $value
-	 * @param $alldata
+	 * @param string $value
+	 * @param array $alldata
 	 * @return bool
 	 */
 	function validate( $value, $alldata ) {

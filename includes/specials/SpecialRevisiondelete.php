@@ -43,19 +43,19 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	/** @var string Edit token for securing image views against XSS */
 	private $token;
 
-	/** @var Title object for target parameter */
+	/** @var Title Title object for target parameter */
 	private $targetObj;
 
 	/** @var string Deletion type, may be revision, archive, oldimage, filearchive, logging. */
 	private $typeName;
 
-	/** @var array of checkbox specs (message, name, deletion bits) */
+	/** @var array Array of checkbox specs (message, name, deletion bits) */
 	private $checks;
 
 	/** @var array UI Labels about the current type */
 	private $typeLabels;
 
-	/** @var RevDel_List object, storing the list of items to be deleted/undeleted */
+	/** @var RevDel_List RevDel_List object, storing the list of items to be deleted/undeleted */
 	private $revDelList;
 
 	/** @var bool Whether user is allowed to perform the action */
@@ -278,6 +278,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	/**
 	 * Show a deleted file version requested by the visitor.
 	 * TODO Mostly copied from Special:Undelete. Refactor.
+	 * @param string $archiveName
 	 */
 	protected function tryShowFile( $archiveName ) {
 		$repo = RepoGroup::singleton()->getLocalRepo();
@@ -335,6 +336,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	/**
 	 * Get the list object for this request
+	 * @return RevDel_List
 	 */
 	protected function getList() {
 		if ( is_null( $this->revDelList ) ) {
@@ -462,7 +464,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @return String: HTML
+	 * @return string HTML
 	 */
 	protected function buildCheckBoxes() {
 		$html = '<table>';
@@ -605,9 +607,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	/**
 	 * Do the write operations. Simple wrapper for RevDel_*List::setVisibility().
-	 * @param $bitfield
-	 * @param $reason
-	 * @param $title
+	 * @param int $bitfield
+	 * @param string $reason
+	 * @param Title $title
 	 * @return Status
 	 */
 	protected function save( $bitfield, $reason, $title ) {

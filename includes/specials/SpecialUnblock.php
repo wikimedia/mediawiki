@@ -144,7 +144,7 @@ class SpecialUnblock extends SpecialPage {
 	 * Submit callback for an HTMLForm object
 	 * @param array $data
 	 * @param HTMLForm $form
-	 * @return Array( Array(message key, parameters)
+	 * @return array|bool Array(message key, parameters)
 	 */
 	public static function processUIUnblock( array $data, HTMLForm $form ) {
 		return self::processUnblock( $data, $form->getContext() );
@@ -153,10 +153,10 @@ class SpecialUnblock extends SpecialPage {
 	/**
 	 * Process the form
 	 *
-	 * @param $data Array
-	 * @param $context IContextSource
+	 * @param array $data
+	 * @param IContextSource $context
 	 * @throws ErrorPageError
-	 * @return Array( Array(message key, parameters) ) on failure, True on success
+	 * @return array|bool Array(message key, parameters) on failure, True on success
 	 */
 	public static function processUnblock( array $data, IContextSource $context ) {
 		$performer = $context->getUser();

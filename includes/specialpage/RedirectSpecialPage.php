@@ -67,7 +67,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 * Return part of the request string for a special redirect page
 	 * This allows passing, e.g. action=history to Special:Mypage, etc.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getRedirectQuery() {
 		$params = array();

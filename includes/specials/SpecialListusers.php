@@ -35,9 +35,9 @@
 class UsersPager extends AlphabeticPager {
 
 	/**
-	 * @param $context IContextSource
+	 * @param IContextSource $context
 	 * @param array $par (Default null)
-	 * @param $including boolean Whether this page is being transcluded in
+	 * @param bool $including Whether this page is being transcluded in
 	 * another page
 	 */
 	function __construct( IContextSource $context = null, $par = null, $including = null ) {
@@ -92,7 +92,7 @@ class UsersPager extends AlphabeticPager {
 	}
 
 	/**
-	 * @return Array
+	 * @return array
 	 */
 	function getQueryInfo() {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -154,8 +154,8 @@ class UsersPager extends AlphabeticPager {
 	}
 
 	/**
-	 * @param $row Object
-	 * @return String
+	 * @param stdClass $row
+	 * @return string
 	 */
 	function formatRow( $row ) {
 		if ( $row->user_id == 0 ) { #Bug 16487
@@ -333,7 +333,7 @@ class UsersPager extends AlphabeticPager {
 	/**
 	 * Get a list of groups the specified user belongs to
 	 *
-	 * @param $uid Integer: user id
+	 * @param int $uid User id
 	 * @return array
 	 */
 	protected static function getGroups( $uid ) {
@@ -346,7 +346,7 @@ class UsersPager extends AlphabeticPager {
 	/**
 	 * Format a link to a group description page
 	 *
-	 * @param string $group group name
+	 * @param string $group Group name
 	 * @param string $username Username
 	 * @return string
 	 */

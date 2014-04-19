@@ -135,10 +135,10 @@ class SpecialPasswordReset extends FormSpecialPage {
 	 * Process the form.  At this point we know that the user passes all the criteria in
 	 * userCanExecute(), and if the data array contains 'Username', etc, then Username
 	 * resets are allowed.
-	 * @param $data array
+	 * @param array $data
 	 * @throws MWException
 	 * @throws ThrottledError|PermissionsError
-	 * @return Bool|Array
+	 * @return bool|array
 	 */
 	public function onSubmit( array $data ) {
 		global $wgAuth;
@@ -349,7 +349,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 	/**
 	 * Hide the password reset page if resets are disabled.
-	 * @return Bool
+	 * @return bool
 	 */
 	function isListed() {
 		if ( $this->canChangePassword( $this->getUser() ) === true ) {

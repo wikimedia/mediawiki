@@ -165,7 +165,7 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Get the "MediaWiki is copyright 2001-20xx by lots of cool guys" text
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public static function getCopyrightAndAuthorList() {
 		global $wgLang;
@@ -240,7 +240,7 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Return a string of the MediaWiki version with SVN revision if available.
 	 *
-	 * @param $flags String
+	 * @param string $flags
 	 * @return mixed
 	 */
 	public static function getVersion( $flags = '' ) {
@@ -409,7 +409,7 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @since 1.17
 	 *
-	 * @param $type String
+	 * @param string $type
 	 *
 	 * @return string
 	 */
@@ -530,8 +530,8 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @since 1.17
 	 *
-	 * @param $type String
-	 * @param $message String
+	 * @param string $type
+	 * @param string $message
 	 *
 	 * @return string
 	 */
@@ -555,8 +555,8 @@ class SpecialVersion extends SpecialPage {
 
 	/**
 	 * Callback to sort extensions by type.
-	 * @param $a array
-	 * @param $b array
+	 * @param array $a
+	 * @param array $b
 	 * @return int
 	 */
 	function compare( $a, $b ) {
@@ -582,9 +582,9 @@ class SpecialVersion extends SpecialPage {
 	 *  - Description of extension (descriptionmsg or description)
 	 *  - List of authors (author) and link to a ((AUTHORS)|(CREDITS))(\.txt)? file if it exists
 	 *
-	 * @param $extension Array
+	 * @param array $extension
 	 *
-	 * @return string raw HTML
+	 * @return string Raw HTML
 	 */
 	function getCreditsForExtension( array $extension ) {
 		$out = $this->getOutput();
@@ -975,7 +975,7 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Convert an array or object to a string for display.
 	 *
-	 * @param mixed $list will convert an array to string if given and return
+	 * @param mixed $list Will convert an array to string if given and return
 	 *   the paramater unaltered otherwise
 	 *
 	 * @return mixed
@@ -1014,7 +1014,7 @@ class SpecialVersion extends SpecialPage {
 	 *        url                   The subversion URL of the directory
 	 *        repo-url              The base URL of the repository
 	 *        viewvc-url            A ViewVC URL pointing to the checked-out revision
-	 * @param $dir string
+	 * @param string $dir
 	 * @return array|bool
 	 */
 	public static function getSvnInfo( $dir ) {
@@ -1087,7 +1087,7 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Retrieve the revision number of a Subversion working directory.
 	 *
-	 * @param string $dir directory of the svn checkout
+	 * @param string $dir Directory of the svn checkout
 	 *
 	 * @return int Revision number
 	 */
@@ -1104,8 +1104,8 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * @param string $dir directory of the git checkout
-	 * @return bool|String sha1 of commit HEAD points to
+	 * @param string $dir Directory of the git checkout
+	 * @return bool|string Sha1 of commit HEAD points to
 	 */
 	public static function getGitHeadSha1( $dir ) {
 		$repo = new GitInfo( $dir );

@@ -45,7 +45,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @return Bool
+	 * @return bool
 	 */
 	function isListed() {
 		global $wgAuth;
@@ -55,6 +55,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 
 	/**
 	 * Main execution point
+	 * @param string $par
 	 */
 	function execute( $par ) {
 		global $wgAuth;
@@ -114,7 +115,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @param $type string
+	 * @param string $type
 	 */
 	protected function doReturnTo( $type = 'hard' ) {
 		$titleObj = Title::newFromText( $this->getRequest()->getVal( 'returnto' ) );
@@ -129,7 +130,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @param $msg string
+	 * @param string $msg
 	 */
 	protected function error( $msg ) {
 		$this->getOutput()->wrapWikiMsg( "<p class='error'>\n$1\n</p>", $msg );
@@ -181,7 +182,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @param $fields array
+	 * @param array $fields
 	 * @return string
 	 */
 	protected function pretty( $fields ) {
@@ -215,10 +216,10 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @param $user User
-	 * @param $pass string
-	 * @param $newaddr string
-	 * @return bool|string true or string on success, false on failure
+	 * @param User $user
+	 * @param string $pass
+	 * @param string $newaddr
+	 * @return bool|string True or string on success, false on failure
 	 */
 	protected function attemptChange( User $user, $pass, $newaddr ) {
 		global $wgAuth, $wgPasswordAttemptThrottle;

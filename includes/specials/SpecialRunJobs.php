@@ -117,7 +117,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 	 *
 	 * @note: also called from Wiki.php
 	 *
-	 * @param integer $maxJobs Maximum number of jobs to run
+	 * @param int $maxJobs Maximum number of jobs to run
 	 * @return void
 	 */
 	public static function executeJobs( $maxJobs ) {

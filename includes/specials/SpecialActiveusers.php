@@ -38,18 +38,18 @@ class ActiveUsersPager extends UsersPager {
 	protected $opts;
 
 	/**
-	 * @var Array
+	 * @var array
 	 */
 	protected $hideGroups = array();
 
 	/**
-	 * @var Array
+	 * @var array
 	 */
 	protected $hideRights = array();
 
 	/**
-	 * @param $context IContextSource
-	 * @param $group null Unused
+	 * @param IContextSource $context
+	 * @param null $group Unused
 	 * @param string $par Parameter passed to the page
 	 */
 	function __construct( IContextSource $context = null, $group = null, $par = null ) {
@@ -230,7 +230,7 @@ class SpecialActiveUsers extends SpecialPage {
 	/**
 	 * Show the special page
 	 *
-	 * @param $par Mixed: parameter passed to the page or null
+	 * @param string $par Parameter passed to the page or null
 	 */
 	public function execute( $par ) {
 		global $wgActiveUserDays;
@@ -270,8 +270,8 @@ class SpecialActiveUsers extends SpecialPage {
 	}
 
 	/**
-	 * @param integer $period Seconds (do updates no more often than this)
-	 * @return integer How many seconds old the cache is
+	 * @param intr $period Seconds (do updates no more often than this)
+	 * @return int How many seconds old the cache is
 	 */
 	public static function mergeActiveUsers( $period ) {
 		global $wgActiveUserDays;
@@ -311,7 +311,7 @@ class SpecialActiveUsers extends SpecialPage {
 	 * Update the query cache as needed
 	 *
 	 * @param DatabaseBase $dbw
-	 * @param integer $window Maximum time range of new data to scan (in seconds)
+	 * @param int $window Maximum time range of new data to scan (in seconds)
 	 * @return bool Success
 	 */
 	protected static function doQueryCacheUpdate( DatabaseBase $dbw, $window ) {

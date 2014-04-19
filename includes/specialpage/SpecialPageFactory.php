@@ -232,7 +232,7 @@ class SpecialPageFactory {
 	 * aliases; the first in the array is the canonical alias.  All registered special
 	 * pages are guaranteed to have a property entry, and for that property array to
 	 * contain at least one entry (English fallbacks will be added if necessary).
-	 * @return Object
+	 * @return object
 	 */
 	static function getAliasList() {
 		if ( !is_object( self::$aliases ) ) {
@@ -361,7 +361,7 @@ class SpecialPageFactory {
 	 * Return categorised listable special pages which are available
 	 * for the current user, and everyone.
 	 *
-	 * @param $user User object to check permissions, $wgUser will be used if
+	 * @param User $user User object to check permissions, $wgUser will be used if
 	 *   if not provided
 	 * @return array ( string => Specialpage )
 	 */

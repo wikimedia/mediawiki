@@ -126,9 +126,9 @@ class SpecialProtectedtitles extends SpecialPage {
 	}
 
 	/**
-	 * @param $namespace Integer:
-	 * @param $type string
-	 * @param $level string
+	 * @param int $namespace
+	 * @param string $type
+	 * @param string $level
 	 * @return string
 	 * @private
 	 */
@@ -152,7 +152,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * Prepare the namespace filter drop-down; standard namespace
 	 * selector, sans the MediaWiki namespace
 	 *
-	 * @param $namespace Mixed: pre-select namespace
+	 * @param string|null $namespace Pre-select namespace
 	 * @return string
 	 */
 	function getNamespaceMenu( $namespace = null ) {

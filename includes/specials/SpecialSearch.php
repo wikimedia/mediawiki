@@ -41,13 +41,13 @@ class SpecialSearch extends SpecialPage {
 	/** @var SearchEngine Search engine */
 	protected $searchEngine;
 
-	/** @var String Search engine type, if not default */
+	/** @var string Search engine type, if not default */
 	protected $searchEngineType;
 
-	/** @var Array For links */
+	/** @var array For links */
 	protected $extraParams = array();
 
-	/** @var String No idea, apparently used by some other classes */
+	/** @var string No idea, apparently used by some other classes */
 	protected $mPrefix;
 
 	/**
@@ -74,7 +74,7 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * Entry point
 	 *
-	 * @param string $par or null
+	 * @param string $par
 	 */
 	public function execute( $par ) {
 		$this->setHeaders();
@@ -162,7 +162,7 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * If an exact title match can be found, jump straight ahead to it.
 	 *
-	 * @param $term String
+	 * @param string $term
 	 */
 	public function goResult( $term ) {
 		$this->setupPage( $term );
@@ -200,7 +200,7 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
-	 * @param $term String
+	 * @param string $term
 	 */
 	public function showResults( $term ) {
 		global $wgDisableTextSearch, $wgSearchForwardUrl, $wgContLang, $wgScript;
@@ -419,10 +419,10 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
-	 * @param $title Title
+	 * @param Title $title
 	 * @param int $num The number of search results found
-	 * @param $titleMatches null|SearchResultSet results from title search
-	 * @param $textMatches null|SearchResultSet results from text search
+	 * @param null|SearchResultSet $titleMatches Results from title search
+	 * @param null|SearchResultSet $textMatches  Results from text search
 	 */
 	protected function showCreateLink( $title, $num, $titleMatches, $textMatches ) {
 		// show direct page/create link if applicable
@@ -459,7 +459,7 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
-	 * @param $term string
+	 * @param string $term
 	 */
 	protected function setupPage( $term ) {
 		# Should advanced UI be used?
@@ -480,8 +480,8 @@ class SpecialSearch extends SpecialPage {
 	 * Extract "power search" namespace settings from the request object,
 	 * returning a list of index numbers to search.
 	 *
-	 * @param $request WebRequest
-	 * @return Array
+	 * @param WebRequest $request
+	 * @return array
 	 */
 	protected function powerSearch( &$request ) {
 		$arr = array();
@@ -497,7 +497,7 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * Reconstruct the 'power search' options for links
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	protected function powerSearchOptions() {
 		$opt = array();
@@ -515,7 +515,7 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * Show whole set of results
 	 *
-	 * @param $matches SearchResultSet
+	 * @param SearchResultSet $matches
 	 *
 	 * @return string
 	 */
@@ -542,8 +542,8 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * Format a single hit result
 	 *
-	 * @param $result SearchResult
-	 * @param array $terms terms to highlight
+	 * @param SearchResult $result
+	 * @param array $terms Terms to highlight
 	 *
 	 * @return string
 	 */
@@ -722,8 +722,8 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * Show results from other wikis
 	 *
-	 * @param $matches SearchResultSet|array
-	 * @param $query String
+	 * @param SearchResultSet|array $matches
+	 * @param string $query
 	 *
 	 * @return string
 	 */
@@ -772,9 +772,9 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * Show single interwiki link
 	 *
-	 * @param $result SearchResult
-	 * @param $lastInterwiki String
-	 * @param $query String
+	 * @param SearchResult $result
+	 * @param string $lastInterwiki
+	 * @param string $query
 	 * @param array $customCaptions iw prefix -> caption
 	 *
 	 * @return string
@@ -847,9 +847,9 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
-	 * @param $profile
-	 * @param $term
-	 * @return String
+	 * @param string $profile
+	 * @param string $term
+	 * @return string
 	 */
 	protected function getProfileForm( $profile, $term ) {
 		// Hidden stuff
@@ -869,9 +869,9 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * Generates the power search box at [[Special:Search]]
 	 *
-	 * @param string $term search term
-	 * @param $opts array
-	 * @return String: HTML form
+	 * @param string $term Search term
+	 * @param array $opts
+	 * @return string HTML form
 	 */
 	protected function powerSearchBox( $term, $opts ) {
 		global $wgContLang;
@@ -998,9 +998,9 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
-	 * @param $term
-	 * @param $resultsShown
-	 * @param $totalNum
+	 * @param string $term
+	 * @param int $resultsShown
+	 * @param int $totalNum
 	 * @return string
 	 */
 	protected function formHeader( $term, $resultsShown, $totalNum ) {
@@ -1072,7 +1072,7 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
-	 * @param $term string
+	 * @param string $term
 	 * @return string
 	 */
 	protected function shortDialog( $term ) {
@@ -1097,12 +1097,12 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * Make a search link with some target namespaces
 	 *
-	 * @param $term String
-	 * @param array $namespaces ignored
-	 * @param string $label link's text
-	 * @param string $tooltip link's tooltip
-	 * @param array $params query string parameters
-	 * @return String: HTML fragment
+	 * @param string $term
+	 * @param array $namespaces Ignored
+	 * @param string $label Link's text
+	 * @param string $tooltip Link's tooltip
+	 * @param array $params Query string parameters
+	 * @return string HTML fragment
 	 */
 	protected function makeSearchLink( $term, $namespaces, $label, $tooltip, $params = array() ) {
 		$opt = $params;
@@ -1131,8 +1131,8 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * Check if query starts with image: prefix
 	 *
-	 * @param string $term the string to check
-	 * @return Boolean
+	 * @param string $term The string to check
+	 * @return bool
 	 */
 	protected function startsWithImage( $term ) {
 		global $wgContLang;
@@ -1148,8 +1148,8 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * Check if query starts with all: prefix
 	 *
-	 * @param string $term the string to check
-	 * @return Boolean
+	 * @param string $term The string to check
+	 * @return bool
 	 */
 	protected function startsWithAll( $term ) {
 
@@ -1199,8 +1199,8 @@ class SpecialSearch extends SpecialPage {
 	 * user navigates search results.
 	 * @since 1.18
 	 *
-	 * @param $key
-	 * @param $value
+	 * @param string $key
+	 * @param mixed $value
 	 */
 	public function setExtraParam( $key, $value ) {
 		$this->extraParams[$key] = $value;

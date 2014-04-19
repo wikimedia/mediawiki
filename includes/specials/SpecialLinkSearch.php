@@ -177,8 +177,8 @@ class LinkSearchPage extends QueryPage {
 	/**
 	 * Return an appropriately formatted LIKE query and the clause
 	 *
-	 * @param String $query Search pattern to search for
-	 * @param String $prot Protocol, e.g. 'http://'
+	 * @param string $query Search pattern to search for
+	 * @param string $prot Protocol, e.g. 'http://'
 	 *
 	 * @return array
 	 */

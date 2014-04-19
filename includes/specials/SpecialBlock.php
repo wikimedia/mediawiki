@@ -32,19 +32,19 @@ class SpecialBlock extends FormSpecialPage {
 	 * or as subpage (Special:Block/Foo) */
 	protected $target;
 
-	/** @var Integer Block::TYPE_ constant */
+	/** @var int Block::TYPE_ constant */
 	protected $type;
 
-	/** @var User|String the previous block target */
+	/** @var User|string The previous block target */
 	protected $previousTarget;
 
-	/** @var Bool whether the previous submission of the form asked for HideUser */
+	/** @var bool Whether the previous submission of the form asked for HideUser */
 	protected $requestedHideUser;
 
-	/** @var Bool */
+	/** @var bool */
 	protected $alreadyBlocked;
 
-	/** @var Array */
+	/** @var array */
 	protected $preErrors = array();
 
 	public function __construct() {
@@ -70,7 +70,7 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * Handle some magic here
 	 *
-	 * @param $par String
+	 * @param string $par
 	 */
 	protected function setParameter( $par ) {
 		# Extract variables from the request.  Try not to get into a situation where we
@@ -91,7 +91,7 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * Customizes the HTMLForm a bit
 	 *
-	 * @param $form HTMLForm
+	 * @param HTMLForm $form
 	 */
 	protected function alterForm( HTMLForm $form ) {
 		$form->setWrapperLegendMsg( 'blockip-legend' );
@@ -116,7 +116,7 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Get the HTMLForm descriptor array for the block form
-	 * @return Array
+	 * @return array
 	 */
 	protected function getFormFields() {
 		global $wgBlockAllowsUTEdit;
@@ -227,7 +227,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * If the user has already been blocked with similar settings, load that block
 	 * and change the defaults for the form fields to match the existing settings.
 	 * @param array $fields HTMLForm descriptor array
-	 * @return Bool whether fields were altered (that is, whether the target is
+	 * @return bool Whether fields were altered (that is, whether the target is
 	 *     already blocked)
 	 */
 	protected function maybeAlterFormDefaults( &$fields ) {
@@ -305,7 +305,7 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Add header elements like block log entries, etc.
-	 * @return String
+	 * @return string
 	 */
 	protected function preText() {
 		$this->getOutput()->addModules( 'mediawiki.special.block' );
@@ -436,7 +436,7 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * Get a user page target for things like logs.
 	 * This handles account and IP range targets.
-	 * @param $target User|string
+	 * @param User|string $target
 	 * @return Title|null
 	 */
 	protected static function getTargetUserTitle( $target ) {
@@ -454,7 +454,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * TODO: should be in Block.php?
 	 * @param string $par subpage parameter passed to setup, or data value from
 	 *     the HTMLForm
-	 * @param $request WebRequest optionally try and get data from a request too
+	 * @param WebRequest $request Optionally try and get data from a request too
 	 * @return array( User|string|null, Block::TYPE_ constant|null )
 	 */
 	public static function getTargetAndType( $par, WebRequest $request = null ) {
@@ -503,9 +503,9 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * HTMLForm field validation-callback for Target field.
 	 * @since 1.18
-	 * @param $value String
-	 * @param $alldata Array
-	 * @param $form HTMLForm
+	 * @param string $value
+	 * @param array $alldata
+	 * @param HTMLForm $form
 	 * @return Message
 	 */
 	public static function validateTargetField( $value, $alldata, $form ) {
@@ -583,9 +583,9 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Submit callback for an HTMLForm object, will simply pass
-	 * @param $data array
-	 * @param $form HTMLForm
-	 * @return Bool|String
+	 * @param array $data
+	 * @param HTMLForm $form
+	 * @return bool|string
 	 */
 	public static function processUIForm( array $data, HTMLForm $form ) {
 		return self::processForm( $data, $form->getContext() );
@@ -593,9 +593,9 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Given the form data, actually implement a block
-	 * @param $data Array
-	 * @param $context IContextSource
-	 * @return Bool|String
+	 * @param array $data
+	 * @param IContextSource $context
+	 * @return bool|string
 	 */
 	public static function processForm( array $data, IContextSource $context ) {
 		global $wgBlockAllowsUTEdit, $wgHideUserContribLimit;
@@ -799,9 +799,9 @@ class SpecialBlock extends FormSpecialPage {
 	 * Get an array of suggested block durations from MediaWiki:Ipboptions
 	 * @todo FIXME: This uses a rather odd syntax for the options, should it be converted
 	 *     to the standard "**<duration>|<displayname>" format?
-	 * @param $lang Language|null the language to get the durations in, or null to use
+	 * @param Language|null $lang The language to get the durations in, or null to use
 	 *     the wiki's content language
-	 * @return Array
+	 * @return array
 	 */
 	public static function getSuggestedDurations( $lang = null ) {
 		$a = array();
@@ -828,8 +828,8 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * Convert a submitted expiry time, which may be relative ("2 weeks", etc) or absolute
 	 * ("24 May 2034", etc), into an absolute timestamp we can put into the database.
-	 * @param string $expiry whatever was typed into the form
-	 * @return String: timestamp or "infinity" string for the DB implementation
+	 * @param string $expiry Whatever was typed into the form
+	 * @return string Timestamp or "infinity" string for the DB implementation
 	 */
 	public static function parseExpiryInput( $expiry ) {
 		static $infinity;
@@ -854,8 +854,8 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Can we do an email block?
-	 * @param $user User: the sysop wanting to make a block
-	 * @return Boolean
+	 * @param User $user The sysop wanting to make a block
+	 * @return bool
 	 */
 	public static function canBlockEmail( $user ) {
 		global $wgEnableUserEmail, $wgSysopEmailBans;
@@ -867,9 +867,9 @@ class SpecialBlock extends FormSpecialPage {
 	 * bug 15810: blocked admins should not be able to block/unblock
 	 * others, and probably shouldn't be able to unblock themselves
 	 * either.
-	 * @param $user User|Int|String
-	 * @param $performer User user doing the request
-	 * @return Bool|String true or error message key
+	 * @param User|int|string $user
+	 * @param User $performer User doing the request
+	 * @return bool|string True or error message key
 	 */
 	public static function checkUnblockSelf( $user, User $performer ) {
 		if ( is_int( $user ) ) {
@@ -901,8 +901,8 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * Return a comma-delimited list of "flags" to be passed to the log
 	 * reader for this block, to provide more information in the logs
-	 * @param array $data from HTMLForm data
-	 * @param $type Block::TYPE_ constant (USER, RANGE, or IP)
+	 * @param array $data From HTMLForm data
+	 * @param int $type Block::TYPE_ constant (USER, RANGE, or IP)
 	 * @return string
 	 */
 	protected static function blockLogFlags( array $data, $type ) {
@@ -947,8 +947,8 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Process the form on POST submission.
-	 * @param $data Array
-	 * @return Bool|Array true for success, false for didn't-try, array of errors on failure
+	 * @param array $data
+	 * @return bool|array True for success, false for didn't-try, array of errors on failure
 	 */
 	public function onSubmit( array $data ) {
 		// This isn't used since we need that HTMLForm that's passed in the

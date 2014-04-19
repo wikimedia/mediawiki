@@ -121,7 +121,7 @@ class ImageListPager extends TablePager {
 	 * Build the where clause of the query.
 	 *
 	 * Replaces the older mQueryConds member variable.
-	 * @param $table String Either "image" or "oldimage"
+	 * @param string $table Either "image" or "oldimage"
 	 * @return array The query conditions.
 	 */
 	protected function buildQueryConds( $table ) {
@@ -154,7 +154,7 @@ class ImageListPager extends TablePager {
 	}
 
 	/**
-	 * @return Array
+	 * @return array
 	 */
 	function getFieldNames() {
 		if ( !$this->mFieldNames ) {
@@ -226,7 +226,7 @@ class ImageListPager extends TablePager {
 	 *
 	 * This is a bit hacky.
 	 *
-	 * @param $table String Either 'image' or 'oldimage'
+	 * @param string $table Either 'image' or 'oldimage'
 	 * @return array Query info
 	 */
 	protected function getQueryInfoReal( $table ) {
@@ -291,6 +291,9 @@ class ImageListPager extends TablePager {
 	 * @note $asc is named $descending in IndexPager base class. However
 	 *   it is true when the order is ascending, and false when the order
 	 *   is descending, so I renamed it to $asc here.
+	 * @param int $offset
+	 * @param int $limit
+	 * @param bool $asc
 	 */
 	function reallyDoQuery( $offset, $limit, $asc ) {
 		$prevTableName = $this->mTableName;
@@ -326,10 +329,10 @@ class ImageListPager extends TablePager {
 	 *
 	 * Note: This will throw away some results
 	 *
-	 * @param $res1 ResultWrapper
-	 * @param $res2 ResultWrapper
-	 * @param $limit int
-	 * @param $ascending boolean See note about $asc in $this->reallyDoQuery
+	 * @param ResultWrapper $res1
+	 * @param ResultWrapper $res2
+	 * @param int $limit
+	 * @param bool $ascending See note about $asc in $this->reallyDoQuery
 	 * @return FakeResultWrapper $res1 and $res2 combined
 	 */
 	protected function combineResult( $res1, $res2, $limit, $ascending ) {

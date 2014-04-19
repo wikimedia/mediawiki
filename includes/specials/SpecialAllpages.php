@@ -115,10 +115,10 @@ class SpecialAllpages extends IncludableSpecialPage {
 	/**
 	 * HTML for the top form
 	 *
-	 * @param $namespace Integer: a namespace constant (default NS_MAIN).
-	 * @param string $from dbKey we are starting listing at.
-	 * @param string $to dbKey we are ending listing at.
-	 * @param bool $hideredirects dont show redirects  (default FALSE)
+	 * @param int $namespace A namespace constant (default NS_MAIN).
+	 * @param string $from DbKey we are starting listing at.
+	 * @param string $to DbKey we are ending listing at.
+	 * @param bool $hideredirects Dont show redirects  (default false)
 	 * @return string
 	 */
 	function namespaceForm( $namespace = NS_MAIN, $from = '', $to = '', $hideredirects = false ) {
@@ -174,10 +174,10 @@ class SpecialAllpages extends IncludableSpecialPage {
 	}
 
 	/**
-	 * @param $namespace Integer (default NS_MAIN)
-	 * @param string $from list all pages from this name
-	 * @param string $to list all pages to this name
-	 * @param bool $hideredirects dont show redirects (default FALSE)
+	 * @param int $namespace (default NS_MAIN)
+	 * @param string $from List all pages from this name
+	 * @param string $to List all pages to this name
+	 * @param bool $hideredirects Dont show redirects (default false)
 	 */
 	function showToplevel( $namespace = NS_MAIN, $from = '', $to = '', $hideredirects = false ) {
 		$output = $this->getOutput();
@@ -318,10 +318,10 @@ class SpecialAllpages extends IncludableSpecialPage {
 	/**
 	 * Show a line of "ABC to DEF" ranges of articles
 	 *
-	 * @param string $inpoint lower limit of pagenames
-	 * @param string $outpoint upper limit of pagenames
-	 * @param $namespace Integer (Default NS_MAIN)
-	 * @param bool $hideRedirects don't show redirects. Default: false
+	 * @param string $inpoint Lower limit of pagenames
+	 * @param string $outpoint Upper limit of pagenames
+	 * @param int $namespace (Default NS_MAIN)
+	 * @param bool $hideRedirects Don't show redirects. Default: false
 	 * @return string
 	 */
 	function showline( $inpoint, $outpoint, $namespace = NS_MAIN, $hideRedirects = false ) {
@@ -361,9 +361,9 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 	/**
 	 * @param int $namespace Namespace (Default NS_MAIN)
-	 * @param string $from list all pages from this name (default FALSE)
-	 * @param string $to list all pages to this name (default FALSE)
-	 * @param bool $hideredirects dont show redirects (default FALSE)
+	 * @param string $from List all pages from this name (default FALSE)
+	 * @param string $to List all pages to this name (default FALSE)
+	 * @param bool $hideredirects Dont show redirects (default FALSE)
 	 */
 	function showChunk( $namespace = NS_MAIN, $from = false, $to = false, $hideredirects = false ) {
 		$output = $this->getOutput();
@@ -559,8 +559,8 @@ class SpecialAllpages extends IncludableSpecialPage {
 	}
 
 	/**
-	 * @param $ns Integer: the namespace of the article
-	 * @param string $text the name of the article
+	 * @param int $ns The namespace of the article
+	 * @param string $text The name of the article
 	 * @return array( int namespace, string dbkey, string pagename ) or NULL on error
 	 */
 	protected function getNamespaceKeyAndText( $ns, $text ) {

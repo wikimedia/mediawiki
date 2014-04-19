@@ -56,7 +56,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/**
 	 * Main execution point
 	 *
-	 * @param $mode int
+	 * @param int $mode
 	 */
 	public function execute( $mode ) {
 		$this->setHeaders();
@@ -113,7 +113,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Extract a list of titles from a blob of text, returning
 	 * (prefixed) strings; unwatchable titles are ignored
 	 *
-	 * @param $list String
+	 * @param string $list
 	 * @return array
 	 */
 	private function extractTitles( $list ) {
@@ -197,8 +197,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * $titles can be an array of strings or Title objects; the former
 	 * is preferred, since Titles are very memory-heavy
 	 *
-	 * @param array $titles of strings, or Title objects
-	 * @param $output String
+	 * @param array $titles Array of strings, or Title objects
+	 * @param string $output
 	 */
 	private function showTitles( $titles, &$output ) {
 		$talk = $this->msg( 'talkpagelinktext' )->escaped();
@@ -319,7 +319,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @param Title $title
 	 * @param int $namespace
 	 * @param string $dbKey
-	 * @return bool: Whether this item is valid
+	 * @return bool Whether this item is valid
 	 */
 	private function checkTitle( $title, $namespace, $dbKey ) {
 		if ( $title
@@ -390,7 +390,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * $titles can be an array of strings or Title objects; the former
 	 * is preferred, since Titles are very memory-heavy
 	 *
-	 * @param array $titles of strings, or Title objects
+	 * @param array $titles Array of strings, or Title objects
 	 */
 	private function watchTitles( $titles ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -426,7 +426,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * $titles can be an array of strings or Title objects; the former
 	 * is preferred, since Titles are very memory-heavy
 	 *
-	 * @param array $titles of strings, or Title objects
+	 * @param array $titles Array of strings, or Title objects
 	 */
 	private function unwatchTitles( $titles ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -550,7 +550,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/**
 	 * Build the label for a checkbox, with a link to the title, and various additional bits
 	 *
-	 * @param $title Title
+	 * @param Title $title
 	 * @return string
 	 */
 	private function buildRemoveLine( $title ) {
@@ -615,8 +615,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Determine whether we are editing the watchlist, and if so, what
 	 * kind of editing operation
 	 *
-	 * @param $request WebRequest
-	 * @param $par mixed
+	 * @param WebRequest $request
+	 * @param string $par
 	 * @return int
 	 */
 	public static function getMode( $request, $par ) {
@@ -640,7 +640,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Build a set of links for convenient navigation
 	 * between watchlist viewing and editing modes
 	 *
-	 * @param $unused
+	 * @param null $unused
 	 * @return string
 	 */
 	public static function buildTools( $unused ) {
@@ -700,7 +700,7 @@ class EditWatchlistCheckboxSeriesField extends HTMLMultiSelectField {
 	 *
 	 * @param string $value the value the field was submitted with
 	 * @param array $alldata the data collected from the form
-	 * @return Mixed Bool true on success, or String error to display.
+	 * @return bool|string Bool true on success, or String error to display.
 	 */
 	function validate( $value, $alldata ) {
 		// Need to call into grandparent to be a good citizen. :)
