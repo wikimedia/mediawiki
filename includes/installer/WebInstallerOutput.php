@@ -43,7 +43,7 @@ class WebInstallerOutput {
 
 	/**
 	 * Buffered contents that haven't been output yet
-	 * @var String
+	 * @var string
 	 */
 	private $contents = '';
 
@@ -127,7 +127,7 @@ class WebInstallerOutput {
 	 *
 	 * @param string $dir 'ltr' or 'rtl'
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getCSS( $dir ) {
 		// All CSS files these modules reference will be concatenated in sequence
@@ -210,7 +210,7 @@ class WebInstallerOutput {
 	/**
 	 * "<link>" to index.php?css=foobar for the "<head>"
 	 *
-	 * @return String
+	 * @return string
 	 */
 	private function getCssUrl() {
 		return Html::linkedStyle( $_SERVER['PHP_SELF'] . '?css=' . $this->getDir() );

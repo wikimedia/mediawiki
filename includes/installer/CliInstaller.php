@@ -49,9 +49,9 @@ class CliInstaller extends Installer {
 	/**
 	 * Constructor.
 	 *
-	 * @param $siteName
-	 * @param $admin
-	 * @param $option Array
+	 * @param string $siteName
+	 * @param string $admin
+	 * @param array $option
 	 */
 	function __construct( $siteName, $admin = null, array $option = array() ) {
 		global $wgContLang;
@@ -159,7 +159,7 @@ class CliInstaller extends Installer {
 	}
 
 	/**
-	 * @param $params array
+	 * @param array $params
 	 *
 	 * @return string
 	 */

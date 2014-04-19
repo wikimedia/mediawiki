@@ -66,7 +66,7 @@ class MssqlInstaller extends DatabaseInstaller {
 	}
 
 	/**
-	 * @return Bool
+	 * @return bool
 	 */
 	public function isCompiled() {
 		return self::checkExtension( 'sqlsrv' );
@@ -615,7 +615,7 @@ class MssqlInstaller extends DatabaseInstaller {
 	/**
 	 * Try to see if the login exists
 	 * @param string $user Username to check
-	 * @return boolean
+	 * @return bool
 	 */
 	private function loginExists( $user ) {
 		$res = $this->db->selectField( 'sys.sql_logins', 1, array( 'name' => $user ) );
@@ -626,7 +626,7 @@ class MssqlInstaller extends DatabaseInstaller {
 	 * Try to see if the user account exists
 	 * We assume we already have the appropriate database selected
 	 * @param string $user Username to check
-	 * @return boolean
+	 * @return bool
 	 */
 	private function userExists( $user ) {
 		$res = $this->db->selectField( 'sys.sysusers', 1, array( 'name' => $user ) );
@@ -636,7 +636,7 @@ class MssqlInstaller extends DatabaseInstaller {
 	/**
 	 * Try to see if a given database exists
 	 * @param string $dbName Database name to check
-	 * @return boolean
+	 * @return bool
 	 */
 	private function databaseExists( $dbName ) {
 		$res = $this->db->selectField( 'sys.databases', 1, array( 'name' => $dbName ) );
@@ -647,7 +647,7 @@ class MssqlInstaller extends DatabaseInstaller {
 	 * Try to see if a given schema exists
 	 * We assume we already have the appropriate database selected
 	 * @param string $schemaName Schema name to check
-	 * @return boolean
+	 * @return bool
 	 */
 	private function schemaExists( $schemaName ) {
 		$res = $this->db->selectField( 'sys.schemas', 1, array( 'name' => $schemaName ) );
@@ -658,7 +658,7 @@ class MssqlInstaller extends DatabaseInstaller {
 	 * Try to see if a given fulltext catalog exists
 	 * We assume we already have the appropriate database selected
 	 * @param string $schemaName Catalog name to check
-	 * @return boolean
+	 * @return bool
 	 */
 	private function catalogExists( $catalogName ) {
 		$res = $this->db->selectField( 'sys.fulltext_catalogs', 1, array( 'name' => $catalogName ) );

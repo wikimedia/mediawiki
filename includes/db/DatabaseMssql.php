@@ -1222,7 +1222,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * @param string $field Field name
 	 * @param string|array $conds Conditions
 	 * @param string|array $join_conds Join conditions
-	 * @return String SQL text
+	 * @return string SQL text
 	 * @since 1.23
 	 */
 	public function buildGroupConcatField( $delim, $table, $field, $conds = '',

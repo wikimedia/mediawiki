@@ -113,7 +113,7 @@ class LoadBalancer {
 
 	/**
 	 * Get or set arbitrary data used by the parent object, usually an LBFactory
-	 * @param $x
+	 * @param mixed $x
 	 * @return mixed
 	 */
 	function parentInfo( $x = null ) {
@@ -369,8 +369,8 @@ class LoadBalancer {
 
 	/**
 	 * Wait for a given slave to catch up to the master pos stored in $this
-	 * @param $index
-	 * @param $open bool
+	 * @param int $index
+	 * @param bool $open
 	 * @return bool
 	 */
 	protected function doWait( $index, $open = false ) {
@@ -410,8 +410,8 @@ class LoadBalancer {
 	 * Get a connection by index
 	 * This is the main entry point for this class.
 	 *
-	 * @param $i Integer: server index
-	 * @param array $groups query groups
+	 * @param int $i Server index
+	 * @param array $groups Query groups
 	 * @param bool|string $wiki Wiki ID
 	 *
 	 * @throws MWException
@@ -538,7 +538,7 @@ class LoadBalancer {
 	 *
 	 * @see LoadBalancer::getConnection() for parameter information
 	 *
-	 * @param integer $db
+	 * @param int $db
 	 * @param mixed $groups
 	 * @param bool|string $wiki
 	 * @return DBConnRef
@@ -554,7 +554,7 @@ class LoadBalancer {
 	 *
 	 * @see LoadBalancer::getConnection() for parameter information
 	 *
-	 * @param integer $db
+	 * @param int $db
 	 * @param mixed $groups
 	 * @param bool|string $wiki
 	 * @return DBConnRef
@@ -571,8 +571,8 @@ class LoadBalancer {
 	 * On error, returns false, and the connection which caused the
 	 * error will be available via $this->mErrorConnection.
 	 *
-	 * @param $i Integer server index
-	 * @param bool|string $wiki wiki ID to open
+	 * @param int $i Server index
+	 * @param bool|string $wiki Wiki ID to open
 	 * @return DatabaseBase
 	 *
 	 * @access private
@@ -619,8 +619,8 @@ class LoadBalancer {
 	 * On error, returns false, and the connection which caused the
 	 * error will be available via $this->mErrorConnection.
 	 *
-	 * @param $i Integer: server index
-	 * @param string $wiki wiki ID to open
+	 * @param int $i Server index
+	 * @param string $wiki Wiki ID to open
 	 * @return DatabaseBase
 	 */
 	function openForeignConnection( $i, $wiki ) {
@@ -683,7 +683,7 @@ class LoadBalancer {
 	/**
 	 * Test if the specified index represents an open connection
 	 *
-	 * @param $index Integer: server index
+	 * @param int $index Server index
 	 * @access private
 	 * @return bool
 	 */
@@ -700,8 +700,8 @@ class LoadBalancer {
 	 * Returns a Database object whether or not the connection was successful.
 	 * @access private
 	 *
-	 * @param $server
-	 * @param $dbNameOverride bool
+	 * @param array $server
+	 * @param bool $dbNameOverride
 	 * @throws MWException
 	 * @return DatabaseBase
 	 */
@@ -811,8 +811,8 @@ class LoadBalancer {
 
 	/**
 	 * Return the server info structure for a given index, or false if the index is invalid.
-	 * @param $i
-	 * @return bool
+	 * @param int $i
+	 * @return array|bool
 	 */
 	function getServerInfo( $i ) {
 		if ( isset( $this->mServers[$i] ) ) {
@@ -825,8 +825,8 @@ class LoadBalancer {
 	/**
 	 * Sets the server info structure for the given index. Entry at index $i
 	 * is created if it doesn't exist
-	 * @param $i
-	 * @param $serverInfo
+	 * @param int $i
+	 * @param array $serverInfo
 	 */
 	function setServerInfo( $i, $serverInfo ) {
 		$this->mServers[$i] = $serverInfo;
@@ -993,8 +993,8 @@ class LoadBalancer {
 	}
 
 	/**
-	 * @param $value null
-	 * @return Mixed
+	 * @param mixed $value
+	 * @return mixed
 	 */
 	function waitTimeout( $value = null ) {
 		return wfSetVar( $this->mWaitTimeout, $value );

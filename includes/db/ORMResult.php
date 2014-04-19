@@ -36,7 +36,7 @@ class ORMResult implements ORMIterator {
 	protected $res;
 
 	/**
-	 * @var integer
+	 * @var int
 	 */
 	protected $key;
 
@@ -62,7 +62,7 @@ class ORMResult implements ORMIterator {
 	}
 
 	/**
-	 * @param $row
+	 * @param bool|object $row
 	 */
 	protected function setCurrent( $row ) {
 		if ( $row === false ) {
@@ -73,14 +73,14 @@ class ORMResult implements ORMIterator {
 	}
 
 	/**
-	 * @return integer
+	 * @return int
 	 */
 	public function count() {
 		return $this->res->numRows();
 	}
 
 	/**
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isEmpty() {
 		return $this->res->numRows() === 0;
@@ -94,7 +94,7 @@ class ORMResult implements ORMIterator {
 	}
 
 	/**
-	 * @return integer
+	 * @return int
 	 */
 	public function key() {
 		return $this->key;
@@ -113,7 +113,7 @@ class ORMResult implements ORMIterator {
 	}
 
 	/**
-	 * @return boolean
+	 * @return bool
 	 */
 	public function valid() {
 		return $this->current !== false;

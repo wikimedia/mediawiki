@@ -218,8 +218,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	 *    - create-tables: A connection with a role suitable for creating tables.
 	 *
 	 * @throws MWException
-	 * @return Status object. On success, a connection object will be in the
-	 *   value member.
+	 * @return Status On success, a connection object will be in the value member.
 	 */
 	protected function openPgConnection( $type ) {
 		switch ( $type ) {
@@ -414,7 +413,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 	/**
 	 * Recursive helper for canCreateObjectsForWebUser().
-	 * @param $conn DatabaseBase object
+	 * @param DatabaseBase $conn
 	 * @param int $targetMember Role ID of the member to look for
 	 * @param int $group Role ID of the group to look for
 	 * @param int $maxDepth Maximum recursive search depth

@@ -43,10 +43,10 @@ interface DatabaseType {
 	/**
 	 * Open a connection to the database. Usually aborts on failure
 	 *
-	 * @param string $server database server host
-	 * @param string $user database user name
-	 * @param string $password database user password
-	 * @param string $dbName database name
+	 * @param string $server Database server host
+	 * @param string $user Database user name
+	 * @param string $password Database user password
+	 * @param string $dbName Database name
 	 * @return bool
 	 * @throws DBConnectionError
 	 */
@@ -336,7 +336,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
-	 * @return string command delimiter used by this database engine
+	 * @return string Command delimiter used by this database engine
 	 */
 	public function getDelimiter() {
 		return $this->delimiter;
@@ -349,7 +349,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 *   - false to disable debugging
 	 *   - omitted or null to do nothing
 	 *
-	 * @return bool|null previous value of the flag
+	 * @return bool|null Previous value of the flag
 	 */
 	public function debug( $debug = null ) {
 		return wfSetBit( $this->mFlags, DBO_DEBUG, $debug );
@@ -475,7 +475,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * parameters, the member with the given name is set to the given value.
 	 *
 	 * @param string $name
-	 * @param $value
+	 * @param array $value
 	 */
 	public function setLBInfo( $name, $value = null ) {
 		if ( is_null( $value ) ) {
@@ -908,7 +908,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
-	 * @param $errno
+	 * @param int $errno
 	 * @param string $errstr
 	 */
 	public function connectionErrorHandler( $errno, $errstr ) {
@@ -1190,7 +1190,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 	/**
 	 * Execute a prepared query with the various arguments
-	 * @param string $prepared the prepared sql
+	 * @param string $prepared The prepared sql
 	 * @param mixed $args Either an array here, or put scalars as varargs
 	 *
 	 * @return ResultWrapper
@@ -1211,7 +1211,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * For faking prepared SQL statements on DBs that don't support it directly.
 	 *
 	 * @param string $preparedQuery A 'preparable' SQL statement
-	 * @param array $args of Arguments to fill it with
+	 * @param array $args Array of Arguments to fill it with
 	 * @return string Executable SQL
 	 */
 	public function fillPrepared( $preparedQuery, $args ) {
@@ -2063,7 +2063,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 *    array(baseKeyVal => array(subKeyVal => [ignored], ...), ...)
 	 * @param string $baseKey Field name to match the base-level keys to (eg 'pl_namespace')
 	 * @param string $subKey Field name to match the sub-level keys to (eg 'pl_title')
-	 * @return Mixed: string SQL fragment, or false if no items in array.
+	 * @return string|bool string SQL fragment, or false if no items in array.
 	 */
 	public function makeWhereFrom2d( $data, $baseKey, $subKey ) {
 		$conds = array();
@@ -2087,7 +2087,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	/**
 	 * Return aggregated value alias
 	 *
-	 * @param $valuedata
+	 * @param array $valuedata
 	 * @param string $valuename
 	 *
 	 * @return string
@@ -2161,7 +2161,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 *
 	 * @todo Explain what exactly will fail if this is not overridden.
 	 *
-	 * @param $db
+	 * @param string $db
 	 *
 	 * @return bool Success or failure
 	 */
@@ -2176,6 +2176,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 	/**
 	 * Get the current DB name
+	 * @return string
 	 */
 	public function getDBname() {
 		return $this->mDBname;
@@ -2183,6 +2184,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 	/**
 	 * Get the server hostname or IP address
+	 * @return string
 	 */
 	public function getServer() {
 		return $this->mServer;
@@ -3008,7 +3010,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	/**
 	 * Returns true if current database backend supports ORDER BY or LIMIT for separate subqueries
 	 * within the UNION construct.
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function unionSupportsOrderAndLimit() {
 		return true; // True for almost every DB supported

@@ -62,7 +62,7 @@ class LBFactorySingle extends LBFactory {
 	}
 
 	/**
-	 * @param string $cluster external storage cluster, or false for core
+	 * @param string $cluster External storage cluster, or false for core
 	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancerSingle
 	 */
@@ -87,7 +87,7 @@ class LoadBalancerSingle extends LoadBalancer {
 	protected $db;
 
 	/**
-	 * @param $params array
+	 * @param array $params
 	 */
 	function __construct( $params ) {
 		$this->db = $params['connection'];

@@ -392,7 +392,7 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Show an error message in a box. Parameters are like wfMessage().
-	 * @param $msg
+	 * @param string $msg
 	 */
 	public function showError( $msg /*...*/ ) {
 		$args = func_get_args();
@@ -691,7 +691,7 @@ class WebInstaller extends Installer {
 	 * Get small text indented help for a preceding form field.
 	 * Parameters like wfMessage().
 	 *
-	 * @param $msg
+	 * @param string $msg
 	 * @return string
 	 */
 	public function getHelpBox( $msg /*, ... */ ) {
@@ -747,9 +747,9 @@ class WebInstaller extends Installer {
 	 * Label a control by wrapping a config-input div around it and putting a
 	 * label before it.
 	 *
-	 * @param $msg
-	 * @param $forId
-	 * @param $contents
+	 * @param string $msg
+	 * @param string $forId
+	 * @param string $contents
 	 * @param string $helpData
 	 * @return string
 	 */
@@ -1155,7 +1155,7 @@ class WebInstaller extends Installer {
 	}
 
 	/**
-	 * @return String
+	 * @return string
 	 */
 	protected function envGetDefaultServer() {
 		return WebRequest::detectServer();

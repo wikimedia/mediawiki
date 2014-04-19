@@ -223,7 +223,7 @@ class SavepointPostgres {
 
 	/**
 	 * @param DatabaseBase $dbw
-	 * @param $id
+	 * @param int $id
 	 */
 	public function __construct( $dbw, $id ) {
 		$this->dbw = $dbw;
@@ -1263,7 +1263,7 @@ __INDEXATTR__;
 	 * Values may contain magic keywords like "$user"
 	 * @since 1.19
 	 *
-	 * @param $search_path array list of schemas to be searched by default
+	 * @param array $search_path List of schemas to be searched by default
 	 */
 	function setSearchPath( $search_path ) {
 		$this->query( "SET search_path = " . implode( ", ", $search_path ) );

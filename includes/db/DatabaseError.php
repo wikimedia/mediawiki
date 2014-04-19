@@ -147,7 +147,7 @@ class DBConnectionError extends DBExpectedError {
 	}
 
 	/**
-	 * @return boolean
+	 * @return bool
 	 */
 	function isLoggable() {
 		// Don't send to the exception log, already in dberror log

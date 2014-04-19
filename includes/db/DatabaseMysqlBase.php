@@ -321,7 +321,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 	/**
 	 * @param ResultWrapper|resource $res
-	 * @param $n int
+	 * @param int $n
 	 * @return string
 	 */
 	function fieldName( $res, $n ) {
@@ -336,7 +336,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * Get the name of the specified field in a result
 	 *
 	 * @param ResultWrapper|resource $res
-	 * @param $n int
+	 * @param int $n
 	 * @return string
 	 */
 	abstract protected function mysqlFieldName( $res, $n );
@@ -344,7 +344,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/**
 	 * mysql_field_type() wrapper
 	 * @param ResultWrapper|resource $res
-	 * @param $n int
+	 * @param int $n
 	 * @return string
 	 */
 	public function fieldType( $res, $n ) {
@@ -961,12 +961,12 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 	/**
 	 * DELETE where the condition is a join. MySql uses multi-table deletes.
-	 * @param $delTable string
-	 * @param $joinTable string
-	 * @param $delVar string
-	 * @param $joinVar string
-	 * @param $conds array|string
-	 * @param bool|string $fname bool
+	 * @param string $delTable
+	 * @param string $joinTable
+	 * @param string $delVar
+	 * @param string $joinVar
+	 * @param array|string $conds
+	 * @param bool|string $fname
 	 * @throws DBUnexpectedError
 	 * @return bool|ResultWrapper
 	 */
@@ -1109,8 +1109,8 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
-	 * @param $tableName
-	 * @param $fName string
+	 * @param string $tableName
+	 * @param string $fName
 	 * @return bool|ResultWrapper
 	 */
 	public function dropTable( $tableName, $fName = __METHOD__ ) {

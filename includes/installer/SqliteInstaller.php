@@ -50,7 +50,7 @@ class SqliteInstaller extends DatabaseInstaller {
 
 	/**
 	 *
-	 * @return Status:
+	 * @return Status
 	 */
 	public function checkPrerequisites() {
 		$result = Status::newGood();
@@ -98,7 +98,7 @@ class SqliteInstaller extends DatabaseInstaller {
 	/**
 	 * Safe wrapper for PHP's realpath() that fails gracefully if it's unable to canonicalize the path.
 	 *
-	 * @param $path string
+	 * @param string $path
 	 *
 	 * @return string
 	 */
@@ -132,8 +132,8 @@ class SqliteInstaller extends DatabaseInstaller {
 	}
 
 	/**
-	 * @param $dir
-	 * @param $create bool
+	 * @param string $dir
+	 * @param bool $create
 	 * @return Status
 	 */
 	private static function dataDirOKmaybeCreate( $dir, $create = false ) {
@@ -255,7 +255,7 @@ class SqliteInstaller extends DatabaseInstaller {
 	}
 
 	/**
-	 * @param $status Status
+	 * @param Status $status
 	 * @return Status
 	 */
 	public function setupSearchIndex( &$status ) {

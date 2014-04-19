@@ -179,7 +179,7 @@ abstract class LBFactory {
 	 * Private helper for forEachLBCallMethod
 	 * @param LoadBalancer $loadBalancer
 	 * @param string $methodName
-	 * @param $args
+	 * @param array $args
 	 */
 	function callMethod( $loadBalancer, $methodName, $args ) {
 		call_user_func_array( array( $loadBalancer, $methodName ), $args );

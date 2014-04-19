@@ -43,7 +43,7 @@ class LocalSettingsGenerator {
 	/**
 	 * Constructor.
 	 *
-	 * @param $installer Installer subclass
+	 * @param Installer $installer
 	 */
 	public function __construct( Installer $installer ) {
 		$this->installer = $installer;
@@ -105,9 +105,9 @@ class LocalSettingsGenerator {
 	/**
 	 * Returns the escaped version of a string of php code.
 	 *
-	 * @param $string String
+	 * @param string $string
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public static function escapePhpString( $string ) {
 		if ( is_array( $string ) || is_object( $string ) ) {
@@ -131,7 +131,7 @@ class LocalSettingsGenerator {
 	 * Return the full text of the generated LocalSettings.php file,
 	 * including the extensions
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getText() {
 		$localSettings = $this->getDefaultText();
@@ -164,7 +164,7 @@ class LocalSettingsGenerator {
 	}
 
 	/**
-	 * @return String
+	 * @return string
 	 */
 	protected function buildMemcachedServerList() {
 		$servers = $this->values['_MemCachedServers'];
@@ -185,7 +185,7 @@ class LocalSettingsGenerator {
 	}
 
 	/**
-	 * @return String
+	 * @return string
 	 */
 	protected function getDefaultText() {
 		if ( !$this->values['wgImageMagickConvertCommand'] ) {
