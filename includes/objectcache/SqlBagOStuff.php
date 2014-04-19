@@ -487,7 +487,7 @@ class SqlBagOStuff extends BagOStuff {
 	/**
 	 * Delete objects from the database which expire before a certain date.
 	 * @param string $timestamp
-	 * @param bool|callback $progressCallback
+	 * @param bool|callable $progressCallback
 	 * @return bool
 	 */
 	public function deleteObjectsExpiringBefore( $timestamp, $progressCallback = false ) {

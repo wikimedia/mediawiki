@@ -170,12 +170,12 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 	/**
 	 * @param string $key
-	 * @param closure $callback Callback method to be executed
+	 * @param Closure $callback Callback method to be executed
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $attempts The amount of times to attempt a merge in case of failure
 	 * @return bool Success
 	 */
-	public function merge( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
+	public function merge( $key, Closure $callback, $exptime = 0, $attempts = 10 ) {
 		return $this->doWrite( 'merge', $key, $callback, $exptime );
 	}
 
@@ -211,7 +211,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 *
 	 * Succeed if any of the child caches succeed.
 	 * @param string $date
-	 * @param bool|callback $progressCallback
+	 * @param bool|callable $progressCallback
 	 * @return bool
 	 */
 	public function deleteObjectsExpiringBefore( $date, $progressCallback = false ) {

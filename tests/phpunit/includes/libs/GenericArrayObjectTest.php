@@ -170,7 +170,7 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 	/**
 	 * @since 1.20
 	 *
-	 * @param callback $function
+	 * @param callable $function
 	 *
 	 * @covers GenericArrayObject::getObjectType
 	 */

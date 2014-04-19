@@ -102,12 +102,12 @@ abstract class BagOStuff {
 	 * and takes the arguments: (this BagOStuff object, cache key, current value).
 	 *
 	 * @param string $key
-	 * @param closure $callback Callback method to be executed
+	 * @param Closure $callback Callback method to be executed
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $attempts The amount of times to attempt a merge in case of failure
 	 * @return bool Success
 	 */
-	public function merge( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
+	public function merge( $key, Closure $callback, $exptime = 0, $attempts = 10 ) {
 		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
 	}
 
@@ -115,12 +115,12 @@ abstract class BagOStuff {
 	 * @see BagOStuff::merge()
 	 *
 	 * @param string $key
-	 * @param closure $callback Callback method to be executed
+	 * @param Closure $callback Callback method to be executed
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $attempts The amount of times to attempt a merge in case of failure
 	 * @return bool Success
 	 */
-	protected function mergeViaCas( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
+	protected function mergeViaCas( $key, Closure $callback, $exptime = 0, $attempts = 10 ) {
 		do {
 			$casToken = null; // passed by reference
 			$currentValue = $this->get( $key, $casToken ); // get the old value
@@ -144,12 +144,12 @@ abstract class BagOStuff {
 	 * @see BagOStuff::merge()
 	 *
 	 * @param string $key
-	 * @param closure $callback Callback method to be executed
+	 * @param Closure $callback Callback method to be executed
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $attempts The amount of times to attempt a merge in case of failure
 	 * @return bool Success
 	 */
-	protected function mergeViaLock( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
+	protected function mergeViaLock( $key, Closure $callback, $exptime = 0, $attempts = 10 ) {
 		if ( !$this->lock( $key, 6 ) ) {
 			return false;
 		}
@@ -218,7 +218,7 @@ abstract class BagOStuff {
 	/**
 	 * Delete all objects expiring before a certain date.
 	 * @param string $date The reference date in MW format
-	 * @param callback|bool $progressCallback Optional, a function which will be called
+	 * @param callable|bool $progressCallback Optional, a function which will be called
 	 *     regularly during long-running operations with the percentage progress
 	 *     as the first parameter.
 	 *

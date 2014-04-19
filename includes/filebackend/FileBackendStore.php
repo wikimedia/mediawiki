@@ -46,7 +46,7 @@ abstract class FileBackendStore extends FileBackend {
 	/** @var array Map of container names to sharding config */
 	protected $shardViaHashLevels = array();
 
-	/** @var callback Method to get the MIME type of files */
+	/** @var callable Method to get the MIME type of files */
 	protected $mimeCallback;
 
 	protected $maxFileSize = 4294967296; // integer bytes (4GiB)

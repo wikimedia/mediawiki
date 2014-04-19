@@ -105,8 +105,8 @@ class WikiImporter {
 	/**
 	 * Set a callback that displays notice messages
 	 *
-	 * @param $callback callback
-	 * @return callback
+	 * @param callable $callback
+	 * @return callable
 	 */
 	public function setNoticeCallback( $callback ) {
 		return wfSetVar( $this->mNoticeCallback, $callback );
@@ -114,8 +114,8 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform as each new page in the stream is reached.
-	 * @param $callback callback
-	 * @return callback
+	 * @param callable $callback
+	 * @return callable
 	 */
 	public function setPageCallback( $callback ) {
 		$previous = $this->mPageCallback;
@@ -129,8 +129,8 @@ class WikiImporter {
 	 * with the original title form (in case it's been overridden into a
 	 * local namespace), and a count of revisions.
 	 *
-	 * @param $callback callback
-	 * @return callback
+	 * @param callable $callback
+	 * @return callable
 	 */
 	public function setPageOutCallback( $callback ) {
 		$previous = $this->mPageOutCallback;
@@ -140,8 +140,8 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform as each page revision is reached.
-	 * @param $callback callback
-	 * @return callback
+	 * @param callable $callback
+	 * @return callable
 	 */
 	public function setRevisionCallback( $callback ) {
 		$previous = $this->mRevisionCallback;
@@ -151,8 +151,8 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform as each file upload version is reached.
-	 * @param $callback callback
-	 * @return callback
+	 * @param callable $callback
+	 * @return callable
 	 */
 	public function setUploadCallback( $callback ) {
 		$previous = $this->mUploadCallback;
@@ -162,8 +162,8 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform as each log item reached.
-	 * @param $callback callback
-	 * @return callback
+	 * @param callable $callback
+	 * @return callable
 	 */
 	public function setLogItemCallback( $callback ) {
 		$previous = $this->mLogItemCallback;
@@ -173,8 +173,8 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform when site info is encountered
-	 * @param $callback callback
-	 * @return callback
+	 * @param callable $callback
+	 * @return callable
 	 */
 	public function setSiteInfoCallback( $callback ) {
 		$previous = $this->mSiteInfoCallback;

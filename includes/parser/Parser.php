@@ -4973,7 +4973,7 @@ class Parser {
 	 *     about the methods available in PPFrame and PPNode.
 	 *
 	 * @throws MWException
-	 * @return string|callback The old callback function for this name, if any
+	 * @return string|callable The old callback function for this name, if any
 	 */
 	public function setFunctionHook( $id, $callback, $flags = 0 ) {
 		global $wgContLang;
