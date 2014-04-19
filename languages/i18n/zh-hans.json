@@ -732,7 +732,7 @@
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
 	"expensive-parserfunction-warning": "<strong>警告：</strong>这个页面有太多高昂的语法功能调用。\n\n它应该少过$2次呼叫，现在有$1次呼叫。",
-	"expensive-parserfunction-category": "有过多高开销函数解析器调用的页面",
+	"expensive-parserfunction-category": "有过多高开销解析器函数调用的页面",
 	"post-expand-template-inclusion-warning": "'''警告：'''包含模板大小过大。\n一些模板将不会包含。",
 	"post-expand-template-inclusion-category": "模板包含大小超限的页面",
 	"post-expand-template-argument-warning": "'''警告：'''本页面包含至少一个模板参数有过大扩展大小。这些参数会被略过。",

@@ -1896,6 +1896,7 @@
 	"contributions-title": "Đóng góp của thành viên $1",
 	"mycontris": "Đóng góp",
 	"contribsub2": "Của {{GENDER:$3}}$1 ($2)",
+	"contributions-userdoesnotexist": "Chưa có tài khoản với tên “$1”.",
 	"nocontribs": "Không tìm thấy thay đổi nào khớp với yêu cầu.",
 	"uctop": "(hiện tại)",
 	"month": "Từ tháng (trở về trước):",

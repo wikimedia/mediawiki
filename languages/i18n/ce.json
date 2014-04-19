@@ -2360,6 +2360,7 @@
 	"feedback-close": "Кийчча ю",
 	"searchsuggest-search": "Лаха",
 	"searchsuggest-containing": "чуьраниг…",
+	"api-error-duplicate": "Иштта чулацам болу {{PLURAL:$1|1=[$2 кхин файл]|[$2 кхин файлаш]}} йолуш ю",
 	"api-error-duplicate-popup-title": "{{PLURAL:$1|1=Файлан|Файлийн}} дубликат.",
 	"api-error-empty-file": "Ахьа яхьийтина файл еса ю.",
 	"duration-seconds": "$1 {{PLURAL:$1|секунд}}",
