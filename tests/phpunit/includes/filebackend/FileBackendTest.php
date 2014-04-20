@@ -1163,11 +1163,6 @@ class FileBackendTest extends MediaWikiTestCase {
 	private function doTestStreamFile( $path, $content ) {
 		$backendName = $this->backendClass();
 
-		// Test doStreamFile() directly to avoid header madness
-		$class = new ReflectionClass( $this->backend );
-		$method = $class->getMethod( 'doStreamFile' );
-		$method->setAccessible( true );
-
 		if ( $content !== null ) {
 			$this->prepare( array( 'dir' => dirname( $path ) ) );
 			$status = $this->create( array( 'dst' => $path, 'content' => $content ) );
@@ -1175,18 +1170,19 @@ class FileBackendTest extends MediaWikiTestCase {
 				"Creation of file at $path succeeded ($backendName)." );
 
 			ob_start();
-			$method->invokeArgs( $this->backend, array( array( 'src' => $path ) ) );
+			$this->backend->streamFile( array( 'src' => $path, 'headless' => true ) );
 			$data = ob_get_contents();
 			ob_end_clean();
 
 			$this->assertEquals( $content, $data, "Correct content streamed from '$path'" );
 		} else { // 404 case
 			ob_start();
-			$method->invokeArgs( $this->backend, array( array( 'src' => $path ) ) );
+			$this->backend->streamFile( array( 'src' => $path, 'headless' => true ) );
 			$data = ob_get_contents();
 			ob_end_clean();
 
-			$this->assertEquals( '', $data, "Correct content streamed from '$path' ($backendName)" );
+			$this->assertRegExp( '#<h1>File not found</h1>#', $data,
+				"Correct content streamed from '$path' ($backendName)" );
 		}
 	}
 
