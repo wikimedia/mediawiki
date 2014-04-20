@@ -4,7 +4,8 @@
 			"Event",
 			"Nghtwlkr",
 			"아라",
-			"Danmichaelo"
+			"Danmichaelo",
+			"Jeblad"
 		]
 	},
 	"config-desc": "Installasjonsprogrammet for MediaWiki",
@@ -102,6 +103,7 @@
 	"config-db-username": "Databasebrukernavn:",
 	"config-db-password": "Databasepassord:",
 	"config-db-password-empty": "Skriv inn et passord for den nye databasebrukeren: $1.\nDet er mulig å opprette brukere uten passord, men dette er ikke sikkert.",
+	"config-db-username-empty": "Du må skrive inn en verdi for «{{int:config-db-username}}»",
 	"config-db-install-username": "Skriv inn brukernavnet som vil bli brukt til å koble til databasen under installasjonsprosessen.\nDette er ikke brukernavnet på MediaWiki-kontoen; dette er brukernavnet for databasen din.",
 	"config-db-install-password": "Skriv inn passordet som vil bli brukt til å koble til databasen under installasjonsprosessen.\nDette er ikke passordet på MediaWiki-kontoen; dette er passordet for databasen din.",
 	"config-db-install-help": "Skriv inn brukernavnet og passordet som vil bli brukt for å koble til databasen under installasjonsprosessen.",
@@ -141,9 +143,9 @@
 	"config-header-oracle": "Oracle-innstillinger",
 	"config-header-mssql": "Microsoft SQLServer-innstillinger",
 	"config-invalid-db-type": "Ugyldig databasetype",
-	"config-missing-db-name": "Du må skrive inn en verdi for «Databasenavn»",
-	"config-missing-db-host": "Du må skrive inn en verdi for «Databasevert»",
-	"config-missing-db-server-oracle": "Du må skrive inn en verdi for «Database TNS»",
+	"config-missing-db-name": "Du må skrive inn en verdi for «{{int:config-db-name}}»",
+	"config-missing-db-host": "Du må skrive inn en verdi for «{{int:config-db-host}}»",
+	"config-missing-db-server-oracle": "Du må skrive inn en verdi for «{{int:config-db-host-oracle}}»",
 	"config-invalid-db-server-oracle": "Ugyldig database-TNS «$1».\nBruk enten \"TNS Name\" eller en \"Easy Connect\"-streng ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods])",
 	"config-invalid-db-name": "Ugyldig databasenavn «$1».\nBruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9), undestreker (_) og bindestreker (-).",
 	"config-invalid-db-prefix": "Ugyldig databaseprefiks «$1».\nBruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9), undestreker (_) og bindestreker (-).",

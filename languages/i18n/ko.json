@@ -1231,7 +1231,7 @@
 	"uploadlogpage": "올리기 기록",
 	"uploadlogpagetext": "최근 올라온 파일 목록입니다.\n갤러리 형식으로 확인하고 싶으시다면 [[Special:NewFiles|새 파일 목록]]을 보세요.",
 	"filename": "파일 이름",
-	"filedesc": "요약",
+	"filedesc": "파일의 설명",
 	"fileuploadsummary": "요약:",
 	"filereuploadsummary": "파일의 바뀜:",
 	"filestatus": "저작권 상태:",

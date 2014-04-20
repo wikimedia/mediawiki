@@ -62,7 +62,8 @@
 			"Ymar",
 			"Žekřil71pl",
 			"לערי ריינהארט",
-			"Pan Cube"
+			"Pan Cube",
+			"Wedkarski"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -1708,6 +1709,7 @@
 	"noindex-category-desc": "Ta strona nie jest indeksowana przez roboty, ponieważ ma wpisane magiczne słowo <code><nowiki>__NOINDEX__</nowiki></code> i znajduje się w przestrzeni nazw, w której ta flaga jest dozwolona.",
 	"post-expand-template-inclusion-category-desc": "Po rozwinięciu wszystkich szablonów, rozmiar strony jest większe niż <code>$wgMaxArticleSize</code>, więc niektóre szablony nie zostały rozwinięte.",
 	"expensive-parserfunction-category-desc": "Na stronie używanych jest zbyt wiele wymagających funkcji parsera (takich jak <code>#ifexist</code>). Więcej informacji na stronie [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].",
+	"hidden-category-category-desc": "To jest kategoria z <code><nowiki>__HIDDENCAT__</nowiki></code>, co zapobiega wyświetlaniu jej w sekcji z kategoriami na stronie.",
 	"trackingcategories-nodesc": "Opis nie jest dostępny.",
 	"trackingcategories-disabled": "Kategoria jest wyłączona",
 	"mailnologin": "Brak adresu",

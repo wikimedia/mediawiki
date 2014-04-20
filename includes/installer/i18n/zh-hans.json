@@ -249,7 +249,7 @@
 	"config-enable-email-help": "如果您希望使用电子邮件功能，请正确配置[http://www.php.net/manual/en/mail.configuration.php PHP的邮件设定]。如果您不需要任何电子邮件功能，请在此处禁用它。",
 	"config-email-user": "启用用户到用户的电子邮件",
 	"config-email-user-help": "允许所有用户互发邮件，假若他们启用了该功能。",
-	"config-email-usertalk": "启用用户讨论页通知",
+	"config-email-usertalk": "启用用户讨论页面通知",
 	"config-email-usertalk-help": "允许用户收到用户讨论页被修改的通知，假若他们启用了该功能。",
 	"config-email-watchlist": "启用监视列表通知",
 	"config-email-watchlist-help": "允许用户收到与其监视列表有关的通知，假若他们启用了该功能。",

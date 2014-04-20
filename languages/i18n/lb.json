@@ -1637,6 +1637,7 @@
 	"listgrouprights-namespaceprotection-header": "Limitatioune vum Nummraum",
 	"listgrouprights-namespaceprotection-namespace": "Nummraum",
 	"listgrouprights-namespaceprotection-restrictedto": "Recht(er), déi dem Benotzer d'Änneren erlaben",
+	"trackingcategories-msg": "Tracking-Kategorie",
 	"trackingcategories-name": "Numm vum Message",
 	"noindex-category-desc": "D'Säit gëtt net vu Botten indexéiert, well dat magescht Wuert <code><nowiki>__NOINDEX__</nowiki></code> dran ass a well se an engem Nummraum ass, an deem déi Markéierung erlaabt ass.",
 	"hidden-category-category-desc": "Dëst ass eng Kategorie an där <code><nowiki>__HIDDENCAT__</nowiki></code> drasteet, dat verhënnert datt se standardméisseg an der këscht mat de Kategorielinken op der Säit gewise gëtt.",

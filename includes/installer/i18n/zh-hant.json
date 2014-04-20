@@ -8,7 +8,8 @@
 			"Mark85296341",
 			"Simon Shek",
 			"아라",
-			"Liuxinyu970226"
+			"Liuxinyu970226",
+			"Xiaomingyan"
 		]
 	},
 	"config-desc": "MediaWiki安裝程式",
@@ -105,6 +106,7 @@
 	"config-db-username": "資料庫使用者名稱：",
 	"config-db-password": "資料庫密碼：",
 	"config-db-password-empty": "請為新數據庫用戶$1輸入密碼。儘管您可以創建不使用密碼的用戶，但這樣做並不安全。",
+	"config-db-username-empty": "您必須鍵入用於「{{int:config-db-username}}」值",
 	"config-db-install-username": "請輸入在安裝過程中用於連接數據庫的用戶名。請勿輸入MediaWiki帳號的用戶名，請輸入您數據庫的用戶名。",
 	"config-db-install-password": "請輸入在安裝過程中用於連接數據庫的密碼。請勿輸入MediaWiki帳號的密碼，請輸入您數據庫的密碼。",
 	"config-db-install-help": "請輸入在安裝過程中用於連接數據庫的用戶名和密碼。",
@@ -232,7 +234,7 @@
 	"config-enable-email-help": "如果您希望使用電子郵件功能，請正確配置[http://www.php.net/manual/en/mail.configuration.php PHP的郵件設定]。如果您不需要任何電子郵件功能，請在此處禁用它。",
 	"config-email-user": "啟用用戶到用戶的電子郵件",
 	"config-email-user-help": "允許所有用戶互發郵件，假若他們啟用了該功能。",
-	"config-email-usertalk": "啟用用戶討論頁通知",
+	"config-email-usertalk": "啟用使用者討論頁面通知",
 	"config-email-usertalk-help": "允許用戶收到用戶討論頁被修改的通知，假若他們啟用了該功能。",
 	"config-email-watchlist": "啟用監視列表通知",
 	"config-email-watchlist-help": "允許用戶收到與其監視列表有關的通知，假若他們啟用了該功能。",

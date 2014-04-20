@@ -3,7 +3,8 @@
 		"authors": [
 			"Bellayet",
 			"Wikitanvir",
-			"Aftab1995"
+			"Aftab1995",
+			"Tauhid16"
 		]
 	},
 	"config-desc": "মিডিয়াউইকির জন্য ইন্সটলার",
@@ -33,8 +34,11 @@
 	"config-page-existingwiki": "ইতিমধ্যেই থাকা উইকি",
 	"config-restart": "হ্যাঁ, পুনরায় চালু করুন",
 	"config-env-php": "পিএইচপি $1 ইন্সটল করা হয়েছে।",
+	"config-apc": "[http://www.php.net/apc এপিসি] ইনস্টল হয়েছে",
 	"config-db-type": "ডেটাবেজের ধরন:",
 	"config-db-host": "ডেটাবেজের হোস্ট:",
+	"config-db-wiki-settings": "এই উইকি সনাক্ত করুন",
+	"config-db-name": "উপাত্তসংগ্রহশালা নামঃ",
 	"config-db-install-account": "ইন্সটলের জন্য ব্যবহারকারী অ্যাকাউন্ট",
 	"config-db-username": "ডেটাবেজের ব্যবহারকারী নাম:",
 	"config-db-password": "ডেটাবেজের শব্দচাবি:",
