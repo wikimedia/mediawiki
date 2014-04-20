@@ -60,7 +60,7 @@ class DjVuImage {
 
 	/**
 	 * Return data in the style of getimagesize()
-	 * @return array or false on failure
+	 * @return array|bool Array or false on failure
 	 */
 	public function getImageSize() {
 		$data = $this->getInfo();
@@ -330,7 +330,7 @@ EOR;
 
 	/**
 	 * Hack to temporarily work around djvutoxml bug
-	 * @param $dump
+	 * @param string $dump
 	 * @return string
 	 */
 	function convertDumpToXML( $dump ) {

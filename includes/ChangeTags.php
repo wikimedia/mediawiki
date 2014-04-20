@@ -65,8 +65,8 @@ class ChangeTags {
 	 *
 	 * @param string $tag tag
 	 *
-	 * @return String: Short description of the tag from "mediawiki:tag-$tag" if this message exists,
-	 *                 html-escaped version of $tag otherwise
+	 * @return string Short description of the tag from "mediawiki:tag-$tag" if this message exists,
+	 *   html-escaped version of $tag otherwise
 	 */
 	public static function tagDescription( $tag ) {
 		$msg = wfMessage( "tag-$tag" );
@@ -77,13 +77,13 @@ class ChangeTags {
 	 * Add tags to a change given its rc_id, rev_id and/or log_id
 	 *
 	 * @param string|array $tags Tags to add to the change
-	 * @param $rc_id int: rc_id of the change to add the tags to
-	 * @param $rev_id int: rev_id of the change to add the tags to
-	 * @param $log_id int: log_id of the change to add the tags to
+	 * @param int $rc_id rc_id of the change to add the tags to
+	 * @param int $rev_id rev_id of the change to add the tags to
+	 * @param int $log_id Log_id of the change to add the tags to
 	 * @param string $params params to put in the ct_params field of table 'change_tag'
 	 *
 	 * @throws MWException
-	 * @return bool: false if no changes are made, otherwise true
+	 * @return bool false if no changes are made, otherwise true
 	 *
 	 * @exception MWException when $rc_id, $rev_id and $log_id are all null
 	 */
@@ -192,9 +192,9 @@ class ChangeTags {
 	 *
 	 * @param string|array $tables Table names, see DatabaseBase::select
 	 * @param string|array $fields Fields used in query, see DatabaseBase::select
-	 * @param string|array $conds conditions used in query, see DatabaseBase::select
-	 * @param $join_conds Array: join conditions, see DatabaseBase::select
-	 * @param array $options options, see Database::select
+	 * @param string|array $conds Conditions used in query, see DatabaseBase::select
+	 * @param array $join_conds Join conditions, see DatabaseBase::select
+	 * @param array $options Options, see Database::select
 	 * @param bool|string $filter_tag Tag to select on
 	 *
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
@@ -238,12 +238,12 @@ class ChangeTags {
 	 * Build a text box to select a change tag
 	 *
 	 * @param string $selected tag to select by default
-	 * @param $fullForm Boolean:
+	 * @param bool $fullForm
 	 *        - if false, then it returns an array of (label, form).
 	 *        - if true, it returns an entire form around the selector.
-	 * @param $title Title object to send the form to.
+	 * @param Title $title Title object to send the form to.
 	 *        Used when, and only when $fullForm is true.
-	 * @return String or array:
+	 * @return string|array
 	 *        - if $fullForm is false: Array with
 	 *        - if $fullForm is true: String, html fragment
 	 */
@@ -297,7 +297,7 @@ class ChangeTags {
 	 *
 	 * Tries memcached first.
 	 *
-	 * @return Array of strings: tags
+	 * @return array Array of strings: tags
 	 */
 	public static function listDefinedTags() {
 		// Caching...

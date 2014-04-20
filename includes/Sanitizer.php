@@ -1069,7 +1069,7 @@ class Sanitizer {
 	 *   HTML5 definition of id attribute
 	 *
 	 * @param string $id id to escape
-	 * @param $options Mixed: string or array of strings (default is array()):
+	 * @param string|array $options String or array of strings (default is array()):
 	 *   'noninitial': This is a non-initial fragment of an id, not a full id,
 	 *       so don't pay attention if the first character isn't valid at the
 	 *       beginning of an id.  Only matters if $wgExperimentalHtmlIds is
@@ -1136,7 +1136,7 @@ class Sanitizer {
 	 * This allows (generally harmless) entities like &#160; to survive.
 	 *
 	 * @param string $html HTML to escape
-	 * @return string: escaped input
+	 * @return string Escaped input
 	 */
 	static function escapeHtmlAllowEntities( $html ) {
 		$html = Sanitizer::decodeCharReferences( $html );

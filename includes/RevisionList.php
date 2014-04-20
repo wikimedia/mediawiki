@@ -33,8 +33,8 @@ abstract class RevisionListBase extends ContextSource {
 
 	/**
 	 * Construct a revision list for a given title
-	 * @param $context IContextSource
-	 * @param $title Title
+	 * @param IContextSource $context
+	 * @param Title $title
 	 */
 	function __construct( IContextSource $context, Title $title ) {
 		$this->setContext( $context );
@@ -43,7 +43,7 @@ abstract class RevisionListBase extends ContextSource {
 
 	/**
 	 * Select items only where the ID is any of the specified values
-	 * @param $ids Array
+	 * @param array $ids
 	 */
 	function filterByIds( array $ids ) {
 		$this->ids = $ids;
@@ -72,7 +72,7 @@ abstract class RevisionListBase extends ContextSource {
 
 	/**
 	 * Start iteration. This must be called before current() or next().
-	 * @return First list item
+	 * @return Revision First list item
 	 */
 	public function reset() {
 		if ( !$this->res ) {
@@ -86,6 +86,7 @@ abstract class RevisionListBase extends ContextSource {
 
 	/**
 	 * Get the current list item, or false if we are at the end
+	 * @return Revision
 	 */
 	public function current() {
 		return $this->current;
@@ -93,6 +94,7 @@ abstract class RevisionListBase extends ContextSource {
 
 	/**
 	 * Move the iteration pointer to the next list item, and return it.
+	 * @return Revision
 	 */
 	public function next() {
 		$this->res->next();
@@ -114,13 +116,13 @@ abstract class RevisionListBase extends ContextSource {
 
 	/**
 	 * Do the DB query to iterate through the objects.
-	 * @param $db DatabaseBase object to use for the query
+	 * @param DatabaseBase $db DatabaseBase object to use for the query
 	 */
 	abstract public function doQuery( $db );
 
 	/**
 	 * Create an item object from a DB result row
-	 * @param $row stdclass
+	 * @param object $row
 	 */
 	abstract public function newItem( $row );
 }
@@ -136,8 +138,8 @@ abstract class RevisionItemBase {
 	var $row;
 
 	/**
-	 * @param $list RevisionListBase
-	 * @param $row DB result row
+	 * @param RevisionListBase $list
+	 * @param object $row DB result row
 	 */
 	public function __construct( $list, $row ) {
 		$this->list = $list;
@@ -182,7 +184,7 @@ abstract class RevisionItemBase {
 
 	/**
 	 * Get the ID, as it would appear in the ids URL parameter
-	 * @return
+	 * @return int
 	 */
 	public function getId() {
 		$field = $this->getIdField();
@@ -191,7 +193,7 @@ abstract class RevisionItemBase {
 
 	/**
 	 * Get the date, formatted in user's language
-	 * @return String
+	 * @return string
 	 */
 	public function formatDate() {
 		return $this->list->getLanguage()->userDate( $this->getTimestamp(),
@@ -200,7 +202,7 @@ abstract class RevisionItemBase {
 
 	/**
 	 * Get the time, formatted in user's language
-	 * @return String
+	 * @return string
 	 */
 	public function formatTime() {
 		return $this->list->getLanguage()->userTime( $this->getTimestamp(),
@@ -209,7 +211,7 @@ abstract class RevisionItemBase {
 
 	/**
 	 * Get the timestamp in MW 14-char form
-	 * @return Mixed
+	 * @return mixed
 	 */
 	public function getTimestamp() {
 		$field = $this->getTimestampField();
@@ -257,7 +259,7 @@ class RevisionList extends RevisionListBase {
 	}
 
 	/**
-	 * @param $db DatabaseBase
+	 * @param DatabaseBase $db
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {

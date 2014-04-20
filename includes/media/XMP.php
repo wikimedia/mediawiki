@@ -159,7 +159,7 @@ class XMPReader {
 	/** Get the result array. Do some post-processing before returning
 	 * the array, and transform any metadata that is special-cased.
 	 *
-	 * @return Array array of results as an array of arrays suitable for
+	 * @return array Array of results as an array of arrays suitable for
 	 *    FormatMetadata::getFormattedData().
 	 */
 	public function getResults() {
@@ -851,8 +851,8 @@ class XMPReader {
 	 * This is generally where most properties start.
 	 *
 	 * @param string $ns Namespace
-	 * @param string $tag tag name (without namespace prefix)
-	 * @param array $attribs array of attributes
+	 * @param string $tag Tag name (without namespace prefix)
+	 * @param array $attribs Array of attributes
 	 * @throws MWException
 	 */
 	private function startElementModeInitial( $ns, $tag, $attribs ) {
@@ -1041,7 +1041,7 @@ class XMPReader {
 	 * Generally just calls a helper based on what MODE we're in.
 	 * Also does some initial set up for the wrapper element
 	 *
-	 * @param $parser XMLParser
+	 * @param XMLParser $parser
 	 * @param string $elm Namespace "<space>" element
 	 * @param array $attribs Attribute name => value
 	 * @throws MWException

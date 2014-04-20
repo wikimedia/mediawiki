@@ -332,7 +332,7 @@ class MWTimestamp {
 	 * Set the timezone of this timestamp to the specified timezone.
 	 *
 	 * @since 1.22
-	 * @param String $timezone Timezone to set
+	 * @param string $timezone Timezone to set
 	 * @throws TimestampException
 	 */
 	public function setTimezone( $timezone ) {

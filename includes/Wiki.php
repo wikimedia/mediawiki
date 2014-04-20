@@ -34,7 +34,7 @@ class MediaWiki {
 	private $context;
 
 	/**
-	 * @param $x null|WebRequest
+	 * @param null|WebRequest $x
 	 * @return WebRequest
 	 */
 	public function request( WebRequest $x = null ) {
@@ -44,7 +44,7 @@ class MediaWiki {
 	}
 
 	/**
-	 * @param $x null|OutputPage
+	 * @param null|OutputPage $x
 	 * @return OutputPage
 	 */
 	public function output( OutputPage $x = null ) {
@@ -67,7 +67,7 @@ class MediaWiki {
 	/**
 	 * Parse the request to get the Title object
 	 *
-	 * @return Title object to be $wgTitle
+	 * @return Title Title object to be $wgTitle
 	 */
 	private function parseTitle() {
 		global $wgContLang;
@@ -142,7 +142,7 @@ class MediaWiki {
 	/**
 	 * Returns the name of the action that will be executed.
 	 *
-	 * @return string: action
+	 * @return string Action
 	 */
 	public function getAction() {
 		static $action = null;
@@ -311,7 +311,7 @@ class MediaWiki {
 	 * Initialize the main Article object for "standard" actions (view, etc)
 	 * Create an Article object for the page, following redirects if needed.
 	 *
-	 * @return mixed an Article, or a string to redirect to another URL
+	 * @return mixed An Article, or a string to redirect to another URL
 	 */
 	private function initializeArticle() {
 		global $wgDisableHardRedirects;
@@ -393,8 +393,8 @@ class MediaWiki {
 	/**
 	 * Perform one of the "standard" actions
 	 *
-	 * @param $page Page
-	 * @param $requestTitle The original title, before any redirects were applied
+	 * @param Page $page
+	 * @param Title $requestTitle The original title, before any redirects were applied
 	 */
 	private function performAction( Page $page, Title $requestTitle ) {
 		global $wgUseSquid, $wgSquidMaxage;

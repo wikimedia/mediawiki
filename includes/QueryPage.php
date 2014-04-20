@@ -359,6 +359,7 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Get a DB connection to be used for slow recache queries
+	 * @return DatabaseBase
 	 */
 	function getRecacheDB() {
 		return wfGetDB( DB_SLAVE, array( $this->getName(), 'QueryPage::recache', 'vslow' ) );
@@ -648,7 +649,7 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
-	 * @param $offset
+	 * @param int $offset
 	 * @return string
 	 */
 	function openList( $offset ) {

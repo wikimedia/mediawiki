@@ -36,7 +36,7 @@ class MessageBlobStore {
 	/**
 	 * Get the message blobs for a set of modules
 	 *
-	 * @param $resourceLoader ResourceLoader object
+	 * @param ResourceLoader $resourceLoader
 	 * @param array $modules Array of module objects keyed by module name
 	 * @param string $lang Language code
 	 * @return array An array mapping module names to message blobs
@@ -68,9 +68,9 @@ class MessageBlobStore {
 	 * present, it is not regenerated; instead, the preexisting blob
 	 * is fetched and returned.
 	 *
-	 * @param string $name module name
-	 * @param $module ResourceLoaderModule object
-	 * @param string $lang language code
+	 * @param string $name Module name
+	 * @param ResourceLoaderModule $module
+	 * @param string $lang Language code
 	 * @return mixed Message blob or false if the module has no messages
 	 */
 	public static function insertMessageBlob( $name, ResourceLoaderModule $module, $lang ) {
@@ -125,10 +125,10 @@ class MessageBlobStore {
 	/**
 	 * Update the message blob for a given module in a given language
 	 *
-	 * @param string $name module name
-	 * @param $module ResourceLoaderModule object
-	 * @param string $lang language code
-	 * @return String Regenerated message blob, or null if there was no blob for the given module/language pair
+	 * @param string $name Module name
+	 * @param ResourceLoaderModule $module
+	 * @param string $lang Language code
+	 * @return string Regenerated message blob, or null if there was no blob for the given module/language pair
 	 */
 	public static function updateModule( $name, ResourceLoaderModule $module, $lang ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -195,7 +195,7 @@ class MessageBlobStore {
 	/**
 	 * Update a single message in all message blobs it occurs in.
 	 *
-	 * @param string $key message key
+	 * @param string $key Message key
 	 */
 	public static function updateMessage( $key ) {
 		try {
@@ -256,9 +256,9 @@ class MessageBlobStore {
 	/**
 	 * Create an update queue for updateMessage()
 	 *
-	 * @param string $key message key
-	 * @param array $prevUpdates updates queue to refresh or null to build a fresh update queue
-	 * @return Array: updates queue
+	 * @param string $key Message key
+	 * @param array $prevUpdates Updates queue to refresh or null to build a fresh update queue
+	 * @return array Updates queue
 	 */
 	private static function getUpdatesForMessage( $key, $prevUpdates = null ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -307,10 +307,10 @@ class MessageBlobStore {
 	/**
 	 * Reencode a message blob with the updated value for a message
 	 *
-	 * @param string $blob message blob (JSON object)
-	 * @param string $key message key
-	 * @param string $lang language code
-	 * @return Message blob with $key replaced with its new value
+	 * @param string $blob Message blob (JSON object)
+	 * @param string $key Message key
+	 * @param string $lang Language code
+	 * @return string Message blob with $key replaced with its new value
 	 */
 	private static function reencodeBlob( $blob, $key, $lang ) {
 		$decoded = FormatJson::decode( $blob, true );
@@ -323,9 +323,9 @@ class MessageBlobStore {
 	 * Get the message blobs for a set of modules from the database.
 	 * Modules whose blobs are not in the database are silently dropped.
 	 *
-	 * @param $resourceLoader ResourceLoader object
-	 * @param array $modules of module names
-	 * @param string $lang language code
+	 * @param ResourceLoader $resourceLoader
+	 * @param array $modules Array of module names
+	 * @param string $lang Language code
 	 * @throws MWException
 	 * @return array Array mapping module names to blobs
 	 */
@@ -361,9 +361,9 @@ class MessageBlobStore {
 	/**
 	 * Generate the message blob for a given module in a given language.
 	 *
-	 * @param $module ResourceLoaderModule object
-	 * @param string $lang language code
-	 * @return String: JSON object
+	 * @param ResourceLoaderModule $module
+	 * @param string $lang Language code
+	 * @return string JSON object
 	 */
 	private static function generateMessageBlob( ResourceLoaderModule $module, $lang ) {
 		$messages = array();
