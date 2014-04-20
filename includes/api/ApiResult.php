@@ -60,7 +60,7 @@ class ApiResult extends ApiBase {
 
 	/**
 	 * Constructor
-	 * @param $main ApiMain object
+	 * @param ApiMain $main
 	 */
 	public function __construct( $main ) {
 		parent::__construct( $main, 'result' );
@@ -106,7 +106,7 @@ class ApiResult extends ApiBase {
 	/**
 	 * Get the 'real' size of a result item. This means the strlen() of the item,
 	 * or the sum of the strlen()s of the elements if the item is an array.
-	 * @param $value mixed
+	 * @param mixed $value
 	 * @return int
 	 */
 	public static function size( $value ) {
@@ -150,9 +150,9 @@ class ApiResult extends ApiBase {
 	/**
 	 * Add an output value to the array by name.
 	 * Verifies that value with the same name has not been added before.
-	 * @param array $arr to add $value to
+	 * @param array $arr To add $value to
 	 * @param string $name Index of $arr to add $value at
-	 * @param $value mixed
+	 * @param mixed $value
 	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
 	 *    This parameter used to be boolean, and the value of OVERRIDE=1 was
 	 *    specifically chosen so that it would be backwards compatible with the
@@ -192,9 +192,9 @@ class ApiResult extends ApiBase {
 	/**
 	 * Adds a content element to an array.
 	 * Use this function instead of hardcoding the '*' element.
-	 * @param array $arr to add the content element to
-	 * @param $value Mixed
-	 * @param string $subElemName when present, content element is created
+	 * @param array $arr To add the content element to
+	 * @param mixed $value
+	 * @param string $subElemName When present, content element is created
 	 *  as a sub item of $arr. Use this parameter to create elements in
 	 *  format "<elem>text</elem>" without attributes.
 	 */
@@ -216,7 +216,7 @@ class ApiResult extends ApiBase {
 	 * In case the array contains indexed values (in addition to named),
 	 * give all indexed values the given tag name. This function MUST be
 	 * called on every array that has numerical indexes.
-	 * @param $arr array
+	 * @param array $arr
 	 * @param string $tag Tag name
 	 */
 	public function setIndexedTagName( &$arr, $tag ) {
@@ -233,7 +233,7 @@ class ApiResult extends ApiBase {
 
 	/**
 	 * Calls setIndexedTagName() on each sub-array of $arr
-	 * @param $arr array
+	 * @param array $arr
 	 * @param string $tag Tag name
 	 */
 	public function setIndexedTagName_recursive( &$arr, $tag ) {
@@ -254,7 +254,7 @@ class ApiResult extends ApiBase {
 	 * Don't specify a path to a value that's not in the result, or
 	 * you'll get nasty errors.
 	 * @param array $path Path to the array, like addValue()'s $path
-	 * @param $tag string
+	 * @param string $tag
 	 */
 	public function setIndexedTagName_internal( $path, $tag ) {
 		$data = &$this->mData;
@@ -277,9 +277,9 @@ class ApiResult extends ApiBase {
 	 * If $path is null, the value will be inserted at the data root.
 	 * If $name is empty, the $value is added as a next list element data[] = $value.
 	 *
-	 * @param $path array|string|null
-	 * @param $name string
-	 * @param $value mixed
+	 * @param array|string|null $path
+	 * @param string $name
+	 * @param mixed $value
 	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP. This
 	 *    parameter used to be boolean, and the value of OVERRIDE=1 was specifically
 	 *    chosen so that it would be backwards compatible with the new method
@@ -340,8 +340,8 @@ class ApiResult extends ApiBase {
 	/**
 	 * Add a parsed limit=max to the result.
 	 *
-	 * @param $moduleName string
-	 * @param $limit int
+	 * @param string $moduleName
+	 * @param int $limit
 	 */
 	public function setParsedLimit( $moduleName, $limit ) {
 		// Add value, allowing overwriting
@@ -352,8 +352,8 @@ class ApiResult extends ApiBase {
 	 * Unset a value previously added to the result set.
 	 * Fails silently if the value isn't found.
 	 * For parameters, see addValue()
-	 * @param $path array|null
-	 * @param $name string
+	 * @param array|null $path
+	 * @param string $name
 	 */
 	public function unsetValue( $path, $name ) {
 		$data = &$this->mData;
@@ -379,7 +379,7 @@ class ApiResult extends ApiBase {
 	/**
 	 * Callback function for cleanUpUTF8()
 	 *
-	 * @param $s string
+	 * @param string $s
 	 */
 	private static function cleanUp_helper( &$s ) {
 		if ( !is_string( $s ) ) {

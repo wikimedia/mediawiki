@@ -108,7 +108,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
 	/**
 	 * Return the API documentation for the parameters.
-	 * @return Array parameter documentation.
+	 * @return array Parameter documentation.
 	 */
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();

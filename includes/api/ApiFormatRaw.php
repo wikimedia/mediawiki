@@ -32,8 +32,8 @@ class ApiFormatRaw extends ApiFormatBase {
 
 	/**
 	 * Constructor
-	 * @param $main ApiMain object
-	 * @param $errorFallback ApiFormatBase object to fall back on for errors
+	 * @param ApiMain $main
+	 * @param ApiFormatBase $errorFallback ApiFormatBase object to fall back on for errors
 	 */
 	public function __construct( $main, $errorFallback ) {
 		parent::__construct( $main, 'raw' );

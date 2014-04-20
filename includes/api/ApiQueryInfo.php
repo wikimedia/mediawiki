@@ -53,7 +53,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	/**
-	 * @param $pageSet ApiPageSet
+	 * @param ApiPageSet $pageSet
 	 * @return void
 	 */
 	public function requestExtraData( $pageSet ) {
@@ -80,7 +80,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * Get an array mapping token names to their handler functions.
 	 * The prototype for a token function is func($pageid, $title)
 	 * it should return a token or false (permission denied)
-	 * @return array array(tokenname => function)
+	 * @return array Array(tokenname => function)
 	 */
 	protected function getTokenFunctions() {
 		// Don't call the hooks twice
@@ -345,7 +345,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	/**
 	 * Get a result array with information about a title
 	 * @param int $pageid Page ID (negative for missing titles)
-	 * @param $title Title object
+	 * @param Title $title
 	 * @return array
 	 */
 	private function extractPageInfo( $pageid, $title ) {

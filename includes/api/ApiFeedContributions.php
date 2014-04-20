@@ -123,7 +123,7 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	/**
-	 * @param $revision Revision
+	 * @param Revision $revision
 	 * @return string
 	 */
 	protected function feedItemAuthor( $revision ) {
@@ -131,7 +131,7 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	/**
-	 * @param $revision Revision
+	 * @param Revision $revision
 	 * @return string
 	 */
 	protected function feedItemDesc( $revision ) {
