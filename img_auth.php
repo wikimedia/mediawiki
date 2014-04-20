@@ -154,9 +154,17 @@ function wfImageAuthMain() {
 		header( 'Content-Disposition: attachment' );
 	}
 
+	$options = array(); // HTTP header options
+	if ( isset( $_SERVER['HTTP_RANGE'] ) ) {
+		$options['range'] = $_SERVER['HTTP_RANGE'];
+	}
+	if ( isset( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
+		$options['if-modified-since'] = $_SERVER['HTTP_IF_MODIFIED_SINCE'];
+	}
+
 	// Stream the requested file
 	wfDebugLog( 'img_auth', "Streaming `" . $filename . "`." );
-	$repo->streamFile( $filename, array( 'Cache-Control: private', 'Vary: Cookie' ) );
+	$repo->streamFile( $filename, array( 'Cache-Control: private', 'Vary: Cookie' ), $options );
 }
 
 /**

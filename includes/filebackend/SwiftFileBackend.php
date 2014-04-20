@@ -992,14 +992,21 @@ class SwiftFileBackend extends FileBackendStore {
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $srcRel === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
+
+			return $status;
 		}
 
 		$auth = $this->getAuthentication();
 		if ( !$auth || !is_array( $this->getContainerStat( $srcCont ) ) ) {
+			header( 'HTTP/1.0 404 Not Found' );
+			header( 'Cache-Control: no-cache' );
 			$status->fatal( 'backend-fail-stream', $params['src'] );
 
 			return $status;
 		}
+
+		// Cancel output buffering and gzipping if set
+		wfResetOutputBuffers();
 
 		$handle = fopen( 'php://output', 'wb' );
 
@@ -1007,8 +1014,9 @@ class SwiftFileBackend extends FileBackendStore {
 			'method' => 'GET',
 			'url' => $this->storageUrl( $auth, $srcCont, $srcRel ),
 			'headers' => $this->authTokenHeaders( $auth )
-				+ $this->headersFromParams( $params ),
+				+ $this->headersFromParams( $params ) + $params['options'],
 			'stream' => $handle,
+			'flags'  => array( 'relayResponseHeaders' => 1 )
 		) );
 
 		if ( $rcode >= 200 && $rcode <= 299 ) {

@@ -994,6 +994,7 @@ abstract class FileBackend {
 
 	/**
 	 * Stream the file at a storage path in the backend.
+	 *
 	 * If the file does not exists, an HTTP 404 error will be given.
 	 * Appropriate HTTP headers (Status, Content-Type, Content-Length)
 	 * will be sent if streaming began, while none will be sent otherwise.
@@ -1003,6 +1004,9 @@ abstract class FileBackend {
 	 *   - src     : source storage path
 	 *   - headers : list of additional HTTP headers to send on success
 	 *   - latest  : use the latest available data
+	 *   - options : HTTP request header map with lower case keys (since 1.24). Supports:
+	 *               range             : format is "bytes=(\d*-\d*)"
+	 *               if-modified-since : format is an HTTP date
 	 * @return Status
 	 */
 	abstract public function streamFile( array $params );

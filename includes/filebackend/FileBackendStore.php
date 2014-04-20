@@ -854,30 +854,31 @@ abstract class FileBackendStore extends FileBackend {
 		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
 
-		$info = $this->getFileStat( $params );
-		if ( !$info ) { // let StreamFile handle the 404
+		if ( headers_sent() ) {
+			// Don't stream it out as text/html if there was a PHP error
+			print "Headers already sent, terminating.\n";
 			$status->fatal( 'backend-fail-notexists', $params['src'] );
+			return $status;
 		}
 
-		// Set output buffer and HTTP headers for stream
-		$extraHeaders = isset( $params['headers'] ) ? $params['headers'] : array();
-		$res = StreamFile::prepareForStream( $params['src'], $info, $extraHeaders );
-		if ( $res == StreamFile::NOT_MODIFIED ) {
-			// do nothing; client cache is up to date
-		} elseif ( $res == StreamFile::READY_STREAM ) {
-			wfProfileIn( __METHOD__ . '-send-' . $this->name );
-			$status = $this->doStreamFile( $params );
-			wfProfileOut( __METHOD__ . '-send-' . $this->name );
-			if ( !$status->isOK() ) {
-				// Per bug 41113, nasty things can happen if bad cache entries get
-				// stuck in cache. It's also possible that this error can come up
-				// with simple race conditions. Clear out the stat cache to be safe.
-				$this->clearCache( array( $params['src'] ) );
-				$this->deleteFileCache( $params['src'] );
-				trigger_error( "Bad stat cache or race condition for file {$params['src']}." );
-			}
+		$info = $this->getFileStat( $params );
+		if ( !$info ) {
+			header( 'HTTP/1.0 404 Not Found' );
+			header( 'Cache-Control: no-cache' );
+			header( 'Content-Type: text/html; charset=utf-8' );
+			$encFile = htmlspecialchars( $params['src'] );
+			$encScript = htmlspecialchars( $_SERVER['SCRIPT_NAME'] );
+			echo "<html><body>
+				<h1>File not found</h1>
+				<p>Although this PHP script ($encScript) exists, the file requested for output
+				($encFile) does not.</p>
+				</body></html>
+				";
+			$status->fatal( 'backend-fail-notexists', $params['src'] );
 		} else {
-			$status->fatal( 'backend-fail-stream', $params['src'] );
+			$params['options'] = isset( $params['options'] ) ? $params['options'] : array();
+			$params['headers'] = isset( $params['headers'] ) ? $params['headers'] : array();
+			$status->merge( $this->doStreamFile( $params ) );
 		}
 
 		return $status;
@@ -892,9 +893,25 @@ abstract class FileBackendStore extends FileBackend {
 		$status = Status::newGood();
 
 		$fsFile = $this->getLocalReference( $params );
-		if ( !$fsFile ) {
-			$status->fatal( 'backend-fail-stream', $params['src'] );
-		} elseif ( !readfile( $fsFile->getPath() ) ) {
+
+		if ( $fsFile ) {
+			wfProfileIn( __METHOD__ . '-send-' . $this->name );
+			$res = StreamFile::stream(
+				$fsFile->getPath(), $params['headers'], true, $params['options'] );
+			wfProfileOut( __METHOD__ . '-send-' . $this->name );
+		} else {
+			$res = false; // previous stat was ok...race condition?
+			header( 'HTTP/1.0 404 Not Found' );
+			header( 'Cache-Control: no-cache' );
+		}
+
+		if ( $res !== true ) {
+			// Per bug 41113, nasty things can happen if bad cache entries get
+			// stuck in cache. It's also possible that this error can come up
+			// with simple race conditions. Clear out the stat cache to be safe.
+			$this->clearCache( array( $params['src'] ) );
+			$this->deleteFileCache( $params['src'] );
+			trigger_error( "Bad stat cache or race condition for file {$params['src']}." );
 			$status->fatal( 'backend-fail-stream', $params['src'] );
 		}
 

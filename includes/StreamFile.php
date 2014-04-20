@@ -24,9 +24,6 @@
  * Functions related to the output of file content
  */
 class StreamFile {
-	const READY_STREAM = 1;
-	const NOT_MODIFIED = 2;
-
 	/**
 	 * Stream a file to the browser, adding all the headings and fun stuff.
 	 * Headers sent include: Content-type, Content-Length, Last-Modified,
@@ -35,58 +32,29 @@ class StreamFile {
 	 * @param string $fname Full name and path of the file to stream
 	 * @param array $headers Any additional headers to send
 	 * @param bool $sendErrors Send error messages if errors occur (like 404)
+	 * @param array $optHeaders HTTP request header map (use lowercase keys)
 	 * @throws MWException
 	 * @return bool Success
 	 */
-	public static function stream( $fname, $headers = array(), $sendErrors = true ) {
-		wfProfileIn( __METHOD__ );
+	public static function stream(
+		$fname, $headers = array(), $sendErrors = true, $optHeaders = array()
+	) {
+		$section = new ProfileSection( __METHOD__ );
 
 		if ( FileBackend::isStoragePath( $fname ) ) { // sanity
-			wfProfileOut( __METHOD__ );
 			throw new MWException( __FUNCTION__ . " given storage path '$fname'." );
 		}
 
 		wfSuppressWarnings();
-		$stat = stat( $fname );
+		$info = stat( $fname );
 		wfRestoreWarnings();
 
-		$res = self::prepareForStream( $fname, $stat, $headers, $sendErrors );
-		if ( $res == self::NOT_MODIFIED ) {
-			$ok = true; // use client cache
-		} elseif ( $res == self::READY_STREAM ) {
-			wfProfileIn( __METHOD__ . '-send' );
-			$ok = readfile( $fname );
-			wfProfileOut( __METHOD__ . '-send' );
-		} else {
-			$ok = false; // failed
-		}
-
-		wfProfileOut( __METHOD__ );
-		return $ok;
-	}
-
-	/**
-	 * Call this function used in preparation before streaming a file.
-	 * This function does the following:
-	 * (a) sends Last-Modified, Content-type, and Content-Disposition headers
-	 * (b) cancels any PHP output buffering and automatic gzipping of output
-	 * (c) sends Content-Length header based on HTTP_IF_MODIFIED_SINCE check
-	 *
-	 * @param string $path Storage path or file system path
-	 * @param array|bool $info File stat info with 'mtime' and 'size' fields
-	 * @param array $headers Additional headers to send
-	 * @param bool $sendErrors Send error messages if errors occur (like 404)
-	 * @return int|bool READY_STREAM, NOT_MODIFIED, or false on failure
-	 */
-	public static function prepareForStream(
-		$path, $info, $headers = array(), $sendErrors = true
-	) {
 		if ( !is_array( $info ) ) {
 			if ( $sendErrors ) {
 				header( 'HTTP/1.0 404 Not Found' );
 				header( 'Cache-Control: no-cache' );
 				header( 'Content-Type: text/html; charset=utf-8' );
-				$encFile = htmlspecialchars( $path );
+				$encFile = htmlspecialchars( $fname );
 				$encScript = htmlspecialchars( $_SERVER['SCRIPT_NAME'] );
 				echo "<html><body>
 					<h1>File not found</h1>
@@ -98,13 +66,13 @@ class StreamFile {
 			return false;
 		}
 
-		// Sent Last-Modified HTTP header for client-side caching
+		// Send Last-Modified HTTP header for client-side caching
 		header( 'Last-Modified: ' . wfTimestamp( TS_RFC2822, $info['mtime'] ) );
 
 		// Cancel output buffering and gzipping if set
 		wfResetOutputBuffers();
 
-		$type = self::contentTypeFromPath( $path );
+		$type = self::contentTypeFromPath( $fname );
 		if ( $type && $type != 'unknown/unknown' ) {
 			header( "Content-type: $type" );
 		} else {
@@ -121,24 +89,92 @@ class StreamFile {
 			return false;
 		}
 
+		// Don't send if client has up to date cache
+		if ( isset( $optHeaders['if-modified-since'] ) ) {
+			$modsince = preg_replace( '/;.*$/', '', $optHeaders['if-modified-since'] );
+			if ( wfTimestamp( TS_UNIX, $info['mtime'] ) <= strtotime( $modsince ) ) {
+				ini_set( 'zlib.output_compression', 0 );
+				header( "HTTP/1.0 304 Not Modified" );
+				return true; // ok
+			}
+		}
+
 		// Send additional headers
 		foreach ( $headers as $header ) {
 			header( $header );
 		}
 
-		// Don't send if client has up to date cache
-		if ( !empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
-			$modsince = preg_replace( '/;.*$/', '', $_SERVER['HTTP_IF_MODIFIED_SINCE'] );
-			if ( wfTimestamp( TS_UNIX, $info['mtime'] ) <= strtotime( $modsince ) ) {
-				ini_set( 'zlib.output_compression', 0 );
-				header( "HTTP/1.0 304 Not Modified" );
-				return self::NOT_MODIFIED; // ok
+		if ( isset( $optHeaders['range'] ) ) {
+			$range = self::parseRange( $optHeaders['range'], $info['size'] );
+			if ( is_array( $range ) ) {
+				header( 'HTTP/1.1 206 Partial Content' );
+				header( 'Content-Length: ' . $range[1] - $range[0] + 1 );
+				header( "Content-Range: bytes {$range[0]}-{$range[1]}/{$info['size']}" );
+			} elseif ( $range === 'invalid' ) {
+				if ( $sendErrors ) {
+					header( 'HTTP/1.0 416 Range Not Satisfiable' );
+					header( 'Cache-Control: no-cache' );
+					header( 'Content-Type: text/html; charset=utf-8' );
+					header( 'Content-Range: bytes */' . $info['size'] );
+				}
+				return false;
+			} else { // unsupported Range request (e.g. multiple ranges)
+				$range = array( 0, $info['size'] - 1 );
+				header( 'Content-Length: ' . $info['size'] );
 			}
+		} else {
+			$range = array( 0, $info['size'] - 1 );
+			header( 'Content-Length: ' . $info['size'] );
 		}
 
-		header( 'Content-Length: ' . $info['size'] );
+		$handle = fopen( $fname, 'rb' );
+		if ( $handle ) {
+			$ok = true;
+			fseek( $handle, $range[0] );
+			$remaining = ( $info['size'] > 0 ) ? $range[1] - $range[0] + 1 : 0;
+			while ( $remaining > 0 && $ok ) {
+				$bytes = min( $remaining, 4096 );
+				$data = fread( $handle, $bytes );
+				$remaining -= $bytes;
+				$ok = ( $data !== false );
+				print $data;
+			}
+		} else {
+			return false;
+		}
 
-		return self::READY_STREAM; // ok
+		return true;
+	}
+
+	/**
+	 * Convert a Range header value to an absolute (start, end) range tuple
+	 *
+	 * @param string $range Range header value
+	 * @param integer $size File size
+	 * @return array|string Returns error string on failure
+	 * @since 1.24
+	 */
+	public static function parseRange( $range, $size ) {
+		$m = array();
+		$absRange = array( -1, INF );
+		if ( preg_match( '#^bytes=(\d*)-(\d*)$#', $range, $m ) ) {
+			list( , $start, $end ) = $m;
+			if ( $start === '' && $end === '' ) {
+				$absRange = array( 0, max( 0, $size - 1 ) );
+			} elseif ( $start === '' ) {
+				$absRange = array( $size - $end, max( 0, $size - 1 ) );
+			} elseif ( $end === '' ) {
+				$absRange = array( $start, max( 0, $size - 1 ) );
+			} else {
+				$absRange = array( $start, $end );
+			}
+		} else {
+			return 'unrecognized';
+		}
+		if ( $absRange[0] < 0 || $absRange[1] >= $size ) {
+			return 'invalid';
+		}
+		return $absRange; // invalid
 	}
 
 	/**
