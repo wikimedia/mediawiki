@@ -179,21 +179,6 @@ class MemoryFileBackend extends FileBackendStore {
 		return $tmpFiles;
 	}
 
-	protected function doStreamFile( array $params ) {
-		$status = Status::newGood();
-
-		$src = $this->resolveHashKey( $params['src'] );
-		if ( $src === null || !isset( $this->files[$src] ) ) {
-			$status->fatal( 'backend-fail-stream', $params['src'] );
-
-			return $status;
-		}
-
-		print $this->files[$src]['data'];
-
-		return $status;
-	}
-
 	protected function doDirectoryExists( $container, $dir, array $params ) {
 		$prefix = rtrim( "$container/$dir", '/' ) . '/';
 		foreach ( $this->files as $path => $data ) {
