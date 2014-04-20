@@ -621,7 +621,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	/**
 	 * @param string $table
-	 * @param $row
+	 * @param array $row
 	 * @param string $fname
 	 * @return bool
 	 * @throws DBUnexpectedError
@@ -977,7 +977,7 @@ class DatabaseOracle extends DatabaseBase {
 	/**
 	 * Return aggregated value function call
 	 *
-	 * @param $valuedata
+	 * @param array $valuedata
 	 * @param string $valuename
 	 * @return mixed
 	 */

@@ -80,7 +80,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 *
 	 * @since 1.20
 	 *
-	 * @var integer DB_ enum
+	 * @var int DB_ enum
 	 */
 	protected $readDb = DB_SLAVE;
 
@@ -311,7 +311,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param array|string|null $fields
 	 * @param array $conditions
 	 * @param array $options
-	 * @param boolean $collapse Set to false to always return each result row as associative array.
+	 * @param bool $collapse Set to false to always return each result row as associative array.
 	 * @param string|null $functionName
 	 *
 	 * @return array of array
@@ -410,7 +410,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param array|string|null $fields
 	 * @param array $conditions
 	 * @param array $options
-	 * @param boolean $collapse Set to false to always return each result row as associative array.
+	 * @param bool $collapse Set to false to always return each result row as associative array.
 	 * @param string|null $functionName
 	 *
 	 * @return mixed|array|bool False on failure
@@ -433,7 +433,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 *
 	 * @param array $conditions
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function has( array $conditions = array() ) {
 		return $this->selectRow( array( 'id' ), $conditions ) !== false;
@@ -444,7 +444,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 *
 	 * @since 1.21
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function exists() {
 		$dbr = $this->getReadDbConnection();
@@ -466,7 +466,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param array $conditions
 	 * @param array $options
 	 *
-	 * @return integer
+	 * @return int
 	 */
 	public function count( array $conditions = array(), array $options = array() ) {
 		$res = $this->rawSelectRow(
@@ -487,7 +487,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param array $conditions
 	 * @param string|null $functionName
 	 *
-	 * @return boolean Success indicator
+	 * @return bool Success indicator
 	 */
 	public function delete( array $conditions, $functionName = null ) {
 		$dbw = $this->getWriteDbConnection();
@@ -508,8 +508,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 *
 	 * @since 1.20
 	 *
-	 * @param boolean $requireParams
-	 * @param boolean $setDefaults
+	 * @param bool $requireParams
+	 * @param bool $setDefaults
 	 *
 	 * @return array
 	 */
@@ -572,7 +572,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 *
 	 * @since 1.20
 	 *
-	 * @return integer DB_ enum
+	 * @return int DB_ enum
 	 */
 	public function getReadDb() {
 		return $this->readDb;
@@ -582,7 +582,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * Set the database ID to use for read operations, use DB_XXX constants or
 	 *   an index to the load balancer setup.
 	 *
-	 * @param integer $db
+	 * @param int $db
 	 *
 	 * @since 1.20
 	 */
@@ -595,7 +595,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 *
 	 * @since 1.20
 	 *
-	 * @return String|bool The target wiki, in a form that LBFactory understands
+	 * @return string|bool The target wiki, in a form that LBFactory understands
 	 *   (or false if the local wiki is used)
 	 */
 	public function getTargetWiki() {
@@ -668,7 +668,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param array $values
 	 * @param array $conditions
 	 *
-	 * @return boolean Success indicator
+	 * @return bool Success indicator
 	 */
 	public function update( array $values, array $conditions = array() ) {
 		$dbw = $this->getWriteDbConnection();
@@ -919,7 +919,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @since 1.20
 	 *
 	 * @param array $data
-	 * @param boolean $loadDefaults
+	 * @param bool $loadDefaults
 	 *
 	 * @return IORMRow
 	 */
@@ -933,7 +933,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @since 1.20
 	 *
 	 * @param array $fields
-	 * @param boolean $loadDefaults
+	 * @param bool $loadDefaults
 	 *
 	 * @return IORMRow
 	 */
@@ -961,7 +961,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 *
 	 * @param string $name
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function canHaveField( $name ) {
 		return array_key_exists( $name, $this->getFields() );
@@ -975,7 +975,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param IORMRow $row The row to save
 	 * @param string|null $functionName
 	 *
-	 * @return boolean Success indicator
+	 * @return bool Success indicator
 	 */
 	public function updateRow( IORMRow $row, $functionName = null ) {
 		$dbw = $this->getWriteDbConnection();
@@ -1002,7 +1002,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param string|null $functionName
 	 * @param array|null $options
 	 *
-	 * @return boolean Success indicator
+	 * @return bool Success indicator
 	 */
 	public function insertRow( IORMRow $row, $functionName = null, array $options = null ) {
 		$dbw = $this->getWriteDbConnection();
@@ -1068,7 +1068,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param IORMRow $row
 	 * @param string|null $functionName
 	 *
-	 * @return boolean Success indicator
+	 * @return bool Success indicator
 	 */
 	public function removeRow( IORMRow $row, $functionName = null ) {
 		$success = $this->delete(
@@ -1087,9 +1087,9 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 *
 	 * @param array $conditions
 	 * @param string $field
-	 * @param integer $amount
+	 * @param int $amount
 	 *
-	 * @return boolean Success indicator
+	 * @return bool Success indicator
 	 * @throws MWException
 	 */
 	public function addToField( array $conditions, $field, $amount ) {

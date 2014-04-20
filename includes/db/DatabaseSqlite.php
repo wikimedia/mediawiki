@@ -240,7 +240,7 @@ class DatabaseSqlite extends DatabaseBase {
 	/**
 	 * @see DatabaseBase::isWriteQuery()
 	 *
-	 * @param $sql string
+	 * @param string $sql
 	 * @return bool
 	 */
 	function isWriteQuery( $sql ) {
@@ -348,7 +348,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * @param ResultWrapper $res
-	 * @param $n
+	 * @param int $n
 	 * @return bool
 	 */
 	function fieldName( $res, $n ) {
@@ -747,7 +747,7 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * @param $b
+	 * @param string $b
 	 * @return Blob
 	 */
 	function encodeBlob( $b ) {
@@ -755,7 +755,7 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * @param $b Blob|string
+	 * @param Blob|string $b
 	 * @return string
 	 */
 	function decodeBlob( $b ) {
