@@ -238,7 +238,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	public static function getStartupModulesUrl( ResourceLoaderContext $context ) {
 		// The core modules:
 		$moduleNames = array( 'jquery', 'mediawiki' );
-		wfRunHooks( 'ResourceLoaderGetStartupModules', array( &$moduleNames ) );
+		wfRunHooks( 'ResourceLoaderGetStartupModules', array( &$moduleNames ), '1.23' );
 
 		// Get the latest version
 		$loader = $context->getResourceLoader();
