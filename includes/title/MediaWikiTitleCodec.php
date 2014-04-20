@@ -242,7 +242,6 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		}
 
 		# Namespace or interwiki prefix
-		$firstPass = true;
 		$prefixRegexp = "/^(.+?)_*:_*(.*)$/S";
 		do {
 			$m = array();
@@ -264,13 +263,6 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 						}
 					}
 				} elseif ( Interwiki::isValidInterwiki( $p ) ) {
-					if ( !$firstPass ) {
-						//TODO: get rid of global state!
-						# Can't make a local interwiki link to an interwiki link.
-						# That's just crazy!
-						throw new MalformedTitleException( 'Interwiki prefix found in title: ' . $text );
-					}
-
 					# Interwiki link
 					$dbkey = $m[2];
 					$parts['interwiki'] = $this->language->lc( $p );
@@ -283,7 +275,6 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 								throw new MalformedTitleException( 'Local interwiki with empty title: ' . $text );
 							}
 							$parts['interwiki'] = '';
-							$firstPass = false;
 
 							# Do another namespace split...
 							continue 2;
