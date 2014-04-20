@@ -967,7 +967,9 @@ return array(
 			'mediawiki.jqueryMsg'
 		),
 		'messages' => array(
-			'postedit-confirmation',
+			'postedit-confirmation-created',
+			'postedit-confirmation-restored',
+			'postedit-confirmation-saved',
 		),
 	),
 	'mediawiki.action.view.redirectToFragment' => array(
