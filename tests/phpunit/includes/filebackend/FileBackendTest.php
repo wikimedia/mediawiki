@@ -1161,15 +1161,15 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 		$this->doTestStreamFile( $path, $content, $alreadyExists );
 		$this->tearDownFiles();
+
+		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
+		$this->doTestStreamFile( $path, $content, $alreadyExists );
+		$this->tearDownFiles();
 	}
 
 	private function doTestStreamFile( $path, $content ) {
 		$backendName = $this->backendClass();
-
-		// Test doStreamFile() directly to avoid header madness
-		$class = new ReflectionClass( $this->backend );
-		$method = $class->getMethod( 'doStreamFile' );
-		$method->setAccessible( true );
 
 		if ( $content !== null ) {
 			$this->prepare( array( 'dir' => dirname( $path ) ) );
@@ -1178,18 +1178,19 @@ class FileBackendTest extends MediaWikiTestCase {
 				"Creation of file at $path succeeded ($backendName)." );
 
 			ob_start();
-			$method->invokeArgs( $this->backend, array( array( 'src' => $path ) ) );
+			$this->backend->streamFile( array( 'src' => $path, 'headless' => 1, 'allowOB' => 1 ) );
 			$data = ob_get_contents();
 			ob_end_clean();
 
 			$this->assertEquals( $content, $data, "Correct content streamed from '$path'" );
 		} else { // 404 case
 			ob_start();
-			$method->invokeArgs( $this->backend, array( array( 'src' => $path ) ) );
+			$this->backend->streamFile( array( 'src' => $path, 'headless' => 1, 'allowOB' => 1 ) );
 			$data = ob_get_contents();
 			ob_end_clean();
 
-			$this->assertEquals( '', $data, "Correct content streamed from '$path' ($backendName)" );
+			$this->assertRegExp( '#<h1>File not found</h1>#', $data,
+				"Correct content streamed from '$path' ($backendName)" );
 		}
 	}
 
@@ -1201,6 +1202,53 @@ class FileBackendTest extends MediaWikiTestCase {
 		$cases[] = array( "$base/unittest-cont1/e/b/some-other_file.txt", null );
 
 		return $cases;
+	}
+
+	public function testStreamFileRange() {
+		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
+		$this->doTestStreamFileRange();
+		$this->tearDownFiles();
+
+		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
+		$this->doTestStreamFileRange();
+		$this->tearDownFiles();
+	}
+
+	private function doTestStreamFileRange() {
+		$backendName = $this->backendClass();
+
+		$base = self::baseStorePath();
+		$path = "$base/unittest-cont1/e/b/z/range_file.txt";
+		$content = "0123456789ABCDEF";
+
+		$this->prepare( array( 'dir' => dirname( $path ) ) );
+		$status = $this->create( array( 'dst' => $path, 'content' => $content ) );
+		$this->assertGoodStatus( $status,
+			"Creation of file at $path succeeded ($backendName)." );
+
+		static $ranges = array(
+			'bytes=0-0'   => '0',
+			'bytes=0-3'   => '0123',
+			'bytes=4-8'   => '45678',
+			'bytes=15-15' => 'F',
+			'bytes=14-15' => 'EF',
+			'bytes=-5'    => 'BCDEF',
+			'bytes=-1'    => 'F',
+			'bytes=10-16' => 'ABCDEF',
+			'bytes=10-99' => 'ABCDEF',
+		);
+
+		foreach ( $ranges as $range => $chunk ) {
+			ob_start();
+			$this->backend->streamFile( array( 'src' => $path, 'headless' => 1, 'allowOB' => 1,
+				'options' => array( 'range' => $range ) ) );
+			$data = ob_get_contents();
+			ob_end_clean();
+
+			$this->assertEquals( $chunk, $data, "Correct chunk streamed from '$path' for '$range'" );
+		}
 	}
 
 	/**
