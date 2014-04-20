@@ -31,7 +31,7 @@ class LogEventsList extends ContextSource {
 	public $flags;
 
 	/**
-	 * @var Array
+	 * @var array
 	 */
 	protected $mDefaultQuery;
 
@@ -276,7 +276,7 @@ class LogEventsList extends ContextSource {
 	}
 
 	/**
-	 * @param $pattern
+	 * @param string $pattern
 	 * @return string Checkbox
 	 */
 	private function getTitlePattern( $pattern ) {

@@ -90,7 +90,7 @@ class SiteSQLStore implements SiteStore {
 	 *
 	 * @see SiteList::getSerialVersionId
 	 *
-	 * @return String The cache key.
+	 * @return string The cache key.
 	 */
 	protected function getCacheKey() {
 		wfProfileIn( __METHOD__ );
@@ -115,7 +115,7 @@ class SiteSQLStore implements SiteStore {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string $source either 'cache' or 'recache'
+	 * @param string $source Either 'cache' or 'recache'
 	 *
 	 * @return SiteList
 	 */
@@ -287,7 +287,7 @@ class SiteSQLStore implements SiteStore {
 	 *
 	 * @param Site $site
 	 *
-	 * @return boolean Success indicator
+	 * @return bool Success indicator
 	 */
 	public function saveSite( Site $site ) {
 		return $this->saveSites( array( $site ) );
@@ -300,7 +300,7 @@ class SiteSQLStore implements SiteStore {
 	 *
 	 * @param Site[] $sites
 	 *
-	 * @return boolean Success indicator
+	 * @return bool Success indicator
 	 */
 	public function saveSites( array $sites ) {
 		wfProfileIn( __METHOD__ );
@@ -390,7 +390,7 @@ class SiteSQLStore implements SiteStore {
 	 *
 	 * @see SiteStore::clear()
 	 *
-	 * @return bool success
+	 * @return bool Success
 	 */
 	public function clear() {
 		wfProfileIn( __METHOD__ );
@@ -468,7 +468,7 @@ class Sites extends SiteSQLStore {
 	 * @since 1.21
 	 * @deprecated
 	 *
-	 * @param string|boolean false $globalId
+	 * @param string|bool $globalId
 	 *
 	 * @return Site
 	 */
@@ -498,6 +498,7 @@ class Sites extends SiteSQLStore {
 
 	/**
 	 * @deprecated
+	 * @param string $group
 	 * @return SiteList
 	 */
 	public function getSiteGroup( $group ) {

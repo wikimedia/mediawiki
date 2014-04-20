@@ -35,7 +35,7 @@ interface SiteStore {
 	 *
 	 * @param Site $site
 	 *
-	 * @return boolean Success indicator
+	 * @return bool Success indicator
 	 */
 	public function saveSite( Site $site );
 
@@ -46,7 +46,7 @@ interface SiteStore {
 	 *
 	 * @param Site[] $sites
 	 *
-	 * @return boolean Success indicator
+	 * @return bool Success indicator
 	 */
 	public function saveSites( array $sites );
 
@@ -56,7 +56,7 @@ interface SiteStore {
 	 * @since 1.21
 	 *
 	 * @param string $globalId
-	 * @param string $source either 'cache' or 'recache'.
+	 * @param string $source Either 'cache' or 'recache'.
 	 * If 'cache', the values are allowed (but not obliged) to come from a cache.
 	 *
 	 * @return Site|null
@@ -70,7 +70,7 @@ interface SiteStore {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string $source either 'cache' or 'recache'.
+	 * @param string $source Either 'cache' or 'recache'.
 	 * If 'cache', the values are allowed (but not obliged) to come from a cache.
 	 *
 	 * @return SiteList

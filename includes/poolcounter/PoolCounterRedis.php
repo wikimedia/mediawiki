@@ -59,24 +59,24 @@ class PoolCounterRedis extends PoolCounter {
 	protected $serversByLabel;
 	/** @var string SHA-1 of the key */
 	protected $keySha1;
-	/** @var integer TTL for locks to expire (work should finish in this time) */
+	/** @var int TTL for locks to expire (work should finish in this time) */
 	protected $lockTTL;
 
 	/** @var RedisConnRef */
 	protected $conn;
 	/** @var string Pool slot value */
 	protected $slot;
-	/** @var integer AWAKE_* constant */
+	/** @var int AWAKE_* constant */
 	protected $onRelease;
 	/** @var string Unique string to identify this process */
 	protected $session;
-	/** @var integer UNIX timestamp */
+	/** @var int UNIX timestamp */
 	protected $slotTime;
 
 	const AWAKE_ONE = 1; // wake-up if when a slot can be taken from an existing process
 	const AWAKE_ALL = 2; // wake-up if an existing process finishes and wake up such others
 
-	/** @var Array List of active PoolCounterRedis objects in this script */
+	/** @var array List of active PoolCounterRedis objects in this script */
 	protected static $active = null;
 
 	function __construct( $conf, $type, $key ) {

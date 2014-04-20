@@ -85,7 +85,7 @@ interface TitleFormatter {
 	 * @param string $text
 	 *
 	 * @throws InvalidArgumentException
-	 * @return String
+	 * @return string
 	 */
 	public function getNamespaceName( $namespace, $text );
 }

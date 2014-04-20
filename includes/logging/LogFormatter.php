@@ -64,7 +64,7 @@ class LogFormatter {
 	/**
 	 * Handy shortcut for constructing a formatter directly from
 	 * database row.
-	 * @param $row
+	 * @param object $row
 	 * @see DatabaseLogEntry::getSelectQueryData
 	 * @return LogFormatter
 	 */
@@ -77,7 +77,7 @@ class LogFormatter {
 	/** @var LogEntryBase */
 	protected $entry;
 
-	/** @var Integer Constant for handling log_deleted */
+	/** @var int Constant for handling log_deleted */
 	protected $audience = self::FOR_PUBLIC;
 
 	/** @var bool Whether to output user tool links */

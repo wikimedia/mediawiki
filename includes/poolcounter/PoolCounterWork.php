@@ -37,13 +37,13 @@ abstract class PoolCounterWork {
 
 	/**
 	 * Actually perform the work, caching it if needed
-	 * @return mixed work result or false
+	 * @return mixed Work result or false
 	 */
 	abstract public function doWork();
 
 	/**
 	 * Retrieve the work from cache
-	 * @return mixed work result or false
+	 * @return mixed Work result or false
 	 */
 	public function getCachedWork() {
 		return false;
@@ -52,7 +52,7 @@ abstract class PoolCounterWork {
 	/**
 	 * A work not so good (eg. expired one) but better than an error
 	 * message.
-	 * @return mixed work result or false
+	 * @return mixed Work result or false
 	 */
 	public function fallback() {
 		return false;
@@ -69,7 +69,7 @@ abstract class PoolCounterWork {
 	/**
 	 * Log an error
 	 *
-	 * @param $status Status
+	 * @param Status $status
 	 * @return void
 	 */
 	public function logError( $status ) {
@@ -91,7 +91,7 @@ abstract class PoolCounterWork {
 	 *   - c) fallback()     : Applies for all remaining cases.
 	 * If these all fall through (by returning false), then the result of error() is returned.
 	 *
-	 * @param $skipcache bool
+	 * @param bool $skipcache
 	 * @return mixed
 	 */
 	public function execute( $skipcache = false ) {

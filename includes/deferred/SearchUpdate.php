@@ -179,7 +179,7 @@ class SearchUpdate implements DeferrableUpdate {
 	 * Get a string representation of a title suitable for
 	 * including in a search index
 	 *
-	 * @return String a stripped-down title string ready for the search index
+	 * @return string A stripped-down title string ready for the search index
 	 */
 	private function indexTitle() {
 		global $wgContLang;

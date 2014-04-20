@@ -339,7 +339,7 @@ abstract class RevDel_Item extends RevisionItemBase {
 	 * If the update fails because it did not match, the function should return
 	 * false. This prevents concurrency problems.
 	 *
-	 * @return boolean success
+	 * @return bool Success
 	 */
 	abstract public function setBits( $newBits );
 
