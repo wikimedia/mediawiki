@@ -57,6 +57,7 @@ production.
 * $wgProfileOnly is now deprecated; set the log file in
   $wgDebugLogGroups['profileoutput'] to replace it.
 * $wgMaxBacklinksInvalidate was removed; use $wgJobBackoffThrottling instead
+* Deprecated ResourceLoaderGetStartupModules hook.
 
 === New features in 1.23 ===
 * ResourceLoader can utilize the Web Storage API to cache modules client-side.
