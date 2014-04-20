@@ -178,7 +178,7 @@ abstract class FileOp {
 	 * Check if this operation changes files listed in $paths
 	 *
 	 * @param array $deps Prior path reads/writes; format of FileOp::newPredicates()
-	 * @return boolean
+	 * @return bool
 	 */
 	final public function dependsOn( array $deps ) {
 		foreach ( $this->storagePathsChanged() as $path ) {

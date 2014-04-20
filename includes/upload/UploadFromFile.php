@@ -35,7 +35,7 @@ class UploadFromFile extends UploadBase {
 	protected $mUpload = null;
 
 	/**
-	 * @param $request WebRequest
+	 * @param WebRequest $request
 	 */
 	function initializeFromRequest( &$request ) {
 		$upload = $request->getUpload( 'wpUploadFile' );
@@ -49,8 +49,8 @@ class UploadFromFile extends UploadBase {
 
 	/**
 	 * Initialize from a filename and a WebRequestUpload
-	 * @param $name
-	 * @param $webRequestUpload
+	 * @param string $name
+	 * @param WebRequestUpload $webRequestUpload
 	 */
 	function initialize( $name, $webRequestUpload ) {
 		$this->mUpload = $webRequestUpload;
@@ -59,7 +59,7 @@ class UploadFromFile extends UploadBase {
 	}
 
 	/**
-	 * @param $request
+	 * @param WebRequest $request
 	 * @return bool
 	 */
 	static function isValidRequest( $request ) {

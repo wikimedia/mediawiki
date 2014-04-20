@@ -43,7 +43,7 @@ class FileRepoStatus extends Status {
 
 	/**
 	 * @param FileRepo|bool $repo Default: false
-	 * @param $value
+	 * @param mixed $value
 	 * @return FileRepoStatus
 	 */
 	static function newGood( $repo = false, $value = null ) {

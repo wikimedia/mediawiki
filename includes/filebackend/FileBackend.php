@@ -207,7 +207,7 @@ abstract class FileBackend {
 	/**
 	 * Get the a bitfield of extra features supported by the backend medium
 	 *
-	 * @return integer Bitfield of FileBackend::ATTR_* flags
+	 * @return int Bitfield of FileBackend::ATTR_* flags
 	 * @since 1.23
 	 */
 	public function getFeatures() {
@@ -217,7 +217,7 @@ abstract class FileBackend {
 	/**
 	 * Check if the backend medium supports a field of extra features
 	 *
-	 * @return integer Bitfield of FileBackend::ATTR_* flags
+	 * @return int Bitfield of FileBackend::ATTR_* flags
 	 * @return bool
 	 * @since 1.23
 	 */
@@ -941,7 +941,7 @@ abstract class FileBackend {
 	 * $params include:
 	 *   - src    : source storage path
 	 *   - latest : use the latest available data
-	 * @return Array|bool Returns false on failure
+	 * @return array|bool Returns false on failure
 	 * @since 1.23
 	 */
 	abstract public function getFileXAttributes( array $params );
@@ -1128,7 +1128,7 @@ abstract class FileBackend {
 	 * @param array $params Parameters include:
 	 *   - dir     : storage directory
 	 *   - topOnly : only return direct child dirs of the directory
-	 * @return Traversable|Array|null Returns null on failure
+	 * @return Traversable|array|null Returns null on failure
 	 * @since 1.20
 	 */
 	abstract public function getDirectoryList( array $params );
@@ -1143,7 +1143,7 @@ abstract class FileBackend {
 	 *
 	 * @param array $params Parameters include:
 	 *   - dir : storage directory
-	 * @return Traversable|Array|null Returns null on failure
+	 * @return Traversable|array|null Returns null on failure
 	 * @since 1.20
 	 */
 	final public function getTopDirectoryList( array $params ) {
@@ -1166,7 +1166,7 @@ abstract class FileBackend {
 	 *   - dir        : storage directory
 	 *   - topOnly    : only return direct child files of the directory (since 1.20)
 	 *   - adviseStat : set to true if stat requests will be made on the files (since 1.22)
-	 * @return Traversable|Array|null Returns null on failure
+	 * @return Traversable|array|null Returns null on failure
 	 */
 	abstract public function getFileList( array $params );
 
@@ -1181,7 +1181,7 @@ abstract class FileBackend {
 	 * @param array $params Parameters include:
 	 *   - dir        : storage directory
 	 *   - adviseStat : set to true if stat requests will be made on the files (since 1.22)
-	 * @return Traversable|Array|null Returns null on failure
+	 * @return Traversable|array|null Returns null on failure
 	 * @since 1.20
 	 */
 	final public function getTopFileList( array $params ) {

@@ -464,7 +464,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doPrepare()
-	 * @param $container
+	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
 	 * @return Status
@@ -499,7 +499,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doSecure()
-	 * @param $container
+	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
 	 * @return Status
@@ -534,7 +534,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doPublish()
-	 * @param $container
+	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
 	 * @return Status
@@ -590,7 +590,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doClean()
-	 * @param $container
+	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
 	 * @return Status
@@ -962,7 +962,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param string $container Resolved container name
 	 * @param string $dir Resolved path relative to container
 	 * @param array $params
-	 * @return Traversable|Array|null Returns null on failure
+	 * @return Traversable|array|null Returns null on failure
 	 */
 	abstract public function getDirectoryListInternal( $container, $dir, array $params );
 
@@ -992,7 +992,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param string $container Resolved container name
 	 * @param string $dir Resolved path relative to container
 	 * @param array $params
-	 * @return Traversable|Array|null Returns null on failure
+	 * @return Traversable|array|null Returns null on failure
 	 */
 	abstract public function getFileListInternal( $container, $dir, array $params );
 

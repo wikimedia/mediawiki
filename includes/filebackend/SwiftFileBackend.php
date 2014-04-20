@@ -1394,7 +1394,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param string $fullCont
 	 * @param string $type ('info' for a list of object detail maps, 'names' for names only)
-	 * @param integer $limit
+	 * @param int $limit
 	 * @param string|null $after
 	 * @param string|null $prefix
 	 * @param string|null $delim
@@ -1641,7 +1641,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param string $func
 	 * @param array $params
 	 * @param string $err Error string
-	 * @param integer $code HTTP status
+	 * @param int $code HTTP status
 	 * @param string $desc HTTP status description
 	 */
 	public function onError( $status, $func, array $params, $err = '', $code = 0, $desc = '' ) {

@@ -131,7 +131,7 @@ class LocalFile extends File {
 	 *
 	 * @param Title $title
 	 * @param FileRepo $repo
-	 * @param $unused
+	 * @param null $unused
 	 *
 	 * @return LocalFile
 	 */
@@ -207,6 +207,8 @@ class LocalFile extends File {
 	/**
 	 * Constructor.
 	 * Do not call this except from inside a repo class.
+	 * @param Title $title
+	 * @param FileRepo $repo
 	 */
 	function __construct( $title, $repo ) {
 		parent::__construct( $title, $repo );
@@ -322,7 +324,7 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * @param $prefix string
+	 * @param string $prefix
 	 * @return array
 	 */
 	function getCacheFields( $prefix = 'img_' ) {
@@ -455,8 +457,8 @@ class LocalFile extends File {
 	/**
 	 * Decode a row from the database (either object or array) to an array
 	 * with timestamps and MIME types decoded, and the field prefix removed.
-	 * @param $row
-	 * @param $prefix string
+	 * @param object $row
+	 * @param string $prefix
 	 * @throws MWException
 	 * @return array
 	 */
@@ -482,6 +484,9 @@ class LocalFile extends File {
 
 	/**
 	 * Load file metadata from a DB result row
+	 *
+	 * @param object $row
+	 * @param string $prefix
 	 */
 	function loadFromRow( $row, $prefix = 'img_' ) {
 		$this->dataLoaded = true;
@@ -499,7 +504,7 @@ class LocalFile extends File {
 
 	/**
 	 * Load file metadata from cache or DB, unless already loaded
-	 * @param integer $flags
+	 * @param int $flags
 	 */
 	function load( $flags = 0 ) {
 		if ( !$this->dataLoaded ) {
@@ -604,6 +609,8 @@ class LocalFile extends File {
 	 *
 	 * If 'mime' is given, it will be split into major_mime/minor_mime.
 	 * If major_mime/minor_mime are given, $this->mime will also be set.
+	 *
+	 * @param array $info
 	 */
 	function setProps( $info ) {
 		$this->dataLoaded = true;
@@ -791,6 +798,8 @@ class LocalFile extends File {
 	 * @todo Do we still care about this? Perhaps a maintenance script
 	 *   can be made instead. Enabling this code results in a serious
 	 *   RTT regression for wikis without 404 handling.
+	 *
+	 * @param string $thumbName
 	 */
 	function migrateThumbFile( $thumbName ) {
 		/* Old code for bug 2532
@@ -1124,7 +1133,7 @@ class LocalFile extends File {
 	 *   current time
 	 * @param User|null $user User object or null to use $wgUser
 	 *
-	 * @return FileRepoStatus object. On success, the value member contains the
+	 * @return FileRepoStatus On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
 	function upload( $srcPath, $comment, $pageText, $flags = 0, $props = false,
@@ -1684,7 +1693,7 @@ class LocalFile extends File {
 	 *
 	 * May throw database exceptions on error.
 	 *
-	 * @param array $versions set of record ids of deleted items to restore,
+	 * @param array $versions Set of record ids of deleted items to restore,
 	 *   or empty to restore all revisions.
 	 * @param bool $unsuppress
 	 * @return FileRepoStatus
@@ -2219,7 +2228,7 @@ class LocalFileDeleteBatch {
 
 	/**
 	 * Removes non-existent files from a deletion batch.
-	 * @param $batch array
+	 * @param array $batch
 	 * @return array
 	 */
 	function removeNonexistentFiles( $batch ) {

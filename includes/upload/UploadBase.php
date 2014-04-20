@@ -66,7 +66,7 @@ abstract class UploadBase {
 	const SESSION_STATUS_KEY = 'wsUploadStatusData';
 
 	/**
-	 * @param $error int
+	 * @param int $error
 	 * @return string
 	 */
 	public function getVerificationErrorCode( $error ) {
@@ -111,7 +111,7 @@ abstract class UploadBase {
 	 * identifying the missing permission.
 	 * Can be overridden by subclasses.
 	 *
-	 * @param $user User
+	 * @param User $user
 	 * @return bool
 	 */
 	public static function isAllowed( $user ) {
@@ -129,9 +129,9 @@ abstract class UploadBase {
 	/**
 	 * Create a form of UploadBase depending on wpSourceType and initializes it
 	 *
-	 * @param $request WebRequest
-	 * @param $type
-	 * @return null
+	 * @param WebRequest $request
+	 * @param string|null $type
+	 * @return null|UploadBase
 	 */
 	public static function createFromRequest( &$request, $type = null ) {
 		$type = $type ? $type : $request->getVal( 'wpSourceType', 'File' );
@@ -172,7 +172,7 @@ abstract class UploadBase {
 
 	/**
 	 * Check whether a request if valid for this handler
-	 * @param $request
+	 * @param WebRequest $request
 	 * @return bool
 	 */
 	public static function isValidRequest( $request ) {
@@ -193,9 +193,9 @@ abstract class UploadBase {
 
 	/**
 	 * Initialize the path information
-	 * @param string $name the desired destination name
-	 * @param string $tempPath the temporary path
-	 * @param int $fileSize the file size
+	 * @param string $name The desired destination name
+	 * @param string $tempPath The temporary path
+	 * @param int $fileSize The file size
 	 * @param bool $removeTempFile (false) remove the temporary file?
 	 * @throws MWException
 	 */
@@ -211,6 +211,8 @@ abstract class UploadBase {
 
 	/**
 	 * Initialize from a WebRequest. Override this in a subclass.
+	 *
+	 * @param WebRequest $request
 	 */
 	abstract public function initializeFromRequest( &$request );
 
@@ -232,7 +234,7 @@ abstract class UploadBase {
 
 	/**
 	 * Return the file size
-	 * @return integer
+	 * @return int
 	 */
 	public function getFileSize() {
 		return $this->mFileSize;
@@ -247,8 +249,8 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * @param string $srcPath the source path
-	 * @return string|bool the real path if it was a virtual URL Returns false on failure
+	 * @param string $srcPath The source path
+	 * @return string|bool The real path if it was a virtual URL Returns false on failure
 	 */
 	function getRealPath( $srcPath ) {
 		wfProfileIn( __METHOD__ );
@@ -333,9 +335,9 @@ abstract class UploadBase {
 	/**
 	 * Verify that the name is valid and, if necessary, that we can overwrite
 	 *
-	 * @return mixed true if valid, otherwise and array with 'status'
+	 * @return mixed True if valid, otherwise and array with 'status'
 	 * and other keys
-	 **/
+	 */
 	public function validateName() {
 		$nt = $this->getTitle();
 		if ( is_null( $nt ) ) {
@@ -361,8 +363,8 @@ abstract class UploadBase {
 	 *
 	 * @note Only checks that it is not an evil mime. The does it have
 	 *  correct extension given its mime type check is in verifyFile.
-	 * @param string $mime representing the mime
-	 * @return mixed true if the file is verified, an array otherwise
+	 * @param string $mime Representing the mime
+	 * @return mixed True if the file is verified, an array otherwise
 	 */
 	protected function verifyMimeType( $mime ) {
 		global $wgVerifyMimeType;
@@ -398,7 +400,7 @@ abstract class UploadBase {
 	/**
 	 * Verifies that it's ok to include the uploaded file
 	 *
-	 * @return mixed true of the file is verified, array otherwise.
+	 * @return mixed True of the file is verified, array otherwise.
 	 */
 	protected function verifyFile() {
 		global $wgVerifyMimeType;
@@ -448,7 +450,7 @@ abstract class UploadBase {
 	 * Runs the blacklist checks, but not any checks that may
 	 * assume the entire file is present.
 	 *
-	 * @return Mixed true for valid or array with error message key.
+	 * @return mixed True for valid or array with error message key.
 	 */
 	protected function verifyPartialFile() {
 		global $wgAllowJavaUploads, $wgDisableUploadScriptChecks;
@@ -515,6 +517,8 @@ abstract class UploadBase {
 
 	/**
 	 * Callback for ZipDirectoryReader to detect Java class files.
+	 *
+	 * @param array $entry
 	 */
 	function zipEntryCallback( $entry ) {
 		$names = array( $entry['name'] );
@@ -539,9 +543,9 @@ abstract class UploadBase {
 	/**
 	 * Alias for verifyTitlePermissions. The function was originally 'verifyPermissions'
 	 * but that suggests it's checking the user, when it's really checking the title + user combination.
-	 * @param $user User object to verify the permissions against
+	 * @param User $user User object to verify the permissions against
 	 * @return mixed An array as returned by getUserPermissionsErrors or true
-	 *               in case the user has proper permissions.
+	 *   in case the user has proper permissions.
 	 */
 	public function verifyPermissions( $user ) {
 		return $this->verifyTitlePermissions( $user );
@@ -554,9 +558,9 @@ abstract class UploadBase {
 	 * isAllowed() should be called as well for generic is-user-blocked or
 	 * can-user-upload checking.
 	 *
-	 * @param $user User object to verify the permissions against
+	 * @param User $user object to verify the permissions against
 	 * @return mixed An array as returned by getUserPermissionsErrors or true
-	 *               in case the user has proper permissions.
+	 *   in case the user has proper permissions.
 	 */
 	public function verifyTitlePermissions( $user ) {
 		/**
@@ -593,7 +597,7 @@ abstract class UploadBase {
 	 *
 	 * This should not assume that mTempPath is set.
 	 *
-	 * @return Array of warnings
+	 * @return array Array of warnings
 	 */
 	public function checkWarnings() {
 		global $wgLang;
@@ -673,12 +677,12 @@ abstract class UploadBase {
 	 * Really perform the upload. Stores the file in the local repo, watches
 	 * if necessary and runs the UploadComplete hook.
 	 *
-	 * @param $comment
-	 * @param $pageText
-	 * @param $watch
-	 * @param $user User
+	 * @param string $comment
+	 * @param string $pageText
+	 * @param bool $watch
+	 * @param User $user
 	 *
-	 * @return Status indicating the whether the upload succeeded.
+	 * @return Status Indicating the whether the upload succeeded.
 	 */
 	public function performUpload( $comment, $pageText, $watch, $user ) {
 		wfProfileIn( __METHOD__ );
@@ -842,8 +846,8 @@ abstract class UploadBase {
 	 * This method returns the file object, which also has a 'fileKey' property which can be passed through a form or
 	 * API request to find this stashed file again.
 	 *
-	 * @param $user User
-	 * @return UploadStashFile stashed file
+	 * @param User $user
+	 * @return UploadStashFile Stashed file
 	 */
 	public function stashFile( User $user = null ) {
 		// was stashSessionFile
@@ -860,7 +864,7 @@ abstract class UploadBase {
 	/**
 	 * Stash a file in a temporary directory, returning a key which can be used to find the file again. See stashFile().
 	 *
-	 * @return String: file key
+	 * @return string File key
 	 */
 	public function stashFileGetKey() {
 		return $this->stashFile()->getFileKey();
@@ -869,7 +873,7 @@ abstract class UploadBase {
 	/**
 	 * alias for stashFileGetKey, for backwards compatibility
 	 *
-	 * @return String: file key
+	 * @return string File key
 	 */
 	public function stashSession() {
 		return $this->stashFileGetKey();
@@ -896,7 +900,7 @@ abstract class UploadBase {
 	 * earlier pseudo-'extensions' to determine type and execute
 	 * scripts, so the blacklist needs to check them all.
 	 *
-	 * @param $filename string
+	 * @param string $filename
 	 * @return array
 	 */
 	public static function splitExtensions( $filename ) {
@@ -909,9 +913,9 @@ abstract class UploadBase {
 	 * Perform case-insensitive match against a list of file extensions.
 	 * Returns true if the extension is in the list.
 	 *
-	 * @param $ext String
-	 * @param $list Array
-	 * @return Boolean
+	 * @param string $ext
+	 * @param array $list
+	 * @return bool
 	 */
 	public static function checkFileExtension( $ext, $list ) {
 		return in_array( strtolower( $ext ), $list );
@@ -921,9 +925,9 @@ abstract class UploadBase {
 	 * Perform case-insensitive match against a list of file extensions.
 	 * Returns an array of matching extensions.
 	 *
-	 * @param $ext Array
-	 * @param $list Array
-	 * @return Boolean
+	 * @param array $ext
+	 * @param array $list
+	 * @return bool
 	 */
 	public static function checkFileExtensionList( $ext, $list ) {
 		return array_intersect( array_map( 'strtolower', $ext ), $list );
@@ -932,9 +936,9 @@ abstract class UploadBase {
 	/**
 	 * Checks if the mime type of the uploaded file matches the file extension.
 	 *
-	 * @param string $mime the mime type of the uploaded file
-	 * @param string $extension the filename extension that the file is to be served with
-	 * @return Boolean
+	 * @param string $mime The mime type of the uploaded file
+	 * @param string $extension The filename extension that the file is to be served with
+	 * @return bool
 	 */
 	public static function verifyExtension( $mime, $extension ) {
 		$magic = MimeMagic::singleton();
@@ -979,10 +983,10 @@ abstract class UploadBase {
 	 * potentially harmful. The present implementation will produce false
 	 * positives in some situations.
 	 *
-	 * @param string $file pathname to the temporary upload file
-	 * @param string $mime the mime type of the file
-	 * @param string $extension the extension of the file
-	 * @return Boolean: true if the file contains something looking like embedded scripts
+	 * @param string $file Pathname to the temporary upload file
+	 * @param string $mime The mime type of the file
+	 * @param string $extension The extension of the file
+	 * @return bool True if the file contains something looking like embedded scripts
 	 */
 	public static function detectScript( $file, $mime, $extension ) {
 		global $wgAllowTitlesInSVG;
@@ -1114,8 +1118,8 @@ abstract class UploadBase {
 	 * Check a whitelist of xml encodings that are known not to be interpreted differently
 	 * by the server's xml parser (expat) and some common browsers.
 	 *
-	 * @param string $file pathname to the temporary upload file
-	 * @return Boolean: true if the file contains an encoding that could be misinterpreted
+	 * @param string $file Pathname to the temporary upload file
+	 * @return bool True if the file contains an encoding that could be misinterpreted
 	 */
 	public static function checkXMLEncodingMissmatch( $file ) {
 		global $wgSVGMetadataCutoff;
@@ -1166,8 +1170,8 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * @param $filename string
-	 * @return mixed false of the file is verified (does not contain scripts), array otherwise.
+	 * @param string $filename
+	 * @return mixed False of the file is verified (does not contain scripts), array otherwise.
 	 */
 	protected function detectScriptInSvg( $filename ) {
 		$this->mSVGNSError = false;
@@ -1191,8 +1195,8 @@ abstract class UploadBase {
 
 	/**
 	 * Callback to filter SVG Processing Instructions.
-	 * @param $target string processing instruction name
-	 * @param $data string processing instruction attribute and value
+	 * @param string $target processing instruction name
+	 * @param string $data processing instruction attribute and value
 	 * @return bool (true if the filter identified something bad)
 	 */
 	public static function checkSvgPICallback( $target, $data ) {
@@ -1205,8 +1209,8 @@ abstract class UploadBase {
 
 	/**
 	 * @todo Replace this with a whitelist filter!
-	 * @param $element string
-	 * @param $attribs array
+	 * @param string $element
+	 * @param array $attribs
 	 * @return bool
 	 */
 	public function checkSvgScriptCallback( $element, $attribs ) {
@@ -1357,8 +1361,8 @@ abstract class UploadBase {
 
 	/**
 	 * Divide the element name passed by the xml parser to the callback into URI and prifix.
-	 * @param $name string
-	 * @return array containing the namespace URI and prefix
+	 * @param string $name
+	 * @return array Containing the namespace URI and prefix
 	 */
 	private static function splitXmlNamespace( $element ) {
 		// 'http://www.w3.org/2000/svg:script' -> array( 'http://www.w3.org/2000/svg', 'script' )
@@ -1369,7 +1373,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * @param $name string
+	 * @param string $name
 	 * @return string
 	 */
 	private function stripXmlNamespace( $name ) {
@@ -1383,10 +1387,10 @@ abstract class UploadBase {
 	 * This relies on the $wgAntivirus and $wgAntivirusSetup variables.
 	 * $wgAntivirusRequired may be used to deny upload if the scan fails.
 	 *
-	 * @param string $file pathname to the temporary upload file
-	 * @return mixed false if not virus is found, NULL if the scan fails or is disabled,
-	 *         or a string containing feedback from the virus scanner if a virus was found.
-	 *         If textual feedback is missing but a virus was found, this function returns true.
+	 * @param string $file Pathname to the temporary upload file
+	 * @return mixed False if not virus is found, NULL if the scan fails or is disabled,
+	 *   or a string containing feedback from the virus scanner if a virus was found.
+	 *   If textual feedback is missing but a virus was found, this function returns true.
 	 */
 	public static function detectVirus( $file ) {
 		global $wgAntivirus, $wgAntivirusSetup, $wgAntivirusRequired, $wgOut;
@@ -1481,9 +1485,9 @@ abstract class UploadBase {
 	 * Check if there's an overwrite conflict and, if so, if restrictions
 	 * forbid this user from performing the upload.
 	 *
-	 * @param $user User
+	 * @param User $user
 	 *
-	 * @return mixed true on success, array on failure
+	 * @return mixed True on success, array on failure
 	 */
 	private function checkOverwrite( $user ) {
 		// First check whether the local file can be overwritten
@@ -1510,9 +1514,9 @@ abstract class UploadBase {
 	/**
 	 * Check if a user is the last uploader
 	 *
-	 * @param $user User object
-	 * @param string $img image name
-	 * @return Boolean
+	 * @param User $user
+	 * @param string $img Image name
+	 * @return bool
 	 */
 	public static function userCanReUpload( User $user, $img ) {
 		if ( $user->isAllowed( 'reupload' ) ) {
@@ -1539,7 +1543,7 @@ abstract class UploadBase {
 	 * - File exists with normalized extension
 	 * - The file looks like a thumbnail and the original exists
 	 *
-	 * @param $file File The File object to check
+	 * @param File $file The File object to check
 	 * @return mixed False if the file does not exists, else an array
 	 */
 	public static function getExistsWarning( $file ) {
@@ -1629,7 +1633,7 @@ abstract class UploadBase {
 
 	/**
 	 * Helper function that checks whether the filename looks like a thumbnail
-	 * @param $filename string
+	 * @param string $filename
 	 * @return bool
 	 */
 	public static function isThumbName( $filename ) {
@@ -1645,7 +1649,7 @@ abstract class UploadBase {
 	/**
 	 * Get a list of blacklisted filename prefixes from [[MediaWiki:Filename-prefix-blacklist]]
 	 *
-	 * @return array list of prefixes
+	 * @return array List of prefixes
 	 */
 	public static function getFilenamePrefixBlacklist() {
 		$blacklist = array();
@@ -1676,8 +1680,8 @@ abstract class UploadBase {
 	 * 'metadata' was requested. Oddly, we have to pass the "result" object down just so it can do that
 	 * with the appropriate format, presumably.
 	 *
-	 * @param $result ApiResult:
-	 * @return Array: image info
+	 * @param ApiResult $result
+	 * @return array Image info
 	 */
 	public function getImageInfo( $result ) {
 		$file = $this->getLocalFile();
@@ -1694,7 +1698,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * @param $error array
+	 * @param array $error
 	 * @return Status
 	 */
 	public function convertVerifyErrorToStatus( $error ) {
@@ -1704,7 +1708,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * @param $forType null|string
+	 * @param null|string $forType
 	 * @return int
 	 */
 	public static function getMaxUploadSize( $forType = null ) {
@@ -1724,8 +1728,8 @@ abstract class UploadBase {
 	/**
 	 * Get the current status of a chunked upload (used for polling).
 	 * The status will be read from the *current* user session.
-	 * @param $statusKey string
-	 * @return Array|bool
+	 * @param string $statusKey
+	 * @return array|bool
 	 */
 	public static function getSessionStatus( $statusKey ) {
 		return isset( $_SESSION[self::SESSION_STATUS_KEY][$statusKey] )
@@ -1736,8 +1740,8 @@ abstract class UploadBase {
 	/**
 	 * Set the current status of a chunked upload (used for polling).
 	 * The status will be stored in the *current* user session.
-	 * @param $statusKey string
-	 * @param $value array|false
+	 * @param string $statusKey
+	 * @param array|bool $value
 	 * @return void
 	 */
 	public static function setSessionStatus( $statusKey, $value ) {

@@ -71,8 +71,8 @@ class UploadStash {
 	 * Designed to be compatible with the session stashing code in UploadBase
 	 * (should replace it eventually).
 	 *
-	 * @param $repo FileRepo
-	 * @param $user User (default null)
+	 * @param FileRepo $repo
+	 * @param User $user (default null)
 	 */
 	public function __construct( FileRepo $repo, $user = null ) {
 		// this might change based on wiki's configuration.
@@ -97,8 +97,8 @@ class UploadStash {
 	 * Get a file and its metadata from the stash.
 	 * The noAuth param is a bit janky but is required for automated scripts which clean out the stash.
 	 *
-	 * @param string $key key under which file information is stored
-	 * @param $noAuth Boolean (optional) Don't check authentication. Used by maintenance scripts.
+	 * @param string $key Key under which file information is stored
+	 * @param bool $noAuth (optional) Don't check authentication. Used by maintenance scripts.
 	 * @throws UploadStashFileNotFoundException
 	 * @throws UploadStashNotLoggedInException
 	 * @throws UploadStashWrongOwnerException
@@ -156,7 +156,7 @@ class UploadStash {
 	 * Getter for file metadata.
 	 *
 	 * @param string $key key under which file information is stored
-	 * @return Array
+	 * @return array
 	 */
 	public function getMetadata( $key ) {
 		$this->getFile( $key );
@@ -167,7 +167,7 @@ class UploadStash {
 	 * Getter for fileProps
 	 *
 	 * @param string $key key under which file information is stored
-	 * @return Array
+	 * @return array
 	 */
 	public function getFileProps( $key ) {
 		$this->getFile( $key );
@@ -293,7 +293,7 @@ class UploadStash {
 	 * Does not clean up files in the repo, just the record of them.
 	 *
 	 * @throws UploadStashNotLoggedInException
-	 * @return bool success
+	 * @return bool Success
 	 */
 	public function clear() {
 		if ( !$this->isLoggedIn ) {
@@ -383,7 +383,7 @@ class UploadStash {
 	 * List all files in the stash.
 	 *
 	 * @throws UploadStashNotLoggedInException
-	 * @return Array
+	 * @return array
 	 */
 	public function listFiles() {
 		if ( !$this->isLoggedIn ) {
@@ -418,7 +418,7 @@ class UploadStash {
 	 * with an extension.
 	 * XXX this is somewhat redundant with the checks that ApiUpload.php does with incoming
 	 * uploads versus the desired filename. Maybe we can get that passed to us...
-	 * @param $path
+	 * @param string $path
 	 * @throws UploadStashFileException
 	 * @return string
 	 */
@@ -459,7 +459,7 @@ class UploadStash {
 	 *
 	 * @param string $key
 	 * @param int $readFromDB Constant (default: DB_SLAVE)
-	 * @return boolean
+	 * @return bool
 	 */
 	protected function fetchFileMetadata( $key, $readFromDB = DB_SLAVE ) {
 		// populate $fileMetadata[$key]
