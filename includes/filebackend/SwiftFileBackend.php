@@ -990,27 +990,54 @@ class SwiftFileBackend extends FileBackendStore {
 	protected function doStreamFile( array $params ) {
 		$status = Status::newGood();
 
+		$flags = !empty( $params['headless'] ) ? StreamFile::STREAM_HEADLESS : 0;
+
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $srcRel === null ) {
+			StreamFile::send404Message( $params['src'], $flags );
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
+
+			return $status;
 		}
 
 		$auth = $this->getAuthentication();
 		if ( !$auth || !is_array( $this->getContainerStat( $srcCont ) ) ) {
+			StreamFile::send404Message( $params['src'], $flags );
 			$status->fatal( 'backend-fail-stream', $params['src'] );
 
 			return $status;
 		}
 
-		$handle = fopen( 'php://output', 'wb' );
+		// If "headers" is set, we only want to send them if the file is there.
+		// Do not bother checking if the file exists if headers are not set though.
+		if ( $params['headers'] && !$this->fileExists( $params ) ) {
+			StreamFile::send404Message( $params['src'], $flags );
+			$status->fatal( 'backend-fail-stream', $params['src'] );
 
+			return $status;
+		}
+
+		// Send the requested additional headers
+		foreach ( $params['headers'] as $header ) {
+			header( $header ); // aways send
+		}
+
+		if ( empty( $params['allowOB'] ) ) {
+			// Cancel output buffering and gzipping if set
+			wfResetOutputBuffers();
+		}
+
+		wfProfileIn( __METHOD__ . '-send-' . $this->name );
+		$handle = fopen( 'php://output', 'wb' );
 		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->http->run( array(
 			'method' => 'GET',
 			'url' => $this->storageUrl( $auth, $srcCont, $srcRel ),
 			'headers' => $this->authTokenHeaders( $auth )
-				+ $this->headersFromParams( $params ),
+				+ $this->headersFromParams( $params ) + $params['options'],
 			'stream' => $handle,
+			'flags'  => array( 'relayResponseHeaders' => empty( $params['headless'] ) )
 		) );
+		wfProfileOut( __METHOD__ . '-send-' . $this->name );
 
 		if ( $rcode >= 200 && $rcode <= 299 ) {
 			// good

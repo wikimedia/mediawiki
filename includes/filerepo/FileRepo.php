@@ -1569,11 +1569,12 @@ class FileRepo {
 	 *
 	 * @param string $virtualUrl
 	 * @param array $headers Additional HTTP headers to send on success
+	 * @param array $optHeaders HTTP request headers (if-modified-since, range, ...)
 	 * @return bool Success
 	 */
-	public function streamFile( $virtualUrl, $headers = array() ) {
+	public function streamFile( $virtualUrl, $headers = array(), $optHeaders = array() ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );
-		$params = array( 'src' => $path, 'headers' => $headers );
+		$params = array( 'src' => $path, 'headers' => $headers, 'options' => $optHeaders );
 
 		return $this->backend->streamFile( $params )->isOK();
 	}
