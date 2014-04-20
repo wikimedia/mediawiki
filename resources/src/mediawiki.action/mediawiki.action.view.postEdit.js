@@ -21,12 +21,13 @@
 	var config = mw.config.get( [ 'wgAction', 'wgCookiePrefix', 'wgCurRevisionId' ] ),
 		// This should match EditPage::POST_EDIT_COOKIE_KEY_PREFIX:
 		cookieKey = config.wgCookiePrefix + 'PostEditRevision' + config.wgCurRevisionId,
+		cookieVal = $.cookie( cookieKey ),
 		$div, id;
 
 	function showConfirmation( data ) {
 		data = data || {};
 		if ( data.message === undefined ) {
-			data.message = $.parseHTML( mw.message( 'postedit-confirmation', data.user || mw.user ).escaped() );
+			data.message = $.parseHTML( mw.message( 'postedit-confirmation-saved', data.user || mw.user ).escaped() );
 		}
 
 		$div = $(
@@ -66,11 +67,20 @@
 
 	mw.hook( 'postEdit' ).add( showConfirmation );
 
-	if ( config.wgAction === 'view' && $.cookie( cookieKey ) === '1' ) {
-		$.cookie( cookieKey, null, { path: '/' } );
+	if ( config.wgAction === 'view' && cookieVal ) {
 		mw.config.set( 'wgPostEdit', true );
 
-		mw.hook( 'postEdit' ).fire();
+		mw.hook( 'postEdit' ).fire( {
+			// The following messages can be used here:
+			// postedit-confirmation-saved
+			// postedit-confirmation-created
+			// postedit-confirmation-restored
+			'message': mw.msg(
+				'postedit-confirmation-' + cookieVal,
+				mw.user
+			)
+		} );
+		$.cookie( cookieKey, null, { path: '/' } );
 	}
 
 } ( mediaWiki, jQuery ) );
