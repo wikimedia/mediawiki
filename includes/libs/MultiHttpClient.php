@@ -35,6 +35,8 @@
  *                use application/x-www-form-urlencoded (headers sent automatically)
  *   - stream   : resource to stream the HTTP response body to
  *   - proxy    : HTTP proxy to use
+ *   - flags    : map of boolean flags which supports:
+ *                  - relayResponseHeaders : write out header via header()
  * Request maps can use integer index 0 instead of 'method' and 1 instead of 'url'.
  *
  * @author Aaron Schulz
@@ -172,6 +174,7 @@ class MultiHttpClient {
 				$req['body'] = '';
 				$req['headers']['content-length'] = 0;
 			}
+			$req['flags'] = isset( $req['flags'] ) ? $req['flags'] : [];
 			$handles[$index] = $this->getCurlHandle( $req, $opts );
 			if ( count( $reqs ) > 1 ) {
 				// https://github.com/guzzle/guzzle/issues/349
@@ -373,6 +376,9 @@ class MultiHttpClient {
 
 		curl_setopt( $ch, CURLOPT_HEADERFUNCTION,
 			function ( $ch, $header ) use ( &$req ) {
+				if ( !empty( $req['flags']['relayResponseHeaders'] ) ) {
+					header( $header );
+				}
 				$length = strlen( $header );
 				$matches = [];
 				if ( preg_match( "/^(HTTP\/1\.[01]) (\d{3}) (.*)/", $header, $matches ) ) {

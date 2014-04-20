@@ -844,29 +844,18 @@ abstract class FileBackendStore extends FileBackend {
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$status = Status::newGood();
 
-		$info = $this->getFileStat( $params );
-		if ( !$info ) { // let StreamFile handle the 404
-			$status->fatal( 'backend-fail-notexists', $params['src'] );
+		// Always set some fields for subclass convenience
+		$params['options'] = isset( $params['options'] ) ? $params['options'] : [];
+		$params['headers'] = isset( $params['headers'] ) ? $params['headers'] : [];
+
+		// Don't stream it out as text/html if there was a PHP error
+		if ( ( empty( $params['headless'] ) || $params['headers'] ) && headers_sent() ) {
+			print "Headers already sent, terminating.\n";
+			$status->fatal( 'backend-fail-stream', $params['src'] );
+			return $status;
 		}
 
-		// Set output buffer and HTTP headers for stream
-		$extraHeaders = isset( $params['headers'] ) ? $params['headers'] : [];
-		$res = StreamFile::prepareForStream( $params['src'], $info, $extraHeaders );
-		if ( $res == StreamFile::NOT_MODIFIED ) {
-			// do nothing; client cache is up to date
-		} elseif ( $res == StreamFile::READY_STREAM ) {
-			$status = $this->doStreamFile( $params );
-			if ( !$status->isOK() ) {
-				// Per bug 41113, nasty things can happen if bad cache entries get
-				// stuck in cache. It's also possible that this error can come up
-				// with simple race conditions. Clear out the stat cache to be safe.
-				$this->clearCache( [ $params['src'] ] );
-				$this->deleteFileCache( $params['src'] );
-				trigger_error( "Bad stat cache or race condition for file {$params['src']}." );
-			}
-		} else {
-			$status->fatal( 'backend-fail-stream', $params['src'] );
-		}
+		$status->merge( $this->doStreamFile( $params ) );
 
 		return $status;
 	}
@@ -879,10 +868,21 @@ abstract class FileBackendStore extends FileBackend {
 	protected function doStreamFile( array $params ) {
 		$status = Status::newGood();
 
+		$flags = 0;
+		$flags |= !empty( $params['headless'] ) ? StreamFile::STREAM_HEADLESS : 0;
+		$flags |= !empty( $params['allowOB'] ) ? StreamFile::STREAM_ALLOW_OB : 0;
+
 		$fsFile = $this->getLocalReference( $params );
-		if ( !$fsFile ) {
-			$status->fatal( 'backend-fail-stream', $params['src'] );
-		} elseif ( !readfile( $fsFile->getPath() ) ) {
+
+		if ( $fsFile ) {
+			$res = StreamFile::stream( $fsFile->getPath(),
+				$params['headers'], true, $params['options'], $flags );
+		} else {
+			$res = false;
+			StreamFile::send404Message( $params['src'], $flags );
+		}
+
+		if ( !$res ) {
 			$status->fatal( 'backend-fail-stream', $params['src'] );
 		}
 
