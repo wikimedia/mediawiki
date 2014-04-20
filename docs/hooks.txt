@@ -2096,7 +2096,7 @@ configuration variables to JavaScript. Things that depend on the current page
 or request state must be added through MakeGlobalVariablesScript instead.
 &$vars: array( variable name => value )
 
-'ResourceLoaderGetStartupModules': Run once the startup module is being
+'ResourceLoaderGetStartupModules': DEPRECATED. Run once the startup module is being
 generated. This allows you to add modules to the startup module. This hook
 should be used sparingly since any module added here will be loaded on all
 pages. This hook is useful if you want to make code available to module loader
