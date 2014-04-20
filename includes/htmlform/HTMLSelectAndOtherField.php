@@ -60,9 +60,9 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	}
 
 	/**
-	 * @param $request WebRequest
+	 * @param WebRequest $request
 	 *
-	 * @return Array("<overall message>","<select value>","<text field value>")
+	 * @return array("<overall message>","<select value>","<text field value>")
 	 */
 	function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {

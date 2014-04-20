@@ -189,7 +189,7 @@ class JobQueueDB extends JobQueue {
 	/**
 	 * @see JobQueue::doBatchPush()
 	 * @param array $jobs
-	 * @param $flags
+	 * @param array $flags
 	 * @throws DBError|Exception
 	 * @return bool
 	 */
@@ -338,7 +338,7 @@ class JobQueueDB extends JobQueue {
 	 * Reserve a row with a single UPDATE without holding row locks over RTTs...
 	 *
 	 * @param string $uuid 32 char hex string
-	 * @param $rand integer Random unsigned integer (31 bits)
+	 * @param int $rand Random unsigned integer (31 bits)
 	 * @param bool $gte Search for job_random >= $random (otherwise job_random <= $random)
 	 * @return stdClass|bool Row|false
 	 */
@@ -774,7 +774,7 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
-	 * @param $index integer (DB_SLAVE/DB_MASTER)
+	 * @param int $index (DB_SLAVE/DB_MASTER)
 	 * @return DBConnRef
 	 */
 	protected function getDB( $index ) {
@@ -786,7 +786,7 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
-	 * @param $property
+	 * @param string $property
 	 * @return string
 	 */
 	private function getCacheKey( $property ) {
@@ -797,7 +797,7 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
-	 * @param $params
+	 * @param array|bool $params
 	 * @return string
 	 */
 	protected static function makeBlob( $params ) {
@@ -809,7 +809,7 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
-	 * @param $blob
+	 * @param string $blob
 	 * @return bool|mixed
 	 */
 	protected static function extractBlob( $blob ) {

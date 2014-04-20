@@ -46,8 +46,8 @@ class ResourceLoaderContext {
 	/* Methods */
 
 	/**
-	 * @param $resourceLoader ResourceLoader
-	 * @param $request WebRequest
+	 * @param ResourceLoader $resourceLoader
+	 * @param WebRequest $request
 	 */
 	public function __construct( $resourceLoader, WebRequest $request ) {
 		global $wgDefaultSkin, $wgResourceLoaderDebug;
@@ -79,7 +79,7 @@ class ResourceLoaderContext {
 	 * an array of module names like array( 'jquery.foo', 'jquery.bar',
 	 * 'jquery.ui.baz', 'jquery.ui.quux' )
 	 * @param string $modules Packed module name list
-	 * @return array of module names
+	 * @return array Array of module names
 	 */
 	public static function expandModuleNames( $modules ) {
 		$retval = array();
@@ -184,14 +184,14 @@ class ResourceLoaderContext {
 	}
 
 	/**
-	 * @return String|null
+	 * @return string|null
 	 */
 	public function getOnly() {
 		return $this->only;
 	}
 
 	/**
-	 * @return String|null
+	 * @return string|null
 	 */
 	public function getVersion() {
 		return $this->version;

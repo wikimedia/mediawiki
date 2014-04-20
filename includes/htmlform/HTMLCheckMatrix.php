@@ -75,9 +75,9 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	 * mParams['rows'] is an array with row labels as keys and row tags as values.
 	 * mParams['columns'] is an array with column labels as keys and column tags as values.
 	 *
-	 * @param array $value of the options that should be checked
+	 * @param array $value Array of the options that should be checked
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function getInputHTML( $value ) {
 		$html = '';
@@ -159,9 +159,9 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	 * line above the options in the case of a checkbox matrix, i.e. it's always
 	 * a "vertical-label".
 	 *
-	 * @param string $value the value to set the input to
+	 * @param string $value The value to set the input to
 	 *
-	 * @return String complete HTML table row
+	 * @return string Complete HTML table row
 	 */
 	function getTableRow( $value ) {
 		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
@@ -187,9 +187,9 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	}
 
 	/**
-	 * @param $request WebRequest
+	 * @param WebRequest $request
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	function loadDataFromRequest( $request ) {
 		if ( $this->mParent->getMethod() == 'post' ) {

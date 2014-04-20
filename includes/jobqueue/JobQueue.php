@@ -344,7 +344,7 @@ abstract class JobQueue {
 	/**
 	 * @see JobQueue::batchPush()
 	 * @param array $jobs
-	 * @param $flags
+	 * @param array $flags
 	 */
 	abstract protected function doBatchPush( array $jobs, $flags );
 

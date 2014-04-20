@@ -31,10 +31,10 @@ class HTMLButtonField extends HTMLFormField {
 	/**
 	 * Button cannot be invalid
 	 *
-	 * @param $value String
-	 * @param $alldata Array
+	 * @param string $value
+	 * @param array $alldata
 	 *
-	 * @return Bool
+	 * @return bool
 	 */
 	public function validate( $value, $alldata ) {
 		return true;

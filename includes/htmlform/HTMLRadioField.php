@@ -28,9 +28,9 @@ class HTMLRadioField extends HTMLFormField {
 	 * This returns a block of all the radio options, in one cell.
 	 * @see includes/HTMLFormField#getInputHTML()
 	 *
-	 * @param $value String
+	 * @param string $value
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function getInputHTML( $value ) {
 		$html = $this->formatOptions( $this->getOptions(), strval( $value ) );

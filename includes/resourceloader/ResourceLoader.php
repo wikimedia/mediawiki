@@ -250,10 +250,10 @@ class ResourceLoader {
 	 * @param array $info Module info array. For backwards compatibility with 1.17alpha,
 	 *   this may also be a ResourceLoaderModule object. Optional when using
 	 *   multiple-registration calling style.
-	 * @throws MWException: If a duplicate module registration is attempted
-	 * @throws MWException: If a module name contains illegal characters (pipes or commas)
-	 * @throws MWException: If something other than a ResourceLoaderModule is being registered
-	 * @return boolean False if there were any errors, in which case one or more modules were
+	 * @throws MWException If a duplicate module registration is attempted
+	 * @throws MWException If a module name contains illegal characters (pipes or commas)
+	 * @throws MWException If something other than a ResourceLoaderModule is being registered
+	 * @return bool False if there were any errors, in which case one or more modules were
 	 *   not registered
 	 */
 	public function register( $name, $info = null ) {
@@ -392,7 +392,7 @@ class ResourceLoader {
 	 *
 	 * @param string $framework Get only the test module names for one
 	 *   particular framework (optional)
-	 * @return Array
+	 * @return array
 	 */
 	public function getTestModuleNames( $framework = 'all' ) {
 		/// @todo api siteinfo prop testmodulenames modulenames
@@ -622,7 +622,7 @@ class ResourceLoader {
 	 * If there's an If-Modified-Since header, respond with a 304 appropriately
 	 * and clear out the output buffer. If the client cache is too old then do nothing.
 	 *
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @param string $mtime The TS_MW timestamp to check the header against
 	 * @return bool True if 304 header sent and output handled
 	 */
@@ -721,8 +721,8 @@ class ResourceLoader {
 	/**
 	 * Handle exception display.
 	 *
-	 * @param Exception $e to be shown to the user
-	 * @return string sanitized text that can be returned to the user
+	 * @param Exception $e Exception to be shown to the user
+	 * @return string Sanitized text that can be returned to the user
 	 */
 	public static function formatException( $e ) {
 		global $wgShowExceptionDetails;
@@ -737,7 +737,7 @@ class ResourceLoader {
 	/**
 	 * Generate code for a response.
 	 *
-	 * @param $context ResourceLoaderContext Context in which to generate a response
+	 * @param ResourceLoaderContext $context Context in which to generate a response
 	 * @param array $modules List of module objects keyed by module name
 	 * @param array $missing List of requested module names that are unregistered (optional)
 	 * @return string Response data
@@ -1016,7 +1016,7 @@ class ResourceLoader {
 	 *         Set the state of modules with the given names to the given states
 	 *
 	 * @param string $name
-	 * @param $state
+	 * @param string $state
 	 * @return string
 	 */
 	public static function makeLoaderStateScript( $name, $state = null ) {
@@ -1111,8 +1111,8 @@ class ResourceLoader {
 	 *   - ResourceLoader::makeLoaderSourcesScript( array( $id1 => $props1, $id2 => $props2, ... ) );
 	 *       Register sources with the given IDs and properties.
 	 *
-	 * @param string $id source ID
-	 * @param array $properties source properties (see addSource())
+	 * @param string $id Source ID
+	 * @param array $properties Source properties (see addSource())
 	 * @return string
 	 */
 	public static function makeLoaderSourcesScript( $id, $properties = null ) {
@@ -1200,7 +1200,7 @@ class ResourceLoader {
 
 	/**
 	 * Build a load.php URL
-	 * @param array $modules of module names (strings)
+	 * @param array $modules Array of module names (strings)
 	 * @param string $lang Language code
 	 * @param string $skin Skin name
 	 * @param string|null $user User name. If null, the &user= parameter is omitted
@@ -1314,7 +1314,7 @@ class ResourceLoader {
 	 * Get global LESS variables.
 	 *
 	 * $since 1.22
-	 * @return array: Map of variable names to string CSS values.
+	 * @return array Map of variable names to string CSS values.
 	 */
 	public static function getLESSVars() {
 		global $wgResourceLoaderLESSVars;

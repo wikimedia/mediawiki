@@ -70,9 +70,9 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	}
 
 	/**
-	 * @param $request WebRequest
+	 * @param WebRequest $request
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function loadDataFromRequest( $request ) {
 		if ( $this->mParent->getMethod() == 'post' ) {

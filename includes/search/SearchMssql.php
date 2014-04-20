@@ -29,7 +29,7 @@ class SearchMssql extends SearchDatabase {
 	/**
 	 * Perform a full text search query and return a result set.
 	 *
-	 * @param string $term raw search term
+	 * @param string $term Raw search term
 	 * @return MssqlSearchResultSet
 	 * @access public
 	 */
@@ -41,7 +41,7 @@ class SearchMssql extends SearchDatabase {
 	/**
 	 * Perform a title-only search query and return a result set.
 	 *
-	 * @param string $term raw search term
+	 * @param string $term Raw search term
 	 * @return MssqlSearchResultSet
 	 * @access public
 	 */
@@ -53,7 +53,7 @@ class SearchMssql extends SearchDatabase {
 	/**
 	 * Return a partial WHERE clause to limit the search to the given namespaces
 	 *
-	 * @return String
+	 * @return string
 	 * @private
 	 */
 	function queryNamespaces() {
@@ -67,9 +67,9 @@ class SearchMssql extends SearchDatabase {
 	/**
 	 * Return a LIMIT clause to limit results on the query.
 	 *
-	 * @param $sql string
+	 * @param string $sql
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function queryLimit( $sql ) {
 		return $this->db->limitResult( $sql, $this->limit, $this->offset );
@@ -79,7 +79,7 @@ class SearchMssql extends SearchDatabase {
 	 * Does not do anything for generic search engine
 	 * subclasses may define this though
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function queryRanking( $filteredTerm, $fulltext ) {
 		return ' ORDER BY ftindex.[RANK] DESC'; // return ' ORDER BY score(1)';
@@ -89,9 +89,9 @@ class SearchMssql extends SearchDatabase {
 	 * Construct the full SQL query to do the search.
 	 * The guts shoulds be constructed in queryMain()
 	 *
-	 * @param $filteredTerm String
-	 * @param $fulltext Boolean
-	 * @return String
+	 * @param string $filteredTerm
+	 * @param bool $fulltext
+	 * @return string
 	 */
 	function getQuery( $filteredTerm, $fulltext ) {
 		return $this->queryLimit( $this->queryMain( $filteredTerm, $fulltext ) . ' ' .
@@ -102,7 +102,7 @@ class SearchMssql extends SearchDatabase {
 	/**
 	 * Picks which field to index on, depending on what type of query.
 	 *
-	 * @param $fulltext Boolean
+	 * @param bool $fulltext
 	 * @return string
 	 */
 	function getIndexField( $fulltext ) {
@@ -112,9 +112,9 @@ class SearchMssql extends SearchDatabase {
 	/**
 	 * Get the base part of the search query.
 	 *
-	 * @param $filteredTerm String
-	 * @param $fulltext Boolean
-	 * @return String
+	 * @param string $filteredTerm
+	 * @param bool $fulltext
+	 * @return string
 	 * @private
 	 */
 	function queryMain( $filteredTerm, $fulltext ) {
@@ -165,9 +165,9 @@ class SearchMssql extends SearchDatabase {
 	 * Create or update the search index record for the given page.
 	 * Title and text should be pre-processed.
 	 *
-	 * @param $id Integer
-	 * @param $title String
-	 * @param $text String
+	 * @param int $id
+	 * @param string $title
+	 * @param string $text
 	 * @return bool|ResultWrapper
 	 */
 	function update( $id, $title, $text ) {
@@ -189,8 +189,8 @@ class SearchMssql extends SearchDatabase {
 	 * Update a search index record's title only.
 	 * Title should be pre-processed.
 	 *
-	 * @param $id Integer
-	 * @param $title String
+	 * @param int $id
+	 * @param string $title
 	 * @return bool|ResultWrapper
 	 */
 	function updateTitle( $id, $title ) {

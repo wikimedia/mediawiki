@@ -33,7 +33,7 @@ class ResourceLoaderUserGroupsModule extends ResourceLoaderWikiModule {
 	/* Protected Methods */
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {

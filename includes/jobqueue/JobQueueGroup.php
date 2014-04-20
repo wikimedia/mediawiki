@@ -254,7 +254,7 @@ class JobQueueGroup {
 	/**
 	 * Check if there are any queues with jobs (this is cached)
 	 *
-	 * @param integer $type JobQueueGroup::TYPE_* constant
+	 * @param int $type JobQueueGroup::TYPE_* constant
 	 * @return bool
 	 * @since 1.23
 	 */
@@ -414,7 +414,7 @@ class JobQueueGroup {
 	}
 
 	/**
-	 * @param $name string
+	 * @param string $name
 	 * @return mixed
 	 */
 	private function getCachedConfigVar( $name ) {

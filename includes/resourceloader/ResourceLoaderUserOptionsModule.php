@@ -38,8 +38,8 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	/* Methods */
 
 	/**
-	 * @param $context ResourceLoaderContext
-	 * @return array|int|Mixed
+	 * @param ResourceLoaderContext $context
+	 * @return array|int|mixed
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		$hash = $context->getHash();
@@ -52,7 +52,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return string
 	 */
 	public function getScript( ResourceLoaderContext $context ) {

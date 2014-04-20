@@ -36,11 +36,11 @@ class SearchHighlighter {
 	/**
 	 * Default implementation of wikitext highlighting
 	 *
-	 * @param $text String
-	 * @param array $terms terms to highlight (unescaped)
-	 * @param $contextlines Integer
-	 * @param $contextchars Integer
-	 * @return String
+	 * @param string $text
+	 * @param array $terms Terms to highlight (unescaped)
+	 * @param int $contextlines
+	 * @param int $contextchars
+	 * @return tring
 	 */
 	public function highlightText( $text, $terms, $contextlines, $contextchars ) {
 		global $wgContLang;
@@ -285,8 +285,8 @@ class SearchHighlighter {
 	 * Split text into lines and add it to extracts array
 	 *
 	 * @param array $extracts index -> $line
-	 * @param $count Integer
-	 * @param $text String
+	 * @param int $count
+	 * @param string $text
 	 */
 	function splitAndAdd( &$extracts, &$count, $text ) {
 		$split = explode( "\n", $this->mCleanWikitext ? $this->removeWiki( $text ) : $text );
@@ -301,7 +301,7 @@ class SearchHighlighter {
 	/**
 	 * Do manual case conversion for non-ascii chars
 	 *
-	 * @param $matches Array
+	 * @param array $matches
 	 * @return string
 	 */
 	function caseCallback( $matches ) {
@@ -316,12 +316,12 @@ class SearchHighlighter {
 	/**
 	 * Extract part of the text from start to end, but by
 	 * not chopping up words
-	 * @param $text String
-	 * @param $start Integer
-	 * @param $end Integer
-	 * @param $posStart Integer: (out) actual start position
-	 * @param $posEnd Integer: (out) actual end position
-	 * @return String
+	 * @param string $text
+	 * @param int $start
+	 * @param int $end
+	 * @param int $posStart (out) actual start position
+	 * @param int $posEnd (out) actual end position
+	 * @return string
 	 */
 	function extract( $text, $start, $end, &$posStart = null, &$posEnd = null ) {
 		if ( $start != 0 ) {
@@ -350,10 +350,10 @@ class SearchHighlighter {
 	/**
 	 * Find a nonletter near a point (index) in the text
 	 *
-	 * @param $text String
-	 * @param $point Integer
-	 * @param $offset Integer: offset to found index
-	 * @return Integer: nearest nonletter index, or beginning of utf8 char if none
+	 * @param string $text
+	 * @param int $point
+	 * @param int $offset Offset to found index
+	 * @return int Nearest nonletter index, or beginning of utf8 char if none
 	 */
 	function position( $text, $point, $offset = 0 ) {
 		$tolerance = 10;
@@ -381,12 +381,12 @@ class SearchHighlighter {
 	/**
 	 * Search extracts for a pattern, and return snippets
 	 *
-	 * @param string $pattern regexp for matching lines
-	 * @param array $extracts extracts to search
-	 * @param $linesleft Integer: number of extracts to make
-	 * @param $contextchars Integer: length of snippet
-	 * @param array $out map for highlighted snippets
-	 * @param array $offsets map of starting points of snippets
+	 * @param string $pattern Regexp for matching lines
+	 * @param array $extracts Extracts to search
+	 * @param int $linesleft Number of extracts to make
+	 * @param int $contextchars Length of snippet
+	 * @param array $out Map for highlighted snippets
+	 * @param array $offsets Map of starting points of snippets
 	 * @protected
 	 */
 	function process( $pattern, $extracts, &$linesleft, &$contextchars, &$out, &$offsets ) {
@@ -459,7 +459,7 @@ class SearchHighlighter {
 	 * callback to replace [[target|caption]] kind of links, if
 	 * the target is category or image, leave it
 	 *
-	 * @param $matches Array
+	 * @param array $matches
 	 */
 	function linkReplace( $matches ) {
 		$colon = strpos( $matches[1], ':' );
@@ -480,11 +480,11 @@ class SearchHighlighter {
 	 * Simple & fast snippet extraction, but gives completely unrelevant
 	 * snippets
 	 *
-	 * @param $text String
-	 * @param $terms Array
-	 * @param $contextlines Integer
-	 * @param $contextchars Integer
-	 * @return String
+	 * @param string $text
+	 * @param array $terms
+	 * @param int $contextlines
+	 * @param int $contextchars
+	 * @return string
 	 */
 	public function highlightSimple( $text, $terms, $contextlines, $contextchars ) {
 		global $wgContLang;

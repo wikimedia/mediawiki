@@ -26,7 +26,7 @@
 class ResourceLoaderFilePageModule extends ResourceLoaderWikiModule {
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {

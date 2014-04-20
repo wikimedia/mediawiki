@@ -34,7 +34,7 @@ class SearchPostgres extends SearchDatabase {
 	 * Currently searches a page's current title (page.page_title) and
 	 * latest revision article text (pagecontent.old_text)
 	 *
-	 * @param string $term raw search term
+	 * @param string $term Raw search term
 	 * @return PostgresSearchResultSet
 	 */
 	function searchTitle( $term ) {
@@ -64,7 +64,7 @@ class SearchPostgres extends SearchDatabase {
 	 * Transform the user's search string into a better form for tsearch2
 	 * Returns an SQL fragment consisting of quoted text to search for.
 	 *
-	 * @param $term string
+	 * @param string $term
 	 *
 	 * @return string
 	 */
@@ -130,9 +130,9 @@ class SearchPostgres extends SearchDatabase {
 
 	/**
 	 * Construct the full SQL query to do the search.
-	 * @param $term String
-	 * @param $fulltext String
-	 * @param $colname
+	 * @param string $term
+	 * @param string $fulltext
+	 * @param string $colname
 	 * @return string
 	 */
 	function searchQuery( $term, $fulltext, $colname ) {

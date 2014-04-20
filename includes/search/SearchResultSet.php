@@ -30,7 +30,7 @@ class SearchResultSet {
 	 * the search terms as parsed by this engine in a text extract.
 	 * STUB
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	function termMatches() {
 		return array();
@@ -44,7 +44,7 @@ class SearchResultSet {
 	 * Return true if results are included in this result set.
 	 * STUB
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	function hasResults() {
 		return false;
@@ -58,7 +58,7 @@ class SearchResultSet {
 	 *
 	 * Return null if no total hits number is supported.
 	 *
-	 * @return Integer
+	 * @return int
 	 */
 	function getTotalHits() {
 		return null;
@@ -68,21 +68,21 @@ class SearchResultSet {
 	 * Some search modes return a suggested alternate term if there are
 	 * no exact hits. Returns true if there is one on this set.
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	function hasSuggestion() {
 		return false;
 	}
 
 	/**
-	 * @return String: suggested query, null if none
+	 * @return string Suggested query, null if none
 	 */
 	function getSuggestionQuery() {
 		return null;
 	}
 
 	/**
-	 * @return String: HTML highlighted suggested query, '' if none
+	 * @return string HTML highlighted suggested query, '' if none
 	 */
 	function getSuggestionSnippet() {
 		return '';
@@ -100,7 +100,7 @@ class SearchResultSet {
 	/**
 	 * Check if there are results on other wikis
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	function hasInterwikiResults() {
 		return $this->getInterwikiResults() != null;
@@ -127,6 +127,7 @@ class SearchResultSet {
 	 * Did the search contain search syntax?  If so, Special:Search won't offer
 	 * the user a link to a create a page named by the search string because the
 	 * name would contain the search syntax.
+	 * @return bool
 	 */
 	public function searchContainedSyntax() {
 		return false;
@@ -187,7 +188,7 @@ class SearchNearMatchResultSet extends SearchResultSet {
 	private $fetched = false;
 
 	/**
-	 * @param $match mixed Title if matched, else null
+	 * @param Title|null $match Title if matched, else null
 	 */
 	public function __construct( $match ) {
 		$this->result = $match;
