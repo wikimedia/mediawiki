@@ -49,8 +49,8 @@ class LinkHolderArray {
 	 * serializing at present.
 	 *
 	 * Compact the titles, only serialize the text form.
-	  * @return array
-	  */
+	 * @return array
+	 */
 	function __sleep() {
 		foreach ( $this->internals as &$nsLinks ) {
 			foreach ( $nsLinks as &$entry ) {
@@ -88,7 +88,7 @@ class LinkHolderArray {
 
 	/**
 	 * Merge another LinkHolderArray into this one
-	 * @param $other LinkHolderArray
+	 * @param LinkHolderArray $other
 	 */
 	function merge( $other ) {
 		foreach ( $other->internals as $ns => $entries ) {
@@ -110,9 +110,9 @@ class LinkHolderArray {
 	 * converted for use in the destination link holder. The resulting array of
 	 * strings will be returned.
 	 *
-	 * @param $other LinkHolderArray
-	 * @param array $texts of strings
-	 * @return Array
+	 * @param LinkHolderArray $other
+	 * @param array $texts Array of strings
+	 * @return array
 	 */
 	function mergeForeign( $other, $texts ) {
 		$this->tempIdOffset = $idOffset = $this->parent->nextLinkID();
@@ -208,8 +208,8 @@ class LinkHolderArray {
 	 * parsing of interwiki links, and secondly to allow all existence checks and
 	 * article length checks (for stub links) to be bundled into a single query.
 	 *
-	 * @param $nt Title
-	 * @param $text String
+	 * @param Title $nt
+	 * @param string $text
 	 * @param array $query [optional]
 	 * @param string $trail [optional]
 	 * @param string $prefix [optional]
@@ -253,7 +253,7 @@ class LinkHolderArray {
 	/**
 	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
 	 *
-	 * @return array of link CSS classes, indexed by PDBK.
+	 * @return array Array of link CSS classes, indexed by PDBK.
 	 */
 	function replace( &$text ) {
 		wfProfileIn( __METHOD__ );
@@ -267,6 +267,7 @@ class LinkHolderArray {
 
 	/**
 	 * Replace internal links
+	 * @param string $text
 	 */
 	protected function replaceInternal( &$text ) {
 		if ( !$this->internals ) {
@@ -418,6 +419,7 @@ class LinkHolderArray {
 
 	/**
 	 * Replace interwiki links
+	 * @param string $text
 	 */
 	protected function replaceInterwiki( &$text ) {
 		if ( empty( $this->interwikis ) ) {
@@ -443,6 +445,7 @@ class LinkHolderArray {
 
 	/**
 	 * Modify $this->internals and $colours according to language variant linking rules
+	 * @param array $colours
 	 */
 	protected function doVariants( &$colours ) {
 		global $wgContLang;
@@ -606,8 +609,8 @@ class LinkHolderArray {
 	 * Replace <!--LINK--> link placeholders with plain text of links
 	 * (not HTML-formatted).
 	 *
-	 * @param $text String
-	 * @return String
+	 * @param string $text
+	 * @return string
 	 */
 	function replaceText( $text ) {
 		wfProfileIn( __METHOD__ );
@@ -624,7 +627,7 @@ class LinkHolderArray {
 	/**
 	 * Callback for replaceText()
 	 *
-	 * @param $matches Array
+	 * @param array $matches
 	 * @return string
 	 * @private
 	 */

@@ -27,7 +27,7 @@
  */
 class CoreTagHooks {
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @return void
 	 */
 	static function register( $parser ) {
@@ -69,9 +69,9 @@ class CoreTagHooks {
 	 *
 	 * Uses undocumented extended tag hook return values, introduced in r61913.
 	 *
-	 * @param $content string
-	 * @param $attributes array
-	 * @param $parser Parser
+	 * @param string $content
+	 * @param array $attributes
+	 * @param Parser $parser
 	 * @throws MWException
 	 * @return array
 	 */
@@ -91,9 +91,9 @@ class CoreTagHooks {
 	 *
 	 * Uses undocumented extended tag hook return values, introduced in r61913.
 	 *
-	 * @param $content string
-	 * @param $attributes array
-	 * @param $parser Parser
+	 * @param string $content
+	 * @param array $attributes
+	 * @param Parser $parser
 	 * @return array
 	 */
 	static function nowiki( $content, $attributes, $parser ) {

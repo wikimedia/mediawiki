@@ -56,7 +56,7 @@ class Preprocessor_DOM implements Preprocessor {
 	}
 
 	/**
-	 * @param $args array
+	 * @param array $args
 	 * @return PPCustomFrame_DOM
 	 */
 	function newCustomFrame( $args ) {
@@ -64,7 +64,7 @@ class Preprocessor_DOM implements Preprocessor {
 	}
 
 	/**
-	 * @param $values
+	 * @param array $values
 	 * @return PPNode_DOM
 	 */
 	function newPartNodeArray( $values ) {
@@ -109,10 +109,10 @@ class Preprocessor_DOM implements Preprocessor {
 	 * Preprocess some wikitext and return the document tree.
 	 * This is the ghost of Parser::replace_variables().
 	 *
-	 * @param string $text the text to parse
-	 * @param $flags Integer: bitwise combination of:
-	 *          Parser::PTD_FOR_INCLUSION    Handle "<noinclude>" and "<includeonly>" as if the text is being
-	 *                                     included. Default is to assume a direct page view.
+	 * @param string $text The text to parse
+	 * @param int $flags Bitwise combination of:
+	 *     Parser::PTD_FOR_INCLUSION    Handle "<noinclude>" and "<includeonly>" as if the text is being
+	 *                                  included. Default is to assume a direct page view.
 	 *
 	 * The generated DOM tree must depend only on the input text and the flags.
 	 * The DOM tree must be the same in OT_HTML and OT_WIKI mode, to avoid a regression of bug 4899.
@@ -201,8 +201,8 @@ class Preprocessor_DOM implements Preprocessor {
 	}
 
 	/**
-	 * @param $text string
-	 * @param $flags int
+	 * @param string $text
+	 * @param int $flags
 	 * @return string
 	 */
 	function preprocessToXml( $text, $flags = 0 ) {
@@ -947,7 +947,7 @@ class PPFrame_DOM implements PPFrame {
 
 	/**
 	 * Construct a new preprocessor frame.
-	 * @param $preprocessor Preprocessor The parent preprocessor
+	 * @param Preprocessor $preprocessor The parent preprocessor
 	 */
 	function __construct( $preprocessor ) {
 		$this->preprocessor = $preprocessor;
@@ -962,6 +962,9 @@ class PPFrame_DOM implements PPFrame {
 	 * Create a new child frame
 	 * $args is optionally a multi-root PPNode or array containing the template arguments
 	 *
+	 * @param bool|array $args
+	 * @param Title|bool $title
+	 * @param int $indexOffset
 	 * @return PPTemplateFrame_DOM
 	 */
 	function newChild( $args = false, $title = false, $indexOffset = 0 ) {
@@ -1004,8 +1007,8 @@ class PPFrame_DOM implements PPFrame {
 
 	/**
 	 * @throws MWException
-	 * @param $root
-	 * @param $flags int
+	 * @param string|PPNode_DOM|DOMDocument $root
+	 * @param int $flags
 	 * @return string
 	 */
 	function expand( $root, $flags = 0 ) {
@@ -1228,8 +1231,8 @@ class PPFrame_DOM implements PPFrame {
 	}
 
 	/**
-	 * @param $sep
-	 * @param $flags
+	 * @param string $sep
+	 * @param int $flags
 	 * @return string
 	 */
 	function implodeWithFlags( $sep, $flags /*, ... */ ) {
@@ -1260,6 +1263,7 @@ class PPFrame_DOM implements PPFrame {
 	 * Implode with no flags specified
 	 * This previously called implodeWithFlags but has now been inlined to reduce stack depth
 	 *
+	 * @param string $sep
 	 * @return string
 	 */
 	function implode( $sep /*, ... */ ) {
@@ -1290,6 +1294,7 @@ class PPFrame_DOM implements PPFrame {
 	 * Makes an object that, when expand()ed, will be the same as one obtained
 	 * with implode()
 	 *
+	 * @param string $sep
 	 * @return array
 	 */
 	function virtualImplode( $sep /*, ... */ ) {
@@ -1318,6 +1323,9 @@ class PPFrame_DOM implements PPFrame {
 
 	/**
 	 * Virtual implode with brackets
+	 * @param string $start
+	 * @param string $sep
+	 * @param string $end
 	 * @return array
 	 */
 	function virtualBracketedImplode( $start, $sep, $end /*, ... */ ) {
@@ -1394,6 +1402,7 @@ class PPFrame_DOM implements PPFrame {
 	/**
 	 * Returns true if the infinite loop check is OK, false if a loop is detected
 	 *
+	 * @param Title $title
 	 * @return bool
 	 */
 	function loopCheck( $title ) {
@@ -1433,11 +1442,11 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	var $numberedExpansionCache, $namedExpansionCache;
 
 	/**
-	 * @param $preprocessor
-	 * @param $parent PPFrame_DOM
-	 * @param $numberedArgs array
-	 * @param $namedArgs array
-	 * @param $title Title
+	 * @param Preprocessor $preprocessor
+	 * @param PPFrame_DOM $parent
+	 * @param array $numberedArgs
+	 * @param array $namedArgs
+	 * @param Title $title
 	 */
 	function __construct( $preprocessor, $parent = false, $numberedArgs = array(), $namedArgs = array(), $title = false ) {
 		parent::__construct( $preprocessor );
@@ -1656,7 +1665,7 @@ class PPNode_DOM implements PPNode {
 	}
 
 	/**
-	 * @param $type
+	 * @param string $type
 	 *
 	 * @return bool|PPNode_DOM
 	 */
@@ -1676,7 +1685,7 @@ class PPNode_DOM implements PPNode {
 	}
 
 	/**
-	 * @param $i
+	 * @param int $i
 	 * @return bool|PPNode_DOM
 	 */
 	function item( $i ) {

@@ -128,7 +128,7 @@ class Parser_DiffTest
 	}
 
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @return bool
 	 */
 	function onClearState( &$parser ) {
