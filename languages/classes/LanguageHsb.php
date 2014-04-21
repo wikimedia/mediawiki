@@ -27,7 +27,6 @@
  * @ingroup Language
  */
 class LanguageHsb extends Language {
-
 	/**
 	 * Convert from the nominative form of a noun to some other case
 	 * Invoked with {{grammar:case|word}}
@@ -51,7 +50,8 @@ class LanguageHsb extends Language {
 				break;
 		}
 
-		return $word; # this will return the original value for 'nominatiw' (nominativ) and all undefined case values
+		# this will return the original value for 'nominatiw' (nominativ) and
+		# all undefined case values.
+		return $word;
 	}
-
 }

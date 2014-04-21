@@ -28,7 +28,6 @@ require_once __DIR__ . '/LanguageZh.php';
  * @ingroup Language
  */
 class GanConverter extends LanguageConverter {
-
 	/**
 	 * @param Language $langobj
 	 * @param string $maincode
@@ -38,17 +37,17 @@ class GanConverter extends LanguageConverter {
 	 * @param array $manualLevel
 	 */
 	function __construct( $langobj, $maincode,
-								$variants = array(),
-								$variantfallbacks = array(),
-								$flags = array(),
-								$manualLevel = array() ) {
+		$variants = array(),
+		$variantfallbacks = array(),
+		$flags = array(),
+		$manualLevel = array() ) {
 		$this->mDescCodeSep = '：';
 		$this->mDescVarSep = '；';
 		parent::__construct( $langobj, $maincode,
-									$variants,
-									$variantfallbacks,
-									$flags,
-									$manualLevel );
+			$variants,
+			$variantfallbacks,
+			$flags,
+			$manualLevel );
 		$names = array(
 			'gan' => '原文',
 			'gan-hans' => '简体',
@@ -82,7 +81,6 @@ class GanConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageGan extends LanguageZh {
-
 	function __construct() {
 		global $wgHooks;
 		parent::__construct();
@@ -98,9 +96,9 @@ class LanguageGan extends LanguageZh {
 		);
 
 		$this->mConverter = new GanConverter( $this, 'gan',
-								$variants, $variantfallbacks,
-								array(),
-								$ml );
+			$variants, $variantfallbacks,
+			array(),
+			$ml );
 
 		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 	}
@@ -112,9 +110,10 @@ class LanguageGan extends LanguageZh {
 	 * @param string $autoVariant
 	 * @return string
 	 */
+	// @codingStandardsIgnoreStart Ignore useless method overriding warning.
 	function normalizeForSearch( $string, $autoVariant = 'gan-hans' ) {
 		// LanguageZh::normalizeForSearch
 		return parent::normalizeForSearch( $string, $autoVariant );
 	}
-
+	// @codingStandardsIgnoreEnd
 }

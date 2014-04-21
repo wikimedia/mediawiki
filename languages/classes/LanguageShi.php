@@ -36,7 +36,6 @@ require_once __DIR__ . '/../LanguageConverter.php';
  * @ingroup Language
  */
 class ShiConverter extends LanguageConverter {
-
 	protected $mDoContentConvert;
 
 	public $mToLatin = array(
@@ -107,7 +106,8 @@ class ShiConverter extends LanguageConverter {
 	 * @return string
 	 */
 	function parserConvert( $text, &$parser ) {
-		$this->mDoContentConvert = !( is_object( $parser->getTitle() ) && $parser->getTitle()->isTalkPage() );
+		$this->mDoContentConvert = !( is_object( $parser->getTitle() )
+			&& $parser->getTitle()->isTalkPage() );
 
 		return parent::parserConvert( $text, $parser );
 	}
