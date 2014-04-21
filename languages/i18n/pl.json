@@ -1497,6 +1497,7 @@
 	"unwatchedpages": "Nieobserwowane strony",
 	"listredirects": "Lista przekierowań",
 	"listduplicatedfiles": "Lista plików mających duplikaty",
+	"listduplicatedfiles-summary": "To jest lista plików, dla których najnowsza wersja pliku jest duplikatem najnowszej wersji innego pliku. Uwzględniane są tylko pliki lokalne.",
 	"listduplicatedfiles-entry": "[[:File:$1|$1]] ma [[$3|{{PLURAL:$2|jeden duplikat|$2 duplikaty|$2 duplikatów}}]].",
 	"unusedtemplates": "Nieużywane szablony",
 	"unusedtemplatestext": "Poniżej znajduje się lista wszystkich stron znajdujących się w przestrzeni nazw {{ns:template}}, które nie są używane przez inne strony.\nSprawdź inne linki do szablonów, zanim usuniesz tę stronę.",
