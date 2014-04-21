@@ -26,7 +26,7 @@
  *
  * @ingroup Profiler
  */
-class ProfilerSimpleDB extends Profiler {
+class ProfilerSimpleDB extends ProfilerStandard {
 	protected function collateOnly() {
 		return true;
 	}

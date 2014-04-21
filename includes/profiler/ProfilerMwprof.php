@@ -33,23 +33,22 @@
  * @since 1.23
  */
 class ProfilerMwprof extends Profiler {
+	/** @var array Queue of open profile calls with start data */
+	protected $mWorkStack = array();
+
+	/** @var array Map of (function name => aggregate data array) */
+	protected $mCollated = array();
+	/** @var array Cache of a standard broken collation entry */
+	protected $mErrorEntry;
+
 	// Message types
 	const TYPE_SINGLE = 1;
 	const TYPE_RUNNING = 2;
 
-	protected function collateOnly() {
+	public function isStub() {
 		return false;
 	}
 
-	/**
-	 * Indicate that this Profiler subclass is persistent.
-	 *
-	 * Called by Parser::braceSubstitution. If true, the parser will not
-	 * generate per-title profiling sections, to avoid overloading the
-	 * profiling data collector.
-	 *
-	 * @return bool true
-	 */
 	public function isPersistent() {
 		return true;
 	}
@@ -88,7 +87,7 @@ class ProfilerMwprof extends Profiler {
 		$elapsedCpu = $this->getTime( 'cpu' ) - $inCpu;
 		$elapsedWall = $this->getTime() - $inWall;
 		$this->updateRunningEntry( $outName, $elapsedCpu, $elapsedWall );
-		$this->updateTrxProfiling( $outName, $elapsedWall );
+		$this->trxProfiler->recordFunctionCompletion( $outName, $elapsedWall );
 	}
 
 	/**
@@ -127,17 +126,6 @@ class ProfilerMwprof extends Profiler {
 		$entry['count']++;
 		$entry['cpu']->push( $elapsedCpu );
 		$entry['wall']->push( $elapsedWall );
-	}
-
-	/**
-	 * Produce an empty function report.
-	 *
-	 * ProfileMwprof does not provide a function report.
-	 *
-	 * @return string Empty string.
-	 */
-	public function getFunctionReport() {
-		return '';
 	}
 
 	/**
@@ -194,7 +182,6 @@ class ProfilerMwprof extends Profiler {
 
 		foreach ( $profile as &$item ) {
 			$item['percent'] = $totalWall ? 100 * $item['elapsed'] / $totalWall : 0;
-			$z+= $item['percent'];
 		}
 
 		return $profile;
@@ -214,7 +201,6 @@ class ProfilerMwprof extends Profiler {
 		$this->close();
 
 		if ( !function_exists( 'socket_create' ) ) {
-			#trigger_error( __METHOD__ . ": function \"socket_create\" not found." );
 			return; // avoid fatal
 		}
 
@@ -253,5 +239,18 @@ class ProfilerMwprof extends Profiler {
 		if ( $bufferLength !== 0 ) {
 			socket_send( $sock, $buffer, $bufferLength, 0 );
 		}
+	}
+
+	/**
+	 * Close opened profiling sections
+	 */
+	public function close() {
+		while ( count( $this->mWorkStack ) ) {
+			$this->profileOut( 'close' );
+		}
+	}
+
+	public function getOutput() {
+		return ''; // no report
 	}
 }
