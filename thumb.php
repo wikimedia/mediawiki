@@ -320,7 +320,14 @@ function wfStreamThumb( array $params ) {
 	}
 
 	// Thumbnail isn't already there, so create the new thumbnail...
+	$thumb = null;
 	try {
+		// Record failures on PHP fatals too
+		register_shutdown_function( function() use ( &$thumb, $img, $thumbName ) {
+			if ( $thumb === null ) { // transform() gave a fatal
+				wfThumbIncrAttemptFailures( $img, $thumbName );
+			}
+		} );
 		$thumb = $img->transform( $params, File::RENDER_NOW );
 	} catch ( Exception $ex ) {
 		// Tried to select a page on a non-paged file?
