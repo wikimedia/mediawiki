@@ -398,7 +398,7 @@ class LogPage {
 					// to make this faster for future log entries
 					$id = User::idFromName( $title->getText() );
 					$titleLink = Linker::userLink( $id, $title->getText() )
-						. Linker::userToolLinks( $id, $title->getText(), false, Linker::TOOL_LINKS_NOBLOCK );
+						. Linker::userToolLinks( $id, $title->getText(), false, Linker::TOOL_LINKS_NOBLOCK | Linker::TOOL_LINKS_UNBLOCK );
 				}
 				break;
 			case 'merge':

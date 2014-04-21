@@ -36,6 +36,7 @@ class Linker {
 	 */
 	const TOOL_LINKS_NOBLOCK = 1;
 	const TOOL_LINKS_EMAIL = 2;
+	const TOOL_LINKS_UNBLOCK = 4;
 
 	/**
 	 * Get the appropriate HTML attributes to add to the "a" element of an
@@ -1109,7 +1110,8 @@ class Linker {
 	 * @param string $userText User name or IP address
 	 * @param bool $redContribsWhenNoEdits Should the contributions link be
 	 *   red if the user has no edits?
-	 * @param int $flags Customisation flags (e.g. Linker::TOOL_LINKS_NOBLOCK and Linker::TOOL_LINKS_EMAIL)
+	 * @param int $flags Customisation flags (e.g. Linker::TOOL_LINKS_NOBLOCK, Linker::TOOL_LINKS_EMAIL,
+	 *   and Linker::TOOL_LINKS_UNBLOCK)
 	 * @param int $edits User edit count (optional, for performance)
 	 * @return string HTML fragment
 	 */
@@ -1120,6 +1122,7 @@ class Linker {
 		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
 		$blockable = !( $flags & self::TOOL_LINKS_NOBLOCK );
 		$addEmailLink = $flags & self::TOOL_LINKS_EMAIL && $userId;
+		$addUnblockLink = $flags & self::TOOL_LINKS_UNBLOCK;
 
 		$items = array();
 		if ( $talkable ) {
@@ -1143,6 +1146,10 @@ class Linker {
 		}
 		if ( $blockable && $wgUser->isAllowed( 'block' ) ) {
 			$items[] = self::blockLink( $userId, $userText );
+		}
+
+		if ( $addUnblockLink && $wgUser->isAllowed( 'block' ) ) {
+			$items[] = self::unblockLink( $userId, $userText );
 		}
 
 		if ( $addEmailLink && $wgUser->canSendEmail() ) {
@@ -1192,6 +1199,17 @@ class Linker {
 		$blockPage = SpecialPage::getTitleFor( 'Block', $userText );
 		$blockLink = self::link( $blockPage, wfMessage( 'blocklink' )->escaped() );
 		return $blockLink;
+	}
+
+	/**
+	 * @param int $userId Userid
+	 * @param string $userText User name in database.
+	 * @return string HTML fragment with unblock link
+	 */
+	public static function unblockLink( $userId, $userText ) {
+		$unblockPage = SpecialPage::getTitleFor( 'Unblock', $userText );
+		$unblockLink = self::link( $unblockPage, wfMessage( 'unblocklink' )->escaped() );
+		return $unblockLink;
 	}
 
 	/**
