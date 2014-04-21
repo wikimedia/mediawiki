@@ -28,7 +28,7 @@ interface Preprocessor {
 	/**
 	 * Create a new preprocessor object based on an initialised Parser object
 	 *
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 */
 	function __construct( $parser );
 
@@ -42,7 +42,7 @@ interface Preprocessor {
 	/**
 	 * Create a new custom frame for programmatic use of parameter replacement as used in some extensions
 	 *
-	 * @param $args array
+	 * @param array $args
 	 *
 	 * @return PPFrame
 	 */
@@ -51,15 +51,15 @@ interface Preprocessor {
 	/**
 	 * Create a new custom node for programmatic use of parameter replacement as used in some extensions
 	 *
-	 * @param $values
+	 * @param array $values
 	 */
 	function newPartNodeArray( $values );
 
 	/**
 	 * Preprocess text to a PPNode
 	 *
-	 * @param $text
-	 * @param $flags
+	 * @param string $text
+	 * @param int $flags
 	 *
 	 * @return PPNode
 	 */
@@ -148,8 +148,7 @@ interface PPFrame {
 	/**
 	 * Returns true if the infinite loop check is OK, false if a loop is detected
 	 *
-	 * @param $title
-	 *
+	 * @param Title $title
 	 * @return bool
 	 */
 	function loopCheck( $title );

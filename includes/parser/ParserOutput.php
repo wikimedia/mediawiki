@@ -96,7 +96,7 @@ class ParserOutput extends CacheTime {
 	/**
 	 * callback used by getText to replace editsection tokens
 	 * @private
-	 * @param $m
+	 * @param array $m
 	 * @throws MWException
 	 * @return mixed
 	 */
@@ -181,8 +181,8 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Checks, if a url is pointing to the own server
 	 *
-	 * @param string $internal the server to check against
-	 * @param string $url the url to check
+	 * @param string $internal The server to check against
+	 * @param string $url The url to check
 	 * @return bool
 	 */
 	static function isLinkInternal( $internal, $url ) {
@@ -212,8 +212,8 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Record a local or interwiki inline link for saving in future link tables.
 	 *
-	 * @param $title Title object
-	 * @param $id Mixed: optional known page_id so we can skip the lookup
+	 * @param Title $title
+	 * @param int|null $id Optional known page_id so we can skip the lookup
 	 */
 	function addLink( Title $title, $id = null ) {
 		if ( $title->isExternal() ) {
@@ -247,7 +247,7 @@ class ParserOutput extends CacheTime {
 	 * Register a file dependency for this output
 	 * @param string $name Title dbKey
 	 * @param string $timestamp MW timestamp of file creation (or false if non-existing)
-	 * @param string $sha1 base 36 SHA-1 of file (or false if non-existing)
+	 * @param string $sha1 Base 36 SHA-1 of file (or false if non-existing)
 	 * @return void
 	 */
 	function addImage( $name, $timestamp = null, $sha1 = null ) {
@@ -259,9 +259,9 @@ class ParserOutput extends CacheTime {
 
 	/**
 	 * Register a template dependency for this output
-	 * @param $title Title
-	 * @param $page_id
-	 * @param $rev_id
+	 * @param Title $title
+	 * @param int $page_id
+	 * @param int $rev_id
 	 * @return void
 	 */
 	function addTemplate( $title, $page_id, $rev_id ) {
@@ -278,7 +278,7 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * @param $title Title object, must be an interwiki link
+	 * @param Title $title Title object, must be an interwiki link
 	 * @throws MWException if given invalid input
 	 */
 	function addInterwikiLink( $title ) {
@@ -296,6 +296,8 @@ class ParserOutput extends CacheTime {
 	 * Add some text to the "<head>".
 	 * If $tag is set, the section with that tag will only be included once
 	 * in a given page.
+	 * @param string $section
+	 * @param string|bool $tag
 	 */
 	function addHeadItem( $section, $tag = false ) {
 		if ( $tag !== false ) {
@@ -324,8 +326,8 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Add one or more variables to be set in mw.config in JavaScript.
 	 *
-	 * @param $keys {String|Array} Key or array of key/value pairs.
-	 * @param $value {Mixed} [optional] Value of the configuration variable.
+	 * @param string|array $keys Key or array of key/value pairs.
+	 * @param mixed $value [optional] Value of the configuration variable.
 	 * @since 1.23
 	 */
 	public function addJsConfigVars( $keys, $value = null ) {
@@ -342,7 +344,7 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Copy items from the OutputPage object into this one
 	 *
-	 * @param $out OutputPage object
+	 * @param OutputPage $out
 	 */
 	public function addOutputPageMetadata( OutputPage $out ) {
 		$this->addModules( $out->getModules() );
@@ -369,7 +371,7 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Get the title to be used for display
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getDisplayTitle() {
 		$t = $this->getTitleText();
@@ -465,7 +467,7 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Returns the options from its ParserOptions which have been taken
 	 * into account to produce this output or false if not available.
-	 * @return mixed Array
+	 * @return array
 	 */
 	public function getUsedOptions() {
 		if ( !isset( $this->mAccessedOptions ) ) {
@@ -482,6 +484,7 @@ class ParserOutput extends CacheTime {
 	 * @see ParserCache::save
 	 * @see ParserOptions::addExtraKey
 	 * @see ParserOptions::optionsHash
+	 * @param string $option
 	 */
 	public function recordOption( $option ) {
 		$this->mAccessedOptions[$option] = true;
@@ -511,11 +514,11 @@ class ParserOutput extends CacheTime {
 	 *
 	 * @since 1.20
 	 *
-	 * @param $title Title The title of the page we're updating. If not given, a title object will be created
-	 *                      based on $this->getTitleText()
-	 * @param $recursive Boolean: queue jobs for recursive updates?
+	 * @param Title $title The title of the page we're updating. If not given, a title object will
+	 *    be created based on $this->getTitleText()
+	 * @param bool $recursive Queue jobs for recursive updates?
 	 *
-	 * @return Array. An array of instances of DataUpdate
+	 * @return array An array of instances of DataUpdate
 	 */
 	public function getSecondaryDataUpdates( Title $title = null, $recursive = true ) {
 		if ( is_null( $title ) ) {
@@ -562,11 +565,10 @@ class ParserOutput extends CacheTime {
 	 * @since 1.21
 	 *
 	 * @param string $key The key for accessing the data. Extensions should take care to avoid
-	 *               conflicts in naming keys. It is suggested to use the extension's name as a
-	 *               prefix.
+	 *   conflicts in naming keys. It is suggested to use the extension's name as a prefix.
 	 *
 	 * @param mixed $value The value to set. Setting a value to null is equivalent to removing
-	 *              the value.
+	 *   the value.
 	 */
 	public function setExtensionData( $key, $value ) {
 		if ( $value === null ) {
