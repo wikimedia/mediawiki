@@ -593,7 +593,7 @@ class DifferenceEngine extends ContextSource {
 		# @codingStandardsIgnoreEnd
 
 		# Add redundant patrol link on bottom...
-		$out->addHTML( $this->markPatrolledLink() );
+		$out->addHTML( '<div class="patrollink">' . $this->markPatrolledLink() . '</div>');
 
 		wfProfileOut( __METHOD__ );
 	}

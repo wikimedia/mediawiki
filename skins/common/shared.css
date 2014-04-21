@@ -190,6 +190,7 @@ span.history-deleted {
 }
 
 div.patrollink {
+	clear: both;
 	font-size: 75%;
 	text-align: right;
 }
