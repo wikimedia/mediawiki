@@ -4771,6 +4771,13 @@ $wgRateLimits = array(
 		'ip' => null,
 		'subnet' => null,
 	),
+	'renderfile-nonstandard' => array( // same as above but for non-standard thumbnails
+		'anon' => null,
+		'user' => null,
+		'newbie' => null,
+		'ip' => null,
+		'subnet' => null,
+	),
 );
 
 /**
