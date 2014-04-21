@@ -51,9 +51,6 @@ class UsercreateTemplate extends BaseTemplate {
 		<div id="signupstart"><?php $this->msgWiki( 'signupstart' ); ?></div>
 	<?php } ?>
 	<div id="userloginForm">
-		<h2 class="createaccount-join">
-			<?php $this->msg( $this->data['loggedin'] ? 'createacct-another-join' : 'createacct-join' ); ?>
-		</h2>
 		<form name="userlogin2" id="userlogin2" class="mw-ui-vform" method="post" action="<?php $this->text( 'action' ); ?>">
 			<section class="mw-form-header">
 				<?php $this->html( 'header' ); /* extensions such as ConfirmEdit add form HTML here */ ?>
