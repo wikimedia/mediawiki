@@ -1203,6 +1203,20 @@ $wgImageLimits = array(
 );
 
 /**
+ * Limits on how many times we can try to render the same image.
+ *
+ * Key is the max image size in bytes or "default", value is a time
+ * to live in memcached.
+ *
+ * Default is to not try most images 5 times in one hour. Images over
+ * 100MB are limited to 3 times in 3 hours.
+ */
+$wgImageScalingLimits = array(
+	'default' => array( 'ttl' => 3600, 'failures' => 5 ),
+	1e6 => array( 'ttl' => 10800, 'failures' => 3 ),
+);
+
+/**
  * Adjust thumbnails on image pages according to a user setting. In order to
  * reduce disk usage, the values can only be selected from a list. This is the
  * list of settings the user can choose from:

@@ -306,11 +306,12 @@ function wfStreamThumb( array $params ) {
 	}
 
 	$user = RequestContext::getMain()->getUser();
+	$numFailures = wfThumbFailureInfo( $img, 'failures' );
 	if ( $user->pingLimiter( 'renderfile' ) ) {
 		wfThumbError( 500, wfMessage( 'actionthrottledtext' ) );
 		return;
-	} elseif ( wfThumbIsAttemptThrottled( $img, $thumbName, 5 ) ) {
-		wfThumbError( 500, wfMessage( 'thumbnail_image-failure-limit', 5 ) );
+	} elseif ( wfThumbIsAttemptThrottled( $img, $thumbName, $numFailures ) ) {
+		wfThumbError( 500, wfMessage( 'thumbnail_image-failure-limit', $numFailures ) );
 		return;
 	}
 
@@ -365,11 +366,37 @@ function wfThumbIncrAttemptFailures( File $img, $thumbName ) {
 	global $wgMemc;
 
 	$key = wfThumbAttemptKey( $img, $thumbName );
+	$ttl = wfThumbFailureInfo( $img, 'ttl' );
 	if ( !$wgMemc->incr( $key, 1 ) ) {
-		if ( !$wgMemc->add( $key, 1, 3600 ) ) {
+		if ( !$wgMemc->add( $key, 1, $ttl ) ) {
 			$wgMemc->incr( $key, 1 );
 		}
 	}
+}
+
+/**
+ * @param File $img
+ * @param String $info Either 'ttl' or 'failures'
+ * @return int
+ */
+function wfThumbFailureInfo( File $img, $info ) {
+	global $wgImageScalingLimits;
+
+	// Get default, remove it, and sort by image sizes
+	$default = $wgImageScalingLimits[ 'default' ][ $info ];
+	unset( $wgImageScalingLimits['default'] );
+	$limits = ksort( $wgImageScalingLimits );
+
+	// Iterate over the list of image sizes, and if our image
+	// is larger than any of the limits, change the default.
+	$fileSize = $img->getSize();
+	foreach( $limits as $size => $limit ) {
+		if ( $fileSize >= $size ) {
+			$default = $limit[ $info ];
+		}
+	}
+
+	return $default;
 }
 
 /**
