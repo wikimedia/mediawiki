@@ -1029,7 +1029,7 @@ abstract class File {
 			$tmpFile->bind( $thumb ); // keep alive with $thumb
 
 			if ( !$thumb ) { // bad params?
-				$thumb = null;
+				$thumb = false;
 			} elseif ( $thumb->isError() ) { // transform error
 				$this->lastError = $thumb->toText();
 				// Ignore errors if requested
