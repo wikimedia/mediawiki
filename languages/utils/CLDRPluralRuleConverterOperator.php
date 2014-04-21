@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @author Niklas Laxström, Tim Starling
  *
@@ -109,6 +108,7 @@ class CLDRPluralRuleConverterOperator extends CLDRPluralRuleConverterFragment {
 		if ( !$right->isType( $rightType ) ) {
 			$newExpr->error( "invalid type for right operand: expected $rightType, got {$right->type}" );
 		}
+
 		return $newExpr;
 	}
 }
