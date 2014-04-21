@@ -38,10 +38,7 @@ class ProcessCacheLRU {
 	 * @throws UnexpectedValueException When $maxCacheKeys is not an int or =< 0.
 	 */
 	public function __construct( $maxKeys ) {
-		if ( !is_int( $maxKeys ) || $maxKeys < 1 ) {
-			throw new UnexpectedValueException( __METHOD__ . " must be given an integer >= 1" );
-		}
-		$this->maxCacheKeys = $maxKeys;
+		$this->resize( $maxKeys );
 	}
 
 	/**
@@ -116,6 +113,25 @@ class ProcessCacheLRU {
 				unset( $this->cache[$key] );
 				unset( $this->cacheTimes[$key] );
 			}
+		}
+	}
+
+	/**
+	 * Resize the maximum number of cache entries, removing older entries as needed
+	 *
+	 * @param $maxKeys integer
+	 * @return void
+	 */
+	public function resize( $maxKeys ) {
+		if ( !is_int( $maxKeys ) || $maxKeys < 1 ) {
+			throw new UnexpectedValueException( __METHOD__ . " must be given an integer >= 1" );
+		}
+		$this->maxCacheKeys = $maxKeys;
+		while ( count( $this->cache ) > $this->maxCacheKeys ) {
+			reset( $this->cache );
+			$evictKey = key( $this->cache );
+			unset( $this->cache[$evictKey] );
+			unset( $this->cacheTimes[$evictKey] );
 		}
 	}
 

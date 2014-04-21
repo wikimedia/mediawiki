@@ -1102,6 +1102,10 @@ abstract class FileBackendStore extends FileBackend {
 			$paths = array_merge( $paths, $op->storagePathsRead() );
 			$paths = array_merge( $paths, $op->storagePathsChanged() );
 		}
+
+		// Enlarge the cache to fit the stat entries of these files
+		$this->cheapCache->resize( max( 2 * count( $paths ), self::CACHE_CHEAP_SIZE ) );
+
 		// Load from the persistent container caches
 		$this->primeContainerCache( $paths );
 		// Get the latest stat info for all the files (having locked them)
@@ -1123,6 +1127,9 @@ abstract class FileBackendStore extends FileBackend {
 		// Merge errors into status fields
 		$status->merge( $subStatus );
 		$status->success = $subStatus->success; // not done in merge()
+
+		// Shrink the stat cache back to normal size
+		$this->cheapCache->resize( self::CACHE_CHEAP_SIZE );
 
 		return $status;
 	}
