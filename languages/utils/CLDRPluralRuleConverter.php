@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @author Niklas Laxström, Tim Starling
  *
@@ -97,6 +96,7 @@ class CLDRPluralRuleConverter {
 	 */
 	public static function convert( $rule ) {
 		$parser = new self( $rule );
+
 		return $parser->doConvert();
 	}
 
@@ -192,6 +192,7 @@ class CLDRPluralRuleConverter {
 		if ( $length !== 0 ) {
 			$token = $this->newNumber( substr( $this->rule, $this->pos, $length ), $this->pos );
 			$this->pos += $length;
+
 			return $token;
 		}
 
@@ -200,6 +201,7 @@ class CLDRPluralRuleConverter {
 		if ( $op2 === '..' || $op2 === '!=' ) {
 			$token = $this->newOperator( $op2, $this->pos, 2 );
 			$this->pos += 2;
+
 			return $token;
 		}
 
@@ -207,7 +209,8 @@ class CLDRPluralRuleConverter {
 		$op1 = $this->rule[$this->pos];
 		if ( $op1 === ',' || $op1 === '=' || $op1 === '%' ) {
 			$token = $this->newOperator( $op1, $this->pos, 1 );
-			$this->pos ++;
+			$this->pos++;
+
 			return $token;
 		}
 
@@ -235,6 +238,7 @@ class CLDRPluralRuleConverter {
 			if ( isset( self::$precedence[$bothWords] ) ) {
 				$token = $this->newOperator( $bothWords, $this->pos, $nextTokenPos - $this->pos );
 				$this->pos = $nextTokenPos;
+
 				return $token;
 			}
 		}
@@ -243,13 +247,15 @@ class CLDRPluralRuleConverter {
 		if ( isset( self::$precedence[$word1] ) ) {
 			$token = $this->newOperator( $word1, $this->pos, strlen( $word1 ) );
 			$this->pos += strlen( $word1 );
+
 			return $token;
 		}
 
 		// The single-character operand symbols
 		if ( strpos( self::OPERAND_SYMBOLS, $word1 ) !== false ) {
 			$token = $this->newNumber( $word1, $this->pos );
-			$this->pos ++;
+			$this->pos++;
+
 			return $token;
 		}
 
@@ -258,6 +264,7 @@ class CLDRPluralRuleConverter {
 			// Samples are like comments, they have no effect on rule evaluation.
 			// They run from the first sample indicator to the end of the string.
 			$this->pos = $this->end;
+
 			return false;
 		}
 

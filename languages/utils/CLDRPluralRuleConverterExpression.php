@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @author Niklas Laxström, Tim Starling
  *
@@ -36,6 +35,7 @@ class CLDRPluralRuleConverterExpression extends CLDRPluralRuleConverterFragment 
 		if ( $type === $this->type ) {
 			return true;
 		}
+
 		return false;
 	}
 }

@@ -55,6 +55,7 @@ class CLDRPluralRuleEvaluatorRange {
 				}
 			}
 		}
+
 		return false;
 	}
 
@@ -102,7 +103,7 @@ class CLDRPluralRuleEvaluatorRange {
 			}
 		}
 		$s .= ')';
+
 		return $s;
 	}
-
 }

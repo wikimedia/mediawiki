@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @author Niklas Laxström, Tim Starling
  *
