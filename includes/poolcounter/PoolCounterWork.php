@@ -25,13 +25,17 @@
  * Class for dealing with PoolCounters using class members
  */
 abstract class PoolCounterWork {
-	protected $cacheable = false; //Does this override getCachedWork() ?
+	/** @var string */
+	protected $type = 'generic';
+	/** @var bool */
+	protected $cacheable = false; // does this override getCachedWork() ?
 
 	/**
 	 * @param string $type The type of PoolCounter to use
 	 * @param string $key Key that identifies the queue this work is placed on
 	 */
 	public function __construct( $type, $key ) {
+		$this->type = $type;
 		$this->poolCounter = PoolCounter::factory( $type, $key );
 	}
 
@@ -75,7 +79,7 @@ abstract class PoolCounterWork {
 	public function logError( $status ) {
 		$key = $this->poolCounter->getKey();
 
-		wfDebugLog( 'poolcounter', "Pool key '$key': "
+		wfDebugLog( 'poolcounter', "Pool key '$key' ({$this->type}): "
 			. $status->getMessage()->inLanguage( 'en' )->useDatabase( false )->text() );
 	}
 
