@@ -12,7 +12,7 @@
 /**
  * Evaluator helper class representing a range list.
  */
-class CLDRPluralRuleEvaluator_Range {
+class CLDRPluralRuleEvaluatorRange {
 	/**
 	 * The parts
 	 *
@@ -21,7 +21,7 @@ class CLDRPluralRuleEvaluator_Range {
 	public $parts = array();
 
 	/**
-	 * Initialize a new instance of CLDRPluralRuleEvaluator_Range
+	 * Initialize a new instance of CLDRPluralRuleEvaluatorRange
 	 *
 	 * @param int $start The start of the range
 	 * @param int|bool $end The end of the range, or false if the range is not bounded.
@@ -72,7 +72,7 @@ class CLDRPluralRuleEvaluator_Range {
 	/**
 	 * Add another part to this range.
 	 *
-	 * @param CLDRPluralRuleEvaluator_Range|int $other The part to add, either
+	 * @param CLDRPluralRuleEvaluatorRange|int $other The part to add, either
 	 *   a range object itself or a single number.
 	 */
 	function add( $other ) {

@@ -16,7 +16,7 @@
  * messages), the RPN notation used to evaluate it, and the result type for
  * validation.
  */
-class CLDRPluralRuleConverter_Expression extends CLDRPluralRuleConverter_Fragment {
+class CLDRPluralRuleConverterExpression extends CLDRPluralRuleConverterFragment {
 	/** @var string */
 	public $type;
 

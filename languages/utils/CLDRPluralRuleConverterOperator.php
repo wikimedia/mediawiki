@@ -15,7 +15,7 @@
  * An operator object, representing a region of the input string (for error
  * messages), and the binary operator at that location.
  */
-class CLDRPluralRuleConverter_Operator extends CLDRPluralRuleConverter_Fragment {
+class CLDRPluralRuleConverterOperator extends CLDRPluralRuleConverterFragment {
 	/** @var string The name */
 	public $name;
 
@@ -65,7 +65,7 @@ class CLDRPluralRuleConverter_Operator extends CLDRPluralRuleConverter_Fragment 
 	);
 
 	/**
-	 * Initialize a new instance of a CLDRPluralRuleConverter_Operator object
+	 * Initialize a new instance of a CLDRPluralRuleConverterOperator object
 	 *
 	 * @param CLDRPluralRuleConverter $parser The parser
 	 * @param string $name The operator name
@@ -83,9 +83,9 @@ class CLDRPluralRuleConverter_Operator extends CLDRPluralRuleConverter_Fragment 
 	/**
 	 * Compute the operation
 	 *
-	 * @param CLDRPluralRuleConverter_Expression $left The left part of the expression
-	 * @param CLDRPluralRuleConverter_Expression $right The right part of the expression
-	 * @return CLDRPluralRuleConverter_Expression The result of the operation
+	 * @param CLDRPluralRuleConverterExpression $left The left part of the expression
+	 * @param CLDRPluralRuleConverterExpression $right The right part of the expression
+	 * @return CLDRPluralRuleConverterExpression The result of the operation
 	 */
 	public function operate( $left, $right ) {
 		$typeSpec = self::$opTypes[$this->name];
@@ -98,7 +98,7 @@ class CLDRPluralRuleConverter_Operator extends CLDRPluralRuleConverter_Fragment 
 		$end = max( $this->end, $left->end, $right->end );
 		$length = $end - $start;
 
-		$newExpr = new CLDRPluralRuleConverter_Expression( $this->parser, $resultType,
+		$newExpr = new CLDRPluralRuleConverterExpression( $this->parser, $resultType,
 			"{$left->rpn} {$right->rpn} {$this->name}",
 			$start, $length );
 

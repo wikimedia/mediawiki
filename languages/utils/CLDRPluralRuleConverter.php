@@ -119,13 +119,13 @@ class CLDRPluralRuleConverter {
 
 		// Iterate through all tokens, saving the operators and operands to a
 		// stack per Dijkstra's shunting yard algorithm.
-		/** @var CLDRPluralRuleConverter_Operator $token */
+		/** @var CLDRPluralRuleConverterOperator $token */
 		while ( false !== ( $token = $this->nextToken() ) ) {
 			// In this grammar, there are only binary operators, so every valid
 			// rule string will alternate between operator and operand tokens.
 			$expectOperator = !$expectOperator;
 
-			if ( $token instanceof CLDRPluralRuleConverter_Expression ) {
+			if ( $token instanceof CLDRPluralRuleConverterExpression ) {
 				// Operand
 				if ( $expectOperator ) {
 					$token->error( 'unexpected operand' );
@@ -172,7 +172,7 @@ class CLDRPluralRuleConverter {
 	/**
 	 * Fetch the next token from the input string.
 	 *
-	 * @return CLDRPluralRuleConverter_Fragment The next token
+	 * @return CLDRPluralRuleConverterFragment The next token
 	 */
 	protected function nextToken() {
 		if ( $this->pos >= $this->end ) {
@@ -269,7 +269,7 @@ class CLDRPluralRuleConverter {
 	 * a fragment with rpn and type members describing the result of that
 	 * operation.
 	 *
-	 * @param CLDRPluralRuleConverter_Operator $op
+	 * @param CLDRPluralRuleConverterOperator $op
 	 */
 	protected function doOperation( $op ) {
 		if ( count( $this->operands ) < 2 ) {
@@ -286,10 +286,10 @@ class CLDRPluralRuleConverter {
 	 *
 	 * @param string $text
 	 * @param int $pos
-	 * @return CLDRPluralRuleConverter_Expression The numerical expression
+	 * @return CLDRPluralRuleConverterExpression The numerical expression
 	 */
 	protected function newNumber( $text, $pos ) {
-		return new CLDRPluralRuleConverter_Expression( $this, 'number', $text, $pos, strlen( $text ) );
+		return new CLDRPluralRuleConverterExpression( $this, 'number', $text, $pos, strlen( $text ) );
 	}
 
 	/**
@@ -298,10 +298,10 @@ class CLDRPluralRuleConverter {
 	 * @param string $type
 	 * @param int $pos
 	 * @param int $length
-	 * @return CLDRPluralRuleConverter_Operator The operator
+	 * @return CLDRPluralRuleConverterOperator The operator
 	 */
 	protected function newOperator( $type, $pos, $length ) {
-		return new CLDRPluralRuleConverter_Operator( $this, $type, $pos, $length );
+		return new CLDRPluralRuleConverterOperator( $this, $type, $pos, $length );
 	}
 
 	/**
