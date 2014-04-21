@@ -3347,7 +3347,6 @@
     "compare-invalid-title": "The title you specified is invalid.",
     "compare-title-not-exists": "The title you specified does not exist.",
     "compare-revision-not-exists": "The revision you specified does not exist.",
-    "dberr-header": "This wiki has a problem",
     "dberr-problems": "Sorry! This site is experiencing technical difficulties.",
     "dberr-again": "Try waiting a few minutes and reloading.",
     "dberr-info": "(Cannot contact the database server: $1)",
