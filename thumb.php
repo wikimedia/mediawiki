@@ -159,6 +159,12 @@ function wfStreamThumb( array $params ) {
 		return;
 	}
 
+	// Check if the file is hidden
+	if ( $img->isDeleted( File::DELETED_FILE ) ) {
+		wfThumbError( 404, "The source file '$fileName' does not exist." );
+		return;
+	}
+
 	// Check permissions if there are read restrictions
 	$varyHeader = array();
 	if ( !in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) ) {

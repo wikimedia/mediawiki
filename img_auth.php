@@ -52,12 +52,13 @@ wfImageAuthMain();
 wfLogProfilingData();
 
 function wfImageAuthMain() {
-	global $wgImgAuthPublicTest, $wgImgAuthUrlPathMap, $wgRequest;
+	global $wgImgAuthPublicTest, $wgImgAuthUrlPathMap;
+
+	$request = RequestContext::getMain()->getRequest();
+	$publicWiki = in_array( 'read', User::getGroupPermissions( array( '*' ) ), true );
 
 	// See if this is a public Wiki (no protections).
-	if ( $wgImgAuthPublicTest
-		&& in_array( 'read', User::getGroupPermissions( array( '*' ) ), true )
-	) {
+	if ( $wgImgAuthPublicTest && $publicWiki ) {
 		// This is a public wiki, so disable this script (for private wikis only)
 		wfForbidden( 'img-auth-accessdenied', 'img-auth-public' );
 		return;
@@ -81,7 +82,7 @@ function wfImageAuthMain() {
 	if ( $extension != '' ) {
 		$whitelist[] = $extension;
 	}
-	if ( !$wgRequest->checkUrlExtension( $whitelist ) ) {
+	if ( !$request->checkUrlExtension( $whitelist ) ) {
 		return;
 	}
 
@@ -118,45 +119,63 @@ function wfImageAuthMain() {
 	if ( strpos( $path, '/thumb/' ) === 0 ) {
 		$name = wfBaseName( dirname( $path ) ); // file is a thumbnail
 		$filename = $repo->getZonePath( 'thumb' ) . substr( $path, 6 ); // strip "/thumb"
+		// Check to see if the file exists
+		if ( !$repo->fileExists( $filename ) ) {
+			wfForbidden( 'img-auth-accessdenied', 'img-auth-nofile', $filename );
+			return;
+		}
 	} else {
 		$name = wfBaseName( $path ); // file is a source file
 		$filename = $repo->getZonePath( 'public' ) . $path;
+		// Check to see if the file exists and is not deleted
+		$bits = explode( '!', $name, 2 );
+		if ( substr( $path, 0, 9 ) === '/archive/' && count( $bits ) == 2 ) {
+			$file = $repo->newFromArchiveName( $bits[1], $name );
+		} else {
+			$file = $repo->newFile( $name );
+		}
+		if ( !$file->exists() || $file->isDeleted( File::DELETED_FILE ) ) {
+			wfForbidden( 'img-auth-accessdenied', 'img-auth-nofile', $filename );
+			return;
+		}
 	}
 
-	// Check to see if the file exists
-	if ( !$repo->fileExists( $filename ) ) {
-		wfForbidden( 'img-auth-accessdenied', 'img-auth-nofile', $filename );
-		return;
+	$headers = array(); // extra HTTP headers to send
+
+	if ( !$publicWiki ) {
+		// For private wikis, run extra auth checks and set cache control headers
+		$headers[] = 'Cache-Control: private';
+		$headers[] = 'Vary: Cookie';
+
+		$title = Title::makeTitleSafe( NS_FILE, $name );
+		if ( !$title instanceof Title ) { // files have valid titles
+			wfForbidden( 'img-auth-accessdenied', 'img-auth-badtitle', $name );
+			return;
+		}
+
+		// Run hook for extension authorization plugins
+		/** @var $result array */
+		$result = null;
+		if ( !wfRunHooks( 'ImgAuthBeforeStream', array( &$title, &$path, &$name, &$result ) ) ) {
+			wfForbidden( $result[0], $result[1], array_slice( $result, 2 ) );
+			return;
+		}
+
+		// Check user authorization for this title
+		// Checks Whitelist too
+		if ( !$title->userCan( 'read' ) ) {
+			wfForbidden( 'img-auth-accessdenied', 'img-auth-noread', $name );
+			return;
+		}
 	}
 
-	$title = Title::makeTitleSafe( NS_FILE, $name );
-	if ( !$title instanceof Title ) { // files have valid titles
-		wfForbidden( 'img-auth-accessdenied', 'img-auth-badtitle', $name );
-		return;
-	}
-
-	// Run hook for extension authorization plugins
-	/** @var $result array */
-	$result = null;
-	if ( !wfRunHooks( 'ImgAuthBeforeStream', array( &$title, &$path, &$name, &$result ) ) ) {
-		wfForbidden( $result[0], $result[1], array_slice( $result, 2 ) );
-		return;
-	}
-
-	// Check user authorization for this title
-	// Checks Whitelist too
-	if ( !$title->userCan( 'read' ) ) {
-		wfForbidden( 'img-auth-accessdenied', 'img-auth-noread', $name );
-		return;
-	}
-
-	if ( $wgRequest->getCheck( 'download' ) ) {
-		header( 'Content-Disposition: attachment' );
+	if ( $request->getCheck( 'download' ) ) {
+		$headers[] = 'Content-Disposition: attachment';
 	}
 
 	// Stream the requested file
 	wfDebugLog( 'img_auth', "Streaming `" . $filename . "`." );
-	$repo->streamFile( $filename, array( 'Cache-Control: private', 'Vary: Cookie' ) );
+	$repo->streamFile( $filename, $headers );
 }
 
 /**
