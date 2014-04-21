@@ -54,7 +54,9 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @param GenderCache $genderCache the gender cache for generating gendered namespace names
 	 * @param string[]|string $localInterwikis
 	 */
-	public function __construct( Language $language, GenderCache $genderCache, $localInterwikis = array() ) {
+	public function __construct( Language $language, GenderCache $genderCache,
+		$localInterwikis = array()
+	) {
 		$this->language = $language;
 		$this->genderCache = $genderCache;
 		$this->localInterwikis = (array)$localInterwikis;
@@ -219,7 +221,11 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		# Note: use of the /u option on preg_replace here will cause
 		# input with invalid UTF-8 sequences to be nullified out in PHP 5.2.x,
 		# conveniently disabling them.
-		$dbkey = preg_replace( '/[ _\xA0\x{1680}\x{180E}\x{2000}-\x{200A}\x{2028}\x{2029}\x{202F}\x{205F}\x{3000}]+/u', '_', $dbkey );
+		$dbkey = preg_replace(
+			'/[ _\xA0\x{1680}\x{180E}\x{2000}-\x{200A}\x{2028}\x{2029}\x{202F}\x{205F}\x{3000}]+/u',
+			'_',
+			$dbkey
+		);
 		$dbkey = trim( $dbkey, '_' );
 
 		if ( strpos( $dbkey, UTF8_REPLACEMENT ) !== false ) {
