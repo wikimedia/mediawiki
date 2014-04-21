@@ -1993,6 +1993,10 @@ class OutputPage extends ContextSource {
 
 		$response = $this->getRequest()->response();
 
+		// Avoid Internet Explorer "compatibility view", so that
+		// jQuery can work correctly.
+		$response->header( 'X-UA-Compatible: IE=Edge' );
+
 		if ( $this->mRedirect != '' ) {
 			# Standards require redirect URLs to be absolute
 			$this->mRedirect = wfExpandUrl( $this->mRedirect, PROTO_CURRENT );
@@ -2522,10 +2526,6 @@ $templates
 		}
 
 		$ret .= Html::element( 'title', null, $this->getHTMLTitle() ) . "\n";
-
-		// Avoid Internet Explorer "compatibility view", so that
-		// jQuery can work correctly.
-		$ret .= Html::element( 'meta', array( 'http-equiv' => 'X-UA-Compatible', 'content' => 'IE=EDGE' ) ) . "\n";
 
 		$ret .= (
 			$this->getHeadLinks() .
