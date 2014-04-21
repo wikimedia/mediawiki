@@ -53,7 +53,7 @@ class CLDRPluralRuleConverter {
 	 * for the level 4 operators, since they return boolean and don't accept
 	 * boolean inputs.
 	 */
-	static $precedence = array(
+	private static $precedence = array(
 		'or' => 2,
 		'and' => 3,
 		'is' => 4,
