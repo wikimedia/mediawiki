@@ -33,7 +33,6 @@
  * @see https://www.mediawiki.org/wiki/Requests_for_comment/TitleValue
  */
 class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
-
 	/**
 	 * @var Language
 	 */
@@ -71,7 +70,8 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 */
 	public function getNamespaceName( $namespace, $text ) {
 		if ( $this->language->needsGenderDistinction() &&
-			MWNamespace::hasGenderDistinction( $namespace ) ) {
+			MWNamespace::hasGenderDistinction( $namespace )
+		) {
 
 			//NOTE: we are assuming here that the title text is a user name!
 			$gender = $this->genderCache->getGenderOf( $text, __METHOD__ );
@@ -376,7 +376,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 
 		# Fill fields
 		$parts['dbkey'] = $dbkey;
+
 		return $parts;
 	}
-
 }
