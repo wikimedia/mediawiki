@@ -271,8 +271,16 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 					foreach ( $this->localInterwikis as $localIW ) {
 						if ( 0 == strcasecmp( $parts['interwiki'], $localIW ) ) {
 							if ( $dbkey == '' ) {
-								# Can't have an empty self-link
-								throw new MalformedTitleException( 'Local interwiki with empty title: ' . $text );
+								# Empty self-links should point to the Main Page, to ensure
+								# compatibility with cross-wiki transclusions and the like.
+								$mainPage = Title::newMainPage();
+								return array(
+									'interwiki' => $mainPage->getInterwiki(),
+									'fragment' => $mainPage->getFragment(),
+									'namespace' => $mainPage->getNamespace(),
+									'dbkey' => $mainPage->getDBkey(),
+									'user_case_dbkey' => $mainPage->getUserCaseDBKey()
+								);
 							}
 							$parts['interwiki'] = '';
 
