@@ -320,8 +320,8 @@ function wfStreamThumb( array $params ) {
 	} elseif ( $user->pingLimiter( 'renderfile' ) ) {
 		wfThumbError( 500, wfMessage( 'actionthrottledtext' ) );
 		return;
-	} elseif ( wfThumbIsAttemptThrottled( $img, $thumbName, 5 ) ) {
-		wfThumbError( 500, wfMessage( 'thumbnail_image-failure-limit', 5 ) );
+	} elseif ( wfThumbIsAttemptThrottled( $img, $thumbName, 4 ) ) {
+		wfThumbError( 500, wfMessage( 'thumbnail_image-failure-limit', 4 ) );
 		return;
 	}
 
