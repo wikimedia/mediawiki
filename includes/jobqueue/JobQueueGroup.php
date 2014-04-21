@@ -40,6 +40,9 @@ class JobQueueGroup {
 	/** @var array Map of (bucket => (queue => JobQueue, types => list of types) */
 	protected $coalescedQueues;
 
+	/** @var IJobSpecification|null the last popped job on any queue */
+	protected $lastPopped = null;
+
 	const TYPE_DEFAULT = 1; // integer; jobs popped by default
 	const TYPE_ANY = 2; // integer; any job
 
@@ -152,6 +155,9 @@ class JobQueueGroup {
 	 */
 	public function pop( $qtype = self::TYPE_DEFAULT, $flags = 0, array $blacklist = array() ) {
 		$job = false;
+		// Clear lastPopped during the popping process because we don't want it to leak into
+		// the next job.
+		$this->lastPopped = null;
 
 		if ( is_string( $qtype ) ) { // specific job type
 			if ( !in_array( $qtype, $blacklist ) ) {
@@ -188,7 +194,15 @@ class JobQueueGroup {
 			}
 		}
 
+		$this->lastPopped = $job;
 		return $job;
+	}
+
+	/**
+	 * Get the last job popped off the queue.
+	 */
+	public function getLastPopped() {
+		return $this->lastPopped;
 	}
 
 	/**

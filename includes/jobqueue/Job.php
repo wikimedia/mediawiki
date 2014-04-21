@@ -146,6 +146,36 @@ abstract class Job implements IJobSpecification {
 	public function __construct( $command, $title, $params = false ) {
 		$this->command = $command;
 		$this->title = $title;
+
+		// Default the job's created time to now.
+		if ( !isset( $params['createTimestamp'] ) ) {
+			$params['createTimestamp'] = wfTimestampNow();
+		}
+		// Default the timestamp of the action that caused the job to be
+		// created to the same timestamp on the last job that was popped from
+		// from the queue or now.  The same timestamp from the last pop because
+		// that popped job very likely caused this job to be created.  Now
+		// because either:
+		// 1.  The job the caused this one didn't have a causeTimestamp
+		//     meaning it is old.  This should be temporary and now is as good
+		//     a default as any in this case.
+		// 2.  This job was not caused by a job but by a user action.  In that
+		//     case now is as close close to the time that the user performed
+		//     the action as we're going to get.
+		if ( !isset( $params['causeTimestamp'] ) ) {
+			$lastPopped = JobQueueGroup::singleton()->getLastPopped();
+			if ( $lastPopped ) {
+				$lastPoppedParams = $lastPopped->getParams();
+				if ( isset( $lastPoppedParams['causeTimestamp'] ) ) {
+					$params['causeTimestamp'] =
+						$lastPoppedParams['causeTimestamp'];
+				}
+			}
+			if ( !isset( $params['causeTimestamp'] ) ) {
+				$params['causeTimestamp'] = wfTimestampNow();
+			}
+		}
+
 		$this->params = $params;
 
 		// expensive jobs may set this to true
@@ -229,6 +259,9 @@ abstract class Job implements IJobSpecification {
 			unset( $info['params']['rootJobTimestamp'] );
 			// Likewise for jobs with different delay times
 			unset( $info['params']['jobReleaseTimestamp'] );
+			// Again also true for creation and cause timestamps
+			unset( $info['params']['createTimestamp'] );
+			unset( $info['params']['causeTimestamp'] );
 		}
 
 		return $info;
