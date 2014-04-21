@@ -28,7 +28,6 @@
  * @see https://www.mediawiki.org/wiki/Requests_for_comment/TitleValue
  */
 class MediaWikiPageLinkRenderer implements PageLinkRenderer {
-
 	/**
 	 * @var TitleFormatter
 	 */
@@ -108,6 +107,7 @@ class MediaWikiPageLinkRenderer implements PageLinkRenderer {
 		// re-implement Linker to use a HtmlPageLinkRenderer.
 		$title = Title::newFromTitleValue( $page );
 		$link = Linker::link( $title, htmlspecialchars( $text ) );
+
 		return $link;
 	}
 
