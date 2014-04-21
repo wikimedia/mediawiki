@@ -31,7 +31,6 @@
  * @see https://www.mediawiki.org/wiki/Requests_for_comment/TitleValue
  */
 interface TitleFormatter {
-
 	/**
 	 * Returns the title formatted for display.
 	 * Per default, this includes the namespace but not the fragment.

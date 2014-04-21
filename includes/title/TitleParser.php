@@ -31,7 +31,6 @@
  * @see https://www.mediawiki.org/wiki/Requests_for_comment/TitleValue
  */
 interface TitleParser {
-
 	/**
 	 * Parses the given text and constructs a TitleValue. Normalization
 	 * is applied according to the rules appropriate for the form specified by $form.

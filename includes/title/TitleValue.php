@@ -34,7 +34,6 @@
  * @see https://www.mediawiki.org/wiki/Requests_for_comment/TitleValue
  */
 class TitleValue {
-
 	/**
 	 * @var int
 	 */
@@ -153,7 +152,7 @@ class TitleValue {
 	public function __toString() {
 		$name = $this->namespace . ':' . $this->dbkey;
 
-		if ( $this->fragment !== '' )  {
+		if ( $this->fragment !== '' ) {
 			$name .= '#' . $this->fragment;
 		}
 

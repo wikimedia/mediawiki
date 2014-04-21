@@ -29,5 +29,4 @@
  * @author Daniel Kinzler
  */
 class MalformedTitleException extends Exception {
-
 }

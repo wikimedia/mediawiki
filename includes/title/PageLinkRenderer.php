@@ -31,7 +31,6 @@
  * @see https://www.mediawiki.org/wiki/Requests_for_comment/TitleValue
  */
 interface PageLinkRenderer {
-
 	/**
 	 * Returns the URL for the given page.
 	 *
@@ -65,5 +64,4 @@ interface PageLinkRenderer {
 	 * @return string
 	 */
 	public function renderWikitextLink( TitleValue $page, $text = null );
-
 }
