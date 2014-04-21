@@ -127,7 +127,8 @@ class KuConverter extends LanguageConverter {
 		' O' => 'ئۆ ',
 		' U' => 'ئو ',
 		' Û' => 'ئوو ',
-		# eyn erstmal deaktivieren, einfache Anführungsstriche sind einfach zu häufig, um sie als eyn zu interpretieren
+		# eyn erstmal deaktivieren, einfache Anführungsstriche sind einfach zu
+		# häufig, um sie als eyn zu interpretieren.
 		# '\'' => 'ع',
 
 /*		# deactivated for now, breaks links i.e. in header of Special:Recentchanges :-(

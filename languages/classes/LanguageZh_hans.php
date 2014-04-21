@@ -26,8 +26,9 @@
  *
  * @ingroup Language
  */
+// @codingStandardsIgnoreStart Ignore class name is not in camel caps format error
 class LanguageZh_hans extends Language {
-
+	// @codingStandardsIgnoreEnd
 	/**
 	 * @return bool
 	 */

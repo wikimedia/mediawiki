@@ -51,7 +51,9 @@ class LanguageUk extends Language {
 		if ( !preg_match( "/[a-zA-Z_]/us", $word ) ) {
 			switch ( $case ) {
 				case 'genitive': # родовий відмінок
-					if ( ( join( '', array_slice( $ar[0], -4 ) ) == 'вікі' ) || ( join( '', array_slice( $ar[0], -4 ) ) == 'Вікі' ) ) {
+					if ( ( join( '', array_slice( $ar[0], -4 ) ) == 'вікі' )
+						|| ( join( '', array_slice( $ar[0], -4 ) ) == 'Вікі' )
+					) {
 					} elseif ( join( '', array_slice( $ar[0], -1 ) ) == 'ь' ) {
 						$word = join( '', array_slice( $ar[0], 0, -1 ) ) . 'я';
 					} elseif ( join( '', array_slice( $ar[0], -2 ) ) == 'ія' ) {
@@ -70,7 +72,9 @@ class LanguageUk extends Language {
 					# stub
 					break;
 				case 'accusative': # знахідний відмінок
-					if ( ( join( '', array_slice( $ar[0], -4 ) ) == 'вікі' ) || ( join( '', array_slice( $ar[0], -4 ) ) == 'Вікі' ) ) {
+					if ( ( join( '', array_slice( $ar[0], -4 ) ) == 'вікі' )
+						|| ( join( '', array_slice( $ar[0], -4 ) ) == 'Вікі' )
+					) {
 					} elseif ( join( '', array_slice( $ar[0], -2 ) ) == 'ія' ) {
 						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'ію';
 					}

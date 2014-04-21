@@ -28,7 +28,6 @@
  * @ingroup Language
  */
 class LanguageFi extends Language {
-
 	/**
 	 * Convert from the nominative form of a noun to some other case
 	 * Invoked with {{grammar:case|word}}
@@ -92,13 +91,16 @@ class LanguageFi extends Language {
 	function translateBlockExpiry( $str, $forContent = false ) {
 		/*
 			'ago', 'now', 'today', 'this', 'next',
-			'first', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth',
+			'first', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth',
+				'tenth', 'eleventh', 'twelfth',
 			'tomorrow', 'yesterday'
 
-			$months = 'january:tammikuu,february:helmikuu,march:maaliskuu,april:huhtikuu,may:toukokuu,june:kesäkuu,' .
-				'july:heinäkuu,august:elokuu,september:syyskuu,october:lokakuu,november:marraskuu,december:joulukuu,' .
-				'jan:tammikuu,feb:helmikuu,mar:maaliskuu,apr:huhtikuu,jun:kesäkuu,jul:heinäkuu,aug:elokuu,sep:syyskuu,'.
-				'oct:lokakuu,nov:marraskuu,dec:joulukuu,sept:syyskuu';
+			$months = 'january:tammikuu,february:helmikuu,march:maaliskuu,april:huhtikuu,' .
+				'may:toukokuu,june:kesäkuu,july:heinäkuu,august:elokuu,september:syyskuu,' .
+				'october:lokakuu,november:marraskuu,december:joulukuu,' .
+				'jan:tammikuu,feb:helmikuu,mar:maaliskuu,apr:huhtikuu,jun:kesäkuu,' .
+				'jul:heinäkuu,aug:elokuu,sep:syyskuu,oct:lokakuu,nov:marraskuu,' .
+				dec:joulukuu,sept:syyskuu';
 		*/
 		$weekds = array(
 			'monday' => 'maanantai',
