@@ -24,10 +24,11 @@
  * @ingroup Language
  *
  * @author Zhengzhu Feng <zhengzhu@gmail.com>
- * @maintainers fdcn <fdcn64@gmail.com>, shinjiman <shinjiman@gmail.com>, PhiLiP <philip.npc@gmail.com>
+ * @author fdcn <fdcn64@gmail.com>
+ * @author shinjiman <shinjiman@gmail.com>
+ * @author PhiLiP <philip.npc@gmail.com>
  */
 class LanguageConverter {
-
 	/**
 	 * languages supporting variants
 	 * @since 1.20
@@ -809,6 +810,7 @@ class LanguageConverter {
 	 */
 	public function getExtraHashOptions() {
 		$variant = $this->getPreferredVariant();
+
 		return '!' . $variant;
 	}
 
@@ -835,6 +837,7 @@ class LanguageConverter {
 	 */
 	function loadDefaultTables() {
 		$name = get_class( $this );
+
 		throw new MWException( "Must implement loadDefaultTables() method in class $name" );
 	}
 
@@ -881,7 +884,8 @@ class LanguageConverter {
 	/**
 	 * Hook for post processing after conversion tables are loaded.
 	 */
-	function postLoadTables() { }
+	function postLoadTables() {
+	}
 
 	/**
 	 * Reload the conversion tables.
@@ -892,6 +896,7 @@ class LanguageConverter {
 		if ( $this->mTables ) {
 			unset( $this->mTables );
 		}
+
 		$this->mTablesLoaded = false;
 		$this->loadTables( false );
 	}

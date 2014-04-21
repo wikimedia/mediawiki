@@ -44,28 +44,94 @@ class FakeConverter {
 	 * @var Language
 	 */
 	public $mLang;
-	function __construct( $langobj ) { $this->mLang = $langobj; }
-	function autoConvert( $text, $variant = false ) { return $text; }
-	function autoConvertToAllVariants( $text ) { return array( $this->mLang->getCode() => $text ); }
-	function convert( $t ) { return $t; }
-	function convertTo( $text, $variant ) { return $text; }
-	function convertTitle( $t ) { return $t->getPrefixedText(); }
-	function convertNamespace( $ns ) { return $this->mLang->getFormattedNsText( $ns ); }
-	function getVariants() { return array( $this->mLang->getCode() ); }
-	function getVariantFallbacks( $variant ) { return $this->mLang->getCode(); }
-	function getPreferredVariant() { return $this->mLang->getCode(); }
-	function getDefaultVariant() { return $this->mLang->getCode(); }
-	function getURLVariant() { return ''; }
-	function getConvRuleTitle() { return false; }
-	function findVariantLink( &$l, &$n, $ignoreOtherCond = false ) { }
-	function getExtraHashOptions() { return ''; }
-	function getParsedTitle() { return ''; }
-	function markNoConversion( $text, $noParse = false ) { return $text; }
-	function convertCategoryKey( $key ) { return $key; }
+
+	function __construct( $langobj ) {
+		$this->mLang = $langobj;
+	}
+
+	function autoConvert( $text, $variant = false ) {
+		return $text;
+	}
+
+	function autoConvertToAllVariants( $text ) {
+		return array( $this->mLang->getCode() => $text );
+	}
+
+	function convert( $t ) {
+		return $t;
+	}
+
+	function convertTo( $text, $variant ) {
+		return $text;
+	}
+
+	/**
+	 * @param Title $t
+	 * @return mixed
+	 */
+	function convertTitle( $t ) {
+		return $t->getPrefixedText();
+	}
+
+	function convertNamespace( $ns ) {
+		return $this->mLang->getFormattedNsText( $ns );
+	}
+
+	function getVariants() {
+		return array( $this->mLang->getCode() );
+	}
+
+	function getVariantFallbacks( $variant ) {
+		return $this->mLang->getCode();
+	}
+
+	function getPreferredVariant() {
+		return $this->mLang->getCode();
+	}
+
+	function getDefaultVariant() {
+		return $this->mLang->getCode();
+	}
+
+	function getURLVariant() {
+		return '';
+	}
+
+	function getConvRuleTitle() {
+		return false;
+	}
+
+	function findVariantLink( &$l, &$n, $ignoreOtherCond = false ) {
+	}
+
+	function getExtraHashOptions() {
+		return '';
+	}
+
+	function getParsedTitle() {
+		return '';
+	}
+
+	function markNoConversion( $text, $noParse = false ) {
+		return $text;
+	}
+
+	function convertCategoryKey( $key ) {
+		return $key;
+	}
+
 	/** @deprecated since 1.22 is no longer used */
-	function armourMath( $text ) { return $text; }
-	function validateVariant( $variant = null ) { return $variant === $this->mLang->getCode() ? $variant : null; }
-	function translate( $text, $variant ) { return $text; }
+	function armourMath( $text ) {
+		return $text;
+	}
+
+	function validateVariant( $variant = null ) {
+		return $variant === $this->mLang->getCode() ? $variant : null;
+	}
+
+	function translate( $text, $variant ) {
+		return $text;
+	}
 }
 
 /**
@@ -73,7 +139,6 @@ class FakeConverter {
  * @ingroup Language
  */
 class Language {
-
 	/**
 	 * @var LanguageConverter
 	 */
@@ -475,7 +540,8 @@ class Language {
 	 * Hook which will be called if this is the content language.
 	 * Descendants can use this to register hook functions or modify globals
 	 */
-	function initContLang() { }
+	function initContLang() {
+	}
 
 	/**
 	 * Same as getFallbacksFor for current language.
@@ -484,6 +550,7 @@ class Language {
 	 */
 	function getFallbackLanguageCode() {
 		wfDeprecated( __METHOD__, '1.19' );
+
 		return self::getFallbackFor( $this->mCode );
 	}
 
@@ -540,6 +607,7 @@ class Language {
 
 			wfRunHooks( 'LanguageGetNamespaces', array( &$this->namespaceNames ) );
 		}
+
 		return $this->namespaceNames;
 	}
 
@@ -589,6 +657,7 @@ class Language {
 	 */
 	function getNsText( $index ) {
 		$ns = $this->getNamespaces();
+
 		return isset( $ns[$index] ) ? $ns[$index] : false;
 	}
 
@@ -607,6 +676,7 @@ class Language {
 	 */
 	function getFormattedNsText( $index ) {
 		$ns = $this->getNsText( $index );
+
 		return strtr( $ns, '_', ' ' );
 	}
 
@@ -621,7 +691,9 @@ class Language {
 	function getGenderNsText( $index, $gender ) {
 		global $wgExtraGenderNamespaces;
 
-		$ns = $wgExtraGenderNamespaces + self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+		$ns = $wgExtraGenderNamespaces +
+			self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+
 		return isset( $ns[$index][$gender] ) ? $ns[$index][$gender] : $this->getNsText( $index );
 	}
 
@@ -680,7 +752,8 @@ class Language {
 			}
 
 			global $wgExtraGenderNamespaces;
-			$genders = $wgExtraGenderNamespaces + (array)self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+			$genders = $wgExtraGenderNamespaces +
+				(array)self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
 			foreach ( $genders as $index => $forms ) {
 				foreach ( $forms as $alias ) {
 					$aliases[$alias] = $index;
@@ -700,6 +773,7 @@ class Language {
 
 			$this->namespaceAliases = $aliases + $convertedNames;
 		}
+
 		return $this->namespaceAliases;
 	}
 
@@ -1143,14 +1217,21 @@ class Language {
 			throw new MWException( __METHOD__ . ": The timestamp $ts should be a number" );
 		}
 
-		for ( $p = 0; $p < strlen( $format ); $p++ ) {
+		$formatLength = strlen( $format );
+		for ( $p = 0; $p < $formatLength; $p++ ) {
 			$num = false;
 			$code = $format[$p];
-			if ( $code == 'x' && $p < strlen( $format ) - 1 ) {
+			if ( $code == 'x' && $p < $formatLength - 1 ) {
 				$code .= $format[++$p];
 			}
 
-			if ( ( $code === 'xi' || $code == 'xj' || $code == 'xk' || $code == 'xm' || $code == 'xo' || $code == 'xt' ) && $p < strlen( $format ) - 1 ) {
+			if ( ( $code === 'xi'
+					|| $code === 'xj'
+					|| $code === 'xk'
+					|| $code === 'xm'
+					|| $code === 'xo'
+					|| $code === 'xt' )
+				&& $p < $formatLength - 1 ) {
 				$code .= $format[++$p];
 			}
 
@@ -1381,7 +1462,7 @@ class Language {
 					break;
 				case '\\':
 					# Backslash escaping
-					if ( $p < strlen( $format ) - 1 ) {
+					if ( $p < $formatLength - 1 ) {
 						$s .= $format[++$p];
 					} else {
 						$s .= '\\';
@@ -1389,7 +1470,7 @@ class Language {
 					break;
 				case '"':
 					# Quoted literal
-					if ( $p < strlen( $format ) - 1 ) {
+					if ( $p < $formatLength - 1 ) {
 						$endQuote = strpos( $format, '"', $p + 1 );
 						if ( $endQuote === false ) {
 							# No terminating quote, assume literal "
@@ -1421,6 +1502,7 @@ class Language {
 				}
 			}
 		}
+
 		return $s;
 	}
 
@@ -1523,8 +1605,10 @@ class Language {
 		$zl = $zjd -1948440 + 10632;
 		$zn = (int)( ( $zl - 1 ) / 10631 );
 		$zl = $zl - 10631 * $zn + 354;
-		$zj = ( (int)( ( 10985 - $zl ) / 5316 ) ) * ( (int)( ( 50 * $zl ) / 17719 ) ) + ( (int)( $zl / 5670 ) ) * ( (int)( ( 43 * $zl ) / 15238 ) );
-		$zl = $zl - ( (int)( ( 30 - $zj ) / 15 ) ) * ( (int)( ( 17719 * $zj ) / 50 ) ) - ( (int)( $zj / 16 ) ) * ( (int)( ( 15238 * $zj ) / 43 ) ) + 29;
+		$zj = ( (int)( ( 10985 - $zl ) / 5316 ) ) * ( (int)( ( 50 * $zl ) / 17719 ) ) +
+			( (int)( $zl / 5670 ) ) * ( (int)( ( 43 * $zl ) / 15238 ) );
+		$zl = $zl - ( (int)( ( 30 - $zj ) / 15 ) ) * ( (int)( ( 17719 * $zj ) / 50 ) ) -
+			( (int)( $zj / 16 ) ) * ( (int)( ( 15238 * $zj ) / 43 ) ) + 29;
 		$zm = (int)( ( 24 * $zl ) / 709 );
 		$zd = $zl - (int)( ( 709 * $zm ) / 24 );
 		$zy = 30 * $zn + $zj - 30;
@@ -1746,7 +1830,10 @@ class Language {
 			# Deduct years from the Gregorian calendar
 			# depending on the nengo periods
 			# Months and days are identical
-			if ( ( $gy < 1912 ) || ( ( $gy == 1912 ) && ( $gm < 7 ) ) || ( ( $gy == 1912 ) && ( $gm == 7 ) && ( $gd < 31 ) ) ) {
+			if ( ( $gy < 1912 )
+				|| ( ( $gy == 1912 ) && ( $gm < 7 ) )
+				|| ( ( $gy == 1912 ) && ( $gm == 7 ) && ( $gd < 31 ) )
+			) {
 				# Meiji period
 				$gy_gannen = $gy - 1868 + 1;
 				$gy_offset = $gy_gannen;
@@ -1808,7 +1895,8 @@ class Language {
 			array( '', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X' ),
 			array( '', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC', 'C' ),
 			array( '', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM', 'M' ),
-			array( '', 'M', 'MM', 'MMM', 'MMMM', 'MMMMM', 'MMMMMM', 'MMMMMMM', 'MMMMMMMM', 'MMMMMMMMM', 'MMMMMMMMMM' )
+			array( '', 'M', 'MM', 'MMM', 'MMMM', 'MMMMM', 'MMMMMM', 'MMMMMMM',
+				'MMMMMMMM', 'MMMMMMMMM', 'MMMMMMMMMM' )
 		);
 
 		$num = intval( $num );
@@ -2130,7 +2218,16 @@ class Language {
 	 */
 	public function getDurationIntervals( $seconds, array $chosenIntervals = array() ) {
 		if ( empty( $chosenIntervals ) ) {
-			$chosenIntervals = array( 'millennia', 'centuries', 'decades', 'years', 'days', 'hours', 'minutes', 'seconds' );
+			$chosenIntervals = array(
+				'millennia',
+				'centuries',
+				'decades',
+				'years',
+				'days',
+				'hours',
+				'minutes',
+				'seconds'
+			);
 		}
 
 		$intervals = array_intersect_key( self::$durationIntervals, array_flip( $chosenIntervals ) );
@@ -2276,9 +2373,12 @@ class Language {
 	 */
 	public function getHumanTimestamp( MWTimestamp $ts, MWTimestamp $relativeTo, User $user ) {
 		$diff = $ts->diff( $relativeTo );
-		$diffDay = (bool)( (int)$ts->timestamp->format( 'w' ) - (int)$relativeTo->timestamp->format( 'w' ) );
+		$diffDay = (bool)( (int)$ts->timestamp->format( 'w' ) -
+			(int)$relativeTo->timestamp->format( 'w' ) );
 		$days = $diff->days ?: (int)$diffDay;
-		if ( $diff->invert || $days > 5 && $ts->timestamp->format( 'Y' ) !== $relativeTo->timestamp->format( 'Y' ) ) {
+		if ( $diff->invert || $days > 5
+			&& $ts->timestamp->format( 'Y' ) !== $relativeTo->timestamp->format( 'Y' )
+		) {
 			// Timestamps are in different years: use full timestamp
 			// Also do full timestamp for future dates
 			/**
@@ -2574,7 +2674,8 @@ class Language {
 			$breaks = "[ \-\(\)\}\{\.,\?!]";
 
 			// find first letter after word break
-			$replaceRegexp = "/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)|$breaks([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/";
+			$replaceRegexp = "/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)|" .
+				"$breaks([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/";
 
 			if ( function_exists( 'mb_strtoupper' ) ) {
 				return preg_replace_callback(
@@ -2952,7 +3053,8 @@ class Language {
 	/**
 	 * An arrow, depending on the language direction.
 	 *
-	 * @param string $direction The direction of the arrow: forwards (default), backwards, left, right, up, down.
+	 * @param string $direction The direction of the arrow: forwards (default),
+	 *   backwards, left, right, up, down.
 	 * @return string
 	 */
 	function getArrow( $direction = 'forwards' ) {
@@ -3574,6 +3676,7 @@ class Language {
 		if ( isset( $wgGrammarForms[$this->getCode()][$case][$word] ) ) {
 			return $wgGrammarForms[$this->getCode()][$case][$word];
 		}
+
 		return $word;
 	}
 	/**
@@ -3583,9 +3686,12 @@ class Language {
 	 */
 	function getGrammarForms() {
 		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms[$this->getCode()] ) && is_array( $wgGrammarForms[$this->getCode()] ) ) {
+		if ( isset( $wgGrammarForms[$this->getCode()] )
+			&& is_array( $wgGrammarForms[$this->getCode()] )
+		) {
 			return $wgGrammarForms[$this->getCode()];
 		}
+
 		return array();
 	}
 	/**
@@ -4102,7 +4208,7 @@ class Language {
 			throw new MWException( "Invalid language code \"$code\"" );
 		}
 
-		return "$IP/languages/i18n/$code.json" ;
+		return "$IP/languages/i18n/$code.json";
 	}
 
 	/**
@@ -4301,10 +4407,12 @@ class Language {
 	 * @todo Document
 	 * @param int|float $seconds
 	 * @param array $format Optional
-	 *		If $format['avoid'] == 'avoidseconds' - don't mention seconds if $seconds >= 1 hour
-	 *		If $format['avoid'] == 'avoidminutes' - don't mention seconds/minutes if $seconds > 48 hours
-	 *		If $format['noabbrevs'] is true - use 'seconds' and friends instead of 'seconds-abbrev' and friends
-	 *		For backwards compatibility, $format may also be one of the strings 'avoidseconds' or 'avoidminutes'
+	 *   If $format['avoid'] === 'avoidseconds': don't mention seconds if $seconds >= 1 hour.
+	 *   If $format['avoid'] === 'avoidminutes': don't mention seconds/minutes if $seconds > 48 hours.
+	 *   If $format['noabbrevs'] is true: use 'seconds' and friends instead of 'seconds-abbrev'
+	 *     and friends.
+	 *   For backwards compatibility, $format may also be one of the strings 'avoidseconds'
+	 *     or 'avoidminutes'.
 	 * @return string
 	 */
 	function formatTimePeriod( $seconds, $format = array() ) {
@@ -4398,10 +4506,11 @@ class Language {
 
 	/**
 	 * Format a bitrate for output, using an appropriate
-	 * unit (bps, kbps, Mbps, Gbps, Tbps, Pbps, Ebps, Zbps or Ybps) according to the magnitude in question
+	 * unit (bps, kbps, Mbps, Gbps, Tbps, Pbps, Ebps, Zbps or Ybps) according to
+	 *   the magnitude in question.
 	 *
 	 * This use base 1000. For base 1024 use formatSize(), for another base
-	 * see formatComputingNumbers()
+	 * see formatComputingNumbers().
 	 *
 	 * @param int $bps
 	 * @return string
@@ -4485,7 +4594,9 @@ class Language {
 	 * @param bool $atend Optional param for specified if this is the last page
 	 * @return string
 	 */
-	public function viewPrevNext( Title $title, $offset, $limit, array $query = array(), $atend = false ) {
+	public function viewPrevNext( Title $title, $offset, $limit,
+		array $query = array(), $atend = false
+	) {
 		// @todo FIXME: Why on earth this needs one message for the text and another one for tooltip?
 
 		# Make 'previous' link
@@ -4529,9 +4640,13 @@ class Language {
 	 * @param string $class Value of the "class" attribute of the link
 	 * @return string HTML fragment
 	 */
-	private function numLink( Title $title, $offset, $limit, array $query, $link, $tooltipMsg, $class ) {
+	private function numLink( Title $title, $offset, $limit, array $query, $link,
+		$tooltipMsg, $class
+	) {
 		$query = array( 'limit' => $limit, 'offset' => $offset ) + $query;
-		$tooltip = wfMessage( $tooltipMsg )->inLanguage( $this )->title( $title )->numParams( $limit )->text();
+		$tooltip = wfMessage( $tooltipMsg )->inLanguage( $this )->title( $title )
+			->numParams( $limit )->text();
+
 		return Html::element( 'a', array( 'href' => $title->getLocalURL( $query ),
 			'title' => $tooltip, 'class' => $class ), $link );
 	}
