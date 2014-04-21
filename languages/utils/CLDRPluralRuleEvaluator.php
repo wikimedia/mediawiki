@@ -139,8 +139,8 @@ class CLDRPluralRuleEvaluator {
 	 */
 	private static function doOperation( $token, $left, $right ) {
 		if ( in_array( $token, array( 'in', 'not-in', 'within', 'not-within' ) ) ) {
-			if ( !( $right instanceof CLDRPluralRuleEvaluator_Range ) ) {
-				$right = new CLDRPluralRuleEvaluator_Range( $right );
+			if ( !( $right instanceof CLDRPluralRuleEvaluatorRange ) ) {
+				$right = new CLDRPluralRuleEvaluatorRange( $right );
 			}
 		}
 		switch ( $token ) {
@@ -166,15 +166,15 @@ class CLDRPluralRuleEvaluator {
 				}
 				return fmod( $left, $right );
 			case ',':
-				if ( $left instanceof CLDRPluralRuleEvaluator_Range ) {
+				if ( $left instanceof CLDRPluralRuleEvaluatorRange ) {
 					$range = $left;
 				} else {
-					$range = new CLDRPluralRuleEvaluator_Range( $left );
+					$range = new CLDRPluralRuleEvaluatorRange( $left );
 				}
 				$range->add( $right );
 				return $range;
 			case '..':
-				return new CLDRPluralRuleEvaluator_Range( $left, $right );
+				return new CLDRPluralRuleEvaluatorRange( $left, $right );
 			default:
 				throw new CLDRPluralRuleError( "Invalid RPN token" );
 		}

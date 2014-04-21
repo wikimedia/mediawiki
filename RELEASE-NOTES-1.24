@@ -33,6 +33,12 @@ changes to languages because of Bugzilla reports.
 * The Special:Search hooks SpecialSearchGo and SpecialSearchResultsAppend
   were removed as they were unused.
 
+==== Renamed classes ====
+* CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
+* CLDRPluralRuleConverter_Fragment to CLDRPluralRuleConverterFragment
+* CLDRPluralRuleConverter_Operator to CLDRPluralRuleConverterOperator
+* CLDRPluralRuleEvaluator_Range to CLDRPluralRuleEvaluatorRange
+
 == Compatibility ==
 
 MediaWiki 1.24 requires PHP 5.3.2 or later.

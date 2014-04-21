@@ -14,7 +14,7 @@
  * Helper for CLDRPluralRuleConverter.
  * The base class for operators and expressions, describing a region of the input string.
  */
-class CLDRPluralRuleConverter_Fragment {
+class CLDRPluralRuleConverterFragment {
 	public $parser, $pos, $length, $end;
 
 	function __construct( $parser, $pos, $length ) {

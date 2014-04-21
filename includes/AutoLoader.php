@@ -1125,11 +1125,11 @@ $wgAutoloadLocalClasses = array(
 	'Language' => 'languages/Language.php',
 	'LanguageConverter' => 'languages/LanguageConverter.php',
 	'CLDRPluralRuleConverter' => 'languages/utils/CLDRPluralRuleConverter.php',
-	'CLDRPluralRuleConverter_Expression' => 'languages/utils/CLDRPluralRuleConverter_Expression.php',
-	'CLDRPluralRuleConverter_Fragment' => 'languages/utils/CLDRPluralRuleConverter_Fragment.php',
-	'CLDRPluralRuleConverter_Operator' => 'languages/utils/CLDRPluralRuleConverter_Operator.php',
+	'CLDRPluralRuleConverterExpression' => 'languages/utils/CLDRPluralRuleConverterExpression.php',
+	'CLDRPluralRuleConverterFragment' => 'languages/utils/CLDRPluralRuleConverterFragment.php',
+	'CLDRPluralRuleConverterOperator' => 'languages/utils/CLDRPluralRuleConverterOperator.php',
 	'CLDRPluralRuleEvaluator' => 'languages/utils/CLDRPluralRuleEvaluator.php',
-	'CLDRPluralRuleEvaluator_Range' => 'languages/utils/CLDRPluralRuleEvaluator_Range.php',
+	'CLDRPluralRuleEvaluatorRange' => 'languages/utils/CLDRPluralRuleEvaluatorRange.php',
 	'CLDRPluralRuleError' => 'languages/utils/CLDRPluralRuleError.php',
 
 	# maintenance
