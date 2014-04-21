@@ -592,6 +592,9 @@ class DifferenceEngine extends ContextSource {
 		}
 		# @codingStandardsIgnoreEnd
 
+		// Clear floating elements from content
+		$out->addHTML( Html::element( 'div', array( 'style' => 'clear: both' ) ) );
+
 		# Add redundant patrol link on bottom...
 		$out->addHTML( $this->markPatrolledLink() );
 
