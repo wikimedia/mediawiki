@@ -417,19 +417,13 @@ class LocalFile extends File {
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
 		$this->extraDataLoaded = true;
 
-		$dbr = $this->repo->getSlaveDB();
-		// In theory the file could have just been renamed/deleted...oh well
-		$row = $dbr->selectRow( 'image', $this->getLazyCacheFields( 'img_' ),
-			array( 'img_name' => $this->getName() ), $fname );
-
-		if ( !$row ) { // fallback to master
-			$dbr = $this->repo->getMasterDB();
-			$row = $dbr->selectRow( 'image', $this->getLazyCacheFields( 'img_' ),
-				array( 'img_name' => $this->getName() ), $fname );
+		$fieldMap = $this->loadFieldsWithTimestamp( $this->repo->getSlaveDB(), $fname );
+		if ( !$fieldMap ) {
+			$fieldMap = $this->loadFieldsWithTimestamp( $this->repo->getMasterDB(), $fname );
 		}
 
-		if ( $row ) {
-			foreach ( $this->unprefixRow( $row, 'img_' ) as $name => $value ) {
+		if ( $fieldMap ) {
+			foreach ( $fieldMap as $name => $value ) {
 				$this->$name = $value;
 			}
 		} else {
@@ -438,6 +432,32 @@ class LocalFile extends File {
 		}
 
 		wfProfileOut( $fname );
+	}
+
+	/**
+	 * @param DatabaseBase $dbr
+	 * @param string $fname
+	 * @return array|false
+	 */
+	private function loadFieldsWithTimestamp( $dbr, $fname ) {
+		$fieldMap = false;
+
+		$row = $dbr->selectRow( 'image', $this->getLazyCacheFields( 'img_' ),
+			array( 'img_name' => $this->getName(), 'img_timestamp' => $this->getTimestamp() ),
+			$fname );
+		if ( $row ) {
+			$fieldMap = $this->unprefixRow( $row, 'img_' );
+		} else {
+			# File may have been uploaded over in the meantime; check the old versions
+			$row = $dbr->selectRow( 'oldimage', $this->getLazyCacheFields( 'oi_' ),
+				array( 'oi_name' => $this->getName(), 'oi_timestamp' => $this->getTimestamp() ),
+				$fname );
+			if ( $row ) {
+				$fieldMap = $this->unprefixRow( $row, 'oi_' );
+			}
+		}
+
+		return $fieldMap;
 	}
 
 	/**
@@ -1911,10 +1931,14 @@ class LocalFile extends File {
 
 		$key = $this->repo->getSharedCacheKey( 'file-volatile', md5( $this->getName() ) );
 		if ( $key ) {
-			if ( $this->lastMarkedVolatile && ( time() - $this->lastMarkedVolatile ) <= self::VOLATILE_TTL ) {
+			if ( $this->lastMarkedVolatile
+				&& ( time() - $this->lastMarkedVolatile ) <= self::VOLATILE_TTL
+			) {
 				return true; // sanity
 			}
-			return ( $wgMemc->get( $key ) !== false );
+			$volatileTimestamp = (int)$wgMemc->get( $key );
+			$this->lastMarkedVolatile = max( $this->lastMarkedVolatile, $volatileTimestamp );
+			return ( $volatileTimestamp != 0 );
 		}
 
 		return false;
