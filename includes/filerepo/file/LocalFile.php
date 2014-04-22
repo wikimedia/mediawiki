@@ -1993,7 +1993,8 @@ class LocalFileDeleteBatch {
 			$res = $dbw->select(
 				'oldimage',
 				array( 'oi_archive_name', 'oi_sha1' ),
-				array( 'oi_archive_name' => array_keys( $oldRels ) ),
+				array( 'oi_archive_name' => array_keys( $oldRels ),
+					'oi_name' => $this->file->getName() ), // performance
 				__METHOD__
 			);
 
