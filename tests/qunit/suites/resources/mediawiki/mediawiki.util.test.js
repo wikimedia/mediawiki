@@ -1,11 +1,10 @@
 ( function ( mw, $ ) {
 	QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		setup: function () {
-			this.taPrefix = mw.util.tooltipAccessKeyPrefix;
-			mw.util.tooltipAccessKeyPrefix = 'ctrl-alt-';
+			$.fn.updateTooltipAccessKeys.setTestMode( true );
 		},
 		teardown: function () {
-			mw.util.tooltipAccessKeyPrefix = this.taPrefix;
+			$.fn.updateTooltipAccessKeys.setTestMode( false );
 		}
 	} ) );
 
@@ -89,6 +88,8 @@
 	} );
 
 	QUnit.test( 'tooltipAccessKey', 4, function ( assert ) {
+		this.suppressWarnings();
+
 		assert.equal( typeof mw.util.tooltipAccessKeyPrefix, 'string', 'tooltipAccessKeyPrefix must be a string' );
 		assert.equal( $.type( mw.util.tooltipAccessKeyRegexp ), 'regexp', 'tooltipAccessKeyRegexp is a regexp' );
 		assert.ok( mw.util.updateTooltipAccessKeys, 'updateTooltipAccessKeys is non-empty' );
@@ -96,6 +97,8 @@
 		'Example [a]'.replace( mw.util.tooltipAccessKeyRegexp, function ( sub, m1, m2, m3, m4, m5, m6 ) {
 			assert.equal( m6, 'a', 'tooltipAccessKeyRegexp finds the accesskey hint' );
 		} );
+
+		this.restoreWarnings();
 	} );
 
 	QUnit.test( '$content', 2, function ( assert ) {
@@ -145,7 +148,7 @@
 		assert.ok( $.isDomElement( tbRL ), 'addPortletLink returns a valid DOM Element according to $.isDomElement' );
 
 		tbMW = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/',
-			'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', tbRL );
+			'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org', 'm', tbRL );
 		$tbMW = $( tbMW );
 
 		assert.propEqual(
@@ -160,7 +163,7 @@
 			$tbMW.find( 'a' ).getAttrs(),
 			{
 				href: '//mediawiki.org/',
-				title: 'Go to MediaWiki.org [ctrl-alt-m]',
+				title: 'Go to MediaWiki.org [test-m]',
 				accesskey: 'm'
 			},
 			'Validate attributes of anchor tag in created element'
@@ -172,7 +175,7 @@
 		cuQuux = mw.util.addPortletLink( 'p-test-custom', '#', 'Quux', null, 'Example [shift-x]', 'q' );
 		$cuQuux = $( cuQuux );
 
-		assert.equal( $cuQuux.find( 'a' ).attr( 'title' ), 'Example [ctrl-alt-q]', 'Existing accesskey is stripped and updated' );
+		assert.equal( $cuQuux.find( 'a' ).attr( 'title' ), 'Example [test-q]', 'Existing accesskey is stripped and updated' );
 
 		assert.equal(
 			$( '#p-test-custom #c-barmenu ul li' ).length,
