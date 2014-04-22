@@ -387,7 +387,10 @@ class ApiMain extends ApiBase {
 	 */
 	protected function handleException( Exception $e ) {
 		// Bug 63145: Rollback any open database transactions
-		MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+		if ( !( $e instanceof UsageException ) ) {
+			// UsageExceptions are intentional, so don't rollback if that's the case
+			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+		}
 
 		// Allow extra cleanup and logging
 		wfRunHooks( 'ApiMain::onException', array( $this, $e ) );
