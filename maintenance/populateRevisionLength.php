@@ -58,7 +58,8 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 		$this->output( "Populating ar_len column\n" );
 		$ar = $this->doLenUpdates( 'archive', 'ar_id', 'ar', Revision::selectArchiveFields() );
 
-		$this->output( "rev_len and ar_len population complete [$rev revision rows, $ar archive rows].\n" );
+		$this->output( "rev_len and ar_len population complete "
+			. "[$rev revision rows, $ar archive rows].\n" );
 		return true;
 	}
 

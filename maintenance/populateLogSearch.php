@@ -31,7 +31,12 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class PopulateLogSearch extends LoggedUpdateMaintenance {
-	static $tableMap = array( 'rev' => 'revision', 'fa' => 'filearchive', 'oi' => 'oldimage', 'ar' => 'archive' );
+	private static $tableMap = array(
+		'rev' => 'revision',
+		'fa' => 'filearchive',
+		'oi' => 'oldimage',
+		'ar' => 'archive'
+	);
 
 	public function __construct() {
 		parent::__construct();

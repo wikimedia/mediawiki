@@ -79,13 +79,23 @@ class ReassignEdits extends Maintenance {
 
 		# Count things
 		$this->output( "Checking current edits..." );
-		$res = $dbw->select( 'revision', 'COUNT(*) AS count', $this->userConditions( $from, 'rev_user', 'rev_user_text' ), __METHOD__ );
+		$res = $dbw->select(
+			'revision',
+			'COUNT(*) AS count',
+			$this->userConditions( $from, 'rev_user', 'rev_user_text' ),
+			__METHOD__
+		);
 		$row = $dbw->fetchObject( $res );
 		$cur = $row->count;
 		$this->output( "found {$cur}.\n" );
 
 		$this->output( "Checking deleted edits..." );
-		$res = $dbw->select( 'archive', 'COUNT(*) AS count', $this->userConditions( $from, 'ar_user', 'ar_user_text' ), __METHOD__ );
+		$res = $dbw->select(
+			'archive',
+			'COUNT(*) AS count',
+			$this->userConditions( $from, 'ar_user', 'ar_user_text' ),
+			__METHOD__
+		);
 		$row = $dbw->fetchObject( $res );
 		$del = $row->count;
 		$this->output( "found {$del}.\n" );
@@ -93,7 +103,12 @@ class ReassignEdits extends Maintenance {
 		# Don't count recent changes if we're not supposed to
 		if ( $rc ) {
 			$this->output( "Checking recent changes..." );
-			$res = $dbw->select( 'recentchanges', 'COUNT(*) AS count', $this->userConditions( $from, 'rc_user', 'rc_user_text' ), __METHOD__ );
+			$res = $dbw->select(
+				'recentchanges',
+				'COUNT(*) AS count',
+				$this->userConditions( $from, 'rc_user', 'rc_user_text' ),
+				__METHOD__
+			);
 			$row = $dbw->fetchObject( $res );
 			$rec = $row->count;
 			$this->output( "found {$rec}.\n" );
@@ -138,7 +153,9 @@ class ReassignEdits extends Maintenance {
 	 * @return array
 	 */
 	private function userConditions( &$user, $idfield, $utfield ) {
-		return $user->getId() ? array( $idfield => $user->getId() ) : array( $utfield => $user->getName() );
+		return $user->getId()
+			? array( $idfield => $user->getId() )
+			: array( $utfield => $user->getName() );
 	}
 
 	/**
