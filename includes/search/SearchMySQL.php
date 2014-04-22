@@ -153,7 +153,7 @@ class SearchMySQL extends SearchDatabase {
 	 * Perform a full text search query and return a result set.
 	 *
 	 * @param string $term raw search term
-	 * @return MySQLSearchResultSet
+	 * @return SqlSearchResultSet
 	 */
 	function searchText( $term ) {
 		return $this->searchInternal( $term, true );
@@ -163,7 +163,7 @@ class SearchMySQL extends SearchDatabase {
 	 * Perform a title-only search query and return a result set.
 	 *
 	 * @param string $term raw search term
-	 * @return MySQLSearchResultSet
+	 * @return SqlSearchResultSet
 	 */
 	function searchTitle( $term ) {
 		return $this->searchInternal( $term, false );
@@ -199,7 +199,7 @@ class SearchMySQL extends SearchDatabase {
 			$totalResult->free();
 		}
 
-		return new MySQLSearchResultSet( $resultSet, $this->searchTerms, $total );
+		return new SqlSearchResultSet( $resultSet, $this->searchTerms, $total );
 	}
 
 	public function supports( $feature ) {
@@ -450,19 +450,5 @@ class SearchMySQL extends SearchDatabase {
 			}
 		}
 		return self::$mMinSearchLength;
-	}
-}
-
-/**
- * @ingroup Search
- */
-class MySQLSearchResultSet extends SqlSearchResultSet {
-	function __construct( $resultSet, $terms, $totalHits = null ) {
-		parent::__construct( $resultSet, $terms );
-		$this->mTotalHits = $totalHits;
-	}
-
-	function getTotalHits() {
-		return $this->mTotalHits;
 	}
 }

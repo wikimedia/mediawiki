@@ -138,32 +138,34 @@ class SearchResultSet {
  * @ingroup Search
  */
 class SqlSearchResultSet extends SearchResultSet {
+	protected $resultSet;
+	protected $terms;
+	protected $totalHits;
 
-	protected $mResultSet;
-
-	function __construct( $resultSet, $terms ) {
-		$this->mResultSet = $resultSet;
-		$this->mTerms = $terms;
+	function __construct( $resultSet, $terms, $total = null ) {
+		$this->resultSet = $resultSet;
+		$this->terms = $terms;
+		$this->totalHits = $total;
 	}
 
 	function termMatches() {
-		return $this->mTerms;
+		return $this->terms;
 	}
 
 	function numRows() {
-		if ( $this->mResultSet === false ) {
+		if ( $this->resultSet === false ) {
 			return false;
 		}
 
-		return $this->mResultSet->numRows();
+		return $this->resultSet->numRows();
 	}
 
 	function next() {
-		if ( $this->mResultSet === false ) {
+		if ( $this->resultSet === false ) {
 			return false;
 		}
 
-		$row = $this->mResultSet->fetchObject();
+		$row = $this->resultSet->fetchObject();
 		if ( $row === false ) {
 			return false;
 		}
@@ -172,11 +174,15 @@ class SqlSearchResultSet extends SearchResultSet {
 	}
 
 	function free() {
-		if ( $this->mResultSet === false ) {
+		if ( $this->resultSet === false ) {
 			return false;
 		}
 
-		$this->mResultSet->free();
+		$this->resultSet->free();
+	}
+
+	function getTotalHits() {
+		return $this->totalHits;
 	}
 }
 
