@@ -79,7 +79,9 @@ class RunJobs extends Maintenance {
 
 		$backoffs = $this->loadBackoffs(); // map of (type => UNIX expiry)
 		$startingBackoffs = $backoffs; // avoid unnecessary writes
-		$backoffExpireFunc = function( $t ) { return $t > time(); };
+		$backoffExpireFunc = function ( $t ) {
+			return $t > time();
+		};
 
 		$jobsRun = 0; // counter
 		$flags = JobQueueGroup::USE_CACHE;
