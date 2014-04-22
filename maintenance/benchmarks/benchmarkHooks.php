@@ -29,7 +29,6 @@ require_once __DIR__ . '/Benchmarker.php';
  * @ingroup Benchmark
  */
 class BenchmarkHooks extends Benchmarker {
-
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = 'Benchmark MediaWiki Hooks.';

@@ -31,8 +31,7 @@ require_once __DIR__ . '/Benchmarker.php';
  *
  * @ingroup Benchmark
  */
-class bench_wfIsWindows extends Benchmarker {
-
+class BenchWfIsWindows extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Benchmark for wfIsWindows.";
@@ -65,5 +64,5 @@ class bench_wfIsWindows extends Benchmarker {
 	}
 }
 
-$maintClass = 'bench_wfIsWindows';
+$maintClass = 'BenchWfIsWindows';
 require_once RUN_MAINTENANCE_IF_MAIN;
