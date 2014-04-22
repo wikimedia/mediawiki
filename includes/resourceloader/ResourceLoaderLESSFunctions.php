@@ -37,7 +37,7 @@ class ResourceLoaderLESSFunctions {
 	 */
 	public static function embeddable( $frame, $less ) {
 		$base = pathinfo( $less->parser->sourceName, PATHINFO_DIRNAME );
-		$url = $frame[2][0];
+		$url = trim( $less->compileValue( $frame ), '"\'' );
 		$file = realpath( $base . '/' . $url );
 		return $less->toBool( $file
 			&& strpos( $url, '//' ) === false
@@ -57,11 +57,20 @@ class ResourceLoaderLESSFunctions {
 	 */
 	public static function embed( $frame, $less ) {
 		$base = pathinfo( $less->parser->sourceName, PATHINFO_DIRNAME );
-		$url = $frame[2][0];
+		$url = trim( $less->compileValue( $frame ), '"\'' );
 		$file = realpath( $base . '/' . $url );
 
 		$data = CSSMin::encodeImageAsDataURI( $file );
 		$less->addParsedFile( $file );
 		return 'url(' . $data . ')';
+	}
+
+	public static function compileValue( $less, $value ) {
+		static $reflMethod;
+		if ( $reflMethod === null ) {
+			$reflMethod = new ReflectionMethod( $less, 'compileValue' );
+			$reflMethod->setAccessible( true );
+		}
+		return trim( $reflMethod->invoke( $less, $value ), '"\'' );
 	}
 }
