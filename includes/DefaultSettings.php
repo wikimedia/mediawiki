@@ -362,13 +362,6 @@ $wgDeletedDirectory = false;
 $wgImgAuthDetails = false;
 
 /**
- * If this is enabled, img_auth.php will not allow image access unless the wiki
- * is private. This improves security when image uploads are hosted on a
- * separate domain.
- */
-$wgImgAuthPublicTest = true;
-
-/**
  * Map of relative URL directories to match to internal mwstore:// base storage paths.
  * For img_auth.php requests, everything after "img_auth.php/" is checked to see
  * if starts with any of the prefixes defined here. The prefixes should not overlap.

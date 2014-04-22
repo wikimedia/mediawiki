@@ -12,8 +12,6 @@
  * - Set $wgImgAuthDetails = true if you want the reason the access was denied messages to
  *       be displayed instead of just the 403 error (doesn't work on IE anyway),
  *       otherwise it will only appear in error logs
- * - Set $wgImgAuthPublicTest false if you don't want to just check and see if all are public
- *       must be set to false if using specific restrictions such as LockDown or NSFileRepo
  *
  *  For security reasons, you usually don't want your user to know *why* access was denied,
  *  just that it was. If you want to change this, you can set $wgImgAuthDetails to 'true'
@@ -56,17 +54,10 @@ $factory->commitMasterChanges();
 $factory->shutdown();
 
 function wfImageAuthMain() {
-	global $wgImgAuthPublicTest, $wgImgAuthUrlPathMap;
+	global $wgImgAuthUrlPathMap;
 
 	$request = RequestContext::getMain()->getRequest();
 	$publicWiki = in_array( 'read', User::getGroupPermissions( array( '*' ) ), true );
-
-	// See if this is a public Wiki (no protections).
-	if ( $wgImgAuthPublicTest && $publicWiki ) {
-		// This is a public wiki, so disable this script (for private wikis only)
-		wfForbidden( 'img-auth-accessdenied', 'img-auth-public' );
-		return;
-	}
 
 	// Get the requested file path (source file or thumbnail)
 	$matches = WebRequest::getPathInfo();
