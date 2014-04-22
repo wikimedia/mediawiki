@@ -551,7 +551,7 @@ class SpecialSearch extends SpecialPage {
 		$profile = new ProfileSection( __METHOD__ );
 
 		if ( $result->isBrokenTitle() ) {
-			return "<!-- Broken link in search result -->\n";
+			return '';
 		}
 
 		$title = $result->getTitle();
@@ -583,7 +583,7 @@ class SpecialSearch extends SpecialPage {
 		// The least confusing at this point is to drop the result.
 		// You may get less results, but... oh well. :P
 		if ( $result->isMissingRevision() ) {
-			return "<!-- missing page " . htmlspecialchars( $title->getPrefixedText() ) . "-->\n";
+			return '';
 		}
 
 		// format redirects / relevant sections
@@ -783,7 +783,7 @@ class SpecialSearch extends SpecialPage {
 		$profile = new ProfileSection( __METHOD__ );
 
 		if ( $result->isBrokenTitle() ) {
-			return "<!-- Broken link in search result -->\n";
+			return '';
 		}
 
 		$title = $result->getTitle();
