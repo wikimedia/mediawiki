@@ -129,8 +129,8 @@ class Category {
 	/**
 	 * Factory function.
 	 *
-	 * @param $title Title for the category page
-	 * @return Category|bool on a totally invalid name
+	 * @param Title $title Title for the category page
+	 * @return Category|bool On a totally invalid name
 	 */
 	public static function newFromTitle( $title ) {
 		$cat = new self();
@@ -144,7 +144,7 @@ class Category {
 	/**
 	 * Factory function.
 	 *
-	 * @param $id Integer: a category id
+	 * @param int $id A category id
 	 * @return Category
 	 */
 	public static function newFromID( $id ) {
@@ -156,11 +156,11 @@ class Category {
 	/**
 	 * Factory function, for constructing a Category object from a result set
 	 *
-	 * @param $row Result set row, must contain the cat_xxx fields. If the
+	 * @param object $row Result set row, must contain the cat_xxx fields. If the
 	 *   fields are null, the resulting Category object will represent an empty
 	 *   category if a title object was given. If the fields are null and no
 	 *   title was given, this method fails and returns false.
-	 * @param Title $title optional title object for the category represented by
+	 * @param Title $title Optional title object for the category represented by
 	 *   the given row. May be provided if it is already known, to avoid having
 	 *   to re-create a title object later.
 	 * @return Category
@@ -253,9 +253,9 @@ class Category {
 	/**
 	 * Fetch a TitleArray of up to $limit category members, beginning after the
 	 * category sort key $offset.
-	 * @param $limit integer
-	 * @param $offset string
-	 * @return TitleArray object for category members.
+	 * @param int $limit
+	 * @param string $offset
+	 * @return TitleArray TitleArray object for category members.
 	 */
 	public function getMembers( $limit = false, $offset = '' ) {
 		wfProfileIn( __METHOD__ );

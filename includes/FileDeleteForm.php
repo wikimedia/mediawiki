@@ -303,8 +303,8 @@ class FileDeleteForm {
 	 * showing an appropriate message depending upon whether
 	 * it's a current file or an old version
 	 *
-	 * @param string $message message base
-	 * @return String
+	 * @param string $message Message base
+	 * @return string
 	 */
 	private function prepareMessage( $message ) {
 		global $wgLang;
@@ -336,6 +336,7 @@ class FileDeleteForm {
 	/**
 	 * Is the provided `oldimage` value valid?
 	 *
+	 * @param string $oldimage
 	 * @return bool
 	 */
 	public static function isValidOldSpec( $oldimage ) {
@@ -349,9 +350,9 @@ class FileDeleteForm {
 	 * value was provided, does it correspond to an
 	 * existing, local, old version of this file?
 	 *
-	 * @param $file File
-	 * @param $oldfile File
-	 * @param $oldimage File
+	 * @param File $file
+	 * @param File $oldfile
+	 * @param File $oldimage
 	 * @return bool
 	 */
 	public static function haveDeletableFile( &$file, &$oldfile, $oldimage ) {

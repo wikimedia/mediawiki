@@ -218,7 +218,7 @@ abstract class MediaTransformOutput {
 	}
 
 	/**
-	 * @param $title string
+	 * @param string $title
 	 * @param string|array $params Query parameters to add
 	 * @return array
 	 */

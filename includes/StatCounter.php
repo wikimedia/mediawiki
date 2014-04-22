@@ -36,7 +36,7 @@
  * @ingroup StatCounter
  */
 class StatCounter {
-	/** @var Array */
+	/** @var array */
 	protected $deltas = array(); // (key => count)
 
 	protected function __construct() {}
@@ -56,7 +56,7 @@ class StatCounter {
 	 * Increment a key by delta $count
 	 *
 	 * @param string $key
-	 * @param integer $count
+	 * @param int $count
 	 * @return void
 	 */
 	public function incr( $key, $count = 1 ) {

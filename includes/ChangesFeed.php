@@ -31,8 +31,8 @@ class ChangesFeed {
 	/**
 	 * Constructor
 	 *
-	 * @param string $format feed's format (either 'rss' or 'atom')
-	 * @param string $type type of feed (for cache keys)
+	 * @param string $format Feed's format (either 'rss' or 'atom')
+	 * @param string $type Type of feed (for cache keys)
 	 */
 	public function __construct( $format, $type ) {
 		$this->format = $format;
@@ -42,10 +42,10 @@ class ChangesFeed {
 	/**
 	 * Get a ChannelFeed subclass object to use
 	 *
-	 * @param string $title feed's title
-	 * @param string $description feed's description
-	 * @param string $url url of origin page
-	 * @return ChannelFeed subclass or false on failure
+	 * @param string $title Feed's title
+	 * @param string $description Feed's description
+	 * @param string $url Url of origin page
+	 * @return ChannelFeed|bool ChannelFeed subclass or false on failure
 	 */
 	public function getFeedObject( $title, $description, $url ) {
 		global $wgSitename, $wgLanguageCode, $wgFeedClasses;
@@ -112,9 +112,9 @@ class ChangesFeed {
 	/**
 	 * Save to feed result to $messageMemc
 	 *
-	 * @param string $feed feed's content
-	 * @param string $timekey memcached key of the last modification
-	 * @param string $key memcached key of the content
+	 * @param string $feed Feed's content
+	 * @param string $timekey Memcached key of the last modification
+	 * @param string $key Memcached key of the content
 	 */
 	public function saveToCache( $feed, $timekey, $key ) {
 		global $messageMemc;
@@ -126,10 +126,10 @@ class ChangesFeed {
 	/**
 	 * Try to load the feed result from $messageMemc
 	 *
-	 * @param $lastmod Integer: timestamp of the last item in the recentchanges table
-	 * @param string $timekey memcached key of the last modification
-	 * @param string $key memcached key of the content
-	 * @return string|bool feed's content on cache hit or false on cache miss
+	 * @param int $lastmod Timestamp of the last item in the recentchanges table
+	 * @param string $timekey Memcached key of the last modification
+	 * @param string $key Memcached key of the content
+	 * @return string|bool Feed's content on cache hit or false on cache miss
 	 */
 	public function loadFromCache( $lastmod, $timekey, $key ) {
 		global $wgFeedCacheTimeout, $wgOut, $messageMemc;
@@ -163,8 +163,8 @@ class ChangesFeed {
 
 	/**
 	 * Generate the feed items given a row from the database, printing the feed.
-	 * @param $rows DatabaseBase resource with recentchanges rows
-	 * @param $feed Feed object
+	 * @param object $rows DatabaseBase resource with recentchanges rows
+	 * @param Feed $feed
 	 */
 	public static function generateFeed( $rows, &$feed ) {
 		wfProfileIn( __METHOD__ );
@@ -179,7 +179,7 @@ class ChangesFeed {
 
 	/**
 	 * Generate the feed items given a row from the database.
-	 * @param $rows DatabaseBase resource with recentchanges rows
+	 * @param object $rows DatabaseBase resource with recentchanges rows
 	 */
 	public static function buildItems( $rows ) {
 		wfProfileIn( __METHOD__ );

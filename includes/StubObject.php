@@ -47,10 +47,9 @@ class StubObject {
 	/**
 	 * Constructor.
 	 *
-	 * @param string $global name of the global variable.
-	 * @param string $class name of the class of the real object.
-	 * @param array $params parameters to pass to constructor of the real
-	 *               object.
+	 * @param string $global Name of the global variable.
+	 * @param string $class Name of the class of the real object.
+	 * @param array $params Parameters to pass to constructor of the real object.
 	 */
 	function __construct( $global = null, $class = null, $params = array() ) {
 		$this->mGlobal = $global;
@@ -62,8 +61,8 @@ class StubObject {
 	 * Returns a bool value whenever $obj is a stub object. Can be used to break
 	 * a infinite loop when unstubbing an object.
 	 *
-	 * @param $obj Object to check.
-	 * @return Boolean: true if $obj is not an instance of StubObject class.
+	 * @param object $obj Object to check.
+	 * @return bool True if $obj is not an instance of StubObject class.
 	 */
 	static function isRealObject( $obj ) {
 		return is_object( $obj ) && !$obj instanceof StubObject;
@@ -74,7 +73,7 @@ class StubObject {
 	 * infinite loop when unstubbing an object or to avoid reference parameter
 	 * breakage.
 	 *
-	 * @param $obj Object to check.
+	 * @param object $obj Object to check.
 	 * @return void
 	 */
 	static function unstub( $obj ) {
@@ -90,8 +89,8 @@ class StubObject {
 	 * This function will also call the function with the same name in the real
 	 * object.
 	 *
-	 * @param string $name name of the function called
-	 * @param array $args arguments
+	 * @param string $name Name of the function called
+	 * @param array $args Arguments
 	 * @return mixed
 	 */
 	function _call( $name, $args ) {
@@ -111,8 +110,8 @@ class StubObject {
 	 * Function called by PHP if no function with that name exists in this
 	 * object.
 	 *
-	 * @param string $name name of the function called
-	 * @param array $args arguments
+	 * @param string $name Name of the function called
+	 * @param array $args Arguments
 	 * @return mixed
 	 */
 	function __call( $name, $args ) {
@@ -125,9 +124,9 @@ class StubObject {
 	 * This is public, for the convenience of external callers wishing to access
 	 * properties, e.g. eval.php
 	 *
-	 * @param string $name name of the method called in this object.
-	 * @param $level Integer: level to go in the stack trace to get the function
-	 *               who called this function.
+	 * @param string $name Name of the method called in this object.
+	 * @param int $level Level to go in the stack trace to get the function
+	 *   who called this function.
 	 * @throws MWException
 	 */
 	function _unstub( $name = '_unstub', $level = 2 ) {

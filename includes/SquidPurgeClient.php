@@ -50,8 +50,8 @@ class SquidPurgeClient {
 	var $bodyRemaining;
 
 	/**
-	 * @param $server string
-	 * @param $options array
+	 * @param string $server
+	 * @param array $options
 	 */
 	public function __construct( $server, $options = array() ) {
 		$parts = explode( ':', $server, 2 );
@@ -126,6 +126,7 @@ class SquidPurgeClient {
 	/**
 	 * Get the host's IP address.
 	 * Does not support IPv6 at present due to the lack of a convenient interface in PHP.
+	 * @return string
 	 */
 	protected function getIP() {
 		if ( $this->ip === null ) {
@@ -173,7 +174,7 @@ class SquidPurgeClient {
 	/**
 	 * Queue a purge operation
 	 *
-	 * @param $url string
+	 * @param string $url
 	 */
 	public function queuePurge( $url ) {
 		global $wgSquidPurgeUseHostHeader;
@@ -323,7 +324,7 @@ class SquidPurgeClient {
 	}
 
 	/**
-	 * @param $line
+	 * @param string $line
 	 * @return
 	 */
 	protected function processStatusLine( $line ) {
@@ -343,7 +344,7 @@ class SquidPurgeClient {
 	}
 
 	/**
-	 * @param $line string
+	 * @param string $line
 	 */
 	protected function processHeaderLine( $line ) {
 		if ( preg_match( '/^Content-Length: (\d+)$/i', $line, $m ) ) {
@@ -370,7 +371,7 @@ class SquidPurgeClient {
 	}
 
 	/**
-	 * @param $msg string
+	 * @param string $msg
 	 */
 	protected function log( $msg ) {
 		wfDebugLog( 'squid', __CLASS__ . " ($this->host): $msg" );
@@ -386,7 +387,7 @@ class SquidPurgeClientPool {
 	var $timeout = 5;
 
 	/**
-	 * @param $options array
+	 * @param array $options
 	 */
 	function __construct( $options = array() ) {
 		if ( isset( $options['timeout'] ) ) {
@@ -395,7 +396,7 @@ class SquidPurgeClientPool {
 	}
 
 	/**
-	 * @param $client SquidPurgeClient
+	 * @param SquidPurgeClient $client
 	 * @return void
 	 */
 	public function addClient( $client ) {

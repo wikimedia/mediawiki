@@ -141,7 +141,7 @@ class ProtectionForm {
 	/**
 	 * Get the expiry time for a given action, by combining the relevant inputs.
 	 *
-	 * @param $action string
+	 * @param string $action
 	 *
 	 * @return string 14-char timestamp or "infinity", or false if the input was invalid
 	 */
@@ -192,7 +192,7 @@ class ProtectionForm {
 	/**
 	 * Show the input form with optional error message
 	 *
-	 * @param string $err error message or null if there's no error
+	 * @param string $err Error message or null if there's no error
 	 */
 	function show( $err = null ) {
 		global $wgOut;
@@ -247,7 +247,7 @@ class ProtectionForm {
 	/**
 	 * Save submitted protection form
 	 *
-	 * @return Boolean: success
+	 * @return bool Success
 	 */
 	function save() {
 		global $wgRequest, $wgUser, $wgOut;
@@ -322,7 +322,7 @@ class ProtectionForm {
 	/**
 	 * Build the input form
 	 *
-	 * @return String: HTML form
+	 * @return string HTML form
 	 */
 	function buildForm() {
 		global $wgUser, $wgLang, $wgOut;
@@ -537,9 +537,9 @@ class ProtectionForm {
 	/**
 	 * Build protection level selector
 	 *
-	 * @param string $action action to protect
-	 * @param string $selected current protection level
-	 * @return String: HTML fragment
+	 * @param string $action Action to protect
+	 * @param string $selected Current protection level
+	 * @return string HTML fragment
 	 */
 	function buildSelector( $action, $selected ) {
 		global $wgUser;
@@ -569,8 +569,8 @@ class ProtectionForm {
 	/**
 	 * Prepare the label for a protection selector option
 	 *
-	 * @param string $permission permission required
-	 * @return String
+	 * @param string $permission Permission required
+	 * @return string
 	 */
 	private function getOptionLabel( $permission ) {
 		if ( $permission == '' ) {
@@ -604,7 +604,7 @@ class ProtectionForm {
 	/**
 	 * Show protection long extracts for this page
 	 *
-	 * @param $out OutputPage
+	 * @param OutputPage $out
 	 * @access private
 	 */
 	function showLogExtract( &$out ) {

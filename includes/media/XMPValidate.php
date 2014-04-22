@@ -142,7 +142,7 @@ class XMPValidate {
 	 * choices. (closed choice)
 	 *
 	 * @param array $info Information about current property
-	 * @param &$val Mixed current value to validate
+	 * @param mixed &$val Current value to validate
 	 * @param bool $standalone If this is a simple property or array
 	 */
 	public static function validateClosed( $info, &$val, $standalone ) {
@@ -172,7 +172,7 @@ class XMPValidate {
 	 * function to validate and modify flash structure
 	 *
 	 * @param array $info Information about current property
-	 * @param &$val Mixed current value to validate
+	 * @param mixed &$val Current value to validate
 	 * @param bool $standalone If this is a simple property or array
 	 */
 	public static function validateFlash( $info, &$val, $standalone ) {
@@ -206,7 +206,7 @@ class XMPValidate {
 	 * @see http://www.adobe.com/devnet/xmp/pdfs/XMPSpecificationPart1.pdf page 30 (section 8.2.2.5)
 	 *
 	 * @param array $info Information about current property
-	 * @param &$val Mixed current value to validate
+	 * @param mixed &$val Current value to validate
 	 * @param bool $standalone If this is a simple property or array
 	 */
 	public static function validateLangCode( $info, &$val, $standalone ) {

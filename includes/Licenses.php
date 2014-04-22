@@ -47,7 +47,7 @@ class Licenses extends HTMLFormField {
 	/**
 	 * Constructor
 	 *
-	 * @param $params array
+	 * @param array $params
 	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );
@@ -89,7 +89,7 @@ class Licenses extends HTMLFormField {
 	}
 
 	/**
-	 * @param $str
+	 * @param string $str
 	 * @return array
 	 */
 	protected function trimStars( $str ) {
@@ -98,9 +98,9 @@ class Licenses extends HTMLFormField {
 	}
 
 	/**
-	 * @param $list
-	 * @param $path
-	 * @param $item
+	 * @param array $list
+	 * @param array $path
+	 * @param mixed $item
 	 */
 	protected function stackItem( &$list, $path, $item ) {
 		$position =& $list;
@@ -113,8 +113,8 @@ class Licenses extends HTMLFormField {
 	}
 
 	/**
-	 * @param $tagset
-	 * @param $depth int
+	 * @param array $tagset
+	 * @param int $depth
 	 */
 	protected function makeHtml( $tagset, $depth = 0 ) {
 		foreach ( $tagset as $key => $val ) {
@@ -139,10 +139,10 @@ class Licenses extends HTMLFormField {
 	}
 
 	/**
-	 * @param $message
-	 * @param $value
-	 * @param $attribs null
-	 * @param $depth int
+	 * @param string $message
+	 * @param string $value
+	 * @param null|array $attribs
+	 * @param int $depth
 	 * @return string
 	 */
 	protected function outputOption( $message, $value, $attribs = null, $depth = 0 ) {
@@ -171,7 +171,7 @@ class Licenses extends HTMLFormField {
 	/**
 	 * Accessor for $this->html
 	 *
-	 * @param $value bool
+	 * @param bool $value
 	 *
 	 * @return string
 	 */
