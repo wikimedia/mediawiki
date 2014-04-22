@@ -27,14 +27,16 @@ require __DIR__ . '/../commandLine.inc';
 
 if ( count( $args ) < 1 ) {
 	echo "Usage: php recompressTracked.php [options] <cluster> [... <cluster>...]
-Moves blobs indexed by trackBlobs.php to a specified list of destination clusters, and recompresses them in the process. Restartable.
+Moves blobs indexed by trackBlobs.php to a specified list of destination clusters,
+and recompresses them in the process. Restartable.
 
 Options:
-	--procs <procs>         Set the number of child processes (default 1)
-	--copy-only             Copy only, do not update the text table. Restart without this option to complete.
-	--debug-log <file>      Log debugging data to the specified file
-	--info-log <file>       Log progress messages to the specified file
-	--critical-log <file>   Log error messages to the specified file
+	--procs <procs>       Set the number of child processes (default 1)
+	--copy-only           Copy only, do not update the text table. Restart
+	                      without this option to complete.
+	--debug-log <file>    Log debugging data to the specified file
+	--info-log <file>     Log progress messages to the specified file
+	--critical-log <file> Log error messages to the specified file
 ";
 	exit( 1 );
 }
@@ -63,8 +65,15 @@ class RecompressTracked {
 	public $debugLog, $infoLog, $criticalLog;
 	public $store;
 
-	static $optionsWithArgs = array( 'procs', 'slave-id', 'debug-log', 'info-log', 'critical-log' );
-	static $cmdLineOptionMap = array(
+	private static $optionsWithArgs = array(
+		'procs',
+		'slave-id',
+		'debug-log',
+		'info-log',
+		'critical-log'
+	);
+
+	private static $cmdLineOptionMap = array(
 		'no-count' => 'noCount',
 		'procs' => 'numProcs',
 		'copy-only' => 'copyOnly',
