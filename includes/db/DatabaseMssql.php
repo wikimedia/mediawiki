@@ -215,7 +215,9 @@ class DatabaseMssql extends DatabaseBase {
 
 				foreach ( $errors as $err ) {
 					if ( $err['SQLSTATE'] == '23000' && $err['code'] == '2601' ) {
-						continue; // duplicate key error
+						continue; // duplicate key error caused by unique index
+					} elseif ( $err['SQLSTATE'] == '23000' && $err['code'] == '2627' ) {
+						continue; // duplicate key error caused by primary key
 					} elseif ( $err['SQLSTATE'] == '01000' && $err['code'] == '3621' ) {
 						continue; // generic "the statement has been terminated" error
 					}
@@ -991,18 +993,22 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * @param string $table
 	 * @param string $fname
-	 * @param bool $schema
 	 * @return bool
 	 */
-	public function tableExists( $table, $fname = __METHOD__, $schema = false ) {
-		$res = sqlsrv_query( $this->mConn, "SELECT * FROM information_schema.tables
-			WHERE table_type='BASE TABLE' AND table_name = '$table'" );
-		if ( $res === false ) {
-			print "Error in tableExists query: " . $this->lastError();
-
+	public function tableExists( $table, $fname = __METHOD__ ) {
+		list( $db, $schema, $table ) = $this->tableName( $table, 'split' );
+		
+		if ( $db !== false ) {
+			// remote database
+			wfDebug( "Attempting to call tableExists on a remote table" );
 			return false;
 		}
-		if ( sqlsrv_fetch( $res ) ) {
+		
+		$res = $this->query( "SELECT 1 FROM INFORMATION_SCHEMA.TABLES
+			WHERE TABLE_TYPE = 'BASE TABLE'
+			AND TABLE_SCHEMA = '$schema' AND TABLE_NAME = '$table'" );
+
+		if ( $res->numRows() ) {
 			return true;
 		} else {
 			return false;
@@ -1017,15 +1023,18 @@ class DatabaseMssql extends DatabaseBase {
 	 * @return bool
 	 */
 	public function fieldExists( $table, $field, $fname = __METHOD__ ) {
-		$table = $this->tableName( $table );
-		$res = sqlsrv_query( $this->mConn, "SELECT DATA_TYPE FROM INFORMATION_SCHEMA.Columns
-			WHERE TABLE_NAME = '$table' AND COLUMN_NAME = '$field'" );
-		if ( $res === false ) {
-			print "Error in fieldExists query: " . $this->lastError();
+		list( $db, $schema, $table ) = $this->tableName( $table, 'split' );
 
+		if ( $db !== false ) {
+			// remote database
+			wfDebug( "Attempting to call fieldExists on a remote table" );
 			return false;
 		}
-		if ( sqlsrv_fetch( $res ) ) {
+		
+		$res = $this->query( "SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS
+			WHERE TABLE_SCHEMA = '$schema' AND TABLE_NAME = '$table' AND COLUMN_NAME = '$field'" );
+
+		if ( $res->numRows() ) {
 			return true;
 		} else {
 			return false;
@@ -1033,15 +1042,18 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	public function fieldInfo( $table, $field ) {
-		$table = $this->tableName( $table );
-		$res = sqlsrv_query( $this->mConn, "SELECT * FROM INFORMATION_SCHEMA.Columns
-			WHERE TABLE_NAME = '$table' AND COLUMN_NAME = '$field'" );
-		if ( $res === false ) {
-			print "Error in fieldInfo query: " . $this->lastError();
-
+		list( $db, $schema, $table ) = $this->tableName( $table, 'split' );
+		
+		if ( $db !== false ) {
+			// remote database
+			wfDebug( "Attempting to call fieldInfo on a remote table" );
 			return false;
 		}
-		$meta = $this->fetchRow( $res );
+		
+		$res = $this->query( "SELECT * FROM INFORMATION_SCHEMA.COLUMNS
+			WHERE TABLE_SCHEMA = '$schema' AND TABLE_NAME = '$table' AND COLUMN_NAME = '$field'" );
+
+		$meta = $res->fetchRow();
 		if ( $meta ) {
 			return new MssqlField( $meta );
 		}
@@ -1323,11 +1335,20 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * call this instead of tableName() in the updater when renaming tables
 	 * @param string $name
-	 * @param string $format
+	 * @param string $format One of quoted, raw, or split
 	 * @return string
 	 */
 	function realTableName( $name, $format = 'quoted' ) {
-		return parent::tableName( $name, $format );
+		$table = parent::tableName( $name, $format );
+		if ( $format == 'split' ) {
+			// Used internally, we want the schema split off from the table name and returned
+			// as a list with 3 elements (database, schema, table)
+			$table = explode( '.', $table );
+			if ( count( $table ) == 2 ) {
+				array_unshift( $table, false );
+			}
+		}
+		return $table;
 	}
 
 	/**
