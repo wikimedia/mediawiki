@@ -408,8 +408,10 @@ class LocalFile extends File {
 	/**
 	 * Load lazy file metadata from the DB.
 	 * This covers fields that are sometimes not cached.
+	 *
+	 * @param integer $flags
 	 */
-	protected function loadExtraFromDB() {
+	protected function loadExtraFromDB( $flags = 0 ) {
 		# Polymorphic function name to distinguish foreign and local fetches
 		$fname = get_class( $this ) . '::' . __FUNCTION__;
 		wfProfileIn( $fname );
@@ -417,19 +419,30 @@ class LocalFile extends File {
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
 		$this->extraDataLoaded = true;
 
-		$dbr = $this->repo->getSlaveDB();
-		// In theory the file could have just been renamed/deleted...oh well
-		$row = $dbr->selectRow( 'image', $this->getLazyCacheFields( 'img_' ),
-			array( 'img_name' => $this->getName() ), $fname );
+		$dbr = ( $flags & self::LOAD_VIA_SLAVE )
+			? $this->repo->getSlaveDB()
+			: $this->repo->getMasterDB();
 
-		if ( !$row ) { // fallback to master
-			$dbr = $this->repo->getMasterDB();
-			$row = $dbr->selectRow( 'image', $this->getLazyCacheFields( 'img_' ),
-				array( 'img_name' => $this->getName() ), $fname );
+		$fieldMap = false;
+		$row = $dbr->selectRow( 'image', $this->getLazyCacheFields( 'img_' ),
+			array( 'img_name' => $this->getName(), 'img_timestamp' => $this->getTimestamp() ),
+			$fname
+		);
+		if ( $row ) {
+			$fieldMap = $this->unprefixRow( $row, 'img_' );
+		} else {
+			# File may have been uploaded over in the meantime; check the old versions
+			$row = $dbr->selectRow( 'oldimage', $this->getLazyCacheFields( 'oi_' ),
+				array( 'oi_name' => $this->getName(), 'oi_timestamp' => $this->getTimestamp() ),
+				$fname
+			);
+			if ( $row ) {
+				$fieldMap = $this->unprefixRow( $row, 'oi_' );
+			}
 		}
 
-		if ( $row ) {
-			foreach ( $this->unprefixRow( $row, 'img_' ) as $name => $value ) {
+		if ( $fieldMap ) {
+			foreach ( $fieldMap as $name => $value ) {
 				$this->$name = $value;
 			}
 		} else {
@@ -524,7 +537,7 @@ class LocalFile extends File {
 			$this->dataLoaded = true;
 		}
 		if ( ( $flags & self::LOAD_ALL ) && !$this->extraDataLoaded ) {
-			$this->loadExtraFromDB();
+			$this->loadExtraFromDB( $this->isVolatile() ? 0 : self::LOAD_VIA_SLAVE );
 		}
 	}
 
@@ -1911,10 +1924,13 @@ class LocalFile extends File {
 
 		$key = $this->repo->getSharedCacheKey( 'file-volatile', md5( $this->getName() ) );
 		if ( $key ) {
-			if ( $this->lastMarkedVolatile && ( time() - $this->lastMarkedVolatile ) <= self::VOLATILE_TTL ) {
+			if ( $this->lastMarkedVolatile
+				&& ( time() - $this->lastMarkedVolatile ) <= self::VOLATILE_TTL
+			) {
 				return true; // sanity
 			}
-			return ( $wgMemc->get( $key ) !== false );
+			$this->lastMarkedVolatile = (int)$wgMemc->get( $key );
+			return ( $this->lastMarkedVolatile != 0 );
 		}
 
 		return false;
