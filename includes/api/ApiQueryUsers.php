@@ -33,6 +33,23 @@ class ApiQueryUsers extends ApiQueryBase {
 
 	private $tokenFunctions, $prop;
 
+	/**
+	 * Properties whose contents does not depend on who is looking at them. If the usprops field
+	 * contains anything not listed here, the cache mode will never be public for logged-in users.
+	 * @var array
+	 */
+	protected static $publicProps = array(
+		// everything except 'blockinfo' which might show hidden records if the user
+		// making the request has the appropriate permissions
+		'groups',
+		'implicitgroups',
+		'rights',
+		'editcount',
+		'registration',
+		'emailable',
+		'gender',
+	);
+
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'us' );
 	}
@@ -271,7 +288,13 @@ class ApiQueryUsers extends ApiQueryBase {
 	}
 
 	public function getCacheMode( $params ) {
-		return isset( $params['token'] ) ? 'private' : 'anon-public-user-private';
+		if ( isset( $params['token'] ) ) {
+			return 'private';
+		} else if ( array_diff( $params['prop'], static::$publicProps ) ) {
+			return 'anon-public-user-private';
+		} else {
+			return 'public';
+		}
 	}
 
 	public function getAllowedParams() {
