@@ -29,7 +29,7 @@ class CLDRPluralRuleConverterOperator extends CLDRPluralRuleConverterFragment {
 	 *
 	 * @var array
 	 */
-	static $opTypes = array(
+	private static $opTypes = array(
 		'or' => 'bbb',
 		'and' => 'bbb',
 		'is' => 'nnb',
@@ -48,7 +48,7 @@ class CLDRPluralRuleConverterOperator extends CLDRPluralRuleConverterFragment {
 	 *
 	 * @var array
 	 */
-	static $typeSpecMap = array(
+	private static $typeSpecMap = array(
 		'b' => 'boolean',
 		'n' => 'number',
 		'r' => 'range',
@@ -57,7 +57,7 @@ class CLDRPluralRuleConverterOperator extends CLDRPluralRuleConverterFragment {
 	/**
 	 * Map for converting the new operators introduced in Rev 33 to the old forms
 	 */
-	static $aliasMap = array(
+	private static $aliasMap = array(
 		'%' => 'mod',
 		'!=' => 'not-in',
 		'=' => 'in'

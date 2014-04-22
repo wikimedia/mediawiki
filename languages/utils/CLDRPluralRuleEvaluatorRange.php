@@ -38,7 +38,8 @@ class CLDRPluralRuleEvaluatorRange {
 	 * Determine if the given number is inside the range.
 	 *
 	 * @param int $number The number to check
-	 * @param bool $integerConstraint If true, also asserts the number is an integer; otherwise, number simply has to be inside the range.
+	 * @param bool $integerConstraint If true, also asserts the number is an integer;
+	 *   otherwise, number simply has to be inside the range.
 	 * @return bool True if the number is inside the range; otherwise, false.
 	 */
 	function isNumberIn( $number, $integerConstraint = true ) {
