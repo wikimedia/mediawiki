@@ -16,7 +16,8 @@
 			"Byfserag",
 			"Hudafu",
 			"Liuxinyu970226",
-			"Qiyue2001"
+			"Qiyue2001",
+			"Kuailong"
 		]
 	},
 	"config-desc": "MediaWiki安装程序",
@@ -194,6 +195,7 @@
 	"config-mysql-utf8": "UTF-8",
 	"config-mysql-charset-help": "在'''二进制模式'''下，MediaWiki会将UTF-8编码的文本存于数据库的二进制字段中。相对于MySQL的UTF-8模式，这种方法效率更高，并允许您使用全范围的Unicode字符。\n\n在'''UTF-8模式'''下，MySQL将知道您数据使用的字符集，并能适当地提供和转换内容。但这样做您将无法在数据库中存储[//zh.wikipedia.org/wiki/基本多文种平面 基本多文种平面]以外的字符。",
 	"config-mssql-auth": "身份验证类型：",
+	"config-mssql-install-auth": "选择安装过程中链接数据库时将采用的身份验证方式。\n如果您选择“{{int:config-mssql-windowsauth}}”，将使用运行服务器的用户的身份凭据。",
 	"config-mssql-web-auth": "选择Web服务器在通常wiki操作期间用来连接数据库服务器的身份验证方式。\n如果您选择“{{int:config-mssql-windowsauth}}”，将使用运行Web服务器的用户的凭据。",
 	"config-mssql-sqlauth": "SQL Server 身份验证",
 	"config-mssql-windowsauth": "Windows 身份验证",
