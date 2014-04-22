@@ -38,7 +38,6 @@ define( 'H_HAMZA', 'ٴ' ); # U+0674 ARABIC LETTER HIGH HAMZA
  * @ingroup Language
  */
 class KkConverter extends LanguageConverter {
-
 	protected $mCyrl2Latn, $mLatn2Cyrl, $mCyLa2Arab;
 
 	/**
@@ -326,14 +325,22 @@ class KkConverter extends LanguageConverter {
 		// disable conversion variables like $1, $2...
 		$varsfix = '\$[0-9]';
 
-		$matches = preg_split( '/' . $varsfix . '[^' . $letters . ']+/u', $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
+		$matches = preg_split(
+			'/' . $varsfix . '[^' . $letters . ']+/u',
+			$text,
+			-1,
+			PREG_SPLIT_OFFSET_CAPTURE
+		);
+
 		$mstart = 0;
 		$ret = '';
+
 		foreach ( $matches as $m ) {
 			$ret .= substr( $text, $mstart, $m[1] -$mstart );
 			$ret .= $this->regsConverter( $m[0], $toVariant );
 			$mstart = $m[1] + strlen( $m[0] );
 		}
+
 		return $ret;
 	}
 
@@ -350,9 +357,9 @@ class KkConverter extends LanguageConverter {
 		switch ( $toVariant ) {
 			case 'kk-arab':
 			case 'kk-cn':
-				$letters = KK_C_LC . KK_C_UC/*.KK_L_LC.KK_L_UC*/;
-				$front = 'әөүіӘӨҮІ'/*.'äöüiÄÖÜİ'*/;
-				$excludes = 'еэгғкқЕЭГҒКҚ'/*.'eégğkqEÉGĞKQ'*/;
+				$letters = KK_C_LC . KK_C_UC; /*.KK_L_LC.KK_L_UC*/
+				$front = 'әөүіӘӨҮІ'; /*.'äöüiÄÖÜİ'*/
+				$excludes = 'еэгғкқЕЭГҒКҚ'; /*.'eégğkqEÉGĞKQ'*/
 				// split text to words
 				$matches = preg_split( '/[\b\s\-\.:]+/', $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
 				$mstart = 0;
@@ -362,7 +369,9 @@ class KkConverter extends LanguageConverter {
 					// is matched the word to front vowels?
 					// exclude a words matched to е, э, г, к, к, қ,
 					// them should be without hamza
-					if ( preg_match( '/[' . $front . ']/u', $m[0] ) && !preg_match( '/[' . $excludes . ']/u', $m[0] ) ) {
+					if ( preg_match( '/[' . $front . ']/u', $m[0] )
+						&& !preg_match( '/[' . $excludes . ']/u', $m[0] )
+					) {
 						$ret .= preg_replace( '/[' . $letters . ']+/u', H_HAMZA . '$0', $m[0] );
 					} else {
 						$ret .= $m[0];
@@ -401,7 +410,6 @@ class KkConverter extends LanguageConverter {
 	function convertCategoryKey( $key ) {
 		return $this->autoConvert( $key, 'kk' );
 	}
-
 }
 
 /**
@@ -411,7 +419,6 @@ class KkConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageKk extends LanguageKk_cyrl {
-
 	function __construct() {
 		global $wgHooks;
 		parent::__construct();

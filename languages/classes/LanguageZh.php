@@ -28,7 +28,6 @@ require_once __DIR__ . '/LanguageZh_hans.php';
  * @ingroup Language
  */
 class ZhConverter extends LanguageConverter {
-
 	/**
 	 * @param Language $langobj
 	 * @param string $maincode
@@ -103,12 +102,22 @@ class ZhConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageZh extends LanguageZh_hans {
-
 	function __construct() {
 		global $wgHooks;
+
 		parent::__construct();
 
-		$variants = array( 'zh', 'zh-hans', 'zh-hant', 'zh-cn', 'zh-hk', 'zh-mo', 'zh-my', 'zh-sg', 'zh-tw' );
+		$variants = array(
+			'zh',
+			'zh-hans',
+			'zh-hant',
+			'zh-cn',
+			'zh-hk',
+			'zh-mo',
+			'zh-my',
+			'zh-sg',
+			'zh-tw'
+		);
 
 		$variantfallbacks = array(
 			'zh' => array( 'zh-hans', 'zh-hant', 'zh-cn', 'zh-tw', 'zh-hk', 'zh-sg', 'zh-mo', 'zh-my' ),
@@ -187,4 +196,3 @@ class LanguageZh extends LanguageZh_hans {
 		return $ret;
 	}
 }
-

@@ -52,7 +52,8 @@ class LanguageSl extends Language {
 				break;
 		}
 
-		return $word; # this will return the original value for 'imenovalnik' (nominativ) and all undefined case values
+		# this will return the original value for 'imenovalnik' (nominativ) and
+		# all undefined case values.
+		return $word;
 	}
-
 }
