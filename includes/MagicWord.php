@@ -231,7 +231,7 @@ class MagicWord {
 	/**
 	 * Factory: creates an object representing an ID
 	 *
-	 * @param $id
+	 * @param int $id
 	 *
 	 * @return MagicWord
 	 */
@@ -269,7 +269,7 @@ class MagicWord {
 	/**
 	 * Allow external reads of TTL array
 	 *
-	 * @param $id int
+	 * @param int $id
 	 * @return array
 	 */
 	static function getCacheTTL( $id ) {
@@ -304,7 +304,7 @@ class MagicWord {
 	/**
 	 * Initialises this object with an ID
 	 *
-	 * @param $id
+	 * @param int $id
 	 * @throws MWException
 	 */
 	function load( $id ) {
@@ -351,8 +351,8 @@ class MagicWord {
 	 * first string is longer, the same length or shorter than the second
 	 * string.
 	 *
-	 * @param $s1 string
-	 * @param $s2 string
+	 * @param string $s1
+	 * @param string $s2
 	 *
 	 * @return int
 	 */
@@ -435,7 +435,7 @@ class MagicWord {
 	/**
 	 * Returns true if the text contains the word
 	 *
-	 * @param $text string
+	 * @param string $text
 	 *
 	 * @return bool
 	 */
@@ -446,7 +446,7 @@ class MagicWord {
 	/**
 	 * Returns true if the text starts with the word
 	 *
-	 * @param $text string
+	 * @param string $text
 	 *
 	 * @return bool
 	 */
@@ -457,7 +457,7 @@ class MagicWord {
 	/**
 	 * Returns true if the text matched the word
 	 *
-	 * @param $text string
+	 * @param string $text
 	 *
 	 * @return bool
 	 * @since 1.23
@@ -472,7 +472,7 @@ class MagicWord {
 	 * part in the regex and the matched variable part ($1) if there
 	 * is one.
 	 *
-	 * @param $text string
+	 * @param string $text
 	 *
 	 * @return string
 	 */
@@ -501,7 +501,7 @@ class MagicWord {
 	 * Returns true if the text matches the word, and alters the
 	 * input string, removing all instances of the word
 	 *
-	 * @param $text string
+	 * @param string $text
 	 *
 	 * @return bool
 	 */
@@ -512,7 +512,7 @@ class MagicWord {
 	}
 
 	/**
-	 * @param $text
+	 * @param string $text
 	 * @return bool
 	 */
 	function matchStartAndRemove( &$text ) {
@@ -534,9 +534,9 @@ class MagicWord {
 	/**
 	 * Replaces the word with something else
 	 *
-	 * @param $replacement
-	 * @param $subject
-	 * @param $limit int
+	 * @param string $replacement
+	 * @param string $subject
+	 * @param int $limit
 	 *
 	 * @return string
 	 */
@@ -551,8 +551,8 @@ class MagicWord {
 	 * Calls back a function to determine what to replace xxx with
 	 * Input word must contain $1
 	 *
-	 * @param $text string
-	 * @param $callback
+	 * @param string $text
+	 * @param callable $callback
 	 *
 	 * @return string
 	 */
@@ -589,7 +589,7 @@ class MagicWord {
 	/**
 	 * Accesses the synonym list directly
 	 *
-	 * @param $i int
+	 * @param int $i
 	 *
 	 * @return string
 	 */
@@ -621,9 +621,9 @@ class MagicWord {
 	 * $result. The return value is true if something was replaced.
 	 * @todo Should this be static? It doesn't seem to be used at all
 	 *
-	 * @param $magicarr
-	 * @param $subject
-	 * @param $result
+	 * @param array $magicarr
+	 * @param string $subject
+	 * @param string $result
 	 *
 	 * @return bool
 	 */
@@ -644,8 +644,8 @@ class MagicWord {
 	 * Adds all the synonyms of this MagicWord to an array, to allow quick
 	 * lookup in a list of magic words
 	 *
-	 * @param $array
-	 * @param $value
+	 * @param array $array
+	 * @param string $value
 	 */
 	function addToArray( &$array, $value ) {
 		global $wgContLang;
@@ -680,7 +680,7 @@ class MagicWordArray {
 	var $matches;
 
 	/**
-	 * @param $names array
+	 * @param array $names
 	 */
 	function __construct( $names = array() ) {
 		$this->names = $names;
@@ -689,7 +689,7 @@ class MagicWordArray {
 	/**
 	 * Add a magic word by name
 	 *
-	 * @param $name string
+	 * @param string $name
 	 */
 	public function add( $name ) {
 		$this->names[] = $name;
@@ -699,7 +699,7 @@ class MagicWordArray {
 	/**
 	 * Add a number of magic words by name
 	 *
-	 * @param $names array
+	 * @param array $names
 	 */
 	public function addArray( $names ) {
 		$this->names = array_merge( $this->names, array_values( $names ) );
@@ -824,7 +824,7 @@ class MagicWordArray {
 	 * Returns array(magic word ID, parameter value)
 	 * If there is no parameter value, that element will be false.
 	 *
-	 * @param $m array
+	 * @param array $m
 	 *
 	 * @throws MWException
 	 * @return array
@@ -855,7 +855,7 @@ class MagicWordArray {
 	 * parameter in the second element.
 	 * Both elements are false if there was no match.
 	 *
-	 * @param $text string
+	 * @param string $text
 	 *
 	 * @return array
 	 */
@@ -876,7 +876,7 @@ class MagicWordArray {
 	 * Match some text, without parameter capture
 	 * Returns the magic word name, or false if there was no capture
 	 *
-	 * @param $text string
+	 * @param string $text
 	 *
 	 * @return string|bool False on failure
 	 */
@@ -897,7 +897,7 @@ class MagicWordArray {
 	 * Returns an associative array, ID => param value, for all items that match
 	 * Removes the matched items from the input string (passed by reference)
 	 *
-	 * @param $text string
+	 * @param string $text
 	 *
 	 * @return array
 	 */
@@ -924,7 +924,7 @@ class MagicWordArray {
 	 * Return false if no match found and $text is not modified.
 	 * Does not match parameters.
 	 *
-	 * @param $text string
+	 * @param string $text
 	 *
 	 * @return int|bool False on failure
 	 */

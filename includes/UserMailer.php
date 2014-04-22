@@ -31,9 +31,9 @@
  */
 class MailAddress {
 	/**
-	 * @param string|User $address string with an email address, or a User object
-	 * @param string $name human-readable name if a string address is given
-	 * @param string $realName human-readable real name if a string address is given
+	 * @param string|User $address String with an email address, or a User object
+	 * @param string $name Human-readable name if a string address is given
+	 * @param string $realName Human-readable real name if a string address is given
 	 */
 	function __construct( $address, $name = null, $realName = null ) {
 		if ( is_object( $address ) && $address instanceof User ) {
@@ -86,10 +86,10 @@ class UserMailer {
 	/**
 	 * Send mail using a PEAR mailer
 	 *
-	 * @param $mailer
-	 * @param $dest
-	 * @param $headers
-	 * @param $body
+	 * @param UserMailer $mailer
+	 * @param string $dest
+	 * @param string $headers
+	 * @param string $body
 	 *
 	 * @return Status
 	 */
@@ -115,7 +115,7 @@ class UserMailer {
 	 * Note RFC2822 says newlines must be CRLF (\r\n)
 	 * but php mail naively "corrects" it and requires \n for the "correction" to work
 	 *
-	 * @return String
+	 * @return string
 	 */
 	static function arrayToHeaderString( $headers, $endl = "\n" ) {
 		$strings = array();
@@ -130,7 +130,7 @@ class UserMailer {
 	/**
 	 * Create a value suitable for the MessageId Header
 	 *
-	 * @return String
+	 * @return string
 	 */
 	static function makeMsgId() {
 		global $wgSMTP, $wgServer;
@@ -151,14 +151,14 @@ class UserMailer {
 	 * array of parameters. It requires PEAR:Mail to do that.
 	 * Otherwise it just uses the standard PHP 'mail' function.
 	 *
-	 * @param $to MailAddress: recipient's email (or an array of them)
-	 * @param $from MailAddress: sender's email
-	 * @param string $subject email's subject.
-	 * @param string $body email's text or Array of two strings to be the text and html bodies
-	 * @param $replyto MailAddress: optional reply-to email (default: null).
-	 * @param string $contentType optional custom Content-Type (default: text/plain; charset=UTF-8)
+	 * @param MailAddress $to Recipient's email (or an array of them)
+	 * @param MailAddress $from Sender's email
+	 * @param string $subject Email's subject.
+	 * @param string $body Email's text or Array of two strings to be the text and html bodies
+	 * @param MailAddress $replyto Optional reply-to email (default: null).
+	 * @param string $contentType Optional custom Content-Type (default: text/plain; charset=UTF-8)
 	 * @throws MWException
-	 * @return Status object
+	 * @return Status
 	 */
 	public static function send( $to, $from, $subject, $body, $replyto = null, $contentType = 'text/plain; charset=UTF-8' ) {
 		global $wgSMTP, $wgEnotifMaxRecips, $wgAdditionalMailParams, $wgAllowHTMLEmail;
@@ -387,8 +387,8 @@ class UserMailer {
 	/**
 	 * Set the mail error message in self::$mErrorString
 	 *
-	 * @param $code Integer: error number
-	 * @param string $string error message
+	 * @param int $code Error number
+	 * @param string $string Error message
 	 */
 	static function errorHandler( $code, $string ) {
 		self::$mErrorString = preg_replace( '/^mail\(\)(\s*\[.*?\])?: /', '', $string );
@@ -405,7 +405,7 @@ class UserMailer {
 
 	/**
 	 * Converts a string into a valid RFC 822 "phrase", such as is used for the sender name
-	 * @param $phrase string
+	 * @param string $phrase
 	 * @return string
 	 */
 	public static function rfc822Phrase( $phrase ) {
@@ -493,13 +493,13 @@ class EmailNotification {
 	 *
 	 * May be deferred via the job queue.
 	 *
-	 * @param $editor User object
-	 * @param $title Title object
-	 * @param $timestamp
-	 * @param $summary
-	 * @param $minorEdit
-	 * @param $oldid (default: false)
-	 * @param $pageStatus (default: 'changed')
+	 * @param User $editor
+	 * @param Title $title
+	 * @param string $timestamp
+	 * @param string $summary
+	 * @param bool $minorEdit
+	 * @param bool $oldid (default: false)
+	 * @param string $pageStatus (default: 'changed')
 	 */
 	public function notifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid = false, $pageStatus = 'changed' ) {
 		global $wgEnotifUseJobQ, $wgEnotifWatchlist, $wgShowUpdatedMarker, $wgEnotifMinorEdits,
@@ -588,13 +588,13 @@ class EmailNotification {
 	 * Send emails corresponding to the user $editor editing the page $title.
 	 * Also updates wl_notificationtimestamp.
 	 *
-	 * @param $editor User object
-	 * @param $title Title object
+	 * @param User $editor
+	 * @param Title $title
 	 * @param string $timestamp Edit timestamp
 	 * @param string $summary Edit summary
-	 * @param $minorEdit bool
+	 * @param bool $minorEdit
 	 * @param int $oldid Revision ID
-	 * @param array $watchers of user IDs
+	 * @param array $watchers Array of user IDs
 	 * @param string $pageStatus
 	 * @throws MWException
 	 */
@@ -671,9 +671,9 @@ class EmailNotification {
 	}
 
 	/**
-	 * @param $editor User
-	 * @param $title Title bool
-	 * @param $minorEdit
+	 * @param User $editor
+	 * @param Title $title
+	 * @param bool $minorEdit
 	 * @return bool
 	 */
 	private function canSendUserTalkEmail( $editor, $title, $minorEdit ) {
@@ -818,7 +818,7 @@ class EmailNotification {
 	 * depending on settings.
 	 *
 	 * Call sendMails() to send any mails that were queued.
-	 * @param $user User
+	 * @param User $user
 	 */
 	function compose( $user ) {
 		global $wgEnotifImpersonal;
@@ -849,8 +849,8 @@ class EmailNotification {
 	 * timestamp in proper timezone, etc) and sends it out.
 	 * Returns true if the mail was sent successfully.
 	 *
-	 * @param $watchingUser User object
-	 * @return Boolean
+	 * @param User $watchingUser
+	 * @return bool
 	 * @private
 	 */
 	function sendPersonalised( $watchingUser ) {
@@ -878,7 +878,7 @@ class EmailNotification {
 	/**
 	 * Same as sendPersonalised but does impersonal mail suitable for bulk
 	 * mailing.  Takes an array of MailAddress objects.
-	 * @param $addresses array
+	 * @param array $addresses
 	 * @return Status|null
 	 */
 	function sendImpersonal( $addresses ) {

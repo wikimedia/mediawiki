@@ -225,7 +225,7 @@ class EditPage {
 
 	/**
 	 * Has a summary been preset using GET parameter &summary= ?
-	 * @var Bool
+	 * @var bool
 	 */
 	var $hasPresetSummary = false;
 
@@ -266,7 +266,7 @@ class EditPage {
 	public $allowNonTextContent = false;
 
 	/**
-	 * @param $article Article
+	 * @param Article $article
 	 */
 	public function __construct( Article $article ) {
 		$this->mArticle = $article;
@@ -296,7 +296,7 @@ class EditPage {
 	/**
 	 * Set the context Title object
 	 *
-	 * @param $title Title object or null
+	 * @param Title|null $title Title object or null
 	 */
 	public function setContextTitle( $title ) {
 		$this->mContextTitle = $title;
@@ -307,7 +307,7 @@ class EditPage {
 	 * If not set, $wgTitle will be returned. This behavior might change in
 	 * the future to return $this->mTitle instead.
 	 *
-	 * @return Title object
+	 * @return Title
 	 */
 	public function getContextTitle() {
 		if ( is_null( $this->mContextTitle ) ) {
@@ -487,8 +487,8 @@ class EditPage {
 	 *   "View source for ..." page displaying the source code after the error message.
 	 *
 	 * @since 1.19
-	 * @param array $permErrors of permissions errors, as returned by
-	 *                    Title::getUserPermissionsErrors().
+	 * @param array $permErrors Array of permissions errors, as returned by
+	 *    Title::getUserPermissionsErrors().
 	 * @throws PermissionsError
 	 */
 	protected function displayPermissionsError( array $permErrors ) {
@@ -625,7 +625,7 @@ class EditPage {
 
 	/**
 	 * This function collects the form data and uses it to populate various member variables.
-	 * @param $request WebRequest
+	 * @param WebRequest $request
 	 * @throws ErrorPageError
 	 */
 	function importFormData( &$request ) {
@@ -819,7 +819,7 @@ class EditPage {
 	 * this method should be overridden and return the page text that will be used
 	 * for saving, preview parsing and so on...
 	 *
-	 * @param $request WebRequest
+	 * @param WebRequest $request
 	 */
 	protected function importContentFormData( &$request ) {
 		return; // Don't do anything, EditPage already extracted wpTextbox1
@@ -828,7 +828,7 @@ class EditPage {
 	/**
 	 * Initialise form fields in the object
 	 * Called on the first invocation, e.g. when a user clicks an edit link
-	 * @return bool -- if the requested section is valid
+	 * @return bool If the requested section is valid
 	 */
 	function initialiseForm() {
 		global $wgUser;
@@ -864,8 +864,8 @@ class EditPage {
 	/**
 	 * Fetch initial editing page content.
 	 *
-	 * @param $def_text string|bool
-	 * @return mixed string on success, $def_text for invalid sections
+	 * @param string|bool $def_text
+	 * @return string|bool string on success, $def_text for invalid sections
 	 * @private
 	 * @deprecated since 1.21, get WikiPage::getContent() instead.
 	 */
@@ -887,7 +887,7 @@ class EditPage {
 	/**
 	 * @param Content|null $def_content The default value to return
 	 *
-	 * @return mixed Content on success, $def_content for invalid sections
+	 * @return Content|null Content on success, $def_content for invalid sections
 	 *
 	 * @since 1.21
 	 */
@@ -1074,7 +1074,7 @@ class EditPage {
 	/**
 	 * Use this method before edit() to preload some text into the edit box
 	 *
-	 * @param $text string
+	 * @param string $text
 	 * @deprecated since 1.21, use setPreloadedContent() instead.
 	 */
 	public function setPreloadedText( $text ) {
@@ -1088,7 +1088,7 @@ class EditPage {
 	/**
 	 * Use this method before edit() to preload some content into the edit box
 	 *
-	 * @param $content Content
+	 * @param Content $content
 	 *
 	 * @since 1.21
 	 */
@@ -1102,7 +1102,7 @@ class EditPage {
 	 *
 	 * @param string $preload representing the title to preload from.
 	 *
-	 * @return String
+	 * @return string
 	 *
 	 * @deprecated since 1.21, use getPreloadedContent() instead
 	 */
@@ -1119,8 +1119,8 @@ class EditPage {
 	 * Get the contents to be preloaded into the box, either set by
 	 * an earlier setPreloadText() or by loading the given page.
 	 *
-	 * @param string $preload representing the title to preload from.
-	 * @param Array $params Parameters to use (interface-message style) in the preloaded text
+	 * @param string $preload Representing the title to preload from.
+	 * @param array $params Parameters to use (interface-message style) in the preloaded text
 	 *
 	 * @return Content
 	 *
@@ -1186,7 +1186,7 @@ class EditPage {
 	/**
 	 * Make sure the form isn't faking a user's credentials.
 	 *
-	 * @param $request WebRequest
+	 * @param WebRequest $request
 	 * @return bool
 	 * @private
 	 */
@@ -1345,7 +1345,7 @@ class EditPage {
 	/**
 	 * Run hooks that can filter edits just before they get saved.
 	 *
-	 * @param Content $content the Content to filter.
+	 * @param Content $content The Content to filter.
 	 * @param Status $status For reporting the outcome to the caller
 	 * @param User $user The user performing the edit
 	 *
@@ -1393,14 +1393,14 @@ class EditPage {
 	/**
 	 * Attempt submission (no UI)
 	 *
-	 * @param array $result array to add statuses to, currently with the possible keys:
+	 * @param array $result Array to add statuses to, currently with the possible keys:
 	 *  spam - string - Spam string from content if any spam is detected by matchSpamRegex
 	 *  sectionanchor - string - Section anchor for a section save
 	 *  nullEdit - boolean - Set if doEditContent is OK.  True if null edit, false otherwise.
 	 *  redirect - boolean -  Set if doEditContent is OK.  True if resulting revision is a redirect
 	 * @param bool $bot True if edit is being made under the bot right.
 	 *
-	 * @return Status object, possibly with a message, but always with one of the AS_* constants in $status->value,
+	 * @return Status Status object, possibly with a message, but always with one of the AS_* constants in $status->value,
 	 *
 	 * FIXME: This interface is TERRIBLE, but hard to get rid of due to various error display idiosyncrasies. There are
 	 * also lots of cases where error metadata is set in the object and retrieved later instead of being returned, e.g.
@@ -1866,7 +1866,7 @@ class EditPage {
 	/**
 	 * Attempts to merge text content with base and current revisions
 	 *
-	 * @param $editText string
+	 * @param string $editText
 	 *
 	 * @return bool
 	 * @deprecated since 1.21, use mergeChangesIntoContent() instead
@@ -1892,7 +1892,7 @@ class EditPage {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $editContent
+	 * @param Content $editContent
 	 *
 	 * @return bool
 	 */
@@ -1948,9 +1948,9 @@ class EditPage {
 	/**
 	 * Check given input text against $wgSpamRegex, and return the text of the first match.
 	 *
-	 * @param $text string
+	 * @param string $text
 	 *
-	 * @return string|bool matching string or false
+	 * @return string|bool Matching string or false
 	 */
 	public static function matchSpamRegex( $text ) {
 		global $wgSpamRegex;
@@ -1962,9 +1962,9 @@ class EditPage {
 	/**
 	 * Check given input text against $wgSummarySpamRegex, and return the text of the first match.
 	 *
-	 * @param $text string
+	 * @param string $text
 	 *
-	 * @return string|bool matching string or false
+	 * @return string|bool Matching string or false
 	 */
 	public static function matchSummarySpamRegex( $text ) {
 		global $wgSummarySpamRegex;
@@ -1973,8 +1973,8 @@ class EditPage {
 	}
 
 	/**
-	 * @param $text string
-	 * @param $regexes array
+	 * @param string $text
+	 * @param array $regexes
 	 * @return bool|string
 	 */
 	protected static function matchSpamRegexInternal( $text, $regexes ) {
@@ -2153,7 +2153,7 @@ class EditPage {
 	 * content.
 	 *
 	 * @param Content|null|bool|string $content
-	 * @return String the editable text form of the content.
+	 * @return string The editable text form of the content.
 	 *
 	 * @throws MWException if $content is not an instance of TextContent and $this->allowNonTextContent is not true.
 	 */
@@ -2206,7 +2206,7 @@ class EditPage {
 
 	/**
 	 * Send the edit form and related headers to $wgOut
-	 * @param $formCallback Callback|null that takes an OutputPage parameter; will be called
+	 * @param callable|null $formCallback That takes an OutputPage parameter; will be called
 	 *     during form output near the top, for captchas and the like.
 	 */
 	function showEditForm( $formCallback = null ) {
@@ -2401,7 +2401,7 @@ class EditPage {
 	 * Extract the section title from current section text, if any.
 	 *
 	 * @param string $text
-	 * @return Mixed|string or false
+	 * @return string|bool string or false
 	 */
 	public static function extractSectionTitle( $text ) {
 		preg_match( "/^(=+)(.+)\\1\\s*(\n|$)/i", $text, $matches );
@@ -2576,8 +2576,8 @@ class EditPage {
 	 *
 	 * @param string $summary The value of the summary input
 	 * @param string $labelText The html to place inside the label
-	 * @param array $inputAttrs of attrs to use on the input
-	 * @param array $spanLabelAttrs of attrs to use on the span inside the label
+	 * @param array $inputAttrs Array of attrs to use on the input
+	 * @param array $spanLabelAttrs Array of attrs to use on the span inside the label
 	 *
 	 * @return array An array in the format array( $label, $input )
 	 */
@@ -2637,7 +2637,7 @@ class EditPage {
 	 * @param bool $isSubjectPreview true if this is the section subject/title
 	 *   up top, or false if this is the comment summary
 	 *   down below the textarea
-	 * @param string $summary the text of the summary to display
+	 * @param string $summary The text of the summary to display
 	 * @return string
 	 */
 	protected function getSummaryPreview( $isSubjectPreview, $summary = "" ) {
@@ -2710,8 +2710,8 @@ HTML
 	 * The $textoverride method can be used by subclasses overriding showContentForm
 	 * to pass back to this method.
 	 *
-	 * @param array $customAttribs of html attributes to use in the textarea
-	 * @param string $textoverride optional text to override $this->textarea1 with
+	 * @param array $customAttribs Array of html attributes to use in the textarea
+	 * @param string $textoverride Optional text to override $this->textarea1 with
 	 */
 	protected function showTextbox1( $customAttribs = null, $textoverride = null ) {
 		if ( $this->wasDeletedSinceLastEdit() && $this->formtype == 'save' ) {
@@ -2817,7 +2817,7 @@ HTML
 	 * Append preview output to $wgOut.
 	 * Includes category rendering if this is a category page.
 	 *
-	 * @param string $text the HTML to be output for the preview.
+	 * @param string $text The HTML to be output for the preview.
 	 */
 	protected function showPreview( $text ) {
 		global $wgOut;
@@ -2946,8 +2946,7 @@ HTML
 	 * Get the copyright warning, by default returns wikitext
 	 *
 	 * @param Title $title
-	 * @param string $format output format, valid values are any function of
-	 *                       a Message object
+	 * @param string $format Output format, valid values are any function of a Message object
 	 * @return string
 	 */
 	public static function getCopyrightWarning( $title, $format = 'plain' ) {
@@ -3106,7 +3105,7 @@ HTML
 	 * variable in the constructor is not enough. This can be used when the
 	 * EditPage lives inside of a Special page rather than a custom page action.
 	 *
-	 * @param $title Title object for which is being edited (where we go to for &action= links)
+	 * @param Title $title Title object for which is being edited (where we go to for &action= links)
 	 * @return string
 	 */
 	protected function getActionURL( Title $title ) {
@@ -3118,6 +3117,7 @@ HTML
 	 * Note that we rely on the logging table, which hasn't been always there,
 	 * but that doesn't matter, because this only applies to brand new
 	 * deletes.
+	 * @return bool
 	 */
 	protected function wasDeletedSinceLastEdit() {
 		if ( $this->deletedSinceEdit !== null ) {
@@ -3313,7 +3313,7 @@ HTML
 	}
 
 	/**
-	 * @return Array
+	 * @return array
 	 */
 	function getTemplates() {
 		if ( $this->preview || $this->section != '' ) {
@@ -3494,7 +3494,7 @@ HTML
 	 * minor and watch
 	 *
 	 * @param int $tabindex Current tabindex
-	 * @param array $checked of checkbox => bool, where bool indicates the checked
+	 * @param array $checked Array of checkbox => bool, where bool indicates the checked
 	 *                 status of the checkbox
 	 *
 	 * @return array
@@ -3673,7 +3673,7 @@ HTML
 	/**
 	 * Show "your edit contains spam" page with your diff and text
 	 *
-	 * @param $match string|Array|bool Text (or array of texts) which triggered one or more filters
+	 * @param string|array|bool $match Text (or array of texts) which triggered one or more filters
 	 */
 	public function spamPageWithContent( $match = false ) {
 		global $wgOut, $wgLang;

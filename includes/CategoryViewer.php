@@ -29,12 +29,12 @@ class CategoryViewer extends ContextSource {
 		$imgsNoGallery;
 
 	/**
-	 * @var Array
+	 * @var array
 	 */
 	var $nextPage;
 
 	/**
-	 * @var Array
+	 * @var array
 	 */
 	var $flip;
 
@@ -69,12 +69,12 @@ class CategoryViewer extends ContextSource {
 	 * Constructor
 	 *
 	 * @since 1.19 $context is a second, required parameter
-	 * @param $title Title
-	 * @param $context IContextSource
+	 * @param Title $title
+	 * @param IContextSource $context
 	 * @param array $from An array with keys page, subcat,
 	 *        and file for offset of results of each section (since 1.17)
 	 * @param array $until An array with 3 keys for until of each section (since 1.17)
-	 * @param $query Array
+	 * @param array $query
 	 */
 	function __construct( $title, IContextSource $context, $from = array(),
 		$until = array(), $query = array()
@@ -162,9 +162,9 @@ class CategoryViewer extends ContextSource {
 
 	/**
 	 * Add a subcategory to the internal lists, using a Category object
-	 * @param $cat Category
-	 * @param $sortkey
-	 * @param $pageLength
+	 * @param Category $cat
+	 * @param string $sortkey
+	 * @param int $pageLength
 	 */
 	function addSubcategoryObject( Category $cat, $sortkey, $pageLength ) {
 		// Subcategory; strip the 'Category' namespace from the link text.
@@ -210,10 +210,10 @@ class CategoryViewer extends ContextSource {
 
 	/**
 	 * Add a page in the image namespace
-	 * @param $title Title
-	 * @param $sortkey
-	 * @param $pageLength
-	 * @param $isRedirect bool
+	 * @param Title $title
+	 * @param string $sortkey
+	 * @param int $pageLength
+	 * @param bool $isRedirect
 	 */
 	function addImage( Title $title, $sortkey, $pageLength, $isRedirect = false ) {
 		global $wgContLang;
@@ -240,10 +240,10 @@ class CategoryViewer extends ContextSource {
 
 	/**
 	 * Add a miscellaneous page
-	 * @param $title
-	 * @param $sortkey
-	 * @param $pageLength
-	 * @param $isRedirect bool
+	 * @param Title $title
+	 * @param string $sortkey
+	 * @param int $pageLength
+	 * @param bool $isRedirect
 	 */
 	function addPage( $title, $sortkey, $pageLength, $isRedirect = false ) {
 		global $wgContLang;
@@ -474,10 +474,10 @@ class CategoryViewer extends ContextSource {
 	 * Format a list of articles chunked by letter, either as a
 	 * bullet list or a columnar format, depending on the length.
 	 *
-	 * @param $articles Array
-	 * @param $articles_start_char Array
-	 * @param $cutoff Int
-	 * @return String
+	 * @param array $articles
+	 * @param array $articles_start_char
+	 * @param int $cutoff
+	 * @return string
 	 * @private
 	 */
 	function formatList( $articles, $articles_start_char, $cutoff = 6 ) {
@@ -507,9 +507,9 @@ class CategoryViewer extends ContextSource {
 	 * More distant TODO: Scrap this and use CSS columns, whenever IE finally
 	 * supports those.
 	 *
-	 * @param $articles Array
-	 * @param $articles_start_char Array
-	 * @return String
+	 * @param array $articles
+	 * @param array $articles_start_char
+	 * @return string
 	 * @private
 	 */
 	static function columnList( $articles, $articles_start_char ) {
@@ -563,9 +563,9 @@ class CategoryViewer extends ContextSource {
 
 	/**
 	 * Format a list of articles chunked by letter in a bullet list.
-	 * @param $articles Array
-	 * @param $articles_start_char Array
-	 * @return String
+	 * @param array $articles
+	 * @param array $articles_start_char
+	 * @return string
 	 * @private
 	 */
 	static function shortList( $articles, $articles_start_char ) {
@@ -590,7 +590,7 @@ class CategoryViewer extends ContextSource {
 	 * @param string $last The 'from' parameter for the generated URL
 	 * @param string $type A prefix for parameters, 'page' or 'subcat' or
 	 *     'file'
-	 * @return String HTML
+	 * @return string HTML
 	 */
 	private function pagingLinks( $first, $last, $type = '' ) {
 		$prevLink = $this->msg( 'prevn' )->numParams( $this->limit )->escaped();

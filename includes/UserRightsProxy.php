@@ -31,10 +31,10 @@ class UserRightsProxy {
 	 *
 	 * @see newFromId()
 	 * @see newFromName()
-	 * @param $db DatabaseBase: db connection
-	 * @param string $database database name
-	 * @param string $name user name
-	 * @param $id Integer: user ID
+	 * @param DatabaseBase $db Db connection
+	 * @param string $database Database name
+	 * @param string $name User name
+	 * @param int $id User ID
 	 */
 	private function __construct( $db, $database, $name, $id ) {
 		$this->db = $db;
@@ -47,7 +47,7 @@ class UserRightsProxy {
 	/**
 	 * Accessor for $this->database
 	 *
-	 * @return String: database name
+	 * @return string Database name
 	 */
 	public function getDBName() {
 		return $this->database;
@@ -56,8 +56,8 @@ class UserRightsProxy {
 	/**
 	 * Confirm the selected database name is a valid local interwiki database name.
 	 *
-	 * @param string $database database name
-	 * @return Boolean
+	 * @param string $database Database name
+	 * @return bool
 	 */
 	public static function validDatabase( $database ) {
 		global $wgLocalDatabases;
@@ -67,10 +67,10 @@ class UserRightsProxy {
 	/**
 	 * Same as User::whoIs()
 	 *
-	 * @param string $database database name
-	 * @param $id Integer: user ID
-	 * @param $ignoreInvalidDB Boolean: if true, don't check if $database is in $wgLocalDatabases
-	 * @return String: user name or false if the user doesn't exist
+	 * @param string $database Database name
+	 * @param int $id User ID
+	 * @param bool $ignoreInvalidDB If true, don't check if $database is in $wgLocalDatabases
+	 * @return string User name or false if the user doesn't exist
 	 */
 	public static function whoIs( $database, $id, $ignoreInvalidDB = false ) {
 		$user = self::newFromId( $database, $id, $ignoreInvalidDB );
@@ -84,10 +84,10 @@ class UserRightsProxy {
 	/**
 	 * Factory function; get a remote user entry by ID number.
 	 *
-	 * @param string $database database name
-	 * @param $id Integer: user ID
-	 * @param $ignoreInvalidDB Boolean: if true, don't check if $database is in $wgLocalDatabases
-	 * @return UserRightsProxy or null if doesn't exist
+	 * @param string $database Database name
+	 * @param int $id User ID
+	 * @param bool $ignoreInvalidDB If true, don't check if $database is in $wgLocalDatabases
+	 * @return UserRightsProxy|null If doesn't exist
 	 */
 	public static function newFromId( $database, $id, $ignoreInvalidDB = false ) {
 		return self::newFromLookup( $database, 'user_id', intval( $id ), $ignoreInvalidDB );
@@ -96,20 +96,20 @@ class UserRightsProxy {
 	/**
 	 * Factory function; get a remote user entry by name.
 	 *
-	 * @param string $database database name
-	 * @param string $name user name
-	 * @param $ignoreInvalidDB Boolean: if true, don't check if $database is in $wgLocalDatabases
-	 * @return UserRightsProxy or null if doesn't exist
+	 * @param string $database Database name
+	 * @param string $name User name
+	 * @param bool $ignoreInvalidDB If true, don't check if $database is in $wgLocalDatabases
+	 * @return UserRightsProxy|null If doesn't exist
 	 */
 	public static function newFromName( $database, $name, $ignoreInvalidDB = false ) {
 		return self::newFromLookup( $database, 'user_name', $name, $ignoreInvalidDB );
 	}
 
 	/**
-	 * @param $database
-	 * @param $field
-	 * @param $value
-	 * @param $ignoreInvalidDB bool
+	 * @param string $database
+	 * @param string $field
+	 * @param string $value
+	 * @param bool $ignoreInvalidDB
 	 * @return null|UserRightsProxy
 	 */
 	private static function newFromLookup( $database, $field, $value, $ignoreInvalidDB = false ) {
@@ -132,9 +132,9 @@ class UserRightsProxy {
 	 * Open a database connection to work on for the requested user.
 	 * This may be a new connection to another database for remote users.
 	 *
-	 * @param $database String
-	 * @param $ignoreInvalidDB Boolean: if true, don't check if $database is in $wgLocalDatabases
-	 * @return DatabaseBase or null if invalid selection
+	 * @param string $database
+	 * @param bool $ignoreInvalidDB If true, don't check if $database is in $wgLocalDatabases
+	 * @return DatabaseBase|null If invalid selection
 	 */
 	public static function getDB( $database, $ignoreInvalidDB = false ) {
 		global $wgDBname;
@@ -166,7 +166,7 @@ class UserRightsProxy {
 	/**
 	 * Same as User::getName()
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getName() {
 		return $this->name . '@' . $this->database;
@@ -175,7 +175,7 @@ class UserRightsProxy {
 	/**
 	 * Same as User::getUserPage()
 	 *
-	 * @return Title object
+	 * @return Title
 	 */
 	public function getUserPage() {
 		return Title::makeTitle( NS_USER, $this->getName() );
@@ -199,6 +199,7 @@ class UserRightsProxy {
 
 	/**
 	 * Replaces User::addUserGroup()
+	 * @param string $group
 	 */
 	function addGroup( $group ) {
 		$this->db->insert( 'user_groups',
@@ -212,6 +213,7 @@ class UserRightsProxy {
 
 	/**
 	 * Replaces User::removeUserGroup()
+	 * @param string $group
 	 */
 	function removeGroup( $group ) {
 		$this->db->delete( 'user_groups',
@@ -224,6 +226,8 @@ class UserRightsProxy {
 
 	/**
 	 * Replaces User::setOption()
+	 * @param string $option
+	 * @param mixed $value
 	 */
 	public function setOption( $option, $value ) {
 		$this->newOptions[$option] = $value;

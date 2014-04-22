@@ -31,10 +31,10 @@ abstract class PrefixSearch {
 	 * Do a prefix search of titles and return a list of matching page names.
 	 * @deprecated: Since 1.23, use TitlePrefixSearch or StringPrefixSearch classes
 	 *
-	 * @param $search String
-	 * @param $limit Integer
-	 * @param array $namespaces used if query is not explicitly prefixed
-	 * @return Array of strings
+	 * @param string $search
+	 * @param int $limit
+	 * @param array $namespaces Used if query is not explicitly prefixed
+	 * @return array Array of strings
 	 */
 	public static function titleSearch( $search, $limit, $namespaces = array() ) {
 		$prefixSearch = new StringPrefixSearch;
@@ -44,10 +44,10 @@ abstract class PrefixSearch {
 	/**
 	 * Do a prefix search of titles and return a list of matching page names.
 	 *
-	 * @param $search String
-	 * @param $limit Integer
-	 * @param array $namespaces used if query is not explicitly prefixed
-	 * @return Array of strings or Title objects
+	 * @param string $search
+	 * @param int $limit
+	 * @param array $namespaces Used if query is not explicitly prefixed
+	 * @return array Array of strings or Title objects
 	 */
 	public function search( $search, $limit, $namespaces = array() ) {
 		$search = trim( $search );
@@ -82,8 +82,8 @@ abstract class PrefixSearch {
 
 	/**
 	 * Do a prefix search for all possible variants of the prefix
-	 * @param $search String
-	 * @param $limit Integer
+	 * @param string $search
+	 * @param int $limit
 	 * @param array $namespaces
 	 *
 	 * @return array
@@ -135,10 +135,10 @@ abstract class PrefixSearch {
 
 	/**
 	 * Do a prefix search of titles and return a list of matching page names.
-	 * @param $namespaces Array
-	 * @param $search String
-	 * @param $limit Integer
-	 * @return Array of strings
+	 * @param array $namespaces
+	 * @param string $search
+	 * @param int $limit
+	 * @return array Array of strings
 	 */
 	protected function searchBackend( $namespaces, $search, $limit ) {
 		if ( count( $namespaces ) == 1 ) {
@@ -159,9 +159,9 @@ abstract class PrefixSearch {
 	/**
 	 * Prefix search special-case for Special: namespace.
 	 *
-	 * @param string $search term
-	 * @param $limit Integer: max number of items to return
-	 * @return Array
+	 * @param string $search Term
+	 * @param int $limit Max number of items to return
+	 * @return array
 	 */
 	protected function specialSearch( $search, $limit ) {
 		global $wgContLang;
@@ -213,10 +213,10 @@ abstract class PrefixSearch {
 	 * be automatically capitalized by Title::secureAndSpit()
 	 * later on depending on $wgCapitalLinks)
 	 *
-	 * @param array $namespaces namespaces to search in
-	 * @param string $search term
-	 * @param $limit Integer: max number of items to return
-	 * @return Array of Title objects
+	 * @param array $namespaces Namespaces to search in
+	 * @param string $search Term
+	 * @param int $limit Max number of items to return
+	 * @return array Array of Title objects
 	 */
 	protected function defaultSearchBackend( $namespaces, $search, $limit ) {
 		$ns = array_shift( $namespaces ); // support only one namespace
@@ -246,8 +246,8 @@ abstract class PrefixSearch {
 	/**
 	 * Validate an array of numerical namespace indexes
 	 *
-	 * @param $namespaces Array
-	 * @return Array (default: contains only NS_MAIN)
+	 * @param array $namespaces
+	 * @return array (default: contains only NS_MAIN)
 	 */
 	protected function validateNamespaces( $namespaces ) {
 		global $wgContLang;

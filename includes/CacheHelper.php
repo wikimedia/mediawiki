@@ -32,7 +32,7 @@ interface ICacheHelper {
 	 * Sets if the cache should be enabled or not.
 	 *
 	 * @since 1.20
-	 * @param boolean $cacheEnabled
+	 * @param bool $cacheEnabled
 	 */
 	function setCacheEnabled( $cacheEnabled );
 
@@ -42,8 +42,8 @@ interface ICacheHelper {
 	 *
 	 * @since 1.20
 	 *
-	 * @param integer|null $cacheExpiry Sets the cache expiry, either ttl in seconds or unix timestamp.
-	 * @param boolean|null $cacheEnabled Sets if the cache should be enabled or not.
+	 * @param int|null $cacheExpiry Sets the cache expiry, either ttl in seconds or unix timestamp.
+	 * @param bool|null $cacheEnabled Sets if the cache should be enabled or not.
 	 */
 	function startCache( $cacheExpiry = null, $cacheEnabled = null );
 
@@ -77,7 +77,7 @@ interface ICacheHelper {
 	 *
 	 * @since 1.20
 	 *
-	 * @param integer $cacheExpiry
+	 * @param int $cacheExpiry
 	 */
 	function setExpiry( $cacheExpiry );
 }
@@ -105,7 +105,7 @@ class CacheHelper implements ICacheHelper {
 	 * The time to live for the cache, in seconds or a unix timestamp indicating the point of expiry.
 	 *
 	 * @since 1.20
-	 * @var integer
+	 * @var int
 	 */
 	protected $cacheExpiry = 3600;
 
@@ -124,7 +124,7 @@ class CacheHelper implements ICacheHelper {
 	 * Null if this information is not available yet.
 	 *
 	 * @since 1.20
-	 * @var boolean|null
+	 * @var bool|null
 	 */
 	protected $hasCached = null;
 
@@ -132,7 +132,7 @@ class CacheHelper implements ICacheHelper {
 	 * If the cache is enabled or not.
 	 *
 	 * @since 1.20
-	 * @var boolean
+	 * @var bool
 	 */
 	protected $cacheEnabled = true;
 
@@ -156,7 +156,7 @@ class CacheHelper implements ICacheHelper {
 	 * Sets if the cache should be enabled or not.
 	 *
 	 * @since 1.20
-	 * @param boolean $cacheEnabled
+	 * @param bool $cacheEnabled
 	 */
 	public function setCacheEnabled( $cacheEnabled ) {
 		$this->cacheEnabled = $cacheEnabled;
@@ -168,8 +168,8 @@ class CacheHelper implements ICacheHelper {
 	 *
 	 * @since 1.20
 	 *
-	 * @param integer|null $cacheExpiry Sets the cache expiry, either ttl in seconds or unix timestamp.
-	 * @param boolean|null $cacheEnabled Sets if the cache should be enabled or not.
+	 * @param int|null $cacheExpiry Sets the cache expiry, either ttl in seconds or unix timestamp.
+	 * @param bool|null $cacheEnabled Sets if the cache should be enabled or not.
 	 */
 	public function startCache( $cacheExpiry = null, $cacheEnabled = null ) {
 		if ( is_null( $this->hasCached ) ) {
@@ -192,7 +192,7 @@ class CacheHelper implements ICacheHelper {
 	 * @since 1.20
 	 *
 	 * @param IContextSource $context
-	 * @param boolean $includePurgeLink
+	 * @param bool $includePurgeLink
 	 *
 	 * @return string
 	 */
@@ -328,7 +328,7 @@ class CacheHelper implements ICacheHelper {
 	 *
 	 * @since 1.20
 	 *
-	 * @param integer $cacheExpiry
+	 * @param int $cacheExpiry
 	 */
 	public function setExpiry( $cacheExpiry ) {
 		$this->cacheExpiry = $cacheExpiry;
@@ -378,7 +378,7 @@ class CacheHelper implements ICacheHelper {
 	 *
 	 * @since 1.20
 	 *
-	 * @param $handlerFunction
+	 * @param callable $handlerFunction
 	 */
 	public function setOnInitializedHandler( $handlerFunction ) {
 		$this->onInitHandler = $handlerFunction;

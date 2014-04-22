@@ -139,9 +139,9 @@ class Html {
 	 * Identical to rawElement(), but HTML-escapes $contents (like
 	 * Xml::element()).
 	 *
-	 * @param $element string
-	 * @param $attribs array
-	 * @param $contents string
+	 * @param string $element
+	 * @param array $attribs
+	 * @param string $contents
 	 *
 	 * @return string
 	 */
@@ -158,8 +158,8 @@ class Html {
 	 * Identical to rawElement(), but has no third parameter and omits the end
 	 * tag (and the self-closing '/' in XML mode for empty elements).
 	 *
-	 * @param $element string
-	 * @param $attribs array
+	 * @param string $element
+	 * @param array $attribs
 	 *
 	 * @return string
 	 */
@@ -267,7 +267,7 @@ class Html {
 	 * to the input array (currently per the HTML 5 draft as of 2009-09-06).
 	 *
 	 * @param string $element Name of the element, e.g., 'a'
-	 * @param array $attribs  Associative array of attributes, e.g., array(
+	 * @param array $attribs Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ).  See expandAttributes() for
 	 *   further documentation.
 	 * @return array An array of attributes functionally identical to $attribs
@@ -583,7 +583,7 @@ class Html {
 	 * Output a "<script>" tag linking to the given URL, e.g.,
 	 * "<script src=foo.js></script>".
 	 *
-	 * @param $url string
+	 * @param string $url
 	 * @return string Raw HTML
 	 */
 	public static function linkedScript( $url ) {
@@ -598,7 +598,7 @@ class Html {
 	 * contains literal "</style>" (admittedly unlikely).
 	 *
 	 * @param string $contents CSS
-	 * @param $media mixed A media type string, like 'screen'
+	 * @param string $media A media type string, like 'screen'
 	 * @return string Raw HTML
 	 */
 	public static function inlineStyle( $contents, $media = 'all' ) {
@@ -618,8 +618,8 @@ class Html {
 	 * Output a "<link rel=stylesheet>" linking to the given URL for the given
 	 * media type (if any).
 	 *
-	 * @param $url string
-	 * @param $media mixed A media type string, like 'screen'
+	 * @param string $url
+	 * @param string $media A media type string, like 'screen'
 	 * @return string Raw HTML
 	 */
 	public static function linkedStyle( $url, $media = 'all' ) {
@@ -854,11 +854,11 @@ class Html {
 	/**
 	 * Get HTML for an info box with an icon.
 	 *
-	 * @param string $text wikitext, get this with wfMessage()->plain()
-	 * @param string $icon icon name, file in skins/common/images
-	 * @param string $alt alternate text for the icon
-	 * @param string $class additional class name to add to the wrapper div
-	 * @param $useStylePath
+	 * @param string $text Wikitext, get this with wfMessage()->plain()
+	 * @param string $icon Icon name, file in skins/common/images
+	 * @param string $alt Alternate text for the icon
+	 * @param string $class Additional class name to add to the wrapper div
+	 * @param bool $useStylePath
 	 *
 	 * @return string
 	 */

@@ -26,9 +26,9 @@
 class Fallback {
 
 	/**
-	 * @param $from
-	 * @param $to
-	 * @param $string
+	 * @param string $from
+	 * @param string $to
+	 * @param string $string
 	 * @return string
 	 */
 	public static function iconv( $from, $to, $string ) {
@@ -57,9 +57,9 @@ class Fallback {
 	 * can be up to 100x slower than native if the text is heavily
 	 * multibyte and we have to slog through a few hundred kb.
 	 *
-	 * @param $str
-	 * @param $start
-	 * @param $count string
+	 * @param string $str
+	 * @param int $start
+	 * @param string $count
 	 *
 	 * @return string
 	 */
@@ -78,8 +78,8 @@ class Fallback {
 	}
 
 	/**
-	 * @param $str
-	 * @param $splitPos
+	 * @param string $str
+	 * @param int $splitPos
 	 * @return int
 	 */
 	public static function mb_substr_split_unicode( $str, $splitPos ) {
@@ -130,7 +130,7 @@ class Fallback {
 	/**
 	 * Fallback implementation of mb_strlen, hardcoded to UTF-8.
 	 * @param string $str
-	 * @param string $enc optional encoding; ignored
+	 * @param string $enc Optional encoding; ignored
 	 * @return int
 	 */
 	public static function mb_strlen( $str, $enc = '' ) {
@@ -151,10 +151,10 @@ class Fallback {
 
 	/**
 	 * Fallback implementation of mb_strpos, hardcoded to UTF-8.
-	 * @param $haystack String
-	 * @param $needle String
-	 * @param string $offset optional start position
-	 * @param string $encoding optional encoding; ignored
+	 * @param string $haystack
+	 * @param string $needle
+	 * @param string $offset Optional start position
+	 * @param string $encoding Optional encoding; ignored
 	 * @return int
 	 */
 	public static function mb_strpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
@@ -172,8 +172,8 @@ class Fallback {
 
 	/**
 	 * Fallback implementation of mb_strrpos, hardcoded to UTF-8.
-	 * @param $haystack String
-	 * @param $needle String
+	 * @param string $haystack
+	 * @param string $needle
 	 * @param string $offset optional start position
 	 * @param string $encoding optional encoding; ignored
 	 * @return int

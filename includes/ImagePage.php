@@ -40,7 +40,7 @@ class ImagePage extends Article {
 	var $mExtraDescription = false;
 
 	/**
-	 * @param $title Title
+	 * @param Title $title
 	 * @return WikiFilePage
 	 */
 	protected function newPage( Title $title ) {
@@ -50,7 +50,7 @@ class ImagePage extends Article {
 
 	/**
 	 * Constructor from a page id
-	 * @param int $id article ID to load
+	 * @param int $id Article ID to load
 	 * @return ImagePage|null
 	 */
 	public static function newFromID( $id ) {
@@ -61,7 +61,7 @@ class ImagePage extends Article {
 	}
 
 	/**
-	 * @param $file File:
+	 * @param File $file
 	 * @return void
 	 */
 	public function setFile( $file ) {
@@ -227,8 +227,8 @@ class ImagePage extends Article {
 	/**
 	 * Create the TOC
 	 *
-	 * @param $metadata Boolean: whether or not to show the metadata link
-	 * @return String
+	 * @param bool $metadata Whether or not to show the metadata link
+	 * @return string
 	 */
 	protected function showTOC( $metadata ) {
 		$r = array(
@@ -250,8 +250,8 @@ class ImagePage extends Article {
 	 *
 	 * @todo FIXME: Bad interface, see note on MediaHandler::formatMetadata().
 	 *
-	 * @param array $metadata the array containing the Exif data
-	 * @return String The metadata table. This is treated as Wikitext (!)
+	 * @param array $metadata The array containing the Exif data
+	 * @return string The metadata table. This is treated as Wikitext (!)
 	 */
 	protected function makeMetadataTable( $metadata ) {
 		$r = "<div class=\"mw-imagepage-section-metadata\">";
@@ -609,8 +609,8 @@ EOT
 	/**
 	 * Creates an thumbnail of specified size and returns an HTML link to it
 	 * @param array $params Scaler parameters
-	 * @param $width int
-	 * @param $height int
+	 * @param int $width
+	 * @param int $height
 	 * @return string
 	 */
 	private function makeSizeLink( $params, $width, $height ) {
@@ -723,8 +723,8 @@ EOT
 	}
 
 	/**
-	 * @param $target
-	 * @param $limit
+	 * @param string $target
+	 * @param int $limit
 	 * @return ResultWrapper
 	 */
 	protected function queryImageLinks( $target, $limit ) {
@@ -916,7 +916,7 @@ EOT
 	/**
 	 * Display an error with a wikitext description
 	 *
-	 * @param $description String
+	 * @param string $description
 	 */
 	function showError( $description ) {
 		$out = $this->getContext()->getOutput();
@@ -931,9 +931,9 @@ EOT
 	 * Callback for usort() to do link sorts by (namespace, title)
 	 * Function copied from Title::compare()
 	 *
-	 * @param $a object page to compare with
-	 * @param $b object page to compare with
-	 * @return Integer: result of string comparison, or namespace comparison
+	 * @param object $a Object page to compare with
+	 * @param object $b Object page to compare with
+	 * @return int Result of string comparison, or namespace comparison
 	 */
 	protected function compare( $a, $b ) {
 		if ( $a->page_namespace == $b->page_namespace ) {
@@ -946,7 +946,7 @@ EOT
 	/**
 	 * Returns the corresponding $wgImageLimits entry for the selected user option
 	 *
-	 * @param $user User
+	 * @param User $user
 	 * @param string $optionName Name of a option to check, typically imagesize or thumbsize
 	 * @return array
 	 * @since 1.21
@@ -974,10 +974,10 @@ EOT
 	/**
 	 * Output a drop-down box for language options for the file
 	 *
-	 * @param Array $langChoices Array of string language codes
-	 * @param String $curLang Language code file is being viewed in.
-	 * @param String $defaultLang Language code that image is rendered in by default
-	 * @return String HTML to insert underneath image.
+	 * @param array $langChoices Array of string language codes
+	 * @param string $curLang Language code file is being viewed in.
+	 * @param string $defaultLang Language code that image is rendered in by default
+	 * @return string HTML to insert underneath image.
 	 */
 	protected function doRenderLangOpt( array $langChoices, $curLang, $defaultLang ) {
 		global $wgScript;
@@ -1096,7 +1096,7 @@ class ImageHistoryList extends ContextSource {
 	}
 
 	/**
-	 * @param $navLinks string
+	 * @param string $navLinks
 	 * @return string
 	 */
 	public function beginImageHistoryList( $navLinks = '' ) {
@@ -1116,7 +1116,7 @@ class ImageHistoryList extends ContextSource {
 	}
 
 	/**
-	 * @param $navLinks string
+	 * @param string $navLinks
 	 * @return string
 	 */
 	public function endImageHistoryList( $navLinks = '' ) {
@@ -1124,8 +1124,8 @@ class ImageHistoryList extends ContextSource {
 	}
 
 	/**
-	 * @param $iscur
-	 * @param $file File
+	 * @param bool $iscur
+	 * @param File $file
 	 * @return string
 	 */
 	public function imageHistoryLine( $iscur, $file ) {
@@ -1285,7 +1285,7 @@ class ImageHistoryList extends ContextSource {
 	}
 
 	/**
-	 * @param $file File
+	 * @param File $file
 	 * @return string
 	 */
 	protected function getThumbForLine( $file ) {
@@ -1320,7 +1320,7 @@ class ImageHistoryList extends ContextSource {
 	}
 
 	/**
-	 * @param $enable bool
+	 * @param bool $enable
 	 */
 	protected function preventClickjacking( $enable = true ) {
 		$this->preventClickjacking = $enable;
@@ -1379,7 +1379,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	}
 
 	/**
-	 * @param $row object
+	 * @param object $row
 	 * @return string
 	 */
 	function formatRow( $row ) {
@@ -1493,7 +1493,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	}
 
 	/**
-	 * @param $enable bool
+	 * @param bool $enable
 	 */
 	protected function preventClickjacking( $enable = true ) {
 		$this->preventClickjacking = $enable;

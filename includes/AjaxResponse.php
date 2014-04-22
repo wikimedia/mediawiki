@@ -48,7 +48,7 @@ class AjaxResponse {
 
 	/**
 	 * Date for the HTTP header Last-modified
-	 * @var string|false $mLastModified
+	 * @var string|bool $mLastModified
 	 */
 	private $mLastModified;
 
@@ -71,7 +71,7 @@ class AjaxResponse {
 	private $mText;
 
 	/**
-	 * @param $text string|null
+	 * @param string|null $text
 	 */
 	function __construct( $text = null ) {
 		$this->mCacheDuration = null;
@@ -90,7 +90,7 @@ class AjaxResponse {
 
 	/**
 	 * Set the number of seconds to get the response cached by a proxy
-	 * @param $duration int
+	 * @param int $duration
 	 */
 	function setCacheDuration( $duration ) {
 		$this->mCacheDuration = $duration;
@@ -98,7 +98,7 @@ class AjaxResponse {
 
 	/**
 	 * Set the HTTP Vary header
-	 * @param $vary string
+	 * @param string $vary
 	 */
 	function setVary( $vary ) {
 		$this->mVary = $vary;
@@ -106,7 +106,7 @@ class AjaxResponse {
 
 	/**
 	 * Set the HTTP response code
-	 * @param $code string
+	 * @param string $code
 	 */
 	function setResponseCode( $code ) {
 		$this->mResponseCode = $code;
@@ -114,7 +114,7 @@ class AjaxResponse {
 
 	/**
 	 * Set the HTTP header Content-Type
-	 * @param $type string
+	 * @param string $type
 	 */
 	function setContentType( $type ) {
 		$this->mContentType = $type;
@@ -129,7 +129,7 @@ class AjaxResponse {
 
 	/**
 	 * Add content to the response
-	 * @param $text string
+	 * @param string $text
 	 */
 	function addText( $text ) {
 		if ( ! $this->mDisabled && $text ) {
@@ -206,7 +206,7 @@ class AjaxResponse {
 	 * possible. If successful, the AjaxResponse is disabled so that
 	 * any future call to AjaxResponse::printText() have no effect.
 	 *
-	 * @param $timestamp string
+	 * @param string $timestamp
 	 * @return bool Returns true if the response code was set to 304 Not Modified.
 	 */
 	function checkLastModified( $timestamp ) {
@@ -262,8 +262,8 @@ class AjaxResponse {
 	}
 
 	/**
-	 * @param $mckey string
-	 * @param $touched int
+	 * @param string $mckey
+	 * @param int $touched
 	 * @return bool
 	 */
 	function loadFromMemcached( $mckey, $touched ) {
@@ -290,8 +290,8 @@ class AjaxResponse {
 	}
 
 	/**
-	 * @param $mckey string
-	 * @param $expiry int
+	 * @param string $mckey
+	 * @param int $expiry
 	 * @return bool
 	 */
 	function storeInMemcached( $mckey, $expiry = 86400 ) {

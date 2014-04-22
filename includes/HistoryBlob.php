@@ -32,18 +32,18 @@ interface HistoryBlob
 	 * You must call setLocation() on the stub object before storing it to the
 	 * database
 	 *
-	 * @param $text string
+	 * @param string $text
 	 *
-	 * @return String: the key for getItem()
+	 * @return string The key for getItem()
 	 */
 	function addItem( $text );
 
 	/**
 	 * Get item by key, or false if the key is not present
 	 *
-	 * @param $key string
+	 * @param string $key
 	 *
-	 * @return String or false
+	 * @return string|bool
 	 */
 	function getItem( $key );
 
@@ -55,14 +55,14 @@ interface HistoryBlob
 	 *
 	 * Default text is not required for two-part external storage URLs.
 	 *
-	 * @param $text string
+	 * @param string $text
 	 */
 	function setText( $text );
 
 	/**
 	 * Get default text. This is called from Revision::getRevisionText()
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function getText();
 }
@@ -88,7 +88,7 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 	}
 
 	/**
-	 * @param $text string
+	 * @param string $text
 	 * @return string
 	 */
 	public function addItem( $text ) {
@@ -102,7 +102,7 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 	}
 
 	/**
-	 * @param $hash string
+	 * @param string $hash
 	 * @return array|bool
 	 */
 	public function getItem( $hash ) {
@@ -115,7 +115,7 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 	}
 
 	/**
-	 * @param $text string
+	 * @param string $text
 	 * @return void
 	 */
 	public function setText( $text ) {
@@ -134,7 +134,7 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 	/**
 	 * Remove an item
 	 *
-	 * @param $hash string
+	 * @param string $hash
 	 */
 	public function removeItem( $hash ) {
 		$this->mSize -= strlen( $this->mItems[$hash] );
@@ -200,8 +200,8 @@ class HistoryBlobStub {
 	var $mOldId, $mHash, $mRef;
 
 	/**
-	 * @param string $hash the content hash of the text
-	 * @param $oldid Integer the old_id for the CGZ object
+	 * @param string $hash The content hash of the text
+	 * @param int $oldid The old_id for the CGZ object
 	 */
 	function __construct( $hash = '', $oldid = 0 ) {
 		$this->mHash = $hash;
@@ -210,6 +210,7 @@ class HistoryBlobStub {
 	/**
 	 * Sets the location (old_id) of the main object to which this object
 	 * points
+	 * @param int $id
 	 */
 	function setLocation( $id ) {
 		$this->mOldId = $id;
@@ -217,6 +218,7 @@ class HistoryBlobStub {
 
 	/**
 	 * Sets the location (old_id) of the referring object
+	 * @param string $id
 	 */
 	function setReferrer( $id ) {
 		$this->mRef = $id;
@@ -224,6 +226,7 @@ class HistoryBlobStub {
 
 	/**
 	 * Gets the location of the referring object
+	 * @return string
 	 */
 	function getReferrer() {
 		return $this->mRef;
@@ -298,7 +301,7 @@ class HistoryBlobCurStub {
 	var $mCurId;
 
 	/**
-	 * @param $curid Integer: the cur_id pointed to
+	 * @param int $curid The cur_id pointed to
 	 */
 	function __construct( $curid = 0 ) {
 		$this->mCurId = $curid;
@@ -308,7 +311,7 @@ class HistoryBlobCurStub {
 	 * Sets the location (cur_id) of the main object to which this object
 	 * points
 	 *
-	 * @param $id int
+	 * @param int $id
 	 */
 	function setLocation( $id ) {
 		$this->mCurId = $id;
@@ -390,7 +393,7 @@ class DiffHistoryBlob implements HistoryBlob {
 
 	/**
 	 * @throws MWException
-	 * @param $text string
+	 * @param string $text
 	 * @return int
 	 */
 	function addItem( $text ) {
@@ -405,7 +408,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	}
 
 	/**
-	 * @param $key string
+	 * @param string $key
 	 * @return string
 	 */
 	function getItem( $key ) {
@@ -413,7 +416,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	}
 
 	/**
-	 * @param $text string
+	 * @param string $text
 	 */
 	function setText( $text ) {
 		$this->mDefaultKey = $this->addItem( $text );
@@ -502,8 +505,8 @@ class DiffHistoryBlob implements HistoryBlob {
 	}
 
 	/**
-	 * @param $t1
-	 * @param $t2
+	 * @param string $t1
+	 * @param string $t2
 	 * @return string
 	 */
 	function diff( $t1, $t2 ) {
@@ -516,8 +519,8 @@ class DiffHistoryBlob implements HistoryBlob {
 	}
 
 	/**
-	 * @param $base
-	 * @param $diff
+	 * @param string $base
+	 * @param string $diff
 	 * @return bool|string
 	 */
 	function patch( $base, $diff ) {
@@ -580,7 +583,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	 * the bytes backwards and initialised with 0 instead of 1. See bug 34428.
 	 *
 	 * @param string $s
-	 * @return string|bool: false if the hash extension is not available
+	 * @return string|bool false if the hash extension is not available
 	 */
 	function xdiffAdler32( $s ) {
 		if ( !function_exists( 'hash' ) ) {

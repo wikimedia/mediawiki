@@ -101,7 +101,7 @@ class SkinTemplate extends Skin {
 	/**
 	 * Add specific styles for this skin
 	 *
-	 * @param $out OutputPage
+	 * @param OutputPage $out
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
 		$out->addModuleStyles( array(
@@ -116,9 +116,9 @@ class SkinTemplate extends Skin {
 	 * and eventually it spits out some HTML. Should have interface
 	 * roughly equivalent to PHPTAL 0.7.
 	 *
-	 * @param $classname String
-	 * @param string $repository subdirectory where we keep template files
-	 * @param $cache_dir string
+	 * @param string $classname
+	 * @param string $repository Subdirectory where we keep template files
+	 * @param string $cache_dir
 	 * @return QuickTemplate
 	 * @private
 	 */
@@ -239,7 +239,7 @@ class SkinTemplate extends Skin {
 	/**
 	 * initialize various variables and generate the template
 	 *
-	 * @param $out OutputPage
+	 * @param OutputPage $out
 	 */
 	function outputPage( OutputPage $out = null ) {
 		wfProfileIn( __METHOD__ );
@@ -277,7 +277,7 @@ class SkinTemplate extends Skin {
 	 * initialize various variables and generate the template
 	 *
 	 * @since 1.23
-	 * @return QuickTemplate the template to be executed by outputPage
+	 * @return QuickTemplate The template to be executed by outputPage
 	 */
 	protected function prepareQuickTemplate() {
 		global $wgContLang, $wgScript, $wgStylePath,
@@ -606,7 +606,7 @@ class SkinTemplate extends Skin {
 	 * an error object of the appropriate type.
 	 * For the base class, assume strings all around.
 	 *
-	 * @param $str Mixed
+	 * @param string $str
 	 * @private
 	 */
 	function printOrError( $str ) {
@@ -774,11 +774,11 @@ class SkinTemplate extends Skin {
 	/**
 	 * Builds an array with tab definition
 	 *
-	 * @param Title $title page where the tab links to
-	 * @param string|array $message message key or an array of message keys (will fall back)
-	 * @param boolean $selected display the tab as selected
-	 * @param string $query query string attached to tab URL
-	 * @param boolean $checkEdit check if $title exists and mark with .new if one doesn't
+	 * @param Title $title page Where the tab links to
+	 * @param string|array $message Message key or an array of message keys (will fall back)
+	 * @param bool $selected Display the tab as selected
+	 * @param string $query Query string attached to tab URL
+	 * @param bool $checkEdit Check if $title exists and mark with .new if one doesn't
 	 *
 	 * @return array
 	 */
@@ -1380,8 +1380,8 @@ abstract class QuickTemplate {
 
 	/**
 	 * Sets the value $value to $name
-	 * @param $name
-	 * @param $value
+	 * @param string $name
+	 * @param mixed $value
 	 */
 	public function set( $name, $value ) {
 		$this->data[$name] = $value;
@@ -1403,15 +1403,15 @@ abstract class QuickTemplate {
 	}
 
 	/**
-	 * @param $name
-	 * @param $value
+	 * @param string $name
+	 * @param mixed $value
 	 */
 	public function setRef( $name, &$value ) {
 		$this->data[$name] =& $value;
 	}
 
 	/**
-	 * @param $t
+	 * @param MediaWiki_I18N $t
 	 */
 	public function setTranslator( &$t ) {
 		$this->translator = &$t;
@@ -1425,6 +1425,8 @@ abstract class QuickTemplate {
 
 	/**
 	 * @private
+	 * @param string $str
+	 * @return string
 	 */
 	function text( $str ) {
 		echo htmlspecialchars( $this->data[$str] );
@@ -1432,6 +1434,8 @@ abstract class QuickTemplate {
 
 	/**
 	 * @private
+	 * @param string $str
+	 * @return string
 	 */
 	function html( $str ) {
 		echo $this->data[$str];
@@ -1439,6 +1443,8 @@ abstract class QuickTemplate {
 
 	/**
 	 * @private
+	 * @param string $str
+	 * @return string
 	 */
 	function msg( $str ) {
 		echo htmlspecialchars( $this->translator->translate( $str ) );
@@ -1446,6 +1452,8 @@ abstract class QuickTemplate {
 
 	/**
 	 * @private
+	 * @param string $str
+	 * @return string
 	 */
 	function msgHtml( $str ) {
 		echo $this->translator->translate( $str );
@@ -1454,6 +1462,8 @@ abstract class QuickTemplate {
 	/**
 	 * An ugly, ugly hack.
 	 * @private
+	 * @param string $str
+	 * @return string
 	 */
 	function msgWiki( $str ) {
 		global $wgOut;
@@ -1464,6 +1474,7 @@ abstract class QuickTemplate {
 
 	/**
 	 * @private
+	 * @param string $str
 	 * @return bool
 	 */
 	function haveData( $str ) {
@@ -1473,6 +1484,7 @@ abstract class QuickTemplate {
 	/**
 	 * @private
 	 *
+	 * @param string $str
 	 * @return bool
 	 */
 	function haveMsg( $str ) {
@@ -1483,7 +1495,7 @@ abstract class QuickTemplate {
 	/**
 	 * Get the Skin object related to this object
 	 *
-	 * @return Skin object
+	 * @return Skin
 	 */
 	public function getSkin() {
 		return $this->data['skin'];
@@ -1493,7 +1505,7 @@ abstract class QuickTemplate {
 	 * Fetch the output of a QuickTemplate and return it
 	 *
 	 * @since 1.23
-	 * @return String
+	 * @return string
 	 */
 	public function getHTML() {
 		ob_start();
@@ -1514,7 +1526,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	/**
 	 * Get a Message object with its context set
 	 *
-	 * @param string $name message name
+	 * @param string $name Message name
 	 * @return Message
 	 */
 	public function getMsg( $name ) {
@@ -1877,12 +1889,12 @@ abstract class BaseTemplate extends QuickTemplate {
 	/**
 	 * Generates a list item for a navigation, portlet, portal, sidebar... list
 	 *
-	 * @param $key string, usually a key from the list you are generating this link from.
-	 * @param $item array, of list item data containing some of a specific set of keys.
+	 * @param string $key Usually a key from the list you are generating this link from.
+	 * @param array $item Array of list item data containing some of a specific set of keys.
 	 * The "id", "class" and "itemtitle" keys will be used as attributes for the list item,
 	 * if "active" contains a value of true a "active" class will also be appended to class.
 	 *
-	 * @param $options array
+	 * @param array $options
 	 *
 	 * If you want something other than a "<li>" you can pass a tag name such as
 	 * "tag" => "span" in the $options array to change the tag used.
@@ -2042,7 +2054,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * in the list of footer icons. This is mostly useful for skins which only
 	 * display the text from footericons instead of the images and don't want a
 	 * duplicate copyright statement because footerlinks already rendered one.
-	 * @return
+	 * @return string
 	 */
 	function getFooterIcons( $option = null ) {
 		// Generate additional footer icons

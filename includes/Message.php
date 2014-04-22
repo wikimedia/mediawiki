@@ -443,7 +443,7 @@ class Message {
 	 *
 	 * @since 1.22
 	 *
-	 * @param number|number[] [$param,...] Time period parameters, or a single argument that is
+	 * @param int|int[] [$param,...] Time period parameters, or a single argument that is
 	 * an array of time period parameters.
 	 *
 	 * @return Message $this
@@ -508,7 +508,7 @@ class Message {
 	 *
 	 * @since 1.19
 	 *
-	 * @param $context IContextSource
+	 * @param IContextSource $context
 	 *
 	 * @return Message $this
 	 */
@@ -604,7 +604,7 @@ class Message {
 	 *
 	 * @since 1.18
 	 *
-	 * @param $title Title object
+	 * @param Title $title
 	 *
 	 * @return Message $this
 	 */
@@ -890,7 +890,7 @@ class Message {
 	 * @param string $message The message text.
 	 * @param string $type Either "before" or "after".
 	 *
-	 * @return String
+	 * @return string
 	 */
 	protected function replaceParameters( $message, $type = 'before' ) {
 		$replacementKeys = array();

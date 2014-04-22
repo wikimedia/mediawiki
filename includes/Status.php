@@ -78,7 +78,7 @@ class Status {
 	/**
 	 * Factory function for good results
 	 *
-	 * @param $value Mixed
+	 * @param mixed $value
 	 * @return Status
 	 */
 	static function newGood( $value = null ) {
@@ -102,7 +102,7 @@ class Status {
 	 * Returns whether the operation completed and didn't have any error or
 	 * warnings
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isGood() {
 		return $this->ok && !$this->errors;
@@ -111,7 +111,7 @@ class Status {
 	/**
 	 * Returns whether the operation completed
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isOK() {
 		return $this->ok;
@@ -120,7 +120,7 @@ class Status {
 	/**
 	 * Add a new warning
 	 *
-	 * @param string|Message $message message name or object
+	 * @param string|Message $message Message name or object
 	 */
 	public function warning( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
@@ -134,7 +134,7 @@ class Status {
 	 * Add an error, do not set fatal flag
 	 * This can be used for non-fatal errors
 	 *
-	 * @param string|Message $message message name or object
+	 * @param string|Message $message Message name or object
 	 */
 	public function error( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
@@ -148,7 +148,7 @@ class Status {
 	 * Add an error and set OK to false, indicating that the operation
 	 * as a whole was fatal
 	 *
-	 * @param string|Message $message message name or object
+	 * @param string|Message $message Message name or object
 	 */
 	public function fatal( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
@@ -167,7 +167,7 @@ class Status {
 	}
 
 	/**
-	 * @param $params array
+	 * @param array $params
 	 * @return array
 	 */
 	protected function cleanParams( $params ) {
@@ -184,10 +184,10 @@ class Status {
 	/**
 	 * Get the error list as a wikitext formatted list
 	 *
-	 * @param string $shortContext a short enclosing context message name, to
+	 * @param string $shortContext A short enclosing context message name, to
 	 *        be used when there is a single error
-	 * @param string $longContext a long enclosing context message name, for a list
-	 * @return String
+	 * @param string $longContext A long enclosing context message name, for a list
+	 * @return string
 	 */
 	public function getWikiText( $shortContext = false, $longContext = false ) {
 		if ( count( $this->errors ) == 0 ) {
@@ -275,12 +275,12 @@ class Status {
 
 	/**
 	 * Return the message for a single error.
-	 * @param $error Mixed With an array & two values keyed by
+	 * @param mixed $error With an array & two values keyed by
 	 * 'message' and 'params', use those keys-value pairs.
 	 * Otherwise, if its an array, just use the first value as the
 	 * message and the remaining items as the params.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	protected function getErrorMessage( $error ) {
 		if ( is_array( $error ) ) {
@@ -303,10 +303,10 @@ class Status {
 	/**
 	 * Get the error message as HTML. This is done by parsing the wikitext error
 	 * message.
-	 * @param string $shortContext a short enclosing context message name, to
+	 * @param string $shortContext A short enclosing context message name, to
 	 *        be used when there is a single error
-	 * @param string $longContext a long enclosing context message name, for a list
-	 * @return String
+	 * @param string $longContext A long enclosing context message name, for a list
+	 * @return string
 	 */
 	public function getHTML( $shortContext = false, $longContext = false ) {
 		$text = $this->getWikiText( $shortContext, $longContext );
@@ -316,8 +316,8 @@ class Status {
 
 	/**
 	 * Return an array with the wikitext for each item in the array.
-	 * @param $errors Array
-	 * @return Array
+	 * @param array $errors
+	 * @return array
 	 */
 	protected function getErrorMessageArray( $errors ) {
 		return array_map( array( $this, 'getErrorMessage' ), $errors );
@@ -361,8 +361,8 @@ class Status {
 
 	/**
 	 * Returns a list of status messages of the given type
-	 * @param $type String
-	 * @return Array
+	 * @param string $type
+	 * @return array
 	 */
 	protected function getStatusArray( $type ) {
 		$result = array();
@@ -388,9 +388,9 @@ class Status {
 	 * Returns a list of status messages of the given type, with message and
 	 * params left untouched, like a sane version of getStatusArray
 	 *
-	 * @param $type String
+	 * @param string $type
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	public function getErrorsByType( $type ) {
 		$result = array();
@@ -408,8 +408,8 @@ class Status {
 	 * Note, due to the lack of tools for comparing Message objects, this
 	 * function will not work when using a Message object as a parameter.
 	 *
-	 * @param string $msg message name
-	 * @return Boolean
+	 * @param string $msg Message name
+	 * @return bool
 	 */
 	public function hasMessage( $msg ) {
 		foreach ( $this->errors as $error ) {

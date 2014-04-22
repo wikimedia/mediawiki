@@ -59,7 +59,7 @@ class ProfilerStandard extends Profiler {
 	/**
 	 * Return whether this a stub profiler
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isStub() {
 		return false;
@@ -69,7 +69,7 @@ class ProfilerStandard extends Profiler {
 	 * Return whether this profiler stores data
 	 *
 	 * @see Profiler::logData()
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isPersistent() {
 		return false;
@@ -81,7 +81,7 @@ class ProfilerStandard extends Profiler {
 	 * Only doing collation saves memory overhead but limits the use of certain
 	 * features like that of graph generation for the debug toolbar.
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	protected function collateOnly() {
 		return false;
@@ -144,8 +144,8 @@ class ProfilerStandard extends Profiler {
 	 * @param string $name
 	 * @param float $elapsedCpu
 	 * @param float $elapsedReal
-	 * @param integer $memChange
-	 * @param integer $subcalls
+	 * @param int $memChange
+	 * @param int $subcalls
 	 * @param array|null $period Map of ('start','end','memory','subcalls')
 	 */
 	protected function updateEntry(
@@ -176,7 +176,7 @@ class ProfilerStandard extends Profiler {
 	/**
 	 * Called by wfProfieIn()
 	 *
-	 * @param $functionname String
+	 * @param string $functionname
 	 */
 	public function profileIn( $functionname ) {
 		global $wgDebugFunctionEntry;
@@ -198,7 +198,7 @@ class ProfilerStandard extends Profiler {
 	/**
 	 * Called by wfProfieOut()
 	 *
-	 * @param $functionname String
+	 * @param string $functionname
 	 */
 	public function profileOut( $functionname ) {
 		global $wgDebugFunctionEntry;
@@ -268,7 +268,7 @@ class ProfilerStandard extends Profiler {
 	/**
 	 * Returns a profiling output to be stored in debug file
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getOutput() {
 		global $wgDebugFunctionEntry, $wgProfileCallTree;
@@ -528,9 +528,9 @@ class ProfilerStandard extends Profiler {
 	 * Counts the number of profiled function calls sitting under
 	 * the given point in the call graph. Not the most efficient algo.
 	 *
-	 * @param $stack Array:
-	 * @param $start Integer:
-	 * @return Integer
+	 * @param array $stack
+	 * @param int $start
+	 * @return int
 	 */
 	protected function calltreeCount( $stack, $start ) {
 		$level = $stack[$start][1];
