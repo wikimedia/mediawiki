@@ -87,7 +87,8 @@ class PreprocessDump extends DumpIterator {
 		try {
 			$this->mPreprocessor->preprocessToObj( strval( $content->getNativeData() ), 0 );
 		} catch ( Exception $e ) {
-			$this->error( "Caught exception " . $e->getMessage() . " in " . $rev->getTitle()->getPrefixedText() );
+			$this->error( "Caught exception " . $e->getMessage() . " in "
+				. $rev->getTitle()->getPrefixedText() );
 		}
 	}
 }
