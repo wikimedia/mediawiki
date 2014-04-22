@@ -127,6 +127,8 @@ class EnhancedChangesList extends ChangesList {
 			$this->rc_cache[$cacheGroupingKey] = array();
 		}
 
+		wfRunHooks( 'EnhancedChangesCacheEntry', array( $cacheEntry, $cacheGroupingKey ) );
+
 		array_push( $this->rc_cache[$cacheGroupingKey], $cacheEntry );
 	}
 
