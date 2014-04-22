@@ -47,14 +47,41 @@ class RefreshImageMetadata extends Maintenance {
 		$this->mDescription = 'Script to update image metadata records';
 		$this->setBatchSize( 200 );
 
-		$this->addOption( 'force', 'Reload metadata from file even if the metadata looks ok', false, false, 'f' );
-		$this->addOption( 'broken-only', 'Only fix really broken records, leave old but still compatible records alone.' );
-		$this->addOption( 'verbose', 'Output extra information about each upgraded/non-upgraded file.', false, false, 'v' );
+		$this->addOption(
+			'force',
+			'Reload metadata from file even if the metadata looks ok',
+			false,
+			false,
+			'f'
+		);
+		$this->addOption(
+			'broken-only',
+			'Only fix really broken records, leave old but still compatible records alone.'
+		);
+		$this->addOption(
+			'verbose',
+			'Output extra information about each upgraded/non-upgraded file.',
+			false,
+			false,
+			'v'
+		);
 		$this->addOption( 'start', 'Name of file to start with', false, true );
 		$this->addOption( 'end', 'Name of file to end with', false, true );
 
-		$this->addOption( 'mime', '(Inefficient!) Only refresh files with this mime type. Can accept wild-card image/*', false, true );
-		$this->addOption( 'metadata-contains', '(Inefficient!) Only refresh files where the img_metadata field contains this string. Can be used if its known a specific property was being extracted incorrectly.', false, true );
+		$this->addOption(
+			'mime',
+			'(Inefficient!) Only refresh files with this mime type. Can accept wild-card image/*',
+			false,
+			true
+		);
+		$this->addOption(
+			'metadata-contains',
+			'(Inefficient!) Only refresh files where the img_metadata field '
+				. 'contains this string. Can be used if its known a specific '
+				. 'property was being extracted incorrectly.',
+			false,
+			true
+		);
 
 	}
 
@@ -155,9 +182,13 @@ class RefreshImageMetadata extends Maintenance {
 
 		$total = $upgraded + $leftAlone;
 		if ( $force ) {
-			$this->output( "\nFinished refreshing file metadata for $total files. $upgraded needed to be refreshed, $leftAlone did not need to be but were refreshed anyways, and $error refreshes were suspicious.\n" );
+			$this->output( "\nFinished refreshing file metadata for $total files. "
+				. "$upgraded needed to be refreshed, $leftAlone did not need to "
+				. "be but were refreshed anyways, and $error refreshes were suspicious.\n" );
 		} else {
-			$this->output( "\nFinished refreshing file metadata for $total files. $upgraded were refreshed, $leftAlone were already up to date, and $error refreshes were suspicious.\n" );
+			$this->output( "\nFinished refreshing file metadata for $total files. "
+				. "$upgraded were refreshed, $leftAlone were already up to date, "
+				. "and $error refreshes were suspicious.\n" );
 		}
 	}
 
