@@ -887,8 +887,6 @@ $wgAutoloadLocalClasses = array(
 	'RevisionDeleteUser' => 'includes/revisiondelete/RevisionDeleteUser.php',
 
 	# includes/search
-	'MssqlSearchResultSet' => 'includes/search/SearchMssql.php',
-	'MySQLSearchResultSet' => 'includes/search/SearchMySQL.php',
 	'PostgresSearchResult' => 'includes/search/SearchPostgres.php',
 	'PostgresSearchResultSet' => 'includes/search/SearchPostgres.php',
 	'SearchDatabase' => 'includes/search/SearchDatabase.php',
@@ -904,7 +902,6 @@ $wgAutoloadLocalClasses = array(
 	'SearchResultSet' => 'includes/search/SearchResultSet.php',
 	'SearchResultTooMany' => 'includes/search/SearchEngine.php',
 	'SearchSqlite' => 'includes/search/SearchSqlite.php',
-	'SqliteSearchResultSet' => 'includes/search/SearchSqlite.php',
 	'SqlSearchResultSet' => 'includes/search/SearchResultSet.php',
 
 	# includes/site

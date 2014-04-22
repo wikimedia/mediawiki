@@ -30,24 +30,24 @@ class SearchMssql extends SearchDatabase {
 	 * Perform a full text search query and return a result set.
 	 *
 	 * @param string $term Raw search term
-	 * @return MssqlSearchResultSet
+	 * @return SqlSearchResultSet
 	 * @access public
 	 */
 	function searchText( $term ) {
 		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), true ) ) );
-		return new MssqlSearchResultSet( $resultSet, $this->searchTerms );
+		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
 	/**
 	 * Perform a title-only search query and return a result set.
 	 *
 	 * @param string $term Raw search term
-	 * @return MssqlSearchResultSet
+	 * @return SqlSearchResultSet
 	 * @access public
 	 */
 	function searchTitle( $term ) {
 		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), false ) ) );
-		return new MssqlSearchResultSet( $resultSet, $this->searchTerms );
+		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
 	/**
@@ -202,31 +202,5 @@ class SearchMssql extends SearchDatabase {
 		$sql = "DELETE FROM $table WHERE si_page = $id;";
 		$sql .= "INSERT INTO $table (si_page, si_title, si_text) VALUES ($id, $si_title, 0x00)";
 		return $this->db->query( $sql, 'SearchMssql::updateTitle' );
-	}
-}
-
-/**
- * @ingroup Search
- */
-class MssqlSearchResultSet extends SearchResultSet {
-	function __construct( $resultSet, $terms ) {
-		$this->mResultSet = $resultSet;
-		$this->mTerms = $terms;
-	}
-
-	function termMatches() {
-		return $this->mTerms;
-	}
-
-	function numRows() {
-		return $this->mResultSet->numRows();
-	}
-
-	function next() {
-		$row = $this->mResultSet->fetchObject();
-		if ( $row === false ) {
-			return false;
-		}
-		return new SearchResult( $row );
 	}
 }
