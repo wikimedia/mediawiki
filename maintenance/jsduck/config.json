@@ -15,6 +15,7 @@
 		"../../resources/src/mediawiki.page/mediawiki.page.watch.ajax.js",
 		"../../resources/src/mediawiki.api",
 		"../../resources/src/mediawiki.language",
+		"../../resources/src/jquery/jquery.accessKeyLabel.js",
 		"../../resources/src/jquery/jquery.arrowSteps.js",
 		"../../resources/src/jquery/jquery.autoEllipsis.js",
 		"../../resources/src/jquery/jquery.badge.js",
