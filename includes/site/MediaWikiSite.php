@@ -39,7 +39,7 @@ class MediaWikiSite extends Site {
 
 	/**
 	 * @since 1.21
-	 * @deprecated Just use the constructor or the factory Site::newForType
+	 * @deprecated since 1.21 Just use the constructor or the factory Site::newForType
 	 *
 	 * @param int $globalId
 	 *

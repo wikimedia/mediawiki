@@ -90,7 +90,7 @@ class MWNamespace {
 
 	/**
 	 * @see self::isSubject
-	 * @deprecated Please use the more consistently named isSubject (since 1.19)
+	 * @deprecated since 1.19 Please use the more consistently named isSubject
 	 * @return bool
 	 */
 	public static function isMain( $index ) {
