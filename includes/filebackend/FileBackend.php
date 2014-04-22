@@ -1402,12 +1402,20 @@ abstract class FileBackend {
 	 * Get the final extension from a storage or FS path
 	 *
 	 * @param string $path
+	 * @param string $case One of (rawcase, uppercase, lowercase) (since 1.24)
 	 * @return string
 	 */
-	final public static function extensionFromPath( $path ) {
+	final public static function extensionFromPath( $path, $case = 'lowercase' ) {
 		$i = strrpos( $path, '.' );
+		$ext = $i ? substr( $path, $i + 1 ) : '';
 
-		return strtolower( $i ? substr( $path, $i + 1 ) : '' );
+		if ( $case === 'lowercase' ) {
+			$ext = strtolower( $ext );
+		} elseif ( $case === 'uppercase' ) {
+			$ext = strtoupper( $ext );
+		}
+
+		return $ext;
 	}
 
 	/**

@@ -81,7 +81,7 @@ function wfImageAuthMain() {
 
 	// Check for bug 28235: QUERY_STRING overriding the correct extension
 	$whitelist = array();
-	$extension = FileBackend::extensionFromPath( $path );
+	$extension = FileBackend::extensionFromPath( $path, 'rawcase' );
 	if ( $extension != '' ) {
 		$whitelist[] = $extension;
 	}
