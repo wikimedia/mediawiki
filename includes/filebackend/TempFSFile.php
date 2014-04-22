@@ -34,6 +34,18 @@ class TempFSFile extends FSFile {
 	/** @var array Active temp files to purge on shutdown */
 	protected static $instances = array();
 
+	/** @var array Map of (path => 1) for paths to delete on shutdown */
+	protected static $pathsCollect = null;
+
+	public function __construct( $path ) {
+		parent::__construct( $path );
+
+		if ( self::$pathsCollect === null ) {
+			self::$pathsCollect = array();
+			register_shutdown_function( array( __CLASS__, 'purgeAllOnShutdown' ) );
+		}
+	}
+
 	/**
 	 * Make a new temporary file on the file system.
 	 * Temporary files may be purged when the file object falls out of scope.
@@ -62,7 +74,7 @@ class TempFSFile extends FSFile {
 			}
 		}
 		$tmpFile = new self( $path );
-		$tmpFile->canDelete = true; // safely instantiated
+		$tmpFile->autocollect(); // safely instantiated
 		wfProfileOut( __METHOD__ );
 
 		return $tmpFile;
@@ -78,6 +90,8 @@ class TempFSFile extends FSFile {
 		wfSuppressWarnings();
 		$ok = unlink( $this->path );
 		wfRestoreWarnings();
+
+		unset( self::$pathsCollect[$this->path] );
 
 		return $ok;
 	}
@@ -108,6 +122,8 @@ class TempFSFile extends FSFile {
 	public function preserve() {
 		$this->canDelete = false;
 
+		unset( self::$pathsCollect[$this->path] );
+
 		return $this;
 	}
 
@@ -119,7 +135,22 @@ class TempFSFile extends FSFile {
 	public function autocollect() {
 		$this->canDelete = true;
 
+		self::$pathsCollect[$this->path] = 1;
+
 		return $this;
+	}
+
+	/**
+	 * Try to make sure that all files are purged on error
+	 *
+	 * This method should only be called internally
+	 */
+	public static function purgeAllOnShutdown() {
+		foreach ( self::$pathsCollect as $path ) {
+			wfSuppressWarnings();
+			unlink( $path );
+			wfRestoreWarnings();
+		}
 	}
 
 	/**
@@ -127,9 +158,7 @@ class TempFSFile extends FSFile {
 	 */
 	function __destruct() {
 		if ( $this->canDelete ) {
-			wfSuppressWarnings();
-			unlink( $this->path );
-			wfRestoreWarnings();
+			$this->purge();
 		}
 	}
 }
