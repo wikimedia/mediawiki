@@ -98,13 +98,7 @@ class SpecialSearch extends SpecialPage {
 
 		$this->searchEngineType = $request->getVal( 'srbackend' );
 
-		if ( $request->getVal( 'fulltext' )
-			|| !is_null( $request->getVal( 'offset' ) )
-		) {
-			$this->showResults( $search );
-		} else {
-			$this->goResult( $search );
-		}
+		$this->showResults( $search );
 	}
 
 	/**
@@ -157,46 +151,6 @@ class SpecialSearch extends SpecialPage {
 		$this->didYouMeanHtml = ''; # html of did you mean... link
 		$this->fulltext = $request->getVal( 'fulltext' );
 		$this->profile = $profile;
-	}
-
-	/**
-	 * If an exact title match can be found, jump straight ahead to it.
-	 *
-	 * @param string $term
-	 */
-	public function goResult( $term ) {
-		$this->setupPage( $term );
-		# Try to go to page as entered.
-		$title = Title::newFromText( $term );
-		# If the string cannot be used to create a title
-		if ( is_null( $title ) ) {
-			$this->showResults( $term );
-
-			return;
-		}
-		# If there's an exact or very near match, jump right there.
-		$title = SearchEngine::getNearMatch( $term );
-
-		if ( !is_null( $title ) ) {
-			$this->getOutput()->redirect( $title->getFullURL() );
-
-			return;
-		}
-		# No match, generate an edit URL
-		$title = Title::newFromText( $term );
-		if ( !is_null( $title ) ) {
-			global $wgGoToEdit;
-			wfRunHooks( 'SpecialSearchNogomatch', array( &$title ) );
-			wfDebugLog( 'nogomatch', $title->getFullText(), 'private' );
-
-			# If the feature is enabled, go straight to the edit page
-			if ( $wgGoToEdit ) {
-				$this->getOutput()->redirect( $title->getFullURL( array( 'action' => 'edit' ) ) );
-
-				return;
-			}
-		}
-		$this->showResults( $term );
 	}
 
 	/**
