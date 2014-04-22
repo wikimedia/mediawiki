@@ -2492,7 +2492,6 @@
     "group-bot.js": "/* Any JavaScript here will be loaded for bots only */",
     "group-sysop.js": "/* Any JavaScript here will be loaded for sysops only */",
     "group-bureaucrat.js": "/* Any JavaScript here will be loaded for bureaucrats only */",
-    "notacceptable": "The wiki server cannot provide data in a format your client can read.",
     "anonymous": "Anonymous {{PLURAL:$1|user|users}} of {{SITENAME}}",
     "siteuser": "{{SITENAME}} user $1",
     "anonuser": "{{SITENAME}} anonymous user $1",
