@@ -9,6 +9,7 @@ MediaWiki 1.24 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.24 ===
+* $wgGoToEdit was removed as "Go" behavior on Special:Search was removed
 
 === New features in 1.24 ===
 
@@ -32,6 +33,8 @@ changes to languages because of Bugzilla reports.
 * The deprecated function mw.util.toggleToc was removed.
 * The Special:Search hooks SpecialSearchGo and SpecialSearchResultsAppend
   were removed as they were unused.
+* (bug 8182) Special:Search "Go" behavior has been removed, the
+  SpecialSearchNogomatch hook was removed as a result
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

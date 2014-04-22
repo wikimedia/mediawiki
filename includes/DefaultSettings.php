@@ -5448,11 +5448,6 @@ $wgPreviewOnOpenNamespaces = array(
 );
 
 /**
- * Go button goes straight to the edit screen if the article doesn't exist.
- */
-$wgGoToEdit = false;
-
-/**
  * Enable the UniversalEditButton for browsers that support it
  * (currently only Firefox with an extension)
  * See http://universaleditbutton.org for more background information
