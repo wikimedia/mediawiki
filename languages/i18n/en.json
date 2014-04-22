@@ -3138,7 +3138,6 @@
     "bitrate-exabits": "$1 Ebps",
     "bitrate-zetabits": "$1 Zbps",
     "bitrate-yottabits": "$1 Ybps",
-    "livepreview-loading": "Loading...",
     "lag-warn-normal": "Changes newer than $1 {{PLURAL:$1|second|seconds}} may not be shown in this list.",
     "lag-warn-high": "Due to high database server lag, changes newer than $1 {{PLURAL:$1|second|seconds}} may not be shown in this list.",
     "editwatchlist-summary": "",
