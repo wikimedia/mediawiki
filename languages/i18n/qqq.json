@@ -2194,6 +2194,7 @@
 	"sp-contributions-footer-anon": "{{ignored}}This is the footer for anonymous users on [[Special:Contributions]].",
 	"sp-contributions-footer-newbies": "{{ignored}}This is the footer for newbie users on [[Special:Contributions]].",
 	"whatlinkshere": "The text of the link in the toolbox (on the left, below the search menu) going to [[Special:WhatLinksHere]].\n\nSee also:\n* {{msg-mw|Whatlinkshere}}\n* {{msg-mw|Accesskey-t-whatlinkshere}}\n* {{msg-mw|Tooltip-t-whatlinkshere}}",
+	"whatlinkshere-count": "The number of pages listed in the current view. $1 is the number",
 	"whatlinkshere-title": "Title of the special page [[Special:WhatLinksHere]]. This page appears when you click on the 'What links here' button in the toolbox. $1 is the name of the page concerned.",
 	"whatlinkshere-summary": "{{doc-specialpagesummary|whatlinkshere}}",
 	"whatlinkshere-page": "{{Identical|Page}}",

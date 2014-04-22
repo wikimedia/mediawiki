@@ -275,6 +275,10 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		$out->addHTML( $this->listEnd() );
 
+		if ( !$this->including() ) {
+			$out->addWikiMsg( 'whatlinkshere-count', count( $rows ) );
+		}
+
 		if ( $level == 0 ) {
 			if ( !$this->including() ) {
 				$out->addHTML( $prevnext );
