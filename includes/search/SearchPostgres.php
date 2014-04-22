@@ -222,12 +222,8 @@ class PostgresSearchResult extends SearchResult {
  * @ingroup Search
  */
 class PostgresSearchResultSet extends SqlSearchResultSet {
-	function __construct( $resultSet, $terms ) {
-		parent::__construct( $resultSet, $terms );
-	}
-
 	function next() {
-		$row = $this->mResultSet->fetchObject();
+		$row = $this->resultSet->fetchObject();
 		if ( $row === false ) {
 			return false;
 		} else {
