@@ -408,19 +408,30 @@ class LocalFile extends File {
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
 		$this->extraDataLoaded = true;
 
-		$dbr = $this->repo->getSlaveDB();
-		// In theory the file could have just been renamed/deleted...oh well
-		$row = $dbr->selectRow( 'image', $this->getLazyCacheFields( 'img_' ),
-			array( 'img_name' => $this->getName() ), $fname );
+		$file = $this;
+		$getMapFunc = function( $db ) use ( $file, $fname ) {
+			# When fetching the extra data, detect race conditions by checking img_timestamp
+			$row = $db->selectRow( 'image', $this->getLazyCacheFields( 'img_' ),
+				array( 'img_name' => $this->getName(), 'img_timestamp' => $this->getTimestamp() ),
+				$fname );
+			if ( $row ) {
+				return $this->unprefixRow( $row, 'img_' );
+			}
+			# File may have been uploaded over in the meantime; check the old versions
+			$row = $db->selectRow( 'oldimage', $this->getLazyCacheFields( 'oi_' ),
+				array( 'oi_name' => $this->getName(), 'oi_timestamp' => $this->getTimestamp() ),
+				$fname );
+			if ( $row ) {
+				return $this->unprefixRow( $row, 'oi_' );
+			}
+			return false;
+		};
 
-		if ( !$row ) { // fallback to master
-			$dbr = $this->repo->getMasterDB();
-			$row = $dbr->selectRow( 'image', $this->getLazyCacheFields( 'img_' ),
-				array( 'img_name' => $this->getName() ), $fname );
-		}
+		$fieldMap = $getMapFunc( $this->repo->getSlaveDB() )
+			?: $getMapFunc( $this->repo->getMasterDB() ); // fallback to master
 
-		if ( $row ) {
-			foreach ( $this->unprefixRow( $row, 'img_' ) as $name => $value ) {
+		if ( $fieldMap ) {
+			foreach ( $fieldMap as $name => $value ) {
 				$this->$name = $value;
 			}
 		} else {
