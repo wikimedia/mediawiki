@@ -27,7 +27,7 @@
  */
 class CoreParserFunctions {
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @return void
 	 */
 	static function register( $parser ) {
@@ -76,7 +76,7 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @param string $part1
 	 * @return array
 	 */
@@ -144,7 +144,7 @@ class CoreParserFunctions {
 	 * Or to encode a value for the HTTP "path", spaces are encoded as '%20'.
 	 * For links to "wiki"s, or similar software, spaces are encoded as '_',
 	 *
-	 * @param $parser Parser object
+	 * @param Parser $parser
 	 * @param string $s The text to encode.
 	 * @param string $arg (optional): The type of encoding.
 	 * @return string
@@ -186,7 +186,7 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @param string $s
 	 * @return
 	 */
@@ -196,7 +196,7 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @param string $s
 	 * @return
 	 */
@@ -265,7 +265,7 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @param string $num
 	 * @param string $arg
 	 * @return string
@@ -282,7 +282,7 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @param string $case
 	 * @param string $word
 	 * @return
@@ -293,8 +293,8 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
-	 * @param $username string
+	 * @param Parser $parser
+	 * @param string $username
 	 * @return
 	 */
 	static function gender( $parser, $username ) {
@@ -335,7 +335,7 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @param string $text
 	 * @return
 	 */
@@ -350,9 +350,9 @@ class CoreParserFunctions {
 	 * Override the title of the page when viewed, provided we've been given a
 	 * title which will normalise to the canonical title
 	 *
-	 * @param $parser Parser: parent parser
-	 * @param string $text desired title text
-	 * @return String
+	 * @param Parser $parser Parent parser
+	 * @param string $text Desired title text
+	 * @return string
 	 */
 	static function displaytitle( $parser, $text = '' ) {
 		global $wgRestrictDisplayTitle;
@@ -408,9 +408,9 @@ class CoreParserFunctions {
 	/**
 	 * Matches the given value against the value of given magic word
 	 *
-	 * @param string $magicword magic word key
-	 * @param mixed $value value to match
-	 * @return boolean true on successful match
+	 * @param string $magicword Magic word key
+	 * @param string $value Value to match
+	 * @return bool True on successful match
 	 */
 	private static function matchAgainstMagicword( $magicword, $value ) {
 		$value = trim( strval( $value ) );
@@ -521,7 +521,7 @@ class CoreParserFunctions {
 	/**
 	 * Functions to get and normalize pagenames, corresponding to the magic words
 	 * of the same names
-	 * @return String
+	 * @return string
 	 */
 	static function pagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
@@ -690,9 +690,9 @@ class CoreParserFunctions {
 	 * Return the size of the given page, or 0 if it's nonexistent.  This is an
 	 * expensive parser function and can't be called too many times per page.
 	 *
-	 * @param $parser Parser
-	 * @param $page String Name of page to check (Default: empty string)
-	 * @param $raw String Should number be human readable with commas or just number
+	 * @param Parser $parser
+	 * @param string $page Name of page to check (Default: empty string)
+	 * @param string $raw Should number be human readable with commas or just number
 	 * @return string
 	 */
 	static function pagesize( $parser, $page = '', $raw = null ) {
@@ -736,10 +736,10 @@ class CoreParserFunctions {
 
 	/**
 	 * Gives language names.
-	 * @param $parser Parser
-	 * @param string $code  Language code (of which to get name)
-	 * @param string $inLanguage  Language code (in which to get name)
-	 * @return String
+	 * @param Parser $parser
+	 * @param string $code Language code (of which to get name)
+	 * @param string $inLanguage Language code (in which to get name)
+	 * @return string
 	 */
 	static function language( $parser, $code = '', $inLanguage = '' ) {
 		$code = strtolower( $code );
@@ -750,6 +750,11 @@ class CoreParserFunctions {
 
 	/**
 	 * Unicode-safe str_pad with the restriction that $length is forced to be <= 500
+	 * @param Parser $parser
+	 * @param string $string
+	 * @param int $length
+	 * @param string $padding
+	 * @param int $direction
 	 * @return string
 	 */
 	static function pad( $parser, $string, $length, $padding = '0', $direction = STR_PAD_RIGHT ) {
@@ -787,8 +792,8 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
-	 * @param $text
+	 * @param Parser $parser
+	 * @param string $text
 	 * @return string
 	 */
 	static function anchorencode( $parser, $text ) {
@@ -813,7 +818,7 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @param string $text The sortkey to use
 	 * @param string $uarg Either "noreplace" or "noerror" (in en)
 	 *   both suppress errors, and noreplace does nothing if
@@ -888,6 +893,9 @@ class CoreParserFunctions {
 
 	/**
 	 * Parser function to extension tag adaptor
+	 * @param Parser $parser
+	 * @param PPFrame $frame
+	 * @param array $args
 	 * @return string
 	 */
 	public static function tagObj( $parser, $frame, $args ) {
@@ -938,8 +946,8 @@ class CoreParserFunctions {
 	 * For a given title, which is equal to the current parser title,
 	 * the revision object from the parser is used, when that is the current one
 	 *
-	 * @param $parser Parser
-	 * @param $title Title
+	 * @param Parser $parser
+	 * @param Title $title
 	 * @return Revision
 	 * @since 1.23
 	 */
@@ -985,8 +993,8 @@ class CoreParserFunctions {
 
 	/**
 	 * Get the pageid of a specified page
-	 * @param $parser Parser
-	 * @param $title string Title to get the pageid from
+	 * @param Parser $parser
+	 * @param string $title Title to get the pageid from
 	 * @since 1.23
 	 */
 	public static function pageid( $parser, $title = null ) {
@@ -1029,8 +1037,8 @@ class CoreParserFunctions {
 
 	/**
 	 * Get the id from the last revision of a specified page.
-	 * @param $parser Parser
-	 * @param $title string Title to get the id from
+	 * @param Parser $parser
+	 * @param string $title Title to get the id from
 	 * @since 1.23
 	 */
 	public static function revisionid( $parser, $title = null ) {
@@ -1045,8 +1053,8 @@ class CoreParserFunctions {
 
 	/**
 	 * Get the day from the last revision of a specified page.
-	 * @param $parser Parser
-	 * @param $title string Title to get the day from
+	 * @param Parser $parser
+	 * @param string $title Title to get the day from
 	 * @since 1.23
 	 */
 	public static function revisionday( $parser, $title = null ) {
@@ -1061,8 +1069,8 @@ class CoreParserFunctions {
 
 	/**
 	 * Get the day with leading zeros from the last revision of a specified page.
-	 * @param $parser Parser
-	 * @param $title string Title to get the day from
+	 * @param Parser $parser
+	 * @param string $title Title to get the day from
 	 * @since 1.23
 	 */
 	public static function revisionday2( $parser, $title = null ) {
@@ -1077,8 +1085,8 @@ class CoreParserFunctions {
 
 	/**
 	 * Get the month with leading zeros from the last revision of a specified page.
-	 * @param $parser Parser
-	 * @param $title string Title to get the month from
+	 * @param Parser $parser
+	 * @param string $title Title to get the month from
 	 * @since 1.23
 	 */
 	public static function revisionmonth( $parser, $title = null ) {
@@ -1093,8 +1101,8 @@ class CoreParserFunctions {
 
 	/**
 	 * Get the month from the last revision of a specified page.
-	 * @param $parser Parser
-	 * @param $title string Title to get the month from
+	 * @param Parser $parser
+	 * @param string $title Title to get the month from
 	 * @since 1.23
 	 */
 	public static function revisionmonth1( $parser, $title = null ) {
@@ -1109,8 +1117,8 @@ class CoreParserFunctions {
 
 	/**
 	 * Get the year from the last revision of a specified page.
-	 * @param $parser Parser
-	 * @param $title string Title to get the year from
+	 * @param Parser $parser
+	 * @param string $title Title to get the year from
 	 * @since 1.23
 	 */
 	public static function revisionyear( $parser, $title = null ) {
@@ -1125,8 +1133,8 @@ class CoreParserFunctions {
 
 	/**
 	 * Get the timestamp from the last revision of a specified page.
-	 * @param $parser Parser
-	 * @param $title string Title to get the timestamp from
+	 * @param Parser $parser
+	 * @param string $title Title to get the timestamp from
 	 * @since 1.23
 	 */
 	public static function revisiontimestamp( $parser, $title = null ) {
@@ -1141,8 +1149,8 @@ class CoreParserFunctions {
 
 	/**
 	 * Get the user from the last revision of a specified page.
-	 * @param $parser Parser
-	 * @param $title string Title to get the user from
+	 * @param Parser $parser
+	 * @param string $title Title to get the user from
 	 * @since 1.23
 	 */
 	public static function revisionuser( $parser, $title = null ) {

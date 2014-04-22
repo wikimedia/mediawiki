@@ -53,7 +53,7 @@ class CacheTime {
 	}
 
 	/**
-	 * @param $com bool
+	 * @param bool $com
 	 * @return bool
 	 */
 	function setContainsOldMagic( $com ) {
@@ -63,7 +63,7 @@ class CacheTime {
 	/**
 	 * setCacheTime() sets the timestamp expressing when the page has been rendered.
 	 * This does not control expiry, see updateCacheExpiry() for that!
-	 * @param $t string
+	 * @param string $t
 	 * @return string
 	 */
 	function setCacheTime( $t ) {
@@ -80,7 +80,7 @@ class CacheTime {
 
 	/**
 	 * @since 1.23
-	 * @param $id int Revision id
+	 * @param int $id Revision id
 	 */
 	function setCacheRevisionId( $id ) {
 		$this->mCacheRevisionId = $id;
@@ -94,7 +94,7 @@ class CacheTime {
 	 * or equal to the smallest number that was provided as an argument to
 	 * updateCacheExpiry().
 	 *
-	 * @param $seconds number
+	 * @param int $seconds
 	 */
 	function updateCacheExpiry( $seconds ) {
 		$seconds = (int)$seconds;
@@ -156,8 +156,8 @@ class CacheTime {
 	 * per-article cache invalidation timestamps, or if it comes from
 	 * an incompatible older version.
 	 *
-	 * @param string $touched the affected article's last touched timestamp
-	 * @return Boolean
+	 * @param string $touched The affected article's last touched timestamp
+	 * @return bool
 	 */
 	public function expired( $touched ) {
 		global $wgCacheEpoch;
@@ -178,8 +178,8 @@ class CacheTime {
 	 * deployed. Someday that should probably be changed.
 	 *
 	 * @since 1.23
-	 * @param int $id the affected article's current revision id
-	 * @return Boolean
+	 * @param int $id The affected article's current revision id
+	 * @return bool
 	 */
 	public function isDifferentRevision( $id ) {
 		$cached = $this->getCacheRevisionId();

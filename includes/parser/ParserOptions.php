@@ -275,7 +275,7 @@ class ParserOptions {
 	 *
 	 * {{int: }} uses this which used to produce inconsistent link tables (bug 14404).
 	 *
-	 * @return Language object
+	 * @return Language
 	 * @since 1.19
 	 */
 	function getUserLangObj() {
@@ -286,7 +286,7 @@ class ParserOptions {
 	/**
 	 * Same as getUserLangObj() but returns a string instead.
 	 *
-	 * @return String Language code
+	 * @return string Language code
 	 * @since 1.17
 	 */
 	function getUserLang() {
@@ -344,8 +344,8 @@ class ParserOptions {
 
 	/**
 	 * Constructor
-	 * @param $user User object
-	 * @param $lang Language object
+	 * @param User $user
+	 * @param Language $lang
 	 */
 	function __construct( $user = null, $lang = null ) {
 		if ( $user === null ) {
@@ -370,8 +370,8 @@ class ParserOptions {
 	 * Get a ParserOptions object from a given user.
 	 * Language will be taken from $wgLang.
 	 *
-	 * @param $user User object
-	 * @return ParserOptions object
+	 * @param User $user
+	 * @return ParserOptions
 	 */
 	public static function newFromUser( $user ) {
 		return new ParserOptions( $user );
@@ -380,9 +380,9 @@ class ParserOptions {
 	/**
 	 * Get a ParserOptions object from a given user and language
 	 *
-	 * @param $user User object
-	 * @param $lang Language object
-	 * @return ParserOptions object
+	 * @param User $user
+	 * @param Language $lang
+	 * @return ParserOptions
 	 */
 	public static function newFromUserAndLang( User $user, Language $lang ) {
 		return new ParserOptions( $user, $lang );
@@ -391,8 +391,8 @@ class ParserOptions {
 	/**
 	 * Get a ParserOptions object from a IContextSource object
 	 *
-	 * @param $context IContextSource object
-	 * @return ParserOptions object
+	 * @param IContextSource $context
+	 * @return ParserOptions
 	 */
 	public static function newFromContext( IContextSource $context ) {
 		return new ParserOptions( $context->getUser(), $context->getLanguage() );
@@ -401,8 +401,8 @@ class ParserOptions {
 	/**
 	 * Get user options
 	 *
-	 * @param $user User object
-	 * @param $lang Language object
+	 * @param User $user
+	 * @param Language $lang
 	 */
 	private function initialiseFromUser( $user, $lang ) {
 		global $wgInterwikiMagic, $wgAllowExternalImages,
@@ -441,6 +441,7 @@ class ParserOptions {
 	/**
 	 * Registers a callback for tracking which ParserOptions which are used.
 	 * This is a private API with the parser.
+	 * @param callable $callback
 	 */
 	function registerWatcher( $callback ) {
 		$this->onAccessCallback = $callback;
@@ -448,7 +449,7 @@ class ParserOptions {
 
 	/**
 	 * Called when an option is accessed.
-	 * @param string $optionName name of the option
+	 * @param string $optionName Name of the option
 	 */
 	public function optionUsed( $optionName ) {
 		if ( $this->onAccessCallback ) {

@@ -47,7 +47,7 @@ class Preprocessor_Hash implements Preprocessor {
 	}
 
 	/**
-	 * @param $args array
+	 * @param array $args
 	 * @return PPCustomFrame_Hash
 	 */
 	function newCustomFrame( $args ) {
@@ -55,7 +55,7 @@ class Preprocessor_Hash implements Preprocessor {
 	}
 
 	/**
-	 * @param $values array
+	 * @param array $values
 	 * @return PPNode_Hash_Array
 	 */
 	function newPartNodeArray( $values ) {
@@ -89,10 +89,10 @@ class Preprocessor_Hash implements Preprocessor {
 	 * Preprocess some wikitext and return the document tree.
 	 * This is the ghost of Parser::replace_variables().
 	 *
-	 * @param string $text the text to parse
-	 * @param $flags Integer: bitwise combination of:
-	 *          Parser::PTD_FOR_INCLUSION    Handle "<noinclude>" and "<includeonly>" as if the text is being
-	 *                                     included. Default is to assume a direct page view.
+	 * @param string $text The text to parse
+	 * @param int $flags Bitwise combination of:
+	 *    Parser::PTD_FOR_INCLUSION    Handle "<noinclude>" and "<includeonly>" as if the text is being
+	 *                                 included. Default is to assume a direct page view.
 	 *
 	 * The generated DOM tree must depend only on the input text and the flags.
 	 * The DOM tree must be the same in OT_HTML and OT_WIKI mode, to avoid a regression of bug 4899.
@@ -762,6 +762,7 @@ class PPDStackElement_Hash extends PPDStackElement {
 	/**
 	 * Get the accumulator that would result if the close is not found.
 	 *
+	 * @param int|bool $openingCount
 	 * @return PPDAccum_Hash
 	 */
 	function breakSyntax( $openingCount = false ) {
@@ -812,6 +813,7 @@ class PPDAccum_Hash {
 
 	/**
 	 * Append a string literal
+	 * @param string $s
 	 */
 	function addLiteral( $s ) {
 		if ( $this->lastNode === false ) {
@@ -826,6 +828,7 @@ class PPDAccum_Hash {
 
 	/**
 	 * Append a PPNode
+	 * @param PPNode $node
 	 */
 	function addNode( PPNode $node ) {
 		if ( $this->lastNode === false ) {
@@ -838,6 +841,8 @@ class PPDAccum_Hash {
 
 	/**
 	 * Append a tree node with text contents
+	 * @param string $name
+	 * @param string $value
 	 */
 	function addNodeWithText( $name, $value ) {
 		$node = PPNode_Hash_Tree::newWithText( $name, $value );
@@ -848,6 +853,7 @@ class PPDAccum_Hash {
 	 * Append a PPAccum_Hash
 	 * Takes over ownership of the nodes in the source argument. These nodes may
 	 * subsequently be modified, especially nextSibling.
+	 * @param PPAccum_Hash $accum
 	 */
 	function addAccum( $accum ) {
 		if ( $accum->lastNode === false ) {
@@ -898,7 +904,7 @@ class PPFrame_Hash implements PPFrame {
 
 	/**
 	 * Construct a new preprocessor frame.
-	 * @param $preprocessor Preprocessor: the parent preprocessor
+	 * @param Preprocessor $preprocessor The parent preprocessor
 	 */
 	function __construct( $preprocessor ) {
 		$this->preprocessor = $preprocessor;
@@ -913,9 +919,8 @@ class PPFrame_Hash implements PPFrame {
 	 * Create a new child frame
 	 * $args is optionally a multi-root PPNode or array containing the template arguments
 	 *
-	 * @param array|bool|\PPNode_Hash_Array $args PPNode_Hash_Array|array
-	 * @param $title Title|bool
-	 *
+	 * @param array|bool|PPNode_Hash_Array $args
+	 * @param Title|bool $title
 	 * @param int $indexOffset
 	 * @throws MWException
 	 * @return PPTemplateFrame_Hash
@@ -952,8 +957,8 @@ class PPFrame_Hash implements PPFrame {
 
 	/**
 	 * @throws MWException
-	 * @param $root
-	 * @param $flags int
+	 * @param string|PPNode$root
+	 * @param int $flags
 	 * @return string
 	 */
 	function expand( $root, $flags = 0 ) {
@@ -1135,8 +1140,8 @@ class PPFrame_Hash implements PPFrame {
 	}
 
 	/**
-	 * @param $sep
-	 * @param $flags
+	 * @param string $sep
+	 * @param int $flags
 	 * @return string
 	 */
 	function implodeWithFlags( $sep, $flags /*, ... */ ) {
@@ -1166,6 +1171,7 @@ class PPFrame_Hash implements PPFrame {
 	/**
 	 * Implode with no flags specified
 	 * This previously called implodeWithFlags but has now been inlined to reduce stack depth
+	 * @param string $sep
 	 * @return string
 	 */
 	function implode( $sep /*, ... */ ) {
@@ -1196,6 +1202,7 @@ class PPFrame_Hash implements PPFrame {
 	 * Makes an object that, when expand()ed, will be the same as one obtained
 	 * with implode()
 	 *
+	 * @param string $sep
 	 * @return PPNode_Hash_Array
 	 */
 	function virtualImplode( $sep /*, ... */ ) {
@@ -1225,6 +1232,9 @@ class PPFrame_Hash implements PPFrame {
 	/**
 	 * Virtual implode with brackets
 	 *
+	 * @param string $start
+	 * @param string $sep
+	 * @param string $end
 	 * @return PPNode_Hash_Array
 	 */
 	function virtualBracketedImplode( $start, $sep, $end /*, ... */ ) {
@@ -1257,8 +1267,8 @@ class PPFrame_Hash implements PPFrame {
 	}
 
 	/**
-	 * @param $level bool
-	 * @return array|bool|String
+	 * @param bool $level
+	 * @return array|bool|string
 	 */
 	function getPDBK( $level = false ) {
 		if ( $level === false ) {
@@ -1299,7 +1309,7 @@ class PPFrame_Hash implements PPFrame {
 	}
 
 	/**
-	 * @param $name
+	 * @param string $name
 	 * @return bool
 	 */
 	function getArgument( $name ) {
@@ -1309,7 +1319,7 @@ class PPFrame_Hash implements PPFrame {
 	/**
 	 * Returns true if the infinite loop check is OK, false if a loop is detected
 	 *
-	 * @param $title Title
+	 * @param Title $title
 	 *
 	 * @return bool
 	 */
@@ -1345,11 +1355,11 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	var $numberedExpansionCache, $namedExpansionCache;
 
 	/**
-	 * @param $preprocessor
-	 * @param $parent
-	 * @param $numberedArgs array
-	 * @param $namedArgs array
-	 * @param $title Title
+	 * @param Preprocessor $preprocessor
+	 * @param bool|PPFrame $parent
+	 * @param array $numberedArgs
+	 * @param array $namedArgs
+	 * @param Title $title
 	 */
 	function __construct( $preprocessor, $parent = false, $numberedArgs = array(), $namedArgs = array(), $title = false ) {
 		parent::__construct( $preprocessor );
@@ -1431,7 +1441,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	}
 
 	/**
-	 * @param $index
+	 * @param int $index
 	 * @return array|bool
 	 */
 	function getNumberedArgument( $index ) {
@@ -1446,7 +1456,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	}
 
 	/**
-	 * @param $name
+	 * @param string $name
 	 * @return bool
 	 */
 	function getNamedArgument( $name ) {
@@ -1462,7 +1472,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	}
 
 	/**
-	 * @param $name
+	 * @param string $name
 	 * @return array|bool
 	 */
 	function getArgument( $name ) {
@@ -1519,7 +1529,7 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
 	}
 
 	/**
-	 * @param $index
+	 * @param int $index
 	 * @return bool
 	 */
 	function getArgument( $index ) {
@@ -1563,8 +1573,8 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 
 	/**
-	 * @param $name
-	 * @param $text
+	 * @param string $name
+	 * @param string $text
 	 * @return PPNode_Hash_Tree
 	 */
 	static function newWithText( $name, $text ) {
@@ -1619,7 +1629,7 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 
 	/**
-	 * @param $i
+	 * @param int $i
 	 * @return bool
 	 */
 	function item( $i ) {
