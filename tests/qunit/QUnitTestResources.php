@@ -44,6 +44,7 @@ return array(
 	'test.mediawiki.qunit.suites' => array(
 		'scripts' => array(
 			'tests/qunit/suites/resources/startup.test.js',
+			'tests/qunit/suites/resources/jquery/jquery.accessKeyLabel.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.autoEllipsis.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.byteLength.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.byteLimit.test.js',
@@ -77,6 +78,7 @@ return array(
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cldr.test.js',
 		),
 		'dependencies' => array(
+			'jquery.accessKeyLabel',
 			'jquery.autoEllipsis',
 			'jquery.byteLength',
 			'jquery.byteLimit',
