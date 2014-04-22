@@ -45,9 +45,19 @@ class CommandLineInstaller extends Maintenance {
 
 		$this->addArg( 'admin', 'The username of the wiki administrator (WikiSysop)', true );
 		$this->addOption( 'pass', 'The password for the wiki administrator.', false, true );
-		$this->addOption( 'passfile', 'An alternative way to provide pass option, as the contents of this file', false, true );
+		$this->addOption(
+			'passfile',
+			'An alternative way to provide pass option, as the contents of this file',
+			false,
+			true
+		);
 		/* $this->addOption( 'email', 'The email for the wiki administrator', false, true ); */
-		$this->addOption( 'scriptpath', 'The relative path of the wiki in the web server (/wiki)', false, true );
+		$this->addOption(
+			'scriptpath',
+			'The relative path of the wiki in the web server (/wiki)',
+			false,
+			true
+		);
 
 		$this->addOption( 'lang', 'The language to use (en)', false, true );
 		/* $this->addOption( 'cont-lang', 'The content language (en)', false, true ); */
@@ -62,22 +72,32 @@ class CommandLineInstaller extends Maintenance {
 		$this->addOption( 'installdbpass', 'The pasword for the DB user to install as.', false, true );
 		$this->addOption( 'dbuser', 'The user to use for normal operations (wikiuser)', false, true );
 		$this->addOption( 'dbpass', 'The pasword for the DB user for normal operations', false, true );
-		$this->addOption( 'dbpassfile', 'An alternative way to provide dbpass option, as the contents of this file', false, true );
+		$this->addOption(
+			'dbpassfile',
+			'An alternative way to provide dbpass option, as the contents of this file',
+			false,
+			true
+		);
 		$this->addOption( 'confpath', "Path to write LocalSettings.php to, default $IP", false, true );
-		/* $this->addOption( 'dbschema', 'The schema for the MediaWiki DB in pg (mediawiki)', false, true ); */
-		/* $this->addOption( 'namespace', 'The project namespace (same as the name)', false, true ); */
+		/*
+		$this->addOption( 'dbschema', 'The schema for the MediaWiki DB in pg (mediawiki)', false, true );
+		$this->addOption( 'namespace', 'The project namespace (same as the name)', false, true );
+		*/
 		$this->addOption( 'env-checks', "Run environment checks only, don't change anything" );
 	}
 
 	function execute() {
 		global $IP;
-		$siteName = isset( $this->mArgs[0] ) ? $this->mArgs[0] : "Don't care"; // Will not be set if used with --env-checks
+
+		// Will not be set if used with --env-checks
+		$siteName = isset( $this->mArgs[0] ) ? $this->mArgs[0] : "Don't care";
 		$adminName = isset( $this->mArgs[1] ) ? $this->mArgs[1] : null;
 
 		$dbpassfile = $this->getOption( 'dbpassfile', false );
 		if ( $dbpassfile !== false ) {
 			if ( $this->getOption( 'dbpass', false ) !== false ) {
-				$this->error( 'WARNING: You provide the options "dbpass" and "dbpassfile". The content of "dbpassfile" overwrites "dbpass".' );
+				$this->error( 'WARNING: You provide the options "dbpass" and "dbpassfile". '
+					. 'The content of "dbpassfile" overwrites "dbpass".' );
 			}
 			wfSuppressWarnings();
 			$dbpass = file_get_contents( $dbpassfile );
@@ -91,7 +111,8 @@ class CommandLineInstaller extends Maintenance {
 		$passfile = $this->getOption( 'passfile', false );
 		if ( $passfile !== false ) {
 			if ( $this->getOption( 'pass', false ) !== false ) {
-				$this->error( 'WARNING: You provide the options "pass" and "passfile". The content of "passfile" overwrites "pass".' );
+				$this->error( 'WARNING: You provide the options "pass" and "passfile". '
+					. 'The content of "passfile" overwrites "pass".' );
 			}
 			wfSuppressWarnings();
 			$pass = file_get_contents( $passfile );
