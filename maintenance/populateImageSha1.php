@@ -36,7 +36,12 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 		$this->addOption( 'multiversiononly', "Calculate only for files with several versions" );
 		$this->addOption( 'method', "Use 'pipe' to pipe to mysql command line,\n" .
 			"\t\tdefault uses Database class", false, true );
-		$this->addOption( 'file', 'Fix for a specific file, without File: namespace prefixed', false, true );
+		$this->addOption(
+			'file',
+			'Fix for a specific file, without File: namespace prefixed',
+			false,
+			true
+		);
 	}
 
 	protected function getUpdateKey() {
