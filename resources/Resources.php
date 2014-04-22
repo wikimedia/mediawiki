@@ -185,6 +185,12 @@ return array(
 
 	/* jQuery Plugins */
 
+	'jquery.accessKeyLabel' => array(
+		'scripts' => 'resources/src/jquery/jquery.accessKeyLabel.js',
+		'dependencies' => array(
+			'jquery.client',
+		),
+	),
 	'jquery.appear' => array(
 		'scripts' => 'resources/lib/jquery/jquery.appear.js',
 	),
@@ -897,7 +903,7 @@ return array(
 	'mediawiki.util' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.util.js',
 		'dependencies' => array(
-			'jquery.client',
+			'jquery.accessKeyLabel',
 			'jquery.mwExtension',
 			'mediawiki.notify',
 		),
