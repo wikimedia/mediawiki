@@ -86,7 +86,7 @@ class SearchOracle extends SearchDatabase {
 		}
 
 		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), false ) ) );
-		return new MySQLSearchResultSet( $resultSet, $this->searchTerms );
+		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
 	/**

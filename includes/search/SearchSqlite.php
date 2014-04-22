@@ -145,7 +145,7 @@ class SearchSqlite extends SearchDatabase {
 	 * Perform a full text search query and return a result set.
 	 *
 	 * @param string $term Raw search term
-	 * @return SqliteSearchResultSet
+	 * @return SqlSearchResultSet
 	 */
 	function searchText( $term ) {
 		return $this->searchInternal( $term, true );
@@ -155,7 +155,7 @@ class SearchSqlite extends SearchDatabase {
 	 * Perform a title-only search query and return a result set.
 	 *
 	 * @param string $term Raw search term
-	 * @return SqliteSearchResultSet
+	 * @return SqlSearchResultSet
 	 */
 	function searchTitle( $term ) {
 		return $this->searchInternal( $term, false );
@@ -181,7 +181,7 @@ class SearchSqlite extends SearchDatabase {
 			$totalResult->free();
 		}
 
-		return new SqliteSearchResultSet( $resultSet, $this->searchTerms, $total );
+		return new SqlSearchResultSet( $resultSet, $this->searchTerms, $total );
 	}
 
 	/**
@@ -301,19 +301,5 @@ class SearchSqlite extends SearchDatabase {
 			array( 'si_title' => $title ),
 			array( 'rowid' => $id ),
 			__METHOD__ );
-	}
-}
-
-/**
- * @ingroup Search
- */
-class SqliteSearchResultSet extends SqlSearchResultSet {
-	function __construct( $resultSet, $terms, $totalHits = null ) {
-		parent::__construct( $resultSet, $terms );
-		$this->mTotalHits = $totalHits;
-	}
-
-	function getTotalHits() {
-		return $this->mTotalHits;
 	}
 }
