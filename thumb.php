@@ -36,6 +36,10 @@ if ( defined( 'THUMB_HANDLER' ) ) {
 }
 
 wfLogProfilingData();
+// Commit and close up!
+$factory = wfGetLBFactory();
+$factory->commitMasterChanges();
+$factory->shutdown();
 
 //--------------------------------------------------------------------------
 

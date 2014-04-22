@@ -50,6 +50,10 @@ $wgActionPaths = array( "$wgUploadPath/" );
 
 wfImageAuthMain();
 wfLogProfilingData();
+// Commit and close up!
+$factory = wfGetLBFactory();
+$factory->commitMasterChanges();
+$factory->shutdown();
 
 function wfImageAuthMain() {
 	global $wgImgAuthPublicTest, $wgImgAuthUrlPathMap, $wgRequest;
