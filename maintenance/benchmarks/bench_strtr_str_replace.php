@@ -38,8 +38,7 @@ function bfNormalizeTitleStrReplace( $str ) {
  *
  * @ingroup Benchmark
  */
-class bench_strtr_str_replace extends Benchmarker {
-
+class BenchStrtrStrReplace extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Benchmark for strtr() vs str_replace().";
@@ -70,8 +69,7 @@ class bench_strtr_str_replace extends Benchmarker {
 	function benchstr_replace_indirect() {
 		bfNormalizeTitleStrReplace( "[[MediaWiki:Some_random_test_page]]" );
 	}
-
 }
 
-$maintClass = 'bench_strtr_str_replace';
+$maintClass = 'BenchStrtrStrReplace';
 require_once RUN_MAINTENANCE_IF_MAIN;

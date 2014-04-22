@@ -29,8 +29,7 @@ require_once __DIR__ . '/Benchmarker.php';
  *
  * @ingroup Benchmark
  */
-class bench_wfBaseConvert extends Benchmarker {
-
+class BenchWfBaseConvert extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Benchmark for wfBaseConvert.";
@@ -73,5 +72,5 @@ class bench_wfBaseConvert extends Benchmarker {
 	}
 }
 
-$maintClass = 'bench_wfBaseConvert';
+$maintClass = 'BenchWfBaseConvert';
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -29,7 +29,6 @@ require_once __DIR__ . '/Benchmarker.php';
  * @ingroup Benchmark
  */
 class BenchmarkDeleteTruncate extends Benchmarker {
-
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Benchmarks SQL DELETE vs SQL TRUNCATE.";

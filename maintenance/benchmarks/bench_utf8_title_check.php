@@ -29,8 +29,7 @@ require_once __DIR__ . '/Benchmarker.php';
  *
  * @ingroup Benchmark
  */
-class bench_utf8_title_check extends Benchmarker {
-
+class BenchUtf8TitleCheck extends Benchmarker {
 	private $canRun;
 
 	private $data;
@@ -38,6 +37,7 @@ class bench_utf8_title_check extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
 
+		// @codingStandardsIgnoreStart Ignore long line warnings.
 		$this->data = array(
 			"",
 			"United States of America", // 7bit ASCII
@@ -59,11 +59,13 @@ class bench_utf8_title_check extends Benchmarker {
 			. "Sara%20Sidle%7CSofia%20Curtis%7CS%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e%7CWallace%20Langham%7C"
 			. "Warrick%20Brown%7CWendy%20Simms%7C%C3%89tats-Unis"
 		);
+		// @codingStandardsIgnoreEnd
 
 		$this->canRun = function_exists ( 'mb_check_encoding' );
 
 		if ( $this->canRun ) {
-			$this->mDescription = "Benchmark for using a regexp vs. mb_check_encoding to check for UTF-8 encoding.";
+			$this->mDescription = "Benchmark for using a regexp vs. mb_check_encoding " .
+				"to check for UTF-8 encoding.";
 			mb_internal_encoding( 'UTF-8' );
 		} else {
 			$this->mDescription = "CANNOT RUN benchmark using mb_check_encoding: function not available.";
@@ -119,8 +121,7 @@ class bench_utf8_title_check extends Benchmarker {
 	function use_mb_check_encoding( $s ) {
 		$this->isutf8 = mb_check_encoding( $s, 'UTF-8' );
 	}
-
 }
 
-$maintClass = 'bench_utf8_title_check';
+$maintClass = 'BenchUtf8TitleCheck';
 require_once RUN_MAINTENANCE_IF_MAIN;
