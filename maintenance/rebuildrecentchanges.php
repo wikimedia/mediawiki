@@ -82,7 +82,11 @@ class RebuildRecentchanges extends Maintenance {
 				'rc_this_oldid' => 'rev_id',
 				'rc_last_oldid' => 0, // is this ok?
 				'rc_type'       => $dbw->conditional( 'page_is_new != 0', RC_NEW, RC_EDIT ),
-				'rc_source'     => $dbw->conditional( 'page_is_new != 0', $dbw->addQuotes( RecentChange::SRC_NEW ), $dbw->addQuotes( RecentChange::SRC_EDIT ) ),
+				'rc_source'     => $dbw->conditional(
+					'page_is_new != 0',
+					$dbw->addQuotes( RecentChange::SRC_NEW ),
+					$dbw->addQuotes( RecentChange::SRC_EDIT )
+				),
 				'rc_deleted'    => 'rev_deleted'
 			), array(
 				'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $cutoff ) ),
@@ -182,7 +186,12 @@ class RebuildRecentchanges extends Maintenance {
 
 		$cutoff = time() - $wgRCMaxAge;
 		list( $logging, $page ) = $dbw->tableNamesN( 'logging', 'page' );
-		$dbw->insertSelect( 'recentchanges', array( 'user', "$logging LEFT JOIN $page ON (log_namespace=page_namespace AND log_title=page_title)" ),
+		$dbw->insertSelect(
+			'recentchanges',
+			array(
+				'user',
+				"$logging LEFT JOIN $page ON (log_namespace=page_namespace AND log_title=page_title)"
+			),
 			array(
 				'rc_timestamp'  => 'log_timestamp',
 				'rc_user'       => 'log_user',
@@ -223,7 +232,8 @@ class RebuildRecentchanges extends Maintenance {
 
 		$dbw = wfGetDB( DB_MASTER );
 
-		list( $recentchanges, $usergroups, $user ) = $dbw->tableNamesN( 'recentchanges', 'user_groups', 'user' );
+		list( $recentchanges, $usergroups, $user ) =
+			$dbw->tableNamesN( 'recentchanges', 'user_groups', 'user' );
 
 		$botgroups = User::getGroupsWithPermission( 'bot' );
 		$autopatrolgroups = $wgUseRCPatrol ? User::getGroupsWithPermission( 'autopatrol' ) : array();
