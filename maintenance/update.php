@@ -47,13 +47,19 @@ class UpdateMediaWiki extends Maintenance {
 		$this->addOption( 'doshared', 'Also update shared tables' );
 		$this->addOption( 'nopurge', 'Do not purge the objectcache table after updates' );
 		$this->addOption( 'noschema', 'Only do the updates that are not done during schema updates' );
-		$this->addOption( 'schema', 'Output SQL to do the schema updates instead of doing them.  Works even when $wgAllowSchemaUpdates is false', false, true );
+		$this->addOption(
+			'schema',
+			'Output SQL to do the schema updates instead of doing them. Works '
+				. 'even when $wgAllowSchemaUpdates is false',
+			false,
+			true
+		);
 		$this->addOption( 'force', 'Override when $wgAllowSchemaUpdates disables this script' );
 	}
 
 	function getDbType() {
 		/* If we used the class constant PHP4 would give a parser error here */
-		return 2 /* Maintenance::DB_ADMIN */;
+		return 2; /* Maintenance::DB_ADMIN */
 	}
 
 	function compatChecks() {
@@ -85,7 +91,11 @@ class UpdateMediaWiki extends Maintenance {
 	function execute() {
 		global $wgVersion, $wgLang, $wgAllowSchemaUpdates;
 
-		if ( !$wgAllowSchemaUpdates && !( $this->hasOption( 'force' ) || $this->hasOption( 'schema' ) || $this->hasOption( 'noschema' ) ) ) {
+		if ( !$wgAllowSchemaUpdates
+			&& !( $this->hasOption( 'force' )
+				|| $this->hasOption( 'schema' )
+				|| $this->hasOption( 'noschema' ) )
+		) {
 			$this->error( "Do not run update.php on this wiki. If you're seeing this you should\n"
 				. "probably ask for some help in performing your schema updates or use\n"
 				. "the --noschema and --schema options to get an SQL file for someone\n"
@@ -131,7 +141,8 @@ class UpdateMediaWiki extends Maintenance {
 		$this->output( "Depending on the size of your database this may take a while!\n" );
 
 		if ( !$this->hasOption( 'quick' ) ) {
-			$this->output( "Abort with control-c in the next five seconds (skip this countdown with --quick) ... " );
+			$this->output( "Abort with control-c in the next five seconds "
+				. "(skip this countdown with --quick) ... " );
 			wfCountDown( 5 );
 		}
 

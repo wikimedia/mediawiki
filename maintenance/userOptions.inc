@@ -155,7 +155,9 @@ class UserOptions {
 
 				$userValue = $user->getOption( $this->mAnOption );
 				if ( $userValue <> $defaultOptions[$this->mAnOption] ) {
+					// @codingStandardsIgnoreStart Ignore silencing errors is discouraged warning
 					@$ret[$this->mAnOption][$userValue]++;
+					// @codingStandardsIgnoreEnd
 				}
 
 			} else {
@@ -163,7 +165,9 @@ class UserOptions {
 				foreach ( $defaultOptions as $name => $defaultValue ) {
 					$userValue = $user->getOption( $name );
 					if ( $userValue <> $defaultValue ) {
+						// @codingStandardsIgnoreStart Ignore silencing errors is discouraged warning
 						@$ret[$name][$userValue]++;
+						// @codingStandardsIgnoreEnd
 					}
 				}
 			}
@@ -200,7 +204,8 @@ class UserOptions {
 			if ( $curValue == $this->mOldValue ) {
 
 				if ( !$this->mQuiet ) {
-					print "Setting {$this->mAnOption} for $username from '{$this->mOldValue}' to '{$this->mNewValue}'): ";
+					print "Setting {$this->mAnOption} for $username from '{$this->mOldValue}' " .
+						"to '{$this->mNewValue}'): ";
 				}
 
 				// Change value

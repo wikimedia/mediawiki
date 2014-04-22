@@ -125,7 +125,8 @@ class UserDupes {
 
 		if ( $this->reassigned > 0 ) {
 			if ( $doDelete ) {
-				$this->out( "$this->reassigned duplicate accounts had edits reassigned to a canonical record id.\n" );
+				$this->out( "$this->reassigned duplicate accounts had edits "
+					. "reassigned to a canonical record id.\n" );
 			} else {
 				$this->out( "$this->reassigned duplicate accounts need to have edits reassigned.\n" );
 			}
@@ -133,9 +134,11 @@ class UserDupes {
 
 		if ( $this->trimmed > 0 ) {
 			if ( $doDelete ) {
-				$this->out( "$this->trimmed duplicate user records were deleted from " . wfWikiID() . ".\n" );
+				$this->out( "$this->trimmed duplicate user records were deleted from "
+					. wfWikiID() . ".\n" );
 			} else {
-				$this->out( "$this->trimmed duplicate user accounts were found on " . wfWikiID() . " which can be removed safely.\n" );
+				$this->out( "$this->trimmed duplicate user accounts were found on "
+					. wfWikiID() . " which can be removed safely.\n" );
 			}
 		}
 
