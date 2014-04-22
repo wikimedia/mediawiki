@@ -311,7 +311,10 @@ class FixBug20757 extends Maintenance {
 		$text = $secondaryRow->old_text;
 		if ( in_array( 'external', $flags ) ) {
 			$url = $text;
-			@list( /* $proto */ , $path ) = explode( '://', $url, 2 );
+			wfSuppressWarnings();
+			list( /* $proto */ , $path ) = explode( '://', $url, 2 );
+			wfRestoreWarnings();
+
 			if ( $path == "" ) {
 				return false;
 			}
