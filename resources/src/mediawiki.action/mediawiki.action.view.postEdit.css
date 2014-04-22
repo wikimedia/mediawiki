@@ -23,7 +23,6 @@
 	border: 1px solid #dcd9d9;
 	text-shadow: 0 0.0625em 0 rgba(255, 255, 255, 0.5);
 	border-radius: 5px;
-	-webkit-box-shadow: 0 2px 5px 0 #ccc;
 	box-shadow: 0 2px 5px 0 #ccc;
 	-webkit-transition: all 0.25s ease-in-out;
 	-moz-transition: all 0.25s ease-in-out;
