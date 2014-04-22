@@ -45,8 +45,8 @@ CREATE TABLE /*_*/mwuser (
    user_email_token  NCHAR(32) DEFAULT '',
    user_email_token_expires varchar(14) DEFAULT NULL,
    user_registration varchar(14) DEFAULT NULL,
-   user_editcount    INT NULL DEFAULT NULL
-   user_password_expires DATETIME DEFAULT NULL
+   user_editcount    INT NULL DEFAULT NULL,
+   user_password_expires varchar(14) DEFAULT NULL
 );
 CREATE UNIQUE INDEX /*i*/user_name ON /*_*/mwuser (user_name);
 CREATE INDEX /*i*/user_email_token ON /*_*/mwuser (user_email_token);
