@@ -467,7 +467,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		//Make 1 page with 1 revision
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
-		if ( !$page->getId() == 0 ) {
+		if ( $page->getId() == 0 ) {
 			$page->doEditContent(
 				new WikitextContent( 'UTContent' ),
 				'UTPageSummary',
