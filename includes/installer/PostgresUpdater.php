@@ -234,6 +234,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'changeNullableField', 'image', 'img_metadata', 'NOT NULL' ),
 			array( 'changeNullableField', 'filearchive', 'fa_metadata', 'NOT NULL' ),
 			array( 'changeNullableField', 'recentchanges', 'rc_cur_id', 'NULL' ),
+			array( 'changeNullableField', 'recentchanges', 'rc_cur_time', 'NULL' ),
 
 			array( 'checkOiDeleted' ),
 
