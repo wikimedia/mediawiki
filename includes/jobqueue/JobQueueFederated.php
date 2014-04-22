@@ -555,7 +555,7 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	/**
-	 * @param $property
+	 * @param string $property
 	 * @return string
 	 */
 	private function getCacheKey( $property ) {

@@ -37,7 +37,7 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 	/**
 	 * Fetch the tokens for the current user.
 	 *
-	 * @return array: List of tokens keyed by token type
+	 * @return array List of tokens keyed by token type
 	 */
 	protected function contextUserTokens() {
 		global $wgUser;
@@ -50,7 +50,7 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return string
 	 */
 	public function getScript( ResourceLoaderContext $context ) {

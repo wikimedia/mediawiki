@@ -62,9 +62,9 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 	}
 
 	/**
-	 * @param $request WebRequest
+	 * @param WebRequest $request
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {

@@ -120,7 +120,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	/**
 	 * Get registration code for all modules.
 	 *
-	 * @param ResourceLoaderContext $context object
+	 * @param ResourceLoaderContext $context
 	 * @return string JavaScript code for registering all modules with the client loader
 	 */
 	public static function getModuleRegistrations( ResourceLoaderContext $context ) {
@@ -345,8 +345,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 *
 	 * Detect changes to mw.config settings embedded in #getScript (bug 28899).
 	 *
-	 * @param $context ResourceLoaderContext
-	 * @return string: Hash
+	 * @param ResourceLoaderContext $context
+	 * @return string Hash
 	 */
 	public function getModifiedHash( ResourceLoaderContext $context ) {
 		global $wgLegacyJavaScriptGlobals;

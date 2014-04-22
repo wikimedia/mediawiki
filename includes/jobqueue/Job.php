@@ -87,7 +87,7 @@ abstract class Job implements IJobSpecification {
 	 * This may add duplicate at insert time, but they will be
 	 * removed later on, when the first one is popped.
 	 *
-	 * @param array $jobs of Job objects
+	 * @param array $jobs Array of Job objects
 	 * @return bool
 	 * @deprecated since 1.21
 	 */
@@ -102,7 +102,7 @@ abstract class Job implements IJobSpecification {
 	 * be rolled-back as part of a larger transaction. However,
 	 * large batches of jobs can cause slave lag.
 	 *
-	 * @param array $jobs of Job objects
+	 * @param array $jobs Array of Job objects
 	 * @return bool
 	 * @deprecated since 1.21
 	 */
@@ -115,7 +115,7 @@ abstract class Job implements IJobSpecification {
 	 * actually find a job; it may be adversely affected by concurrent job
 	 * runners.
 	 *
-	 * @param $type string
+	 * @param string $type
 	 * @return Job|bool Returns false if there are no jobs
 	 * @deprecated since 1.21
 	 */
@@ -139,9 +139,9 @@ abstract class Job implements IJobSpecification {
 	 *------------------------------------------------------------------------*/
 
 	/**
-	 * @param $command
-	 * @param $title
-	 * @param $params array|bool
+	 * @param string $command
+	 * @param Title $title
+	 * @param array|bool $params
 	 */
 	public function __construct( $command, $title, $params = false ) {
 		$this->command = $command;
@@ -199,7 +199,7 @@ abstract class Job implements IJobSpecification {
 	}
 
 	/**
-	 * @return integer Number of actually "work items" handled in this job
+	 * @return int Number of actually "work items" handled in this job
 	 * @see $wgJobBackoffThrottling
 	 * @since 1.23
 	 */

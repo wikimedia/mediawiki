@@ -36,7 +36,7 @@ class HTMLCheckField extends HTMLFormField {
 	/**
 	 * For a checkbox, the label goes on the right hand side, and is
 	 * added in getInputHTML(), rather than HTMLFormField::getRow()
-	 * @return String
+	 * @return string
 	 */
 	function getLabel() {
 		return '&#160;';
@@ -44,15 +44,16 @@ class HTMLCheckField extends HTMLFormField {
 
 	/**
 	 * checkboxes don't need a label.
+	 * @return bool
 	 */
 	protected function needsLabel() {
 		return false;
 	}
 
 	/**
-	 * @param $request WebRequest
+	 * @param WebRequest $request
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function loadDataFromRequest( $request ) {
 		$invert = false;

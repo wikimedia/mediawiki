@@ -28,7 +28,7 @@
 class SearchSqlite extends SearchDatabase {
 	/**
 	 * Whether fulltext search is supported by current schema
-	 * @return Boolean
+	 * @return bool
 	 */
 	function fulltextSearchSupported() {
 		return $this->db->checkForEnabledSearch();
@@ -144,7 +144,7 @@ class SearchSqlite extends SearchDatabase {
 	/**
 	 * Perform a full text search query and return a result set.
 	 *
-	 * @param string $term raw search term
+	 * @param string $term Raw search term
 	 * @return SqliteSearchResultSet
 	 */
 	function searchText( $term ) {
@@ -154,7 +154,7 @@ class SearchSqlite extends SearchDatabase {
 	/**
 	 * Perform a title-only search query and return a result set.
 	 *
-	 * @param string $term raw search term
+	 * @param string $term Raw search term
 	 * @return SqliteSearchResultSet
 	 */
 	function searchTitle( $term ) {
@@ -186,7 +186,7 @@ class SearchSqlite extends SearchDatabase {
 
 	/**
 	 * Return a partial WHERE clause to limit the search to the given namespaces
-	 * @return String
+	 * @return string
 	 */
 	function queryNamespaces() {
 		if ( is_null( $this->namespaces ) ) {
@@ -202,8 +202,8 @@ class SearchSqlite extends SearchDatabase {
 
 	/**
 	 * Returns a query with limit for number of results set.
-	 * @param $sql String:
-	 * @return String
+	 * @param string $sql
+	 * @return string
 	 */
 	function limitResult( $sql ) {
 		return $this->db->limitResult( $sql, $this->limit, $this->offset );
@@ -212,9 +212,9 @@ class SearchSqlite extends SearchDatabase {
 	/**
 	 * Construct the full SQL query to do the search.
 	 * The guts shoulds be constructed in queryMain()
-	 * @param $filteredTerm String
-	 * @param $fulltext Boolean
-	 * @return String
+	 * @param string $filteredTerm
+	 * @param bool $fulltext
+	 * @return string
 	 */
 	function getQuery( $filteredTerm, $fulltext ) {
 		return $this->limitResult(
@@ -225,8 +225,8 @@ class SearchSqlite extends SearchDatabase {
 
 	/**
 	 * Picks which field to index on, depending on what type of query.
-	 * @param $fulltext Boolean
-	 * @return String
+	 * @param bool $fulltext
+	 * @return string
 	 */
 	function getIndexField( $fulltext ) {
 		return $fulltext ? 'si_text' : 'si_title';
@@ -235,9 +235,9 @@ class SearchSqlite extends SearchDatabase {
 	/**
 	 * Get the base part of the search query.
 	 *
-	 * @param $filteredTerm String
-	 * @param $fulltext Boolean
-	 * @return String
+	 * @param string $filteredTerm
+	 * @param bool $fulltext
+	 * @return string
 	 */
 	function queryMain( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
@@ -262,9 +262,9 @@ class SearchSqlite extends SearchDatabase {
 	 * Create or update the search index record for the given page.
 	 * Title and text should be pre-processed.
 	 *
-	 * @param $id Integer
-	 * @param $title String
-	 * @param $text String
+	 * @param int $id
+	 * @param string $title
+	 * @param string $text
 	 */
 	function update( $id, $title, $text ) {
 		if ( !$this->fulltextSearchSupported() ) {
@@ -288,8 +288,8 @@ class SearchSqlite extends SearchDatabase {
 	 * Update a search index record's title only.
 	 * Title should be pre-processed.
 	 *
-	 * @param $id Integer
-	 * @param $title String
+	 * @param int $id
+	 * @param string $title
 	 */
 	function updateTitle( $id, $title ) {
 		if ( !$this->fulltextSearchSupported() ) {

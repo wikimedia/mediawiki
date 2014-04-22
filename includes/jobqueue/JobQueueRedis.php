@@ -194,7 +194,7 @@ class JobQueueRedis extends JobQueue {
 	/**
 	 * @see JobQueue::doBatchPush()
 	 * @param array $jobs
-	 * @param $flags
+	 * @param array $flags
 	 * @return bool
 	 * @throws JobQueueError
 	 */
@@ -350,7 +350,7 @@ LUA;
 
 	/**
 	 * @param RedisConnRef $conn
-	 * @return array serialized string or false
+	 * @return array Serialized string or false
 	 * @throws RedisException
 	 */
 	protected function popAndDeleteBlob( RedisConnRef $conn ) {
@@ -383,7 +383,7 @@ LUA;
 
 	/**
 	 * @param RedisConnRef $conn
-	 * @return array serialized string or false
+	 * @return array Serialized string or false
 	 * @throws RedisException
 	 */
 	protected function popAndAcquireBlob( RedisConnRef $conn ) {
@@ -614,8 +614,8 @@ LUA;
 	/**
 	 * This function should not be called outside JobQueueRedis
 	 *
-	 * @param $uid string
-	 * @param $conn RedisConnRef
+	 * @param string $uid
+	 * @param RedisConnRef $conn
 	 * @return Job|bool Returns false if the job does not exist
 	 * @throws MWException|JobQueueError
 	 */
@@ -773,7 +773,7 @@ LUA;
 	}
 
 	/**
-	 * @param $fields array
+	 * @param array $fields
 	 * @return Job|bool
 	 */
 	protected function getJobFromFields( array $fields ) {
@@ -840,8 +840,8 @@ LUA;
 	}
 
 	/**
-	 * @param $conn RedisConnRef
-	 * @param $e RedisException
+	 * @param RedisConnRef $conn
+	 * @param RedisException $e
 	 * @throws JobQueueError
 	 */
 	protected function throwRedisException( RedisConnRef $conn, $e ) {
@@ -850,8 +850,8 @@ LUA;
 	}
 
 	/**
-	 * @param $prop string
-	 * @param $type string|null
+	 * @param string $prop
+	 * @param string|null $type
 	 * @return string
 	 */
 	private function getQueueKey( $prop, $type = null ) {
@@ -865,7 +865,7 @@ LUA;
 	}
 
 	/**
-	 * @param $key string
+	 * @param string $key
 	 * @return void
 	 */
 	public function setTestingPrefix( $key ) {

@@ -42,9 +42,9 @@ class DoubleRedirectJob extends Job {
 
 	/**
 	 * Insert jobs into the job queue to fix redirects to the given title
-	 * @param string $reason the reason for the fix, see message
+	 * @param string $reason The reason for the fix, see message
 	 *   "double-redirect-fixed-<reason>"
-	 * @param $redirTitle Title: the title which has changed, redirects
+	 * @param Title $redirTitle The title which has changed, redirects
 	 *   pointing to this title are fixed
 	 * @param bool $destTitle Not used
 	 */
@@ -177,9 +177,9 @@ class DoubleRedirectJob extends Job {
 	/**
 	 * Get the final destination of a redirect
 	 *
-	 * @param $title Title
+	 * @param Title $title
 	 *
-	 * @return bool if the specified title is not a redirect, or if it is a circular redirect
+	 * @return bool If the specified title is not a redirect, or if it is a circular redirect
 	 */
 	public static function getFinalDestination( $title ) {
 		$dbw = wfGetDB( DB_MASTER );

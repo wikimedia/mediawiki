@@ -174,7 +174,7 @@ class UploadFromUrlJob extends Job {
 	}
 
 	/**
-	 * @param $key
+	 * @param string $key
 	 * @return mixed
 	 */
 	public static function &getSessionData( $key ) {

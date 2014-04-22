@@ -48,7 +48,7 @@ abstract class HTMLFormField {
 	 *
 	 * Parameters are the same as wfMessage().
 	 *
-	 * @return Message object
+	 * @return Message
 	 */
 	function msg() {
 		$args = func_get_args();
@@ -70,7 +70,7 @@ abstract class HTMLFormField {
 	 * @param string $value The value the field was submitted with
 	 * @param array $alldata The data collected from the form
 	 *
-	 * @return Mixed Bool true on success, or String error to display.
+	 * @return bool|string true on success, or String error to display.
 	 */
 	function validate( $value, $alldata ) {
 		if ( isset( $this->mParams['required'] )
@@ -123,7 +123,7 @@ abstract class HTMLFormField {
 	 * or the input's default value if it has not been set.
 	 *
 	 * @param WebRequest $request
-	 * @return String the value
+	 * @return string The value
 	 */
 	function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {
@@ -345,7 +345,7 @@ abstract class HTMLFormField {
 	 *
 	 * @param string|null $helptext
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getHelpTextHtmlDiv( $helptext ) {
 		if ( is_null( $helptext ) ) {
@@ -362,7 +362,7 @@ abstract class HTMLFormField {
 	 * @since 1.20
 	 *
 	 * @param string|null $helptext
-	 * @return String
+	 * @return string
 	 */
 	public function getHelpTextHtmlRaw( $helptext ) {
 		return $this->getHelpTextHtmlDiv( $helptext );
@@ -596,8 +596,7 @@ abstract class HTMLFormField {
 	 * flatten an array of options to a single array, for instance,
 	 * a set of "<options>" inside "<optgroups>".
 	 *
-	 * @param array $options Associative Array with values either Strings
-	 *     or Arrays
+	 * @param array $options Associative Array with values either Strings or Arrays
 	 * @return array Flattened input
 	 */
 	public static function flattenOptions( $options ) {
@@ -617,7 +616,7 @@ abstract class HTMLFormField {
 	/**
 	 * Formats one or more errors as accepted by field validation-callback.
 	 *
-	 * @param string|Message|array $errors String|Message|Array of strings or Message instances
+	 * @param string|Message|array $errors Array of strings or Message instances
 	 * @return string HTML
 	 * @since 1.18
 	 */

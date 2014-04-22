@@ -93,8 +93,8 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
-	 * @return string: JavaScript code
+	 * @param ResourceLoaderContext $context
+	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		$this->language = Language::factory( $context->getLanguage() );
@@ -105,16 +105,16 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
-	 * @return int: UNIX timestamp
+	 * @param ResourceLoaderContext $context
+	 * @return int UNIX timestamp
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		return max( 1, $this->getHashMtime( $context ) );
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
-	 * @return string: Hash
+	 * @param ResourceLoaderContext $context
+	 * @return string Hash
 	 */
 	public function getModifiedHash( ResourceLoaderContext $context ) {
 		$this->language = Language::factory( $context->getLanguage() );
