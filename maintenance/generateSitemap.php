@@ -263,6 +263,7 @@ class GenerateSitemap extends Maintenance {
 		global $wgSitemapNamespaces;
 		if ( is_array( $wgSitemapNamespaces ) ) {
 			$this->namespaces = $wgSitemapNamespaces;
+
 			return;
 		}
 
@@ -343,7 +344,7 @@ class GenerateSitemap extends Maintenance {
 
 			$fns = $wgContLang->getFormattedNsText( $namespace );
 			$this->output( "$namespace ($fns)\n" );
-			$skippedRedirects = 0;  // Number of redirects skipped for that namespace
+			$skippedRedirects = 0; // Number of redirects skipped for that namespace
 			foreach ( $res as $row ) {
 				if ( $this->skipRedirects && $row->page_is_redirect ) {
 					$skippedRedirects++;
@@ -415,6 +416,7 @@ class GenerateSitemap extends Maintenance {
 			throw new MWException( __METHOD__
 				. " error opening file $file with flags $flags. Check permissions?" );
 		}
+
 		return $resource;
 	}
 
@@ -457,6 +459,7 @@ class GenerateSitemap extends Maintenance {
 	 */
 	function sitemapFilename( $namespace, $count ) {
 		$ext = $this->compress ? '.gz' : '';
+
 		return "sitemap-{$this->identifier}-NS_$namespace-$count.xml$ext";
 	}
 

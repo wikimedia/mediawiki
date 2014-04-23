@@ -41,6 +41,7 @@ class PreprocessDump extends DumpIterator {
 
 	public function getStripList() {
 		global $wgParser;
+
 		return $wgParser->getStripList();
 	}
 

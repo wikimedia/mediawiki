@@ -125,6 +125,7 @@ class MergeMessageFileList extends Maintenance {
 		if ( $fileLines === false ) {
 			$this->hasError = true;
 			$this->error( "Unable to open list file $fileName." );
+
 			return $files;
 		}
 		# Strip comments, discard empty lines, and trim leading and trailing
@@ -142,6 +143,7 @@ class MergeMessageFileList extends Maintenance {
 				}
 			}
 		}
+
 		return $files;
 	}
 }

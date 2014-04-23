@@ -51,6 +51,7 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 
 		if ( !$dbw->fieldExists( $table, 'fa_sha1', __METHOD__ ) ) {
 			$this->output( "fa_sha1 column does not exist\n\n", true );
+
 			return false;
 		}
 

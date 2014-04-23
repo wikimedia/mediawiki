@@ -49,6 +49,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 		$db = wfGetDB( DB_MASTER );
 		if ( !$db->tableExists( 'revision' ) ) {
 			$this->error( "revision table does not exist" );
+
 			return false;
 		}
 		$this->output( "Populating rev_parent_id column\n" );
@@ -56,6 +57,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 		$end = $db->selectField( 'revision', 'MAX(rev_id)', false, __FUNCTION__ );
 		if ( is_null( $start ) || is_null( $end ) ) {
 			$this->output( "...revision table seems to be empty, nothing to do.\n" );
+
 			return true;
 		}
 		# Do remaining chunk
@@ -119,6 +121,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 			wfWaitForSlaves();
 		}
 		$this->output( "rev_parent_id population complete ... {$count} rows [{$changed} changed]\n" );
+
 		return true;
 	}
 }

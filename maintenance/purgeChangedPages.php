@@ -183,6 +183,7 @@ class PurgeChangedPages extends Maintenance {
 			}
 		}
 		$lastValueLeft = count( $rows ) ? $rows[count( $rows ) - 1]->$column : null;
+
 		return array( $rows, $lastValueLeft );
 	}
 }

@@ -290,25 +290,24 @@ if ( $count > 0 ) {
 			}
 
 			if ( $doProtect ) {
-					# Protect the file
-					echo "\nWaiting for slaves...\n";
-					// Wait for slaves.
-					sleep( 2.0 ); # Why this sleep?
-					wfWaitForSlaves();
+				# Protect the file
+				echo "\nWaiting for slaves...\n";
+				// Wait for slaves.
+				sleep( 2.0 ); # Why this sleep?
+				wfWaitForSlaves();
 
-					echo "\nSetting image restrictions ... ";
+				echo "\nSetting image restrictions ... ";
 
-					$cascade = false;
-					$restrictions = array();
-					foreach ( $title->getRestrictionTypes() as $type ) {
-						$restrictions[$type] = $protectLevel;
-					}
+				$cascade = false;
+				$restrictions = array();
+				foreach ( $title->getRestrictionTypes() as $type ) {
+					$restrictions[$type] = $protectLevel;
+				}
 
-					$page = WikiPage::factory( $title );
-					$status = $page->doUpdateRestrictions( $restrictions, array(), $cascade, '', $user );
-					echo ( $status->isOK() ? 'done' : 'failed' ) . "\n";
+				$page = WikiPage::factory( $title );
+				$status = $page->doUpdateRestrictions( $restrictions, array(), $cascade, '', $user );
+				echo ( $status->isOK() ? 'done' : 'failed' ) . "\n";
 			}
-
 		} else {
 			echo "failed. (at recordUpload stage)\n";
 			$svar = 'failed';
@@ -328,14 +327,21 @@ if ( $count > 0 ) {
 
 	# Print out some statistics
 	echo "\n";
-	foreach ( array( 'count' => 'Found', 'limit' => 'Limit', 'ignored' => 'Ignored',
-		'added' => 'Added', 'skipped' => 'Skipped', 'overwritten' => 'Overwritten',
-		'failed' => 'Failed' ) as $var => $desc ) {
+	foreach (
+		array(
+			'count' => 'Found',
+			'limit' => 'Limit',
+			'ignored' => 'Ignored',
+			'added' => 'Added',
+			'skipped' => 'Skipped',
+			'overwritten' => 'Overwritten',
+			'failed' => 'Failed'
+		) as $var => $desc
+	) {
 		if ( $$var > 0 ) {
 			echo "{$desc}: {$$var}\n";
 		}
 	}
-
 } else {
 	echo "No suitable files could be found for import.\n";
 }

@@ -121,6 +121,7 @@ class PPFuzzTester {
 		// It's done by the MW UI, so it's a reasonably legitimate thing to do.
 		global $wgContLang;
 		$s = $wgContLang->normalize( $s );
+
 		return $s;
 	}
 
@@ -136,7 +137,8 @@ class PPFuzzTester {
 
 	function pickEntryPoint() {
 		$count = count( $this->entryPoints );
-		return $this->entryPoints[ mt_rand( 0, $count - 1 ) ];
+
+		return $this->entryPoints[mt_rand( 0, $count - 1 )];
 	}
 }
 
@@ -182,6 +184,7 @@ class PPFuzzTest {
 				'text' => $text,
 				'finalTitle' => $finalTitle );
 		}
+
 		return $this->templates[$titleText];
 	}
 
@@ -211,7 +214,7 @@ class PPFuzzTest {
 //			"Output type: {$this->outputType}\n" .
 			"Entry point: {$this->entryPoint}\n" .
 			"User: " . ( $this->fancySig ? 'fancy' : 'no-fancy' ) .
-				' ' . var_export( $this->nickname, true ) . "\n" .
+			' ' . var_export( $this->nickname, true ) . "\n" .
 			"Main text: " . var_export( $this->mainText, true ) . "\n";
 		foreach ( $this->templates as $titleText => $template ) {
 			$finalTitle = $template['finalTitle'];

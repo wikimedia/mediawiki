@@ -46,6 +46,7 @@ function findFiles( $dir, $exts, $recurse = false ) {
 					$files = array_merge( $files, findFiles( $dir . '/' . $file, $exts, true ) );
 				}
 			}
+
 			return $files;
 		} else {
 			return array();
@@ -63,9 +64,10 @@ function findFiles( $dir, $exts, $recurse = false ) {
  */
 function splitFilename( $filename ) {
 	$parts = explode( '.', $filename );
-	$ext = $parts[ count( $parts ) - 1 ];
-	unset( $parts[ count( $parts ) - 1 ] );
+	$ext = $parts[count( $parts ) - 1];
+	unset( $parts[count( $parts ) - 1] );
 	$fname = implode( '.', $parts );
+
 	return array( $fname, $ext );
 }
 

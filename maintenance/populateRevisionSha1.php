@@ -50,6 +50,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$this->error( "archive table does not exist", true );
 		} elseif ( !$db->fieldExists( 'revision', 'rev_sha1', __METHOD__ ) ) {
 			$this->output( "rev_sha1 column does not exist\n\n", true );
+
 			return false;
 		}
 
@@ -63,6 +64,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 
 		$this->output( "rev_sha1 and ar_sha1 population complete "
 			. "[$rc revision rows, $ac archive rows].\n" );
+
 		return true;
 	}
 
@@ -78,6 +80,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		$end = $db->selectField( $table, "MAX($idCol)", false, __METHOD__ );
 		if ( !$start || !$end ) {
 			$this->output( "...$table table seems to be empty.\n" );
+
 			return 0;
 		}
 
@@ -104,6 +107,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$blockEnd += $this->mBatchSize;
 			wfWaitForSlaves();
 		}
+
 		return $count;
 	}
 
@@ -131,6 +135,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			}
 		}
 		$db->commit( __METHOD__ );
+
 		return $count;
 	}
 
@@ -150,11 +155,13 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$text = $rev->getSerializedData();
 		} catch ( MWException $e ) {
 			$this->output( "Data of revision with {$idCol}={$row->$idCol} unavailable!\n" );
+
 			return false; // bug 22624?
 		}
 		if ( !is_string( $text ) ) {
 			# This should not happen, but sometimes does (bug 20757)
 			$this->output( "Data of revision with {$idCol}={$row->$idCol} unavailable!\n" );
+
 			return false;
 		} else {
 			$db->update( $table,
@@ -162,6 +169,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 				array( $idCol => $row->$idCol ),
 				__METHOD__
 			);
+
 			return true;
 		}
 	}
@@ -176,12 +184,14 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$rev = Revision::newFromArchiveRow( $row );
 		} catch ( MWException $e ) {
 			$this->output( "Text of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
+
 			return false; // bug 22624?
 		}
 		$text = $rev->getSerializedData();
 		if ( !is_string( $text ) ) {
 			# This should not happen, but sometimes does (bug 20757)
 			$this->output( "Data of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
+
 			return false;
 		} else {
 			# Archive table as no PK, but (NS,title,time) should be near unique.
@@ -196,6 +206,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 				),
 				__METHOD__
 			);
+
 			return true;
 		}
 	}

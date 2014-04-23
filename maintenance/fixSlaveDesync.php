@@ -101,6 +101,7 @@ class FixSlaveDesync extends Maintenance {
 			}
 		}
 		$this->output( "\n" );
+
 		return $desync;
 	}
 
@@ -136,6 +137,7 @@ class FixSlaveDesync extends Maintenance {
 		if ( !$found ) {
 			$this->output( "page_id $pageID seems fine\n" );
 			$dbw->commit( __METHOD__ );
+
 			return;
 		}
 

@@ -92,8 +92,9 @@ TEXT;
 			);
 			if ( $row ) {
 				$this->output( "Category table already populated.  Use php " .
-				"maintenance/populateCategory.php\n--force from the command line " .
-				"to override.\n" );
+					"maintenance/populateCategory.php\n--force from the command line " .
+					"to override.\n" );
+
 				return true;
 			}
 		}
@@ -141,16 +142,17 @@ TEXT;
 		}
 
 		if ( $dbw->insert(
-				'updatelog',
-				array( 'ul_key' => 'populate category' ),
-				__METHOD__,
-				'IGNORE'
-			)
-		) {
+			'updatelog',
+			array( 'ul_key' => 'populate category' ),
+			__METHOD__,
+			'IGNORE'
+		) ) {
 			$this->output( "Category population complete.\n" );
+
 			return true;
 		} else {
 			$this->output( "Could not insert category population row.\n" );
+
 			return false;
 		}
 	}

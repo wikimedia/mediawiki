@@ -133,6 +133,7 @@ class CommandLineInstaller extends Maintenance {
 			$installer->showMessage( 'config-env-good' );
 		} else {
 			$installer->showStatusMessage( $status );
+
 			return;
 		}
 		if ( !$this->hasOption( 'env-checks' ) ) {
