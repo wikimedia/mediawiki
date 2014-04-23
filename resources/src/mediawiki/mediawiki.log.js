@@ -46,10 +46,10 @@
 				d = new Date(),
 				// Create HH:MM:SS.MIL timestamp
 				time = ( d.getHours() < 10 ? '0' + d.getHours() : d.getHours() ) +
-				 ':' + ( d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes() ) +
-				 ':' + ( d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds() ) +
-				 '.' + ( d.getMilliseconds() < 10 ? '00' + d.getMilliseconds() : ( d.getMilliseconds() < 100 ? '0' + d.getMilliseconds() : d.getMilliseconds() ) ),
-				 $log = $( '#mw-log-console' );
+					':' + ( d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes() ) +
+					':' + ( d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds() ) +
+					'.' + ( d.getMilliseconds() < 10 ? '00' + d.getMilliseconds() : ( d.getMilliseconds() < 100 ? '0' + d.getMilliseconds() : d.getMilliseconds() ) ),
+				$log = $( '#mw-log-console' );
 
 			if ( !$log.length ) {
 				$log = $( '<div id="mw-log-console"></div>' ).css( {

@@ -262,7 +262,7 @@
 			 *
 			 * @fixme document the options parameters
 			 */
-			 getCaretPosition: function ( options ) {
+			getCaretPosition: function ( options ) {
 				function getCaret( e ) {
 					var caretPos = 0,
 						endPos = 0,

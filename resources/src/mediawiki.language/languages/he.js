@@ -21,7 +21,7 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 			}
 
 			// Add a hyphen (maqaf) before numbers and non-Hebrew letters
-			if (  word.substr( 0, 1 ) < 'א' ||  word.substr( 0, 1 ) > 'ת' ) {
+			if ( word.substr( 0, 1 ) < 'א' ||  word.substr( 0, 1 ) > 'ת' ) {
 				word = '־' + word;
 			}
 	}
