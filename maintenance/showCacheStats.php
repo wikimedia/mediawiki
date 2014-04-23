@@ -55,8 +55,16 @@ class ShowCacheStats extends Maintenance {
 		$total = $hits + $expired + $absent + $stub;
 		if ( $total ) {
 			$this->output( sprintf( "hits:              %-10d %6.2f%%\n", $hits, $hits / $total * 100 ) );
-			$this->output( sprintf( "expired:           %-10d %6.2f%%\n", $expired, $expired / $total * 100 ) );
-			$this->output( sprintf( "absent:            %-10d %6.2f%%\n", $absent, $absent / $total * 100 ) );
+			$this->output( sprintf(
+				"expired:           %-10d %6.2f%%\n",
+				$expired,
+				$expired / $total * 100
+			) );
+			$this->output( sprintf(
+				"absent:            %-10d %6.2f%%\n",
+				$absent,
+				$absent / $total * 100
+			) );
 			$this->output( sprintf( "stub threshold:    %-10d %6.2f%%\n", $stub, $stub / $total * 100 ) );
 			$this->output( sprintf( "total:             %-10d %6.2f%%\n", $total, 100 ) );
 		} else {
@@ -70,7 +78,11 @@ class ShowCacheStats extends Maintenance {
 		$total = $hits + $misses;
 		if ( $total ) {
 			$this->output( sprintf( "hits:              %-10d %6.2f%%\n", $hits, $hits / $total * 100 ) );
-			$this->output( sprintf( "misses:            %-10d %6.2f%%\n", $misses, $misses / $total * 100 ) );
+			$this->output( sprintf(
+				"misses:            %-10d %6.2f%%\n",
+				$misses,
+				$misses / $total * 100
+			) );
 			$this->output( sprintf( "updates:           %-10d\n", $updates ) );
 		} else {
 			$this->output( "no statistics available\n" );
@@ -83,8 +95,16 @@ class ShowCacheStats extends Maintenance {
 		$total = $hits + $misses + $uncacheable;
 		if ( $total ) {
 			$this->output( sprintf( "hits:              %-10d %6.2f%%\n", $hits, $hits / $total * 100 ) );
-			$this->output( sprintf( "misses:            %-10d %6.2f%%\n", $misses, $misses / $total * 100 ) );
-			$this->output( sprintf( "uncacheable:       %-10d %6.2f%%\n", $uncacheable, $uncacheable / $total * 100 ) );
+			$this->output( sprintf(
+				"misses:            %-10d %6.2f%%\n",
+				$misses,
+				$misses / $total * 100
+			) );
+			$this->output( sprintf(
+				"uncacheable:       %-10d %6.2f%%\n",
+				$uncacheable,
+				$uncacheable / $total * 100
+			) );
 		} else {
 			$this->output( "no statistics available\n" );
 		}
