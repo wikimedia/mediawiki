@@ -35,7 +35,7 @@ class SearchUpdate implements DeferrableUpdate {
 	/** @var Title Title we're updating */
 	private $title;
 
-	/** @var Content|false Content of the page (not text) */
+	/** @var Content|bool Content of the page (not text) */
 	private $content;
 
 	/**

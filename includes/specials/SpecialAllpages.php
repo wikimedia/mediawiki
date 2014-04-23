@@ -78,7 +78,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 	/**
 	 * Entry point : initialise variables and call subfunctions.
 	 *
-	 * @param string $par becomes "FOO" when called like Special:Allpages/FOO (default NULL)
+	 * @param string $par becomes "FOO" when called like Special:Allpages/FOO (default null)
 	 */
 	function execute( $par ) {
 		$request = $this->getRequest();
@@ -361,9 +361,9 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 	/**
 	 * @param int $namespace Namespace (Default NS_MAIN)
-	 * @param string $from List all pages from this name (default FALSE)
-	 * @param string $to List all pages to this name (default FALSE)
-	 * @param bool $hideredirects Dont show redirects (default FALSE)
+	 * @param string $from List all pages from this name (default false)
+	 * @param string $to List all pages to this name (default false)
+	 * @param bool $hideredirects Dont show redirects (default false)
 	 */
 	function showChunk( $namespace = NS_MAIN, $from = false, $to = false, $hideredirects = false ) {
 		$output = $this->getOutput();
@@ -561,7 +561,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 	/**
 	 * @param int $ns The namespace of the article
 	 * @param string $text The name of the article
-	 * @return array( int namespace, string dbkey, string pagename ) or NULL on error
+	 * @return array( int namespace, string dbkey, string pagename ) or null on error
 	 */
 	protected function getNamespaceKeyAndText( $ns, $text ) {
 		if ( $text == '' ) {

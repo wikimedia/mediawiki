@@ -297,7 +297,7 @@ class ChangeTags {
 	 *
 	 * Tries memcached first.
 	 *
-	 * @return array Array of strings: tags
+	 * @return string[] Array of strings: tags
 	 */
 	public static function listDefinedTags() {
 		// Caching...

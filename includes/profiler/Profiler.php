@@ -259,7 +259,7 @@ abstract class Profiler {
 	 * Get the initial time of the request, based either on $wgRequestTime or
 	 * $wgRUstart. Will return null if not able to find data.
 	 *
-	 * @param string|false $metric Metric to use, with the following possibilities:
+	 * @param string|bool $metric Metric to use, with the following possibilities:
 	 *   - user: User CPU time (without system calls)
 	 *   - cpu: Total CPU time (user and system calls)
 	 *   - wall (or any other string): elapsed time
@@ -288,7 +288,7 @@ abstract class Profiler {
 	 * Get the initial time of the request, based either on $wgRequestTime or
 	 * $wgRUstart. Will return null if not able to find data.
 	 *
-	 * @param string|false $metric Metric to use, with the following possibilities:
+	 * @param string|bool $metric Metric to use, with the following possibilities:
 	 *   - user: User CPU time (without system calls)
 	 *   - cpu: Total CPU time (user and system calls)
 	 *   - wall (or any other string): elapsed time

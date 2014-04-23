@@ -80,14 +80,14 @@ abstract class MediaTransformOutput {
 	/**
 	 * Get the final extension of the thumbnail.
 	 * Returns false for scripted transformations.
-	 * @return string|false
+	 * @return string|bool
 	 */
 	public function getExtension() {
 		return $this->path ? FileBackend::extensionFromPath( $this->path ) : false;
 	}
 
 	/**
-	 * @return string|false The thumbnail URL
+	 * @return string|bool The thumbnail URL
 	 */
 	public function getUrl() {
 		return $this->url;

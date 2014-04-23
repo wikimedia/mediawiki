@@ -551,7 +551,7 @@ class IcuCollation extends Collation {
 	 * This function will return false on older PHPs.
 	 *
 	 * @since 1.21
-	 * @return string|false
+	 * @return string|bool
 	 */
 	static function getICUVersion() {
 		return defined( 'INTL_ICU_VERSION' ) ? INTL_ICU_VERSION : false;
@@ -562,7 +562,7 @@ class IcuCollation extends Collation {
 	 * currently in use, or false when it can't be determined.
 	 *
 	 * @since 1.21
-	 * @return string|false
+	 * @return string|bool
 	 */
 	static function getUnicodeVersionForICU() {
 		$icuVersion = IcuCollation::getICUVersion();
