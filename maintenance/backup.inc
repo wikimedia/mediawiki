@@ -37,28 +37,30 @@ class DumpDBZip2Output extends DumpPipeOutput {
  * @ingroup Dump Maintenance
  */
 class BackupDumper {
-	var $reportingInterval = 100;
-	var $reporting = true;
-	var $pageCount = 0;
-	var $revCount = 0;
-	var $server = null; // use default
-	var $pages = null; // all pages
-	var $skipHeader = false; // don't output <mediawiki> and <siteinfo>
-	var $skipFooter = false; // don't output </mediawiki>
-	var $startId = 0;
-	var $endId = 0;
-	var $revStartId = 0;
-	var $revEndId = 0;
-	var $sink = null; // Output filters
-	var $stubText = false; // include rev_text_id instead of text; for 2-pass dump
-	var $dumpUploads = false;
-	var $dumpUploadFileContents = false;
-	var $lastTime = 0;
-	var $pageCountLast = 0;
-	var $revCountLast = 0;
-	var $ID = 0;
+	public $reporting = true;
+	public $pages = null; // all pages
+	public $skipHeader = false; // don't output <mediawiki> and <siteinfo>
+	public $skipFooter = false; // don't output </mediawiki>
+	public $startId = 0;
+	public $endId = 0;
+	public $revStartId = 0;
+	public $revEndId = 0;
+	public $dumpUploads = false;
+	public $dumpUploadFileContents = false;
 
-	var $outputTypes = array(), $filterTypes = array();
+	protected $reportingInterval = 100;
+	protected $pageCount = 0;
+	protected $revCount = 0;
+	protected $server = null; // use default
+	protected $sink = null; // Output filters
+	protected $lastTime = 0;
+	protected $pageCountLast = 0;
+	protected $revCountLast = 0;
+
+	protected $outputTypes = array();
+	protected $filterTypes = array();
+
+	protected $ID = 0;
 
 	/**
 	 * The dependency-injected database to use.
@@ -69,10 +71,11 @@ class BackupDumper {
 	 */
 	protected $forcedDb = null;
 
-	/**
-	 * @var LoadBalancer
-	 */
+	/** @var LoadBalancer */
 	protected $lb;
+
+	// @todo Unused?
+	private $stubText = false; // include rev_text_id instead of text; for 2-pass dump
 
 	function __construct( $args ) {
 		$this->stderr = fopen( "php://stderr", "wt" );
@@ -132,7 +135,10 @@ class BackupDumper {
 		foreach ( $args as $arg ) {
 			$matches = array();
 			if ( preg_match( '/^--(.+?)(?:=(.+?)(?::(.+?))?)?$/', $arg, $matches ) ) {
-				@list( /* $full */ , $opt, $val, $param ) = $matches;
+				wfSuppressWarnings();
+				list( /* $full */ , $opt, $val, $param ) = $matches;
+				wfRestoreWarnings();
+
 				switch ( $opt ) {
 				case "plugin":
 					$this->loadPlugin( $val, $param );
@@ -351,8 +357,13 @@ class BackupDumper {
 				$pageRatePart = '-';
 				$revRatePart = '-';
 			}
-			$this->progress( sprintf( "%s: %s (ID %d) %d pages (%0.1f|%0.1f/sec all|curr), %d revs (%0.1f|%0.1f/sec all|curr), ETA %s [max %d]",
-					$now, wfWikiID(), $this->ID, $this->pageCount, $pageRate, $pageRatePart, $this->revCount, $revRate, $revRatePart, $etats, $this->maxCount ) );
+			$this->progress( sprintf(
+				"%s: %s (ID %d) %d pages (%0.1f|%0.1f/sec all|curr), "
+					. "%d revs (%0.1f|%0.1f/sec all|curr), ETA %s [max %d]",
+				$now, wfWikiID(), $this->ID, $this->pageCount, $pageRate,
+				$pageRatePart, $this->revCount, $revRate, $revRatePart, $etats,
+				$this->maxCount
+			) );
 			$this->lastTime = $nowts;
 			$this->revCountLast = $this->revCount;
 		}
