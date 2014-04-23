@@ -39,7 +39,9 @@ class DatabaseLag extends Maintenance {
 		if ( $this->hasOption( 'r' ) ) {
 			$lb = wfGetLB();
 			echo 'time     ';
-			for ( $i = 1; $i < $lb->getServerCount(); $i++ ) {
+
+			$serverCount = $lb->getServerCount();
+			for ( $i = 1; $i < $serverCount; $i++ ) {
 				$hostname = $lb->getServerName( $i );
 				printf( "%-12s ", $hostname );
 			}

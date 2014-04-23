@@ -43,7 +43,12 @@ class MergeMessageFileList extends Maintenance {
 
 	function __construct() {
 		parent::__construct();
-		$this->addOption( 'list-file', 'A file containing a list of extension setup files, one per line.', false, true );
+		$this->addOption(
+			'list-file',
+			'A file containing a list of extension setup files, one per line.',
+			false,
+			true
+		);
 		$this->addOption( 'extensions-dir', 'Path where extensions can be found.', false, true );
 		$this->addOption( 'output', 'Send output to this file (omit for stdout)', false, true );
 		$this->mDescription = 'Merge $wgExtensionMessagesFiles and $wgMessagesDirs from ' .
@@ -51,7 +56,10 @@ class MergeMessageFileList extends Maintenance {
 	}
 
 	public function execute() {
-		global $mmfl, $wgExtensionEntryPointListFiles;
+		// @codingStandardsIgnoreStart Ignore error: Global variable "$mmfl" is lacking 'wg' prefix
+		global $mmfl;
+		// @codingStandardsIgnoreEnd
+		global $wgExtensionEntryPointListFiles;
 
 		if ( !count( $wgExtensionEntryPointListFiles )
 			&& !$this->hasOption( 'list-file' )

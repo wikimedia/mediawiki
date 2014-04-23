@@ -79,7 +79,8 @@ class Orphans extends Maintenance {
 			$this->lockTables( $dbw );
 		}
 
-		$this->output( "Checking for orphan revision table entries... (this may take a while on a large wiki)\n" );
+		$this->output( "Checking for orphan revision table entries... "
+			. "(this may take a while on a large wiki)\n" );
 		$result = $dbw->query( "
 			SELECT *
 			FROM $revision LEFT OUTER JOIN $page ON rev_page=page_id
@@ -88,8 +89,13 @@ class Orphans extends Maintenance {
 		$orphans = $result->numRows();
 		if ( $orphans > 0 ) {
 			global $wgContLang;
+
 			$this->output( "$orphans orphan revisions...\n" );
-			$this->output( sprintf( "%10s %10s %14s %20s %s\n", 'rev_id', 'rev_page', 'rev_timestamp', 'rev_user_text', 'rev_comment' ) );
+			$this->output( sprintf(
+				"%10s %10s %14s %20s %s\n",
+				'rev_id', 'rev_page', 'rev_timestamp', 'rev_user_text', 'rev_comment'
+			) );
+
 			foreach ( $result as $row ) {
 				$comment = ( $row->rev_comment == '' )
 					? ''
@@ -131,7 +137,8 @@ class Orphans extends Maintenance {
 			$this->lockTables( $dbw );
 		}
 
-		$this->output( "\nChecking for childless page table entries... (this may take a while on a large wiki)\n" );
+		$this->output( "\nChecking for childless page table entries... "
+			. "(this may take a while on a large wiki)\n" );
 		$result = $dbw->query( "
 			SELECT *
 			FROM $page LEFT OUTER JOIN $revision ON page_latest=rev_id
@@ -176,7 +183,8 @@ class Orphans extends Maintenance {
 			$this->lockTables( $dbw, array( 'user', 'text' ) );
 		}
 
-		$this->output( "\nChecking for pages whose page_latest links are incorrect... (this may take a while on a large wiki)\n" );
+		$this->output( "\nChecking for pages whose page_latest links are incorrect... "
+			. "(this may take a while on a large wiki)\n" );
 		$result = $dbw->query( "
 			SELECT *
 			FROM $page LEFT OUTER JOIN $revision ON page_latest=rev_id
