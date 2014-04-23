@@ -1075,7 +1075,7 @@ class HTMLForm extends ContextSource {
 	 * Prompt the whole form to be wrapped in a "<fieldset>", with
 	 * this text as its "<legend>" element.
 	 *
-	 * @param string|false $legend HTML to go inside the "<legend>" element, or
+	 * @param string|bool $legend HTML to go inside the "<legend>" element, or
 	 * false for no <legend>
 	 *     Will be escaped
 	 *

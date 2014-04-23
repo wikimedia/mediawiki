@@ -48,7 +48,7 @@ interface Content {
 	/**
 	 * @since 1.21
 	 *
-	 * @return string|false The wikitext to include when another page includes this
+	 * @return string|bool The wikitext to include when another page includes this
 	 * content, or false if the content is not includable in a wikitext page.
 	 *
 	 * @todo Allow native handling, bypassing wikitext representation, like

@@ -234,7 +234,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 *
 	 * @param string $name The name of the element to check for
 	 *   (e.g.: "mediawiki" for <mediawiki>...</mediawiki>)
-	 * @param string|false $text If string, check if it equals the elements text.
+	 * @param string|bool $text If string, check if it equals the elements text.
 	 *   If false, ignore the element's text
 	 * @param bool $skip_ws (optional) if true, skip past white spaces that trail the
 	 *   closing element.

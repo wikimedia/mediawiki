@@ -32,7 +32,7 @@ class Xml {
 	 *
 	 * @param string $element Element name
 	 * @param array $attribs Name=>value pairs. Values will be escaped.
-	 * @param string $contents NULL to make an open tag only; '' for a contentless closed tag (default)
+	 * @param string $contents Null to make an open tag only; '' for a contentless closed tag (default)
 	 * @param bool $allowShortTag Whether '' in $contents will result in a contentless closed tag
 	 * @return string
 	 */
@@ -83,7 +83,7 @@ class Xml {
 	 *
 	 * @param string $element
 	 * @param array $attribs Name=>value pairs. Values will be escaped.
-	 * @param string $contents NULL to make an open tag only; '' for a contentless closed tag (default)
+	 * @param string $contents Null to make an open tag only; '' for a contentless closed tag (default)
 	 * @return string
 	 */
 	public static function elementClean( $element, $attribs = array(), $contents = '' ) {

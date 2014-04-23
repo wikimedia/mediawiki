@@ -499,7 +499,7 @@ class SiteConfiguration {
 	 *
 	 * @param string $wiki
 	 * @param array|string $settings A setting name or array of setting names
-	 * @return array|mixed Array if $settings is an array, otherwise the value
+	 * @return mixed|mixed[] Array if $settings is an array, otherwise the value
 	 * @throws MWException
 	 * @since 1.21
 	 */

@@ -232,7 +232,7 @@ class MWNamespace {
 	 * Returns the canonical (English) name for a given index
 	 *
 	 * @param int $index Namespace index
-	 * @return string|false If no canonical definition.
+	 * @return string|bool If no canonical definition.
 	 */
 	public static function getCanonicalName( $index ) {
 		$nslist = self::getCanonicalNamespaces();

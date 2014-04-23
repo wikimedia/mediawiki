@@ -168,7 +168,7 @@ class WatchedItem {
 	/**
 	 * Get the notification timestamp of this entry.
 	 *
-	 * @return false|null|string false if the page is not watched, the value of
+	 * @return bool|null|string False if the page is not watched, the value of
 	 *   the wl_notificationtimestamp field otherwise
 	 */
 	public function getNotificationTimestamp() {

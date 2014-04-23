@@ -306,7 +306,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param DatabaseBase $dbr
 	 * @param array $conditions
 	 * @param array $options
-	 * @return object|false Database result resource, or false on failure
+	 * @return object|bool Database result resource, or false on failure
 	 */
 	protected function pageData( $dbr, $conditions, $options = array() ) {
 		$fields = self::selectFields();
@@ -327,7 +327,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param DatabaseBase $dbr
 	 * @param Title $title
 	 * @param array $options
-	 * @return object|false Database result resource, or false on failure
+	 * @return object|bool Database result resource, or false on failure
 	 */
 	public function pageDataFromTitle( $dbr, $title, $options = array() ) {
 		return $this->pageData( $dbr, array(
@@ -341,7 +341,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param DatabaseBase $dbr
 	 * @param int $id
 	 * @param array $options
-	 * @return object|false Database result resource, or false on failure
+	 * @return object|bool Database result resource, or false on failure
 	 */
 	public function pageDataFromId( $dbr, $id, $options = array() ) {
 		return $this->pageData( $dbr, array( 'page_id' => $id ), $options );
@@ -685,7 +685,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   Revision::RAW              get the text regardless of permissions
 	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
-	 * @return string|false The text of the current revision
+	 * @return string|bool The text of the current revision
 	 * @deprecated since 1.21, getContent() should be used instead.
 	 */
 	public function getText( $audience = Revision::FOR_PUBLIC, User $user = null ) { // @todo deprecated, replace usage!

@@ -1388,7 +1388,7 @@ abstract class UploadBase {
 	 * $wgAntivirusRequired may be used to deny upload if the scan fails.
 	 *
 	 * @param string $file Pathname to the temporary upload file
-	 * @return mixed False if not virus is found, NULL if the scan fails or is disabled,
+	 * @return mixed False if not virus is found, null if the scan fails or is disabled,
 	 *   or a string containing feedback from the virus scanner if a virus was found.
 	 *   If textual feedback is missing but a virus was found, this function returns true.
 	 */

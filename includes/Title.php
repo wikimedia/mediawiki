@@ -147,7 +147,7 @@ class Title {
 	 * @param string $key The database key, which has underscores
 	 *	instead of spaces, possibly including namespace and
 	 *	interwiki prefixes
-	 * @return Title|null Title, or NULL on an error
+	 * @return Title|null Title, or null on an error
 	 */
 	public static function newFromDBkey( $key ) {
 		$t = new Title();
@@ -292,7 +292,7 @@ class Title {
 	 *
 	 * @param int $id The page_id corresponding to the Title to create
 	 * @param int $flags Use Title::GAID_FOR_UPDATE to use master
-	 * @return Title|null The new object, or NULL on an error
+	 * @return Title|null The new object, or null on an error
 	 */
 	public static function newFromID( $id, $flags = 0 ) {
 		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
@@ -313,8 +313,8 @@ class Title {
 	/**
 	 * Make an array of titles from an array of IDs
 	 *
-	 * @param array $ids Array of IDs
-	 * @return array Array of Titles
+	 * @param int[] $ids Array of IDs
+	 * @return Title[] Array of Titles
 	 */
 	public static function newFromIDs( $ids ) {
 		if ( !count( $ids ) ) {
@@ -417,7 +417,7 @@ class Title {
 	 * @param string $title Database key form
 	 * @param string $fragment The link fragment (after the "#")
 	 * @param string $interwiki Interwiki prefix
-	 * @return Title The new object, or NULL on an error
+	 * @return Title The new object, or null on an error
 	 */
 	public static function makeTitleSafe( $ns, $title, $fragment = '', $interwiki = '' ) {
 		if ( !MWNamespace::exists( $ns ) ) {
@@ -488,7 +488,7 @@ class Title {
 	 * have been resolved (up to $wgMaxRedirects times)
 	 *
 	 * @param string $text Text with possible redirect
-	 * @return array Array of Titles, with the destination last
+	 * @return Title[] Array of Titles, with the destination last
 	 * @deprecated since 1.21, use Content::getRedirectChain instead.
 	 */
 	public static function newFromRedirectArray( $text ) {
@@ -502,7 +502,7 @@ class Title {
 	 * Get the prefixed DB key associated with an ID
 	 *
 	 * @param int $id The page_id of the article
-	 * @return Title|null An object representing the article, or NULL if no such article was found
+	 * @return Title|null An object representing the article, or null if no such article was found
 	 */
 	public static function nameOf( $id ) {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -755,7 +755,7 @@ class Title {
 	 * Determine whether the object refers to a page within
 	 * this project and is transcludable.
 	 *
-	 * @return bool TRUE if this is transcludable
+	 * @return bool True if this is transcludable
 	 */
 	public function isTrans() {
 		if ( !$this->isExternal() ) {
@@ -3293,7 +3293,7 @@ class Title {
 	 * @param array $options May be FOR UPDATE
 	 * @param string $table Table name
 	 * @param string $prefix Fields prefix
-	 * @return array Array of Title objects linking here
+	 * @return Title[] Array of Title objects linking here
 	 */
 	public function getLinksTo( $options = array(), $table = 'pagelinks', $prefix = 'pl' ) {
 		if ( count( $options ) > 0 ) {
@@ -3335,7 +3335,7 @@ class Title {
 	 * On heavily-used templates it will max out the memory.
 	 *
 	 * @param array $options May be FOR UPDATE
-	 * @return array Array of Title the Title objects linking here
+	 * @return Title[] Array of Title the Title objects linking here
 	 */
 	public function getTemplateLinksTo( $options = array() ) {
 		return $this->getLinksTo( $options, 'templatelinks', 'tl' );
@@ -3412,7 +3412,7 @@ class Title {
 	 * On heavily-used templates it will max out the memory.
 	 *
 	 * @param array $options May be FOR UPDATE
-	 * @return array Array of Title the Title objects used here
+	 * @return Title[] Array of Title the Title objects used here
 	 */
 	public function getTemplateLinksFrom( $options = array() ) {
 		return $this->getLinksFrom( $options, 'templatelinks', 'tl' );
@@ -3422,7 +3422,7 @@ class Title {
 	 * Get an array of Title objects referring to non-existent articles linked from this page
 	 *
 	 * @todo check if needed (used only in SpecialBrokenRedirects.php, and should use redirect table in this case)
-	 * @return array Array of Title the Title objects
+	 * @return Title[] Array of Title the Title objects
 	 */
 	public function getBrokenLinksFrom() {
 		if ( $this->getArticleID() == 0 ) {
@@ -3458,7 +3458,7 @@ class Title {
 	 * Get a list of URLs to purge from the Squid cache when this
 	 * page changes
 	 *
-	 * @return array Array of String the URLs
+	 * @return string[] Array of String the URLs
 	 */
 	public function getSquidURLs() {
 		$urls = array(
@@ -4172,7 +4172,7 @@ class Title {
 	 *
 	 * @param int $revId Revision ID. Get the revision that was before this one.
 	 * @param int $flags Title::GAID_FOR_UPDATE
-	 * @return int|bool Old revision ID, or FALSE if none exists
+	 * @return int|bool Old revision ID, or false if none exists
 	 */
 	public function getPreviousRevisionID( $revId, $flags = 0 ) {
 		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
@@ -4197,7 +4197,7 @@ class Title {
 	 *
 	 * @param int $revId Revision ID. Get the revision that was after this one.
 	 * @param int $flags Title::GAID_FOR_UPDATE
-	 * @return int|bool Next revision ID, or FALSE if none exists
+	 * @return int|bool Next revision ID, or false if none exists
 	 */
 	public function getNextRevisionID( $revId, $flags = 0 ) {
 		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
@@ -4707,7 +4707,7 @@ class Title {
 	/**
 	 * Get all extant redirects to this Title
 	 *
-	 * @param int|null $ns Single namespace to consider; NULL to consider all namespaces
+	 * @param int|null $ns Single namespace to consider; null to consider all namespaces
 	 * @return Title[] Array of Title redirects to this title
 	 */
 	public function getRedirectsHere( $ns = null ) {
