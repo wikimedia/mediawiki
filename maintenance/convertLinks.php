@@ -36,14 +36,29 @@ class ConvertLinks extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Convert from the old links schema (string->ID) to the new schema (ID->ID).
-The wiki should be put into read-only mode while this script executes";
+		$this->mDescription =
+			"Convert from the old links schema (string->ID) to the new schema (ID->ID)."
+				. "The wiki should be put into read-only mode while this script executes";
 
 		$this->addArg( 'logperformance', "Log performance to perfLogFilename.", false );
-		$this->addArg( 'perfLogFilename', "Filename where performance is logged if --logperformance was set (defaults to 'convLinksPerf.txt').", false );
-		$this->addArg( 'keep-links-table', "Don't overwrite the old links table with the new one, leave the new table at links_temp.", false );
-		$this->addArg( 'nokeys', "Don't create keys, and so allow duplicates in the new links table.\n
-This gives a huge speed improvement for very large links tables which are MyISAM." /* (What about InnoDB?) */, false );
+		$this->addArg(
+			'perfLogFilename',
+			"Filename where performance is logged if --logperformance was set "
+				. "(defaults to 'convLinksPerf.txt').",
+			false
+		);
+		$this->addArg(
+			'keep-links-table',
+			"Don't overwrite the old links table with the new one, leave the new table at links_temp.",
+			false
+		);
+		$this->addArg(
+			'nokeys',
+			/* (What about InnoDB?) */
+			"Don't create keys, and so allow duplicates in the new links table.\n"
+				. "This gives a huge speed improvement for very large links tables which are MyISAM.",
+			false
+		);
 	}
 
 	public function getDbType() {
@@ -61,17 +76,28 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 
 		global $wgContLang;
 
-		$numBadLinks = $curRowsRead = 0; # counters etc
-		$totalTuplesInserted = 0; # total tuples INSERTed into links_temp
+		# counters etc
+		$numBadLinks = $curRowsRead = 0;
 
-		$reportCurReadProgress = true; # whether or not to give progress reports while reading IDs from cur table
-		$curReadReportInterval = 1000; # number of rows between progress reports
+		# total tuples INSERTed into links_temp
+		$totalTuplesInserted = 0;
 
-		$reportLinksConvProgress = true; # whether or not to give progress reports during conversion
-		$linksConvInsertInterval = 1000; # number of rows per INSERT
+		# whether or not to give progress reports while reading IDs from cur table
+		$reportCurReadProgress = true;
+
+		# number of rows between progress reports
+		$curReadReportInterval = 1000;
+
+		# whether or not to give progress reports during conversion
+		$reportLinksConvProgress = true;
+
+		# number of rows per INSERT
+		$linksConvInsertInterval = 1000;
 
 		$initialRowOffset = 0;
-		# $finalRowOffset = 0; # not used yet; highest row number from links table to process
+
+		# not used yet; highest row number from links table to process
+		# $finalRowOffset = 0;
 
 		$overwriteLinksTable = !$this->hasOption( 'keep-links-table' );
 		$noKeys = $this->hasOption( 'noKeys' );
@@ -80,7 +106,8 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 
 		# --------------------------------------------------------------------
 
-		list( $cur, $links, $links_temp, $links_backup ) = $dbw->tableNamesN( 'cur', 'links', 'links_temp', 'links_backup' );
+		list( $cur, $links, $links_temp, $links_backup ) =
+			$dbw->tableNamesN( 'cur', 'links', 'links_temp', 'links_backup' );
 
 		if ( $dbw->tableExists( 'pagelinks' ) ) {
 			$this->output( "...have pagelinks; skipping old links table updates\n" );
@@ -129,7 +156,10 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 				$curRowsRead++;
 				if ( $reportCurReadProgress ) {
 					if ( ( $curRowsRead % $curReadReportInterval ) == 0 ) {
-						$this->performanceLog( $fh, $curRowsRead . " " . ( $this->getMicroTime() - $baseTime ) . "\n" );
+						$this->performanceLog(
+							$fh,
+							$curRowsRead . " " . ( $this->getMicroTime() - $baseTime ) . "\n"
+						);
 						$this->output( "\t$curRowsRead rows of $cur table read.\n" );
 					}
 				}
@@ -137,7 +167,10 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 			$dbw->freeResult( $res );
 			$dbw->bufferResults( true );
 			$this->output( "Finished loading IDs.\n\n" );
-			$this->performanceLog( $fh, "Took " . ( $this->getMicroTime() - $baseTime ) . " seconds to load IDs.\n\n" );
+			$this->performanceLog(
+				$fh,
+				"Took " . ( $this->getMicroTime() - $baseTime ) . " seconds to load IDs.\n\n"
+			);
 
 			# --------------------------------------------------------------------
 
@@ -150,7 +183,9 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 			$this->performanceLog( $fh, "Processing $numRows rows from $links table...\n" );
 			$this->performanceLog( $fh, "rows inserted vs seconds elapsed:\n" );
 
-			for ( $rowOffset = $initialRowOffset; $rowOffset < $numRows; $rowOffset += $linksConvInsertInterval ) {
+			for ( $rowOffset = $initialRowOffset; $rowOffset < $numRows;
+				$rowOffset += $linksConvInsertInterval
+			) {
 				$sqlRead = "SELECT * FROM $links ";
 				$sqlRead = $dbw->limitResult( $sqlRead, $linksConvInsertInterval, $rowOffset );
 				$res = $dbw->query( $sqlRead );
@@ -176,7 +211,8 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 					}
 				}
 				$dbw->freeResult( $res );
-				# $this->output( "rowOffset: $rowOffset\ttuplesAdded: $tuplesAdded\tnumBadLinks: $numBadLinks\n" );
+				# $this->output( "rowOffset: $rowOffset\ttuplesAdded: "
+				#	. "$tuplesAdded\tnumBadLinks: $numBadLinks\n" );
 				if ( $tuplesAdded != 0 ) {
 					if ( $reportLinksConvProgress ) {
 						$this->output( "Inserting $tuplesAdded tuples into $links_temp..." );
@@ -185,13 +221,23 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 					$totalTuplesInserted += $tuplesAdded;
 					if ( $reportLinksConvProgress ) {
 						$this->output( " done. Total $totalTuplesInserted tuples inserted.\n" );
-						$this->performanceLog( $fh, $totalTuplesInserted . " " . ( $this->getMicroTime() - $baseTime ) . "\n" );
+						$this->performanceLog(
+							$fh,
+							$totalTuplesInserted . " " . ( $this->getMicroTime() - $baseTime ) . "\n"
+						);
 					}
 				}
 			}
-			$this->output( "$totalTuplesInserted valid titles and $numBadLinks invalid titles were processed.\n\n" );
-			$this->performanceLog( $fh, "$totalTuplesInserted valid titles and $numBadLinks invalid titles were processed.\n" );
-			$this->performanceLog( $fh, "Total execution time: " . ( $this->getMicroTime() - $startTime ) . " seconds.\n" );
+			$this->output( "$totalTuplesInserted valid titles and "
+				. "$numBadLinks invalid titles were processed.\n\n" );
+			$this->performanceLog(
+				$fh,
+				"$totalTuplesInserted valid titles and $numBadLinks invalid titles were processed.\n"
+			);
+			$this->performanceLog(
+				$fh,
+				"Total execution time: " . ( $this->getMicroTime() - $startTime ) . " seconds.\n"
+			);
 			if ( $this->logPerformance ) {
 				fclose ( $fh );
 			}

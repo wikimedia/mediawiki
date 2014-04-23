@@ -47,11 +47,31 @@ class CompareParsers extends DumpIterator {
 		$this->addOption( 'parser1', 'The first parser to compare.', true, true );
 		$this->addOption( 'parser2', 'The second parser to compare.', true, true );
 		$this->addOption( 'tidy', 'Run tidy on the articles.', false, false );
-		$this->addOption( 'save-failed', 'Folder in which articles which differ will be stored.', false, true );
+		$this->addOption(
+			'save-failed',
+			'Folder in which articles which differ will be stored.',
+			false,
+			true
+		);
 		$this->addOption( 'show-diff', 'Show a diff of the two renderings.', false, false );
-		$this->addOption( 'diff-bin', 'Binary to use for diffing (can also be provided by DIFF env var).', false, false );
-		$this->addOption( 'strip-parameters', 'Remove parameters of html tags to increase readability.', false, false );
-		$this->addOption( 'show-parsed-output', 'Show the parsed html if both Parsers give the same output.', false, false );
+		$this->addOption(
+			'diff-bin',
+			'Binary to use for diffing (can also be provided by DIFF env var).',
+			false,
+			false
+		);
+		$this->addOption(
+			'strip-parameters',
+			'Remove parameters of html tags to increase readability.',
+			false,
+			false
+		);
+		$this->addOption(
+			'show-parsed-output',
+			'Show the parsed html if both Parsers give the same output.',
+			false,
+			false
+		);
 	}
 
 	public function checkOptions() {
@@ -118,7 +138,9 @@ class CompareParsers extends DumpIterator {
 		$content = $rev->getContent();
 
 		if ( $content->getModel() !== CONTENT_MODEL_WIKITEXT ) {
-			$this->error( "Page {$title->getPrefixedText()} does not contain wikitext but {$content->getModel()}\n" );
+			$this->error( "Page {$title->getPrefixedText()} does not contain wikitext "
+				. "but {$content->getModel()}\n" );
+
 			return;
 		}
 
@@ -132,13 +154,21 @@ class CompareParsers extends DumpIterator {
 			$this->error( "Parsing for {$title->getPrefixedText()} differs\n" );
 
 			if ( $this->saveFailed ) {
-				file_put_contents( $this->saveFailed . '/' . rawurlencode( $title->getPrefixedText() ) . ".txt", $text );
+				file_put_contents(
+					$this->saveFailed . '/' . rawurlencode( $title->getPrefixedText() ) . ".txt",
+					$text
+				);
 			}
 			if ( $this->showDiff ) {
-				$this->output( wfDiff( $this->stripParameters( $output1->getText() ), $this->stripParameters( $output2->getText() ), '' ) );
+				$this->output( wfDiff(
+					$this->stripParameters( $output1->getText() ),
+					$this->stripParameters( $output2->getText() ),
+					''
+				) );
 			}
 		} else {
 			$this->output( $title->getPrefixedText() . "\tOK\n" );
+
 			if ( $this->showParsedOutput ) {
 				$this->output( $this->stripParameters( $output1->getText() ) );
 			}
