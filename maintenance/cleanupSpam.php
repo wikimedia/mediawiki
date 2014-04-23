@@ -101,6 +101,7 @@ class CleanupSpam extends Maintenance {
 		$title = Title::newFromID( $id );
 		if ( !$title ) {
 			$this->error( "Internal error: no page for ID $id" );
+
 			return;
 		}
 
@@ -109,7 +110,8 @@ class CleanupSpam extends Maintenance {
 		$currentRevId = $rev->getId();
 
 		while ( $rev && ( $rev->isDeleted( Revision::DELETED_TEXT )
-						|| LinkFilter::matchEntry( $rev->getContent( Revision::RAW ), $domain ) ) ) {
+			|| LinkFilter::matchEntry( $rev->getContent( Revision::RAW ), $domain ) )
+		) {
 			$rev = $rev->getPrevious();
 		}
 

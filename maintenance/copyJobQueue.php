@@ -89,6 +89,7 @@ class CopyJobQueue extends Maintenance {
 			$totalOK += count( $batch );
 			$dst->waitForBackups();
 		}
+
 		return array( $total, $totalOK );
 	}
 }

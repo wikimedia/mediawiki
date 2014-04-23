@@ -85,6 +85,7 @@ class FixDoubleRedirects extends Maintenance {
 
 		if ( !$res->numRows() ) {
 			$this->output( "No double redirects found.\n" );
+
 			return;
 		}
 

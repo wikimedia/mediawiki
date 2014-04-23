@@ -373,6 +373,7 @@ class CopyFileBackend extends Maintenance {
 			$same = ( $src->getFileSha1Base36( array( 'src' => $sPath, 'latest' => 1 ) )
 				=== $dst->getFileSha1Base36( array( 'src' => $dPath, 'latest' => 1 ) ) );
 		}
+
 		return $same;
 	}
 }

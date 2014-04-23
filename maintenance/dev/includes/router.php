@@ -59,6 +59,7 @@ if ( $ext == 'php' || $ext == 'php5' ) {
 	# the php webserver will discard post data and things like login
 	# will not function in the dev environment.
 	require $file;
+
 	return true;
 }
 $mime = false;
@@ -93,6 +94,7 @@ if ( $mime ) {
 	header( "Content-Length: " . filesize( $file ) );
 	// Stream that out to the browser
 	fpassthru( $f );
+
 	return true;
 }
 

@@ -47,6 +47,7 @@ class DeleteArchivedFiles extends Maintenance {
 	public function execute() {
 		if ( !$this->hasOption( 'delete' ) ) {
 			$this->output( "Use --delete to actually confirm this script\n" );
+
 			return;
 		}
 		$force = $this->hasOption( 'force' );

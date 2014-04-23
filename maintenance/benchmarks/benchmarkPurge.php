@@ -68,6 +68,7 @@ class BenchmarkPurge extends Benchmarker {
 		$delta = microtime( true ) - $start;
 		$pertrial = $delta / $trials;
 		$pertitle = $pertrial / count( $urls );
+
 		return sprintf( "%4d titles in %6.2fms (%6.2fms each)",
 			count( $urls ), $pertrial * 1000.0, $pertitle * 1000.0 );
 	}
@@ -82,6 +83,7 @@ class BenchmarkPurge extends Benchmarker {
 		for ( $i = 0; $i < $length; $i++ ) {
 			$list[] = $this->randomUrl();
 		}
+
 		return $list;
 	}
 
@@ -92,6 +94,7 @@ class BenchmarkPurge extends Benchmarker {
 	 */
 	private function randomUrl() {
 		global $wgServer, $wgArticlePath;
+
 		return $wgServer . str_replace( '$1', $this->randomTitle(), $wgArticlePath );
 	}
 
@@ -106,6 +109,7 @@ class BenchmarkPurge extends Benchmarker {
 		for ( $i = 0; $i < $length; $i++ ) {
 			$str .= chr( mt_rand( ord( 'a' ), ord( 'z' ) ) );
 		}
+
 		return ucfirst( $str );
 	}
 }

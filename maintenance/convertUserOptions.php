@@ -46,6 +46,7 @@ class ConvertUserOptions extends Maintenance {
 
 		if ( !$dbw->fieldExists( 'user', 'user_options', __METHOD__ ) ) {
 			$this->output( "nothing to migrate. " );
+
 			return;
 		}
 		while ( $id !== null ) {

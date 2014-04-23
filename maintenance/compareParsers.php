@@ -116,6 +116,7 @@ class CompareParsers extends DumpIterator {
 		if ( !$this->stripParametersEnabled ) {
 			return $text;
 		}
+
 		return preg_replace( '/(<a) [^>]+>/', '$1>', $text );
 	}
 
@@ -179,10 +180,9 @@ class CompareParsers extends DumpIterator {
 		/* Look for the parser in a file appropiately named in the current folder */
 		if ( !class_exists( $parserName ) && file_exists( "$parserName.php" ) ) {
 			global $wgAutoloadClasses;
-			$wgAutoloadClasses[ $parserName ] = realpath( '.' ) . "/$parserName.php";
+			$wgAutoloadClasses[$parserName] = realpath( '.' ) . "/$parserName.php";
 		}
 	}
-
 }
 
 $maintClass = "CompareParsers";

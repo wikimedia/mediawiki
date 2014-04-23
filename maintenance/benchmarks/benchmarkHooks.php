@@ -45,13 +45,13 @@ class BenchmarkHooks extends Benchmarker {
 		$time = $this->benchHooks();
 		$this->output( 'Loaded (one) hook: ' . $time . "\n" );
 
-		for( $i = 0; $i < 9; $i++ ) {
+		for ( $i = 0; $i < 9; $i++ ) {
 			$wgHooks['Test'][] = array( $this, 'test' );
 		}
 		$time = $this->benchHooks();
 		$this->output( 'Loaded (ten) hook: ' . $time . "\n" );
 
-		for( $i = 0; $i < 90; $i++ ) {
+		for ( $i = 0; $i < 90; $i++ ) {
 			$wgHooks['Test'][] = array( $this, 'test' );
 		}
 		$time = $this->benchHooks();
@@ -70,6 +70,7 @@ class BenchmarkHooks extends Benchmarker {
 		}
 		$delta = microtime( true ) - $start;
 		$pertrial = $delta / $trials;
+
 		return sprintf( "Took %6.3fms",
 			$pertrial * 1000 );
 	}

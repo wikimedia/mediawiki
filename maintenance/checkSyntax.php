@@ -96,7 +96,7 @@ class CheckSyntax extends Maintenance {
 		$this->mIgnorePaths = array(
 			// Compat stuff, explodes on PHP 5.3
 			"includes/NamespaceCompat.php$",
-			);
+		);
 
 		$this->mNoStyleCheckPaths = array(
 			// Third-party code we don't care about
@@ -110,13 +110,14 @@ class CheckSyntax extends Maintenance {
 			"QPoll/Excel/",
 			"/geshi/",
 			"/smarty/",
-			);
+		);
 
 		if ( $this->hasOption( 'path' ) ) {
 			$path = $this->getOption( 'path' );
 			if ( !$this->addPath( $path ) ) {
 				$this->error( "Error: can't find file or directory $path\n", true );
 			}
+
 			return; // process only this path
 		} elseif ( $this->hasOption( 'list-file' ) ) {
 			$file = $this->getOption( 'list-file' );
@@ -131,6 +132,7 @@ class CheckSyntax extends Maintenance {
 				$this->addPath( $path );
 			}
 			fclose( $f );
+
 			return;
 		} elseif ( $this->hasOption( 'modified' ) ) {
 			$this->output( "Retrieving list from Git... " );
@@ -141,6 +143,7 @@ class CheckSyntax extends Maintenance {
 					$this->mFiles[] = $file;
 				}
 			}
+
 			return;
 		}
 
@@ -241,6 +244,7 @@ class CheckSyntax extends Maintenance {
 				return false;
 			}
 		}
+
 		return true;
 	}
 
@@ -251,6 +255,7 @@ class CheckSyntax extends Maintenance {
 	 */
 	private function addPath( $path ) {
 		global $IP;
+
 		return $this->addFileOrDir( $path ) || $this->addFileOrDir( "$IP/$path" );
 	}
 
@@ -267,6 +272,7 @@ class CheckSyntax extends Maintenance {
 		} else {
 			return false;
 		}
+
 		return true;
 	}
 
@@ -313,6 +319,7 @@ class CheckSyntax extends Maintenance {
 				$this->mFailures[$file] = $errors;
 			}
 		}
+
 		return $ret;
 	}
 
@@ -326,8 +333,10 @@ class CheckSyntax extends Maintenance {
 		if ( strpos( $res, 'No syntax errors detected' ) === false ) {
 			$this->mFailures[$file] = $res;
 			$this->output( $res . "\n" );
+
 			return false;
 		}
+
 		return true;
 	}
 

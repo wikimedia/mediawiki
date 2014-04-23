@@ -71,6 +71,7 @@ class CapsCleanup extends TableCleanup {
 		$lower = $wgContLang->lcfirst( $row->page_title );
 		if ( $upper == $lower ) {
 			$this->output( "\"$display\" already lowercase.\n" );
+
 			return $this->progress( 0 );
 		}
 
@@ -78,6 +79,7 @@ class CapsCleanup extends TableCleanup {
 		$targetDisplay = $target->getPrefixedText();
 		if ( $target->exists() ) {
 			$this->output( "\"$display\" skipped; \"$targetDisplay\" already exists\n" );
+
 			return $this->progress( 0 );
 		}
 
@@ -98,6 +100,7 @@ class CapsCleanup extends TableCleanup {
 				}
 			}
 		}
+
 		return $this->progress( 0 );
 	}
 }

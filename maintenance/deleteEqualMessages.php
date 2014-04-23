@@ -130,6 +130,7 @@ class DeleteEqualMessages extends Maintenance {
 		if ( $messageInfo['equalPages'] === 0 ) {
 			// No more equal messages left
 			$this->output( "\ndone.\n" );
+
 			return;
 		}
 
@@ -151,6 +152,7 @@ class DeleteEqualMessages extends Maintenance {
 				$this->output( " (include --delete-talk to also delete the talk pages)" );
 			}
 			$this->output( "\n" );
+
 			return;
 		}
 

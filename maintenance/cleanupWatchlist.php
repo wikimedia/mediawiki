@@ -69,6 +69,7 @@ class WatchlistCleanup extends TableCleanup {
 				. "({$row->wl_namespace}, \"{$row->wl_title}\")\n" );
 			$updated = $this->removeWatch( $row );
 			$this->progress( $updated );
+
 			return;
 		}
 		$this->progress( 0 );
@@ -77,12 +78,16 @@ class WatchlistCleanup extends TableCleanup {
 	private function removeWatch( $row ) {
 		if ( !$this->dryrun && $this->hasOption( 'fix' ) ) {
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->delete( 'watchlist', array(
+			$dbw->delete(
+				'watchlist', array(
 				'wl_user' => $row->wl_user,
 				'wl_namespace' => $row->wl_namespace,
 				'wl_title' => $row->wl_title ),
-			__METHOD__ );
+				__METHOD__
+			);
+
 			$this->output( "- removed\n" );
+
 			return 1;
 		} else {
 			return 0;
