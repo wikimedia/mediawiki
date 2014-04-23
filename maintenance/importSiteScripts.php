@@ -65,13 +65,12 @@ class ImportSiteScripts extends Maintenance {
 			$content = ContentHandler::makeContent( $text, $wikiPage->getTitle() );
 			$wikiPage->doEditContent( $content, "Importing from $url", 0, false, $user );
 		}
-
 	}
 
 	protected function fetchScriptList() {
 		$data = array(
 			'action' => 'query',
-			'format' => 'php',//'json',
+			'format' => 'php', //'json',
 			'list' => 'allpages',
 			'apnamespace' => '8',
 			'aplimit' => '500',
@@ -100,7 +99,6 @@ class ImportSiteScripts extends Maintenance {
 		} while ( isset( $result['query-continue'] ) );
 
 		return $pages;
-
 	}
 }
 

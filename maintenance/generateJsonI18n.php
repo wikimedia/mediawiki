@@ -50,6 +50,7 @@ class GenerateJsonI18n extends Maintenance {
 
 		if ( $this->hasOption( 'shim-only' ) ) {
 			$this->shimOnly( $phpfile, $jsondir );
+
 			return;
 		}
 
@@ -184,6 +185,7 @@ PHP;
 		$jsondir = str_replace( '\\', '/', $jsondir );
 		$shim = str_replace( '{{OUT}}', $jsondir, $shim );
 		$shim = str_replace( '{{FUNC}}', 'wfJsonI18nShim' . wfRandomString( 16 ), $shim );
+
 		return $shim;
 	}
 
@@ -216,6 +218,7 @@ PHP;
 	protected function getAuthorsFromComment( $comment ) {
 		$matches = null;
 		preg_match_all( '/@author (.*?)$/m', $comment, $matches );
+
 		return $matches && $matches[1] ? $matches[1] : array();
 	}
 }

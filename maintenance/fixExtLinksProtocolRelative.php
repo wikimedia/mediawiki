@@ -50,6 +50,7 @@ class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 		$db = wfGetDB( DB_MASTER );
 		if ( !$db->tableExists( 'externallinks' ) ) {
 			$this->error( "externallinks table does not exist" );
+
 			return false;
 		}
 		$this->output( "Fixing protocol-relative entries in the externallinks table...\n" );
@@ -91,6 +92,7 @@ class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 			);
 		}
 		$this->output( "Done, $count rows updated.\n" );
+
 		return true;
 	}
 }

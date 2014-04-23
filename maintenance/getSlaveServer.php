@@ -34,6 +34,7 @@ class GetSlaveServer extends Maintenance {
 		$this->addOption( "group", "Query group to check specifically" );
 		$this->mDescription = "Report the hostname of a slave server";
 	}
+
 	public function execute() {
 		global $wgAllDBsAreLocalhost;
 		if ( $wgAllDBsAreLocalhost ) {

@@ -141,7 +141,6 @@ class PurgeList extends Maintenance {
 			$u->doUpdate();
 		}
 	}
-
 }
 
 $maintClass = "PurgeList";

@@ -44,9 +44,9 @@ class NamespaceConflictChecker extends Maintenance {
 		$this->mDescription = "";
 		$this->addOption( 'fix', 'Attempt to automatically fix errors' );
 		$this->addOption( 'suffix', "Dupes will be renamed with correct namespace with " .
-									"<text> appended after the article name", false, true );
+			"<text> appended after the article name", false, true );
 		$this->addOption( 'prefix', "Do an explicit check for the given title prefix " .
-									"appended after the article name", false, true );
+			"appended after the article name", false, true );
 	}
 
 	public function execute() {
@@ -138,6 +138,7 @@ class NamespaceConflictChecker extends Maintenance {
 		foreach ( $spaces as $name => $ns ) {
 			$ok = $this->checkNamespace( $ns, $name, $fix, $suffix ) && $ok;
 		}
+
 		return $ok;
 	}
 
@@ -152,6 +153,7 @@ class NamespaceConflictChecker extends Maintenance {
 		foreach ( $result as $row ) {
 			$prefixes[] = $row['iw_prefix'];
 		}
+
 		return $prefixes;
 	}
 
@@ -178,6 +180,7 @@ class NamespaceConflictChecker extends Maintenance {
 				$ok = $this->resolveConflict( $row, $resolvable, $suffix ) && $ok;
 			}
 		}
+
 		return $ok;
 	}
 
@@ -191,6 +194,7 @@ class NamespaceConflictChecker extends Maintenance {
 	 */
 	private function checkPrefix( $key, $prefix, $fix, $suffix = '' ) {
 		$this->output( "Checking prefix \"$prefix\" vs namespace $key\n" );
+
 		return $this->checkNamespace( $key, $prefix, $fix, $suffix );
 	}
 
@@ -231,6 +235,7 @@ class NamespaceConflictChecker extends Maintenance {
 		foreach ( $result as $row ) {
 			$set[] = $row;
 		}
+
 		return $set;
 	}
 
@@ -251,6 +256,7 @@ class NamespaceConflictChecker extends Maintenance {
 				$row->oldnamespace,
 				$row->oldtitle ) );
 			$this->output( "...  *** cannot resolve automatically; illegal title ***\n" );
+
 			return false;
 		}
 
@@ -265,6 +271,7 @@ class NamespaceConflictChecker extends Maintenance {
 		$id = $newTitle->getArticleID();
 		if ( $id ) {
 			$this->output( "...  *** cannot resolve automatically; page exists with ID $id ***\n" );
+
 			return false;
 		} else {
 			return true;
@@ -288,6 +295,7 @@ class NamespaceConflictChecker extends Maintenance {
 				$title = Title::makeTitleSafe( $row->namespace, $row->title );
 				if ( !$title ) {
 					$this->output( "... !!! invalid title\n" );
+
 					return false;
 				}
 				$id = $title->getArticleID();
@@ -300,6 +308,7 @@ class NamespaceConflictChecker extends Maintenance {
 			$this->output( "...  *** using suffixed form [[" . $title->getPrefixedText() . "]] ***\n" );
 		}
 		$this->resolveConflictOn( $row, 'page', 'page' );
+
 		return true;
 	}
 
@@ -326,6 +335,7 @@ class NamespaceConflictChecker extends Maintenance {
 			),
 			__METHOD__ );
 		$this->output( "ok.\n" );
+
 		return true;
 	}
 }

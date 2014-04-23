@@ -56,11 +56,13 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 		$db = $this->getDB( DB_MASTER );
 		if ( !$db->tableExists( 'log_search' ) ) {
 			$this->error( "log_search does not exist" );
+
 			return false;
 		}
 		$start = $db->selectField( 'logging', 'MIN(log_id)', false, __FUNCTION__ );
 		if ( !$start ) {
 			$this->output( "Nothing to do.\n" );
+
 			return true;
 		}
 		$end = $db->selectField( 'logging', 'MAX(log_id)', false, __FUNCTION__ );
@@ -126,8 +128,8 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 					// Add item author relations...
 					$log->addRelations( 'target_author_id', $userIds, $row->log_id );
 					$log->addRelations( 'target_author_ip', $userIPs, $row->log_id );
-				// RevisionDelete logs - log events
 				} elseif ( LogEventsList::typeAction( $row, $delTypes, 'event' ) ) {
+					// RevisionDelete logs - log events
 					$params = LogPage::extractParams( $row->log_params );
 					// Param format: <item CSV> [<ofield> <nfield>]
 					if ( count( $params ) < 1 ) {
@@ -159,6 +161,7 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 			wfWaitForSlaves();
 		}
 		$this->output( "Done populating log_search table.\n" );
+
 		return true;
 	}
 }

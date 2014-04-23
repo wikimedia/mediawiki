@@ -28,7 +28,7 @@ class Languages {
 	/** @var array List of languages */
 	protected $mLanguages;
 
-	/** @var array Raw list of the messages in each language  */
+	/** @var array Raw list of the messages in each language */
 	protected $mRawMessages;
 
 	/** @var array Messages in each language (except for English), divided to groups */

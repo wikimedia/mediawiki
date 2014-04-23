@@ -29,6 +29,7 @@ class StatsOutput {
 		wfSuppressWarnings();
 		$return = sprintf( '%.' . $accuracy . 'f%%', 100 * $subset / $total );
 		wfRestoreWarnings();
+
 		return $return;
 	}
 

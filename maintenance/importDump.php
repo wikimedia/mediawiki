@@ -111,6 +111,7 @@ TEXT;
 	function setNsfilter( array $namespaces ) {
 		if ( count( $namespaces ) == 0 ) {
 			$this->nsFilter = false;
+
 			return;
 		}
 		$this->nsFilter = array_unique( array_map( array( $this, 'getNsIndex' ), $namespaces ) );
@@ -143,6 +144,7 @@ TEXT;
 			echo wfBacktrace();
 			$this->error( "Cannot get namespace of object in " . __METHOD__, true );
 		}
+
 		return is_array( $this->nsFilter ) && !in_array( $ns, $this->nsFilter );
 	}
 
@@ -157,6 +159,7 @@ TEXT;
 		$title = $rev->getTitle();
 		if ( !$title ) {
 			$this->progress( "Got bogus revision with null title!" );
+
 			return;
 		}
 
@@ -189,6 +192,7 @@ TEXT;
 				// bluuuh hack
 				// call_user_func( $this->uploadCallback, $revision );
 				$dbw = wfGetDB( DB_MASTER );
+
 				return $dbw->deadlockLoop( array( $revision, 'importUpload' ) );
 			}
 		}
@@ -248,6 +252,7 @@ TEXT;
 		}
 
 		$file = fopen( $filename, 'rt' );
+
 		return $this->importFromHandle( $file );
 	}
 
@@ -256,6 +261,7 @@ TEXT;
 		if ( self::posix_isatty( $file ) ) {
 			$this->maybeHelp( true );
 		}
+
 		return $this->importFromHandle( $file );
 	}
 

@@ -46,6 +46,7 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 		$start = $dbw->selectField( 'recentchanges', 'MIN(rc_id)', false, __METHOD__ );
 		if ( !$start ) {
 			$this->output( "Nothing to do.\n" );
+
 			return true;
 		}
 		$end = $dbw->selectField( 'recentchanges', 'MAX(rc_id)', false, __METHOD__ );

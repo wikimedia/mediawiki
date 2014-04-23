@@ -85,11 +85,11 @@ class FixTimestamps extends Maintenance {
 			if ( $sign == 0 || $sign == $expectedSign ) {
 				// Monotonic change
 				$lastNormal = $timestamp;
-				++ $numGoodRevs;
+				++$numGoodRevs;
 				continue;
 			} elseif ( abs( $delta ) <= $grace ) {
 				// Non-monotonic change within grace interval
-				++ $numGoodRevs;
+				++$numGoodRevs;
 				continue;
 			} else {
 				// Non-monotonic change larger than grace interval
@@ -100,7 +100,7 @@ class FixTimestamps extends Maintenance {
 		$numBadRevs = count( $badRevs );
 		if ( $numBadRevs > $numGoodRevs ) {
 			$this->error(
-		"The majority of revisions in the search interval are marked as bad.
+				"The majority of revisions in the search interval are marked as bad.
 
 		Are you sure the offset ($offset) has the right sign? Positive means the clock
 		was incorrectly set forward, negative means the clock was incorrectly set back.
