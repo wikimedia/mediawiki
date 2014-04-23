@@ -55,6 +55,7 @@ class SqliteMaintenance extends Maintenance {
 		// Should work even if we use a non-SQLite database
 		if ( $this->hasOption( 'check-syntax' ) ) {
 			$this->checkSyntax();
+
 			return;
 		}
 
@@ -62,6 +63,7 @@ class SqliteMaintenance extends Maintenance {
 
 		if ( $this->db->getType() != 'sqlite' ) {
 			$this->error( "This maintenance script requires a SQLite database.\n" );
+
 			return;
 		}
 
@@ -101,6 +103,7 @@ class SqliteMaintenance extends Maintenance {
 
 		if ( !$res || $res->numRows() == 0 ) {
 			$this->error( "Error: integrity check query returned nothing.\n" );
+
 			return;
 		}
 

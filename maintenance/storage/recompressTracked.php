@@ -95,6 +95,7 @@ class RecompressTracked {
 				$jobOptions[$classOption] = $options[$cmdOption];
 			}
 		}
+
 		return new self( $jobOptions );
 	}
 
@@ -118,7 +119,6 @@ class RecompressTracked {
 		if ( $this->debugLog ) {
 			$this->logToFile( $msg, $this->debugLog );
 		}
-
 	}
 
 	function info( $msg ) {
@@ -190,13 +190,16 @@ class RecompressTracked {
 		$dbr = wfGetDB( DB_SLAVE );
 		if ( !$dbr->tableExists( 'blob_tracking' ) ) {
 			$this->critical( "Error: blob_tracking table does not exist" );
+
 			return false;
 		}
 		$row = $dbr->selectRow( 'blob_tracking', '*', false, __METHOD__ );
 		if ( !$row ) {
 			$this->info( "Warning: blob_tracking table contains no rows, skipping this wiki." );
+
 			return false;
 		}
+
 		return true;
 	}
 
@@ -276,6 +279,7 @@ class RecompressTracked {
 			if ( isset( $pipes[$slaveId] ) ) {
 				$this->prevSlaveId = $slaveId;
 				$this->dispatchToSlave( $slaveId, $args );
+
 				return;
 			}
 		}
@@ -443,14 +447,14 @@ class RecompressTracked {
 			$args = explode( ' ', $line );
 			$cmd = array_shift( $args );
 			switch ( $cmd ) {
-			case 'doPage':
-				$this->doPage( intval( $args[0] ) );
-				break;
-			case 'doOrphanList':
-				$this->doOrphanList( array_map( 'intval', $args ) );
-				break;
-			case 'quit':
-				return;
+				case 'doPage':
+					$this->doPage( intval( $args[0] ) );
+					break;
+				case 'doOrphanList':
+					$this->doOrphanList( array_map( 'intval', $args ) );
+					break;
+				case 'quit':
+					return;
 			}
 			$this->waitForSlaves();
 		}
@@ -618,6 +622,7 @@ class RecompressTracked {
 		if ( $cluster === false ) {
 			$cluster = reset( $this->destClusters );
 		}
+
 		return $cluster;
 	}
 
@@ -628,6 +633,7 @@ class RecompressTracked {
 	 */
 	function getExtDB( $cluster ) {
 		$lb = wfGetLBFactory()->getExternalLB( $cluster );
+
 		return $lb->getConnection( DB_MASTER );
 	}
 
@@ -724,6 +730,7 @@ class CgzCopyTransaction {
 		$hash = $this->cgz->addItem( $text );
 		$this->referrers[$textId] = $hash;
 		$this->texts[$textId] = $text;
+
 		return $this->cgz->isHappy();
 	}
 
@@ -787,6 +794,7 @@ class CgzCopyTransaction {
 					$this->critical( "Warning: concurrent operation detected, are there two conflicting " .
 						"processes running, doing the same job?" );
 				}
+
 				return;
 			}
 			$this->recompress();

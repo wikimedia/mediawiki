@@ -61,6 +61,7 @@ class UserDupes {
 		$info = $this->db->indexInfo( 'user', 'user_name', __METHOD__ );
 		if ( !$info ) {
 			$this->out( "WARNING: doesn't seem to have user_name index at all!\n" );
+
 			return false;
 		}
 
@@ -102,6 +103,7 @@ class UserDupes {
 	function checkDupes( $doDelete = false ) {
 		if ( $this->hasUniqueIndex() ) {
 			echo wfWikiID() . " already has a unique index on its user table.\n";
+
 			return true;
 		}
 
@@ -144,14 +146,17 @@ class UserDupes {
 
 		if ( $this->failed > 0 ) {
 			$this->out( "Something terribly awry; $this->failed duplicate accounts were not removed.\n" );
+
 			return false;
 		}
 
 		if ( $this->trimmed == 0 || $doDelete ) {
 			$this->out( "It is now safe to apply the unique index on user_name.\n" );
+
 			return true;
 		} else {
 			$this->out( "Run this script again with the --fix option to automatically delete them.\n" );
+
 			return false;
 		}
 	}
@@ -196,6 +201,7 @@ class UserDupes {
 		foreach ( $result as $row ) {
 			$list[] = $row->user_name;
 		}
+
 		return $list;
 	}
 
@@ -288,5 +294,4 @@ class UserDupes {
 		$this->db->delete( 'user', array( 'user_id' => $userid ), __METHOD__ );
 		$this->out( " ok" );
 	}
-
 }

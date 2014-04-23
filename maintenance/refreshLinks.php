@@ -65,7 +65,8 @@ class RefreshLinks extends Maintenance {
 	 * @param bool $oldRedirectsOnly Only fix redirects without redirect entries
 	 */
 	private function doRefreshLinks( $start, $newOnly = false, $maxLag = false,
-						$end = 0, $redirectsOnly = false, $oldRedirectsOnly = false ) {
+		$end = 0, $redirectsOnly = false, $oldRedirectsOnly = false
+	) {
 		global $wgParser, $wgUseTidy;
 
 		$reportingInterval = 100;
@@ -196,6 +197,7 @@ class RefreshLinks extends Maintenance {
 			// Delete any redirect table entry for it
 			$dbw->delete( 'redirect', array( 'rd_from' => $id ),
 				__METHOD__ );
+
 			return;
 		}
 

@@ -70,7 +70,7 @@ class ResetUserTokens extends Maintenance {
 		$where = array();
 		if ( $this->nullsOnly ) {
 			// Have to build this by hand, because \ is escaped in helper functions
-			$where = array( 'user_token = \'' . str_repeat( '\0', 32) . '\'' );
+			$where = array( 'user_token = \'' . str_repeat( '\0', 32 ) . '\'' );
 		}
 
 		$maxid = $dbr->selectField( 'user', 'MAX(user_id)', array(), __METHOD__ );
@@ -98,9 +98,7 @@ class ResetUserTokens extends Maintenance {
 			$max = $min + $this->mBatchSize;
 
 			wfWaitForSlaves();
-
 		} while ( $min <= $maxid );
-
 	}
 
 	private function updateUser( $userid ) {

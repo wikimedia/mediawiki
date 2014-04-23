@@ -57,8 +57,8 @@ class UpdateSpecialPages extends Maintenance {
 			}
 
 			if ( !$this->hasOption( 'override' )
-				&& $wgDisableQueryPageUpdate && in_array( $special, $wgDisableQueryPageUpdate ) )
-			{
+				&& $wgDisableQueryPageUpdate && in_array( $special, $wgDisableQueryPageUpdate )
+			) {
 				$this->output( sprintf( "%-30s [QueryPage] disabled\n", $special ) );
 				continue;
 			}

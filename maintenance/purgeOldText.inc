@@ -74,5 +74,4 @@ function PurgeRedundantText( $delete = false ) {
 
 	# Done
 	$dbw->commit( __METHOD__ );
-
 }

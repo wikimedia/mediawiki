@@ -107,7 +107,8 @@ class UserOptions {
 			return false;
 		}
 
-		$this->{ $this->mMode } ();
+		$this->{$this->mMode}();
+
 		return true;
 	}
 
@@ -139,7 +140,7 @@ class UserOptions {
 			array( 'user_id' ),
 			array(),
 			__METHOD__
-			);
+		);
 
 		foreach ( $result as $id ) {
 
@@ -159,7 +160,6 @@ class UserOptions {
 					@$ret[$this->mAnOption][$userValue]++;
 					// @codingStandardsIgnoreEnd
 				}
-
 			} else {
 
 				foreach ( $defaultOptions as $name => $defaultValue ) {
@@ -192,7 +192,7 @@ class UserOptions {
 			array( 'user_id' ),
 			array(),
 			__METHOD__
-			);
+		);
 
 		foreach ( $result as $id ) {
 
@@ -218,7 +218,6 @@ class UserOptions {
 				if ( !$this->mQuiet ) {
 					print " OK\n";
 				}
-
 			} elseif ( !$this->mQuiet ) {
 				print "Not changing '$username' using <{$this->mAnOption}> = '$curValue'\n";
 			}
@@ -235,6 +234,7 @@ class UserOptions {
 		foreach ( $def as $optname => $defaultValue ) {
 			array_push( $ret, $optname );
 		}
+
 		return $ret;
 	}
 
@@ -243,7 +243,7 @@ class UserOptions {
 	#
 
 	public static function showUsageAndExit() {
-print <<<USAGE
+		print <<<USAGE
 
 This script pass through all users and change one of their options.
 The new option is NOT validated.
@@ -267,7 +267,7 @@ Options:
 	--dry   : do not save user settings back to database
 
 USAGE;
-	exit( 0 );
+		exit( 0 );
 	}
 
 	/**
@@ -280,14 +280,14 @@ USAGE;
 			return true;
 		}
 
-print <<<WARN
+		print <<<WARN
 The script is about to change the skin for ALL USERS in the database.
 Users with option <$this->mAnOption> = '$this->mOldValue' will be made to use '$this->mNewValue'.
 
 Abort with control-c in the next five seconds....
 WARN;
 		wfCountDown( 5 );
+
 		return true;
 	}
-
 }

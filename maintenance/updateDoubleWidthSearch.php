@@ -72,6 +72,7 @@ class UpdateDoubleWidthSearch extends Maintenance {
 		$sql = "SELECT si_page FROM $searchindex
 				 WHERE ( si_text RLIKE '$regexp' )
 					OR ( si_title RLIKE '$regexp' )";
+
 		return $dbw->query( $sql, __METHOD__ );
 	}
 }

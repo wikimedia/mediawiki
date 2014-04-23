@@ -64,7 +64,7 @@ class RemoveUnusedAccounts extends Maintenance {
 			if ( count( array_intersect( $instance->getEffectiveGroups(), $excludedGroups ) ) == 0
 				&& $this->isInactiveAccount( $row->user_id, true )
 				&& wfTimestamp( TS_UNIX, $row->user_touched ) < wfTimestamp( TS_UNIX, time() - $touchedSeconds )
-				) {
+			) {
 				# Inactive; print out the name and flag it
 				$del[] = $row->user_id;
 				$this->output( $row->user_name . "\n" );

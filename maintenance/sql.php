@@ -39,7 +39,7 @@ class MwSql extends Maintenance {
 	}
 
 	public function execute() {
-		$wiki = $this->getOption( 'wikidb' ) ?: false;
+		$wiki = $this->getOption( 'wikidb' ) ? : false;
 		// Get the appropriate load balancer (for this wiki)
 		if ( $this->hasOption( 'cluster' ) ) {
 			$lb = wfGetLBFactory()->getExternalLB( $this->getOption( 'cluster' ), $wiki );
@@ -88,12 +88,12 @@ class MwSql extends Maintenance {
 		}
 
 		$useReadline = function_exists( 'readline_add_history' )
-				&& Maintenance::posix_isatty( 0 /*STDIN*/ );
+			&& Maintenance::posix_isatty( 0 /*STDIN*/ );
 
 		if ( $useReadline ) {
 			global $IP;
 			$historyFile = isset( $_ENV['HOME'] ) ?
-					"{$_ENV['HOME']}/.mwsql_history" : "$IP/maintenance/.mwsql_history";
+				"{$_ENV['HOME']}/.mwsql_history" : "$IP/maintenance/.mwsql_history";
 			readline_read_history( $historyFile );
 		}
 
@@ -126,7 +126,7 @@ class MwSql extends Maintenance {
 				$prompt = $newPrompt;
 				$wholeLine = '';
 			} catch ( DBQueryError $e ) {
-				$doDie = ! Maintenance::posix_isatty( 0 );
+				$doDie = !Maintenance::posix_isatty( 0 );
 				$this->error( $e, $doDie );
 			}
 		}
