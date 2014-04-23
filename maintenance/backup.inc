@@ -136,52 +136,52 @@ class BackupDumper {
 			$matches = array();
 			if ( preg_match( '/^--(.+?)(?:=(.+?)(?::(.+?))?)?$/', $arg, $matches ) ) {
 				wfSuppressWarnings();
-				list( /* $full */ , $opt, $val, $param ) = $matches;
+				list( /* $full */, $opt, $val, $param ) = $matches;
 				wfRestoreWarnings();
 
 				switch ( $opt ) {
-				case "plugin":
-					$this->loadPlugin( $val, $param );
-					break;
-				case "output":
-					if ( !is_null( $sink ) ) {
-						$sinks[] = $sink;
-					}
-					if ( !isset( $this->outputTypes[$val] ) ) {
-						$this->fatalError( "Unrecognized output sink type '$val'" );
-					}
-					$type = $this->outputTypes[$val];
-					$sink = new $type( $param );
-					break;
-				case "filter":
-					if ( is_null( $sink ) ) {
-						$sink = new DumpOutput();
-					}
-					if ( !isset( $this->filterTypes[$val] ) ) {
-						$this->fatalError( "Unrecognized filter type '$val'" );
-					}
-					$type = $this->filterTypes[$val];
-					$filter = new $type( $sink, $param );
+					case "plugin":
+						$this->loadPlugin( $val, $param );
+						break;
+					case "output":
+						if ( !is_null( $sink ) ) {
+							$sinks[] = $sink;
+						}
+						if ( !isset( $this->outputTypes[$val] ) ) {
+							$this->fatalError( "Unrecognized output sink type '$val'" );
+						}
+						$type = $this->outputTypes[$val];
+						$sink = new $type( $param );
+						break;
+					case "filter":
+						if ( is_null( $sink ) ) {
+							$sink = new DumpOutput();
+						}
+						if ( !isset( $this->filterTypes[$val] ) ) {
+							$this->fatalError( "Unrecognized filter type '$val'" );
+						}
+						$type = $this->filterTypes[$val];
+						$filter = new $type( $sink, $param );
 
-					// references are lame in php...
-					unset( $sink );
-					$sink = $filter;
+						// references are lame in php...
+						unset( $sink );
+						$sink = $filter;
 
-					break;
-				case "report":
-					$this->reportingInterval = intval( $val );
-					break;
-				case "server":
-					$this->server = $val;
-					break;
-				case "force-normal":
-					if ( !function_exists( 'utf8_normalize' ) ) {
-						$this->fatalError( "UTF-8 normalization extension not loaded. " .
-							"Install or remove --force-normal parameter to use slower code." );
-					}
-					break;
-				default:
-					$this->processOption( $opt, $val, $param );
+						break;
+					case "report":
+						$this->reportingInterval = intval( $val );
+						break;
+					case "server":
+						$this->server = $val;
+						break;
+					case "force-normal":
+						if ( !function_exists( 'utf8_normalize' ) ) {
+							$this->fatalError( "UTF-8 normalization extension not loaded. " .
+								"Install or remove --force-normal parameter to use slower code." );
+						}
+						break;
+					default:
+						$this->processOption( $opt, $val, $param );
 				}
 			}
 		}
@@ -229,8 +229,8 @@ class BackupDumper {
 			} else {
 				$exporter->allLogs();
 			}
-		# Page dumps: all or by page ID range
 		} elseif ( is_null( $this->pages ) ) {
+			# Page dumps: all or by page ID range
 			if ( $this->startId || $this->endId ) {
 				$exporter->pagesByRange( $this->startId, $this->endId );
 			} elseif ( $this->revStartId || $this->revEndId ) {
@@ -238,8 +238,8 @@ class BackupDumper {
 			} else {
 				$exporter->allPages();
 			}
-		# Dump of specific pages
 		} else {
+			# Dump of specific pages
 			$exporter->pagesByName( $this->pages );
 		}
 
@@ -310,6 +310,7 @@ class BackupDumper {
 
 	function backupServer() {
 		global $wgDBserver;
+
 		return $this->server
 			? $this->server
 			: $wgDBserver;
