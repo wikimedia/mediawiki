@@ -322,7 +322,6 @@ class CheckStorage {
 
 			// Check targets of unresolved stubs
 			$this->checkExternalConcatBlobs( $externalConcatBlobs );
-
 			// next chunk
 		}
 
@@ -403,7 +402,6 @@ class CheckStorage {
 					);
 				}
 				unset( $oldIds[$row->blob_id] );
-
 			}
 			$extDb->freeResult( $res );
 
@@ -434,6 +432,7 @@ class CheckStorage {
 		// Write revision list
 		if ( !file_put_contents( $revFileName, implode( "\n", $revIds ) ) ) {
 			echo "Error writing revision list, can't restore text\n";
+
 			return;
 		}
 
@@ -450,12 +449,14 @@ class CheckStorage {
 
 		if ( $exitStatus ) {
 			echo "mwdumper died with exit status $exitStatus\n";
+
 			return;
 		}
 
 		$file = fopen( $filteredXmlFileName, 'r' );
 		if ( !$file ) {
 			echo "Unable to open filtered XML file\n";
+
 			return;
 		}
 
@@ -477,6 +478,7 @@ class CheckStorage {
 
 		if ( $content === null ) {
 			echo "Revision $id is broken, we have no content available\n";
+
 			return;
 		}
 
@@ -488,12 +490,14 @@ class CheckStorage {
 			// be safe, we'll skip it and leave it broken
 
 			echo "Revision $id is blank in the dump, may have been broken before export\n";
+
 			return;
 		}
 
 		if ( !$id ) {
 			// No ID, can't import
 			echo "No id tag in revision, can't import\n";
+
 			return;
 		}
 
@@ -502,6 +506,7 @@ class CheckStorage {
 		$oldId = $dbr->selectField( 'revision', 'rev_text_id', array( 'rev_id' => $id ), __METHOD__ );
 		if ( !$oldId ) {
 			echo "Missing revision row for rev_id $id\n";
+
 			return;
 		}
 

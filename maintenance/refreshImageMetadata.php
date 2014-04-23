@@ -82,7 +82,6 @@ class RefreshImageMetadata extends Maintenance {
 			false,
 			true
 		);
-
 	}
 
 	public function execute() {
@@ -148,7 +147,7 @@ class RefreshImageMetadata extends Maintenance {
 						// to weed out any inconsequential changes.
 						$error++;
 						$this->output( "Warning: File:{$row->img_name} used to have " .
-						"$oldLength bytes of metadata but now has $newLength bytes.\n" );
+							"$oldLength bytes of metadata but now has $newLength bytes.\n" );
 					} elseif ( $verbose ) {
 						$this->output( "Refreshed File:{$row->img_name}.\n" );
 					}
@@ -161,20 +160,17 @@ class RefreshImageMetadata extends Maintenance {
 						if ( $newLength < $oldLength - 5 ) {
 							$error++;
 							$this->output( "Warning: File:{$row->img_name} used to have " .
-							"$oldLength bytes of metadata but now has $newLength bytes. (forced)\n" );
-
+								"$oldLength bytes of metadata but now has $newLength bytes. (forced)\n" );
 						}
 						if ( $verbose ) {
 							$this->output( "Forcibly refreshed File:{$row->img_name}.\n" );
 						}
-					}
-					else {
+					} else {
 						if ( $verbose ) {
 							$this->output( "Skipping File:{$row->img_name}.\n" );
 						}
 					}
 				}
-
 			}
 			$conds2 = array( 'img_name > ' . $dbw->addQuotes( $row->img_name ) );
 			wfWaitForSlaves();
@@ -216,6 +212,7 @@ class RefreshImageMetadata extends Maintenance {
 		if ( $like ) {
 			$conds[] = 'img_metadata ' . $dbw->buildLike( $dbw->anyString(), $like, $dbw->anyString() );
 		}
+
 		return $conds;
 	}
 

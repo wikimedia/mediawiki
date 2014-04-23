@@ -78,6 +78,7 @@ class Sqlite {
 				foreach ( $columns as $col ) {
 					if ( !isset( $allowedTypes[strtolower( $col->type )] ) ) {
 						$db->close();
+
 						return "Table {$table->name} has column {$col->name} with non-native type '{$col->type}'";
 					}
 				}
@@ -86,6 +87,7 @@ class Sqlite {
 			return $e->getMessage();
 		}
 		$db->close();
+
 		return true;
 	}
-};
+}

@@ -43,6 +43,7 @@ class RunJobs extends Maintenance {
 		if ( $this->hasOption( 'memory-limit' ) ) {
 			return parent::memoryLimit();
 		}
+
 		// Don't eat all memory on the machine if we get a bad job.
 		return "150M";
 	}
@@ -101,7 +102,7 @@ class RunJobs extends Maintenance {
 				$this->runJobsLog( $job->toString() . " STARTING" );
 
 				// Set timer to stop the job if too much CPU time is used
-				set_time_limit( $maxTime ?: 0 );
+				set_time_limit( $maxTime ? : 0 );
 				// Run the job...
 				wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
 				$t = microtime( true );
@@ -209,7 +210,7 @@ class RunJobs extends Maintenance {
 			$content = stream_get_contents( $handle );
 			flock( $handle, LOCK_UN );
 			fclose( $handle );
-			$backoffs = json_decode( $content, true ) ?: array();
+			$backoffs = json_decode( $content, true ) ? : array();
 		}
 
 		return $backoffs;
@@ -227,7 +228,7 @@ class RunJobs extends Maintenance {
 		$handle = fopen( $file, 'wb+' );
 		flock( $handle, LOCK_EX );
 		$content = stream_get_contents( $handle );
-		$cBackoffs = json_decode( $content, true ) ?: array();
+		$cBackoffs = json_decode( $content, true ) ? : array();
 		foreach ( $backoffs as $type => $timestamp ) {
 			$cBackoffs[$type] = isset( $cBackoffs[$type] ) ? $cBackoffs[$type] : 0;
 			$cBackoffs[$type] = max( $cBackoffs[$type], $backoffs[$type] );

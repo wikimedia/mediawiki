@@ -71,6 +71,7 @@ class SyncFileBackend extends Maintenance {
 			if ( $this->isQuiet() ) {
 				print $id; // give a single machine-readable number
 			}
+
 			return;
 		}
 
@@ -104,7 +105,7 @@ class SyncFileBackend extends Maintenance {
 		}
 
 		// Periodically update the position file
-		$callback = function( $pos ) use ( $startFromPosFile, $posFile, $start ) {
+		$callback = function ( $pos ) use ( $startFromPosFile, $posFile, $start ) {
 			if ( $startFromPosFile && $pos >= $start ) { // successfully advanced
 				file_put_contents( $posFile, $pos, LOCK_EX );
 			}
@@ -238,6 +239,7 @@ class SyncFileBackend extends Maintenance {
 				if ( !$fsFile ) {
 					$this->error( "Unable to sync '$dPath': could not get local copy." );
 					$status->fatal( 'backend-fail-internal', $src->getName() );
+
 					return $status;
 				}
 				$fsFiles[] = $fsFile; // keep TempFSFile objects alive as needed
@@ -254,6 +256,7 @@ class SyncFileBackend extends Maintenance {
 			} else { // error
 				$this->error( "Unable to sync '$dPath': could not stat file." );
 				$status->fatal( 'backend-fail-internal', $src->getName() );
+
 				return $status;
 			}
 		}

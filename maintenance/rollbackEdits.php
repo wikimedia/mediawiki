@@ -72,6 +72,7 @@ class RollbackEdits extends Maintenance {
 
 		if ( !$titles ) {
 			$this->output( 'No suitable titles to be rolled back' );
+
 			return;
 		}
 
@@ -105,6 +106,7 @@ class RollbackEdits extends Maintenance {
 		foreach ( $results as $row ) {
 			$titles[] = Title::makeTitle( $row->page_namespace, $row->page_title );
 		}
+
 		return $titles;
 	}
 }

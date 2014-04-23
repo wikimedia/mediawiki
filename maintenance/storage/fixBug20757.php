@@ -296,6 +296,7 @@ class FixBug20757 extends Maintenance {
 			$this->mapCache[$pageId] = $map;
 			$this->mapCacheSize += count( $map );
 		}
+
 		return $this->mapCache[$pageId];
 	}
 
@@ -312,7 +313,7 @@ class FixBug20757 extends Maintenance {
 		if ( in_array( 'external', $flags ) ) {
 			$url = $text;
 			wfSuppressWarnings();
-			list( /* $proto */ , $path ) = explode( '://', $url, 2 );
+			list( /* $proto */, $path ) = explode( '://', $url, 2 );
 			wfRestoreWarnings();
 
 			if ( $path == "" ) {
@@ -341,6 +342,7 @@ class FixBug20757 extends Maintenance {
 
 		$obj->uncompress();
 		$text = $obj->getItem( $stub['hash'] );
+
 		return $text !== false;
 	}
 }

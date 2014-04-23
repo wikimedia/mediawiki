@@ -52,6 +52,7 @@ class RebuildLocalisationCache extends Maintenance {
 		if ( $this->hasOption( 'memory-limit' ) ) {
 			return parent::memoryLimit();
 		}
+
 		return '1000M';
 	}
 
@@ -148,7 +149,7 @@ class RebuildLocalisationCache extends Maintenance {
 	/**
 	 * Helper function to rebuild list of languages codes. Prints the code
 	 * for each language which is rebuilt.
-	 * @param array $codes  List of language codes to rebuild.
+	 * @param array $codes List of language codes to rebuild.
 	 * @param LocalisationCache $lc Instance of LocalisationCacheBulkLoad (?)
 	 * @param bool $force Rebuild up-to-date languages
 	 * @return int Number of rebuilt languages
@@ -162,6 +163,7 @@ class RebuildLocalisationCache extends Maintenance {
 				$numRebuilt++;
 			}
 		}
+
 		return $numRebuilt;
 	}
 

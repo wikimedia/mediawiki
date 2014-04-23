@@ -140,6 +140,7 @@ class ReassignEdits extends Maintenance {
 		}
 
 		$dbw->commit( __METHOD__ );
+
 		return (int)$total;
 	}
 
@@ -189,6 +190,7 @@ class ReassignEdits extends Maintenance {
 			}
 		}
 		$user->load();
+
 		return $user;
 	}
 }

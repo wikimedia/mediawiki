@@ -41,6 +41,7 @@ class ShowSiteStats extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Show the cached statistics";
 	}
+
 	public function execute() {
 		$fields = array(
 			'ss_total_views' => 'Total views',

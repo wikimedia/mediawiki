@@ -77,6 +77,7 @@ function resolveStub( $id, $stubText, $flags ) {
 
 	if ( strtolower( get_class( $stub ) ) !== 'historyblobstub' ) {
 		print "Error found object of class " . get_class( $stub ) . ", expecting historyblobstub\n";
+
 		return;
 	}
 
