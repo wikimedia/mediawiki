@@ -38,10 +38,23 @@ class CheckSyntax extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Check syntax for all PHP files in MediaWiki";
 		$this->addOption( 'with-extensions', 'Also recurse the extensions folder' );
-		$this->addOption( 'path', 'Specific path (file or directory) to check, either with absolute path or relative to the root of this MediaWiki installation',
-			false, true );
-		$this->addOption( 'list-file', 'Text file containing list of files or directories to check', false, true );
-		$this->addOption( 'modified', 'Check only files that were modified (requires Git command-line client)' );
+		$this->addOption(
+			'path',
+			'Specific path (file or directory) to check, either with absolute path or '
+				. 'relative to the root of this MediaWiki installation',
+			false,
+			true
+		);
+		$this->addOption(
+			'list-file',
+			'Text file containing list of files or directories to check',
+			false,
+			true
+		);
+		$this->addOption(
+			'modified',
+			'Check only files that were modified (requires Git command-line client)'
+		);
 		$this->addOption( 'syntax-only', 'Check for syntax validity only, skip code style warnings' );
 	}
 
@@ -53,7 +66,8 @@ class CheckSyntax extends Maintenance {
 		$this->buildFileList();
 
 		// ParseKit is broken on PHP 5.3+, disabled until this is fixed
-		$useParseKit = function_exists( 'parsekit_compile_file' ) && version_compare( PHP_VERSION, '5.3', '<' );
+		$useParseKit = function_exists( 'parsekit_compile_file' )
+			&& version_compare( PHP_VERSION, '5.3', '<' );
 
 		$str = 'Checking syntax (using ' . ( $useParseKit ?
 			'parsekit' : ' php -l, this can take a long time' ) . ")\n";

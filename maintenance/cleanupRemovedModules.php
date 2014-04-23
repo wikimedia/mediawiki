@@ -36,7 +36,13 @@ class CleanupRemovedModules extends Maintenance {
 		parent::__construct();
 		$this->mDescription = 'Remove cache entries for removed ResourceLoader modules from the database';
 		$this->addOption( 'batchsize', 'Delete rows in batches of this size. Default: 500', false, true );
-		$this->addOption( 'max-slave-lag', 'If the slave lag exceeds this many seconds, wait until it drops below this value. Default: 5', false, true );
+		$this->addOption(
+			'max-slave-lag',
+			'If the slave lag exceeds this many seconds, wait until it drops below this value. '
+				. 'Default: 5',
+			false,
+			true
+		);
 	}
 
 	public function execute() {

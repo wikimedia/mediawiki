@@ -122,7 +122,12 @@ class ImageCleanup extends TableCleanup {
 	}
 
 	private function pageExists( $name, $db ) {
-		return $db->selectField( 'page', '1', array( 'page_namespace' => NS_FILE, 'page_title' => $name ), __METHOD__ );
+		return $db->selectField(
+			'page',
+			'1',
+			array( 'page_namespace' => NS_FILE, 'page_title' => $name ),
+			__METHOD__
+		);
 	}
 
 	private function pokeFile( $orig, $new ) {

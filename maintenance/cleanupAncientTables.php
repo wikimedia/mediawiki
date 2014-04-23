@@ -40,8 +40,9 @@ class CleanupAncientTables extends Maintenance {
 	public function execute() {
 		if ( !$this->hasOption( 'force' ) ) {
 			$this->error( "This maintenance script will remove old columns and indexes.\n"
-				. "It is recommended to backup your database first, and ensure all your data has been migrated to newer tables\n"
-				. "If you want to continue, run this script again with the --force \n"
+				. "It is recommended to backup your database first, and ensure all your data has\n"
+				. "been migrated to newer tables. If you want to continue, run this script again\n"
+				. "with --force.\n"
 			);
 		}
 
