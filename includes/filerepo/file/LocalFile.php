@@ -423,6 +423,8 @@ class LocalFile extends File {
 
 		$decoded['timestamp'] = wfTimestamp( TS_MW, $decoded['timestamp'] );
 
+		$decoded['metadata'] = $this->repo->getSlaveDB()->decodeBlob( $decoded['metadata'] );
+
 		if ( empty( $decoded['major_mime'] ) ) {
 			$decoded['mime'] = 'unknown/unknown';
 		} else {
