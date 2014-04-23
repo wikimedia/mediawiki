@@ -1,8 +1,9 @@
 <?php
 /**
  * MediaWiki installer overrides.
- * Modify this file if you are a packager who needs to modify the behavior of the MediaWiki installer.
- * Altering it is preferred over changing anything in /includes.
+ * Modify this file if you are a packager who needs to modify the behavior of
+ * the MediaWiki installer. Altering it is preferred over changing anything in
+ * /includes.
  *
  * Note: this file doesn't gets included from a global scope, don't use globals directly.
  *
