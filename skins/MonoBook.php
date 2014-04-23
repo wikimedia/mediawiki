@@ -36,8 +36,10 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class SkinMonoBook extends SkinTemplate {
 	/** Using monobook. */
-	var $skinname = 'monobook', $stylename = 'monobook',
-		$template = 'MonoBookTemplate', $useHeadElement = true;
+	public $skinname = 'monobook';
+	public $stylename = 'monobook';
+	public $template = 'MonoBookTemplate';
+	public $useHeadElement = true;
 
 	/**
 	 * @param OutputPage $out
@@ -76,7 +78,13 @@ class MonoBookTemplate extends BaseTemplate {
 ?><div id="globalWrapper">
 <div id="column-content"><div id="content" class="mw-body-primary" role="main">
 	<a id="top"></a>
-	<?php if ( $this->data['sitenotice'] ) { ?><div id="siteNotice"><?php $this->html( 'sitenotice' ) ?></div><?php } ?>
+	<?php
+		if ( $this->data['sitenotice'] ) {
+			?><div id="siteNotice"><?php
+			$this->html( 'sitenotice' )
+			?></div><?php
+		}
+	?>
 
 	<h1 id="firstHeading" class="firstHeading" lang="<?php
 		$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageViewLanguage()->getHtmlCode();
@@ -84,19 +92,44 @@ class MonoBookTemplate extends BaseTemplate {
 	?>"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
 	<div id="bodyContent" class="mw-body">
 		<div id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
-		<div id="contentSub"<?php $this->html( 'userlangattributes' ) ?>><?php $this->html( 'subtitle' ) ?></div>
+		<div id="contentSub"<?php
+			$this->html( 'userlangattributes' ) ?>><?php $this->html( 'subtitle' )
+		?></div>
 <?php if ( $this->data['undelete'] ) { ?>
 		<div id="contentSub2"><?php $this->html( 'undelete' ) ?></div>
-<?php } ?><?php if ( $this->data['newtalk'] ) { ?>
+<?php
+}
+?><?php
+		if ( $this->data['newtalk'] ) {
+			?>
 		<div class="usermessage"><?php $this->html( 'newtalk' ) ?></div>
-<?php } ?>
-		<div id="jump-to-nav" class="mw-jump"><?php $this->msg( 'jumpto' ) ?> <a href="#column-one"><?php $this->msg( 'jumptonavigation' ) ?></a><?php $this->msg( 'comma-separator' ) ?><a href="#searchInput"><?php $this->msg( 'jumptosearch' ) ?></a></div>
+<?php
+		}
+		?>
+		<div id="jump-to-nav" class="mw-jump"><?php
+			$this->msg( 'jumpto' )
+		?> <a href="#column-one"><?php
+			$this->msg( 'jumptonavigation' )
+		?></a><?php
+			$this->msg( 'comma-separator' )
+		?><a href="#searchInput"><?php
+			$this->msg( 'jumptosearch' )
+		?></a></div>
 
 		<!-- start content -->
 <?php $this->html( 'bodytext' ) ?>
-		<?php if ( $this->data['catlinks'] ) { $this->html( 'catlinks' ); } ?>
+		<?php
+		if ( $this->data['catlinks'] ) {
+			$this->html( 'catlinks' );
+		}
+		?>
 		<!-- end content -->
-		<?php if ( $this->data['dataAfterContent'] ) { $this->html( 'dataAfterContent' ); } ?>
+		<?php
+		if ( $this->data['dataAfterContent'] ) {
+			$this->html( 'dataAfterContent'
+			);
+		}
+		?>
 		<div class="visualClear"></div>
 	</div>
 </div></div>
@@ -110,7 +143,9 @@ class MonoBookTemplate extends BaseTemplate {
 <?php		foreach ( $this->getPersonalTools() as $key => $item ) { ?>
 				<?php echo $this->makeListItem( $key, $item ); ?>
 
-<?php		} ?>
+<?php
+}
+?>
 			</ul>
 		</div>
 	</div>
@@ -138,15 +173,18 @@ class MonoBookTemplate extends BaseTemplate {
 	} else {
 		$footerEnd = '';
 	}
+
 	foreach ( $validFooterIcons as $blockName => $footerIcons ) { ?>
 	<div id="f-<?php echo htmlspecialchars( $blockName ); ?>ico">
 <?php foreach ( $footerIcons as $icon ) { ?>
 		<?php echo $this->getSkin()->makeFooterIcon( $icon ); ?>
 
-<?php }
+<?php
+}
 ?>
 	</div>
-<?php }
+<?php
+	}
 
 		if ( count( $validFooterLinks ) > 0 ) {
 ?>	<ul id="f-list">
@@ -157,8 +195,10 @@ class MonoBookTemplate extends BaseTemplate {
 			}
 ?>
 	</ul>
-<?php	}
-echo $footerEnd;
+<?php
+		}
+
+		echo $footerEnd;
 ?>
 
 </div>
@@ -212,12 +252,22 @@ echo $footerEnd;
 				<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
 				<?php echo $this->makeSearchInput( array( "id" => "searchInput" ) ); ?>
 
-				<?php echo $this->makeSearchButton( "go", array( "id" => "searchGoButton", "class" => "searchButton" ) );
+				<?php
+				echo $this->makeSearchButton(
+					"go",
+					array( "id" => "searchGoButton", "class" => "searchButton" )
+				);
+
 				if ( $wgUseTwoButtonsSearchForm ) { ?>&#160;
-				<?php echo $this->makeSearchButton( "fulltext", array( "id" => "mw-searchButton", "class" => "searchButton" ) );
+				<?php echo $this->makeSearchButton(
+						"fulltext",
+						array( "id" => "mw-searchButton", "class" => "searchButton" )
+					);
 				} else { ?>
 
-				<div><a href="<?php $this->text( 'searchaction' ) ?>" rel="search"><?php $this->msg( 'powersearch-legend' ) ?></a></div><?php
+				<div><a href="<?php
+					$this->text( 'searchaction' )
+				?>" rel="search"><?php $this->msg( 'powersearch-legend' ) ?></a></div><?php
 				} ?>
 
 			</form>
@@ -283,7 +333,9 @@ echo $footerEnd;
 <?php		foreach ( $this->data['language_urls'] as $key => $langlink ) { ?>
 				<?php echo $this->makeListItem( $key, $langlink ); ?>
 
-<?php		} ?>
+<?php
+}
+?>
 			</ul>
 
 <?php		$this->renderAfterPortlet( 'lang' ); ?>
@@ -299,7 +351,12 @@ echo $footerEnd;
 	 * @param array|string $cont
 	 */
 	function customBox( $bar, $cont ) {
-		$portletAttribs = array( 'class' => 'generated-sidebar portlet', 'id' => Sanitizer::escapeId( "p-$bar" ), 'role' => 'navigation' );
+		$portletAttribs = array(
+			'class' => 'generated-sidebar portlet',
+			'id' => Sanitizer::escapeId( "p-$bar" ),
+			'role' => 'navigation'
+		);
+
 		$tooltip = Linker::titleAttrib( "p-$bar" );
 		if ( $tooltip !== false ) {
 			$portletAttribs['title'] = $tooltip;
@@ -310,17 +367,24 @@ echo $footerEnd;
 
 		<h3><?php echo htmlspecialchars( $msgObj->exists() ? $msgObj->text() : $bar ); ?></h3>
 		<div class='pBody'>
-<?php   if ( is_array( $cont ) ) { ?>
+<?php
+if ( is_array( $cont ) ) {
+	?>
 			<ul>
-<?php 			foreach ( $cont as $key => $val ) { ?>
+<?php
+foreach ( $cont as $key => $val ) {
+	?>
 				<?php echo $this->makeListItem( $key, $val ); ?>
 
-<?php			} ?>
+<?php
+}
+?>
 			</ul>
-<?php   } else {
+<?php
+} else {
 			# allow raw HTML block to be defined by extensions
 			print $cont;
-		}
+}
 
 		$this->renderAfterPortlet( $bar );
 ?>

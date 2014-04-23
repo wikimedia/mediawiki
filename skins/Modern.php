@@ -32,8 +32,10 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * @ingroup Skins
  */
 class SkinModern extends SkinTemplate {
-	var $skinname = 'modern', $stylename = 'modern',
-		$template = 'ModernTemplate', $useHeadElement = true;
+	public $skinname = 'modern';
+	public $stylename = 'modern';
+	public $template = 'ModernTemplate';
+	public $useHeadElement = true;
 
 	/**
 	 * @param OutputPage $out
@@ -85,22 +87,45 @@ class ModernTemplate extends MonoBookTemplate {
 		<div class='mw-topboxes'>
 			<div id="mw-js-message" style="display:none;"<?php $this->html( 'userlangattributes' ) ?>></div>
 			<div class="mw-topbox" id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
-			<?php if ( $this->data['newtalk'] ) {
-				?><div class="usermessage mw-topbox"><?php $this->html( 'newtalk' ) ?></div>
-			<?php } ?>
-			<?php if ( $this->data['sitenotice'] ) {
+			<?php
+				if ( $this->data['newtalk'] ) {
+					?><div class="usermessage mw-topbox"><?php $this->html( 'newtalk' ) ?></div>
+			<?php
+				}
+			?>
+			<?php
+			if ( $this->data['sitenotice'] ) {
 				?><div class="mw-topbox" id="siteNotice"><?php $this->html( 'sitenotice' ) ?></div>
-			<?php } ?>
+			<?php
+			}
+			?>
 		</div>
 
-		<div id="contentSub"<?php $this->html( 'userlangattributes' ) ?>><?php $this->html( 'subtitle' ) ?></div>
+		<div id="contentSub"<?php
+			$this->html( 'userlangattributes' )
+		?>><?php
+			$this->html( 'subtitle' )
+		?></div>
 
-		<?php if ( $this->data['undelete'] ) { ?><div id="contentSub2"><?php $this->html( 'undelete' ) ?></div><?php } ?>
-		<div id="jump-to-nav"><?php $this->msg( 'jumpto' ) ?> <a href="#mw_portlets"><?php $this->msg( 'jumptonavigation' ) ?></a><?php $this->msg( 'comma-separator' ) ?><a href="#searchInput"><?php $this->msg( 'jumptosearch' ) ?></a></div>
+		<?php
+			if ( $this->data['undelete'] ) {
+				?><div id="contentSub2"><?php $this->html( 'undelete' ) ?></div><?php
+			}
+		?>
+		<div id="jump-to-nav"><?php $this->msg( 'jumpto' ) ?>
+			<a href="#mw_portlets"><?php
+				$this->msg( 'jumptonavigation' ) ?></a><?php $this->msg( 'comma-separator' )
+			?>
+			<a href="#searchInput"><?php $this->msg( 'jumptosearch' ) ?></a>
+		</div>
 
 		<?php $this->html( 'bodytext' ) ?>
 		<div class='mw_clear'></div>
-		<?php if ( $this->data['catlinks'] ) { $this->html( 'catlinks' ); } ?>
+		<?php
+			if ( $this->data['catlinks'] ) {
+				$this->html( 'catlinks' );
+			}
+		?>
 		<?php $this->html( 'dataAfterContent' ) ?>
 	</div><!-- mw_contentholder -->
 	</div><!-- mw_content -->
@@ -124,10 +149,13 @@ class ModernTemplate extends MonoBookTemplate {
 		<h3><?php $this->msg( 'personaltools' ) ?></h3>
 		<div class="pBody">
 			<ul>
-<?php		foreach ( $this->getPersonalTools() as $key => $item ) { ?>
+<?php
+foreach ( $this->getPersonalTools() as $key => $item ) { ?>
 				<?php echo $this->makeListItem( $key, $item ); ?>
 
-<?php		} ?>
+<?php
+}
+?>
 			</ul>
 		</div>
 	</div>
@@ -140,7 +168,8 @@ class ModernTemplate extends MonoBookTemplate {
 		foreach ( $this->getFooterLinks( "flat" ) as $aLink ) {
 			if ( isset( $this->data[$aLink] ) && $this->data[$aLink] ) {
 ?>				<li id="<?php echo $aLink ?>"><?php $this->html( $aLink ) ?></li>
-<?php 		}
+<?php
+			}
 		}
 ?>
 			</ul>

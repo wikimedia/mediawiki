@@ -63,24 +63,24 @@ item>description, entry>summary {
 	background: #f8f8ff;
 }
 
-pubDate:before { content: "Date: " }
-link:before { content: "Link: " }
-author:before, creator:before { content: "Author: " }
-description:before { content: "Description: " }
-id:before { content: "Id: " }
+pubDate:before { content: "Date: "; }
+link:before { content: "Link: "; }
+author:before, creator:before { content: "Author: "; }
+description:before { content: "Description: "; }
+id:before { content: "Id: "; }
 
-generator:before { content: "Generator: " }
-language:before { content: "Language: " }
-lastBuildDate:before { content: "Updated: " }
-comments:before { content: "Comments page: " }
+generator:before { content: "Generator: "; }
+language:before { content: "Language: "; }
+lastBuildDate:before { content: "Updated: "; }
+comments:before { content: "Comments page: "; }
 
-tagline:before { content: "Tagline: " }
-issued:before { content: "Issued: " }
-created:before { content: "Created: " }
-modified:before { content: "Modified: " }
-updated:before { content: "Updated: " }
-summary:before { content: "Summary: " }
-comment:before { content: "Comment: " }
+tagline:before { content: "Tagline: "; }
+issued:before { content: "Issued: "; }
+created:before { content: "Created: "; }
+modified:before { content: "Modified: "; }
+updated:before { content: "Updated: "; }
+summary:before { content: "Summary: "; }
+comment:before { content: "Comment: "; }
 
 pubDate:before, link:before, author:before, description:before,
 language:before, generator:before, lastBuildDate:before, comments:before,
