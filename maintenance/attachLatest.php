@@ -33,7 +33,6 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class AttachLatest extends Maintenance {
-
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( "fix", "Actually fix the entries, will dry run otherwise" );
@@ -70,7 +69,8 @@ class AttachLatest extends Maintenance {
 
 			$revision = Revision::loadFromTimestamp( $dbw, $title, $latestTime );
 			if ( is_null( $revision ) ) {
-				$this->output( wfWikiID() . " $pageId [[$name]] latest time $latestTime, can't find revision id\n" );
+				$this->output( wfWikiID()
+					. " $pageId [[$name]] latest time $latestTime, can't find revision id\n" );
 				continue;
 			}
 			$id = $revision->getId();
