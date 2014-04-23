@@ -5992,13 +5992,13 @@ $wgExtensionFunctions = array();
  *
  * Since MediaWiki 1.23, use of this variable to define messages is discouraged; instead, store
  * messages in JSON format and use $wgMessagesDirs. For setting other variables than
- * $messages, $wgExtensionMessagesFiles should still be used.
+ * $messages, $wgExtensionMessagesFiles should still be used. Use a DIFFERENT key because
+ * any entry having a key that also exists in $wgMessagesDirs will be ignored.
  *
- * If there is an entry in $wgMessagesDirs with the same key as one in
- * $wgExtensionMessagesFiles, then any $messages variables set in the $wgExtensionMessagesFiles file
- * will be ignored. This means an extension that only provides messages can be backwards compatible
- * by using both $wgExtensionMessagesFiles and $wgMessagesDirs, and only one of the two
- * will be used depending on what the version of MediaWiki supports.
+ * Extensions using the JSON message format can preserve backward compatibility with
+ * earlier versions of MediaWiki by using a compatibility shim, such as one generated
+ * by the generateJsonI18n.php maintenance script, listing it under the SAME key
+ * as for the $wgMessagesDirs entry.
  *
  * @par Example:
  * @code
