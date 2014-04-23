@@ -2764,6 +2764,7 @@
 	"file-no-thumb-animation": "We cannot animate thumbnails of this file.\n\nThis notice is shown on the image description page on animated svg files just below {{msg-mw|File-info-size}}.\n\nThis message may be overridden by a more specific message:\n* {{msg-mw|File-no-thumb-animation-gif}}.",
 	"file-no-thumb-animation-gif": "Cannot animate thumbnails of this gif file, because it has too big a resolution. The cut off resolution can vary between wikis ([[mw:manual:$wgMaxAnimatedGifArea|$wgMaxAnimatedGifArea]]). Note that resolution is calculated as width times height times number of frames. See {{msg-mw|file-no-thumb-animation}}.",
 	"newimages": "Page title of [[Special:NewImages]].",
+	"newimagestext": "Text in [[Special:NewImages]].",
 	"imagelisttext": "This is text on [[Special:NewImages]]. Parameters:\n* $1 - the number of files\n* $2 - the message {{msg-mw|Bydate}}",
 	"newimages-summary": "This message is displayed at the top of [[Special:NewImages]] to explain what is shown on that special page.",
 	"newimages-legend": "Caption of the fieldset for the filter on [[Special:NewImages]]\n\n{{Identical|Filter}}",

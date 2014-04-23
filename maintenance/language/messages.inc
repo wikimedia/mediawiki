@@ -2908,6 +2908,7 @@ $wgMessageStructure = array(
 	),
 	'newfiles' => array(
 		'newimages',
+		'newimagestext',
 		'imagelisttext',
 		'newimages-summary',
 		'newimages-legend',

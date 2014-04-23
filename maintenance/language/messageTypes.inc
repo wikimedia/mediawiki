@@ -114,6 +114,7 @@ $wgIgnoredMessages = array(
 	'newarticletextanon',
 	'newsectionheaderdefaultlevel',
 	'mainpage-nstab',
+	'newimagestext',
 	'newtalkseparator',
 	'noarticletextanon',
 	'number_of_watching_users_RCview',
