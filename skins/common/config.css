@@ -6,26 +6,32 @@
 .config-section {
 	margin-top: 2em;
 }
+
 .config-block {
 	margin-top: 2em;
 	display: block;
 
 }
+
 .config-block-label {
 	display: block;
 	margin-bottom: .2em;
 }
+
 .config-block-label label, .config-label {
 	font-weight: bold;
 	padding-right: .5em;
 	padding-top: .2em;
 }
+
 .config-block-elements {
 	margin-left: 2em;
 }
+
 .config-block-elements li {
 	list-style: none;
 }
+
 .config-input {
 	clear: left;
 	zoom: 100%; /* IE hack */
@@ -117,6 +123,7 @@
 	font-size: 110%;
 	color: green;
 }
+
 .success-box {
 	font-size: 130%;
 }
