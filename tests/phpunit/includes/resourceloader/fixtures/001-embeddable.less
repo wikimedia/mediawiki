@@ -1,0 +1,20 @@
+@base: '../fixtures/';
+
+.helper(@url) when (embeddable(@url)) {
+	content: embeddable;
+}
+.helper(@url) when not (embeddable(@url)) {
+	content: not-embeddable;
+}
+
+.box {
+	.helper('path/to/nonexistent/file');
+}
+
+.box {
+	.helper('001-embeddable.css');
+}
+
+.box {
+	.helper("@{base}001-embeddable.css");
+}
