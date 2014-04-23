@@ -875,17 +875,15 @@ class LocalisationCache {
 		}
 
 		foreach ( $wgExtensionMessagesFiles as $extension => $fileName ) {
+			if ( isset( $wgMessagesDirs[$extension] ) ) {
+				# Already loaded the JSON files for this extension; skip the PHP shim
+				continue;
+			}
+
 			$data = $this->readPHPFile( $fileName, 'extension' );
 			$used = false;
 
 			foreach ( $data as $key => $item ) {
-				if ( $key === 'messages' && isset( $wgMessagesDirs[$extension] ) ) {
-					# For backwards compatibility, ignore messages from extensions in
-					# $wgExtensionMessagesFiles that are also present in $wgMessagesDirs.
-					# This allows extensions to use both and be backwards compatible.
-					# Variables other than $messages still need to be supported though.
-					continue;
-				}
 				if ( $this->mergeExtensionItem( $codeSequence, $key, $allData[$key], $item ) ) {
 					$used = true;
 				}
