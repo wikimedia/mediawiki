@@ -97,7 +97,7 @@ class WikiExporter {
 	 * various row objects and XML output for filtering. Filters
 	 * can be chained or used as callbacks.
 	 *
-	 * @param $sink mixed
+	 * @param DumpOutput $sink
 	 */
 	public function setOutputSink( &$sink ) {
 		$this->sink =& $sink;
@@ -125,7 +125,7 @@ class WikiExporter {
 	/**
 	 * Dumps a series of page and revision records for those pages
 	 * in the database falling within the page_id range given.
-	 * @param int $start inclusive lower limit (this id is included)
+	 * @param int $start Inclusive lower limit (this id is included)
 	 * @param int $end Exclusive upper limit (this id is not included)
 	 *   If 0, no upper limit.
 	 */
@@ -140,7 +140,7 @@ class WikiExporter {
 	/**
 	 * Dumps a series of page and revision records for those pages
 	 * in the database with revisions falling within the rev_id range given.
-	 * @param int $start inclusive lower limit (this id is included)
+	 * @param int $start Inclusive lower limit (this id is included)
 	 * @param int $end Exclusive upper limit (this id is not included)
 	 *   If 0, no upper limit.
 	 */
@@ -153,7 +153,7 @@ class WikiExporter {
 	}
 
 	/**
-	 * @param $title Title
+	 * @param Title $title
 	 */
 	public function pageByTitle( $title ) {
 		$this->dumpFrom(
@@ -162,7 +162,7 @@ class WikiExporter {
 	}
 
 	/**
-	 * @param $name string
+	 * @param string $name
 	 * @throws MWException
 	 */
 	public function pageByName( $name ) {
@@ -175,7 +175,7 @@ class WikiExporter {
 	}
 
 	/**
-	 * @param $names array
+	 * @param array $names
 	 */
 	public function pagesByName( $names ) {
 		foreach ( $names as $name ) {
@@ -188,8 +188,8 @@ class WikiExporter {
 	}
 
 	/**
-	 * @param $start int
-	 * @param $end int
+	 * @param int $start
+	 * @param int $end
 	 */
 	public function logsByRange( $start, $end ) {
 		$condition = 'log_id >= ' . intval( $start );
@@ -204,7 +204,7 @@ class WikiExporter {
 	 * Not called by default (depends on $this->list_authors)
 	 * Can be set by Special:Export when not exporting whole history
 	 *
-	 * @param $cond
+	 * @param array $cond
 	 */
 	protected function do_list_authors( $cond ) {
 		wfProfileIn( __METHOD__ );
@@ -237,7 +237,7 @@ class WikiExporter {
 	}
 
 	/**
-	 * @param $cond string
+	 * @param string $cond
 	 * @throws MWException
 	 * @throws Exception
 	 */
@@ -426,7 +426,7 @@ class WikiExporter {
 	 * separate database connection not managed by LoadBalancer; some
 	 * blob storage types will make queries to pull source data.
 	 *
-	 * @param $resultset ResultWrapper
+	 * @param ResultWrapper $resultset
 	 */
 	protected function outputPageStream( $resultset ) {
 		$last = null;
@@ -461,7 +461,7 @@ class WikiExporter {
 	}
 
 	/**
-	 * @param $resultset array
+	 * @param array $resultset
 	 */
 	protected function outputLogStream( $resultset ) {
 		foreach ( $resultset as $row ) {
@@ -591,7 +591,7 @@ class XmlDumpWriter {
 	 * Opens a "<page>" section on the output stream, with data
 	 * from the given database row.
 	 *
-	 * @param $row object
+	 * @param object $row
 	 * @return string
 	 */
 	public function openPage( $row ) {
@@ -634,7 +634,7 @@ class XmlDumpWriter {
 	 * Dumps a "<revision>" section on the output stream, with
 	 * data filled in from the given database row.
 	 *
-	 * @param $row object
+	 * @param object $row
 	 * @return string
 	 * @access private
 	 */
@@ -723,7 +723,7 @@ class XmlDumpWriter {
 	 * Dumps a "<logitem>" section on the output stream, with
 	 * data filled in from the given database row.
 	 *
-	 * @param $row object
+	 * @param object $row
 	 * @return string
 	 * @access private
 	 */
@@ -767,7 +767,7 @@ class XmlDumpWriter {
 	}
 
 	/**
-	 * @param $timestamp string
+	 * @param string $timestamp
 	 * @param string $indent Default to six spaces
 	 * @return string
 	 */
@@ -777,8 +777,8 @@ class XmlDumpWriter {
 	}
 
 	/**
-	 * @param $id
-	 * @param $text string
+	 * @param int $id
+	 * @param string $text
 	 * @param string $indent Default to six spaces
 	 * @return string
 	 */
@@ -796,8 +796,8 @@ class XmlDumpWriter {
 
 	/**
 	 * Warning! This data is potentially inconsistent. :(
-	 * @param $row
-	 * @param $dumpContents bool
+	 * @param object $row
+	 * @param bool $dumpContents
 	 * @return string
 	 */
 	function writeUploads( $row, $dumpContents = false ) {
@@ -817,7 +817,7 @@ class XmlDumpWriter {
 
 	/**
 	 * @param File $file
-	 * @param $dumpContents bool
+	 * @param bool $dumpContents
 	 * @return string
 	 */
 	function writeUpload( $file, $dumpContents = false ) {
@@ -891,45 +891,45 @@ class XmlDumpWriter {
 class DumpOutput {
 
 	/**
-	 * @param $string string
+	 * @param string $string
 	 */
 	function writeOpenStream( $string ) {
 		$this->write( $string );
 	}
 
 	/**
-	 * @param $string string
+	 * @param string $string
 	 */
 	function writeCloseStream( $string ) {
 		$this->write( $string );
 	}
 
 	/**
-	 * @param $page
-	 * @param $string string
+	 * @param object $page
+	 * @param string $string
 	 */
 	function writeOpenPage( $page, $string ) {
 		$this->write( $string );
 	}
 
 	/**
-	 * @param $string string
+	 * @param string $string
 	 */
 	function writeClosePage( $string ) {
 		$this->write( $string );
 	}
 
 	/**
-	 * @param $rev
-	 * @param $string string
+	 * @param object $rev
+	 * @param string $string
 	 */
 	function writeRevision( $rev, $string ) {
 		$this->write( $string );
 	}
 
 	/**
-	 * @param $rev
-	 * @param $string string
+	 * @param object $rev
+	 * @param string $string
 	 */
 	function writeLogItem( $rev, $string ) {
 		$this->write( $string );
@@ -937,7 +937,7 @@ class DumpOutput {
 
 	/**
 	 * Override to write to a different stream type.
-	 * @param $string string
+	 * @param string $string
 	 * @return bool
 	 */
 	function write( $string ) {
@@ -949,7 +949,7 @@ class DumpOutput {
 	 * and reopen new file with the old name. Use this
 	 * for writing out a file in multiple pieces
 	 * at specified checkpoints (e.g. every n hours).
-	 * @param $newname mixed File name. May be a string or an array with one element
+	 * @param string|array $newname File name. May be a string or an array with one element
 	 */
 	function closeRenameAndReopen( $newname ) {
 	}
@@ -958,7 +958,7 @@ class DumpOutput {
 	 * Close the old file, and move it to a specified name.
 	 * Use this for the last piece of a file written out
 	 * at specified checkpoints (e.g. every n hours).
-	 * @param $newname mixed File name. May be a string or an array with one element
+	 * @param string|array $newname File name. May be a string or an array with one element
 	 * @param bool $open If true, a new file with the old filename will be opened
 	 *   again for writing (default: false)
 	 */
@@ -983,7 +983,7 @@ class DumpFileOutput extends DumpOutput {
 	protected $handle = false, $filename;
 
 	/**
-	 * @param $file
+	 * @param string $file
 	 */
 	function __construct( $file ) {
 		$this->handle = fopen( $file, "wt" );
@@ -991,7 +991,7 @@ class DumpFileOutput extends DumpOutput {
 	}
 
 	/**
-	 * @param $string string
+	 * @param string $string
 	 */
 	function writeCloseStream( $string ) {
 		parent::writeCloseStream( $string );
@@ -1002,21 +1002,21 @@ class DumpFileOutput extends DumpOutput {
 	}
 
 	/**
-	 * @param $string string
+	 * @param string $string
 	 */
 	function write( $string ) {
 		fputs( $this->handle, $string );
 	}
 
 	/**
-	 * @param $newname
+	 * @param string $newname
 	 */
 	function closeRenameAndReopen( $newname ) {
 		$this->closeAndRename( $newname, true );
 	}
 
 	/**
-	 * @param $newname
+	 * @param string $newname
 	 * @throws MWException
 	 */
 	function renameOrException( $newname ) {
@@ -1026,8 +1026,8 @@ class DumpFileOutput extends DumpOutput {
 	}
 
 	/**
-	 * @param $newname array
-	 * @return mixed
+	 * @param array $newname
+	 * @return string
 	 * @throws MWException
 	 */
 	function checkRenameArgCount( $newname ) {
@@ -1042,8 +1042,8 @@ class DumpFileOutput extends DumpOutput {
 	}
 
 	/**
-	 * @param $newname mixed
-	 * @param $open bool
+	 * @param string $newname
+	 * @param bool $open
 	 */
 	function closeAndRename( $newname, $open = false ) {
 		$newname = $this->checkRenameArgCount( $newname );
@@ -1078,8 +1078,8 @@ class DumpPipeOutput extends DumpFileOutput {
 	protected $procOpenResource = false;
 
 	/**
-	 * @param $command
-	 * @param $file null
+	 * @param string $command
+	 * @param string $file
 	 */
 	function __construct( $command, $file = null ) {
 		if ( !is_null( $file ) ) {
@@ -1092,7 +1092,7 @@ class DumpPipeOutput extends DumpFileOutput {
 	}
 
 	/**
-	 * @param $string string
+	 * @param string $string
 	 */
 	function writeCloseStream( $string ) {
 		parent::writeCloseStream( $string );
@@ -1103,7 +1103,7 @@ class DumpPipeOutput extends DumpFileOutput {
 	}
 
 	/**
-	 * @param $command
+	 * @param string $command
 	 */
 	function startCommand( $command ) {
 		$spec = array(
@@ -1115,15 +1115,15 @@ class DumpPipeOutput extends DumpFileOutput {
 	}
 
 	/**
-	 * @param mixed $newname
+	 * @param string $newname
 	 */
 	function closeRenameAndReopen( $newname ) {
 		$this->closeAndRename( $newname, true );
 	}
 
 	/**
-	 * @param $newname mixed
-	 * @param $open bool
+	 * @param string $newname
+	 * @param bool $open
 	 */
 	function closeAndRename( $newname, $open = false ) {
 		$newname = $this->checkRenameArgCount( $newname );
@@ -1154,7 +1154,7 @@ class DumpPipeOutput extends DumpFileOutput {
 class DumpGZipOutput extends DumpPipeOutput {
 
 	/**
-	 * @param $file string
+	 * @param string $file
 	 */
 	function __construct( $file ) {
 		parent::__construct( "gzip", $file );
@@ -1168,7 +1168,7 @@ class DumpGZipOutput extends DumpPipeOutput {
 class DumpBZip2Output extends DumpPipeOutput {
 
 	/**
-	 * @param $file string
+	 * @param string $file
 	 */
 	function __construct( $file ) {
 		parent::__construct( "bzip2", $file );
@@ -1182,7 +1182,7 @@ class DumpBZip2Output extends DumpPipeOutput {
 class Dump7ZipOutput extends DumpPipeOutput {
 
 	/**
-	 * @param $file string
+	 * @param string $file
 	 */
 	function __construct( $file ) {
 		$command = $this->setup7zCommand( $file );
@@ -1191,7 +1191,7 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	}
 
 	/**
-	 * @param $file string
+	 * @param string $file
 	 * @return string
 	 */
 	function setup7zCommand( $file ) {
@@ -1203,8 +1203,8 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	}
 
 	/**
-	 * @param $newname string
-	 * @param $open bool
+	 * @param string $newname
+	 * @param bool $open
 	 */
 	function closeAndRename( $newname, $open = false ) {
 		$newname = $this->checkRenameArgCount( $newname );
@@ -1241,29 +1241,29 @@ class DumpFilter {
 	protected $sendingThisPage;
 
 	/**
-	 * @param $sink DumpOutput
+	 * @param DumpOutput $sink
 	 */
 	function __construct( &$sink ) {
 		$this->sink =& $sink;
 	}
 
 	/**
-	 * @param $string string
+	 * @param string $string
 	 */
 	function writeOpenStream( $string ) {
 		$this->sink->writeOpenStream( $string );
 	}
 
 	/**
-	 * @param $string string
+	 * @param string $string
 	 */
 	function writeCloseStream( $string ) {
 		$this->sink->writeCloseStream( $string );
 	}
 
 	/**
-	 * @param $page
-	 * @param $string string
+	 * @param object $page
+	 * @param string $string
 	 */
 	function writeOpenPage( $page, $string ) {
 		$this->sendingThisPage = $this->pass( $page, $string );
@@ -1273,7 +1273,7 @@ class DumpFilter {
 	}
 
 	/**
-	 * @param $string string
+	 * @param string $string
 	 */
 	function writeClosePage( $string ) {
 		if ( $this->sendingThisPage ) {
@@ -1283,8 +1283,8 @@ class DumpFilter {
 	}
 
 	/**
-	 * @param $rev
-	 * @param $string string
+	 * @param object $rev
+	 * @param string $string
 	 */
 	function writeRevision( $rev, $string ) {
 		if ( $this->sendingThisPage ) {
@@ -1293,23 +1293,23 @@ class DumpFilter {
 	}
 
 	/**
-	 * @param $rev
-	 * @param $string string
+	 * @param object $rev
+	 * @param string $string
 	 */
 	function writeLogItem( $rev, $string ) {
 		$this->sink->writeRevision( $rev, $string );
 	}
 
 	/**
-	 * @param $newname string
+	 * @param string $newname
 	 */
 	function closeRenameAndReopen( $newname ) {
 		$this->sink->closeRenameAndReopen( $newname );
 	}
 
 	/**
-	 * @param $newname string
-	 * @param $open bool
+	 * @param string $newname
+	 * @param bool $open
 	 */
 	function closeAndRename( $newname, $open = false ) {
 		$this->sink->closeAndRename( $newname, $open );
@@ -1324,7 +1324,7 @@ class DumpFilter {
 
 	/**
 	 * Override for page-based filter types.
-	 * @param $page
+	 * @param object $page
 	 * @return bool
 	 */
 	function pass( $page ) {
@@ -1339,7 +1339,7 @@ class DumpFilter {
 class DumpNotalkFilter extends DumpFilter {
 
 	/**
-	 * @param $page
+	 * @param object $page
 	 * @return bool
 	 */
 	function pass( $page ) {
@@ -1356,8 +1356,8 @@ class DumpNamespaceFilter extends DumpFilter {
 	var $namespaces = array();
 
 	/**
-	 * @param $sink DumpOutput
-	 * @param $param
+	 * @param DumpOutput $sink
+	 * @param array $param
 	 * @throws MWException
 	 */
 	function __construct( &$sink, $param ) {
@@ -1403,7 +1403,7 @@ class DumpNamespaceFilter extends DumpFilter {
 	}
 
 	/**
-	 * @param $page
+	 * @param object $page
 	 * @return bool
 	 */
 	function pass( $page ) {
@@ -1420,8 +1420,8 @@ class DumpLatestFilter extends DumpFilter {
 	var $page, $pageString, $rev, $revString;
 
 	/**
-	 * @param $page
-	 * @param $string string
+	 * @param object $page
+	 * @param string $string
 	 */
 	function writeOpenPage( $page, $string ) {
 		$this->page = $page;
@@ -1429,7 +1429,7 @@ class DumpLatestFilter extends DumpFilter {
 	}
 
 	/**
-	 * @param $string string
+	 * @param string $string
 	 */
 	function writeClosePage( $string ) {
 		if ( $this->rev ) {
@@ -1444,8 +1444,8 @@ class DumpLatestFilter extends DumpFilter {
 	}
 
 	/**
-	 * @param $rev
-	 * @param $string string
+	 * @param object $rev
+	 * @param string $string
 	 */
 	function writeRevision( $rev, $string ) {
 		if ( $rev->rev_id == $this->page->page_latest ) {
@@ -1462,7 +1462,7 @@ class DumpLatestFilter extends DumpFilter {
 class DumpMultiWriter {
 
 	/**
-	 * @param $sinks
+	 * @param array $sinks
 	 */
 	function __construct( $sinks ) {
 		$this->sinks = $sinks;
@@ -1470,7 +1470,7 @@ class DumpMultiWriter {
 	}
 
 	/**
-	 * @param $string string
+	 * @param string $string
 	 */
 	function writeOpenStream( $string ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
@@ -1479,7 +1479,7 @@ class DumpMultiWriter {
 	}
 
 	/**
-	 * @param $string string
+	 * @param string $string
 	 */
 	function writeCloseStream( $string ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
@@ -1488,8 +1488,8 @@ class DumpMultiWriter {
 	}
 
 	/**
-	 * @param $page
-	 * @param $string string
+	 * @param object $page
+	 * @param string $string
 	 */
 	function writeOpenPage( $page, $string ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
@@ -1498,7 +1498,7 @@ class DumpMultiWriter {
 	}
 
 	/**
-	 * @param $string
+	 * @param string $string
 	 */
 	function writeClosePage( $string ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
@@ -1507,8 +1507,8 @@ class DumpMultiWriter {
 	}
 
 	/**
-	 * @param $rev
-	 * @param $string
+	 * @param object $rev
+	 * @param string $string
 	 */
 	function writeRevision( $rev, $string ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
@@ -1517,14 +1517,14 @@ class DumpMultiWriter {
 	}
 
 	/**
-	 * @param $newnames
+	 * @param array $newnames
 	 */
 	function closeRenameAndReopen( $newnames ) {
 		$this->closeAndRename( $newnames, true );
 	}
 
 	/**
-	 * @param $newnames array
+	 * @param array $newnames
 	 * @param bool $open
 	 */
 	function closeAndRename( $newnames, $open = false ) {
@@ -1547,7 +1547,7 @@ class DumpMultiWriter {
 }
 
 /**
- * @param $string string
+ * @param string $string
  * @return string
  */
 function xmlsafe( $string ) {
