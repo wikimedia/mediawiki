@@ -49,7 +49,7 @@
 		// Also add in the padding for the calculated arrow width.
 		arrowWidth = parseInt( this.outerHeight(), 10 );
 		$steps.filter( ':not(:last-child)' ).addClass( 'arrow' )
-		      .find( 'div' ).css( paddingSide, arrowWidth.toString() + 'px' );
+			.find( 'div' ).css( paddingSide, arrowWidth.toString() + 'px' );
 
 		this.data( 'arrowSteps', $steps );
 		return this;

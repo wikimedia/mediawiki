@@ -319,7 +319,7 @@
 					for ( i = 0; i < ps.length; i++ ) {
 						result = ps[i]();
 						if ( result !== null ) {
-							 return result;
+							return result;
 						}
 					}
 					return null;
@@ -403,8 +403,8 @@
 				return function () {
 					var result = null;
 					if ( input.substr( pos, len ) === s ) {
-						 result = s;
-						 pos += len;
+						result = s;
+						pos += len;
 					}
 					return result;
 				};
@@ -668,7 +668,7 @@
 				for ( i = 0, len = attributes.length; i < len; i += 2 ) {
 					attributeName = attributes[i];
 					if ( $.inArray( attributeName, settings.allowedHtmlCommonAttributes ) === -1 &&
-					     $.inArray( attributeName, settings.allowedHtmlAttributesByElement[startTagName] || [] ) === -1 ) {
+						$.inArray( attributeName, settings.allowedHtmlAttributesByElement[startTagName] || [] ) === -1 ) {
 						return false;
 					}
 				}
