@@ -61,7 +61,8 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		$this->output( "Populating ar_sha1 column legacy rows\n" );
 		$ac += $this->doSha1LegacyUpdates();
 
-		$this->output( "rev_sha1 and ar_sha1 population complete [$rc revision rows, $ac archive rows].\n" );
+		$this->output( "rev_sha1 and ar_sha1 population complete "
+			. "[$rc revision rows, $ac archive rows].\n" );
 		return true;
 	}
 

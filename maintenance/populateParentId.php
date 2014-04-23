@@ -85,10 +85,16 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 				# If there are none, check the the highest ID with a lower timestamp
 				if ( !$previousID ) {
 					# Get the highest older timestamp
-					$lastTimestamp = $db->selectField( 'revision', 'rev_timestamp',
-						array( 'rev_page' => $row->rev_page, "rev_timestamp < " . $db->addQuotes( $row->rev_timestamp ) ),
+					$lastTimestamp = $db->selectField(
+						'revision',
+						'rev_timestamp',
+						array(
+							'rev_page' => $row->rev_page,
+							"rev_timestamp < " . $db->addQuotes( $row->rev_timestamp )
+						),
 						__METHOD__,
-						array( 'ORDER BY' => 'rev_timestamp DESC' ) );
+						array( 'ORDER BY' => 'rev_timestamp DESC' )
+					);
 					# If there is one, let the highest rev ID win
 					if ( $lastTimestamp ) {
 						$previousID = $db->selectField( 'revision', 'rev_id',
