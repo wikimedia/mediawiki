@@ -40,14 +40,14 @@
  * @ingroup Maintenance
  */
 class BaseDump {
-	var $reader = null;
-	var $atEnd = false;
-	var $atPageEnd = false;
-	var $lastPage = 0;
-	var $lastRev = 0;
-	var $infiles = null;
+	protected $reader = null;
+	protected $atEnd = false;
+	protected $atPageEnd = false;
+	protected $lastPage = 0;
+	protected $lastRev = 0;
+	protected $infiles = null;
 
-	function BaseDump( $infile ) {
+	public function __construct( $infile ) {
 		$this->infiles = explode( ';', $infile );
 		$this->reader = new XMLReader();
 		$infile = array_shift( $this->infiles );
@@ -76,18 +76,21 @@ class BaseDump {
 			$this->nextPage();
 		}
 		if ( $this->lastPage > $page || $this->atEnd ) {
-			$this->debug( "BaseDump::prefetch already past page $page looking for rev $rev  [$this->lastPage, $this->lastRev]" );
+			$this->debug( "BaseDump::prefetch already past page $page "
+				. "looking for rev $rev  [$this->lastPage, $this->lastRev]" );
 			return null;
 		}
 		while ( $this->lastRev < $rev && !$this->atEnd && !$this->atPageEnd ) {
-			$this->debug( "BaseDump::prefetch at page $this->lastPage, rev $this->lastRev, looking for $page, $rev" );
+			$this->debug( "BaseDump::prefetch at page $this->lastPage, rev $this->lastRev, "
+				. "looking for $page, $rev" );
 			$this->nextRev();
 		}
 		if ( $this->lastRev == $rev && !$this->atEnd ) {
 			$this->debug( "BaseDump::prefetch hit on $page, $rev [$this->lastPage, $this->lastRev]" );
 			return $this->nextText();
 		} else {
-			$this->debug( "BaseDump::prefetch already past rev $rev on page $page  [$this->lastPage, $this->lastRev]" );
+			$this->debug( "BaseDump::prefetch already past rev $rev on page $page "
+				. "[$this->lastPage, $this->lastRev]" );
 			return null;
 		}
 	}
