@@ -6,13 +6,13 @@
 			"Kaniw",
 			"Lin linao",
 			"Poquil",
-			"Remember the dot"
+			"Remember the dot",
+			"아라"
 		]
 	},
 	"tog-underline": "Miñcewirilpe lasun",
 	"tog-showtoolbar": "Pengelün kümeelün ñi chemkün",
 	"tog-editondblclick": "Wirin pakina epu klik mew",
-	"tog-rememberpassword": "Amulen tañi nülküwküleael tüfa mew (alürumechi $1 {{PLURAL:$1 antü}})",
 	"underline-always": "Rumel",
 	"underline-never": "Turpu",
 	"sunday": "Domingku",
@@ -398,7 +398,7 @@
 	"recentchanges-label-unpatrolled": "Pukintulelay tüfachi wirin.",
 	"recentchanges-legend-newpage": "$1 - We Pakina",
 	"rcnotefrom": "Nagpüle müley fill wirin tuwülu '''$2''' mew (tripalu '''$1''' mew).",
-	"rclistfrom": "Adkintun weke kalekünun amuamugelu $1",
+	"rclistfrom": "Adkintun weke kalekünun amuamugelu $3 $2",
 	"rcshowhideminor": "$1 pichi wirin",
 	"rcshowhidebots": "$1 kiduamukelu küdauwe",
 	"rcshowhideliu": "$1 konkülelu kellufe",

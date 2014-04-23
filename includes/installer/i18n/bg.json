@@ -279,7 +279,7 @@
 	"config-insecure-keys": "'''Предупреждение:''' {{PLURAL:$2|Сигурният ключ, създаден по време на инсталацията, не е напълно надежден|Сигурните ключове, създадени по време на инсталацията, не са напълно надеждни}} $1 . Обмислете да {{PLURAL:$2|го|ги}} смените ръчно.",
 	"config-install-sysop": "Създаване на администраторска сметка",
 	"config-install-subscribe-fail": "Невъзможно беше абонирането за mediawiki-announce: $1",
-	"config-install-subscribe-notpossible": "не е инсталиран cURL и allow_url_fopen не е налична.",
+	"config-install-subscribe-notpossible": "не е инсталиран cURL и <code>allow_url_fopen</code> не е налична.",
 	"config-install-mainpage": "Създаване на Началната страница със съдържание по подразбиране",
 	"config-install-extension-tables": "Създаване на таблици за включените разширения",
 	"config-install-mainpage-failed": "Вмъкването на Началната страница беше невъзможно: $1",

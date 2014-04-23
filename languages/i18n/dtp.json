@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"FRANCIS5091",
-			"FRANELYA"
+			"FRANELYA",
+			"아라"
 		]
 	},
 	"tog-underline": "Mangagaris pioputan:",
@@ -781,7 +782,7 @@
 	"recentchanges-label-bot": "Niditan diti winonsoi do robot",
 	"recentchanges-label-unpatrolled": "Niditan diti awu poh nosimak",
 	"rcnotefrom": "Id siriba diti pokitonon ii nopingalanan mantad '''$2''' (gisom '''$1''' ).",
-	"rclistfrom": "Pokitono naalanan kawawagu tumimpuun mantad $1",
+	"rclistfrom": "Pokitono naalanan kawawagu tumimpuun mantad $3 $2",
 	"rcshowhideminor": "$1 niditan tokoto",
 	"rcshowhidebots": "Roboto $1",
 	"rcshowhideliu": "$1 momomoguno poinlog sinumuang",

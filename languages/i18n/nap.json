@@ -8,7 +8,8 @@
 			"E. abu Filumena",
 			"PiRSquared17",
 			"SabineCretella",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Sottolinia 'e jonte:",
@@ -20,7 +21,6 @@
 	"tog-showtoolbar": "Aspone 'a barra d''e stromiente 'e cagno",
 	"tog-editondblclick": "Cagna 'e pàggene cliccanno ddoje vote",
 	"tog-editsectiononrightclick": "Permette 'e cangne 'e sezzione cliccanno p''o tasto destro ncopp 'e titule 'e sezzione",
-	"tog-rememberpassword": "Ricurda 'a registrazzione pe' cchiu sessione (ppe 'numassimo 'e $1 {{PLURAL:$1|juorno|juorne}})",
 	"underline-always": "Sèmpe",
 	"underline-never": "Màje",
 	"sunday": "dumméneca",
@@ -387,7 +387,7 @@
 	"recentchanges-label-newpage": "Chista modifica ha criato 'na nova paggena",
 	"recentchanges-label-minor": "Chisto è nu cagnamiénto piccerillo",
 	"recentchanges-label-unpatrolled": "Chista modifica nun è stata 'ncora verificata",
-	"rclistfrom": "Faje vedé 'e cagnamiénte fatte a partì 'a $1",
+	"rclistfrom": "Faje vedé 'e cagnamiénte fatte a partì 'a $3 $2",
 	"rcshowhideminor": "$1 'e cagnamiénte piccerille",
 	"rcshowhidebots": "$1 'e bot",
 	"rcshowhideliu": "$1 ll'utente reggìstrate",

@@ -10,7 +10,8 @@
 			"StephDC",
 			"Super Wang",
 			"Xiaomingyan",
-			"Yanteng3"
+			"Yanteng3",
+			"아라"
 		]
 	},
 	"tog-underline": "鏈墊線：",
@@ -1001,7 +1002,7 @@
 	"recentchanges-label-unpatrolled": "是纂未巡",
 	"recentchanges-legend-newpage": "$1 - 新頁",
 	"rcnotefrom": "下為自'''$2'''至'''$1'''之易也。",
-	"rclistfrom": "自$1起之易也",
+	"rclistfrom": "自$3 $2起之易也",
 	"rcshowhideminor": "$1校",
 	"rcshowhideminor-show": "示",
 	"rcshowhideminor-hide": "藏",
@@ -1434,10 +1435,6 @@
 	"watchlist-details": "哨上有$1，不含議論。",
 	"wlheader-enotif": "*准報信。",
 	"wlheader-showupdated": "*易者'''粗體'''。",
-	"watchmethod-recent": "哨近易。",
-	"watchmethod-list": "報近易…",
-	"watchlistcontains": "共$1哨。",
-	"iteminvalidname": "'$1'謬名。",
 	"wlshowlast": "見近$1時、$2天、$3時易",
 	"watchlist-options": "哨項",
 	"watching": "出陣…",
@@ -2058,8 +2055,6 @@
 	"size-bytes": "$1 位元組",
 	"lag-warn-normal": "近$1秒新易者疑喪也。",
 	"lag-warn-high": "遣藏遲焉。近$1秒新易者疑喪也。",
-	"watchlistedit-numitems": "不計議論，哨有題$1。",
-	"watchlistedit-noitems": "哨無題也。",
 	"watchlistedit-normal-title": "治哨站",
 	"watchlistedit-normal-legend": "撤之",
 	"watchlistedit-normal-explain": "盡列有哨。欲撤題，揀之再擊『{{int:Watchlistedit-normal-submit}}』。亦[[Special:EditWatchlist/raw|治源哨]]也。",

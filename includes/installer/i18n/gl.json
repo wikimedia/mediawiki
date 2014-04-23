@@ -306,7 +306,7 @@
 	"config-insecure-keys": "'''Atención:''' {{PLURAL:$2|A clave de seguridade|As claves de seguridade}} ($1) {{PLURAL:$2|xerada|xeradas}} durante a instalación non {{PLURAL:$2|é|son}} completamente {{PLURAL:$2|segura|seguras}}. Considere a posibilidade de {{PLURAL:$2|cambiala|cambialas}} manualmente.",
 	"config-install-sysop": "Creando a conta de usuario de administrador",
 	"config-install-subscribe-fail": "Non se puido subscribir á lista mediawiki-announce: $1",
-	"config-install-subscribe-notpossible": "cURL non está instalado e allow_url_fopen non está dispoñible.",
+	"config-install-subscribe-notpossible": "cURL non está instalado e <code>allow_url_fopen</code> non está dispoñible.",
 	"config-install-mainpage": "Creando a páxina principal co contido por defecto",
 	"config-install-extension-tables": "Creando as táboas para as extensións activadas",
 	"config-install-mainpage-failed": "Non se puido inserir a páxina principal: $1",

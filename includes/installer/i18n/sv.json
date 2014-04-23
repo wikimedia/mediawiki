@@ -256,7 +256,7 @@
 	"config-insecure-keys": "'''Varning:''' {{PLURAL:$2|En säkerhetsnyckel|Säkerhetsnycklar}} ($1) som generades under installationen är inte helt {{PLURAL:$2|säker|säkra}} . Överväg att ändra {{PLURAL:$2|den|dem}} manuellt.",
 	"config-install-sysop": "Skapar administratörskonto",
 	"config-install-subscribe-fail": "Det gick inte att prenumerera på mediawiki-announce: $1",
-	"config-install-subscribe-notpossible": "cURL är inte installerad och allow_url_fopen är inte tillgänglig.",
+	"config-install-subscribe-notpossible": "cURL är inte installerad och <code>allow_url_fopen</code> är inte tillgänglig.",
 	"config-install-mainpage": "Skapa huvudsida med standardinnehåll",
 	"config-install-extension-tables": "Skapar tabeller för aktiverade tillägg",
 	"config-install-mainpage-failed": "Kunde inte infoga huvudsidan: $1",

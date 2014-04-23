@@ -5,7 +5,8 @@
 			"L2212",
 			"Marzedu",
 			"Node ue",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Sutalìnea is cullegamentos",
@@ -18,7 +19,6 @@
 	"tog-showtoolbar": "Ammustra s'amusta de is ainas pro is acontzos (esigit JavaScript)",
 	"tog-editondblclick": "Acontza pàginas cun dòpiu click (esigit JavaScript)",
 	"tog-editsectiononrightclick": "Abilita s'acontzu de is setziones cun dòpiu click in is tìtulos de is setziones (esigit JavaScript)",
-	"tog-rememberpassword": "Ammenta sa sessione in custu navigadore (pro unu màssimu de $1 {{PLURAL:$1|die|dies}})",
 	"tog-watchcreations": "Aciungi is pàginas chi apo creadu a sa watchlist mea",
 	"tog-watchdefault": "Aciungi is pàginas chi apo acontzadu a sa watchlist mea",
 	"tog-watchmoves": "Aciungi is pàginas chi apo mòvidu a sa watchlist mea",
@@ -363,7 +363,6 @@
 	"savearticle": "Sarva sa pàgina",
 	"preview": "Antiprima",
 	"showpreview": "Ammustra s'antiprima",
-	"showlivepreview": "Funtzione ''Live preview''",
 	"showdiff": "Ammustra is mudàntzias",
 	"anoneditwarning": "'''Atentzione:''' Non ses identificadu (log in).\nS'indiritzu IP tuo at a èsser registradu in sa stòria de custa pàgina.",
 	"anonpreviewwarning": "''Non ses identificadu. Sarbende s'indiritzu IP tuo at a èsser registradu in sa stòria de sa pàgina.''",
@@ -479,7 +478,6 @@
 	"showingresultsheader": "{{PLURAL:$5|Resultadu '''$1''' de '''$3'''|Resultadus '''$1 - $2''' de '''$3'''}} pro '''$4'''",
 	"powersearch-legend": "Chirca delantada",
 	"powersearch-ns": "Chirca in su nùmene-logu:",
-	"powersearch-redir": "Lista re-indiritzamentos",
 	"powersearch-togglelabel": "Seletziona:",
 	"powersearch-toggleall": "Totu",
 	"powersearch-togglenone": "Nudda",
@@ -588,7 +586,7 @@
 	"recentchanges-label-bot": "Custu acontzu est stadu fatu dae unu bot",
 	"recentchanges-legend-newpage": "$1 - pàgina noa",
 	"rcnotefrom": "Sas chi sighint sunt sas mudàntzias dae '''$2''' (fintzas a '''$1''').",
-	"rclistfrom": "Ammustra mudàntzias dae $1",
+	"rclistfrom": "Ammustra mudàntzias dae $3 $2",
 	"rcshowhideminor": "$1 acontzos minores",
 	"rcshowhidebots": "$1 bots",
 	"rcshowhideliu": "$1 usuàrios intraus",

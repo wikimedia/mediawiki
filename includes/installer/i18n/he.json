@@ -305,7 +305,7 @@
 	"config-insecure-keys": "'''אזהרה''': {{PLURAL:$2|מפתח|מפתחות}} אבטחה ($1) {{PLURAL:$2|שנוצר|שנוצרו}} במהלך ההתקנה {{PLURAL:$2|אינו בטוח|אינם בטוחים}} מספיק. מומלץ לשקול לשנות {{PLURAL:$2|אותו|אותם}} ידנית.",
 	"config-install-sysop": "יצירת חשבון מפעיל",
 	"config-install-subscribe-fail": "הרישום ל־mediawiki-announce לא הצליח: $1",
-	"config-install-subscribe-notpossible": "cURL אינה מותקנת ו־allow_url_fopen אינה זמינה.",
+	"config-install-subscribe-notpossible": "cURL אינה מותקנת ו־<code>allow_url_fopen</code> אינה זמינה.",
 	"config-install-mainpage": "יצירת דף ראשי עם תוכן התחלתי",
 	"config-install-extension-tables": "יצירת טבלאות להרחבות מופעלות",
 	"config-install-mainpage-failed": "לא הצליחה הכנסת דף ראשי: $1.",

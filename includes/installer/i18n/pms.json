@@ -288,7 +288,7 @@
 	"config-insecure-keys": "'''Avis:''' {{PLURAL:$2|Na ciav sigura|Dle ciav sigure}} ($1) generà durant l'istalassion {{PLURAL:$2|a l'é|a son}} pa completament sigure. Ch'a consìdera ëd modifiche{{PLURAL:$2|la|je}} manualment.",
 	"config-install-sysop": "Creassion dël cont ëd l'utent aministrator",
 	"config-install-subscribe-fail": "As peul pa sot-scrivse mediawiki-announce: $1",
-	"config-install-subscribe-notpossible": "cURL a l'é pa istalà e allow_url_fopen a l'é pa disponìbil.",
+	"config-install-subscribe-notpossible": "cURL a l'é pa istalà e <code>allow_url_fopen</code> a l'é pa disponìbil.",
 	"config-install-mainpage": "Creassion ëd la pàgina prinsipal con un contnù predefinì",
 	"config-install-extension-tables": "Creassion ëd tàule për j'estension abilità",
 	"config-install-mainpage-failed": "As peul pa inserisse la pàgina prinsipal: $1",

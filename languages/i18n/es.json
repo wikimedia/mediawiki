@@ -106,7 +106,8 @@
 			"XanaG",
 			"לערי ריינהארט",
 			"Chocolate con galleta",
-			"Csbotero"
+			"Csbotero",
+			"아라"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -1234,7 +1235,7 @@
 	"recentchanges-legend-heading": "'''Leyenda:'''",
 	"recentchanges-legend-newpage": "(véase también la [[Special:NewPages|lista de páginas nuevas]])",
 	"rcnotefrom": "A continuación se presentan los cambios desde <strong> $2 </strong> (hasta <strong> $1 </strong> se muestra).",
-	"rclistfrom": "Mostrar nuevos cambios desde $1",
+	"rclistfrom": "Mostrar nuevos cambios desde $3 $2",
 	"rcshowhideminor": "$1 ediciones menores",
 	"rcshowhideminor-show": "Mostrar",
 	"rcshowhideminor-hide": "Ocultar",
@@ -1800,10 +1801,6 @@
 	"watchlist-details": "{{PLURAL:$1|$1 página|$1 páginas}} en su lista de seguimiento, sin contar las de discusión.",
 	"wlheader-enotif": "La notificación por correo está activada.",
 	"wlheader-showupdated": "Las páginas modificadas desde su última visita aparecen en '''negrita'''.",
-	"watchmethod-recent": "revisando cambios recientes en páginas vigiladas",
-	"watchmethod-list": "revisando las páginas vigiladas en busca de cambios recientes",
-	"watchlistcontains": "Tu lista de seguimiento posee $1 {{PLURAL:$1|página|páginas}}.",
-	"iteminvalidname": "Problema con el artículo '$1', nombre inválido...",
 	"wlnote2": "A continuación se muestran los cambios de  {{PLURAL:$1|la última hora|las últimas <strong>$1</strong> horas}}, a partir del $2, $3.",
 	"wlshowlast": "Ver los cambios de las últimas $1 horas, $2 días  $3",
 	"watchlist-options": "Opciones de la lista de seguimiento",
@@ -2924,8 +2921,6 @@
 	"autosumm-new": "Página creada con «$1»",
 	"lag-warn-normal": "Los cambios realizados en {{PLURAL:$1|el último segundo|los últimos $1 segundos}} podrían no mostrarse en esta lista.",
 	"lag-warn-high": "Debido a una alta latencia el servidor de base de datos, los cambios realizados en {{PLURAL:$1|el último segundo|los últimos $1 segundos}} podrían no mostrarse en esta lista.",
-	"watchlistedit-numitems": "Tu lista de seguimiento tiene {{PLURAL:$1|una página |$1 páginas}}, excluyendo las páginas de discusión.",
-	"watchlistedit-noitems": "Tu lista de seguimiento está vacía.",
 	"watchlistedit-normal-title": "Editar lista de seguimiento",
 	"watchlistedit-normal-legend": "Borrar títulos de la lista de seguimiento",
 	"watchlistedit-normal-explain": "A continuación se listan las páginas en tu lista de seguimiento.\nPara quitar un título, marca la casilla junto a él, y pulsa «{{int:Watchlistedit-normal-submit}}».\nTambién puedes [[Special:EditWatchlist/raw|editar la lista en crudo]].",

@@ -45,7 +45,8 @@
 			"Svip",
 			"Søren Løvborg",
 			"Tjernobyl",
-			"Urhixidur"
+			"Urhixidur",
+			"아라"
 		]
 	},
 	"tog-underline": "Understreg henvisninger:",
@@ -1162,7 +1163,7 @@
 	"recentchanges-legend-newpage": "(se også [[Special:NewPages|listen over nye sider]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Nedenfor er op til '''$1''' ændringer siden '''$2''' vist.",
-	"rclistfrom": "Vis nye ændringer startende fra $1",
+	"rclistfrom": "Vis nye ændringer startende fra $3 $2",
 	"rcshowhideminor": "$1 mindre ændringer",
 	"rcshowhideminor-show": "Vis",
 	"rcshowhideminor-hide": "Skjul",
@@ -1708,10 +1709,6 @@
 	"watchlist-details": "Du har $1 {{PLURAL:$1|side|sider}} på din overvågningsliste (ekskl. diskussionssider).",
 	"wlheader-enotif": "E-mail-underretning er slået til.",
 	"wlheader-showupdated": "Sider, der er ændret siden dit sidste besøg, er vist med '''fed skrift'''.",
-	"watchmethod-recent": "Tjekker seneste ændringer for sider i din overvågningsliste",
-	"watchmethod-list": "Tjekker seneste ændringer for sider i din overvågningsliste",
-	"watchlistcontains": "Din overvågningsliste indeholder $1 {{PLURAL:$1|side|sider}}.",
-	"iteminvalidname": "Problem med '$1', ugyldigt navn...",
 	"wlnote2": "Nedenfor ses ændringerne i {{PLURAL:$1|den sidste time|de sidste <strong>$1</strong> timer}} op til den $2 kl. $3.",
 	"wlshowlast": "Vis de seneste $1 timer $2 dage $3",
 	"watchlist-options": "Indstillinger for overvågningslisten",
@@ -2806,8 +2803,6 @@
 	"autosumm-new": "Oprettede siden med \"$1\"",
 	"lag-warn-normal": "Ændringer som er nyere end {{PLURAL:$1|et sekund|$1 sekunder}}, vises muligvis ikke i denne liste.",
 	"lag-warn-high": "Grundet stor belastning af databaseserveren vil ændringer der er nyere end {{PLURAL:$1|et sekund|$1 sekunder}} måske ikke blive vist i denne liste.",
-	"watchlistedit-numitems": "Din overvågningsliste indeholder {{PLURAL:$1|1 side|$1 sider}}, diskussionssider fraregnet.",
-	"watchlistedit-noitems": "Din overvågningsliste er tom.",
 	"watchlistedit-normal-title": "Rediger overvågningsliste",
 	"watchlistedit-normal-legend": "Slet sider fra overvågningslisten",
 	"watchlistedit-normal-explain": "Siderne på din overvågningsliste er vist nedenfor.\nFor at fjerne en side, skal boksen ud for den markeres, og klik på \"{{int:Watchlistedit-normal-submit}}\".\nDu kan også [[Special:EditWatchlist/raw|redigere siden direkte]].",

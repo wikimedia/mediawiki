@@ -15,7 +15,8 @@
 			"TheStefan12345",
 			"Жељко Тодоровић",
 			"Михајло Анђелковић",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Podvlačenje veza:",
@@ -1113,7 +1114,7 @@
 	"recentchanges-legend-heading": "'''Legenda:'''",
 	"recentchanges-legend-newpage": "([[Special:NewPages|spisak novih stranica]])",
 	"rcnotefrom": "Ispod su izmene od <b>$2</b> (do <b>$1</b> izmena).",
-	"rclistfrom": "Prikaži nove izmene počev od $1",
+	"rclistfrom": "Prikaži nove izmene počev od $3 $2",
 	"rcshowhideminor": "$1 manje izmene",
 	"rcshowhideminor-show": "Prikaži",
 	"rcshowhideminor-hide": "Sakrij",
@@ -1656,10 +1657,6 @@
 	"watchlist-details": "Imate {{PLURAL:$1|$1 stranica|$1 stranice|$1 stranica}} na vašem spisku nadgledanja, ne računajući stranice za razgovor.",
 	"wlheader-enotif": "Obaveštenje e-porukom je omogućeno.",
 	"wlheader-showupdated": "Stranice koje su izmenjene otkad ste ih poslednji put posetili su '''podebljane'''.",
-	"watchmethod-recent": "proverava se da li ima nadgledanih stranica u skorašnjim izmenama",
-	"watchmethod-list": "proverava se da li ima skorašnjih izmena u nadgledanim stranicama",
-	"watchlistcontains": "Vaš spisak nadgledanja sadrži $1 {{PLURAL:$1|stranicu|stranice|stranica}}.",
-	"iteminvalidname": "Problem sa stavkom „$1“. Neispravan naziv.",
 	"wlnote2": "Ispod su prikazane izmene u {{PLURAL:$1|poslednjih jedan sat|poslednjih <strong>$1</strong> sata}} zaključno sa $2, $3.",
 	"wlshowlast": "Prikaži poslednjih $1 sati, $2 dana, $3",
 	"watchlist-options": "Postavke spiska nadgledanja",
@@ -2837,8 +2834,6 @@
 	"size-gigabytes": "$1 GB",
 	"lag-warn-normal": "Izmene novije od $1 {{PLURAL:$1|sekunde|sekunde|sekundi}} neće biti prikazane.",
 	"lag-warn-high": "Zbog preopterećenja baze podataka, izmene novije od $1 {{PLURAL:$1|sekunde|sekundi}} neće biti prikazane.",
-	"watchlistedit-numitems": "Vaš spisak nadgledanja sadrži {{PLURAL:$1|jedan naslov|$1 naslova|$1 naslova}}, bez stranica za razgovor.",
-	"watchlistedit-noitems": "Vaš spisak nadgledanja ne sadrži stranice.",
 	"watchlistedit-normal-title": "Uređivanje spiska nadgledanja",
 	"watchlistedit-normal-legend": "Uklanjanje naslova sa spiska nadgledanja",
 	"watchlistedit-normal-explain": "Naslovi na vašem spisku nadgledanja su prikazani ispod.\nDa biste uklonili naslov, označite kućicu do njega i kliknite na „{{int:Watchlistedit-normal-submit}}“.\nMožete i da [[Special:EditWatchlist/raw|uredite sirov spisak]].",

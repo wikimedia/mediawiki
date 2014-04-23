@@ -4,7 +4,8 @@
 			"Ale Mister",
 			"Ale Mister (on co.wikipedia.org)",
 			"Img (on co.wikipedia.org)",
-			"Paulu"
+			"Paulu",
+			"아라"
 		]
 	},
 	"tog-hideminor": "Piattà e mudifiche minore in l'ultime mudifiche",
@@ -354,7 +355,7 @@
 	"recentchanges-label-plusminus": "A dimensione di a pagina hè stata cambiata di 'ssu numaru d'ottetti",
 	"recentchanges-legend-newpage": "(vede ancu [[Special:NewPages|a lista di e pagine nove]])",
 	"rcnotefrom": "Quì seguitanu e mudifiche dapoi u '''$2''' ('''$1''' à u massimu).",
-	"rclistfrom": "Mustrà e mudifiche dapoi u $1",
+	"rclistfrom": "Mustrà e mudifiche dapoi u $3 $2",
 	"rcshowhideminor": "$1 i cambiamenti minori",
 	"rcshowhidebots": "$1 i boti",
 	"rcshowhideliu": "$1 i cuntributori righjistrati",

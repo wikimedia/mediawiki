@@ -300,7 +300,7 @@
 	"config-insecure-keys": "<strong>Warnishment:</strong> {{PLURAL:$2|Ae secure key|Secure keys}} ($1) generated durin instawation {{PLURAL:$2|is|ar}} naw compleatelie safe. Consider chyngin {{PLURAL:$2|it|theim}} manuallie.",
 	"config-install-sysop": "Makin admeenistrâter uiser accoont",
 	"config-install-subscribe-fail": "Onable tae subscribe til mediawiki-announce: $1",
-	"config-install-subscribe-notpossible": "cURL isna instawed n allow_url_fopen isna available.",
+	"config-install-subscribe-notpossible": "cURL isna instawed n <code>allow_url_fopen</code> isna available.",
 	"config-install-mainpage": "Cræftin main page wi defaut content",
 	"config-install-extension-tables": "Makin buirds fer enabled extensions",
 	"config-install-mainpage-failed": "Coudna insert main page: $1",

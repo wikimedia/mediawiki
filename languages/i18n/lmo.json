@@ -15,7 +15,8 @@
 			"Remulazz",
 			"SabineCretella",
 			"Snowdog",
-			"Sprüngli"
+			"Sprüngli",
+			"아라"
 		]
 	},
 	"tog-underline": "Sutulinia i ligam",
@@ -28,7 +29,6 @@
 	"tog-showtoolbar": "Fá vidé ai butún da redataziún (JavaScript)",
 	"tog-editondblclick": "Redatá i pagin cun al dópi clich (JavaScript)",
 	"tog-editsectiononrightclick": "Abilitá redatazziún dai sezziún cun al clic<br />\nsüi titul dai sezziún (JavaScript)",
-	"tog-rememberpassword": "Regòrdass la mè paròla d'urdin (for a maximum of $1 {{PLURAL:$1|day|days}})",
 	"tog-watchcreations": "Giunta i paginn ch'hoo creaa mì a la lista di paginn che tegni sot ögg",
 	"tog-watchdefault": "Gjüntá i pagin redataa in dala lista dii pagin tegnüü d'öcc",
 	"tog-watchmoves": "Giunta i paginn ch'hoo muvüü a la lista di paginn che tegni sot ögg",
@@ -424,7 +424,6 @@
 	"search-interwiki-more": "(püssee)",
 	"powersearch-legend": "Recerca avanzada",
 	"powersearch-ns": "Cerca in di namespace:",
-	"powersearch-redir": "Lista i redirezión",
 	"preferences": "Preferenz",
 	"mypreferences": "i mè preferenz",
 	"prefs-edits": "Quantità de mudifegh faa:",
@@ -511,7 +510,7 @@
 	"recentchanges-label-unpatrolled": "Quela mudifega chì a l'è stada mimga anmò verificada.",
 	"recentchanges-legend-newpage": "$1 - pagina növa",
 	"rcnotefrom": "Chì de sota gh'è la lista di mudifegh de <b>$2</b> (fina a <b>$1</b>).",
-	"rclistfrom": "Fà vidè i cambiament növ a partì de $1",
+	"rclistfrom": "Fà vidè i cambiament növ a partì de $3 $2",
 	"rcshowhideminor": "$1 i mudifegh piscinín",
 	"rcshowhidebots": "$1 i bot",
 	"rcshowhideliu": "$1 i dupradur cunetüü",

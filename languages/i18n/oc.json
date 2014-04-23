@@ -11,7 +11,8 @@
 			"Nemo bis",
 			"Spacebirdy",
 			"Горан Анђелковић",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Soslinhar los ligams :",
@@ -1129,7 +1130,7 @@
 	"recentchanges-legend-heading": "'''Legenda :'''",
 	"recentchanges-legend-newpage": "(veire tanben la [[Special:NewPages|lista de las paginas novèlas]]).",
 	"rcnotefrom": "Çaijós las modificacions efectuadas dempuèi lo <strong>$2</strong> (fins a <strong>$1</strong> afichats).",
-	"rclistfrom": "Afichar las modificacions novèlas dempuèi lo $1.",
+	"rclistfrom": "Afichar las modificacions novèlas dempuèi lo $3 $2",
 	"rcshowhideminor": "$1 los cambiaments menors",
 	"rcshowhideminor-show": "Afichar",
 	"rcshowhideminor-hide": "Amagar",
@@ -1677,10 +1678,6 @@
 	"watchlist-details": "I a {{PLURAL:$1|$1 pagina|$1 paginas}} dins vòstra lista de seguiment, sens comptar las paginas de discussion.",
 	"wlheader-enotif": "La notificacion per corrièr electronic es activada.",
 	"wlheader-showupdated": "Las paginas que son estadas modificadas dempuèi vòstra darrièra visita son afichadas en '''gras'''.",
-	"watchmethod-recent": "verificacion dels darrièrs cambiaments per i trobar de paginas seguidas",
-	"watchmethod-list": "verificacion de las paginas seguidas per de modificacions recentas",
-	"watchlistcontains": "Vòstra lista de seguiment conten $1 {{PLURAL:$1|pagina|paginas}}.",
-	"iteminvalidname": "Problèma amb l'article « $1 » : lo nom es invalid...",
 	"wlshowlast": "Far veire las darrièras $1 oras, los darrièrs $2 jorns, o $3.",
 	"watchlist-options": "Opcions de la lista de seguiment",
 	"watching": "Seguit...",
@@ -2774,8 +2771,6 @@
 	"size-gigabytes": "$1 Go",
 	"lag-warn-normal": "Los cambiaments que datan de mens de $1 {{PLURAL:$1|segonda|segondas}} pòdon aparéisser pas dins aquesta lista.",
 	"lag-warn-high": "En rason d’una fòrta carga de las bancas de donadas, los cambiaments que datan de mens de $1 {{PLURAL:$1|segonda|segondas}} pòdon aparéisser pas dins aquesta lista.",
-	"watchlistedit-numitems": "Vòstra lista de seguiment conten {{PLURAL:$1|una pagina|$1 paginas}}, sens comptar las paginas de discussion",
-	"watchlistedit-noitems": "Vòstra lista de seguiment conten pas cap de pagina.",
 	"watchlistedit-normal-title": "Modificacion de la lista de seguiment",
 	"watchlistedit-normal-legend": "Levar de paginas de la lista de seguiment",
 	"watchlistedit-normal-explain": "Las paginas que seguissètz son visiblas çaijós, classadas per espaci de noms. Per levar una pagina (e sa pagina de discussion) de la lista, seleccionatz la casa al costat puèi clicatz sul boton en bas. Tanben la podètz [[Special:EditWatchlist/raw|modificar en mòde brut]].",

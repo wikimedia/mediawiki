@@ -18,7 +18,8 @@
 			"Sahim",
 			"Xoser",
 			"Geitost",
-			"Microchip08"
+			"Microchip08",
+			"아라"
 		]
 	},
 	"tog-underline": "Bınê gırey de xete bance:",
@@ -1144,7 +1145,7 @@
 	"recentchanges-legend-newpage": "([[Special:NewPages|Lista pelanê neweyan]] zi bıvêne)",
 	"recentchanges-legend-plusminus": "''(±123)''",
 	"rcnotefrom": "Cêr de <strong>$2</strong> ra nata vurnayışiyê asenê (tewr vêşi <strong>$1</strong> asenê).",
-	"rclistfrom": "$1 ra tepiya vurnayışanê neweyan bımocne",
+	"rclistfrom": "$3 $2 ra tepiya vurnayışanê neweyan bımocne",
 	"rcshowhideminor": "Vurnayışanê werdiyan $1",
 	"rcshowhideminor-show": "Bımocne",
 	"rcshowhideminor-hide": "Bınımne",
@@ -1697,10 +1698,6 @@
 	"watchlist-details": "{{PLURAL:$1|$1 pele|$1 peleyan}} listeyê seyr-kerdışi şıma dı, peleyanê vurnayışi dahil niyo.",
 	"wlheader-enotif": "E-mail xeber dayiş abiyo.",
 	"wlheader-showupdated": "ziyaretê şıma ye peyini de vuryayişê peli pê '''nuşteyo qalıni''' mocyayo.",
-	"watchmethod-recent": "pel ê ke şıma temaşa kenî vuryayişê peyinê ey konrol beno",
-	"watchmethod-list": "pel ê ke şıma temaşa kenî vuryayişê peyinê ey konrol beno",
-	"watchlistcontains": "listeya seyrkerdışê şıma de $1 tene {{PLURAL:$1|peli|peli}} estî.",
-	"iteminvalidname": "pê no '$1' unsuri problem bı, nameyo nemeqbul...",
 	"wlnote2": "Cêr vurnayışê {{PLURAL:$1|saeta|<strong>$1</strong> saetanê}} peyênan estê, $2 ra be hetan $3.",
 	"wlshowlast": "Peyni de vurnayışan ra  $1 seata u $2 roca $3 bımocnê",
 	"watchlist-options": "Tercihê liste da seyri",
@@ -2888,8 +2885,6 @@
 	"bitrate-yottabits": "$1Ybps",
 	"lag-warn-normal": "Vurnayîşî ke {{PLURAL:$1|seniye|seniyeyî}} ra newiyerî belki inan nimucneno.",
 	"lag-warn-high": "Eka serverê databaseyî zaf hebitiyeno, ayra vurnayîşî ke {{PLURAL:$1|seniye|seniyeyî}} ra newiyerî belki inan nimucneno.",
-	"watchlistedit-numitems": "Listeyê seyirkerdişi ti de {{PLURAL:$1|1 title|$1 titles}} esta, feqet pelayanê minaqeşeyan dahil niyê.",
-	"watchlistedit-noitems": "Listeyê seyr kerdişê tu de seroğ çin o.",
 	"watchlistedit-normal-title": "Listeyê seyirkerdişi bivurne",
 	"watchlistedit-normal-legend": "Listeyê seyr kerdişê tu de seroğ biwedarna.",
 	"watchlistedit-normal-explain": "Listeyê seyr kerdîşî ti de serogî cor de mucnayiyo.\nEka ti wazeno seroğ biwedarne, kuti ke kistê de, ay işaret bike u \"{{int:Watchlistedit-normal-submit}}\" klik bike.\nTi hem zi eşkeno [[Special:EditWatchlist/raw|edit the raw list]].",

@@ -37,7 +37,8 @@
 			"Wix",
 			"Yaamboo",
 			"ZeiP",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -1167,7 +1168,7 @@
 	"recentchanges-legend-newpage": "(katso myös [[Special:NewPages|lista uusista sivuista]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Alla ovat muutokset <strong>$2</strong> lähtien. (Enintään <strong>$1</strong> näytetään.)",
-	"rclistfrom": "Näytä uudet muutokset $1 alkaen",
+	"rclistfrom": "Näytä uudet muutokset $3 $2 alkaen",
 	"rcshowhideminor": "$1 pienet muutokset",
 	"rcshowhideminor-show": "Näytä",
 	"rcshowhideminor-hide": "Piilota",
@@ -1733,10 +1734,6 @@
 	"watchlist-details": "Tarkkailulistallasi on {{PLURAL:$1|$1 sivu|$1 sivua}}. Keskustelusivuja ei lasketa mukaan.",
 	"wlheader-enotif": "Sähköposti-ilmoitus on käytössä.",
 	"wlheader-showupdated": "Sivut, joita on muokattu viimeisen käyntisi jälkeen, on '''lihavoitu'''.",
-	"watchmethod-recent": "tarkistetaan tuoreimpia muutoksia tarkkailluille sivuille",
-	"watchmethod-list": "tarkistetaan tarkkailtujen sivujen tuoreimmat muutokset",
-	"watchlistcontains": "Tarkkailulistallasi on {{PLURAL:$1|yksi sivu|$1 sivua}}.",
-	"iteminvalidname": "Sivun $1 kanssa oli ongelmia. Sivun nimessä on vikaa.",
 	"wlnote2": "Alla on muutokset viimeisen {{PLURAL:$1|tunnin|<strong>$1</strong> tunnin}} ajalta $2 kello $3 asti.",
 	"wlshowlast": "Näytä viimeiset $1 tuntia tai $2 päivää, $3",
 	"watchlist-options": "Tarkkailulistan asetukset",
@@ -2855,8 +2852,6 @@
 	"size-gigabytes": "$1 GiB",
 	"lag-warn-normal": "Muutokset, jotka ovat uudempia kuin $1 {{PLURAL:$1|sekunti|sekuntia}}, eivät välttämättä näy tällä sivulla.",
 	"lag-warn-high": "Tietokannoilla on työjonoa. Muutokset, jotka ovat uudempia kuin $1 {{PLURAL:$1|sekunti|sekuntia}}, eivät välttämättä näy tällä sivulla.",
-	"watchlistedit-numitems": "Tarkkailulistallasi on {{PLURAL:$1|yksi sivu|$1 sivua}}, lukuun ottamatta keskustelusivuja.",
-	"watchlistedit-noitems": "Tarkkailulistasi on tyhjä.",
 	"watchlistedit-normal-title": "Tarkkailulistan muokkaus",
 	"watchlistedit-normal-legend": "Poista sivuja tarkkailulistalta",
 	"watchlistedit-normal-explain": "Tarkkailulistasi sivut on lueteltu alla. Voit poistaa sivuja valitsemalla niitä vastaavat valintaruudut ja napsauttamalla ”{{int:Watchlistedit-normal-submit}}”. Voit myös muokata listaa [[Special:EditWatchlist/raw|tekstimuodossa]].",

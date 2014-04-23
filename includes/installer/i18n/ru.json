@@ -316,7 +316,7 @@
 	"config-insecure-keys": "'''Предупреждение.''' {{PLURAL:$2|1=Ключ безопасности $1, созданный во время установки, недостаточно надёжен|Ключи безопасности $1, созданные во время установки, недостаточно надёжны}}. Рассмотрите возможность {{PLURAL:$2|1=его|их}} изменения вручную.",
 	"config-install-sysop": "Создание учётной записи администратора",
 	"config-install-subscribe-fail": "Не удаётся подписаться на mediawiki-announce: $1",
-	"config-install-subscribe-notpossible": "cURL не установлен и не доступна опция allow_url_fopen.",
+	"config-install-subscribe-notpossible": "cURL не установлен и не доступна опция <code>allow_url_fopen</code>.",
 	"config-install-mainpage": "Создание главной страницы с содержимым по умолчанию",
 	"config-install-extension-tables": "Создание таблиц для включённых расширений",
 	"config-install-mainpage-failed": "Не удаётся вставить главную страницу: $1",

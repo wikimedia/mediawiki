@@ -10,7 +10,8 @@
 			"Shirayuki",
 			"Tchoř",
 			"Tlustulimu",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Wotkazy podšmórnić:",
@@ -1137,7 +1138,7 @@
 	"recentchanges-legend-newpage": "(hlej tež [[Special:NewPages|lisćinu nowych stronow]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Deleka so změny wot <strong>$2</strong> pokazuja (hač k <strong>$1</strong>).",
-	"rclistfrom": "Nowe změny pokazać, započinajo z $1",
+	"rclistfrom": "Nowe změny pokazać, započinajo z $3 $2",
 	"rcshowhideminor": "snadne změny $1",
 	"rcshowhideminor-show": "Pokazać",
 	"rcshowhideminor-hide": "Schować",
@@ -1686,10 +1687,6 @@
 	"watchlist-details": "{{PLURAL:$1|$1 wobkedźbowana strona|$1 wobkedźbowanej stronje|$1 wobkedźbowane strony|$1 wobkedźbowanych stronow}}, diskusijne strony wuwzate.",
 	"wlheader-enotif": "E-mejlowa zdźělenska słužba je zmóžnjena.",
 	"wlheader-showupdated": "Strony, kotrež su so po twojim poslednim wopyće změnili, so '''tučne''' pokazuja.",
-	"watchmethod-recent": "Aktualne změny za wobkedźbowane strony přepruwować",
-	"watchmethod-list": "Wobkedźbowanki za aktualnymi změnami přepruwować",
-	"watchlistcontains": "Maš $1 {{PLURAL:$1|stronu|stronje|strony|stronow}} w swojich wobkedźbowankach.",
-	"iteminvalidname": "Problem ze zapiskom „$1“, njepłaćiwe mjeno.",
 	"wlnote2": "Slěduja změny {{PLURAL:$1|zańdźeneje hodźiny|zańdźeneju <strong>$1</strong> hodźinow|zańdźenych <strong>$1</strong> hodźin}} Staw: $2, $3.",
 	"wlshowlast": "Poslednje $1 hodź. - $2 dnjow - $3 pokazać",
 	"watchlist-options": "Opcije wobkedźbowankow",
@@ -2789,8 +2786,6 @@
 	"size-kilobytes": "$1 kB",
 	"lag-warn-normal": "Změny {{PLURAL:$1|zašłeje $1 sekundy|zašłeju $1 sekundow|zašłych $1 sekundow|zašłych $1 sekundow}} so w tutej lisćinje hišće njezwobraznjeja.",
 	"lag-warn-high": "Wućeženja datoweje banki dla so změny {{PLURAL:$1|zašłeje $1 sekundy|zašłeje $1 sekundow|zašłych $1 sekundow|zašłych $1 sekundow}} w tutej lisćinje hišće njepokazuja.",
-	"watchlistedit-numitems": "Twoje wobkedźbowanki wobsahuja {{PLURAL:$1|1 zapisk|$1 zapiskaj|$1 zapiski|$1 zapiskow}}, diskusijne strony njejsu ličene.",
-	"watchlistedit-noitems": "Twoje wobkedźbowanki su prózdne.",
 	"watchlistedit-normal-title": "Wobkedźbowanki wobdźěłać",
 	"watchlistedit-normal-legend": "Zapiski z wobkedźbowankow wotstronić",
 	"watchlistedit-normal-explain": "Tu su zapiski z twojich wobkedźbowankow. Zo by zapisk wušmórnył, markěruj kašćik pódla njeho a klikń na {{int:Watchlistedit-normal-submit}}\". Móžeš tež swoje wobkedźbowanki [[Special:EditWatchlist/raw|w lisćinowym formaće wobdźěłać]].",

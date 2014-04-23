@@ -8,7 +8,8 @@
 			"Kaganer",
 			"Reedy",
 			"Runningfridgesrule",
-			"The Evil IP address"
+			"The Evil IP address",
+			"아라"
 		]
 	},
 	"tog-underline": "Çykgytlaryň aşagyny çyz:",
@@ -926,7 +927,7 @@
 	"recentchanges-label-unpatrolled": "Bu özgerdişe heniz patrullyk edilmändir",
 	"recentchanges-legend-newpage": "$1 - täze sahypa",
 	"rcnotefrom": "<strong>$2</strong> senesinden soňky üýtgetmeler aşakda görkezilýär (<strong>$1</strong> sanysyna çenli).",
-	"rclistfrom": "$1 senesinden bäri edilen özgerdişleri görkez",
+	"rclistfrom": "$3 $2 senesinden bäri edilen özgerdişleri görkez",
 	"rcshowhideminor": "ujypsyzja özgerdişleri $1",
 	"rcshowhidebots": "botlary $1",
 	"rcshowhideliu": "Hasaba alnan ulanyjylary $1",
@@ -1341,10 +1342,6 @@
 	"watchlist-details": "Çekişme sahypalaryny hasap etmäniňde, gözegçilik sanawyňyzda {{PLURAL:$1|$1 sahypa|$1 sahypa}} bar.",
 	"wlheader-enotif": "E-poçta bilen habar beriş açyk.",
 	"wlheader-showupdated": "Soňky gezek baryp görenizden soňra üýtgedilen sahypalar '''goýy şrift''' bilen görkezilýär.",
-	"watchmethod-recent": "soňky özgerdişlerdäki gözegçilikde saklaýan sahypalaryňyz barlanylýar",
-	"watchmethod-list": "gözegçilikde saklaýan sahypalaryňyzdaky soňky özgerdişler barlanylýar",
-	"watchlistcontains": "Gözegçilik sanawyňyzda $1 sany {{PLURAL:$1|sahypa|sahypa}} bar.",
-	"iteminvalidname": "'$1' elementinde problema bar, nädogry at...",
 	"wlshowlast": "Soňky $1 sagady $2 güni görkez $3",
 	"watchlist-options": "Gözegçilik sanawynyň opsiýalary",
 	"watching": "Gözegçilige alynýar...",
@@ -2149,8 +2146,6 @@
 	"autosumm-new": "Sahypa döretdi, mazmuny: '$1'",
 	"lag-warn-normal": "$1 {{PLURAL:$1|sekuntdan|sekuntdan}} täzeki üýtgeşmeler bu sanawda görkezilmän biler.",
 	"lag-warn-high": "Maglumat bazasyndaky uly gijikme zerarly, $1 {{PLURAL:$1|sekuntdan|sekuntdan}} täzeki üýtgeşmeler bu sanawda görkezilmän biler.",
-	"watchlistedit-numitems": "Gözegçilik sanawyňyzda çekişme sahypalaryny hasap etmäniňde {{PLURAL:$1|1 sany at|$1 sany at}} bar.",
-	"watchlistedit-noitems": "Gözegçilik sanawyňyzda hiç hili at ýok.",
 	"watchlistedit-normal-title": "Gözegçilik sanawyny redaktirle",
 	"watchlistedit-normal-legend": "Gözegçilik sanawyndan atlary aýyr",
 	"watchlistedit-normal-explain": "Gözegçilik sanawyňyzdaky atlar aşakda görkezilýär.\nAt aýyrmak üçin gapdalyndaky gutujygy belläp, \"{{int:Watchlistedit-normal-submit}}\" düwmesine basyň.\n[[Special:EditWatchlist/raw|Işlenmedik sanawy hem redaktirläp]] bilersiňiz.",

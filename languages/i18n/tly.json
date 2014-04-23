@@ -4,7 +4,8 @@
 			"Erdemaslancan",
 			"Ganbarzada",
 			"Tuzkozbir",
-			"Гусейн"
+			"Гусейн",
+			"아라"
 		]
 	},
 	"tog-underline": "Линки жинтоно ријә быкәш:",
@@ -227,7 +228,6 @@
 	"missingarticle-diff": "(Фәрг: $1, $2)",
 	"internalerror": "Дыләтонә ғәләт",
 	"internalerror_info": "Дыләтонә ғәләт: $1",
-	"fileappenderrorread": "Әловон ғејд карде быәдә\"$1\" һанде ныбе.",
 	"formerror": "Сәһв: Че формә мәлумотон әкс карде ғерри мымкуне.",
 	"cannotdelete-title": "Сәһифә әбыни рәдд кардеј \"$1\"",
 	"badtitle": "Роныдоә ном",
@@ -293,7 +293,6 @@
 	"savearticle": "Сәһифә огәтеј",
 	"preview": "Сыфтәнә нишо дој",
 	"showpreview": "Сыфтәнә нишо дој",
-	"showlivepreview": "Товинә сыфтәнә нишо дој",
 	"showdiff": "Дәғандә быә дәгишон",
 	"anoneditwarning": "'''Дығғәт.''' Шымә ыштәни едәштәнијоне системәдә.\nШымә IP-унвон бә ым сәһифә дәгишон тарых ғејд бәбе.",
 	"loginreqlink": "ыштәни едаштеј",
@@ -420,7 +419,7 @@
 	"recentchanges-label-bot": "Ым дәгиши бот кардәше",
 	"recentchanges-label-unpatrolled": "Im redaktə hələ nəzərədə dəvardəni",
 	"rcnotefrom": "Бә жиј доә быән дәгишон че вахтику '''$2''' (тосә '''$1''').",
-	"rclistfrom": "$1 вахтику дәгишон нишо быдә",
+	"rclistfrom": "$3 $2 вахтику дәгишон нишо быдә",
 	"rcshowhideminor": "$1 гәдәлијә дәгишон",
 	"rcshowhidebots": "$1 ботон",
 	"rcshowhideliu": "$1 ыштәни едаштә иштирокәкон",

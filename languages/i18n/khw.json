@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Rachitrali"
+			"Rachitrali",
+			"아라"
 		]
 	},
 	"tog-underline": "ربطو خط کشیدگی",
@@ -14,7 +15,6 @@
 	"tog-showtoolbar": "تدوینی اوزاردانن پشاؤے ( JavaScript ضرورت بوی)",
 	"tog-editondblclick": "کلکہ صفحاتن  ترمیم (JavaScript ضرورت بوی)",
 	"tog-editsectiononrightclick": "سطری عنواناتا فروسکی کلکو ذریعا سطری ترمیم کاریو فعال ساؤزاوے",
-	"tog-rememberpassword": "ھیہ کمپیوٹرا مہ داخل کاردو معلوماتن یاد لاکھے(کم از کم $1 {{PLURAL:$1|بس|بس}})",
 	"tog-watchcreations": "مہ مرتب کاردو صفحاتن مہ  زیرِنظرفہرستہ شامل کورے",
 	"tog-watchdefault": "مہ ترمیم کاردو صفحاتن مہ  زیرِنظرفہرستہ شامل کورے",
 	"tog-watchmoves": "آوا کیہ صفحاتن کہ منتقل کومان ھتیتان مہ زیرِنظرفہرستہ شامل کورے",
@@ -281,7 +281,6 @@
 	"filedeleteerror": "مسلو \"$1\" حذف کورونو نو ھوی",
 	"directorycreateerror": "رہنامچہ \"$1\" تخلیق کورونو نو ھوی",
 	"filenotfound": "مسلو \"$1\" تلاش کورونو نو ھوی",
-	"fileexistserror": "مسلو \"$1\" نیویشکا قاصر، مسل موجود",
 	"unexpected": "غیرمتوقع قدر: \"$1\"=\"$2\"",
 	"formerror": "خطا: کغاز انځینو نو ھوی",
 	"badarticleerror": "ھیہ صفحہا ھیہ عمل انجام دیونو نو ھوی۔",
@@ -399,7 +398,6 @@
 	"savearticle": "محفوظ",
 	"preview": "نمائش",
 	"showpreview": "نمائش",
-	"showlivepreview": "براہِ راست پیش منظر",
 	"showdiff": "تبدیلیان پشاوے",
 	"anoneditwarning": "تو{{SITENAME}} داخل نو بیتی اسوس لہذا تہIP پتہ ھیہ صفحو تاریخچہ ء ترمیما محفوظ بوی",
 	"missingcommenttext": "براہِ کرم! تبصرہ موڑا درج کورے.",
@@ -504,7 +502,6 @@
 	"search-nonefound": "استفسارو مطابقا نتائج ملاو نو ھونی.",
 	"powersearch-legend": "ایڈوانس سرچ",
 	"powersearch-ns": "جائے ناما تلاش:",
-	"powersearch-redir": "فہرستِ رجوع مکرر",
 	"powersearch-toggleall": "سف",
 	"preferences": "ترجیحات",
 	"mypreferences": "مہ ترجیہات",
@@ -538,7 +535,7 @@
 	"recentchanges-label-bot": "ھیہ ایڈیٹو خود کار بوٹو زریعا انجام دیونو ہوی",
 	"recentchanges-label-unpatrolled": "ھیہ ترمیمو ھمونیہ پت مراجعت(Patrolled) کورونو نو بیتی شیر",
 	"rcnotefrom": "ھیہ موڑا '''$2''' کورونو بیرو تبدیلیان تفصیلات شینی ('''$1''' تبدیلیان پشینو بونیان)۔",
-	"rclistfrom": "$1 نوغ تبدیلیاں پشیک شروع کورے",
+	"rclistfrom": "$3 $2 نوغ تبدیلیاں پشیک شروع کورے",
 	"rcshowhideminor": " معمولی ترامیم $1",
 	"rcshowhidebots": "خودکار صارف $1",
 	"rcshowhideliu": "داخل بیرو صارف $1",

@@ -304,7 +304,7 @@
 	"config-insecure-keys": "'''경고:''' 설치 중에 생성한 {{PLURAL:$2|보안 키}} ($1)는 완전히 안전하지 {{PLURAL:$2|않습니다}}. 직접 바꾸는 것을 고려하세요.",
 	"config-install-sysop": "관리자 사용자 계정을 만드는 중",
 	"config-install-subscribe-fail": "미디어위키 알림을 구독할 수 없습니다: $1",
-	"config-install-subscribe-notpossible": "cURL이 설치되지 않았고 allow_url_fopen를 사용할 수 없습니다.",
+	"config-install-subscribe-notpossible": "cURL이 설치되어 있지 않고 <code>allow_url_fopen</code>을 사용할 수 없습니다.",
 	"config-install-mainpage": "기본 내용으로 대문을 만드는 중",
 	"config-install-extension-tables": "활성화된 확장 기능을 위한 테이블을 만드는 중",
 	"config-install-mainpage-failed": "대문을 삽입할 수 없습니다: $1",

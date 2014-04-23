@@ -14,7 +14,8 @@
 			"Amire80",
 			"Jacenty359",
 			"Pan Cube",
-			"WTM"
+			"WTM",
+			"Alan ffm"
 		]
 	},
 	"config-desc": "Instalator MediaWiki",
@@ -112,7 +113,7 @@
 	"config-db-username": "Nazwa użytkownika bazy danych:",
 	"config-db-password": "Hasło bazy danych:",
 	"config-db-password-empty": "Wprowadź hasło dla nowego użytkownika bazy danych: $1.\nChoć istnieje możliwość tworzenia użytkowników bez hasła, nie jest to bezpieczne.",
-	"config-db-username-empty": "Należy podać wartość parametru „Nazwa użytkownika bazy danych”",
+	"config-db-username-empty": "Należy podać wartość parametru \"{{int:config-db-username}}\".",
 	"config-db-install-username": "Wprowadź nazwę użytkownika, który będzie używany do łączenia się z bazą danych podczas procesu instalacji.\nNie jest to nazwa konta MediaWiki, a użytkownika bazy danych.",
 	"config-db-install-password": "Wprowadź hasło, które będzie wykorzystywane do łączenia się z bazą danych w procesie instalacji.\nTo nie jest hasło konta MediaWiki, lecz hasło do bazy danych.",
 	"config-db-install-help": "Podaj nazwę użytkownika i jego hasło, które zostaną użyte do połączenia z bazą danych w czasie procesu instalacji.",
@@ -311,7 +312,7 @@
 	"config-insecure-keys": "'''Ostrzeżenie:''' {{PLURAL:$2|Klucz bezpieczeństwa|Klucze bezpieczeństwa|Klucze bezpieczeństwa}} ($1) utworzone podczas instalacji {{PLURAL:$2|utworzony podczas instalacji nie jest|utworzone podczas instalacji nie są|utworzone podczas instalacji nie są}} w pełni bezpieczne. Być może warto wygenerować {{PLURAL:$2|własny klucz|własne klucze|własne klucze}}.",
 	"config-install-sysop": "Tworzenie konta administratora",
 	"config-install-subscribe-fail": "Nie można zapisać na listę „mediawiki-announce“ – $1",
-	"config-install-subscribe-notpossible": "cURL nie jest zainstalowany, więc allow_url_fopen nie jest dostępne.",
+	"config-install-subscribe-notpossible": "cURL nie jest zainstalowany, więc <code>allow_url_fopen</code> nie jest dostępne.",
 	"config-install-mainpage": "Tworzenie strony głównej z domyślną zawartością",
 	"config-install-extension-tables": "Tworzenie tabel dla aktywnych rozszerzeń",
 	"config-install-mainpage-failed": "Nie udało się wstawić strony głównej: $1",

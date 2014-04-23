@@ -6,7 +6,8 @@
 			"Kaganer",
 			"Ooswesthoesbes",
 			"Stretsh",
-			"Urhixidur"
+			"Urhixidur",
+			"아라"
 		]
 	},
 	"tog-underline": "Poti strepi ondro den miti:",
@@ -17,7 +18,6 @@
 	"tog-showtoolbar": "Sori Kenki-Wrokosani-barki (JavaScript)",
 	"tog-editondblclick": "Naki tu tron fu kenki (JavaScript)",
 	"tog-editsectiononrightclick": "Gi primisi fu kenki pisi-papira nanga wan naki n'a leti-anu sey na tapu wan pisi-ede (JavaScript)",
-	"tog-rememberpassword": "Memre mi psawortu (for a maximum of $1 {{PLURAL:$1|day|days}})",
 	"tog-watchcreations": "Tan luku den papira di mi meki",
 	"tog-watchdefault": "Tan luku den papira di mi kenki",
 	"tog-watchmoves": "Tan luku den papira di mi froysi",
@@ -243,7 +243,6 @@
 	"filedeleteerror": "No ben man puru a file “$1”.",
 	"directorycreateerror": "No ben man meki a map “$1”.",
 	"filenotfound": "Ne ben man feni a file “$1”.",
-	"fileexistserror": "No man skrifi go na file “$1”: a file de kaba",
 	"unexpected": "No ben ferwakti a warti disi: \"$1\"=\"$2\".",
 	"formerror": "Fowtu: no ben man seni a formulier",
 	"badarticleerror": "No man du a sani disi na tapu a papira disi.",
@@ -327,7 +326,6 @@
 	"savearticle": "Kibri a papira disi",
 	"preview": "Luku-na-fesi",
 	"showpreview": "Sori na fesi",
-	"showlivepreview": "Fusi libi si pre kenki (LIVE)",
 	"showdiff": "Sori den kenki",
 	"anoneditwarning": "'''Warskow:''' Yu no psa kon ete. Yu IP o kibri poti ini a kenki historia fu a papira disi.",
 	"missingcommenttext": "Presi yu oponaki dyaso-ondro.",
@@ -461,7 +459,7 @@
 	"recentchanges": "Laste kenki",
 	"recentchanges-feed-description": "Nanga a feed disi yu kan luku den moro nyun kenki fu a wiki disi.",
 	"rcnotefrom": "Kenki fu '''$2''' (e sori te go miti '''$1''' kenki).",
-	"rclistfrom": "Sori nyun kenki, bigin fu $1",
+	"rclistfrom": "Sori nyun kenki, bigin fu $3 $2",
 	"rcshowhideminor": "$1 den pikin kenki",
 	"rcshowhidebots": "$1 den bot",
 	"rcshowhideliu": "$1 kebroikiman di psa kon",

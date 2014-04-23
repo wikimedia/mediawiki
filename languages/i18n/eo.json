@@ -36,7 +36,8 @@
 			"Urhixidur",
 			"Yekrats",
 			"Александр Сигачёв",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Substreki ligilojn",
@@ -1160,7 +1161,7 @@
 	"recentchanges-legend-heading": "'''Klarigo:'''",
 	"recentchanges-legend-newpage": "(vidu ankaŭ [[Special:NewPages|liston de novaj paĝoj]])",
 	"rcnotefrom": "Sube estas ŝanĝoj ekde <strong>$2</strong> ({{PLURAL:$1|lasta|lastaj}} <strong>$1</strong>).",
-	"rclistfrom": "Montri novajn ŝanĝojn ekde \"$1\"",
+	"rclistfrom": "Montri novajn ŝanĝojn ekde \"$3 $2\"",
 	"rcshowhideminor": "$1 redaktetojn",
 	"rcshowhideminor-show": "Montri",
 	"rcshowhideminor-hide": "Kaŝi",
@@ -1712,10 +1713,6 @@
 	"watchlist-details": "{{PLURAL:$1|$1 paĝon|$1 paĝojn}} en via atentaro, krom diskutpaĝoj.",
 	"wlheader-enotif": "Retpoŝta sciigo estas ŝalta.",
 	"wlheader-showupdated": "Paĝoj montriĝis per '''dikaj literoj''' kiuj estis ŝanĝitaj ekde vi laste vizitis.",
-	"watchmethod-recent": "traserĉas lastajn redaktojn",
-	"watchmethod-list": "traserĉas priatentitajn",
-	"watchlistcontains": "Via atentaro enhavas $1 {{PLURAL:$1|paĝon|paĝojn}}.",
-	"iteminvalidname": "Ia eraro pri \"$1\", nevalida titolo...",
 	"wlnote2": "Malsupre estas la ŝanĝoj en la {{PLURAL:$1|lasta horo|lastaj <strong>$1</strong> horoj}}, ekde $2, $3.",
 	"wlshowlast": "Montri el lastaj $1 horoj $2 tagoj $3",
 	"watchlist-options": "Opcioj por atentaro",
@@ -2823,8 +2820,6 @@
 	"autosumm-new": "Nova paĝo kun '$1'",
 	"lag-warn-normal": "Ŝanĝoj pli novaj ol $1 {{PLURAL:$1|sekundo|sekundoj}} eble ne estos montrataj en ĉi tiu listo.",
 	"lag-warn-high": "Pro malrapideco de la servila datumbazo, ŝanĝoj pli novaj ol $1 {{PLURAL:$1|sekundo|sekundoj}} eble ne montriĝos en ĉi tiu listo.",
-	"watchlistedit-numitems": "Via atentaro enhavas {{PLURAL:$1|1 titolon|$1 titolojn}}, escepte de diskuto-paĝoj.",
-	"watchlistedit-noitems": "Via atentaro enhavas neniujn titolojn.",
 	"watchlistedit-normal-title": "Redakti atentaron",
 	"watchlistedit-normal-legend": "Forigi titolojn de atentaro",
 	"watchlistedit-normal-explain": "Jen titoloj de via atentaro.\nForigi titolon, marku la skatoleto apude de ĝi, kaj klaku \"{{int:Watchlistedit-normal-submit}}\".\nVi ankaŭ povas [[Special:EditWatchlist/raw|redakti la krudan liston]].",

@@ -308,7 +308,7 @@
 	"config-insecure-keys": "<strong>Папярэджаньне:</strong> {{PLURAL:$2|1=Ключ бясьпекі $1 створаны|Ключы бясьпекі $1 створаныя}} падчас усталяваньня, {{PLURAL:$2|1=не зьяўляецца паўнасьцю бясьпечным|не зьяўляюцца поўнасьцю бясьпечнымі}}. Рэкамэндуецца зьмяніць {{PLURAL:$2|1=яго ўручную|іх уручную}}.",
 	"config-install-sysop": "Стварэньне рахунку адміністратара",
 	"config-install-subscribe-fail": "Немагчыма падпісацца на «mediawiki-announce»: $1",
-	"config-install-subscribe-notpossible": "cURL не ўсталяваны, allow_url_fopen недаступны.",
+	"config-install-subscribe-notpossible": "cURL не ўсталяваны, <code>allow_url_fopen</code> недаступны.",
 	"config-install-mainpage": "Стварэньне галоўнай старонкі са зьместам па змоўчваньні",
 	"config-install-extension-tables": "Стварэньне табліцаў для ўключаных пашырэньняў",
 	"config-install-mainpage-failed": "Немагчыма ўставіць галоўную старонку: $1",

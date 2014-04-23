@@ -8,7 +8,8 @@
 			"Reedy",
 			"Sinopeus",
 			"Urhixidur",
-			"ZaDiak"
+			"ZaDiak",
+			"아라"
 		]
 	},
 	"tog-underline": "Υπογράμμιση συνδεσμίων:",
@@ -235,7 +236,6 @@
 	"filedeleteerror": "Το σβήσεμαν τ' αρχείου \"$1\" 'κ εγέντον.",
 	"directorycreateerror": "Η κατηγορία \"$1\" 'κ εγέντον.",
 	"filenotfound": "Τ' αρχείον \"$1\" 'κ ευρέθεν.",
-	"fileexistserror": "Τ' αρχείον \"$1\" 'κ εγράφτεν: τ' αρχείον υπάρχει",
 	"unexpected": "Άχρηστον αξία: \"$1\"=\"$2\".",
 	"badarticleerror": "Αβούτη η ενέργειαν 'κ επορεί να ίνεται σ'αβούτεν τη σελίδαν.",
 	"cannotdelete": "Ατό (\"$1\") να σβύεται 'κ ίνεται.\nΓιαμ ενεσβύεν ασ'άλλτς;",
@@ -424,7 +424,6 @@
 	"searchall": "ούλαι",
 	"powersearch-legend": "Αναλυτικόν αράεμαν",
 	"powersearch-ns": "Αράεμαν σα τόπε τ' ονοματίων:",
-	"powersearch-redir": "Κατάλογον με διπλά συνδέσμ",
 	"powersearch-toggleall": "Όλια",
 	"powersearch-togglenone": "Τιδέν",
 	"search-external": "Εύρον σα εξ μερέαν",
@@ -514,7 +513,7 @@
 	"recentchanges-legend": "Επιλογάς υστερνιδίων αλλαγίων",
 	"recentchanges-feed-description": "Τ' ασ' όλεα καινούρεα αλλαγάς τη wiki ωρία σ' αβούτεν την περίληψην.",
 	"rcnotefrom": "Αφκά καικά ευρίουνταν τ' αλλαγάς ασό <b>$2</b> (εμφάνιση <b>$1</b> αλλαγίων max).",
-	"rclistfrom": "Δείξον τ' αλλαγάς ασα $1 μαναχόν",
+	"rclistfrom": "Δείξον τ' αλλαγάς ασα $3 $2 μαναχόν",
 	"rcshowhideminor": "$1 τα μικρά αλλαγάς",
 	"rcshowhidebots": "$1 bots",
 	"rcshowhideliu": "$1 χρήστες με λογαρίαν",

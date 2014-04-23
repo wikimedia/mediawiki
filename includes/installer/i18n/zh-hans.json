@@ -316,7 +316,7 @@
 	"config-insecure-keys": "'''警告'''：在安装过程中生成的{{PLURAL:$2|安全密钥|安全密钥}}（$1）{{PLURAL:$2|并|并}}不一定安全。请考虑手动更改{{PLURAL:$2|它|它们}}。",
 	"config-install-sysop": "正在创建管理员用户帐号",
 	"config-install-subscribe-fail": "无法订阅mediawiki-announce：$1",
-	"config-install-subscribe-notpossible": "没有安装cURL，allow_url_fopen也不可用。",
+	"config-install-subscribe-notpossible": "没有安装cURL，<code>allow_url_fopen</code>也不可用。",
 	"config-install-mainpage": "正在创建显示默认内容的首页",
 	"config-install-extension-tables": "正在创建已启用扩展程序表",
 	"config-install-mainpage-failed": "无法插入首页:$1",

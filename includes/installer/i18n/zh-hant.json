@@ -299,7 +299,7 @@
 	"config-insecure-keys": "'''警告'''：在安裝過程中生成的$2個安全密鑰（$1）不一定安全。請考慮手動更改之。",
 	"config-install-sysop": "正在創建管理員用戶帳號",
 	"config-install-subscribe-fail": "無法訂閱mediawiki-announce：$1",
-	"config-install-subscribe-notpossible": "沒有安裝cURL，allow_url_fopen也不可用。",
+	"config-install-subscribe-notpossible": "沒有安裝cURL，<code>allow_url_fopen</code>也不可用。",
 	"config-install-mainpage": "正在創建顯示默認內容的首頁",
 	"config-install-extension-tables": "正在為已啟用擴展創建數據表",
 	"config-install-mainpage-failed": "無法插入首頁:$1",

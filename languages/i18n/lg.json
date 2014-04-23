@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kizito"
+			"Kizito",
+			"아라"
 		]
 	},
 	"tog-underline": "Enyunzi ebengako olukoloboze?",
@@ -14,7 +15,6 @@
 	"tog-showtoolbar": "Amapeesa g'ebiyamba mu kuwandika galabikenga (kino kyetaagisa JavaScript)",
 	"tog-editondblclick": "Okunyiga eppeesa emirundi ebiri kubikkulenga w'okyusiza olupapula  (kyetaagisa 'JavaScript')",
 	"tog-editsectiononrightclick": "Okunyiga ku omutwe gw'omuko ku lupapula n'eppeesa erya ddyo kubikkulenga w'ogukyusiza (kyetaagisa 'JavaScript')",
-	"tog-rememberpassword": "Tereka ekigambo kyange ekikuumi ku kompyuta eno (okumala {{PLURAL:$1|olunaku|ennaku ezitasukka mu}} $1)",
 	"tog-watchcreations": "Empapula zenkolawo ziteekebwenga ku lukalala lw'ezo zengoberera",
 	"tog-watchdefault": "Empapula zenkyusamu ziteekebwenga ku lukalala lw'ezo zengoberera",
 	"tog-watchmoves": "Empapula zenkyusa erinnya ziteekebwenga ku lukalala lw'ezo zengoberera",
@@ -277,14 +277,11 @@
 	"readonly_lag": "Okukukkiriza enkyukakyuka mu ggwanika lya data lino kuyimirizidwamu, kompyuta eziriko amawanika ga data amazibizi zisobole okugakwataganya n'eggwanika lya data ery'ennono",
 	"internalerror": "Puloguramu ey'oku wiki efunye kirimya munda mwayo",
 	"internalerror_info": "Puloguramu ey'oku wiki efunye kirimya munda mwayo: $1",
-	"fileappenderrorread": "\"$1\" nnemedwa okugisoma ndyoke ngiwayireko ebipya.",
-	"fileappenderror": "\"$2\" nnemedwa okugiwayirako \"$1\".",
 	"filecopyerror": "Nnemedwa okuteeka kkopi ya fayiro \"$1\" mu \"$2\".",
 	"filerenameerror": "Fayiro \"$1\" nnemedwa okugikyusa erinnya lifuuke \"$2\".",
 	"filedeleteerror": "Nnemedwa okugyawo fayiro \"$1\".",
 	"directorycreateerror": "Nnemedwa okukolawo etterekero \"$1\".",
 	"filenotfound": "Fayiro \"$1\" embuze.",
-	"fileexistserror": "Nnemedwa okuwandika fayiro \"$1\": Yakolebwawo dda",
 	"unexpected": "Waliwo ekivaamu ekitasuubirwa: \"$1\"=\"$2\".",
 	"formerror": "Kiremya: nnemedwa okusindika foomu",
 	"badarticleerror": "Ku lupapula luno ekikolwa ekyo tekisoboka.",
@@ -418,7 +415,6 @@
 	"savearticle": "Kaza olupapula",
 	"preview": "Kulagako",
 	"showpreview": "Sooka ondageko",
-	"showlivepreview": "Labirawo enfaanana ya by'okusiza",
 	"showdiff": "Ndaga bwe bikyuse",
 	"anoneditwarning": "'''Kulabula:''' Owandika toyingidde mu sisitemu. Tujjakuwandika endagiriro eya kompyuta kwosinzidde\nmu lukalala lw'enkuykakyuka ez'omu lupapula luno.",
 	"anonpreviewwarning": "''Okola toyingidde sisitemu. Bw'on'okaza by'okola nga sisitemu ewandika n'endagiriro yo eya IP mu lukalala lw'enkyukakyuka lw'olupapula luno.''",
@@ -568,7 +564,6 @@
 	"searchall": "",
 	"powersearch-legend": "Noonya mu ngeri esunsula",
 	"powersearch-ns": "Noonyeza mu makuŋaaniro gano:",
-	"powersearch-redir": "Laga n'empapula ezikutwalabutwazi ku zinnaazo",
 	"powersearch-togglelabel": "Londa:",
 	"powersearch-toggleall": "Gonna",
 	"preferences": "Enteekateeka yange",
@@ -618,7 +613,7 @@
 	"recentchanges-legend": "Awategekerwa endaga y'ebyakakyusibwa",
 	"recentchanges-summary": "Goberera enkyukakyuka empya ez'oku lupapula luno",
 	"recentchanges-feed-description": "Kozesa omukutu guno okugoberera enkyukakyuka empya ez'oku wiki",
-	"rclistfrom": "Laga enkyukakyuka empya ezikoledwa okuva $1",
+	"rclistfrom": "Laga enkyukakyuka empya ezikoledwa okuva $3 $2",
 	"rcshowhideminor": "$1 nkyukakyuka ntono",
 	"rcshowhidebots": "$1 ebya bboti",
 	"rcshowhideliu": "$1 ebya bamemba abali ku wiki ku saawa eno",

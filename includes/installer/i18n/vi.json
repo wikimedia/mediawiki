@@ -183,7 +183,7 @@
 	"config-install-keys": "Tạo ra các chìa khóa bí mật",
 	"config-install-sysop": "Đang mở tài khoản người dùng bảo quản viên",
 	"config-install-subscribe-fail": "Không thể theo dõi mediawiki-announce: $1",
-	"config-install-subscribe-notpossible": "cURL không được cài đặt và allow_url_fopen không có sẵn.",
+	"config-install-subscribe-notpossible": "cURL không được cài đặt và <code>allow_url_fopen</code> không có sẵn.",
 	"config-install-mainpage": "Đang tạo trang đầu với nội dung mặc định",
 	"config-install-extension-tables": "Đang tạo bảng cho các phần mở rộng được kích hoạt",
 	"config-install-mainpage-failed": "Không thể chèn trang đầu: $1",

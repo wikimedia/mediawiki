@@ -300,7 +300,7 @@
 	"config-insecure-keys": "'''Warnung:''' {{PLURAL:$2|Der Geheimschlüssel|Die Geheimschlüssel}} $1, {{PLURAL:$2|der|die}} (während) im Verloof von der Installationsvoargang generiert {{PLURAL:$2|woard, ist|woare, sind}} net seahr sicher. {{PLURAL:$2|Er sollt|Sie sollte}} manuell geännert sin.",
 	"config-install-sysop": "Administratorkonto weard erstellt",
 	"config-install-subscribe-fail": "Abonniere von „mediawiki-announce“ ist gescheitert: $1",
-	"config-install-subscribe-notpossible": "cURL ist net installiert und allow_url_fopen ist niet verfüchbar.",
+	"config-install-subscribe-notpossible": "cURL ist net installiert und <code>allow_url_fopen</code> ist niet verfüchbar.",
 	"config-install-mainpage": "Erstellung von der Hauptseit mit Standardinhalte (padronisierte Inhalte)",
 	"config-install-extension-tables": "Erstellung von der Tabelle für die aktivierte Erweitrunge",
 	"config-install-mainpage-failed": "Die Hauptseite konnt net erstellt sin: $1",

@@ -11,7 +11,8 @@
 			"Machirkholi",
 			"Malafaya",
 			"Reedy",
-			"გიორგიმელა"
+			"გიორგიმელა",
+			"아라"
 		]
 	},
 	"tog-underline": "რცხუეფიშ ათოღაზუა:",
@@ -335,7 +336,6 @@
 	"search-nonefound": "თქვანი მოგორაფილიშ მუთუნნერ მანგი მოღალუქ ვეძირჷ.",
 	"powersearch-legend": "გოძინელ გორუა",
 	"powersearch-ns": "დოგორ ჯოხოეფიშ ოფირჩას:",
-	"powersearch-redir": "გინოწურაფეფიშ ერკებულიშ ძირაფა",
 	"preferences": "კონფიგურაცია",
 	"mypreferences": "ჩქიმ კონფიგურაციეფი",
 	"youremail": "ელ-ფოშტა:",
@@ -360,7 +360,7 @@
 	"recentchanges-label-bot": "თე რედაქტირაფა ბოტიშ ნაღოლემი რე",
 	"recentchanges-label-unpatrolled": "თე რედაქტირაფა დიო ხოლო ვა რე პატრულირაფირი",
 	"rcnotefrom": "თუდო მოჸუნაფილიე თირაფეფ, ”’$2””-შე (ძირაფილიე ”’$1”’)",
-	"rclistfrom": "ახალ თირაფეფიშ ძირაფა დოჭყაფილ $1-შე",
+	"rclistfrom": "ახალ თირაფეფიშ ძირაფა დოჭყაფილ $3 $2-შე",
 	"rcshowhideminor": "$1 ჭიჭე რედაქტირაფეფ",
 	"rcshowhidebots": "ბოტეფიშ  $1",
 	"rcshowhideliu": "$1 მიშულირ მახვარებუეფ",

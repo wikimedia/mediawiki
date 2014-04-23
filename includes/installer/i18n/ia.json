@@ -303,7 +303,7 @@
 	"config-insecure-keys": "'''Attention:''' {{PLURAL:$2|Un clave|Alcun claves}} secur ($1) generate durante le installation non es completemente secur. Considera cambiar {{PLURAL:$2|lo|los}} manualmente.",
 	"config-install-sysop": "Crea conto de usator pro administrator",
 	"config-install-subscribe-fail": "Impossibile subscriber a mediawiki-announce: $1",
-	"config-install-subscribe-notpossible": "cURL non es installate e allow_url_fopen non es disponibile.",
+	"config-install-subscribe-notpossible": "cURL non es installate e <code>allow_url_fopen</code> non es disponibile.",
 	"config-install-mainpage": "Crea pagina principal con contento predefinite",
 	"config-install-extension-tables": "Creation de tabellas pro le extensiones activate",
 	"config-install-mainpage-failed": "Non poteva inserer le pagina principal: $1",

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Kusavica",
-			"KuboF"
+			"KuboF",
+			"Sudo77(new)"
 		]
 	},
 	"config-desc": "Inštalátor pre MediaWiki",
@@ -28,10 +29,22 @@
 	"config-page-restart": "Reštartovať inštaláciu",
 	"config-page-readme": "Čítaj ma",
 	"config-page-releasenotes": "Poznámky k vydaniu",
+	"config-page-copying": "Licencia",
+	"config-page-upgradedoc": "Aktualizácia",
+	"config-page-existingwiki": "Existujúca wiki",
 	"config-help-restart": "Chcete vymazať všetky uložené dáta, ktoré ste zadali a reštartovať proces inštalácie?",
 	"config-restart": "Áno, reštartovať",
 	"config-env-php": "PHP $1 je nainštalované.",
 	"config-env-php-toolow": "PHP $1 je nainštalované. Avšak, MediaWiki vyžaduje PHP $2 alebo vyššie.",
+	"config-db-type": "Typ databázy:",
+	"config-db-host": "Databázový server:",
+	"config-db-host-oracle": "Databázové TNS:",
+	"config-db-wiki-settings": "Identifikácia tejto wiki",
+	"config-db-name": "Názov databázy:",
+	"config-db-name-oracle": "Databázová schéma:",
+	"config-db-install-account": "Používateľský účet pre inštaláciu",
+	"config-db-username": "Databázové používateľské meno:",
+	"config-db-password": "Databázové heslo:",
 	"config-missing-db-name": "Musíte zadať hodnotu pre \"{{int:config-db-name}}\".",
 	"config-missing-db-host": "Musíte zadať hodnotu pre \"{{int:config-db-host}}\".",
 	"config-missing-db-server-oracle": "Musíte zadať hodnotu pre \"{{int:config-db-host-oracle}}\".",
@@ -49,6 +62,9 @@
 	"config-profile-wiki": "Otvorená wiki",
 	"config-profile-private": "Súkromná wiki",
 	"config-email-settings": "Nastavenia e-mailu",
+	"config-install-step-done": "hotovo",
+	"config-install-step-failed": "zlyhalo",
+	"config-install-extensions": "Inštalujú sa rozšírenia",
 	"config-install-user-alreadyexists": "Používateľ \"$1\" už existuje",
 	"config-install-tables-failed": "<strong>Chyba:</strong> Vytvorenie tabuľky zlyhalo s nasledujúcou chybou: $1",
 	"config-download-localsettings": "Stiahnuť <code>LocalSettings.php</code>",

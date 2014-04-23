@@ -5,7 +5,8 @@
 			"Kaganer",
 			"Malafaya",
 			"Reedy",
-			"Urhixidur"
+			"Urhixidur",
+			"아라"
 		]
 	},
 	"tog-underline": "Sulinia lias:",
@@ -16,7 +17,6 @@
 	"tog-showtoolbar": "Mostra la bara de utiles per edita (JavaScript)",
 	"tog-editondblclick": "Edita pajes a du clicas (JavaScript)",
 	"tog-editsectiononrightclick": "Engrana la edita de sesion par clica a la destra a titulos de sesion (JavaScript)",
-	"tog-rememberpassword": "Memora me sinia per entra a esta computador (for a maximum of $1 {{PLURAL:$1|day|days}})",
 	"tog-watchcreations": "Junta la pajes ce me ia creada a me lista de pajes oservada",
 	"tog-watchdefault": "Junta pajes ce me ia edita a me lista de pajes oservada",
 	"tog-watchmoves": "Junta pajes ce me ia moveda a me lista de pajes oservada",
@@ -379,7 +379,7 @@
 	"recentchanges-summary": "Asi la lista de cambias resente en la vici.",
 	"recentchanges-feed-description": "Seque la cambias plu resente a la vici en esta flue.",
 	"rcnotefrom": "A su es la cambias de '''$2''' (asta '''$1''' es mostrada).",
-	"rclistfrom": "Mostra cambias nova, comensante de $1",
+	"rclistfrom": "Mostra cambias nova, comensante de $3 $2",
 	"rcshowhideminor": "$1 editas minor",
 	"rcshowhidebots": "$1 botes",
 	"rcshowhideliu": "$1 usores ativa aora",
@@ -500,7 +500,6 @@
 	"watchthispage": "Oserva esta paje",
 	"unwatch": "Nonoserva",
 	"watchlist-details": "{{PLURAL:$1|$1 paje|$1 pajes}} osservada, sin pajes de discutes.",
-	"watchlistcontains": "Tu lista oservada teni $1 {{PLURAL:$1|paje|pajes}}.",
 	"wlshowlast": "Mostra la $1 oras e $2 dias presedente $3",
 	"watching": "Oserva...",
 	"unwatching": "No oserva...",

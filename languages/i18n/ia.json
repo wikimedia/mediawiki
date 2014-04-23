@@ -10,7 +10,8 @@
 			"Reedy",
 			"Shirayuki",
 			"Yfdyh000",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Sublinear ligamines:",
@@ -1133,7 +1134,7 @@
 	"recentchanges-legend-newpage": "(vide etiam le [[Special:NewPages|lista de nove paginas]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Ecce le modificationes a partir del <strong>$3 a $4</strong> (usque a <strong>$1</strong> entratas).",
-	"rclistfrom": "Monstrar nove modificationes a partir de $1",
+	"rclistfrom": "Monstrar nove modificationes a partir de $3 $2",
 	"rcshowhideminor": "$1 modificationes minor",
 	"rcshowhideminor-show": "Monstrar",
 	"rcshowhideminor-hide": "Celar",
@@ -1681,10 +1682,6 @@
 	"watchlist-details": "{{PLURAL:$1|$1 pagina|$1 paginas}} es in tu observatorio, sin contar le paginas de discussion.",
 	"wlheader-enotif": "Le notification via e-mail es active.",
 	"wlheader-showupdated": "Le paginas que ha essite modificate post tu ultime visita se monstra in litteras '''grasse'''.",
-	"watchmethod-recent": "cerca paginas sub observation in modificationes recente",
-	"watchmethod-list": "cerca modificationes recente in paginas sub observation",
-	"watchlistcontains": "Tu observatorio contine $1 {{PLURAL:$1|pagina|paginas}}.",
-	"iteminvalidname": "Problema con entrata '$1', nomine invalide...",
 	"wlnote2": "Ecce le cambiamentos in le ultime {{PLURAL:$1|hora|<strong>$1</strong> horas}}, a partir del $2 a $3.",
 	"wlshowlast": "Revelar ultime $1 horas $2 dies $3",
 	"watchlist-options": "Optiones del observatorio",
@@ -2787,8 +2784,6 @@
 	"autosumm-new": "Pagina create con '$1'",
 	"lag-warn-normal": "Le modificationes plus nove que $1 {{PLURAL:$1|secunda|secundas}} possibilemente non se revela in iste lista.",
 	"lag-warn-high": "Le servitor del base de datos es in retardo; modificationes facite durante le ultime $1 {{PLURAL:$1|secunda|secundas}} possibilemente non appare in iste lista.",
-	"watchlistedit-numitems": "Tu observatorio contine {{PLURAL:$1|1 titulo|$1 titulos}}, excludente le paginas de discussion.",
-	"watchlistedit-noitems": "Tu observatorio contine nulle titulos.",
 	"watchlistedit-normal-title": "Modificar observatorio",
 	"watchlistedit-normal-legend": "Remover titulos del observatorio",
 	"watchlistedit-normal-explain": "Le titulos in tu observatorio es monstrate hic infra.\nPro eliminar un titulo, marca le quadrato correspondente, e clicca \"{{int:Watchlistedit-normal-submit}}\".\nTu pote etiam [[Special:EditWatchlist/raw|modificar le lista in forma crude]].",

@@ -8,7 +8,8 @@
 			"Savh",
 			"Shirayuki",
 			"Xuacu",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Sorrayar enllaces:",
@@ -1137,7 +1138,7 @@
 	"recentchanges-legend-newpage": "(ver tamién la  [[Special:NewPages|llista de páxines nueves]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Abaxo tan los cambeos dende <strong>$2</strong> (s'amuesen fasta <strong>$1</strong>).",
-	"rclistfrom": "Amosar los nuevos cambios dende $1",
+	"rclistfrom": "Amosar los nuevos cambios dende $3 $2",
 	"rcshowhideminor": "$1 ediciones menores",
 	"rcshowhideminor-show": "Amosar",
 	"rcshowhideminor-hide": "Anubrir",
@@ -1703,10 +1704,6 @@
 	"watchlist-details": "{{PLURAL:$1|$1 páxina|$1 páxines}} na to llista de vixilancia, ensin cuntar aparte les páxines d'alderique.",
 	"wlheader-enotif": "La notificación per corréu electrónicu ta activada.",
 	"wlheader-showupdated": "Les páxines que camudaron dende que les visitasti anteriormente amuesense en '''negrina'''",
-	"watchmethod-recent": "comprobando páxines vixilaes nos cambios recientes",
-	"watchmethod-list": "comprobando ediciones recientes nes páxines vixilaes",
-	"watchlistcontains": "La to llista de vixilancia tien $1 {{PLURAL:$1|páxina|páxines}}.",
-	"iteminvalidname": "Problema col elementu '$1', nome non válidu...",
 	"wlnote2": "Abaxo tan los cambios {{PLURAL:$1|na cabera hora|nes caberes <strong>$1</strong> hores}}, el día $2 a les $3.",
 	"wlshowlast": "Amosar les últimes $1 hores $2 díes $3",
 	"watchlist-options": "Opciones de la llista de vixilancia",
@@ -2822,8 +2819,6 @@
 	"size-gigabytes": "$1 XB",
 	"lag-warn-normal": "Los cambios más nuevos que $1 {{PLURAL:$1|segundu|segundos}} seique nun s'amuesen nesta llista.",
 	"lag-warn-high": "Pola mor d'un importante retrasu nel sirvidor de la base de datos, los cambios más nuevos que $1 {{PLURAL:$1|segundu|segundos}} seique nun s'amuesen nesta llista.",
-	"watchlistedit-numitems": "La to llista de vixilancia tien {{PLURAL:$1|1 títulu|$1 títulos}}, escluyendo les páxines d'alderique.",
-	"watchlistedit-noitems": "La to llista de vixilancia nun tien títulos.",
 	"watchlistedit-normal-title": "Editar la llista de vixilancia",
 	"watchlistedit-normal-legend": "Eliminar títulos de la llista de vixilancia",
 	"watchlistedit-normal-explain": "Abaxo s'amuesen los títulos de la to llista de vixilancia.\nPa desaniciar un títulu, marca la caxella d'al llau d'él, y calca \"{{int:Watchlistedit-normal-submit}}\".\nTamién pues [[Special:EditWatchlist/raw|editar la llista en bruto]].",

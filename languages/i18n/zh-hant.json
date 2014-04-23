@@ -49,7 +49,8 @@
 			"Xiaomingyan",
 			"Yfdyh000",
 			"Yuyu",
-			"乌拉跨氪"
+			"乌拉跨氪",
+			"아라"
 		]
 	},
 	"tog-underline": "連結加底線：",
@@ -1176,7 +1177,7 @@
 	"recentchanges-legend-newpage": "（見[[Special:NewPages|新頁面列表]]）",
 	"recentchanges-legend-plusminus": "（''±123''）",
 	"rcnotefrom": "下面是自<strong>$2</strong>起之更改（至多顯示<strong>$1</strong>個）。",
-	"rclistfrom": "顯示自 $1 以來的新變更",
+	"rclistfrom": "顯示自 $3 $2 以來的新變更",
 	"rcshowhideminor": "$1小編輯",
 	"rcshowhideminor-show": "顯示",
 	"rcshowhideminor-hide": "隱藏",
@@ -1742,10 +1743,6 @@
 	"watchlist-details": "不包含討論頁，您的監視列表上有$1個頁面。",
 	"wlheader-enotif": "已經啟動電子郵件通知功能。",
 	"wlheader-showupdated": "在{{GENDER:|你|妳|你}}上次檢視後有被修改過的頁面會顯示為'''粗體'''。",
-	"watchmethod-recent": "檢查被監視頁面的最近編輯",
-	"watchmethod-list": "檢查最近編輯的被監視頁面",
-	"watchlistcontains": "您的監視列表包含$1個頁面。",
-	"iteminvalidname": "頁面 '$1' 錯誤，無效命名...",
 	"wlnote2": "以下是新近<strong>$1</strong>小時的更改，截至$2 $3。",
 	"wlshowlast": "顯示最近$1小時；$2天；$3的修改。",
 	"watchlist-options": "監視列表選項",
@@ -2871,8 +2868,6 @@
 	"size-bytes": "$1 位元組",
 	"lag-warn-normal": "過去$1秒內的更改未必會在這個清單中顯示。",
 	"lag-warn-high": "由於資料庫的過度延遲，過去$1秒內的更改未必會在這個清單中顯示。",
-	"watchlistedit-numitems": "您的監視列表中共有$1個標題，當中不包括對話頁面。",
-	"watchlistedit-noitems": "您的監視列表並無標題。",
 	"watchlistedit-normal-title": "編輯監視列表",
 	"watchlistedit-normal-legend": "從監視列表中移除標題",
 	"watchlistedit-normal-explain": "在您的監視列表中的標題在下面顯示。要移除一個標題，在它前面剔一下，接著點擊「{{int:Watchlistedit-normal-submit}}」。您亦可以[[Special:EditWatchlist/raw|編輯原始監視列表]]。",

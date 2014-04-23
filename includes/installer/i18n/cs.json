@@ -308,7 +308,7 @@
 	"config-insecure-keys": "'''Upozornění:''' {{PLURAL:$2|Tajný klíč|Tajné klíče}} ($1) vytvořené v průběhu instalace {{PLURAL:$2|není|nejsou}} zcela {{PLURAL:$2|bezpečný|bezpečné}}. Zvažte {{PLURAL:$2|jeho|jejich}} ruční změnu.",
 	"config-install-sysop": "Zakládá se uživatelský účet správce",
 	"config-install-subscribe-fail": "Nelze se přihlásit k odběru mediawiki-announce: $1",
-	"config-install-subscribe-notpossible": "Není nainstalován cURL a není dostupné allow_url_fopen.",
+	"config-install-subscribe-notpossible": "Není nainstalován cURL a není dostupné <code>allow_url_fopen</code>.",
 	"config-install-mainpage": "Vytváří se počáteční obsah hlavní strany",
 	"config-install-extension-tables": "Vytvářejí se tabulky pro zapnutá rozšíření",
 	"config-install-mainpage-failed": "Nepodařilo se vložit hlavní stranu: $1",

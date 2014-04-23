@@ -5,7 +5,8 @@
 			"Kaganer",
 			"SeriCtam",
 			"Teak",
-			"Urhixidur"
+			"Urhixidur",
+			"아라"
 		]
 	},
 	"tog-underline": "Squóráam linkám:",
@@ -16,7 +17,6 @@
 	"tog-showtoolbar": "Cohuatlöx ticpatlöx toolbar (JavaScript)",
 	"tog-editondblclick": "Ticpatlöx páhinám 2 clickám mii (JavaScript)",
 	"tog-editsectiononrightclick": "Ton ticpatlöx seccion pok clickám mii<br /> seccion titelám iti (JavaScript)",
-	"tog-rememberpassword": "Qualtiinii he quimx canj jan ordinator iti (for a maximum of $1 {{PLURAL:$1|day|days}})",
 	"tog-watchcreations": "Plusöx páhinám he hun he listade cáminot",
 	"tog-watchdefault": "Plusöx páhinám he ticpatlöx he listade cáminot",
 	"tog-watchmoves": "Plusöx páhinám he yacom he listade cáminot",
@@ -232,7 +232,6 @@
 	"filedeleteerror": "Nedelatomöx ciúchan \"$1\".",
 	"directorycreateerror": "Necreatöx directoran \"$1\".",
 	"filenotfound": "Neyahöx ciúchan \"$1\".",
-	"fileexistserror": "Necoccebj caitomde ciúchan \"$1\": ciúchan coccebj",
 	"unexpected": "Value neqance: \"$1\"=\"$2\".",
 	"formerror": "Römj: nesubmit listade fillöx",
 	"badarticleerror": "Jan accion neperformon jan páhina iti.",
@@ -336,7 +335,6 @@
 	"savearticle": "Xuniim páhina",
 	"preview": "Cuáxiit",
 	"showpreview": "Cohuatlöx cuáxiit",
-	"showlivepreview": "Live cuáxiit",
 	"showdiff": "Cohuatlöx quiix",
 	"anoneditwarning": "'''Attencion:''' Me necaápo. Menadressade IP coccebj recordöx históriade jan páhina iti.",
 	"missingsummary": "'''Attencion:''' Me necoccebj providöx abvuatlde ticpatlöx zo. Clicköx 'Xuniim páhina' xuniim meticpatlöx sans abvuatlde ticpatlöx.",
@@ -506,7 +504,7 @@
 	"recentchanges-summary": "Caitom camjöx cmaa quiíx zode Wiki zo jan páhina iti.",
 	"recentchanges-feed-description": "Caitom camjöx cmaa quiíx zode Wiki zo jan fiiyt iti.",
 	"rcnotefrom": "!-cmaa coccebj quiíx zode '''$2''' (plusöxiti '''$1''' visi).",
-	"rclistfrom": "Cohuatlöx hunquiix startom $1 'de",
+	"rclistfrom": "Cohuatlöx hunquiix startom $3 $2 'de",
 	"rcshowhideminor": "$1 editám bajlöxám",
 	"rcshowhidebots": "$1 cibotám",
 	"rcshowhideliu": "$1 caitom caápo",

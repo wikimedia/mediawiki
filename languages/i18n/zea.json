@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"NJ",
-			"Ooswesthoesbes"
+			"Ooswesthoesbes",
+			"아라"
 		]
 	},
 	"tog-underline": "Lienks onderstreepn:",
@@ -15,7 +16,6 @@
 	"tog-showtoolbar": "Bewerkiengswerkbalke weerheven (JavaScript vereist)",
 	"tog-editondblclick": "Dubbelklikkn voe bewerkn (JavaScript vereist)",
 	"tog-editsectiononrightclick": "Bewerken van deêlpahina's meulijk maeken mie een rechtermuusklik op een tussenkopje (JavaScript vereist)",
-	"tog-rememberpassword": "Anmeldhehevens ontouwen (maximaal $1 {{PLURAL:$1|dag|daege}})",
 	"tog-watchcreations": "Pahina's die ak anmik automaotisch volhen",
 	"tog-watchdefault": "Pahina's die ak bewerk automaotisch volhen",
 	"tog-watchmoves": "Pahina's die ak verplekke automaotisch volhen",
@@ -282,7 +282,6 @@
 	"filedeleteerror": "Bestand “$1” kon nie verwiederd worn.",
 	"directorycreateerror": "Map “$1” kon nie anemikt worn.",
 	"filenotfound": "Bestand “$1” wier nie evon'n.",
-	"fileexistserror": "Schrieven ni bestand “$1” onmeuhlijk: bestand besti a",
 	"unexpected": "Onverwachte waerde: \"$1\"=\"$2\".",
 	"formerror": "Fout: formulier kon nie worn verzon'n",
 	"badarticleerror": "Dit kan mee deêze bladzie nie gedaen ore.",
@@ -390,7 +389,6 @@
 	"savearticle": "Bewaer bladzie",
 	"preview": "Naekieken",
 	"showpreview": "Naekieke",
-	"showlivepreview": "Bewerkieng ter controle bekieken",
 	"showdiff": "Bekiek veranderiengen",
 	"anoneditwarning": "'''Waerschuwienge:''' Je bin nie angemolde. Je IP-adres komt in de bewerkiengsgeschiedenisse van deêze bladzie te staen.",
 	"missingsummary": "'''Herinnerieng:''' je ei hin saemenvattieng opeheven voe je bewerkieng. A je nog een keêr op ''Pagina opslaen'' klik wor de bewerkieng zonder saemenvattieng opeslogen.",
@@ -679,7 +677,7 @@
 	"recentchanges-label-bot": "Deêze bewarkienge is uutgevoerd deur 'n bot",
 	"recentchanges-label-unpatrolled": "Deêze bewarkienge is nog nie gecontroleerd",
 	"rcnotefrom": "Wiezigiengen sins '''$2''' (mie een maximum van '''$1''' wiezigiengen).",
-	"rclistfrom": "Bekiek de wiezigingen sins $1",
+	"rclistfrom": "Bekiek de wiezigingen sins $3 $2",
 	"rcshowhideminor": "$1 kleine bewerkiengen",
 	"rcshowhidebots": "bots $1",
 	"rcshowhideliu": "$1 angemelde gebrukers",
@@ -796,7 +794,6 @@
 	"watchthispage": "Bekiek deêze bladzie",
 	"unwatch": "Nie meêr volge",
 	"watchlist-details": "Er {{PLURAL:$1|sti eên pagina|staen $1 pagina's}} op je volglieste, exclusief overlegpagina's.",
-	"watchlistcontains": "Uw volglieste bevat $1 {{PLURAL:$1|bladzie|bladzies}}.",
 	"wlshowlast": "Laetste $1 uur, $2 daegen bekieken ($3)",
 	"watchlist-options": "Opties vò volglieste",
 	"actioncomplete": "Actie uutgevoerd",

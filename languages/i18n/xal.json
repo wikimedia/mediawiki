@@ -3,7 +3,8 @@
 		"authors": [
 			"Huuchin",
 			"ОйЛ",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Заалһиг татас татх:",
@@ -16,7 +17,6 @@
 	"tog-showtoolbar": "Ора зер-зев үзлх (JavaScript кергтә)",
 	"tog-editondblclick": "Давхр индстлһар чиклх (JavaScript кергтә)",
 	"tog-editsectiononrightclick": "Һарчига барун индстлһар хүвиг чиклх (JavaScript кергтә)",
-	"tog-rememberpassword": "Намаг эн тоолдврт тодлх ($1 {{PLURAL:$1|1=өдрт|өдрмүдт}} икәр биш)",
 	"tog-watchcreations": "Би эврәннь немгдсн халхс шинҗллһнә сеткүлд немх",
 	"tog-watchdefault": "Би эврәннь чиклсн халхс шинҗллһнә сеткүлд немх",
 	"tog-watchmoves": "Би эврәннь көндсн халхс шинҗллһнә сеткүлд немх",
@@ -438,7 +438,6 @@
 	"searchall": "цуг",
 	"powersearch-legend": "Күчн хәәлһн",
 	"powersearch-ns": "Эн нернә у дотран хәәх:",
-	"powersearch-redir": "Авч одлһуд үзүлх",
 	"powersearch-togglenone": "Уга",
 	"preferences": "Дурллһн",
 	"mypreferences": "Көгүд",
@@ -539,7 +538,7 @@
 	"recentchanges-label-minor": "Эн баһ чинртә сольлһн",
 	"recentchanges-label-bot": "Эн сольлһн көдлвр (робот) кехв",
 	"recentchanges-legend-newpage": "$1 — шин халх",
-	"rclistfrom": "Тер цагас авн сольлһн үзүлх: $1.",
+	"rclistfrom": "Тер цагас авн сольлһн үзүлх: $3 $2.",
 	"rcshowhideminor": "баһ чикллһиг $1",
 	"rcshowhidebots": "көдлврүдиг $1",
 	"rcshowhideliu": "демнчнриг $1",
@@ -872,10 +871,6 @@
 	"table_pager_empty": "Ашнь уга",
 	"autosumm-blank": "Халх цеврүлв",
 	"autosumm-new": "Шин халх: «$1»",
-	"livepreview-loading": "Белднә...",
-	"livepreview-ready": "Белднә... Болһсн!",
-	"watchlistedit-numitems": "Тана шинҗллһнә сеткүл {{PLURAL:$1|1=1 гешүтә|$1 гешүдтә}}, меткән халхста.",
-	"watchlistedit-noitems": "Тана шинҗллһнә сеткүл хоосн бәәнә.",
 	"watchlistedit-normal-title": "Шинҗллһнә сеткүлиг чиклх",
 	"watchlisttools-view": "Бүртклин халхна сольлһн",
 	"watchlisttools-edit": "Сеткүлиг хәләх аль чиклх",

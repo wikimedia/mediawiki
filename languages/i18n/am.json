@@ -7,7 +7,8 @@
 			"Reedy",
 			"Romaine",
 			"Solomon",
-			"Teferra"
+			"Teferra",
+			"아라"
 		]
 	},
 	"tog-underline": "በመያያዣ ስር አስምር",
@@ -855,7 +856,7 @@
 	"recentchanges-label-unpatrolled": "ይህ እርማት ገና አልተገመገመም",
 	"recentchanges-legend-newpage": "$1 - አዲስ ገጽ",
 	"rcnotefrom": "ከ'''$2''' ጀምሮ የተቀየሩት ገጾች (እስከ '''$1''' ድረስ) ክዚህ በታች ይታያሉ።",
-	"rclistfrom": "(ከ $1 ጀምሮ አዲስ ለውጦቹን ለማየት)",
+	"rclistfrom": "(ከ $3 $2 ጀምሮ አዲስ ለውጦቹን ለማየት)",
 	"rcshowhideminor": "ጥቃቅን ለውጦች $1",
 	"rcshowhidebots": "bots $1",
 	"rcshowhideliu": "ያባላት ለውጦች $1",
@@ -1219,9 +1220,6 @@
 	"watchlist-details": "አሁን {{PLURAL:$1|$1 ገፅ|$1 ገፆች}} በምትከታተላቸው ገፆች ላይ አሉ (የውይይት ገፅ ሳይጨመር)።",
 	"wlheader-enotif": "የ-ኢሜል ማስታወቂያ እንዲሠራ ተደርጓል።",
 	"wlheader-showupdated": "መጨረሻ ከጎበኟቸው ጀምሮ የተቀየሩት ገጾች በ'''ጉልህ ፊደላት''' ይታያሉ",
-	"watchmethod-recent": "የቅርብ ለውጦችን ለሚከታተሉት ገጾች በመፈለግ",
-	"watchmethod-list": "የሚከታተሉትን ገጾች ለቅርብ ለውጦች በመፈለግ",
-	"watchlistcontains": "አሁን በሙሉ $1 ገጾች እየተከታተሉ ነው።",
 	"wlshowlast": "ያለፉት $1 ሰዓት፤ $2 ቀን፤ $3 ይታዩ።",
 	"watchlist-options": "የዝርዝሩ ምርጫዎች",
 	"watching": "እየተጨመረ ነው...",
@@ -1912,8 +1910,6 @@
 	"autosumm-new": "አዲስ ገጽ ፈጠረ፦ «$1»",
 	"lag-warn-normal": "ከ$1 ሴኮንድ በፊት ጀምሮ የቀረቡ ለውጦች ምናልባት በዚህ ዝርዝር አይታዩም።",
 	"lag-warn-high": "የመረጃ-ቤት ሰርቨር በጣም ስለሚዘገይ፣ ከ$1 ሴኮንድ በፊት ጀምሮ የቀረቡ ለውጦች ምናልባት በዚህ ዝርዝር አይታዩም።",
-	"watchlistedit-numitems": "አሁን በሙሉ {{PLURAL:$1|$1 ገጽ|$1 ገጾች}} እየተከታተሉ ነው።",
-	"watchlistedit-noitems": "ዝርዝርዎ ባዶ ነው።",
 	"watchlistedit-normal-title": "ዝርዝሩን ለማስተካከል",
 	"watchlistedit-normal-legend": "አርእስቶችን ከተካከሉት ገጾች ዝርዝር ለማስወግድ...",
 	"watchlistedit-normal-explain": "ከዚህ ታች፣ የሚከታተሉት ገጾች ሁሉ በሙሉ ተዘርዝረው ይገኛሉ።\n\nአንዳንድ ገጽ ከዚህ ዝርዝር ለማስወግድ ያሠቡ እንደሆነ፣ በሳጥኑ ውስጥ ምልክት አድርገው በስተግርጌ በሚገኘው «ማስወግጃ» የሚለውን ተጭነው ከዚህ ዝርዝር ሊያስወግዷቸው ይቻላል። (ይህን በማድረግዎ ከገጹ ጋር የሚገናኘው ውይይት ገጽ ድግሞ ከዝርዝርዎ ይጠፋል።)\n\nከዚህ ዘዴ ሌላ [[Special:EditWatchlist/raw|ጥሬውን ኮድ መቅዳት ወይም ማዘጋጀት]] ይቻላል።",

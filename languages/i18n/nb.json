@@ -39,7 +39,8 @@
 			"Stigmj",
 			"Teak",
 			"Wouterkoch",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Strek under lenker:",
@@ -1169,7 +1170,7 @@
 	"recentchanges-legend-newpage": "(se også [[Special:NewPages|liste av nye sider]])",
 	"recentchanges-legend-plusminus": "«(±123)»",
 	"rcnotefrom": "Nedenfor er endringene gjort siden <strong>$2</strong> (frem til <strong>$1</strong> vises).",
-	"rclistfrom": "Vis nye endringer med start fra $1",
+	"rclistfrom": "Vis nye endringer med start fra $3 $2",
 	"rcshowhideminor": "$1 mindre endringer",
 	"rcshowhideminor-show": "Vis",
 	"rcshowhideminor-hide": "Skjul",
@@ -1734,10 +1735,6 @@
 	"watchlist-details": "{{PLURAL:$1|Én side|$1 sider}} på din overvåkningsliste, teller ikke diskusjonssider.",
 	"wlheader-enotif": "E-postvarsling er slått på.",
 	"wlheader-showupdated": "Sider som har blitt forandret siden du sist besøkte dem vises i '''fet tekst'''",
-	"watchmethod-recent": "sjekker siste endringer for sider i overvåkningslisten",
-	"watchmethod-list": "sjekker siste endringer for sider i overvåkningslisten",
-	"watchlistcontains": "Overvåkningslisten inneholder $1 {{PLURAL:$1|side|sider}}.",
-	"iteminvalidname": "Problem med «$1», ugyldig navn&nbsp;…",
 	"wlnote2": "Nedenfor er endringene {{PLURAL:$1|den siste timen|de siste <strong>$1</strong> timene}}, per $2 $3.",
 	"wlshowlast": "Vis siste $1 timer $2 dager $3",
 	"watchlist-options": "Alternativ for overvåkningslisten",
@@ -2839,8 +2836,6 @@
 	"autosumm-new": "Ny side: $1",
 	"lag-warn-normal": "Endringer nyere enn $1 {{PLURAL:$1|sekund|sekunder}} vises muligens ikke i denne listen.",
 	"lag-warn-high": "På grunn av stor databaseforsinkelse, vil ikke endringer som er nyere enn $1 {{PLURAL:$1|sekund|sekunder}} vises i denne listen.",
-	"watchlistedit-numitems": "Overvåkningslisten din inneholder {{PLURAL:$1|én tittel|$1 titler}}, ikke inkludert diskusjonssider.",
-	"watchlistedit-noitems": "Overvåkningslisten din inneholder ingen titler.",
 	"watchlistedit-normal-title": "Rediger overvåkningsliste",
 	"watchlistedit-normal-legend": "Fjern titler fra overvåkninglisten",
 	"watchlistedit-normal-explain": "Titler på overvåkningslisten din vises nedenfor.\nFor å fjerne en tittel, merk av boksen ved siden av den og klikk på «{{int:Watchlistedit-normal-submit}}».\nDu kan også [[Special:EditWatchlist/raw|redigere den rå overvåkningslisten]].",

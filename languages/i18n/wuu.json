@@ -9,7 +9,8 @@
 			"Xiaomingyan",
 			"Yfdyh000",
 			"乌拉跨氪",
-			"十弌"
+			"十弌",
+			"아라"
 		]
 	},
 	"tog-underline": "鏈接下橫線：",
@@ -868,7 +869,7 @@
 	"recentchanges-feed-description": "跟踪此订阅垃拉 wiki 高头个最近更改。",
 	"recentchanges-label-newpage": "建新页来编",
 	"recentchanges-label-minor": "箇是小编写",
-	"rclistfrom": "显示 $1 以来个新改动",
+	"rclistfrom": "显示 $3 $2 以来个新改动",
 	"rcshowhideminor": "$1小编写",
 	"rcshowhidebots": "$1机器人",
 	"rcshowhideliu": "$1登录个用户",
@@ -1073,7 +1074,6 @@
 	"unwatchthispage": "停止监控",
 	"notanarticle": "弗是內容頁",
 	"watchlist-details": "弗包括讨论页，有 $1 页徕你侬关注表里向。",
-	"watchlistcontains": "倷个监控列表包括{{PLURAL:$1|1|$1}}只页面。",
 	"wlshowlast": "显示上 $1 个钟头 $2 日 $3",
 	"watchlist-options": "监控列表选项",
 	"watching": "监控……",

@@ -304,7 +304,7 @@
 	"config-insecure-keys": "'''Предупредување:''' {{PLURAL:$2|Безбедносниот клуч $1 создаден во текот на воспоставката не е сосем безбеден|Безбедносните клучеви $1 создадени во текот на воспоставката не се сосем безбедни}}. Ви препорачуваме да {{PLURAL:$2|го|ги}} смените рачно.",
 	"config-install-sysop": "Создавање на администраторска корисничка сметка",
 	"config-install-subscribe-fail": "Не можам да ве претплатам на известувањето mediawiki-announce: $1",
-	"config-install-subscribe-notpossible": "cURL не е воспоставен, а allow_url_fopen не е достапно.",
+	"config-install-subscribe-notpossible": "cURL не е воспоставен, а <code>allow_url_fopen</code> не е достапно.",
 	"config-install-mainpage": "Создавам главна страница со стандардна содржина",
 	"config-install-extension-tables": "Изработка на табели за овозможени додатоци",
 	"config-install-mainpage-failed": "Не можев да вметнам главна страница: $1",

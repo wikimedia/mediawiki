@@ -244,7 +244,7 @@
 	"config-install-keys": "Tajne kluče so tworja",
 	"config-install-sysop": "Tworjenje administratoroweho wužiwarskeho konta",
 	"config-install-subscribe-fail": "Abonowanje \"mediawiki-announce\" njemóžno: $1",
-	"config-install-subscribe-notpossible": "cURL njeje instalowany a allow_url_fopen k dispoziciji njesteji.",
+	"config-install-subscribe-notpossible": "cURL njeje instalowany a <code>allow_url_fopen</code> k dispoziciji njesteji.",
 	"config-install-mainpage": "Hłowna strona so ze standardnym wobsahom wutworja",
 	"config-install-extension-tables": "Tabele za zmóžnjene rozšěrjenja so tworja",
 	"config-install-mainpage-failed": "Powěsć njeda so zasunyć: $1",

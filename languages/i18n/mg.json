@@ -6,7 +6,8 @@
 			"Jagwar",
 			"The Evil IP address",
 			"Urhixidur",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Hanipika ny rohy:",
@@ -1113,7 +1114,7 @@
 	"recentchanges-legend-heading": "'''Maribolana:'''",
 	"recentchanges-legend-newpage": "(jereo koa ny [[Special:NewPage|lisitry ny pejy vaovao]])",
 	"rcnotefrom": "Ity eto ambany ity ny lisitry ny vao niova manomboka ny <b>$2</b> (hatramin'ny <b>$1</b> no miseho).",
-	"rclistfrom": "Asehoy izay vao niova manomboka ny $1",
+	"rclistfrom": "Asehoy izay vao niova manomboka ny $3 $2",
 	"rcshowhideminor": "$1 ny fanovàna kely",
 	"rcshowhideminor-show": "Haneho",
 	"rcshowhideminor-hide": "Hanafina",
@@ -1630,10 +1631,6 @@
 	"watchlist-details": "Pejy $1{{PLURAL:}} ao amin'ny lisitry ny pejy arahanao, tsy isaina ny pejin-dresaka.",
 	"wlheader-enotif": "Alefa ny fampilazana amin'ny mailaka.",
 	"wlheader-showupdated": "Aseho '''sorabaventy''' ny pejy niova taorian'ny famangianao azy farany.",
-	"watchmethod-recent": "fanamarinana ny fiovana farany hahitana pejy arahana",
-	"watchmethod-list": "fanamarinana ny pejy arahana hahitana fiovana vao haingana",
-	"watchlistcontains": "Ao amin'ny pejy arahanao dia ahitana pejy $1{{PLURAL:}}.",
-	"iteminvalidname": "Olana amin'ny zavatra « $1 » : tsy ara-dalàna ny anarana...",
 	"wlshowlast": "Haneho ny $1 ora farany, ny $2 andro farany na $3",
 	"watchlist-options": "Safidy ny lisitry ny pejy arahana",
 	"watching": "Fanarahana...",
@@ -2553,8 +2550,6 @@
 	"autosumm-new": "Pejy voaforona amin'ny « $1 »",
 	"lag-warn-normal": "Ny fanovana vaovao nohon'ny $1 segondra {{PLURAL:}} dia tsy hiseho eo amin'ity lisitra ity.",
 	"lag-warn-high": "Noho ny hataraiky ny lohamilin'ny banky angona, tsy hiseho eto ny fanovana natao tao anatin'ny fotoana latsaky ny $1 segondra{{PLURAL:}}.",
-	"watchlistedit-numitems": "Ny lisitry ny pejy arahanao maso dia misy {{PLURAL:$1|lohateny iray|lohateny $1}}, raha tsy kaontiana ny pejin-dresaka.",
-	"watchlistedit-noitems": "Tsy misy lohateny ny lisitrao.",
 	"watchlistedit-normal-title": "Hanova ny lisitra ny pejy arahako maso",
 	"watchlistedit-normal-legend": "Hanala lohateny ao amin'ny lisitra",
 	"watchlistedit-normal-explain": "Aseho eo ambany ny lohateny ao amin'ny lisitry ny pejy arahanao.\nTsindrio ny boaty eo akaikiny ary tsindrio  « {{int:Watchlistedit-normal-submit}} ».\nAzonao atao ihany koa ny [[Special:EditWatchlist/raw|manova ilay lisitra amin'ny akorany]].",

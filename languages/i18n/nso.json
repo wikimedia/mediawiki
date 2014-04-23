@@ -3,7 +3,8 @@
 		"authors": [
 			"Kaganer",
 			"Mohau",
-			"Urhixidur"
+			"Urhixidur",
+			"아라"
 		]
 	},
 	"tog-underline": "Tsenya mothalafase go dihlomaganyo:",
@@ -11,7 +12,6 @@
 	"tog-showtoolbar": "Bontšha ''toolbar'' yago fetola (JavaScript)",
 	"tog-editondblclick": "Fetola matlakala ka go thathapa gabedi (JavaScript)",
 	"tog-editsectiononrightclick": "Dumella go fetola sekgao ka thathapa ka lagoja thaetlele ya sekgao (JavaScript)",
-	"tog-rememberpassword": "Gopola sedi yaka ya go tsena khomphutha ye (bogolo bja  $1 bja {{PLURAL:$1| ya letšatši le|ya matšatši}})",
 	"tog-watchcreations": "Tsenya matlaka a mafsa ao ke a ngwalago go lenano laka la ditlhapetšo",
 	"tog-watchdefault": "Tsenya matlaka ao ke a fetolago go lenano laka la ditlhapetšo",
 	"tog-watchmoves": "Tsenya matlaka ao ke a hudušago go lenano laka la ditlhapetšo",
@@ -235,7 +235,6 @@
 	"filerenameerror": "Gara kgona go fetola leina la faele \"$1\" goba \"$2\".",
 	"filedeleteerror": "Gara kgona go phumula faele \"$1\".",
 	"filenotfound": "Gara kgona go humana faele \"$1\".",
-	"fileexistserror": "Gara kgona go ngawala faele \"$1\":faele e gona",
 	"badtitle": "Taetlile ya bošula",
 	"badtitletext": "Letlakala le ga la dumelelwa, ga le na ditlhaka, goba hlomaganyo ya bogare-dipolelo goba bogare-wiki taetlele ga ya loka. Ekaba mohlomong taetlele enale hlaka goba dihlaka tšago sedumelelwe.",
 	"viewsource": "Lebelela mothopo",
@@ -432,7 +431,6 @@
 	"search-nonefound": "Gago dipheto tšago sepelelana le \"query\".",
 	"powersearch-legend": "Fetleka ya tšwetše",
 	"powersearch-ns": "Fetleka go di \"namespace\"",
-	"powersearch-redir": "Lenano la di \"redirect\"",
 	"preferences": "Dikgatlhegelo",
 	"mypreferences": "Dikgatlhegelo tša ka",
 	"prefs-edits": "Palo ya diphetogo:",
@@ -484,7 +482,7 @@
 	"recentchanges-label-bot": "Phetogo ye e dirilwe ke \"bot\"",
 	"recentchanges-label-unpatrolled": "Phetogo ye ga ese e \"patrollwe\"",
 	"rcnotefrom": "Tlase ke diphetogo go tloga ka '''$2''' (go  fihla ka '''$1''').",
-	"rclistfrom": "Laêtša dipheto tše mfsa go thoma go $1",
+	"rclistfrom": "Laêtša dipheto tše mfsa go thoma go $3 $2",
 	"rcshowhideminor": "$1 ya diphetogo tše nnyenyane",
 	"rcshowhidebots": "$1 bots",
 	"rcshowhideliu": "$1 bašumiši bao batsenego",
@@ -885,8 +883,6 @@
 	"table_pager_last": "Letlakala la mafelelo",
 	"table_pager_empty": "Ga gona sepheto",
 	"autosumm-new": "Tlhodile letlakala ka '$1'",
-	"watchlistedit-numitems": "Lenano la gago la ditlhapetšo le na le  {{PLURAL:$1|thaetlele ye tee|di thaetlele tše $1}}, re sa bale matlakala a dipolelo.",
-	"watchlistedit-noitems": "Lenano la gago la ditlhapetšo ga lena dithaetlele.",
 	"watchlistedit-normal-title": "Felotal lenano la ditlhapetšo",
 	"watchlistedit-normal-legend": "Tloša dithaetlele go lenano la ditlhapetšo",
 	"watchlistedit-normal-submit": "Tloša thaetlele",

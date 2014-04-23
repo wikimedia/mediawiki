@@ -180,7 +180,7 @@
 	"config-install-interwiki-exists": "''' Uyarı:'' ' interwiki Tablo girdileri zaten görünüyor.\nVarsayılan liste atlanıyor.",
 	"config-install-stats": "İstatistik başlatılıyor",
 	"config-install-keys": "Gizli anahtar oluşturma",
-	"config-install-subscribe-notpossible": "cURL yüklü değil ve allow_url_fopen kullanılamaz.",
+	"config-install-subscribe-notpossible": "cURL yüklü değil ve <code>allow_url_fopen</code> kullanılamaz.",
 	"config-install-mainpage": "Varsayılan içerik ile ana sayfa oluşturma",
 	"config-install-extension-tables": "Uzantılar için etkinleştirilmiş tablolar oluşturma",
 	"config-install-mainpage-failed": "Ana sayfa eklenemedi:$1",

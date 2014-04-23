@@ -14,7 +14,8 @@
 			"Urhixidur",
 			"VT98Fan",
 			"Zinneke",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Linken ënnersträichen:",
@@ -1132,7 +1133,7 @@
 	"recentchanges-legend-newpage": "(kuckt och [[Special:NewPages|Lëscht vun den neie Säiten]])",
 	"recentchanges-legend-plusminus": "''(±123)''",
 	"rcnotefrom": "Ugewise ginn d'Ännerunge vum <strong>$2</strong> un (maximal <strong>$1</strong> Ännerunge gi gewisen).",
-	"rclistfrom": "Nei Ännerunge vu(n) $1 u weisen",
+	"rclistfrom": "Nei Ännerunge vu(n) $3 $2 u weisen",
 	"rcshowhideminor": "Kleng Ännerunge $1",
 	"rcshowhideminor-show": "Weisen",
 	"rcshowhideminor-hide": "Verstoppen",
@@ -1684,10 +1685,6 @@
 	"watchlist-details": "{{PLURAL:$1|1 Säit|$1 Säiten}} sinn op ärer Iwwerwaachungsklëscht, d'Diskussiounssäiten net matgezielt.",
 	"wlheader-enotif": "E-Mail-Notifikatioun ass ageschalt.",
 	"wlheader-showupdated": "Säiten déi zanter Ärer leschter Visite geännert goufen, si '''fett''' geschriwwen",
-	"watchmethod-recent": "Rezent Ännerunge ginn op iwwerwaacht Säiten iwwerpréift",
-	"watchmethod-list": "Iwwerwaachte Säite ginn op rezent Ännerungen iwwerpréift",
-	"watchlistcontains": "Op ärer Iwwerwaachungslëscht $1 {{PLURAL:$1|steet $1 Säit|stinn $1 Säiten}}.",
-	"iteminvalidname": "Problem mam Element '$1', ongëltegen Numm ...",
 	"wlnote2": "Hei sinn déi lescht Ännerunge aus {{PLURAL:$1|der leschter Stonn|de leschte(n) <strong>$1</strong> Stonnen}}, Stand: $2 ëm $3 Auer.“",
 	"wlshowlast": "D'Ännerunge vun de leschte(n) $1 Stonnen, $2 Deeg oder $3 (an de leschten 30 Deeg) weisen.",
 	"watchlist-options": "Optioune vun der Iwwerwaachungslëscht",
@@ -2776,8 +2773,6 @@
 	"autosumm-new": "Säit ugeluecht mat: '$1'",
 	"lag-warn-normal": "Ännerunge vun {{PLURAL:$1|der leschter Sekonn|de leschte(n) $1 Sekonnen}} kënnen an dëser Lëscht net gewise ginn.",
 	"lag-warn-high": "Duerch eng héich Serverbelaaschtung kënne Verännerungen déi viru manner wéi $1 {{PLURAL:$1|Sekonn|Sekonne}} gemaach goufen, net an dëser Lëscht ugewise ginn.",
-	"watchlistedit-numitems": "Op Ärer Iwwerwaachungslëscht {{PLURAL:$1|steet 1 Säit|stinn $1 Säiten}}, ouni d'Diskussiounssäiten.",
-	"watchlistedit-noitems": "Är Iwwerwaachungslëscht ass eidel.",
 	"watchlistedit-normal-title": "Iwwerwaachungslëscht änneren",
 	"watchlistedit-normal-legend": "Säite vun der Iwwerwaachungslëscht erofhuelen",
 	"watchlistedit-normal-explain": "D'Säite vun Ärer Iwwerwaachungslëscht ginn drënner gewisen.\nFir eng Säit erofzehuelen, klickt op d'Haischen niewendrun a klickt duerno op \"{{int:Watchlistedit-normal-submit}}\".\nDir kënnt och [[Special:EditWatchlist/raw|déi net formatéiert Iwwerwaachungslëscht änneren]].",

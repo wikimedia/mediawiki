@@ -57,7 +57,8 @@
 			"Uğur Başak",
 			"Vito Genovese",
 			"Vugar 1981",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -1179,7 +1180,7 @@
 	"recentchanges-legend-heading": "'''Gösterge:'''",
 	"recentchanges-legend-newpage": "(ayrıca bakınız [[Special:NewPages|yeni sayfalar listesi]])",
 	"rcnotefrom": "'''$2''' tarihinden itibaren yapılan değişiklikler aşağıdadır (en fazla <b>$1</b> tanesi gösterilmektedir).",
-	"rclistfrom": "$1 tarihinden itibaren yeni değişiklikleri göster",
+	"rclistfrom": "$3 $2 tarihinden itibaren yeni değişiklikleri göster",
 	"rcshowhideminor": "Küçük değişiklikleri $1",
 	"rcshowhideminor-show": "Göster",
 	"rcshowhideminor-hide": "Gizle",
@@ -1724,10 +1725,6 @@
 	"watchlist-details": "Tartışma sayfaları hariç {{PLURAL:$1|$1 sayfa|$1 sayfa}} izleme listenizdedir.",
 	"wlheader-enotif": "E-posta bildirimi etkin.",
 	"wlheader-showupdated": "Sayfaları son ziyaretinizden beri değişen sayfalar '''kalın''' gösterilmiştir.",
-	"watchmethod-recent": "izlediğiniz sayfalarda yapılan son değişiklikler kontrol ediliyor",
-	"watchmethod-list": "izlediğiniz sayfalarda yapılan son değişiklikler kontrol ediliyor",
-	"watchlistcontains": "İzleme listenizde $1 tane {{PLURAL:$1|sayfa|sayfa}} var.",
-	"iteminvalidname": "'$1' öğesi ile sorun, geçersiz isim...",
 	"wlnote2": "Aşağıdakiler, son {{PLURAL:$1|bir saat|<strong>$1</strong> saat}} içindeki değişikliklerdir, $2, $3 tarihi itibariyle.",
 	"wlshowlast": "Son $1 saati $2 günü göster $3",
 	"watchlist-options": "İzleme listesi seçenekleri",
@@ -2843,8 +2840,6 @@
 	"autosumm-new": "Yeni sayfa: \"$1\"",
 	"lag-warn-normal": "$1 {{PLURAL:$1|saniyeden|saniyeden}} yeni değişiklikler bu listede görünmeyebilir.",
 	"lag-warn-high": "Veritabanı sunucusundaki aşırı gecikmeden dolayı, $1 {{PLURAL:$1|saniyeden|saniyeden}} yeni değişiklikler bu listede görünmeyebilir.",
-	"watchlistedit-numitems": "İzleme sayfanızda {{PLURAL:$1|1 başlık|$1 başlık}} var, tartışma sayfaları hariç.",
-	"watchlistedit-noitems": "İzleme listeniz hiçbir başlık içermemektedir.",
 	"watchlistedit-normal-title": "İzleme listesini düzenle",
 	"watchlistedit-normal-legend": "İzleme listesinden başlıkları kaldır",
 	"watchlistedit-normal-explain": "İzleme listenizdeki başlıklar aşağıda gösterilmiştir.\nBir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin ve \"{{int:Watchlistedit-normal-submit}}\" düğmesine tıklayın.\n[[Special:EditWatchlist/raw|Satır listesini]] de düzenleyebilirsiniz.",

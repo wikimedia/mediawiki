@@ -5,7 +5,8 @@
 			"Cuman",
 			"Emperyan",
 			"Reedy",
-			"Meisam"
+			"Meisam",
+			"아라"
 		]
 	},
 	"tog-underline": "Baalantıların altını çiz",
@@ -16,7 +17,6 @@
 	"tog-showtoolbar": "Diişmäk yapar känä yardımcı tuşları göster. (JavaScript)",
 	"tog-editondblclick": "Sayfayı çift tuşlayarak diiştirmää başla (JavaScript)",
 	"tog-editsectiononrightclick": "Bölüm başlıına saa tuşla basarak bölümü düzmää izin ver.(JavaScript)",
-	"tog-rememberpassword": "Parolu hatırla (en fazla $1 {{PLURAL:$1|gün|gün}})",
 	"tog-watchcreations": "Yarattıım sayfaları bakmaa listama ekle",
 	"tog-watchdefault": "Diişmäk yapılan sayfayı bakmaa listasına ekle",
 	"tog-watchmoves": "Bakmaa listama ekle o sayfaları angılarını taşıdım",
@@ -314,7 +314,6 @@
 	"savearticle": "Sayfayı registrat et",
 	"preview": "Ön siir",
 	"showpreview": "Ön siiri göster",
-	"showlivepreview": "Cannı ön siir",
 	"showdiff": "Diişilmäkleri göster",
 	"anoneditwarning": "Sessiya açmadınız deyni yazının diişmäk istoriyasına diil nik, IP adresiniz registrat olunacêk.",
 	"summary-preview": "Ön siir özeti:",
@@ -401,7 +400,6 @@
 	"search-interwiki-more": "(taa çok)",
 	"powersearch-legend": "Gelişmiş arama",
 	"powersearch-ns": "Ad erlerindä aara:",
-	"powersearch-redir": "Yönnendirmäkler listası",
 	"preferences": "Seçimner",
 	"mypreferences": "Seçimnerim",
 	"skin-preview": "Ön siir",
@@ -427,7 +425,7 @@
 	"recentchanges-legend": "Bitki diişlär opţiyaları",
 	"recentchanges-feed-description": "Bu lentalan en bitki diişmäkleri vikiyä yaz.",
 	"rcnotefrom": "'''$2''' datasınnan büüne kadar yapılan diişmäkler aşaada (en çok '''$1''' yazı gösteriler).",
-	"rclistfrom": "Göster diişmäkleri ani $1 datasından beeri yapıldı",
+	"rclistfrom": "Göster diişmäkleri ani $3 $2 datasından beeri yapıldı",
 	"rcshowhideminor": "küçük diişilmäkläri $1",
 	"rcshowhidebots": "botları $1",
 	"rcshowhideliu": "registrat olmuş kullanıcıları $1",

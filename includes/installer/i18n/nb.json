@@ -307,7 +307,7 @@
 	"config-insecure-keys": "<strong>Advarsel:</strong> {{PLURAL:$2|En sikker nøkkel|Sikre nøkler}} ($1) generert under installeringen er ikke helt {{PLURAL:$2|trygg|trygge}}. Vurder å endre {{PLURAL:$2|den|dem}} manuelt.",
 	"config-install-sysop": "Oppretter brukerkonto for administrator",
 	"config-install-subscribe-fail": "Ikke mulig å abonnere på mediawiki-announce: $1",
-	"config-install-subscribe-notpossible": "cURL er ikke installert og allow_url_fopen er ikke tilgjengelig.",
+	"config-install-subscribe-notpossible": "cURL er ikke installert og <code>allow_url_fopen</code> er ikke tilgjengelig.",
 	"config-install-mainpage": "Oppretter hovedside med standard innhold",
 	"config-install-extension-tables": "Oppretter tabeller for aktiviserte utvidelser",
 	"config-install-mainpage-failed": "Kunne ikke sette inn hovedside: $1",

@@ -6,7 +6,8 @@
 			"Felis",
 			"Jun Misugi",
 			"Kaganer",
-			"Midnight Gambler"
+			"Midnight Gambler",
+			"아라"
 		]
 	},
 	"tog-underline": "Sotturìnia li cullegamenti:",
@@ -683,7 +684,7 @@
 	"recentchanges-label-bot": "Chistha è una mudìfigga pa unu bot",
 	"recentchanges-label-unpatrolled": "Mudìfigga nò ancora contrulladda",
 	"rcnotefrom": "Inogghi so erencaddi li mudìfigghi arriggaddi a parthì da '''$2''' (finz'a '''$1''').",
-	"rclistfrom": "Musthra li mudìfigghi arriggaddi à partì da $1",
+	"rclistfrom": "Musthra li mudìfigghi arriggaddi à partì da $3 $2",
 	"rcshowhideminor": "$1 li mudìfigghi minori",
 	"rcshowhidebots": "$1 li bot",
 	"rcshowhideliu": "$1 li utenti registhraddi",
@@ -969,10 +970,6 @@
 	"watchlist-details": "La listha di l'abbaidaddi ippiziari cunteni {{PLURAL:$1|una pagina (e la rippettiba pagina di dischussioni)|$1 pagini (e li rippettibi pagini di dischussioni)}}.",
 	"wlheader-enotif": "La nutìfica via postha erettrònica è attiba.",
 	"wlheader-showupdated": "Li pàgini chi so isthaddi mudìfiggaddi daboi l'ulthima vìsita so evidenziaddi in '''grasseddu'''",
-	"watchmethod-recent": "cuntrollu di li mudìfigghi rizzenti pa l'abbaidaddi ippiziari",
-	"watchmethod-list": "cuntrollu di l'abbaidaddi ippiziari pa mudìfigghi rizzenti",
-	"watchlistcontains": "La listha di l'abbaidaddi ippiziari cunteni {{PLURAL:$1|una pàgina|$1 pàgini}}.",
-	"iteminvalidname": "Probremi cu' la pàgina '$1', innòmmu nò vàriddu...",
 	"wlshowlast": "Musthra li ulthimi $1 ori $2 dì $3",
 	"watchlist-options": "Opzioni abbaidaddi ippiziari",
 	"watching": "Aggiunta a l'abbaidaddi ippiziari...",
@@ -1474,8 +1471,6 @@
 	"autosumm-new": "Criadda pàgina cun '$1'",
 	"lag-warn-normal": "Li mudìfigghi arriggaddi {{PLURAL:$1|i' l'ulthimu sigundu|i' l'ulthimi $1 sigundi}} pudiani nò apparì in chistha listha.",
 	"lag-warn-high": "Pa un ritardhu mannu di l'elaburaddori sivvidori di la bancadati, li mudìfigghi arriggaddi i' l'ulthimi $1 sigundi pudiani nò apparì in chistha listha.",
-	"watchlistedit-numitems": "La listha di l'abbaidaddi ippiziari cunteni {{PLURAL:$1|una pàgina (e la rippettiba pàgina di dischussioni)|$1 pàgini (e li rippettibi pàgini di dischussioni)}}.",
-	"watchlistedit-noitems": "La listha di l'abbaidaddi ippiziari è biodda.",
 	"watchlistedit-normal-title": "Mudìfigga abbaidaddi ippiziari",
 	"watchlistedit-normal-legend": "Eliminiazioni di pàgini da l'abbaidaddi ippiziari",
 	"watchlistedit-normal-explain": "Inogghi so erencaddi tutti li pàgini abbaidaddi. Pà canzellà una o più pàgini di la listha, isciubarà li caselli reratibi e fà clic i' lu buttoni '''Elimina pàgini''' in giossu a l'erencu. Pói puru [[Special:EditWatchlist/raw|mudìfiggalla in fuimmaddu testhu]].",

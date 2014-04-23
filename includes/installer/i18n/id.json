@@ -278,7 +278,7 @@
 	"config-insecure-keys": "'''Peringatan:''' {{PLURAL:$2|Suatu|Beberapa}} kunci aman ($1) yang dibuat selama instalasi {{PLURAL:$2|tidak|tidak}} benar-benar aman. Pertimbangkan untuk mengubah {{PLURAL:$2|kunci|kunci-kunci}} tersebut secara manual.",
 	"config-install-sysop": "Membuat akun pengguna pengurus",
 	"config-install-subscribe-fail": "Tidak dapat berlangganan mediawiki-announce: $1",
-	"config-install-subscribe-notpossible": "cURL tidak diinstal dan allow_url_fopen tidak tersedia.",
+	"config-install-subscribe-notpossible": "cURL tidak diinstal dan <code>allow_url_fopen</code> tidak tersedia.",
 	"config-install-mainpage": "Membuat halaman utama dengan konten bawaan",
 	"config-install-extension-tables": "Pembuatan tabel untuk ekstensi yang diaktifkan",
 	"config-install-mainpage-failed": "Tidak dapat membuat halaman utama: $1",

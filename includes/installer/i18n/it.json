@@ -277,7 +277,7 @@
 	"config-insecure-keys": "'''Attenzione:''' {{PLURAL:$2|Una chiave sicura|Delle chiavi sicure}} ($1) {{PLURAL:$2|generata|generate}} durante l'installazione non {{PLURAL:$2|è|sono}} completamente {{PLURAL:$2|sicura|sicure}}. Considera di {{PLURAL:$2|cambiarla|cambiarle}} manualmente.",
 	"config-install-sysop": "Creazione dell'account utente per l'amministratore",
 	"config-install-subscribe-fail": "Impossibile sottoscrivere mediawiki-announce: $1",
-	"config-install-subscribe-notpossible": "cURL non è installato e allow_url_fopen non è disponibile.",
+	"config-install-subscribe-notpossible": "cURL non è installato e <code>allow_url_fopen</code> non è disponibile.",
 	"config-install-mainpage": "Creazione della pagina principale con contenuto predefinito",
 	"config-install-extension-tables": "Creazione delle tabelle per le estensioni attivate",
 	"config-install-mainpage-failed": "Impossibile inserire la pagina principale: $1",

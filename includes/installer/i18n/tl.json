@@ -292,7 +292,7 @@
 	"config-insecure-keys": "'''Babala:''' Nalikha ang {{PLURAL:$2|A secure key|ligtas na mga susi}} ($1) habang ang pagluluklok {{PLURAL:$2|ay|ay}} hindi pa lubos na ligtas. Isaalang-alang ang kinakamay na pagbago {{PLURAL:$2|nito|ng mga ito}}.",
 	"config-install-sysop": "Nililikha ang account ng tagagamit na tagapangasiwa",
 	"config-install-subscribe-fail": "Hindi nagawang magpasipi mula sa mediawiki-announce: $1",
-	"config-install-subscribe-notpossible": "Hindi nakalagak ang cURL at hindi makukuha ang allow_url_fopen",
+	"config-install-subscribe-notpossible": "Hindi nakalagak ang cURL at hindi makukuha ang <code>allow_url_fopen</code>",
 	"config-install-mainpage": "Nililikha ang pangunahing pahina na may likas na nakatakdang nilalaman",
 	"config-install-extension-tables": "Nililikha ang mga talahanayan para sa pinagaganang mga dugtong",
 	"config-install-mainpage-failed": "Hindi maisingit ang pangunahing pahina: $1",

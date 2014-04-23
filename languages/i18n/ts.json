@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Thuvack"
+			"Thuvack",
+			"아라"
 		]
 	},
 	"tog-underline": "Hlanganisa nkhwatiheto:",
@@ -14,7 +15,6 @@
 	"tog-showtoolbar": "Komba xiangarhi xo cinca (yitirhisa ntsalo wa Java)",
 	"tog-editondblclick": "Lulamisa matluka hi ku thlava kambirhi (yitirhisa ntsalo wa Java)",
 	"tog-editsectiononrightclick": "Pfula ku lulamisa hi swiyenge hi ku thlava nhlokomhaka ya xiyenge (yitirhisa ntsalo wa Java)",
-	"tog-rememberpassword": "Tsundzuka ku nghena eka Khompuyuta leyi (kufikela eka $1 {{PLURAL:$1|siku|masiku}})",
 	"tog-watchcreations": "Hoxa matluka lawa ndzi matumbuluxaka eka leswi ndziswi languteke",
 	"tog-watchdefault": "Hoxa matluka lawa ndzi malulamisaka eka leswi ndziswi languteke",
 	"tog-watchmoves": "Hoxa matluka lawa ndzi mayisaka kun'wana eka leswi ndziswi languteke",
@@ -265,14 +265,11 @@
 	"readonly_lag": "The database has been automatically locked while the slave database servers catch up to the master",
 	"internalerror": "Xihoxo xa le ndzeni",
 	"internalerror_info": "Internal error: $1",
-	"fileappenderrorread": "Hitsandzeke ku hlaya \"$1\" eku lulamiseni loku.",
-	"fileappenderror": "Hintsndzeke ku lulamisa \"$1\" leswaku yiva \"$2\".",
 	"filecopyerror": "Could not copy file \"$1\" to \"$2\".",
 	"filerenameerror": "Could not rename file \"$1\" to \"$2\".",
 	"filedeleteerror": "Could not delete file \"$1\".",
 	"directorycreateerror": "Could not create directory \"$1\".",
 	"filenotfound": "Could not find file \"$1\".",
-	"fileexistserror": "Unable to write to file \"$1\": file exists",
 	"unexpected": "Unexpected value: \"$1\"=\"$2\".",
 	"formerror": "Error: could not submit form",
 	"badarticleerror": "This action cannot be performed on this page.",
@@ -455,7 +452,7 @@
 	"recentchanges-label-bot": "Ndzulamiso lowu wu endliwe hi rhobhoto",
 	"recentchanges-label-unpatrolled": "Ndzulamiso lowu awusi languteriwa",
 	"rcnotefrom": "Laha hansi kuxaxametiwe ku cinca kusukela hi '''$2''' (kuya ka '''$1''').",
-	"rclistfrom": "Komba mindzilamiso leyintswa kusukela eka $1",
+	"rclistfrom": "Komba mindzilamiso leyintswa kusukela eka $3 $2",
 	"rcshowhideminor": "$1 wa mindzulamiso leyi ntsanana",
 	"rcshowhidebots": "$1 wati rhobhoto",
 	"rcshowhideliu": "$1 wa va tirhisi lavanga kona sweswi",

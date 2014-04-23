@@ -54,7 +54,8 @@
 			"Wiki13",
 			"Wikiklaas",
 			"Wolf Lambert",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Koppelingen onderstrepen:",
@@ -1183,7 +1184,7 @@
 	"recentchanges-legend-newpage": "Zie ook de [[Special:NewPages|Lijst met nieuwe pagina's]].",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Wijzigingen sinds <strong>$3 om $4</strong> (maximaal <strong>$1</strong> {{PLURAL:$1|wijziging|wijzigingen}}).",
-	"rclistfrom": "Wijzigingen bekijken vanaf $1",
+	"rclistfrom": "Wijzigingen bekijken vanaf $3 $2",
 	"rcshowhideminor": "Kleine wijzigingen $1",
 	"rcshowhideminor-show": "weergeven",
 	"rcshowhideminor-hide": "verbergen",
@@ -1750,10 +1751,6 @@
 	"watchlist-details": "Er {{PLURAL:$1|staat één pagina|staan $1 pagina's}} op uw volglijst. Overlegpagina's worden niet meegeteld.",
 	"wlheader-enotif": "U wordt per e-mail gewaarschuwd.",
 	"wlheader-showupdated": "Pagina's die zijn bewerkt sinds uw laatste bezoek worden '''vet''' weergegeven.",
-	"watchmethod-recent": "controleer recente wijzigingen op pagina's op volglijst",
-	"watchmethod-list": "controleer pagina's op volglijst op wijzigingen",
-	"watchlistcontains": "Er {{PLURAL:$1|staat één pagina|staan $1 pagina's}} op uw volglijst.",
-	"iteminvalidname": "Probleem met object '$1', ongeldige naam…",
 	"wlnote2": "Hieronder staan de veranderingen in {{PLURAL:$1|het|de}} laatste {{PLURAL:$1|uur|<strong> $1 </strong>uren}}, sinds $2, $3.",
 	"wlshowlast": "Laatste $1 uur, $2 dagen bekijken ($3)",
 	"watchlist-options": "Opties voor volglijst",
@@ -2872,8 +2869,6 @@
 	"size-kilobytes": "$1 kB",
 	"lag-warn-normal": "Wijzigingen in de afgelopen {{PLURAL:$1|seconde|$1 seconden}} worden misschien niet weergegeven in deze lijst.",
 	"lag-warn-high": "Door een hoge database-servertoevoer zijn wijzigingen nieuwer dan $1 {{PLURAL:$1|seconde|seconden}} mogelijk niet beschikbaar in de lijst.",
-	"watchlistedit-numitems": "Uw volglijst bevat {{PLURAL:$1|1 pagina|$1 pagina’s}}, zonder overlegpagina’s.",
-	"watchlistedit-noitems": "Uw volglijst bevat geen pagina’s.",
 	"watchlistedit-normal-title": "Volglijst bewerken",
 	"watchlistedit-normal-legend": "Pagina’s van uw volglijst verwijderen",
 	"watchlistedit-normal-explain": "Hieronder worden de pagina’s op uw volglijst weergegeven.\nKlik op het vinkvakje ernaast en daarna op \"{{int:Watchlistedit-normal-submit}}\" om een pagina te verwijderen.\nU kunt ook de [[Special:EditWatchlist/raw|ruwe lijst bewerken]].",

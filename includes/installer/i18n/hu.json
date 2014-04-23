@@ -291,7 +291,7 @@
 	"config-insecure-keys": "'''Figyelmeztetés:''' A telepítés során generált $1 {{PLURAL:$2|biztonsági kulcs|biztonsági kulcsok}} nem teljesen $1 {{PLURAL:$2|biztonságos|biztonságosak}}. Érdemes {{PLURAL:$2||őket}} manuálisan megváltoztatni.",
 	"config-install-sysop": "Az adminisztrátor felhasználói fiókjának létrehozása",
 	"config-install-subscribe-fail": "Nem sikerült feliratkozni a mediawiki-announce levelezőlistára: $1",
-	"config-install-subscribe-notpossible": "A cURL nincs telepítve és az allow_url_fopen nem érhető el.",
+	"config-install-subscribe-notpossible": "A cURL nincs telepítve és az <code>allow_url_fopen</code> nem érhető el.",
 	"config-install-mainpage": "Kezdőlap létrehozása az alapértelmezett tartalommal",
 	"config-install-extension-tables": "Táblák létrehozása az engedélyezett kiterjesztésekhez",
 	"config-install-mainpage-failed": "Nemsikerült létrehozni a kezdőlapot: $1",

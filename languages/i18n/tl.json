@@ -11,7 +11,8 @@
 			"Namayan",
 			"Sky Harbor",
 			"tl.wikipedia.org sysops",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Pagsasalungguhit ng link:",
@@ -1091,7 +1092,7 @@
 	"recentchanges-label-unpatrolled": "Hindi pa napapatrulyahan ang pagbabagong ito",
 	"recentchanges-legend-newpage": "$1 - bagong pahina",
 	"rcnotefrom": "Nasa ibaba ang mga pagbabago mula pa noong '''$2''' (ipinapakita ang magpahanggang sa '''$1''').",
-	"rclistfrom": "Ipakita ang bagong mga pagbabago simula sa $1",
+	"rclistfrom": "Ipakita ang bagong mga pagbabago simula sa $3 $2",
 	"rcshowhideminor": "$1 maliliit na mga pagbabago",
 	"rcshowhideminor-show": "Ipakita",
 	"rcshowhideminor-hide": "Itago",
@@ -1618,10 +1619,6 @@
 	"watchlist-details": "{{PLURAL:$1|$1 pahinang|$1 mga pahinang}} nasa iyong talaan ng mga binabantayan, hindi binibilang ang mga pahina ng usapan.",
 	"wlheader-enotif": "Umiiral ang pagpapahayag sa pamamagitan ng e-liham.",
 	"wlheader-showupdated": "Ipinapakitang may '''makakapal na mga panitik''' ang nabagong/binagong mga pahina mula pa noong huli mong pagdalaw sa kanila",
-	"watchmethod-recent": "sinusuri ang kamakailan lamang na mga pagbabago para sa binabantayang mga pahina",
-	"watchmethod-list": "sinusuri ang binabantayang mga pahina para sa mga kamakailan lamang na mga pagbabago",
-	"watchlistcontains": "Naglalaman ng $1 {{PLURAL:$1|pahina|mga pahina}} ang iyong talaan ng mga binabantayan.",
-	"iteminvalidname": "May suliranin ang bagay na '$1', hindi tanggap na pangalan...",
 	"wlnote2": "Nasa ibaba ang mga pagbabago sa nakaraang <strong>$1</strong> oras, noon pang $2, $3.",
 	"wlshowlast": "Ipakita ang huling $1 mga oras $2 mga araw $3",
 	"watchlist-options": "Mga pagpipilian para sa talaan ng mga binabantayan",
@@ -2774,8 +2771,6 @@
 	"bitrate-yottabits": "$1Ybps",
 	"lag-warn-normal": "Maaaring hindi naipapakita sa talaang ito ang mga pagbabagong mas bago pa kaysa $1 {{PLURAL:$1|segundo|mga segundo}}.",
 	"lag-warn-high": "Dahil mataas na bilang ng mga naiiwanan/antas ng kabagalan ng serbidor ng kalipunan ng dato,\nmaaaring hindi naipapakita sa talaang ito ang mga pagbabagong mas bago pa kaysa $1 {{PLURAL:$1|segundo|mga segundo}}.",
-	"watchlistedit-numitems": "Naglalaman ang iyong talaan ng mga binabantayan ng {{PLURAL:$1|1 pamagat|$1 mga pamagat}}, hindi kabilang ang mga pahina ng usapan.",
-	"watchlistedit-noitems": "Hindi naglalaman ng mga pamagat ang iyong talaan ng mga binabantayan.",
 	"watchlistedit-normal-title": "Baguhin ang talaan ng mga binabantayan",
 	"watchlistedit-normal-legend": "Tanggalin ang mga pamagat mula sa binabantayan",
 	"watchlistedit-normal-explain": "Ipinapakita sa ibaba ang mga pamagat na nasa talaan mo ng mga binabantayan.\nUpang matanggal ang isang pamagat, lagyan ng tsek ang kahong katabi nito, at pindutin ang \"{{int:Watchlistedit-normal-submit}}\".\nMaaari mo ring [[Special:EditWatchlist/raw|baguhin ang hilaw na talaan]].",

@@ -3,7 +3,8 @@
 		"authors": [
 			"Lévi",
 			"Reder",
-			"Geitost"
+			"Geitost",
+			"아라"
 		]
 	},
 	"tog-underline": "Tîra 'na rîga sòta i colegamèint.",
@@ -839,7 +840,7 @@
 	"recentchanges-label-bot": "Cla mudéfica ché l'é stêda fâta da un bot.",
 	"recentchanges-label-unpatrolled": "Cla mudéfica ché an n'é mìa incòra stêda verifichêda.",
 	"rcnotefrom": "Ché sòt a gh'é la lésta dal mudéfichi fâti a partîr da <strong>$2</strong>(fîn a <strong>$1</strong>).",
-	"rclistfrom": "Fà vèder al mudéfichi fâti a partîr da $1.",
+	"rclistfrom": "Fà vèder al mudéfichi fâti a partîr da $3 $2",
 	"rcshowhideminor": "$1 al mudéfichi céchi",
 	"rcshowhidebots": "$1 i bot",
 	"rcshowhideliu": "$1 j utèint registrê",

@@ -32,7 +32,8 @@
 			"Tacsipacsi",
 			"Terik",
 			"Tgr",
-			"Xbspiro"
+			"Xbspiro",
+			"아라"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -1127,7 +1128,7 @@
 	"recentchanges-legend-heading": "Jelmagyarázat:",
 	"recentchanges-legend-newpage": "(lásd még: [[Special:NewPages|Új lapok]])",
 	"rcnotefrom": "Alább a <b>$2</b> óta történt változtatások láthatóak (legfeljebb <b>$1</b> db).",
-	"rclistfrom": "$1 után történt változtatások megtekintése",
+	"rclistfrom": "$3 $2 után történt változtatások megtekintése",
 	"rcshowhideminor": "apró szerkesztések $1",
 	"rcshowhideminor-show": "megjelenítése",
 	"rcshowhideminor-hide": "elrejtése",
@@ -1644,10 +1645,6 @@
 	"watchlist-details": "A vitalapokon kívül {{PLURAL:$1|egy|$1}} lap van a figyelőlistádon.",
 	"wlheader-enotif": "Az e-mailen keresztül történő értesítés engedélyezve.",
 	"wlheader-showupdated": "Azok a lapok, amelyek megváltoztak, mióta utoljára megnézted őket, '''vastagítva''' láthatók.",
-	"watchmethod-recent": "a figyelt lapokon belüli legfrissebb szerkesztések",
-	"watchmethod-list": "a legfrissebb szerkesztésekben található figyelt lapok",
-	"watchlistcontains": "A figyelőlistádon {{PLURAL:$1|egy|$1}} lap szerepel.",
-	"iteminvalidname": "Probléma a '$1' elemmel: érvénytelen név...",
 	"wlnote2": "Alább az utolsó {{PLURAL:$1| <strong> $1 </strong> óra}} változásai láthatók. A lista frissítésének ideje  $2 $3",
 	"wlshowlast": "Az elmúlt $1 órában | $2 napon | $3 történt változtatások legyenek láthatóak",
 	"watchlist-options": "A figyelőlista beállításai",
@@ -2740,8 +2737,6 @@
 	"autosumm-new": "Új oldal, tartalma: „$1”",
 	"lag-warn-normal": "{{PLURAL:$1|Az egy|A(z) $1}} másodpercnél frissebb szerkesztések nem biztos, hogy megjelennek ezen a listán.",
 	"lag-warn-high": "Az adatbázisszerver túlterheltsége miatt {{PLURAL:$1|az egy|a(z) $1}} másodpercnél frissebb változtatások nem biztos, hogy megjelennek ezen a listán.",
-	"watchlistedit-numitems": "A figyelőlistádon {{PLURAL:$1|egy|$1}} cím szerepel (a vitalapok nélkül).",
-	"watchlistedit-noitems": "A figyelőlistád üres.",
 	"watchlistedit-normal-title": "A figyelőlista szerkesztése",
 	"watchlistedit-normal-legend": "Lapok eltávolítása a figyelőlistáról",
 	"watchlistedit-normal-explain": "A figyelőlistádra felvett lapok címei alább láthatóak.\nHa el szeretnél távolítani egy címet, pipáld ki a mellette található jelölőnégyzetet, majd kattints „{{int:Watchlistedit-normal-submit}}” gombra.\nLehetőséged van a [[Special:EditWatchlist/raw|figyelőlista nyers változatának]] szerkesztésére is.",

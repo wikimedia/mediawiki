@@ -7,7 +7,8 @@
 			"Comp1089",
 			"Erdemaslancan",
 			"Paivud",
-			"Trần Nguyễn Minh Huy"
+			"Trần Nguyễn Minh Huy",
+			"아라"
 		]
 	},
 	"tog-underline": "Link underlining",
@@ -318,7 +319,6 @@
 	"search-nonefound": "Cüsümühse mukaizõssi eb õõ mitäid löütettü.",
 	"powersearch-legend": "Etenennü ettsü",
 	"powersearch-ns": "Etsi nimiruumõssa:",
-	"powersearch-redir": "Spiiska mešaitussijõ",
 	"preferences": "Koozid",
 	"mypreferences": "Minu koozid",
 	"skin-preview": "Prestavleńńa",
@@ -360,7 +360,7 @@
 	"recentchanges-label-bot": "Kase kõrjauz on robotaka lootu",
 	"recentchanges-label-unpatrolled": "Kasta kõrjaussa eb tarkisõtti veel",
 	"rcnotefrom": "Alapallõ õlla lugõtõltu muuttamizõd $2-lt ($1-lõssaa)",
-	"rclistfrom": "Näüt uuvvõd muutuhsõd $1 alguss",
+	"rclistfrom": "Näüt uuvvõd muutuhsõd $3 $2 alguss",
 	"rcshowhideminor": "$1 peened muutussõd",
 	"rcshowhidebots": "$1 botid",
 	"rcshowhideliu": "$1 süäme cirjutõnnud cäüttijäd",

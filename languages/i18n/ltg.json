@@ -4,7 +4,8 @@
 			"Dark Eagle",
 			"Gleb Borisov",
 			"Jureits",
-			"Reedy"
+			"Reedy",
+			"아라"
 		]
 	},
 	"tog-showhiddencats": "Ruodeit nūglobuotys kategorejis",
@@ -297,7 +298,6 @@
 	"searchall": "vysi",
 	"powersearch-legend": "Smolkuo mekliešona",
 	"powersearch-ns": "Meklēt itamuos lopu grupuos:",
-	"powersearch-redir": "Ruodeit puoradresacejis",
 	"powersearch-toggleall": "Vysi",
 	"powersearch-togglenone": "Nikas",
 	"preferences": "Īstatejumi",
@@ -347,7 +347,7 @@
 	"recentchanges": "Nasenejis puormejis",
 	"recentchanges-legend": "Pādejūs izmaiņu īspiejis",
 	"recentchanges-feed-description": "Redzit jaunuokuos wiki izmainis ar itīm pādim.",
-	"rclistfrom": "Paruodeit jaunys izmainis nu $1",
+	"rclistfrom": "Paruodeit jaunys izmainis nu $3 $2",
 	"rcshowhideminor": "$1 nasvareigūs",
 	"rcshowhidebots": "$1 robotprogramys",
 	"rcshowhideliu": "$1 dasaslāgtu lītuotuoju",

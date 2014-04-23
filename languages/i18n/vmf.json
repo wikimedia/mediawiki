@@ -5,13 +5,13 @@
 			"Bua333",
 			"Matma Rex",
 			"Midnight Gambler",
-			"Silvicola"
+			"Silvicola",
+			"아라"
 		]
 	},
 	"tog-underline": "Linggs undârschdrajchn:",
 	"tog-hideminor": "Glaane ändrungn ned ôôdsajchn",
 	"tog-hidepatrolled": "Ned dsajchn in dâ „Ledschdâ Ändrungn“, was an andrar schon brüüfd had",
-	"tog-rememberpassword": "Uf dem Ghombjuudâr schdändich ôôgmäld blajwn (for a maximum of $1 {{PLURAL:$1|day|days}})",
 	"tog-watchcreations": "Ale fon miir sälwâr gmachdn sajdn soln uf mâj beoobachdungs-lischdn",
 	"tog-watchdefault": "Ale fon miir gändârdnd sajdn soln uf mâj beoobachdungs-lischdn",
 	"tog-watchmoves": "Ale fon miir fârschoobnen sajdn soln uf mâj beoobachdungs-lischdn",
@@ -377,7 +377,6 @@
 	"search-nonefound": "Dsu dajna suuchfrôôchn is nigs gfundn wôrn.",
 	"powersearch-legend": "Suuche mid mäa oogaam",
 	"powersearch-ns": "In dena Nôômâsrajm suchng:",
-	"powersearch-redir": "Wajdälajdunga oodsajng",
 	"powersearch-togglelabel": "Wääl aus:",
 	"powersearch-toggleall": "Ale dsam",
 	"powersearch-togglenone": "Gôôr ghane",
@@ -444,7 +443,7 @@
 	"recentchanges-label-bot": "Ändrung durch an Bot",
 	"recentchanges-label-unpatrolled": "Net-kondrollierde Ändrung",
 	"rcnotefrom": "Oozeichd werrn däi Ändrunga seid '''$2''' (max. '''$1''' Eidrääch).",
-	"rclistfrom": "Bloos di ändrunga dsajchn sajd $1",
+	"rclistfrom": "Bloos di ändrunga dsajchn sajd $3 $2",
 	"rcshowhideminor": "Glenâre Ändrungn $1",
 	"rcshowhidebots": "Bods (bearbajdâr, dii ajchendlich brograme san) $1",
 	"rcshowhideliu": "Ôôgmäldâde bearbajdâr $1",

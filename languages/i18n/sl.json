@@ -7,7 +7,8 @@
 			"Matej1234",
 			"Smihael",
 			"Vadgt",
-			"Yerpo"
+			"Yerpo",
+			"아라"
 		]
 	},
 	"tog-underline": "Podčrtavanje povezav:",
@@ -1137,7 +1138,7 @@
 	"recentchanges-legend-heading": "'''Legenda:'''",
 	"recentchanges-legend-newpage": "(glej tudi [[Special:NewPages|seznam novih strani]])",
 	"rcnotefrom": "Navedene so spremembe od <strong>$2</strong> dalje (prikazujem jih do <strong>$1</strong>).",
-	"rclistfrom": "Prikaži spremembe od $1 naprej",
+	"rclistfrom": "Prikaži spremembe od $3 $2 naprej",
 	"rcshowhideminor": "$1 manjša urejanja",
 	"rcshowhideminor-show": "Prikaži",
 	"rcshowhideminor-hide": "Skrij",
@@ -1703,10 +1704,6 @@
 	"watchlist-details": "Na vašem spisku nadzorov je $1 {{PLURAL:$1|stran|strani|strani}}; pogovorne strani niso štete posebej.",
 	"wlheader-enotif": "Obveščanje po elektronski pošti je omogočeno.",
 	"wlheader-showupdated": "Strani, spremenjene od vašega zadnjega ogleda, so prikazane '''krepko'''.",
-	"watchmethod-recent": "med nedavnimi urejanji iščem spremljane strani",
-	"watchmethod-list": "med spremljanimi stranmi iščem nedavna urejanja",
-	"watchlistcontains": "Spremljate $1 {{PLURAL:$1|stran|strani}}.",
-	"iteminvalidname": "Težava z izbiro »$1«, neveljavno ime ...",
 	"wlnote2": "Spodaj so navedene spremembe v {{PLURAL:$1|zadnji uri|zadnjih <strong>$1</strong> urah}}, od $2, $3.",
 	"wlshowlast": "Prikaži zadnjih $1 ur; $2 dni; $3;",
 	"watchlist-options": "Možnosti spiska nadzorov",
@@ -2806,8 +2803,6 @@
 	"autosumm-new": "Nova stran z vsebino: $1",
 	"lag-warn-normal": "Spremembe novejše od $1 {{PLURAL:$1|sekunde|sekund}} morda ne bodo prikazane na seznamu.",
 	"lag-warn-high": "Zaradi visoke zasedenosti strežniških podatkovnih baz, spremembe novejše od $1 {{PLURAL:$1|sekunde|sekund}} morda ne bodo prikazane na seznamu.",
-	"watchlistedit-numitems": "Vaš spisek nadzorov vsebuje $1 {{PLURAL:$1|stran|strani}}, izključujoč pogovorne strani.",
-	"watchlistedit-noitems": "Vaš spisek nadzorov je prazen.",
 	"watchlistedit-normal-title": "Uredi spisek nadzorov",
 	"watchlistedit-normal-legend": "Odstrani strani iz spiska nadzorov",
 	"watchlistedit-normal-explain": "Strani na vašem spisku nadzorov so prikazane spodaj.\nDa odstranite stran, označite kvadratek poleg nje in kliknite »{{int:Watchlistedit-normal-submit}}«.\nLahko tudi [[Special:EditWatchlist/raw|uredite gol spisek]].",

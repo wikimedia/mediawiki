@@ -16,7 +16,8 @@
 			"Palapa",
 			"Seha",
 			"Smooth O",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Podvuci veze:",
@@ -1095,7 +1096,7 @@
 	"recentchanges-legend-heading": "'''Legenda:'''",
 	"recentchanges-legend-newpage": "(također pogledajte [[Special:NewPages|spisak novih stranica]])",
 	"rcnotefrom": "Ispod su izmjene od <strong>$2</strong> (do <strong>$1</strong> prikazano).",
-	"rclistfrom": "Prikaži nove izmjene počev od $1",
+	"rclistfrom": "Prikaži nove izmjene počev od $3 $2",
 	"rcshowhideminor": "$1 male izmjene",
 	"rcshowhideminor-show": "Pokaži",
 	"rcshowhideminor-hide": "Sakrij",
@@ -1611,10 +1612,6 @@
 	"watchlist-details": "{{PLURAL:$1|$1 stranica praćena|$1 stranice praćene|$1 stranica praćeno}} ne računajući stranice za razgovor.",
 	"wlheader-enotif": "Obavještavanje e-poštom je omogućeno.",
 	"wlheader-showupdated": "Stranice koje su izmijenjene od kad ste ih posljednji put posjetili su prikazane '''podebljanim slovima'''",
-	"watchmethod-recent": "provjerava se da li ima praćenih stranica u nedavnim izmjenama",
-	"watchmethod-list": "provjerava se da li ima nedavnih izmjena u praćenim stranicama",
-	"watchlistcontains": "Vaš spisak praćenih članaka sadrži $1 {{PLURAL:$1|stranicu|stranica}}.",
-	"iteminvalidname": "Problem sa '$1', neispravno ime...",
 	"wlshowlast": "Prikaži posljednjih $1 sati $2 dana $3",
 	"watchlist-options": "Opcije spiska praćenja",
 	"watching": "Pratim...",
@@ -2708,8 +2705,6 @@
 	"size-gigabytes": "$1 GB",
 	"lag-warn-normal": "Promjene načinjene prije manje od $1 {{PLURAL:$1|sekunde|sekunde|sekundi}} možda neće biti prikazane na ovom spisku.",
 	"lag-warn-high": "Zbog dužeg zastoja baze podataka na serveru, izmjene novije od $1 {{PLURAL:$1|sekunde|sekunde|sekundi}} možda neće biti prikazane na ovom spisku.",
-	"watchlistedit-numitems": "Vaš spisak praćenja sadrži {{PLURAL:$1|1 naslov|$1 naslova}}, izuzimajući stranice za razgovor.",
-	"watchlistedit-noitems": "Vaš spisak praćenja ne sadrži naslove.",
 	"watchlistedit-normal-title": "Uredi spisak praćenja",
 	"watchlistedit-normal-legend": "Ukloni naslove iz spiska praćenja",
 	"watchlistedit-normal-explain": "Naslovi na Vašem spisku praćenja su prikazani ispod.\nDa bi ste uklonili naslov, označite kutiju pored naslova, i kliknite \"{{int:Watchlistedit-normal-submit}}\".\nTakođer možete [[Special:EditWatchlist/raw|napredno urediti spisak]].",
