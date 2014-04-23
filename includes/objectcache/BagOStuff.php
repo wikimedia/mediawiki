@@ -308,6 +308,23 @@ abstract class BagOStuff {
 	}
 
 	/**
+	 * Increase stored value of $key by $value while preserving its TTL
+	 *
+	 * This will create the key with value $init and TTL $ttl if not present
+	 *
+	 * @param string $key
+	 * @param integer $ttl
+	 * @param integer $value
+	 * @param integer $init
+	 * @return bool
+	 * @since 1.24
+	 */
+	public function incrWithInit( $key, $ttl, $value = 1, $init = 1 ) {
+		return $this->incr( $key, $value ) ||
+			$this->add( $key, $init, $ttl ) || $this->incr( $key, $value );
+	}
+
+	/**
 	 * Get the "last error" registered; clearLastError() should be called manually
 	 * @return int ERR_* constant for the "last error" registry
 	 * @since 1.23

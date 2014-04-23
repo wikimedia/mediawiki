@@ -324,31 +324,15 @@ function wfStreamThumb( array $params ) {
 	} elseif ( $user->pingLimiter( 'renderfile' ) ) {
 		wfThumbError( 500, wfMessage( 'actionthrottledtext' ) );
 		return;
-	} elseif ( wfThumbIsAttemptThrottled( $img, $thumbName, 4 ) ) {
-		wfThumbError( 500, wfMessage( 'thumbnail_image-failure-limit', 4 ) );
-		return;
 	}
 
-	// Thumbnail isn't already there, so create the new thumbnail...
-	$thumb = null;
-	try {
-		// Record failures on PHP fatals too
-		register_shutdown_function( function() use ( &$thumb, $img, $thumbName ) {
-			if ( $thumb === null ) { // transform() gave a fatal
-				wfThumbIncrAttemptFailures( $img, $thumbName );
-			}
-		} );
-		$thumb = $img->transform( $params, File::RENDER_NOW );
-	} catch ( Exception $ex ) {
-		// Tried to select a page on a non-paged file?
-		$thumb = false;
-	}
+	// Actually generate a new thumbnail
+	list( $thumb, $errorMsg ) = wfGenerateThumbnail( $img, $params, $thumbName );
 
 	// Check for thumbnail generation errors...
-	$errorMsg = false;
 	$msg = wfMessage( 'thumbnail_error' );
 	if ( !$thumb ) {
-		$errorMsg = $msg->rawParams( 'File::transform() returned false' )->escaped();
+		$errorMsg = $errorMsg ?: $msg->rawParams( 'File::transform() returned false' )->escaped();
 	} elseif ( $thumb->isError() ) {
 		$errorMsg = $thumb->getHtmlMsg();
 	} elseif ( !$thumb->hasFile() ) {
@@ -359,12 +343,79 @@ function wfStreamThumb( array $params ) {
 	}
 
 	if ( $errorMsg !== false ) {
-		wfThumbIncrAttemptFailures( $img, $thumbName );
 		wfThumbError( 500, $errorMsg );
 	} else {
 		// Stream the file if there were no errors
 		$thumb->streamFile( $headers );
 	}
+}
+
+/**
+ * Actually try to generate a new thumbnail
+ *
+ * @param File $file
+ * @param array $params
+ * @param string $thumbName
+ * @return array (MediaTransformOutput|bool, string|bool error message HTML)
+ */
+function wfGenerateThumbnail( File $file, array $params, $thumbName ) {
+	global $wgMemc, $wgAttemptFailureEpoch;
+
+	$key = wfMemcKey( 'attempt-failures', $wgAttemptFailureEpoch,
+		$file->getRepo()->getName(), md5( $file->getName() ), md5( $thumbName ) );
+
+	// Check if this file keeps failing to render
+	if ( $wgMemc->get( $key ) >= 4 ) {
+		return array( false, wfMessage( 'thumbnail_image-failure-limit', 4 ) );
+	}
+
+	$done = false;
+	// Record failures on PHP fatals in addition to caching exceptions
+	register_shutdown_function( function() use ( &$done, $key ) {
+		if ( !$done ) { // transform() gave a fatal
+			global $wgMemc;
+			$wgMemc->incrWithInit( $key, 3600 );
+		}
+	} );
+
+	$thumb = false;
+	$errorHtml = false;
+
+	// Thumbnail isn't already there, so create the new thumbnail...
+	try {
+		$work = new PoolCounterWorkViaCallback( 'FileRender', sha1( $file->getName() ),
+			array(
+				'doWork' => function() use ( $file, $params ) {
+					return $file->transform( $params, File::RENDER_NOW );
+				},
+				'getCachedWork' => function() use ( $file, $params ) {
+					return $file->transform( $params );
+				},
+				'fallback' => function() {
+					return wfMessage( 'generic-pool-error' )->parse();
+				},
+				'error' => function ( $status ) {
+					return $status->getHTML();
+				}
+			)
+		);
+		$result = $work->execute();
+		if ( $result instanceof MediaTransformOutput ) {
+			$thumb = $result;
+		} elseif ( is_string( $result ) ) { // error
+			$errorHtml = $result;
+		}
+	} catch ( Exception $e ) {
+		// Tried to select a page on a non-paged file?
+	}
+
+	$done = true; // no PHP fatal occured
+
+	if ( !$thumb || $thumb->isError() ) {
+		$wgMemc->incrWithInit( $key, 3600 );
+	}
+
+	return array( $thumb, $errorHtml );
 }
 
 /**
@@ -396,45 +447,6 @@ function wfThumbIsStandard( File $img, array $params ) {
 		}
 	}
 	return true;
-}
-
-/**
- * @param File $img
- * @param string $thumbName
- * @param int $limit
- * @return int|bool
- */
-function wfThumbIsAttemptThrottled( File $img, $thumbName, $limit ) {
-	global $wgMemc;
-
-	return ( $wgMemc->get( wfThumbAttemptKey( $img, $thumbName ) ) >= $limit );
-}
-
-/**
- * @param File $img
- * @param string $thumbName
- */
-function wfThumbIncrAttemptFailures( File $img, $thumbName ) {
-	global $wgMemc;
-
-	$key = wfThumbAttemptKey( $img, $thumbName );
-	if ( !$wgMemc->incr( $key, 1 ) ) {
-		if ( !$wgMemc->add( $key, 1, 3600 ) ) {
-			$wgMemc->incr( $key, 1 );
-		}
-	}
-}
-
-/**
- * @param File $img
- * @param string $thumbName
- * @return string
- */
-function wfThumbAttemptKey( File $img, $thumbName ) {
-	global $wgAttemptFailureEpoch;
-
-	return wfMemcKey( 'attempt-failures', $wgAttemptFailureEpoch,
-		$img->getRepo()->getName(), md5( $img->getName() ), md5( $thumbName ) );
 }
 
 /**

@@ -227,6 +227,7 @@
     "jumptonavigation": "navigation",
     "jumptosearch": "search",
     "view-pool-error": "Sorry, the servers are overloaded at the moment.\nToo many users are trying to view this page.\nPlease wait a while before you try to access this page again.\n\n$1",
+    "generic-pool-error": "Sorry, the servers are overloaded at the moment.\nToo many users are trying to view this resource.\nPlease wait a while before you try to access this resource again.",
     "pool-timeout": "Timeout waiting for the lock",
     "pool-queuefull": "Pool queue is full",
     "pool-errorunknown": "Unknown error",

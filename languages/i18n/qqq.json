@@ -389,6 +389,7 @@
 	"jumptonavigation": "Part of the \"jump to\" navigation links. Hidden by default in monobook skin. The format is: [[MediaWiki:Jumpto/{{SUBPAGENAME}}|{{int:jumpto}}]] {{int:jumptonavigation}}, [[MediaWiki:Jumptosearch/{{SUBPAGENAME}}|{{int:jumptosearch}}]].\n\n{{Identical|Navigation}}",
 	"jumptosearch": "Part of the \"jump to\" navigation links. Hidden by default in monobook skin. The format is: [[MediaWiki:Jumpto/{{SUBPAGENAME}}|{{int:jumpto}}]] [[MediaWiki:Jumptonavigation/{{SUBPAGENAME}}|{{int:jumptonavigation}}]], {{int:jumptosearch}}.\n\n{{Identical|Search}}",
 	"view-pool-error": "Error message. Parameters:\n* $1 - probably unused",
+	"generic-pool-error": "Error message",
 	"pool-timeout": "Part of {{msg-mw|view-pool-error}}.\n\nFor explanation of 'lock' see [[w:Lock_(computer_science)|wikipedia]].",
 	"pool-queuefull": "Part of {{msg-mw|view-pool-error}}\n\n\"Pool\" refers to a pool of processes.",
 	"pool-errorunknown": "Part of {{msg-mw|view-pool-error}}.\n{{Identical|Unknown error}}",
