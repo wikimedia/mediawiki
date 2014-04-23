@@ -30,52 +30,52 @@ require_once __DIR__ . '/backup.inc';
  * @ingroup Maintenance
  */
 class TextPassDumper extends BackupDumper {
-	var $prefetch = null;
-	var $input = "php://stdin";
-	var $history = WikiExporter::FULL;
-	var $fetchCount = 0;
-	var $prefetchCount = 0;
-	var $prefetchCountLast = 0;
-	var $fetchCountLast = 0;
+	public $prefetch = null;
+	protected $input = "php://stdin";
+	protected $history = WikiExporter::FULL;
+	protected $fetchCount = 0;
+	protected $prefetchCount = 0;
+	protected $prefetchCountLast = 0;
+	protected $fetchCountLast = 0;
 
-	var $maxFailures = 5;
-	var $maxConsecutiveFailedTextRetrievals = 200;
-	var $failureTimeout = 5; // Seconds to sleep after db failure
+	protected $maxFailures = 5;
+	protected $maxConsecutiveFailedTextRetrievals = 200;
+	protected $failureTimeout = 5; // Seconds to sleep after db failure
 
-	var $php = "php";
-	var $spawn = false;
-
-	/**
-	 * @var bool|resource
-	 */
-	var $spawnProc = false;
+	protected $php = "php";
+	protected $spawn = false;
 
 	/**
 	 * @var bool|resource
 	 */
-	var $spawnWrite = false;
+	protected $spawnProc = false;
 
 	/**
 	 * @var bool|resource
 	 */
-	var $spawnRead = false;
+	protected $spawnWrite = false;
 
 	/**
 	 * @var bool|resource
 	 */
-	var $spawnErr = false;
+	protected $spawnRead = false;
 
-	var $xmlwriterobj = false;
+	/**
+	 * @var bool|resource
+	 */
+	protected $spawnErr = false;
+
+	protected $xmlwriterobj = false;
 
 	// when we spend more than maxTimeAllowed seconds on this run, we continue
 	// processing until we write out the next complete page, then save output file(s),
 	// rename it/them and open new one(s)
-	var $maxTimeAllowed = 0;  // 0 = no limit
-	var $timeExceeded = false;
-	var $firstPageWritten = false;
-	var $lastPageWritten = false;
-	var $checkpointJustWritten = false;
-	var $checkpointFiles = array();
+	protected $maxTimeAllowed = 0;  // 0 = no limit
+	protected $timeExceeded = false;
+	protected $firstPageWritten = false;
+	protected $lastPageWritten = false;
+	protected $checkpointJustWritten = false;
+	protected $checkpointFiles = array();
 
 	/**
 	 * @var DatabaseBase
@@ -119,14 +119,16 @@ class TextPassDumper extends BackupDumper {
 		try {
 			$this->lb = wfGetLBFactory()->newMainLB();
 		} catch ( Exception $e ) {
-			throw new MWException( __METHOD__ . " rotating DB failed to obtain new load balancer (" . $e->getMessage() . ")" );
+			throw new MWException( __METHOD__
+				. " rotating DB failed to obtain new load balancer (" . $e->getMessage() . ")" );
 		}
 
 		// 2. The Connection, through the load balancer.
 		try {
 			$this->db = $this->lb->getConnection( DB_SLAVE, 'dump' );
 		} catch ( Exception $e ) {
-			throw new MWException( __METHOD__ . " rotating DB failed to obtain new database (" . $e->getMessage() . ")" );
+			throw new MWException( __METHOD__
+				. " rotating DB failed to obtain new database (" . $e->getMessage() . ")" );
 		}
 	}
 
@@ -282,8 +284,14 @@ class TextPassDumper extends BackupDumper {
 				$pageRatePart = '-';
 				$revRatePart = '-';
 			}
-			$this->progress( sprintf( "%s: %s (ID %d) %d pages (%0.1f|%0.1f/sec all|curr), %d revs (%0.1f|%0.1f/sec all|curr), %0.1f%%|%0.1f%% prefetched (all|curr), ETA %s [max %d]",
-					$now, wfWikiID(), $this->ID, $this->pageCount, $pageRate, $pageRatePart, $this->revCount, $revRate, $revRatePart, $fetchRate, $fetchRatePart, $etats, $this->maxCount ) );
+			$this->progress( sprintf(
+				"%s: %s (ID %d) %d pages (%0.1f|%0.1f/sec all|curr), "
+					. "%d revs (%0.1f|%0.1f/sec all|curr), %0.1f%%|%0.1f%% "
+					. "prefetched (all|curr), ETA %s [max %d]",
+				$now, wfWikiID(), $this->ID, $this->pageCount, $pageRate,
+				$pageRatePart, $this->revCount, $revRate, $revRatePart,
+				$fetchRate, $fetchRatePart, $etats, $this->maxCount
+			) );
 			$this->lastTime = $nowts;
 			$this->revCountLast = $this->revCount;
 			$this->prefetchCountLast = $this->prefetchCount;
@@ -296,9 +304,12 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	function checkIfTimeExceeded() {
-		if ( $this->maxTimeAllowed && ( $this->lastTime - $this->timeOfCheckpoint > $this->maxTimeAllowed ) ) {
+		if ( $this->maxTimeAllowed
+			&& ( $this->lastTime - $this->timeOfCheckpoint > $this->maxTimeAllowed )
+		) {
 			return true;
 		}
+
 		return false;
 	}
 
@@ -310,14 +321,17 @@ class TextPassDumper extends BackupDumper {
 		foreach ( $this->checkpointFiles as $checkpointFile ) {
 			$count = substr_count ( $checkpointFile, "%s" );
 			if ( $count != 2 ) {
-				throw new MWException( "Option checkpointfile must contain two '%s' for substitution of first and last pageids, count is $count instead, file is $checkpointFile.\n" );
+				throw new MWException( "Option checkpointfile must contain two '%s' "
+					. "for substitution of first and last pageids, count is $count instead, "
+					. "file is $checkpointFile.\n" );
 			}
 		}
 
 		if ( $this->checkpointFiles ) {
 			$filenameList = (array)$this->egress->getFilenames();
 			if ( count( $filenameList ) != count( $this->checkpointFiles ) ) {
-				throw new MWException( "One checkpointfile must be specified for each output option, if maxtime is used.\n" );
+				throw new MWException( "One checkpointfile must be specified "
+					. "for each output option, if maxtime is used.\n" );
 			}
 		}
 	}
@@ -338,7 +352,11 @@ class TextPassDumper extends BackupDumper {
 		$parser = xml_parser_create( "UTF-8" );
 		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, false );
 
-		xml_set_element_handler( $parser, array( &$this, 'startElement' ), array( &$this, 'endElement' ) );
+		xml_set_element_handler(
+			$parser,
+			array( &$this, 'startElement' ),
+			array( &$this, 'endElement' )
+		);
 		xml_set_character_data_handler( $parser, array( &$this, 'characterData' ) );
 
 		$offset = 0; // for context extraction on error reporting
@@ -378,12 +396,13 @@ class TextPassDumper extends BackupDumper {
 				if ( ! $this->firstPageWritten ) {
 					$firstPageID = str_pad( 0, 9, "0", STR_PAD_LEFT );
 					$lastPageID = str_pad( 0, 9, "0", STR_PAD_LEFT );
-				}
-				else {
+				} else {
 					$firstPageID = str_pad( $this->firstPageWritten, 9, "0", STR_PAD_LEFT );
 					$lastPageID = str_pad( $this->lastPageWritten, 9, "0", STR_PAD_LEFT );
 				}
-				for ( $i = 0; $i < count( $filenameList ); $i++ ) {
+
+				$filenameCount = count( $filenameList );
+				for ( $i = 0; $i < $filenameCount; $i++ ) {
 					$checkpointNameFilledIn = sprintf( $this->checkpointFiles[$i], $firstPageID, $lastPageID );
 					$fileinfo = pathinfo( $filenameList[$i] );
 					$newFilenames[] = $fileinfo['dirname'] . '/' . $checkpointNameFilledIn;
@@ -775,7 +794,8 @@ class TextPassDumper extends BackupDumper {
 				$newFilenames = array();
 				$firstPageID = str_pad( $this->firstPageWritten, 9, "0", STR_PAD_LEFT );
 				$lastPageID = str_pad( $this->lastPageWritten, 9, "0", STR_PAD_LEFT );
-				for ( $i = 0; $i < count( $filenameList ); $i++ ) {
+				$filenamesCount = count( $filenameList );
+				for ( $i = 0; $i < $filenamesCount; $i++ ) {
 					$checkpointNameFilledIn = sprintf( $this->checkpointFiles[$i], $firstPageID, $lastPageID );
 					$fileinfo = pathinfo( $filenameList[$i] );
 					$newFilenames[] = $fileinfo['dirname'] . '/' . $checkpointNameFilledIn;
@@ -786,8 +806,7 @@ class TextPassDumper extends BackupDumper {
 				$this->timeOfCheckpoint = $this->lastTime;
 				$this->firstPageWritten = false;
 				$this->checkpointJustWritten = true;
-			}
-			else {
+			} else {
 				$this->egress->writeClosePage( $this->buffer );
 				$this->buffer = "";
 				$this->thisPage = "";

@@ -49,7 +49,6 @@ $maintClass = false;
  * @ingroup Maintenance
  */
 abstract class Maintenance {
-
 	/**
 	 * Constants for DB access type
 	 * @see Maintenance::getDbType()
@@ -169,8 +168,16 @@ abstract class Maintenance {
 	 * @param bool $withArg Is an argument required with this option?
 	 * @param string $shortName Character to use as short name
 	 */
-	protected function addOption( $name, $description, $required = false, $withArg = false, $shortName = false ) {
-		$this->mParams[$name] = array( 'desc' => $description, 'require' => $required, 'withArg' => $withArg, 'shortName' => $shortName );
+	protected function addOption( $name, $description, $required = false,
+		$withArg = false, $shortName = false
+	) {
+		$this->mParams[$name] = array(
+			'desc' => $description,
+			'require' => $required,
+			'withArg' => $withArg,
+			'shortName' => $shortName
+		);
+
 		if ( $shortName !== false ) {
 			$this->mShortParamsMap[$shortName] = $name;
 		}
@@ -413,7 +420,11 @@ abstract class Maintenance {
 		$this->addOption( 'conf', 'Location of LocalSettings.php, if not default', false, true );
 		$this->addOption( 'wiki', 'For specifying the wiki ID', false, true );
 		$this->addOption( 'globals', 'Output globals at the end of processing for debugging' );
-		$this->addOption( 'memory-limit', 'Set a specific memory limit for the script, "max" for no limit or "default" to avoid changing it' );
+		$this->addOption(
+			'memory-limit',
+			'Set a specific memory limit for the script, '
+				. '"max" for no limit or "default" to avoid changing it'
+		);
 		$this->addOption( 'server', "The protocol and server name to use in URLs, e.g. " .
 				"http://en.wikipedia.org. This is sometimes necessary because " .
 				"server name detection may fail in command line scripts.", false, true );
@@ -630,7 +641,8 @@ abstract class Maintenance {
 				}
 			} elseif ( substr( $arg, 0, 1 ) == '-' ) {
 				# Short options
-				for ( $p = 1; $p < strlen( $arg ); $p++ ) {
+				$argLength = strlen( $arg );
+				for ( $p = 1; $p < $argLength; $p++ ) {
 					$option = $arg { $p };
 					if ( !isset( $this->mParams[$option] ) && isset( $this->mShortParamsMap[$option] ) ) {
 						$option = $this->mShortParamsMap[$option];
@@ -871,7 +883,11 @@ abstract class Maintenance {
 		$this->afterFinalSetup();
 
 		$wgShowSQLErrors = true;
-		@set_time_limit( 0 );
+
+		wfSuppressWarnings();
+		set_time_limit( 0 );
+		wfRestoreWarnings();
+
 		$this->adjustMemoryLimit();
 
 		// Per-script profiling; useful for debugging
