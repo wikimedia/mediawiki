@@ -47,7 +47,7 @@ class BenchmarkParse extends Maintenance {
 			false, true );
 		$this->addOption( 'tpl-time',
 			'Use templates which were current at the given time (except that moves and ' .
-				'deletes are not handled properly)',
+			'deletes are not handled properly)',
 			false, true );
 	}
 
@@ -94,7 +94,7 @@ class BenchmarkParse extends Maintenance {
 		printf( "CPU time = %.3f s, wall clock time = %.3f s\n",
 			// CPU time
 			$endUsage['ru_utime.tv_sec'] + $endUsage['ru_utime.tv_usec'] * 1e-6
-				- $startUsage['ru_utime.tv_sec'] - $startUsage['ru_utime.tv_usec'] * 1e-6,
+			- $startUsage['ru_utime.tv_sec'] - $startUsage['ru_utime.tv_usec'] * 1e-6,
 			// Wall clock time
 			$endTime - $startTime );
 	}

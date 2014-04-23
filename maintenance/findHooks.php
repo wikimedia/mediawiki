@@ -146,10 +146,11 @@ class FindHooks extends Maintenance {
 	 * @return array Array of documented hooks
 	 */
 	private function getHooksFromLocalDoc( $doc ) {
-			$m = array();
-			$content = file_get_contents( $doc );
-			preg_match_all( "/\n'(.*?)':/", $content, $m );
-			return array_unique( $m[1] );
+		$m = array();
+		$content = file_get_contents( $doc );
+		preg_match_all( "/\n'(.*?)':/", $content, $m );
+
+		return array_unique( $m[1] );
 	}
 
 	/**
@@ -157,35 +158,36 @@ class FindHooks extends Maintenance {
 	 * @return array of documented hooks
 	 */
 	private function getHooksFromOnlineDoc() {
-			// All hooks
-			$allhookdata = Http::get(
-				'http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&'
-					. 'cmtitle=Category:MediaWiki_hooks&cmlimit=500&format=php'
-			);
-			$allhookdata = unserialize( $allhookdata );
-			$allhooks = array();
-			foreach ( $allhookdata['query']['categorymembers'] as $page ) {
-				$found = preg_match( '/Manual\:Hooks\/([a-zA-Z0-9- :]+)/', $page['title'], $matches );
-				if ( $found ) {
-					$hook = str_replace( ' ', '_', $matches[1] );
-					$allhooks[] = $hook;
-				}
+		// All hooks
+		$allhookdata = Http::get(
+			'http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&'
+			. 'cmtitle=Category:MediaWiki_hooks&cmlimit=500&format=php'
+		);
+		$allhookdata = unserialize( $allhookdata );
+		$allhooks = array();
+		foreach ( $allhookdata['query']['categorymembers'] as $page ) {
+			$found = preg_match( '/Manual\:Hooks\/([a-zA-Z0-9- :]+)/', $page['title'], $matches );
+			if ( $found ) {
+				$hook = str_replace( ' ', '_', $matches[1] );
+				$allhooks[] = $hook;
 			}
-			// Removed hooks
-			$oldhookdata = Http::get(
-				'http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&'
-					. 'cmtitle=Category:Removed_hooks&cmlimit=500&format=php'
-			);
-			$oldhookdata = unserialize( $oldhookdata );
-			$removed = array();
-			foreach ( $oldhookdata['query']['categorymembers'] as $page ) {
-				$found = preg_match( '/Manual\:Hooks\/([a-zA-Z0-9- :]+)/', $page['title'], $matches );
-				if ( $found ) {
-					$hook = str_replace( ' ', '_', $matches[1] );
-					$removed[] = $hook;
-				}
+		}
+		// Removed hooks
+		$oldhookdata = Http::get(
+			'http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&'
+			. 'cmtitle=Category:Removed_hooks&cmlimit=500&format=php'
+		);
+		$oldhookdata = unserialize( $oldhookdata );
+		$removed = array();
+		foreach ( $oldhookdata['query']['categorymembers'] as $page ) {
+			$found = preg_match( '/Manual\:Hooks\/([a-zA-Z0-9- :]+)/', $page['title'], $matches );
+			if ( $found ) {
+				$hook = str_replace( ' ', '_', $matches[1] );
+				$removed[] = $hook;
 			}
-			return array_diff( $allhooks, $removed );
+		}
+
+		return array_diff( $allhooks, $removed );
 	}
 
 	/**
@@ -221,6 +223,7 @@ class FindHooks extends Maintenance {
 			}
 			closedir( $dh );
 		}
+
 		return $hooks;
 	}
 
@@ -238,6 +241,7 @@ class FindHooks extends Maintenance {
 		foreach ( $m[0] as $match ) {
 			$list[] = $match . "(" . $file . ")";
 		}
+
 		return $list;
 	}
 
@@ -258,6 +262,7 @@ class FindHooks extends Maintenance {
 			}
 			closedir( $dh );
 		}
+
 		return $hooks;
 	}
 

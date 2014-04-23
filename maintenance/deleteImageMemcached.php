@@ -80,6 +80,7 @@ class DeleteImageCache extends Maintenance {
 
 	private function getImageCount() {
 		$dbr = wfGetDB( DB_SLAVE );
+
 		return $dbr->selectField( 'image', 'COUNT(*)', array(), __METHOD__ );
 	}
 }

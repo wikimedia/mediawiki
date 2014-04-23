@@ -50,7 +50,7 @@ class BenchStrtrStrReplace extends Benchmarker {
 			array( 'function' => array( $this, 'benchstr_replace' ) ),
 			array( 'function' => array( $this, 'benchstrtr_indirect' ) ),
 			array( 'function' => array( $this, 'benchstr_replace_indirect' ) ),
-		));
+		) );
 		print $this->getFormattedResults();
 	}
 
@@ -59,7 +59,7 @@ class BenchStrtrStrReplace extends Benchmarker {
 	}
 
 	function benchstr_replace() {
-		str_replace( "_", " ", "[[MediaWiki:Some_random_test_page]]");
+		str_replace( "_", " ", "[[MediaWiki:Some_random_test_page]]" );
 	}
 
 	function benchstrtr_indirect() {

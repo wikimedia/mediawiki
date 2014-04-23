@@ -30,7 +30,6 @@ class DeleteArchivedRevisionsImplementation {
 
 	/**
 	 * Perform the delete on archived revisions.
-
 	 * @param object $maint An object (typically of class Maintenance)
 	 * that implements two methods: handleOutput() and
 	 * purgeRedundantText().  See Maintenance for a description of

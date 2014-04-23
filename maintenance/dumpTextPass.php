@@ -61,5 +61,5 @@ Options:
   --spawn	  Spawn a subprocess for loading text records
   --help      Display this help message
 ENDS
-);
+	);
 }

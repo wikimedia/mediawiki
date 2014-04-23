@@ -57,7 +57,7 @@ class BenchWfBaseConvert extends Benchmarker {
 				'function' => 'wfBaseConvert',
 				'args' => array( $number, $inbase, $outbase, 0, true, 'gmp' )
 			),
-		));
+		) );
 
 		$this->output( $this->getFormattedResults() );
 	}
@@ -65,9 +65,10 @@ class BenchWfBaseConvert extends Benchmarker {
 	protected static function makeRandomNumber( $base, $length ) {
 		$baseChars = "0123456789abcdefghijklmnopqrstuvwxyz";
 		$res = "";
-		for( $i = 0; $i < $length; $i++ ) {
-			$res .= $baseChars[mt_rand(0, $base - 1)];
+		for ( $i = 0; $i < $length; $i++ ) {
+			$res .= $baseChars[mt_rand( 0, $base - 1 )];
 		}
+
 		return $res;
 	}
 }

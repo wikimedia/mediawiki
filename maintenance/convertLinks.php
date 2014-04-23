@@ -71,6 +71,7 @@ class ConvertLinks extends Maintenance {
 		$type = $dbw->getType();
 		if ( $type != 'mysql' ) {
 			$this->output( "Link table conversion not necessary for $type\n" );
+
 			return;
 		}
 
@@ -111,12 +112,14 @@ class ConvertLinks extends Maintenance {
 
 		if ( $dbw->tableExists( 'pagelinks' ) ) {
 			$this->output( "...have pagelinks; skipping old links table updates\n" );
+
 			return;
 		}
 
 		$res = $dbw->query( "SELECT l_from FROM $links LIMIT 1" );
 		if ( $dbw->fieldType( $res, 0 ) == "int" ) {
 			$this->output( "Schema already converted\n" );
+
 			return;
 		}
 
@@ -131,7 +134,7 @@ class ConvertLinks extends Maintenance {
 		} else {
 			$fh = false;
 			if ( $this->logPerformance ) {
-				$fh = fopen ( $perfLogFilename, "w" );
+				$fh = fopen( $perfLogFilename, "w" );
 				if ( !$fh ) {
 					$this->error( "Couldn't open $perfLogFilename" );
 					$this->logPerformance = false;
@@ -140,8 +143,8 @@ class ConvertLinks extends Maintenance {
 			$baseTime = $startTime = $this->getMicroTime();
 			# Create a title -> cur_id map
 			$this->output( "Loading IDs from $cur table...\n" );
-			$this->performanceLog ( $fh, "Reading $numRows rows from cur table...\n" );
-			$this->performanceLog ( $fh, "rows read vs seconds elapsed:\n" );
+			$this->performanceLog( $fh, "Reading $numRows rows from cur table...\n" );
+			$this->performanceLog( $fh, "rows read vs seconds elapsed:\n" );
 
 			$dbw->bufferResults( false );
 			$res = $dbw->query( "SELECT cur_namespace,cur_title,cur_id FROM $cur" );
@@ -239,7 +242,7 @@ class ConvertLinks extends Maintenance {
 				"Total execution time: " . ( $this->getMicroTime() - $startTime ) . " seconds.\n"
 			);
 			if ( $this->logPerformance ) {
-				fclose ( $fh );
+				fclose( $fh );
 			}
 		}
 		# --------------------------------------------------------------------
@@ -268,6 +271,7 @@ class ConvertLinks extends Maintenance {
 
 		if ( !( $dbConn->isOpen() ) ) {
 			$this->output( "Opening connection to database failed.\n" );
+
 			return;
 		}
 		$links_temp = $dbConn->tableName( 'links_temp' );
@@ -279,14 +283,14 @@ class ConvertLinks extends Maintenance {
 		$this->output( "Creating temporary links table..." );
 		if ( $this->hasOption( 'noKeys' ) ) {
 			$dbConn->query( "CREATE TABLE $links_temp ( " .
-			"l_from int(8) unsigned NOT NULL default '0', " .
-			"l_to int(8) unsigned NOT NULL default '0')" );
+				"l_from int(8) unsigned NOT NULL default '0', " .
+				"l_to int(8) unsigned NOT NULL default '0')" );
 		} else {
 			$dbConn->query( "CREATE TABLE $links_temp ( " .
-			"l_from int(8) unsigned NOT NULL default '0', " .
-			"l_to int(8) unsigned NOT NULL default '0', " .
-			"UNIQUE KEY l_from(l_from,l_to), " .
-			"KEY (l_to))" );
+				"l_from int(8) unsigned NOT NULL default '0', " .
+				"l_to int(8) unsigned NOT NULL default '0', " .
+				"UNIQUE KEY l_from(l_from,l_to), " .
+				"KEY (l_to))" );
 		}
 		$this->output( " done.\n\n" );
 	}
@@ -299,6 +303,7 @@ class ConvertLinks extends Maintenance {
 
 	private function getMicroTime() { # return time in seconds, with microsecond accuracy
 		list( $usec, $sec ) = explode( " ", microtime() );
+
 		return ( (float)$usec + (float)$sec );
 	}
 }

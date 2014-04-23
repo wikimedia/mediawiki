@@ -123,6 +123,7 @@ abstract class DumpIterator extends Maintenance {
 		$title = $rev->getTitle();
 		if ( !$title ) {
 			$this->error( "Got bogus revision with null title!" );
+
 			return;
 		}
 

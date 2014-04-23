@@ -61,7 +61,7 @@ class BenchUtf8TitleCheck extends Benchmarker {
 		);
 		// @codingStandardsIgnoreEnd
 
-		$this->canRun = function_exists ( 'mb_check_encoding' );
+		$this->canRun = function_exists( 'mb_check_encoding' );
 
 		if ( $this->canRun ) {
 			$this->mDescription = "Benchmark for using a regexp vs. mb_check_encoding " .
@@ -77,22 +77,22 @@ class BenchUtf8TitleCheck extends Benchmarker {
 			return;
 		}
 		$benchmarks = array();
-		foreach ($this->data as $val) {
+		foreach ( $this->data as $val ) {
 			$benchmarks[] = array(
 				'function' => array( $this, 'use_regexp' ),
-				'args' => array( rawurldecode ( $val ) )
+				'args' => array( rawurldecode( $val ) )
 			);
 			$benchmarks[] = array(
 				'function' => array( $this, 'use_regexp_non_capturing' ),
-				'args' => array( rawurldecode ( $val ) )
+				'args' => array( rawurldecode( $val ) )
 			);
 			$benchmarks[] = array(
 				'function' => array( $this, 'use_regexp_once_only' ),
-				'args' => array( rawurldecode ( $val ) )
+				'args' => array( rawurldecode( $val ) )
 			);
 			$benchmarks[] = array(
 				'function' => array( $this, 'use_mb_check_encoding' ),
-				'args' => array( rawurldecode ( $val ) )
+				'args' => array( rawurldecode( $val ) )
 			);
 		}
 		$this->bench( $benchmarks );
@@ -103,19 +103,19 @@ class BenchUtf8TitleCheck extends Benchmarker {
 
 	function use_regexp( $s ) {
 		$this->isutf8 = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-				'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
+			'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
 	}
 
 	function use_regexp_non_capturing( $s ) {
 		// Same as above with a non-capturing subgroup.
 		$this->isutf8 = preg_match( '/^(?:[\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-				'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
+			'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
 	}
 
 	function use_regexp_once_only( $s ) {
 		// Same as above with a once-only subgroup.
 		$this->isutf8 = preg_match( '/^(?>[\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-				'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
+			'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
 	}
 
 	function use_mb_check_encoding( $s ) {

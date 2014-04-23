@@ -76,6 +76,7 @@ class CreateAndPromote extends Maintenance {
 
 		if ( $exists && !$password && count( $promotions ) === 0 ) {
 			$this->output( "Account exists and nothing to do.\n" );
+
 			return;
 		} elseif ( count( $promotions ) !== 0 ) {
 			$promoText = "User:{$username} into " . implode( ', ', $promotions ) . "...\n";

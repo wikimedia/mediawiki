@@ -80,7 +80,6 @@ class CheckImages extends Maintenance {
 
 				$numGood++;
 			}
-
 		} while ( $res->numRows() );
 
 		$this->output( "Good images: $numGood/$numImages\n" );

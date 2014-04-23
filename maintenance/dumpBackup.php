@@ -127,5 +127,5 @@ Fancy stuff: (Works? Add examples please.)
   --filter=<type>[:<options>] Add a filter on an output branch
 
 ENDS
-);
+	);
 }
