@@ -1214,3 +1214,12 @@ sup,
 sub {
 	line-height: 1;
 }
+
+/* Container with the output of the parser */
+/* Clear floating elements that overflow */
+.mw-parseroutput::after,
+.mw-parseroutput:after {
+	clear: both;
+	content: "";
+	display: block;
+}
