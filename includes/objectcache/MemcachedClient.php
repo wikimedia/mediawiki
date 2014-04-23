@@ -414,8 +414,16 @@ class MWMemcached {
 	public function get( $key, &$casToken = null ) {
 		wfProfileIn( __METHOD__ );
 
+		$realkey = is_array( $key ) ? $key[1] : $key;
+
+		if ( strval( $realkey ) === '' ) {
+			$this->_debugprint( "got invalid key\n" );
+			wfProfileOut();
+			throw new MWException( "Got empty key" );
+		}
+
 		if ( $this->_debug ) {
-			$this->_debugprint( "get($key)\n" );
+			$this->_debugprint( "get($realkey)\n" );
 		}
 
 		if ( !$this->_active ) {
@@ -423,6 +431,7 @@ class MWMemcached {
 			return false;
 		}
 
+		// Does this need the array?
 		$sock = $this->get_sock( $key );
 
 		if ( !is_resource( $sock ) ) {
@@ -430,14 +439,13 @@ class MWMemcached {
 			return false;
 		}
 
-		$key = is_array( $key ) ? $key[1] : $key;
 		if ( isset( $this->stats['get'] ) ) {
 			$this->stats['get']++;
 		} else {
 			$this->stats['get'] = 1;
 		}
 
-		$cmd = "gets $key\r\n";
+		$cmd = "gets $realkey\r\n";
 		if ( !$this->_fwrite( $sock, $cmd ) ) {
 			wfProfileOut( __METHOD__ );
 			return false;
@@ -453,8 +461,8 @@ class MWMemcached {
 		}
 
 		$value = false;
-		if ( isset( $val[$key] ) ) {
-			$value = $val[$key];
+		if ( isset( $val[$realkey] ) ) {
+			$value = $val[$realkey];
 		}
 		wfProfileOut( __METHOD__ );
 		return $value;
