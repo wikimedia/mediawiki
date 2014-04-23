@@ -284,6 +284,7 @@ class CologneBlueTemplate extends BaseTemplate {
 
 		// Use the regular navigational link, but replace its text. Everything else stays unmodified.
 		$namespacesLinks = $this->data['content_navigation']['namespaces'];
+
 		return $this->processBottomLink( $message, $namespacesLinks[$key], $message );
 	}
 
@@ -318,64 +319,66 @@ class CologneBlueTemplate extends BaseTemplate {
 	 */
 	function beforeContent() {
 		ob_start();
-?>
-<div id="content">
-	<div id="topbar">
-		<p id="sitetitle" role="banner">
-			<a href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>">
-				<?php echo wfMessage( 'sitetitle' )->escaped() ?>
-			</a>
-		</p>
-		<p id="sitesub"><?php echo wfMessage( 'sitesubtitle' )->escaped() ?></p>
-		<div id="linkcollection" role="navigation">
-			<div id="langlinks"><?php echo str_replace( '<br />', '', $this->otherLanguages() ) ?></div>
-			<?php echo $this->getSkin()->getCategories() ?>
-			<div id="titlelinks"><?php echo $this->pageTitleLinks() ?></div>
-			<?php
-				if ( $this->data['newtalk'] ) {
-			?>
-					<div class="usermessage"><strong><?php echo $this->data['newtalk'] ?></strong></div>
-			<?php
-				}
-			?>
-		</div>
-	</div>
-	<div id="article" class="mw-body" role="main">
-		<?php
-			if ( $this->getSkin()->getSiteNotice() ) {
 		?>
-				<div id="siteNotice"><?php echo $this->getSkin()->getSiteNotice() ?></div>
+		<div id="content">
+		<div id="topbar">
+			<p id="sitetitle" role="banner">
+				<a href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>">
+					<?php echo wfMessage( 'sitetitle' )->escaped() ?>
+				</a>
+			</p>
+
+			<p id="sitesub"><?php echo wfMessage( 'sitesubtitle' )->escaped() ?></p>
+
+			<div id="linkcollection" role="navigation">
+				<div id="langlinks"><?php echo str_replace( '<br />', '', $this->otherLanguages() ) ?></div>
+				<?php echo $this->getSkin()->getCategories() ?>
+				<div id="titlelinks"><?php echo $this->pageTitleLinks() ?></div>
+				<?php
+				if ( $this->data['newtalk'] ) {
+					?>
+					<div class="usermessage"><strong><?php echo $this->data['newtalk'] ?></strong></div>
+				<?php
+				}
+				?>
+			</div>
+		</div>
+		<div id="article" class="mw-body" role="main">
 		<?php
-			}
+		if ( $this->getSkin()->getSiteNotice() ) {
+			?>
+			<div id="siteNotice"><?php echo $this->getSkin()->getSiteNotice() ?></div>
+		<?php
+		}
 		?>
 		<h1 id="firstHeading" lang="<?php
-			$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageViewLanguage()->getHtmlCode();
-			$this->text( 'pageLanguage' );
+		$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageViewLanguage()->getHtmlCode();
+		$this->text( 'pageLanguage' );
 		?>"><span dir="auto"><?php echo $this->data['title'] ?></span></h1>
 		<?php
-			if ( $this->translator->translate( 'tagline' ) ) {
-		?>
-				<p class="tagline"><?php
-					echo htmlspecialchars( $this->translator->translate( 'tagline' ) )
+		if ( $this->translator->translate( 'tagline' ) ) {
+			?>
+			<p class="tagline"><?php
+				echo htmlspecialchars( $this->translator->translate( 'tagline' ) )
 				?></p>
 		<?php
-			}
+		}
 		?>
 		<?php
-			if ( $this->getSkin()->getOutput()->getSubtitle() ) {
-		?>
-				<p class="subtitle"><?php echo $this->getSkin()->getOutput()->getSubtitle() ?></p>
+		if ( $this->getSkin()->getOutput()->getSubtitle() ) {
+			?>
+			<p class="subtitle"><?php echo $this->getSkin()->getOutput()->getSubtitle() ?></p>
 		<?php
-			}
+		}
 		?>
 		<?php
-			if ( $this->getSkin()->subPageSubtitle() ) {
-		?>
-				<p class="subpages"><?php echo $this->getSkin()->subPageSubtitle() ?></p>
+		if ( $this->getSkin()->subPageSubtitle() ) {
+			?>
+			<p class="subpages"><?php echo $this->getSkin()->subPageSubtitle() ?></p>
 		<?php
-			}
+		}
 		?>
-<?php
+		<?php
 		$s = ob_get_contents();
 		ob_end_clean();
 
@@ -387,45 +390,47 @@ class CologneBlueTemplate extends BaseTemplate {
 	 */
 	function afterContent() {
 		ob_start();
-?>
-	</div>
-	<div id="footer">
-		<div id="footer-navigation" role="navigation">
-<?php
-		// Page-related links
-		echo $this->bottomLinks();
-		echo "\n<br />";
+		?>
+		</div>
+		<div id="footer">
+			<div id="footer-navigation" role="navigation">
+				<?php
+				// Page-related links
+				echo $this->bottomLinks();
+				echo "\n<br />";
 
-		// Footer and second searchbox
-		echo $this->getSkin()->getLanguage()->pipeList( array(
-			$this->getSkin()->mainPageLink(),
-			$this->getSkin()->aboutLink(),
-			$this->searchForm( 'footer' )
-		) );
-?>
+				// Footer and second searchbox
+				echo $this->getSkin()->getLanguage()->pipeList( array(
+					$this->getSkin()->mainPageLink(),
+					$this->getSkin()->aboutLink(),
+					$this->searchForm( 'footer' )
+				) );
+				?>
+			</div>
+			<div id="footer-info" role="contentinfo">
+				<?php
+				// Standard footer info
+				$footlinks = $this->getFooterLinks();
+				if ( $footlinks['info'] ) {
+					foreach ( $footlinks['info'] as $item ) {
+						echo $this->data[$item] . ' ';
+					}
+				}
+				?>
+			</div>
 		</div>
-		<div id="footer-info" role="contentinfo">
-<?php
-		// Standard footer info
-		$footlinks = $this->getFooterLinks();
-		if ( $footlinks['info'] ) {
-			foreach ( $footlinks['info'] as $item ) {
-				echo $this->data[$item] . ' ';
-			}
-		}
-?>
 		</div>
-	</div>
-</div>
-<div id="mw-navigation">
-	<h2><?php echo wfMessage( 'navigation-heading' )->escaped() ?></h2>
-	<div id="toplinks" role="navigation">
-		<p id="syslinks"><?php echo $this->sysLinks() ?></p>
-		<p id="variantlinks"><?php echo $this->variantLinks() ?></p>
-	</div>
-	<?php echo $this->quickBar() ?>
-</div>
-<?php
+		<div id="mw-navigation">
+			<h2><?php echo wfMessage( 'navigation-heading' )->escaped() ?></h2>
+
+			<div id="toplinks" role="navigation">
+				<p id="syslinks"><?php echo $this->sysLinks() ?></p>
+
+				<p id="variantlinks"><?php echo $this->variantLinks() ?></p>
+			</div>
+			<?php echo $this->quickBar() ?>
+		</div>
+		<?php
 		$s = ob_get_contents();
 		ob_end_clean();
 
@@ -604,6 +609,7 @@ class CologneBlueTemplate extends BaseTemplate {
 		}
 
 		$s .= "</div>\n";
+
 		return $s;
 	}
 
