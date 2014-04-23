@@ -136,7 +136,8 @@ class RequestContext implements IContextSource {
 	public function getTitle() {
 		if ( $this->title === null ) {
 			global $wgTitle; # fallback to $wg till we can improve this
-			$this->title = $wgTitle;
+			wfWarn( "RequestContext being used without a Title." );
+			return $wgTitle;
 		}
 
 		return $this->title;
