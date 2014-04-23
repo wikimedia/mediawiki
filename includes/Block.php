@@ -31,22 +31,22 @@ class Block {
 		$mCreateAccount,
 		$mParentBlockId;
 
-	/** @var User|String */
+	/** @var User|string */
 	protected $target;
 
-	/** @var Integer Hack for foreign blocking (CentralAuth) */
+	/** @var int Hack for foreign blocking (CentralAuth) */
 	protected $forcedTargetID;
 
-	/** @var Integer Block::TYPE_ constant. Can only be USER, IP or RANGE internally */
+	/** @var int Block::TYPE_ constant. Can only be USER, IP or RANGE internally */
 	protected $type;
 
 	/** @var User */
 	protected $blocker;
 
-	/** @var Bool */
+	/** @var bool */
 	protected $isHardblock = true;
 
-	/** @var Bool */
+	/** @var bool */
 	protected $isAutoblocking = true;
 
 	# TYPE constants
@@ -104,8 +104,8 @@ class Block {
 	/**
 	 * Load a blocked user from their block id.
 	 *
-	 * @param $id Integer: Block id to search for
-	 * @return Block object or null
+	 * @param int $id Block id to search for
+	 * @return Block|null
 	 */
 	public static function newFromID( $id ) {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -151,7 +151,7 @@ class Block {
 	 * Check if two blocks are effectively equal.  Doesn't check irrelevant things like
 	 * the blocking user or the block timestamp, only things which affect the blocked user
 	 *
-	 * @param $block Block
+	 * @param Block $block
 	 *
 	 * @return bool
 	 */
@@ -176,10 +176,10 @@ class Block {
 	 *     1) A block directly on the given user or IP
 	 *     2) A rangeblock encompassing the given IP (smallest first)
 	 *     3) An autoblock on the given IP
-	 * @param $vagueTarget User|String also search for blocks affecting this target.  Doesn't
+	 * @param User|string $vagueTarget Also search for blocks affecting this target.  Doesn't
 	 *     make any sense to use TYPE_AUTO / TYPE_ID here. Leave blank to skip IP lookups.
 	 * @throws MWException
-	 * @return Bool whether a relevant block was found
+	 * @return bool Whether a relevant block was found
 	 */
 	protected function newLoad( $vagueTarget = null ) {
 		$db = wfGetDB( $this->mFromMaster ? DB_MASTER : DB_SLAVE );
@@ -280,7 +280,7 @@ class Block {
 	 * Get a set of SQL conditions which will select rangeblocks encompassing a given range
 	 * @param string $start Hexadecimal IP representation
 	 * @param string $end Hexadecimal IP representation, or null to use $start = $end
-	 * @return String
+	 * @return string
 	 */
 	public static function getRangeCond( $start, $end = null ) {
 		if ( $end === null ) {
@@ -312,8 +312,8 @@ class Block {
 	/**
 	 * Get the component of an IP address which is certain to be the same between an IP
 	 * address and a rangeblock containing that IP address.
-	 * @param $hex String Hexadecimal IP representation
-	 * @return String
+	 * @param string $hex Hexadecimal IP representation
+	 * @return string
 	 */
 	protected static function getIpFragment( $hex ) {
 		global $wgBlockCIDRLimit;
@@ -327,7 +327,7 @@ class Block {
 	/**
 	 * Given a database row from the ipblocks table, initialize
 	 * member variables
-	 * @param $row ResultWrapper: a row from the ipblocks table
+	 * @param ResultWrapper $row A row from the ipblocks table
 	 */
 	protected function initFromRow( $row ) {
 		$this->setTarget( $row->ipb_address );
@@ -362,7 +362,7 @@ class Block {
 
 	/**
 	 * Create a new Block object from a database row
-	 * @param $row ResultWrapper row from the ipblocks table
+	 * @param ResultWrapper $row Row from the ipblocks table
 	 * @return Block
 	 */
 	public static function newFromRow( $row ) {
@@ -375,7 +375,7 @@ class Block {
 	 * Delete the row from the IP blocks table.
 	 *
 	 * @throws MWException
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function delete() {
 		if ( wfReadOnly() ) {
@@ -397,8 +397,8 @@ class Block {
 	 * Insert a block into the block table. Will fail if there is a conflicting
 	 * block (same name and options) already in the database.
 	 *
-	 * @param $dbw DatabaseBase if you have one available
-	 * @return mixed: false on failure, assoc array on success:
+	 * @param DatabaseBase $dbw If you have one available
+	 * @return bool|array False on failure, assoc array on success:
 	 *	('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
 	public function insert( $dbw = null ) {
@@ -482,8 +482,8 @@ class Block {
 
 	/**
 	 * Get an array suitable for passing to $dbw->insert() or $dbw->update()
-	 * @param $db DatabaseBase
-	 * @return Array
+	 * @param DatabaseBase $db
+	 * @return array
 	 */
 	protected function getDatabaseArray( $db = null ) {
 		if ( !$db ) {
@@ -521,7 +521,7 @@ class Block {
 	}
 
 	/**
-	 * @return Array
+	 * @return array
 	 */
 	protected function getAutoblockUpdateArray() {
 		return array(
@@ -538,7 +538,7 @@ class Block {
 	 * Retroactively autoblocks the last IP used by the user (if it is a user)
 	 * blocked by this Block.
 	 *
-	 * @return Array: block IDs of retroactive autoblocks made
+	 * @return array Block IDs of retroactive autoblocks made
 	 */
 	protected function doRetroactiveAutoblock() {
 		$blockIds = array();
@@ -562,7 +562,7 @@ class Block {
 	 *
 	 * @param Block $block
 	 * @param array &$blockIds
-	 * @return Array: block IDs of retroactive autoblocks made
+	 * @return array Block IDs of retroactive autoblocks made
 	 */
 	protected static function defaultRetroactiveAutoblock( Block $block, array &$blockIds ) {
 		global $wgPutIPinRC;
@@ -603,7 +603,7 @@ class Block {
 	 * TODO: this probably belongs somewhere else, but not sure where...
 	 *
 	 * @param string $ip The IP to check
-	 * @return Boolean
+	 * @return bool
 	 */
 	public static function isWhitelistedFromAutoblocks( $ip ) {
 		global $wgMemc;
@@ -645,8 +645,8 @@ class Block {
 	/**
 	 * Autoblocks the given IP, referring to this Block.
 	 *
-	 * @param string $autoblockIP the IP to autoblock.
-	 * @return mixed: block ID if an autoblock was inserted, false if not.
+	 * @param string $autoblockIP The IP to autoblock.
+	 * @return int|bool Block ID if an autoblock was inserted, false if not.
 	 */
 	public function doAutoblock( $autoblockIP ) {
 		# If autoblocks are disabled, go away.
@@ -716,7 +716,7 @@ class Block {
 
 	/**
 	 * Check if a block has expired. Delete it if it is.
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function deleteIfExpired() {
 		wfProfileIn( __METHOD__ );
@@ -736,7 +736,7 @@ class Block {
 
 	/**
 	 * Has the block expired?
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isExpired() {
 		$timestamp = wfTimestampNow();
@@ -751,7 +751,7 @@ class Block {
 
 	/**
 	 * Is the block address valid (i.e. not a null string?)
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isValid() {
 		return $this->getTarget() != null;
@@ -782,7 +782,7 @@ class Block {
 	/**
 	 * Get the IP address at the start of the range in Hex form
 	 * @throws MWException
-	 * @return String IP in Hex form
+	 * @return string IP in Hex form
 	 */
 	public function getRangeStart() {
 		switch ( $this->type ) {
@@ -801,7 +801,7 @@ class Block {
 	/**
 	 * Get the IP address at the end of the range in Hex form
 	 * @throws MWException
-	 * @return String IP in Hex form
+	 * @return string IP in Hex form
 	 */
 	public function getRangeEnd() {
 		switch ( $this->type ) {
@@ -820,7 +820,7 @@ class Block {
 	/**
 	 * Get the user id of the blocking sysop
 	 *
-	 * @return Integer (0 for foreign users)
+	 * @return int (0 for foreign users)
 	 */
 	public function getBy() {
 		$blocker = $this->getBlocker();
@@ -832,7 +832,7 @@ class Block {
 	/**
 	 * Get the username of the blocking sysop
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getByName() {
 		$blocker = $this->getBlocker();
@@ -852,8 +852,8 @@ class Block {
 	/**
 	 * Get/set a flag determining whether the master is used for reads
 	 *
-	 * @param $x Bool
-	 * @return Bool
+	 * @param bool $x
+	 * @return bool
 	 */
 	public function fromMaster( $x = null ) {
 		return wfSetVar( $this->mFromMaster, $x );
@@ -861,8 +861,8 @@ class Block {
 
 	/**
 	 * Get/set whether the Block is a hardblock (affects logged-in users on a given IP/range
-	 * @param $x Bool
-	 * @return Bool
+	 * @param bool $x
+	 * @return bool
 	 */
 	public function isHardblock( $x = null ) {
 		wfSetVar( $this->isHardblock, $x );
@@ -885,9 +885,9 @@ class Block {
 
 	/**
 	 * Get/set whether the Block prevents a given action
-	 * @param $action String
-	 * @param $x Bool
-	 * @return Bool
+	 * @param string $action
+	 * @param bool $x
+	 * @return bool
 	 */
 	public function prevents( $action, $x = null ) {
 		switch ( $action ) {
@@ -911,7 +911,7 @@ class Block {
 
 	/**
 	 * Get the block name, but with autoblocked IPs hidden as per standard privacy policy
-	 * @return String, text is escaped
+	 * @return string Text is escaped
 	 */
 	public function getRedactedName() {
 		if ( $this->mAuto ) {
@@ -928,8 +928,8 @@ class Block {
 	/**
 	 * Get a timestamp of the expiry for autoblocks
 	 *
-	 * @param $timestamp String|Int
-	 * @return String
+	 * @param string|int $timestamp
+	 * @return string
 	 */
 	public static function getAutoblockExpiry( $timestamp ) {
 		global $wgAutoblockExpiry;
@@ -955,7 +955,7 @@ class Block {
 
 	/**
 	 * Given a target and the target's type, get an existing Block object if possible.
-	 * @param $specificTarget String|User|Int a block target, which may be one of several types:
+	 * @param string|User|int $specificTarget A block target, which may be one of several types:
 	 *     * A user to block, in which case $target will be a User
 	 *     * An IP to block, in which case $target will be a User generated by using
 	 *       User::newFromName( $ip, false ) to turn off name validation
@@ -965,10 +965,10 @@ class Block {
 	 *     Calling this with a user, IP address or range will not select autoblocks, and will
 	 *     only select a block where the targets match exactly (so looking for blocks on
 	 *     1.2.3.4 will not select 1.2.0.0/16 or even 1.2.3.4/32)
-	 * @param $vagueTarget String|User|Int as above, but we will search for *any* block which
+	 * @param string|User|int $vagueTarget As above, but we will search for *any* block which
 	 *     affects that target (so for an IP address, get ranges containing that IP; and also
 	 *     get any relevant autoblocks). Leave empty or blank to skip IP-based lookups.
-	 * @param bool $fromMaster whether to use the DB_MASTER database
+	 * @param bool $fromMaster Whether to use the DB_MASTER database
 	 * @return Block|null (null if no relevant block could be found).  The target and type
 	 *     of the returned Block will refer to the actual block which was found, which might
 	 *     not be the same as the target you gave if you used $vagueTarget!
@@ -1006,11 +1006,11 @@ class Block {
 	/**
 	 * Get all blocks that match any IP from an array of IP addresses
 	 *
-	 * @param Array $ipChain list of IPs (strings), usually retrieved from the
+	 * @param array $ipChain List of IPs (strings), usually retrieved from the
 	 *	   X-Forwarded-For header of the request
-	 * @param Bool $isAnon Exclude anonymous-only blocks if false
-	 * @param Bool $fromMaster Whether to query the master or slave database
-	 * @return Array of Blocks
+	 * @param bool $isAnon Exclude anonymous-only blocks if false
+	 * @param bool $fromMaster Whether to query the master or slave database
+	 * @return array Array of Blocks
 	 * @since 1.22
 	 */
 	public static function getBlocksForIPList( array $ipChain, $isAnon, $fromMaster = false ) {
@@ -1085,11 +1085,11 @@ class Block {
 	 *  - If there are multiple exact or range blocks at the same level, the one chosen
 	 *    is random
 
-	 * @param Array $ipChain list of IPs (strings). This is used to determine how "close"
+	 * @param array $ipChain List of IPs (strings). This is used to determine how "close"
 	 * 	  a block is to the server, and if a block matches exactly, or is in a range.
 	 *	  The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
 	 *	  local-squid, ...)
-	 * @param Array $block Array of blocks
+	 * @param array $block Array of blocks
 	 * @return Block|null the "best" block from the list
 	 */
 	public static function chooseBlock( array $blocks, array $ipChain ) {
@@ -1194,7 +1194,7 @@ class Block {
 	 * as a string; for User objects this will return User::__toString()
 	 * which in turn gives User::getName().
 	 *
-	 * @param $target String|Int|User|null
+	 * @param string|int|User|null $target
 	 * @return array( User|String|null, Block::TYPE_ constant|null )
 	 */
 	public static function parseTarget( $target ) {
@@ -1251,7 +1251,7 @@ class Block {
 
 	/**
 	 * Get the type of target for this particular block
-	 * @return Block::TYPE_ constant, will never be TYPE_ID
+	 * @return int Block::TYPE_ constant, will never be TYPE_ID
 	 */
 	public function getType() {
 		return $this->mAuto
@@ -1274,7 +1274,7 @@ class Block {
 	 * Get the target for this particular Block.  Note that for autoblocks,
 	 * this returns the unredacted name; frontend functions need to call $block->getRedactedName()
 	 * in this situation.
-	 * @return User|String
+	 * @return User|string
 	 */
 	public function getTarget() {
 		return $this->target;
@@ -1283,7 +1283,7 @@ class Block {
 	/**
 	 * @since 1.19
 	 *
-	 * @return Mixed|string
+	 * @return mixed|string
 	 */
 	public function getExpiry() {
 		return $this->mExpiry;
@@ -1291,7 +1291,7 @@ class Block {
 
 	/**
 	 * Set the target for this block, and update $this->type accordingly
-	 * @param $target Mixed
+	 * @param mixed $target
 	 */
 	public function setTarget( $target ) {
 		list( $this->target, $this->type ) = self::parseTarget( $target );
@@ -1307,7 +1307,7 @@ class Block {
 
 	/**
 	 * Set the user who implemented (or will implement) this block
-	 * @param $user User|string Local User object or username string for foreign users
+	 * @param User|string $user Local User object or username string for foreign users
 	 */
 	public function setBlocker( $user ) {
 		$this->blocker = $user;
