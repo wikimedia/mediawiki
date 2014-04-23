@@ -158,7 +158,10 @@ class FindHooks extends Maintenance {
 	 */
 	private function getHooksFromOnlineDoc() {
 			// All hooks
-			$allhookdata = Http::get( 'http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:MediaWiki_hooks&cmlimit=500&format=php' );
+			$allhookdata = Http::get(
+				'http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&'
+					. 'cmtitle=Category:MediaWiki_hooks&cmlimit=500&format=php'
+			);
 			$allhookdata = unserialize( $allhookdata );
 			$allhooks = array();
 			foreach ( $allhookdata['query']['categorymembers'] as $page ) {
@@ -169,7 +172,10 @@ class FindHooks extends Maintenance {
 				}
 			}
 			// Removed hooks
-			$oldhookdata = Http::get( 'http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:Removed_hooks&cmlimit=500&format=php' );
+			$oldhookdata = Http::get(
+				'http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&'
+					. 'cmtitle=Category:Removed_hooks&cmlimit=500&format=php'
+			);
 			$oldhookdata = unserialize( $oldhookdata );
 			$removed = array();
 			foreach ( $oldhookdata['query']['categorymembers'] as $page ) {
@@ -190,7 +196,12 @@ class FindHooks extends Maintenance {
 	private function getHooksFromFile( $file ) {
 		$content = file_get_contents( $file );
 		$m = array();
-		preg_match_all( '/(?:wfRunHooks|Hooks\:\:run|ContentHandler\:\:runLegacyHooks)\(\s*([\'"])(.*?)\1/', $content, $m );
+		preg_match_all(
+			'/(?:wfRunHooks|Hooks\:\:run|ContentHandler\:\:runLegacyHooks)\(\s*([\'"])(.*?)\1/',
+			$content,
+			$m
+		);
+
 		return $m[2];
 	}
 

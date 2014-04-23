@@ -42,8 +42,12 @@ class BackupReader extends Maintenance {
 
 	function __construct() {
 		parent::__construct();
-		$gz = in_array( 'compress.zlib', stream_get_wrappers() ) ? 'ok' : '(disabled; requires PHP zlib module)';
-		$bz2 = in_array( 'compress.bzip2', stream_get_wrappers() ) ? 'ok' : '(disabled; requires PHP bzip2 module)';
+		$gz = in_array( 'compress.zlib', stream_get_wrappers() )
+			? 'ok'
+			: '(disabled; requires PHP zlib module)';
+		$bz2 = in_array( 'compress.bzip2', stream_get_wrappers() )
+			? 'ok'
+			: '(disabled; requires PHP bzip2 module)';
 
 		$this->mDescription = <<<TEXT
 This script reads pages from an XML file as produced from Special:Export or
@@ -67,7 +71,10 @@ TEXT;
 		$this->addOption( 'dry-run', 'Parse dump without actually importing pages' );
 		$this->addOption( 'debug', 'Output extra verbose debug information' );
 		$this->addOption( 'uploads', 'Process file upload data if included (experimental)' );
-		$this->addOption( 'no-updates', 'Disable link table updates. Is faster but leaves the wiki in an inconsistent state' );
+		$this->addOption(
+			'no-updates',
+			'Disable link table updates. Is faster but leaves the wiki in an inconsistent state'
+		);
 		$this->addOption( 'image-base-path', 'Import files from a specified path', false, true );
 		$this->addArg( 'file', 'Dump file to import [else use stdin]', false );
 	}

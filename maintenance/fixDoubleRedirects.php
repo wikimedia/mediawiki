@@ -106,7 +106,8 @@ class FixDoubleRedirects extends Maintenance {
 			if ( !$async ) {
 				$success = ( $dryrun ? true : $job->run() );
 				if ( !$success ) {
-					$this->error( "Error fixing " . $titleA->getPrefixedText() . ": " . $job->getLastError() . "\n" );
+					$this->error( "Error fixing " . $titleA->getPrefixedText()
+						. ": " . $job->getLastError() . "\n" );
 				}
 			} else {
 				$jobs[] = $job;

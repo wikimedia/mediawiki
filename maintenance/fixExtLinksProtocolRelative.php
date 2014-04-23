@@ -34,7 +34,8 @@ require_once __DIR__ . '/Maintenance.php';
 class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Fixes any entries in the externallinks table containing protocol-relative URLs";
+		$this->mDescription =
+			"Fixes any entries in the externallinks table containing protocol-relative URLs";
 	}
 
 	protected function getUpdateKey() {
@@ -79,7 +80,15 @@ class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 					)
 				), __METHOD__, array( 'IGNORE' )
 			);
-			$db->delete( 'externallinks', array( 'el_index' => $row->el_index, 'el_from' => $row->el_from, 'el_to' => $row->el_to ), __METHOD__ );
+			$db->delete(
+				'externallinks',
+				array(
+					'el_index' => $row->el_index,
+					'el_from' => $row->el_from,
+					'el_to' => $row->el_to
+				),
+				__METHOD__
+			);
 		}
 		$this->output( "Done, $count rows updated.\n" );
 		return true;

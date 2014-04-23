@@ -117,7 +117,8 @@ class FixTimestamps extends Maintenance {
 
 		$fixup = -$offset;
 		$sql = "UPDATE $revisionTable " .
-			"SET rev_timestamp=DATE_FORMAT(DATE_ADD(rev_timestamp, INTERVAL $fixup SECOND), '%Y%m%d%H%i%s') " .
+			"SET rev_timestamp="
+				. "DATE_FORMAT(DATE_ADD(rev_timestamp, INTERVAL $fixup SECOND), '%Y%m%d%H%i%s') " .
 			"WHERE rev_id IN (" . $dbw->makeList( $badRevs ) . ')';
 		$dbw->query( $sql, __METHOD__ );
 		$this->output( "Done\n" );
