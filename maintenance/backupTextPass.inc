@@ -31,6 +31,12 @@ require_once __DIR__ . '/backup.inc';
  */
 class TextPassDumper extends BackupDumper {
 	public $prefetch = null;
+
+	// when we spend more than maxTimeAllowed seconds on this run, we continue
+	// processing until we write out the next complete page, then save output file(s),
+	// rename it/them and open new one(s)
+	public $maxTimeAllowed = 0; // 0 = no limit
+
 	protected $input = "php://stdin";
 	protected $history = WikiExporter::FULL;
 	protected $fetchCount = 0;
@@ -67,10 +73,6 @@ class TextPassDumper extends BackupDumper {
 
 	protected $xmlwriterobj = false;
 
-	// when we spend more than maxTimeAllowed seconds on this run, we continue
-	// processing until we write out the next complete page, then save output file(s),
-	// rename it/them and open new one(s)
-	protected $maxTimeAllowed = 0; // 0 = no limit
 	protected $timeExceeded = false;
 	protected $firstPageWritten = false;
 	protected $lastPageWritten = false;
