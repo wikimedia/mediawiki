@@ -150,6 +150,7 @@ abstract class Maintenance {
 				return false; // previous calls should all be "requires"
 			}
 		}
+
 		return true;
 	}
 
@@ -204,6 +205,7 @@ abstract class Maintenance {
 		} else {
 			// Set it so we don't have to provide the default again
 			$this->mOptions[$name] = $default;
+
 			return $this->mOptions[$name];
 		}
 	}
@@ -303,6 +305,7 @@ abstract class Maintenance {
 		}
 		$input = fgets( $f, $len );
 		fclose( $f );
+
 		return rtrim( $input );
 	}
 
@@ -375,6 +378,7 @@ abstract class Maintenance {
 	public function outputChanneled( $msg, $channel = null ) {
 		if ( $msg === false ) {
 			$this->cleanupChanneled();
+
 			return;
 		}
 
@@ -426,8 +430,8 @@ abstract class Maintenance {
 				. '"max" for no limit or "default" to avoid changing it'
 		);
 		$this->addOption( 'server', "The protocol and server name to use in URLs, e.g. " .
-				"http://en.wikipedia.org. This is sometimes necessary because " .
-				"server name detection may fail in command line scripts.", false, true );
+			"http://en.wikipedia.org. This is sometimes necessary because " .
+			"server name detection may fail in command line scripts.", false, true );
 		$this->addOption( 'profiler', 'Set to "text" or "trace" to show profiling output', false, true );
 
 		# Save generic options to display them separately in help
@@ -472,6 +476,7 @@ abstract class Maintenance {
 		if ( !is_null( $this->mDb ) ) {
 			$child->setDB( $this->mDb );
 		}
+
 		return $child;
 	}
 
@@ -596,6 +601,7 @@ abstract class Maintenance {
 		# it's run again and again
 		if ( $this->mInputLoaded ) {
 			$this->loadSpecialVars();
+
 			return;
 		}
 
@@ -643,7 +649,7 @@ abstract class Maintenance {
 				# Short options
 				$argLength = strlen( $arg );
 				for ( $p = 1; $p < $argLength; $p++ ) {
-					$option = $arg { $p };
+					$option = $arg[$p];
 					if ( !isset( $this->mParams[$option] ) && isset( $this->mShortParamsMap[$option] ) ) {
 						$option = $this->mShortParamsMap[$option];
 					}
@@ -769,7 +775,7 @@ abstract class Maintenance {
 			}
 			$this->output(
 				wordwrap( "$tab--$par: " . $info['desc'], $descWidth,
-						"\n$tab$tab" ) . "\n"
+					"\n$tab$tab" ) . "\n"
 			);
 		}
 		$this->output( "\n" );
@@ -784,7 +790,7 @@ abstract class Maintenance {
 				}
 				$this->output(
 					wordwrap( "$tab--$par: " . $info['desc'], $descWidth,
-							"\n$tab$tab" ) . "\n"
+						"\n$tab$tab" ) . "\n"
 				);
 			}
 			$this->output( "\n" );
@@ -808,7 +814,7 @@ abstract class Maintenance {
 				}
 				$this->output(
 					wordwrap( "$tab--$par: " . $info['desc'], $descWidth,
-							"\n$tab$tab" ) . "\n"
+						"\n$tab$tab" ) . "\n"
 				);
 			}
 			$this->output( "\n" );
@@ -946,10 +952,11 @@ abstract class Maintenance {
 
 		if ( !is_readable( $settingsFile ) ) {
 			$this->error( "A copy of your installation's LocalSettings.php\n" .
-						"must exist and be readable in the source directory.\n" .
-						"Use --conf to specify it.", true );
+				"must exist and be readable in the source directory.\n" .
+				"Use --conf to specify it.", true );
 		}
 		$wgCommandLineMode = true;
+
 		return $settingsFile;
 	}
 
@@ -1103,7 +1110,6 @@ abstract class Maintenance {
 			$this->unlockSearchindex( $dbw );
 			$this->output( "\n" );
 		}
-
 	}
 
 	/**
@@ -1125,6 +1131,7 @@ abstract class Maintenance {
 			$u->doUpdate();
 			$this->output( "\n" );
 		}
+
 		return $title;
 	}
 
@@ -1171,6 +1178,7 @@ abstract class Maintenance {
 				return false;
 			}
 			$resp = trim( $st );
+
 			return $resp;
 		}
 	}
@@ -1206,6 +1214,7 @@ abstract class Maintenance {
 			return false;
 		}
 		print $prompt;
+
 		return fgets( STDIN, 1024 );
 	}
 }
@@ -1215,6 +1224,7 @@ abstract class Maintenance {
  */
 class FakeMaintenance extends Maintenance {
 	protected $mSelf = "FakeMaintenanceScript";
+
 	public function execute() {
 		return;
 	}
@@ -1239,6 +1249,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 			&& $db->selectRow( 'updatelog', '1', array( 'ul_key' => $key ), __METHOD__ )
 		) {
 			$this->output( "..." . $this->updateSkippedMessage() . "\n" );
+
 			return true;
 		}
 
@@ -1250,6 +1261,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 			return true;
 		} else {
 			$this->output( $this->updatelogFailedMessage() . "\n" );
+
 			return false;
 		}
 	}
@@ -1260,6 +1272,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 	 */
 	protected function updateSkippedMessage() {
 		$key = $this->getUpdateKey();
+
 		return "Update '{$key}' already logged as completed.";
 	}
 
@@ -1269,6 +1282,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 	 */
 	protected function updatelogFailedMessage() {
 		$key = $this->getUpdateKey();
+
 		return "Unable to log update '{$key}' as completed.";
 	}
 

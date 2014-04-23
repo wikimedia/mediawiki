@@ -53,8 +53,7 @@ class BaseDump {
 		$infile = array_shift( $this->infiles );
 		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
 			$this->reader->open( $infile, null, LIBXML_PARSEHUGE );
-		}
-		else {
+		} else {
 			$this->reader->open( $infile );
 		}
 	}
@@ -78,6 +77,7 @@ class BaseDump {
 		if ( $this->lastPage > $page || $this->atEnd ) {
 			$this->debug( "BaseDump::prefetch already past page $page "
 				. "looking for rev $rev  [$this->lastPage, $this->lastRev]" );
+
 			return null;
 		}
 		while ( $this->lastRev < $rev && !$this->atEnd && !$this->atPageEnd ) {
@@ -87,10 +87,12 @@ class BaseDump {
 		}
 		if ( $this->lastRev == $rev && !$this->atEnd ) {
 			$this->debug( "BaseDump::prefetch hit on $page, $rev [$this->lastPage, $this->lastRev]" );
+
 			return $this->nextText();
 		} else {
 			$this->debug( "BaseDump::prefetch already past rev $rev on page $page "
 				. "[$this->lastPage, $this->lastRev]" );
+
 			return null;
 		}
 	}
@@ -140,6 +142,7 @@ class BaseDump {
 	 */
 	function nextText() {
 		$this->skipTo( 'text' );
+
 		return strval( $this->nodeContents() );
 	}
 
@@ -154,16 +157,20 @@ class BaseDump {
 			return false;
 		}
 		while ( $this->reader->read() ) {
-			if ( $this->reader->nodeType == XMLReader::ELEMENT &&
-				$this->reader->name == $name ) {
+			if ( $this->reader->nodeType == XMLReader::ELEMENT
+				&& $this->reader->name == $name
+			) {
 				return true;
 			}
-			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
-				$this->reader->name == $parent ) {
+			if ( $this->reader->nodeType == XMLReader::END_ELEMENT
+				&& $this->reader->name == $parent
+			) {
 				$this->debug( "BaseDump::skipTo found </$parent> searching for <$name>" );
+
 				return false;
 			}
 		}
+
 		return $this->close();
 	}
 
@@ -185,15 +192,16 @@ class BaseDump {
 		$buffer = "";
 		while ( $this->reader->read() ) {
 			switch ( $this->reader->nodeType ) {
-			case XMLReader::TEXT:
-//			case XMLReader::WHITESPACE:
-			case XMLReader::SIGNIFICANT_WHITESPACE:
-				$buffer .= $this->reader->value;
-				break;
-			case XMLReader::END_ELEMENT:
-				return $buffer;
+				case XMLReader::TEXT:
+				//case XMLReader::WHITESPACE:
+				case XMLReader::SIGNIFICANT_WHITESPACE:
+					$buffer .= $this->reader->value;
+					break;
+				case XMLReader::END_ELEMENT:
+					return $buffer;
 			}
 		}
+
 		return $this->close();
 	}
 
@@ -204,6 +212,7 @@ class BaseDump {
 	function close() {
 		$this->reader->close();
 		$this->atEnd = true;
+
 		return null;
 	}
 }
