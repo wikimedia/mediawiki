@@ -116,8 +116,8 @@ class Article implements Page {
 
 	/**
 	 * Constructor and clear the article
-	 * @param $title Title Reference to a Title object.
-	 * @param $oldId Integer revision ID, null to fetch from request, zero for current
+	 * @param Title $title Reference to a Title object.
+	 * @param int $oldId Revision ID, null to fetch from request, zero for current
 	 */
 	public function __construct( Title $title, $oldId = null ) {
 		$this->mOldId = $oldId;
@@ -125,7 +125,7 @@ class Article implements Page {
 	}
 
 	/**
-	 * @param $title Title
+	 * @param Title $title
 	 * @return WikiPage
 	 */
 	protected function newPage( Title $title ) {
@@ -134,7 +134,7 @@ class Article implements Page {
 
 	/**
 	 * Constructor from a page id
-	 * @param int $id article ID to load
+	 * @param int $id Article ID to load
 	 * @return Article|null
 	 */
 	public static function newFromID( $id ) {
@@ -147,9 +147,9 @@ class Article implements Page {
 	/**
 	 * Create an Article object of the appropriate class for the given page.
 	 *
-	 * @param $title Title
-	 * @param $context IContextSource
-	 * @return Article object
+	 * @param Title $title
+	 * @param IContextSource $context
+	 * @return Article
 	 */
 	public static function newFromTitle( $title, IContextSource $context ) {
 		if ( NS_MEDIA == $title->getNamespace() ) {
@@ -179,9 +179,9 @@ class Article implements Page {
 	/**
 	 * Create an Article object of the appropriate class for the given page.
 	 *
-	 * @param $page WikiPage
-	 * @param $context IContextSource
-	 * @return Article object
+	 * @param WikiPage $page
+	 * @param IContextSource $context
+	 * @return Article
 	 */
 	public static function newFromWikiPage( WikiPage $page, IContextSource $context ) {
 		$article = self::newFromTitle( $page->getTitle(), $context );
@@ -192,7 +192,7 @@ class Article implements Page {
 	/**
 	 * Tell the page view functions that this view was redirected
 	 * from another page on the wiki.
-	 * @param $from Title object.
+	 * @param Title $from
 	 */
 	public function setRedirectedFrom( Title $from ) {
 		$this->mRedirectedFrom = $from;
@@ -201,7 +201,7 @@ class Article implements Page {
 	/**
 	 * Get the title object of the article
 	 *
-	 * @return Title object of this page
+	 * @return Title Title object of this page
 	 */
 	public function getTitle() {
 		return $this->mPage->getTitle();
@@ -290,8 +290,7 @@ class Article implements Page {
 	}
 
 	/**
-	 * @return int The oldid of the article that is to be shown, 0 for the
-	 *             current revision
+	 * @return int The oldid of the article that is to be shown, 0 for the current revision
 	 */
 	public function getOldID() {
 		if ( is_null( $this->mOldId ) ) {
@@ -373,7 +372,7 @@ class Article implements Page {
 	 * uses this method to retrieve page text from the database, so the function
 	 * has to remain public for now.
 	 *
-	 * @return mixed string containing article contents, or false if null
+	 * @return string|bool string containing article contents, or false if null
 	 * @deprecated since 1.21, use WikiPage::getContent() instead
 	 */
 	function fetchContent() { #BC cruft!
@@ -404,7 +403,7 @@ class Article implements Page {
 	 * @note Code that wants to retrieve page content from the database should
 	 * use WikiPage::getContent().
 	 *
-	 * @return Content|null|boolean false
+	 * @return Content|null|bool
 	 *
 	 * @since 1.21
 	 */
@@ -499,7 +498,7 @@ class Article implements Page {
 	/**
 	 * Use this to fetch the rev ID used on page views
 	 *
-	 * @return int revision ID of last article revision
+	 * @return int Revision ID of last article revision
 	 */
 	public function getRevIdFetched() {
 		if ( $this->mRevIdFetched ) {
@@ -769,7 +768,7 @@ class Article implements Page {
 
 	/**
 	 * Adjust title for pages with displaytitle, -{T|}- or language conversion
-	 * @param $pOutput ParserOutput
+	 * @param ParserOutput $pOutput
 	 */
 	public function adjustDisplayTitle( ParserOutput $pOutput ) {
 		# Adjust the title if it was set by displaytitle, -{T|}- or language conversion
@@ -831,7 +830,7 @@ class Article implements Page {
 	 * This is hooked by SyntaxHighlight_GeSHi to do syntax highlighting of these
 	 * page views.
 	 *
-	 * @param bool $showCacheHint whether to show a message telling the user
+	 * @param bool $showCacheHint Whether to show a message telling the user
 	 *   to clear the browser cache (default: true).
 	 */
 	protected function showCssOrJsPage( $showCacheHint = true ) {
@@ -863,9 +862,9 @@ class Article implements Page {
 
 	/**
 	 * Get the robot policy to be used for the current view
-	 * @param string $action the action= GET parameter
-	 * @param $pOutput ParserOutput|null
-	 * @return Array the policy that should be set
+	 * @param string $action The action= GET parameter
+	 * @param ParserOutput|null $pOutput
+	 * @return array The policy that should be set
 	 * TODO: actions other than 'view'
 	 */
 	public function getRobotPolicy( $action, $pOutput = null ) {
@@ -944,9 +943,9 @@ class Article implements Page {
 	/**
 	 * Converts a String robot policy into an associative array, to allow
 	 * merging of several policies using array_merge().
-	 * @param $policy Mixed, returns empty array on null/false/'', transparent
+	 * @param array|string $policy Returns empty array on null/false/'', transparent
 	 *            to already-converted arrays, converts String.
-	 * @return Array: 'index' => \<indexpolicy\>, 'follow' => \<followpolicy\>
+	 * @return array 'index' => \<indexpolicy\>, 'follow' => \<followpolicy\>
 	 */
 	public static function formatRobotPolicy( $policy ) {
 		if ( is_array( $policy ) ) {
@@ -975,7 +974,7 @@ class Article implements Page {
 	 * the output. Returns true if the header was needed, false if this is not
 	 * a redirect view. Handles both local and remote redirects.
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function showRedirectedFromHeader() {
 		global $wgRedirectSources;
@@ -1277,7 +1276,7 @@ class Article implements Page {
 	 * If the revision requested for view is deleted, check permissions.
 	 * Send either an error message or a warning header to the output.
 	 *
-	 * @return boolean true if the view is allowed, false if not.
+	 * @return bool true if the view is allowed, false if not.
 	 */
 	public function showDeletedRevisionHeader() {
 		if ( !$this->mRevision->isDeleted( Revision::DELETED_TEXT ) ) {
@@ -1320,7 +1319,7 @@ class Article implements Page {
 	 *   Revision as of \<date\>; view current revision
 	 *   \<- Previous version | Next Version -\>
 	 *
-	 * @param int $oldid revision ID of this article revision
+	 * @param int $oldid Revision ID of this article revision
 	 */
 	public function setOldSubtitle( $oldid = 0 ) {
 		if ( !wfRunHooks( 'DisplayOldSubtitle', array( &$this, &$oldid ) ) ) {
@@ -1445,10 +1444,10 @@ class Article implements Page {
 	 * Chances are you should just be using the ParserOutput from
 	 * WikitextContent::getParserOutput instead of calling this for redirects.
 	 *
-	 * @param $target Title|Array of destination(s) to redirect
-	 * @param $appendSubtitle Boolean [optional]
-	 * @param $forceKnown Boolean: should the image be shown as a bluelink regardless of existence?
-	 * @return string containing HMTL with redirect link
+	 * @param Title|array $target Destination(s) to redirect
+	 * @param bool $appendSubtitle [optional]
+	 * @param bool $forceKnown Should the image be shown as a bluelink regardless of existence?
+	 * @return string Containing HMTL with redirect link
 	 */
 	public function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
 		$lang = $this->getTitle()->getPageLanguage();
@@ -1467,9 +1466,9 @@ class Article implements Page {
 	 *
 	 * @since 1.23
 	 * @param Language $lang
-	 * @param Title|array $target destination(s) to redirect
+	 * @param Title|array $target Destination(s) to redirect
 	 * @param bool $forceKnown Should the image be shown as a bluelink regardless of existence?
-	 * @return string containing HMTL with redirect link
+	 * @return string Containing HMTL with redirect link
 	 */
 	public static function getRedirectHeaderHtml( Language $lang, $target, $forceKnown = false ) {
 		global $wgStylePath;
@@ -1658,7 +1657,7 @@ class Article implements Page {
 	/**
 	 * Output deletion confirmation dialog
 	 * @todo FIXME: Move to another file?
-	 * @param string $reason prefilled reason
+	 * @param string $reason Prefilled reason
 	 */
 	public function confirmDelete( $reason ) {
 		wfDebug( "Article::confirmDelete\n" );
@@ -1826,7 +1825,7 @@ class Article implements Page {
 	 * output to the client that is necessary for this request.
 	 * (that is, it has sent a cached version of the page)
 	 *
-	 * @return boolean true if cached version send, false otherwise
+	 * @return bool true if cached version send, false otherwise
 	 */
 	protected function tryFileCache() {
 		static $called = false;
@@ -1882,9 +1881,9 @@ class Article implements Page {
 	 *
 	 * @since 1.16 (r52326) for LiquidThreads
 	 *
-	 * @param $oldid mixed integer Revision ID or null
-	 * @param $user User The relevant user
-	 * @return ParserOutput or false if the given revision ID is not found
+	 * @param int|null $oldid Revision ID or null
+	 * @param User $user The relevant user
+	 * @return ParserOutput|bool ParserOutput or false if the given revision ID is not found
 	 */
 	public function getParserOutput( $oldid = null, User $user = null ) {
 		//XXX: bypasses mParserOptions and thus setParserOptions()
@@ -1928,7 +1927,7 @@ class Article implements Page {
 	/**
 	 * Sets the context this Article is executed in
 	 *
-	 * @param $context IContextSource
+	 * @param IContextSource $context
 	 * @since 1.18
 	 */
 	public function setContext( $context ) {
@@ -2006,7 +2005,7 @@ class Article implements Page {
 	 * raw WikiPage fields for backwards compatibility.
 	 *
 	 * @param string $fname Field name
-	 * @param $fvalue mixed New value
+	 * @param mixed $fvalue New value
 	 */
 	public function __set( $fname, $fvalue ) {
 		if ( property_exists( $this->mPage, $fname ) ) {
@@ -2039,11 +2038,11 @@ class Article implements Page {
 	// ****** B/C functions to work-around PHP silliness with __call and references ****** //
 
 	/**
-	 * @param $limit array
-	 * @param $expiry array
-	 * @param $cascade bool
-	 * @param $reason string
-	 * @param $user User
+	 * @param array $limit
+	 * @param array $expiry
+	 * @param bool $cascade
+	 * @param string $reason
+	 * @param User $user
 	 * @return Status
 	 */
 	public function doUpdateRestrictions( array $limit, array $expiry, &$cascade,
@@ -2053,10 +2052,10 @@ class Article implements Page {
 	}
 
 	/**
-	 * @param $limit array
-	 * @param $reason string
-	 * @param $cascade int
-	 * @param $expiry array
+	 * @param array $limit
+	 * @param string $reason
+	 * @param int $cascade
+	 * @param array $expiry
 	 * @return bool
 	 */
 	public function updateRestrictions( $limit = array(), $reason = '',
@@ -2072,11 +2071,11 @@ class Article implements Page {
 	}
 
 	/**
-	 * @param $reason string
-	 * @param $suppress bool
-	 * @param $id int
-	 * @param $commit bool
-	 * @param $error string
+	 * @param string $reason
+	 * @param bool $suppress
+	 * @param int $id
+	 * @param bool $commit
+	 * @param string $error
 	 * @return bool
 	 */
 	public function doDeleteArticle( $reason, $suppress = false, $id = 0,
@@ -2086,12 +2085,12 @@ class Article implements Page {
 	}
 
 	/**
-	 * @param $fromP
-	 * @param $summary
-	 * @param $token
-	 * @param $bot
-	 * @param $resultDetails
-	 * @param $user User
+	 * @param string $fromP
+	 * @param string $summary
+	 * @param string $token
+	 * @param bool $bot
+	 * @param array $resultDetails
+	 * @param User|null $user
 	 * @return array
 	 */
 	public function doRollback( $fromP, $summary, $token, $bot, &$resultDetails, User $user = null ) {
@@ -2100,11 +2099,11 @@ class Article implements Page {
 	}
 
 	/**
-	 * @param $fromP
-	 * @param $summary
-	 * @param $bot
-	 * @param $resultDetails
-	 * @param $guser User
+	 * @param string $fromP
+	 * @param string $summary
+	 * @param bool $bot
+	 * @param array $resultDetails
+	 * @param User|null $guser
 	 * @return array
 	 */
 	public function commitRollback( $fromP, $summary, $bot, &$resultDetails, User $guser = null ) {
@@ -2113,7 +2112,7 @@ class Article implements Page {
 	}
 
 	/**
-	 * @param $hasHistory bool
+	 * @param bool $hasHistory
 	 * @return mixed
 	 */
 	public function generateReason( &$hasHistory ) {
@@ -2132,30 +2131,30 @@ class Article implements Page {
 	}
 
 	/**
-	 * @param $title Title
+	 * @param Title $title
 	 */
 	public static function onArticleCreate( $title ) {
 		WikiPage::onArticleCreate( $title );
 	}
 
 	/**
-	 * @param $title Title
+	 * @param Title $title
 	 */
 	public static function onArticleDelete( $title ) {
 		WikiPage::onArticleDelete( $title );
 	}
 
 	/**
-	 * @param $title Title
+	 * @param Title $title
 	 */
 	public static function onArticleEdit( $title ) {
 		WikiPage::onArticleEdit( $title );
 	}
 
 	/**
-	 * @param $oldtext
-	 * @param $newtext
-	 * @param $flags
+	 * @param string $oldtext
+	 * @param string $newtext
+	 * @param int $flags
 	 * @return string
 	 * @deprecated since 1.21, use ContentHandler::getAutosummary() instead
 	 */
