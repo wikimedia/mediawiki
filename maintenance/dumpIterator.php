@@ -57,8 +57,11 @@ abstract class DumpIterator extends Maintenance {
 			$revision = new WikiRevision;
 
 			$revision->setText( file_get_contents( $this->getOption( 'file' ) ) );
-			$revision->setTitle( Title::newFromText( rawurldecode( basename( $this->getOption( 'file' ), '.txt' ) ) ) );
+			$revision->setTitle( Title::newFromText(
+				rawurldecode( basename( $this->getOption( 'file' ), '.txt' ) )
+			) );
 			$this->handleRevision( $revision );
+
 			return;
 		}
 
@@ -67,7 +70,8 @@ abstract class DumpIterator extends Maintenance {
 		if ( $this->getOption( 'dump' ) == '-' ) {
 			$source = new ImportStreamSource( $this->getStdin() );
 		} else {
-			$this->error( "Sorry, I don't support dump filenames yet. Use - and provide it on stdin on the meantime.", true );
+			$this->error( "Sorry, I don't support dump filenames yet. "
+				. "Use - and provide it on stdin on the meantime.", true );
 		}
 		$importer = new WikiImporter( $source );
 
@@ -86,8 +90,9 @@ abstract class DumpIterator extends Maintenance {
 			$this->error( round( $this->count / $delta, 2 ) . " pages/sec" );
 		}
 
-		# Perform the memory_get_peak_usage() when all the other data has been output so there's no damage if it dies.
-		# It is only available since 5.2.0 (since 5.2.1 if you haven't compiled with --enable-memory-limit)
+		# Perform the memory_get_peak_usage() when all the other data has been
+		# output so there's no damage if it dies. It is only available since
+		# 5.2.0 (since 5.2.1 if you haven't compiled with --enable-memory-limit)
 		$this->error( "Memory peak usage of " . memory_get_peak_usage() . " bytes\n" );
 	}
 

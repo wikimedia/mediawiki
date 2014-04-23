@@ -79,7 +79,9 @@ class DeleteBatch extends Maintenance {
 		$dbw = wfGetDB( DB_MASTER );
 
 		# Handle each entry
+		// @codingStandardsIgnoreStart Ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
 		for ( $linenum = 1; !feof( $file ); $linenum++ ) {
+			// @codingStandardsIgnoreEnd
 			$line = trim( fgets( $file ) );
 			if ( $line == '' ) {
 				continue;
