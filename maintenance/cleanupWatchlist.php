@@ -65,7 +65,8 @@ class WatchlistCleanup extends TableCleanup {
 		$title = Title::newFromText( $verified );
 
 		if ( $row->wl_user == 0 || is_null( $title ) || !$title->equals( $current ) ) {
-			$this->output( "invalid watch by {$row->wl_user} for ({$row->wl_namespace}, \"{$row->wl_title}\")\n" );
+			$this->output( "invalid watch by {$row->wl_user} for "
+				. "({$row->wl_namespace}, \"{$row->wl_title}\")\n" );
 			$updated = $this->removeWatch( $row );
 			$this->progress( $updated );
 			return;
