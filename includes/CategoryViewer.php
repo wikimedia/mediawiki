@@ -508,7 +508,7 @@ class CategoryViewer extends ContextSource {
 	 * supports those.
 	 *
 	 * @param array $articles
-	 * @param array $articles_start_char
+	 * @param string[] $articles_start_char
 	 * @return string
 	 * @private
 	 */
@@ -564,7 +564,7 @@ class CategoryViewer extends ContextSource {
 	/**
 	 * Format a list of articles chunked by letter in a bullet list.
 	 * @param array $articles
-	 * @param array $articles_start_char
+	 * @param string[] $articles_start_char
 	 * @return string
 	 * @private
 	 */

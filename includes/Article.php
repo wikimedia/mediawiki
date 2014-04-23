@@ -90,7 +90,7 @@ class Article implements Page {
 
 	/**
 	 * URL to redirect to or false if none
-	 * @var string|false $mRedirectUrl
+	 * @var string|bool $mRedirectUrl
 	 */
 	var $mRedirectUrl = false;        // !<
 
@@ -372,7 +372,7 @@ class Article implements Page {
 	 * uses this method to retrieve page text from the database, so the function
 	 * has to remain public for now.
 	 *
-	 * @return string|bool string containing article contents, or false if null
+	 * @return string|bool String containing article contents, or false if null
 	 * @deprecated since 1.21, use WikiPage::getContent() instead
 	 */
 	function fetchContent() { #BC cruft!
@@ -865,7 +865,7 @@ class Article implements Page {
 	 * @param string $action The action= GET parameter
 	 * @param ParserOutput|null $pOutput
 	 * @return array The policy that should be set
-	 * TODO: actions other than 'view'
+	 * @todo: actions other than 'view'
 	 */
 	public function getRobotPolicy( $action, $pOutput = null ) {
 		global $wgArticleRobotPolicies, $wgNamespaceRobotPolicies, $wgDefaultRobotPolicy;
@@ -944,7 +944,7 @@ class Article implements Page {
 	 * Converts a String robot policy into an associative array, to allow
 	 * merging of several policies using array_merge().
 	 * @param array|string $policy Returns empty array on null/false/'', transparent
-	 *            to already-converted arrays, converts String.
+	 *   to already-converted arrays, converts string.
 	 * @return array 'index' => \<indexpolicy\>, 'follow' => \<followpolicy\>
 	 */
 	public static function formatRobotPolicy( $policy ) {

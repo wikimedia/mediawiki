@@ -136,7 +136,7 @@ class TextContent extends AbstractContent {
 	 *
 	 * @note: this allows any text-based content to be transcluded as if it was wikitext.
 	 *
-	 * @return string|false The raw text, or false if the conversion failed.
+	 * @return string|bool The raw text, or false if the conversion failed.
 	 */
 	public function getWikitextForTransclusion() {
 		$wikitext = $this->convert( CONTENT_MODEL_WIKITEXT, 'lossy' );

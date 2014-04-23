@@ -315,7 +315,7 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Set the "relevant" title
 	 * @see self::getRelevantTitle()
-	 * @param Title $t Title object to use
+	 * @param Title $t
 	 */
 	public function setRelevantTitle( $t ) {
 		$this->mRelevantTitle = $t;
@@ -341,7 +341,7 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Set the "relevant" user
 	 * @see self::getRelevantUser()
-	 * @param User $u User object to use
+	 * @param User $u
 	 */
 	public function setRelevantUser( $u ) {
 		$this->mRelevantUser = $u;
