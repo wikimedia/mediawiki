@@ -121,7 +121,13 @@ class LocalFile extends File {
 	/** @var bool True if file is not present in file system. Not to be cached in memcached */
 	private $missing;
 
+	/** @var int UNIX timestamp of the last markVolatile() call */
+	private $volatileTime = 0;
+
 	const LOAD_ALL = 1; // integer; load all the lazy fields too (like metadata)
+	const LOAD_VIA_SLAVE = 2; // integer; use a slave to load the data
+
+	const VOLATILE_TTL = 300; // integer; seconds
 
 	/**
 	 * Create a LocalFile from a title
@@ -226,7 +232,7 @@ class LocalFile extends File {
 	/**
 	 * Get the memcached key for the main data for this file, or false if
 	 * there is no access to the shared cache.
-	 * @return bool
+	 * @return string|bool
 	 */
 	function getCacheKey() {
 		$hashedName = md5( $this->getName() );
@@ -374,7 +380,7 @@ class LocalFile extends File {
 	/**
 	 * Load file metadata from the DB
 	 */
-	function loadFromDB() {
+	function loadFromDB( $flags = 0 ) {
 		# Polymorphic function name to distinguish foreign and local fetches
 		$fname = get_class( $this ) . '::' . __FUNCTION__;
 		wfProfileIn( $fname );
@@ -383,7 +389,10 @@ class LocalFile extends File {
 		$this->dataLoaded = true;
 		$this->extraDataLoaded = true;
 
-		$dbr = $this->repo->getMasterDB();
+		$dbr = ( $flags & self::LOAD_VIA_SLAVE )
+			? $this->repo->getSlaveDB()
+			: $this->repo->getMasterDB();
+
 		$row = $dbr->selectRow( 'image', $this->getCacheFields( 'img_' ),
 			array( 'img_name' => $this->getName() ), $fname );
 
@@ -509,7 +518,7 @@ class LocalFile extends File {
 	function load( $flags = 0 ) {
 		if ( !$this->dataLoaded ) {
 			if ( !$this->loadFromCache() ) {
-				$this->loadFromDB();
+				$this->loadFromDB( $this->isVolatile() ? 0 : self::LOAD_VIA_SLAVE );
 				$this->saveToCache();
 			}
 			$this->dataLoaded = true;
@@ -1851,6 +1860,8 @@ class LocalFile extends File {
 			} );
 		}
 
+		$this->markVolatile(); // file may change soon
+
 		return $dbw->selectField( 'image', '1',
 			array( 'img_name' => $this->getName() ), __METHOD__, array( 'FOR UPDATE' ) );
 	}
@@ -1868,6 +1879,45 @@ class LocalFile extends File {
 				$this->lockedOwnTrx = false;
 			}
 		}
+	}
+
+	/**
+	 * Mark a file as about to be changed
+	 *
+	 * This sets a cache key that alters master/slave DB loading behavior
+	 *
+	 * @return bool Success
+	 */
+	protected function markVolatile() {
+		global $wgMemc;
+
+		$key = $this->repo->getSharedCacheKey( 'file-volatile', md5( $this->getName() ) );
+		if ( $key ) {
+			$this->volatileTime = time();
+			return $wgMemc->set( $key, $this->volatileTime, self::VOLATILE_TTL );
+		}
+
+		return true;
+	}
+
+	/**
+	 * Check if a file as about to be changed or has been changed recently
+	 *
+	 * @see LocalFile::isVolatile()
+	 * @return bool Whether the file is volatile
+	 */
+	protected function isVolatile() {
+		global $wgMemc;
+
+		$key = $this->repo->getSharedCacheKey( 'file-volatile', md5( $this->getName() ) );
+		if ( $key ) {
+			if ( $this->volatileTime && ( time() - $this->volatileTime ) <= self::VOLATILE_TTL ) {
+				return true; // sanity
+			}
+			return ( $wgMemc->get( $key ) !== false );
+		}
+
+		return false;
 	}
 
 	/**
