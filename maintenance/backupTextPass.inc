@@ -70,7 +70,7 @@ class TextPassDumper extends BackupDumper {
 	// when we spend more than maxTimeAllowed seconds on this run, we continue
 	// processing until we write out the next complete page, then save output file(s),
 	// rename it/them and open new one(s)
-	protected $maxTimeAllowed = 0;  // 0 = no limit
+	public $maxTimeAllowed = 0;  // 0 = no limit
 	protected $timeExceeded = false;
 	protected $firstPageWritten = false;
 	protected $lastPageWritten = false;
