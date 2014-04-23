@@ -110,9 +110,11 @@ function findAuxFile( $file, $auxExtension, $maxStrip = 1 ) {
 	return false;
 }
 
-# FIXME: Access the api in a saner way and performing just one query (preferably batching files too).
+# @todo FIXME: Access the api in a saner way and performing just one query
+# (preferably batching files too).
 function getFileCommentFromSourceWiki( $wiki_host, $file ) {
-	$url = $wiki_host . '/api.php?action=query&format=xml&titles=File:' . rawurlencode( $file ) . '&prop=imageinfo&&iiprop=comment';
+	$url = $wiki_host . '/api.php?action=query&format=xml&titles=File:'
+		. rawurlencode( $file ) . '&prop=imageinfo&&iiprop=comment';
 	$body = Http::get( $url );
 	if ( preg_match( '#<ii comment="([^"]*)" />#', $body, $matches ) == 0 ) {
 		return false;
@@ -122,7 +124,8 @@ function getFileCommentFromSourceWiki( $wiki_host, $file ) {
 }
 
 function getFileUserFromSourceWiki( $wiki_host, $file ) {
-	$url = $wiki_host . '/api.php?action=query&format=xml&titles=File:' . rawurlencode( $file ) . '&prop=imageinfo&&iiprop=user';
+	$url = $wiki_host . '/api.php?action=query&format=xml&titles=File:'
+		. rawurlencode( $file ) . '&prop=imageinfo&&iiprop=user';
 	$body = Http::get( $url );
 	if ( preg_match( '#<ii user="([^"]*)" />#', $body, $matches ) == 0 ) {
 		return false;

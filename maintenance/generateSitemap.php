@@ -63,7 +63,8 @@ class GenerateSitemap extends Maintenance {
 	public $fspath;
 
 	/**
-	 * The URL path to prepend to filenames in the index; should resolve to the same directory as $fspath
+	 * The URL path to prepend to filenames in the index;
+	 * should resolve to the same directory as $fspath.
 	 *
 	 * @var string
 	 */
@@ -145,11 +146,32 @@ class GenerateSitemap extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Creates a sitemap for the site";
-		$this->addOption( 'fspath', 'The file system path to save to, e.g. /tmp/sitemap; defaults to current directory', false, true );
-		$this->addOption( 'urlpath', 'The URL path corresponding to --fspath, prepended to filenames in the index; defaults to an empty string', false, true );
-		$this->addOption( 'compress', 'Compress the sitemap files, can take value yes|no, default yes', false, true );
+		$this->addOption(
+			'fspath',
+			'The file system path to save to, e.g. /tmp/sitemap; defaults to current directory',
+			false,
+			true
+		);
+		$this->addOption(
+			'urlpath',
+			'The URL path corresponding to --fspath, prepended to filenames in the index; '
+				. 'defaults to an empty string',
+			false,
+			true
+		);
+		$this->addOption(
+			'compress',
+			'Compress the sitemap files, can take value yes|no, default yes',
+			false,
+			true
+		);
 		$this->addOption( 'skip-redirects', 'Do not include redirecting articles in the sitemap' );
-		$this->addOption( 'identifier', 'What site identifier to use for the wiki, defaults to $wgDBname', false, true );
+		$this->addOption(
+			'identifier',
+			'What site identifier to use for the wiki, defaults to $wgDBname',
+			false,
+			true
+		);
 	}
 
 	/**
@@ -266,7 +288,9 @@ class GenerateSitemap extends Maintenance {
 	 * @return string
 	 */
 	function priority( $namespace ) {
-		return isset( $this->priorities[$namespace] ) ? $this->priorities[$namespace] : $this->guessPriority( $namespace );
+		return isset( $this->priorities[$namespace] )
+			? $this->priorities[$namespace]
+			: $this->guessPriority( $namespace );
 	}
 
 	/**
@@ -278,7 +302,9 @@ class GenerateSitemap extends Maintenance {
 	 * @return string
 	 */
 	function guessPriority( $namespace ) {
-		return MWNamespace::isSubject( $namespace ) ? $this->priorities[self::GS_MAIN] : $this->priorities[self::GS_TALK];
+		return MWNamespace::isSubject( $namespace )
+			? $this->priorities[self::GS_MAIN]
+			: $this->priorities[self::GS_TALK];
 	}
 
 	/**
@@ -324,7 +350,10 @@ class GenerateSitemap extends Maintenance {
 					continue;
 				}
 
-				if ( $i++ === 0 || $i === $this->url_limit + 1 || $length + $this->limit[1] + $this->limit[2] > $this->size_limit ) {
+				if ( $i++ === 0
+					|| $i === $this->url_limit + 1
+					|| $length + $this->limit[1] + $this->limit[2] > $this->size_limit
+				) {
 					if ( $this->file !== false ) {
 						$this->write( $this->file, $this->closeFile() );
 						$this->close( $this->file );
@@ -349,7 +378,11 @@ class GenerateSitemap extends Maintenance {
 						if ( $vCode == $wgContLang->getCode() ) {
 							continue; // we don't want default variant
 						}
-						$entry = $this->fileEntry( $title->getCanonicalURL( '', $vCode ), $date, $this->priority( $namespace ) );
+						$entry = $this->fileEntry(
+							$title->getCanonicalURL( '', $vCode ),
+							$date,
+							$this->priority( $namespace )
+						);
 						$length += strlen( $entry );
 						$this->write( $this->file, $entry );
 					}
@@ -379,7 +412,8 @@ class GenerateSitemap extends Maintenance {
 	function open( $file, $flags ) {
 		$resource = $this->compress ? gzopen( $file, $flags ) : fopen( $file, $flags );
 		if ( $resource === false ) {
-			throw new MWException( __METHOD__ . " error opening file $file with flags $flags. Check permissions?" );
+			throw new MWException( __METHOD__
+				. " error opening file $file with flags $flags. Check permissions?" );
 		}
 		return $resource;
 	}
@@ -523,7 +557,11 @@ class GenerateSitemap extends Maintenance {
 
 		$this->limit = array(
 			strlen( $this->openFile() ),
-			strlen( $this->fileEntry( $title->getCanonicalURL(), wfTimestamp( TS_ISO_8601, wfTimestamp() ), $this->priority( $namespace ) ) ),
+			strlen( $this->fileEntry(
+				$title->getCanonicalURL(),
+				wfTimestamp( TS_ISO_8601, wfTimestamp() ),
+				$this->priority( $namespace )
+			) ),
 			strlen( $this->closeFile() )
 		);
 	}
