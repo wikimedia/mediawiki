@@ -1296,7 +1296,7 @@ class MySQLMasterPos implements DBMasterPos {
 	}
 
 	/**
-	 * @return array|false (int, int)
+	 * @return array|bool (int, int)
 	 */
 	protected function getCoordinates() {
 		$m = array();

@@ -126,6 +126,7 @@ class SquidPurgeClient {
 	/**
 	 * Get the host's IP address.
 	 * Does not support IPv6 at present due to the lack of a convenient interface in PHP.
+	 * @throws MWException
 	 * @return string
 	 */
 	protected function getIP() {

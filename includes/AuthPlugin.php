@@ -204,7 +204,7 @@ class AuthPlugin {
 	 * Update user information in the external authentication database.
 	 * Return true if successful.
 	 *
-	 * @param User $user User object.
+	 * @param User $user
 	 * @return bool
 	 */
 	public function updateExternalDB( $user ) {

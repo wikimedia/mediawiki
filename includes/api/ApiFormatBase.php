@@ -390,7 +390,7 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	/**
 	 * ChannelFeed doesn't give us a method to print errors in a friendly
 	 * manner, so just punt errors to the default printer.
-	 * @return false
+	 * @return bool
 	 */
 	public function canPrintErrors() {
 		return false;

@@ -371,7 +371,7 @@ class WebRequest {
 	 * selected by a drop-down menu). For freeform input, see getText().
 	 *
 	 * @param string $name
-	 * @param string $default Optional default (or NULL)
+	 * @param string $default Optional default (or null)
 	 * @return string
 	 */
 	public function getVal( $name, $default = null ) {
@@ -418,10 +418,10 @@ class WebRequest {
 	/**
 	 * Fetch an array from the input or return $default if it's not set.
 	 * If source was scalar, will return an array with a single element.
-	 * If no source and no default, returns NULL.
+	 * If no source and no default, returns null.
 	 *
 	 * @param string $name
-	 * @param array $default Optional default (or NULL)
+	 * @param array $default Optional default (or null)
 	 * @return array
 	 */
 	public function getArray( $name, $default = null ) {
@@ -436,11 +436,11 @@ class WebRequest {
 	/**
 	 * Fetch an array of integers, or return $default if it's not set.
 	 * If source was scalar, will return an array with a single element.
-	 * If no source and no default, returns NULL.
+	 * If no source and no default, returns null.
 	 * If an array is returned, contents are guaranteed to be integers.
 	 *
 	 * @param string $name
-	 * @param array $default option default (or NULL)
+	 * @param array $default Option default (or null)
 	 * @return array Array of ints
 	 */
 	public function getIntArray( $name, $default = null ) {

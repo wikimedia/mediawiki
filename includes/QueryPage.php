@@ -53,7 +53,7 @@ abstract class QueryPage extends SpecialPage {
 	protected $cachedTimestamp = null;
 
 	/**
-	 * Wheter to show prev/next links
+	 * Whether to show prev/next links
 	 */
 	protected $shownavigation = true;
 

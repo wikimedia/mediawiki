@@ -878,7 +878,7 @@ class EmailNotification {
 	/**
 	 * Same as sendPersonalised but does impersonal mail suitable for bulk
 	 * mailing.  Takes an array of MailAddress objects.
-	 * @param array $addresses
+	 * @param MailAddress[] $addresses
 	 * @return Status|null
 	 */
 	function sendImpersonal( $addresses ) {

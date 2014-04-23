@@ -1679,7 +1679,7 @@ class Linker {
 	 * Wraps the TOC in a table and provides the hide/collapse javascript.
 	 *
 	 * @param string $toc Html of the Table Of Contents
-	 * @param string|Language|false $lang Language for the toc title, defaults to user language
+	 * @param string|Language|bool $lang Language for the toc title, defaults to user language
 	 * @return string Full html of the TOC
 	 */
 	public static function tocList( $toc, $lang = false ) {
