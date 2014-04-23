@@ -35,7 +35,10 @@ class CleanupSpam extends Maintenance {
 		$this->mDescription = "Cleanup all spam from a given hostname";
 		$this->addOption( 'all', 'Check all wikis in $wgLocalDatabases' );
 		$this->addOption( 'delete', 'Delete pages containing only spam instead of blanking them' );
-		$this->addArg( 'hostname', 'Hostname that was spamming, single * wildcard in the beginning allowed' );
+		$this->addArg(
+			'hostname',
+			'Hostname that was spamming, single * wildcard in the beginning allowed'
+		);
 	}
 
 	public function execute() {
@@ -123,19 +126,28 @@ class CleanupSpam extends Maintenance {
 				$content = $rev->getContent( Revision::RAW );
 
 				$this->output( "reverting\n" );
-				$page->doEditContent( $content, wfMessage( 'spam_reverting', $domain )->inContentLanguage()->text(),
-					EDIT_UPDATE, $rev->getId() );
+				$page->doEditContent(
+					$content,
+					wfMessage( 'spam_reverting', $domain )->inContentLanguage()->text(),
+					EDIT_UPDATE,
+					$rev->getId()
+				);
 			} elseif ( $this->hasOption( 'delete' ) ) {
 				// Didn't find a non-spammy revision, blank the page
 				$this->output( "deleting\n" );
-				$page->doDeleteArticle( wfMessage( 'spam_deleting', $domain )->inContentLanguage()->text() );
+				$page->doDeleteArticle(
+					wfMessage( 'spam_deleting', $domain )->inContentLanguage()->text()
+				);
 			} else {
 				// Didn't find a non-spammy revision, blank the page
 				$handler = ContentHandler::getForTitle( $title );
 				$content = $handler->makeEmptyContent();
 
 				$this->output( "blanking\n" );
-				$page->doEditContent( $content, wfMessage( 'spam_blanking', $domain )->inContentLanguage()->text() );
+				$page->doEditContent(
+					$content,
+					wfMessage( 'spam_blanking', $domain )->inContentLanguage()->text()
+				);
 			}
 			$dbw->commit( __METHOD__ );
 		}
