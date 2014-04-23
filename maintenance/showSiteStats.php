@@ -65,7 +65,11 @@ class ShowSiteStats extends Maintenance {
 
 		// Show them
 		foreach ( $fields as $field => $desc ) {
-			$this->output( sprintf( "%-{$max_length_desc}s: %{$max_length_value}d\n", $desc, $stats->$field ) );
+			$this->output( sprintf(
+				"%-{$max_length_desc}s: %{$max_length_value}d\n",
+				$desc,
+				$stats->$field
+			) );
 		}
 	}
 }

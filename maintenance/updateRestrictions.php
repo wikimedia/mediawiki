@@ -59,7 +59,12 @@ class UpdateRestrictions extends Maintenance {
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing page_id from $blockStart to $blockEnd\n" );
 			$cond = "page_id BETWEEN $blockStart AND $blockEnd AND page_restrictions !=''";
-			$res = $db->select( 'page', array( 'page_id', 'page_namespace', 'page_restrictions' ), $cond, __METHOD__ );
+			$res = $db->select(
+				'page',
+				array( 'page_id', 'page_namespace', 'page_restrictions' ),
+				$cond,
+				__METHOD__
+			);
 			$batch = array();
 			foreach ( $res as $row ) {
 				$oldRestrictions = array();
@@ -108,7 +113,13 @@ class UpdateRestrictions extends Maintenance {
 		// Kill any broken rows from previous imports
 		$db->delete( 'page_restrictions', array( 'pr_level' => '' ) );
 		// Kill other invalid rows
-		$db->deleteJoin( 'page_restrictions', 'page', 'pr_page', 'page_id', array( 'page_namespace' => NS_MEDIAWIKI ) );
+		$db->deleteJoin(
+			'page_restrictions',
+			'page',
+			'pr_page',
+			'page_id',
+			array( 'page_namespace' => NS_MEDIAWIKI )
+		);
 		$this->output( "...Done!\n" );
 	}
 }

@@ -53,7 +53,8 @@ class MwSql extends Maintenance {
 				$index = DB_SLAVE;
 			} else {
 				$index = null;
-				for ( $i = 0; $i < $lb->getServerCount(); ++$i ) {
+				$serverCount = $lb->getServerCount();
+				for ( $i = 0; $i < $serverCount; ++$i ) {
 					if ( $lb->getServerName( $i ) === $server ) {
 						$index = $i;
 						break;
