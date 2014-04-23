@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Now the custom parts */
 
-#footer { clear: both }
+#footer { clear: both; }
 /* images */
 /* @noflip */
 div.floatright {

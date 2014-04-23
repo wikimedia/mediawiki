@@ -227,7 +227,7 @@ input.mw-searchInput {
 /* Bring #sitetitle to top. Otherwise #toplinks is overlaid over it, making the link unclickable. */
 #sitetitle a {
 	position: relative;
-	z-index: 10
+	z-index: 10;
 }
 
 #toplinks {
