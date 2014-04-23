@@ -386,6 +386,7 @@ class LocalFile extends File {
 		$dbr = $this->repo->getMasterDB();
 		$row = $dbr->selectRow( 'image', $this->getCacheFields( 'img_' ),
 			array( 'img_name' => $this->getName() ), $fname );
+        $row->img_metadata = $dbr->decodeBlob( $row->img_metadata );
 
 		if ( $row ) {
 			$this->loadFromRow( $row );
