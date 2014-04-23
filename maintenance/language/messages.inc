@@ -264,6 +264,7 @@ $wgMessageStructure = array(
 		'jumptonavigation',
 		'jumptosearch',
 		'view-pool-error',
+		'generic-pool-error',
 		'pool-timeout',
 		'pool-queuefull',
 		'pool-errorunknown',
