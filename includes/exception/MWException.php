@@ -135,7 +135,8 @@ class MWException extends Exception {
 
 		if ( $wgShowExceptionDetails ) {
 			return '<p>' . nl2br( htmlspecialchars( MWExceptionHandler::getLogMessage( $this ) ) ) .
-			'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( MWExceptionHandler::getRedactedTraceAsString( $this ) ) ) .
+			'</p><p>Backtrace:</p><p>' .
+			nl2br( htmlspecialchars( MWExceptionHandler::getRedactedTraceAsString( $this ) ) ) .
 			"</p>\n";
 		} else {
 			return "<div class=\"errorbox\">" .
@@ -222,7 +223,9 @@ class MWException extends Exception {
 			echo "<!DOCTYPE html>\n" .
 				'<html><head>' .
 				// Mimick OutputPage::setPageTitle behaviour
-				'<title>' . htmlspecialchars( $this->msg( 'pagetitle', "$1 - $wgSitename", $this->getPageTitle() ) ) . '</title>' .
+				'<title>' .
+				htmlspecialchars( $this->msg( 'pagetitle', "$1 - $wgSitename", $this->getPageTitle() ) ) .
+				'</title>' .
 				'<style>body { font-family: sans-serif; margin: 0; padding: 0.5em 2em; }</style>' .
 				"</head><body>\n";
 

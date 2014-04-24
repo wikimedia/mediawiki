@@ -222,8 +222,12 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				);
 
 				// Add item to results and see whether it fits
-				$fit = $apiResult->addValue( array( 'query', 'interwiki' . $this->getModuleName(), $result->getInterwikiPrefix()  ),
-					null, $vals );
+				$fit = $apiResult->addValue(
+					array( 'query', 'interwiki' . $this->getModuleName(), $result->getInterwikiPrefix()  ),
+					null,
+					$vals
+				);
+
 				if ( !$fit ) {
 					// We hit the limit. We can't really provide any meaningful
 					// pagination info so just bail out

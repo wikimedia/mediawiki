@@ -691,7 +691,6 @@ class LocalisationCache {
 		global $IP;
 		wfProfileIn( __METHOD__ );
 
-
 		// This reads in the PHP i18n file with non-messages l10n data
 		$fileName = Language::getMessagesFileName( $code );
 		if ( !file_exists( $fileName ) ) {
