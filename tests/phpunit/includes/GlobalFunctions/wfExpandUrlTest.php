@@ -6,7 +6,9 @@ class WfExpandUrlTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideExpandableUrls
 	 */
-	public function testWfExpandUrl( $fullUrl, $shortUrl, $defaultProto, $server, $canServer, $httpsMode, $message ) {
+	public function testWfExpandUrl( $fullUrl, $shortUrl, $defaultProto,
+		$server, $canServer, $httpsMode, $message
+	) {
 		// Fake $wgServer, $wgCanonicalServer and $wgRequest->getProtocol()
 		$this->setMwGlobals( array(
 			'wgServer' => $server,
@@ -47,21 +49,24 @@ class WfExpandUrlTest extends MediaWikiTestCase {
 						$retval[] = array(
 							'http://example.com', 'http://example.com',
 							$defaultProto, $server, $canServer, $httpsMode,
-							"Testing fully qualified http URLs (no need to expand) ' .
-							'(defaultProto: $protoDesc , wgServer: $server, wgCanonicalServer: $canServer, current request protocol: $mode )"
+							"Testing fully qualified http URLs (no need to expand) "
+								. "(defaultProto: $protoDesc , wgServer: $server, "
+								. "wgCanonicalServer: $canServer, current request protocol: $mode )"
 						);
 						$retval[] = array(
 							'https://example.com', 'https://example.com',
 							$defaultProto, $server, $canServer, $httpsMode,
-							"Testing fully qualified https URLs (no need to expand) ' .
-							'(defaultProto: $protoDesc , wgServer: $server, wgCanonicalServer: $canServer, current request protocol: $mode )"
+							"Testing fully qualified https URLs (no need to expand) "
+								. "(defaultProto: $protoDesc , wgServer: $server, "
+								. "wgCanonicalServer: $canServer, current request protocol: $mode )"
 						);
 						# Would be nice to support this, see fixme on wfExpandUrl()
 						$retval[] = array(
 							"wiki/FooBar", 'wiki/FooBar',
 							$defaultProto, $server, $canServer, $httpsMode,
-							"Test non-expandable relative URLs ' .
-							'(defaultProto: $protoDesc , wgServer: $server, wgCanonicalServer: $canServer, current request protocol: $mode )"
+							"Test non-expandable relative URLs (defaultProto: $protoDesc, "
+								. "wgServer: $server, wgCanonicalServer: $canServer, "
+								. "current request protocol: $mode )"
 						);
 
 						// Determine expected protocol
@@ -86,14 +91,20 @@ class WfExpandUrlTest extends MediaWikiTestCase {
 						$retval[] = array(
 							"$p//wikipedia.org", '//wikipedia.org',
 							$defaultProto, $server, $canServer, $httpsMode,
-							"Test protocol-relative URL ' .
-							'(defaultProto: $protoDesc, wgServer: $server, wgCanonicalServer: $canServer, current request protocol: $mode )"
+							"Test protocol-relative URL (defaultProto: $protoDesc, "
+								. "wgServer: $server, wgCanonicalServer: $canServer, "
+								. "current request protocol: $mode )"
 						);
 						$retval[] = array(
-							"$srv/wiki/FooBar", '/wiki/FooBar',
-							$defaultProto, $server, $canServer, $httpsMode,
-							"Testing expanding URL beginning with / ' .
-							'(defaultProto: $protoDesc , wgServer: $server, wgCanonicalServer: $canServer, current request protocol: $mode )"
+							"$srv/wiki/FooBar",
+							'/wiki/FooBar',
+							$defaultProto,
+							$server,
+							$canServer,
+							$httpsMode,
+							"Testing expanding URL beginning with / (defaultProto: $protoDesc, "
+								. "wgServer: $server, wgCanonicalServer: $canServer, "
+								. "current request protocol: $mode )"
 						);
 					}
 				}
