@@ -10,9 +10,13 @@ class AutoLoaderTest extends MediaWikiTestCase {
 		$this->testLocalClasses = array(
 			'TestAutoloadedLocalClass' => __DIR__ . '/../data/autoloader/TestAutoloadedLocalClass.php',
 			'TestAutoloadedCamlClass' => __DIR__ . '/../data/autoloader/TestAutoloadedCamlClass.php',
-			'TestAutoloadedSerializedClass' => __DIR__ . '/../data/autoloader/TestAutoloadedSerializedClass.php',
+			'TestAutoloadedSerializedClass' =>
+				__DIR__ . '/../data/autoloader/TestAutoloadedSerializedClass.php',
 		);
-		$this->setMwGlobals( 'wgAutoloadLocalClasses', $this->testLocalClasses + $wgAutoloadLocalClasses );
+		$this->setMwGlobals(
+			'wgAutoloadLocalClasses',
+			$this->testLocalClasses + $wgAutoloadLocalClasses
+		);
 		AutoLoader::resetAutoloadLocalClassesLower();
 
 		$this->testExtensionClasses = array(
