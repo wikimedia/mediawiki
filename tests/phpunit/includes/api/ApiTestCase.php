@@ -72,7 +72,9 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 *
 	 * @return array
 	 */
-	protected function doApiRequest( array $params, array $session = null, $appendModule = false, User $user = null ) {
+	protected function doApiRequest( array $params, array $session = null,
+		$appendModule = false, User $user = null
+	) {
 		global $wgRequest, $wgUser;
 
 		if ( is_null( $session ) ) {
@@ -112,15 +114,19 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 	/**
 	 * Add an edit token to the API request
-	 * This is cheating a bit -- we grab a token in the correct format and then add it to the pseudo-session and to the
-	 * request, without actually requesting a "real" edit token
+	 * This is cheating a bit -- we grab a token in the correct format and then
+	 * add it to the pseudo-session and to the request, without actually
+	 * requesting a "real" edit token.
+	 *
 	 * @param array $params Key-value API params
 	 * @param array|null $session session array
 	 * @param User|null $user A User object for the context
 	 * @return mixed Result of the API call
 	 * @throws Exception in case wsToken is not set in the session
 	 */
-	protected function doApiRequestWithToken( array $params, array $session = null, User $user = null ) {
+	protected function doApiRequestWithToken( array $params, array $session = null,
+		User $user = null
+	) {
 		global $wgRequest;
 
 		if ( $session === null ) {

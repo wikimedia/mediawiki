@@ -151,7 +151,11 @@ class XmlTest extends MediaWikiTestCase {
 		}
 
 		$this->assertEquals(
-			'<label for="year">From year (and earlier):</label> <input id="year" maxlength="4" size="7" type="number" value="2011" name="year" /> <label for="month">From month (and earlier):</label> <select id="month" name="month" class="mw-month-selector"><option value="-1">all</option>' . "\n" .
+			'<label for="year">From year (and earlier):</label> ' .
+				'<input id="year" maxlength="4" size="7" type="number" value="2011" name="year" /> ' .
+				'<label for="month">From month (and earlier):</label> ' .
+				'<select id="month" name="month" class="mw-month-selector">' .
+				'<option value="-1">all</option>' . "\n" .
 				'<option value="1">January</option>' . "\n" .
 				'<option value="2" selected="">February</option>' . "\n" .
 				'<option value="3">March</option>' . "\n" .
@@ -168,7 +172,11 @@ class XmlTest extends MediaWikiTestCase {
 			"Date menu for february 2011"
 		);
 		$this->assertEquals(
-			'<label for="year">From year (and earlier):</label> <input id="year" maxlength="4" size="7" type="number" value="2011" name="year" /> <label for="month">From month (and earlier):</label> <select id="month" name="month" class="mw-month-selector"><option value="-1">all</option>' . "\n" .
+			'<label for="year">From year (and earlier):</label> ' .
+				'<input id="year" maxlength="4" size="7" type="number" value="2011" name="year" /> ' .
+				'<label for="month">From month (and earlier):</label> ' .
+				'<select id="month" name="month" class="mw-month-selector">' .
+				'<option value="-1">all</option>' . "\n" .
 				'<option value="1">January</option>' . "\n" .
 				'<option value="2">February</option>' . "\n" .
 				'<option value="3">March</option>' . "\n" .
@@ -198,7 +206,10 @@ class XmlTest extends MediaWikiTestCase {
 		);
 
 		$this->assertEquals(
-			'<label for="year">From year (and earlier):</label> <input id="year" maxlength="4" size="7" type="number" name="year" /> <label for="month">From month (and earlier):</label> <select id="month" name="month" class="mw-month-selector"><option value="-1">all</option>' . "\n" .
+			'<label for="year">From year (and earlier):</label> ' .
+				'<input id="year" maxlength="4" size="7" type="number" name="year" /> ' .
+				'<label for="month">From month (and earlier):</label> ' .
+				'<select id="month" name="month" class="mw-month-selector"><option value="-1">all</option>' . "\n" .
 				'<option value="1">January</option>' . "\n" .
 				'<option value="2">February</option>' . "\n" .
 				'<option value="3">March</option>' . "\n" .

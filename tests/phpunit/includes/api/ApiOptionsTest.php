@@ -318,7 +318,9 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->mUserMock->expects( $this->once() )
 			->method( 'saveSettings' );
 
-		$request = $this->getSampleRequest( array( 'change' => 'willBeNull|willBeEmpty=|willBeHappy=Happy' ) );
+		$request = $this->getSampleRequest( array(
+			'change' => 'willBeNull|willBeEmpty=|willBeHappy=Happy'
+		) );
 
 		$response = $this->executeQuery( $request );
 
@@ -382,7 +384,8 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			->method( 'saveSettings' );
 
 		$request = $this->getSampleRequest( array(
-			'change' => 'testmultiselect-opt1=1|testmultiselect-opt2|testmultiselect-opt3=|testmultiselect-opt4=0'
+			'change' => 'testmultiselect-opt1=1|testmultiselect-opt2|'
+				. 'testmultiselect-opt3=|testmultiselect-opt4=0'
 		) );
 
 		$response = $this->executeQuery( $request );

@@ -173,7 +173,11 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 	 * @param bool $numericIds If true, treat keys as ids to be merged instead of appending
 	 */
 	protected function mergeResult( &$results, $newResult, $numericIds = false ) {
-		$this->assertEquals( is_array( $results ), is_array( $newResult ), 'Type of result and data do not match' );
+		$this->assertEquals(
+			is_array( $results ),
+			is_array( $newResult ),
+			'Type of result and data do not match'
+		);
 		if ( !is_array( $results ) ) {
 			$this->assertEquals( $results, $newResult, 'Repeated result must be the same as before' );
 		} else {
