@@ -57,7 +57,11 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		}
 
 		$this->insertPage( "Not_Main_Page", "This is not a main page", 0 );
-		$this->insertPage( 'Talk:Not_Main_Page', 'This is not a talk page to the main page, see [[smithee]]', 1 );
+		$this->insertPage(
+			'Talk:Not_Main_Page',
+			'This is not a talk page to the main page, see [[smithee]]',
+			1
+		);
 		$this->insertPage( 'Smithee', 'A smithee is one who smiths. See also [[Alan Smithee]]', 0 );
 		$this->insertPage( 'Talk:Smithee', 'This article sucks.', 1 );
 		$this->insertPage( 'Unrelated_page', 'Nothing in this page is about the S word.', 0 );

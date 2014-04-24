@@ -51,7 +51,8 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	/* Test Methods */
 
 	/**
-	 * Ensures that the ResourceLoaderRegisterModules hook is called when a new ResourceLoader object is constructed
+	 * Ensures that the ResourceLoaderRegisterModules hook is called when a new
+	 * ResourceLoader object is constructed.
 	 * @covers ResourceLoader::__construct
 	 */
 	public function testCreatingNewResourceLoaderCallsRegistrationHook() {
