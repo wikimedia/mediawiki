@@ -2599,6 +2599,7 @@
     "file-no-thumb-animation": "<strong>Note: Due to technical limitations, thumbnails of this file will not be animated.</strong>",
     "file-no-thumb-animation-gif": "<strong>Note: Due to technical limitations, thumbnails of high resolution GIF images such as this one will not be animated.</strong>",
     "newimages": "Gallery of new files",
+    "newimagestext": "-",
     "imagelisttext": "Below is a list of <strong>$1</strong> {{PLURAL:$1|file|files}} sorted $2.",
     "newimages-summary": "This special page shows the last uploaded files.",
     "newimages-legend": "Filter",
