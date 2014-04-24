@@ -4,11 +4,11 @@
  * @covers Fallback
  */
 class FallbackTest extends MediaWikiTestCase {
-
 	public function testFallbackMbstringFunctions() {
-
 		if ( !extension_loaded( 'mbstring' ) ) {
-			$this->markTestSkipped( "The mb_string functions must be installed to test the fallback functions" );
+			$this->markTestSkipped(
+				"The mb_string functions must be installed to test the fallback functions"
+			);
 		}
 
 		$sampleUTF = "Östergötland_coat_of_arms.png";

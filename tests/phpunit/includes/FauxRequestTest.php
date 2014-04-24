@@ -1,7 +1,6 @@
 <?php
 
 class FauxRequestTest extends MediaWikiTestCase {
-
 	/**
 	 * @covers FauxRequest::setHeader
 	 * @covers FauxRequest::getHeader

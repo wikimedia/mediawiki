@@ -63,9 +63,15 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		$po->addLink( Title::newFromText( "linksupdatetest:Foo" ) ); // interwiki link should be ignored
 		$po->addLink( Title::newFromText( "#Foo" ) ); // hash link should be ignored
 
-		$update = $this->assertLinksUpdate( $t, $po, 'pagelinks', 'pl_namespace, pl_title', 'pl_from = 111', array(
-			array( NS_MAIN, 'Foo' ),
-		) );
+		$update = $this->assertLinksUpdate(
+			$t,
+			$po,
+			'pagelinks',
+			'pl_namespace,
+			pl_title',
+			'pl_from = 111',
+			array( array( NS_MAIN, 'Foo' ) )
+		);
 		$this->assertArrayEquals( array(
 			Title::makeTitle( NS_MAIN, 'Foo' ),  // newFromText doesn't yield the same internal state....
 		), $update->getAddedLinks() );
@@ -76,10 +82,18 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		$po->addLink( Title::newFromText( "Bar" ) );
 		$po->addLink( Title::newFromText( "Talk:Bar" ) );
 
-		$update = $this->assertLinksUpdate( $t, $po, 'pagelinks', 'pl_namespace, pl_title', 'pl_from = 111', array(
-			array( NS_MAIN, 'Bar' ),
-			array( NS_TALK, 'Bar' ),
-		) );
+		$update = $this->assertLinksUpdate(
+			$t,
+			$po,
+			'pagelinks',
+			'pl_namespace,
+			pl_title',
+			'pl_from = 111',
+			array(
+				array( NS_MAIN, 'Bar' ),
+				array( NS_TALK, 'Bar' ),
+			)
+		);
 		$this->assertArrayEquals( array(
 			Title::makeTitle( NS_MAIN, 'Bar' ),
 			Title::makeTitle( NS_TALK, 'Bar' ),
@@ -143,9 +157,15 @@ class LinksUpdateTest extends MediaWikiTestCase {
 
 		$po->addTemplate( Title::newFromText( "Template:Foo" ), 23, 42 );
 
-		$this->assertLinksUpdate( $t, $po, 'templatelinks', 'tl_namespace, tl_title', 'tl_from = 111', array(
-			array( NS_TEMPLATE, 'Foo' ),
-		) );
+		$this->assertLinksUpdate(
+			$t,
+			$po,
+			'templatelinks',
+			'tl_namespace,
+			tl_title',
+			'tl_from = 111',
+			array( array( NS_TEMPLATE, 'Foo' ) )
+		);
 	}
 
 	/**
@@ -192,7 +212,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 
 	// @todo test recursive, too!
 
-	protected function assertLinksUpdate( Title $title, ParserOutput $parserOutput, $table, $fields, $condition, array $expectedRows ) {
+	protected function assertLinksUpdate( Title $title, ParserOutput $parserOutput,
+		$table, $fields, $condition, array $expectedRows
+	) {
 		$update = new LinksUpdate( $title, $parserOutput );
 
 		//NOTE: make sure LinksUpdate does not generate warnings when called inside a transaction.

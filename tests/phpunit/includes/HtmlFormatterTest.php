@@ -8,7 +8,9 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 	 * @dataProvider getHtmlData
 	 * @covers HtmlFormatter::getText
 	 */
-	public function testTransform( $input, $expectedText, $expectedRemoved = array(), $callback = false ) {
+	public function testTransform( $input, $expectedText,
+		$expectedRemoved = array(), $callback = false
+	) {
 		$input = self::normalize( $input );
 		$formatter = new HtmlFormatter( HtmlFormatter::wrapHTML( $input ) );
 		if ( $callback ) {
@@ -56,9 +58,11 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 			),
 			// basic tag removal
 			array(
+				// @codingStandardsIgnoreStart Ignore long line warnings.
 				'<table><tr><td>foo</td></tr></table><div class="foo">foo</div><div class="foo quux">foo</div><span id="bar">bar</span>
 <strong class="foo" id="bar">foobar</strong><div class="notfoo">test</div><div class="baz"/>
 <span class="baz">baz</span>',
+				// @codingStandardsIgnoreEnd
 				'<div class="notfoo">test</div>
 <span class="baz">baz</span>',
 				array(
@@ -92,8 +96,10 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 			),
 			// https://bugzilla.wikimedia.org/show_bug.cgi?id=53086
 			array(
-				'Foo<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">[1]</a></sup> <a href="/wiki/Bar" title="Bar" class="mw-redirect">Bar</a>',
-				'Foo<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">[1]</a></sup> <a href="/wiki/Bar" title="Bar" class="mw-redirect">Bar</a>',
+				'Foo<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">[1]</a></sup>'
+					. ' <a href="/wiki/Bar" title="Bar" class="mw-redirect">Bar</a>',
+				'Foo<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">[1]</a></sup>'
+					. ' <a href="/wiki/Bar" title="Bar" class="mw-redirect">Bar</a>',
 			),
 		);
 	}
