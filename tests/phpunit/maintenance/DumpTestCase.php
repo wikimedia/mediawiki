@@ -35,16 +35,22 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @throws MWExcepion
 	 */
 	protected function addRevision( Page $page, $text, $summary ) {
-		$status = $page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), $summary );
+		$status = $page->doEditContent(
+			ContentHandler::makeContent( $text, $page->getTitle() ),
+			$summary
+		);
+
 		if ( $status->isGood() ) {
 			$value = $status->getValue();
 			$revision = $value['revision'];
 			$revision_id = $revision->getId();
 			$text_id = $revision->getTextId();
+
 			if ( ( $revision_id > 0 ) && ( $text_id > 0 ) ) {
 				return array( $revision_id, $text_id );
 			}
 		}
+
 		throw new MWException( "Could not determine revision id (" . $status->getWikiText() . ")" );
 	}
 
@@ -105,7 +111,10 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		$this->assertEquals( '', array_pop( $lines ), "Output ends in LF" );
 		$timestamp_re = "[0-9]{4}-[01][0-9]-[0-3][0-9] [0-2][0-9]:[0-5][0-9]:[0-6][0-9]";
 		foreach ( $lines as $line ) {
-			$this->assertRegExp( "/$timestamp_re: .* \(ID [0-9]+\) [0-9]* pages .*, [0-9]* revs .*, ETA/", $line );
+			$this->assertRegExp(
+				"/$timestamp_re: .* \(ID [0-9]+\) [0-9]* pages .*, [0-9]* revs .*, ETA/",
+				$line
+			);
 		}
 	}
 
@@ -299,7 +308,8 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @param string $format The expected format model id (default: CONTENT_FORMAT_WIKITEXT)
 	 * @param int|bool $parentid (optional) id of the parent revision
 	 */
-	protected function assertRevision( $id, $summary, $text_id, $text_bytes, $text_sha1, $text = false, $parentid = false,
+	protected function assertRevision( $id, $summary, $text_id, $text_bytes,
+		$text_sha1, $text = false, $parentid = false,
 		$model = CONTENT_MODEL_WIKITEXT, $format = CONTENT_FORMAT_WIKITEXT
 	) {
 		$this->assertNodeStart( "revision" );

@@ -105,15 +105,21 @@ class FetchTextTest extends MediaWikiTestCase {
 	 * @throws MWExcepion
 	 */
 	private function addRevision( $page, $text, $summary ) {
-		$status = $page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), $summary );
+		$status = $page->doEditContent(
+			ContentHandler::makeContent( $text, $page->getTitle() ),
+			$summary
+		);
+
 		if ( $status->isGood() ) {
 			$value = $status->getValue();
 			$revision = $value['revision'];
 			$id = $revision->getTextId();
+
 			if ( $id > 0 ) {
 				return $id;
 			}
 		}
+
 		throw new MWException( "Could not determine text id" );
 	}
 
@@ -127,14 +133,34 @@ class FetchTextTest extends MediaWikiTestCase {
 		try {
 			$title = Title::newFromText( 'FetchTextTestPage1', $wikitextNamespace );
 			$page = WikiPage::factory( $title );
-			$this->textId1 = $this->addRevision( $page, "FetchTextTestPage1Text1", "FetchTextTestPage1Summary1" );
+			$this->textId1 = $this->addRevision(
+				$page,
+				"FetchTextTestPage1Text1",
+				"FetchTextTestPage1Summary1"
+			);
 
 			$title = Title::newFromText( 'FetchTextTestPage2', $wikitextNamespace );
 			$page = WikiPage::factory( $title );
-			$this->textId2 = $this->addRevision( $page, "FetchTextTestPage2Text1", "FetchTextTestPage2Summary1" );
-			$this->textId3 = $this->addRevision( $page, "FetchTextTestPage2Text2", "FetchTextTestPage2Summary2" );
-			$this->textId4 = $this->addRevision( $page, "FetchTextTestPage2Text3", "FetchTextTestPage2Summary3" );
-			$this->textId5 = $this->addRevision( $page, "FetchTextTestPage2Text4 some additional Text  ", "FetchTextTestPage2Summary4 extra " );
+			$this->textId2 = $this->addRevision(
+				$page,
+				"FetchTextTestPage2Text1",
+				"FetchTextTestPage2Summary1"
+			);
+			$this->textId3 = $this->addRevision(
+				$page,
+				"FetchTextTestPage2Text2",
+				"FetchTextTestPage2Summary2"
+			);
+			$this->textId4 = $this->addRevision(
+				$page,
+				"FetchTextTestPage2Text3",
+				"FetchTextTestPage2Summary3"
+			);
+			$this->textId5 = $this->addRevision(
+				$page,
+				"FetchTextTestPage2Text4 some additional Text  ",
+				"FetchTextTestPage2Summary4 extra "
+			);
 		} catch ( Exception $e ) {
 			// We'd love to pass $e directly. However, ... see
 			// documentation of exceptionFromAddDBData

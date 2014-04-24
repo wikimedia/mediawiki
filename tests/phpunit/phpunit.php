@@ -6,7 +6,8 @@
  * @file
  */
 
-// Set a flag which can be used to detect when other scripts have been entered through this entry point or not
+// Set a flag which can be used to detect when other scripts have been entered
+// through this entry point or not.
 define( 'MW_PHPUNIT_TEST', true );
 
 // Start up MediaWiki in command-line mode
@@ -16,8 +17,10 @@ class PHPUnitMaintClass extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->addOption( 'with-phpunitdir',
-			'Directory to include PHPUnit from, for example when using a git fetchout from upstream. Path will be prepended to PHP `include_path`.',
+		$this->addOption(
+			'with-phpunitdir',
+			'Directory to include PHPUnit from, for example when using a git '
+				. 'fetchout from upstream. Path will be prepended to PHP `include_path`.',
 			false, # not required
 			true # need arg
 		);

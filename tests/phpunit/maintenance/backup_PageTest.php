@@ -137,7 +137,11 @@ class BackupDumperPageTest extends DumpTestCase {
 		// -> Page is marked deleted. Hence not visible
 
 		// Page 4
-		$this->assertPageStart( $this->pageId4, $this->talk_namespace, $this->pageTitle4->getPrefixedText() );
+		$this->assertPageStart(
+			$this->pageId4,
+			$this->talk_namespace,
+			$this->pageTitle4->getPrefixedText()
+		);
 		$this->assertRevision( $this->revId4_1, "Talk BackupDumperTestP1 Summary1",
 			$this->textId4_1, 35, "nktofwzd0tl192k3zfepmlzxoax1lpe",
 			"Talk about BackupDumperTestP1 Text1" );
@@ -183,7 +187,11 @@ class BackupDumperPageTest extends DumpTestCase {
 		// -> Page is marked deleted. Hence not visible
 
 		// Page 4
-		$this->assertPageStart( $this->pageId4, $this->talk_namespace, $this->pageTitle4->getPrefixedText() );
+		$this->assertPageStart(
+			$this->pageId4,
+			$this->talk_namespace,
+			$this->pageTitle4->getPrefixedText()
+		);
 		$this->assertRevision( $this->revId4_1, "Talk BackupDumperTestP1 Summary1",
 			$this->textId4_1, 35, "nktofwzd0tl192k3zfepmlzxoax1lpe" );
 		$this->assertPageEnd();
@@ -222,7 +230,11 @@ class BackupDumperPageTest extends DumpTestCase {
 		// -> Page is marked deleted. Hence not visible
 
 		// Page 4
-		$this->assertPageStart( $this->pageId4, $this->talk_namespace, $this->pageTitle4->getPrefixedText() );
+		$this->assertPageStart(
+			$this->pageId4,
+			$this->talk_namespace,
+			$this->pageTitle4->getPrefixedText()
+		);
 		$this->assertRevision( $this->revId4_1, "Talk BackupDumperTestP1 Summary1",
 			$this->textId4_1, 35, "nktofwzd0tl192k3zfepmlzxoax1lpe" );
 		$this->assertPageEnd();
@@ -264,7 +276,11 @@ class BackupDumperPageTest extends DumpTestCase {
 		// -> Page is marked deleted. Hence not visible
 
 		// Page 4
-		$this->assertPageStart( $this->pageId4, $this->talk_namespace, $this->pageTitle4->getPrefixedText() );
+		$this->assertPageStart(
+			$this->pageId4,
+			$this->talk_namespace,
+			$this->pageTitle4->getPrefixedText()
+		);
 		$this->assertRevision( $this->revId4_1, "Talk BackupDumperTestP1 Summary1",
 			$this->textId4_1, 35, "nktofwzd0tl192k3zfepmlzxoax1lpe" );
 		$this->assertPageEnd();
@@ -339,7 +355,11 @@ class BackupDumperPageTest extends DumpTestCase {
 		// -> Page is marked deleted. Hence not visible
 
 		// Page 4
-		$this->assertPageStart( $this->pageId4, $this->talk_namespace, $this->pageTitle4->getPrefixedText() );
+		$this->assertPageStart(
+			$this->pageId4,
+			$this->talk_namespace,
+			$this->pageTitle4->getPrefixedText()
+		);
 		$this->assertRevision( $this->revId4_1, "Talk BackupDumperTestP1 Summary1",
 			$this->textId4_1, 35, "nktofwzd0tl192k3zfepmlzxoax1lpe" );
 		$this->assertPageEnd();
@@ -367,7 +387,11 @@ class BackupDumperPageTest extends DumpTestCase {
 		// -> Page is marked deleted. Hence not visible
 
 		// Page 4
-		$this->assertPageStart( $this->pageId4, $this->talk_namespace, $this->pageTitle4->getPrefixedText() );
+		$this->assertPageStart(
+			$this->pageId4,
+			$this->talk_namespace,
+			$this->pageTitle4->getPrefixedText()
+		);
 		$this->assertRevision( $this->revId4_1, "Talk BackupDumperTestP1 Summary1",
 			$this->textId4_1, 35, "nktofwzd0tl192k3zfepmlzxoax1lpe" );
 		$this->assertPageEnd();
