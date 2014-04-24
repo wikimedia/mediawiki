@@ -652,14 +652,16 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 		$this->assertEquals(
 			' step=any',
-			Html::expandAttributes( array(
-				'min' => 1,
-				'max' => 100,
-				'pattern' => 'abc',
-				'required' => true,
-				'step' => 'any'
-			) ,
-			'Allow special case "step=any".'
-		) );
+			Html::expandAttributes(
+				array(
+					'min' => 1,
+					'max' => 100,
+					'pattern' => 'abc',
+					'required' => true,
+					'step' => 'any'
+				),
+				'Allow special case "step=any".'
+			)
+		);
 	}
 }

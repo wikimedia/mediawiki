@@ -32,7 +32,8 @@ class DjVuTest extends MediaWikiTestCase {
 			!$this->checkIfToolExists( $wgDjvuDump ) ||
 			!$this->checkIfToolExists( $wgDjvuToXML )
 		) {
-			$this->markTestSkipped( 'This test needs the installation of the ddjvu, djvutoxml and djvudump tools' );
+			$this->markTestSkipped( 'This test needs the installation of the '
+				. 'ddjvu, djvutoxml and djvudump tools' );
 		}
 
 		//file repo setup
