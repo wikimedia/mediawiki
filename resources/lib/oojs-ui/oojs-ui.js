@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (0a7180f468)
+ * OOjs UI v0.1.0-pre (32fef8b5ee)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Apr 23 2014 18:05:30 GMT-0700 (PDT)
+ * Date: Thu Apr 24 2014 16:58:37 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -173,7 +173,8 @@ OO.ui.resolveMsg = function ( msg ) {
  * @param {Object} [config] Configuration options
  * @cfg {Function} [$] jQuery for the frame the widget is in
  * @cfg {string[]} [classes] CSS class names
- * @cfg {jQuery} [$content] Content elements to append
+ * @cfg {string} [text] Text to insert
+ * @cfg {jQuery} [$content] Content elements to append (after text)
  */
 OO.ui.Element = function OoUiElement( config ) {
 	// Configuration initialization
@@ -187,6 +188,9 @@ OO.ui.Element = function OoUiElement( config ) {
 	// Initialization
 	if ( $.isArray( config.classes ) ) {
 		this.$element.addClass( config.classes.join( ' ' ) );
+	}
+	if ( config.text ) {
+		this.$element.text( config.text );
 	}
 	if ( config.$content ) {
 		this.$element.append( config.$content );
@@ -2206,7 +2210,6 @@ OO.ui.FlaggableElement.prototype.setFlags = function ( flags ) {
  * @constructor
  * @param {jQuery} $group Container node, assigned to #$group
  * @param {Object} [config] Configuration options
- * @cfg {Object.<string,string>} [aggregations] Events to aggregate, keyed by item event name
  */
 OO.ui.GroupElement = function OoUiGroupElement( $group, config ) {
 	// Configuration
@@ -2216,8 +2219,7 @@ OO.ui.GroupElement = function OoUiGroupElement( $group, config ) {
 	this.$group = $group;
 	this.items = [];
 	this.$items = this.$( [] );
-	this.aggregate = !$.isEmptyObject( config.aggregations );
-	this.aggregations = config.aggregations || {};
+	this.aggregateItemEvents = {};
 };
 
 /* Methods */
@@ -2229,6 +2231,59 @@ OO.ui.GroupElement = function OoUiGroupElement( $group, config ) {
  */
 OO.ui.GroupElement.prototype.getItems = function () {
 	return this.items.slice( 0 );
+};
+
+/**
+ * Add an aggregate item event.
+ *
+ * Aggregated events are listened to on each item and then emitted by the group under a new name,
+ * and with an additional leading parameter containing the item that emitted the original event.
+ * Other arguments that were emitted from the original event are passed through.
+ *
+ * @param {Object.<string,string|null>} events Aggregate events emitted by group, keyed by item
+ *   event, use null value to remove aggregation
+ * @throws {Error} If aggregation already exists
+ */
+OO.ui.GroupElement.prototype.aggregate = function ( events ) {
+	var i, len, item, add, remove, itemEvent, groupEvent;
+
+	for ( itemEvent in events ) {
+		groupEvent = events[itemEvent];
+
+		// Remove existing aggregated event
+		if ( itemEvent in this.aggregateItemEvents ) {
+			// Don't allow duplicate aggregations
+			if ( groupEvent ) {
+				throw new Error( 'Duplicate item event aggregation for ' + itemEvent );
+			}
+			// Remove event aggregation from existing items
+			for ( i = 0, len = this.items.length; i < len; i++ ) {
+				item = this.items[i];
+				if ( item instanceof OO.EventEmitter ) {
+					remove = {};
+					remove[itemEvent] = [ 'emit', groupEvent, item ];
+					this.items[i].disconnect( this, remove );
+				}
+			}
+			// Prevent future items from aggregating event
+			delete this.aggregateItemEvents[itemEvent];
+		}
+
+		// Add new aggregate event
+		if ( groupEvent ) {
+			// Make future items aggregate event
+			this.aggregateItemEvents[itemEvent] = groupEvent;
+			// Add event aggregation to existing items
+			for ( i = 0, len = this.items.length; i < len; i++ ) {
+				item = this.items[i];
+				if ( item instanceof OO.EventEmitter ) {
+					add = {};
+					add[itemEvent] = [ 'emit', groupEvent, item ];
+					item.connect( this, add );
+				}
+			}
+		}
+	}
 };
 
 /**
@@ -2255,10 +2310,13 @@ OO.ui.GroupElement.prototype.addItems = function ( items, index ) {
 			}
 		}
 		// Add the item
-		if ( this.aggregate ) {
+		if (
+			item instanceof OO.EventEmitter &&
+			!$.isPlainObject( this.aggregateItemEvents )
+		) {
 			events = {};
-			for ( event in this.aggregations ) {
-				events[event] = [ 'emit', this.aggregations[event], item ];
+			for ( event in this.aggregateItemEvents ) {
+				events[event] = [ 'emit', this.aggregateItemEvents[event], item ];
 			}
 			item.connect( this, events );
 		}
@@ -2291,15 +2349,22 @@ OO.ui.GroupElement.prototype.addItems = function ( items, index ) {
  * @chainable
  */
 OO.ui.GroupElement.prototype.removeItems = function ( items ) {
-	var i, len, item, index;
+	var i, len, item, index, remove, itemEvent;
 
 	// Remove specific items
 	for ( i = 0, len = items.length; i < len; i++ ) {
 		item = items[i];
 		index = $.inArray( item, this.items );
 		if ( index !== -1 ) {
-			if ( this.aggregate ) {
-				item.disconnect( this );
+			if (
+				item instanceof OO.EventEmitter &&
+				!$.isPlainObject( this.aggregateItemEvents )
+			) {
+				remove = {};
+				if ( itemEvent in this.aggregateItemEvents ) {
+					remove[itemEvent] = [ 'emit', this.aggregateItemEvents[itemEvent], item ];
+				}
+				item.disconnect( this, remove );
 			}
 			item.setElementGroup( null );
 			this.items.splice( index, 1 );
@@ -2319,13 +2384,20 @@ OO.ui.GroupElement.prototype.removeItems = function ( items ) {
  * @chainable
  */
 OO.ui.GroupElement.prototype.clearItems = function () {
-	var i, len, item;
+	var i, len, item, remove, itemEvent;
 
 	// Remove all items
 	for ( i = 0, len = this.items.length; i < len; i++ ) {
 		item = this.items[i];
-		if ( this.aggregate ) {
-			item.disconnect( this );
+		if (
+			item instanceof OO.EventEmitter &&
+			!$.isPlainObject( this.aggregateItemEvents )
+		) {
+			remove = {};
+			if ( itemEvent in this.aggregateItemEvents ) {
+				remove[itemEvent] = [ 'emit', this.aggregateItemEvents[itemEvent], item ];
+			}
+			item.disconnect( this, remove );
 		}
 		item.setElementGroup( null );
 	}
@@ -3344,9 +3416,7 @@ OO.ui.ToolFactory.prototype.extract = function ( collection, used ) {
  */
 OO.ui.ToolGroup = function OoUiToolGroup( toolbar, config ) {
 	// Configuration initialization
-	config = $.extend( true, {
-		'aggregations': { 'disable': 'itemDisable' }
-	}, config );
+	config = config || {};
 
 	// Parent constructor
 	OO.ui.ToolGroup.super.call( this, config );
@@ -3373,6 +3443,7 @@ OO.ui.ToolGroup = function OoUiToolGroup( toolbar, config ) {
 		'mouseout': OO.ui.bind( this.onMouseOut, this )
 	} );
 	this.toolbar.getToolFactory().connect( this, { 'register': 'onToolFactoryRegister' } );
+	this.aggregate( { 'disable': 'itemDisable' } );
 	this.connect( this, { 'itemDisable': 'updateDisabled' } );
 
 	// Initialization
