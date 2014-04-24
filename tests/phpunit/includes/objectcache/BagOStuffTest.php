@@ -138,7 +138,10 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->cache->add( $key1, $value1 );
 		$this->cache->add( $key2, $value2 );
 
-		$this->assertEquals( $this->cache->getMulti( array( $key1, $key2 ) ), array( $key1 => $value1, $key2 => $value2 ) );
+		$this->assertEquals(
+			$this->cache->getMulti( array( $key1, $key2 ) ),
+			array( $key1 => $value1, $key2 => $value2 )
+		);
 
 		// cleanup
 		$this->cache->delete( $key1 );
