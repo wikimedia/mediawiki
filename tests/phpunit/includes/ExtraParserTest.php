@@ -130,8 +130,16 @@ class ExtraParserTest extends MediaWikiTestCase {
 	 * @covers Parser::getSection
 	 */
 	public function testGetSection() {
-		$outputText2 = $this->parser->getSection( "Section 0\n== Heading 1 ==\nSection 1\n=== Heading 2 ===\nSection 2\n== Heading 3 ==\nSection 3\n", 2 );
-		$outputText1 = $this->parser->getSection( "Section 0\n== Heading 1 ==\nSection 1\n=== Heading 2 ===\nSection 2\n== Heading 3 ==\nSection 3\n", 1 );
+		$outputText2 = $this->parser->getSection(
+			"Section 0\n== Heading 1 ==\nSection 1\n=== Heading 2 ===\n"
+				. "Section 2\n== Heading 3 ==\nSection 3\n",
+			2
+		);
+		$outputText1 = $this->parser->getSection(
+			"Section 0\n== Heading 1 ==\nSection 1\n=== Heading 2 ===\n"
+				. "Section 2\n== Heading 3 ==\nSection 3\n",
+			1
+		);
 
 		$this->assertEquals( "=== Heading 2 ===\nSection 2", $outputText2 );
 		$this->assertEquals( "== Heading 1 ==\nSection 1\n=== Heading 2 ===\nSection 2", $outputText1 );
@@ -141,7 +149,12 @@ class ExtraParserTest extends MediaWikiTestCase {
 	 * @covers Parser::replaceSection
 	 */
 	public function testReplaceSection() {
-		$outputText = $this->parser->replaceSection( "Section 0\n== Heading 1 ==\nSection 1\n=== Heading 2 ===\nSection 2\n== Heading 3 ==\nSection 3\n", 1, "New section 1" );
+		$outputText = $this->parser->replaceSection(
+			"Section 0\n== Heading 1 ==\nSection 1\n=== Heading 2 ===\n"
+				. "Section 2\n== Heading 3 ==\nSection 3\n",
+			1,
+			"New section 1"
+		);
 
 		$this->assertEquals( "Section 0\nNew section 1\n\n== Heading 3 ==\nSection 3", $outputText );
 	}
@@ -152,7 +165,11 @@ class ExtraParserTest extends MediaWikiTestCase {
 	 */
 	public function testGetPreloadText() {
 		$title = Title::newFromText( __FUNCTION__ );
-		$outputText = $this->parser->getPreloadText( "{{Foo}}<noinclude> censored</noinclude> information <!-- is very secret -->", $title, $this->options );
+		$outputText = $this->parser->getPreloadText(
+			"{{Foo}}<noinclude> censored</noinclude> information <!-- is very secret -->",
+			$title,
+			$this->options
+		);
 
 		$this->assertEquals( "{{Foo}} information <!-- is very secret -->", $outputText );
 	}

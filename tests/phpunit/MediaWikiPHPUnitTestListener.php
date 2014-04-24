@@ -1,6 +1,6 @@
 <?php
-class MediaWikiPHPUnitTestListener implements PHPUnit_Framework_TestListener {
 
+class MediaWikiPHPUnitTestListener implements PHPUnit_Framework_TestListener {
 	/**
 	 * @var string
 	 */
@@ -35,7 +35,10 @@ class MediaWikiPHPUnitTestListener implements PHPUnit_Framework_TestListener {
 	 * @param float $time
 	 */
 	public function addError( PHPUnit_Framework_Test $test, Exception $e, $time ) {
-		wfDebugLog( $this->logChannel, 'ERROR in ' . $this->getTestName( $test ) . ': ' . $this->getErrorName( $e ) );
+		wfDebugLog(
+			$this->logChannel,
+			'ERROR in ' . $this->getTestName( $test ) . ': ' . $this->getErrorName( $e )
+		);
 	}
 
 	/**
@@ -45,8 +48,13 @@ class MediaWikiPHPUnitTestListener implements PHPUnit_Framework_TestListener {
 	 * @param PHPUnit_Framework_AssertionFailedError $e
 	 * @param float $time
 	 */
-	public function addFailure( PHPUnit_Framework_Test $test, PHPUnit_Framework_AssertionFailedError $e, $time ) {
-		wfDebugLog( $this->logChannel, 'FAILURE in ' . $this->getTestName( $test ) . ': ' . $this->getErrorName( $e ) );
+	public function addFailure( PHPUnit_Framework_Test $test,
+		PHPUnit_Framework_AssertionFailedError $e, $time
+	) {
+		wfDebugLog(
+			$this->logChannel,
+			'FAILURE in ' . $this->getTestName( $test ) . ': ' . $this->getErrorName( $e )
+		);
 	}
 
 	/**
@@ -57,7 +65,10 @@ class MediaWikiPHPUnitTestListener implements PHPUnit_Framework_TestListener {
 	 * @param float $time
 	 */
 	public function addIncompleteTest( PHPUnit_Framework_Test $test, Exception $e, $time ) {
-		wfDebugLog( $this->logChannel, 'Incomplete test ' . $this->getTestName( $test ) . ': ' . $this->getErrorName( $e ) );
+		wfDebugLog(
+			$this->logChannel,
+			'Incomplete test ' . $this->getTestName( $test ) . ': ' . $this->getErrorName( $e )
+		);
 	}
 
 	/**
@@ -70,7 +81,10 @@ class MediaWikiPHPUnitTestListener implements PHPUnit_Framework_TestListener {
 	 * @since Method available since Release 3.0.0
 	 */
 	public function addSkippedTest( PHPUnit_Framework_Test $test, Exception $e, $time ) {
-		wfDebugLog( $this->logChannel, 'Skipped test ' . $this->getTestName( $test ) . ': ' . $this->getErrorName( $e ) );
+		wfDebugLog(
+			$this->logChannel,
+			'Skipped test ' . $this->getTestName( $test ) . ': ' . $this->getErrorName( $e )
+		);
 	}
 
 	/**

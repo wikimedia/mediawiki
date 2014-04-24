@@ -1,7 +1,6 @@
 <?php
 
 abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
-
 	protected static function getResourceLoaderContext() {
 		$resourceLoader = new ResourceLoader();
 		$request = new FauxRequest( array(
@@ -40,7 +39,6 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 /* Stubs */
 
 class ResourceLoaderTestModule extends ResourceLoaderModule {
-
 	protected $dependencies = array();
 	protected $group = null;
 	protected $source = 'local';
@@ -65,4 +63,5 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	}
 }
 
-class ResourceLoaderFileModuleTestModule extends ResourceLoaderFileModule {}
+class ResourceLoaderFileModuleTestModule extends ResourceLoaderFileModule {
+}
