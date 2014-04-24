@@ -9,7 +9,7 @@
           transition: all 250ms ease-in-out;
 }
 
-.oo-ui-dialog .oo-ui-window-frame {
+.oo-ui-dialog > .oo-ui-window-frame {
   background-color: #fff;
   border: solid 1px #ccc;
   border-radius: 0.5em;
@@ -30,7 +30,7 @@
   opacity: 1;
 }
 
-.oo-ui-dialog-open .oo-ui-window-frame {
+.oo-ui-dialog-open > .oo-ui-window-frame {
   -webkit-transform: scale(1);
      -moz-transform: scale(1);
       -ms-transform: scale(1);
