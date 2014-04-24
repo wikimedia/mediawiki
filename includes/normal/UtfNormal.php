@@ -57,14 +57,13 @@ class UtfNormal {
 	const UNORM_FCD = 6;
 	const UNORM_DEFAULT = self::UNORM_NFC;
 
-	static $utfCombiningClass = null;
-	static $utfCanonicalComp = null;
-	static $utfCanonicalDecomp = null;
+	public static $utfCombiningClass = null;
+	public static $utfCanonicalComp = null;
+	public static $utfCanonicalDecomp = null;
 
 	# Load compatibility decompositions on demand if they are needed.
-	static $utfCompatibilityDecomp = null;
-
-	static $utfCheckNFC;
+	public static $utfCompatibilityDecomp = null;
+	public static $utfCheckNFC;
 
 	/**
 	 * The ultimate convenience function! Clean up invalid UTF-8 sequences,
@@ -621,8 +620,10 @@ class UtfNormal {
 	 * Produces canonically composed sequences, i.e. normal form C or KC.
 	 *
 	 * @private
-	 * @param string $string a valid UTF-8 string in sorted normal form D or KD. Input is not validated.
-	 * @return string a UTF-8 string with canonical precomposed characters used where possible
+	 * @param string $string a valid UTF-8 string in sorted normal form D or KD.
+	 *   Input is not validated.
+	 * @return string a UTF-8 string with canonical precomposed characters used
+	 *   where possible.
 	 */
 	static function fastCompose( $string ) {
 		UtfNormal::loadData();
