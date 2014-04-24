@@ -712,8 +712,9 @@ class IEContentAnalyzer {
 		$xbmMagic2 = '_width';
 		$xbmMagic3 = '_bits';
 		$binhexMagic = 'converted with BinHex';
+		$chunkLength = strlen( $chunk );
 
-		for ( $offset = 0; $offset < strlen( $chunk ); $offset++ ) {
+		for ( $offset = 0; $offset < $chunkLength; $offset++ ) {
 			$curChar = $chunk[$offset];
 			if ( $curChar == "\x0a" ) {
 				$counters['lf']++;

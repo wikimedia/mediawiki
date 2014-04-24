@@ -33,7 +33,6 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 abstract class GenericArrayObject extends ArrayObject {
-
 	/**
 	 * Returns the name of an interface/class that the element should implement/extend.
 	 *
@@ -144,7 +143,8 @@ abstract class GenericArrayObject extends ArrayObject {
 	protected function setElement( $index, $value ) {
 		if ( !$this->hasValidType( $value ) ) {
 			throw new InvalidArgumentException(
-				'Can only add ' . $this->getObjectType() . ' implementing objects to ' . get_called_class() . '.'
+				'Can only add '	. $this->getObjectType() . ' implementing objects to '
+				. get_called_class() . '.'
 			);
 		}
 
@@ -237,5 +237,4 @@ abstract class GenericArrayObject extends ArrayObject {
 	public function isEmpty() {
 		return $this->count() === 0;
 	}
-
 }

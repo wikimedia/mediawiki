@@ -33,7 +33,6 @@
  * @file
  */
 class MWMessagePack {
-
 	/** @var boolean|null Whether current system is bigendian. **/
 	public static $bigendian = null;
 
@@ -75,7 +74,8 @@ class MWMessagePack {
 			} elseif ( $length <= 0xFFFFFFFF ) {
 				return pack( 'CNa*', 0xDB, $length, $value );
 			}
-			throw new InvalidArgumentException( __METHOD__ . ": string too long (length: $length; max: 4294967295)" );
+			throw new InvalidArgumentException( __METHOD__
+				. ": string too long (length: $length; max: 4294967295)" );
 
 		case 'integer':
 			if ( $value >= 0 ) {
@@ -142,7 +142,8 @@ class MWMessagePack {
 			$buffer = '';
 			$length = count( $value );
 			if ( $length > 0xFFFFFFFF ) {
-				throw new InvalidArgumentException( __METHOD__ . ": array too long (length: $length, max: 4294967295)" );
+				throw new InvalidArgumentException( __METHOD__
+					. ": array too long (length: $length, max: 4294967295)" );
 			}
 
 			$index = 0;
