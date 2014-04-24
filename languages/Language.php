@@ -3130,14 +3130,16 @@ class Language {
 	 * @param string $number
 	 * @return string
 	 */
-	function parseFormattedNumber( $number ) {
+	public function parseFormattedNumber( $number ) {
 		$s = $this->digitTransformTable();
 		if ( $s ) {
+			$s = array_filter( $s );
 			$number = strtr( $number, array_flip( $s ) );
 		}
 
 		$s = $this->separatorTransformTable();
 		if ( $s ) {
+			$s = array_filter( $s );
 			$number = strtr( $number, array_flip( $s ) );
 		}
 
