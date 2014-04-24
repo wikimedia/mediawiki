@@ -572,7 +572,11 @@ class MWNamespaceTest extends MediaWikiTestCase {
 			return $this->$method( $args );
 		}
 
-		if ( preg_match( '/^assert(Has|Is|Can)(Not|)(Subject|Talk|Watchable|Content|Subpages|Capitalized)$/', $method, $m ) ) {
+		if ( preg_match(
+			'/^assert(Has|Is|Can)(Not|)(Subject|Talk|Watchable|Content|Subpages|Capitalized)$/',
+			$method,
+			$m
+		) ) {
 			# Interprets arguments:
 			$ns = $args[0];
 			$msg = isset( $args[1] ) ? $args[1] : " dummy message";
