@@ -91,5 +91,6 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 			),
 		), $out->getSections(), 'getSections() with proper value when <h2> is used' );
 	}
-	//@Todo Add tests for cleanSig() / cleanSigInSig(), getSection(), replaceSection(), getPreloadText()
+	// @todo Add tests for cleanSig() / cleanSigInSig(), getSection(),
+	// replaceSection(), getPreloadText()
 }

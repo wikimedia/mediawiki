@@ -40,7 +40,8 @@ class SvgTest extends MediaWikiTestCase {
 		return array(
 			array( 'Tux.svg', array(
 				'ObjectName' => 'Tux',
-				'ImageDescription' => 'For more information see: http://commons.wikimedia.org/wiki/Image:Tux.svg',
+				'ImageDescription' =>
+					'For more information see: http://commons.wikimedia.org/wiki/Image:Tux.svg',
 			) ),
 			array( 'Wikimedia-logo.svg', array() )
 		);
