@@ -243,7 +243,10 @@ class JavaScriptContentTest extends TextContentTest {
 		$mw = MagicWord::get( "staticredirect" );
 
 		$content = $this->newContent( "#REDIRECT [[FOO]]\n__STATICREDIRECT__" );
-		$this->assertFalse( $content->matchMagicWord( $mw ), "should not have matched magic word, since it's not wikitext" );
+		$this->assertFalse(
+			$content->matchMagicWord( $mw ),
+			"should not have matched magic word, since it's not wikitext"
+		);
 	}
 
 	/**
@@ -255,7 +258,10 @@ class JavaScriptContentTest extends TextContentTest {
 		$content = $this->newContent( "#REDIRECT [[Someplace]]" );
 		$newContent = $content->updateRedirect( $target );
 
-		$this->assertTrue( $content->equals( $newContent ), "content should be unchanged since it's not wikitext" );
+		$this->assertTrue(
+			$content->equals( $newContent ),
+			"content should be unchanged since it's not wikitext"
+		);
 	}
 
 	/**

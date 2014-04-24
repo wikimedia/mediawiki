@@ -101,7 +101,11 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 					'tables' => array( 'table', 't2' => 'table2' ),
 					'fields' => array( 'tid', 'field', 'alias' => 'field2', 't2.id' ),
 					'conds' => array( 'alias' => 'text' ),
-					'options' => array( 'LIMIT' => 1, 'GROUP BY' => array( 'field', 'field2' ), 'HAVING' => array( 'COUNT(*) > 1', 'field' => 1 ) ),
+					'options' => array(
+						'LIMIT' => 1,
+						'GROUP BY' => array( 'field', 'field2' ),
+						'HAVING' => array( 'COUNT(*) > 1', 'field' => 1 )
+					),
 					'join_conds' => array( 't2' => array(
 						'LEFT JOIN', 'tid = t2.id'
 					) ),
