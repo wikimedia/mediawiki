@@ -4,7 +4,6 @@
  * @since 1.18
  */
 abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
-
 	/**
 	 * $called tracks whether the setUp and tearDown method has been called.
 	 * class extending MediaWikiTestCase usually override setUp and tearDown
@@ -254,7 +253,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 			$oldHex = strtoupper( dechex( $this->phpErrorLevel ) );
 			$newHex = strtoupper( dechex( $phpErrorLevel ) );
-			$message = "PHP error_reporting setting was left dirty: was 0x$oldHex before test, 0x$newHex after test!";
+			$message = "PHP error_reporting setting was left dirty: "
+				. "was 0x$oldHex before test, 0x$newHex after test!";
 
 			$this->fail( $message );
 		}
@@ -772,7 +772,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param bool $ordered If the order of the values should match
 	 * @param bool $named If the keys should match
 	 */
-	protected function assertArrayEquals( array $expected, array $actual, $ordered = false, $named = false ) {
+	protected function assertArrayEquals( array $expected, array $actual,
+		$ordered = false, $named = false
+	) {
 		if ( !$ordered ) {
 			$this->objectAssociativeSort( $expected );
 			$this->objectAssociativeSort( $actual );
@@ -1105,5 +1107,4 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$this->assertEmpty( $errors, implode( "\n", $errors ) );
 	}
-
 }

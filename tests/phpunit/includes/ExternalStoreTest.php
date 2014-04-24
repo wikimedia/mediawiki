@@ -75,7 +75,10 @@ class ExternalStoreFOO {
 			return null;
 		}
 
-		if ( $itemID !== false && is_array( $this->data[$cluster][$id] ) && isset( $this->data[$cluster][$id][$itemID] ) ) {
+		if ( $itemID !== false
+			&& is_array( $this->data[$cluster][$id] )
+			&& isset( $this->data[$cluster][$id][$itemID] )
+		) {
 			return $this->data[$cluster][$id][$itemID];
 		}
 
