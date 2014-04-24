@@ -1,0 +1,8 @@
+Verified+2: jenkins-bot
+Code-Review+2: Siebrand <siebrand@kitano.nl>
+Code-Review+1: Steinsplitter <steinsplitter@wikipedia.de>
+Submitted-by: jenkins-bot
+Submitted-at: Thu, 24 Apr 2014 08:30:22 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/129167
+Project: mediawiki/core
+Branch: refs/heads/master
