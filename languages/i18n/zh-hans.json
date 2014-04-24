@@ -296,6 +296,7 @@
 	"jumptonavigation": "导航",
 	"jumptosearch": "搜索",
 	"view-pool-error": "对不起，服务器当前正超负荷运转。过多用户正尝试查看本页面。请在再次尝试访问本页面前稍等片刻。\n\n$1",
+	"generic-pool-error": "对不起，服务器目前超负荷运转。太多用户尝试查看本页面。请稍等片刻再重新尝试。",
 	"pool-timeout": "等待锁超时",
 	"pool-queuefull": "请求队列已满",
 	"pool-errorunknown": "未知错误",

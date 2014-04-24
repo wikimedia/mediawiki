@@ -1235,7 +1235,7 @@
 	"recentchanges-legend-heading": "'''Leyenda:'''",
 	"recentchanges-legend-newpage": "(véase también la [[Special:NewPages|lista de páginas nuevas]])",
 	"rcnotefrom": "A continuación se presentan los cambios desde <strong> $2 </strong> (hasta <strong> $1 </strong> se muestra).",
-	"rclistfrom": "Mostrar nuevos cambios desde $3 $2",
+	"rclistfrom": "Mostrar nuevos cambios desde $2, $3",
 	"rcshowhideminor": "$1 ediciones menores",
 	"rcshowhideminor-show": "Mostrar",
 	"rcshowhideminor-hide": "Ocultar",

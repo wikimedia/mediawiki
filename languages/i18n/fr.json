@@ -325,6 +325,7 @@
 	"jumptonavigation": "navigation",
 	"jumptosearch": "rechercher",
 	"view-pool-error": "Désolé, les serveurs sont surchargés en ce moment.\nTrop d'utilisateurs cherchent à consulter cette page.\nVeuillez attendre un moment avant de retenter l'accès à cette page.\n\n$1",
+	"generic-pool-error": "Désolé, les serveurs sont surchargés pour le moment.\nTrop d’utilisateurs essayent de consulter cette ressource.\nVeuillez attendre un peu avant de réessayer d’accéder à celle-ci.",
 	"pool-timeout": "Délai d'attente dépassé",
 	"pool-queuefull": "La file d'attente est pleine",
 	"pool-errorunknown": "Erreur inconnue",

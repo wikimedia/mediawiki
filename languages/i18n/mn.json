@@ -1062,6 +1062,8 @@
 	"rcshowhideanons-hide": "нуух",
 	"rcshowhidepatr": "Хянагдаж буй засваруудыг $1",
 	"rcshowhidemine": "Миний засваруудыг $1",
+	"rcshowhidemine-show": "үзүүлэх",
+	"rcshowhidemine-hide": "нуух",
 	"rclinks": "Сүүлийн $2 өдрийн турших $1 засварыг үзүүлэх<br />$3",
 	"diff": "ялгаа",
 	"hist": "түүх",

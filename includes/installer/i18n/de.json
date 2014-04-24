@@ -323,7 +323,7 @@
 	"config-download-localsettings": "<code>LocalSettings.php</code> herunterladen",
 	"config-help": "Hilfe",
 	"config-nofile": "Die Datei „$1“ konnte nicht gefunden werden. Wurde sie gelöscht?",
-	"config-extension-link": "Wusstest du, dass dein Wiki die Nutzung von [//www.mediawiki.org/wiki/Manual:Extensions Erweiterungen] unterstützt?\n\nDu kannst [//www.mediawiki.org/wiki/Category:Extensions_by_category Erweiterungen nach Kategorie] durchsuchen oder die [//www.mediawiki.org/wiki/Extension_Matrix Matrix der Erweiterungen] ansehen, um eine Übersicht zu verfügbaren Erweiterungen zu erhalten.",
+	"config-extension-link": "Wusstest du, dass dein Wiki die Nutzung von [//www.mediawiki.org/wiki/Manual:Extensions Erweiterungen] unterstützt?\n\nDu kannst [//www.mediawiki.org/wiki/Category:Extensions_by_category Erweiterungen nach Kategorie] durchsuchen.",
 	"mainpagetext": "'''MediaWiki wurde erfolgreich installiert.'''",
 	"mainpagedocfooter": "Hilfe zur Benutzung und Konfiguration der Wiki-Software findest du im [//meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].\n\n== Starthilfen ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]\n* [//www.mediawiki.org/wiki/Localisation#Translation_resources Lokalisiere MediaWiki für deine Sprache]"
 }

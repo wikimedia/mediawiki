@@ -1484,7 +1484,7 @@
 	"pageswithprop-prophidden-binary": "valor ëd propietà binaria stërmà ($1)",
 	"doubleredirects": "Ridiression dobie",
 	"doubleredirectstext": "Sta pàgina-sì a a lista dle pàgine ch'a armando a d'àutre pàgine ëd ridiression.\nVira riga a l'ha andrinta j'anliure a la prima e a la sconda ridiression, ant sël pat ëd la prima riga ëd test dla seconda ridiression, che për sòlit a l'ha andrinta l'artìcol ëd destinassion vèir, col andoa che a dovrìa ëmné ëdcò la prima ridiression.\nLe ridiression <del>sganfà</del> a son stàite arzolvùe.",
-	"double-redirect-fixed-move": "[[$1]] a l'é stàit spostà.\nAdess a l'é na ridiression a [[$2]].",
+	"double-redirect-fixed-move": "[[$1]] a l'é stàit spostà.\nA l'é stàit agiornà an automàtich e adess a l'é na ridiression a [[$2]].",
 	"double-redirect-fixed-maintenance": "Rangé le ridiression dobie da [[$1]] a [[$2]].",
 	"double-redirect-fixer": "Coretor ëd ridiression",
 	"brokenredirects": "Ridiression nen giuste",

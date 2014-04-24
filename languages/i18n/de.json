@@ -294,6 +294,7 @@
 	"jumptonavigation": "Navigation",
 	"jumptosearch": "Suche",
 	"view-pool-error": "Entschuldigung, die Server sind im Moment überlastet.\nZu viele Benutzer versuchen, diese Seite zu besuchen.\nBitte warte einige Minuten, bevor du es noch einmal versuchst.\n\n$1",
+	"generic-pool-error": "Leider sind die Server derzeit überlastet.\nZu viele Benutzer wollen diese Ressource ansehen.\nBitte warte einen Moment, bevor du sie erneut aufrufst.",
 	"pool-timeout": "Zeitablauf während des Wartens auf die Sperrung",
 	"pool-queuefull": "Poolwarteschlange ist voll",
 	"pool-errorunknown": "Unbekannter Fehler",

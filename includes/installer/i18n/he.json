@@ -313,7 +313,7 @@
 	"config-download-localsettings": "הורדת <code>LocalSettings.php</code>",
 	"config-help": "עזרה",
 	"config-nofile": "הקובץ \"$1\" לא נמצא. האם הוא נמחק?",
-	"config-extension-link": "הידעת שמדיה־ויקי תומכת ב־[//www.mediawiki.org/wiki/Manual:Extensions הרחבות]?\n\nבאפשרותך לעיין ב־[//www.mediawiki.org/wiki/Category:Extensions_by_category הרחבות לפי קטגוריה] או ב־[//www.mediawiki.org/wiki/Extension_Matrix מטריצת ההרחבות] לרשימה מלאה של הרחבות.",
+	"config-extension-link": "הידעת שמדיה־ויקי תומכת ב־[//www.mediawiki.org/wiki/Manual:Extensions הרחבות]?\n\nבאפשרותך לעיין ב־[//www.mediawiki.org/wiki/Category:Extensions_by_category הרחבות לפי קטגוריה].",
 	"mainpagetext": "'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''",
 	"mainpagedocfooter": "היעזרו ב[//meta.wikimedia.org/wiki/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.\n\n== קישורים שימושיים ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings רשימת ההגדרות]\n* [//www.mediawiki.org/wiki/Manual:FAQ שאלות ותשובות על מדיה־ויקי]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]\n* [//www.mediawiki.org/wiki/Localisation#Translation_resources תרגום מדיה־ויקי לשפה שלך]"
 }

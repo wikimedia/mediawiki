@@ -1114,7 +1114,7 @@
 	"recentchanges-legend-heading": "'''Legenda:'''",
 	"recentchanges-legend-newpage": "([[Special:NewPages|spisak novih stranica]])",
 	"rcnotefrom": "Ispod su izmene od <b>$2</b> (do <b>$1</b> izmena).",
-	"rclistfrom": "Prikaži nove izmene počev od $3 $2",
+	"rclistfrom": "Prikaži nove izmene počev od $2 $3",
 	"rcshowhideminor": "$1 manje izmene",
 	"rcshowhideminor-show": "Prikaži",
 	"rcshowhideminor-hide": "Sakrij",

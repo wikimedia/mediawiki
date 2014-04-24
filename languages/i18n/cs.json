@@ -246,6 +246,7 @@
 	"jumptonavigation": "navigace",
 	"jumptosearch": "hledání",
 	"view-pool-error": "Promiňte, servery jsou momentálně přetíženy.\nTuto stránku si právě prohlíží příliš mnoho uživatelů.\nPřed tím, než ji zkusíte načíst znovu, chvíli počkejte.\n\n$1",
+	"generic-pool-error": "Promiňte, servery jsou momentálně přetíženy.\nTento zdroj si právě prohlíží příliš mnoho uživatelů.\nPřed tím, než se k němu pokusíte přistoupit znovu, chvíli počkejte.",
 	"pool-timeout": "Při čekání na zámek vypršel časový limit",
 	"pool-queuefull": "Fronta ve fondu je plná",
 	"pool-errorunknown": "Neznámá chyba",
