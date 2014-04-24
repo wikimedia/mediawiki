@@ -82,7 +82,7 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 			}
 			$this->output( "Populating img_sha1 field for specified files\n" );
 		} else {
-			if ( $force ) {
+			if ( $force || $this->hasOption( 'multiversiononly' ) ) {
 				$conds = array();
 				$this->output( "Populating and recalculating img_sha1 field\n" );
 			} else {
