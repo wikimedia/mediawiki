@@ -196,13 +196,21 @@ class UserTest extends MediaWikiTestCase {
 		}
 
 		$user->clearInstanceCache();
-		$this->assertEquals( 3, $user->getEditCount(), 'After three edits, the user edit count should be 3' );
+		$this->assertEquals(
+			3,
+			$user->getEditCount(),
+			'After three edits, the user edit count should be 3'
+		);
 
 		// increase the edit count and clear the cache
 		$user->incEditCount();
 
 		$user->clearInstanceCache();
-		$this->assertEquals( 4, $user->getEditCount(), 'After increasing the edit count manually, the user edit count should be 4' );
+		$this->assertEquals(
+			4,
+			$user->getEditCount(),
+			'After increasing the edit count manually, the user edit count should be 4'
+		);
 	}
 
 	/**
