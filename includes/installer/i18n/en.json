@@ -1,7 +1,7 @@
 {
 	"@metadata": {
-    	"authors": []
-    },
+		"authors": []
+	},
 	"config-desc": "The installer for MediaWiki",
 	"config-title": "MediaWiki $1 installation",
 	"config-information": "Information",
