@@ -138,7 +138,7 @@ class HtmlFormatter {
 
 		if ( !$removals ) {
 			wfProfileOut( __METHOD__ );
-			return;
+			return array();
 		}
 
 		$doc = $this->getDoc();
