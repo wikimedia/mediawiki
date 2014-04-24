@@ -29,9 +29,15 @@ class TitleTest extends MediaWikiTestCase {
 		foreach ( range( 1, 255 ) as $num ) {
 			$chr = chr( $num );
 			if ( strpos( "#[]{}<>|", $chr ) !== false || preg_match( "/[\\x00-\\x1f\\x7f]/", $chr ) ) {
-				$this->assertFalse( (bool)preg_match( "/[$titlechars]/", $chr ), "chr($num) = $chr is not a valid titlechar" );
+				$this->assertFalse(
+					(bool)preg_match( "/[$titlechars]/", $chr ),
+					"chr($num) = $chr is not a valid titlechar"
+				);
 			} else {
-				$this->assertTrue( (bool)preg_match( "/[$titlechars]/", $chr ), "chr($num) = $chr is a valid titlechar" );
+				$this->assertTrue(
+					(bool)preg_match( "/[$titlechars]/", $chr ),
+					"chr($num) = $chr is a valid titlechar"
+				);
 			}
 		}
 	}
@@ -231,7 +237,11 @@ class TitleTest extends MediaWikiTestCase {
 		} else {
 			$par = null;
 		}
-		$this->assertEquals( $expectedParam, $par, "Bug 31100 regression check: Title->fixSpecialName() should preserve parameter" );
+		$this->assertEquals(
+			$expectedParam,
+			$par,
+			"Bug 31100 regression check: Title->fixSpecialName() should preserve parameter"
+		);
 	}
 
 	public static function provideBug31100() {
@@ -332,7 +342,11 @@ class TitleTest extends MediaWikiTestCase {
 			$allowableness = $expected
 				? " should be allowed"
 				: " should NOT be allowed";
-			$this->assertEquals( $expected, $errors, "User action '$action' on [[$source]] $allowableness." );
+			$this->assertEquals(
+				$expected,
+				$errors,
+				"User action '$action' on [[$source]] $allowableness."
+			);
 		} else {
 			$errors = $this->flattenErrorsArray( $errors );
 			foreach ( (array)$expected as $error ) {
@@ -400,7 +414,9 @@ class TitleTest extends MediaWikiTestCase {
 	 * @dataProvider provideGetPageViewLanguage
 	 * @covers Title::getPageViewLanguage
 	 */
-	public function testGetPageViewLanguage( $expected, $titleText, $contLang, $lang, $variant, $msg = '' ) {
+	public function testGetPageViewLanguage( $expected, $titleText, $contLang,
+		$lang, $variant, $msg = ''
+	) {
 		global $wgLanguageCode, $wgContLang, $wgLang, $wgDefaultLanguageVariant, $wgAllowUserJs;
 
 		// Setup environnement for this test

@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Wraps the user object, so we can also retain full access to properties like password if we log in via the API
+ * Wraps the user object, so we can also retain full access to properties
+ * like password if we log in via the API.
  */
 class TestUser {
 	public $username;
@@ -10,7 +11,9 @@ class TestUser {
 	public $groups;
 	public $user;
 
-	public function __construct( $username, $realname = 'Real Name', $email = 'sample@example.com', $groups = array() ) {
+	public function __construct( $username, $realname = 'Real Name',
+		$email = 'sample@example.com', $groups = array()
+	) {
 		$this->username = $username;
 		$this->realname = $realname;
 		$this->email = $email;

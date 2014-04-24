@@ -77,7 +77,10 @@ class TitleArrayFromResultTest extends MediaWikiTestCase {
 	 * @covers TitleArrayFromResult::count
 	 */
 	public function testCountWithVaryingValues( $numRows ) {
-		$object = $this->getTitleArrayFromResult( $this->getMockResultWrapper( $this->getRowWithTitle(), $numRows ) );
+		$object = $this->getTitleArrayFromResult( $this->getMockResultWrapper(
+			$this->getRowWithTitle(),
+			$numRows
+		) );
 		$this->assertEquals( $numRows, $object->count() );
 	}
 

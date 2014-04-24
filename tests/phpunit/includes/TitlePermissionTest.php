@@ -228,15 +228,21 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->runGroupPermissions( 'move', array( array( 'movenotallowedfile' ) ) );
 
 		$this->setUserPerm( "" );
-		$this->runGroupPermissions( 'move', array( array( 'movenotallowedfile' ), array( 'movenotallowed' ) ) );
+		$this->runGroupPermissions(
+			'move',
+			array( array( 'movenotallowedfile' ), array( 'movenotallowed' ) )
+		);
 
 		$this->setUser( 'anon' );
 		$this->setUserPerm( "move" );
 		$this->runGroupPermissions( 'move', array( array( 'movenotallowedfile' ) ) );
 
 		$this->setUserPerm( "" );
-		$this->runGroupPermissions( 'move', array( array( 'movenotallowedfile' ), array( 'movenotallowed' ) ),
-			array( array( 'movenotallowedfile' ), array( 'movenologintext' ) ) );
+		$this->runGroupPermissions(
+			'move',
+			array( array( 'movenotallowedfile' ), array( 'movenotallowed' ) ),
+			array( array( 'movenotallowedfile' ), array( 'movenologintext' ) )
+		);
 
 		if ( $this->isWikitextNS( NS_MAIN ) ) {
 			//NOTE: some content models don't allow moving
@@ -293,13 +299,25 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->assertEquals( array(), $res );
 
 		$this->setUser( 'anon' );
-		$check = array( 'edit' => array( array( array( 'badaccess-groups', "*, [[$prefix:Users|Users]]", 2 ) ),
-			array( array( 'badaccess-group0' ) ),
-			array(), true ),
-			'protect' => array( array( array( 'badaccess-groups', "[[$prefix:Administrators|Administrators]]", 1 ), array( 'protect-cantedit' ) ),
+		$check = array(
+			'edit' => array(
+				array( array( 'badaccess-groups', "*, [[$prefix:Users|Users]]", 2 ) ),
+				array( array( 'badaccess-group0' ) ),
+				array(),
+				true
+			),
+			'protect' => array(
+				array( array(
+					'badaccess-groups',
+					"[[$prefix:Administrators|Administrators]]", 1 ),
+					array( 'protect-cantedit'
+				) ),
 				array( array( 'badaccess-group0' ), array( 'protect-cantedit' ) ),
-				array( array( 'protect-cantedit' ) ), false ),
-			'' => array( array(), array(), array(), true ) );
+				array( array( 'protect-cantedit' ) ),
+				false
+			),
+			'' => array( array(), array(), array(), true )
+		);
 
 		foreach ( array( "edit", "protect", "" ) as $action ) {
 			$this->setUserPerm( null );
@@ -599,8 +617,13 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->setTitle( NS_MAIN, "test page" );
 		$this->setUserPerm( array( "edit", "bogus" ) );
 
-		$this->title->mCascadeSources = array( Title::makeTitle( NS_MAIN, "Bogus" ), Title::makeTitle( NS_MAIN, "UnBogus" ) );
-		$this->title->mCascadingRestrictions = array( "bogus" => array( 'bogus', "sysop", "protect", "" ) );
+		$this->title->mCascadeSources = array(
+			Title::makeTitle( NS_MAIN, "Bogus" ),
+			Title::makeTitle( NS_MAIN, "UnBogus" )
+		);
+		$this->title->mCascadingRestrictions = array(
+			"bogus" => array( 'bogus', "sysop", "protect", "" )
+		);
 
 		$this->assertEquals( false,
 			$this->title->userCan( 'bogus', $this->user ) );

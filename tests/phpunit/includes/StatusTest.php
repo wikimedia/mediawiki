@@ -233,7 +233,10 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status2->error( $message2 );
 
 		$status1->merge( $status2 );
-		$this->assertEquals( 2, count( $status1->getWarningsArray() ) + count( $status1->getErrorsArray() ) );
+		$this->assertEquals(
+			2,
+			count( $status1->getWarningsArray() ) + count( $status1->getErrorsArray() )
+		);
 	}
 
 	/**
@@ -249,7 +252,10 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status2->value = 'FooValue';
 
 		$status1->merge( $status2, true );
-		$this->assertEquals( 2, count( $status1->getWarningsArray() ) + count( $status1->getErrorsArray() ) );
+		$this->assertEquals(
+			2,
+			count( $status1->getWarningsArray() ) + count( $status1->getErrorsArray() )
+		);
 		$this->assertEquals( 'FooValue', $status1->getValue() );
 	}
 
@@ -305,8 +311,9 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideGetWikiTextAndHtml
 	 * @covers Status::getHtml
 	 * @todo test long and short context messages generated through this method
-	 *       this can not really be done now due to use of $this->getWikiText using wfMessage()->plain()
-	 *       It is possible to mock such methods but only if namespaces are used
+	 *   this can not really be done now due to use of $this->getWikiText using
+	 *   wfMessage()->plain(). It is possible to mock such methods but only if
+	 *   namespaces are used.
 	 */
 	public function testGetHtml( Status $status, $wikitext, $html ) {
 		$this->assertEquals( $html, $status->getHTML() );

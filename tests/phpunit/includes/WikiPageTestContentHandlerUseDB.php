@@ -5,7 +5,7 @@
  * @group Database
  * ^--- important, causes temporary tables to be used instead of the real database
  */
-class WikiPageTest_ContentHandlerUseDB extends WikiPageTest {
+class WikiPageTestContentHandlerUseDB extends WikiPageTest {
 
 	protected function setUp() {
 		parent::setUp();
@@ -30,7 +30,11 @@ class WikiPageTest_ContentHandlerUseDB extends WikiPageTest {
 	 * @covers WikiPage::getContentModel
 	 */
 	public function testGetContentModel() {
-		$page = $this->createPage( "WikiPageTest_testGetContentModel", "some text", CONTENT_MODEL_JAVASCRIPT );
+		$page = $this->createPage(
+			"WikiPageTest_testGetContentModel",
+			"some text",
+			CONTENT_MODEL_JAVASCRIPT
+		);
 
 		$page = new WikiPage( $page->getTitle() );
 
@@ -43,7 +47,11 @@ class WikiPageTest_ContentHandlerUseDB extends WikiPageTest {
 	 * @covers WikiPage::getContentHandler
 	 */
 	public function testGetContentHandler() {
-		$page = $this->createPage( "WikiPageTest_testGetContentHandler", "some text", CONTENT_MODEL_JAVASCRIPT );
+		$page = $this->createPage(
+			"WikiPageTest_testGetContentHandler",
+			"some text",
+			CONTENT_MODEL_JAVASCRIPT
+		);
 
 		// NOTE: since the content model is not recorded in the database,
 		//       we expect to get the default, namely CONTENT_MODEL_WIKITEXT

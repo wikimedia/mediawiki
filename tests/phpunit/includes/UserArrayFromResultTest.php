@@ -74,7 +74,10 @@ class UserArrayFromResultTest extends MediaWikiTestCase {
 	 * @covers UserArrayFromResult::count
 	 */
 	public function testCountWithVaryingValues( $numRows ) {
-		$object = $this->getUserArrayFromResult( $this->getMockResultWrapper( $this->getRowWithUsername(), $numRows ) );
+		$object = $this->getUserArrayFromResult( $this->getMockResultWrapper(
+			$this->getRowWithUsername(),
+			$numRows
+		) );
 		$this->assertEquals( $numRows, $object->count() );
 	}
 
