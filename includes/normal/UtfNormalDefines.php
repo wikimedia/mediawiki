@@ -46,7 +46,6 @@ define( 'UNICODE_SURROGATE_LAST', 0xdfff );
 define( 'UNICODE_MAX', 0x10ffff );
 define( 'UNICODE_REPLACEMENT', 0xfffd );
 
-
 define( 'UTF8_HANGUL_FIRST', "\xea\xb0\x80" /*codepointToUtf8( UNICODE_HANGUL_FIRST )*/ );
 define( 'UTF8_HANGUL_LAST', "\xed\x9e\xa3" /*codepointToUtf8( UNICODE_HANGUL_LAST )*/ );
 
