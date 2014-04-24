@@ -467,7 +467,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$resultOffset = 0;
 		// Open the file:
 		wfSuppressWarnings();
-		$handle = @fopen( $filePath, "r" );
+		$handle = fopen( $filePath, "r" );
 		wfRestoreWarnings();
 
 		if ( $handle === false ) {
