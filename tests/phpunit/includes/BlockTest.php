@@ -72,14 +72,20 @@ class BlockTest extends MediaWikiLangTestCase {
 	 * @covers Block::newFromTarget
 	 */
 	public function testINewFromTargetReturnsCorrectBlock() {
-		$this->assertTrue( $this->block->equals( Block::newFromTarget( 'UTBlockee' ) ), "newFromTarget() returns the same block as the one that was made" );
+		$this->assertTrue(
+			$this->block->equals( Block::newFromTarget( 'UTBlockee' ) ),
+			"newFromTarget() returns the same block as the one that was made"
+		);
 	}
 
 	/**
 	 * @covers Block::newFromID
 	 */
 	public function testINewFromIDReturnsCorrectBlock() {
-		$this->assertTrue( $this->block->equals( Block::newFromID( $this->blockId ) ), "newFromID() returns the same block as the one that was made" );
+		$this->assertTrue(
+			$this->block->equals( Block::newFromID( $this->blockId ) ),
+			"newFromID() returns the same block as the one that was made"
+		);
 	}
 
 	/**
@@ -88,7 +94,11 @@ class BlockTest extends MediaWikiLangTestCase {
 	public function testBug26425BlockTimestampDefaultsToTime() {
 		// delta to stop one-off errors when things happen to go over a second mark.
 		$delta = abs( $this->madeAt - $this->block->mTimestamp );
-		$this->assertLessThan( 2, $delta, "If no timestamp is specified, the block is recorded as time()" );
+		$this->assertLessThan(
+			2,
+			$delta,
+			"If no timestamp is specified, the block is recorded as time()"
+		);
 	}
 
 	/**
@@ -101,7 +111,11 @@ class BlockTest extends MediaWikiLangTestCase {
 	 */
 	public function testBug29116NewFromTargetWithEmptyIp( $vagueTarget ) {
 		$block = Block::newFromTarget( 'UTBlockee', $vagueTarget );
-		$this->assertTrue( $this->block->equals( $block ), "newFromTarget() returns the same block as the one that was made when given empty vagueTarget param " . var_export( $vagueTarget, true ) );
+		$this->assertTrue(
+			$this->block->equals( $block ),
+			"newFromTarget() returns the same block as the one that was made when "
+				. "given empty vagueTarget param " . var_export( $vagueTarget, true )
+		);
 	}
 
 	public static function provideBug29116Data() {
@@ -215,7 +229,11 @@ class BlockTest extends MediaWikiLangTestCase {
 		$user = null; // clear
 
 		$block = Block::newFromID( $res['id'] );
-		$this->assertEquals( 'UserOnForeignWiki', $block->getTarget()->getName(), 'Correct blockee name' );
+		$this->assertEquals(
+			'UserOnForeignWiki',
+			$block->getTarget()->getName(),
+			'Correct blockee name'
+		);
 		$this->assertEquals( '14146', $block->getTarget()->getId(), 'Correct blockee id' );
 		$this->assertEquals( 'MetaWikiUser', $block->getBlocker(), 'Correct blocker name' );
 		$this->assertEquals( 'MetaWikiUser', $block->getByName(), 'Correct blocker name' );
