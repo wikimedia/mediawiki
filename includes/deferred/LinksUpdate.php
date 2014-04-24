@@ -502,16 +502,67 @@ class LinksUpdate extends SqlDataUpdate {
 	 */
 	function getPropertyInsertions( $existing = array() ) {
 		$diffs = array_diff_assoc( $this->mProperties, $existing );
+
 		$arr = array();
-		foreach ( $diffs as $name => $value ) {
-			$arr[] = array(
-				'pp_page' => $this->mId,
-				'pp_propname' => $name,
-				'pp_value' => $value,
-			);
+		foreach ( array_keys( $diffs ) as $name ) {
+			$arr[] = $this->getPagePropRowData( $name );
 		}
 
 		return $arr;
+	}
+
+	/**
+	 * Returns an associative array to be used for inserting a row into
+	 * the page_props table. Besides the given property name, this will
+	 * include the page id from $this->mId and any property value from
+	 * $this->mProperties.
+	 *
+	 * The array returned will include the pp_sortkey field if this
+	 * is present in the database (as indicated by $wgPagePropsHaveSortkey).
+	 * The sortkey value is currently determined by getPropertySortKeyValue().
+	 *
+	 * @note: this assumes that $this->mProperties[$prop] is defined.
+	 *
+	 * @param string $prop The name of the property.
+	 *
+	 * @return array
+	 */
+	private function getPagePropRowData( $prop ) {
+		global $wgPagePropsHaveSortkey;
+
+		$value = $this->mProperties[$prop];
+
+		$row = array(
+			'pp_page' => $this->mId,
+			'pp_propname' => $prop,
+			'pp_value' => $value,
+		);
+
+		if ( $wgPagePropsHaveSortkey ) {
+			$row['pp_sortkey'] = $this->getPropertySortKeyValue( $value );
+		}
+
+		return $row;
+	}
+
+	/**
+	 * Determines the sort key for the given property value.
+	 * This will return $value if it is a float or int,
+	 * 1 or resp. 0 if it is a bool, and null otherwise.
+	 *
+	 * @note: In the future, we may allow the sortkey to be specified explicitly
+	 *        in ParserOutput::setProperty.
+	 *
+	 * @param mixed $value
+	 *
+	 * @return float|null
+	 */
+	private function getPropertySortKeyValue( $value ) {
+		if ( is_int( $value ) || is_float( $value ) || is_bool( $value ) ) {
+			return floatval( $value );
+		}
+
+		return null;
 	}
 
 	/**

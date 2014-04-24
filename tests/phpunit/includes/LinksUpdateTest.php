@@ -200,14 +200,48 @@ class LinksUpdateTest extends MediaWikiTestCase {
 	 * @covers ParserOutput::setProperty
 	 */
 	public function testUpdate_page_props() {
+		global $wgPagePropsHaveSortkey;
+
 		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
-		$po->setProperty( "foo", "bar" );
+		$fields = array( 'pp_propname', 'pp_value' );
+		$expected = array();
 
-		$this->assertLinksUpdate( $t, $po, 'page_props', 'pp_propname, pp_value', 'pp_page = 111', array(
-			array( 'foo', 'bar' ),
-		) );
+		$po->setProperty( "bool", true );
+		$expected[] = array( "bool", true );
+
+		$po->setProperty( "float", 4.0 + 1.0/4.0 );
+		$expected[] = array( "float", 4.0 + 1.0/4.0 );
+
+		$po->setProperty( "int", -7 );
+		$expected[] = array( "int", -7 );
+
+		$po->setProperty( "string", "33 bar" );
+		$expected[] = array( "string", "33 bar" );
+
+		// compute expected sortkey values
+		if ( $wgPagePropsHaveSortkey ) {
+			$fields[] = 'pp_sortkey';
+
+			foreach ( $expected as &$row ) {
+				$value = $row[1];
+
+				if ( is_int( $value ) || is_float( $value ) || is_bool( $value ) ) {
+					$row[] = floatval( $value );
+				} else {
+					$row[] = null;
+				}
+			}
+		}
+
+		$this->assertLinksUpdate( $t, $po, 'page_props', $fields, 'pp_page = 111', $expected );
+	}
+
+	public function testUpdate_page_props_without_sortkey() {
+		$this->setMwGlobals( 'wgPagePropsHaveSortkey', false );
+
+		$this->testUpdate_page_props();
 	}
 
 	// @todo test recursive, too!
