@@ -127,7 +127,9 @@ pre, .mw-code {
 	vertical-align: text-bottom;
 }
 
-#bodyContent {
+/* TODO: Remove #bodyContent selector (kept for backwards compatibility with cached html) */
+#bodyContent,
+.mw-body-content {
 	position: relative;
 	line-height: @content-line-height;
 	font-size: @content-font-size;
