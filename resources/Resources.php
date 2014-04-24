@@ -1062,6 +1062,8 @@ return array(
 		)
 	),
 
+	'mediawiki.language.names' => array( 'class' => 'ResourceLoaderLanguageNamesModule' ),
+
 	/* MediaWiki Libs */
 
 	'mediawiki.libs.jpegmeta' => array(
