@@ -40,7 +40,11 @@ class OracleInstallerTest extends MediaWikiTestCase {
 			array( true, 'host:1521/service:shared', 'Host, port, service and shared server type' ),
 			array( true, 'host:1521/service:dedicated', 'Host, port, service and dedicated server type' ),
 			array( true, 'host:1521/service:pooled', 'Host, port, service and pooled server type' ),
-			array( true, 'host:1521/service:shared/instance1', 'Host, port, service, server type and instance' ),
+			array(
+				true,
+				'host:1521/service:shared/instance1',
+				'Host, port, service, server type and instance'
+			),
 			array( true, 'host:1521//instance1', 'Host, port and instance' ),
 		);
 	}

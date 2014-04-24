@@ -25,7 +25,11 @@ class CSSMinTest extends MediaWikiTestCase {
 	public function testMinify( $code, $expectedOutput ) {
 		$minified = CSSMin::minify( $code );
 
-		$this->assertEquals( $expectedOutput, $minified, 'Minified output should be in the form expected.' );
+		$this->assertEquals(
+			$expectedOutput,
+			$minified,
+			'Minified output should be in the form expected.'
+		);
 	}
 
 	public static function provideMinifyCases() {
@@ -69,7 +73,8 @@ class CSSMinTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * This tests funky parameters to CSSMin::remap. testRemapRemapping tests the basic functionality.
+	 * This tests funky parameters to CSSMin::remap. testRemapRemapping tests
+	 * the basic functionality.
 	 *
 	 * @dataProvider provideRemapCases
 	 * @covers CSSMin::remap
@@ -78,7 +83,11 @@ class CSSMinTest extends MediaWikiTestCase {
 		$remapped = call_user_func_array( 'CSSMin::remap', $params );
 
 		$messageAdd = " Case: $message";
-		$this->assertEquals( $expectedOutput, $remapped, 'CSSMin::remap should return the expected url form.' . $messageAdd );
+		$this->assertEquals(
+			$expectedOutput,
+			$remapped,
+			'CSSMin::remap should return the expected url form.' . $messageAdd
+		);
 	}
 
 	public static function provideRemapCases() {
@@ -201,7 +210,8 @@ class CSSMinTest extends MediaWikiTestCase {
 			array(
 				'Embedded file (inline @embed)',
 				'foo { background: /* @embed */ url(red.gif); }',
-				"foo { background: url($red); background: url(http://localhost/w/red.gif?timestamp)!ie; }",
+				"foo { background: url($red); "
+					. "background: url(http://localhost/w/red.gif?timestamp)!ie; }",
 			),
 			array(
 				'Can not embed large files',
@@ -211,27 +221,35 @@ class CSSMinTest extends MediaWikiTestCase {
 			array(
 				'Two regular files in one rule',
 				'foo { background: url(red.gif), url(green.gif); }',
-				'foo { background: url(http://localhost/w/red.gif?timestamp), url(http://localhost/w/green.gif?timestamp); }',
+				'foo { background: url(http://localhost/w/red.gif?timestamp), '
+					. 'url(http://localhost/w/green.gif?timestamp); }',
 			),
 			array(
 				'Two embedded files in one rule',
 				'foo { /* @embed */ background: url(red.gif), url(green.gif); }',
-				"foo { background: url($red), url($green); background: url(http://localhost/w/red.gif?timestamp), url(http://localhost/w/green.gif?timestamp)!ie; }",
+				"foo { background: url($red), url($green); "
+					. "background: url(http://localhost/w/red.gif?timestamp), "
+					. "url(http://localhost/w/green.gif?timestamp)!ie; }",
 			),
 			array(
 				'Two embedded files in one rule (inline @embed)',
 				'foo { background: /* @embed */ url(red.gif), /* @embed */ url(green.gif); }',
-				"foo { background: url($red), url($green); background: url(http://localhost/w/red.gif?timestamp), url(http://localhost/w/green.gif?timestamp)!ie; }",
+				"foo { background: url($red), url($green); "
+					. "background: url(http://localhost/w/red.gif?timestamp), "
+					. "url(http://localhost/w/green.gif?timestamp)!ie; }",
 			),
 			array(
 				'Two embedded files in one rule (inline @embed), one too large',
 				'foo { background: /* @embed */ url(red.gif), /* @embed */ url(large.png); }',
-				"foo { background: url($red), url(http://localhost/w/large.png?timestamp); background: url(http://localhost/w/red.gif?timestamp), url(http://localhost/w/large.png?timestamp)!ie; }",
+				"foo { background: url($red), url(http://localhost/w/large.png?timestamp); "
+					. "background: url(http://localhost/w/red.gif?timestamp), "
+					. "url(http://localhost/w/large.png?timestamp)!ie; }",
 			),
 			array(
 				'Practical example with some noise',
 				'foo { /* @embed */ background: #f9f9f9 url(red.gif) 0 0 no-repeat; }',
-				"foo { background: #f9f9f9 url($red) 0 0 no-repeat; background: #f9f9f9 url(http://localhost/w/red.gif?timestamp) 0 0 no-repeat!ie; }",
+				"foo { background: #f9f9f9 url($red) 0 0 no-repeat; "
+					. "background: #f9f9f9 url(http://localhost/w/red.gif?timestamp) 0 0 no-repeat!ie; }",
 			),
 			array(
 				'Does not mess with other properties',
@@ -324,7 +342,10 @@ class CSSMinTest extends MediaWikiTestCase {
 			// - Using a tab in a string value (turns into a space)
 			array( "foo { content: '\t'; }", "foo{content:'\t'}" ),
 			// - Using css-like syntax in string values
-			array( 'foo::after { content: "{;}"; position: absolute; }', 'foo::after{content:"{;}";position:absolute}' ),
+			array(
+				'foo::after { content: "{;}"; position: absolute; }',
+				'foo::after{content:"{;}";position:absolute}'
+			),
 		);
 	}
 }

@@ -30,8 +30,9 @@ class HtmlCheckMatrixTest extends MediaWikiTestCase {
 	public function testValidateCallsUserDefinedValidationCallback() {
 		$called = false;
 		$field = new HTMLCheckMatrix( self::$defaultOptions + array(
-				'validation-callback' => function() use ( &$called ) {
+				'validation-callback' => function () use ( &$called ) {
 						$called = true;
+
 						return false;
 					},
 			) );
