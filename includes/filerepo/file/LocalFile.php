@@ -1929,18 +1929,17 @@ class LocalFile extends File {
 		global $wgMemc;
 
 		$key = $this->repo->getSharedCacheKey( 'file-volatile', md5( $this->getName() ) );
-		if ( $key ) {
-			if ( $this->lastMarkedVolatile
-				&& ( time() - $this->lastMarkedVolatile ) <= self::VOLATILE_TTL
-			) {
-				return true; // sanity
-			}
-			$volatileTimestamp = (int)$wgMemc->get( $key );
-			$this->lastMarkedVolatile = max( $this->lastMarkedVolatile, $volatileTimestamp );
-			return ( $volatileTimestamp != 0 );
+		if ( !$key ) {
+			// repo unavailable; bail.
+			return false;
 		}
 
-		return false;
+		if ( $this->lastMarkedVolatile === 0 ) {
+			$this->lastMarkedVolatile = $wgMemc->get( $key ) ?: 0;
+		}
+
+		$volatileDuration = time() - $this->lastMarkedVolatile;
+		return $volatileDuration <= self::VOLATILE_TTL;
 	}
 
 	/**
