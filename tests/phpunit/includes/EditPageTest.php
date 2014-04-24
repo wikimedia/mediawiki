@@ -75,7 +75,8 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 *              * wpTextbox1: the text to submit
 	 *              * wpSummary: the edit summary
 	 *              * wpEditToken: the edit token (will be inserted if not provided)
-	 *              * wpEdittime: timestamp of the edit's base revision (will be inserted if not provided)
+	 *              * wpEdittime: timestamp of the edit's base revision (will be inserted
+	 *                if not provided)
 	 *              * wpStarttime: timestamp when the edit started (will be inserted if not provided)
 	 *              * wpSectionTitle: the section to edit
 	 *              * wpMinorEdit: mark as minor edit
@@ -474,8 +475,14 @@ hello
 		}
 
 		$starttime = wfTimestampNow();
-		$adamsTime = wfTimestamp( TS_MW, (int)wfTimestamp( TS_UNIX, $starttime ) + (int)$adamsEdit['wpStarttime'] );
-		$bertasTime = wfTimestamp( TS_MW, (int)wfTimestamp( TS_UNIX, $starttime ) + (int)$bertasEdit['wpStarttime'] );
+		$adamsTime = wfTimestamp(
+			TS_MW,
+			(int)wfTimestamp( TS_UNIX, $starttime ) + (int)$adamsEdit['wpStarttime']
+		);
+		$bertasTime = wfTimestamp(
+			TS_MW,
+			(int)wfTimestamp( TS_UNIX, $starttime ) + (int)$bertasEdit['wpStarttime']
+		);
 
 		$adamsEdit['wpStarttime'] = $adamsTime;
 		$bertasEdit['wpStarttime'] = $bertasTime;
