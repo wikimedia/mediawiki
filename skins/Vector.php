@@ -177,7 +177,7 @@ class VectorTemplate extends BaseTemplate {
 			$this->text( 'pageLanguage' );
 			?>"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
 			<?php $this->html( 'prebodyhtml' ) ?>
-			<div id="bodyContent">
+			<div id="bodyContent" class="mw-body-content">
 				<?php
 				if ( $this->data['isarticle'] ) {
 					?>
