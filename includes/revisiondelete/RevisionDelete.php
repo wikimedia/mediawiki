@@ -80,7 +80,7 @@ class RevDel_RevisionList extends RevDel_List {
 		}
 
 		// Check if any requested revisions are available fully deleted.
-		$archived = $db->select( array( 'archive' ), '*',
+		$archived = $db->select( array( 'archive' ), Revision::selectArchiveFields(),
 			array(
 				'ar_rev_id' => $ids
 			),
@@ -326,7 +326,7 @@ class RevDel_ArchiveList extends RevDel_RevisionList {
 		foreach ( $this->ids as $id ) {
 			$timestamps[] = $db->timestamp( $id );
 		}
-		return $db->select( 'archive', '*',
+		return $db->select( 'archive', Revision::selectArchiveFields(),
 				array(
 					'ar_namespace' => $this->title->getNamespace(),
 					'ar_title' => $this->title->getDBkey(),
@@ -921,7 +921,20 @@ class RevDel_LogList extends RevDel_List {
 	 */
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
-		return $db->select( 'logging', '*',
+		return $db->select( 'logging', array(
+				'log_id',
+				'log_type',
+				'log_action',
+				'log_timestamp',
+				'log_user',
+				'log_user_text',
+				'log_namespace',
+				'log_title',
+				'log_page',
+				'log_comment',
+				'log_params',
+				'log_deleted'
+			),
 			array( 'log_id' => $ids ),
 			__METHOD__,
 			array( 'ORDER BY' => 'log_id DESC' )
