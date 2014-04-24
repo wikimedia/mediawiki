@@ -8,8 +8,9 @@ class DatabaseTest extends MediaWikiTestCase {
 	/**
 	 * @var DatabaseBase
 	 */
-	var $db;
-	var $functionTest = false;
+	protected $db;
+
+	private $functionTest = false;
 
 	protected function setUp() {
 		parent::setUp();
@@ -215,7 +216,9 @@ class DatabaseTest extends MediaWikiTestCase {
 		global $IP;
 		$this->dropFunctions();
 		$this->functionTest = true;
-		$this->assertTrue( $this->db->sourceFile( "$IP/tests/phpunit/data/db/{$this->db->getType()}/functions.sql" ) );
+		$this->assertTrue(
+			$this->db->sourceFile( "$IP/tests/phpunit/data/db/{$this->db->getType()}/functions.sql" )
+		);
 		$res = $this->db->query( 'SELECT mw_test_function() AS test', __METHOD__ );
 		$this->assertEquals( 42, $res->fetchObject()->test );
 	}

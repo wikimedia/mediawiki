@@ -7,7 +7,7 @@
  *        ^--- needed, because we do need the database to test link updates
  */
 class WikitextContentTest extends TextContentTest {
-	static $sections = "Intro
+	public static $sections = "Intro
 
 == stuff ==
 hello world
@@ -150,7 +150,10 @@ just a test"
 				"2",
 				"== TEST ==\nmore fun",
 				null,
-				trim( preg_replace( '/^== test ==.*== foo ==/sm', "== TEST ==\nmore fun\n\n== foo ==", WikitextContentTest::$sections ) )
+				trim( preg_replace(
+					'/^== test ==.*== foo ==/sm', "== TEST ==\nmore fun\n\n== foo ==",
+					WikitextContentTest::$sections
+				) )
 			),
 			array( WikitextContentTest::$sections,
 				"8",
