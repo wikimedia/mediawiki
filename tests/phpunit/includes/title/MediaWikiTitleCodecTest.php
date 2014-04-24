@@ -89,7 +89,14 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 			array( NS_MAIN, 'Foo_Bar', '', 'en', 'Foo Bar' ),
 			array( NS_USER, 'Hansi_Maier', 'stuff_and_so_on', 'en', 'User:Hansi Maier#stuff and so on' ),
 			array( false, 'Hansi_Maier', '', 'en', 'Hansi Maier' ),
-			array( NS_USER_TALK, 'hansi__maier', '', 'en', 'User talk:hansi  maier', 'User talk:Hansi maier' ),
+			array(
+				NS_USER_TALK,
+				'hansi__maier',
+				'',
+				'en',
+				'User talk:hansi  maier',
+				'User talk:Hansi maier'
+			),
 
 			// getGenderCache() provides a mock that considers first
 			// names ending in "a" to be female.
@@ -112,7 +119,11 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 
 		// test round trip
 		$parsed = $codec->parseTitle( $actual, NS_MAIN );
-		$actual2 = $codec->formatTitle( $parsed->getNamespace(), $parsed->getText(), $parsed->getFragment() );
+		$actual2 = $codec->formatTitle(
+			$parsed->getNamespace(),
+			$parsed->getText(),
+			$parsed->getFragment()
+		);
 
 		$this->assertEquals( $normalized, $actual2, 'normalized after round trip' );
 	}
