@@ -45,7 +45,9 @@ class MssqlInstaller extends DatabaseInstaller {
 		'_WebWindowsAuthentication' => 'sqlauth',
 	);
 
-	public $minimumVersion = '9.00.1399'; // SQL Server 2005 RTM (TODO: are SQL Express version numbers different?)
+	// SQL Server 2005 RTM
+	// @todo Are SQL Express version numbers different?)
+	public $minimumVersion = '9.00.1399';
 
 	// These are schema-level privs
 	// Note: the web user will be created will full permissions if possible, this permission
@@ -135,7 +137,12 @@ class MssqlInstaller extends DatabaseInstaller {
 
 	public function submitConnectForm() {
 		// Get variables from the request.
-		$newValues = $this->setVarsFromRequest( array( 'wgDBserver', 'wgDBname', 'wgDBmwschema', 'wgDBprefix' ) );
+		$newValues = $this->setVarsFromRequest( array(
+			'wgDBserver',
+			'wgDBname',
+			'wgDBmwschema',
+			'wgDBprefix'
+		) );
 
 		// Validate them.
 		$status = Status::newGood();
@@ -163,7 +170,11 @@ class MssqlInstaller extends DatabaseInstaller {
 		}
 
 		// User box
-		$this->setVarsFromRequest( array( '_InstallUser', '_InstallPassword', '_InstallWindowsAuthentication' ) );
+		$this->setVarsFromRequest( array(
+			'_InstallUser',
+			'_InstallPassword',
+			'_InstallWindowsAuthentication'
+		) );
 
 		// Try to connect
 		$status = $this->getConnection();
@@ -309,7 +320,8 @@ class MssqlInstaller extends DatabaseInstaller {
 
 			if ( $this->schemaExists( $this->getVar( 'wgDBmwschema' ) ) ) {
 				// wgDBmwschema is validated to only contain alphanumeric + underscore, so this is safe
-				$res = $conn->query( "SELECT permission_name FROM sys.fn_my_permissions( '{$this->getVar( 'wgDBmwschema' )}', 'SCHEMA' )" );
+				$res = $conn->query( "SELECT permission_name FROM sys.fn_my_permissions( "
+					. "'{$this->getVar( 'wgDBmwschema' )}', 'SCHEMA' )" );
 
 				foreach ( $res as $row ) {
 					$schemaPrivs[$row->permission_name] = true;
@@ -320,9 +332,11 @@ class MssqlInstaller extends DatabaseInstaller {
 		// Now check all the grants we'll need to be doing to see if we can
 		foreach ( $this->webUserPrivs as $permission ) {
 			if ( ( isset( $schemaPrivs[$permission] ) && $schemaPrivs[$permission] )
-					|| ( isset( $dbPrivs[$implied[$permission][0]] ) && $dbPrivs[$implied[$permission][0]] )
-					|| ( isset( $serverPrivs[$implied[$permission][1]] ) && $serverPrivs[$implied[$permission][1]] ) ) {
-
+					|| ( isset( $dbPrivs[$implied[$permission][0]] )
+						&& $dbPrivs[$implied[$permission][0]] )
+					|| ( isset( $serverPrivs[$implied[$permission][1]] )
+						&& $serverPrivs[$implied[$permission][1]] )
+			) {
 				unset( $grantOptions[$permission] );
 			}
 		}
@@ -344,8 +358,11 @@ class MssqlInstaller extends DatabaseInstaller {
 		} else {
 			$noCreateMsg = 'config-db-web-no-create-privs';
 		}
+
 		$wrapperStyle = $this->getVar( '_SameAccount' ) ? 'display: none' : '';
-		$displayStyle = $this->getVar( '_WebWindowsAuthentication' ) == 'windowsauth' ? 'display: none' : '';
+		$displayStyle = $this->getVar( '_WebWindowsAuthentication' ) == 'windowsauth'
+			? 'display: none'
+			: '';
 		$s = Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMessage( 'config-db-web-account' )->text() ) .
 			$this->getCheckBox(
@@ -390,9 +407,13 @@ class MssqlInstaller extends DatabaseInstaller {
 	 * @return Status
 	 */
 	public function submitSettingsForm() {
-		$this->setVarsFromRequest(
-			array( 'wgDBuser', 'wgDBpassword', '_SameAccount', '_CreateDBAccount', '_WebWindowsAuthentication' )
-		);
+		$this->setVarsFromRequest( array(
+				'wgDBuser',
+				'wgDBpassword',
+				'_SameAccount',
+				'_CreateDBAccount',
+				'_WebWindowsAuthentication'
+		) );
 
 		if ( $this->getVar( '_SameAccount' ) ) {
 			$this->setVar( '_WebWindowsAuthentication', $this->getVar( '_InstallWindowsAuthentication' ) );
@@ -408,7 +429,10 @@ class MssqlInstaller extends DatabaseInstaller {
 			$this->setVar( 'wgDBWindowsAuthentication', false );
 		}
 
-		if ( $this->getVar( '_CreateDBAccount' ) && $this->getVar( '_WebWindowsAuthentication' ) == 'sqlauth' && strval( $this->getVar( 'wgDBpassword' ) ) == '' ) {
+		if ( $this->getVar( '_CreateDBAccount' )
+			&& $this->getVar( '_WebWindowsAuthentication' ) == 'sqlauth'
+			&& strval( $this->getVar( 'wgDBpassword' ) ) == ''
+		) {
 			return Status::newFatal( 'config-db-password-empty', $this->getVar( 'wgDBuser' ) );
 		}
 
@@ -471,13 +495,22 @@ class MssqlInstaller extends DatabaseInstaller {
 		$dbName = $this->getVar( 'wgDBname' );
 		$schemaName = $this->getVar( 'wgDBmwschema' );
 		if ( !$this->databaseExists( $dbName ) ) {
-			$conn->query( "CREATE DATABASE " . $conn->addIdentifierQuotes( $dbName ), __METHOD__ );
+			$conn->query(
+				"CREATE DATABASE " . $conn->addIdentifierQuotes( $dbName ),
+				__METHOD__
+			);
 			$conn->selectDB( $dbName );
 			if ( !$this->schemaExists( $schemaName ) ) {
-				$conn->query( "CREATE SCHEMA " . $conn->addIdentifierQuotes( $schemaName ), __METHOD__ );
+				$conn->query(
+					"CREATE SCHEMA " . $conn->addIdentifierQuotes( $schemaName ),
+					__METHOD__
+				);
 			}
 			if ( !$this->catalogExists( $schemaName ) ) {
-				$conn->query( "CREATE FULLTEXT CATALOG " . $conn->addIdentifierQuotes( $schemaName ), __METHOD__ );
+				$conn->query(
+					"CREATE FULLTEXT CATALOG " . $conn->addIdentifierQuotes( $schemaName ),
+					__METHOD__
+				);
 			}
 		}
 		$this->setupSchemaVars();
@@ -529,7 +562,9 @@ class MssqlInstaller extends DatabaseInstaller {
 				try {
 					$this->db->begin();
 					$this->db->selectDB( 'master' );
-					$logintype = $this->getVar( '_WebWindowsAuthentication' ) == 'windowsauth' ? 'FROM WINDOWS' : "WITH PASSWORD = $escPass";
+					$logintype = $this->getVar( '_WebWindowsAuthentication' ) == 'windowsauth'
+						? 'FROM WINDOWS'
+						: "WITH PASSWORD = $escPass";
 					$this->db->query( "CREATE LOGIN $escUser $logintype" );
 					$this->db->selectDB( $dbName );
 					$this->db->query( "CREATE USER $escUser FOR LOGIN $escUser WITH DEFAULT_SCHEMA = $escSchema" );
@@ -603,7 +638,8 @@ class MssqlInstaller extends DatabaseInstaller {
 			$searchindex = $this->db->tableName( 'searchindex' );
 			$schema = $this->db->addIdentifierQuotes( $this->getVar( 'wgDBmwschema' ) );
 			try {
-				$this->db->query( "CREATE FULLTEXT INDEX ON $searchindex (si_title, si_text) KEY INDEX si_page ON $schema" );
+				$this->db->query( "CREATE FULLTEXT INDEX ON $searchindex (si_title, si_text) "
+					. "KEY INDEX si_page ON $schema" );
 			} catch ( DBQueryError $dqe ) {
 				$status->fatal( 'config-install-tables-failed', $dqe->getText() );
 			}

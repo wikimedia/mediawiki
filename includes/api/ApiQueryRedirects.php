@@ -116,7 +116,10 @@ class ApiQueryRedirects extends ApiQueryGeneratorBase {
 				$this->dieUsageMsg( 'show' );
 			}
 			$this->addWhereIf( "rd_fragment != $emptyString", isset( $show['fragment'] ) );
-			$this->addWhereIf( "rd_fragment = $emptyString OR rd_fragment IS NULL", isset( $show['!fragment'] ) );
+			$this->addWhereIf(
+				"rd_fragment = $emptyString OR rd_fragment IS NULL",
+				isset( $show['!fragment'] )
+			);
 		}
 
 		$map = $pageSet->getAllTitlesByNamespace();

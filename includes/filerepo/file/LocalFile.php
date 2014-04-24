@@ -1458,7 +1458,6 @@ class LocalFile extends File {
 
 		wfProfileOut( __METHOD__ . '-edit' );
 
-
 		if ( $reupload ) {
 			# Delete old thumbnails
 			wfProfileIn( __METHOD__ . '-purge' );
@@ -1911,7 +1910,9 @@ class LocalFile extends File {
 
 		$key = $this->repo->getSharedCacheKey( 'file-volatile', md5( $this->getName() ) );
 		if ( $key ) {
-			if ( $this->lastMarkedVolatile && ( time() - $this->lastMarkedVolatile ) <= self::VOLATILE_TTL ) {
+			if ( $this->lastMarkedVolatile
+				&& ( time() - $this->lastMarkedVolatile ) <= self::VOLATILE_TTL
+			) {
 				return true; // sanity
 			}
 			return ( $wgMemc->get( $key ) !== false );

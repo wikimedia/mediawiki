@@ -16,7 +16,9 @@ class ComposerPackageModifier {
 	protected $versionNormalizer;
 	protected $versionFetcher;
 
-	public function __construct( Package $package, ComposerVersionNormalizer $versionNormalizer, MediaWikiVersionFetcher $versionFetcher ) {
+	public function __construct( Package $package,
+		ComposerVersionNormalizer $versionNormalizer, MediaWikiVersionFetcher $versionFetcher
+	) {
 		$this->package = $package;
 		$this->versionNormalizer = $versionNormalizer;
 		$this->versionFetcher = $versionFetcher;
@@ -48,7 +50,10 @@ class ComposerPackageModifier {
 		$mvVersion = $this->versionFetcher->fetchVersion();
 		$mvVersion = $this->versionNormalizer->normalizeSuffix( $mvVersion );
 
-		$version = new VersionConstraint( '==', $this->versionNormalizer->normalizeLevelCount( $mvVersion ) );
+		$version = new VersionConstraint(
+			'==',
+			$this->versionNormalizer->normalizeLevelCount( $mvVersion )
+		);
 		$version->setPrettyString( $mvVersion );
 
 		return $version;

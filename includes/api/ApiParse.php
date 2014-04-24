@@ -363,7 +363,8 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['limitreportdata'] ) ) {
-			$result_array['limitreportdata'] = $this->formatLimitReportData( $p_result->getLimitReportData() );
+			$result_array['limitreportdata'] =
+				$this->formatLimitReportData( $p_result->getLimitReportData() );
 		}
 		if ( isset( $prop['limitreporthtml'] ) ) {
 			$limitreportHtml = EditPage::getPreviewLimitReport( $p_result );
@@ -488,7 +489,11 @@ class ApiParse extends ApiBase {
 			if ( $title ) {
 				$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
 				// localised language name in user language (maybe set by uselang=)
-				$entry['langname'] = Language::fetchLanguageName( $title->getInterwiki(), $this->getLanguage()->getCode() );
+				$entry['langname'] = Language::fetchLanguageName(
+					$title->getInterwiki(),
+					$this->getLanguage()->getCode()
+				);
+
 				// native language name
 				$entry['autonym'] = Language::fetchLanguageName( $title->getInterwiki() );
 			}
