@@ -5,7 +5,7 @@
  * @group Database
  * ^--- important, causes temporary tables to be used instead of the real database
  */
-class RevisionTest_ContentHandlerUseDB extends RevisionStorageTest {
+class RevisionTestContentHandlerUseDB extends RevisionStorageTest {
 
 	protected function setUp() {
 		$this->setMwGlobals( 'wgContentHandlerUseDB', false );
@@ -35,11 +35,20 @@ class RevisionTest_ContentHandlerUseDB extends RevisionStorageTest {
 
 		$this->assertTrue( in_array( 'rev_id', $fields ), 'missing rev_id in list of fields' );
 		$this->assertTrue( in_array( 'rev_page', $fields ), 'missing rev_page in list of fields' );
-		$this->assertTrue( in_array( 'rev_timestamp', $fields ), 'missing rev_timestamp in list of fields' );
+		$this->assertTrue(
+			in_array( 'rev_timestamp', $fields ),
+			'missing rev_timestamp in list of fields'
+		);
 		$this->assertTrue( in_array( 'rev_user', $fields ), 'missing rev_user in list of fields' );
 
-		$this->assertFalse( in_array( 'rev_content_model', $fields ), 'missing rev_content_model in list of fields' );
-		$this->assertFalse( in_array( 'rev_content_format', $fields ), 'missing rev_content_format in list of fields' );
+		$this->assertFalse(
+			in_array( 'rev_content_model', $fields ),
+			'missing rev_content_model in list of fields'
+		);
+		$this->assertFalse(
+			in_array( 'rev_content_format', $fields ),
+			'missing rev_content_format in list of fields'
+		);
 	}
 
 	/**

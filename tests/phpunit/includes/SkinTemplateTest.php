@@ -10,7 +10,6 @@
  */
 
 class SkinTemplateTest extends MediaWikiTestCase {
-
 	/**
 	 * @dataProvider makeListItemProvider
 	 */
@@ -29,7 +28,13 @@ class SkinTemplateTest extends MediaWikiTestCase {
 			array(
 				'<li class="class" title="itemtitle"><a href="url" title="title">text</a></li>',
 				'',
-				array( 'class' => 'class', 'itemtitle' => 'itemtitle', 'href' => 'url', 'title' => 'title', 'text' => 'text' ),
+				array(
+					'class' => 'class',
+					'itemtitle' => 'itemtitle',
+					'href' => 'url',
+					'title' => 'title',
+					'text' => 'text'
+				),
 				array(),
 				'Test makteListItem with normal values'
 			)
