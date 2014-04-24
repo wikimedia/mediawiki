@@ -156,7 +156,10 @@ class FileBackendTest extends MediaWikiTestCase {
 			array( 'mwstore://backend/container/path', 'mwstore://backend/container/path' ),
 			array( 'mwstore://backend/container//path', 'mwstore://backend/container/path' ),
 			array( 'mwstore://backend/container///path', 'mwstore://backend/container/path' ),
-			array( 'mwstore://backend/container///path//to///obj', 'mwstore://backend/container/path/to/obj' ),
+			array(
+				'mwstore://backend/container///path//to///obj',
+				'mwstore://backend/container/path/to/obj'
+			),
 			array( 'mwstore://', null ),
 			array( 'mwstore://backend', null ),
 			array( 'mwstore://backend//container/path', null ),
@@ -1234,11 +1237,23 @@ class FileBackendTest extends MediaWikiTestCase {
 			$contents = $this->backend->getFileContentsMulti( array( 'srcs' => $source ) );
 			foreach ( $contents as $path => $data ) {
 				$this->assertNotEquals( false, $data, "Contents of $path exists ($backendName)." );
-				$this->assertEquals( current( $content ), $data, "Contents of $path is correct ($backendName)." );
+				$this->assertEquals(
+					current( $content ),
+					$data,
+					"Contents of $path is correct ($backendName)."
+				);
 				next( $content );
 			}
-			$this->assertEquals( $source, array_keys( $contents ), "Contents in right order ($backendName)." );
-			$this->assertEquals( count( $source ), count( $contents ), "Contents array size correct ($backendName)." );
+			$this->assertEquals(
+				$source,
+				array_keys( $contents ),
+				"Contents in right order ($backendName)."
+			);
+			$this->assertEquals(
+				count( $source ),
+				count( $contents ),
+				"Contents array size correct ($backendName)."
+			);
 		} else {
 			$data = $this->backend->getFileContents( array( 'src' => $source ) );
 			$this->assertNotEquals( false, $data, "Contents of $source exists ($backendName)." );
@@ -1297,18 +1312,34 @@ class FileBackendTest extends MediaWikiTestCase {
 					"Creation of local copy of $path succeeded ($backendName)." );
 				$contents = file_get_contents( $tmpFile->getPath() );
 				$this->assertNotEquals( false, $contents, "Local copy of $path exists ($backendName)." );
-				$this->assertEquals( current( $content ), $contents, "Local copy of $path is correct ($backendName)." );
+				$this->assertEquals(
+					current( $content ),
+					$contents,
+					"Local copy of $path is correct ($backendName)."
+				);
 				next( $content );
 			}
-			$this->assertEquals( $source, array_keys( $tmpFiles ), "Local copies in right order ($backendName)." );
-			$this->assertEquals( count( $source ), count( $tmpFiles ), "Local copies array size correct ($backendName)." );
+			$this->assertEquals(
+				$source,
+				array_keys( $tmpFiles ),
+				"Local copies in right order ($backendName)."
+			);
+			$this->assertEquals(
+				count( $source ),
+				count( $tmpFiles ),
+				"Local copies array size correct ($backendName)."
+			);
 		} else {
 			$tmpFile = $this->backend->getLocalCopy( array( 'src' => $source ) );
 			$this->assertNotNull( $tmpFile,
 				"Creation of local copy of $source succeeded ($backendName)." );
 			$contents = file_get_contents( $tmpFile->getPath() );
 			$this->assertNotEquals( false, $contents, "Local copy of $source exists ($backendName)." );
-			$this->assertEquals( $content[0], $contents, "Local copy of $source is correct ($backendName)." );
+			$this->assertEquals(
+				$content[0],
+				$contents,
+				"Local copy of $source is correct ($backendName)."
+			);
 		}
 
 		$obj = new stdClass();
@@ -1367,11 +1398,23 @@ class FileBackendTest extends MediaWikiTestCase {
 					"Creation of local copy of $path succeeded ($backendName)." );
 				$contents = file_get_contents( $tmpFile->getPath() );
 				$this->assertNotEquals( false, $contents, "Local ref of $path exists ($backendName)." );
-				$this->assertEquals( current( $content ), $contents, "Local ref of $path is correct ($backendName)." );
+				$this->assertEquals(
+					current( $content ),
+					$contents,
+					"Local ref of $path is correct ($backendName)."
+				);
 				next( $content );
 			}
-			$this->assertEquals( $source, array_keys( $tmpFiles ), "Local refs in right order ($backendName)." );
-			$this->assertEquals( count( $source ), count( $tmpFiles ), "Local refs array size correct ($backendName)." );
+			$this->assertEquals(
+				$source,
+				array_keys( $tmpFiles ),
+				"Local refs in right order ($backendName)."
+			);
+			$this->assertEquals(
+				count( $source ),
+				count( $tmpFiles ),
+				"Local refs array size correct ($backendName)."
+			);
 		} else {
 			$tmpFile = $this->backend->getLocalReference( array( 'src' => $source ) );
 			$this->assertNotNull( $tmpFile,
@@ -1950,7 +1993,10 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
 
 		// Actual listing (no trailing slash) at root with advise
-		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1", 'adviseStat' => 1 ) );
+		$iter = $this->backend->getFileList( array(
+			'dir' => "$base/unittest-cont1",
+			'adviseStat' => 1
+		) );
 		$list = $this->listToArray( $iter );
 		sort( $list );
 		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
@@ -1983,7 +2029,10 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
 
 		// Actual listing (no trailing slash) at subdir with advise
-		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1/e/subdir2/subdir", 'adviseStat' => 1 ) );
+		$iter = $this->backend->getFileList( array(
+			'dir' => "$base/unittest-cont1/e/subdir2/subdir",
+			'adviseStat' => 1
+		) );
 		$list = $this->listToArray( $iter );
 		sort( $list );
 		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
@@ -2019,13 +2068,18 @@ class FileBackendTest extends MediaWikiTestCase {
 		sort( $expected );
 
 		// Actual listing (top files only) at subdir
-		$iter = $this->backend->getTopFileList( array( 'dir' => "$base/unittest-cont1/e/subdir2/subdir" ) );
+		$iter = $this->backend->getTopFileList(
+			array( 'dir' => "$base/unittest-cont1/e/subdir2/subdir" )
+		);
 		$list = $this->listToArray( $iter );
 		sort( $list );
 		$this->assertEquals( $expected, $list, "Correct top file listing ($backendName)." );
 
 		// Actual listing (top files only) at subdir with advise
-		$iter = $this->backend->getTopFileList( array( 'dir' => "$base/unittest-cont1/e/subdir2/subdir", 'adviseStat' => 1 ) );
+		$iter = $this->backend->getTopFileList( array(
+			'dir' => "$base/unittest-cont1/e/subdir2/subdir",
+			'adviseStat' => 1
+		) );
 		$list = $this->listToArray( $iter );
 		sort( $list );
 		$this->assertEquals( $expected, $list, "Correct top file listing ($backendName)." );
@@ -2162,7 +2216,10 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		// Actual listing (with trailing slash)
 		$list = array();
-		$iter = $this->backend->getTopDirectoryList( array( 'dir' => "$base/unittest-cont1/e/subdir2/" ) );
+		$iter = $this->backend->getTopDirectoryList(
+			array( 'dir' => "$base/unittest-cont1/e/subdir2/" )
+		);
+
 		foreach ( $iter as $file ) {
 			$list[] = $file;
 		}
@@ -2177,7 +2234,11 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 		sort( $list );
 
-		$this->assertEquals( $expected, $list, "Correct top dir listing ($backendName), second iteration." );
+		$this->assertEquals(
+			$expected,
+			$list,
+			"Correct top dir listing ($backendName), second iteration."
+		);
 
 		// Expected listing (recursive)
 		$expected = array(

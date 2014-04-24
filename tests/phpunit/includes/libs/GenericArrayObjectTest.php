@@ -30,7 +30,8 @@
 abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 
 	/**
-	 * Returns objects that can serve as elements in the concrete GenericArrayObject deriving class being tested.
+	 * Returns objects that can serve as elements in the concrete
+	 * GenericArrayObject deriving class being tested.
 	 *
 	 * @since 1.20
 	 *
