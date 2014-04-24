@@ -4,7 +4,6 @@
  * @covers ::wfGetCaller
  */
 class WfGetCallerTest extends MediaWikiTestCase {
-
 	public function testZero() {
 		$this->assertEquals( __METHOD__, wfGetCaller( 1 ) );
 	}
@@ -31,10 +30,16 @@ class WfGetCallerTest extends MediaWikiTestCase {
 
 	public function testN() {
 		$this->assertEquals( 'WfGetCallerTest::testN', self::intermediateFunction( 2, 0 ) );
-		$this->assertEquals( 'WfGetCallerTest::intermediateFunction', self::intermediateFunction( 1, 0 ) );
+		$this->assertEquals(
+			'WfGetCallerTest::intermediateFunction',
+			self::intermediateFunction( 1, 0 )
+		);
 
 		for ( $i = 0; $i < 10; $i++ ) {
-			$this->assertEquals( 'WfGetCallerTest::intermediateFunction', self::intermediateFunction( $i + 1, $i ) );
+			$this->assertEquals(
+				'WfGetCallerTest::intermediateFunction',
+				self::intermediateFunction( $i + 1, $i )
+			);
 		}
 	}
 }
