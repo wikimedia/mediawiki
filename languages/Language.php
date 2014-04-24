@@ -3130,14 +3130,18 @@ class Language {
 	 * @param string $number
 	 * @return string
 	 */
-	function parseFormattedNumber( $number ) {
+	public function parseFormattedNumber( $number ) {
 		$s = $this->digitTransformTable();
 		if ( $s ) {
+			// eliminate empty array values such as ''. (bug 64347)
+			$s = array_filter( $s );
 			$number = strtr( $number, array_flip( $s ) );
 		}
 
 		$s = $this->separatorTransformTable();
 		if ( $s ) {
+			// eliminate empty array values such as ''. (bug 64347)
+			$s = array_filter( $s );
 			$number = strtr( $number, array_flip( $s ) );
 		}
 
