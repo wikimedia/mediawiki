@@ -43,11 +43,19 @@ print "Initializing normalization quick check tables...\n";
 $checkNFC = array();
 while ( false !== ( $line = fgets( $in ) ) ) {
 	$matches = array();
-	if ( preg_match( '/^([0-9A-F]+)(?:..([0-9A-F]+))?\s*;\s*(NFC_QC)\s*;\s*([MN])/', $line, $matches ) ) {
+	if ( preg_match(
+		'/^([0-9A-F]+)(?:..([0-9A-F]+))?\s*;\s*(NFC_QC)\s*;\s*([MN])/',
+		$line,
+		$matches )
+	) {
 		list( $junk, $first, $last, $prop, $value ) = $matches;
 		#print "$first $last $prop $value\n";
-		if ( !$last ) $last = $first;
-		for ( $i = hexdec( $first ); $i <= hexdec( $last ); $i++ ) {
+		if ( !$last ) {
+			$last = $first;
+		}
+
+		$lastInDecimal = hexdec( $last );
+		for ( $i = hexdec( $first ); $i <= $lastInDecimal; $i++ ) {
 			$char = codepointToUtf8( $i );
 			$checkNFC[$char] = $value;
 		}
@@ -177,6 +185,7 @@ if ( $out ) {
  *
  * @file
  */
+// @codingStandardsIgnoreFile
 
 UtfNormal::\$utfCombiningClass = unserialize( '$serCombining' );
 UtfNormal::\$utfCanonicalComp = unserialize( '$serComp' );
@@ -201,6 +210,7 @@ if ( $out ) {
  *
  * @file
  */
+// @codingStandardsIgnoreFile
 
 UtfNormal::\$utfCompatibilityDecomp = unserialize( '$serCompat' );
 \n";
@@ -216,7 +226,10 @@ UtfNormal::\$utfCompatibilityDecomp = unserialize( '$serCompat' );
 # ---------------
 
 function callbackCanonical( $matches ) {
+	// @codingStandardsIgnoreStart MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
 	global $canonicalDecomp;
+	// @codingStandardsIgnoreEnd
+
 	if ( isset( $canonicalDecomp[$matches[1]] ) ) {
 		return $canonicalDecomp[$matches[1]];
 	}
@@ -225,7 +238,10 @@ function callbackCanonical( $matches ) {
 }
 
 function callbackCompat( $matches ) {
+	// @codingStandardsIgnoreStart MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
 	global $compatibilityDecomp;
+	// @codingStandardsIgnoreEnd
+
 	if ( isset( $compatibilityDecomp[$matches[1]] ) ) {
 		return $compatibilityDecomp[$matches[1]];
 	}
