@@ -323,16 +323,41 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 			'fallback' => 'tag',
 			'params' => 'en wiki enwiki',
 			'global' => array( 'enwiki' => 'enwiki' ) + $GLOBALS['global'],
-			'merge' => array( 'enwiki' => 'enwiki', 'tag' => 'tag', 'wiki' => 'wiki', 'default' => 'default' ),
+			'merge' => array(
+				'enwiki' => 'enwiki',
+				'tag' => 'tag',
+				'wiki' => 'wiki',
+				'default' => 'default'
+			),
 		);
 		$this->assertEquals( $getall, $this->mConf->getAll( 'enwiki' ), 'getAll()' );
 
 		$this->mConf->extractAllGlobals( 'enwiki', 'wiki' );
 
-		$this->assertEquals( $getall['simple'], $GLOBALS['simple'], 'extractAllGlobals(): simple setting' );
-		$this->assertEquals( $getall['fallback'], $GLOBALS['fallback'], 'extractAllGlobals(): fallback setting' );
-		$this->assertEquals( $getall['params'], $GLOBALS['params'], 'extractAllGlobals(): parameter replacement' );
-		$this->assertEquals( $getall['global'], $GLOBALS['global'], 'extractAllGlobals(): merging with global' );
-		$this->assertEquals( $getall['merge'], $GLOBALS['merge'], 'extractAllGlobals(): merging setting' );
+		$this->assertEquals(
+			$getall['simple'],
+			$GLOBALS['simple'],
+			'extractAllGlobals(): simple setting'
+		);
+		$this->assertEquals(
+			$getall['fallback'],
+			$GLOBALS['fallback'],
+			'extractAllGlobals(): fallback setting'
+		);
+		$this->assertEquals(
+			$getall['params'],
+			$GLOBALS['params'],
+			'extractAllGlobals(): parameter replacement'
+		);
+		$this->assertEquals(
+			$getall['global'],
+			$GLOBALS['global'],
+			'extractAllGlobals(): merging with global'
+		);
+		$this->assertEquals(
+			$getall['merge'],
+			$GLOBALS['merge'],
+			'extractAllGlobals(): merging setting'
+		);
 	}
 }

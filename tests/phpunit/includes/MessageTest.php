@@ -124,7 +124,10 @@ class MessageTest extends MediaWikiLangTestCase {
 		// NOTE: make sure internal caching of the message text is reset appropriately
 		$msg = wfMessage( 'mainpage' );
 		$this->assertEquals( 'Main Page', $msg->inLanguage( Language::factory( 'en' ) )->text() );
-		$this->assertEquals( 'Заглавная страница', $msg->inLanguage( Language::factory( 'ru' ) )->text() );
+		$this->assertEquals(
+			'Заглавная страница',
+			$msg->inLanguage( Language::factory( 'ru' ) )->text()
+		);
 	}
 
 	/**
@@ -133,8 +136,14 @@ class MessageTest extends MediaWikiLangTestCase {
 	public function testMessageParams() {
 		$this->assertEquals( 'Return to $1.', wfMessage( 'returnto' )->text() );
 		$this->assertEquals( 'Return to $1.', wfMessage( 'returnto', array() )->text() );
-		$this->assertEquals( 'You have foo (bar).', wfMessage( 'youhavenewmessages', 'foo', 'bar' )->text() );
-		$this->assertEquals( 'You have foo (bar).', wfMessage( 'youhavenewmessages', array( 'foo', 'bar' ) )->text() );
+		$this->assertEquals(
+			'You have foo (bar).',
+			wfMessage( 'youhavenewmessages', 'foo', 'bar' )->text()
+		);
+		$this->assertEquals(
+			'You have foo (bar).',
+			wfMessage( 'youhavenewmessages', array( 'foo', 'bar' ) )->text()
+		);
 	}
 
 	/**
@@ -142,10 +151,22 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::rawParams
 	 */
 	public function testMessageParamSubstitution() {
-		$this->assertEquals( '(Заглавная страница)', wfMessage( 'parentheses', 'Заглавная страница' )->plain() );
-		$this->assertEquals( '(Заглавная страница $1)', wfMessage( 'parentheses', 'Заглавная страница $1' )->plain() );
-		$this->assertEquals( '(Заглавная страница)', wfMessage( 'parentheses' )->rawParams( 'Заглавная страница' )->plain() );
-		$this->assertEquals( '(Заглавная страница $1)', wfMessage( 'parentheses' )->rawParams( 'Заглавная страница $1' )->plain() );
+		$this->assertEquals(
+			'(Заглавная страница)',
+			wfMessage( 'parentheses', 'Заглавная страница' )->plain()
+		);
+		$this->assertEquals(
+			'(Заглавная страница $1)',
+			wfMessage( 'parentheses', 'Заглавная страница $1' )->plain()
+		);
+		$this->assertEquals(
+			'(Заглавная страница)',
+			wfMessage( 'parentheses' )->rawParams( 'Заглавная страница' )->plain()
+		);
+		$this->assertEquals(
+			'(Заглавная страница $1)',
+			wfMessage( 'parentheses' )->rawParams( 'Заглавная страница $1' )->plain()
+		);
 	}
 
 	/**
@@ -156,7 +177,11 @@ class MessageTest extends MediaWikiLangTestCase {
 		$msg = new RawMessage( '$1$2$3$4$5$6$7$8$9$10$11$12' );
 		// One less than above has placeholders
 		$params = array( 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k' );
-		$this->assertEquals( 'abcdefghijka2', $msg->params( $params )->plain(), 'Params > 9 are replaced correctly' );
+		$this->assertEquals(
+			'abcdefghijka2',
+			$msg->params( $params )->plain(),
+			'Params > 9 are replaced correctly'
+		);
 	}
 
 	/**
@@ -270,9 +295,17 @@ class MessageTest extends MediaWikiLangTestCase {
 		// NOTE: make sure internal caching of the message text is reset appropriately.
 		// NOTE: wgForceUIMsgAsContentMsg forces the messages *current* language to be used.
 		$msg = wfMessage( 'mainpage' );
-		$this->assertEquals( 'Accueil', $msg->inContentLanguage()->plain(), 'inContentLanguage() with ForceUIMsg override enabled' );
+		$this->assertEquals(
+			'Accueil',
+			$msg->inContentLanguage()->plain(),
+			'inContentLanguage() with ForceUIMsg override enabled'
+		);
 		$this->assertEquals( 'Main Page', $msg->inLanguage( 'en' )->plain(), "inLanguage( 'en' )" );
-		$this->assertEquals( 'Main Page', $msg->inContentLanguage()->plain(), 'inContentLanguage() with ForceUIMsg override enabled' );
+		$this->assertEquals(
+			'Main Page',
+			$msg->inContentLanguage()->plain(),
+			'inContentLanguage() with ForceUIMsg override enabled'
+		);
 		$this->assertEquals( 'Hauptseite', $msg->inLanguage( 'de' )->plain(), "inLanguage( 'de' )" );
 	}
 
