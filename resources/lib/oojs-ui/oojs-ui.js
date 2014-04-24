@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (d4baf57069)
+ * OOjs UI v0.1.0-pre (497baca586)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Mon Apr 21 2014 12:42:04 GMT-0700 (PDT)
+ * Date: Wed Apr 23 2014 17:28:59 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -2145,6 +2145,23 @@ OO.ui.FlaggableElement.prototype.hasFlag = function ( flag ) {
  */
 OO.ui.FlaggableElement.prototype.getFlags = function () {
 	return Object.keys( this.flags );
+};
+
+/**
+ * Clear all flags.
+ *
+ * @chainable
+ */
+OO.ui.FlaggableElement.prototype.clearFlags = function () {
+	var flag,
+		classPrefix = 'oo-ui-flaggableElement-';
+
+	for ( flag in this.flags ) {
+		delete this.flags[flag];
+		this.$element.removeClass( classPrefix + flag );
+	}
+
+	return this;
 };
 
 /**
