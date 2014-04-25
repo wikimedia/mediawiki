@@ -374,7 +374,11 @@ class AllmessagesTablePager extends TablePager {
 							'messageid:"MediaWiki:' . $value . '"^10 "' .
 							$this->msg( $value )->inLanguage( 'en' )->plain() . '"'
 					) ),
-					$this->msg( 'allmessages-filter-translate' )->text()
+					$this->msg( 'allmessages-filter-translate' )->text(),
+					true,
+					'',
+					array(),
+					$title
 				);
 
 				if ( $this->mCurrentRow->am_customised ) {
