@@ -70,7 +70,7 @@
 				var retval, range,
 					el = this.get( 0 );
 
-				if ( $(el).is( ':hidden' ) ) {
+				if ( !el || $( el ).is( ':hidden' ) ) {
 					retval = '';
 				} else if ( document.selection && document.selection.createRange ) {
 					activateElementOnIE( el );
@@ -279,7 +279,7 @@
 						// Range containing text after the selection
 						postRange;
 
-					if ( document.selection && document.selection.createRange ) {
+					if ( e && document.selection && document.selection.createRange ) {
 						// IE doesn't properly report non-selected caret position through
 						// the selection ranges when textarea isn't focused. This can
 						// lead to saving a bogus empty selection, which then screws up
@@ -349,7 +349,7 @@
 						} while ( ( !preFinished || !periFinished || !postFinished ) );
 						caretPos = rawPreText.replace( /\r\n/g, '\n' ).length;
 						endPos = caretPos + rawPeriText.replace( /\r\n/g, '\n' ).length;
-					} else if ( e.selectionStart || e.selectionStart === 0 ) {
+					} else if ( e && ( e.selectionStart || e.selectionStart === 0 ) ) {
 						// Firefox support
 						caretPos = e.selectionStart;
 						endPos = e.selectionEnd;
