@@ -691,7 +691,14 @@ EOT
 		# "Upload a new version of this file" link
 		$canUpload = $this->getTitle()->userCan( 'upload', $this->getContext()->getUser() );
 		if ( $canUpload && UploadBase::userCanReUpload( $this->getContext()->getUser(), $this->mPage->getFile()->name ) ) {
-			$ulink = Linker::makeExternalLink( $this->getUploadUrl(), wfMessage( 'uploadnewversion-linktext' )->text() );
+			$ulink = Linker::makeExternalLink(
+				$this->getUploadUrl(),
+				wfMessage( 'uploadnewversion-linktext' )->text(),
+				true,
+				'',
+				array(),
+				$this->getContext()->getTitle()
+			);
 			$out->addHTML( "<li id=\"mw-imagepage-reupload-link\"><div class=\"plainlinks\">{$ulink}</div></li>\n" );
 		} else {
 			$out->addHTML( "<li id=\"mw-imagepage-upload-disallowed\">" . $this->getContext()->msg( 'upload-disallowed-here' )->escaped() . "</li>\n" );
@@ -889,8 +896,14 @@ EOT
 			if ( $file->isLocal() ) {
 				$link = Linker::linkKnown( $file->getTitle() );
 			} else {
-				$link = Linker::makeExternalLink( $file->getDescriptionUrl(),
-					$file->getTitle()->getPrefixedText() );
+				$link = Linker::makeExternalLink(
+					$file->getDescriptionUrl(),
+					$file->getTitle()->getPrefixedText(),
+					true,
+					'',
+					array(),
+					$file->getTitle()
+				);
 				$fromSrc = wfMessage( 'shared-repo-from', $file->getRepo()->getDisplayName() )->text();
 			}
 			$out->addHTML( "<li>{$link} {$fromSrc}</li>\n" );

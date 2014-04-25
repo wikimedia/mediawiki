@@ -486,7 +486,10 @@ class SpecialVersion extends SpecialPage {
 				Linker::makeExternalLink(
 					'//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Tag_extensions',
 					$this->msg( 'version-parser-extensiontags' )->parse(),
-					false /* msg()->parse() already escapes */
+					false /* msg()->parse() already escapes */,
+					'',
+					array(),
+					$this->getTitle()
 				)
 			);
 
@@ -514,7 +517,10 @@ class SpecialVersion extends SpecialPage {
 			$out = Html::rawElement( 'h2', array( 'class' => 'mw-headline' ), Linker::makeExternalLink(
 				'//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Parser_functions',
 				$this->msg( 'version-parser-function-hooks' )->parse(),
-				false /* msg()->parse() already escapes */
+				false /* msg()->parse() already escapes */,
+				'',
+				array(),
+				$this->getTitle()
 			) );
 
 			$out .= $this->listToText( $fhooks );
@@ -598,7 +604,8 @@ class SpecialVersion extends SpecialPage {
 				$extensionName,
 				true,
 				'',
-				array( 'class' => 'mw-version-ext-name' )
+				array( 'class' => 'mw-version-ext-name' ),
+				$this->getTitle()
 			);
 		} else {
 			$extensionNameLink = $extensionName;
@@ -670,7 +677,8 @@ class SpecialVersion extends SpecialPage {
 					$this->msg( 'version-version', $vcsVersion ),
 					true,
 					'',
-					array( 'class' => 'mw-version-ext-vcs-version' )
+					array( 'class' => 'mw-version-ext-vcs-version' ),
+					$this->getTitle()
 				);
 			} else {
 				$vcsVerString = Html::element( 'span',
