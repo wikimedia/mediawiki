@@ -155,7 +155,6 @@ class FormatJson {
 
 		if ( $pretty !== false ) {
 			// Workaround for <https://bugs.php.net/bug.php?id=66021>
-			// Can be removed once we require PHP >= 5.4.28, 5.5.12, 5.6.0
 			if ( $bug66021 ) {
 				$json = preg_replace( self::WS_CLEANUP_REGEX, '', $json );
 			}
