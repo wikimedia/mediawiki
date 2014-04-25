@@ -450,7 +450,10 @@ class CologneBlueTemplate extends BaseTemplate {
 			Linker::makeExternalLink(
 				Skin::makeInternalOrExternalUrl( wfMessage( 'helppage' )->inContentLanguage()->text() ),
 				wfMessage( 'help' )->text(),
-				false
+				false,
+				'',
+				array(),
+				$this->getTitle()
 			),
 			Linker::linkKnown(
 				Title::newFromText( wfMessage( 'faqpage' )->inContentLanguage()->text() ),
