@@ -1337,7 +1337,7 @@ class Parser {
 					substr( $m[0], 0, 20 ) . '"' );
 			}
 			$url = wfMessage( $urlmsg, $id )->inContentLanguage()->text();
-			return Linker::makeExternalLink( $url, "{$keyword} {$id}", true, $cssClass );
+			return Linker::makeExternalLink( $url, "{$keyword} {$id}", true, $cssClass, array(), $this->getTitle() );
 		} elseif ( isset( $m[5] ) && $m[5] !== '' ) {
 			# ISBN
 			$isbn = $m[5];
@@ -1399,7 +1399,8 @@ class Parser {
 			$text = Linker::makeExternalLink( $url,
 				$this->getConverterLanguage()->markNoConversion( $url, true ),
 				true, 'free',
-				$this->getExternalLinkAttribs( $url ) );
+				$this->getExternalLinkAttribs( $url ),
+				$this->getTitle() );
 			# Register it in the output object...
 			# Replace unnecessary URL escape codes with their equivalent characters
 			$pasteurized = self::replaceUnusualEscapes( $url );
@@ -1705,7 +1706,8 @@ class Parser {
 			# Funny characters like ö aren't valid in URLs anyway
 			# This was changed in August 2004
 			$s .= Linker::makeExternalLink( $url, $text, false, $linktype,
-				$this->getExternalLinkAttribs( $url ) ) . $dtrail . $trail;
+					$this->getExternalLinkAttribs( $url ), $this->getTitle() ) .
+				$dtrail . $trail;
 
 			# Register link in the output object.
 			# Replace unnecessary URL escape codes with the referenced character
