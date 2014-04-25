@@ -261,7 +261,7 @@ class LinkSearchPage extends QueryPage {
 		$pageLink = $this->linkRenderer->renderHtmlLink( $title );
 
 		$url = $result->url;
-		$urlLink = Linker::makeExternalLink( $url, $url );
+		$urlLink = Linker::makeExternalLink( $url, $url, true, '', array(), $title );
 
 		return $this->msg( 'linksearch-line' )->rawParams( $urlLink, $pageLink )->escaped();
 	}
