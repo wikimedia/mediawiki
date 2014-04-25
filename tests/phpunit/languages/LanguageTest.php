@@ -1485,6 +1485,29 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
+	 * @dataProvider parseFormattedNumberProvider
+	 */
+	public function testParseFormattedNumber( $langCode, $number ) {
+		$lang = Language::factory( $langCode );
+
+		$localisedNum = $lang->formatNum( $number );
+		$normalisedNum = $lang->parseFormattedNumber( $localisedNum );
+
+		$this->assertEquals( $number, $normalisedNum );
+	}
+
+	public function parseFormattedNumberProvider() {
+		return array(
+			array( 'de', 377.01 ),
+			array( 'fa', 334 ),
+			array( 'fa', 382.772 ),
+			array( 'ar', 1844 ),
+			array( 'lzh', 3731 ),
+			array( 'zh-classical', 7432 )
+		);
+	}
+
+	/**
 	 * @covers Language::commafy()
 	 * @dataProvider provideCommafyData
 	 */
