@@ -374,7 +374,8 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName ) {
 	register_shutdown_function( function() use ( &$done, $key ) {
 		if ( !$done ) { // transform() gave a fatal
 			global $wgMemc;
-			$wgMemc->incrWithInit( $key, 3600 );
+			// Randomize TTL to reduce stampedes
+			$wgMemc->incrWithInit( $key, 3600 + mt_rand( 0, 300 ) );
 		}
 	} );
 
@@ -412,7 +413,8 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName ) {
 	$done = true; // no PHP fatal occured
 
 	if ( !$thumb || $thumb->isError() ) {
-		$wgMemc->incrWithInit( $key, 3600 );
+		// Randomize TTL to reduce stampedes
+		$wgMemc->incrWithInit( $key, 3600 + mt_rand( 0, 300 ) );
 	}
 
 	return array( $thumb, $errorHtml );
