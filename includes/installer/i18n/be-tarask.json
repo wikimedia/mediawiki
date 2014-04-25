@@ -316,7 +316,7 @@
 	"config-download-localsettings": "Загрузіць <code>LocalSettings.php</code>",
 	"config-help": "дапамога",
 	"config-nofile": "Файл «$1» ня знойдзены. Ці быў ён выдалены?",
-	"config-extension-link": "Ці ведаеце вы, што вашая вікі падтрымлівае [//www.mediawiki.org/wiki/Manual:Extensions пашырэньні]?\n\nВы можаце праглядзець [//www.mediawiki.org/wiki/Category:Extensions_by_category пашырэньні паводле катэгорыяў] або [//www.mediawiki.org/wiki/Extension_Matrix матрыцу пашырэньняў] дзеля іх поўнага сьпісу.",
+	"config-extension-link": "Ці ведаеце вы, што вашая вікі падтрымлівае [//www.mediawiki.org/wiki/Manual:Extensions пашырэньні]?\n\nВы можаце праглядзець [//www.mediawiki.org/wiki/Category:Extensions_by_category пашырэньні паводле катэгорыяў].",
 	"mainpagetext": "'''MediaWiki пасьпяхова ўсталяваная.'''",
 	"mainpagedocfooter": "Глядзіце [//meta.wikimedia.org/wiki/Help:Contents дапаможнік карыстальніка] для атрыманьня інфармацыі па карыстаньні вікі-праграмамі.\n\n== З чаго пачаць ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Сьпіс парамэтраў канфігурацыі]\n* [//www.mediawiki.org/wiki/Manual:FAQ Частыя пытаньні MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка паведамленьняў пра зьяўленьне новых вэрсіяў MediaWiki]\n* [//www.mediawiki.org/wiki/Localisation#Translation_resources Пераклад MediaWiki на вашую мову]"
 }

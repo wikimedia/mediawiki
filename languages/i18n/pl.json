@@ -285,6 +285,7 @@
 	"jumptonavigation": "nawigacji",
 	"jumptosearch": "wyszukiwania",
 	"view-pool-error": "Niestety w chwili obecnej serwery są przeciążone.\nZbyt wielu użytkowników próbuje wyświetlić tę stronę.\nPoczekaj chwilę przed ponowną próbą dostępu do tej strony.\n\n$1",
+	"generic-pool-error": "Niestety w chwili obecnej serwery są przeciążone.\nZbyt wielu użytkowników próbuje wyświetlić tę stronę.\nPoczekaj chwilę przed ponowną próbą dostępu do tej strony.",
 	"pool-timeout": "Zbyt długi czas oczekiwania na blokadę",
 	"pool-queuefull": "Kolejka zadań jest pełna",
 	"pool-errorunknown": "Błąd nieznany",

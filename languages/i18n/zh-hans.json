@@ -696,7 +696,7 @@
 	"templatesused": "该页面使用的{{PLURAL:$1|模板}}：",
 	"templatesusedpreview": "本预览使用的{{PLURAL:$1|模板}}：",
 	"templatesusedsection": "该段落使用的{{PLURAL:$1|模板}}：",
-	"template-protected": "（保护）",
+	"template-protected": "（已保护）",
 	"template-semiprotected": "（半保护）",
 	"hiddencategories": "该页面属于$1个隐藏分类：",
 	"edittools": "<!-- 这里的文字将显示在编辑和上传表格下面。 -->",

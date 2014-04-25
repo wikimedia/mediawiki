@@ -324,7 +324,7 @@
 	"config-download-localsettings": "下载<code>LocalSettings.php</code>",
 	"config-help": "帮助",
 	"config-nofile": "找不到文件“$1”。它是否已被删除？",
-	"config-extension-link": "您是否知道您的wiki支持[//www.mediawiki.org/wiki/Manual:Extensions 拓展]？\n\n您可浏览[//www.mediawiki.org/wiki/Category:Extensions_by_category 拓展分类]或[//www.mediawiki.org/wiki/Extension_Matrix 拓展矩阵]以查找完整的拓展列表。",
+	"config-extension-link": "您是否知道您的wiki支持[//www.mediawiki.org/wiki/Manual:Extensions 拓展]？\n您可浏览[//www.mediawiki.org/wiki/Category:Extensions_by_category 拓展分类]。",
 	"mainpagetext": "'''已成功安装MediaWiki。'''",
 	"mainpagedocfooter": "请查阅[//meta.wikimedia.org/wiki/Help:Contents 用户指南]以获取使用本wiki软件的信息！\n\n== 入门 ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki配置设置列表]\n* [//www.mediawiki.org/wiki/Manual:FAQ/zh-hans MediaWiki常见问题]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki发布邮件列表]\n* [//www.mediawiki.org/wiki/Localisation#Translation_resources 本地化MediaWiki到您的语言]"
 }

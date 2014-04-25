@@ -278,6 +278,7 @@
 	"jumptonavigation": "navigering",
 	"jumptosearch": "sök",
 	"view-pool-error": "Tyvärr är servrarna överbelastade för tillfället.\nFör många användare försöker visa denna sida.\nVänta en liten stund och försök igen lite senare.\n\n$1",
+	"generic-pool-error": "Tyvärr är servrarna överbelastade för tillfället.\nFör många användare försöker visa denna resurs.\nVänta en liten stund innan du försöker komma åt resursen igen.",
 	"pool-timeout": "Timeout i väntan på låsning",
 	"pool-queuefull": "Kön är full",
 	"pool-errorunknown": "Okänt fel",

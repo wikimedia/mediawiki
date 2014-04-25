@@ -322,7 +322,7 @@
 	"databaseerror-textcl": "Zu ğetaya erdamalumati persayışi ameya meydan.",
 	"databaseerror-query": "Perskerdış:$1",
 	"databaseerror-function": "Fonksiyon: $1",
-	"databaseerror-error": "Xırab: $1",
+	"databaseerror-error": "Xeta: $1",
 	"laggedslavemode": "Diqet: Pel de newe vıraşteyi belka çini .",
 	"readonly": "database kılit biyo",
 	"enterlockreason": "Database kılit biyo",

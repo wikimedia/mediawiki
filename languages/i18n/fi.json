@@ -1431,7 +1431,7 @@
 	"filepage-nofile-link": "Tämän nimistä tiedostoa ei ole olemassa, mutta voit [$1 tallentaa sen].",
 	"uploadnewversion-linktext": "Tallenna uusi versio tästä tiedostosta",
 	"shared-repo-from": "kohteesta $1",
-	"shared-repo": "jaettu mediavarasto",
+	"shared-repo": "yhteinen mediavarasto",
 	"upload-disallowed-here": "Et voi tallentaa uutta tiedostoa tämän tilalle.",
 	"filerevert": "Tiedoston $1 palautus",
 	"filerevert-legend": "Tiedoston palautus",
