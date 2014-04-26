@@ -406,6 +406,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'recentchanges', 'rc_source', "TEXT NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'page', 'page_links_updated', "TIMESTAMPTZ NULL" ),
 			array( 'addPgField', 'mwuser', 'user_password_expires', 'TIMESTAMPTZ NULL' ),
+
+			// 1.24
 			array( 'addPgField', 'page_props', 'pp_sortkey', 'float NULL' ),
 			array( 'addPgIndex', 'page_props', 'pp_propname_sortkey_page',
 					'( pp_propname, pp_sortkey, pp_page ) WHERE ( pp_sortkey NOT NULL )' ),
