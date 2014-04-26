@@ -93,7 +93,7 @@ class FeedItem {
 	}
 
 	/**
-	 * set the unique id of an item
+	 * Set the unique id of an item
 	 *
 	 * @param string $uniqueId Unique id for the item
 	 * @param bool $rssIsPermalink Set to true if the guid (unique id) is a permalink (RSS feeds only)
@@ -141,7 +141,7 @@ class FeedItem {
 	}
 
 	/**
-	 * Get the title of this item
+	 * Get the date of this item
 	 *
 	 * @return string
 	 */
