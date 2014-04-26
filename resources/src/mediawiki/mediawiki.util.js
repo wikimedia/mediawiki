@@ -332,26 +332,6 @@
 		},
 
 		/**
-		 * Add a little box at the top of the screen to inform the user of
-		 * something, replacing any previous message.
-		 * Calling with no arguments, with an empty string or null will hide the message
-		 *
-		 * @param {Mixed} message The DOM-element, jQuery object or HTML-string to be put inside the message box.
-		 * to allow CSS/JS to hide different boxes. null = no class used.
-		 * @deprecated since 1.20 Use mw#notify
-		 */
-		jsMessage: function ( message ) {
-			if ( !arguments.length || message === '' || message === null ) {
-				return true;
-			}
-			if ( typeof message !== 'object' ) {
-				message = $.parseHTML( message );
-			}
-			mw.notify( message, { autoHide: true, tag: 'legacy' } );
-			return true;
-		},
-
-		/**
 		 * Validate a string as representing a valid e-mail address
 		 * according to HTML5 specification. Please note the specification
 		 * does not validate a domain with one character.
@@ -509,6 +489,27 @@
 	 * @deprecated since 1.24 Use the module jquery.accessKeyLabel instead.
 	 */
 	mw.log.deprecate( util, 'tooltipAccessKeyRegexp', /\[(ctrl-)?(option-)?(alt-)?(shift-)?(esc-)?(.)\]$/, 'Use jquery.accessKeyLabel instead.' );
+
+	/**
+	 * @method jsMessage
+	 * Add a little box at the top of the screen to inform the user of
+	 * something, replacing any previous message.
+	 * Calling with no arguments, with an empty string or null will hide the message
+	 *
+	 * @param {Mixed} message The DOM-element, jQuery object or HTML-string to be put inside the message box.
+	 * to allow CSS/JS to hide different boxes. null = no class used.
+	 * @deprecated since 1.20 Use mw#notify
+	 */
+	mw.log.deprecate( util, 'jsMessage', function ( message ) {
+		if ( !arguments.length || message === '' || message === null ) {
+			return true;
+		}
+		if ( typeof message !== 'object' ) {
+			message = $.parseHTML( message );
+		}
+		mw.notify( message, { autoHide: true, tag: 'legacy' } );
+		return true;
+	}, 'Use mw.notify instead.' );
 
 	mw.util = util;
 
