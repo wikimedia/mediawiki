@@ -39,7 +39,7 @@ class MssqlUpdater extends DatabaseUpdater {
 		return array(
 			array( 'disableContentHandlerUseDB' ),
 
-			// 1.23
+			// 1.24
 
 		);
 	}

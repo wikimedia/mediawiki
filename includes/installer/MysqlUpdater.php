@@ -250,6 +250,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addIndex', 'logging', 'log_user_text_time', 'patch-logging_user_text_time_index.sql' ),
 			array( 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ),
 			array( 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ),
+
+			// 1.24
 			array( 'addField', 'page_props', 'pp_sortkey', 'patch-pp_sortkey.sql' ),
 		);
 	}
