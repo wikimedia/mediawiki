@@ -487,7 +487,7 @@
 	/**
 	 * @property {string} tooltipAccessKeyPrefix
 	 * Access key prefix. Might be wrong for browsers implementing the accessKeyLabel property.
-	 * @deprecated since 1.23 Use the module jquery.accessKeyLabel instead.
+	 * @deprecated since 1.24 Use the module jquery.accessKeyLabel instead.
 	 */
 	mw.log.deprecate( util, 'tooltipAccessKeyPrefix', $.fn.updateTooltipAccessKeys.getAccessKeyPrefix(), 'Use jquery.accessKeyLabel instead.' );
 
@@ -506,7 +506,7 @@
 	 *
 	 * Will probably not work for browsers implementing the accessKeyLabel property.
 	 *
-	 * @deprecated since 1.23 Use the module jquery.accessKeyLabel instead.
+	 * @deprecated since 1.24 Use the module jquery.accessKeyLabel instead.
 	 */
 	mw.log.deprecate( util, 'tooltipAccessKeyRegexp', /\[(ctrl-)?(option-)?(alt-)?(shift-)?(esc-)?(.)\]$/, 'Use jquery.accessKeyLabel instead.' );
 
