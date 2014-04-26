@@ -344,6 +344,9 @@ class ChangesList extends ContextSource {
 	 */
 	public function insertArticleLink( &$s, &$rc, $unpatrolled, $watched ) {
 		$params = array();
+		if ( $rc->getTitle()->isRedirect() ) {
+			$params = array( 'redirect' => 'no' );
+		}
 
 		$articlelink = Linker::linkKnown(
 			$rc->getTitle(),
