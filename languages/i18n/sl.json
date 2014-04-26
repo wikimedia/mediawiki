@@ -229,6 +229,7 @@
 	"jumptonavigation": "navigacija",
 	"jumptosearch": "iskanje",
 	"view-pool-error": "Žal so strežniki trenutno preobremenjeni.\nPreveč uporabnikov skuša obiskati to stran.\nProsimo za potrpežljivost, obiščite nas spet kmalu.\n\n$1",
+	"generic-pool-error": "Žal so strežniki trenutno preobremenjeni.\nPreveč uporabnikov si skuša ogledati ta vir.\nProsimo za potrpežljivost, obiščite nas spet kmalu.",
 	"pool-timeout": "Časovno obdobje čakanja na zaklep",
 	"pool-queuefull": "Čakalna vrsta zaloge je polna",
 	"pool-errorunknown": "Neznana napaka",
