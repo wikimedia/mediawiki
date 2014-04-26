@@ -13,7 +13,8 @@
 			"Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank",
 			"לערי ריינהארט",
 			"Shirayuki",
-			"아라"
+			"아라",
+			"Kolega2357"
 		]
 	},
 	"tog-underline": "Anliure con la sotliniadura",
@@ -1764,7 +1765,7 @@
 	"cantrollback": "As peul pa tornesse a na version pì veja: l'ùltima modìfica a l'ha fala l'ùnich utent che a l'abia travajà a cost artìcol-sì.",
 	"alreadyrolled": "As peulo pa anulé j'ultime modìfiche ëd [[:$1]] fàite da [[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\ncheidun d'àutr a l'ha già modificà ò pura anulà le modìfiche a sta pàgina-sì.\n\nL'ùltima modìfica a la pàgina a l'é stàita fàita da [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "Ël coment dla modìfica a l'era: \"''$1''\".",
-	"revertpage": "Gavà via le modìfiche ëd [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); ël contnù a l'é stàit tirà andarè a l'ùltima version dl'utent [[User:$1|$1]]",
+	"revertpage": "Gavà via le modìfiche ëd [[Special:Contributions/$2|$2]] ([[User talk:$2|ciaciarade]]), ël contnù a l'é stàit tirà andarè a l'ùltima version dl'utent [[User:$1|$1]]",
 	"revertpage-nouser": "Révoca dle modìfiche da part ëd n'utent ëstërmà a l'ùltima version ëd {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Modìfiche anulà da $1; tirà andré a l'ùltima version da $2.",
 	"sessionfailure-title": "Eror ëd session",
