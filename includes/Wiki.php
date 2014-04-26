@@ -542,7 +542,7 @@ class MediaWiki {
 			$request->getProtocol() == 'http'
 		) {
 			$oldUrl = $request->getFullRequestURL();
-			$redirUrl = str_replace( 'http://', 'https://', $oldUrl );
+			$redirUrl = str_replace( 'http://', 'https://', $oldUrl, 1 );
 
 			if ( $request->wasPosted() ) {
 				// This is weird and we'd hope it almost never happens. This
