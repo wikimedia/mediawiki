@@ -831,7 +831,7 @@ __INDEXATTR__;
 		$options = array(), $join_conds = array()
 	) {
 		if ( is_array( $options ) ) {
-			$forUpdateKey = array_search( 'FOR UPDATE', $options );
+			$forUpdateKey = array_search( 'FOR UPDATE', $options, true );
 			if ( $forUpdateKey !== false && $join_conds ) {
 				unset( $options[$forUpdateKey] );
 
