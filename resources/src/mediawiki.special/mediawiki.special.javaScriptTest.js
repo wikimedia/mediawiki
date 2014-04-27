@@ -1,4 +1,4 @@
-/**
+/*!
  * JavaScript for Special:JavaScriptTest
  */
 ( function ( mw, $ ) {

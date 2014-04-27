@@ -1,4 +1,4 @@
-/**
+/*!
  * JavaScript for login and signup forms.
  */
 ( function ( mw, $ ) {

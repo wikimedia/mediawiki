@@ -1,4 +1,4 @@
-/**
+/*!
  * Script for changes list legend
  */
 

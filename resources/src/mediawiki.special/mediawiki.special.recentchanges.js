@@ -1,9 +1,13 @@
-/**
+/*!
  * JavaScript for Special:RecentChanges
  */
 ( function ( mw, $ ) {
 	var rc, $checkboxes, $select;
 
+	/**
+	 * @class mw.special.recentchanges
+	 * @singleton
+	 */
 	rc = {
 		/**
 		 * Handler to disable/enable the namespace selector checkboxes when the
@@ -17,6 +21,7 @@
 			$checkboxes.prop( 'disabled', isAllNS );
 		},
 
+		/** */
 		init: function () {
 			$select = $( '#namespace' );
 			$checkboxes = $( '#nsassociated, #nsinvert' );

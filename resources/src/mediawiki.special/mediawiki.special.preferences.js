@@ -1,4 +1,4 @@
-/**
+/*!
  * JavaScript for Special:Preferences
  */
 jQuery( function ( $ ) {
@@ -46,9 +46,10 @@ jQuery( function ( $ ) {
 	/**
 	 * It uses document.getElementById for security reasons (HTML injections in $()).
 	 *
+	 * @ignore
 	 * @param String name: the name of a tab without the prefix ("mw-prefsection-")
 	 * @param String mode: [optional] A hash will be set according to the current
-	 * open section. Set mode 'noHash' to surpress this.
+	 *  open section. Set mode 'noHash' to surpress this.
 	 */
 	function switchPrefTab( name, mode ) {
 		var $tab, scrollTop;
@@ -159,10 +160,8 @@ jQuery( function ( $ ) {
 		} );
 	}
 
-	/**
-	* Timezone functions.
-	* Guesses Timezone from browser and updates fields onchange
-	*/
+	// Timezone functions.
+	// Guesses Timezone from browser and updates fields onchange.
 
 	$tzSelect = $( '#mw-input-wptimecorrection' );
 	$tzTextbox = $( '#mw-input-wptimecorrection-other' );

@@ -1,4 +1,4 @@
-/**
+/*!
  * JavaScript for Special:Block
  */
 ( function ( mw, $ ) {

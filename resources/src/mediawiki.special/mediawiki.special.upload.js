@@ -1,11 +1,14 @@
 /**
  * JavaScript for Special:Upload
+ *
  * Note that additional code still lives in skins/common/upload.js
+ *
+ * @private
+ * @class mw.special.upload
+ * @singleton
  */
 ( function ( mw, $ ) {
-	/**
-	 * Add a preview to the upload form
-	 */
+	// Add a preview to the upload form
 	$( function () {
 		/**
 		 * Is the FileAPI available with sufficient functionality?
@@ -18,8 +21,9 @@
 		 * Check if this is a recognizable image type...
 		 * Also excludes files over 10M to avoid going insane on memory usage.
 		 *
-		 * @todo is there a way we can ask the browser what's supported in <img>s?
-		 * @todo put SVG back after working around Firefox 7 bug <https://bugzilla.wikimedia.org/show_bug.cgi?id=31643>
+		 * TODO: Is there a way we can ask the browser what's supported in `<img>`s?
+		 *
+		 * TODO: Put SVG back after working around Firefox 7 bug <https://bugzilla.wikimedia.org/show_bug.cgi?id=31643>
 		 *
 		 * @param {File} file
 		 * @return boolean
@@ -35,10 +39,11 @@
 		 * in browsers supporting HTML5 FileAPI.
 		 *
 		 * As of this writing, known good:
+		 *
 		 * - Firefox 3.6+
 		 * - Chrome 7.something
 		 *
-		 * @todo check file size limits and warn of likely failures
+		 * TODO: Check file size limits and warn of likely failures
 		 *
 		 * @param {File} file
 		 */
@@ -157,8 +162,8 @@
 		 * to do preprocessing on the binary data first.
 		 *
 		 * @param {File} file
-		 * @param {function} callback
-		 * @param {function} callbackBinary
+		 * @param {Function} callback
+		 * @param {Function} callbackBinary
 		 */
 		function fetchPreview( file, callback, callbackBinary ) {
 			var reader = new FileReader();
@@ -212,10 +217,11 @@
 
 		/**
 		 * Format a file size attractively.
-		 * @todo match numeric formatting
+		 *
+		 * TODO: Match numeric formatting
 		 *
 		 * @param {number} s
-		 * @return string
+		 * @return {string}
 		 */
 		function prettySize( s ) {
 			var sizeMsgs = ['size-bytes', 'size-kilobytes', 'size-megabytes', 'size-gigabytes'];
@@ -263,9 +269,7 @@
 			return true;
 		}
 
-		/**
-		 * Initialization
-		 */
+		/* Initialization */
 		if ( hasFileAPI() ) {
 			// Update thumbnail when the file selection control is updated.
 			$( '#wpUploadFile' ).change( function () {
@@ -286,17 +290,17 @@
 		}
 	} );
 
-	/**
-	 * Disable all upload source fields except the selected one
-	 */
+	// Disable all upload source fields except the selected one
 	$( function () {
 		var i, $row,
 			$rows = $( '.mw-htmlform-field-UploadSourceField' );
 
+		/**
+		 * @param {jQuery} $currentRow
+		 * @return {Function} Handler
+		 * @return {jQuery.Event} return.e
+		 */
 		function createHandler( $currentRow ) {
-			/**
-			 * @param {jQuery.Event}
-			 */
 			return function () {
 				$( '.mw-upload-source-error' ).remove();
 				if ( this.checked ) {
