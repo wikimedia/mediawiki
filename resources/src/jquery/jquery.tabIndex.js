@@ -1,12 +1,12 @@
 /**
- * jQuery tabIndex
+ * @class jQuery.plugin.tabIndex
  */
 ( function ( $ ) {
 
 	/**
-	 * Finds the lowerst tabindex in use within a selection
+	 * Find the lowest tabindex in use within a selection.
 	 *
-	 * @return number Lowest tabindex on the page
+	 * @return {number} Lowest tabindex on the page
 	 */
 	$.fn.firstTabIndex = function () {
 		var minTabIndex = null;
@@ -29,9 +29,9 @@
 	};
 
 	/**
-	 * Finds the highest tabindex in use within a selection
+	 * Find the highest tabindex in use within a selection.
 	 *
-	 * @return number Highest tabindex on the page
+	 * @return {number} Highest tabindex on the page
 	 */
 	$.fn.lastTabIndex = function () {
 		var maxTabIndex = null;
@@ -48,5 +48,10 @@
 		} );
 		return maxTabIndex;
 	};
+
+	/**
+	 * @class jQuery
+	 * @mixins jQuery.plugin.tabIndex
+	 */
 
 }( jQuery ) );
