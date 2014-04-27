@@ -6,7 +6,8 @@
 			"Mormegil",
 			"아라",
 			"Matěj Grabovský",
-			"Paxt"
+			"Paxt",
+			"Matěj Suchánek"
 		]
 	},
 	"config-desc": "Instalační program pro MediaWiki",
@@ -104,7 +105,7 @@
 	"config-db-username": "Databázové uživatelské jméno:",
 	"config-db-password": "Databázové heslo:",
 	"config-db-password-empty": "Zadejte heslo pro nového databázového uživatele: $1.\nPřestože může jít zakládat nové uživatele i bez hesel, není to bezpečné.",
-	"config-db-username-empty": "Musíte zadat hodnotu pro „{{int:config-db-username}}“",
+	"config-db-username-empty": "Musíte zadat hodnotu pro „{{int:config-db-username}}“.",
 	"config-db-install-username": "Zadejte uživatelské jméno, které se použije pro připojení k databázi v průběhu instalace.\nToto není jméno uživatelského účtu MediaWiki; toto je uživatelské jméno k vaší databázi.",
 	"config-db-install-password": "Zadejte heslo, které se použije pro připojení k databázi v průběhu instalace.\nToto není heslo uživatelského účtu MediaWiki; toto je heslo k vaší databázi.",
 	"config-db-install-help": "Zadejte uživatelské jméno a heslo, které se použijí pro připojení k databázi v průběhu instalace.",
@@ -144,9 +145,9 @@
 	"config-header-oracle": "Nastavení Oracle",
 	"config-header-mssql": "Nastavení Microsoft SQL Serveru",
 	"config-invalid-db-type": "Chybný typ databáze",
-	"config-missing-db-name": "Musíte zadat hodnotu pro „{{int:config-db-name}}“",
-	"config-missing-db-host": "Musíte zadat hodnotu pro „{{int:config-db-host}}“",
-	"config-missing-db-server-oracle": "Musíte zadat hodnotu pro „{{int:config-db-host-oracle}}“",
+	"config-missing-db-name": "Musíte zadat hodnotu pro „{{int:config-db-name}}“.",
+	"config-missing-db-host": "Musíte zadat hodnotu pro „{{int:config-db-host}}“.",
+	"config-missing-db-server-oracle": "Musíte zadat hodnotu pro „{{int:config-db-host-oracle}}“.",
 	"config-invalid-db-server-oracle": "Chybné databázové TNS „$1“.\nPoužívejte buď „TNS Name“ nebo „Easy Connect“ (vizte [http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods]).",
 	"config-invalid-db-name": "Chybné jméno databáze „$1“.\nPoužívejte pouze ASCII písmena (a-z, A-Z), čísla (0-9), podtržítko (_) a spojovník (-).",
 	"config-invalid-db-prefix": "Chybný databázový prefix „$1“.\nPoužívejte pouze ASCII písmena (a-z, A-Z), čísla (0-9), podtržítko (_) a spojovník (-).",

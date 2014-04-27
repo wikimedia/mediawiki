@@ -4,7 +4,8 @@
 			"Kwj2772",
 			"아라",
 			"Hym411",
-			"Priviet"
+			"Priviet",
+			"Namoroka"
 		]
 	},
 	"config-desc": "미디어위키 설치 프로그램",
@@ -312,7 +313,7 @@
 	"config-download-localsettings": "<code>LocalSettings.php</code> 다운로드",
 	"config-help": "도움말",
 	"config-nofile": "\"$1\" 파일을 찾을 수 없습니다. 이미 삭제되었나요?",
-	"config-extension-link": "당신의 위키가 [//www.mediawiki.org/wiki/Manual:Extensions 확장 기능]을 지원한다는 것을 알고 계십니까?\n\n전체 확장 기능의 목록을 확인하려면 [//www.mediawiki.org/wiki/Category:Extensions_by_category 분류별 확장 기능]이나 [//www.mediawiki.org/wiki/Extension_Matrix 확장 기능 표]를 찾아보실 수 있습니다.",
+	"config-extension-link": "당신의 위키가 [//www.mediawiki.org/wiki/Manual:Extensions 확장 기능]을 지원한다는 것을 알고 계십니까?\n\n[//www.mediawiki.org/wiki/Category:Extensions_by_category 분류 별 확장 기능]을 찾아보실 수 있습니다.",
 	"mainpagetext": "'''미디어위키가 성공적으로 설치되었습니다.'''",
 	"mainpagedocfooter": "[//meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 소프트웨어에 대한 정보를 얻을 수 있습니다.\n\n== 시작하기 ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings 설정하기 목록]\n* [//www.mediawiki.org/wiki/Manual:FAQ 미디어위키 FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 미디어위키 릴리스 메일링 리스트]\n* [//www.mediawiki.org/wiki/Localisation#Translation_resources 내 언어로 미디어위키 지역화]"
 }
