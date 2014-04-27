@@ -373,7 +373,6 @@ $dateFormats = array(
 
 $bookstoreList = array(
 	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
-	'PriceSCAN' => 'http://www.pricescan.com/books/bookDetail.asp?isbn=$1',
 	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
 	'亚马逊' => 'http://www.amazon.com/exec/obidos/ISBN=$1',
 	'卓越亚马逊' => 'http://www.amazon.cn/mn/advancedSearchApp?isbn=$1',
