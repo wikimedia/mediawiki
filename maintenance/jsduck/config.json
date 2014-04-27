@@ -19,6 +19,7 @@
 		"../../resources/src/jquery/jquery.arrowSteps.js",
 		"../../resources/src/jquery/jquery.autoEllipsis.js",
 		"../../resources/src/jquery/jquery.badge.js",
+		"../../resources/src/jquery/jquery.byteLength.js",
 		"../../resources/src/jquery/jquery.byteLimit.js",
 		"../../resources/src/jquery/jquery.client.js",
 		"../../resources/src/jquery/jquery.colorUtil.js",
