@@ -83,7 +83,7 @@ class SpecialUnblock extends SpecialPage {
 			'Target' => array(
 				'type' => 'text',
 				'label-message' => 'ipaddressorusername',
-				'tabindex' => '1',
+				'autofocus' => true,
 				'size' => '45',
 				'required' => true,
 			),
@@ -131,6 +131,9 @@ class SpecialUnblock extends SpecialPage {
 						$fields['Target']['default'] = "#{$this->target}";
 						break;
 				}
+				// target is hidden, so the reason is the first element
+				$fields['Target']['autofocus'] = false;
+				$fields['Reason']['autofocus'] = true;
 			}
 		} else {
 			$fields['Target']['default'] = $this->target;
