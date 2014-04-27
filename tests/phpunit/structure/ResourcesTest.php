@@ -52,6 +52,24 @@ class ResourcesTest extends MediaWikiTestCase {
 		}
 	}
 
+	public function testDependencyTargets() {
+		$data = self::getAllModules();
+		$modules = $data['modules'];
+
+		foreach ( $modules as $moduleName => $module ) {
+			$targets = $module->getTargets();
+			foreach ( $module->getDependencies() as $depNames ) {
+				foreach ( $depNames as $depName ) {
+					$dependencyTargets = $modules[$depName]->getTargets();
+					$this->assertEmpty(
+						array_diff( $targets, $dependencyTargets ),
+						"Targets of module '$moduleName' must be a subset of targets of module '$depName'"
+					);
+				}
+			}
+		}
+	}
+
 	/**
 	 * Get all registered modules from ResouceLoader.
 	 */
