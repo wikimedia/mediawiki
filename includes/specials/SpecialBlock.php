@@ -129,7 +129,6 @@ class SpecialBlock extends FormSpecialPage {
 			'Target' => array(
 				'type' => 'text',
 				'label-message' => 'ipadressorusername',
-				'tabindex' => '1',
 				'id' => 'mw-bi-target',
 				'size' => '45',
 				'autofocus' => true,
@@ -140,7 +139,6 @@ class SpecialBlock extends FormSpecialPage {
 				'type' => !count( $suggestedDurations ) ? 'text' : 'selectorother',
 				'label-message' => 'ipbexpiry',
 				'required' => true,
-				'tabindex' => '2',
 				'options' => $suggestedDurations,
 				'other' => $this->msg( 'ipbother' )->text(),
 				'default' => $this->msg( 'ipb-default-expiry' )->inContentLanguage()->text(),
