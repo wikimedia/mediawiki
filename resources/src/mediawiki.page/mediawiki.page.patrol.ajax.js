@@ -1,4 +1,4 @@
-/**
+/*!
  * Animate patrol links to use asynchronous API requests to
  * patrol pages, rather than navigating to a different URI.
  *
