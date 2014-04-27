@@ -23,6 +23,7 @@
 		"../../resources/src/jquery/jquery.client.js",
 		"../../resources/src/jquery/jquery.colorUtil.js",
 		"../../resources/src/jquery/jquery.localize.js",
+		"../../resources/src/jquery/jquery.makeCollapsible.js",
 		"../../resources/src/jquery/jquery.spinner.js",
 		"../../resources/lib/oojs",
 		"../../resources/lib/oojs-ui"

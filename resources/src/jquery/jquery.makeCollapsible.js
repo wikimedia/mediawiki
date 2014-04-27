@@ -1,27 +1,22 @@
 /**
  * jQuery makeCollapsible
  *
- * This will enable collapsible-functionality on all passed elements.
- * - Will prevent binding twice to the same element.
- * - Initial state is expanded by default, this can be overriden by adding class
- *   "mw-collapsed" to the "mw-collapsible" element.
- * - Elements made collapsible have jQuery data "mw-made-collapsible" set to true.
- * - The inner content is wrapped in a "div.mw-collapsible-content" (except for tables and lists).
+ * Dual licensed:
+ * - CC BY 3.0 <http://creativecommons.org/licenses/by/3.0>
+ * - GPL2 <http://www.gnu.org/licenses/old-licenses/gpl-2.0.html>
  *
- * @author Krinkle, 2011-2012
- *
- * Dual license:
- * @license CC BY 3.0 <http://creativecommons.org/licenses/by/3.0>
- * @license GPL2 <http://www.gnu.org/licenses/old-licenses/gpl-2.0.html>
+ * @class jQuery.plugin.makeCollapsible
  */
 ( function ( $, mw ) {
+
 	/**
 	 * Handler for a click on a collapsible toggler.
 	 *
+	 * @private
 	 * @param {jQuery} $collapsible
 	 * @param {string} action The action this function will take ('expand' or 'collapse').
-	 * @param {jQuery|null} [optional] $defaultToggle
-	 * @param {Object|undefined} options
+	 * @param {jQuery|null} [$defaultToggle]
+	 * @param {Object|undefined} [options]
 	 */
 	function toggleElement( $collapsible, action, $defaultToggle, options ) {
 		var $collapsibleContent, $containers, hookCallback;
@@ -146,10 +141,11 @@
 	}
 
 	/**
-	 * Handles clicking/keypressing on the collapsible element toggle and other
+	 * Handle clicking/keypressing on the collapsible element toggle and other
 	 * situations where a collapsible element is toggled (e.g. the initial
 	 * toggle for collapsed ones).
 	 *
+	 * @private
 	 * @param {jQuery} $toggle the clickable toggle itself
 	 * @param {jQuery} $collapsible the collapsible element
 	 * @param {jQuery.Event|null} e either the event or null if unavailable
@@ -209,28 +205,34 @@
 	}
 
 	/**
-	 * Make any element collapsible.
+	 * Enable collapsible-functionality on all elements in the collection.
 	 *
-	 * Supported options:
-	 * - collapseText: text to be used for the toggler when clicking it would
-	 *   collapse the element. Default: the 'data-collapsetext' attribute of
-	 *   the collapsible element or the content of 'collapsible-collapse'
-	 *   message.
-	 * - expandText: text to be used for the toggler when clicking it would
-	 *   expand the element. Default: the 'data-expandtext' attribute of
-	 *   the collapsible element or the content of 'collapsible-expand'
-	 *   message.
-	 * - collapsed: boolean, whether to collapse immediately. By default
+	 * - Will prevent binding twice to the same element.
+	 * - Initial state is expanded by default, this can be overriden by adding class
+	 *   "mw-collapsed" to the "mw-collapsible" element.
+	 * - Elements made collapsible have jQuery data "mw-made-collapsible" set to true.
+	 * - The inner content is wrapped in a "div.mw-collapsible-content" (except for tables and lists).
+	 *
+	 * @param {Object} [options]
+	 * @param {string} [options.collapseText] Text used for the toggler, when clicking it would
+	 *   collapse the element. Default: the 'data-collapsetext' attribute of the
+	 *   collapsible element or the content of 'collapsible-collapse' message.
+	 * @param {string} [options.expandText] Text used for the toggler, when clicking it would
+	 *   expand the element. Default: the 'data-expandtext' attribute of the
+	 *   collapsible element or the content of 'collapsible-expand' message.
+	 * @param {boolean} [options.collapsed] Whether to collapse immediately. By default
 	 *   collapse only if the elements has the 'mw-collapsible' class.
-	 * - $customTogglers: jQuerified list of elements to be used as togglers
+	 * @param {jQuery} [options.$customTogglers] Elements to be used as togglers
 	 *   for this collapsible element. By default, if the collapsible element
 	 *   has an id attribute like 'mw-customcollapsible-XXX', elements with a
 	 *   *class* of 'mw-customtoggle-XXX' are made togglers for it.
-	 * - plainMode: boolean, whether to use a "plain mode" when making the
+	 * @param {boolean} [options.plainMode=false] Whether to use a "plain mode" when making the
 	 *   element collapsible - that is, hide entire tables and lists (instead
 	 *   of hiding only all rows but first of tables, and hiding each list
 	 *   item separately for lists) and don't wrap other elements in
 	 *   div.mw-collapsible-content. May only be used with custom togglers.
+	 * @return {jQuery}
+	 * @chainable
 	 */
 	$.fn.makeCollapsible = function ( options ) {
 		if ( options === undefined ) {
@@ -391,4 +393,10 @@
 			}
 		} );
 	};
+
+	/**
+	 * @class jQuery
+	 * @mixins jQuery.plugin.makeCollapsible
+	 */
+
 }( jQuery, mediaWiki ) );
