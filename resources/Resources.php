@@ -190,6 +190,7 @@ return array(
 		'dependencies' => array(
 			'jquery.client',
 		),
+		'targets' => array( 'mobile', 'desktop' ),
 	),
 	'jquery.appear' => array(
 		'scripts' => 'resources/lib/jquery/jquery.appear.js',
