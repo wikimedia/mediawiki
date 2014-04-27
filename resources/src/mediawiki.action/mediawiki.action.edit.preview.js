@@ -1,9 +1,10 @@
-/**
+/*!
  * Live edit preview.
  */
 ( function ( mw, $ ) {
 
 	/**
+	 * @ignore
 	 * @param {jQuery.Event} e
 	 */
 	function doLivePreview( e ) {

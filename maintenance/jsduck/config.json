@@ -9,8 +9,7 @@
 	"--": [
 		"./external.js",
 		"../../resources/src/mediawiki",
-		"../../resources/src/mediawiki.action/mediawiki.action.edit.js",
-		"../../resources/src/mediawiki.action/mediawiki.action.view.postEdit.js",
+		"../../resources/src/mediawiki.action",
 		"../../resources/src/mediawiki.page/mediawiki.page.startup.js",
 		"../../resources/src/mediawiki.page/mediawiki.page.watch.ajax.js",
 		"../../resources/src/mediawiki.api",

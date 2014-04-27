@@ -1,4 +1,4 @@
-/**
+/*!
  * JavaScript to enable right click edit functionality.
  * When the user right-clicks in a heading, it will open the
  * edit screen.
