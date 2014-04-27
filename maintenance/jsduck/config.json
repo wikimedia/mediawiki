@@ -22,6 +22,7 @@
 		"../../resources/src/jquery/jquery.byteLimit.js",
 		"../../resources/src/jquery/jquery.client.js",
 		"../../resources/src/jquery/jquery.colorUtil.js",
+		"../../resources/src/jquery/jquery.getAttrs.js",
 		"../../resources/src/jquery/jquery.localize.js",
 		"../../resources/src/jquery/jquery.makeCollapsible.js",
 		"../../resources/src/jquery/jquery.spinner.js",

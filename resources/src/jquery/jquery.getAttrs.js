@@ -1,7 +1,15 @@
 /**
- * Utility to get all attributes of an element directy as an object.
+ * @class jQuery.plugin.getAttrs
+ */
+
+/**
+ * Utility to get the attributes of an element directy as a plain object.
  *
- * @author Timo Tijhof, 2011
+ * If there are more elements in the collection, like most jQuery get/read methods,
+ * this method will use the first element in the collection.
+ *
+ * @param {boolean} [all]
+ * @return {Object}
  */
 jQuery.fn.getAttrs = function ( all ) {
 	var map = this[0].attributes,
@@ -22,3 +30,8 @@ jQuery.fn.getAttrs = function ( all ) {
 
 	return attrs;
 };
+
+/**
+ * @class jQuery
+ * @mixins jQuery.plugin.getAttrs
+ */
