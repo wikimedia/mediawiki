@@ -1,21 +1,26 @@
 /**
- * Responsive images based on 'srcset' and 'window.devicePixelRatio' emulation where needed.
+ * Responsive images based on `srcset` and `window.devicePixelRatio` emulation where needed.
  *
- * Call $().hidpi() on a document or part of a document to replace image srcs in that section.
+ * Call `.hidpi()` on a document or part of a document to proces image srcsets within that section.
  *
- * $.devicePixelRatio() can be used to supplement window.devicePixelRatio with support on
- * some additional browsers.
+ * `$.devicePixelRatio()` can be used as a substitute for `window.devicePixelRatio`.
+ * It provides a familiar interface to retrieve the pixel ratio for browsers that don't
+ * implement `window.devicePixelRatio` but do have a different way of getting it.
+ *
+ * @class jQuery.plugin.hidpi
  */
 ( function ( $ ) {
 
 /**
- * Detect reported or approximate device pixel ratio.
- * 1.0 means 1 CSS pixel is 1 hardware pixel
- * 2.0 means 1 CSS pixel is 2 hardware pixels
- * etc
+ * Get reported or approximate device pixel ratio.
  *
- * Uses window.devicePixelRatio if available, or CSS media queries on IE.
+ * - 1.0 means 1 CSS pixel is 1 hardware pixel
+ * - 2.0 means 1 CSS pixel is 2 hardware pixels
+ * - etc.
  *
+ * Uses `window.devicePixelRatio` if available, or CSS media queries on IE.
+ *
+ * @static
  * @return {number} Device pixel ratio
  */
 $.devicePixelRatio = function () {
@@ -51,6 +56,7 @@ $.devicePixelRatio = function () {
  * native srcset support.
  *
  * @return {jQuery} This selection
+ * @chainable
  */
 $.fn.hidpi = function () {
 	var $target = this,
@@ -81,9 +87,11 @@ $.fn.hidpi = function () {
  *
  * Exposed for testing.
  *
+ * @private
+ * @static
  * @param {number} devicePixelRatio
  * @param {string} srcset
- * @return {mixed} null or the matching src string
+ * @return {Mixed} null or the matching src string
  */
 $.matchSrcSet = function ( devicePixelRatio, srcset ) {
 	var candidates,
@@ -111,5 +119,10 @@ $.matchSrcSet = function ( devicePixelRatio, srcset ) {
 	}
 	return selectedSrc;
 };
+
+/**
+ * @class jQuery
+ * @mixins jQuery.plugin.hidpi
+ */
 
 }( jQuery ) );
