@@ -57,6 +57,12 @@
 				]
 			},
 			{
+				"name": "Special",
+				"classes": [
+					"mw.special*"
+				]
+			},
+			{
 				"name": "Development",
 				"classes": [
 					"mw.log",
