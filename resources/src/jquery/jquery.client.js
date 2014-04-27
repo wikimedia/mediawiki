@@ -1,25 +1,25 @@
 /**
  * User-agent detection
+ *
+ * @class jQuery.client
+ * @singleton
  */
 ( function ( $ ) {
 
-	/* Private Members */
-
 	/**
-	 * @var {Object} profileCache Keyed by userAgent string,
+	 * @private
+	 * @property {Object} profileCache Keyed by userAgent string,
 	 * value is the parsed $.client.profile object for that user agent.
 	 */
 	var profileCache = {};
-
-	/* Public Methods */
 
 	$.client = {
 
 		/**
 		 * Get an object containing information about the client.
 		 *
-		 * @param {Object} nav An object with atleast a 'userAgent' and 'platform' key.
-		 * Defaults to the global Navigator object.
+		 * @param {Object} [nav] An object with a 'userAgent' and 'platform' property.
+		 *  Defaults to the global `navigator` object.
 		 * @return {Object} The resulting client object will be in the following format:
 		 *  {
 		 *   'name': 'firefox',
@@ -47,7 +47,7 @@
 				versionNumber,
 				key = nav.userAgent + '|' + nav.platform,
 
-				/* Configuration */
+				// Configuration
 
 				// Name of browsers or layout engines we don't recognize
 				uk = 'unknown',
@@ -96,10 +96,9 @@
 				// Translations for conforming operating system names
 				platformTranslations = [ ['sunos', 'solaris'], ['wow64', 'win'] ],
 
-				/* Methods */
-
 				/**
 				 * Performs multiple replacements on a string
+				 * @ignore
 				 */
 				translate = function ( source, translations ) {
 					var i;
@@ -109,7 +108,7 @@
 					return source;
 				},
 
-				/* Pre-processing */
+				// Pre-processing
 
 				ua = nav.userAgent,
 				match,
@@ -126,7 +125,7 @@
 			// Everything will be in lowercase from now on
 			ua = ua.toLowerCase();
 
-			/* Extraction */
+			// Extraction
 
 			if ( match = new RegExp( '(' + names.join( '|' ) + ')' ).exec( ua ) ) {
 				name = translate( match[1], nameTranslations );
@@ -144,7 +143,7 @@
 				version = match[3];
 			}
 
-			/* Edge Cases -- did I mention about how user agent string lie? */
+			// Edge Cases -- did I mention about how user agent string lie?
 
 			// Decode Safari's crazy 400+ version numbers
 			if ( name === 'safari' && version > 400 ) {
@@ -183,7 +182,7 @@
 
 			versionNumber = parseFloat( version, 10 ) || 0.0;
 
-			/* Caching */
+			// Caching
 
 			return profileCache[ key  ] = {
 				name: name,

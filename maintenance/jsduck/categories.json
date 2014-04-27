@@ -73,7 +73,10 @@
 		"groups": [
 			{
 				"name": "Plugins",
-				"classes": ["jQuery.plugin.*"]
+				"classes": [
+					"jQuery.client",
+					"jQuery.plugin.*"
+				]
 			}
 		]
 	},
