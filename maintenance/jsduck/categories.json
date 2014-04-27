@@ -75,6 +75,7 @@
 				"name": "Plugins",
 				"classes": [
 					"jQuery.client",
+					"jQuery.colorUtil",
 					"jQuery.plugin.*"
 				]
 			}
