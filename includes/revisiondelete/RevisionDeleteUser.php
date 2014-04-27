@@ -55,8 +55,8 @@ class RevisionDeleteUser {
 		$delUser = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
 		$delAction = LogPage::DELETED_ACTION | Revision::DELETED_RESTRICTED;
 		if ( $op == '&' ) {
-			$delUser = "~{$delUser}";
-			$delAction = "~{$delAction}";
+			$delUser = $dbw->bitNot( $delUser );
+			$delAction = $dbw->bitNot( $delAction );
 		}
 
 		# Normalize user name
@@ -66,14 +66,14 @@ class RevisionDeleteUser {
 		# Hide name from live edits
 		$dbw->update(
 			'revision',
-			array( "rev_deleted = rev_deleted $op $delUser" ),
+			array( self::buildSetBitDeletedField( 'rev_deleted', $op, $delUser, $dbw ) ),
 			array( 'rev_user' => $userId ),
 			__METHOD__ );
 
 		# Hide name from deleted edits
 		$dbw->update(
 			'archive',
-			array( "ar_deleted = ar_deleted $op $delUser" ),
+			array( self::buildSetBitDeletedField( 'ar_deleted', $op, $delUser, $dbw ) ),
 			array( 'ar_user_text' => $name ),
 			__METHOD__
 		);
@@ -81,28 +81,28 @@ class RevisionDeleteUser {
 		# Hide name from logs
 		$dbw->update(
 			'logging',
-			array( "log_deleted = log_deleted $op $delUser" ),
-			array( 'log_user' => $userId, "log_type != 'suppress'" ),
+			array( self::buildSetBitDeletedField( 'log_deleted', $op, $delUser, $dbw ) ),
+			array( 'log_user' => $userId, 'log_type != ' . $dbw->addQuotes( 'suppress' ) ),
 			__METHOD__
 		);
 		$dbw->update(
 			'logging',
-			array( "log_deleted = log_deleted $op $delAction" ),
+			array( self::buildSetBitDeletedField( 'log_deleted', $op, $delAction, $dbw ) ),
 			array( 'log_namespace' => NS_USER, 'log_title' => $userDbKey,
-				"log_type != 'suppress'" ),
+				'log_type != ' . $dbw->addQuotes( 'suppress' ) ),
 			__METHOD__
 		);
 
 		# Hide name from RC
 		$dbw->update(
 			'recentchanges',
-			array( "rc_deleted = rc_deleted $op $delUser" ),
+			array( self::buildSetBitDeletedField( 'rc_deleted', $op, $delUser, $dbw ) ),
 			array( 'rc_user_text' => $name ),
 			__METHOD__
 		);
 		$dbw->update(
 			'recentchanges',
-			array( "rc_deleted = rc_deleted $op $delAction" ),
+			array( self::buildSetBitDeletedField( 'rc_deleted', $op, $delAction, $dbw ) ),
 			array( 'rc_namespace' => NS_USER, 'rc_title' => $userDbKey, 'rc_logid > 0' ),
 			__METHOD__
 		);
@@ -110,7 +110,7 @@ class RevisionDeleteUser {
 		# Hide name from live images
 		$dbw->update(
 			'oldimage',
-			array( "oi_deleted = oi_deleted $op $delUser" ),
+			array( self::buildSetBitDeletedField( 'oi_deleted', $op, $delUser, $dbw ) ),
 			array( 'oi_user_text' => $name ),
 			__METHOD__
 		);
@@ -118,12 +118,18 @@ class RevisionDeleteUser {
 		# Hide name from deleted images
 		$dbw->update(
 			'filearchive',
-			array( "fa_deleted = fa_deleted $op $delUser" ),
+			array( self::buildSetBitDeletedField( 'fa_deleted', $op, $delUser, $dbw ) ),
 			array( 'fa_user_text' => $name ),
 			__METHOD__
 		);
 		# Done!
 		return true;
+	}
+
+	private static function buildSetBitDeletedField( $field, $op, $value, $dbw ) {
+		return $field . ' = ' . ( $op === '&'
+			? $dbw->bitAnd( $field, $value )
+			: $dbw->bitOr( $field, $value ) );
 	}
 
 	public static function suppressUserName( $name, $userId, $dbw = null ) {
