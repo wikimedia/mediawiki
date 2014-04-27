@@ -1,4 +1,4 @@
-/**
+/*!
  * Change multi-page image navigation so that the current page display can be changed
  * without a page reload. Currently, the only image formats that can be multi-page images are
  * PDF and DjVu files
