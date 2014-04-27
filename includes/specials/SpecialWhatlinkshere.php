@@ -59,6 +59,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$opts->add( 'hidetrans', false );
 		$opts->add( 'hidelinks', false );
 		$opts->add( 'hideimages', false );
+		$opts->add( 'invert', false );
 
 		$opts->fetchValuesFromRequest( $this->getRequest() );
 		$opts->validateIntBounds( 'limit', 0, 5000 );
@@ -138,9 +139,15 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		$namespace = $this->opts->getValue( 'namespace' );
 		if ( is_int( $namespace ) ) {
-			$plConds['page_namespace'] = $namespace;
-			$tlConds['page_namespace'] = $namespace;
-			$ilConds['page_namespace'] = $namespace;
+			if ( $this->opts->getValue( 'invert' ) ) {
+				$plConds[] = 'page_namespace != ' . $dbr->addQuotes( $namespace );
+				$tlConds[] = 'page_namespace != ' . $dbr->addQuotes( $namespace );
+				$ilConds[] = 'page_namespace != ' . $dbr->addQuotes( $namespace );
+			} else {
+				$plConds['page_namespace'] = $namespace;
+				$tlConds['page_namespace'] = $namespace;
+				$ilConds['page_namespace'] = $namespace;
+			}
 		}
 
 		if ( $from ) {
@@ -410,6 +417,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		$target = $this->target ? $this->target->getPrefixedText() : '';
 		$namespace = $this->opts->consumeValue( 'namespace' );
+		$nsinvert = $this->opts->consumeValue( 'invert' );
 
 		# Build up the form
 		$f = Xml::openElement( 'form', array( 'action' => $wgScript ) );
@@ -440,6 +448,15 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				'class' => 'namespaceselector',
 			)
 		);
+
+		$f .= '&#160;' .
+			Xml::checkLabel(
+				$this->msg( 'invert' )->text(),
+				'invert',
+				'nsinvert',
+				$nsinvert,
+				array( 'title' => $this->msg( 'tooltip-whatlinkshere-invert' )->text() )
+			);
 
 		$f .= ' ';
 

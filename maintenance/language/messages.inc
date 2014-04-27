@@ -2742,6 +2742,7 @@ $wgMessageStructure = array(
 		'tooltip-summary',
 		'interlanguage-link-title',
 		'interlanguage-link-title-langonly',
+		'tooltip-whatlinkshere-invert',
 	),
 	'stylesheets' => array(
 		'common.css',
