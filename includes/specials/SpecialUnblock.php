@@ -82,14 +82,14 @@ class SpecialUnblock extends SpecialPage {
 		$fields = array(
 			'Target' => array(
 				'type' => 'text',
-				'label-message' => 'ipadressorusername',
+				'label-message' => 'ipaddressorusername',
 				'tabindex' => '1',
 				'size' => '45',
 				'required' => true,
 			),
 			'Name' => array(
 				'type' => 'info',
-				'label-message' => 'ipadressorusername',
+				'label-message' => 'ipaddressorusername',
 			),
 			'Reason' => array(
 				'type' => 'text',
