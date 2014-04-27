@@ -1,4 +1,4 @@
-/**
+/*!
  * JavaScript for History action
  */
 jQuery( function ( $ ) {
@@ -7,6 +7,7 @@ jQuery( function ( $ ) {
 		$lis = $( '#pagehistory > li' );
 
 	/**
+	 * @ignore
 	 * @context {Element} input
 	 * @param e {jQuery.Event}
 	 */

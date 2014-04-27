@@ -1,4 +1,4 @@
-/**
+/*!
  * JavaScript to scroll the page to an id, when a redirect with fragment is viewed.
  */
 ( function ( mw, $ ) {
