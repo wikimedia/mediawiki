@@ -26,6 +26,7 @@
 		"../../resources/src/jquery/jquery.colorUtil.js",
 		"../../resources/src/jquery/jquery.footHovzer.js",
 		"../../resources/src/jquery/jquery.getAttrs.js",
+		"../../resources/src/jquery/jquery.hidpi.js",
 		"../../resources/src/jquery/jquery.localize.js",
 		"../../resources/src/jquery/jquery.makeCollapsible.js",
 		"../../resources/src/jquery/jquery.spinner.js",
