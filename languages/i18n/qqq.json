@@ -2210,7 +2210,7 @@
 	"blockip": "Used as the text of a link in the sidebar toolbox. Clicking this link takes you to [[Special:Block]], with a relevant username or IP address (e.g. \"Username\" on [[User talk:Username]], [[Special:Contributions/Username]], etc.) already filled in.\n\n{{Identical|Block user}}",
 	"blockip-legend": "Legend/Header for the fieldset around the input form of [[Special:Block]].\n\n{{Identical|Block user}}",
 	"blockiptext": "Used in the {{msg-mw|Blockip}} form in [[Special:Block]].\n\nRefers to {{msg-mw|Policy-url}}.\n\nThis message may follow the message {{msg-mw|Ipb-otherblocks-header}} and other block messages.\n\nSee also:\n* {{msg-mw|Unblockiptext}}",
-	"ipadressorusername": "{{Identical|IP address or username}}",
+	"ipaddressorusername": "{{Identical|IP address or username}}",
 	"ipbexpiry": "{{Identical|Expiry}}",
 	"ipbreason": "Label of the block reason dropdown in [[Special:BlockIP]] and the unblock reason textfield in [{{fullurl:Special:IPBlockList|action=unblock}} Special:IPBlockList?action=unblock].\n\n{{Identical|Reason}}",
 	"ipbreason-dropdown": "Used as item list for dropdown on [[Special:Block]].\n\nThe label for this dropdown is {{msg-mw|Ipbreason}}.",
