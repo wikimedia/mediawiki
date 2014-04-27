@@ -1,6 +1,6 @@
-/**
- * Adds additional styling to the extension title/version list
-**/
+/*!
+ * Styling for Special:Version
+ */
 .mw-version-ext-name {
 	font-weight: bold;
 }

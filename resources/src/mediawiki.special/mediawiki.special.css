@@ -1,4 +1,4 @@
-/**** Special:AllMessages ****/
+/* Special:AllMessages */
 #mw-allmessagestable .allmessages-customised td.am_default {
 	background-color: #fcffc4;
 }
@@ -15,7 +15,7 @@
 	background-color: #b1ffb1;
 }
 
-/**** Special:Allpages ****/
+/* Special:Allpages */
 table.mw-allpages-table-form, table.mw-allpages-table-chunk {
 	width: 100%;
 }
@@ -30,30 +30,30 @@ table.mw-allpages-table-form tr {
 	vertical-align: top;
 }
 
-/**** Special:Block ****/
+/* Special:Block */
 tr.mw-block-hideuser {
 	font-weight: bold;
 }
 
-/**** Special:BlockList ****/
+/* Special:BlockList */
 table.mw-blocklist span.mw-usertoollinks,
 span.mw-blocklist-actions {
 	white-space: nowrap;
 	font-size: 90%;
 }
 
-/**** Special:Contributions ****/
+/* Special:Contributions */
 .mw-uctop {
 	font-weight: bold;
 }
 
-/**** Special:EmailUser ****/
+/* Special:EmailUser */
 td#mw-emailuser-sender,
 td#mw-emailuser-recipient {
 	font-weight: bold;
 }
 
-/**** Special:ListGroupRights ****/
+/* Special:ListGroupRights */
 table.mw-listgrouprights-table tr {
 	vertical-align: top;
 }
@@ -61,7 +61,7 @@ table.mw-listgrouprights-table tr {
 	text-decoration: line-through;
 }
 
-/**** Special:Prefixindex ****/
+/* Special:Prefixindex */
 table.mw-prefixindex-list-table,
 table#mw-prefixindex-nav-table {
 	width: 100%;
@@ -75,7 +75,7 @@ td#mw-prefixindex-nav-form {
 }
 
 
-/**** Special:Search ****/
+/* Special:Search */
 .searchresults {
 }
 
@@ -241,7 +241,7 @@ form#powersearch {
 	clear: both;
 }
 
-/**** Special:Specialpages ****/
+/* Special:Specialpages */
 .mw-specialpagerestricted {
 	font-weight: bold;
 }
@@ -255,12 +255,12 @@ form#powersearch {
 	vertical-align: top;
 }
 
-/**** Special:Statistics ****/
+/* Special:Statistics */
 td.mw-statistics-numbers {
 	text-align: right;
 }
 
-/**** Special:ProtectedPages ****/
+/* Special:ProtectedPages */
 table.mw-protectedpages span.mw-usertoollinks,
 span.mw-protectedpages-length,
 span.mw-protectedpages-actions {
@@ -272,7 +272,7 @@ span.mw-protectedpages-unknown {
 	font-size: 90%;
 }
 
-/**** Special:UserRights ****/
+/* Special:UserRights */
 .mw-userrights-disabled {
 	color: #888;
 }
