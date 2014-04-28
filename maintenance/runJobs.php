@@ -176,9 +176,12 @@ class RunJobs extends Maintenance {
 	private function getBackoffTimeToWait( Job $job ) {
 		global $wgJobBackoffThrottling;
 
-		if ( !isset( $wgJobBackoffThrottling[$job->getType()] ) ) {
+		if ( !isset( $wgJobBackoffThrottling[$job->getType()] ) ||
+			$job instanceof DuplicateJob // no work was done
+		) {
 			return 0; // not throttled
 		}
+
 		$itemsPerSecond = $wgJobBackoffThrottling[$job->getType()];
 		if ( $itemsPerSecond <= 0 ) {
 			return 0; // not throttled
