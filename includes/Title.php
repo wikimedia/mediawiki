@@ -3906,6 +3906,8 @@ class Title {
 				$redirectRevision = new Revision( array(
 					'title' => $this, // for determining the default content model
 					'page' => $newid,
+					'user_text' => $wgUser->getName(),
+					'user' => $wgUser->getId(),
 					'comment' => $comment,
 					'content' => $redirectContent ) );
 				$redirectRevision->insertOn( $dbw );
