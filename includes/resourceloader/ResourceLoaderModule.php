@@ -468,7 +468,7 @@ abstract class ResourceLoaderModule {
 		$key = wfMemcKey( 'resourceloader', 'moduledefinition', $this->getName(), $hash );
 
 		$data = $cache->get( $key );
-		if ( is_int( $data ) && $data > 0 ) {
+		if ( ctype_digit( $data ) && $data > 0 ) {
 			// We've seen this hash before, re-use the timestamp of when we first saw it.
 			wfProfileOut( __METHOD__ );
 			return $data;
