@@ -1424,7 +1424,8 @@ class LocalFile extends File {
 				$dbw,
 				$descTitle->getArticleID(),
 				$editSummary,
-				false
+				false,
+				$user
 			);
 			if ( !is_null( $nullRevision ) ) {
 				$nullRevision->insertOn( $dbw );

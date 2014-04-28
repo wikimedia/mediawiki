@@ -3859,7 +3859,7 @@ class Title {
 		}
 
 		# Save a null revision in the page's history notifying of the move
-		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true );
+		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true, $wgUser );
 		if ( !is_object( $nullRevision ) ) {
 			throw new MWException( 'No valid null revision produced in ' . __METHOD__ );
 		}

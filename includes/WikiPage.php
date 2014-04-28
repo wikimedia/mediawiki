@@ -2407,7 +2407,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 			// insert null revision to identify the page protection change as edit summary
 			$latest = $this->getLatest();
-			$nullRevision = $this->insertProtectNullRevision( $revCommentMsg, $limit, $expiry, $cascade, $reason );
+			$nullRevision = $this->insertProtectNullRevision( $revCommentMsg, $limit, $expiry, $cascade, $reason, $user );
 			if ( $nullRevision === null ) {
 				return Status::newFatal( 'no-null-revision', $this->mTitle->getPrefixedText() );
 			}
@@ -2506,9 +2506,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param array $expiry Per restriction type expiration
 	 * @param int $cascade Set to false if cascading protection isn't allowed.
 	 * @param string $reason
+	 * @param User|null $user
 	 * @return Revision|null Null on error
 	 */
-	public function insertProtectNullRevision( $revCommentMsg, array $limit, array $expiry, $cascade, $reason ) {
+	public function insertProtectNullRevision( $revCommentMsg, array $limit, array $expiry, $cascade, $reason, $user = null ) {
 		global $wgContLang;
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -2534,7 +2535,7 @@ class WikiPage implements Page, IDBAccessObject {
 			)->inContentLanguage()->text();
 		}
 
-		$nullRev = Revision::newNullRevision( $dbw, $this->getId(), $editComment, true );
+		$nullRev = Revision::newNullRevision( $dbw, $this->getId(), $editComment, true, $user );
 		if ( $nullRev ) {
 			$nullRev->insertOn( $dbw );
 

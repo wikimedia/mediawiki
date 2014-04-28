@@ -492,7 +492,7 @@ class ImportReporter extends ContextSource {
 			$comment = $detail; // quick
 			$dbw = wfGetDB( DB_MASTER );
 			$latest = $title->getLatestRevID();
-			$nullRevision = Revision::newNullRevision( $dbw, $title->getArticleID(), $comment, true );
+			$nullRevision = Revision::newNullRevision( $dbw, $title->getArticleID(), $comment, true, $this->getUser() );
 			if ( !is_null( $nullRevision ) ) {
 				$nullRevision->insertOn( $dbw );
 				$page = WikiPage::factory( $title );

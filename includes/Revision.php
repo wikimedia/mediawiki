@@ -1566,9 +1566,10 @@ class Revision implements IDBAccessObject {
 	 * @param int $pageId: ID number of the page to read from
 	 * @param string $summary Revision's summary
 	 * @param bool $minor Whether the revision should be considered as minor
+	 * @param User|null $user User object to use or null for $wgUser
 	 * @return Revision|null Revision or null on error
 	 */
-	public static function newNullRevision( $dbw, $pageId, $summary, $minor ) {
+	public static function newNullRevision( $dbw, $pageId, $summary, $minor, $user = null ) {
 		global $wgContentHandlerUseDB;
 
 		wfProfileIn( __METHOD__ );
@@ -1591,8 +1592,15 @@ class Revision implements IDBAccessObject {
 			__METHOD__ );
 
 		if ( $current ) {
+			if ( !$user ) {
+				global $wgUser;
+				$user = $wgUser;
+			}
+
 			$row = array(
 				'page'       => $pageId,
+				'user_text'  => $user->getName(),
+				'user'       => $user->getId(),
 				'comment'    => $summary,
 				'minor_edit' => $minor,
 				'text_id'    => $current->rev_text_id,
