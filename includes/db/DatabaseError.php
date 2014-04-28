@@ -348,14 +348,6 @@ class DBQueryError extends DBExpectedError {
 	}
 
 	/**
-	 * @return bool
-	 */
-	function isLoggable() {
-		// Don't send to the exception log, already in dberror log
-		return false;
-	}
-
-	/**
 	 * @return string
 	 */
 	function getPageTitle() {
