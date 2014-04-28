@@ -111,8 +111,6 @@ body .ui-button-large {
 .ui-button.ui-corner-top,
 .ui-button.ui-corner-left,
 .ui-button.ui-corner-tl {
-	-moz-border-radius-topleft: 4px;
-	-webkit-border-top-left-radius: 4px;
 	border-top-left-radius: 4px;
 }
 .ui-button.ui-corner-all,
@@ -120,24 +118,18 @@ body .ui-button-large {
 
 .ui-button.ui-corner-right,
 .ui-button.ui-corner-tr {
-	-moz-border-radius-topright: 4px;
-	-webkit-border-top-right-radius: 4px;
 	border-top-right-radius: 4px;
 }
 .ui-button.ui-corner-all,
 .ui-button.ui-corner-bottom,
 .ui-button.ui-corner-left,
 .ui-button.ui-corner-bl {
-	-moz-border-radius-bottomleft: 4px;
-	-webkit-border-bottom-left-radius: 4px;
 	border-bottom-left-radius: 4px;
 }
 .ui-button.ui-corner-all,
 .ui-button.ui-corner-bottom,
 .ui-button.ui-corner-right,
 .ui-button.ui-corner-br {
-	-moz-border-radius-bottomright: 4px;
-	-webkit-border-bottom-right-radius: 4px;
 	border-bottom-right-radius: 4px;
 }
 
