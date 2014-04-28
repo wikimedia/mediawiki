@@ -38,6 +38,7 @@ sftp-config.json
 /AdminSettings.php
 /LocalSettings.php
 /StartProfiler.php
+.mw-git-info.json
 
 # Building & testing
 node_modules/
