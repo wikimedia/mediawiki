@@ -16,16 +16,12 @@ var cachedAccessKeyPrefix,
 	labelable = 'button, input, textarea, keygen, meter, output, progress, select';
 
 /**
- * Get the prefix for the access key.
- * Will only give correct prefix for browsers not implementing the accessKeyLabel property.
- * These browsers currently are:
- * Firefox 8+
+ * Get the prefix for the access key for browsers that don't support accessKeyLabel.
  *
- * Exposed for testing.
+ * For browsers that support accessKeyLabel, #getAccessKeyLabel never calls here.
  *
  * @private
- * @param {Object} ua An object with atleast a 'userAgent' and 'platform' key.
- * Defaults to the global Navigator object.
+ * @param {Object} [ua] An object with a 'userAgent' and 'platform' property.
  * @return {string} Access key prefix
  */
 function getAccessKeyPrefix( ua ) {
@@ -86,35 +82,39 @@ function getAccessKeyPrefix( ua ) {
 /**
  * Get the access key label for an element.
  *
+ * Will use native accessKeyLabel if available (currently only in Firefox 8+),
+ * falls back to #getAccessKeyPrefix.
+ *
  * @private
- * @param {HTMLElement} domElement DOM element to get the label for
+ * @param {HTMLElement} element Element to get the label for
  * @return {string} Access key label
  */
-function getAccessKeyLabel( domElement ) {
+function getAccessKeyLabel( element ) {
 	// abort early if no access key
-	if ( !domElement.accessKey ) {
+	if ( !element.accessKey ) {
 		return '';
 	}
 	// use accessKeyLabel if possible
 	// http://www.whatwg.org/specs/web-apps/current-work/multipage/editing.html#dom-accesskeylabel
-	if ( !useTestPrefix && domElement.accessKeyLabel ) {
-		return domElement.accessKeyLabel;
+	if ( !useTestPrefix && element.accessKeyLabel ) {
+		return element.accessKeyLabel;
 	}
-	return ( useTestPrefix ? 'test-' : getAccessKeyPrefix() ) + domElement.accessKey;
+	return ( useTestPrefix ? 'test-' : getAccessKeyPrefix() ) + element.accessKey;
 }
 
 /**
- * Update the title for an element (on the element with the access key or it's label) to show the correct access key label.
+ * Update the title for an element (on the element with the access key or it's label) to show
+ * the correct access key label.
  *
  * @private
- * @param {HTMLElement} domElement DOM element with the accesskey
- * @param {HTMLElement} titleElement DOM element with the title to update
+ * @param {HTMLElement} element Element with the accesskey
+ * @param {HTMLElement} titleElement Element with the title to update (may be the same as `element`)
  */
-function updateTooltipOnElement( domElement, titleElement ) {
+function updateTooltipOnElement( element, titleElement ) {
 	var oldTitle = titleElement.title,
 		rawTitle = oldTitle.replace( / \[.*?\]$/, '' ),
 		newTitle = rawTitle,
-		accessKeyLabel = getAccessKeyLabel( domElement );
+		accessKeyLabel = getAccessKeyLabel( element );
 
 	// don't add a title if the element didn't have one before
 	if ( !oldTitle ) {
@@ -133,28 +133,28 @@ function updateTooltipOnElement( domElement, titleElement ) {
  * Update the title for an element to show the correct access key label.
  *
  * @private
- * @param {HTMLElement} domElement DOM element with the accesskey
+ * @param {HTMLElement} element Element with the accesskey
  */
-function updateTooltip( domElement ) {
-	var id, $domElement, $label, $labelParent;
-	updateTooltipOnElement( domElement, domElement );
+function updateTooltip( element ) {
+	var id, $element, $label, $labelParent;
+	updateTooltipOnElement( element, element );
 
 	// update associated label if there is one
-	$domElement = $( domElement );
-	if ( $domElement.is( labelable ) ) {
+	$element = $( element );
+	if ( $element.is( labelable ) ) {
 		// Search it using 'for' attribute
-		id = domElement.id.replace( /"/g, '\\"' );
+		id = element.id.replace( /"/g, '\\"' );
 		if ( id ) {
 			$label = $( 'label[for="' + id + '"]' );
 			if ( $label.length === 1 ) {
-				updateTooltipOnElement( domElement, $label[0] );
+				updateTooltipOnElement( element, $label[0] );
 			}
 		}
 
 		// Search it as parent, because the form control can also inside the label element itself
-		$labelParent = $domElement.parents( 'label' );
+		$labelParent = $element.parents( 'label' );
 		if ( $labelParent.length === 1 ) {
-			updateTooltipOnElement( domElement, $labelParent[0] );
+			updateTooltipOnElement( element, $labelParent[0] );
 		}
 	}
 }
@@ -172,6 +172,8 @@ $.fn.updateTooltipAccessKeys = function () {
 };
 
 /**
+ * Exposed for testing.
+ *
  * @method updateTooltipAccessKeys_getAccessKeyPrefix
  * @inheritdoc #getAccessKeyPrefix
  */
