@@ -71,14 +71,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$from = is_null( $params['from'] ) ? null : $this->getCanonicalUserName( $params['from'] );
 		$to = is_null( $params['to'] ) ? null : $this->getCanonicalUserName( $params['to'] );
 
-		# MySQL doesn't seem to use 'equality propagation' here, so like the
-		# ActiveUsers special page, we have to use rc_user_text for some cases.
-		$userFieldToSort = $params['activeusers'] ? 'rc_user_text' : 'user_name';
-
-		$this->addWhereRange( $userFieldToSort, $dir, $from, $to );
+		$this->addWhereRange( 'user_name', $dir, $from, $to );
 
 		if ( !is_null( $params['prefix'] ) ) {
-			$this->addWhere( $userFieldToSort .
+			$this->addWhere( 'user_name' .
 				$db->buildLike( $this->getCanonicalUserName( $params['prefix'] ), $db->anyString() ) );
 		}
 
@@ -156,19 +152,19 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 		if ( $params['activeusers'] ) {
 			global $wgActiveUserDays;
-			$this->addTables( 'recentchanges' );
 
-			$this->addJoinConds( array( 'recentchanges' => array(
-				'INNER JOIN', 'rc_user_text=user_name'
-			) ) );
-
-			$this->addFields( array( 'recentedits' => 'COUNT(*)' ) );
-
-			$this->addWhere( 'rc_log_type IS NULL OR rc_log_type != ' . $db->addQuotes( 'newusers' ) );
 			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays * 24 * 3600 );
-			$this->addWhere( 'rc_timestamp >= ' . $db->addQuotes( $timestamp ) );
-
-			$this->addOption( 'GROUP BY', $userFieldToSort );
+			$this->addFields( array(
+				'recentedits' => '(' . $db->selectSQLText(
+					'recentchanges',
+					'COUNT(*)',
+					array(
+						'rc_user_text = user_name',
+						'rc_log_type IS NULL OR rc_log_type != ' . $db->addQuotes( 'newusers' ),
+						'rc_timestamp >= ' . $db->addQuotes( $timestamp ),
+					)
+				) . ')' )
+			);
 		}
 
 		$this->addOption( 'LIMIT', $sqlLimit );
@@ -204,8 +200,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			if ( $lastUser !== $row->user_name ) {
 				// Save the last pass's user data
 				if ( is_array( $lastUserData ) ) {
-					$fit = $result->addValue( array( 'query', $this->getModuleName() ),
-						null, $lastUserData );
+					if ( !$params['activeusers'] || $lastUserData['recenteditcount'] > 0 ) {
+						$fit = $result->addValue( array( 'query', $this->getModuleName() ),
+							null, $lastUserData );
+					} else {
+						$fit = true;
+					}
 
 					$lastUserData = null;
 
@@ -303,7 +303,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 		}
 
-		if ( is_array( $lastUserData ) ) {
+		if ( is_array( $lastUserData ) &&
+			( !$params['activeusers'] || $lastUserData['recenteditcount'] > 0 )
+		) {
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ),
 				null, $lastUserData );
 			if ( !$fit ) {
