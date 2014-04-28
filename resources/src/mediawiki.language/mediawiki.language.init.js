@@ -12,15 +12,16 @@
 	 */
 	mw.language = {
 		/**
-		 * Language-related data (keyed by language, contains instances of mw.Map). Loaded dynamically
-		 * (see ResourceLoaderLanguageDataModule in PHP docs, aka mediawiki.language.data module).
+		 * Language-related data (keyed by language, contains instances of mw.Map).
+		 * Loaded dynamically (see ResourceLoaderLanguageDataModule class in PHP, registered
+		 * as mediawiki.language.data on the client).
 		 *
 		 * To set data:
 		 *
 		 *     // Override, extend or create the language data object of 'nl'
 		 *     mw.language.setData( 'nl', 'myKey', 'My value' );
 		 *
-		 *     // Set multiple values at once
+		 *     // Set multiple key/values pairs at once
 		 *     mw.language.setData( 'nl', { foo: 'X', bar: 'Y' } );
 		 *
 		 * To get GrammarForms data for language 'nl':
@@ -47,8 +48,8 @@
 		 *
 		 * @param {string} langCode
 		 * @param {string} dataKey
-		 * @return {Mixed} Value stored in the mw.Map (or `undefined` if there is no map for the specified
-		 *  langCode).
+		 * @return {Mixed} Value stored in the mw.Map (or `undefined` if there is no map for the
+		 *  specified langCode)
 		 */
 		getData: function ( langCode, dataKey ) {
 			var langData = mw.language.data;
@@ -64,8 +65,8 @@
 		 * Creates the data mw.Map if there isn't one for the specified language already.
 		 *
 		 * @param {string} langCode
-		 * @param {string|Object} dataKey Key or object of key/values.
-		 * @param {Mixed} value Value for dataKey, ignored if dataKey is an object.
+		 * @param {string|Object} dataKey Key or object of key/values
+		 * @param {Mixed} [value] Value for dataKey, omit if dataKey is an object
 		 */
 		setData: function ( langCode, dataKey, value ) {
 			var langData = mw.language.data;
