@@ -198,7 +198,9 @@ class ModernTemplate extends MonoBookTemplate {
 		</div>
 
 		<?php $this->printTrail(); ?>
-		</body></html>
+
+	</body>
+</html>
 		<?php
 		wfRestoreWarnings();
 	} // end of execute() method

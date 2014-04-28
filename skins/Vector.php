@@ -321,8 +321,8 @@ class VectorTemplate extends BaseTemplate {
 		</div>
 		<?php $this->printTrail(); ?>
 
-		</body>
-		</html>
+	</body>
+</html>
 	<?php
 	}
 
