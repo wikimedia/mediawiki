@@ -2274,6 +2274,8 @@ class WikiPage implements Page, IDBAccessObject {
 		$revision = new Revision( array(
 			'title'      => $this->getTitle(), // for determining the default content model
 			'page'       => $this->getId(),
+			'user_text'  => $user->getName(),
+			'user'       => $user->getId(),
 			'text'       => $serialized,
 			'length'     => $content->getSize(),
 			'comment'    => $comment,
