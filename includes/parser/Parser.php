@@ -4650,7 +4650,7 @@ class Parser {
 		# which may corrupt this parser instance via its wfMessage()->text() call-
 
 		# Signatures
-		$sigText = $this->getUserSig( $user );
+		$sigText = '<span class="mw-signature">' . $this->getUserSig( $user ) . '</span>';
 		$text = strtr( $text, array(
 			'~~~~~' => $d,
 			'~~~~' => "$sigText $d",
