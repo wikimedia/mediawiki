@@ -153,7 +153,16 @@ mw.log.deprecate( win, 'escapeQuotesHTML', $.noop, 'Use mw.html instead.' );
  * @deprecated since 1.17 Use mediawiki.notify instead
  * @param {string|HTMLElement} message To be put inside the message box
  */
-mw.log.deprecate( win, 'jsMsg', mw.util.jsMessage, 'Use mediawiki.notify instead.' );
+mw.log.deprecate( win, 'jsMsg', function ( message ) {
+	if ( !arguments.length || message === '' || message === null ) {
+		return true;
+	}
+	if ( typeof message !== 'object' ) {
+		message = $.parseHTML( message );
+	}
+	mw.notify( message, { autoHide: true, tag: 'legacy' } );
+	return true;
+}, 'Use mediawiki.notify instead.' );
 
 /**
  * Misc. utilities
