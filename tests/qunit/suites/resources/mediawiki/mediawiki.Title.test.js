@@ -74,6 +74,7 @@
 			'Foo/.../Sandbox',
 			'Sandbox/...',
 			'A~~',
+			':A',
 			// Length is 256 total, but only title part matters
 			'Category:' + repeat( 'x', 248 ),
 			repeat( 'x', 252 )
