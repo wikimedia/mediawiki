@@ -471,7 +471,7 @@ var mw = ( function ( $, undefined ) {
 		 *
 		 * This was reserved for future use but never ended up being used.
 		 *
-		 * @deprecated since 1.22: Let deprecated identifiers keep their original name
+		 * @deprecated since 1.22 Let deprecated identifiers keep their original name
 		 *  and use mw.log#deprecate to create an access container for tracking.
 		 * @property
 		 */
