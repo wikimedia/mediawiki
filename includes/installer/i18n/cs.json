@@ -317,7 +317,7 @@
 	"config-download-localsettings": "Stáhnout <code>LocalSettings.php</code>",
 	"config-help": "nápověda",
 	"config-nofile": "Soubor „$1“ nelze nalézt. Byl smazán?",
-	"config-extension-link": "Věděli jste, že vaše wiki podporuje [//www.mediawiki.org/wiki/Manual:Extensions rozšíření]?\n\nMůžete procházet [//www.mediawiki.org/wiki/Category:Extensions_by_category rozšíření po kategoriích] nebo si prohlédnout [//www.mediawiki.org/wiki/Extension_Matrix Matici rozšíření] obsahující úplný seznam.",
+	"config-extension-link": "Věděli jste, že vaše wiki podporuje [//www.mediawiki.org/wiki/Manual:Extensions rozšíření]?\n\nMůžete si prohlédnout [//www.mediawiki.org/wiki/Category:Extensions_by_category seznam rozšíření po kategoriích].",
 	"mainpagetext": "'''MediaWiki byla úspěšně nainstalována.'''",
 	"mainpagedocfooter": "[//meta.wikimedia.org/wiki/Help:Contents Uživatelská příručka] vám napoví, jak MediaWiki používat.\n\n== Začínáme ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Nastavení konfigurace]\n* [//www.mediawiki.org/wiki/Manual:FAQ Často kladené otázky o MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-mailová konference oznámení MediaWiki]\n* [//www.mediawiki.org/wiki/Localisation#Translation_resources Překlad MediaWiki do vašeho jazyka]"
 }
