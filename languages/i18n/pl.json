@@ -1534,7 +1534,7 @@
 	"doubleredirects": "Podwójne przekierowania",
 	"doubleredirectstext": "Lista zawiera strony z przekierowaniami do stron, które przekierowują do innej strony.\nKażdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, do którego prowadzi drugie przekierowanie. Ostatni link prowadzi zazwyczaj do strony, do której powinna w rzeczywistości przekierowywać pierwsza strona.\n<del>Skreślenie</del> oznacza naprawienie przekierowania.",
 	"double-redirect-fixed-move": "Naprawa podwójnego przekierowania [[$1]] → [[$2]]",
-	"double-redirect-fixed-maintenance": "Naprawiono podwójne przekierowanie z [[$1]] do [[$2]].",
+	"double-redirect-fixed-maintenance": "Automatyczna naprawa podwójnego przekierowania podczas prac konserwacyjnych z [[$1]] na [[$2]].",
 	"double-redirect-fixer": "Naprawiacz przekierowań",
 	"brokenredirects": "Zerwane przekierowania",
 	"brokenredirectstext": "Poniższe przekierowania wskazują na nieistniejące strony.",

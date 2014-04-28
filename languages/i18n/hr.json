@@ -1134,7 +1134,7 @@
 	"rc_categories": "Ograniči na kategorije (odvojene znakom  \"|\")",
 	"rc_categories_any": "Sve",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bajt|bajta|bajtova}} poslije uređivanja",
-	"newsectionsummary": "/* $1 */ Novi odlomak",
+	"newsectionsummary": "/* $1 */ novi odlomak",
 	"rc-enhanced-expand": "Pokaži detalje (potreban JavaScript)",
 	"rc-enhanced-hide": "Sakrij detalje",
 	"rc-old-title": "izvorno ime bilo je \"$1\"",
