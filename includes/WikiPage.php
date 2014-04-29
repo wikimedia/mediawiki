@@ -2173,19 +2173,17 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( !$options['changed'] ) {
 			$good = 0;
-			$total = 0;
 		} elseif ( $options['created'] ) {
 			$good = (int)$this->isCountable( $editInfo );
-			$total = 1;
 		} elseif ( $options['oldcountable'] !== null ) {
 			$good = (int)$this->isCountable( $editInfo ) - (int)$options['oldcountable'];
-			$total = 0;
 		} else {
 			$good = 0;
-			$total = 0;
 		}
+		$edits = $options['changed'] ? 1 : 0;
+		$total = $options['created'] ? 1 : 0;
 
-		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, $good, $total ) );
+		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, $edits, $good, $total ) );
 		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $content ) );
 
 		// If this is another user's talk page, update newtalk.
