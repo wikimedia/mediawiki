@@ -3042,6 +3042,38 @@ should be left alone
 </p>
 !! end
 
+!! test
+Definition Lists: Hacky use to indent tables, with comments (bug 63979)
+!! wikitext
+<!-- foo -->
+::{|
+|foo
+|bar
+|}<!-- bar -->
+this text
+should be left alone
+!! html/parsoid
+<!-- foo -->
+<dl><dd><dl><dd><table><tr>
+<td>foo</td>
+<td>bar</td>
+</tr></table><!-- bar --></dd></dl></dd></dl>
+<p>this text
+should be left alone</p>
+!! end
+
+!! test
+Definition Lists: Hacky use to indent tables, with comment before table
+!! wikitext
+::<!-- foo -->{|
+|foo
+|}
+!! html/parsoid
+<dl><dd><dl><dd><!-- foo --><table><tr>
+<td>foo</td>
+</tr></table></dd></dl></dd></dl>
+!! end
+
 # Bug 52473
 !! test
 Definition Lists: Hacky use to indent tables (WS-insensitive)
@@ -3645,17 +3677,22 @@ Non-bracketed: http://example.com
 </p>
 !! end
 
+# parsoid doesn't explicitly mark autonumbered links, see bug 53505
 !! test
 External links: numbered
 !! wikitext
 Numbered: [http://example.com]
 Numbered: [http://example.net]
 Numbered: [http://example.com]
-!! html
+!! html/php
 <p>Numbered: <a rel="nofollow" class="external autonumber" href="http://example.com">[1]</a>
 Numbered: <a rel="nofollow" class="external autonumber" href="http://example.net">[2]</a>
 Numbered: <a rel="nofollow" class="external autonumber" href="http://example.com">[3]</a>
 </p>
+!! html/parsoid
+<p>Numbered: <a rel="mw:ExtLink" href="http://example.com"></a>
+Numbered: <a rel="mw:ExtLink" href="http://example.net"></a>
+Numbered: <a rel="mw:ExtLink" href="http://example.com"></a></p>
 !!end
 
 !! test
@@ -3685,28 +3722,50 @@ http://example.com/1$2345
 </p>
 !! end
 
+# parsoid doesn't explicitly mark autonumbered links, see bug 53505
 !! test
-External links: dollar sign in URL (named)
+External links: dollar sign in URL (autonumber)
 !! wikitext
 [http://example.com/1$2345]
-!! html
+!! html/php
 <p><a rel="nofollow" class="external autonumber" href="http://example.com/1$2345">[1]</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/1$2345"></a></p>
 !!end
 
 !! test
 External links: open square bracket forbidden in URL (bug 4377)
+!! options
+parsoid=wt2html,wt2wt,html2html
 !! wikitext
 http://example.com/1[2345
-!! html
+!! html/php
 <p><a rel="nofollow" class="external free" href="http://example.com/1">http://example.com/1</a>[2345
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/1">http://example.com/1</a>[2345</p>
 !! end
 
 !! test
 External links: open square bracket forbidden in URL (named) (bug 4377)
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 [http://example.com/1[2345]
+!! html/php
+<p><a rel="nofollow" class="external text" href="http://example.com/1">[2345</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/1">[2345</a></p>
+!!end
+
+# parsoid adds a space before the link name
+!! test
+External links: open square bracket forbidden in URL (named) (bug 4377)
+Parsoid variant.
+!! wikitext
+[http://example.com/1 [2345]
 !! html
 <p><a rel="nofollow" class="external text" href="http://example.com/1">[2345</a>
 </p>
@@ -3750,13 +3809,16 @@ External links: protocol-relative URL in brackets
 </p>
 !! end
 
+# parsoid doesn't explicitly mark autonumbered links, see bug 53505
 !! test
 External links: protocol-relative URL in brackets without text
 !! wikitext
 [//example.com]
-!! html
+!! html/php
 <p><a rel="nofollow" class="external autonumber" href="//example.com">[1]</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="//example.com"></a></p>
 !! end
 
 !! test
@@ -3882,54 +3944,95 @@ Old &amp; use: http://x&y
 External links: encoded ampersand
 !! wikitext
 Old &amp; use: http://x&amp;y
-!! html
+!! html/php
 <p>Old &amp; use: <a rel="nofollow" class="external free" href="http://x&amp;y">http://x&amp;y</a>
 </p>
+!! html/parsoid
+<p>Old <span typeof="mw:Entity">&amp;</span> use: <a rel="mw:ExtLink" href="http://x&amp;y">http://x&amp;y</a></p>
 !! end
 
 !! test
 External links: encoded equals (bug 6102)
 !! wikitext
 http://example.com/?foo&#61;bar
-!! html
+!! html/php
 <p><a rel="nofollow" class="external free" href="http://example.com/?foo=bar">http://example.com/?foo=bar</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/?foo=bar">http://example.com/?foo=bar</a></p>
 !! end
+
+##
+## Note that parsoid doesn't explicit mark autonumbered links, nor
+## does it number them.  As discussed in bug 53505, we can identify
+## autonumbered links via CSS.
+##
 
 !! test
 External links: [raw ampersand]
 !! wikitext
 Old &amp; use: [http://x&y]
-!! html
+!! html/php
 <p>Old &amp; use: <a rel="nofollow" class="external autonumber" href="http://x&amp;y">[1]</a>
 </p>
+!! html/parsoid
+<p>Old <span typeof="mw:Entity">&amp;</span> use: <a rel="mw:ExtLink" href="http://x&amp;y"></a></p>
 !! end
 
+# note that parsoid html is identical to [raw ampersand] case; so html2wt
+# mode will return the [raw ampersand] wikitext
 !! test
 External links: [encoded ampersand]
+!! options
+parsoid=wt2html,wt2wt,html2html
 !! wikitext
 Old &amp; use: [http://x&amp;y]
-!! html
+!! html/php
 <p>Old &amp; use: <a rel="nofollow" class="external autonumber" href="http://x&amp;y">[1]</a>
 </p>
+!! html/parsoid
+<p>Old <span typeof="mw:Entity">&amp;</span> use: <a rel="mw:ExtLink" href="http://x&amp;y"></a></p>
 !! end
 
 !! test
-External links: [encoded equals] (bug 6102)
+External links: [raw equals]
 !! wikitext
-[http://example.com/?foo&#61;bar]
-!! html
+[http://example.com/?foo=bar]
+!! html/php
 <p><a rel="nofollow" class="external autonumber" href="http://example.com/?foo=bar">[1]</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/?foo=bar"></a></p>
 !! end
 
+# note that parsoid html is identical to [raw equals] case; so html2wt
+# mode will return the [raw equals] wikitext
+!! test
+External links: [encoded equals] (bug 6102)
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+[http://example.com/?foo&#61;bar]
+!! html/php
+<p><a rel="nofollow" class="external autonumber" href="http://example.com/?foo=bar">[1]</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/?foo=bar"></a></p>
+!! end
+
+# xxx parsoid strips the IDN character, so the round-trip tests will
+#     obviously fail and are disabled. --cscott
 !! test
 External links: [IDN ignored character reference in hostname; strip it right off]
+!! options
+parsoid=wt2html,wt2wt,html2html
 !! wikitext
 [http://e&zwnj;xample.com/]
-!! html
+!! html/php
 <p><a rel="nofollow" class="external autonumber" href="http://example.com/">[1]</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/"></a></p>
 !! end
 
 # FIXME: This test (the IDN characters in the text of a link) is an inconsistency.
@@ -3949,13 +4052,19 @@ External links: [IDN ignored character reference in hostname; strip it right off
 #
 # All our love,
 # The Parsoid team.
+# xxx parsoid strips the IDN character, so the round-trip tests will
+#     obviously fail and are disabled. --cscott
 !! test
 External links: IDN ignored character reference in hostname; strip it right off
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 http://e&zwnj;xample.com/
-!! html
+!! html/php
 <p><a rel="nofollow" class="external free" href="http://example.com/">http://example.com/</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/">http://example.com/</a></p>
 !! end
 
 !! test
@@ -3967,13 +4076,16 @@ http://www.jpeg.org
 </p>
 !! end
 
+# parsoid doesn't explicitly mark autonumbered links, see bug 53505
 !! test
 External links: URL within URL (original bug 2)
 !! wikitext
 [http://www.unausa.org/newindex.asp?place=http://www.unausa.org/programs/mun.asp]
-!! html
+!! html/php
 <p><a rel="nofollow" class="external autonumber" href="http://www.unausa.org/newindex.asp?place=http://www.unausa.org/programs/mun.asp">[1]</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.unausa.org/newindex.asp?place=http://www.unausa.org/programs/mun.asp"></a></p>
 !! end
 
 !! test
@@ -4122,9 +4234,11 @@ Bug 2702: Mismatched <i>, <b> and <a> tags are invalid
 Bug 4781: %26 in URL
 !! wikitext
 http://www.example.com/?title=AT%26T
-!! html
+!! html/php
 <p><a rel="nofollow" class="external free" href="http://www.example.com/?title=AT%26T">http://www.example.com/?title=AT%26T</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.example.com/?title=AT%26T">http://www.example.com/?title=AT%26T</a></p>
 !! end
 
 # According to http://dev.w3.org/html5/spec/Overview.html#parsing-urls a plain
@@ -4133,18 +4247,22 @@ http://www.example.com/?title=AT%26T
 Bug 4781, 5267: %25 in URL
 !! wikitext
 http://www.example.com/?title=100%25_Bran
-!! html
+!! html/php
 <p><a rel="nofollow" class="external free" href="http://www.example.com/?title=100%25_Bran">http://www.example.com/?title=100%25_Bran</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.example.com/?title=100%25_Bran">http://www.example.com/?title=100%25_Bran</a></p>
 !! end
 
 !! test
 Bug 4781, 5267: %28, %29 in URL
 !! wikitext
 http://www.example.com/?title=Ben-Hur_%281959_film%29
-!! html
+!! html/php
 <p><a rel="nofollow" class="external free" href="http://www.example.com/?title=Ben-Hur_%281959_film%29">http://www.example.com/?title=Ben-Hur_%281959_film%29</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.example.com/?title=Ben-Hur_%281959_film%29">http://www.example.com/?title=Ben-Hur_%281959_film%29</a></p>
 !! end
 
 
@@ -4152,27 +4270,33 @@ http://www.example.com/?title=Ben-Hur_%281959_film%29
 Bug 4781: %26 in autonumber URL
 !! wikitext
 [http://www.example.com/?title=AT%26T]
-!! html
+!! html/php
 <p><a rel="nofollow" class="external autonumber" href="http://www.example.com/?title=AT%26T">[1]</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.example.com/?title=AT%26T"></a></p>
 !! end
 
 !! test
 Bug 4781, 5267: %26 in autonumber URL
 !! wikitext
 [http://www.example.com/?title=100%25_Bran]
-!! html
+!! html/php
 <p><a rel="nofollow" class="external autonumber" href="http://www.example.com/?title=100%25_Bran">[1]</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.example.com/?title=100%25_Bran"></a></p>
 !! end
 
 !! test
 Bug 4781, 5267: %28, %29 in autonumber URL
 !! wikitext
 [http://www.example.com/?title=Ben-Hur_%281959_film%29]
-!! html
+!! html/php
 <p><a rel="nofollow" class="external autonumber" href="http://www.example.com/?title=Ben-Hur_%281959_film%29">[1]</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.example.com/?title=Ben-Hur_%281959_film%29"></a></p>
 !! end
 
 
@@ -4180,13 +4304,15 @@ Bug 4781, 5267: %28, %29 in autonumber URL
 Bug 4781: %26 in bracketed URL
 !! wikitext
 [http://www.example.com/?title=AT%26T link]
-!! html
+!! html/php
 <p><a rel="nofollow" class="external text" href="http://www.example.com/?title=AT%26T">link</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.example.com/?title=AT%26T">link</a></p>
 !! end
 
 !! test
-Bug 4781, 5267: %26 in bracketed URL
+Bug 4781, 5267: %25 in bracketed URL
 !! wikitext
 [http://www.example.com/?title=100%25_Bran link]
 !! html
@@ -4198,10 +4324,56 @@ Bug 4781, 5267: %26 in bracketed URL
 Bug 4781, 5267: %28, %29 in bracketed URL
 !! wikitext
 [http://www.example.com/?title=Ben-Hur_%281959_film%29 link]
-!! html
+!! html/php
 <p><a rel="nofollow" class="external text" href="http://www.example.com/?title=Ben-Hur_%281959_film%29">link</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.example.com/?title=Ben-Hur_%281959_film%29">link</a></p>
 !! end
+
+# Note that parsoid does not munge anchor text; all non-space
+# characters are valid in HTML5 ids.
+!! test
+Anchor containing a #. (bug 63430)
+!! wikitext
+[[Main Page#And#Link]]
+!! html/php
+<p><a href="/wiki/Main_Page#And.23Link" title="Main Page">Main Page#And#Link</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Main_Page#And%23Link">Main Page#And#Link</a></p>
+!! end
+
+!! test
+External link containing a period in the anchor. (bug 63947)
+!! wikitext
+[//foo.org/bar#baz. bang]
+
+[//foo.org/bar. bang]
+!! html/php
+<p><a rel="nofollow" class="external text" href="//foo.org/bar#baz.">bang</a>
+</p><p><a rel="nofollow" class="external text" href="//foo.org/bar.">bang</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="//foo.org/bar#baz.">bang</a></p>
+<p><a rel="mw:ExtLink" href="//foo.org/bar.">bang</a></p>
+!! end
+
+!! test
+External link containing a single quote. (bug 63947)
+!! wikitext
+[//foo.org/bar'baz]
+
+[//foo.org/bar'baz bang]
+!! html/php
+<p><a rel="nofollow" class="external autonumber" href="//foo.org/bar'baz">[1]</a>
+</p><p><a rel="nofollow" class="external text" href="//foo.org/bar'baz">bang</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="//foo.org/bar'baz"></a></p>
+<p><a rel="mw:ExtLink" href="//foo.org/bar'baz">bang</a></p>
+!! end
+
 
 !! test
 External link containing double-single-quotes in text '' (bug 4598 sanity check)
@@ -4265,10 +4437,14 @@ Brackets in urls
 http://example.com/index.php?foozoid%5B%5D=bar
 
 http://example.com/index.php?foozoid&#x5B;&#x5D;=bar
-!! html
+!! html/php
 <p><a rel="nofollow" class="external free" href="http://example.com/index.php?foozoid%5B%5D=bar">http://example.com/index.php?foozoid%5B%5D=bar</a>
 </p><p><a rel="nofollow" class="external free" href="http://example.com/index.php?foozoid%5B%5D=bar">http://example.com/index.php?foozoid%5B%5D=bar</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/index.php?foozoid%5B%5D=bar">http://example.com/index.php?foozoid%5B%5D=bar</a></p>
+
+<p><a rel="mw:ExtLink" href="http://example.com/index.php?foozoid[]=bar">http://example.com/index.php?foozoid[]=bar</a></p>
 !! end
 
 !! test
@@ -4902,12 +5078,16 @@ Invalid attributes in table cell (bug 1830)
 !! end
 
 
+# The "|}" to close the table is missing from the input, so parsoid's
+# *2wt modes will fail.
 !! test
 Table security: embedded pipes (http://lists.wikimedia.org/mailman/htdig/wikitech-l/2006-April/022293.html)
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 {|
 | |[ftp://|x||]" onmouseover="alert(document.cookie)">test
-!! html
+!! html/php
 <table>
 <tr>
 <td>[<a rel="nofollow" class="external free" href="ftp://%7Cx">ftp://%7Cx</a></td>
@@ -4916,6 +5096,10 @@ Table security: embedded pipes (http://lists.wikimedia.org/mailman/htdig/wikitec
 </tr>
 </table>
 
+!! html/parsoid
+<table><tbody>
+<tr>
+<td><a rel="mw:ExtLink" href="ftp://|x||"></a>" onmouseover="alert(document.cookie)">test</td></tr></tbody></table>
 !! end
 
 
@@ -5267,6 +5451,17 @@ Piped link with comment in link text
 !! end
 
 !! test
+Piped link with multiple pipe characters in link text
+!! wikitext
+[[Main Page||The|Main|Page|]]
+!! html/php
+<p><a href="/wiki/Main_Page" title="Main Page">|The|Main|Page|</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="Main_Page">|The|Main|Page|</a></p>
+!! end
+
+!! test
 Broken link
 !! wikitext
 [[Zigzagzogzagzig]]
@@ -5454,22 +5649,37 @@ Link containing }
 </p>
 !! end
 
+!! article
+7% Solution
+!! text
+Just a test of an article title containing a percent.
+!! endarticle
+
 !! test
 Link containing % (not as a hex sequence)
 !! wikitext
 [[7% Solution]]
-!! html
-<p><a href="/index.php?title=7%25_Solution&amp;action=edit&amp;redlink=1" class="new" title="7% Solution (page does not exist)">7% Solution</a>
+!! html/php
+<p><a href="/wiki/7%25_Solution" title="7% Solution">7% Solution</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./7%25_Solution">7% Solution</a></p>
 !! end
 
+# note that the parsoid HTML is identical to the previous test output,
+# so the previous test ensures that the html2wt mode will generate the
+# "not as a hex sequence" wikitext.
 !! test
 Link containing % as a single hex sequence interpreted to char
+!! options
+parsoid=wt2wt,wt2html,html2html
 !! wikitext
 [[7%25 Solution]]
-!! html
-<p><a href="/index.php?title=7%25_Solution&amp;action=edit&amp;redlink=1" class="new" title="7% Solution (page does not exist)">7% Solution</a>
+!! html/php
+<p><a href="/wiki/7%25_Solution" title="7% Solution">7% Solution</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./7%25_Solution">7% Solution</a></p>
 !!end
 
 !! test
@@ -5481,14 +5691,18 @@ Link containing % as a double hex sequence interpreted to hex sequence
 </p>
 !!end
 
+# note that parsoid does not munge anchor text; all non-space
+# characters are valid in HTML5 anchors.
 !! test
 Link containing "#<" and "#>" % as a hex sequences- these are valid section anchors
 Example for such a section: == < ==
 !! wikitext
 [[%23%3c]][[%23%3e]]
-!! html
+!! html/php
 <p><a href="#.3C">#&lt;</a><a href="#.3E">#&gt;</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Main%20Page#%3C">#&lt;</a><a rel="mw:WikiLink" href="./Main%20Page#%3E">#></a></p>
 !! end
 
 !! test
@@ -5504,9 +5718,11 @@ Link containing "<#" and ">#" as a hex sequences
 Link containing an equals sign
 !! wikitext
 [[Special:BookSources/isbn=4-00-026157-6]]
-!! html
+!! html/php
 <p><a href="/wiki/Special:BookSources/isbn%3D4-00-026157-6" title="Special:BookSources/isbn=4-00-026157-6">Special:BookSources/isbn=4-00-026157-6</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Special:BookSources/isbn=4-00-026157-6">Special:BookSources/isbn=4-00-026157-6</a></p>
 !! end
 
 !! article
@@ -5522,33 +5738,39 @@ Just a test of an article title containing a tilde.
 Link containing a tilde
 !! wikitext
 [[Foo~bar]]
-!! html
+!! html/php
 <p><a href="/wiki/Foo%7Ebar" title="Foo~bar">Foo~bar</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Foo~bar">Foo~bar</a></p>
 !! end
 
 !! test
 Link containing double-single-quotes '' (bug 4598)
 !! wikitext
 [[Lista d''e paise d''o munno]]
-!! html
+!! html/php
 <p><a href="/index.php?title=Lista_d%27%27e_paise_d%27%27o_munno&amp;action=edit&amp;redlink=1" class="new" title="Lista d''e paise d''o munno (page does not exist)">Lista d''e paise d''o munno</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Lista_d''e_paise_d''o_munno">Lista d''e paise d''o munno</a></p>
 !! end
 
 !! test
 Link containing double-single-quotes '' in text (bug 4598 sanity check)
 !! wikitext
 Some [[Link|pretty ''italics'' and stuff]]!
-!! html
+!! html/php
 <p>Some <a href="/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">pretty <i>italics</i> and stuff</a>!
 </p>
+!! html/parsoid
+<p>Some <a rel="mw:WikiLink" href="Link">pretty <i>italics</i> and stuff</a>!</p>
 !! end
 
 !! test
 Link containing double-single-quotes '' in text embedded in italics (bug 4598 sanity check)
 !! wikitext
-''Some [[Link|pretty ''italics'' and stuff]]!
+''Some [[Link|pretty ''italics'' and stuff]]!''
 !! html
 <p><i>Some <a href="/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">pretty <i>italics</i> and stuff</a>!</i>
 </p>
@@ -5564,12 +5786,17 @@ Link with double quotes in title part (literal) and alternate part (interpreted)
 [[''Pentecoste''|Pentecoste]]
 
 [[''Pentecoste''|''Pentecoste'']]
-!! html
+!! html/php
 <p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Denys_Savchenko_%27%27Pentecoste%27%27.jpg" class="new" title="File:Denys Savchenko &#39;&#39;Pentecoste&#39;&#39;.jpg">File:Denys Savchenko <i>Pentecoste</i>.jpg</a>
 </p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)">''Pentecoste''</a>
 </p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)">Pentecoste</a>
 </p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)"><i>Pentecoste</i></a>
 </p>
+!! html/parsoid
+<meta typeof="mw:Placeholder"/>
+<p><a rel="mw:WikiLink" href="''Pentecoste''">''Pentecoste''</a></p>
+<p><a rel="mw:WikiLink" href="''Pentecoste''">Pentecoste</a></p>
+<p><a rel="mw:WikiLink" href="''Pentecoste''"><i>Pentecoste</i></a></p>
 !! end
 
 !! test
@@ -5591,9 +5818,11 @@ Broken image links with HTML captions (bug 39700)
 Plain link to URL
 !! wikitext
 [[http://www.example.com]]
-!! html
+!! html/php
 <p>[<a rel="nofollow" class="external autonumber" href="http://www.example.com">[1]</a>]
 </p>
+!! html/parsoid
+<p>[<a rel="mw:ExtLink" href="http://www.example.com"></a>]</p>
 !! end
 
 !! test
@@ -5609,9 +5838,11 @@ Plain link to URL with link text
 Plain link to protocol-relative URL
 !! wikitext
 [[//www.example.com]]
-!! html
+!! html/php
 <p>[<a rel="nofollow" class="external autonumber" href="//www.example.com">[1]</a>]
 </p>
+!! html/parsoid
+<p>[<a rel="mw:ExtLink" href="//www.example.com"></a>]</p>
 !! end
 
 !! test
@@ -5651,29 +5882,36 @@ Plain link to page with question mark in title
 Piped link to URL
 !! wikitext
 Piped link to URL: [[http://www.example.com|an example URL]]
-!! html
+!! html/php
 <p>Piped link to URL: [<a rel="nofollow" class="external text" href="http://www.example.com%7Can">example URL</a>]
 </p>
+!! html/parsoid
+<p>Piped link to URL: [<a rel="mw:ExtLink" href="http://www.example.com|an">example URL</a>]</p>
 !! end
 
 !! test
 BUG 2: [[page|http://url/]] should link to page, not http://url/
 !! wikitext
 [[Main Page|http://url/]]
-!! html
+!! html/php
 <p><a href="/wiki/Main_Page" title="Main Page">http://url/</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Main_Page">http://url/</a></p>
 !! end
 
+# Parsoid does not mark self-links, by design.
 !! test
 BUG 337: Escaped self-links should be bold
 !! options
 title=[[Bug462]]
 !! wikitext
 [[Bu&#103;462]] [[Bug462]]
-!! html
+!! html/php
 <p><strong class="selflink">Bu&#103;462</strong> <strong class="selflink">Bug462</strong>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Bug462">Bug462</a> <a rel="mw:WikiLink" href="./Bug462">Bug462</a></p>
 !! end
 
 !! test
@@ -5997,8 +6235,6 @@ Different interwiki prefixes mapping to the same URL
 
 !! test
 Interwiki links that cannot be represented in wiki syntax
-!! options
-parsoid
 !! wikitext
 [[meatball:ok]]
 [[meatball:ok#foo|ok with fragment]]
@@ -6006,10 +6242,10 @@ parsoid
 [http://de.wikipedia.org/wiki/Foo?action=history has query]
 [http://de.wikipedia.org/wiki/#foo is just fragment]
 
-!! html
+!! html/parsoid
 <p><a rel="mw:ExtLink" href="http://www.usemod.com/cgi-bin/mb.pl?ok">meatball:ok</a>
 <a rel="mw:ExtLink" href="http://www.usemod.com/cgi-bin/mb.pl?ok#foo">ok with fragment</a>
-<a rel="mw:ExtLink" href="http://www.usemod.com/cgi-bin/mb.pl?ok_as_well%3F">ok ending with ? mark</a>
+<a rel="mw:ExtLink" href="http://www.usemod.com/cgi-bin/mb.pl?ok_as_well?">ok ending with ? mark</a>
 <a rel="mw:ExtLink" href="http://de.wikipedia.org/wiki/Foo?action=history">has query</a>
 <a rel="mw:ExtLink" href="http://de.wikipedia.org/wiki/#foo">is just fragment</a></p>
 !! end
@@ -8748,7 +8984,7 @@ parsoid
 !!end
 
 !!test
-Templates: Inline Text: 1. Multiple tmeplate uses
+Templates: Inline Text: 1. Multiple template uses
 !! wikitext
 {{echo|Foo}}bar{{echo|baz}}
 !! html
@@ -9263,6 +9499,33 @@ Templates: Ugly templates: 4. newline-only template parameter inconsistency
 </p>
 !! end
 
+# Bug 64017 -- ugly wikitext with fostered content generates two template ranges that
+# have a true overlap (T1-start - T2-start - T1-end - T2-end).
+!! test
+Templates: Ugly templates: 5. Template encapsulation test: Non-trivial overlap of template ranges is properly handled
+!! wikitext
+{{echo|<table>}}
+{{echo|<div>foo}}
+{{echo|</table>}}
+!! html/parsoid
+<div about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;table>"}},"i":0}},"\n",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;div>foo"}},"i":1}},"\n",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;/table>"}},"i":2}}]}' data-parsoid='{"stx":"html","autoInsertedEnd":true,"pi":[[{"k":"1","spc":["","","",""]}],[{"k":"1","spc":["","","",""]}],[{"k":"1","spc":["","","",""]}]]}'>foo
+</div><table about="#mwt1" data-parsoid='{"stx":"html"}'>
+</table>
+!! end
+
+# Bug 64017 -- ugly wikitext with fostered content generates two template ranges
+# that are "identical" and generate nesting cycles in the algorithm
+!! test
+Templates: Ugly templates: 6. Template encapsulation test: Cyclical nesting of template ranges is properly handled
+!! wikitext
+{{echo|<table><tr><td><table>}}
+{{echo|<div>}}
+{{echo|</div>}}
+!! html/parsoid
+<table about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;table>&lt;tr>&lt;td>&lt;table>"}},"i":0}},"\n",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;div>"}},"i":1}},"\n",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;/div>"}},"i":2}}]}' data-parsoid='{"stx":"html","autoInsertedEnd":true,"pi":[[{"k":"1","spc":["","","",""]}],[{"k":"1","spc":["","","",""]}],[{"k":"1","spc":["","","",""]}]]}'><tbody><tr data-parsoid='{"stx":"html"}'><td data-parsoid='{"stx":"html"}'><div data-parsoid='{"stx":"html"}'>
+</div><table about="#mwt1" data-parsoid='{"stx":"html"}'>
+</table></td></tr></tbody></table>
+!! end
 
 !!test
 Parser Functions: 1. Simple example
@@ -10473,6 +10736,8 @@ parsoid=wt2html,wt2wt,html2html
 
 !! test
 Image with 'frameless' first.
+!! options
+parsoid=wt2html,wt2wt,html2html
 !! wikitext
 [[File:Foobar.jpg|frameless|caption]]
 
@@ -10484,10 +10749,16 @@ Image with 'frameless' first.
 </p><p><a href="/wiki/File:Foobar.jpg" class="image" title="caption"><img alt="caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>
 </p><p><a href="/wiki/File:Foobar.jpg" class="image" title="caption"><img alt="caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>
 </p>
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:Image/Frameless" data-mw='{"caption":"caption"}'><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="25" width="220"/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Image/Frameless" data-mw='{"caption":"caption"}'><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="25" width="220"/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Image/Frameless" data-mw='{"caption":"caption"}'><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="25" width="220"/></a></span></p>
 !! end
 
 !! test
 Image with 'frame' first.
+!! options
+parsoid=wt2html,wt2wt,html2html
 !! wikitext
 [[File:Foobar.jpg|frame|caption]]
 [[File:Foobar.jpg|frame|frameless|caption]]
@@ -10497,10 +10768,14 @@ Image with 'frame' first.
 <div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption">caption</div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption">caption</div></div></div>
 
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:Image/Frame"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"/></a><figcaption>caption</figcaption></figure><figure class="mw-default-size" typeof="mw:Image/Frame"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"/></a><figcaption>caption</figcaption></figure><figure class="mw-default-size" typeof="mw:Image/Frame"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"/></a><figcaption>caption</figcaption></figure>
 !! end
 
 !! test
 Image with 'thumb' first.
+!! options
+parsoid=wt2html,wt2wt,html2html
 !! wikitext
 [[File:Foobar.jpg|thumb|caption]]
 [[File:Foobar.jpg|thumb|frameless|caption]]
@@ -10510,6 +10785,8 @@ Image with 'thumb' first.
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>caption</div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>caption</div></div></div>
 
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="25" width="220"/></a><figcaption>caption</figcaption></figure><figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="25" width="220"/></a><figcaption>caption</figcaption></figure><figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="25" width="220"/></a><figcaption>caption</figcaption></figure>
 !! end
 
 ###################
@@ -12612,27 +12889,33 @@ Attribute test: no value
 Bug 2095: link with three closing brackets
 !! wikitext
 [[Main Page]]]
-!! html
+!! html/php
 <p><a href="/wiki/Main_Page" title="Main Page">Main Page</a>]
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Main_Page">Main Page</a>]</p>
 !! end
 
 !! test
 Bug 2095: link with pipe and three closing brackets
 !! wikitext
 [[Main Page|link]]]
-!! html
+!! html/php
 <p><a href="/wiki/Main_Page" title="Main Page">link</a>]
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Main_Page">link</a>]</p>
 !! end
 
 !! test
 Bug 2095: link with pipe and three closing brackets, version 2
 !! wikitext
 [[Main Page|[http://example.com/]]]
-!! html
+!! html/php
 <p><a href="/wiki/Main_Page" title="Main Page">[http://example.com/]</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Main_Page">[http://example.com/]</a></p>
 !! end
 
 
@@ -13565,6 +13848,7 @@ HTML ordered list item with parameters oddity
 
 !! end
 
+# parsoid doesn't explicitly mark autonumbered links, see bug 53505
 !!test
 bug 5918: autonumbering
 !! wikitext
@@ -13577,13 +13861,19 @@ ftp://inlineftp
 [mailto:enclosed@mail.tld]
 
 mailto:inline@mail.tld
-!! html
+!! html/php
 <p><a rel="nofollow" class="external autonumber" href="http://first/">[1]</a> <a rel="nofollow" class="external autonumber" href="http://second">[2]</a> <a rel="nofollow" class="external autonumber" href="ftp://ftp">[3]</a>
 </p><p><a rel="nofollow" class="external free" href="ftp://inlineftp">ftp://inlineftp</a>
 </p><p><a rel="nofollow" class="external text" href="mailto:enclosed@mail.tld">With target</a>
 </p><p><a rel="nofollow" class="external autonumber" href="mailto:enclosed@mail.tld">[4]</a>
 </p><p><a rel="nofollow" class="external free" href="mailto:inline@mail.tld">mailto:inline@mail.tld</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://first/"></a> <a rel="mw:ExtLink" href="http://second"></a> <a rel="mw:ExtLink" href="ftp://ftp"></a></p>
+<p><a rel="mw:ExtLink" href="ftp://inlineftp">ftp://inlineftp</a></p>
+<p><a rel="mw:ExtLink" href="mailto:enclosed@mail.tld">With target</a></p>
+<p><a rel="mw:ExtLink" href="mailto:enclosed@mail.tld"></a></p>
+<p><a rel="mw:ExtLink" href="mailto:inline@mail.tld">mailto:inline@mail.tld</a></p>
 !! end
 
 
@@ -14786,17 +15076,39 @@ xxx
 !! test
 Handling of &#x0A; in URLs
 !! wikitext
-**irc://&#x0A;a
-!! html
+** irc://&#x0A;a
+!! html/php
 <ul>
 <li><ul>
-<li><a rel="nofollow" class="external free" href="irc://%0Aa">irc://%0Aa</a>
+<li> <a rel="nofollow" class="external free" href="irc://%0Aa">irc://%0Aa</a>
 </li>
 </ul>
 </li>
 </ul>
 
-!!end
+!! html/parsoid
+<ul><li><ul><li> <a rel="mw:ExtLink" href="irc://
+a">irc://
+a</a></li></ul></li></ul>
+!! end
+
+!! test
+Handling of %0A in URLs
+!! wikitext
+** irc://%0Aa
+!! html/php
+<ul>
+<li><ul>
+<li> <a rel="nofollow" class="external free" href="irc://%0Aa">irc://%0Aa</a>
+</li>
+</ul>
+</li>
+</ul>
+
+!! html/parsoid
+<ul><li><ul><li> <a rel="mw:ExtLink" href="irc://%0Aa">irc://%0Aa</a></li></ul></li></ul>
+!! end
+
 
 # The PHP parser strips the empty tags out for giggles; parsoid doesn't.
 !! test
@@ -15136,29 +15448,39 @@ foobar.jpg
 
 !! test
 HTML Hex character encoding (spells the word "JavaScript")
+!! options
+parsoid=wt2html,wt2wt,html2html
 !! wikitext
 &#x4A;&#x061;&#x0076;&#x00061;&#x000053;&#x0000063;&#114;&#x0000069;&#00000112;&#x0000000074;
-!! html
+!! html/php
 <p>&#x4a;&#x61;&#x76;&#x61;&#x53;&#x63;&#114;&#x69;&#112;&#x74;
 </p>
+!! html/parsoid
+<p><span typeof="mw:Entity">J</span><span typeof="mw:Entity">a</span><span typeof="mw:Entity">v</span><span typeof="mw:Entity">a</span><span typeof="mw:Entity">S</span><span typeof="mw:Entity">c</span><span typeof="mw:Entity">r</span><span typeof="mw:Entity">i</span><span typeof="mw:Entity">p</span><span typeof="mw:Entity">t</span></p>
 !! end
 
 !! test
 HTML Hex character encoding bogus encoding (bug 26437 regression check)
 !! wikitext
 &#xsee;&#XSEE;
-!! html
+!! html/php
 <p>&amp;#xsee;&amp;#XSEE;
 </p>
+!! html/parsoid
+<p>&amp;#xsee;&amp;#XSEE;</p>
 !! end
 
 !! test
 HTML Hex character encoding mixed case
+!! options
+parsoid=wt2html,wt2wt,html2html
 !! wikitext
 &#xEE;&#Xee;
-!! html
+!! html/php
 <p>&#xee;&#xee;
 </p>
+!! html/parsoid
+<p><span typeof="mw:Entity">î</span><span typeof="mw:Entity">î</span></p>
 !! end
 
 !! test
@@ -15362,11 +15684,13 @@ disabled
 !! test
 Images with the "|" character in the comment
 !! wikitext
-[[image:Foobar.jpg|thumb|An [http://test/?param1=|left|&param2=|x external] URL]]
-!! html
+[[File:Foobar.jpg|thumb|An [http://test/?param1=|left|&param2=|x external] URL]]
+!! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>An <a rel="nofollow" class="external text" href="http://test/?param1=%7Cleft%7C&amp;param2=%7Cx">external</a> URL</div></div></div>
 
-!!end
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="25" width="220"/></a><figcaption>An <a rel="mw:ExtLink" href="http://test/?param1=|left|&amp;param2=|x">external</a> URL</figcaption></figure>
+!! end
 
 !! test
 [Before] HTML without raw HTML enabled ($wgRawHtml==false)
@@ -16637,9 +16961,11 @@ Bug 15196: localised external link numbers
 language=fa
 !! wikitext
 [http://en.wikipedia.org/]
-!! html
+!! html/php
 <p><a rel="nofollow" class="external autonumber" href="http://en.wikipedia.org/">[۱]</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://en.wikipedia.org/"></a></p>
 !! end
 
 !! test
@@ -17671,9 +17997,11 @@ Special:Foobar
 Bug 34939 - Case insensitive link parsing ([HttP://])
 !! wikitext
 [HttP://MediaWiki.Org/]
-!! html
+!! html/php
 <p><a rel="nofollow" class="external autonumber" href="HttP://MediaWiki.Org/">[1]</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="HttP://MediaWiki.Org/"></a></p>
 !! end
 
 !!test
@@ -17689,9 +18017,11 @@ Bug 34939 - Case insensitive link parsing ([HttP:// title])
 Bug 34939 - Case insensitive link parsing (HttP://)
 !! wikitext
 HttP://MediaWiki.Org/
-!! html
+!! html/php
 <p><a rel="nofollow" class="external free" href="HttP://MediaWiki.Org/">HttP://MediaWiki.Org/</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="HttP://MediaWiki.Org/">HttP://MediaWiki.Org/</a></p>
 !! end
 
 !!test
@@ -18150,6 +18480,16 @@ B <span about="#mwt4" class="reference" data-mw='{"name":"ref","attrs":{"group":
 <ol class="references" typeof="mw:Extension/references" about="#mwt6" data-parsoid='{"src":"&lt;references />"}' data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-b-1" id="cite_note-b-1" data-parsoid="{}"><span rel="mw:referencedBy" data-parsoid="{}">↑</span> foo</li><li about="#cite_note-2" id="cite_note-2" data-parsoid="{}"><span rel="mw:referencedBy" data-parsoid="{}"><a href="#cite_ref-2-0" data-parsoid="{}">↑</a></span> foo bar for a</li></ol>
 
 <ol class="references" typeof="mw:Extension/references" about="#mwt8" data-parsoid='{"src":"&lt;references group=\"X\">\n&lt;ref name=\"b\">foo&lt;/ref>\n&lt;/references>","group":"X"}' data-mw='{"name":"references","body":{"extsrc":"&lt;ref name=\"b\">foo&lt;/ref>","html":"\n&lt;span about=\"#mwt10\" class=\"reference\" data-mw=&#39;{\"name\":\"ref\",\"body\":{\"html\":\"foo\"},\"attrs\":{\"name\":\"b\"}}&#39; rel=\"dc:references\" typeof=\"mw:Extension/ref\">&lt;a href=\"#cite_note-b-1\">[1]&lt;/a>&lt;/span>\n"},"attrs":{"group":"X"}}'><li about="#cite_note-b-3" id="cite_note-b-3" data-parsoid="{}"><span rel="mw:referencedBy" data-parsoid="{}"><a href="#cite_ref-b-3-0" data-parsoid="{}">↑</a></span> </li></ol>
+!! end
+
+!! test
+Entities in ref name
+!! options
+parsoid
+!! wikitext
+<ref name="test &amp; me">hi</ref>
+!! html
+<p data-parsoid='{}'><span about="#mwt2" class="reference" data-mw='{"name":"ref","body":{"html":"hi"},"attrs":{"name":"test &amp; me"}}' id="cite_ref-test &amp; me-1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref name=\"test &amp;amp; me\">hi&lt;/ref>"}'><a href="#cite_note-test &amp; me-1" data-parsoid="{}">[1]</a></span></p>
 !! end
 
 # This test is wt2html only because we're permitting the serializer to produce
@@ -20333,6 +20673,16 @@ a
 <p>b</p></div>
 !! end
 
+!! test
+Substrings resembling wikitext in hrefs should not get nowiki escapes
+!! options
+parsoid=html2wt
+!! wikitext
+[[Foo''bar''baz]]
+!! html
+<a rel="mw:WikiLink" href="./Foo''bar''baz">Foo''bar''baz</a>
+!! end
+
 #-----------------------------
 # I/B quote minimization tests
 #-----------------------------
@@ -20419,9 +20769,9 @@ Bug 54262: New entities
 !! options
 parsoid=html2wt
 !! wikitext
-foo
+&nbsp;
 !! html
-<span typeof="mw:Entity">foo</span>
+<span typeof="mw:Entity">&nbsp;</span>
 !! end
 
 ## Note that there is no wikitext output for 'unknownproperty' ##
