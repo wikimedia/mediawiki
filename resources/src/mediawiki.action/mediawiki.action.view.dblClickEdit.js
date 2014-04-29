@@ -1,5 +1,5 @@
-/**
- * This module enables double-click-to-edit functionality.
+/*!
+ * Enables double-click-to-edit functionality.
  */
 ( function ( mw, $ ) {
 	$( function () {
