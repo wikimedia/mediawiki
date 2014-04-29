@@ -232,7 +232,10 @@ $.suggestions = {
 						} else {
 							// Expand from right
 							newCSS.left = 'auto';
-							newCSS.right = $( document ).width() - ( context.config.$region.offset().left + context.config.$region.outerWidth() );
+							// Base offset on width of <html> instead of document, thus making
+							// sure additional width introduced by scroll overflow is not
+							// included (bug 54091).
+							newCSS.right = $( document.documentElement ).width() - ( context.config.$region.offset().left + context.config.$region.outerWidth() );
 						}
 
 						context.data.$container.css( newCSS );
