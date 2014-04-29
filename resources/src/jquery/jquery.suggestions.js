@@ -232,7 +232,7 @@ $.suggestions = {
 						} else {
 							// Expand from right
 							newCSS.left = 'auto';
-							newCSS.right = $( document ).width() - ( context.config.$region.offset().left + context.config.$region.outerWidth() );
+							newCSS.right = $( 'body' ).width() - ( context.config.$region.offset().left + context.config.$region.outerWidth() );
 						}
 
 						context.data.$container.css( newCSS );
