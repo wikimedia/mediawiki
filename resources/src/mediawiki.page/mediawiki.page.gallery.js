@@ -1,4 +1,4 @@
-/**
+/*!
  * Show gallery captions when focused. Copied directly from jquery.mw-jump.js.
  * Also Dynamically resize images to justify them.
  */
