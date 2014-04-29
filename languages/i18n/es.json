@@ -328,6 +328,7 @@
 	"jumptonavigation": "navegación",
 	"jumptosearch": "buscar",
 	"view-pool-error": "Lo sentimos, los servidores están sobrecargados en este momento.\nHay demasiados usuarios que están tratando de ver esta página.\nEspera un momento antes de tratar de acceder nuevamente a esta página.\n\n$1",
+	"generic-pool-error": "Lo sentimos, los servidores están sobrecargados por el momento.\nHay demasiados usuarios tratando de ver esta página.\nIntentes acceder nuevamente a esta página dentro de un rato.",
 	"pool-timeout": "Tiempo limite agotado para el bloqueo",
 	"pool-queuefull": "La cola de trabajo está llena",
 	"pool-errorunknown": "Error desconocido",

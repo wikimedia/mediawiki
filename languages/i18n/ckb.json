@@ -1361,6 +1361,7 @@
 	"mostrevisions": "پەڕەکان بە زۆرترین پێداچوونەوەکان",
 	"prefixindex": "ھەموو پەڕەکان بە پێشگرەوە",
 	"prefixindex-namespace": "هەموو پەڕەکان بەپێشگری (بۆشایی ناوی $1)",
+	"prefixindex-strip": "پێشگری ناو پێرست بقرتێنە",
 	"shortpages": "پەڕە کورتەکان",
 	"longpages": "پەڕە درێژەکان",
 	"deadendpages": "پەڕە بنبەستەکان",
