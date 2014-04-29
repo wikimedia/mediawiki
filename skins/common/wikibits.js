@@ -19,7 +19,6 @@ if ( mw.config.get( 'wgBreakFrames' ) ) {
 
 /**
  * User-agent sniffing.
- * To be removed in MediaWiki 1.23.
  *
  * @deprecated since 1.17 Use jquery.client instead
  */
@@ -50,8 +49,6 @@ mw.log.deprecate( win, 'ie6_bugs', false, msg );
 
 /**
  * DOM utilities for handling of events, text nodes and selecting elements
- *
- * To be removed in MediaWiki 1.23.
  *
  * @deprecated since 1.17 Use jQuery instead
  */
@@ -104,8 +101,6 @@ $( win ).on( 'load', function () {
 /**
  * Toggle checkboxes with shift selection
  *
- * To be removed in MediaWiki 1.23.
- *
  * @deprecated since 1.17 Use jquery.checkboxShiftClick instead
  */
 msg = 'Use jquery.checkboxShiftClick instead.';
@@ -118,8 +113,6 @@ mw.log.deprecate( win, 'checkboxClickHandler', $.noop, msg );
 /**
  * Add a button to the default editor toolbar
  *
- * To be removed in MediaWiki 1.23.
- *
  * @deprecated since 1.17 Use mw.toolbar instead
  */
 mw.log.deprecate( win, 'mwEditButtons', [], 'Use mw.toolbar instead.' );
@@ -127,8 +120,6 @@ mw.log.deprecate( win, 'mwCustomEditButtons', [], 'Use mw.toolbar instead.' );
 
 /**
  * Spinner creation, injection and removal
- *
- * To be removed in MediaWiki 1.23.
  *
  * @deprecated since 1.18 Use jquery.spinner instead
  */
@@ -138,8 +129,6 @@ mw.log.deprecate( win, 'removeSpinner', $.noop, 'Use jquery.spinner instead.' );
 /**
  * Escape utilities
  *
- * To be removed in MediaWiki 1.23.
- *
  * @deprecated since 1.18 Use mw.html instead
  */
 mw.log.deprecate( win, 'escapeQuotes', $.noop, 'Use mw.html instead.' );
@@ -147,8 +136,6 @@ mw.log.deprecate( win, 'escapeQuotesHTML', $.noop, 'Use mw.html instead.' );
 
 /**
  * Display a message to the user
- *
- * To be removed in MediaWiki 1.23.
  *
  * @deprecated since 1.17 Use mediawiki.notify instead
  * @param {string|HTMLElement} message To be put inside the message box
@@ -166,8 +153,6 @@ mw.log.deprecate( win, 'jsMsg', function ( message ) {
 
 /**
  * Misc. utilities
- *
- * To be removed in MediaWiki 1.23.
  *
  * @deprecated since 1.17 Use mediawiki.util instead
  */
