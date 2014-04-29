@@ -83,7 +83,7 @@ abstract class ContextSource implements IContextSource {
 	 * Get the Title object
 	 *
 	 * @since 1.18
-	 * @return Title
+	 * @return Title|null
 	 */
 	public function getTitle() {
 		return $this->getContext()->getTitle();

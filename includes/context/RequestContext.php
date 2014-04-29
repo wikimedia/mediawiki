@@ -131,7 +131,7 @@ class RequestContext implements IContextSource {
 	/**
 	 * Get the Title object
 	 *
-	 * @return Title
+	 * @return Title|null
 	 */
 	public function getTitle() {
 		if ( $this->title === null ) {

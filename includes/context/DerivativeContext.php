@@ -138,7 +138,7 @@ class DerivativeContext extends ContextSource {
 	/**
 	 * Get the Title object
 	 *
-	 * @return Title
+	 * @return Title|null
 	 */
 	public function getTitle() {
 		if ( !is_null( $this->title ) ) {
