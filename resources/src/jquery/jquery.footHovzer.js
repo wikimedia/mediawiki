@@ -1,14 +1,5 @@
 /**
- * Utility to stack stuff in an overlay fixed on the bottom of the page.
- *
- * Usage:
- * <code>
- *     var hovzer = $.getFootHovzer();
- *     hovzer.$.append( $myCollection );
- *     hovzer.update();
- * </code>
- *
- * @author Timo Tijhof, 2012
+ * @class jQuery.plugin.footHovzer
  */
 ( function ( $ ) {
 	var $hovzer, footHovzer, prevHeight, newHeight;
@@ -20,13 +11,43 @@
 		return $hovzer;
 	}
 
+	/**
+	 * Utility to stack stuff in an overlay fixed on the bottom of the page.
+	 *
+	 * Usage:
+	 *
+	 *     var hovzer = $.getFootHovzer();
+	 *     hovzer.$.append( $myCollection );
+	 *     hovzer.update();
+	 *
+	 * @static
+	 * @inheritable
+	 * @return {jQuery.footHovzer}
+	 */
+	$.getFootHovzer = function () {
+		footHovzer.$ = getHovzer();
+		return footHovzer;
+	};
+
+	/**
+	 * @private
+	 * @class jQuery.footHovzer
+	 */
 	footHovzer = {
+
+		/**
+		 * @property {jQuery} $ The stack container
+		 */
+
+		/**
+		 * Update dimensions of stack to account for changes in the subtree.
+		 */
 		update: function () {
 			var $body;
 
 			$body = $( 'body' );
 			if ( prevHeight === undefined ) {
-				prevHeight = getHovzer().outerHeight( /*includeMargin=*/true );
+				prevHeight = getHovzer().outerHeight( /* includeMargin = */ true );
 				$body.css( 'paddingBottom', '+=' + prevHeight + 'px' );
 			} else {
 				newHeight = getHovzer().outerHeight( true );
@@ -37,9 +58,9 @@
 		}
 	};
 
-	$.getFootHovzer = function () {
-		footHovzer.$ = getHovzer();
-		return footHovzer;
-	};
+	/**
+	 * @class jQuery
+	 * @mixins jQuery.plugin.footHovzer
+	 */
 
 }( jQuery ) );
