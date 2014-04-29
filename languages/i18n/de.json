@@ -466,7 +466,7 @@
 	"gotaccountlink": "Anmelden",
 	"userlogin-resetlink": "Die Anmeldedaten vergessen?",
 	"userlogin-resetpassword-link": "Passwort vergessen?",
-	"userlogin-helplink2": "Hilfe bei der Anmeldung",
+	"userlogin-helplink2": "Hilfe beim Anmelden",
 	"userlogin-loggedin": "Du bist bereits als {{GENDER:$1|$1}} angemeldet.\nBenutze das unten stehende Formular, um dich unter einem anderen Benutzernamen anzumelden.",
 	"userlogin-createanother": "Ein weiteres Benutzerkonto erstellen",
 	"createacct-emailrequired": "E-Mail-Adresse",

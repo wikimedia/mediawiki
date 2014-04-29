@@ -235,6 +235,7 @@
 	"jumptonavigation": "navegación",
 	"jumptosearch": "procura",
 	"view-pool-error": "Sentímolo, os servidores están sobrecargados nestes intres.\nHai moitos usuarios intentando ver esta páxina.\nPor favor, agarde un anaco antes de intentar acceder á páxina de novo.\n\n$1",
+	"generic-pool-error": "Sentímolo, os servidores están sobrecargados nestes intres.\nHai moitos usuarios intentando ver este recurso.\nPor favor, agarde un anaco antes de intentar acceder ao recurso de novo.",
 	"pool-timeout": "Tempo límite de espera para o peche",
 	"pool-queuefull": "A cola está chea",
 	"pool-errorunknown": "Erro descoñecido",
