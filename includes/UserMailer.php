@@ -738,13 +738,13 @@ class EmailNotification {
 					->inContentLanguage()->text();
 			}
 			$keys['$OLDID'] = $this->oldid;
-			// @deprecated Remove in MediaWiki 1.23.
+			// Deprecated since MediaWiki 1.21, not used by default. Kept for backwards-compatibility.
 			$keys['$CHANGEDORCREATED'] = wfMessage( 'changed' )->inContentLanguage()->text();
 		} else {
 			# clear $OLDID placeholder in the message template
 			$keys['$OLDID'] = '';
 			$keys['$NEWPAGE'] = '';
-			// @deprecated Remove in MediaWiki 1.23.
+			// Deprecated since MediaWiki 1.21, not used by default. Kept for backwards-compatibility.
 			$keys['$CHANGEDORCREATED'] = wfMessage( 'created' )->inContentLanguage()->text();
 		}
 
