@@ -1,11 +1,14 @@
 {
 	"--title": "MediaWiki core - Documentation",
-	"--footer": "Documentation for MediaWiki core. Generated on {DATE} by {JSDUCK} {VERSION}.",
 	"--categories": "./categories.json",
 	"--eg-iframe": "./eg-iframe.html",
+	"--tags": "./CustomTags.rb",
+	"--warnings": ["-nodoc(class,public)"],
 	"--builtin-classes": true,
-	"--output": "../../docs/js",
+	"--warnings-exit-nonzero": true,
 	"--external": "HTMLElement,HTMLDocument,Window",
+	"--footer": "Documentation for MediaWiki core. Generated on {DATE} by {JSDUCK} {VERSION}.",
+	"--output": "../../docs/js",
 	"--": [
 		"./external.js",
 		"../../resources/src/mediawiki",
