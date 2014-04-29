@@ -146,4 +146,100 @@
 		} );
 	} );
 
+	QUnit.test( 'postWithToken()', function ( assert ) {
+		QUnit.expect( 1 );
+
+		var api = new mw.Api( { ajax: { url: '/postWithToken/api.php' } } );
+
+		// - Requests token
+		// - Performs action=example
+		api.postWithToken( 'testsimpletoken', { action: 'example', key: 'foo' } )
+			.done( function ( data ) {
+				assert.deepEqual( data, { example: { foo: 'quux' } } );
+			} );
+
+		this.server.requests[0].respond( 200, { 'Content-Type': 'application/json' },
+			'{ "tokens": { "testsimpletokentoken": "a-bad-token" } }'
+		);
+
+		this.server.requests[1].respond( 200, { 'Content-Type': 'application/json' },
+			'{ "example": { "foo": "quux" } }'
+		);
+	} );
+
+	QUnit.test( 'postWithToken() - badtoken', function ( assert ) {
+		QUnit.expect( 1 );
+
+		var api = new mw.Api();
+
+		// - Request: token
+		// - Request: action=example -> badtoken error
+		// - Request: new token
+		// - Request: action=example
+		api.postWithToken( 'testbadtoken', { action: 'example', key: 'foo' } )
+			.done( function ( data ) {
+				assert.deepEqual( data, { example: { foo: 'quux' } } );
+			} );
+
+		this.server.requests[0].respond( 200, { 'Content-Type': 'application/json' },
+			'{ "tokens": { "testbadtokentoken": "a-bad-token" } }'
+		);
+
+		this.server.requests[1].respond( 200, { 'Content-Type': 'application/json' },
+			'{ "error": { "code": "badtoken" } }'
+		);
+
+		this.server.requests[2].respond( 200, { 'Content-Type': 'application/json' },
+			'{ "tokens": { "testbadtokentoken": "a-good-token" } }'
+		);
+
+		this.server.requests[3].respond( 200, { 'Content-Type': 'application/json' },
+			'{ "example": { "foo": "quux" } }'
+		);
+
+	} );
+
+	QUnit.test( 'postWithToken() - badtoken-cached', function ( assert ) {
+		QUnit.expect( 2 );
+
+		var api = new mw.Api();
+
+		// - Request: token
+		// - Request: action=example
+		api.postWithToken( 'testbadtokencache', { action: 'example', key: 'foo' } )
+			.done( function ( data ) {
+				assert.deepEqual( data, { example: { foo: 'quux' } } );
+			} );
+
+		// - Cache: Try previously cached token
+		// - Request: action=example -> badtoken error
+		// - Request: new token
+		// - Request: action=example
+		api.postWithToken( 'testbadtokencache', { action: 'example', key: 'bar' } )
+			.done( function ( data ) {
+				assert.deepEqual( data, { example: { bar: 'quux' } } );
+			} );
+
+		this.server.requests[0].respond( 200, { 'Content-Type': 'application/json' },
+			'{ "tokens": { "testbadtokencachetoken": "a-good-token-once" } }'
+		);
+
+		this.server.requests[1].respond( 200, { 'Content-Type': 'application/json' },
+			'{ "example": { "foo": "quux" } }'
+		);
+
+		this.server.requests[2].respond( 200, { 'Content-Type': 'application/json' },
+			'{ "error": { "code": "badtoken" } }'
+		);
+
+		this.server.requests[3].respond( 200, { 'Content-Type': 'application/json' },
+			'{ "tokens": { "testbadtokencachetoken": "a-good-new-token" } }'
+		);
+
+		this.server.requests[4].respond( 200, { 'Content-Type': 'application/json' },
+			'{ "example": { "bar": "quux" } }'
+		);
+
+	} );
+
 }( mediaWiki ) );
