@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (b91660e612)
+ * OOjs UI v0.1.0-pre (7705a94df5)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Mon Apr 28 2014 12:57:47 GMT-0700 (PDT)
+ * Date: Tue Apr 29 2014 14:07:10 GMT-0700 (PDT)
  */
 
 /* Textures */
@@ -1172,6 +1172,10 @@
   background-image: /* @embed */ url(images/icons/help.svg);
 }
 
+.oo-ui-icon-info {
+  background-image: /* @embed */ url(images/icons/info.svg);
+}
+
 .oo-ui-icon-link {
   background-image: /* @embed */ url(images/icons/link.svg);
 }
@@ -1221,6 +1225,10 @@
 }
 
 /* Indicators */
+
+.oo-ui-indicator-alert {
+  background-image: /* @embed */ url(images/indicators/alert.svg);
+}
 
 .oo-ui-indicator-down {
   background-image: /* @embed */ url(images/indicators/down.svg);

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="12" height="12" viewBox="0, 0, 12, 12">
+  <g id="deprecated" opacity="0.75">
+    <path d="M5,9 L7,9 L7,11 L5,11 z" fill="#000000"/>
+    <path d="M7,1 L7,8 L5,8 L5,1 z" fill="#000000"/>
+  </g>
+  <defs/>
+</svg>
