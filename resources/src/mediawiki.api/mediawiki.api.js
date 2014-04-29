@@ -257,7 +257,7 @@
 					function ( code ) {
 						if ( code === 'badtoken' ) {
 							// Clear from cache
-							deferreds[ this.defaults.ajax.url ][ tokenType + 'Token' ] =
+							deferreds[ api.defaults.ajax.url ][ tokenType + 'Token' ] =
 								params.token = undefined;
 
 							// Try again, once
