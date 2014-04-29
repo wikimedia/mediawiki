@@ -2226,7 +2226,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( $options['created'] ) {
 			self::onArticleCreate( $this->mTitle );
-		} else {
+		} elseif ( $options['changed'] ) { // bug 50785
 			self::onArticleEdit( $this->mTitle );
 		}
 
