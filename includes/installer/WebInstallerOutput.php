@@ -134,7 +134,7 @@ class WebInstallerOutput {
 		// and loaded as one file.
 		$moduleNames = array(
 			'mediawiki.legacy.shared',
-			'skins.common.interface',
+			'mediawiki.skinning.interface',
 			'skins.vector.styles',
 			'mediawiki.legacy.config',
 		);
