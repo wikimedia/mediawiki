@@ -90,7 +90,7 @@
 
 		/**
 		 * @inheritdoc #getName
-		 * @deprecated since 1.20 use #getName instead
+		 * @deprecated since 1.20 Use #getName instead
 		 */
 		name: function () {
 			return user.getName();
@@ -126,7 +126,7 @@
 
 		/**
 		 * @inheritdoc #isAnon
-		 * @deprecated since 1.20 use #isAnon instead
+		 * @deprecated since 1.20 Use #isAnon instead
 		 */
 		anonymous: function () {
 			return user.isAnon();
