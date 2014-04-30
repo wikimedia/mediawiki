@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (70f1886a35)
+ * OOjs UI v0.1.0-pre (bdbb9cfa55)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Tue Apr 29 2014 17:13:10 GMT-0700 (PDT)
+ * Date: Wed Apr 30 2014 16:34:11 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -5769,6 +5769,15 @@ OO.ui.LookupInputWidget.prototype.onLookupInputChange = function () {
 };
 
 /**
+ * Get lookup menu.
+ *
+ * @return {OO.ui.TextInputMenuWidget}
+ */
+OO.ui.LookupInputWidget.prototype.getLookupMenu = function () {
+	return this.lookupMenu;
+};
+
+/**
  * Open the menu.
  *
  * @chainable
@@ -6096,24 +6105,26 @@ OO.ui.OptionWidget.prototype.setPressed = function ( state ) {
  *
  * While flashing, the visual style of the pressed state is removed if present.
  *
- * @param {Function} [done] Callback to execute when flash effect is complete.
+ * @return {jQuery.Promise} Promise resolved when flashing is done
  */
-OO.ui.OptionWidget.prototype.flash = function ( done ) {
-	var $this = this.$element;
+OO.ui.OptionWidget.prototype.flash = function () {
+	var $this = this.$element,
+		deferred = $.Deferred();
 
 	if ( !this.disabled && this.constructor.static.pressable ) {
 		$this.removeClass( 'oo-ui-optionWidget-highlighted oo-ui-optionWidget-pressed' );
 		setTimeout( OO.ui.bind( function () {
-			$this.addClass( 'oo-ui-optionWidget-highlighted' );
-			if ( done ) {
-				// Restore original classes
-				$this
-					.toggleClass( 'oo-ui-optionWidget-highlighted', this.highlighted )
-					.toggleClass( 'oo-ui-optionWidget-pressed', this.pressed );
-				setTimeout( done, 100 );
-			}
+			// Restore original classes
+			$this
+				.toggleClass( 'oo-ui-optionWidget-highlighted', this.highlighted )
+				.toggleClass( 'oo-ui-optionWidget-pressed', this.pressed );
+			setTimeout( function () {
+				deferred.resolve();
+			}, 100 );
 		}, this ), 100 );
 	}
+
+	return deferred.promise();
 };
 
 /**
@@ -6784,7 +6795,7 @@ OO.ui.MenuWidget.prototype.chooseItem = function ( item ) {
 
 	if ( item && !this.flashing ) {
 		this.flashing = true;
-		item.flash( OO.ui.bind( function () {
+		item.flash().done( OO.ui.bind( function () {
 			this.hide();
 			this.flashing = false;
 		}, this ) );
