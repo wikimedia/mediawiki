@@ -222,12 +222,24 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 			// FIXME: Convert to numbers, wfTimestamp always gives us stings, even for TS_UNIX
 
+			$skipFunction = $module->getSkipFunction();
+			if ( $skipFunction !== null && !ResourceLoader::inDebugMode() ) {
+				$skipFunction = $resourceLoader->filter( 'minify-js',
+					$skipFunction,
+					// There will potentially be lots of these little string in the registrations
+					// manifest, we don't want to blow up the startup module with
+					// "/* cache key: ... */" all over it in non-debug mode.
+					/* cacheReport = */ false
+				);
+			}
+
 			$registryData[ $name ] = array(
 				'version' => $mtime,
 				'dependencies' => $module->getDependencies(),
 				'group' => $module->getGroup(),
 				'source' => $module->getSource(),
 				'loader' => $module->getLoaderScript(),
+				'skip' => $skipFunction,
 			);
 		}
 
@@ -255,17 +267,25 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			if (
 				!count( $data['dependencies'] ) &&
 				$data['group'] === null &&
-				$data['source'] === 'local'
+				$data['source'] === 'local' &&
+				$data['skip'] === null
 			) {
-				// Modules without dependencies, a group or a foreign source;
+				// Modules with no dependencies, group, foreign source or skip function;
 				// call mw.loader.register(name, timestamp)
 				$registrations[] = array( $name, $data['version'] );
-			} elseif ( $data['group'] === null && $data['source'] === 'local' ) {
-				// Modules with dependencies but no group or foreign source;
+			} elseif (
+				$data['group'] === null &&
+				$data['source'] === 'local' &&
+				$data['skip'] === null
+			) {
+				// Modules with dependencies but no group, foreign source or skip function;
 				// call mw.loader.register(name, timestamp, dependencies)
 				$registrations[] = array( $name, $data['version'], $data['dependencies'] );
-			} elseif ( $data['source'] === 'local' ) {
-				// Modules with a group but no foreign source;
+			} elseif (
+				$data['source'] === 'local' &&
+				$data['skip'] === null
+			) {
+				// Modules with a group but no foreign source or skip function;
 				// call mw.loader.register(name, timestamp, dependencies, group)
 				$registrations[] = array(
 					$name,
@@ -273,8 +293,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 					$data['dependencies'],
 					$data['group']
 				);
-			} else {
-				// Modules with a foreign source;
+			} elseif ( $data['skip'] === null ) {
+				// Modules with a foreign source but no skip function;
 				// call mw.loader.register(name, timestamp, dependencies, group, source)
 				$registrations[] = array(
 					$name,
@@ -282,6 +302,17 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 					$data['dependencies'],
 					$data['group'],
 					$data['source']
+				);
+			} else {
+				// Modules with a skip function;
+				// call mw.loader.register(name, timestamp, dependencies, group, source, skip)
+				$registrations[] = array(
+					$name,
+					$data['version'],
+					$data['dependencies'],
+					$data['group'],
+					$data['source'],
+					$data['skip']
 				);
 			}
 		}

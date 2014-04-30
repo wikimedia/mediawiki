@@ -30,6 +30,13 @@
 		}
 	} ) );
 
+	mw.loader.addSource(
+		'testloader',
+		{
+			loadScript: QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/load.mock.php' )
+		}
+	);
+
 	QUnit.test( 'Initial check', 8, function ( assert ) {
 		assert.ok( window.jQuery, 'jQuery defined' );
 		assert.ok( window.$, '$ defined' );
@@ -720,13 +727,6 @@
 	} );
 
 	QUnit.asyncTest( 'mw.loader dependency handling', 5, function ( assert ) {
-		mw.loader.addSource(
-			'testloader',
-			{
-				loadScript: QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/load.mock.php' )
-			}
-		);
-
 		mw.loader.register( [
 			// [module, version, dependencies, group, source]
 			['testMissing', '1', [], null, 'testloader'],
@@ -755,6 +755,40 @@
 				// it will bubble up and trigger the error callback.
 				// Therefor the badmodules array is not testUsesMissing or testUsesNestedMissing.
 				assert.deepEqual( badmodules, ['testMissing'], 'Bad modules as expected.' );
+
+				verifyModuleStates();
+
+				QUnit.start();
+			}
+		);
+	} );
+
+	QUnit.asyncTest( 'mw.loader skin-function handling', 5, function ( assert ) {
+		mw.loader.register( [
+			// [module, version, dependencies, group, source, skip]
+			['testSkipped', '1', [], null, 'testloader', 'return true;'],
+			['testNotSkipped', '1', [], null, 'testloader', 'return false;'],
+			['testUsesSkippable', '1', ['testSkipped', 'testNotSkipped'], null, 'testloader']
+		] );
+
+		function verifyModuleStates() {
+			assert.equal( mw.loader.getState( 'testSkipped' ), 'ready', 'Module is ready when skipped' );
+			assert.equal( mw.loader.getState( 'testNotSkipped' ), 'ready', 'Module is ready when not skipped but loaded' );
+			assert.equal( mw.loader.getState( 'testUsesSkippable' ), 'ready', 'Module is ready when skippable dependencies are ready' );
+		}
+
+		mw.loader.using( ['testUsesSkippable'],
+			function () {
+				assert.ok( true, 'Success handler should be invoked.' );
+				assert.ok( true ); // Dummy to match error handler and reach QUnit expect()
+
+				verifyModuleStates();
+
+				QUnit.start();
+			},
+			function ( e, badmodules ) {
+				assert.ok( false, 'Error handler should not be invoked.' );
+				assert.deepEqual( badmodules, [], 'Bad modules as expected.' );
 
 				verifyModuleStates();
 
