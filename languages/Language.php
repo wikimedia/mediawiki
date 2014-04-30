@@ -3048,6 +3048,7 @@ class Language {
 	/**
 	 * Get special page names, as an associative array
 	 *   case folded alias => real name
+	 * @return array
 	 */
 	function getSpecialPageAliases() {
 		// Cache aliases because it may be slow to load them
