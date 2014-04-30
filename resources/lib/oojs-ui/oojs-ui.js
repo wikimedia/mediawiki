@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (b91660e612)
+ * OOjs UI v0.1.0-pre (70f1886a35)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Mon Apr 28 2014 12:57:47 GMT-0700 (PDT)
+ * Date: Tue Apr 29 2014 17:13:10 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -1297,7 +1297,9 @@ OO.ui.Window.prototype.teardown = function () {
  * Do not override this method. See #setup for a way to make changes each time the window opens.
  *
  * @param {Object} [data] Window opening data
+ * @fires opening
  * @fires open
+ * @fires ready
  * @chainable
  */
 OO.ui.Window.prototype.open = function ( data ) {
@@ -1308,13 +1310,16 @@ OO.ui.Window.prototype.open = function ( data ) {
 			this.visible = true;
 			this.emit( 'opening', data );
 			this.setup( data );
-			// Focus the content div (which has a tabIndex) to inactivate
-			// (but not clear) selections in the parent frame.
-			// Must happen after setup runs (otherwise focusing it doesn't work)
-			// but before 'open' is emitted (so subclasses can give focus to something else)
-			this.frame.$content.focus();
 			this.emit( 'open', data );
-			this.opening = false;
+			setTimeout( OO.ui.bind( function () {
+				// Focus the content div (which has a tabIndex) to inactivate
+				// (but not clear) selections in the parent frame.
+				// Must happen after 'open' is emitted (to ensure it is visible)
+				// but before 'ready' is emitted (so subclasses can give focus to something else)
+				this.frame.$content.focus();
+				this.emit( 'ready', data );
+				this.opening = false;
+			}, this ) );
 		}, this ) );
 	}
 
@@ -1327,6 +1332,7 @@ OO.ui.Window.prototype.open = function ( data ) {
  * See #teardown for a way to do something each time the window closes.
  *
  * @param {Object} [data] Window closing data
+ * @fires closing
  * @fires close
  * @chainable
  */
@@ -7786,6 +7792,13 @@ OO.ui.SearchWidget.prototype.getQuery = function () {
  */
 OO.ui.SearchWidget.prototype.clear = function () {
 	this.query.setValue( '' );
+};
+
+/**
+ * Focus the query input.
+ */
+OO.ui.SearchWidget.prototype.focus = function () {
+	this.query.$input[0].focus();
 };
 
 /**

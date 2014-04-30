@@ -628,6 +628,10 @@
   padding-right: 1.5em;
 }
 
+.oo-ui-outlineItemWidget.oo-ui-indicatedElement .oo-ui-indicatedElement-indicator {
+  opacity: 0.5;
+}
+
 .oo-ui-outlineItemWidget-level-0 {
   padding-left: 3.5em;
 }
@@ -665,8 +669,7 @@
   font-style: italic;
 }
 
-.oo-ui-outlineItemWidget.oo-ui-flaggableElement-empty .oo-ui-iconedElement-icon,
-.oo-ui-outlineItemWidget.oo-ui-flaggableElement-empty .oo-ui-indicatedElement-indicator {
+.oo-ui-outlineItemWidget.oo-ui-flaggableElement-empty .oo-ui-iconedElement-icon {
   opacity: 0.5;
 }
 
