@@ -48,7 +48,7 @@
 	"tog-hidepatrolled": "Skjul patruljerte redigeringer i siste endringer",
 	"tog-newpageshidepatrolled": "Skjul patruljerte sider fra listen over nye sider",
 	"tog-extendwatchlist": "Utvid overvåkningslisten til å vise alle endringer, ikke bare de siste",
-	"tog-usenewrc": "Grupper endringer per side i siste endringer samt overvåkingsliste",
+	"tog-usenewrc": "Grupper endringer etter side i siste endringer og overvåkingslisten",
 	"tog-numberheadings": "Autonummerer overskrifter",
 	"tog-showtoolbar": "Vis verktøylinje",
 	"tog-editondblclick": "Rediger sider ved å dobbeltklikke",

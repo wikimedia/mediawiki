@@ -1616,7 +1616,7 @@
 	"listusers-desc": "Ordina in senso decrescente",
 	"usereditcount": "$1 {{PLURAL:$1|contributo|contributi}}",
 	"usercreated": "{{GENDER:$3|Creato/a}} il $1 alle $2",
-	"newpages": "Pagine più recenti",
+	"newpages": "Nuove pagine",
 	"newpages-username": "Nome utente:",
 	"ancientpages": "Pagine meno recenti",
 	"move": "Sposta",

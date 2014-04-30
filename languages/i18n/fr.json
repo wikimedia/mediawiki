@@ -112,7 +112,7 @@
 	"tog-hidepatrolled": "Masquer les modifications surveillées dans les modifications récentes",
 	"tog-newpageshidepatrolled": "Masquer les pages surveillées dans la liste des nouvelles pages",
 	"tog-extendwatchlist": "Étendre la liste de suivi pour afficher toutes les modifications et pas uniquement les plus récentes",
-	"tog-usenewrc": "Grouper les changements par page dans les modifications récentes et la liste de suivi (nécessite JavaScript)",
+	"tog-usenewrc": "Grouper les changements par page dans les modifications récentes et la liste de suivi",
 	"tog-numberheadings": "Numéroter automatiquement les titres de section",
 	"tog-showtoolbar": "Afficher la barre d'outils de modification (nécessite JavaScript)",
 	"tog-editondblclick": "Modifier des pages sur double-clic (nécessite JavaScript)",
