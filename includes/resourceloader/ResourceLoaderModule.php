@@ -294,6 +294,25 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
+	 * Get the skip function.
+	 *
+	 * Modules that provide fallback functionality can provide a "skip function".
+	 * This function, when provided, will be passed along to the module registry
+	 * on the client. When the module is dependent on, this function is executed
+	 * first. If the function returns true, the module will instantly be considered
+	 * "ready" without requesting the associated module contents.
+	 *
+	 * The value returned here must be valid javascript for execution in a
+	 * private function. It must not contain the "function () {" and "}" wrapper
+	 * though.
+	 *
+	 * @return string|null A javascript function body returning a boolean value or null
+	 */
+	public function getSkipFunction() {
+		return null;
+	}
+
+	/**
 	 * Get the files this module depends on indirectly for a given skin.
 	 * Currently these are only image files referenced by the module's CSS.
 	 *
