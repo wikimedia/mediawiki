@@ -1074,15 +1074,15 @@ class ResourceLoader {
 	 * Returns JS code which calls mw.loader.register with the given
 	 * parameters. Has three calling conventions:
 	 *
-	 *   - ResourceLoader::makeLoaderRegisterScript( $name, $version, $dependencies, $group, $source ):
+	 *   - ResourceLoader::makeLoaderRegisterScript( $name, $version, $dependencies, $group, $source, $skip ):
 	 *       Register a single module.
 	 *
 	 *   - ResourceLoader::makeLoaderRegisterScript( array( $name1, $name2 ) ):
 	 *       Register modules with the given names.
 	 *
 	 *   - ResourceLoader::makeLoaderRegisterScript( array(
-	 *        array( $name1, $version1, $dependencies1, $group1, $source1 ),
-	 *        array( $name2, $version2, $dependencies1, $group2, $source2 ),
+	 *        array( $name1, $version1, $dependencies1, $group1, $source1, $skip1 ),
+	 *        array( $name2, $version2, $dependencies1, $group2, $source2, $skip2 ),
 	 *        ...
 	 *     ) ):
 	 *        Registers modules with the given names and parameters.
@@ -1092,10 +1092,11 @@ class ResourceLoader {
 	 * @param array $dependencies List of module names on which this module depends
 	 * @param string $group Group which the module is in
 	 * @param string $source Source of the module, or 'local' if not foreign
+	 * @param string $skip Skip function body
 	 * @return string
 	 */
 	public static function makeLoaderRegisterScript( $name, $version = null,
-		$dependencies = null, $group = null, $source = null
+		$dependencies = null, $group = null, $source = null, $skip = null
 	) {
 		if ( is_array( $name ) ) {
 			return Xml::encodeJsCall(
@@ -1107,7 +1108,7 @@ class ResourceLoader {
 			$version = (int)$version > 1 ? (int)$version : 1;
 			return Xml::encodeJsCall(
 				'mw.loader.register',
-				array( $name, $version, $dependencies, $group, $source ),
+				array( $name, $version, $dependencies, $group, $source, $skip ),
 				ResourceLoader::inDebugMode()
 			);
 		}
