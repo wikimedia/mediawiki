@@ -133,6 +133,14 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 
+	'mediawiki.skinning.content.parsoid' => array(
+		// Style Parsoid HTML+RDFa output consistent with wikitext from PHP parser
+		// with the commonInterface.css styles; skinStyles should be used if your
+		// skin over-rides common content styling.
+		'skinStyles' => array(
+			'default' => 'resources/src/mediawiki.skinning/content.parsoid.less',
+		),
+	),
 
 	/**
 	 * Skins

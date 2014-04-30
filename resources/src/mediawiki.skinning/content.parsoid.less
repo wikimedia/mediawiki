@@ -1,0 +1,90 @@
+/**
+ * Style Parsoid HTML+RDFa output consistent with wikitext from PHP parser.
+ */
+
+/**
+ * References
+ *
+ * Parser and Extension:Cite output reference numbers for <sup>[1]</sup> for <ref> tags.
+ *
+ * Markup:
+ * Cake is good<sup>[2]
+ * The cake is a lie<span class="reference">[1]</span>
+ *
+ * Styleguide 1.1.
+ */
+span.reference {
+	font-size: smaller;
+	line-height: normal;
+	vertical-align: super;
+}
+
+/**
+ * Block media items
+ */
+figure[typeof*='mw:Image'] {
+	margin: 0;
+
+	a {
+		border: 0;
+	}
+
+	/* @noflip */
+	.mw-halign-right {
+		margin: .5em 0 1.3em 1.4em;
+		clear: left;
+		float: left;
+	}
+
+	/* @noflip */
+	.mw-halign-left {
+		margin: .5em 1.4em 1.3em 0;
+		clear: right;
+		float: right;
+	}
+
+	.mw-halign-center {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	figcaption {
+		display: table-caption;
+		caption-side: bottom;
+		/* In mw-core the font-size is duplicated, 94% in thumbiner
+		   and again 94% in thumbcaption. 88% for font size of the
+		   caption results in the same behavior. */
+		font-size: 88%;
+		line-height: 1.4em;
+		text-align: left;
+		background-color: #f9f9f9;
+		border: 1px #cccccc solid;
+		border-top: none;
+
+		/* taken from .thumbcaption */
+		padding: 3px !important;
+	}
+
+	.ve-ce-mwBlockImageNode-thumbimage {
+		border: 1px solid #cccccc;
+	}
+
+	.mw-image-border img {
+		border: 1px solid #cccccc;
+	}
+
+}
+
+figure[typeof~='mw:Image/Thumb'], figure[typeof~='mw:Image/Frame'] {
+	display: table;
+	overflow: hidden;
+	text-align: center;
+	background-color: #f9f9f9;
+	border: 1px solid #cccccc;
+	border-bottom: none !important;
+	padding: 3px !important;
+}
+
+figure:not([typeof='mw:Image/Thumb']) figcaption .magnify {
+	display:none;
+}
