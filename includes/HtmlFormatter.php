@@ -136,7 +136,13 @@ class HtmlFormatter {
 		wfProfileIn( __METHOD__ );
 		$removals = $this->parseItemsToRemove();
 
-		if ( !$removals ) {
+		// Bail out early if nothing to do
+		if ( array_reduce( $removals,
+			function( $carry, $item ) {
+				return $carry && !$item;
+			},
+			true
+		) ) {
 			wfProfileOut( __METHOD__ );
 			return array();
 		}

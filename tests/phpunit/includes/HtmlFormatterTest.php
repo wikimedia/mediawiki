@@ -6,7 +6,11 @@
 class HtmlFormatterTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider getHtmlData
-	 * @covers HtmlFormatter::getText
+	 *
+	 * @param string $input
+	 * @param $expectedText
+	 * @param array $expectedRemoved
+	 * @param callable|bool $callback
 	 */
 	public function testTransform( $input, $expectedText,
 		$expectedRemoved = array(), $callback = false
@@ -102,5 +106,20 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 					. ' <a href="/wiki/Bar" title="Bar" class="mw-redirect">Bar</a>',
 			),
 		);
+	}
+
+	public function testQuickProcessing() {
+		$f = new MockHtmlFormatter( 'foo' );
+		$f->filterContent();
+		$this->assertFalse( $f->hasDoc, 'HtmlFormatter should not needlessly parse HTML' );
+	}
+}
+
+class MockHtmlFormatter extends HtmlFormatter {
+	public $hasDoc = false;
+
+	public function getDoc() {
+		$this->hasDoc = true;
+		return parent::getDoc();
 	}
 }
