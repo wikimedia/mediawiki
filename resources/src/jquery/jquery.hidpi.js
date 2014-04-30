@@ -21,6 +21,7 @@
  * Uses `window.devicePixelRatio` if available, or CSS media queries on IE.
  *
  * @static
+ * @inheritable
  * @return {number} Device pixel ratio
  */
 $.devicePixelRatio = function () {
