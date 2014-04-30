@@ -509,7 +509,7 @@ $linkPrefixCharset = 'a-zA-Z\\x{80}-\\x{10ffff}';
 /**
  * List of filenames for some ui images that can be overridden per language
  * basis if needed.
-*/
+ */
 $imageFiles = array(
 	'button-bold'     => 'button_bold.png',
 	'button-italic'   => 'button_italic.png',

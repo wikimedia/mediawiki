@@ -17,7 +17,7 @@ class LanguageHeTest extends LanguageClassesTestCase {
 	 * which is very rare. It also has a mistake, because
 	 * the number 10 itself is supposed to be just plural,
 	 * so currently it's overridden in MediaWiki.
-	*/
+	 */
 
 	// @todo the below test*PluralForms test methods can be refactored
 	//  to use a single test method and data provider..
