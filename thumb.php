@@ -327,7 +327,7 @@ function wfStreamThumb( array $params ) {
 	}
 
 	// Actually generate a new thumbnail
-	list( $thumb, $errorMsg ) = wfGenerateThumbnail( $img, $params, $thumbName );
+	list( $thumb, $errorMsg ) = wfGenerateThumbnail( $img, $params, $thumbName, $thumbPath );
 
 	// Check for thumbnail generation errors...
 	$msg = wfMessage( 'thumbnail_error' );
@@ -356,9 +356,10 @@ function wfStreamThumb( array $params ) {
  * @param File $file
  * @param array $params
  * @param string $thumbName
+ * @param string $thumbPath
  * @return array (MediaTransformOutput|bool, string|bool error message HTML)
  */
-function wfGenerateThumbnail( File $file, array $params, $thumbName ) {
+function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath ) {
 	global $wgMemc, $wgAttemptFailureEpoch;
 
 	$key = wfMemcKey( 'attempt-failures', $wgAttemptFailureEpoch,
@@ -389,8 +390,12 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName ) {
 				'doWork' => function() use ( $file, $params ) {
 					return $file->transform( $params, File::RENDER_NOW );
 				},
-				'getCachedWork' => function() use ( $file, $params ) {
-					return $file->transform( $params );
+				'getCachedWork' => function() use ( $file, $params, $thumbPath ) {
+					// If the worker that finished made this thumbnail then use it.
+					// Otherwise, it probably made a different thumbnail for this file.
+					return $file->getRepo()->fileExists( $thumbPath )
+						? $file->transform( $params )
+						: false; // retry once mork in exclusive mode
 				},
 				'fallback' => function() {
 					return wfMessage( 'generic-pool-error' )->parse();
