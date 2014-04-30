@@ -1,11 +1,7 @@
 ( function ( mw ) {
 	QUnit.module( 'mediawiki.api.parse', QUnit.newMwEnvironment( {
 		setup: function () {
-			this.clock = this.sandbox.useFakeTimers();
 			this.server = this.sandbox.useFakeServer();
-		},
-		teardown: function () {
-			this.clock.tick( 1 );
 		}
 	} ) );
 
