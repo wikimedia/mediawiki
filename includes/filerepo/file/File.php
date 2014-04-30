@@ -989,8 +989,6 @@ abstract class File {
 					$thumb = $handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 					break;
 				}
-				// Clean up broken thumbnails as needed
-				$this->migrateThumbFile( $thumbName );
 				// Check if an up-to-date thumbnail already exists...
 				wfDebug( __METHOD__ . ": Doing stat for $thumbPath\n" );
 				if ( !( $flags & self::RENDER_FORCE ) && $this->repo->fileExists( $thumbPath ) ) {
