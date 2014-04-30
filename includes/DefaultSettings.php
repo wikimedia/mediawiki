@@ -3601,14 +3601,14 @@ $wgNamespacesWithSubpages = array(
 );
 
 /**
-  * Array holding default tracking category names.
-  *
-  * Array contains the system messages for each tracking category.
-  * Tracking categories allow pages with certain characteristics to be tracked.
-  * It works by adding any such page to a category automatically.
-  *
-  * @since 1.23
-  */
+ * Array holding default tracking category names.
+ *
+ * Array contains the system messages for each tracking category.
+ * Tracking categories allow pages with certain characteristics to be tracked.
+ * It works by adding any such page to a category automatically.
+ *
+ * @since 1.23
+ */
 $wgTrackingCategories = array(
 	'index-category',
 	'noindex-category',

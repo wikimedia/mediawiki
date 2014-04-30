@@ -36,12 +36,12 @@
  */
 
 /**
-  * @license http://www.gnu.org/copyleft/fdl.html GNU Free Documentation License
-  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
-  *
-  * @see http://meta.wikimedia.org/w/index.php?title=LanguageNn.php&action=history
-  * @see http://nn.wikipedia.org/w/index.php?title=Brukar:Dittaeva/LanguageNn.php&action=history
-  */
+ * @license http://www.gnu.org/copyleft/fdl.html GNU Free Documentation License
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ *
+ * @see http://meta.wikimedia.org/w/index.php?title=LanguageNn.php&action=history
+ * @see http://nn.wikipedia.org/w/index.php?title=Brukar:Dittaeva/LanguageNn.php&action=history
+ */
 
 
 $datePreferences = array(

@@ -10,7 +10,7 @@ class LanguageGdTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providerPlural
 	 * @covers Language::convertPlural
-	*/
+	 */
 	public function testPlural( $result, $value ) {
 		$forms = array( 'one', 'two', 'few', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );

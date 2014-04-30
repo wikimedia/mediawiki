@@ -10,28 +10,28 @@
  */
 
 /**
-  * Initial translation by Pasok Internet Volunteers
-  * http://forum.pasok.gr
-  * version 1.0 (initial release)
-  *
-  * The project for the translation of MediaWiki into Greek
-  * was undertaken by a group of ICT volunteers working under
-  * the auspices of the Greek political party PASOK.
-  *
-  * The idea behind this effort was  to provide an extensible,
-  * easy-to-use and non-intimidating tool for content development
-  * and project management, to be used throughout the administrative
-  * and political structure of PASOK by staff, volunteers, party members
-  * and elected officials (all of whom possess varying degrees of ICT skills).
-  *
-  * The PASOK ICT team and the volunteers who worked on this project are
-  * now returning the translated interface to the Open-Source Community
-  * with over 98% of the messages translated into user-friendly Greek.
-  *
-  * We hope that it will be used as a tool by other civil society organizations
-  * in Greece, and that it will enhance the collective creation and the dissemination
-  * of knowledge - an essential component of the democratic process.
-  */
+ * Initial translation by Pasok Internet Volunteers
+ * http://forum.pasok.gr
+ * version 1.0 (initial release)
+ *
+ * The project for the translation of MediaWiki into Greek
+ * was undertaken by a group of ICT volunteers working under
+ * the auspices of the Greek political party PASOK.
+ *
+ * The idea behind this effort was  to provide an extensible,
+ * easy-to-use and non-intimidating tool for content development
+ * and project management, to be used throughout the administrative
+ * and political structure of PASOK by staff, volunteers, party members
+ * and elected officials (all of whom possess varying degrees of ICT skills).
+ *
+ * The PASOK ICT team and the volunteers who worked on this project are
+ * now returning the translated interface to the Open-Source Community
+ * with over 98% of the messages translated into user-friendly Greek.
+ *
+ * We hope that it will be used as a tool by other civil society organizations
+ * in Greece, and that it will enhance the collective creation and the dissemination
+ * of knowledge - an essential component of the democratic process.
+ */
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Μέσο',
