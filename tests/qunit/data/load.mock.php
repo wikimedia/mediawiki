@@ -30,15 +30,26 @@ require_once __DIR__ . '/../../../includes/Xml.php';
 $moduleImplementations = array(
 	'testUsesMissing' => "
 mw.loader.implement( 'testUsesMissing', function () {
-	QUnit.ok( false, 'Module test.usesMissing script should not run.');
+	QUnit.ok( false, 'Module test.usesMissing script should not run.' );
 	QUnit.start();
 }, {}, {});
 ",
 
 	'testUsesNestedMissing' => "
 mw.loader.implement( 'testUsesNestedMissing', function () {
-	QUnit.ok( false, 'Module testUsesNestedMissing script should not run.');
+	QUnit.ok( false, 'Module test.testUsesNestedMissing script should not run.' );
+	QUnit.start();
 }, {}, {});
+",
+
+	'testSkipped' =>"
+mw.loader.implement( 'testSkipped', function () {
+	QUnit.ok( false, 'Module testSkipped was supposed to be skipped.' );
+}, {}, {});
+",
+
+	'testNotSkipped' =>"
+mw.loader.implement( 'testNotSkipped', function () {}, {}, {});
 ",
 );
 

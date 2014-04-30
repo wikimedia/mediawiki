@@ -832,11 +832,31 @@
 			 * @throws {Error} If any unregistered module or a dependency loop is encountered
 			 */
 			function sortDependencies( module, resolved, unresolved ) {
-				var n, deps, len;
+				/*jshint evil:true */
+				var n, deps, len, skip;
 
 				if ( registry[module] === undefined ) {
 					throw new Error( 'Unknown dependency: ' + module );
 				}
+
+				debugger;
+				if ( registry[module].skip !== null ) {
+					skip = new Function( registry[module].skip );
+					if ( skip() ) {
+						// FIXME: Change module state to 'ready'
+						// FIXME: This function must only run once, so it must run
+						// after we assert the module state is not 'ready'. Where?
+						// Or maybe instead of trying to ensure it is only run once
+						// and run after 'ready' check, maybe instead of all that
+						// we can just remove the .skip property once handled.
+						registry[module].skip = null;
+						registry[module].dependencies = [];
+						registry[module].state = 'ready';
+						handlePending( module );
+						// FIXME: return early here?
+					}
+				}
+
 				// Resolves dynamic loader function and replaces it with its own results
 				if ( $.isFunction( registry[module].dependencies ) ) {
 					registry[module].dependencies = registry[module].dependencies();
@@ -1578,8 +1598,9 @@
 				 *  names on which this module depends, or a function that returns that array.
 				 * @param {string} [group=null] Group which the module is in
 				 * @param {string} [source='local'] Name of the source
+				 * @param {string} [skip=null] Script body of the skip function
 				 */
-				register: function ( module, version, dependencies, group, source ) {
+				register: function ( module, version, dependencies, group, source, skip ) {
 					var m;
 					// Allow multiple registration
 					if ( typeof module === 'object' ) {
@@ -1607,7 +1628,8 @@
 						dependencies: [],
 						group: typeof group === 'string' ? group : null,
 						source: typeof source === 'string' ? source : 'local',
-						state: 'registered'
+						state: 'registered',
+						skip: typeof skip === 'string' ? skip : null
 					};
 					if ( typeof dependencies === 'string' ) {
 						// Allow dependencies to be given as a single module name

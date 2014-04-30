@@ -116,6 +116,67 @@ mw.loader.addSource( {
 ] );'
 			) ),
 			array( array(
+				'msg' => 'Conditional dependency function',
+				'modules' => array(
+					'test.x.core' => new ResourceLoaderTestModule(),
+					'test.x.polyfill' => new ResourceLoaderTestModule( array(
+						'skipFunction' => 'return true;'
+					) ),
+					'test.y.polyfill' => new ResourceLoaderTestModule( array(
+						'skipFunction' =>
+							'return !!(' .
+							'    window.JSON &&' .
+							'    JSON.parse &&' .
+							'    JSON.stringify' .
+							');'
+					) ),
+					'test.z.foo' => new ResourceLoaderTestModule( array(
+						'dependencies' => array(
+							'test.x.core',
+							'test.x.polyfil',
+							'test.y.polyfil',
+						),
+					) ),
+				),
+				'out' => '
+mw.loader.addSource( {
+    "local": {
+        "loadScript": "/w/load.php",
+        "apiScript": "/w/api.php"
+    }
+} );mw.loader.register( [
+    [
+        "test.x.core",
+        "1388534400"
+    ],
+    [
+        "test.x.polyfill",
+        "1388534400",
+        [],
+        null,
+        "local",
+        "return true;"
+    ],
+    [
+        "test.y.polyfill",
+        "1388534400",
+        [],
+        null,
+        "local",
+        "return !!(    window.JSON \u0026\u0026    JSON.parse \u0026\u0026    JSON.stringify);"
+    ],
+    [
+        "test.z.foo",
+        "1388534400",
+        [
+            "test.x.core",
+            "test.x.polyfil",
+            "test.y.polyfil"
+        ]
+    ]
+] );',
+			) ),
+			array( array(
 				// This may seem like an edge case, but a plain MediaWiki core install
 				// with a few extensions installed is likely far more complex than this
 				// even, not to mention an install like Wikipedia.
