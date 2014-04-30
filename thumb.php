@@ -423,9 +423,9 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName ) {
  * links to on file description pages and possibly parser output.
  *
  * $params is considered non-standard if they involve a non-standard
- * width or any parameter aside from width and page number. The number
- * of possible files with standard parameters is far less than that of all
- * possible combinations; rate-limiting for them can thus be more generious.
+ * width or any non-default parameters aside from width and page number.
+ * The number of possible files with standard parameters is far less than
+ * that of all combinations; rate-limiting for them can thus be more generious.
  *
  * @param File $file
  * @param array $params
@@ -434,30 +434,44 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName ) {
 function wfThumbIsStandard( File $file, array $params ) {
 	global $wgThumbLimits, $wgImageLimits;
 
-	if ( isset( $params['width'] ) ) {
-		$widths = $wgThumbLimits;
+	$handler = $file->getHandler();
+	if ( !$handler || !isset( $params['width'] ) ) {
+		return false;
+	}
+
+	$basicParams = array();
+	if ( isset( $params['page'] ) ) {
+		$basicParams['page'] = $params['page'];
+	}
+
+	// Check if the width matches one of $wgThumbLimits
+	if ( in_array( $params['width'], $wgThumbLimits ) ) {
+		$normalParams = $basicParams + array( 'width' => $params['width'] );
+		// Append any default values to the map (e.g. "lossy", "lossless", ...)
+		$handler->normaliseParams( $file, $normalParams );
+	} else {
+		// If not, then check if the width matchs one of $wgImageLimits
+		$match = false;
 		foreach ( $wgImageLimits as $pair ) {
-			$widths[] = $pair[0];
+			$normalParams = $basicParams + array( 'width' => $pair[0], 'height' => $pair[1] );
+			// Decide whether the thumbnail should be scaled on width or height.
+			// Also append any default values to the map (e.g. "lossy", "lossless", ...)
+			$handler->normaliseParams( $file, $normalParams );
+			// Check if this standard thumbnail size maps to the given width
+			if ( $normalParams['width'] == $params['width'] ) {
+				$match = true;
+				break;
+			}
 		}
-		if ( !in_array( $params['width'], $widths ) ) {
-			return false;
+		if ( !$match ) {
+			return false; // not standard for description pages
 		}
 	}
 
-	$handler = $file->getHandler();
-	if ( $handler ) {
-		// Standard thumbnails use a standard width and any page number
-		$normalParams = array( 'width' => $params['width'] );
-		if ( isset( $params['page'] ) ) {
-			$normalParams['page'] = $params['page'];
-		}
-		// Append any default values to the map (e.g. "lossy", "lossless", "seek"...)
-		$handler->normaliseParams( $file, $normalParams );
-		// Check that the given values for non-page, non-width, params are just defaults
-		foreach ( $params as $key => $value ) {
-			if ( !isset( $normalParams[$key] ) || $normalParams[$key] !== $value ) {
-				return false;
-			}
+	// Check that the given values for non-page, non-width, params are just defaults
+	foreach ( $params as $key => $value ) {
+		if ( !isset( $normalParams[$key] ) || $normalParams[$key] != $value ) {
+			return false;
 		}
 	}
 
