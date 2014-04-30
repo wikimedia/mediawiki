@@ -822,41 +822,6 @@ class LocalFile extends File {
 	/** createThumb inherited */
 	/** transform inherited */
 
-	/**
-	 * Fix thumbnail files from 1.4 or before, with extreme prejudice
-	 * @todo Do we still care about this? Perhaps a maintenance script
-	 *   can be made instead. Enabling this code results in a serious
-	 *   RTT regression for wikis without 404 handling.
-	 *
-	 * @param string $thumbName
-	 */
-	function migrateThumbFile( $thumbName ) {
-		/* Old code for bug 2532
-		$thumbDir = $this->getThumbPath();
-		$thumbPath = "$thumbDir/$thumbName";
-		if ( is_dir( $thumbPath ) ) {
-			// Directory where file should be
-			// This happened occasionally due to broken migration code in 1.5
-			// Rename to broken-*
-			for ( $i = 0; $i < 100; $i++ ) {
-				$broken = $this->repo->getZonePath( 'public' ) . "/broken-$i-$thumbName";
-				if ( !file_exists( $broken ) ) {
-					rename( $thumbPath, $broken );
-					break;
-				}
-			}
-			// Doesn't exist anymore
-			clearstatcache();
-		}
-		*/
-		/*
-		if ( $this->repo->fileExists( $thumbDir ) ) {
-			// Delete file where directory should be
-			$this->repo->cleanupBatch( array( $thumbDir ) );
-		}
-		*/
-	}
-
 	/** getHandler inherited */
 	/** iconThumb inherited */
 	/** getLastError inherited */
