@@ -106,6 +106,16 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 
+	'skins.common.interface.parsoid' => array(
+		// Style Parsoid HTML+RDFa output consistent with wikitext from PHP parser
+		// with the commonInterface.css styles
+		'styles' => array(
+			'common/parsoid.styles.less' => array( 'media' => 'screen' ),
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+
 	/**
 	 * Skins
 	 * Be careful not to add 'scripts' to these modules,
