@@ -360,14 +360,16 @@ class SpecialSearch extends SpecialPage {
 		$out->addHtml( "<div class='searchresults'>" );
 
 		// prev/next links
+		$prevnext = null;
 		if ( $num || $this->offset ) {
 			// Show the create link ahead
 			$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
-			$prevnext = $this->getLanguage()->viewPrevNext( $this->getPageTitle(), $this->offset, $this->limit,
-				$this->powerSearchOptions() + array( 'search' => $term ),
-				max( $titleMatchesNum, $textMatchesNum ) < $this->limit
-			);
-			//$out->addHTML( "<p class='mw-search-pager-top'>{$prevnext}</p>\n" );
+			if ( $totalRes > $this->limit || $this->offset ) {
+				$prevnext = $this->getLanguage()->viewPrevNext( $this->getPageTitle(), $this->offset, $this->limit,
+					$this->powerSearchOptions() + array( 'search' => $term ),
+					max( $titleMatchesNum, $textMatchesNum ) < $this->limit
+				);
+			}
 			wfRunHooks( 'SpecialSearchResults', array( $term, &$titleMatches, &$textMatches ) );
 		} else {
 			wfRunHooks( 'SpecialSearchNoResults', array( $term ) );
@@ -386,10 +388,8 @@ class SpecialSearch extends SpecialPage {
 			if ( $numTextMatches > 0 && $numTitleMatches > 0 ) {
 				// if no title matches the heading is redundant
 				$out->wrapWikiMsg( "==$1==\n", 'textmatches' );
-			} elseif ( $totalRes == 0 ) {
-				# Don't show the 'no text matches' if we received title matches
-				# $out->wrapWikiMsg( "==$1==\n", 'notextmatches' );
 			}
+
 			// show interwiki results if any
 			if ( $textMatches->hasInterwikiResults() ) {
 				$out->addHTML( $this->showInterwiki( $textMatches->getInterwikiResults(), $term ) );
@@ -413,7 +413,7 @@ class SpecialSearch extends SpecialPage {
 		}
 		$out->addHtml( "</div>" );
 
-		if ( $num || $this->offset ) {
+		if ( $prevnext ) {
 			$out->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
 		}
 	}
