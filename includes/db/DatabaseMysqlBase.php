@@ -64,10 +64,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			$realServer = $server;
 		}
 		$this->close();
-		$this->mServer = $server;
-		$this->mUser = $user;
-		$this->mPassword = $password;
-		$this->mDBname = $dbName;
 
 		wfProfileIn( "dbconnect-$server" );
 

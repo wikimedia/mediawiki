@@ -780,6 +780,10 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$this->mForeign = $foreign;
 
 		if ( $user ) {
+			$this->mServer = $server;
+			$this->mUser = $user;
+			$this->mPassword = $password;
+			$this->mDBname = $dbName;
 			$this->open( $server, $user, $password, $dbName );
 		}
 	}
@@ -1087,6 +1091,11 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		}
 
 		$queryId = MWDebug::query( $sql, $fname, $isMaster );
+
+		# Avoid fatals if close() was called
+		if ( !$this->isOpen() ) {
+			throw new DBUnexpectedError( $this, "DB connection was already closed." );
+		}
 
 		# Do the query and handle errors
 		$ret = $this->doQuery( $commentedSql );
