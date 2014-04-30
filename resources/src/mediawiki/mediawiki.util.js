@@ -13,49 +13,33 @@
 		 * (don't call before document ready)
 		 */
 		init: function () {
-			/* Fill $content var */
 			util.$content = ( function () {
-				var i, l, $content, selectors;
+				var i, l, $node, selectors;
+
 				selectors = [
-					// The preferred standard for setting $content (class="mw-body")
-					// You may also use (class="mw-body mw-body-primary") if you use
-					// mw-body in multiple locations.
-					// Or class="mw-body-primary" if you want $content to be deeper
-					// in the dom than mw-body
+					// The preferred standard is class "mw-body".
+					// You may also use class "mw-body mw-body-primary" if you use
+					// mw-body in multiple locations. Or class "mw-body-primary" if
+					// you use mw-body deeper in the DOM.
 					'.mw-body-primary',
 					'.mw-body',
 
-					/* Legacy fallbacks for setting the content */
-					// Vector, Monobook, Chick, etc... based skins
-					'#bodyContent',
-
-					// Modern based skins
-					'#mw_contentholder',
-
-					// Standard, CologneBlue
-					'#article',
-
-					// #content is present on almost all if not all skins. Most skins (the above cases)
-					// have #content too, but as an outer wrapper instead of the article text container.
-					// The skins that don't have an outer wrapper do have #content for everything
-					// so it's a good fallback
-					'#content',
-
-					// If nothing better is found fall back to our bodytext div that is guaranteed to be here
+					// If the skin has no such class, fall back to the parser output
 					'#mw-content-text',
 
-					// Should never happen... well, it could if someone is not finished writing a skin and has
-					// not inserted bodytext yet. But in any case <body> should always exist
+					// Should never happen... well, it could if someone is not finished writing a
+					// skin and has not yet inserted bodytext yet.
 					'body'
 				];
+
 				for ( i = 0, l = selectors.length; i < l; i++ ) {
-					$content = $( selectors[i] ).first();
-					if ( $content.length ) {
-						return $content;
+					$node = $( selectors[i] );
+					if ( $node.length ) {
+						return $node.first();
 					}
 				}
 
-				// Make sure we don't unset util.$content if it was preset and we don't find anything
+				// Preserve existing customized value in case it was preset
 				return util.$content;
 			}() );
 		},
@@ -202,10 +186,25 @@
 			$nodes.updateTooltipAccessKeys();
 		},
 
-		/*
+		/**
+		 * The content wrapper of the skin (e.g. `.mw-body`).
+		 *
+		 *
+		 * Populated on document ready by #init. To use this property,
+		 * wait for `$.ready` and be sure to have a module depedendency on
+		 * `mediawiki.util` and `mediawiki.page.startup` which will ensure
+		 * your document ready handler fires after #init.
+		 *
+		 * Because of the lazy-initialised nature of this property,
+		 * you're discouraged from using it.
+		 *
+		 * If you need just the wikipage content (not any of the
+		 * extra elements output by the skin), use `$( '#mw-content-text' )`
+		 * instead. Or listen to mw.hook#wikipage_content which will
+		 * allow your code to re-run when the page changes (e.g. live preview
+		 * or re-render after ajax save).
+		 *
 		 * @property {jQuery}
-		 * A jQuery object that refers to the content area element.
-		 * Populated by #init.
 		 */
 		$content: null,
 
