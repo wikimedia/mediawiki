@@ -1088,6 +1088,11 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 
 		$queryId = MWDebug::query( $sql, $fname, $isMaster );
 
+		# Avoid fatals if close() was called
+		if ( !$this->isOpen() ) {
+			throw new DBUnexpectedError( $this, "DB connection was already closed." );
+		}
+
 		# Do the query and handle errors
 		$ret = $this->doQuery( $commentedSql );
 
