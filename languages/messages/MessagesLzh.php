@@ -132,8 +132,6 @@ $dateFormats = array(
         'zh both' => 'Y年n月j日 （D） H時i分',
 );
 
-$linkTrail = '/^([a-z]+)(.*)$/sD';
-
 $digitTransformTable = array(
 	'0' => '〇',
 	'1' => '一',
