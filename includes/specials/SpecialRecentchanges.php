@@ -527,7 +527,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Create a input to filter changes by categories
+	 * Create an input to filter changes by categories
 	 *
 	 * @param FormOptions $opts
 	 * @return array
