@@ -107,6 +107,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected $dependencies = array();
 
 	/**
+	 * @var string File name containing the body of the skip function
+	 */
+	protected $skipFunction = null;
+
+	/**
 	 * @var array List of message keys used by this module
 	 * @par Usage:
 	 * @code
@@ -204,6 +209,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *         'group' => [group name string],
 	 *         // Position on the page to load this module at
 	 *         'position' => ['bottom' (default) or 'top']
+	 *         // Function that, if it returns true, makes the loader skip this module
+	 *         // The path is expected to contain a javascript block (starting with "{"
+	 *         // and ending with "}")
+	 *         'skipFunction' => [file path]
 	 *     )
 	 * @endcode
 	 */
@@ -267,6 +276,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				case 'position':
 				case 'localBasePath':
 				case 'remoteBasePath':
+				case 'skipFunction':
 					$this->{$member} = (string)$option;
 					break;
 				// Single booleans
@@ -411,6 +421,28 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Get the skip function.
+	 *
+	 * @return XmlJsCode|null
+	 */
+	public function getSkipFunction() {
+		if ( !$this->skipFunction) {
+			return null;
+		}
+
+		global $wgResourceLoaderValidateStaticJS;
+		$localPath = $this->getLocalPath( $this->skipFunction );
+		if ( !file_exists( $localPath ) ) {
+			throw new MWException( __METHOD__ . ": skip function file not found: \"$localPath\"" );
+		}
+		$contents = file_get_contents( $localPath );
+		if ( $wgResourceLoaderValidateStaticJS ) {
+			$contents = $this->validateScriptFile( $fileName, $contents );
+		}
+		return new XmlJsCode( "function () $contents" );
+	}
+
+	/**
 	 * @return bool
 	 */
 	public function isRaw() {
@@ -463,6 +495,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			self::tryForKey( $this->skinScripts, $context->getSkin(), 'default' ),
 			$this->loaderScripts
 		);
+		if ( $this->skipFunction ) {
+			$files[] = $this->skipFunction;
+		}
 		$files = array_map( array( $this, 'getLocalPath' ), $files );
 		// File deps need to be treated separately because they're already prefixed
 		$files = array_merge( $files, $this->getFileDependencies( $context->getSkin() ) );
@@ -511,6 +546,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			'targets',
 			'group',
 			'position',
+			'skipFunction',
 			'localBasePath',
 			'remoteBasePath',
 			'debugRaw',
