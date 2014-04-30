@@ -35,6 +35,9 @@ class ResourceLoader {
 	/** @var array */
 	protected static $requiredSourceProperties = array( 'loadScript' );
 
+	/** @var bool */
+	protected static $debugMode = null;
+
 	/** @var array Module name/ResourceLoaderModule object pairs */
 	protected $modules = array();
 
@@ -145,9 +148,10 @@ class ResourceLoader {
 	 *
 	 * @param string $filter Name of filter to run
 	 * @param string $data Text to filter, such as JavaScript or CSS text
+	 * @param string $cacheReport Whether to include the cache key report
 	 * @return string Filtered data, or a comment containing an error message
 	 */
-	protected function filter( $filter, $data ) {
+	public function filter( $filter, $data, $cacheReport = true ) {
 		global $wgResourceLoaderMinifierStatementsOnOwnLine, $wgResourceLoaderMinifierMaxLineLength;
 		wfProfileIn( __METHOD__ );
 
@@ -179,11 +183,15 @@ class ResourceLoader {
 						$wgResourceLoaderMinifierStatementsOnOwnLine,
 						$wgResourceLoaderMinifierMaxLineLength
 					);
-					$result .= "\n/* cache key: $key */";
+					if ( $cacheReport ) {
+						$result .= "\n/* cache key: $key */";
+					}
 					break;
 				case 'minify-css':
 					$result = CSSMin::minify( $data );
-					$result .= "\n/* cache key: $key */";
+					if ( $cacheReport ) {
+						$result .= "\n/* cache key: $key */";
+					}
 					break;
 			}
 
@@ -1074,15 +1082,15 @@ class ResourceLoader {
 	 * Returns JS code which calls mw.loader.register with the given
 	 * parameters. Has three calling conventions:
 	 *
-	 *   - ResourceLoader::makeLoaderRegisterScript( $name, $version, $dependencies, $group, $source ):
+	 *   - ResourceLoader::makeLoaderRegisterScript( $name, $version, $dependencies, $group, $source, $skip ):
 	 *       Register a single module.
 	 *
 	 *   - ResourceLoader::makeLoaderRegisterScript( array( $name1, $name2 ) ):
 	 *       Register modules with the given names.
 	 *
 	 *   - ResourceLoader::makeLoaderRegisterScript( array(
-	 *        array( $name1, $version1, $dependencies1, $group1, $source1 ),
-	 *        array( $name2, $version2, $dependencies1, $group2, $source2 ),
+	 *        array( $name1, $version1, $dependencies1, $group1, $source1, $skip1 ),
+	 *        array( $name2, $version2, $dependencies1, $group2, $source2, $skip2 ),
 	 *        ...
 	 *     ) ):
 	 *        Registers modules with the given names and parameters.
@@ -1092,10 +1100,11 @@ class ResourceLoader {
 	 * @param array $dependencies List of module names on which this module depends
 	 * @param string $group Group which the module is in
 	 * @param string $source Source of the module, or 'local' if not foreign
+	 * @param string $skip Script body of the skip function
 	 * @return string
 	 */
 	public static function makeLoaderRegisterScript( $name, $version = null,
-		$dependencies = null, $group = null, $source = null
+		$dependencies = null, $group = null, $source = null, $skip = null
 	) {
 		if ( is_array( $name ) ) {
 			return Xml::encodeJsCall(
@@ -1107,7 +1116,7 @@ class ResourceLoader {
 			$version = (int)$version > 1 ? (int)$version : 1;
 			return Xml::encodeJsCall(
 				'mw.loader.register',
-				array( $name, $version, $dependencies, $group, $source ),
+				array( $name, $version, $dependencies, $group, $source, $skip ),
 				ResourceLoader::inDebugMode()
 			);
 		}
@@ -1201,13 +1210,24 @@ class ResourceLoader {
 	 * @return bool
 	 */
 	public static function inDebugMode() {
-		global $wgRequest, $wgResourceLoaderDebug;
-		static $retval = null;
-		if ( is_null( $retval ) ) {
-			$retval = $wgRequest->getFuzzyBool( 'debug',
-				$wgRequest->getCookie( 'resourceLoaderDebug', '', $wgResourceLoaderDebug ) );
+		if ( self::$debugMode === null ) {
+			global $wgRequest, $wgResourceLoaderDebug;
+			self::$debugMode = $wgRequest->getFuzzyBool( 'debug',
+				$wgRequest->getCookie( 'resourceLoaderDebug', '', $wgResourceLoaderDebug )
+			);
 		}
-		return $retval;
+		return self::$debugMode;
+	}
+
+	/**
+	 * Reset static members used for caching.
+	 *
+	 * Global state and $wgRequest are evil, but we're using it right
+	 * now and sometimes we need to be able to force ResourceLoader to
+	 * re-evaluate the context because it has changed (e.g. in the test suite).
+	 */
+	public static function clearCache() {
+		self::$debugMode = null;
 	}
 
 	/**

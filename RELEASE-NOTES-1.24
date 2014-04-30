@@ -62,6 +62,8 @@ production.
   the Vector skin has gained a label that should make it more discoverable.
 * MWCryptHKDF added for fast, cryptographically secure random number generation
   that won't deplete openssl's entropy pool.
+* ResourceLoader: File modules can now provide a skip function that uses an
+  inline feature test to bypass loading of the module.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
