@@ -429,16 +429,13 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName ) {
  * of possible files with standard parameters is far less than that of all
  * possible combinations; rate-limiting for them can thus be more generious.
  *
- * @param File $img
+ * @param File $file
  * @param array $params
  * @return bool
  */
-function wfThumbIsStandard( File $img, array $params ) {
+function wfThumbIsStandard( File $file, array $params ) {
 	global $wgThumbLimits, $wgImageLimits;
-	// @TODO: use polymorphism with media handler here
-	if ( array_diff( array_keys( $params ), array( 'width', 'page' ) ) ) {
-		return false; // extra parameters present
-	}
+
 	if ( isset( $params['width'] ) ) {
 		$widths = $wgThumbLimits;
 		foreach ( $wgImageLimits as $pair ) {
@@ -448,6 +445,24 @@ function wfThumbIsStandard( File $img, array $params ) {
 			return false;
 		}
 	}
+
+	$handler = $file->getHandler();
+	if ( $handler ) {
+		// Standard thumbnails use a standard width and any page number
+		$normalParams = array( 'width' => $params['width'] );
+		if ( isset( $params['page'] ) ) {
+			$normalParams['page'] = $params['page'];
+		}
+		// Append any default values to the map (e.g. "lossy", "lossless", "seek"...)
+		$handler->normaliseParams( $file, $normalParams );
+		// Check that the given values for non-page, non-width, params are just defaults
+		foreach ( $params as $key => $value ) {
+			if ( !isset( $normalParams[$key] ) || $normalParams[$key] !== $value ) {
+				return false;
+			}
+		}
+	}
+
 	return true;
 }
 
