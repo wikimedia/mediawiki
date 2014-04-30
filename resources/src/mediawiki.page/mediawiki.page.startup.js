@@ -9,10 +9,6 @@
 		.removeClass( 'client-nojs' );
 
 	$( function () {
-		// Initialize utilities as soon as the document is ready (mw.util.$content).
-		// In the domready here instead of in mediawiki.page.ready to ensure that it gets enqueued
-		// before other modules hook into domready, so that mw.util.$content (defined by
-		// mw.util.init), is defined for them.
 		mw.util.init();
 
 		/**
