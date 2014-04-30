@@ -247,7 +247,7 @@
 						}
 					}
 				}
-			} )();
+			}() );
 		} );
 	} );
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );
