@@ -225,6 +225,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'changeField', 'uploadstash', 'us_image_bits', 'smallint', '' ),
 			array( 'changeField', 'profiling', 'pf_time', 'float', '' ),
 			array( 'changeField', 'profiling', 'pf_memory', 'float', '' ),
+			array( 'changeField', 'l10n_cache', 'lc_value', 'bytea', "replace(lc_value,'\','\\\\')::bytea" ),
 
 			# null changes
 			array( 'changeNullableField', 'oldimage', 'oi_bits', 'NULL' ),
