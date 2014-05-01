@@ -1625,7 +1625,7 @@ class OutputPage extends ContextSource {
 		}
 		$text = $parserOutput->getText();
 		wfRunHooks( 'OutputPageBeforeHTML', array( &$this, &$text ) );
-		$this->addHTML( $text );
+		$this->addHTML( Html::rawElement( 'div', array( 'class' => 'mw-parseroutput' ), $text ) );
 	}
 
 	/**

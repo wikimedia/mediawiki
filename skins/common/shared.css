@@ -1284,3 +1284,13 @@ sup,
 sub {
 	line-height: 1;
 }
+
+/* Container with the output of the parser */
+/* Clear floating elements that overflow */
+/* Use :after (CSS2) instead of ::after (CSS3) */
+/* because the Internet Explorer 8 supports only :after. */
+.mw-parseroutput:after {
+	clear: both;
+	content: "";
+	display: block;
+}
