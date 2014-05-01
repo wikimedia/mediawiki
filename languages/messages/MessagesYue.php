@@ -230,6 +230,3 @@ $dateFormats = array(
 	'yue ymd both' => 'Y-n-j H:i',
 );
 
-
-$linkTrail = '/^([a-z]+)(.*)$/sD';
-
