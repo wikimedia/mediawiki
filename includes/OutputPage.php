@@ -2039,6 +2039,10 @@ class OutputPage extends ContextSource {
 		$response->header( "Content-type: $wgMimeType; charset=UTF-8" );
 		$response->header( 'Content-language: ' . $wgLanguageCode );
 
+		// Avoid Internet Explorer "compatibility view" in IE 8-10, so that
+		// jQuery etc. can work correctly.
+		$response->header( 'X-UA-Compatible: IE=Edge' );
+
 		// Prevent framing, if requested
 		$frameOptions = $this->getFrameOptions();
 		if ( $frameOptions ) {
@@ -2522,10 +2526,6 @@ $templates
 		}
 
 		$ret .= Html::element( 'title', null, $this->getHTMLTitle() ) . "\n";
-
-		// Avoid Internet Explorer "compatibility view", so that
-		// jQuery can work correctly.
-		$ret .= Html::element( 'meta', array( 'http-equiv' => 'X-UA-Compatible', 'content' => 'IE=EDGE' ) ) . "\n";
 
 		$ret .= (
 			$this->getHeadLinks() .
