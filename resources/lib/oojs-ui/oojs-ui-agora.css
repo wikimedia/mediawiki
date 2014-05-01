@@ -1,3 +1,23 @@
+.oo-ui-dialog-content .oo-ui-window-closeButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.oo-ui-dialog-content .oo-ui-window-icon {
+  margin-left: 3.35em;
+}
+
+.oo-ui-dialog-content .oo-ui-window-body {
+  position: relative;
+}
+
+.oo-ui-dialog-medium .oo-ui-window-frame {
+  top: 0;
+  bottom: 0;
+  background-color: white;
+}
+
 .oo-ui-window-head {
   height: 3.35em;
   border-bottom: 1px solid #dddddd;

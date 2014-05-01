@@ -9,7 +9,47 @@
           transition: all 250ms ease-in-out;
 }
 
+.oo-ui-dialog-content .oo-ui-window-head,
+.oo-ui-dialog-content .oo-ui-window-body,
+.oo-ui-dialog-content .oo-ui-window-foot {
+  position: absolute;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.oo-ui-dialog-content .oo-ui-window-head {
+  top: 0;
+  height: 3.8em;
+  padding: 0.5em;
+}
+
+.oo-ui-dialog-content .oo-ui-window-title {
+  line-height: 2.8em;
+}
+
+.oo-ui-dialog-content .oo-ui-window-icon {
+  width: 2.4em;
+  height: 2.8em;
+  line-height: 2.8em;
+}
+
+.oo-ui-dialog-content .oo-ui-window-closeButton {
+  float: right;
+  margin: 0.25em 0.25em;
+}
+
+.oo-ui-dialog-content .oo-ui-window-body {
+  top: 3.8em;
+  bottom: 4.8em;
+}
+
 .oo-ui-dialog > .oo-ui-window-frame {
+  top: 1em;
+  bottom: 1em;
   background-color: #fff;
   border: solid 1px #ccc;
   border-radius: 0.5em;
@@ -24,6 +64,21 @@
       -ms-transition: all 250ms ease-in-out;
        -o-transition: all 250ms ease-in-out;
           transition: all 250ms ease-in-out;
+}
+
+.oo-ui-dialog-small .oo-ui-window-frame {
+  width: 400px;
+  max-height: 230px;
+}
+
+.oo-ui-dialog-medium .oo-ui-window-frame {
+  width: 600px;
+  max-height: 460px;
+}
+
+.oo-ui-dialog-large .oo-ui-window-frame {
+  width: 800px;
+  max-height: 690px;
 }
 
 .oo-ui-dialog-open {
@@ -307,6 +362,18 @@
 
 .oo-ui-fieldsetLayout > .oo-ui-labeledElement-label {
   font-size: 1.5em;
+}
+
+.oo-ui-panelLayout {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.oo-ui-panelLayout-padded {
+  padding: 2em;
 }
 
 .oo-ui-barToolGroup .oo-ui-tool {
