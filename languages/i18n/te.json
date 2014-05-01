@@ -1333,7 +1333,7 @@
 	"uploadstash-refresh": "దస్త్రాల జాబిజాను తాజాకరించు",
 	"invalid-chunk-offset": "చెల్లని చంక్ ఆఫ్‍సెట్",
 	"img-auth-accessdenied": "అనుమతిని నిరాకరించారు",
-	"img-auth-nopathinfo": "PATH_INFO లేదు.\nమీ సర్వరు ఈ సమాచారాన్ని పంపించేందుకు అనువుగా అమర్చి లేదు.\nఅది CGI ఆధారితమై ఉండొచ్చు. అంచేత img_auth కు అనుకూలంగా లేదు.\nhttps://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.",
+	"img-auth-nopathinfo": "PATH_INFO లేదు.\nమీ సర్వరు ఈ సమాచారాన్ని పంపించేందుకు అనువుగా అమర్చి లేదు.\nఅది CGI ఆధారితమై ఉండొచ్చు. అంచేత img_auth కు అనుకూలంగా లేదు.\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization చూడండి.",
 	"img-auth-notindir": "అభ్యర్థించిన తోవ ఎక్కింపు సంచయంలో లేదు.",
 	"img-auth-badtitle": "\"$1\" నుండి సరైన శీర్షికని నిర్మించలేకపోయాం.",
 	"img-auth-nologinnWL": "మీరు లాగినయి లేరు. పైగా \"$1\" అనేది తెల్లజాబితాలో లేదు.",

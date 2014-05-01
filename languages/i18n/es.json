@@ -1427,7 +1427,7 @@
 	"uploadstash-refresh": "Actualizar la lista de archivos",
 	"invalid-chunk-offset": "Desplazamiento inválido del fragmento",
 	"img-auth-accessdenied": "Acceso denegado",
-	"img-auth-nopathinfo": "Falta PATH_INFO.\nEl servidor no está configurado para proporcionar esta información.\nEs posible que esté basado en CGI y que no sea compatible con img_auth.\nConsulte https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "Falta PATH_INFO.\nEl servidor no está configurado para proporcionar esta información.\nEs posible que esté basado en CGI y que no sea compatible con img_auth.\nConsulte https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Ruta solicitad no esá en el directorio de cargas configurado",
 	"img-auth-badtitle": "Incapaz de construir un título válido de «$1».",
 	"img-auth-nologinnWL": "No has iniciado sesión y «$1» no está en la lista blanca.",

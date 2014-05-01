@@ -1302,7 +1302,7 @@
 	"uploadstash-errclear": "Tsy navokatra ny famafana rakitra.",
 	"uploadstash-refresh": "Vaozina ny lisi-drakitra",
 	"img-auth-accessdenied": "Tsy afa-mankao",
-	"img-auth-nopathinfo": "Tsy misy PATH_INFO.\nTsy voaparametatra ny lohamilinao hampita io fampahalalàna io.\nMety mampiasa CGI angamba ilay lohamilina ka tsy mahazaka an'i img_auth\nVangio ny https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "Tsy misy PATH_INFO.\nTsy voaparametatra ny lohamilinao hampita io fampahalalàna io.\nMety mampiasa CGI angamba ilay lohamilina ka tsy mahazaka an'i img_auth\nVangio ny https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Ny lalana nangatahana dia tsy ny petra-drakitra nokaonfigiorena.",
 	"img-auth-badtitle": "Tsy afaka mamorona lohateny azo ampiasaina avy amin'ny « $1 ».",
 	"img-auth-nologinnWL": "Tsy mbola niditra ianao ary tsy ao amin'ny lisitra fotsy « $1 ».",

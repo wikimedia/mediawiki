@@ -1145,7 +1145,7 @@
 	"uploadstash-refresh": "Esviellar a lista de fichers",
 	"invalid-chunk-offset": "Desplazamiento invalido d'o fragmento",
 	"img-auth-accessdenied": "Acceso refusau",
-	"img-auth-nopathinfo": "Falta PATH_INFO.\n O suyo servidor no ye configurau ta pasar ista información.\nPuet que siga basau en CGI y no siga compatible con img_auth.\nSe veiga l'autorización d'a imachen en https://www.mediawiki.org/wiki/Manual:Image_Authorization",
+	"img-auth-nopathinfo": "Falta PATH_INFO.\n O suyo servidor no ye configurau ta pasar ista información.\nPuet que siga basau en CGI y no siga compatible con img_auth.\nSe veiga l'autorización d'a imachen en https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "A rota solicitada no ye en o directorio de cargas configurau",
 	"img-auth-badtitle": "No s'ha puesto construyir un títol valito dende \"$1\".",
 	"img-auth-nologinnWL": "No ha encetau sesión y \"$1\" no ye en a lista blanca.",

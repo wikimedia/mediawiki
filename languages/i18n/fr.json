@@ -1428,7 +1428,7 @@
 	"uploadstash-refresh": "Actualiser la liste des fichiers",
 	"invalid-chunk-offset": "Offset de segment non valide",
 	"img-auth-accessdenied": "Accès refusé",
-	"img-auth-nopathinfo": "PATH_INFO manquant.\nVotre serveur n'est pas paramétré pour passer cette information.\nIl fonctionne peut-être en CGI et ne supporte pas img_auth.\nVoyez https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "PATH_INFO manquant.\nVotre serveur n'est pas paramétré pour passer cette information.\nIl fonctionne peut-être en CGI et ne supporte pas img_auth.\nVoyez https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Le chemin demandé n'est pas le répertoire d'import configuré.",
 	"img-auth-badtitle": "Impossible de construire un titre valide à partir de « $1 ».",
 	"img-auth-nologinnWL": "Vous n'êtes pas connecté et « $1 » n'est pas dans la liste blanche.",

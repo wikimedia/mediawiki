@@ -1392,7 +1392,7 @@
 	"uploadstash-refresh": "Aggiorna l'elenco dei file",
 	"invalid-chunk-offset": "Offset della parte non valido.",
 	"img-auth-accessdenied": "Accesso negato",
-	"img-auth-nopathinfo": "PATH_INFO mancante.\nIl server non è impostato per passare questa informazione.\nPotrebbe essere basato su CGI e non può supportare img_auth.\nVedi https://www.mediawiki.org/wiki/Manual:Image_Authorization",
+	"img-auth-nopathinfo": "PATH_INFO mancante.\nIl server non è impostato per passare questa informazione.\nPotrebbe essere basato su CGI e non può supportare img_auth.\nVedi https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "Il percorso richiesto non si trova nella directory di upload configurata.",
 	"img-auth-badtitle": "Impossibile costruire un titolo valido da \"$1\".",
 	"img-auth-nologinnWL": "Non si è effettuato l'accesso e \"$1\" non è nella whitelist.",

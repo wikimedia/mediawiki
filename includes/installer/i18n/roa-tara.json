@@ -52,5 +52,5 @@
 	"config-install-pg-schema-not-exist": "'U scheme PostgreSQL non g'esiste.",
 	"config-help": "ajute",
 	"mainpagetext": "'''MediaUicchi ha state 'nstallete.'''",
-	"mainpagedocfooter": "Vè vide [//meta.wikimedia.org/wiki/Help:Contents User's Guide] pe l'mbormaziune sus a cumme s'ause 'u softuer wiki.\n\n== Pe accumenzà ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Liste pe le configuraziune]\n* [//www.mediawiki.org/wiki/Manual:FAQ FAQ de MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Elenghe d'a poste de MediaUicchi]\n* [//www.mediawiki.org/wiki/Localisation#Translation_resources Localizzazzione de MediaUicchi pa lènga toje]"
+	"mainpagedocfooter": "Vè vide [//meta.wikimedia.org/wiki/Help:Contents User's Guide] pe l'mbormaziune sus a cumme s'ause 'u softuer wiki.\n\n== Pe accumenzà ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste pe le configuraziune]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ de MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Elenghe d'a poste de MediaUicchi]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localizzazzione de MediaUicchi pa lènga toje]"
 }

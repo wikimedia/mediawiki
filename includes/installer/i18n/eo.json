@@ -41,5 +41,5 @@
 	"config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
 	"config-type-mysql": "MySQL (aŭ kongrua)",
 	"mainpagetext": "'''MediaWiki estis sukcese instalita.'''",
-	"mainpagedocfooter": "Konsultu la [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Gvidilon por uzantoj de MediaWiki] por informoj pri uzado de vikia programaro.\n\n==Kiel komenci==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Listo de konfiguraĵoj] (angle)\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki Oftaj Demandoj] (angle)\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Anonco-dissendolisto pri MediaWiki] (angle)\n* [//www.mediawiki.org/wiki/Localisation#Translation_resources Preklad MediaWiki do tvojho jazyka]"
+	"mainpagedocfooter": "Konsultu la [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Gvidilon por uzantoj de MediaWiki] por informoj pri uzado de vikia programaro.\n\n==Kiel komenci==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Listo de konfiguraĵoj] (angle)\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki Oftaj Demandoj] (angle)\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Anonco-dissendolisto pri MediaWiki] (angle)\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Preklad MediaWiki do tvojho jazyka]"
 }

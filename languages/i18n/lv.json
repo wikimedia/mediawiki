@@ -1152,7 +1152,7 @@
 	"uploadstash-errclear": "Failu tīrīšana bija neveiksmīga.",
 	"uploadstash-refresh": "Atsvaidzināt failu sarakstu",
 	"img-auth-accessdenied": "Pieeja liegta",
-	"img-auth-nopathinfo": "Trūkst PATH_INFO.\nJūsu serveris nav konfigurēts nodot šo informāciju.\nTas var būt bāzēts uz CGI un neatbalstīt img_auth.\nSkatīt https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "Trūkst PATH_INFO.\nJūsu serveris nav konfigurēts nodot šo informāciju.\nTas var būt bāzēts uz CGI un neatbalstīt img_auth.\nSkatīt https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-nologinnWL": "Jūs neesat iegājis un \"$1\" nav baltajā sarakstā.",
 	"img-auth-nofile": "Fails \"$1\" nepastāv.",
 	"img-auth-isdir": "Jūs mēģinājāt piekļūt direktorijai \"$1\".\nAtļauta ir tikai failu piekļuve.",

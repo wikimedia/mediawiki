@@ -1370,7 +1370,7 @@
 	"uploadstash-refresh": "Dosya listelerini yenile",
 	"invalid-chunk-offset": "Geçersiz öbek ofset",
 	"img-auth-accessdenied": "Erişim engellendi",
-	"img-auth-nopathinfo": "Eksik PATH_INFO.\nSunucunuz bu bilgiyi geçirmek için ayarlanmamış.\nCGI-tabanlı ve img_auth desteklenmiyor olabilir.\nhttps://www.mediawiki.org/wiki/Manual:Image_Authorization sayfasına bakın.",
+	"img-auth-nopathinfo": "Eksik PATH_INFO.\nSunucunuz bu bilgiyi geçirmek için ayarlanmamış.\nCGI-tabanlı ve img_auth desteklenmiyor olabilir.\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization sayfasına bakın.",
 	"img-auth-notindir": "İstenen yol yapılandırılmış yükleme dizininde değil.",
 	"img-auth-badtitle": "\"$1\" ile geçerli bir başlık yapılamıyor.",
 	"img-auth-nologinnWL": "Giriş yapmadınız ve \"$1\" beyaz listede değil.",

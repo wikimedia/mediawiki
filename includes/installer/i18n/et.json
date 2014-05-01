@@ -62,5 +62,5 @@
 	"config-install-tables": "Tabelite loomine",
 	"config-help": "abi",
 	"mainpagetext": "'''MediaWiki tarkvara on edukalt paigaldatud.'''",
-	"mainpagedocfooter": "Vikitarkvara kasutamise kohta leiad lisateavet [//meta.wikimedia.org/wiki/Help:Contents juhendist].\n\n== Alustamine ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Häälestussätete loend]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki KKK]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki versiooniuuenduste postiloend]\n* [//www.mediawiki.org/wiki/Localisation#Translation_resources MediaWiki lokaliseerimine]"
+	"mainpagedocfooter": "Vikitarkvara kasutamise kohta leiad lisateavet [//meta.wikimedia.org/wiki/Help:Contents juhendist].\n\n== Alustamine ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Häälestussätete loend]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki KKK]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki versiooniuuenduste postiloend]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources MediaWiki lokaliseerimine]"
 }

@@ -1092,7 +1092,7 @@
 	"uploadstash-errclear": "Dät Wächhoaljen fon in foaruut spiekerde Doatäie hied naan Ärfoulch.",
 	"uploadstash-refresh": "Lieste fon Doatäie aktualisierje.",
 	"img-auth-accessdenied": "Tougriep ferwäigerd",
-	"img-auth-nopathinfo": "PATH_INFO failt.\nDie Server is nit deerfoar iengjucht, disse Information fääretoureeken.\nJu kuud CGI-basierd weese un unnerstutset img_auth nit.\nSjuch https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "PATH_INFO failt.\nDie Server is nit deerfoar iengjucht, disse Information fääretoureeken.\nJu kuud CGI-basierd weese un unnerstutset img_auth nit.\nSjuch https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Dät wonskede Paad is nit in dät konfigurierde Uploadferteeknis.",
 	"img-auth-badtitle": "Uut „$1“ kon naan gultigen Tittel moaked wäide.",
 	"img-auth-nologinnWL": "Du bäst nit anmälded un „$1“ is nit in ju wiete Lieste.",

@@ -85,5 +85,5 @@
 	"config-download-localsettings": "Atsisiųsti <code>LocalSettings.php</code>",
 	"config-help": "pagalba",
 	"mainpagetext": "'''MediaWiki sėkmingai įdiegta.'''",
-	"mainpagedocfooter": "Informacijos apie wiki programinės įrangos naudojimą, ieškokite [//meta.wikimedia.org/wiki/Help:Contents žinyne].\n\n== Pradžiai ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Konfigūracijos nustatymų sąrašas]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki DUK]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki pranešimai paštu apie naujas versijas]"
+	"mainpagedocfooter": "Informacijos apie wiki programinės įrangos naudojimą, ieškokite [//meta.wikimedia.org/wiki/Help:Contents žinyne].\n\n== Pradžiai ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigūracijos nustatymų sąrašas]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki DUK]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki pranešimai paštu apie naujas versijas]"
 }

@@ -1351,7 +1351,7 @@
 	"uploadstash-refresh": "Aktualigi la dosierliston.",
 	"invalid-chunk-offset": "Malvalida deŝovo de dosierpeco",
 	"img-auth-accessdenied": "Atingo malpermisita",
-	"img-auth-nopathinfo": "Mankas PATH_INFO (informo pri dosiervojo).\nVia servilo ne estas konfigurita por sendi ĉi tiun informon.\nEble ĝi estas CGI-bazita kaj ne subtenas img_auth.\nVidu https://www.mediawiki.org/wiki/Manual:Image_Authorization (angle).",
+	"img-auth-nopathinfo": "Mankas PATH_INFO (informo pri dosiervojo).\nVia servilo ne estas konfigurita por sendi ĉi tiun informon.\nEble ĝi estas CGI-bazita kaj ne subtenas img_auth.\nVidu https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization (angle).",
 	"img-auth-notindir": "Petita vojo ne estas en la konfigurita alŝuta dosierujo.",
 	"img-auth-badtitle": "Ne povas konstrui validan titolon de \"$1\".",
 	"img-auth-nologinnWL": "Vi ne estas ensalutita kaj \"$1\" ne estas en la blankalisto.",

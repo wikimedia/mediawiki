@@ -1334,7 +1334,7 @@
 	"uploadstash-refresh": "संचिकांची यादी ताजीतवानी करा",
 	"invalid-chunk-offset": "अग्राह्य चंक ऑफसेट",
 	"img-auth-accessdenied": "पोहोच नाकारल्या गेली.",
-	"img-auth-nopathinfo": "मार्ग माहिती आढळली नाही.\nआपला सर्व्हर ही माहिती पोचवू शकत नाही.\nतो सीजीआय-आधारित व इमेज_ऑथला समर्थन न देऊ शकणारा असू शकतो.\nhttps://www.mediawiki.org/wiki/Manual:Image_Authorization कृपया हे पहा.",
+	"img-auth-nopathinfo": "मार्ग माहिती आढळली नाही.\nआपला सर्व्हर ही माहिती पोचवू शकत नाही.\nतो सीजीआय-आधारित व इमेज_ऑथला समर्थन न देऊ शकणारा असू शकतो.\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization कृपया हे पहा.",
 	"img-auth-notindir": "मागितलेला मार्ग अपलोड निर्देशिकेकरीता जोडलेला नाही.",
 	"img-auth-badtitle": "\"$1\" पासून वैध शीर्षक बनवण्यात अयशस्वी.",
 	"img-auth-nologinnWL": "तुम्ही प्रवेश घेतलेला नाही व \"$1\" श्वेतयादीत नाही.",

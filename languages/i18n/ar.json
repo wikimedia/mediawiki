@@ -1354,7 +1354,7 @@
 	"uploadstash-refresh": "تحديث قائمة الملفات",
 	"invalid-chunk-offset": "قطعة أوفست غير صالحة",
 	"img-auth-accessdenied": "رفض الوصول",
-	"img-auth-nopathinfo": "PATH_INFO مفقود.\nخادومك ليس مضبوطاً لتمرير هذه المعلومة.\nقد يكون مبنياً على نظام CGI ولا يمكنه دعم img_auth.\nراجع https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "PATH_INFO مفقود.\nخادومك ليس مضبوطاً لتمرير هذه المعلومة.\nقد يكون مبنياً على نظام CGI ولا يمكنه دعم img_auth.\nراجع https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "المسار المطلوب غير موجود في مجلد الرفع المضبوط.",
 	"img-auth-badtitle": "تعذر تشكيل عنوان صالح من \"$1\".",
 	"img-auth-nologinnWL": "لست والجاً و\"$1\" ليست في القائمة البيضاء.",

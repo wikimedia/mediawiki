@@ -1161,7 +1161,7 @@
 	"uploadstash-refresh": "Wèrk lies van bestenj bie",
 	"invalid-chunk-offset": "Óngèljige chunckaafzatj",
 	"img-auth-accessdenied": "Toegank geweigerd",
-	"img-auth-nopathinfo": "PATH_INFO óntbrèk.\nDiene server is neet ingesteld om dees informatie door te gaeve.\nMisjien gebroek deze CGI, en dan wört img_auth neet ongersteund.\nZuuch https://www.mediawiki.org/wiki/Manual:Image_Authorization aafbeildingsrechte veur mee informatie.",
+	"img-auth-nopathinfo": "PATH_INFO óntbrèk.\nDiene server is neet ingesteld om dees informatie door te gaeve.\nMisjien gebroek deze CGI, en dan wört img_auth neet ongersteund.\nZuuch https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization aafbeildingsrechte veur mee informatie.",
 	"img-auth-notindir": "'t Ópgevraogdje paad is neet de ingestelde uploadmap.",
 	"img-auth-badtitle": "Kèn geine geldige paginanaam make van \"$1\".",
 	"img-auth-nologinnWL": "Doe bös neet aangemeld en \"$1\" steit neet op de witte lies.",

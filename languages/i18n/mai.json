@@ -1115,7 +1115,7 @@
 	"uploadstash-refresh": "संचिका सभक सूचीकेँ ताजा करू।",
 	"invalid-chunk-offset": "एकट्ठे अमान्य बौस्तु",
 	"img-auth-accessdenied": "प्रवेश प्रतिबन्धित",
-	"img-auth-nopathinfo": "बाटक जानकारी नै अछि।\nअहाँक वितरक ऐ सूचनाकेँ प्रसारित नै कऽ सकत।\nई सी.जी.आइ.आधारित अछि आ चित्र-समर्थन केँ समर्थन नै दऽ सकत।\n[https://www.mediawiki.org/wiki/Manual:Image_Authorization देखू image authorization.]",
+	"img-auth-nopathinfo": "बाटक जानकारी नै अछि।\nअहाँक वितरक ऐ सूचनाकेँ प्रसारित नै कऽ सकत।\nई सी.जी.आइ.आधारित अछि आ चित्र-समर्थन केँ समर्थन नै दऽ सकत।\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization देखू image authorization.]",
 	"img-auth-notindir": "आग्रह कएल रस्ता विन्यासित उपारोपित निर्देशिकामे नै अछि।",
 	"img-auth-badtitle": "\"$1\" लेल कोनो मान्य शीर्षक नै बना सकल।",
 	"img-auth-nologinnWL": "अहाँ सम्प्रवेशित नै छी आ \"$1\" स्वीकृत सूचीमे नै अछि।",

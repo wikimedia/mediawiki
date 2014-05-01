@@ -1323,7 +1323,7 @@
 	"uploadstash-refresh": "Obnoviť zoznam súborov",
 	"invalid-chunk-offset": "Neplatný posun bloku",
 	"img-auth-accessdenied": "Prístup zamietnutý",
-	"img-auth-nopathinfo": "Váš server nie je nastavený tak, aby poskytoval tieto informácie.\nMôže byť založený na CGI a nedokáže podporovať img_auth.\nPozri https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "Váš server nie je nastavený tak, aby poskytoval tieto informácie.\nMôže byť založený na CGI a nedokáže podporovať img_auth.\nPozri https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Požadovaná cesta nie je v nastavenom adresári na nahrávanie.",
 	"img-auth-badtitle": "Nepodarilo sa zostaviť platný názov z „$1“.",
 	"img-auth-nologinnWL": "Nie ste prihlásený a „$1“ nie je na bielej listine.",

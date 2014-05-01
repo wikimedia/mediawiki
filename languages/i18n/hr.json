@@ -1290,7 +1290,7 @@
 	"uploadstash-refresh": "Osvježi popis datoteka",
 	"invalid-chunk-offset": "Nevaljana točka nastavka snimanja",
 	"img-auth-accessdenied": "Pristup onemogućen",
-	"img-auth-nopathinfo": "Nedostaje PATH_INFO.\nVaš poslužitelj nije postavljen da prosljeđuje ovu informaciju.\nMožda se temelji na CGI skripti i ne može podržavati img_auth.\n[https://www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=hr Pogledajte stranicu o autorizaciji slika]",
+	"img-auth-nopathinfo": "Nedostaje PATH_INFO.\nVaš poslužitelj nije postavljen da prosljeđuje ovu informaciju.\nMožda se temelji na CGI skripti i ne može podržavati img_auth.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization?uselang=hr Pogledajte stranicu o autorizaciji slika]",
 	"img-auth-notindir": "Zahtjevana putanja nije u direktoriju podešenom za postavljanje.",
 	"img-auth-badtitle": "Ne mogu stvoriti valjani naslov iz \"$1\".",
 	"img-auth-nologinnWL": "Niste prijavljeni i \"$1\" nije na popisu dozvoljenih.",

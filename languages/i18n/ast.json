@@ -1329,7 +1329,7 @@
 	"uploadstash-refresh": "Anovar la llista de ficheros",
 	"invalid-chunk-offset": "Allugamientu inválidu del fragmentu",
 	"img-auth-accessdenied": "Accesu denegáu",
-	"img-auth-nopathinfo": "Falta PATH_INFO.\nEl to sirvidor nun ta configuráu pa pasar esta información.\nPue tar basáu en CGI y nun tener sofitu pa img_auth.\nVer https://www.mediawiki.org/wiki/Manual:Image_Authorization",
+	"img-auth-nopathinfo": "Falta PATH_INFO.\nEl to sirvidor nun ta configuráu pa pasar esta información.\nPue tar basáu en CGI y nun tener sofitu pa img_auth.\nVer https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "El camín solicitáu nun ta nel direutoriu de xubíes configuráu.",
 	"img-auth-badtitle": "Nun se pue construir un títulu validu dende \"$1\".",
 	"img-auth-nologinnWL": "Nun tas coneutáu y \"$1\" nun ta na llista blanca.",

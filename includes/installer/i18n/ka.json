@@ -22,7 +22,7 @@
 	"config-page-copying": "ლიცენზია",
 	"config-page-upgradedoc": "განახლება",
 	"config-restart": "დიახ, თავიდან დაიწყეთ",
-	"config-sidebar": "* [//www.mediawiki.org მედიავიკის ვებ-გვერდი]\n* [//www.mediawiki.org/wiki/Help:Contents/ka მომხმარებლების დახმარება]\n* [//www.mediawiki.org/wiki/Manual:Contents/ka ადმინისტრატორების დახმარება]\n* [//www.mediawiki.org/wiki/Manual:FAQ/ka FAQ]\n----\n* <doclink href=Readme>წამიკითხე</doclink>\n* <doclink href=ReleaseNotes>ინფორმაცია გამოშვებაზე</doclink>\n* <doclink href=Copying>ლიცენზია</doclink>\n* <doclink href=UpgradeDoc>განახლება</doclink>",
+	"config-sidebar": "* [//www.mediawiki.org მედიავიკის ვებ-გვერდი]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents/ka მომხმარებლების დახმარება]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents/ka ადმინისტრატორების დახმარება]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/ka FAQ]\n----\n* <doclink href=Readme>წამიკითხე</doclink>\n* <doclink href=ReleaseNotes>ინფორმაცია გამოშვებაზე</doclink>\n* <doclink href=Copying>ლიცენზია</doclink>\n* <doclink href=UpgradeDoc>განახლება</doclink>",
 	"config-db-type": "მონაცემთა ბაზის ტიპი:",
 	"config-db-host-oracle": "მონაცემთა ბაზის TNS:",
 	"config-db-name": "მონაცემთა ბაზის სახელი:",
@@ -78,5 +78,5 @@
 	"config-download-localsettings": "<code>LocalSettings.php</code>-ის გადმოწერა",
 	"config-help": "დახმარება",
 	"mainpagetext": "'''მედიავიკი წარმატებით ჩაიტვირთა.'''",
-	"mainpagedocfooter": "ვიკი პროგრამის გამოყენების ინფორმაციისთვის იხილეთ [//meta.wikimedia.org/wiki/Help:Contents მომხმარებლის მეგზური].\n\n== დაწყება ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings კონფიგურაციის მაჩვენებლების სია]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce მედიავიკის გამოცემის დაგზავნის სია]\n* [//www.mediawiki.org/wiki/Localisation#Translation_resources მედიავიკის ლოკალიზება თქვენ ენაზე]"
+	"mainpagedocfooter": "ვიკი პროგრამის გამოყენების ინფორმაციისთვის იხილეთ [//meta.wikimedia.org/wiki/Help:Contents მომხმარებლის მეგზური].\n\n== დაწყება ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings კონფიგურაციის მაჩვენებლების სია]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce მედიავიკის გამოცემის დაგზავნის სია]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources მედიავიკის ლოკალიზება თქვენ ენაზე]"
 }

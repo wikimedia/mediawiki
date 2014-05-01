@@ -1126,7 +1126,7 @@
 	"uploadstash-refresh": "فائلاں دی لسٹ تازی کرو۔",
 	"invalid-chunk-offset": "ناں چلن والا چنک افسیٹ",
 	"img-auth-accessdenied": "اپڑنن روک",
-	"img-auth-nopathinfo": "گمی راہ بارے دس۔\nتواڈا سرور ایس جانکاری نوں نئیں گزار سکدا۔\nاے ۓۂـ- بیسد ہوسکدی اے یا تے img_auth نوں سپورٹ کردی اے۔\nویکھو https://www.mediawiki.org/wiki/Manual:Image_Authorization",
+	"img-auth-nopathinfo": "گمی راہ بارے دس۔\nتواڈا سرور ایس جانکاری نوں نئیں گزار سکدا۔\nاے ۓۂـ- بیسد ہوسکدی اے یا تے img_auth نوں سپورٹ کردی اے۔\nویکھو https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "پچھیا گیا راہ بنائی گئی ڈائریکٹری چ نئیں اے۔",
 	"img-auth-badtitle": "\"$1\" توں اک پکا سرناواں بنان چ ہار",
 	"img-auth-nologinnWL": "تسیں لاگان نئیں ہووے \"$1\"  چٹی لسٹ چ نئیں۔",

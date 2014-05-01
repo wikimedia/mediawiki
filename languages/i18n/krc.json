@@ -1230,7 +1230,7 @@
 	"uploadstash-refresh": "Файлланы тизмесин джангырт",
 	"invalid-chunk-offset": "Фрагментни джарамагъан офсети",
 	"img-auth-accessdenied": "Эркинлик джасакъланнганды",
-	"img-auth-nopathinfo": "<code>PATH_INFO</code> джокъду.\nСерверигиз бу билгилени джиберир ючюн джарашмагъанды.\nCGI тамалында ишлерге эмда <code>img_auth</code> бла ишлемезге болур.\nКъарагъыз: https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "<code>PATH_INFO</code> джокъду.\nСерверигиз бу билгилени джиберир ючюн джарашмагъанды.\nCGI тамалында ишлерге эмда <code>img_auth</code> бла ишлемезге болур.\nКъарагъыз: https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Изленнген джол джюклениулени папкасы бла байламлы тюлдю.",
 	"img-auth-badtitle": "«$1» бла джараулу башлыкъ этилмейди.",
 	"img-auth-nologinnWL": "Сиз системагъа кирмедигиз, эмда «$1» акъ тизмеде тюлдю.",

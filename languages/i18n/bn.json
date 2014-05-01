@@ -1330,7 +1330,7 @@
 	"uploadstash-refresh": "ফাইলের তালিকা রিফ্রেশ করুন",
 	"invalid-chunk-offset": "ত্রুটিপূর্ণ চাংক অফসেট",
 	"img-auth-accessdenied": "প্রবেশাধিকার নাই",
-	"img-auth-nopathinfo": "PATH_INFO পাওয়া যাচ্ছে না।\nআপনার সার্ভার থেকে এই তথ্য পাঠানোর জন্য কনফিগার করা হয়নি।\nএটি হয়তো CGI ভিত্তিক এবং img_auth সমর্থন করে না।\nবিস্তারিত দেখুন https://www.mediawiki.org/wiki/Manual:Image_Authorization।",
+	"img-auth-nopathinfo": "PATH_INFO পাওয়া যাচ্ছে না।\nআপনার সার্ভার থেকে এই তথ্য পাঠানোর জন্য কনফিগার করা হয়নি।\nএটি হয়তো CGI ভিত্তিক এবং img_auth সমর্থন করে না।\nবিস্তারিত দেখুন https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization।",
 	"img-auth-notindir": "অনুরোধকৃত পাথটি কনফিগার করা আপলোড ডিরেক্টরী নয়।",
 	"img-auth-badtitle": "\"$1\" থেকে একটি সঠিক শিরনাম তৈরী করা যাচ্ছে না।",
 	"img-auth-nologinnWL": "আপনি লগইন করেননি এবং \"$1\" নজরতালিকায় নাই।",

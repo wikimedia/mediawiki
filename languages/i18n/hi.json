@@ -1364,7 +1364,7 @@
 	"uploadstash-refresh": "फ़ाइलों की सूची रिफ़्रेश करें",
 	"invalid-chunk-offset": "अग्राह्य चंक ऑफ़सेट",
 	"img-auth-accessdenied": "अनुमति नहीं है",
-	"img-auth-nopathinfo": "PATH_INFO मौजूद नहीं है।\nआपके सर्वर में इस जानकारी को भेजने के लिए जमाव नहीं है।\nयह सी॰जी॰आई-आधारित हो सकता है और img_auth को स्वीकार नहीं करता है।\nhttps://www.mediawiki.org/wiki/Manual:Image_Authorization देखें।",
+	"img-auth-nopathinfo": "PATH_INFO मौजूद नहीं है।\nआपके सर्वर में इस जानकारी को भेजने के लिए जमाव नहीं है।\nयह सी॰जी॰आई-आधारित हो सकता है और img_auth को स्वीकार नहीं करता है।\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization देखें।",
 	"img-auth-notindir": "अनुरोधित पथ जमाई हुई अपलोड डायरेक्टरी में नहीं है।",
 	"img-auth-badtitle": "\"$1\" से एक वैध शीर्षक बनाने में असमर्थ।",
 	"img-auth-nologinnWL": "आपने सत्रारंभ नहीं किया हुआ है और \"$1\" श्वेतसूची में नहीं है।",

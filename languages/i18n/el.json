@@ -1330,7 +1330,7 @@
 	"uploadstash-errclear": "Η εκκαθάριση των αρχείων ήταν ανεπιτυχής.",
 	"uploadstash-refresh": "Ανανεώσετε τη λίστα των αρχείων",
 	"img-auth-accessdenied": "Δεν επετράπη η πρόσβαση",
-	"img-auth-nopathinfo": "Λείπει το PATH_INFO.\nΟ διακομιστής σας δεν είναι ρυθμισμένος για να περάσει αυτές τις πληροφορίες.\nΜπορεί να είναι βασισμένος σε CGI και να μην υποστηρίζει img_atuh.\nΔείτε https://www.mediawiki.org/wiki/Manual:Image_Authorization",
+	"img-auth-nopathinfo": "Λείπει το PATH_INFO.\nΟ διακομιστής σας δεν είναι ρυθμισμένος για να περάσει αυτές τις πληροφορίες.\nΜπορεί να είναι βασισμένος σε CGI και να μην υποστηρίζει img_atuh.\nΔείτε https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "Η ζητούμενη διαδρομή δεν βρίσκεται στον διαμορφωμένο αρχειοκατάλογο επιφορτώσεων",
 	"img-auth-badtitle": "Αδύνατη η κατασκευή έγκυρου τίτλου από \"$1\".",
 	"img-auth-nologinnWL": "Δεν έχετε συνδεθεί και η \"$1\" δεν είναι στην άσπρη λίστα.",

@@ -1266,7 +1266,7 @@
 	"uploadstash-errclear": "Fitxategiak ezabatzeak ez du arrakastarik izan.",
 	"uploadstash-refresh": "Fitxategien zerrenda eguneratu",
 	"img-auth-accessdenied": "Sarbide ukatua",
-	"img-auth-nopathinfo": "PATH_INFO falta da.\nZure zerbitzaria ez dago informazio hau pasatzeko konfiguratuta.\nCGI-oinarriduna izan daiteke, img_auth onartzen ez duena.\nIkusi https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "PATH_INFO falta da.\nZure zerbitzaria ez dago informazio hau pasatzeko konfiguratuta.\nCGI-oinarriduna izan daiteke, img_auth onartzen ez duena.\nIkusi https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Eskatutako bidea ez dago kofiguratutako igoera-direktorioan.",
 	"img-auth-badtitle": "Ezin izan da baleko izenbururik eraiki \"$1\" izenetik abiatuta",
 	"img-auth-nologinnWL": "Ez duzu saioa hasi eta \"$1\" ez dago zerrenda zurian.",

@@ -1315,7 +1315,7 @@
 	"uploadstash-refresh": "ফাইলৰ তালিকা ৰিফ্ৰে’চ কৰক",
 	"invalid-chunk-offset": "অবৈধ চাঙ্ক অফছেট্‌",
 	"img-auth-accessdenied": "প্ৰৱেশাধিকাৰ নাই",
-	"img-auth-nopathinfo": "সন্ধানহীন PATH_INFO।\nআপোনাৰ চাৰ্ভাৰ এই তথ্য প্ৰেৰণ কৰিবলে প্ৰস্তুত নহয়।\nই CGI-ভিত্তিক হ'ব পাৰে img_auth সমৰ্থন কৰিব নোৱাৰে।\nhttps://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
+	"img-auth-nopathinfo": "সন্ধানহীন PATH_INFO।\nআপোনাৰ চাৰ্ভাৰ এই তথ্য প্ৰেৰণ কৰিবলে প্ৰস্তুত নহয়।\nই CGI-ভিত্তিক হ'ব পাৰে img_auth সমৰ্থন কৰিব নোৱাৰে।\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization চাওক।",
 	"img-auth-notindir": "সজা হোৱা আপল’ড ডিৰেক্টৰিত অনুৰোধ কৰা পথটো নাই ।",
 	"img-auth-badtitle": "\"$1\" ৰ পৰা কোনো বৈধ শিৰোনামা তৈয়াৰ কৰিব পৰা নগ’ল ।",
 	"img-auth-nologinnWL": "আপুনি প্ৰৱেশ কৰা নাই আৰু চকু ৰখা ৰখা পৃষ্ঠাতালিকাত \"$1\" নাই ।",

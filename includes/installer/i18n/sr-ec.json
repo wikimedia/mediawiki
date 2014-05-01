@@ -67,5 +67,5 @@
 	"config-license-gfdl": "ГНУ-ова лиценца за слободну документацију верзија 1.3 или новија верзија",
 	"config-license-pd": "Јавно власништво",
 	"mainpagetext": "'''Медијавики је успешно инсталиран.'''",
-	"mainpagedocfooter": "Погледајте [//meta.wikimedia.org/wiki/Help:Contents кориснички водич] за коришћење програма.\n\n== Увод ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Помоћ у вези са подешавањима]\n* [//www.mediawiki.org/wiki/Manual:FAQ Често постављена питања]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о издањима Медијавикија]"
+	"mainpagedocfooter": "Погледајте [//meta.wikimedia.org/wiki/Help:Contents кориснички водич] за коришћење програма.\n\n== Увод ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Помоћ у вези са подешавањима]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Често постављена питања]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о издањима Медијавикија]"
 }

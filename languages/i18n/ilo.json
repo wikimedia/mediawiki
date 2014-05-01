@@ -1313,7 +1313,7 @@
 	"uploadstash-refresh": "Pasadiwaam dagiti listaan ti papeles",
 	"invalid-chunk-offset": "Imbalido ti maysa a tangdan",
 	"img-auth-accessdenied": "naiparit ti iseserrek",
-	"img-auth-nopathinfo": "Ti servermo ket mabalin nga agipasa iti daytoy a pakaammo.\nBaka met laeng naibasta ti CGI ken saan na a tapayaen ti img_auth.\nKitaen ti https://www.mediawiki.org/wiki/Manual:Image_Authorization .",
+	"img-auth-nopathinfo": "Ti servermo ket mabalin nga agipasa iti daytoy a pakaammo.\nBaka met laeng naibasta ti CGI ken saan na a tapayaen ti img_auth.\nKitaen ti https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization .",
 	"img-auth-notindir": "Ti kiniddaw a dalan ket saan a ti naaramid a direktorio ti pag-ipan",
 	"img-auth-badtitle": "Saan a makaaramid ti umisu a titulo a naggapu idiay \"$1\".",
 	"img-auth-nologinnWL": "Saanka a nakastrek ken ti \"$1\" ket awan idiay mabalin a listaan.",

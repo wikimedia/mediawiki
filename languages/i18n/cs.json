@@ -1347,7 +1347,7 @@
 	"uploadstash-refresh": "Aktualizovat seznam souborů",
 	"invalid-chunk-offset": "Neplatný posun bloku",
 	"img-auth-accessdenied": "Přístup odepřen",
-	"img-auth-nopathinfo": "Chybí PATH_INFO.\nVáš server není nastaven tak, aby tuto informaci poskytoval.\nMožná funguje pomocí CGI a img_auth na něm nemůže fungovat.\nVizte https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "Chybí PATH_INFO.\nVáš server není nastaven tak, aby tuto informaci poskytoval.\nMožná funguje pomocí CGI a img_auth na něm nemůže fungovat.\nVizte https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Požadovaná cesta nespadá pod nakonfigurovaný adresář s načtenými soubory.",
 	"img-auth-badtitle": "Z „$1“ nelze vytvořit platný název stránky.",
 	"img-auth-nologinnWL": "Nejste přihlášen(a) a „$1“ není na bílé listině.",

@@ -1275,7 +1275,7 @@
 	"uploadstash-refresh": "Willañiqi sutisuyuta musuqchay",
 	"invalid-chunk-offset": "Mana allin willañiqi raki churkuy",
 	"img-auth-accessdenied": "Manam chayman saqisqachu",
-	"img-auth-nopathinfo": "Manam kanchu PATH_INFO.\nSirwiqniykiqa manam churasqachu kaymanta willananpaq.\nCGI nisqawanchá tiksichasqa, chayrayku manachá img_auth nisqata q'imiyta atinchu.\nhttps://www.mediawiki.org/wiki/Manual:Image_Authorization nisqata qhaway.",
+	"img-auth-nopathinfo": "Manam kanchu PATH_INFO.\nSirwiqniykiqa manam churasqachu kaymanta willananpaq.\nCGI nisqawanchá tiksichasqa, chayrayku manachá img_auth nisqata q'imiyta atinchu.\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization nisqata qhaway.",
 	"img-auth-notindir": "Mañakusqa ñanqa manam churaykusqa churkuna churanapi kachkanchu.",
 	"img-auth-badtitle": "Manam atinichu \"$1\" nisqamanta chaniyuq sutita rurayta.",
 	"img-auth-nologinnWL": "Manam yaykusqa kachkankichu, \"$1\" nisqataq manam yuraq sutisuyupi kachkanchu.",

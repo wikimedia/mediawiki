@@ -1294,7 +1294,7 @@
 	"uploadstash-refresh": "Обновити список файлів",
 	"invalid-chunk-offset": "Неприступный посув фраґмента.",
 	"img-auth-accessdenied": "Приступ одопертый",
-	"img-auth-nopathinfo": "Ваш сервер не є наштелёваный так, жебы давав тоту інформацію.\nМоже фунґує помочов CGI і img_auth на нім не може фунґовати.\nПосмотьте https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "Ваш сервер не є наштелёваный так, жебы давав тоту інформацію.\nМоже фунґує помочов CGI і img_auth на нім не може фунґовати.\nПосмотьте https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Пожадована стежка не є в конфіґурованім адресарю із наладованыма файлами.",
 	"img-auth-badtitle": "З „$1“  ся не дасть створити платна назва сторінкы.",
 	"img-auth-nologinnWL": "Не сьте приголошеный і „$1“ не є на білім списку.",

@@ -175,5 +175,5 @@
 	"config-help": "ajuda",
 	"config-nofile": "No s'ha pogut trobar el fitxer «$1». S'ha suprimit?",
 	"mainpagetext": "'''El MediaWiki s'ha instal·lat correctament.'''",
-	"mainpagedocfooter": "Consulteu la [//meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar-lo.\n\n== Per a començar ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Llista de característiques configurables]\n* [//www.mediawiki.org/wiki/Manual:FAQ PMF del MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu (''listserv'') per a anuncis del MediaWiki]\n* [//www.mediawiki.org/wiki/Localisation#Translation_resources Traduïu MediaWiki en la vostra llengua]"
+	"mainpagedocfooter": "Consulteu la [//meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar-lo.\n\n== Per a començar ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Llista de característiques configurables]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ PMF del MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu (''listserv'') per a anuncis del MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traduïu MediaWiki en la vostra llengua]"
 }

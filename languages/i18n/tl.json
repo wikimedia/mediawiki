@@ -1282,7 +1282,7 @@
 	"uploadstash-refresh": "Sariwain ang talaan ng mga talaksan",
 	"invalid-chunk-offset": "Hindi katanggap-tanggap na pagbawi ng tipak",
 	"img-auth-accessdenied": "Hindi pinayagan ang pagpunta",
-	"img-auth-nopathinfo": "Nawawala ang PATH_INFO.\nAng tagapaghain mo ay hindi nakatakda na magpasa ng ganitong kabatiran.\nMaaaring pang-CGI ito at hindi sumusuporta ng img_auth.\nTingnan ang https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "Nawawala ang PATH_INFO.\nAng tagapaghain mo ay hindi nakatakda na magpasa ng ganitong kabatiran.\nMaaaring pang-CGI ito at hindi sumusuporta ng img_auth.\nTingnan ang https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Ang hiniling na daan ay wala sa loob ng isinaayos na direktoryo ng pagkarga.",
 	"img-auth-badtitle": "Hindi nagawang makabuo ng tanggap na pamagat mula sa \"$1\".",
 	"img-auth-nologinnWL": "Hindi ka nakalagda at ang \"$1\" ay wala sa puting talaan.",

@@ -1291,7 +1291,7 @@
 	"uploadstash-refresh": "Aggiorne l'elenghe de le file",
 	"invalid-chunk-offset": "distanze d'u chunk invalide",
 	"img-auth-accessdenied": "Accesse negate",
-	"img-auth-nopathinfo": "No se iacchie PATH_INFO.\n'U server tune non g'è 'mbostate o non ge passe sta 'mbormazione.\nPò essere ca jè basate sus a 'u CGI e non ge pò supportà img_auth.\nVide https://www.mediawiki.org/wiki/Manual:Image_Authorization",
+	"img-auth-nopathinfo": "No se iacchie PATH_INFO.\n'U server tune non g'è 'mbostate o non ge passe sta 'mbormazione.\nPò essere ca jè basate sus a 'u CGI e non ge pò supportà img_auth.\nVide https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "'U percorse richieste non ge stè jndr'à cartelle de carecamende configurate",
 	"img-auth-badtitle": "Non ge se pò costruì 'nu titele valide da \"$1\".",
 	"img-auth-nologinnWL": "Tu non ge sì collegate e \"$1\" non ge stè jndr'à lista vianghe.",

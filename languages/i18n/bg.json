@@ -1251,7 +1251,7 @@
 	"uploadstash-errclear": "Изчистването на файловете беше неуспешно.",
 	"uploadstash-refresh": "Обновяване на списъка с файлове",
 	"img-auth-accessdenied": "Достъпът е отказан",
-	"img-auth-nopathinfo": "Липсва PATH_INFO.\nВашият сървър не е конфигуриран да предава тази информация.\nТой може да е базиран на CGI и да не може да поддържа img_auth.\nВижте https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "Липсва PATH_INFO.\nВашият сървър не е конфигуриран да предава тази информация.\nТой може да е базиран на CGI и да не може да поддържа img_auth.\nВижте https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Търсеният път не е в настроената директория за качвания.",
 	"img-auth-badtitle": "Грешка при изграждането на валидно заглавие от \"$1\".",
 	"img-auth-nologinnWL": "Не сте влезли в системата и „$1“ не е в белия списък.",

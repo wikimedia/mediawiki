@@ -60,5 +60,5 @@
 	"config-install-keys": "Fanamboarana lakile miafina",
 	"config-help": "fanoroana",
 	"mainpagetext": "'''Tafajoro soa aman-tsara ny rindrankajy Wiki.'''",
-	"mainpagedocfooter": "Vangio ny [//meta.wikimedia.org/wiki/Aide:Contenu Fanoroana ho an'ny mpampiasa] ra te hitady fanoroana momba ny fampiasan'ity rindrankajy ity.\n\n== Hanomboka amin'ny MediaWiki ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Lisitra ny paramètre de configuration]\n* [//www.mediawiki.org/wiki/Manual:FAQ/fr FAQ momba ny MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Resaka momba ny fizaràn'ny MediaWiki]"
+	"mainpagedocfooter": "Vangio ny [//meta.wikimedia.org/wiki/Aide:Contenu Fanoroana ho an'ny mpampiasa] ra te hitady fanoroana momba ny fampiasan'ity rindrankajy ity.\n\n== Hanomboka amin'ny MediaWiki ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lisitra ny paramètre de configuration]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/fr FAQ momba ny MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Resaka momba ny fizaràn'ny MediaWiki]"
 }
