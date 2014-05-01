@@ -465,14 +465,13 @@
 	mw.log.deprecate( util, 'wikiGetlink', util.getUrl, 'Use mw.util.getUrl instead.' );
 
 	/**
-	 * @property {string} tooltipAccessKeyPrefix
 	 * Access key prefix. Might be wrong for browsers implementing the accessKeyLabel property.
+	 * @property {string} tooltipAccessKeyPrefix
 	 * @deprecated since 1.24 Use the module jquery.accessKeyLabel instead.
 	 */
 	mw.log.deprecate( util, 'tooltipAccessKeyPrefix', $.fn.updateTooltipAccessKeys.getAccessKeyPrefix(), 'Use jquery.accessKeyLabel instead.' );
 
 	/**
-	 * @property {RegExp} tooltipAccessKeyRegexp
 	 * Regex to match accesskey tooltips.
 	 *
 	 * Should match:
@@ -486,19 +485,20 @@
 	 *
 	 * Will probably not work for browsers implementing the accessKeyLabel property.
 	 *
+	 * @property {RegExp} tooltipAccessKeyRegexp
 	 * @deprecated since 1.24 Use the module jquery.accessKeyLabel instead.
 	 */
 	mw.log.deprecate( util, 'tooltipAccessKeyRegexp', /\[(ctrl-)?(option-)?(alt-)?(shift-)?(esc-)?(.)\]$/, 'Use jquery.accessKeyLabel instead.' );
 
 	/**
-	 * @method jsMessage
 	 * Add a little box at the top of the screen to inform the user of
 	 * something, replacing any previous message.
 	 * Calling with no arguments, with an empty string or null will hide the message
 	 *
-	 * @param {Mixed} message The DOM-element, jQuery object or HTML-string to be put inside the message box.
-	 * to allow CSS/JS to hide different boxes. null = no class used.
+	 * @method jsMessage
 	 * @deprecated since 1.20 Use mw#notify
+	 * @param {Mixed} message The DOM-element, jQuery object or HTML-string to be put inside the message box.
+	 *  to allow CSS/JS to hide different boxes. null = no class used.
 	 */
 	mw.log.deprecate( util, 'jsMessage', function ( message ) {
 		if ( !arguments.length || message === '' || message === null ) {

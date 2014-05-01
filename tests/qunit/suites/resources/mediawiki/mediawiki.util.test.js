@@ -210,7 +210,9 @@
 	} );
 
 	QUnit.test( 'jsMessage', 1, function ( assert ) {
+		this.suppressWarnings();
 		var a = mw.util.jsMessage( 'MediaWiki is <b>Awesome</b>.' );
+		this.restoreWarnings();
 		assert.ok( a, 'Basic checking of return value' );
 
 		// Clean up
