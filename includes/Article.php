@@ -386,6 +386,11 @@ class Article implements Page {
 
 		$content = $this->fetchContentObject();
 
+		if ( !$content ) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+
 		// @todo Get rid of mContent everywhere!
 		$this->mContent = ContentHandler::getContentText( $content );
 		ContentHandler::runLegacyHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) );
