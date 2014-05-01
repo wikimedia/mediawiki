@@ -7,13 +7,13 @@
  * @alternateClassName mediaWiki
  * @singleton
  */
-
-var mw = ( function ( $, undefined ) {
+( function ( $ ) {
 	'use strict';
 
 	/* Private Members */
 
-	var hasOwn = Object.prototype.hasOwnProperty,
+	var mw,
+		hasOwn = Object.prototype.hasOwnProperty,
 		slice = Array.prototype.slice,
 		trackCallbacks = $.Callbacks( 'memory' ),
 		trackQueue = [];
@@ -371,7 +371,7 @@ var mw = ( function ( $, undefined ) {
 	/**
 	 * @class mw
 	 */
-	return {
+	mw = {
 		/* Public Members */
 
 		/**
@@ -2408,17 +2408,17 @@ var mw = ( function ( $, undefined ) {
 		}() )
 	};
 
+	// Alias $j to jQuery for backwards compatibility
+	// @deprecated since 1.23 Use $ or jQuery instead
+	mw.log.deprecate( window, '$j', $, 'Use $ or jQuery instead.' );
+
+	// Attach to window and globally alias
+	window.mw = window.mediaWiki = mw;
+
+	// Auto-register from pre-loaded startup scripts
+	if ( $.isFunction( window.startUp ) ) {
+		window.startUp();
+		window.startUp = undefined;
+	}
+
 }( jQuery ) );
-
-// Alias $j to jQuery for backwards compatibility
-// @deprecated since 1.23 Use $ or jQuery instead
-mw.log.deprecate( window, '$j', jQuery, 'Use $ or jQuery instead.' );
-
-// Attach to window and globally alias
-window.mw = window.mediaWiki = mw;
-
-// Auto-register from pre-loaded startup scripts
-if ( jQuery.isFunction( window.startUp ) ) {
-	window.startUp();
-	window.startUp = undefined;
-}
