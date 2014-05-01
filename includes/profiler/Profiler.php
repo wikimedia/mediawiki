@@ -205,9 +205,10 @@ abstract class Profiler {
 	 *
 	 * @param string $server DB server
 	 * @param string $db DB name
+	 * @param string $id Resource ID string of connection
 	 */
-	public function transactionWritingIn( $server, $db ) {
-		$this->trxProfiler->transactionWritingIn( $server, $db );
+	public function transactionWritingIn( $server, $db, $id = '' ) {
+		$this->trxProfiler->transactionWritingIn( $server, $db, $id );
 	}
 
 	/**
@@ -219,9 +220,10 @@ abstract class Profiler {
 	 *
 	 * @param string $server DB server
 	 * @param string $db DB name
+	 * @param string $id Resource ID string of connection
 	 */
-	public function transactionWritingOut( $server, $db ) {
-		$this->trxProfiler->transactionWritingOut( $server, $db );
+	public function transactionWritingOut( $server, $db, $id = '' ) {
+		$this->trxProfiler->transactionWritingOut( $server, $db, $id );
 	}
 
 	/**
@@ -366,9 +368,10 @@ class TransactionProfiler {
 	 *
 	 * @param string $server DB server
 	 * @param string $db DB name
+	 * @param string $id Resource ID string of connection
 	 */
-	public function transactionWritingIn( $server, $db ) {
-		$name = "{$server} ({$db})";
+	public function transactionWritingIn( $server, $db, $id ) {
+		$name = "{$server} ({$db}) ($id)";
 		if ( isset( $this->mDBTrxHoldingLocks[$name] ) ) {
 			++$this->mDBTrxHoldingLocks[$name]['refs'];
 		} else {
@@ -412,9 +415,10 @@ class TransactionProfiler {
 	 *
 	 * @param string $server DB server
 	 * @param string $db DB name
+	 * @param string $id Resource ID string of connection
 	 */
-	public function transactionWritingOut( $server, $db ) {
-		$name = "{$server} ({$db})";
+	public function transactionWritingOut( $server, $db, $id ) {
+		$name = "{$server} ({$db}) ($id)";
 		if ( --$this->mDBTrxHoldingLocks[$name]['refs'] <= 0 ) {
 			$slow = false;
 			foreach ( $this->mDBTrxMethodTimes[$name] as $info ) {
