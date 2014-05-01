@@ -252,7 +252,7 @@
 	"config-logo": "Logo URL:",
 	"config-logo-help": "MediaWiki's default skin includes space for a 135x160 pixel logo above the sidebar menu.\nUpload an image of the appropriate size, and enter the URL here.\n\nYou can use <code>$wgStylePath</code> or <code>$wgScriptPath</code> if your logo is relative to those paths.\n\nIf you do not want a logo, leave this box blank.",
 	"config-instantcommons": "Enable Instant Commons",
-	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] is a feature that allows wikis to use images, sounds and other media found on the [//commons.wikimedia.org/ Wikimedia Commons] site.\nIn order to do this, MediaWiki requires access to the Internet.\n\nFor more information on this feature, including instructions on how to set it up for wikis other than the Wikimedia Commons, consult [//mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos the manual].",
+	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] is a feature that allows wikis to use images, sounds and other media found on the [//commons.wikimedia.org/ Wikimedia Commons] site.\nIn order to do this, MediaWiki requires access to the Internet.\n\nFor more information on this feature, including instructions on how to set it up for wikis other than the Wikimedia Commons, consult [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos the manual].",
 	"config-cc-error": "The Creative Commons license chooser gave no result.\nEnter the license name manually.",
 	"config-cc-again": "Pick again...",
 	"config-cc-not-chosen": "Choose which Creative Commons license you want and click \"proceed\".",
