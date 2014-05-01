@@ -1396,7 +1396,7 @@
 	"uploadstash-refresh": "更新文件清单",
 	"invalid-chunk-offset": "无效区块偏移量",
 	"img-auth-accessdenied": "拒绝访问",
-	"img-auth-nopathinfo": "PATH_INFO缺失。\n您的服务器尚未设置传送该信息。\n它可能基于CGI，因而不支持img_auth。\n请参见 [https://www.mediawiki.org/wiki/Manual:Image_Authorization 图片授权]。",
+	"img-auth-nopathinfo": "PATH_INFO缺失。\n您的服务器尚未设置传送该信息。\n它可能基于CGI，因而不支持img_auth。\n请参见 [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization 图片授权]。",
 	"img-auth-notindir": "在已设置的上传目录中找不到请求的路径。",
 	"img-auth-badtitle": "无法为“$1”创建合法的标题。",
 	"img-auth-nologinnWL": "您尚未登录，且“$1”不在白名单上。",

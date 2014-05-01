@@ -1399,7 +1399,7 @@
 	"uploadstash-refresh": "Liste der Dateien aktualisieren",
 	"invalid-chunk-offset": "Ungültiger Startpunkt",
 	"img-auth-accessdenied": "Zugriff verweigert",
-	"img-auth-nopathinfo": "Die Angabe PATH_INFO fehlt.\nDer Server ist nicht dafür eingerichtet, diese Information weiterzugeben.\nSie könnte CGI-gestützt sein und kann daher „img_auth“ (Authentifizierung des Dateiaufrufs) nicht unterstützen.\nSiehe auch https://www.mediawiki.org/wiki/Manual:Image_Authorization (englisch).",
+	"img-auth-nopathinfo": "Die Angabe PATH_INFO fehlt.\nDer Server ist nicht dafür eingerichtet, diese Information weiterzugeben.\nSie könnte CGI-gestützt sein und kann daher „img_auth“ (Authentifizierung des Dateiaufrufs) nicht unterstützen.\nSiehe auch https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization (englisch).",
 	"img-auth-notindir": "Der gewünschte Pfad ist nicht im konfigurierten Uploadverzeichnis.",
 	"img-auth-badtitle": "Aus „$1“ kann kein gültiger Titel erstellt werden.",
 	"img-auth-nologinnWL": "Du bist nicht angemeldet und „$1“ ist nicht in der weißen Liste.",

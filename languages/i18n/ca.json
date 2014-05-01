@@ -1359,7 +1359,7 @@
 	"uploadstash-refresh": "Actualitza la llista de fitxers",
 	"invalid-chunk-offset": "El desplaçament del fragment no és vàlid",
 	"img-auth-accessdenied": "Accés denegat",
-	"img-auth-nopathinfo": "Hi manca PATH_INFO.\nEl servidor no està configurat per passar aquesta informació.\nPot estar basat en CGI i no ser compatible amb img_auth.\nConsulteu https://www.mediawiki.org/wiki/Manual:Image_Authorization",
+	"img-auth-nopathinfo": "Hi manca PATH_INFO.\nEl servidor no està configurat per passar aquesta informació.\nPot estar basat en CGI i no ser compatible amb img_auth.\nConsulteu https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "No s'ha trobat la ruta sol·licitada al directori de càrrega configurat.",
 	"img-auth-badtitle": "No s'ha pogut construir un títol vàlid a partir de \"$1\".",
 	"img-auth-nologinnWL": "No has iniciat sessió i \"$1\" no està a la llista blanca.",

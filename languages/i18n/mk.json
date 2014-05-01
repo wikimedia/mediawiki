@@ -1343,7 +1343,7 @@
 	"uploadstash-refresh": "Превчитај го списокот на податотеки",
 	"invalid-chunk-offset": "Неважечка појдовна точка",
 	"img-auth-accessdenied": "Оневозможен пристап",
-	"img-auth-nopathinfo": "Недостасува PATH_INFO.\nВашиот опслужувач не е нагоден за да ја предаде оваа информација.\nМожеби се заснова на CGI, и така не подржува img_auth.\nПогл. https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "Недостасува PATH_INFO.\nВашиот опслужувач не е нагоден за да ја предаде оваа информација.\nМожеби се заснова на CGI, и така не подржува img_auth.\nПогл. https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Бараниот пат не води кон зададената папка за подигање.",
 	"img-auth-badtitle": "Не може да се конструира важечки наслов од „$1“.",
 	"img-auth-nologinnWL": "Не сте најавени и „$1“ не е на списокот на допуштени.",

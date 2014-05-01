@@ -1345,7 +1345,7 @@
 	"uploadstash-errclear": "പ്രമാണങ്ങൾ ശൂന്യമാക്കൽ വിജയകരമായിരുന്നില്ല.",
 	"uploadstash-refresh": "പ്രമാണങ്ങളുടെ പട്ടിക പുതുക്കുക",
 	"img-auth-accessdenied": "പ്രവേശനമില്ല",
-	"img-auth-nopathinfo": "PATH_INFO ലഭ്യമല്ല.\nതാങ്കളുടെ സെർവർ ഈ വിവരം കൈമാറ്റം ചെയ്യാൻ തയ്യാറാക്കിയിട്ടില്ല.\nഅത് img_auth പിന്തുണയില്ലാത്ത സി.ജി.ഐ. അധിഷ്ഠിതമായ ഒന്നായിരിക്കാം.\nhttps://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.",
+	"img-auth-nopathinfo": "PATH_INFO ലഭ്യമല്ല.\nതാങ്കളുടെ സെർവർ ഈ വിവരം കൈമാറ്റം ചെയ്യാൻ തയ്യാറാക്കിയിട്ടില്ല.\nഅത് img_auth പിന്തുണയില്ലാത്ത സി.ജി.ഐ. അധിഷ്ഠിതമായ ഒന്നായിരിക്കാം.\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization കാണുക.",
 	"img-auth-notindir": "ആവശ്യപ്പെട്ട പാത അപ്‌‌ലോഡ് ഡയറക്റ്ററിയിൽ സജ്ജീകരിച്ചു നൽകിയിട്ടില്ല.",
 	"img-auth-badtitle": "\"$1\" എന്നതിൽ നിന്ന് സാധുവായ തലക്കെട്ട് സൃഷ്ടിക്കാൻ കഴിയില്ല.",
 	"img-auth-nologinnWL": "താങ്കൾ ലോഗിൻ ചെയ്തിട്ടില്ല ഒപ്പം \"$1\" ശുദ്ധിപട്ടികയിൽ ഇല്ല.",

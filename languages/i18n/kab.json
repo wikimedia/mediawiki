@@ -1292,7 +1292,7 @@
 	"uploadstash-refresh": "Mucceḍ umuɣ n ifuyla",
 	"invalid-chunk-offset": "Tiggit n iɣil ur teɣbel ara",
 	"img-auth-accessdenied": "Addaf yugwi",
-	"img-auth-nopathinfo": "Yexus BATH_INFU.\nAqeddac inek/inem ur yeseɣwer ara iwakken ad i ɛeddi talɣut agi.\nAhat i lḥu  s CGI dɣa ur s-yezmer ara i img_auth.\nẒeṛ https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "Yexus BATH_INFU.\nAqeddac inek/inem ur yeseɣwer ara iwakken ad i ɛeddi talɣut agi.\nAhat i lḥu  s CGI dɣa ur s-yezmer ara i img_auth.\nẒeṛ https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Abrid yesuteren mačči d akaram n taktert yellan deg tawila.",
 	"img-auth-badtitle": "Ulamek an ssali azwel i ɣbelen seg « $1 ».",
 	"img-auth-nologinnWL": "Ur teqqneḍ ara dɣa « $1 » ur yella ara deg umuɣ amellal.",

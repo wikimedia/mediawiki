@@ -55,5 +55,5 @@
 	"config-type-oracle": "أوراكل",
 	"config-admin-email": "عنوان البريد الإلكتروني:",
 	"mainpagetext": "'''تم تثبيت ميدياويكي بنجاح.'''",
-	"mainpagedocfooter": "استشر [//meta.wikimedia.org/wiki/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.\n\n== البداية ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings قائمة إعدادات الضبط]\n* [//www.mediawiki.org/wiki/Manual:FAQ أسئلة متكررة حول ميدياويكي]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]"
+	"mainpagedocfooter": "استشر [//meta.wikimedia.org/wiki/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.\n\n== البداية ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings قائمة إعدادات الضبط]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ أسئلة متكررة حول ميدياويكي]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]"
 }

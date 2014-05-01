@@ -1289,7 +1289,7 @@
 	"uploadstash-refresh": "Segeraké daptar berkas",
 	"invalid-chunk-offset": "Ganti rugi kethoka ora sah",
 	"img-auth-accessdenied": "Aksès ditulak",
-	"img-auth-nopathinfo": "Kélangan PATH_INFO.\nSasana Sampéyan durung disetèl kanggo ngliwati inpormasi iki.\nMungkin amarga abasis-CGI lan ora bisa nyengkuyung img_auth.\nDelok https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "Kélangan PATH_INFO.\nSasana Sampéyan durung disetèl kanggo ngliwati inpormasi iki.\nMungkin amarga abasis-CGI lan ora bisa nyengkuyung img_auth.\nDelok https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Alur sing dijaluk dudu dirèktori unggah kakonpigurasi.",
 	"img-auth-badtitle": "Ora bisa mbangun judhul sah saka \"$1\".",
 	"img-auth-nologinnWL": "Sampéyan durung mlebu log lan \"$1\" ora nèng daptar putih.",

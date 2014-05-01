@@ -1279,7 +1279,7 @@
 	"uploadstash-refresh": "Файлдар исемлеген яңыртырға",
 	"invalid-chunk-offset": "Ҡабул ителмәгән фрагмент шылыуы",
 	"img-auth-accessdenied": "Керергә рөхсәт ителмәй",
-	"img-auth-nopathinfo": "PATH_INFO юҡ.\nҺеҙҙең сервер был мәғлүмәтте ебәреү өсөн көйләнмәгән.\nУның CGI нигеҙендә эшләүе һәм img_auth ҡулланмауы мөмкин.\nТулыраҡ мәғлүмәт: https://www.mediawiki.org/wiki/Manual:Image_Authorization",
+	"img-auth-nopathinfo": "PATH_INFO юҡ.\nҺеҙҙең сервер был мәғлүмәтте ебәреү өсөн көйләнмәгән.\nУның CGI нигеҙендә эшләүе һәм img_auth ҡулланмауы мөмкин.\nТулыраҡ мәғлүмәт: https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "Һоралған юл көйләнгән тейәүҙәр директорияһына ҡарамай.",
 	"img-auth-badtitle": "\"$1\" исеменән дөрөҫ исем төҙөп булмай.",
 	"img-auth-nologinnWL": "Һеҙ танылыу үтмәнегеҙ, \"$1\" аҡ исемлеккә кермәй.",

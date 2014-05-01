@@ -1307,7 +1307,7 @@
 	"uploadstash-refresh": "Refresh the leet o files",
 	"invalid-chunk-offset": "Onvalid chunk affset",
 	"img-auth-accessdenied": "Access denied.",
-	"img-auth-nopathinfo": "Missin PATH_INFO.\nYer server isna set up tae pass this information.\nIt micht be CGI-based n canna support img_auth.\nSee https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "Missin PATH_INFO.\nYer server isna set up tae pass this information.\nIt micht be CGI-based n canna support img_auth.\nSee https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Requested path isna in the confeegured uplaid directerie.",
 	"img-auth-badtitle": "Onable tae cræft ae valid title fae \"$1\".",
 	"img-auth-nologinnWL": "Ye'r naw loggit in n \"$1\" isna in the whiteleet.",

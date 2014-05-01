@@ -1279,7 +1279,7 @@
 	"uploadstash-refresh": "અધ્યતન ફાઇલ યાદિ",
 	"invalid-chunk-offset": "અમાન્ય કાપી કાઢેલો ઓફસેટ",
 	"img-auth-accessdenied": "પ્રવેશ વર્જીત",
-	"img-auth-nopathinfo": "પથ માહિતી ગાયબ.\nઆ માહિતી પસાર કરવા તમારું સર્વર સજ્જ નથી.\nતે કદાચ CGI-આધારિત હોય અને img_authને આધાર ન આપે.\nhttps://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ",
+	"img-auth-nopathinfo": "પથ માહિતી ગાયબ.\nઆ માહિતી પસાર કરવા તમારું સર્વર સજ્જ નથી.\nતે કદાચ CGI-આધારિત હોય અને img_authને આધાર ન આપે.\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization. જુઓ",
 	"img-auth-notindir": "અર્જીત પથ ચડાવેલ ફાઈલની ડીરેક્ટરીમાં નથી",
 	"img-auth-badtitle": "\"$1\" માટે વૈધ શીર્ષક ન શોધી શકાયું",
 	"img-auth-nologinnWL": "તમે પ્રવેશ કર્યો નથી અને અને : $1 ધવલ યાદિમાં નથી.",

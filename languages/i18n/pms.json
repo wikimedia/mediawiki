@@ -1337,7 +1337,7 @@
 	"uploadstash-refresh": "Agiorné la lista dj'archivi",
 	"invalid-chunk-offset": "Inissi dël segment pa bon",
 	"img-auth-accessdenied": "Acess negà",
-	"img-auth-nopathinfo": "PATH_INFO mancant.\nSò servent a l'é nen ampostà për passé costa anformassion.\nPeul desse ch'a sia basà an sij CGI e a peul pa mantnì img_auth.\nVarda https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "PATH_INFO mancant.\nSò servent a l'é nen ampostà për passé costa anformassion.\nPeul desse ch'a sia basà an sij CGI e a peul pa mantnì img_auth.\nVarda https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Ël senté ciamà a l'é pa ant ël dossié configurà për carié.",
 	"img-auth-badtitle": "As peul pa fesse un tìtol bon për \"$1\".",
 	"img-auth-nologinnWL": "A l'é pa intrà ant ël sistema e \"$1\" a l'é pa ant la lista bianca.",

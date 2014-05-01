@@ -1312,7 +1312,7 @@
 	"uploadstash-refresh": "Freskaat roll ar restroù",
 	"invalid-chunk-offset": "Direizh eo offset ar rannad",
 	"img-auth-accessdenied": "Moned nac'het",
-	"img-auth-nopathinfo": "Mankout a ra ar PATH_INFO.\nN'eo ket kefluniet ho servijer evit reiñ an titour-mañ.\nMarteze eo diazezet war CGI ha n'hall ket skorañ img_auth.\nGwelet https://www.mediawiki.org/wiki/Manual:Image_Authorization",
+	"img-auth-nopathinfo": "Mankout a ra ar PATH_INFO.\nN'eo ket kefluniet ho servijer evit reiñ an titour-mañ.\nMarteze eo diazezet war CGI ha n'hall ket skorañ img_auth.\nGwelet https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "N'emañ ket an hent merket er c'havlec'h enporzhiañ kefluniet.",
 	"img-auth-badtitle": "Dibosupl krouiñ un titl reizh adalek \"$1\".",
 	"img-auth-nologinnWL": "N'oc'h ket kevreet ha n'emañ ket \"$1\" war ar roll gwenn",

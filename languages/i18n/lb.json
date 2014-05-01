@@ -1321,7 +1321,7 @@
 	"uploadstash-errclear": "D'Läsche vun de Fichieren huet net funktionéiert.",
 	"uploadstash-refresh": "Lëscht vun de Fichieren aktualiséieren",
 	"img-auth-accessdenied": "Zougang refuséiert",
-	"img-auth-nopathinfo": "PATH_INFO feelt.\nÄre Server ass net agestallt fir déi Informatioun weiderzeginn.\nEt kann u CGI leien an datt imag_auth net ënnerstëtzt gëtt.\nKuckt  https://www.mediawiki.org/wiki/Manual:Image_Authorization",
+	"img-auth-nopathinfo": "PATH_INFO feelt.\nÄre Server ass net agestallt fir déi Informatioun weiderzeginn.\nEt kann u CGI leien an datt imag_auth net ënnerstëtzt gëtt.\nKuckt  https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "De gefrote Pad ass net am Upload-Repertoire agestallt.",
 	"img-auth-badtitle": "Aus \"$1\" ka kee valabelen Titel gemaach ginn.",
 	"img-auth-nologinnWL": "Dir sidd net ageloggt a(n) \"$1\" ass net op der Wäisser Lëscht.",

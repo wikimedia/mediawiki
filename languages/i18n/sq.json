@@ -1202,7 +1202,7 @@
 	"uploadstash-refresh": "Rifreskoni listën e skedave",
 	"invalid-chunk-offset": "Kompensim cope i pavlefshëm",
 	"img-auth-accessdenied": "Refuzohet hyrja",
-	"img-auth-nopathinfo": "Mungon PATH_INFO.\nShërbyesi juaj nuk e kalon këtë informacion.\nMund të jetë CGI-bazuar dhe nuk mund të mbështesë img_auth.\nShiko https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "Mungon PATH_INFO.\nShërbyesi juaj nuk e kalon këtë informacion.\nMund të jetë CGI-bazuar dhe nuk mund të mbështesë img_auth.\nShiko https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Kërkesa nuk është në drejtorinë e ngarkimeve të konfiguruara.",
 	"img-auth-badtitle": "Nuk mund të krihohej një titull i vlefshëm nga \"$1\".",
 	"img-auth-nologinnWL": "Ju nuk jeni i regjistruar dhe \"$1\" nuk është në listën e bardhë.",

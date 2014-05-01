@@ -1271,7 +1271,7 @@
 	"uploadstash-refresh": "File ke suchi ke fir se dekhao",
 	"invalid-chunk-offset": "Kharaab chunk offset",
 	"img-auth-accessdenied": "ijajat nai hae",
-	"img-auth-nopathinfo": "Aap ke server ke ii jankari de khatir set up nai karaa gais hae\nSaait ii CGI-based hoi aur img_auth ke nai support karat hoi.\nhttps://www.mediawiki.org/wiki/Manual:Image_Authorization ke dekho.",
+	"img-auth-nopathinfo": "Aap ke server ke ii jankari de khatir set up nai karaa gais hae\nSaait ii CGI-based hoi aur img_auth ke nai support karat hoi.\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization ke dekho.",
 	"img-auth-notindir": "Maanga gais path configured upload directory me me nai hae.",
 	"img-auth-badtitle": "\"$1\" se kanuni title ke nai banae sakaa hae.",
 	"img-auth-nologinnWL": "Aap logged in nai hae aur \"$1\" whitelist me nai hae.",

@@ -1330,7 +1330,7 @@
 	"uploadstash-refresh": "Osveži seznam datotek",
 	"invalid-chunk-offset": "Neveljaven odmik delčka",
 	"img-auth-accessdenied": "Dostop zavrnjen",
-	"img-auth-nopathinfo": "Manjka PATH_INFO.\nVaš strežnik ne poda te informacije.\nMorda temelji na CGI in ne more podpirati img_auth.\nOglejte si  https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "Manjka PATH_INFO.\nVaš strežnik ne poda te informacije.\nMorda temelji na CGI in ne more podpirati img_auth.\nOglejte si  https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Zahtevana pot ni v konfigurirani mapi za nalaganje.",
 	"img-auth-badtitle": "Ni mogoče sestaviti veljavnega naslova iz »$1«.",
 	"img-auth-nologinnWL": "Niste prijavljeni in »$1« ni na seznamu dovoljenih datotek.",

@@ -68,5 +68,5 @@
 	"config-help": "buligi",
 	"config-nofile": "An paypay nga \"$1\" in diri nabibilngan. Ginpara na ini?",
 	"mainpagetext": "'''Malinamposon an pag-instalar han MediaWiki.'''",
-	"mainpagedocfooter": "Kitaa an [//meta.wikimedia.org/wiki/Help:Contents User's Guide] para hin impormasyon ha paggamit han wiki nga softweyr.\n\n== Ha pagtikang==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]\n* [//www.mediawiki.org/wiki/Localisation#Translation_resources Localise MediaWiki for your language]"
+	"mainpagedocfooter": "Kitaa an [//meta.wikimedia.org/wiki/Help:Contents User's Guide] para hin impormasyon ha paggamit han wiki nga softweyr.\n\n== Ha pagtikang==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki for your language]"
 }

@@ -1315,7 +1315,7 @@
 	"uploadstash-refresh": "List von der Dateie aktualisiere",
 	"invalid-chunk-offset": "Ungülticher Startpunkt",
 	"img-auth-accessdenied": "Zugriff verweichert",
-	"img-auth-nopathinfo": "Die Oongäb PATH_INFO fehlt.\nDer Server ist net dafoar ingerichtet, die Information weiterzugebe.\nSie könnt CGI-gestützt sin und kann dodrum \"img_auth\" (Authentifizierung von dem Dateiuffruf) net unnerstütze.\nSieh ooch https://www.mediawiki.org/wiki/Manual:Image_Authorization (englisch).",
+	"img-auth-nopathinfo": "Die Oongäb PATH_INFO fehlt.\nDer Server ist net dafoar ingerichtet, die Information weiterzugebe.\nSie könnt CGI-gestützt sin und kann dodrum \"img_auth\" (Authentifizierung von dem Dateiuffruf) net unnerstütze.\nSieh ooch https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization (englisch).",
 	"img-auth-notindir": "Der gewünschte Paad ist net im konfigurierte Uploadverzeichnis.",
 	"img-auth-badtitle": "Aus \"$1\" kann ken gülticher Titel erstellt sin.",
 	"img-auth-nologinnWL": "Du bist net oongemeldt und \"$1\" ist net in der weiss List.",

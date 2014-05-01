@@ -1253,7 +1253,7 @@
 	"uploadstash-refresh": "கோப்புகள் உள்ள பட்டியலை புதுப்பி",
 	"invalid-chunk-offset": "செல்லாத chunk offset",
 	"img-auth-accessdenied": "அனுமதி மறுக்கப்பட்டது",
-	"img-auth-nopathinfo": "PATH_INFO காணவில்லை.\nஉங்கள் வழங்கி இந்தத் தகவலை அனுப்ப அமைக்கப்படவில்லை\nஇது சிஜிஐ (CGI)- அடிப்படையிலானதாகவோ img_auth-ஐ ஆதரக்காததாகவோ இருக்கலாம் .\nபார்க்கவும் https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "PATH_INFO காணவில்லை.\nஉங்கள் வழங்கி இந்தத் தகவலை அனுப்ப அமைக்கப்படவில்லை\nஇது சிஜிஐ (CGI)- அடிப்படையிலானதாகவோ img_auth-ஐ ஆதரக்காததாகவோ இருக்கலாம் .\nபார்க்கவும் https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "கோரிய பாதை இந்த குறிப்பிட்ட தகவலேற்று கோப்புறையில் இல்லை.",
 	"img-auth-badtitle": "செல்லத்தக்க தலைப்பு \"$1\" ஐ கட்ட இயலவில்லை.",
 	"img-auth-nologinnWL": "நீங்கள் புகுபதிகை செய்யவில்லை, மேலும் \"$1\"  அனுமதிக்கப்பெற்ற பட்டியலில் இல்லை",

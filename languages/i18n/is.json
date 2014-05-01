@@ -1291,7 +1291,7 @@
 	"uploadstash-refresh": "Endurhlaða listann",
 	"invalid-chunk-offset": "Ógild raðbreyting bunka",
 	"img-auth-accessdenied": "Aðgangur óheimill",
-	"img-auth-nopathinfo": "PATH_INFO vantar.\nBiðlarinn þínn er ekki stilltur til að gefa upp þessar upplýsingar.\nÞær mega vera CGI-byggðar og mega ekki styðja img_auth.\nhttps://www.mediawiki.org/wiki/Manual:Image_Authorization",
+	"img-auth-nopathinfo": "PATH_INFO vantar.\nBiðlarinn þínn er ekki stilltur til að gefa upp þessar upplýsingar.\nÞær mega vera CGI-byggðar og mega ekki styðja img_auth.\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "Umbeðin slóð var ekki í stilltri upphlaðsmöppu.",
 	"img-auth-badtitle": "Mistókst að búa til gildan titil útfrá „$1”.",
 	"img-auth-nologinnWL": "Þú ert ekki skráð(ur) inn og „$1“ er ekki á hvítlista.",

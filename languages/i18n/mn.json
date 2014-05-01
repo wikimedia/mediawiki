@@ -1229,7 +1229,7 @@
 	"uploadstash-errclear": "Файлыг цэвэрлэхэд саад учирлаа.",
 	"uploadstash-refresh": "Харагдаж буй файлуудыг сэргээн харах",
 	"img-auth-accessdenied": "Хандах эрхгүй байна",
-	"img-auth-nopathinfo": "PATH_INFO байхгүй байна.\nЭнэхүү мэдээллийг явуулахад сервер тань тохирогдоогүй байна.\nCGI-д тулгуурласан ба img_auth-г дэмжихгүй байж магадгүй.\nhttps://www.mediawiki.org/wiki/Manual:Image_Authorization -г харна уу.",
+	"img-auth-nopathinfo": "PATH_INFO байхгүй байна.\nЭнэхүү мэдээллийг явуулахад сервер тань тохирогдоогүй байна.\nCGI-д тулгуурласан ба img_auth-г дэмжихгүй байж магадгүй.\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization -г харна уу.",
 	"img-auth-notindir": "Тохируулсан оруулалтын директорид таны хүссэн зам байхгүй байна.",
 	"img-auth-badtitle": "\"$1\"-с хүчинтэй гарчиг үүсгэж чадсангүй.",
 	"img-auth-nologinnWL": "Та нэвтрээгүй байгаа бөгөөд \"$1\" нь цагаан дансанд байхгүй байна.",

@@ -187,7 +187,7 @@
 	"config-download-localsettings": "İndir <code>LocalSettings.php</code>",
 	"config-help": "Yardım",
 	"config-nofile": "\"$1\" dosyası bulunamadı. Silindi mi?",
-	"config-extension-link": "Vikinizin [//www.mediawiki.org/wiki/Manual:Extensions eklentileri] desteklediğini biliyor musunuz?\n\n[//www.mediawiki.org/wiki/Category:Extensions_by_category Eklentileri kategorilerine göre] inceleyebilir ya da tüm eklentilerin listesini görmek için [//www.mediawiki.org/wiki/Extension_Matrix Eklenti Matrisine] bakabilirsiniz.",
+	"config-extension-link": "Vikinizin [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions eklentileri] desteklediğini biliyor musunuz?\n\n[//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category Eklentileri kategorilerine göre] inceleyebilir ya da tüm eklentilerin listesini görmek için [//www.mediawiki.org/wiki/Extension_Matrix Eklenti Matrisine] bakabilirsiniz.",
 	"mainpagetext": "'''MediaWiki başarı ile kuruldu.'''",
-	"mainpagedocfooter": "Viki yazılımının kullanımı hakkında bilgi almak için [//meta.wikimedia.org/wiki/Help:Contents kullanıcı rehberine] bakınız.\n\n== Yeni Başlayanlar ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Yapılandırma ayarlarının listesi]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki SSS]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-posta listesi]"
+	"mainpagedocfooter": "Viki yazılımının kullanımı hakkında bilgi almak için [//meta.wikimedia.org/wiki/Help:Contents kullanıcı rehberine] bakınız.\n\n== Yeni Başlayanlar ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Yapılandırma ayarlarının listesi]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki SSS]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-posta listesi]"
 }

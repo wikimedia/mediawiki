@@ -1156,7 +1156,7 @@
 	"uploadstash-refresh": "Sagar'akan daptar babarakas",
 	"invalid-chunk-offset": "Putungan kada sah diimbangi",
 	"img-auth-accessdenied": "Ungkaian ditolak",
-	"img-auth-nopathinfo": "PATH_INFO hilang.\nServer Pian kada disetel hagan malimpatakan panjalasan ngini.\nNgini karana CGI-based wan kada manyukung img_auth.\nJanaki https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "PATH_INFO hilang.\nServer Pian kada disetel hagan malimpatakan panjalasan ngini.\nNgini karana CGI-based wan kada manyukung img_auth.\nJanaki https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Jalur nang diminta kada ta'atur lawan direktori hunggahan.",
 	"img-auth-badtitle": "Kada kawa mambangun sabuah judul sah matan \"$1\".",
 	"img-auth-nologinnWL": "Pian kada kawa babuat log wan '$1\" kadada dalam daptar putih.",

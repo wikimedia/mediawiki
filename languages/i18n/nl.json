@@ -1375,7 +1375,7 @@
 	"uploadstash-refresh": "Lijst met bestanden bijwerken",
 	"invalid-chunk-offset": "Ongeldige chunkoffset",
 	"img-auth-accessdenied": "Toegang geweigerd",
-	"img-auth-nopathinfo": "PATH_INFO ontbreekt.\nUw server is niet ingesteld om deze gegevens door te geven.\nMisschien gebruikt deze CGI, en dan wordt img_auth niet ondersteund.\nZie https://www.mediawiki.org/wiki/Manual:Image_Authorization voor meer informatie.",
+	"img-auth-nopathinfo": "PATH_INFO ontbreekt.\nUw server is niet ingesteld om deze gegevens door te geven.\nMisschien gebruikt deze CGI, en dan wordt img_auth niet ondersteund.\nZie https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization voor meer informatie.",
 	"img-auth-notindir": "Het opgegeven pad is niet de ingestelde uploadmap.",
 	"img-auth-badtitle": "Het was niet mogelijk een geldige paginanaam te maken van \"$1\".",
 	"img-auth-nologinnWL": "U bent niet aangemeld en \"$1\" staat niet op de witte lijst.",

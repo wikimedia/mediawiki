@@ -1047,7 +1047,7 @@
 	"upload-too-many-redirects": "URL aşa köp gönükdirmani özünde jemleýär",
 	"upload-http-error": "HTTP säwligi ýüze çykdy: $1",
 	"img-auth-accessdenied": "Barmak gadagan",
-	"img-auth-nopathinfo": "PATH_INFO ýok.\nSerweriňiz bu maglumaty geçirmeklik üçin sazlanmandyr.\nCGI esaslanýan hem-de img_auth-y goldamaýan bolmagy mümkin.\nhttps://www.mediawiki.org/wiki/Manual:Image_Authorization sahypasyna serediň.",
+	"img-auth-nopathinfo": "PATH_INFO ýok.\nSerweriňiz bu maglumaty geçirmeklik üçin sazlanmandyr.\nCGI esaslanýan hem-de img_auth-y goldamaýan bolmagy mümkin.\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization sahypasyna serediň.",
 	"img-auth-notindir": "Talap edlýän ýol sazlanan ýükleme direktoriýasynda däl.",
 	"img-auth-badtitle": "\"$1\" bilen dogry bir at gurup bolanok.",
 	"img-auth-nologinnWL": "Sessiýa açmansyňyz, \"$1\" bolsa ak sanawda däl.",

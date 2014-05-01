@@ -1306,7 +1306,7 @@
 	"uploadstash-errclear": "การล้างไฟล์ไม่สำเร็จ",
 	"uploadstash-refresh": "ฟื้นฟูรายการไฟล์",
 	"img-auth-accessdenied": "การเข้าถึงถูกจำกัด",
-	"img-auth-nopathinfo": "ค่า PATH_INFO สูญหาย\nเซิร์ฟเวอร์ของคุณอาจไม่ได้ถูกตั้งให้ส่งข้อมูลนี้\nหรือเซิร์ฟเวอร์อาจเป็นแบบ CGI-based และไม่สนับสนุนข้อมูล img_auth\nดูที่ https://www.mediawiki.org/wiki/Manual:Image_Authorization",
+	"img-auth-nopathinfo": "ค่า PATH_INFO สูญหาย\nเซิร์ฟเวอร์ของคุณอาจไม่ได้ถูกตั้งให้ส่งข้อมูลนี้\nหรือเซิร์ฟเวอร์อาจเป็นแบบ CGI-based และไม่สนับสนุนข้อมูล img_auth\nดูที่ https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "ที่อยู่ที่ร้องขอไม่ได้อยู่ในไดเร็กทอรีอัพโหลดที่กำหนดไว้",
 	"img-auth-badtitle": "ไม่สามารถสร้างชื่อเรื่องที่ถูกต้องจาก \"$1\" ได้",
 	"img-auth-nologinnWL": "คุณไม่ได้ล็อกอินและ \"$1\" ไม่ได้อยู่ในรายชื่อผู้ใช้ที่ดี (whitelist)",

@@ -1277,7 +1277,7 @@
 	"uploadstash-refresh": "Osvježi spisak datoteka",
 	"invalid-chunk-offset": "Neispravna polazna tačka",
 	"img-auth-accessdenied": "Pristup onemogućen",
-	"img-auth-nopathinfo": "Nedostaje PATH_INFO.\nVaš server nije postavljen da daje ovu informaciju.\nMožda je zasnovan na CGI koji ne podržava img_auth.\nPogledajte https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "Nedostaje PATH_INFO.\nVaš server nije postavljen da daje ovu informaciju.\nMožda je zasnovan na CGI koji ne podržava img_auth.\nPogledajte https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Zahtjevana putanje nije u direktorijumu podešenom za postavljanje.",
 	"img-auth-badtitle": "Ne mogu napraviti valjani naslov iz \"$1\".",
 	"img-auth-nologinnWL": "Niste prijavljeni i \"$1\" nije na spisku dozvoljenih.",

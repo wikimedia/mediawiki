@@ -1324,7 +1324,7 @@
 	"uploadstash-refresh": "List mä datein aktualisiare.",
 	"invalid-chunk-offset": "Di began as diar ei tuläät.",
 	"img-auth-accessdenied": "Tugrip ei mögelk",
-	"img-auth-nopathinfo": "Diar as nään PATH_INFO.\nDi server koon detdiar informatjuun ei widjerdu.\nFerlicht as det uun CGI iinbünjen an komt diaram uk ei mä „img_auth“ turocht.\nÜüb det sidj https://www.mediawiki.org/wiki/Manual:Image_Authorization (ingelsk) stäänt diar muar auer.",
+	"img-auth-nopathinfo": "Diar as nään PATH_INFO.\nDi server koon detdiar informatjuun ei widjerdu.\nFerlicht as det uun CGI iinbünjen an komt diaram uk ei mä „img_auth“ turocht.\nÜüb det sidj https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization (ingelsk) stäänt diar muar auer.",
 	"img-auth-notindir": "Detdiar fertiaknis as ei föörsen tu huuchschüüren.",
 	"img-auth-badtitle": "Mä „$1“ küd nään tiitel maaget wurd.",
 	"img-auth-nologinnWL": "Dü beest ei uunmeldet, an „$1“ stäänt ei uun't whitelist.",

@@ -1323,7 +1323,7 @@
 	"uploadstash-refresh": "Adnewyddu rhestr y ffeiliau",
 	"invalid-chunk-offset": "Atred annilys i'r talpiau",
 	"img-auth-accessdenied": "Ni chaniatawyd mynediad",
-	"img-auth-nopathinfo": "PATH_INFO yn eisiau.\nNid yw'ch gweinydd wedi ei osod i fedru pasio'r wybodaeth hon.\nEfallai ei fod wedi ei seilio ar CGI, ac heb fod yn gallu cynnal img_auth.\nGweler https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "PATH_INFO yn eisiau.\nNid yw'ch gweinydd wedi ei osod i fedru pasio'r wybodaeth hon.\nEfallai ei fod wedi ei seilio ar CGI, ac heb fod yn gallu cynnal img_auth.\nGweler https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Nid yw'r llwybr y gwneuthpwyd cais amdano yn y cyfeiriadur uwchlwytho ffurfweddedig.",
 	"img-auth-badtitle": "Ddim yn gallu gwneud teitl dilys o \"$1\".",
 	"img-auth-nologinnWL": "Nid ydych wedi mewngofnodi ac nid yw \"$1\" ar y rhestr wen.",

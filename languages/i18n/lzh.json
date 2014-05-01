@@ -1132,7 +1132,7 @@
 	"uploadstash-errclear": "清貢無功也。",
 	"uploadstash-refresh": "重載貢表",
 	"img-auth-accessdenied": "無通",
-	"img-auth-nopathinfo": "PATH_INFO失之。\n爾之伺服器無此資料也。\n以CGI之本耳，無img_auth矣。\n閱https://www.mediawiki.org/wiki/Manual:Image_Authorization。",
+	"img-auth-nopathinfo": "PATH_INFO失之。\n爾之伺服器無此資料也。\n以CGI之本耳，無img_auth矣。\n閱https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization。",
 	"img-auth-notindir": "求之徑無存貢錄中。",
 	"img-auth-badtitle": "於「$1」無建效題也。",
 	"img-auth-nologinnWL": "爾未登簿，「$1」無在白名中。",
