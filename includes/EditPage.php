@@ -1213,13 +1213,22 @@ class EditPage {
 	 *
 	 * If the variable were set on the server, it would be cached, which is unwanted
 	 * since the post-edit state should only apply to the load right after the save.
+	 *
+	 * @param $statusValue int The status value (to check for new article status)
 	 */
-	protected function setPostEditCookie() {
+	protected function setPostEditCookie( $statusValue ) {
 		$revisionId = $this->mArticle->getLatest();
 		$postEditKey = self::POST_EDIT_COOKIE_KEY_PREFIX . $revisionId;
 
+		$val = 'saved';
+		if ( $statusValue == self::AS_SUCCESS_NEW_ARTICLE ) {
+			$val = 'created';
+		} elseif ( $this->oldid ) {
+			$val = 'restored';
+		}
+
 		$response = RequestContext::getMain()->getRequest()->response();
-		$response->setcookie( $postEditKey, '1', time() + self::POST_EDIT_COOKIE_DURATION, array(
+		$response->setcookie( $postEditKey, $val, time() + self::POST_EDIT_COOKIE_DURATION, array(
 			'path' => '/',
 			'httpOnly' => false,
 		) );
@@ -1257,7 +1266,7 @@ class EditPage {
 		if ( $status->value == self::AS_SUCCESS_UPDATE || $status->value == self::AS_SUCCESS_NEW_ARTICLE ) {
 			$this->didSave = true;
 			if ( !$resultDetails['nullEdit'] ) {
-				$this->setPostEditCookie();
+				$this->setPostEditCookie( $status->value );
 			}
 		}
 
