@@ -626,8 +626,8 @@ class WebRequest {
 	 * @return string
 	 */
 	public function getRawInput() {
-		static $input = false;
-		if ( $input === false ) {
+		static $input = null;
+		if ( $input === null ) {
 			$input = file_get_contents( 'php://input' );
 		}
 		return $input;
