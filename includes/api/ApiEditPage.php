@@ -167,7 +167,7 @@ class ApiEditPage extends ApiBase {
 					$content = null;
 				} else {
 					// Process the content for section edits
-					$section = intval( $params['section'] );
+					$section = $params['section'];
 					$content = $content->getSection( $section );
 
 					if ( !$content ) {
@@ -288,12 +288,12 @@ class ApiEditPage extends ApiBase {
 		}
 
 		if ( !is_null( $params['section'] ) ) {
-			$section = intval( $params['section'] );
-			if ( $section == 0 && $params['section'] != '0' && $params['section'] != 'new' ) {
-				$this->dieUsage( "The section parameter must be set to an integer or 'new'", "invalidsection" );
+			$section = $params['section'];
+			if ( !preg_match( '/^((T-)?\d+|new)$/', $section ) ) {
+				$this->dieUsage( "The section parameter must be a valid section id or 'new'", "invalidsection" );
 			}
 			$content = $pageObj->getContent();
-			if ( $section !== 0 && ( !$content || !$content->getSection( $section ) ) ) {
+			if ( $section !== '0' && $section != 'new' && ( !$content || !$content->getSection( $section ) ) ) {
 				$this->dieUsage( "There is no section {$section}.", 'nosuchsection' );
 			}
 			$requestArray['wpSection'] = $params['section'];
@@ -529,7 +529,7 @@ class ApiEditPage extends ApiBase {
 				array( 'code' => 'nosuchsection', 'info' => 'There is no section section.' ),
 				array(
 					'code' => 'invalidsection',
-					'info' => 'The section parameter must be set to an integer or \'new\''
+					'info' => 'The section parameter must be a valid section id or \'new\''
 				),
 				array(
 					'code' => 'sectionsnotsupported',
