@@ -1054,7 +1054,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		# Keep track of whether the transaction has write queries pending
 		if ( $this->mTrxLevel && !$this->mTrxDoneWrites && $this->isWriteQuery( $sql ) ) {
 			$this->mTrxDoneWrites = true;
-			Profiler::instance()->transactionWritingIn( $this->mServer, $this->mDBname );
+			$id = spl_object_hash( $this );
+			Profiler::instance()->transactionWritingIn( $this->mServer, $this->mDBname, $id );
 		}
 
 		$queryProf = '';
@@ -3410,7 +3411,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$this->runOnTransactionPreCommitCallbacks();
 			$this->doCommit( $fname );
 			if ( $this->mTrxDoneWrites ) {
-				Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname );
+				$id = spl_object_hash( $this );
+				Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname, $id );
 			}
 			$this->runOnTransactionIdleCallbacks();
 		}
@@ -3476,7 +3478,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$this->runOnTransactionPreCommitCallbacks();
 		$this->doCommit( $fname );
 		if ( $this->mTrxDoneWrites ) {
-			Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname );
+			$id = spl_object_hash( $this );
+			Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname, $id );
 		}
 		$this->runOnTransactionIdleCallbacks();
 	}
@@ -3527,7 +3530,8 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		$this->mTrxPreCommitCallbacks = array(); // cancel
 		$this->mTrxAtomicLevels = new SplStack;
 		if ( $this->mTrxDoneWrites ) {
-			Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname );
+			$id = spl_object_hash( $this );
+			Profiler::instance()->transactionWritingOut( $this->mServer, $this->mDBname, $id );
 		}
 	}
 
