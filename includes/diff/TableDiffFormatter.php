@@ -60,7 +60,11 @@ class TableDiffFormatter extends DiffFormatter {
 	 * @return string
 	 */
 	protected function blockHeader( $xbeg, $xlen, $ybeg, $ylen ) {
-		$r = '<tr><td colspan="2" class="diff-lineno"><!--LINE ' . $xbeg . "--></td>\n" .
+		// Add line number from the left side with prefix 'l' as id to allow linking of the block
+		// '<!--LINE \d+ -->' get replaced by a localised line number in
+		// DifferenceEngine::localiseLineNumbers
+		$r = '<tr id="' . Sanitizer::escapeId( 'l' . $xbeg ) . '">' .
+			'<td colspan="2" class="diff-lineno"><!--LINE ' . $xbeg . "--></td>\n" .
 			'<td colspan="2" class="diff-lineno"><!--LINE ' . $ybeg . "--></td></tr>\n";
 
 		return $r;
