@@ -86,7 +86,7 @@ class ApiLogin extends ApiBase {
 			case LoginForm::SUCCESS:
 				$user = $context->getUser();
 				$this->getContext()->setUser( $user );
-				$user->setCookies( $this->getRequest() );
+				$user->setCookies( $this->getRequest(), null, true );
 
 				ApiQueryInfo::resetTokenCache();
 
