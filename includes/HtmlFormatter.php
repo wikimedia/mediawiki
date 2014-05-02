@@ -136,7 +136,13 @@ class HtmlFormatter {
 		wfProfileIn( __METHOD__ );
 		$removals = $this->parseItemsToRemove();
 
-		if ( !$removals ) {
+		// Bail out early if nothing to do
+		if ( array_reduce( $removals,
+			function( $carry, $item ) {
+				return $carry && !$item;
+			},
+			true
+		) ) {
 			wfProfileOut( __METHOD__ );
 			return array();
 		}
@@ -287,11 +293,12 @@ class HtmlFormatter {
 				// XML code paths if possible and fix there.
 				$html = str_replace( '&#13;', '', $html );
 			}
-			$html = preg_replace( '/<!--.*?-->|^.*?<body>|<\/body>.*$/s', '', $html );
 			wfProfileOut( __METHOD__ . '-fixes' );
 		} else {
 			$html = $this->html;
 		}
+		// Remove stuff added by wrapHTML()
+		$html = preg_replace( '/<!--.*?-->|^.*?<body>|<\/body>.*$/s', '', $html );
 		$html = $this->onHtmlReady( $html );
 
 		wfProfileIn( __METHOD__ . '-flatten' );

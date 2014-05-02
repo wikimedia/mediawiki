@@ -6,7 +6,11 @@
 class HtmlFormatterTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider getHtmlData
-	 * @covers HtmlFormatter::getText
+	 *
+	 * @param string $input
+	 * @param $expectedText
+	 * @param array $expectedRemoved
+	 * @param callable|bool $callback
 	 */
 	public function testTransform( $input, $expectedText,
 		$expectedRemoved = array(), $callback = false
@@ -93,6 +97,8 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 			array(
 				'<span title="&quot; \' &amp;">&lt;Тест!&gt;</span> &amp;&lt;&#38;&#0038;&#x26;&#x026;',
 				'<span title="&quot; \' &amp;">&lt;Тест!&gt;</span> &amp;&lt;&amp;&amp;&amp;&amp;',
+				array(),
+				$removeTags, // Have some rules to trigger a DOM parse
 			),
 			// https://bugzilla.wikimedia.org/show_bug.cgi?id=53086
 			array(
@@ -102,5 +108,20 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 					. ' <a href="/wiki/Bar" title="Bar" class="mw-redirect">Bar</a>',
 			),
 		);
+	}
+
+	public function testQuickProcessing() {
+		$f = new MockHtmlFormatter( 'foo' );
+		$f->filterContent();
+		$this->assertFalse( $f->hasDoc, 'HtmlFormatter should not needlessly parse HTML' );
+	}
+}
+
+class MockHtmlFormatter extends HtmlFormatter {
+	public $hasDoc = false;
+
+	public function getDoc() {
+		$this->hasDoc = true;
+		return parent::getDoc();
 	}
 }
