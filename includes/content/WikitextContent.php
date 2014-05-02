@@ -323,8 +323,15 @@ class WikitextContent extends TextContent {
 	) {
 		global $wgParser;
 
+		// Save and restore the old value, just in case something is reusing
+		// the ParserOptions object in some weird way.
+		$oldRedir = $options->getRedirectTarget();
+
 		list( $redir, $text ) = $this->getRedirectTargetAndText();
+		$options->setRedirectTarget( $redir );
 		$output = $wgParser->parse( $text, $title, $options, true, true, $revId );
+
+		$options->setRedirectTarget( $oldRedir );
 
 		// Add redirect indicator at the top
 		if ( $redir ) {
