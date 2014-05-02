@@ -104,6 +104,7 @@ production.
   'user' or 'bot'. The API will throw an error if the user is not logged
   in (user) or does not have the 'bot' userright (bot). Based off of the
   AssertEdit extension by Steve Sanbeg.
+<<<<<<< HEAD   (d9d478 Merge "Rename basic skinning modules: skins.common.* → media)
 * WikitextContent will now render redirects with the expected "redirect"
   header, rather than as an ordered list. Code calling Article::viewRedirect
   can probably be changed to no longer special-case redirects.
@@ -156,6 +157,8 @@ production.
   in StartProfiler.php instead of using this.
 * (bug 63444) Made it possible to change the indent string (default: 4 spaces)
   used by FormatJson::encode().
+=======
+>>>>>>> BRANCH (9ca531 This reverts commit d8b1b79ea423ef3391c34f63aa382fd6bad6597e)
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
@@ -184,6 +187,7 @@ production.
   the JavaScript evaluator were updated to support the new format. Plural rules
   for some languages have changed, most notably Russian. Affected software
   messages have been updated and marked for review at translatewiki.net.
+<<<<<<< HEAD   (d9d478 Merge "Rename basic skinning modules: skins.common.* → media)
 * (bug 14323) Redirect pages, when viewed with redirect=no, no longer hide the
   remaining page content.
 * (bug 23542) imagelinks now stores both the redirect and target (as
@@ -202,6 +206,8 @@ production.
   no longer applies in such cases.
 * (bug 60960) Avoid doing file_exist() checks on data: URIs, as they cause
   warnings to be printed on Windows due to large path length.
+=======
+>>>>>>> BRANCH (9ca531 This reverts commit d8b1b79ea423ef3391c34f63aa382fd6bad6597e)
 
 === Web API changes in 1.23 ===
 * (bug 54884) action=parse&prop=categories now indicates hidden and missing

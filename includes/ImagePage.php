@@ -732,7 +732,7 @@ EOT
 
 		return $dbr->select(
 			array( 'imagelinks', 'page' ),
-			array( 'page_namespace', 'page_title', 'il_to' ),
+			array( 'page_namespace', 'page_title', 'page_is_redirect', 'il_to' ),
 			array( 'il_to' => $target, 'il_from = page_id' ),
 			__METHOD__,
 			array( 'LIMIT' => $limit + 1, 'ORDER BY' => 'il_from', )
@@ -743,19 +743,13 @@ EOT
 		$limit = 100;
 
 		$out = $this->getContext()->getOutput();
-
+		$res = $this->queryImageLinks( $this->getTitle()->getDBkey(), $limit + 1 );
 		$rows = array();
 		$redirects = array();
-		foreach ( $this->getTitle()->getRedirectsHere( NS_FILE ) as $redir ) {
-			$redirects[$redir->getDBkey()] = array();
-			$rows[] = (object)array(
-				'page_namespace' => NS_FILE,
-				'page_title' => $redir->getDBkey(),
-			);
-		}
-
-		$res = $this->queryImageLinks( $this->getTitle()->getDBkey(), $limit + 1 );
 		foreach ( $res as $row ) {
+			if ( $row->page_is_redirect ) {
+				$redirects[$row->page_title] = array();
+			}
 			$rows[] = $row;
 		}
 		$count = count( $rows );
