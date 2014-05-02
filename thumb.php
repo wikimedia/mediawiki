@@ -394,7 +394,7 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 					// If the worker that finished made this thumbnail then use it.
 					// Otherwise, it probably made a different thumbnail for this file.
 					return $file->getRepo()->fileExists( $thumbPath )
-						? $file->transform( $params )
+						? $file->transform( $params, File::RENDER_NOW )
 						: false; // retry once more in exclusive mode
 				},
 				'fallback' => function() {
