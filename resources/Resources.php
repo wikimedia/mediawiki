@@ -935,6 +935,7 @@ return array(
 			'jquery.accessKeyLabel',
 			'jquery.mwExtension',
 			'mediawiki.notify',
+			'mediawiki.toc', // bug 64765
 		),
 		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
 		'targets' => array( 'desktop', 'mobile' ),
