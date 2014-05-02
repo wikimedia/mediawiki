@@ -210,6 +210,13 @@ class ParserOptions {
 	 */
 	protected $onAccessCallback = null;
 
+	/**
+	 * If the page being parsed is a redirect, this should hold the redirect
+	 * target.
+	 * @var Title|null
+	 */
+	private $redirectTarget = null;
+
 	function getInterwikiMagic()                { return $this->mInterwikiMagic; }
 	function getAllowExternalImages()           { return $this->mAllowExternalImages; }
 	function getAllowExternalImagesFrom()       { return $this->mAllowExternalImagesFrom; }
@@ -334,6 +341,30 @@ class ParserOptions {
 	function setIsPreview( $x )                 { return wfSetVar( $this->mIsPreview, $x ); }
 	function setIsSectionPreview( $x )          { return wfSetVar( $this->mIsSectionPreview, $x ); }
 	function setIsPrintable( $x )               { return wfSetVar( $this->mIsPrintable, $x ); }
+
+	/**
+	 * Set the redirect target.
+	 *
+	 * Note that setting or changing this does not *make* the page a redirect
+	 * or change its target, it merely records the information for reference
+	 * during the parse.
+	 *
+	 * @since 1.24
+	 * @param Title|null $title
+	 */
+	function setRedirectTarget( $title ) {
+		$this->redirectTarget = $title;
+	}
+
+	/**
+	 * Get the previously-set redirect target.
+	 *
+	 * @since 1.24
+	 * @return Title|null
+	 */
+	function getRedirectTarget() {
+		return $this->redirectTarget;
+	}
 
 	/**
 	 * Extra key that should be present in the parser cache key.
