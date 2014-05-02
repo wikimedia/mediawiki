@@ -24,9 +24,6 @@
 
 	$.fn.textSelection = function ( command, options ) {
 		var fn,
-			context,
-			hasIframe,
-			needSave,
 			retval;
 
 		/**
@@ -149,9 +146,6 @@
 							// See bug 35201.
 
 							activateElementOnIE( this );
-							if ( context ) {
-								context.fn.restoreCursorAndScrollTop();
-							}
 							if ( options.selectionStart !== undefined ) {
 								$( this ).textSelection( 'setSelection', { 'start': options.selectionStart, 'end': options.selectionEnd } );
 							}
@@ -531,18 +525,11 @@
 					// Position to start selection at
 					start: undefined,
 					// Position to end selection at. Defaults to start
-					end: undefined,
-					// Element to start selection in (iframe only)
-					startContainer: undefined,
-					// Element to end selection in (iframe only). Defaults to startContainer
-					endContainer: undefined
+					end: undefined
 				}, options );
 
 				if ( options.end === undefined ) {
 					options.end = options.start;
-				}
-				if ( options.endContainer === undefined ) {
-					options.endContainer = options.startContainer;
 				}
 				// FIXME: We may not need character position-based functions if we insert markers in the right places
 				break;
@@ -553,19 +540,7 @@
 				break;
 		}
 
-		context = $( this ).data( 'wikiEditor-context' );
-		hasIframe = context !== undefined && context && context.$iframe !== undefined;
-
-		// IE selection restore voodoo
-		needSave = false;
-		if ( hasIframe && context.savedSelection !== null ) {
-			context.fn.restoreSelection();
-			needSave = true;
-		}
-		retval = ( hasIframe ? context.fn : fn )[command].call( this, options );
-		if ( hasIframe && needSave ) {
-			context.fn.saveSelection();
-		}
+		retval = fn[command].call( this, options );
 
 		return retval;
 	};
