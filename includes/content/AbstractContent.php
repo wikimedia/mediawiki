@@ -483,7 +483,12 @@ abstract class AbstractContent implements Content {
 		if ( wfRunHooks( 'ContentGetParserOutput',
 			array( $this, $title, $revId, $options, $generateHtml, &$po ) ) ) {
 
+			// Save and restore the old value, just in case something is reusing
+			// the ParserOptions object in some weird way.
+			$oldRedir = $options->getRedirectTarget();
+			$options->setRedirectTarget( $this->getRedirectTarget() );
 			$this->fillParserOutput( $title, $revId, $options, $generateHtml, $po );
+			$options->setRedirectTarget( $oldRedir );
 		}
 
 		return $po;

@@ -31,6 +31,7 @@
  * @ingroup Content
  */
 class WikitextContent extends TextContent {
+	private $redirectTargetAndText = null;
 
 	public function __construct( $text ) {
 		parent::__construct( $text, CONTENT_MODEL_WIKITEXT );
@@ -178,10 +179,17 @@ class WikitextContent extends TextContent {
 	 */
 	protected function getRedirectTargetAndText() {
 		global $wgMaxRedirects;
+
+		if ( $this->redirectTargetAndText !== null ) {
+			return $this->redirectTargetAndText;
+		}
+
 		if ( $wgMaxRedirects < 1 ) {
 			// redirects are disabled, so quit early
-			return array( null, $this->getNativeData() );
+			$this->redirectTargetAndText = array( null, $this->getNativeData() );
+			return $this->redirectTargetAndText;
 		}
+
 		$redir = MagicWord::get( 'redirect' );
 		$text = ltrim( $this->getNativeData() );
 		if ( $redir->matchStartAndRemove( $text ) ) {
@@ -199,14 +207,17 @@ class WikitextContent extends TextContent {
 				$title = Title::newFromText( $m[1] );
 				// If the title is a redirect to bad special pages or is invalid, return null
 				if ( !$title instanceof Title || !$title->isValidRedirectTarget() ) {
-					return array( null, $this->getNativeData() );
+					$this->redirectTargetAndText = array( null, $this->getNativeData() );
+					return $this->redirectTargetAndText;
 				}
 
-				return array( $title, substr( $text, strlen( $m[0] ) ) );
+				$this->redirectTargetAndText = array( $title, substr( $text, strlen( $m[0] ) ) );
+				return $this->redirectTargetAndText;
 			}
 		}
 
-		return array( null, $this->getNativeData() );
+		$this->redirectTargetAndText = array( null, $this->getNativeData() );
+		return $this->redirectTargetAndText;
 	}
 
 	/**
