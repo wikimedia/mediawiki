@@ -256,7 +256,7 @@
 	"config-logo": "ロゴ のURL:",
 	"config-logo-help": "MediaWiki の既定の外装では、サイドバー上部に135x160ピクセルのロゴ用の余白があります。\n適切なサイズの画像をアップロードして、その URL をここに入力してください。\n\nロゴが相対パスの場合は、<code>$wgStylePath</code> や <code>$wgScriptPath</code> を使用できます。\n\nロゴが不要の場合は、この欄を空白のままにしてください。",
 	"config-instantcommons": "Instant Commons 機能を有効にする",
-	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] は、[//commons.wikimedia.org/ ウィキメディア・コモンズ]のサイトにある画像、音声、その他のメディアをウィキ上で利用できるようにする機能です。\nこれを使用するには、MediaWiki がインターネットに接続できる必要があります。\n\nウィキメディア・コモンズ以外のウィキを同様に設定する手順など、この機能に関する詳細な情報は、[//mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos マニュアル]をご覧ください。",
+	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] は、[//commons.wikimedia.org/ ウィキメディア・コモンズ]のサイトにある画像、音声、その他のメディアをウィキ上で利用できるようにする機能です。\nこれを使用するには、MediaWiki がインターネットに接続できる必要があります。\n\nウィキメディア・コモンズ以外のウィキを同様に設定する手順など、この機能に関する詳細な情報は、[//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos マニュアル]をご覧ください。",
 	"config-cc-error": "クリエイティブ・コモンズ・ライセンスの選択器から結果が得られませんでした。\nライセンスの名前を手動で入力してください。",
 	"config-cc-again": "もう一度選択してください...",
 	"config-cc-not-chosen": "希望するクリエイティブ・コモンズのライセンスを選択して、「続行」をクリックしてください。",

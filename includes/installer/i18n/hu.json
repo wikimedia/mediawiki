@@ -243,7 +243,7 @@
 	"config-logo": "A logó URL-címe:",
 	"config-logo-help": "A MediaWiki alapértelmezett felülete helyet ad egy 135×160 pixeles logónak a bal felső sarokban.\nTölts fel egy megfelelő méretű képet, majd írd be ide az URL-címét!\n\nHasználhatsz  <code>$wgStylePath</code>-t vagy <code>$wgScriptPath</code>-t, ha más méretű a logód.\n\nHa nem szeretnél logót használni, egyszerűen hagyd üresen a mezőt.",
 	"config-instantcommons": "Instant Commons engedélyezése",
-	"config-instantcommons-help": "Az [//www.mediawiki.org/wiki/InstantCommons Instant Commons] lehetővé teszi, hogy a wikin használhassák a [//commons.wikimedia.org/ Wikimedia Commons] oldalon található képeket, hangokat és más médiafájlokat.\nA használatához a MediaWikinek internethozzáférésre van szüksége.\n\nA funkcióról és hogy hogyan állítható be más wikik esetén [//mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos a kézikönyvben] találhatsz további információkat.",
+	"config-instantcommons-help": "Az [//www.mediawiki.org/wiki/InstantCommons Instant Commons] lehetővé teszi, hogy a wikin használhassák a [//commons.wikimedia.org/ Wikimedia Commons] oldalon található képeket, hangokat és más médiafájlokat.\nA használatához a MediaWikinek internethozzáférésre van szüksége.\n\nA funkcióról és hogy hogyan állítható be más wikik esetén [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos a kézikönyvben] találhatsz további információkat.",
 	"config-cc-error": "A Creative Commons-licencválasztó nem tért vissza eredménnyel.\nAdd meg kézzel a licencet.",
 	"config-cc-again": "Válassz újra…",
 	"config-cc-not-chosen": "Válaszd ki a kívánt Creative Commons licencet, majd kattints a „Folytatás gombra”!",

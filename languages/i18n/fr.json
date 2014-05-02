@@ -104,7 +104,8 @@
 			"Zolo",
 			"Горан Анђелковић",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Scoopfinder"
 		]
 	},
 	"tog-underline": "Souligner les liens :",
@@ -744,7 +745,9 @@
 	"edit-gone-missing": "N'a pas pu mettre à jour la page.\nIl semble qu'elle ait été supprimée.",
 	"edit-conflict": "Conflit de modification.",
 	"edit-no-change": "Votre modification a été ignorée car aucun changement n'a été fait au texte.",
-	"postedit-confirmation": "Votre modification a été enregistrée.",
+	"postedit-confirmation-created": "La page a été créée.",
+	"postedit-confirmation-restored": "La page a été restaurée.",
+	"postedit-confirmation-saved": "Votre modification a été enregistrée.",
 	"edit-already-exists": "La nouvelle page n'a pas pu être créée.\nElle existe déjà.",
 	"defaultmessagetext": "Message par défaut",
 	"content-failed-to-parse": "Échec de l’analyse syntaxique du contenu de $2 pour le modèle $1: $3",
@@ -1428,7 +1431,7 @@
 	"uploadstash-refresh": "Actualiser la liste des fichiers",
 	"invalid-chunk-offset": "Offset de segment non valide",
 	"img-auth-accessdenied": "Accès refusé",
-	"img-auth-nopathinfo": "PATH_INFO manquant.\nVotre serveur n'est pas paramétré pour passer cette information.\nIl fonctionne peut-être en CGI et ne supporte pas img_auth.\nVoyez https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
+	"img-auth-nopathinfo": "PATH_INFO manquant.\nVotre serveur n'est pas paramétré pour transmettre cette information.\nIl fonctionne peut-être en CGI et ne supporte pas img_auth.\nVoir : https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Le chemin demandé n'est pas le répertoire d'import configuré.",
 	"img-auth-badtitle": "Impossible de construire un titre valide à partir de « $1 ».",
 	"img-auth-nologinnWL": "Vous n'êtes pas connecté et « $1 » n'est pas dans la liste blanche.",

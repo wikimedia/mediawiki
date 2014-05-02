@@ -627,7 +627,7 @@
 	"edit-gone-missing": "Stranica se nije mogla osvježiti.\nIzgleda da je obrisana.",
 	"edit-conflict": "Sukob izmjena.",
 	"edit-no-change": "Vaša izmjena je ignorirana, jer nije bilo promjena teksta stranice.",
-	"postedit-confirmation": "Vaša izmjena je sačuvana.",
+	"postedit-confirmation-saved": "Vaša izmjena je sačuvana.",
 	"edit-already-exists": "Stranica nije mogla biti kreirana.\nIzgleda da već postoji.",
 	"defaultmessagetext": "Uobičajeni tekst poruke",
 	"invalid-content-data": "Nevaljani podaci sadržaja",

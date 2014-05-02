@@ -632,7 +632,7 @@
 	"edit-gone-missing": "Битте яңыртып булмай.\nБәлки ул юйылғандыр.",
 	"edit-conflict": "Төҙәтеүҙәр конфликты",
 	"edit-no-change": "Текста үҙгәртеүҙер булмау сәбәпле үҙгәртеүегеҙгә иғтибар ителмәне.",
-	"postedit-confirmation": "Үҙгәртеүегеҙ һаҡланды.",
+	"postedit-confirmation-saved": "Үҙгәртеүегеҙ һаҡланды.",
 	"edit-already-exists": "Яңы бит яһап булмай.\nУл былай ҙа бар.",
 	"defaultmessagetext": "Алдан билдәләнгән яҙма",
 	"content-failed-to-parse": "$2 эстәлеге $1 төрөнә тура килмәй: $3.",

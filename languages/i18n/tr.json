@@ -695,7 +695,7 @@
 	"edit-gone-missing": "Sayfa güncellenemiyor.\nSilinmiş görünüyor.",
 	"edit-conflict": "Değişiklik çakışması.",
 	"edit-no-change": "Değişikliğiniz yoksayıldı, çünkü metinde bir değişiklik yapılmadı.",
-	"postedit-confirmation": "Değişikliğiniz kaydedildi.",
+	"postedit-confirmation-saved": "Değişikliğiniz kaydedildi.",
 	"edit-already-exists": "Yeni sayfa oluşturulamıyor.\nSayfa zaten mevcut.",
 	"defaultmessagetext": "Varsayılan mesaj metni",
 	"content-failed-to-parse": "$1 modeli için $2 içerik türü çözümlenemedi: $3",

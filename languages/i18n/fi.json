@@ -678,7 +678,7 @@
 	"edit-gone-missing": "Sivun päivitys ei onnistunut.\nSe on ilmeisesti poistettu.",
 	"edit-conflict": "Päällekkäinen muokkaus.",
 	"edit-no-change": "Muokkauksesi sivuutettiin, koska tekstiin ei tehty mitään muutoksia.",
-	"postedit-confirmation": "Muokkauksesi on tallennettu.",
+	"postedit-confirmation-saved": "Muokkauksesi on tallennettu.",
 	"edit-already-exists": "Uuden sivun luominen ei onnistunut.\nSe on jo olemassa.",
 	"defaultmessagetext": "Viestin oletusteksti",
 	"content-failed-to-parse": "Sisältö tyypiltään $2 ei jäsenny tyypiksi $1: $3",

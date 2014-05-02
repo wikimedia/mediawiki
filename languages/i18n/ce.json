@@ -632,7 +632,7 @@
 	"edit-gone-missing": "АгӀо карлаяккха цатарло.\nИза дӀаяьккхина хила мега.",
 	"edit-conflict": "Тадарна дойнаш.",
 	"edit-no-change": "Хьан нисдар юхадаьккхина, ахьа хийцамаш бина цахилар бахьнехь.",
-	"postedit-confirmation": "Хьан нисдар дӏайазъдина.",
+	"postedit-confirmation-saved": "Хьан нисдар дӀаяздина.",
 	"edit-already-exists": "Керла агӀо кхолла цатарло.\nИза хӀинцале йолуш ю.",
 	"defaultmessagetext": "Ӏад дитарца йоза",
 	"content-failed-to-parse": "Чулацам $2 богӀуш бац $1: $3.",

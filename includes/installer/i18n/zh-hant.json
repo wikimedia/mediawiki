@@ -260,7 +260,7 @@
 	"config-logo": "標誌 URL 位置：",
 	"config-logo-help": "在 MediaWiki 的預設介面，側欄選單上方有一塊 135x160 像素用來放置標誌的區域。\n請上傳合適大小的圖片並在此輸入 URL 網址。\n\n您可以透過 <code>$wgStylePath</code> 或者 <code>$wgScriptPath</code> 來表示您的圖片與這些路徑的相對位置。\n\n如果您不想使用標誌，可略過此欄位。",
 	"config-instantcommons": "開啟即時共享資源",
-	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons 即時共享資源] 是允許 Wiki 使用來自 [//commons.wikimedia.org/ Wikimedia Commons] 網站上的圖片、聲音以及其他媒體的一項功能。\n若要開啟此功能，您的 MediaWiki 必須能夠連線網際網路。\n更多有關此功能的訊息，包含如何存除了 Wikimedia Commons 之外其他網站的說明，請參考 \n[//mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos 操作手冊]。",
+	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons 即時共享資源] 是允許 Wiki 使用來自 [//commons.wikimedia.org/ Wikimedia Commons] 網站上的圖片、聲音以及其他媒體的一項功能。\n若要開啟此功能，您的 MediaWiki 必須能夠連線網際網路。\n更多有關此功能的訊息，包含如何存除了 Wikimedia Commons 之外其他網站的說明，請參考 \n[//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos 操作手冊]。",
 	"config-cc-error": "查無該創作共用授權條款，\n請手動輸入您的授權條款名稱。",
 	"config-cc-again": "請重新選取...",
 	"config-cc-not-chosen": "請選擇您要使用的創作共享授權條款，然後點選 \"繼續\"。",

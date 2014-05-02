@@ -676,7 +676,7 @@
 	"edit-gone-missing": "Tidak dapat memperbaharui halaman.\nHalaman kemungkinan telah dihapus.",
 	"edit-conflict": "Konflik penyuntingan.",
 	"edit-no-change": "Suntingan diabaikan, karena Anda tidak melakukan perubahan atas teks.",
-	"postedit-confirmation": "Suntingan Anda tersimpan.",
+	"postedit-confirmation-saved": "Suntingan Anda tersimpan.",
 	"edit-already-exists": "Tidak dapat membuat halaman baru\nkarena telah ada.",
 	"defaultmessagetext": "Teks baku",
 	"content-failed-to-parse": "Gagal menjabarkan konten $2 untuk model $1: $3",

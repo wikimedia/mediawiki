@@ -652,7 +652,7 @@
 	"edit-gone-missing": "Non se pode actualizar a páxina.\nSemella que foi borrada.",
 	"edit-conflict": "Conflito de edición.",
 	"edit-no-change": "A súa edición foi ignorada dado que non fixo ningún cambio no texto.",
-	"postedit-confirmation": "Gardouse a súa edición.",
+	"postedit-confirmation-saved": "Gardouse a súa edición.",
 	"edit-already-exists": "Non se pode crear a nova páxina.\nEsta xa existe.",
 	"defaultmessagetext": "Texto predeterminado",
 	"content-failed-to-parse": "Erro ao analizar o contido de \"$2\" para o modelo de $1: $3",

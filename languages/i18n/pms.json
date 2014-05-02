@@ -651,7 +651,7 @@
 	"edit-gone-missing": "As peul nen agiornesse la pàgina.\nA smija che a sia stàita scancelà.",
 	"edit-conflict": "Conflit ëd modìfiche.",
 	"edit-no-change": "Soa modìfica a l'é stàita ignorà, përchè gnun cambiament a l'é stàit fàit al test.",
-	"postedit-confirmation": "Soa modìfica a l'é stàita salvà.",
+	"postedit-confirmation-saved": "Soa modìfica a l'é stàita salvà.",
 	"edit-already-exists": "La neuva pàgina a l'ha nen podù creesse.\nA esist già.",
 	"defaultmessagetext": "Test che a-i sarìa se a-i fusso pa 'd modìfiche",
 	"content-failed-to-parse": "Faliment ëd l'anàlisi dël contnù ëd $2 për ël model $1: $3",

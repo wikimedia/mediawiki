@@ -632,7 +632,7 @@
 	"edit-gone-missing": "Die bladsy is nie gewysig nie.\nDit lyk of dit verwyder is.",
 	"edit-conflict": "Wysigingskonflik",
 	"edit-no-change": "U wysiging was geignoreer omdat die teks nie verander is nie.",
-	"postedit-confirmation": "U wysigings is gestoor.",
+	"postedit-confirmation-saved": "U wysigings is gestoor.",
 	"edit-already-exists": "Die bladsy is nie geskep nie.\nDit bestaan alreeds.",
 	"defaultmessagetext": "Verstekteks",
 	"content-failed-to-parse": "Dit was nie moontlik om die inhoud van die MIME-tipe $2 vir die model $1 te verwerk nie: $3.",

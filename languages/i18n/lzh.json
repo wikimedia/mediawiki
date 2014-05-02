@@ -577,7 +577,7 @@
 	"edit-gone-missing": "無更頁。\n刪之也。",
 	"edit-conflict": "纂突。",
 	"edit-no-change": "爾之纂已略，由字無改也。",
-	"postedit-confirmation": "汝之纂已成",
+	"postedit-confirmation-saved": "汝之纂已成",
 	"edit-already-exists": "不建新頁。\n已存也。",
 	"defaultmessagetext": "慣話文",
 	"content-model-css": "層疊樣式表",

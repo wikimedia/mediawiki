@@ -679,7 +679,7 @@
 	"edit-gone-missing": "Kunne ikke opdatere siden.\nDen ser du til at være slettet.",
 	"edit-conflict": "Redigeringskonflikt.",
 	"edit-no-change": "Din ændring ignoreredes, fordi der ikke var ændring af teksten.",
-	"postedit-confirmation": "Din redigering er gemt.",
+	"postedit-confirmation-saved": "Din redigering er gemt.",
 	"edit-already-exists": "En ny side kunne ikke oprettes, fordi den allerede findes.",
 	"defaultmessagetext": "Standardtekst",
 	"content-failed-to-parse": "Kunne ikke fortolke $2-indholdet af $1-modellen: $3",

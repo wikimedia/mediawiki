@@ -635,7 +635,7 @@
 	"edit-gone-missing": "Ora bisa nganyari kaca.\nKatoné kaca iki wis dibusak.",
 	"edit-conflict": "Konflik panyuntingan.",
 	"edit-no-change": "Suntingan panjenengan dilirwakaké amerga panjenengan ora nglakoni pangowahan apa-apa ing tèks.",
-	"postedit-confirmation": "Pangowahan sampéyan wis disimpen!",
+	"postedit-confirmation-saved": "Pangowahan sampéyan wis disimpen!",
 	"edit-already-exists": "Ora bisa nggawé kaca anyar.\nAmerga wis ana.",
 	"defaultmessagetext": "Tèks layang gawan",
 	"content-failed-to-parse": "Gagal menjabarkan konten $2 untuk model $1: $3",

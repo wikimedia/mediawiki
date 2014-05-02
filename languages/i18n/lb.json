@@ -651,7 +651,7 @@
 	"edit-gone-missing": "D'Säit konnt net aktualiséiert ginn.\nSi gouf anscheinend geläscht.",
 	"edit-conflict": "Ännerungskonflikt.",
 	"edit-no-change": "Är ännerung gouf ignoréiert, well Dir näischt um Text geännert hutt.",
-	"postedit-confirmation": "Är Ännerung gouf gespäichert.",
+	"postedit-confirmation-saved": "Är Ännerung gouf gespäichert.",
 	"edit-already-exists": "Déi nei Säit konnt net ugeluecht ginn, well et se scho gëtt.",
 	"defaultmessagetext": "Standardtext",
 	"content-failed-to-parse": "Den $2-Inhalt fir den $1-Modell konnt net geparst ginn: $3",

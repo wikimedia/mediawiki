@@ -662,7 +662,7 @@
 	"edit-gone-missing": "Không thể cập nhật trang.\nDường như trang này đã bị xóa.",
 	"edit-conflict": "Sửa đổi mâu thuẫn.",
 	"edit-no-change": "Sửa đổi của bạn không được tính đến, vì nó không làm thay đổi nội dung.",
-	"postedit-confirmation": "Sửa đổi của bạn đã được lưu.",
+	"postedit-confirmation-saved": "Sửa đổi của bạn đã được lưu.",
 	"edit-already-exists": "Không thể tạo trang mới.\nNó đã tồn tại.",
 	"defaultmessagetext": "Nội dung mặc định",
 	"content-failed-to-parse": "Thất bại phân tích nội dung $2 cho mô hình $1: $3",

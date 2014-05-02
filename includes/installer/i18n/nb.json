@@ -258,7 +258,7 @@
 	"config-logo": "Logo-URL:",
 	"config-logo-help": "MediaWikis standarddrakt har satt av plass til en 135x160 pikslers logo i øvre venstre hjørne av sidepanelet.\nLast opp et bilde i passende størrelse og skriv inn nettadressen her.\n\nDu kan bruke code>$wgStylePath</code> eller <code>$wgScriptPath</code> hvis logoen er relativ til disse stiene.\n\nHvis du ikke ønsker noen logo, la boksen være tom.",
 	"config-instantcommons": "Aktiver Instant Commons",
-	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] er en funksjon som gjør det mulig for wikier å bruke bilder, lyder og andre media funnet på nettstedet [//commons.wikimedia.org/ Wikimedia Commons].\nFor å gjøre dette krever MediaWiki tilgang til internett.\n\nFor mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man setter opp dette for andre wikier enn Wikimedia Commons, konsulter [//mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manualen].",
+	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] er en funksjon som gjør det mulig for wikier å bruke bilder, lyder og andre media funnet på nettstedet [//commons.wikimedia.org/ Wikimedia Commons].\nFor å gjøre dette krever MediaWiki tilgang til internett.\n\nFor mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man setter opp dette for andre wikier enn Wikimedia Commons, konsulter [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manualen].",
 	"config-cc-error": "Lisensvelgeren for Creative Commons ga ikke noe resultat.\nLegg inn lisensnavnet manuelt.",
 	"config-cc-again": "Velg igjen...",
 	"config-cc-not-chosen": "Velg hvilken Creative Commons-lisens du ønsker og klikk «fortsett».",

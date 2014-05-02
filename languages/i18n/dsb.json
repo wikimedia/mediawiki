@@ -649,7 +649,7 @@
 	"edit-gone-missing": "Njejo móžno było bok aktualizěrowaś.\nZda sem až jo wulašowany.",
 	"edit-conflict": "Wobźěłański konflikt.",
 	"edit-no-change": "Wašo wobźěłanje jo se ignorěrowało, dokulaž tekst njejo se změnił.",
-	"postedit-confirmation": "Twója změna jo se składła.",
+	"postedit-confirmation-saved": "Twója změna jo se składła.",
 	"edit-already-exists": "Njejo móžno było nowy bok napóraś.\nEksistěrujo južo.",
 	"defaultmessagetext": "Standardny tekst powěźeńki",
 	"content-failed-to-parse": "Parsowanje wopśimjeśa $2 za model $1 njejo se raźiło: $3",

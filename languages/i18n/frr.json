@@ -642,7 +642,7 @@
 	"edit-gone-missing": "Detdiar sidj küd ei aktualisiaret wurd. Ferlicht as det stregen wurden.",
 	"edit-conflict": "Konflikt bi't bewerkin (BK).",
 	"edit-no-change": "Din feranrang woort ei seekert, auer dü di tekst ei feranert heest.",
-	"postedit-confirmation": "Din feranrang as seekert wurden.",
+	"postedit-confirmation-saved": "Din feranrang as seekert wurden.",
 	"edit-already-exists": "Det nei sidj küd ei iinracht wurd. Son sidj as al diar.",
 	"defaultmessagetext": "Standard tekst",
 	"content-failed-to-parse": "Parsing faan $2 för't model $1 ging skiaf: $3",

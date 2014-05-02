@@ -637,7 +637,7 @@
 	"edit-gone-missing": "Dae makakapagdagdag sa pahina.\nIni minapahiwatig tabi na pinagpura na.",
 	"edit-conflict": "Igwang iregularidad sa pagliwat.",
 	"edit-no-change": "An saimong pagliwat pinagbalewala, nin huli ta mayong pagbabago an pinaghimo sa teksto.",
-	"postedit-confirmation": "An saimong niliwat ipinagtagama na.",
+	"postedit-confirmation-saved": "An saimong niliwat ipinagtagama na.",
 	"edit-already-exists": "Dai maggibo an bàgong pahina.\nIgwa na kaini.",
 	"defaultmessagetext": "Tugmadong mensahe sa teksto",
 	"content-failed-to-parse": "Nagpalya sa paglunhay an $2 na laman para sa $1 na modelo: $3",

@@ -256,7 +256,7 @@
 	"config-logo": "כתובת הסמל:",
 	"config-logo-help": "המראה ההתחלתי של מדיה־ויקי מכיל מקום לסמל של 135 על 160 פיקסלים בפינה העליונה מעל תפריט הצד.\nיש להעלות תמונה בגודל מתאים ולהכניס את הכתובת כאן.\n\nבאפשרותך להשתמש ב־<code dir=\"ltr\">$wgStylePath</code> או ב־<code dir=\"ltr\">$wgScriptPath</code> אם הסמל שלך נמצא במקום יחסי לנתיבים האלה.\n\nאם אינכם רוצים סמל, השאירו את התיבה הזאת ריקה.",
 	"config-instantcommons": "להפעיל את Instant Commons",
-	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] היא תכונה שמאפשרת לאתרי ויקי להשתמש בתמונות, בצלילים ובמדיה אחרת שנמצאת באתר [//commons.wikimedia.org/ ויקישיתוף] (Wikimedia Commons).\nכדי לעשות את זה, מדיה־ויקי צריך לגשת לאינטרנט.\n\nלמידע נוסף על התכונה הזאת, כולל הוראות איך להפעיל את זה לאתרי ויקי שאינם ויקישיתוף, ר׳ [//mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos את ספר ההדרכה].",
+	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] היא תכונה שמאפשרת לאתרי ויקי להשתמש בתמונות, בצלילים ובמדיה אחרת שנמצאת באתר [//commons.wikimedia.org/ ויקישיתוף] (Wikimedia Commons).\nכדי לעשות את זה, מדיה־ויקי צריך לגשת לאינטרנט.\n\nלמידע נוסף על התכונה הזאת, כולל הוראות איך להפעיל את זה לאתרי ויקי שאינם ויקישיתוף, ר׳ [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos את ספר ההדרכה].",
 	"config-cc-error": "בורר רישיונות קריאייטיב קומונז לא החזיר שום תוצאה.\nהקלידו את שם הרישיון ידנית.",
 	"config-cc-again": "נא לבחור שוב...",
 	"config-cc-not-chosen": "בחרו באיזה רישיון קריאייטיב קומונז להשתמש ולחצו \"המשך\".",

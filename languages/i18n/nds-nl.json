@@ -640,7 +640,7 @@
 	"edit-gone-missing": "De zied kon niet bie-ewörken wörden.\nt Schient dat t vortedaon is.",
 	"edit-conflict": "Tegelieke bewörken.",
 	"edit-no-change": "Joew bewarking is enegeerd, umdat der gien wieziging an de tekste edaon is.",
-	"postedit-confirmation": "Joew bewarking is op-esleugen",
+	"postedit-confirmation-saved": "Joew bewarking is op-esleugen",
 	"edit-already-exists": "De zied kon niet an-emaakt wörden.\nt Besteet al.",
 	"defaultmessagetext": "Standardtekste",
 	"content-failed-to-parse": "Kon de inhoud van t MIME-type $2 veur t model $1 niet verwarken: $3.",

@@ -672,7 +672,7 @@
 	"edit-gone-missing": "Ne eblis ĝisdatigi la paĝon.\nVerŝajne ĝi estis forigita.",
 	"edit-conflict": "Redakto-konflikto.",
 	"edit-no-change": "Via redakto estis ignorita, ĉar neniu ŝanĝo estis farita al la teksto.",
-	"postedit-confirmation": "Via redakto estis konservita.",
+	"postedit-confirmation-saved": "Via redakto estis konservita.",
 	"edit-already-exists": "Ne eblis krei novan paĝon.\nĜi jam ekzistas.",
 	"defaultmessagetext": "Defaŭlta teksto",
 	"content-failed-to-parse": "Oni malsukcesis analizi $2-entenon laŭ la $1-modelo: $3",

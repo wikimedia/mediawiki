@@ -237,7 +237,7 @@
 	"config-logo": "URL logo:",
 	"config-logo-help": "Kulit bawaan MediaWiki memberikan ruang untuk logo berukuran 135x160 piksel di atas menu bilah samping.\nUnggah gambar dengan ukuran yang sesuai, lalu masukkan URL di sini.\n\nJika Anda tidak ingin menyertakan logo, biarkan kotak ini kosong.",
 	"config-instantcommons": "Aktifkan Instant Commons",
-	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] adalah fitur yang memungkinkan wiki untuk menggunakan gambar, suara, dan media lain dari [//commons.wikimedia.org/ Wikimedia Commons].\nUntuk melakukannya, MediaWiki memerlukan akses ke Internet.\n\nUntuk informasi lebih lanjut tentang fitur ini, termasuk petunjuk tentang cara untuk mengatur untuk wiki selain Wikimedia Commons, baca [//mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manual].",
+	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] adalah fitur yang memungkinkan wiki untuk menggunakan gambar, suara, dan media lain dari [//commons.wikimedia.org/ Wikimedia Commons].\nUntuk melakukannya, MediaWiki memerlukan akses ke Internet.\n\nUntuk informasi lebih lanjut tentang fitur ini, termasuk petunjuk tentang cara untuk mengatur untuk wiki selain Wikimedia Commons, baca [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manual].",
 	"config-cc-error": "Pemilih lisensi Creative Commons tidak memberikan hasil.\nMasukkan nama lisensi secara manual.",
 	"config-cc-again": "Pilih lagi...",
 	"config-cc-not-chosen": "Pilih lisensi Creative Commons yang Anda inginkan dan klik \"lanjutkan\".",

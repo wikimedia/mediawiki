@@ -635,7 +635,7 @@
 	"edit-gone-missing": "Stranica nije spremljena.\nČini se kako je obrisana.",
 	"edit-conflict": "Sukob uređivanja.",
 	"edit-no-change": "Vaše uređivanje je zanemareno, jer nikakva promjena sadržaja nije napravljena.",
-	"postedit-confirmation": "Vaše je uređivanje sačuvano.",
+	"postedit-confirmation-saved": "Vaše je uređivanje sačuvano.",
 	"edit-already-exists": "Neuspješno stvaranje nove stranice.\nStranica već postoji.",
 	"defaultmessagetext": "Prvotni tekst poruke",
 	"content-failed-to-parse": "Obrada (''parsiranje'') formata $2 za model $1 nije uspjela: $3",

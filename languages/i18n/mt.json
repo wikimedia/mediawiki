@@ -585,7 +585,7 @@
 	"edit-gone-missing": "Il-paġna ma tistax tiġi aġġornata.\nJidher li din ġiet imħassra.",
 	"edit-conflict": "Kunflitt tal-editjar.",
 	"edit-no-change": "Il-modifika li għamilt ġiet injorata, minħabba li ebda bidla ma saret lejn it-test.",
-	"postedit-confirmation": "Il-modifika tiegħek ġiet salvata.",
+	"postedit-confirmation-saved": "Il-modifika tiegħek ġiet salvata.",
 	"edit-already-exists": "Ma tistax tinħoloq din il-paġna.\nDin teżisti diġà.",
 	"editwarning-warning": "Jekk tħalli din il-paġna jista' jwassal sabiex titlef kwalunkwe tibdil li tkun għamilt. Jekk int tinsab fil-kont tiegħek, tista' tneħħi dan l-avviż fis-sezzjoni \"Modifiki\" tal-preferenzi tiegħek.",
 	"content-model-wikitext": "test tal-wiki",

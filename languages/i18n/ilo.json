@@ -634,7 +634,7 @@
 	"edit-gone-missing": "Saan a mapabaro daytoy a panid.\nKasla met naikkaten.",
 	"edit-conflict": "Adda kasinnungat ti panag-urnos.",
 	"edit-no-change": "Ti inurnosmo ket saan a naikaskaso, ngamin ket awan ti nasukatan a testo.",
-	"postedit-confirmation": "Ti inurnosmo ket naidulinen.",
+	"postedit-confirmation-saved": "Ti inurnosmo ket naidulinen.",
 	"edit-already-exists": "Saan a makaaramid ti baro a panid.\nAdda met daytoyen.",
 	"defaultmessagetext": "Kasisigud a testo ti mensahe",
 	"content-failed-to-parse": "Napaay a nausig ti $2 a linaon para iti $1 a modelo: $3",

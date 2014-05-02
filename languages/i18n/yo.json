@@ -605,7 +605,7 @@
 	"edit-gone-missing": "A kò le ṣe títúnṣe ojúewé.\nÓ dà bíi pé a ti paárẹ́.",
 	"edit-conflict": "Ìtakora áwọn àtúnṣe",
 	"edit-no-change": "A ṣe àìkàsí àtúnṣe yín, nítorípé ìkọ̀wé kò ní àtúnṣe kankan.",
-	"postedit-confirmation": "Àtúnṣe yín ti jẹ́ gbígbépamọ́.",
+	"postedit-confirmation-saved": "Àtúnṣe yín ti jẹ́ gbígbépamọ́.",
 	"edit-already-exists": "A kò le è ṣè'dá ojúewé tuntun.\nÓ pilẹ̀ ti wà.",
 	"defaultmessagetext": "Ìkọ ìránṣẹ́ àtìbẹ̀rẹ̀",
 	"content-failed-to-parse": "Ìkùnà láti ṣàtúwò àkóónú $2 fún àfijúwe $1: $3",

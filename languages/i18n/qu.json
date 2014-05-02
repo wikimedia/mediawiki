@@ -628,7 +628,7 @@
 	"edit-gone-missing": "Manam atirqanichu p'anqata musuqchayta.\nQullusqachá.",
 	"edit-conflict": "Tuylla llamk'apuymanta sasachakuy.",
 	"edit-no-change": "Manapuni hukchaptiykim, llamk'apusqayki manam hallch'asqachu.",
-	"postedit-confirmation": "Llamk'apusqaykiqa waqaychasqañam.",
+	"postedit-confirmation-saved": "Llamk'apusqaykiqa waqaychasqañam.",
 	"edit-already-exists": "Manam atinichu musuq p'anqata kamariyta.\nKachkañam.",
 	"defaultmessagetext": "Ñawpaq qillqa",
 	"content-failed-to-parse": "Manam atinichu $2 samiqta $1 kikinchapaq kuskiyta: $3",
