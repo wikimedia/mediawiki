@@ -107,32 +107,6 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 
-	// Temporarily kept for backwards-compatibility with generated HTML
-	'skins.common.elements' => array(
-		'styles' => array(
-			'common/commonElements.css' => array( 'media' => 'screen' ),
-		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-	),
-	'skins.common.content' => array(
-		'styles' => array(
-			'common/commonElements.css' => array( 'media' => 'screen' ),
-			'common/commonContent.css' => array( 'media' => 'screen' ),
-		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-	),
-	'skins.common.interface' => array(
-		'styles' => array(
-			'common/commonElements.css' => array( 'media' => 'screen' ),
-			'common/commonContent.css' => array( 'media' => 'screen' ),
-			'common/commonInterface.css' => array( 'media' => 'screen' ),
-		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-	),
-
 	'mediawiki.skinning.content.parsoid' => array(
 		// Style Parsoid HTML+RDFa output consistent with wikitext from PHP parser
 		// with the commonInterface.css styles; skinStyles should be used if your
