@@ -296,7 +296,8 @@ class SpecialChangePassword extends FormSpecialPage {
 		if ( $isSelf ) {
 			// This is needed to keep the user connected since
 			// changing the password also modifies the user's token.
-			$user->setCookies();
+			$remember = $this->getRequest()->getCookie( 'Token' ) !== null;
+			$user->setCookies( null, null, $remember );
 		}
 		$user->resetPasswordExpiration();
 		$user->saveSettings();
