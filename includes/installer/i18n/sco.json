@@ -251,7 +251,7 @@
 	"config-logo": "Logo URL:",
 	"config-logo-help": "MediaWiki's defaut skin inclædes space fer ae 135x160 pixel logo abuin the sidebaur menu.\nUplaid aen eemage o the appropriate size, n enter the URL here.\n\nYe can uise <code>$wgStylePath</code> or <code>$wgScriptPath</code> gif yer logo is relative til thae paths.\n\nGif ye dinna want ae logo, lea this kist blank.",
 	"config-instantcommons": "Enable Instant Commyns",
-	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commyns] is ae featur that permits wikis tae uise eemages, soonds n ither media foond oan the [//commons.wikimedia.org/ Wikimedia Commyns] site.\nIn order tae dae this, MediaWiki needs access til the Internet.\n\nFer mair information oan this featur, incluidin instructions oan hou tae set it up fer wikis ither than the Wikimedia Commyns, consult [//mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos the manual].",
+	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commyns] is ae featur that permits wikis tae uise eemages, soonds n ither media foond oan the [//commons.wikimedia.org/ Wikimedia Commyns] site.\nIn order tae dae this, MediaWiki needs access til the Internet.\n\nFer mair information oan this featur, incluidin instructions oan hou tae set it up fer wikis ither than the Wikimedia Commyns, consult [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos the manual].",
 	"config-cc-error": "The Creative Commyns license chuiser gae naw result.\nEnter the license name manually.",
 	"config-cc-again": "Pick again...",
 	"config-cc-not-chosen": "Chuise whit Creative Commyns license ye want an clap oan \"proceed\".",

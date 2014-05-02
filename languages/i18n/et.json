@@ -655,7 +655,7 @@
 	"edit-gone-missing": "Polnud võimalik lehekülge uuendada.\nTundub, et see on kustutatud.",
 	"edit-conflict": "Redigeerimiskonflikt.",
 	"edit-no-change": "Sinu redigeerimist ignoreeriti, sest tekstile ei olnud tehtud muudatusi.",
-	"postedit-confirmation": "Sinu muudatus on salvestatud.",
+	"postedit-confirmation-saved": "Sinu muudatus on salvestatud.",
 	"edit-already-exists": "Ei saanud alustada uut lehekülge.\nSee on juba olemas.",
 	"defaultmessagetext": "Sõnumi vaiketekst",
 	"content-failed-to-parse": "Ebaõnnestus $1i mudeli $2-tüüpi sisu liigendamine: $3",

@@ -633,7 +633,7 @@
 	"edit-gone-missing": "Cha b' urrainn dhuinn an duilleag ath-nuadhachadh.\nTha coltas gun deach a sguabadh às.",
 	"edit-conflict": "Còmhstri deasachaidh.",
 	"edit-no-change": "Chaidh an obair-dheasachaidh agad a leigeil seachad a chionn 's nach do dh'atharraich thu dad.",
-	"postedit-confirmation": "Chaidh na dheasaich thu a shàbhaladh.",
+	"postedit-confirmation-saved": "Chaidh na dheasaich thu a shàbhaladh.",
 	"edit-already-exists": "Cha b' urrainn dhuinn an duilleag ùr a chruthachadh.\nTha e ann mu thràth.",
 	"defaultmessagetext": "Teacsa bunaiteach na teachdaireachd",
 	"content-failed-to-parse": "Dh'fhàillig parsadh susbaint $2 airson modail $1: $3",

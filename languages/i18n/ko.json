@@ -673,7 +673,7 @@
 	"edit-gone-missing": "문서를 저장하지 못했습니다.\n문서가 삭제된 것 같습니다.",
 	"edit-conflict": "편집 충돌.",
 	"edit-no-change": "문서에 어떠한 바뀜도 없기 때문에 편집은 무시되었습니다.",
-	"postedit-confirmation": "편집을 저장했습니다.",
+	"postedit-confirmation-saved": "편집을 저장했습니다.",
 	"edit-already-exists": "새 문서를 만들 수 없습니다.\n문서가 이미 존재합니다.",
 	"defaultmessagetext": "기본 메시지 글",
 	"content-failed-to-parse": "$1 모델에 대한 $2 내용을 구문 분석하는 데 실패했습니다: $3",

@@ -646,7 +646,7 @@
 	"edit-gone-missing": "Nun se pudo actualizar la páxina.\nPaez que se desanició.",
 	"edit-conflict": "Conflictu d'edición.",
 	"edit-no-change": "S'inoró la to edición, porque nun se fizo nengún cambéu nel testu.",
-	"postedit-confirmation": "Guardose la edición.",
+	"postedit-confirmation-saved": "Guardose la edición.",
 	"edit-already-exists": "Nun pudo crease una páxina nueva.\nEsta yá esiste.",
 	"defaultmessagetext": "Testu predetermináu",
 	"content-failed-to-parse": "Fallu al analizar el conteníu $2 pal modelu $1: $3",

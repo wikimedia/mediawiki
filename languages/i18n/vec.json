@@ -614,7 +614,7 @@
 	"edit-gone-missing": "No se riesse a agiornar la pàxena.\nPararìa che la sìpia stà scancelà.",
 	"edit-conflict": "Conflito de modifica.",
 	"edit-no-change": "La to modifica la xe stà ignorà, parché no ti gà canbià gnente nel testo.",
-	"postedit-confirmation": "La modifica la xe stà salvà.",
+	"postedit-confirmation-saved": "La modifica la xe stà salvà.",
 	"edit-already-exists": "No se pol crear na pagina nova.\nLa esiste de zà.",
 	"defaultmessagetext": "Testo predefinìo",
 	"content-failed-to-parse": "Inposibiłe anałixare $2 pa'l modèl $1: $3",

@@ -633,7 +633,7 @@
 	"edit-gone-missing": "Ur yezmer ara ad yemucceḍ asebter agi.\nAhat yetwemḥa.",
 	"edit-conflict": "Amgirred n ubeddel.",
 	"edit-no-change": "Abeddel inek/inem ur yetwexdam ara acku ur di ban ara abeddel deg uḍris.",
-	"postedit-confirmation": "Abeddel inek/inem yetwakles.",
+	"postedit-confirmation-saved": "Abeddel inek/inem yetwakles.",
 	"edit-already-exists": "Asebter amaynut ur d yesnufu ara.\nYella yakan.",
 	"defaultmessagetext": "Izen s lexṣas",
 	"content-failed-to-parse": "Tasleṭ n ugbur n $2 i talɣa $1 texseṛ : $3",

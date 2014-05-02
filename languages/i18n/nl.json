@@ -692,7 +692,7 @@
 	"edit-gone-missing": "De pagina is niet bijgewerkt.\nDeze lijkt verwijderd te zijn.",
 	"edit-conflict": "Bewerkingsconflict.",
 	"edit-no-change": "Uw bewerking is genegeerd, omdat er geen wijziging aan de tekst is gemaakt.",
-	"postedit-confirmation": "Uw bewerking is opgeslagen",
+	"postedit-confirmation-saved": "Uw bewerking is opgeslagen",
 	"edit-already-exists": "De pagina is niet aangemaakt.\nDeze bestaat al.",
 	"defaultmessagetext": "Standaardinhoud",
 	"content-failed-to-parse": "Het was niet mogelijk de inhoud van het MIME-type $2 voor het model $1 te verwerken: $3.",

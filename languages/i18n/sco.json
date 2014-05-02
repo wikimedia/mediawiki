@@ -646,7 +646,7 @@
 	"edit-gone-missing": "Coudna update the page.\nIt appears tae hae been delytit.",
 	"edit-conflict": "Eedit confleect.",
 	"edit-no-change": "Yer eedit wis ignored cause nae chynge wis makit til the tex.",
-	"postedit-confirmation": "Yer eedit wis hained.",
+	"postedit-confirmation-saved": "Yer eedit wis hained.",
 	"edit-already-exists": "Coudna mak ae new page.\nIt awreadie exists.",
 	"defaultmessagetext": "Defaut message tex",
 	"content-failed-to-parse": "Failed tae parse $2 content fer $1 model: $3",

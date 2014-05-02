@@ -625,7 +625,7 @@
 	"edit-gone-missing": "Panna ke badle nai sakaa.\nJanae hai ki iske koi mitae dii hai.",
 	"edit-conflict": "Badlao me conflict hai.",
 	"edit-no-change": "Aap ke badle ke kosis ke ignore kar dewa gais hai, kahe ki text ke badla nai gais hai.",
-	"postedit-confirmation": "Aap ke badlao ke bachae lewa gais hae.",
+	"postedit-confirmation-saved": "Aap ke badlao ke bachae lewa gais hae.",
 	"edit-already-exists": "Nawaa panna nai banae sakaa hai.\nIi naam ke panna abhi hai.",
 	"defaultmessagetext": "Default message text",
 	"content-failed-to-parse": "$1 model ke khatir $2 ke parse nai kare sakaa hae: $3",

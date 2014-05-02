@@ -643,7 +643,7 @@
 	"edit-gone-missing": "Hindi maisapanahon ang pahina.\nTila binura na ito.",
 	"edit-conflict": "Alitan sa pagbabago.",
 	"edit-no-change": "Binalewala ang pagbabago mo, dahil walang pagbabagong ginawa sa teksto.",
-	"postedit-confirmation": "Naitala na ang iyong pagbabago.",
+	"postedit-confirmation-saved": "Naitala na ang iyong pagbabago.",
 	"edit-already-exists": "Hindi makalikha ng isang bagong pahina.\nUmiiral na ito.",
 	"defaultmessagetext": "Nakatakdang teksto ng mensahe",
 	"editwarning-warning": "Ang paglisan mula sa pahinang ito ay maaaring makasanhi sa iyo ng pagkawala ng anumang mga pagbabagong ginawa mo.\nKung nakalagda ka, maaari mong huwag paganahin ang babalang ito sa loob ng seksyong \"May binabago\" ng mga nais mo.",

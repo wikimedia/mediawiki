@@ -272,7 +272,7 @@
 	"config-logo": "URL del logo :",
 	"config-logo-help": "La apariencia por defecto de MediaWiki incluye espacio para un logotipo de 135x160 píxeles encima del menú de la barra lateral.\nCargua una imagen de tamaño adecuado e introduce la dirección URL aquí.\n\nPuedes usar <code>$wgStylePath</code> o <code>$wgScriptPath</code> si tu logotipo es relativo a esas rutas.\n\nSi no deseas un logotipo, deja esta casilla en blanco.",
 	"config-instantcommons": "Habilitar Instant Commons",
-	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] es una característica que permite que los wikis puedan utilizar imágenes, sonidos y otros archivos multimedia que se encuentran en el sitio [//commons.wikimedia.org/ Wikimedia Commons].\nPara ello, MediaWiki requiere acceso a Internet.\n\nPara obtener más información sobre esta función, incluidas las instrucciones sobre cómo configurarlo para otras wikis distintas de Wikimedia Commons, consulte [//mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos el manual].",
+	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] es una característica que permite que los wikis puedan utilizar imágenes, sonidos y otros archivos multimedia que se encuentran en el sitio [//commons.wikimedia.org/ Wikimedia Commons].\nPara ello, MediaWiki requiere acceso a Internet.\n\nPara obtener más información sobre esta función, incluidas las instrucciones sobre cómo configurarlo para otras wikis distintas de Wikimedia Commons, consulte [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos el manual].",
 	"config-cc-error": "El selector de licencia de Creative Commons no dio resultado.\nEscribe el nombre de la licencia manualmente.",
 	"config-cc-again": "Elegir otra vez...",
 	"config-cc-not-chosen": "Elige la licencia Creative Commons que desees y haz clic en \"continuar\".",
@@ -329,7 +329,7 @@
 	"config-download-localsettings": "Descargar archivo <code>LocalSettings.php</code>",
 	"config-help": "Ayuda",
 	"config-nofile": "El archivo \"$1\" no se pudo encontrar. ¿Se ha eliminado?",
-	"config-extension-link": "¿Sabías que tu wiki soporta [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensiones]?\n\nPuedes navegar las [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensiones por categoría].",
+	"config-extension-link": "¿Sabías que tu wiki admite [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensiones]?\n\nPuedes navegar por las [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category categorías] o visitar la [/www.mediawiki.org/wiki/Extension_Matrix central] para ver una lista completa.",
 	"mainpagetext": "'''MediaWiki ha sido instalado con éxito.'''",
 	"mainpagedocfooter": "Consulta la [//meta.wikimedia.org/wiki/Ayuda:Guía del usuario de contenidos] para obtener información sobre el uso del software wiki.\n\n== Empezando ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de ajustes de configuración]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/es FAQ de MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de distribución de MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Regionalizar MediaWiki para tu idioma]"
 }

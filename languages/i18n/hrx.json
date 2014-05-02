@@ -634,7 +634,7 @@
 	"edit-gone-missing": "Die Seit konnt net aktualisiert sin.\nDie woard oonscheinend gelöscht.",
 	"edit-conflict": "Beoorbeitungskonflikt.",
 	"edit-no-change": "Dein Beoorbeitung woard ignoriert, do ken Ännrung an dem Text voargenomm  woard.",
-	"postedit-confirmation": "Dein Beoorbeitung woard gespeichert.",
+	"postedit-confirmation-saved": "Dein Beoorbeitung woard gespeichert.",
 	"edit-already-exists": "Die neie Seit konnt net erstellt werre, do sie bereits voarhand ist.",
 	"defaultmessagetext": "Standardtext",
 	"content-failed-to-parse": "Parsierung von den Inhalt $2 für Modell $1 fehlgeschlohn: $3",

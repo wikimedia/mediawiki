@@ -19,7 +19,8 @@
 			"Yumeki",
 			"아라",
 			"Maxim21",
-			"Wladek92"
+			"Wladek92",
+			"Scoopfinder"
 		]
 	},
 	"config-desc": "Le programme d’installation de MediaWiki",
@@ -68,7 +69,7 @@
 	"config-unicode-using-utf8": "Utilisation de utf8_normalize.so par Brion Vibber pour la normalisation Unicode.",
 	"config-unicode-using-intl": "Utilisation de [http://pecl.php.net/intl l'extension PECL intl] pour la normalisation Unicode.",
 	"config-unicode-pure-php-warning": "<strong>Attention</strong> : L'[http://pecl.php.net/intl extension PECL intl] n'est pas disponible pour la normalisation d’Unicode, retour à la version lente implémentée en PHP.\nSi votre site web sera très fréquenté, vous devriez lire ceci : [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations ''Unicode normalization''] (en anglais).",
-	"config-unicode-update-warning": "'''Attention''': La version installée du ''wrapper'' de normalisation Unicode utilise une vieille version de la [http://site.icu-project.org/ bibliothèque logicielle ''ICU Project''].\nVous devriez faire une [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations mise à jour] (texte en anglais) si vous êtes tout à fait concerné par l'usage d'Unicode.",
+	"config-unicode-update-warning": "'''Attention''': La version installée du ''wrapper'' de normalisation Unicode utilise une vieille version de la [http://site.icu-project.org/ bibliothèque logicielle ''ICU Project''].\nVous devriez faire une [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations mise à jour] si vous êtes tout à fait concerné par l'usage d'Unicode.",
 	"config-no-db": "Impossible de trouver un pilote de base de données approprié ! Vous devez installer un pilote de base de données pour PHP. Les types de bases de données suivants sont reconnus : $1.\n\nSi vous avez compilé PHP vous-même, reconfigurez-le avec un client de base de données activé, par exemple en utilisant <code>./configure --with-mysqli</code>. Si vous avez installé PHP depuis un paquet Debian ou Ubuntu, alors vous devrez aussi installer, par exemple, le paquet <code>php5-mysql</code>.",
 	"config-outdated-sqlite": "'''Attention''': vous avez SQLite $1, qui est inférieur à la version minimale requise $2. SQLite sera indisponible.",
 	"config-no-fts3": "'''Attention :''' SQLite est compilé sans le module [//sqlite.org/fts3.html FTS3] ; les fonctions de recherche ne seront pas disponibles sur ce moteur.",
@@ -272,7 +273,7 @@
 	"config-logo": "URL du logo :",
 	"config-logo-help": "L’habillage par défaut de MediaWiki comprend l’espace pour un logo de 135x160 pixels au-dessus de la barre de menu latérale.\nTéléchargez une image de la taille appropriée, et entrez son URL ici.\n\nVous pouvez utiliser <code>$wgStylePath</code> ou <code>$wgScriptPath</code> si votre logo est relatif à ces chemins.\n\nSi vous ne voulez pas de logo, laissez cette case vide.",
 	"config-instantcommons": "Activer ''InstantCommons''",
-	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons InstantCommons] est un service qui permet d'utiliser les images, les sons et les autres médias disponibles sur le site [//commons.wikimedia.org/ Wikimedia Commons].\nPour se faire, il faut que MediaWiki accède à Internet.\n\nPour plus d'informations sur ce service, y compris les instructions sur la façon de le configurer pour d'autres wikis que Wikimedia Commons, consultez le [//mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manuel] (en anglais).",
+	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons InstantCommons] est un service qui permet d'utiliser les images, les sons et les autres médias disponibles sur le site [//commons.wikimedia.org/ Wikimedia Commons].\nPour se faire, il faut que MediaWiki accède à Internet.\n\nPour plus d'informations sur ce service, y compris les instructions sur la façon de le configurer pour d'autres wikis que Wikimedia Commons, consultez le [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manuel] (en anglais).",
 	"config-cc-error": "Le sélection d'une licence ''Creative Commons'' n'a donné aucun résultat.\nEntrez le nom de la licence manuellement.",
 	"config-cc-again": "Choisissez à nouveau...",
 	"config-cc-not-chosen": "Choisissez une licence ''Creative Commons'' et cliquez sur « Continuer ».",

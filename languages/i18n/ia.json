@@ -644,7 +644,7 @@
 	"edit-gone-missing": "Impossibile actualisar le pagina.\nPare que illo ha essite delite.",
 	"edit-conflict": "Conflicto inter modificationes.",
 	"edit-no-change": "Tu modification ha essite ignorate, proque nulle cambio esseva facite in le texto.",
-	"postedit-confirmation": "Tu modification ha essite salveguardate.",
+	"postedit-confirmation-saved": "Tu modification ha essite salveguardate.",
 	"edit-already-exists": "Non poteva crear un nove pagina.\nIllo existe ja.",
 	"defaultmessagetext": "Texto predefinite del message",
 	"content-failed-to-parse": "Impossibile processar le contento $2 pro le modello $1: $3",

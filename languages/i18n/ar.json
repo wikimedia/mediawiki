@@ -678,7 +678,7 @@
 	"edit-gone-missing": "لم يمكن تحديث الصفحة.\nيبدو أنه تم حذفها.",
 	"edit-conflict": "تضارب تحريري.",
 	"edit-no-change": "تعديلك تم تجاهله، لأنه لم يحدث أي تعديل للنص.",
-	"postedit-confirmation": "تعديلك حفظ.",
+	"postedit-confirmation-saved": "تعديلك حفظ.",
 	"edit-already-exists": "لم يمكن إنشاء صفحة جديدة.\nهي موجودة بالفعل.",
 	"defaultmessagetext": "نص الرسالة الافتراضي",
 	"content-failed-to-parse": "فشل في تحليل $2 محتوى لـ $1 نموذج: $3",

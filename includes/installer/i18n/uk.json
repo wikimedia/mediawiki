@@ -260,7 +260,7 @@
 	"config-logo": "URL логотипу:",
 	"config-logo-help": "Стандартна схема оформлення MediaWiki містить вільне для логотипу місце над бічною панеллю розміром 135x160 пікселів.\n\nЗавантажте зображення відповідного розміру і введіть тут його URL.\n\nВи можете використати <code>$wgStylePath</code> або <code>$wgScriptPath</code>, якщо ваш логотип пов'язаний з цими шляхами.\n\nЯкщо Вам не потрібен логотип, залиште це поле пустим.",
 	"config-instantcommons": "Увімкнути Instant Commons",
-	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] це функція, що дозволяє вікі використовувати зображення, звуки та інші медіа, розміщені на [//commons.wikimedia.org/ Вікісховищі].\nДля цього MediaWiki необхідний доступ до інтернету.\n\nДодаткову інформацію стосовно цієї функції, включаючи інструкції, як її увімкнути у вікі, відмінних від Вікісховища, дивіться у [//mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos посібнику].",
+	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] це функція, що дозволяє вікі використовувати зображення, звуки та інші медіа, розміщені на [//commons.wikimedia.org/ Вікісховищі].\nДля цього MediaWiki необхідний доступ до інтернету.\n\nДодаткову інформацію стосовно цієї функції, включаючи інструкції, як її увімкнути у вікі, відмінних від Вікісховища, дивіться у [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos посібнику].",
 	"config-cc-error": "Механізм вибору ліцензії Creative Commons не дав результатів.\nВведіть назву ліцензії вручну.",
 	"config-cc-again": "Виберіть знову ...",
 	"config-cc-not-chosen": "Оберіть, яку ліцензію Creative Commons Ви хочете використовувати, і натисніть \"продовжити\".",

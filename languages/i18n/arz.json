@@ -525,7 +525,7 @@
 	"edit-gone-missing": "مش ممكن تعديل الصفحه.\nيظهر انها إتمسحت.",
 	"edit-conflict": "تضارب تحريرى.",
 	"edit-no-change": "تعديلك تم تجاهله، لأن ما حصلش أى تعديل للنص.",
-	"postedit-confirmation": "تعديلك  إتسييڤ.",
+	"postedit-confirmation-saved": "تعديلك  إتسييڤ.",
 	"edit-already-exists": "لم يمكن إنشاء صفحة جديدة.\nهى موجودة بالفعل.",
 	"defaultmessagetext": "النص الاوتوماتيكى",
 	"content-failed-to-parse": "فشل ف تحليل $2 محتوى لـ $1 موديل: $3",

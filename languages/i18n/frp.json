@@ -606,7 +606,7 @@
 	"edit-gone-missing": "Y at pas moyen de betar a jorn la pâge.\nSemble que seye étâye suprimâye.",
 	"edit-conflict": "Conflit de changement.",
 	"edit-no-change": "Voutron changement est étâ ignorâ, nion changement est étâ fêt u tèxto.",
-	"postedit-confirmation": "Voutron changement est étâ encartâ.",
+	"postedit-confirmation-saved": "Voutron changement est étâ encartâ.",
 	"edit-already-exists": "Y at pas moyen de fâre na pâge novèla.\nÈgziste ja.",
 	"defaultmessagetext": "Mèssâjo per dèfôt",
 	"content-failed-to-parse": "Falyita de l’analisa du contegnu de $2 por lo modèlo $1 : $3",

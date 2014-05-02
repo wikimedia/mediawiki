@@ -707,7 +707,7 @@
 	"edit-gone-missing": "Não foi possível atualizar a página.\nEla parece ter sido eliminada.",
 	"edit-conflict": "Conflito de edição.",
 	"edit-no-change": "A sua edição foi ignorada, uma vez que o texto não sofreu alterações.",
-	"postedit-confirmation": "Sua edição foi salva",
+	"postedit-confirmation-saved": "Sua edição foi salva",
 	"edit-already-exists": "Não foi possível criar uma nova página.\nEla já existia.",
 	"defaultmessagetext": "Texto da mensagem padrão",
 	"content-failed-to-parse": "Falha ao analisar o conteúdo $2 para o modelo $1: $3",

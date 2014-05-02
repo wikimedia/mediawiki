@@ -643,7 +643,7 @@
 	"edit-gone-missing": "Ne mogu da ažuriram stranicu.\nIzgleda da je obrisana.",
 	"edit-conflict": "Sukob izmena.",
 	"edit-no-change": "Vaša izmena je zanemarena jer nije bilo nikakvih izmena u tekstu.",
-	"postedit-confirmation": "Vaša izmena je sačuvana.",
+	"postedit-confirmation-saved": "Vaša izmena je sačuvana.",
 	"edit-already-exists": "Ne mogu da napravim stranicu.\nIzgleda da ona već postoji.",
 	"defaultmessagetext": "Podrazumevani tekst poruke",
 	"content-failed-to-parse": "Ne mogu da raščlanim sadržaj tipa $2 za model $1: $3",

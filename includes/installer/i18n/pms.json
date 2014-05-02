@@ -239,7 +239,7 @@
 	"config-logo": "Anliura dla marca:",
 	"config-logo-help": "La pel dë stàndard ëd MediaWiki a comprend lë spassi për na marca ëd 135x160 pontin dzora la lista dla bara lateral.\nCh'a dëscaria na figura ëd la dimension aproprià, e ch'a anserissa l'anliura ambelessì.\n\nS'a veul gnun-e marche, ch'a lassa ës camp bianch.",
 	"config-instantcommons": "Abìlita Instant Commons",
-	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] a l'é na funsion ch'a përmët a le wiki ëd dovré dle figure, dij son e d'àutri mojen trovà an sël sit [//commons.wikimedia.org/ Wikimedia Commons].\nPër dovré sossì, MediaWiki a l'ha da manca dl'acess a la ragnà.\n\nPër pi d'anformassion su sta funsion, comprèise j'istrussion ëd com ampostela për wiki diferente da Wikimedia Commons, ch'a consulta [//mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos ël manual].",
+	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] a l'é na funsion ch'a përmët a le wiki ëd dovré dle figure, dij son e d'àutri mojen trovà an sël sit [//commons.wikimedia.org/ Wikimedia Commons].\nPër dovré sossì, MediaWiki a l'ha da manca dl'acess a la ragnà.\n\nPër pi d'anformassion su sta funsion, comprèise j'istrussion ëd com ampostela për wiki diferente da Wikimedia Commons, ch'a consulta [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos ël manual].",
 	"config-cc-error": "La selession ëd la licensa Creative Commons a l'ha dàit gnun arzultà.\nCh'a anserissa ël nòm dla licensa a man.",
 	"config-cc-again": "Torna cheuje...",
 	"config-cc-not-chosen": "Sern che licensa Creative Commons it veule e sgnaca \"anans\".",

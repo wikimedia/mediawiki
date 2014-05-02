@@ -677,7 +677,7 @@
 	"edit-gone-missing": "No s'ha pogut actualitzar la pàgina.\nSembla haver estat esborrada.",
 	"edit-conflict": "Conflicte d'edició.",
 	"edit-no-change": "S'ha ignorat la vostra modificació perquè no feia cap canvi al text.",
-	"postedit-confirmation": "S'ha desat la modificació.",
+	"postedit-confirmation-saved": "S'ha desat la modificació.",
 	"edit-already-exists": "No s'ha pogut crear una pàgina.\nJa existeix.",
 	"defaultmessagetext": "Missatge per defecte",
 	"content-failed-to-parse": "Ha fallat l'anàlisi del contingut de $2 per al model $1: $3",

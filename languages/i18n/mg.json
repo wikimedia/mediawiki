@@ -643,7 +643,7 @@
 	"edit-gone-missing": "Tsy afaka natao update ilay pejy.\nMety voafafa angamba izy.",
 	"edit-conflict": "Adi-panovàna.",
 	"edit-no-change": "Tsy norarahian'ny rindrankajy ny fanovanao satria tsy nanova ny lahatsoratra ianao.",
-	"postedit-confirmation": "Voatahiry ny fanovanao.",
+	"postedit-confirmation-saved": "Voatahiry ny fanovanao.",
 	"edit-already-exists": "Tsy afaka amboarina ilay pejy vaovao.\nEfa misy izy.",
 	"defaultmessagetext": "Hafatra raha tsy misy",
 	"content-failed-to-parse": "Tsy naha-parse ny votoatin'i $2 ho an'ny modely $1 : $3",

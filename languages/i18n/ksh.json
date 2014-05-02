@@ -641,7 +641,7 @@
 	"edit-gone-missing": "Kunnt di Sigg nit änndere. Se schingk verschwunde un weed fottjeschemeße woode sin.",
 	"edit-conflict": "Dubbelt beärbeit.",
 	"edit-no-change": "Do häs ja nix aan dä Sigg jeändert, do dom_mer och nix domet.",
-	"postedit-confirmation": "Ding Änderunge sin nit faßjehallde.",
+	"postedit-confirmation-saved": "Ding Änderunge sin nit faßjehallde.",
 	"edit-already-exists": "Kunnt kei neu Sigg aanlääje. Di Sigg jidd_et ald.",
 	"defaultmessagetext": "Dä standaadmäßije Tex",
 	"content-failed-to-parse": "Et wohr nit müjjelesch, dä Enhalld met däm <i lang=\"en\">MIME-Typ</i> $2 för en Dattei met $1 dren ze verwooschte: $3.",

@@ -634,7 +634,7 @@
 	"edit-gone-missing": "Ezin da orria eguneratu. Ezabatu omen dute.",
 	"edit-conflict": "Aldaketa gatazka.",
 	"edit-no-change": "Zure edizioa baztertu da testua aldatu ez duzulako.",
-	"postedit-confirmation": "Zure aldaketa gorde da.",
+	"postedit-confirmation-saved": "Zure aldaketa gorde da.",
 	"edit-already-exists": "Ezin izan da orri berria sortu.\nJada existitzen da.",
 	"defaultmessagetext": "Testu lehenetsia",
 	"content-failed-to-parse": "Ezin izan da $2(r)en edukia parseatu $1 modeloarentzat: $3",

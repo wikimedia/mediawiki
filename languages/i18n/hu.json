@@ -663,7 +663,7 @@
 	"edit-gone-missing": "Nem lehet frissíteni a lapot.\nÚgy tűnik, hogy törölve lett.",
 	"edit-conflict": "Szerkesztési ütközés.",
 	"edit-no-change": "A szerkesztésed figyelmen kívül lett hagyva, mivel nem változtattál a lap szövegén.",
-	"postedit-confirmation": "A szerkesztésedet elmentettük.",
+	"postedit-confirmation-saved": "A szerkesztésedet elmentettük.",
 	"edit-already-exists": "Az új lap nem készíthető el.\nMár létezik.",
 	"defaultmessagetext": "Alapértelmezett szöveg",
 	"content-failed-to-parse": "Hiba történt a $2 tartalom $1 modellre történő konvertálása során: $3",

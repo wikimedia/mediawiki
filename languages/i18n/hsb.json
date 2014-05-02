@@ -649,7 +649,7 @@
 	"edit-gone-missing": "Strona njeje so aktualizować dała.\nZda so, zo je hîžo wušmórnjena.",
 	"edit-conflict": "Wobdźěłanski konflikt.",
 	"edit-no-change": "Waše wobdźěłanje bu ignorowane, dokelž tekst njebu zm,ěnjeny.",
-	"postedit-confirmation": "Twoja změna je so składowała.",
+	"postedit-confirmation-saved": "Twoja změna je so składowała.",
 	"edit-already-exists": "Njebě móžno nowu stronu wutworić.\nEksistuje hižo.",
 	"defaultmessagetext": "Standardny tekst zdźělenki",
 	"content-failed-to-parse": "Parsowanje wobsaha $2 za model $1 je so njeporadźiło: $3",

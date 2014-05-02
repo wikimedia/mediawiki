@@ -643,7 +643,7 @@
 	"edit-gone-missing": "D Syte het nid chenne aktalisiert wäre.\nSi isch schyns glescht wore.",
 	"edit-conflict": "Bearbeitigskonflikt.",
 	"edit-no-change": "Dyyni Bearbeitig isch ignoriert wore, wel kei Änderig am Täxt gmacht woren isch.",
-	"postedit-confirmation": "Dyy Bearbeitig isch gspycheret wore.",
+	"postedit-confirmation-saved": "Dyy Bearbeitig isch gspycheret wore.",
 	"edit-already-exists": "Di nej Syte het nid chenne aaglait wäre, wel s si scho git.",
 	"defaultmessagetext": "Standardtext",
 	"content-failed-to-parse": "Parse vum Inhalt $2 fir Modell $1 fählgschlaa: $3",

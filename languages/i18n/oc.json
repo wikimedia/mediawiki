@@ -645,7 +645,7 @@
 	"edit-gone-missing": "A pas pogut metre a jorn la pagina.\nSembla que siá estada suprimida.",
 	"edit-conflict": "Modificar lo conflicte.",
 	"edit-no-change": "Vòstra modificacion es estada ignorada perque cap de cambiament es pas estat fach dins lo tèxte.",
-	"postedit-confirmation": "Vòstra modificacion es estada salvada.",
+	"postedit-confirmation-saved": "Vòstra modificacion es estada salvada.",
 	"edit-already-exists": "La pagina novèla a pogut èsser creada .\nExistís ja.",
 	"defaultmessagetext": "Messatge per defaut",
 	"content-failed-to-parse": "Fracàs de l'analisi del contengut de $2 pel modèl $1: $3",

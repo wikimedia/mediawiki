@@ -640,7 +640,7 @@
 	"edit-gone-missing": "Negalima atnaujinti puslapio.\nGreičiausiai jis yra ištrintas.",
 	"edit-conflict": "Redagavimo konfliktas.",
 	"edit-no-change": "Jūsų keitimas buvo ignoruotas kadangi nebuvo atlikta jokių teksto pakeitimų.",
-	"postedit-confirmation": "Jūsų pakeitimas išsaugotas.",
+	"postedit-confirmation-saved": "Jūsų pakeitimas išsaugotas.",
 	"edit-already-exists": "Negalima sukurti naujo puslapio.\nJis jau egzistuoja.",
 	"defaultmessagetext": "Numatytasis pranešimo tekstas",
 	"invalid-content-data": "Neleistinas turinys.",

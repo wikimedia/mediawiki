@@ -645,7 +645,7 @@
 	"edit-gone-missing": "Ni ellid diweddaru'r dudalen.\nYmddengys iddi gael ei dileu.",
 	"edit-conflict": "Cyd-ddigwyddiad golygu.",
 	"edit-no-change": "Anwybyddwyd eich golygiad, gan na newidiwyd y testun.",
-	"postedit-confirmation": "Rhoddwyd eich golygiad ar gadw.",
+	"postedit-confirmation-saved": "Rhoddwyd eich golygiad ar gadw.",
 	"edit-already-exists": "Ni ellid creu tudalen newydd.\nMae ar gael yn barod.",
 	"defaultmessagetext": "Y testun rhagosodedig",
 	"content-failed-to-parse": "Ni lwyddwyd i ddosrannu'r cynnwys sydd ar ffurf $2 yn ôl y model $1: $3",

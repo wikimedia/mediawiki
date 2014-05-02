@@ -661,7 +661,7 @@
 	"edit-gone-missing": "Nebolo možné aktualizovať stránku.\nZdá sa, že bola zmazaná.",
 	"edit-conflict": "Konflikt pri upravovaní.",
 	"edit-no-change": "Vaša úprava bola ignorovaná, pretože ste v texte nič nezmenili.",
-	"postedit-confirmation": "Vaša úprava bola uložená.",
+	"postedit-confirmation-saved": "Vaša úprava bola uložená.",
 	"edit-already-exists": "Nebolo možné vytvoriť novú stránku.\nUž existuje.",
 	"defaultmessagetext": "Predvolený text správy",
 	"content-failed-to-parse": "Nepodarilo sa spracovať obsah $2 pre model $1: $3",

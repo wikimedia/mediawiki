@@ -601,7 +601,7 @@
 	"edit-gone-missing": "Nevar atjaunināt lapu.\nIzskatās, ka lapa ir dzēsta.",
 	"edit-conflict": "Labošanas konflikts.",
 	"edit-no-change": "Tavs labojums tika ignorēts, jo tekstā netika izdarītas izmaiņas.",
-	"postedit-confirmation": "Jūsu labojums tika saglabāts.",
+	"postedit-confirmation-saved": "Jūsu labojums tika saglabāts.",
 	"edit-already-exists": "Nevar izveidot jaunu lapu.\nTā jau eksistē.",
 	"defaultmessagetext": "Noklusētais ziņojuma teksts",
 	"invalid-content-data": "Nederīgi satura dati",

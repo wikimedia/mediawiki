@@ -638,7 +638,7 @@
 	"edit-gone-missing": "આ પાને અધ્યતન ન બનાવી શકાયું \nલાગે છે કોઇએ આ પાનું હટાવી દીધું છે",
 	"edit-conflict": "સંપાદન સંઘર્ષ.",
 	"edit-no-change": "તમારા ફેરફારો અવગણાયા, કેમકે અક્ષરકાયામાં કોઈ ફેરફારાના હતો",
-	"postedit-confirmation": "તમે કરેલો ફેરફાર સચવાઈ ગયો છે.",
+	"postedit-confirmation-saved": "તમે કરેલો ફેરફાર સચવાઈ ગયો છે.",
 	"edit-already-exists": "નવું પાનું બનાવી ન શકાયું\nતે પહેલેથી હાજર છે.",
 	"defaultmessagetext": "મૂળભૂત સંદેશ લખાણ",
 	"invalid-content-data": "અયોગ્ય વિગત માહિતી",

@@ -628,7 +628,7 @@
 	"edit-gone-missing": "Gat ekki uppfært síðu.\nSvo virðist sem henni hafi verið eytt.",
 	"edit-conflict": "Breytingaárekstur.",
 	"edit-no-change": "Breyting þín var hunsuð, því engin breyting var á textanum.",
-	"postedit-confirmation": "Breytingin þín var vistuð.",
+	"postedit-confirmation-saved": "Breytingin þín var vistuð.",
 	"edit-already-exists": "Gat ekki skapað nýja síðu.\nHún er nú þegar til.",
 	"defaultmessagetext": "Sjálfgefinn skilaboða texti",
 	"content-failed-to-parse": "Gat ekki þáttað $2 efni samkvæmt $1 líkani: $3",
