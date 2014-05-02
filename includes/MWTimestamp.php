@@ -42,6 +42,7 @@ class MWTimestamp {
 		TS_RFC2822 => 'D, d M Y H:i:s',
 		TS_ORACLE => 'd-m-Y H:i:s.000000', // Was 'd-M-y h.i.s A' . ' +00:00' before r51500
 		TS_POSTGRES => 'Y-m-d H:i:s',
+		TS_DAY => 'Ymd',
 	);
 
 	/**

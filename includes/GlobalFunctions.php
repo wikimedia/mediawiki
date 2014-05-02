@@ -1038,8 +1038,11 @@ function wfDebugMem( $exact = false ) {
  *   For backward compatibility, it can also take a boolean:
  *     - true: same as 'all'
  *     - false: same as 'private'
+ * @param string $granularity Granularity of datetime stamp:
+ *     - 'day': logs to the day in YYYYMMDD only
+ *     - if absent or any other value, logs per defaults
  */
-function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
+function wfDebugLog( $logGroup, $text, $dest = 'all', $granularity = 'default' ) {
 	global $wgDebugLogGroups;
 
 	$text = trim( $text ) . "\n";
@@ -1075,7 +1078,7 @@ function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
 		$destination = strval( $logConfig );
 	}
 
-	$time = wfTimestamp( TS_DB );
+	$time = $granularity === 'day' ?  wfTimestamp( TS_DAY ) : wfTimestamp( TS_DB );
 	$wiki = wfWikiID();
 	$host = wfHostname();
 	wfErrorLog( "$time $host $wiki: $text", $destination );
@@ -2470,6 +2473,11 @@ define( 'TS_POSTGRES', 7 );
  * ISO 8601 basic format with no timezone: 19860209T200000Z.  This is used by ResourceLoader
  */
 define( 'TS_ISO_8601_BASIC', 9 );
+
+/**
+ * YYYYMMDD with no timezone.
+ */
+define( 'TS_DAY', 10 );
 
 /**
  * Get a timestamp string in one of various formats
