@@ -293,6 +293,7 @@
 				collapsibleId = $collapsible.attr( 'id' ) || '';
 				if ( collapsibleId.indexOf( 'mw-customcollapsible-' ) === 0 ) {
 					$customTogglers = $( '.' + collapsibleId.replace( 'mw-customcollapsible', 'mw-customtoggle' ) );
+					$customTogglers.addClass( 'mw-customtoggle' );
 				}
 			}
 
