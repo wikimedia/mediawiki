@@ -690,15 +690,26 @@ class Article implements Page {
 
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
+					} else {
+						$content = $this->getContentObject();
+						$rt = $content ? $content->getRedirectChain() : null;
+						if ( $rt ) {
+							wfDebug( __METHOD__ . ": showing redirect=no page\n" );
+							# Viewing a redirect page (e.g. with parameter redirect=no)
+							$outputPage->addHTML( $this->viewRedirect( $rt ) );
+							# Parse just to get categories, displaytitle, etc.
+							$this->mParserOutput = $content->getParserOutput( $this->getTitle(), $oldid, $parserOptions, false );
+							$outputPage->addParserOutputNoText( $this->mParserOutput );
+							$outputDone = true;
+						}
 					}
 					break;
 				case 4:
 					# Run the parse, protected by a pool counter
 					wfDebug( __METHOD__ . ": doing uncached parse\n" );
 
-					$content = $this->getContentObject();
 					$poolArticleView = new PoolWorkArticleView( $this->getPage(), $parserOptions,
-						$this->getRevIdFetched(), $useParserCache, $content );
+						$this->getRevIdFetched(), $useParserCache, $this->getContentObject() );
 
 					if ( !$poolArticleView->execute() ) {
 						$error = $poolArticleView->getError();
@@ -717,9 +728,6 @@ class Article implements Page {
 
 					$this->mParserOutput = $poolArticleView->getParserOutput();
 					$outputPage->addParserOutput( $this->mParserOutput );
-					if ( $content->getRedirectTarget() ) {
-						$outputPage->addSubtitle( wfMessage( 'redirectpagesub' )->parse() );
-					}
 
 					# Don't cache a dirty ParserOutput object
 					if ( $poolArticleView->getIsDirty() ) {
@@ -1444,10 +1452,7 @@ class Article implements Page {
 	}
 
 	/**
-	 * Return the HTML for the top of a redirect page
-	 *
-	 * Chances are you should just be using the ParserOutput from
-	 * WikitextContent::getParserOutput instead of calling this for redirects.
+	 * View redirect
 	 *
 	 * @param Title|array $target Destination(s) to redirect
 	 * @param bool $appendSubtitle [optional]
@@ -1455,34 +1460,19 @@ class Article implements Page {
 	 * @return string Containing HMTL with redirect link
 	 */
 	public function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
-		$lang = $this->getTitle()->getPageLanguage();
-		if ( $appendSubtitle ) {
-			$out = $this->getContext()->getOutput();
-			$out->addSubtitle( wfMessage( 'redirectpagesub' )->parse() );
-		}
-		return static::getRedirectHeaderHtml( $lang, $target, $forceKnown );
-	}
-
-	/**
-	 * Return the HTML for the top of a redirect page
-	 *
-	 * Chances are you should just be using the ParserOutput from
-	 * WikitextContent::getParserOutput instead of calling this for redirects.
-	 *
-	 * @since 1.23
-	 * @param Language $lang
-	 * @param Title|array $target Destination(s) to redirect
-	 * @param bool $forceKnown Should the image be shown as a bluelink regardless of existence?
-	 * @return string Containing HMTL with redirect link
-	 */
-	public static function getRedirectHeaderHtml( Language $lang, $target, $forceKnown = false ) {
 		global $wgStylePath;
 
 		if ( !is_array( $target ) ) {
 			$target = array( $target );
 		}
 
+		$lang = $this->getTitle()->getPageLanguage();
 		$imageDir = $lang->getDir();
+
+		if ( $appendSubtitle ) {
+			$out = $this->getContext()->getOutput();
+			$out->addSubtitle( wfMessage( 'redirectpagesub' )->parse() );
+		}
 
 		// the loop prepends the arrow image before the link, so the first case needs to be outside
 
