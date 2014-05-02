@@ -272,19 +272,23 @@ class AllmessagesTablePager extends TablePager {
 
 		foreach ( $res as $s ) {
 			$exists = false;
+
 			if ( $foreign ) {
-				$title = explode( '/', $s->page_title );
-				if ( count( $title ) === 2 && $langcode === $title[1]
-					&& isset( $xNames[$title[0]] )
+				$titleParts = explode( '/', $s->page_title );
+				if ( count( $titleParts ) === 2 &&
+					$langcode === $titleParts[1] &&
+					isset( $xNames[$titleParts[0]] )
 				) {
-					$exists = $title[0];
+					$exists = $titleParts[0];
 				}
 			} elseif ( isset( $xNames[$s->page_title] ) ) {
 				$exists = $s->page_title;
 			}
-			if ( $exists && $s->page_namespace === NS_MEDIAWIKI ) {
+
+			$title = Title::newFromRow( $s );
+			if ( $exists && $title->inNamespace( NS_MEDIAWIKI ) ) {
 				$pageFlags[$exists] = true;
-			} elseif ( $exists && $s->page_namespace === NS_MEDIAWIKI_TALK ) {
+			} elseif ( $exists && $title->inNamespace( NS_MEDIAWIKI_TALK ) ) {
 				$talkFlags[$exists] = true;
 			}
 		}
