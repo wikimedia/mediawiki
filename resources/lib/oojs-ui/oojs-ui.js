@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (301887f487)
+ * OOjs UI v0.1.0-pre (e6edd86d37)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Thu May 01 2014 12:36:15 GMT-0700 (PDT)
+ * Date: Fri May 02 2014 10:42:43 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -5566,6 +5566,16 @@ OO.ui.InputWidget.prototype.setDisabled = function ( state ) {
 	}
 	return this;
 };
+
+/**
+ * Focus the input.
+ *
+ * @chainable
+ */
+OO.ui.InputWidget.prototype.focus = function () {
+	this.$input.focus();
+	return this;
+};
 /**
  * Checkbox widget.
  *
@@ -7799,20 +7809,6 @@ OO.ui.SearchWidget.prototype.getQuery = function () {
 };
 
 /**
- * Reset the widget to initial value.
- */
-OO.ui.SearchWidget.prototype.clear = function () {
-	this.query.setValue( '' );
-};
-
-/**
- * Focus the query input.
- */
-OO.ui.SearchWidget.prototype.focus = function () {
-	this.query.$input[0].focus();
-};
-
-/**
  * Get the results list.
  *
  * @return {OO.ui.SelectWidget} Select list
@@ -8020,6 +8016,16 @@ OO.ui.TextInputWidget.prototype.popPending = function () {
 	}
 	this.pending = Math.max( 0, this.pending - 1 );
 
+	return this;
+};
+
+/**
+ * Select the contents of the input.
+ *
+ * @chainable
+ */
+OO.ui.TextInputWidget.prototype.select = function () {
+	this.$input.select();
 	return this;
 };
 /**
