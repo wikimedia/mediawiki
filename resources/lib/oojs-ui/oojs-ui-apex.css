@@ -66,17 +66,17 @@
           transition: all 250ms ease-in-out;
 }
 
-.oo-ui-dialog-small .oo-ui-window-frame {
+.oo-ui-dialog-small > .oo-ui-window-frame {
   width: 400px;
   max-height: 230px;
 }
 
-.oo-ui-dialog-medium .oo-ui-window-frame {
+.oo-ui-dialog-medium > .oo-ui-window-frame {
   width: 600px;
   max-height: 460px;
 }
 
-.oo-ui-dialog-large .oo-ui-window-frame {
+.oo-ui-dialog-large > .oo-ui-window-frame {
   width: 800px;
   max-height: 690px;
 }
