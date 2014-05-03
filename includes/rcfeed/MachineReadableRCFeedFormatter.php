@@ -63,9 +63,9 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 		if ( $type == RC_EDIT || $type == RC_NEW ) {
 			global $wgUseRCPatrol, $wgUseNPPatrol;
 
-			$packet['minor'] = $attrib['rc_minor'];
+			$packet['minor'] = (bool)$attrib['rc_minor'];
 			if ( $wgUseRCPatrol || ( $type == RC_NEW && $wgUseNPPatrol ) ) {
-				$packet['patrolled'] = $attrib['rc_patrolled'];
+				$packet['patrolled'] = (bool)$attrib['rc_patrolled'];
 			}
 		}
 
