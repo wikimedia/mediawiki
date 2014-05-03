@@ -1624,7 +1624,20 @@ class Article implements Page {
 
 		// If the page has a history, insert a warning
 		if ( $hasHistory ) {
-			$revisions = $this->mTitle->estimateRevisionCount();
+			$title = $this->getTitle();
+
+			// The following can use the real revision count as this is only being shown for users that can delete
+			// this page.
+			// This, as a side-effect, also makes sure that the following query isn't being run for pages with a
+			// larger history, unless the user has the 'bigdelete' right (and is about to delete this page).
+			$dbr = wfGetDB( DB_SLAVE );
+			$revisions = $edits = (int)$dbr->selectField(
+				'revision',
+				'COUNT(rev_page)',
+				array( 'rev_page' => $title->getArticleID() ),
+				__METHOD__
+			);
+
 			// @todo FIXME: i18n issue/patchwork message
 			$this->getContext()->getOutput()->addHTML( '<strong class="mw-delete-warning-revisions">' .
 				wfMessage( 'historywarning' )->numParams( $revisions )->parse() .
@@ -1635,7 +1648,7 @@ class Article implements Page {
 				'</strong>'
 			);
 
-			if ( $this->mTitle->isBigDeletion() ) {
+			if ( $title->isBigDeletion() ) {
 				global $wgDeleteRevisionsLimit;
 				$this->getContext()->getOutput()->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
 					array(
