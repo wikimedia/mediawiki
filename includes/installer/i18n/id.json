@@ -5,7 +5,8 @@
 			"IvanLanin",
 			"Kenrick95",
 			"Reedy",
-			"아라"
+			"아라",
+			"C5st4wr6ch"
 		]
 	},
 	"config-desc": "Penginstal untuk MediaWiki",
@@ -17,7 +18,7 @@
 	"config-localsettings-badkey": "Kunci yang Anda berikan tidak benar",
 	"config-upgrade-key-missing": "Suatu instalasi MediaWiki telah terdeteksi.\nUntuk memutakhirkan instalasi ini, silakan masukkan baris berikut di bagian bawah <code>LocalSettings.php</code> Anda:\n\n$1",
 	"config-localsettings-incomplete": "<code>LocalSettings.php</code> yang ada tampaknya tidak lengkap.\nVariabel $1 tidak diatur.\nSilakan ubah <code>LocalSettings.php</code> untuk mengatur variabel ini dan klik \"{{int:Config-continue}}\".",
-	"config-localsettings-connection-error": "Timbul galat saat menghubungkan ke basis data dengan menggunakan setelan yang ditentukan di <code>LocalSettings.php</code> atau <code>AdminSettings.php</code>. Harap perbaiki setelan ini dan coba lagi.\n\n$1",
+	"config-localsettings-connection-error": "Ditemukan galat saat menghubungkan ke basis data dengan menggunakan setelan yang ditentukan di <code>LocalSettings.php</code>. Harap perbaiki setelan ini dan coba lagi.\n\n$1",
 	"config-session-error": "Kesalahan sesi mulai: $1",
 	"config-session-expired": "Data sesi tampaknya telah kedaluwarsa.\nSesi dikonfigurasi untuk berlaku selama $1.\nAnda dapat menaikkannya dengan menetapkan <code>session.gc_maxlifetime</code> dalam php.ini.\nUlangi proses instalasi.",
 	"config-no-session": "Data sesi Anda hilang!\nCek php.ini Anda dan pastikan bahwa <code>session.save_path</code> diatur ke direktori yang sesuai.",

@@ -1682,7 +1682,7 @@
 	"enotif_lastvisited": "ดู $1 สำหรับการเปลี่ยนแปลงทั้งหมดตั้งแต่คุณเข้าชมครั้งล่าสุด",
 	"enotif_lastdiff": "ดู $1 เพื่อดูการเปลี่ยนแปลงนี้",
 	"enotif_anon_editor": "ผู้ใช้นิรนาม $1",
-	"enotif_body": "เรียน $WATCHINGUSERNAME\n\n$PAGEINTRO $NEWPAGE\n\nคำอธิบายอย่างย่อของผู้เขียน: $PAGESUMMARY $PAGEMINOREDIT\n\nติดต่อผู้เขียน:\nเมล: $PAGEEDITOR_EMAIL\nวิกิ: $PAGEEDITOR_WIKI\n\nจะไม่มีประกาศอื่นหากมีกิจกรรมเพิ่มเติม เว้นเสียแต่คุณจะเข้าชมหน้านี้ คุณยังสามารถตั้งค่าตัวบ่งชี้ประกาศใหม่สำหรับหน้าที่คุณเฝ้าดูทุกหน้าในรายการเฝ้าดูของคุณ\n\nระบบประกาศ {{SITENAME}} ที่เป็นมิตรของคุณ\n\n--\nในการเปลี่ยนการตั้งค่าประกาศอีเมลของคุณ โปรดดู\n{{canonicalurl:{{#special:Preferences}}}}\n\nในการเปลี่ยนการตั้งค่ารายการเฝ้าดูของคุณ โปรดดู\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nในการลบหน้าจากรายการเฝ้าดูของคุณ โปรดดู\n$UNWATCHURL\n\nผลป้อนกลับและความช่วยเหลือเพิ่มเติม:\n{{canonicalurl:{{MediaWiki:Helppage}}}}",
+	"enotif_body": "เรียน $WATCHINGUSERNAME\n\n$PAGEINTRO $NEWPAGE\n\nคำอธิบายอย่างย่อของผู้เขียน: $PAGESUMMARY $PAGEMINOREDIT\n\nติดต่อผู้เขียน:\nเมล: $PAGEEDITOR_EMAIL\nวิกิ: $PAGEEDITOR_WIKI\n\nจะไม่มีประกาศอื่นหากมีกิจกรรมเพิ่มเติม เว้นเสียแต่คุณจะเข้าชมหน้านี้ คุณยังสามารถตั้งค่าตัวบ่งชี้ประกาศใหม่สำหรับหน้าที่คุณเฝ้าดูทุกหน้าในรายการเฝ้าดูของคุณ\n\nระบบประกาศ {{SITENAME}} ที่เป็นมิตรของคุณ\n\n--\nในการเปลี่ยนการตั้งค่าประกาศอีเมลของคุณ โปรดดู\n{{canonicalurl:{{#special:Preferences}}}}\n\nในการเปลี่ยนการตั้งค่ารายการเฝ้าดูของคุณ โปรดดู\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nในการลบหน้าจากรายการเฝ้าดูของคุณ โปรดดู\n$UNWATCHURL\n\nผลป้อนกลับและความช่วยเหลือเพิ่มเติม:\n$HELPPAGE",
 	"created": "ถูกสร้าง",
 	"changed": "ถูกเปลี่ยนแปลง",
 	"deletepage": "ลบหน้า",

@@ -1721,7 +1721,7 @@
 	"enotif_lastvisited": "ziyareta şıma ye peyini ra nata heme vuryayiş ê ke biyê bıewnê $1i re..",
 	"enotif_lastdiff": "qey vinayişê ney vurnayişi bıewnê pelê $1i",
 	"enotif_anon_editor": "karbero anonim $1",
-	"enotif_body": "Erciyayê $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\neniya timaroği: $PAGESUMMARY $PAGEMINOREDIT\n\nTimaroğiya irtibat:\nmail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nno pel o ke behs beno heta ziyaret kerdışê yewna heli, mesajê vuriyayişi nêşawiyeno.\n\n           {{SITENAME}} sistemê hişyariyê keyepeli.\n\n--\nQey vurnayişê eyari:\n{{canonicalurl:{{#Special:Watchlist/edit}}}}\n\nQey vurnayişê eyaran de lista seyri:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nQey wedarayişê ena pele liste xo ra seyr kerdişi, şo\n$UNWATCHURL\n\nQey hemkari u pêşniyazi:\n{{canonicalurl:{{MediaWiki:Helppage}}}}",
+	"enotif_body": "Erciyayê $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\neniya timaroği: $PAGESUMMARY $PAGEMINOREDIT\n\nTimaroğiya irtibat:\nmail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nno pel o ke behs beno heta ziyaret kerdışê yewna heli, mesajê vuriyayişi nêşawiyeno.\n\n           {{SITENAME}} sistemê hişyariyê keyepeli.\n\n--\nQey vurnayişê eyari:\n{{canonicalurl:{{#Special:Watchlist/edit}}}}\n\nQey vurnayişê eyaran de lista seyri:\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nQey wedarayişê ena pele liste xo ra seyr kerdişi, şo\n$UNWATCHURL\n\nQey hemkari u pêşniyazi:\n$HELPPAGE",
 	"created": "viraziya",
 	"changed": "vurneya",
 	"deletepage": "Pele bestere",

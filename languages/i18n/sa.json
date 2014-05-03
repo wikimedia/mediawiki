@@ -1641,7 +1641,7 @@
 	"enotif_lastvisited": "भवतः पूवसन्दर्शनस्य पश्चात् सवृत्तपरिवर्तनार्थं $1 पश्यतु ।",
 	"enotif_lastdiff": "एतत्परिवर्तनं दृष्टुं $1 पश्यतु ।",
 	"enotif_anon_editor": "अनामकः योजकः $1",
-	"enotif_body": "Dear $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nEditor's summary: $PAGESUMMARY $PAGEMINOREDIT\n\nContact the editor:\nmail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nThere will be no other notifications in case of further activity unless you visit this page. You could also reset the notification flags for all your watched pages on your watchlist.\n\n\t\t\t Your friendly {{SITENAME}} notification system\n\n--\nTo change your e-mail notification settings, visit\n{{canonicalurl:{{#special:Preferences}}}}\n\nTo change your watchlist settings, visit\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nTo delete the page from your watchlist, visit\n$UNWATCHURL\n\nFeedback and further assistance:\n{{canonicalurl:{{MediaWiki:Helppage}}}}",
+	"enotif_body": "Dear $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nEditor's summary: $PAGESUMMARY $PAGEMINOREDIT\n\nContact the editor:\nmail: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nThere will be no other notifications in case of further activity unless you visit this page. You could also reset the notification flags for all your watched pages on your watchlist.\n\n\t\t\t Your friendly {{SITENAME}} notification system\n\n--\nTo change your e-mail notification settings, visit\n{{canonicalurl:{{#special:Preferences}}}}\n\nTo change your watchlist settings, visit\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nTo delete the page from your watchlist, visit\n$UNWATCHURL\n\nFeedback and further assistance:\n$HELPPAGE",
 	"created": "सृष्टम् ।",
 	"changed": "परिवर्तितम् ।",
 	"deletepage": "पृष्ठं निराकरोतु।",
