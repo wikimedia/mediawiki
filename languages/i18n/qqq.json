@@ -2020,7 +2020,7 @@
 	"exbeforeblank": "Automated deletion reason when deleting a page for admins providing that the page was blanked before deletion.\n\nParameters:\n* $1 - content before blanking",
 	"delete-confirm": "Used as page title. Parameters:\n* $1 - the page title",
 	"delete-legend": "{{Identical|Delete}}",
-	"historywarning": "Warning when about to delete a page that has history.\n\nFollowed by a link which points to the history page.\n\nParameters:\n* $1 - the <b>approximate</b> number of revisions that the page has, the message should not claim to give an exact count",
+	"historywarning": "Warning when about to delete a page that has history.\n\nFollowed by a link which points to the history page.\n\nParameters:\n* $1 - the number of revisions that the page has",
 	"confirmdeletetext": "Introduction shown when deleting a page.\n\nRefers to {{msg-mw|Policy-url}}.",
 	"actioncomplete": "Used in several situations, for example when a page has been deleted.\n\nSee also:\n* {{msg-mw|Actionfailed|page title}}",
 	"actionfailed": "Used as page title when the submit operation failed, in [[Special:RevisionDelete]].\n\nSee also:\n* {{msg-mw|Actioncomplete|page title}}",

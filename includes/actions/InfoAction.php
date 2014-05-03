@@ -655,13 +655,7 @@ class InfoAction extends FormlessAction {
 		$result['watchers'] = $watchers;
 
 		// Total number of edits
-		$edits = (int)$dbr->selectField(
-			'revision',
-			'COUNT(rev_page)',
-			array( 'rev_page' => $id ),
-			__METHOD__
-		);
-		$result['edits'] = $edits;
+		$result['edits'] = $title->getRevisionCount();
 
 		// Total number of distinct authors
 		$authors = (int)$dbr->selectField(

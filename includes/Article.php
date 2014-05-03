@@ -1634,7 +1634,7 @@ class Article implements Page {
 
 		// If the page has a history, insert a warning
 		if ( $hasHistory ) {
-			$revisions = $this->mTitle->estimateRevisionCount();
+			$revisions = $this->mTitle->getRevisionCount();
 			// @todo FIXME: i18n issue/patchwork message
 			$this->getContext()->getOutput()->addHTML( '<strong class="mw-delete-warning-revisions">' .
 				wfMessage( 'historywarning' )->numParams( $revisions )->parse() .
