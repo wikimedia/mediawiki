@@ -29,29 +29,29 @@
  */
 abstract class ImageGalleryBase extends ContextSource {
 	/** @var array Gallery images */
-	protected $mImages;
+	public $mImages;
 
 	/** @var bool Whether to show the filesize in bytes in categories */
-	protected $mShowBytes;
+	public $mShowBytes;
 
 	/** @var bool Whether to show the filename. Default: true */
-	protected $mShowFilename;
+	public $mShowFilename;
 
 	/** @var string Gallery mode. Default: traditional */
-	protected $mMode;
+	public $mMode;
 
 	/** @var bool|string Gallery caption. Default: false */
-	protected $mCaption = false;
+	public $mCaption = false;
 
 	/**
 	 * @var bool Hide blacklisted images?
 	 */
-	protected $mHideBadImages;
+	public $mHideBadImages;
 
 	/**
 	 * @var Parser Registered parser object for output callbacks
 	 */
-	protected $mParser;
+	public $mParser;
 
 	/**
 	 * @var Title Contextual title, used when images are being screened against
