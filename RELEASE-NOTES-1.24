@@ -20,6 +20,8 @@ production.
   option and a size specification set will now always ignore the provided
   size and display an unscaled image, as the documentation has always
   claimed it would.
+* (bug 39035) Improved Vector skin performance by removing collapsibleNav,
+  which used to collapse some sidebar elements by default.
 * (bug 890) Links in Special:RecentChanges and Special:Watchlist no longer
   follow redirects to their target pages.
 
