@@ -73,7 +73,7 @@
 					var texts = [];
 					if ( data.query && data.query.allpages ) {
 						$.each( data.query.allpages, function ( i, category ) {
-							texts.push( new mw.Title( category.title ).getNameText() );
+							texts.push( new mw.Title( category.title ).getMainText() );
 						} );
 					}
 					return texts;
