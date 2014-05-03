@@ -1148,6 +1148,7 @@
     "action-createpage": "create pages",
     "action-createtalk": "create discussion pages",
     "action-createaccount": "create this user account",
+    "action-history": "view the history of this page",
     "action-minoredit": "mark this edit as minor",
     "action-move": "move this page",
     "action-move-subpages": "move this page, and its subpages",

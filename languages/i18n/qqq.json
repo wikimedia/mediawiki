@@ -1323,6 +1323,7 @@
 	"action-delete": "{{Doc-action|delete}}",
 	"action-deleterevision": "{{Doc-action|deleterevision}}",
 	"action-deletedhistory": "{{Doc-action|deletedhistory}}",
+	"action-history": "{{Doc-action|history}}",
 	"action-browsearchive": "{{Doc-action|browsearchive}}",
 	"action-undelete": "{{Doc-action|undelete}}",
 	"action-suppressrevision": "{{Doc-action|suppressrevision}}",
