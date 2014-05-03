@@ -158,22 +158,6 @@ return array(
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
-	'skins.vector.collapsibleNav' => array(
-		'scripts' => array(
-			'vector/collapsibleNav.js',
-		),
-		'messages' => array(
-			'vector-collapsiblenav-more',
-		),
-		'dependencies' => array(
-			'jquery.client',
-			'jquery.cookie',
-			'jquery.tabIndex',
-		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-		'position' => 'bottom',
-	),
 
 	/* jQuery */
 
