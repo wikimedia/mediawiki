@@ -3716,36 +3716,14 @@ $wgMaxTemplateDepth = 40;
 $wgMaxPPExpandDepth = 40;
 
 /**
- * The external URL protocols
+ * URL schemes that should be recognized as valid by wfParseUrl().
+ * @see wfParseUrl
  */
 $wgUrlProtocols = array(
-	'http://',
-	'https://',
-	'ftp://',
-	'ftps://', // If we allow ftp:// we should allow the secure version.
-	'ssh://',
-	'sftp://', // SFTP > FTP
-	'irc://',
-	'ircs://', // @bug 28503
-	'xmpp:', // Another open communication protocol
-	'sip:',
-	'sips:',
-	'gopher://',
-	'telnet://', // Well if we're going to support the above.. -ævar
-	'nntp://', // @bug 3808 RFC 1738
-	'worldwind://',
-	'mailto:',
-	'tel:', // If we can make emails linkable, why not phone numbers?
-	'sms:', // Likewise this is standardized too
-	'news:',
-	'svn://',
-	'git://',
-	'mms://',
-	'bitcoin:', // Even registerProtocolHandler whitelists this along with mailto:
-	'magnet:', // No reason to reject torrents over magnet: when they're allowed over http://
-	'urn:', // Allow URNs to be used in Microdata/RDFa <link ... href="urn:...">s
-	'geo:', // urls define geo locations, they're useful in Microdata/RDFa and for coordinates
-	'//', // for protocol-relative URLs
+	'bitcoin:', 'ftp://', 'ftps://', 'geo:', 'git://', 'gopher://', 'http://',
+	'https://', 'irc://', 'ircs://', 'magnet:', 'mailto:', 'mms://', 'news:',
+	'nntp://', 'redis://', 'sftp://', 'sip:', 'sips:', 'sms:', 'ssh://',
+	'svn://', 'tel:', 'telnet://', 'urn:', 'worldwind://', 'xmpp:', '//'
 );
 
 /**
