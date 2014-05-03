@@ -67,6 +67,7 @@ class Title {
 	var $mLatestID = false;           // /< ID of most recent revision
 	var $mContentModel = false;       // /< ID of the page's content model, i.e. one of the CONTENT_MODEL_XXX constants
 	private $mEstimateRevisions;      // /< Estimated number of revisions; null of not loaded
+	private $mRevisionCount;		  // /< Number of revisions; null of not loaded
 	var $mRestrictions = array();     // /< Array of groups allowed to edit this article
 	var $mOldRestrictions = false;
 	var $mCascadeRestriction;         ///< Cascade restrictions on this page to included templates and images?
@@ -3216,6 +3217,7 @@ class Title {
 		$this->mLatestID = false;
 		$this->mContentModel = false;
 		$this->mEstimateRevisions = null;
+		$this->mRevisionCount = null;
 		$this->mPageLanguage = false;
 	}
 
@@ -4274,18 +4276,23 @@ class Title {
 			return false;
 		}
 
-		$revCount = $this->estimateRevisionCount();
+		$revCount = $this->getRevisionCount();
 		return $revCount > $wgDeleteRevisionsLimit;
 	}
 
 	/**
-	 * Get the  approximate revision count of this page.
+	 * Get the approximate revision count of this page.
 	 *
 	 * @return int
 	 */
 	public function estimateRevisionCount() {
 		if ( !$this->exists() ) {
 			return 0;
+		}
+
+		if ( $this->mRevisionCount !== null ) {
+			// If we have the real count around anyway, return it
+			return $this->mRevisionCount;
 		}
 
 		if ( $this->mEstimateRevisions === null ) {
@@ -4295,6 +4302,33 @@ class Title {
 		}
 
 		return $this->mEstimateRevisions;
+	}
+
+	/**
+	 * Get the revision count of this page.
+	 *
+	 * Please note that this is a quite heavy action! Thus you should only call this
+	 * if you really need it and know what you're doing. For all other purposes
+	 * there's Title::estimateRevisionCount()
+	 *
+	 * @return int
+	 */
+	public function getRevisionCount() {
+		if ( !$this->exists() ) {
+			return 0;
+		}
+
+		if ( $this->mRevisionCount === null ) {
+			$dbr = wfGetDB( DB_SLAVE );
+			$this->mRevisionCount = (int)$dbr->selectField(
+				'revision',
+				'COUNT(rev_page)',
+				array( 'rev_page' => $this->getArticleID() ),
+				__METHOD__
+			);
+		}
+
+		return $this->mRevisionCount;
 	}
 
 	/**
