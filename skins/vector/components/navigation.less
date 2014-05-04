@@ -86,37 +86,37 @@ div#mw-panel {
 	left: 0;
 
 	div.portal {
-		padding-bottom: 1.5em;
+		margin: 0 0.6em 0 0.7em;
+		padding: 0.25em 0;
 		direction: ltr;
+		background-position: top left;
+		background-repeat: no-repeat;
+		.background-image('images/portal-break.png');
 
 		h3 {
+			font-size: @menu-main-heading-font-size;
+			color: @menu-main-heading-color;
 			font-weight: normal;
-			color: #444;
+			margin: 0;
 			padding: @menu-main-heading-padding;
 			cursor: default;
 			border: none;
-			font-size: @menu-main-heading-font-size;
 		}
 
 		div.body {
-			padding-top: 0.5em;
 			margin: @menu-main-body-margin;
-
-			.background-image('images/portal-break.png');
-			background-repeat: no-repeat;
-			background-position: top left;
+			padding-top: 0;
 
 			ul {
 				list-style-type: none;
 				list-style-image: none;
-				padding: @menu-main-body-padding;
 				margin: 0;
+				padding: @menu-main-body-padding;
 
 				li {
 					line-height: 1.125em;
-					padding: 0;
-					padding-bottom: 0.5em;
 					margin: 0;
+					padding: 0.25em 0;
 					font-size: @menu-main-body-font-size;
 					word-wrap: break-word;
 
@@ -127,6 +127,17 @@ div#mw-panel {
 						}
 					}
 				}
+			}
+		}
+
+		&.first {
+			background-image: none;
+			margin-top: 0;
+			h3 {
+				display: none;
+			}
+			div.body {
+				margin-left: 0.5em;
 			}
 		}
 	}
