@@ -26,6 +26,11 @@ jQuery( function ( $ ) {
 	} );
 
 	/**
+	 * Sidebar
+	 */
+	$( '#mw-panel > .portal:first' ).addClass( 'first' );
+
+	/**
 	 * Collapsible tabs for Vector
 	 */
 	var $cactions = $( '#p-cactions' );
