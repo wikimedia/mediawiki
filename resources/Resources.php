@@ -809,6 +809,13 @@ return array(
 			'user.tokens',
 		),
 	),
+	'mediawiki.api.user' => array(
+		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.user.js',
+		'dependencies' => array(
+			'mediawiki.api',
+			'mediawiki.user',
+		),
+	),
 	'mediawiki.debug' => array(
 		'scripts' => array(
 			'resources/src/mediawiki/mediawiki.debug.js',
