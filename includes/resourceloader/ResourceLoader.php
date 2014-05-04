@@ -904,6 +904,12 @@ class ResourceLoader {
 			if ( count( $states ) ) {
 				$out .= self::makeLoaderStateScript( $states );
 			}
+		} else {
+			if ( count( $states ) ) {
+				$exceptions .= self::makeComment(
+					'Problematic modules: ' . FormatJson::encode( $states, ResourceLoader::inDebugMode() )
+				);
+			}
 		}
 
 		if ( !$context->getDebug() ) {
