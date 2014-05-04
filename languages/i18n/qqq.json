@@ -192,7 +192,7 @@
 	"tog-shownumberswatching": "Toggle option used in [[Special:Preferences]], in the section for recent changes. When this option is activated, the entries in recent changes includes the number of users who watch pages. {{Gender}}",
 	"tog-oldsig": "Used in [[Special:Preferences]], tab User profile. {{Gender}}",
 	"tog-fancysig": "In user preferences under the signature box.  {{Gender}}",
-	"tog-uselivepreview": "{{Gender}}\nToggle option used in [[Special:Preferences]].\n\nLive preview is an experimental feature (unavailable by default) to use edit preview without loading the page again.",
+	"tog-uselivepreview": "{{Gender}}\nToggle option used in [[Special:Preferences]].\n\nLive preview is a feature to use edit preview without loading the page again.",
 	"tog-forceeditsummary": "Toggle option used in [[Special:Preferences]] to force an edit ''{{msg-mw|summary}}''. {{Gender}}",
 	"tog-watchlisthideown": "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide own edits from watchlist. {{Gender}}",
 	"tog-watchlisthidebots": "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide bot edits from watchlist. {{Gender}}",
