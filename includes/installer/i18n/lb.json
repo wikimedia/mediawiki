@@ -167,6 +167,7 @@
 	"config-upload-deleted": "Repertoire fir geläscht Fichieren:",
 	"config-logo": "URL vum Logo:",
 	"config-instantcommons": "\"Instant Commons\" aktivéieren",
+	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] ass eng Funktioun déi et Wikien erlaabt fir Biller, Téin an aner Medien vu [//commons.wikimedia.org/ Wikimedia Commons] ze benotzen.\nFir datt dat funktionéiert brauch MediaWiki Zougang zum Internet.\n\nFir méi Informatiounen iwwer dës Funktioun, inklusiv Instruktioune wéi Dir se fir aner Wikie wéi Wikimedia Commons astelle musst, kuckt [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos d'Handbuch].",
 	"config-cc-again": "Nach eng kéier eraussichen...",
 	"config-advanced-settings": "Erweidert Astellungen",
 	"config-extensions": "Erweiderungen",

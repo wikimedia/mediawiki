@@ -359,7 +359,7 @@
 	"databaseerror-error": "Fel: $1",
 	"laggedslavemode": "<strong>Varning:</strong> Sidan kan sakna de senaste uppdateringarna.",
 	"readonly": "Databasen är låst",
-	"enterlockreason": "Ange varför databasen låsts, inkludera en uppskattning om när låsningen kommer att hävas",
+	"enterlockreason": "Ange varför databasen låsts och inkludera en uppskattning om när låsningen kommer att hävas",
 	"readonlytext": "Databasen är tillfälligt låst för nya inlägg och andra modifieringar, förmodligen på grund av rutinmässigt underhåll, efter vilket den kommer den att återgå till normalläge.\n\nDen administratör som låste den har angivit följande förklaring: $1",
 	"missing-article": "Databasen hittade inte texten för en sida som den borde ha funnit, med namnet \"$1\" $2.\n\nDetta orsakas oftast av att man följer en inaktuell länk till en jämförelse mellan versioner (diff) eller en historiklänk för en sida som raderats.\n\nOm inte så är fallet, kan du ha hittat en bugg i mjukvaran.\nRapportera gärna problemet till någon [[Special:ListUsers/sysop|administratör]], ange då URL:en (webbadressen).",
 	"missingarticle-rev": "(versionsnummer: $1)",

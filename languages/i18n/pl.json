@@ -1590,7 +1590,7 @@
 	"deadendpagestext": "Poniższe strony nie posiadają odnośników do innych stron znajdujących się w {{GRAMMAR:MS.lp|{{SITENAME}}}}.",
 	"protectedpages": "Strony zabezpieczone",
 	"protectedpages-indef": "Tylko strony zabezpieczone na zawsze",
-	"protectedpages-summary": "Ta strona zawiera listę stron, które są obecnie chronione. Aby uzyskać listę tytułów, których utworzenie jest zabronione, zobacz [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].",
+	"protectedpages-summary": "Ta strona zawiera listę stron, które są obecnie chronione. Aby uzyskać listę tytułów, których utworzenie jest zabronione, zobacz: [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].",
 	"protectedpages-cascade": "Tylko strony zabezpieczone rekursywnie",
 	"protectedpages-noredirect": "Ukryj przekierowania",
 	"protectedpagesempty": "Żadna strona nie jest obecnie zabezpieczona z podanymi parametrami.",

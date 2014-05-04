@@ -17,7 +17,8 @@
 			"Yosri",
 			"Zamwan",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Pizza1016"
 		]
 	},
 	"tog-underline": "Garis bawah pautan:",
@@ -1491,8 +1492,8 @@
 	"pageswithprop-prophidden-binary": "nilai sifat binari tersorok ($1)",
 	"doubleredirects": "Lencongan berganda",
 	"doubleredirectstext": "Yang berikut ialah senarai laman yang melencong ke laman lencongan lain. Setiap baris mengandungi pautan ke laman lencongan pertama dan kedua, serta baris pertama bagi teks lencongan kedua, lazimnya merupakan laman sasaran \"sebenar\", yang sepatutnya ditujui oleh lencongan pertama.\nMasukan yang <del>dipotong</del> telah diselesaikan.",
-	"double-redirect-fixed-move": "[[$1]] dilencongkan ke [[$2]]",
-	"double-redirect-fixed-maintenance": "Membetulkan dwilecongan daripada [[$1]] kepada [[$2]].",
+	"double-redirect-fixed-move": "[[$1]] telah dipindahkan.\nIa dikemaskinikan secara automatik dan sekarang melencong ke [[$2]].",
+	"double-redirect-fixed-maintenance": "Membetulkan dwilecongan dari [[$1]] ke [[$2]] dalam kerja kemaskinian.",
 	"double-redirect-fixer": "Pembaiki lencongan",
 	"brokenredirects": "Lencongan rosak",
 	"brokenredirectstext": "Lencongan-lencongan berikut menuju ke laman yang tidak wujud:",

@@ -1800,6 +1800,7 @@
 	"sp-contributions-search": "Pretraži doprinose",
 	"sp-contributions-username": "IP adresa ili suradnik:",
 	"sp-contributions-toponly": "Prikaži samo najnovije izmjene",
+	"sp-contributions-newonly": "Pokaži samo stranice koje je suradnik započeo",
 	"sp-contributions-submit": "Traži",
 	"whatlinkshere": "Što vodi ovamo",
 	"whatlinkshere-title": "Stranice koje vode na \"$1\"",
