@@ -1041,7 +1041,13 @@ return array(
 		'dependencies' => array(
 			'jquery.form',
 			'jquery.spinner',
+			'mediawiki.api',
 			'mediawiki.action.history.diff',
+			'mediawiki.util',
+		),
+		'messages' => array(
+			'otherlanguages',
+			'tooltip-p-lang',
 		),
 	),
 	'mediawiki.action.history' => array(
