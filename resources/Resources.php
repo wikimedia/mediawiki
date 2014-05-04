@@ -954,7 +954,9 @@ return array(
 		'dependencies' => array(
 			'jquery.form',
 			'jquery.spinner',
+			'mediawiki.api',
 			'mediawiki.action.history.diff',
+			'mediawiki.util',
 		),
 	),
 	'mediawiki.action.history' => array(
