@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- colors don't work on Windows! -->
+<!--
+Colors don't work on Windows!
+phpunit.php enables colors for other OSs at runtime
+-->
 <phpunit bootstrap="./bootstrap.php"
-	colors="true"
+	colors="false"
 	backupGlobals="false"
 	convertErrorsToExceptions="true"
 	convertNoticesToExceptions="true"
