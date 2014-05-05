@@ -143,6 +143,7 @@ class User {
 		'minoredit',
 		'move',
 		'movefile',
+		'move-categorypages',
 		'move-rootuserpages',
 		'move-subpages',
 		'nominornewtalk',
