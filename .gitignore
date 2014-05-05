@@ -41,6 +41,7 @@ sftp-config.json
 
 # Building & testing
 node_modules/
+/tests/phpunit/phpunit.phar
 
 # Composer
 /vendor
