@@ -242,10 +242,12 @@ class TextContent extends AbstractContent {
 	 * Generates an HTML version of the content, for display. Used by
 	 * getParserOutput() to construct a ParserOutput object.
 	 *
-	 * This default implementation just calls getHighlightHtml(). Content
-	 * models that have another mapping to HTML (as is the case for markup
-	 * languages like wikitext) should override this method to generate the
-	 * appropriate HTML.
+	 * Subclasses may override this to provide a custom HTML rendering.
+	 * If further information is to be derived from the content (such as
+	 * categories), the getParserOutput() method can be overridden instead.
+	 *
+	 * For backwards-compatibility, this default implementation just calls
+	 * getHighlightHtml().
 	 *
 	 * @return string An HTML representation of the content
 	 */
@@ -254,13 +256,22 @@ class TextContent extends AbstractContent {
 	}
 
 	/**
-	 * Generates a syntax-highlighted version of the content, as HTML.
-	 * Used by the default implementation of getHtml().
+	 * Generates an HTML version of the content, for display.
 	 *
-	 * @return string A HTML representation of the content's markup
+	 * This default implementation returns an HTML-escaped version
+	 * of the raw text content.
+	 *
+	 * @note: The functionality of this method should really be implemented
+	 * in getHtml(), and subclasses should override getHtml() if needed.
+	 * getHighlightHtml() is kept around for backward compatibility with
+	 * extensions that already override it.
+	 *
+	 * @deprecated since 1.24. Use getHtml() instead. In particular, subclasses overriding
+	 *     getHighlightHtml() should override getHtml() instead.
+	 *
+	 * @return string An HTML representation of the content
 	 */
 	protected function getHighlightHtml() {
-		# TODO: make Highlighter interface, use highlighter here, if available
 		return htmlspecialchars( $this->getNativeData() );
 	}
 
