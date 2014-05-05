@@ -101,17 +101,12 @@ class PHPUnitMaintClass extends Maintenance {
 		}
 
 		# --with-phpunitdir let us override the default PHPUnit version
+		# Can use with either or phpunit.phar in the directory or the
+		# full PHPUnit code base.
 		if ( $this->hasOption( 'with-phpunitdir' ) ) {
 			$phpunitDir = $this->getOption( 'with-phpunitdir' );
-			# Sanity checks
-			if ( !is_dir( $phpunitDir ) ) {
-				$this->error( "--with-phpunitdir should be set to an existing directory", 1 );
-			}
-			if ( !is_readable( $phpunitDir . "/PHPUnit/Runner/Version.php" ) ) {
-				$this->error( "No usable PHPUnit installation in $phpunitDir.\nAborting.\n", 1 );
-			}
 
-			# Now prepends provided PHPUnit directory
+			# prepends provided PHPUnit directory or phar
 			$this->output( "Will attempt loading PHPUnit from `$phpunitDir`\n" );
 			set_include_path( $phpunitDir . PATH_SEPARATOR . get_include_path() );
 
@@ -201,18 +196,14 @@ class PHPUnitMaintClass extends Maintenance {
 $maintClass = 'PHPUnitMaintClass';
 require RUN_MAINTENANCE_IF_MAIN;
 
-if ( !class_exists( 'PHPUnit_Runner_Version' ) ) {
-	require_once 'PHPUnit/Runner/Version.php';
-}
+$pharFile = stream_resolve_include_path( 'phpunit.phar' );
+$isValidPhar = Phar::isValidPharFilename ( $pharFile );
 
-if ( PHPUnit_Runner_Version::id() !== '@package_version@'
-	&& version_compare( PHPUnit_Runner_Version::id(), '3.7.0', '<' )
+if ( !$isValidPhar && !class_exists( 'PHPUnit_Runner_Version' )
+	&& is_readable( 'PHPUnit/Runner/Version.php' )
 ) {
-	die( 'PHPUnit 3.7.0 or later required, you have ' . PHPUnit_Runner_Version::id() . ".\n" );
-}
-
-if ( !class_exists( 'PHPUnit_TextUI_Command' ) ) {
-	require_once 'PHPUnit/Autoload.php';
+	// try loading phpunit via PEAR
+	require_once 'PHPUnit/Runner/Version.php';
 }
 
 // Prevent segfault when we have lots of unit tests (bug 62623)
@@ -225,4 +216,18 @@ if ( version_compare( PHP_VERSION, '5.4.0', '<' )
 	} );
 }
 
-PHPUnit_TextUI_Command::main();
+if ( $isValidPhar ) {
+	require $pharFile;
+} else {
+	if ( PHPUnit_Runner_Version::id() !== '@package_version@'
+	    && version_compare( PHPUnit_Runner_Version::id(), '3.7.0', '<' )
+	) {
+	    die( 'PHPUnit 3.7.0 or later required, you have ' . PHPUnit_Runner_Version::id() . ".\n" );
+	}
+
+	if ( !class_exists( 'PHPUnit_TextUI_Command' ) ) {
+	    require_once 'PHPUnit/Autoload.php';
+	}
+
+	PHPUnit_TextUI_Command::main();
+}
