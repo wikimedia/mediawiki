@@ -86,7 +86,7 @@ interface Content {
 	public function getNativeData();
 
 	/**
-	 * Returns the content's nominal size in bogo-bytes.
+	 * Returns the content's nominal size in "bogo-bytes".
 	 *
 	 * @return int
 	 */

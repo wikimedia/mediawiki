@@ -77,9 +77,9 @@ class TextContent extends AbstractContent {
 	}
 
 	/**
-	 * returns the text's size in bytes.
+	 * Returns the text's size in bytes.
 	 *
-	 * @return int The size
+	 * @return int
 	 */
 	public function getSize() {
 		$text = $this->getNativeData();
