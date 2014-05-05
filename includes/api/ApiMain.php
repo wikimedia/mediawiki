@@ -618,6 +618,7 @@ class ApiMain extends ApiBase {
 		$maxAge = min( $this->mCacheControl['s-maxage'], $this->mCacheControl['max-age'] );
 		$expiryUnixTime = ( $maxAge == 0 ? 1 : time() + $maxAge );
 		$response->header( 'Expires: ' . wfTimestamp( TS_RFC2822, $expiryUnixTime ) );
+		$response->header( 'Last-Modified: ' . wfTimestamp( TS_RFC2822, time() ) );
 
 		// Construct the Cache-Control header
 		$ccHeader = '';
@@ -635,6 +636,15 @@ class ApiMain extends ApiBase {
 		}
 
 		$response->header( "Cache-Control: $ccHeader" );
+
+		// Workaround for browsers that ignore Cache-Control and rely on Last-Modified instead
+		if ( strlen( $this->getRequest()->getHeader( 'If-Modified-Since' ) ) && $maxAge > 0 ) {
+			$since = strtotime( $this->getRequest()->getHeader( 'If-Modified-Since' ) );
+
+			if ( time() - $since <= $maxAge ) {
+				$response->header( 'HTTP/1.1 304 Not Modified' );
+			}
+		}
 	}
 
 	/**
