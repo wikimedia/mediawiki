@@ -860,8 +860,10 @@ class Article implements Page {
 				'ShowRawCssJs',
 				array( $this->mContentObject, $this->getTitle(), $outputPage ) )
 			) {
+				// If no legacy hooks ran, display the content of the parser output, including RL modules,
+				// but excluding metadata like categories and language links
 				$po = $this->mContentObject->getParserOutput( $this->getTitle() );
-				$outputPage->addHTML( $po->getText() );
+				$outputPage->addParserOutputContent( $po );
 			}
 		}
 	}
