@@ -259,8 +259,6 @@ class SpecialSearch extends SpecialPage {
 
 		// did you mean... suggestions
 		if ( $showSuggestion && $textMatches && !$textStatus && $textMatches->hasSuggestion() ) {
-			$st = SpecialPage::getTitleFor( 'Search' );
-
 			# mirror Go/Search behavior of original request ..
 			$didYouMeanParams = array( 'search' => $textMatches->getSuggestionQuery() );
 
@@ -280,7 +278,7 @@ class SpecialSearch extends SpecialPage {
 			}
 
 			$suggestLink = Linker::linkKnown(
-				$st,
+				$this->getPageTitle(),
 				$suggestionSnippet,
 				array(),
 				$stParams
@@ -651,7 +649,6 @@ class SpecialSearch extends SpecialPage {
 		// link to related articles if supported
 		$related = '';
 		if ( $result->hasRelated() ) {
-			$st = SpecialPage::getTitleFor( 'Search' );
 			$stParams = array_merge(
 				$this->powerSearchOptions(),
 				array(
@@ -662,7 +659,7 @@ class SpecialSearch extends SpecialPage {
 			);
 
 			$related = ' -- ' . Linker::linkKnown(
-				$st,
+				$this->getPageTitle(),
 				$this->msg( 'search-relatedarticle' )->text(),
 				array(),
 				$stParams
