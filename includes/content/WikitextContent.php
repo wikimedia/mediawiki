@@ -315,9 +315,10 @@ class WikitextContent extends TextContent {
 	 *
 	 * @since 1.21
 	 *
-	 * @param Title $title * @param int $revId Revision to pass to the parser (default: null)
+	 * @param Title $title
+	 * @param int $revId Revision to pass to the parser (default: null)
 	 * @param ParserOptions $options (default: null)
-	 * @param bool $generateHtml (default: false)
+	 * @param bool $generateHtml (default: true)
 	 * @internal param \IContextSource|null $context
 	 *
 	 * @return ParserOutput Representing the HTML form of the text
