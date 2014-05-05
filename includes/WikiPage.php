@@ -628,7 +628,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// UPDATE and revision row INSERT by S2 may have happened after the first S1 SELECT.
 		// http://dev.mysql.com/doc/refman/5.0/en/set-transaction.html#isolevel_repeatable-read.
 		$flags = ( $this->mDataLoadedFrom == self::READ_LOCKING ) ? Revision::READ_LOCKING : 0;
-		$revision = Revision::newFromPageId( $this->getId(), $latest, $flags );
+		$revision = Revision::newFromPageId( $latest, $this->getId(), $flags );
 		if ( $revision ) { // sanity
 			$this->setLastEdit( $revision );
 		}
