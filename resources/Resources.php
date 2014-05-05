@@ -191,6 +191,7 @@ return array(
 
 	'jquery' => array(
 		'scripts' => 'resources/lib/jquery/jquery.js',
+		'debugScripts' => 'resources/lib/jquery/jquery.migrate.js',
 		'debugRaw' => false,
 		'targets' => array( 'desktop', 'mobile' ),
 	),
