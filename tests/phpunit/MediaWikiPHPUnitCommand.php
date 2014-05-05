@@ -52,20 +52,6 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 		}
 	}
 
-	public function run( array $argv, $exit = true ) {
-		wfProfileIn( __METHOD__ );
-
-		$ret = parent::run( $argv, false );
-
-		wfProfileOut( __METHOD__ );
-
-		if ( $exit ) {
-			exit( $ret );
-		} else {
-			return $ret;
-		}
-	}
-
 	public function showHelp() {
 		parent::showHelp();
 
