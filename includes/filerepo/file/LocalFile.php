@@ -2114,7 +2114,7 @@ class LocalFileDeleteBatch {
 			$dbw->insertSelect( 'filearchive', 'image',
 				array(
 					'fa_storage_group' => $encGroup,
-					'fa_storage_key' => "CASE WHEN img_sha1='' THEN '' ELSE $concat END",
+					'fa_storage_key' => $dbw->conditional( array( 'img_sha1' => '' ), $dbw->addQuotes( '' ), $concat ),
 					'fa_deleted_user' => $encUserId,
 					'fa_deleted_timestamp' => $encTimestamp,
 					'fa_deleted_reason' => $encReason,
@@ -2146,7 +2146,7 @@ class LocalFileDeleteBatch {
 			$dbw->insertSelect( 'filearchive', 'oldimage',
 				array(
 					'fa_storage_group' => $encGroup,
-					'fa_storage_key' => "CASE WHEN oi_sha1='' THEN '' ELSE $concat END",
+					'fa_storage_key' => $dbw->conditional( array( 'oi_sha1' => '' ), $dbw->addQuotes( '' ), $concat ),
 					'fa_deleted_user' => $encUserId,
 					'fa_deleted_timestamp' => $encTimestamp,
 					'fa_deleted_reason' => $encReason,
