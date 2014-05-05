@@ -82,7 +82,7 @@
 	"config-gd": "내장된 GD 그래픽 라이브러리를 찾았습니다.\n올리기를 활성화할 경우 그림 섬네일이 활성화됩니다.",
 	"config-no-scaling": "GD 라이브러리나 ImageMagick를 찾을 수 없습니다.\n그림 섬네일이 비활성화됩니다.",
 	"config-no-uri": "'''오류:''' 현재 URI를 확인할 수 없습니다.\n설치가 중단되었습니다.",
-	"config-no-cli-uri": "'''경고''': 기본 값을 사용하여 <code>--scriptpath</code>를 지정하지 않았습니다: <code>$1</code>.",
+	"config-no-cli-uri": "'''경고''': 기본값을 사용하여 <code>--scriptpath</code>를 지정하지 않았습니다: <code>$1</code>.",
 	"config-using-server": "\"<nowiki>$1</nowiki>\"(을)를 서버 이름으로 사용합니다.",
 	"config-using-uri": "\"<nowiki>$1$2</nowiki>\"(을)를 서버 URL로 사용합니다.",
 	"config-uploads-not-safe": "'''경고:''' 올리기에 대한 기본 디렉터리(<code>$1</code>)는 임의의 스크립트 실행에 취약합니다.\n미디어위키는 보안 위협 때문에 모든 올려진 파일을 검사하지만, 올리기를 활성화하기 전에 [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security 이 보안 취약점을 해결할 것]을 매우 권장합니다.",

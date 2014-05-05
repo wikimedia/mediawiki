@@ -1076,6 +1076,8 @@
 	"recentchanges-label-minor": "بو بیر کیچیک دَییشدیرمه‌دیر",
 	"recentchanges-label-bot": "بو دییشیک بیر بوت طرفیندن ائدیلیب‌دیر",
 	"recentchanges-label-unpatrolled": "بو دییشیکلیک هله گؤزدن گئچیریلمه‌ییب‌دیر",
+	"recentchanges-legend-heading": "'''ایختیصارلار:'''",
+	"recentchanges-legend-newpage": "(هم‌ده [[Special:NewPages|یئنی صحیفه‌لرین لیستینه]] باخین)",
 	"rcnotefrom": "آشاغیدا '''$2'''-دن ('''$1'''-ه قدر) ديَیشیکلیکلر گلیبلر.",
 	"rclistfrom": "$3 $2 واختیندان باشلایاراق یئنی دییشیکلری گؤستر",
 	"rcshowhideminor": "کیچیک دَییشیکلری $1",

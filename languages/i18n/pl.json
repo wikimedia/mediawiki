@@ -3050,6 +3050,7 @@
 	"htmlform-no": "Nie",
 	"htmlform-yes": "Tak",
 	"htmlform-chosen-placeholder": "Wybierz opcję",
+	"htmlform-cloner-delete": "Usuń",
 	"sqlite-has-fts": "$1 z obsługą pełnotekstowego wyszukiwania",
 	"sqlite-no-fts": "$1 bez obsługi pełnotekstowego wyszukiwania",
 	"logentry-delete-delete": "$1 {{GENDER:$2|usunął|usunęła}} stronę $3",

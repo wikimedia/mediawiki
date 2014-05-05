@@ -2955,6 +2955,7 @@
 	"htmlform-no": "না",
 	"htmlform-yes": "হ্যাঁ",
 	"htmlform-chosen-placeholder": "অপশন নির্বাচন করুন",
+	"htmlform-cloner-delete": "অপসারণ",
 	"sqlite-has-fts": "$1 সহ পূর্ণ টেক্সট সার্চ সমর্থন",
 	"sqlite-no-fts": "$1 বাদে পূর্ণ টেক্সট সার্চ সমর্থন",
 	"logentry-delete-delete": "$1 কর্তৃক $3 পাতাটি অপসারিত হয়েছে",
