@@ -567,7 +567,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 						$ret['vcs-system'] = 'git';
 						$ret['vcs-version'] = $vcsVersion;
 						$ret['vcs-url'] = $gitInfo->getHeadViewUrl();
-						$ret['vcs-date'] = wfTimestamp( TS_ISO_8601, $gitInfo->getHeadCommitDate() );
+						$vcsDate = $gitInfo->getHeadCommitDate();
+						if ( $vcsDate !== false ) {
+							$ret['vcs-date'] = wfTimestamp( TS_ISO_8601, $vcsDate );
+						}
 					} else {
 						$svnInfo = SpecialVersion::getSvnInfo( $extensionPath );
 						if ( $svnInfo !== false ) {
