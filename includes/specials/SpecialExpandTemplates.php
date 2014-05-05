@@ -118,13 +118,13 @@ class SpecialExpandTemplates extends SpecialPage {
 
 			$out->addHTML( $tmp );
 
-			$rawhtml = $this->generateHtml( $title, $output );
-
+			$pout = $this->generateHtml( $title, $output );
+			$rawhtml = $pout->getText();
 			if ( $this->generateRawHtml && strlen( $rawhtml ) > 0 ) {
 				$out->addHTML( $this->makeOutput( $rawhtml, 'expand_templates_html_output' ) );
 			}
 
-			$this->showHtmlPreview( $title, $rawhtml, $out );
+			$this->showHtmlPreview( $title, $pout, $out );
 		}
 	}
 
@@ -222,26 +222,24 @@ class SpecialExpandTemplates extends SpecialPage {
 	 *
 	 * @param Title $title
 	 * @param string $text
-	 * @return string
+	 * @return ParserOutput
 	 */
 	private function generateHtml( Title $title, $text ) {
 		global $wgParser;
 
 		$popts = ParserOptions::newFromContext( $this->getContext() );
 		$popts->setTargetLanguage( $title->getPageLanguage() );
-		$pout = $wgParser->parse( $text, $title, $popts );
-
-		return $pout->getText();
+		return $wgParser->parse( $text, $title, $popts );
 	}
 
 	/**
 	 * Wraps the provided html code in a div and outputs it to the page
 	 *
 	 * @param Title $title
-	 * @param string $html
+	 * @param ParserOutput $pout
 	 * @param OutputPage $out
 	 */
-	private function showHtmlPreview( Title $title, $html, OutputPage $out ) {
+	private function showHtmlPreview( Title $title, ParserOutput $pout, OutputPage $out ) {
 		$lang = $title->getPageViewLanguage();
 		$out->addHTML( "<h2>" . $this->msg( 'expand_templates_preview' )->escaped() . "</h2>\n" );
 		$out->addHTML( Html::openElement( 'div', array(
@@ -249,7 +247,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			'dir' => $lang->getDir(),
 			'lang' => $lang->getHtmlCode(),
 		) ) );
-		$out->addHTML( $html );
+		$out->addParserOutputContent( $pout );
 		$out->addHTML( Html::closeElement( 'div' ) );
 	}
 
