@@ -860,8 +860,9 @@ class Article implements Page {
 				'ShowRawCssJs',
 				array( $this->mContentObject, $this->getTitle(), $outputPage ) )
 			) {
+				// If no legacy hooks ran, display Content's parser output in its full glory
 				$po = $this->mContentObject->getParserOutput( $this->getTitle() );
-				$outputPage->addHTML( $po->getText() );
+				$outputPage->addParserOutput( $po );
 			}
 		}
 	}

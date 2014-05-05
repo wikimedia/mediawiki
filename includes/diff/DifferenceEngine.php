@@ -562,8 +562,9 @@ class DifferenceEngine extends ContextSource {
 					// use the content object's own rendering
 					$cnt = $this->mNewRev->getContent();
 					$po = $cnt ? $cnt->getParserOutput( $this->mNewRev->getTitle(), $this->mNewRev->getId() ) : null;
-					$txt = $po ? $po->getText() : '';
-					$out->addHTML( $txt );
+					if ( $po ) {
+						$out->addParserOutput( $po );
+					}
 				}
 			} elseif ( !wfRunHooks( 'ArticleContentViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
 				// Handled by extension
