@@ -36,7 +36,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 * @covers MWNamespace::isMovable
 	 */
 	public function testIsMovable() {
-		$this->assertFalse( MWNamespace::isMovable( NS_CATEGORY ) );
+		$this->assertFalse( MWNamespace::isMovable( NS_SPECIAL ) );
 		# @todo FIXME: Write more tests!!
 	}
 
