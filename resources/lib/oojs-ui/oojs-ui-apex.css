@@ -47,6 +47,10 @@
   bottom: 4.8em;
 }
 
+.oo-ui-dialog-content-footless .oo-ui-window-body {
+  bottom: 0;
+}
+
 .oo-ui-dialog > .oo-ui-window-frame {
   top: 1em;
   bottom: 1em;

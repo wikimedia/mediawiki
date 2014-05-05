@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (9a6c625f5f)
+ * OOjs UI v0.1.0-pre (7d2507b267)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri May 02 2014 12:04:40 GMT-0700 (PDT)
+ * Date: Mon May 05 2014 14:13:13 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -1946,7 +1946,7 @@ OO.ui.ButtonedElement = function OoUiButtonedElement( $button, config ) {
  * @param {jQuery.Event} e Mouse down event
  */
 OO.ui.ButtonedElement.prototype.onMouseDown = function ( e ) {
-	if ( this.disabled || e.which !== 1 ) {
+	if ( this.isDisabled() || e.which !== 1 ) {
 		return false;
 	}
 	// tabIndex should generally be interacted with via the property,
@@ -1967,7 +1967,7 @@ OO.ui.ButtonedElement.prototype.onMouseDown = function ( e ) {
  * @param {jQuery.Event} e Mouse up event
  */
 OO.ui.ButtonedElement.prototype.onMouseUp = function ( e ) {
-	if ( this.disabled || e.which !== 1 ) {
+	if ( this.isDisabled() || e.which !== 1 ) {
 		return false;
 	}
 	// Restore the tab-index after the button is up to restore the button's accesssibility
@@ -3545,7 +3545,7 @@ OO.ui.ToolGroup.prototype.updateDisabled = function () {
  * @param {jQuery.Event} e Mouse down event
  */
 OO.ui.ToolGroup.prototype.onMouseDown = function ( e ) {
-	if ( !this.disabled && e.which === 1 ) {
+	if ( !this.isDisabled() && e.which === 1 ) {
 		this.pressed = this.getTargetTool( e );
 		if ( this.pressed ) {
 			this.pressed.setActive( true );
@@ -3577,7 +3577,7 @@ OO.ui.ToolGroup.prototype.onCapturedMouseUp = function ( e ) {
 OO.ui.ToolGroup.prototype.onMouseUp = function ( e ) {
 	var tool = this.getTargetTool( e );
 
-	if ( !this.disabled && e.which === 1 && this.pressed && this.pressed === tool ) {
+	if ( !this.isDisabled() && e.which === 1 && this.pressed && this.pressed === tool ) {
 		this.pressed.onSelect();
 	}
 
@@ -4096,7 +4096,7 @@ OO.ui.GridLayout.prototype.getPanel = function ( x, y ) {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {boolean} [continuous=false] Show all pages, one after another
- * @cfg {boolean} [autoFocus=false] Focus on the first focusable element when changing to a page
+ * @cfg {boolean} [autoFocus=true] Focus on the first focusable element when changing to a page
  * @cfg {boolean} [outlined=false] Show an outline
  * @cfg {boolean} [editable=false] Show controls for adding, removing and reordering pages
  * @cfg {Object[]} [adders] List of adders for controls, each with name, icon and title properties
@@ -4113,7 +4113,7 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 	this.pages = {};
 	this.ignoreFocus = false;
 	this.stackLayout = new OO.ui.StackLayout( { '$': this.$, 'continuous': !!config.continuous } );
-	this.autoFocus = !!config.autoFocus;
+	this.autoFocus = config.autoFocus === undefined ? true : !!config.autoFocus;
 	this.outlineVisible = false;
 	this.outlined = !!config.outlined;
 	if ( this.outlined ) {
@@ -4898,7 +4898,7 @@ OO.ui.PopupToolGroup.prototype.onBlur = function ( e ) {
  * @inheritdoc
  */
 OO.ui.PopupToolGroup.prototype.onMouseUp = function ( e ) {
-	if ( !this.disabled && e.which === 1 ) {
+	if ( !this.isDisabled() && e.which === 1 ) {
 		this.setActive( false );
 	}
 	return OO.ui.ToolGroup.prototype.onMouseUp.call( this, e );
@@ -4919,7 +4919,7 @@ OO.ui.PopupToolGroup.prototype.onHandleMouseUp = function () {
  * @param {jQuery.Event} e Mouse down event
  */
 OO.ui.PopupToolGroup.prototype.onHandleMouseDown = function ( e ) {
-	if ( !this.disabled && e.which === 1 ) {
+	if ( !this.isDisabled() && e.which === 1 ) {
 		this.setActive( !this.active );
 	}
 	return false;
@@ -5066,7 +5066,7 @@ OO.mixinClass( OO.ui.PopupTool, OO.ui.PopuppableElement );
  * @inheritdoc
  */
 OO.ui.PopupTool.prototype.onSelect = function () {
-	if ( !this.disabled ) {
+	if ( !this.isDisabled() ) {
 		if ( this.popup.isVisible() ) {
 			this.hidePopup();
 		} else {
@@ -5357,7 +5357,7 @@ OO.mixinClass( OO.ui.ButtonWidget, OO.ui.FlaggableElement );
  * @fires click
  */
 OO.ui.ButtonWidget.prototype.onClick = function () {
-	if ( !this.disabled ) {
+	if ( !this.isDisabled() ) {
 		this.emit( 'click' );
 		if ( this.isHyperlink ) {
 			return true;
@@ -5373,7 +5373,7 @@ OO.ui.ButtonWidget.prototype.onClick = function () {
  * @fires click
  */
 OO.ui.ButtonWidget.prototype.onKeyPress = function ( e ) {
-	if ( !this.disabled && e.which === OO.ui.Keys.SPACE ) {
+	if ( !this.isDisabled() && e.which === OO.ui.Keys.SPACE ) {
 		if ( this.isHyperlink ) {
 			this.onClick();
 			return true;
@@ -5414,7 +5414,7 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 	// Initialization
 	this.$input
 		.attr( 'name', config.name )
-		.prop( 'disabled', this.disabled );
+		.prop( 'disabled', this.isDisabled() );
 	this.setReadOnly( config.readOnly );
 	this.$element.addClass( 'oo-ui-inputWidget' ).append( this.$input );
 	this.setValue( config.value );
@@ -5449,7 +5449,7 @@ OO.ui.InputWidget.prototype.getInputElement = function () {
  * @param {jQuery.Event} e Key down, mouse up, cut, paste, change, input, or select event
  */
 OO.ui.InputWidget.prototype.onEdit = function () {
-	if ( !this.disabled ) {
+	if ( !this.isDisabled() ) {
 		// Allow the stack to clear so the value will be updated
 		setTimeout( OO.ui.bind( function () {
 			this.setValue( this.$input.val() );
@@ -5562,7 +5562,7 @@ OO.ui.InputWidget.prototype.setReadOnly = function ( state ) {
 OO.ui.InputWidget.prototype.setDisabled = function ( state ) {
 	OO.ui.Widget.prototype.setDisabled.call( this, state );
 	if ( this.$input ) {
-		this.$input.prop( 'disabled', this.disabled );
+		this.$input.prop( 'disabled', this.isDisabled() );
 	}
 	return this;
 };
@@ -5635,7 +5635,7 @@ OO.ui.CheckboxInputWidget.prototype.setValue = function ( value ) {
  * @inheritdoc
  */
 OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
-	if ( !this.disabled ) {
+	if ( !this.isDisabled() ) {
 		// Allow the stack to clear so the value will be updated
 		setTimeout( OO.ui.bind( function () {
 			this.setValue( this.$input.prop( 'checked' ) );
@@ -6005,7 +6005,7 @@ OO.ui.OptionWidget.static.scrollIntoViewOnSelect = false;
  * @return {boolean} Item is selectable
  */
 OO.ui.OptionWidget.prototype.isSelectable = function () {
-	return this.constructor.static.selectable && !this.disabled;
+	return this.constructor.static.selectable && !this.isDisabled();
 };
 
 /**
@@ -6014,7 +6014,7 @@ OO.ui.OptionWidget.prototype.isSelectable = function () {
  * @return {boolean} Item is highlightable
  */
 OO.ui.OptionWidget.prototype.isHighlightable = function () {
-	return this.constructor.static.highlightable && !this.disabled;
+	return this.constructor.static.highlightable && !this.isDisabled();
 };
 
 /**
@@ -6023,7 +6023,7 @@ OO.ui.OptionWidget.prototype.isHighlightable = function () {
  * @return {boolean} Item is pressable
  */
 OO.ui.OptionWidget.prototype.isPressable = function () {
-	return this.constructor.static.pressable && !this.disabled;
+	return this.constructor.static.pressable && !this.isDisabled();
 };
 
 /**
@@ -6060,7 +6060,7 @@ OO.ui.OptionWidget.prototype.isPressed = function () {
  * @chainable
  */
 OO.ui.OptionWidget.prototype.setSelected = function ( state ) {
-	if ( !this.disabled && this.constructor.static.selectable ) {
+	if ( !this.isDisabled() && this.constructor.static.selectable ) {
 		this.selected = !!state;
 		if ( this.selected ) {
 			this.$element.addClass( 'oo-ui-optionWidget-selected' );
@@ -6081,7 +6081,7 @@ OO.ui.OptionWidget.prototype.setSelected = function ( state ) {
  * @chainable
  */
 OO.ui.OptionWidget.prototype.setHighlighted = function ( state ) {
-	if ( !this.disabled && this.constructor.static.highlightable ) {
+	if ( !this.isDisabled() && this.constructor.static.highlightable ) {
 		this.highlighted = !!state;
 		if ( this.highlighted ) {
 			this.$element.addClass( 'oo-ui-optionWidget-highlighted' );
@@ -6099,7 +6099,7 @@ OO.ui.OptionWidget.prototype.setHighlighted = function ( state ) {
  * @chainable
  */
 OO.ui.OptionWidget.prototype.setPressed = function ( state ) {
-	if ( !this.disabled && this.constructor.static.pressable ) {
+	if ( !this.isDisabled() && this.constructor.static.pressable ) {
 		this.pressed = !!state;
 		if ( this.pressed ) {
 			this.$element.addClass( 'oo-ui-optionWidget-pressed' );
@@ -6121,7 +6121,7 @@ OO.ui.OptionWidget.prototype.flash = function () {
 	var $this = this.$element,
 		deferred = $.Deferred();
 
-	if ( !this.disabled && this.constructor.static.pressable ) {
+	if ( !this.isDisabled() && this.constructor.static.pressable ) {
 		$this.removeClass( 'oo-ui-optionWidget-highlighted oo-ui-optionWidget-pressed' );
 		setTimeout( OO.ui.bind( function () {
 			// Restore original classes
@@ -6246,7 +6246,7 @@ OO.ui.SelectWidget.static.tagName = 'ul';
 OO.ui.SelectWidget.prototype.onMouseDown = function ( e ) {
 	var item;
 
-	if ( !this.disabled && e.which === 1 ) {
+	if ( !this.isDisabled() && e.which === 1 ) {
 		this.togglePressed( true );
 		item = this.getTargetItem( e );
 		if ( item && item.isSelectable() ) {
@@ -6274,7 +6274,7 @@ OO.ui.SelectWidget.prototype.onMouseUp = function ( e ) {
 			this.selecting = item;
 		}
 	}
-	if ( !this.disabled && e.which === 1 && this.selecting ) {
+	if ( !this.isDisabled() && e.which === 1 && this.selecting ) {
 		this.pressItem( null );
 		this.chooseItem( this.selecting );
 		this.selecting = null;
@@ -6292,7 +6292,7 @@ OO.ui.SelectWidget.prototype.onMouseUp = function ( e ) {
 OO.ui.SelectWidget.prototype.onMouseMove = function ( e ) {
 	var item;
 
-	if ( !this.disabled && this.pressed ) {
+	if ( !this.isDisabled() && this.pressed ) {
 		item = this.getTargetItem( e );
 		if ( item && item !== this.selecting && item.isSelectable() ) {
 			this.pressItem( item );
@@ -6311,7 +6311,7 @@ OO.ui.SelectWidget.prototype.onMouseMove = function ( e ) {
 OO.ui.SelectWidget.prototype.onMouseOver = function ( e ) {
 	var item;
 
-	if ( !this.disabled ) {
+	if ( !this.isDisabled() ) {
 		item = this.getTargetItem( e );
 		this.highlightItem( item && item.isHighlightable() ? item : null );
 	}
@@ -6325,7 +6325,7 @@ OO.ui.SelectWidget.prototype.onMouseOver = function ( e ) {
  * @param {jQuery.Event} e Mouse over event
  */
 OO.ui.SelectWidget.prototype.onMouseLeave = function () {
-	if ( !this.disabled ) {
+	if ( !this.isDisabled() ) {
 		this.highlightItem( null );
 	}
 	return false;
@@ -6720,7 +6720,7 @@ OO.ui.MenuWidget.prototype.onKeyDown = function ( e ) {
 		handled = false,
 		highlightItem = this.getHighlightedItem();
 
-	if ( !this.disabled && this.visible ) {
+	if ( !this.isDisabled() && this.visible ) {
 		if ( !highlightItem ) {
 			highlightItem = this.getSelectedItem();
 		}
@@ -6997,7 +6997,7 @@ OO.ui.InlineMenuWidget.prototype.onClick = function ( e ) {
 		return;
 	}
 
-	if ( !this.disabled ) {
+	if ( !this.isDisabled() ) {
 		if ( this.menu.isVisible() ) {
 			this.menu.hide();
 		} else {
@@ -7653,7 +7653,7 @@ OO.ui.PopupButtonWidget.prototype.onClick = function ( e ) {
 		return;
 	}
 
-	if ( !this.disabled ) {
+	if ( !this.isDisabled() ) {
 		if ( this.popup.isVisible() ) {
 			this.hidePopup();
 		} else {
@@ -8223,7 +8223,7 @@ OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.ToggleWidget );
  * @inheritdoc
  */
 OO.ui.ToggleButtonWidget.prototype.onClick = function () {
-	if ( !this.disabled ) {
+	if ( !this.isDisabled() ) {
 		this.setValue( !this.value );
 	}
 
@@ -8295,7 +8295,7 @@ OO.mixinClass( OO.ui.ToggleSwitchWidget, OO.ui.ToggleWidget );
  * @param {jQuery.Event} e Mouse down event
  */
 OO.ui.ToggleSwitchWidget.prototype.onClick = function ( e ) {
-	if ( !this.disabled && e.which === 1 ) {
+	if ( !this.isDisabled() && e.which === 1 ) {
 		this.setValue( !this.value );
 	}
 };
