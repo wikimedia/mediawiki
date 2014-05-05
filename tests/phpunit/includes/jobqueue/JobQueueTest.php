@@ -21,8 +21,8 @@ class JobQueueTest extends MediaWikiTestCase {
 
 		$this->setMwGlobals( 'wgMemc', new HashBagOStuff() );
 
-		if ( $this->getCliArg( 'use-jobqueue=' ) ) {
-			$name = $this->getCliArg( 'use-jobqueue=' );
+		if ( $this->getCliArg( 'use-jobqueue' ) ) {
+			$name = $this->getCliArg( 'use-jobqueue' );
 			if ( !isset( $wgJobTypeConf[$name] ) ) {
 				throw new MWException( "No \$wgJobTypeConf entry for '$name'." );
 			}
