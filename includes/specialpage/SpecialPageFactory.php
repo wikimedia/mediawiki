@@ -407,17 +407,21 @@ class SpecialPageFactory {
 	 * Return categorised listable special pages which are available
 	 * for the current user, but not for everyone
 	 *
+	 * @param User|null $user User object to use or null for $wgUser
 	 * @return array ( string => Specialpage )
 	 */
-	public static function getRestrictedPages() {
-		global $wgUser;
+	public static function getRestrictedPages( User $user = null ) {
 		$pages = array();
+		if ( $user === null ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
 		foreach ( self::getList() as $name => $rec ) {
 			$page = self::getPage( $name );
 			if (
 				$page->isListed()
 				&& $page->isRestricted()
-				&& $page->userCanExecute( $wgUser )
+				&& $page->userCanExecute( $user )
 			) {
 				$pages[$name] = $page;
 			}
