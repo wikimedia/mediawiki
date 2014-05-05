@@ -50,8 +50,8 @@ class NewParserTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		//Setup CLI arguments
-		if ( $this->getCliArg( 'regex=' ) ) {
-			$this->regex = $this->getCliArg( 'regex=' );
+		if ( $this->getCliArg( 'regex' ) ) {
+			$this->regex = $this->getCliArg( 'regex' );
 		} else {
 			# Matches anything
 			$this->regex = '';
@@ -346,11 +346,11 @@ class NewParserTest extends MediaWikiTestCase {
 			self::getOptionValue( 'wgLinkHolderBatchSize', $opts, 1000 );
 
 		$uploadDir = $this->getUploadDir();
-		if ( $this->getCliArg( 'use-filebackend=' ) ) {
+		if ( $this->getCliArg( 'use-filebackend' ) ) {
 			if ( self::$backendToUse ) {
 				$backend = self::$backendToUse;
 			} else {
-				$name = $this->getCliArg( 'use-filebackend=' );
+				$name = $this->getCliArg( 'use-filebackend' );
 				$useConfig = array();
 				foreach ( $wgFileBackends as $conf ) {
 					if ( $conf['name'] == $name ) {
@@ -769,8 +769,8 @@ class NewParserTest extends MediaWikiTestCase {
 
 		$files = $wgParserTestFiles;
 
-		if ( $this->getCliArg( 'file=' ) ) {
-			$files = array( $this->getCliArg( 'file=' ) );
+		if ( $this->getCliArg( 'file' ) ) {
+			$files = array( $this->getCliArg( 'file' ) );
 		}
 
 		$dict = $this->getFuzzInput( $files );

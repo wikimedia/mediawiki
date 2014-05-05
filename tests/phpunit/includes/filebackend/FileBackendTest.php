@@ -21,11 +21,11 @@ class FileBackendTest extends MediaWikiTestCase {
 		parent::setUp();
 		$uniqueId = time() . '-' . mt_rand();
 		$tmpPrefix = wfTempDir() . '/filebackend-unittest-' . $uniqueId;
-		if ( $this->getCliArg( 'use-filebackend=' ) ) {
+		if ( $this->getCliArg( 'use-filebackend' ) ) {
 			if ( self::$backendToUse ) {
 				$this->singleBackend = self::$backendToUse;
 			} else {
-				$name = $this->getCliArg( 'use-filebackend=' );
+				$name = $this->getCliArg( 'use-filebackend' );
 				$useConfig = array();
 				foreach ( $wgFileBackends as $conf ) {
 					if ( $conf['name'] == $name ) {

@@ -17,8 +17,8 @@ class StoreBatchTest extends MediaWikiTestCase {
 
 		# Forge a FSRepo object to not have to rely on local wiki settings
 		$tmpPrefix = wfTempDir() . '/storebatch-test-' . time() . '-' . mt_rand();
-		if ( $this->getCliArg( 'use-filebackend=' ) ) {
-			$name = $this->getCliArg( 'use-filebackend=' );
+		if ( $this->getCliArg( 'use-filebackend' ) ) {
+			$name = $this->getCliArg( 'use-filebackend' );
 			$useConfig = array();
 			foreach ( $wgFileBackends as $conf ) {
 				if ( $conf['name'] == $name ) {

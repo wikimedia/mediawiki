@@ -666,8 +666,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @return mixed
 	 */
 	public function getCliArg( $offset ) {
-		if ( isset( MediaWikiPHPUnitCommand::$additionalOptions[$offset] ) ) {
-			return MediaWikiPHPUnitCommand::$additionalOptions[$offset];
+		if ( isset( PHPUnitMaintClass::$additionalOptions[$offset] ) ) {
+			return PHPUnitMaintClass::$additionalOptions[$offset];
 		}
 	}
 
@@ -677,7 +677,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param mixed $value
 	 */
 	public function setCliArg( $offset, $value ) {
-		MediaWikiPHPUnitCommand::$additionalOptions[$offset] = $value;
+		PHPUnitMaintClass::$additionalOptions[$offset] = $value;
 	}
 
 	/**

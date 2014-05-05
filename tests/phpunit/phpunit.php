@@ -15,6 +15,18 @@ require_once dirname( dirname( __DIR__ ) ) . "/maintenance/Maintenance.php";
 
 class PHPUnitMaintClass extends Maintenance {
 
+	public static $additionalOptions = array(
+		'regex' => false,
+		'file' => false,
+		'use-filebackend' => false,
+		'use-bagostuff' => false,
+		'use-jobqueue' => false,
+		'keep-uploads' => false,
+		'use-normal-tables' => false,
+		'reuse-db' => false,
+		'wiki' => false,
+	);
+
 	public function __construct() {
 		parent::__construct();
 		$this->addOption(
@@ -30,6 +42,14 @@ class PHPUnitMaintClass extends Maintenance {
 			false, # not required
 			false # no arg needed
 		);
+		$this->addOption( 'regex', 'Only run parser tests that match the given regex.', false, true );
+		$this->addOption( 'file', 'File describing parser tests.', false, true );
+		$this->addOption( 'use-filebackend', 'Use filebackend', false, true );
+		$this->addOption( 'use-bagostuff', 'Use bagostuff', false, true );
+		$this->addOption( 'use-jobqueue', 'Use jobqueue', false, true );
+		$this->addOption( 'keep-uploads', 'Re-use the same upload directory for each test, don\'t delete it.', false, false );
+		$this->addOption( 'use-normal-tables', 'Use normal DB tables.', false, false );
+		$this->addOption( 'reuse-db', 'Init DB only if tables are missing and keep after finish.', false, false );
 	}
 
 	public function finalSetup() {
@@ -70,6 +90,8 @@ class PHPUnitMaintClass extends Maintenance {
 
 	public function execute() {
 		global $IP;
+
+		$this->forceFormatServerArgv();
 
 		# Make sure we have --configuration or PHPUnit might complain
 		if ( !in_array( '--configuration', $_SERVER['argv'] ) ) {
@@ -135,11 +157,45 @@ class PHPUnitMaintClass extends Maintenance {
 			array_splice( $_SERVER['argv'], 1, 0, '--printer' );
 		}
 
+		foreach( self::$additionalOptions as $option => $default ) {
+			$key = array_search( '--' . $option, $_SERVER['argv'] );
+			if( $key !== false ) {
+				unset( $_SERVER['argv'][$key] );
+				if( $this->mParams[$option]['withArg'] ) {
+					self::$additionalOptions[$option] = $_SERVER['argv'][$key + 1];
+					unset( $_SERVER['argv'][$key + 1] );
+				} else {
+					self::$additionalOptions[$option] = true;
+				}
+			}
+		}
+
 	}
 
 	public function getDbType() {
 		return Maintenance::DB_ADMIN;
 	}
+
+	/**
+	 * Force the format of elements in $_SERVER['argv']
+	 *  - Split args such as "wiki=enwiki" into two separate arg elements "wiki" and "enwiki"
+	 */
+	private function forceFormatServerArgv() {
+		$argv = array();
+		foreach( $_SERVER['argv'] as $key => $arg ) {
+			if( $key === 0 ) {
+				$argv[0] = $arg;
+			} elseif ( strstr( $arg, '=' ) ) {
+				foreach( explode( '=', $arg, 2 ) as $argPart ) {
+					$argv[] = $argPart;
+				}
+			} else {
+				$argv[] = $arg;
+			}
+		}
+		$_SERVER['argv'] = $argv;
+	}
+
 }
 
 $maintClass = 'PHPUnitMaintClass';
@@ -169,4 +225,4 @@ if ( version_compare( PHP_VERSION, '5.4.0', '<' )
 	} );
 }
 
-MediaWikiPHPUnitCommand::main();
+PHPUnit_TextUI_Command::main();

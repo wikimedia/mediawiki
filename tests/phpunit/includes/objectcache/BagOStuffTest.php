@@ -11,8 +11,8 @@ class BagOStuffTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		// type defined through parameter
-		if ( $this->getCliArg( 'use-bagostuff=' ) ) {
-			$name = $this->getCliArg( 'use-bagostuff=' );
+		if ( $this->getCliArg( 'use-bagostuff' ) ) {
+			$name = $this->getCliArg( 'use-bagostuff' );
 
 			$this->cache = ObjectCache::newFromId( $name );
 		} else {
@@ -67,7 +67,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 		 * - pcntl_fork is supported by the system
 		 * - cache type will correctly support calls over forks
 		 */
-		$fork = (bool)$this->getCliArg( 'use-bagostuff=' );
+		$fork = (bool)$this->getCliArg( 'use-bagostuff' );
 		$fork &= function_exists( 'pcntl_fork' );
 		$fork &= !$this->cache instanceof HashBagOStuff;
 		$fork &= !$this->cache instanceof EmptyBagOStuff;
