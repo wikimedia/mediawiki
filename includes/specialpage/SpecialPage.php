@@ -30,7 +30,7 @@
  * @todo Turn this into a real ContextSource
  * @ingroup SpecialPage
  */
-class SpecialPage {
+abstract class SpecialPage {
 	// The canonical name of this special page
 	// Also used for the default <h1> heading, @see getDescription()
 	protected $mName;
@@ -44,12 +44,6 @@ class SpecialPage {
 
 	// Listed in Special:Specialpages?
 	private $mListed;
-
-	// Function name called by the default execute()
-	private $mFunction;
-
-	// File which needs to be included before the function above can be called
-	private $mFile;
 
 	// Whether or not this special page is being included from an article
 	protected $mIncluding;
@@ -107,30 +101,18 @@ class SpecialPage {
 	 * @param string $name Name of the special page, as seen in links and URLs
 	 * @param string $restriction User right required, e.g. "block" or "delete"
 	 * @param bool $listed Whether the page is listed in Special:Specialpages
-	 * @param callable|bool $function Function called by execute(). By default
-	 *   it is constructed from $name
-	 * @param string $file File which is included by execute(). It is also
-	 *   constructed from $name by default
+	 * @param callable|bool $function unused
+	 * @param string $file unused
 	 * @param bool $includable Whether the page can be included in normal pages
 	 */
 	public function __construct(
 		$name = '', $restriction = '', $listed = true,
-		$function = false, $file = 'default', $includable = false
+		$function = false, $file = '', $includable = false
 	) {
 		$this->mName = $name;
 		$this->mRestriction = $restriction;
 		$this->mListed = $listed;
 		$this->mIncludable = $includable;
-		if ( !$function ) {
-			$this->mFunction = 'wfSpecial' . $name;
-		} else {
-			$this->mFunction = $function;
-		}
-		if ( $file === 'default' ) {
-			$this->mFile = __DIR__ . "/specials/Special$name.php";
-		} else {
-			$this->mFile = $file;
-		}
 	}
 
 	/**
@@ -414,24 +396,10 @@ class SpecialPage {
 
 	/**
 	 * Default execute method
-	 * Checks user permissions, calls the function given in mFunction
-	 *
-	 * This must be overridden by subclasses; it will be made abstract in a future version
 	 *
 	 * @param string|null $subPage
 	 */
-	public function execute( $subPage ) {
-		$this->setHeaders();
-		$this->checkPermissions();
-
-		$func = $this->mFunction;
-		// only load file if the function does not exist
-		if ( !is_callable( $func ) && $this->mFile ) {
-			require_once $this->mFile;
-		}
-		$this->outputHeader();
-		call_user_func( $func, $subPage, $this );
-	}
+	abstract public function execute( $subPage );
 
 	/**
 	 * Outputs a summary message on top of special pages
