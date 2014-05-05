@@ -27,12 +27,20 @@ class PHPUnitMaintClass extends Maintenance {
 		'wiki' => false,
 	);
 
+	public static $PHPUnitPharPath;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addOption(
 			'with-phpunitdir',
 			'Directory to include PHPUnit from, for example when using a git '
 				. 'fetchout from upstream. Path will be prepended to PHP `include_path`.',
+			false, # not required
+			true # need arg
+		);
+		$this->addOption(
+			'with-phpunitphar',
+			'Path to PHPUnit phar file',
 			false, # not required
 			true # need arg
 		);
@@ -100,8 +108,13 @@ class PHPUnitMaintClass extends Maintenance {
 				array( '--configuration', $IP . '/tests/phpunit/suite.xml' ) );
 		}
 
-		# --with-phpunitdir let us override the default PHPUnit version
-		if ( $this->hasOption( 'with-phpunitdir' ) ) {
+		# --with-phpunitphar or --with-phpunitdir let us override the default PHPUnit version
+		if( $this->hasOption( 'with-phpunitphar' ) ) {
+			self::$PHPUnitPharPath = $this->getOption( 'with-phpunitphar' );
+			$key = array_search( '--with-phpunitphar', $_SERVER['argv'] );
+			unset( $_SERVER['argv'][$key] ); // the option
+			unset( $_SERVER['argv'][$key + 1] ); // its value
+		} elseif ( $this->hasOption( 'with-phpunitdir' ) ) {
 			$phpunitDir = $this->getOption( 'with-phpunitdir' );
 			# Sanity checks
 			if ( !is_dir( $phpunitDir ) ) {
@@ -202,7 +215,12 @@ $maintClass = 'PHPUnitMaintClass';
 require RUN_MAINTENANCE_IF_MAIN;
 
 if ( !class_exists( 'PHPUnit_Runner_Version' ) ) {
-	require_once 'PHPUnit/Runner/Version.php';
+	if ( isset( PHPUnitMaintClass::$PHPUnitPharPath ) && is_readable( PHPUnitMaintClass::$PHPUnitPharPath ) ) {
+		require_once (PHPUnitMaintClass::$PHPUnitPharPath);
+	} else {
+		// try loading phpunit via PEAR
+		require_once 'PHPUnit/Runner/Version.php';
+	}
 }
 
 if ( PHPUnit_Runner_Version::id() !== '@package_version@'
