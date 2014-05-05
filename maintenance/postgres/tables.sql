@@ -678,7 +678,7 @@ CREATE INDEX user_properties_property ON user_properties (up_property);
 CREATE TABLE l10n_cache (
   lc_lang   TEXT  NOT NULL,
   lc_key    TEXT  NOT NULL,
-  lc_value  TEXT  NOT NULL
+  lc_value  BYTEA NOT NULL
 );
 CREATE INDEX l10n_cache_lc_lang_key ON l10n_cache (lc_lang, lc_key);
 
