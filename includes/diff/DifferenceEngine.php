@@ -554,7 +554,7 @@ class DifferenceEngine extends ContextSource {
 
 			// NOTE: only needed for B/C: custom rendering of JS/CSS via hook
 			if ( $this->mNewPage->isCssJsSubpage() || $this->mNewPage->isCssOrJsPage() ) {
-				// Stolen from Article::view --AG 2007-10-11
+				// This needs to be synchronised with Article::showCssOrJsPage(), which sucks
 				// Give hooks a chance to customise the output
 				// @todo standardize this crap into one function
 				if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
@@ -562,8 +562,9 @@ class DifferenceEngine extends ContextSource {
 					// use the content object's own rendering
 					$cnt = $this->mNewRev->getContent();
 					$po = $cnt ? $cnt->getParserOutput( $this->mNewRev->getTitle(), $this->mNewRev->getId() ) : null;
-					$txt = $po ? $po->getText() : '';
-					$out->addHTML( $txt );
+					if ( $po ) {
+						$out->addParserOutputContent( $po );
+					}
 				}
 			} elseif ( !wfRunHooks( 'ArticleContentViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
 				// Handled by extension
