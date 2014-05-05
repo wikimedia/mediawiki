@@ -43,4 +43,13 @@ class SearchDatabase extends SearchEngine {
 			$this->db = wfGetDB( DB_SLAVE );
 		}
 	}
+
+	/**
+	 * Picks which field to index on, depending on what type of query.
+	 * @param bool $fulltext
+	 * @return string
+	 */
+	protected function getIndexField( $fulltext ) {
+		return $fulltext ? 'si_text' : 'si_title';
+	}
 }

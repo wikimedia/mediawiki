@@ -140,15 +140,6 @@ class SearchOracle extends SearchDatabase {
 	}
 
 	/**
-	 * Picks which field to index on, depending on what type of query.
-	 * @param bool $fulltext
-	 * @return string
-	 */
-	function getIndexField( $fulltext ) {
-		return $fulltext ? 'si_text' : 'si_title';
-	}
-
-	/**
 	 * Get the base part of the search query.
 	 *
 	 * @param string $filteredTerm
