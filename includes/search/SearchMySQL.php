@@ -43,7 +43,7 @@ class SearchMySQL extends SearchDatabase {
 	 */
 	function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;
-		$lc = SearchEngine::legalSearchChars(); // Minus format chars
+		$lc = $this->legalSearchChars(); // Minus format chars
 		$searchon = '';
 		$this->searchTerms = array();
 

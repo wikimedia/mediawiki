@@ -132,7 +132,7 @@ class SearchMssql extends SearchDatabase {
 	 */
 	function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;
-		$lc = SearchEngine::legalSearchChars();
+		$lc = $this->legalSearchChars();
 		$this->searchTerms = array();
 
 		# @todo FIXME: This doesn't handle parenthetical expressions.
