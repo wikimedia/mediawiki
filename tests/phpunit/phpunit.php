@@ -24,6 +24,12 @@ class PHPUnitMaintClass extends Maintenance {
 			false, # not required
 			true # need arg
 		);
+		$this->addOption(
+			'debug-tests',
+			'Log testing activity to the PHPUnitCommand log channel.',
+			false, # not required
+			false # no arg needed
+		);
 	}
 
 	public function finalSetup() {
@@ -121,6 +127,14 @@ class PHPUnitMaintClass extends Maintenance {
 			);
 			array_splice( $_SERVER['argv'], 1, 0, '--include-path' );
 		}
+
+		$key = array_search( '--debug-tests', $_SERVER['argv'] );
+		if( $key !== false && array_search( '--printer', $_SERVER['argv'] ) === false ) {
+			unset( $_SERVER['argv'][$key] );
+			array_splice( $_SERVER['argv'], 1, 0, 'MediaWikiPHPUnitTestListener' );
+			array_splice( $_SERVER['argv'], 1, 0, '--printer' );
+		}
+
 	}
 
 	public function getDbType() {
