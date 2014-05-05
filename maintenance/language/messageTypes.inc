@@ -271,6 +271,7 @@ $wgIgnoredMessages = array(
 	'helplogin-url',
 	'autocomment-prefix',
 	'move-redirect-text',
+	'category-move-redirect-override',
 	'interlanguage-link-title-langonly',
 	'createaccount-hook-abort',
 );

@@ -1924,6 +1924,11 @@ class Title {
 				$errors[] = array( 'movenotallowedfile' );
 			}
 
+			// Check if user is allowed to move category pages if it's a category page
+			if ( $this->mNamespace == NS_CATEGORY && !$user->isAllowed( 'move-categorypages' ) ) {
+				$errors[] = array( 'cant-move-category-page' );
+			}
+
 			if ( !$user->isAllowed( 'move' ) ) {
 				// User can't move anything
 				$userCanMove = User::groupHasPermission( 'user', 'move' );
@@ -1943,6 +1948,10 @@ class Title {
 					&& $this->mNamespace == NS_USER && !$this->isSubpage() ) {
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = array( 'cant-move-to-user-page' );
+			} elseif ( !$user->isAllowed( 'move-categorypages' )
+					&& $this->mNamespace == NS_CATEGORY ) {
+				// Show user page-specific message only if the user can move other pages
+				$errors[] = array( 'cant-move-to-category-page' );
 			}
 		} elseif ( !$user->isAllowed( $action ) ) {
 			$errors[] = $this->missingPermissionError( $action, $short );
@@ -3812,9 +3821,14 @@ class Title {
 		}
 
 		if ( $createRedirect ) {
-			$contentHandler = ContentHandler::getForTitle( $this );
-			$redirectContent = $contentHandler->makeRedirectContent( $nt,
-				wfMessage( 'move-redirect-text' )->inContentLanguage()->plain() );
+			if ( $this->getNamespace() == NS_CATEGORY && !wfMessage( 'category-move-redirect-override' )->isDisabled() ) {
+				$redirectContent = new WikitextContent(
+					wfMessage( 'category-move-redirect-override' )->params( $nt->getPrefixedText() )->inContentLanguage()->plain() );
+			} else {
+				$contentHandler = ContentHandler::getForTitle( $this );
+				$redirectContent = $contentHandler->makeRedirectContent( $nt,
+					wfMessage( 'move-redirect-text' )->inContentLanguage()->plain() );
+			}
 
 			// NOTE: If this page's content model does not support redirects, $redirectContent will be null.
 		} else {
