@@ -23,6 +23,11 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+/**
+ * Maintenance script to undelete a page by fetching it from the archive table.
+ *
+ * @ingroup Maintenance
+ */
 class Undelete extends Maintenance {
 	public function __construct() {
 		parent::__construct();
@@ -39,18 +44,40 @@ class Undelete extends Maintenance {
 		$reason = $this->getOption( 'reason', '' );
 		$pageName = $this->getArg();
 
+		// Construct title object to undelete and check if title exists
 		$title = Title::newFromText( $pageName );
 		if ( !$title ) {
 			$this->error( "Invalid title", true );
 		}
+
+		// Construct user object to perform undeletion and check if user exists
 		$wgUser = User::newFromName( $user );
 		if ( !$wgUser ) {
 			$this->error( "Invalid username", true );
 		}
+
+		// Construct archived object to restore and check if archived object exists
 		$archive = new PageArchive( $title );
-		$this->output( "Undeleting " . $title->getPrefixedDBkey() . '...' );
-		$archive->undelete( array(), $reason );
-		$this->output( "done\n" );
+		if ( !$archive->isDeleted() ) {
+			$this->error( "Error undeleting page:" .
+					"cannot locate deleted revisions to restore.", true );
+		}
+
+		// Actual block to perform undeletion
+		$this->output( "Undeleting " . $title->getPrefixedDBkey() . '...\n' );
+		try {
+			$archive->undelete( array(), $reason, array(), false, $wgUser );
+		} catch ( ErrorPageError $err ) {
+			throw $err( "Error undeleting page:" .
+					"the database is currently undergoing maintenance." );
+		} catch ( PermissionsError $permerr ) {
+			throw $permerr( "Error undeleting page:" .
+					"you do not have permission to undelete this page." );
+		} catch ( ReadOnlyError $readerr ) {
+			throw $readerr( "Error undeleting page:" .
+					"the database is currently locked from modifications." );
+		}
+		$this->output( "Done!\n" );
 	}
 }
 
