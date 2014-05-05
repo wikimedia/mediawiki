@@ -170,8 +170,7 @@ class TextContent extends AbstractContent {
 	 *
 	 * @since 1.21
 	 *
-	 * @param Content $that The other content object to compare this content
-	 * object to.
+	 * @param Content $that The other content object to compare this content object to.
 	 * @param Language $lang The language object to use for text segmentation.
 	 *    If not given, $wgContentLang is used.
 	 *
@@ -269,10 +268,12 @@ class TextContent extends AbstractContent {
 	 * This implementation provides lossless conversion between content models based
 	 * on TextContent.
 	 *
-	 * @param string $toModel
-	 * @param string $lossy
+	 * @param string $toModel The desired content model, use the CONTENT_MODEL_XXX flags.
+	 * @param string $lossy Flag, set to "lossy" to allow lossy conversion. If lossy conversion is not
+	 *     allowed, full round-trip conversion is expected to work without losing information.
 	 *
-	 * @return Content|bool
+	 * @return Content|bool A content object with the content model $toModel, or false if that
+	 *     conversion is not supported.
 	 *
 	 * @see Content::convert()
 	 */
@@ -286,7 +287,7 @@ class TextContent extends AbstractContent {
 		$toHandler = ContentHandler::getForModelID( $toModel );
 
 		if ( $toHandler instanceof TextContentHandler ) {
-			//NOTE: ignore content serialization format - it's just text anyway.
+			// NOTE: ignore content serialization format - it's just text anyway.
 			$text = $this->getNativeData();
 			$converted = $toHandler->unserializeContent( $text );
 		}
