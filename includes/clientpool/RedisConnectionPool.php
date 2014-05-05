@@ -44,6 +44,8 @@ class RedisConnectionPool {
 	 */
 	/** @var string Connection timeout in seconds */
 	protected $connectTimeout;
+	/** @var string Read timeout in seconds */
+	protected $readTimeout;
 	/** @var string Plaintext auth password */
 	protected $password;
 	/** @var bool Whether connections persist */
@@ -76,6 +78,7 @@ class RedisConnectionPool {
 				'See https://www.mediawiki.org/wiki/Redis#Setup' );
 		}
 		$this->connectTimeout = $options['connectTimeout'];
+		$this->readTimeout = $options['readTimeout'];
 		$this->persistent = $options['persistent'];
 		$this->password = $options['password'];
 		if ( !isset( $options['serializer'] ) || $options['serializer'] === 'php' ) {
@@ -97,6 +100,9 @@ class RedisConnectionPool {
 		if ( !isset( $options['connectTimeout'] ) ) {
 			$options['connectTimeout'] = 1;
 		}
+		if ( !isset( $options['readTimeout'] ) ) {
+			$options['readTimeout'] = 31; // handles up to 30 second blocking commands
+		}
 		if ( !isset( $options['persistent'] ) ) {
 			$options['persistent'] = false;
 		}
@@ -112,6 +118,9 @@ class RedisConnectionPool {
 	 * $options include:
 	 *   - connectTimeout : The timeout for new connections, in seconds.
 	 *                      Optional, default is 1 second.
+	 *   - readTimeout    : The timeout for operation reads, in seconds.
+	 *                      Commands like BLPOP can fail if told to wait longer than this.
+	 *                      Optional, default is 60 seconds.
 	 *   - persistent     : Set this to true to allow connections to persist across
 	 *                      multiple web requests. False by default.
 	 *   - password       : The authentication password, will be sent to Redis in clear text.
@@ -216,6 +225,7 @@ class RedisConnectionPool {
 		}
 
 		if ( $conn ) {
+			$conn->setOption( Redis::OPT_READ_TIMEOUT, $this->readTimeout );
 			$conn->setOption( Redis::OPT_SERIALIZER, $this->serializer );
 			$this->connections[$server][] = array( 'conn' => $conn, 'free' => false );
 
