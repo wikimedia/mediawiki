@@ -258,8 +258,6 @@ class WikitextContent extends TextContent {
 	 *    find out (default: null).
 	 * @param Title $title Optional title, defaults to the title from the current main request.
 	 *
-	 * @internal param \IContextSource $context context for parsing if necessary
-	 *
 	 * @return bool
 	 */
 	public function isCountable( $hasLinks = null, Title $title = null ) {
@@ -319,7 +317,6 @@ class WikitextContent extends TextContent {
 	 * @param int $revId Revision to pass to the parser (default: null)
 	 * @param ParserOptions $options (default: null)
 	 * @param bool $generateHtml (default: true)
-	 * @internal param \IContextSource|null $context
 	 *
 	 * @return ParserOutput Representing the HTML form of the text
 	 */
