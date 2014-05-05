@@ -357,7 +357,7 @@ abstract class Maintenance {
 		}
 		$die = intval( $die );
 		if ( $die > 0 ) {
-			die( $die );
+			exit( $die );
 		}
 	}
 
@@ -842,7 +842,7 @@ abstract class Maintenance {
 			$this->output( "\n" );
 		}
 
-		die( 1 );
+		exit( 1 );
 	}
 
 	/**
