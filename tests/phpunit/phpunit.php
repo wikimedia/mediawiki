@@ -94,6 +94,19 @@ class PHPUnitMaintClass extends Maintenance {
 			unset( $_SERVER['argv'][$key + 1] ); // its value
 			$_SERVER['argv'] = array_values( $_SERVER['argv'] );
 		}
+
+		if ( !wfIsWindows() ) {
+			# If we are not running on windows then we can enable phpunit colors
+			# Windows does not come anymore with ANSI.SYS loaded by default
+			# PHPUnit uses the suite.xml parameters to enable/disable colors
+			# which can be then forced to be enabled with --colors.
+			# The below code injects a parameter just like if the user called
+			# Probably fix bug 29226
+			$key = array_search( '--colors', $_SERVER['argv'] );
+			if( $key === false ) {
+				$_SERVER['argv'][] = '--colors';
+			}
+		}
 	}
 
 	public function getDbType() {
