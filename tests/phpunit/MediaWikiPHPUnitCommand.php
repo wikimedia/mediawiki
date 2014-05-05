@@ -12,28 +12,11 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 		'use-normal-tables' => false,
 		'reuse-db' => false,
 		'wiki=' => false,
-		'debug-tests' => false,
 	);
 
 	public function __construct() {
 		foreach ( self::$additionalOptions as $option => $default ) {
 			$this->longOptions[$option] = $option . 'Handler';
-		}
-	}
-
-	protected function handleArguments( array $argv ) {
-		parent::handleArguments( $argv );
-
-		if ( !isset( $this->arguments['listeners'] ) ) {
-			$this->arguments['listeners'] = array();
-		}
-
-		foreach ( $this->options[0] as $option ) {
-			switch ( $option[0] ) {
-				case '--debug-tests':
-					$this->arguments['listeners'][] = new MediaWikiPHPUnitTestListener( 'PHPUnitCommand' );
-					break;
-			}
 		}
 	}
 
@@ -85,9 +68,6 @@ ParserTest-specific options:
 Database options:
   --use-normal-tables      Use normal DB tables.
   --reuse-db               Init DB only if tables are missing and keep after finish.
-
-Debugging options:
-  --debug-tests            Log testing activity to the PHPUnitCommand log channel.
 
 EOT;
 	}
