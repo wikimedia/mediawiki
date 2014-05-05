@@ -61,3 +61,12 @@ script:
         php tests/phpunit/phpunit.php \
         --with-phpunitdir ./vendor/phpunit/phpunit
       fi
+
+notifications:
+  irc:
+    channels:
+      - "chat.freenode.net#wikimedia-dev"
+    on_success: change
+    on_failure: always
+    template:
+      - "%{repository}/%{branch}/%{commit} : %{author} %{message} %{build_url}"
