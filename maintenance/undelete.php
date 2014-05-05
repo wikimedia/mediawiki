@@ -23,6 +23,11 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+/**
+ * Maintenance script to undelete a page by fetching it from the archive table.
+ *
+ * @ingroup Maintenance
+ */
 class Undelete extends Maintenance {
 	public function __construct() {
 		parent::__construct();
@@ -39,18 +44,44 @@ class Undelete extends Maintenance {
 		$reason = $this->getOption( 'reason', '' );
 		$pageName = $this->getArg();
 
+		// Construct title object to undelete and check if title exists
 		$title = Title::newFromText( $pageName );
 		if ( !$title ) {
-			$this->error( "Invalid title", true );
+			$this->error( "Invalid title\n", true );
 		}
+
+		// Construct user object to perform undeletion and check if user exists
 		$wgUser = User::newFromName( $user );
 		if ( !$wgUser ) {
-			$this->error( "Invalid username", true );
+			$this->error( "Invalid username\n", true );
 		}
+
+		// Construct archived object to restore and check if archived object exists
 		$archive = new PageArchive( $title );
-		$this->output( "Undeleting " . $title->getPrefixedDBkey() . '...' );
-		$archive->undelete( array(), $reason );
-		$this->output( "done\n" );
+		if ( !$archive->isDeleted() ) {
+			$this->error( "Error undeleting page:" .
+					"cannot locate deleted revisions to restore.\n", true );
+		}
+
+		// Actual block to perform undeletion
+		$this->output( "Undeleting " . $title->getPrefixedDBkey() . "...\n" );
+		try {
+			$status = $archive->undelete( array(), $reason, array(), false, $wgUser );
+			if ( $status === false ) {
+				throw new MWException( "Error undeleting page:" .
+					"unknown error found; operation returned false.\n" );
+			}
+		} catch ( ErrorPageError $err ) {
+			throw new MWException( "Error undeleting page:" .
+				"the database is currently undergoing maintenance.\n", null, $err );
+		} catch ( PermissionsError $permerr ) {
+			throw new MWException( "Error undeleting page:" .
+				"you do not have permission to undelete this page.\n", null, $permerr );
+		} catch ( ReadOnlyError $readerr ) {
+			throw new MWException( "Error undeleting page:" .
+				"the database is currently locked from modifications.\n", null, $readerr );
+		}
+		$this->output( "Done!\n" );
 	}
 }
 
