@@ -134,8 +134,8 @@ class Revision implements IDBAccessObject {
 	 *      Revision::READ_LATEST  : Select the data from the master (since 1.20)
 	 *      Revision::READ_LOCKING : Select & lock the data from the master
 	 *
-	 * @param int $revId
-	 * @param int $pageId (optional)
+	 * @param int $pageId
+	 * @param int $revId (optional)
 	 * @param int $flags Bitfield (optional)
 	 * @return Revision|null
 	 */
