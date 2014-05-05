@@ -59,12 +59,6 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 
 		wfProfileOut( __METHOD__ );
 
-		// Return to real wiki db, so profiling data is preserved
-		MediaWikiTestCase::teardownTestDB();
-
-		// Log profiling data, e.g. in the database or UDP
-		wfLogProfilingData();
-
 		if ( $exit ) {
 			exit( $ret );
 		} else {
