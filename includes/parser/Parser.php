@@ -2731,7 +2731,7 @@ class Parser {
 	 * @return string
 	 */
 	function getVariableValue( $index, $frame = false ) {
-		global $wgContLang, $wgSitename, $wgServer;
+		global $wgContLang, $wgSitename, $wgServer, $wgServerName;
 		global $wgArticlePath, $wgScriptPath, $wgStylePath;
 
 		if ( is_null( $this->mTitle ) ) {
@@ -3032,8 +3032,7 @@ class Parser {
 			case 'server':
 				return $wgServer;
 			case 'servername':
-				$serverParts = wfParseUrl( $wgServer );
-				return $serverParts && isset( $serverParts['host'] ) ? $serverParts['host'] : $wgServer;
+				return $wgServerName;
 			case 'scriptpath':
 				return $wgScriptPath;
 			case 'stylepath':
