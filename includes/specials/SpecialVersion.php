@@ -1114,6 +1114,15 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
+	 * @param string $dir Directory of the git checkout
+	 * @return bool|string Branch currently checked out
+	 */
+	public static function getGitCurrentBranch( $dir ) {
+		$repo = new GitInfo( $dir );
+		return $repo->getCurrentBranch();
+	}
+
+	/**
 	 * Get the list of entry points and their URLs
 	 * @return string Wikitext
 	 */
