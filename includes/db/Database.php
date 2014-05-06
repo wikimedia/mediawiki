@@ -2900,20 +2900,49 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @throws DBUnexpectedError
 	 * @return bool|ResultWrapper
 	 */
-	public function delete( $table, $conds, $fname = __METHOD__ ) {
-		if ( !$conds ) {
-			throw new DBUnexpectedError( $this, 'DatabaseBase::delete() called with no conditions' );
-		}
+	public function delete( $table, $conds, $fname = __METHOD__,
+		$options = array(), $join_conds = array() ) {
 
+		// Checking and handling for $table parameter
+		/*
+		 * Note that $join_conds will only work if you're using something
+		 * other than MySQL. It's recommended to use deleteJoin() instead.
+		 */
 		$table = $this->tableName( $table );
-		$sql = "DELETE FROM $table";
-
-		if ( $conds != '*' ) {
-			if ( is_array( $conds ) ) {
-				$conds = $this->makeList( $conds, LIST_AND );
+		if ( empty( $table ) ) {
+			throw new DBUnexpectedError( $this,
+				'DatabaseBase::delete() called with no table specified.' );
+		} else {
+			if ( $table[0] == ' ' ) {
+				$from = ' FROM ' . $table;
+			} elseif ( is_array( $table ) ) {
+				$from = ' FROM ' .
+					$this->tableNamesWithUseIndexOrJOIN( $table, null, $join_conds );
 			}
-			$sql .= ' WHERE ' . $conds;
 		}
+		$sql = "DELETE $from $table";
+
+		// Checking and handling for $conds parameter
+		if ( empty( $conds ) ) {
+			throw new DBUnexpectedError( $this,
+				'DatabaseBase::delete() called with no conditions.' );
+		} else {
+			if ( $conds != '*' ) {
+				if ( is_array( $conds ) ) {
+					$conds = $this->makeList( $conds, LIST_AND );
+				}
+				$sql = "$sql WHERE $conds";
+			}
+		}
+
+		// Checking and handling for $options parameter
+		$options = (array)$options;
+		if ( isset( $options['LIMIT'] ) ) {
+			$sql = $this->limitResult( $sql, $options['LIMIT'],
+				isset( $options['OFFSET'] ) ? $options['OFFSET'] : false );
+		}
+		$options = $options . $this->makeOrderBy( $options );
+		$sql = "$sql $options";
 
 		return $this->query( $sql, $fname );
 	}
