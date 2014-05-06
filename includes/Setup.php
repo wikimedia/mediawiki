@@ -43,6 +43,7 @@ if ( !isset( $wgVersion ) ) {
 }
 
 // Set various default paths sensibly...
+
 if ( $wgScript === false ) {
 	$wgScript = "$wgScriptPath/index$wgScriptExtension";
 }
@@ -420,6 +421,22 @@ require_once "$IP/includes/normal/UtfNormalDefines.php";
 wfProfileOut( $fname . '-includes' );
 
 wfProfileIn( $fname . '-defaults2' );
+
+$serverParts = wfParseUrl( $wgServer );
+
+if ( $wgServerName !== false ) {
+	wfWarn( '$wgServerName should be derived from $wgServer, not customized. Overwriting $wgServerName.' );
+}
+$wgServerName = $serverParts['hostname'];
+
+if ( $wgEmergencyContact === false ) {
+	$wgEmergencyContact = 'wikiadmin@' . $wgServerName;
+}
+
+if ( $wgPasswordSender === false ) {
+	$wgPasswordSender = 'apache@' . $wgServerName;
+}
+
 if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
 	$wgSecureLogin = false;
 	wfWarn( 'Secure login was enabled on a server that only supports HTTP or HTTPS. Disabling secure login.' );
