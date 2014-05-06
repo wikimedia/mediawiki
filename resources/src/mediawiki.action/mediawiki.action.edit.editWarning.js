@@ -2,16 +2,20 @@
  * Javascript for module editWarning
  */
 ( function ( mw, $ ) {
+	'use strict';
+
 	$( function () {
+		var savedWindowOnBeforeUnload,
+			$wpTextbox1 = $( '#wpTextbox1' ),
+			$wpSummary = $( '#wpSummary' );
 		// Check if EditWarning is enabled and if we need it
-		if ( $( '#wpTextbox1' ).length === 0 ) {
+		if ( $wpTextbox1.length === 0 ) {
 			return true;
 		}
 		// Get the original values of some form elements
-		$( '#wpTextbox1, #wpSummary' ).each( function () {
+		$wpTextbox1.add( $wpSummary ).each( function () {
 			$( this ).data( 'origtext', $( this ).val() );
 		} );
-		var savedWindowOnBeforeUnload;
 		$( window )
 			.on( 'beforeunload.editwarning', function () {
 				var retval;
@@ -20,8 +24,8 @@
 				// the original values
 				if (
 					mw.config.get( 'wgAction' ) === 'submit' ||
-						$( '#wpTextbox1' ).data( 'origtext' ) !== $( '#wpTextbox1' ).val() ||
-						$( '#wpSummary' ).data( 'origtext' ) !== $( '#wpSummary' ).val()
+						$wpTextbox1.data( 'origtext' ) !== $wpTextbox1.val() ||
+						$wpSummary.data( 'origtext' ) !== $wpSummary.val()
 				) {
 					// Return our message
 					retval = mw.msg( 'editwarning-warning' );
