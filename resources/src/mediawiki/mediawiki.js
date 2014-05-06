@@ -1043,71 +1043,30 @@
 			 *  Ignored (and defaulted to `true`) if the document-ready event has already occurred.
 			 */
 			function addScript( src, callback, async ) {
-				/*jshint evil:true */
-				var script, head, done;
-
-				// Using isReady directly instead of storing it locally from
-				// a $.fn.ready callback (bug 31895).
+				// Using isReady directly instead of storing it locally from a $().ready callback (bug 31895)
 				if ( $.isReady || async ) {
-					// Can't use jQuery.getScript because that only uses <script> for cross-domain,
-					// it uses XHR and eval for same-domain scripts, which we don't want because it
-					// messes up line numbers.
-					// The below is based on jQuery ([jquery@1.9.1]/src/ajax/script.js)
-
-					// IE-safe way of getting an append target. In old IE document.head isn't supported
-					// and its getElementsByTagName can't find <head> until </head> is parsed.
-					done = false;
-					head = document.head || document.getElementsByTagName( 'head' )[0] || document.documentElement;
-
-					script = document.createElement( 'script' );
-					script.async = true;
-					script.src = src;
-					if ( $.isFunction( callback ) ) {
-						script.onload = script.onreadystatechange = function () {
-							if (
-								!done
-								&& (
-									!script.readyState
-									|| /loaded|complete/.test( script.readyState )
-								)
-							) {
-								done = true;
-
-								// Handle memory leak in IE
-								script.onload = script.onreadystatechange = null;
-
-								// Detach the element from the document
-								if ( script.parentNode ) {
-									script.parentNode.removeChild( script );
-								}
-
-								// Dereference the element from javascript
-								script = undefined;
-
-								callback();
-							}
-						};
-					}
-
-					if ( window.opera ) {
-						// Appending to the <head> blocks rendering completely in Opera,
-						// so append to the <body> after document ready. This means the
-						// scripts only start loading after the document has been rendered,
-						// but so be it. Opera users don't deserve faster web pages if their
-						// browser makes it impossible.
-						$( function () {
-							document.body.appendChild( script );
-						} );
-					} else {
-						// Circumvent IE6 bugs with base elements (jqbug.com/2709, jqbug.com/4378)
-						// by prepending instead of appending.
-						head.insertBefore( script, head.firstChild );
-					}
+					$.ajax( {
+						url: src,
+						dataType: 'script',
+						// Force jQuery behaviour to be for crossDomain. Otherwise jQuery would use
+						// XHR for a same domain request instead of <script>, which changes the request
+						// headers (potentially missing a cache hit), and reduces caching in general
+						// since browsers cache XHR much less (if at all). And XHR means we retreive
+						// text, so we'd need to $.globalEval, which then messes up line numbers.
+						crossDomain: true,
+						cache: true,
+						async: true
+					} ).always( function () {
+						if ( callback  ) {
+							callback();
+						}
+					} );
 				} else {
+					/*jshint evil:true */
 					document.write( mw.html.element( 'script', { 'src': src }, '' ) );
-					if ( $.isFunction( callback ) ) {
-						// Document.write is synchronous, so this is called when it's done
-						// FIXME: that's a lie. doc.write isn't actually synchronous
+					if ( callback ) {
+						// Document.write is synchronous, so this is called when it's done.
+						// FIXME: That's a lie. doc.write isn't actually synchronous.
 						callback();
 					}
 				}
