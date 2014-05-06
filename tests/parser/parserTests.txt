@@ -16436,6 +16436,39 @@ Raw: -{R|zh:China;zh-tw:Taiwan}-
 !! end
 
 !! test
+Strings evaluating false shouldn't be ignored by Language converter (bug 49072)
+!! options
+language=zh variant=zh-cn
+!! input
+-{zh-cn:0;zh-sg:1;zh-tw:2;zh-hk:3}-
+!! result
+<p>0
+</p>
+!! end
+
+!! test
+Conversion rules from [numeric-only string] to [something else] (bug 46634)
+!! options
+language=zh variant=zh-cn
+!! input
+-{H|0=>zh-cn:B}--{H|0=>zh-cn:C;0=>zh-cn:D}--{H|0=>zh-hans:A}-012345-{A|zh-tw:0;zh-cn:E;}-012345
+!! result
+<p>D12345EE12345
+</p>
+!! end
+
+!! test
+Unidirectional converter rule entries with an empty "from" string should be ignored (bug 51551)
+!! options
+language=zh variant=zh-cn
+!! input
+-{H|=>zh-cn:foo;}-foobar
+!! result
+<p>foobar
+</p>
+!! end
+
+!! test
 Nested using of manual convert syntax
 !! options
 language=zh variant=zh-hk
