@@ -209,6 +209,7 @@ class SpecialSearch extends SpecialPage {
 		$search = $this->getSearchEngine();
 		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
+		$this->saveNamespaces ( $term );
 		$search->prefix = $this->mPrefix;
 		$term = $search->transformSearchTerm( $term );
 
@@ -510,6 +511,28 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		return $opt + $this->extraParams;
+	}
+
+	/**
+	 * Save namespace preferences when we're supposed to
+	 *
+	 * @param string $term
+	 * @return bool, whether we wrote something
+	 */
+	protected function saveNamespaces( $term ) {
+		if (
+			$user->isLoggedIn() &&
+			$request->getVal( 'nsRemember' ) &&
+			$user->matchEditToken( $request->getVal( 'nsToken' ) )
+		) {
+			foreach ( $this->namespaces as $n ) {
+				$user->setOption ( 'searchNs-' . $n, true );
+			}
+
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -930,6 +953,18 @@ class SpecialSearch extends SpecialPage {
 			$hidden .= Html::hidden( $key, $value );
 		}
 
+		# Stuff to feed saveNamespaces()
+		$remember = '';
+		if ( $user->isLoggedIn ) {
+			$remember .= Html::hidden( nsToken, $user->getEditToken() ) .
+			Xml::checkLabel (
+				wfMessage ( 'powersearch-remember' )->text(),
+				'nsRemember',
+				'mw-search-ns-remember',
+				false
+			);
+		}
+
 		// Return final output
 		return Xml::openElement(
 			'fieldset',
@@ -938,6 +973,7 @@ class SpecialSearch extends SpecialPage {
 			Xml::element( 'legend', null, $this->msg( 'powersearch-legend' )->text() ) .
 			Xml::tags( 'h4', null, $this->msg( 'powersearch-ns' )->parse() ) .
 			Html::element( 'div', array( 'id' => 'mw-search-togglebox' ) ) .
+			$remember .
 			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
 			implode( Xml::element( 'div', array( 'class' => 'divider' ), '', false ), $showSections ) .
 			$hidden .

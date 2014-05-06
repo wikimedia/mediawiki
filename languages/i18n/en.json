@@ -914,6 +914,7 @@
     "powersearch-togglelabel": "Check:",
     "powersearch-toggleall": "All",
     "powersearch-togglenone": "None",
+    "powersearch-remember": "Remember choice",
     "search-external": "External search",
     "searchdisabled": "{{SITENAME}} search is disabled.\nYou can search via Google in the meantime.\nNote that their indexes of {{SITENAME}} content may be out of date.",
     "googlesearch": "<form method=\"get\" action=\"//www.google.com/search\" id=\"googlesearch\">\n\t<input type=\"hidden\" name=\"domains\" value=\"{{SERVER}}\" />\n\t<input type=\"hidden\" name=\"num\" value=\"50\" />\n\t<input type=\"hidden\" name=\"ie\" value=\"$2\" />\n\t<input type=\"hidden\" name=\"oe\" value=\"$2\" />\n\n\t<input type=\"text\" name=\"q\" size=\"31\" maxlength=\"255\" value=\"$1\" />\n\t<input type=\"submit\" name=\"btnG\" value=\"$3\" />\n  <div>\n\t<input type=\"radio\" name=\"sitesearch\" id=\"gwiki\" value=\"{{SERVER}}\" checked=\"checked\" /><label for=\"gwiki\">{{SITENAME}}</label>\n\t<input type=\"radio\" name=\"sitesearch\" id=\"gWWW\" value=\"\" /><label for=\"gWWW\">WWW</label>\n  </div>\n</form>",
