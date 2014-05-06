@@ -2503,6 +2503,7 @@ class User {
 
 	/**
 	 * Set the given option for a user.
+	 * You need saveSettings() to actually write to the database.
 	 *
 	 * @param string $oname The option to set
 	 * @param mixed $val New value to set
@@ -4742,7 +4743,9 @@ class User {
 	}
 
 	/**
-	 * @todo document
+	 * Saves the non-default options for this user, as previously set e.g. via
+	 * setOption(), in the database's "user_properties" (preferences) table.
+	 * Usually used via saveSettings().
 	 */
 	protected function saveOptions() {
 		$this->loadOptions();
