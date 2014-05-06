@@ -119,7 +119,11 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 				break;
 		}
 
-		$packet['server_url'] = $wgCanonicalServer;
+		$parsedCanonicalServer = wfParseUrl( $wgCanonicalServer );
+		if ( isset( $parsedCanonicalServer['host'] ) ) {
+			$packet['server_url'] = $parsedCanonicalServer['host'];
+		}
+
 		$packet['server_script_path'] = $wgScriptPath ?: '/';
 		$packet['wiki'] = wfWikiID();
 
