@@ -44,8 +44,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		}
 
 		global $wgLoadScript, $wgScript, $wgStylePath, $wgScriptExtension,
-			$wgArticlePath, $wgScriptPath, $wgServer, $wgContLang,
-			$wgVariantArticlePath, $wgActionPaths, $wgVersion,
+			$wgArticlePath, $wgScriptPath, $wgServer, $wgServerName,
+			$wgContLang, $wgVariantArticlePath, $wgActionPaths, $wgVersion,
 			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname,
 			$wgSitename, $wgFileExtensions, $wgExtensionAssetsPath,
 			$wgCookiePrefix, $wgResourceLoaderMaxQueryLength,
@@ -85,6 +85,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// becoming [] instead of {} in JS (bug 34604)
 			'wgActionPaths' => (object)$wgActionPaths,
 			'wgServer' => $wgServer,
+			'wgServerName' => $wgServerName,
 			'wgUserLanguage' => $context->getLanguage(),
 			'wgContentLanguage' => $wgContLang->getCode(),
 			'wgVersion' => $wgVersion,

@@ -42,7 +42,23 @@ if ( !isset( $wgVersion ) ) {
 	die( 1 );
 }
 
-// Set various default paths sensibly...
+// Set various default paths and addresses sensibly...
+
+if ( $wgServerName === false ) {
+	$wgServerName = substr( $wgServer, strrpos( $wgServer, '//' ) + 2 );
+	if ( strpos( $wgServerName, ':' ) !== false ) {
+		$wgServerName = strstr( $wgServerName, ':', true );
+	}
+}
+
+if ( $wgEmergencyContact === false ) {
+	$wgEmergencyContact = 'wikiadmin@' . $wgServerName;
+}
+
+if ( $wgPasswordSender === false ) {
+	$wgPasswordSender = 'apache@' . $wgServerName;
+}
+
 if ( $wgScript === false ) {
 	$wgScript = "$wgScriptPath/index$wgScriptExtension";
 }

@@ -763,6 +763,7 @@ class ParserTest {
 
 		$settings = array(
 			'wgServer' => 'http://example.org',
+			'wgServerName' => 'example.org',
 			'wgScript' => '/index.php',
 			'wgScriptPath' => '/',
 			'wgArticlePath' => '/wiki/$1',
