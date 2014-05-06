@@ -2897,23 +2897,62 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param string|array $conds of conditions. See $conds in DatabaseBase::select()
 	 *   for the format. Use $conds == "*" to delete all rows
 	 * @param string $fname name of the calling function
+	 * @param string|array $options Query options
+	 * @param string|array $join_conds Join conditions
+	 * @param string $tablevar If $join_conds is set, the name of the table to delete
 	 * @throws DBUnexpectedError
+	 *
 	 * @return bool|ResultWrapper
+	 * @see DatabaseBase::select()
 	 */
-	public function delete( $table, $conds, $fname = __METHOD__ ) {
-		if ( !$conds ) {
-			throw new DBUnexpectedError( $this, 'DatabaseBase::delete() called with no conditions' );
+	public function delete( $table, $conds, $fname = __METHOD__,
+		$options = array(), $join_conds = array() $tablevar = "" ) {
+
+		// Checking and handling for $table parameter
+		/*
+		 * Note that $join_conds will only work if you're using something
+		 * other than MySQL. It's recommended to use deleteJoin() instead.
+		 */
+		// Require the table parameter to be specified, else throw an error
+		if ( is_string( $table ) ) {
+			$table = $this->tableName( $table );
+			$sql = "DELETE $tablevar FROM $table" .
+				$this->tableNamesWithUseIndexOrJOIN( $table, null, $join_conds );
+		} elseif ( is_array( $table ) ) {
+			$sql = "DELETE FROM $table" .
+				$this->tableNamesWithUseIndexOrJOIN( $table, null, $join_conds );
 		}
 
-		$table = $this->tableName( $table );
-		$sql = "DELETE FROM $table";
-
+		// Checking and handling for $conds parameter
+		if ( empty( $conds ) ) {
+			throw new DBUnexpectedError( $this,
+				'DatabaseBase::delete() called with no conditions.' );
+		}
 		if ( $conds != '*' ) {
 			if ( is_array( $conds ) ) {
 				$conds = $this->makeList( $conds, LIST_AND );
 			}
-			$sql .= ' WHERE ' . $conds;
+			$sql = "$sql WHERE $conds";
 		}
+
+		// Checking and handling for $options parameter
+		/*
+		 * ORDER BY and LIMIT functions are not supported for deletions of
+		 * multiple tables. http://dev.mysql.com/doc/refman/5.0/en/delete.html
+		 *
+		 * Also, most databases do not support OFFSET with DELETE functions;
+		 * ugly workarounds exist, but they require modifying $conds.
+		 */
+		$options = (array)$options;
+		$optarray =	$this->makeSelectOptions( $options );
+		$preLimitTail = $optarray[2];
+		$sql = "$sql $preLimitTail";
+		// Yes, limitResult() generally expects only SELECT queries,
+		// but since it returns a string, we can repurpose it for DELETE.
+		$sql = isset( $options['LIMIT'] ) ?
+			$this->limitResult( $sql, $options['LIMIT'], null ) : "$sql";
+		$postLimitTail = $optarray[3];
+		$sql = "$sql $postLimitTail";
 
 		return $this->query( $sql, $fname );
 	}
