@@ -193,7 +193,6 @@ $specialPageAliases = array(
 
 $bookstoreList = array(
 	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
-	'PriceSCAN' => 'http://www.pricescan.com/books/bookDetail.asp?isbn=$1',
 	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
 	'亞馬遜' => 'http://www.amazon.com/exec/obidos/ISBN=$1',
 	'博客來書店' => 'http://www.books.com.tw/exep/prod/booksfile.php?item=$1',
