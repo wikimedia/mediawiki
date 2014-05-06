@@ -180,6 +180,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$git = SpecialVersion::getGitHeadSha1( $GLOBALS['IP'] );
 		if ( $git ) {
 			$data['git-hash'] = $git;
+			$data['git-branch'] =
+				SpecialVersion::getGitCurrentBranch( $GLOBALS['IP'] );
 		} else {
 			$svn = SpecialVersion::getSvnRevision( $GLOBALS['IP'] );
 			if ( $svn ) {
