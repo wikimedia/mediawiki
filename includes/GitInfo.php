@@ -195,7 +195,10 @@ class GitInfo {
 
 		if ( !isset( $this->cache['headCommitDate'] ) ) {
 			$date = false;
-			if ( is_file( $wgGitBin ) && is_executable( $wgGitBin ) ) {
+			if ( is_file( $wgGitBin ) &&
+				is_executable( $wgGitBin ) &&
+				$this->getHead() !== false
+			) {
 				$environment = array( "GIT_DIR" => $this->basedir );
 				$cmd = wfEscapeShellArg( $wgGitBin ) .
 					" show -s --format=format:%ct HEAD";
