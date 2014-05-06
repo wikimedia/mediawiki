@@ -87,8 +87,15 @@ class WfTimestampTest extends MediaWikiTestCase {
 	 * See r74778 and bug 25451
 	 * @dataProvider provideOldTimestamps
 	 */
-	public function testOldTimestamps( $input, $format, $output, $desc ) {
-		$this->assertEquals( $output, wfTimestamp( $format, $input ), $desc );
+	public function testOldTimestamps( $input, $outputType, $output, $message ) {
+		$timestamp = wfTimestamp( $outputType, $input );
+		if ( substr( $output, 0, 1 ) === '/' ) {
+			// Bug 64946: Day of the week calculations for very old
+			// timestamps varies from system to system.
+			$this->assertRegExp(  $output, $timestamp, $message );
+		} else {
+			$this->assertEquals( $output, $timestamp, $message );
+		}
 	}
 
 	public static function provideOldTimestamps() {
@@ -117,12 +124,12 @@ class WfTimestampTest extends MediaWikiTestCase {
 			array(
 				'0117-08-09 12:34:56',
 				TS_RFC2822,
-				'Tue, 09 Aug 0117 12:34:56 GMT',
+				'/, 09 Aug 0117 12:34:56 GMT$/',
 				'Death of Roman Emperor [[Trajan]]'
 			),
 
 			/* @todo FIXME: 00 to 101 years are taken as being in [1970-2069] */
-			array( '-58979923200', TS_RFC2822, 'Sun, 01 Jan 0101 00:00:00 GMT', '1/1/101' ),
+			array( '-58979923200', TS_RFC2822, '/, 01 Jan 0101 00:00:00 GMT$/', '1/1/101' ),
 			array( '-62135596800', TS_RFC2822, 'Mon, 01 Jan 0001 00:00:00 GMT', 'Year 1' ),
 
 			/* It is not clear if we should generate a year 0 or not
