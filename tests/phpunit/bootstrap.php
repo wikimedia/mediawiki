@@ -16,7 +16,13 @@ EOF;
 
 class MediaWikiPHPUnitBootstrap {
 
+	public function __construct() {
+		wfProfileIn( __CLASS__ );
+	}
+
 	public function __destruct() {
+		wfProfileOut( __CLASS__ );
+
 		// Return to real wiki db, so profiling data is preserved
 		MediaWikiTestCase::teardownTestDB();
 
