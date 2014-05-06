@@ -1076,6 +1076,7 @@
 	"powersearch-togglelabel": "Used in [{{canonicalurl:Special:Search|advanced=1}} Advanced search]. Synonym: \"Select\" as verb.\n{{Identical|Check}}",
 	"powersearch-toggleall": "\"All\" refers to namespaces. It is used in Advanced search: {{canonicalurl:Special:Search|advanced=1}}\n{{Identical|All}}",
 	"powersearch-togglenone": "\"None\" refers to namespaces. It is used in Advanced search: {{canonicalurl:Special:Search|advanced=1}}\n{{Identical|None}}",
+	"powersearch-remember": "Label for a checkbox to save namespace choice for advanced search to user preferences.",
 	"search-external": "Legend of the fieldset for the input form when the internal search is disabled. Inside the fieldset [[MediaWiki:Searchdisabled]] and [[MediaWiki:Googlesearch]] is shown.",
 	"searchdisabled": "{{doc-singularthey}}\nIn this sentence, \"their indexes\" refers to \"Google's indexes\".\n\nShown on [[Special:Search]] when the internal search is disabled.",
 	"googlesearch": "{{notranslate}}\nShown when [[mw:Manual:$wgDisableTextSearch|$wgDisableTextSearch]] is set to true and no [[mw:Manual:$wgSearchForwardUrl|$wgSearchForwardUrl]] is set.\n\nParameters:\n* $1 - the search term\n* $2 - \"UTF-8\" (hard-coded)\n* $3 - the message {{msg-mw|Searchbutton}}",
