@@ -1016,9 +1016,9 @@ class Preferences {
 	static function searchPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		global $wgContLang;
 
+		# To be used for wiki-wide settings only, cf. $wgSearchEverythingOnlyLoggedIn
 		$defaultPreferences['searcheverything'] = array(
-			'type' => 'toggle',
-			'label-message' => 'searcheverything-enable',
+			'type' => 'api',
 			'section' => 'searchoptions/advancedsearchoptions',
 		);
 
@@ -1031,8 +1031,7 @@ class Preferences {
 		}
 
 		$defaultPreferences['searchnamespaces'] = array(
-			'type' => 'multiselect',
-			'label-message' => 'defaultns',
+			'type' => 'api',
 			'options' => array_flip( $nsOptions ),
 			'section' => 'searchoptions/advancedsearchoptions',
 			'prefix' => 'searchNs',
