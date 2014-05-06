@@ -60,6 +60,8 @@ class PHPUnitMaintClass extends Maintenance {
 				return false;
 			}
 		);
+		// xdebug's default of 100 is too low for MediaWiki
+		ini_set( 'xdebug.max_nesting_level', 1000 );
 	}
 
 	public function execute() {
