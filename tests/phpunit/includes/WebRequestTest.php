@@ -10,10 +10,12 @@ class WebRequestTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		$this->oldServer = $_SERVER;
+		IP::clearCaches();
 	}
 
 	protected function tearDown() {
 		$_SERVER = $this->oldServer;
+		IP::clearCaches();
 
 		parent::tearDown();
 	}
