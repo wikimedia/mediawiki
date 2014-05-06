@@ -1010,29 +1010,13 @@ class Preferences {
 	 * @param array $defaultPreferences
 	 */
 	static function searchPreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		global $wgContLang;
-
-		$defaultPreferences['searcheverything'] = array(
-			'type' => 'toggle',
-			'label-message' => 'searcheverything-enable',
-			'section' => 'searchoptions/advancedsearchoptions',
-		);
-
-		$nsOptions = $wgContLang->getFormattedNamespaces();
-		$nsOptions[0] = $context->msg( 'blanknamespace' )->text();
-		foreach ( $nsOptions as $ns => $name ) {
-			if ( $ns < 0 ) {
-				unset( $nsOptions[$ns] );
+		foreach ( MWNamespace::getValidNamespaces() as $n ) {
+			if ( $n >= 0 ) {
+				$defaultPreferences[ 'searchNs' . $n ] = array(
+					'type' => 'api',
+				);
 			}
 		}
-
-		$defaultPreferences['searchnamespaces'] = array(
-			'type' => 'multiselect',
-			'label-message' => 'defaultns',
-			'options' => array_flip( $nsOptions ),
-			'section' => 'searchoptions/advancedsearchoptions',
-			'prefix' => 'searchNs',
-		);
 	}
 
 	/**

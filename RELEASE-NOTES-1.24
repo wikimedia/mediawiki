@@ -14,6 +14,8 @@ production.
 * Introduced $wgPagePropsHaveSortkey as a backwards-compatibility switch,
   for using the old schema of the page_props table, in case the respective
   schema update was not applied.
+* $wgSearchEverythingOnlyLoggedIn was removed as the 'searcheverything'
+  user option was removed.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
@@ -47,6 +49,8 @@ production.
   to HTTPS redirect due to forceHTTPS cookie, userRequires, etc.  This is only for page views,
   since this hook doesn't affect UserLogin, OAuth, CentralAuth, etc.
   ATTENTION: This hook is likely to be removed soon due to overall design of the system.
+* (bug 52817) Advanced search options are now saved on the search page itself, rather
+  than in a dedicated pane in the preferences panel.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language

@@ -5323,14 +5323,6 @@ $wgNamespacesToBeSearchedDefault = array(
 );
 
 /**
- * If set to true the 'searcheverything' preference will be effective only for
- * logged-in users.
- * Useful for big wikis to maintain different search profiles for anonymous and
- * logged-in users.
- */
-$wgSearchEverythingOnlyLoggedIn = false;
-
-/**
  * Disable the internal MySQL-based search, to allow it to be
  * implemented by an extension instead.
  */
