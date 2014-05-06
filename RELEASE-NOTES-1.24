@@ -14,6 +14,9 @@ production.
 * Introduced $wgPagePropsHaveSortkey as a backwards-compatibility switch,
   for using the old schema of the page_props table, in case the respective
   schema update was not applied.
+* $wgSearchEverythingOnlyLoggedIn was removed as the 'searcheverything'
+  user option was removed. Use $wgNamespacesToBeSearchedDefault instead or
+  if you used to have $wgDefaultUserOptions['searcheverything'] = 1.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
@@ -52,6 +55,8 @@ production.
 * New methods setVolatile and isVolatile are added to PPFrame, so that
   extensions such as Cite.php can mark that their output is volatile and
   shouldn't be cached.
+* (bug 52817) Advanced search options are now saved on the search page itself, rather
+  than in a dedicated pane in the preferences panel.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
