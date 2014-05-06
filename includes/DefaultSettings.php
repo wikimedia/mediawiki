@@ -96,6 +96,15 @@ $wgSitename = 'MediaWiki';
 $wgServer = WebRequest::detectServer();
 
 /**
+ * Bare server name. Derived from $wgServer.
+ * @since 1.24
+ */
+$wgServerName = substr( $wgServer, strrpos( $wgServer, '/' ) + 1 );
+if ( strpos( $wgServerName, ':' ) !== false ) {
+	$wgServerName = strstr( $wgServerName, ':', true );
+}
+
+/**
  * Canonical URL of the server, to use in IRC feeds and notification e-mails.
  * Must be fully qualified, even if $wgServer is protocol-relative.
  *
@@ -1304,21 +1313,18 @@ $wgDjvuOutputExtension = 'jpg';
  * @{
  */
 
-$serverName = substr( $wgServer, strrpos( $wgServer, '/' ) + 1 );
 
 /**
  * Site admin email address.
  */
-$wgEmergencyContact = 'wikiadmin@' . $serverName;
+$wgEmergencyContact = 'wikiadmin@' . $wgServerName;
 
 /**
  * Password reminder email address.
  *
  * The address we should use as sender when a user is requesting his password.
  */
-$wgPasswordSender = 'apache@' . $serverName;
-
-unset( $serverName ); # Don't leak local variables to global scope
+$wgPasswordSender = 'apache@' . $wgServerName;
 
 /**
  * Password reminder name
