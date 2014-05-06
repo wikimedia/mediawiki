@@ -149,7 +149,7 @@ class FileDeleteForm {
 
 		if ( $oldimage ) {
 			$page = null;
-			$status = $file->deleteOld( $oldimage, $reason, $suppress );
+			$status = $file->deleteOld( $oldimage, $reason, $suppress, $user );
 			if ( $status->ok ) {
 				// Need to do a log item
 				$logComment = wfMessage( 'deletedrevision', $oldimage )->inContentLanguage()->text();
@@ -180,7 +180,7 @@ class FileDeleteForm {
 				// doDeleteArticleReal() returns a non-fatal error status if the page
 				// or revision is missing, so check for isOK() rather than isGood()
 				if ( $deleteStatus->isOK() ) {
-					$status = $file->delete( $reason, $suppress );
+					$status = $file->delete( $reason, $suppress, $user );
 					if ( $status->isOK() ) {
 						$dbw->commit( __METHOD__ );
 					} else {
