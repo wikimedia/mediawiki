@@ -107,6 +107,20 @@ class PHPUnitMaintClass extends Maintenance {
 				array_splice( $_SERVER['argv'], 1, 0, '--colors' );
 			}
 		}
+
+		# Makes MediaWiki PHPUnit directory includable so the PHPUnit will
+		# be able to resolve relative files inclusion such as suites/*
+		# PHPUnit uses stream_resolve_include_path() internally
+		# See bug 32022
+		$key = array_search( '--include-path', $_SERVER['argv'] );
+		if( $key === false ) {
+			array_splice( $_SERVER['argv'], 1, 0,
+				__DIR__
+				. PATH_SEPARATOR
+				. get_include_path()
+			);
+			array_splice( $_SERVER['argv'], 1, 0, '--include-path' );
+		}
 	}
 
 	public function getDbType() {
