@@ -1111,6 +1111,7 @@ HTML;
 
 		# collect the originating ips
 		$ip = $this->getRawIP();
+		$isConfigured = IP::isConfiguredProxy( $ip );
 
 		# Append XFF
 		$forwardedFor = $this->getHeader( 'X-Forwarded-For' );
@@ -1131,13 +1132,13 @@ HTML;
 					continue;
 				}
 				$curIP = IP::sanitizeIP( IP::canonicalize( $curIP ) );
-				if ( wfIsTrustedProxy( $curIP ) && isset( $ipchain[$i + 1] ) ) {
-					if ( wfIsConfiguredProxy( $curIP ) || // bug 48919; treat IP as sane
+				if ( IP::isTrustedProxy( $curIP ) && isset( $ipchain[$i + 1] ) ) {
+					if ( IP::isConfiguredProxy( $curIP ) || // bug 48919; treat IP as sane
 						IP::isPublic( $ipchain[$i + 1] ) ||
 						$wgUsePrivateIPs
 					) {
 						$nextIP = IP::canonicalize( $ipchain[$i + 1] );
-						if ( !$nextIP && wfIsConfiguredProxy( $ip ) ) {
+						if ( !$nextIP && $isConfigured ) {
 							// We have not yet made it past CDN/proxy servers of this site,
 							// so either they are misconfigured or there is some IP spoofing.
 							throw new MWException( "Invalid IP given in XFF '$forwardedFor'." );

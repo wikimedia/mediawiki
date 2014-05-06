@@ -4147,39 +4147,23 @@ function wfGetIP() {
  * Checks if an IP is a trusted proxy provider.
  * Useful to tell if X-Forwarded-For data is possibly bogus.
  * Squid cache servers for the site are whitelisted.
+ * @deprecated Since 1.24, use IP::isTrustedProxy()
  *
  * @param string $ip
  * @return bool
  */
 function wfIsTrustedProxy( $ip ) {
-	$trusted = wfIsConfiguredProxy( $ip );
-	wfRunHooks( 'IsTrustedProxy', array( &$ip, &$trusted ) );
-	return $trusted;
+	return IP::isTrustedProxy( $ip );
 }
 
 /**
  * Checks if an IP matches a proxy we've configured.
+ * @deprecated Since 1.24, use IP::isConfiguredProxy()
  *
  * @param string $ip
  * @return bool
  * @since 1.23 Supports CIDR ranges in $wgSquidServersNoPurge
  */
 function wfIsConfiguredProxy( $ip ) {
-	global $wgSquidServers, $wgSquidServersNoPurge;
-
-	// quick check of known proxy servers
-	$trusted = in_array( $ip, $wgSquidServers )
-		|| in_array( $ip, $wgSquidServersNoPurge );
-
-	if ( !$trusted ) {
-		// slightly slower check to see if the ip is listed directly or in a CIDR
-		// block in $wgSquidServersNoPurge
-		foreach ( $wgSquidServersNoPurge as $block ) {
-			if ( strpos( $block, '/' ) !== false && IP::isInRange( $ip, $block ) ) {
-				$trusted = true;
-				break;
-			}
-		}
-	}
-	return $trusted;
+	return IP::isTrustedProxy( $ip );
 }
