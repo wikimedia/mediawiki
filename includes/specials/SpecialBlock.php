@@ -128,7 +128,7 @@ class SpecialBlock extends FormSpecialPage {
 		$a = array(
 			'Target' => array(
 				'type' => 'text',
-				'label-message' => 'ipadressorusername',
+				'label-message' => 'ipaddressorusername',
 				'tabindex' => '1',
 				'id' => 'mw-bi-target',
 				'size' => '45',
