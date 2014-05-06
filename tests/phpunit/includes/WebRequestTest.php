@@ -121,6 +121,8 @@ class WebRequestTest extends MediaWikiTestCase {
 			)
 		) );
 
+		# clear out cached IPSet derived from wgSquidServersNoPurge
+		unset($GLOBALS['wgSquidServersNoPurgeCache']);
 		$request = new WebRequest();
 		$result = $request->getIP();
 		$this->assertEquals( $expected, $result, $description );
