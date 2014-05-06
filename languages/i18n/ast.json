@@ -1914,7 +1914,7 @@
 	"blockip": "Bloquiar usuariu",
 	"blockip-legend": "Bloquiar usuariu",
 	"blockiptext": "Usa'l siguiente formulariu pa bloquiar el permisu d'escritura a una IP o a un usuariu concretu.\nEsto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWiki:Policy-url}}|polítiques]]. Da un motivu específicu (como por exemplu citar páxines que fueron vandalizaes).",
-	"ipadressorusername": "Direición IP o nome d'usuariu:",
+	"ipaddressorusername": "Direición IP o nome d'usuariu:",
 	"ipbexpiry": "Caducidá:",
 	"ipbreason": "Motivu:",
 	"ipbreason-dropdown": "*Motivos comunes de bloquéu\n** Enxertamientu d'información falso\n** Dexar les páxines en blanco\n** Enllaces spam a páxines esternes\n** Enxertamientu de babayaes/enguedeyos nes páxines\n** Comportamientu intimidatoriu o d'acosu\n** Abusu de cuentes múltiples\n** Nome d'usuariu inaceutable",

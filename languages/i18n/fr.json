@@ -2020,7 +2020,7 @@
 	"blockip": "Bloquer l’utilisateur",
 	"blockip-legend": "Bloquer l’utilisateur",
 	"blockiptext": "Utilisez le formulaire ci-dessous pour bloquer les tentatives de modification faites à partir d’une adresse IP spécifique ou d’un nom d’utilisateur.\nUne telle mesure ne devrait être prise que pour prévenir le vandalisme et en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].\nDonnez ci-dessous un motif précis (par exemple en citant les pages qui ont été vandalisées).",
-	"ipadressorusername": "Adresse IP ou nom d'utilisateur :",
+	"ipaddressorusername": "Adresse IP ou nom d'utilisateur :",
 	"ipbexpiry": "Durée avant expiration :",
 	"ipbreason": "Motif :",
 	"ipbreason-dropdown": "* Motifs de blocage les plus fréquents\n** Insertion de fausses informations\n** Suppression injustifiée de contenu des pages\n** Insertion répétée de liens externes publicitaires (pollupostage)\n** Insertion de contenu sans aucun sens et de déchets dans les pages\n** Tentative d'intimidation ou harcèlement\n** Abus d'utilisation de comptes multiples\n** Nom d'utilisateur inacceptable, injurieux ou diffamant",

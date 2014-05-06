@@ -1879,7 +1879,7 @@
 	"blockip": "Blokiraj korisnika",
 	"blockip-legend": "Blokiranje korisnika",
 	"blockiptext": "Upotrebite donji upitnik da biste uklonili prava pisanja sa određene IP adrese ili korisničkog imena.  \nOvo bi trebalo da bude urađeno samo da bi se spriječio vandalizam, i u skladu sa [[{{MediaWiki:Policy-url}}|smjernicama]]. \nUnesite konkretan razlog ispod (na primjer, navodeći koje konkretne stranice su vandalizovane).",
-	"ipadressorusername": "IP adresa ili korisničko ime:",
+	"ipaddressorusername": "IP adresa ili korisničko ime:",
 	"ipbexpiry": "Ističe:",
 	"ipbreason": "Razlog:",
 	"ipbreason-dropdown": "*Najčešći razlozi blokiranja\n**Unošenje netačnih informacija\n**Uklanjanje sadržaja stranica\n**Postavljanje spam vanjskih linkova\n**Ubacivanje gluposti/grafita\n**Osobni napadi (ili napadačko ponašanje)\n**Čarapare (zloupotreba više korisničkih računa)\n**Neprihvatljivo korisničko ime",

@@ -1887,7 +1887,7 @@
 	"blockip": "Blocar en escritura",
 	"blockip-legend": "Blocar en escritura",
 	"blockiptext": "Utilizatz lo formulari çaijós per blocar l'accès a las modificacions a partir d'una adreça IP especifica o d'un nom d'utilizaire.\nUna tala mesura deu pas èsser presa pas que per empachar lo vandalisme e en acòrdi amb las [[{{MediaWiki:Policy-url}}|règlas intèrnas]].\nDonatz çaijós un motiu precís (per exemple en citant las paginas que son estadas vandalizadas).",
-	"ipadressorusername": "Adreça IP o nom d’utilizaire :",
+	"ipaddressorusername": "Adreça IP o nom d’utilizaire :",
 	"ipbexpiry": "Durada del blocatge :",
 	"ipbreason": "Motiu :",
 	"ipbreason-dropdown": "* Motius de blocatge mai frequents\n** Vandalisme\n** Insercion d’informacions faussas\n** Supression de contengut sens justificacion\n** Insercion repetida de ligams extèrnes publicitaris (spam)\n** Insercion de contengut sens cap de sens\n** Temptativa d’intimidacion o agarriment\n** Abús d’utilizacion de comptes multiples\n** Nom d’utilizaire inacceptable, injuriós o difamant",

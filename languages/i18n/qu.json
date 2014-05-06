@@ -1827,7 +1827,7 @@
 	"blockip": "Ruraqta hark'ay",
 	"blockip-legend": "Ruraqta hark'ay",
 	"blockiptext": "Kay qatiq hunt'ana p'anqata llamk'achiy huk sapaq IP huchhamanta icha ruraqpa rakiqunanmanta qillqay atiyta hark'anapaq.\nKayqa rurasqa kachun wandalismullatam hark'anapaq, [[{{MediaWiki:Policy-url}}|{{SITENAME}}pa kawpayninkamallam]].\nWillariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta willaspa).",
-	"ipadressorusername": "IP huchha icha ruraqpa sutin",
+	"ipaddressorusername": "IP huchha icha ruraqpa sutin",
 	"ipbexpiry": "Hark'ay kaykama:",
 	"ipbreason": "Kayrayku:",
 	"ipbreason-dropdown": "*Hark'anapaq sapsi raykukuna\n** Llulla willayta qillqamuy\n** P'anqata samiqninmanta ch'usaqchay\n** ''Spam'' nisqa millay t'inkikunata yapay\n** Q'upata, mana ima chaniyuqtapas yapay\n** Huk ruraqkunata manchachiy icha k'amiy\n** Achka rakiqunakunawan millayta ruray\n** Mana chaskinalla ruraqpa sutin",

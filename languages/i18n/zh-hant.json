@@ -1959,7 +1959,7 @@
 	"blockip": "封鎖使用者",
 	"blockip-legend": "封鎖使用者",
 	"blockiptext": "填寫以下單據可封鎖特定 IP 位置或使用者名稱的存取權限。\n這個動作應用來避免破壞行為，可根據 [[{{MediaWiki:Policy-url}}|管理政策]]。\n請在下方填寫一個具體的原因 (例如：引述一段破壞頁面的事實)。",
-	"ipadressorusername": "IP 位址或使用者名稱：",
+	"ipaddressorusername": "IP 位址或使用者名稱：",
 	"ipbexpiry": "期限：",
 	"ipbreason": "原因：",
 	"ipbreason-dropdown": "*常見的封鎖原因\n** 填寫不實資訊\n** 刪除頁面內容\n** 散佈外部廣告連結\n** 在頁面填寫無意義文字\n** 無禮的行為、攻擊／騷擾別人\n** 濫用多個帳號\n** 使用不受歡迎的使用者名稱",

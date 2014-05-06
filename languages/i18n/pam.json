@@ -1154,7 +1154,7 @@
 	"blockip": "Sabatan ya ing talagamit",
 	"blockip-legend": "Sabatan ya ing talagamit",
 	"blockiptext": "Gamitan me ing form king lalam ba yang sabatan king pamaglub\ning particular a IP address o lagyu ning talagamit (username).\nMalyari mung gawan iti bang milisya king pamanyira (vandalism),\nat agpang king [[{{MediaWiki:Policy-url}}|patakaran]].\nIsulat me ing particular a sangkan king lalam (alimbawa, sabyan\nmu nung sanu retang bulung a sinira da).",
-	"ipadressorusername": "IP Address o lagyungtalagamit (username):",
+	"ipaddressorusername": "IP Address o lagyungtalagamit (username):",
 	"ipbexpiry": "Mayari:",
 	"ipbreason": "Sangkan:",
 	"ipbreason-dropdown": "*Keraklan a sangkan king pamaniabat\n** Mangibiling e tutung impormasiun\n** Maglakong laman kareng bulung\n** Maniuglung spam\n** Manyingit alang kabaldugan a sulat o e dapat misulat kareng bulung\n** Mamatakut o maniaul\n** Mamabusu kareng dakal a account\n** E katanggap-tanggap a lagyungtalagamit (username)",

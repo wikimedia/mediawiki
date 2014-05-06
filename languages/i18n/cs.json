@@ -1935,7 +1935,7 @@
 	"blockip": "Zablokovat uživatele",
 	"blockip-legend": "Zablokovat uživatele",
 	"blockiptext": "Tento formulář slouží k zablokování editací z konkrétní IP adresy nebo uživatelského jména.\nToto by mělo být používáno jen v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].\nUdejte přesný důvod níže (například ocitujte, které stránky byly poškozeny).",
-	"ipadressorusername": "IP adresa nebo uživatelské jméno:",
+	"ipaddressorusername": "IP adresa nebo uživatelské jméno:",
 	"ipbexpiry": "Čas vypršení:",
 	"ipbreason": "Důvod:",
 	"ipbreason-dropdown": "*Časté důvody blokování\n** Vkládání klamných informací\n** Odstraňování obsahu stránek\n** Vkládání reklamních externích odkazů\n** Vkládání nesmyslů\n** Zastrašování nebo vyhrožování\n** Zneužívání více účtů\n** Nevhodné uživatelské jméno",

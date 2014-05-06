@@ -1818,7 +1818,7 @@
 	"blockip": "Däm Binutzer d Bearbeitigsrächt furtnee",
 	"blockip-legend": "IP-Adräss/Benutzer sperre",
 	"blockiptext": "Nimm des Formular go ne Benutzer oder e IP-Adräss sperre.\nDes sott numme erfolge go Vandalismus verhindere un in Ibereinstimmig mit in dr [[{{MediaWiki:Policy-url}}|Leitlinie]]. Bitte gib au ne Grund fi d Sperri aa (z. B. indäm du einzel ni Syte zitiersch, wu vandaliert wore sin).",
-	"ipadressorusername": "IP-Adräss oder Benutzername:",
+	"ipaddressorusername": "IP-Adräss oder Benutzername:",
 	"ipbexpiry": "Sperrduur:",
 	"ipbreason": "Grund:",
 	"ipbreason-dropdown": "* Allgmeini Sperrgrind\n** Lesche vu Syte\n** Aalege vu bledsinnige Syte\n** Vylfachi Verstess gege d Richtlinie fir Netzgleicher\n** Verstoss gege dr Grundsatz „Kei persenligi Aagriff“\n* Benutzerspezifischi Sperrgrind\n** Uugeignete Benutzername\n** Neijaamäldig vun eme uubschränkt gsperrte Benutzer\n* IP-spezifischi Sperrgrind\n** Proxy, wäge Vandalismus vu einzelne Benutzer lengerfrischtig gsperrt",

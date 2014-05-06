@@ -1671,7 +1671,7 @@
 	"blockip": "Blokkeer dit IP-adres",
 	"blockip-legend": "'ne Gebroeker of IP-adres blokkere",
 	"blockiptext": "Gebroek 't óngerstjaondj formeleer óm sjrieftoegank van e zeker IP-adres te verbeje. Dit maag allein gedaon weure om vandalisme te veurkómme en in euvereinkóms mitte [[{{MediaWiki:Policy-url}}|beleid]]. Gaef hiejónger de raeje óp (bv. inkel vandaliseerdje paazjes).",
-	"ipadressorusername": "IP-adres of gebroekersnaam",
+	"ipaddressorusername": "IP-adres of gebroekersnaam",
 	"ipbexpiry": "Verlöp (maak 'n keuze)",
 	"ipbreason": "Reeje:",
 	"ipbreason-dropdown": "*Väöl veurkommende rejer veur blokkaazjes\n** Foutieve informatie inveure\n** Verwiedere van informatie oet artikele\n** Spamlinks nao externe websites\n** Inveuge van nonsens in artikele\n** Intimiderend gedraag\n** Misbroek van meerdere gebroekers\n** Onacceptabele gebroekersnaam",

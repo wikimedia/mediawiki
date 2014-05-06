@@ -1533,7 +1533,7 @@
 	"blockip": "Blokiruida kävutajad",
 	"blockip-legend": "Blokiruida kävutajad",
 	"blockiptext": "Kävutagat alemba anttud form, miše blokiruida kirjutandan voimuz märitud IP-adresaspäi.\nNece sab tehta vaiše sen täht, miše borcuidas vandalizmanke, kut om kirjutadud [[{{MediaWiki:Policy-url}}|ohjandimiš]].\nKirjutagat sü alemba (ozutesikš, citiruigat vandaliziruidud lehtpoled).",
-	"ipadressorusername": "IP-adres vai kävutajan nimi:",
+	"ipaddressorusername": "IP-adres vai kävutajan nimi:",
 	"ipbexpiry": "Lopindan strok:",
 	"ipbreason": "Sü:",
 	"ipbreason-dropdown": "*Blokiruindan päsüd\n** Väran informacijan andand\n** Lehtpoliden südäimišton čudand\n** Spamkosketused irdsaitoihe\n** Hamatoman tekstan da rujon kirjutamine lehtpolile\n** Toižiden kävutajiden pöl'gästoitand\n** Erazvuiččiden registracijoiden kävutand ühtel ristitul\n** Paha kävutajan nimi",

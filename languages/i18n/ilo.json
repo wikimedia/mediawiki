@@ -1876,7 +1876,7 @@
 	"blockip": "Serraan ti agar-aramat",
 	"blockip-legend": "Serraan ti agar-aramat",
 	"blockiptext": "Usaren ti kinabuklan dita baba tapno maserraan ti panagsurat manipud iti naisangayan nga IP a pagtaengan wenno nagan ti agar-aramat.\nUsaren laeng daytoy tapno pawilan ti bandalismo, ken panagtunos iti [[{{MediaWiki:Policy-url}}|annuroten]].\nIkkan ti naisangayan a rason dita baba (kas pagarigan, dakamaten ti maysa a panid a na-bandalismo) .",
-	"ipadressorusername": "IP a pagtaengan wenno nagan ti agar-aramat:",
+	"ipaddressorusername": "IP a pagtaengan wenno nagan ti agar-aramat:",
 	"ipbexpiry": "Agpaso:",
 	"ipbreason": "Rason:",
 	"ipbreason-dropdown": "*Dagiti kadawyan a rason ti panagserra\n** Agikabil kadagiti  madi a pakaammo\n** Agikkat kadagiti linaon ti pampanid\n** Agikabil ti spam a silpo iti ruar\n** Agikabil ti minamaag/saan a maawatan a pampanid\n** Nabutbuteng a panagkukua /agriribok\n** Agab-abuso kadagiti sabsabali a pakabilangan\n** Saan a maawat a nagan ti agar-aramat",

@@ -17,7 +17,7 @@
 		]
 	},
 	"tog-underline": "Wekea mstari viungo:",
-	"tog-hideminor": "Ficha mabadilisho madogo ya hivi karibuni",
+	"tog-hideminor": "Ficha maharirio madogo katika mabadiliko ya hivi karibuni",
 	"tog-hidepatrolled": "Ficha kurasa zilizofanyiwa doria kwenye mabadiliko ya karibuni",
 	"tog-newpageshidepatrolled": "Ficha kurasa zilizofanyiwa doria kwenye orodha ya kurasa mpya",
 	"tog-extendwatchlist": "Tanua orodha ya maangalizi ili kuonyesha mabadiliko yote yaliyofanyika, si hilo la mwisho tu.",
@@ -1633,7 +1633,7 @@
 	"blockip": "Zuia mtumiaji",
 	"blockip-legend": "Kumzuia mtumiaji",
 	"blockiptext": "Tumia fomu iliyopo chini kumzuia mtu asihariri kwa kupitia anwani fulani wa IP au kwa kutumia jina fulani la mtumiaji.\nNia ya kumzuia mtu inatakiwa kuwa kuzuia uharibifu tu, na ifanikiwe kutokana na masharti ya [[{{MediaWiki:Policy-url}}|sera]].\nAndika sababu ya kuzuia chini (kwa mfano, kwa kutaja mifano ya kurasa zilizoharibiwa).",
-	"ipadressorusername": "Anwani ya IP au jina la mtumiaji:",
+	"ipaddressorusername": "Anwani ya IP au jina la mtumiaji:",
 	"ipbexpiry": "Itakwisha:",
 	"ipbreason": "Sababu:",
 	"ipbreason-dropdown": "*Sababu za kawaida za kuzuia\n** Kuingiza habari za uongo\n** Kuondosha yaliyomo katika kurasa\n** Viungo vya nje visivyotakiwa\n** Kuingiza upuuzi/ujinga sioeleweka kwenye makala\n** Adabu mbaya/kero\n** Kusumbua akaunti nyinginyingi\n** Jina la mutumiaji lisilokubalika",

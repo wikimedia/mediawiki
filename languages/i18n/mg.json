@@ -1836,7 +1836,7 @@
 	"blockip": "Sakano ny mpikambana",
 	"blockip-legend": "Sakano ny mpikambana",
 	"blockiptext": "Ampiasao ity formulaire ity hisakanana ny fahazoan-dàlana hanoratra\nananan'ny adiresy IP iray na solonanarana iray.\nTokony ho antony fisorohana ny fisomparana ihany, ary mifanaraka amin'ny [[{{MediaWiki:Policy-url}}|fepetra]]\nihany no hanaovana ny fisakanana.\nFenoy etsy ambany ny antony manokana (ohatra, mitanisà pejy nosomparana).",
-	"ipadressorusername": "Adiresy IP na solonanarana",
+	"ipaddressorusername": "Adiresy IP na solonanarana",
 	"ipbexpiry": "Fahataperana",
 	"ipbreason": "Antony :",
 	"ipb-hardblock": "Hanakana ny mpikambana nisoratra anarana mampiasa ity adiresy IP ity",

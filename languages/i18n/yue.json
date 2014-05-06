@@ -1576,7 +1576,7 @@
 	"blockip": "封鎖用戶",
 	"blockip-legend": "封鎖用戶",
 	"blockiptext": "使用以下嘅表格嚟去阻止指定嘅IP地址或用戶名嘅寫權限。\n僅當僅當為咗避免有版畀人惡意破壞嘅時候先可以使用，而且唔可以違反[[{{MediaWiki:Policy-url}}|政策]]。\n喺下面填寫阻止嘅確切原因（比如：引用咗某啲已經破壞咗嘅頁面）。",
-	"ipadressorusername": "IP地址或用戶名:",
+	"ipaddressorusername": "IP地址或用戶名:",
 	"ipbexpiry": "期限:",
 	"ipbreason": "原因:",
 	"ipbreason-dropdown": "*共用封鎖原因\n** 插入錯嘅資料\n** 響頁面度拎走\n** 亂加入外部連結\n** 響頁度加入冇意義嘅嘢\n** 嚇人／騷擾\n** 濫用多個戶口\n** 唔能夠接受嘅用戶名",

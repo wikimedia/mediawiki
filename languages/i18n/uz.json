@@ -1110,7 +1110,7 @@
 	"unblock": "Foydalanuvchiga yo'l ochish",
 	"blockip": "Foydalanuvchini chetlashtir",
 	"blockip-legend": "Foydalanuvchini muhosara qilish",
-	"ipadressorusername": "IP-manzil yoki foydalanuvchi nomi:",
+	"ipaddressorusername": "IP-manzil yoki foydalanuvchi nomi:",
 	"ipbexpiry": "Tugaydi:",
 	"ipbreason": "Sabab:",
 	"ipbreason-dropdown": "* Chetlashtirishning odatiy sabablari\n** Yolgʻon maʼlumot kiritish\n** Sahifa matnini toʻliq oʻchirish\n** Tashqi saytlarga spam-havolalar\n** Maʼnosiz matn/axlat qoʻshish\n** Foydalanuvchilarga tahdid qilish, ularni taʼqib qilish\n** Bir nechta hisob yozuvlaridan oʻz manfaatlarida foydalanish\n** Nomaqbul foydalanuvchi nomi",

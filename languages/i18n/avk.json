@@ -1229,7 +1229,7 @@
 	"blockip": "Elekara va IP mane ok favesik",
 	"blockip-legend": "Elekara va favesik",
 	"blockiptext": "Ta suterafa elekara va vansara male pilkovafe IP mane ok favesikyolt va vlevefa erurateza favel !\nMana sabegara zo goskur ta weyonara va cidara is dotrakason va [[{{MediaWiki:Policy-url}}|gotarkan vexeem]].\nVa lazavanha (tulon ozwason va cidayanu bu se) vlevon bazel !",
-	"ipadressorusername": "IP mane ok favesikyolt",
+	"ipaddressorusername": "IP mane ok favesikyolt",
 	"ipbexpiry": "Elekaracek",
 	"ipbreason": "Elekaradanda :",
 	"ipbcreateaccount": "Djira va pataredura",

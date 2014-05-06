@@ -1933,7 +1933,7 @@
 	"blockip": "Kullanıcıyı engelle",
 	"blockip-legend": "Kullanıcıyı engelle",
 	"blockiptext": "Aşağıdaki formu kullanarak belli bir IP'nin veya kayıtlı kullanıcının değişiklik yapmasını engelleyebilirsiniz. Bu sadece vandalizmi engellemek için ve [[{{MediaWiki:Policy-url}}|kurallara]] uygun olarak yapılmalı. Aşağıya mutlaka engelleme ile ilgili bir açıklama yazınız. (örnek: -Şu- sayfalarda vandalizm yapmıştır).",
-	"ipadressorusername": "IP adresi veya kullanıcı adı",
+	"ipaddressorusername": "IP adresi veya kullanıcı adı",
 	"ipbexpiry": "Bitiş süresi",
 	"ipbreason": "Neden:",
 	"ipbreason-dropdown": "*Genel engelleme nedenleri\n** Yanlış bilgi eklemek\n** Sayfalardan içeriği çıkarmak\n** Dış sitelere spam bağlantı vermek\n** Sayfalara mantıksız/anlaşılmaz sözler eklemek\n** Tehditvari davranış/Taciz\n** Birden fazla hesabı kötüye kullanmak\n** Kabul edilemez kullanıcı adı",

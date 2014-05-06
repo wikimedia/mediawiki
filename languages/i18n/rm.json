@@ -1747,7 +1747,7 @@
 	"blockip": "Bloccar l'utilisader",
 	"blockip-legend": "Bloccar l'utilisader",
 	"blockiptext": "Utilisescha il formular sutvart per bloccar ina adressa IP u in utilisader uschia ch'el na po betg pli far midadas.\nTi duessas be far quai per impedir vandalissem e en ina moda confurma a las [[{{MediaWiki:Policy-url}}|directivas]].\nInditgescha sutvart in motiv (per exempel pos ti inditgar paginas ch'èn vegnidas destruidas).",
-	"ipadressorusername": "Adressa IP u num d'utilisader:",
+	"ipaddressorusername": "Adressa IP u num d'utilisader:",
 	"ipbexpiry": "Bloccà enfin:",
 	"ipbreason": "Motiv:",
 	"ipbreason-dropdown": "*Motivs generals per bloccar\n** Inserir infurmaziuns faussas\n** Stizzar cuntegn da paginas\n** Inserir colliaziuns da spam a paginas externas\n** Inserir nonsens en paginas\n** Sedepurtar nunconvegnent u mulestant\n** Abus da plirs contos\n** Num d'utilisader nunacceptabel",

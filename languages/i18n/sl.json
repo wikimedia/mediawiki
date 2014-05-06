@@ -1918,7 +1918,7 @@
 	"blockip": "Blokiranje IP-naslova ali uporabniškega imena",
 	"blockip-legend": "Blokiraj uporabnika",
 	"blockiptext": "Naslednji obrazec vam omogoča, da določenemu IP-naslovu ali uporabniškemu imenu preprečite urejanje.\nTo storimo le zaradi zaščite pred nepotrebnim uničevanjem in po [[{{MediaWiki:Policy-url}}|pravilih]].\nVnesite tudi razlog (''na primer'' seznam strani, ki jih je uporabnik po nepotrebnem kvaril).",
-	"ipadressorusername": "IP-naslov ali uporabniško ime",
+	"ipaddressorusername": "IP-naslov ali uporabniško ime",
 	"ipbexpiry": "Pretek",
 	"ipbreason": "Razlog:",
 	"ipbreason-dropdown": "*Razlogi za blokado\n** vandalizem\n** dodajanje napačnih/lažnih podatkov\n** brisanje strani\n** dodajanje nepotrebnih zunanjih povezav\n** dodajanje neumnosti v besedilo\n** nadlegovanje/osebni napadi\n** neprimerno uporabniško ime",

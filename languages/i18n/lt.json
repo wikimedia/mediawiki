@@ -1819,7 +1819,7 @@
 	"blockip": "Blokuoti naudotoją",
 	"blockip-legend": "Blokuoti naudotoją",
 	"blockiptext": "Naudokite šią formą, kad uždraustumėte redagavimo prieigą pasirinktam IP adresui ar naudotojui. Tai turėtų būti atliekama tik tam, kad sustabdytumėte vandalizmą, ir neprieštarauti [[{{MediaWiki:Policy-url}}|projekte galiojančioms taisyklėms]].\nŽemiau pateikite tikslią priežastį (pavyzdžiui, nurodydami sugadintus puslapius).",
-	"ipadressorusername": "IP adresas arba naudotojo vardas",
+	"ipaddressorusername": "IP adresas arba naudotojo vardas",
 	"ipbexpiry": "Galiojimo laikas",
 	"ipbreason": "Priežastis:",
 	"ipbreason-dropdown": "*Bendrosios blokavimo priežastys\n** Klaidingos informacijos įterpimas\n** Turinio šalinimas iš puslapių\n** Kitų svetainių reklamavimas\n** Nesusijusio arba beprasmio teksto įterpimas į puslapius\n** Gąsdinimai/įžeidinėjimai\n** Piktnaudžiavimas keliomis paskyromis\n** Nepriimtinas naudotojo vardas",

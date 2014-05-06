@@ -1920,7 +1920,7 @@
 	"blockip": "Forbari uzanton/IP-adreson",
 	"blockip-legend": "Forbari uzanton",
 	"blockiptext": "Per jena formularo vi povas forpreni de ajna nomo aŭ IP-adreso la rajton skribi en la vikio. Oni faru tion ''nur'' por eviti vandalismon, kaj sekvante la [[{{MediaWiki:Policy-url}}|regulojn pri forbarado]]. Klarigu la precizan kialon malsupre (ekzemple, citu paĝojn, kiuj estis vandaligitaj).",
-	"ipadressorusername": "IP-adreso aŭ salutnomo:",
+	"ipaddressorusername": "IP-adreso aŭ salutnomo:",
 	"ipbexpiry": "Blokdaŭro",
 	"ipbreason": "Kialo:",
 	"ipbreason-dropdown": "*Oftaj kialoj de forbaro\n** Enmetas malveraĵojn\n** Forviŝas entenon el paĝoj\n** Entrudas ligilojn al eksteraj paĝaroj\n** Enmetas sensencaĵojn\n** Terurigema sinteno\n** Misuzo de pluraj salutnomoj\n** Neakceptebla uzanto-nomo",

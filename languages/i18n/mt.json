@@ -1691,7 +1691,7 @@
 	"blockip": "Imblokka lil utent",
 	"blockip-legend": "Imblokka 'l-utent",
 	"blockiptext": "Uża l-formola t'hawn taħt sabiex biex tibblokkja l-aċċess tal-kitba lil IP speċifiku jew utent.\nIl-blokk irid ikun użat biss sabiex jitnaqqas iċ-ċans ta' vandaliżmu, u għandu josservja b'mod strett il-[[{{MediaWiki:Policy-url}}|politika ta' {{SITENAME}}]].\nIndika r-raġuni speċifika għalfejn tixtieq tipproċedi bil-blokk (per eżempju, billi turi l-paġni partikolari li ġew ivvandalizzati).",
-	"ipadressorusername": "Indirizz tal-IP jew isem tal-utent:",
+	"ipaddressorusername": "Indirizz tal-IP jew isem tal-utent:",
 	"ipbexpiry": "Skadenza tal-imblokk:",
 	"ipbreason": "Raġuni:",
 	"ipbreason-dropdown": "*Raġunijiet komuni dwar blokki\n** Iddaħħal informazzjoni falza\n** Tneħħi kontenut mill-paġni\n** Links kummerċjali ma' siti esterni\n** Iddaħal kontenut bla sens\n** Komportament intimidanti jew molestiku\n** Abbuż minn aktar minn kont wieħed\n** isem ta' utent mhux aċċettabli",

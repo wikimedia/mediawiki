@@ -1916,7 +1916,7 @@
 	"blockip": "Bloché l'utent",
 	"blockip-legend": "Bloché l'utent",
 	"blockiptext": "Che a deuvra ël mòdulo ëd domanda 'd blocagi ambelessì sota për bloché l'acess con drit dë scritura da chèich adrëssa IP o stranòm.<br />\nËs blocagi-sì as dev dovresse MACH për evité dij comportament vandàlich, ën strèita osservansa ëd tùit ij prinsipi dle [[{{MediaWiki:Policy-url}}|régole ëd {{SITENAME}}]].<br />\nËl blocagi a peul ën gnun-a manera esse dovrà për dle question d'ideologìa.\n\nChe a scriva codì che st'adrëssa IP o së stranòm a dev second chiel esse blocà (pr'esempi, che a buta ij tìtoj ëd pàgine che a l'abio già patì dj'at vandàlich da cost'adrëssa IP o së stranòm).",
-	"ipadressorusername": "Adrëssa IP ò stranòm",
+	"ipaddressorusername": "Adrëssa IP ò stranòm",
 	"ipbexpiry": "Fin-a al",
 	"ipbreason": "Rason:",
 	"ipbreason-dropdown": "*Motiv sòlit për ij blocagi\n** Avej butà d'anformassion fàosse\n** Avej gavà dël contnù da 'nt le pàgine\n** Avèj butà dla rumenta porcherìa coma anliure d'areclam\n** Avèj butà test sensa sust ant le pàgine\n** Avèj un deuit da bërsach con la gent\n** Avèj dovrà vàire cont fòra dij deuit\n** Stranòm ch'as peul nen acetesse",

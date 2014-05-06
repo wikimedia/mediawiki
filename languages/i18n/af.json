@@ -1822,7 +1822,7 @@
 	"blockip": "Blokkeer gebruiker",
 	"blockip-legend": "Blokkeer gebruiker of IP-adres",
 	"blockiptext": "Gebruik die vorm hier onder om skryftoegang vir 'n gebruiker of IP-adres in te trek.\nDit mag slegs as beskerming teen vandalisme en in ooreenstemming met die [[{{MediaWiki:Policy-url}}|beleid]] gedoen word.\nVul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat gevandaliseer is, aan).",
-	"ipadressorusername": "IP-adres of gebruikersnaam:",
+	"ipaddressorusername": "IP-adres of gebruikersnaam:",
 	"ipbexpiry": "Duur:",
 	"ipbreason": "Rede:",
 	"ipbreason-dropdown": "*Algemene redes vir versperring\n** Invoeg van valse inligting\n** Skrap van bladsyinhoud\n** \"Spam\" van skakels na eksterne webwerwe\n** Invoeg van gemors op bladsye\n** Intimiderende gedrag (teistering)\n** Misbruik van veelvuldige rekeninge\n** Onaanvaarbare gebruikersnaam",

@@ -1815,7 +1815,7 @@
 	"blockip": "Harangin/hadlangan ang tagagamit",
 	"blockip-legend": "Iharang ang tagagamit",
 	"blockiptext": "Gamitin ang mga lahok sa ibaba upang maharang ang akses sa pagsulat mula sa isang espesipikong IP address o bansag.\nGawin lamang ito para maiwasan ang bandalismo, at napapaloob sa [[{{MediaWiki:Policy-url}}|patakaran]].\nPunan ang espesipikong dahilan sa ibaba (halimbawa, magbanggit ng partikular na mga pahina na nagkaroon ng bandalismo).",
-	"ipadressorusername": "Direksyong IP o bansag:",
+	"ipaddressorusername": "Direksyong IP o bansag:",
 	"ipbexpiry": "Pagkawalang-bisa:",
 	"ipbreason": "Dahilan:",
 	"ipbreason-dropdown": "*Mga karaniwang dahilan sa paghaharang\n** Pagpasok ng hindi totoong impormasyon\n** Pag-alis ng nilalaman mula sa mga pahina\n** Paglalagay ng mga panlabas na link  na spam\n** Pagpasok ng impormasyong walang kabuluhan o hindi maintindihan sa mga pahina\n** Ugaling nananakot/pagligalig\n** Pagmamalabis ng maramihang account\n** Hindi kanais-nais na pangalan",

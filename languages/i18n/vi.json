@@ -1930,7 +1930,7 @@
 	"blockip": "Cấm người dùng",
 	"blockip-legend": "Cấm người dùng",
 	"blockiptext": "Dùng mẫu dưới để cấm một địa chỉ IP hoặc thành viên không được viết trang.\nĐiều này chỉ nên làm để tránh phá hoại, và phải theo [[{{MediaWiki:Policy-url}}|quy định]].\nĐiền vào lý do cụ thể ở dưới (ví dụ, chỉ ra trang nào bị phá hoại).",
-	"ipadressorusername": "Địa chỉ IP hay tên thành viên:",
+	"ipaddressorusername": "Địa chỉ IP hay tên thành viên:",
 	"ipbexpiry": "Thời hạn:",
 	"ipbreason": "Lý do:",
 	"ipbreason-dropdown": "*Một số lý do cấm thường gặp\n** Phá hoại\n** Thêm thông tin sai lệch\n** Xóa nội dung trang\n** Đăng liên kết thư rác dẫn đến trang Web bên ngoài\n** Cho thông tin rác vào trang\n** Có thái độ dọa dẫm/quấy rối\n** Lạm dụng nhiều tài khoản\n** Tên thành viên không thể chấp nhận",

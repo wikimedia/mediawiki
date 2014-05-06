@@ -1221,7 +1221,7 @@
 	"blockip": "IP-Atresse/Benutzer sperra",
 	"blockip-legend": "IP-Atresse/Benutzer sperra",
 	"blockiptext": "Mit diesem Formular sperrst du anne IP-Atresse oder an'n Nutzernoama, su doaß vu dort kenne Änderunga meh vorgenumma waan kinna.\nDies sullte ock erfolga, im Vandalismus zu verhindern und ei Iebereinstimmung miet dann [[{{MediaWiki:Policy-url}}|Richtlinien]].\nBitte gib dann Grund fier de Sperre oa.",
-	"ipadressorusername": "IP-Atresse oder Benutzernoame:",
+	"ipaddressorusername": "IP-Atresse oder Benutzernoame:",
 	"ipbreason": "Begriendung:",
 	"ipbreason-dropdown": "* Allgemeene Sperrgrinde\n** Eenfiega foalscher Informationen\n** Laara vu Seita\n** Fiegt massenweise externe Links a\n** Einstalla unsinniger Inhalte ei Seita \n** bedrohliches Verhaala/Belästigung\n** Missbrauch durch mehrere Nutzerkonten\n** Ungeeigneter Nutzernoame",
 	"ipbcreateaccount": "Erstellung vu Nutzerkonten verhindern",

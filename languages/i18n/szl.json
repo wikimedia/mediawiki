@@ -1528,7 +1528,7 @@
 	"blockip": "Zawrzij sprowjorza",
 	"blockip-legend": "Zawrzij sprowjorza",
 	"blockiptext": "Tyn formularz służy do zawjerańo sprowjyń spod uokreślůnygo adresu IP abo kůnkretnymu użytkowńikowi.\nZawjerać noleży jydyńy po to, by zapobjec wandalizmům, zgodńy ze [[{{MediaWiki:Policy-url}}|przijyntymi reglůma]].\nPodej powůd (np. umjeszczajůnc mjana zajtůw, na kerych dopuszczůno śe wandalizmu).",
-	"ipadressorusername": "Adres IP abo mjano użytkowńika",
+	"ipaddressorusername": "Adres IP abo mjano użytkowńika",
 	"ipbexpiry": "Wygaso:",
 	"ipbreason": "Čymu:",
 	"ipbreason-dropdown": "*Nojczynstsze powody zawjerańo uod sprawjyń\n** Ataki na inkszych użytkowńikůw\n** Naruszyńy praw autorskych\n** Ńydozwolůne mjano użytkowńika\n** Open proxy/Tor\n** Spamowańy\n** Ůsuwańy treśći zajtůw\n** Wprowadzańy fołszywych informacyji\n** Wulgaryzmy\n** Wypisywańy gůpot na zajtach",

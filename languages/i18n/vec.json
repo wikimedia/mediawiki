@@ -1788,7 +1788,7 @@
 	"blockip": "Bloco utente",
 	"blockip-legend": "Bloca l'utente",
 	"blockiptext": "Dòpara el moduło qua soto par blocar l'accesso in scritura a un speçifico utente o indirizo IP. El bloco el gà de èssar operà par prevegner ati de vandalismo e in streta osservansa de ła [[{{MediaWiki:Policy-url}}|policy de {{SITENAME}}]]. Speçifica in detałio el motivo del bloco nel canpo seguente (ad es. indicando i titołi de łe pàxene ogeto de vandalismo).",
-	"ipadressorusername": "Indirizo IP o nome utente",
+	"ipaddressorusername": "Indirizo IP o nome utente",
 	"ipbexpiry": "Scadensa",
 	"ipbreason": "Motivassion:",
 	"ipbreason-dropdown": "*Motivazion piassè comuni par i blocchi\n** Inserimento de informazion false\n** Rimozion de contenuti da le pagine\n** Colegamenti promozionali a siti foresti\n** Inserimento de contenuti privi de senso\n** Conportamenti intimidatori o molestie\n** Uso indebito de più account\n** Nome utente non cònsono",

@@ -1900,7 +1900,7 @@
 	"blockip": "Benotzer spären",
 	"blockip-legend": "Benotzer spären",
 	"blockiptext": "Benotzt dëse Formulaire fir eng spezifesch IP-Adress oder e Benotzernumm ze spären. Dëst soll nëmmen am Fall vu Vandalismus gemaach ginn, en accordance mat den [[{{MediaWiki:Policy-url}}|interne Richlinen]]. Gitt e spezifesche Grond un (zum Beispill Säite wou Vandalismus virgefall ass).",
-	"ipadressorusername": "IP-Adress oder Benotzernumm:",
+	"ipaddressorusername": "IP-Adress oder Benotzernumm:",
 	"ipbexpiry": "Gültegkeet:",
 	"ipbreason": "Grond:",
 	"ipbreason-dropdown": "*Heefeg Ursaache fir Benotzer ze spären:\n**Bewosst falsch Informatiounen an eng oder méi Säite gesat\n**Ouni Grond Inhalt vu Säite geläscht\n**Spam-Verknëppunge mat externe Säiten\n**Topereien an d'Säite gesat\n**Beleidegt oder bedréit aner Mataarbechter\n**Mëssbrauch vu verschiddene Benotzernimm\n**Net akzeptabele Benotzernumm",

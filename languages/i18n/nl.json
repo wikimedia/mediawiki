@@ -1965,7 +1965,7 @@
 	"blockip": "Gebruiker blokkeren",
 	"blockip-legend": "Gebruiker blokkeren",
 	"blockiptext": "Gebruik het onderstaande formulier om schrijftoegang voor een gebruiker of IP-adres in te trekken.\nDoe dit alleen als bescherming tegen vandalisme en in overeenstemming met het [[{{MediaWiki:Policy-url}}|beleid]].\nGeef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
-	"ipadressorusername": "IP-adres of gebruikersnaam:",
+	"ipaddressorusername": "IP-adres of gebruikersnaam:",
 	"ipbexpiry": "Vervalt (maak een keuze):",
 	"ipbreason": "Reden:",
 	"ipbreason-dropdown": "*Veelvoorkomende redenen voor blokkades\n** Foutieve informatie invoeren\n** Verwijderen van informatie uit pagina's\n** Spamkoppeling naar externe websites\n** Invoegen van nonsens in pagina's\n** Intimiderend gedrag\n** Misbruik door meerdere gebruikers\n** Onaanvaardbare gebruikersnaam",

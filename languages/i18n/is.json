@@ -1836,7 +1836,7 @@
 	"blockip": "Banna notanda",
 	"blockip-legend": "Banna notanda",
 	"blockiptext": "Notaðu eyðublaðið hér að neðan til þess að banna ákveðið vistfang eða notandanafn.\nÞetta ætti einungis að gera til þess að koma í veg fyrir skemmdarverk, og í samræmi við [[{{MediaWiki:Policy-url}}|samþykktir]].\nGefðu nákvæma skýringu að neðan (til dæmis, með því að vísa í þær síður sem skemmdar voru).",
-	"ipadressorusername": "Vistfang eða notandanafn:",
+	"ipaddressorusername": "Vistfang eða notandanafn:",
 	"ipbexpiry": "Bannið rennur út:",
 	"ipbreason": "Ástæða:",
 	"ipbreason-dropdown": "* Algengar bannástæður\n** Setur inn rangar upplýsingar\n** Fjarlægir efni af síðum\n** Setur inn rusltengla á utanaðkomandi síður\n** Setur inn vitleysu/þvaður á síður\n** Yfirþyrmandi framkoma/áreitni\n** Misnotkun á fjölda notandanafna\n** Óásættanlegt notandanafn",

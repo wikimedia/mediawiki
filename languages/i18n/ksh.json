@@ -1886,7 +1886,7 @@
 	"blockip": "Metmaacher sperre",
 	"blockip-legend": "Metmaacher ov IP-Adresse Sperre",
 	"blockiptext": "Hee kanns De bestemmte Metmaacher oder IP-Adresse sperre, su dat se hee em Wiki nit mieh schrieve und Sigge ändere künne.\nDat sollt nor jedon wääde om sujenannte Vandaale ze bremse. Un mer müsse uns dobei natörlich aan uns [[{{MediaWiki:Policy-url}}|Rejelle]] för esu en Fäll halde.\nDrag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passeet. Nenn un Link op de Sigge wo Einer kapott jemaat hät, zem Beispill.",
-	"ipadressorusername": "<i lang=\"en\">IP</i>-Adress oder Metmaacher Name:",
+	"ipaddressorusername": "<i lang=\"en\">IP</i>-Adress oder Metmaacher Name:",
 	"ipbexpiry": "Duur, för wie lang",
 	"ipbreason": "Aanlass:",
 	"ipbreason-dropdown": "* Alljemein Jrönd för et Sperre\n** hät fekeehte Behouptunge udder Leeje en Atikele jeschrevve\n** hät Sigge fottjeschmesse udder leddig jemaat\n** hält sesch iewesch nit aan de Rejelle övver de Links op anger Websigge un jäje der Link-SPAM\n** hät Sigge met Shtuß udder Kauderwelsch drop aajelaat udder Keu en Sigge jedonn\n** deit Medmaacher bedrohe, beleijije, udder schlääsch maache\n** hät mieh wie eine Metmaachername un deit domet Schmuu maache\n* Op der Name betrocke Jrönd\n** esu ene Metmaacher-Name wolle mer nit\n* Op en IP-Adräß betrocke Jrönd\n** dat es en Proxy-ẞööver övver dänn de Lück zo vill Driß aanjestellt han",

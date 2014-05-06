@@ -1285,7 +1285,7 @@
 	"blockip": "Usorem obstruere",
 	"blockip-legend": "Usorem vel locum IP obstruere",
 	"blockiptext": "Forma infera utere ut quendam usorem vel locum IP obstruas ne plus scribere potest.\nHoc non nisi secundum [[{{MediaWiki:Policy-url}}|consilium]] fieri potest.\nRationem certam subscribe (exempli gratia titulos paginarum quas iste usor modo vandalorum recensuit).",
-	"ipadressorusername": "Locus IP aut nomen usoris:",
+	"ipaddressorusername": "Locus IP aut nomen usoris:",
 	"ipbexpiry": "Exitus:",
 	"ipbreason": "Causa:",
 	"ipbreason-dropdown": "*Rationes crebriter adductae\n** Ob scripta falsa\n** Ob textum remotum\n** Ob nexus externos multiplicatos\n** Ob scripta sensu sive et Latinitate carentia\n** Ob scripta inurbana\n** Ob rationes perniciose multiplicatas\n** Ob nomen inurbanum sive inconveniens",

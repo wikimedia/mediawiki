@@ -1505,7 +1505,7 @@
 	"blockip": "Peungpeuk pamaké",
 	"blockip-legend": "Peungpeuk pamaké",
 	"blockiptext": "Paké formulir di handap pikeun meungpeuk aksés nulis ti alamat IP atawa ngaran pamaké husus. Ieu sakuduna ditujukeun pikeun nyegah vandalisme, sarta saluyu jeung [[{{MediaWiki:Policy-url}}|kawijakan]]. Eusi alesan nu jéntré (misal, ngarujuk kaca tinangtu nu geus diruksak).",
-	"ipadressorusername": "Alamat IP atawa ngaran pamaké",
+	"ipaddressorusername": "Alamat IP atawa ngaran pamaké",
 	"ipbexpiry": "Kadaluarsa",
 	"ipbreason": "Alesan:",
 	"ipbcreateaccount": "Tong bisa nyieun rekening",
