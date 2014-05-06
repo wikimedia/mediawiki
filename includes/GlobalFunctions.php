@@ -4165,21 +4165,17 @@ function wfIsTrustedProxy( $ip ) {
  * @since 1.23 Supports CIDR ranges in $wgSquidServersNoPurge
  */
 function wfIsConfiguredProxy( $ip ) {
-	global $wgSquidServers, $wgSquidServersNoPurge;
+	global $wgSquidServers, $wgSquidServersNoPurge, $wgSquidServersNoPurgeCache;
 
-	// quick check of known proxy servers
-	$trusted = in_array( $ip, $wgSquidServers )
-		|| in_array( $ip, $wgSquidServersNoPurge );
+	// quick check of known singular proxy servers
+	$trusted = in_array( $ip, $wgSquidServers );
 
+	// check against addrs and CIDR nets in the NoPurge list
 	if ( !$trusted ) {
-		// slightly slower check to see if the ip is listed directly or in a CIDR
-		// block in $wgSquidServersNoPurge
-		foreach ( $wgSquidServersNoPurge as $block ) {
-			if ( strpos( $block, '/' ) !== false && IP::isInRange( $ip, $block ) ) {
-				$trusted = true;
-				break;
-			}
+		if ( !isset( $wgSquidServersNoPurgeCache ) ) {
+			$wgSquidServersNoPurgeCache = new IPSet( $wgSquidServersNoPurge );
 		}
+		$trusted = $wgSquidServersNoPurgeCache->match( $ip );
 	}
 	return $trusted;
 }
