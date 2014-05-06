@@ -38,7 +38,7 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 	 * @see RCFeedFormatter::getLine
 	 */
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
-		global $wgCanonicalServer, $wgScriptPath;
+		global $wgCanonicalServer, $wgServerName, $wgScriptPath;
 		$attrib = $rc->getAttributes();
 
 		$packet = array(
@@ -120,6 +120,8 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 		}
 
 		$packet['server_url'] = $wgCanonicalServer;
+		$packet['server_name'] = $wgServerName;
+
 		$packet['server_script_path'] = $wgScriptPath ?: '/';
 		$packet['wiki'] = wfWikiID();
 
