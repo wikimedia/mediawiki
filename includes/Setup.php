@@ -43,6 +43,7 @@ if ( !isset( $wgVersion ) ) {
 }
 
 // Set various default paths sensibly...
+
 if ( $wgScript === false ) {
 	$wgScript = "$wgScriptPath/index$wgScriptExtension";
 }
@@ -420,6 +421,29 @@ require_once "$IP/includes/normal/UtfNormalDefines.php";
 wfProfileOut( $fname . '-includes' );
 
 wfProfileIn( $fname . '-defaults2' );
+
+if ( $wgCanonicalServer === false ) {
+	$wgCanonicalServer = wfExpandUrl( $wgServer, PROTO_HTTP );
+}
+
+// Set server name
+$serverParts = wfParseUrl( $wgCanonicalServer );
+if ( $wgServerName !== false ) {
+	wfWarn( '$wgServerName should be derived from $wgCanonicalServer, not customized. Overwriting $wgServerName.' );
+}
+$wgServerName = $serverParts['host'];
+unset( $serverParts );
+
+// Set defaults for configuration variables
+// that are derived from the server name by default
+if ( $wgEmergencyContact === false ) {
+	$wgEmergencyContact = 'wikiadmin@' . $wgServerName;
+}
+
+if ( $wgPasswordSender === false ) {
+	$wgPasswordSender = 'apache@' . $wgServerName;
+}
+
 if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
 	$wgSecureLogin = false;
 	wfWarn( 'Secure login was enabled on a server that only supports HTTP or HTTPS. Disabling secure login.' );
@@ -431,10 +455,6 @@ if ( $wgTmpDirectory === false ) {
 	wfProfileIn( $fname . '-tempDir' );
 	$wgTmpDirectory = wfTempDir();
 	wfProfileOut( $fname . '-tempDir' );
-}
-
-if ( $wgCanonicalServer === false ) {
-	$wgCanonicalServer = wfExpandUrl( $wgServer, PROTO_HTTP );
 }
 
 // $wgHTCPMulticastRouting got renamed to $wgHTCPRouting in MediaWiki 1.22
