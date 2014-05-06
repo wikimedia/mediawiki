@@ -502,13 +502,9 @@ class LanguageConverter {
 			}
 
 			if ( $action == 'add' ) {
+				// More efficient than array_merge(), about 2.5 times.
 				foreach ( $pair as $from => $to ) {
-					// to ensure that $from and $to not be left blank
-					// so $this->translate() could always return a string
-					if ( $from || $to ) {
-						// more efficient than array_merge(), about 2.5 times.
-						$this->mTables[$variant]->setPair( $from, $to );
-					}
+					$this->mTables[$variant]->setPair( $from, $to );
 				}
 			} elseif ( $action == 'remove' ) {
 				$this->mTables[$variant]->removeArray( $pair );
@@ -996,7 +992,7 @@ class LanguageConverter {
 		if ( $recursive ) {
 			foreach ( $sublinks as $link ) {
 				$s = $this->parseCachedTable( $code, $link, $recursive );
-				$ret = array_merge( $ret, $s );
+				$ret = $s + $ret;
 			}
 		}
 
