@@ -899,7 +899,16 @@ abstract class Skin extends ContextSource {
 		if ( $timestamp ) {
 			$d = $this->getLanguage()->userDate( $timestamp, $this->getUser() );
 			$t = $this->getLanguage()->userTime( $timestamp, $this->getUser() );
-			$s = ' ' . $this->msg( 'lastmodifiedat', $d, $t )->text();
+
+			$s = ' ' . $this->msg( 'lastmodifiedat' )->text();
+			$dt = $this->msg( 'lastmodifdatetime', $d, $t );
+			$out = $this->getOutput();
+			if ( $out->isArticle() ) {
+				$revid = $this->getRevisionId();
+				$s .= $this->msg( 'lastmodifpermalink',
+					Linker::link( $this->getTitle(), $dt , array(), array(  "oldid" => $revid ) )
+						)->text();
+			}
 		} else {
 			$s = '';
 		}
