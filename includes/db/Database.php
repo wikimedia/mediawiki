@@ -2897,22 +2897,63 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @param string|array $conds of conditions. See $conds in DatabaseBase::select()
 	 *   for the format. Use $conds == "*" to delete all rows
 	 * @param string $fname name of the calling function
+	 * @param array $options
+	 * @param string|array $options Query options
+	 * @param string|array $join_conds Join conditions
 	 * @throws DBUnexpectedError
+	 *
 	 * @return bool|ResultWrapper
+	 * @see DatabaseBase::select()
 	 */
-	public function delete( $table, $conds, $fname = __METHOD__ ) {
-		if ( !$conds ) {
-			throw new DBUnexpectedError( $this, 'DatabaseBase::delete() called with no conditions' );
+	public function delete( $table, $conds, $fname = __METHOD__,
+		$options = array(), $join_conds = array() ) {
+
+		// Checking and handling for $table parameter
+		/*
+		 * Note that $join_conds will only work if you're using something
+		 * other than MySQL. It's recommended to use deleteJoin() instead.
+		 */
+		$table = $this->tableName( $table );
+		// Require the table parameter to be specified, else throw an error
+		if ( !isset( $table ) ) {
+			throw new DBUnexpectedError( $this,
+				'DatabaseBase::delete() called with no table specified.' );
+		} else {
+			if ( $table[0] == ' ' ) {
+				$from = ' FROM ' . $table;
+			} elseif ( is_array( $table ) ) {
+				$from = ' FROM ' .
+					$this->tableNamesWithUseIndexOrJOIN( $table, null, $join_conds );
+			}
+			$deleteTable = "DELETE $from $table";
+			$sql = $deleteTable;
 		}
 
-		$table = $this->tableName( $table );
-		$sql = "DELETE FROM $table";
-
-		if ( $conds != '*' ) {
-			if ( is_array( $conds ) ) {
-				$conds = $this->makeList( $conds, LIST_AND );
+		// Checking and handling for $conds parameter
+		if ( empty( $conds ) ) {
+			throw new DBUnexpectedError( $this,
+				'DatabaseBase::delete() called with no conditions.' );
+		} else {
+			if ( $conds != '*' ) {
+				if ( is_array( $conds ) ) {
+					$conds = $this->makeList( $conds, LIST_AND );
+				}
+				$deleteConds = "$sql WHERE $conds";
+				$sql = $deleteConds;
 			}
-			$sql .= ' WHERE ' . $conds;
+		}
+
+		// Checking and handling for $options parameter
+		/*
+		 * Most databases do not support adding OFFSET onto DELETE functions;
+		 * ugly workarounds exist, but they require modifying $conds.
+		 */
+		$options = (array)$options;
+		$sql = $sql . $this->makeOrderBy( $options );
+		$sql = isset( $options['LIMIT'] ) ?
+			$this->limitResult( $sql, $options['LIMIT'], null ) : "$sql";
+		foreach ( $options as $optkey => $optvalue ) {
+			$sql = $sql . " $optkey $optValue";
 		}
 
 		return $this->query( $sql, $fname );
