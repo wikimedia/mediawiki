@@ -1869,7 +1869,7 @@
 	"blockip": "Block uiser",
 	"blockip-legend": "Block uiser",
 	"blockiptext": "Uise the form ablo tae block write access fae ae speceefic IP address or uisername. This shid be dun juist tae hinder vandaleesm, n in accord wi [[{{MediaWiki:Policy-url}}|policie]]. Fil in ae speceefic raison ablo (fer exemplar, citin parteecular pages that were vandalised).",
-	"ipadressorusername": "IP address or uisername:",
+	"ipaddressorusername": "IP address or uisername:",
 	"ipbexpiry": "Expirie:",
 	"ipbreason": "Raison:",
 	"ipbreason-dropdown": "*Commyn block raisons\n** Insertin false information\n** Remuivin content fae pages\n** Spammin airtins til ootby steids\n** Insertin nonsense/gibberish intil pages\n** Inteemidatin behavier/harassment\n** Abuisin multiple accoonts\n** Onacceptable uisername",

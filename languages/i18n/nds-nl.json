@@ -1837,7 +1837,7 @@
 	"blockip": "Gebruker blokkeren",
 	"blockip-legend": "n Gebruker of IP-adres blokkeren",
 	"blockiptext": "Gebruuk dit formulier um n IP-adres of gebrukersnaam te blokkeren. \nt Is bedoeld um vandalisme te veurkoemen en mut akkederen mit t [[{{MediaWiki:Policy-url}}|beleid]]. \nGeef hieronder n reden op (bieveurbeeld op welke ziejen de vandalisme epleegd is).",
-	"ipadressorusername": "IP-adres of gebrukersnaam",
+	"ipaddressorusername": "IP-adres of gebrukersnaam",
 	"ipbexpiry": "Verlöp nao",
 	"ipbreason": "Reden:",
 	"ipbreason-dropdown": "*Algemene redens veur t blokkeren\n** verkeerde informasie invoeren\n** ziejen leegmaken\n** ongewunste verwiezingen plaotsen\n** onzinteksten schrieven\n** targerieje of naor gedrag\n** misbruuk vanaof meerdere profielen\n** ongewunste gebrukersnaam",

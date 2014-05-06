@@ -2016,7 +2016,7 @@
 	"blockip": "Bloquear usuario",
 	"blockip-legend": "Bloquear usuario",
 	"blockiptext": "Usa el siguiente formulario para bloquear el acceso de escritura desde una dirección IP específica o nombre de usuario.\nEsto debería hacerse sólo para prevenir vandalismos, y de acuerdo a las [[{{MediaWiki:Policy-url}}|políticas]].\nExplica la razón específica del bloqueo (por ejemplo, citando las páginas en particular que han sido objeto de vandalismo).",
-	"ipadressorusername": "Dirección IP o nombre de usuario:",
+	"ipaddressorusername": "Dirección IP o nombre de usuario:",
 	"ipbexpiry": "Caducidad:",
 	"ipbreason": "Motivo:",
 	"ipbreason-dropdown": "*Motivos comunes de bloqueo\n** Añadir información falsa\n** Eliminar contenido de las páginas\n** Publicitar enlaces a otras páginas web\n** Añadir basura a las páginas\n** Comportamiento intimidatorio u hostil\n** Abuso de múltiples cuentas\n** Nombre de usuario inaceptable",

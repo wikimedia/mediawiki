@@ -1929,7 +1929,7 @@
 	"blockip": "Blocare utilizator",
 	"blockip-legend": "Blocare utilizator/adresă IP",
 	"blockiptext": "Pentru a bloca un utilizator completați rubricile de mai jos.<br />\n'''Respectați [[{{MediaWiki:Policy-url}}|politica de blocare]].'''<br />\nPrecizați motivul blocării; de exemplu indicați paginile vandalizate de acest utilizator.",
-	"ipadressorusername": "Adresă IP sau nume de utilizator",
+	"ipaddressorusername": "Adresă IP sau nume de utilizator",
 	"ipbexpiry": "Expiră",
 	"ipbreason": "Motiv:",
 	"ipbreason-dropdown": "*Motivele cele mai frecvente\n** Introducere de informații false\n** Ștergere conținut fără explicații\n** Introducere de legături externe de publicitate (spam)\n** Creare pagini fără sens\n** Tentative de intimidare\n** Abuz utilizare conturi multiple\n** Nume de utilizator inacceptabil",

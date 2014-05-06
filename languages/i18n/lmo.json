@@ -777,7 +777,7 @@
 	"blockip": "Bloca el dovrat",
 	"blockip-legend": "Bloca 'l druvadur",
 	"blockiptext": "Druvee 'l mòdul chì de suta per blucà l'acess cun dirit de scritüra a un indirizz IP specifegh o a un druvadur registraa.\nEl bloch gh'è de druvàl dumà per evità el vandalism e in acord cun i [[{{MediaWiki:Policy-url}}|regulament de {{SITENAME}}]].\nScrivee chì de suta 'l mutiv specifegh per el bloch (presempi, a pudii scriv i titul di paginn che i henn stat suget a vandalism).",
-	"ipadressorusername": "Indirizz IP o nom del druvdur:",
+	"ipaddressorusername": "Indirizz IP o nom del druvdur:",
 	"ipbexpiry": "Fina al:",
 	"ipbreason": "Reson:",
 	"ipbreason-dropdown": "*Mutiv püssee cumün per i blòch\n** Avè caregaa di infurmazión fals\n** Avè töt via del cuntegnüü dai paginn\n** Avè giuntaa di ereclam a di sit da föra\n** Avè giuntaa de la ratatuja int i paginn\n** Cumpurtament intimidatori\n** Avè druvaa püssee dun cünt in manera abüsiva\n** El nom del druvàt l'è inacetabil",

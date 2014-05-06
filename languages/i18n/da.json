@@ -1921,7 +1921,7 @@
 	"blockip": "Bloker bruger",
 	"blockip-legend": "Bloker bruger",
 	"blockiptext": "Brug formularen herunder til at blokere for skriveadgang fra en bestemt IP-adresse eller et brugernavn.\nDette bør kun gøres for at forhindre vandalisme og skal være i overensstemmelse med [[{{MediaWiki:Policy-url}}|retningslinjerne]].\nAngiv en konkret begrundelse herunder (for eksempel med angivelse af sider der har været udsat for vandalisme).",
-	"ipadressorusername": "IP-adresse eller brugernavn",
+	"ipaddressorusername": "IP-adresse eller brugernavn",
 	"ipbexpiry": "varighed",
 	"ipbreason": "Begrundelse:",
 	"ipbreason-dropdown": "*Generelle begrundelser\n** Indsættelse af forkerte oplysninger\n** Fjernelse af korrekt indhold\n** Linkspam\n** Indsættelse af vås/nonsens\n** Utilstedelig opførsel\n** Misbrug af flere brugerkonti\n** Uacceptabelt brugernavn",

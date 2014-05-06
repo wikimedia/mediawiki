@@ -1904,7 +1904,7 @@
 	"blockip": "Kasutaja blokeerimine",
 	"blockip-legend": "Kasutaja blokeerimine",
 	"blockiptext": "See vorm on kindla IP-aadressi või kasutajanime kirjutamisõiguste blokeerimiseks.\nSeda tohib teha ainult vandalismi vältimiseks ja kooskõlas [[{{MediaWiki:Policy-url}}|{{GRAMMAR:genitive|{{SITENAME}}}} sisekorraga]].\nTäida ka põhjuse väli, näiteks viidates lehekülgedele, mis rikuti.",
-	"ipadressorusername": "IP-aadress või kasutajanimi:",
+	"ipaddressorusername": "IP-aadress või kasutajanimi:",
 	"ipbexpiry": "Kehtivus:",
 	"ipbreason": "Põhjus:",
 	"ipbreason-dropdown": "*Tavalised blokeerimise põhjused\n** Valeandmete lisamine\n** Lehekülgedelt sisu kustutamine\n** Välislinkide rämpspostitus\n** Sodimine\n** Hirmutav käitumine/ahistamine\n** Mitme konto väärkasutus\n** Lubamatu kasutajanimi",

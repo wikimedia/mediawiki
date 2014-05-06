@@ -1820,7 +1820,7 @@
 	"blockip": "Blokker brukar",
 	"blockip-legend": "Blokker brukar",
 	"blockiptext": "Bruk skjemaet nedanfor for å blokkere skrivetilgangen frå ei spesifikk IP-adresse eller brukarnamn. Dette bør berre gjerast for å hindre hærverk, og i samsvar med [[{{MediaWiki:Policy-url}}|retningslinene]].",
-	"ipadressorusername": "IP-adresse eller brukarnamn",
+	"ipaddressorusername": "IP-adresse eller brukarnamn",
 	"ipbexpiry": "Opphøyrstid:",
 	"ipbreason": "Årsak:",
 	"ipbreason-dropdown": "*Vanlege grunnar for blokkering\n** Legg inn usann tekst/tull\n** Fjernar innhald frå sider\n** Legg inn reklamelenkjer til eksterne nettstader\n** Sjikane/plaging av andre brukarar\n** Misbruk ved hjelp av fleire brukarkontoar\n** Uansvarleg brukarnamn",

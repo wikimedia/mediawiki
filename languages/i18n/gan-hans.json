@@ -1119,7 +1119,7 @@
 	"whatlinkshere-filters": "筛滤器",
 	"blockip": "封到IP地址",
 	"blockiptext": "用下底𠮶表格去阻止某一IP𠮶修改权限。除非倷系为到怕佢乱扤，接到非要符合[[{{MediaWiki:Policy-url}}|守则]]𠮶条件下才能啖做。请到下底话只确切原因（比如引用一只拖破坏𠮶页面）。",
-	"ipadressorusername": "IP地址或用户名:",
+	"ipaddressorusername": "IP地址或用户名:",
 	"ipbexpiry": "期限:",
 	"ipbreason": "原因:",
 	"ipbreason-dropdown": "*一般𠮶封锁原因\n** 紧编写假𠮶内容\n** 删卟文章内容\n** 乱加外部链接\n** 写冇油盐𠮶话\n** 吓人／骚扰别𠮶\n** 滥用帐号\n** 乱起用户名",

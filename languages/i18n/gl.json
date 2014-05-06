@@ -1920,7 +1920,7 @@
 	"blockip": "Bloquear o usuario",
 	"blockip-legend": "Bloquear un usuario",
 	"blockiptext": "Use o seguinte formulario para bloquear o acceso de escritura desde un enderezo IP ou para bloquear un usuario específico.\nIsto debería facerse só para previr vandalismo, e de acordo coa [[{{MediaWiki:Policy-url}}|política e normas]] vixentes.\nExplique a razón específica do bloqueo (por exemplo, citando as páxinas concretas que sufriron vandalismo).",
-	"ipadressorusername": "Enderezo IP ou nome de usuario:",
+	"ipaddressorusername": "Enderezo IP ou nome de usuario:",
 	"ipbexpiry": "Duración:",
 	"ipbreason": "Motivo:",
 	"ipbreason-dropdown": "*Motivos frecuentes para bloquear\n** Inserir información falsa\n** Eliminar o contido de páxinas\n** Ligazóns lixo a sitios externos\n** Inserir textos sen sentido ou inintelixibles\n** Comportamento intimidatorio/acoso\n** Abuso de múltiples contas de usuario\n** Nome de usuario inaceptable",

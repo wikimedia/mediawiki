@@ -1876,7 +1876,7 @@
 	"blockip": "Stankañ ur chomlec'h IP",
 	"blockip-legend": "Stankañ an implijer",
 	"blockiptext": "Grit gant ar furmskrid a-is evit stankañ ar moned skrivañ ouzh ur chomlec'h IP pe un implijer bennak.\nSeurt diarbennoù n'hallont bezañ kemeret nemet evit mirout ouzh ar vandalerezh hag a-du gant an [[{{MediaWiki:Policy-url}}|erbedadennoù ha reolennoù da heuliañ]].\nRoit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou outo).",
-	"ipadressorusername": "Chomlec'h IP pe anv implijer",
+	"ipaddressorusername": "Chomlec'h IP pe anv implijer",
 	"ipbexpiry": "Pad ar stankadenn",
 	"ipbreason": "Abeg :",
 	"ipbreason-dropdown": "*Abegoù stankañ boutinañ\n** Degas titouroù faos\n** Tennañ danvez eus ar pajennoù\n** Degas liammoù Strobus war-du lec'hiennoù diavaez\n** Degas danvez diboell/dizoare er pajennoù\n** Emzalc'h hegazus/handeus betek re\n** Mont re bell gant implij meur a gont\n** Anv implijer n'eo ket aotreet",

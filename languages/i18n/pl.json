@@ -1968,7 +1968,7 @@
 	"blockip": "Zablokuj użytkownika",
 	"blockip-legend": "Zablokuj użytkownika",
 	"blockiptext": "Użyj poniższego formularza do zablokowania możliwości edycji spod określonego adresu IP lub konkretnemu użytkownikowi.\nBlokować należy jedynie po to, by zapobiec wandalizmom, zgodnie z [[{{MediaWiki:Policy-url}}|przyjętymi zasadami]].\nPodaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandalizmu).",
-	"ipadressorusername": "Adres IP lub nazwa użytkownika",
+	"ipaddressorusername": "Adres IP lub nazwa użytkownika",
 	"ipbexpiry": "Upływa",
 	"ipbreason": "Powód",
 	"ipbreason-dropdown": "*Najczęstsze przyczyny blokad\n** Ataki na innych użytkowników\n** Naruszenie praw autorskich\n** Niedozwolona nazwa użytkownika\n** Open proxy lub Tor\n** Spamowanie\n** Usuwanie treści stron\n** Wprowadzanie fałszywych informacji\n** Wulgaryzmy\n** Wypisywanie bzdur na stronach",

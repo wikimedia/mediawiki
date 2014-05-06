@@ -1585,7 +1585,7 @@
 	"blockip": "Blokkierje Benutser",
 	"blockip-legend": "IP-Adresse/Benutser speere",
 	"blockiptext": "Mäd dit Formular speerst du ne IP-Adresse of n Benutsernoome, so dät fon deer neen Annerengen moor foarnuumen wäide konnen.\nDit skuul bloot geböäre, uum Vandalismus tou ferhinnerjen un in Uureenstimmenge mäd do [[{{MediaWiki:Policy-url}}|Gjuchtlienjen]].\nReek dän Gruund foar ju Speere oun.",
-	"ipadressorusername": "IP-Adresse of Benutsernoome:",
+	"ipaddressorusername": "IP-Adresse of Benutsernoome:",
 	"ipbexpiry": "Oulooptied (Speerduur):",
 	"ipbreason": "Begruundenge:",
 	"ipbreason-dropdown": "* Algemeene Speergruunde\n** Ienföigjen fon falske Information\n** Loosmoakjen fon Sieden\n** Föiget massenhaft externe Links ien\n** Ienstaalen fon uunsinnige Seeken in Sieden\n** betruujend Ferhoolden/Belästigenge\n** Misbruuk truch moorere Benutserkonten\n** Uungoadelge Benutsernoome",

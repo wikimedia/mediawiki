@@ -1904,7 +1904,7 @@
 	"blockip": "IP-adres/brüker spere",
 	"blockip-legend": "IP-adres/brüker spere",
 	"blockiptext": "Mä detdiar formulaar sperest dü en IP-adres of en brükernööm, so dat faan diar nian feranrangen muar maaget wurd kön. \nDet skul bluas föörnimen wurd, am jin wandaalen föörtugungen an uun auerianstemang mä a [[{{MediaWiki:Policy-url}}|brükerreegeln]].\nSkriiw en guden grünj för det sper ap.",
-	"ipadressorusername": "IP-adres of brükernööm:",
+	"ipaddressorusername": "IP-adres of brükernööm:",
 	"ipbexpiry": "Sperdüür:",
 	"ipbreason": "Grünj:",
 	"ipbreason-dropdown": "* Mist brükt spergrünjer\n** Skraft wat ferkiards\n** Maaget sidjen leesag\n** Maaget tuföl ferwisangen üüb frääm sidjen\n** Maaget dom tschüch\n** Koon ham ei skake\n** Masbrükt brükerkontos\n** Hää en brükernööm, diar ei tuläät as",

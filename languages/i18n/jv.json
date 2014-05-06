@@ -1839,7 +1839,7 @@
 	"blockip": "Blokir panganggo",
 	"blockip-legend": "Blokir panganggo",
 	"blockiptext": "Enggonen formulir ing ngisor iki kanggo mblokir sawijining alamat IP utawa panganggo supaya ora bisa nyunting kaca.\nPrekara iki perlu dilakoni kanggo menggak vandalisme, lan miturut [[{{MediaWiki:Policy-url}}|kawicaksanan {{SITENAME}}]].\nLebokna alesan panjenengan ing ngisor iki (contoné njupuk conto kaca sing wis tau dirusak).",
-	"ipadressorusername": "Alamat IP utawa jeneng panganggo",
+	"ipaddressorusername": "Alamat IP utawa jeneng panganggo",
 	"ipbexpiry": "Kadaluwarsa",
 	"ipbreason": "Alesan:",
 	"ipbreason-dropdown": "*Alesan umum mblokir panganggo\n** Mènèhi informasi palsu\n** Ngilangi isi kaca\n** Spam pranala menyang situs njaba\n** Nglebokaké tulisan ngawur ing kaca\n** Tumindak intimidasi/nglècèhaké\n** Nyalahgunakaké sawetara akun utawa rékening\n** Jeneng panganggo ora layak",

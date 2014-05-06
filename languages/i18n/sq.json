@@ -1713,7 +1713,7 @@
 	"blockip": "Blloko përdorues",
 	"blockip-legend": "Blloko përdoruesin",
 	"blockiptext": "Përdorni formularin e mëposhtëm për të hequr lejen e shkrimit për një përdorues ose IP specifike.\nKjo duhet bërë vetëm në raste vandalizmi, dhe në përputhje me [[{{MediaWiki:Policy-url}}|rregullat e {{SITENAME}}-s]].\nPlotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u vandalizuan).",
-	"ipadressorusername": "Adresë IP ose emër përdoruesi",
+	"ipaddressorusername": "Adresë IP ose emër përdoruesi",
 	"ipbexpiry": "Afati",
 	"ipbreason": "Arsyeja:",
 	"ipbreason-dropdown": "*Arsyet më të shpeshta të bllokimit\n** Postimi i informacioneve të rreme\n** Largimi i përmbajtjes së faqes\n** Futja e lidhjeve \"spam\"\n** Futja e informatave pa kuptim në faqe\n** Sjellje arrogante/perverze\n** Përdorimi i më shumë llogarive të përdoruesve\n** Nofkë të papranueshme",

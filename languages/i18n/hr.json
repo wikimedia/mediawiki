@@ -1826,7 +1826,7 @@
 	"blockip": "Blokiraj suradnika",
 	"blockip-legend": "Blokiraj suradnika",
 	"blockiptext": "Koristite donji obrazac za blokiranje pisanja pojedinih suradnika ili IP adresa .\nTo biste trebali raditi samo zbog sprječavanja vandalizma i u skladu\nsa [[{{MediaWiki:Policy-url}}|smjernicama]].\nUpišite i razlog za ovo blokiranje (npr. stranice koje su\nvandalizirane).",
-	"ipadressorusername": "IP adresa ili suradničko ime",
+	"ipaddressorusername": "IP adresa ili suradničko ime",
 	"ipbexpiry": "Rok (na engleskom)",
 	"ipbreason": "Razlog:",
 	"ipbreason-dropdown": "*Najčešći razlozi za blokiranje\n** Netočne informacije\n** Uklanjanje sadržaja stranica\n** Postavljanje ''spam'' vanjskih poveznica\n** Grafiti\n** Osobni napadi (ili napadačko ponašanje)\n** Čarapare (zloporaba više suradničkih računa)\n** Neprihvatljivo suradničko ime",

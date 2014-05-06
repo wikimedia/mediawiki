@@ -1848,7 +1848,7 @@
 	"blockip": "Blokkolás",
 	"blockip-legend": "Felhasználó blokkolása",
 	"blockiptext": "Az alábbi űrlap segítségével megvonhatod egy szerkesztő vagy IP-cím szerkesztési jogait.\nÜgyelj rá, hogy az intézkedésed mindig legyen tekintettel a vonatkozó [[{{MediaWiki:Policy-url}}|irányelvekre]].\nAdd meg a blokkolás okát is (például idézd a blokkolandó személy által vandalizált lapokat).",
-	"ipadressorusername": "IP-cím vagy felhasználói név",
+	"ipaddressorusername": "IP-cím vagy felhasználói név",
 	"ipbexpiry": "Lejárat:",
 	"ipbreason": "Ok:",
 	"ipbreason-dropdown": "*Gyakori blokkolási okok\n** Téves információ beírása\n** Lapok tartalmának eltávolítása\n** Spammelgetés, reklámlinkek tömködése a lapokba\n** Értelmetlen megjegyzések, halandzsa beillesztése a cikkekbe\n** Megfélemlítő viselkedés, zaklatás\n** Több szerkesztői fiókkal való visszaélés\n** Elfogadhatatlan azonosító",

@@ -1166,7 +1166,7 @@
 	"autoblockid": "Blocaedje otomatike #$1",
 	"blockip": "Bloker èn uzeu",
 	"blockiptext": "Rimplixhoz les tchamps chal pa dzo po bloker\nl' accès e scrijhaedje d' èn uzeu dné ou a pårt d' ene\nadresse IP dnêye. Çouci èn doet esse fwait ki po-z arester les\nvandales, et çoula doet esse fwait tot shuvant les\n[[{{MediaWiki:Policy-url}}|rîles]].\nDinez ene råjhon do blocaedje (eg: dijhoz les pådjes k' ont\nstî vandalijheyes).",
-	"ipadressorusername": "Adresse IP ou no d' uzeu",
+	"ipaddressorusername": "Adresse IP ou no d' uzeu",
 	"ipbexpiry": "Tins do blocaedje",
 	"ipbreason": "Råjhon:",
 	"ipbsubmit": "Bloker cist uzeu",

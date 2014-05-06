@@ -1648,7 +1648,7 @@
 	"blockip": "Bloqueyar usuario",
 	"blockip-legend": "Bloqueyar usuario",
 	"blockiptext": "Replene o siguient formulario ta bloqueyar l'acceso\nd'escritura dende una cuenta d'usuario u una adreza IP especifica.\nIsto habría de fer-se nomás ta privar vandalismos, y d'alcuerdo con\nas [[{{MediaWiki:Policy-url}}|politicas]].\nEscriba a razón especifica ta o bloqueyo (por exemplo, quaternando\nas pachinas que s'han vandalizato).",
-	"ipadressorusername": "Adreza IP u nombre d'usuario",
+	"ipaddressorusername": "Adreza IP u nombre d'usuario",
 	"ipbexpiry": "Circumducción:",
 	"ipbreason": "Razón:",
 	"ipbreason-dropdown": "*Razons comuns de bloqueyo\n** Meter información falsa\n** Borrar conteniu d'as pachinas\n** Fer publicidat ficando vinclos con atras pachinas web\n** Meter sinconisions u vasuera en as pachinas\n** Portar-se de traza intimidatoria u violenta / atosegar\n** Abusar de multiples cuentas\n** Nombre d'usuario inacceptable",

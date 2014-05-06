@@ -1891,7 +1891,7 @@
 	"blockip": "Blocar usator",
 	"blockip-legend": "Blocar usator",
 	"blockiptext": "Usa le formulario infra pro blocar le accesso de scriptura\na partir de un adresse IP specific.\nIsto debe esser facite solmente pro impedir vandalismo, e de\naccordo con le [[{{MediaWiki:Policy-url}}|politica de {{SITENAME}}]].\nScribe un motivo specific infra (per exemplo, citante paginas\nspecific que ha essite vandalisate).",
-	"ipadressorusername": "Adresse IP o nomine de usator:",
+	"ipaddressorusername": "Adresse IP o nomine de usator:",
 	"ipbexpiry": "Expiration:",
 	"ipbreason": "Motivo:",
 	"ipbreason-dropdown": "*Motivos frequente pro blocar\n** Insertion de informationes false\n** Elimination de contento de paginas\n** Ligamines ''spam'' verso sitos externe\n** Insertion de nonsenso/absurditates in paginas\n** Comportamento intimidatori/molestation\n** Abuso de contos multiple\n** Nomine de usator inacceptabile",

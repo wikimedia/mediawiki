@@ -1624,7 +1624,7 @@
 	"blockip": "Bloķēt lietotāju",
 	"blockip-legend": "Bloķēt lietotāju",
 	"blockiptext": "Šo veidni izmanto, lai bloķētu kādas IP adreses vai lietotājvārda piekļuvi wiki lapu saglabāšanai. Dari to tikai, lai novērstu vandālismu atbilstoši [[{{MediaWiki:Policy-url}}|noteikumiem]].\nNorādi konkrētu iemeslu (piemēram, linkus uz vandalizētajām lapām).",
-	"ipadressorusername": "IP adrese vai lietotājvārds",
+	"ipaddressorusername": "IP adrese vai lietotājvārds",
 	"ipbexpiry": "Termiņš",
 	"ipbreason": "Iemesls:",
 	"ipbreason-dropdown": "*Biežākie bloķēšanas iemesli\n** Ievieto nepatiesu informāciju\n** Dzēš lapu saturu\n** Spamo ārējās saitēs\n** Ievieto nesakarīgus simbolus sakopojumus\n** Nepieņemama uzvedība un apvainojumi\n** Vairāku kontu ļaunprātīga izmantošana\n** Nepieņemams lietotājvārds",

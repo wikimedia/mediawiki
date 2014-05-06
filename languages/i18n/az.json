@@ -1552,7 +1552,7 @@
 	"unblock": "İstifadəçinin blokunu götür",
 	"blockip": "İstifadəçini blokla",
 	"blockip-legend": "İstifadəçinin bloklanması",
-	"ipadressorusername": "IP-ünvanı və ya istifadəçi adı",
+	"ipaddressorusername": "IP-ünvanı və ya istifadəçi adı",
 	"ipbexpiry": "Bitmə müddəti:",
 	"ipbreason": "Səbəb:",
 	"ipbreason-dropdown": "*Bloklama səbəbləri:\n** Yalan məlumatların əlavə edilməsi\n** Səhifənin məzmununun silinməsi\n** Xarici saytlara spam-keçidlər\n** Səhifəyə mənasız və yararsız əlavələrə görə\n** Hədə və təqiblərə görə\n** Təhqirə görə\n** Çoxsaylı hesabdan sui istifadəyə görə\n** Qadağan olunmuş istifadəçi adına görə",

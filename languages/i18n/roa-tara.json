@@ -1844,7 +1844,7 @@
 	"blockip": "Blocche l'utende",
 	"blockip-legend": "Bluecche l'utende",
 	"blockiptext": "Ause 'a schermata de sotte pe bloccà l'accesse in scritture de 'nu specifiche indirizze IP o utende.\nQuiste avessa essere fatte sulamende pe prevenìe 'u vandalisme e in accorde cu [[{{MediaWiki:Policy-url}}|le reghele]].\nMitte pure 'nu mutive specifiche aqquà sotte (pe esembije, nnomene 'a pàgene addò è acchiate 'u vandalisme).",
-	"ipadressorusername": "Indirizze IP o nome de l'utende:",
+	"ipaddressorusername": "Indirizze IP o nome de l'utende:",
 	"ipbexpiry": "More:",
 	"ipbreason": "Mutive:",
 	"ipbreason-dropdown": "*Mutive comune de blocche\n** Inzerimende de 'mbormaziune fause\n** Scangellamende de condenute da le vôsce\n** Collegaminde pubblecetarie a site fore de Uicchipèdie\n** Inzerimende de studecarie jndr'à le vôsce\n** Menacce e intimidaziune\n** Abbuse de cunde utende multiple\n** Nome de l'utende inaccettabbele",

@@ -1897,7 +1897,7 @@
 	"blockip": "IP-Adress/Benutzer sperre",
 	"blockip-legend": "IP-Adress/Benutzer sperre",
 	"blockiptext": "Mit dem Formular sperrst du en IP-Adress orrer en Benutzernoome, so dass von dort ken Ännrunge meh voargenomm sin könne.\nDas sollt nuar erfolche, um Vandalismus zu verhinnre und in Üwereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinie]].\nBittschön tue den Grund für die Sperr gebe.",
-	"ipadressorusername": "IP-Adress orrer Benutzernoome:",
+	"ipaddressorusername": "IP-Adress orrer Benutzernoome:",
 	"ipbexpiry": "Sperrdauer:",
 	"ipbreason": "Grund:",
 	"ipbreason-dropdown": "* Allgemein Sperrgründe\n** Infüchung von falscher Informatione\n** Leere von Seite\n** Massweises infüchung von externer Links\n** Instellung von unsinnicher Inhalte in Seite\n** Ungebührliches Verhalte\n** Missbrauch mit mehrre Benutzerkonte\n** Ungeeichneter Benutzernoome",

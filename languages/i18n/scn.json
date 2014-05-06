@@ -1510,7 +1510,7 @@
 	"blockip": "Blocca l'utenti",
 	"blockip-legend": "Blocca l'utenti",
 	"blockiptext": "Usa lu mòdulu cassutta pi bluccari la pussibbilità di scrìviri pi n'utenti o pi nu ndirizzu IP spicìficu. Chistu s'havi a fari sulu pi privèniri lu vannalismu e secunnu la [[{{MediaWiki:Policy-url}}|pulìtica di {{SITENAME}}]]. Scrivi na raggiùni valida ccà sutta (pi asempiu, cita li pàggini chi foru vannalizzati).",
-	"ipadressorusername": "Ndirizzu IP o nomu utenti:",
+	"ipaddressorusername": "Ndirizzu IP o nomu utenti:",
 	"ipbexpiry": "Durata dû bloccu:",
 	"ipbreason": "Mutivu:",
 	"ipbreason-dropdown": "*Mutivi cchiù cumuni pî blocchi\n** Nzerimentu di nformazziuni falsi\n** Cancillazzioni di cuntinuti dê pàggini\n** Liami prumozziunalu a siti sterni\n** Nzserimentu di cuntinuti privi di sensu\n** Cumportamenti ntimidatori o molestie\n** Usu ndebitu di cchiù cunti\n** Nomu utenti nun accittabbili",

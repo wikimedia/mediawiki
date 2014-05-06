@@ -1362,7 +1362,7 @@
 	"blockip": "Slút meidogger út",
 	"blockip-legend": "Slút brûker út",
 	"blockiptext": "Brûk dizze fjilden om in meidogger fan skriuwtagong út te sluten.\nDat soe allinnich fanwege fandalisme dien wurde moatte, sa't de\n[[{{MediaWiki:Policy-url}}|útslut-rie]] it oanjout.\nMeld de krekte reden! Neam bygelyks de siden dy't oantaaste waarden.",
-	"ipadressorusername": "IP Adres of meidoggernamme:",
+	"ipaddressorusername": "IP Adres of meidoggernamme:",
 	"ipbexpiry": "Ferrint nei:",
 	"ipbreason": "Reden:",
 	"ipbreason-dropdown": "*Faak foarkommende redenen foar blokkades\n** Ferkearde ynformaasje ynfiere\n** Fuortheljen fan ynformaasje út siden\n** Spamferwizing nei eksterne websites\n** Ynfoegjen fan ûnsin yn siden\n** Yntimidearjend gedrach\n** Misbrûk troch meardere brûkers\n** Unakseptabele brûkersnamme",

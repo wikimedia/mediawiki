@@ -1808,7 +1808,7 @@
 	"blockip": "Sadasya ke roko",
 	"blockip-legend": "Sadasya ke roko",
 	"blockiptext": "Niche ke form ke use kar ke koi khaas IP address nai to username ke write access ke roko.\nIske khaali vandalism ke roke ke khatir use kare ke chaahi [[{{MediaWiki:Policy-url}}|policy]] ke niche.\nNiche ek khaas kaaran likho (jaise ki, citing particular pages that were vandalized).",
-	"ipadressorusername": "IP Address nai to username:",
+	"ipaddressorusername": "IP Address nai to username:",
 	"ipbexpiry": "Expiry:",
 	"ipbreason": "Kaaran:",
 	"ipbreason-dropdown": "*Roke ke sadhaarankaaran\n** Galat jaankari diis\n** Panna se jaankari nikalis\n** Bahaari site se spamming jorr\n** Panna me bakwaas/and sand liko\n** Duusre ke dhamki do\n** Ek se jaada account ke khraab kaam me laao\n** Sadasya ke naam thiik nai hae",

@@ -1770,7 +1770,7 @@
 	"blockip": "Blocar l’usanciér",
 	"blockip-legend": "Blocar l’usanciér",
 	"blockiptext": "Utilisâd lo formulèro ce-desot por blocar l’accès en ècritura dês una adrèce IP spècefica ou ben un nom d’usanciér.\nUna tâla mesera devrêt étre prêsa ren que por empachiér lo vandalismo et en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].\nBalyéd ce-desot una rêson justa (per ègzemplo en citent les pâges qu’ont étâ vandalisâs).",
-	"ipadressorusername": "Adrèce IP ou ben nom d’usanciér :",
+	"ipaddressorusername": "Adrèce IP ou ben nom d’usanciér :",
 	"ipbexpiry": "Temps devant èxpiracion :",
 	"ipbreason": "Rêson :",
 	"ipbreason-dropdown": "*Rêsons corentes de blocâjo\n** Entrebetâ d’enformacions fôsses\n** Suprèssion de contegnu de les pâges\n** Entrebetâ de lims de defôr publicitèros (spame)\n** Entrebetâ de contegnu sen gins de significacion et d’ècovelyes dedens les pâges\n** Tentativa d’entimidacion ou ben de torment\n** Abus d’usâjo d’un mouél de comptos\n** Nom d’utilisator pas accèptâblo",

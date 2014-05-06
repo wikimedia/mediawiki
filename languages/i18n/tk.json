@@ -1520,7 +1520,7 @@
 	"blockip": "Ulanyjyny blokirle",
 	"blockip-legend": "Ulanyjyny blokirle",
 	"blockiptext": "Aşakdaky formdan peýdalanyp, belli bir IP-niň ýa-da ulanyjy adynyň ýazmak hukugyny blokirläp bilersiňiz.\nBu diňe wandalizmiň öňüni almak üçin hem-de [[{{MediaWiki:Policy-url}}|kadalara]] laýyklykda edilmelidir.\nAşakda blokirlemäniň takyk sebäbini ýazyň (meselem: wandalizm eden sahypalaryny görkeziň).",
-	"ipadressorusername": "IP adresi ýa-da ulanyjy ady:",
+	"ipaddressorusername": "IP adresi ýa-da ulanyjy ady:",
 	"ipbexpiry": "Gutarýan wagty:",
 	"ipbreason": "Sebäp:",
 	"ipbreason-dropdown": "*Adaty blokirleme sebäpleri\n** Ýalan maglumat girizmek\n** Sahypalaryň mazmunyny aýyrmak\n** Daşarky saýtlara spam çykgydy goýmak\n** Sahypalara manysyz/düşnüksiz sözler girizmek\n** Haýbat atyjy hereket/Yrsaramak\n** Birden köp hasaby betniýetli ulanmak\n** Kabul edip bolmajak ulanyjy ady",

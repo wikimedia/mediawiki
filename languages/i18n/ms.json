@@ -1908,7 +1908,7 @@
 	"blockip": "Sekat pengguna",
 	"blockip-legend": "Sekat pengguna",
 	"blockiptext": "Gunakan borang di bawah untuk menyekat\npenyuntingan daripada alamat IP atau pengguna tertentu.\nTindakan ini perlu dilakukan untuk menentang vandalisme sahaja dan selaras\ndengan [[{{MediaWiki:Policy-url}}|dasar {{SITENAME}}]].\nSila masukkan sebab sekatan di bawah (umpamannya, sebutkan laman yang telah\ndirosakkan).",
-	"ipadressorusername": "Alamat IP atau nama pengguna:",
+	"ipaddressorusername": "Alamat IP atau nama pengguna:",
 	"ipbexpiry": "Tamat:",
 	"ipbreason": "Sebab:",
 	"ipbreason-dropdown": "*Sebab lazim\n** Memasukkan maklumat palsu\n** Membuang kandungan daripada laman\n** Memasukkan pautan spam ke tapak web luar\n** Memasukkan karut-marut ke dalam laman\n** Mengugut/mengganggu pengguna lain\n** Menyalahgunakan berbilang akaun\n** Nama pengguna yang tidak sesuai",

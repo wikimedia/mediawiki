@@ -1949,7 +1949,7 @@
 	"blockip": "Blokker bruker",
 	"blockip-legend": "Blokker bruker",
 	"blockiptext": "Bruk skjemaet under for å blokkere en IP-adresses tilgang til å redigere artikler. Dette må kun gjøres for å forhindre hærverk, og i overensstemmelse med [[{{MediaWiki:Policy-url}}|retningslinjene]]. Fyll ut en spesiell begrunnelse under.",
-	"ipadressorusername": "IP-adresse eller brukernavn",
+	"ipaddressorusername": "IP-adresse eller brukernavn",
 	"ipbexpiry": "Varighet:",
 	"ipbreason": "Årsak:",
 	"ipbreason-dropdown": "*Vanlige blokkeringsgrunner\n** Legger inn feilinformasjon\n** Fjerner innhold fra sider\n** Lenkespam\n** Legger inn vås\n** Truende oppførsel\n** Misbruk av flere kontoer\n** Uakseptabelt brukernavn",

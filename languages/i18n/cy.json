@@ -1892,7 +1892,7 @@
 	"blockip": "Rhwystro'r defnyddiwr",
 	"blockip-legend": "Rhwystro'r defnyddiwr",
 	"blockiptext": "Defnyddiwch y ffurflen hon i rwystro cyfeiriad IP neu ddefnyddiwr rhag ysgrifennu i'r gronfa ddata. \nDylech chi ddim ond gwneud hyn er mwyn rhwystro fandaliaeth, a chan ddilyn [[{{MediaWiki:Policy-url}}|polisi'r wici]]. \nRhowch reswm dros rwystro'r defnyddiwr (er enghraifft, dywedwch pa dudalen(au) a fandaleiddiwyd).",
-	"ipadressorusername": "Cyfeiriad IP neu enw defnyddiwr:",
+	"ipaddressorusername": "Cyfeiriad IP neu enw defnyddiwr:",
 	"ipbexpiry": "Am gyfnod:",
 	"ipbreason": "Rheswm:",
 	"ipbreason-dropdown": "*Rhesymau cyffredin dros flocio\n** Gosod gwybodaeth anghywir\n** Dileu cynnwys tudalennau\n** Gosod cysylltiadau sbam i wefannau eraill\n** Gosod dwli/lol ar dudalennau\n** Ymddygiad sy'n dychrynu neu'n aflonyddu\n** Camddefnyddio nifer o gyfrifon\n** Enw defnyddiwr annerbyniol",

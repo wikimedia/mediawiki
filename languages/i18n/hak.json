@@ -1179,7 +1179,7 @@
 	"whatlinkshere-filters": "過濾器",
 	"blockip": "封禁用戶",
 	"blockiptext": "用下背嘅表單來禁止來自某一特定IP地址嘅修改許可權。\n單淨在為防止破壞，撈符合[[{{MediaWiki:Policy-url}}|守則]]嘅情況下正做得採取邇行動。\n請在下背輸入一隻具體嘅理由（例如引述一隻分破壞嘅頁面）。",
-	"ipadressorusername": "IP地址或用戶名:",
+	"ipaddressorusername": "IP地址或用戶名:",
 	"ipbexpiry": "期限：",
 	"ipbreason": "原因：",
 	"ipbreason-dropdown": "*一般嘅封禁理由\n** 多次加入虛假資料\n** 刪除頁面內容\n** 外部鏈接廣告\n** 在頁面肚增加無意義文字\n** 無禮嘅行為、攻擊/騷擾別儕\n** 濫用多隻賬號\n** 做毋得接受嘅用戶名",

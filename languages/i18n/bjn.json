@@ -1675,7 +1675,7 @@
 	"blockip": "Blukir pamuruk",
 	"blockip-legend": "Blukir pamuruk",
 	"blockiptext": "Puruk purmulir di bawah hagan mamblukir hak ungkai manulis matan sabuah alamat IP atawa ngaran-pamuruk.\nNgini dipuruk hagan mancagah vandalisma haja, wan sasuai awan [[{{MediaWiki:Policy-url}}|kabijakan]].\nIsi sabuah alasan khas di bawah (gasan cuntuh, manulisakan tutungkaran nang suah divandal)",
-	"ipadressorusername": "Alamat IP atawa ngaran pamuruk:",
+	"ipaddressorusername": "Alamat IP atawa ngaran pamuruk:",
 	"ipbexpiry": "Kadaluwarsa:",
 	"ipbreason": "Alasan:",
 	"ipbreason-dropdown": "*Alasan awam pamblukiran\n** Mambuati panjalasan salah\n** Mambuang isi matan tutungkaran\n** Spam tautan ka luar\n** Mambuati pandiran kusung/ratik ka tutungkaran\n** Parilaku palecehan/intimidasi\n** Panyalahpurukan akun banyak\n** Ngaran-pamuruk kada-kawa-ditarima",

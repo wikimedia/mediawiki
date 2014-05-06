@@ -1168,7 +1168,7 @@
 	"whatlinkshere-filters": "Sõglaq",
 	"blockip": "Piäq puutri võrgoaadrõs kinniq",
 	"blockiptext": "Taa vorm om kimmä puutri võrgoaadrõsi päält tettüisi kirotuisi kinniqpidämises. '''Taad tohis tetäq õnnõ lehti ts'urkmisõ vasta ni [[{{MediaWiki:Policy-url}}|{{SITENAME}} sisekõrra perrä]]'''. Kimmähe tulõ täütäq ka rida \"põhjus\". Sinnäq võinuq pandaq nt lingiq noilõ lehile, midä rikuti.",
-	"ipadressorusername": "Puutri võrgoaadrõs vai pruukjanimi",
+	"ipaddressorusername": "Puutri võrgoaadrõs vai pruukjanimi",
 	"ipbexpiry": "Tähtaig",
 	"ipbreason": "Põhjus:",
 	"ipbreason-dropdown": "*Hariliguq kinniqpidämise põhjusõq\n** Võlss teedüse kirotaminõ\n** Lehti sisu ärqkistutaminõ\n** Reklaamilinkõ pandminõ\n** Mõttõlda jutu vai prahi pandminõ\n** Segämine ja ts'urkminõ\n** Mitmõ pruukjanime võlsspruukminõ\n** Sündümäldäq pruukjanimi",

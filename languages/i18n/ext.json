@@ -1198,7 +1198,7 @@
 	"blockip": "Atarugal usuáriu",
 	"blockip-legend": "Atarugal usuáriu",
 	"blockiptext": "Gasta el hormuláriu d'embahu p'atarugal el acesu duna IP u dun usuáriu.\nEstu solu ebi hazelsi pa evital el vandalismu, i dalcuerdu cola [[{{MediaWiki:Policy-url}}|póliça]].\nEscrebi una razón concreta embahu (pol sabulugal, almientandu páhinas qu'aigan siu vandalizás pol esti usuáriu).",
-	"ipadressorusername": "IP u nombri d´usuáriu:",
+	"ipaddressorusername": "IP u nombri d´usuáriu:",
 	"ipbexpiry": "Acabiha:",
 	"ipbreason": "Razón:",
 	"ipbreason-dropdown": "*Motivus frecuentis de tarugus\n** Escrebil enhormación farsa\n** Esborral el continiu las páhinas\n** Añiil publiciá d´otras páhinas...\n** Añiil basura enas páhinas\n** Comportamientu encévicu\n** Abusal con varias cuentas\n** Nombris d´usuárius enacetabris",

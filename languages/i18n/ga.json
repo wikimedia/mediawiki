@@ -1054,7 +1054,7 @@
 	"blockip": "Coisc úsáideoir",
 	"blockip-legend": "Coisc úsáideoir",
 	"blockiptext": "Úsáid an foirm anseo thíos chun bealach scríofa a chosc ó\nseoladh IP nó ainm úsáideora áirithe.\nIs féidir leat an rud seo a dhéanamh amháin chun an chreachadóireacht a chosc, de réir\nmar a deirtear sa [[{{MediaWiki:Policy-url}}|polasaí {{GRAMMAR:genitive|{{SITENAME}}}}]].\nLíonaigh cúis áirithe anseo thíos (mar shampla, is féidir leat a luaigh\nleathanaigh áirithe a rinne an duine damáiste ar).",
-	"ipadressorusername": "Seoladh IP nó ainm úsáideora:",
+	"ipaddressorusername": "Seoladh IP nó ainm úsáideora:",
 	"ipbexpiry": "Am éaga",
 	"ipbreason": "Fáth:",
 	"ipbreason-dropdown": "*Fáthanna coitianta\n** Loitiméaracht\n** Naisc turscar\n** Fadhbanna cóipcheart\n** Ag iarraidh ciapadh daoine eile\n** Drochúsáid as cuntais iolrach\n** Fadhbanna idirvicí\n** Feallaire\n** Seachfhreastalaí Oscailte",

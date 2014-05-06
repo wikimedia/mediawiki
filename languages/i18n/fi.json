@@ -1949,7 +1949,7 @@
 	"blockip": "Estä käyttäjä",
 	"blockip-legend": "Estä käyttäjä",
 	"blockiptext": "Tällä toiminnolla voit estää käyttäjätunnusta tai IP-osoitetta muokkaamasta.<br />\nTällainen muokkausesto pitäisi asettaa vain vandalismin torjumiseksi ja [[{{MediaWiki:Policy-url}}|käytännön]] mukaisesti.\nKirjoita eston syy alla olevaan kenttään.",
-	"ipadressorusername": "IP-osoite tai käyttäjätunnus",
+	"ipaddressorusername": "IP-osoite tai käyttäjätunnus",
 	"ipbexpiry": "Kesto",
 	"ipbreason": "Syy",
 	"ipbreason-dropdown": "*Yleiset estosyyt\n** Väärän tiedon lisääminen\n** Sisällön poistaminen\n** Mainoslinkkien lisääminen\n** Sotkeminen tai roskan lisääminen\n** Häiriköinti\n** Useamman käyttäjätunnuksen väärinkäyttö\n** Sopimaton käyttäjätunnus",

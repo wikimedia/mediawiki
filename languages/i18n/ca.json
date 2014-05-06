@@ -1947,7 +1947,7 @@
 	"blockip": "Bloqueig d'usuaris",
 	"blockip-legend": "Bloca l'usuari",
 	"blockiptext": "Empreu el següent formulari per blocar l'accés\nd'escriptura des d'una adreça IP específica o des d'un usuari determinat.\naixò només s'hauria de fer per prevenir el vandalisme, i\nd'acord amb la [[{{MediaWiki:Policy-url}}|política del projecte]].\nEmpleneu el diàleg de sota amb un motiu específic (per exemple, citant\nquines pàgines en concret estan sent vandalitzades).",
-	"ipadressorusername": "Adreça IP o nom de l'usuari",
+	"ipaddressorusername": "Adreça IP o nom de l'usuari",
 	"ipbexpiry": "Venciment",
 	"ipbreason": "Motiu:",
 	"ipbreason-dropdown": "*Motius de bloqueig més freqüents\n** Inserció d'informació falsa\n** Supressió de contingut sense justificació\n** Inserció d'enllaços promocionals (spam)\n** Inserció de contingut sense cap sentit\n** Conducta intimidatòria o hostil\n** Abús de comptes d'usuari múltiples\n** Nom d'usuari no acceptable",

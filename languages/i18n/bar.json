@@ -960,7 +960,7 @@
 	"blockip": "IP-Adress/Benytzer sperrn",
 	"blockip-legend": "IP-Adresse/Benutzer sperrn",
 	"blockiptext": "Mid dem Formular sperrst a IP-Adress oder an Benytzernåmen, das vo durten aus koane Endarungen mer vurgnumma wern kennan.\nDes soid nur dafoing, um an Vandalismus z' vahindern und in Yweraistimmung mid d' [[{{MediaWiki:Policy-url}}|Richtlinien]].\nGib bittschee an Grund fyr d' Sperrn å.",
-	"ipadressorusername": "IP-Adress oder Benytzernåm:",
+	"ipaddressorusername": "IP-Adress oder Benytzernåm:",
 	"ipbexpiry": "Sperrdauer:",
 	"ipbreason": "Grund:",
 	"ipbreason-dropdown": "* Oigmoahne Sperrgrynd\n** Eihfyng voh voische Informaziónen\n** Laarn voh Seiten\n** Massenweiss Eihfyng voh externe Links\n** Eihstön voh unsinnige Inhoite auf Seiten\n** néd åbrochts Vahoiden\n** Missbrauch mid mererne Benutzerkontós\n** néd geigneter Benutzernåm",

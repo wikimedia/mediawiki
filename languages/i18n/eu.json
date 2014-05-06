@@ -1794,7 +1794,7 @@
 	"blockip": "Blokeatu erabiltzailea",
 	"blockip-legend": "Blokeatu erabiltzailea",
 	"blockiptext": "IP helbide edo erabiltzaile izen bati idazketa baimenak kentzeko beheko formularioa erabil dezakezu. Ekintza hau bandalismoa saihesteko baino ez da burutu behar, eta beti ere [[{{MediaWiki:Policy-url}}|politikak]] errespetatuz. Blokeoaren arrazoi bat ere zehaztu ezazu (adibidez, orrialde batzuk zehaztuz).",
-	"ipadressorusername": "IP Helbidea edo erabiltzaile izena",
+	"ipaddressorusername": "IP Helbidea edo erabiltzaile izena",
 	"ipbexpiry": "Iraungipena",
 	"ipbreason": "Arrazoia:",
 	"ipbreason-dropdown": "*Blokeaketa arrazoi arruntak\n** Benetakoa ez den informazioa ezartzea\n** Orrialdetatik edukia ezabatzea\n** Spam-a edota kanpoko loturak ezarri\n** Bandalismoa egitea\n** Beste erabiltzaileei mehatxatzea\n** Kontu ugari erabiltzea\n** Erabiltzaile izen desegokia",
