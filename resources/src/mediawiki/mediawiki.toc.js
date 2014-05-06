@@ -40,14 +40,15 @@
 			}
 		}
 
-		var $tocTitle, $tocToggleLink, hideTocCookie;
+		var $toc, $tocTitle, $tocToggleLink, hideToc;
+		$toc = $content.find( '#toc' );
 		$tocTitle = $content.find( '#toctitle' );
 		$tocToggleLink = $content.find( '#togglelink' );
 		// Only add it if there is a TOC and there is no toggle added already
-		if ( $content.find( '#toc' ).length && $tocTitle.length && !$tocToggleLink.length ) {
-			hideTocCookie = $.cookie( 'mw_hidetoc' );
+		if ( $toc.length && $tocTitle.length && !$tocToggleLink.length ) {
+			hideToc = $.cookie( 'mw_hidetoc' ) === '1';
 			$tocToggleLink = $( '<a href="#" class="internal" id="togglelink"></a>' )
-				.text( mw.msg( 'hidetoc' ) )
+				.text( hideToc ? mw.msg( 'showtoc' ) : mw.msg( 'hidetoc' ) )
 				.click( function ( e ) {
 					e.preventDefault();
 					toggleToc( $( this ) );
@@ -60,8 +61,9 @@
 						.append( ']&nbsp;' )
 			);
 
-			if ( hideTocCookie === '1' ) {
-				toggleToc( $tocToggleLink );
+			if ( hideToc ) {
+				$content.find( '#toc ul:first' ).hide();
+				$toc.addClass( 'tochidden' );
 			}
 		}
 	} );
