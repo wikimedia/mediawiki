@@ -1050,7 +1050,7 @@ class Block {
 				continue;
 			}
 			# Don't check trusted IPs (includes local squids which will be in every request)
-			if ( wfIsTrustedProxy( $ipaddr ) ) {
+			if ( IP::isTrustedProxy( $ipaddr ) ) {
 				continue;
 			}
 			# Check both the original IP (to check against single blocks), as well as build

@@ -685,6 +685,7 @@ $wgAutoloadLocalClasses = array(
 	'IEContentAnalyzer' => 'includes/libs/IEContentAnalyzer.php',
 	'IEUrlExtension' => 'includes/libs/IEUrlExtension.php',
 	'MappedIterator' => 'includes/libs/MappedIterator.php',
+	'IPSet' => 'includes/libs/IPSet.php',
 	'JavaScriptMinifier' => 'includes/libs/JavaScriptMinifier.php',
 	'JSCompilerContext' => 'includes/libs/jsminplus.php',
 	'JSMinPlus' => 'includes/libs/jsminplus.php',
