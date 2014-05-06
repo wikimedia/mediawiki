@@ -960,7 +960,12 @@ class Message {
 	 * @return string Wikitext parsed into HTML.
 	 */
 	protected function parseText( $string ) {
+		global $wgOut;
 		$out = MessageCache::singleton()->parse( $string, $this->title, /*linestart*/true, $this->interface, $this->language );
+		if ( $out instanceof ParserOutput ) {
+			// When the message requires modules load the modules.
+			$wgOut->addModules( $out->getModules() );
+		}
 		return $out instanceof ParserOutput ? $out->getText() : $out;
 	}
 
