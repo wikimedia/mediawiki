@@ -76,7 +76,7 @@ class ReplacementArray {
 	 * @param array $data
 	 */
 	public function mergeArray( $data ) {
-		$this->data = array_merge( $this->data, $data );
+		$this->data = $data + $this->data;
 		$this->fss = false;
 	}
 
@@ -84,7 +84,7 @@ class ReplacementArray {
 	 * @param ReplacementArray $other
 	 */
 	public function merge( ReplacementArray $other ) {
-		$this->data = array_merge( $this->data, $other->data );
+		$this->data = $other->data + $this->data;
 		$this->fss = false;
 	}
 
