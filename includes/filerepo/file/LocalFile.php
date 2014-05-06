@@ -1599,14 +1599,15 @@ class LocalFile extends File {
 	 *
 	 * @param string $reason
 	 * @param bool $suppress
+	 * @param User|null $user
 	 * @return FileRepoStatus
 	 */
-	function delete( $reason, $suppress = false ) {
+	function delete( $reason, $suppress = false, $user = null ) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
 		}
 
-		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress );
+		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress, $user );
 
 		$this->lock(); // begin
 		$batch->addCurrent();
@@ -1656,16 +1657,17 @@ class LocalFile extends File {
 	 * @param string $archiveName
 	 * @param string $reason
 	 * @param bool $suppress
+	 * @param User|null $user
 	 * @throws MWException Exception on database or file store failure
 	 * @return FileRepoStatus
 	 */
-	function deleteOld( $archiveName, $reason, $suppress = false ) {
+	function deleteOld( $archiveName, $reason, $suppress = false, $user = null ) {
 		global $wgUseSquid;
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
 		}
 
-		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress );
+		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress, $user );
 
 		$this->lock(); // begin
 		$batch->addOld( $archiveName );
@@ -1964,15 +1966,25 @@ class LocalFileDeleteBatch {
 	/** @var FileRepoStatus */
 	private $status;
 
+	/** @var User */
+	private $user;
+
 	/**
 	 * @param File $file
 	 * @param string $reason
 	 * @param bool $suppress
+	 * @param User|null $user
 	 */
-	function __construct( File $file, $reason = '', $suppress = false ) {
+	function __construct( File $file, $reason = '', $suppress = false, $user = null; ) {
 		$this->file = $file;
 		$this->reason = $reason;
 		$this->suppress = $suppress;
+		if ( $user ) {
+			$this->user = $user;
+		} else {
+			global $wgUser;
+			$this->user = $wgUser;
+		}
 		$this->status = $file->repo->newGood();
 	}
 
@@ -2086,11 +2098,9 @@ class LocalFileDeleteBatch {
 	}
 
 	function doDBInserts() {
-		global $wgUser;
-
 		$dbw = $this->file->repo->getMasterDB();
 		$encTimestamp = $dbw->addQuotes( $dbw->timestamp() );
-		$encUserId = $dbw->addQuotes( $wgUser->getId() );
+		$encUserId = $dbw->addQuotes( $this->user->getId() );
 		$encReason = $dbw->addQuotes( $this->reason );
 		$encGroup = $dbw->addQuotes( 'deleted' );
 		$ext = $this->file->getExtension();
