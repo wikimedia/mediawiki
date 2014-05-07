@@ -119,6 +119,14 @@ function wfImageAuthMain() {
 			wfForbidden( 'img-auth-accessdenied', 'img-auth-nofile', $filename );
 			return;
 		}
+	} else if ( strpos( $path, '/transcoded/' ) === 0 ) {
+		$name = wfBaseName( dirname( $path ) ); // file is a transcoded video
+		$filename = $repo->getZonePath( 'transcoded' ) . substr( $path, 11 ); // strip "/transcoded"
+		// Check to see if the file exists
+		if ( !$repo->fileExists( $filename ) ) {
+			wfForbidden( 'img-auth-accessdenied', 'img-auth-nofile', $filename );
+			return;
+		}
 	} else {
 		$name = wfBaseName( $path ); // file is a source file
 		$filename = $repo->getZonePath( 'public' ) . $path;
