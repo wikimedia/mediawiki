@@ -157,11 +157,12 @@ mw.log.deprecate( win, 'jsMsg', function ( message ) {
  * @deprecated since 1.17 Use mediawiki.util instead
  */
 msg = 'Use mediawiki.util instead.';
-mw.log.deprecate( win, 'tooltipAccessKeyPrefix', 'alt-', msg );
-mw.log.deprecate( win, 'tooltipAccessKeyRegexp', /\[(alt-)?(.)\]$/, msg );
 mw.log.deprecate( win, 'updateTooltipAccessKeys', mw.util.updateTooltipAccessKeys, msg );
 mw.log.deprecate( win, 'addPortletLink', mw.util.addPortletLink, msg );
 mw.log.deprecate( win, 'appendCSS', mw.util.addCSS, msg );
+msg = 'Use jquery.accessKeyLabel instead.';
+mw.log.deprecate( win, 'tooltipAccessKeyPrefix', 'alt-', msg );
+mw.log.deprecate( win, 'tooltipAccessKeyRegexp', /\[(alt-)?(.)\]$/, msg );
 
 /**
  * Wikipage import methods
