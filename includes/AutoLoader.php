@@ -1183,10 +1183,8 @@ $wgAutoloadLocalClasses = array(
 
 	# skins
 	'CologneBlueTemplate' => 'skins/CologneBlue.php',
-	'ModernTemplate' => 'skins/Modern.php',
 	'MonoBookTemplate' => 'skins/MonoBook.php',
 	'SkinCologneBlue' => 'skins/CologneBlue.php',
-	'SkinModern' => 'skins/Modern.php',
 	'SkinMonoBook' => 'skins/MonoBook.php',
 	'SkinVector' => 'skins/Vector.php',
 	'VectorTemplate' => 'skins/Vector.php',
