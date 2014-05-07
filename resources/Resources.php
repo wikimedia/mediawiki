@@ -202,6 +202,7 @@ return array(
 		'dependencies' => array(
 			'jquery.client',
 		),
+		'messages' => array( 'brackets', 'word-separator' ),
 		'targets' => array( 'mobile', 'desktop' ),
 	),
 	'jquery.appear' => array(

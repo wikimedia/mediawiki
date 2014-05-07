@@ -122,7 +122,8 @@ function updateTooltipOnElement( element, titleElement ) {
 	}
 
 	if ( accessKeyLabel ) {
-		newTitle += ' [' + accessKeyLabel + ']';
+		// Should be build the same as in Linker::titleAttrib
+		newTitle += mw.msg( 'word-separator' ) + mw.msg( 'brackets', accessKeyLabel );
 	}
 	if ( oldTitle !== newTitle ) {
 		titleElement.title = newTitle;
