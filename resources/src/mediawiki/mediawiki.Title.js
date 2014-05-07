@@ -297,6 +297,74 @@
 	};
 
 	/**
+	 * Sanitizes a file name as supplied by the user, orinating in the user's file system
+	 * so it is most likely a valid MediaWiki title and file name after processing.
+	 * Returns null on fatal errors.
+	 * Slightly modified from Flinfo. Credit goes to Lupo and Flominator.
+	 *
+	 * @static
+	 * @method
+	 * @param {string} uncleanName the unclean file name including file extension
+	 * @param {string} [fileExtension] the desired file extension
+	 * @return {mw.Title|null} A valid Title object or null if the title is invalid
+	 */
+	Title.newFromFileName = function( uncleanName, fileExtension ) {
+		var ext, uncleanNameParts, cleanName;
+		uncleanName = uncleanName
+				// "signature" first
+				.replace( /~{3}/g, '' )
+				// Space, underscore, tab, NBSP and other unusual spaces
+				.replace( /[ _\u0009\u00A0\u1680\u180E\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]/g, ' ' )
+				// collapse sequences of blanks into one
+				.replace( / +/g, ' ' )
+				// unicode bidi override characters: Implicit, Embeds, Overrides
+				.replace( /[\u200E\u200F\u202A-\u202E]/g, '' )
+				// control characters
+				.replace( /[\x00-\x1f\x7f]/g, '' )
+				// URL encoding
+				.replace( /%([0-9A-Fa-f]{2})/g, '% $1' )
+				// URL-params?
+				.replace( /&(([A-Za-z0-9\x80-\xff]+|#[0-9]+|#x[0-9A-Fa-f]+);)/g, '& $1' )
+				// colon, slash, hash
+				.replace( /[:\/|#]/g, '-' )
+				// brackets, greater than
+				.replace( /[\]\}>]/g, ')' )
+				// brackets, lower than
+				.replace( /[\[\{<]/g, '(' );
+
+		// Operate on the file extension
+		// Although it is possible having spaces between the name and the ".ext" this isn't nice for
+		// operating systems hiding file extensions
+		uncleanNameParts = uncleanName.split( '.' );
+
+		if ( uncleanNameParts.length > 1 ) {
+			ext = uncleanNameParts.pop();
+			// Does the supplied fille name carry the desired file extension?
+			if ( fileExtension && $.trim( ext.toLowerCase() ) !== fileExtension.toLowerCase() ) {
+				// No, push back, whatever there was after the dot
+				uncleanNameParts.push( ext );
+				// And add the desired file extension later
+				ext = fileExtension;
+			}
+			// Remove whitespace of the name part (that W/O extension)
+			cleanName = $.trim( uncleanNameParts.join( '.' ) );
+			// Append file extension
+			cleanName += '.' + ext;
+		} else {
+			// Missing file extension
+			cleanName = $.trim( uncleanNameParts.join( '.' ) );
+			if ( fileExtension ) {
+				cleanName += '.' + fileExtension;
+			} else {
+				// Name has no file extension and a fallback wasn't provided either
+				return null;
+			}
+		}
+
+		return Title.newFromText( 'File:' + cleanName );
+	};
+
+	/**
 	 * Get the file title from an image element
 	 *
 	 *     var title = mw.Title.newFromImg( $( 'img:first' ) );

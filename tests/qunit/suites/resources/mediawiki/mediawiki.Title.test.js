@@ -435,4 +435,116 @@
 		}
 	} );
 
+	QUnit.test( 'newFromFileName', 54, function ( assert ) {
+		var title, i, thisCase, prefix,
+			cases = [
+				{
+					fileName: 'DCS0001557854455.JPG',
+					typeOfName: 'Standard camera output',
+					nameText: 'DCS0001557854455',
+					prefixedText: 'File:DCS0001557854455.JPG',
+					extensionDesired: 'jpg'
+				},
+				{
+					fileName: 'Treppe 2222 Test upload.jpg',
+					typeOfName: 'File name with spaces in it and lower case file extension',
+					nameText: 'Treppe 2222 Test upload',
+					prefixedText: 'File:Treppe 2222 Test upload.jpg',
+					extensionDesired: 'JPG'
+				},
+				{
+					fileName: 'I contain a \ttab.jpg',
+					typeOfName: 'Name containing a tab character',
+					nameText: 'I contain a tab',
+					prefixedText: 'File:I contain a tab.jpg'
+				},
+				{
+					fileName: 'I_contain multiple__ ___ _underscores.jpg',
+					typeOfName: 'Name containing multiple underscores',
+					nameText: 'I contain multiple underscores',
+					prefixedText: 'File:I contain multiple underscores.jpg'
+				},
+				{
+					fileName: 'I like ~~~~~~~~es.jpg',
+					typeOfName: 'Name containing more than three consecutive tilde characters',
+					nameText: 'I like ~~es',
+					prefixedText: 'File:I like ~~es.jpg'
+				},
+				{
+					fileName: 'BI\u200EDI.jpg',
+					typeOfName: 'Name containing BIDI overrides',
+					nameText: 'BIDI',
+					prefixedText: 'File:BIDI.jpg'
+				},
+				{
+					fileName: '100%ab progress.jpg',
+					typeOfName: 'File name with URL encoding',
+					nameText: '100% ab progress',
+					prefixedText: 'File:100% ab progress.jpg'
+				},
+				{
+					fileName: '<([>]):/#.jpg',
+					typeOfName: 'File name with characters not permitted in titles that are replaced',
+					nameText: '((()))---',
+					prefixedText: 'File:((()))---.jpg'
+				},
+				{
+					fileName: 'spaces\u200A\u200Bx.djvu',
+					typeOfName: 'File name with different kind of spaces',
+					nameText: 'Spaces \u200Bx',
+					prefixedText: 'File:Spaces \u200Bx.djvu'
+				},
+				{
+					fileName: 'dot.dot.dot.dot.dotdot',
+					typeOfName: 'File name with a lot of dots',
+					nameText: 'Dot.dot.dot.dot',
+					prefixedText: 'File:Dot.dot.dot.dot.dotdot'
+				},
+				{
+					fileName: 'dot. dot ._dot',
+					typeOfName: 'File name with multiple dots and spaces',
+					nameText: 'Dot. dot',
+					prefixedText: 'File:Dot. dot. dot'
+				},
+				{
+					fileName: 'dot. dot ._dot',
+					typeOfName: 'File name with different file extension desired',
+					nameText: 'Dot. dot . dot',
+					prefixedText: 'File:Dot. dot . dot.png',
+					extensionDesired: 'png'
+				},
+				{
+					fileName: 'fileWOExt',
+					typeOfName: 'File W/O extension with extension desired',
+					nameText: 'FileWOExt',
+					prefixedText: 'File:FileWOExt.png',
+					extensionDesired: 'png'
+				},
+				{
+					fileName: '',
+					typeOfName: 'Empty string'
+				},
+				{
+					fileName: 'foo',
+					typeOfName: 'String with only alphabet characters'
+				}
+			];
+
+		for ( i = 0; i < cases.length; i++ ) {
+			thisCase = cases[i];
+			title = mw.Title.newFromFileName( thisCase.fileName, thisCase.extensionDesired );
+
+			if ( thisCase.nameText !== undefined ) {
+				prefix = '[' + thisCase.typeOfName + '] ';
+
+				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
+				assert.equal( title.getNameText(), thisCase.nameText, prefix + 'Filename matches original' );
+				assert.equal( title.getPrefixedText(), thisCase.prefixedText, prefix + 'File page title matches original' );
+				assert.equal( title.getNamespaceId(), 6, prefix + 'Namespace ID matches File namespace' );
+			} else {
+				assert.strictEqual( title, null, thisCase.typeOfName + ', should not produce an mw.Title object' );
+			}
+		}
+	} );
+
 }( mediaWiki, jQuery ) );
