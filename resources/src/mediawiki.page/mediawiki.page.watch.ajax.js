@@ -17,7 +17,7 @@
 	 * @param {string} [state="idle"] 'idle' or 'loading'. Default is 'idle'
 	 */
 	function updateWatchLink( $link, action, state ) {
-		var accesskeyTip, msgKey, $li, otherAction;
+		var msgKey, $li, otherAction;
 
 		// A valid but empty jQuery object shouldn't throw a TypeError
 		if ( !$link.length ) {
@@ -32,7 +32,6 @@
 		// message keys 'watch', 'watching', 'unwatch' or 'unwatching'.
 		msgKey = state === 'loading' ? action + 'ing' : action;
 		otherAction = action === 'watch' ? 'unwatch' : 'watch';
-		accesskeyTip = $link.attr( 'title' ).match( mw.util.tooltipAccessKeyRegexp );
 		$li = $link.closest( 'li' );
 
 		// Trigger a 'watchpage' event for this List item.
@@ -45,9 +44,8 @@
 
 		$link
 			.text( mw.msg( msgKey ) )
-			.attr( 'title', mw.msg( 'tooltip-ca-' + action ) +
-				( accesskeyTip ? ' ' + accesskeyTip[0] : '' )
-			)
+			.attr( 'title', mw.msg( 'tooltip-ca-' + action ) )
+			.updateTooltipAccessKeys()
 			.attr( 'href', mw.util.wikiScript() + '?' + $.param( {
 					title: title,
 					action: action
