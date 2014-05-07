@@ -97,9 +97,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgSiteName' => $wgSitename,
 			'wgFileExtensions' => array_values( array_unique( $wgFileExtensions ) ),
 			'wgDBname' => $wgDBname,
-			// This sucks, it is only needed on Special:Upload, but I could
-			// not find a way to add vars only for a certain module
-			'wgFileCanRotate' => BitmapHandler::canRotate(),
 			'wgAvailableSkins' => Skin::getSkinNames(),
 			'wgExtensionAssetsPath' => $wgExtensionAssetsPath,
 			// MediaWiki sets cookies to have this prefix by default
