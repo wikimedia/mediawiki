@@ -32,6 +32,8 @@ production.
   follow redirects to their target pages.
 
 === Web API changes in 1.24 ===
+* action=parse API now supports prop=modules, which provides the list of
+  ResourceLoader modules that should be used to enhance the parsed content.
 
 === Languages updated in 1.24 ===
 
