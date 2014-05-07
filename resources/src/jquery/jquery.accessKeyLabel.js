@@ -3,7 +3,7 @@
  *
  * @class jQuery.plugin.accessKeyLabel
  */
-( function ( $ ) {
+( function ( $, mw ) {
 
 // Cached access key prefix for used browser
 var cachedAccessKeyPrefix,
@@ -122,7 +122,8 @@ function updateTooltipOnElement( element, titleElement ) {
 	}
 
 	if ( accessKeyLabel ) {
-		newTitle += ' [' + accessKeyLabel + ']';
+		// Should be build the same as in Linker::titleAttrib
+		newTitle += mw.msg( 'word-separator' ) + mw.msg( 'brackets', accessKeyLabel );
 	}
 	if ( oldTitle !== newTitle ) {
 		titleElement.title = newTitle;
@@ -194,4 +195,4 @@ $.fn.updateTooltipAccessKeys.setTestMode = function ( mode ) {
  * @mixins jQuery.plugin.accessKeyLabel
  */
 
-}( jQuery ) );
+}( jQuery, mediaWiki ) );

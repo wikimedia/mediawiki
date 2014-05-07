@@ -2114,6 +2114,7 @@ class Linker {
 		if ( $options == 'withaccess' ) {
 			$accesskey = self::accesskey( $name );
 			if ( $accesskey !== false ) {
+				// Should be build the same as in jquery.accessKeyLabel.js
 				if ( $tooltip === false || $tooltip === '' ) {
 					$tooltip = wfMessage( 'brackets', $accesskey )->escaped();
 				} else {
