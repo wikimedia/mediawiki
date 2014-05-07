@@ -431,4 +431,36 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$row = $res->fetchRow();
 		$this->assertFalse( (bool)$row['a'] );
 	}
+
+	/**
+	 * @covers DatabaseSqlite::journalMode
+	 * @dataProvider provideJournalModeCases
+	 */
+	public function testJournalMode( $expected, $newMode ) {
+
+		$db = new DatabaseSqliteStandalone( $this->getNewTempFile() );
+
+		$this->assertEquals( $expected,
+			$db->journalMode( $newMode ),
+			"Setting SQLite journal mode to $newMode" );
+
+		if ( is_string( $expected) ) {
+			$this->assertEquals( $newMode,
+				$db->journalMode( ),
+				"SQLite new journal mode properly retrieved" );
+		}
+	}
+
+	public static function provideJournalModeCases() {
+		return array(
+			# expected, newmode
+			array( 'delete', 'delete' ),
+			array( 'truncate', 'truncate' ),
+			array( 'persist', 'persist' ),
+			array( 'memory', 'memory' ),
+			array( 'wal', 'wal' ),
+			array( 'off', 'off' ),
+			array( false, 'INVALID_MODE' ),
+		);
+	}
 }

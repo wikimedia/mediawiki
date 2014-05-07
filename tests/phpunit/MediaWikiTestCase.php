@@ -106,6 +106,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 			$this->db = wfGetDB( DB_MASTER );
 
+			if ( $this->db->getType() == 'sqlite' ) {
+				$this->db->journalMode( 'memory' );
+			}
+
 			$this->checkDbIsSupported();
 
 			if ( !self::$dbSetup ) {

@@ -44,6 +44,19 @@ class DatabaseSqlite extends DatabaseBase {
 	/** @var FSLockManager (hopefully on the same server as the DB) */
 	protected $lockMgr;
 
+	/**
+	 * White list of supported sqlite journal modes
+	 * https://sqlite.org/pragma.html#pragma_journal_mode
+	 **/
+	protected static $journalModes = array(
+		'delete',
+		'truncate',
+		'persist',
+		'memory',
+		'wal',
+		'off',
+	);
+
 	function __construct( $p = null ) {
 		global $wgSharedDB, $wgSQLiteDataDir;
 
@@ -500,6 +513,54 @@ class DatabaseSqlite extends DatabaseBase {
 		$options = explode( ' ', $firstPart );
 
 		return in_array( 'UNIQUE', $options );
+	}
+
+	/**
+	 * Get/Set journal mode.
+	 *
+	 * Setting $newMode to NULL (the Default) cause method to return current
+	 * journal mode normalized to all lower case.
+	 *
+	 * The $newMode is normalized to lower case and compared against a
+	 * whitelist of supported modes in (DatabaseSqlite::journalModes).
+	 *
+	 * Check your SQLite version for supported modes.
+	 * https://sqlite.org/pragma.html#pragma_journal_mode
+	 *
+	 * @param string|null $newMode
+	 * @return false on error
+	 */
+	function journalMode( $newMode = null, $fname = __METHOD__ ) {
+
+		$res = $this->query( 'PRAGMA journal_mode', $fname );
+		if ( !$res ) {
+			return false;
+		}
+
+		$row = $res->fetchRow();
+		$curMode = strtolower( $row[0] );
+
+		if ( $newMode === null ) {
+			return $curMode;
+		}
+
+		if ( ! in_array( $newMode, self::$journalModes ) ) {
+			wfDebug( __METHOD__ . " Unsupported journal mode: {$newMode}\n" );
+			return false;
+		}
+
+		$res = $this->query( "PRAGMA journal_mode = $newMode", __METHOD__ );
+		$row = $res->fetchRow();
+		$setMode = strtolower( $row[0] );
+
+		if ( $setMode !== $newMode ) {
+			wfDebug( __METHOD__ . " Could not set journal mode: {$newMode}\n" );
+			return false;
+		}
+
+		wfDebug( __METHOD__ . " Journal mode changed from $curMode to $setMode\n" );
+		return $setMode;
+
 	}
 
 	/**
