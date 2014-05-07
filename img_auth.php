@@ -106,14 +106,15 @@ function wfImageAuthMain() {
 
 	// Get the local file repository
 	$repo = RepoGroup::singleton()->getRepo( 'local' );
+	$zone = strstr( ltrim( $path, '/' ), '/', true );
 
 	// Get the full file storage path and extract the source file name.
 	// (e.g. 120px-Foo.png => Foo.png or page2-120px-Foo.png => Foo.png).
-	// This only applies to thumbnails, and all thumbnails should
+	// This only applies to thumbnails/transcoded, and each of them should
 	// be under a folder that has the source file name.
-	if ( strpos( $path, '/thumb/' ) === 0 ) {
-		$name = wfBaseName( dirname( $path ) ); // file is a thumbnail
-		$filename = $repo->getZonePath( 'thumb' ) . substr( $path, 6 ); // strip "/thumb"
+	if ( $zone === 'thumb' || $zone === 'transcoded' ) {
+		$name = wfBaseName( dirname( $path ) );
+		$filename = $repo->getZonePath( $zone ) . substr( $path, strlen( "/".$zone ) );
 		// Check to see if the file exists
 		if ( !$repo->fileExists( $filename ) ) {
 			wfForbidden( 'img-auth-accessdenied', 'img-auth-nofile', $filename );
