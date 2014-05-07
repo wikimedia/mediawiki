@@ -2607,7 +2607,7 @@
     "newimages-summary": "This special page shows the last uploaded files.",
     "newimages-legend": "Filter",
     "newimages-label": "Filename (or a part of it):",
-    "showhidebots": "($1 bots)",
+	"newimages-showbots": "Show uploads by bots",
     "noimages": "Nothing to see.",
     "ilsubmit": "Search",
     "bydate": "by date",
