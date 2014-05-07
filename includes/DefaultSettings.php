@@ -4818,7 +4818,7 @@ $wgProxyKey = false;
  */
 
 /**
- * Default cookie expiration time. Setting to 0 makes all cookies session-only.
+ * Default cookie lifetime, in seconds. Setting to 0 makes all cookies session-only.
  */
 $wgCookieExpiration = 180 * 86400;
 
