@@ -183,7 +183,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 			),
 			'showbots' => array(
 				'type' => 'check',
-				'label' => $this->msg( 'showhidebots', $this->msg( 'show' )->plain() )->escaped(),
+				'label-message' => 'newimages-showbots',
 				'name' => 'showbots',
 			),
 			'limit' => array(
