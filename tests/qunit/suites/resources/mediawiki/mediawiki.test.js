@@ -120,10 +120,11 @@
 
 		assert.ok( 'globalMapChecker' in window === false, 'new mw.Map did not store its values in the global window object by default' );
 
-		globalConf = new mw.Map( true );
+		globalConf = new mw.Map();
+		globalConf.values = window;
 		globalConf.set( 'anotherGlobalMapChecker', 'Hello' );
 
-		assert.ok( 'anotherGlobalMapChecker' in window, 'new mw.Map( true ) did store its values in the global window object' );
+		assert.ok( 'anotherGlobalMapChecker' in window, 'Map.values = window did store its values in the global window object' );
 
 		// Whitelist this global variable for QUnit's 'noglobal' mode
 		if ( QUnit.config.noglobals ) {
