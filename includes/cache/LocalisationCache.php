@@ -1161,7 +1161,7 @@ class LCStoreDB implements LCStore {
 		$row = $db->selectRow( 'l10n_cache', array( 'lc_value' ),
 			array( 'lc_lang' => $code, 'lc_key' => $key ), __METHOD__ );
 		if ( $row ) {
-			return unserialize( $row->lc_value );
+			return unserialize( $db->decodeBlob( $row->lc_value ) );
 		} else {
 			return null;
 		}
@@ -1223,7 +1223,7 @@ class LCStoreDB implements LCStore {
 		$this->batch[] = array(
 			'lc_lang' => $this->currentLang,
 			'lc_key' => $key,
-			'lc_value' => serialize( $value ) );
+			'lc_value' => $this->dbw->encodeBlob( serialize( $value ) ) );
 
 		if ( count( $this->batch ) >= 100 ) {
 			$this->dbw->insert( 'l10n_cache', $this->batch, __METHOD__ );
