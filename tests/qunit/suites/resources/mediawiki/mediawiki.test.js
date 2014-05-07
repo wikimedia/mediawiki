@@ -9,26 +9,24 @@
 
 	QUnit.module( 'mediawiki', QUnit.newMwEnvironment( {
 		setup: function () {
-			// Messages used in multiple tests
-			mw.messages.set( {
-				'other-message': 'Other Message',
-				'mediawiki-test-pagetriage-del-talk-page-notify-summary': 'Notifying author of deletion nomination for [[$1]]',
-				'gender-plural-msg': '{{GENDER:$1|he|she|they}} {{PLURAL:$2|is|are}} awesome',
-				'grammar-msg': 'Przeszukaj {{GRAMMAR:grammar_case_foo|{{SITENAME}}}}',
-				'formatnum-msg': '{{formatnum:$1}}',
-				'int-msg': 'Some {{int:other-message}}',
-				'mediawiki-test-version-entrypoints-index-php': '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
-				'external-link-replace': 'Foo [$1 bar]'
-			} );
-
-			mw.config.set( {
-				wgArticlePath: '/wiki/$1',
-
-				// For formatnum tests
-				wgUserLanguage: 'en'
-			} );
-
 			specialCharactersPageName = '"Who" wants to be a millionaire & live on \'Exotic Island\'?';
+		},
+		config: {
+			wgArticlePath: '/wiki/$1',
+
+			// For formatnum tests
+			wgUserLanguage: 'en'
+		},
+		// Messages used in multiple tests
+		messages: {
+			'other-message': 'Other Message',
+			'mediawiki-test-pagetriage-del-talk-page-notify-summary': 'Notifying author of deletion nomination for [[$1]]',
+			'gender-plural-msg': '{{GENDER:$1|he|she|they}} {{PLURAL:$2|is|are}} awesome',
+			'grammar-msg': 'Przeszukaj {{GRAMMAR:grammar_case_foo|{{SITENAME}}}}',
+			'formatnum-msg': '{{formatnum:$1}}',
+			'int-msg': 'Some {{int:other-message}}',
+			'mediawiki-test-version-entrypoints-index-php': '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
+			'external-link-replace': 'Foo [$1 bar]'
 		}
 	} ) );
 
