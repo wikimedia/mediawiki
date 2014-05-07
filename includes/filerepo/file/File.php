@@ -1652,11 +1652,12 @@ abstract class File {
 	 *
 	 * @param string $reason
 	 * @param bool $suppress Hide content from sysops?
+	 * @param User|null $user
 	 * @return bool Boolean on success, false on some kind of failure
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function delete( $reason, $suppress = false ) {
+	function delete( $reason, $suppress = false, $user = null ) {
 		$this->readOnlyError();
 	}
 
