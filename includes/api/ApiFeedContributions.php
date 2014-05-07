@@ -103,6 +103,11 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	protected function feedItem( $row ) {
+		wfRunHooks( 'ApiFeedContributions::feedItem', array( $row, &$result ) );
+		if ( $result instanceof FeedItem ) {
+			return $result;
+		}
+
 		$title = Title::makeTitle( intval( $row->page_namespace ), $row->page_title );
 		if ( $title && $title->userCan( 'read', $this->getUser() ) ) {
 			$date = $row->rev_timestamp;

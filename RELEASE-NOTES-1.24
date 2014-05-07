@@ -13,6 +13,9 @@ production.
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
   WhatLinksHere entries.
+* Added a new hook, "ApiFeedContributions::feedItem" to allow extensions
+  to control the conversion of a contributions row into a FeedItem 
+  instance
 
 === Bug fixes in 1.24 ===
 * (bug 62258) A bug was fixed in File::getUnscaledThumb when a height
