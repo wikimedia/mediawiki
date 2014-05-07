@@ -474,10 +474,10 @@
 	 *
 	 * Should match:
 	 *
-	 * - "ctrl-option-"
-	 * - "alt-shift-"
-	 * - "ctrl-alt-"
-	 * - "ctrl-"
+	 * - "[ctrl-option-x]"
+	 * - "[alt-shift-x]"
+	 * - "[ctrl-alt-x]"
+	 * - "[ctrl-x]"
 	 *
 	 * The accesskey is matched in group $6.
 	 *

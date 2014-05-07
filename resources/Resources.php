@@ -1136,10 +1136,10 @@ return array(
 	'mediawiki.page.watch.ajax' => array(
 		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.watch.ajax.js',
 		'dependencies' => array(
-			'mediawiki.page.startup',
 			'mediawiki.api.watch',
-			'mediawiki.util',
 			'mediawiki.notify',
+			'mediawiki.util',
+			'jquery.accessKeyLabel',
 			'jquery.mwExtension',
 		),
 		'messages' => array(
