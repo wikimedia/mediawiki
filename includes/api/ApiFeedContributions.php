@@ -103,6 +103,14 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	protected function feedItem( $row ) {
+		if ( !wfRunHooks( 'ApiFeedContributions::feedItem', array( $row, &$result ) ) ) {
+			if ( !$result instanceof FeedItem ) {
+				$type = is_object( $result ) ? get_class( $result ) : gettype( $result );
+				throw new MWException( "Received invalid result from ApiFeedContributions::feedItem hook. Expected FeedItem instance but received $type" );
+			}
+			return $result;
+		}
+
 		$title = Title::makeTitle( intval( $row->page_namespace ), $row->page_title );
 		if ( $title && $title->userCan( 'read', $this->getUser() ) ) {
 			$date = $row->rev_timestamp;

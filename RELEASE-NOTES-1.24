@@ -19,6 +19,9 @@ production.
 * HTMLForm now supports multiple copies of an input field or set of input
   fields, e.g. the form may request "one or more usernames" without having to
   have the user enter delimited list of names into a text field.
+* Added a new hook, "ApiFeedContributions::feedItem" to allow extensions
+  to control the conversion of a contributions row into a FeedItem
+  instance
 
 === Bug fixes in 1.24 ===
 * (bug 62258) A bug was fixed in File::getUnscaledThumb when a height

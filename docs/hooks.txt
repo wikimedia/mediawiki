@@ -382,6 +382,12 @@ $editPage : the EditPage object
 $text : the new text of the article (has yet to be saved)
 &$resultArr : data in this array will be added to the API result
 
+'APIFeedContributions::feedItem': Gives extensions the opportunity to control
+the conversion of ContribsPager result rows into FeedItem instances.
+$row: A single row from ContribsPager
+&$result: the hook must set this to a FeedItem instance in cases where
+it wants to override the default conversion processes.
+
 'APIGetAllowedParams': Use this hook to modify a module's parameters.
 &$module: ApiBase Module object
 &$params: Array of parameters
