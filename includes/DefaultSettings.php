@@ -6178,6 +6178,7 @@ $wgJobTypesExcludedFromDefaultQueue = array( 'AssembleUploadChunks', 'PublishSta
  * may have a variable number of work items, as is the case with batch jobs.
  * This is used by runJobs.php and not jobs run via $wgJobRunRate.
  * These settings should be global to all wikis.
+ * @type float[]
  */
 $wgJobBackoffThrottling = array();
 
