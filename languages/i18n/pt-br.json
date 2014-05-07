@@ -1976,7 +1976,7 @@
 	"blockipsuccesssub": "Bloqueio bem sucedido",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] foi {{GENDER:$1|bloqueado|bloqueada}}.<br />\nConsulte a [[Special:BlockList|lista de bloqueios]].",
 	"ipb-blockingself": "Você está prestes a bloquear-se a si próprio. Você tem a certeza de que pretende fazê-lo?",
-	"ipb-confirmhideuser": "Você está prestes a bloquear um utilizador com \"Ocultar nome de utilizador/IP\" ativado. Isto irá suprimir o nome do usuário de todas as listas e entradas dos registos. Tem a certeza de que pretende fazê-lo?",
+	"ipb-confirmhideuser": "Você está prestes a bloquear um usuário com \"Ocultar nome de usuário/IP\" ativado. Isto irá suprimir o nome do usuário de todas as listas e entradas dos registos. Tem a certeza de que pretende fazê-lo?",
 	"ipb-confirmaction": "Se você tem certeza que realmente quer fazer isto, por favor verifique o campo \"{{int:ipb-confirm}}\" no final.",
 	"ipb-edit-dropdown": "Editar motivos de bloqueio",
 	"ipb-unblock-addr": "Desbloquear $1",

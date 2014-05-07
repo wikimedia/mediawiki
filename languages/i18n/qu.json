@@ -628,6 +628,8 @@
 	"edit-gone-missing": "Manam atirqanichu p'anqata musuqchayta.\nQullusqachá.",
 	"edit-conflict": "Tuylla llamk'apuymanta sasachakuy.",
 	"edit-no-change": "Manapuni hukchaptiykim, llamk'apusqayki manam hallch'asqachu.",
+	"postedit-confirmation-created": "P'anqaqa kamarisqañam.",
+	"postedit-confirmation-restored": "P'anqaqa musuqmanta kamarisqañam.",
 	"postedit-confirmation-saved": "Llamk'apusqaykiqa waqaychasqañam.",
 	"edit-already-exists": "Manam atinichu musuq p'anqata kamariyta.\nKachkañam.",
 	"defaultmessagetext": "Ñawpaq qillqa",

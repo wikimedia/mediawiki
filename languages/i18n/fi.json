@@ -1121,7 +1121,7 @@
 	"action-createpage": "luoda sivuja",
 	"action-createtalk": "luoda keskustelusivuja",
 	"action-createaccount": "luoda tätä käyttäjätunnusta",
-	"action-history": "näyttää tämän sivun historiaa",
+	"action-history": "tarkastella tämän sivun historiaa",
 	"action-minoredit": "merkitä tätä muokkausta pieneksi",
 	"action-move": "siirtää tätä sivua",
 	"action-move-subpages": "siirtää tätä sivua eikä sen alasivuja",

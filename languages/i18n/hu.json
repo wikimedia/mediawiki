@@ -818,6 +818,7 @@
 	"editundo": "visszavonás",
 	"diff-empty": "(Nincs különbség)",
 	"diff-multi-sameuser": "({{PLURAL:$1|Egy közbenső módosítás|$1 közbenső módosítás}} ugyanattól a szerkesztőtől nincs mutatva)",
+	"diff-multi-otherusers": "({{PLURAL:$1|Egy közbenső módosítás|$1 közbenső módosítás}}, amit {{PLURAL:$2|egy másik szerkesztő végzett|$2 másik szerkesztő végzett}}, nincs mutatva)",
 	"diff-multi-manyusers": "({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva, amit $2 szerkesztő módosított)",
 	"difference-missing-revision": "A(z) \"{{PAGENAME}}\" nevű oldal #$1 $2 változata nem létezik.\n\nEzt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás használata okozza. Részletek a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatóak.",
 	"searchresults": "A keresés eredménye",
