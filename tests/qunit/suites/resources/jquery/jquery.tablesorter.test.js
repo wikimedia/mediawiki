@@ -1,5 +1,5 @@
 ( function ( $, mw ) {
-	var config, header,
+	var header,
 
 		// Data set "simple"
 		a1 = [ 'A', '1' ],
@@ -155,16 +155,16 @@
 			['February 05 2010']
 		];
 
-	config = {
-		wgMonthNames: ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-		wgMonthNamesShort: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-		wgDefaultDateFormat: 'dmy',
-		wgSeparatorTransformTable: ['', ''],
-		wgDigitTransformTable: ['', ''],
-		wgContentLanguage: 'en'
-	};
-
-	QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( { config: config } ) );
+	QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
+		config: {
+			wgMonthNames: ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+			wgMonthNamesShort: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+			wgDefaultDateFormat: 'dmy',
+			wgSeparatorTransformTable: ['', ''],
+			wgDigitTransformTable: ['', ''],
+			wgContentLanguage: 'en'
+		}
+	} ) );
 
 	/**
 	 * Create an HTML table from an array of row arrays containing text strings.
