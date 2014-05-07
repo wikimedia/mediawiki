@@ -349,8 +349,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// Fix indentation
 			$registrations = str_replace( "\n", "\n\t", trim( $registrations ) );
 			$out .= "var startUp = function () {\n" .
-				"\tmw.config = new " .
-				Xml::encodeJsCall( 'mw.Map', array( $wgLegacyJavaScriptGlobals ) ) . "\n" .
+				( $wgLegacyJavaScriptGlobals ? "\tmw.config.values = window;\n" : "" ) .
 				"\t$registrations\n" .
 				"\t" . Xml::encodeJsCall( 'mw.config.set', array( $configuration ) ) .
 				"};\n";

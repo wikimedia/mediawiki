@@ -79,11 +79,11 @@
 	 * @class mw.Map
 	 *
 	 * @constructor
-	 * @param {Object|boolean} [values] Value-bearing object to map, or boolean
-	 *  true to map over the global object. Defaults to an empty object.
+	 * @param {Object} [values] Value-bearing object to map.
+	 *  Defaults to an empty object.
 	 */
 	function Map( values ) {
-		this.values = values === true ? window : ( values || {} );
+		this.values = values || {};
 		return this;
 	}
 
@@ -455,8 +455,7 @@
 		 *
 		 * @property {mw.Map} config
 		 */
-		// Dummy placeholder. Re-assigned in ResourceLoaderStartupModule to an instance of `mw.Map`.
-		config: null,
+		config: new Map(),
 
 		/**
 		 * Empty object that plugins can be installed in.
