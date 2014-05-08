@@ -2151,6 +2151,7 @@
 	"namespace": "This message is located at [[Special:Contributions]].\n{{Identical|Namespace}}",
 	"invert": "Displayed in [[Special:RecentChanges|RecentChanges]], [[Special:RecentChangesLinked|RecentChangesLinked]] and [[Special:Watchlist|Watchlist]].\n\nThis message means \"Invert selection of namespace\".\n\nThis message has a tooltip {{msg-mw|tooltip-invert}}\n{{Identical|Invert selection}}",
 	"tooltip-invert": "Used in [[Special:Recentchanges]] as a tooltip for the invert checkbox. See also the message {{msg-mw|invert}}",
+	"tooltip-whatlinkshere-invert": "Used in [[Special:Whatlinkshere]] as a tooltip for the invert checkbox.\n\nSee also:\n* {{msg-mw|tooltip-invert}}\n* {{msg-mw|invert}}",
 	"namespace_association": "Used in [[Special:Recentchanges]] with a checkbox which selects the associated namespace to be added to the selected namespace, so that both are searched (or excluded depending on another checkbox selection). The association is between a namespace and its talk namespace.\n\nThis message has a tooltip {{msg-mw|tooltip-namespace association}}",
 	"tooltip-namespace_association": "Used in [[Special:Recentchanges]] as a tooltip for the associated namespace checkbox.\n\nSee also:\n* {{msg-mw|Namespace association}}",
 	"blanknamespace": "Name for main namespace (blank namespace) in drop-down menus at [[Special:RecentChanges]] and other special pages.\n{{Identical|Main}}",
