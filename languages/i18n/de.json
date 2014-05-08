@@ -2465,7 +2465,7 @@
 	"newimages-summary": "Diese Spezialseite zeigt die zuletzt hochgeladenen Dateien an.",
 	"newimages-legend": "Filter",
 	"newimages-label": "Dateiname (oder ein Teil davon):",
-	"showhidebots": "(Bots $1)",
+	"newimages-showbots": "Uploads von Bots anzeigen",
 	"noimages": "Keine Dateien gefunden.",
 	"ilsubmit": "Suchen",
 	"bydate": "nach Datum",

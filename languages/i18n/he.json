@@ -2411,7 +2411,7 @@
 	"newimages-summary": "דף זה מציג את הקבצים האחרונים שהועלו",
 	"newimages-legend": "מסנן",
 	"newimages-label": "שם הקובץ (או חלק ממנו):",
-	"showhidebots": "($1 בוטים)",
+	"newimages-showbots": "הצגת העלאות שבוצעו על־ידי בוטים",
 	"noimages": "אין קבצים.",
 	"ilsubmit": "חיפוש",
 	"bydate": "לפי תאריך",

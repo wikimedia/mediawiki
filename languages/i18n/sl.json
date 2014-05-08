@@ -2369,7 +2369,7 @@
 	"newimages-summary": "Ta posebna stran prikazuje najnovejše naložene datoteke.",
 	"newimages-legend": "Filter",
 	"newimages-label": "Ime datoteke (ali njen del):",
-	"showhidebots": "($1 bote)",
+	"newimages-showbots": "Prikaži nalaganja botov",
 	"noimages": "Nič ni videti.",
 	"ilsubmit": "Išči",
 	"bydate": "po datumu",

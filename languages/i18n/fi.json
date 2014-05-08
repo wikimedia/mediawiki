@@ -2422,7 +2422,7 @@
 	"newimages-summary": "Tällä toimintosivulla on viimeisimmät tallennetut tiedostot.",
 	"newimages-legend": "Suodin",
 	"newimages-label": "Tiedostonimi (tai osa siitä)",
-	"showhidebots": "($1 botit)",
+	"newimages-showbots": "Näytä bottien tekemät tallennukset",
 	"noimages": "Ei uusia tiedostoja.",
 	"ilsubmit": "Hae",
 	"bydate": "päiväyksen mukaan",

@@ -194,6 +194,7 @@
 	"config-mysql-charset-help": "W '''trybie binarnym''', MediaWiki zapisuje tekst UTF-8 do bazy danych w polach binarnych.\nJest on bardziej wydajny niż tryb UTF-8 w MySQL i pozwala na używanie znaków pełnego zakresu Unicode.\n\nW '''trybie UTF-8''', MySQL będzie znać zestaw znaków w jakim zakodowano dane, można też przedstawić i przekonwertuj je odpowiednio, ale nie pozwoli Ci przechowywać znaków spoza [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes podstawowej płaszczyzny wielojęzyczności].",
 	"config-mssql-auth": "Typ uwierzytelniania:",
 	"config-mssql-install-auth": "Wybierz typ uwierzytelniania, który będzie używany do łączenia się z bazą danych w trakcie procesu instalacji.\nJeśli wybierzesz „{{int:config-mssql-windowsauth}}”, będą wykorzystywane dane konta użytkownika, pod którym działa serwer www.",
+	"config-mssql-web-auth": "Wybierz typ uwierzytelniania, który będzie używany przez serwer www do łączenia się z bazą danych podczas normalnego funkcjonowania wiki.\nJeśli wybierzesz „{{int:config-mssql-windowsauth}}”, użyte zostaną dane konta użytkownika, pod którym działa serwer www.",
 	"config-mssql-sqlauth": "Uwierzytelnianie serwera SQL",
 	"config-mssql-windowsauth": "Autoryzacja Windows",
 	"config-site-name": "Nazwa wiki:",

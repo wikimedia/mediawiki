@@ -2451,7 +2451,7 @@
 	"newimages-summary": "На этой служебной странице показаны недавно загруженные файлы.",
 	"newimages-legend": "Фильтр",
 	"newimages-label": "Имя файла (или его часть):",
-	"showhidebots": "($1 ботов)",
+	"newimages-showbots": "Показать загрузки ботов",
 	"noimages": "Изображения отсутствуют.",
 	"ilsubmit": "Найти",
 	"bydate": "по дате",
