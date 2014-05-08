@@ -201,7 +201,9 @@ return array(
 		'scripts' => 'resources/src/jquery/jquery.accessKeyLabel.js',
 		'dependencies' => array(
 			'jquery.client',
+			'jquery.mwExtension',
 		),
+		'messages' => array( 'brackets', 'word-separator' ),
 		'targets' => array( 'mobile', 'desktop' ),
 	),
 	'jquery.appear' => array(
