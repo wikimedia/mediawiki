@@ -4045,6 +4045,8 @@ $wgMessageStructure = array(
 		'expensive-parserfunction-category-desc',
 		'broken-file-category-desc',
 		'hidden-category-category-desc',
+		'node-count-exceeded-category-desc',
+		'expansion-depth-exceeded-category-desc',
 		'trackingcategories-nodesc',
 		'trackcategories-disabled',
 	),

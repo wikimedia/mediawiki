@@ -1936,6 +1936,8 @@
 	"expensive-parserfunction-category-desc": "Expensive parserfunction category description. Shown on [[Special:TrackingCategories]].\n\nSee also:\n* {{msg-mw|Expensive-parserfunction-category}}",
 	"broken-file-category-desc": "Broken file category description. Shown on [[Special:TrackingCategories]].\n\nSee also:\n* {{msg-mw|Broken-file-category}}",
 	"hidden-category-category-desc": "Hidden-category category description. Shown on [[Special:TrackingCategories]].\n\nSee also:\n* {{msg-mw|Hidden-category-category}}",
+	"node-count-exceeded-category-desc": "Node count exceeded category description. Shown on [[Special:TrackingCategories]].\n\nSee also:\n* {{msg-mw|Node-count-exceeded-category}}",
+	"expansion-depth-exceeded-category-desc": "Expansion depth exceeded category description. Shown on [[Special:TrackingCategories]].\n\nSee also:\n* {{msg-mw|Expansion-depth-exceeded-category}}",
 	"trackingcategories-nodesc": "Tracking category description not available message",
 	"trackingcategories-disabled": "This message is used as the contents of the column \"Tracking category\" on [[Special:TrackingCategories]] when a particular tracking category has been disabled.",
 	"mailnologin": "Used in [[Special:EmailUser]].\n\nUsed as title of the error message {{msg-mw|Mailnologintext}}.",
