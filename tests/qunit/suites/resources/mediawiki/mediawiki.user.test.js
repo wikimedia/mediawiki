@@ -6,14 +6,8 @@
 	} );
 
 	QUnit.test( 'user status', 11, function ( assert ) {
-		/**
-		 * Tests can be run under three different conditions:
-		 *   1) From tests/qunit/index.html, user will be anonymous.
-		 *   2) Logged in on [[Special:JavaScriptTest/qunit]]
-		 *   3) Anonymously at the same special page.
-		 */
 
-		// Forge an anonymous user:
+		// Forge an anonymous user
 		mw.config.set( 'wgUserName', null );
 		delete mw.config.values.wgUserId;
 
