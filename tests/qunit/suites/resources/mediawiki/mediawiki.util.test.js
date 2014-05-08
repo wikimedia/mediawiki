@@ -5,6 +5,11 @@
 		},
 		teardown: function () {
 			$.fn.updateTooltipAccessKeys.setTestMode( false );
+		},
+		messages: {
+			// Used by accessKeyLabel in test for addPortletLink
+			'brackets': '[$1]',
+			'word-separator': ' '
 		}
 	} ) );
 
