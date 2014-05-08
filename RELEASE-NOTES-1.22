@@ -3,6 +3,23 @@
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.22.7 ==
+
+This is a security and maintenance release of the MediaWiki 1.22
+branch.
+
+=== Changes since 1.22.6 ===
+
+* (bug 60719) In MediaWiki 1.22, the job queue execution on each page
+  request was changed (Gerrit change 59797) so, instead of executing
+  the job inside the same PHP process that's rendering the page, a new
+  PHP cli command is spawned to execute runJobs.php in the
+  background. It will only work if $wgPhpCli is set to an actual path
+  or safe mode is off, otherwise, the old method will be used.
+
+  https://www.mediawiki.org/wiki/Manual:Job_queue#Changes_introduced_in_MediaWiki_1.22
+  for more infomation.
+
 == MediaWiki 1.22.6 ==
 
 This is a security release of the MediaWiki 1.22 branch.
