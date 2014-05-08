@@ -1989,6 +1989,7 @@
     "namespace": "Namespace:",
     "invert": "Invert selection",
     "tooltip-invert": "Check this box to hide changes to pages within the selected namespace (and the associated namespace if checked)",
+    "tooltip-whatlinkshere-invert": "Check this box to hide links from pages within the selected namespace.",
     "namespace_association": "Associated namespace",
     "tooltip-namespace_association": "Check this box to also include the talk or subject namespace associated with the selected namespace",
     "blanknamespace": "(Main)",
