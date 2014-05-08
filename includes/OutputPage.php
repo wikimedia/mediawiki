@@ -1559,11 +1559,25 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add a ParserOutput object, but without Html
+	 * Add a ParserOutput object, but without Html.
 	 *
+	 * @deprecated since 1.24, use addParserOutputMetadata() instead.
 	 * @param ParserOutput $parserOutput
 	 */
 	public function addParserOutputNoText( &$parserOutput ) {
+		wfDeprecated( __METHOD__, '1.24' );
+		$this->addParserOutputMetadata( $parserOutput );
+	}
+
+	/**
+	 * Add all metadata associated with a ParserOutput object, but without the actual HTML. This
+	 * includes categories, language links, ResourceLoader modules, effects of certain magic words,
+	 * and so on.
+	 *
+	 * @since 1.24
+	 * @param ParserOutput $parserOutput
+	 */
+	public function addParserOutputMetadata( &$parserOutput ) {
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->addCategoryLinks( $parserOutput->getCategories() );
 		$this->mNewSectionLink = $parserOutput->getNewSection();
@@ -1611,21 +1625,50 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add a ParserOutput object
+	 * Add the HTML and enhancements for it (like ResourceLoader modules) associated with a
+	 * ParserOutput object, without any other metadata.
+	 *
+	 * @since 1.24
+	 * @param ParserOutput $parserOutput
+	 */
+	public function addParserOutputContent( &$parserOutput ) {
+		$this->addParserOutputText( $parserOutput );
+
+		$this->addModules( $parserOutput->getModules() );
+		$this->addModuleScripts( $parserOutput->getModuleScripts() );
+		$this->addModuleStyles( $parserOutput->getModuleStyles() );
+		$this->addModuleMessages( $parserOutput->getModuleMessages() );
+
+		$this->addJsConfigVars( $parserOutput->getJsConfigVars() );
+	}
+
+	/**
+	 * Add the HTML associated with a ParserOutput object, without any metadata.
+	 *
+	 * @since 1.24
+	 * @param ParserOutput $parserOutput
+	 */
+	public function addParserOutputText( &$parserOutput ) {
+		$text = $parserOutput->getText();
+		wfRunHooks( 'OutputPageBeforeHTML', array( &$this, &$text ) );
+		$this->addHTML( $text );
+	}
+
+	/**
+	 * Add everything from a ParserOutput object.
 	 *
 	 * @param ParserOutput $parserOutput
 	 */
 	function addParserOutput( &$parserOutput ) {
-		$this->addParserOutputNoText( $parserOutput );
+		$this->addParserOutputMetadata( $parserOutput );
 		$parserOutput->setTOCEnabled( $this->mEnableTOC );
 
 		// Touch section edit links only if not previously disabled
 		if ( $parserOutput->getEditSectionTokens() ) {
 			$parserOutput->setEditSectionTokens( $this->mEnableSectionEditLinks );
 		}
-		$text = $parserOutput->getText();
-		wfRunHooks( 'OutputPageBeforeHTML', array( &$this, &$text ) );
-		$this->addHTML( $text );
+
+		$this->addParserOutputText( $parserOutput );
 	}
 
 	/**
