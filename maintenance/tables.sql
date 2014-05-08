@@ -1332,6 +1332,11 @@ CREATE INDEX /*i*/job_cmd_token_id ON /*_*/job (job_cmd,job_token,job_id);
 CREATE INDEX /*i*/job_cmd ON /*_*/job (job_cmd, job_namespace, job_title, job_params(128));
 CREATE INDEX /*i*/job_timestamp ON /*_*/job (job_timestamp);
 
+-- jobs that temporarily should not be executed
+CREATE TABLE /*_*/paused_job (
+  -- Command name to pause
+  paused_job_cmd varbinary(60) NOT NULL PRIMARY KEY
+) /*$wgDBTableOptions*/;
 
 -- Details of updates to cached special pages
 CREATE TABLE /*_*/querycache_info (

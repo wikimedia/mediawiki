@@ -552,6 +552,10 @@ CREATE INDEX job_cmd_token_id ON job (job_cmd, job_token, job_id);
 CREATE INDEX job_cmd_namespace_title ON job (job_cmd, job_namespace, job_title);
 CREATE INDEX job_timestamp_idx ON job (job_timestamp);
 
+CREATE TABLE paused_job (
+  paused_job_cmd      TEXT      NOT NULL  PRIMARY KEY
+);
+
 -- Tsearch2 2 stuff. Will fail if we don't have proper access to the tsearch2 tables
 -- Version 8.3 or higher only. Previous versions would need another parmeter for to_tsvector.
 -- Make sure you also change patch-tsearch2funcs.sql if the funcs below change.

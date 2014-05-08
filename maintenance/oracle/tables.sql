@@ -543,6 +543,12 @@ CREATE INDEX &mw_prefix.job_i03 ON &mw_prefix.job (job_sha1);
 CREATE INDEX &mw_prefix.job_i04 ON &mw_prefix.job (job_cmd,job_token,job_random);
 CREATE INDEX &mw_prefix.job_i05 ON &mw_prefix.job (job_attempts);
 
+CREATE TABLE &paused_job (
+  paused_job_cmd   VARCHAR2(60) NOT NULL
+);
+ALTER TABLE &mw_prefix.paused_job ADD CONSTRAINT &mw_prefix.paused_job_pk PRIMARY KEY (paused_job_cmd);
+
+
 CREATE TABLE &mw_prefix.querycache_info (
   qci_type       VARCHAR2(32) NOT NULL,
   qci_timestamp  TIMESTAMP(6) WITH TIME ZONE NULL

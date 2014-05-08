@@ -149,6 +149,7 @@ class JobQueueGroup {
 	 */
 	public function pop( $qtype = self::TYPE_DEFAULT, $flags = 0, array $blacklist = array() ) {
 		$job = false;
+		$blacklist = array_merge( $blacklist, $this->loadPausedJobs() );
 
 		if ( is_string( $qtype ) ) { // specific job type
 			if ( !in_array( $qtype, $blacklist ) ) {
@@ -292,6 +293,7 @@ class JobQueueGroup {
 				}
 			}
 		}
+		$types = array_diff( $types, $this->loadPausedJobs() );
 
 		return $types;
 	}
@@ -432,5 +434,38 @@ class JobQueueGroup {
 				return $value;
 			}
 		}
+	}
+
+	/**
+	 * Load paused jobs from the db.
+	 * @return array(string) of paused job names
+	 */
+	public function loadPausedJobs() {
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'paused_job', array( 'paused_job_cmd' ) );
+
+		$paused = array();
+		foreach ( $res as $row ) {
+			$paused[] = $row->paused_job_cmd;
+		}
+		return $paused;
+	}
+
+	/**
+	 * Pause a job.  If the job is already paused this will do nothing.
+	 * @var string $name name of job to pause
+	 */
+	public function pauseJob( $name ) {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->insert( 'paused_job', array( 'paused_job_cmd' => $name ), __METHOD__, 'IGNORE' );
+	}
+
+	/**
+	 * Unpause a job.  If the job wasn't paused this will do nothing.
+	 * @var string $name name of job to unpause
+	 */
+	public function unpauseJob( $name ) {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'paused_job', array( 'paused_job_cmd' => $name ) );
 	}
 }

@@ -253,6 +253,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			// 1.24
 			array( 'addField', 'page_props', 'pp_sortkey', 'patch-pp_sortkey.sql' ),
+			array( 'addTable', 'paused_job', 'patch-paused_job.sql' ),
 		);
 	}
 

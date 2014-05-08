@@ -99,6 +99,7 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ),
 
 			//1.24
+			array( 'addTable', 'paused_job', 'patch-paused_job.sql' ),
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),
