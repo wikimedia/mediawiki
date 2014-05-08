@@ -2032,7 +2032,7 @@ class Title {
 			$ns = $this->mNamespace == NS_MAIN ?
 				wfMessage( 'nstab-main' )->text() : $this->getNsText();
 			$errors[] = $this->mNamespace == NS_MEDIAWIKI ?
-				array( 'protectedinterface' ) : array( 'namespaceprotected', $ns );
+				array( 'protectedinterface', $action ) : array( 'namespaceprotected', $ns, $action );
 		}
 
 		return $errors;
@@ -2056,15 +2056,15 @@ class Title {
 		if ( $action != 'patrol' && !$user->isAllowed( 'editusercssjs' ) ) {
 			if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
 				if ( $this->isCssSubpage() && !$user->isAllowedAny( 'editmyusercss', 'editusercss' ) ) {
-					$errors[] = array( 'mycustomcssprotected' );
+					$errors[] = array( 'mycustomcssprotected', $action );
 				} elseif ( $this->isJsSubpage() && !$user->isAllowedAny( 'editmyuserjs', 'edituserjs' ) ) {
-					$errors[] = array( 'mycustomjsprotected' );
+					$errors[] = array( 'mycustomjsprotected', $action );
 				}
 			} else {
 				if ( $this->isCssSubpage() && !$user->isAllowed( 'editusercss' ) ) {
-					$errors[] = array( 'customcssprotected' );
+					$errors[] = array( 'customcssprotected', $action );
 				} elseif ( $this->isJsSubpage() && !$user->isAllowed( 'edituserjs' ) ) {
-					$errors[] = array( 'customjsprotected' );
+					$errors[] = array( 'customjsprotected', $action );
 				}
 			}
 		}
@@ -2099,9 +2099,9 @@ class Title {
 				continue;
 			}
 			if ( !$user->isAllowed( $right ) ) {
-				$errors[] = array( 'protectedpagetext', $right );
+				$errors[] = array( 'protectedpagetext', $right, $action );
 			} elseif ( $this->mCascadeRestriction && !$user->isAllowed( 'protect' ) ) {
-				$errors[] = array( 'protectedpagetext', 'protect' );
+				$errors[] = array( 'protectedpagetext', 'protect', $action );
 			}
 		}
 
@@ -2146,7 +2146,7 @@ class Title {
 						foreach ( $cascadingSources as $page ) {
 							$pages .= '* [[:' . $page->getPrefixedText() . "]]\n";
 						}
-						$errors[] = array( 'cascadeprotected', count( $cascadingSources ), $pages );
+						$errors[] = array( 'cascadeprotected', count( $cascadingSources ), $pages, $action );
 					}
 				}
 			}
@@ -2375,6 +2375,19 @@ class Title {
 			$checks = array(
 				'checkPermissionHooks',
 				'checkReadPermissions',
+			);
+		# Don't call checkSpecialsAndNSPermissions or checkCSSandJSPermissions
+		# here as it will lead to duplicate error messages. This is okay to do
+		# since anywhere that checks for create will also check for edit, and
+		# those checks are called for edit.
+		} elseif ( $action == 'create' ) {
+			$checks = array(
+				'checkQuickPermissions',
+				'checkPermissionHooks',
+				'checkPageRestrictions',
+				'checkCascadingSourcesRestrictions',
+				'checkActionPermissions',
+				'checkUserBlock'
 			);
 		} else {
 			$checks = array(
