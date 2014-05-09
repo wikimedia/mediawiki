@@ -5772,24 +5772,42 @@ $wgUnwatchedPageThreshold = false;
  * To register a new one:
  * @code
  * $wgRecentChangesFlags['flag'] => array(
+ *   // message for the letter displayed next to rows on changes lists
  *   'letter' => 'letter-msg',
- *   'title' => 'tooltip-msg'
+ *   // message for the tooltip of the letter
+ *   'title' => 'tooltip-msg',
+ *   // optional (defaults to 'tooltip-msg'), message to use in the legend box
+ *   'legend' => 'legend-msg',
+ *   // optional (defaults to 'flag'), CSS class to put on changes lists rows
+ *   'class' => 'css-class',
  * );
  * @endcode
- *
- * Optional 'class' allows to set a css class different than the flag name.
  *
  * @since 1.22
  */
 $wgRecentChangesFlags = array(
-	'newpage' => array( 'letter' => 'newpageletter',
-		'title' => 'recentchanges-label-newpage' ),
-	'minor' => array( 'letter' => 'minoreditletter',
-		'title' => 'recentchanges-label-minor', 'class' => 'minoredit' ),
-	'bot' => array( 'letter' => 'boteditletter',
-		'title' => 'recentchanges-label-bot', 'class' => 'botedit' ),
-	'unpatrolled' => array( 'letter' => 'unpatrolledletter',
-		'title' => 'recentchanges-label-unpatrolled' ),
+	'newpage' => array(
+		'letter' => 'newpageletter',
+		'title' => 'recentchanges-label-newpage',
+		'legend' => 'recentchanges-legend-newpage',
+	),
+	'minor' => array(
+		'letter' => 'minoreditletter',
+		'title' => 'recentchanges-label-minor',
+		'legend' => 'recentchanges-legend-minor',
+		'class' => 'minoredit',
+	),
+	'bot' => array(
+		'letter' => 'boteditletter',
+		'title' => 'recentchanges-label-bot',
+		'legend' => 'recentchanges-legend-bot',
+		'class' => 'botedit',
+	),
+	'unpatrolled' => array(
+		'letter' => 'unpatrolledletter',
+		'title' => 'recentchanges-label-unpatrolled',
+		'legend' => 'recentchanges-legend-unpatrolled',
+	),
 );
 
 /** @} */ # end RC/watchlist }
