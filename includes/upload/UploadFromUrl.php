@@ -49,6 +49,7 @@ class UploadFromUrl extends UploadBase {
 		if ( !$user->isAllowed( 'upload_by_url' ) ) {
 			return 'upload_by_url';
 		}
+
 		return parent::isAllowed( $user );
 	}
 
@@ -58,6 +59,7 @@ class UploadFromUrl extends UploadBase {
 	 */
 	public static function isEnabled() {
 		global $wgAllowCopyUploads;
+
 		return $wgAllowCopyUploads && parent::isEnabled();
 	}
 
@@ -103,6 +105,7 @@ class UploadFromUrl extends UploadBase {
 			}
 			*/
 		}
+
 		return $valid;
 	}
 
@@ -118,6 +121,7 @@ class UploadFromUrl extends UploadBase {
 			wfRunHooks( 'IsUploadAllowedFromUrl', array( $url, &$allowed ) );
 			self::$allowedUrls[$url] = $allowed;
 		}
+
 		return self::$allowedUrls[$url];
 	}
 
@@ -169,6 +173,7 @@ class UploadFromUrl extends UploadBase {
 		global $wgUser;
 
 		$url = $request->getVal( 'wpUploadFileURL' );
+
 		return !empty( $url )
 			&& Http::isValidURI( $url )
 			&& $wgUser->isAllowed( 'upload_by_url' );
@@ -202,6 +207,7 @@ class UploadFromUrl extends UploadBase {
 		if ( !$this->mAsync ) {
 			return $this->reallyFetchFile( $httpOptions );
 		}
+
 		return Status::newGood();
 	}
 
@@ -213,6 +219,7 @@ class UploadFromUrl extends UploadBase {
 	protected function makeTemporaryFile() {
 		$tmpFile = TempFSFile::factory( 'URL' );
 		$tmpFile->bind( $this );
+
 		return $tmpFile->getPath();
 	}
 
@@ -259,12 +266,12 @@ class UploadFromUrl extends UploadBase {
 		$this->mRemoveTempFile = true;
 		$this->mFileSize = 0;
 
-		$options = $httpOptions + array(
-			'followRedirects' => true,
-		);
+		$options = $httpOptions + array( 'followRedirects' => true );
+
 		if ( $wgCopyUploadProxy !== false ) {
 			$options['proxy'] = $wgCopyUploadProxy;
 		}
+
 		if ( $wgCopyUploadTimeout && !isset( $options['timeout'] ) ) {
 			$options['timeout'] = $wgCopyUploadTimeout;
 		}
@@ -297,6 +304,7 @@ class UploadFromUrl extends UploadBase {
 		if ( $this->mAsync ) {
 			return array( 'status' => UploadBase::OK );
 		}
+
 		return parent::verifyUpload();
 	}
 
@@ -308,8 +316,10 @@ class UploadFromUrl extends UploadBase {
 	public function checkWarnings() {
 		if ( $this->mAsync ) {
 			$this->mIgnoreWarnings = false;
+
 			return array();
 		}
+
 		return parent::checkWarnings();
 	}
 
@@ -323,6 +333,7 @@ class UploadFromUrl extends UploadBase {
 		if ( $this->mAsync ) {
 			return true;
 		}
+
 		return parent::verifyTitlePermissions( $user );
 	}
 
@@ -367,7 +378,7 @@ class UploadFromUrl extends UploadBase {
 		) );
 		$job->initializeSessionData();
 		JobQueueGroup::singleton()->push( $job );
+
 		return $sessionKey;
 	}
-
 }

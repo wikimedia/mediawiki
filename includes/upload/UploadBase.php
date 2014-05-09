@@ -120,6 +120,7 @@ abstract class UploadBase {
 				return $permission;
 			}
 		}
+
 		return true;
 	}
 
@@ -167,6 +168,7 @@ abstract class UploadBase {
 		$handler = new $className;
 
 		$handler->initializeFromRequest( $request );
+
 		return $handler;
 	}
 
@@ -179,7 +181,8 @@ abstract class UploadBase {
 		return false;
 	}
 
-	public function __construct() {}
+	public function __construct() {
+	}
 
 	/**
 	 * Returns the upload type. Should be overridden by child classes
@@ -267,6 +270,7 @@ abstract class UploadBase {
 			$path = $srcPath;
 		}
 		wfProfileOut( __METHOD__ );
+
 		return $path;
 	}
 
@@ -282,6 +286,7 @@ abstract class UploadBase {
 		 */
 		if ( $this->isEmptyFile() ) {
 			wfProfileOut( __METHOD__ );
+
 			return array( 'status' => self::EMPTY_FILE );
 		}
 
@@ -291,6 +296,7 @@ abstract class UploadBase {
 		$maxSize = self::getMaxUploadSize( $this->getSourceType() );
 		if ( $this->mFileSize > $maxSize ) {
 			wfProfileOut( __METHOD__ );
+
 			return array(
 				'status' => self::FILE_TOO_LARGE,
 				'max' => $maxSize,
@@ -305,6 +311,7 @@ abstract class UploadBase {
 		$verification = $this->verifyFile();
 		if ( $verification !== true ) {
 			wfProfileOut( __METHOD__ );
+
 			return array(
 				'status' => self::VERIFICATION_ERROR,
 				'details' => $verification
@@ -317,6 +324,7 @@ abstract class UploadBase {
 		$result = $this->validateName();
 		if ( $result !== true ) {
 			wfProfileOut( __METHOD__ );
+
 			return $result;
 		}
 
@@ -325,10 +333,12 @@ abstract class UploadBase {
 			array( $this->mDestName, $this->mTempPath, &$error ) )
 		) {
 			wfProfileOut( __METHOD__ );
+
 			return array( 'status' => self::HOOK_ABORTED, 'error' => $error );
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return array( 'status' => self::OK );
 	}
 
@@ -351,6 +361,7 @@ abstract class UploadBase {
 					$result['blacklistedExt'] = $this->mBlackListedExtensions;
 				}
 			}
+
 			return $result;
 		}
 		$this->mDestName = $this->getLocalFile()->getName();
@@ -374,6 +385,7 @@ abstract class UploadBase {
 			global $wgMimeTypeBlacklist;
 			if ( $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) ) {
 				wfProfileOut( __METHOD__ );
+
 				return array( 'filetype-badmime', $mime );
 			}
 
@@ -388,12 +400,14 @@ abstract class UploadBase {
 			foreach ( $ieTypes as $ieType ) {
 				if ( $this->checkFileExtension( $ieType, $wgMimeTypeBlacklist ) ) {
 					wfProfileOut( __METHOD__ );
+
 					return array( 'filetype-bad-ie-mime', $ieType );
 				}
 			}
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return true;
 	}
 
@@ -409,6 +423,7 @@ abstract class UploadBase {
 		$status = $this->verifyPartialFile();
 		if ( $status !== true ) {
 			wfProfileOut( __METHOD__ );
+
 			return $status;
 		}
 
@@ -419,6 +434,7 @@ abstract class UploadBase {
 			# XXX: Missing extension will be caught by validateName() via getTitle()
 			if ( $this->mFinalExtension != '' && !$this->verifyExtension( $mime, $this->mFinalExtension ) ) {
 				wfProfileOut( __METHOD__ );
+
 				return array( 'filetype-mime-mismatch', $this->mFinalExtension, $mime );
 			}
 		}
@@ -429,6 +445,7 @@ abstract class UploadBase {
 			if ( !$handlerStatus->isOK() ) {
 				$errors = $handlerStatus->getErrorsArray();
 				wfProfileOut( __METHOD__ );
+
 				return reset( $errors );
 			}
 		}
@@ -436,11 +453,13 @@ abstract class UploadBase {
 		wfRunHooks( 'UploadVerifyFile', array( $this, $mime, &$status ) );
 		if ( $status !== true ) {
 			wfProfileOut( __METHOD__ );
+
 			return $status;
 		}
 
 		wfDebug( __METHOD__ . ": all clear; passing.\n" );
 		wfProfileOut( __METHOD__ );
+
 		return true;
 	}
 
@@ -466,6 +485,7 @@ abstract class UploadBase {
 		$status = $this->verifyMimeType( $mime );
 		if ( $status !== true ) {
 			wfProfileOut( __METHOD__ );
+
 			return $status;
 		}
 
@@ -473,12 +493,14 @@ abstract class UploadBase {
 		if ( !$wgDisableUploadScriptChecks ) {
 			if ( self::detectScript( $this->mTempPath, $mime, $this->mFinalExtension ) ) {
 				wfProfileOut( __METHOD__ );
+
 				return array( 'uploadscripted' );
 			}
 			if ( $this->mFinalExtension == 'svg' || $mime == 'image/svg+xml' ) {
 				$svgStatus = $this->detectScriptInSvg( $this->mTempPath );
 				if ( $svgStatus !== false ) {
 					wfProfileOut( __METHOD__ );
+
 					return $svgStatus;
 				}
 			}
@@ -495,11 +517,13 @@ abstract class UploadBase {
 				$error = reset( $errors );
 				if ( $error[0] !== 'zip-wrong-format' ) {
 					wfProfileOut( __METHOD__ );
+
 					return $error;
 				}
 			}
 			if ( $this->mJavaDetected ) {
 				wfProfileOut( __METHOD__ );
+
 				return array( 'uploadjava' );
 			}
 		}
@@ -508,10 +532,12 @@ abstract class UploadBase {
 		$virus = $this->detectVirus( $this->mTempPath );
 		if ( $virus ) {
 			wfProfileOut( __METHOD__ );
+
 			return array( 'uploadvirus', $virus );
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return true;
 	}
 
@@ -581,6 +607,7 @@ abstract class UploadBase {
 		if ( $permErrors || $permErrorsUpload || $permErrorsCreate ) {
 			$permErrors = array_merge( $permErrors, wfArrayDiff2( $permErrorsUpload, $permErrors ) );
 			$permErrors = array_merge( $permErrors, wfArrayDiff2( $permErrorsCreate, $permErrors ) );
+
 			return $permErrors;
 		}
 
@@ -670,6 +697,7 @@ abstract class UploadBase {
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return $warnings;
 	}
 
@@ -705,6 +733,7 @@ abstract class UploadBase {
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return $status;
 	}
 
@@ -733,6 +762,7 @@ abstract class UploadBase {
 		if ( strlen( $this->mFilteredName ) > 240 ) {
 			$this->mTitleError = self::FILENAME_TOO_LONG;
 			$this->mTitle = null;
+
 			return $this->mTitle;
 		}
 
@@ -747,6 +777,7 @@ abstract class UploadBase {
 		if ( is_null( $nt ) ) {
 			$this->mTitleError = self::ILLEGAL_FILENAME;
 			$this->mTitle = null;
+
 			return $this->mTitle;
 		}
 		$this->mFilteredName = $nt->getDBkey();
@@ -789,13 +820,16 @@ abstract class UploadBase {
 		if ( $this->mFinalExtension == '' ) {
 			$this->mTitleError = self::FILETYPE_MISSING;
 			$this->mTitle = null;
+
 			return $this->mTitle;
 		} elseif ( $blackListedExtensions ||
-				( $wgCheckFileExtensions && $wgStrictFileExtensions &&
-					!$this->checkFileExtension( $this->mFinalExtension, $wgFileExtensions ) ) ) {
+			( $wgCheckFileExtensions && $wgStrictFileExtensions &&
+				!$this->checkFileExtension( $this->mFinalExtension, $wgFileExtensions ) )
+		) {
 			$this->mBlackListedExtensions = $blackListedExtensions;
 			$this->mTitleError = self::FILETYPE_BADTYPE;
 			$this->mTitle = null;
+
 			return $this->mTitle;
 		}
 
@@ -803,6 +837,7 @@ abstract class UploadBase {
 		if ( wfIsWindows() && !preg_match( '/^[\x0-\x7f]*$/', $nt->getText() ) ) {
 			$this->mTitleError = self::WINDOWS_NONASCII_FILENAME;
 			$this->mTitle = null;
+
 			return $this->mTitle;
 		}
 
@@ -817,10 +852,12 @@ abstract class UploadBase {
 		if ( strlen( $partname ) < 1 ) {
 			$this->mTitleError = self::MIN_LENGTH_PARTNAME;
 			$this->mTitle = null;
+
 			return $this->mTitle;
 		}
 
 		$this->mTitle = $nt;
+
 		return $this->mTitle;
 	}
 
@@ -834,6 +871,7 @@ abstract class UploadBase {
 			$nt = $this->getTitle();
 			$this->mLocalFile = is_null( $nt ) ? null : wfLocalFile( $nt );
 		}
+
 		return $this->mLocalFile;
 	}
 
@@ -858,6 +896,7 @@ abstract class UploadBase {
 		$this->mLocalFile = $file;
 
 		wfProfileOut( __METHOD__ );
+
 		return $file;
 	}
 
@@ -906,6 +945,7 @@ abstract class UploadBase {
 	public static function splitExtensions( $filename ) {
 		$bits = explode( '.', $filename );
 		$basename = array_shift( $bits );
+
 		return array( $basename, $bits );
 	}
 
@@ -947,10 +987,12 @@ abstract class UploadBase {
 			if ( !$magic->isRecognizableExtension( $extension ) ) {
 				wfDebug( __METHOD__ . ": passing file with unknown detected mime type; " .
 					"unrecognized extension '$extension', can't verify\n" );
+
 				return true;
 			} else {
 				wfDebug( __METHOD__ . ": rejecting file with unknown detected mime type; " .
 					"recognized extension '$extension', so probably invalid file\n" );
+
 				return false;
 			}
 		}
@@ -960,9 +1002,11 @@ abstract class UploadBase {
 		if ( $match === null ) {
 			if ( $magic->getTypesForExtension( $extension ) !== null ) {
 				wfDebug( __METHOD__ . ": No extension known for $mime, but we know a mime for $extension\n" );
+
 				return false;
 			} else {
 				wfDebug( __METHOD__ . ": no file extension known for mime type $mime, passing file\n" );
+
 				return true;
 			}
 		} elseif ( $match === true ) {
@@ -970,9 +1014,9 @@ abstract class UploadBase {
 
 			#TODO: if it's a bitmap, make sure PHP or ImageMagic resp. can handle it!
 			return true;
-
 		} else {
 			wfDebug( __METHOD__ . ": mime type $mime mismatches file extension $extension, rejecting file\n" );
+
 			return false;
 		}
 	}
@@ -1007,6 +1051,7 @@ abstract class UploadBase {
 
 		if ( !$chunk ) {
 			wfProfileOut( __METHOD__ );
+
 			return false;
 		}
 
@@ -1031,6 +1076,7 @@ abstract class UploadBase {
 		# check for HTML doctype
 		if ( preg_match( "/<!DOCTYPE *X?HTML/i", $chunk ) ) {
 			wfProfileOut( __METHOD__ );
+
 			return true;
 		}
 
@@ -1039,6 +1085,7 @@ abstract class UploadBase {
 		if ( $extension == 'svg' || strpos( $mime, 'image/svg' ) === 0 ) {
 			if ( self::checkXMLEncodingMissmatch( $file ) ) {
 				wfProfileOut( __METHOD__ );
+
 				return true;
 			}
 		}
@@ -1062,7 +1109,7 @@ abstract class UploadBase {
 			'<a href',
 			'<body',
 			'<head',
-			'<html',   #also in safari
+			'<html', #also in safari
 			'<img',
 			'<pre',
 			'<script', #also in safari
@@ -1077,6 +1124,7 @@ abstract class UploadBase {
 			if ( false !== strpos( $chunk, $tag ) ) {
 				wfDebug( __METHOD__ . ": found something that may make it be mistaken for html: $tag\n" );
 				wfProfileOut( __METHOD__ );
+
 				return true;
 			}
 		}
@@ -1092,6 +1140,7 @@ abstract class UploadBase {
 		if ( preg_match( '!type\s*=\s*[\'"]?\s*(?:\w*/)?(?:ecma|java)!sim', $chunk ) ) {
 			wfDebug( __METHOD__ . ": found script types\n" );
 			wfProfileOut( __METHOD__ );
+
 			return true;
 		}
 
@@ -1099,6 +1148,7 @@ abstract class UploadBase {
 		if ( preg_match( '!(?:href|src|data)\s*=\s*[\'"]?\s*(?:ecma|java)script:!sim', $chunk ) ) {
 			wfDebug( __METHOD__ . ": found html-style script urls\n" );
 			wfProfileOut( __METHOD__ );
+
 			return true;
 		}
 
@@ -1106,11 +1156,13 @@ abstract class UploadBase {
 		if ( preg_match( '!url\s*\(\s*[\'"]?\s*(?:ecma|java)script:!sim', $chunk ) ) {
 			wfDebug( __METHOD__ . ": found css-style script urls\n" );
 			wfProfileOut( __METHOD__ );
+
 			return true;
 		}
 
 		wfDebug( __METHOD__ . ": no scripts found\n" );
 		wfProfileOut( __METHOD__ );
+
 		return false;
 	}
 
@@ -1131,16 +1183,19 @@ abstract class UploadBase {
 				&& !in_array( strtoupper( $encMatch[1] ), self::$safeXmlEncodings )
 			) {
 				wfDebug( __METHOD__ . ": Found unsafe XML encoding '{$encMatch[1]}'\n" );
+
 				return true;
 			}
 		} elseif ( preg_match( "!<\?xml\b!si", $contents ) ) {
 			// Start of XML declaration without an end in the first $wgSVGMetadataCutoff
 			// bytes. There shouldn't be a legitimate reason for this to happen.
 			wfDebug( __METHOD__ . ": Unmatched XML declaration start\n" );
+
 			return true;
 		} elseif ( substr( $contents, 0, 4 ) == "\x4C\x6F\xA7\x94" ) {
 			// EBCDIC encoded XML
 			wfDebug( __METHOD__ . ": EBCDIC Encoded XML\n" );
+
 			return true;
 		}
 
@@ -1151,17 +1206,19 @@ abstract class UploadBase {
 			wfSuppressWarnings();
 			$str = iconv( $encoding, 'UTF-8', $contents );
 			wfRestoreWarnings();
-			if ( $str != '' && preg_match( "!<\?xml\b(.*?)\?>!si", $str, $matches )	) {
+			if ( $str != '' && preg_match( "!<\?xml\b(.*?)\?>!si", $str, $matches ) ) {
 				if ( preg_match( $encodingRegex, $matches[1], $encMatch )
 					&& !in_array( strtoupper( $encMatch[1] ), self::$safeXmlEncodings )
 				) {
 					wfDebug( __METHOD__ . ": Found unsafe XML encoding '{$encMatch[1]}'\n" );
+
 					return true;
 				}
 			} elseif ( $str != '' && preg_match( "!<\?xml\b!si", $str ) ) {
 				// Start of XML declaration without an end in the first $wgSVGMetadataCutoff
 				// bytes. There shouldn't be a legitimate reason for this to happen.
 				wfDebug( __METHOD__ . ": Unmatched XML declaration start\n" );
+
 				return true;
 			}
 		}
@@ -1188,8 +1245,10 @@ abstract class UploadBase {
 			if ( $this->mSVGNSError ) {
 				return array( 'uploadscriptednamespace', $this->mSVGNSError );
 			}
+
 			return array( 'uploadscripted' );
 		}
+
 		return false;
 	}
 
@@ -1204,6 +1263,7 @@ abstract class UploadBase {
 		if ( preg_match( '/xml-stylesheet/i', $target ) ) {
 			return true;
 		}
+
 		return false;
 	}
 
@@ -1257,6 +1317,7 @@ abstract class UploadBase {
 			wfDebug( __METHOD__ . ": Non-svg namespace '$namespace' in uploaded file.\n" );
 			// @TODO return a status object to a closure in XmlTypeCheck, for MW1.21+
 			$this->mSVGNSError = $namespace;
+
 			return true;
 		}
 
@@ -1265,24 +1326,28 @@ abstract class UploadBase {
 		 */
 		if ( $strippedElement == 'script' ) {
 			wfDebug( __METHOD__ . ": Found script element '$element' in uploaded file.\n" );
+
 			return true;
 		}
 
 		# e.g., <svg xmlns="http://www.w3.org/2000/svg"> <handler xmlns:ev="http://www.w3.org/2001/xml-events" ev:event="load">alert(1)</handler> </svg>
 		if ( $strippedElement == 'handler' ) {
 			wfDebug( __METHOD__ . ": Found scriptable element '$element' in uploaded file.\n" );
+
 			return true;
 		}
 
 		# SVG reported in Feb '12 that used xml:stylesheet to generate javascript block
 		if ( $strippedElement == 'stylesheet' ) {
 			wfDebug( __METHOD__ . ": Found scriptable element '$element' in uploaded file.\n" );
+
 			return true;
 		}
 
 		# Block iframes, in case they pass the namespace check
 		if ( $strippedElement == 'iframe' ) {
 			wfDebug( __METHOD__ . ": iframe in uploaded file.\n" );
+
 			return true;
 		}
 
@@ -1292,48 +1357,56 @@ abstract class UploadBase {
 
 			if ( substr( $stripped, 0, 2 ) == 'on' ) {
 				wfDebug( __METHOD__ . ": Found event-handler attribute '$attrib'='$value' in uploaded file.\n" );
+
 				return true;
 			}
 
 			# href with javascript target
 			if ( $stripped == 'href' && strpos( strtolower( $value ), 'javascript:' ) !== false ) {
 				wfDebug( __METHOD__ . ": Found script in href attribute '$attrib'='$value' in uploaded file.\n" );
+
 				return true;
 			}
 
 			# href with embedded svg as target
 			if ( $stripped == 'href' && preg_match( '!data:[^,]*image/svg[^,]*,!sim', $value ) ) {
 				wfDebug( __METHOD__ . ": Found href to embedded svg \"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
+
 				return true;
 			}
 
 			# href with embedded (text/xml) svg as target
 			if ( $stripped == 'href' && preg_match( '!data:[^,]*text/xml[^,]*,!sim', $value ) ) {
 				wfDebug( __METHOD__ . ": Found href to embedded svg \"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
+
 				return true;
 			}
 
 			# use set/animate to add event-handler attribute to parent
 			if ( ( $strippedElement == 'set' || $strippedElement == 'animate' ) && $stripped == 'attributename' && substr( $value, 0, 2 ) == 'on' ) {
 				wfDebug( __METHOD__ . ": Found svg setting event-handler attribute with \"<$strippedElement $stripped='$value'...\" in uploaded file.\n" );
+
 				return true;
 			}
 
 			# use set to add href attribute to parent element
 			if ( $strippedElement == 'set' && $stripped == 'attributename' && strpos( $value, 'href' ) !== false ) {
 				wfDebug( __METHOD__ . ": Found svg setting href attribute '$value' in uploaded file.\n" );
+
 				return true;
 			}
 
 			# use set to add a remote / data / script target to an element
 			if ( $strippedElement == 'set' && $stripped == 'to' && preg_match( '!(http|https|data|script):!sim', $value ) ) {
 				wfDebug( __METHOD__ . ": Found svg setting attribute to '$value' in uploaded file.\n" );
+
 				return true;
 			}
 
 			# use handler attribute with remote / data / script
 			if ( $stripped == 'handler' && preg_match( '!(http|https|data|script):!sim', $value ) ) {
 				wfDebug( __METHOD__ . ": Found svg setting handler with remote/data/script '$attrib'='$value' in uploaded file.\n" );
+
 				return true;
 			}
 
@@ -1343,6 +1416,7 @@ abstract class UploadBase {
 				foreach ( $matches[1] as $match ) {
 					if ( !preg_match( '!(?:font|clip-path|fill|filter|marker|marker-end|marker-mid|marker-start|mask|stroke)\s*:\s*url\s*\(\s*(#|\'#|"#)!sim', $match ) ) {
 						wfDebug( __METHOD__ . ": Found svg setting a style with remote url '$attrib'='$value' in uploaded file.\n" );
+
 						return true;
 					}
 				}
@@ -1351,9 +1425,9 @@ abstract class UploadBase {
 			# image filters can pull in url, which could be svg that executes scripts
 			if ( $strippedElement == 'image' && $stripped == 'filter' && preg_match( '!url\s*\(!sim', $value ) ) {
 				wfDebug( __METHOD__ . ": Found image filter with url: \"<$strippedElement $stripped='$value'...\" in uploaded file.\n" );
+
 				return true;
 			}
-
 		}
 
 		return false; //No scripts detected
@@ -1369,6 +1443,7 @@ abstract class UploadBase {
 		$parts = explode( ':', strtolower( $element ) );
 		$name = array_pop( $parts );
 		$ns = implode( ':', $parts );
+
 		return array( $ns, $name );
 	}
 
@@ -1379,6 +1454,7 @@ abstract class UploadBase {
 	private function stripXmlNamespace( $name ) {
 		// 'http://www.w3.org/2000/svg:script' -> 'script'
 		$parts = explode( ':', strtolower( $name ) );
+
 		return array_pop( $parts );
 	}
 
@@ -1399,6 +1475,7 @@ abstract class UploadBase {
 		if ( !$wgAntivirus ) {
 			wfDebug( __METHOD__ . ": virus scanner disabled\n" );
 			wfProfileOut( __METHOD__ );
+
 			return null;
 		}
 
@@ -1407,6 +1484,7 @@ abstract class UploadBase {
 			$wgOut->wrapWikiMsg( "<div class=\"error\">\n$1\n</div>",
 				array( 'virus-badscanner', $wgAntivirus ) );
 			wfProfileOut( __METHOD__ );
+
 			return wfMessage( 'virus-unknownscanner' )->text() . " $wgAntivirus";
 		}
 
@@ -1478,6 +1556,7 @@ abstract class UploadBase {
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return $output;
 	}
 
@@ -1589,7 +1668,7 @@ abstract class UploadBase {
 
 		// Check for files with the same name but a different extension
 		$similarFiles = RepoGroup::singleton()->getLocalRepo()->findFilesByPrefix(
-				"{$partname}.", 1 );
+			"{$partname}.", 1 );
 		if ( count( $similarFiles ) ) {
 			return array(
 				'warning' => 'exists-normalized',
@@ -1639,11 +1718,12 @@ abstract class UploadBase {
 	public static function isThumbName( $filename ) {
 		$n = strrpos( $filename, '.' );
 		$partname = $n ? substr( $filename, 0, $n ) : $filename;
+
 		return (
-					substr( $partname, 3, 3 ) == 'px-' ||
-					substr( $partname, 2, 3 ) == 'px-'
-				) &&
-				preg_match( "/[0-9]{2}/", substr( $partname, 0, 2 ) );
+			substr( $partname, 3, 3 ) == 'px-' ||
+			substr( $partname, 2, 3 ) == 'px-'
+		) &&
+		preg_match( "/[0-9]{2}/", substr( $partname, 0, 2 ) );
 	}
 
 	/**
@@ -1670,6 +1750,7 @@ abstract class UploadBase {
 				$blacklist[] = trim( $line );
 			}
 		}
+
 		return $blacklist;
 	}
 
@@ -1694,6 +1775,7 @@ abstract class UploadBase {
 			$imParam = ApiQueryImageInfo::getPropertyNames();
 			$info = ApiQueryImageInfo::getInfo( $file, array_flip( $imParam ), $result );
 		}
+
 		return $info;
 	}
 
@@ -1704,6 +1786,7 @@ abstract class UploadBase {
 	public function convertVerifyErrorToStatus( $error ) {
 		$code = $error['status'];
 		unset( $code['status'] );
+
 		return Status::newFatal( $this->getVerificationErrorCode( $code ), $error );
 	}
 

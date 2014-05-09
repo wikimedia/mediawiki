@@ -28,7 +28,6 @@
  * @author Bryan Tong Minh
  */
 class UploadFromFile extends UploadBase {
-
 	/**
 	 * @var WebRequestUpload
 	 */

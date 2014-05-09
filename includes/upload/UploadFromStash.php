@@ -157,6 +157,7 @@ class UploadFromStash extends UploadBase {
 		// replace mLocalFile with an instance of UploadStashFile, which adds some methods
 		// that are useful for stashed files.
 		$this->mLocalFile = parent::stashFile( $user );
+
 		return $this->mLocalFile;
 	}
 
@@ -187,6 +188,7 @@ class UploadFromStash extends UploadBase {
 	public function performUpload( $comment, $pageText, $watch, $user ) {
 		$rv = parent::performUpload( $comment, $pageText, $watch, $user );
 		$this->unsaveUploadedFile();
+
 		return $rv;
 	}
 }
