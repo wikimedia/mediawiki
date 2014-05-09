@@ -3613,6 +3613,9 @@ $wgNamespacesWithSubpages = array(
  * Tracking categories allow pages with certain characteristics to be tracked.
  * It works by adding any such page to a category automatically.
  *
+ * A message with the suffix '-desc' should be added as a description message
+ * to have extra information on Special:TrackingCategories.
+ *
  * @since 1.23
  */
 $wgTrackingCategories = array(
