@@ -90,6 +90,15 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected $skinStyles = array();
 	/**
+	 * @var array List of paths to check for LESS files before those in $wgResourceLoaderLESSImportPaths
+	 * @par Usage:
+	 * @code
+	 * array( [directory-path], [directory-path], ... )
+	 * @endcode
+	 * @since 1.24
+	 */
+	protected $lessImportPaths = array();
+	/**
 	 * @var array List of modules this module depends on
 	 * @par Usage:
 	 * @code
@@ -215,6 +224,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				case 'debugScripts':
 				case 'loaderScripts':
 				case 'styles':
+				case 'lessImportPaths':
 					$this->{$member} = (array)$option;
 					break;
 				// Collated lists of file paths
@@ -804,6 +814,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 
 		$compiler = ResourceLoader::getLessCompiler();
+		$compiler->setImportDir( array_merge( $this->lessImportPaths, $compiler->importDir ) );
 		$result = null;
 
 		$result = $compiler->cachedCompile( $source );

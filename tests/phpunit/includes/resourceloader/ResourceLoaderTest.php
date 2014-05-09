@@ -85,6 +85,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$module = new ResourceLoaderFileModule( array(
 			'localBasePath' => $basePath,
 			'styles' => array( 'styles.less' ),
+			'lessImportPaths' => array( dirname( dirname( __DIR__  ) ) . '/data/less/local-import' ),
 		) );
 		$styles = $module->getStyles( $context );
 		$this->assertStringEqualsFile( $basePath . '/styles.css', $styles['all'] );

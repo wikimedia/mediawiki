@@ -1,6 +1,7 @@
 /* @noflip */
 .unit-tests {
   color: green;
+  background-color: red;
   border: 2px solid #eeeeee;
   line-height: 35;
 }

@@ -21,6 +21,9 @@ production.
 * HTMLForm now supports multiple copies of an input field or set of input
   fields, e.g. the form may request "one or more usernames" without having to
   have the user enter delimited list of names into a text field.
+* Resource Loader modules may now define additional per-module LESS import
+  paths using a lessImportPaths key in the module definition. These paths
+  will be searched for LESS files before $wgResourceLoaderLESSImportPaths.
 
 === Bug fixes in 1.24 ===
 * (bug 62258) A bug was fixed in File::getUnscaledThumb when a height
