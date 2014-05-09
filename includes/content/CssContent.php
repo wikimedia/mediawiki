@@ -67,7 +67,7 @@ class CssContent extends TextContent {
 	protected function getHtml() {
 		$html = "";
 		$html .= "<pre class=\"mw-code mw-css\" dir=\"ltr\">\n";
-		$html .= $this->getHighlightHtml();
+		$html .= htmlspecialchars( $this->getNativeData() );
 		$html .= "\n</pre>\n";
 
 		return $html;
