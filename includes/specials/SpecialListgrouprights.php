@@ -29,9 +29,6 @@
  * @author Petr Kadlec <mormegil@centrum.cz>
  */
 class SpecialListGroupRights extends SpecialPage {
-	/**
-	 * Constructor
-	 */
 	function __construct() {
 		parent::__construct( 'Listgrouprights' );
 	}
@@ -118,11 +115,12 @@ class SpecialListGroupRights extends SpecialPage {
 			$addgroups = isset( $wgAddGroups[$group] ) ? $wgAddGroups[$group] : array();
 			$removegroups = isset( $wgRemoveGroups[$group] ) ? $wgRemoveGroups[$group] : array();
 			$addgroupsSelf = isset( $wgGroupsAddToSelf[$group] ) ? $wgGroupsAddToSelf[$group] : array();
-			$removegroupsSelf = isset( $wgGroupsRemoveFromSelf[$group] ) ? $wgGroupsRemoveFromSelf[$group] : array();
+			$removegroupsSelf = isset( $wgGroupsRemoveFromSelf[$group] )
+				? $wgGroupsRemoveFromSelf[$group]
+				: array();
 
 			$id = $group == '*' ? false : Sanitizer::escapeId( $group );
-			$out->addHTML( Html::rawElement( 'tr', array( 'id' => $id ),
-				"
+			$out->addHTML( Html::rawElement( 'tr', array( 'id' => $id ), "
 				<td>$grouppage$grouplink</td>
 					<td>" .
 					$this->formatPermissions( $permissions, $revoke, $addgroups, $removegroups,
