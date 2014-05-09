@@ -93,6 +93,14 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					$out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
 				}
 				break;
+                        case self::EDIT_CLEAR:
+                                $out->setPageTitle( $this->msg( 'watchlistedit-clear-title' ) );
+                                $form = $this->getClearForm();
+                                if ( $form->show() ) {
+                                        $out->addHTML( $this->successMessage );
+                                        $out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
+                                }
+                                break;
 
 			case self::EDIT_NORMAL:
 			default:
@@ -625,6 +633,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		switch ( $mode ) {
 			case 'clear':
 			case self::EDIT_CLEAR:
+			        return self::EDIT_CLEAR;
 			case 'raw':
 			case self::EDIT_RAW:
 				return self::EDIT_RAW;
