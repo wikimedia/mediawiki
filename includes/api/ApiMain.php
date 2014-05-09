@@ -79,6 +79,7 @@ class ApiMain extends ApiBase {
 		'filerevert' => 'ApiFileRevert',
 		'emailuser' => 'ApiEmailUser',
 		'watch' => 'ApiWatch',
+		'watchlistclear' => 'ApiWatchlistClear',
 		'patrol' => 'ApiPatrol',
 		'import' => 'ApiImport',
 		'userrights' => 'ApiUserrights',
