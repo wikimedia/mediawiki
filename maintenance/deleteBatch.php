@@ -99,7 +99,7 @@ class DeleteBatch extends Maintenance {
 			$this->output( $title->getPrefixedText() );
 			$dbw->begin( __METHOD__ );
 			if ( $title->getNamespace() == NS_FILE ) {
-				$img = wfFindFile( $title );
+				$img = wfFindFile( $title, array( 'ignoreRedirect' => true ) );
 				if ( $img && $img->isLocal() && !$img->delete( $reason ) ) {
 					$this->output( " FAILED to delete associated file... " );
 				}
