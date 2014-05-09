@@ -27,7 +27,6 @@
  * @ingroup SpecialPage
  */
 class SpecialProtectedpages extends SpecialPage {
-
 	protected $IdLevel = 'level';
 	protected $IdType = 'type';
 
@@ -438,7 +437,11 @@ class ProtectedPagesPager extends TablePager {
 					);
 				} else {
 					$username = UserCache::singleton()->getProp( $value, 'name' );
-					if ( LogEventsList::userCanBitfield( $row->log_deleted, LogPage::DELETED_USER, $this->getUser() ) ) {
+					if ( LogEventsList::userCanBitfield(
+						$row->log_deleted,
+						LogPage::DELETED_USER,
+						$this->getUser()
+					) ) {
 						if ( $username === false ) {
 							$formatted = htmlspecialchars( $value );
 						} else {
@@ -473,7 +476,11 @@ class ProtectedPagesPager extends TablePager {
 						$this->msg( 'protectedpages-unknown-reason' )->escaped()
 					);
 				} else {
-					if ( LogEventsList::userCanBitfield( $row->log_deleted, LogPage::DELETED_COMMENT, $this->getUser() ) ) {
+					if ( LogEventsList::userCanBitfield(
+						$row->log_deleted,
+						LogPage::DELETED_COMMENT,
+						$this->getUser()
+					) ) {
 						$formatted = Linker::formatComment( $value !== null ? $value : '' );
 					} else {
 						$formatted = $this->msg( 'rev-deleted-comment' )->escaped();

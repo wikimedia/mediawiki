@@ -76,7 +76,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 	/**
 	 * @var ImageGallery
 	 */
-	var $gallery;
+	protected $gallery;
 
 	function __construct( IContextSource $context, $par = null ) {
 		$this->like = $context->getRequest()->getText( 'like' );
