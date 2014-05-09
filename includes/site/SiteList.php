@@ -27,7 +27,6 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class SiteList extends GenericArrayObject {
-
 	/**
 	 * Internal site identifiers pointing to their sites offset value.
 	 *
@@ -350,10 +349,10 @@ class SiteList extends GenericArrayObject {
 
 		return $serializationData;
 	}
-
 }
 
 /**
  * @deprecated
  */
-class SiteArray extends SiteList {}
+class SiteArray extends SiteList {
+}
