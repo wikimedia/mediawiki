@@ -1,7 +1,5 @@
 <?php
 /**
- * Representation of a page title within %MediaWiki.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,14 +17,48 @@
  *
  * @file
  * @license GPL 2+
- * @author Daniel Kinzler
  */
 
 /**
  * MalformedTitleException is thrown when a TitleParser is unable to parse a title string.
  *
  * @license GPL 2+
- * @author Daniel Kinzler
  */
 class MalformedTitleException extends Exception {
+	private $titleText;
+
+	public function __construct( $text ) {
+		$this->titleText = $text;
+	}
+
+	public function getTitleText() {
+		return $this->titleText;
+	}
+}
+
+class MalformedTitleInterwikiPresentException extends MalformedTitleException {
+}
+
+class MalformedTitleEmptyException extends MalformedTitleException {
+}
+
+class MalformedTitleBadUtf8Exception extends MalformedTitleException {
+}
+
+class MalformedTitleInvalidTalkException extends MalformedTitleException {
+}
+
+class MalformedTitleIllegalCharactersException extends MalformedTitleException {
+}
+
+class MalformedTitleRelativeException extends MalformedTitleException {
+}
+
+class MalformedTitleTildesException extends MalformedTitleException {
+}
+
+class MalformedTitleLengthExceededException extends MalformedTitleException {
+}
+
+class MalformedTitleLeadingColonException extends MalformedTitleException {
 }

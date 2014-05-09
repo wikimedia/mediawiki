@@ -28,11 +28,17 @@
  */
 class BadTitleError extends ErrorPageError {
 	/**
-	 * @param string|Message $msg A message key (default: 'badtitletext')
+	 * @param string|Message|MalformedTitleException $msg A message key (default: 'badtitletext'), or
+	 *     a MalformedTitleException to figure out things from
 	 * @param array $params parameter to wfMessage()
 	 */
 	public function __construct( $msg = 'badtitletext', $params = array() ) {
-		parent::__construct( 'badtitle', $msg, $params );
+		if ( $msg instanceof MalformedTitleException ) {
+			list( $title, $message, $params ) = $this->parseMalformedTitleException( $msg );
+			parent::__construct( $title, $message, $params );
+		} else {
+			parent::__construct( 'badtitle', $msg, $params );
+		}
 	}
 
 	/**
@@ -46,6 +52,72 @@ class BadTitleError extends ErrorPageError {
 		// to let mobile browser now that it is not a normal page.
 		$wgOut->setStatusCode( 400 );
 		parent::report();
+	}
+
+	protected function parseMalformedTitleException( $err ) {
+		if ( !$err ) {
+			return array(
+				'badtitle',
+				'badtitletext',
+				array()
+			);
+		} else if ( $err instanceof MalformedTitleInterwikiPresentException ) {
+			return array(
+				'badtitle',
+				'badtitletext',
+				array()
+			);
+		} else if ( $err instanceof MalformedTitleEmptyException ) {
+			return array(
+				'title-invalid-empty',
+				'title-invalid-empty-text',
+				array( $err->getTitleText() )
+			);
+		} else if ( $err instanceof MalformedTitleBadUtf8Exception ) {
+			return array(
+				'title-invalid-utf8',
+				'title-invalid-utf8-text',
+				array( $err->getTitleText() )
+			);
+		} else if ( $err instanceof MalformedTitleInvalidTalkException ) {
+			return array(
+				'title-invalid-talk-namespace',
+				'title-invalid-talk-namespace-text',
+				array()
+			);
+		} else if ( $err instanceof MalformedTitleIllegalCharactersException ) {
+			return array(
+				'title-invalid-characters',
+				'title-invalid-characters-text',
+				array( $err->getTitleText() )
+			);
+		} else if ( $err instanceof MalformedTitleRelativeException ) {
+			return array(
+				'title-invalid-relative',
+				'title-invalid-relative-text',
+				array( $err->getTitleText() )
+			);
+		} else if ( $err instanceof MalformedTitleTildesException ) {
+			return array(
+				'title-invalid-magic-tilde',
+				'title-invalid-magic-tilde-text',
+				array( $err->getTitleText() )
+			);
+		} else if ( $err instanceof MalformedTitleLengthExceededException ) {
+			return array(
+				'title-invalid-too-long',
+				'title-invalid-too-long-text',
+				array( $err->getTitleText() )
+			);
+		} else if ( $err instanceof MalformedTitleLeadingColonException ) {
+			return array(
+				'title-invalid-leading-colon',
+				'title-invalid-leading-colon-text',
+				array( $err->getTitleText() )
+			);
+		} else {
+			return array( 'badtitle', 'badtitletext', array() );
+		}
 	}
 
 }

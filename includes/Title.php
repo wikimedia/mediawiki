@@ -224,6 +224,38 @@ class Title {
 	}
 
 	/**
+	 * Find out why Title::newFromText() returned null for some text – that is, why the given title is
+	 * not valid. Returns an exception subclass of MalformedTitleException (does *not* throw it,
+	 * returns it) or null if the title is valid.
+	 *
+	 * If you just want to check validity of a title, checking `Title::newFromText( $text) !== null`
+	 * is cheaper than calling this method.
+	 * 
+	 * @see Title::newFromText
+	 *
+	 * @param string $text Title text to check
+	 * @param int $defaultNamespace 
+	 * @return MalformedTitleException|null
+	 */
+	public static function getNewFromTextBadTitleReason( $text, $defaultNamespace = NS_MAIN ) {
+		# Convert things like &eacute; &#257; or &#x3017; into normalized (bug 14952) text
+		$filteredText = Sanitizer::decodeCharReferencesAndNormalize( $text );
+
+		$t = new Title();
+		$t->mDbkeyform = str_replace( ' ', '_', $filteredText );
+		$t->mDefaultNamespace = intval( $defaultNamespace );
+
+		try {
+			$t->secureAndSplit( true );
+		} catch ( MalformedTitleException $ex ) {
+			return $ex;
+		}
+
+		// A valid title
+		return null;
+	}
+
+	/**
 	 * THIS IS NOT THE FUNCTION YOU WANT. Use Title::newFromText().
 	 *
 	 * Example of wrong and broken code:
@@ -3245,9 +3277,13 @@ class Title {
 	 * namespace prefixes, sets the other forms, and canonicalizes
 	 * everything.
 	 *
+	 * @param bool $throwException Whether to throw an exception on invalid
+	 *     titles. By default just returns false.
+	 *
+	 * @throws MalformedTitleException If $throwException is true
 	 * @return bool True on success
 	 */
-	private function secureAndSplit() {
+	private function secureAndSplit( $throwException = false ) {
 		# Initialisation
 		$this->mInterwiki = '';
 		$this->mFragment = '';
@@ -3262,7 +3298,11 @@ class Title {
 			$parser = $this->getTitleParser();
 			$parts = $parser->splitTitleString( $dbkey, $this->getDefaultNamespace() );
 		} catch ( MalformedTitleException $ex ) {
-			return false;
+			if ( $throwException ) {
+				throw $ex;
+			} else {
+				return false;
+			}
 		}
 
 		# Fill fields
