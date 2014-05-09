@@ -1,4 +1,5 @@
 <?php
+// @codingStandardsIgnoreFile
 /**
  * Html form for account creation (since 1.22 with VForm appearance).
  *
@@ -22,7 +23,6 @@
  */
 
 class UsercreateTemplate extends BaseTemplate {
-
 	/**
 	 * Extensions (AntiSpoof and TitleBlacklist) call this in response to
 	 * UserCreateForm hook to add checkboxes to the create account form.

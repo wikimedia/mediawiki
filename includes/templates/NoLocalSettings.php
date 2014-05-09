@@ -1,4 +1,5 @@
 <?php
+// @codingStandardsIgnoreFile
 /**
  * Template used when there is no LocalSettings.php file.
  *
