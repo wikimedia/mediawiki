@@ -6,5 +6,7 @@
 	},
 	"ooui-dialog-action-close": "Джаб",
 	"ooui-outline-control-move-down": "Элементни тюбюне кёчюр",
-	"ooui-outline-control-move-up": "Элементни башына кёчюр"
+	"ooui-outline-control-move-up": "Элементни башына кёчюр",
+	"ooui-outline-control-remove": "Пунктну кетер",
+	"ooui-toolbar-more": "Энтда"
 }
