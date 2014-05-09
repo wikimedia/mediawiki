@@ -138,6 +138,10 @@ class BitmapHandler extends ImageHandler {
 			'dstUrl' => $dstUrl,
 		);
 
+		if ( isset( $params['quality'] ) && $params['quality'] === 'low' ) {
+			$scalerParams['quality'] = 30;
+		}
+
 		# Determine scaler type
 		$scaler = self::getScalerType( $dstPath );
 
@@ -147,6 +151,7 @@ class BitmapHandler extends ImageHandler {
 		if ( !$image->mustRender() &&
 			$scalerParams['physicalWidth'] == $scalerParams['srcWidth']
 			&& $scalerParams['physicalHeight'] == $scalerParams['srcHeight']
+			&& !isset( $scalerParams['quality'] )
 		) {
 
 			# normaliseParams (or the user) wants us to return the unscaled image
@@ -163,12 +168,14 @@ class BitmapHandler extends ImageHandler {
 
 		if ( $flags & self::TRANSFORM_LATER ) {
 			wfDebug( __METHOD__ . ": Transforming later per flags.\n" );
-			$params = array(
+			$newParams = array(
 				'width' => $scalerParams['clientWidth'],
 				'height' => $scalerParams['clientHeight']
 			);
-
-			return new ThumbnailImage( $image, $dstUrl, false, $params );
+			if ( isset( $params['quality'] ) ) {
+				$newParams['quality'] = $params['quality'];
+			}
+			return new ThumbnailImage( $image, $dstUrl, false, $newParams );
 		}
 
 		# Try to make a target path for the thumbnail
@@ -235,12 +242,14 @@ class BitmapHandler extends ImageHandler {
 		} elseif ( $mto ) {
 			return $mto;
 		} else {
-			$params = array(
+			$newParams = array(
 				'width' => $scalerParams['clientWidth'],
 				'height' => $scalerParams['clientHeight']
 			);
-
-			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
+			if ( isset( $params['quality'] ) ) {
+				$newParams['quality'] = $params['quality'];
+			}
+			return new ThumbnailImage( $image, $dstUrl, $dstPath, $newParams );
 		}
 	}
 
@@ -314,7 +323,8 @@ class BitmapHandler extends ImageHandler {
 		$animation_post = array();
 		$decoderHint = array();
 		if ( $params['mimeType'] == 'image/jpeg' ) {
-			$quality = array( '-quality', '80' ); // 80%
+			$qualityVal = isset( $params['quality'] ) ? (string) $params['quality'] : null;
+			$quality = array( '-quality', $qualityVal ?: '80' ); // 80%
 			# Sharpening, see bug 6193
 			if ( ( $params['physicalWidth'] + $params['physicalHeight'] )
 				/ ( $params['srcWidth'] + $params['srcHeight'] )
@@ -419,7 +429,8 @@ class BitmapHandler extends ImageHandler {
 					list( $radius, $sigma ) = explode( 'x', $wgSharpenParameter );
 					$im->sharpenImage( $radius, $sigma );
 				}
-				$im->setCompressionQuality( 80 );
+				$qualityVal = isset( $params['quality'] ) ? (string) $params['quality'] : null;
+				$im->setCompressionQuality( $qualityVal ?: 80 );
 			} elseif ( $params['mimeType'] == 'image/png' ) {
 				$im->setCompressionQuality( 95 );
 			} elseif ( $params['mimeType'] == 'image/gif' ) {
@@ -531,13 +542,14 @@ class BitmapHandler extends ImageHandler {
 		# input routine for this.
 
 		$typemap = array(
-			'image/gif' => array( 'imagecreatefromgif', 'palette', 'imagegif' ),
-			'image/jpeg' => array( 'imagecreatefromjpeg', 'truecolor',
+			'image/gif' => array( 'imagecreatefromgif', 'palette', false, 'imagegif' ),
+			'image/jpeg' => array( 'imagecreatefromjpeg', 'truecolor', true,
 				array( __CLASS__, 'imageJpegWrapper' ) ),
-			'image/png' => array( 'imagecreatefrompng', 'bits', 'imagepng' ),
-			'image/vnd.wap.wbmp' => array( 'imagecreatefromwbmp', 'palette', 'imagewbmp' ),
-			'image/xbm' => array( 'imagecreatefromxbm', 'palette', 'imagexbm' ),
+			'image/png' => array( 'imagecreatefrompng', 'bits', false, 'imagepng' ),
+			'image/vnd.wap.wbmp' => array( 'imagecreatefromwbmp', 'palette', false, 'imagewbmp' ),
+			'image/xbm' => array( 'imagecreatefromxbm', 'palette', false, 'imagexbm' ),
 		);
+
 		if ( !isset( $typemap[$params['mimeType']] ) ) {
 			$err = 'Image type not supported';
 			wfDebug( "$err\n" );
@@ -545,7 +557,7 @@ class BitmapHandler extends ImageHandler {
 
 			return $this->getMediaTransformError( $params, $errMsg );
 		}
-		list( $loader, $colorStyle, $saveType ) = $typemap[$params['mimeType']];
+		list( $loader, $colorStyle, $useQuality, $saveType ) = $typemap[$params['mimeType']];
 
 		if ( !function_exists( $loader ) ) {
 			$err = "Incomplete GD library configuration: missing function $loader";
@@ -597,7 +609,12 @@ class BitmapHandler extends ImageHandler {
 
 		imagesavealpha( $dst_image, true );
 
-		call_user_func( $saveType, $dst_image, $params['dstPath'] );
+		$funcParams = array( $dst_image, $params['dstPath'] );
+		if ( $useQuality && isset( $params['quality'] ) ) {
+			$funcParams[] = $params['quality'];
+		}
+		call_user_func_array( $saveType, $funcParams );
+
 		imagedestroy( $dst_image );
 		imagedestroy( $src_image );
 
@@ -730,9 +747,10 @@ class BitmapHandler extends ImageHandler {
 		return $cache;
 	}
 
-	static function imageJpegWrapper( $dst_image, $thumbPath ) {
+	// FIXME: transformImageMagick() & transformImageMagickExt() uses JPEG quality 80, here it's 95?
+	static function imageJpegWrapper( $dst_image, $thumbPath, $quality = 95 ) {
 		imageinterlace( $dst_image );
-		imagejpeg( $dst_image, $thumbPath, 95 );
+		imagejpeg( $dst_image, $thumbPath, $quality );
 	}
 
 	/**
