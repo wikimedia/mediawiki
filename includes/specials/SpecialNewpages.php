@@ -27,15 +27,12 @@
  * @ingroup SpecialPage
  */
 class SpecialNewpages extends IncludableSpecialPage {
-	// Stored objects
-
 	/**
 	 * @var FormOptions
 	 */
 	protected $opts;
 	protected $customFilters;
 
-	// Some internal settings
 	protected $showNavigation = false;
 
 	public function __construct() {
@@ -394,7 +391,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$oldTitleText = $this->msg( 'rc-old-title' )->params( $oldTitleText )->escaped();
 		}
 
-		return "<li{$css}>{$time} {$dm}{$plink} {$hist} {$dm}{$length} {$dm}{$ulink} {$comment} {$tagDisplay} {$oldTitleText}</li>\n";
+		return "<li{$css}>{$time} {$dm}{$plink} {$hist} {$dm}{$length} "
+			. "{$dm}{$ulink} {$comment} {$tagDisplay} {$oldTitleText}</li>\n";
 	}
 
 	/**
