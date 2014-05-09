@@ -412,23 +412,16 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			unset( $legendItems['unpatrolled'] );
 		}
 		foreach ( $legendItems as $key => $item ) { # generate items of the legend
-			$label = $item['title'];
+			$label = isset( $item['legend'] ) ? $item['legend'] : $item['title'];
 			$letter = $item['letter'];
 			$cssClass = isset( $item['class'] ) ? $item['class'] : $key;
 
 			$legend .= Html::element( 'dt',
 				array( 'class' => $cssClass ), $context->msg( $letter )->text()
+			) . "\n" .
+			Html::rawElement( 'dd', array(),
+				$context->msg( $label )->parse()
 			) . "\n";
-			if ( $key === 'newpage' ) {
-				$legend .= Html::openElement( 'dd' );
-				$legend .= $context->msg( $label )->escaped();
-				$legend .= ' ' . $context->msg( 'recentchanges-legend-newpage' )->parse();
-				$legend .= Html::closeElement( 'dd' ) . "\n";
-			} else {
-				$legend .= Html::element( 'dd', array(),
-					$context->msg( $label )->text()
-				) . "\n";
-			}
 		}
 		# (+-123)
 		$legend .= Html::rawElement( 'dt',
