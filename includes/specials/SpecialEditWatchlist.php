@@ -93,6 +93,14 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					$out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
 				}
 				break;
+                        case self::EDIT_CLEAR:
+                                $out->setPageTitle( $this->msg( 'watchlistedit-clear-title' ) );
+                                $form = $this->getClearForm();
+                                if ( $form->show() ) {
+                                        $out->addHTML( $this->successMessage );
+                                        $out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
+                                }
+                                break;
 
 			case self::EDIT_NORMAL:
 			default:
@@ -612,6 +620,25 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	}
 
 	/**
+         * Get a form for clearing the watchlist
+         *
+         * @return HTMLForm
+         */
+        protected function getClearForm() {
+                $context = new DerivativeContext( $this->getContext() );
+                $context->setTitle( $this->getPageTitle( 'clear' ) ); // Reset subpage
+                $form = new HTMLForm( array(), $context );
+                $form->setSubmitTextMsg( 'watchlistedit-clear-submit' );
+                # Used message keys: 'accesskey-watchlistedit-clear-submit', 'tooltip-watchlistedit-clear-submit'
+                $form->setSubmitTooltip( 'watchlistedit-clear-submit' );
+		$form->setWrapperLegendMsg( 'watchlistedit-clear-legend' );
+                $form->addHeaderText( $this->msg( 'watchlistedit-clear-explain' )->parse() );
+                $form->setSubmitCallback( array( $this, 'submitClear' ) );
+
+                return $form;
+        }
+
+	/**
 	 * Determine whether we are editing the watchlist, and if so, what
 	 * kind of editing operation
 	 *
@@ -625,6 +652,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		switch ( $mode ) {
 			case 'clear':
 			case self::EDIT_CLEAR:
+			        return self::EDIT_CLEAR;
 			case 'raw':
 			case self::EDIT_RAW:
 				return self::EDIT_RAW;
@@ -651,6 +679,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			'view' => array( 'Watchlist', false ),
 			'edit' => array( 'EditWatchlist', false ),
 			'raw' => array( 'EditWatchlist', 'raw' ),
+			'clear' => array( 'EditWatchlist', 'clear' ),
 		);
 
 		foreach ( $modes as $mode => $arr ) {
