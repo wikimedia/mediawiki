@@ -1055,7 +1055,8 @@ class ContribsPager extends ReverseChronologicalPager {
 			# Show user names for /newbies as there may be different users.
 			# Note that we already excluded rows with hidden user names.
 			if ( $this->contribs == 'newbie' ) {
-				$userlink = ' . . ' . $lang->getDirMark() . Linker::userLink( $rev->getUser(), $rev->getUserText() );
+				$userlink = ' . . ' . $lang->getDirMark()
+					. Linker::userLink( $rev->getUser(), $rev->getUserText() );
 				$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
 					Linker::userTalkLink( $rev->getUser(), $rev->getUserText() ) )->escaped() . ' ';
 			} else {

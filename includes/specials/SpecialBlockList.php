@@ -27,8 +27,9 @@
  * @ingroup SpecialPage
  */
 class SpecialBlockList extends SpecialPage {
+	protected $target;
 
-	protected $target, $options;
+	protected $options;
 
 	function __construct() {
 		parent::__construct( 'BlockList' );
@@ -203,7 +204,11 @@ class SpecialBlockList extends SpecialPage {
 			foreach ( $otherBlockLink as $link ) {
 				$list .= Html::rawElement( 'li', array(), $link ) . "\n";
 			}
-			$out->addHTML( Html::rawElement( 'ul', array( 'class' => 'mw-ipblocklist-otherblocks' ), $list ) . "\n" );
+			$out->addHTML( Html::rawElement(
+				'ul',
+				array( 'class' => 'mw-ipblocklist-otherblocks' ),
+				$list
+			) . "\n" );
 		}
 	}
 
@@ -471,11 +476,15 @@ class HTMLBlockedUsersItemSelect extends HTMLSelectField {
 		}
 
 		// Let folks pick an explicit limit not from our list, as long as it's a real numbr.
-		if ( !in_array( $value, $this->mParams['options'] ) && $value == intval( $value ) && $value > 0 ) {
+		if ( !in_array( $value, $this->mParams['options'] )
+			&& $value == intval( $value )
+			&& $value > 0
+		) {
 			// This adds the explicitly requested limit value to the drop-down,
 			// then makes sure it's sorted correctly so when we output the list
 			// later, the custom option doesn't just show up last.
-			$this->mParams['options'][$this->mParent->getLanguage()->formatNum( $value )] = intval( $value );
+			$this->mParams['options'][$this->mParent->getLanguage()->formatNum( $value )] =
+				intval( $value );
 			asort( $this->mParams['options'] );
 		}
 

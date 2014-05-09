@@ -27,8 +27,8 @@
  * @ingroup SpecialPage
  */
 class SpecialChangePassword extends FormSpecialPage {
-
-	protected $mUserName, $mDomain;
+	protected $mUserName;
+	protected $mDomain;
 
 	// Optional Wikitext Message to show above the password change form
 	protected $mPreTextMessage = null;
@@ -177,7 +177,6 @@ class SpecialChangePassword extends FormSpecialPage {
 			// Potential CSRF (bug 62497)
 			return false;
 		}
-
 
 		if ( $request->getCheck( 'wpCancel' ) ) {
 			$titleObj = Title::newFromText( $request->getVal( 'returnto' ) );

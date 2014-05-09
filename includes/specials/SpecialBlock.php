@@ -84,7 +84,8 @@ class SpecialBlock extends FormSpecialPage {
 			$this->getSkin()->setRelevantUser( $this->target );
 		}
 
-		list( $this->previousTarget, /*...*/ ) = Block::parseTarget( $request->getVal( 'wpPreviousTarget' ) );
+		list( $this->previousTarget, /*...*/ ) =
+			Block::parseTarget( $request->getVal( 'wpPreviousTarget' ) );
 		$this->requestedHideUser = $request->getBool( 'wpHideUser' );
 	}
 
@@ -361,7 +362,10 @@ class SpecialBlock extends FormSpecialPage {
 
 		# Link to unblock the specified user, or to a blank unblock form
 		if ( $this->target instanceof User ) {
-			$message = $this->msg( 'ipb-unblock-addr', wfEscapeWikiText( $this->target->getName() ) )->parse();
+			$message = $this->msg(
+				'ipb-unblock-addr',
+				wfEscapeWikiText( $this->target->getName() )
+			)->parse();
 			$list = SpecialPage::getTitleFor( 'Unblock', $this->target->getName() );
 		} else {
 			$message = $this->msg( 'ipb-unblock' )->parse();
@@ -451,7 +455,7 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Determine the target of the block, and the type of target
-	 * TODO: should be in Block.php?
+	 * @todo Should be in Block.php?
 	 * @param string $par subpage parameter passed to setup, or data value from
 	 *     the HTMLForm
 	 * @param WebRequest $request Optionally try and get data from a request too
@@ -765,7 +769,11 @@ class SpecialBlock extends FormSpecialPage {
 
 		# Can't watch a rangeblock
 		if ( $type != Block::TYPE_RANGE && $data['Watch'] ) {
-			WatchAction::doWatch( Title::makeTitle( NS_USER, $target ), $performer, WatchedItem::IGNORE_USER_RIGHTS );
+			WatchAction::doWatch(
+				Title::makeTitle( NS_USER, $target ),
+				$performer,
+				WatchedItem::IGNORE_USER_RIGHTS
+			);
 		}
 
 		# Block constructor sanitizes certain block options on insert

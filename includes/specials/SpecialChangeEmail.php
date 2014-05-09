@@ -27,7 +27,6 @@
  * @ingroup SpecialPage
  */
 class SpecialChangeEmail extends UnlistedSpecialPage {
-
 	/**
 	 * Users password
 	 * @var string
@@ -233,13 +232,19 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		$throttleCount = LoginForm::incLoginThrottle( $user->getName() );
 		if ( $throttleCount === true ) {
 			$lang = $this->getLanguage();
-			$this->error( array( 'changeemail-throttled', $lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) ) );
+			$this->error( array(
+				'changeemail-throttled',
+				$lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] )
+			) );
 
 			return false;
 		}
 
 		global $wgRequirePasswordforEmailChange;
-		if ( $wgRequirePasswordforEmailChange && !$user->checkTemporaryPassword( $pass ) && !$user->checkPassword( $pass ) ) {
+		if ( $wgRequirePasswordforEmailChange
+			&& !$user->checkTemporaryPassword( $pass )
+			&& !$user->checkPassword( $pass )
+		) {
 			$this->error( 'wrongpassword' );
 
 			return false;
