@@ -45,7 +45,7 @@ class CoreParserFunctions {
 			'numberofpages', 'numberofusers', 'numberofactiveusers',
 			'numberofarticles', 'numberoffiles', 'numberofadmins',
 			'numberingroup', 'numberofedits', 'numberofviews', 'language',
-			'padleft', 'padright', 'anchorencode', 'defaultsort', 'filepath',
+			'padleft', 'padright', 'anchorencode', 'defaultsort', 'defaultcollation', 'filepath',
 			'pagesincategory', 'pagesize', 'protectionlevel',
 			'namespacee', 'namespacenumber', 'talkspace', 'talkspacee',
 			'subjectspace', 'subjectspacee', 'pagename', 'pagenamee',
@@ -852,6 +852,48 @@ class CoreParserFunctions {
 					$converter->markNoConversion( wfEscapeWikiText( $text ) )
 				)->inContentLanguage()->text() .
 				'</span>';
+		}
+	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $text String The collation to use
+	 * @param $uarg String Either "noreplace" or "noerror" (in en)
+	 *   both suppress errors, and noreplace does nothing if
+	 *   a default collation already exists.
+	 * @return string
+	 */
+	public static function defaultcollation( $parser, $text, $uarg = '' ) {
+		static $magicWords = null;
+		if ( is_null( $magicWords ) ) {
+			$magicWords = new MagicWordArray( array( 'defaultcollation_noerror', 'defaultcollation_noreplace' ) );
+		}
+		$arg = $magicWords->matchStartToEnd( $uarg );
+
+		if ( $parser->getTitle()->getNamespace() != NS_CATEGORY ) {
+			if ( $arg ) {
+				return '';
+			} else {
+				return '<span class="error">' . wfMsgForContent( 'defaultcollation-notcategory' ) . '</span>';
+			}
+		}
+
+		$text = trim( $text );
+		if( strlen( $text ) == 0 )
+			return '';
+		$old = $parser->getOutput()->getProperty( 'defaultcollation' );
+		if ( $old === false || $arg !== 'defaultcollation_noreplace' ) {
+			$parser->getOutput()->setProperty( 'defaultcollation', $text );
+		}
+
+		if( $old === false || $old == $text || $arg ) {
+			return '';
+		} else {
+			return( '<span class="error">' .
+				wfMsgForContent( 'duplicate-defaultcollation',
+						 htmlspecialchars( $old ),
+						 htmlspecialchars( $text ) ) .
+				'</span>' );
 		}
 	}
 
