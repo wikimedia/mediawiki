@@ -405,42 +405,42 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		global $wgRecentChangesFlags;
 		$user = $context->getUser();
 		# The legend showing what the letters and stuff mean
-		$legend = Xml::openElement( 'dl' ) . "\n";
+		$legend = Html::openElement( 'dl' ) . "\n";
 		# Iterates through them and gets the messages for both letter and tooltip
 		$legendItems = $wgRecentChangesFlags;
 		if ( !( $user->useRCPatrol() || $user->useNPPatrol() ) ) {
 			unset( $legendItems['unpatrolled'] );
 		}
-		foreach ( $legendItems as $key => $legendInfo ) { # generate items of the legend
-			$label = $legendInfo['title'];
-			$letter = $legendInfo['letter'];
-			$cssClass = isset( $legendInfo['class'] ) ? $legendInfo['class'] : $key;
+		foreach ( $legendItems as $key => $item ) { # generate items of the legend
+			$label = $item['title'];
+			$letter = $item['letter'];
+			$cssClass = isset( $item['class'] ) ? $item['class'] : $key;
 
-			$legend .= Xml::element( 'dt',
+			$legend .= Html::element( 'dt',
 				array( 'class' => $cssClass ), $context->msg( $letter )->text()
 			) . "\n";
 			if ( $key === 'newpage' ) {
-				$legend .= Xml::openElement( 'dd' );
+				$legend .= Html::openElement( 'dd' );
 				$legend .= $context->msg( $label )->escaped();
 				$legend .= ' ' . $context->msg( 'recentchanges-legend-newpage' )->parse();
-				$legend .= Xml::closeElement( 'dd' ) . "\n";
+				$legend .= Html::closeElement( 'dd' ) . "\n";
 			} else {
-				$legend .= Xml::element( 'dd', array(),
+				$legend .= Html::element( 'dd', array(),
 					$context->msg( $label )->text()
 				) . "\n";
 			}
 		}
 		# (+-123)
-		$legend .= Xml::tags( 'dt',
+		$legend .= Html::rawElement( 'dt',
 			array( 'class' => 'mw-plusminus-pos' ),
 			$context->msg( 'recentchanges-legend-plusminus' )->parse()
 		) . "\n";
-		$legend .= Xml::element(
+		$legend .= Html::element(
 			'dd',
 			array( 'class' => 'mw-changeslist-legend-plusminus' ),
 			$context->msg( 'recentchanges-label-plusminus' )->text()
 		) . "\n";
-		$legend .= Xml::closeElement( 'dl' ) . "\n";
+		$legend .= Html::closeElement( 'dl' ) . "\n";
 
 		# Collapsibility
 		$legend =
