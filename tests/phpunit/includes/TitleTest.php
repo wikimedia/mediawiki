@@ -78,22 +78,22 @@ class TitleTest extends MediaWikiTestCase {
 
 	public static function provideInvalidSecureAndSplit() {
 		return array(
-			array( '' ),
-			array( ':' ),
-			array( '__  __' ),
-			array( '  __  ' ),
+			array( '', 'MalformedTitleEmptyException' ),
+			array( ':', 'MalformedTitleEmptyException' ),
+			array( '__  __', 'MalformedTitleEmptyException' ),
+			array( '  __  ', 'MalformedTitleEmptyException' ),
 			// Bad characters forbidden regardless of wgLegalTitleChars
-			array( 'A [ B' ),
-			array( 'A ] B' ),
-			array( 'A { B' ),
-			array( 'A } B' ),
-			array( 'A < B' ),
-			array( 'A > B' ),
-			array( 'A | B' ),
+			array( 'A [ B', 'MalformedTitleIllegalCharactersException' ),
+			array( 'A ] B', 'MalformedTitleIllegalCharactersException' ),
+			array( 'A { B', 'MalformedTitleIllegalCharactersException' ),
+			array( 'A } B', 'MalformedTitleIllegalCharactersException' ),
+			array( 'A < B', 'MalformedTitleIllegalCharactersException' ),
+			array( 'A > B', 'MalformedTitleIllegalCharactersException' ),
+			array( 'A | B', 'MalformedTitleIllegalCharactersException' ),
 			// URL encoding
-			array( 'A%20B' ),
-			array( 'A%23B' ),
-			array( 'A%2523B' ),
+			array( 'A%20B', 'MalformedTitleException' ),
+			array( 'A%23B', 'MalformedTitleException' ),
+			array( 'A%2523B', 'MalformedTitleException' ),
 			// XML/HTML character entity references
 			// Note: Commented out because they are not marked invalid by the PHP test as
 			// Title::newFromText runs Sanitizer::decodeCharReferencesAndNormalize first.
@@ -101,29 +101,30 @@ class TitleTest extends MediaWikiTestCase {
 			//'A &#233; B',
 			//'A &#x00E9; B',
 			// Subject of NS_TALK does not roundtrip to NS_MAIN
-			array( 'Talk:File:Example.svg' ),
+			array( 'Talk:File:Example.svg', 'MalformedTitleInvalidTalkException' ),
 			// Directory navigation
-			array( '.' ),
-			array( '..' ),
-			array( './Sandbox' ),
-			array( '../Sandbox' ),
-			array( 'Foo/./Sandbox' ),
-			array( 'Foo/../Sandbox' ),
-			array( 'Sandbox/.' ),
-			array( 'Sandbox/..' ),
+			array( '.', 'MalformedTitleRelativeException' ),
+			array( '..', 'MalformedTitleRelativeException' ),
+			array( './Sandbox', 'MalformedTitleRelativeException' ),
+			array( '../Sandbox', 'MalformedTitleRelativeException' ),
+			array( 'Foo/./Sandbox', 'MalformedTitleRelativeException' ),
+			array( 'Foo/../Sandbox', 'MalformedTitleRelativeException' ),
+			array( 'Sandbox/.', 'MalformedTitleRelativeException' ),
+			array( 'Sandbox/..', 'MalformedTitleRelativeException' ),
 			// Tilde
-			array( 'A ~~~ Name' ),
-			array( 'A ~~~~ Signature' ),
-			array( 'A ~~~~~ Timestamp' ),
-			array( str_repeat( 'x', 256 ) ),
+			array( 'A ~~~ Name', 'MalformedTitleTildesException' ),
+			array( 'A ~~~~ Signature', 'MalformedTitleTildesException' ),
+			array( 'A ~~~~~ Timestamp', 'MalformedTitleTildesException' ),
+			// Length
+			array( str_repeat( 'x', 256 ), 'MalformedTitleLengthExceededException' ),
 			// Namespace prefix without actual title
-			array( 'Talk:' ),
-			array( 'Talk:#' ),
-			array( 'Category: ' ),
-			array( 'Category: #bar' ),
+			array( 'Talk:', 'MalformedTitleEmptyException' ),
+			array( 'Talk:#', 'MalformedTitleEmptyException' ),
+			array( 'Category: ', 'MalformedTitleEmptyException' ),
+			array( 'Category: #bar', 'MalformedTitleEmptyException' ),
 			// interwiki prefix
-			array( 'localtestiw: Talk: # anchor' ),
-			array( 'localtestiw: Talk:' )
+			array( 'localtestiw: Talk: # anchor', 'MalformedTitleEmptyException' ),
+			array( 'localtestiw: Talk:', 'MalformedTitleEmptyException' )
 		);
 	}
 
@@ -162,9 +163,14 @@ class TitleTest extends MediaWikiTestCase {
 	 * @dataProvider provideInvalidSecureAndSplit
 	 * @note This mainly tests MediaWikiTitleCodec::parseTitle().
 	 */
-	public function testSecureAndSplitInvalid( $text ) {
+	public function testSecureAndSplitInvalid( $text, $expectedError ) {
 		$this->secureAndSplitGlobals();
-		$this->assertNull( Title::newFromText( $text ), "Invalid: $text" );
+		try {
+			Title::newFromTextThrow( $text ); // should throw
+			$this->assertTrue( false, "Invalid: $text" );
+		} catch ( MalformedTitleException $ex ) {
+			$this->assertInstanceOf( $expectedError, $ex, "Invalid: $text" );
+		}
 	}
 
 	public static function provideConvertByteClassToUnicodeClass() {

@@ -227,9 +227,11 @@ class Title {
 	public static function newFromDBkey( $key ) {
 		$t = new Title();
 		$t->mDbkeyform = $key;
-		if ( $t->secureAndSplit() ) {
+
+		try {
+			$t->secureAndSplit();
 			return $t;
-		} else {
+		} catch ( MalformedTitleException $ex ) {
 			return null;
 		}
 	}
@@ -266,6 +268,32 @@ class Title {
 			throw new MWException( 'Title::newFromText given an object' );
 		}
 
+		try {
+			return Title::newFromTextThrow( $text, $defaultNamespace );
+		} catch ( MalformedTitleException $ex ) {
+			return null;
+		}
+	}
+
+	/**
+	 * Like Title::newFromText(), but throws MalformedTitleException when the title is invalid,
+	 * rather than returning null.
+	 *
+	 * The exception subclasses encode detailed information about why the title is invalid.
+	 *
+	 * @see Title::newFromText
+	 *
+	 * @since 1.25
+	 * @param string $text Title text to check
+	 * @param int $defaultNamespace
+	 * @throws MalformedTitleException If the title is invalid
+	 * @return Title
+	 */
+	public static function newFromTextThrow( $text, $defaultNamespace = NS_MAIN ) {
+		if ( is_object( $text ) ) {
+			throw new MWException( 'Title::newFromTextThrow given an object' );
+		}
+
 		$cache = self::getTitleCache();
 
 		/**
@@ -287,14 +315,11 @@ class Title {
 		$t->mDbkeyform = str_replace( ' ', '_', $filteredText );
 		$t->mDefaultNamespace = intval( $defaultNamespace );
 
-		if ( $t->secureAndSplit() ) {
-			if ( $defaultNamespace == NS_MAIN ) {
-				$cache->set( $text, $t );
-			}
-			return $t;
-		} else {
-			return null;
+		$t->secureAndSplit();
+		if ( $defaultNamespace == NS_MAIN ) {
+			$cache->set( $text, $t );
 		}
+		return $t;
 	}
 
 	/**
@@ -323,9 +348,11 @@ class Title {
 		}
 
 		$t->mDbkeyform = str_replace( ' ', '_', $url );
-		if ( $t->secureAndSplit() ) {
+
+		try {
+			$t->secureAndSplit();
 			return $t;
-		} else {
+		} catch ( MalformedTitleException $ex ) {
 			return null;
 		}
 	}
@@ -504,9 +531,11 @@ class Title {
 
 		$t = new Title();
 		$t->mDbkeyform = Title::makeName( $ns, $title, $fragment, $interwiki );
-		if ( $t->secureAndSplit() ) {
+
+		try {
+			$t->secureAndSplit();
 			return $t;
-		} else {
+		} catch ( MalformedTitleException $ex ) {
 			return null;
 		}
 	}
@@ -3318,6 +3347,7 @@ class Title {
 	 * namespace prefixes, sets the other forms, and canonicalizes
 	 * everything.
 	 *
+	 * @throws MalformedTitleException On invalid titles
 	 * @return bool True on success
 	 */
 	private function secureAndSplit() {
@@ -3328,15 +3358,12 @@ class Title {
 
 		$dbkey = $this->mDbkeyform;
 
-		try {
-			// @note: splitTitleString() is a temporary hack to allow MediaWikiTitleCodec to share
-			//        the parsing code with Title, while avoiding massive refactoring.
-			// @todo: get rid of secureAndSplit, refactor parsing code.
-			$titleParser = self::getTitleParser();
-			$parts = $titleParser->splitTitleString( $dbkey, $this->getDefaultNamespace() );
-		} catch ( MalformedTitleException $ex ) {
-			return false;
-		}
+		// @note: splitTitleString() is a temporary hack to allow MediaWikiTitleCodec to share
+		//        the parsing code with Title, while avoiding massive refactoring.
+		// @todo: get rid of secureAndSplit, refactor parsing code.
+		$titleParser = self::getTitleParser();
+		// MalformedTitleException can be thrown here
+		$parts = $titleParser->splitTitleString( $dbkey, $this->getDefaultNamespace() );
 
 		# Fill fields
 		$this->setFragment( '#' . $parts['fragment'] );
