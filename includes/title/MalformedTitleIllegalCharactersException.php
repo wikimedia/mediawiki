@@ -18,30 +18,19 @@
  * @file
  */
 
-/**
- * MalformedTitleException is thrown when a TitleParser is unable to parse a title string.
- */
-class MalformedTitleException extends Exception {
-	private $titleText;
+class MalformedTitleIllegalCharactersException extends MalformedTitleException {
+	private $illegal;
 
-	public function __construct( $text ) {
-		$this->titleText = $text;
+	public function __construct( $text, $illegal ) {
+		parent::__construct( $text );
+		$this->illegal = $illegal;
 	}
 
-	public function getTitleText() {
-		return $this->titleText;
-	}
-
-	/**
-	 * Return l10n messages to be used by BadTitleError for this exception.
-	 *
-	 * @return array( error page title message, error text message, error text parameters )
-	 */
 	public function getErrorPageParams() {
 		return array(
-			'badtitle',
-			'badtitletext',
-			array()
+			'title-invalid-characters',
+			'title-invalid-characters-text',
+			array( $this->illegal, $this->getTitleText() )
 		);
 	}
 }

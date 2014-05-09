@@ -18,30 +18,22 @@
  * @file
  */
 
-/**
- * MalformedTitleException is thrown when a TitleParser is unable to parse a title string.
- */
-class MalformedTitleException extends Exception {
-	private $titleText;
+class MalformedTitleLengthExceededException extends MalformedTitleException {
+	private $maxLength;
 
-	public function __construct( $text ) {
-		$this->titleText = $text;
+	public function __construct( $text, $maxLength ) {
+		parent::__construct( $text );
+		$this->maxLength = $maxLength;
 	}
 
-	public function getTitleText() {
-		return $this->titleText;
-	}
-
-	/**
-	 * Return l10n messages to be used by BadTitleError for this exception.
-	 *
-	 * @return array( error page title message, error text message, error text parameters )
-	 */
 	public function getErrorPageParams() {
+		global $wgLang;
+		// This function should be a static one somewhere, it doesn't depend on the language…
+		$truncated = $wgLang->truncate( $this->getTitleText(), $this->maxLength, '' );
 		return array(
-			'badtitle',
-			'badtitletext',
-			array()
+			'title-invalid-too-long',
+			'title-invalid-too-long-text',
+			array( $this->maxLength, $truncated, $this->getTitleText() )
 		);
 	}
 }
