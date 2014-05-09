@@ -441,6 +441,8 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Helper method for calculating when this module's definition summary was last changed.
 	 *
+	 * @since 1.23
+	 *
 	 * @return int UNIX timestamp or 0 if no definition summary was provided
 	 *  by getDefinitionSummary()
 	 */
@@ -504,6 +506,8 @@ abstract class ResourceLoaderModule {
 	 * taken into account when building the hash. This data structure must only
 	 * contain arrays and scalars as values (avoid object instances) which means
 	 * it requires abstraction.
+	 *
+	 * @since 1.23
 	 *
 	 * @return array|null
 	 */
