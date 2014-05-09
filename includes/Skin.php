@@ -1244,6 +1244,8 @@ abstract class Skin extends ContextSource {
 		if ( $wgEnableSidebarCache ) {
 			$cachedsidebar = $wgMemc->get( $key );
 			if ( $cachedsidebar ) {
+				wfRunHooks( 'SidebarBeforeOutput', array( &$cachedsidebar, $this ) );
+
 				wfProfileOut( __METHOD__ );
 				return $cachedsidebar;
 			}
@@ -1256,6 +1258,8 @@ abstract class Skin extends ContextSource {
 		if ( $wgEnableSidebarCache ) {
 			$wgMemc->set( $key, $bar, $wgSidebarCacheExpiry );
 		}
+
+		wfRunHooks( 'SidebarBeforeOutput', array( &$bar, $this ) );
 
 		wfProfileOut( __METHOD__ );
 		return $bar;
