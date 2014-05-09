@@ -33,7 +33,6 @@
  * @ingroup Site
  */
 class MediaWikiSite extends Site {
-
 	const PATH_FILE = 'file_path';
 	const PATH_PAGE = 'page_path';
 
@@ -76,14 +75,16 @@ class MediaWikiSite extends Site {
 	}
 
 	/**
-	 * Returns the normalized form of the given page title, using the normalization rules of the given site.
-	 * If the given title is a redirect, the redirect weill be resolved and the redirect target is returned.
+	 * Returns the normalized form of the given page title, using the
+	 * normalization rules of the given site. If the given title is a redirect,
+	 * the redirect weill be resolved and the redirect target is returned.
 	 *
-	 * @note  : This actually makes an API request to the remote site, so beware that this function is slow and depends
-	 *          on an external service.
+	 * @note This actually makes an API request to the remote site, so beware
+	 *   that this function is slow and depends on an external service.
 	 *
-	 * @note  : If MW_PHPUNIT_TEST is defined, the call to the external site is skipped, and the title
-	 *          is normalized using the local normalization rules as implemented by the Title class.
+	 * @note If MW_PHPUNIT_TEST is defined, the call to the external site is
+	 *   skipped, and the title is normalized using the local normalization
+	 *   rules as implemented by the Title class.
 	 *
 	 * @see Site::normalizePageName
 	 *
@@ -103,8 +104,10 @@ class MediaWikiSite extends Site {
 
 		// Go on call the external site
 		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
-			// If the code is under test, don't call out to other sites, just normalize locally.
-			// Note: this may cause results to be inconsistent with the actual normalization used by the respective remote site!
+			// If the code is under test, don't call out to other sites, just
+			// normalize locally.
+			// Note: this may cause results to be inconsistent with the actual
+			// normalization used by the respective remote site!
 
 			$t = Title::newFromText( $pageName );
 			return $t->getPrefixedText();
@@ -152,12 +155,14 @@ class MediaWikiSite extends Site {
 		$page = static::extractPageRecord( $data, $pageName );
 
 		if ( isset( $page['missing'] ) ) {
-			wfDebugLog( "MediaWikiSite", "call to <$url> returned a marker for a missing page title! " . $ret );
+			wfDebugLog( "MediaWikiSite", "call to <$url> returned a marker for a missing page title! "
+				. $ret );
 			return false;
 		}
 
 		if ( isset( $page['invalid'] ) ) {
-			wfDebugLog( "MediaWikiSite", "call to <$url> returned a marker for an invalid page title! " . $ret );
+			wfDebugLog( "MediaWikiSite", "call to <$url> returned a marker for an invalid page title! "
+				. $ret );
 			return false;
 		}
 
@@ -348,5 +353,4 @@ class MediaWikiSite extends Site {
 
 		return $filePath;
 	}
-
 }

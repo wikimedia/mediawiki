@@ -29,7 +29,6 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class SiteSQLStore implements SiteStore {
-
 	/**
 	 * @since 1.21
 	 *
@@ -169,7 +168,10 @@ class SiteSQLStore implements SiteStore {
 		}
 
 		if ( $siteRow->hasField( 'language' ) ) {
-			$site->setLanguageCode( $siteRow->getField( 'language' ) === '' ? null : $siteRow->getField( 'language' ) );
+			$site->setLanguageCode( $siteRow->getField( 'language' ) === ''
+				? null
+				: $siteRow->getField( 'language' )
+			);
 		}
 
 		if ( $siteRow->hasField( 'source' ) ) {
@@ -504,5 +506,4 @@ class Sites extends SiteSQLStore {
 	public function getSiteGroup( $group ) {
 		return $this->getSites()->getGroup( $group );
 	}
-
 }
