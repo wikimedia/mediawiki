@@ -36,9 +36,12 @@ production.
 * $wgPasswordSenderName has been removed and is no longer functional. To set a
   custom mailer name, the system message 'emailsender' should be modified
   (default: "{{SITENAME}}").
-* If you customized [[MediaWiki:Enotif body]] (the text of email notifications),
+* (bug 63269) Email notifications were not correctly handling the
+  [[MediaWiki:Helppage]] message being set to a full URL (the default).
+  If you customized [[MediaWiki:Enotif body]] (the text of email notifications),
   you'll need to edit it locally to include the URL via the new variable
-  $HELPPAGE instead of the parser functions fullurl and canonicalurl.
+  $HELPPAGE instead of the parser functions fullurl and canonicalurl; otherwise
+  you don't have to do anything.
 * $wgDBAhandler was removed as the only class using it was also removed
 * The 'max threads' setting was removed from $wgDBservers.
 * Support for AdminSettings.php has been completely removed. All configuration
