@@ -1667,6 +1667,8 @@ abstract class BaseTemplate extends QuickTemplate {
 			unset( $sidebar['LANGUAGES'] );
 		}
 
+		wfRunHooks( 'SidebarBeforeOutput', array( &$sidebar, $this ) );
+
 		$boxes = array();
 		foreach ( $sidebar as $boxName => $content ) {
 			if ( $content === false ) {

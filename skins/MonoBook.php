@@ -234,6 +234,8 @@ class MonoBookTemplate extends BaseTemplate {
 			$sidebar['LANGUAGES'] = true;
 		}
 
+		wfRunHooks( 'SidebarBeforeOutput', array( &$sidebar, $this->getSkin() ) );
+
 		foreach ( $sidebar as $boxName => $content ) {
 			if ( $content === false ) {
 				continue;

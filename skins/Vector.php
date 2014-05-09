@@ -342,6 +342,9 @@ class VectorTemplate extends BaseTemplate {
 		if ( !isset( $portals['LANGUAGES'] ) ) {
 			$portals['LANGUAGES'] = true;
 		}
+
+		wfRunHooks( 'SidebarBeforeOutput', array( &$portals, $this->getSkin() ) );
+
 		// Render portals
 		foreach ( $portals as $name => $content ) {
 			if ( $content === false ) {

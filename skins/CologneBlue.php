@@ -560,6 +560,8 @@ class CologneBlueTemplate extends BaseTemplate {
 			}
 		}
 
+		wfRunHooks( 'SidebarBeforeOutput', array( &$bar, $this->getSkin() ) );
+
 		// Output the sidebar
 		// CologneBlue uses custom messages for some portlets, but we should keep the ids for consistency
 		$idToMessage = array(
