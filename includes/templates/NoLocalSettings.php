@@ -54,30 +54,31 @@ if ( !function_exists( 'session_name' ) ) {
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-	<head>
-		<meta charset="UTF-8" />
-		<title>MediaWiki <?php echo htmlspecialchars( $wgVersion ) ?></title>
-		<style media='screen'>
-			html, body {
-				color: #000;
-				background-color: #fff;
-				font-family: sans-serif;
-				text-align: center;
-			}
+<head>
+	<meta charset="UTF-8"/>
+	<title>MediaWiki <?php echo htmlspecialchars( $wgVersion ) ?></title>
+	<style media='screen'>
+		html, body {
+			color: #000;
+			background-color: #fff;
+			font-family: sans-serif;
+			text-align: center;
+		}
 
-			h1 {
-				font-size: 150%;
-			}
-		</style>
-	</head>
-	<body>
-		<img src="<?php echo htmlspecialchars( $path ) ?>skins/common/images/mediawiki.png" alt='The MediaWiki logo' />
+		h1 {
+			font-size: 150%;
+		}
+	</style>
+</head>
+<body>
+<img src="<?php echo htmlspecialchars( $path ) ?>skins/common/images/mediawiki.png" alt='The MediaWiki logo'/>
 
-		<h1>MediaWiki <?php echo htmlspecialchars( $wgVersion ) ?></h1>
-		<div class='error'>
-		<?php if ( !file_exists( MW_CONFIG_FILE ) ) { ?>
-			<p>LocalSettings.php not found.</p>
-			<p>
+<h1>MediaWiki <?php echo htmlspecialchars( $wgVersion ) ?></h1>
+
+<div class='error'>
+	<?php if ( !file_exists( MW_CONFIG_FILE ) ) { ?>
+		<p>LocalSettings.php not found.</p>
+		<p>
 			<?php
 			if ( $installerStarted ) {
 				echo "Please <a href=\"" . htmlspecialchars( $path ) . "mw-config/index." . htmlspecialchars( $ext ) . "\"> complete the installation</a> and download LocalSettings.php.";
@@ -85,12 +86,12 @@ if ( !function_exists( 'session_name' ) ) {
 				echo "Please <a href=\"" . htmlspecialchars( $path ) . "mw-config/index." . htmlspecialchars( $ext ) . "\"> set up the wiki</a> first.";
 			}
 			?>
-			</p>
-		<?php } else { ?>
-			<p>LocalSettings.php not readable.</p>
-			<p>Please correct file permissions and try again.</p>
-		<?php } ?>
+		</p>
+	<?php } else { ?>
+		<p>LocalSettings.php not readable.</p>
+		<p>Please correct file permissions and try again.</p>
+	<?php } ?>
 
-		</div>
-	</body>
+</div>
+</body>
 </html>
