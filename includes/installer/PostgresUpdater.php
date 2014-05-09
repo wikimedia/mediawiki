@@ -406,6 +406,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'recentchanges', 'rc_source', "TEXT NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'page', 'page_links_updated', "TIMESTAMPTZ NULL" ),
 			array( 'addPgField', 'mwuser', 'user_password_expires', 'TIMESTAMPTZ NULL' ),
+			array( 'changeFieldPurgeTable', 'l10n_cache', 'lc_value', 'bytea', "replace(lc_value,'\','\\\\')::bytea" ),
 		);
 	}
 
@@ -657,6 +658,35 @@ END;
 		if ( $fi->type() === $newtype ) {
 			$this->output( "...column '$table.$field' is already of type '$newtype'\n" );
 		} else {
+			$this->output( "Changing column type of '$table.$field' from '{$fi->type()}' to '$newtype'\n" );
+			$sql = "ALTER TABLE $table ALTER $field TYPE $newtype";
+			if ( strlen( $default ) ) {
+				$res = array();
+				if ( preg_match( '/DEFAULT (.+)/', $default, $res ) ) {
+					$sqldef = "ALTER TABLE $table ALTER $field SET DEFAULT $res[1]";
+					$this->db->query( $sqldef );
+					$default = preg_replace( '/\s*DEFAULT .+/', '', $default );
+				}
+				$sql .= " USING $default";
+			}
+			$this->db->query( $sql );
+		}
+	}
+
+	protected function changeFieldPurgeTable( $table, $field, $newtype, $default ) {
+		## For a cache table, empty it if the field needs to be changed, because the old contents
+		## may be corrupted.  If the column is already the desired type, refrain from purging.
+		$fi = $this->db->fieldInfo( $table, $field );
+		if ( is_null( $fi ) ) {
+			$this->output( "...ERROR: expected column $table.$field to exist\n" );
+			exit( 1 );
+		}
+
+		if ( $fi->type() === $newtype ) {
+			$this->output( "...column '$table.$field' is already of type '$newtype'\n" );
+		} else {
+			$this->output( "Purging data from cache table '$table'\n" );
+			$this->db->query("DELETE from $table" );
 			$this->output( "Changing column type of '$table.$field' from '{$fi->type()}' to '$newtype'\n" );
 			$sql = "ALTER TABLE $table ALTER $field TYPE $newtype";
 			if ( strlen( $default ) ) {
