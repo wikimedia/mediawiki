@@ -5789,14 +5789,28 @@ $wgUnwatchedPageThreshold = false;
  * @since 1.22
  */
 $wgRecentChangesFlags = array(
-	'newpage' => array( 'letter' => 'newpageletter',
-		'title' => 'recentchanges-label-newpage' ),
-	'minor' => array( 'letter' => 'minoreditletter',
-		'title' => 'recentchanges-label-minor', 'class' => 'minoredit' ),
-	'bot' => array( 'letter' => 'boteditletter',
-		'title' => 'recentchanges-label-bot', 'class' => 'botedit' ),
-	'unpatrolled' => array( 'letter' => 'unpatrolledletter',
-		'title' => 'recentchanges-label-unpatrolled' ),
+	'newpage' => array(
+		'letter' => 'newpageletter',
+		'title' => 'recentchanges-label-newpage',
+		'legend' => 'recentchanges-legend-newpage',
+	),
+	'minor' => array(
+		'letter' => 'minoreditletter',
+		'title' => 'recentchanges-label-minor',
+		'legend' => 'recentchanges-legend-minor',
+		'class' => 'minoredit',
+	),
+	'bot' => array(
+		'letter' => 'boteditletter',
+		'title' => 'recentchanges-label-bot',
+		'legend' => 'recentchanges-legend-bot',
+		'class' => 'botedit',
+	),
+	'unpatrolled' => array(
+		'letter' => 'unpatrolledletter',
+		'title' => 'recentchanges-label-unpatrolled',
+		'legend' => 'recentchanges-legend-unpatrolled',
+	),
 );
 
 /** @} */ # end RC/watchlist }
