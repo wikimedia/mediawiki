@@ -80,22 +80,22 @@ class TitleTest extends MediaWikiTestCase {
 
 	public static function provideInvalidSecureAndSplit() {
 		return array(
-			array( '' ),
-			array( ':' ),
-			array( '__  __' ),
-			array( '  __  ' ),
+			array( '', 'title-invalid-empty' ),
+			array( ':', 'title-invalid-empty' ),
+			array( '__  __', 'title-invalid-empty' ),
+			array( '  __  ', 'title-invalid-empty' ),
 			// Bad characters forbidden regardless of wgLegalTitleChars
-			array( 'A [ B' ),
-			array( 'A ] B' ),
-			array( 'A { B' ),
-			array( 'A } B' ),
-			array( 'A < B' ),
-			array( 'A > B' ),
-			array( 'A | B' ),
+			array( 'A [ B', 'title-invalid-characters' ),
+			array( 'A ] B', 'title-invalid-characters' ),
+			array( 'A { B', 'title-invalid-characters' ),
+			array( 'A } B', 'title-invalid-characters' ),
+			array( 'A < B', 'title-invalid-characters' ),
+			array( 'A > B', 'title-invalid-characters' ),
+			array( 'A | B', 'title-invalid-characters' ),
 			// URL encoding
-			array( 'A%20B' ),
-			array( 'A%23B' ),
-			array( 'A%2523B' ),
+			array( 'A%20B', 'badtitle' ),
+			array( 'A%23B', 'badtitle' ),
+			array( 'A%2523B', 'badtitle' ),
 			// XML/HTML character entity references
 			// Note: Commented out because they are not marked invalid by the PHP test as
 			// Title::newFromText runs Sanitizer::decodeCharReferencesAndNormalize first.
@@ -103,29 +103,30 @@ class TitleTest extends MediaWikiTestCase {
 			//'A &#233; B',
 			//'A &#x00E9; B',
 			// Subject of NS_TALK does not roundtrip to NS_MAIN
-			array( 'Talk:File:Example.svg' ),
+			array( 'Talk:File:Example.svg', 'title-invalid-talk-namespace' ),
 			// Directory navigation
-			array( '.' ),
-			array( '..' ),
-			array( './Sandbox' ),
-			array( '../Sandbox' ),
-			array( 'Foo/./Sandbox' ),
-			array( 'Foo/../Sandbox' ),
-			array( 'Sandbox/.' ),
-			array( 'Sandbox/..' ),
+			array( '.', 'title-invalid-relative' ),
+			array( '..', 'title-invalid-relative' ),
+			array( './Sandbox', 'title-invalid-relative' ),
+			array( '../Sandbox', 'title-invalid-relative' ),
+			array( 'Foo/./Sandbox', 'title-invalid-relative' ),
+			array( 'Foo/../Sandbox', 'title-invalid-relative' ),
+			array( 'Sandbox/.', 'title-invalid-relative' ),
+			array( 'Sandbox/..', 'title-invalid-relative' ),
 			// Tilde
-			array( 'A ~~~ Name' ),
-			array( 'A ~~~~ Signature' ),
-			array( 'A ~~~~~ Timestamp' ),
-			array( str_repeat( 'x', 256 ) ),
+			array( 'A ~~~ Name', 'title-invalid-magic-tilde' ),
+			array( 'A ~~~~ Signature', 'title-invalid-magic-tilde' ),
+			array( 'A ~~~~~ Timestamp', 'title-invalid-magic-tilde' ),
+			// Length
+			array( str_repeat( 'x', 256 ), 'title-invalid-too-long' ),
 			// Namespace prefix without actual title
-			array( 'Talk:' ),
-			array( 'Talk:#' ),
-			array( 'Category: ' ),
-			array( 'Category: #bar' ),
+			array( 'Talk:', 'title-invalid-empty' ),
+			array( 'Talk:#', 'title-invalid-empty' ),
+			array( 'Category: ', 'title-invalid-empty' ),
+			array( 'Category: #bar', 'title-invalid-empty' ),
 			// interwiki prefix
-			array( 'localtestiw: Talk: # anchor' ),
-			array( 'localtestiw: Talk:' )
+			array( 'localtestiw: Talk: # anchor', 'title-invalid-empty' ),
+			array( 'localtestiw: Talk:', 'title-invalid-empty' )
 		);
 	}
 
@@ -164,9 +165,14 @@ class TitleTest extends MediaWikiTestCase {
 	 * @dataProvider provideInvalidSecureAndSplit
 	 * @note This mainly tests MediaWikiTitleCodec::parseTitle().
 	 */
-	public function testSecureAndSplitInvalid( $text ) {
+	public function testSecureAndSplitInvalid( $text, $expectedErrorMessage ) {
 		$this->secureAndSplitGlobals();
-		$this->assertNull( Title::newFromText( $text ), "Invalid: $text" );
+		try {
+			Title::newFromTextThrow( $text ); // should throw
+			$this->assertTrue( false, "Invalid: $text" );
+		} catch ( MalformedTitleException $ex ) {
+			$this->assertEquals( $expectedError, reset( $ex->getErrorPageParams() ), "Invalid: $text" );
+		}
 	}
 
 	public static function provideConvertByteClassToUnicodeClass() {

@@ -51,6 +51,7 @@ class MediaWiki {
 	/**
 	 * Parse the request to get the Title object
 	 *
+	 * @throws MalformedTitleException If a title has been provided by the user, but is invalid.
 	 * @return Title Title object to be $wgTitle
 	 */
 	private function parseTitle() {
@@ -110,7 +111,10 @@ class MediaWiki {
 		}
 
 		if ( $ret === null || ( $ret->getDBkey() == '' && !$ret->isExternal() ) ) {
-			$ret = SpecialPage::getTitleFor( 'Badtitle' );
+			// If we get here, we definitely don't have a valid title; throw an exception.
+			// Try to get detailed invalid title exception first, fall back to MalformedTitleException.
+			Title::newFromTextThrow( $title );
+			throw new MalformedTitleException( null, $title );
 		}
 
 		return $ret;
@@ -122,7 +126,11 @@ class MediaWiki {
 	 */
 	public function getTitle() {
 		if ( !$this->context->hasTitle() ) {
-			$this->context->setTitle( $this->parseTitle() );
+			try {
+				$this->context->setTitle( $this->parseTitle() );
+			} catch ( MalformedTitleException $ex ) {
+				$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
+			}
 		}
 		return $this->context->getTitle();
 	}
@@ -174,6 +182,11 @@ class MediaWiki {
 			|| $title->isSpecial( 'Badtitle' )
 		) {
 			$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
+			try {
+				$this->parseTitle();
+			} catch ( MalformedTitleException $ex ) {
+				throw new BadTitleError( $ex );
+			}
 			throw new BadTitleError();
 		}
 
@@ -219,6 +232,11 @@ class MediaWiki {
 				$output->redirect( $url, 301 );
 			} else {
 				$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
+				try {
+					$this->parseTitle();
+				} catch ( MalformedTitleException $ex ) {
+					throw new BadTitleError( $ex );
+				}
 				throw new BadTitleError();
 			}
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
