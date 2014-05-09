@@ -435,7 +435,11 @@ class LoginForm extends SpecialPage {
 
 		// Normalize the name so that silly things don't cause "invalid username"
 		// errors. User::newFromName does some rather strict checking, rejecting
-		// e.g. leading/trailing/multiple spaces.
+		// e.g. leading/trailing/multiple spaces. But first we need to reject
+		// usernames that would be treated as titles with a fragment part.
+		if ( strpos( $this->mUsername, '#' ) !== false ) {
+			return Status::newFatal( 'noname' );
+		}
 		$title = Title::makeTitleSafe( NS_USER, $this->mUsername );
 		if ( !is_object( $title ) ) {
 			return Status::newFatal( 'noname' );
