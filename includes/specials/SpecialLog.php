@@ -80,7 +80,9 @@ class SpecialLog extends SpecialPage {
 		$type = $opts->getValue( 'type' );
 		if ( !LogPage::isLogType( $type ) ) {
 			$opts->setValue( 'type', '' );
-		} elseif ( isset( $wgLogRestrictions[$type] ) && !$this->getUser()->isAllowed( $wgLogRestrictions[$type] ) ) {
+		} elseif ( isset( $wgLogRestrictions[$type] )
+			&& !$this->getUser()->isAllowed( $wgLogRestrictions[$type] )
+		) {
 			throw new PermissionsError( $wgLogRestrictions[$type] );
 		}
 

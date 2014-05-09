@@ -68,14 +68,20 @@ class SpecialListFiles extends IncludableSpecialPage {
  * @ingroup SpecialPage Pager
  */
 class ImageListPager extends TablePager {
-	var $mFieldNames = null;
+	protected $mFieldNames = null;
+
 	// Subclasses should override buildQueryConds instead of using $mQueryConds variable.
-	var $mQueryConds = array();
-	var $mUserName = null;
-	var $mSearch = '';
-	var $mIncluding = false;
-	var $mShowAll = false;
-	var $mTableName = 'image';
+	protected $mQueryConds = array();
+
+	protected $mUserName = null;
+
+	protected $mSearch = '';
+
+	protected $mIncluding = false;
+
+	protected $mShowAll = false;
+
+	protected $mTableName = 'image';
 
 	function __construct( IContextSource $context, $userName = null, $search = '',
 		$including = false, $showAll = false
@@ -298,7 +304,8 @@ class ImageListPager extends TablePager {
 	function reallyDoQuery( $offset, $limit, $asc ) {
 		$prevTableName = $this->mTableName;
 		$this->mTableName = 'image';
-		list( $tables, $fields, $conds, $fname, $options, $join_conds ) = $this->buildQueryInfo( $offset, $limit, $asc );
+		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
+			$this->buildQueryInfo( $offset, $limit, $asc );
 		$imageRes = $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds );
 		$this->mTableName = $prevTableName;
 
@@ -315,7 +322,8 @@ class ImageListPager extends TablePager {
 		}
 		$this->mIndexField = 'oi_' . substr( $this->mIndexField, 4 );
 
-		list( $tables, $fields, $conds, $fname, $options, $join_conds ) = $this->buildQueryInfo( $offset, $limit, $asc );
+		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
+			$this->buildQueryInfo( $offset, $limit, $asc );
 		$oldimageRes = $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds );
 
 		$this->mTableName = $prevTableName;
@@ -360,11 +368,17 @@ class ImageListPager extends TablePager {
 				}
 			}
 		}
+
+		// @codingStandardsIgnoreStart Squiz.WhiteSpace.SemicolonSpacing.Incorrect
 		for ( ; $i < $limit && $topRes1; $i++ ) {
+			// @codingStandardsIgnoreEnd
 			$resultArray[] = $topRes1;
 			$topRes1 = $res1->next();
 		}
+
+		// @codingStandardsIgnoreStart Squiz.WhiteSpace.SemicolonSpacing.Incorrect
 		for ( ; $i < $limit && $topRes2; $i++ ) {
+			// @codingStandardsIgnoreEnd
 			$resultArray[] = $topRes2;
 			$topRes2 = $res2->next();
 		}
