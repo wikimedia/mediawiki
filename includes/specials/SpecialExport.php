@@ -259,8 +259,14 @@ class SpecialExport extends SpecialPage {
 			) . '<br />';
 		}
 
-		// Enable this when we can do something useful exporting/importing image information. :)
-		//$form .= Xml::checkLabel( $this->msg( 'export-images' )->text(), 'images', 'wpExportImages', false ) . '<br />';
+		/* Enable this when we can do something useful exporting/importing image information.
+		$form .= Xml::checkLabel(
+				$this->msg( 'export-images' )->text(),
+				'images',
+				'wpExportImages',
+				false
+			) . '<br />';
+		*/
 		$form .= Xml::checkLabel(
 			$this->msg( 'export-download' )->text(),
 			'wpDownload',
@@ -510,7 +516,9 @@ class SpecialExport extends SpecialPage {
 	 * @return array
 	 */
 	private function getPageLinks( $inputPages, $pageSet, $depth ) {
+		// @codingStandardsIgnoreStart Squiz.WhiteSpace.SemicolonSpacing.Incorrect
 		for ( ; $depth > 0; --$depth ) {
+			// @codingStandardsIgnoreEnd
 			$pageSet = $this->getLinks(
 				$inputPages, $pageSet, 'pagelinks',
 				array( 'namespace' => 'pl_namespace', 'title' => 'pl_title' ),
