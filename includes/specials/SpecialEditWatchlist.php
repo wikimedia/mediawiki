@@ -625,6 +625,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		switch ( $mode ) {
 			case 'clear':
 			case self::EDIT_CLEAR:
+			        return self::EDIT_CLEAR;
 			case 'raw':
 			case self::EDIT_RAW:
 				return self::EDIT_RAW;
