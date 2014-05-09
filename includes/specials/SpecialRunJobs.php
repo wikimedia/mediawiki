@@ -66,12 +66,13 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 
 		// Constant-time signature verification
 		// http://www.emerose.com/timing-attacks-explained
-		// @todo: make a common method for this
+		// @todo Make a common method for this
 		if ( !is_string( $rSig ) || strlen( $rSig ) !== strlen( $cSig ) ) {
 			$verified = false;
 		} else {
 			$result = 0;
-			for ( $i = 0; $i < strlen( $cSig ); $i++ ) {
+			$cSigLength = strlen( $cSig );
+			for ( $i = 0; $i < $cSigLength; $i++ ) {
 				$result |= ord( $cSig[$i] ) ^ ord( $rSig[$i] );
 			}
 			$verified = ( $result == 0 );
