@@ -9,6 +9,8 @@ MediaWiki 1.24 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.24 ===
+* The server's canonical hostname is available as $wgServerName, which is
+  exposed in both mw.config and ApiQuerySiteInfo.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate

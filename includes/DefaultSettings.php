@@ -104,6 +104,13 @@ $wgServer = WebRequest::detectServer();
  */
 $wgCanonicalServer = false;
 
+/**
+ * Server name. This is automatically computed by parsing the bare
+ * hostname out of $wgCanonicalServer. It should not be customized.
+ * @since 1.24
+ */
+$wgServerName = false;
+
 /************************************************************************//**
  * @name   Script path settings
  * @{
@@ -1304,21 +1311,22 @@ $wgDjvuOutputExtension = 'jpg';
  * @{
  */
 
-$serverName = substr( $wgServer, strrpos( $wgServer, '/' ) + 1 );
 
 /**
  * Site admin email address.
+ *
+ * Defaults to "wikiadmin@{$wgServerName}".
  */
-$wgEmergencyContact = 'wikiadmin@' . $serverName;
+$wgEmergencyContact = false;
 
 /**
  * Password reminder email address.
  *
  * The address we should use as sender when a user is requesting his password.
+ *
+ * Defaults to "apache@{$wgServerName}".
  */
-$wgPasswordSender = 'apache@' . $serverName;
-
-unset( $serverName ); # Don't leak local variables to global scope
+$wgPasswordSender = false;
 
 /**
  * Password reminder name

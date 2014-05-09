@@ -241,6 +241,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['script'] = $GLOBALS['wgScript'];
 		$data['variantarticlepath'] = $GLOBALS['wgVariantArticlePath'];
 		$data['server'] = $GLOBALS['wgServer'];
+		$data['servername'] = $GLOBALS['wgServerName'];
 		$data['wikiid'] = wfWikiID();
 		$data['time'] = wfTimestamp( TS_ISO_8601, time() );
 

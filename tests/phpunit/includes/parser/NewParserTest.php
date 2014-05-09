@@ -65,6 +65,7 @@ class NewParserTest extends MediaWikiTestCase {
 		$tmpGlobals['wgContLang'] = Language::factory( 'en' );
 		$tmpGlobals['wgSitename'] = 'MediaWiki';
 		$tmpGlobals['wgServer'] = 'http://example.org';
+		$tmpGlobals['wgServerName'] = 'example.org';
 		$tmpGlobals['wgScript'] = '/index.php';
 		$tmpGlobals['wgScriptPath'] = '/';
 		$tmpGlobals['wgArticlePath'] = '/wiki/$1';
