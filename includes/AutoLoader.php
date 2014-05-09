@@ -355,6 +355,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiUpload' => 'includes/api/ApiUpload.php',
 	'ApiUserrights' => 'includes/api/ApiUserrights.php',
 	'ApiWatch' => 'includes/api/ApiWatch.php',
+	'APiWatchlistClear' => 'includes/api/ApiWatchlistClear.php',
 	'UsageException' => 'includes/api/ApiMain.php',
 
 	# includes/cache
