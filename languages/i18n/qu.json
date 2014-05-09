@@ -8,7 +8,8 @@
 			"Reedy",
 			"The Evil IP address",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "T'inkikunata uranpi sikwiy",
@@ -774,7 +775,7 @@
 	"pagemerge-logentry": "[[$1]]-ta [[$2]]-man huñusqa (llamk'apusqakuna $3-kama)",
 	"revertmerge": "Huñusqata kutichiy",
 	"mergelogpagetext": "Kay qatiqpiqa aswan ñaqha huk p'anqa wiñay kawsaymanta huk p'anqa wiñay kawsayman huñusqakunatam rikunki.",
-	"history-title": "\"$1\" p'anqata hukchasqakunap wiñay kawsaynin",
+	"history-title": "«$1» p’anqata hukchasqakunap wiñay kawsaynin",
 	"difference-title": "$1 nisqapaq musuqchasqapura wakin kaynin",
 	"difference-title-multipage": "$1, $2 sutiyuq willañiqipura wakin kaynin",
 	"difference-multipage": "(P'anqakunaqa manam kaqllachu)",

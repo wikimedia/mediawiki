@@ -491,7 +491,7 @@
 	"whatlinkshere-links": "$1 ligami",
 	"whatlinkshere-hidetrans": "inclusione",
 	"whatlinkshere-hidelinks": "$1 ligami",
-	"ipadressorusername": "Adrizzu IP o nome di cuntributore",
+	"ipaddressorusername": "Adrizzu IP o nome di cuntributore",
 	"ipbreason": "Mutivu:",
 	"ipboptions": "2 ore:2 hours,1 ghjornu:1 day,3 ghjorni:3 days,1 sittimana:1 week,2 sittimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 annu:1 year,infinitu:infinite",
 	"ipblocklist": "Cuntributori bluccati",
@@ -584,7 +584,6 @@
 	"file-nohires": "Una diversione incù una risoluzione più alta ùn hè micca dispunibile.",
 	"show-big-image": "Schedariu originale",
 	"show-big-image-other": "{{PLURAL:$2|Altra risuluzione|Altre risuluzioni}}: $1.",
-	"showhidebots": "($1 boti)",
 	"noimages": "Nulla da vede.",
 	"ilsubmit": "Ricerca",
 	"bydate": "per data",
@@ -609,6 +608,7 @@
 	"table_pager_limit_label": "Risultati per pagina:",
 	"table_pager_limit_submit": "Invià",
 	"table_pager_empty": "Micca risultati",
+	"autosumm-replace": "Pagina sustituita incù '$1'",
 	"autoredircomment": "Reindirizzamentu à [[$1]]",
 	"autosumm-new": "Pagina nova: $1",
 	"watchlistedit-raw-titles": "Pagine:",
@@ -619,6 +619,7 @@
 	"tags-edit": "mudificà",
 	"logentry-delete-delete": "$1 ha cancellatu a pagina $3",
 	"logentry-move-move": "$1 {{GENDER:$2|hà spustatu}} a pagina $3 à $4",
+	"logentry-newusers-create": "U participante $3 hè statu creatu da $1",
 	"rightsnone": "(nessunu)",
 	"expand_templates_output": "Risultatu"
 }

@@ -1658,6 +1658,7 @@
 	"post-expand-template-argument-category-desc": "Пасьля раскрыцьця аргумэнту шаблёну (нешта ў трайных дужках, напрыклад, <code>{{{Foo}}}</code>), старонка перавышае памер <code>$wgMaxArticleSize</code>.",
 	"expensive-parserfunction-category-desc": "На старонцы ўжываецца зашмат рэсурсаёмістых функцыяў парсэру (такіх, як <code>#ifexist</code>). Глядзіце [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].",
 	"broken-file-category-desc": "Катэгорыя дадаецца, калі старонка ўтрымлівае няслушную спасылку на файл (спасылку на файл, які не існуе).",
+	"hidden-category-category-desc": "Гэта катэгорыя з дададзенай меткай <code><nowiki>__HIDDENCAT__</nowiki></code> у ёй, што па змоўчаньні не адлюстроўвае яе на старонках у сьпісе катэгорыяў.",
 	"mailnologin": "Няма адрасу атрымальніка",
 	"mailnologintext": "Вам неабходна [[Special:UserLogin|ўвайсьці ў сыстэму]] і мець пацьверджаны адрас электроннай пошты ў Вашых [[Special:Preferences|наладах]], каб дасылаць лісты іншым удзельнікам.",
 	"emailuser": "Даслаць ліст",

@@ -2458,6 +2458,7 @@
 	"newimages-summary": "本特殊页面展示最后上传的文件。",
 	"newimages-legend": "过滤",
 	"newimages-label": "文件名（或它的一部份）：",
+	"newimages-showbots": "显示机器人上传",
 	"noimages": "无可查看文件。",
 	"ilsubmit": "搜索",
 	"bydate": "按日期",

@@ -50,7 +50,7 @@
 	"config-help-restart": "是否要清除所有已輸入且儲存的資料，並重新開始安裝程序嗎？",
 	"config-restart": "是的，重新開始",
 	"config-welcome": "=== 環境檢查 ===\n現在會做基本的檢查，檢查環境是否符合 MediaWiki 安裝所需。\n若您要尋求如何完成安裝的協助，請記得提供以下訊息。",
-	"config-copyright": "=== 版權聲明與授權條款 ===\n\n$1\n\n本程式為自由軟體；您可依據自由軟體基金會所發表的 GNU 通用公共授權條款規定，將本程式重新發佈與/或修改；無論您依據的是本授權條款的第二版或 (您可自行選擇) 之後的任何版本。\n\n本程式發佈的目的是希望可以提供幫助，但 <strong>不負任何擔保責任</strong>；亦無隱含對 <strong>適售性</strong> 或 <strong>特定用途的適用性</strong> 的情形擔保。詳情請參照GNU 通用公共授權。\n\n您應已隨本程式收到 <doclink href=\"Copying\">GNU 通用公共授權條款</doclink>；如果沒有，請信件通知自由軟體基金會，51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA，或 [http://www.gnu.org/copyleft/gpl.html 線上閱讀]。",
+	"config-copyright": "=== 版權聲明與授權條款 ===\n\n$1\n\n本程式為自由軟體；您可依據自由軟體基金會所發表的 GNU 通用公共授權條款規定，將本程式重新發佈與/或修改；無論您依據的是本授權條款的第二版或 (您可自行選擇) 之後的任何版本。\n\n本程式發佈的目的是希望可以提供幫助，但 <strong>不負任何擔保責任</strong>；亦無隱含對 <strong>適售性</strong> 或 <strong>特定用途的適用性</strong> 的情形擔保。詳情請參照 GNU 通用公共授權。\n\n您應已隨本程式收到 <doclink href=\"Copying\">GNU 通用公共授權條款的副本</doclink>；如果沒有，請信件通知自由軟體基金會，51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA，或 [http://www.gnu.org/copyleft/gpl.html 線上閱讀]。",
 	"config-sidebar": "* [www.mediawiki.org/wiki/MediaWiki/zh-hant MediaWiki 首頁]\n* [www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents/zh 使用者指南]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents/zh 管理者指南]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/zh-hant 常見問題集]\n----\n* <doclink href=Readme>讀我說明</doclink>\n* <doclink href=ReleaseNotes>發行說明</doclink>\n* <doclink href=Copying>版權聲明</doclink>\n* <doclink href=UpgradeDoc>升級</doclink>",
 	"config-env-good": "環境檢查已完成。\n您可以安裝 MediaWiki。",
 	"config-env-bad": "環境檢查已完成。\n您無法安裝 MediaWiki。",

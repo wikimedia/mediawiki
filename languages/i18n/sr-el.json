@@ -1645,7 +1645,7 @@
 	"watchlistanontext": "Morate biti $1 da biste gledali i uređivali stavke na vašem spisku nadgledanja.",
 	"watchnologin": "Niste prijavljeni",
 	"addwatch": "Dodaj na spisak nadgledanja",
-	"addedwatchtext": "Stranica „[[:$1]]“ je dodata na vaš [[Special:Watchlist|spisak nadgledanja]].\nBuduće izmene ove stranice i njene stranice za razgovor biće navedene ovde.",
+	"addedwatchtext": "Stranica „[[:$1]]“ je dodata na vaš [[Special:Watchlist|spisak nadgledanja]].\nBuduće izmene ove stranice i njene stranice za razgovor biće navedene tamo.",
 	"removewatch": "Ukloni sa spiska nadgledanja",
 	"removedwatchtext": "Stranica „[[:$1]]“ je uklonjena s vašeg [[Special:Watchlist|spiska nadgledanja]].",
 	"watch": "Nadgledaj",
