@@ -20,14 +20,18 @@
 	 * @return {jQuery|null}
 	 */
 	function hideIfGetField( $el, name ) {
-		var sel, $found, $p;
+		var $found, $p,
+			suffix = name.replace( /^([^\[]+)/, '[$1]' );
 
-		sel = '[name="' + name + '"],' +
-			'[name="wp' + name + '"],' +
-			'[name$="' + name.replace( /^([^\[]+)/, '[$1]' ) + '"]';
+		function nameFilter() {
+			return this.name === name ||
+				this.name === ( 'wp' + name ) ||
+				this.name.slice( -suffix.length ) === suffix;
+		}
+
 		for ( $p = $el.parent(); $p.length > 0; $p = $p.parent() ) {
-			$found = $p.find( sel );
-			if ( $found.length > 0 ) {
+			$found = $p.find( '[name]' ).filter( nameFilter );
+			if ( $found.length ) {
 				return $found;
 			}
 		}
@@ -43,7 +47,7 @@
 	 * @return {Array} 2 elements: jQuery of dependent fields, and test function
 	 */
 	function hideIfParse( $el, spec ) {
-		var op, i, l, v, $field, $fields, func, funcs, getVal;
+		var op, i, l, v, $field, $fields, fields, func, funcs, getVal;
 
 		op = spec[0];
 		l = spec.length;
@@ -53,15 +57,16 @@
 			case 'NAND':
 			case 'NOR':
 				funcs = [];
-				$fields = $();
+				fields = [];
 				for ( i = 1; i < l; i++ ) {
 					if ( !$.isArray( spec[i] ) ) {
 						throw new Error( op + ' parameters must be arrays' );
 					}
 					v = hideIfParse( $el, spec[i] );
-					$fields = $fields.add( v[0] );
+					fields.push( v[0] );
 					funcs.push( v[1] );
 				}
+				$fields = $( fields );
 
 				l = funcs.length;
 				switch ( op ) {
@@ -143,12 +148,12 @@
 				}
 				v = spec[2];
 
-				if ( $field.first().attr( 'type' ) === 'radio' ||
-					$field.first().attr( 'type' ) === 'checkbox'
+				if ( $field.first().prop( 'type' ) === 'radio' ||
+					$field.first().prop( 'type' ) === 'checkbox'
 				) {
 					getVal = function () {
 						var $selected = $field.filter( ':checked' );
-						return $selected.length > 0 ? $selected.val() : '';
+						return $selected.length ? $selected.val() : '';
 					};
 				} else {
 					getVal = function () {
@@ -185,9 +190,9 @@
 	 */
 	$.fn.goIn = function ( instantToggle ) {
 		if ( instantToggle === true ) {
-			return $( this ).show();
+			return this.show();
 		}
-		return $( this ).stop( true, true ).fadeIn();
+		return this.stop( true, true ).fadeIn();
 	};
 
 	/**
@@ -199,31 +204,41 @@
 	 */
 	$.fn.goOut = function ( instantToggle ) {
 		if ( instantToggle === true ) {
-			return $( this ).hide();
+			return this.hide();
 		}
-		return $( this ).stop( true, true ).fadeOut();
+		return this.stop( true, true ).fadeOut();
 	};
 
 	/**
 	 * Bind a function to the jQuery object via live(), and also immediately trigger
 	 * the function on the objects with an 'instant' parameter set to true.
+	 *
+	 * @method
+	 * @deprecated since 1.24 Use .on() and .each() directly.
 	 * @param {Function} callback
 	 * @param {boolean|jQuery.Event} callback.immediate True when the event is called immediately,
 	 *  an event object when triggered from an event.
+	 * @return jQuery
+	 * @chainable
 	 */
-	$.fn.liveAndTestAtStart = function ( callback ) {
-		$( this )
+	mw.log.deprecate( $.fn, 'liveAndTestAtStart', function ( callback ) {
+		this
+			// Can't really migrate to .on() generically, needs knowledge of
+			// calling code to know the correct selector. Fix callers and
+			// get rid of this .liveAndTestAtStart() hack.
 			.live( 'change', callback )
 			.each( function () {
 				callback.call( this, true );
 			} );
-	};
+	} );
 
 	function enhance( $root ) {
 
-		// Animate the SelectOrOther fields, to only show the text field when
-		// 'other' is selected.
-		$root.find( '.mw-htmlform-select-or-other' ).liveAndTestAtStart( function ( instant ) {
+		/**
+		 * @ignore
+		 * @param {boolean|jQuery.Event} instant
+		 */
+		function handleSelectOrOther( instant ) {
 			var $other = $root.find( '#' + $( this ).attr( 'id' ) + '-other' );
 			$other = $other.add( $other.siblings( 'br' ) );
 			if ( $( this ).val() === 'other' ) {
@@ -231,13 +246,21 @@
 			} else {
 				$other.goOut( instant );
 			}
-		} );
+		}
+
+		// Animate the SelectOrOther fields, to only show the text field when
+		// 'other' is selected.
+		$root
+			.on( 'change', '.mw-htmlform-select-or-other', handleSelectOrOther )
+			.each( function () {
+				handleSelectOrOther.call( this, true );
+			} );
 
 		// Set up hide-if elements
 		$root.find( '.mw-htmlform-hide-if' ).each( function () {
-			var $el = $( this ),
-				spec = $el.data( 'hideIf' ),
-				v, $fields, test, func;
+			var v, $fields, test, func,
+				$el = $( this ),
+				spec = $el.data( 'hideIf' );
 
 			if ( !spec ) {
 				return;
@@ -253,7 +276,7 @@
 					$el.show();
 				}
 			};
-			$fields.change( func );
+			$fields.on( 'change', func );
 			func();
 		} );
 
