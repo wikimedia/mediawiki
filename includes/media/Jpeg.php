@@ -31,6 +31,81 @@
  * @ingroup Media
  */
 class JpegHandler extends ExifBitmapHandler {
+
+	function normaliseParams( $image, &$params ) {
+		if ( !parent::normaliseParams( $image, $params ) ) {
+			return false;
+		}
+		if ( isset( $params['quality'] ) ) {
+			$v = $params['quality'];
+			if ( !self::validateQuality( $v ) ) {
+				return false;
+			}
+			$params['quality'] = $v;
+		}
+		return true;
+	}
+
+	function validateParam( $name, $value ) {
+		if ( $name === 'quality' ) {
+			return self::validateQuality( $value );
+		} else {
+			return parent::validateParam( $name, $value );
+		}
+	}
+
+	/** Validate and normalize quality value to be between 1 and 100 (inclusive).
+	 * @param int $value quality value, will be converted to integer or 0 if invalid
+	 * @return bool true if the value is valid
+	 */
+	private static function validateQuality( &$value ) {
+		if ( !is_int( $value ) ) {
+			$v = intval( $value );
+			$isValid = (string) $v === (string) $value;
+			$value = $v;
+		} else {
+			$isValid = true;
+		}
+		return $isValid && $value >= 1 && $value <= 100;
+	}
+
+	function makeParamString( $params ) {
+		// Prepend quality as "qValue-". This has to match parseParamString() below
+		$res = parent::makeParamString( $params );
+		if ( $res && isset( $params['quality'] ) ) {
+			// Only allow regular and low quality
+			$q = $params['quality'];
+			if ( is_int( $q ) && $q < 50 ) {
+				$res = "qlow-$res";
+			}
+		}
+		return $res;
+	}
+
+	function parseParamString( $str ) {
+		// $str contains "qlow-200px" or "200px" strings because thumb.php would strip the filename
+		// first - check if the string begins with "qlow-", and if so, treat it as quality.
+		// Pass the first portion, or the whole string if "qlow-" not found, to the parent
+		// The parsing must match the makeParamString() above
+		if ( substr_compare( $str, 'qlow-', 0, 5 ) === 0 ) {
+			$res = parent::parseParamString( substr( $str, 5 ) );
+			if ( $res ) {
+				$res['quality'] = 30;
+			}
+		} else {
+			$res = parent::parseParamString( $str );
+		}
+		return $res;
+	}
+
+	function getScriptParams( $params ) {
+		$res = parent::getScriptParams( $params );
+		if ( isset( $params['quality'] ) ) {
+			$res['quality'] = $params['quality'];
+		}
+		return $res;
+	}
+
 	function getMetadata( $image, $filename ) {
 		try {
 			$meta = BitmapMetadataHandler::Jpeg( $filename );
