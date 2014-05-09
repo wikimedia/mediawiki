@@ -1,7 +1,5 @@
 <?php
 /**
- * Representation of a page title within %MediaWiki.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,14 +17,133 @@
  *
  * @file
  * @license GPL 2+
- * @author Daniel Kinzler
  */
 
 /**
  * MalformedTitleException is thrown when a TitleParser is unable to parse a title string.
  *
  * @license GPL 2+
- * @author Daniel Kinzler
  */
 class MalformedTitleException extends Exception {
+	private $titleText;
+
+	public function __construct( $text ) {
+		$this->titleText = $text;
+	}
+
+	public function getTitleText() {
+		return $this->titleText;
+	}
+
+	/**
+	 * Return l10n messages to be used by BadTitleError for this exception.
+	 * @return array( page title message, error text message, error text parameters )
+	 */
+	public function getErrorPageParams() {
+		return array(
+			'badtitle',
+			'badtitletext',
+			array()
+		);
+	}
+}
+
+class MalformedTitleInterwikiPresentException extends MalformedTitleException {
+}
+
+class MalformedTitleEmptyException extends MalformedTitleException {
+	public function getErrorPageParams() {
+		return array(
+			'title-invalid-empty',
+			'title-invalid-empty-text',
+			array( $this->getTitleText() )
+		);
+	}
+}
+
+class MalformedTitleBadUtf8Exception extends MalformedTitleException {
+	public function getErrorPageParams() {
+		return array(
+			'title-invalid-utf8',
+			'title-invalid-utf8-text',
+			array()
+		);
+	}
+}
+
+class MalformedTitleInvalidTalkException extends MalformedTitleException {
+	public function getErrorPageParams() {
+		return array(
+			'title-invalid-talk-namespace',
+			'title-invalid-talk-namespace-text',
+			array()
+		);
+	}
+}
+
+class MalformedTitleIllegalCharactersException extends MalformedTitleException {
+	private $illegal;
+
+	public function __construct( $text, $illegal ) {
+		parent::__construct( $text );
+		$this->illegal = $illegal;
+	}
+
+	public function getErrorPageParams() {
+		return array(
+			'title-invalid-characters',
+			'title-invalid-characters-text',
+			array( $this->illegal, $this->getTitleText() )
+		);
+	}
+}
+
+class MalformedTitleRelativeException extends MalformedTitleException {
+	public function getErrorPageParams() {
+		return array(
+			'title-invalid-relative',
+			'title-invalid-relative-text',
+			array( $this->getTitleText() )
+		);
+	}
+}
+
+class MalformedTitleTildesException extends MalformedTitleException {
+	public function getErrorPageParams() {
+		return array(
+			'title-invalid-magic-tilde',
+			'title-invalid-magic-tilde-text',
+			array( $this->getTitleText() )
+		);
+	}
+}
+
+class MalformedTitleLengthExceededException extends MalformedTitleException {
+	private $maxLength;
+
+	public function __construct( $text, $maxLength ) {
+		parent::__construct( $text );
+		$this->maxLength = $maxLength;
+	}
+
+	public function getErrorPageParams() {
+		global $wgLang;
+		// This function should be a static one somewhere, it doesn't depend on the language…
+		$truncated = $wgLang->truncate( $this->getTitleText(), $this->maxLength, '' );
+		return array(
+			'title-invalid-too-long',
+			'title-invalid-too-long-text',
+			array( $this->maxLength, $truncated, $this->getTitleText() )
+		);
+	}
+}
+
+class MalformedTitleLeadingColonException extends MalformedTitleException {
+	public function getErrorPageParams() {
+		return array(
+			'title-invalid-leading-colon',
+			'title-invalid-leading-colon-text',
+			array( $this->getTitleText() )
+		);
+	}
 }
