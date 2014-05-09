@@ -408,7 +408,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$legend = Xml::openElement( 'dl' ) . "\n";
 		# Iterates through them and gets the messages for both letter and tooltip
 		$legendItems = $wgRecentChangesFlags;
-		if ( !$user->useRCPatrol() ) {
+		if ( !( $user->useRCPatrol() || $user->useNPPatrol() ) ) {
 			unset( $legendItems['unpatrolled'] );
 		}
 		foreach ( $legendItems as $key => $legendInfo ) { # generate items of the legend
