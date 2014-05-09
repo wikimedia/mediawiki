@@ -591,10 +591,39 @@ if ( !is_object( $wgAuth ) ) {
 	wfRunHooks( 'AuthPluginSetup', array( &$wgAuth ) );
 }
 
-# Placeholders in case of DB error
+// Placeholders in case of DB error
 $wgTitle = null;
 
 $wgDeferredUpdateList = array();
+
+// Disable all other email settings automatically if $wgEnableEmail
+// is set to false. - bug 63678
+if ( !$wgEnableEmail ) {
+	$wgAllowHTMLEmail = false;
+	$wgDefaultUserOptions = array(
+		'ccmeonemails' => 0,
+		'disablemail' => 1,
+		'enotifminoredits' => 0,
+		'enotifrevealaddr' => 0,
+		'enotifusertalkpages' => 0,
+		'enotifwatchlistpages' => 0,
+		'lqtnotifytalk' => false,
+	);
+	$wgEmailAuthentication = false; // do not require auth if you're not sending email anyway
+	$wgEnableUserEmail = false;
+	$wgEnotifFromEditor = false;
+	$wgEnotifImpersonal = false;
+	$wgEnotifMaxRecips = 0;
+	$wgEnotifMinorEdits = false;
+	$wgEnotifRevealEditorAddress = false;
+	$wgEnotifUseJobQ = false;
+	$wgEnotifUseRealName = false;
+	$wgEnotifUserTalk = false;
+	$wgEnotifWatchlist = false;
+	unset( $wgGroupPermissions['user']['sendemail'] );
+	$wgUserEmailUseReplyTo = false;
+	unset( $wgUsersNotifiedOnAllChanges );
+}
 
 wfProfileOut( $fname . '-globals' );
 wfProfileIn( $fname . '-extensions' );
