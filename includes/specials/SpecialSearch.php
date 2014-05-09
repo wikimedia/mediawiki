@@ -226,7 +226,11 @@ class SpecialSearch extends SpecialPage {
 				$out->addHTML(
 					Xml::openElement( 'fieldset' ) .
 					Xml::element( 'legend', null, $this->msg( 'search-external' )->text() ) .
-					Xml::element( 'p', array( 'class' => 'mw-searchdisabled' ), $this->msg( 'searchdisabled' )->text() ) .
+					Xml::element(
+						'p',
+						array( 'class' => 'mw-searchdisabled' ),
+						$this->msg( 'searchdisabled' )->text()
+					) .
 					$this->msg( 'googlesearch' )->rawParams(
 						htmlspecialchars( $term ),
 						'UTF-8',
@@ -284,7 +288,8 @@ class SpecialSearch extends SpecialPage {
 				$stParams
 			);
 
-			$this->didYouMeanHtml = '<div class="searchdidyoumean">' . $this->msg( 'search-suggest' )->rawParams( $suggestLink )->text() . '</div>';
+			$this->didYouMeanHtml = '<div class="searchdidyoumean">'
+				. $this->msg( 'search-suggest' )->rawParams( $suggestLink )->text() . '</div>';
 		}
 
 		if ( !wfRunHooks( 'SpecialSearchResultsPrepend', array( $this, $out, $term ) ) ) {
@@ -363,7 +368,10 @@ class SpecialSearch extends SpecialPage {
 			// Show the create link ahead
 			$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
 			if ( $totalRes > $this->limit || $this->offset ) {
-				$prevnext = $this->getLanguage()->viewPrevNext( $this->getPageTitle(), $this->offset, $this->limit,
+				$prevnext = $this->getLanguage()->viewPrevNext(
+					$this->getPageTitle(),
+					$this->offset,
+					$this->limit,
 					$this->powerSearchOptions() + array( 'search' => $term ),
 					max( $titleMatchesNum, $textMatchesNum ) < $this->limit
 				);
@@ -444,7 +452,11 @@ class SpecialSearch extends SpecialPage {
 		} else {
 			$messageName = 'searchmenu-new-nocreate';
 		}
-		$params = array( $messageName, wfEscapeWikiText( $title->getPrefixedText() ), Message::numParam( $num ) );
+		$params = array(
+			$messageName,
+			wfEscapeWikiText( $title->getPrefixedText() ),
+			Message::numParam( $num )
+		);
 		wfRunHooks( 'SpecialSearchCreateLink', array( $title, &$params ) );
 
 		// Extensions using the hook might still return an empty $messageName
@@ -708,7 +720,8 @@ class SpecialSearch extends SpecialPage {
 			&$score, &$size, &$date, &$related,
 			&$html
 		) ) ) {
-			$html = "<li><div class='mw-search-result-heading'>{$link} {$redirect} {$section} {$fileMatch}</div> {$extract}\n" .
+			$html = "<li><div class='mw-search-result-heading'>" .
+				"{$link} {$redirect} {$section} {$fileMatch}</div> {$extract}\n" .
 				"<div class='mw-search-result-data'>{$score}{$size} - {$date}{$related}</div>" .
 				"</li>\n";
 		}
@@ -734,7 +747,8 @@ class SpecialSearch extends SpecialPage {
 
 		// work out custom project captions
 		$customCaptions = array();
-		$customLines = explode( "\n", $this->msg( 'search-interwiki-custom' )->text() ); // format per line <iwprefix>:<caption>
+		// format per line <iwprefix>:<caption>
+		$customLines = explode( "\n", $this->msg( 'search-interwiki-custom' )->text() );
 		foreach ( $customLines as $line ) {
 			$parts = explode( ":", $line, 2 );
 			if ( count( $parts ) == 2 ) { // validate line
@@ -756,8 +770,7 @@ class SpecialSearch extends SpecialPage {
 			}
 		}
 
-
-		// TODO: should support paging in a non-confusing way (not sure how though, maybe via ajax)..
+		// @todo Should support paging in a non-confusing way (not sure how though, maybe via ajax)..
 		$out .= "</ul></div>\n";
 
 		// convert the whole thing to desired language variant
