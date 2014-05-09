@@ -53,14 +53,18 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 			$cattitles[$c] = $t->getDBkey();
 		}
 
-		$this->addTables( array( 'category', 'page', 'page_props' ) );
+		$this->addTables( array( 'category', 'page',
+			'pp_hidden' => 'page_props', 'pp_collation' => 'page_props' ) );
 		$this->addJoinConds( array(
 			'page' => array( 'LEFT JOIN', array(
 				'page_namespace' => NS_CATEGORY,
 				'page_title=cat_title' ) ),
-			'page_props' => array( 'LEFT JOIN', array(
-				'pp_page=page_id',
-				'pp_propname' => 'hiddencat' ) ),
+			'pp_hidden' => array( 'LEFT JOIN', array(
+				'pp_hidden.pp_page=page_id',
+				'pp_hidden.pp_propname' => 'hiddencat' ) ),
+			'pp_collation' => array( 'LEFT JOIN', array(
+				'pp_collation.pp_page=page_id',
+				'pp_collation.pp_propname' => 'defaultcollation' ) ),
 		) );
 
 		$this->addFields( array(
@@ -68,8 +72,11 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 			'cat_pages',
 			'cat_subcats',
 			'cat_files',
-			'cat_hidden' => 'pp_propname'
+			'cat_hidden' => 'pp_propname',
+			'pp_hidden.pp_propname AS cat_hidden',
+			'pp_collation.pp_value AS cat_collation'
 		) );
+
 		$this->addWhere( array( 'cat_title' => $cattitles ) );
 
 		if ( !is_null( $params['continue'] ) ) {
@@ -89,6 +96,9 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 			$vals['subcats'] = intval( $row->cat_subcats );
 			if ( $row->cat_hidden ) {
 				$vals['hidden'] = '';
+			}
+			if ( isset( $row->cat_collation ) ) {
+				$vals['collation'] = $row->cat_collation;
 			}
 			$fit = $this->addPageSubItems( $catids[$row->cat_title], $vals );
 			if ( !$fit ) {
