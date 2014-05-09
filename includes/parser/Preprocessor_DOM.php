@@ -80,10 +80,24 @@ class Preprocessor_DOM implements Preprocessor {
 
 		$xml .= "</list>";
 
+		wfProfileIn( __METHOD__ . '-loadXML' );
 		$dom = new DOMDocument();
-		$dom->loadXML( $xml );
-		$root = $dom->documentElement;
+		wfSuppressWarnings();
+		$result = $dom->loadXML( $xml );
+		wfRestoreWarnings();
+		if ( !$result ) {
+			// Try running the XML through UtfNormal to get rid of invalid characters
+			$xml = UtfNormal::cleanUp( $xml );
+			// 1 << 19 == XML_PARSE_HUGE, needed so newer versions of libxml2 don't barf when the XML is >256 levels deep
+			$result = $dom->loadXML( $xml, 1 << 19 );
+		}
+		wfProfileOut( __METHOD__ . '-loadXML' );
 
+		if ( !$result ) {
+			throw new MWException( 'Parameters passed to ' . __METHOD__ . ' result in invalid XML' );
+		}
+
+		$root = $dom->documentElement;
 		$node = new PPNode_DOM( $root->childNodes );
 		return $node;
 	}
