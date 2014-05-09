@@ -1,4 +1,5 @@
 <?php
+// @codingStandardsIgnoreFile
 /**
  * Html form for user login (since 1.22 with VForm appearance).
  *
