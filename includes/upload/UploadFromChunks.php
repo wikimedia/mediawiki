@@ -87,6 +87,7 @@ class UploadFromChunks extends UploadFromFile {
 
 		// Update db table to reflect initial "chunk" state
 		$this->updateChunkStatus();
+
 		return $this->mLocalFile;
 	}
 
@@ -154,6 +155,7 @@ class UploadFromChunks extends UploadFromFile {
 		if ( $ret['status'] !== UploadBase::OK ) {
 			wfDebugLog( 'fileconcatenate', "Verification failed for chunked upload" );
 			$status->fatal( $this->getVerificationErrorCode( $ret['status'] ) );
+
 			return $status;
 		}
 
@@ -178,6 +180,7 @@ class UploadFromChunks extends UploadFromFile {
 	 */
 	public function performUpload( $comment, $pageText, $watch, $user ) {
 		$rv = parent::performUpload( $comment, $pageText, $watch, $user );
+
 		return $rv;
 	}
 
@@ -188,11 +191,11 @@ class UploadFromChunks extends UploadFromFile {
 	 */
 	function getVirtualChunkLocation( $index ) {
 		return $this->repo->getVirtualUrl( 'temp' ) .
-				'/' .
-				$this->repo->getHashPath(
-					$this->getChunkFileKey( $index )
-				) .
-				$this->getChunkFileKey( $index );
+			'/' .
+			$this->repo->getHashPath(
+				$this->getChunkFileKey( $index )
+			) .
+			$this->getChunkFileKey( $index );
 	}
 
 	/**
@@ -234,6 +237,7 @@ class UploadFromChunks extends UploadFromFile {
 				$status = Status::newFatal( 'invalid-chunk-offset' );
 			}
 		}
+
 		return $status;
 	}
 
@@ -242,7 +246,7 @@ class UploadFromChunks extends UploadFromFile {
 	 */
 	private function updateChunkStatus() {
 		wfDebug( __METHOD__ . " update chunk status for {$this->mFileKey} offset:" .
-					$this->getOffset() . ' inx:' . $this->getChunkIndex() . "\n" );
+			$this->getOffset() . ' inx:' . $this->getChunkIndex() . "\n" );
 
 		$dbw = $this->repo->getMasterDb();
 		// Use a quick transaction since we will upload the full temp file into shared
@@ -294,6 +298,7 @@ class UploadFromChunks extends UploadFromFile {
 		if ( $this->mChunkIndex !== null ) {
 			return $this->mChunkIndex;
 		}
+
 		return 0;
 	}
 
@@ -305,6 +310,7 @@ class UploadFromChunks extends UploadFromFile {
 		if ( $this->mOffset !== null ) {
 			return $this->mOffset;
 		}
+
 		return 0;
 	}
 
@@ -325,19 +331,20 @@ class UploadFromChunks extends UploadFromFile {
 			$this->repo->getZonePath( 'temp' ) . "/{$hashPath}{$fileKey}" );
 
 		// Check for error in stashing the chunk:
-		if ( ! $storeStatus->isOK() ) {
+		if ( !$storeStatus->isOK() ) {
 			$error = $storeStatus->getErrorsArray();
 			$error = reset( $error );
-			if ( ! count( $error ) ) {
+			if ( !count( $error ) ) {
 				$error = $storeStatus->getWarningsArray();
 				$error = reset( $error );
-				if ( ! count( $error ) ) {
+				if ( !count( $error ) ) {
 					$error = array( 'unknown', 'no error recorded' );
 				}
 			}
 			throw new UploadChunkFileException( "Error storing file in '$chunkPath': " .
 				implode( '; ', $error ) );
 		}
+
 		return $storeStatus;
 	}
 
@@ -345,6 +352,7 @@ class UploadFromChunks extends UploadFromFile {
 		if ( $index === null ) {
 			$index = $this->getChunkIndex();
 		}
+
 		return $this->mFileKey . '.' . $index;
 	}
 

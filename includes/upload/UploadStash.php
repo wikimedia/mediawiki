@@ -26,7 +26,7 @@
  *   - enable applications to temporarily stash files without publishing them to the wiki.
  *      - Several parts of MediaWiki do this in similar ways: UploadBase, UploadWizard, and FirefoggChunkedExtension
  *        And there are several that reimplement stashing from scratch, in idiosyncratic ways. The idea is to unify them all here.
- *	  Mostly all of them are the same except for storing some custom fields, which we subsume into the data array.
+ *     Mostly all of them are the same except for storing some custom fields, which we subsume into the data array.
  *   - enable applications to find said files later, as long as the db table or temp files haven't been purged.
  *   - enable the uploading user (and *ONLY* the uploading user) to access said files, and thumbnails of said files, via a URL.
  *     We accomplish this using a database table, with ownership checking as you might expect. See SpecialUploadStash, which
@@ -42,7 +42,6 @@
  * @ingroup Upload
  */
 class UploadStash {
-
 	// Format of the key for files -- has to be suitable as a filename itself (e.g. ab12cd34ef.jpg)
 	const KEY_FORMAT_REGEX = '/^[\w-\.]+\.\w*$/';
 
@@ -106,7 +105,7 @@ class UploadStash {
 	 * @return UploadStashFile
 	 */
 	public function getFile( $key, $noAuth = false ) {
-		if ( ! preg_match( self::KEY_FORMAT_REGEX, $key ) ) {
+		if ( !preg_match( self::KEY_FORMAT_REGEX, $key ) ) {
 			throw new UploadStashBadPathException( "key '$key' is not in a proper format" );
 		}
 
@@ -138,7 +137,7 @@ class UploadStash {
 			}
 		}
 
-		if ( ! $this->files[$key]->exists() ) {
+		if ( !$this->files[$key]->exists() ) {
 			wfDebug( __METHOD__ . " tried to get file at $key, but it doesn't exist\n" );
 			throw new UploadStashBadPathException( "path doesn't exist" );
 		}
@@ -160,6 +159,7 @@ class UploadStash {
 	 */
 	public function getMetadata( $key ) {
 		$this->getFile( $key );
+
 		return $this->fileMetadata[$key];
 	}
 
@@ -171,6 +171,7 @@ class UploadStash {
 	 */
 	public function getFileProps( $key ) {
 		$this->getFile( $key );
+
 		return $this->fileProps[$key];
 	}
 
@@ -215,7 +216,7 @@ class UploadStash {
 
 		$this->fileProps[$key] = $fileProps;
 
-		if ( ! preg_match( self::KEY_FORMAT_REGEX, $key ) ) {
+		if ( !preg_match( self::KEY_FORMAT_REGEX, $key ) ) {
 			throw new UploadStashBadPathException( "key '$key' is not in a proper format" );
 		}
 
@@ -224,7 +225,7 @@ class UploadStash {
 		// if not already in a temporary area, put it there
 		$storeStatus = $this->repo->storeTemp( basename( $pathWithGoodExtension ), $path );
 
-		if ( ! $storeStatus->isOK() ) {
+		if ( !$storeStatus->isOK() ) {
 			// It is a convention in MediaWiki to only return one error per API exception, even if multiple errors
 			// are available. We use reset() to pick the "first" thing that was wrong, preferring errors to warnings.
 			// This is a bit lame, as we may have more info in the $storeStatus and we're throwing it away, but to fix it means
@@ -232,10 +233,10 @@ class UploadStash {
 			// $storeStatus->value just contains the virtual URL (if anything) which is probably useless to the caller
 			$error = $storeStatus->getErrorsArray();
 			$error = reset( $error );
-			if ( ! count( $error ) ) {
+			if ( !count( $error ) ) {
 				$error = $storeStatus->getWarningsArray();
 				$error = reset( $error );
-				if ( ! count( $error ) ) {
+				if ( !count( $error ) ) {
 					$error = array( 'unknown', 'no error recorded' );
 				}
 			}
@@ -451,6 +452,7 @@ class UploadStash {
 			// put it in a web accesible directory.
 			return '';
 		}
+
 		return $extension;
 	}
 
@@ -502,6 +504,7 @@ class UploadStash {
 			throw new UploadStashZeroLengthFileException( "File is zero length" );
 		}
 		$this->files[$key] = $file;
+
 		return true;
 	}
 }
@@ -528,17 +531,17 @@ class UploadStashFile extends UnregisteredLocalFile {
 		if ( $repo->isVirtualUrl( $path ) ) {
 			$path = $repo->resolveVirtualUrl( $path );
 		} else {
-
 			// check if path appears to be sane, no parent traversals, and is in this repo's temp zone.
 			$repoTempPath = $repo->getZonePath( 'temp' );
-			if ( ( ! $repo->validateFilename( $path ) ) ||
-					( strpos( $path, $repoTempPath ) !== 0 ) ) {
+			if ( ( !$repo->validateFilename( $path ) ) ||
+				( strpos( $path, $repoTempPath ) !== 0 )
+			) {
 				wfDebug( "UploadStash: tried to construct an UploadStashFile from a file that should already exist at '$path', but path is not valid\n" );
 				throw new UploadStashBadPathException( 'path is not valid' );
 			}
 
 			// check if path exists! and is a plain file.
-			if ( ! $repo->fileExists( $path ) ) {
+			if ( !$repo->fileExists( $path ) ) {
 				wfDebug( "UploadStash: tried to construct an UploadStashFile from a file that should already exist at '$path', but path is not found\n" );
 				throw new UploadStashFileNotFoundException( 'cannot find path, or not a plain file' );
 			}
@@ -574,6 +577,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 		if ( $thumbName !== false ) {
 			$path .= "/$thumbName";
 		}
+
 		return $path;
 	}
 
@@ -610,6 +614,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 */
 	public function getThumbUrl( $thumbName = false ) {
 		wfDebug( __METHOD__ . " getting for $thumbName \n" );
+
 		return $this->getSpecialUrl( 'thumb/' . $this->getUrlName() . '/' . $thumbName );
 	}
 
@@ -620,9 +625,10 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * @return string Base url name, like '120px-123456.jpg'
 	 */
 	public function getUrlName() {
-		if ( ! $this->urlName ) {
+		if ( !$this->urlName ) {
 			$this->urlName = $this->fileKey;
 		}
+
 		return $this->urlName;
 	}
 
@@ -636,6 +642,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 		if ( !isset( $this->url ) ) {
 			$this->url = $this->getSpecialUrl( 'file/' . $this->getUrlName() );
 		}
+
 		return $this->url;
 	}
 
@@ -674,15 +681,32 @@ class UploadStashFile extends UnregisteredLocalFile {
 	public function exists() {
 		return $this->repo->fileExists( $this->path );
 	}
-
 }
 
-class UploadStashException extends MWException {};
-class UploadStashNotAvailableException extends UploadStashException {};
-class UploadStashFileNotFoundException extends UploadStashException {};
-class UploadStashBadPathException extends UploadStashException {};
-class UploadStashFileException extends UploadStashException {};
-class UploadStashZeroLengthFileException extends UploadStashException {};
-class UploadStashNotLoggedInException extends UploadStashException {};
-class UploadStashWrongOwnerException extends UploadStashException {};
-class UploadStashNoSuchKeyException extends UploadStashException {};
+class UploadStashException extends MWException {
+}
+
+class UploadStashNotAvailableException extends UploadStashException {
+}
+
+class UploadStashFileNotFoundException extends UploadStashException {
+}
+
+class UploadStashBadPathException extends UploadStashException {
+}
+
+class UploadStashFileException extends UploadStashException {
+}
+
+class UploadStashZeroLengthFileException extends UploadStashException {
+}
+
+class UploadStashNotLoggedInException extends UploadStashException {
+}
+
+class UploadStashWrongOwnerException extends UploadStashException {
+}
+
+class UploadStashNoSuchKeyException extends UploadStashException {
+}
+
