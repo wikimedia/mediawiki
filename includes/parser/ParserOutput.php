@@ -127,7 +127,8 @@ class ParserOutput extends CacheTime {
 	/** @var array Timestamps for getTimeSinceStart() */
 	private $mParseStartTime = array();
 
-	const EDITSECTION_REGEX = '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
+	const EDITSECTION_REGEX =
+		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
 	function __construct( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false, $titletext = ''
@@ -186,50 +187,166 @@ class ParserOutput extends CacheTime {
 		return call_user_func_array( array( $skin, 'doEditSectionLink' ), $args );
 	}
 
-	function &getLanguageLinks()         { return $this->mLanguageLinks; }
-	function getInterwikiLinks()         { return $this->mInterwikiLinks; }
-	function getCategoryLinks()          { return array_keys( $this->mCategories ); }
-	function &getCategories()            { return $this->mCategories; }
-	function getTitleText()              { return $this->mTitleText; }
-	function getSections()               { return $this->mSections; }
-	function getEditSectionTokens()      { return $this->mEditSectionTokens; }
-	function &getLinks()                 { return $this->mLinks; }
-	function &getTemplates()             { return $this->mTemplates; }
-	function &getTemplateIds()           { return $this->mTemplateIds; }
-	function &getImages()                { return $this->mImages; }
-	function &getFileSearchOptions()     { return $this->mFileSearchOptions; }
-	function &getExternalLinks()         { return $this->mExternalLinks; }
-	function getNoGallery()              { return $this->mNoGallery; }
-	function getHeadItems()              { return $this->mHeadItems; }
-	function getModules()                { return $this->mModules; }
-	function getModuleScripts()          { return $this->mModuleScripts; }
-	function getModuleStyles()           { return $this->mModuleStyles; }
-	function getModuleMessages()         { return $this->mModuleMessages; }
+	function &getLanguageLinks() {
+		return $this->mLanguageLinks;
+	}
+
+	function getInterwikiLinks() {
+		return $this->mInterwikiLinks;
+	}
+
+	function getCategoryLinks() {
+		return array_keys( $this->mCategories );
+	}
+
+	function &getCategories() {
+		return $this->mCategories;
+	}
+
+	function getTitleText() {
+		return $this->mTitleText;
+	}
+
+	function getSections() {
+		return $this->mSections;
+	}
+
+	function getEditSectionTokens() {
+		return $this->mEditSectionTokens;
+	}
+
+	function &getLinks() {
+		return $this->mLinks;
+	}
+
+	function &getTemplates() {
+		return $this->mTemplates;
+	}
+
+	function &getTemplateIds() {
+		return $this->mTemplateIds;
+	}
+
+	function &getImages() {
+		return $this->mImages;
+	}
+
+	function &getFileSearchOptions() {
+		return $this->mFileSearchOptions;
+	}
+
+	function &getExternalLinks() {
+		return $this->mExternalLinks;
+	}
+
+	function getNoGallery() {
+		return $this->mNoGallery;
+	}
+
+	function getHeadItems() {
+		return $this->mHeadItems;
+	}
+
+	function getModules() {
+		return $this->mModules;
+	}
+
+	function getModuleScripts() {
+		return $this->mModuleScripts;
+	}
+
+	function getModuleStyles() {
+		return $this->mModuleStyles;
+	}
+
+	function getModuleMessages() {
+		return $this->mModuleMessages;
+	}
+
 	/** @since 1.23 */
-	function getJsConfigVars()           { return $this->mJsConfigVars; }
-	function getOutputHooks()            { return (array)$this->mOutputHooks; }
-	function getWarnings()               { return array_keys( $this->mWarnings ); }
-	function getIndexPolicy()            { return $this->mIndexPolicy; }
-	function getTOCHTML()                { return $this->mTOCHTML; }
-	function getTimestamp()              { return $this->mTimestamp; }
-	function getLimitReportData()        { return $this->mLimitReportData; }
-	function getTOCEnabled()             { return $this->mTOCEnabled; }
+	function getJsConfigVars() {
+		return $this->mJsConfigVars;
+	}
 
-	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
-	function setLanguageLinks( $ll )     { return wfSetVar( $this->mLanguageLinks, $ll ); }
-	function setCategoryLinks( $cl )     { return wfSetVar( $this->mCategories, $cl ); }
+	function getOutputHooks() {
+		return (array)$this->mOutputHooks;
+	}
 
-	function setTitleText( $t )          { return wfSetVar( $this->mTitleText, $t ); }
-	function setSections( $toc )         { return wfSetVar( $this->mSections, $toc ); }
-	function setEditSectionTokens( $t )  { return wfSetVar( $this->mEditSectionTokens, $t ); }
-	function setIndexPolicy( $policy )   { return wfSetVar( $this->mIndexPolicy, $policy ); }
-	function setTOCHTML( $tochtml )      { return wfSetVar( $this->mTOCHTML, $tochtml ); }
-	function setTimestamp( $timestamp )  { return wfSetVar( $this->mTimestamp, $timestamp ); }
-	function setTOCEnabled( $flag )      { return wfSetVar( $this->mTOCEnabled, $flag ); }
+	function getWarnings() {
+		return array_keys( $this->mWarnings );
+	}
 
-	function addCategory( $c, $sort )    { $this->mCategories[$c] = $sort; }
-	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }
-	function addWarning( $s )            { $this->mWarnings[$s] = 1; }
+	function getIndexPolicy() {
+		return $this->mIndexPolicy;
+	}
+
+	function getTOCHTML() {
+		return $this->mTOCHTML;
+	}
+
+	function getTimestamp() {
+		return $this->mTimestamp;
+	}
+
+	function getLimitReportData() {
+		return $this->mLimitReportData;
+	}
+
+	function getTOCEnabled() {
+		return $this->mTOCEnabled;
+	}
+
+	function setText( $text ) {
+		return wfSetVar( $this->mText, $text );
+	}
+
+	function setLanguageLinks( $ll ) {
+		return wfSetVar( $this->mLanguageLinks, $ll );
+	}
+
+	function setCategoryLinks( $cl ) {
+		return wfSetVar( $this->mCategories, $cl );
+	}
+
+	function setTitleText( $t ) {
+		return wfSetVar( $this->mTitleText, $t );
+	}
+
+	function setSections( $toc ) {
+		return wfSetVar( $this->mSections, $toc );
+	}
+
+	function setEditSectionTokens( $t ) {
+		return wfSetVar( $this->mEditSectionTokens, $t );
+	}
+
+	function setIndexPolicy( $policy ) {
+		return wfSetVar( $this->mIndexPolicy, $policy );
+	}
+
+	function setTOCHTML( $tochtml ) {
+		return wfSetVar( $this->mTOCHTML, $tochtml );
+	}
+
+	function setTimestamp( $timestamp ) {
+		return wfSetVar( $this->mTimestamp, $timestamp );
+	}
+
+	function setTOCEnabled( $flag ) {
+		return wfSetVar( $this->mTOCEnabled, $flag );
+	}
+
+	function addCategory( $c, $sort ) {
+		$this->mCategories[$c] = $sort;
+	}
+
+	function addLanguageLink( $t ) {
+		$this->mLanguageLinks[] = $t;
+	}
+
+	function addWarning( $s ) {
+		$this->mWarnings[$s] = 1;
+	}
 
 	function addOutputHook( $hook, $data = false ) {
 		$this->mOutputHooks[] = array( $hook, $data );
@@ -582,8 +699,8 @@ class ParserOutput extends CacheTime {
 	 * extracted from the page's content, including a LinksUpdate object for all links stored in
 	 * this ParserOutput object.
 	 *
-	 * @note: Avoid using this method directly, use ContentHandler::getSecondaryDataUpdates() instead! The content
-	 *        handler may provide additional update objects.
+	 * @note Avoid using this method directly, use ContentHandler::getSecondaryDataUpdates()
+	 *   instead! The content handler may provide additional update objects.
 	 *
 	 * @since 1.20
 	 *

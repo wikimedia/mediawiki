@@ -71,7 +71,11 @@ class CoreParserFunctions {
 			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), SFH_NO_HASH );
 		}
 		if ( $wgAllowSlowParserFunctions ) {
-			$parser->setFunctionHook( 'pagesinnamespace', array( __CLASS__, 'pagesinnamespace' ), SFH_NO_HASH );
+			$parser->setFunctionHook(
+				'pagesinnamespace',
+				array( __CLASS__, 'pagesinnamespace' ),
+				SFH_NO_HASH
+			);
 		}
 	}
 
@@ -83,7 +87,9 @@ class CoreParserFunctions {
 	static function intFunction( $parser, $part1 = '' /*, ... */ ) {
 		if ( strval( $part1 ) !== '' ) {
 			$args = array_slice( func_get_args(), 2 );
-			$message = wfMessage( $part1, $args )->inLanguage( $parser->getOptions()->getUserLangObj() )->plain();
+			$message = wfMessage( $part1, $args )
+				->inLanguage( $parser->getOptions()->getUserLangObj() )->plain();
+
 			return array( $message, 'noparse' => false );
 		} else {
 			return array( 'found' => false );
@@ -393,12 +399,21 @@ class CoreParserFunctions {
 		// only requested titles that normalize to the actual title are allowed through
 		// if $wgRestrictDisplayTitle is true (it is by default)
 		// mimic the escaping process that occurs in OutputPage::setPageTitle
-		$text = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $text, $htmlTagsCallback, array(), array(), $bad ) );
+		$text = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags(
+			$text,
+			$htmlTagsCallback,
+			array(),
+			array(),
+			$bad
+		) );
 		$title = Title::newFromText( Sanitizer::stripAllTags( $text ) );
 
 		if ( !$wgRestrictDisplayTitle ) {
 			$parser->mOutput->setDisplayTitle( $text );
-		} elseif ( $title instanceof Title && !$title->hasFragment() && $title->equals( $parser->mTitle ) ) {
+		} elseif ( $title instanceof Title
+			&& !$title->hasFragment()
+			&& $title->equals( $parser->mTitle )
+		) {
 			$parser->mOutput->setDisplayTitle( $text );
 		}
 
@@ -855,8 +870,9 @@ class CoreParserFunctions {
 		}
 	}
 
-	// Usage {{filepath|300}}, {{filepath|nowiki}}, {{filepath|nowiki|300}} or {{filepath|300|nowiki}}
-	// or {{filepath|300px}}, {{filepath|200x300px}}, {{filepath|nowiki|200x300px}}, {{filepath|200x300px|nowiki}}
+	// Usage {{filepath|300}}, {{filepath|nowiki}}, {{filepath|nowiki|300}}
+	// or {{filepath|300|nowiki}} or {{filepath|300px}}, {{filepath|200x300px}},
+	// {{filepath|nowiki|200x300px}}, {{filepath|200x300px|nowiki}}.
 	public static function filepath( $parser, $name = '', $argA = '', $argB = '' ) {
 		$file = wfFindFile( $name );
 

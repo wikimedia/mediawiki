@@ -173,12 +173,14 @@ class CacheTime {
 	 */
 	public function expired( $touched ) {
 		global $wgCacheEpoch;
-		return !$this->isCacheable() || // parser says it's uncacheable
-			$this->getCacheTime() < $touched ||
-			$this->getCacheTime() <= $wgCacheEpoch ||
-			$this->getCacheTime() < wfTimestamp( TS_MW, time() - $this->getCacheExpiry() ) || // expiry period has passed
-			!isset( $this->mVersion ) ||
-			version_compare( $this->mVersion, Parser::VERSION, "lt" );
+
+		return !$this->isCacheable() // parser says it's uncacheable
+			|| $this->getCacheTime() < $touched
+			|| $this->getCacheTime() <= $wgCacheEpoch
+			|| $this->getCacheTime() <
+				wfTimestamp( TS_MW, time() - $this->getCacheExpiry() ) // expiry period has passed
+			|| !isset( $this->mVersion )
+			|| version_compare( $this->mVersion, Parser::VERSION, "lt" );
 	}
 
 	/**

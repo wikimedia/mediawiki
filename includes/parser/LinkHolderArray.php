@@ -344,7 +344,8 @@ class LinkHolderArray {
 
 			$res = $dbr->select(
 				'page',
-				array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect', 'page_len', 'page_latest' ),
+				array( 'page_id', 'page_namespace', 'page_title',
+					'page_is_redirect', 'page_len', 'page_latest' ),
 				$dbr->makeList( $where, LIST_OR ),
 				__METHOD__
 			);
@@ -547,7 +548,8 @@ class LinkHolderArray {
 			// construct query
 			$dbr = wfGetDB( DB_SLAVE );
 			$varRes = $dbr->select( 'page',
-				array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect', 'page_len', 'page_latest' ),
+				array( 'page_id', 'page_namespace', 'page_title',
+					'page_is_redirect', 'page_len', 'page_latest' ),
 				$linkBatch->constructSet( 'page', $dbr ),
 				__METHOD__
 			);
