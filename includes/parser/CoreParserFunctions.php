@@ -71,7 +71,11 @@ class CoreParserFunctions {
 			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), SFH_NO_HASH );
 		}
 		if ( $wgAllowSlowParserFunctions ) {
-			$parser->setFunctionHook( 'pagesinnamespace', array( __CLASS__, 'pagesinnamespace' ), SFH_NO_HASH );
+			$parser->setFunctionHook(
+				'pagesinnamespace',
+				array( __CLASS__, 'pagesinnamespace' ),
+				SFH_NO_HASH
+			);
 		}
 	}
 
@@ -83,7 +87,9 @@ class CoreParserFunctions {
 	static function intFunction( $parser, $part1 = '' /*, ... */ ) {
 		if ( strval( $part1 ) !== '' ) {
 			$args = array_slice( func_get_args(), 2 );
-			$message = wfMessage( $part1, $args )->inLanguage( $parser->getOptions()->getUserLangObj() )->plain();
+			$message = wfMessage( $part1, $args )
+				->inLanguage( $parser->getOptions()->getUserLangObj() )->plain();
+
 			return array( $message, 'noparse' => false );
 		} else {
 			return array( 'found' => false );
@@ -188,7 +194,7 @@ class CoreParserFunctions {
 	/**
 	 * @param Parser $parser
 	 * @param string $s
-	 * @return
+	 * @return string
 	 */
 	static function lc( $parser, $s = '' ) {
 		global $wgContLang;
@@ -198,7 +204,7 @@ class CoreParserFunctions {
 	/**
 	 * @param Parser $parser
 	 * @param string $s
-	 * @return
+	 * @return string
 	 */
 	static function uc( $parser, $s = '' ) {
 		global $wgContLang;
@@ -285,7 +291,7 @@ class CoreParserFunctions {
 	 * @param Parser $parser
 	 * @param string $case
 	 * @param string $word
-	 * @return
+	 * @return string
 	 */
 	static function grammar( $parser, $case = '', $word = '' ) {
 		$word = $parser->killMarkers( $word );
@@ -295,7 +301,7 @@ class CoreParserFunctions {
 	/**
 	 * @param Parser $parser
 	 * @param string $username
-	 * @return
+	 * @return string
 	 */
 	static function gender( $parser, $username ) {
 		wfProfileIn( __METHOD__ );
@@ -337,7 +343,7 @@ class CoreParserFunctions {
 	/**
 	 * @param Parser $parser
 	 * @param string $text
-	 * @return
+	 * @return string
 	 */
 	static function plural( $parser, $text = '' ) {
 		$forms = array_slice( func_get_args(), 2 );
@@ -393,12 +399,21 @@ class CoreParserFunctions {
 		// only requested titles that normalize to the actual title are allowed through
 		// if $wgRestrictDisplayTitle is true (it is by default)
 		// mimic the escaping process that occurs in OutputPage::setPageTitle
-		$text = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $text, $htmlTagsCallback, array(), array(), $bad ) );
+		$text = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags(
+			$text,
+			$htmlTagsCallback,
+			array(),
+			array(),
+			$bad
+		) );
 		$title = Title::newFromText( Sanitizer::stripAllTags( $text ) );
 
 		if ( !$wgRestrictDisplayTitle ) {
 			$parser->mOutput->setDisplayTitle( $text );
-		} elseif ( $title instanceof Title && !$title->hasFragment() && $title->equals( $parser->mTitle ) ) {
+		} elseif ( $title instanceof Title
+			&& !$title->hasFragment()
+			&& $title->equals( $parser->mTitle )
+		) {
 			$parser->mOutput->setDisplayTitle( $text );
 		}
 
@@ -466,6 +481,8 @@ class CoreParserFunctions {
 	 * corresponding magic word
 	 * Note: function name changed to "mwnamespace" rather than "namespace"
 	 * to not break PHP 5.3
+	 * @param Parser $parser
+	 * @param string $title
 	 * @return mixed|string
 	 */
 	static function mwnamespace( $parser, $title = null ) {
@@ -521,6 +538,8 @@ class CoreParserFunctions {
 	/**
 	 * Functions to get and normalize pagenames, corresponding to the magic words
 	 * of the same names
+	 * @param Parser $parser
+	 * @param string $title
 	 * @return string
 	 */
 	static function pagename( $parser, $title = null ) {
@@ -626,6 +645,10 @@ class CoreParserFunctions {
 	 * Return the number of pages, files or subcats in the given category,
 	 * or 0 if it's nonexistent. This is an expensive parser function and
 	 * can't be called too many times per page.
+	 * @param Parser $parser
+	 * @param string $name
+	 * @param string $arg1
+	 * @param string $arg2
 	 * @return string
 	 */
 	static function pagesincategory( $parser, $name = '', $arg1 = null, $arg2 = null ) {
@@ -855,8 +878,9 @@ class CoreParserFunctions {
 		}
 	}
 
-	// Usage {{filepath|300}}, {{filepath|nowiki}}, {{filepath|nowiki|300}} or {{filepath|300|nowiki}}
-	// or {{filepath|300px}}, {{filepath|200x300px}}, {{filepath|nowiki|200x300px}}, {{filepath|200x300px|nowiki}}
+	// Usage {{filepath|300}}, {{filepath|nowiki}}, {{filepath|nowiki|300}}
+	// or {{filepath|300|nowiki}} or {{filepath|300px}}, {{filepath|200x300px}},
+	// {{filepath|nowiki|200x300px}}, {{filepath|200x300px|nowiki}}.
 	public static function filepath( $parser, $name = '', $argA = '', $argB = '' ) {
 		$file = wfFindFile( $name );
 
@@ -995,6 +1019,7 @@ class CoreParserFunctions {
 	 * Get the pageid of a specified page
 	 * @param Parser $parser
 	 * @param string $title Title to get the pageid from
+	 * @return array|int|null|string
 	 * @since 1.23
 	 */
 	public static function pageid( $parser, $title = null ) {
@@ -1039,6 +1064,7 @@ class CoreParserFunctions {
 	 * Get the id from the last revision of a specified page.
 	 * @param Parser $parser
 	 * @param string $title Title to get the id from
+	 * @return int|null|string
 	 * @since 1.23
 	 */
 	public static function revisionid( $parser, $title = null ) {
@@ -1055,6 +1081,7 @@ class CoreParserFunctions {
 	 * Get the day from the last revision of a specified page.
 	 * @param Parser $parser
 	 * @param string $title Title to get the day from
+	 * @return string
 	 * @since 1.23
 	 */
 	public static function revisionday( $parser, $title = null ) {
@@ -1071,6 +1098,7 @@ class CoreParserFunctions {
 	 * Get the day with leading zeros from the last revision of a specified page.
 	 * @param Parser $parser
 	 * @param string $title Title to get the day from
+	 * @return string
 	 * @since 1.23
 	 */
 	public static function revisionday2( $parser, $title = null ) {
@@ -1087,6 +1115,7 @@ class CoreParserFunctions {
 	 * Get the month with leading zeros from the last revision of a specified page.
 	 * @param Parser $parser
 	 * @param string $title Title to get the month from
+	 * @return string
 	 * @since 1.23
 	 */
 	public static function revisionmonth( $parser, $title = null ) {
@@ -1103,6 +1132,7 @@ class CoreParserFunctions {
 	 * Get the month from the last revision of a specified page.
 	 * @param Parser $parser
 	 * @param string $title Title to get the month from
+	 * @return string
 	 * @since 1.23
 	 */
 	public static function revisionmonth1( $parser, $title = null ) {
@@ -1119,6 +1149,7 @@ class CoreParserFunctions {
 	 * Get the year from the last revision of a specified page.
 	 * @param Parser $parser
 	 * @param string $title Title to get the year from
+	 * @return string
 	 * @since 1.23
 	 */
 	public static function revisionyear( $parser, $title = null ) {
@@ -1135,6 +1166,7 @@ class CoreParserFunctions {
 	 * Get the timestamp from the last revision of a specified page.
 	 * @param Parser $parser
 	 * @param string $title Title to get the timestamp from
+	 * @return string
 	 * @since 1.23
 	 */
 	public static function revisiontimestamp( $parser, $title = null ) {
@@ -1151,6 +1183,7 @@ class CoreParserFunctions {
 	 * Get the user from the last revision of a specified page.
 	 * @param Parser $parser
 	 * @param string $title Title to get the user from
+	 * @return string
 	 * @since 1.23
 	 */
 	public static function revisionuser( $parser, $title = null ) {
