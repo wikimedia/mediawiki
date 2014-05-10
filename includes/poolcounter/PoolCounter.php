@@ -123,7 +123,10 @@ abstract class PoolCounter {
 	abstract public function release();
 }
 
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
 class PoolCounter_Stub extends PoolCounter {
+	// @codingStandardsIgnoreEnd
+
 	public function __construct() {
 		/* No parameters needed */
 	}
