@@ -1917,9 +1917,11 @@ abstract class BaseTemplate extends QuickTemplate {
 	function makeListItem( $key, $item, $options = array() ) {
 		if ( isset( $item['links'] ) ) {
 			$html = '';
+			$links = array();
 			foreach ( $item['links'] as $linkKey => $link ) {
-				$html .= $this->makeLink( $linkKey, $link, $options );
+				$links[] = $this->makeLink( $linkKey, $link, $options );
 			}
+			$html = implode( $links, ' ' );
 		} else {
 			$link = $item;
 			// These keys are used by makeListItem and shouldn't be passed on to the link
