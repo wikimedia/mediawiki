@@ -430,4 +430,14 @@ just a test"
 			// @todo more...?
 		);
 	}
+
+	/**
+	 * @covers TextContent::getWikitextForTransclusion
+	 */
+	public function testGetWikitextForTransclusion() {
+		$content = $this->newContent( 'hello world.' );
+
+		// the default implementation just returns false
+		$this->assertEquals( 'hello world.', $content->getWikitextForTransclusion() );
+	}
 }

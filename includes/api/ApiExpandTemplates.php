@@ -98,7 +98,8 @@ class ApiExpandTemplates extends ApiBase {
 		if ( $prop || $params['prop'] === null ) {
 			$wgParser->startExternalParse( $title_obj, $options, OT_PREPROCESS );
 			$frame = $wgParser->getPreprocessor()->newFrame();
-			$wikitext = $wgParser->preprocess( $params['text'], $title_obj, $options, null, $frame );
+
+			$wikitext = $wgParser->preprocess( $params['text'], $title_obj, $options, null, $frame, $params['expandhtml'] );
 			if ( $params['prop'] === null ) {
 				// the old way
 				ApiResult::setContent( $retval, $wikitext );
@@ -152,6 +153,7 @@ class ApiExpandTemplates extends ApiBase {
 				ApiBase::PARAM_ISMULTI => true,
 			),
 			'includecomments' => false,
+			'expandhtml' => false,
 			'generatexml' => array(
 				ApiBase::PARAM_TYPE => 'boolean',
 				ApiBase::PARAM_DEPRECATED => true,
@@ -178,6 +180,7 @@ class ApiExpandTemplates extends ApiBase {
 			),
 			'includecomments' => 'Whether to include HTML comments in the output',
 			'generatexml' => 'Generate XML parse tree (replaced by prop=parsetree)',
+			'expandhtml' => 'Expand non-wikitext transclusions to HTML.',
 		);
 	}
 
