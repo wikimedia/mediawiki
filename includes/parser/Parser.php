@@ -304,7 +304,7 @@ class Parser {
 		$this->mLinkHolders = new LinkHolderArray( $this );
 		$this->mLinkID = 0;
 		$this->mRevisionObject = $this->mRevisionTimestamp =
-			$this->mRevisionId = $this->mRevisionUser = $this->mRevisionSize = null;
+		$this->mRevisionId = $this->mRevisionUser = $this->mRevisionSize = null;
 		$this->mVarCache = array();
 		$this->mUser = null;
 		$this->mLangLinkLanguages = array();
@@ -480,16 +480,16 @@ class Parser {
 				# ''Something [http://www.cool.com cool''] -->
 				# <i>Something</i><a href="http://www.cool.com"..><i>cool></i></a>
 				'/(<([bi])>)(<([bi])>)?([^<]*)(<\/?a[^<]*>)([^<]*)(<\/\\4>)?(<\/\\2>)/' =>
-				'\\1\\3\\5\\8\\9\\6\\1\\3\\7\\8\\9',
+					'\\1\\3\\5\\8\\9\\6\\1\\3\\7\\8\\9',
 				# fix up an anchor inside another anchor, only
 				# at least for a single single nested link (bug 3695)
 				'/(<a[^>]+>)([^<]*)(<a[^>]+>[^<]*)<\/a>(.*)<\/a>/' =>
-				'\\1\\2</a>\\3</a>\\1\\4</a>',
+					'\\1\\2</a>\\3</a>\\1\\4</a>',
 				# fix div inside inline elements- doBlockLevels won't wrap a line which
 				# contains a div, so fix it up here; replace
 				# div with escaped text
 				'/(<([aib]) [^>]+>)([^<]*)(<div([^>]*)>)(.*)(<\/div>)([^<]*)(<\/\\2>)/' =>
-				'\\1\\3&lt;div\\5&gt;\\6&lt;/div&gt;\\8\\9',
+					'\\1\\3&lt;div\\5&gt;\\6&lt;/div&gt;\\8\\9',
 				# remove empty italic or bold tag pairs, some
 				# introduced by rules above
 				'/<([bi])><\/\\1>/' => '',
@@ -1339,8 +1339,8 @@ class Parser {
 			));
 			$titleObj = SpecialPage::getTitleFor( 'Booksources', $num );
 			return '<a href="' .
-				htmlspecialchars( $titleObj->getLocalURL() ) .
-				"\" class=\"internal mw-magiclink-isbn\">ISBN $isbn</a>";
+			htmlspecialchars( $titleObj->getLocalURL() ) .
+			"\" class=\"internal mw-magiclink-isbn\">ISBN $isbn</a>";
 		} else {
 			return $m[0];
 		}
@@ -1695,7 +1695,7 @@ class Parser {
 			# Funny characters like ö aren't valid in URLs anyway
 			# This was changed in August 2004
 			$s .= Linker::makeExternalLink( $url, $text, false, $linktype,
-				$this->getExternalLinkAttribs( $url ) ) . $dtrail . $trail;
+					$this->getExternalLinkAttribs( $url ) ) . $dtrail . $trail;
 
 			# Register link in the output object.
 			# Replace unnecessary URL escape codes with the referenced character
@@ -2110,7 +2110,7 @@ class Parser {
 						}
 						# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
 						$s .= $prefix . $this->armorLinks(
-							$this->makeImage( $nt, $text, $holders ) ) . $trail;
+								$this->makeImage( $nt, $text, $holders ) ) . $trail;
 					} else {
 						$s .= $prefix . $trail;
 					}
@@ -2163,7 +2163,7 @@ class Parser {
 				list( $file, $nt ) = $this->fetchFileAndTitle( $nt, $options );
 				# Cloak with NOPARSE to avoid replacement in replaceExternalLinks
 				$s .= $prefix . $this->armorLinks(
-					Linker::makeMediaLinkFile( $nt, $file, $text ) ) . $trail;
+						Linker::makeMediaLinkFile( $nt, $file, $text ) ) . $trail;
 				wfProfileOut( __METHOD__ . "-media" );
 				continue;
 			}
@@ -2602,125 +2602,125 @@ class Parser {
 			$c = $str[$i];
 
 			switch ( $state ) {
-			# (Using the number is a performance hack for common cases)
-			case 0: # self::COLON_STATE_TEXT:
-				switch ( $c ) {
-				case "<":
-					# Could be either a <start> tag or an </end> tag
-					$state = self::COLON_STATE_TAGSTART;
-					break;
-				case ":":
-					if ( $stack == 0 ) {
-						# We found it!
-						$before = substr( $str, 0, $i );
-						$after = substr( $str, $i + 1 );
-						wfProfileOut( __METHOD__ );
-						return $i;
+				# (Using the number is a performance hack for common cases)
+				case 0: # self::COLON_STATE_TEXT:
+					switch ( $c ) {
+						case "<":
+							# Could be either a <start> tag or an </end> tag
+							$state = self::COLON_STATE_TAGSTART;
+							break;
+						case ":":
+							if ( $stack == 0 ) {
+								# We found it!
+								$before = substr( $str, 0, $i );
+								$after = substr( $str, $i + 1 );
+								wfProfileOut( __METHOD__ );
+								return $i;
+							}
+							# Embedded in a tag; don't break it.
+							break;
+						default:
+							# Skip ahead looking for something interesting
+							$colon = strpos( $str, ':', $i );
+							if ( $colon === false ) {
+								# Nothing else interesting
+								wfProfileOut( __METHOD__ );
+								return false;
+							}
+							$lt = strpos( $str, '<', $i );
+							if ( $stack === 0 ) {
+								if ( $lt === false || $colon < $lt ) {
+									# We found it!
+									$before = substr( $str, 0, $colon );
+									$after = substr( $str, $colon + 1 );
+									wfProfileOut( __METHOD__ );
+									return $i;
+								}
+							}
+							if ( $lt === false ) {
+								# Nothing else interesting to find; abort!
+								# We're nested, but there's no close tags left. Abort!
+								break 2;
+							}
+							# Skip ahead to next tag start
+							$i = $lt;
+							$state = self::COLON_STATE_TAGSTART;
 					}
-					# Embedded in a tag; don't break it.
 					break;
-				default:
-					# Skip ahead looking for something interesting
-					$colon = strpos( $str, ':', $i );
-					if ( $colon === false ) {
-						# Nothing else interesting
-						wfProfileOut( __METHOD__ );
-						return false;
+				case 1: # self::COLON_STATE_TAG:
+					# In a <tag>
+					switch ( $c ) {
+						case ">":
+							$stack++;
+							$state = self::COLON_STATE_TEXT;
+							break;
+						case "/":
+							# Slash may be followed by >?
+							$state = self::COLON_STATE_TAGSLASH;
+							break;
+						default:
+							# ignore
 					}
-					$lt = strpos( $str, '<', $i );
-					if ( $stack === 0 ) {
-						if ( $lt === false || $colon < $lt ) {
-							# We found it!
-							$before = substr( $str, 0, $colon );
-							$after = substr( $str, $colon + 1 );
+					break;
+				case 2: # self::COLON_STATE_TAGSTART:
+					switch ( $c ) {
+						case "/":
+							$state = self::COLON_STATE_CLOSETAG;
+							break;
+						case "!":
+							$state = self::COLON_STATE_COMMENT;
+							break;
+						case ">":
+							# Illegal early close? This shouldn't happen D:
+							$state = self::COLON_STATE_TEXT;
+							break;
+						default:
+							$state = self::COLON_STATE_TAG;
+					}
+					break;
+				case 3: # self::COLON_STATE_CLOSETAG:
+					# In a </tag>
+					if ( $c === ">" ) {
+						$stack--;
+						if ( $stack < 0 ) {
+							wfDebug( __METHOD__ . ": Invalid input; too many close tags\n" );
 							wfProfileOut( __METHOD__ );
-							return $i;
+							return false;
 						}
+						$state = self::COLON_STATE_TEXT;
 					}
-					if ( $lt === false ) {
-						# Nothing else interesting to find; abort!
-						# We're nested, but there's no close tags left. Abort!
-						break 2;
-					}
-					# Skip ahead to next tag start
-					$i = $lt;
-					$state = self::COLON_STATE_TAGSTART;
-				}
-				break;
-			case 1: # self::COLON_STATE_TAG:
-				# In a <tag>
-				switch ( $c ) {
-				case ">":
-					$stack++;
-					$state = self::COLON_STATE_TEXT;
 					break;
-				case "/":
-					# Slash may be followed by >?
-					$state = self::COLON_STATE_TAGSLASH;
+				case self::COLON_STATE_TAGSLASH:
+					if ( $c === ">" ) {
+						# Yes, a self-closed tag <blah/>
+						$state = self::COLON_STATE_TEXT;
+					} else {
+						# Probably we're jumping the gun, and this is an attribute
+						$state = self::COLON_STATE_TAG;
+					}
+					break;
+				case 5: # self::COLON_STATE_COMMENT:
+					if ( $c === "-" ) {
+						$state = self::COLON_STATE_COMMENTDASH;
+					}
+					break;
+				case self::COLON_STATE_COMMENTDASH:
+					if ( $c === "-" ) {
+						$state = self::COLON_STATE_COMMENTDASHDASH;
+					} else {
+						$state = self::COLON_STATE_COMMENT;
+					}
+					break;
+				case self::COLON_STATE_COMMENTDASHDASH:
+					if ( $c === ">" ) {
+						$state = self::COLON_STATE_TEXT;
+					} else {
+						$state = self::COLON_STATE_COMMENT;
+					}
 					break;
 				default:
-					# ignore
-				}
-				break;
-			case 2: # self::COLON_STATE_TAGSTART:
-				switch ( $c ) {
-				case "/":
-					$state = self::COLON_STATE_CLOSETAG;
-					break;
-				case "!":
-					$state = self::COLON_STATE_COMMENT;
-					break;
-				case ">":
-					# Illegal early close? This shouldn't happen D:
-					$state = self::COLON_STATE_TEXT;
-					break;
-				default:
-					$state = self::COLON_STATE_TAG;
-				}
-				break;
-			case 3: # self::COLON_STATE_CLOSETAG:
-				# In a </tag>
-				if ( $c === ">" ) {
-					$stack--;
-					if ( $stack < 0 ) {
-						wfDebug( __METHOD__ . ": Invalid input; too many close tags\n" );
-						wfProfileOut( __METHOD__ );
-						return false;
-					}
-					$state = self::COLON_STATE_TEXT;
-				}
-				break;
-			case self::COLON_STATE_TAGSLASH:
-				if ( $c === ">" ) {
-					# Yes, a self-closed tag <blah/>
-					$state = self::COLON_STATE_TEXT;
-				} else {
-					# Probably we're jumping the gun, and this is an attribute
-					$state = self::COLON_STATE_TAG;
-				}
-				break;
-			case 5: # self::COLON_STATE_COMMENT:
-				if ( $c === "-" ) {
-					$state = self::COLON_STATE_COMMENTDASH;
-				}
-				break;
-			case self::COLON_STATE_COMMENTDASH:
-				if ( $c === "-" ) {
-					$state = self::COLON_STATE_COMMENTDASHDASH;
-				} else {
-					$state = self::COLON_STATE_COMMENT;
-				}
-				break;
-			case self::COLON_STATE_COMMENTDASHDASH:
-				if ( $c === ">" ) {
-					$state = self::COLON_STATE_TEXT;
-				} else {
-					$state = self::COLON_STATE_COMMENT;
-				}
-				break;
-			default:
-				wfProfileOut( __METHOD__ );
-				throw new MWException( "State machine error in " . __METHOD__ );
+					wfProfileOut( __METHOD__ );
+					throw new MWException( "State machine error in " . __METHOD__ );
 			}
 		}
 		if ( $stack > 0 ) {
@@ -3802,7 +3802,15 @@ class Parser {
 
 			if ( $rev ) {
 				$content = $rev->getContent();
-				$text = $content ? $content->getWikitextForTransclusion() : null;
+
+				if ( $content ) {
+					// Use the correct target model when pre-processing JS, CSS, etc.
+					$targetModel = $parser
+						? $parser->getTitle()->getContentModel()
+						: CONTENT_MODEL_WIKITEXT;
+
+					$text = $content->getTextForTransclusion( $targetModel, $parser );
+				}
 
 				if ( $text === false || $text === null ) {
 					$text = false;
@@ -3920,7 +3928,7 @@ class Parser {
 		$dbr = wfGetDB( DB_SLAVE );
 		$tsCond = $dbr->timestamp( time() - $wgTranscludeCacheExpiry );
 		$obj = $dbr->selectRow( 'transcache', array( 'tc_time', 'tc_contents' ),
-				array( 'tc_url' => $url, "tc_time >= " . $dbr->addQuotes( $tsCond ) ) );
+			array( 'tc_url' => $url, "tc_time >= " . $dbr->addQuotes( $tsCond ) ) );
 		if ( $obj ) {
 			return $obj->tc_contents;
 		}
@@ -5215,32 +5223,32 @@ class Parser {
 						$paramName = $paramMap[$magicName];
 
 						switch ( $paramName ) {
-						case 'gallery-internal-alt':
-							$alt = $this->stripAltText( $match, false );
-							break;
-						case 'gallery-internal-link':
-							$linkValue = strip_tags( $this->replaceLinkHoldersText( $match ) );
-							$chars = self::EXT_LINK_URL_CLASS;
-							$prots = $this->mUrlProtocols;
-							//check to see if link matches an absolute url, if not then it must be a wiki link.
-							if ( preg_match( "/^($prots)$chars+$/u", $linkValue ) ) {
-								$link = $linkValue;
-							} else {
-								$localLinkTitle = Title::newFromText( $linkValue );
-								if ( $localLinkTitle !== null ) {
-									$link = $localLinkTitle->getLocalURL();
+							case 'gallery-internal-alt':
+								$alt = $this->stripAltText( $match, false );
+								break;
+							case 'gallery-internal-link':
+								$linkValue = strip_tags( $this->replaceLinkHoldersText( $match ) );
+								$chars = self::EXT_LINK_URL_CLASS;
+								$prots = $this->mUrlProtocols;
+								//check to see if link matches an absolute url, if not then it must be a wiki link.
+								if ( preg_match( "/^($prots)$chars+$/u", $linkValue ) ) {
+									$link = $linkValue;
+								} else {
+									$localLinkTitle = Title::newFromText( $linkValue );
+									if ( $localLinkTitle !== null ) {
+										$link = $localLinkTitle->getLocalURL();
+									}
 								}
-							}
-							break;
-						default:
-							// Must be a handler specific parameter.
-							if ( $handler->validateParam( $paramName, $match ) ) {
-								$handlerOptions[$paramName] = $match;
-							} else {
-								// Guess not. Append it to the caption.
-								wfDebug( "$parameterMatch failed parameter validation\n" );
-								$label .= '|' . $parameterMatch;
-							}
+								break;
+							default:
+								// Must be a handler specific parameter.
+								if ( $handler->validateParam( $paramName, $match ) ) {
+									$handlerOptions[$paramName] = $match;
+								} else {
+									// Guess not. Append it to the caption.
+									wfDebug( "$parameterMatch failed parameter validation\n" );
+									$label .= '|' . $parameterMatch;
+								}
 						}
 
 					} else {
@@ -5394,51 +5402,51 @@ class Parser {
 					} else {
 						# Validate internal parameters
 						switch ( $paramName ) {
-						case 'manualthumb':
-						case 'alt':
-						case 'class':
-							# @todo FIXME: Possibly check validity here for
-							# manualthumb? downstream behavior seems odd with
-							# missing manual thumbs.
-							$validated = true;
-							$value = $this->stripAltText( $value, $holders );
-							break;
-						case 'link':
-							$chars = self::EXT_LINK_URL_CLASS;
-							$prots = $this->mUrlProtocols;
-							if ( $value === '' ) {
-								$paramName = 'no-link';
-								$value = true;
+							case 'manualthumb':
+							case 'alt':
+							case 'class':
+								# @todo FIXME: Possibly check validity here for
+								# manualthumb? downstream behavior seems odd with
+								# missing manual thumbs.
 								$validated = true;
-							} elseif ( preg_match( "/^(?i)$prots/", $value ) ) {
-								if ( preg_match( "/^((?i)$prots)$chars+$/u", $value, $m ) ) {
-									$paramName = 'link-url';
-									$this->mOutput->addExternalLink( $value );
-									if ( $this->mOptions->getExternalLinkTarget() ) {
-										$params[$type]['link-target'] = $this->mOptions->getExternalLinkTarget();
+								$value = $this->stripAltText( $value, $holders );
+								break;
+							case 'link':
+								$chars = self::EXT_LINK_URL_CLASS;
+								$prots = $this->mUrlProtocols;
+								if ( $value === '' ) {
+									$paramName = 'no-link';
+									$value = true;
+									$validated = true;
+								} elseif ( preg_match( "/^(?i)$prots/", $value ) ) {
+									if ( preg_match( "/^((?i)$prots)$chars+$/u", $value, $m ) ) {
+										$paramName = 'link-url';
+										$this->mOutput->addExternalLink( $value );
+										if ( $this->mOptions->getExternalLinkTarget() ) {
+											$params[$type]['link-target'] = $this->mOptions->getExternalLinkTarget();
+										}
+										$validated = true;
 									}
-									$validated = true;
+								} else {
+									$linkTitle = Title::newFromText( $value );
+									if ( $linkTitle ) {
+										$paramName = 'link-title';
+										$value = $linkTitle;
+										$this->mOutput->addLink( $linkTitle );
+										$validated = true;
+									}
 								}
-							} else {
-								$linkTitle = Title::newFromText( $value );
-								if ( $linkTitle ) {
-									$paramName = 'link-title';
-									$value = $linkTitle;
-									$this->mOutput->addLink( $linkTitle );
-									$validated = true;
-								}
-							}
-							break;
-						case 'frameless':
-						case 'framed':
-						case 'thumbnail':
-							// use first appearing option, discard others.
-							$validated = ! $seenformat;
-							$seenformat = true;
-							break;
-						default:
-							# Most other things appear to be empty or numeric...
-							$validated = ( $value === false || is_numeric( trim( $value ) ) );
+								break;
+							case 'frameless':
+							case 'framed':
+							case 'thumbnail':
+								// use first appearing option, discard others.
+								$validated = ! $seenformat;
+								$seenformat = true;
+								break;
+							default:
+								# Most other things appear to be empty or numeric...
+								$validated = ( $value === false || is_numeric( trim( $value ) ) );
 						}
 					}
 

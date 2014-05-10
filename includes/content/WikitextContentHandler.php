@@ -50,6 +50,69 @@ class WikitextContentHandler extends TextContentHandler {
 	}
 
 	/**
+	 * @see ContentHandler::supportsHtmlTransclusion()
+	 *
+	 * @return bool true
+	 */
+	public function supportsHtmlTransclusion() {
+		return true;
+	}
+
+	/**
+	 * @see ContentHandler::makeContentFromHtml
+	 *
+	 * Wraps the given HTML in a way that allows inclusion in wikitext.
+	 * Depending on the ParserOptions provided via $context, this may make
+	 * use of $parser->insertStripItem() to protect the HTML from wikitext processing.
+	 *
+	 * The intent of this method is to allow the inclusion of any kind of content
+	 * as a template in wikitext, by using the content's HTML rendering.
+	 *
+	 * $parser->getOptions()->getHtmlTransclusionMode() is used
+	 * to determine if and how raw HTML should be included in the wikitext.
+	 *
+	 * @see ParserOptions::getHtmlTransclusionMode
+	 * @see ParserOptions::HTML_TRANSCLUSION_DISABLED
+	 * @see ParserOptions::HTML_TRANSCLUSION_WRAP
+	 * @see ParserOptions::HTML_TRANSCLUSION_PASS_THROUGH
+	 *
+	 * @param string HTML
+	 * @param object|null $context The Parser to use as context for the conversion.
+	 * If not given (or not a Parser object), this method will return null.
+	 *
+	 * @return Content|null A WikitextContent object wrapping the given HTML,
+	 * or null.
+	 */
+	public function makeContentFromHtml( $html, $context = null ) {
+		if ( $context === null || !( $context instanceof Parser ) ) {
+			return null;
+		}
+
+		$mode = $context->getOptions()->getHtmlTransclusionMode();
+
+		if ( $mode === ParserOptions::HTML_TRANSCLUSION_DISABLED ) {
+			return null;
+		}
+
+		if ( $html === false ) {
+			return null;
+		}
+
+		if ( $mode === ParserOptions::HTML_TRANSCLUSION_WRAP ) {
+			// NOTE: this is intended for preprocessor passes without actual wikitext parsing,
+			// as done e.g. by ApiExpandTemplates. The text generated below will be mangled
+			// if parsed as wikitext, unless $wgRawHtml is enabled.
+			$wikitext = '<html>' . $html . '</html>';
+		} else {
+			// Replace the actual HTML with a strip mark, to be substituted later,
+			// to protected it from wikitext processing.
+			$wikitext = $context->insertStripItem( $html );
+		}
+
+		return $this->unserializeContent( $wikitext );
+	}
+
+	/**
 	 * Returns a WikitextContent object representing a redirect to the given destination page.
 	 *
 	 * @param Title $destination The page to redirect to.

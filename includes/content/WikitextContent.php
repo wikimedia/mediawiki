@@ -311,6 +311,10 @@ class WikitextContent extends TextContent {
 	 * Returns a ParserOutput object resulting from parsing the content's text
 	 * using $wgParser.
 	 *
+	 * @note Contrary to the implementation in TextContent, this does not call getHtml().
+	 * Instead, WikitextContent overrides getHtml() to use getParserOutput() which in turn
+	 * calls fillParserOutput().
+	 *
 	 * @param Title $title
 	 * @param int $revId Revision to pass to the parser (default: null)
 	 * @param ParserOptions $options (default: null)
@@ -341,13 +345,18 @@ class WikitextContent extends TextContent {
 	}
 
 	/**
-	 * @throws MWException
+	 * @see TextContent::getHtml()
+	 *
+	 * @note Contrary to the implementation in TextContent, this calls getParserOutput(),
+	 * instead of being used by getParserOutput() via fillParserOutput().
+	 *
+	 * @return string An HTML representation of the content
 	 */
 	protected function getHtml() {
-		throw new MWException(
-			"getHtml() not implemented for wikitext. "
-				. "Use getParserOutput()->getText()."
-		);
+		$title = Title::newFromText( '#' );
+		$parserOutput = $this->getParserOutput( $title );
+
+		return $parserOutput->getText();
 	}
 
 	/**
@@ -363,4 +372,24 @@ class WikitextContent extends TextContent {
 		return $word->match( $this->getNativeData() );
 	}
 
+	/**
+	 * Returns wikitext for transclusion.
+	 *
+	 * @see Content::getTextForTransclusion()
+	 *
+	 * @param string $modelId
+	 * @param object|null $context A Parser object
+	 *
+	 * @return string|bool
+	 */
+	public function getTextForTransclusion( $modelId, $context = null ) {
+		if ( $modelId === CONTENT_MODEL_WIKITEXT ) {
+			// @todo: handle <noinclude> and friends here!
+			$text = $this->getNativeData();
+		} else {
+			$text = parent::getTextForTransclusion( $modelId, $context );
+		}
+
+		return $text;
+	}
 }

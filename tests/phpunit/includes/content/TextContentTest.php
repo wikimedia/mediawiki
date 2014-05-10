@@ -441,31 +441,56 @@ class TextContentTest extends MediaWikiLangTestCase {
 		$page->doDeleteArticle( '' );
 	}
 
-	public static function provideConvert() {
+	protected function getMockParserForTransclusion() {
+		$options = new ParserOptions();
+		$options->setHtmlTransclusionMode( ParserOptions::HTML_TRANSCLUSION_WRAP );
+
+		$parser = $this->getMockBuilder( 'Parser' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$parser->expects( $this->any() )
+			->method( 'getOptions' )
+			->will( $this->returnValue( $options ) );
+
+		$parser->expects( $this->any() )
+			->method( 'insertStripItem' )
+			->will( $this->returnValue( '$stripmark$' ) );
+
+		return $parser;
+	}
+
+	public function provideConvert() {
 		return array(
 			array( // #0
-				'Hallo Welt',
-				CONTENT_MODEL_WIKITEXT,
+				'Hallo & Welt',
+				CONTENT_MODEL_TEXT,
 				'lossless',
-				'Hallo Welt'
+				'/^Hallo & Welt$/'
 			),
 			array( // #1
-				'Hallo Welt',
+				'Hallo & Welt',
 				CONTENT_MODEL_WIKITEXT,
 				'lossless',
-				'Hallo Welt'
+				'/^Hallo & Welt$/'
 			),
-			array( // #1
-				'Hallo Welt',
+			array( // #2
+				'Hallo & Welt',
 				CONTENT_MODEL_CSS,
 				'lossless',
-				'Hallo Welt'
+				'/^Hallo & Welt$/'
 			),
-			array( // #1
-				'Hallo Welt',
+			array( // #3
+				'Hallo & Welt',
 				CONTENT_MODEL_JAVASCRIPT,
 				'lossless',
-				'Hallo Welt'
+				'/^Hallo & Welt$/'
+			),
+			array( // #4
+				'Hallo & Welt',
+				CONTENT_MODEL_HTML,
+				'lossless',
+				'/^Hallo &amp; Welt$/'
 			),
 		);
 	}
@@ -474,16 +499,144 @@ class TextContentTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideConvert
 	 * @covers TextContent::convert
 	 */
-	public function testConvert( $text, $model, $lossy, $expectedNative ) {
+	public function testConvert( $text, $model, $lossy, $pattern ) {
 		$content = $this->newContent( $text );
 
 		$converted = $content->convert( $model, $lossy );
 
-		if ( $expectedNative === false ) {
+		if ( $pattern === false ) {
 			$this->assertFalse( $converted, "conversion to $model was expected to fail!" );
 		} else {
 			$this->assertInstanceOf( 'Content', $converted );
-			$this->assertEquals( $expectedNative, $converted->getNativeData() );
+			$this->assertRegExp( $pattern, $converted->getNativeData() );
 		}
+	}
+
+	public function provideGetTextForTransclusion() {
+		$parser = $this->getMockParserForTransclusion();
+
+		$modelsUsingParser = array(
+			CONTENT_MODEL_WIKITEXT,
+			CONTENT_MODEL_JAVASCRIPT,
+			CONTENT_MODEL_CSS,
+		);
+
+		// Derive transclusion cases from convert cases by
+		// overwriting the third parameter with a context object.
+		$cases = $this->provideConvert();
+
+		foreach ( $cases as &$case ) {
+			if ( in_array( $case[1], $modelsUsingParser ) ) {
+				$case[2] = $parser;
+			} else {
+				$case[2] = null;
+			}
+		}
+
+		return $cases;
+	}
+
+	/**
+	 * @dataProvider provideGetTextForTransclusion
+	 *
+	 * @covers TextContent::getTextForTransclusion
+	 */
+	public function testGetTextForTransclusion( $text, $targetModel, $context, $pattern ) {
+		$content = $this->newContent( $text );
+
+		$actual = $content->getTextForTransclusion( $targetModel, $context );
+
+		$this->assertRegExp( $pattern, $actual );
+	}
+
+	/**
+	 * @dataProvider provideGetTextForTransclusion
+	 * @covers TextContent::convert
+	 */
+	public function testGetContentForTransclusion( $text, $model, $context, $pattern ) {
+		$content = $this->newContent( $text );
+
+		$converted = $content->getContentForTransclusion( $model, $context );
+
+		if ( $pattern === false ) {
+			$this->assertFalse( $converted, "conversion to $model was expected to fail!" );
+		} else {
+			$this->assertInstanceOf( 'Content', $converted );
+			$this->assertRegExp( $pattern, $converted->getNativeData() );
+		}
+	}
+
+	protected function makeTemplatePage( Title $title, $text ) {
+		if ( !$title->exists() )  {
+			$content = $this->newContent( $text );
+			$page = new WikiPage( $title );
+			$status = $page->doEditContent( $content, 'testing' );
+
+			if ( !$status->isOK() ) {
+				throw new UnexpectedValueException( "save failed!\n" . $status->getWikiText() );
+			}
+		}
+	}
+
+	public function transclusionProvider() {
+		// FIXME: assign a namespace to the content model under test,
+		// so we can construct test cases here!
+		// As of now, this must be done by subclasses.
+		// For now, we test wikitext here.
+
+		$templateTitle = Title::newFromText( __METHOD__ . '/TestTemplate', NS_TEMPLATE );
+		$templateText = "FOO";
+
+		$article = Title::newFromText( __METHOD__ . '/TestPage', $this->getDefaultWikitextNS() );
+		$articleText = 'before {{:' . $templateTitle->getPrefixedText(). '}} after';
+
+		return array(
+			'wikitext in wikitext, default' => array(
+				$templateTitle,
+				$templateText,
+				$article,
+				$articleText,
+				null,
+				'!before FOO after!s'
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider transclusionProvider
+	 *
+	 * @param Title $templateTitle
+	 * @param string $templateText
+	 * @param Title $targetTitle
+	 * @param string $targetText
+	 * @param string $htmlTransclusionMode see ParserOptions::HTML_TRANSCLUSION_XXX
+	 * @param string $expected regex
+	 *
+	 * @internal param \Title $title The title of the page into which to transclude.
+	 *        Implies the target content model.
+	 */
+	public function testTransclusion(
+		Title $templateTitle,
+		$templateText,
+		Title $targetTitle,
+		$targetText,
+		$htmlTransclusionMode,
+		$expected
+	) {
+		global $wgParser;
+
+		$this->makeTemplatePage( $templateTitle, $templateText );
+
+		$handler = ContentHandler::getForTitle( $targetTitle );
+		$options = $handler->makeParserOptions( RequestContext::getMain() );
+
+		if ( $htmlTransclusionMode !== null ) {
+			$options->setHtmlTransclusionMode( $htmlTransclusionMode );
+		}
+
+		$text = $wgParser->preprocess( $targetText, $targetTitle, $options );
+		$text = preg_replace( '/\s*<!--.*?-->/s', '', $text );
+
+		$this->assertRegExp( $expected, $text );
 	}
 }

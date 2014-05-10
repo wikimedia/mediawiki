@@ -238,4 +238,43 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	) {
 	}
 	*/
+
+	public function provideMakeContentFromHtml() {
+		$html = '<a>Testing</a>';
+		return array(
+			'disabled' => array( $html, ParserOptions::HTML_TRANSCLUSION_DISABLED, null ),
+			'wrap' => array( $html, ParserOptions::HTML_TRANSCLUSION_WRAP, '<html>' . $html . '</html>' ),
+			'passthrough' => array( $html, ParserOptions::HTML_TRANSCLUSION_PASS_THROUGH, '$stripmark$' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideMakeContentFromHtml
+	 *
+	 * @param string $html
+	 * @param string $mode
+	 * @param string $expected
+	 */
+	public function testMakeContentFromHtml( $html, $mode, $expected ) {
+		$options = new ParserOptions();
+		$options->setHtmlTransclusionMode( $mode );
+
+		$parser = $this->getMockBuilder( 'Parser' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$parser->expects( $this->any() )
+			->method( 'getOptions' )
+			->will( $this->returnValue( $options ) );
+
+		$parser->expects( $this->any() )
+			->method( 'insertStripItem' )
+			->will( $this->returnValue( '$stripmark$' ) );
+
+		$content = $this->handler->makeContentFromHtml( $html, $parser );
+
+		$data = ( $content ? $content->getNativeData() : $content );
+
+		$this->assertEquals( $expected, $data );
+	}
 }
