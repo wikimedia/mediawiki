@@ -1908,12 +1908,9 @@ class Language {
 			$data[0] = 'Offset';
 		}
 
-		$minDiff = 0;
 		if ( $data[0] == 'System' || $tz == '' ) {
-			#  Global offset in minutes.
-			if ( isset( $wgLocalTZoffset ) ) {
-				$minDiff = $wgLocalTZoffset;
-			}
+			# Global offset in minutes.
+			$minDiff = $wgLocalTZoffset;
 		} elseif ( $data[0] == 'Offset' ) {
 			$minDiff = intval( $data[1] );
 		} else {
