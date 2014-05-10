@@ -105,6 +105,7 @@ class ProfilerSimpleDB extends ProfilerStandard {
 			if ( $useTrx ) {
 				$dbw->commit();
 			}
-		} catch ( DBError $e ) {}
+		} catch ( DBError $e ) {
+		}
 	}
 }

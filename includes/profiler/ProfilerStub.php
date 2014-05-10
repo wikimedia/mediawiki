@@ -30,16 +30,37 @@ class ProfilerStub extends Profiler {
 	public function isStub() {
 		return true;
 	}
+
 	public function isPersistent() {
 		return false;
 	}
-	public function profileIn( $fn ) {}
-	public function profileOut( $fn ) {}
-	public function getOutput() {}
-	public function close() {}
-	public function logData() {}
-	public function getCurrentSection() { return ''; }
-	public function transactionWritingIn( $server, $db, $id = '' ) {}
-	public function transactionWritingOut( $server, $db, $id = '' ) {}
-	public function getRawData() { return array(); }
+
+	public function profileIn( $fn ) {
+	}
+
+	public function profileOut( $fn ) {
+	}
+
+	public function getOutput() {
+	}
+
+	public function close() {
+	}
+
+	public function logData() {
+	}
+
+	public function getCurrentSection() {
+		return '';
+	}
+
+	public function transactionWritingIn( $server, $db, $id = '' ) {
+	}
+
+	public function transactionWritingOut( $server, $db, $id = '' ) {
+	}
+
+	public function getRawData() {
+		return array();
+	}
 }
