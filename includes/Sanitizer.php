@@ -358,7 +358,7 @@ class Sanitizer {
 	 * @param string $text
 	 * @param callable $processCallback Callback to do any variable or parameter
 	 *   replacements in HTML attribute values
-	 * @param array $args Arguments for the processing callback
+	 * @param array|bool $args Arguments for the processing callback
 	 * @param array $extratags For any extra tags to include
 	 * @param array $removetags For any tags (default or extra) to exclude
 	 * @return string
