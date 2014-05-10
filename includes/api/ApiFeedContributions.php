@@ -112,7 +112,7 @@ class ApiFeedContributions extends ApiBase {
 			return new FeedItem(
 				$title->getPrefixedText(),
 				$this->feedItemDesc( $revision ),
-				$title->getFullURL(),
+				$title->getFullURL( array( 'diff' => $revision->getId() ) ),
 				$date,
 				$this->feedItemAuthor( $revision ),
 				$comments
