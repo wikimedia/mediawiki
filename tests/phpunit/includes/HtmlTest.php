@@ -112,7 +112,8 @@ class HtmlTest extends MediaWikiTestCase {
 			Html::expandAttributes( array( 'foo' => false ) ),
 			'skip keys with false value'
 		);
-		$this->assertNotEmpty(
+		$this->assertEquals(
+			' foo=""',
 			Html::expandAttributes( array( 'foo' => '' ) ),
 			'keep keys with an empty string'
 		);
@@ -150,6 +151,33 @@ class HtmlTest extends MediaWikiTestCase {
 			' selected=""',
 			Html::expandAttributes( array( 'selected' => true ) ),
 			'Boolean attributes have empty string value when value is true (wgWellFormedXml)'
+		);
+	}
+
+	/**
+	 * @covers HTML::expandAttributes
+	 */
+	public function testExpandAttributesForNumbers() {
+		$this->assertEquals(
+			' value=1',
+			Html::expandAttributes( array( 'value' => 1 ) ),
+			'Integer value is cast to a string'
+		);
+		$this->assertEquals(
+			' value=1.1',
+			Html::expandAttributes( array( 'value' => 1.1 ) ),
+			'Float value is cast to a string'
+		);
+	}
+
+	/**
+	 * @covers HTML::expandAttributes
+	 */
+	public function testExpandAttributesForObjects() {
+		$this->assertEquals(
+			' value=stringValue',
+			Html::expandAttributes( array( 'value' => new HtmlTestValue() ) ),
+			'Object value is converted to a string'
 		);
 	}
 
@@ -297,6 +325,21 @@ class HtmlTest extends MediaWikiTestCase {
 				'GREEN',
 			) ) )
 		);
+	}
+
+	/**
+	 * @covers Html::expandAttributes
+	 * @expectedException MWException
+	 */
+	public function testExpandAttributes_ArrayOnNonListValueAttribute_ThrowsException() {
+		// Real-life test case found in the Popups extension (see Gerrit cf0fd64),
+		// when used with an outdated BetaFeatures extension (see Gerrit deda1e7)
+		Html::expandAttributes( array(
+			'src' => array(
+				'ltr' => 'ltr.svg',
+				'rtl' => 'rtl.svg'
+			)
+		) );
 	}
 
 	/**
@@ -663,5 +706,11 @@ class HtmlTest extends MediaWikiTestCase {
 				'Allow special case "step=any".'
 			)
 		);
+	}
+}
+
+class HtmlTestValue {
+	function __toString() {
+		return 'stringValue';
 	}
 }
