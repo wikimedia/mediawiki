@@ -34,7 +34,10 @@ class SearchMssql extends SearchDatabase {
 	 * @access public
 	 */
 	function searchText( $term ) {
-		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), true ) ) );
+		$resultSet = $this->db->resultObject(
+			$this->db->query( $this->getQuery( $this->filter( $term ), true ) )
+		);
+
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
@@ -46,7 +49,10 @@ class SearchMssql extends SearchDatabase {
 	 * @access public
 	 */
 	function searchTitle( $term ) {
-		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), false ) ) );
+		$resultSet = $this->db->resultObject(
+			$this->db->query( $this->getQuery( $this->filter( $term ), false ) )
+		);
+
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 

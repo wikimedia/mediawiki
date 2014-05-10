@@ -29,8 +29,9 @@
  * @ingroup Search
  */
 class SearchMySQL extends SearchDatabase {
-	var $strictMatching = true;
-	static $mMinSearchLength;
+	protected $strictMatching = true;
+
+	private static $mMinSearchLength;
 
 	/**
 	 * Parse the user's query and transform it into an SQL fragment which will
@@ -43,6 +44,7 @@ class SearchMySQL extends SearchDatabase {
 	 */
 	function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;
+
 		$lc = $this->legalSearchChars(); // Minus format chars
 		$searchon = '';
 		$this->searchTerms = array();
@@ -52,7 +54,9 @@ class SearchMySQL extends SearchDatabase {
 		if ( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 				$filteredText, $m, PREG_SET_ORDER ) ) {
 			foreach ( $m as $bits ) {
-				@list( /* all */, $modifier, $term, $nonQuoted, $wildcard ) = $bits;
+				wfSuppressWarnings();
+				list( /* all */, $modifier, $term, $nonQuoted, $wildcard ) = $bits;
+				wfRestoreWarnings();
 
 				if ( $nonQuoted != '' ) {
 					$term = $nonQuoted;

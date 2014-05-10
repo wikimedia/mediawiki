@@ -30,11 +30,22 @@
  * @ingroup Search
  */
 class SearchEngine {
-	var $limit = 10;
-	var $offset = 0;
-	var $prefix = '';
-	var $searchTerms = array();
-	var $namespaces = array( NS_MAIN );
+	/** @var string */
+	public $prefix = '';
+
+	/** @var int[] */
+	public $namespaces = array( NS_MAIN );
+
+	/** @var int */
+	protected $limit = 10;
+
+	/** @var int */
+	protected $offset = 0;
+
+	/** @var array|string */
+	protected $searchTerms = array();
+
+	/** @var bool */
 	protected $showSuggestion = true;
 
 	/** @var array Feature values */
@@ -106,8 +117,9 @@ class SearchEngine {
 	}
 
 	/**
-	 * Transform search term in cases when parts of the query came as different GET params (when supported)
-	 * e.g. for prefix queries: search=test&prefix=Main_Page/Archive -> test prefix:Main Page/Archive
+	 * Transform search term in cases when parts of the query came as different
+	 * GET params (when supported), e.g. for prefix queries:
+	 * search=test&prefix=Main_Page/Archive -> test prefix:Main Page/Archive
 	 */
 	function transformSearchTerm( $term ) {
 		return $term;
@@ -148,7 +160,10 @@ class SearchEngine {
 		$allSearchTerms = array( $searchterm );
 
 		if ( $wgContLang->hasVariants() ) {
-			$allSearchTerms = array_merge( $allSearchTerms, $wgContLang->autoConvertToAllVariants( $searchterm ) );
+			$allSearchTerms = array_merge(
+				$allSearchTerms,
+				$wgContLang->autoConvertToAllVariants( $searchterm )
+			);
 		}
 
 		$titleResult = null;
@@ -523,6 +538,7 @@ class SearchEngine {
 	 */
 	public static function getOpenSearchTemplate() {
 		global $wgOpenSearchTemplate, $wgCanonicalServer;
+
 		if ( $wgOpenSearchTemplate ) {
 			return $wgOpenSearchTemplate;
 		} else {
@@ -530,7 +546,9 @@ class SearchEngine {
 			if ( !$ns ) {
 				$ns = "0";
 			}
-			return $wgCanonicalServer . wfScript( 'api' ) . '?action=opensearch&search={searchTerms}&namespace=' . $ns;
+
+			return $wgCanonicalServer . wfScript( 'api' )
+				. '?action=opensearch&search={searchTerms}&namespace=' . $ns;
 		}
 	}
 

@@ -50,7 +50,9 @@ class SearchSqlite extends SearchDatabase {
 		if ( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 				$filteredText, $m, PREG_SET_ORDER ) ) {
 			foreach ( $m as $bits ) {
-				@list( /* all */, $modifier, $term, $nonQuoted, $wildcard ) = $bits;
+				wfSuppressWarnings();
+				list( /* all */, $modifier, $term, $nonQuoted, $wildcard ) = $bits;
+				wfRestoreWarnings();
 
 				if ( $nonQuoted != '' ) {
 					$term = $nonQuoted;
