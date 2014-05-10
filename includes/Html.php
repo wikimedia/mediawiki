@@ -552,7 +552,7 @@ class Html {
 					// @todo FIXME: Is this really true?
 					$map['<'] = '&lt;';
 				}
-				$ret .= " $key=$quote" . strtr( $value, $map ) . $quote;
+				$ret .= " $key=$quote" . strtr( (string)$value, $map ) . $quote;
 			}
 		}
 		return $ret;
