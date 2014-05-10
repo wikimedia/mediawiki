@@ -218,8 +218,7 @@ class Title {
 			}
 			return $t;
 		} else {
-			$ret = null;
-			return $ret;
+			return null;
 		}
 	}
 
