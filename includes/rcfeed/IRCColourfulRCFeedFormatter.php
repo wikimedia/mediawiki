@@ -77,15 +77,22 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 
 		if ( $attribs['rc_type'] == RC_LOG ) {
 			$targetText = $rc->getTitle()->getPrefixedText();
-			$comment = self::cleanupForIRC( str_replace( "[[$targetText]]", "[[\00302$targetText\00310]]", $actionComment ) );
+			$comment = self::cleanupForIRC( str_replace(
+				"[[$targetText]]",
+				"[[\00302$targetText\00310]]",
+				$actionComment
+			) );
 			$flag = $attribs['rc_log_action'];
 		} else {
 			$comment = self::cleanupForIRC( $attribs['rc_comment'] );
 			$flag = '';
-			if ( !$attribs['rc_patrolled'] && ( $wgUseRCPatrol || $attribs['rc_type'] == RC_NEW && $wgUseNPPatrol ) ) {
+			if ( !$attribs['rc_patrolled']
+				&& ( $wgUseRCPatrol || $attribs['rc_type'] == RC_NEW && $wgUseNPPatrol )
+			) {
 				$flag .= '!';
 			}
-			$flag .= ( $attribs['rc_type'] == RC_NEW ? "N" : "" ) . ( $attribs['rc_minor'] ? "M" : "" ) . ( $attribs['rc_bot'] ? "B" : "" );
+			$flag .= ( $attribs['rc_type'] == RC_NEW ? "N" : "" )
+				. ( $attribs['rc_minor'] ? "M" : "" ) . ( $attribs['rc_bot'] ? "B" : "" );
 		}
 
 		if ( $feed['add_interwiki_prefix'] === true && $wgLocalInterwikis ) {
