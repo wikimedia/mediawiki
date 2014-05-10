@@ -104,16 +104,6 @@ img.thumbborder {
 	border: 1px solid #dddddd;
 }
 
-/* table standards */
-table.rimage {
-	float: right;
-	width: 1pt;
-	position: relative;
-	margin-left: 1em;
-	margin-bottom: 1em;
-	text-align: center;
-}
-
 body {
 	background: white;
 	color: black;
