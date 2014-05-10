@@ -25,9 +25,19 @@
  * @ingroup Parser
  */
 class LinkHolderArray {
-	var $internals = array(), $interwikis = array();
-	var $size = 0;
-	var $parent;
+	/** @var array */
+	public $internals = array();
+
+	/** @var array */
+	public $interwikis = array();
+
+	/** @var int */
+	protected $size = 0;
+
+	/** @var Parser */
+	protected $parent;
+
+	/** @var int */
 	protected $tempIdOffset;
 
 	function __construct( $parent ) {
