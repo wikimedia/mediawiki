@@ -58,7 +58,7 @@ class MailAddress {
 		if ( $this->address ) {
 			if ( $this->name != '' && !wfIsWindows() ) {
 				global $wgEnotifUseRealName;
-				$name = ( $wgEnotifUseRealName && $this->realName ) ? $this->realName : $this->name;
+				$name = ( $wgEnotifUseRealName && $this->realName !== '' ) ? $this->realName : $this->name;
 				$quoted = UserMailer::quotedPrintable( $name );
 				if ( strpos( $quoted, '.' ) !== false || strpos( $quoted, ',' ) !== false ) {
 					$quoted = '"' . $quoted . '"';
@@ -761,7 +761,8 @@ class EmailNotification {
 			$keys['$PAGEEDITOR_EMAIL'] = wfMessage( 'noemailtitle' )->inContentLanguage()->text();
 
 		} else {
-			$keys['$PAGEEDITOR'] = $wgEnotifUseRealName ? $this->editor->getRealName() : $this->editor->getName();
+			$keys['$PAGEEDITOR'] = $wgEnotifUseRealName && $this->editor->getRealName() !== ''
+				? $this->editor->getRealName() : $this->editor->getName();
 			$emailPage = SpecialPage::getSafeTitleFor( 'Emailuser', $this->editor->getName() );
 			$keys['$PAGEEDITOR_EMAIL'] = $emailPage->getCanonicalURL();
 		}
@@ -868,7 +869,8 @@ class EmailNotification {
 			array( '$WATCHINGUSERNAME',
 				'$PAGEEDITDATE',
 				'$PAGEEDITTIME' ),
-			array( $wgEnotifUseRealName ? $watchingUser->getRealName() : $watchingUser->getName(),
+			array( $wgEnotifUseRealName && $watchingUser->getRealName() !== ''
+					? $watchingUser->getRealName() : $watchingUser->getName(),
 				$wgContLang->userDate( $this->timestamp, $watchingUser ),
 				$wgContLang->userTime( $this->timestamp, $watchingUser ) ),
 			$this->body );
