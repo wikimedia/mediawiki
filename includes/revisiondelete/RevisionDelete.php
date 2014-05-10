@@ -31,7 +31,8 @@
  * See RevDelRevisionItem and RevDelArchivedRevisionItem for items.
  */
 class RevDelRevisionList extends RevDelList {
-	var $currentRevId;
+	/** @var int */
+	protected $currentRevId;
 
 	public function getType() {
 		return 'revision';
@@ -147,7 +148,7 @@ class RevDelRevisionList extends RevDelList {
  * Item class for a live revision table row
  */
 class RevDelRevisionItem extends RevDelItem {
-	var $revision;
+	protected $revision;
 
 	public function __construct( $list, $row ) {
 		parent::__construct( $list, $row );
@@ -470,6 +471,15 @@ class RevDelArchivedRevisionItem extends RevDelArchiveItem {
  * List for oldimage table items
  */
 class RevDelFileList extends RevDelList {
+	/** @var array */
+	protected $storeBatch;
+
+	/** @var array */
+	protected $deleteBatch;
+
+	/** @var array */
+	protected $cleanupBatch;
+
 	public function getType() {
 		return 'oldimage';
 	}
@@ -485,8 +495,6 @@ class RevDelFileList extends RevDelList {
 	public static function getRevdelConstant() {
 		return File::DELETED_FILE;
 	}
-
-	var $storeBatch, $deleteBatch, $cleanupBatch;
 
 	/**
 	 * @param DatabaseBase $db
@@ -569,11 +577,8 @@ class RevDelFileList extends RevDelList {
  * Item class for an oldimage table row
  */
 class RevDelFileItem extends RevDelItem {
-
-	/**
-	 * @var File
-	 */
-	var $file;
+	/** @var File */
+	protected $file;
 
 	public function __construct( $list, $row ) {
 		parent::__construct( $list, $row );
@@ -1037,7 +1042,9 @@ class RevDelLogItem extends RevDelItem {
 		// User links and action text
 		$action = $formatter->getActionText();
 		// Comment
-		$comment = $this->list->getLanguage()->getDirMark() . Linker::commentBlock( $this->row->log_comment );
+		$comment = $this->list->getLanguage()->getDirMark()
+			. Linker::commentBlock( $this->row->log_comment );
+
 		if ( LogEventsList::isDeleted( $this->row, LogPage::DELETED_COMMENT ) ) {
 			$comment = '<span class="history-deleted">' . $comment . '</span>';
 		}
@@ -1053,9 +1060,15 @@ class RevDelLogItem extends RevDelItem {
 			'type' => $logEntry->getType(),
 			'action' => $logEntry->getSubtype(),
 		);
-		$ret += $logEntry->isDeleted( LogPage::DELETED_USER ) ? array( 'userhidden' => '' ) : array();
-		$ret += $logEntry->isDeleted( LogPage::DELETED_COMMENT ) ? array( 'commenthidden' => '' ) : array();
-		$ret += $logEntry->isDeleted( LogPage::DELETED_ACTION ) ? array( 'actionhidden' => '' ) : array();
+		$ret += $logEntry->isDeleted( LogPage::DELETED_USER )
+			? array( 'userhidden' => '' )
+			: array();
+		$ret += $logEntry->isDeleted( LogPage::DELETED_COMMENT )
+			? array( 'commenthidden' => '' )
+			: array();
+		$ret += $logEntry->isDeleted( LogPage::DELETED_ACTION )
+			? array( 'actionhidden' => '' )
+			: array();
 
 		if ( LogEventsList::userCan( $this->row, LogPage::DELETED_ACTION, $user ) ) {
 			ApiQueryLogEvents::addLogParams(
