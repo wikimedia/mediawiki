@@ -105,6 +105,8 @@ abstract class ApiBase extends ContextSource {
 		if ( !$this->isMain() ) {
 			$this->setContext( $mainModule->getContext() );
 		}
+
+
 	}
 
 	/*****************************************************************************
@@ -148,6 +150,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function getModuleName() {
 		return $this->mModuleName;
+
 	}
 
 	/**
@@ -165,6 +168,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function getModulePrefix() {
 		return $this->mModulePrefix;
+
 	}
 
 	/**
@@ -285,6 +289,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return string|bool
 	 */
 	public function makeHelpMsg() {
+
 		static $lnPrfx = "\n  ";
 
 		$msg = $this->getFinalDescription();
@@ -390,15 +395,21 @@ abstract class ApiBase extends ContextSource {
 	 * @return string|bool
 	 */
 	public function makeHelpMsgParameters() {
+
+
 		$params = $this->getFinalParams( ApiBase::GET_VALUES_FOR_HELP );
+
 		if ( $params ) {
 
 			$paramsDescription = $this->getFinalParamDescription();
 			$msg = '';
 			$paramPrefix = "\n" . str_repeat( ' ', 24 );
 			$descWordwrap = "\n" . str_repeat( ' ', 28 );
+
 			foreach ( $params as $paramName => $paramSettings ) {
+
 				$desc = isset( $paramsDescription[$paramName] ) ? $paramsDescription[$paramName] : '';
+
 				if ( is_array( $desc ) ) {
 					$desc = implode( $paramPrefix, $desc );
 				}
@@ -422,7 +433,9 @@ abstract class ApiBase extends ContextSource {
 					} elseif ( is_int( $dflt ) ) {
 						$paramSettings[ApiBase::PARAM_TYPE] = 'integer';
 					}
-				}
+				} 
+
+
 
 				if ( isset( $paramSettings[self::PARAM_DEPRECATED] )
 					&& $paramSettings[self::PARAM_DEPRECATED]
@@ -439,6 +452,8 @@ abstract class ApiBase extends ContextSource {
 				$type = isset( $paramSettings[self::PARAM_TYPE] )
 					? $paramSettings[self::PARAM_TYPE]
 					: null;
+
+
 				if ( isset( $type ) ) {
 					$hintPipeSeparated = true;
 					$multi = isset( $paramSettings[self::PARAM_ISMULTI] )
@@ -503,6 +518,12 @@ abstract class ApiBase extends ContextSource {
 							case 'upload':
 								$desc .= $paramPrefix . "Must be posted as a file upload using multipart/form-data";
 								break;
+
+							// to handle singular datatype
+								
+							default:
+								$desc .= $paramPrefix . "Type: $type";
+								break;
 						}
 					}
 
@@ -522,7 +543,14 @@ abstract class ApiBase extends ContextSource {
 				}
 
 				$default = isset( $paramSettings[self::PARAM_DFLT] ) ? $paramSettings[self::PARAM_DFLT] : null;
-				if ( !is_null( $default ) && $default !== false ) {
+
+				// default to false for all boolean types.
+
+				if ( $type === 'boolean' ) {
+					$default = 'false';
+				} 
+
+				if ( !is_null( $default ) ) {
 					$desc .= $paramPrefix . "Default: $default";
 				}
 
