@@ -439,6 +439,7 @@ abstract class ApiBase extends ContextSource {
 				$type = isset( $paramSettings[self::PARAM_TYPE] )
 					? $paramSettings[self::PARAM_TYPE]
 					: null;
+
 				if ( isset( $type ) ) {
 					$hintPipeSeparated = true;
 					$multi = isset( $paramSettings[self::PARAM_ISMULTI] )
@@ -503,6 +504,10 @@ abstract class ApiBase extends ContextSource {
 							case 'upload':
 								$desc .= $paramPrefix . "Must be posted as a file upload using multipart/form-data";
 								break;
+							// to handle singular datatype
+							default:
+								$desc .= $paramPrefix . "Type: $type";
+								break;
 						}
 					}
 
@@ -522,7 +527,12 @@ abstract class ApiBase extends ContextSource {
 				}
 
 				$default = isset( $paramSettings[self::PARAM_DFLT] ) ? $paramSettings[self::PARAM_DFLT] : null;
-				if ( !is_null( $default ) && $default !== false ) {
+				// default to false for all boolean types.
+				if ( $type === 'boolean' ) {
+					$default = 'false';
+				}
+
+				if ( !is_null( $default ) ) {
 					$desc .= $paramPrefix . "Default: $default";
 				}
 
