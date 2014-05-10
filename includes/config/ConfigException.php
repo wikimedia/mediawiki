@@ -21,25 +21,8 @@
  */
 
 /**
- * Accesses configuration settings from $GLOBALS
+ * Exceptions for config failures
  *
  * @since 1.23
  */
-class GlobalConfig extends Config {
-
-	/**
-	 * @see Config::get
-	 */
-	public function get( $name, $prefix = 'wg' ) {
-		return $GLOBALS[$prefix . $name];
-	}
-
-	/**
-	 * @see Config::set
-	 */
-	public function set( $name, $value, $prefix = 'wg' ) {
-		$GLOBALS[$prefix . $name] = $value;
-
-		return Status::newGood();
-	}
-}
+class ConfigException extends MWException {}
