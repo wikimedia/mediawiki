@@ -456,7 +456,7 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Copy items from the OutputPage object into this one
+	 * Copy items from the OutputPage object into this ParserOutput
 	 *
 	 * @param OutputPage $out
 	 */

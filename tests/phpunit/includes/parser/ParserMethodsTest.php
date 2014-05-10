@@ -148,6 +148,88 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		), $out->getSections(), 'getSections() with proper value when <h2> is used' );
 	}
 
+	public function preprocessProvider() {
+		$templates = array(
+			'Template:Wikitext' => array(
+				'text' => "foo '''bar'''",
+				'html' => "foo <b>bar</b>",
+			),
+			'Special:Contributions/ParserMethodsTest82374652843' => array(
+				'text' => "{{Special:Contributions/ParserMethodsTest82374652843}}",
+				'html' => "<h2>all the pages</h2>",
+			),
+			'MediaWiki:Common.js' => array(
+				'text' => "{{MediaWiki:common.js}}",
+				'html' => "<pre>JS</pre>",
+			),
+		);
+
+		return array(
+			'wikitext transclusion' => array(
+				"x {{wikitext}} y",
+				$templates,
+				false,
+				"@^x foo '''bar''' y$@",
+			),
+			'special page transclusion' => array(
+				"x {{Special:Contributions/ParserMethodsTest82374652843}} y",
+				$templates,
+				false,
+				"@^x {{Special:Contributions/ParserMethodsTest82374652843}} y$@",
+			),
+			'data transclusion' => array(
+				"x {{MediaWiki:common.js}} y",
+				$templates,
+				false,
+				"@^x {{MediaWiki:common.js}} y$@",
+			),
+			'special page transclusion, with html' => array(
+				"x {{Special:Contributions/ParserMethodsTest82374652843}} y",
+				$templates,
+				true,
+				'@^x <mw-transclude content-type="text/html" data-wikitext="{{Special:Contributions/ParserMethodsTest82374652843}}"><div class="mw-userpage-userdoesnotexist error">.*</mw-transclude> y$@s',
+			),
+			'data transclusion, with html' => array(
+				"x {{MediaWiki:common.js}} y",
+				$templates,
+				true,
+				'@^x <mw-transclude content-type="text/html" data-wikitext="{{MediaWiki:common.js}}"><pre>JS</pre></mw-transclude> y$@',
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider preprocessProvider
+	 */
+	public function testPreprocess( $wikitext, $templates, $expandHtml, $pattern ) {
+		global $wgParser;
+
+		$lang = Language::factory( 'en' );
+
+		$options = new ParserOptions( null, $lang );
+		$options->setTemplateCallback(
+			function( Title $title, $parser = false ) use ( $templates ) {
+				$key = $title->getPrefixedDBkey();
+				$template = $templates[$key];
+
+				$isWikitext = $title->getContentModel() === CONTENT_MODEL_WIKITEXT;
+				$templateParserOutput = $isWikitext ? false : new ParserOutput( $template['html'] );
+
+				return array(
+					'text' => $template['text'],
+					'ParserOutput' => $templateParserOutput,
+					'finalTitle' => $title,
+					'deps' => array() );
+			}
+		);
+
+		$title = Title::makeTitle( NS_MAIN, 'ParserMethodsTest/testPreprocess' );
+
+		$result = $wgParser->preprocess( $wikitext, $title, $options, null, false, $expandHtml );
+
+		$this->assertRegExp( $pattern, $result );
+	}
+
 	/**
 	 * @dataProvider provideNormalizeLinkUrl
 	 * @covers Parser::normalizeLinkUrl
