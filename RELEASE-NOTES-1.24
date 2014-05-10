@@ -15,6 +15,9 @@ production.
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
   WhatLinksHere entries.
+* Added a new hook, "ContentGetParserOutput", to customize parser output for
+  a given content object.
+* Deprecated the hook "ShowRawCssJs", use "ContentGetParserOutput" instead.
 * HTMLForm's HTMLTextField now supports the 'url' type.
 * HTMLForm fields may now be dynamically hidden based on the values of other
   fields in the form.
