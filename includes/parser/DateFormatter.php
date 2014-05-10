@@ -324,6 +324,7 @@ class DateFormatter {
 			}
 		}
 		if ( $fail ) {
+			/** @todo FIXME: $matches doesn't exist here, what's expected? */
 			$text = $matches[0];
 		}
 
@@ -385,6 +386,7 @@ class DateFormatter {
 
 	/**
 	 * @todo document
+	 * @param string $iso
 	 * @return int|string
 	 */
 	function makeNormalYear( $iso ) {

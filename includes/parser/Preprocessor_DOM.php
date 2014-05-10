@@ -909,6 +909,7 @@ class PPDStackElement {
 	/**
 	 * Get the output string that would result if the close is not found.
 	 *
+	 * @param bool|int $openingCount
 	 * @return string
 	 */
 	function breakSyntax( $openingCount = false ) {
@@ -1487,10 +1488,10 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 
 	/**
 	 * @param Preprocessor $preprocessor
-	 * @param PPFrame_DOM $parent
+	 * @param bool|PPFrame_DOM $parent
 	 * @param array $numberedArgs
 	 * @param array $namedArgs
-	 * @param Title $title
+	 * @param bool|Title $title
 	 */
 	function __construct( $preprocessor, $parent = false, $numberedArgs = array(),
 		$namedArgs = array(), $title = false
