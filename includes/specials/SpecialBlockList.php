@@ -437,6 +437,9 @@ class BlockListPager extends TablePager {
 		$userids = array();
 
 		foreach ( $result as $row ) {
+			if ( !$this->getUser()->isAllowed( 'hideuser' ) && $row->ipb_deleted ) {
+				continue;
+			}
 			$userids[] = $row->ipb_by;
 
 			# Usernames and titles are in fact related by a simple substitution of space -> underscore
