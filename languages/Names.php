@@ -402,6 +402,8 @@
 	'uk' => 'українська',	# Ukrainian
 	'ur' => 'اردو',	# Urdu
 	'uz' => 'oʻzbekcha',	# Uzbek
+	'uz-cyrl' => 'ўзбекча',	# Uzbek (Cyrillic script)
+	'uz-latn' => 'oʻzbekcha',	# Uzbek (Latin script)
 	've' => 'Tshivenda',		# Venda
 	'vec' => 'vèneto',	# Venetian
 	'vep' => 'vepsän kel’',	# Veps
