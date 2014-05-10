@@ -44,7 +44,13 @@ abstract class UploadBase {
 	protected $mBlackListedExtensions;
 	protected $mJavaDetected, $mSVGNSError;
 
-	protected static $safeXmlEncodings = array( 'UTF-8', 'ISO-8859-1', 'ISO-8859-2', 'UTF-16', 'UTF-32' );
+	protected static $safeXmlEncodings = array(
+		'UTF-8',
+		'ISO-8859-1',
+		'ISO-8859-2',
+		'UTF-16',
+		'UTF-32'
+	);
 
 	const SUCCESS = 0;
 	const OK = 0;
@@ -125,7 +131,7 @@ abstract class UploadBase {
 	}
 
 	// Upload handlers. Should probably just be a global.
-	static $uploadHandlers = array( 'Stash', 'File', 'Url' );
+	private static $uploadHandlers = array( 'Stash', 'File', 'Url' );
 
 	/**
 	 * Create a form of UploadBase depending on wpSourceType and initializes it
@@ -259,8 +265,9 @@ abstract class UploadBase {
 		wfProfileIn( __METHOD__ );
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		if ( $repo->isVirtualUrl( $srcPath ) ) {
-			// @todo just make uploads work with storage paths
-			// UploadFromStash loads files via virtual URLs
+			/** @todo Just make uploads work with storage paths UploadFromStash
+			 *  loads files via virtual URLs.
+			 */
 			$tmpFile = $repo->getLocalCopy( $srcPath );
 			if ( $tmpFile ) {
 				$tmpFile->bind( $this ); // keep alive with $this
@@ -567,8 +574,10 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Alias for verifyTitlePermissions. The function was originally 'verifyPermissions'
-	 * but that suggests it's checking the user, when it's really checking the title + user combination.
+	 * Alias for verifyTitlePermissions. The function was originally
+	 * 'verifyPermissions', but that suggests it's checking the user, when it's
+	 * really checking the title + user combination.
+	 *
 	 * @param User $user User object to verify the permissions against
 	 * @return mixed An array as returned by getUserPermissionsErrors or true
 	 *   in case the user has proper permissions.
@@ -645,7 +654,8 @@ abstract class UploadBase {
 		if ( $this->mDesiredDestName != $filename && $comparableName != $filename ) {
 			$warnings['badfilename'] = $filename;
 			// Debugging for bug 62241
-			wfDebugLog( 'upload', "Filename: '$filename', mDesiredDestName: '$this->mDesiredDestName', comparableName: '$comparableName'" );
+			wfDebugLog( 'upload', "Filename: '$filename', mDesiredDestName: "
+				. "'$this->mDesiredDestName', comparableName: '$comparableName'" );
 		}
 
 		// Check whether the file extension is on the unwanted list
@@ -727,7 +737,11 @@ abstract class UploadBase {
 
 		if ( $status->isGood() ) {
 			if ( $watch ) {
-				WatchAction::doWatch( $this->getLocalFile()->getTitle(), $user, WatchedItem::IGNORE_USER_RIGHTS );
+				WatchAction::doWatch(
+					$this->getLocalFile()->getTitle(),
+					$user,
+					WatchedItem::IGNORE_USER_RIGHTS
+				);
 			}
 			wfRunHooks( 'UploadComplete', array( &$this ) );
 		}
@@ -844,7 +858,8 @@ abstract class UploadBase {
 		# If there was more than one "extension", reassemble the base
 		# filename to prevent bogus complaints about length
 		if ( count( $ext ) > 1 ) {
-			for ( $i = 0; $i < count( $ext ) - 1; $i++ ) {
+			$iterations = count( $ext ) - 1;
+			for ( $i = 0; $i < $iterations; $i++ ) {
 				$partname .= '.' . $ext[$i];
 			}
 		}
@@ -876,13 +891,16 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * If the user does not supply all necessary information in the first upload form submission (either by accident or
-	 * by design) then we may want to stash the file temporarily, get more information, and publish the file later.
+	 * If the user does not supply all necessary information in the first upload
+	 * form submission (either by accident or by design) then we may want to
+	 * stash the file temporarily, get more information, and publish the file
+	 * later.
 	 *
-	 * This method will stash a file in a temporary directory for later processing, and save the necessary descriptive info
-	 * into the database.
-	 * This method returns the file object, which also has a 'fileKey' property which can be passed through a form or
-	 * API request to find this stashed file again.
+	 * This method will stash a file in a temporary directory for later
+	 * processing, and save the necessary descriptive info into the database.
+	 * This method returns the file object, which also has a 'fileKey' property
+	 * which can be passed through a form or API request to find this stashed
+	 * file again.
 	 *
 	 * @param User $user
 	 * @return UploadStashFile Stashed file
@@ -901,7 +919,8 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Stash a file in a temporary directory, returning a key which can be used to find the file again. See stashFile().
+	 * Stash a file in a temporary directory, returning a key which can be used
+	 * to find the file again. See stashFile().
 	 *
 	 * @return string File key
 	 */
@@ -1012,10 +1031,11 @@ abstract class UploadBase {
 		} elseif ( $match === true ) {
 			wfDebug( __METHOD__ . ": mime type $mime matches extension $extension, passing file\n" );
 
-			#TODO: if it's a bitmap, make sure PHP or ImageMagic resp. can handle it!
+			/** @todo If it's a bitmap, make sure PHP or ImageMagick resp. can handle it! */
 			return true;
 		} else {
-			wfDebug( __METHOD__ . ": mime type $mime mismatches file extension $extension, rejecting file\n" );
+			wfDebug( __METHOD__
+				. ": mime type $mime mismatches file extension $extension, rejecting file\n" );
 
 			return false;
 		}
@@ -1070,7 +1090,7 @@ abstract class UploadBase {
 
 		$chunk = trim( $chunk );
 
-		# @todo FIXME: Convert from UTF-16 if necessary!
+		/** @todo FIXME: Convert from UTF-16 if necessary! */
 		wfDebug( __METHOD__ . ": checking for embedded scripts and HTML stuff\n" );
 
 		# check for HTML doctype
@@ -1315,7 +1335,7 @@ abstract class UploadBase {
 
 		if ( !in_array( $namespace, $validNamespaces ) ) {
 			wfDebug( __METHOD__ . ": Non-svg namespace '$namespace' in uploaded file.\n" );
-			// @TODO return a status object to a closure in XmlTypeCheck, for MW1.21+
+			/** @todo Return a status object to a closure in XmlTypeCheck, for MW1.21+ */
 			$this->mSVGNSError = $namespace;
 
 			return true;
@@ -1330,7 +1350,8 @@ abstract class UploadBase {
 			return true;
 		}
 
-		# e.g., <svg xmlns="http://www.w3.org/2000/svg"> <handler xmlns:ev="http://www.w3.org/2001/xml-events" ev:event="load">alert(1)</handler> </svg>
+		# e.g., <svg xmlns="http://www.w3.org/2000/svg">
+		#  <handler xmlns:ev="http://www.w3.org/2001/xml-events" ev:event="load">alert(1)</handler> </svg>
 		if ( $strippedElement == 'handler' ) {
 			wfDebug( __METHOD__ . ": Found scriptable element '$element' in uploaded file.\n" );
 
@@ -1356,48 +1377,62 @@ abstract class UploadBase {
 			$value = strtolower( $value );
 
 			if ( substr( $stripped, 0, 2 ) == 'on' ) {
-				wfDebug( __METHOD__ . ": Found event-handler attribute '$attrib'='$value' in uploaded file.\n" );
+				wfDebug( __METHOD__
+					. ": Found event-handler attribute '$attrib'='$value' in uploaded file.\n" );
 
 				return true;
 			}
 
 			# href with javascript target
 			if ( $stripped == 'href' && strpos( strtolower( $value ), 'javascript:' ) !== false ) {
-				wfDebug( __METHOD__ . ": Found script in href attribute '$attrib'='$value' in uploaded file.\n" );
+				wfDebug( __METHOD__
+					. ": Found script in href attribute '$attrib'='$value' in uploaded file.\n" );
 
 				return true;
 			}
 
 			# href with embedded svg as target
 			if ( $stripped == 'href' && preg_match( '!data:[^,]*image/svg[^,]*,!sim', $value ) ) {
-				wfDebug( __METHOD__ . ": Found href to embedded svg \"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
+				wfDebug( __METHOD__ . ": Found href to embedded svg "
+					. "\"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
 
 				return true;
 			}
 
 			# href with embedded (text/xml) svg as target
 			if ( $stripped == 'href' && preg_match( '!data:[^,]*text/xml[^,]*,!sim', $value ) ) {
-				wfDebug( __METHOD__ . ": Found href to embedded svg \"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
+				wfDebug( __METHOD__ . ": Found href to embedded svg "
+					. "\"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
 
 				return true;
 			}
 
 			# use set/animate to add event-handler attribute to parent
-			if ( ( $strippedElement == 'set' || $strippedElement == 'animate' ) && $stripped == 'attributename' && substr( $value, 0, 2 ) == 'on' ) {
-				wfDebug( __METHOD__ . ": Found svg setting event-handler attribute with \"<$strippedElement $stripped='$value'...\" in uploaded file.\n" );
+			if ( ( $strippedElement == 'set' || $strippedElement == 'animate' )
+				&& $stripped == 'attributename'
+				&& substr( $value, 0, 2 ) == 'on'
+			) {
+				wfDebug( __METHOD__ . ": Found svg setting event-handler attribute with "
+					. "\"<$strippedElement $stripped='$value'...\" in uploaded file.\n" );
 
 				return true;
 			}
 
 			# use set to add href attribute to parent element
-			if ( $strippedElement == 'set' && $stripped == 'attributename' && strpos( $value, 'href' ) !== false ) {
+			if ( $strippedElement == 'set'
+				&& $stripped == 'attributename'
+				&& strpos( $value, 'href' ) !== false
+			) {
 				wfDebug( __METHOD__ . ": Found svg setting href attribute '$value' in uploaded file.\n" );
 
 				return true;
 			}
 
 			# use set to add a remote / data / script target to an element
-			if ( $strippedElement == 'set' && $stripped == 'to' && preg_match( '!(http|https|data|script):!sim', $value ) ) {
+			if ( $strippedElement == 'set'
+				&& $stripped == 'to'
+				&& preg_match( '!(http|https|data|script):!sim', $value )
+			) {
 				wfDebug( __METHOD__ . ": Found svg setting attribute to '$value' in uploaded file.\n" );
 
 				return true;
@@ -1405,17 +1440,26 @@ abstract class UploadBase {
 
 			# use handler attribute with remote / data / script
 			if ( $stripped == 'handler' && preg_match( '!(http|https|data|script):!sim', $value ) ) {
-				wfDebug( __METHOD__ . ": Found svg setting handler with remote/data/script '$attrib'='$value' in uploaded file.\n" );
+				wfDebug( __METHOD__ . ": Found svg setting handler with remote/data/script "
+					. "'$attrib'='$value' in uploaded file.\n" );
 
 				return true;
 			}
 
 			# use CSS styles to bring in remote code
 			# catch url("http:..., url('http:..., url(http:..., but not url("#..., url('#..., url(#....
-			if ( $stripped == 'style' && preg_match_all( '!((?:font|clip-path|fill|filter|marker|marker-end|marker-mid|marker-start|mask|stroke)\s*:\s*url\s*\(\s*["\']?\s*[^#]+.*?\))!sim', $value, $matches ) ) {
+			$tagsList = "font|clip-path|fill|filter|marker|marker-end|marker-mid|marker-start|mask|stroke";
+			if ( $stripped == 'style'
+				&& preg_match_all(
+					'!((?:' . $tagsList . ')\s*:\s*url\s*\(\s*["\']?\s*[^#]+.*?\))!sim',
+					$value,
+					$matches
+				)
+			) {
 				foreach ( $matches[1] as $match ) {
-					if ( !preg_match( '!(?:font|clip-path|fill|filter|marker|marker-end|marker-mid|marker-start|mask|stroke)\s*:\s*url\s*\(\s*(#|\'#|"#)!sim', $match ) ) {
-						wfDebug( __METHOD__ . ": Found svg setting a style with remote url '$attrib'='$value' in uploaded file.\n" );
+					if ( !preg_match( '!(?:' . $tagsList . ')\s*:\s*url\s*\(\s*(#|\'#|"#)!sim', $match ) ) {
+						wfDebug( __METHOD__ . ": Found svg setting a style with "
+							. "remote url '$attrib'='$value' in uploaded file.\n" );
 
 						return true;
 					}
@@ -1423,8 +1467,12 @@ abstract class UploadBase {
 			}
 
 			# image filters can pull in url, which could be svg that executes scripts
-			if ( $strippedElement == 'image' && $stripped == 'filter' && preg_match( '!url\s*\(!sim', $value ) ) {
-				wfDebug( __METHOD__ . ": Found image filter with url: \"<$strippedElement $stripped='$value'...\" in uploaded file.\n" );
+			if ( $strippedElement == 'image'
+				&& $stripped == 'filter'
+				&& preg_match( '!url\s*\(!sim', $value )
+			) {
+				wfDebug( __METHOD__ . ": Found image filter with url: "
+					. "\"<$strippedElement $stripped='$value'...\" in uploaded file.\n" );
 
 				return true;
 			}
@@ -1529,7 +1577,9 @@ abstract class UploadBase {
 			# scan failed (code was mapped to false by $exitCodeMap)
 			wfDebug( __METHOD__ . ": failed to scan $file (code $exitCode).\n" );
 
-			$output = $wgAntivirusRequired ? wfMessage( 'virus-scanfailed', array( $exitCode ) )->text() : null;
+			$output = $wgAntivirusRequired
+				? wfMessage( 'virus-scanfailed', array( $exitCode ) )->text()
+				: null;
 		} elseif ( $mappedCode === AV_SCAN_ABORTED ) {
 			# scan failed because filetype is unknown (probably imune)
 			wfDebug( __METHOD__ . ": unsupported file type $file (code $exitCode).\n" );
@@ -1679,7 +1729,10 @@ abstract class UploadBase {
 
 		if ( self::isThumbName( $file->getName() ) ) {
 			# Check for filenames like 50px- or 180px-, these are mostly thumbnails
-			$nt_thb = Title::newFromText( substr( $partname, strpos( $partname, '-' ) + 1 ) . '.' . $extension, NS_FILE );
+			$nt_thb = Title::newFromText(
+				substr( $partname, strpos( $partname, '-' ) + 1 ) . '.' . $extension,
+				NS_FILE
+			);
 			$file_thb = wfLocalFile( $nt_thb );
 			if ( $file_thb->exists() ) {
 				return array(
@@ -1757,17 +1810,21 @@ abstract class UploadBase {
 	/**
 	 * Gets image info about the file just uploaded.
 	 *
-	 * Also has the effect of setting metadata to be an 'indexed tag name' in returned API result if
-	 * 'metadata' was requested. Oddly, we have to pass the "result" object down just so it can do that
-	 * with the appropriate format, presumably.
+	 * Also has the effect of setting metadata to be an 'indexed tag name' in
+	 * returned API result if 'metadata' was requested. Oddly, we have to pass
+	 * the "result" object down just so it can do that with the appropriate
+	 * format, presumably.
 	 *
 	 * @param ApiResult $result
 	 * @return array Image info
 	 */
 	public function getImageInfo( $result ) {
 		$file = $this->getLocalFile();
-		// TODO This cries out for refactoring. We really want to say $file->getAllInfo(); here.
-		// Perhaps "info" methods should be moved into files, and the API should just wrap them in queries.
+		/** @todo This cries out for refactoring.
+		 *  We really want to say $file->getAllInfo(); here.
+		 * Perhaps "info" methods should be moved into files, and the API should
+		 * just wrap them in queries.
+		 */
 		if ( $file instanceof UploadStashFile ) {
 			$imParam = ApiQueryStashImageInfo::getPropertyNames();
 			$info = ApiQueryStashImageInfo::getInfo( $file, array_flip( $imParam ), $result );
