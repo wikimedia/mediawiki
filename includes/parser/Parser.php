@@ -3721,11 +3721,20 @@ class Parser {
 	 */
 	function fetchTemplateAndTitle( $title ) {
 		$templateCb = $this->mOptions->getTemplateCallback(); # Defaults to Parser::statelessFetchTemplate()
-		$stuff = call_user_func( $templateCb, $title, $this );
-		$text = $stuff['text'];
-		$finalTitle = isset( $stuff['finalTitle'] ) ? $stuff['finalTitle'] : $title;
-		if ( isset( $stuff['deps'] ) ) {
-			foreach ( $stuff['deps'] as $dep ) {
+		$templateInfo = call_user_func( $templateCb, $title, $this );
+
+		// If we have no text but raw HTML, make a strip mark for the HTML and use it as the text.
+		if ( $templateInfo['text'] === false
+			&& isset( $templateInfo['html'] )
+			&& $templateInfo['html'] !== false
+		) {
+			$templateInfo['text'] = $this->insertStripItem( $templateInfo['html'] );
+		}
+
+		$text = $templateInfo['text'];
+		$finalTitle = isset( $templateInfo['finalTitle'] ) ? $templateInfo['finalTitle'] : $title;
+		if ( isset( $templateInfo['deps'] ) ) {
+			foreach ( $templateInfo['deps'] as $dep ) {
 				$this->mOutput->addTemplate( $dep['title'], $dep['page_id'], $dep['rev_id'] );
 				if ( $dep['title']->equals( $this->getTitle() ) ) {
 					// If we transclude ourselves, the final result
@@ -3754,10 +3763,14 @@ class Parser {
 	 * @param Title $title
 	 * @param Parser $parser
 	 *
-	 * @return array
+	 * @return array (
+	 *   'text' => $text,
+	 *   'html' => $html,
+	 *   'finalTitle' => $finalTitle,
+	 *   'deps' => $deps )
 	 */
 	static function statelessFetchTemplate( $title, $parser = false ) {
-		$text = $skip = false;
+		$text = $skip = $html = false;
 		$finalTitle = $title;
 		$deps = array();
 
@@ -3801,11 +3814,23 @@ class Parser {
 			}
 
 			if ( $rev ) {
+				$text = false;
 				$content = $rev->getContent();
-				$text = $content ? $content->getWikitextForTransclusion() : null;
 
-				if ( $text === false || $text === null ) {
-					$text = false;
+				if ( $content ) {
+					$html = $content->getHtmlForTransclusion();
+
+					if ( $html === false || $html === null ) {
+						$html = false;
+						$text = $content->getWikitextForTransclusion();
+					}
+
+					if ( $text === false || $text === null ) {
+						$text = false;
+					}
+				}
+
+				if ( $text === false && $html === false ) {
 					break;
 				}
 			} elseif ( $title->getNamespace() == NS_MEDIAWIKI ) {
@@ -3829,6 +3854,7 @@ class Parser {
 		}
 		return array(
 			'text' => $text,
+			'html' => $html,
 			'finalTitle' => $finalTitle,
 			'deps' => $deps );
 	}
