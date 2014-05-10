@@ -2239,6 +2239,12 @@ $skin: Skin object
 &$bar: Sidebar contents
 Modify $bar to add or modify sidebar portlets.
 
+'SidebarBeforeOutput': Allows to edit sidebar just before its output by skins.
+$skin Skin object
+&$bar: Sidebar content
+Modify $bar to add or modify sidebar portlets.
+Warning: This hook is run on each display. You should consider to use 'SkinBuildSidebar' that is aggressively cached.
+
 'SkinCopyrightFooter': Allow for site and per-namespace customization of
 copyright notice.
 $title: displayed page title
