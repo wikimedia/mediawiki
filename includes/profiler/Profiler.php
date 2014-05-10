@@ -101,8 +101,10 @@ abstract class Profiler {
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
 
-	/** @var Profiler */
-	public static $__instance = null; // do not call this outside Profiler and ProfileSection
+	// @codingStandardsIgnoreStart PSR2.Classes.PropertyDeclaration.Underscore
+	/** @var Profiler Do not call this outside Profiler and ProfileSection */
+	public static $__instance = null;
+	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @param array $params
