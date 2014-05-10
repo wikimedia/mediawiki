@@ -870,7 +870,7 @@ class PPDAccum_Hash {
 	 * Append a PPAccum_Hash
 	 * Takes over ownership of the nodes in the source argument. These nodes may
 	 * subsequently be modified, especially nextSibling.
-	 * @param PPAccum_Hash $accum
+	 * @param PPDAccum_Hash $accum
 	 */
 	function addAccum( $accum ) {
 		if ( $accum->lastNode === false ) {
@@ -1395,7 +1395,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	 * @param bool|PPFrame $parent
 	 * @param array $numberedArgs
 	 * @param array $namedArgs
-	 * @param Title $title
+	 * @param bool|Title $title
 	 */
 	function __construct( $preprocessor, $parent = false, $numberedArgs = array(),
 		$namedArgs = array(), $title = false
