@@ -16482,6 +16482,18 @@ wgRawHtml=1
 !! end
 
 !! test
+Transcusion via magic <mw-transclude> tag, with HTML content being ignored.
+<mw-transclude> is needed to allow safe parsing of output generated in preprocess
+mode with HTML transclusion enabled.
+!! options
+!! wikitext
+<mw-transclude content-type="html" data-wikitext="{{Foo}}"><script>alert(1);</script></mw-transclude>
+!! html
+<p>FOO
+</p>
+!! end
+
+!! test
 Parents of subpages, one level up
 !! options
 subpage title=[[Subpage test/L1/L2/L3]]
