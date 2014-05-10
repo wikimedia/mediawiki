@@ -250,6 +250,7 @@ $block: The block from which the autoblock is coming.
 'AbortEmailNotification': Can be used to cancel email notifications for an edit.
 $editor: The User who made the change.
 $title: The Title of the page that was edited.
+$title: The current RecentChange object.
 
 'AbortLogin': Return false to cancel account login.
 $user: the User object being authenticated against
