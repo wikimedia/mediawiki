@@ -898,8 +898,9 @@ class User {
 			return false;
 		}
 
-		// Clean up name according to title rules
-		$t = ( $validate === 'valid' ) ?
+		// Clean up name according to title rules,
+		// but only when validation is requested (bug 12654)
+		$t = ( $validate !== false ) ?
 			Title::newFromText( $name ) : Title::makeTitle( NS_USER, $name );
 		// Check for invalid titles
 		if ( is_null( $t ) ) {
