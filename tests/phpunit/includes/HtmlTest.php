@@ -154,6 +154,79 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers HTML::expandAttributes
+	 */
+	public function testExpandAttributesForNumbers() {
+		$this->assertEquals(
+			' value=1',
+			Html::expandAttributes( array( 'value' => 1 ) ),
+			'Integer attribute generates string output'
+		);
+		$this->assertEquals(
+			' value=1.1',
+			Html::expandAttributes( array( 'value' => 1.1 ) ),
+			'Float attribute generates string output'
+		);
+	}
+
+	/**
+	 * @covers Html::expandAttributes
+	 */
+	public function testExpandAttributesForSingleElementBooleanArrays() {
+		$this->assertEmpty(
+			Html::expandAttributes( array( 'checked' => array() ) ),
+			'Skip empty array'
+		);
+		$this->assertEmpty(
+			Html::expandAttributes( array( 'checked' => array( null ) ) ),
+			'Skip single element array with null'
+		);
+		$this->assertEmpty(
+			Html::expandAttributes( array( 'checked' => array( false ) ) ),
+			'Skip single element array with false'
+		);
+
+		$this->assertNotEmpty(
+			Html::expandAttributes( array( 'checked' => array( true ) ) ),
+			'Keep single element array with true'
+		);
+		$this->assertNotEmpty(
+			Html::expandAttributes( array( 'checked' => array( '' ) ) ),
+			'Keep single element array with empty string'
+		);
+		$this->assertNotEmpty(
+			Html::expandAttributes( array( 'checked' => array( '0' ) ) ),
+			'Keep single element array with "0"'
+		);
+	}
+
+	/**
+	 * @covers Html::expandAttributes
+	 */
+	public function testExpandAttributesForSingleElementStringArrays() {
+		$this->assertEquals(
+			' src=ltr.svg',
+			Html::expandAttributes( array( 'src' => array( 'ltr.svg' ) ) ),
+			'Single element array generates output'
+		);
+		$this->assertEquals(
+			' src=ltr.svg',
+			Html::expandAttributes( array( 'src' => array( 'ltr' => 'ltr.svg' ) ) ),
+			'Single element associative array generates output'
+		);
+	}
+
+	/**
+	 * @covers Html::expandAttributes
+	 * @expectedException MWException
+	 */
+	public function testExpandAttributesForArraysThrowsException() {
+		// Real-life test case found in the Popups extension (see Gerrit cf0fd64),
+		// when used with an outdated BetaFeatures extension (see Gerrit deda1e7)
+		Html::expandAttributes( array( 'src' => array( 'ltr' => 'ltr.svg', 'rtl' => 'rtl.svg' ) ) );
+	}
+
+	/**
 	 * Test for Html::expandAttributes()
 	 * Please note it output a string prefixed with a space!
 	 * @covers Html::expandAttributes

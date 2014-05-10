@@ -386,7 +386,7 @@ class Html {
 	 * For instance, it will omit quotation marks if $wgWellFormedXml is false,
 	 * and will treat boolean attributes specially.
 	 *
-	 * Attributes that should contain space-separated lists (such as 'class') array
+	 * Attributes that can contain space-separated lists ('class', 'accesskey' and 'rel') array
 	 * values are allowed as well, which will automagically be normalized
 	 * and converted to a space-separated string. In addition to a numerical
 	 * array, the attribute value may also be an associative array. See the
@@ -413,6 +413,8 @@ class Html {
 	 *   A value of false means to omit the attribute.  For boolean attributes,
 	 *   you can omit the key, e.g., array( 'checked' ) instead of
 	 *   array( 'checked' => 'checked' ) or such.
+	 *
+	 * @throws MWException if an attribute that doesn't allow lists is set to a multi-element array
 	 * @return string HTML fragment that goes between element name and '>'
 	 *   (starting with a space if at least one attribute is output)
 	 */
@@ -500,6 +502,15 @@ class Html {
 
 				// Remove duplicates and create the string
 				$value = implode( ' ', array_unique( $value ) );
+			} else if ( is_array( $value ) ) {
+				if ( count( $value ) > 1 ) {
+					throw new MWException( "HTML attribute $key can not contain a list of values" );
+				}
+
+				$value = reset( $value );
+				if ( $value === false || is_null( $value ) ) {
+					continue;
+				}
 			}
 
 			// See the "Attributes" section in the HTML syntax part of HTML5,
