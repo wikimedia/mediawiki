@@ -5107,9 +5107,9 @@ $wgUDPProfilerPort = '3811';
 
 /**
  * Format string for the UDP profiler. The UDP profiler invokes sprintf() with
- * (profile id, count, cpu, cpu_sq, real, real_sq, entry name) as arguments.
- * You can use sprintf's argument numbering/swapping capability to repeat,
- * re-order or omit fields.
+ * (profile id, count, cpu, cpu_sq, real, real_sq, entry name, memory) as
+ * arguments. You can use sprintf's argument numbering/swapping capability to
+ * repeat, re-order or omit fields.
  *
  * @see $wgStatsFormatString
  * @since 1.22
