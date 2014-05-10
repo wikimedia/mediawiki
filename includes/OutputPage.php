@@ -175,24 +175,23 @@ class OutputPage extends ContextSource {
 	protected $mParserOptions = null;
 
 	/**
-	 * Handles the atom / rss links.
-	 * We probably only support atom in 2011.
-	 * Looks like a private variable.
+	 * Handles the Atom / RSS links.
+	 * We probably only support Atom in 2011.
 	 * @see $wgAdvertisedFeedTypes
 	 */
-	var $mFeedLinks = array();
+	private $mFeedLinks = array();
 
 	// Gwicke work on squid caching? Roughly from 2003.
 	var $mEnableClientCache = true;
 
-	/**
-	 * Flag if output should only contain the body of the article.
-	 * Should be private.
-	 */
-	var $mArticleBodyOnly = false;
+	/** @var bool Flag if output should only contain the body of the article. */
+	private $mArticleBodyOnly = false;
 
+	/** @var bool */
 	var $mNewSectionLink = false;
-	var $mHideNewSectionLink = false;
+
+	/** @var bool */
+	protected $mHideNewSectionLink = false;
 
 	/**
 	 * Comes from the parser. This was probably made to load CSS/JS only

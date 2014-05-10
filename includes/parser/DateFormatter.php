@@ -27,11 +27,40 @@
  * @ingroup Parser
  */
 class DateFormatter {
-	var $mSource, $mTarget;
-	var $monthNames = '', $rxDM, $rxMD, $rxDMY, $rxYDM, $rxMDY, $rxYMD;
+	protected $mSource;
 
-	var $regexes, $pDays, $pMonths, $pYears;
-	var $rules, $xMonths, $preferences;
+	protected $mTarget;
+
+	/** @var string */
+	protected $monthNames = '';
+
+	/** @todo Are these unused? */
+	private $rxDM;
+	private $rxMD;
+	private $rxDMY;
+	private $rxYDM;
+	private $rxMDY;
+	private $rxYMD;
+
+	/** @var array */
+	protected $regexes;
+
+	/** @todo Are these unused? */
+	private $pDays;
+	private $pMonths;
+	private $pYears;
+
+	/** @var array */
+	protected $rules;
+
+	/** @var array */
+	protected $xMonths;
+
+	/** @var array */
+	protected $preferences;
+
+	/** @var bool */
+	protected $mLinked;
 
 	protected $lang;
 
@@ -205,7 +234,8 @@ class DateFormatter {
 
 		$bits = array();
 		$key = $this->keys[$this->mSource];
-		for ( $p = 0; $p < strlen( $key ); $p++ ) {
+		$keyLength = strlen( $key );
+		for ( $p = 0; $p < $keyLength; $p++ ) {
 			if ( $key[$p] != ' ' ) {
 				$bits[$key[$p]] = $matches[$p + 1];
 			}
@@ -254,7 +284,8 @@ class DateFormatter {
 			$bits['d'] = sprintf( '%02d', $bits['j'] );
 		}
 
-		for ( $p = 0; $p < strlen( $format ); $p++ ) {
+		$formatLength = strlen( $format );
+		for ( $p = 0; $p < $formatLength; $p++ ) {
 			$char = $format[$p];
 			switch ( $char ) {
 				case 'd': # ISO day of month
@@ -293,6 +324,7 @@ class DateFormatter {
 			}
 		}
 		if ( $fail ) {
+			/** @todo FIXME: $matches doesn't exist here, what's expected? */
 			$text = $matches[0];
 		}
 
@@ -354,6 +386,7 @@ class DateFormatter {
 
 	/**
 	 * @todo document
+	 * @param string $iso
 	 * @return int|string
 	 */
 	function makeNormalYear( $iso ) {
