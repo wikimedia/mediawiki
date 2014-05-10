@@ -554,9 +554,9 @@ if ( !wfIniGetBool( 'session.auto_start' ) ) {
 if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	if ( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix . 'Token'] ) ) {
 		wfSetupSession();
-		$wgSessionStarted = true;
+		$wgSessionStarted = new DeprecatedGlobal( 'wgSessionStarted', true, '1.24' );
 	} else {
-		$wgSessionStarted = false;
+		$wgSessionStarted = new DeprecatedGlobal( 'wgSessionStarted', false, '1.24' );
 	}
 }
 
