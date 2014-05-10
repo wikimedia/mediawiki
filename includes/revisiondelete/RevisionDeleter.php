@@ -29,11 +29,11 @@
 class RevisionDeleter {
 	/** List of known revdel types, with their corresponding list classes */
 	private static $allowedTypes = array(
-		'revision' => 'RevDel_RevisionList',
-		'archive' => 'RevDel_ArchiveList',
-		'oldimage' => 'RevDel_FileList',
-		'filearchive' => 'RevDel_ArchivedFileList',
-		'logging' => 'RevDel_LogList',
+		'revision' => 'RevDelRevisionList',
+		'archive' => 'RevDelArchiveList',
+		'oldimage' => 'RevDelFileList',
+		'filearchive' => 'RevDelArchivedFileList',
+		'logging' => 'RevDelLogList',
 	);
 
 	/** Type map to support old log entries */
@@ -77,7 +77,7 @@ class RevisionDeleter {
 	 * @param IContextSource $context
 	 * @param Title $title
 	 * @param array $ids
-	 * @return RevDel_List
+	 * @return RevDelList
 	 */
 	public static function createList( $typeName, IContextSource $context, Title $title, array $ids ) {
 		$typeName = self::getCanonicalTypeName( $typeName );
