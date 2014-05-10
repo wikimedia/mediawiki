@@ -342,11 +342,14 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Copy items from the OutputPage object into this one
+	 * Copy items from the OutputPage object into this ParserOutput
+	 *
+	 * @see mergePageMetadata
 	 *
 	 * @param OutputPage $out
 	 */
 	public function addOutputPageMetadata( OutputPage $out ) {
+		// NOTE: keep in sync with mergePageMetadata()!
 		$this->addModules( $out->getModules() );
 		$this->addModuleScripts( $out->getModuleScripts() );
 		$this->addModuleStyles( $out->getModuleStyles() );
@@ -354,6 +357,24 @@ class ParserOutput extends CacheTime {
 		$this->addJsConfigVars( $out->getJsConfigVars() );
 
 		$this->mHeadItems = array_merge( $this->mHeadItems, $out->getHeadItemsArray() );
+	}
+
+	/**
+	 * Copy page meta data from the other ParserOutput object into this one
+	 *
+	 * @see addOutputPageMetadata
+	 *
+	 * @param ParserOutput $out
+	 */
+	public function mergePageMetadata( ParserOutput $out ) {
+		// NOTE: keep in sync with addOutputPageMetadata()!
+		$this->addModules( $out->getModules() );
+		$this->addModuleScripts( $out->getModuleScripts() );
+		$this->addModuleStyles( $out->getModuleStyles() );
+		$this->addModuleMessages( $out->getModuleMessages() );
+		$this->addJsConfigVars( $out->getJsConfigVars() );
+
+		$this->mHeadItems = array_merge( $this->mHeadItems, $out->getHeadItems() );
 	}
 
 	/**

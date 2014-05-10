@@ -329,7 +329,18 @@ class TextContentTest extends MediaWikiLangTestCase {
 	public function testGetWikitextForTransclusion() {
 		$content = $this->newContent( 'hello world.' );
 
-		$this->assertEquals( 'hello world.', $content->getWikitextForTransclusion() );
+		// the default implementation just returns false
+		$this->assertEquals( false, $content->getWikitextForTransclusion() );
+	}
+
+	/**
+	 * @covers TextContent::getParserOutputForTransclusion
+	 */
+	public function testGetParserOutputForTransclusion() {
+		$content = $this->newContent( 'hello&world.' );
+		$pout = $content->getParserOutputForTransclusion( new Title( 'Test' ) );
+
+		$this->assertRegExp( '!hello&amp;world!', $pout->getText() );
 	}
 
 	/**
