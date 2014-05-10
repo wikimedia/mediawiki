@@ -27,7 +27,6 @@
  * of a specific loader request
  */
 class ResourceLoaderContext {
-
 	/* Protected Members */
 
 	protected $resourceLoader;
@@ -109,7 +108,8 @@ class ResourceLoaderContext {
 	}
 
 	/**
-	 * Return a dummy ResourceLoaderContext object suitable for passing into things that don't "really" need a context
+	 * Return a dummy ResourceLoaderContext object suitable for passing into
+	 * things that don't "really" need a context.
 	 * @return ResourceLoaderContext
 	 */
 	public static function newDummyContext() {

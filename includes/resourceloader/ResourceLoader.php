@@ -29,24 +29,16 @@
  *    https://www.mediawiki.org/wiki/ResourceLoader
  */
 class ResourceLoader {
-
-	/**
-	 * @var int
-	 */
+	/** @var int */
 	protected static $filterCacheVersion = 7;
-	/**
-	 * @var array
-	 */
+
+	/** @var array */
 	protected static $requiredSourceProperties = array( 'loadScript' );
 
-	/**
-	 * @var array Module name/ResourceLoaderModule object pairs
-	 */
+	/** @var array Module name/ResourceLoaderModule object pairs */
 	protected $modules = array();
 
-	/**
-	 * @var array Associative array mapping module name to info associative array
-	 */
+	/** @var array Associative array mapping module name to info associative array */
 	protected $moduleInfos = array();
 
 	/**
@@ -55,14 +47,10 @@ class ResourceLoader {
 	 */
 	protected $testModuleNames = array();
 
-	/**
-	 * @var array e.g. array( 'source-id' => array( 'loadScript' => 'http://.../load.php' ) )
-	 */
+	/** @var array e.g. array( 'source-id' => array( 'loadScript' => 'http://.../load.php' ) ) */
 	protected $sources = array();
 
-	/**
-	 * @var bool
-	 */
+	/** @var bool */
 	protected $hasErrors = false;
 
 	/**
@@ -225,7 +213,10 @@ class ResourceLoader {
 		wfProfileIn( __METHOD__ );
 
 		// Add 'local' source first
-		$this->addSource( 'local', array( 'loadScript' => $wgLoadScript, 'apiScript' => wfScript( 'api' ) ) );
+		$this->addSource(
+			'local',
+			array( 'loadScript' => $wgLoadScript, 'apiScript' => wfScript( 'api' ) )
+		);
 
 		// Add other sources
 		$this->addSource( $wgResourceLoaderSources );
@@ -275,7 +266,8 @@ class ResourceLoader {
 			// Check $name for validity
 			if ( !self::isValidModuleName( $name ) ) {
 				wfProfileOut( __METHOD__ );
-				throw new MWException( "ResourceLoader module name '$name' is invalid, see ResourceLoader::isValidModuleName()" );
+				throw new MWException( "ResourceLoader module name '$name' is invalid, "
+					. "see ResourceLoader::isValidModuleName()" );
 			}
 
 			// Attach module
@@ -304,7 +296,9 @@ class ResourceLoader {
 		global $IP, $wgEnableJavaScriptTest;
 
 		if ( $wgEnableJavaScriptTest !== true ) {
-			throw new MWException( 'Attempt to register JavaScript test modules but <code>$wgEnableJavaScriptTest</code> is false. Edit your <code>LocalSettings.php</code> to enable it.' );
+			throw new MWException( 'Attempt to register JavaScript test modules '
+				. 'but <code>$wgEnableJavaScriptTest</code> is false. '
+				. 'Edit your <code>LocalSettings.php</code> to enable it.' );
 		}
 
 		wfProfileIn( __METHOD__ );
@@ -325,7 +319,8 @@ class ResourceLoader {
 			$module['dependencies'][] = 'test.mediawiki.qunit.testrunner';
 		}
 
-		$testModules['qunit'] = ( include "$IP/tests/qunit/QUnitTestResources.php" ) + $testModules['qunit'];
+		$testModules['qunit'] =
+			( include "$IP/tests/qunit/QUnitTestResources.php" ) + $testModules['qunit'];
 
 		foreach ( $testModules as $id => $names ) {
 			// Register test modules
@@ -395,10 +390,12 @@ class ResourceLoader {
 	 * @return array
 	 */
 	public function getTestModuleNames( $framework = 'all' ) {
-		/// @todo api siteinfo prop testmodulenames modulenames
+		/** @todo api siteinfo prop testmodulenames modulenames */
 		if ( $framework == 'all' ) {
 			return $this->testModuleNames;
-		} elseif ( isset( $this->testModuleNames[$framework] ) && is_array( $this->testModuleNames[$framework] ) ) {
+		} elseif ( isset( $this->testModuleNames[$framework] )
+			&& is_array( $this->testModuleNames[$framework] )
+		) {
 			return $this->testModuleNames[$framework];
 		} else {
 			return array();
@@ -763,7 +760,10 @@ class ResourceLoader {
 				$blobs = MessageBlobStore::get( $this, $modules, $context->getLanguage() );
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
-				wfDebugLog( 'resourceloader', __METHOD__ . ": pre-fetching blobs from MessageBlobStore failed: $e" );
+				wfDebugLog(
+					'resourceloader',
+					__METHOD__ . ": pre-fetching blobs from MessageBlobStore failed: $e"
+				);
 				$this->hasErrors = true;
 				// Add exception to the output as a comment
 				$exceptions .= self::formatException( $e );
@@ -795,9 +795,13 @@ class ResourceLoader {
 						$scripts = $module->getScriptURLsForDebug( $context );
 					} else {
 						$scripts = $module->getScript( $context );
-						// rtrim() because there are usually a few line breaks after the last ';'.
-						// A new line at EOF, a new line added by ResourceLoaderFileModule::readScriptFiles, etc.
-						if ( is_string( $scripts ) && strlen( $scripts ) && substr( rtrim( $scripts ), -1 ) !== ';' ) {
+						// rtrim() because there are usually a few line breaks
+						// after the last ';'. A new line at EOF, a new line
+						// added by ResourceLoaderFileModule::readScriptFiles, etc.
+						if ( is_string( $scripts )
+							&& strlen( $scripts )
+							&& substr( rtrim( $scripts ), -1 ) !== ';'
+						) {
 							// Append semicolon to prevent weird bugs caused by files not
 							// terminating their statements right (bug 27054)
 							$scripts .= ";\n";
@@ -1055,7 +1059,9 @@ class ResourceLoader {
 	 * @param string $script JavaScript code
 	 * @return string
 	 */
-	public static function makeCustomLoaderScript( $name, $version, $dependencies, $group, $source, $script ) {
+	public static function makeCustomLoaderScript( $name, $version, $dependencies,
+		$group, $source, $script
+	) {
 		$script = str_replace( "\n", "\n\t", trim( $script ) );
 		return Xml::encodeJsCall(
 			"( function ( name, version, dependencies, group, source ) {\n\t$script\n} )",
@@ -1218,9 +1224,12 @@ class ResourceLoader {
 	 * @param array $extraQuery Extra query parameters to add
 	 * @return string URL to load.php. May be protocol-relative (if $wgLoadScript is procol-relative)
 	 */
-	public static function makeLoaderURL( $modules, $lang, $skin, $user = null, $version = null, $debug = false, $only = null,
-			$printable = false, $handheld = false, $extraQuery = array() ) {
+	public static function makeLoaderURL( $modules, $lang, $skin, $user = null,
+		$version = null, $debug = false, $only = null, $printable = false,
+		$handheld = false, $extraQuery = array()
+	) {
 		global $wgLoadScript;
+
 		$query = self::makeLoaderQuery( $modules, $lang, $skin, $user, $version, $debug,
 			$only, $printable, $handheld, $extraQuery
 		);
@@ -1247,8 +1256,10 @@ class ResourceLoader {
 	 *
 	 * @return array
 	 */
-	public static function makeLoaderQuery( $modules, $lang, $skin, $user = null, $version = null, $debug = false, $only = null,
-			$printable = false, $handheld = false, $extraQuery = array() ) {
+	public static function makeLoaderQuery( $modules, $lang, $skin, $user = null,
+		$version = null, $debug = false, $only = null, $printable = false,
+		$handheld = false, $extraQuery = array()
+	) {
 		$query = array(
 			'modules' => self::makePackedModulesString( $modules ),
 			'lang' => $lang,

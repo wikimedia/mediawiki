@@ -26,13 +26,14 @@
  * ResourceLoader module based on local JavaScript/CSS files.
  */
 class ResourceLoaderFileModule extends ResourceLoaderModule {
-
 	/* Protected Members */
 
 	/** @var string Local base path, see __construct() */
 	protected $localBasePath = '';
+
 	/** @var string Remote base path, see __construct() */
 	protected $remoteBasePath = '';
+
 	/**
 	 * @var array List of paths to JavaScript files to always include
 	 * @par Usage:
@@ -41,6 +42,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @endcode
 	 */
 	protected $scripts = array();
+
 	/**
 	 * @var array List of JavaScript files to include when using a specific language
 	 * @par Usage:
@@ -49,6 +51,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @endcode
 	 */
 	protected $languageScripts = array();
+
 	/**
 	 * @var array List of JavaScript files to include when using a specific skin
 	 * @par Usage:
@@ -57,6 +60,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @endcode
 	 */
 	protected $skinScripts = array();
+
 	/**
 	 * @var array List of paths to JavaScript files to include in debug mode
 	 * @par Usage:
@@ -65,6 +69,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @endcode
 	 */
 	protected $debugScripts = array();
+
 	/**
 	 * @var array List of paths to JavaScript files to include in the startup module
 	 * @par Usage:
@@ -73,6 +78,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @endcode
 	 */
 	protected $loaderScripts = array();
+
 	/**
 	 * @var array List of paths to CSS files to always include
 	 * @par Usage:
@@ -81,6 +87,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @endcode
 	 */
 	protected $styles = array();
+
 	/**
 	 * @var array List of paths to CSS files to include when using specific skins
 	 * @par Usage:
@@ -89,6 +96,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @endcode
 	 */
 	protected $skinStyles = array();
+
 	/**
 	 * @var array List of modules this module depends on
 	 * @par Usage:
@@ -97,6 +105,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @endcode
 	 */
 	protected $dependencies = array();
+
 	/**
 	 * @var array List of message keys used by this module
 	 * @par Usage:
@@ -105,14 +114,19 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @endcode
 	 */
 	protected $messages = array();
+
 	/** @var string Name of group to load this module in */
 	protected $group;
+
 	/** @var string Position on the page to load this module at */
 	protected $position = 'bottom';
+
 	/** @var bool Link to raw files in debug mode */
 	protected $debugRaw = true;
+
 	/** @var bool Whether mw.loader.state() call should be omitted */
 	protected $raw = false;
+
 	protected $targets = array( 'desktop' );
 
 	/**
@@ -129,6 +143,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @endcode
 	 */
 	protected $modifiedTime = array();
+
 	/**
 	 * @var array Place where readStyleFile() tracks file dependencies
 	 * @par Usage:
@@ -809,7 +824,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$result = $compiler->cachedCompile( $source );
 
 		if ( !is_array( $result ) ) {
-			throw new MWException( 'LESS compiler result has type ' . gettype( $result ) . '; array expected.' );
+			throw new MWException( 'LESS compiler result has type '
+				. gettype( $result ) . '; array expected.' );
 		}
 
 		$this->localFileRefs += array_keys( $result['files'] );
