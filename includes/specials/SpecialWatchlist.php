@@ -50,6 +50,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		if ( $mode !== false ) {
 			if ( $mode === SpecialEditWatchlist::EDIT_RAW ) {
 				$title = SpecialPage::getTitleFor( 'EditWatchlist', 'raw' );
+			} elseif ( $mode === SpecialEditWatchlist::EDIT_CLEAR ) {
+                                $title = SpecialPage::getTitleFor( 'EditWatchlist', 'clear' );
 			} else {
 				$title = SpecialPage::getTitleFor( 'EditWatchlist' );
 			}
