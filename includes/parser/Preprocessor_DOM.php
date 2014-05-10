@@ -25,13 +25,10 @@
  * @ingroup Parser
  */
 class Preprocessor_DOM implements Preprocessor {
+	/** @var Parser */
+	public $parser;
 
-	/**
-	 * @var Parser
-	 */
-	var $parser;
-
-	var $memoryLimit;
+	protected $memoryLimit;
 
 	const CACHE_VERSION = 1;
 
@@ -736,16 +733,22 @@ class Preprocessor_DOM implements Preprocessor {
  * @ingroup Parser
  */
 class PPDStack {
-	var $stack, $rootAccum;
+	/** @var array */
+	public $stack;
 
-	/**
-	 * @var PPDStack
-	 */
-	var $top;
-	var $out;
-	var $elementClass = 'PPDStackElement';
+	/** @var string */
+	public $rootAccum;
 
-	static $false = false;
+	/** @var bool|PPDStack */
+	public $top;
+
+	/** @var */
+	public $out;
+
+	/** @var string */
+	protected $elementClass = 'PPDStackElement';
+
+	protected static $false = false;
 
 	function __construct() {
 		$this->stack = array();
@@ -825,13 +828,26 @@ class PPDStack {
  * @ingroup Parser
  */
 class PPDStackElement {
-	var	$open,              // Opening character (\n for heading)
-		$close,             // Matching closing character
-		$count,             // Number of opening characters found (number of "=" for heading)
-		$parts,             // Array of PPDPart objects describing pipe-separated parts.
-		$lineStart;         // True if the open char appeared at the start of the input line. Not set for headings.
+	/** @var string Opening character (\n for heading) */
+	public $open;
 
-	var $partClass = 'PPDPart';
+	/** @var string Matching closing character */
+	public $close;
+
+	/** @var int Number of opening characters found (number of "=" for heading) */
+	public $count;
+
+	/** @var array PPDPart objects describing pipe-separated parts. */
+	public $parts;
+
+	/**
+	 * @var bool True if the open char appeared at the start of the input line.
+	 * Not set for headings.
+	 */
+	public $lineStart;
+
+	/** @var string */
+	protected $partClass = 'PPDPart';
 
 	function __construct( $data = array() ) {
 		$class = $this->partClass;
@@ -899,7 +915,8 @@ class PPDStackElement {
  * @ingroup Parser
  */
 class PPDPart {
-	var $out; // Output accumulator string
+	/** @var string */
+	public $out;
 
 	// Optional member variables:
 	//   eqpos        Position of equals sign in output accumulator
@@ -916,34 +933,29 @@ class PPDPart {
  * @ingroup Parser
  */
 class PPFrame_DOM implements PPFrame {
+	/** @var array */
+	public $titleCache;
 
 	/**
-	 * @var Preprocessor
+	 * @var array Hashtable listing templates which are disallowed for expansion
+	 *   in this frame, having been encountered previously in parent frames.
 	 */
-	var $preprocessor;
+	public $loopCheckHash;
 
 	/**
-	 * @var Parser
-	 */
-	var $parser;
-
-	/**
-	 * @var Title
-	 */
-	var $title;
-	var $titleCache;
-
-	/**
-	 * Hashtable listing templates which are disallowed for expansion in this frame,
-	 * having been encountered previously in parent frames.
-	 */
-	var $loopCheckHash;
-
-	/**
-	 * Recursion depth of this frame, top = 0
+	 * @var int Recursion depth of this frame, top = 0.
 	 * Note that this is NOT the same as expansion depth in expand()
 	 */
-	var $depth;
+	public $depth;
+
+	/** @var Preprocessor */
+	protected $preprocessor;
+
+	/** @var Parser */
+	protected $parser;
+
+	/** @var Title */
+	protected $title;
 
 	/**
 	 * Construct a new preprocessor frame.
@@ -1433,13 +1445,20 @@ class PPFrame_DOM implements PPFrame {
  * @ingroup Parser
  */
 class PPTemplateFrame_DOM extends PPFrame_DOM {
-	var $numberedArgs, $namedArgs;
+	/** @var PPFrame_DOM */
+	public $parent;
 
-	/**
-	 * @var PPFrame_DOM
-	 */
-	var $parent;
-	var $numberedExpansionCache, $namedExpansionCache;
+	/** @var array */
+	protected $numberedArgs;
+
+	/** @var array */
+	protected $namedArgs;
+
+	/** @var array */
+	protected $numberedExpansionCache;
+
+	/** @var string[] */
+	protected $namedExpansionCache;
 
 	/**
 	 * @param Preprocessor $preprocessor
@@ -1564,7 +1583,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
  * @ingroup Parser
  */
 class PPCustomFrame_DOM extends PPFrame_DOM {
-	var $args;
+	protected $args;
 
 	function __construct( $preprocessor, $args ) {
 		parent::__construct( $preprocessor );
@@ -1610,12 +1629,11 @@ class PPCustomFrame_DOM extends PPFrame_DOM {
  * @ingroup Parser
  */
 class PPNode_DOM implements PPNode {
+	/** @var DOMElement */
+	public $node;
 
-	/**
-	 * @var DOMElement
-	 */
-	var $node;
-	var $xpath;
+	/** @var DOMXPath */
+	protected $xpath;
 
 	function __construct( $node, $xpath = false ) {
 		$this->node = $node;

@@ -119,103 +119,203 @@ class Parser {
 	const TOC_START = '<mw:toc>';
 	const TOC_END = '</mw:toc>';
 
-	# Persistent:
-	var $mTagHooks = array();
-	var $mTransparentTagHooks = array();
-	var $mFunctionHooks = array();
-	var $mFunctionSynonyms = array( 0 => array(), 1 => array() );
-	var $mFunctionTagHooks = array();
-	var $mStripList = array();
-	var $mDefaultStripList = array();
-	var $mVarCache = array();
-	var $mImageParams = array();
-	var $mImageParamsMagicArray = array();
-	var $mMarkerIndex = 0;
-	var $mFirstCall = true;
+	# Persistent
+
+	/** @var array */
+	public $mTagHooks = array();
+
+	/** @var array */
+	public $mTransparentTagHooks = array();
+
+	/** @var array */
+	public $mFunctionHooks = array();
+
+	/** @var array */
+	protected $mFunctionSynonyms = array( 0 => array(), 1 => array() );
+
+	/** @var array */
+	protected $mFunctionTagHooks = array();
+
+	/** @var array */
+	protected $mStripList = array();
+
+	/**
+	 * @var array
+	 * @todo Unused?
+	 */
+	private $mDefaultStripList = array();
+
+	/** @var array */
+	protected $mVarCache = array();
+
+	/** @var array */
+	protected $mImageParams = array();
+
+	/** @var array */
+	protected $mImageParamsMagicArray = array();
+
+	/** @var int */
+	public $mMarkerIndex = 0;
+
+	/** @var bool */
+	protected $mFirstCall = true;
 
 	# Initialised by initialiseVariables()
 
-	/**
-	 * @var MagicWordArray
-	 */
-	var $mVariables;
+	/** @var MagicWordArray */
+	public $mVariables;
 
-	/**
-	 * @var MagicWordArray
-	 */
-	var $mSubstWords;
-	var $mConf, $mPreprocessor, $mExtLinkBracketedRegex, $mUrlProtocols; # Initialised in constructor
+	/** @var MagicWordArray */
+	protected $mSubstWords;
+
+	# Initialised in constructor
+
+	/** @var array */
+	protected $mConf;
+
+	/** @var Parser */
+	public $mPreprocessor;
+
+	/** @var string */
+	protected $mExtLinkBracketedRegex;
+
+	/** @var string */
+	protected $mUrlProtocols;
 
 	# Cleared with clearState():
-	/**
-	 * @var ParserOutput
-	 */
-	var $mOutput;
-	var $mAutonumber, $mDTopen;
+
+	/** @var ParserOutput */
+	public $mOutput;
+
+	/** @var int */
+	protected $mAutonumber;
+
+	/** @var bool */
+	protected $mDTopen;
+
+	/** @var StripState */
+	public $mStripState;
 
 	/**
-	 * @var StripState
+	 * @var array
+	 * @todo Unused?
 	 */
-	var $mStripState;
-
-	var $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
-	/**
-	 * @var LinkHolderArray
-	 */
-	var $mLinkHolders;
-
-	var $mLinkID;
-	var $mIncludeSizes, $mPPNodeCount, $mGeneratedPPNodeCount, $mHighestExpansionDepth;
-	var $mDefaultSort;
-	var $mTplExpandCache; # empty-frame expansion cache
-	var $mTplRedirCache, $mTplDomCache, $mHeadings, $mDoubleUnderscores;
-	var $mExpensiveFunctionCount; # number of expensive parser function calls
-	var $mShowToc, $mForceTocPosition;
+	private $mIncludeCount;
 
 	/**
-	 * @var User
+	 * @var bool
+	 * @todo Unused?
 	 */
-	var $mUser; # User object; only used when doing pre-save transform
+	private $mArgStack;
+
+	/** @var string */
+	protected $mLastSection;
+
+	/** @var bool */
+	protected $mInPre;
+
+	/** @var LinkHolderArray */
+	protected $mLinkHolders;
+
+	/** @var int */
+	protected $mLinkID;
+
+	/** @var array */
+	protected $mIncludeSizes;
+
+	/** @var int */
+	public $mPPNodeCount;
+
+	/** @var int */
+	public $mGeneratedPPNodeCount;
+
+	/** @var int */
+	public $mHighestExpansionDepth;
+
+	/** @var bool|string */
+	protected $mDefaultSort;
+
+	/** @var array Empty-frame expansion cache */
+	protected $mTplExpandCache;
+
+	/** @var array */
+	protected $mTplRedirCache;
+
+	/** @var array */
+	protected $mTplDomCache;
+
+	/** @var array */
+	public $mHeadings;
+
+	/** @var array */
+	protected $mDoubleUnderscores;
+
+	/** @var int Number of expensive parser function calls */
+	protected $mExpensiveFunctionCount;
+
+	/** @var bool */
+	protected $mShowToc;
+
+	/** @var bool */
+	protected $mForceTocPosition;
+
+	/** @var User User object; only used when doing pre-save transform */
+	protected $mUser;
 
 	# Temporary
 	# These are variables reset at least once per parse regardless of $clearState
 
-	/**
-	 * @var ParserOptions
-	 */
-	var $mOptions;
+	/** @var ParserOptions */
+	public $mOptions;
 
-	/**
-	 * @var Title
-	 */
-	var $mTitle;        # Title context, used for self-link rendering and similar things
-	var $mOutputType;   # Output type, one of the OT_xxx constants
-	var $ot;            # Shortcut alias, see setOutputType()
-	var $mRevisionObject; # The revision object of the specified revision ID
-	var $mRevisionId;   # ID to display in {{REVISIONID}} tags
-	var $mRevisionTimestamp; # The timestamp of the specified revision ID
-	var $mRevisionUser; # User to display in {{REVISIONUSER}} tag
-	var $mRevisionSize; # Size to display in {{REVISIONSIZE}} variable
-	var $mRevIdForTs;   # The revision ID which was used to fetch the timestamp
-	var $mInputSize = false; # For {{PAGESIZE}} on current page.
+	/** @var Title Title context, used for self-link rendering and similar things */
+	public $mTitle;
 
-	/**
-	 * @var string
-	 */
-	var $mUniqPrefix;
+	/** @var array Shortcut alias, see setOutputType() */
+	public $ot;
 
-	/**
-	 * @var array Array with the language name of each language link (i.e. the
-	 * interwiki prefix) in the key, value arbitrary. Used to avoid sending
-	 * duplicate language links to the ParserOutput.
-	 */
-	var $mLangLinkLanguages;
+	/** @var string The timestamp of the specified revision ID */
+	public $mRevisionTimestamp;
+
+	/** @var string */
+	public $mUniqPrefix;
 
 	/**
 	 * @var boolean Recursive call protection.
 	 * This variable should be treated as if it were private.
 	 */
 	public $mInParse = false;
+
+	/** @var int Output type, one of the OT_xxx constants */
+	protected $mOutputType;
+
+	/** @var Revision The revision object of the specified revision ID */
+	protected $mRevisionObject;
+
+	/** @var int ID to display in {{REVISIONID}} tags */
+	protected $mRevisionId;
+
+	/** @var string User to display in {{REVISIONUSER}} tag */
+	protected $mRevisionUser;
+
+	/** @var int Size to display in {{REVISIONSIZE}} variable */
+	protected $mRevisionSize;
+
+	/** @var bool|int For {{PAGESIZE}} on current page. */
+	protected $mInputSize = false;
+
+	/**
+	 * @var array Array with the language name of each language link (i.e. the
+	 * interwiki prefix) in the key, value arbitrary. Used to avoid sending
+	 * duplicate language links to the ParserOutput.
+	 */
+	protected $mLangLinkLanguages;
+
+	/**
+	 * @var int The revision ID which was used to fetch the timestamp
+	 * @todo Unused?
+	 */
+	private $mRevIdForTs;
 
 	/**
 	 * Constructor
