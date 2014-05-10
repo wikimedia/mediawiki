@@ -36,6 +36,37 @@ class ParserOptions {
 	/** @var bool Interlanguage links are removed and returned in an array */
 	protected $mInterwikiMagic;
 
+	/**
+	 * Constant for use with setHtmlTransclusionMode() and getHtmlTransclusionMode(),
+	 * indicating that content that supports HTML based transclusion should be handled
+	 * by including the HTML directly in the output. This is done using
+	 * Parser::insertStripItem() to replace the actual HTML with a strip mark, to protected
+	 * it from wikitext processing.
+	 */
+	const HTML_TRANSCLUSION_PASS_THROUGH = 'passthrough';
+
+	/**
+	 * Constant for use with setHtmlTransclusionMode() and getHtmlTransclusionMode(),
+	 * indicating that content that supports HTML based transclusion should be handled
+	 * by including the HTML wrapped in <html> tags. This is used by the ExpandTemplates
+	 * API module to represent expanded HTML templates in wikitext.
+	 *
+	 * @note If $wgRawHtml is disabled, this mode will produce mangled output if used
+	 * for full wikitext parsing, as opposed to mere preprocessing. If $wgRawHtml is
+	 * enabled, it will result in the same output as with passthrough mode when rendered
+	 * as wikitext.
+	 */
+	const HTML_TRANSCLUSION_WRAP = 'wrap';
+
+	/**
+	 * Constant for use with setHtmlTransclusionMode() and getHtmlTransclusionMode(),
+	 * indicating that HTML transclusion should be disabled, and the parser should
+	 * always attempts wikitext based transclusion.
+	 */
+	const HTML_TRANSCLUSION_DISABLED = 'disabled';
+
+	/**
+
 	/** @var bool Allow external images inline? */
 	protected $mAllowExternalImages;
 
@@ -205,6 +236,11 @@ class ParserOptions {
 	function getMaxTemplateDepth() {
 		return $this->mMaxTemplateDepth;
 	}
+
+	/**
+	 * @var string
+	 */
+	protected $htmlTransclusionMode = self::HTML_TRANSCLUSION_PASS_THROUGH;
 
 	/* @since 1.20 */
 	function getExpensiveParserFunctionLimit() {
@@ -681,4 +717,24 @@ class ParserOptions {
 
 		return $confstr;
 	}
+
+	/**
+	 * @see AbstractContent::getWikitextViaHtml()
+	 *
+	 * @param string $htmlTransclusionMode A transclusion mode as defined by the
+	 * HTML_TRANSCLUSION_XXX constants.
+	 */
+	public function setHtmlTransclusionMode( $htmlTransclusionMode ) {
+		$this->htmlTransclusionMode = $htmlTransclusionMode;
+	}
+
+	/**
+	 * @see AbstractContent::getWikitextViaHtml()
+	 *
+	 * @return string A string corresponding to the HTML_TRANSCLUSION_XXX constants.
+	 */
+	public function getHtmlTransclusionMode() {
+		return $this->htmlTransclusionMode;
+	}
+
 }

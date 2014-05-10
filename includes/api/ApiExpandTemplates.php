@@ -52,9 +52,15 @@ class ApiExpandTemplates extends ApiBase {
 		global $wgParser;
 		$options = ParserOptions::newFromContext( $this->getContext() );
 
+		// Since we can't include raw HTML in wikitext directly, tell the parser
+		// to wrap any transcluded HTML in <html> tags.
+		$options->setHtmlTransclusionMode( ParserOptions::HTML_TRANSCLUSION_WRAP );
+
 		if ( $params['includecomments'] ) {
 			$options->setRemoveComments( false );
 		}
+
+		//NOTE: we assume $params['text'] is wikitext
 
 		if ( $params['generatexml'] ) {
 			$wgParser->startExternalParse( $title_obj, $options, OT_PREPROCESS );

@@ -77,11 +77,58 @@ class CssContentTest extends JavaScriptContentTest {
 		);
 	}
 
-	/**
-	 * @dataProvider dataEquals
-	 * @covers CssContent::equals
-	 */
-	public function testEquals( Content $a, Content $b = null, $equal = false ) {
-		$this->assertEquals( $equal, $a->equals( $b ) );
+	public function transclusionProvider() {
+		$templateTitle = Title::newFromText( __METHOD__ . '/TestTemplate.css', NS_MEDIAWIKI );
+		$templateText = "say { this: that; }";
+
+		$wikitextPage = Title::newFromText( __METHOD__ . '/TestPage', $this->getDefaultWikitextNS() );
+		$cssPage = Title::newFromText( __METHOD__ . '/TestPage.css', NS_MEDIAWIKI );
+
+		$targetText = 'before {{:' . $templateTitle->getPrefixedText(). '}} after';
+
+		return array(
+			'css in wikitext, default' => array(
+				$templateTitle,
+				$templateText,
+				$wikitextPage,
+				$targetText,
+				null,
+				'!<pre.*</pre>!s'
+			),
+			'css in wikitext, passthrough' => array(
+				$templateTitle,
+				$templateText,
+				$wikitextPage,
+				$targetText,
+				ParserOptions::HTML_TRANSCLUSION_PASS_THROUGH,
+				'!<pre.*</pre>!s'
+			),
+			'css in wikitext, wrap' => array(
+				$templateTitle,
+				$templateText,
+				$wikitextPage,
+				$targetText,
+				ParserOptions::HTML_TRANSCLUSION_WRAP,
+				'!<html.*</html>!s'
+			),
+			'css in wikitext, disabled' => array(
+				$templateTitle,
+				$templateText,
+				$wikitextPage,
+				$targetText,
+				ParserOptions::HTML_TRANSCLUSION_DISABLED,
+				'!before say .* after!s'
+			),
+
+			'css in css, default' => array(
+				$templateTitle,
+				$templateText,
+				$cssPage,
+				$targetText,
+				null,
+				'!before say .* after!s'
+			),
+		);
 	}
+
 }

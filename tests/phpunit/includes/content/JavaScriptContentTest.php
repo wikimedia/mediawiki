@@ -290,4 +290,131 @@ class JavaScriptContentTest extends TextContentTest {
 			array( new JavaScriptContent( "hallo" ), new JavaScriptContent( "HALLO" ), false ),
 		);
 	}
+
+	public function provideConvert() {
+		return array(
+			array( // #0
+				'Hallo & Welt',
+				CONTENT_MODEL_TEXT,
+				'lossy',
+				'/^Hallo & Welt$/'
+			),
+			array( // #1
+				'Hallo & Welt',
+				CONTENT_MODEL_WIKITEXT,
+				'lossy',
+				'!^Hallo & Welt!s'
+			),
+			array( // #2
+				'Hallo & Welt',
+				CONTENT_MODEL_CSS,
+				'lossy',
+				'/^Hallo & Welt$/'
+			),
+			array( // #3
+				'Hallo & Welt',
+				CONTENT_MODEL_JAVASCRIPT,
+				'lossy',
+				'/^Hallo & Welt$/'
+			),
+			array( // #4
+				'Hallo & Welt',
+				CONTENT_MODEL_HTML,
+				'lossy',
+				'!^<pre .*>\s*Hallo &amp; Welt\s*</pre>!s'
+			),
+		);
+	}
+
+	public function provideGetTextForTransclusion() {
+		$parser = $this->getMockParserForTransclusion();
+
+		return array(
+			array( // #0
+				'Hallo & Welt',
+				CONTENT_MODEL_TEXT,
+				null,
+				'/^Hallo & Welt$/'
+			),
+			array( // #1
+				'Hallo & Welt',
+				CONTENT_MODEL_WIKITEXT,
+				$parser,
+				'!^<html>\s*<pre .*>\s*Hallo &amp; Welt\s*</pre>\s*</html>!s'
+			),
+			array( // #2
+				'Hallo & Welt',
+				CONTENT_MODEL_CSS,
+				$parser,
+				'/^Hallo & Welt$/'
+			),
+			array( // #3
+				'Hallo & Welt',
+				CONTENT_MODEL_JAVASCRIPT,
+				null,
+				'/^Hallo & Welt$/'
+			),
+			array( // #4
+				'Hallo & Welt',
+				CONTENT_MODEL_HTML,
+				null,
+				'!^<pre .*>\s*Hallo &amp; Welt\s*</pre>!s'
+			),
+		);
+	}
+
+	public function transclusionProvider() {
+		$templateTitle = Title::newFromText( __METHOD__ . '/TestTemplate.js', NS_MEDIAWIKI );
+		$templateText = "say('this&that');";
+
+		$wikitextPage = Title::newFromText( __METHOD__ . '/TestPage', $this->getDefaultWikitextNS() );
+		$jsPage = Title::newFromText( __METHOD__ . '/TestPage.js', NS_MEDIAWIKI );
+
+		$targetText = 'before {{:' . $templateTitle->getPrefixedText(). '}} after';
+
+		return array(
+			'js in wikitext, default' => array(
+				$templateTitle,
+				$templateText,
+				$wikitextPage,
+				$targetText,
+				null,
+				'!<pre.*</pre>!s'
+			),
+			'js in wikitext, passthrough' => array(
+				$templateTitle,
+				$templateText,
+				$wikitextPage,
+				$targetText,
+				ParserOptions::HTML_TRANSCLUSION_PASS_THROUGH,
+				'!<pre.*</pre>!s'
+			),
+			'js in wikitext, wrap' => array(
+				$templateTitle,
+				$templateText,
+				$wikitextPage,
+				$targetText,
+				ParserOptions::HTML_TRANSCLUSION_WRAP,
+				'!<html.*</html>!s'
+			),
+			'js in wikitext, disabled' => array(
+				$templateTitle,
+				$templateText,
+				$wikitextPage,
+				$targetText,
+				ParserOptions::HTML_TRANSCLUSION_DISABLED,
+				'!before say\(\'this&that\'\); after!s'
+			),
+
+			'js in js, default' => array(
+				$templateTitle,
+				$templateText,
+				$jsPage,
+				$targetText,
+				null,
+				'!before say\(\'this&that\'\); after!s'
+			),
+		);
+	}
+
 }

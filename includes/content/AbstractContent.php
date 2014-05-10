@@ -427,28 +427,171 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * This base implementation calls the hook ConvertContent to enable custom conversions.
-	 * Subclasses may override this to implement conversion for "their" content model.
+	 * @see Content::convert()
+	 *
+	 * This base implementation handles conversion to CONTENT_MODEL_HTML by calling getHtml().
+	 * Subclasses may override this to implement additional conversions.
+	 *
+	 * @note This function also the ConvertContent hook to allow third parties to control
+	 * the conversion.
 	 *
 	 * @param string $toModel
 	 * @param string $lossy
 	 *
 	 * @return Content|bool
-	 *
-	 * @see Content::convert()
 	 */
 	public function convert( $toModel, $lossy = '' ) {
 		if ( $this->getModel() === $toModel ) {
-			//nothing to do, shorten out.
-			return $this;
+			// Nothing to do, shorten out.
+			// Return a clone (if this content is mutable), for consistency.
+			return $this->copy();
 		}
 
 		$lossy = ( $lossy === 'lossy' ); // string flag, convert to boolean for convenience
 		$result = false;
 
-		wfRunHooks( 'ConvertContent', array( $this, $toModel, $lossy, &$result ) );
+		if ( wfRunHooks( 'ConvertContent', array( $this, $toModel, $lossy, &$result ) ) ) {
+
+			// Default to using getHtml() when converting to HTML.
+			if ( $result === false && $toModel === CONTENT_MODEL_HTML ) {
+				try {
+					$html = $this->getHtml();
+					$result = new TextContent( $html, CONTENT_MODEL_HTML );
+				} catch ( MWException $ex ) {
+					// Handles the case that getHtml() is not implemented.
+					// That would be the case for content models that rely on meta data
+					// in the ParserOutput, e.g. for loading CSS or JS modules. Such content
+					// can not readily be transcluded as raw HTML.
+					// XXX: Use a more specific exception?
+				}
+			}
+
+			// NOTE: Do not call getTextForTransclusion() and friends here,
+			// since these themselves rely on convert().
+		}
 
 		return $result;
+	}
+
+	/**
+	 * @see Content::getWikitextForTransclusion
+	 * @see AbstractContent::getTextForTransclusion
+	 *
+	 * This is implemented to return $this->getTextForTransclusion( CONTENT_MODEL_WIKITEXT ).
+	 *
+	 * @since 1.24
+	 *
+	 * @return string|bool false
+	 */
+	public function getWikitextForTransclusion() {
+		return $this->getTextForTransclusion( CONTENT_MODEL_WIKITEXT );
+	}
+
+	/**
+	 * @see Content::getTextForTransclusion
+	 *
+	 * This default implementation calls getContentForTransclusion() and returns
+	 * the resulting Content object's native data, if that data is a string. If
+	 * the conversion is not possible or the result is not string based content,
+	 * this returns false.
+	 *
+	 * @see getWikitextViaHtml
+	 * @see ParserOptions::getHtmlTransclusionMode
+	 *
+	 * @since 1.24
+	 *
+	 * @param string $modelId
+	 * @param object|null $context
+	 *
+	 * @return string|bool The text to use for transclusion, or false if such a
+	 * transclusion is not supported.
+	 */
+	public function getTextForTransclusion( $modelId, $context = null ) {
+		$content = $this->getContentForTransclusion( $modelId, $context );
+
+		if ( $content === false ) {
+			// conversion not supported
+			return false;
+		}
+
+		$data = $content->getNativeData();
+
+		if ( !is_string( $data ) ) {
+			// The conversion succeeded, but did not result in string-based content.
+			return false;
+		}
+
+		return $data;
+	}
+
+	/**
+	 * @see Content::getContentForTransclusion
+	 * @see Content::convert()
+	 *
+	 * This calls $this->convert( $modelId, 'lossy' ). If that conversion fails,
+	 * $this->convertContentViaHtml() is called to try and provide a transcludable
+	 * Content object wrapping the HTML rendering of the content.
+	 *
+	 * @since 1.24
+	 *
+	 * @param string $modelId
+	 * @param object|null $context
+	 *
+	 * @return Content|false
+	 */
+	public function getContentForTransclusion( $modelId, $context = null ) {
+		$content = $this->convert( $modelId, 'lossy' );
+
+		if ( $content === false ) {
+			// Conversion not supported.
+			// Try conversion via HTML, if that wasn't the original target model
+			// (in which case we already know the conversion will fail,
+			// triggering an infinite regress).
+			if ( $modelId !== CONTENT_MODEL_HTML ) {
+				$content = $this->convertContentViaHtml( $modelId );
+			}
+		}
+
+		return $content;
+	}
+
+	/**
+	 * If possible, converts the content to raw HTML, and then wraps
+	 * that HTML in a Content object using the given target model.
+	 *
+	 * This allows arbitrary content to be used in transclusions, by
+	 * using their HTML rendering.
+	 *
+	 * @param string $modelId The desired content Model. Must not be CONTENT_MODEL_HTML!
+	 * @param object|null $context
+	 *
+	 * @throws InvalidArgumentException If called with $modelId === CONTENT_MODEL_HTML.
+	 * @return bool|Content|null
+	 */
+	protected function convertContentViaHtml( $modelId, $context = null ) {
+		if ( $modelId === CONTENT_MODEL_HTML ) {
+			throw new InvalidArgumentException( 'Can\'t convert to HTML via HTML!' );
+		}
+
+		$content = false;
+		$targetHandler = ContentHandler::getForModelID( $modelId );
+
+		if ( $targetHandler->supportsHtmlTransclusion() ) {
+
+			// Try converting to raw HTML, and then wrap that HTML appropriately.
+			$html = $this->getTextForTransclusion( CONTENT_MODEL_HTML );
+
+			if ( $html !== false ) {
+				$content = $targetHandler->makeContentFromHtml( $html, $context );
+
+				// makeContentFromHtml() may return null.
+				if ( !$content ) {
+					$content = false;
+				}
+			}
+		}
+
+		return $content;
 	}
 
 	/**
@@ -494,8 +637,10 @@ abstract class AbstractContent implements Content {
 	 * Unless $generateHtml was false, this includes an HTML representation of the content.
 	 *
 	 * This is called by getParserOutput() after consulting the ContentGetParserOutput hook.
-	 * Subclasses are expected to override this method (or getParserOutput(), if need be).
-	 * Subclasses of TextContent should generally override getHtml() instead.
+	 * Subclasses are expected to override this method or getHtml() (or getParserOutput(),
+	 * if need be).
+	 *
+	 * If no meta-information is required, subclasses may override getHtml() instead.
 	 *
 	 * This placeholder implementation always throws an exception.
 	 *
@@ -512,7 +657,39 @@ abstract class AbstractContent implements Content {
 	protected function fillParserOutput( Title $title, $revId,
 		ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
-		// Don't make abstract, so subclasses that override getParserOutput() directly don't fail.
-		throw new MWException( 'Subclasses of AbstractContent must override fillParserOutput!' );
+		if ( $generateHtml ) {
+			// XXX: would be nice to pass $parserOptions on to getHtml(),
+			// but we can't easily modify the signature of getHtml() any more.
+			$html = $this->getHtml();
+		} else {
+			$html = '';
+		}
+
+		$output->setText( $html );
+	}
+
+	/**
+	 * Generates an HTML version of the content, for display. Used by
+	 * fillParserOutput() to provide HTML for the ParserOutput object,
+	 * as well as by convert() for conversion to CONTENT_MODEL_HTML.
+	 *
+	 * Subclasses must implement this to provide a HTML rendering.
+	 * If further information is to be derived from the content (such as
+	 * categories), the fillParserOutput() method should be overridden.
+	 *
+	 * @note: The default implementation of convert() relies on getHtml()
+	 * for naive conversion to HTML. Subclasses that override fillParserOutput()
+	 * should consider overwriting getHtml() anyway (possibly based on
+	 * getParserOutput), to allow conversion to HTML and thus automatic
+	 * HTML based transclusion into wikitext.
+	 *
+	 * @throws MWException Always.
+	 * @return string An HTML representation of the content
+	 */
+	protected function getHtml() {
+		// Don't make abstract, so subclasses that override fillParserOutput()
+		// resp. getParserOutput() directly don't fail.
+		throw new MWException( 'Subclasses of AbstractContent must override getHtml(), '
+			. 'fillParserOutput() or getParserOutput()!' );
 	}
 }
