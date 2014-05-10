@@ -39,25 +39,36 @@ interface Content {
 	 * @return string A string representing the content in a way useful for
 	 *   building a full text search index. If no useful representation exists,
 	 *   this method returns an empty string.
-	 *
-	 * @todo Test that this actually works
-	 * @todo Make sure this also works with LuceneSearch / WikiSearch
 	 */
 	public function getTextForSearchIndex();
 
 	/**
 	 * @since 1.21
 	 *
-	 * @return string|bool The wikitext to include when another page includes this
-	 * content, or false if the content is not includable in a wikitext page.
+	 * @see getHtmlForTransclusion()
 	 *
-	 * @todo Allow native handling, bypassing wikitext representation, like
-	 *  for includable special pages.
-	 * @todo Allow transclusion into other content models than Wikitext!
-	 * @todo Used in WikiPage and MessageCache to get message text. Not so
-	 *  nice. What should we use instead?!
+	 * @note This is used primary by Parser::statelessFetchTemplate(), which prefers
+	 * the HTML returned by getHtmlForTransclusion() over the wikitext returned by this method.
+	 *
+	 * @return string|bool The wikitext to include when another page includes this
+	 * content, or false if the content is not includable in a wikitext page,
+	 * or getHtmlForTransclusion() should rather be used.
 	 */
 	public function getWikitextForTransclusion();
+
+	/**
+	 * @since 1.23
+	 *
+	 * @see getWikitextForTransclusion()
+	 *
+	 * @note This is used primary by Parser::statelessFetchTemplate(), which prefers
+	 * the HTML returned by this method over the wikitext returned by getWikitextForTransclusion().
+	 *
+	 * @return string|bool The HTML to include when another page includes this
+	 * content, or false if the content is not includable in a wikitext page,
+	 * or getWikitextForTransclusion() should rather be used.
+	 */
+	public function getHtmlForTransclusion();
 
 	/**
 	 * Returns a textual representation of the content suitable for use in edit

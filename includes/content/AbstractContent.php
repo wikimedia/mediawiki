@@ -452,6 +452,36 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
+	 * @see Content::getWikitextForTransclusion
+	 *
+	 * This default implementation always returns false. Subclasses should override
+	 * getWikitextForTransclusion() or getHtmlForTransclusion() to make the content
+	 * transcludable.
+	 *
+	 * @since 1.23
+	 *
+	 * @return string|bool false
+	 */
+	public function getWikitextForTransclusion() {
+		return false;
+	}
+
+	/**
+	 * @see Content::getHtmlForTransclusion
+	 *
+	 * This default implementation always returns false. Subclasses should override
+	 * getWikitextForTransclusion() or getHtmlForTransclusion() to make the content
+	 * transcludable.
+	 *
+	 * @since 1.23
+	 *
+	 * @return string|bool false
+	 */
+	public function getHtmlForTransclusion() {
+		return false;
+	}
+
+	/**
 	 * Returns a ParserOutput object containing information derived from this content.
 	 * Most importantly, unless $generateHtml was false, the return value contains an
 	 * HTML representation of the content.
