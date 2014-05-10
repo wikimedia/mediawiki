@@ -24,10 +24,10 @@
 /**
  * Abstract base class for a list of deletable items. The list class
  * needs to be able to make a query from a set of identifiers to pull
- * relevant rows, to return RevDel_Item subclasses wrapping them, and
+ * relevant rows, to return RevDelItem subclasses wrapping them, and
  * to wrap bulk update operations.
  */
-abstract class RevDel_List extends RevisionListBase {
+abstract class RevDelList extends RevisionListBase {
 	function __construct( IContextSource $context, Title $title, array $ids ) {
 		parent::__construct( $context, $title );
 		$this->ids = $ids;
@@ -315,7 +315,7 @@ abstract class RevDel_List extends RevisionListBase {
 /**
  * Abstract base class for deletable items
  */
-abstract class RevDel_Item extends RevisionItemBase {
+abstract class RevDelItem extends RevisionItemBase {
 	/**
 	 * Returns true if the item is "current", and the operation to set the given
 	 * bits can't be executed for that reason

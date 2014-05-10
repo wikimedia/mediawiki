@@ -28,9 +28,9 @@
  * 'archive' table for traditionally-deleted revisions that have an
  * ar_rev_id saved.
  *
- * See RevDel_RevisionItem and RevDel_ArchivedRevisionItem for items.
+ * See RevDelRevisionItem and RevDelArchivedRevisionItem for items.
  */
-class RevDel_RevisionList extends RevDel_List {
+class RevDelRevisionList extends RevDelList {
 	var $currentRevId;
 
 	public function getType() {
@@ -108,12 +108,12 @@ class RevDel_RevisionList extends RevDel_List {
 
 	public function newItem( $row ) {
 		if ( isset( $row->rev_id ) ) {
-			return new RevDel_RevisionItem( $this, $row );
+			return new RevDelRevisionItem( $this, $row );
 		} elseif ( isset( $row->ar_rev_id ) ) {
-			return new RevDel_ArchivedRevisionItem( $this, $row );
+			return new RevDelArchivedRevisionItem( $this, $row );
 		} else {
 			// This shouldn't happen. :)
-			throw new MWException( 'Invalid row type in RevDel_RevisionList' );
+			throw new MWException( 'Invalid row type in RevDelRevisionList' );
 		}
 	}
 
@@ -146,7 +146,7 @@ class RevDel_RevisionList extends RevDel_List {
 /**
  * Item class for a live revision table row
  */
-class RevDel_RevisionItem extends RevDel_Item {
+class RevDelRevisionItem extends RevDelItem {
 	var $revision;
 
 	public function __construct( $list, $row ) {
@@ -225,7 +225,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 
 	/**
 	 * Get the HTML link to the revision text.
-	 * Overridden by RevDel_ArchiveItem.
+	 * Overridden by RevDelArchiveItem.
 	 * @return string
 	 */
 	protected function getRevisionLink() {
@@ -248,7 +248,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 
 	/**
 	 * Get the HTML link to the diff.
-	 * Overridden by RevDel_ArchiveItem
+	 * Overridden by RevDelArchiveItem
 	 * @return string
 	 */
 	protected function getDiffLink() {
@@ -308,7 +308,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 /**
  * List for archive table items, i.e. revisions deleted via action=delete
  */
-class RevDel_ArchiveList extends RevDel_RevisionList {
+class RevDelArchiveList extends RevDelRevisionList {
 	public function getType() {
 		return 'archive';
 	}
@@ -338,7 +338,7 @@ class RevDel_ArchiveList extends RevDel_RevisionList {
 	}
 
 	public function newItem( $row ) {
-		return new RevDel_ArchiveItem( $this, $row );
+		return new RevDelArchiveItem( $this, $row );
 	}
 
 	public function doPreCommitUpdates() {
@@ -353,9 +353,9 @@ class RevDel_ArchiveList extends RevDel_RevisionList {
 /**
  * Item class for a archive table row
  */
-class RevDel_ArchiveItem extends RevDel_RevisionItem {
+class RevDelArchiveItem extends RevDelRevisionItem {
 	public function __construct( $list, $row ) {
-		RevDel_Item::__construct( $list, $row );
+		RevDelItem::__construct( $list, $row );
 		$this->revision = Revision::newFromArchiveRow( $row,
 			array( 'page' => $this->list->title->getArticleID() ) );
 	}
@@ -436,11 +436,11 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 
 /**
  * Item class for a archive table row by ar_rev_id -- actually
- * used via RevDel_RevisionList.
+ * used via RevDelRevisionList.
  */
-class RevDel_ArchivedRevisionItem extends RevDel_ArchiveItem {
+class RevDelArchivedRevisionItem extends RevDelArchiveItem {
 	public function __construct( $list, $row ) {
-		RevDel_Item::__construct( $list, $row );
+		RevDelItem::__construct( $list, $row );
 
 		$this->revision = Revision::newFromArchiveRow( $row,
 			array( 'page' => $this->list->title->getArticleID() ) );
@@ -469,7 +469,7 @@ class RevDel_ArchivedRevisionItem extends RevDel_ArchiveItem {
 /**
  * List for oldimage table items
  */
-class RevDel_FileList extends RevDel_List {
+class RevDelFileList extends RevDelList {
 	public function getType() {
 		return 'oldimage';
 	}
@@ -510,7 +510,7 @@ class RevDel_FileList extends RevDel_List {
 	}
 
 	public function newItem( $row ) {
-		return new RevDel_FileItem( $this, $row );
+		return new RevDelFileItem( $this, $row );
 	}
 
 	public function clearFileOps() {
@@ -568,7 +568,7 @@ class RevDel_FileList extends RevDel_List {
 /**
  * Item class for an oldimage table row
  */
-class RevDel_FileItem extends RevDel_Item {
+class RevDelFileItem extends RevDelItem {
 
 	/**
 	 * @var File
@@ -657,7 +657,7 @@ class RevDel_FileItem extends RevDel_Item {
 
 	/**
 	 * Get the link to the file.
-	 * Overridden by RevDel_ArchivedFileItem.
+	 * Overridden by RevDelArchivedFileItem.
 	 * @return string
 	 */
 	protected function getLink() {
@@ -782,7 +782,7 @@ class RevDel_FileItem extends RevDel_Item {
 /**
  * List for filearchive table items
  */
-class RevDel_ArchivedFileList extends RevDel_FileList {
+class RevDelArchivedFileList extends RevDelFileList {
 	public function getType() {
 		return 'filearchive';
 	}
@@ -810,16 +810,16 @@ class RevDel_ArchivedFileList extends RevDel_FileList {
 	}
 
 	public function newItem( $row ) {
-		return new RevDel_ArchivedFileItem( $this, $row );
+		return new RevDelArchivedFileItem( $this, $row );
 	}
 }
 
 /**
  * Item class for a filearchive table row
  */
-class RevDel_ArchivedFileItem extends RevDel_FileItem {
+class RevDelArchivedFileItem extends RevDelFileItem {
 	public function __construct( $list, $row ) {
-		RevDel_Item::__construct( $list, $row );
+		RevDelItem::__construct( $list, $row );
 		$this->file = ArchivedFile::newFromRow( $row );
 	}
 
@@ -884,7 +884,7 @@ class RevDel_ArchivedFileItem extends RevDel_FileItem {
 /**
  * List for logging table items
  */
-class RevDel_LogList extends RevDel_List {
+class RevDelLogList extends RevDelList {
 	public function getType() {
 		return 'logging';
 	}
@@ -942,7 +942,7 @@ class RevDel_LogList extends RevDel_List {
 	}
 
 	public function newItem( $row ) {
-		return new RevDel_LogItem( $this, $row );
+		return new RevDelLogItem( $this, $row );
 	}
 
 	public function getSuppressBit() {
@@ -965,7 +965,7 @@ class RevDel_LogList extends RevDel_List {
 /**
  * Item class for a logging table row
  */
-class RevDel_LogItem extends RevDel_Item {
+class RevDelLogItem extends RevDelItem {
 	public function getIdField() {
 		return 'log_id';
 	}

@@ -59,6 +59,19 @@ changes to languages because of Bugzilla reports.
 * CLDRPluralRuleConverter_Operator to CLDRPluralRuleConverterOperator
 * CLDRPluralRuleEvaluator_Range to CLDRPluralRuleEvaluatorRange
 * CSSJanus_Tokenizer to CSSJanusTokenizer
+* RevDel_ArchiveItem to RevDelArchiveItem
+* RevDel_ArchiveList to RevDelArchiveList
+* RevDel_ArchivedFileItem to RevDelArchivedFileItem
+* RevDel_ArchivedFileList to RevDelArchivedFileList
+* RevDel_ArchivedRevisionItem to RevDelArchivedRevisionItem
+* RevDel_FileItem to RevDelFileItem
+* RevDel_FileList to RevDelFileList
+* RevDel_Item to RevDelItem
+* RevDel_List to RevDelList
+* RevDel_LogItem to RevDelLogItem
+* RevDel_LogList to RevDelLogList
+* RevDel_RevisionItem to RevDelRevisionItem
+* RevDel_RevisionList to RevDelRevisionList
 
 == Compatibility ==
 

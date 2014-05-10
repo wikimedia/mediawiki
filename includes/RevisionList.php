@@ -326,7 +326,7 @@ class RevisionItem extends RevisionItemBase {
 
 	/**
 	 * Get the HTML link to the revision text.
-	 * Overridden by RevDel_ArchiveItem.
+	 * Overridden by RevDelArchiveItem.
 	 * @return string
 	 */
 	protected function getRevisionLink() {
@@ -347,7 +347,7 @@ class RevisionItem extends RevisionItemBase {
 
 	/**
 	 * Get the HTML link to the diff.
-	 * Overridden by RevDel_ArchiveItem
+	 * Overridden by RevDelArchiveItem
 	 * @return string
 	 */
 	protected function getDiffLink() {

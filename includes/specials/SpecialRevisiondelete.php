@@ -55,7 +55,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	/** @var array UI Labels about the current type */
 	private $typeLabels;
 
-	/** @var RevDel_List RevDel_List object, storing the list of items to be deleted/undeleted */
+	/** @var RevDelList RevDelList object, storing the list of items to be deleted/undeleted */
 	private $revDelList;
 
 	/** @var bool Whether user is allowed to perform the action */
@@ -336,7 +336,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	/**
 	 * Get the list object for this request
-	 * @return RevDel_List
+	 * @return RevDelList
 	 */
 	protected function getList() {
 		if ( is_null( $this->revDelList ) ) {
@@ -606,7 +606,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * Do the write operations. Simple wrapper for RevDel_*List::setVisibility().
+	 * Do the write operations. Simple wrapper for RevDel*List::setVisibility().
 	 * @param int $bitfield
 	 * @param string $reason
 	 * @param Title $title
