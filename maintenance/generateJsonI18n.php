@@ -44,6 +44,8 @@ class GenerateJsonI18n extends Maintenance {
 		$this->addOption( 'extension', 'Perform default conversion on an extension',
 			false, true );
 		$this->addOption( 'shim-only', 'Only create or update the backward-compatibility shim' );
+		$this->addOption( 'supplementary', 'Find supplementary i18n files in subdirs and convert those',
+			false, false );
 	}
 
 	public function execute() {
@@ -52,6 +54,7 @@ class GenerateJsonI18n extends Maintenance {
 		$phpfile = $this->getArg( 0 );
 		$jsondir = $this->getArg( 1 );
 		$extension = $this->getOption( 'extension' );
+		$convertSupplementaryI18nFiles = $this->hasOption( 'supplementary' );
 
 		if ( $extension ) {
 			if ( $phpfile ) {
@@ -66,7 +69,28 @@ class GenerateJsonI18n extends Maintenance {
 			// dies.
 		}
 
-		$this->transformI18nFile( $phpfile, $jsondir );
+		if ( $convertSupplementaryI18nFiles ) {
+			if ( is_readable( $phpfile ) ) {
+				$this->transformI18nFile( $phpfile, $jsondir );
+			} else {
+				// This is non-fatal because we might want to continue searching for
+				// i18n files in subdirs even if the extension does not include a
+				// primary i18n.php.
+				$this->error( "Warning: no primary i18n file was found." );
+			}
+			$this->output( "Searching for supplementary i18n files...\n" );
+			$dir_iterator = new RecursiveDirectoryIterator( dirname( $phpfile ) );
+			$iterator = new RecursiveIteratorIterator( $dir_iterator, RecursiveIteratorIterator::LEAVES_ONLY );
+			foreach ( $iterator as $path => $fileObject ) {
+				if ( fnmatch( "*.i18n.php", $fileObject->getFilename() ) ) {
+					$this->output( "Converting $path.\n" );
+					$this->transformI18nFile( $path );
+				}
+			}
+		} else {
+			// Just convert the primary i18n file.
+			$this->transformI18nFile( $phpfile, $jsondir );
+		}
 	}
 
 	public function transformI18nFile( $phpfile, $jsondir = null ) {
