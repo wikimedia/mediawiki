@@ -270,7 +270,7 @@ class MagicWord {
 	 * Allow external reads of TTL array
 	 *
 	 * @param int $id
-	 * @return array
+	 * @return int
 	 */
 	static function getCacheTTL( $id ) {
 		if ( array_key_exists( $id, self::$mCacheTTLs ) ) {
