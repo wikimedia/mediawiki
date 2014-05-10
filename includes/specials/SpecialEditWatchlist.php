@@ -669,10 +669,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	}
 }
 
-# B/C since 1.18
-class WatchlistEditor extends SpecialEditWatchlist {
-}
-
 /**
  * Extend HTMLForm purely so we can have a more sane way of getting the section headers
  */

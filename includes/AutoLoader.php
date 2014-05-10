@@ -952,7 +952,6 @@ $wgAutoloadLocalClasses = array(
 	'HTMLBlockedUsersItemSelect' => 'includes/specials/SpecialBlockList.php',
 	'ImageListPager' => 'includes/specials/SpecialListfiles.php',
 	'ImportReporter' => 'includes/specials/SpecialImport.php',
-	'IPBlockForm' => 'includes/specials/SpecialBlock.php',
 	'LinkSearchPage' => 'includes/specials/SpecialLinkSearch.php',
 	'ListredirectsPage' => 'includes/specials/SpecialListredirects.php',
 	'ListDuplicatedFilesPage' => 'includes/specials/SpecialListDuplicatedFiles.php',
@@ -1063,7 +1062,6 @@ $wgAutoloadLocalClasses = array(
 	'WantedFilesPage' => 'includes/specials/SpecialWantedfiles.php',
 	'WantedPagesPage' => 'includes/specials/SpecialWantedpages.php',
 	'WantedTemplatesPage' => 'includes/specials/SpecialWantedtemplates.php',
-	'WatchlistEditor' => 'includes/specials/SpecialEditWatchlist.php',
 	'WithoutInterwikiPage' => 'includes/specials/SpecialWithoutinterwiki.php',
 
 	# includes/templates

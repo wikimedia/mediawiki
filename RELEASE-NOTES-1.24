@@ -73,6 +73,10 @@ changes to languages because of Bugzilla reports.
 * RevDel_RevisionItem to RevDelRevisionItem
 * RevDel_RevisionList to RevDelRevisionList
 
+==== Removed classes ====
+* IPBlockForm - Use SpecialBlock directly
+* WatchlistEditor - Use SpecialEditWatchlist directly
+
 == Compatibility ==
 
 MediaWiki 1.24 requires PHP 5.3.2 or later.

@@ -977,7 +977,3 @@ class SpecialBlock extends FormSpecialPage {
 		return 'users';
 	}
 }
-
-# BC @since 1.18
-class IPBlockForm extends SpecialBlock {
-}
