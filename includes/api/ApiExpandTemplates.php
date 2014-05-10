@@ -98,7 +98,8 @@ class ApiExpandTemplates extends ApiBase {
 		if ( $prop || $params['prop'] === null ) {
 			$wgParser->startExternalParse( $title_obj, $options, OT_PREPROCESS );
 			$frame = $wgParser->getPreprocessor()->newFrame();
-			$wikitext = $wgParser->preprocess( $params['text'], $title_obj, $options, null, $frame );
+			//FIXME: $expandHtml
+			$wikitext = $wgParser->preprocess( $params['text'], $title_obj, $options, null, $frame, $expandHtml );
 			if ( $params['prop'] === null ) {
 				// the old way
 				ApiResult::setContent( $retval, $wikitext );
