@@ -26,7 +26,6 @@
  * Abstraction for resource loader modules, with name registration and maxage functionality.
  */
 abstract class ResourceLoaderModule {
-
 	# Type of resource
 	const TYPE_SCRIPTS = 'scripts';
 	const TYPE_STYLES = 'styles';
@@ -476,7 +475,8 @@ abstract class ResourceLoaderModule {
 			return $data;
 		}
 
-		wfDebugLog( 'resourceloader', __METHOD__ . ": New definition hash for module {$this->getName()} in context {$context->getHash()}: $hash." );
+		wfDebugLog( 'resourceloader', __METHOD__ . ": New definition hash for module "
+			. "{$this->getName()} in context {$context->getHash()}: $hash." );
 
 		$timestamp = time();
 		$cache->set( $key, $timestamp );
