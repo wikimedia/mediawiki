@@ -34,7 +34,6 @@
 class ApiFeedWatchlist extends ApiBase {
 
 	private $watchlistModule = null;
-	private $linkToDiffs = false;
 	private $linkToSections = false;
 
 	/**
@@ -73,7 +72,7 @@ class ApiFeedWatchlist extends ApiBase {
 				'meta' => 'siteinfo',
 				'siprop' => 'general',
 				'list' => 'watchlist',
-				'wlprop' => 'title|user|comment|timestamp',
+				'wlprop' => 'title|user|comment|timestamp|ids',
 				'wldir' => 'older', // reverse order - from newest to oldest
 				'wlend' => $endTime, // stop at this time
 				'wllimit' => min( 50, $wgFeedLimit )
@@ -93,12 +92,6 @@ class ApiFeedWatchlist extends ApiBase {
 			}
 			if ( $params['wltype'] !== null ) {
 				$fauxReqArr['wltype'] = $params['wltype'];
-			}
-
-			// Support linking to diffs instead of article
-			if ( $params['linktodiffs'] ) {
-				$this->linkToDiffs = true;
-				$fauxReqArr['wlprop'] .= '|ids';
 			}
 
 			// Support linking directly to sections when possible
@@ -173,7 +166,7 @@ class ApiFeedWatchlist extends ApiBase {
 	private function createFeedItem( $info ) {
 		$titleStr = $info['title'];
 		$title = Title::newFromText( $titleStr );
-		if ( $this->linkToDiffs && isset( $info['revid'] ) ) {
+		if ( isset( $info['revid'] ) ) {
 			$titleUrl = $title->getFullURL( array( 'diff' => $info['revid'] ) );
 		} else {
 			$titleUrl = $title->getFullURL();
@@ -225,7 +218,6 @@ class ApiFeedWatchlist extends ApiBase {
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => 72,
 			),
-			'linktodiffs' => false,
 			'linktosections' => false,
 		);
 		if ( $flags ) {
@@ -254,7 +246,6 @@ class ApiFeedWatchlist extends ApiBase {
 		return array(
 			'feedformat' => 'The format of the feed',
 			'hours' => 'List pages modified within this many hours from now',
-			'linktodiffs' => 'Link to change differences instead of article pages',
 			'linktosections' => 'Link directly to changed sections if possible',
 			'allrev' => $wldescr['allrev'],
 			'wlowner' => $wldescr['owner'],
@@ -279,7 +270,7 @@ class ApiFeedWatchlist extends ApiBase {
 	public function getExamples() {
 		return array(
 			'api.php?action=feedwatchlist',
-			'api.php?action=feedwatchlist&allrev=&linktodiffs=&hours=6'
+			'api.php?action=feedwatchlist&allrev=&hours=6'
 		);
 	}
 
