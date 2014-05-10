@@ -363,4 +363,15 @@ class WikitextContent extends TextContent {
 		return $word->match( $this->getNativeData() );
 	}
 
+	/**
+	 * @see Content::getWikitextForTransclusion
+	 * @see TextContent::getWikitextForTransclusion
+	 *
+	 * @return bool|string The native wikitext
+	 *
+	 * @todo Handle <noinclude> and friends here.
+	 */
+	public function getWikitextForTransclusion() {
+		return $this->getNativeData();
+	}
 }
