@@ -99,7 +99,9 @@ class SpecialImport extends SpecialPage {
 		$sourceName = $request->getVal( "source" );
 
 		$this->logcomment = $request->getText( 'log-comment' );
-		$this->pageLinkDepth = $wgExportMaxLinkDepth == 0 ? 0 : $request->getIntOrNull( 'pagelink-depth' );
+		$this->pageLinkDepth = $wgExportMaxLinkDepth == 0
+			? 0
+			: $request->getIntOrNull( 'pagelink-depth' );
 		$this->rootpage = $request->getText( 'rootpage' );
 
 		$user = $this->getUser();
@@ -242,7 +244,10 @@ class SpecialImport extends SpecialPage {
 				</tr>
 				<tr>
 					<td class='mw-label'>" .
-					Xml::label( $this->msg( 'import-interwiki-rootpage' )->text(), 'mw-interwiki-rootpage-upload' ) .
+					Xml::label(
+						$this->msg( 'import-interwiki-rootpage' )->text(),
+						'mw-interwiki-rootpage-upload'
+					) .
 					"</td>
 					<td class='mw-input'>" .
 					Xml::input( 'rootpage', 50, $this->rootpage,
@@ -434,7 +439,9 @@ class ImportReporter extends ContextSource {
 	}
 
 	function reportNotice( $msg, array $params ) {
-		$this->getOutput()->addHTML( Html::element( 'li', array(), $this->msg( $msg, $params )->text() ) );
+		$this->getOutput()->addHTML(
+			Html::element( 'li', array(), $this->msg( $msg, $params )->text() )
+		);
 	}
 
 	function reportLogItem( /* ... */ ) {
@@ -475,7 +482,8 @@ class ImportReporter extends ContextSource {
 				$detail = $this->msg( 'import-logentry-upload-detail' )->numParams(
 					$successCount )->inContentLanguage()->text();
 				if ( $this->reason ) {
-					$detail .= $this->msg( 'colon-separator' )->inContentLanguage()->text() . $this->reason;
+					$detail .= $this->msg( 'colon-separator' )->inContentLanguage()->text()
+						. $this->reason;
 				}
 				$log->addEntry( 'upload', $title, $detail, array(), $this->getUser() );
 			} else {
@@ -484,7 +492,8 @@ class ImportReporter extends ContextSource {
 				$detail = $this->msg( 'import-logentry-interwiki-detail' )->numParams(
 					$successCount )->params( $interwiki )->inContentLanguage()->text();
 				if ( $this->reason ) {
-					$detail .= $this->msg( 'colon-separator' )->inContentLanguage()->text() . $this->reason;
+					$detail .= $this->msg( 'colon-separator' )->inContentLanguage()->text()
+						. $this->reason;
 				}
 				$log->addEntry( 'interwiki', $title, $detail, array(), $this->getUser() );
 			}
@@ -492,13 +501,23 @@ class ImportReporter extends ContextSource {
 			$comment = $detail; // quick
 			$dbw = wfGetDB( DB_MASTER );
 			$latest = $title->getLatestRevID();
-			$nullRevision = Revision::newNullRevision( $dbw, $title->getArticleID(), $comment, true, $this->getUser() );
+			$nullRevision = Revision::newNullRevision(
+				$dbw,
+				$title->getArticleID(),
+				$comment,
+				true,
+				$this->getUser()
+			);
+
 			if ( !is_null( $nullRevision ) ) {
 				$nullRevision->insertOn( $dbw );
 				$page = WikiPage::factory( $title );
 				# Update page record
 				$page->updateRevisionOn( $dbw, $nullRevision );
-				wfRunHooks( 'NewRevisionFromEditComplete', array( $page, $nullRevision, $latest, $this->getUser() ) );
+				wfRunHooks(
+					'NewRevisionFromEditComplete',
+					array( $page, $nullRevision, $latest, $this->getUser() )
+				);
 			}
 		} else {
 			$this->getOutput()->addHTML( "<li>" . Linker::linkKnown( $title ) . " " .

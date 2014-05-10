@@ -28,12 +28,38 @@
  * @ingroup SpecialPage
  */
 class SpecialMergeHistory extends SpecialPage {
-	var $mAction, $mTarget, $mDest, $mTimestamp, $mTargetID, $mDestID, $mComment;
+	/** @var string */
+	protected $mAction;
 
-	/**
-	 * @var Title
-	 */
-	var $mTargetObj, $mDestObj;
+	/** @var string */
+	protected $mTarget;
+
+	/** @var string */
+	protected $mDest;
+
+	/** @var string */
+	protected $mTimestamp;
+
+	/** @var int */
+	protected $mTargetID;
+
+	/** @var int */
+	protected $mDestID;
+
+	/** @var string */
+	protected $mComment;
+
+	/** @var bool Was posted? */
+	protected $mMerge;
+
+	/** @var bool Was submitted? */
+	protected $mSubmitted;
+
+	/** @var Title */
+	protected $mTargetObj;
+
+	/** @var Title */
+	protected $mDestObj;
 
 	public function __construct() {
 		parent::__construct( 'MergeHistory', 'mergehistory' );
@@ -57,7 +83,9 @@ class SpecialMergeHistory extends SpecialPage {
 		}
 		$this->mComment = $request->getText( 'wpComment' );
 
-		$this->mMerge = $request->wasPosted() && $this->getUser()->matchEditToken( $request->getVal( 'wpEditToken' ) );
+		$this->mMerge = $request->wasPosted()
+			&& $this->getUser()->matchEditToken( $request->getVal( 'wpEditToken' ) );
+
 		// target page
 		if ( $this->mSubmitted ) {
 			$this->mTargetObj = Title::newFromURL( $this->mTarget );
@@ -203,7 +231,10 @@ class SpecialMergeHistory extends SpecialPage {
 					<tr>
 						<td>&#160;</td>
 						<td class="mw-submit">' .
-					Xml::submitButton( $this->msg( 'mergehistory-submit' )->text(), array( 'name' => 'merge', 'id' => 'mw-merge-submit' ) ) .
+					Xml::submitButton(
+						$this->msg( 'mergehistory-submit' )->text(),
+						array( 'name' => 'merge', 'id' => 'mw-merge-submit' )
+					) .
 					'</td>
 					</tr>' .
 					Xml::closeElement( 'table' ) .
@@ -290,7 +321,8 @@ class SpecialMergeHistory extends SpecialPage {
 		$comment = Linker::revComment( $rev );
 
 		return Html::rawElement( 'li', array(),
-			$this->msg( 'mergehistory-revisionrow' )->rawParams( $checkBox, $last, $pageLink, $userLink, $stxt, $comment )->escaped() );
+			$this->msg( 'mergehistory-revisionrow' )
+				->rawParams( $checkBox, $last, $pageLink, $userLink, $stxt, $comment )->escaped() );
 	}
 
 	function merge() {
@@ -434,7 +466,11 @@ class SpecialMergeHistory extends SpecialPage {
 }
 
 class MergeHistoryPager extends ReverseChronologicalPager {
-	public $mForm, $mConds;
+	/** @var IContextSource */
+	public $mForm;
+
+	/** @var array */
+	public $mConds;
 
 	function __construct( $form, $conds = array(), $source, $dest ) {
 		$this->mForm = $form;

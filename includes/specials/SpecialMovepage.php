@@ -27,15 +27,35 @@
  * @ingroup SpecialPage
  */
 class MovePageForm extends UnlistedSpecialPage {
-	/**
-	 * Objects
-	 * @var Title
-	 */
-	var $oldTitle, $newTitle;
-	// Text input
-	var $reason;
+	/** @var Title */
+	protected $oldTitle;
+
+	/** @var Title */
+	protected $newTitle;
+
+
+	/** @var string Text input */
+	protected $reason;
+
 	// Checks
-	var $moveTalk, $deleteAndMove, $moveSubpages, $fixRedirects, $leaveRedirect, $moveOverShared;
+
+	/** @var bool */
+	protected $moveTalk;
+
+	/** @var bool */
+	protected $deleteAndMove;
+
+	/** @var bool */
+	protected $moveSubpages;
+
+	/** @var bool */
+	protected $fixRedirects;
+
+	/** @var bool */
+	protected $leaveRedirect;
+
+	/** @var bool */
+	protected $moveOverShared;
 
 	private $watch = false;
 
@@ -685,17 +705,20 @@ class MovePageForm extends UnlistedSpecialPage {
 					);
 
 					$newLink = Linker::linkKnown( $newSubpage );
-					$extraOutput[] = $this->msg( 'movepage-page-moved' )->rawParams( $oldLink, $newLink )->escaped();
+					$extraOutput[] = $this->msg( 'movepage-page-moved' )
+						->rawParams( $oldLink, $newLink )->escaped();
 					++$count;
 
 					if ( $count >= $wgMaximumMovedPages ) {
-						$extraOutput[] = $this->msg( 'movepage-max-pages' )->numParams( $wgMaximumMovedPages )->escaped();
+						$extraOutput[] = $this->msg( 'movepage-max-pages' )
+							->numParams( $wgMaximumMovedPages )->escaped();
 						break;
 					}
 				} else {
 					$oldLink = Linker::linkKnown( $oldSubpage );
 					$newLink = Linker::link( $newSubpage );
-					$extraOutput[] = $this->msg( 'movepage-page-unmoved' )->rawParams( $oldLink, $newLink )->escaped();
+					$extraOutput[] = $this->msg( 'movepage-page-unmoved' )
+						->rawParams( $oldLink, $newLink )->escaped();
 				}
 			}
 		}
