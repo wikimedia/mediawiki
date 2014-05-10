@@ -244,9 +244,6 @@ class GenerateSitemap extends Maintenance {
 	 * @return null|string
 	 */
 	private static function init_path( $fspath ) {
-		if ( !isset( $fspath ) ) {
-			return null;
-		}
 		# Create directory if needed
 		if ( $fspath && !is_dir( $fspath ) ) {
 			wfMkdirParents( $fspath, null, __METHOD__ ) or die( "Can not create directory $fspath.\n" );
