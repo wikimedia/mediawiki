@@ -161,6 +161,7 @@ class LinkHolderArray {
 	/**
 	 * Get a subset of the current LinkHolderArray which is sufficient to
 	 * interpret the given text.
+	 * @param string $text
 	 * @return LinkHolderArray
 	 */
 	function getSubArray( $text ) {
@@ -263,12 +264,14 @@ class LinkHolderArray {
 	/**
 	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
 	 *
+	 * @param $text
 	 * @return array Array of link CSS classes, indexed by PDBK.
 	 */
 	function replace( &$text ) {
 		wfProfileIn( __METHOD__ );
 
-		$colours = $this->replaceInternal( $text ); // FIXME: replaceInternal doesn't return a value
+		/** @todo FIXME: replaceInternal doesn't return a value */
+		$colours = $this->replaceInternal( $text );
 		$this->replaceInterwiki( $text );
 
 		wfProfileOut( __METHOD__ );
