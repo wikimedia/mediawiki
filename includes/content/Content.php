@@ -39,23 +39,20 @@ interface Content {
 	 * @return string A string representing the content in a way useful for
 	 *   building a full text search index. If no useful representation exists,
 	 *   this method returns an empty string.
-	 *
-	 * @todo Test that this actually works
-	 * @todo Make sure this also works with LuceneSearch / WikiSearch
 	 */
 	public function getTextForSearchIndex();
 
 	/**
 	 * @since 1.21
 	 *
-	 * @return string|bool The wikitext to include when another page includes this
-	 * content, or false if the content is not includable in a wikitext page.
+	 * @see getParserOutputForTransclusion()
+	 * @see Parser::statelessFetchTemplate()
 	 *
-	 * @todo Allow native handling, bypassing wikitext representation, like
-	 *  for includable special pages.
-	 * @todo Allow transclusion into other content models than Wikitext!
-	 * @todo Used in WikiPage and MessageCache to get message text. Not so
-	 *  nice. What should we use instead?!
+	 * @note: Parser::statelessFetchTemplate() tries this method first, before falling back
+	 * to HTML based transclusion via getParserOutputForTransclusion().
+	 *
+	 * @return string|bool The wikitext to include when another page includes this
+	 * content, or false if the content is not directly transcludable as wikitext.
 	 */
 	public function getWikitextForTransclusion();
 
@@ -269,13 +266,36 @@ interface Content {
 	 *        this method is undefined.
 	 *
 	 * @since 1.21
+	 * @todo create RenderOutput and RenderOptions base classes to be used instead
+	 *       of ParserOptions and ParserOutput.
 	 *
 	 * @return ParserOutput
 	 */
 	public function getParserOutput( Title $title, $revId = null,
 		ParserOptions $options = null, $generateHtml = true );
 
-	// TODO: make RenderOutput and RenderOptions base classes
+	/**
+	 * Like getParserOutput, but give implementors a cancel to apply additional
+	 * transformations for transclusion.
+	 *
+	 * @note: Parser::statelessFetchTemplate() uses this to implement HTML based
+	 * transclusion via, if getWikitextForTransclusion() returns false.
+	 *
+	 * @see getParserOutput
+	 * @see getWikitextForTransclusion
+	 * @see Parser::statelessFetchTemplate()
+	 *
+	 * @param Title $title
+	 * @param int $revId
+	 * @param ParserOptions $options
+	 *
+	 * @since 1.24
+	 *
+	 * @return ParserOutput|null A ParserOutput object for transclusion, or null if
+	 *         transclusion is not supported.
+	 */
+	public function getParserOutputForTransclusion( Title $title, $revId = null,
+		ParserOptions $options = null );
 
 	/**
 	 * Returns a list of DataUpdate objects for recording information about this

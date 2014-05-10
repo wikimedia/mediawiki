@@ -131,21 +131,12 @@ class TextContent extends AbstractContent {
 	}
 
 	/**
-	 * Returns attempts to convert this content object to wikitext,
-	 * and then returns the text string. The conversion may be lossy.
+	 * Returns false to give the wikitext parser a chance to use HTML based transclusion.
 	 *
-	 * @note: this allows any text-based content to be transcluded as if it was wikitext.
-	 *
-	 * @return string|bool The raw text, or false if the conversion failed.
+	 * @return string|bool false
 	 */
 	public function getWikitextForTransclusion() {
-		$wikitext = $this->convert( CONTENT_MODEL_WIKITEXT, 'lossy' );
-
-		if ( $wikitext ) {
-			return $wikitext->getNativeData();
-		} else {
-			return false;
-		}
+		return false;
 	}
 
 	/**
@@ -224,7 +215,8 @@ class TextContent extends AbstractContent {
 
 		if ( in_array( $this->getModel(), $wgTextModelsToParse ) ) {
 			// parse just to get links etc into the database, HTML is replaced below.
-			$output = $wgParser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
+			$parser = $wgParser->isInParse() ? clone $wgParser : $wgParser;
+			$output = $parser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
 		}
 
 		if ( $generateHtml ) {

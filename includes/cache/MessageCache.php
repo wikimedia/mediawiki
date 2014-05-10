@@ -951,16 +951,15 @@ class MessageCache {
 				);
 				$message = null; // no negative caching
 			} else {
-				// XXX: Is this the right way to turn a Content object into a message?
 				// NOTE: $content is typically either WikitextContent, JavaScriptContent or
 				//       CssContent. MessageContent is *not* used for storing messages, it's
 				//       only used for wrapping them when needed.
-				$message = $content->getWikitextForTransclusion();
+				$message = $content->getNativeData();
 
-				if ( $message === false || $message === null ) {
+				if ( !is_string( $message ) ) {
 					wfDebugLog(
 						'MessageCache',
-						__METHOD__ . ": message content doesn't provide wikitext "
+						__METHOD__ . ": message content doesn't provide text "
 							. "(content model: " . $content->getContentHandler() . ")"
 					);
 
