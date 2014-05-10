@@ -406,7 +406,8 @@ LUA;
 				if ( $poolCounter->slot !== null ) {
 					$poolCounter->release();
 				}
-			} catch ( Exception $e ) {}
+			} catch ( Exception $e ) {
+			}
 		}
 	}
 }
