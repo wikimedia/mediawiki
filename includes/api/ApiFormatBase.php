@@ -286,8 +286,26 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 		$text = preg_replace( '#^(\s*)(api\.php\?[^ <\n\t]+)$#m', '\1<a href="\2">\2</a>', $text );
 		if ( $this->mHelp ) {
 			// make lines inside * bold
-			$text = preg_replace( '#^(\s*)(\*[^<>\n]+\*)(\s*)$#m', '$1<b>$2</b>$3', $text );
+			$text = preg_replace(
+				'#(\s*)(\*)\s+([a-z]+)(\=)([a-z]+)\s+(\([a-z]+\))?\s?+(\*)(\s*)$#m',
+				'$1<b id="$3$4$5">$2 <a href="api.php#$3$4$5">$3$4$5</a> $6 $7</b>$8',
+				$text
+			);
 		}
+
+		// identifying action with the %% identifier
+		$text = preg_replace(
+				'#\%\%([a-z]+)#',
+				'<a href="api.php#action=$1">$1</a>',
+				$text
+		);
+
+		// identifying format with the % identifier
+		$text = preg_replace(
+				'#\%([a-z]+)#',
+				'<a href="api.php#format=$1">$1</a>',
+				$text
+		);
 
 		// Armor links (bug 61362)
 		$masked = array();

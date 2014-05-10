@@ -457,6 +457,13 @@ abstract class ApiBase extends ContextSource {
 							if ( $t === '' ) {
 								$nothingPrompt = 'Can be empty, or ';
 							} else {
+								// Adding a identifier % for format & %% for action.
+								if ( $paramName === "format" ) {
+									$t = "%$t";
+								}
+								elseif ( $paramName === "action" ) {
+									$t = "%%$t";
+								}
 								$choices[] = $t;
 							}
 						}
