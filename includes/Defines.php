@@ -284,6 +284,7 @@ define( 'CONTENT_MODEL_WIKITEXT', 'wikitext' );
 define( 'CONTENT_MODEL_JAVASCRIPT', 'javascript' );
 define( 'CONTENT_MODEL_CSS', 'css' );
 define( 'CONTENT_MODEL_TEXT', 'text' );
+define( 'CONTENT_MODEL_HTML', 'html' );
 /**@}*/
 
 /**@{

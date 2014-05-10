@@ -3802,7 +3802,15 @@ class Parser {
 
 			if ( $rev ) {
 				$content = $rev->getContent();
-				$text = $content ? $content->getWikitextForTransclusion() : null;
+
+				if ( $content ) {
+					// Use the correct target model when pre-processing JS, CSS, etc.
+					$targetModel = $parser
+						? $parser->getTitle()->getContentModel()
+						: CONTENT_MODEL_WIKITEXT;
+
+					$text = $content->getTextForTransclusion( $targetModel, $parser );
+				}
 
 				if ( $text === false || $text === null ) {
 					$text = false;

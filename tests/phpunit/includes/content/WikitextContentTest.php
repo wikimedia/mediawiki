@@ -384,4 +384,85 @@ just a test"
 			// @todo more...?
 		);
 	}
+
+	public function provideConvert() {
+		return array(
+			array( // #0
+				'Hallo & Welt',
+				CONTENT_MODEL_TEXT,
+				'lossy',
+				'/^Hallo & Welt$/'
+			),
+			array( // #1
+				'Hallo & Welt',
+				CONTENT_MODEL_WIKITEXT,
+				'lossy',
+				'/^Hallo & Welt$/'
+			),
+			array( // #2
+				'Hallo & Welt',
+				CONTENT_MODEL_CSS,
+				'lossy',
+				'/^Hallo & Welt$/'
+			),
+			array( // #3
+				'Hallo & Welt',
+				CONTENT_MODEL_JAVASCRIPT,
+				'lossy',
+				'/^Hallo & Welt$/'
+			),
+			array( // #4
+				'Hallo & Welt',
+				CONTENT_MODEL_HTML,
+				'lossy',
+				'!<p>\s*Hallo &amp; Welt\s*</p>!s'
+			),
+		);
+	}
+
+	public function transclusionProvider() {
+		$templateTitle = Title::newFromText( __METHOD__ . '/TestTemplate', NS_TEMPLATE );
+		$templateText = "FOO";
+
+		$article = Title::newFromText( __METHOD__ . '/TestPage', $this->getDefaultWikitextNS() );
+		$articleText = 'before {{:' . $templateTitle->getPrefixedText(). '}} after';
+
+		//NOTE: HTML transclusion mode should have no impact on wikitext-to-wikitext transclusion!
+
+		return array(
+			'wikitext in wikitext, default' => array(
+				$templateTitle,
+				$templateText,
+				$article,
+				$articleText,
+				null,
+				'!before FOO after!s'
+			),
+			'wikitext in wikitext, passthrough' => array(
+				$templateTitle,
+				$templateText,
+				$article,
+				$articleText,
+				ParserOptions::HTML_TRANSCLUSION_PASS_THROUGH,
+				'!before FOO after!s'
+			),
+			'wikitext in wikitext, wrap' => array(
+				$templateTitle,
+				$templateText,
+				$article,
+				$articleText,
+				ParserOptions::HTML_TRANSCLUSION_WRAP,
+				'!before FOO after!s'
+			),
+			'wikitext in wikitext, disabled' => array(
+				$templateTitle,
+				$templateText,
+				$article,
+				$articleText,
+				ParserOptions::HTML_TRANSCLUSION_DISABLED,
+				'!before FOO after!s'
+			)
+		);
+	}
+
 }

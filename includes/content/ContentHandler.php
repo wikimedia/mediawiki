@@ -467,9 +467,61 @@ abstract class ContentHandler {
 	 * @param Title $destination The page to redirect to.
 	 * @param string $text Text to include in the redirect, if possible.
 	 *
-	 * @return Content Always null.
+	 * @return Content|null Always null.
 	 */
 	public function makeRedirectContent( Title $destination, $text = '' ) {
+		return null;
+	}
+
+	/**
+	 * Indicates whether raw HTML can be transcluded into content using the model
+	 * supported by this ContentHandler, using makeContentFromHtml().
+	 * Call this before constructing HTML for use with makeContentFromHtml() to avoid
+	 * overhead if HTML can not be wrapped for inclusion anyway.
+	 *
+	 * @note If supportsHtmlTransclusion() returns true, this does NOT guarantee
+	 * that makeContentFromHtml() will not return null.
+	 *
+	 * @see makeContentFromHtml
+	 *
+	 * @return bool false per default
+	 */
+	public function supportsHtmlTransclusion() {
+		return false;
+	}
+
+	/**
+	 * Wraps the given HTML in a Content object in a way that may be used to transclude
+	 * it into content of the model supported by this ContentHandler.
+	 * E.g. WikitextContentHandler may use a strip mark to protect the HTML from the
+	 * wikitext parser.
+	 *
+	 * This is used by Content::getContentForTransclusion() to allow transclusion
+	 * of arbitrary content via that content's HTML rendering.
+	 *
+	 * @note Call supportsHtmlTransclusion() to check whether HTML transclusion is
+	 * supported at all before constructing HTML for use with makeContentFromHtml().
+	 *
+	 * @note If supportsHtmlTransclusion() returns true, this does NOT guarantee
+	 * that makeContentFromHtml() will not return null.
+	 *
+	 * @see Content::getContentForTransclusion().
+	 * @see ContentHandler::supportsHtmlTransclusion().
+	 *
+	 * @param string $html The HTML to be transcluded.
+	 * @param object|null $context Context to use for any necessary conversions. The expected
+	 * type depends on the specific content model.
+	 *
+	 * @note The caller is required to provide a context object suitable for the content
+	 * model. Since the caller is typically performing a transclusion into content of that
+	 * kind, it should know what context is required. E.g. Parser would provide itself as
+	 * $context to a call to Content::getTextForTransclusion, which will eventually pass it
+	 * through to WikitextContentHandler::makeContentFromHtml(), which expects the context
+	 * to be a Parser object.
+	 *
+	 * @return Content|null null per default
+	 */
+	public function makeContentFromHtml( $html, $context = null ) {
 		return null;
 	}
 

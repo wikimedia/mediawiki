@@ -39,25 +39,83 @@ interface Content {
 	 * @return string A string representing the content in a way useful for
 	 *   building a full text search index. If no useful representation exists,
 	 *   this method returns an empty string.
-	 *
-	 * @todo Test that this actually works
-	 * @todo Make sure this also works with LuceneSearch / WikiSearch
 	 */
 	public function getTextForSearchIndex();
 
 	/**
+	 * Returns a string suitable for transclusion into wikitext content.
+	 * This is a shorthand for getTextForTransclusion( CONTENT_MODEL_WIKITEXT ).
+	 *
+	 * @note Code that has access to a Parser object should call
+	 * getTextForTransclusion( CONTENT_MODEL_WIKITEXT, $parser ) instead.
+	 *
 	 * @since 1.21
 	 *
-	 * @return string|bool The wikitext to include when another page includes this
-	 * content, or false if the content is not includable in a wikitext page.
+	 * @see getTextForTransclusion()
+	 * @see getContentForTransclusion()
 	 *
-	 * @todo Allow native handling, bypassing wikitext representation, like
-	 *  for includable special pages.
-	 * @todo Allow transclusion into other content models than Wikitext!
-	 * @todo Used in WikiPage and MessageCache to get message text. Not so
-	 *  nice. What should we use instead?!
+	 * @return string|bool The text to include when a wikitext page includes this
+	 * content, or false if the content is not includable in a wikitext page.
 	 */
 	public function getWikitextForTransclusion();
+
+	/**
+	 * Returns a string suitable for text-based transclusion of this content,
+	 * e.g. by Parser::preprocess().
+	 *
+	 * @note For transclusion into structured data content, use getContentForTransclusion()
+	 * instead.
+	 *
+	 * @see getContentForTransclusion()
+	 * @see Parser::preprocess()
+	 *
+	 * @since 1.24
+	 *
+	 * @param string $modelId The desired content model for transclusion, e.g. CONTENT_MODEL_WIKITEXT.
+	 * @param object|null $context An object to use as context for any applicable transformations.
+	 * The expected type depends on the specific content model.
+	 *
+	 * @note The caller is required to provide a context object suitable for the content
+	 * model. Since the caller is typically performing a transclusion into content of that
+	 * kind, it should know what context is required. E.g. Parser would provide itself as
+	 * $context to a call to Content::getTextForTransclusion, which will eventually pass it
+	 * through to WikitextContentHandler::makeContentFromHtml(), which expects the context
+	 * to be a Parser object.
+	 *
+	 * @return string|bool The text to use when another page includes this
+	 * content, or false if the content can not be converted for inclusion
+	 * in the given target model.
+	 */
+	public function getTextForTransclusion( $modelId, $context = null );
+
+	/**
+	 * Returns a Content object suitable for transclusion into another Content object.
+	 * This is similar to convert(), but implementations may transform the content
+	 * for use in a transclusion.
+	 *
+	 * @note For transclusion into text based content, getTextForTransclusion() may be more
+	 * convenient.
+	 *
+	 * @see convert()
+	 * @see getTextForTransclusion()
+	 *
+	 * @since 1.24
+	 *
+	 * @param string $modelId The desired content model for transclusion.
+	 * @param object|null $context An object to use as context for any applicable transformations.
+	 * The expected type depends on the specific content model.
+	 *
+	 * @note The caller is required to provide a context object suitable for the content
+	 * model. Since the caller is typically performing a transclusion into content of that
+	 * kind, it should know what context is required. E.g. Parser would provide itself as
+	 * $context to a call to Content::getTextForTransclusion, which will eventually pass it
+	 * through to WikitextContentHandler::makeContentFromHtml(), which expects the context
+	 * to be a Parser object.
+	 *
+	 * @return Content|bool The Content object to use for transclusion, or false
+	 * if the necessary conversion is not possible.
+	 */
+	public function getContentForTransclusion( $modelId, $context = null );
 
 	/**
 	 * Returns a textual representation of the content suitable for use in edit
