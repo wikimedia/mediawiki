@@ -40,7 +40,8 @@ interface Preprocessor {
 	function newFrame();
 
 	/**
-	 * Create a new custom frame for programmatic use of parameter replacement as used in some extensions
+	 * Create a new custom frame for programmatic use of parameter replacement
+	 * as used in some extensions.
 	 *
 	 * @param array $args
 	 *
@@ -49,7 +50,8 @@ interface Preprocessor {
 	function newCustomFrame( $args );
 
 	/**
-	 * Create a new custom node for programmatic use of parameter replacement as used in some extensions
+	 * Create a new custom node for programmatic use of parameter replacement
+	 * as used in some extensions.
 	 *
 	 * @param array $values
 	 */
@@ -84,8 +86,8 @@ interface PPFrame {
 	/**
 	 * Create a child frame
 	 *
-	 * @param array $args
-	 * @param Title $title
+	 * @param array|bool $args
+	 * @param bool|Title $title
 	 * @param int $indexOffset A number subtracted from the index attributes of the arguments
 	 *
 	 * @return PPFrame

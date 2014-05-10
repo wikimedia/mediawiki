@@ -25,9 +25,19 @@
  * @ingroup Parser
  */
 class LinkHolderArray {
-	var $internals = array(), $interwikis = array();
-	var $size = 0;
-	var $parent;
+	/** @var array */
+	public $internals = array();
+
+	/** @var array */
+	public $interwikis = array();
+
+	/** @var int */
+	protected $size = 0;
+
+	/** @var Parser */
+	protected $parent;
+
+	/** @var int */
 	protected $tempIdOffset;
 
 	function __construct( $parent ) {
@@ -151,6 +161,7 @@ class LinkHolderArray {
 	/**
 	 * Get a subset of the current LinkHolderArray which is sufficient to
 	 * interpret the given text.
+	 * @param string $text
 	 * @return LinkHolderArray
 	 */
 	function getSubArray( $text ) {
@@ -253,12 +264,14 @@ class LinkHolderArray {
 	/**
 	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
 	 *
+	 * @param $text
 	 * @return array Array of link CSS classes, indexed by PDBK.
 	 */
 	function replace( &$text ) {
 		wfProfileIn( __METHOD__ );
 
-		$colours = $this->replaceInternal( $text ); // FIXME: replaceInternal doesn't return a value
+		/** @todo FIXME: replaceInternal doesn't return a value */
+		$colours = $this->replaceInternal( $text );
 		$this->replaceInterwiki( $text );
 
 		wfProfileOut( __METHOD__ );
@@ -334,7 +347,8 @@ class LinkHolderArray {
 
 			$res = $dbr->select(
 				'page',
-				array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect', 'page_len', 'page_latest' ),
+				array( 'page_id', 'page_namespace', 'page_title',
+					'page_is_redirect', 'page_len', 'page_latest' ),
 				$dbr->makeList( $where, LIST_OR ),
 				__METHOD__
 			);
@@ -537,7 +551,8 @@ class LinkHolderArray {
 			// construct query
 			$dbr = wfGetDB( DB_SLAVE );
 			$varRes = $dbr->select( 'page',
-				array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect', 'page_len', 'page_latest' ),
+				array( 'page_id', 'page_namespace', 'page_title',
+					'page_is_redirect', 'page_len', 'page_latest' ),
 				$linkBatch->constructSet( 'page', $dbr ),
 				__METHOD__
 			);
