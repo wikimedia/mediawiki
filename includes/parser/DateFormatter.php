@@ -234,7 +234,8 @@ class DateFormatter {
 
 		$bits = array();
 		$key = $this->keys[$this->mSource];
-		for ( $p = 0; $p < strlen( $key ); $p++ ) {
+		$keyLength = strlen( $key );
+		for ( $p = 0; $p < $keyLength; $p++ ) {
 			if ( $key[$p] != ' ' ) {
 				$bits[$key[$p]] = $matches[$p + 1];
 			}
@@ -283,7 +284,8 @@ class DateFormatter {
 			$bits['d'] = sprintf( '%02d', $bits['j'] );
 		}
 
-		for ( $p = 0; $p < strlen( $format ); $p++ ) {
+		$formatLength = strlen( $format );
+		for ( $p = 0; $p < $formatLength; $p++ ) {
 			$char = $format[$p];
 			switch ( $char ) {
 				case 'd': # ISO day of month

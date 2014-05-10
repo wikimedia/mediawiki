@@ -24,7 +24,8 @@
 /**
  * \brief Set options of the Parser
  *
- * All member variables are supposed to be private in theory, although in practise this is not the case.
+ * All member variables are supposed to be private in theory, although in
+ * practise this is not the case.
  *
  * @ingroup Parser
  */
@@ -143,42 +144,134 @@ class ParserOptions {
 	/** @var int Maximum article size of an article to be marked as "stub" */
 	private $mStubThreshold;
 
-	function getInterwikiMagic()                { return $this->mInterwikiMagic; }
-	function getAllowExternalImages()           { return $this->mAllowExternalImages; }
-	function getAllowExternalImagesFrom()       { return $this->mAllowExternalImagesFrom; }
-	function getEnableImageWhitelist()          { return $this->mEnableImageWhitelist; }
-	function getEditSection()                   { return $this->mEditSection; }
-	function getNumberHeadings()                { $this->optionUsed( 'numberheadings' );
-												  return $this->mNumberHeadings; }
-	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
-	function getTidy()                          { return $this->mTidy; }
-	function getInterfaceMessage()              { return $this->mInterfaceMessage; }
-	function getTargetLanguage()                { return $this->mTargetLanguage; }
-	function getMaxIncludeSize()                { return $this->mMaxIncludeSize; }
-	function getMaxPPNodeCount()                { return $this->mMaxPPNodeCount; }
-	function getMaxGeneratedPPNodeCount()       { return $this->mMaxGeneratedPPNodeCount; }
-	function getMaxPPExpandDepth()              { return $this->mMaxPPExpandDepth; }
-	function getMaxTemplateDepth()              { return $this->mMaxTemplateDepth; }
-	/* @since 1.20 */
-	function getExpensiveParserFunctionLimit()  { return $this->mExpensiveParserFunctionLimit; }
-	function getRemoveComments()                { return $this->mRemoveComments; }
-	function getTemplateCallback()              { return $this->mTemplateCallback; }
-	function getEnableLimitReport()             { return $this->mEnableLimitReport; }
-	function getCleanSignatures()               { return $this->mCleanSignatures; }
-	function getExternalLinkTarget()            { return $this->mExternalLinkTarget; }
-	function getDisableContentConversion()      { return $this->mDisableContentConversion; }
-	function getDisableTitleConversion()        { return $this->mDisableTitleConversion; }
-	function getThumbSize()                     { $this->optionUsed( 'thumbsize' );
-												  return $this->mThumbSize; }
-	function getStubThreshold()                 { $this->optionUsed( 'stubthreshold' );
-												  return $this->mStubThreshold; }
+	function getInterwikiMagic() {
+		return $this->mInterwikiMagic;
+	}
 
-	function getIsPreview()                     { return $this->mIsPreview; }
-	function getIsSectionPreview()              { return $this->mIsSectionPreview; }
-	function getIsPrintable()                   { $this->optionUsed( 'printable' );
-												  return $this->mIsPrintable; }
-	function getUser()                          { return $this->mUser; }
-	function getPreSaveTransform()              { return $this->mPreSaveTransform; }
+	function getAllowExternalImages() {
+		return $this->mAllowExternalImages;
+	}
+
+	function getAllowExternalImagesFrom() {
+		return $this->mAllowExternalImagesFrom;
+	}
+
+	function getEnableImageWhitelist() {
+		return $this->mEnableImageWhitelist;
+	}
+
+	function getEditSection() {
+		return $this->mEditSection;
+	}
+
+	function getNumberHeadings() {
+		$this->optionUsed( 'numberheadings' );
+
+		return $this->mNumberHeadings;
+	}
+
+	function getAllowSpecialInclusion() {
+		return $this->mAllowSpecialInclusion;
+	}
+
+	function getTidy() {
+		return $this->mTidy;
+	}
+
+	function getInterfaceMessage() {
+		return $this->mInterfaceMessage;
+	}
+
+	function getTargetLanguage() {
+		return $this->mTargetLanguage;
+	}
+
+	function getMaxIncludeSize() {
+		return $this->mMaxIncludeSize;
+	}
+
+	function getMaxPPNodeCount() {
+		return $this->mMaxPPNodeCount;
+	}
+
+	function getMaxGeneratedPPNodeCount() {
+		return $this->mMaxGeneratedPPNodeCount;
+	}
+
+	function getMaxPPExpandDepth() {
+		return $this->mMaxPPExpandDepth;
+	}
+
+	function getMaxTemplateDepth() {
+		return $this->mMaxTemplateDepth;
+	}
+
+	/* @since 1.20 */
+	function getExpensiveParserFunctionLimit() {
+		return $this->mExpensiveParserFunctionLimit;
+	}
+
+	function getRemoveComments() {
+		return $this->mRemoveComments;
+	}
+
+	function getTemplateCallback() {
+		return $this->mTemplateCallback;
+	}
+
+	function getEnableLimitReport() {
+		return $this->mEnableLimitReport;
+	}
+
+	function getCleanSignatures() {
+		return $this->mCleanSignatures;
+	}
+
+	function getExternalLinkTarget() {
+		return $this->mExternalLinkTarget;
+	}
+
+	function getDisableContentConversion() {
+		return $this->mDisableContentConversion;
+	}
+
+	function getDisableTitleConversion() {
+		return $this->mDisableTitleConversion;
+	}
+
+	function getThumbSize() {
+		$this->optionUsed( 'thumbsize' );
+
+		return $this->mThumbSize;
+	}
+
+	function getStubThreshold() {
+		$this->optionUsed( 'stubthreshold' );
+
+		return $this->mStubThreshold;
+	}
+
+	function getIsPreview() {
+		return $this->mIsPreview;
+	}
+
+	function getIsSectionPreview() {
+		return $this->mIsSectionPreview;
+	}
+
+	function getIsPrintable() {
+		$this->optionUsed( 'printable' );
+
+		return $this->mIsPrintable;
+	}
+
+	function getUser() {
+		return $this->mUser;
+	}
+
+	function getPreSaveTransform() {
+		return $this->mPreSaveTransform;
+	}
 
 	function getDateFormat() {
 		$this->optionUsed( 'dateformat' );
@@ -226,47 +319,139 @@ class ParserOptions {
 		return $this->getUserLangObj()->getCode();
 	}
 
-	function setInterwikiMagic( $x )            { return wfSetVar( $this->mInterwikiMagic, $x ); }
-	function setAllowExternalImages( $x )       { return wfSetVar( $this->mAllowExternalImages, $x ); }
-	function setAllowExternalImagesFrom( $x )   { return wfSetVar( $this->mAllowExternalImagesFrom, $x ); }
-	function setEnableImageWhitelist( $x )      { return wfSetVar( $this->mEnableImageWhitelist, $x ); }
-	function setDateFormat( $x )                { return wfSetVar( $this->mDateFormat, $x ); }
-	function setEditSection( $x )               { return wfSetVar( $this->mEditSection, $x ); }
-	function setNumberHeadings( $x )            { return wfSetVar( $this->mNumberHeadings, $x ); }
-	function setAllowSpecialInclusion( $x )     { return wfSetVar( $this->mAllowSpecialInclusion, $x ); }
-	function setTidy( $x )                      { return wfSetVar( $this->mTidy, $x ); }
+	function setInterwikiMagic( $x ) {
+		return wfSetVar( $this->mInterwikiMagic, $x );
+	}
+
+	function setAllowExternalImages( $x ) {
+		return wfSetVar( $this->mAllowExternalImages, $x );
+	}
+
+	function setAllowExternalImagesFrom( $x ) {
+		return wfSetVar( $this->mAllowExternalImagesFrom, $x );
+	}
+
+	function setEnableImageWhitelist( $x ) {
+		return wfSetVar( $this->mEnableImageWhitelist, $x );
+	}
+
+	function setDateFormat( $x ) {
+		return wfSetVar( $this->mDateFormat, $x );
+	}
+
+	function setEditSection( $x ) {
+		return wfSetVar( $this->mEditSection, $x );
+	}
+
+	function setNumberHeadings( $x ) {
+		return wfSetVar( $this->mNumberHeadings, $x );
+	}
+
+	function setAllowSpecialInclusion( $x ) {
+		return wfSetVar( $this->mAllowSpecialInclusion, $x );
+	}
+
+	function setTidy( $x ) {
+		return wfSetVar( $this->mTidy, $x );
+	}
 
 	/** @deprecated since 1.19 */
-	function setSkin( $x )                      { wfDeprecated( __METHOD__, '1.19' ); }
-	function setInterfaceMessage( $x )          { return wfSetVar( $this->mInterfaceMessage, $x ); }
-	function setTargetLanguage( $x )            { return wfSetVar( $this->mTargetLanguage, $x, true ); }
-	function setMaxIncludeSize( $x )            { return wfSetVar( $this->mMaxIncludeSize, $x ); }
-	function setMaxPPNodeCount( $x )            { return wfSetVar( $this->mMaxPPNodeCount, $x ); }
-	function setMaxGeneratedPPNodeCount( $x )   { return wfSetVar( $this->mMaxGeneratedPPNodeCount, $x ); }
-	function setMaxTemplateDepth( $x )          { return wfSetVar( $this->mMaxTemplateDepth, $x ); }
+	function setSkin( $x ) {
+		wfDeprecated( __METHOD__, '1.19' );
+	}
+
+	function setInterfaceMessage( $x ) {
+		return wfSetVar( $this->mInterfaceMessage, $x );
+	}
+
+	function setTargetLanguage( $x ) {
+		return wfSetVar( $this->mTargetLanguage, $x, true );
+	}
+
+	function setMaxIncludeSize( $x ) {
+		return wfSetVar( $this->mMaxIncludeSize, $x );
+	}
+
+	function setMaxPPNodeCount( $x ) {
+		return wfSetVar( $this->mMaxPPNodeCount, $x );
+	}
+
+	function setMaxGeneratedPPNodeCount( $x ) {
+		return wfSetVar( $this->mMaxGeneratedPPNodeCount, $x );
+	}
+
+	function setMaxTemplateDepth( $x ) {
+		return wfSetVar( $this->mMaxTemplateDepth, $x );
+	}
+
 	/* @since 1.20 */
-	function setExpensiveParserFunctionLimit( $x ) { return wfSetVar( $this->mExpensiveParserFunctionLimit, $x ); }
-	function setRemoveComments( $x )            { return wfSetVar( $this->mRemoveComments, $x ); }
-	function setTemplateCallback( $x )          { return wfSetVar( $this->mTemplateCallback, $x ); }
-	function enableLimitReport( $x = true )     { return wfSetVar( $this->mEnableLimitReport, $x ); }
-	function setTimestamp( $x )                 { return wfSetVar( $this->mTimestamp, $x ); }
-	function setCleanSignatures( $x )           { return wfSetVar( $this->mCleanSignatures, $x ); }
-	function setExternalLinkTarget( $x )        { return wfSetVar( $this->mExternalLinkTarget, $x ); }
-	function disableContentConversion( $x = true ) { return wfSetVar( $this->mDisableContentConversion, $x ); }
-	function disableTitleConversion( $x = true ) { return wfSetVar( $this->mDisableTitleConversion, $x ); }
-	function setUserLang( $x )                  {
+	function setExpensiveParserFunctionLimit( $x ) {
+		return wfSetVar( $this->mExpensiveParserFunctionLimit, $x );
+	}
+
+	function setRemoveComments( $x ) {
+		return wfSetVar( $this->mRemoveComments, $x );
+	}
+
+	function setTemplateCallback( $x ) {
+		return wfSetVar( $this->mTemplateCallback, $x );
+	}
+
+	function enableLimitReport( $x = true ) {
+		return wfSetVar( $this->mEnableLimitReport, $x );
+	}
+
+	function setTimestamp( $x ) {
+		return wfSetVar( $this->mTimestamp, $x );
+	}
+
+	function setCleanSignatures( $x ) {
+		return wfSetVar( $this->mCleanSignatures, $x );
+	}
+
+	function setExternalLinkTarget( $x ) {
+		return wfSetVar( $this->mExternalLinkTarget, $x );
+	}
+
+	function disableContentConversion( $x = true ) {
+		return wfSetVar( $this->mDisableContentConversion, $x );
+	}
+
+	function disableTitleConversion( $x = true ) {
+		return wfSetVar( $this->mDisableTitleConversion, $x );
+	}
+
+	function setUserLang( $x ) {
 		if ( is_string( $x ) ) {
 			$x = Language::factory( $x );
 		}
+
 		return wfSetVar( $this->mUserLang, $x );
 	}
-	function setThumbSize( $x )                 { return wfSetVar( $this->mThumbSize, $x ); }
-	function setStubThreshold( $x )             { return wfSetVar( $this->mStubThreshold, $x ); }
-	function setPreSaveTransform( $x )          { return wfSetVar( $this->mPreSaveTransform, $x ); }
 
-	function setIsPreview( $x )                 { return wfSetVar( $this->mIsPreview, $x ); }
-	function setIsSectionPreview( $x )          { return wfSetVar( $this->mIsSectionPreview, $x ); }
-	function setIsPrintable( $x )               { return wfSetVar( $this->mIsPrintable, $x ); }
+	function setThumbSize( $x ) {
+		return wfSetVar( $this->mThumbSize, $x );
+	}
+
+	function setStubThreshold( $x ) {
+		return wfSetVar( $this->mStubThreshold, $x );
+	}
+
+	function setPreSaveTransform( $x ) {
+		return wfSetVar( $this->mPreSaveTransform, $x );
+	}
+
+	function setIsPreview( $x ) {
+		return wfSetVar( $this->mIsPreview, $x );
+	}
+
+	function setIsSectionPreview( $x ) {
+		return wfSetVar( $this->mIsSectionPreview, $x );
+	}
+
+	function setIsPrintable( $x ) {
+		return wfSetVar( $this->mIsPrintable, $x );
+	}
 
 	/**
 	 * Extra key that should be present in the parser cache key.
@@ -397,7 +582,14 @@ class ParserOptions {
 	 * @return array
 	 */
 	public static function legacyOptions() {
-		return array( 'stubthreshold', 'numberheadings', 'userlang', 'thumbsize', 'editsection', 'printable' );
+		return array(
+			'stubthreshold',
+			'numberheadings',
+			'userlang',
+			'thumbsize',
+			'editsection',
+			'printable'
+		);
 	}
 
 	/**
