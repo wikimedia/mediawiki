@@ -25,12 +25,11 @@
 	function doWatchInternal( pages, ok, err, addParams ) {
 		// XXX: Parameter addParams is undocumented because we inherit this
 		// documentation in the public method...
-		var apiPromise = this.post(
+		var apiPromise = this.postWithToken( 'watch',
 			$.extend(
 				{
 					action: 'watch',
 					titles: $.isArray( pages ) ? pages.join( '|' ) : String( pages ),
-					token: mw.user.tokens.get( 'watchToken' ),
 					uselang: mw.config.get( 'wgUserLanguage' )
 				},
 				addParams
