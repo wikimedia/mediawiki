@@ -277,7 +277,6 @@ span.texhtml {
 /* Galleries (see shared.css for more info) */
 li.gallerybox {
 	vertical-align: top;
-	display: -moz-inline-box;
 	display: inline-block;
 }
 
