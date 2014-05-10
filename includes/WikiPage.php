@@ -1226,9 +1226,9 @@ class WikiPage implements Page, IDBAccessObject {
 				//       This is consistent with  MessageCache::getMsgFromNamespace()
 
 				$content = $this->getContent();
-				$text = $content === null ? null : $content->getWikitextForTransclusion();
+				$text = $content === null ? null : $content->getNativeData();
 
-				if ( $text === null ) {
+				if ( !is_string( $text ) ) {
 					$text = false;
 				}
 			} else {
@@ -2230,8 +2230,8 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			// XXX: could skip pseudo-messages like js/css here, based on content model.
-			$msgtext = $content ? $content->getWikitextForTransclusion() : null;
-			if ( $msgtext === false || $msgtext === null ) {
+			$msgtext = $content ? $content->getNativeData() : null;
+			if ( !is_string( $msgtext ) ) {
 				$msgtext = '';
 			}
 
