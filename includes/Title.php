@@ -1950,7 +1950,7 @@ class Title {
 				$errors[] = array( 'cant-move-to-user-page' );
 			} elseif ( !$user->isAllowed( 'move-categorypages' )
 					&& $this->mNamespace == NS_CATEGORY ) {
-				// Show user page-specific message only if the user can move other pages
+				// Show category page-specific message only if the user can move other pages
 				$errors[] = array( 'cant-move-to-category-page' );
 			}
 		} elseif ( !$user->isAllowed( $action ) ) {
