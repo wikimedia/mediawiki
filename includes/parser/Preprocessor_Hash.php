@@ -867,7 +867,7 @@ class PPDAccum_Hash {
 	}
 
 	/**
-	 * Append a PPAccum_Hash
+	 * Append a PPDAccum_Hash
 	 * Takes over ownership of the nodes in the source argument. These nodes may
 	 * subsequently be modified, especially nextSibling.
 	 * @param PPDAccum_Hash $accum
