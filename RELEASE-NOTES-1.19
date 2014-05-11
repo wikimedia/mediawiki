@@ -14,6 +14,8 @@ This is a maintenance release of the MediaWiki 1.19 branch.
   System administrators are encouraged to upgrade to this release or 1.22+
   and produce a full data dump.
   https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Backing_up_a_wiki
+* (bug 63049) Removed anonymous functions from ApiFormatBase, added in
+  1.19.13 as part of the fix for bug 61362, for PHP 5.2 compatibility.
 
 == MediaWiki 1.19.20 ==
 

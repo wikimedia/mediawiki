@@ -33,6 +33,7 @@ abstract class ApiFormatBase extends ApiBase {
 
 	private $mIsHtml, $mFormat, $mUnescapeAmps, $mHelp, $mCleared;
 	private $mBufferResult = false, $mBuffer, $mDisabled = false;
+	private $mMasked;
 
 	/**
 	 * Constructor
@@ -275,12 +276,8 @@ See <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 		}
 
 		// Armor links (bug 61362)
-		$masked = array();
-		$text = preg_replace_callback( '#<a .*?</a>#', function ( $matches ) use ( &$masked ) {
-			$sha = sha1( $matches[0] );
-			$masked[$sha] = $matches[0];
-			return "<$sha>";
-		}, $text );
+		$this->mMasked = array();
+		$text = preg_replace_callback( '#<a .*?</a>#', array( $this, 'armorLinkCallback' ), $text );
 
 		// identify URLs
 		$protos = wfUrlProtocolsWithoutProtRel();
@@ -288,10 +285,8 @@ See <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 		$text = preg_replace( "#(($protos).*?)(&quot;)?([ \\'\"<>\n]|&lt;|&gt;|&quot;)#", '<a href="\\1">\\1</a>\\3\\4', $text );
 
 		// Unarmor links
-		$text = preg_replace_callback( '#<([0-9a-f]{40})>#', function ( $matches ) use ( &$masked ) {
-			$sha = $matches[1];
-			return isset( $masked[$sha] ) ? $masked[$sha] : $matches[0];
-		}, $text );
+		$text = preg_replace_callback( '#<([0-9a-f]{40})>#', array( $this, 'unarmorLinkCallback' ), $text );
+		$this->mMasked = null;
 
 		/**
 		 * Temporary fix for bad links in help messages. As a special case,
@@ -304,6 +299,17 @@ See <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 		}
 
 		return $text;
+	}
+
+	private function armorLinkCallback( $matches ) {
+		$sha = sha1( $matches[0] );
+		$this->mMasked[$sha] = $matches[0];
+		return "<$sha>";
+	}
+
+	private function unarmorLinkCallback( $matches ) {
+		$sha = $matches[1];
+		return isset( $this->mMasked[$sha] ) ? $this->mMasked[$sha] : $matches[0];
 	}
 
 	public function getExamples() {
