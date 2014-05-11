@@ -259,7 +259,8 @@ class HtmlFormatter {
 	 * specify the $element in the method it'll change the underlying dom and you won't be able to get
 	 * it back.
 	 *
-	 * @param DOMElement|string|null $element ID of element to get HTML from or false to get it from the whole tree
+	 * @param DOMElement|string|null $element ID of element to get HTML from or
+	 *   false to get it from the whole tree
 	 * @return string Processed HTML
 	 */
 	public function getText( $element = null ) {

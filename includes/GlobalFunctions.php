@@ -2922,8 +2922,10 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 		$readyPipes = $pipes;
 
 		// Clear last error
+		// @codingStandardsIgnoreStart Generic.PHP.NoSilencedErrors.Discouraged
 		@trigger_error( '' );
 		if ( @stream_select( $readyPipes, $emptyArray, $emptyArray, null ) === false ) {
+			// @codingStandardsIgnoreEnd
 			$error = error_get_last();
 			if ( strncmp( $error['message'], $eintrMessage, strlen( $eintrMessage ) ) == 0 ) {
 				continue;
@@ -3407,9 +3409,11 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1,
 			$decimal = bcadd( $decimal, $baseChars[$char] );
 		}
 
+		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
 		for ( $result = ''; bccomp( $decimal, 0 ); $decimal = bcdiv( $decimal, $destBase, 0 ) ) {
 			$result .= $baseChars[bcmod( $decimal, $destBase )];
 		}
+		// @codingStandardsIgnoreEnd
 
 		$result = strrev( $result );
 	} else {

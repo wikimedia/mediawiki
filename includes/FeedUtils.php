@@ -102,7 +102,9 @@ class FeedUtils {
 	 * @param string $actiontext Text of the action; in case of log event
 	 * @return string
 	 */
-	public static function formatDiffRow( $title, $oldid, $newid, $timestamp, $comment, $actiontext = '' ) {
+	public static function formatDiffRow( $title, $oldid, $newid, $timestamp,
+		$comment, $actiontext = ''
+	) {
 		global $wgFeedDiffCutoff, $wgLang;
 		wfProfileIn( __METHOD__ );
 
@@ -245,9 +247,15 @@ class FeedUtils {
 			'diff'             => 'background-color: white; color:black;',
 			'diff-otitle'      => 'background-color: white; color:black; text-align: center;',
 			'diff-ntitle'      => 'background-color: white; color:black; text-align: center;',
-			'diff-addedline'   => 'color:black; font-size: 88%; border-style: solid; border-width: 1px 1px 1px 4px; border-radius: 0.33em; border-color: #a3d3ff; vertical-align: top; white-space: pre-wrap;',
-			'diff-deletedline' => 'color:black; font-size: 88%; border-style: solid; border-width: 1px 1px 1px 4px; border-radius: 0.33em; border-color: #ffe49c; vertical-align: top; white-space: pre-wrap;',
-			'diff-context'     => 'background-color: #f9f9f9; color: #333333; font-size: 88%; border-style: solid; border-width: 1px 1px 1px 4px; border-radius: 0.33em; border-color: #e6e6e6; vertical-align: top; white-space: pre-wrap;',
+			'diff-addedline'   => 'color:black; font-size: 88%; border-style: solid; '
+				. 'border-width: 1px 1px 1px 4px; border-radius: 0.33em; border-color: #a3d3ff; '
+				. 'vertical-align: top; white-space: pre-wrap;',
+			'diff-deletedline' => 'color:black; font-size: 88%; border-style: solid; '
+				. 'border-width: 1px 1px 1px 4px; border-radius: 0.33em; border-color: #ffe49c; '
+				. 'vertical-align: top; white-space: pre-wrap;',
+			'diff-context'     => 'background-color: #f9f9f9; color: #333333; font-size: 88%; '
+				. 'border-style: solid; border-width: 1px 1px 1px 4px; border-radius: 0.33em; '
+				. 'border-color: #e6e6e6; vertical-align: top; white-space: pre-wrap;',
 			'diffchange'       => 'font-weight: bold; text-decoration: none;',
 		);
 
