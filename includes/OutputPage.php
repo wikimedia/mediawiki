@@ -36,20 +36,31 @@
  * @todo document
  */
 class OutputPage extends ContextSource {
-	/// Should be private. Used with addMeta() which adds "<meta>"
-	var $mMetatags = array();
+	/** @var array Should be private. Used with addMeta() which adds "<meta>" */
+	protected $mMetatags = array();
 
-	var $mLinktags = array();
-	var $mCanonicalUrl = false;
+	/** @var array */
+	protected $mLinktags = array();
 
-	/// Additional stylesheets. Looks like this is for extensions. Might be replaced by resource loader.
-	var $mExtStyles = array();
+	/** @var bool */
+	protected $mCanonicalUrl = false;
 
-	/// Should be private - has getter and setter. Contains the HTML title
-	var $mPagetitle = '';
+	/**
+	 * @var array Additional stylesheets. Looks like this is for extensions.
+	 *   Might be replaced by resource loader.
+	 */
+	protected $mExtStyles = array();
 
-	/// Contains all of the "<body>" content. Should be private we got set/get accessors and the append() method.
-	var $mBodytext = '';
+	/**
+	 * @var string Should be private - has getter and setter. Contains
+	 *   the HTML title */
+	public $mPagetitle = '';
+
+	/**
+	 * @var string Contains all of the "<body>" content. Should be private we
+	 *   got set/get accessors and the append() method.
+	 */
+	public $mBodytext = '';
 
 	/**
 	 * Holds the debug lines that will be output as comments in page source if
@@ -58,43 +69,43 @@ class OutputPage extends ContextSource {
 	 */
 	public $mDebugtext = '';
 
-	/// Should be private. Stores contents of "<title>" tag
-	var $mHTMLtitle = '';
-
-	/// Should be private. Is the displayed content related to the source of the corresponding wiki article.
-	var $mIsarticle = false;
+	/** @var string Stores contents of "<title>" tag */
+	private $mHTMLtitle = '';
 
 	/**
-	 * Should be private. Has get/set methods properly documented.
-	 * Stores "article flag" toggle.
+	 * @var bool Is the displayed content related to the source of the
+	 *   corresponding wiki article.
 	 */
-	var $mIsArticleRelated = true;
+	private $mIsarticle = false;
+
+	/** @var bool Stores "article flag" toggle. */
+	private $mIsArticleRelated = true;
 
 	/**
-	 * Should be private. We have to set isPrintable(). Some pages should
+	 * @var bool We have to set isPrintable(). Some pages should
 	 * never be printed (ex: redirections).
 	 */
-	var $mPrintable = false;
+	private $mPrintable = false;
 
 	/**
-	 * Should be private. We have set/get/append methods.
-	 *
-	 * Contains the page subtitle. Special pages usually have some links here.
-	 * Don't confuse with site subtitle added by skins.
+	 * @var array Contains the page subtitle. Special pages usually have some
+	 *   links here. Don't confuse with site subtitle added by skins.
 	 */
 	private $mSubtitle = array();
 
-	var $mRedirect = '';
-	var $mStatusCode;
+	/** @var string */
+	public $mRedirect = '';
+
+	/** @var int */
+	protected $mStatusCode;
 
 	/**
-	 * mLastModified and mEtag are used for sending cache control.
-	 * The whole caching system should probably be moved into its own class.
+	 * @ var string mLastModified and mEtag are used for sending cache control.
+	 *   The whole caching system should probably be moved into its own class.
 	 */
-	var $mLastModified = '';
+	protected $mLastModified = '';
 
 	/**
-	 * Should be private. No getter but used in sendCacheControl();
 	 * Contains an HTTP Entity Tags (see RFC 2616 section 3.13) which is used
 	 * as a unique identifier for the content. It is later used by the client
 	 * to compare its cached version with the server version. Client sends
@@ -103,70 +114,93 @@ class OutputPage extends ContextSource {
 	 * To get more information, you will have to look at HTTP/1.1 protocol which
 	 * is properly described in RFC 2616 : http://tools.ietf.org/html/rfc2616
 	 */
-	var $mETag = false;
+	private $mETag = false;
 
-	var $mCategoryLinks = array();
-	var $mCategories = array();
+	/** @var array */
+	protected $mCategoryLinks = array();
 
-	/// Should be private. Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page')
-	var $mLanguageLinks = array();
+	/** @var array */
+	protected $mCategories = array();
+
+	/** @var array Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page') */
+	private $mLanguageLinks = array();
 
 	/**
-	 * Should be private. Used for JavaScript (pre resource loader)
-	 * We should split js / css.
+	 * Used for JavaScript (pre resource loader)
+	 * @todo We should split JS / CSS.
 	 * mScripts content is inserted as is in "<head>" by Skin. This might
-	 * contains either a link to a stylesheet or inline css.
+	 * contain either a link to a stylesheet or inline CSS.
 	 */
-	var $mScripts = '';
+	private $mScripts = '';
+
+	/** @var string Inline CSS styles. Use addInlineStyle() sparingly */
+	protected $mInlineStyles = '';
+
+	/** @todo Unused? */
+	private $mLinkColours;
 
 	/**
-	 * Inline CSS styles. Use addInlineStyle() sparingly
-	 */
-	var $mInlineStyles = '';
-
-	//
-	var $mLinkColours;
-
-	/**
-	 * Used by skin template.
+	 * @var string Used by skin template.
 	 * Example: $tpl->set( 'displaytitle', $out->mPageLinkTitle );
 	 */
-	var $mPageLinkTitle = '';
+	public $mPageLinkTitle = '';
 
-	/// Array of elements in "<head>". Parser might add its own headers!
-	var $mHeadItems = array();
+	/** @var array Array of elements in "<head>". Parser might add its own headers! */
+	protected $mHeadItems = array();
 
-	// @todo FIXME: Next variables probably comes from the resource loader
-	var $mModules = array(), $mModuleScripts = array(), $mModuleStyles = array(), $mModuleMessages = array();
-	var $mResourceLoader;
-	var $mJsConfigVars = array();
+	// @todo FIXME: Next 5 variables probably come from the resource loader
 
-	/** @todo FIXME: Is this still used ?*/
-	var $mInlineMsg = array();
+	/** @var array */
+	protected $mModules = array();
 
-	var $mTemplateIds = array();
-	var $mImageTimeKeys = array();
+	/** @var array */
+	protected $mModuleScripts = array();
 
-	var $mRedirectCode = '';
+	/** @var array */
+	protected $mModuleStyles = array();
 
-	var $mFeedLinksAppendQuery = null;
+	/** @var array */
+	protected $mModuleMessages = array();
 
-	# What level of 'untrustworthiness' is allowed in CSS/JS modules loaded on this page?
-	# @see ResourceLoaderModule::$origin
-	# ResourceLoaderModule::ORIGIN_ALL is assumed unless overridden;
+	/** @var ResourceLoader */
+	protected $mResourceLoader;
+
+	/** @var array */
+	protected $mJsConfigVars = array();
+
+	/** @var array */
+	protected $mTemplateIds = array();
+
+	/** @var array */
+	protected $mImageTimeKeys = array();
+
+	/** @var string */
+	public $mRedirectCode = '';
+
+	protected $mFeedLinksAppendQuery = null;
+
+	/** @var array
+	 * What level of 'untrustworthiness' is allowed in CSS/JS modules loaded on this page?
+	 * @see ResourceLoaderModule::$origin
+	 * ResourceLoaderModule::ORIGIN_ALL is assumed unless overridden;
+	 */
 	protected $mAllowedModules = array(
 		ResourceLoaderModule::TYPE_COMBINED => ResourceLoaderModule::ORIGIN_ALL,
 	);
 
-	/**
-	 * Whether output is disabled.  If this is true, the 'output' method will do nothing.
-	 *
-	 * @var bool $mDoNothing
-	 */
-	var $mDoNothing = false;
+	/** @var bool Whether output is disabled.  If this is true, the 'output' method will do nothing. */
+	protected $mDoNothing = false;
 
 	// Parser related.
-	var $mContainsOldMagic = 0, $mContainsNewMagic = 0;
+
+	/**
+	 * @var int
+	 * @todo Unused?
+	 */
+	private $mContainsOldMagic = 0;
+
+	/** @var int */
+	protected $mContainsNewMagic = 0;
 
 	/**
 	 * lazy initialised, use parserOptions()
@@ -175,57 +209,64 @@ class OutputPage extends ContextSource {
 	protected $mParserOptions = null;
 
 	/**
-	 * Handles the atom / rss links.
-	 * We probably only support atom in 2011.
-	 * Looks like a private variable.
+	 * Handles the Atom / RSS links.
+	 * We probably only support Atom in 2011.
 	 * @see $wgAdvertisedFeedTypes
 	 */
-	var $mFeedLinks = array();
+	private $mFeedLinks = array();
 
 	// Gwicke work on squid caching? Roughly from 2003.
-	var $mEnableClientCache = true;
+	protected $mEnableClientCache = true;
+
+	/** @var bool Flag if output should only contain the body of the article. */
+	private $mArticleBodyOnly = false;
+
+	/** @var bool */
+	protected $mNewSectionLink = false;
+
+	/** @var bool */
+	protected $mHideNewSectionLink = false;
 
 	/**
-	 * Flag if output should only contain the body of the article.
-	 * Should be private.
-	 */
-	var $mArticleBodyOnly = false;
-
-	var $mNewSectionLink = false;
-	var $mHideNewSectionLink = false;
-
-	/**
-	 * Comes from the parser. This was probably made to load CSS/JS only
-	 * if we had "<gallery>". Used directly in CategoryPage.php
+	 * @var bool Comes from the parser. This was probably made to load CSS/JS
+	 * only if we had "<gallery>". Used directly in CategoryPage.php.
 	 * Looks like resource loader can replace this.
 	 */
-	var $mNoGallery = false;
+	public $mNoGallery = false;
 
-	// should be private.
-	var $mPageTitleActionText = '';
-	var $mParseWarnings = array();
+	/** @var string */
+	private $mPageTitleActionText = '';
 
-	// Cache stuff. Looks like mEnableClientCache
-	var $mSquidMaxage = 0;
+	/** @var array */
+	private $mParseWarnings = array();
 
-	// @todo document
-	var $mPreventClickjacking = true;
-
-	/// should be private. To include the variable {{REVISIONID}}
-	var $mRevisionId = null;
-	private $mRevisionTimestamp = null;
-
-	var $mFileVersion = null;
+	/** @var int Cache stuff. Looks like mEnableClientCache */
+	protected $mSquidMaxage = 0;
 
 	/**
-	 * An array of stylesheet filenames (relative from skins path), with options
-	 * for CSS media, IE conditions, and RTL/LTR direction.
+	 * @var bool
+	 * @todo Document
+	 */
+	protected $mPreventClickjacking = true;
+
+	/** @var int To include the variable {{REVISIONID}} */
+	private $mRevisionId = null;
+
+	/** @var string */
+	private $mRevisionTimestamp = null;
+
+	/** @var array */
+	protected $mFileVersion = null;
+
+	/**
+	 * @var array An array of stylesheet filenames (relative from skins path),
+	 * with options for CSS media, IE conditions, and RTL/LTR direction.
 	 * For internal use; add settings in the skin via $this->addStyle()
 	 *
 	 * Style again! This seems like a code duplication since we already have
-	 * mStyles. This is what makes OpenSource amazing.
+	 * mStyles. This is what makes Open Source amazing.
 	 */
-	var $styles = array();
+	protected $styles = array();
 
 	/**
 	 * Whether jQuery is already handled.
@@ -445,7 +486,9 @@ class OutputPage extends ContextSource {
 	 * @param string $type
 	 * @return array
 	 */
-	protected function filterModules( $modules, $position = null, $type = ResourceLoaderModule::TYPE_COMBINED ) {
+	protected function filterModules( $modules, $position = null,
+		$type = ResourceLoaderModule::TYPE_COMBINED
+	) {
 		$resourceLoader = $this->getResourceLoader();
 		$filteredModules = array();
 		foreach ( $modules as $val ) {
@@ -724,7 +767,8 @@ class OutputPage extends ContextSource {
 		$clientHeaderTime = strtotime( $clientHeader );
 		wfRestoreWarnings();
 		if ( !$clientHeaderTime ) {
-			wfDebug( __METHOD__ . ": unable to parse the client's If-Modified-Since header: $clientHeader\n" );
+			wfDebug( __METHOD__
+				. ": unable to parse the client's If-Modified-Since header: $clientHeader\n" );
 			return false;
 		}
 		$clientHeaderTime = wfTimestamp( TS_MW, $clientHeaderTime );
@@ -875,10 +919,12 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * "Page title" means the contents of \<h1\>. It is stored as a valid HTML fragment.
-	 * This function allows good tags like \<sup\> in the \<h1\> tag, but not bad tags like \<script\>.
-	 * This function automatically sets \<title\> to the same content as \<h1\> but with all tags removed.
-	 * Bad tags that were escaped in \<h1\> will still be escaped in \<title\>, and good tags like \<i\> will be dropped entirely.
+	 * "Page title" means the contents of \<h1\>. It is stored as a valid HTML
+	 * fragment. This function allows good tags like \<sup\> in the \<h1\> tag,
+	 * but not bad tags like \<script\>. This function automatically sets
+	 * \<title\> to the same content as \<h1\> but with all tags removed. Bad
+	 * tags that were escaped in \<h1\> will still be escaped in \<title\>, and
+	 * good tags like \<i\> will be dropped entirely.
 	 *
 	 * @param string|Message $name
 	 */
@@ -960,7 +1006,8 @@ class OutputPage extends ContextSource {
 		if ( $title->isRedirect() ) {
 			$query['redirect'] = 'no';
 		}
-		$this->addSubtitle( $this->msg( 'backlinksubtitle' )->rawParams( Linker::link( $title, null, array(), $query ) ) );
+		$this->addSubtitle( $this->msg( 'backlinksubtitle' )
+			->rawParams( Linker::link( $title, null, array(), $query ) ) );
 	}
 
 	/**
@@ -1203,11 +1250,15 @@ class OutputPage extends ContextSource {
 		# Fetch existence plus the hiddencat property
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( array( 'page', 'page_props' ),
-			array( 'page_id', 'page_namespace', 'page_title', 'page_len', 'page_is_redirect', 'page_latest', 'pp_value' ),
+			array( 'page_id', 'page_namespace', 'page_title', 'page_len',
+				'page_is_redirect', 'page_latest', 'pp_value' ),
 			$lb->constructSet( 'page', $dbr ),
 			__METHOD__,
 			array(),
-			array( 'page_props' => array( 'LEFT JOIN', array( 'pp_propname' => 'hiddencat', 'pp_page = page_id' ) ) )
+			array( 'page_props' => array( 'LEFT JOIN', array(
+				'pp_propname' => 'hiddencat',
+				'pp_page = page_id'
+			) ) )
 		);
 
 		# Add the results to the link cache
@@ -1227,7 +1278,10 @@ class OutputPage extends ContextSource {
 		}
 
 		# Add the remaining categories to the skin
-		if ( wfRunHooks( 'OutputPageMakeCategoryLinks', array( &$this, $categories, &$this->mCategoryLinks ) ) ) {
+		if ( wfRunHooks(
+			'OutputPageMakeCategoryLinks',
+			array( &$this, $categories, &$this->mCategoryLinks ) )
+		) {
 			foreach ( $categories as $category => $type ) {
 				$origcategory = $category;
 				$title = Title::makeTitleSafe( NS_CATEGORY, $category );
@@ -1294,7 +1348,8 @@ class OutputPage extends ContextSource {
 	 */
 	public function isUserJsAllowed() {
 		wfDeprecated( __METHOD__, '1.18' );
-		return $this->getAllowedModules( ResourceLoaderModule::TYPE_SCRIPTS ) >= ResourceLoaderModule::ORIGIN_USER_INDIVIDUAL;
+		return $this->getAllowedModules( ResourceLoaderModule::TYPE_SCRIPTS ) >=
+			ResourceLoaderModule::ORIGIN_USER_INDIVIDUAL;
 	}
 
 	/**
@@ -1537,7 +1592,9 @@ class OutputPage extends ContextSource {
 	 * @param bool $interface Whether it is an interface message
 	 *   (for example disables conversion)
 	 */
-	public function addWikiTextTitle( $text, Title $title, $linestart, $tidy = false, $interface = false ) {
+	public function addWikiTextTitle( $text, Title $title, $linestart,
+		$tidy = false, $interface = false
+	) {
 		global $wgParser;
 
 		wfProfileIn( __METHOD__ );
@@ -1931,7 +1988,8 @@ class OutputPage extends ContextSource {
 					wfDebug( __METHOD__ . ": proxy caching with ESI; {$this->mLastModified} **\n", 'log' );
 					# start with a shorter timeout for initial testing
 					# header( 'Surrogate-Control: max-age=2678400+2678400, content="ESI/1.0"');
-					$response->header( 'Surrogate-Control: max-age=' . $wgSquidMaxage . '+' . $this->mSquidMaxage . ', content="ESI/1.0"' );
+					$response->header( 'Surrogate-Control: max-age=' . $wgSquidMaxage
+						. '+' . $this->mSquidMaxage . ', content="ESI/1.0"' );
 					$response->header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
 				} else {
 					# We'll purge the proxy cache for anons explicitly, but require end user agents
@@ -1941,7 +1999,8 @@ class OutputPage extends ContextSource {
 					wfDebug( __METHOD__ . ": local proxy caching; {$this->mLastModified} **\n", 'log' );
 					# start with a shorter timeout for initial testing
 					# header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
-					$response->header( 'Cache-Control: s-maxage=' . $this->mSquidMaxage . ', must-revalidate, max-age=0' );
+					$response->header( 'Cache-Control: s-maxage=' . $this->mSquidMaxage
+						. ', must-revalidate, max-age=0' );
 				}
 			} else {
 				# We do want clients to cache if they can, but they *must* check for updates
@@ -2161,7 +2220,9 @@ class OutputPage extends ContextSource {
 
 		if ( $msg instanceof Message ) {
 			if ( $params !== array() ) {
-				trigger_error( 'Argument ignored: $params. The message parameters argument is discarded when the $msg argument is a Message object instead of a string.', E_USER_NOTICE );
+				trigger_error( 'Argument ignored: $params. The message parameters argument '
+					. 'is discarded when the $msg argument is a Message object instead of '
+					. 'a string.', E_USER_NOTICE );
 			}
 			$this->addHTML( $msg->parseAsBlock() );
 		} else {
@@ -2329,11 +2390,14 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param string $source Source code to show (or null).
 	 * @param bool $protected Is this a permissions error?
-	 * @param array $reasons List of reasons for this error, as returned by Title::getUserPermissionsErrors().
+	 * @param array $reasons List of reasons for this error, as returned by
+	 *   Title::getUserPermissionsErrors().
 	 * @param string $action Action that was denied or null if unknown
 	 * @throws ReadOnlyError
 	 */
-	public function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
+	public function readOnlyPage( $source = null, $protected = false,
+		$reasons = array(), $action = null
+	) {
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 
@@ -2556,7 +2620,8 @@ $templates
 
 		$bodyClasses[] = $sk->getPageClasses( $this->getTitle() );
 		$bodyClasses[] = 'skin-' . Sanitizer::escapeClass( $sk->getSkinName() );
-		$bodyClasses[] = 'action-' . Sanitizer::escapeClass( Action::getActionName( $this->getContext() ) );
+		$bodyClasses[] =
+			'action-' . Sanitizer::escapeClass( Action::getActionName( $this->getContext() ) );
 
 		$bodyAttrs = array();
 		// While the implode() is not strictly needed, it's used for backwards compatibility
@@ -2585,15 +2650,19 @@ $templates
 	}
 
 	/**
-	 * TODO: Document
+	 * @todo Document
 	 * @param array|string $modules One or more module names
 	 * @param string $only ResourceLoaderModule TYPE_ class constant
 	 * @param bool $useESI
-	 * @param array $extraQuery Array with extra query parameters to add to each request. array( param => value )
-	 * @param bool $loadCall If true, output an (asynchronous) mw.loader.load() call rather than a "<script src='...'>" tag
+	 * @param array $extraQuery Array with extra query parameters to add to each
+	 *   request. array( param => value ).
+	 * @param bool $loadCall If true, output an (asynchronous) mw.loader.load()
+	 *   call rather than a "<script src='...'>" tag.
 	 * @return string The html "<script>", "<link>" and "<style>" tags
 	 */
-	protected function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array(), $loadCall = false ) {
+	protected function makeResourceLoaderLink( $modules, $only, $useESI = false,
+		array $extraQuery = array(), $loadCall = false
+	) {
 		global $wgResourceLoaderUseESI;
 
 		$modules = (array)$modules;
@@ -2606,7 +2675,6 @@ $templates
 		if ( !count( $modules ) ) {
 			return $links;
 		}
-
 
 		if ( count( $modules ) > 1 ) {
 			// Remove duplicate module requests
@@ -2837,8 +2905,14 @@ $templates
 
 		// Scripts and messages "only" requests marked for top inclusion
 		// Messages should go first
-		$links[] = $this->makeResourceLoaderLink( $this->getModuleMessages( true, 'top' ), ResourceLoaderModule::TYPE_MESSAGES );
-		$links[] = $this->makeResourceLoaderLink( $this->getModuleScripts( true, 'top' ), ResourceLoaderModule::TYPE_SCRIPTS );
+		$links[] = $this->makeResourceLoaderLink(
+			$this->getModuleMessages( true, 'top' ),
+			ResourceLoaderModule::TYPE_MESSAGES
+		);
+		$links[] = $this->makeResourceLoaderLink(
+			$this->getModuleScripts( true, 'top' ),
+			ResourceLoaderModule::TYPE_SCRIPTS
+		);
 
 		// Modules requests - let the client calculate dependencies and batch requests as it likes
 		// Only load modules that have marked themselves for loading at the top
@@ -2859,12 +2933,14 @@ $templates
 	}
 
 	/**
-	 * JS stuff to put at the 'bottom', which can either be the bottom of the "<body>"
-	 * or the bottom of the "<head>" depending on $wgResourceLoaderExperimentalAsyncLoading:
-	 * modules marked with position 'bottom', legacy scripts ($this->mScripts),
-	 * user preferences, site JS and user JS.
+	 * JS stuff to put at the 'bottom', which can either be the bottom of the
+	 * "<body>" or the bottom of the "<head>" depending on
+	 * $wgResourceLoaderExperimentalAsyncLoading: modules marked with position
+	 * 'bottom', legacy scripts ($this->mScripts), user preferences, site JS
+	 * and user JS.
 	 *
-	 * @param bool $inHead If true, this HTML goes into the "<head>", if false it goes into the "<body>"
+	 * @param bool $inHead If true, this HTML goes into the "<head>",
+	 *   if false it goes into the "<body>".
 	 * @return string
 	 */
 	function getScriptsForBottomQueue( $inHead ) {
@@ -2903,7 +2979,12 @@ $templates
 		);
 
 		// Add user JS if enabled
-		if ( $wgAllowUserJs && $this->getUser()->isLoggedIn() && $this->getTitle() && $this->getTitle()->isJsSubpage() && $this->userCanPreview() ) {
+		if ( $wgAllowUserJs
+			&& $this->getUser()->isLoggedIn()
+			&& $this->getTitle()
+			&& $this->getTitle()->isJsSubpage()
+			&& $this->userCanPreview()
+		) {
 			# XXX: additional security check/prompt?
 			// We're on a preview of a JS subpage
 			// Exclude this page from the user module in case it's in there (bug 26283)
@@ -2911,7 +2992,8 @@ $templates
 				array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() ), $inHead
 			);
 			// Load the previewed JS
-			$links[] = Html::inlineScript( "\n" . $this->getRequest()->getText( 'wpTextbox1' ) . "\n" ) . "\n";
+			$links[] = Html::inlineScript( "\n"
+					. $this->getRequest()->getText( 'wpTextbox1' ) . "\n" ) . "\n";
 
 			// FIXME: If the user is previewing, say, ./vector.js, his ./common.js will be loaded
 			// asynchronously and may arrive *after* the inline script here. So the previewed code
@@ -2999,7 +3081,9 @@ $templates
 
 		$title = $this->getTitle();
 		$ns = $title->getNamespace();
-		$canonicalNamespace = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $title->getNsText();
+		$canonicalNamespace = MWNamespace::exists( $ns )
+			? MWNamespace::getCanonicalName( $ns )
+			: $title->getNsText();
 
 		$sk = $this->getSkin();
 		// Get the relevant title so that AJAX features can use the correct page name
@@ -3008,7 +3092,8 @@ $templates
 		$relevantUser = $sk->getRelevantUser();
 
 		if ( $ns == NS_SPECIAL ) {
-			list( $canonicalSpecialPageName, /*...*/ ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
+			list( $canonicalSpecialPageName, /*...*/ ) =
+				SpecialPageFactory::resolveAlias( $title->getDBkey() );
 		} elseif ( $this->canUseWikiPage() ) {
 			$wikiPage = $this->getWikiPage();
 			$curRevisionId = $wikiPage->getLatest();
@@ -3058,6 +3143,7 @@ $templates
 			'wgMonthNamesShort' => $lang->getMonthAbbreviationsArray(),
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
 		);
+
 		if ( $user->isLoggedIn() ) {
 			$vars['wgUserId'] = $user->getId();
 			$vars['wgUserEditCount'] = $user->getEditCount();
@@ -3068,20 +3154,26 @@ $templates
 			// the client side.
 			$vars['wgUserNewMsgRevisionId'] = $user->getNewMessageRevisionId();
 		}
+
 		if ( $wgContLang->hasVariants() ) {
 			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
 		}
 		// Same test as SkinTemplate
-		$vars['wgIsProbablyEditable'] = $title->quickUserCan( 'edit', $user ) && ( $title->exists() || $title->quickUserCan( 'create', $user ) );
+		$vars['wgIsProbablyEditable'] = $title->quickUserCan( 'edit', $user )
+			&& ( $title->exists() || $title->quickUserCan( 'create', $user ) );
+
 		foreach ( $title->getRestrictionTypes() as $type ) {
 			$vars['wgRestriction' . ucfirst( $type )] = $title->getRestrictions( $type );
 		}
+
 		if ( $title->isMainPage() ) {
 			$vars['wgIsMainPage'] = true;
 		}
+
 		if ( $this->mRedirectedFrom ) {
 			$vars['wgRedirectedFrom'] = $this->mRedirectedFrom->getPrefixedDBkey();
 		}
+
 		if ( $relevantUser ) {
 			$vars['wgRelevantUserName'] = $relevantUser->getName();
 		}
@@ -3199,11 +3291,17 @@ $templates
 		# uses whichever one appears later in the HTML source. Make sure
 		# apple-touch-icon is specified first to avoid this.
 		if ( $wgAppleTouchIcon !== false ) {
-			$tags['apple-touch-icon'] = Html::element( 'link', array( 'rel' => 'apple-touch-icon', 'href' => $wgAppleTouchIcon ) );
+			$tags['apple-touch-icon'] = Html::element( 'link', array(
+				'rel' => 'apple-touch-icon',
+				'href' => $wgAppleTouchIcon
+			) );
 		}
 
 		if ( $wgFavicon !== false ) {
-			$tags['favicon'] = Html::element( 'link', array( 'rel' => 'shortcut icon', 'href' => $wgFavicon ) );
+			$tags['favicon'] = Html::element( 'link', array(
+				'rel' => 'shortcut icon',
+				'href' => $wgFavicon
+			) );
 		}
 
 		# OpenSearch description link
@@ -3224,7 +3322,11 @@ $templates
 				'type' => 'application/rsd+xml',
 				// Output a protocol-relative URL here if $wgServer is protocol-relative
 				// Whether RSD accepts relative or protocol-relative URLs is completely undocumented, though
-				'href' => wfExpandUrl( wfAppendQuery( wfScript( 'api' ), array( 'action' => 'rsd' ) ), PROTO_RELATIVE ),
+				'href' => wfExpandUrl( wfAppendQuery(
+					wfScript( 'api' ),
+					array( 'action' => 'rsd' ) ),
+					PROTO_RELATIVE
+				),
 			) );
 		}
 
@@ -3309,7 +3411,8 @@ $templates
 					$tags[] = $this->feedLink(
 						$format,
 						$rctitle->getLocalURL( array( 'feed' => $format ) ),
-						$this->msg( "site-{$format}-feed", $wgSitename )->text() # For grep: 'site-rss-feed', 'site-atom-feed'.
+						# For grep: 'site-rss-feed', 'site-atom-feed'
+						$this->msg( "site-{$format}-feed", $wgSitename )->text()
 					);
 				}
 			}
@@ -3410,7 +3513,13 @@ $templates
 
 		// Add ResourceLoader styles
 		// Split the styles into these groups
-		$styles = array( 'other' => array(), 'user' => array(), 'site' => array(), 'private' => array(), 'noscript' => array() );
+		$styles = array(
+			'other' => array(),
+			'user' => array(),
+			'site' => array(),
+			'private' => array(),
+			'noscript' => array()
+		);
 		$links = array();
 		$otherTags = ''; // Tags to append after the normal <link> tags
 		$resourceLoader = $this->getResourceLoader();
@@ -3458,16 +3567,20 @@ $templates
 			$styles[ isset( $styles[$group] ) ? $group : 'other' ][] = $name;
 		}
 
-		// We want site, private and user styles to override dynamically added styles from modules, but we want
-		// dynamically added styles to override statically added styles from other modules. So the order
-		// has to be other, dynamic, site, private, user
-		// Add statically added styles for other modules
+		// We want site, private and user styles to override dynamically added
+		// styles from modules, but we want dynamically added styles to override
+		// statically added styles from other modules. So the order has to be
+		// other, dynamic, site, private, user. Add statically added styles for
+		// other modules
 		$links[] = $this->makeResourceLoaderLink( $styles['other'], ResourceLoaderModule::TYPE_STYLES );
 		// Add normal styles added through addStyle()/addInlineStyle() here
 		$links[] = implode( "\n", $this->buildCssLinksArray() ) . $this->mInlineStyles;
 		// Add marker tag to mark the place where the client-side loader should inject dynamic styles
 		// We use a <meta> tag with a made-up name for this because that's valid HTML
-		$links[] = Html::element( 'meta', array( 'name' => 'ResourceLoaderDynamicStyles', 'content' => '' ) ) . "\n";
+		$links[] = Html::element(
+			'meta',
+			array( 'name' => 'ResourceLoaderDynamicStyles', 'content' => '' )
+		) . "\n";
 
 		// Add site, private and user styles
 		// 'private' at present only contains user.options, so put that before 'user'
@@ -3569,8 +3682,10 @@ $templates
 				} elseif ( preg_match( $screenMediaQueryRegex, $media ) === 1 ) {
 					// This regex will not attempt to understand a comma-separated media_query_list
 					//
-					// Example supported values for $media: 'screen', 'only screen', 'screen and (min-width: 982px)' ),
-					// Example NOT supported value for $media: '3d-glasses, screen, print and resolution > 90dpi'
+					// Example supported values for $media:
+					// 'screen', 'only screen', 'screen and (min-width: 982px)' ),
+					// Example NOT supported value for $media:
+					// '3d-glasses, screen, print and resolution > 90dpi'
 					//
 					// If it's a print request, we never want any kind of screen stylesheets
 					// If it's a handheld request (currently the only other choice with a switch),
@@ -3628,7 +3743,8 @@ $templates
 	 *
 	 * Is equivalent to:
 	 *
-	 *    $wgOut->addWikiText( "<div class='error'>\n" . wfMessage( 'some-error' )->plain() . "\n</div>" );
+	 *    $wgOut->addWikiText( "<div class='error'>\n"
+	 *        . wfMessage( 'some-error' )->plain() . "\n</div>" );
 	 *
 	 * The newline after opening div is needed in some wikitext. See bug 19226.
 	 *
