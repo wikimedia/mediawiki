@@ -28,12 +28,26 @@
  * Could be replaced by curl_multi_exec() or some such.
  */
 class SquidPurgeClient {
-	var $host, $port, $ip;
+	/** @var string */
+	protected $host;
 
-	var $readState = 'idle';
-	var $writeBuffer = '';
-	var $requests = array();
-	var $currentRequestIndex;
+	/** @var int */
+	protected $port;
+
+	/** @var string|bool */
+	protected $ip;
+
+	/** @var string */
+	protected $readState = 'idle';
+
+	/** @var string */
+	protected $writeBuffer = '';
+
+	/** @var array */
+	protected $requests = array();
+
+	/** @var mixed */
+	protected $currentRequestIndex;
 
 	const EINTR = 4;
 	const EAGAIN = 11;
@@ -41,13 +55,16 @@ class SquidPurgeClient {
 	const BUFFER_SIZE = 8192;
 
 	/**
-	 * The socket resource, or null for unconnected, or false for disabled due to error
+	 * @var resource|null The socket resource, or null for unconnected, or false
+	 *   for disabled due to error.
 	 */
-	var $socket;
+	protected $socket;
 
-	var $readBuffer;
+	/** @var string */
+	protected $readBuffer;
 
-	var $bodyRemaining;
+	/** @var int */
+	protected $bodyRemaining;
 
 	/**
 	 * @param string $server
@@ -380,12 +397,11 @@ class SquidPurgeClient {
 }
 
 class SquidPurgeClientPool {
+	/** @var array of SquidPurgeClient */
+	protected $clients = array();
 
-	/**
-	 * @var array of SquidPurgeClient
-	 */
-	var $clients = array();
-	var $timeout = 5;
+	/** @var int */
+	protected $timeout = 5;
 
 	/**
 	 * @param array $options

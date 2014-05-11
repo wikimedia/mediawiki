@@ -21,12 +21,14 @@
  */
 
 class UserArrayFromResult extends UserArray implements Countable {
+	/** @var ResultWrapper */
+	public $res;
 
-	/**
-	 * @var ResultWrapper
-	 */
-	var $res;
-	var $key, $current;
+	/** @var int */
+	public $key;
+
+	/** @var  */
+	public $current;
 
 	/**
 	 * @param ResultWrapper $res

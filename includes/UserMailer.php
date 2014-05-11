@@ -81,7 +81,7 @@ class MailAddress {
  * Collection of static functions for sending mail
  */
 class UserMailer {
-	static $mErrorString;
+	private static $mErrorString;
 
 	/**
 	 * Send mail using a PEAR mailer
@@ -160,7 +160,9 @@ class UserMailer {
 	 * @throws MWException
 	 * @return Status
 	 */
-	public static function send( $to, $from, $subject, $body, $replyto = null, $contentType = 'text/plain; charset=UTF-8' ) {
+	public static function send( $to, $from, $subject, $body, $replyto = null,
+		$contentType = 'text/plain; charset=UTF-8'
+	) {
 		global $wgSMTP, $wgEnotifMaxRecips, $wgAdditionalMailParams, $wgAllowHTMLEmail;
 		$mime = null;
 		if ( !is_array( $to ) ) {
@@ -268,7 +270,11 @@ class UserMailer {
 					$body['text'] = str_replace( "\n", "\r\n", $body['text'] );
 					$body['html'] = str_replace( "\n", "\r\n", $body['html'] );
 				}
-				$mime = new Mail_mime( array( 'eol' => $endl, 'text_charset' => 'UTF-8', 'html_charset' => 'UTF-8' ) );
+				$mime = new Mail_mime( array(
+					'eol' => $endl,
+					'text_charset' => 'UTF-8',
+					'html_charset' => 'UTF-8'
+				) );
 				$mime->setTXTBody( $body['text'] );
 				$mime->setHTMLBody( $body['html'] );
 				$body = $mime->get(); // must call get() before headers()
@@ -360,7 +366,13 @@ class UserMailer {
 					if ( $safeMode ) {
 						$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
 					} else {
-						$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers, $wgAdditionalMailParams );
+						$sent = mail(
+							$recip,
+							self::quotedPrintable( $subject ),
+							$body,
+							$headers,
+							$wgAdditionalMailParams
+						);
 					}
 				}
 			} catch ( Exception $e ) {
@@ -501,7 +513,9 @@ class EmailNotification {
 	 * @param bool $oldid (default: false)
 	 * @param string $pageStatus (default: 'changed')
 	 */
-	public function notifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid = false, $pageStatus = 'changed' ) {
+	public function notifyOnPageChange( $editor, $title, $timestamp, $summary,
+		$minorEdit, $oldid = false, $pageStatus = 'changed'
+	) {
 		global $wgEnotifUseJobQ, $wgEnotifWatchlist, $wgShowUpdatedMarker, $wgEnotifMinorEdits,
 			$wgUsersNotifiedOnAllChanges, $wgEnotifUserTalk;
 
@@ -555,7 +569,10 @@ class EmailNotification {
 			// Only send notification for non minor edits, unless $wgEnotifMinorEdits
 			if ( !$minorEdit || ( $wgEnotifMinorEdits && !$editor->isAllowed( 'nominornewtalk' ) ) ) {
 				$isUserTalkPage = ( $title->getNamespace() == NS_USER_TALK );
-				if ( $wgEnotifUserTalk && $isUserTalkPage && $this->canSendUserTalkEmail( $editor, $title, $minorEdit ) ) {
+				if ( $wgEnotifUserTalk
+					&& $isUserTalkPage
+					&& $this->canSendUserTalkEmail( $editor, $title, $minorEdit )
+				) {
 					$sendEmail = true;
 				}
 			}
@@ -564,6 +581,7 @@ class EmailNotification {
 		if ( !$sendEmail ) {
 			return;
 		}
+
 		if ( $wgEnotifUseJobQ ) {
 			$params = array(
 				'editor' => $editor->getName(),
@@ -578,7 +596,16 @@ class EmailNotification {
 			$job = new EnotifNotifyJob( $title, $params );
 			JobQueueGroup::singleton()->push( $job );
 		} else {
-			$this->actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid, $watchers, $pageStatus );
+			$this->actuallyNotifyOnPageChange(
+				$editor,
+				$title,
+				$timestamp,
+				$summary,
+				$minorEdit,
+				$oldid,
+				$watchers,
+				$pageStatus
+			);
 		}
 	}
 
@@ -632,8 +659,10 @@ class EmailNotification {
 		$userTalkId = false;
 
 		if ( !$minorEdit || ( $wgEnotifMinorEdits && !$editor->isAllowed( 'nominornewtalk' ) ) ) {
-
-			if ( $wgEnotifUserTalk && $isUserTalkPage && $this->canSendUserTalkEmail( $editor, $title, $minorEdit ) ) {
+			if ( $wgEnotifUserTalk
+				&& $isUserTalkPage
+				&& $this->canSendUserTalkEmail( $editor, $title, $minorEdit )
+			) {
 				$targetUser = User::newFromName( $title->getText() );
 				$this->compose( $targetUser );
 				$userTalkId = $targetUser->getId();
@@ -768,7 +797,9 @@ class EmailNotification {
 		}
 
 		$keys['$PAGEEDITOR_WIKI'] = $this->editor->getUserPage()->getCanonicalURL();
-		$keys['$HELPPAGE'] = wfExpandUrl( Skin::makeInternalOrExternalUrl( wfMessage( 'helppage' )->inContentLanguage()->text() ) );
+		$keys['$HELPPAGE'] = wfExpandUrl(
+			Skin::makeInternalOrExternalUrl( wfMessage( 'helppage' )->inContentLanguage()->text() )
+		);
 
 		# Replace this after transforming the message, bug 35019
 		$postTransformKeys['$PAGESUMMARY'] = $this->summary == '' ? ' - ' : $this->summary;
@@ -858,8 +889,9 @@ class EmailNotification {
 	function sendPersonalised( $watchingUser ) {
 		global $wgContLang, $wgEnotifUseRealName;
 		// From the PHP manual:
-		//     Note:  The to parameter cannot be an address in the form of "Something <someone@example.com>".
-		//     The mail command will not parse this properly while talking with the MTA.
+		//   Note: The to parameter cannot be an address in the form of
+		//   "Something <someone@example.com>". The mail command will not parse
+		//   this properly while talking with the MTA.
 		$to = new MailAddress( $watchingUser );
 
 		# $PAGEEDITDATE is the time and date of the page change

@@ -42,7 +42,14 @@
  * which refers to it should be kept to a minimum.
  */
 class StubObject {
-	var $mGlobal, $mClass, $mParams;
+	/** @var null|string */
+	protected $mGlobal;
+
+	/** @var null|string */
+	protected $mClass;
+
+	/** @var array */
+	protected $mParams;
 
 	/**
 	 * Constructor.
@@ -142,9 +149,11 @@ class StubObject {
 			$caller = wfGetCaller( $level );
 			if ( ++$recursionLevel > 2 ) {
 				wfProfileOut( $fname );
-				throw new MWException( "Unstub loop detected on call of \${$this->mGlobal}->$name from $caller\n" );
+				throw new MWException( "Unstub loop detected on call of "
+					. "\${$this->mGlobal}->$name from $caller\n" );
 			}
-			wfDebug( "Unstubbing \${$this->mGlobal} on call of \${$this->mGlobal}::$name from $caller\n" );
+			wfDebug( "Unstubbing \${$this->mGlobal} on call of "
+				. "\${$this->mGlobal}::$name from $caller\n" );
 			$GLOBALS[$this->mGlobal] = $this->_newObject();
 			--$recursionLevel;
 			wfProfileOut( $fname );
