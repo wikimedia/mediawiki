@@ -281,7 +281,7 @@ $title: the page title
 'SendWatchlistEmailNotification': Return true to send watchlist email notification
 $targetUser: the user whom to send watchlist email notification
 $title: the page title
-$this: EmailNotification object
+$enotif: EmailNotification object
 
 'AbortChangePassword': Return false to cancel password change.
 $user: the User object to which the password change is occuring
@@ -2616,7 +2616,7 @@ $user: Current user object
 &$whitelisted: Boolean value of whether this title is whitelisted
 
 'TitleSquidURLs': Called to determine which URLs to purge from HTTP caches.
-$this: Title object to purge
+$title: Title object to purge
 &$urls: An array of URLs to purge from the caches, to be manipulated.
 
 'UndeleteForm::showHistory': Called in UndeleteForm::showHistory, after a
