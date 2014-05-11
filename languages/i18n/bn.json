@@ -657,6 +657,8 @@
 	"edit-gone-missing": "পাতাটি হালনাগাদ হয়নি।\nসম্ভবতঃ পাতাটি মুছে ফেলা হয়েছে।",
 	"edit-conflict": "সম্পাদনা সংঘাত।",
 	"edit-no-change": "আপনার সম্পাদনাটি উপেক্ষা করা হয়েছে, কারণ লেখাতে কোনো পরিবর্তন করা হয়নি।",
+	"postedit-confirmation-created": "পাতাটি তৈরি হয়েছে।",
+	"postedit-confirmation-restored": "পাতাটি পুনরুদ্ধার করা হয়েছে।",
 	"postedit-confirmation-saved": "আপনার সম্পাদনা সংরক্ষিত হয়েছে।",
 	"edit-already-exists": "নতুন পাতা সৃষ্টি করা যায়নি।\nপাতাটি ইতিমধ্যেই বিদ্যমান।",
 	"defaultmessagetext": "আদি টেক্সট",

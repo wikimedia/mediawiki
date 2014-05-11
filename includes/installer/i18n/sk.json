@@ -34,6 +34,8 @@
 	"config-page-existingwiki": "Existujúca wiki",
 	"config-help-restart": "Chcete vymazať všetky uložené dáta, ktoré ste zadali a reštartovať proces inštalácie?",
 	"config-restart": "Áno, reštartovať",
+	"config-env-good": "Prostredie bolo skontrolované.\nMôžete nainštalovať MediaWiki.",
+	"config-env-bad": "Prostredie bolo skontrolované.\nNemôžete nainštalovať MediaWiki.",
 	"config-env-php": "PHP $1 je nainštalované.",
 	"config-env-php-toolow": "PHP $1 je nainštalované. Avšak, MediaWiki vyžaduje PHP $2 alebo vyššie.",
 	"config-db-type": "Typ databázy:",

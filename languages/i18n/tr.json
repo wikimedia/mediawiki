@@ -695,6 +695,7 @@
 	"edit-gone-missing": "Sayfa güncellenemiyor.\nSilinmiş görünüyor.",
 	"edit-conflict": "Değişiklik çakışması.",
 	"edit-no-change": "Değişikliğiniz yoksayıldı, çünkü metinde bir değişiklik yapılmadı.",
+	"postedit-confirmation-created": "Sayfa oluşturuldu.",
 	"postedit-confirmation-saved": "Değişikliğiniz kaydedildi.",
 	"edit-already-exists": "Yeni sayfa oluşturulamıyor.\nSayfa zaten mevcut.",
 	"defaultmessagetext": "Varsayılan mesaj metni",

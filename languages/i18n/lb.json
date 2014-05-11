@@ -2790,6 +2790,7 @@
 	"watchlistedit-raw-done": "Är Iwwerwaachungslëscht gouf aktualiséiert.",
 	"watchlistedit-raw-added": "{{PLURAL:$1|1 Säit gouf|$1 Säite goufen}} derbäigesat:",
 	"watchlistedit-raw-removed": "{{PLURAL:$1|1 Säit gouf|$1 Säite goufen}} erausgeholl:",
+	"watchlistedit-clear-legend": "Iwwerwaachungslëscht eidelmaachen",
 	"watchlisttools-view": "Iwwerwaachungslëscht: Ännerungen",
 	"watchlisttools-edit": "Iwwerwaachungslëscht weisen an änneren",
 	"watchlisttools-raw": "Net-formatéiert Iwwerwaachungslëscht änneren",

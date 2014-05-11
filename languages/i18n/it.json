@@ -2108,6 +2108,7 @@
 	"movenotallowedfile": "Non si dispone dei permessi necessari per spostare i file.",
 	"cant-move-user-page": "Non si dispone dei permessi necessari per spostare le pagine utente (escluse le sottopagine).",
 	"cant-move-to-user-page": "Non si dispone dei permessi necessari per spostare la pagina su una pagina utente (escluse le sottopagine utente).",
+	"cant-move-category-page": "Non si dispone dei permessi necessari per spostare categorie.",
 	"newtitle": "Nuovo titolo:",
 	"move-watch": "Aggiungi la pagina agli osservati speciali",
 	"movepagebtn": "Sposta la pagina",

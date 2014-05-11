@@ -1254,7 +1254,7 @@
 	"overwroteimage": "Newi versiyona resim da \"[[$1]]\"i bar biya",
 	"uploaddisabled": "bar kerdişî iptal biyo",
 	"copyuploaddisabled": "URL bar kerdiş kefiliyeyo.",
-	"uploaddisabledtext": "Barkerdışa dosyaya dewre ra veta.",
+	"uploaddisabledtext": "Barkerdışê dosya dewre ra veta.",
 	"php-uploaddisabledtext": "barkerdışê dosyayê PHP nıka çino. kerem kere eyarê file_uploads korol bıkerê.",
 	"uploadscripted": "Ena dosya de yew HTML ya zi kodê scriptî este ke belki browserê webî fam nikeno.",
 	"uploadinvalidxml": "Dosyaya barkerdiye de XML nêgureniya.",

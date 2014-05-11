@@ -2676,6 +2676,7 @@
 	"watchlistedit-raw-done": "ඔබගේ මුර-ලැයිස්තුව යාවත්කාලීන කරන ලදි.",
 	"watchlistedit-raw-added": "{{PLURAL:$1|ශීර්ෂ 1 ක් |ශීර්ෂ  $1 ක් }} එක් කරන ලදි:",
 	"watchlistedit-raw-removed": "{{PLURAL:$1|ශීර්ෂ 1 ක්|ශීර්ෂ  $1 ක්}} ඉවත් කරන ලදි:",
+	"watchlistedit-clear-titles": "ශීර්ෂයන්:",
 	"watchlisttools-view": "අදාල වෙනස්වීම් නරඹන්න",
 	"watchlisttools-edit": "මුර ලැයිස්තුව නැරඹීම හා සංස්කරණය",
 	"watchlisttools-raw": "නොනිමි මුර ලැයිස්තුව සංස්කරණය කරන්න",

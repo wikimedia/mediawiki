@@ -5,7 +5,8 @@
 			"Csisc",
 			"Kuwaity26",
 			"Malekbr",
-			"아라"
+			"아라",
+			"Aħmedbaɛl"
 		]
 	},
 	"tog-underline": "ضع خطا تحت الوصلات:",
@@ -925,6 +926,9 @@
 	"watchlistall2": "الكل",
 	"namespacesall": "الكل",
 	"monthsall": "الكل",
+	"watchlistedit-clear-explain": "Elɛanawin lkol bech yetnaħaw mel'lista mteɛek",
+	"watchlistedit-clear-titles": "Elɛanawin",
+	"watchlistedit-too-many": "Famma barcha pajet w'manajmouch nħotouhom lkol lahné",
 	"watchlisttools-view": "اعرض التغييرات المرتبطة",
 	"watchlisttools-edit": "اعرض قائمة المراقبة وعدلها",
 	"watchlisttools-raw": "عدل قائمة المراقبة الخام",
