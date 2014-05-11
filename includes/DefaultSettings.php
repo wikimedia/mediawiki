@@ -4113,6 +4113,14 @@ $wgUserrightsInterwikiDelimiter = '@';
  */
 $wgSecureLogin = false;
 
+/**
+ * Port where you have HTTPS running
+ * Supports HTTPS on non-standard ports
+ * https://bugzilla.wikimedia.org/65184
+ * @since 1.24
+ */
+$wgHttpsPort = 443;
+
 /** @} */ # end user accounts }
 
 /************************************************************************//**
