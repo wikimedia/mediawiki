@@ -1897,13 +1897,12 @@ class Parser {
 	/**
 	 * make an image if it's allowed, either through the global
 	 * option, through the exception, or through the on-wiki whitelist
-	 * @private
 	 *
-	 * $param string $url
+	 * @param string $url
 	 *
 	 * @return string
 	 */
-	function maybeMakeExternalImage( $url ) {
+	private function maybeMakeExternalImage( $url ) {
 		$imagesfrom = $this->mOptions->getAllowExternalImagesFrom();
 		$imagesexception = !empty( $imagesfrom );
 		$text = false;
@@ -3298,15 +3297,16 @@ class Parser {
 	 *  self::OT_HTML: all templates and extension tags
 	 *
 	 * @param string $text The text to transform
-	 * @param PPFrame $frame Object describing the arguments passed to the template.
-	 *        Arguments may also be provided as an associative array, as was the usual case before MW1.12.
-	 *        Providing arguments this way may be useful for extensions wishing to perform variable replacement explicitly.
-	 * @param bool $argsOnly Only do argument (triple-brace) expansion, not double-brace expansion
-	 * @private
-	 *
+	 * @param bool|PPFrame $frame Object describing the arguments passed to the
+	 *   template. Arguments may also be provided as an associative array, as
+	 *   was the usual case before MW1.12. Providing arguments this way may be
+	 *   useful for extensions wishing to perform variable replacement
+	 *   explicitly.
+	 * @param bool $argsOnly Only do argument (triple-brace) expansion, not
+	 *   double-brace expansion.
 	 * @return string
 	 */
-	function replaceVariables( $text, $frame = false, $argsOnly = false ) {
+	public function replaceVariables( $text, $frame = false, $argsOnly = false ) {
 		# Is there any text? Also, Prevent too big inclusions!
 		if ( strlen( $text ) < 1 || strlen( $text ) > $this->mOptions->getMaxIncludeSize() ) {
 			return $text;
@@ -3401,9 +3401,8 @@ class Parser {
 	 * @param PPFrame $frame The current frame, contains template arguments
 	 * @throws Exception
 	 * @return string The text of the template
-	 * @private
 	 */
-	function braceSubstitution( $piece, $frame ) {
+	public function braceSubstitution( $piece, $frame ) {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-setup' );
 
