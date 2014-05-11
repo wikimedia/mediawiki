@@ -678,12 +678,15 @@ abstract class Skin extends ContextSource {
 	function printSource() {
 		$oldid = $this->getRevisionId();
 		if ( $oldid ) {
-			$url = htmlspecialchars( wfExpandIRI( $this->getTitle()->getCanonicalURL( 'oldid=' . $oldid ) ) );
+			$canonicalUrl = $this->getTitle()->getCanonicalURL( 'oldid=' . $oldid );
+			$url = htmlspecialchars( wfExpandIRI( $canonicalUrl ) );
 		} else {
 			// oldid not available for non existing pages
 			$url = htmlspecialchars( wfExpandIRI( $this->getTitle()->getCanonicalURL() ) );
 		}
-		return $this->msg( 'retrievedfrom', '<a dir="ltr" href="' . $url . '">' . $url . '</a>' )->text();
+
+		return $this->msg( 'retrievedfrom', '<a dir="ltr" href="' . $url
+			. '">' . $url . '</a>' )->text();
 	}
 
 	/**
@@ -799,7 +802,9 @@ abstract class Skin extends ContextSource {
 		global $wgRightsPage, $wgRightsUrl, $wgRightsText, $wgContLang;
 
 		if ( $type == 'detect' ) {
-			if ( !$this->isRevisionCurrent() && !$this->msg( 'history_copyright' )->inContentLanguage()->isDisabled() ) {
+			if ( !$this->isRevisionCurrent()
+				&& !$this->msg( 'history_copyright' )->inContentLanguage()->isDisabled()
+			) {
 				$type = 'history';
 			} else {
 				$type = 'normal';
@@ -827,14 +832,21 @@ abstract class Skin extends ContextSource {
 		// Allow for site and per-namespace customization of copyright notice.
 		$forContent = true;
 
-		wfRunHooks( 'SkinCopyrightFooter', array( $this->getTitle(), $type, &$msg, &$link, &$forContent ) );
+		wfRunHooks(
+			'SkinCopyrightFooter',
+			array( $this->getTitle(), $type, &$msg, &$link, &$forContent )
+		);
 
 		$msgObj = $this->msg( $msg )->rawParams( $link );
 		if ( $forContent ) {
 			$msg = $msgObj->inContentLanguage()->text();
 			if ( $this->getLanguage()->getCode() !== $wgContLang->getCode() ) {
-				$msg = Html::rawElement( 'span', array( 'lang' => $wgContLang->getHtmlCode(), 'dir' => $wgContLang->getDir() ), $msg );
+				$msg = Html::rawElement( 'span', array(
+					'lang' => $wgContLang->getHtmlCode(),
+					'dir' => $wgContLang->getDir()
+				), $msg );
 			}
+
 			return $msg;
 		} else {
 			return $msgObj->text();
@@ -878,7 +890,8 @@ abstract class Skin extends ContextSource {
 		global $wgStylePath;
 
 		$url = htmlspecialchars( "$wgStylePath/common/images/poweredby_mediawiki_88x31.png" );
-		$text = '<a href="//www.mediawiki.org/"><img src="' . $url . '" height="31" width="88" alt="Powered by MediaWiki" /></a>';
+		$text = '<a href="//www.mediawiki.org/"><img src="' . $url
+			. '" height="31" width="88" alt="Powered by MediaWiki" /></a>';
 		wfRunHooks( 'SkinGetPoweredBy', array( &$text, $this ) );
 		return $text;
 	}
@@ -934,8 +947,10 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Renders a $wgFooterIcons icon according to the method's arguments
-	 * @param array $icon The icon to build the html for, see $wgFooterIcons for the format of this array
-	 * @param bool|string $withImage Whether to use the icon's image or output a text-only footericon
+	 * @param array $icon The icon to build the html for, see $wgFooterIcons
+	 *   for the format of this array.
+	 * @param bool|string $withImage Whether to use the icon's image or output
+	 *   a text-only footericon.
 	 * @return string HTML
 	 */
 	function makeFooterIcon( $icon, $withImage = 'withImage' ) {
@@ -945,7 +960,8 @@ abstract class Skin extends ContextSource {
 			$url = isset( $icon["url"] ) ? $icon["url"] : null;
 			unset( $icon["url"] );
 			if ( isset( $icon["src"] ) && $withImage === 'withImage' ) {
-				$html = Html::element( 'img', $icon ); // do this the lazy way, just pass icon data as an attribute array
+				// do this the lazy way, just pass icon data as an attribute array
+				$html = Html::element( 'img', $icon );
 			} else {
 				$html = htmlspecialchars( $icon["alt"] );
 			}
@@ -1044,8 +1060,11 @@ abstract class Skin extends ContextSource {
 		} else {
 			$targetUser = User::newFromId( $id );
 		}
-		return $this->getUser()->canSendEmail() && # the sending user must have a confirmed email address
-			$targetUser->canReceiveEmail(); # the target user must have a confirmed email address and allow emails from users
+
+		# The sending user must have a confirmed email address and the target
+		# user must have a confirmed email address and allow emails from users.
+		return $this->getUser()->canSendEmail() &&
+			$targetUser->canReceiveEmail();
 	}
 
 	/**

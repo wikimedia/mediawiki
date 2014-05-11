@@ -365,7 +365,9 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @return ResultWrapper
 	 */
 	public function reallyDoQuery( $offset, $limit, $descending ) {
-		list( $tables, $fields, $conds, $fname, $options, $join_conds ) = $this->buildQueryInfo( $offset, $limit, $descending );
+		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
+			$this->buildQueryInfo( $offset, $limit, $descending );
+
 		return $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds );
 	}
 
@@ -409,7 +411,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @param ResultWrapper $result
 	 */
-	protected function preprocessResults( $result ) {}
+	protected function preprocessResults( $result ) {
+	}
 
 	/**
 	 * Get the formatted result list. Calls getStartBody(), formatRow() and
@@ -491,7 +494,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @return void
 	 */
-	protected function doBatchLookups() {}
+	protected function doBatchLookups() {
+	}
 
 	/**
 	 * Hook into getBody(), allows text to be inserted at the start. This
@@ -924,8 +928,9 @@ abstract class ReverseChronologicalPager extends IndexPager {
  * @ingroup Pager
  */
 abstract class TablePager extends IndexPager {
-	var $mSort;
-	var $mCurrentRow;
+	protected $mSort;
+
+	protected $mCurrentRow;
 
 	public function __construct( IContextSource $context = null ) {
 		if ( $context ) {
@@ -995,7 +1000,10 @@ abstract class TablePager extends IndexPager {
 		}
 
 		$tableClass = $this->getTableClass();
-		$ret = Html::openElement( 'table', array( 'style' => 'border:1px;', 'class' => "mw-datatable $tableClass" ) );
+		$ret = Html::openElement( 'table', array(
+			'style' => 'border:1px;',
+			'class' => "mw-datatable $tableClass" )
+		);
 		$ret .= Html::rawElement( 'thead', array(), Html::rawElement( 'tr', array(), "\n" . $s . "\n" ) );
 		$ret .= Html::openElement( 'tbody' ) . "\n";
 

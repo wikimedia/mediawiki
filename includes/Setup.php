@@ -123,7 +123,8 @@ if ( isset( $wgFooterIcons['poweredby'] )
 	&& isset( $wgFooterIcons['poweredby']['mediawiki'] )
 	&& $wgFooterIcons['poweredby']['mediawiki']['src'] === null
 ) {
-	$wgFooterIcons['poweredby']['mediawiki']['src'] = "$wgStylePath/common/images/poweredby_mediawiki_88x31.png";
+	$wgFooterIcons['poweredby']['mediawiki']['src'] =
+		"$wgStylePath/common/images/poweredby_mediawiki_88x31.png";
 }
 
 /**
@@ -252,7 +253,10 @@ if ( $wgRCFilterByAge ) {
 	// as determined by $wgRCMaxAge.
 	// Note that we allow 1 link higher than the max for things like 56 days but a 60 day link.
 	sort( $wgRCLinkDays );
+
+	// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
 	for ( $i = 0; $i < count( $wgRCLinkDays ); $i++ ) {
+		// @codingStandardsIgnoreEnd
 		if ( $wgRCLinkDays[$i] >= $wgRCMaxAge / ( 3600 * 24 ) ) {
 			$wgRCLinkDays = array_slice( $wgRCLinkDays, 0, $i + 1, false );
 			break;
@@ -367,7 +371,9 @@ if ( $wgArticleCountMethod === null ) {
 }
 
 if ( $wgInvalidateCacheOnLocalSettingsChange ) {
+	// @codingStandardsIgnoreStart Generic.PHP.NoSilencedErrors.Discouraged - No GlobalFunction here yet.
 	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', @filemtime( "$IP/LocalSettings.php" ) ) );
+	// @codingStandardsIgnoreEnd
 }
 
 if ( $wgNewUserLog ) {
@@ -429,7 +435,8 @@ if ( $wgCanonicalServer === false ) {
 // Set server name
 $serverParts = wfParseUrl( $wgCanonicalServer );
 if ( $wgServerName !== false ) {
-	wfWarn( '$wgServerName should be derived from $wgCanonicalServer, not customized. Overwriting $wgServerName.' );
+	wfWarn( '$wgServerName should be derived from $wgCanonicalServer, '
+		. 'not customized. Overwriting $wgServerName.' );
 }
 $wgServerName = $serverParts['host'];
 unset( $serverParts );
@@ -446,7 +453,8 @@ if ( $wgPasswordSender === false ) {
 
 if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
 	$wgSecureLogin = false;
-	wfWarn( 'Secure login was enabled on a server that only supports HTTP or HTTPS. Disabling secure login.' );
+	wfWarn( 'Secure login was enabled on a server that only supports '
+		. 'HTTP or HTTPS. Disabling secure login.' );
 }
 
 // Now that GlobalFunctions is loaded, set defaults that depend

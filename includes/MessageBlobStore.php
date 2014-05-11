@@ -32,7 +32,6 @@
  * constituent messages or the resource itself is changed.
  */
 class MessageBlobStore {
-
 	/**
 	 * Get the message blobs for a set of modules
 	 *
@@ -128,7 +127,8 @@ class MessageBlobStore {
 	 * @param string $name Module name
 	 * @param ResourceLoaderModule $module
 	 * @param string $lang Language code
-	 * @return string Regenerated message blob, or null if there was no blob for the given module/language pair
+	 * @return string Regenerated message blob, or null if there was no blob for
+	 *   the given module/language pair.
 	 */
 	public static function updateModule( $name, ResourceLoaderModule $module, $lang ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -331,6 +331,7 @@ class MessageBlobStore {
 	 */
 	private static function getFromDB( ResourceLoader $resourceLoader, $modules, $lang ) {
 		global $wgCacheEpoch;
+
 		$retval = array();
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'msg_resource',
@@ -345,10 +346,14 @@ class MessageBlobStore {
 				// This shouldn't be possible
 				throw new MWException( __METHOD__ . ' passed an invalid module name' );
 			}
+
 			// Update the module's blobs if the set of messages changed or if the blob is
 			// older than $wgCacheEpoch
-			if ( array_keys( FormatJson::decode( $row->mr_blob, true ) ) !== array_values( array_unique( $module->getMessages() ) ) ||
-					wfTimestamp( TS_MW, $row->mr_timestamp ) <= $wgCacheEpoch ) {
+			$keys = array_keys( FormatJson::decode( $row->mr_blob, true ) );
+			$values = array_values( array_unique( $module->getMessages() ) );
+			if ( $keys !== $values
+				|| wfTimestamp( TS_MW, $row->mr_timestamp ) <= $wgCacheEpoch
+			) {
 				$retval[$row->mr_resource] = self::updateModule( $row->mr_resource, $module, $lang );
 			} else {
 				$retval[$row->mr_resource] = $row->mr_blob;
