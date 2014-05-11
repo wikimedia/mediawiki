@@ -26,9 +26,8 @@
  * @internal documentation reviewed 15 Mar 2010
  */
 class MediaWiki {
-
 	/**
-	 * TODO: fold $output, etc, into this
+	 * @todo Fold $output, etc, into this
 	 * @var IContextSource
 	 */
 	private $context;
@@ -117,7 +116,11 @@ class MediaWiki {
 		}
 
 		// Use the main page as default title if nothing else has been provided
-		if ( $ret === null && strval( $title ) === '' && !$request->getCheck( 'curid' ) && $action !== 'delete' ) {
+		if ( $ret === null
+			&& strval( $title ) === ''
+			&& !$request->getCheck( 'curid' )
+			&& $action !== 'delete'
+		) {
 			$ret = Title::newMainPage();
 		}
 

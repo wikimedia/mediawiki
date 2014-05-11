@@ -36,7 +36,9 @@ class Xml {
 	 * @param bool $allowShortTag Whether '' in $contents will result in a contentless closed tag
 	 * @return string
 	 */
-	public static function element( $element, $attribs = null, $contents = '', $allowShortTag = true ) {
+	public static function element( $element, $attribs = null, $contents = '',
+		$allowShortTag = true
+	) {
 		$out = '<' . $element;
 		if ( !is_null( $attribs ) ) {
 			$out .= self::expandAttributes( $attribs );
@@ -142,7 +144,9 @@ class Xml {
 	 * @return string
 	 * @deprecated since 1.19
 	 */
-	public static function namespaceSelector( $selected = '', $all = null, $element_name = 'namespace', $label = null ) {
+	public static function namespaceSelector( $selected = '', $all = null,
+		$element_name = 'namespace', $label = null
+	) {
 		wfDeprecated( __METHOD__, '1.19' );
 		return Html::namespaceSelector( array(
 			'selected' => $selected,
@@ -158,8 +162,9 @@ class Xml {
 	/**
 	 * Create a date selector
 	 *
-	 * @param string $selected The month which should be selected, default ''
-	 * @param string $allmonths Value of a special item denoting all month. Null to not include (default)
+	 * @param string $selected The month which should be selected, default ''.
+	 * @param string $allmonths Value of a special item denoting all month.
+	 *   Null to not include (default).
 	 * @param string $id Element identifier
 	 * @return string Html string containing the month selector
 	 */
@@ -170,12 +175,20 @@ class Xml {
 			$selected = '';
 		}
 		if ( !is_null( $allmonths ) ) {
-			$options[] = self::option( wfMessage( 'monthsall' )->text(), $allmonths, $selected === $allmonths );
+			$options[] = self::option(
+				wfMessage( 'monthsall' )->text(),
+				$allmonths,
+				$selected === $allmonths
+			);
 		}
 		for ( $i = 1; $i < 13; $i++ ) {
 			$options[] = self::option( $wgLang->getMonthName( $i ), $i, $selected === $i );
 		}
-		return self::openElement( 'select', array( 'id' => $id, 'name' => 'month', 'class' => 'mw-month-selector' ) )
+		return self::openElement( 'select', array(
+			'id' => $id,
+			'name' => 'month',
+			'class' => 'mw-month-selector'
+		) )
 			. implode( "\n", $options )
 			. self::closeElement( 'select' );
 	}
@@ -222,7 +235,9 @@ class Xml {
 	 * @param Message|null $msg Label message key (since 1.20)
 	 * @return array containing 2 items: label HTML and select list HTML
 	 */
-	public static function languageSelector( $selected, $customisedOnly = true, $inLanguage = null, $overrideAttrs = array(), Message $msg = null ) {
+	public static function languageSelector( $selected, $customisedOnly = true,
+		$inLanguage = null, $overrideAttrs = array(), Message $msg = null
+	) {
 		global $wgLanguageCode;
 
 		$include = $customisedOnly ? 'mwfile' : 'mw';
@@ -313,8 +328,11 @@ class Xml {
 	 * @param array $attribs Other attributes
 	 * @return string HTML
 	 */
-	public static function password( $name, $size = false, $value = false, $attribs = array() ) {
-		return self::input( $name, $size, $value, array_merge( $attribs, array( 'type' => 'password' ) ) );
+	public static function password( $name, $size = false, $value = false,
+		$attribs = array()
+	) {
+		return self::input( $name, $size, $value,
+			array_merge( $attribs, array( 'type' => 'password' ) ) );
 	}
 
 	/**
@@ -395,7 +413,9 @@ class Xml {
 	 * @param array $attribs Other attributes
 	 * @return string HTML
 	 */
-	public static function inputLabel( $label, $name, $id, $size = false, $value = false, $attribs = array() ) {
+	public static function inputLabel( $label, $name, $id, $size = false,
+		$value = false, $attribs = array()
+	) {
 		list( $label, $input ) = self::inputLabelSep( $label, $name, $id, $size, $value, $attribs );
 		return $label . '&#160;' . $input;
 	}
@@ -412,7 +432,9 @@ class Xml {
 	 *
 	 * @return array
 	 */
-	public static function inputLabelSep( $label, $name, $id, $size = false, $value = false, $attribs = array() ) {
+	public static function inputLabelSep( $label, $name, $id, $size = false,
+		$value = false, $attribs = array()
+	) {
 		return array(
 			Xml::label( $label, $id, $attribs ),
 			self::input( $name, $size, $value, array( 'id' => $id ) + $attribs )
@@ -448,7 +470,9 @@ class Xml {
 	 *
 	 * @return string HTML
 	 */
-	public static function radioLabel( $label, $name, $value, $id, $checked = false, $attribs = array() ) {
+	public static function radioLabel( $label, $name, $value, $id,
+		$checked = false, $attribs = array()
+	) {
 		return self::radio( $name, $value, $checked, array( 'id' => $id ) + $attribs ) .
 			'&#160;' .
 			self::label( $label, $id, $attribs );
@@ -487,14 +511,17 @@ class Xml {
 	 * Build a drop-down box from a textual list.
 	 *
 	 * @param string $name Name and id for the drop-down
-	 * @param string $list Correctly formatted text (newline delimited) to be used to generate the options
+	 * @param string $list Correctly formatted text (newline delimited) to be
+	 *   used to generate the options.
 	 * @param string $other Text for the "Other reasons" option
 	 * @param string $selected Option which should be pre-selected
 	 * @param string $class CSS classes for the drop-down
 	 * @param int $tabindex Value of the tabindex attribute
 	 * @return string
 	 */
-	public static function listDropDown( $name = '', $list = '', $other = '', $selected = '', $class = '', $tabindex = null ) {
+	public static function listDropDown( $name = '', $list = '', $other = '',
+		$selected = '', $class = '', $tabindex = null
+	) {
 		$optgroup = false;
 
 		$options = self::option( $other, 'other', $selected === 'other' );
@@ -554,8 +581,10 @@ class Xml {
 	/**
 	 * Shortcut for creating fieldsets.
 	 *
-	 * @param string|bool $legend Legend of the fieldset. If evaluates to false, legend is not added.
-	 * @param string $content Pre-escaped content for the fieldset. If false, only open fieldset is returned.
+	 * @param string|bool $legend Legend of the fieldset. If evaluates to false,
+	 *   legend is not added.
+	 * @param string $content Pre-escaped content for the fieldset. If false,
+	 *   only open fieldset is returned.
 	 * @param array $attribs Any attributes to fieldset-element.
 	 *
 	 * @return string
@@ -740,8 +769,11 @@ class Xml {
 	/**
 	 * Generate a form (without the opening form element).
 	 * Output optionally includes a submit button.
-	 * @param array $fields Associative array, key is the name of a message that contains a description for the field, value is an HTML string containing the appropriate input.
-	 * @param string $submitLabel The name of a message containing a label for the submit button.
+	 * @param array $fields Associative array, key is the name of a message that
+	 *   contains a description for the field, value is an HTML string
+	 *   containing the appropriate input.
+	 * @param string $submitLabel The name of a message containing a label for
+	 *   the submit button.
 	 * @param array $submitAttribs The attributes to add to the submit button
 	 * @return string HTML form.
 	 */
@@ -758,14 +790,17 @@ class Xml {
 			// the input somehow.
 
 			$form .= Xml::tags( 'td', array( 'class' => 'mw-label' ), wfMessage( $labelmsg )->parse() );
-			$form .= Xml::openElement( 'td', array( 'class' => 'mw-input' ) ) . $input . Xml::closeElement( 'td' );
+			$form .= Xml::openElement( 'td', array( 'class' => 'mw-input' ) )
+				. $input . Xml::closeElement( 'td' );
 			$form .= Xml::closeElement( 'tr' );
 		}
 
 		if ( $submitLabel ) {
 			$form .= Xml::openElement( 'tr' );
 			$form .= Xml::tags( 'td', array(), '' );
-			$form .= Xml::openElement( 'td', array( 'class' => 'mw-submit' ) ) . Xml::submitButton( wfMessage( $submitLabel )->text(), $submitAttribs ) . Xml::closeElement( 'td' );
+			$form .= Xml::openElement( 'td', array( 'class' => 'mw-submit' ) )
+				. Xml::submitButton( wfMessage( $submitLabel )->text(), $submitAttribs )
+				. Xml::closeElement( 'td' );
 			$form .= Xml::closeElement( 'tr' );
 		}
 

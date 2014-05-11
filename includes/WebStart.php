@@ -30,8 +30,10 @@
 # This must be done before any globals are set by the code
 if ( ini_get( 'register_globals' ) ) {
 	if ( isset( $_REQUEST['GLOBALS'] ) || isset( $_FILES['GLOBALS'] ) ) {
-		die( '<a href="http://www.hardened-php.net/globals-problem">$GLOBALS overwrite vulnerability</a>' );
+		die( '<a href="http://www.hardened-php.net/globals-problem">'
+			. '$GLOBALS overwrite vulnerability</a>' );
 	}
+
 	$verboten = array(
 		'GLOBALS',
 		'_SERVER',
@@ -50,6 +52,7 @@ if ( ini_get( 'register_globals' ) ) {
 		'_SESSION',
 		'HTTP_SESSION_VARS'
 	);
+
 	foreach ( $_REQUEST as $name => $value ) {
 		if ( in_array( $name, $verboten ) ) {
 			header( "HTTP/1.1 500 Internal Server Error" );
