@@ -218,7 +218,8 @@ class ApiWatch extends ApiBase {
 		return $psModule->getParamDescription() + array(
 			'title' => 'The page to (un)watch. use titles instead',
 			'unwatch' => 'If set the page will be unwatched rather than watched',
-			'entirewatchlist' => 'Work on all watched pages without returning a list; can only be used together with \'unwatch\' option.',
+			'entirewatchlist' => 'Work on all watched pages without returning a list; '
+				. 'can only be used together with \'unwatch\' option.',
 			'uselang' => 'Language to show the message in',
 			'token' => 'A token previously acquired via prop=info',
 		);

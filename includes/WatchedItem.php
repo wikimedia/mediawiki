@@ -41,8 +41,23 @@ class WatchedItem {
 	 */
 	const CHECK_USER_RIGHTS = 1;
 
-	var $mTitle, $mUser, $mCheckRights;
-	private $loaded = false, $watched, $timestamp;
+	/** @var Title */
+	public $mTitle;
+
+	/** @var User */
+	public $mUser;
+
+	/** @var int */
+	public $mCheckRights;
+
+	/** @var bool */
+	private $loaded = false;
+
+	/** @var bool */
+	private $watched;
+
+	/** @var string */
+	private $timestamp;
 
 	/**
 	 * Create a WatchedItem object with the given user and title
@@ -53,7 +68,9 @@ class WatchedItem {
 	 *     Pass either WatchedItem::IGNORE_USER_RIGHTS or WatchedItem::CHECK_USER_RIGHTS.
 	 * @return WatchedItem
 	 */
-	public static function fromUserTitle( $user, $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
+	public static function fromUserTitle( $user, $title,
+		$checkRights = WatchedItem::CHECK_USER_RIGHTS
+	) {
 		$wl = new WatchedItem;
 		$wl->mUser = $user;
 		$wl->mTitle = $title;
@@ -389,7 +406,13 @@ class WatchedItem {
 		# Perform replace
 		# Note that multi-row replace is very efficient for MySQL but may be inefficient for
 		# some other DBMSes, mostly due to poor simulation by us
-		$dbw->replace( 'watchlist', array( array( 'wl_user', 'wl_namespace', 'wl_title' ) ), $values, __METHOD__ );
+		$dbw->replace(
+			'watchlist',
+			array( array( 'wl_user', 'wl_namespace', 'wl_title' ) ),
+			$values,
+			__METHOD__
+		);
+
 		return true;
 	}
 }

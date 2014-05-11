@@ -406,7 +406,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'recentchanges', 'rc_source', "TEXT NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'page', 'page_links_updated', "TIMESTAMPTZ NULL" ),
 			array( 'addPgField', 'mwuser', 'user_password_expires', 'TIMESTAMPTZ NULL' ),
-			array( 'changeFieldPurgeTable', 'l10n_cache', 'lc_value', 'bytea', "replace(lc_value,'\','\\\\')::bytea" ),
+			array( 'changeFieldPurgeTable', 'l10n_cache', 'lc_value', 'bytea',
+				"replace(lc_value,'\','\\\\')::bytea" ),
 
 			// 1.24
 			array( 'addPgField', 'page_props', 'pp_sortkey', 'float NULL' ),
