@@ -318,8 +318,6 @@ class Parser {
 	private $mRevIdForTs;
 
 	/**
-	 * Constructor
-	 *
 	 * @param array $conf
 	 */
 	public function __construct( $conf = array() ) {
@@ -704,7 +702,7 @@ class Parser {
 	 * If $frame is not provided, then template variables (e.g., {{{1}}}) within $text are not expanded
 	 *
 	 * @param string $text Text extension wants to have parsed
-	 * @param PPFrame $frame The frame to use for expanding any template variables
+	 * @param bool|PPFrame $frame The frame to use for expanding any template variables
 	 *
 	 * @return string
 	 */
@@ -746,7 +744,7 @@ class Parser {
 	 * hook.
 	 *
 	 * @param string $text Text to be expanded
-	 * @param PPFrame $frame The frame to use for expanding any template variables
+	 * @param bool|PPFrame $frame The frame to use for expanding any template variables
 	 * @return string
 	 * @since 1.19
 	 */
@@ -2472,7 +2470,7 @@ class Parser {
 	}
 
 	/**
-	 * TODO: document
+	 * @todo Document
 	 * @param string $char
 	 * @private
 	 *
@@ -2627,7 +2625,7 @@ class Parser {
 
 				if ( $openmatch or $closematch ) {
 					$paragraphStack = false;
-					# TODO bug 5718: paragraph closed
+					# @todo bug 5718: paragraph closed
 					$output .= $this->closeParagraph();
 					if ( $preOpenMatch and !$preCloseMatch ) {
 						$this->mInPre = true;
@@ -3380,8 +3378,8 @@ class Parser {
 	 *   'expansion-depth-exceeded' (corresponding messages:
 	 *       'expansion-depth-exceeded-warning',
 	 *       'expansion-depth-exceeded-category')
-	 * @param int|null $current Current value
-	 * @param int|null $max Maximum allowed, when an explicit limit has been
+	 * @param string|int|null $current Current value
+	 * @param string|int|null $max Maximum allowed, when an explicit limit has been
 	 *	 exceeded, provide the values (optional)
 	 */
 	function limitationWarn( $limitationType, $current = '', $max = '' ) {
@@ -3397,11 +3395,11 @@ class Parser {
 	 * replacing any variables or templates within the template.
 	 *
 	 * @param array $piece The parts of the template
-	 *  $piece['title']: the title, i.e. the part before the |
-	 *  $piece['parts']: the parameter array
-	 *  $piece['lineStart']: whether the brace was at the start of a line
+	 *   $piece['title']: the title, i.e. the part before the |
+	 *   $piece['parts']: the parameter array
+	 *   $piece['lineStart']: whether the brace was at the start of a line
 	 * @param PPFrame $frame The current frame, contains template arguments
-	 * @throws MWException
+	 * @throws Exception
 	 * @return string The text of the template
 	 * @private
 	 */
@@ -3743,6 +3741,7 @@ class Parser {
 	 * @param PPFrame $frame The current frame, contains template arguments
 	 * @param string $function Function name
 	 * @param array $args Arguments to the function
+	 * @throws MWException
 	 * @return array
 	 */
 	public function callParserFunction( $frame, $function, array $args = array() ) {
@@ -3920,7 +3919,7 @@ class Parser {
 	 * Can be overridden via ParserOptions::setTemplateCallback().
 	 *
 	 * @param Title $title
-	 * @param Parser $parser
+	 * @param bool|Parser $parser
 	 *
 	 * @return array
 	 */
@@ -5727,7 +5726,7 @@ class Parser {
 
 	/**
 	 * @param string $caption
-	 * @param LinkHolderArray $holders
+	 * @param LinkHolderArray|bool $holders
 	 * @return mixed|string
 	 */
 	protected function stripAltText( $caption, $holders ) {
@@ -5768,7 +5767,7 @@ class Parser {
 	 * values, so they can be safely tested and escaped.
 	 *
 	 * @param string $text
-	 * @param PPFrame $frame
+	 * @param bool|PPFrame $frame
 	 * @return string
 	 */
 	function attributeStripCallback( &$text, $frame = false ) {
