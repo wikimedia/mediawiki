@@ -116,6 +116,10 @@ function wfStreamThumb( array $params ) {
 		$params['width'] = $params['w'];
 		unset( $params['w'] );
 	}
+	if ( isset( $params['width'] ) && substr( $params['width'], -2 ) == 'px' ) {
+		// strip the px (pixel) suffix, if found
+		$params['width'] = substr( $width, 0, strlen( $width ) - 2 );
+	}
 	if ( isset( $params['p'] ) ) {
 		$params['page'] = $params['p'];
 	}
