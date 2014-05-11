@@ -87,7 +87,7 @@ class LinkCache {
 
 	/**
 	 * @param string $title
-	 * @return array|int
+	 * @return int
 	 */
 	public function getGoodLinkID( $title ) {
 		if ( array_key_exists( $title, $this->mGoodLinks ) ) {
