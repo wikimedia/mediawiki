@@ -289,13 +289,18 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 			$text = preg_replace( '#^(\s*)(\*[^<>\n]+\*)(\s*)$#m', '$1<b>$2</b>$3', $text );
 		}
 
-		// Armor links (bug 61362)
+		// Armor links (bug 61362) fixed again in (bug 63049)
 		$masked = array();
-		$text = preg_replace_callback( '#<a .*?</a>#', function ( $matches ) use ( &$masked ) {
-			$sha = sha1( $matches[0] );
-			$masked[$sha] = $matches[0];
-			return "<$sha>";
-		}, $text );
+		$matches = array();
+		$offset = 0;
+		$flag = preg_match ( '#<a .*?</a>+#', $text, $matches, PREG_OFFSET_CAPTURE, 0 );
+		while ( $flag ) {
+			$sha = '%' . sha1( $matches[0][0] ) .'%';
+			$masked[$sha] = $matches[0][0];
+			$offset = (int)$matches[0][1];
+			$text = str_replace( $matches[0][0], $sha, $text );
+			$flag = preg_match ( '#<a .*?</a>+#', $text, $matches, PREG_OFFSET_CAPTURE, $offset+1 );
+		}
 
 		// identify URLs
 		$protos = wfUrlProtocolsWithoutProtRel();
@@ -307,10 +312,16 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 		);
 
 		// Unarmor links
-		$text = preg_replace_callback( '#<([0-9a-f]{40})>#', function ( $matches ) use ( &$masked ) {
-			$sha = $matches[1];
-			return isset( $masked[$sha] ) ? $masked[$sha] : $matches[0];
-		}, $text );
+		$matches = array();
+		$offset = 0; 
+		$flag = preg_match ( '#%[0-9a-f]{40}%#', $text,  $matches, PREG_OFFSET_CAPTURE, 0 );
+		while ( $flag ) {
+			$mask =  $matches[0][0];
+			$orignal = $masked[$mask];
+			$offset = (int)$matches[0][1];
+			$text = str_replace( $mask, $orignal, $text );
+			$flag = preg_match ( '#%[0-9a-f]{40}%#', $text,  $matches, PREG_OFFSET_CAPTURE, $offset+1 );
+		}
 
 		/**
 		 * Temporary fix for bad links in help messages. As a special case,
