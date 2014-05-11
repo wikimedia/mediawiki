@@ -29,7 +29,8 @@
  * @ingroup Cache
  */
 class MultiWriteBagOStuff extends BagOStuff {
-	var $caches;
+	/** @var array BagOStuff[] */
+	protected $caches;
 
 	/**
 	 * Constructor. Parameters are:
