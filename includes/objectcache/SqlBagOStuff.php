@@ -27,22 +27,37 @@
  * @ingroup Cache
  */
 class SqlBagOStuff extends BagOStuff {
-	/**
-	 * @var LoadBalancer
-	 */
-	var $lb;
+	/** @var LoadBalancer */
+	protected $lb;
 
-	var $serverInfos;
-	var $serverNames;
-	var $numServers;
-	var $conns;
-	var $lastExpireAll = 0;
-	var $purgePeriod = 100;
-	var $shards = 1;
-	var $tableName = 'objectcache';
+	protected $serverInfos;
 
-	protected $connFailureTimes = array(); // UNIX timestamps
-	protected $connFailureErrors = array(); // exceptions
+	/** @var array */
+	protected $serverNames;
+
+	/** @var int */
+	protected $numServers;
+
+	/** @var array */
+	protected $conns;
+
+	/** @var int */
+	protected $lastExpireAll = 0;
+
+	/** @var int */
+	protected $purgePeriod = 100;
+
+	/** @var int */
+	protected $shards = 1;
+
+	/** @var string */
+	protected $tableName = 'objectcache';
+
+	/** @var array UNIX timestamps */
+	protected $connFailureTimes = array();
+
+	/** @var array Exceptions */
+	protected $connFailureErrors = array();
 
 	/**
 	 * Constructor. Parameters are:
@@ -721,7 +736,8 @@ class SqlBagOStuff extends BagOStuff {
 		if ( $exception->db && $exception->db->wasReadOnlyError() ) {
 			try {
 				$exception->db->rollback( __METHOD__ );
-			} catch ( DBError $e ) {}
+			} catch ( DBError $e ) {
+			}
 		}
 		wfDebugLog( 'SQLBagOStuff', "DBError: {$exception->getMessage()}" );
 		if ( $exception instanceof DBConnectionError ) {
@@ -780,4 +796,5 @@ class SqlBagOStuff extends BagOStuff {
 /**
  * Backwards compatibility alias
  */
-class MediaWikiBagOStuff extends SqlBagOStuff { }
+class MediaWikiBagOStuff extends SqlBagOStuff {
+}
