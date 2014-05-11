@@ -1,5 +1,5 @@
 <?php
-
+// @codingStandardsIgnoreFile File external to MediaWiki. Ignore coding conventions checks.
 /**
  * lessphp v0.4.0@2cc77e3c7b
  * http://leafo.net/lessphp

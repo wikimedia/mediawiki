@@ -963,7 +963,7 @@ class Message {
 		$out = MessageCache::singleton()->parse(
 			$string,
 			$this->title,
-			 /*linestart*/true,
+			/*linestart*/true,
 			$this->interface,
 			$this->language
 		);
