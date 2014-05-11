@@ -27,7 +27,7 @@
  * @ingroup Cache
  */
 class ObjectCache {
-	static $instances = array();
+	public static $instances = array();
 
 	/**
 	 * Get a cached instance of the specified type of cache object.
@@ -87,8 +87,9 @@ class ObjectCache {
 			$class = $params['class'];
 			return new $class( $params );
 		} else {
-			throw new MWException( "The definition of cache type \"" . print_r( $params, true ) . "\" lacks both " .
-				"factory and class parameters." );
+			throw new MWException( "The definition of cache type \""
+				. print_r( $params, true ) . "\" lacks both "
+				. "factory and class parameters." );
 		}
 	}
 

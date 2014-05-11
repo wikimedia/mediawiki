@@ -28,7 +28,8 @@
  * @ingroup Cache
  */
 class HashBagOStuff extends BagOStuff {
-	var $bag;
+	/** @var array */
+	protected $bag;
 
 	function __construct() {
 		$this->bag = array();
