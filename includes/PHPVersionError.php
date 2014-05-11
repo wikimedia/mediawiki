@@ -43,10 +43,13 @@ function wfPHPVersionError( $type ) {
 
 	$phpVersion = phpversion();
 	$protocol = isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
-	$message = "MediaWiki $mwVersion requires at least PHP version $minimumVersionPHP, you are using PHP $phpVersion.";
+	$message = "MediaWiki $mwVersion requires at least "
+		. "PHP version $minimumVersionPHP, you are using PHP $phpVersion.";
+
 	if ( $type == 'cli' ) {
-		$finalOutput = "You are using PHP version $phpVersion but MediaWiki $mwVersion needs PHP $minimumVersionPHP or higher. ABORTING.\n" .
-		"Check if you have a newer php executable with a different name, such as php5.\n";
+		$finalOutput = "You are using PHP version $phpVersion "
+			. "but MediaWiki $mwVersion needs PHP $minimumVersionPHP or higher. ABORTING.\n"
+			. "Check if you have a newer php executable with a different name, such as php5.\n";
 	} elseif ( $type == 'index.php' ) {
 		$pathinfo = pathinfo( $_SERVER['SCRIPT_NAME'] );
 		$encLogo = htmlspecialchars(

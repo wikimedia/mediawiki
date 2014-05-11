@@ -459,7 +459,10 @@ class Sanitizer {
 						$badtag = true;
 					} elseif ( $slash ) {
 						# Closing a tag... is it the one we just opened?
-						$ot = @array_pop( $tagstack );
+						wfSuppressWarnings();
+						$ot = array_pop( $tagstack );
+						wfRestoreWarnings();
+
 						if ( $ot != $t ) {
 							if ( isset( $htmlsingleallowed[$ot] ) ) {
 								# Pop all elements with an optional close tag
@@ -489,7 +492,10 @@ class Sanitizer {
 									}
 								}
 							} else {
-								@array_push( $tagstack, $ot );
+								wfSuppressWarnings();
+								array_push( $tagstack, $ot );
+								wfRestoreWarnings();
+
 								# <li> can be nested in <ul> or <ol>, skip those cases:
 								if ( !isset( $htmllist[$ot] ) || !isset( $listtags[$t] ) ) {
 									$badtag = true;
@@ -567,9 +573,16 @@ class Sanitizer {
 		} else {
 			# this might be possible using tidy itself
 			foreach ( $bits as $x ) {
-				preg_match( '/^(\\/?)(\\w+)([^>]*?)(\\/{0,1}>)([^<]*)$/',
-				$x, $regs );
-				@list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
+				preg_match(
+					'/^(\\/?)(\\w+)([^>]*?)(\\/{0,1}>)([^<]*)$/',
+					$x,
+					$regs
+				);
+
+				wfSuppressWarnings();
+				list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
+				wfRestoreWarnings();
+
 				$badtag = false;
 				if ( isset( $htmlelements[$t = strtolower( $t )] ) ) {
 					if ( is_callable( $processCallback ) ) {

@@ -121,7 +121,7 @@ abstract class PrefixSearch {
 	 * @param array $titles
 	 * @return array
 	 */
-	protected abstract function titles( array $titles );
+	abstract protected function titles( array $titles );
 
 	/**
 	 * When implemented in a descendant class, receives an array of titles as strings and returns
@@ -131,7 +131,7 @@ abstract class PrefixSearch {
 	 *
 	 * @return array
 	 */
-	protected abstract function strings( array $strings );
+	abstract protected function strings( array $strings );
 
 	/**
 	 * Do a prefix search of titles and return a list of matching page names.
@@ -296,7 +296,9 @@ class TitlePrefixSearch extends PrefixSearch {
 class StringPrefixSearch extends PrefixSearch {
 
 	protected function titles( array $titles ) {
-		return array_map( function( Title $t ) { return $t->getPrefixedText(); }, $titles );
+		return array_map( function ( Title $t ) {
+			return $t->getPrefixedText();
+		}, $titles );
 	}
 
 	protected function strings( array $strings ) {
