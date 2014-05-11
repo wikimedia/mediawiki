@@ -3,4 +3,5 @@
 /**
  * @since 1.20
  */
-class TimestampException extends MWException {}
+class TimestampException extends MWException {
+}

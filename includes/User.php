@@ -76,7 +76,7 @@ class User {
 	 * corresponding database fields must call a cache-clearing function.
 	 * @showinitializer
 	 */
-	static $mCacheVars = array(
+	protected static $mCacheVars = array(
 		// user table
 		'mId',
 		'mName',
@@ -105,7 +105,7 @@ class User {
 	 * "right-$right".
 	 * @showinitializer
 	 */
-	static $mCoreRights = array(
+	protected static $mCoreRights = array(
 		'apihighlimits',
 		'autoconfirmed',
 		'autopatrol',
@@ -176,17 +176,45 @@ class User {
 		'viewmywatchlist',
 		'writeapi',
 	);
+
 	/**
 	 * String Cached results of getAllRights()
 	 */
-	static $mAllRights = false;
+	protected static $mAllRights = false;
 
 	/** @name Cache variables */
 	//@{
-	var $mId, $mName, $mRealName, $mPassword, $mNewpassword, $mNewpassTime,
-		$mEmail, $mTouched, $mToken, $mEmailAuthenticated,
-		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mEditCount,
-		$mGroups, $mOptionOverrides;
+	public $mId;
+
+	public $mName;
+
+	public $mRealName;
+
+	public $mPassword;
+
+	public $mNewpassword;
+
+	public $mNewpassTime;
+
+	public $mEmail;
+
+	public $mTouched;
+
+	protected $mToken;
+
+	public $mEmailAuthenticated;
+
+	protected $mEmailToken;
+
+	protected $mEmailTokenExpires;
+
+	protected $mRegistration;
+
+	protected $mEditCount;
+
+	public $mGroups;
+
+	protected $mOptionOverrides;
 
 	protected $mPasswordExpires;
 	//@}
@@ -195,12 +223,12 @@ class User {
 	 * Bool Whether the cache variables have been loaded.
 	 */
 	//@{
-	var $mOptionsLoaded;
+	public $mOptionsLoaded;
 
 	/**
 	 * Array with already loaded items or true if all items have been loaded.
 	 */
-	private $mLoadedItems = array();
+	protected $mLoadedItems = array();
 	//@}
 
 	/**
@@ -212,41 +240,55 @@ class User {
 	 *
 	 * Use the User::newFrom*() family of functions to set this.
 	 */
-	var $mFrom;
+	public $mFrom;
 
 	/**
 	 * Lazy-initialized variables, invalidated with clearInstanceCache
 	 */
-	var $mNewtalk, $mDatePreference, $mBlockedby, $mHash, $mRights,
-		$mBlockreason, $mEffectiveGroups, $mImplicitGroups, $mFormerGroups, $mBlockedGlobally,
-		$mLocked, $mHideName, $mOptions;
+	protected $mNewtalk;
+
+	protected $mDatePreference;
+
+	public $mBlockedby;
+
+	protected $mHash;
+
+	public $mRights;
+
+	protected $mBlockreason;
+
+	protected $mEffectiveGroups;
+
+	protected $mImplicitGroups;
+
+	protected $mFormerGroups;
+
+	protected $mBlockedGlobally;
+
+	protected $mLocked;
+
+	public $mHideName;
+
+	public $mOptions;
 
 	/**
 	 * @var WebRequest
 	 */
 	private $mRequest;
 
-	/**
-	 * @var Block
-	 */
-	var $mBlock;
+	/** @var Block */
+	public $mBlock;
 
-	/**
-	 * @var bool
-	 */
-	var $mAllowUsertalk;
+	/** @var bool */
+	protected $mAllowUsertalk;
 
-	/**
-	 * @var Block
-	 */
+	/** @var Block */
 	private $mBlockedFromCreateAccount = false;
 
-	/**
-	 * @var array
-	 */
+	/** @var array */
 	private $mWatchedItems = array();
 
-	static $idCacheByName = array();
+	public static $idCacheByName = array();
 
 	/**
 	 * Lightweight constructor for an anonymous user.
@@ -517,7 +559,12 @@ class User {
 		}
 
 		$dbr = wfGetDB( DB_SLAVE );
-		$s = $dbr->selectRow( 'user', array( 'user_id' ), array( 'user_name' => $nt->getText() ), __METHOD__ );
+		$s = $dbr->selectRow(
+			'user',
+			array( 'user_id' ),
+			array( 'user_name' => $nt->getText() ),
+			__METHOD__
+		);
 
 		if ( $s === false ) {
 			$result = null;
@@ -558,7 +605,8 @@ class User {
 	 * @return bool
 	 */
 	public static function isIP( $name ) {
-		return preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/', $name ) || IP::isIPv6( $name );
+		return preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/', $name )
+			|| IP::isIPv6( $name );
 	}
 
 	/**
@@ -756,7 +804,9 @@ class User {
 			} elseif ( $wgContLang->lc( $password ) == $wgContLang->lc( $this->mName ) ) {
 				$status->error( 'password-name-match' );
 				return $status;
-			} elseif ( isset( $blockedLogins[$this->getName()] ) && $password == $blockedLogins[$this->getName()] ) {
+			} elseif ( isset( $blockedLogins[$this->getName()] )
+				&& $password == $blockedLogins[$this->getName()]
+			) {
 				$status->error( 'password-login-forbidden' );
 				return $status;
 			} else {
@@ -955,7 +1005,8 @@ class User {
 	 */
 	public static function randomPassword() {
 		global $wgMinimalPasswordLength;
-		// Decide the final password length based on our min password length, stopping at a minimum of 10 chars
+		// Decide the final password length based on our min password length,
+		// stopping at a minimum of 10 chars.
 		$length = max( 10, $wgMinimalPasswordLength );
 		// Multiply by 1.25 to get the number of hex characters we need
 		$length = $length * 1.25;
@@ -1086,14 +1137,16 @@ class User {
 		}
 
 		if ( $request->getSessionData( 'wsToken' ) ) {
-			$passwordCorrect = ( $proposedUser->getToken( false ) === $request->getSessionData( 'wsToken' ) );
+			$passwordCorrect =
+				( $proposedUser->getToken( false ) === $request->getSessionData( 'wsToken' ) );
 			$from = 'session';
 		} elseif ( $request->getCookie( 'Token' ) ) {
 			# Get the token from DB/cache and clean it up to remove garbage padding.
 			# This deals with historical problems with bugs and the default column value.
 			$token = rtrim( $proposedUser->getToken( false ) ); // correct token
 			// Make comparison in constant time (bug 61346)
-			$passwordCorrect = strlen( $token ) && $this->compareSecrets( $token, $request->getCookie( 'Token' ) );
+			$passwordCorrect = strlen( $token )
+				&& $this->compareSecrets( $token, $request->getCookie( 'Token' ) );
 			$from = 'cookie';
 		} else {
 			// No session or persistent login cookie
@@ -1123,11 +1176,13 @@ class User {
 			$passwordCorrect = false;
 		} else {
 			$result = 0;
-			for ( $i = 0; $i < strlen( $answer ); $i++ ) {
+			$answerLength = strlen( $answer );
+			for ( $i = 0; $i < $answerLength; $i++ ) {
 				$result |= ord( $answer[$i] ) ^ ord( $test[$i] );
 			}
 			$passwordCorrect = ( $result == 0 );
 		}
+
 		return $passwordCorrect;
 	}
 
@@ -1148,7 +1203,12 @@ class User {
 		}
 
 		$dbr = wfGetDB( DB_MASTER );
-		$s = $dbr->selectRow( 'user', self::selectFields(), array( 'user_id' => $this->mId ), __METHOD__ );
+		$s = $dbr->selectRow(
+			'user',
+			self::selectFields(),
+			array( 'user_id' => $this->mId ),
+			__METHOD__
+		);
 
 		wfRunHooks( 'UserLoadFromDatabase', array( $this, &$s ) );
 
@@ -1722,10 +1782,11 @@ class User {
 	/**
 	 * Check if user is blocked
 	 *
-	 * @param bool $bFromSlave Whether to check the slave database instead of the master
+	 * @param bool $bFromSlave Whether to check the slave database instead of
+	 *   the master. Hacked from false due to horrible probs on site.
 	 * @return bool True if blocked, false otherwise
 	 */
-	public function isBlocked( $bFromSlave = true ) { // hacked from false due to horrible probs on site
+	public function isBlocked( $bFromSlave = true ) {
 		return $this->getBlock( $bFromSlave ) instanceof Block && $this->getBlock()->prevents( 'edit' );
 	}
 
@@ -2082,7 +2143,8 @@ class User {
 	/**
 	 * Update the 'You have new messages!' status.
 	 * @param bool $val Whether the user has new messages
-	 * @param Revision $curRev New, as yet unseen revision of the user talk page. Ignored if null or !$val.
+	 * @param Revision $curRev New, as yet unseen revision of the user talk
+	 *   page. Ignored if null or !$val.
 	 */
 	public function setNewtalk( $val, $curRev = null ) {
 		if ( wfReadOnly() ) {
@@ -2266,7 +2328,8 @@ class User {
 
 	/**
 	 * Get the user's current token.
-	 * @param bool $forceCreation Force the generation of a new token if the user doesn't have one (default=true for backwards compatibility)
+	 * @param bool $forceCreation Force the generation of a new token if the
+	 *   user doesn't have one (default=true for backwards compatibility).
 	 * @return string Token
 	 */
 	public function getToken( $forceCreation = true ) {
@@ -2603,7 +2666,8 @@ class User {
 	 *
 	 * @see User::listOptionKinds
 	 * @param IContextSource $context
-	 * @param array $options Assoc. array with options keys to check as keys. Defaults to $this->mOptions.
+	 * @param array $options Assoc. array with options keys to check as keys.
+	 *   Defaults to $this->mOptions.
 	 * @return array the key => kind mapping data
 	 */
 	public function getOptionKinds( IContextSource $context, $options = null ) {
@@ -3478,17 +3542,20 @@ class User {
 	 * Add a user to the database, return the user object
 	 *
 	 * @param string $name Username to add
-	 * @param array $params Array of Strings Non-default parameters to save to the database as user_* fields:
-	 *   - password             The user's password hash. Password logins will be disabled if this is omitted.
-	 *   - newpassword          Hash for a temporary password that has been mailed to the user
-	 *   - email                The user's email address
-	 *   - email_authenticated  The email authentication timestamp
-	 *   - real_name            The user's real name
-	 *   - options              An associative array of non-default options
-	 *   - token                Random authentication token. Do not set.
-	 *   - registration         Registration timestamp. Do not set.
+	 * @param array $params Array of Strings Non-default parameters to save to
+	 *   the database as user_* fields:
+	 *   - password: The user's password hash. Password logins will be disabled
+	 *     if this is omitted.
+	 *   - newpassword: Hash for a temporary password that has been mailed to
+	 *     the user.
+	 *   - email: The user's email address.
+	 *   - email_authenticated: The email authentication timestamp.
+	 *   - real_name: The user's real name.
+	 *   - options: An associative array of non-default options.
+	 *   - token: Random authentication token. Do not set.
+	 *   - registration: Registration timestamp. Do not set.
 	 *
-	 * @return User|null User object, or null if the username already exists
+	 * @return User|null User object, or null if the username already exists.
 	 */
 	public static function createNew( $name, $params = array() ) {
 		$user = new User;
@@ -3659,7 +3726,8 @@ class User {
 		if ( $this->mBlockedFromCreateAccount === false && !$this->isAllowed( 'ipblock-exempt' ) ) {
 			$this->mBlockedFromCreateAccount = Block::newFromTarget( null, $this->getRequest()->getIP() );
 		}
-		return $this->mBlockedFromCreateAccount instanceof Block && $this->mBlockedFromCreateAccount->prevents( 'createaccount' )
+		return $this->mBlockedFromCreateAccount instanceof Block
+			&& $this->mBlockedFromCreateAccount->prevents( 'createaccount' )
 			? $this->mBlockedFromCreateAccount
 			: false;
 	}
@@ -3818,7 +3886,8 @@ class User {
 	 * Generate a looking random token for various uses.
 	 *
 	 * @return string The new random token
-	 * @deprecated since 1.20: Use MWCryptRand for secure purposes or wfRandomString for pseudo-randomness
+	 * @deprecated since 1.20: Use MWCryptRand for secure purposes or
+	 *   wfRandomString for pseudo-randomness.
 	 */
 	public static function generateToken() {
 		return MWCryptRand::generateHex( 32 );
@@ -3840,6 +3909,7 @@ class User {
 		if ( $val != $sessionToken ) {
 			wfDebug( "User::matchEditToken: broken session data\n" );
 		}
+
 		return $val == $sessionToken;
 	}
 
@@ -3898,7 +3968,8 @@ class User {
 	 *
 	 * @param string $subject Message subject
 	 * @param string $body Message body
-	 * @param string $from Optional From address; if unspecified, default $wgPasswordSender will be used
+	 * @param string $from Optional From address; if unspecified, default
+	 *   $wgPasswordSender will be used.
 	 * @param string $replyto Reply-To address
 	 * @return Status
 	 */
@@ -4284,8 +4355,11 @@ class User {
 	 */
 	public static function getImplicitGroups() {
 		global $wgImplicitGroups;
+
 		$groups = $wgImplicitGroups;
-		wfRunHooks( 'UserGetImplicitGroups', array( &$groups ) );	#deprecated, use $wgImplictGroups instead
+		# Deprecated, use $wgImplictGroups instead
+		wfRunHooks( 'UserGetImplicitGroups', array( &$groups ) );
+
 		return $groups;
 	}
 
@@ -4359,7 +4433,13 @@ class User {
 	public static function changeableByGroup( $group ) {
 		global $wgAddGroups, $wgRemoveGroups, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 
-		$groups = array( 'add' => array(), 'remove' => array(), 'add-self' => array(), 'remove-self' => array() );
+		$groups = array(
+			'add' => array(),
+			'remove' => array(),
+			'add-self' => array(),
+			'remove-self' => array()
+		);
+
 		if ( empty( $wgAddGroups[$group] ) ) {
 			// Don't add anything to $groups
 		} elseif ( $wgAddGroups[$group] === true ) {

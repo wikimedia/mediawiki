@@ -56,38 +56,102 @@ class Title {
 	 */
 	// @{
 
-	var $mTextform = '';              // /< Text form (spaces not underscores) of the main part
-	var $mUrlform = '';               // /< URL-encoded form of the main part
-	var $mDbkeyform = '';             // /< Main part with underscores
-	var $mUserCaseDBKey;              // /< DB key with the initial letter in the case specified by the user
-	var $mNamespace = NS_MAIN;        // /< Namespace index, i.e. one of the NS_xxxx constants
-	var $mInterwiki = '';             // /< Interwiki prefix
-	var $mFragment = '';              // /< Title fragment (i.e. the bit after the #)
-	var $mArticleID = -1;             // /< Article ID, fetched from the link cache on demand
-	var $mLatestID = false;           // /< ID of most recent revision
-	var $mContentModel = false;       // /< ID of the page's content model, i.e. one of the CONTENT_MODEL_XXX constants
-	private $mEstimateRevisions;      // /< Estimated number of revisions; null of not loaded
-	var $mRestrictions = array();     // /< Array of groups allowed to edit this article
-	var $mOldRestrictions = false;
-	var $mCascadeRestriction;         ///< Cascade restrictions on this page to included templates and images?
-	var $mCascadingRestrictions;      // Caching the results of getCascadeProtectionSources
-	var $mRestrictionsExpiry = array(); ///< When do the restrictions on this page expire?
-	var $mHasCascadingRestrictions;   ///< Are cascading restrictions in effect on this page?
-	var $mCascadeSources;             ///< Where are the cascading restrictions coming from on this page?
-	var $mRestrictionsLoaded = false; ///< Boolean for initialisation on demand
-	var $mPrefixedText = null;        ///< Text form including namespace/interwiki, initialised on demand
-	var $mTitleProtection;            ///< Cached value for getTitleProtection (create protection)
-	# Don't change the following default, NS_MAIN is hardcoded in several
-	# places.  See bug 696.
-	# Zero except in {{transclusion}} tags
-	var $mDefaultNamespace = NS_MAIN; // /< Namespace index when there is no namespace
-	var $mWatched = null;             // /< Is $wgUser watching this page? null if unfilled, accessed through userIsWatching()
-	var $mLength = -1;                // /< The page length, 0 for special pages
-	var $mRedirect = null;            // /< Is the article at this title a redirect?
-	var $mNotificationTimestamp = array(); // /< Associative array of user ID -> timestamp/false
-	var $mHasSubpage;                 // /< Whether a page has any subpages
-	private $mPageLanguage = false;   // /< The (string) language code of the page's language and content code.
-	private $mTitleValue = null;      // /< A corresponding TitleValue object
+	/** @var string Text form (spaces not underscores) of the main part */
+	public $mTextform = '';
+
+	/** @var string URL-encoded form of the main part */
+	public $mUrlform = '';
+
+	/** @var string Main part with underscores */
+	public $mDbkeyform = '';
+
+	/** @var string Database key with the initial letter in the case specified by the user */
+	protected $mUserCaseDBKey;
+
+	/** @var int Namespace index, i.e. one of the NS_xxxx constants */
+	public $mNamespace = NS_MAIN;
+
+	/** @var string Interwiki prefix */
+	public $mInterwiki = '';
+
+	/** @var string Title fragment (i.e. the bit after the #) */
+	public $mFragment = '';
+
+	/** @var int Article ID, fetched from the link cache on demand */
+	public $mArticleID = -1;
+
+	/** @var bool|int ID of most recent revision */
+	protected $mLatestID = false;
+
+	/**
+	 * @var bool|string ID of the page's content model, i.e. one of the
+	 *   CONTENT_MODEL_XXX constants
+	 */
+	public $mContentModel = false;
+
+	/** @var int Estimated number of revisions; null of not loaded */
+	private $mEstimateRevisions;
+
+	/** @var array Array of groups allowed to edit this article */
+	public $mRestrictions = array();
+
+	/** @var bool  */
+	protected $mOldRestrictions = false;
+
+	/** @var bool Cascade restrictions on this page to included templates and images? */
+	public $mCascadeRestriction;
+
+	/** Caching the results of getCascadeProtectionSources */
+	public $mCascadingRestrictions;
+
+	/** @var array When do the restrictions on this page expire? */
+	protected $mRestrictionsExpiry = array();
+
+	/** @var bool Are cascading restrictions in effect on this page? */
+	protected $mHasCascadingRestrictions;
+
+	/** @var array Where are the cascading restrictions coming from on this page? */
+	public $mCascadeSources;
+
+	/** @var bool Boolean for initialisation on demand */
+	public $mRestrictionsLoaded = false;
+
+	/** @var string Text form including namespace/interwiki, initialised on demand */
+	protected $mPrefixedText = null;
+
+	/** @var mixed Cached value for getTitleProtection (create protection) */
+	public $mTitleProtection;
+
+	/**
+	 * @var int Namespace index when there is no namespace. Don't change the
+	 *   following default, NS_MAIN is hardcoded in several places. See bug 696.
+	 *   Zero except in {{transclusion}} tags.
+	 */
+	public $mDefaultNamespace = NS_MAIN;
+
+	/**
+	 * @var bool Is $wgUser watching this page? null if unfilled, accessed
+	 * through userIsWatching()
+	 */
+	protected $mWatched = null;
+
+	/** @var int The page length, 0 for special pages */
+	protected $mLength = -1;
+
+	/** @var null Is the article at this title a redirect? */
+	public $mRedirect = null;
+
+	/** @var array Associative array of user ID -> timestamp/false */
+	private $mNotificationTimestamp = array();
+
+	/** @var bool Whether a page has any subpages */
+	var $mHasSubpages;
+
+	/** @var bool The (string) language code of the page's language and content code. */
+	private $mPageLanguage = false;
+
+	/** @var TitleValue A corresponding TitleValue object */
+	private $mTitleValue = null;
 	// @}
 
 	/**
@@ -115,7 +179,11 @@ class Title {
 		}
 
 		if ( !$titleCodec ) {
-			$titleCodec = new MediaWikiTitleCodec( $wgContLang, GenderCache::singleton(), $wgLocalInterwikis );
+			$titleCodec = new MediaWikiTitleCodec(
+				$wgContLang,
+				GenderCache::singleton(),
+				$wgLocalInterwikis
+			);
 			$titleCodecFingerprint = $fingerprint;
 		}
 
@@ -136,10 +204,8 @@ class Title {
 		return self::getTitleParser();
 	}
 
-	/**
-	 * Constructor
-	 */
-	/*protected*/ function __construct() { }
+	function __construct() {
+	}
 
 	/**
 	 * Create a new Title from a prefixed DB key
@@ -266,8 +332,9 @@ class Title {
 	}
 
 	/**
-	 * Returns a list of fields that are to be selected for initializing Title objects or LinkCache entries.
-	 * Uses $wgContentHandlerUseDB to determine whether to include page_content_model.
+	 * Returns a list of fields that are to be selected for initializing Title
+	 * objects or LinkCache entries. Uses $wgContentHandlerUseDB to determine
+	 * whether to include page_content_model.
 	 *
 	 * @return array
 	 */
@@ -1136,9 +1203,11 @@ class Title {
 	 * This is generally true for pages in the MediaWiki namespace having CONTENT_MODEL_CSS
 	 * or CONTENT_MODEL_JAVASCRIPT.
 	 *
-	 * This method does *not* return true for per-user JS/CSS. Use isCssJsSubpage() for that!
+	 * This method does *not* return true for per-user JS/CSS. Use isCssJsSubpage()
+	 * for that!
 	 *
-	 * Note that this method should not return true for pages that contain and show "inactive" CSS or JS.
+	 * Note that this method should not return true for pages that contain and
+	 * show "inactive" CSS or JS.
 	 *
 	 * @return bool
 	 */
@@ -1147,8 +1216,9 @@ class Title {
 			&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
 				|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) );
 
-		#NOTE: this hook is also called in ContentHandler::getDefaultModel. It's called here again to make sure
-		#      hook functions can force this method to return true even outside the mediawiki namespace.
+		# @note This hook is also called in ContentHandler::getDefaultModel.
+		#   It's called here again to make sure hook functions can force this
+		#   method to return true even outside the mediawiki namespace.
 
 		wfRunHooks( 'TitleIsCssOrJsPage', array( $this, &$isCssOrJsPage ) );
 
@@ -1857,7 +1927,9 @@ class Title {
 			global $wgUser;
 			$user = $wgUser;
 		}
-		return !count( $this->getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries, true ) );
+
+		return !count( $this->getUserPermissionsErrorsInternal(
+			$action, $user, $doExpensiveQueries, true ) );
 	}
 
 	/**
@@ -1873,7 +1945,9 @@ class Title {
 	 *   whose corresponding errors may be ignored.
 	 * @return array Array of arguments to wfMessage to explain permissions problems.
 	 */
-	public function getUserPermissionsErrors( $action, $user, $doExpensiveQueries = true, $ignoreErrors = array() ) {
+	public function getUserPermissionsErrors( $action, $user, $doExpensiveQueries = true,
+		$ignoreErrors = array()
+	) {
 		$errors = $this->getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries );
 
 		// Remove the errors being ignored.
@@ -1899,8 +1973,12 @@ class Title {
 	 *
 	 * @return array List of errors
 	 */
-	private function checkQuickPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		if ( !wfRunHooks( 'TitleQuickPermissions', array( $this, $user, $action, &$errors, $doExpensiveQueries, $short ) ) ) {
+	private function checkQuickPermissions( $action, $user, $errors,
+		$doExpensiveQueries, $short
+	) {
+		if ( !wfRunHooks( 'TitleQuickPermissions',
+			array( $this, $user, $action, &$errors, $doExpensiveQueries, $short ) )
+		) {
 			return $errors;
 		}
 
@@ -2028,7 +2106,9 @@ class Title {
 	 *
 	 * @return array List of errors
 	 */
-	private function checkSpecialsAndNSPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
+	private function checkSpecialsAndNSPermissions( $action, $user, $errors,
+		$doExpensiveQueries, $short
+	) {
 		# Only 'createaccount' can be performed on special pages,
 		# which don't actually exist in the DB.
 		if ( NS_SPECIAL == $this->mNamespace && $action !== 'createaccount' ) {
@@ -2127,7 +2207,9 @@ class Title {
 	 *
 	 * @return array List of errors
 	 */
-	private function checkCascadingSourcesRestrictions( $action, $user, $errors, $doExpensiveQueries, $short ) {
+	private function checkCascadingSourcesRestrictions( $action, $user, $errors,
+		$doExpensiveQueries, $short
+	) {
 		if ( $doExpensiveQueries && !$this->isCssJsSubpage() ) {
 			# We /could/ use the protection level on the source page, but it's
 			# fairly ugly as we have to establish a precedence hierarchy for pages
@@ -2174,11 +2256,15 @@ class Title {
 	 *
 	 * @return array List of errors
 	 */
-	private function checkActionPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
+	private function checkActionPermissions( $action, $user, $errors,
+		$doExpensiveQueries, $short
+	) {
 		global $wgDeleteRevisionsLimit, $wgLang;
 
 		if ( $action == 'protect' ) {
-			if ( count( $this->getUserPermissionsErrorsInternal( 'edit', $user, $doExpensiveQueries, true ) ) ) {
+			if ( count( $this->getUserPermissionsErrorsInternal( 'edit',
+				$user, $doExpensiveQueries, true ) )
+			) {
 				// If they can't edit, they shouldn't protect.
 				$errors[] = array( 'protect-cantedit' );
 			}
@@ -2194,7 +2280,11 @@ class Title {
 				if ( $title_protection['pt_create_perm'] == ''
 					|| !$user->isAllowed( $title_protection['pt_create_perm'] )
 				) {
-					$errors[] = array( 'titleprotected', User::whoIs( $title_protection['pt_user'] ), $title_protection['pt_reason'] );
+					$errors[] = array(
+						'titleprotected',
+						User::whoIs( $title_protection['pt_user'] ),
+						$title_protection['pt_reason']
+					);
 				}
 			}
 		} elseif ( $action == 'move' ) {
@@ -2375,7 +2465,9 @@ class Title {
 	 * @param bool $short Set this to true to stop after the first permission error.
 	 * @return array Array of arrays of the arguments to wfMessage to explain permissions problems.
 	 */
-	protected function getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries = true, $short = false ) {
+	protected function getUserPermissionsErrorsInternal( $action, $user,
+		$doExpensiveQueries = true, $short = false
+	) {
 		wfProfileIn( __METHOD__ );
 
 		# Read has special handling
@@ -3380,7 +3472,15 @@ class Title {
 		$namespaceFiled = "{$prefix}_namespace";
 		$titleField = "{$prefix}_title";
 
-		$fields = array( $namespaceFiled, $titleField, 'page_id', 'page_len', 'page_is_redirect', 'page_latest' );
+		$fields = array(
+			$namespaceFiled,
+			$titleField,
+			'page_id',
+			'page_len',
+			'page_is_redirect',
+			'page_latest'
+		);
+
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'page_content_model';
 		}
@@ -3391,7 +3491,10 @@ class Title {
 			array( "{$prefix}_from" => $id ),
 			__METHOD__,
 			$options,
-			array( 'page' => array( 'LEFT JOIN', array( "page_namespace=$namespaceFiled", "page_title=$titleField" ) ) )
+			array( 'page' => array(
+				'LEFT JOIN',
+				array( "page_namespace=$namespaceFiled", "page_title=$titleField" )
+			) )
 		);
 
 		$retVal = array();
@@ -3427,9 +3530,11 @@ class Title {
 	}
 
 	/**
-	 * Get an array of Title objects referring to non-existent articles linked from this page
+	 * Get an array of Title objects referring to non-existent articles linked
+	 * from this page.
 	 *
-	 * @todo check if needed (used only in SpecialBrokenRedirects.php, and should use redirect table in this case)
+	 * @todo check if needed (used only in SpecialBrokenRedirects.php, and
+	 *   should use redirect table in this case).
 	 * @return Title[] Array of Title the Title objects
 	 */
 	public function getBrokenLinksFrom() {
@@ -3766,7 +3871,13 @@ class Title {
 				$comment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
 			}
 			// @todo FIXME: $params?
-			$logId = $log->addEntry( 'move_prot', $nt, $comment, array( $this->getPrefixedText() ), $wgUser );
+			$logId = $log->addEntry(
+				'move_prot',
+				$nt,
+				$comment,
+				array( $this->getPrefixedText() ),
+				$wgUser
+			);
 
 			// reread inserted pr_ids for log relation
 			$insertedPrIds = $dbw->select(
@@ -3820,9 +3931,12 @@ class Title {
 		}
 
 		if ( $createRedirect ) {
-			if ( $this->getNamespace() == NS_CATEGORY && !wfMessage( 'category-move-redirect-override' )->isDisabled() ) {
+			if ( $this->getNamespace() == NS_CATEGORY
+				&& !wfMessage( 'category-move-redirect-override' )->isDisabled()
+			) {
 				$redirectContent = new WikitextContent(
-					wfMessage( 'category-move-redirect-override' )->params( $nt->getPrefixedText() )->inContentLanguage()->plain() );
+					wfMessage( 'category-move-redirect-override' )
+						->params( $nt->getPrefixedText() )->inContentLanguage()->plain() );
 			} else {
 				$contentHandler = ContentHandler::getForTitle( $this );
 				$redirectContent = $contentHandler->makeRedirectContent( $nt,
@@ -4038,7 +4152,10 @@ class Title {
 		$this->mArticleID = $row ? intval( $row->page_id ) : 0;
 		$this->mRedirect = $row ? (bool)$row->page_is_redirect : false;
 		$this->mLatestID = $row ? intval( $row->page_latest ) : false;
-		$this->mContentModel = $row && isset( $row->page_content_model ) ? strval( $row->page_content_model ) : false;
+		$this->mContentModel = $row && isset( $row->page_content_model )
+			? strval( $row->page_content_model )
+			: false;
+
 		if ( !$this->mRedirect ) {
 			return false;
 		}
@@ -4567,7 +4684,9 @@ class Title {
 			// Use always content language to avoid loading hundreds of languages
 			// to get the link color.
 			global $wgContLang;
-			list( $name, ) = MessageCache::singleton()->figureMessage( $wgContLang->lcfirst( $this->getText() ) );
+			list( $name, ) = MessageCache::singleton()->figureMessage(
+				$wgContLang->lcfirst( $this->getText() )
+			);
 			$message = wfMessage( $name )->inLanguage( $wgContLang )->useDatabase( false );
 			return $message->exists();
 		}
@@ -4587,7 +4706,9 @@ class Title {
 			return false;
 		}
 
-		list( $name, $lang ) = MessageCache::singleton()->figureMessage( $wgContLang->lcfirst( $this->getText() ) );
+		list( $name, $lang ) = MessageCache::singleton()->figureMessage(
+			$wgContLang->lcfirst( $this->getText() )
+		);
 		$message = wfMessage( $name )->inLanguage( $lang )->useDatabase( false );
 
 		if ( $message->exists() ) {
@@ -4850,9 +4971,12 @@ class Title {
 		}
 
 		if ( !$this->mPageLanguage || $this->mPageLanguage[1] !== $wgLanguageCode ) {
-			// Note that this may depend on user settings, so the cache should be only per-request.
-			// NOTE: ContentHandler::getPageLanguage() may need to load the content to determine the page language!
-			// Checking $wgLanguageCode hasn't changed for the benefit of unit tests.
+			// Note that this may depend on user settings, so the cache should
+			// be only per-request.
+			// NOTE: ContentHandler::getPageLanguage() may need to load the
+			// content to determine the page language!
+			// Checking $wgLanguageCode hasn't changed for the benefit of unit
+			// tests.
 			$contentHandler = ContentHandler::getForTitle( $this );
 			$langObj = wfGetLangObj( $contentHandler->getPageLanguage( $this ) );
 			$this->mPageLanguage = array( $langObj->getCode(), $wgLanguageCode );
@@ -4885,8 +5009,9 @@ class Title {
 			return $wgLang;
 		}
 
-		//NOTE: can't be cached persistently, depends on user settings
-		//NOTE: ContentHandler::getPageViewLanguage() may need to load the content to determine the page language!
+		// @note Can't be cached persistently, depends on user settings.
+		// @note ContentHandler::getPageViewLanguage() may need to load the
+		//   content to determine the page language!
 		$contentHandler = ContentHandler::getForTitle( $this );
 		$pageLang = $contentHandler->getPageViewLanguage( $this );
 		return $pageLang;

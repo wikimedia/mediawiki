@@ -158,10 +158,14 @@ class StreamFile {
 		# used for thumbnails (thumb.php)
 		if ( $wgTrivialMimeDetection ) {
 			switch ( $ext ) {
-				case 'gif': return 'image/gif';
-				case 'png': return 'image/png';
-				case 'jpg': return 'image/jpeg';
-				case 'jpeg': return 'image/jpeg';
+				case 'gif':
+					return 'image/gif';
+				case 'png':
+					return 'image/png';
+				case 'jpg':
+					return 'image/jpeg';
+				case 'jpeg':
+					return 'image/jpeg';
 			}
 
 			return 'unknown/unknown';
