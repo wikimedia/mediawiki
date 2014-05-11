@@ -199,17 +199,17 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		return true;
 	}
 
-      public function submitClear( $data ) {
+	public function submitClear( $data ) {
 		$current = $this->getWatchlist();
 		$this->clearWatchlist();
 		$this->getUser()->invalidateCache();
-			$this->successMessage = $this->msg( 'watchlistedit-clear-done' )->parse();
+		$this->successMessage = $this->msg( 'watchlistedit-clear-done' )->parse();
 		$this->successMessage .= ' ' . $this->msg( 'watchlistedit-clear-removed' )
 			->numParams( count( $current ) )->parse();
 		$this->showTitles( $current, $this->successMessage );
 
 		return true;
-}
+	}
 
 	/**
 	 * Print out a list of linked titles

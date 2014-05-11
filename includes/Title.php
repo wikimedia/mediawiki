@@ -145,7 +145,7 @@ class Title {
 	private $mNotificationTimestamp = array();
 
 	/** @var bool Whether a page has any subpages */
-	var $mHasSubpages;
+	private $mHasSubpages;
 
 	/** @var bool The (string) language code of the page's language and content code. */
 	private $mPageLanguage = false;

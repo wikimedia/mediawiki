@@ -24,10 +24,20 @@
  * Static accessor class for site_stats and related things
  */
 class SiteStats {
-	static $row, $loaded = false;
-	static $jobs;
-	static $pageCount = array();
-	static $groupMemberCounts = array();
+	/** @var bool|ResultWrapper */
+	private static $row;
+
+	/** @var bool */
+	private static $loaded = false;
+
+	/** @var int */
+	private static $jobs;
+
+	/** @var int[] */
+	private static $pageCount = array();
+
+	/** @var int[] */
+	private static $groupMemberCounts = array();
 
 	static function recache() {
 		self::load( true );
@@ -190,7 +200,10 @@ class SiteStats {
 		if ( !isset( self::$jobs ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			self::$jobs = array_sum( JobQueueGroup::singleton()->getQueueSizes() );
-			/* Zero rows still do single row read for row that doesn't exist, but people are annoyed by that */
+			/**
+			 * Zero rows still do single row read for row that doesn't exist,
+			 * but people are annoyed by that
+			 */
 			if ( self::$jobs == 1 ) {
 				self::$jobs = 0;
 			}
