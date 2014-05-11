@@ -7077,6 +7077,14 @@ $wgCompiledFiles = array();
 $wgPagePropsHaveSortkey = true;
 
 /**
+ * Port where you have HTTPS running
+ * Supports HTTPS on non-standard ports
+ * @see bug 65184
+ * @since 1.24
+ */
+$wgHttpsPort = 443;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
