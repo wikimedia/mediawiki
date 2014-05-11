@@ -39,6 +39,12 @@ mark {
 	color: black;
 }
 
+/* Helper for wbr element on IE 8+; in HTML5, but not supported by default as of IE 11. */
+/* Note canonical HTML5 styles recommend "content: \u200B", but this doesn't work as of IE 11. */
+wbr {
+	display: inline-block;
+}
+
 /* Input types that should follow user direction, like buttons */
 /* TODO: What about buttons in wikipage content ? */
 input[type="submit"],
