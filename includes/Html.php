@@ -695,16 +695,20 @@ class Html {
 	 *
 	 * @param array $params Params to set.
 	 * - selected: [optional] Id of namespace which should be pre-selected
-	 * - all: [optional] Value of item for "all namespaces". If null or unset, no "<option>" is generated to select all namespaces
-	 * - label: text for label to add before the field
-	 * - exclude: [optional] Array of namespace ids to exclude
-	 * - disable: [optional] Array of namespace ids for which the option should be disabled in the selector
+	 * - all: [optional] Value of item for "all namespaces". If null or unset,
+	 *   no "<option>" is generated to select all namespaces.
+	 * - label: text for label to add before the field.
+	 * - exclude: [optional] Array of namespace ids to exclude.
+	 * - disable: [optional] Array of namespace ids for which the option should
+	 *   be disabled in the selector.
 	 * @param array $selectAttribs HTML attributes for the generated select element.
-	 * - id:   [optional], default: 'namespace'
-	 * - name: [optional], default: 'namespace'
+	 * - id:   [optional], default: 'namespace'.
+	 * - name: [optional], default: 'namespace'.
 	 * @return string HTML code to select a namespace.
 	 */
-	public static function namespaceSelector( array $params = array(), array $selectAttribs = array() ) {
+	public static function namespaceSelector( array $params = array(),
+		array $selectAttribs = array()
+	) {
 		global $wgContLang;
 
 		ksort( $selectAttribs );

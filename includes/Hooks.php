@@ -27,7 +27,8 @@
 /**
  * @since 1.18
  */
-class MWHookException extends MWException {}
+class MWHookException extends MWException {
+}
 
 /**
  * Hooks class.
@@ -37,7 +38,6 @@ class MWHookException extends MWException {}
  * @since 1.18
  */
 class Hooks {
-
 	/**
 	 * Array of events mapped to an array of callbacks to be run
 	 * when that event is triggered.

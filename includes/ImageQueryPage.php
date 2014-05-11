@@ -47,7 +47,9 @@ abstract class ImageQueryPage extends QueryPage {
 
 			# $res might contain the whole 1,000 rows, so we read up to
 			# $num [should update this to use a Pager]
+			// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
 			for ( $i = 0; $i < $num && $row = $dbr->fetchObject( $res ); $i++ ) {
+				// @codingStandardsIgnoreEnd
 				$namespace = isset( $row->namespace ) ? $row->namespace : NS_FILE;
 				$title = Title::makeTitleSafe( $namespace, $row->title );
 				if ( $title instanceof Title && $title->getNamespace() == NS_FILE ) {
@@ -60,7 +62,8 @@ abstract class ImageQueryPage extends QueryPage {
 	}
 
 	// Gotta override this since it's abstract
-	function formatResult( $skin, $result ) { }
+	function formatResult( $skin, $result ) {
+	}
 
 	/**
 	 * Get additional HTML to be shown in a results' cell

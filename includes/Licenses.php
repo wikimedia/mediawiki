@@ -28,31 +28,25 @@
  * A License class for use on Special:Upload
  */
 class Licenses extends HTMLFormField {
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	protected $msg;
 
-	/**
-	 * @var array
-	 */
+	/** @var array */
 	protected $licenses = array();
 
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	protected $html;
 	/**#@-*/
 
 	/**
-	 * Constructor
-	 *
 	 * @param array $params
 	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );
 
-		$this->msg = empty( $params['licenses'] ) ? wfMessage( 'licenses' )->inContentLanguage()->plain() : $params['licenses'];
+		$this->msg = empty( $params['licenses'] )
+			? wfMessage( 'licenses' )->inContentLanguage()->plain()
+			: $params['licenses'];
 		$this->selected = null;
 
 		$this->makeLicenses();
@@ -198,19 +192,13 @@ class Licenses extends HTMLFormField {
  * A License class for use on Special:Upload (represents a single type of license).
  */
 class License {
-	/**
-	 * @var string
-	 */
-	var $template;
+	/** @var string */
+	public $template;
+
+	/** @var string */
+	public $text;
 
 	/**
-	 * @var string
-	 */
-	var $text;
-
-	/**
-	 * Constructor
-	 *
 	 * @param string $str license name??
 	 */
 	function __construct( $str ) {
