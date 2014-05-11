@@ -129,7 +129,7 @@ div.thumb {
 
 div.thumbinner {
 	border: 1px solid #ccc;
-	padding: 3px !important;
+	padding: 3px;
 	background-color: #f9f9f9;
 	font-size: 94%;
 	text-align: center;
