@@ -352,10 +352,11 @@ class WikiPage implements Page, IDBAccessObject {
 	 * some source.
 	 *
 	 * @param object|string|int $from One of the following:
-	 *        - A DB query result object
-	 *        - "fromdb" or WikiPage::READ_NORMAL to get from a slave DB
-	 *        - "fromdbmaster" or WikiPage::READ_LATEST to get from the master DB
-	 *        - "forupdate"  or WikiPage::READ_LOCKING to get from the master DB using SELECT FOR UPDATE
+	 *   - A DB query result object.
+	 *   - "fromdb" or WikiPage::READ_NORMAL to get from a slave DB.
+	 *   - "fromdbmaster" or WikiPage::READ_LATEST to get from the master DB.
+	 *   - "forupdate"  or WikiPage::READ_LOCKING to get from the master DB
+	 *     using SELECT FOR UPDATE.
 	 *
 	 * @return void
 	 */
@@ -688,7 +689,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return string|bool The text of the current revision
 	 * @deprecated since 1.21, getContent() should be used instead.
 	 */
-	public function getText( $audience = Revision::FOR_PUBLIC, User $user = null ) { // @todo deprecated, replace usage!
+	public function getText( $audience = Revision::FOR_PUBLIC, User $user = null ) {
 		ContentHandler::deprecated( __METHOD__, '1.21' );
 
 		$this->loadLastEdit();
@@ -1291,9 +1292,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param bool $lastRevIsRedirect If given, will optimize adding and
 	 *   removing rows in redirect table.
 	 * @return bool true on success, false on failure
-	 * @private
 	 */
-	public function updateRevisionOn( $dbw, $revision, $lastRevision = null, $lastRevIsRedirect = null ) {
+	public function updateRevisionOn( $dbw, $revision, $lastRevision = null,
+		$lastRevIsRedirect = null
+	) {
 		global $wgContentHandlerUseDB;
 
 		wfProfileIn( __METHOD__ );
@@ -1477,10 +1479,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @deprecated since 1.21, use replaceSectionContent() instead
 	 */
-	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) {
+	public function replaceSection( $section, $text, $sectionTitle = '',
+		$edittime = null
+	) {
 		ContentHandler::deprecated( __METHOD__, '1.21' );
 
-		if ( strval( $section ) == '' ) { //NOTE: keep condition in sync with condition in replaceSectionContent!
+		//NOTE: keep condition in sync with condition in replaceSectionContent!
+		if ( strval( $section ) == '' ) {
 			// Whole-page edit; let the whole text through
 			return $text;
 		}
@@ -1504,8 +1509,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @return bool
 	 *
-	 * @todo The skin should check this and not offer section functionality if sections are not supported.
-	 * @todo The EditPage should check this and not offer section functionality if sections are not supported.
+	 * @todo The skin should check this and not offer section functionality if
+	 *   sections are not supported.
+	 * @todo The EditPage should check this and not offer section functionality
+	 *   if sections are not supported.
 	 */
 	public function supportsSections() {
 		return $this->getContentHandler()->supportsSections();
@@ -1606,10 +1613,11 @@ class WikiPage implements Page, IDBAccessObject {
 	 *      EDIT_AUTOSUMMARY
 	 *          Fill in blank summaries with generated text where possible
 	 *
-	 * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the article will be detected.
-	 * If EDIT_UPDATE is specified and the article doesn't exist, the function will return an
-	 * edit-gone-missing error. If EDIT_NEW is specified and the article does exist, an
-	 * edit-already-exists error will be returned. These two conditions are also possible with
+	 * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the
+	 * article will be detected. If EDIT_UPDATE is specified and the article
+	 * doesn't exist, the function will return an edit-gone-missing error. If
+	 * EDIT_NEW is specified and the article does exist, an edit-already-exists
+	 * error will be returned. These two conditions are also possible with
 	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
 	 *
 	 * @param bool|int $baseRevId The revision ID this edit was based off, if any
@@ -1617,19 +1625,21 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @throws MWException
 	 * @return Status object. Possible errors:
-	 *     edit-hook-aborted:       The ArticleSave hook aborted the edit but didn't set the fatal flag of $status
-	 *     edit-gone-missing:       In update mode, but the article didn't exist
-	 *     edit-conflict:           In update mode, the article changed unexpectedly
-	 *     edit-no-change:          Warning that the text was the same as before
-	 *     edit-already-exists:     In creation mode, but the article already exists
+	 *   edit-hook-aborted: The ArticleSave hook aborted the edit but didn't
+	 *     set the fatal flag of $status
+	 *   edit-gone-missing: In update mode, but the article didn't exist.
+	 *   edit-conflict: In update mode, the article changed unexpectedly.
+	 *   edit-no-change: Warning that the text was the same as before.
+	 *   edit-already-exists: In creation mode, but the article already exists.
 	 *
-	 *  Extensions may define additional errors.
+	 * Extensions may define additional errors.
 	 *
-	 *  $return->value will contain an associative array with members as follows:
-	 *     new:                     Boolean indicating if the function attempted to create a new article
-	 *     revision:                The revision object for the inserted revision, or null
+	 * $return->value will contain an associative array with members as follows:
+	 *     new: Boolean indicating if the function attempted to create a new article.
+	 *     revision: The revision object for the inserted revision, or null.
 	 *
-	 *  Compatibility note: this function previously returned a boolean value indicating success/failure
+	 * Compatibility note: this function previously returned a boolean value
+	 * indicating success/failure
 	 *
 	 * @deprecated since 1.21: use doEditContent() instead.
 	 */
@@ -1663,29 +1673,32 @@ class WikiPage implements Page, IDBAccessObject {
 	 *      EDIT_AUTOSUMMARY
 	 *          Fill in blank summaries with generated text where possible
 	 *
-	 * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the article will be detected.
-	 * If EDIT_UPDATE is specified and the article doesn't exist, the function will return an
-	 * edit-gone-missing error. If EDIT_NEW is specified and the article does exist, an
-	 * edit-already-exists error will be returned. These two conditions are also possible with
+	 * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the
+	 * article will be detected. If EDIT_UPDATE is specified and the article
+	 * doesn't exist, the function will return an edit-gone-missing error. If
+	 * EDIT_NEW is specified and the article does exist, an edit-already-exists
+	 * error will be returned. These two conditions are also possible with
 	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
 	 *
 	 * @param bool|int $baseRevId The revision ID this edit was based off, if any
 	 * @param User $user The user doing the edit
-	 * @param string $serialisation_format Format for storing the content in the database
+	 * @param string $serialisation_format Format for storing the content in the
+	 *   database.
 	 *
 	 * @throws MWException
 	 * @return Status object. Possible errors:
-	 *     edit-hook-aborted:       The ArticleSave hook aborted the edit but didn't set the fatal flag of $status
-	 *     edit-gone-missing:       In update mode, but the article didn't exist
-	 *     edit-conflict:           In update mode, the article changed unexpectedly
-	 *     edit-no-change:          Warning that the text was the same as before
-	 *     edit-already-exists:     In creation mode, but the article already exists
+	 *     edit-hook-aborted: The ArticleSave hook aborted the edit but didn't
+	 *       set the fatal flag of $status.
+	 *     edit-gone-missing: In update mode, but the article didn't exist.
+	 *     edit-conflict: In update mode, the article changed unexpectedly.
+	 *     edit-no-change: Warning that the text was the same as before.
+	 *     edit-already-exists: In creation mode, but the article already exists.
 	 *
 	 *  Extensions may define additional errors.
 	 *
 	 *  $return->value will contain an associative array with members as follows:
-	 *     new:                     Boolean indicating if the function attempted to create a new article
-	 *     revision:                The revision object for the inserted revision, or null
+	 *     new: Boolean indicating if the function attempted to create a new article.
+	 *     revision: The revision object for the inserted revision, or null.
 	 *
 	 * @since 1.21
 	 */
@@ -2020,7 +2033,8 @@ class WikiPage implements Page, IDBAccessObject {
 		$options = $this->getContentHandler()->makeParserOptions( $context );
 
 		if ( $this->getTitle()->isConversionTable() ) {
-			// @todo ConversionTable should become a separate content model, so we don't need special cases like this one.
+			// @todo ConversionTable should become a separate content model, so
+			// we don't need special cases like this one.
 			$options->disableContentConversion();
 		}
 
@@ -2087,7 +2101,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$edit->format = $serialization_format;
 		$edit->popts = $this->makeParserOptions( 'canonical' );
-		$edit->output = $edit->pstContent ? $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts ) : null;
+		$edit->output = $edit->pstContent
+			? $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts )
+			: null;
 
 		$edit->newContent = $content;
 		$edit->oldContent = $this->getContent( Revision::RAW );
@@ -2298,7 +2314,9 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param User $user The user updating the restrictions
 	 * @return Status
 	 */
-	public function doUpdateRestrictions( array $limit, array $expiry, &$cascade, $reason, User $user ) {
+	public function doUpdateRestrictions( array $limit, array $expiry,
+		&$cascade, $reason, User $user
+	) {
 		global $wgCascadingRestrictionLevels, $wgContLang;
 
 		if ( wfReadOnly() ) {
@@ -2384,7 +2402,9 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 
 			// Only certain restrictions can cascade...
-			$editrestriction = isset( $limit['edit'] ) ? array( $limit['edit'] ) : $this->mTitle->getRestrictions( 'edit' );
+			$editrestriction = isset( $limit['edit'] )
+				? array( $limit['edit'] )
+				: $this->mTitle->getRestrictions( 'edit' );
 			foreach ( array_keys( $editrestriction, 'sysop' ) as $key ) {
 				$editrestriction[$key] = 'editprotected'; // backwards compatibility
 			}
@@ -2407,7 +2427,15 @@ class WikiPage implements Page, IDBAccessObject {
 
 			// insert null revision to identify the page protection change as edit summary
 			$latest = $this->getLatest();
-			$nullRevision = $this->insertProtectNullRevision( $revCommentMsg, $limit, $expiry, $cascade, $reason, $user );
+			$nullRevision = $this->insertProtectNullRevision(
+				$revCommentMsg,
+				$limit,
+				$expiry,
+				$cascade,
+				$reason,
+				$user
+			);
+
 			if ( $nullRevision === null ) {
 				return Status::newFatal( 'no-null-revision', $this->mTitle->getPrefixedText() );
 			}
@@ -2509,7 +2537,9 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param User|null $user
 	 * @return Revision|null Null on error
 	 */
-	public function insertProtectNullRevision( $revCommentMsg, array $limit, array $expiry, $cascade, $reason, $user = null ) {
+	public function insertProtectNullRevision( $revCommentMsg, array $limit,
+		array $expiry, $cascade, $reason, $user = null
+	) {
 		global $wgContLang;
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -2526,7 +2556,8 @@ class WikiPage implements Page, IDBAccessObject {
 		$protectDescription = $this->protectDescription( $limit, $expiry );
 		if ( $protectDescription ) {
 			$editComment .= wfMessage( 'word-separator' )->inContentLanguage()->text();
-			$editComment .= wfMessage( 'parentheses' )->params( $protectDescription )->inContentLanguage()->text();
+			$editComment .= wfMessage( 'parentheses' )->params( $protectDescription )
+				->inContentLanguage()->text();
 		}
 		if ( $cascade ) {
 			$editComment .= wfMessage( 'word-separator' )->inContentLanguage()->text();
@@ -2825,8 +2856,9 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Do some database updates after deletion
 	 *
 	 * @param int $id page_id value of the page being deleted
-	 * @param Content $content Optional page content to be used when determining the required updates.
-	 *   This may be needed because $this->getContent() may already return null when the page proper was deleted.
+	 * @param Content $content Optional page content to be used when determining
+	 *   the required updates. This may be needed because $this->getContent()
+	 *   may already return null when the page proper was deleted.
 	 */
 	public function doDeleteUpdates( $id, Content $content = null ) {
 		// update site status
@@ -2963,7 +2995,9 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $s === false ) {
 			// No one else ever edited this page
 			return array( array( 'cantrollback' ) );
-		} elseif ( $s->rev_deleted & Revision::DELETED_TEXT || $s->rev_deleted & Revision::DELETED_USER ) {
+		} elseif ( $s->rev_deleted & Revision::DELETED_TEXT
+			|| $s->rev_deleted & Revision::DELETED_USER
+		) {
 			// Only admins can see this text
 			return array( array( 'notvisiblerev' ) );
 		}
@@ -3031,7 +3065,13 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Actually store the edit
-		$status = $this->doEditContent( $target->getContent(), $summary, $flags, $target->getId(), $guser );
+		$status = $this->doEditContent(
+			$target->getContent(),
+			$summary,
+			$flags,
+			$target->getId(),
+			$guser
+		);
 
 		if ( !$status->isOK() ) {
 			return $status->getErrorsArray();
@@ -3138,7 +3178,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Purge caches on page update etc
 	 *
 	 * @param Title $title
-	 * @todo Verify that $title is always a Title object (and never false or null), add Title hint to parameter $title
+	 * @todo Verify that $title is always a Title object (and never false or
+	 *   null), add Title hint to parameter $title.
 	 */
 	public static function onArticleEdit( $title ) {
 		// Invalidate caches of articles which include this page
@@ -3220,7 +3261,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @deprecated since 1.21, use ContentHandler::getAutosummary() instead
 	 */
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
-		// NOTE: stub for backwards-compatibility. assumes the given text is wikitext. will break horribly if it isn't.
+		// NOTE: stub for backwards-compatibility. assumes the given text is
+		// wikitext. will break horribly if it isn't.
 
 		ContentHandler::deprecated( __METHOD__, '1.21' );
 
@@ -3370,7 +3412,8 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( count( $links_diff ) > 0 ) {
 			// Whee, link updates time.
-			// Note: we are only interested in links here. We don't need to get other DataUpdate items from the parser output.
+			// Note: we are only interested in links here. We don't need to get
+			// other DataUpdate items from the parser output.
 			$u = new LinksUpdate( $this->mTitle, $parserOutput, false );
 			$u->doUpdate();
 		}
@@ -3457,10 +3500,12 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Returns a list of updates to be performed when this page is deleted. The updates should remove any information
-	 * about this page from secondary data stores such as links tables.
+	 * Returns a list of updates to be performed when this page is deleted. The
+	 * updates should remove any information about this page from secondary data
+	 * stores such as links tables.
 	 *
-	 * @param Content|null $content Optional Content object for determining the necessary updates
+	 * @param Content|null $content Optional Content object for determining the
+	 *   necessary updates.
 	 * @return array An array of DataUpdates objects
 	 */
 	public function getDeletionUpdates( Content $content = null ) {
@@ -3483,57 +3528,42 @@ class WikiPage implements Page, IDBAccessObject {
 }
 
 class PoolWorkArticleView extends PoolCounterWork {
-
-	/**
-	 * @var Page
-	 */
+	/** @var Page */
 	private $page;
 
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	private $cacheKey;
 
-	/**
-	 * @var int
-	 */
+	/** @var int */
 	private $revid;
 
-	/**
-	 * @var ParserOptions
-	 */
+	/** @var ParserOptions */
 	private $parserOptions;
 
-	/**
-	 * @var Content|null
-	 */
+	/** @var Content|null */
 	private $content = null;
 
-	/**
-	 * @var ParserOutput|bool
-	 */
+	/** @var ParserOutput|bool */
 	private $parserOutput = false;
 
-	/**
-	 * @var bool
-	 */
+	/** @var bool */
 	private $isDirty = false;
 
-	/**
-	 * @var Status|bool
-	 */
+	/** @var Status|bool */
 	private $error = false;
 
 	/**
-	 * Constructor
-	 *
 	 * @param Page $page
-	 * @param int $revid ID of the revision being parsed
-	 * @param bool $useParserCache Whether to use the parser cache
-	 * @param ParserOptions $parserOptions ParserOptions to use for the parse operation
-	 * @param Content|string $content Content to parse or null to load it; may also be given as a wikitext string, for BC
+	 * @param int $revid ID of the revision being parsed.
+	 * @param bool $useParserCache Whether to use the parser cache.
+	 * @param ParserOptions $parserOptions ParserOptions to use for the parse
+	 *   operation.
+	 * @param Content|string $content Content to parse or null to load it; may
+	 *   also be given as a wikitext string, for BC.
 	 */
-	public function __construct( Page $page, ParserOptions $parserOptions, $revid, $useParserCache, $content = null ) {
+	public function __construct( Page $page, ParserOptions $parserOptions,
+		$revid, $useParserCache, $content = null
+	) {
 		if ( is_string( $content ) ) { // BC: old style call
 			$modelId = $page->getRevision()->getContentModel();
 			$format = $page->getRevision()->getContentFormat();
@@ -3611,7 +3641,11 @@ class PoolWorkArticleView extends PoolCounterWork {
 		$cacheTime = wfTimestampNow();
 
 		$time = - microtime( true );
-		$this->parserOutput = $content->getParserOutput( $this->page->getTitle(), $this->revid, $this->parserOptions );
+		$this->parserOutput = $content->getParserOutput(
+			$this->page->getTitle(),
+			$this->revid,
+			$this->parserOptions
+		);
 		$time += microtime( true );
 
 		// Timing hack

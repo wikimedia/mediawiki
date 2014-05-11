@@ -696,7 +696,9 @@ class WebRequest {
 	public function getRequestURL() {
 		if ( isset( $_SERVER['REQUEST_URI'] ) && strlen( $_SERVER['REQUEST_URI'] ) ) {
 			$base = $_SERVER['REQUEST_URI'];
-		} elseif ( isset( $_SERVER['HTTP_X_ORIGINAL_URL'] ) && strlen( $_SERVER['HTTP_X_ORIGINAL_URL'] ) ) {
+		} elseif ( isset( $_SERVER['HTTP_X_ORIGINAL_URL'] )
+			&& strlen( $_SERVER['HTTP_X_ORIGINAL_URL'] )
+		) {
 			// Probably IIS; doesn't set REQUEST_URI
 			$base = $_SERVER['HTTP_X_ORIGINAL_URL'];
 		} elseif ( isset( $_SERVER['SCRIPT_NAME'] ) ) {
@@ -1010,9 +1012,9 @@ class WebRequest {
 We can't serve non-HTML content from the URL you have requested, because
 Internet Explorer would interpret it as an incorrect and potentially dangerous
 content type.</p>
-<p>Instead, please use <a href="$encUrl">this URL</a>, which is the same as the URL you have requested, except that
-"&amp;*" is appended. This prevents Internet Explorer from seeing a bogus file
-extension.
+<p>Instead, please use <a href="$encUrl">this URL</a>, which is the same as the
+URL you have requested, except that "&amp;*" is appended. This prevents Internet
+Explorer from seeing a bogus file extension.
 </p>
 </body>
 </html>
@@ -1023,14 +1025,16 @@ HTML;
 
 	/**
 	 * Parse the Accept-Language header sent by the client into an array
-	 * @return array array( languageCode => q-value ) sorted by q-value in descending order then
-	 *                                                appearing time in the header in ascending order.
+	 *
+	 * @return array array( languageCode => q-value ) sorted by q-value in
+	 *   descending order then appearing time in the header in ascending order.
 	 * May contain the "language" '*', which applies to languages other than those explicitly listed.
 	 * This is aligned with rfc2616 section 14.4
 	 * Preference for earlier languages appears in rfc3282 as an extension to HTTP/1.1.
 	 */
 	public function getAcceptLang() {
-		// Modified version of code found at http://www.thefutureoftheweb.com/blog/use-accept-language-header
+		// Modified version of code found at
+		// http://www.thefutureoftheweb.com/blog/use-accept-language-header
 		$acceptLang = $this->getHeader( 'Accept-Language' );
 		if ( !$acceptLang ) {
 			return array();
@@ -1041,8 +1045,11 @@ HTML;
 
 		// Break up string into pieces (languages and q factors)
 		$lang_parse = null;
-		preg_match_all( '/([a-z]{1,8}(-[a-z]{1,8})*|\*)\s*(;\s*q\s*=\s*(1(\.0{0,3})?|0(\.[0-9]{0,3})?)?)?/',
-			$acceptLang, $lang_parse );
+		preg_match_all(
+			'/([a-z]{1,8}(-[a-z]{1,8})*|\*)\s*(;\s*q\s*=\s*(1(\.0{0,3})?|0(\.[0-9]{0,3})?)?)?/',
+			$acceptLang,
+			$lang_parse
+		);
 
 		if ( !count( $lang_parse[1] ) ) {
 			return array();
@@ -1084,7 +1091,8 @@ HTML;
 		}
 
 		if ( is_array( $_SERVER['REMOTE_ADDR'] ) || strpos( $_SERVER['REMOTE_ADDR'], ',' ) !== false ) {
-			throw new MWException( __METHOD__ . " : Could not determine the remote IP address due to multiple values." );
+			throw new MWException( __METHOD__
+				. " : Could not determine the remote IP address due to multiple values." );
 		} else {
 			$ipchain = $_SERVER['REMOTE_ADDR'];
 		}
@@ -1303,7 +1311,9 @@ class FauxRequest extends WebRequest {
 	 * @param string $protocol 'http' or 'https'
 	 * @throws MWException
 	 */
-	public function __construct( $data = array(), $wasPosted = false, $session = null, $protocol = 'http' ) {
+	public function __construct( $data = array(), $wasPosted = false,
+		$session = null, $protocol = 'http'
+	) {
 		if ( is_array( $data ) ) {
 			$this->data = $data;
 		} else {
