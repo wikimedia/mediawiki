@@ -45,7 +45,7 @@
  * Also this should be on a server plenty of RAM for the working set to avoid evictions.
  * Evictions could temporarily allow wait queues to double in size or temporarily cause
  * pools to appear as full when they are not. Using volatile-ttl and bumping memory-samples
- * and redis.conf can be helpful otherwise.
+ * in redis.conf can be helpful otherwise.
  *
  * @ingroup Redis
  * @since 1.23
