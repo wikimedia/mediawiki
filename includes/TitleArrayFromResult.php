@@ -25,12 +25,12 @@
  */
 
 class TitleArrayFromResult extends TitleArray implements Countable {
+	/** @var ResultWrapper */
+	public $res;
 
-	/**
-	 * @var ResultWrapper
-	 */
-	var $res;
-	var $key, $current;
+	public $key;
+
+	public $current;
 
 	function __construct( $res ) {
 		$this->res = $res;

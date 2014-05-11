@@ -39,7 +39,8 @@ class StatCounter {
 	/** @var array */
 	protected $deltas = array(); // (key => count)
 
-	protected function __construct() {}
+	protected function __construct() {
+	}
 
 	/**
 	 * @return StatCounter
