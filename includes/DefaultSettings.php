@@ -4113,6 +4113,12 @@ $wgUserrightsInterwikiDelimiter = '@';
  */
 $wgSecureLogin = false;
 
+/**
+ * Port where you have HTTPS running
+ * https://gerrit.wikimedia.org/r/#/c/132702/
+ */
+$wgHttpsPort = 443;
+
 /** @} */ # end user accounts }
 
 /************************************************************************//**

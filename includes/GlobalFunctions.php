@@ -497,7 +497,8 @@ function wfAppendQuery( $url, $query ) {
  *    no valid URL can be constructed
  */
 function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
-	global $wgServer, $wgCanonicalServer, $wgInternalServer, $wgRequest;
+	global $wgServer, $wgCanonicalServer, $wgInternalServer, $wgRequest,
+		$wgHttpsPort;
 	if ( $defaultProto === PROTO_CANONICAL ) {
 		$serverUrl = $wgCanonicalServer;
 	} elseif ( $defaultProto === PROTO_INTERNAL && $wgInternalServer !== false ) {
@@ -536,6 +537,13 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 	}
 
 	$bits = wfParseUrl( $url );
+
+	// ensure proper port for HTTPS arrives in URL
+	// https://bugzilla.wikimedia.org/show_bug.cgi?id=65184
+	if ( $defaultProto === PROTO_HTTPS ) {
+		$bits['port'] = $wgHttpsPort;
+	}
+
 	if ( $bits && isset( $bits['path'] ) ) {
 		$bits['path'] = wfRemoveDotSegments( $bits['path'] );
 		return wfAssembleUrl( $bits );
