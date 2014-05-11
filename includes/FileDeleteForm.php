@@ -83,7 +83,10 @@ class FileDeleteForm {
 		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $wgUser->isAllowed( 'suppressrevision' );
 
 		if ( $this->oldimage ) {
-			$this->oldfile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $this->title, $this->oldimage );
+			$this->oldfile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName(
+				$this->title,
+				$this->oldimage
+			);
 		}
 
 		if ( !self::haveDeletableFile( $this->file, $this->oldfile, $this->oldimage ) ) {
@@ -107,11 +110,20 @@ class FileDeleteForm {
 				$reason = $deleteReasonList;
 			}
 
-			$status = self::doDelete( $this->title, $this->file, $this->oldimage, $reason, $suppress, $wgUser );
+			$status = self::doDelete(
+				$this->title,
+				$this->file,
+				$this->oldimage,
+				$reason,
+				$suppress,
+				$wgUser
+			);
 
 			if ( !$status->isGood() ) {
 				$wgOut->addHTML( '<h2>' . $this->prepareMessage( 'filedeleteerror-short' ) . "</h2>\n" );
-				$wgOut->addWikiText( '<div class="error">' . $status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' ) . '</div>' );
+				$wgOut->addWikiText( '<div class="error">' .
+					$status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' )
+					. '</div>' );
 			}
 			if ( $status->ok ) {
 				$wgOut->setPageTitle( wfMessage( 'actioncomplete' ) );
@@ -141,7 +153,9 @@ class FileDeleteForm {
 	 * @throws MWException
 	 * @return bool|Status
 	 */
-	public static function doDelete( &$title, &$file, &$oldimage, $reason, $suppress, User $user = null ) {
+	public static function doDelete( &$title, &$file, &$oldimage, $reason,
+		$suppress, User $user = null
+	) {
 		if ( $user === null ) {
 			global $wgUser;
 			$user = $wgUser;
@@ -188,7 +202,8 @@ class FileDeleteForm {
 					}
 				}
 			} catch ( MWException $e ) {
-				// rollback before returning to prevent UI from displaying incorrect "View or restore N deleted edits?"
+				// Rollback before returning to prevent UI from displaying
+				// incorrect "View or restore N deleted edits?"
 				$dbw->rollback( __METHOD__ );
 				throw $e;
 			}
@@ -266,8 +281,14 @@ class FileDeleteForm {
 			<tr>
 				<td></td>
 				<td class='mw-submit'>" .
-					Xml::submitButton( wfMessage( 'filedelete-submit' )->text(),
-						array( 'name' => 'mw-filedelete-submit', 'id' => 'mw-filedelete-submit', 'tabindex' => '4' ) ) .
+					Xml::submitButton(
+						wfMessage( 'filedelete-submit' )->text(),
+						array(
+							'name' => 'mw-filedelete-submit',
+							'id' => 'mw-filedelete-submit',
+							'tabindex' => '4'
+						)
+					) .
 				"</td>
 			</tr>" .
 			Xml::closeElement( 'table' ) .
@@ -309,8 +330,10 @@ class FileDeleteForm {
 	private function prepareMessage( $message ) {
 		global $wgLang;
 		if ( $this->oldimage ) {
+			# Message keys used:
+			# 'filedelete-intro-old', 'filedelete-nofile-old', 'filedelete-success-old'
 			return wfMessage(
-				"{$message}-old", # To ensure grep will find them: 'filedelete-intro-old', 'filedelete-nofile-old', 'filedelete-success-old'
+				"{$message}-old",
 				wfEscapeWikiText( $this->title->getText() ),
 				$wgLang->date( $this->getTimestamp(), true ),
 				$wgLang->time( $this->getTimestamp(), true ),

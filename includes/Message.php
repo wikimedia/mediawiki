@@ -960,7 +960,14 @@ class Message {
 	 * @return string Wikitext parsed into HTML.
 	 */
 	protected function parseText( $string ) {
-		$out = MessageCache::singleton()->parse( $string, $this->title, /*linestart*/true, $this->interface, $this->language );
+		$out = MessageCache::singleton()->parse(
+			$string,
+			$this->title,
+			 /*linestart*/true,
+			$this->interface,
+			$this->language
+		);
+
 		return $out instanceof ParserOutput ? $out->getText() : $out;
 	}
 
@@ -974,7 +981,12 @@ class Message {
 	 * @return string Wikitext with {{-constructs replaced with their values.
 	 */
 	protected function transformText( $string ) {
-		return MessageCache::singleton()->transform( $string, $this->interface, $this->language, $this->title );
+		return MessageCache::singleton()->transform(
+			$string,
+			$this->interface,
+			$this->language,
+			$this->title
+		);
 	}
 
 	/**

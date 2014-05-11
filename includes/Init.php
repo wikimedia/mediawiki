@@ -31,7 +31,7 @@
  * deprecated.
  */
 class MWInit {
-	static $compilerVersion;
+	private static $compilerVersion;
 
 	/**
 	 * @deprecated since 1.22
