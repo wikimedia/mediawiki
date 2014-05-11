@@ -383,7 +383,7 @@ class ImagePage extends Article {
 						// the current thumbnail's size ($width/$height)
 						// since that is added to the message separately, so
 						// it can be denoted as the current size being shown.
-						if ( $size[0] <= $width_orig && $size[1] <= $height_orig
+						if ( ( $size[0] <= $width_orig || $size[1] <= $height_orig )
 							&& $size[0] != $width && $size[1] != $height
 						) {
 							$sizeLink = $this->makeSizeLink( $params, $size[0], $size[1] );
