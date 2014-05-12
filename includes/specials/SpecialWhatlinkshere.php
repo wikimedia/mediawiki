@@ -426,7 +426,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		# Target input
 		$f .= Xml::inputLabel( $this->msg( 'whatlinkshere-page' )->text(), 'target',
-			'mw-whatlinkshere-target', 40, $target );
+			'mw-whatlinkshere-target', 40, $target, array( 'class' => 'mw-searchInput' ) );
 
 		$f .= ' ';
 
