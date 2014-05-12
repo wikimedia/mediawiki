@@ -532,6 +532,7 @@ class MediaWiki {
 		// Note: Do this after $wgTitle is setup, otherwise the hooks run from
 		// isLoggedIn() will do all sorts of weird stuff.
 		if (
+			$request->getProtocol() == 'http' &&
 			(
 				$request->getCookie( 'forceHTTPS', '' ) ||
 				// check for prefixed version for currently logged in users
@@ -541,34 +542,35 @@ class MediaWiki {
 					$this->context->getUser()->isLoggedIn()
 					&& $this->context->getUser()->requiresHTTPS()
 				)
-			) &&
-			$request->getProtocol() == 'http'
+			)
 		) {
 			$oldUrl = $request->getFullRequestURL();
 			$redirUrl = preg_replace( '#^http://#', 'https://', $oldUrl );
 
-			if ( $request->wasPosted() ) {
-				// This is weird and we'd hope it almost never happens. This
-				// means that a POST came in via HTTP and policy requires us
-				// redirecting to HTTPS. It's likely such a request is going
-				// to fail due to post data being lost, but let's try anyway
-				// and just log the instance.
-				//
-				// @todo @fixme See if we could issue a 307 or 308 here, need
-				// to see how clients (automated & browser) behave when we do
-				wfDebugLog( 'RedirectedPosts', "Redirected from HTTP to HTTPS: $oldUrl" );
-			}
+			if ( wfRunHooks( 'BeforeHttpsRedirect', array( $this->context, &$redirUrl ) ) ) {
 
-			// Setup dummy Title, otherwise OutputPage::redirect will fail
-			$title = Title::newFromText( NS_MAIN, 'REDIR' );
-			$this->context->setTitle( $title );
-			$output = $this->context->getOutput();
-			// Since we only do this redir to change proto, always send a vary header
-			$output->addVaryHeader( 'X-Forwarded-Proto' );
-			$output->redirect( $redirUrl );
-			$output->output();
-			wfProfileOut( __METHOD__ );
-			return;
+				if ( $request->wasPosted() ) {
+					// This is weird and we'd hope it almost never happens. This
+					// means that a POST came in via HTTP and policy requires us
+					// redirecting to HTTPS. It's likely such a request is going
+					// to fail due to post data being lost, but let's try anyway
+					// and just log the instance.
+					//
+					// @todo @fixme See if we could issue a 307 or 308 here, need
+					// to see how clients (automated & browser) behave when we do
+					wfDebugLog( 'RedirectedPosts', "Redirected from HTTP to HTTPS: $oldUrl" );
+				}
+				// Setup dummy Title, otherwise OutputPage::redirect will fail
+				$title = Title::newFromText( NS_MAIN, 'REDIR' );
+				$this->context->setTitle( $title );
+				$output = $this->context->getOutput();
+				// Since we only do this redir to change proto, always send a vary header
+				$output->addVaryHeader( 'X-Forwarded-Proto' );
+				$output->redirect( $redirUrl );
+				$output->output();
+				wfProfileOut( __METHOD__ );
+				return;
+			}
 		}
 
 		if ( $wgUseFileCache && $title->getNamespace() >= 0 ) {
