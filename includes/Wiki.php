@@ -532,6 +532,7 @@ class MediaWiki {
 		// Note: Do this after $wgTitle is setup, otherwise the hooks run from
 		// isLoggedIn() will do all sorts of weird stuff.
 		if (
+			$request->getProtocol() == 'http' &&
 			(
 				$request->getCookie( 'forceHTTPS', '' ) ||
 				// check for prefixed version for currently logged in users
@@ -541,8 +542,7 @@ class MediaWiki {
 					$this->context->getUser()->isLoggedIn()
 					&& $this->context->getUser()->requiresHTTPS()
 				)
-			) &&
-			$request->getProtocol() == 'http'
+			)
 		) {
 			$oldUrl = $request->getFullRequestURL();
 			$redirUrl = preg_replace( '#^http://#', 'https://', $oldUrl );
@@ -559,16 +559,18 @@ class MediaWiki {
 				wfDebugLog( 'RedirectedPosts', "Redirected from HTTP to HTTPS: $oldUrl" );
 			}
 
-			// Setup dummy Title, otherwise OutputPage::redirect will fail
-			$title = Title::newFromText( NS_MAIN, 'REDIR' );
-			$this->context->setTitle( $title );
-			$output = $this->context->getOutput();
-			// Since we only do this redir to change proto, always send a vary header
-			$output->addVaryHeader( 'X-Forwarded-Proto' );
-			$output->redirect( $redirUrl );
-			$output->output();
-			wfProfileOut( __METHOD__ );
-			return;
+			if ( wfRunHooks( 'BeforeHttpsRedirect', array( $this->context, &$redirUrl ) ) ) {
+				// Setup dummy Title, otherwise OutputPage::redirect will fail
+				$title = Title::newFromText( NS_MAIN, 'REDIR' );
+				$this->context->setTitle( $title );
+				$output = $this->context->getOutput();
+				// Since we only do this redir to change proto, always send a vary header
+				$output->addVaryHeader( 'X-Forwarded-Proto' );
+				$output->redirect( $redirUrl );
+				$output->output();
+				wfProfileOut( __METHOD__ );
+				return;
+			}
 		}
 
 		if ( $wgUseFileCache && $title->getNamespace() >= 0 ) {
