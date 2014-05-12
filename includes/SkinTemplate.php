@@ -111,8 +111,8 @@ class SkinTemplate extends Skin {
 	 * roughly equivalent to PHPTAL 0.7.
 	 *
 	 * @param string $classname
-	 * @param string $repository Subdirectory where we keep template files
-	 * @param string $cache_dir
+	 * @param bool|string $repository Subdirectory where we keep template files
+	 * @param bool|string $cache_dir
 	 * @return QuickTemplate
 	 * @private
 	 */
@@ -1212,10 +1212,10 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * an array of edit links by default used for the tabs
+	 * @param $content_navigation
 	 * @return array
-	 * @private
 	 */
-	function buildContentActionUrls( $content_navigation ) {
+	private function buildContentActionUrls( $content_navigation ) {
 
 		wfProfileIn( __METHOD__ );
 
@@ -1226,9 +1226,7 @@ class SkinTemplate extends Skin {
 		$content_actions = array();
 
 		foreach ( $content_navigation as $links ) {
-
 			foreach ( $links as $key => $value ) {
-
 				if ( isset( $value['redundant'] ) && $value['redundant'] ) {
 					// Redundant tabs are dropped from content_actions
 					continue;
@@ -1249,9 +1247,7 @@ class SkinTemplate extends Skin {
 				}
 
 				$content_actions[$key] = $value;
-
 			}
-
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -1259,10 +1255,9 @@ class SkinTemplate extends Skin {
 		return $content_actions;
 	}
 
-	/**
+ 	/**
 	 * build array of common navigation links
 	 * @return array
-	 * @private
 	 */
 	protected function buildNavUrls() {
 		global $wgUploadNavigationUrl;
@@ -1379,9 +1374,8 @@ class SkinTemplate extends Skin {
 	/**
 	 * Generate strings used for xml 'id' names
 	 * @return string
-	 * @private
 	 */
-	function getNameSpaceKey() {
+	protected function getNameSpaceKey() {
 		return $this->getTitle()->getNamespaceKey();
 	}
 }
@@ -2048,6 +2042,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * If you pass "flat" as an option then the returned array will be a flat array
 	 * of footer icons instead of a key/value array of footerlinks arrays broken
 	 * up into categories.
+	 * @param string $option
 	 * @return array|mixed
 	 */
 	function getFooterLinks( $option = null ) {
@@ -2087,6 +2082,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * in the list of footer icons. This is mostly useful for skins which only
 	 * display the text from footericons instead of the images and don't want a
 	 * duplicate copyright statement because footerlinks already rendered one.
+	 * @param string $option
 	 * @return string
 	 */
 	function getFooterIcons( $option = null ) {
@@ -2129,5 +2125,4 @@ abstract class BaseTemplate extends QuickTemplate {
 <?php $this->html( 'reporttime' ) ?>
 <?php
 	}
-
 }
