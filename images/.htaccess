@@ -1,6 +1,7 @@
 # Protect against bug 28235
 <IfModule rewrite_module>
 	RewriteEngine On
+  RewriteOptions inherit
 	RewriteCond %{QUERY_STRING} \.[^\\/:*?\x22<>|%]+(#|\?|$) [nocase]
 	RewriteRule . - [forbidden]
 </IfModule>
