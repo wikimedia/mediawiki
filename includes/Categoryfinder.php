@@ -43,22 +43,30 @@
  *
  */
 class Categoryfinder {
-	var $articles = array(); # The original article IDs passed to the seed function
-	var $deadend = array(); # Array of DBKEY category names for categories that don't have a page
-	var $parents = array(); # Array of [ID => array()]
-	var $next = array(); # Array of article/category IDs
-	var $targets = array(); # Array of DBKEY category names
-	var $name2id = array();
-	var $mode; # "AND" or "OR"
+	/** @var int[] The original article IDs passed to the seed function */
+	protected $articles = array();
 
-	/**
-	 * @var DatabaseBase
-	 */
-	var $dbr; # Read-DB slave
+	/** @var array Array of DBKEY category names for categories that don't have a page */
+	protected $deadend = array();
 
-	/**
-	 * Constructor (currently empty).
-	 */
+	/** @var array Array of [ID => array()] */
+	protected $parents = array();
+
+	/** @var array Array of article/category IDs */
+	protected $next = array();
+
+	/** @var array Array of DBKEY category names */
+	protected $targets = array();
+
+	/** @var array */
+	protected $name2id = array();
+
+	/** @var  "AND" or "OR" */
+	protected $mode;
+
+	/** @var DatabaseBase Read-DB slave */
+	protected $dbr;
+
 	function __construct() {
 	}
 

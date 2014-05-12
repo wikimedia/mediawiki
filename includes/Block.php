@@ -20,16 +20,37 @@
  * @file
  */
 class Block {
-	/* public*/ var $mReason, $mTimestamp, $mAuto, $mExpiry, $mHideName;
+	/** @var string */
+	public $mReason;
 
-	protected
-		$mId,
-		$mFromMaster,
+	/** @var bool|string */
+	public $mTimestamp;
 
-		$mBlockEmail,
-		$mDisableUsertalk,
-		$mCreateAccount,
-		$mParentBlockId;
+	/** @var int */
+	public $mAuto;
+
+	/** @var bool|string */
+	public $mExpiry;
+
+	public $mHideName;
+
+	/** @var int */
+	public $mParentBlockId;
+
+	/** @var int */
+	protected $mId;
+
+	/** @var bool */
+	protected $mFromMaster;
+
+	/** @var bool */
+	protected $mBlockEmail;
+
+	/** @var bool */
+	protected $mDisableUsertalk;
+
+	/** @var bool */
+	protected $mCreateAccount;
 
 	/** @var User|string */
 	protected $target;
@@ -57,9 +78,8 @@ class Block {
 	const TYPE_ID = 5;
 
 	/**
-	 * Constructor
-	 * @todo FIXME: Don't know what the best format to have for this constructor is, but fourteen
-	 * optional parameters certainly isn't it.
+	 * @todo FIXME: Don't know what the best format to have for this constructor
+	 *   is, but fourteen optional parameters certainly isn't it.
 	 */
 	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
 		$timestamp = 0, $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0,

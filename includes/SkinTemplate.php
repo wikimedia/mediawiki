@@ -1255,7 +1255,7 @@ class SkinTemplate extends Skin {
 		return $content_actions;
 	}
 
- 	/**
+	/**
 	 * build array of common navigation links
 	 * @return array
 	 */

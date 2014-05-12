@@ -59,18 +59,40 @@
  * @ingroup Parser
  */
 class MagicWord {
-	/**#@+
-	 * @private
-	 */
-	var $mId, $mSynonyms, $mCaseSensitive;
-	var $mRegex = '';
-	var $mRegexStart = '';
-	var $mRegexStartToEnd = '';
-	var $mBaseRegex = '';
-	var $mVariableRegex = '';
-	var $mVariableStartToEndRegex = '';
-	var $mModified = false;
-	var $mFound = false;
+	/**#@-*/
+
+	/** @var int */
+	public $mId;
+
+	/** @var array */
+	public $mSynonyms;
+
+	/** @var bool */
+	public $mCaseSensitive;
+
+	/** @var string */
+	private $mRegex = '';
+
+	/** @var string */
+	private $mRegexStart = '';
+
+	/** @var string */
+	private $mRegexStartToEnd = '';
+
+	/** @var string */
+	private $mBaseRegex = '';
+
+	/** @var string */
+	private $mVariableRegex = '';
+
+	/** @var string */
+	private $mVariableStartToEndRegex = '';
+
+	/** @var bool */
+	private $mModified = false;
+
+	/** @var bool */
+	private $mFound = false;
 
 	static public $mVariableIDsInitialised = false;
 	static public $mVariableIDs = array(
@@ -507,7 +529,12 @@ class MagicWord {
 	 */
 	function matchAndRemove( &$text ) {
 		$this->mFound = false;
-		$text = preg_replace_callback( $this->getRegex(), array( &$this, 'pregRemoveAndRecord' ), $text );
+		$text = preg_replace_callback(
+			$this->getRegex(),
+			array( &$this, 'pregRemoveAndRecord' ),
+			$text
+		);
+
 		return $this->mFound;
 	}
 
@@ -517,7 +544,12 @@ class MagicWord {
 	 */
 	function matchStartAndRemove( &$text ) {
 		$this->mFound = false;
-		$text = preg_replace_callback( $this->getRegexStart(), array( &$this, 'pregRemoveAndRecord' ), $text );
+		$text = preg_replace_callback(
+			$this->getRegexStart(),
+			array( &$this, 'pregRemoveAndRecord' ),
+			$text
+		);
+
 		return $this->mFound;
 	}
 
@@ -541,7 +573,12 @@ class MagicWord {
 	 * @return string
 	 */
 	function replace( $replacement, $subject, $limit = -1 ) {
-		$res = preg_replace( $this->getRegex(), StringUtils::escapeRegexReplacement( $replacement ), $subject, $limit );
+		$res = preg_replace(
+			$this->getRegex(),
+			StringUtils::escapeRegexReplacement( $replacement ),
+			$subject,
+			$limit
+		);
 		$this->mModified = $res !== $subject;
 		return $res;
 	}
@@ -674,10 +711,18 @@ class MagicWord {
  * @ingroup Parser
  */
 class MagicWordArray {
-	var $names = array();
-	var $hash;
-	var $baseRegex, $regex;
-	var $matches;
+	/** @var array */
+	public $names = array();
+
+	/** @var array */
+	private $hash;
+
+	private $baseRegex;
+
+	private $regex;
+
+	/** @todo Unused? */
+	private $matches;
 
 	/**
 	 * @param array $names
