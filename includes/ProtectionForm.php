@@ -27,35 +27,35 @@
  * Handles the page protection UI and backend
  */
 class ProtectionForm {
-	/** A map of action to restriction level, from request or default */
-	var $mRestrictions = array();
+	/** @var array A map of action to restriction level, from request or default */
+	protected $mRestrictions = array();
 
-	/** The custom/additional protection reason */
-	var $mReason = '';
+	/** @var string The custom/additional protection reason */
+	protected $mReason = '';
 
-	/** The reason selected from the list, blank for other/additional */
-	var $mReasonSelection = '';
+	/** @var string The reason selected from the list, blank for other/additional */
+	protected $mReasonSelection = '';
 
-	/** True if the restrictions are cascading, from request or existing protection */
-	var $mCascade = false;
+	/** @var bool True if the restrictions are cascading, from request or existing protection */
+	protected $mCascade = false;
 
-	/** Map of action to "other" expiry time. Used in preference to mExpirySelection. */
-	var $mExpiry = array();
+	/** @var array Map of action to "other" expiry time. Used in preference to mExpirySelection. */
+	protected $mExpiry = array();
 
 	/**
-	 * Map of action to value selected in expiry drop-down list.
+	 * @var array Map of action to value selected in expiry drop-down list.
 	 * Will be set to 'othertime' whenever mExpiry is set.
 	 */
-	var $mExpirySelection = array();
+	protected $mExpirySelection = array();
 
-	/** Permissions errors for the protect action */
-	var $mPermErrors = array();
+	/** @var array Permissions errors for the protect action */
+	protected $mPermErrors = array();
 
-	/** Types (i.e. actions) for which levels can be selected */
-	var $mApplicableTypes = array();
+	/** @var array Types (i.e. actions) for which levels can be selected */
+	protected $mApplicableTypes = array();
 
-	/** Map of action to the expiry time of the existing protection */
-	var $mExistingExpiry = array();
+	/** @var array Map of action to the expiry time of the existing protection */
+	protected $mExistingExpiry = array();
 
 	function __construct( Page $article ) {
 		global $wgUser;
@@ -209,7 +209,10 @@ class ProtectionForm {
 		if ( $this->mTitle->getRestrictionTypes() === array() ) {
 			// No restriction types available for the current title
 			// this might happen if an extension alters the available types
-			$wgOut->setPageTitle( wfMessage( 'protect-norestrictiontypes-title', $this->mTitle->getPrefixedText() ) );
+			$wgOut->setPageTitle( wfMessage(
+				'protect-norestrictiontypes-title',
+				$this->mTitle->getPrefixedText()
+			) );
 			$wgOut->addWikiText( wfMessage( 'protect-norestrictiontypes-text' )->text() );
 
 			// Show the log in case protection was possible once
@@ -226,13 +229,20 @@ class ProtectionForm {
 				$titles .= '* [[:' . $title->getPrefixedText() . "]]\n";
 			}
 
-			$wgOut->wrapWikiMsg( "<div id=\"mw-protect-cascadeon\">\n$1\n" . $titles . "</div>", array( 'protect-cascadeon', count( $cascadeSources ) ) );
+			/** @todo FIXME: i18n issue, should use formatted number. */
+			$wgOut->wrapWikiMsg(
+				"<div id=\"mw-protect-cascadeon\">\n$1\n" . $titles . "</div>",
+				array( 'protect-cascadeon', count( $cascadeSources ) )
+			);
 		}
 
 		# Show an appropriate message if the user isn't allowed or able to change
 		# the protection settings at this time
 		if ( $this->disabled ) {
-			$wgOut->setPageTitle( wfMessage( 'protect-title-notallowed', $this->mTitle->getPrefixedText() ) );
+			$wgOut->setPageTitle(
+				wfMessage( 'protect-title-notallowed',
+					$this->mTitle->getPrefixedText() )
+			);
 			$wgOut->addWikiText( $wgOut->formatPermissionsErrorMessage( $this->mPermErrors, 'protect' ) );
 		} else {
 			$wgOut->setPageTitle( wfMessage( 'protect-title', $this->mTitle->getPrefixedText() ) );
@@ -290,7 +300,13 @@ class ProtectionForm {
 
 		$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade' );
 
-		$status = $this->mArticle->doUpdateRestrictions( $this->mRestrictions, $expiry, $this->mCascade, $reasonstr, $wgUser );
+		$status = $this->mArticle->doUpdateRestrictions(
+			$this->mRestrictions,
+			$expiry,
+			$this->mCascade,
+			$reasonstr,
+			$wgUser
+		);
 
 		if ( !$status->isOK() ) {
 			$this->show( $wgOut->parseInline( $status->getWikiText() ) );
@@ -403,7 +419,11 @@ class ProtectionForm {
 				}
 				$show = htmlspecialchars( $show );
 				$value = htmlspecialchars( $value );
-				$expiryFormOptions .= Xml::option( $show, $value, $this->mExpirySelection[$action] === $value ) . "\n";
+				$expiryFormOptions .= Xml::option(
+					$show,
+					$value,
+					$this->mExpirySelection[$action] === $value
+				) . "\n";
 			}
 			# Add expiry dropdown
 			if ( $showProtectOptions && !$this->disabled ) {
@@ -526,7 +546,10 @@ class ProtectionForm {
 		}
 
 		if ( !$this->disabled ) {
-			$out .= Html::hidden( 'wpEditToken', $wgUser->getEditToken( array( 'protect', $this->mTitle->getPrefixedDBkey() ) ) );
+			$out .= Html::hidden(
+				'wpEditToken',
+				$wgUser->getEditToken( array( 'protect', $this->mTitle->getPrefixedDBkey() ) )
+			);
 			$out .= Xml::closeElement( 'form' );
 			$wgOut->addScript( $this->buildCleanupScript() );
 		}
