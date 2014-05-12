@@ -1366,7 +1366,7 @@ class Article implements Page {
 		$outputPage = $this->getContext()->getOutput();
 		$outputPage->addSubtitle( "<div id=\"mw-{$infomsg}\">" . wfMessage( $infomsg,
 			$td )->rawParams( $userlinks )->params( $revision->getID(), $tddate,
-			$tdtime, $revision->getUser() )->parse() . "</div>" );
+			$tdtime, $revision->getUser(), Linker::revComment( $revision, true, true ) )->parse() . "</div>" );
 
 		$lnk = $current
 			? wfMessage( 'currentrevisionlink' )->escaped()
