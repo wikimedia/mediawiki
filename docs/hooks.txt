@@ -733,6 +733,13 @@ $mediaWiki: Mediawiki object
 &$out: OutputPage object
 &$skin: Skin object
 
+'BeforeHttpsRedirect': Prior to forcing HTTP->HTTPS redirect. Gives a chance to
+override how the redirect is output by modifying, or by returning false, and
+letting standard HTTP rendering take place.
+$context: IContextSource object
+$request: WebRequest object
+&$redirect: string URL, modifiable
+
 'BeforePageRedirect': Prior to sending an HTTP redirect. Gives a chance to
 override how the redirect is output by modifying, or by returning false and
 taking over the output.
