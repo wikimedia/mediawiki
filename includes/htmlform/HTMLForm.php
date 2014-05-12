@@ -50,6 +50,7 @@
  *    'default'             -- default value when the form is displayed
  *    'id'                  -- HTML id attribute
  *    'cssclass'            -- CSS class
+ *    'csshelpclass'        -- CSS class used to style help text
  *    'options'             -- associative array mapping labels to values.
  *                             Some field types support multi-level arrays.
  *    'options-messages'    -- associative array mapping message keys to values.
