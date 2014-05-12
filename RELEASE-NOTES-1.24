@@ -64,6 +64,7 @@ changes to languages because of Bugzilla reports.
 * CLDRPluralRuleConverter_Operator to CLDRPluralRuleConverterOperator
 * CLDRPluralRuleEvaluator_Range to CLDRPluralRuleEvaluatorRange
 * CSSJanus_Tokenizer to CSSJanusTokenizer
+* MediaWiki_I18N to MediaWikiI18N
 * RevDel_ArchiveItem to RevDelArchiveItem
 * RevDel_ArchiveList to RevDelArchiveList
 * RevDel_ArchivedFileItem to RevDelArchivedFileItem
