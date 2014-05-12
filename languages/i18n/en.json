@@ -986,7 +986,6 @@
 	"prefs-emailconfirm-label": "Email confirmation:",
 	"youremail": "Email:",
 	"username": "{{GENDER:$1|Username}}:",
-	"uid": "{{GENDER:$1|User}} ID:",
 	"prefs-memberingroups": "{{GENDER:$2|Member}} of {{PLURAL:$1|group|groups}}:",
 	"prefs-memberingroups-type": "$1",
 	"prefs-registration": "Registration time:",
