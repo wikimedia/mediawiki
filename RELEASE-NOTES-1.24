@@ -38,6 +38,10 @@ production.
 * WikitextContent will now render redirects with the expected "redirect"
   header, rather than as an ordered list. Code calling Article::viewRedirect
   can probably be changed to no longer special-case redirects.
+* (bug 65567) Added a new hook, "BeforeHttpsRedirect", to allow cancellation of the HTTP
+  to HTTPS redirect due to forceHTTPS cookie, userRequires, etc.  This is only for page views,
+  since this hook doesn't affect UserLogin, OAuth, CentralAuth, etc.
+  ATTENTION: This hook is likely to be removed soon due to overall design of the system.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
