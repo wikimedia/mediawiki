@@ -3621,6 +3621,8 @@ $wgTrackingCategories = array(
 	'post-expand-template-inclusion-category',
 	'hidden-category-category',
 	'broken-file-category',
+	'node-count-exceeded-category',
+	'expansion-depth-exceeded-category',
 );
 
 /**
