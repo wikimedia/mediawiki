@@ -1689,7 +1689,6 @@
 	"log-title-wildcard": "Chercher parmi les titres commençant par ce texte",
 	"showhideselectedlogentries": "Afficher/masquer les entrées de journal sélectionnées",
 	"allpages": "Toutes les pages",
-	"alphaindexline": "de $1 à $2",
 	"nextpage": "Page suivante ($1)",
 	"prevpage": "Page précédente ($1)",
 	"allpagesfrom": "Afficher les pages à partir de :",

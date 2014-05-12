@@ -5,7 +5,8 @@
 			"Mido",
 			"OsamaK",
 			"روخو",
-			"Claw eg"
+			"Claw eg",
+			"Kuwaity26"
 		]
 	},
 	"config-desc": "مثبت لميدياويكي",
@@ -46,6 +47,8 @@
 	"config-restart": "نعم، إعادة التشغيل",
 	"config-env-php": "بي إتش بي $1 مثبت.",
 	"config-env-php-toolow": "بي إتش بي $1 مثبت.\nومع ذلك، يتطلب ميدياويكي بي إتش بي $2 أو أعلى.",
+	"config-db-type": "نوع قاعدة البيانات:",
+	"config-db-wiki-settings": "حدِّد هذا الويكي",
 	"config-db-username": "اسم مستخدم قاعدة البيانات:",
 	"config-db-password": "كلمة سر قاعدة البيانات:",
 	"config-db-port": "منفذ قاعدة البيانات:",
@@ -53,7 +56,20 @@
 	"config-type-postgres": "بوستجر إس كيو إل",
 	"config-type-sqlite": "إس كيو لايت",
 	"config-type-oracle": "أوراكل",
+	"config-site-name": "اسم الويكي:",
+	"config-admin-password": "كلمة السر:",
 	"config-admin-email": "عنوان البريد الإلكتروني:",
+	"config-profile-wiki": "افتح ويكي",
+	"config-profile-private": "ويكي خاص",
+	"config-license-pd": "ملكية عامة",
+	"config-email-settings": "إعدادات البريد الإلكتروني",
+	"config-email-watchlist": "تمكين إشعارات قائمة المراقبة",
+	"config-upload-enable": "تمكين تحميل الملفات",
+	"config-cc-again": "اختر مجددًا",
+	"config-extensions": "امتدادات",
+	"config-install-step-done": "نفذ",
+	"config-install-step-failed": "فشل",
+	"config-help": "مساعدة",
 	"mainpagetext": "'''تم تثبيت ميدياويكي بنجاح.'''",
 	"mainpagedocfooter": "استشر [//meta.wikimedia.org/wiki/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.\n\n== البداية ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings قائمة إعدادات الضبط]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ أسئلة متكررة حول ميدياويكي]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]"
 }

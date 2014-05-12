@@ -1643,7 +1643,6 @@
 	"log-title-wildcard": "この文字列で始まるページ名を検索",
 	"showhideselectedlogentries": "選択した記録項目を表示/非表示",
 	"allpages": "全ページ",
-	"alphaindexline": "$1から$2まで",
 	"nextpage": "次のページ ($1)",
 	"prevpage": "前のページ ($1)",
 	"allpagesfrom": "最初に表示するページ:",

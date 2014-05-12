@@ -25,7 +25,8 @@
 			"ערן",
 			"פדיחה",
 			"שומבלע",
-			"תומר ט"
+			"תומר ט",
+			"Matanya"
 		]
 	},
 	"tog-underline": "סימון קישורים בקו תחתי:",
@@ -1606,7 +1607,6 @@
 	"log-title-wildcard": "חיפוש כותרות המתחילות באותיות אלה",
 	"showhideselectedlogentries": "הצגת/הסתרת פעולות היומן שנבחרו",
 	"allpages": "כל הדפים",
-	"alphaindexline": "$1 עד $2",
 	"nextpage": "הדף הבא ($1)",
 	"prevpage": "הדף הקודם ($1)",
 	"allpagesfrom": "הצגת דפים החל מ:",
@@ -1783,7 +1783,7 @@
 	"rollbacklinkcount-morethan": "שחזור יותר מ{{PLURAL:$1|עריכה אחת|־$1 עריכות}}",
 	"rollbackfailed": "השחזור נכשל",
 	"cantrollback": "לא ניתן לשחזר את העריכה;\nהתורם האחרון הוא היחיד שכתב בדף זה.",
-	"alreadyrolled": "לא ניתן לשחזר את העריכה של [[User:$2|$2]] ([[User talk:$2|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) בדף [[:$1]]; מישהו אחר כבר ערך או שחזר את הדף.\n\nהעריכה האחרונה הייתה של [[User:$3|$3]] ([[User talk:$3|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
+	"alreadyrolled": "לא ניתן לשחזר את העריכה של [[User:$2|$2]] ([[User talk:$2|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) בדף [[:$1]]; הדף כבר נערך או שוחזר.\n\nהעריכה האחרונה הייתה של [[User:$3|$3]] ([[User talk:$3|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "תקציר העריכה היה: \"'''$1'''\".",
 	"revertpage": "שוחזר מעריכות של [[Special:Contributions/$2|$2]] ([[User talk:$2|שיחה]]) לעריכה האחרונה של [[User:$1|$1]]",
 	"revertpage-nouser": "שוחזר מעריכות של משתמש מוסתר לעריכה האחרונה של {{GENDER:$1|[[User:$1|$1]]}}",

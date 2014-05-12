@@ -33,7 +33,8 @@
 			"جواد",
 			"درفش کاویانی",
 			"محک",
-			"아라"
+			"아라",
+			"Mostafadaneshvar"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -1169,7 +1170,7 @@
 	"rclistfrom": "نمایش تغییرات جدید با شروع از $3 $2",
 	"rcshowhideminor": "$1 ویرایش‌های جزئی",
 	"rcshowhideminor-show": "نمایش",
-	"rcshowhideminor-hide": "پنهان‌ کردن",
+	"rcshowhideminor-hide": "پنهان‌کردن",
 	"rcshowhidebots": "$1 ربات‌ها",
 	"rcshowhidebots-show": "نمایش",
 	"rcshowhidebots-hide": "پنهان‌کردن",
@@ -1610,7 +1611,6 @@
 	"log-title-wildcard": "صفحه‌هایی را جستجو کن که عنوانشان با این عبارت آغاز می‌شود",
 	"showhideselectedlogentries": "نمایش/نهفتن موارد انتخابی در سیاهه",
 	"allpages": "همهٔ صفحه‌ها",
-	"alphaindexline": "$1 تا $2",
 	"nextpage": "صفحهٔ بعد ($1)",
 	"prevpage": "صفحهٔ قبلی ($1)",
 	"allpagesfrom": "نمایش صفحه‌ها با شروع از:",
