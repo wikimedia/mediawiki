@@ -178,31 +178,6 @@ class MWException extends Exception {
 	}
 
 	/**
-	 * Get a the ID for this error.
-	 *
-	 * @since 1.20
-	 * @deprecated since 1.22 Use MWExceptionHandler::getLogId instead.
-	 * @return string
-	 */
-	public function getLogId() {
-		wfDeprecated( __METHOD__, '1.22' );
-		return MWExceptionHandler::getLogId( $this );
-	}
-
-	/**
-	 * Return the requested URL and point to file and line number from which the
-	 * exception occurred
-	 *
-	 * @since 1.8
-	 * @deprecated since 1.22 Use MWExceptionHandler::getLogMessage instead.
-	 * @return string
-	 */
-	public function getLogMessage() {
-		wfDeprecated( __METHOD__, '1.22' );
-		return MWExceptionHandler::getLogMessage( $this );
-	}
-
-	/**
 	 * Output the exception report using HTML.
 	 */
 	public function reportHTML() {
