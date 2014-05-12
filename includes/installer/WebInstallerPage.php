@@ -133,7 +133,7 @@ abstract class WebInstallerPage {
 	 * @return string
 	 */
 	public function getName() {
-		return str_replace( 'WebInstaller_', '', get_class( $this ) );
+		return str_replace( 'WebInstaller', '', get_class( $this ) );
 	}
 
 	/**
@@ -205,7 +205,7 @@ abstract class WebInstallerPage {
 
 }
 
-class WebInstaller_Language extends WebInstallerPage {
+class WebInstallerLanguage extends WebInstallerPage {
 
 	/**
 	 * @return string|null
@@ -306,7 +306,7 @@ class WebInstaller_Language extends WebInstallerPage {
 
 }
 
-class WebInstaller_ExistingWiki extends WebInstallerPage {
+class WebInstallerExistingWiki extends WebInstallerPage {
 
 	/**
 	 * @return string
@@ -470,7 +470,7 @@ class WebInstaller_ExistingWiki extends WebInstallerPage {
 
 }
 
-class WebInstaller_Welcome extends WebInstallerPage {
+class WebInstallerWelcome extends WebInstallerPage {
 
 	/**
 	 * @return string
@@ -499,7 +499,7 @@ class WebInstaller_Welcome extends WebInstallerPage {
 
 }
 
-class WebInstaller_DBConnect extends WebInstallerPage {
+class WebInstallerDBConnect extends WebInstallerPage {
 
 	/**
 	 * @return string|null When string, "skip" or "continue"
@@ -600,7 +600,7 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 
 }
 
-class WebInstaller_Upgrade extends WebInstallerPage {
+class WebInstallerUpgrade extends WebInstallerPage {
 
 	/**
 	 * @return bool Always true.
@@ -691,7 +691,7 @@ class WebInstaller_Upgrade extends WebInstallerPage {
 
 }
 
-class WebInstaller_DBSettings extends WebInstallerPage {
+class WebInstallerDBSettings extends WebInstallerPage {
 
 	/**
 	 * @return string|null
@@ -725,7 +725,7 @@ class WebInstaller_DBSettings extends WebInstallerPage {
 
 }
 
-class WebInstaller_Name extends WebInstallerPage {
+class WebInstallerName extends WebInstallerPage {
 
 	/**
 	 * @return string
@@ -941,7 +941,7 @@ class WebInstaller_Name extends WebInstallerPage {
 
 }
 
-class WebInstaller_Options extends WebInstallerPage {
+class WebInstallerOptions extends WebInstallerPage {
 
 	/**
 	 * @return string|null
@@ -1310,7 +1310,7 @@ class WebInstaller_Options extends WebInstallerPage {
 
 }
 
-class WebInstaller_Install extends WebInstallerPage {
+class WebInstallerInstall extends WebInstallerPage {
 
 	/**
 	 * @return bool Always true.
@@ -1385,7 +1385,7 @@ class WebInstaller_Install extends WebInstallerPage {
 
 }
 
-class WebInstaller_Complete extends WebInstallerPage {
+class WebInstallerComplete extends WebInstallerPage {
 
 	public function execute() {
 		// Pop up a dialog box, to make it difficult for the user to forget
@@ -1423,7 +1423,7 @@ class WebInstaller_Complete extends WebInstallerPage {
 
 }
 
-class WebInstaller_Restart extends WebInstallerPage {
+class WebInstallerRestart extends WebInstallerPage {
 
 	/**
 	 * @return string|null
@@ -1449,7 +1449,7 @@ class WebInstaller_Restart extends WebInstallerPage {
 
 }
 
-abstract class WebInstaller_Document extends WebInstallerPage {
+abstract class WebInstallerDocument extends WebInstallerPage {
 
 	/**
 	 * @return string
@@ -1478,7 +1478,7 @@ abstract class WebInstaller_Document extends WebInstallerPage {
 
 }
 
-class WebInstaller_Readme extends WebInstaller_Document {
+class WebInstallerReadme extends WebInstallerDocument {
 
 	/**
 	 * @return string
@@ -1489,7 +1489,7 @@ class WebInstaller_Readme extends WebInstaller_Document {
 
 }
 
-class WebInstaller_ReleaseNotes extends WebInstaller_Document {
+class WebInstallerReleaseNotes extends WebInstallerDocument {
 
 	/**
 	 * @throws MWException
@@ -1507,7 +1507,7 @@ class WebInstaller_ReleaseNotes extends WebInstaller_Document {
 
 }
 
-class WebInstaller_UpgradeDoc extends WebInstaller_Document {
+class WebInstallerUpgradeDoc extends WebInstallerDocument {
 
 	/**
 	 * @return string
@@ -1518,7 +1518,7 @@ class WebInstaller_UpgradeDoc extends WebInstaller_Document {
 
 }
 
-class WebInstaller_Copying extends WebInstaller_Document {
+class WebInstallerCopying extends WebInstallerDocument {
 
 	/**
 	 * @return string

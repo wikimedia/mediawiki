@@ -130,7 +130,7 @@
 
 .config-cc-wrapper {
 	clear: left;
-	/* If you change this height, also change it in WebInstaller_Options::submitCC() */
+	/* If you change this height, also change it in WebInstallerOptions::submitCC() */
 	height: 54em;
 }
 

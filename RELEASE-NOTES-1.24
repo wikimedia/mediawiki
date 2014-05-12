@@ -78,6 +78,22 @@ changes to languages because of Bugzilla reports.
 * RevDel_LogList to RevDelLogList
 * RevDel_RevisionItem to RevDelRevisionItem
 * RevDel_RevisionList to RevDelRevisionList
+* WebInstaller_Complete to WebInstallerComplete
+* WebInstaller_Copying to WebInstallerCopying
+* WebInstaller_DBConnect to WebInstallerDBConnect
+* WebInstaller_DBSettings to WebInstallerDBSettings
+* WebInstaller_Document to WebInstallerDocument
+* WebInstaller_ExistingWiki to WebInstallerExistingWiki
+* WebInstaller_Install to WebInstallerInstall
+* WebInstaller_Language to WebInstallerLanguage
+* WebInstaller_Name to WebInstallerName
+* WebInstaller_Options to WebInstallerOptions
+* WebInstaller_Readme to WebInstallerReadme
+* WebInstaller_ReleaseNotes to WebInstallerReleaseNotes
+* WebInstaller_Restart to WebInstallerRestart
+* WebInstaller_Upgrade to WebInstallerUpgrade
+* WebInstaller_UpgradeDoc to WebInstallerUpgradeDoc
+* WebInstaller_Welcome to WebInstallerWelcome
 
 ==== Removed classes ====
 * IPBlockForm - Use SpecialBlock directly
