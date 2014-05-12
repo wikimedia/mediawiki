@@ -213,13 +213,6 @@ class Preferences {
 			'section' => 'personal/info',
 		);
 
-		$defaultPreferences['userid'] = array(
-			'type' => 'info',
-			'label-message' => array( 'uid', $userName ),
-			'default' => $user->getId(),
-			'section' => 'personal/info',
-		);
-
 		# Get groups to which the user belongs
 		$userEffectiveGroups = $user->getEffectiveGroups();
 		$userGroups = $userMembers = array();
