@@ -75,12 +75,13 @@ class InitSiteStats extends Maintenance {
 			$this->output( "{$active}\n" );
 		}
 
-		$this->output( "\nUpdating site statistics..." );
-
 		if ( $this->hasOption( 'update' ) ) {
-			$counter->update();
-		} else {
-			$counter->refresh();
+			$this->output( "\nUpdating site statistics..." );
+			$options = array(
+				'activeUsers' => $this->hasOption( 'active' ),
+				'views' => !$this->hasOption( 'noviews' ),
+			);
+			$counter->doAllAndCommit( $this->hasOption( 'use-master' ), $options );
 		}
 
 		$this->output( "done.\n" );
