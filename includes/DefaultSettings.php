@@ -5321,17 +5321,6 @@ $wgNamespacesToBeSearchedDefault = array(
 );
 
 /**
- * Namespaces to be searched when user clicks the "Help" tab
- * on Special:Search.
- *
- * Same format as $wgNamespacesToBeSearchedDefault.
- */
-$wgNamespacesToBeSearchedHelp = array(
-	NS_PROJECT => true,
-	NS_HELP => true,
-);
-
-/**
  * If set to true the 'searcheverything' preference will be effective only for
  * logged-in users.
  * Useful for big wikis to maintain different search profiles for anonymous and

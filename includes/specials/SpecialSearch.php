@@ -30,7 +30,7 @@
 class SpecialSearch extends SpecialPage {
 	/**
 	 * Current search profile. Search profile is just a name that identifies
-	 * the active search tab on the search page (content, help, discussions...)
+	 * the active search tab on the search page (content, discussions...)
 	 * For users tt replaces the set of enabled namespaces from the query
 	 * string when applicable. Extensions can add new profiles with hooks
 	 * with custom search options just for that profile.
@@ -974,14 +974,6 @@ class SpecialSearch extends SpecialPage {
 				'message' => 'searchprofile-images',
 				'tooltip' => 'searchprofile-images-tooltip',
 				'namespaces' => array( NS_FILE ),
-			),
-			'help' => array(
-				'message' => 'searchprofile-project',
-				'tooltip' => 'searchprofile-project-tooltip',
-				'namespaces' => SearchEngine::helpNamespaces(),
-				'namespace-messages' => SearchEngine::namespacesAsText(
-					SearchEngine::helpNamespaces()
-				),
 			),
 			'all' => array(
 				'message' => 'searchprofile-everything',
