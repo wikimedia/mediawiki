@@ -1104,20 +1104,25 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			# Transaction is gone, like it or not
 			$hadTrx = $this->mTrxLevel; // possible lost transaction
 			$this->mTrxLevel = 0;
+			$this->mTrxIdleCallbacks = array(); // bug 65263
+			$this->mTrxPreCommitCallbacks = array(); // bug 65263
 			wfDebug( "Connection lost, reconnecting...\n" );
 
 			if ( $this->ping() ) {
+				global $wgRequestTime;
 				wfDebug( "Reconnected\n" );
 				$sqlx = substr( $commentedSql, 0, 500 );
 				$sqlx = strtr( $sqlx, "\t\n", '  ' );
-				global $wgRequestTime;
 				$elapsed = round( microtime( true ) - $wgRequestTime, 3 );
 				if ( $elapsed < 300 ) {
 					# Not a database error to lose a transaction after a minute or two
 					wfLogDBError( "Connection lost and reconnected after {$elapsed}s, query: $sqlx" );
 				}
-				if ( !$hadTrx ) {
-					# Should be safe to silently retry
+				if ( $hadTrx ) {
+					# Leave $ret as false and let an error be reported.
+					# Callers may catch the exception and continue to use the DB.
+				} else {
+					# Should be safe to silently retry (no trx and thus no callbacks)
 					$ret = $this->doQuery( $commentedSql );
 				}
 			} else {
