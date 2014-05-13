@@ -83,7 +83,13 @@
 	 *  true to map over the global object. Defaults to an empty object.
 	 */
 	function Map( values ) {
-		this.values = values === true ? window : ( values || {} );
+		if ( values === true ) {
+			this.global = true;
+			this.values = {};
+		} else {
+			this.global = false;
+			this.values = values || {};
+		}
 		return this;
 	}
 
@@ -139,16 +145,41 @@
 		 * @return {Boolean} This returns true on success, false on failure.
 		 */
 		set: function ( selection, value ) {
-			var s;
+			var s, map = this;
+
+			function setGlobal( key, value ) {
+				if ( map.global && Object.defineProperty ) {
+					try {
+						Object.defineProperty( window, key, {
+							configurable: true,
+							enumerable: true,
+							get: function () {
+								mw.track( 'mw.deprecate', key );
+								mw.log.warn( 'Use of "' + key + '" is deprecated. Use "mw.config.get( \'' + key + '\' )" instead.' );
+								return map.values[key];
+							},
+							set: function ( newVal ) {
+								mw.track( 'mw.deprecate', key );
+								mw.log.warn( 'Use of "' + key + '" is deprecated. Use "mw.config.set( \'' + key + '\', \'' + newVal + '\' )" instead.' );
+								map.values[key] = newVal;
+							}
+						} );
+					} catch ( error ) {
+						// IE8 can throw on Object.defineProperty
+					}
+				}
+			}
 
 			if ( $.isPlainObject( selection ) ) {
 				for ( s in selection ) {
 					this.values[s] = selection[s];
+					setGlobal( s, value );
 				}
 				return true;
 			}
 			if ( typeof selection === 'string' && arguments.length > 1 ) {
 				this.values[selection] = value;
+				setGlobal( selection, value );
 				return true;
 			}
 			return false;
