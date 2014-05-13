@@ -42,8 +42,10 @@ class ApiRollback extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
+		$this->requireOnlyOneParameter( array( 'title', 'pageid' ) );
+
 		// User and title already validated in call to getTokenSalt from Main
-		$titleObj = $this->getRbTitle();
+		$titleObj = $this->getRbTitle( $params );
 		$pageObj = WikiPage::factory( $titleObj );
 		$summary = $params['summary'];
 		$details = array();
@@ -184,14 +186,14 @@ class ApiRollback extends ApiBase {
 	}
 
 	/**
+	 * @param array $params
+	 *
 	 * @return Title
 	 */
-	private function getRbTitle() {
+	private function getRbTitle( array $params ) {
 		if ( $this->mTitleObj !== null ) {
 			return $this->mTitleObj;
 		}
-
-		$params = $this->extractRequestParams();
 
 		if ( isset( $params['title'] ) ) {
 			$this->mTitleObj = Title::newFromText( $params['title'] );
