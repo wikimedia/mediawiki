@@ -189,9 +189,11 @@ class RunJobs extends Maintenance {
 
 		$seconds = 0;
 		if ( $job->workItemCount() > 0 ) {
-			$seconds = floor( $job->workItemCount() / $itemsPerSecond );
-			$remainder = $job->workItemCount() % $itemsPerSecond;
-			$seconds += ( mt_rand( 1, $itemsPerSecond ) <= $remainder ) ? 1 : 0;
+			$exactSeconds = $job->workItemCount() / $itemsPerSecond;
+			// use randomized rounding
+			$seconds = floor( $exactSeconds );
+			$remainder = $exactSeconds - $seconds;
+			$seconds += ( mt_rand() / mt_getrandmax() < $remainder ) ? 1 : 0;
 		}
 
 		return (int)$seconds;
