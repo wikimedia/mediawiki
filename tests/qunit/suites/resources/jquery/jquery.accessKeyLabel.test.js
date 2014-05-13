@@ -1,5 +1,10 @@
 ( function ( $ ) {
-	QUnit.module( 'jquery.accessKeyLabel', QUnit.newMwEnvironment() );
+	QUnit.module( 'jquery.accessKeyLabel', QUnit.newMwEnvironment( {
+		messages: {
+			'brackets': '[$1]',
+			'word-separator': ' '
+		}
+	} ) );
 
 	var getAccessKeyPrefixTestData = [
 			//ua string, platform string, expected prefix

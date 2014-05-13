@@ -3,7 +3,7 @@
  *
  * @class jQuery.plugin.accessKeyLabel
  */
-( function ( $ ) {
+( function ( $, mw ) {
 
 // Cached access key prefix for used browser
 var cachedAccessKeyPrefix,
@@ -111,8 +111,10 @@ function getAccessKeyLabel( element ) {
  * @param {HTMLElement} titleElement Element with the title to update (may be the same as `element`)
  */
 function updateTooltipOnElement( element, titleElement ) {
-	var oldTitle = titleElement.title,
-		rawTitle = oldTitle.replace( / \[.*?\]$/, '' ),
+	var array = ( mw.msg( 'word-separator' ) + mw.msg( 'brackets' ) ).split( '$1' ),
+		regexp = new RegExp( $.map( array, $.escapeRE ).join( '.*?' ) + '$' ),
+		oldTitle = titleElement.title,
+		rawTitle = oldTitle.replace( regexp, '' ),
 		newTitle = rawTitle,
 		accessKeyLabel = getAccessKeyLabel( element );
 
@@ -122,7 +124,8 @@ function updateTooltipOnElement( element, titleElement ) {
 	}
 
 	if ( accessKeyLabel ) {
-		newTitle += ' [' + accessKeyLabel + ']';
+		// Should be build the same as in Linker::titleAttrib
+		newTitle += mw.msg( 'word-separator' ) + mw.msg( 'brackets', accessKeyLabel );
 	}
 	if ( oldTitle !== newTitle ) {
 		titleElement.title = newTitle;
@@ -194,4 +197,4 @@ $.fn.updateTooltipAccessKeys.setTestMode = function ( mode ) {
  * @mixins jQuery.plugin.accessKeyLabel
  */
 
-}( jQuery ) );
+}( jQuery, mediaWiki ) );
