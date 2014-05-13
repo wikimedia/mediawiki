@@ -267,118 +267,117 @@ class SpecialAllpages extends IncludableSpecialPage {
 		}
 
 		if ( $this->including() ) {
-			$out2 = '';
-		} else {
-			if ( $from == '' ) {
-				// First chunk; no previous link.
-				$prevTitle = null;
-			} else {
-				# Get the last title from previous chunk
-				$dbr = wfGetDB( DB_SLAVE );
-				$res_prev = $dbr->select(
-					'page',
-					'page_title',
-					array( 'page_namespace' => $namespace, 'page_title < ' . $dbr->addQuotes( $from ) ),
-					__METHOD__,
-					array( 'ORDER BY' => 'page_title DESC',
-						'LIMIT' => $this->maxPerPage, 'OFFSET' => ( $this->maxPerPage - 1 )
-					)
-				);
-
-				# Get first title of previous complete chunk
-				if ( $dbr->numrows( $res_prev ) >= $this->maxPerPage ) {
-					$pt = $dbr->fetchObject( $res_prev );
-					$prevTitle = Title::makeTitle( $namespace, $pt->page_title );
-				} else {
-					# The previous chunk is not complete, need to link to the very first title
-					# available in the database
-					$options = array( 'LIMIT' => 1 );
-					if ( !$dbr->implicitOrderby() ) {
-						$options['ORDER BY'] = 'page_title';
-					}
-					$reallyFirstPage_title = $dbr->selectField( 'page', 'page_title',
-						array( 'page_namespace' => $namespace ), __METHOD__, $options );
-					# Show the previous link if it s not the current requested chunk
-					if ( $from != $reallyFirstPage_title ) {
-						$prevTitle = Title::makeTitle( $namespace, $reallyFirstPage_title );
-					} else {
-						$prevTitle = null;
-					}
-				}
-			}
-
-			$self = $this->getPageTitle();
-
-			$nsForm = $this->namespaceForm( $namespace, $from, $to, $hideredirects );
-			$out2 = Xml::openElement( 'table', array( 'class' => 'mw-allpages-table-form' ) ) .
-				'<tr>
-							<td>' .
-				$nsForm .
-				'</td>
-							<td class="mw-allpages-nav">' .
-				Linker::link( $self, $this->msg( 'allpages' )->escaped() );
-
-			# Do we put a previous link ?
-			if ( isset( $prevTitle ) && $pt = $prevTitle->getText() ) {
-				$query = array( 'from' => $prevTitle->getText() );
-
-				if ( $namespace ) {
-					$query['namespace'] = $namespace;
-				}
-
-				if ( $hideredirects ) {
-					$query['hideredirects'] = $hideredirects;
-				}
-
-				$prevLink = Linker::linkKnown(
-					$self,
-					$this->msg( 'prevpage', $pt )->escaped(),
-					array(),
-					$query
-				);
-				$out2 = $this->getLanguage()->pipeList( array( $out2, $prevLink ) );
-			}
-
-			if ( $n == $this->maxPerPage && $s = $res->fetchObject() ) {
-				# $s is the first link of the next chunk
-				$t = Title::makeTitle( $namespace, $s->page_title );
-				$query = array( 'from' => $t->getText() );
-
-				if ( $namespace ) {
-					$query['namespace'] = $namespace;
-				}
-
-				if ( $hideredirects ) {
-					$query['hideredirects'] = $hideredirects;
-				}
-
-				$nextLink = Linker::linkKnown(
-					$self,
-					$this->msg( 'nextpage', $t->getText() )->escaped(),
-					array(),
-					$query
-				);
-				$out2 = $this->getLanguage()->pipeList( array( $out2, $nextLink ) );
-			}
-			$out2 .= "</td></tr></table>";
+			$output->addHTML( $out );
+			return;
 		}
+
+		if ( $from == '' ) {
+			// First chunk; no previous link.
+			$prevTitle = null;
+		} else {
+			# Get the last title from previous chunk
+			$dbr = wfGetDB( DB_SLAVE );
+			$res_prev = $dbr->select(
+				'page',
+				'page_title',
+				array( 'page_namespace' => $namespace, 'page_title < ' . $dbr->addQuotes( $from ) ),
+				__METHOD__,
+				array( 'ORDER BY' => 'page_title DESC',
+					'LIMIT' => $this->maxPerPage, 'OFFSET' => ( $this->maxPerPage - 1 )
+				)
+			);
+
+			# Get first title of previous complete chunk
+			if ( $dbr->numrows( $res_prev ) >= $this->maxPerPage ) {
+				$pt = $dbr->fetchObject( $res_prev );
+				$prevTitle = Title::makeTitle( $namespace, $pt->page_title );
+			} else {
+				# The previous chunk is not complete, need to link to the very first title
+				# available in the database
+				$options = array( 'LIMIT' => 1 );
+				if ( !$dbr->implicitOrderby() ) {
+					$options['ORDER BY'] = 'page_title';
+				}
+				$reallyFirstPage_title = $dbr->selectField( 'page', 'page_title',
+					array( 'page_namespace' => $namespace ), __METHOD__, $options );
+				# Show the previous link if it s not the current requested chunk
+				if ( $from != $reallyFirstPage_title ) {
+					$prevTitle = Title::makeTitle( $namespace, $reallyFirstPage_title );
+				} else {
+					$prevTitle = null;
+				}
+			}
+		}
+
+		$self = $this->getPageTitle();
+
+		$topLinks = array(
+			Linker::link( $self, $this->msg( 'allpages' )->escaped() )
+		);
+		$bottomLinks = array();
+
+		# Do we put a previous link ?
+		if ( isset( $prevTitle ) && $pt = $prevTitle->getText() ) {
+			$query = array( 'from' => $prevTitle->getText() );
+
+			if ( $namespace ) {
+				$query['namespace'] = $namespace;
+			}
+
+			if ( $hideredirects ) {
+				$query['hideredirects'] = $hideredirects;
+			}
+
+			$prevLink = Linker::linkKnown(
+				$self,
+				$this->msg( 'prevpage', $pt )->escaped(),
+				array(),
+				$query
+			);
+			$topLinks[] = $prevLink;
+			$bottomLinks[] = $prevLink;
+		}
+
+		if ( $n == $this->maxPerPage && $s = $res->fetchObject() ) {
+			# $s is the first link of the next chunk
+			$t = Title::makeTitle( $namespace, $s->page_title );
+			$query = array( 'from' => $t->getText() );
+
+			if ( $namespace ) {
+				$query['namespace'] = $namespace;
+			}
+
+			if ( $hideredirects ) {
+				$query['hideredirects'] = $hideredirects;
+			}
+
+			$nextLink = Linker::linkKnown(
+				$self,
+				$this->msg( 'nextpage', $t->getText() )->escaped(),
+				array(),
+				$query
+			);
+			$topLinks[] = $nextLink;
+			$bottomLinks[] = $nextLink;
+		}
+
+		$nsForm = $this->namespaceForm( $namespace, $from, $to, $hideredirects );
+		$out2 = Xml::openElement( 'table', array( 'class' => 'mw-allpages-table-form' ) ) .
+			'<tr>
+						<td>' .
+			$nsForm .
+			'</td>
+						<td class="mw-allpages-nav">' .
+			$this->getLanguage()->pipeList( $topLinks ) .
+			'</td></tr></table>';
 
 		$output->addHTML( $out2 . $out );
 
-		$links = array();
-		if ( isset( $prevLink ) ) {
-			$links[] = $prevLink;
-		}
-
-		if ( isset( $nextLink ) ) {
-			$links[] = $nextLink;
-		}
-
-		if ( count( $links ) ) {
+		if ( count( $bottomLinks ) ) {
 			$output->addHTML(
 				Html::element( 'hr' ) .
 					Html::rawElement( 'div', array( 'class' => 'mw-allpages-nav' ),
-						$this->getLanguage()->pipeList( $links )
+						$this->getLanguage()->pipeList( $bottomLinks )
 					)
 			);
 		}
