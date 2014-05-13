@@ -244,15 +244,16 @@
 		 *
 		 * @param {string} tokenType The name of the token, like options or edit.
 		 * @param {Object} params API parameters
+		 * @param {Object} [ajaxOptions]
 		 * @return {jQuery.Promise} See #post
 		 * @since 1.22
 		 */
-		postWithToken: function ( tokenType, params ) {
+		postWithToken: function ( tokenType, params, ajaxOptions ) {
 			var api = this;
 
 			return api.getToken( tokenType ).then( function ( token ) {
 				params.token = token;
-				return api.post( params ).then(
+				return api.post( params, ajaxOptions ).then(
 					// If no error, return to caller as-is
 					null,
 					// Error handler
@@ -265,7 +266,7 @@
 							// Try again, once
 							return api.getToken( tokenType ).then( function ( token ) {
 								params.token = token;
-								return api.post( params );
+								return api.post( params, ajaxOptions );
 							} );
 						}
 
