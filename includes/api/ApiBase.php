@@ -720,7 +720,9 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Die if none or more than one of a certain set of parameters is set and not false.
-	 * @param array $params Array of parameter names
+	 *
+	 * @param array $params Parameters as obtained via extractRequestParams
+	 * @param string ... Two or more parameter keys
 	 */
 	public function requireOnlyOneParameter( $params ) {
 		$required = func_get_args();

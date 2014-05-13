@@ -43,12 +43,12 @@ class ApiRollback extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		// User and title already validated in call to getTokenSalt from Main
-		$titleObj = $this->getRbTitle();
+		$titleObj = $this->getRbTitle( $params );
 		$pageObj = WikiPage::factory( $titleObj );
 		$summary = $params['summary'];
 		$details = array();
 		$retval = $pageObj->doRollback(
-			$this->getRbUser(),
+			$this->getRbUser( $params ),
 			$summary,
 			$params['token'],
 			$params['markbot'],
@@ -162,15 +162,23 @@ class ApiRollback extends ApiBase {
 	}
 
 	public function getTokenSalt() {
-		return array( $this->getRbTitle()->getPrefixedText(), $this->getRbUser() );
+		$params = $this->extractRequestParams();
+
+		return array(
+			$this->getRbTitle( $params )->getPrefixedText(),
+			$this->getRbUser( $params )
+		);
 	}
 
-	private function getRbUser() {
+	/**
+	 * @param array $params
+	 *
+	 * @return string
+	 */
+	private function getRbUser( array $params ) {
 		if ( $this->mUser !== null ) {
 			return $this->mUser;
 		}
-
-		$params = $this->extractRequestParams();
 
 		// We need to be able to revert IPs, but getCanonicalName rejects them
 		$this->mUser = User::isIP( $params['user'] )
@@ -184,14 +192,16 @@ class ApiRollback extends ApiBase {
 	}
 
 	/**
+	 * @param array $params
+	 *
 	 * @return Title
 	 */
-	private function getRbTitle() {
+	private function getRbTitle( array $params ) {
 		if ( $this->mTitleObj !== null ) {
 			return $this->mTitleObj;
 		}
 
-		$params = $this->extractRequestParams();
+		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
 
 		if ( isset( $params['title'] ) ) {
 			$this->mTitleObj = Title::newFromText( $params['title'] );
