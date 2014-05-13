@@ -106,6 +106,9 @@ abstract class MediaTransformOutput {
 	 */
 	public function setStoragePath( $storagePath ) {
 		$this->storagePath = $storagePath;
+		if ( $this->path === false ) {
+			$this->path = $storagePath;
+		}
 	}
 
 	/**
@@ -140,9 +143,12 @@ abstract class MediaTransformOutput {
 
 	/**
 	 * Check if an output thumbnail file actually exists.
+	 *
 	 * This will return false if there was an error, the
 	 * thumbnail is to be handled client-side only, or if
 	 * transformation was deferred via TRANSFORM_LATER.
+	 * This file may exist as a new file in /tmp, a file
+	 * in permanent storage, or even refer to the original.
 	 *
 	 * @return bool
 	 */
