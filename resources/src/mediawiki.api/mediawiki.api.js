@@ -303,7 +303,11 @@
 							d.reject( 'token-missing', data );
 						}
 					} )
-					.fail( d.reject );
+					.fail( function ( code, result ) {
+						// Delete promise. Do not cache errors.
+						delete deferredGroup[ type + 'Token' ];
+						d.reject( code, result );
+					} );
 
 				// Attach abort handler
 				d.abort = apiPromise.abort;
