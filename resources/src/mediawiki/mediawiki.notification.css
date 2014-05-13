@@ -22,6 +22,7 @@
 	margin-bottom: 0.5em;
 	border: solid 1px #ddd;
 	background-color: #fcfcfc;
+	color: #252525;
 	/* Message hides on-click */
 	/* See also mediawiki.notification.js */
 	cursor: pointer;
