@@ -720,6 +720,9 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Die if none or more than one of a certain set of parameters is set and not false.
+	 *
+	 * Call getRequireOnlyOneParameterErrorMessages() to get a list of possible errors.
+	 *
 	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
 	 * @param string $required,... Names of parameters of which exactly one must be set
 	 */
@@ -767,6 +770,9 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Die if more than one of a certain set of parameters is set and not false.
+	 *
+	 * Call getRequireMaxOneParameterErrorMessages() to get a list of possible errors.
+	 *
 	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
 	 * @param string $required,... Names of parameters of which at most one must be set
 	 */
@@ -806,6 +812,8 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Die if none of a certain set of parameters is set and not false.
+	 *
+	 * Call getRequireAtLeastOneParameterErrorMessages() to get a list of possible errors.
 	 *
 	 * @since 1.23
 	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
