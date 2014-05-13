@@ -720,9 +720,10 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Die if none or more than one of a certain set of parameters is set and not false.
-	 * @param array $params Array of parameter names
+	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
+	 * @param string $required,... Names of parameters of which exactly one must be set
 	 */
-	public function requireOnlyOneParameter( $params ) {
+	public function requireOnlyOneParameter( $params, $required /*...*/ ) {
 		$required = func_get_args();
 		array_shift( $required );
 		$p = $this->getModulePrefix();
@@ -766,10 +767,10 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Die if more than one of a certain set of parameters is set and not false.
-	 *
-	 * @param array $params
+	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
+	 * @param string $required,... Names of parameters of which at most one must be set
 	 */
-	public function requireMaxOneParameter( $params ) {
+	public function requireMaxOneParameter( $params, $required /*...*/ ) {
 		$required = func_get_args();
 		array_shift( $required );
 		$p = $this->getModulePrefix();
@@ -807,10 +808,10 @@ abstract class ApiBase extends ContextSource {
 	 * Die if none of a certain set of parameters is set and not false.
 	 *
 	 * @since 1.23
-	 * @param array $params User provided set of parameters
-	 * @param string ... List of parameter names to check
+	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
+	 * @param string $required,... Names of parameters of which at least one must be set
 	 */
-	public function requireAtLeastOneParameter( $params ) {
+	public function requireAtLeastOneParameter( $params, $required /*...*/ ) {
 		$required = func_get_args();
 		array_shift( $required );
 		$p = $this->getModulePrefix();
