@@ -107,7 +107,7 @@
 			}
 		}
 
-		// General suggestions functionality for all search boxes
+		// Generic suggestions functionality for all search boxes
 		searchboxesSelectors = [
 			// Primary searchbox on every page in standard skins
 			'#searchInput',
@@ -168,12 +168,6 @@
 
 		// Special suggestions functionality for skin-provided search box
 		$searchInput.suggestions( {
-			result: {
-				render: renderFunction,
-				select: function () {
-					return true; // allow the form to be submitted
-				}
-			},
 			special: {
 				render: specialRenderFunction,
 				select: function ( $input ) {
