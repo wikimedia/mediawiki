@@ -990,7 +990,6 @@
 	"prefs-emailconfirm-label": "Potwierdzenie adresu e‐mail:",
 	"youremail": "Twój adres e‐mail:",
 	"username": "{{GENDER:$1|Nazwa użytkownika}}:",
-	"uid": "{{GENDER:$1|Identyfikator użytkownika}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Członek}} {{PLURAL:$1|grupy|grup}}:",
 	"prefs-registration": "Data rejestracji:",
 	"yourrealname": "Imię i nazwisko:",

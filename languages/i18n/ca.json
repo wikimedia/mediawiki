@@ -965,7 +965,6 @@
 	"prefs-emailconfirm-label": "Confirmació de correu electrònic:",
 	"youremail": "Correu electrònic:",
 	"username": "{{GENDER:$1|Nom d'usuari}}:",
-	"uid": "{{GENDER:$1|Usuari}} Identificador d'usuari:",
 	"prefs-memberingroups": "{{GENDER:$2|Membre}} {{PLURAL:$1|del grup|dels grups}}:",
 	"prefs-registration": "Hora de registre:",
 	"yourrealname": "Nom real *",

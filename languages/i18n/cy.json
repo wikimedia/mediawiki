@@ -925,7 +925,6 @@
 	"prefs-emailconfirm-label": "Cadarnhau'r e-bost:",
 	"youremail": "Eich cyfeiriad e-bost",
 	"username": "{{GENDER:$1|Enw defnyddiwr}}:",
-	"uid": "{{GENDER:$1|ID y defnyddiwr}}:",
 	"prefs-memberingroups": "Yn {{GENDER:$2|aelod}} o'r {{PLURAL:$1|grŵp|grŵp|grwpiau}} canlynol:",
 	"prefs-registration": "Amser dechrau'r cyfrif:",
 	"yourrealname": "Eich enw cywir*",

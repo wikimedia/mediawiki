@@ -909,7 +909,6 @@
 	"prefs-emailconfirm-label": "Netpostbevestiging:",
 	"youremail": "Netpostadres (niet verplicht) *",
 	"username": "{{GENDER:$1|Gebrukersnaam}}:",
-	"uid": "{{GENDER:$1|Gebrukersnummer}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Lid}} van {{PLURAL:$1|groep|groepen}}:",
 	"prefs-registration": "Registrasiedaotum:",
 	"yourrealname": "Echte naam (niet verplicht)",

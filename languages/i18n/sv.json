@@ -982,7 +982,6 @@
 	"prefs-emailconfirm-label": "E-postbekräftelse:",
 	"youremail": "E-post:",
 	"username": "{{GENDER:$1|Användarnamn}}:",
-	"uid": "{{GENDER:$1|Användar}}-ID:",
 	"prefs-memberingroups": "{{GENDER:$2|Medlem}} av {{PLURAL:$1|gruppen|grupperna}}:",
 	"prefs-registration": "Registreringstid:",
 	"yourrealname": "Riktigt namn:",

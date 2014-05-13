@@ -940,7 +940,6 @@
 	"prefs-emailconfirm-label": "Потврда е-адресе:",
 	"youremail": "Е-адреса:",
 	"username": "{{GENDER:$1|Корисничко име}}:",
-	"uid": "{{GENDER:$1|Кориснички}} ID:",
 	"prefs-memberingroups": "{{PLURAL:$1|Група|Групе}}:",
 	"prefs-memberingroups-type": "$1",
 	"prefs-registration": "Време уписа:",

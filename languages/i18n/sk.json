@@ -930,7 +930,6 @@
 	"prefs-emailconfirm-label": "Potvrdenie emailu:",
 	"youremail": "Váš e-mail²",
 	"username": "{{GENDER:$1|Používateľské meno}}:",
-	"uid": "ID {{GENDER:$1|používateľa}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Člen|Členovia}} {{PLURAL:$1|skupiny|skupín}}:",
 	"prefs-registration": "Čas registrácie:",
 	"yourrealname": "Skutočné meno *:",

@@ -923,7 +923,6 @@
 	"prefs-emailconfirm-label": "Wab-mail confirmation:",
 	"youremail": "Yer email:",
 	"username": "{{GENDER:$1|Uisername}}:",
-	"uid": "{{GENDER:$1|Uiser}} ID:",
 	"prefs-memberingroups": "{{GENDER:$2|Memmer}} o {{PLURAL:$1|groop|groops}}:",
 	"prefs-registration": "Regeestration time:",
 	"yourrealname": "Yer real name:",

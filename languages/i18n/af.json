@@ -909,7 +909,6 @@
 	"prefs-emailconfirm-label": "E-posbevestiging:",
 	"youremail": "E-posadres:",
 	"username": "{{GENDER:$1|Gebruikersnaam}}:",
-	"uid": "{{GENDER:$1|Gebruiker-ID}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Lid}} van {{PLURAL:$1|groep|groepe}}:",
 	"prefs-registration": "Registrasiedatum:",
 	"yourrealname": "Regte naam:",

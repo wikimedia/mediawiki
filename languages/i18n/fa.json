@@ -959,7 +959,6 @@
 	"prefs-emailconfirm-label": "تأیید رایانامه:",
 	"youremail": "رایانامه:",
 	"username": "{{GENDER:$1|نام کاربری}}:",
-	"uid": "شناسهٔ {{GENDER:$1|کاربری}}:",
 	"prefs-memberingroups": "{{GENDER:$2|عضو}} {{PLURAL:$1|گروه|گروه}}:",
 	"prefs-registration": "زمان ثبت‌نام:",
 	"yourrealname": "نام واقعی:",

@@ -936,7 +936,6 @@
 	"prefs-emailconfirm-label": "ই-মেইল নিশ্চিতকরণ:",
 	"youremail": "ইমেইল *",
 	"username": "{{GENDER:$1|ব্যবহারকারী নাম}}:",
-	"uid": "{{GENDER:$1|ব্যবহারকারী}} নং (ID):",
 	"prefs-memberingroups": "{{PLURAL:$1|দলের|দলসমূহের}} {{GENDER:$2|সদস্য}}:",
 	"prefs-registration": "নিবন্ধের সময়:",
 	"yourrealname": "আসল নাম *",

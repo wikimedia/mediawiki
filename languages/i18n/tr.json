@@ -974,7 +974,6 @@
 	"prefs-emailconfirm-label": "E-posta doğrulaması:",
 	"youremail": "E-posta:",
 	"username": "{{GENDER:$1|Kullanıcı adı}}:",
-	"uid": "{{GENDER:$1|Kullanıcı}} kimliği:",
 	"prefs-memberingroups": "{{GENDER:$2|Üye}} {{PLURAL:$1|group|grupları}}:",
 	"prefs-registration": "Kayıt zamanı:",
 	"yourrealname": "Gerçek adınız:",

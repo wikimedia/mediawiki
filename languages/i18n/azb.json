@@ -878,7 +878,6 @@
 	"prefs-emailconfirm-label": "ایمیل دوغرولاماسی:",
 	"youremail": "ایمیل:",
 	"username": "{{GENDER:$1|ایستیفاده‌چی آدی}}:",
-	"uid": "{{GENDER:$1|ایستیفاده‌چی}} ID:",
 	"prefs-memberingroups": "{{PLURAL:$1|بیر|$1}} قروپ {{GENDER:$2|عوضو}}و:",
 	"prefs-registration": "یازیلماق واختی:",
 	"yourrealname": "دوغرو آد:",

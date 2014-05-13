@@ -950,7 +950,6 @@
 	"prefs-emailconfirm-label": "Xác nhận thư điện tử:",
 	"youremail": "Thư điện tử:",
 	"username": "{{GENDER:$1}}Tên người dùng:",
-	"uid": "{{GENDER:$1}}Số thứ tự thành viên:",
 	"prefs-memberingroups": "{{GENDER:$2}}Thành viên của {{PLURAL:$1|nhóm|các nhóm}}:",
 	"prefs-registration": "Lúc mở tài khoản:",
 	"yourrealname": "Tên thật:",

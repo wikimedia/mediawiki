@@ -961,7 +961,6 @@
 	"prefs-emailconfirm-label": "Konfirmasi surel:",
 	"youremail": "Surel:",
 	"username": "{{GENDER:$1|Nama pengguna}}:",
-	"uid": "ID {{GENDER:$1|pengguna}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Anggota}} {{PLURAL:$1|kelompok|kelompok}}:",
 	"prefs-memberingroups-type": "$1",
 	"prefs-registration": "Waktu pendaftaran:",

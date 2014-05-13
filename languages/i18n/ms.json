@@ -947,7 +947,6 @@
 	"prefs-emailconfirm-label": "Pengesahan e-mel:",
 	"youremail": "E-mel:",
 	"username": "{{GENDER:$1|Nama pengguna}}:",
-	"uid": "ID {{GENDER:$1|Pengguna}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Ahli}} {{PLURAL:$1|kumpulan|kumpulan-kumpulan}}:",
 	"prefs-memberingroups-type": "$1",
 	"prefs-registration": "Waktu pendaftaran:",

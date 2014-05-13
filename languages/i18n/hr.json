@@ -905,7 +905,6 @@
 	"prefs-emailconfirm-label": "Potvrda e-mail adrese:",
 	"youremail": "Vaša elektronska pošta *",
 	"username": "Ime {{GENDER:$1|suradnika|suradnice}}:",
-	"uid": "ID-broj {{GENDER:$1|suradnika|suradnice}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Suradnik|Suradnica}} je član {{PLURAL:$1|sljedeće skupine|sljedećih skupina}}:",
 	"prefs-registration": "Vrijeme prijave:",
 	"yourrealname": "Pravo ime (nije obvezno)*",

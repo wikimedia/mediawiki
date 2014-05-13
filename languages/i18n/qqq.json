@@ -1150,7 +1150,6 @@
 	"prefs-emailconfirm-label": "Sub-heading in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.",
 	"youremail": "Label of the e-mail text box of the \"E-mail options\" section of [[Special:Preferences]].\nAlso used on create account form.\n\n{{Identical|E-mail}}",
 	"username": "Username field in [[Special:Preferences]]. $1 is the current user name for GENDER distinction (depends on sex setting).\n\n{{Identical|Username}}",
-	"uid": "User ID field in [[Special:Preferences]]. $1 is the current user name for GENDER distinction (depends on sex setting).\n\n{{Identical|User ID}}",
 	"prefs-memberingroups": "This message is shown on [[Special:Preferences]], first tab.\n\nParameters:\n* $1 - number of user groups\n* $2 - the username for GENDER\nSee also:\n* {{msg-mw|Prefs-memberingroups-type}}",
 	"prefs-memberingroups-type": "{{optional}}\nParameters:\n* $1 - list of group names\n* $2 - list of group member names. Label for these is {{msg-mw|Prefs-memberingroups}}",
 	"prefs-registration": "Used in [[Special:Preferences]].",

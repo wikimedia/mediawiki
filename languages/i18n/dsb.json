@@ -938,7 +938,6 @@
 	"prefs-emailconfirm-label": "E-mailowe wobkšuśenje:",
 	"youremail": "E-mail:",
 	"username": "Mě {{GENDER:$1|wužywarja|wužywarki}}:",
-	"uid": "ID {{GENDER:$1|wužywarja|wužywarki}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Cłon|Cłonka}} {{PLURAL:$1|wužywarskeje kupki|wužiwarskeju kupkowu|wužywarskich kupkow}}:",
 	"prefs-registration": "Cas registracije:",
 	"yourrealname": "Realne mě *:",

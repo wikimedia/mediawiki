@@ -818,7 +818,6 @@
 	"timezoneregion-pacific": "Ocèan Pacéfich",
 	"youremail": "E-mail:",
 	"username": "{{GENDER:$1|Nòm utèint}}",
-	"uid": "{{GENDER:$1|utèint}}",
 	"prefs-memberingroups": "{{GENDER:$2|Elemèint}}{{PLURAL:$1|dal gróp|di gróp}}:",
 	"yourrealname": "Nòm vèira:",
 	"yourlanguage": "Léngua",

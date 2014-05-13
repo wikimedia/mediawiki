@@ -873,7 +873,6 @@
 	"prefs-emailconfirm-label": "ଇ-ମେଲ ସଜାଣି:",
 	"youremail": "ଇ-ମେଲ:",
 	"username": "{{GENDER:$1|Username}}:",
-	"uid": "{{GENDER:$1|User}} ID:",
 	"prefs-memberingroups": "{{PLURAL:$1|group|groups}}:ର {{GENDER:$2|Member}}",
 	"prefs-registration": "ନାମଲେଖା ବେଳା:",
 	"yourrealname": "ପ୍ରକୃତ ନାମ:",

@@ -964,7 +964,6 @@
 	"prefs-emailconfirm-label": "Sähköpostin varmistus",
 	"youremail": "Sähköpostiosoite",
 	"username": "{{GENDER:$1|Käyttäjätunnus}}",
-	"uid": "{{GENDER:$1|Tunniste}}",
 	"prefs-memberingroups": "{{GENDER:$2|Jäsenenä}} {{PLURAL:$1|ryhmässä|ryhmissä}}",
 	"prefs-registration": "Rekisteröintiaika",
 	"yourrealname": "Oikea nimi",

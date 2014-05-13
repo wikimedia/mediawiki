@@ -867,7 +867,6 @@
 	"prefs-emailconfirm-label": "Е-поштаның расталуы:",
 	"youremail": "Е-поштаңыз:",
 	"username": "{{GENDER:$1|Қатысушы атыңыз}}:",
-	"uid": "{{GENDER:$1|Қатысушы}} теңдестіргішіңіз (ID):",
 	"prefs-memberingroups": "{{GENDER:$2|Мүше}}  {{PLURAL:$1|тобыңыз|топтарыңыз}}:",
 	"prefs-registration": "Тіркелген уақытыңыз:",
 	"yourrealname": "Нақты атыңыз:",

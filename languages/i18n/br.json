@@ -920,7 +920,6 @@
 	"prefs-emailconfirm-label": "Kadarnaat ar postel :",
 	"youremail": "Postel :",
 	"username": "{{GENDER:$1|Anv implijer|Anv implijerez}}:",
-	"uid": "{{GENDER:$1|Niv. identelezh an implijer|Niv. identelezh an implijerez}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Ezel}} eus {{PLURAL:$1|ar strollad|ar strolladoù}} :",
 	"prefs-registration": "Deiziad enskrivañ :",
 	"yourrealname": "Anv gwir*",

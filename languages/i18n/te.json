@@ -936,7 +936,6 @@
 	"prefs-emailconfirm-label": "ఈ-మెయిల్ నిర్ధారణ:",
 	"youremail": "ఈమెయిలు:",
 	"username": "{{GENDER:$1|వాడుకరి పేరు}}:",
-	"uid": "{{GENDER:$1|వాడుకరి}} ID:",
 	"prefs-memberingroups": "ఈ {{PLURAL:$1|గుంపులో|గుంపులలో}} {{GENDER:$2|సభ్యుడు|సభ్యురాలు}}:",
 	"prefs-registration": "నమోదైన సమయం:",
 	"yourrealname": "అసలు పేరు:",

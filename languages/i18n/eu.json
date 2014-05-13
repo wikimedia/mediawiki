@@ -901,7 +901,6 @@
 	"prefs-emailconfirm-label": "E-posta baieztapena:",
 	"youremail": "E-posta:",
 	"username": "{{GENDER:$1|Erabiltzaile izena}}:",
-	"uid": "{{GENDER:$1|Erabiltzaile}} zenbakia:",
 	"prefs-memberingroups": "{{PLURAL:$1|Taldeko|taldeetako}} {{GENDER:$2|kidea}}:",
 	"prefs-registration": "Erregistratzeko unea:",
 	"yourrealname": "Benetako izena:",

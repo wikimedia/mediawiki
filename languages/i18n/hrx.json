@@ -920,7 +920,6 @@
 	"prefs-emailconfirm-label": "E-Mail-Bestätichung:",
 	"youremail": "E-Mail-Adress:",
 	"username": "{{GENDER:$1|Benutzernoome}}:",
-	"uid": "{{GENDER:$1|Benutzerkennung}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Mitglied}} von der {{PLURAL:$1|Benutzergrupp|Benutzergruppe}}:",
 	"prefs-registration": "Oonmeldezeitpunkt:",
 	"yourrealname": "Dein Noome wie registriert:",

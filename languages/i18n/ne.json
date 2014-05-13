@@ -22,7 +22,7 @@
 	"tog-hidepatrolled": "गस्ती(patrolled)सम्पादनहरु हालका परिवर्तनहरुमा लुकाउने",
 	"tog-newpageshidepatrolled": "गस्ती गरिएका पृष्ठहरू नयाँ पृष्ठ सूचीबाट लुकाउने",
 	"tog-extendwatchlist": "निगरानी सूचीलाई सबै परिवर्तनहरू देखाउने गरी बढाउने , हालैको  बाहेक",
-	"tog-usenewrc": "पृष्ठका भर्खरका परिवर्तन र अवलोकन सूचीको आधारमा सामूहिक परिवर्तनहरु ( जाभास्क्रिप्ट चाहिन्छ)",
+	"tog-usenewrc": "पृष्ठका भर्खरका परिवर्तन र अवलोकन सूचीको आधारमा सामूहिक परिवर्तनहरु",
 	"tog-numberheadings": "शीर्षकहरुलाई स्वत:अङ्कित गर्नुहोस्",
 	"tog-showtoolbar": "सम्पादन औजारबट्टा देखाउने",
 	"tog-editondblclick": "दोहोरो क्लिकमा पृष्ठ सम्पादन गर्ने",
@@ -881,7 +881,6 @@
 	"prefs-emailconfirm-label": "इ-मेल एकिन प्रक्रिया :",
 	"youremail": "ईमेल",
 	"username": "{{GENDER:$1|प्रयोगकर्ता नाम}}:",
-	"uid": "{{GENDER:$1|प्रयोगकर्ता}} ID:",
 	"prefs-memberingroups": "निम्न {{PLURAL:$1|समूह | समूहहरू}}को {{GENDER:$2|सदस्य}} :",
 	"prefs-memberingroups-type": "$1",
 	"prefs-registration": "दर्ता समय:",
@@ -2676,6 +2675,7 @@
 	"feedback-submit": "प्रतिकृया बुझाउनुहोस्",
 	"feedback-error2": "त्रुटि: सम्पादन असफल",
 	"feedback-close": "गरियो",
+	"searchsuggest-search": "खोज",
 	"api-error-badaccess-groups": "यस विकिमा तपाईंलाई फाइल अपलोड गर्ने अनुमति छैन।",
 	"api-error-copyuploaddisabled": "यस सर्वरमा URL द्वारा अपलोड गर्ने व्यवस्था निस्क्रिय गरिएकोछ।",
 	"api-error-duplicate": "यस साइटमा पहिलेबाट यस्तै सामग्री {{PLURAL:$1|भएको [$2 अर्को फाइल छ]|भएका  [$2 केहि अरु फाइलहरु छन्]}} ।",
@@ -2706,6 +2706,7 @@
 	"api-error-unknownerror": "अज्ञात त्रुटि: \"$1\".",
 	"api-error-uploaddisabled": "यस विकिमा अपलोड निस्क्रिय गरिएकोछ।",
 	"expand_templates_output": "परिणाम",
+	"expand_templates_ok": "ठीक",
 	"expand_templates_generate_rawhtml": "सुद्ध HTML देखाउने",
 	"expand_templates_preview": "पूर्वावलोकन"
 }

@@ -942,7 +942,6 @@
 	"prefs-emailconfirm-label": "ई-पत्रं दृढीक्रियताम् :",
 	"youremail": "ई-पत्रसङ्केतः :",
 	"username": "{{GENDER:$1|योजकनाम}} :",
-	"uid": "{{GENDER:$1|प्रयोकतृनाम}} :",
 	"prefs-memberingroups": "{{PLURAL:$1|समूहस्य|समूहानां}} {{GENDER:$2|सदस्यः/सदस्याः}} :",
 	"prefs-registration": "पञ्जीकरणस्य कालः :",
 	"yourrealname": "वास्तविकनाम :",

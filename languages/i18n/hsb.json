@@ -935,7 +935,6 @@
 	"prefs-emailconfirm-label": "E-mejlowe wobkrućenje:",
 	"youremail": "E-mejl:",
 	"username": "Mjeno {{GENDER:$1|wužiwarja|wužiwarki}}:",
-	"uid": "ID {{GENDER:$1|wužiwarja|wužiwarki}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Čłon|Čłonka}} {{PLURAL:$1|wužiwarskeje skupiny|wužiwarskeju skupinow|wužiwarskich skupinow}}:",
 	"prefs-registration": "Čas registracije:",
 	"yourrealname": "Woprawdźite mjeno:",

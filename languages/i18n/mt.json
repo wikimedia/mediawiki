@@ -841,7 +841,6 @@
 	"prefs-emailconfirm-label": "Konferma tal-ittra-e:",
 	"youremail": "E-mail:",
 	"username": "{{GENDER:$1|Isem tal-utent}}:",
-	"uid": "{{GENDER:$1|ID tal-utent}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Membru}} tal-{{PLURAL:$1|grupp|gruppi}}:",
 	"prefs-memberingroups-type": "$1",
 	"prefs-registration": "Ħin ta' reġistrazzjoni:",

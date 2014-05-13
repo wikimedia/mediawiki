@@ -914,7 +914,6 @@
 	"prefs-emailconfirm-label": "Potvrda e-adrese:",
 	"youremail": "E-adresa:",
 	"username": "{{GENDER:$1|Korisničko ime}}:",
-	"uid": "{{GENDER:$1|Korisnički}} ID:",
 	"prefs-memberingroups": "{{PLURAL:$1|Grupa|Grupe}}:",
 	"prefs-memberingroups-type": "$1",
 	"prefs-registration": "Vreme upisa:",

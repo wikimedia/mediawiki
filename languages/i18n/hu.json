@@ -937,7 +937,6 @@
 	"prefs-emailconfirm-label": "E-mail cím megerősítése:",
 	"youremail": "Az e-mail címed:",
 	"username": "{{GENDER:$1|Szerkesztőnév}}:",
-	"uid": "{{GENDER:$1|Azonosító}}:",
 	"prefs-memberingroups": "{{GENDER:$2|{{PLURAL:$1|Csoporttagság|Csoporttagságok}}}}:",
 	"prefs-registration": "Regisztráció ideje:",
 	"yourrealname": "Valódi neved:",

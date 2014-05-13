@@ -895,7 +895,6 @@
 	"prefs-emailconfirm-label": "විද්‍යුත්-ලිපිනය තහවුරුකිරීම:",
 	"youremail": "විද්‍යුත් තැපෑල:",
 	"username": "{{GENDER:$1|පරිශීලක නාමය}}:",
-	"uid": "{{GENDER:$1|පරිශීලක}} අනන්‍යාංකය:",
 	"prefs-memberingroups": "ඉදිරියේ දැක්වෙන {{PLURAL:$1|කණ්ඩායමෙහි|කණ්ඩායම් වල}} {{GENDER:$2|සාමාජිකයෙකි}}:",
 	"prefs-registration": "ලියාපදිංචිවූ වේලාව:",
 	"yourrealname": "සැබෑ නාමය:",

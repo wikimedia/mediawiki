@@ -964,7 +964,6 @@
 	"prefs-emailconfirm-label": "E-postbekreftelse:",
 	"youremail": "E-post:",
 	"username": "{{GENDER:$1|Brukernavn}}:",
-	"uid": "{{GENDER:$1|Bruker-ID}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Medlem}} i følgende {{PLURAL:$1|gruppe|grupper}}:",
 	"prefs-registration": "Registreringstid:",
 	"yourrealname": "Virkelig navn:",

@@ -932,7 +932,6 @@
 	"prefs-emailconfirm-label": "Эл. почтаны бигэргэтии:",
 	"youremail": "E-mail-ыҥ:",
 	"username": "{{GENDER:$1|Бэлиэтэммит аатыҥ}}:",
-	"uid": "{{GENDER:$1|Кыттааччы}} ID-та:",
 	"prefs-memberingroups": "Бу {{PLURAL:$1|бөлөххө|бөлөхтөргө}} {{GENDER:$2|киирэр}}:",
 	"prefs-registration": "Бэлиэтэнии кэмэ:",
 	"prefs-registration-date-time": "$1",

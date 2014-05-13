@@ -933,7 +933,6 @@
 	"prefs-emailconfirm-label": "Confirmación del corréu:",
 	"youremail": "Corréu electrónicu:",
 	"username": "Nome d'{{GENDER:$1|usuariu|usuaria}}:",
-	"uid": "ID {{GENDER:$1|del usuariu|de la usuaria}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Miembru}} {{PLURAL:$1|del grupu|de los grupos}}:",
 	"prefs-registration": "Hora del rexistru:",
 	"yourrealname": "Nome real:",

@@ -875,7 +875,6 @@
 	"prefs-emailconfirm-label": "Бакъ яр электрони почт:",
 	"youremail": "Электронан почта:",
 	"username": "{{GENDER:$1|Декъашхочун цӀе}}:",
-	"uid": "Декъашхочун {{GENDER:$1|код}}:",
 	"prefs-memberingroups": "{{GENDER:$1|Тобана|Тобаншан}} {{PLURAL:$2|декъашхо|декъашхой}}:",
 	"prefs-registration": "ДӀаяздар кхолийна хан:",
 	"yourrealname": "Хьан бакъ цӀе:",

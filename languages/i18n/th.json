@@ -943,7 +943,6 @@
 	"prefs-emailconfirm-label": "การยืนยันอีเมล:",
 	"youremail": "อีเมล:",
 	"username": "{{GENDER:$1|ชื่อผู้ใช้}}:",
-	"uid": "รหัสประจำตัว{{GENDER:$1|ผู้ใช้}}:",
 	"prefs-memberingroups": "{{GENDER:$2|สมาชิก}}ใน{{PLURAL:$1|กลุ่ม|กลุ่ม}}:",
 	"prefs-registration": "เวลาลงทะเบียน:",
 	"yourrealname": "ชื่อจริง:",

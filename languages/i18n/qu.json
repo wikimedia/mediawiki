@@ -899,7 +899,6 @@
 	"prefs-emailconfirm-label": "E-chaskita takyachiy:",
 	"youremail": "E-chaski imamaytayki",
 	"username": "{{GENDER:$1|Ruraqpa sutin}}:",
-	"uid": "{{GENDER:$1|Ruraqpa}} ID-nin:",
 	"prefs-memberingroups": "Kay {{PLURAL:$1|huñuman|huñukunaman}} {{GENDER:$2|kapuq}}:",
 	"prefs-registration": "Hallch'ay pacha:",
 	"yourrealname": "Chiqap sutiyki*",

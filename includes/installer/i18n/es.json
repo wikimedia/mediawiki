@@ -329,7 +329,7 @@
 	"config-download-localsettings": "Descargar archivo <code>LocalSettings.php</code>",
 	"config-help": "Ayuda",
 	"config-nofile": "El archivo \"$1\" no se pudo encontrar. ¿Se ha eliminado?",
-	"config-extension-link": "¿Sabías que tu wiki admite [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensiones]?\n\nPuedes navegar por las [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category categorías] o visitar la [//www.mediawiki.org/wiki/Extension_Matrix matriz de extensiones] para ver una lista completa.",
+	"config-extension-link": "¿Sabías que tu wiki admite [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensiones]?\n\nPuedes navegar por las [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category categorías] o visitar el [//www.mediawiki.org/wiki/Extension_Matrix centro de extensiones] para ver una lista completa.",
 	"mainpagetext": "'''MediaWiki ha sido instalado con éxito.'''",
 	"mainpagedocfooter": "Consulta la [//meta.wikimedia.org/wiki/Ayuda:Guía del usuario de contenidos] para obtener información sobre el uso del software wiki.\n\n== Empezando ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de ajustes de configuración]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/es FAQ de MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de distribución de MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Regionalizar MediaWiki para tu idioma]"
 }

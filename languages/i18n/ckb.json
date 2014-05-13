@@ -866,7 +866,6 @@
 	"prefs-emailconfirm-label": "پشتڕاستکردنەوەی ئیمەیل:",
 	"youremail": "ئیمەیل:",
 	"username": "{{GENDER:$1|ناوی به‌کارھێنەر}}:",
-	"uid": "پێناسەی {{GENDER:$1|به‌کارھێنەر}}:",
 	"prefs-memberingroups": "{{GENDER:$2|ئەندامی}} {{PLURAL:$1|گرووپی|گرووپەکانی}}:",
 	"prefs-registration": "کاتی خۆتۆمارکردن:",
 	"yourrealname": "ناوی ڕاستی:",

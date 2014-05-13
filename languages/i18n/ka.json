@@ -910,7 +910,6 @@
 	"prefs-emailconfirm-label": "ელ-ფოსტის დადასტურება:",
 	"youremail": "ელექტრონული ფოსტა:",
 	"username": "{{GENDER:$1|მომხმარებლის სახელი}}:",
-	"uid": "{{GENDER:$1|მომხმარებლის}} იდენტიფიკატორი:",
 	"prefs-memberingroups": "{{PLURAL:$1|ჯგუფის|ჯგუფების}} {{GENDER:$2|წევრი}}:",
 	"prefs-memberingroups-type": "$1",
 	"prefs-registration": "რეგისტრაციის თარიღი",

@@ -946,7 +946,6 @@
 	"prefs-emailconfirm-label": "Confirmare e-mail:",
 	"youremail": "Adresă de e-mail:",
 	"username": "{{GENDER:$1|Nume de utilizator}}:",
-	"uid": "ID {{GENDER:$1|utilizator|utilizatoare}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Membru|Membră}} în {{PLURAL:$1|grupul|grupurile}}:",
 	"prefs-registration": "Data înregistrării:",
 	"yourrealname": "Nume real:",

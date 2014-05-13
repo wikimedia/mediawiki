@@ -949,7 +949,6 @@
 	"prefs-emailconfirm-label": "ഇമെയിൽ സ്ഥിരീകരണം:",
 	"youremail": "ഇമെയിൽ:",
 	"username": "{{GENDER:$1|ഉപയോക്തൃനാമം}}:",
-	"uid": "{{GENDER:$1|ഉപയോക്തൃ}} ഐ.ഡി.:",
 	"prefs-memberingroups": "{{GENDER:$2|അംഗത്വമുള്ള}} {{PLURAL:$1|സംഘം|സംഘങ്ങൾ}}:",
 	"prefs-registration": "അംഗത്വം എടുത്തത്:",
 	"yourrealname": "യഥാർത്ഥ പേര്‌:",

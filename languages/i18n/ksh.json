@@ -929,7 +929,6 @@
 	"prefs-emailconfirm-label": "Beshtätejung övver <i lang=\"en\">e-mail</i>:",
 	"youremail": "E-Mail *",
 	"username": "{{GENDER:$1|Metmaacher|Metmaacherėnne|Metmaacher|Metmaacherėnne|Metmaacher}} Name:",
-	"uid": "{{GENDER:$1|Metmaacher|Metmaacherėnne|Metmaacher|Metmaacherėnne|Metmaacher}} Nommer:",
 	"prefs-memberingroups": "{{GENDER:$2|Bes}} en {{PLURAL:$1|de Metmaacherjrupp:|$1 Metmaacherjruppe:|keijn Metmaacherjruppe.}}",
 	"prefs-registration": "Aanjemeldt zick",
 	"prefs-registration-date-time": "dem $2 öm $3 Uhr",

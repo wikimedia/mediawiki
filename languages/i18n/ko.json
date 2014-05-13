@@ -959,7 +959,6 @@
 	"prefs-emailconfirm-label": "이메일 인증:",
 	"youremail": "이메일:",
 	"username": "{{GENDER:$1|사용자 이름}}:",
-	"uid": "{{GENDER:$1|사용자}} ID:",
 	"prefs-memberingroups": "{{GENDER:$2|소속}} {{PLURAL:$1|그룹}}:",
 	"prefs-registration": "등록 시간:",
 	"yourrealname": "실명:",

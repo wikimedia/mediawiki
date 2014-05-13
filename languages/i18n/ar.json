@@ -961,7 +961,6 @@
 	"prefs-emailconfirm-label": "تأكيد البريد الإلكتروني:",
 	"youremail": "البريد:",
 	"username": "{{GENDER:$1|اسم المستخدم|اسم المستخدمة}}:",
-	"uid": "رقم {{GENDER:$1|المستخدم|المستخدمة}}:",
 	"prefs-memberingroups": "{{GENDER:$2|عضو|عضوة}} في {{PLURAL:$1|مجموعة|مجموعة|مجموعتي|مجموعات}}:",
 	"prefs-registration": "وقت التسجيل:",
 	"yourrealname": "الاسم الحقيقي:",

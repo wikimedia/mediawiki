@@ -904,7 +904,6 @@
 	"prefs-emailconfirm-label": "Kumpirmasyon ng e-liham:",
 	"youremail": "E-liham:",
 	"username": "{{GENDER:$1|Bansag}}:",
-	"uid": "ID ng {{GENDER:$1|tagagamit}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Kasapi}} ng {{PLURAL:$1|na pangkat|na mga pangkat}}:",
 	"prefs-memberingroups-type": "$1",
 	"prefs-registration": "Oras ng pagtatala:",

@@ -880,7 +880,6 @@
 	"prefs-emailconfirm-label": "Электрон почтаны бегитиу:",
 	"youremail": "Электрон почта:",
 	"username": "{{GENDER:$1|Къошулуучу ат}}:",
-	"uid": "{{GENDER:$1|Къошулуучуну}} коду:",
 	"prefs-memberingroups": "{{PLURAL:$1|1=Группаны|Группаланы}} {{GENDER:$2|члени}}:",
 	"prefs-memberingroups-type": "$1",
 	"prefs-registration": "Регистрацияны этилген заманы:",

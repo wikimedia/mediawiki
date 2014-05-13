@@ -990,7 +990,6 @@
 	"prefs-emailconfirm-label": "Confirmação do e-mail:",
 	"youremail": "Seu e-mail:",
 	"username": "Nome de {{GENDER:$1|usuário|usuária}}:",
-	"uid": "ID de {{GENDER:$1|usuário|usuária}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Membro}} {{PLURAL:$1|do grupo|dos grupos}}:",
 	"prefs-registration": "Hora de registro:",
 	"yourrealname": "Nome verdadeiro:",

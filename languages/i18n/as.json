@@ -919,7 +919,6 @@
 	"prefs-emailconfirm-label": "ইমেইল নিশ্চিতকৰণ:",
 	"youremail": "আপোনাৰ ই-মেইল *",
 	"username": "{{GENDER:$1|সদস্যনাম}}:",
-	"uid": "{{GENDER:$1|User}} চিহ্ন:",
 	"prefs-memberingroups": "{{PLURAL:$1|গোট|গোটসমূহৰ}} {{GENDER:$2|সদস্য}} :",
 	"prefs-registration": "পঞ্জীয়ন কৰাৰ সময়:",
 	"yourrealname": "প্ৰকৃত নাম:",
