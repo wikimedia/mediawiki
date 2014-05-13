@@ -115,6 +115,7 @@
 			'#powerSearchText',
 			'#searchText',
 			// Generic selector for skins with multiple searchboxes (used by CologneBlue)
+			// and for MediaWiki itself (special pages with page title inputs)
 			'.mw-searchInput'
 		];
 		$( searchboxesSelectors.join( ', ' ) )
@@ -156,6 +157,16 @@
 				// make sure paste and cut events from the mouse and drag&drop events
 				// trigger the keypress handler and cause the suggestions to update
 				$( this ).trigger( 'keypress' );
+			} )
+			// In most skins (at least Monobook and Vector), the font-size is messed up in <body>.
+			// (they use 2 elements to get a sane font-height). So, instead of making exceptions for
+			// each skin or adding more stylesheets, just copy it from the active element so auto-fit.
+			.each( function () {
+				var $this = $( this );
+				$this
+					.data( 'suggestions-context' )
+					.data.$container
+						.css( 'fontSize', $this.css( 'fontSize' ) );
 			} );
 
 		// Ensure that the thing is actually present!
@@ -181,15 +192,6 @@
 
 		// If the form includes any fallback fulltext search buttons, remove them
 		$searchInput.closest( 'form' ).find( '.mw-fallbackSearchButton' ).remove();
-
-		// In most skins (at least Monobook and Vector), the font-size is messed up in <body>.
-		// (they use 2 elements to get a sane font-height). So, instead of making exceptions for
-		// each skin or adding more stylesheets, just copy it from the active element so auto-fit.
-		$searchInput
-			.data( 'suggestions-context' )
-			.data.$container
-				.css( 'fontSize', $searchInput.css( 'fontSize' ) );
-
 	} );
 
 }( mediaWiki, jQuery ) );
