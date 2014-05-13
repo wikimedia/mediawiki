@@ -28,20 +28,14 @@
  * @ingroup SpecialPage
  */
 abstract class QueryPage extends SpecialPage {
-	/**
-	 * Whether or not we want plain listoutput rather than an ordered list
-	 *
-	 * @var bool
-	 */
-	var $listoutput = false;
+	/** @var bool Whether or not we want plain listoutput rather than an ordered list */
+	protected $listoutput = false;
 
-	/**
-	 * The offset and limit in use, as passed to the query() function
-	 *
-	 * @var int
-	 */
-	var $offset = 0;
-	var $limit = 0;
+	/** @var int The offset and limit in use, as passed to the query() function */
+	protected $offset = 0;
+
+	/** @var int */
+	protected $limit = 0;
 
 	/**
 	 * The number of rows returned by the query. Reading this variable
@@ -503,7 +497,7 @@ abstract class QueryPage extends SpecialPage {
 			list( $this->limit, $this->offset ) = $this->getRequest()->getLimitOffset();
 		}
 
-		// TODO: Use doQuery()
+		// @todo Use doQuery()
 		if ( !$this->isCached() ) {
 			# select one extra row for navigation
 			$res = $this->reallyDoQuery( $this->limit + 1, $this->offset );
@@ -595,7 +589,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @param OutputPage $out OutputPage to print to
 	 * @param Skin $skin User skin to use
 	 * @param DatabaseBase $dbr Database (read) connection to use
-	 * @param int $res Result pointer
+	 * @param ResultWrapper $res Result pointer
 	 * @param int $num Number of available result rows
 	 * @param int $offset Paging offset
 	 */
@@ -610,7 +604,9 @@ abstract class QueryPage extends SpecialPage {
 
 			# $res might contain the whole 1,000 rows, so we read up to
 			# $num [should update this to use a Pager]
+			// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
 			for ( $i = 0; $i < $num && $row = $res->fetchObject(); $i++ ) {
+				// @codingStandardsIgnoreEnd
 				$line = $this->formatResult( $skin, $row );
 				if ( $line ) {
 					$attr = ( isset( $row->usepatrol ) && $row->usepatrol && $row->patrolled == 0 )
@@ -668,7 +664,8 @@ abstract class QueryPage extends SpecialPage {
 	 * @param DatabaseBase $db
 	 * @param ResultWrapper $res
 	 */
-	function preprocessResults( $db, $res ) {}
+	function preprocessResults( $db, $res ) {
+	}
 
 	/**
 	 * Similar to above, but packaging in a syndicated feed instead of a web page
@@ -687,6 +684,7 @@ abstract class QueryPage extends SpecialPage {
 		$limit = min( $limit, $wgFeedLimit );
 
 		if ( isset( $wgFeedClasses[$class] ) ) {
+			/** @var RSSFeed|AtomFeed $feed */
 			$feed = new $wgFeedClasses[$class](
 				$this->feedTitle(),
 				$this->feedDesc(),

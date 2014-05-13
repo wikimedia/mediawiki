@@ -24,12 +24,16 @@
  * List for revision table items for a single page
  */
 abstract class RevisionListBase extends ContextSource {
-	/**
-	 * @var Title
-	 */
-	var $title;
+	/** @var Title */
+	public $title;
 
-	var $ids, $res, $current;
+	/** @var array */
+	protected $ids;
+
+	protected $res;
+
+	/** @var bool|object */
+	protected $current;
 
 	/**
 	 * Construct a revision list for a given title
@@ -131,11 +135,11 @@ abstract class RevisionListBase extends ContextSource {
  * Abstract base class for revision items
  */
 abstract class RevisionItemBase {
-	/** The parent RevisionListBase */
-	var $list;
+	/** @var RevisionListBase The parent */
+	protected $list;
 
-	/** The DB result row */
-	var $row;
+	/** The database result row */
+	protected $row;
 
 	/**
 	 * @param RevisionListBase $list
@@ -288,7 +292,11 @@ class RevisionList extends RevisionListBase {
  * Item class for a live revision table row
  */
 class RevisionItem extends RevisionItemBase {
-	var $revision, $context;
+	/** @var Revision */
+	protected $revision;
+
+	/** @var RequestContext */
+	protected $context;
 
 	public function __construct( $list, $row ) {
 		parent::__construct( $list, $row );

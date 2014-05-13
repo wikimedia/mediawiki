@@ -21,7 +21,7 @@
  */
 
 abstract class Collation {
-	static $instance;
+	private static $instance;
 
 	/**
 	 * @return Collation
@@ -108,7 +108,8 @@ abstract class Collation {
 }
 
 class UppercaseCollation extends Collation {
-	var $lang;
+	private $lang;
+
 	function __construct() {
 		// Get a language object so that we can use the generic UTF-8 uppercase
 		// function there
@@ -153,8 +154,20 @@ class IdentityCollation extends Collation {
 class IcuCollation extends Collation {
 	const FIRST_LETTER_VERSION = 2;
 
-	var $primaryCollator, $mainCollator, $locale, $digitTransformLanguage;
-	var $firstLetterData;
+	/** @var Collator */
+	private $primaryCollator;
+
+	/** @var Collator */
+	private $mainCollator;
+
+	/** @var  */
+	private $locale;
+
+	/** @var Language */
+	protected $digitTransformLanguage;
+
+	/** @var array */
+	private $firstLetterData;
 
 	/**
 	 * Unified CJK blocks.
@@ -165,7 +178,7 @@ class IcuCollation extends Collation {
 	 * is pretty useless for sorting Chinese text anyway. Japanese and Korean
 	 * blocks are not included here, because they are smaller and more useful.
 	 */
-	static $cjkBlocks = array(
+	private static $cjkBlocks = array(
 		array( 0x2E80, 0x2EFF ), // CJK Radicals Supplement
 		array( 0x2F00, 0x2FDF ), // Kangxi Radicals
 		array( 0x2FF0, 0x2FFF ), // Ideographic Description Characters
@@ -204,7 +217,7 @@ class IcuCollation extends Collation {
 	 * Empty arrays are intended; this signifies that the data for the language is
 	 * available and that there are, in fact, no additional letters to consider.
 	 */
-	static $tailoringFirstLetters = array(
+	private static $tailoringFirstLetters = array(
 		// Verified by native speakers
 		'be' => array( "Ё" ),
 		'be-tarask' => array( "Ё" ),

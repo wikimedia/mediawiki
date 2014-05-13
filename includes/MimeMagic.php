@@ -142,30 +142,29 @@ END_STRING
  * of MimeMagic. Please use MimeMagic::singleton() to get that instance.
  */
 class MimeMagic {
-
 	/**
-	 * Mapping of media types to arrays of mime types.
+	 * @var array Mapping of media types to arrays of mime types.
 	 * This is used by findMediaType and getMediaType, respectively
 	 */
-	var $mMediaTypes = null;
+	protected $mMediaTypes = null;
 
-	/** Map of mime type aliases
+	/** @var array Map of mime type aliases
 	 */
-	var $mMimeTypeAliases = null;
+	protected $mMimeTypeAliases = null;
 
-	/** map of mime types to file extensions (as a space separated list)
+	/** @var array Map of mime types to file extensions (as a space separated list)
 	 */
-	var $mMimeToExt = null;
+	protected $mMimeToExt = null;
 
-	/** map of file extensions types to mime types (as a space separated list)
+	/** @var array Map of file extensions types to mime types (as a space separated list)
 	 */
-	var $mExtToMime = null;
+	public $mExtToMime = null;
 
-	/** IEContentAnalyzer instance
+	/** @var IEContentAnalyzer
 	 */
-	var $mIEAnalyzer;
+	protected $mIEAnalyzer;
 
-	/** The singleton instance
+	/** @var MimeMagic The singleton instance
 	 */
 	private static $instance = null;
 
@@ -323,13 +322,13 @@ class MimeMagic {
 
 			if ( count( $m ) > 1 ) {
 				$main = $m[0];
-				for ( $i = 1; $i < count( $m ); $i += 1 ) {
+				$mCount = count( $m );
+				for ( $i = 1; $i < $mCount; $i += 1 ) {
 					$mime = $m[$i];
 					$this->mMimeTypeAliases[$mime] = $main;
 				}
 			}
 		}
-
 	}
 
 	/**
@@ -861,8 +860,10 @@ class MimeMagic {
 	private function detectMimeType( $file, $ext = true ) {
 		global $wgMimeDetectorCommand;
 
-		if ( $ext ) { # TODO:  make $ext default to false. Or better, remove it.
-			wfDebug( __METHOD__ . ": WARNING: use of the \$ext parameter is deprecated. Use improveTypeFromExtension(\$mime, \$ext) instead.\n" );
+		/** @todo Make $ext default to false. Or better, remove it. */
+		if ( $ext ) {
+			wfDebug( __METHOD__ . ": WARNING: use of the \$ext parameter is deprecated. "
+				. "Use improveTypeFromExtension(\$mime, \$ext) instead.\n" );
 		}
 
 		$m = null;
@@ -892,13 +893,16 @@ class MimeMagic {
 		} elseif ( function_exists( "mime_content_type" ) ) {
 
 			# NOTE: this function is available since PHP 4.3.0, but only if
-			# PHP was compiled with --with-mime-magic or, before 4.3.2, with --enable-mime-magic.
+			# PHP was compiled with --with-mime-magic or, before 4.3.2, with
+			# --enable-mime-magic.
 			#
-			# On Windows, you must set mime_magic.magicfile in php.ini to point to the mime.magic file bundled with PHP;
-			# sometimes, this may even be needed under linus/unix.
+			# On Windows, you must set mime_magic.magicfile in php.ini to point
+			# to the mime.magic file bundled with PHP; sometimes, this may even
+			# be needed under *nix.
 			#
-			# Also note that this has been DEPRECATED in favor of the fileinfo extension by PECL, see above.
-			# see http://www.php.net/manual/en/ref.mime-magic.php for details.
+			# Also note that this has been DEPRECATED in favor of the fileinfo
+			# extension by PECL, see above.
+			# See http://www.php.net/manual/en/ref.mime-magic.php for details.
 
 			$m = mime_content_type( $file );
 		} else {
@@ -926,7 +930,8 @@ class MimeMagic {
 		}
 		if ( $ext ) {
 			if ( $this->isRecognizableExtension( $ext ) ) {
-				wfDebug( __METHOD__ . ": refusing to guess mime type for .$ext file, we should have recognized it\n" );
+				wfDebug( __METHOD__ . ": refusing to guess mime type for .$ext file, "
+					. "we should have recognized it\n" );
 			} else {
 				$m = $this->guessTypesForExtension( $ext );
 				if ( $m ) {
