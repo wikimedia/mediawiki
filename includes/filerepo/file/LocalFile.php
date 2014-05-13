@@ -1249,7 +1249,17 @@ class LocalFile extends File {
 		}
 
 		if ( $timestamp === false ) {
-			$timestamp = $dbw->timestamp();
+			$ltimestamp = $dbw->selectField( 'image', 'img_timestamp',
+				array( 'img_name' => $this->getName() ), __METHOD__ );
+			$ltime = $ltimestamp ? wfTimestamp( TS_UNIX, $ltimestamp ) : false;
+			$ctime = time();
+			// Avoid a timestamp that is not newer than the last version
+			if ( $ctime > $ltime ) {
+				$timestamp = $dbw->timestamp( $ctime );
+			} else {
+				sleep( 1 ); // fast enough uploads will go in to the future otherwise
+				$timestamp = $dbw->timestamp( $ltime + 1 );
+			}
 		}
 
 		$props['description'] = $comment;
