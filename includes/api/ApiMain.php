@@ -1234,7 +1234,8 @@ class ApiMain extends ApiBase {
 			'    Victor Vasiliev',
 			'    Bryan Tong Minh',
 			'    Sam Reed',
-			'    Yuri Astrakhan (creator, lead developer Sep 2006-Sep 2007, 2012-present)',
+			'    Yuri Astrakhan (creator, lead developer Sep 2006-Sep 2007, 2012-2013)',
+			'    Brad Jorsch (lead developer 2013-now)',
 			'',
 			'Please send your comments, suggestions and questions to mediawiki-api@lists.wikimedia.org',
 			'or file a bug report at https://bugzilla.wikimedia.org/'
