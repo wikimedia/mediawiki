@@ -720,6 +720,9 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Die if none or more than one of a certain set of parameters is set and not false.
+	 *
+	 * Call getRequireOnlyOneParameterErrorMessages() to get a list of possible errors.
+	 *
 	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
 	 * @param string $required,... Names of parameters of which exactly one must be set
 	 */
@@ -767,6 +770,9 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Die if more than one of a certain set of parameters is set and not false.
+	 *
+	 * Call getRequireMaxOneParameterErrorMessages() to get a list of possible errors.
+	 *
 	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
 	 * @param string $required,... Names of parameters of which at most one must be set
 	 */
@@ -806,6 +812,8 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Die if none of a certain set of parameters is set and not false.
+	 *
+	 * Call getRequireAtLeastOneParameterErrorMessages() to get a list of possible errors.
 	 *
 	 * @since 1.23
 	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
@@ -847,6 +855,11 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Get a WikiPage object from a title or pageid param, if possible.
+	 * Can die, if no param is set or if the title or page id is not valid.
+	 *
+	 * Call getTitleOrPageIdErrorMessage() to get a list of possible errors.
+	 *
 	 * @param array $params
 	 * @param bool|string $load Whether load the object's state from the database:
 	 *        - false: don't load (if the pageid is given, it will still be loaded)
@@ -884,6 +897,8 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Generates the possible error getTitleOrPageId() can die with
+	 *
 	 * @return array
 	 */
 	public function getTitleOrPageIdErrorMessage() {
