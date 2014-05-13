@@ -144,6 +144,14 @@
 	margin-left: 2em;
 }
 
+.config-download-link a {
+	background: url(images/download-32.png) no-repeat center left;
+	padding-left: 40px; /* 32 px for the image (above), plus some breathing room */
+	height: 32px; /* provide enough vertical room for the image */
+	display: inline-block; /* allow the height property (above) to work */
+	line-height: 32px; /* center the text vertically */
+}
+
 #config-live-log {
 	overflow: hidden;
 	min-width: 20em;
