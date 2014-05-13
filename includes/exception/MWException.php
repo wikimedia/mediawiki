@@ -219,7 +219,7 @@ class MWException extends Exception {
 
 			$wgOut->output();
 		} else {
-			header( 'Content-Type: text/html; charset=utf-8' );
+			self::header( 'Content-Type: text/html; charset=utf-8' );
 			echo "<!DOCTYPE html>\n" .
 				'<html><head>' .
 				// Mimick OutputPage::setPageTitle behaviour
@@ -251,14 +251,14 @@ class MWException extends Exception {
 
 		if ( defined( 'MW_API' ) ) {
 			// Unhandled API exception, we can't be sure that format printer is alive
-			header( 'MediaWiki-API-Error: internal_api_error_' . get_class( $this ) );
+			self::header( 'MediaWiki-API-Error: internal_api_error_' . get_class( $this ) );
 			wfHttpError( 500, 'Internal Server Error', $this->getText() );
 		} elseif ( self::isCommandLine() ) {
 			MWExceptionHandler::printError( $this->getText() );
 		} else {
-			header( 'HTTP/1.1 500 MediaWiki exception' );
-			header( 'Status: 500 MediaWiki exception', true );
-			header( "Content-Type: $wgMimeType; charset=utf-8", true );
+			self::header( 'HTTP/1.1 500 MediaWiki exception' );
+			self::header( 'Status: 500 MediaWiki exception' );
+			self::header( "Content-Type: $wgMimeType; charset=utf-8" );
 
 			$this->reportHTML();
 		}
@@ -272,5 +272,15 @@ class MWException extends Exception {
 	 */
 	public static function isCommandLine() {
 		return !empty( $GLOBALS['wgCommandLineMode'] );
+	}
+
+	/**
+	 * Send a header, if we haven't already sent them. We shouldn't,
+	 * but sometimes we might in a weird case like Export
+	 */
+	private static function header( $header ) {
+		if ( !headers_sent() ) {
+			header( $header );
+		}
 	}
 }
