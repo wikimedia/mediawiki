@@ -85,9 +85,9 @@ class ApiRollback extends ApiBase {
 
 	public function getAllowedParams() {
 		return array(
-			'title' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+			'title' => null,
+			'pageid' => array(
+				ApiBase::PARAM_TYPE => 'integer'
 			),
 			'user' => array(
 				ApiBase::PARAM_TYPE => 'string',
@@ -112,8 +112,11 @@ class ApiRollback extends ApiBase {
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
+
 		return array(
-			'title' => 'Title of the page you want to rollback.',
+			'title' => "Title of the page you want to delete. Cannot be used together with {$p}pageid",
+			'pageid' => "Page ID of the page you want to delete. Cannot be used together with {$p}title",
 			'user' => 'Name of the user whose edits are to be rolled back. If ' .
 				'set incorrectly, you\'ll get a badtoken error.',
 			'token' => 'A rollback token previously retrieved through ' .
@@ -149,6 +152,7 @@ class ApiRollback extends ApiBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'invalidtitle', 'title' ),
 			array( 'notanarticle' ),
+			array( 'nosuchpageid', 'pageid' ),
 			array( 'invaliduser', 'user' ),
 		) );
 	}
@@ -189,11 +193,18 @@ class ApiRollback extends ApiBase {
 
 		$params = $this->extractRequestParams();
 
-		$this->mTitleObj = Title::newFromText( $params['title'] );
-
-		if ( !$this->mTitleObj || $this->mTitleObj->isExternal() ) {
-			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+		if ( isset( $params['title'] ) ) {
+			$this->mTitleObj = Title::newFromText( $params['title'] );
+			if ( !$this->mTitleObj || $this->mTitleObj->isExternal() ) {
+				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+			}
+		} elseif ( isset( $params['pageid'] ) ) {
+			$this->mTitleObj = Title::newFromID( $params['pageid'] );
+			if ( !$this->mTitleObj ) {
+				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
+			}
 		}
+
 		if ( !$this->mTitleObj->exists() ) {
 			$this->dieUsageMsg( 'notanarticle' );
 		}
@@ -204,6 +215,7 @@ class ApiRollback extends ApiBase {
 	public function getExamples() {
 		return array(
 			'api.php?action=rollback&title=Main%20Page&user=Catrope&token=123ABC',
+			'api.php?action=rollback&pageid=122&user=Catrope&token=123ABC',
 			'api.php?action=rollback&title=Main%20Page&user=217.121.114.116&' .
 				'token=123ABC&summary=Reverting%20vandalism&markbot=1'
 		);
