@@ -2116,10 +2116,10 @@ class Linker {
 			if ( $accesskey !== false ) {
 				// Should be build the same as in jquery.accessKeyLabel.js
 				if ( $tooltip === false || $tooltip === '' ) {
-					$tooltip = wfMessage( 'brackets', $accesskey )->escaped();
+					$tooltip = wfMessage( 'brackets', $accesskey )->text();
 				} else {
-					$tooltip .= wfMessage( 'word-separator' )->escaped();
-					$tooltip .= wfMessage( 'brackets', $accesskey )->escaped();
+					$tooltip .= wfMessage( 'word-separator' )->text();
+					$tooltip .= wfMessage( 'brackets', $accesskey )->text();
 				}
 			}
 		}
