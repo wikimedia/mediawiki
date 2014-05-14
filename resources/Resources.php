@@ -1431,6 +1431,10 @@ return array(
 			'ooui-outline-control-move-up',
 			'ooui-outline-control-remove',
 			'ooui-toolbar-more',
+			'ooui-dialog-confirm-title',
+			'ooui-dialog-confirm-default-prompt',
+			'ooui-dialog-confirm-default-ok',
+			'ooui-dialog-confirm-default-cancel'
 		),
 		'dependencies' => array(
 			'oojs',

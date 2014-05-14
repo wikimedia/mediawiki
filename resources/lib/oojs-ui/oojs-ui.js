@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (7b3672591f)
+ * OOjs UI v0.1.0-pre (80f1797a5c)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri May 09 2014 13:27:04 GMT+0200 (CEST)
+ * Date: Wed May 14 2014 14:11:38 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -112,7 +112,16 @@ var messages = {
 	// Tool tip for a button that removes items from a list
 	'ooui-outline-control-remove': 'Remove item',
 	// Label for the toolbar group that contains a list of all other available tools
-	'ooui-toolbar-more': 'More'
+	'ooui-toolbar-more': 'More',
+
+	// Label for the generic dialog used to confirm things
+	'ooui-dialog-confirm-title': 'Confirm',
+	// The default prompt of a confirmation dialog
+	'ooui-dialog-confirm-default-prompt': 'Are you sure?',
+	// The default OK button text on a confirmation dialog
+	'ooui-dialog-confirm-default-ok': 'OK',
+	// The default cancel button text on a confirmation dialog
+	'ooui-dialog-confirm-default-cancel': 'Cancel'
 };
 
 /**
@@ -1899,6 +1908,103 @@ OO.ui.Widget.prototype.setDisabled = function ( disabled ) {
 	}
 	this.wasDisabled = isDisabled;
 	return this;
+};
+/**
+ * Dialog for showing a confirmation/warning message.
+ *
+ * @class
+ * @extends OO.ui.Dialog
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ */
+OO.ui.ConfirmationDialog = function OoUiConfirmationDialog( config ) {
+	// Configuration initialization
+	config = $.extend( { 'size': 'small' }, config );
+
+	// Parent constructor
+	OO.ui.Dialog.call( this, config );
+};
+
+/* Inheritance */
+
+OO.inheritClass( OO.ui.ConfirmationDialog, OO.ui.Dialog );
+
+/* Static Properties */
+
+OO.ui.ConfirmationDialog.static.name = 'confirm';
+
+OO.ui.ConfirmationDialog.static.icon = 'help';
+
+OO.ui.ConfirmationDialog.static.title = OO.ui.deferMsg( 'ooui-dialog-confirm-title' );
+
+/* Methods */
+
+/**
+ * @inheritdoc
+ */
+OO.ui.ConfirmationDialog.prototype.initialize = function () {
+	// Parent method
+	OO.ui.Dialog.prototype.initialize.call( this );
+
+	// Set up the layout
+	var contentLayout = new OO.ui.PanelLayout( {
+		'$': this.$,
+		'padded': true
+	} );
+
+	this.$promptContainer = this.$( '<div>' ).addClass( 'oo-ui-dialog-confirm-promptContainer' );
+
+	this.cancelButton = new OO.ui.ButtonWidget( {
+		'flags': [ 'destructive' ]
+	} );
+	this.cancelButton.connect( this, { 'click': [ 'emit', 'cancel' ] } );
+
+	this.okButton = new OO.ui.ButtonWidget( {
+		'flags': [ 'constructive' ]
+	} );
+	this.okButton.connect( this, { 'click': [ 'emit', 'ok' ] } );
+
+	// Make the buttons
+	contentLayout.$element.append( this.$promptContainer );
+	this.$body.append( contentLayout.$element );
+
+	this.$foot.append(
+		this.okButton.$element,
+		this.cancelButton.$element
+	);
+
+	this.connect( this, {
+		'ok': 'close',
+		'cancel': 'close',
+		'close': [ 'emit', 'cancel' ]
+	} );
+};
+
+/*
+ * Open a confirmation dialog.
+ *
+ * @param {object} [data] Window opening data including text of the dialog and text for the buttons
+ * @param {jQuery|string} [data.prompt] The text of the dialog.
+ * @param {jQuery|string|Function|null} [data.okLabel] The text used on the OK button
+ * @param {jQuery|string|Function|null} [data.cancelLabel] The text used on the cancel button
+ */
+OO.ui.ConfirmationDialog.prototype.setup = function ( data ) {
+	// Parent method
+	OO.ui.Dialog.prototype.setup.call( this, data );
+
+	var prompt = data.prompt || OO.ui.deferMsg( 'ooui-dialog-confirm-default-prompt' ),
+		okLabel = data.okLabel || OO.ui.deferMsg( 'ooui-dialog-confirm-default-ok' ),
+		cancelLabel = data.cancelLabel || OO.ui.deferMsg( 'ooui-dialog-confirm-default-cancel' );
+
+	if ( typeof prompt === 'string' ) {
+		this.$promptContainer.text( prompt );
+	} else {
+		this.$promptContainer.empty().append( prompt );
+	}
+
+	this.okButton.setLabel( okLabel );
+	this.cancelButton.setLabel( cancelLabel );
 };
 /**
  * Element with a button.
@@ -4777,7 +4883,6 @@ OO.ui.StackLayout.prototype.setItem = function ( item ) {
 /**
  * Horizontal bar layout of tools as icon buttons.
  *
- * @abstract
  * @class
  * @extends OO.ui.ToolGroup
  *
@@ -4948,7 +5053,6 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 /**
  * Drop down list layout of tools as labeled icon buttons.
  *
- * @abstract
  * @class
  * @extends OO.ui.PopupToolGroup
  *
@@ -4976,7 +5080,6 @@ OO.ui.ListToolGroup.static.name = 'list';
 /**
  * Drop down menu layout of tools as selectable menu items.
  *
- * @abstract
  * @class
  * @extends OO.ui.PopupToolGroup
  *
@@ -5283,7 +5386,6 @@ OO.mixinClass( OO.ui.ButtonGroupWidget, OO.ui.GroupElement );
 /**
  * Button widget.
  *
- * @abstract
  * @class
  * @extends OO.ui.Widget
  * @mixins OO.ui.ButtonedElement
@@ -5373,9 +5475,9 @@ OO.ui.ButtonWidget.prototype.onClick = function () {
  * @fires click
  */
 OO.ui.ButtonWidget.prototype.onKeyPress = function ( e ) {
-	if ( !this.isDisabled() && e.which === OO.ui.Keys.SPACE ) {
+	if ( !this.isDisabled() && ( e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER ) ) {
+		this.onClick();
 		if ( this.isHyperlink ) {
-			this.onClick();
 			return true;
 		}
 	}
@@ -5932,7 +6034,6 @@ OO.ui.LookupInputWidget.prototype.getLookupMenuItemsFromData = function () {
  *
  * Use with OO.ui.SelectWidget.
  *
- * @abstract
  * @class
  * @extends OO.ui.Widget
  * @mixins OO.ui.IconedElement
@@ -6150,7 +6251,6 @@ OO.ui.OptionWidget.prototype.getData = function () {
  *
  * Use together with OO.ui.OptionWidget.
  *
- * @abstract
  * @class
  * @extends OO.ui.Widget
  * @mixins OO.ui.GroupElement
@@ -6679,6 +6779,7 @@ OO.inheritClass( OO.ui.MenuItemWidget, OO.ui.OptionWidget );
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {OO.ui.InputWidget} [input] Input to bind keyboard handlers to
+ * @cfg {boolean} [autoHide=true] Hide the menu when the mouse is pressed outside the menu
  */
 OO.ui.MenuWidget = function OoUiMenuWidget( config ) {
 	// Config intialization
@@ -6691,6 +6792,7 @@ OO.ui.MenuWidget = function OoUiMenuWidget( config ) {
 	OO.ui.ClippableElement.call( this, this.$group, config );
 
 	// Properties
+	this.autoHide = config.autoHide === undefined || !!config.autoHide;
 	this.newItems = null;
 	this.$input = config.input ? config.input.$input : null;
 	this.$previousFocus = null;
@@ -6698,6 +6800,7 @@ OO.ui.MenuWidget = function OoUiMenuWidget( config ) {
 	this.visible = false;
 	this.flashing = false;
 	this.onKeyDownHandler = OO.ui.bind( this.onKeyDown, this );
+	this.onDocumentMouseDownHandler = OO.ui.bind( this.onDocumentMouseDown, this );
 
 	// Initialization
 	this.$element.hide().addClass( 'oo-ui-menuWidget' );
@@ -6709,6 +6812,17 @@ OO.inheritClass( OO.ui.MenuWidget, OO.ui.SelectWidget );
 OO.mixinClass( OO.ui.MenuWidget, OO.ui.ClippableElement );
 
 /* Methods */
+
+/**
+ * Handles document mouse down events.
+ *
+ * @param {jQuery.Event} e Key down event
+ */
+OO.ui.MenuWidget.prototype.onDocumentMouseDown = function ( e ) {
+	if ( !$.contains( this.$element[0], e.target ) ) {
+		this.hide();
+	}
+};
 
 /**
  * Handles key down events.
@@ -6875,6 +6989,13 @@ OO.ui.MenuWidget.prototype.show = function () {
 		}
 
 		this.setClipping( true );
+
+		// Auto-hide
+		if ( this.autoHide ) {
+			this.getElementDocument().addEventListener(
+				'mousedown', this.onDocumentMouseDownHandler, true
+			);
+		}
 	}
 
 	return this;
@@ -6894,6 +7015,10 @@ OO.ui.MenuWidget.prototype.hide = function () {
 		this.$previousFocus.focus();
 		this.$previousFocus = null;
 	}
+
+	this.getElementDocument().removeEventListener(
+		'mousedown', this.onDocumentMouseDownHandler, true
+	);
 
 	this.setClipping( false );
 
@@ -8248,7 +8373,6 @@ OO.ui.ToggleButtonWidget.prototype.setValue = function ( value ) {
 /**
  * Switch that slides on and off.
  *
- * @abstract
  * @class
  * @extends OO.ui.Widget
  * @mixins OO.ui.ToggleWidget
