@@ -312,6 +312,7 @@
 	"config-install-done": "'''מזל טוב!'''\nהתקנתם בהצלחה את מדיה־ויקי.\n\nתוכנת ההתקנה יצרה את הקובץ <code>LocalSettings.php</code>.\nהוא מכיל את כל ההגדרות שלכם.\n\nתצטרכו להוריד אותו ולשים אותו בבסיס ההתקנה של הוויקי שלכם (אותה התיקייה שבה נמצא הקובץ index.php). ההורדה הייתה אמורה להתחיל באופן אוטומטי.\n\nאם ההורדה לא התחילה, או אם ביטלתם אותה, אפשר להתחיל אותה מחדש בלחיצה על הקישור הבא:\n\n$3\n\n'''שימו לב''': אם לא תעשו זאת עכשיו, קובץ ההגדרות המחוּלל לא יהיה זמין לכם שוב.\n\nאחרי שתעשו את זה, תוכלו '''[$2 להיכנס לוויקי שלכם]'''.",
 	"config-download-localsettings": "הורדת <code>LocalSettings.php</code>",
 	"config-help": "עזרה",
+	"config-help-tooltip": "להרחיב",
 	"config-nofile": "הקובץ \"$1\" לא נמצא. האם הוא נמחק?",
 	"config-extension-link": "הידעת שמדיה־ויקי תומכת ב־[//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions הרחבות]?\n\nבאפשרותך לעיין ב־[//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category הרחבות לפי קטגוריה].",
 	"mainpagetext": "'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''",

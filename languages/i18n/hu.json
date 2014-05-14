@@ -436,7 +436,7 @@
 	"createacct-captcha": "Biztonsági ellenőrzés",
 	"createacct-imgcaptcha-ph": "Írd be a szöveget, amit fent látsz",
 	"createacct-submit": "Felhasználói fiók létrehozása",
-	"createacct-another-submit": "Újabb felhasználó létrehozása",
+	"createacct-another-submit": "Újabb felhasználói fiók létrehozása",
 	"createacct-benefit-heading": "A(z) {{SITENAME}}-t hozzád hasonló emberek készítik.",
 	"createacct-benefit-body1": "{{PLURAL:$1|szerkesztés|szerkesztés}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|lap|lap}}",

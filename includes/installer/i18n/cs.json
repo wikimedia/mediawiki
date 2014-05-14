@@ -316,6 +316,7 @@
 	"config-install-done": "'''Gratulujeme!'''\nÚspěšně jste nainstalovali MediaWiki.\n\nInstalátor vytvořil soubor <code>LocalSettings.php</code>.\nTen obsahuje veškerou vaši konfiguraci.\n\nBudete si ho muset stáhnout a uložit do základního adresáře vaší instalace wiki (do stejného adresáře jako soubor index.php). Stažení souboru se mělo spustit automaticky.\n\nPokud se vám stažení nenabídlo nebo jste ho zrušili, můžete ho spustit znovu kliknutím na následující odkaz:\n\n$3\n\n'''Poznámka''': Pokud to neuděláte hned, tento vygenerovaný konfigurační soubor nebude později dostupný, pokud instalaci opustíte, aniž byste si ho stáhli.\n\nAž to dokončíte, můžete '''[$2 vstoupit do své wiki]'''.",
 	"config-download-localsettings": "Stáhnout <code>LocalSettings.php</code>",
 	"config-help": "nápověda",
+	"config-help-tooltip": "rozbalíte kliknutím",
 	"config-nofile": "Soubor „$1“ nelze nalézt. Byl smazán?",
 	"config-extension-link": "Věděli jste, že vaše wiki podporuje [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions rozšíření]?\n\nMůžete si prohlédnout [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category seznam rozšíření po kategoriích].",
 	"mainpagetext": "'''MediaWiki byla úspěšně nainstalována.'''",

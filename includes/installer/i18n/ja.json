@@ -304,6 +304,7 @@
 	"config-install-done": "<strong>おめでとうございます!</strong>\nMediaWikiのインストールに成功しました。\n\n<code>LocalSettings.php</code>ファイルが生成されました。\nこのファイルはすべての設定を含んでいます。\n\nこれをダウンロードして、ウィキをインストールした基準ディレクトリ (index.phpと同じディレクトリ) に設置する必要があります。ダウンロードは自動的に開始されるはずです。\n\nダウンロードが開始されていない場合、またはダウンロードをキャンセルした場合は、下記のリンクをクリックしてダウンロードを再開できます:\n\n$3\n\n<strong>注意:</strong> この生成された設定ファイルをダウンロードせずにインストールを終了すると、このファイルは利用できなくなります。\n\n上記の作業が完了すると、<strong>[$2 ウィキに入る]</strong>ことができます。",
 	"config-download-localsettings": "<code>LocalSettings.php</code> をダウンロード",
 	"config-help": "ヘルプ",
+	"config-help-tooltip": "クリックで展開",
 	"config-nofile": "ファイル「$1」が見つかりませんでした。削除された可能性があります。",
 	"mainpagetext": "<strong>MediaWiki のインストールに成功しました。</strong>",
 	"mainpagedocfooter": "ウィキソフトウェアの使い方に関する情報は[//meta.wikimedia.org/wiki/Help:Contents 利用者案内]を参照してください。\n\n== はじめましょう ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/ja 設定の一覧]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/ja MediaWiki よくある質問と回答]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation/ja MediaWiki のあなたの言語へのローカライズ]"

@@ -2504,6 +2504,8 @@
 	"watchlistedit-raw-done": "तपाईको निगरानी सुची अद्यावधिक गरिएको छ।",
 	"watchlistedit-raw-added": "{{PLURAL:$1|१ शिर्षक|$1 शिर्षकरु}} थपियो:",
 	"watchlistedit-raw-removed": "{{PLURAL:$1|१ शिर्षक|$1 शिर्षकरु}} हटाइयो:",
+	"watchlistedit-clear-titles": "शीर्षकहरू :",
+	"watchlistedit-clear-done": "तपाईको निगरानी सुची हटाइएको छ।",
 	"watchlisttools-view": "मिल्दो परिवर्तनहरु हेर्ने",
 	"watchlisttools-edit": "निगरानी सूची हेर्नुहोस् र सम्पादन गर्नुहोस्",
 	"watchlisttools-raw": "कच्चा निगरानी सूची सम्पादन गर्नुहोस् ।",

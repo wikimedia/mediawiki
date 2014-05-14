@@ -884,6 +884,7 @@
 	"recentchangesdays-max": "(najviše $1 {{PLURAL:$1|dan|dana|dana}})",
 	"recentchangescount": "Broj izmena za prikaz:",
 	"prefs-help-recentchangescount": "Podrazumeva skorašnje izmene, istorije stranica i dnevnike.",
+	"prefs-help-watchlist-token2": "Ovo je tajni ključ za veb dovod vašeg spiska nadgledanja.\nSvako ko zna ovaj ključ biće u mogućnosti da vidi vaša nadgledanja stoga nemojte ga odavati nikome.\nAko je potrebno možete ga [[Special:ResetTokens|resetovati]].",
 	"savedprefs": "Vaša podešavanja su sačuvana.",
 	"timezonelegend": "Vremenska zona:",
 	"localtime": "Lokalno vreme:",

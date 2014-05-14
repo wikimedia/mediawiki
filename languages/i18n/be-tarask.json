@@ -678,6 +678,7 @@
 	"node-count-exceeded-category-desc": "Катэгорыя для старонак, на якіх перавышаная колькасьць вузлоў.",
 	"node-count-exceeded-warning": "Старонка перавысіла дазволеную колькасьць вузлоў",
 	"expansion-depth-exceeded-category": "Старонкі зь перавышанай глыбінёй уключэньня",
+	"expansion-depth-exceeded-category-desc": "Гэта катэгорыя для старонак, дзе перавышаная глыбіня раскрыцьця.",
 	"expansion-depth-exceeded-warning": "Старонка перавысіла дазволеную глыбіню ўключэньняў",
 	"parser-unstrip-loop-warning": "Вызначаная незачыненая пятля",
 	"parser-unstrip-recursion-limit": "Перавышанае абмежаваньне глыбіні рэкурсіі ($1)",

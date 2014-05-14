@@ -195,6 +195,7 @@
 	"config-install-mainpage-failed": "D'Haaptsäit konnt net dragesat ginn: $1",
 	"config-download-localsettings": "<code>LocalSettings.php</code> eroflueden",
 	"config-help": "Hëllef",
+	"config-help-tooltip": "klickt fir opzeklappen",
 	"config-nofile": "De Fichier \"$1\" gouf net fonnt. Gouf e geläscht?",
 	"mainpagetext": "<strong>MediaWiki gouf installéiert.</strong>",
 	"mainpagedocfooter": "Kuckt w.e.g. [//meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir Informatiounen iwwer de Gebruach vun der Wiki Software.\n\n== Fir  unzefänken ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Hëllef bei der Konfiguratioun]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglëscht vun neie MediaWiki-Versiounen]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokaliséiert MediaWiki fir Är Sprooch]"
