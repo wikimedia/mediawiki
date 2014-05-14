@@ -1249,8 +1249,9 @@ class LocalFile extends File {
 		}
 
 		if ( $timestamp === false ) {
+			// Use FOR UPDATE in case lock()/unlock() did not start the transaction
 			$ltimestamp = $dbw->selectField( 'image', 'img_timestamp',
-				array( 'img_name' => $this->getName() ), __METHOD__ );
+				array( 'img_name' => $this->getName() ), __METHOD__, array( 'FOR UPDATE' ) );
 			$ltime = $ltimestamp ? wfTimestamp( TS_UNIX, $ltimestamp ) : false;
 			$ctime = time();
 			// Avoid a timestamp that is not newer than the last version
