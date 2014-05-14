@@ -159,6 +159,7 @@ changes to languages because of Bugzilla reports.
   for migration guide for creators and users of custom skins that relied on it.
 * ResourceLoaderFileModule#getAllStyleFiles now returns all style files and all
   skin style files used by the module.
+* Styling of image thumbnails has been simplified. Image border styling, background have been removed. Image caption text size and color have been altered to distinguish them from the body text.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
