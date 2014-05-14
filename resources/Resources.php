@@ -255,6 +255,7 @@ return array(
 	'jquery.colorUtil' => array(
 		'scripts' => 'resources/src/jquery/jquery.colorUtil.js',
 	),
+	// Use mediawiki.cookie in new code, rather than jquery.cookie.
 	'jquery.cookie' => array(
 		'scripts' => 'resources/lib/jquery/jquery.cookie.js',
 		'targets' => array( 'desktop', 'mobile' ),
@@ -926,6 +927,12 @@ return array(
 		),
 		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
 		'targets' => array( 'desktop', 'mobile' ),
+	),
+	'mediawiki.cookie' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.cookie.js',
+		'dependencies' => array(
+			'jquery.cookie',
+		),
 	),
 
 	/* MediaWiki Action */
