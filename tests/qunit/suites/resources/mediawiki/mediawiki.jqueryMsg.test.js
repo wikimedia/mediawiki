@@ -12,34 +12,6 @@
 		setup: function () {
 			this.originalMwLanguage = mw.language;
 
-			// Messages that are reused in multiple tests
-			mw.messages.set( {
-				// The values for gender are not significant,
-				// what matters is which of the values is choosen by the parser
-				'gender-msg': '$1: {{GENDER:$2|blue|pink|green}}',
-				'gender-msg-currentuser': '{{GENDER:|blue|pink|green}}',
-
-				'plural-msg': 'Found $1 {{PLURAL:$1|item|items}}',
-
-				// Assume the grammar form grammar_case_foo is not valid in any language
-				'grammar-msg': 'Przeszukaj {{GRAMMAR:grammar_case_foo|{{SITENAME}}}}',
-
-				'formatnum-msg': '{{formatnum:$1}}',
-
-				'portal-url': 'Project:Community portal',
-				'see-portal-url': '{{Int:portal-url}} is an important community page.',
-
-				'jquerymsg-test-statistics-users': '注册[[Special:ListUsers|用户]]',
-
-				'jquerymsg-test-version-entrypoints-index-php': '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
-
-				'external-link-replace': 'Foo [$1 bar]'
-			} );
-
-			mw.config.set( {
-				wgArticlePath: '/wiki/$1'
-			} );
-
 			specialCharactersPageName = '"Who" wants to be a millionaire & live on \'Exotic Island\'?';
 
 			expectedListUsers = '注册<a title="Special:ListUsers" href="/wiki/Special:ListUsers">用户</a>';
@@ -56,6 +28,32 @@
 		},
 		teardown: function () {
 			mw.language = this.originalMwLanguage;
+		},
+		config: {
+			wgArticlePath: '/wiki/$1'
+		},
+		// Messages that are reused in multiple tests
+		messages: {
+			// The values for gender are not significant,
+			// what matters is which of the values is choosen by the parser
+			'gender-msg': '$1: {{GENDER:$2|blue|pink|green}}',
+			'gender-msg-currentuser': '{{GENDER:|blue|pink|green}}',
+
+			'plural-msg': 'Found $1 {{PLURAL:$1|item|items}}',
+
+			// Assume the grammar form grammar_case_foo is not valid in any language
+			'grammar-msg': 'Przeszukaj {{GRAMMAR:grammar_case_foo|{{SITENAME}}}}',
+
+			'formatnum-msg': '{{formatnum:$1}}',
+
+			'portal-url': 'Project:Community portal',
+			'see-portal-url': '{{Int:portal-url}} is an important community page.',
+
+			'jquerymsg-test-statistics-users': '注册[[Special:ListUsers|用户]]',
+
+			'jquerymsg-test-version-entrypoints-index-php': '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
+
+			'external-link-replace': 'Foo [$1 bar]'
 		}
 	} ) );
 
