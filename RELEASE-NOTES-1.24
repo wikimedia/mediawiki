@@ -28,6 +28,8 @@ production.
   the sidebar just before its display.
 
 === Bug fixes in 1.24 ===
+* (bug 14323) Redirect pages, when viewed with redirect=no, no longer hide the
+  remaining page content.
 * (bug 62258) A bug was fixed in File::getUnscaledThumb when a height
   restriction was present in the parameters.  Images with both the "frame"
   option and a size specification set will now always ignore the provided

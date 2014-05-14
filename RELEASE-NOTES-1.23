@@ -190,8 +190,6 @@ production.
   the JavaScript evaluator were updated to support the new format. Plural rules
   for some languages have changed, most notably Russian. Affected software
   messages have been updated and marked for review at translatewiki.net.
-* (bug 14323) Redirect pages, when viewed with redirect=no, no longer hide the
-  remaining page content.
 * (bug 23542) imagelinks now stores both the redirect and target (as
   templatelinks does).
 * (bug 58167) The web installer no longer throws an exception when PHP is
