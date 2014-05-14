@@ -193,7 +193,10 @@ class LoginForm extends SpecialPage {
 				'title' => null,
 			) + $this->mRequest->getQueryValues();
 			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
-			if ( $wgSecureLogin && wfCanIPUseHTTPS( $this->getRequest()->getIP() ) ) {
+			if ( $wgSecureLogin
+				&& wfCanIPUseHTTPS( $this->getRequest()->getIP() )
+				&& !$this->mFromHTTP ) // Avoid infinite redirect
+			{
 				$url = wfAppendQuery( $url, 'fromhttp=1' );
 				$this->getOutput()->redirect( $url );
 				// Since we only do this redir to change proto, always vary
