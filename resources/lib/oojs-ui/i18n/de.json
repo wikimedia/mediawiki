@@ -17,5 +17,9 @@
 	"ooui-outline-control-move-down": "Element nach unten verschieben",
 	"ooui-outline-control-move-up": "Element nach oben verschieben",
 	"ooui-outline-control-remove": "Element entfernen",
-	"ooui-toolbar-more": "Mehr"
+	"ooui-toolbar-more": "Mehr",
+	"ooui-dialog-confirm-title": "Bestätigen",
+	"ooui-dialog-confirm-default-prompt": "Bist du sicher?",
+	"ooui-dialog-confirm-default-ok": "Okay",
+	"ooui-dialog-confirm-default-cancel": "Abbrechen"
 }

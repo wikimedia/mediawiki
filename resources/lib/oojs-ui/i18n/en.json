@@ -20,5 +20,9 @@
     "ooui-outline-control-move-down": "Move item down",
     "ooui-outline-control-move-up": "Move item up",
     "ooui-outline-control-remove": "Remove item",
-    "ooui-toolbar-more": "More"
+    "ooui-toolbar-more": "More",
+    "ooui-dialog-confirm-title": "Confirm",
+    "ooui-dialog-confirm-default-prompt": "Are you sure?",
+    "ooui-dialog-confirm-default-ok": "OK",
+    "ooui-dialog-confirm-default-cancel": "Cancel"
 }

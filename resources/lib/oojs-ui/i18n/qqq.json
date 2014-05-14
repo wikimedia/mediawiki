@@ -23,5 +23,9 @@
 	"ooui-outline-control-move-down": "Tool tip for a button that moves items in a list down one place",
 	"ooui-outline-control-move-up": "Tool tip for a button that moves items in a list up one place",
 	"ooui-outline-control-remove": "Tool tip for a button that removes items from a list.\n{{Identical|Remove item}}",
-	"ooui-toolbar-more": "Label for the toolbar group that contains a list of all other available tools.\n{{Identical|More}}"
+	"ooui-toolbar-more": "Label for the toolbar group that contains a list of all other available tools.\n{{Identical|More}}",
+	"ooui-dialog-confirm-title": "Title of the generic dialog used to confirm things",
+	"ooui-dialog-confirm-default-prompt": "The default prompt of a confirmation dialog",
+	"ooui-dialog-confirm-default-ok": "The default OK button text on a confirmation dialog",
+	"ooui-dialog-confirm-default-cancel": "The default cancel button text on a confirmation dialog"
 }
