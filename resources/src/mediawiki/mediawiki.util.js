@@ -60,14 +60,29 @@
 
 		/**
 		 * Encode page titles for use in a URL
+		 *
 		 * We want / and : to be included as literal characters in our title URLs
-		 * as they otherwise fatally break the title
+		 * as they otherwise fatally break the title.
+		 *
+		 * The others are decoded because we can, it's prettier and matches behaviour
+		 * of `wfUrlencode` in PHP.
 		 *
 		 * @param {string} str String to be encoded.
 		 */
 		wikiUrlencode: function ( str ) {
 			return util.rawurlencode( str )
-				.replace( /%20/g, '_' ).replace( /%3A/g, ':' ).replace( /%2F/g, '/' );
+				.replace( /%20/g, '_' )
+				// wfUrlencode replacements
+				.replace( /%3B/g, ';' )
+				.replace( /%40/g, '@' )
+				.replace( /%24/g, '$' )
+				.replace( /%21/g, '!' )
+				.replace( /%2A/g, '*' )
+				.replace( /%28/g, '(' )
+				.replace( /%29/g, ')' )
+				.replace( /%2C/g, ',' )
+				.replace( /%2F/g, '/' )
+				.replace( /%3A/g, ':' );
 		},
 
 		/**

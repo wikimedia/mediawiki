@@ -17,8 +17,22 @@
 		assert.equal( mw.util.rawurlencode( 'Test:A & B/Here' ), 'Test%3AA%20%26%20B%2FHere' );
 	} );
 
-	QUnit.test( 'wikiUrlencode', 1, function ( assert ) {
+	QUnit.test( 'wikiUrlencode', 10, function ( assert ) {
 		assert.equal( mw.util.wikiUrlencode( 'Test:A & B/Here' ), 'Test:A_%26_B/Here' );
+		// See also wfUrlencodeTest.php#provideURLS
+		$.each( {
+			'+': '%2B',
+			'&': '%26',
+			'=': '%3D',
+			':': ':',
+			';@$-_.!*': ';@$-_.!*',
+			'/': '/',
+			'[]': '%5B%5D',
+			'<>': '%3C%3E',
+			'\'': '%27'
+		}, function ( input, output ) {
+			assert.equal( mw.util.wikiUrlencode( input ), output );
+		} );
 	} );
 
 	QUnit.test( 'getUrl', 4, function ( assert ) {
@@ -30,7 +44,7 @@
 		assert.equal( href, '/wiki/Sandbox', 'Simple title; Get link for "Sandbox"' );
 
 		href = mw.util.getUrl( 'Foo:Sandbox ? 5+5=10 ! (test)/subpage' );
-		assert.equal( href, '/wiki/Foo:Sandbox_%3F_5%2B5%3D10_%21_%28test%29/subpage',
+		assert.equal( href, '/wiki/Foo:Sandbox_%3F_5%2B5%3D10_!_(test)/subpage',
 			'Advanced title; Get link for "Foo:Sandbox ? 5+5=10 ! (test)/subpage"' );
 
 		href = mw.util.getUrl();
