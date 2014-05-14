@@ -42,7 +42,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	}
 
 	function execute( $par ) {
-		global $wgQueryPageDefaultLimit;
+		global $wgQueryPageDefaultLimit, $wgUseAjax, $wgEnableAPI;
 		$out = $this->getOutput();
 
 		$this->setHeaders();
@@ -76,6 +76,11 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$out->addHTML( $this->whatlinkshereForm() );
 
 			return;
+		}
+
+		// ensure search suggestion module is loaded
+		if ( $wgUseAjax && $wgEnableAPI ) {
+			$out->addModules( 'mediawiki.searchSuggest' );
 		}
 
 		$this->getSkin()->setRelevantTitle( $this->target );
@@ -424,9 +429,9 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		$f .= Xml::fieldset( $this->msg( 'whatlinkshere' )->text() );
 
-		# Target input
+		# Target input (.mw-searchInput enables suggestions)
 		$f .= Xml::inputLabel( $this->msg( 'whatlinkshere-page' )->text(), 'target',
-			'mw-whatlinkshere-target', 40, $target );
+			'mw-whatlinkshere-target', 40, $target, array( 'class' => 'mw-searchInput' ) );
 
 		$f .= ' ';
 
