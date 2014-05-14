@@ -156,31 +156,10 @@ class SpecialAllpages extends IncludableSpecialPage {
 	 * @param bool $hideredirects Dont show redirects (default false)
 	 */
 	function showToplevel( $namespace = NS_MAIN, $from = '', $to = '', $hideredirects = false ) {
-		$output = $this->getOutput();
-
-		# TODO: Either make this *much* faster or cache the title index points
-		# in the querycache table.
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$out = "";
-		$where = array( 'page_namespace' => $namespace );
-
-		if ( $hideredirects ) {
-			$where['page_is_redirect'] = 0;
-		}
-
 		$from = Title::makeTitleSafe( $namespace, $from );
 		$to = Title::makeTitleSafe( $namespace, $to );
 		$from = ( $from && $from->isLocal() ) ? $from->getDBkey() : null;
 		$to = ( $to && $to->isLocal() ) ? $to->getDBkey() : null;
-
-		if ( isset( $from ) ) {
-			$where[] = 'page_title >= ' . $dbr->addQuotes( $from );
-		}
-
-		if ( isset( $to ) ) {
-			$where[] = 'page_title <= ' . $dbr->addQuotes( $to );
-		}
 
 		$this->showChunk( $namespace, $from, $to, $hideredirects );
 	}
