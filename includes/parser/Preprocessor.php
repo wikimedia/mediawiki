@@ -130,22 +130,22 @@ interface PPFrame {
 	/**
 	 * Returns all arguments of this frame
 	 */
-	function getArguments();
+	function getArguments( $expanded = true );
 
 	/**
 	 * Returns all numbered arguments of this frame
 	 */
-	function getNumberedArguments();
+	function getNumberedArguments( $expanded = true );
 
 	/**
 	 * Returns all named arguments of this frame
 	 */
-	function getNamedArguments();
+	function getNamedArguments( $expanded = true );
 
 	/**
 	 * Get an argument to this frame by name
 	 */
-	function getArgument( $name );
+	function getArgument( $name, $expanded = true );
 
 	/**
 	 * Returns true if the infinite loop check is OK, false if a loop is detected

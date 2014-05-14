@@ -1420,21 +1420,21 @@ class PPFrame_DOM implements PPFrame {
 	/**
 	 * @return array
 	 */
-	function getArguments() {
+	function getArguments( $expanded = true ) {
 		return array();
 	}
 
 	/**
 	 * @return array
 	 */
-	function getNumberedArguments() {
+	function getNumberedArguments( $expanded = true ) {
 		return array();
 	}
 
 	/**
 	 * @return array
 	 */
-	function getNamedArguments() {
+	function getNamedArguments( $expanded = true ) {
 		return array();
 	}
 
@@ -1447,7 +1447,7 @@ class PPFrame_DOM implements PPFrame {
 		return true;
 	}
 
-	function getArgument( $name ) {
+	function getArgument( $name, $expanded = true ) {
 		return false;
 	}
 
@@ -1499,6 +1499,12 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 
 	/** @var string[] */
 	protected $namedExpansionCache;
+
+	/** @var array */
+	protected $numberedOriginalCache;
+
+	/** @var string[] */
+	protected $namedOriginalCache;
 
 	/**
 	 * @param Preprocessor $preprocessor
@@ -1553,35 +1559,41 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 		return !count( $this->numberedArgs ) && !count( $this->namedArgs );
 	}
 
-	function getArguments() {
+	function getArguments( $expanded = true ) {
 		$arguments = array();
 		foreach ( array_merge(
 				array_keys( $this->numberedArgs ),
 				array_keys( $this->namedArgs ) ) as $key ) {
-			$arguments[$key] = $this->getArgument( $key );
+			$arguments[$key] = $this->getArgument( $key, $expanded );
 		}
 		return $arguments;
 	}
 
-	function getNumberedArguments() {
+	function getNumberedArguments( $expanded = true ) {
 		$arguments = array();
 		foreach ( array_keys( $this->numberedArgs ) as $key ) {
-			$arguments[$key] = $this->getArgument( $key );
+			$arguments[$key] = $this->getArgument( $key, $expanded );
 		}
 		return $arguments;
 	}
 
-	function getNamedArguments() {
+	function getNamedArguments( $expanded = true ) {
 		$arguments = array();
 		foreach ( array_keys( $this->namedArgs ) as $key ) {
-			$arguments[$key] = $this->getArgument( $key );
+			$arguments[$key] = $this->getArgument( $key, $expanded );
 		}
 		return $arguments;
 	}
 
-	function getNumberedArgument( $index ) {
+	function getNumberedArgument( $index, $expanded = true ) {
 		if ( !isset( $this->numberedArgs[$index] ) ) {
 			return false;
+		}
+		if ( !$expanded ) {
+			if ( !isset( $this->numberedOriginalCache[$index] ) ) {
+				$this->numberedOriginalCache[$index] = $this->parent->expand( $this->numberedArgs[$index], PPFrame::RECOVER_ORIG );
+			}
+			return $this->numberedOriginalCache[$index];
 		}
 		if ( !isset( $this->numberedExpansionCache[$index] ) ) {
 			# No trimming for unnamed arguments
@@ -1593,9 +1605,17 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 		return $this->numberedExpansionCache[$index];
 	}
 
-	function getNamedArgument( $name ) {
+	function getNamedArgument( $name, $expanded = true ) {
 		if ( !isset( $this->namedArgs[$name] ) ) {
 			return false;
+		}
+		if ( !$expanded ) {
+			if ( !isset( $this->namedOriginalCache[$name] ) ) {
+				# Don't trim if not expanding
+				$this->namedOriginalCache[$name] =
+					$this->parent->expand( $this->namedArgs[$name], PPFrame::RECOVER_ORIG );
+			}
+			return $this->namedOriginalCache[$name];
 		}
 		if ( !isset( $this->namedExpansionCache[$name] ) ) {
 			# Trim named arguments post-expand, for backwards compatibility
@@ -1605,10 +1625,10 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 		return $this->namedExpansionCache[$name];
 	}
 
-	function getArgument( $name ) {
-		$text = $this->getNumberedArgument( $name );
+	function getArgument( $name, $expanded = true ) {
+		$text = $this->getNumberedArgument( $name, $expanded );
 		if ( $text === false ) {
-			$text = $this->getNamedArgument( $name );
+			$text = $this->getNamedArgument( $name, $expanded );
 		}
 		return $text;
 	}
@@ -1658,14 +1678,14 @@ class PPCustomFrame_DOM extends PPFrame_DOM {
 		return !count( $this->args );
 	}
 
-	function getArgument( $index ) {
+	function getArgument( $index, $expanded = true ) {
 		if ( !isset( $this->args[$index] ) ) {
 			return false;
 		}
 		return $this->args[$index];
 	}
 
-	function getArguments() {
+	function getArguments( $expanded = true ) {
 		return $this->args;
 	}
 }
