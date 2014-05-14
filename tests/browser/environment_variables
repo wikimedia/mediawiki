@@ -1,0 +1,7 @@
+source /home/cmcmahon/.rvm/scripts/rvm
+export EDITOR=vi
+export MEDIAWIKI_URL=http://localhost/mediawiki-1.23.0-rc.1/index.php/
+export MEDIAWIKI_API_URL=http://localhost/mediawiki-1.23.0-rc.1/index.php/
+export MEDIAWIKI_USER=Selenium_user
+export MEDIAWIKI_PASSWORD=Selenium_password
+export BROWSER=firefox
