@@ -40,6 +40,7 @@ class CompareParserCache extends Maintenance {
 		$totalsec = 0.0;
 		$scanned = 0;
 		$withcache = 0;
+		$withdiff = 0;
 		while ( $pages-- > 0 ) {
 			$row = $dbr->selectRow( 'page', '*',
 				array(
@@ -67,21 +68,22 @@ class CompareParserCache extends Maintenance {
 
 			$parserOutputOld = ParserCache::singleton()->get( $page, $parserOptions );
 
-			$t1 = microtime( true );
-			$parserOutputNew = $content->getParserOutput(
-				$title, $revision->getId(), $parserOptions, false );
-			$sec = microtime( true ) - $t1;
-			$totalsec += $sec;
-
-			$this->output( "Parsed '{$title->getPrefixedText()}' in $sec seconds.\n" );
-
 			if ( $parserOutputOld ) {
+				$t1 = microtime( true );
+				$parserOutputNew = $content->getParserOutput(
+					$title, $revision->getId(), $parserOptions, false );
+				$sec = microtime( true ) - $t1;
+				$totalsec += $sec;
+
+				$this->output( "Parsed '{$title->getPrefixedText()}' in $sec seconds.\n" );
+
 				$this->output( "Found cache entry found for '{$title->getPrefixedText()}'..." );
 				$oldHtml = trim( preg_replace( '#<!-- .+-->#Us', '', $parserOutputOld->getText() ) );
 				$newHtml = trim( preg_replace( '#<!-- .+-->#Us', '',$parserOutputNew->getText() ) );
 				$diff = wfDiff( $oldHtml, $newHtml );
 				if ( strlen( $diff ) ) {
 					$this->output( "differences found:\n\n$diff\n\n" );
+					++$withdiff;
 				} else {
 					$this->output( "No differences found.\n" );
 				}
@@ -91,8 +93,9 @@ class CompareParserCache extends Maintenance {
 			}
 		}
 
-		$ave = $scanned ? $totalsec / $scanned : 0;
+		$ave = $totalsec ? $totalsec / $scanned : 0;
 		$this->output( "Checked $scanned pages; $withcache had prior cache entries.\n" );
+		$this->output( "Pages with differences found: $withdiff\n" );
 		$this->output( "Average parse time: $ave sec\n" );
 	}
 }
