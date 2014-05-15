@@ -61,10 +61,9 @@ class WikiImporter {
 	}
 
 	/**
-	 * @return null|\XMLReader
+	 * @return null|XMLReader
 	 */
-	public function getReader()
-	{
+	public function getReader() {
 		return $this->reader;
 	}
 
