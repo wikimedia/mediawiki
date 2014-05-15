@@ -26,13 +26,12 @@
  */
 
 class DeprecatedGlobal extends StubObject {
-	// The m's are to stay consistent with parent class.
-	protected $mRealValue, $mVersion;
+	protected $realValue, $version;
 
 	function __construct( $name, $realValue, $version = false ) {
 		parent::__construct( $name );
-		$this->mRealValue = $realValue;
-		$this->mVersion = $version;
+		$this->realValue = $realValue;
+		$this->version = $version;
 	}
 
 	function _newObject() {
@@ -48,7 +47,7 @@ class DeprecatedGlobal extends StubObject {
 		 * sequences for this method, but that seems to be
 		 * rather unlikely.
 		 */
-		wfDeprecated( '$' . $this->mGlobal, $this->mVersion, false, 6 );
-		return $this->mRealValue;
+		wfDeprecated( '$' . $this->global, $this->version, false, 6 );
+		return $this->realValue;
 	}
 }

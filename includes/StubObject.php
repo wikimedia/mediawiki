@@ -43,13 +43,13 @@
  */
 class StubObject {
 	/** @var null|string */
-	protected $mGlobal;
+	protected $global;
 
 	/** @var null|string */
-	protected $mClass;
+	protected $class;
 
 	/** @var array */
-	protected $mParams;
+	protected $params;
 
 	/**
 	 * Constructor.
@@ -59,9 +59,9 @@ class StubObject {
 	 * @param array $params Parameters to pass to constructor of the real object.
 	 */
 	function __construct( $global = null, $class = null, $params = array() ) {
-		$this->mGlobal = $global;
-		$this->mClass = $class;
-		$this->mParams = $params;
+		$this->global = $global;
+		$this->class = $class;
+		$this->params = $params;
 	}
 
 	/**
@@ -102,7 +102,7 @@ class StubObject {
 	 */
 	function _call( $name, $args ) {
 		$this->_unstub( $name, 5 );
-		return call_user_func_array( array( $GLOBALS[$this->mGlobal], $name ), $args );
+		return call_user_func_array( array( $GLOBALS[$this->global], $name ), $args );
 	}
 
 	/**
@@ -110,7 +110,7 @@ class StubObject {
 	 * @return object
 	 */
 	function _newObject() {
-		return MWFunction::newObj( $this->mClass, $this->mParams );
+		return MWFunction::newObj( $this->class, $this->params );
 	}
 
 	/**
@@ -139,22 +139,22 @@ class StubObject {
 	function _unstub( $name = '_unstub', $level = 2 ) {
 		static $recursionLevel = 0;
 
-		if ( !$GLOBALS[$this->mGlobal] instanceof StubObject ) {
-			return $GLOBALS[$this->mGlobal]; // already unstubbed.
+		if ( !$GLOBALS[$this->global] instanceof StubObject ) {
+			return $GLOBALS[$this->global]; // already unstubbed.
 		}
 
-		if ( get_class( $GLOBALS[$this->mGlobal] ) != $this->mClass ) {
-			$fname = __METHOD__ . '-' . $this->mGlobal;
+		if ( get_class( $GLOBALS[$this->global] ) != $this->class ) {
+			$fname = __METHOD__ . '-' . $this->global;
 			wfProfileIn( $fname );
 			$caller = wfGetCaller( $level );
 			if ( ++$recursionLevel > 2 ) {
 				wfProfileOut( $fname );
 				throw new MWException( "Unstub loop detected on call of "
-					. "\${$this->mGlobal}->$name from $caller\n" );
+					. "\${$this->global}->$name from $caller\n" );
 			}
-			wfDebug( "Unstubbing \${$this->mGlobal} on call of "
-				. "\${$this->mGlobal}::$name from $caller\n" );
-			$GLOBALS[$this->mGlobal] = $this->_newObject();
+			wfDebug( "Unstubbing \${$this->global} on call of "
+				. "\${$this->global}::$name from $caller\n" );
+			$GLOBALS[$this->global] = $this->_newObject();
 			--$recursionLevel;
 			wfProfileOut( $fname );
 		}
