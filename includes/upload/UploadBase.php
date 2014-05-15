@@ -847,8 +847,10 @@ abstract class UploadBase {
 			return $this->mTitle;
 		}
 
-		// Windows may be broken with special characters, see bug XXX
-		if ( wfIsWindows() && !preg_match( '/^[\x0-\x7f]*$/', $nt->getText() ) ) {
+		// Windows may be broken with special characters, see bug 1780
+		if ( !preg_match( '/^[\x0-\x7f]*$/', $nt->getText() )
+			&& !RepoGroup::singleton()->getLocalRepo()->backendSupportsUnicodePaths()
+		) {
 			$this->mTitleError = self::WINDOWS_NONASCII_FILENAME;
 			$this->mTitle = null;
 
