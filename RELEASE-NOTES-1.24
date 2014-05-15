@@ -33,6 +33,10 @@ production.
 * (bug 63903) Thumbnails without an explicit size specification are
   now resized to a square bounding box. This gives better results for
   non-landscape thumbnails.
+* (bug 64904) Images using the 'upright' option now also use a square
+  bounding box.  The default scale factor used by upright ($wgThumbUpright)
+  has been reset to 1.00, which will result in no size change for images
+  with 4:3 aspect ratios.
 
 === Bug fixes in 1.24 ===
 * (bug 62258) A bug was fixed in File::getUnscaledThumb when a height
