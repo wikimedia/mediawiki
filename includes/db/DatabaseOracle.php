@@ -1491,6 +1491,10 @@ class DatabaseOracle extends DatabaseBase {
 					throw new DBUnexpectedError( $this, "Cannot create LOB descriptor: " . $e['message'] );
 				}
 
+				if ( is_object( $val ) ) {
+					$val = $val->fetch();
+				}
+
 				if ( $col_type == 'BLOB' ) {
 					$lob[$col]->writeTemporary( $val );
 					oci_bind_by_name( $stmt, ":$col", $lob[$col], -1, SQLT_BLOB );
