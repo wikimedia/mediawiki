@@ -64,7 +64,8 @@
 			"לערי ריינהארט",
 			"Pan Cube",
 			"Wedkarski",
-			"아라"
+			"아라",
+			"Matik7"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -886,7 +887,7 @@
 	"shown-title": "Pokaż po $1 {{PLURAL:$1|wyniku|wyniki|wyników}} na stronę",
 	"viewprevnext": "Zobacz ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "* Strona '''[[$1]]'''",
-	"searchmenu-new": "<strong>Utwórz stronę „[[:$1]]” na tej wiki!<strong> {{PLURAL:$2|0=|Zobacz też stronę z wynikami wyszukiwania.|Zobacz też wyniki wyszukiwania.}}",
+	"searchmenu-new": "<strong>Utwórz stronę „[[:$1]]” na tej wiki!</strong> {{PLURAL:$2|0=|Zobacz też stronę z wynikami wyszukiwania.|Zobacz też wyniki wyszukiwania.}}",
 	"searchprofile-articles": "Strony",
 	"searchprofile-project": "Strony pomocy i projektu",
 	"searchprofile-images": "Multimedia",
@@ -2902,6 +2903,7 @@
 	"watchlistedit-clear-title": "Wyczyść listę obserwowanych",
 	"watchlistedit-clear-legend": "Wyczyść listę",
 	"watchlistedit-clear-explain": "Wszystkie strony z listy obserwowanych zostaną usunięte",
+	"watchlistedit-clear-titles": "Tytuły:",
 	"watchlistedit-clear-submit": "Wyczyść listę obserwowanych (to jest nieodwracalne!)",
 	"watchlistedit-clear-done": "Twoja lista obserwowanych została wyczyszczona.",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|1 strona została usunięta|$1 stron zostało usunięte}}:",

@@ -15,7 +15,8 @@
 			"Jacenty359",
 			"Pan Cube",
 			"WTM",
-			"Alan ffm"
+			"Alan ffm",
+			"Matik7"
 		]
 	},
 	"config-desc": "Instalator MediaWiki",
@@ -321,6 +322,7 @@
 	"config-install-done": "'''Gratulacje!'''\nUdało Ci się zainstalować MediaWiki.\n\nInstalator wygenerował plik konfiguracyjny <code>LocalSettings.php</code>.\n\nMusisz go pobrać i umieścić w katalogu głównym Twojej instalacji wiki (tym samym katalogu co index.php). Pobieranie powinno zacząć się automatycznie.\n\nJeżeli pobieranie nie zostało zaproponowane lub jeśli użytkownik je anulował, można ponownie uruchomić pobranie klikając poniższe łącze:\n\n$3\n\n'''Uwaga''': Jeśli nie zrobisz tego teraz, wygenerowany plik konfiguracyjny nie będzie już dostępny po zakończeniu instalacji.\n\nPo załadowaniu pliku konfiguracyjnego możesz '''[$2 wejść na wiki]'''.",
 	"config-download-localsettings": "Pobierz <code>LocalSettings.php</code>",
 	"config-help": "pomoc",
+	"config-help-tooltip": "kliknij, aby rozwinąć",
 	"config-nofile": "Nie udało się odnaleźć pliku \"$1\". Czy nie został usunięty?",
 	"config-extension-link": "Czy wiesz, że twoja wiki obsługuje [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions/pl rozszerzenia]?\n\nMożesz przejrzeć [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category rozszerzenia według kategorii] lub [//www.mediawiki.org/wiki/Extension_Matrix Extension Matrix] aby zobaczyć pełną listę rozszerzeń.",
 	"mainpagetext": "'''Instalacja MediaWiki powiodła się.'''",

@@ -3327,7 +3327,7 @@
 	"watchlistedit-raw-added": "Message on [[Special:EditWatchlist/raw]].\n\nThe message appears after at least 1 message is added to the raw watchlist.\n\nFollowed by list of page titles which are added.\n\nParameters:\n* $1 - number of page titles which are added\nSee also:\n* {{msg-mw|Watchlistedit-normal-done}}\n* {{msg-mw|Watchlistedit-raw-removed}}",
 	"watchlistedit-raw-removed": "Message on [[Special:EditWatchlist/raw]].\n\nThe message appears after at least 1 message is deleted from the raw watchlist.\n\nFollowed by list of page titles which are removed.\n\nParameters:\n* $1 - number of page titles which are removed\nSee also:\n* {{msg-mw|Watchlistedit-normal-done}}\n* {{msg-mw|Watchlistedit-raw-added}}",
 	"watchlistedit-clear-title": "Used as page title in [[Special:Watchlist/clear]].",
-	"watchlistedit-clear-legend": "Heading of dialog box on [[Special:Watchlist/clear]].\n{{Identical|Clear watchlist}}",
+	"watchlistedit-clear-legend": "Heading of dialog box on [[Special:Watchlist/clear]].\n{{Identical|Clear watchlist}}\n\nThis feature previously existed using the message {{msg-mw|clearwatchlist}}.",
 	"watchlistedit-clear-explain": "Used as intro text on [[Special:Watchlist/clear]].\n\nPreceded by the fieldset label {{msg-mw|Watchlistedit-clear-legend}}.\n\nFollowed by the button {{msg-mw|Watchlistedit-clear-submit}}.",
 	"watchlistedit-clear-titles": "Text above edit box containing items being watched on [[Special:Watchlist/clear]].\n{{Identical|Title}}",
 	"watchlistedit-clear-submit": "Text of submit button on [[Special:Watchlist/clear]].\n{{Identical|Clear watchlist}}",

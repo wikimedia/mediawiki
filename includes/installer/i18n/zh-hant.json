@@ -316,6 +316,7 @@
 	"config-install-done": "<strong>恭喜！</strong>\n您已經成功地安裝了 MediaWiki。\n\n安裝程式已自動產生 <code>LocalSettings.php</code> 檔案，\n該檔案中包含了您所有的設定項目。\n\n您需要下載該檔案，並將其放置在您的 Wiki 的根目錄 (index.php 所在的目錄) 中，下載稍後會自動開始。\n\n若瀏覽器沒有提示您下載，或者您取消了下載，您可以點選下方連結重新下載：\n\n$3\n\n<strong>注意：</strong>若您現在未下載檔案，稍後結束安裝程式之後將無法下載設定檔。\n\n當您完成本步驟後，您可以 <strong>[$2 進入您的 Wiki]</strong>。",
 	"config-download-localsettings": "下載 <code>LocalSettings.php</code>",
 	"config-help": "說明",
+	"config-help-tooltip": "按一下以展開",
 	"config-nofile": "查無檔案 \"$1\"，是否已被刪除？",
 	"config-extension-link": "您是否了解您的 Wiki 支援 [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions 擴充套件]？\n\n\n您可以瀏覽 [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category 擴充套件分類] 或 [//www.mediawiki.org/wiki/Extension_Matrix 擴充套件資料表] 以取得相關的資訊。",
 	"mainpagetext": "<strong>已成功安裝 MediaWiki。</strong>",

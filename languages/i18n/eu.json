@@ -240,7 +240,7 @@
 	"pool-timeout": "Lock-a itxoiten denbora amaitu da",
 	"pool-queuefull": "Prozesuen zerrenda beteta dago",
 	"pool-errorunknown": "Errore ezezaguna",
-	"aboutsite": "{{SITENAME}}(e)ri buruz",
+	"aboutsite": "{{SITENAME}} guneari buruz",
 	"aboutpage": "Project:Honi_buruz",
 	"copyright": "Eduki guztia $1(r)en babespean dago, ez bada kontrakoa esaten.",
 	"copyrightpage": "{{ns:project}}:Eskubideak",

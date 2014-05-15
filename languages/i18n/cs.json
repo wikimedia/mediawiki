@@ -1866,7 +1866,7 @@
 	"undeletedrevisions-files": "{{PLURAL:$1|Obnovena jedna verze|Obnoveny $1 verze|Obnoveno $1 verzí}} a {{PLURAL:$2|jeden soubor|$2 soubory|$2 souborů}}.",
 	"undeletedfiles": "{{PLURAL:$1|Obnoven jeden soubor|Obnoveny $1 soubory|Obnoveno $1 souborů}}",
 	"cannotundelete": "Obnovení se nezdařilo:\n$1",
-	"undeletedpage": "'''$1 byla obnovena'''\n\nZáznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|knize smazaných stránek]].",
+	"undeletedpage": "<strong>Stránka „$1“ byla obnovena</strong>\n\nZáznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|knize smazaných stránek]].",
 	"undelete-header": "Vizte nedávno smazané stránky v [[Special:Log/delete|knize smazaných stránek]].",
 	"undelete-search-title": "Hledání smazaných stránek",
 	"undelete-search-box": "Hledání smazaných stránek",

@@ -779,7 +779,7 @@
 	"shown-title": "Бетде $1 {{PLURAL:$1|джазыуну}} кёргюз",
 	"viewprevnext": "Къара: ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "'''Бу викиде «[[:$1]]» бет барды'''",
-	"searchmenu-new": "'''Бу вики-проектде «[[:$1]]» бетни къура!'''",
+	"searchmenu-new": "<strong>Бу вики-проектде «[[:$1]]» бетни къура!</strong>\n{{PLURAL:$2|0=|Дагъыда табылгъан излеу эсебге къарагъыз.|Дагъыда табылгъан излеу эсеблеге къарагъыз.}}",
 	"searchprofile-articles": "Баш бетле",
 	"searchprofile-project": "Болушлукъ эм проект бетле",
 	"searchprofile-images": "Мультимедия",
