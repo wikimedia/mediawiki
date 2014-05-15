@@ -36,18 +36,22 @@
  * @ingroup Feed
  */
 class FeedItem {
-	/**
-	 * @var Title
-	 */
-	var $title;
+	/** @var Title */
+	protected $title;
 
-	var $description;
-	var $url;
-	var $date;
-	var $author;
-	var $uniqueId;
-	var $comments;
-	var $rssIsPermalink = false;
+	protected $description;
+
+	protected $url;
+
+	protected $date;
+
+	protected $author;
+
+	protected $uniqueId;
+
+	protected $comments;
+
+	public $rssIsPermalink = false;
 
 	/**
 	 * Constructor
@@ -238,27 +242,35 @@ abstract class ChannelFeed extends FeedItem {
 	 * Return an internet media type to be sent in the headers.
 	 *
 	 * @return string
-	 * @private
 	 */
-	function contentType() {
+	private function contentType() {
 		global $wgRequest;
+
 		$ctype = $wgRequest->getVal( 'ctype', 'application/xml' );
-		$allowedctypes = array( 'application/xml', 'text/xml', 'application/rss+xml', 'application/atom+xml' );
+		$allowedctypes = array(
+			'application/xml',
+			'text/xml',
+			'application/rss+xml',
+			'application/atom+xml'
+		);
+
 		return ( in_array( $ctype, $allowedctypes ) ? $ctype : 'application/xml' );
 	}
 
 	/**
 	 * Output the initial XML headers with a stylesheet for legibility
 	 * if someone finds it in a browser.
-	 * @private
 	 */
-	function outXmlHeader() {
+	protected function outXmlHeader() {
 		global $wgStylePath, $wgStyleVersion;
 
 		$this->httpHeaders();
 		echo '<?xml version="1.0"?>' . "\n";
 		echo '<?xml-stylesheet type="text/css" href="' .
-			htmlspecialchars( wfExpandUrl( "$wgStylePath/common/feed.css?$wgStyleVersion", PROTO_CURRENT ) ) .
+			htmlspecialchars( wfExpandUrl(
+				"$wgStylePath/common/feed.css?$wgStyleVersion",
+				PROTO_CURRENT
+			) ) .
 			'"?' . ">\n";
 	}
 }
@@ -303,6 +315,7 @@ class RSSFeed extends ChannelFeed {
 	 * @param FeedItem $item Item to be output
 	 */
 	function outItem( $item ) {
+		// @codingStandardsIgnoreStart Ignore long lines and formatting issues.
 	?>
 		<item>
 			<title><?php print $item->getTitle(); ?></title>
@@ -314,6 +327,7 @@ class RSSFeed extends ChannelFeed {
 			<?php if ( $item->getComments() ) { ?><comments><?php print wfExpandUrl( $item->getComments(), PROTO_CURRENT ); ?></comments><?php }?>
 		</item>
 <?php
+		// @codingStandardsIgnoreEnd
 	}
 
 	/**
@@ -348,6 +362,7 @@ class AtomFeed extends ChannelFeed {
 		global $wgVersion;
 
 		$this->outXmlHeader();
+		// @codingStandardsIgnoreStart Ignore long lines and formatting issues.
 		?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="<?php print $this->getLanguage() ?>">
 		<id><?php print $this->getFeedId() ?></id>
 		<title><?php print $this->getTitle() ?></title>
@@ -358,6 +373,7 @@ class AtomFeed extends ChannelFeed {
 		<generator>MediaWiki <?php print $wgVersion ?></generator>
 
 <?php
+		// @codingStandardsIgnoreEnd
 	}
 
 	/**
@@ -367,18 +383,16 @@ class AtomFeed extends ChannelFeed {
 	 * have to change the id? Maybe? Maybe not.
 	 *
 	 * @return string
-	 * @private
 	 */
-	function getFeedId() {
+	private function getFeedId() {
 		return $this->getSelfUrl();
 	}
 
 	/**
 	 * Atom 1.0 requests a self-reference to the feed.
 	 * @return string
-	 * @private
 	 */
-	function getSelfUrl() {
+	private function getSelfUrl() {
 		global $wgRequest;
 		return htmlspecialchars( $wgRequest->getFullRequestURL() );
 	}
@@ -389,6 +403,7 @@ class AtomFeed extends ChannelFeed {
 	 */
 	function outItem( $item ) {
 		global $wgMimeType;
+		// @codingStandardsIgnoreStart Ignore long lines and formatting issues.
 	?>
 	<entry>
 		<id><?php print $item->getUniqueId(); ?></id>
@@ -412,5 +427,6 @@ class AtomFeed extends ChannelFeed {
 	 */
 	function outFooter() {?>
 	</feed><?php
+		// @codingStandardsIgnoreEnd
 	}
 }

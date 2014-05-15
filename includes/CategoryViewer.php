@@ -21,53 +21,58 @@
  */
 
 class CategoryViewer extends ContextSource {
-	var $limit, $from, $until,
-		$articles, $articles_start_char,
-		$children, $children_start_char,
-		$showGallery, $imgsNoGalley,
-		$imgsNoGallery_start_char,
-		$imgsNoGallery;
+	/** @var int */
+	public $limit;
 
-	/**
-	 * @var array
-	 */
-	var $nextPage;
+	/** @var array */
+	protected $from;
 
-	/**
-	 * @var array
-	 */
-	var $flip;
+	/** @var array */
+	protected $until;
 
-	/**
-	 * @var Title
-	 */
-	var $title;
+	/** @var string[] */
+	public $articles;
 
-	/**
-	 * @var Collation
-	 */
-	var $collation;
+	/** @var array */
+	public $articles_start_char;
 
-	/**
-	 * @var ImageGallery
-	 */
-	var $gallery;
+	/** @var array */
+	protected $children;
 
-	/**
-	 * Category object for this page
-	 * @var Category
-	 */
+	/** @var array */
+	protected $children_start_char;
+
+	/** @var bool */
+	protected $showGallery;
+
+	/** @var array */
+	protected $imgsNoGallery_start_char;
+
+	/** @var array */
+	protected $imgsNoGallery;
+
+	/** @var array */
+	protected $nextPage;
+
+	/** @var array */
+	protected $flip;
+
+	/** @var Title */
+	protected $title;
+
+	/** @var Collation */
+	protected $collation;
+
+	/** @var ImageGallery */
+	protected $gallery;
+
+	/** @var Category Category object for this page. */
 	private $cat;
 
-	/**
-	 * The original query array, to be used in generating paging links.
-	 * @var array
-	 */
+	/** @var array The original query array, to be used in generating paging links. */
 	private $query;
 
 	/**
-	 * Constructor
-	 *
 	 * @since 1.19 $context is a second, required parameter
 	 * @param Title $title
 	 * @param IContextSource $context
