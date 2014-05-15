@@ -9,9 +9,6 @@ MediaWiki 1.23 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.23 ===
-* Introduced $wgPagePropsHaveSortkey as a backwards-compatibility switch,
-  for using the old schema of the page_props table, in case the respective
-  schema update was not applied.
 * (bug 13250) Restored method for clearing a watchlist in web UI
   so that users with large watchlists don't have to perform
   contortions to clear them.
@@ -275,9 +272,6 @@ changes to languages because of Bugzilla reports.
 * Support was added for Northern Luri (lrc).
 
 === Other changes in 1.23 ===
-* Added pp_sortkey column to page_props table, so pages can be efficiently
-  queried and sorted by property value (bug 58032).
-  See $wgPagePropsHaveSortkey if you want to postpone the schema change.
 * The rc_type field in the recentchanges table has been superseded by a new
   rc_source field.  The rc_source field is a string representation of the
   change type where rc_type was a numeric constant.  This field is not yet
