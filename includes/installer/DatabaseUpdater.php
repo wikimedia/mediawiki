@@ -1023,6 +1023,9 @@ abstract class DatabaseUpdater {
 	 * Migrates user options from the user table blob to user_properties
 	 */
 	protected function doMigrateUserOptions() {
+		if ( !$this->db->fieldExists( 'user', 'user_password_expires', __METHOD__ ) ) {
+			$this->addField( 'user', 'user_password_expires', 'patch-user_password_expire.sql' );
+		}
 		if ( $this->db->tableExists( 'user_properties' ) ) {
 			$cl = $this->maintenance->runChild( 'ConvertUserOptions', 'convertUserOptions.php' );
 			$cl->execute();
