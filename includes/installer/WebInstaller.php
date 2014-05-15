@@ -61,7 +61,7 @@ class WebInstaller extends Installer {
 	 * To add a new installer page:
 	 *    * Add it to this WebInstaller::$pageSequence property
 	 *    * Add a "config-page-<name>" message
-	 *    * Add a "WebInstaller_<name>" class
+	 *    * Add a "WebInstaller<name>" class
 	 *
 	 * @var string[]
 	 */
@@ -462,7 +462,7 @@ class WebInstaller extends Installer {
 	 * @return WebInstallerPage
 	 */
 	public function getPageByName( $pageName ) {
-		$pageClass = 'WebInstaller_' . $pageName;
+		$pageClass = 'WebInstaller' . $pageName;
 
 		return new $pageClass( $this );
 	}

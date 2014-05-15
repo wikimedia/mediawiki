@@ -806,7 +806,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * database. Example uses in core:
 	 * @see LoadBalancer::reallyOpenConnection()
 	 * @see ForeignDBRepo::getMasterDB()
-	 * @see WebInstaller_DBConnect::execute()
+	 * @see WebInstallerDBConnect::execute()
 	 *
 	 * @since 1.18
 	 *
