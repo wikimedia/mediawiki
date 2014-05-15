@@ -174,7 +174,11 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->addWhereFld( 'rc_namespace', $params['namespace'] );
 
 		if ( !is_null( $params['type'] ) ) {
-			$this->addWhereFld( 'rc_type', $this->parseRCType( $params['type'] ) );
+			try {
+				$this->addWhereFld( 'rc_type', RecentChange::parseToRCType( $params['type'] ) );
+			} catch ( MWException $e ) {
+					ApiBase::dieDebug( __METHOD__, $e->getMessage() );
+			}
 		}
 
 		if ( !is_null( $params['show'] ) ) {
@@ -414,30 +418,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$vals = array();
 
 		$type = intval( $row->rc_type );
-
-		/* Determine what kind of change this was. */
-		switch ( $type ) {
-			case RC_EDIT:
-				$vals['type'] = 'edit';
-				break;
-			case RC_NEW:
-				$vals['type'] = 'new';
-				break;
-			case RC_MOVE:
-				$vals['type'] = 'move';
-				break;
-			case RC_LOG:
-				$vals['type'] = 'log';
-				break;
-			case RC_EXTERNAL:
-				$vals['type'] = 'external';
-				break;
-			case RC_MOVE_OVER_REDIRECT:
-				$vals['type'] = 'move over redirect';
-				break;
-			default:
-				$vals['type'] = $type;
-		}
+		$vals['type'] = RecentChange::parseFromRCType( $type );
 
 		$anyHidden = false;
 
@@ -605,30 +586,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		return $vals;
-	}
-
-	private function parseRCType( $type ) {
-		if ( is_array( $type ) ) {
-			$retval = array();
-			foreach ( $type as $t ) {
-				$retval[] = $this->parseRCType( $t );
-			}
-
-			return $retval;
-		}
-
-		switch ( $type ) {
-			case 'edit':
-				return RC_EDIT;
-			case 'new':
-				return RC_NEW;
-			case 'log':
-				return RC_LOG;
-			case 'external':
-				return RC_EXTERNAL;
-			default:
-				ApiBase::dieDebug( __METHOD__, "Unknown type '$type'" );
-		}
 	}
 
 	public function getCacheMode( $params ) {
