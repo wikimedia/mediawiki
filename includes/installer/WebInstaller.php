@@ -702,7 +702,8 @@ class WebInstaller extends Installer {
 		$html = $this->parse( $text, true );
 
 		return "<div class=\"mw-help-field-container\">\n" .
-			"<span class=\"mw-help-field-hint\" title=\"" .  wfMessage( 'config-help-tooltip' )->escaped() . "\">" .
+			"<span class=\"mw-help-field-hint\" title=\"" .
+			wfMessage( 'config-help-tooltip' )->escaped() . "\">" .
 			wfMessage( 'config-help' )->escaped() . "</span>\n" .
 			"<span class=\"mw-help-field-data\">" . $html . "</span>\n" .
 			"</div>\n";
