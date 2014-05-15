@@ -1,0 +1,2 @@
+For more information about running Selenium tests please see
+https://github.com/wikimedia/mediawiki-selenium
