@@ -76,6 +76,15 @@ class Block {
 	const TYPE_RANGE = 3;
 	const TYPE_AUTO = 4;
 	const TYPE_ID = 5;
+  
+  # block options
+	const AUTO = 1;
+	const ANON_ONLY = 2;
+	const CREATE_ACCOUNT = 4;
+	const ENABLE_AUTOBLOCK = 8;
+	const HIDE_NAME = 16;
+	const BLOCK_EMAIL = 32;
+	const ALLOW_USERTALK = 64;
 
 	/**
 	 * @todo FIXME: Don't know what the best format to have for this constructor
@@ -83,11 +92,19 @@ class Block {
 	 */
 	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
 		$timestamp = 0, $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0,
-		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byText = ''
+		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byText = '', $blockOptions = 0
 	) {
 		if ( $timestamp === 0 ) {
 			$timestamp = wfTimestampNow();
 		}
+
+		$auto = $auto || (($blockOptions & self::AUTO) == self::AUTO);
+		$anonOnly = $anonOnly || (($blockOptions & self::ANON_ONLY) == self::ANON_ONLY);
+		$createAccount = $createAccount || (($blockOptions & self::CREATE_ACCOUNT) == self::CREATE_ACCOUNT);
+		$enableAutoblock = $enableAutoblock || (($blockOptions & self::ENABLE_AUTOBLOCK) == self::ENABLE_AUTOBLOCK);
+		$hideName = $hideName || (($blockOptions & self::HIDE_NAME) == self::HIDE_NAME);
+		$blockEmail = $blockEmail || (($blockOptions & self::BLOCK_EMAIL) == self::BLOCK_EMAIL);
+		$allowUsertalk = $allowUsertalk || (($blockOptions & self::ALLOW_USERTALK) == self::ALLOW_USERTALK);
 
 		if ( count( func_get_args() ) > 0 ) {
 			# Soon... :D
