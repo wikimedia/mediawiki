@@ -550,6 +550,7 @@ class PageArchive {
 
 		$ret->seek( $rev_count - 1 ); // move to last
 		$row = $ret->fetchObject(); // get newest archived rev
+		$oldPageId = $row->ar_page_id; // pass this to ArticleUndelete hook
 		$ret->seek( 0 ); // move back
 
 		// grab the content to check consistency with global state before restoring the page.
@@ -642,7 +643,7 @@ class PageArchive {
 			);
 		}
 
-		wfRunHooks( 'ArticleUndelete', array( &$this->title, $created, $comment ) );
+		wfRunHooks( 'ArticleUndelete', array( &$this->title, $created, $comment, $oldPageId ) );
 
 		if ( $this->title->getNamespace() == NS_FILE ) {
 			$update = new HTMLCacheUpdate( $this->title, 'imagelinks' );
