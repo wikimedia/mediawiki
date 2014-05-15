@@ -27,7 +27,7 @@
 		 * @param {string|null} value Value of cookie. If `value` is `null` then this method will
 		 *   instead remove a cookie by name of `key`.
 		 * @param {Object|Date} [options] Options object, or expiry date
-		 * @param {Date|boolean} [options.expires=wgCookieExpiration] The expiry date of the cookie.
+		 * @param {Date|null} [options.expires=wgCookieExpiration] The expiry date of the cookie.
 		 *
 		 *   Default cookie expiration is based on `wgCookieExpiration`.  If `wgCookieExpiration` is
 		 *   0, a session cookie is set (expires when the browser is closed). For non-zero values of
