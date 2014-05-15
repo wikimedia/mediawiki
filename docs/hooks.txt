@@ -1637,6 +1637,11 @@ localisation checks.
 &$blacklist: array of checks to blacklist. See the bottom of
   maintenance/language/checkLanguage.inc for the format of this variable.
 
+'LocalisationIgnoredOptionalMessages': When fetching the list of ignored and
+optional localisation messages
+&$ignored Array of ignored message keys
+&$optional Array of optional message keys
+
 'LogEventsListShowLogExtract': Called before the string is added to OutputPage.
 Returning false will prevent the string from being added to the OutputPage.
 &$s: html string to show for the log extract

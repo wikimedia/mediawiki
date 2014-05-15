@@ -61,17 +61,10 @@ class Languages {
 	/**
 	 * Load the list of languages: all the Messages*.php
 	 * files in the languages directory.
-	 *
-	 * @param bool $exif Treat the Exif messages?
 	 */
-	function __construct( $exif = true ) {
-		require __DIR__ . '/messageTypes.inc';
-		$this->mIgnoredMessages = $wgIgnoredMessages;
-		if ( $exif ) {
-			$this->mOptionalMessages = array_merge( $wgOptionalMessages );
-		} else {
-			$this->mOptionalMessages = array_merge( $wgOptionalMessages, $wgEXIFMessages );
-		}
+	function __construct() {
+		wfRunHooks( 'LocalisationIgnoredOptionalMessages',
+			array( &$this->mIgnoredMessages, &$this->mOptionalMessages ) );
 
 		$this->mLanguages = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
 		sort( $this->mLanguages );
