@@ -103,6 +103,36 @@ class RecentChange {
 	}
 
 	/**
+	 * Parsing text to RC_* constants
+	 *
+	 * @param $type
+	 * @return RC_TYPE
+	 */
+	public static function parseRCType( $type ) {
+		if ( is_array( $type ) ) {
+			$retval = array();
+			foreach ( $type as $t ) {
+				$retval[] = RecentChange::parseRCType( $t );
+			}
+
+			return $retval;
+		}
+
+		switch ( $type ) {
+			case 'edit':
+				return RC_EDIT;
+			case 'new':
+				return RC_NEW;
+			case 'log':
+				return RC_LOG;
+			case 'external':
+				return RC_EXTERNAL;
+			default:
+				ApiBase::dieDebug( __METHOD__, "Unknown type '$type'" );
+		}
+	}
+
+	/**
 	 * No uses left in Gerrit on 2013-11-19.
 	 * @deprecated since 1.22
 	 * @param mixed $row

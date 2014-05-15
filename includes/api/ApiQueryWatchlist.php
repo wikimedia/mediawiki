@@ -194,7 +194,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		if ( !is_null( $params['type'] ) ) {
-			$this->addWhereFld( 'rc_type', $this->parseRCType( $params['type'] ) );
+			$this->addWhereFld( 'rc_type', RecentChange::parseRCType( $params['type'] ) );
 		}
 
 		if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
@@ -447,35 +447,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		return $vals;
-	}
-
-	/** Copied from ApiQueryRecentChanges.
-	 *
-	 * @param string $type
-	 * @return string
-	 */
-	private function parseRCType( $type ) {
-		if ( is_array( $type ) ) {
-			$retval = array();
-			foreach ( $type as $t ) {
-				$retval[] = $this->parseRCType( $t );
-			}
-
-			return $retval;
-		}
-
-		switch ( $type ) {
-			case 'edit':
-				return RC_EDIT;
-			case 'new':
-				return RC_NEW;
-			case 'log':
-				return RC_LOG;
-			case 'external':
-				return RC_EXTERNAL;
-			default:
-				ApiBase::dieDebug( __METHOD__, "Unknown type '$type'" );
-		}
 	}
 
 	public function getAllowedParams() {
