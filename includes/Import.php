@@ -218,7 +218,11 @@ class WikiImporter {
 			$this->mTargetRootPage = null;
 		} elseif ( $rootpage !== '' ) {
 			$rootpage = rtrim( $rootpage, '/' ); //avoid double slashes
-			$title = Title::newFromText( $rootpage, !is_null( $this->mTargetNamespace ) ? $this->mTargetNamespace : NS_MAIN );
+			$title = Title::newFromText( $rootpage, !is_null( $this->mTargetNamespace )
+				? $this->mTargetNamespace
+				: NS_MAIN
+			);
+
 			if ( !$title || $title->isExternal() ) {
 				$status->fatal( 'import-rootpage-invalid' );
 			} else {
@@ -285,12 +289,12 @@ class WikiImporter {
 
 	/**
 	 * Default per-revision callback, performs the import.
-	 * @param WikiRevision $rev
+	 * @param WikiRevision $revision
 	 * @return bool
 	 */
-	public function importLogItem( $rev ) {
+	public function importLogItem( $revision ) {
 		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->deadlockLoop( array( $rev, 'importLogItem' ) );
+		return $dbw->deadlockLoop( array( $revision, 'importLogItem' ) );
 	}
 
 	/**
@@ -310,7 +314,7 @@ class WikiImporter {
 	 * @param int $revCount
 	 * @param int $sRevCount
 	 * @param array $pageInfo
-	 * @return
+	 * @return bool
 	 */
 	public function finishImportPage( $title, $origTitle, $revCount, $sRevCount, $pageInfo ) {
 		$args = func_get_args();
@@ -900,10 +904,16 @@ class WikiImporter {
 
 /** This is a horrible hack used to keep source compatibility */
 class UploadSourceAdapter {
-	static $sourceRegistrations = array();
+	/** @var array */
+	private static $sourceRegistrations = array();
 
+	/** @var string */
 	private $mSource;
+
+	/** @var string */
 	private $mBuffer;
+
+	/** @var int */
 	private $mPosition;
 
 	/**
@@ -1042,30 +1052,80 @@ class XMLReader2 extends XMLReader {
  * @ingroup SpecialPage
  */
 class WikiRevision {
-	var $importer = null;
+	/** @todo Unused? */
+	private $importer = null;
+
+	/** @var Title */
+	public $title = null;
+
+	/** @var int */
+	private $id = 0;
+
+	/** @var string */
+	public $timestamp = "20010115000000";
 
 	/**
-	 * @var Title
+	 * @var int
+	 * @todo Can't find any uses. Public, because that's suspicious. Get clarity. */
+	public $user = 0;
+
+	/** @var string */
+	public $user_text = "";
+
+	/** @var string */
+	protected $model = null;
+
+	/** @var string */
+	protected $format = null;
+
+	/** @var string */
+	public $text = "";
+
+	/** @var int */
+	protected $size;
+
+	/** @var Content */
+	protected $content = null;
+
+	/** @var string */
+	public $comment = "";
+
+	/** @var bool */
+	protected $minor = false;
+
+	/** @var string */
+	protected $type = "";
+
+	/** @var string */
+	protected $action = "";
+
+	/** @var string */
+	protected $params = "";
+
+	/** @var string */
+	protected $fileSrc = '';
+
+	/** @var bool|string */
+	protected $sha1base36 = false;
+
+	/**
+	 * @var bool
+	 * @todo Unused?
 	 */
-	var $title = null;
-	var $id = 0;
-	var $timestamp = "20010115000000";
-	var $user = 0;
-	var $user_text = "";
-	var $model = null;
-	var $format = null;
-	var $text = "";
-	var $content = null;
-	var $comment = "";
-	var $minor = false;
-	var $type = "";
-	var $action = "";
-	var $params = "";
-	var $fileSrc = '';
-	var $sha1base36 = false;
-	var $isTemp = false;
-	var $archiveName = '';
-	var $fileIsTemp;
+	private $isTemp = false;
+
+	/** @var string */
+	protected $archiveName = '';
+
+	protected $filename;
+
+	/** @var mixed */
+	protected $src;
+
+	/** @todo Unused? */
+	private $fileIsTemp;
+
+	/** @var bool */
 	private $mNoUpdates = false;
 
 	/**
@@ -1076,7 +1136,8 @@ class WikiRevision {
 		if ( is_object( $title ) ) {
 			$this->title = $title;
 		} elseif ( is_null( $title ) ) {
-			throw new MWException( "WikiRevision given a null title in import. You may need to adjust \$wgLegalTitleChars." );
+			throw new MWException( "WikiRevision given a null title in import. "
+				. "You may need to adjust \$wgLegalTitleChars." );
 		} else {
 			throw new MWException( "WikiRevision given non-object title in import." );
 		}
@@ -1438,7 +1499,8 @@ class WikiRevision {
 			'page' => $pageId,
 			'content_model' => $this->getModel(),
 			'content_format' => $this->getFormat(),
-			'text' => $this->getContent()->serialize( $this->getFormat() ), //XXX: just set 'content' => $this->getContent()?
+			//XXX: just set 'content' => $this->getContent()?
+			'text' => $this->getContent()->serialize( $this->getFormat() ),
 			'comment' => $this->getComment(),
 			'user' => $userId,
 			'user_text' => $userText,
@@ -1450,7 +1512,11 @@ class WikiRevision {
 
 		if ( $changed !== false && !$this->mNoUpdates ) {
 			wfDebug( __METHOD__ . ": running updates\n" );
-			$page->doEditUpdates( $revision, $userObj, array( 'created' => $created, 'oldcountable' => $oldcountable ) );
+			$page->doEditUpdates(
+				$revision,
+				$userObj,
+				array( 'created' => $created, 'oldcountable' => $oldcountable )
+			);
 		}
 
 		return true;
@@ -1482,8 +1548,9 @@ class WikiRevision {
 		);
 		// @todo FIXME: This could fail slightly for multiple matches :P
 		if ( $prior ) {
-			wfDebug( __METHOD__ . ": skipping existing item for Log:{$this->type}/{$this->action}, timestamp " .
-				$this->timestamp . "\n" );
+			wfDebug( __METHOD__
+				. ": skipping existing item for Log:{$this->type}/{$this->action}, timestamp "
+				. $this->timestamp . "\n" );
 			return;
 		}
 		$log_id = $dbw->nextSequenceValue( 'logging_log_id_seq' );
@@ -1680,13 +1747,18 @@ class ImportStreamSource {
 		}
 		if ( !empty( $upload['error'] ) ) {
 			switch ( $upload['error'] ) {
-				case 1: # The uploaded file exceeds the upload_max_filesize directive in php.ini.
+				case 1:
+					# The uploaded file exceeds the upload_max_filesize directive in php.ini.
 					return Status::newFatal( 'importuploaderrorsize' );
-				case 2: # The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.
+				case 2:
+					# The uploaded file exceeds the MAX_FILE_SIZE directive that
+					# was specified in the HTML form.
 					return Status::newFatal( 'importuploaderrorsize' );
-				case 3: # The uploaded file was only partially uploaded
+				case 3:
+					# The uploaded file was only partially uploaded
 					return Status::newFatal( 'importuploaderrorpartial' );
-				case 6: #Missing a temporary folder.
+				case 6:
+					# Missing a temporary folder.
 					return Status::newFatal( 'importuploaderrortemp' );
 				# case else: # Currently impossible
 			}
@@ -1731,7 +1803,9 @@ class ImportStreamSource {
 	 * @param int $pageLinkDepth
 	 * @return Status
 	 */
-	public static function newFromInterwiki( $interwiki, $page, $history = false, $templates = false, $pageLinkDepth = 0 ) {
+	public static function newFromInterwiki( $interwiki, $page, $history = false,
+		$templates = false, $pageLinkDepth = 0
+	) {
 		if ( $page == '' ) {
 			return Status::newFatal( 'import-noarticle' );
 		}

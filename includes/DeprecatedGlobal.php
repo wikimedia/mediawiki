@@ -35,7 +35,11 @@ class DeprecatedGlobal extends StubObject {
 		$this->mVersion = $version;
 	}
 
+	// @codingStandardsIgnoreStart
+	// PSR2.Methods.MethodDeclaration.Underscore
+	// PSR2.Classes.PropertyDeclaration.ScopeMissing
 	function _newObject() {
+
 		/* Put the caller offset for wfDeprecated as 6, as
 		 * that gives the function that uses this object, since:
 		 * 1 = this function ( _newObject )
@@ -51,4 +55,5 @@ class DeprecatedGlobal extends StubObject {
 		wfDeprecated( '$' . $this->mGlobal, $this->mVersion, false, 6 );
 		return $this->mRealValue;
 	}
+	// @codingStandardsIgnoreEnd
 }
