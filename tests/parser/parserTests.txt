@@ -10803,6 +10803,7 @@ parsoid=wt2html,wt2wt,html2html
 #    enlarged.
 # 4. Without an explicit size specification, thumbnails are
 #    resized to a square bounding box.
+# 5. 'upright' uses a square bounding box.
 
 !! test
 Image: "unspecified format" and border enlarge
@@ -10968,6 +10969,54 @@ thumbsize=300
 <p><a href="/wiki/File:Portrait.svg" class="image" title="will resize to 300x300px"><img alt="will resize to 300x300px" src="http://example.com/images/thumb/f/fc/Portrait.svg/225px-Portrait.svg.png" width="225" height="300" srcset="http://example.com/images/thumb/f/fc/Portrait.svg/337px-Portrait.svg.png 1.5x, http://example.com/images/thumb/f/fc/Portrait.svg/450px-Portrait.svg.png 2x" /></a>
 </p>
 !! end
+
+!! test
+Image: upright option
+!! options
+thumbsize=200
+!! wikitext
+[[File:Foobar.jpg|thumb|upright|scaled to 200px width bound]]
+[[File:Foobar.jpg|thumb|upright=0.5|scaled to 100px width bound]]
+
+[[File:Portrait.png|thumb|upright|scaled to 200px height bound]]
+[[File:Portrait.png|thumb|upright=0.5|scaled to 100px height bound]]
+!! html/php
+<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" width="200" height="23" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>scaled to 200px width bound</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:102px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/100px-Foobar.jpg" width="100" height="11" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/150px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>scaled to 100px width bound</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:152px;"><a href="/wiki/File:Portrait.png" class="image"><img alt="" src="http://example.com/images/thumb/9/93/Portrait.png/150px-Portrait.png" width="150" height="200" class="thumbimage" srcset="http://example.com/images/9/93/Portrait.png 1.5x, http://example.com/images/9/93/Portrait.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Portrait.png" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>scaled to 200px height bound</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:77px;"><a href="/wiki/File:Portrait.png" class="image"><img alt="" src="http://example.com/images/thumb/9/93/Portrait.png/75px-Portrait.png" width="75" height="100" class="thumbimage" srcset="http://example.com/images/thumb/9/93/Portrait.png/112px-Portrait.png 1.5x, http://example.com/images/thumb/9/93/Portrait.png/150px-Portrait.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Portrait.png" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>scaled to 100px height bound</div></div></div>
+
+!!end
+
+!! test
+Image: upright option is ignored when inline, frame, or size is given
+!! options
+thumbsize=200
+!! wikitext
+[[File:Foobar.jpg|upright=0.5|upright option ignored]]
+[[File:Portrait.png|upright=0.5|upright option ignored]]
+
+[[File:Foobar.jpg|frame|upright=0.5|upright option ignored]]
+[[File:Portrait.png|frame|upright=0.5|upright option ignored]]
+
+[[File:Foobar.jpg|500x500px|upright=0.5|upright option ignored]]
+[[File:Portrait.png|500x500px|upright=0.5|upright option ignored]]
+
+[[File:Foobar.jpg|thumb|500x500px|upright=0.5|upright option ignored]]
+[[File:Portrait.png|thumb|500x500px|upright=0.5|upright option ignored]]
+!! html/php
+<p><a href="/wiki/File:Foobar.jpg" class="image" title="upright option ignored"><img alt="upright option ignored" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+<a href="/wiki/File:Portrait.png" class="image" title="upright option ignored"><img alt="upright option ignored" src="http://example.com/images/9/93/Portrait.png" width="180" height="240" /></a>
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption">upright option ignored</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Portrait.png" class="image"><img alt="" src="http://example.com/images/9/93/Portrait.png" width="180" height="240" class="thumbimage" /></a>  <div class="thumbcaption">upright option ignored</div></div></div>
+<p><a href="/wiki/File:Foobar.jpg" class="image" title="upright option ignored"><img alt="upright option ignored" src="http://example.com/images/thumb/3/3a/Foobar.jpg/500px-Foobar.jpg" width="500" height="57" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/750px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/1000px-Foobar.jpg 2x" /></a>
+<a href="/wiki/File:Portrait.png" class="image" title="upright option ignored"><img alt="upright option ignored" src="http://example.com/images/9/93/Portrait.png" width="375" height="500" /></a>
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:502px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/500px-Foobar.jpg" width="500" height="57" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/750px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/1000px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>upright option ignored</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Portrait.png" class="image"><img alt="" src="http://example.com/images/9/93/Portrait.png" width="180" height="240" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Portrait.png" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>upright option ignored</div></div></div>
+
+!!end
 
 ###################
 
@@ -20478,28 +20527,6 @@ parsoid
 <p data-parsoid='{"dsr":[0,3,0,0]}'>123</p>
 <figure class="mw-halign-right" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"right","ak":"right"},{"ck":"thumbnail","ak":"thumb"},{"ck":"width","ak":"150x150px"}],"dsr":[4,45,2,2]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"dsr":[6,43,null,null]}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/150px-Foobar.jpg" height="17" width="150" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"17","width":"150"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></figure>
 <p data-parsoid='{"dsr":[46,49,0,0]}'>456</p>
-!!end
-
-!! test
-Image: upright option (parsoid)
-!! options
-parsoid
-!! wikitext
-[[File:Foobar.jpg|thumb|upright|caption]]
-[[File:Foobar.jpg|thumb|upright=0.5|caption]]
-[[File:Foobar.jpg|thumb|500x500px|upright=0.5|caption]]
-!! html
-<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="19" width="170"/></a><figcaption>caption</figcaption></figure><figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="19" width="170"/></a><figcaption>caption</figcaption></figure><figure typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="57" width="500"/></a><figcaption>caption</figcaption></figure>
-!!end
-
-!! test
-Image: upright option is ignored on inline and frame images (parsoid)
-!! options
-parsoid
-!! wikitext
-[[File:Foobar.jpg|500x500px|upright=0.5|caption]]
-!! html
-<p><span typeof="mw:Image" data-mw='{"caption":"caption"}'><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="57" width="500"/></a></span></p>
 !!end
 
 !! test

@@ -593,6 +593,7 @@ class NewParserTest extends MediaWikiTestCase {
 				"$base/local-thumb/3/3a/Foobar.jpg/1280px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/137px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/1500px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/150px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/177px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/180px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/200px-Foobar.jpg",
@@ -612,10 +613,12 @@ class NewParserTest extends MediaWikiTestCase {
 				"$base/local-thumb/3/3a/Foobar.jpg/440px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/442px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/450px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/500px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/50px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/600px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/640px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/70px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/750px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/75px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/960px-Foobar.jpg",
 
@@ -629,6 +632,9 @@ class NewParserTest extends MediaWikiTestCase {
 				"$base/local-thumb/5/5f/LoremIpsum.djvu/page2-4960px-LoremIpsum.djvu.jpg",
 
 				"$base/local-public/9/93/Portrait.png",
+				"$base/local-thumb/9/93/Portrait.png/75px-Portrait.png",
+				"$base/local-thumb/9/93/Portrait.png/112px-Portrait.png",
+				"$base/local-thumb/9/93/Portrait.png/150px-Portrait.png",
 				"$base/local-thumb/9/93/Portrait.png/165px-Portrait.png",
 
 				"$base/local-public/f/ff/Foobar.svg",
