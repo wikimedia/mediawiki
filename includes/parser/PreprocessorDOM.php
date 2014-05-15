@@ -24,7 +24,7 @@
 /**
  * @ingroup Parser
  */
-class Preprocessor_DOM implements Preprocessor {
+class PreprocessorDOM implements Preprocessor {
 	/** @var Parser */
 	public $parser;
 
@@ -46,23 +46,23 @@ class Preprocessor_DOM implements Preprocessor {
 	}
 
 	/**
-	 * @return PPFrame_DOM
+	 * @return PPFrameDOM
 	 */
 	function newFrame() {
-		return new PPFrame_DOM( $this );
+		return new PPFrameDOM( $this );
 	}
 
 	/**
 	 * @param array $args
-	 * @return PPCustomFrame_DOM
+	 * @return PPCustomFrameDOM
 	 */
 	function newCustomFrame( $args ) {
-		return new PPCustomFrame_DOM( $this, $args );
+		return new PPCustomFrameDOM( $this, $args );
 	}
 
 	/**
 	 * @param array $values
-	 * @return PPNode_DOM
+	 * @return PPNodeDOM
 	 */
 	function newPartNodeArray( $values ) {
 		//NOTE: DOM manipulation is slower than building & parsing XML! (or so Tim sais)
@@ -99,7 +99,7 @@ class Preprocessor_DOM implements Preprocessor {
 		}
 
 		$root = $dom->documentElement;
-		$node = new PPNode_DOM( $root->childNodes );
+		$node = new PPNodeDOM( $root->childNodes );
 		return $node;
 	}
 
@@ -141,7 +141,7 @@ class Preprocessor_DOM implements Preprocessor {
 	 * dependency requirements.
 	 *
 	 * @throws MWException
-	 * @return PPNode_DOM
+	 * @return PPNodeDOM
 	 */
 	function preprocessToObj( $text, $flags = 0 ) {
 		wfProfileIn( __METHOD__ );
@@ -200,7 +200,7 @@ class Preprocessor_DOM implements Preprocessor {
 			$result = $dom->loadXML( $xml, 1 << 19 );
 		}
 		if ( $result ) {
-			$obj = new PPNode_DOM( $dom->documentElement );
+			$obj = new PPNodeDOM( $dom->documentElement );
 		}
 		wfProfileOut( __METHOD__ . '-loadXML' );
 
@@ -970,7 +970,7 @@ class PPDPart {
  * An expansion frame, used as a context to expand the result of preprocessToObj()
  * @ingroup Parser
  */
-class PPFrame_DOM implements PPFrame {
+class PPFrameDOM implements PPFrame {
 	/** @var array */
 	public $titleCache;
 
@@ -1015,7 +1015,7 @@ class PPFrame_DOM implements PPFrame {
 	 * @param bool|array $args
 	 * @param Title|bool $title
 	 * @param int $indexOffset
-	 * @return PPTemplateFrame_DOM
+	 * @return PPTemplateFrameDOM
 	 */
 	function newChild( $args = false, $title = false, $indexOffset = 0 ) {
 		$namedArgs = array();
@@ -1052,12 +1052,12 @@ class PPFrame_DOM implements PPFrame {
 				}
 			}
 		}
-		return new PPTemplateFrame_DOM( $this->preprocessor, $this, $numberedArgs, $namedArgs, $title );
+		return new PPTemplateFrameDOM( $this->preprocessor, $this, $numberedArgs, $namedArgs, $title );
 	}
 
 	/**
 	 * @throws MWException
-	 * @param string|PPNode_DOM|DOMDocument $root
+	 * @param string|PPNodeDOM|DOMDocument $root
 	 * @param int $flags
 	 * @return string
 	 */
@@ -1088,7 +1088,7 @@ class PPFrame_DOM implements PPFrame {
 			$this->parser->mHighestExpansionDepth = $expansionDepth;
 		}
 
-		if ( $root instanceof PPNode_DOM ) {
+		if ( $root instanceof PPNodeDOM ) {
 			$root = $root->node;
 		}
 		if ( $root instanceof DOMDocument ) {
@@ -1105,7 +1105,7 @@ class PPFrame_DOM implements PPFrame {
 			$out =& $outStack[$level];
 			$index =& $indexStack[$level];
 
-			if ( $iteratorNode instanceof PPNode_DOM ) {
+			if ( $iteratorNode instanceof PPNodeDOM ) {
 				$iteratorNode = $iteratorNode->node;
 			}
 
@@ -1134,7 +1134,7 @@ class PPFrame_DOM implements PPFrame {
 				$iteratorStack[$level] = false;
 			}
 
-			if ( $contextNode instanceof PPNode_DOM ) {
+			if ( $contextNode instanceof PPNodeDOM ) {
 				$contextNode = $contextNode->node;
 			}
 
@@ -1160,8 +1160,8 @@ class PPFrame_DOM implements PPFrame {
 					} else {
 						$lineStart = $contextNode->getAttribute( 'lineStart' );
 						$params = array(
-							'title' => new PPNode_DOM( $title ),
-							'parts' => new PPNode_DOM( $parts ),
+							'title' => new PPNodeDOM( $title ),
+							'parts' => new PPNodeDOM( $parts ),
 							'lineStart' => $lineStart );
 						$ret = $this->parser->braceSubstitution( $params, $this );
 						if ( isset( $ret['object'] ) ) {
@@ -1180,8 +1180,8 @@ class PPFrame_DOM implements PPFrame {
 						$newIterator = $this->virtualBracketedImplode( '{{{', '|', '}}}', $title, $parts );
 					} else {
 						$params = array(
-							'title' => new PPNode_DOM( $title ),
-							'parts' => new PPNode_DOM( $parts ) );
+							'title' => new PPNodeDOM( $title ),
+							'parts' => new PPNodeDOM( $parts ) );
 						$ret = $this->parser->argSubstitution( $params, $this );
 						if ( isset( $ret['object'] ) ) {
 							$newIterator = $ret['object'];
@@ -1226,10 +1226,10 @@ class PPFrame_DOM implements PPFrame {
 					$inners = $xpath->query( 'inner', $contextNode );
 					$closes = $xpath->query( 'close', $contextNode );
 					$params = array(
-						'name' => new PPNode_DOM( $names->item( 0 ) ),
-						'attr' => $attrs->length > 0 ? new PPNode_DOM( $attrs->item( 0 ) ) : null,
-						'inner' => $inners->length > 0 ? new PPNode_DOM( $inners->item( 0 ) ) : null,
-						'close' => $closes->length > 0 ? new PPNode_DOM( $closes->item( 0 ) ) : null,
+						'name' => new PPNodeDOM( $names->item( 0 ) ),
+						'attr' => $attrs->length > 0 ? new PPNodeDOM( $attrs->item( 0 ) ) : null,
+						'inner' => $inners->length > 0 ? new PPNodeDOM( $inners->item( 0 ) ) : null,
+						'close' => $closes->length > 0 ? new PPNodeDOM( $closes->item( 0 ) ) : null,
 					);
 					$out .= $this->parser->extensionSubstitution( $params, $this );
 				} elseif ( $contextNode->nodeName == 'h' ) {
@@ -1260,7 +1260,7 @@ class PPFrame_DOM implements PPFrame {
 			}
 
 			if ( $newIterator !== false ) {
-				if ( $newIterator instanceof PPNode_DOM ) {
+				if ( $newIterator instanceof PPNodeDOM ) {
 					$newIterator = $newIterator->node;
 				}
 				$outStack[] = '';
@@ -1294,7 +1294,7 @@ class PPFrame_DOM implements PPFrame {
 		$first = true;
 		$s = '';
 		foreach ( $args as $root ) {
-			if ( $root instanceof PPNode_DOM ) {
+			if ( $root instanceof PPNodeDOM ) {
 				$root = $root->node;
 			}
 			if ( !is_array( $root ) && !( $root instanceof DOMNodeList ) ) {
@@ -1325,7 +1325,7 @@ class PPFrame_DOM implements PPFrame {
 		$first = true;
 		$s = '';
 		foreach ( $args as $root ) {
-			if ( $root instanceof PPNode_DOM ) {
+			if ( $root instanceof PPNodeDOM ) {
 				$root = $root->node;
 			}
 			if ( !is_array( $root ) && !( $root instanceof DOMNodeList ) ) {
@@ -1356,7 +1356,7 @@ class PPFrame_DOM implements PPFrame {
 		$first = true;
 
 		foreach ( $args as $root ) {
-			if ( $root instanceof PPNode_DOM ) {
+			if ( $root instanceof PPNodeDOM ) {
 				$root = $root->node;
 			}
 			if ( !is_array( $root ) && !( $root instanceof DOMNodeList ) ) {
@@ -1387,7 +1387,7 @@ class PPFrame_DOM implements PPFrame {
 		$first = true;
 
 		foreach ( $args as $root ) {
-			if ( $root instanceof PPNode_DOM ) {
+			if ( $root instanceof PPNodeDOM ) {
 				$root = $root->node;
 			}
 			if ( !is_array( $root ) && !( $root instanceof DOMNodeList ) ) {
@@ -1482,11 +1482,19 @@ class PPFrame_DOM implements PPFrame {
 }
 
 /**
+ * @deprecated since 1.24
+ */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+class PPFrame_DOM extends PPFrameDOM {
+}
+// @codingStandardsIgnoreEnd
+
+/**
  * Expansion frame with template arguments
  * @ingroup Parser
  */
-class PPTemplateFrame_DOM extends PPFrame_DOM {
-	/** @var PPFrame_DOM */
+class PPTemplateFrameDOM extends PPFrameDOM {
+	/** @var PPFrameDOM */
 	public $parent;
 
 	/** @var array */
@@ -1503,7 +1511,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 
 	/**
 	 * @param Preprocessor $preprocessor
-	 * @param bool|PPFrame_DOM $parent
+	 * @param bool|PPFrameDOM $parent
 	 * @param array $numberedArgs
 	 * @param array $namedArgs
 	 * @param bool|Title $title
@@ -1628,7 +1636,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
  * Expansion frame with custom arguments
  * @ingroup Parser
  */
-class PPCustomFrame_DOM extends PPFrame_DOM {
+class PPCustomFrameDOM extends PPFrameDOM {
 	protected $args;
 
 	function __construct( $preprocessor, $args ) {
@@ -1674,7 +1682,7 @@ class PPCustomFrame_DOM extends PPFrame_DOM {
 /**
  * @ingroup Parser
  */
-class PPNode_DOM implements PPNode {
+class PPNodeDOM implements PPNode {
 	/** @var DOMElement */
 	public $node;
 
@@ -1708,21 +1716,21 @@ class PPNode_DOM implements PPNode {
 	}
 
 	/**
-	 * @return bool|PPNode_DOM
+	 * @return bool|PPNodeDOM
 	 */
 	function getChildren() {
 		return $this->node->childNodes ? new self( $this->node->childNodes ) : false;
 	}
 
 	/**
-	 * @return bool|PPNode_DOM
+	 * @return bool|PPNodeDOM
 	 */
 	function getFirstChild() {
 		return $this->node->firstChild ? new self( $this->node->firstChild ) : false;
 	}
 
 	/**
-	 * @return bool|PPNode_DOM
+	 * @return bool|PPNodeDOM
 	 */
 	function getNextSibling() {
 		return $this->node->nextSibling ? new self( $this->node->nextSibling ) : false;
@@ -1731,7 +1739,7 @@ class PPNode_DOM implements PPNode {
 	/**
 	 * @param string $type
 	 *
-	 * @return bool|PPNode_DOM
+	 * @return bool|PPNodeDOM
 	 */
 	function getChildrenOfType( $type ) {
 		return new self( $this->getXPath()->query( $type, $this->node ) );
@@ -1750,7 +1758,7 @@ class PPNode_DOM implements PPNode {
 
 	/**
 	 * @param int $i
-	 * @return bool|PPNode_DOM
+	 * @return bool|PPNodeDOM
 	 */
 	function item( $i ) {
 		$item = $this->node->item( $i );
@@ -1836,3 +1844,11 @@ class PPNode_DOM implements PPNode {
 		);
 	}
 }
+
+/**
+ * @deprecated since 1.24
+ */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+class PPNode_DOM extends PPNodeDOM {
+}
+// @codingStandardsIgnoreEnd
