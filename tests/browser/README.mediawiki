@@ -1,0 +1,59 @@
+Purpose:
+
+The purpose of these tests is to validate that a newly installed (or updated, or hacked, or whatever) mediawiki instance presents to the user a set of expected features, regardless of what language the wiki is in, or where it is installed, or what extensions it might have.
+
+The tests are based on the basic definition of a wiki, a website where anyone
+
+* can read a page
+* can create a page
+* can edit a page
+* can link one page to another page
+
+Summary:
+
+Ruby 1.9.3 or higher is required
+Firefox browser is required
+
+Step 1:
+cd /tests/browser
+gem update --system
+gem install bundler
+bundle install
+
+Step 2: (example shown in bash shell)
+Edit the environment_variables file with appropriate values for your wiki
+$source environment_variables
+
+Step 3:
+bundle exec cucumber features/
+
+Note that the acceptance tests will create three pages in your wiki entitled "Editing Test Page", "Link Source Test Page", and "Link Target Test Page".  These pages may be deleted at any time.  If you wish to re-run the tests at any time, these test pages will be re-created or reset to their original contents at the time that the tests run.
+
+For more information about running Selenium tests please see
+https://github.com/wikimedia/mediawiki-selenium
+
+Details:
+
+create_page_with_wiki_link.feature:
+* uses the mediawiki API to create a link target page
+* uses the mediawiki API to create a link source page
+* navigates a browser to the link source page
+* clicks the link in that page to the link target page
+* validates that the browser has in fact followed the link to the target page correctly
+
+edit_page.feature:
+* uses the mediawiki API to create an editable page on the wiki
+* navigates a browser to the page
+* clicks the Edit button to invoke the basic editor
+* edits the page with a particular string containing a static part and also a quasi-unique random part
+* saves the edited page
+* checks that the saved page contains the particular string with which the page was edited
+
+main_page.feature:
+* navigates a browser to the default landing page of the wiki
+* checks for the View History link on the landing page
+* checks for the full set of of sidebar links that should exist on every mediawiki wiki
+
+Notes:
+
+Tested on beta labs hewiki, dewiki, enwiki, and on a local installation of mediawiki
