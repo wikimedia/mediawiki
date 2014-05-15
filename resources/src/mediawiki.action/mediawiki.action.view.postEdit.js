@@ -18,10 +18,10 @@
 	 * @member mw.hook
 	 */
 
-	var config = mw.config.get( [ 'wgAction', 'wgCookiePrefix', 'wgCurRevisionId' ] ),
+	var config = mw.config.get( [ 'wgAction', 'wgCurRevisionId' ] ),
 		// This should match EditPage::POST_EDIT_COOKIE_KEY_PREFIX:
-		cookieKey = config.wgCookiePrefix + 'PostEditRevision' + config.wgCurRevisionId,
-		cookieVal = $.cookie( cookieKey ),
+		cookieKey = 'PostEditRevision' + config.wgCurRevisionId,
+		cookieVal = mw.cookie.get( cookieKey ),
 		$div, id;
 
 	function showConfirmation( data ) {
@@ -80,7 +80,7 @@
 				mw.user
 			)
 		} );
-		$.cookie( cookieKey, null, { path: '/' } );
+		mw.cookie.set( cookieKey, null );
 	}
 
 } ( mediaWiki, jQuery ) );
