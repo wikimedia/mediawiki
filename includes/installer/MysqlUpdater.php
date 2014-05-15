@@ -200,7 +200,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.19
 			array( 'addIndex', 'logging', 'type_action', 'patch-logging-type-action-index.sql' ),
 			array( 'addField', 'revision', 'rev_sha1', 'patch-rev_sha1.sql' ),
-			array( 'doMigrateUserOptions' ),
 			array( 'dropField', 'user', 'user_options', 'patch-drop-user_options.sql' ),
 			array( 'addField', 'archive', 'ar_sha1', 'patch-ar_sha1.sql' ),
 			array( 'addIndex', 'page', 'page_redirect_namespace_len',
@@ -250,6 +249,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addIndex', 'logging', 'log_user_text_time', 'patch-logging_user_text_time_index.sql' ),
 			array( 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ),
 			array( 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ),
+			// Note: doMigrateUserOptions() was moved down from version 1.19 due to backcompat issues
+			// with the new user_password_expires column.
+			array( 'doMigrateUserOptions' ),
 
 			// 1.24
 			array( 'addField', 'page_props', 'pp_sortkey', 'patch-pp_sortkey.sql' ),
