@@ -1227,11 +1227,13 @@ $wgGalleryOptions = array(
 );
 
 /**
- * Adjust width of upright images when parameter 'upright' is used
- * This allows a nicer look for upright images without the need to fix the width
- * by hardcoded px in wiki sourcecode.
+ * Adjust width of upright images when parameter 'upright' is used.
+ * In the past this was used to make 3:4 aspect ratio images default
+ * to the same size as 4:3 images; since both 'thumb' (bug 63903) and
+ * 'upright' (bug 63904) use square bounding boxes now, this parameter
+ * is not generally needed.
  */
-$wgThumbUpright = 0.75;
+$wgThumbUpright = 1.00;
 
 /**
  * Default value for chmoding of new directories.

@@ -593,8 +593,7 @@ class Linker {
 					$widthOption = User::getDefaultOption( 'thumbsize' );
 				}
 
-				// Reduce width for upright images when parameter 'upright' is used
-				$useSquare = !isset( $fp['upright'] );
+				// Reduce size for upright images when parameter 'upright' is used
 				if ( isset( $fp['upright'] ) && $fp['upright'] == 0 ) {
 					$fp['upright'] = $wgThumbUpright;
 				}
@@ -603,16 +602,14 @@ class Linker {
 					round( $wgThumbLimits[$widthOption] * $fp['upright'], -1 ) :
 					$wgThumbLimits[$widthOption];
 
-				// Use whichever is smaller: real image width or user preference width
+				// Use whichever is smaller: real image size or user preference size
 				// Unless image is scalable vector.
 				if ( !isset( $hp['height'] ) && ( $hp['width'] <= 0 ||
 						$prefWidth < $hp['width'] ||
-						( $useSquare && $prefWidth < $file->getHeight( $page ) ) ||
+						$prefWidth < $file->getHeight( $page ) ||
 						$file->isVectorized() ) ) {
 					$hp['width'] = $prefWidth;
-					if ( $useSquare ) {
-						$hp['height'] = $prefWidth;
-					}
+					$hp['height'] = $prefWidth;
 				}
 			}
 		}

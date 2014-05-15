@@ -1219,6 +1219,7 @@ class ParserTest {
 				"$dir/thumb/3/3a/Foobar.jpg/1280px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/137px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/1500px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/150px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/177px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg",
@@ -1238,11 +1239,13 @@ class ParserTest {
 				"$dir/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/442px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/450px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/500px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/600px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/640px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/75px-Foobar.jpg",
+				"$dir/thumb/3/3a/Foobar.jpg/750px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/960px-Foobar.jpg",
 
 				"$dir/e/ea/Thumb.png",
@@ -1266,6 +1269,9 @@ class ParserTest {
 				"$dir/thumb/f/ff/Foobar.svg/langde-360px-Foobar.svg.png",
 
 				"$dir/9/93/Portrait.png",
+				"$dir/thumb/9/93/Portrait.png/75px-Portrait.png",
+				"$dir/thumb/9/93/Portrait.png/112px-Portrait.png",
+				"$dir/thumb/9/93/Portrait.png/150px-Portrait.png",
 				"$dir/thumb/9/93/Portrait.png/165px-Portrait.png",
 
 				"$dir/f/fc/Portrait.svg",
