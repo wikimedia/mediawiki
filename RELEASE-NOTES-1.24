@@ -62,6 +62,12 @@ changes to languages because of Bugzilla reports.
   Monobook, Modern and CologneBlue skins that don't yet implement the "mw-body"
   and/or "mw-body-primary" class name in their html.
 
+==== Deprecated classes ====
+* PPFrame_DOM (use PPFrameDOM)
+* PPNode_DOM (use PPNodeDOM)
+* PPNode_Hash_Array (use PPNodeHashArray)
+* Preprocessor_Hash (use PreprocessorHash)
+
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
 * CLDRPluralRuleConverter_Fragment to CLDRPluralRuleConverterFragment
@@ -69,6 +75,20 @@ changes to languages because of Bugzilla reports.
 * CLDRPluralRuleEvaluator_Range to CLDRPluralRuleEvaluatorRange
 * CSSJanus_Tokenizer to CSSJanusTokenizer
 * MediaWiki_I18N to MediaWikiI18N
+* Parser_DiffTest to ParserDiffTest
+* PPCustomFrame_DOM to PPCustomFrameDOM
+* PPCustomFrame_Hash to PPCustomFrameHash
+* PPDAccum_Hash to PPDAccumHash
+* PPDPart_Hash to PPDPartHash
+* PPDStackElement_Hash to PPDStackElementHash
+* PPDStack_Hash to PPDStackHash
+* PPFrame_Hash to PPFrameHash
+* PPNode_Hash_Attr to PPNodeHashAttr
+* PPNode_Hash_Text to PPNodeHashText
+* PPNode_Hash_Tree to PPNodeHashTree
+* PPTemplateFrame_DOM to PPTemplateFrameDOM
+* PPTemplateFrame_Hash to PPTemplateFrameHash
+* Preprocessor_DOM to PreprocessorDOM
 * RevDel_ArchiveItem to RevDelArchiveItem
 * RevDel_ArchiveList to RevDelArchiveList
 * RevDel_ArchivedFileItem to RevDelArchivedFileItem

@@ -18,7 +18,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 		$this->mOptions = ParserOptions::newFromUserAndLang( new User, $wgContLang );
 		$name = isset( $wgParserConf['preprocessorClass'] )
 			? $wgParserConf['preprocessorClass']
-			: 'Preprocessor_DOM';
+			: 'PreprocessorDOM';
 
 		$this->mPreprocessor = new $name( $this );
 	}

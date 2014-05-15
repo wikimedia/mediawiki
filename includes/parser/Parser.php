@@ -328,16 +328,16 @@ class Parser {
 		if ( isset( $conf['preprocessorClass'] ) ) {
 			$this->mPreprocessorClass = $conf['preprocessorClass'];
 		} elseif ( defined( 'HPHP_VERSION' ) ) {
-			# Preprocessor_Hash is much faster than Preprocessor_DOM under HipHop
-			$this->mPreprocessorClass = 'Preprocessor_Hash';
+			# PreprocessorHash is much faster than PreprocessorDOM under HipHop
+			$this->mPreprocessorClass = 'PreprocessorHash';
 		} elseif ( extension_loaded( 'domxml' ) ) {
 			# PECL extension that conflicts with the core DOM extension (bug 13770)
 			wfDebug( "Warning: you have the obsolete domxml extension for PHP. Please remove it!\n" );
-			$this->mPreprocessorClass = 'Preprocessor_Hash';
+			$this->mPreprocessorClass = 'PreprocessorHash';
 		} elseif ( extension_loaded( 'dom' ) ) {
-			$this->mPreprocessorClass = 'Preprocessor_DOM';
+			$this->mPreprocessorClass = 'PreprocessorDOM';
 		} else {
-			$this->mPreprocessorClass = 'Preprocessor_Hash';
+			$this->mPreprocessorClass = 'PreprocessorHash';
 		}
 		wfDebug( __CLASS__ . ": using preprocessor: {$this->mPreprocessorClass}\n" );
 	}

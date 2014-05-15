@@ -27,7 +27,7 @@
  *   * "<h>" nodes that aren't at the top are replaced with <possible-h>
  * @ingroup Parser
  */
-class Preprocessor_Hash implements Preprocessor {
+class PreprocessorHash implements Preprocessor {
 	/** @var Parser */
 	public $parser;
 
@@ -38,48 +38,48 @@ class Preprocessor_Hash implements Preprocessor {
 	}
 
 	/**
-	 * @return PPFrame_Hash
+	 * @return PPFrameHash
 	 */
 	function newFrame() {
-		return new PPFrame_Hash( $this );
+		return new PPFrameHash( $this );
 	}
 
 	/**
 	 * @param array $args
-	 * @return PPCustomFrame_Hash
+	 * @return PPCustomFrameHash
 	 */
 	function newCustomFrame( $args ) {
-		return new PPCustomFrame_Hash( $this, $args );
+		return new PPCustomFrameHash( $this, $args );
 	}
 
 	/**
 	 * @param array $values
-	 * @return PPNode_Hash_Array
+	 * @return PPNodeHashArray
 	 */
 	function newPartNodeArray( $values ) {
 		$list = array();
 
 		foreach ( $values as $k => $val ) {
-			$partNode = new PPNode_Hash_Tree( 'part' );
-			$nameNode = new PPNode_Hash_Tree( 'name' );
+			$partNode = new PPNodeHashTree( 'part' );
+			$nameNode = new PPNodeHashTree( 'name' );
 
 			if ( is_int( $k ) ) {
-				$nameNode->addChild( new PPNode_Hash_Attr( 'index', $k ) );
+				$nameNode->addChild( new PPNodeHashAttr( 'index', $k ) );
 				$partNode->addChild( $nameNode );
 			} else {
-				$nameNode->addChild( new PPNode_Hash_Text( $k ) );
+				$nameNode->addChild( new PPNodeHashText( $k ) );
 				$partNode->addChild( $nameNode );
-				$partNode->addChild( new PPNode_Hash_Text( '=' ) );
+				$partNode->addChild( new PPNodeHashText( '=' ) );
 			}
 
-			$valueNode = new PPNode_Hash_Tree( 'value' );
-			$valueNode->addChild( new PPNode_Hash_Text( $val ) );
+			$valueNode = new PPNodeHashTree( 'value' );
+			$valueNode->addChild( new PPNodeHashText( $val ) );
 			$partNode->addChild( $valueNode );
 
 			$list[] = $partNode;
 		}
 
-		$node = new PPNode_Hash_Array( $list );
+		$node = new PPNodeHashArray( $list );
 		return $node;
 	}
 
@@ -104,7 +104,7 @@ class Preprocessor_Hash implements Preprocessor {
 	 * dependency requirements.
 	 *
 	 * @throws MWException
-	 * @return PPNode_Hash_Tree
+	 * @return PPNodeHashTree
 	 */
 	function preprocessToObj( $text, $flags = 0 ) {
 		wfProfileIn( __METHOD__ );
@@ -176,7 +176,7 @@ class Preprocessor_Hash implements Preprocessor {
 		// Use "A" modifier (anchored) instead of "^", because ^ doesn't work with an offset
 		$elementsRegex = "~($xmlishRegex)(?:\s|\/>|>)|(!--)~iA";
 
-		$stack = new PPDStack_Hash;
+		$stack = new PPDStackHash;
 
 		$searchBase = "[{<\n";
 		// For fast reverse searches
@@ -345,7 +345,7 @@ class Preprocessor_Hash implements Preprocessor {
 							// Sanity check first though
 							$wsLength = $i - $wsStart;
 							if ( $wsLength > 0
-								&& $accum->lastNode instanceof PPNode_Hash_Text
+								&& $accum->lastNode instanceof PPNodeHashText
 								&& strspn( $accum->lastNode->value, " \t", -$wsLength ) === $wsLength
 							) {
 								$accum->lastNode->value = substr( $accum->lastNode->value, 0, -$wsLength );
@@ -443,14 +443,14 @@ class Preprocessor_Hash implements Preprocessor {
 					$attr = substr( $text, $attrStart, $attrEnd - $attrStart );
 				}
 
-				$extNode = new PPNode_Hash_Tree( 'ext' );
-				$extNode->addChild( PPNode_Hash_Tree::newWithText( 'name', $name ) );
-				$extNode->addChild( PPNode_Hash_Tree::newWithText( 'attr', $attr ) );
+				$extNode = new PPNodeHashTree( 'ext' );
+				$extNode->addChild( PPNodeHashTree::newWithText( 'name', $name ) );
+				$extNode->addChild( PPNodeHashTree::newWithText( 'attr', $attr ) );
 				if ( $inner !== null ) {
-					$extNode->addChild( PPNode_Hash_Tree::newWithText( 'inner', $inner ) );
+					$extNode->addChild( PPNodeHashTree::newWithText( 'inner', $inner ) );
 				}
 				if ( $close !== null ) {
-					$extNode->addChild( PPNode_Hash_Tree::newWithText( 'close', $close ) );
+					$extNode->addChild( PPNodeHashTree::newWithText( 'close', $close ) );
 				}
 				$accum->addNode( $extNode );
 			} elseif ( $found == 'line-start' ) {
@@ -473,7 +473,7 @@ class Preprocessor_Hash implements Preprocessor {
 					$piece = array(
 						'open' => "\n",
 						'close' => "\n",
-						'parts' => array( new PPDPart_Hash( str_repeat( '=', $count ) ) ),
+						'parts' => array( new PPDPartHash( str_repeat( '=', $count ) ) ),
 						'startPos' => $i,
 						'count' => $count );
 					$stack->push( $piece );
@@ -515,9 +515,9 @@ class Preprocessor_Hash implements Preprocessor {
 					}
 					if ( $count > 0 ) {
 						// Normal match, output <h>
-						$element = new PPNode_Hash_Tree( 'possible-h' );
-						$element->addChild( new PPNode_Hash_Attr( 'level', $count ) );
-						$element->addChild( new PPNode_Hash_Attr( 'i', $headingIndex++ ) );
+						$element = new PPNodeHashTree( 'possible-h' );
+						$element->addChild( new PPNodeHashAttr( 'level', $count ) );
+						$element->addChild( new PPNodeHashAttr( 'i', $headingIndex++ ) );
 						$element->lastChild->nextSibling = $accum->firstNode;
 						$element->lastChild = $accum->lastNode;
 					} else {
@@ -608,14 +608,14 @@ class Preprocessor_Hash implements Preprocessor {
 					$titleAccum = $parts[0]->out;
 					unset( $parts[0] );
 
-					$element = new PPNode_Hash_Tree( $name );
+					$element = new PPNodeHashTree( $name );
 
 					# The invocation is at the start of the line if lineStart is set in
 					# the stack, and all opening brackets are used up.
 					if ( $maxCount == $matchingCount && !empty( $piece->lineStart ) ) {
-						$element->addChild( new PPNode_Hash_Attr( 'lineStart', 1 ) );
+						$element->addChild( new PPNodeHashAttr( 'lineStart', 1 ) );
 					}
-					$titleNode = new PPNode_Hash_Tree( 'title' );
+					$titleNode = new PPNodeHashTree( 'title' );
 					$titleNode->firstChild = $titleAccum->firstNode;
 					$titleNode->lastChild = $titleAccum->lastNode;
 					$element->addChild( $titleNode );
@@ -649,7 +649,7 @@ class Preprocessor_Hash implements Preprocessor {
 							$equalsNode = $node;
 
 							// Construct name node
-							$nameNode = new PPNode_Hash_Tree( 'name' );
+							$nameNode = new PPNodeHashTree( 'name' );
 							if ( $lastNode !== false ) {
 								$lastNode->nextSibling = false;
 								$nameNode->firstChild = $part->out->firstNode;
@@ -657,21 +657,21 @@ class Preprocessor_Hash implements Preprocessor {
 							}
 
 							// Construct value node
-							$valueNode = new PPNode_Hash_Tree( 'value' );
+							$valueNode = new PPNodeHashTree( 'value' );
 							if ( $equalsNode->nextSibling !== false ) {
 								$valueNode->firstChild = $equalsNode->nextSibling;
 								$valueNode->lastChild = $part->out->lastNode;
 							}
-							$partNode = new PPNode_Hash_Tree( 'part' );
+							$partNode = new PPNodeHashTree( 'part' );
 							$partNode->addChild( $nameNode );
 							$partNode->addChild( $equalsNode->firstChild );
 							$partNode->addChild( $valueNode );
 							$element->addChild( $partNode );
 						} else {
-							$partNode = new PPNode_Hash_Tree( 'part' );
-							$nameNode = new PPNode_Hash_Tree( 'name' );
-							$nameNode->addChild( new PPNode_Hash_Attr( 'index', $argIndex++ ) );
-							$valueNode = new PPNode_Hash_Tree( 'value' );
+							$partNode = new PPNodeHashTree( 'part' );
+							$nameNode = new PPNodeHashTree( 'name' );
+							$nameNode->addChild( new PPNodeHashAttr( 'index', $argIndex++ ) );
+							$valueNode = new PPNodeHashTree( 'value' );
 							$valueNode->firstChild = $part->out->firstNode;
 							$valueNode->lastChild = $part->out->lastNode;
 							$partNode->addChild( $nameNode );
@@ -690,7 +690,7 @@ class Preprocessor_Hash implements Preprocessor {
 
 				# Re-add the old stack element if it still has unmatched opening characters remaining
 				if ( $matchingCount < $piece->count ) {
-					$piece->parts = array( new PPDPart_Hash );
+					$piece->parts = array( new PPDPartHash );
 					$piece->count -= $matchingCount;
 					# do we still qualify for any callback with remaining count?
 					$min = $rules[$piece->open]['min'];
@@ -735,7 +735,7 @@ class Preprocessor_Hash implements Preprocessor {
 			}
 		}
 
-		$rootNode = new PPNode_Hash_Tree( 'root' );
+		$rootNode = new PPNodeHashTree( 'root' );
 		$rootNode->firstChild = $stack->rootAccum->firstNode;
 		$rootNode->lastChild = $stack->rootAccum->lastNode;
 
@@ -754,23 +754,31 @@ class Preprocessor_Hash implements Preprocessor {
 }
 
 /**
+ * @deprecated since 1.24
+ */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+class Preprocessor_Hash extends PreprocessorHash {
+}
+// @codingStandardsIgnoreEnd
+
+/**
  * Stack class to help Preprocessor::preprocessToObj()
  * @ingroup Parser
  */
-class PPDStack_Hash extends PPDStack {
+class PPDStackHash extends PPDStack {
 	function __construct() {
-		$this->elementClass = 'PPDStackElement_Hash';
+		$this->elementClass = 'PPDStackElementHash';
 		parent::__construct();
-		$this->rootAccum = new PPDAccum_Hash;
+		$this->rootAccum = new PPDAccumHash;
 	}
 }
 
 /**
  * @ingroup Parser
  */
-class PPDStackElement_Hash extends PPDStackElement {
+class PPDStackElementHash extends PPDStackElement {
 	function __construct( $data = array() ) {
-		$this->partClass = 'PPDPart_Hash';
+		$this->partClass = 'PPDPartHash';
 		parent::__construct( $data );
 	}
 
@@ -778,7 +786,7 @@ class PPDStackElement_Hash extends PPDStackElement {
 	 * Get the accumulator that would result if the close is not found.
 	 *
 	 * @param int|bool $openingCount
-	 * @return PPDAccum_Hash
+	 * @return PPDAccumHash
 	 */
 	function breakSyntax( $openingCount = false ) {
 		if ( $this->open == "\n" ) {
@@ -787,7 +795,7 @@ class PPDStackElement_Hash extends PPDStackElement {
 			if ( $openingCount === false ) {
 				$openingCount = $this->count;
 			}
-			$accum = new PPDAccum_Hash;
+			$accum = new PPDAccumHash;
 			$accum->addLiteral( str_repeat( $this->open, $openingCount ) );
 			$first = true;
 			foreach ( $this->parts as $part ) {
@@ -806,9 +814,9 @@ class PPDStackElement_Hash extends PPDStackElement {
 /**
  * @ingroup Parser
  */
-class PPDPart_Hash extends PPDPart {
+class PPDPartHash extends PPDPart {
 	function __construct( $out = '' ) {
-		$accum = new PPDAccum_Hash;
+		$accum = new PPDAccumHash;
 		if ( $out !== '' ) {
 			$accum->addLiteral( $out );
 		}
@@ -819,7 +827,7 @@ class PPDPart_Hash extends PPDPart {
 /**
  * @ingroup Parser
  */
-class PPDAccum_Hash {
+class PPDAccumHash {
 	public $firstNode;
 
 	public $lastNode;
@@ -834,11 +842,11 @@ class PPDAccum_Hash {
 	 */
 	function addLiteral( $s ) {
 		if ( $this->lastNode === false ) {
-			$this->firstNode = $this->lastNode = new PPNode_Hash_Text( $s );
-		} elseif ( $this->lastNode instanceof PPNode_Hash_Text ) {
+			$this->firstNode = $this->lastNode = new PPNodeHashText( $s );
+		} elseif ( $this->lastNode instanceof PPNodeHashText ) {
 			$this->lastNode->value .= $s;
 		} else {
-			$this->lastNode->nextSibling = new PPNode_Hash_Text( $s );
+			$this->lastNode->nextSibling = new PPNodeHashText( $s );
 			$this->lastNode = $this->lastNode->nextSibling;
 		}
 	}
@@ -862,15 +870,15 @@ class PPDAccum_Hash {
 	 * @param string $value
 	 */
 	function addNodeWithText( $name, $value ) {
-		$node = PPNode_Hash_Tree::newWithText( $name, $value );
+		$node = PPNodeHashTree::newWithText( $name, $value );
 		$this->addNode( $node );
 	}
 
 	/**
-	 * Append a PPDAccum_Hash
+	 * Append a PPDAccumHash
 	 * Takes over ownership of the nodes in the source argument. These nodes may
 	 * subsequently be modified, especially nextSibling.
-	 * @param PPDAccum_Hash $accum
+	 * @param PPDAccumHash $accum
 	 */
 	function addAccum( $accum ) {
 		if ( $accum->lastNode === false ) {
@@ -889,7 +897,7 @@ class PPDAccum_Hash {
  * An expansion frame, used as a context to expand the result of preprocessToObj()
  * @ingroup Parser
  */
-class PPFrame_Hash implements PPFrame {
+class PPFrameHash implements PPFrame {
 	/**
 	 * @var int Recursion depth of this frame, top = 0
 	 * Note that this is NOT the same as expansion depth in expand()
@@ -932,11 +940,11 @@ class PPFrame_Hash implements PPFrame {
 	 * Create a new child frame
 	 * $args is optionally a multi-root PPNode or array containing the template arguments
 	 *
-	 * @param array|bool|PPNode_Hash_Array $args
+	 * @param array|bool|PPNodeHashArray $args
 	 * @param Title|bool $title
 	 * @param int $indexOffset
 	 * @throws MWException
-	 * @return PPTemplateFrame_Hash
+	 * @return PPTemplateFrameHash
 	 */
 	function newChild( $args = false, $title = false, $indexOffset = 0 ) {
 		$namedArgs = array();
@@ -945,10 +953,10 @@ class PPFrame_Hash implements PPFrame {
 			$title = $this->title;
 		}
 		if ( $args !== false ) {
-			if ( $args instanceof PPNode_Hash_Array ) {
+			if ( $args instanceof PPNodeHashArray ) {
 				$args = $args->value;
 			} elseif ( !is_array( $args ) ) {
-				throw new MWException( __METHOD__ . ': $args must be array or PPNode_Hash_Array' );
+				throw new MWException( __METHOD__ . ': $args must be array or PPNodeHashArray' );
 			}
 			foreach ( $args as $arg ) {
 				$bits = $arg->splitArg();
@@ -965,7 +973,7 @@ class PPFrame_Hash implements PPFrame {
 				}
 			}
 		}
-		return new PPTemplateFrame_Hash( $this->preprocessor, $this, $numberedArgs, $namedArgs, $title );
+		return new PPTemplateFrameHash( $this->preprocessor, $this, $numberedArgs, $namedArgs, $title );
 	}
 
 	/**
@@ -1018,7 +1026,7 @@ class PPFrame_Hash implements PPFrame {
 					$contextNode = $iteratorNode[$index];
 					$index++;
 				}
-			} elseif ( $iteratorNode instanceof PPNode_Hash_Array ) {
+			} elseif ( $iteratorNode instanceof PPNodeHashArray ) {
 				if ( $index >= $iteratorNode->getLength() ) {
 					// All done with this iterator
 					$iteratorStack[$level] = false;
@@ -1040,13 +1048,13 @@ class PPFrame_Hash implements PPFrame {
 				// nothing to do
 			} elseif ( is_string( $contextNode ) ) {
 				$out .= $contextNode;
-			} elseif ( is_array( $contextNode ) || $contextNode instanceof PPNode_Hash_Array ) {
+			} elseif ( is_array( $contextNode ) || $contextNode instanceof PPNodeHashArray ) {
 				$newIterator = $contextNode;
-			} elseif ( $contextNode instanceof PPNode_Hash_Attr ) {
+			} elseif ( $contextNode instanceof PPNodeHashAttr ) {
 				// No output
-			} elseif ( $contextNode instanceof PPNode_Hash_Text ) {
+			} elseif ( $contextNode instanceof PPNodeHashText ) {
 				$out .= $contextNode->value;
-			} elseif ( $contextNode instanceof PPNode_Hash_Tree ) {
+			} elseif ( $contextNode instanceof PPNodeHashTree ) {
 				if ( $contextNode->name == 'template' ) {
 					# Double-brace expansion
 					$bits = $contextNode->splitTemplate();
@@ -1174,7 +1182,7 @@ class PPFrame_Hash implements PPFrame {
 		$first = true;
 		$s = '';
 		foreach ( $args as $root ) {
-			if ( $root instanceof PPNode_Hash_Array ) {
+			if ( $root instanceof PPNodeHashArray ) {
 				$root = $root->value;
 			}
 			if ( !is_array( $root ) ) {
@@ -1204,7 +1212,7 @@ class PPFrame_Hash implements PPFrame {
 		$first = true;
 		$s = '';
 		foreach ( $args as $root ) {
-			if ( $root instanceof PPNode_Hash_Array ) {
+			if ( $root instanceof PPNodeHashArray ) {
 				$root = $root->value;
 			}
 			if ( !is_array( $root ) ) {
@@ -1227,7 +1235,7 @@ class PPFrame_Hash implements PPFrame {
 	 * with implode()
 	 *
 	 * @param string $sep
-	 * @return PPNode_Hash_Array
+	 * @return PPNodeHashArray
 	 */
 	function virtualImplode( $sep /*, ... */ ) {
 		$args = array_slice( func_get_args(), 1 );
@@ -1235,7 +1243,7 @@ class PPFrame_Hash implements PPFrame {
 		$first = true;
 
 		foreach ( $args as $root ) {
-			if ( $root instanceof PPNode_Hash_Array ) {
+			if ( $root instanceof PPNodeHashArray ) {
 				$root = $root->value;
 			}
 			if ( !is_array( $root ) ) {
@@ -1250,7 +1258,7 @@ class PPFrame_Hash implements PPFrame {
 				$out[] = $node;
 			}
 		}
-		return new PPNode_Hash_Array( $out );
+		return new PPNodeHashArray( $out );
 	}
 
 	/**
@@ -1259,7 +1267,7 @@ class PPFrame_Hash implements PPFrame {
 	 * @param string $start
 	 * @param string $sep
 	 * @param string $end
-	 * @return PPNode_Hash_Array
+	 * @return PPNodeHashArray
 	 */
 	function virtualBracketedImplode( $start, $sep, $end /*, ... */ ) {
 		$args = array_slice( func_get_args(), 3 );
@@ -1267,7 +1275,7 @@ class PPFrame_Hash implements PPFrame {
 		$first = true;
 
 		foreach ( $args as $root ) {
-			if ( $root instanceof PPNode_Hash_Array ) {
+			if ( $root instanceof PPNodeHashArray ) {
 				$root = $root->value;
 			}
 			if ( !is_array( $root ) ) {
@@ -1283,7 +1291,7 @@ class PPFrame_Hash implements PPFrame {
 			}
 		}
 		$out[] = $end;
-		return new PPNode_Hash_Array( $out );
+		return new PPNodeHashArray( $out );
 	}
 
 	function __toString() {
@@ -1374,7 +1382,7 @@ class PPFrame_Hash implements PPFrame {
  * Expansion frame with template arguments
  * @ingroup Parser
  */
-class PPTemplateFrame_Hash extends PPFrame_Hash {
+class PPTemplateFrameHash extends PPFrameHash {
 	/** @var array */
 	protected $numberedArgs;
 
@@ -1538,7 +1546,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
  * Expansion frame with custom arguments
  * @ingroup Parser
  */
-class PPCustomFrame_Hash extends PPFrame_Hash {
+class PPCustomFrameHash extends PPFrameHash {
 	/** @var array */
 	protected $args;
 
@@ -1589,7 +1597,7 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
 /**
  * @ingroup Parser
  */
-class PPNode_Hash_Tree implements PPNode {
+class PPNodeHashTree implements PPNode {
 	public $name;
 
 	public $firstChild;
@@ -1607,7 +1615,7 @@ class PPNode_Hash_Tree implements PPNode {
 		$inner = '';
 		$attribs = '';
 		for ( $node = $this->firstChild; $node; $node = $node->nextSibling ) {
-			if ( $node instanceof PPNode_Hash_Attr ) {
+			if ( $node instanceof PPNodeHashAttr ) {
 				$attribs .= ' ' . $node->name . '="' . htmlspecialchars( $node->value ) . '"';
 			} else {
 				$inner .= $node->__toString();
@@ -1623,11 +1631,11 @@ class PPNode_Hash_Tree implements PPNode {
 	/**
 	 * @param string $name
 	 * @param string $text
-	 * @return PPNode_Hash_Tree
+	 * @return PPNodeHashTree
 	 */
 	static function newWithText( $name, $text ) {
 		$obj = new self( $name );
-		$obj->addChild( new PPNode_Hash_Text( $text ) );
+		$obj->addChild( new PPNodeHashText( $text ) );
 		return $obj;
 	}
 
@@ -1641,14 +1649,14 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 
 	/**
-	 * @return PPNode_Hash_Array
+	 * @return PPNodeHashArray
 	 */
 	function getChildren() {
 		$children = array();
 		for ( $child = $this->firstChild; $child; $child = $child->nextSibling ) {
 			$children[] = $child;
 		}
-		return new PPNode_Hash_Array( $children );
+		return new PPNodeHashArray( $children );
 	}
 
 	function getFirstChild() {
@@ -1708,7 +1716,7 @@ class PPNode_Hash_Tree implements PPNode {
 			}
 			if ( $child->name === 'name' ) {
 				$bits['name'] = $child;
-				if ( $child->firstChild instanceof PPNode_Hash_Attr
+				if ( $child->firstChild instanceof PPNodeHashAttr
 					&& $child->firstChild->name === 'index'
 				) {
 					$bits['index'] = $child->firstChild->value;
@@ -1809,7 +1817,7 @@ class PPNode_Hash_Tree implements PPNode {
 		if ( !isset( $bits['title'] ) ) {
 			throw new MWException( 'Invalid node passed to ' . __METHOD__ );
 		}
-		$bits['parts'] = new PPNode_Hash_Array( $parts );
+		$bits['parts'] = new PPNodeHashArray( $parts );
 		return $bits;
 	}
 }
@@ -1817,7 +1825,7 @@ class PPNode_Hash_Tree implements PPNode {
 /**
  * @ingroup Parser
  */
-class PPNode_Hash_Text implements PPNode {
+class PPNodeHashText implements PPNode {
 	public $value;
 
 	public $nextSibling;
@@ -1877,7 +1885,7 @@ class PPNode_Hash_Text implements PPNode {
 /**
  * @ingroup Parser
  */
-class PPNode_Hash_Array implements PPNode {
+class PPNodeHashArray implements PPNode {
 	public $value;
 
 	public $nextSibling;
@@ -1932,9 +1940,17 @@ class PPNode_Hash_Array implements PPNode {
 }
 
 /**
+ * @deprecated since 1.24
+ */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+class PPNode_Hash_Array extends PPNodeHashArray {
+}
+// @codingStandardsIgnoreEnd
+
+/**
  * @ingroup Parser
  */
-class PPNode_Hash_Attr implements PPNode {
+class PPNodeHashAttr implements PPNode {
 	/** @var string */
 	public $name;
 
