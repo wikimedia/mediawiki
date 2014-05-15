@@ -31,11 +31,17 @@
  * @ingroup SpecialPage Dump
  */
 class WikiExporter {
-	var $list_authors = false; # Return distinct author list (when not returning full history)
-	var $author_list = "";
+	/** @var bool Return distinct author list (when not returning full history) */
+	public $list_authors = false;
 
-	var $dumpUploads = false;
-	var $dumpUploadFileContents = false;
+	/** @var bool */
+	public $dumpUploads = false;
+
+	/** @var bool */
+	public $dumpUploadFileContents = false;
+
+	/** @var string */
+	protected $author_list = "";
 
 	const FULL = 1;
 	const CURRENT = 2;
@@ -49,14 +55,14 @@ class WikiExporter {
 	const TEXT = 0;
 	const STUB = 1;
 
-	var $buffer;
+	/** @var int */
+	protected $buffer;
 
-	var $text;
+	/** @var int */
+	protected $text;
 
-	/**
-	 * @var DumpOutput
-	 */
-	var $sink;
+	/** @var DumpOutput */
+	protected $sink;
 
 	/**
 	 * Returns the export schema version.
@@ -1144,7 +1150,6 @@ class DumpPipeOutput extends DumpFileOutput {
 			}
 		}
 	}
-
 }
 
 /**
@@ -1152,7 +1157,6 @@ class DumpPipeOutput extends DumpFileOutput {
  * @ingroup Dump
  */
 class DumpGZipOutput extends DumpPipeOutput {
-
 	/**
 	 * @param string $file
 	 */
@@ -1166,7 +1170,6 @@ class DumpGZipOutput extends DumpPipeOutput {
  * @ingroup Dump
  */
 class DumpBZip2Output extends DumpPipeOutput {
-
 	/**
 	 * @param string $file
 	 */
@@ -1180,7 +1183,6 @@ class DumpBZip2Output extends DumpPipeOutput {
  * @ingroup Dump
  */
 class Dump7ZipOutput extends DumpPipeOutput {
-
 	/**
 	 * @param string $file
 	 */
@@ -1227,7 +1229,6 @@ class Dump7ZipOutput extends DumpPipeOutput {
  * @ingroup Dump
  */
 class DumpFilter {
-
 	/**
 	 * @var DumpOutput
 	 * FIXME will need to be made protected whenever legacy code
@@ -1337,7 +1338,6 @@ class DumpFilter {
  * @ingroup Dump
  */
 class DumpNotalkFilter extends DumpFilter {
-
 	/**
 	 * @param object $page
 	 * @return bool
@@ -1352,8 +1352,11 @@ class DumpNotalkFilter extends DumpFilter {
  * @ingroup Dump
  */
 class DumpNamespaceFilter extends DumpFilter {
-	var $invert = false;
-	var $namespaces = array();
+	/** @var bool */
+	protected $invert = false;
+
+	/** @var array */
+	protected $namespaces = array();
 
 	/**
 	 * @param DumpOutput $sink
@@ -1417,7 +1420,13 @@ class DumpNamespaceFilter extends DumpFilter {
  * @ingroup Dump
  */
 class DumpLatestFilter extends DumpFilter {
-	var $page, $pageString, $rev, $revString;
+	protected $page;
+
+	protected $pageString;
+
+	protected $rev;
+
+	protected $revString;
 
 	/**
 	 * @param object $page
@@ -1543,12 +1552,12 @@ class DumpMultiWriter {
 		}
 		return $filenames;
 	}
-
 }
 
 /**
  * @param string $string
  * @return string
+ * @todo FIXME: Only used in OAI extension. Move over there.
  */
 function xmlsafe( $string ) {
 	wfProfileIn( __FUNCTION__ );

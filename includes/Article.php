@@ -34,85 +34,47 @@
  * @internal documentation reviewed 15 Mar 2010
  */
 class Article implements Page {
-	/**@{{
-	 * @private
-	 */
-
-	/**
-	 * The context this Article is executed in
-	 * @var IContextSource $mContext
-	 */
+	/** @var IContextSource The context this Article is executed in */
 	protected $mContext;
 
-	/**
-	 * The WikiPage object of this instance
-	 * @var WikiPage $mPage
-	 */
+	/** @var WikiPage The WikiPage object of this instance */
 	protected $mPage;
 
-	/**
-	 * ParserOptions object for $wgUser articles
-	 * @var ParserOptions $mParserOptions
-	 */
+	/** @var ParserOptions ParserOptions object for $wgUser articles */
 	public $mParserOptions;
 
 	/**
-	 * Text of the revision we are working on
-	 * @var string $mContent
+	 * @var string Text of the revision we are working on
+	 * @todo BC cruft
 	 */
-	var $mContent;                    // !< #BC cruft
+	public $mContent;
 
 	/**
-	 * Content of the revision we are working on
-	 * @var Content
+	 * @var Content Content of the revision we are working on
 	 * @since 1.21
 	 */
-	var $mContentObject;              // !<
+	protected $mContentObject;
 
-	/**
-	 * Is the content ($mContent) already loaded?
-	 * @var bool $mContentLoaded
-	 */
-	var $mContentLoaded = false;      // !<
+	/** @var bool Is the content ($mContent) already loaded? */
+	protected $mContentLoaded = false;
 
-	/**
-	 * The oldid of the article that is to be shown, 0 for the
-	 * current revision
-	 * @var int|null $mOldId
-	 */
-	var $mOldId;                      // !<
+	/** @var int|null The oldid of the article that is to be shown, 0 for the current revision */
+	protected $mOldId;
 
-	/**
-	 * Title from which we were redirected here
-	 * @var Title $mRedirectedFrom
-	 */
-	var $mRedirectedFrom = null;
+	/** @var Title Title from which we were redirected here */
+	protected $mRedirectedFrom = null;
 
-	/**
-	 * URL to redirect to or false if none
-	 * @var string|bool $mRedirectUrl
-	 */
-	var $mRedirectUrl = false;        // !<
+	/** @var string|bool URL to redirect to or false if none */
+	protected $mRedirectUrl = false;
 
-	/**
-	 * Revision ID of revision we are working on
-	 * @var int $mRevIdFetched
-	 */
-	var $mRevIdFetched = 0;           // !<
+	/** @var int Revision ID of revision we are working on */
+	protected $mRevIdFetched = 0;
 
-	/**
-	 * Revision we are working on
-	 * @var Revision $mRevision
-	 */
-	var $mRevision = null;
+	/** @var Revision Revision we are working on */
+	protected $mRevision = null;
 
-	/**
-	 * ParserOutput object
-	 * @var ParserOutput $mParserOutput
-	 */
-	var $mParserOutput;
-
-	/**@}}*/
+	/** @var ParserOutput */
+	public $mParserOutput;
 
 	/**
 	 * Constructor and clear the article
