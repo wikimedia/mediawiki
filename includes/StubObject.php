@@ -100,8 +100,12 @@ class StubObject {
 	 * @param array $args Arguments
 	 * @return mixed
 	 */
+	// @codingStandardsIgnoreStart PSR2.Methods.MethodDeclaration.Underscore
 	function _call( $name, $args ) {
+		// @codingStandardsIgnoreEnd
+
 		$this->_unstub( $name, 5 );
+
 		return call_user_func_array( array( $GLOBALS[$this->mGlobal], $name ), $args );
 	}
 
@@ -109,7 +113,10 @@ class StubObject {
 	 * Create a new object to replace this stub object.
 	 * @return object
 	 */
+	// @codingStandardsIgnoreStart PSR2.Methods.MethodDeclaration.Underscore
 	function _newObject() {
+		// @codingStandardsIgnoreEnd
+
 		return MWFunction::newObj( $this->mClass, $this->mParams );
 	}
 
@@ -136,7 +143,10 @@ class StubObject {
 	 *   who called this function.
 	 * @throws MWException
 	 */
+	// @codingStandardsIgnoreStart PSR2.Methods.MethodDeclaration.Underscore
 	function _unstub( $name = '_unstub', $level = 2 ) {
+		// @codingStandardsIgnoreEnd
+
 		static $recursionLevel = 0;
 
 		if ( !$GLOBALS[$this->mGlobal] instanceof StubObject ) {
@@ -168,7 +178,6 @@ class StubObject {
  * @deprecated since 1.18
  */
 class StubContLang extends StubObject {
-
 	function __construct() {
 		wfDeprecated( __CLASS__, '1.18' );
 		parent::__construct( 'wgContLang' );
@@ -181,11 +190,16 @@ class StubContLang extends StubObject {
 	/**
 	 * @return Language
 	 */
+	// @codingStandardsIgnoreStart PSR2.Methods.MethodDeclaration.Underscore
 	function _newObject() {
+		// @codingStandardsIgnoreEnd
+
 		global $wgLanguageCode;
+
 		$obj = Language::factory( $wgLanguageCode );
 		$obj->initEncoding();
 		$obj->initContLang();
+
 		return $obj;
 	}
 }
@@ -208,7 +222,10 @@ class StubUserLang extends StubObject {
 	/**
 	 * @return Language
 	 */
+	// @codingStandardsIgnoreStart PSR2.Methods.MethodDeclaration.Underscore
 	function _newObject() {
+		// @codingStandardsIgnoreEnd
+
 		return RequestContext::getMain()->getLanguage();
 	}
 }
