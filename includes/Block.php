@@ -77,17 +77,34 @@ class Block {
 	const TYPE_AUTO = 4;
 	const TYPE_ID = 5;
 
+	# block options
+	const OPTION_AUTO = 1;
+	const OPTION_ANON_ONLY = 2;
+	const OPTION_CREATE_ACCOUNT = 4;
+	const OPTION_ENABLE_AUTOBLOCK = 8;
+	const OPTION_HIDE_NAME = 16;
+	const OPTION_BLOCK_EMAIL = 32;
+	const OPTION_ALLOW_USERTALK = 64;
+
 	/**
 	 * @todo FIXME: Don't know what the best format to have for this constructor
 	 *   is, but fourteen optional parameters certainly isn't it.
 	 */
 	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
 		$timestamp = 0, $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0,
-		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byText = ''
+		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byText = '', $blockOptions = 0
 	) {
 		if ( $timestamp === 0 ) {
 			$timestamp = wfTimestampNow();
 		}
+
+		$auto = $auto || (($blockOptions & self::OPTION_AUTO) == self::OPTION_AUTO);
+		$anonOnly = $anonOnly || (($blockOptions & self::OPTION_ANON_ONLY) == self::OPTION_ANON_ONLY);
+		$createAccount = $createAccount || (($blockOptions & self::OPTION_CREATE_ACCOUNT) == self::OPTION_CREATE_ACCOUNT);
+		$enableAutoblock = $enableAutoblock || (($blockOptions & self::OPTION_ENABLE_AUTOBLOCK) == self::OPTION_ENABLE_AUTOBLOCK);
+		$hideName = $hideName || (($blockOptions & self::OPTION_HIDE_NAME) == self::OPTION_HIDE_NAME);
+		$blockEmail = $blockEmail || (($blockOptions & self::OPTION_BLOCK_EMAIL) == self::OPTION_BLOCK_EMAIL);
+		$allowUsertalk = $allowUsertalk || (($blockOptions & self::OPTION_ALLOW_USERTALK) == self::OPTION_ALLOW_USERTALK);
 
 		if ( count( func_get_args() ) > 0 ) {
 			# Soon... :D

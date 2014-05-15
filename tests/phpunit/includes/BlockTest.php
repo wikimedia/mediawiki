@@ -189,6 +189,91 @@ class BlockTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	public function testBlockoptionConstructor() {
+		$now = wfTimestampNow();
+		$by = 0;
+		$reason = "constructorequivalence";
+		$user = 14146;
+		$expiry = $this->db->getInfinity();
+		$byname = "byname";
+
+		$positionalagrs = array(
+			array(5, "auto", Block::OPTION_AUTO),
+			array(7, "anonOnly", Block::OPTION_ANON_ONLY),
+			array(8, "createAccount", Block::OPTION_CREATE_ACCOUNT),
+			array(9, "enableAutoblock", Block::OPTION_ENABLE_AUTOBLOCK),
+			array(10, "hideName", Block::OPTION_HIDE_NAME),
+			array(11, "blockEmail", Block::OPTION_BLOCK_EMAIL),
+			array(12, "allowUsertalk", Block::OPTION_ALLOW_USERTALK)
+		);
+
+		$combinate = function($arr) use ( &$combinate ){
+			if (empty($arr)) return array(array());
+			else {
+				$head = reset($arr);
+				$tail = array_slice($arr, 1);
+				$tailcombinations = $combinate($tail);
+				$result = array();
+				foreach($tailcombinations as $combination) {
+					$result[] = $combination;
+					$copy = $combination;
+					$copy[] = $head;
+					$result[] = $copy;
+				}
+				return $result;
+			}
+		};
+
+		$combinations = $combinate($positionalagrs);
+		foreach($combinations as $combination) {
+			$blockoptions = 0;
+			foreach($combination as $param) {
+				$blockoptions = $blockoptions | $param[2];
+			}
+			$hasparam = function($name) use ($combination) {
+				return in_array($name, array_map(function($arr) { return $arr[1]; }, $combination));
+			};
+			$fromOptions = new Block(
+				/* $address */ 'BlockedUser',
+				/* $user */ 14146,
+				/* $by */ 0,
+				/* $reason */ 'optionsblock',
+				/* $timestamp */ wfTimestampNow(),
+				/* $auto */ null,
+				/* $expiry */ $this->db->getInfinity(),
+				/* anonOnly */ null,
+				/* $createAccount */ null,
+				/* $enableAutoblock */ null,
+				/* $hideName (ipb_deleted) */ null,
+				/* $blockEmail */ null,
+				/* $allowUsertalk */ null,
+				/* $byName */ 'Blocker',
+				/* $blockopts */ $blockoptions
+			);
+
+			$fromParams = new Block(
+				/* $address */ 'BlockedUser',
+				/* $user */ 42,
+				/* $by */ 0,
+				/* $reason */ 'optionsblock',
+				/* $timestamp */ wfTimestampNow(),
+				/* $auto */ $hasparam("auto"),
+				/* $expiry */ $this->db->getInfinity(),
+				/* anonOnly */ $hasparam("anonOnly"),
+				/* $createAccount */ $hasparam("createAccount"),
+				/* $enableAutoblock */ $hasparam("enableAutoblock"),
+				/* $hideName (ipb_deleted) */ $hasparam("hideName"),
+				/* $blockEmail */ $hasparam("blockEmail"),
+				/* $allowUsertalk */ $hasparam("allowUsertalk"),
+				/* $byName */ 'Blocker',
+				/* $blockopts */ null
+			);
+
+			$this->assertTrue($fromParams->equals($fromOptions));
+		}
+
+	}
+
 	/**
 	 * @covers Block::insert
 	 */
