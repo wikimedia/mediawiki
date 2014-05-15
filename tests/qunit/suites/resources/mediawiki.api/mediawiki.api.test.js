@@ -142,7 +142,7 @@
 		} );
 	} );
 
-	QUnit.test( 'postWithToken()', function ( assert ) {
+	QUnit.test( 'postWithToken( tokenType, params )', function ( assert ) {
 		QUnit.expect( 1 );
 
 		var api = new mw.Api( { ajax: { url: '/postWithToken/api.php' } } );
@@ -161,6 +161,44 @@
 		this.server.requests[1].respond( 200, { 'Content-Type': 'application/json' },
 			'{ "example": { "foo": "quux" } }'
 		);
+	} );
+
+	QUnit.test( 'postWithToken( tokenType, params, ajaxOptions )', function ( assert ) {
+		QUnit.expect( 3 );
+
+		var api = new mw.Api();
+
+		api.postWithToken(
+			'edit',
+			{
+				action: 'example'
+			},
+			{
+				headers: {
+					'X-Foo': 'Bar'
+				}
+			}
+		);
+
+		api.postWithToken(
+			'edit',
+			{
+				action: 'example'
+			},
+			function () {
+				assert.ok( false, 'This parameter cannot be a callback' );
+			}
+		)
+		.always( function ( data ) {
+			assert.equal( data.example, 'quux' );
+		} );
+
+		assert.equal( this.server.requests.length, 2, 'Request made' );
+		assert.equal( this.server.requests[0].requestHeaders['X-Foo'], 'Bar', 'Header sent' );
+
+		this.server.respond( function ( request ) {
+			request.respond( 200, { 'Content-Type': 'application/json' }, '{ "example": "quux" }' );
+		} );
 	} );
 
 	QUnit.test( 'postWithToken() - badtoken', function ( assert ) {
