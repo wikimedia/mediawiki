@@ -71,6 +71,8 @@ production.
   a particular interwiki map entry.
 * ApiQueryLogEvents now provides logpage, which is the page ID from the
   logging table, if ids are requested and the user has the permissions.
+* (bug 65403) XML tag highlighting and URL autolinking transformations are
+  now only performed for formats "xmlfm" and "wddxfm".
 
 === Languages updated in 1.24 ===
 
