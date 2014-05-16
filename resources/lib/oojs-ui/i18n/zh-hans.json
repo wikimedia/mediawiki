@@ -22,5 +22,9 @@
 	"ooui-outline-control-move-down": "下移项",
 	"ooui-outline-control-move-up": "上移项",
 	"ooui-outline-control-remove": "删除项",
-	"ooui-toolbar-more": "更多"
+	"ooui-toolbar-more": "更多",
+	"ooui-dialog-confirm-title": "确认",
+	"ooui-dialog-confirm-default-prompt": "您确定吗？",
+	"ooui-dialog-confirm-default-ok": "好",
+	"ooui-dialog-confirm-default-cancel": "取消"
 }

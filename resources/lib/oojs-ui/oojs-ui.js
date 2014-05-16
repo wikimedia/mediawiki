@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (80f1797a5c)
+ * OOjs UI v0.1.0-pre (d4086ff6e6)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed May 14 2014 14:11:38 GMT-0700 (PDT)
+ * Date: Fri May 16 2014 16:32:36 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -4640,9 +4640,6 @@ OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 	if ( config.padded ) {
 		this.$element.addClass( 'oo-ui-panelLayout-padded' );
 	}
-
-	// Add directionality class:
-	this.$element.addClass( 'oo-ui-' + OO.ui.Element.getDir( this.$.context ) );
 };
 
 /* Setup */
