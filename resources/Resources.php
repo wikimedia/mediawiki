@@ -192,7 +192,17 @@ return array(
 	'jquery' => array(
 		'scripts' => array(
 			'resources/lib/jquery/jquery.js',
+		),
+		'debugRaw' => false,
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+
+	'jquery.migrate' => array(
+		'scripts' => array(
 			'resources/lib/jquery/jquery.migrate.js',
+		),
+		'dependencies' => array(
+			'jquery',
 		),
 		'debugRaw' => false,
 		'targets' => array( 'desktop', 'mobile' ),
