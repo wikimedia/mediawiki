@@ -229,6 +229,8 @@ production.
   properly maintain. Also removed the corresponding methods from ApiBase and
   the 'APIGetPossibleErrors' and 'APIGetResultProperties' hooks.
 * Formats dbg, dump, txt, wddx, and yaml are now deprecated.
+* (bug 65403) XML tag highlighting is now only performed for formats
+  "xmlfm" and "wddxfm".
 
 === Languages updated in 1.24 ===
 
