@@ -1393,9 +1393,12 @@ class Parser {
 				(<a[ \t\r\n>].*?</a>) |     # m[1]: Skip link text
 				(<.*?>) |                   # m[2]: Skip stuff inside HTML elements' . "
 				(\b(?i:$prots)$urlChar+) |  # m[3]: Free external links" . '
-				\b(?:RFC|PMID)\s+([0-9]+)\b |# m[4]: RFC or PMID, capture number
-				\bISBN\s+(                  # m[5]: ISBN, capture number
-					(?: 97[89] [\ \-]? )?   # optional 13-digit ISBN prefix
+				\b(?:RFC|PMID)              # m[4]: RFC or PMID, capture number
+					(?:\t|&nbsp;|&\#0?160;|\p{Zs})+ #  non-newline space
+					([0-9]+)\b |
+				\bISBN                      # m[5]: ISBN, capture number
+					(?:\t|&nbsp;|&\#0?160;|\p{Zs})+ #  non-newline space
+				   ((?: 97[89] [\ \-]? )?   # optional 13-digit ISBN prefix
 					(?: [0-9]  [\ \-]? ){9} # 9 digits with opt. delimiters
 					[0-9Xx]                 # check digit
 					\b)
