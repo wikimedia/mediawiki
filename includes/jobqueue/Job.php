@@ -291,6 +291,14 @@ abstract class Job implements IJobSpecification {
 	 * @return string
 	 */
 	public function toString() {
+		$truncFunc = function( $value ) {
+			$value = (string)$value;
+			if ( mb_strlen( $value ) > 1024 ) {
+				$value = "string(" . mb_strlen( $value ) . ")";
+			}
+			return $value;
+		};
+
 		$paramString = '';
 		if ( $this->params ) {
 			foreach ( $this->params as $key => $value ) {
@@ -298,16 +306,25 @@ abstract class Job implements IJobSpecification {
 					$paramString .= ' ';
 				}
 				if ( is_array( $value ) ) {
-					$value = "array(" . count( $value ) . ")";
+					$filteredValue = array();
+					foreach ( $value as $k => $v ) {
+						if ( is_scalar( $v ) ) {
+							$filteredValue[$k] = $truncFunc( $v );
+						} else {
+							$filteredValue = null;
+							break;
+						}
+					}
+					if ( $filteredValue ) {
+						$value = FormatJson::encode( $filteredValue );
+					} else {
+						$value = "array(" . count( $value ) . ")";
+					}
 				} elseif ( is_object( $value ) && !method_exists( $value, '__toString' ) ) {
 					$value = "object(" . get_class( $value ) . ")";
 				}
-				$value = (string)$value;
-				if ( mb_strlen( $value ) > 1024 ) {
-					$value = "string(" . mb_strlen( $value ) . ")";
-				}
 
-				$paramString .= "$key=$value";
+				$paramString .= "$key={$truncFunc( $value )}";
 			}
 		}
 
