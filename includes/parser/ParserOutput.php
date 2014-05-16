@@ -22,110 +22,40 @@
  * @ingroup Parser
  */
 class ParserOutput extends CacheTime {
-	/** @var string The output text */
-	public $mText;
-
-	/** @var array List of the full text of language links; in the order they appear */
-	public $mLanguageLinks;
-
-	/** @var array Map of category names to sort keys */
-	public $mCategories;
-
-	/** @var array DB keys of the images used; in the array key only */
-	public $mImages = array();
-
-	/** @var array Modules to be loaded by the resource loader */
-	public $mModules = array();
-
-	/** @var array Name/value pairs to be cached in the DB */
-	public $mProperties = array();
-
-	/** @var string Title text of the chosen language variant */
-	protected $mTitleText;
-
-	/** @var array 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken. */
-	protected $mLinks = array();
-
-	/** @var array 2-D map of NS/DBK to ID for the template references. ID=zero for broken. */
-	protected $mTemplates = array();
-
-	/** @var array 2-D map of NS/DBK to rev ID for the template references. ID=zero for broken. */
-	protected $mTemplateIds = array();
-
-	/** @var array DB keys of the images used mapped to sha1 and MW timestamp */
-	protected $mFileSearchOptions = array();
-
-	/** @var array External link URLs; in the key only */
-	protected $mExternalLinks = array();
-
-	/**
-	 * @var array 2-D map of prefix/DBK (in keys only) for the inline interwiki
-	 *   links in the document.
-	 */
-	protected $mInterwikiLinks = array();
-
-	/** @var bool Show a new section link? */
-	protected $mNewSection = false;
-
-	/** @var bool Hide the new section link? */
-	protected $mHideNewSection = false;
-
-	/** @var bool No gallery on category page? (__NOGALLERY__) */
-	public $mNoGallery = false;
-
-	/** @var array Items to put in the <head> section */
-	protected $mHeadItems = array();
-
-	/** @var array Modules of which only the JS will be loaded by the resource loader */
-	protected $mModuleScripts = array();
-
-	/** @var array Modules of which only the CSSS will be loaded by the resource loader */
-	protected $mModuleStyles = array();
-
-	/** @var array Modules of which only the messages will be loaded by the resource loader */
-	protected $mModuleMessages = array();
-
-	/** @var array JavaScript config variable for mw.config combined with this page */
-	protected $mJsConfigVars = array();
-
-	/** @var array Hook tags as per $wgParserOutputHooks */
-	protected $mOutputHooks = array();
-
-	/** @var array Warning text to be returned to the user. Wikitext formatted; in the key only */
-	protected $mWarnings = array();
-
-	/** @var array Table of contents */
-	protected $mSections = array();
-
-	/** @var bool Prefix/suffix markers if edit sections were output as tokens */
-	protected $mEditSectionTokens = false;
-
-	/** @var string HTML of the TOC */
-	protected $mTOCHTML = '';
-
-	/** @var string Timestamp of the revision */
-	protected $mTimestamp;
-
-	/** @var bool Whether TOC should be shown, can't override __NOTOC__ */
-	protected $mTOCEnabled = true;
-
-	/** @var string 'index' or 'noindex'?  Any other value will result in no change. */
-	private $mIndexPolicy = '';
-
-	/** @var array List of ParserOptions (stored in the keys) */
-	private $mAccessedOptions = array();
-
-	/** @var array List of DataUpdate, used to save info from the page somewhere else. */
-	private $mSecondaryDataUpdates = array();
-
-	/** @var array Extra data used by extensions */
-	private $mExtensionData = array();
-
-	/** @var array Parser limit report data */
-	private $mLimitReportData = array();
-
-	/** @var array Timestamps for getTimeSinceStart() */
-	private $mParseStartTime = array();
+	var $mText,                       # The output text
+		$mLanguageLinks,              # List of the full text of language links, in the order they appear
+		$mCategories,                 # Map of category names to sort keys
+		$mTitleText,                  # title text of the chosen language variant
+		$mLinks = array(),            # 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
+		$mTemplates = array(),        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
+		$mTemplateIds = array(),      # 2-D map of NS/DBK to rev ID for the template references. ID=zero for broken.
+		$mImages = array(),           # DB keys of the images used, in the array key only
+		$mFileSearchOptions = array(), # DB keys of the images used mapped to sha1 and MW timestamp
+		$mExternalLinks = array(),    # External link URLs, in the key only
+		$mInterwikiLinks = array(),   # 2-D map of prefix/DBK (in keys only) for the inline interwiki links in the document.
+		$mNewSection = false,         # Show a new section link?
+		$mHideNewSection = false,     # Hide the new section link?
+		$mNoGallery = false,          # No gallery on category page? (__NOGALLERY__)
+		$mHeadItems = array(),        # Items to put in the <head> section
+		$mModules = array(),          # Modules to be loaded by the resource loader
+		$mModuleScripts = array(),    # Modules of which only the JS will be loaded by the resource loader
+		$mModuleStyles = array(),     # Modules of which only the CSSS will be loaded by the resource loader
+		$mModuleMessages = array(),   # Modules of which only the messages will be loaded by the resource loader
+		$mJsConfigVars = array(),     # JavaScript config variable for mw.config combined with this page
+		$mOutputHooks = array(),      # Hook tags as per $wgParserOutputHooks
+		$mWarnings = array(),         # Warning text to be returned to the user. Wikitext formatted, in the key only
+		$mSections = array(),         # Table of contents
+		$mEditSectionTokens = false,  # prefix/suffix markers if edit sections were output as tokens
+		$mProperties = array(),       # Name/value pairs to be cached in the DB
+		$mTOCHTML = '',               # HTML of the TOC
+		$mTimestamp,                  # Timestamp of the revision
+		$mTOCEnabled = true;          # Whether TOC should be shown, can't override __NOTOC__
+		private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
+		private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
+		private $mSecondaryDataUpdates = array(); # List of DataUpdate, used to save info from the page somewhere else.
+		private $mExtensionData = array(); # extra data used by extensions
+		private $mLimitReportData = array(); # Parser limit report data
+		private $mParseStartTime = array(); # Timestamps for getTimeSinceStart()
 
 	const EDITSECTION_REGEX =
 		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
