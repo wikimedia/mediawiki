@@ -29,6 +29,8 @@ changes to languages because of Bugzilla reports.
 * Javascript variable 'wgFileCanRotate' now only available on Special:Upload.
 * (bug 56257) Set site logo url in ResourceLoaderSiteModule instead of inline
   styles in the HTML output.
+* (bug 65403) XML tag highlighting is now only performed for formats
+  "xmlfm" and "wddxfm".
 
 == Compatibility ==
 
