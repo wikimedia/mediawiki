@@ -14,5 +14,9 @@
 	"ooui-outline-control-move-down": "Element erof réckelen",
 	"ooui-outline-control-move-up": "Element erop réckelen",
 	"ooui-outline-control-remove": "Element ewechhuelen",
-	"ooui-toolbar-more": "Méi"
+	"ooui-toolbar-more": "Méi",
+	"ooui-dialog-confirm-title": "Confirméieren",
+	"ooui-dialog-confirm-default-prompt": "Sidd Dir sécher?",
+	"ooui-dialog-confirm-default-ok": "OK",
+	"ooui-dialog-confirm-default-cancel": "Ofbriechen"
 }

@@ -19,5 +19,9 @@
 	"ooui-outline-control-move-down": "להזיז את הפריט מטה",
 	"ooui-outline-control-move-up": "להזיז את הפריט מעלה",
 	"ooui-outline-control-remove": "להסיר את הפריט",
-	"ooui-toolbar-more": "עוד"
+	"ooui-toolbar-more": "עוד",
+	"ooui-dialog-confirm-title": "אישור",
+	"ooui-dialog-confirm-default-prompt": "באמת?",
+	"ooui-dialog-confirm-default-ok": "אישור",
+	"ooui-dialog-confirm-default-cancel": "ביטול"
 }
