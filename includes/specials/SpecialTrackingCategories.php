@@ -96,7 +96,6 @@ class SpecialTrackingCategories extends SpecialPage {
 						$catTitle,
 						htmlspecialchars( $catName )
 					);
-					$classes = array();
 				} else {
 					$catTitleText = $this->msg( 'trackingcategories-disabled' )->parse();
 				}
