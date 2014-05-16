@@ -9,7 +9,7 @@
 			return this;
 		}
 		// Merge options into the defaults
-		var $settings = $.extend( {}, $.collapsibleTabs.defaults, options );
+		var settings = $.extend( {}, $.collapsibleTabs.defaults, options );
 
 		this.each( function () {
 			var $el = $( this );
@@ -17,9 +17,9 @@
 			$.collapsibleTabs.instances = ( $.collapsibleTabs.instances.length === 0 ?
 				$el : $.collapsibleTabs.instances.add( $el ) );
 			// attach the settings to the elements
-			$el.data( 'collapsibleTabsSettings', $settings );
+			$el.data( 'collapsibleTabsSettings', settings );
 			// attach data to our collapsible elements
-			$el.children( $settings.collapsible ).each( function () {
+			$el.children( settings.collapsible ).each( function () {
 				$.collapsibleTabs.addData( $( this ) );
 			} );
 		} );
@@ -84,23 +84,23 @@
 			}
 		},
 		addData: function ( $collapsible ) {
-			var $settings = $collapsible.parent().data( 'collapsibleTabsSettings' );
-			if ( $settings ) {
+			var settings = $collapsible.parent().data( 'collapsibleTabsSettings' );
+			if ( settings ) {
 				$collapsible.data( 'collapsibleTabsSettings', {
-					expandedContainer: $settings.expandedContainer,
-					collapsedContainer: $settings.collapsedContainer,
+					expandedContainer: settings.expandedContainer,
+					collapsedContainer: settings.collapsedContainer,
 					expandedWidth: $collapsible.width(),
 					prevElement: $collapsible.prev()
 				} );
 			}
 		},
 		getSettings: function ( $collapsible ) {
-			var $settings = $collapsible.data( 'collapsibleTabsSettings' );
-			if ( !$settings ) {
+			var settings = $collapsible.data( 'collapsibleTabsSettings' );
+			if ( !settings ) {
 				$.collapsibleTabs.addData( $collapsible );
-				$settings = $collapsible.data( 'collapsibleTabsSettings' );
+				settings = $collapsible.data( 'collapsibleTabsSettings' );
 			}
-			return $settings;
+			return settings;
 		},
 		handleResize: function () {
 			$.collapsibleTabs.instances.each( function () {
