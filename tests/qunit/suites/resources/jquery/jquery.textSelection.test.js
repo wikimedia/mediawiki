@@ -32,7 +32,7 @@
 		}, opt.after );
 
 		QUnit.test( opt.description, function ( assert ) {
-			var $textarea, start, end, options, text,
+			var $textarea, start, end, options, text, selected,
 				tests = 1;
 			if ( opt.after.selected !== null ) {
 				tests++;
@@ -63,7 +63,7 @@
 			assert.equal( text, opt.after.text, 'Checking full text after encapsulation' );
 
 			if ( opt.after.selected !== null ) {
-				var selected = $textarea.textSelection( 'getSelection' );
+				selected = $textarea.textSelection( 'getSelection' );
 				assert.equal( selected, opt.after.selected, 'Checking selected text after encapsulation.' );
 			}
 
@@ -248,16 +248,16 @@
 
 	caretSample = 'Some big text that we like to work with. Nothing fancy... you know what I mean?';
 
-	/*
-	 // @broken: Disabled per bug 34820
-	 caretTest({
-	 description: 'getCaretPosition with original/empty selection - bug 31847 with IE 6/7/8',
-	 text: caretSample,
-	 start: [0, caretSample.length], // Opera and Firefox (prior to FF 6.0) default caret to the end of the box (caretSample.length)
-	 end: [0, caretSample.length], // Other browsers default it to the beginning (0), so check both.
-	 mode: 'get'
-	 });
-	 */
+/*
+	// @broken: Disabled per bug 34820
+	caretTest({
+	description: 'getCaretPosition with original/empty selection - bug 31847 with IE 6/7/8',
+	text: caretSample,
+	start: [0, caretSample.length], // Opera and Firefox (prior to FF 6.0) default caret to the end of the box (caretSample.length)
+	end: [0, caretSample.length], // Other browsers default it to the beginning (0), so check both.
+	mode: 'get'
+	});
+*/
 
 	caretTest( {
 		description: 'set/getCaretPosition with forced empty selection',

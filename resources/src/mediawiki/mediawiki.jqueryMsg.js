@@ -117,12 +117,13 @@
 		var parser = new mw.jqueryMsg.parser( options );
 
 		return function ( args ) {
-			var key = args[0],
+			var fallback,
+				key = args[0],
 				argsArray = $.isArray( args[1] ) ? args[1] : slice.call( args, 1 );
 			try {
 				return parser.parse( key, argsArray );
 			} catch ( e ) {
-				var fallback = parser.settings.messages.get( key );
+				fallback = parser.settings.messages.get( key );
 				mw.log.warn( 'mediawiki.jqueryMsg: ' + key + ': ' + e.message );
 				return $( '<span>' ).text( fallback );
 			}

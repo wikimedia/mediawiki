@@ -200,7 +200,7 @@ jQuery( function ( $ ) {
 		}
 	}
 
-	function updateTimezoneSelection () {
+	function updateTimezoneSelection() {
 		var minuteDiff, localTime,
 			type = $tzSelect.val();
 

@@ -215,10 +215,10 @@ $.suggestions = {
 							}
 
 							if ( expandFrom === 'start' ) {
-								expandFrom = docDir === 'rtl' ? 'right': 'left';
+								expandFrom = docDir === 'rtl' ? 'right' : 'left';
 
 							} else if ( expandFrom === 'end' ) {
-								expandFrom = docDir === 'rtl' ? 'left': 'right';
+								expandFrom = docDir === 'rtl' ? 'left' : 'right';
 							}
 
 							return expandFrom;

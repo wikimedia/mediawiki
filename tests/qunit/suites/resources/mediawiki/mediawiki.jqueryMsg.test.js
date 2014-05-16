@@ -266,10 +266,8 @@
 			expectedMultipleBars,
 			expectedSpecialCharacters;
 
-		/*
-		 The below three are all identical to or based on real messages.  For disambiguations-text,
-		 the bold was removed because it is not yet implemented.
-		 */
+		// The below three are all identical to or based on real messages.  For disambiguations-text,
+		// the bold was removed because it is not yet implemented.
 
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-test-statistics-users' ),

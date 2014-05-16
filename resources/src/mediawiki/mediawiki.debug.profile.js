@@ -271,8 +271,7 @@
 			$container.find( '.mw-debug-profile-period' ).tipsy( {
 				fade: true,
 				gravity: function () {
-					return $.fn.tipsy.autoNS.call( this )
-						+ $.fn.tipsy.autoWE.call( this );
+					return $.fn.tipsy.autoNS.call( this ) + $.fn.tipsy.autoWE.call( this );
 				},
 				className: 'mw-debug-profile-tipsy',
 				center: false,

@@ -178,7 +178,7 @@
 				if (!$input.data('placeholder-textinput')) {
 					try {
 						$replacement = $input.clone().attr({ 'type': 'text' });
-					} catch(e) {
+					} catch (e) {
 						$replacement = $('<input>').attr($.extend(args(this), { 'type': 'text' }));
 					}
 					$replacement

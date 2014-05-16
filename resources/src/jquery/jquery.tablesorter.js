@@ -160,15 +160,14 @@
 	}
 
 	function buildParserCache( table, $headers ) {
-		var rows = table.tBodies[0].rows,
-			sortType,
+		var sortType, cells, len, i, parser,
+			rows = table.tBodies[0].rows,
 			parsers = [];
 
 		if ( rows[0] ) {
 
-			var cells = rows[0].cells,
-				len = cells.length,
-				i, parser;
+			cells = rows[0].cells;
+			len = cells.length;
 
 			for ( i = 0; i < len; i++ ) {
 				parser = false;
@@ -190,7 +189,8 @@
 	/* Other utility functions */
 
 	function buildCache( table ) {
-		var totalRows = ( table.tBodies[0] && table.tBodies[0].rows.length ) || 0,
+		var i, j, $row, cols,
+			totalRows = ( table.tBodies[0] && table.tBodies[0].rows.length ) || 0,
 			totalCells = ( table.tBodies[0].rows[0] && table.tBodies[0].rows[0].cells.length ) || 0,
 			parsers = table.config.parsers,
 			cache = {
@@ -198,11 +198,11 @@
 				normalized: []
 			};
 
-		for ( var i = 0; i < totalRows; ++i ) {
+		for ( i = 0; i < totalRows; ++i ) {
 
 			// Add the table data to main data array
-			var $row = $( table.tBodies[0].rows[i] ),
-				cols = [];
+			$row = $( table.tBodies[0].rows[i] );
+			cols = [];
 
 			// if this is a child row, add it to the last row's children and
 			// continue to the next row
@@ -214,7 +214,7 @@
 
 			cache.row.push( $row );
 
-			for ( var j = 0; j < totalCells; ++j ) {
+			for ( j = 0; j < totalCells; ++j ) {
 				cols.push( parsers[j].format( getElementSortKey( $row[0].cells[j] ), table, $row[0].cells[j] ) );
 			}
 
@@ -292,18 +292,19 @@
 			colspanOffset = 0,
 			columns,
 			i,
+			rowspan,
+			colspan,
+			headerCount,
+			longestTR,
+			matrixRowIndex,
+			matrixColumnIndex,
+			exploded,
 			$tableHeaders = $( [] ),
 			$tableRows = $( 'thead:eq(0) > tr', table );
 		if ( $tableRows.length <= 1 ) {
 			$tableHeaders = $tableRows.children( 'th' );
 		} else {
-			var rowspan,
-				colspan,
-				headerCount,
-				longestTR,
-				matrixRowIndex,
-				matrixColumnIndex,
-				exploded = [];
+			exploded = [];
 
 			// Loop through all the dom cells of the thead
 			$tableRows.each( function ( rowIndex, row ) {
@@ -416,8 +417,9 @@
 	}
 
 	function isValueInArray( v, a ) {
-		var l = a.length;
-		for ( var i = 0; i < l; i++ ) {
+		var i,
+			len = a.length;
+		for ( i = 0; i < len; i++ ) {
 			if ( a[i][0] === v ) {
 				return true;
 			}
@@ -780,9 +782,10 @@
 						// Legacy fix of .sortbottoms
 						// Wrap them inside inside a tfoot (because that's what they actually want to be) &
 						// and put the <tfoot> at the end of the <table>
-						var $sortbottoms = $table.find( '> tbody > tr.sortbottom' );
+						var $tfoot,
+							$sortbottoms = $table.find( '> tbody > tr.sortbottom' );
 						if ( $sortbottoms.length ) {
-							var $tfoot = $table.children( 'tfoot' );
+							$tfoot = $table.children( 'tfoot' );
 							if ( $tfoot.length ) {
 								$tfoot.eq( 0 ).prepend( $sortbottoms );
 							} else {
@@ -799,6 +802,10 @@
 					// Apply event handling to headers
 					// this is too big, perhaps break it out?
 					$headers.not( '.' + table.config.unsortableClass ).on( 'keypress click', function ( e ) {
+						var cell, columns, newSortList, i,
+							totalRows,
+							j, s, o;
+
 						if ( e.type === 'click' && e.target.nodeName.toLowerCase() === 'a' ) {
 							// The user clicked on a link inside a table header.
 							// Do nothing and let the default link click action continue.
@@ -822,13 +829,11 @@
 						// cells get event .change() and bubbles up to the <table> here
 						cache = buildCache( table );
 
-						var totalRows = ( $table[0].tBodies[0] && $table[0].tBodies[0].rows.length ) || 0;
+						totalRows = ( $table[0].tBodies[0] && $table[0].tBodies[0].rows.length ) || 0;
 						if ( !table.sortDisabled && totalRows > 0 ) {
 							// Get current column sort order
 							this.order = this.count % 2;
 							this.count++;
-
-							var cell, columns, newSortList, i;
 
 							cell = this;
 							// Get current column index
@@ -851,9 +856,9 @@
 								if ( isValueInArray( i, config.sortList ) ) {
 									// The user has clicked on an already sorted column.
 									// Reverse the sorting direction for all tables.
-									for ( var j = 0; j < config.sortList.length; j++ ) {
-										var s = config.sortList[j],
-											o = config.headerList[s[0]];
+									for ( j = 0; j < config.sortList.length; j++ ) {
+										s = config.sortList[j];
+										o = config.headerList[s[0]];
 										if ( isValueInArray( s[0], newSortList ) ) {
 											o.count = s[1];
 											o.count++;
@@ -934,9 +939,10 @@
 			},
 
 			addParser: function ( parser ) {
-				var l = parsers.length,
+				var i,
+					len = parsers.length,
 					a = true;
-				for ( var i = 0; i < l; i++ ) {
+				for ( i = 0; i < len; i++ ) {
 					if ( parsers[i].id.toLowerCase() === parser.id.toLowerCase() ) {
 						a = false;
 					}
@@ -1013,11 +1019,12 @@
 			return ts.rgx.IPAddress[0].test( s );
 		},
 		format: function ( s ) {
-			var a = s.split( '.' ),
+			var i, item,
+				a = s.split( '.' ),
 				r = '',
-				l = a.length;
-			for ( var i = 0; i < l; i++ ) {
-				var item = a[i];
+				len = a.length;
+			for ( i = 0; i < len; i++ ) {
+				item = a[i];
 				if ( item.length === 1 ) {
 					r += '00' + item;
 				} else if ( item.length === 2 ) {
@@ -1082,7 +1089,7 @@
 			return ( ts.dateRegex[0].test( s ) || ts.dateRegex[1].test( s ) || ts.dateRegex[2].test( s ) );
 		},
 		format: function ( s ) {
-			var match;
+			var match, y;
 			s = $.trim( s.toLowerCase() );
 
 			if ( ( match = s.match( ts.dateRegex[0] ) ) !== null ) {
@@ -1112,7 +1119,6 @@
 				s[2] = '0' + s[2];
 			}
 
-			var y;
 			if ( ( y = parseInt( s[0], 10 ) ) < 100 ) {
 				// Guestimate years without centuries
 				if ( y < 30 ) {

@@ -19,14 +19,15 @@ function debug( text ) {
 		return false;
 	}
 
-	var e = document.getElementById( 'sajax_debug' );
+	var b, m,
+		e = document.getElementById( 'sajax_debug' );
 
 	if ( !e ) {
 		e = document.createElement( 'p' );
 		e.className = 'sajax_debug';
 		e.id = 'sajax_debug';
 
-		var b = document.getElementsByTagName( 'body' )[0];
+		b = document.getElementsByTagName( 'body' )[0];
 
 		if ( b.firstChild ) {
 			b.insertBefore( e, b.firstChild );
@@ -35,7 +36,7 @@ function debug( text ) {
 		}
 	}
 
-	var m = document.createElement( 'div' );
+	m = document.createElement( 'div' );
 	m.appendChild( document.createTextNode( text ) );
 
 	e.appendChild( m );
