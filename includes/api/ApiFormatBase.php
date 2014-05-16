@@ -277,6 +277,13 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 	protected function formatHTML( $text ) {
 		// Escape everything first for full coverage
 		$text = htmlspecialchars( $text );
+
+		if ( $this->mFormat !== 'XML' && $this->mFormat !== 'WDDX' ) {
+			// Skip transformations, mainly left in for the help screen,
+			// that only work properly for XML-based formats (bug 65403)
+			return $text;
+		}
+
 		// encode all comments or tags as safe blue strings
 		$text = str_replace( '&lt;', '<span style="color:blue;">&lt;', $text );
 		$text = str_replace( '&gt;', '&gt;</span>', $text );
