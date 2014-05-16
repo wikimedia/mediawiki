@@ -33,9 +33,21 @@
  */
 class ApiModuleManager extends ContextSource {
 
+	/**
+	 * @var ApiBase
+	 */
 	private $mParent;
+	/**
+	 * @var ApiBase[]
+	 */
 	private $mInstances = array();
+	/**
+	 * @var null[]
+	 */
 	private $mGroups = array();
+	/**
+	 * @var array[]
+	 */
 	private $mModules = array();
 
 	/**

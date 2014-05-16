@@ -32,7 +32,7 @@
 class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	private $qpMap;
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'qp' );
 		// Build mapping from special page names to QueryPage classes
 		global $wgAPIUselessQueryPages;
