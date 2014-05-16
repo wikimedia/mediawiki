@@ -27,40 +27,11 @@
  * @ingroup Parser
  */
 class DateFormatter {
-	protected $mSource;
+	var $mSource, $mTarget;
+	var $monthNames = '', $rxDM, $rxMD, $rxDMY, $rxYDM, $rxMDY, $rxYMD;
 
-	protected $mTarget;
-
-	/** @var string */
-	protected $monthNames = '';
-
-	/** @todo Are these unused? */
-	private $rxDM;
-	private $rxMD;
-	private $rxDMY;
-	private $rxYDM;
-	private $rxMDY;
-	private $rxYMD;
-
-	/** @var array */
-	protected $regexes;
-
-	/** @todo Are these unused? */
-	private $pDays;
-	private $pMonths;
-	private $pYears;
-
-	/** @var array */
-	protected $rules;
-
-	/** @var array */
-	protected $xMonths;
-
-	/** @var array */
-	protected $preferences;
-
-	/** @var bool */
-	protected $mLinked;
+	var $regexes, $pDays, $pMonths, $pYears;
+	var $rules, $xMonths, $preferences;
 
 	protected $lang;
 

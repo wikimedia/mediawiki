@@ -28,8 +28,10 @@
  * @ingroup Parser
  */
 class Preprocessor_Hash implements Preprocessor {
-	/** @var Parser */
-	public $parser;
+	/**
+	 * @var Parser
+	 */
+	var $parser;
 
 	const CACHE_VERSION = 1;
 
@@ -820,9 +822,7 @@ class PPDPart_Hash extends PPDPart {
  * @ingroup Parser
  */
 class PPDAccum_Hash {
-	public $firstNode;
-
-	public $lastNode;
+	var $firstNode, $lastNode;
 
 	function __construct() {
 		$this->firstNode = $this->lastNode = false;
@@ -890,30 +890,34 @@ class PPDAccum_Hash {
  * @ingroup Parser
  */
 class PPFrame_Hash implements PPFrame {
+
 	/**
-	 * @var int Recursion depth of this frame, top = 0
+	 * @var Parser
+	 */
+	var $parser;
+
+	/**
+	 * @var Preprocessor
+	 */
+	var $preprocessor;
+
+	/**
+	 * @var Title
+	 */
+	var $title;
+	var $titleCache;
+
+	/**
+	 * Hashtable listing templates which are disallowed for expansion in this frame,
+	 * having been encountered previously in parent frames.
+	 */
+	var $loopCheckHash;
+
+	/**
+	 * Recursion depth of this frame, top = 0
 	 * Note that this is NOT the same as expansion depth in expand()
 	 */
-	public $depth;
-
-	/** @var Parser */
-	protected $parser;
-
-	/** @var Preprocessor */
-	protected $preprocessor;
-
-	/** @var Title */
-	protected $title;
-
-	/** @var array */
-	protected $titleCache;
-
-	/**
-	 * @var array Hashtable listing templates which are disallowed for
-	 *   expansion in this frame, having been encountered previously in
-	 *   parent frames.
-	 */
-	protected $loopCheckHash;
+	var $depth;
 
 	/**
 	 * Construct a new preprocessor frame.
@@ -1375,20 +1379,8 @@ class PPFrame_Hash implements PPFrame {
  * @ingroup Parser
  */
 class PPTemplateFrame_Hash extends PPFrame_Hash {
-	/** @var array */
-	protected $numberedArgs;
-
-	/** @var array */
-	protected $namedArgs;
-
-	/** @var bool|PPFrame */
-	protected $parent;
-
-	/** @var array */
-	protected $numberedExpansionCache;
-
-	/** @var  */
-	protected $namedExpansionCache;
+	var $numberedArgs, $namedArgs, $parent;
+	var $numberedExpansionCache, $namedExpansionCache;
 
 	/**
 	 * @param Preprocessor $preprocessor
@@ -1539,8 +1531,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
  * @ingroup Parser
  */
 class PPCustomFrame_Hash extends PPFrame_Hash {
-	/** @var array */
-	protected $args;
+	var $args;
 
 	function __construct( $preprocessor, $args ) {
 		parent::__construct( $preprocessor );
@@ -1590,13 +1581,7 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
  * @ingroup Parser
  */
 class PPNode_Hash_Tree implements PPNode {
-	public $name;
-
-	public $firstChild;
-
-	public $lastChild;
-
-	public $nextSibling;
+	var $name, $firstChild, $lastChild, $nextSibling;
 
 	function __construct( $name ) {
 		$this->name = $name;
@@ -1818,9 +1803,7 @@ class PPNode_Hash_Tree implements PPNode {
  * @ingroup Parser
  */
 class PPNode_Hash_Text implements PPNode {
-	public $value;
-
-	public $nextSibling;
+	var $value, $nextSibling;
 
 	function __construct( $value ) {
 		if ( is_object( $value ) ) {
@@ -1878,9 +1861,7 @@ class PPNode_Hash_Text implements PPNode {
  * @ingroup Parser
  */
 class PPNode_Hash_Array implements PPNode {
-	public $value;
-
-	public $nextSibling;
+	var $value, $nextSibling;
 
 	function __construct( $value ) {
 		$this->value = $value;
@@ -1935,13 +1916,7 @@ class PPNode_Hash_Array implements PPNode {
  * @ingroup Parser
  */
 class PPNode_Hash_Attr implements PPNode {
-	/** @var string */
-	public $name;
-
-	/** @var string */
-	public $value;
-
-	public $nextSibling;
+	var $name, $value, $nextSibling;
 
 	function __construct( $name, $value ) {
 		$this->name = $name;
