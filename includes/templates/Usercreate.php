@@ -73,7 +73,7 @@ class UsercreateTemplate extends BaseTemplate {
 			<?php } ?>
 			</div>
 
-			<div>
+			<div class="mw-ui-vform-field">
 				<label for='wpName2'>
 					<?php $this->msg( 'userlogin-yourname' ); ?>
 
@@ -92,7 +92,7 @@ class UsercreateTemplate extends BaseTemplate {
 				?>
 			</div>
 
-			<div>
+			<div class="mw-ui-vform-field">
 				<?php if ( $this->data['createemail'] ) { ?>
 					<label class="mw-ui-checkbox-label">
 						<input name="wpCreateaccountMail" type="checkbox" value="1" id="wpCreateaccountMail" tabindex="2"
@@ -105,7 +105,7 @@ class UsercreateTemplate extends BaseTemplate {
 				<?php } ?>
 			</div>
 
-			<div class="mw-row-password">
+			<div class="mw-ui-vform-field mw-row-password">
 				<label for='wpPassword2'><?php $this->msg( 'userlogin-yourpassword' ); ?></label>
 				<?php
 				echo Html::input( 'wpPassword', null, 'password', array(
@@ -127,7 +127,7 @@ class UsercreateTemplate extends BaseTemplate {
 					$select->addOption( $dom );
 				}
 			?>
-				<div id="mw-user-domain-section">
+				<div class="mw-ui-vform-field" id="mw-user-domain-section">
 					<label for="wpDomain"><?php $this->msg( 'yourdomainname' ); ?></label>
 					<div class="mw-input">
 						<?php echo $select->getHTML(); ?>
@@ -135,7 +135,7 @@ class UsercreateTemplate extends BaseTemplate {
 				</div>
 			<?php } ?>
 
-			<div class="mw-row-password">
+			<div class="mw-ui-vform-field mw-row-password">
 				<label for='wpRetype'><?php $this->msg( 'createacct-yourpasswordagain' ); ?></label>
 				<?php
 				echo Html::input( 'wpRetype', null, 'password', array(
@@ -149,7 +149,7 @@ class UsercreateTemplate extends BaseTemplate {
 				?>
 			</div>
 
-			<div>
+			<div class="mw-ui-vform-field">
 				<?php if ( $this->data['useemail'] ) { ?>
 					<label for='wpEmail'>
 						<?php
@@ -174,7 +174,7 @@ class UsercreateTemplate extends BaseTemplate {
 			</div>
 
 			<?php if ( $this->data['userealname'] ) { ?>
-				<div>
+				<div class="mw-ui-vform-field">
 					<label for='wpRealName'><?php $this->msg( 'createacct-realname' ); ?></label>
 					<input type='text' class='mw-input loginText' name="wpRealName" id="wpRealName"
 						tabindex="7"
@@ -186,7 +186,7 @@ class UsercreateTemplate extends BaseTemplate {
 			<?php } ?>
 
 			<?php if ( $this->data['usereason'] ) { ?>
-				<div>
+				<div class="mw-ui-vform-field">
 					<label for='wpReason'><?php $this->msg( 'createacct-reason' ); ?></label>
 					<?php echo Html::input( 'wpReason', $this->data['reason'], 'text', array(
 						'class' => 'mw-input loginText',
@@ -202,7 +202,7 @@ class UsercreateTemplate extends BaseTemplate {
 			$tabIndex = 9;
 			if ( isset( $this->data['extraInput'] ) && is_array( $this->data['extraInput'] ) ) {
 				foreach ( $this->data['extraInput'] as $inputItem ) { ?>
-					<div>
+					<div class="mw-ui-vform-field">
 						<?php
 						// If it's a checkbox, output the whole thing (assume it has a msg).
 						if ( $inputItem['type'] == 'checkbox' ) {
@@ -252,7 +252,7 @@ class UsercreateTemplate extends BaseTemplate {
 			// so skip one index.
 			$tabIndex++;
 			?>
-			<div class="mw-submit">
+			<div class="mw-ui-vform-field mw-submit">
 				<?php
 				echo Html::input(
 					'wpCreateaccount',
