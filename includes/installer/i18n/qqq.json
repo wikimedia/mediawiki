@@ -324,6 +324,7 @@
 	"config-install-extension-tables": "Notice shown to the user during the install about progress.",
 	"config-install-mainpage-failed": "Used as error message. Parameters:\n* $1 - detailed error message",
 	"config-install-done": "Parameters:\n* $1 is the URL to LocalSettings download\n* $2 is a link to the wiki.\n* $3 is a download link with attached download icon. The config-download-localsettings message will be used as the link text.",
+	"config-install-done-copied": "Parameters:\n* $1 is a link to the wiki.",
 	"config-download-localsettings": "The link text used in the download link in config-install-done.",
 	"config-help": "This is used in help boxes.\n{{Identical|Help}}",
 	"config-help-tooltip": "Tooltip for the 'help' links ({{msg-mw|config-help}}), to make it clear they'll expand in place rather than open a new page",
