@@ -135,4 +135,40 @@ class OutputPageTest extends MediaWikiTestCase {
 			'message' => 'On request with handheld querystring and media is screen, returns null'
 		) );
 	}
+
+	/**
+	 * Data for testModuleStyles
+	 */
+	public function moduleStylesProvider() {
+		return array(
+			// Basic functionality test (don't assert a specific case if the entire thing is actually broken)
+			array(
+				array( 'a', 'b', 'c' ),
+				array( 'a', 'b', 'c' ),
+			),
+			// Make sure that modules are unique
+			array(
+				array( 'a', 'a', 'b', 'b', 'c', 'c' ),
+				array( 'a', 'b', 'c' ),
+				"Modules should be unique",
+			),
+			// Modules must be added in load order, not alphabetically sorted (bug 45229)
+			array(
+				array( 'c', 'b', 'a' ),
+				array( 'c', 'b', 'a' ),
+				"Modules should be loaded in the order they are added",
+			),
+		);
+	}
+
+	/**
+	 * Test load order and uniqueness of modules added with addModuleStyles.
+	 * @dataProvider moduleStylesProvider
+	 */
+	public function testModuleStyles( $testModules, $assertModules, $message = null ) {
+		$context = new RequestContext();
+		$out = $context->getOutput();
+		$out->addModuleStyles( $testModules );
+		$this->assertEquals( $assertModules, $out->getModuleStyles(), $message );
+	}
 }
