@@ -34,7 +34,7 @@ class ApiFormatJson extends ApiFormatBase {
 
 	public function __construct( ApiMain $main, $format ) {
 		parent::__construct( $main, $format );
-		$this->mIsRaw = ( $format === 'rawfm' );
+		$this->mIsRaw = ( $format === 'jsonfm' );
 	}
 
 	public function getMimeType() {
