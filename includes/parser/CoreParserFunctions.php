@@ -55,6 +55,7 @@ class CoreParserFunctions {
 			'subjectpagenamee', 'pageid', 'revisionid', 'revisionday',
 			'revisionday2', 'revisionmonth', 'revisionmonth1', 'revisionyear',
 			'revisiontimestamp', 'revisionuser', 'cascadingsources',
+			'userblocked',
 		);
 		foreach ( $noHashFunctions as $func ) {
 			$parser->setFunctionHook( $func, array( __CLASS__, $func ), SFH_NO_HASH );
@@ -1226,4 +1227,47 @@ class CoreParserFunctions {
 		return '';
 	}
 
+	/**
+	 * Boolean function, returns true if the specified user is blocked,
+	 * and false or null otherwise. Implements Extension:InteractiveBlockMessage
+	 * and ideas from bug 25380.
+	 *
+	 * @param Parser $parser
+	 * @param string $title Title to get the user object from
+	 *
+	 * @return bool
+	 * @author Petr Bena <benapetr@gmail.com>, Withoutaname
+	 * @since 1.23
+	 */
+	public static function userblocked( $parser, $title = null ) {
+		// If no argument was passed, set $title to the current PAGENAME.
+		if( empty( $title ) ) {
+			$title = $parser->getTitle();
+
+			// Check if the magic word was placed in the correct namespace.
+			$namespace = $title->getNamespace();
+			if( $namespace != NS_USER && $namespace != NS_USER_TALK ) {
+				return null;
+			}
+		}
+
+		// Check if a block object exists for this user. Don't use DB_MASTER.
+		$block = Block::newFromTarget( $title, $title, false );
+		if( isset( $block ) ) {
+			// if user is blocked it's pretty much possible they will be unblocked one day :)
+			// so we enable cache for shorter time only so that we can recheck later
+			// if they weren't already unblocked - if there is a better way to do that, fix me
+			// --Petr Bena
+			$expiry = $block->getExpiry();
+			if ( is_numeric ( $expiry ) ) {
+				$expiry = wfTimestamp( TS_UNIX, $expiry ) - wfTimestamp( TS_UNIX );
+				if ( $expiry > 0 ) {
+					$parser->getOutput()->updateCacheExpiry( $expiry );
+				}
+			}
+			return true;
+		}
+
+		return false;
+	}
 }
