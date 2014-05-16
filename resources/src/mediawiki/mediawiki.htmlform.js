@@ -205,16 +205,17 @@
 	};
 
 	/**
-	 * Bind a function to the jQuery object via live(), and also immediately trigger
+	 * Bind a function to the jQuery object via on(), and also immediately trigger
 	 * the function on the objects with an 'instant' parameter set to true.
+	 * @param {string} selector
 	 * @param {Function} callback
 	 * @param {boolean|jQuery.Event} callback.immediate True when the event is called immediately,
 	 *  an event object when triggered from an event.
 	 */
-	$.fn.liveAndTestAtStart = function ( callback ) {
+	$.fn.onAndTestAtStart = function ( selector, callback ) {
 		$( this )
-			.live( 'change', callback )
-			.each( function () {
+			.on( 'change', selector, callback )
+			.find( selector ).each( function () {
 				callback.call( this, true );
 			} );
 	};
@@ -223,7 +224,7 @@
 
 		// Animate the SelectOrOther fields, to only show the text field when
 		// 'other' is selected.
-		$root.find( '.mw-htmlform-select-or-other' ).liveAndTestAtStart( function ( instant ) {
+		$root.onAndTestAtStart( '.mw-htmlform-select-or-other', function ( instant ) {
 			var $other = $root.find( '#' + $( this ).attr( 'id' ) + '-other' );
 			$other = $other.add( $other.siblings( 'br' ) );
 			if ( $( this ).val() === 'other' ) {
