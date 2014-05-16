@@ -24,18 +24,12 @@
 /**
  * @ingroup Parser
  */
-class Parser_DiffTest {
-	/** @var array */
-	protected $parsers;
+class Parser_DiffTest
+{
+	var $parsers, $conf;
+	var $shortOutput = false;
 
-	/** @var array */
-	protected $conf;
-
-	/** @var bool */
-	protected $shortOutput = false;
-
-	/** @var string */
-	protected $dtUniqPrefix;
+	var $dtUniqPrefix;
 
 	function __construct( $conf ) {
 		if ( !isset( $conf['parsers'] ) ) {
