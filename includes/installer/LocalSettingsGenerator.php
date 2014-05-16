@@ -160,7 +160,7 @@ class LocalSettingsGenerator {
 	 * @param string $fileName Full path to filename to write to
 	 */
 	public function writeFile( $fileName ) {
-		file_put_contents( $fileName, $this->getText() );
+		return file_put_contents( $fileName, $this->getText() );
 	}
 
 	/**

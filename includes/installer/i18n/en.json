@@ -306,6 +306,7 @@
 	"config-install-extension-tables": "Creating tables for enabled extensions",
 	"config-install-mainpage-failed": "Could not insert main page: $1",
 	"config-install-done": "<strong>Congratulations!</strong>\nYou have successfully installed MediaWiki.\n\nThe installer has generated a <code>LocalSettings.php</code> file.\nIt contains all your configuration.\n\nYou will need to download it and put it in the base of your wiki installation (the same directory as index.php). The download should have started automatically.\n\nIf the download was not offered, or if you cancelled it, you can restart the download by clicking the link below:\n\n$3\n\n<strong>Note:</strong> If you do not do this now, this generated configuration file will not be available to you later if you exit the installation without downloading it.\n\nWhen that has been done, you can <strong>[$2 enter your wiki]</strong>.",
+	"config-install-done-copied": "<strong>Congratulations!</strong>\nYou have successfully installed MediaWiki.\n\nThe installer has generated and copied the <code>LocalSettings.php</code> file. <strong>Note that this was only possible because the directory containing it was writable. If this is a production server, that is a potential security risk and should be disabled if possible.</strong>\n\nYou can now <strong>[$1 enter your wiki]</strong>.",
 	"config-download-localsettings": "Download <code>LocalSettings.php</code>",
 	"config-help": "help",
 	"config-help-tooltip": "click to expand",
