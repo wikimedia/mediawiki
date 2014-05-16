@@ -87,17 +87,19 @@ abstract class ApiBase extends ContextSource {
 	 */
 	const GET_VALUES_FOR_HELP = 1;
 
-	private $mMainModule, $mModuleName, $mModulePrefix;
+	/** @var ApiMain */
+	private $mMainModule;
+	/** @var string */
+	private $mModuleName, $mModulePrefix;
 	private $mSlaveDB = null;
 	private $mParamCache = array();
 
 	/**
-	 * Constructor
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName Name of this module
 	 * @param string $modulePrefix Prefix to use for parameter names
 	 */
-	public function __construct( $mainModule, $moduleName, $modulePrefix = '' ) {
+	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
 		$this->mMainModule = $mainModule;
 		$this->mModuleName = $moduleName;
 		$this->mModulePrefix = $modulePrefix;
