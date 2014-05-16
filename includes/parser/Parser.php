@@ -3207,6 +3207,8 @@ class Parser {
 			case 'cascadingsources':
 				$value = CoreParserFunctions::cascadingsources( $this );
 				break;
+			case 'userblocked':
+				return CoreParserFunctions::userblocked( $this ) ? "true" : "false";
 			default:
 				$ret = null;
 				wfRunHooks(
