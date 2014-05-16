@@ -1,0 +1,6 @@
+#pagehistory li.before input[name="oldid"] {
+	visibility: hidden;
+}
+#pagehistory li.after input[name="diff"] {
+	visibility: hidden;
+}
