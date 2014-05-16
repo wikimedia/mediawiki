@@ -6309,7 +6309,7 @@ class Parser {
 	 *
 	 * @param string $html
 	 * @return string
-	 * @since 1.23
+	 * @since 1.24
 	 */
 	public static function stripOuterParagraph( $html ) {
 		$m = array();
