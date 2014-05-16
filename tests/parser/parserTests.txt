@@ -8935,6 +8935,19 @@ This is RFC 822 but thisRFC 822 is not RFC 822linked.
 !! end
 
 !! test
+Magic links: RFC (w/ non-newline whitespace, bug 28950/29025)
+!! wikitext
+RFC &nbsp;&#160;&#0160;&#xA0;&#Xa0; 822
+RFC
+822
+!! html
+<p><a class="external mw-magiclink-rfc" rel="nofollow" href="//tools.ietf.org/html/rfc822">RFC 822</a>
+RFC
+822
+</p>
+!! end
+
+!! test
 Magic links: ISBN (bug 1937)
 !! wikitext
 ISBN 0-306-40615-2
@@ -8953,6 +8966,23 @@ This is ISBN 978-0-316-09811-3 but thisISBN 978-0-316-09811-3 is not ISBN 978-0-
 !! end
 
 !! test
+Magic links: ISBN (w/ non-newline whitespace, bug 28950/29025)
+!! wikitext
+ISBN &nbsp;&#160;&#0160;&#xA0;&#Xa0; 978&nbsp;0&#160;316&#0160;09811&#xA0;3
+ISBN
+9780316098113
+ISBN 978
+0316098113
+!! html
+<p><a href="/wiki/Special:BookSources/9780316098113" class="internal mw-magiclink-isbn">ISBN 978 0 316 09811 3</a>
+ISBN
+9780316098113
+ISBN 978
+0316098113
+</p>
+!! end
+
+!! test
 Magic links: PMID incorrectly converts space to underscore
 !! wikitext
 PMID 1234
@@ -8967,6 +8997,19 @@ Magic links: PMID (bug 65278)
 This is PMID 1234 but thisPMID 1234 is not PMID 1234linked.
 !! html
 <p>This is <a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract">PMID 1234</a> but thisPMID 1234 is not PMID 1234linked.
+</p>
+!! end
+
+!! test
+Magic links: PMID (w/ non-newline whitespace, bug 28950/29025)
+!! wikitext
+PMID &nbsp;&#160;&#0160;&#xA0;&#Xa0; 1234
+PMID
+1234
+!! html
+<p><a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract">PMID 1234</a>
+PMID
+1234
 </p>
 !! end
 
