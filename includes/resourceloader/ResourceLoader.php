@@ -913,6 +913,10 @@ class ResourceLoader {
 				$exceptions .= self::makeComment(
 					'Problematic modules: ' . FormatJson::encode( $states, ResourceLoader::inDebugMode() )
 				);
+				global $wgShowHostnames;
+				if ( $wgShowHostnames ) {
+					$exceptions .= self::makeComment( 'Served by: ' . wfHostname() );
+				}
 			}
 		}
 
