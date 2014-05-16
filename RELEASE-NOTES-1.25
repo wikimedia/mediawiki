@@ -271,6 +271,8 @@ changes to languages because of Bugzilla reports.
 ** In source text of the form '{$A}'{$B}' or `{$A}`{$B}`, where variable A
    does not exist yet variable B does, the latter may not be replaced.
    However, this difference is unlikely to arise in practice.
+* (T67278) RFC, PMID, and ISBN "magic links" must be surrounded by non-word
+  characters on both sides.
 
 == Compatibility ==
 
