@@ -3207,6 +3207,9 @@ class Parser {
 			case 'cascadingsources':
 				$value = CoreParserFunctions::cascadingsources( $this );
 				break;
+			case 'blockexpiry':
+				$value = CoreParserFunctions::blockexpiry( $this );
+				break;
 			default:
 				$ret = null;
 				wfRunHooks(
