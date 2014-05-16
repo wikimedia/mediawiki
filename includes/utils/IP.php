@@ -394,11 +394,24 @@ class IP {
 	public static function toHex( $ip ) {
 		if ( self::isIPv6( $ip ) ) {
 			$n = 'v6-' . self::IPv6ToRawHex( $ip );
-		} else {
-			$n = self::toUnsigned( $ip );
-			if ( $n !== false ) {
-				$n = wfBaseConvert( $n, 10, 16, 8, false );
+		} elseif ( self::isIPv4( $ip ) ) {
+			// Bug 60035: an IP with leading 0's fails in ip2long sometimes (e.g. *.08)
+			$ip = preg_replace( '/(?<=\.)0+(?=[1-9])/', '', $ip );
+			$n = ip2long( $ip );
+			if ( $n < 0 ) {
+				$n += pow( 2, 32 );
+				# On 32-bit platforms (and on Windows), 2^32 does not fit into an int,
+				# so $n becomes a float. We convert it to string instead.
+				if ( is_float( $n ) ) {
+					$n = (string)$n;
+				}
 			}
+			if ( $n !== false ) {
+				# Floating points can handle the conversion; faster than wfBaseConvert()
+				$n = strtoupper( str_pad( base_convert( $n, 10, 16 ), 8, '0', STR_PAD_LEFT ) );
+			}
+		} else {
+			$n = false;
 		}
 
 		return $n;
@@ -421,33 +434,6 @@ class IP {
 		}
 
 		return $r_ip;
-	}
-
-	/**
-	 * Given an IP address in dotted-quad/octet notation, returns an unsigned integer.
-	 * Like ip2long() except that it actually works and has a consistent error return value.
-	 *
-	 * @param string $ip quad dotted IP address.
-	 * @return Mixed: string/int/false
-	 */
-	public static function toUnsigned( $ip ) {
-		if ( self::isIPv6( $ip ) ) {
-			$n = wfBaseConvert( self::IPv6ToRawHex( $ip ), 16, 10 );
-		} else {
-			// Bug 60035: an IP with leading 0's fails in ip2long sometimes (e.g. *.08)
-			$ip = preg_replace( '/(?<=\.)0+(?=[1-9])/', '', $ip );
-			$n = ip2long( $ip );
-			if ( $n < 0 ) {
-				$n += pow( 2, 32 );
-				# On 32-bit platforms (and on Windows), 2^32 does not fit into an int,
-				# so $n becomes a float. We convert it to string instead.
-				if ( is_float( $n ) ) {
-					$n = (string)$n;
-				}
-			}
-		}
-
-		return $n;
 	}
 
 	/**
@@ -608,7 +594,7 @@ class IP {
 				$start = "v6-$start";
 				$end = "v6-$end";
 			}
-	// Explicit range notation...
+		// Explicit range notation...
 		} elseif ( strpos( $range, '-' ) !== false ) {
 			list( $start, $end ) = array_map( 'trim', explode( '-', $range, 2 ) );
 			$start = self::toHex( $start );
