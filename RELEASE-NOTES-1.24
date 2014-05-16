@@ -42,6 +42,9 @@ production.
 * (bug 890) Links in Special:RecentChanges and Special:Watchlist no longer
   follow redirects to their target pages.
 * Parser now dies early if called recursively, instead of producing subtle bugs.
+* (bug 45229) Modules added with addModuleStyles are sorted alphabetically
+  instead of the order you load them. If you relied on this alphabetical sorting
+  for some reason you will need to fix the order you add the modules.
 
 === Web API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of
