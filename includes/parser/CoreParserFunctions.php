@@ -55,6 +55,7 @@ class CoreParserFunctions {
 			'subjectpagenamee', 'pageid', 'revisionid', 'revisionday',
 			'revisionday2', 'revisionmonth', 'revisionmonth1', 'revisionyear',
 			'revisiontimestamp', 'revisionuser', 'cascadingsources',
+			'blockexpiry',
 		);
 		foreach ( $noHashFunctions as $func ) {
 			$parser->setFunctionHook( $func, array( __CLASS__, $func ), SFH_NO_HASH );
@@ -1226,4 +1227,46 @@ class CoreParserFunctions {
 		return '';
 	}
 
+	/**
+	 * ***WARNING: EXPENSIVE***
+	 * Returns the remaining expiry time of any current blocks for a specified user,
+	 * and the empty string otherwise. Implements Extension:InteractiveBlockMessage
+	 * and ideas from bug 25380.
+	 *
+	 * @param Parser $parser
+	 * @param string $title Title to get the user object from
+	 *
+	 * @return bool
+	 * @author Petr Bena <benapetr@gmail.com>, Withoutaname
+	 * @since 1.23
+	 */
+	public static function blockexpiry( $parser, $title = null ) {
+		// If no argument was passed, set $title to the current PAGENAME.
+		if( !$title ) {
+			$title = $parser->getTitle();
+
+			// Check if the magic word was placed in the correct namespace.
+			if( !$title->hasSubjectNamespace( NS_USER ) ) {
+				return null;
+			}
+		}
+
+		if( $parser->incrementExpensiveFunctionCount() ) {
+			// Check if a block object exists for this user. Don't use DB_MASTER.
+			$block = Block::newFromTarget( $title, $title, false );
+			if( isset( $block ) ) {
+				// if user is blocked it's pretty much possible they will be unblocked one day :)
+				// so we enable cache for shorter time only so that we can recheck later
+				// if they weren't already unblocked - if there is a better way to do that, fix me
+				// --Petr Bena
+				$expiry = $block->getExpiry() - wfTimestampNow();
+				if ( !$block->isExpired() ) {
+					$parser->getOutput()->updateCacheExpiry( $expiry );
+				}
+				return $expiry;
+			}
+		}
+
+		return '';
+	}
 }

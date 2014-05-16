@@ -173,6 +173,7 @@ class MagicWord {
 		'numberofadmins',
 		'numberofviews',
 		'cascadingsources',
+		'blockexpiry',
 	);
 
 	/* Array of caching hints for ParserCache */
@@ -216,6 +217,7 @@ class MagicWord {
 		'numberofadmins' => 3600,
 		'numberofviews' => 3600,
 		'numberingroup' => 3600,
+		'blockexpiry' => 3600,
 		);
 
 	static public $mDoubleUnderscoreIDs = array(
