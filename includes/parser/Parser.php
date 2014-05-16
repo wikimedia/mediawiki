@@ -90,6 +90,9 @@ class Parser {
 	const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)([^][<>"\\x00-\\x20\\x7F\p{Zs}]+)
 		\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg)$/Sxu';
 
+	# Regular expression for a non-newline space
+	const SPACE_NOT_NL = '(?:\t|&nbsp;|&\#0*160;|&\#[Xx]0*[Aa]0;|\p{Zs})';
+
 	# State constants for the definition list colon extraction
 	const COLON_STATE_TEXT = 0;
 	const COLON_STATE_TAG = 1;
@@ -1389,18 +1392,22 @@ class Parser {
 		wfProfileIn( __METHOD__ );
 		$prots = wfUrlProtocolsWithoutProtRel();
 		$urlChar = self::EXT_LINK_URL_CLASS;
+		$space = self::SPACE_NOT_NL; #  non-newline space
+		$spdash = "(?:-|$space)"; # a dash or a non-newline space
+		$spaces = "$space++"; # possessive match of 1 or more spaces
 		$text = preg_replace_callback(
 			'!(?:                           # Start cases
 				(<a[ \t\r\n>].*?</a>) |     # m[1]: Skip link text
 				(<.*?>) |                   # m[2]: Skip stuff inside HTML elements' . "
-				(\b(?i:$prots)$urlChar+) |  # m[3]: Free external links" . '
-				\b(?:RFC|PMID)\s+([0-9]+)\b |# m[4]: RFC or PMID, capture number
-				\bISBN\s+(                  # m[5]: ISBN, capture number
-					(?: 97[89] [\ \-]? )?   # optional 13-digit ISBN prefix
-					(?: [0-9]  [\ \-]? ){9} # 9 digits with opt. delimiters
+				(\b(?i:$prots)$urlChar+) |  # m[3]: Free external links
+				\b(?:RFC|PMID) $spaces      # m[4]: RFC or PMID, capture number
+					([0-9]+)\b |
+				\bISBN $spaces (            # m[5]: ISBN, capture number
+					(?: 97[89] $spdash? )?   # optional 13-digit ISBN prefix
+					(?: [0-9]  $spdash? ){9} # 9 digits with opt. delimiters
 					[0-9Xx]                 # check digit
-					)\b
-			)!xu', array( &$this, 'magicLinkCallback' ), $text );
+				)\b
+			)!xu", array( &$this, 'magicLinkCallback' ), $text );
 		wfProfileOut( __METHOD__ );
 		return $text;
 	}
@@ -1441,6 +1448,8 @@ class Parser {
 		} elseif ( isset( $m[5] ) && $m[5] !== '' ) {
 			# ISBN
 			$isbn = $m[5];
+			$space = self::SPACE_NOT_NL; #  non-newline space
+			$isbn = preg_replace( "/$space/", ' ', $isbn );
 			$num = strtr( $isbn, array(
 				'-' => '',
 				' ' => '',
