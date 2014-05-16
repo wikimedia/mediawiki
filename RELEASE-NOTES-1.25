@@ -25,10 +25,12 @@ changes to languages because of Bugzilla reports.
 === Other changes in 1.25 ===
 * The skin autodiscovery mechanism, deprecated in MediaWiki 1.23, has been
   removed. See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery for
-  migration guide for creators and users of custom skins that relied on it. 
+  migration guide for creators and users of custom skins that relied on it.
 * Javascript variable 'wgFileCanRotate' now only available on Special:Upload.
 * (bug 56257) Set site logo url in ResourceLoaderSiteModule instead of inline
   styles in the HTML output.
+* (bug 65403) XML tag highlighting is now only performed for formats
+  "xmlfm" and "wddxfm".
 
 == Compatibility ==
 
