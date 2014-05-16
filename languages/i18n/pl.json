@@ -65,7 +65,8 @@
 			"Pan Cube",
 			"Wedkarski",
 			"아라",
-			"Matik7"
+			"Matik7",
+			"Vengir"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -730,6 +731,7 @@
 	"parser-template-recursion-depth-warning": "Przekroczno limit głębokości rekurencji szablonu ($1)",
 	"language-converter-depth-warning": "Przekroczono ograniczenie ($1) głębokości zagnieżdżenia konwersji językowej",
 	"node-count-exceeded-category": "Strony, gdzie przekroczono liczbę węzłów",
+	"node-count-exceeded-category-desc": "Kategoria dla stron, na których przekroczono liczbę węzłów.",
 	"node-count-exceeded-warning": "Strona przekroczyła liczbę węzłów",
 	"expansion-depth-exceeded-category": "Strony z przekroczoną głębokością rozbudowy",
 	"expansion-depth-exceeded-warning": "Strona przekroczyła głębokość rozbudowy",
@@ -2447,6 +2449,7 @@
 	"newimages-summary": "Na tej stronie specjalnej prezentowane są ostatnio przesłane pliki.",
 	"newimages-legend": "Filtruj",
 	"newimages-label": "Nazwa pliku (lub jej fragment)",
+	"newimages-showbots": "Pokaż pliki przesłane przez boty",
 	"noimages": "Brak plików do pokazania.",
 	"ilsubmit": "Szukaj",
 	"bydate": "według daty",

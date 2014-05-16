@@ -312,6 +312,7 @@
 	"config-install-done": "'''축하합니다!'''\n미디어위키가 성공적으로 설치되었습니다.\n\n설치 프로그램이 <code>LocalSettings.php</code> 파일을 만들었습니다.\n모든 설정이 포함되어 있습니다.\n\n파일을 다운로드하여 위키 설치의 거점에 넣어야 합니다. (index.php와 같은 디렉터리) 다운로드가 자동으로 시작됩니다.\n\n다운로드가 제공되지 않을 경우나 그것을 취소한 경우에는 아래의 링크를 클릭하여 다운로드를 다시 시작할 수 있습니다:\n\n$3\n\n'''참고:''' 이 생성한 설정 파일을 다운로드하지 않고 설치를 끝내면 이 파일은 나중에 사용할 수 없습니다.\n\n완료되었으면 '''[$2 위키에 들어갈 수 있습니다]'''.",
 	"config-download-localsettings": "<code>LocalSettings.php</code> 다운로드",
 	"config-help": "도움말",
+	"config-help-tooltip": "확장하려면 클릭",
 	"config-nofile": "\"$1\" 파일을 찾을 수 없습니다. 이미 삭제되었나요?",
 	"config-extension-link": "당신의 위키가 [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions 확장 기능]을 지원한다는 것을 알고 계십니까?\n\n[//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category 분류별 확장 기능]을 찾아보실 수 있습니다.",
 	"mainpagetext": "'''미디어위키가 성공적으로 설치되었습니다.'''",
