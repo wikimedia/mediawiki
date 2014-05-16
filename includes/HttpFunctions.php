@@ -853,6 +853,7 @@ class PhpHttpRequest extends MWHttpRequest {
 		}
 
 		$this->reqHeaders['Accept'] = "*/*";
+		$this->reqHeaders['Connection'] = 'Close';
 		if ( $this->method == 'POST' ) {
 			// Required for HTTP 1.0 POSTs
 			$this->reqHeaders['Content-Length'] = strlen( $this->postData );
@@ -861,52 +862,47 @@ class PhpHttpRequest extends MWHttpRequest {
 			}
 		}
 
-		$options = array();
+		// Set up PHP stream context
+		$options = array(
+			'http' => array(
+				'method' => $this->method,
+				'header' => implode( "\r\n", $this->getHeaderList() ),
+				'protocol_version' => '1.1',
+				'max_redirects' => $this->followRedirects ? $this->maxRedirects : 0,
+				'ignore_errors' => true,
+				'timeout' => $this->timeout,
+				// Curl options in case curlwrappers are installed
+				'curl_verify_ssl_host' => $this->sslVerifyHost ? 2 : 0,
+				'curl_verify_ssl_peer' => $this->sslVerifyCert,
+			),
+			'ssl' => array(
+				'verify_peer' => $this->sslVerifyCert,
+				'SNI_enabled' => true,
+			),
+		);
+
 		if ( $this->proxy ) {
-			$options['proxy'] = $this->urlToTCP( $this->proxy );
-			$options['request_fulluri'] = true;
+			$options['http']['proxy'] = $this->urlToTCP( $this->proxy );
+			$options['http']['request_fulluri'] = true;
 		}
-
-		if ( !$this->followRedirects ) {
-			$options['max_redirects'] = 0;
-		} else {
-			$options['max_redirects'] = $this->maxRedirects;
-		}
-
-		$options['method'] = $this->method;
-		$options['header'] = implode( "\r\n", $this->getHeaderList() );
-		// Note that at some future point we may want to support
-		// HTTP/1.1, but we'd have to write support for chunking
-		// in version of PHP < 5.3.1
-		$options['protocol_version'] = "1.0";
-
-		// This is how we tell PHP we want to deal with 404s (for example) ourselves.
-		// Only works on 5.2.10+
-		$options['ignore_errors'] = true;
 
 		if ( $this->postData ) {
-			$options['content'] = $this->postData;
+			$options['http']['content'] = $this->postData;
 		}
-
-		$options['timeout'] = $this->timeout;
 
 		if ( $this->sslVerifyHost ) {
-			$options['CN_match'] = $this->parsedUrl['host'];
-		}
-		if ( $this->sslVerifyCert ) {
-			$options['verify_peer'] = true;
+			$options['ssl']['CN_match'] = $this->parsedUrl['host'];
 		}
 
 		if ( is_dir( $this->caInfo ) ) {
-			$options['capath'] = $this->caInfo;
+			$options['ssl']['capath'] = $this->caInfo;
 		} elseif ( is_file( $this->caInfo ) ) {
-			$options['cafile'] = $this->caInfo;
+			$options['ssl']['cafile'] = $this->caInfo;
 		} elseif ( $this->caInfo ) {
 			throw new MWException( "Invalid CA info passed: {$this->caInfo}" );
 		}
 
-		$scheme = $this->parsedUrl['scheme'];
-		$context = stream_context_create( array( "$scheme" => $options ) );
+		$context = stream_context_create( $options );
 
 		$this->headerList = array();
 		$reqCount = 0;
