@@ -926,7 +926,6 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 		if ( count( $this->mTrxIdleCallbacks ) ) { // sanity
 			throw new MWException( "Transaction idle callbacks still pending." );
 		}
-		$this->mOpened = false;
 		if ( $this->mConn ) {
 			if ( $this->trxLevel() ) {
 				if ( !$this->mTrxAutomatic ) {
@@ -937,13 +936,14 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 				$this->commit( __METHOD__, 'flush' );
 			}
 
-			$ret = $this->closeConnection();
+			$closed = $this->closeConnection();
 			$this->mConn = false;
-
-			return $ret;
 		} else {
-			return true;
+			$closed = true;
 		}
+		$this->mOpened = false;
+
+		return $closed;
 	}
 
 	/**
