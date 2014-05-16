@@ -190,10 +190,14 @@ return array(
 	/* jQuery */
 
 	'jquery' => array(
-		'scripts' => array(
-			'resources/lib/jquery/jquery.js',
-			'resources/lib/jquery/jquery.migrate.js',
-		),
+		'scripts' => ( $GLOBALS['wgIncludejQueryMigrate'] ?
+			array(
+				'resources/lib/jquery/jquery.js',
+				'resources/lib/jquery/jquery.migrate.js'
+			) :
+			array(
+				'resources/lib/jquery/jquery.js'
+			) ),
 		'debugRaw' => false,
 		'targets' => array( 'desktop', 'mobile' ),
 	),
