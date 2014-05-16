@@ -277,9 +277,12 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 	protected function formatHTML( $text ) {
 		// Escape everything first for full coverage
 		$text = htmlspecialchars( $text );
-		// encode all comments or tags as safe blue strings
-		$text = str_replace( '&lt;', '<span style="color:blue;">&lt;', $text );
-		$text = str_replace( '&gt;', '&gt;</span>', $text );
+
+		if ( $this->mFormat === 'XML' || $this->mFormat === 'WDDX' ) {
+			// encode all comments or tags as safe blue strings
+			$text = str_replace( '&lt;', '<span style="color:blue;">&lt;', $text );
+			$text = str_replace( '&gt;', '&gt;</span>', $text );
+		}
 
 		// identify requests to api.php
 		$text = preg_replace( '#^(\s*)(api\.php\?[^ <\n\t]+)$#m', '\1<a href="\2">\2</a>', $text );
