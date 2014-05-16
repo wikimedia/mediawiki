@@ -504,7 +504,7 @@ abstract class HTMLFormField {
 		);
 		$divCssClasses = array( "mw-htmlform-field-$fieldType", $this->mClass, $errorClass );
 		if ( $this->mParent->isVForm() ) {
-			$divCssClasses[] = 'mw-ui-vform-div';
+			$divCssClasses[] = 'mw-ui-vform-field';
 		}
 
 		$wrapperAttributes = array(
