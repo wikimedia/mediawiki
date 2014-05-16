@@ -1024,6 +1024,7 @@ return array(
 	),
 	'mediawiki.action.history' => array(
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.history.js',
+		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.css',
 		'group' => 'mediawiki.action.history',
 	),
 	'mediawiki.action.history.diff' => array(
