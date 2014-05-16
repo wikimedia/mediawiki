@@ -23,3 +23,36 @@
 @import "components/utilities";
 @import "components/vector/forms";
 @import "components/vector/containers";
+@import "mixins/grid";
+
+
+//Example to test the Grid System:
+
+#userloginForm {
+	.mw-ui-grid;
+}
+
+// Responsive layout: Form width is adjusted for different screen sizes:
+
+.mw-ui-vform {
+	.mw-ui-one-whole(@palm);
+	.mw-ui-two-thirds(@lap);
+	.mw-ui-one-third;
+}
+
+//Responsive typography: On small screens, font becomes bigger.
+
+#content {
+	@media @palm {
+		font-size: 1.6em;
+		margin-left: 0 !important;
+	}
+	@media @lap {
+		font-size: 1.2em;
+	}
+}
+
+//Responsive visibility:  On small screens, the  sidebar is hidden:
+#mw-navigation {
+	.mw-ui-hidden(@palm);
+}
