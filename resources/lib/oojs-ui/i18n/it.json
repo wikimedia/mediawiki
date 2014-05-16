@@ -11,12 +11,17 @@
 			"Gianfranco",
 			"Minerva Titani",
 			"Raoli",
-			"Una giornata uggiosa '94"
+			"Una giornata uggiosa '94",
+			"Ontsed"
 		]
 	},
 	"ooui-dialog-action-close": "Chiudi",
 	"ooui-outline-control-move-down": "Sposta in basso",
 	"ooui-outline-control-move-up": "Sposta in alto",
 	"ooui-outline-control-remove": "Rimuovi elemento",
-	"ooui-toolbar-more": "Altro"
+	"ooui-toolbar-more": "Altro",
+	"ooui-dialog-confirm-title": "Conferma",
+	"ooui-dialog-confirm-default-prompt": "Sei sicuro?",
+	"ooui-dialog-confirm-default-ok": "OK",
+	"ooui-dialog-confirm-default-cancel": "Annulla"
 }

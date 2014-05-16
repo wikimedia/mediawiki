@@ -17,5 +17,9 @@
 	"ooui-outline-control-move-down": "Přesunout položku dolů",
 	"ooui-outline-control-move-up": "Přesunout položku nahoru",
 	"ooui-outline-control-remove": "Odstranit položku",
-	"ooui-toolbar-more": "Další"
+	"ooui-toolbar-more": "Další",
+	"ooui-dialog-confirm-title": "Potvrzení",
+	"ooui-dialog-confirm-default-prompt": "Opravdu?",
+	"ooui-dialog-confirm-default-ok": "OK",
+	"ooui-dialog-confirm-default-cancel": "Storno"
 }
