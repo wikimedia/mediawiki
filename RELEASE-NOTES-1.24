@@ -35,7 +35,10 @@ production.
 * (bug 49156) Added the mediawiki.cookie ResourceLoader module, which wraps
   jQuery.cookie so that getting/setting a cookie is syntactically and functionally
   similar to using the WebRequest#getCookie/WebResponse#setcookie methods.
-* (bug 44740) jQuery upgraded from 1.8.3 to 1.11.1.
+* (bug 44740) jQuery upgraded from 1.8.3 to 1.11.1. A new configuration option,
+  $wgIncludejQueryMigrate, also loads the jQuery Migrate hack to let extensions
+  and gadgets use the long-deprecated functions; this option by default will be
+  turned off, and will be removed in 1.25.
 * Changes to content typography (fonts, etc.). See
   https://www.mediawiki.org/wiki/Typography_refresh for further information.
 * WikitextContent will now render redirects with the expected "redirect"
