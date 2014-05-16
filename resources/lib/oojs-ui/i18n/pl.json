@@ -13,12 +13,16 @@
 			"WTM",
 			"Woytecr",
 			"Wpedzich",
-			"Jacenty359"
+			"Jacenty359",
+			"Matik7"
 		]
 	},
 	"ooui-dialog-action-close": "Zamknij",
 	"ooui-outline-control-move-down": "Przenieś niżej",
 	"ooui-outline-control-move-up": "Przenieś wyżej",
 	"ooui-outline-control-remove": "Usuń element",
-	"ooui-toolbar-more": "Więcej"
+	"ooui-toolbar-more": "Więcej",
+	"ooui-dialog-confirm-title": "Potwierdź",
+	"ooui-dialog-confirm-default-prompt": "Jesteś pewien?",
+	"ooui-dialog-confirm-default-cancel": "Anuluj"
 }

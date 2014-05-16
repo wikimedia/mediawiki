@@ -2,12 +2,16 @@
 	"@metadata": {
 		"authors": [
 			"Anakmalaysia",
-			"Aurora"
+			"Aurora",
+			"Pizza1016"
 		]
 	},
 	"ooui-dialog-action-close": "Tutup",
 	"ooui-outline-control-move-down": "Alihkan perkara ke bawah",
 	"ooui-outline-control-move-up": "Alihkan perkara ke atas",
 	"ooui-outline-control-remove": "Buang perkara",
-	"ooui-toolbar-more": "Selebihnya"
+	"ooui-toolbar-more": "Selebihnya",
+	"ooui-dialog-confirm-title": "Mengesahkan",
+	"ooui-dialog-confirm-default-prompt": "Adakah anda pasti?",
+	"ooui-dialog-confirm-default-cancel": "Batal"
 }

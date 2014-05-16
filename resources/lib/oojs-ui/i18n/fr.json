@@ -32,5 +32,9 @@
 	"ooui-outline-control-move-down": "Faire descendre l’élément",
 	"ooui-outline-control-move-up": "Faire monter l’élément",
 	"ooui-outline-control-remove": "Supprimer l’élément",
-	"ooui-toolbar-more": "Plus"
+	"ooui-toolbar-more": "Plus",
+	"ooui-dialog-confirm-title": "Confirmer",
+	"ooui-dialog-confirm-default-prompt": "Êtes-vous sûr ?",
+	"ooui-dialog-confirm-default-ok": "OK",
+	"ooui-dialog-confirm-default-cancel": "Annuler"
 }
