@@ -513,7 +513,14 @@ class OutputPage extends ContextSource {
 	 * @return array Array of module names
 	 */
 	public function getModules( $filter = false, $position = null, $param = 'mModules' ) {
-		$modules = array_values( array_unique( $this->$param ) );
+		// Make sure modules are unique without using array_unique as it sorts modules causing
+		// the load order of things using addModuleStyles to be incorrect triggering bug 45229.
+		$modules = array();
+		foreach ( $this->$param as $module ) {
+			$modules[$module] = true;
+		}
+		$modules = array_keys($modules);
+
 		return $filter
 			? $this->filterModules( $modules, $position )
 			: $modules;
