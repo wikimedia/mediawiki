@@ -4185,6 +4185,21 @@ http://example.com/url_with_(brackets)
 !! end
 
 !! test
+External links: No preceding word characters allowed (bug 65278)
+!! wikitext
+NOPEhttp://example.com
+N0http://example.com
+ok:http://example.com
+ok-http://example.com
+!! html
+<p>NOPEhttp://example.com
+N0http://example.com
+ok:<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>
+ok-<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>
+</p>
+!! end
+
+!! test
 External image
 !! wikitext
 External image: http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png
@@ -8825,6 +8840,15 @@ RFC 822
 !! end
 
 !! test
+Magic links: RFC (bug 65278)
+!! wikitext
+This is RFC 822 but thisRFC 822 is not RFC 822linked.
+!! html
+<p>This is <a class="external mw-magiclink-rfc" rel="nofollow" href="//tools.ietf.org/html/rfc822">RFC 822</a> but thisRFC 822 is not RFC 822linked.
+</p>
+!! end
+
+!! test
 Magic links: ISBN (bug 1937)
 !! wikitext
 ISBN 0-306-40615-2
@@ -8834,11 +8858,29 @@ ISBN 0-306-40615-2
 !! end
 
 !! test
+Magic links: ISBN (bug 65278)
+!! wikitext
+This is ISBN 978-0-316-09811-3 but thisISBN 978-0-316-09811-3 is not ISBN 978-0-316-09811-3linked.
+!! html
+<p>This is <a href="/wiki/Special:BookSources/9780316098113" class="internal mw-magiclink-isbn">ISBN 978-0-316-09811-3</a> but thisISBN 978-0-316-09811-3 is not ISBN 978-0-316-09811-3linked.
+</p>
+!! end
+
+!! test
 Magic links: PMID incorrectly converts space to underscore
 !! wikitext
 PMID 1234
 !! html
 <p><a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract">PMID 1234</a>
+</p>
+!! end
+
+!! test
+Magic links: PMID (bug 65278)
+!! wikitext
+This is PMID 1234 but thisPMID 1234 is not PMID 1234linked.
+!! html
+<p>This is <a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract">PMID 1234</a> but thisPMID 1234 is not PMID 1234linked.
 </p>
 !! end
 
