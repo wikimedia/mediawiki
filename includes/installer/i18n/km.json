@@ -3,7 +3,8 @@
 		"authors": [
 			"Thearith",
 			"គីមស៊្រុន",
-			"Sovichet"
+			"Sovichet",
+			"Seb35"
 		]
 	},
 	"config-desc": "កម្មវិធី​ដំឡើង​សម្រាប់ MediaWiki",
@@ -27,5 +28,5 @@
 	"config-page-restart": "តំលើងឡើងវិញ",
 	"config-help": "ជំនួយ",
 	"mainpagetext": "'''មេឌាវិគីត្រូវបានដំឡើងសំរេចហើយ​។'''",
-	"mainpagedocfooter": "សូមពិនិត្យមើល [//meta.wikimedia.org/wiki/ជំនួយ​៖ ខ្លឹមសារ​ណែនាំ​ប្រើប្រាស់]សម្រាប់​ព័ត៌មាន​​បន្ថែមអំពី​ការប្រើប្រាស់សូហ្វវែរវិគី​។\n\n== ការចាប់ផ្ដើម ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings បញ្ជីការកំណត់នានា]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/km សំណួរញឹកញាប់​ក្នុងមេឌាវិគី]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce បញ្ជី​អ៊ីមែលផ្សព្វផ្សាយ​របស់​មេឌាវិគី]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources ការប្រែសម្រួលមេឌាវិគីសម្រាប់ភាសារបស់អ្នក]"
+	"mainpagedocfooter": "សូមពិនិត្យមើល [//meta.wikimedia.org/wiki/Help:Contents ខ្លឹមសារ​ណែនាំ​ប្រើប្រាស់]សម្រាប់​ព័ត៌មាន​​បន្ថែមអំពី​ការប្រើប្រាស់សូហ្វវែរវិគី​។\n\n== ការចាប់ផ្ដើម ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings បញ្ជីការកំណត់នានា]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/km សំណួរញឹកញាប់​ក្នុងមេឌាវិគី]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce បញ្ជី​អ៊ីមែលផ្សព្វផ្សាយ​របស់​មេឌាវិគី]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources ការប្រែសម្រួលមេឌាវិគីសម្រាប់ភាសារបស់អ្នក]"
 }

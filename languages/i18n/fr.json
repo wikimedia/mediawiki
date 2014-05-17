@@ -1659,7 +1659,7 @@
 	"listusers-creationsort": "Trier par date de création",
 	"listusers-desc": "Trier en ordre descendant",
 	"usereditcount": "$1 modification{{PLURAL:$1||s}}",
-	"usercreated": "{{GENDER:$3|Créé}} le $1 à $2",
+	"usercreated": "Créé le $1 à $2",
 	"newpages": "Nouvelles pages",
 	"newpages-username": "Nom d'utilisateur :",
 	"ancientpages": "Pages les plus anciennement modifiées",

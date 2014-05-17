@@ -6,7 +6,8 @@
 			"Kenrick95",
 			"Reedy",
 			"아라",
-			"C5st4wr6ch"
+			"C5st4wr6ch",
+			"Seb35"
 		]
 	},
 	"config-desc": "Penginstal untuk MediaWiki",
@@ -301,5 +302,5 @@
 	"config-help": "bantuan",
 	"config-nofile": "Berkas \"$1\" tidak dapat ditemukan. Mungkin sudah dihapus?",
 	"mainpagetext": "'''MediaWiki telah terpasang dengan sukses'''.",
-	"mainpagedocfooter": "Silakan baca [//www.mediawiki.org/wiki/Help:Contents/id Panduan Pengguna] untuk cara penggunaan perangkat lunak wiki ini.\n\n== Memulai penggunaan ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/id Daftar pengaturan konfigurasi]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/id Daftar pertanyaan yang sering diajukan mengenai MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Terjemahkan MediaWiki ke bahasa Anda]"
+	"mainpagedocfooter": "Silakan baca [//www.mediawiki.org/wiki/Help:Contents Panduan Pengguna] untuk cara penggunaan perangkat lunak wiki ini.\n\n== Memulai penggunaan ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/id Daftar pengaturan konfigurasi]\n* [//www.mediawiki.org/wiki/Manual:FAQ/id Daftar pertanyaan yang sering diajukan mengenai MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Terjemahkan MediaWiki ke bahasa Anda]"
 }

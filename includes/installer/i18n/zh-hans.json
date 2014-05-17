@@ -17,7 +17,8 @@
 			"Hudafu",
 			"Liuxinyu970226",
 			"Qiyue2001",
-			"Kuailong"
+			"Kuailong",
+			"Zjzengdongyang"
 		]
 	},
 	"config-desc": "MediaWiki安装程序",
@@ -323,6 +324,7 @@
 	"config-install-done": "'''恭喜！'''\n您已经成功地安装了MediaWiki。\n\n安装程序已经生成了<code>LocalSettings.php</code>文件，其中包含了您所有的配置。\n\n您需要下载该文件，并将其放在您wiki的根目录（index.php的同级目录）中。稍后下载将自动开始。\n\n如果浏览器没有提示您下载，或者您取消了下载，您可以点击下面的链接重新开始下载：\n\n$3\n\n'''注意'''：如果您现在不完成本步骤，而是没有下载便退出了安装过程，此后您将无法获得自动生成的配置文件。\n\n当本步骤完成后，您可以 '''[$2 进入您的wiki]'''。",
 	"config-download-localsettings": "下载<code>LocalSettings.php</code>",
 	"config-help": "帮助",
+	"config-help-tooltip": "单击展开",
 	"config-nofile": "找不到文件“$1”。它是否已被删除？",
 	"config-extension-link": "您是否知道您的wiki支持[//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions 拓展]？\n您可浏览[//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category 拓展分类]。",
 	"mainpagetext": "'''已成功安装MediaWiki。'''",

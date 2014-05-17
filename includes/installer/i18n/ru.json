@@ -15,7 +15,9 @@
 			"Александр Сигачёв",
 			"Сrower",
 			"아라",
-			"Meshkov.a"
+			"Meshkov.a",
+			"Eroha",
+			"Seb35"
 		]
 	},
 	"config-desc": "Инсталлятор MediaWiki",
@@ -133,7 +135,7 @@
 	"config-db-schema-help": "Эта схема обычно работает хорошо.\nИзменяйте её только если знаете, что Вам это нужно.",
 	"config-pg-test-error": "Не удаётся подключиться к базе данных <strong>$1</strong>: $2",
 	"config-sqlite-dir": "Директория данных SQLite:",
-	"config-sqlite-dir-help": "SQLite хранит все данные в одном файле.\n\nДиректория, которую вы должны указать, должна быть доступна для записи веб-сервером во время установки.\n\nОна '''не должна''' быть доступна через Интернет, поэтому не должна совпадать с той, где хранятся PHP файлы.\n\nУстановщик запишет в эту директорию файл <code>.htaccess</code>, но если это не сработает, кто-нибудь может получить доступ ко всей базе данных.\nВ этой базе находится в том числе и информация о пользователях (адреса электронной почты, хэши паролей), а также удалённые страницы и другие секретные данные о вики.\n\nПо возможности, расположите базу данных где-нибудь в стороне, например, в <code>/var/lib/mediawiki/yourwiki</code>.",
+	"config-sqlite-dir-help": "SQLite хранит все данные в одном файле.\n\nДиректория, указываемая вами, должна быть доступна для записи веб-сервером во время установки.\n\nОна '''не должна''' быть доступна через Интернет, поэтому не должна совпадать с той, где хранятся PHP файлы.\n\nУстановщик запишет в эту директорию файл <code>.htaccess</code>, но если это не сработает, кто-нибудь может получить доступ ко всей базе данных.\nВ этой базе находится в том числе и информация о пользователях (адреса электронной почты, хэши паролей), а также удалённые страницы и другие секретные данные о вики.\n\nПо возможности, расположите базу данных где-нибудь в стороне, например, в <code>/var/lib/mediawiki/yourwiki</code>.",
 	"config-oracle-def-ts": "Пространство таблиц по умолчанию:",
 	"config-oracle-temp-ts": "Временное пространство таблиц:",
 	"config-type-mysql": "MySQL (или совместимая)",
@@ -328,5 +330,5 @@
 	"config-nofile": "Файл \"$1\" не удается найти. Он был удален?",
 	"config-extension-link": "Знаете ли вы, что ваш вики-проект поддерживает [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions расширения]?\n\nВы можете просмотреть [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category расширения по категориям] или [//www.mediawiki.org/wiki/Extension_Matrix матрицу расширений], чтобы увидеть их полный список.",
 	"mainpagetext": "'''Вики-движок «MediaWiki» успешно установлен.'''",
-	"mainpagedocfooter": "Информацию по работе с этой вики можно найти в [//meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 справочном руководстве].\n\n== Некоторые полезные ресурсы ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Список возможных настроек];\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Часто задаваемые вопросы и ответы по MediaWiki];\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка уведомлений о выходе новых версий MediaWiki].\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Перевод MediaWiki на свой язык]"
+	"mainpagedocfooter": "Информацию по работе с этой вики можно найти в [//meta.wikimedia.org/wiki/Help:Contents/ru справочном руководстве].\n\n== Некоторые полезные ресурсы ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Список возможных настроек];\n* [//www.mediawiki.org/wiki/Manual:FAQ/ru Часто задаваемые вопросы и ответы по MediaWiki];\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка уведомлений о выходе новых версий MediaWiki].\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Перевод MediaWiki на свой язык]"
 }

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Siebrand"
+			"Siebrand",
+			"Seb35"
 		]
 	},
 	"config-localsettings-badkey": "De sleutel die je hebt opgegeven is onjuist",
@@ -74,5 +75,5 @@
 	"config-pg-not-in-role": "De gebruiker die je hebt opgegeven voor de webgebruiker bestaat al.\nDe gebruiker die je hebt opgegeven voor installatie is geen superuser en geen lid van de rol van de webgebruiker, en kan het dus geen objecten aanmaken die van de webgebruiker zijn.\n\nMediaWiki vereist momenteel dat de tabellen van de webgebruiker zijn. Geef een andere webgebruikersnaam op, of klik op \"terug\" en geef een gebruiker op die voldoende installatierechten heeft.",
 	"config-install-user-missing-create": "De opgegeven gebruiker \"$1\" bestaat niet.\nKlik op \"registreren\" onderaan als je de gebruiker wilt aanmaken.",
 	"config-install-done": "'''Gefeliciteerd!'''\nJe hebt MediaWiki met geïnstalleerd.\n\nHet installatieprogramma heeft het bestand <code>LocalSettings.php</code> aangemaakt.\nDit bevat al je instellingen.\n\nJe moet het bestand downloaden en in de hoofdmap van uw wikiinstallatie plaatsten; in dezelfde map als index.php.\nDe download moet je automatisch zijn aangeboden.\n\nAls de download niet is aangeboden of als je de download hebt geannuleerd, dan kan je de download opnieuw starten door op de onderstaande koppeling te klikken:\n\n$3\n\n'''Let op''': als je dit niet nu doet, dan het is bestand als u later de installatieprocedure afsluit zonder het bestand te downloaden niet meer beschikbaar.\n\nNa het plaatsen van het bestand met instellingen kan je '''[$2 je wiki betreden]'''.",
-	"mainpagedocfooter": "Raadpleeg de [//meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.\n\n== Meer hulp over MediaWiki ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lijst met instellingen]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Veelgestelde vragen (FAQ)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Maak MediaWiki beschikbaar in jouw taal]"
+	"mainpagedocfooter": "Raadpleeg de [//meta.wikimedia.org/wiki/Help:Contents Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.\n\n== Meer hulp over MediaWiki ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lijst met instellingen]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Veelgestelde vragen (FAQ)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Maak MediaWiki beschikbaar in jouw taal]"
 }

@@ -10,7 +10,8 @@
 			"아라",
 			"Arent",
 			"JurgenNL",
-			"Southparkfan"
+			"Southparkfan",
+			"Seb35"
 		]
 	},
 	"config-desc": "Het installatieprogramma voor MediaWiki",
@@ -322,5 +323,5 @@
 	"config-nofile": "Het bestand \"$1\" is niet gevonden. Is het verwijderd?",
 	"config-extension-link": "Weet u dat u [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions uitbreidingen] kunt gebruiken voor uw wiki?\nU kunt [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category uitbreidingen op categorie] bekijken of ga naar de [//www.mediawiki.org/wiki/Extension_Matrix uitbreidingenmatrix] om de volledige lijst met uitbreidingen te bekijken.",
 	"mainpagetext": "'''De installatie van MediaWiki is geslaagd.'''",
-	"mainpagedocfooter": "Raadpleeg de [//meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.\n\n== Meer hulp over MediaWiki ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lijst met instellingen]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Veelgestelde vragen (FAQ)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Maak MediaWiki beschikbaar in uw taal]"
+	"mainpagedocfooter": "Raadpleeg de [//meta.wikimedia.org/wiki/Help:Contents Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.\n\n== Meer hulp over MediaWiki ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lijst met instellingen]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Veelgestelde vragen (FAQ)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Maak MediaWiki beschikbaar in uw taal]"
 }

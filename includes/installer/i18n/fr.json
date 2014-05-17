@@ -20,7 +20,8 @@
 			"아라",
 			"Maxim21",
 			"Wladek92",
-			"Scoopfinder"
+			"Scoopfinder",
+			"Seb35"
 		]
 	},
 	"config-desc": "Le programme d’installation de MediaWiki",
@@ -333,5 +334,5 @@
 	"config-nofile": "Le fichier « $1 » est introuvable. A-t-il été supprimé ?",
 	"config-extension-link": "Saviez-vous que votre wiki supporte [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions des extensions] ?\n\nVous pouvez consulter les [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions par catégorie].",
 	"mainpagetext": "<strong>MediaWiki a été installé avec succès.</strong>",
-	"mainpagedocfooter": "Consultez le [//meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel de wiki.\n\n== Pour démarrer ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste des paramètres de configuration]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/fr FAQ sur MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste de discussion sur les distributions de MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Adaptez MediaWiki dans votre langue]"
+	"mainpagedocfooter": "Consultez le [//meta.wikimedia.org/wiki/Help:Contents/fr Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel de wiki.\n\n== Pour démarrer ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste des paramètres de configuration]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/fr Questions courantes sur MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste de discussion sur les distributions de MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Adaptez MediaWiki dans votre langue]"
 }

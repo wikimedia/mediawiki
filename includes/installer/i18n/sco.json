@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"AmaryllisGardener",
-			"John Reid"
+			"John Reid",
+			"Seb35"
 		]
 	},
 	"config-desc": "The installer fer MediaWiki",
@@ -310,5 +311,5 @@
 	"config-nofile": "File \"$1\" coudna be foond. Haes it been delytit?",
 	"config-extension-link": "Did ye ken that yer wiki supports [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensions]?\n\nYe can brouse [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions bi categorie] or the [//www.mediawiki.org/wiki/Extension_Matrix Extension Matrix] tae see the full leet o extensions.",
 	"mainpagetext": "<strong>MediaWiki haes been installit wi speed.</strong>",
-	"mainpagedocfooter": "Consult the [//meta.wikimedia.org/wiki/Help:Contents Uiser's Guide] fer information oan uisin the wiki saffware.\n\n== Gettin stairtit ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Confeeguration settins leet]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailin leet]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki fer yer leid]"
+	"mainpagedocfooter": "Consult the [//meta.wikimedia.org/wiki/Help:Contents/sco Uiser's Guide] fer information oan uisin the wiki saffware.\n\n== Gettin stairtit ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Confeeguration settins leet]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailin leet]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki fer yer leid]"
 }
