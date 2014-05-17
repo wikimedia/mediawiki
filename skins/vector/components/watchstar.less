@@ -34,6 +34,8 @@
 #ca-watch.icon a.loading {
 	.background-image-svg('images/watch-icon-loading.svg', 'images/watch-icon-loading.png');
 	.rotation(700ms);
+	/* Suppress the hilarious rotating focus outline on Firefox */
+	outline: none;
 	background-position: 50% 60%;
 	-webkit-transform-origin: 50% 57%;
 	transform-origin: 50% 57%;
