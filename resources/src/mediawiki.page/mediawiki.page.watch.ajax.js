@@ -57,13 +57,10 @@
 			$li.prop( 'id', 'ca-' + action );
 		}
 
-		// Special case for vector icon
-		if ( $li.hasClass( 'icon' ) ) {
-			if ( state === 'loading' ) {
-				$link.addClass( 'loading' );
-			} else {
-				$link.removeClass( 'loading' );
-			}
+		if ( state === 'loading' ) {
+			$link.addClass( 'loading' );
+		} else {
+			$link.removeClass( 'loading' );
 		}
 	}
 
@@ -132,6 +129,10 @@
 			e.stopPropagation();
 
 			$link = $( this );
+
+			if ( $link.hasClass( 'loading' ) ) {
+				return;
+			}
 
 			updateWatchLink( $link, action, 'loading' );
 
