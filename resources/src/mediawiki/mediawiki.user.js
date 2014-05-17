@@ -89,14 +89,6 @@
 		},
 
 		/**
-		 * @inheritdoc #getName
-		 * @deprecated since 1.20 Use #getName instead
-		 */
-		name: function () {
-			return user.getName();
-		},
-
-		/**
 		 * Get date user registered, if available
 		 *
 		 * @return {Date|boolean|null} Date user registered, or false for anonymous users, or
@@ -122,14 +114,6 @@
 		 */
 		isAnon: function () {
 			return user.getName() === null;
-		},
-
-		/**
-		 * @inheritdoc #isAnon
-		 * @deprecated since 1.20 Use #isAnon instead
-		 */
-		anonymous: function () {
-			return user.isAnon();
 		},
 
 		/**
@@ -257,5 +241,17 @@
 			return getUserInfo( 'rights', callback );
 		}
 	};
+
+	/**
+	 * @inheritdoc #getName
+	 * @deprecated since 1.20 Use #getName instead
+	 */
+	mw.log.deprecate( user, 'name', user.getName );
+
+	/**
+	 * @inheritdoc #isAnon
+	 * @deprecated since 1.20 Use #isAnon instead
+	 */
+	mw.log.deprecate( user, 'anonymous', user.isAnon );
 
 }( mediaWiki, jQuery ) );
