@@ -46,12 +46,14 @@ td.diff-marker {
 	text-align: right;
 	font-weight: bold;
 	font-size: 1.25em;
+	line-height: 1.2;
 }
 
 td.diff-addedline,
 td.diff-deletedline,
 td.diff-context {
 	font-size: 88%;
+	line-height: 1.6;
 	vertical-align: top;
 	white-space: -moz-pre-wrap;
 	white-space: pre-wrap;
