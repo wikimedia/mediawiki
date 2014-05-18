@@ -918,7 +918,7 @@ class EditPage {
 			}
 		// For existing pages, get text based on "undo" or section parameters.
 		} else {
-			if ( $this->section != '' ) {
+			if ( $this->section && $this->section != 'new' ) {
 				// Get section edit text (returns $def_text for invalid sections)
 				$orig = $this->getOriginalContent( $wgUser );
 				$content = $orig ? $orig->getSection( $this->section ) : null;
