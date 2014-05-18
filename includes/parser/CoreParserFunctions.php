@@ -1219,9 +1219,9 @@ class CoreParserFunctions {
 			$names = array();
 			$sources = $titleObject->getCascadeProtectionSources();
 			foreach ( $sources[0] as $sourceTitle ) {
-				$names[] = $sourceTitle->getPrefixedText();
+				$names[] = "* " . $sourceTitle->getPrefixedText();
 			}
-			return implode( $names, '|' );
+			return implode( $names, '\n' );
 		}
 		return '';
 	}
