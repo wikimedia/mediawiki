@@ -12,17 +12,11 @@
         return (typeof thing == 'function') ? (thing.call(ctx)) : thing;
     }
 
-    function fixTitle($ele) {
-        if ($ele.attr('title') || typeof($ele.attr('original-title')) != 'string') {
-            $ele.attr('original-title', $ele.attr('title') || '').removeAttr('title');
-        }
-    }
-
     function Tipsy(element, options) {
         this.$element = $(element);
         this.options = options;
         this.enabled = true;
-        fixTitle(this.$element);
+        this.fixTitle();
     }
 
     Tipsy.prototype = {
@@ -104,9 +98,17 @@
             }
         },
 
+
+        fixTitle: function() {
+            var $e = this.$element;
+            if ($e.attr('title') || typeof($e.attr('original-title')) != 'string') {
+                $e.attr('original-title', $e.attr('title') || '').removeAttr('title');
+            }
+        },
+
         getTitle: function() {
             var title, $e = this.$element, o = this.options;
-            fixTitle($e);
+            this.fixTitle();
             if (typeof o.title == 'string') {
                 title = $e.attr(o.title == 'title' ? 'original-title' : o.title);
             } else if (typeof o.title == 'function') {
@@ -118,7 +120,7 @@
 
         tip: function() {
             if (!this.$tip) {
-                this.$tip = $('<div class="tipsy"></div>').html('<div class="tipsy-arrow"></div><div class="tipsy-inner"/></div>');
+                this.$tip = $('<div class="tipsy"></div>').html('<div class="tipsy-arrow"></div><div class="tipsy-inner"></div>');
             }
             return this.$tip;
         },
@@ -141,7 +143,9 @@
         if (options === true) {
             return this.data('tipsy');
         } else if (typeof options == 'string') {
-            return this.data('tipsy')[options]();
+            var tipsy = this.data('tipsy');
+            if (tipsy) tipsy[options]();
+            return this;
         }
 
         options = $.extend({}, $.fn.tipsy.defaults, options);
@@ -161,6 +165,7 @@
             if (options.delayIn == 0) {
                 tipsy.show();
             } else {
+                tipsy.fixTitle();
                 setTimeout(function() { if (tipsy.hoverState == 'in') tipsy.show(); }, options.delayIn);
             }
         };
