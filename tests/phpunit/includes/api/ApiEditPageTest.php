@@ -274,6 +274,100 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertEquals( "== header ==\n\ntest\n\n== header ==\n\ntest", $text );
 	}
 
+	/**
+	 * Ensure we can edit through a redirect, if adding a section
+	 */
+	public function testEdit_redirect() {
+		static $count = 0;
+		$count++;
+
+		// assume NS_HELP defaults to wikitext
+		$name = "Help:ApiEditPageTest_testEdit_redirect_$count";
+		$title = Title::newFromText( $name );
+		$page = WikiPage::factory( $title );
+
+		$rname = "Help:ApiEditPageTest_testEdit_redirect_r$count";
+		$rtitle = Title::newFromText( $rname );
+		$rpage = WikiPage::factory( $rtitle );
+
+		// base edit for content
+		$page->doEditContent( new WikitextContent( "Foo" ),
+			"testing 1", EDIT_NEW, false, self::$users['sysop']->user );
+		$this->forceRevisionDate( $page, '20120101000000' );
+		$baseTime = $page->getRevision()->getTimestamp();
+
+		// base edit for redirect
+		$rpage->doEditContent( new WikitextContent( "#REDIRECT [[$name]]" ),
+			"testing 1", EDIT_NEW, false, self::$users['sysop']->user );
+		$this->forceRevisionDate( $rpage, '20120101000000' );
+
+		// conflicting edit to redirect
+		$rpage->doEditContent( new WikitextContent( "#REDIRECT [[$name]]\n\n[[Category:Test]]" ),
+			"testing 2", EDIT_UPDATE, $page->getLatest(), self::$users['uploader']->user );
+		$this->forceRevisionDate( $rpage, '20120101020202' );
+
+		// try to save edit, following the redirect
+		list( $re, , ) = $this->doApiRequestWithToken( array(
+			'action' => 'edit',
+			'title' => $rname,
+			'text' => 'nix bar!',
+			'basetimestamp' => $baseTime,
+			'section' => 'new',
+			'redirect' => true,
+		), null, self::$users['sysop']->user );
+
+		$this->assertEquals( 'Success', $re['edit']['result'],
+			"no problems expected when following redirect" );
+	}
+
+	/**
+	 * Ensure we cannot edit through a redirect, if attempting to overwrite content
+	 */
+	public function testEdit_redirectText() {
+		static $count = 0;
+		$count++;
+
+		// assume NS_HELP defaults to wikitext
+		$name = "Help:ApiEditPageTest_testEdit_redirectText_$count";
+		$title = Title::newFromText( $name );
+		$page = WikiPage::factory( $title );
+
+		$rname = "Help:ApiEditPageTest_testEdit_redirectText_r$count";
+		$rtitle = Title::newFromText( $rname );
+		$rpage = WikiPage::factory( $rtitle );
+
+		// base edit for content
+		$page->doEditContent( new WikitextContent( "Foo" ),
+			"testing 1", EDIT_NEW, false, self::$users['sysop']->user );
+		$this->forceRevisionDate( $page, '20120101000000' );
+		$baseTime = $page->getRevision()->getTimestamp();
+
+		// base edit for redirect
+		$rpage->doEditContent( new WikitextContent( "#REDIRECT [[$name]]" ),
+			"testing 1", EDIT_NEW, false, self::$users['sysop']->user );
+		$this->forceRevisionDate( $rpage, '20120101000000' );
+
+		// conflicting edit to redirect
+		$rpage->doEditContent( new WikitextContent( "#REDIRECT [[$name]]\n\n[[Category:Test]]" ),
+			"testing 2", EDIT_UPDATE, $page->getLatest(), self::$users['uploader']->user );
+		$this->forceRevisionDate( $rpage, '20120101020202' );
+
+		// try to save edit, following the redirect but without creating a section
+		try {
+			$this->doApiRequestWithToken( array(
+				'action' => 'edit',
+				'title' => $rname,
+				'text' => 'nix bar!',
+				'basetimestamp' => $baseTime,
+				'redirect' => true,
+			), null, self::$users['sysop']->user );
+
+			$this->fail( 'redirect-appendonly error expected' );
+		} catch ( UsageException $ex ) {
+			$this->assertEquals( 'redirect-appendonly', $ex->getCodeString() );
+		}
+	}
+
 	public function testEditConflict() {
 		static $count = 0;
 		$count++;
@@ -310,60 +404,41 @@ class ApiEditPageTest extends ApiTestCase {
 		}
 	}
 
-	public function testEditConflict_redirect() {
+	/**
+	 * Ensure that editing using section=new will prevent simple conflicts
+	 */
+	public function testEditConflict_newSection() {
 		static $count = 0;
 		$count++;
 
 		// assume NS_HELP defaults to wikitext
-		$name = "Help:ApiEditPageTest_testEditConflict_redirect_$count";
+		$name = "Help:ApiEditPageTest_testEditConflict_newSection_$count";
 		$title = Title::newFromText( $name );
+
 		$page = WikiPage::factory( $title );
 
-		$rname = "Help:ApiEditPageTest_testEditConflict_redirect_r$count";
-		$rtitle = Title::newFromText( $rname );
-		$rpage = WikiPage::factory( $rtitle );
-
-		// base edit for content
+		// base edit
 		$page->doEditContent( new WikitextContent( "Foo" ),
 			"testing 1", EDIT_NEW, false, self::$users['sysop']->user );
 		$this->forceRevisionDate( $page, '20120101000000' );
 		$baseTime = $page->getRevision()->getTimestamp();
 
-		// base edit for redirect
-		$rpage->doEditContent( new WikitextContent( "#REDIRECT [[$name]]" ),
-			"testing 1", EDIT_NEW, false, self::$users['sysop']->user );
-		$this->forceRevisionDate( $rpage, '20120101000000' );
-
-		// conflicting edit to redirect
-		$rpage->doEditContent( new WikitextContent( "#REDIRECT [[$name]]\n\n[[Category:Test]]" ),
+		// conflicting edit
+		$page->doEditContent( new WikitextContent( "Foo bar" ),
 			"testing 2", EDIT_UPDATE, $page->getLatest(), self::$users['uploader']->user );
-		$this->forceRevisionDate( $rpage, '20120101020202' );
+		$this->forceRevisionDate( $page, '20120101020202' );
 
-		// try to save edit; should work, because we follow the redirect
+		// try to save edit, expect no conflict
 		list( $re, , ) = $this->doApiRequestWithToken( array(
 			'action' => 'edit',
-			'title' => $rname,
+			'title' => $name,
 			'text' => 'nix bar!',
 			'basetimestamp' => $baseTime,
-			'redirect' => true,
+			'section' => 'new',
 		), null, self::$users['sysop']->user );
 
 		$this->assertEquals( 'Success', $re['edit']['result'],
-			"no edit conflict expected when following redirect" );
-
-		// try again, without following the redirect. Should fail.
-		try {
-			$this->doApiRequestWithToken( array(
-				'action' => 'edit',
-				'title' => $rname,
-				'text' => 'nix bar!',
-				'basetimestamp' => $baseTime,
-			), null, self::$users['sysop']->user );
-
-			$this->fail( 'edit conflict expected' );
-		} catch ( UsageException $ex ) {
-			$this->assertEquals( 'editconflict', $ex->getCodeString() );
-		}
+			"no edit conflict expected here" );
 	}
 
 	public function testEditConflict_bug41990() {
@@ -405,6 +480,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'action' => 'edit',
 			'title' => $rname,
 			'text' => 'nix bar!',
+			'section' => 'new',
 			'redirect' => true,
 		), null, self::$users['sysop']->user );
 
