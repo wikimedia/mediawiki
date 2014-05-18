@@ -817,6 +817,22 @@ more stuff
 		$this->assertEquals( $expected, is_null( $c ) ? null : trim( $c->getNativeData() ) );
 	}
 
+	/**
+	 * @dataProvider dataReplaceSection
+	 * @covers WikiPage::replaceSectionAtRev
+	 */
+	public function testReplaceSectionAtRev( $title, $model, $text, $section,
+		$with, $sectionTitle, $expected
+	) {
+		$page = $this->createPage( $title, $text, $model );
+		$baseRevId = $page->getLatest();
+
+		$content = ContentHandler::makeContent( $with, $page->getTitle(), $page->getContentModel() );
+		$c = $page->replaceSectionAtRev( $section, $content, $sectionTitle, $baseRevId );
+
+		$this->assertEquals( $expected, is_null( $c ) ? null : trim( $c->getNativeData() ) );
+	}
+
 	/* @todo FIXME: fix this!
 	public function testGetUndoText() {
 	$this->checkHasDiff3();
