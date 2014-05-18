@@ -725,6 +725,10 @@ class NewParserTest extends MediaWikiTestCase {
 			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
 			$output->setTOCEnabled( !isset( $opts['notoc'] ) );
 			$out = $output->getText();
+			if ( isset( $opts['tidy'] ) ) {
+				$out = MWTidy::tidy( $out );
+				$out = preg_replace( '/\s+$/', '', $out);
+			}
 
 			if ( isset( $opts['showtitle'] ) ) {
 				if ( $output->getTitleText() ) {
