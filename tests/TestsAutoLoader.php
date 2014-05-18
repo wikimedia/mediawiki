@@ -35,6 +35,7 @@ $wgAutoloadClasses += array(
 	'TestRecorder' => "$testDir/testHelpers.inc",
 	'ITestRecorder' => "$testDir/testHelpers.inc",
 	'DjVuSupport' => "$testDir/testHelpers.inc",
+	'TidySupport' => "$testDir/testHelpers.inc",
 
 	# tests/phpunit
 	'MediaWikiTestCase' => "$testDir/phpunit/MediaWikiTestCase.php",
