@@ -269,6 +269,10 @@ class SpecialContributions extends IncludableSpecialPage {
 			// Do not expose the autoblocks, since that may lead to a leak of accounts' IPs,
 			// and also this will display a totally irrelevant log entry as a current block.
 			if ( $userObj->isBlocked() && $userObj->getBlock()->getType() != Block::TYPE_AUTO ) {
+				$block = $userObj->getBlock();
+				if ( $block->getType() == Block::TYPE_RANGE ) {
+					$nt = 'User:' . $block->getTarget();
+				}
 				$out = $this->getOutput(); // showLogExtract() wants first parameter by reference
 				LogEventsList::showLogExtract(
 					$out,

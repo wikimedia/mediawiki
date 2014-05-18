@@ -1485,6 +1485,8 @@ class User {
 		# know which IP address they're actually coming from
 		if ( !$this->isAllowed( 'ipblock-exempt' ) && $this->getID() == $wgUser->getID() ) {
 			$ip = $this->getRequest()->getIP();
+		} elseif ( $this->isAnon() ) {
+			$ip = $this->getName();
 		} else {
 			$ip = null;
 		}
