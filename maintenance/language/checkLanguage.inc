@@ -41,7 +41,7 @@ class CheckLanguageCLI {
 
 	/**
 	 * Constructor.
-	 * @param $options array Options for script.
+	 * @param array $options Options for script.
 	 */
 	public function __construct( array $options ) {
 		if ( isset( $options['help'] ) ) {
@@ -118,7 +118,7 @@ class CheckLanguageCLI {
 
 	/**
 	 * Get the checks that can easily be treated by non-speakers of the language.
-	 * @return Array A list of the easy checks.
+	 * @return array A list of the easy checks.
 	 */
 	protected function easyChecks() {
 		return array(
@@ -378,7 +378,7 @@ ENDS;
 
 	/**
 	 * Check a language.
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 * @throws MWException
 	 * @return array The results.
 	 */
@@ -410,8 +410,8 @@ ENDS;
 
 	/**
 	 * Format a message key.
-	 * @param $key string The message key.
-	 * @param $code string The language code.
+	 * @param string $key The message key.
+	 * @param string $code The language code.
 	 * @return string The formatted message key.
 	 */
 	protected function formatKey( $key, $code ) {
@@ -558,8 +558,8 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 
 	/**
 	 * Constructor.
-	 * @param $options array Options for script.
-	 * @param $extension string The extension name (or names).
+	 * @param array $options Options for script.
+	 * @param string $extension The extension name (or names).
 	 */
 	public function __construct( array $options, $extension ) {
 		if ( isset( $options['help'] ) ) {
@@ -662,7 +662,7 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 
 	/**
 	 * Get the checks that can easily be treated by non-speakers of the language.
-	 * @return arrayA list of the easy checks.
+	 * @return array A list of the easy checks.
 	 */
 	protected function easyChecks() {
 		return array(
@@ -733,7 +733,7 @@ ENDS;
 
 	/**
 	 * Check a language and show the results.
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 * @throws MWException
 	 */
 	protected function checkLanguage( $code ) {

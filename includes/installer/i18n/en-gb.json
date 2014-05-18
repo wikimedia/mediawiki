@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Shirayuki"
+		]
+	},
+	"config-copyright": "=== Copyright and Terms ===\n\n$1\n\nThis program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public Licence as published by the Free Software Foundation; either version 2 of the Licence, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but '''without any warranty'''; without even the implied warranty of '''merchantability''' or '''fitness for a particular purpose'''.\nSee the GNU General Public Licence for more details.\n\nYou should have received <doclink href=Copying>a copy of the GNU General Public Licence</doclink> along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. or [http://www.gnu.org/copyleft/gpl.html read it online].",
+	"config-unicode-using-utf8": "Using Brion Vibber's utf8_normalize.so for Unicode normalisation.",
+	"config-unicode-using-intl": "Using the [http://pecl.php.net/intl intl PECL extension] for Unicode normalisation.",
+	"config-unicode-pure-php-warning": "'''Warning:''' The [http://pecl.php.net/intl intl PECL extension] is not available to handle Unicode normalisation, falling back to slow pure-PHP implementation.\nIf you run a high-traffic site, you should read a little on [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode normalisation].",
+	"config-unicode-update-warning": "'''Warning:''' The installed version of the Unicode normalisation wrapper uses an older version of [http://site.icu-project.org/ the ICU project's] library.\nYou should [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations upgrade] if you are at all concerned about using Unicode.",
+	"config-unknown-collation": "'''Warning:''' Database is using unrecognised collation.",
+	"config-profile-fishbowl": "Authorised editors only",
+	"config-license": "Copyright and licence:",
+	"config-license-none": "No licence footer",
+	"config-license-gfdl": "GNU Free Documentation Licence 1.3 or later",
+	"config-license-cc-choose": "Select a custom Creative Commons licence",
+	"config-license-help": "Many public wikis put all contributions under a [http://freedomdefined.org/Definition free licence].\nThis helps to create a sense of community ownership and encourages long-term contribution.\nIt is not generally necessary for a private or corporate wiki.\n\nIf you want to be able to use text from Wikipedia, and you want Wikipedia to be able to accept text copied from your wiki, you should choose '''Creative Commons Attribution Share Alike'''.\n\nWikipedia previously used the GNU Free Documentation Licence.\nThe GFDL is a valid licence, but it is difficult to understand.\nIt is also difficult to reuse content licenced under the GFDL.",
+	"config-cc-error": "The Creative Commons licence chooser gave no result.\nEnter the licence name manually.",
+	"config-cc-not-chosen": "Choose which Creative Commons licence you want and click \"proceed\".",
+	"config-install-stats": "Initialising statistics"
+}

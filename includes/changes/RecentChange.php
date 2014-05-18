@@ -52,7 +52,6 @@
  * mExtra:
  *  prefixedDBkey   prefixed db key, used by external app via msg queue
  *  lastTimestamp   timestamp of previous entry, used in WHERE clause during update
- *  lang            the interwiki prefix, automatically set in save()
  *  oldSize         text size before the change
  *  newSize         text size after the change
  *  pageStatus      status of the page: created, deleted, moved, restored, changed
@@ -60,8 +59,6 @@
  * temporary:       not stored in the database
  *      notificationtimestamp
  *      numberofWatchingusers
- *
- * @todo document functions and variables
  */
 class RecentChange {
 	// Constants for the rc_source field.  Extensions may also have
@@ -95,7 +92,7 @@ class RecentChange {
 	# Factory methods
 
 	/**
-	 * @param $row
+	 * @param mixed $row
 	 * @return RecentChange
 	 */
 	public static function newFromRow( $row ) {
@@ -107,8 +104,8 @@ class RecentChange {
 
 	/**
 	 * No uses left in Gerrit on 2013-11-19.
-	 * @deprecated in 1.22
-	 * @param $row
+	 * @deprecated since 1.22
+	 * @param mixed $row
 	 * @return RecentChange
 	 */
 	public static function newFromCurRow( $row ) {
@@ -134,9 +131,9 @@ class RecentChange {
 	/**
 	 * Find the first recent change matching some specific conditions
 	 *
-	 * @param array $conds of conditions
-	 * @param $fname Mixed: override the method name in profiling/logs
-	 * @param $options Array Query options
+	 * @param array $conds Array of conditions
+	 * @param mixed $fname Override the method name in profiling/logs
+	 * @param array $options Query options
 	 * @return RecentChange
 	 */
 	public static function newFromConds( $conds, $fname = __METHOD__, $options = array() ) {
@@ -186,21 +183,20 @@ class RecentChange {
 	# Accessors
 
 	/**
-	 * @param $attribs array
+	 * @param array $attribs
 	 */
 	public function setAttribs( $attribs ) {
 		$this->mAttribs = $attribs;
 	}
 
 	/**
-	 * @param $extra array
+	 * @param array $extra
 	 */
 	public function setExtra( $extra ) {
 		$this->mExtra = $extra;
 	}
 
 	/**
-	 *
 	 * @return Title
 	 */
 	public function &getTitle() {
@@ -230,16 +226,15 @@ class RecentChange {
 
 	/**
 	 * Writes the data in this object to the database
-	 * @param $noudp bool
+	 * @param bool $noudp
 	 */
 	public function save( $noudp = false ) {
-		global $wgLocalInterwiki, $wgPutIPinRC, $wgUseEnotif, $wgShowUpdatedMarker, $wgContLang;
+		global $wgPutIPinRC, $wgUseEnotif, $wgShowUpdatedMarker, $wgContLang;
 
 		$dbw = wfGetDB( DB_MASTER );
 		if ( !is_array( $this->mExtra ) ) {
 			$this->mExtra = array();
 		}
-		$this->mExtra['lang'] = $wgLocalInterwiki;
 
 		if ( !$wgPutIPinRC ) {
 			$this->mAttribs['rc_ip'] = '';
@@ -284,7 +279,7 @@ class RecentChange {
 			$editor = $this->getPerformer();
 			$title = $this->getTitle();
 
-			if ( wfRunHooks( 'AbortEmailNotification', array( $editor, $title ) ) ) {
+			if ( wfRunHooks( 'AbortEmailNotification', array( $editor, $title, $this ) ) ) {
 				# @todo FIXME: This would be better as an extension hook
 				$enotif = new EmailNotification();
 				$enotif->notifyOnPageChange( $editor, $title,
@@ -335,22 +330,34 @@ class RecentChange {
 	public function notifyRCFeeds() {
 		global $wgRCFeeds;
 
+		$performer = $this->getPerformer();
+
 		foreach ( $wgRCFeeds as $feed ) {
+			$feed += array(
+				'omit_bots' => false,
+				'omit_anon' => false,
+				'omit_user' => false,
+				'omit_minor' => false,
+				'omit_patrolled' => false,
+			);
+
+			if (
+				( $feed['omit_bots'] && $this->mAttribs['rc_bot'] ) ||
+				( $feed['omit_anon'] && $performer->isAnon() ) ||
+				( $feed['omit_user'] && !$performer->isAnon() ) ||
+				( $feed['omit_minor'] && $this->mAttribs['rc_minor'] ) ||
+				( $feed['omit_patrolled'] && $this->mAttribs['rc_patrolled'] ) ||
+				$this->mAttribs['rc_type'] == RC_EXTERNAL
+			) {
+				continue;
+			}
+
 			$engine = self::getEngine( $feed['uri'] );
 
 			if ( isset( $this->mExtra['actionCommentIRC'] ) ) {
 				$actionComment = $this->mExtra['actionCommentIRC'];
 			} else {
 				$actionComment = null;
-			}
-
-			$omitBots = isset( $feed['omit_bots'] ) ? $feed['omit_bots'] : false;
-
-			if (
-				( $omitBots && $this->mAttribs['rc_bot'] ) ||
-				$this->mAttribs['rc_type'] == RC_EXTERNAL
-			) {
-				continue;
 			}
 
 			/** @var $formatter RCFeedFormatter */
@@ -366,9 +373,9 @@ class RecentChange {
 	 *
 	 * @param string $uri URI to get the engine object for
 	 * @throws MWException
-	 * @return object The engine object
+	 * @return RCFeedEngine The engine object
 	 */
-	private static function getEngine( $uri ) {
+	public static function getEngine( $uri ) {
 		global $wgRCEngines;
 
 		$scheme = parse_url( $uri, PHP_URL_SCHEME );
@@ -395,9 +402,9 @@ class RecentChange {
 	/**
 	 * Mark a given change as patrolled
 	 *
-	 * @param $change Mixed: RecentChange or corresponding rc_id
-	 * @param $auto Boolean: for automatic patrol
-	 * @return Array See doMarkPatrolled(), or null if $change is not an existing rc_id
+	 * @param RecentChange|int $change RecentChange or corresponding rc_id
+	 * @param bool $auto For automatic patrol
+	 * @return array See doMarkPatrolled(), or null if $change is not an existing rc_id
 	 */
 	public static function markPatrolled( $change, $auto = false ) {
 		global $wgUser;
@@ -418,9 +425,9 @@ class RecentChange {
 	 *
 	 * NOTE: Can also return 'rcpatroldisabled', 'hookaborted' and
 	 * 'markedaspatrollederror-noautopatrol' as errors
-	 * @param $user User object doing the action
-	 * @param $auto Boolean: for automatic patrol
-	 * @return array of permissions errors, see Title::getUserPermissionsErrors()
+	 * @param User $user User object doing the action
+	 * @param bool $auto For automatic patrol
+	 * @return array Array of permissions errors, see Title::getUserPermissionsErrors()
 	 */
 	public function doMarkPatrolled( User $user, $auto = false ) {
 		global $wgUseRCPatrol, $wgUseNPPatrol;
@@ -461,7 +468,7 @@ class RecentChange {
 
 	/**
 	 * Mark this RecentChange patrolled, without error checking
-	 * @return Integer: number of affected rows
+	 * @return int Number of affected rows
 	 */
 	public function reallyMarkPatrolled() {
 		$dbw = wfGetDB( DB_MASTER );
@@ -485,19 +492,19 @@ class RecentChange {
 	/**
 	 * Makes an entry in the database corresponding to an edit
 	 *
-	 * @param $timestamp
-	 * @param $title Title
-	 * @param $minor
-	 * @param $user User
-	 * @param $comment
-	 * @param $oldId
-	 * @param $lastTimestamp
-	 * @param $bot
-	 * @param $ip string
-	 * @param $oldSize int
-	 * @param $newSize int
-	 * @param $newId int
-	 * @param $patrol int
+	 * @param string $timestamp
+	 * @param Title $title
+	 * @param bool $minor
+	 * @param User $user
+	 * @param string $comment
+	 * @param int $oldId
+	 * @param string $lastTimestamp
+	 * @param bool $bot
+	 * @param string $ip
+	 * @param int $oldSize
+	 * @param int $newSize
+	 * @param int $newId
+	 * @param int $patrol
 	 * @return RecentChange
 	 */
 	public static function notifyEdit( $timestamp, &$title, $minor, &$user, $comment, $oldId,
@@ -546,18 +553,17 @@ class RecentChange {
 	/**
 	 * Makes an entry in the database corresponding to page creation
 	 * Note: the title object must be loaded with the new id using resetArticleID()
-	 * @todo Document parameters and return
 	 *
-	 * @param $timestamp
-	 * @param $title Title
-	 * @param $minor
-	 * @param $user User
-	 * @param $comment
-	 * @param $bot
-	 * @param $ip string
-	 * @param $size int
-	 * @param $newId int
-	 * @param $patrol int
+	 * @param string $timestamp
+	 * @param Title $title
+	 * @param bool $minor
+	 * @param User $user
+	 * @param string $comment
+	 * @param bool $bot
+	 * @param string $ip
+	 * @param int $size
+	 * @param int $newId
+	 * @param int $patrol
 	 * @return RecentChange
 	 */
 	public static function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot,
@@ -604,18 +610,18 @@ class RecentChange {
 	}
 
 	/**
-	 * @param $timestamp
-	 * @param $title
-	 * @param $user
-	 * @param $actionComment
-	 * @param $ip string
-	 * @param $type
-	 * @param $action
-	 * @param $target
-	 * @param $logComment
-	 * @param $params
-	 * @param $newId int
-	 * @param $actionCommentIRC string
+	 * @param string $timestamp
+	 * @param Title $title
+	 * @param User $user
+	 * @param string $actionComment
+	 * @param string $ip
+	 * @param string $type
+	 * @param string $action
+	 * @param Title $target
+	 * @param string $logComment
+	 * @param string $params
+	 * @param int $newId
+	 * @param string $actionCommentIRC
 	 * @return bool
 	 */
 	public static function notifyLog( $timestamp, &$title, &$user, $actionComment, $ip, $type,
@@ -635,18 +641,18 @@ class RecentChange {
 	}
 
 	/**
-	 * @param $timestamp
-	 * @param $title Title
-	 * @param $user User
-	 * @param $actionComment
-	 * @param $ip string
-	 * @param $type
-	 * @param $action
-	 * @param $target Title
-	 * @param $logComment
-	 * @param $params
-	 * @param $newId int
-	 * @param $actionCommentIRC string
+	 * @param string $timestamp
+	 * @param Title $title
+	 * @param User $user
+	 * @param string $actionComment
+	 * @param string $ip
+	 * @param string $type
+	 * @param string $action
+	 * @param Title $target
+	 * @param string $logComment
+	 * @param string $params
+	 * @param int $newId
+	 * @param string $actionCommentIRC
 	 * @return RecentChange
 	 */
 	public static function newLogEntry( $timestamp, &$title, &$user, $actionComment, $ip,
@@ -717,7 +723,7 @@ class RecentChange {
 	/**
 	 * Initialises the members of this object from a mysql row object
 	 *
-	 * @param $row
+	 * @param mixed $row
 	 */
 	public function loadFromRow( $row ) {
 		$this->mAttribs = get_object_vars( $row );
@@ -728,8 +734,8 @@ class RecentChange {
 	/**
 	 * Makes a pseudo-RC entry from a cur row
 	 *
-	 * @deprecated in 1.22
-	 * @param $row
+	 * @deprecated since 1.22
+	 * @param mixed $row
 	 */
 	public function loadFromCurRow( $row ) {
 		wfDeprecated( __METHOD__, '1.22' );
@@ -781,7 +787,7 @@ class RecentChange {
 	/**
 	 * Gets the end part of the diff URL associated with this object
 	 * Blank if no diff link should be displayed
-	 * @param $forceCur
+	 * @param bool $forceCur
 	 * @return string
 	 */
 	public function diffLinkTrail( $forceCur ) {
@@ -803,8 +809,8 @@ class RecentChange {
 	/**
 	 * Returns the change size (HTML).
 	 * The lengths can be given optionally.
-	 * @param $old int
-	 * @param $new int
+	 * @param int $old
+	 * @param int $new
 	 * @return string
 	 */
 	public function getCharacterDifference( $old = 0, $new = 0 ) {
@@ -866,8 +872,8 @@ class RecentChange {
 	 * as the recentchanges table might not be cleared out regularly (so older entries might exist)
 	 * or rows which will be deleted soon shouldn't be included.
 	 *
-	 * @param $timestamp mixed MWTimestamp compatible timestamp
-	 * @param $tolerance integer Tolerance in seconds
+	 * @param mixed $timestamp MWTimestamp compatible timestamp
+	 * @param int $tolerance Tolerance in seconds
 	 * @return bool
 	 */
 	public static function isInRCLifespan( $timestamp, $tolerance = 0 ) {

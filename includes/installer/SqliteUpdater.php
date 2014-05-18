@@ -123,9 +123,15 @@ class SqliteUpdater extends DatabaseUpdater {
 
 			// 1.23
 			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
-			array( 'addIndex', 'logging', 'log_user_text_type_time',  'patch-logging_user_text_type_time_index.sql' ),
-			array( 'addIndex', 'logging', 'log_user_text_time',  'patch-logging_user_text_time_index.sql' ),
+			array( 'addIndex', 'logging', 'log_user_text_type_time',
+				'patch-logging_user_text_type_time_index.sql' ),
+			array( 'addIndex', 'logging', 'log_user_text_time', 'patch-logging_user_text_time_index.sql' ),
 			array( 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ),
+			array( 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ),
+
+			// 1.24
+			array( 'addField', 'page_props', 'pp_sortkey', 'patch-pp_sortkey.sql' ),
+			array( 'dropField', 'recentchanges', 'rc_cur_time', 'patch-drop-rc_cur_time.sql' ),
 		);
 	}
 

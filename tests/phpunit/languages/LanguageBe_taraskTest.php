@@ -1,6 +1,8 @@
 <?php
 
+// @codingStandardsIgnoreStart Ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class LanguageBe_taraskTest extends LanguageClassesTestCase {
+	// @codingStandardsIgnoreEnd
 	/**
 	 * Make sure the language code we are given is indeed
 	 * be-tarask. This is to ensure LanguageClassesTestCase
@@ -79,13 +81,13 @@ class LanguageBe_taraskTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPluralTwoForms( $result, $value ) {
-		$forms = array( 'one', 'other', '0=one' );
+		$forms = array( '1=one', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	public static function providePluralTwoForms() {
 		return array(
-			array( 'one', 0 ),
+			array( 'other', 0 ),
 			array( 'one', 1 ),
 			array( 'other', 11 ),
 			array( 'other', 91 ),

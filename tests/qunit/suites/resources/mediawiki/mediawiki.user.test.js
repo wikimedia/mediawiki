@@ -1,19 +1,17 @@
-( function ( mw, $ ) {
-	QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment() );
+( function ( mw ) {
+	QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment( {
+		setup: function () {
+			this.server = this.sandbox.useFakeServer();
+		}
+	} ) );
 
 	QUnit.test( 'options', 1, function ( assert ) {
 		assert.ok( mw.user.options instanceof mw.Map, 'options instance of mw.Map' );
 	} );
 
 	QUnit.test( 'user status', 11, function ( assert ) {
-		/**
-		 * Tests can be run under three different conditions:
-		 *   1) From tests/qunit/index.html, user will be anonymous.
-		 *   2) Logged in on [[Special:JavaScriptTest/qunit]]
-		 *   3) Anonymously at the same special page.
-		 */
 
-		// Forge an anonymous user:
+		// Forge an anonymous user
 		mw.config.set( 'wgUserName', null );
 		delete mw.config.values.wgUserId;
 
@@ -36,30 +34,25 @@
 		assert.equal( mw.user.id(), 'John', 'user.id Returns username when logged-in' );
 	} );
 
-	QUnit.asyncTest( 'getGroups', 3, function ( assert ) {
+	QUnit.test( 'getUserInfos', 3, function ( assert ) {
 		mw.user.getGroups( function ( groups ) {
-			// First group should always be '*'
-			assert.equal( $.type( groups ), 'array', 'Callback gets an array' );
-			assert.notStrictEqual( $.inArray( '*', groups ), -1, '"*"" is in the list' );
-			// Sort needed because of different methods if creating the arrays,
-			// only the content matters.
-			assert.deepEqual( groups.sort(), mw.config.get( 'wgUserGroups' ).sort(), 'Array contains all groups, just like wgUserGroups' );
-			QUnit.start();
+			assert.deepEqual( groups, [ '*', 'user' ], 'Result' );
 		} );
-	} );
-
-	QUnit.test( 'getRights', 2, function ( assert ) {
-		QUnit.stop();
-		QUnit.stop();
 
 		mw.user.getRights( function ( rights ) {
-			assert.equal( $.type( rights ), 'array', 'Callback gets an array' );
-			QUnit.start();
+			assert.deepEqual( rights, [ 'read', 'edit', 'createtalk' ], 'Result (callback)' );
 		} );
 
 		mw.user.getRights().done( function ( rights ) {
-			assert.equal( $.type( rights ), 'array', 'Using promise interface instead of callback' );
-			QUnit.start();
+			assert.deepEqual( rights, [ 'read', 'edit', 'createtalk' ], 'Result (promise)' );
 		} );
+
+		this.server.respondWith( /meta=userinfo/, function ( request ) {
+			request.respond( 200, { 'Content-Type': 'application/json' },
+				'{ "query": { "userinfo": { "groups": [ "*", "user" ], "rights": [ "read", "edit", "createtalk" ] } } }'
+			);
+		} );
+
+		this.server.respond();
 	} );
-}( mediaWiki, jQuery ) );
+}( mediaWiki ) );

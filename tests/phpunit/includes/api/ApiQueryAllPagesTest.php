@@ -6,12 +6,16 @@
  * @group medium
  */
 class ApiQueryAllPagesTest extends ApiTestCase {
+
 	protected function setUp() {
 		parent::setUp();
 		$this->doLogin();
 	}
 
-	function testBug25702() {
+	/**
+	 * @todo give this test a real name explaining what is being tested here
+	 */
+	public function testBug25702() {
 		$title = Title::newFromText( 'Category:Template:xyz' );
 		$page = WikiPage::factory( $title );
 		$page->doEdit( 'Some text', 'inserting content' );

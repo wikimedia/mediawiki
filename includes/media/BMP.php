@@ -51,7 +51,7 @@ class BmpHandler extends BitmapHandler {
 	/**
 	 * Get width and height from the bmp header.
 	 *
-	 * @param $image
+	 * @param File $image
 	 * @param string $filename
 	 * @return array
 	 */

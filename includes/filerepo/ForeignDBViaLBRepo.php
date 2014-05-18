@@ -90,4 +90,8 @@ class ForeignDBViaLBRepo extends LocalRepo {
 	protected function assertWritableRepo() {
 		throw new MWException( get_class( $this ) . ': write operations are not supported.' );
 	}
+
+	public function getInfo() {
+		return FileRepo::getInfo();
+	}
 }

@@ -45,11 +45,12 @@ class MemoryFileBackend extends FileBackendStore {
 		$dst = $this->resolveHashKey( $params['dst'] );
 		if ( $dst === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
+
 			return $status;
 		}
 
 		$this->files[$dst] = array(
-			'data'  => $params['content'],
+			'data' => $params['content'],
 			'mtime' => wfTimestamp( TS_MW, time() )
 		);
 
@@ -62,6 +63,7 @@ class MemoryFileBackend extends FileBackendStore {
 		$dst = $this->resolveHashKey( $params['dst'] );
 		if ( $dst === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
+
 			return $status;
 		}
 
@@ -70,11 +72,12 @@ class MemoryFileBackend extends FileBackendStore {
 		wfRestoreWarnings();
 		if ( $data === false ) { // source doesn't exist?
 			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
+
 			return $status;
 		}
 
 		$this->files[$dst] = array(
-			'data'  => $data,
+			'data' => $data,
 			'mtime' => wfTimestamp( TS_MW, time() )
 		);
 
@@ -87,12 +90,14 @@ class MemoryFileBackend extends FileBackendStore {
 		$src = $this->resolveHashKey( $params['src'] );
 		if ( $src === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
+
 			return $status;
 		}
 
 		$dst = $this->resolveHashKey( $params['dst'] );
 		if ( $dst === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
+
 			return $status;
 		}
 
@@ -100,11 +105,12 @@ class MemoryFileBackend extends FileBackendStore {
 			if ( empty( $params['ignoreMissingSource'] ) ) {
 				$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
 			}
+
 			return $status;
 		}
 
 		$this->files[$dst] = array(
-			'data'  => $this->files[$src]['data'],
+			'data' => $this->files[$src]['data'],
 			'mtime' => wfTimestamp( TS_MW, time() )
 		);
 
@@ -117,6 +123,7 @@ class MemoryFileBackend extends FileBackendStore {
 		$src = $this->resolveHashKey( $params['src'] );
 		if ( $src === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
+
 			return $status;
 		}
 
@@ -124,6 +131,7 @@ class MemoryFileBackend extends FileBackendStore {
 			if ( empty( $params['ignoreMissingSource'] ) ) {
 				$status->fatal( 'backend-fail-delete', $params['src'] );
 			}
+
 			return $status;
 		}
 
@@ -141,7 +149,7 @@ class MemoryFileBackend extends FileBackendStore {
 		if ( isset( $this->files[$src] ) ) {
 			return array(
 				'mtime' => $this->files[$src]['mtime'],
-				'size'  => strlen( $this->files[$src]['data'] ),
+				'size' => strlen( $this->files[$src]['data'] ),
 			);
 		}
 
@@ -155,7 +163,9 @@ class MemoryFileBackend extends FileBackendStore {
 			if ( $src === null || !isset( $this->files[$src] ) ) {
 				$fsFile = null;
 			} else {
-				$fsFile = TempFSFile::factory( 'localcopy_' );
+				// Create a new temporary file with the same extension...
+				$ext = FileBackend::extensionFromPath( $src );
+				$fsFile = TempFSFile::factory( 'localcopy_', $ext );
 				if ( $fsFile ) {
 					$bytes = file_put_contents( $fsFile->getPath(), $this->files[$src]['data'] );
 					if ( $bytes !== strlen( $this->files[$src]['data'] ) ) {
@@ -165,6 +175,7 @@ class MemoryFileBackend extends FileBackendStore {
 			}
 			$tmpFiles[$srcPath] = $fsFile;
 		}
+
 		return $tmpFiles;
 	}
 
@@ -174,6 +185,7 @@ class MemoryFileBackend extends FileBackendStore {
 		$src = $this->resolveHashKey( $params['src'] );
 		if ( $src === null || !isset( $this->files[$src] ) ) {
 			$status->fatal( 'backend-fail-stream', $params['src'] );
+
 			return $status;
 		}
 
@@ -189,6 +201,7 @@ class MemoryFileBackend extends FileBackendStore {
 				return true;
 			}
 		}
+
 		return false;
 	}
 
@@ -217,6 +230,7 @@ class MemoryFileBackend extends FileBackendStore {
 				}
 			}
 		}
+
 		return array_keys( $dirs );
 	}
 
@@ -235,6 +249,7 @@ class MemoryFileBackend extends FileBackendStore {
 				$files[] = $relPath;
 			}
 		}
+
 		return $files;
 	}
 
@@ -253,6 +268,7 @@ class MemoryFileBackend extends FileBackendStore {
 		if ( $relPath === null ) {
 			return null; // invalid
 		}
+
 		return ( $relPath !== '' ) ? "$fullCont/$relPath" : $fullCont;
 	}
 }

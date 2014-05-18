@@ -36,21 +36,22 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class SkinMonoBook extends SkinTemplate {
 	/** Using monobook. */
-	var $skinname = 'monobook', $stylename = 'monobook',
-		$template = 'MonoBookTemplate', $useHeadElement = true;
+	public $skinname = 'monobook';
+	public $stylename = 'monobook';
+	public $template = 'MonoBookTemplate';
+	public $useHeadElement = true;
 
 	/**
-	 * @param $out OutputPage
+	 * @param OutputPage $out
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
 
-		$out->addModuleStyles( array( 'skins.common.interface', 'skins.monobook.styles' ) );
+		$out->addModuleStyles( array( 'mediawiki.skinning.interface', 'skins.monobook.styles' ) );
 
 		// TODO: Migrate all of these
 		$out->addStyle( 'monobook/IE60Fixes.css', 'screen', 'IE 6' );
 		$out->addStyle( 'monobook/IE70Fixes.css', 'screen', 'IE 7' );
-
 	}
 }
 
@@ -73,96 +74,144 @@ class MonoBookTemplate extends BaseTemplate {
 		wfSuppressWarnings();
 
 		$this->html( 'headelement' );
-?><div id="globalWrapper">
-<div id="column-content"><div id="content" class="mw-body-primary" role="main">
-	<a id="top"></a>
-	<?php if ( $this->data['sitenotice'] ) { ?><div id="siteNotice"><?php $this->html( 'sitenotice' ) ?></div><?php } ?>
+		?><div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body-primary" role="main">
+				<a id="top"></a>
+				<?php
+				if ( $this->data['sitenotice'] ) {
+					?>
+					<div id="siteNotice"><?php
+					$this->html( 'sitenotice' )
+					?></div><?php
+				}
+				?>
 
-	<h1 id="firstHeading" class="firstHeading" lang="<?php
-		$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageViewLanguage()->getHtmlCode();
-		$this->text( 'pageLanguage' );
-	?>"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
-	<div id="bodyContent" class="mw-body">
-		<div id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
-		<div id="contentSub"<?php $this->html( 'userlangattributes' ) ?>><?php $this->html( 'subtitle' ) ?></div>
-<?php if ( $this->data['undelete'] ) { ?>
-		<div id="contentSub2"><?php $this->html( 'undelete' ) ?></div>
-<?php } ?><?php if ( $this->data['newtalk'] ) { ?>
-		<div class="usermessage"><?php $this->html( 'newtalk' ) ?></div>
-<?php } ?>
-		<div id="jump-to-nav" class="mw-jump"><?php $this->msg( 'jumpto' ) ?> <a href="#column-one"><?php $this->msg( 'jumptonavigation' ) ?></a><?php $this->msg( 'comma-separator' ) ?><a href="#searchInput"><?php $this->msg( 'jumptosearch' ) ?></a></div>
+				<h1 id="firstHeading" class="firstHeading" lang="<?php
+				$this->data['pageLanguage'] =
+					$this->getSkin()->getTitle()->getPageViewLanguage()->getHtmlCode();
+				$this->text( 'pageLanguage' );
+				?>"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
 
-		<!-- start content -->
-<?php $this->html( 'bodytext' ) ?>
-		<?php if ( $this->data['catlinks'] ) { $this->html( 'catlinks' ); } ?>
-		<!-- end content -->
-		<?php if ( $this->data['dataAfterContent'] ) { $this->html( 'dataAfterContent' ); } ?>
-		<div class="visualClear"></div>
-	</div>
-</div></div>
-<div id="column-one"<?php $this->html( 'userlangattributes' ) ?>>
-	<h2><?php $this->msg( 'navigation-heading' ) ?></h2>
-<?php $this->cactions(); ?>
-	<div class="portlet" id="p-personal" role="navigation">
-		<h3><?php $this->msg( 'personaltools' ) ?></h3>
-		<div class="pBody">
-			<ul<?php $this->html( 'userlangattributes' ) ?>>
-<?php		foreach ( $this->getPersonalTools() as $key => $item ) { ?>
-				<?php echo $this->makeListItem( $key, $item ); ?>
+				<div id="bodyContent" class="mw-body">
+					<div id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
+					<div id="contentSub"<?php
+					$this->html( 'userlangattributes' ) ?>><?php $this->html( 'subtitle' )
+						?></div>
+					<?php if ( $this->data['undelete'] ) { ?>
+						<div id="contentSub2"><?php $this->html( 'undelete' ) ?></div>
+					<?php
+}
+					?><?php
+					if ( $this->data['newtalk'] ) {
+						?>
+						<div class="usermessage"><?php $this->html( 'newtalk' ) ?></div>
+					<?php
+					}
+					?>
+					<div id="jump-to-nav" class="mw-jump"><?php
+						$this->msg( 'jumpto' )
+						?> <a href="#column-one"><?php
+							$this->msg( 'jumptonavigation' )
+							?></a><?php
+						$this->msg( 'comma-separator' )
+						?><a href="#searchInput"><?php
+							$this->msg( 'jumptosearch' )
+							?></a></div>
 
-<?php		} ?>
-			</ul>
+					<!-- start content -->
+					<?php $this->html( 'bodytext' ) ?>
+					<?php
+					if ( $this->data['catlinks'] ) {
+						$this->html( 'catlinks' );
+					}
+					?>
+					<!-- end content -->
+					<?php
+					if ( $this->data['dataAfterContent'] ) {
+						$this->html( 'dataAfterContent'
+						);
+					}
+					?>
+					<div class="visualClear"></div>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="portlet" id="p-logo" role="banner">
-<?php
-			echo Html::element( 'a', array(
-				'href' => $this->data['nav_urls']['mainpage']['href'],
-				'style' => "background-image: url({$this->data['logopath']});" )
-				+ Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ); ?>
+		<div id="column-one"<?php $this->html( 'userlangattributes' ) ?>>
+			<h2><?php $this->msg( 'navigation-heading' ) ?></h2>
+			<?php $this->cactions(); ?>
+			<div class="portlet" id="p-personal" role="navigation">
+				<h3><?php $this->msg( 'personaltools' ) ?></h3>
 
-	</div>
-<?php
-	$this->renderPortals( $this->data['sidebar'] );
-?>
-</div><!-- end of the left (by default at least) column -->
-<div class="visualClear"></div>
-<?php
-	$validFooterIcons = $this->getFooterIcons( "icononly" );
-	$validFooterLinks = $this->getFooterLinks( "flat" ); // Additional footer links
+				<div class="pBody">
+					<ul<?php $this->html( 'userlangattributes' ) ?>>
+						<?php foreach ( $this->getPersonalTools() as $key => $item ) { ?>
+							<?php echo $this->makeListItem( $key, $item ); ?>
 
-	if ( count( $validFooterIcons ) + count( $validFooterLinks ) > 0 ) { ?>
-<div id="footer" role="contentinfo"<?php $this->html( 'userlangattributes' ) ?>>
-<?php
-		$footerEnd = '</div>';
-	} else {
-		$footerEnd = '';
-	}
-	foreach ( $validFooterIcons as $blockName => $footerIcons ) { ?>
-	<div id="f-<?php echo htmlspecialchars( $blockName ); ?>ico">
-<?php foreach ( $footerIcons as $icon ) { ?>
-		<?php echo $this->getSkin()->makeFooterIcon( $icon ); ?>
+						<?php
+}
+						?>
+					</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<?php
+				echo Html::element( 'a', array(
+						'href' => $this->data['nav_urls']['mainpage']['href'],
+						'style' => "background-image: url({$this->data['logopath']});" )
+					+ Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ); ?>
 
-<?php }
-?>
-	</div>
-<?php }
+			</div>
+			<?php
+			$this->renderPortals( $this->data['sidebar'] );
+			?>
+		</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+		<?php
+		$validFooterIcons = $this->getFooterIcons( "icononly" );
+		$validFooterLinks = $this->getFooterLinks( "flat" ); // Additional footer links
+
+		if ( count( $validFooterIcons ) + count( $validFooterLinks ) > 0 ) {
+			?>
+			<div id="footer" role="contentinfo"<?php $this->html( 'userlangattributes' ) ?>>
+			<?php
+			$footerEnd = '</div>';
+		} else {
+			$footerEnd = '';
+		}
+
+		foreach ( $validFooterIcons as $blockName => $footerIcons ) {
+			?>
+			<div id="f-<?php echo htmlspecialchars( $blockName ); ?>ico">
+				<?php foreach ( $footerIcons as $icon ) { ?>
+					<?php echo $this->getSkin()->makeFooterIcon( $icon ); ?>
+
+				<?php
+}
+				?>
+			</div>
+		<?php
+		}
 
 		if ( count( $validFooterLinks ) > 0 ) {
-?>	<ul id="f-list">
-<?php
-			foreach ( $validFooterLinks as $aLink ) { ?>
-		<li id="<?php echo $aLink ?>"><?php $this->html( $aLink ) ?></li>
-<?php
-			}
-?>
-	</ul>
-<?php	}
-echo $footerEnd;
-?>
+			?>
+			<ul id="f-list">
+				<?php
+				foreach ( $validFooterLinks as $aLink ) {
+					?>
+					<li id="<?php echo $aLink ?>"><?php $this->html( $aLink ) ?></li>
+				<?php
+				}
+				?>
+			</ul>
+		<?php
+		}
 
-</div>
-<?php
+		echo $footerEnd;
+		?>
+
+		</div>
+		<?php
 		$this->printTrail();
 		echo Html::closeElement( 'body' );
 		echo Html::closeElement( 'html' );
@@ -172,7 +221,7 @@ echo $footerEnd;
 	/*************************************************************************************************/
 
 	/**
-	 * @param $sidebar array
+	 * @param array $sidebar
 	 */
 	protected function renderPortals( $sidebar ) {
 		if ( !isset( $sidebar['SEARCH'] ) ) {
@@ -204,26 +253,41 @@ echo $footerEnd;
 
 	function searchBox() {
 		global $wgUseTwoButtonsSearchForm;
-?>
-	<div id="p-search" class="portlet" role="search">
-		<h3><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h3>
-		<div id="searchBody" class="pBody">
-			<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
-				<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
-				<?php echo $this->makeSearchInput( array( "id" => "searchInput" ) ); ?>
+		?>
+		<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h3>
 
-				<?php echo $this->makeSearchButton( "go", array( "id" => "searchGoButton", "class" => "searchButton" ) );
-				if ( $wgUseTwoButtonsSearchForm ) { ?>&#160;
-				<?php echo $this->makeSearchButton( "fulltext", array( "id" => "mw-searchButton", "class" => "searchButton" ) );
-				} else { ?>
+			<div id="searchBody" class="pBody">
+				<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
+					<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
+					<?php echo $this->makeSearchInput( array( "id" => "searchInput" ) ); ?>
 
-				<div><a href="<?php $this->text( 'searchaction' ) ?>" rel="search"><?php $this->msg( 'powersearch-legend' ) ?></a></div><?php
-				} ?>
+					<?php
+					echo $this->makeSearchButton(
+						"go",
+						array( "id" => "searchGoButton", "class" => "searchButton" )
+					);
 
-			</form>
+					if ( $wgUseTwoButtonsSearchForm ) {
+						?>&#160;
+						<?php echo $this->makeSearchButton(
+							"fulltext",
+							array( "id" => "mw-searchButton", "class" => "searchButton" )
+						);
+					} else {
+						?>
+
+						<div><a href="<?php
+						$this->text( 'searchaction' )
+						?>" rel="search"><?php $this->msg( 'powersearch-legend' ) ?></a></div><?php
+					} ?>
+
+				</form>
+
+				<?php $this->renderAfterPortlet( 'search' ); ?>
+			</div>
 		</div>
-	</div>
-<?php
+	<?php
 	}
 
 	/**
@@ -231,93 +295,118 @@ echo $footerEnd;
 	 * Shared between MonoBook and Modern
 	 */
 	function cactions() {
-?>
-	<div id="p-cactions" class="portlet" role="navigation">
-		<h3><?php $this->msg( 'views' ) ?></h3>
-		<div class="pBody">
-			<ul><?php
-				foreach ( $this->data['content_actions'] as $key => $tab ) {
-					echo '
-				' . $this->makeListItem( $key, $tab );
-				} ?>
+		?>
+		<div id="p-cactions" class="portlet" role="navigation">
+			<h3><?php $this->msg( 'views' ) ?></h3>
 
-			</ul>
+			<div class="pBody">
+				<ul><?php
+					foreach ( $this->data['content_actions'] as $key => $tab ) {
+						echo '
+				' . $this->makeListItem( $key, $tab );
+					} ?>
+
+				</ul>
+				<?php $this->renderAfterPortlet( 'cactions' ); ?>
+			</div>
 		</div>
-	</div>
-<?php
+	<?php
 	}
+
 	/*************************************************************************************************/
 	function toolbox() {
-?>
-	<div class="portlet" id="p-tb" role="navigation">
-		<h3><?php $this->msg( 'toolbox' ) ?></h3>
-		<div class="pBody">
-			<ul>
-<?php
-		foreach ( $this->getToolbox() as $key => $tbitem ) { ?>
-				<?php echo $this->makeListItem( $key, $tbitem ); ?>
+		?>
+		<div class="portlet" id="p-tb" role="navigation">
+			<h3><?php $this->msg( 'toolbox' ) ?></h3>
 
-<?php
-		}
-		wfRunHooks( 'MonoBookTemplateToolboxEnd', array( &$this ) );
-		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this, true ) );
-?>
-			</ul>
+			<div class="pBody">
+				<ul>
+					<?php
+					foreach ( $this->getToolbox() as $key => $tbitem ) {
+						?>
+						<?php echo $this->makeListItem( $key, $tbitem ); ?>
+
+					<?php
+					}
+					wfRunHooks( 'MonoBookTemplateToolboxEnd', array( &$this ) );
+					wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this, true ) );
+					?>
+				</ul>
+				<?php $this->renderAfterPortlet( 'tb' ); ?>
+			</div>
 		</div>
-	</div>
-<?php
+	<?php
 	}
 
 	/*************************************************************************************************/
 	function languageBox() {
-		if ( $this->data['language_urls'] ) {
-?>
-	<div id="p-lang" class="portlet" role="navigation">
-		<h3<?php $this->html( 'userlangattributes' ) ?>><?php $this->msg( 'otherlanguages' ) ?></h3>
-		<div class="pBody">
-			<ul>
-<?php		foreach ( $this->data['language_urls'] as $key => $langlink ) { ?>
-				<?php echo $this->makeListItem( $key, $langlink ); ?>
+		if ( $this->data['language_urls'] !== false ) {
+			?>
+			<div id="p-lang" class="portlet" role="navigation">
+				<h3<?php $this->html( 'userlangattributes' ) ?>><?php $this->msg( 'otherlanguages' ) ?></h3>
 
-<?php		} ?>
-			</ul>
-		</div>
-	</div>
-<?php
+				<div class="pBody">
+					<ul>
+						<?php foreach ( $this->data['language_urls'] as $key => $langlink ) { ?>
+							<?php echo $this->makeListItem( $key, $langlink ); ?>
+
+						<?php
+}
+						?>
+					</ul>
+
+					<?php $this->renderAfterPortlet( 'lang' ); ?>
+				</div>
+			</div>
+		<?php
 		}
 	}
 
 	/*************************************************************************************************/
 	/**
-	 * @param $bar string
-	 * @param $cont array|string
+	 * @param string $bar
+	 * @param array|string $cont
 	 */
 	function customBox( $bar, $cont ) {
-		$portletAttribs = array( 'class' => 'generated-sidebar portlet', 'id' => Sanitizer::escapeId( "p-$bar" ), 'role' => 'navigation' );
+		$portletAttribs = array(
+			'class' => 'generated-sidebar portlet',
+			'id' => Sanitizer::escapeId( "p-$bar" ),
+			'role' => 'navigation'
+		);
+
 		$tooltip = Linker::titleAttrib( "p-$bar" );
 		if ( $tooltip !== false ) {
 			$portletAttribs['title'] = $tooltip;
 		}
 		echo '	' . Html::openElement( 'div', $portletAttribs );
 		$msgObj = wfMessage( $bar );
-?>
+		?>
 
 		<h3><?php echo htmlspecialchars( $msgObj->exists() ? $msgObj->text() : $bar ); ?></h3>
 		<div class='pBody'>
-<?php   if ( is_array( $cont ) ) { ?>
-			<ul>
-<?php 			foreach ( $cont as $key => $val ) { ?>
-				<?php echo $this->makeListItem( $key, $val ); ?>
+			<?php
+			if ( is_array( $cont ) ) {
+				?>
+				<ul>
+					<?php
+					foreach ( $cont as $key => $val ) {
+						?>
+						<?php echo $this->makeListItem( $key, $val ); ?>
 
-<?php			} ?>
-			</ul>
-<?php   } else {
-			# allow raw HTML block to be defined by extensions
-			print $cont;
-		}
-?>
+					<?php
+					}
+					?>
+				</ul>
+			<?php
+			} else {
+				# allow raw HTML block to be defined by extensions
+				print $cont;
+			}
+
+			$this->renderAfterPortlet( $bar );
+			?>
 		</div>
-	</div>
-<?php
+		</div>
+	<?php
 	}
 } // end of class

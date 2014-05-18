@@ -32,17 +32,18 @@
 class ApiQueryBlocks extends ApiQueryBase {
 
 	/**
-	 * @var Array
+	 * @var array
 	 */
 	protected $usernames;
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'bk' );
 	}
 
 	public function execute() {
 		global $wgContLang;
 
+		$db = $this->getDB();
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'users', 'ip' );
 
@@ -61,9 +62,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$result = $this->getResult();
 
 		$this->addTables( 'ipblocks' );
-		$this->addFields( 'ipb_auto' );
+		$this->addFields( array( 'ipb_auto', 'ipb_id' ) );
 
-		$this->addFieldsIf( 'ipb_id', $fld_id );
 		$this->addFieldsIf( array( 'ipb_address', 'ipb_user' ), $fld_user || $fld_userid );
 		$this->addFieldsIf( 'ipb_by_text', $fld_by );
 		$this->addFieldsIf( 'ipb_by', $fld_byid );
@@ -82,8 +82,21 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$params['start'],
 			$params['end']
 		);
+		// Include in ORDER BY for uniqueness
+		$this->addWhereRange( 'ipb_id', $params['dir'], null, null );
 
-		$db = $this->getDB();
+		if ( !is_null( $params['continue'] ) ) {
+			$cont = explode( '|', $params['continue'] );
+			$this->dieContinueUsageIf( count( $cont ) != 2 );
+			$op = ( $params['dir'] == 'newer' ? '>' : '<' );
+			$continueTimestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
+			$continueId = (int)$cont[1];
+			$this->dieContinueUsageIf( $continueId != $cont[1] );
+			$this->addWhere( "ipb_timestamp $op $continueTimestamp OR " .
+				"(ipb_timestamp = $continueTimestamp AND " .
+				"ipb_id $op= $continueId)"
+			);
+		}
 
 		if ( isset( $params['ids'] ) ) {
 			$this->addWhereFld( 'ipb_id', $params['ids'] );
@@ -176,7 +189,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		foreach ( $res as $row ) {
 			if ( ++$count > $params['limit'] ) {
 				// We've had enough
-				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->ipb_timestamp ) );
+				$this->setContinueEnumParameter( 'continue', "$row->ipb_timestamp|$row->ipb_id" );
 				break;
 			}
 			$block = array();
@@ -234,7 +247,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			}
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $block );
 			if ( !$fit ) {
-				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->ipb_timestamp ) );
+				$this->setContinueEnumParameter( 'continue', "$row->ipb_timestamp|$row->ipb_id" );
 				break;
 			}
 		}
@@ -313,6 +326,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				),
 				ApiBase::PARAM_ISMULTI => true
 			),
+			'continue' => null,
 		);
 	}
 
@@ -350,6 +364,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				'Show only items that meet this criteria.',
 				"For example, to see only indefinite blocks on IPs, set {$p}show=ip|!temp"
 			),
+			'continue' => 'When more results are available, use this to continue',
 		);
 	}
 
@@ -408,14 +423,14 @@ class ApiQueryBlocks extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'List all blocked users and IP addresses';
+		return 'List all blocked users and IP addresses.';
 	}
 
 	public function getPossibleErrors() {
 		global $wgBlockCIDRLimit;
 
 		return array_merge( parent::getPossibleErrors(),
-			$this->getRequireOnlyOneParameterErrorMessages( array( 'users', 'ip' ) ),
+			$this->getRequireMaxOneParameterErrorMessages( array( 'users', 'ip' ) ),
 			array(
 				array(
 					'code' => 'cidrtoobroad',

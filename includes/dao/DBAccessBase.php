@@ -29,7 +29,7 @@
  */
 abstract class DBAccessBase implements IDBAccessObject {
 	/**
-	 * @var String|bool $wiki The target wiki's name. This must be an ID
+	 * @var string|bool $wiki The target wiki's name. This must be an ID
 	 * that LBFactory can understand.
 	 */
 	protected $wiki = false;
@@ -68,7 +68,7 @@ abstract class DBAccessBase implements IDBAccessObject {
 	 *
 	 * @since 1.21
 	 *
-	 * @param DatabaseBase $db the database connection to release.
+	 * @param DatabaseBase $db The database connection to release.
 	 */
 	protected function releaseConnection( DatabaseBase $db ) {
 		if ( $this->wiki !== false ) {

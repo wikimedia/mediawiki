@@ -2,6 +2,12 @@
 
 class UIDGeneratorTest extends MediaWikiTestCase {
 
+	protected function tearDown() {
+		// Bug: 44850
+		UIDGenerator::unitTestTearDown();
+		parent::tearDown();
+	}
+
 	/**
 	 * @dataProvider provider_testTimestampedUID
 	 * @covers UIDGenerator::newTimestampedUID128
@@ -21,9 +27,6 @@ class UIDGeneratorTest extends MediaWikiTestCase {
 		}
 
 		$lastId = array_shift( $ids );
-		if ( $hostbits ) {
-			$lastHost = substr( wfBaseConvert( $lastId, 10, 2, $bits ), -$hostbits );
-		}
 
 		$this->assertArrayEquals( array_unique( $ids ), $ids, "All generated IDs are unique." );
 
@@ -95,4 +98,32 @@ class UIDGeneratorTest extends MediaWikiTestCase {
 		}
 	}
 
+	/**
+	 * @covers UIDGenerator::newSequentialPerNodeID
+	 */
+	public function testNewSequentialID() {
+		$id1 = UIDGenerator::newSequentialPerNodeID( 'test', 32 );
+		$id2 = UIDGenerator::newSequentialPerNodeID( 'test', 32 );
+
+		$this->assertType( 'float', $id1, "ID returned as float" );
+		$this->assertType( 'float', $id2, "ID returned as float" );
+		$this->assertGreaterThan( 0, $id1, "ID greater than 1" );
+		$this->assertGreaterThan( $id1, $id2, "IDs increasing in value" );
+	}
+
+	/**
+	 * @covers UIDGenerator::newSequentialPerNodeIDs
+	 */
+	public function testNewSequentialIDs() {
+		$ids = UIDGenerator::newSequentialPerNodeIDs( 'test', 32, 5 );
+		$lastId = null;
+		foreach ( $ids as $id ) {
+			$this->assertType( 'float', $id, "ID returned as float" );
+			$this->assertGreaterThan( 0, $id, "ID greater than 1" );
+			if ( $lastId ) {
+				$this->assertGreaterThan( $lastId, $id, "IDs increasing in value" );
+			}
+			$lastId = $id;
+		}
+	}
 }

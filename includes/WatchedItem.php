@@ -41,19 +41,36 @@ class WatchedItem {
 	 */
 	const CHECK_USER_RIGHTS = 1;
 
-	var $mTitle, $mUser, $mCheckRights;
-	private $loaded = false, $watched, $timestamp;
+	/** @var Title */
+	public $mTitle;
+
+	/** @var User */
+	public $mUser;
+
+	/** @var int */
+	public $mCheckRights;
+
+	/** @var bool */
+	private $loaded = false;
+
+	/** @var bool */
+	private $watched;
+
+	/** @var string */
+	private $timestamp;
 
 	/**
 	 * Create a WatchedItem object with the given user and title
 	 * @since 1.22 $checkRights parameter added
-	 * @param $user User: the user to use for (un)watching
-	 * @param $title Title: the title we're going to (un)watch
-	 * @param $checkRights int: Whether to check the 'viewmywatchlist' and 'editmywatchlist' rights.
+	 * @param User $user The user to use for (un)watching
+	 * @param Title $title The title we're going to (un)watch
+	 * @param int $checkRights Whether to check the 'viewmywatchlist' and 'editmywatchlist' rights.
 	 *     Pass either WatchedItem::IGNORE_USER_RIGHTS or WatchedItem::CHECK_USER_RIGHTS.
-	 * @return WatchedItem object
+	 * @return WatchedItem
 	 */
-	public static function fromUserTitle( $user, $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
+	public static function fromUserTitle( $user, $title,
+		$checkRights = WatchedItem::CHECK_USER_RIGHTS
+	) {
 		$wl = new WatchedItem;
 		$wl->mUser = $user;
 		$wl->mTitle = $title;
@@ -70,16 +87,26 @@ class WatchedItem {
 		return $this->mTitle;
 	}
 
-	/** Helper to retrieve the title namespace */
+	/**
+	 * Helper to retrieve the title namespace
+	 * @return int
+	 */
 	protected function getTitleNs() {
 		return $this->getTitle()->getNamespace();
 	}
 
-	/** Helper to retrieve the title DBkey */
+	/**
+	 * Helper to retrieve the title DBkey
+	 * @return string
+	 */
 	protected function getTitleDBkey() {
 		return $this->getTitle()->getDBkey();
 	}
-	/** Helper to retrieve the user id */
+
+	/**
+	 * Helper to retrieve the user id
+	 * @return int
+	 */
 	protected function getUserId() {
 		return $this->mUser->getId();
 	}
@@ -113,6 +140,12 @@ class WatchedItem {
 			return;
 		}
 
+		// some pages cannot be watched
+		if ( !$this->getTitle()->isWatchable() ) {
+			$this->watched = false;
+			return;
+		}
+
 		# Pages and their talk pages are considered equivalent for watching;
 		# remember that talk namespaces are numbered as page namespace+1.
 
@@ -130,7 +163,7 @@ class WatchedItem {
 
 	/**
 	 * Check permissions
-	 * @param $what string: 'viewmywatchlist' or 'editmywatchlist'
+	 * @param string $what 'viewmywatchlist' or 'editmywatchlist'
 	 */
 	private function isAllowed( $what ) {
 		return !$this->mCheckRights || $this->mUser->isAllowed( $what );
@@ -152,8 +185,8 @@ class WatchedItem {
 	/**
 	 * Get the notification timestamp of this entry.
 	 *
-	 * @return false|null|string: false if the page is not watched, the value of
-	 *         the wl_notificationtimestamp field otherwise
+	 * @return bool|null|string False if the page is not watched, the value of
+	 *   the wl_notificationtimestamp field otherwise
 	 */
 	public function getNotificationTimestamp() {
 		if ( !$this->isAllowed( 'viewmywatchlist' ) ) {
@@ -171,8 +204,8 @@ class WatchedItem {
 	/**
 	 * Reset the notification timestamp of this entry
 	 *
-	 * @param $force Whether to force the write query to be executed even if the
-	 *        page is not watched or the notification timestamp is already NULL.
+	 * @param bool $force Whether to force the write query to be executed even if the
+	 *    page is not watched or the notification timestamp is already NULL.
 	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
 	 */
 	public function resetNotificationTimestamp( $force = '', $oldid = 0 ) {
@@ -237,8 +270,7 @@ class WatchedItem {
 	}
 
 	/**
-	 * Given a title and user (assumes the object is setup), add the watch to the
-	 * database.
+	 * Given a title and user (assumes the object is setup), add the watch to the database.
 	 * @return bool
 	 */
 	public function addWatch() {
@@ -329,8 +361,8 @@ class WatchedItem {
 	 * Check if the given title already is watched by the user, and if so
 	 * add watches on a new title. To be used for page renames and such.
 	 *
-	 * @param $ot Title: page title to duplicate entries from, if present
-	 * @param $nt Title: page title to add watches on
+	 * @param Title $ot Page title to duplicate entries from, if present
+	 * @param Title $nt Page title to add watches on
 	 */
 	public static function duplicateEntries( $ot, $nt ) {
 		WatchedItem::doDuplicateEntries( $ot->getSubjectPage(), $nt->getSubjectPage() );
@@ -340,8 +372,8 @@ class WatchedItem {
 	/**
 	 * Handle duplicate entries. Backend for duplicateEntries().
 	 *
-	 * @param $ot Title
-	 * @param $nt Title
+	 * @param Title $ot
+	 * @param Title $nt
 	 *
 	 * @return bool
 	 */
@@ -374,7 +406,13 @@ class WatchedItem {
 		# Perform replace
 		# Note that multi-row replace is very efficient for MySQL but may be inefficient for
 		# some other DBMSes, mostly due to poor simulation by us
-		$dbw->replace( 'watchlist', array( array( 'wl_user', 'wl_namespace', 'wl_title' ) ), $values, __METHOD__ );
+		$dbw->replace(
+			'watchlist',
+			array( array( 'wl_user', 'wl_namespace', 'wl_title' ) ),
+			$values,
+			__METHOD__
+		);
+
 		return true;
 	}
 }

@@ -1,0 +1,14 @@
+/*!
+ * Styling for Special:Version
+ */
+.mw-version-ext-name {
+	font-weight: bold;
+}
+
+.mw-version-ext-vcs-timestamp {
+	white-space: nowrap;
+}
+
+th.mw-version-ext-col-label {
+	font-size: 0.9em;
+}

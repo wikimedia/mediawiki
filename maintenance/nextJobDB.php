@@ -89,7 +89,7 @@ class NextJobDB extends Maintenance {
 
 	/**
 	 * Do all ready periodic jobs for all databases every 5 minutes (and .1% of the time)
-	 * @return integer
+	 * @return int
 	 */
 	private function executeReadyPeriodicTasks() {
 		global $wgLocalDatabases, $wgMemc;

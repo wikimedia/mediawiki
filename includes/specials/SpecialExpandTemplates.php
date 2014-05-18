@@ -29,16 +29,16 @@
  */
 class SpecialExpandTemplates extends SpecialPage {
 
-	/** @var boolean whether or not to show the XML parse tree */
+	/** @var bool Whether or not to show the XML parse tree */
 	protected $generateXML;
 
-	/** @var boolean whether or not to show the raw HTML code */
+	/** @var bool Whether or not to show the raw HTML code */
 	protected $generateRawHtml;
 
-	/** @var boolean whether or not to remove comments in the expanded wikitext */
+	/** @var bool Whether or not to remove comments in the expanded wikitext */
 	protected $removeComments;
 
-	/** @var boolean whether or not to remove <nowiki> tags in the expanded wikitext */
+	/** @var bool Whether or not to remove <nowiki> tags in the expanded wikitext */
 	protected $removeNowiki;
 
 	/** @var maximum size in bytes to include. 50MB allows fixing those huge pages */
@@ -125,9 +125,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			}
 
 			$this->showHtmlPreview( $title, $rawhtml, $out );
-
 		}
-
 	}
 
 	/**

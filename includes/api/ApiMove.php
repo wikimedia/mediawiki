@@ -148,8 +148,8 @@ class ApiMove extends ApiBase {
 	/**
 	 * @param Title $fromTitle
 	 * @param Title $toTitle
-	 * @param  $reason
-	 * @param  $noredirect
+	 * @param string $reason
+	 * @param bool $noredirect
 	 * @return array
 	 */
 	public function moveSubpages( $fromTitle, $toTitle, $reason, $noredirect ) {
@@ -272,7 +272,7 @@ class ApiMove extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Move a page';
+		return 'Move a page.';
 	}
 
 	public function getPossibleErrors() {

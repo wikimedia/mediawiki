@@ -36,21 +36,21 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 	/* Methods */
 
 	/**
-	 * @param $context ResourceLoaderContext
-	 * @return array|int|Mixed
+	 * @param ResourceLoaderContext $context
+	 * @return array|int|mixed
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		$hash = $context->getHash();
-		if ( isset( $this->modifiedTime[$hash] ) ) {
-			return $this->modifiedTime[$hash];
+		if ( !isset( $this->modifiedTime[$hash] ) ) {
+			global $wgUser;
+			$this->modifiedTime[$hash] = wfTimestamp( TS_UNIX, $wgUser->getTouched() );
 		}
 
-		global $wgUser;
-		return $this->modifiedTime[$hash] = wfTimestamp( TS_UNIX, $wgUser->getTouched() );
+		return $this->modifiedTime[$hash];
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
@@ -73,15 +73,6 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 			# The scripts of these languages are very hard to read with underlines
 			$rules[] = 'a:lang(ar), a:lang(kk-arab), a:lang(mzn), ' .
 			'a:lang(ps), a:lang(ur) { text-decoration: none; }';
-		}
-		if ( $options['justify'] ) {
-			$rules[] = "#article, #bodyContent, #mw_content { text-align: justify; }\n";
-		}
-		if ( !$options['showtoc'] ) {
-			$rules[] = "#toc { display: none; }\n";
-		}
-		if ( !$options['editsection'] ) {
-			$rules[] = ".mw-editsection { display: none; }\n";
 		}
 		if ( $options['editfont'] !== 'default' ) {
 			// Double-check that $options['editfont'] consists of safe characters only

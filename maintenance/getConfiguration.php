@@ -63,7 +63,7 @@ class GetConfiguration extends Maintenance {
 		$format = strtolower( $this->getOption( 'format', 'PHP' ) );
 
 		$validFormat = in_array( $format, self::$outFormats );
-		if ( ! $validFormat ) {
+		if ( !$validFormat ) {
 			$this->error( "--format set to an unrecognized format", 0 );
 			$error_out = true;
 		}
@@ -87,11 +87,11 @@ class GetConfiguration extends Maintenance {
 	public function finalSetup() {
 		parent::finalSetup();
 
-		$this->regex = $this->getOption( 'regex' ) ?: $this->getOption( 'iregex' );
+		$this->regex = $this->getOption( 'regex' ) ? : $this->getOption( 'iregex' );
 		if ( $this->regex ) {
 			$this->regex = '/' . $this->regex . '/';
 			if ( $this->hasOption( 'iregex' ) ) {
-				$this->regex .= 'i';  # case insensitive regex
+				$this->regex .= 'i'; # case insensitive regex
 			}
 		}
 
@@ -115,7 +115,7 @@ class GetConfiguration extends Maintenance {
 		$res = array();
 
 		# Sane default: dump any wg / wmg variable
-		if ( ! $this->regex && ! $this->getOption( 'settings' ) ) {
+		if ( !$this->regex && !$this->getOption( 'settings' ) ) {
 			$this->regex = '/^wm?g/';
 		}
 
@@ -165,7 +165,7 @@ class GetConfiguration extends Maintenance {
 	protected function formatVarDump( $res ) {
 		$ret = '';
 		foreach ( $res as $key => $value ) {
-			ob_start();  # intercept var_dump() output
+			ob_start(); # intercept var_dump() output
 			print "\${$key} = ";
 			var_dump( $value );
 			# grab var_dump() output and discard it from the output buffer
@@ -182,10 +182,12 @@ class GetConfiguration extends Maintenance {
 					return false;
 				}
 			}
+
 			return true;
 		} elseif ( is_scalar( $value ) ) {
 			return true;
 		}
+
 		return false;
 	}
 }

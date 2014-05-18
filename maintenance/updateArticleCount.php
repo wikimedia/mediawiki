@@ -49,10 +49,16 @@ class UpdateArticleCount extends Maintenance {
 		if ( $this->hasOption( 'update' ) ) {
 			$this->output( "Updating site statistics table... " );
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->update( 'site_stats', array( 'ss_good_articles' => $result ), array( 'ss_row_id' => 1 ), __METHOD__ );
+			$dbw->update(
+				'site_stats',
+				array( 'ss_good_articles' => $result ),
+				array( 'ss_row_id' => 1 ),
+				__METHOD__
+			);
 			$this->output( "done.\n" );
 		} else {
-			$this->output( "To update the site statistics table, run the script with the --update option.\n" );
+			$this->output( "To update the site statistics table, run the script "
+				. "with the --update option.\n" );
 		}
 	}
 }

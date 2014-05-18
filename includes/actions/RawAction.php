@@ -77,7 +77,8 @@ class RawAction extends FormlessAction {
 
 		$contentType = $this->getContentType();
 
-		# Force caching for CSS and JS raw content, default: 5 minutes
+		# Force caching for CSS and JS raw content, default: 5 minutes.
+		# Note: If using a canonical url for userpage css/js, we send an HTCP purge.
 		if ( $smaxage === null ) {
 			if ( $contentType == 'text/css' || $contentType == 'text/javascript' ) {
 				$smaxage = intval( $wgForcedRawSMaxage );
@@ -124,7 +125,7 @@ class RawAction extends FormlessAction {
 	 * Get the text that should be returned, or false if the page or revision
 	 * was not found.
 	 *
-	 * @return String|Bool
+	 * @return string|bool
 	 */
 	public function getRawText() {
 		global $wgParser;
@@ -164,7 +165,7 @@ class RawAction extends FormlessAction {
 				} elseif ( !$content instanceof TextContent ) {
 					// non-text content
 					wfHttpError( 415, "Unsupported Media Type", "The requested page uses the content model `"
-										. $content->getModel() . "` which is not supported via this interface." );
+						. $content->getModel() . "` which is not supported via this interface." );
 					die();
 				} else {
 					// want a section?
@@ -197,7 +198,7 @@ class RawAction extends FormlessAction {
 	/**
 	 * Get the ID of the revision that should used to get the text.
 	 *
-	 * @return Integer
+	 * @return int
 	 */
 	public function getOldId() {
 		$oldid = $this->getRequest()->getInt( 'oldid' );
@@ -229,7 +230,7 @@ class RawAction extends FormlessAction {
 	/**
 	 * Get the content type to use for the response
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getContentType() {
 		$ctype = $this->getRequest()->getVal( 'ctype' );
@@ -255,7 +256,7 @@ class RawAction extends FormlessAction {
 /**
  * Backward compatibility for extensions
  *
- * @deprecated in 1.19
+ * @deprecated since 1.19
  */
 class RawPage extends RawAction {
 	public $mOldId;

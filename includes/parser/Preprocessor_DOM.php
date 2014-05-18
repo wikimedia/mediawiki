@@ -56,7 +56,7 @@ class Preprocessor_DOM implements Preprocessor {
 	}
 
 	/**
-	 * @param $args array
+	 * @param array $args
 	 * @return PPCustomFrame_DOM
 	 */
 	function newCustomFrame( $args ) {
@@ -64,7 +64,7 @@ class Preprocessor_DOM implements Preprocessor {
 	}
 
 	/**
-	 * @param $values
+	 * @param array $values
 	 * @return PPNode_DOM
 	 */
 	function newPartNodeArray( $values ) {
@@ -73,18 +73,34 @@ class Preprocessor_DOM implements Preprocessor {
 
 		foreach ( $values as $k => $val ) {
 			if ( is_int( $k ) ) {
-				$xml .= "<part><name index=\"$k\"/><value>" . htmlspecialchars( $val ) . "</value></part>";
+				$xml .= "<part><name index=\"$k\"/><value>"
+					. htmlspecialchars( $val ) . "</value></part>";
 			} else {
-				$xml .= "<part><name>" . htmlspecialchars( $k ) . "</name>=<value>" . htmlspecialchars( $val ) . "</value></part>";
+				$xml .= "<part><name>" . htmlspecialchars( $k )
+					. "</name>=<value>" . htmlspecialchars( $val ) . "</value></part>";
 			}
 		}
 
 		$xml .= "</list>";
 
+		wfProfileIn( __METHOD__ . '-loadXML' );
 		$dom = new DOMDocument();
-		$dom->loadXML( $xml );
-		$root = $dom->documentElement;
+		wfSuppressWarnings();
+		$result = $dom->loadXML( $xml );
+		wfRestoreWarnings();
+		if ( !$result ) {
+			// Try running the XML through UtfNormal to get rid of invalid characters
+			$xml = UtfNormal::cleanUp( $xml );
+			// 1 << 19 == XML_PARSE_HUGE, needed so newer versions of libxml2 don't barf when the XML is >256 levels deep
+			$result = $dom->loadXML( $xml, 1 << 19 );
+		}
+		wfProfileOut( __METHOD__ . '-loadXML' );
 
+		if ( !$result ) {
+			throw new MWException( 'Parameters passed to ' . __METHOD__ . ' result in invalid XML' );
+		}
+
+		$root = $dom->documentElement;
 		$node = new PPNode_DOM( $root->childNodes );
 		return $node;
 	}
@@ -109,10 +125,11 @@ class Preprocessor_DOM implements Preprocessor {
 	 * Preprocess some wikitext and return the document tree.
 	 * This is the ghost of Parser::replace_variables().
 	 *
-	 * @param string $text the text to parse
-	 * @param $flags Integer: bitwise combination of:
-	 *          Parser::PTD_FOR_INCLUSION    Handle "<noinclude>" and "<includeonly>" as if the text is being
-	 *                                     included. Default is to assume a direct page view.
+	 * @param string $text The text to parse
+	 * @param int $flags Bitwise combination of:
+	 *     Parser::PTD_FOR_INCLUSION  Handle "<noinclude>" and "<includeonly>"
+	 *                                as if the text is being included. Default
+	 *                                is to assume a direct page view.
 	 *
 	 * The generated DOM tree must depend only on the input text and the flags.
 	 * The DOM tree must be the same in OT_HTML and OT_WIKI mode, to avoid a regression of bug 4899.
@@ -180,7 +197,8 @@ class Preprocessor_DOM implements Preprocessor {
 		if ( !$result ) {
 			// Try running the XML through UtfNormal to get rid of invalid characters
 			$xml = UtfNormal::cleanUp( $xml );
-			// 1 << 19 == XML_PARSE_HUGE, needed so newer versions of libxml2 don't barf when the XML is >256 levels deep
+			// 1 << 19 == XML_PARSE_HUGE, needed so newer versions of libxml2
+			// don't barf when the XML is >256 levels deep.
 			$result = $dom->loadXML( $xml, 1 << 19 );
 		}
 		if ( $result ) {
@@ -201,8 +219,8 @@ class Preprocessor_DOM implements Preprocessor {
 	}
 
 	/**
-	 * @param $text string
-	 * @param $flags int
+	 * @param string $text
+	 * @param int $flags
 	 * @return string
 	 */
 	function preprocessToXml( $text, $flags = 0 ) {
@@ -233,7 +251,9 @@ class Preprocessor_DOM implements Preprocessor {
 			$ignoredTags = array( 'includeonly', '/includeonly' );
 			$ignoredElements = array( 'noinclude' );
 			$xmlishElements[] = 'noinclude';
-			if ( strpos( $text, '<onlyinclude>' ) !== false && strpos( $text, '</onlyinclude>' ) !== false ) {
+			if ( strpos( $text, '<onlyinclude>' ) !== false
+				&& strpos( $text, '</onlyinclude>' ) !== false
+			) {
 				$enableOnlyinclude = true;
 			}
 		} else {
@@ -249,19 +269,28 @@ class Preprocessor_DOM implements Preprocessor {
 		$stack = new PPDStack;
 
 		$searchBase = "[{<\n"; #}
-		$revText = strrev( $text ); // For fast reverse searches
+		// For fast reverse searches
+		$revText = strrev( $text );
 		$lengthText = strlen( $text );
 
-		$i = 0;                     # Input pointer, starts out pointing to a pseudo-newline before the start
-		$accum =& $stack->getAccum();   # Current accumulator
+		// Input pointer, starts out pointing to a pseudo-newline before the start
+		$i = 0;
+		// Current accumulator
+		$accum =& $stack->getAccum();
 		$accum = '<root>';
-		$findEquals = false;            # True to find equals signs in arguments
-		$findPipe = false;              # True to take notice of pipe characters
+		// True to find equals signs in arguments
+		$findEquals = false;
+		// True to take notice of pipe characters
+		$findPipe = false;
 		$headingIndex = 1;
-		$inHeading = false;        # True if $i is inside a possible heading
-		$noMoreGT = false;         # True if there are no more greater-than (>) signs right of $i
-		$findOnlyinclude = $enableOnlyinclude; # True to ignore all input up to the next <onlyinclude>
-		$fakeLineStart = true;     # Do a line-start run without outputting an LF character
+		// True if $i is inside a possible heading
+		$inHeading = false;
+		// True if there are no more greater-than (>) signs right of $i
+		$noMoreGT = false;
+		// True to ignore all input up to the next <onlyinclude>
+		$findOnlyinclude = $enableOnlyinclude;
+		// Do a line-start run without outputting an LF character
+		$fakeLineStart = true;
 
 		while ( true ) {
 			//$this->memCheck();
@@ -346,7 +375,9 @@ class Preprocessor_DOM implements Preprocessor {
 			if ( $found == 'angle' ) {
 				$matches = false;
 				// Handle </onlyinclude>
-				if ( $enableOnlyinclude && substr( $text, $i, strlen( '</onlyinclude>' ) ) == '</onlyinclude>' ) {
+				if ( $enableOnlyinclude
+					&& substr( $text, $i, strlen( '</onlyinclude>' ) ) == '</onlyinclude>'
+				) {
 					$findOnlyinclude = true;
 					continue;
 				}
@@ -460,7 +491,9 @@ class Preprocessor_DOM implements Preprocessor {
 
 				// Handle ignored tags
 				if ( in_array( $lowerName, $ignoredTags ) ) {
-					$accum .= '<ignore>' . htmlspecialchars( substr( $text, $i, $tagEndPos - $i + 1 ) ) . '</ignore>';
+					$accum .= '<ignore>'
+						. htmlspecialchars( substr( $text, $i, $tagEndPos - $i + 1 ) )
+						. '</ignore>';
 					$i = $tagEndPos + 1;
 					continue;
 				}
@@ -520,9 +553,11 @@ class Preprocessor_DOM implements Preprocessor {
 
 				$count = strspn( $text, '=', $i, 6 );
 				if ( $count == 1 && $findEquals ) {
-					// DWIM: This looks kind of like a name/value separator
-					// Let's let the equals handler have it and break the potential heading
-					// This is heuristic, but AFAICT the methods for completely correct disambiguation are very complex.
+					// DWIM: This looks kind of like a name/value separator.
+					// Let's let the equals handler have it and break the
+					// potential heading. This is heuristic, but AFAICT the
+					// methods for completely correct disambiguation are very
+					// complex.
 				} elseif ( $count > 0 ) {
 					$piece = array(
 						'open' => "\n",
@@ -541,8 +576,9 @@ class Preprocessor_DOM implements Preprocessor {
 				// A heading must be open, otherwise \n wouldn't have been in the search list
 				assert( '$piece->open == "\n"' );
 				$part = $piece->getCurrentPart();
-				// Search back through the input to see if it has a proper close
-				// Do this using the reversed string since the other solutions (end anchor, etc.) are inefficient
+				// Search back through the input to see if it has a proper close.
+				// Do this using the reversed string since the other solutions
+				// (end anchor, etc.) are inefficient.
 				$wsLength = strspn( $revText, " \t", $lengthText - $i );
 				$searchStart = $i - $wsLength;
 				if ( isset( $part->commentEnd ) && $searchStart - 1 == $part->commentEnd ) {
@@ -871,6 +907,7 @@ class PPDStackElement {
 	/**
 	 * Get the output string that would result if the close is not found.
 	 *
+	 * @param bool|int $openingCount
 	 * @return string
 	 */
 	function breakSyntax( $openingCount = false ) {
@@ -947,7 +984,7 @@ class PPFrame_DOM implements PPFrame {
 
 	/**
 	 * Construct a new preprocessor frame.
-	 * @param $preprocessor Preprocessor The parent preprocessor
+	 * @param Preprocessor $preprocessor The parent preprocessor
 	 */
 	function __construct( $preprocessor ) {
 		$this->preprocessor = $preprocessor;
@@ -962,6 +999,9 @@ class PPFrame_DOM implements PPFrame {
 	 * Create a new child frame
 	 * $args is optionally a multi-root PPNode or array containing the template arguments
 	 *
+	 * @param bool|array $args
+	 * @param Title|bool $title
+	 * @param int $indexOffset
 	 * @return PPTemplateFrame_DOM
 	 */
 	function newChild( $args = false, $title = false, $indexOffset = 0 ) {
@@ -1004,8 +1044,8 @@ class PPFrame_DOM implements PPFrame {
 
 	/**
 	 * @throws MWException
-	 * @param $root
-	 * @param $flags int
+	 * @param string|PPNode_DOM|DOMDocument $root
+	 * @param int $flags
 	 * @return string
 	 */
 	function expand( $root, $flags = 0 ) {
@@ -1144,14 +1184,13 @@ class PPFrame_DOM implements PPFrame {
 						|| ( $flags & PPFrame::STRIP_COMMENTS )
 					) {
 						$out .= '';
-					}
-					# Add a strip marker in PST mode so that pstPass2() can run some old-fashioned regexes on the result
-					# Not in RECOVER_COMMENTS mode (extractSections) though
-					elseif ( $this->parser->ot['wiki'] && !( $flags & PPFrame::RECOVER_COMMENTS ) ) {
+					} elseif ( $this->parser->ot['wiki'] && !( $flags & PPFrame::RECOVER_COMMENTS ) ) {
+						# Add a strip marker in PST mode so that pstPass2() can
+						# run some old-fashioned regexes on the result.
+						# Not in RECOVER_COMMENTS mode (extractSections) though.
 						$out .= $this->parser->insertStripItem( $contextNode->textContent );
-					}
-					# Recover the literal comment in RECOVER_COMMENTS and pre+no-remove
-					else {
+					} else {
+						# Recover the literal comment in RECOVER_COMMENTS and pre+no-remove
 						$out .= $contextNode->textContent;
 					}
 				} elseif ( $contextNode->nodeName == 'ignore' ) {
@@ -1159,7 +1198,9 @@ class PPFrame_DOM implements PPFrame {
 					# OT_WIKI will only respect <ignore> in substed templates.
 					# The other output types respect it unless NO_IGNORE is set.
 					# extractSections() sets NO_IGNORE and so never respects it.
-					if ( ( !isset( $this->parent ) && $this->parser->ot['wiki'] ) || ( $flags & PPFrame::NO_IGNORE ) ) {
+					if ( ( !isset( $this->parent ) && $this->parser->ot['wiki'] )
+						|| ( $flags & PPFrame::NO_IGNORE )
+					) {
 						$out .= $contextNode->textContent;
 					} else {
 						$out .= '';
@@ -1230,8 +1271,8 @@ class PPFrame_DOM implements PPFrame {
 	}
 
 	/**
-	 * @param $sep
-	 * @param $flags
+	 * @param string $sep
+	 * @param int $flags
 	 * @return string
 	 */
 	function implodeWithFlags( $sep, $flags /*, ... */ ) {
@@ -1262,6 +1303,7 @@ class PPFrame_DOM implements PPFrame {
 	 * Implode with no flags specified
 	 * This previously called implodeWithFlags but has now been inlined to reduce stack depth
 	 *
+	 * @param string $sep
 	 * @return string
 	 */
 	function implode( $sep /*, ... */ ) {
@@ -1292,6 +1334,7 @@ class PPFrame_DOM implements PPFrame {
 	 * Makes an object that, when expand()ed, will be the same as one obtained
 	 * with implode()
 	 *
+	 * @param string $sep
 	 * @return array
 	 */
 	function virtualImplode( $sep /*, ... */ ) {
@@ -1320,6 +1363,9 @@ class PPFrame_DOM implements PPFrame {
 
 	/**
 	 * Virtual implode with brackets
+	 * @param string $start
+	 * @param string $sep
+	 * @param string $end
 	 * @return array
 	 */
 	function virtualBracketedImplode( $start, $sep, $end /*, ... */ ) {
@@ -1396,6 +1442,7 @@ class PPFrame_DOM implements PPFrame {
 	/**
 	 * Returns true if the infinite loop check is OK, false if a loop is detected
 	 *
+	 * @param Title $title
 	 * @return bool
 	 */
 	function loopCheck( $title ) {
@@ -1435,13 +1482,15 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	var $numberedExpansionCache, $namedExpansionCache;
 
 	/**
-	 * @param $preprocessor
-	 * @param $parent PPFrame_DOM
-	 * @param $numberedArgs array
-	 * @param $namedArgs array
-	 * @param $title Title
+	 * @param Preprocessor $preprocessor
+	 * @param bool|PPFrame_DOM $parent
+	 * @param array $numberedArgs
+	 * @param array $namedArgs
+	 * @param bool|Title $title
 	 */
-	function __construct( $preprocessor, $parent = false, $numberedArgs = array(), $namedArgs = array(), $title = false ) {
+	function __construct( $preprocessor, $parent = false, $numberedArgs = array(),
+		$namedArgs = array(), $title = false
+	) {
 		parent::__construct( $preprocessor );
 
 		$this->parent = $parent;
@@ -1517,7 +1566,10 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 		}
 		if ( !isset( $this->numberedExpansionCache[$index] ) ) {
 			# No trimming for unnamed arguments
-			$this->numberedExpansionCache[$index] = $this->parent->expand( $this->numberedArgs[$index], PPFrame::STRIP_COMMENTS );
+			$this->numberedExpansionCache[$index] = $this->parent->expand(
+				$this->numberedArgs[$index],
+				PPFrame::STRIP_COMMENTS
+			);
 		}
 		return $this->numberedExpansionCache[$index];
 	}
@@ -1658,7 +1710,7 @@ class PPNode_DOM implements PPNode {
 	}
 
 	/**
-	 * @param $type
+	 * @param string $type
 	 *
 	 * @return bool|PPNode_DOM
 	 */
@@ -1678,7 +1730,7 @@ class PPNode_DOM implements PPNode {
 	}
 
 	/**
-	 * @param $i
+	 * @param int $i
 	 * @return bool|PPNode_DOM
 	 */
 	function item( $i ) {

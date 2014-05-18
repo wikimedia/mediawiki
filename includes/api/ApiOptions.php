@@ -98,6 +98,9 @@ class ApiOptions extends ApiBase {
 						$validation = true;
 					}
 					break;
+				case 'special':
+					$validation = "cannot be set by this module";
+					break;
 				case 'unused':
 				default:
 					$validation = "not a valid preference";
@@ -171,10 +174,11 @@ class ApiOptions extends ApiBase {
 			'token' => 'An options token previously obtained through the action=tokens',
 			'reset' => 'Resets preferences to the site defaults',
 			'resetkinds' => 'List of types of options to reset when the "reset" option is set',
-			'change' => 'List of changes, formatted name=value (e.g. skin=vector), ' .
-				'value cannot contain pipe characters. If no value is given (not ' .
+			'change' => array( 'List of changes, formatted name=value (e.g. skin=vector), ' .
+				'value cannot contain pipe characters. If no value is given (not ',
 				'even an equals sign), e.g., optionname|otheroption|..., the ' .
-				'option will be reset to its default value',
+				'option will be reset to its default value'
+			),
 			'optionname' => 'A name of a option which should have an optionvalue set',
 			'optionvalue' => 'A value of the option specified by the optionname, ' .
 				'can contain pipe characters',
@@ -183,7 +187,7 @@ class ApiOptions extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Change preferences of the current user',
+			'Change preferences of the current user.',
 			'Only options which are registered in core or in one of installed extensions,',
 			'or as options with keys prefixed with \'userjs-\' (intended to be used by user',
 			'scripts), can be set.'

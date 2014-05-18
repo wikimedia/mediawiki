@@ -20,6 +20,7 @@
  * @file
  * @ingroup SpecialPage
  */
+
 class SpecialNewFiles extends IncludableSpecialPage {
 	public function __construct() {
 		parent::__construct( 'Newimages' );
@@ -32,6 +33,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$pager = new NewFilesPager( $this->getContext(), $par );
 
 		if ( !$this->including() ) {
+			$this->setTopText();
 			$form = $pager->getForm();
 			$form->prepareForm();
 			$form->displayForm( '' );
@@ -46,6 +48,25 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	protected function getGroupName() {
 		return 'changes';
 	}
+
+	/**
+	 * Send the text to be displayed above the options
+	 */
+	function setTopText() {
+		global $wgContLang;
+
+		$message = $this->msg( 'newimagestext' )->inContentLanguage();
+		if ( !$message->isDisabled() ) {
+			$this->getOutput()->addWikiText(
+				Html::rawElement( 'p',
+					array( 'lang' => $wgContLang->getCode(), 'dir' => $wgContLang->getDir() ),
+					"\n" . $message->plain() . "\n"
+				),
+				/* $lineStart */ false,
+				/* $interface */ false
+			);
+		}
+	}
 }
 
 /**
@@ -55,7 +76,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 	/**
 	 * @var ImageGallery
 	 */
-	var $gallery;
+	protected $gallery;
 
 	function __construct( IContextSource $context, $par = null ) {
 		$this->like = $context->getRequest()->getText( 'like' );
@@ -162,7 +183,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 			),
 			'showbots' => array(
 				'type' => 'check',
-				'label' => $this->msg( 'showhidebots', $this->msg( 'show' )->plain() )->escaped(),
+				'label-message' => 'newimages-showbots',
 				'name' => 'showbots',
 			),
 			'limit' => array(

@@ -42,6 +42,7 @@ if ( count( $args ) < 1 || isset( $options['help'] ) ) {
 
 			echo "\nUsing title '" . $title->getPrefixedText() . "'...";
 			if ( !$title->exists() || !isset( $options['nooverwrite'] ) ) {
+				RequestContext::getMain()->setTitle( $title );
 
 				$text = file_get_contents( $filename );
 				$user = isset( $options['user'] ) ? $options['user'] : 'Maintenance script';
@@ -59,33 +60,29 @@ if ( count( $args ) < 1 || isset( $options['help'] ) ) {
 					$content = ContentHandler::makeContent( $text, $title );
 					$page->doEditContent( $content, $comment, $flags, false, $user );
 					echo "done.\n";
-
 				} else {
 					echo "invalid username.\n";
 				}
-
 			} else {
 				echo "page exists.\n";
 			}
-
 		} else {
 			echo "invalid title.\n";
 		}
-
 	} else {
 		echo "does not exist.\n";
 	}
-
 }
 
 function titleFromFilename( $filename ) {
 	$parts = explode( '/', $filename );
-	$parts = explode( '.', $parts[ count( $parts ) - 1 ] );
+	$parts = explode( '.', $parts[count( $parts ) - 1] );
+
 	return $parts[0];
 }
 
 function showHelp() {
-print <<<EOF
+	print <<<EOF
 USAGE: php importTextFile.php <options> <filename>
 
 <filename> : Path to the file containing page content to import

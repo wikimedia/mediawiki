@@ -48,7 +48,7 @@ node_modules/
 /composer.json
 
 # MediaWiki UI documentation
-resources/mediawiki.ui/docs
+/docs/kss/static
 
 # Operating systems
 ## Mac OS X

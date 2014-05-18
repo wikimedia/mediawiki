@@ -27,7 +27,7 @@
  */
 class ApiParse extends ApiBase {
 
-	/** @var String $section */
+	/** @var string $section */
 	private $section = null;
 
 	/** @var Content $content */
@@ -176,15 +176,19 @@ class ApiParse extends ApiBase {
 			if ( !$titleObj || $titleObj->isExternal() ) {
 				$this->dieUsageMsg( array( 'invalidtitle', $title ) );
 			}
-			if ( !$titleObj->canExist() ) {
-				$this->dieUsage( "Namespace doesn't allow actual pages", 'pagecannotexist' );
-			}
 			$wgTitle = $titleObj;
-			$pageObj = WikiPage::factory( $titleObj );
+			if ( $titleObj->canExist() ) {
+				$pageObj = WikiPage::factory( $titleObj );
+			} else {
+				// Do like MediaWiki::initializeArticle()
+				$article = Article::newFromTitle( $titleObj, $this->getContext() );
+				$pageObj = $article->getPage();
+			}
 
 			$popts = $this->makeParserOptions( $pageObj, $params );
+			$textProvided = !is_null( $text );
 
-			if ( is_null( $text ) ) {
+			if ( !$textProvided ) {
 				if ( $titleProvided && ( $prop || $params['generatexml'] ) ) {
 					$this->setWarning(
 						"'title' used without 'text', and parsed page properties were requested " .
@@ -197,7 +201,7 @@ class ApiParse extends ApiBase {
 
 			// If we are parsing text, do not use the content model of the default
 			// API title, but default to wikitext to keep BC.
-			if ( !$titleProvided && is_null( $model ) ) {
+			if ( $textProvided && !$titleProvided && is_null( $model ) ) {
 				$model = CONTENT_MODEL_WIKITEXT;
 				$this->setWarning( "No 'title' or 'contentmodel' was given, assuming $model." );
 			}
@@ -342,6 +346,13 @@ class ApiParse extends ApiBase {
 			}
 		}
 
+		if ( isset( $prop['modules'] ) ) {
+			$result_array['modules'] = array_values( array_unique( $p_result->getModules() ) );
+			$result_array['modulescripts'] = array_values( array_unique( $p_result->getModuleScripts() ) );
+			$result_array['modulestyles'] = array_values( array_unique( $p_result->getModuleStyles() ) );
+			$result_array['modulemessages'] = array_values( array_unique( $p_result->getModuleMessages() ) );
+		}
+
 		if ( isset( $prop['iwlinks'] ) ) {
 			$result_array['iwlinks'] = $this->formatIWLinks( $p_result->getInterwikiLinks() );
 		}
@@ -356,6 +367,16 @@ class ApiParse extends ApiBase {
 		}
 		if ( isset( $prop['properties'] ) ) {
 			$result_array['properties'] = $this->formatProperties( $p_result->getProperties() );
+		}
+
+		if ( isset( $prop['limitreportdata'] ) ) {
+			$result_array['limitreportdata'] =
+				$this->formatLimitReportData( $p_result->getLimitReportData() );
+		}
+		if ( isset( $prop['limitreporthtml'] ) ) {
+			$limitreportHtml = EditPage::getPreviewLimitReport( $p_result );
+			$result_array['limitreporthtml'] = array();
+			ApiResult::setContent( $result_array['limitreporthtml'], $limitreportHtml );
 		}
 
 		if ( $params['generatexml'] ) {
@@ -385,7 +406,12 @@ class ApiParse extends ApiBase {
 			'iwlinks' => 'iw',
 			'sections' => 's',
 			'headitems' => 'hi',
+			'modules' => 'm',
+			'modulescripts' => 'm',
+			'modulestyles' => 'm',
+			'modulemessages' => 'm',
 			'properties' => 'pp',
+			'limitreportdata' => 'lr',
 		);
 		$this->setIndexedTagNames( $result_array, $result_mapping );
 		$result->addValue( null, $this->getModuleName(), $result_array );
@@ -417,10 +443,10 @@ class ApiParse extends ApiBase {
 	}
 
 	/**
-	 * @param $page WikiPage
-	 * @param $popts ParserOptions
-	 * @param $pageId Int
-	 * @param $getWikitext Bool
+	 * @param WikiPage $page
+	 * @param ParserOptions $popts
+	 * @param int $pageId
+	 * @param bool $getWikitext
 	 * @return ParserOutput
 	 */
 	private function getParsedContent( WikiPage $page, $popts, $pageId = null, $getWikitext = false ) {
@@ -473,6 +499,14 @@ class ApiParse extends ApiBase {
 			$entry['lang'] = $bits[0];
 			if ( $title ) {
 				$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
+				// localised language name in user language (maybe set by uselang=)
+				$entry['langname'] = Language::fetchLanguageName(
+					$title->getInterwiki(),
+					$this->getLanguage()->getCode()
+				);
+
+				// native language name
+				$entry['autonym'] = Language::fetchLanguageName( $title->getInterwiki() );
 			}
 			ApiResult::setContent( $entry, $bits[1] );
 			$result[] = $entry;
@@ -531,7 +565,7 @@ class ApiParse extends ApiBase {
 	/**
 	 * @deprecated since 1.18 No modern skin generates language links this way,
 	 * please use language links data to generate your own HTML.
-	 * @param $languages array
+	 * @param array $languages
 	 * @return string
 	 */
 	private function languagesHtml( $languages ) {
@@ -641,6 +675,25 @@ class ApiParse extends ApiBase {
 		return $result;
 	}
 
+	private function formatLimitReportData( $limitReportData ) {
+		$result = array();
+		$apiResult = $this->getResult();
+
+		foreach ( $limitReportData as $name => $value ) {
+			$entry = array();
+			$entry['name'] = $name;
+			if ( !is_array( $value ) ) {
+				$value = array( $value );
+			}
+			$apiResult->setIndexedTagName( $value, 'param' );
+			$apiResult->setIndexedTagName_recursive( $value, 'param' );
+			$entry = array_merge( $entry, $value );
+			$result[] = $entry;
+		}
+
+		return $result;
+	}
+
 	private function setIndexedTagNames( &$array, $mapping ) {
 		foreach ( $mapping as $key => $name ) {
 			if ( isset( $array[$key] ) ) {
@@ -681,9 +734,12 @@ class ApiParse extends ApiBase {
 					'displaytitle',
 					'headitems',
 					'headhtml',
+					'modules',
 					'iwlinks',
 					'wikitext',
 					'properties',
+					'limitreportdata',
+					'limitreporthtml',
 				)
 			),
 			'pst' => false,
@@ -714,7 +770,7 @@ class ApiParse extends ApiBase {
 			'summary' => 'Summary to parse',
 			'redirects' => "If the {$p}page or the {$p}pageid parameter is set to a redirect, resolve it",
 			'title' => "Title of page the text belongs to. " .
-				"If omitted, \"API\" is used as the title with content model $wikitext",
+				"If omitted, {$p}contentmodel must be specified, and \"API\" will be used as the title",
 			'page' => "Parse the content of this page. Cannot be used together with {$p}text and {$p}title",
 			'pageid' => "Parse the content of this page. Overrides {$p}page",
 			'oldid' => "Parse the content of this revision. Overrides {$p}page and {$p}pageid",
@@ -735,9 +791,14 @@ class ApiParse extends ApiBase {
 				' displaytitle   - Adds the title of the parsed wikitext',
 				' headitems      - Gives items to put in the <head> of the page',
 				' headhtml       - Gives parsed <head> of the page',
+				' modules        - Gives the ResourceLoader modules used on the page',
 				' iwlinks        - Gives interwiki links in the parsed wikitext',
 				' wikitext       - Gives the original wikitext that was parsed',
 				' properties     - Gives various properties defined in the parsed wikitext',
+				' limitreportdata - Gives the limit report in a structured way.',
+				"                   Gives no data, when {$p}disablepp is set.",
+				' limitreporthtml - Gives the HTML version of the limit report.',
+				"                   Gives no data, when {$p}disablepp is set.",
 			),
 			'effectivelanglinks' => array(
 				'Includes language links supplied by extensions',
@@ -764,8 +825,8 @@ class ApiParse extends ApiBase {
 				"Only valid when used with {$p}text",
 			),
 			'contentmodel' => array(
-				"Content model of the input text. Default is the model of the " .
-				"specified ${p}title, or $wikitext if ${p}title is not specified",
+				"Content model of the input text. If omitted, ${p}title must be specified, " .
+					"and default will be the model of the specified ${p}title",
 				"Only valid when used with {$p}text",
 			),
 		);
@@ -775,9 +836,9 @@ class ApiParse extends ApiBase {
 		$p = $this->getModulePrefix();
 
 		return array(
-			'Parses content and returns parser output',
+			'Parses content and returns parser output.',
 			'See the various prop-Modules of action=query to get information from the current' .
-				'version of a page',
+				'version of a page.',
 			'There are several ways to specify the text to parse:',
 			"1) Specify a page or revision, using {$p}page, {$p}pageid, or {$p}oldid.",
 			"2) Specify content explicitly, using {$p}text, {$p}title, and {$p}contentmodel.",
@@ -805,14 +866,13 @@ class ApiParse extends ApiBase {
 				'code' => 'notwikitext',
 				'info' => 'The requested operation is only supported on wikitext content.'
 			),
-			array( 'code' => 'pagecannotexist', 'info' => "Namespace doesn't allow actual pages" ),
 		) );
 	}
 
 	public function getExamples() {
 		return array(
 			'api.php?action=parse&page=Project:Sandbox' => 'Parse a page',
-			'api.php?action=parse&text={{Project:Sandbox}}' => 'Parse wikitext',
+			'api.php?action=parse&text={{Project:Sandbox}}&contentmodel=wikitext' => 'Parse wikitext',
 			'api.php?action=parse&text={{PAGENAME}}&title=Test'
 				=> 'Parse wikitext, specifying the page title',
 			'api.php?action=parse&summary=Some+[[link]]&prop=' => 'Parse a summary',

@@ -33,9 +33,21 @@
  */
 class ApiModuleManager extends ContextSource {
 
+	/**
+	 * @var ApiBase
+	 */
 	private $mParent;
+	/**
+	 * @var ApiBase[]
+	 */
 	private $mInstances = array();
+	/**
+	 * @var null[]
+	 */
 	private $mGroups = array();
+	/**
+	 * @var array[]
+	 */
 	private $mModules = array();
 
 	/**
@@ -73,10 +85,10 @@ class ApiModuleManager extends ContextSource {
 
 	/**
 	 * Get module instance by name, or instantiate it if it does not exist
-	 * @param string $moduleName module name
-	 * @param string $group optionally validate that the module is in a specific group
-	 * @param bool $ignoreCache if true, force-creates a new instance and does not cache it
-	 * @return mixed the new module instance, or null if failed
+	 * @param string $moduleName Module name
+	 * @param string $group Optionally validate that the module is in a specific group
+	 * @param bool $ignoreCache If true, force-creates a new instance and does not cache it
+	 * @return mixed The new module instance, or null if failed
 	 */
 	public function getModule( $moduleName, $group = null, $ignoreCache = false ) {
 		if ( !isset( $this->mModules[$moduleName] ) ) {
@@ -104,8 +116,8 @@ class ApiModuleManager extends ContextSource {
 
 	/**
 	 * Get an array of modules in a specific group or all if no group is set.
-	 * @param string $group optional group filter
-	 * @return array list of module names
+	 * @param string $group Optional group filter
+	 * @return array List of module names
 	 */
 	public function getNames( $group = null ) {
 		if ( $group === null ) {
@@ -123,8 +135,8 @@ class ApiModuleManager extends ContextSource {
 
 	/**
 	 * Create an array of (moduleName => moduleClass) for a specific group or for all.
-	 * @param string $group name of the group to get or null for all
-	 * @return array name=>class map
+	 * @param string $group Name of the group to get or null for all
+	 * @return array Name=>class map
 	 */
 	public function getNamesWithClasses( $group = null ) {
 		$result = array();
@@ -139,9 +151,9 @@ class ApiModuleManager extends ContextSource {
 
 	/**
 	 * Returns true if the specific module is defined at all or in a specific group.
-	 * @param string $moduleName module name
-	 * @param string $group group name to check against, or null to check all groups,
-	 * @return boolean true if defined
+	 * @param string $moduleName Module name
+	 * @param string $group Group name to check against, or null to check all groups,
+	 * @return bool True if defined
 	 */
 	public function isDefined( $moduleName, $group = null ) {
 		if ( isset( $this->mModules[$moduleName] ) ) {
@@ -154,7 +166,7 @@ class ApiModuleManager extends ContextSource {
 	/**
 	 * Returns the group name for the given module
 	 * @param string $moduleName
-	 * @return string group name or null if missing
+	 * @return string Group name or null if missing
 	 */
 	public function getModuleGroup( $moduleName ) {
 		if ( isset( $this->mModules[$moduleName] ) ) {

@@ -8,8 +8,8 @@ jQuery( function ( $ ) {
 			.attr( 'tabindex', '0' )
 			// For accessibility, show the menu when the h3 is clicked (bug 24298/46486)
 			.on( 'click keypress', function ( e ) {
-				if( e.type === 'click' || e.which === 13 ) {
-					$el.find( '.menu:first' ).toggleClass( 'menuForceShow' );
+				if ( e.type === 'click' || e.which === 13 ) {
+					$el.toggleClass( 'menuForceShow' );
 					e.preventDefault();
 				}
 			} )
@@ -24,6 +24,11 @@ jQuery( function ( $ ) {
 			// As the h3 can already be focused there's no need for the link to be focusable
 			.attr( 'tabindex', '-1' );
 	} );
+
+	/**
+	 * Sidebar
+	 */
+	$( '#mw-panel > .portal:first' ).addClass( 'first' );
 
 	/**
 	 * Collapsible tabs for Vector

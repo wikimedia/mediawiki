@@ -6,7 +6,7 @@
  * Available feeds are defined in Defines.php
  *
  * Copyright © 2004 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -53,11 +53,11 @@ class FeedItem {
 	 * Constructor
 	 *
 	 * @param string|Title $title Item's title
-	 * @param $description String
+	 * @param string $description
 	 * @param string $url URL uniquely designating the item.
 	 * @param string $date Item's date
 	 * @param string $author Author's user name
-	 * @param $comments String
+	 * @param string $comments
 	 */
 	function __construct( $title, $description, $url, $date = '', $author = '', $comments = '' ) {
 		$this->title = $title;
@@ -72,8 +72,8 @@ class FeedItem {
 	/**
 	 * Encode $string so that it can be safely embedded in a XML document
 	 *
-	 * @param string $string string to encode
-	 * @return String
+	 * @param string $string String to encode
+	 * @return string
 	 */
 	public function xmlEncode( $string ) {
 		$string = str_replace( "\r\n", "\n", $string );
@@ -84,7 +84,7 @@ class FeedItem {
 	/**
 	 * Get the unique id of this item
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getUniqueId() {
 		if ( $this->uniqueId ) {
@@ -93,10 +93,10 @@ class FeedItem {
 	}
 
 	/**
-	 * set the unique id of an item
+	 * Set the unique id of an item
 	 *
-	 * @param string $uniqueId unique id for the item
-	 * @param $rssIsPermalink Boolean: set to true if the guid (unique id) is a permalink (RSS feeds only)
+	 * @param string $uniqueId Unique id for the item
+	 * @param bool $rssIsPermalink Set to true if the guid (unique id) is a permalink (RSS feeds only)
 	 */
 	public function setUniqueId( $uniqueId, $rssIsPermalink = false ) {
 		$this->uniqueId = $uniqueId;
@@ -106,7 +106,7 @@ class FeedItem {
 	/**
 	 * Get the title of this item; already xml-encoded
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getTitle() {
 		return $this->xmlEncode( $this->title );
@@ -115,7 +115,7 @@ class FeedItem {
 	/**
 	 * Get the URL of this item; already xml-encoded
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getUrl() {
 		return $this->xmlEncode( $this->url );
@@ -124,7 +124,7 @@ class FeedItem {
 	/**
 	 * Get the description of this item; already xml-encoded
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getDescription() {
 		return $this->xmlEncode( $this->description );
@@ -133,7 +133,7 @@ class FeedItem {
 	/**
 	 * Get the language of this item
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getLanguage() {
 		global $wgLanguageCode;
@@ -141,9 +141,9 @@ class FeedItem {
 	}
 
 	/**
-	 * Get the title of this item
+	 * Get the date of this item
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getDate() {
 		return $this->date;
@@ -152,7 +152,7 @@ class FeedItem {
 	/**
 	 * Get the author of this item; already xml-encoded
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getAuthor() {
 		return $this->xmlEncode( $this->author );
@@ -161,7 +161,7 @@ class FeedItem {
 	/**
 	 * Get the comment of this item; already xml-encoded
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getComments() {
 		return $this->xmlEncode( $this->comments );
@@ -171,7 +171,7 @@ class FeedItem {
 	 * Quickie hack... strip out wikilinks to more legible form from the comment.
 	 *
 	 * @param string $text wikitext
-	 * @return String
+	 * @return string
 	 */
 	public static function stripComment( $text ) {
 		return preg_replace( '/\[\[([^]]*\|)?([^]]+)\]\]/', '\2', $text );
@@ -190,7 +190,6 @@ abstract class ChannelFeed extends FeedItem {
 	 * @code
 	 * print "<feed>";
 	 * @endcode
-	 * @param $item
 	 */
 	abstract public function outHeader();
 
@@ -200,7 +199,7 @@ abstract class ChannelFeed extends FeedItem {
 	 * @code
 	 * print "<item>...</item>";
 	 * @endcode
-	 * @param $item
+	 * @param FeedItem $item
 	 */
 	abstract public function outItem( $item );
 
@@ -274,8 +273,8 @@ class RSSFeed extends ChannelFeed {
 	/**
 	 * Format a date given a timestamp
 	 *
-	 * @param $ts Integer: timestamp
-	 * @return String: date string
+	 * @param int $ts Timestamp
+	 * @return string Date string
 	 */
 	function formatTime( $ts ) {
 		return gmdate( 'D, d M Y H:i:s \G\M\T', wfTimestamp( TS_UNIX, $ts ) );
@@ -301,7 +300,7 @@ class RSSFeed extends ChannelFeed {
 
 	/**
 	 * Output an RSS 2.0 item
-	 * @param $item FeedItem: item to be output
+	 * @param FeedItem $item Item to be output
 	 */
 	function outItem( $item ) {
 	?>
@@ -386,7 +385,7 @@ class AtomFeed extends ChannelFeed {
 
 	/**
 	 * Output a given item.
-	 * @param $item
+	 * @param FeedItem $item
 	 */
 	function outItem( $item ) {
 		global $wgMimeType;

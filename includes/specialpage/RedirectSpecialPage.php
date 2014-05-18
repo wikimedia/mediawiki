@@ -27,7 +27,6 @@
  * @ingroup SpecialPage
  */
 abstract class RedirectSpecialPage extends UnlistedSpecialPage {
-
 	// Query parameters that can be passed through redirects
 	protected $mAllowedRedirectParams = array();
 
@@ -41,11 +40,13 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 		if ( $redirect instanceof Title ) {
 			$url = $redirect->getFullURL( $query );
 			$this->getOutput()->redirect( $url );
+
 			return $redirect;
 		} elseif ( $redirect === true ) {
 			// Redirect to index.php with query parameters
 			$url = wfAppendQuery( wfScript( 'index' ), $query );
 			$this->getOutput()->redirect( $url );
+
 			return $redirect;
 		} else {
 			$class = get_class( $this );
@@ -66,7 +67,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 * Return part of the request string for a special redirect page
 	 * This allows passing, e.g. action=history to Special:Mypage, etc.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getRedirectQuery() {
 		$params = array();
@@ -91,8 +92,11 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
  * @ingroup SpecialPage
  */
 abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
-	// @todo FIXME: Visibility must be declared
-	var $redirName, $redirSubpage;
+	/** @var string Name of redirect target */
+	protected $redirName;
+
+	/** @var string Name of subpage of redirect target */
+	protected $redirSubpage;
 
 	function __construct(
 		$name, $redirName, $redirSubpage = false,
@@ -171,12 +175,12 @@ abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
  *
  * @par Hook extension example:
  * @code
- *	$wgHooks['RedirectSpecialArticleRedirectParams'][] =
- *		'MyExtensionHooks::onRedirectSpecialArticleRedirectParams';
- *	public static function onRedirectSpecialArticleRedirectParams( &$redirectParams ) {
- *		$redirectParams[] = 'stable';
- *		return true;
- *	}
+ *    $wgHooks['RedirectSpecialArticleRedirectParams'][] =
+ *        'MyExtensionHooks::onRedirectSpecialArticleRedirectParams';
+ *    public static function onRedirectSpecialArticleRedirectParams( &$redirectParams ) {
+ *        $redirectParams[] = 'stable';
+ *        return true;
+ *    }
  * @endcode
  *
  * @ingroup SpecialPage

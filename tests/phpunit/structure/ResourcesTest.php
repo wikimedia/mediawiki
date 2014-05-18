@@ -31,7 +31,25 @@ class ResourcesTest extends MediaWikiTestCase {
 	public function testStyleMedia( $moduleName, $media, $filename, $css ) {
 		$cssText = CSSMin::minify( $css->cssText );
 
-		$this->assertTrue( strpos( $cssText, '@media' ) === false, 'Stylesheets should not both specify "media" and contain @media' );
+		$this->assertTrue(
+			strpos( $cssText, '@media' ) === false,
+			'Stylesheets should not both specify "media" and contain @media'
+		);
+	}
+
+	public function testDependencies() {
+		$data = self::getAllModules();
+		$illegalDeps = array( 'jquery', 'mediawiki' );
+
+		foreach ( $data['modules'] as $moduleName => $module ) {
+			foreach ( $illegalDeps as $illegalDep ) {
+				$this->assertNotContains(
+					$illegalDep,
+					$module->getDependencies(),
+					"Module '$moduleName' must not depend on '$illegalDep'"
+				);
+			}
+		}
 	}
 
 	/**

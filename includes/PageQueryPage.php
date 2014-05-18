@@ -32,7 +32,7 @@ abstract class PageQueryPage extends QueryPage {
 	 * like page existence and information for stub color and redirect hints.
 	 * This should be done for live data and cached data.
 	 *
-	 * @param $db DatabaseBase connection
+	 * @param DatabaseBase $db
 	 * @param ResultWrapper $res
 	 */
 	public function preprocessResults( $db, $res ) {

@@ -153,7 +153,7 @@ LUA;
 			);
 		} catch ( RedisException $e ) {
 			$res = false;
-			$this->redisPool->handleException( $server, $conn, $e );
+			$this->redisPool->handleError( $conn, $e );
 		}
 
 		if ( $res === false ) {
@@ -221,7 +221,7 @@ LUA;
 			);
 		} catch ( RedisException $e ) {
 			$res = false;
-			$this->redisPool->handleException( $server, $conn, $e );
+			$this->redisPool->handleError( $conn, $e );
 		}
 
 		if ( $res === false ) {

@@ -43,8 +43,8 @@ class SpecialComparePages extends SpecialPage {
 	/**
 	 * Show a form for filtering namespace and username
 	 *
-	 * @param $par String
-	 * @return String
+	 * @param string $par
+	 * @return string
 	 */
 	public function execute( $par ) {
 		$this->setHeaders();

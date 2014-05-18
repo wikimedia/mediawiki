@@ -130,7 +130,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
-		$forms = array( 'one', 'few', 'many', 'other' );
+		$forms = array( 'one', 'few', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -145,16 +145,16 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	public static function providePlural() {
 		return array(
 			array( 'one', 1 ),
-			array( 'many', 11 ),
+			array( 'other', 11 ),
 			array( 'one', 91 ),
 			array( 'one', 121 ),
 			array( 'few', 2 ),
 			array( 'few', 3 ),
 			array( 'few', 4 ),
 			array( 'few', 334 ),
-			array( 'many', 5 ),
-			array( 'many', 15 ),
-			array( 'many', 120 ),
+			array( 'other', 5 ),
+			array( 'other', 15 ),
+			array( 'other', 120 ),
 		);
 	}
 
@@ -171,17 +171,18 @@ class LanguageSrTest extends LanguageClassesTestCase {
 		return array(
 			array( 'one', 1 ),
 			array( 'other', 11 ),
-			array( 'other', 91 ),
-			array( 'other', 121 ),
+			array( 'other', 4 ),
+			array( 'one', 91 ),
+			array( 'one', 121 ),
 		);
 	}
 
 	##### HELPERS #####################################################
 	/**
 	 *Wrapper to verify text stay the same after applying conversion
-	 * @param $text string Text to convert
-	 * @param $variant string Language variant 'sr-ec' or 'sr-el'
-	 * @param $msg string Optional message
+	 * @param string $text Text to convert
+	 * @param string $variant Language variant 'sr-ec' or 'sr-el'
+	 * @param string $msg Optional message
 	 */
 	protected function assertUnConverted( $text, $variant, $msg = '' ) {
 		$this->assertEquals(
@@ -193,9 +194,9 @@ class LanguageSrTest extends LanguageClassesTestCase {
 
 	/**
 	 * Wrapper to verify a text is different once converted to a variant.
-	 * @param $text string Text to convert
-	 * @param $variant string Language variant 'sr-ec' or 'sr-el'
-	 * @param $msg string Optional message
+	 * @param string $text Text to convert
+	 * @param string $variant Language variant 'sr-ec' or 'sr-el'
+	 * @param string $msg Optional message
 	 */
 	protected function assertConverted( $text, $variant, $msg = '' ) {
 		$this->assertNotEquals(
@@ -209,6 +210,8 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * Verifiy the given Cyrillic text is not converted when using
 	 * using the cyrillic variant and converted to Latin when using
 	 * the Latin variant.
+	 * @param string $text Text to convert
+	 * @param string $msg Optional message
 	 */
 	protected function assertCyrillic( $text, $msg = '' ) {
 		$this->assertUnConverted( $text, 'sr-ec', $msg );
@@ -219,6 +222,8 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * Verifiy the given Latin text is not converted when using
 	 * using the Latin variant and converted to Cyrillic when using
 	 * the Cyrillic variant.
+	 * @param string $text Text to convert
+	 * @param string $msg Optional message
 	 */
 	protected function assertLatin( $text, $msg = '' ) {
 		$this->assertUnConverted( $text, 'sr-el', $msg );

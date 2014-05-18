@@ -49,9 +49,13 @@ class DeleteArchivedFilesImplementation {
 				$sha1 = LocalRepo::getHashFromKey( $key );
 			}
 			// Check if the file is used anywhere...
-			$inuse = $dbw->selectField( 'oldimage', '1',
-				array( 'oi_sha1' => $sha1,
-				'oi_deleted & ' . File::DELETED_FILE => File::DELETED_FILE ),
+			$inuse = $dbw->selectField(
+				'oldimage',
+				'1',
+				array(
+					'oi_sha1' => $sha1,
+					'oi_deleted & ' . File::DELETED_FILE => File::DELETED_FILE
+				),
 				__METHOD__,
 				array( 'FOR UPDATE' )
 			);

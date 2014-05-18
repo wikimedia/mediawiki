@@ -3,7 +3,7 @@
  * MySQL search engine
  *
  * Copyright (C) 2004 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,30 +28,24 @@
  * Search engine hook for MySQL 4+
  * @ingroup Search
  */
-class SearchMySQL extends SearchEngine {
-	var $strictMatching = true;
-	static $mMinSearchLength;
+class SearchMySQL extends SearchDatabase {
+	protected $strictMatching = true;
 
-	/**
-	 * Creates an instance of this class
-	 * @param $db DatabaseMysql: database object
-	 */
-	function __construct( $db ) {
-		parent::__construct( $db );
-	}
+	private static $mMinSearchLength;
 
 	/**
 	 * Parse the user's query and transform it into an SQL fragment which will
 	 * become part of a WHERE clause
 	 *
-	 * @param $filteredText string
-	 * @param $fulltext string
+	 * @param string $filteredText
+	 * @param string $fulltext
 	 *
 	 * @return string
 	 */
 	function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;
-		$lc = SearchEngine::legalSearchChars(); // Minus format chars
+
+		$lc = $this->legalSearchChars(); // Minus format chars
 		$searchon = '';
 		$this->searchTerms = array();
 
@@ -60,7 +54,9 @@ class SearchMySQL extends SearchEngine {
 		if ( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 				$filteredText, $m, PREG_SET_ORDER ) ) {
 			foreach ( $m as $bits ) {
-				@list( /* all */, $modifier, $term, $nonQuoted, $wildcard ) = $bits;
+				wfSuppressWarnings();
+				list( /* all */, $modifier, $term, $nonQuoted, $wildcard ) = $bits;
+				wfRestoreWarnings();
 
 				if ( $nonQuoted != '' ) {
 					$term = $nonQuoted;
@@ -160,8 +156,8 @@ class SearchMySQL extends SearchEngine {
 	/**
 	 * Perform a full text search query and return a result set.
 	 *
-	 * @param string $term raw search term
-	 * @return MySQLSearchResultSet
+	 * @param string $term Raw search term
+	 * @return SqlSearchResultSet
 	 */
 	function searchText( $term ) {
 		return $this->searchInternal( $term, true );
@@ -170,8 +166,8 @@ class SearchMySQL extends SearchEngine {
 	/**
 	 * Perform a title-only search query and return a result set.
 	 *
-	 * @param string $term raw search term
-	 * @return MySQLSearchResultSet
+	 * @param string $term Raw search term
+	 * @return SqlSearchResultSet
 	 */
 	function searchTitle( $term ) {
 		return $this->searchInternal( $term, false );
@@ -207,7 +203,7 @@ class SearchMySQL extends SearchEngine {
 			$totalResult->free();
 		}
 
-		return new MySQLSearchResultSet( $resultSet, $this->searchTerms, $total );
+		return new SqlSearchResultSet( $resultSet, $this->searchTerms, $total );
 	}
 
 	public function supports( $feature ) {
@@ -221,14 +217,12 @@ class SearchMySQL extends SearchEngine {
 
 	/**
 	 * Add special conditions
-	 * @param $query Array
+	 * @param array $query
 	 * @since 1.18
 	 */
 	protected function queryFeatures( &$query ) {
 		foreach ( $this->features as $feature => $value ) {
-			if ( $feature === 'list-redirects' && !$value ) {
-				$query['conds']['page_is_redirect'] = 0;
-			} elseif ( $feature === 'title-suffix-filter' && $value ) {
+			if ( $feature === 'title-suffix-filter' && $value ) {
 				$query['conds'][] = 'page_title' . $this->db->buildLike( $this->db->anyString(), $value );
 			}
 		}
@@ -236,7 +230,7 @@ class SearchMySQL extends SearchEngine {
 
 	/**
 	 * Add namespace conditions
-	 * @param $query Array
+	 * @param array $query
 	 * @since 1.18 (changed)
 	 */
 	function queryNamespaces( &$query ) {
@@ -250,7 +244,7 @@ class SearchMySQL extends SearchEngine {
 
 	/**
 	 * Add limit options
-	 * @param $query Array
+	 * @param array $query
 	 * @since 1.18
 	 */
 	protected function limitResult( &$query ) {
@@ -261,9 +255,9 @@ class SearchMySQL extends SearchEngine {
 	/**
 	 * Construct the SQL query to do the search.
 	 * The guts shoulds be constructed in queryMain()
-	 * @param $filteredTerm String
-	 * @param $fulltext Boolean
-	 * @return Array
+	 * @param string $filteredTerm
+	 * @param bool $fulltext
+	 * @return array
 	 * @since 1.18 (changed)
 	 */
 	function getQuery( $filteredTerm, $fulltext ) {
@@ -285,8 +279,8 @@ class SearchMySQL extends SearchEngine {
 
 	/**
 	 * Picks which field to index on, depending on what type of query.
-	 * @param $fulltext Boolean
-	 * @return String
+	 * @param bool $fulltext
+	 * @return string
 	 */
 	function getIndexField( $fulltext ) {
 		return $fulltext ? 'si_text' : 'si_title';
@@ -295,9 +289,9 @@ class SearchMySQL extends SearchEngine {
 	/**
 	 * Get the base part of the search query.
 	 *
-	 * @param &$query array Search query array
-	 * @param $filteredTerm String
-	 * @param $fulltext Boolean
+	 * @param array &$query Search query array
+	 * @param string $filteredTerm
+	 * @param bool $fulltext
 	 * @since 1.18 (changed)
 	 */
 	function queryMain( &$query, $filteredTerm, $fulltext ) {
@@ -336,9 +330,9 @@ class SearchMySQL extends SearchEngine {
 	 * Create or update the search index record for the given page.
 	 * Title and text should be pre-processed.
 	 *
-	 * @param $id Integer
-	 * @param $title String
-	 * @param $text String
+	 * @param int $id
+	 * @param string $title
+	 * @param string $text
 	 */
 	function update( $id, $title, $text ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -355,8 +349,8 @@ class SearchMySQL extends SearchEngine {
 	 * Update a search index record's title only.
 	 * Title should be pre-processed.
 	 *
-	 * @param $id Integer
-	 * @param $title String
+	 * @param int $id
+	 * @param string $title
 	 */
 	function updateTitle( $id, $title ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -372,8 +366,8 @@ class SearchMySQL extends SearchEngine {
 	 * Delete an indexed page
 	 * Title should be pre-processed.
 	 *
-	 * @param Integer $id Page id that was deleted
-	 * @param String $title Title of page that was deleted
+	 * @param int $id Page id that was deleted
+	 * @param string $title Title of page that was deleted
 	 */
 	function delete( $id, $title ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -460,19 +454,5 @@ class SearchMySQL extends SearchEngine {
 			}
 		}
 		return self::$mMinSearchLength;
-	}
-}
-
-/**
- * @ingroup Search
- */
-class MySQLSearchResultSet extends SqlSearchResultSet {
-	function __construct( $resultSet, $terms, $totalHits = null ) {
-		parent::__construct( $resultSet, $terms );
-		$this->mTotalHits = $totalHits;
-	}
-
-	function getTotalHits() {
-		return $this->mTotalHits;
 	}
 }

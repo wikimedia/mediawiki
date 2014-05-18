@@ -32,7 +32,7 @@
  */
 class ApiQueryImages extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'im' );
 	}
 
@@ -45,7 +45,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 */
 	private function run( $resultPageSet = null ) {
 		if ( $this->getPageSet()->getGoodTitleCount() == 0 ) {
@@ -180,7 +180,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Returns all images contained on the given page(s)';
+		return 'Returns all images contained on the given page(s).';
 	}
 
 	public function getExamples() {

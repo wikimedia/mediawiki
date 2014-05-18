@@ -1,7 +1,7 @@
 <?php
 
 class MockDatabaseSqlite extends DatabaseSqliteStandalone {
-	var $lastQuery;
+	private $lastQuery;
 
 	function __construct() {
 		parent::__construct( ':memory:' );
@@ -27,11 +27,8 @@ class MockDatabaseSqlite extends DatabaseSqliteStandalone {
  * @group medium
  */
 class DatabaseSqliteTest extends MediaWikiTestCase {
-
-	/**
-	 * @var MockDatabaseSqlite
-	 */
-	var $db;
+	/** @var MockDatabaseSqlite */
+	protected $db;
 
 	protected function setUp() {
 		parent::setUp();
@@ -74,7 +71,8 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 			array( // #2: including quote
 				'foo\'bar', "'foo''bar'"
 			),
-			array( // #3: including \0 (must be represented as hex, per https://bugs.php.net/bug.php?id=63419)
+			// #3: including \0 (must be represented as hex, per https://bugs.php.net/bug.php?id=63419)
+			array(
 				"x\0y",
 				"x'780079'",
 			),
@@ -116,14 +114,21 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 	public function testReplaceVars() {
 		$this->assertEquals( 'foo', $this->replaceVars( 'foo' ), "Don't break anything accidentally" );
 
-		$this->assertEquals( "CREATE TABLE /**/foo (foo_key INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
+		$this->assertEquals(
+			"CREATE TABLE /**/foo (foo_key INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
 				. "foo_bar TEXT, foo_name TEXT NOT NULL DEFAULT '', foo_int INTEGER, foo_int2 INTEGER );",
-			$this->replaceVars( "CREATE TABLE /**/foo (foo_key int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-			foo_bar char(13), foo_name varchar(255) binary NOT NULL DEFAULT '', foo_int tinyint ( 8 ), foo_int2 int(16) ) ENGINE=MyISAM;" )
+			$this->replaceVars(
+				"CREATE TABLE /**/foo (foo_key int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT, "
+				. "foo_bar char(13), foo_name varchar(255) binary NOT NULL DEFAULT '', "
+				. "foo_int tinyint ( 8 ), foo_int2 int(16) ) ENGINE=MyISAM;"
+			)
 		);
 
-		$this->assertEquals( "CREATE TABLE foo ( foo1 REAL, foo2 REAL, foo3 REAL );",
-			$this->replaceVars( "CREATE TABLE foo ( foo1 FLOAT, foo2 DOUBLE( 1,10), foo3 DOUBLE PRECISION );" )
+		$this->assertEquals(
+			"CREATE TABLE foo ( foo1 REAL, foo2 REAL, foo3 REAL );",
+			$this->replaceVars(
+				"CREATE TABLE foo ( foo1 FLOAT, foo2 DOUBLE( 1,10), foo3 DOUBLE PRECISION );"
+			)
 		);
 
 		$this->assertEquals( "CREATE TABLE foo ( foo_binary1 BLOB, foo_binary2 BLOB );",

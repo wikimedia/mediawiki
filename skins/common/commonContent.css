@@ -45,6 +45,7 @@ table#toc,
 table.toc {
 	border-collapse: collapse;
 }
+
 /* Remove additional paddings inside table-cells that are not present in <div>s */
 table#toc td,
 table.toc td {
@@ -59,12 +60,14 @@ table.toc td {
 	font-size: 100%;
 	font-weight: bold;
 }
+
 #toc #toctitle,
 .toc #toctitle,
 #toc .toctitle,
 .toc .toctitle {
 	text-align: center;
 }
+
 #toc ul,
 .toc ul {
 	list-style-type: none;
@@ -73,10 +76,12 @@ table.toc td {
 	padding: 0;
 	text-align: left;
 }
+
 #toc ul ul,
 .toc ul ul {
 	margin: 0 0 0 2em;
 }
+
 #toc .toctoggle,
 .toc .toctoggle {
 	font-size: 94%;
@@ -101,18 +106,27 @@ table.toc td {
 	margin: 0 0 .5em .5em;
 	border: 0;
 }
-div.floatright p { font-style: italic; }
+
+div.floatright p {
+	font-style: italic;
+}
+
 /* @noflip */div.floatleft, table.floatleft {
 	margin: 0 .5em .5em 0;
 	border: 0;
 }
-div.floatleft p { font-style: italic; }
+
+div.floatleft p {
+	font-style: italic;
+}
+
 /* Thumbnails */
 div.thumb {
 	margin-bottom: .5em;
 	width: auto;
 	background-color: transparent;
 }
+
 div.thumbinner {
 	border: 1px solid #ccc;
 	padding: 3px !important;
@@ -121,52 +135,38 @@ div.thumbinner {
 	text-align: center;
 	overflow: hidden;
 }
+
 html .thumbimage {
 	border: 1px solid #ccc;
 }
+
 html .thumbcaption {
 	border: none;
 	line-height: 1.4em;
 	padding: 3px !important;
 	font-size: 94%;
 }
+
 div.magnify {
 	border: none !important;
 	background: none !important;
 	margin-left: 3px;
 }
+
 div.magnify a, div.magnify img {
 	display: block;
 	border: none !important;
 	background: none !important;
 }
+
 /* @noflip */div.tright {
 	margin: .5em 0 1.3em 1.4em;
 }
+
 /* @noflip */div.tleft {
 	margin: .5em 1.4em 1.3em 0;
 }
+
 img.thumbborder {
 	border: 1px solid #dddddd;
-}
-
-/**
- * Edit forms
- */
-#editform textarea {
-	display: block;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-/**
- * Basic styles for the user login and create account forms
- */
-#loginend {
-	margin: 0.5em;
-}
-
-#loginend table {
-	width: 100%;
 }

@@ -1,0 +1,32 @@
+.mw-notification-area {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 1em 1em 0 0;
+	width: 20em;
+	line-height: 1.35;
+	z-index: 10000;
+}
+
+.mw-notification-area-floating {
+	position: fixed;
+}
+
+* html .mw-notification-area-floating {
+	/* Make it at least 'absolute' in IE6 since 'fixed' is not supported */
+	position: absolute;
+}
+
+.mw-notification {
+	padding: 0.25em 1em;
+	margin-bottom: 0.5em;
+	border: solid 1px #ddd;
+	background-color: #fcfcfc;
+	/* Message hides on-click */
+	/* See also mediawiki.notification.js */
+	cursor: pointer;
+}
+
+.mw-notification-title {
+	font-weight: bold;
+}

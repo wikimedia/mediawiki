@@ -31,7 +31,7 @@
  */
 class ApiQueryAllPages extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ap' );
 	}
 
@@ -44,7 +44,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	public function executeGenerator( $resultPageSet ) {
@@ -60,7 +60,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
@@ -87,8 +87,12 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 
 		$this->addWhereFld( 'page_namespace', $params['namespace'] );
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
-		$from = ( $params['from'] === null ? null : $this->titlePartToKey( $params['from'], $params['namespace'] ) );
-		$to = ( $params['to'] === null ? null : $this->titlePartToKey( $params['to'], $params['namespace'] ) );
+		$from = ( $params['from'] === null
+			? null
+			: $this->titlePartToKey( $params['from'], $params['namespace'] ) );
+		$to = ( $params['to'] === null
+			? null
+			: $this->titlePartToKey( $params['to'], $params['namespace'] ) );
 		$this->addWhereRange( 'page_title', $dir, $from, $to );
 
 		if ( isset( $params['prefix'] ) ) {
@@ -337,7 +341,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Enumerate all pages sequentially in a given namespace';
+		return 'Enumerate all pages sequentially in a given namespace.';
 	}
 
 	public function getPossibleErrors() {

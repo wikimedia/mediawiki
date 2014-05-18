@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Wraps the user object, so we can also retain full access to properties like password if we log in via the API
+ * Wraps the user object, so we can also retain full access to properties
+ * like password if we log in via the API.
  */
 class TestUser {
 	public $username;
@@ -10,7 +11,9 @@ class TestUser {
 	public $groups;
 	public $user;
 
-	public function __construct( $username, $realname = 'Real Name', $email = 'sample@example.com', $groups = array() ) {
+	public function __construct( $username, $realname = 'Real Name',
+		$email = 'sample@example.com', $groups = array()
+	) {
 		$this->username = $username;
 		$this->realname = $realname;
 		$this->email = $email;
@@ -45,14 +48,14 @@ class TestUser {
 		$this->user->setPassword( $this->password );
 		$this->user->setEmail( $this->email );
 		$this->user->setRealName( $this->realname );
-		// remove all groups, replace with any groups specified
-		foreach ( $this->user->getGroups() as $group ) {
-			$this->user->removeGroup( $group );
+
+		// Adjust groups by adding any missing ones and removing any extras
+		$currentGroups = $this->user->getGroups();
+		foreach ( array_diff( $this->groups, $currentGroups ) as $group ) {
+			$this->user->addGroup( $group );
 		}
-		if ( count( $this->groups ) ) {
-			foreach ( $this->groups as $group ) {
-				$this->user->addGroup( $group );
-			}
+		foreach ( array_diff( $currentGroups, $this->groups ) as $group ) {
+			$this->user->removeGroup( $group );
 		}
 		$this->user->saveSettings();
 	}

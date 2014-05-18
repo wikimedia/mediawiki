@@ -5,7 +5,22 @@
  */
 class FormatJsonTest extends MediaWikiTestCase {
 
-	public function testEncoderPrettyPrinting() {
+	public static function provideEncoderPrettyPrinting() {
+		return array(
+			// Four spaces
+			array( true, '    ' ),
+			array( '    ', '    ' ),
+			// Two spaces
+			array( '  ', '  ' ),
+			// One tab
+			array( "\t", "\t" ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideEncoderPrettyPrinting
+	 */
+	public function testEncoderPrettyPrinting( $pretty, $expectedIndent ) {
 		$obj = array(
 			'emptyObject' => new stdClass,
 			'emptyArray' => array(),
@@ -22,23 +37,24 @@ class FormatJsonTest extends MediaWikiTestCase {
 			),
 		);
 
-		// 4 space indent, no trailing whitespace, no trailing linefeed
+		// No trailing whitespace, no trailing linefeed
 		$json = '{
-    "emptyObject": {},
-    "emptyArray": [],
-    "string": "foobar\\\\",
-    "filledArray": [
-        [
-            123,
-            456
-        ],
-        "\"7\":[\"8\",{\"9\":\"10\"}]",
-        "{\n\t\"emptyObject\": {\n\t},\n\t\"emptyArray\": [ ]\n}"
-    ]
+	"emptyObject": {},
+	"emptyArray": [],
+	"string": "foobar\\\\",
+	"filledArray": [
+		[
+			123,
+			456
+		],
+		"\"7\":[\"8\",{\"9\":\"10\"}]",
+		"{\n\t\"emptyObject\": {\n\t},\n\t\"emptyArray\": [ ]\n}"
+	]
 }';
 
 		$json = str_replace( "\r", '', $json ); // Windows compat
-		$this->assertSame( $json, FormatJson::encode( $obj, true ) );
+		$json = str_replace( "\t", $expectedIndent, $json );
+		$this->assertSame( $json, FormatJson::encode( $obj, $pretty ) );
 	}
 
 	public static function provideEncodeDefault() {
@@ -111,7 +127,7 @@ class FormatJsonTest extends MediaWikiTestCase {
 	 * Generate a set of test cases for a particular combination of encoder options.
 	 *
 	 * @param array $unescapedGroups List of character groups to leave unescaped
-	 * @return array: Arrays of unencoded strings and corresponding encoded strings
+	 * @return array Arrays of unencoded strings and corresponding encoded strings
 	 */
 	private static function getEncodeTestCases( array $unescapedGroups ) {
 		$groups = array(

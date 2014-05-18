@@ -93,6 +93,7 @@ class CSSJanus {
 			return;
 		}
 
+		// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
 		$patterns =& self::$patterns;
 		$patterns['escape'] = "(?:{$patterns['unicode']}|\\[^\r\n\f0-9a-f])";
 		$patterns['nmstart'] = "(?:[_a-z]|{$patterns['nonAscii']}|{$patterns['escape']})";
@@ -102,7 +103,7 @@ class CSSJanus {
 		$patterns['possibly_negative_quantity'] = "((?:-?{$patterns['quantity']})|(?:inherit|auto))";
 		$patterns['color'] = "(#?{$patterns['nmchar']}+|(?:rgba?|hsla?)\([ \d.,%-]+\))";
 		$patterns['url_chars'] = "(?:{$patterns['url_special_chars']}|{$patterns['nonAscii']}|{$patterns['escape']})*";
-		$patterns['lookahead_not_open_brace'] = "(?!({$patterns['nmchar']}|\r?\n|\s|#|\:|\.|\,|\+|>|\(|\))*?{)";
+		$patterns['lookahead_not_open_brace'] = "(?!({$patterns['nmchar']}|\r?\n|\s|#|\:|\.|\,|\+|>|\(|\)|\[|\]|=|\*=|~=|\^=|'[^']*'])*?{)";
 		$patterns['lookahead_not_closing_paren'] = "(?!{$patterns['url_chars']}?{$patterns['valid_after_uri_chars']}\))";
 		$patterns['lookahead_for_closing_paren'] = "(?={$patterns['url_chars']}?{$patterns['valid_after_uri_chars']}\))";
 		$patterns['noflip_single'] = "/({$patterns['noflip_annotation']}{$patterns['lookahead_not_open_brace']}[^;}]+;?)/i";
@@ -127,6 +128,7 @@ class CSSJanus {
 		// callback's job more straightforward
 		$patterns['bg_horizontal_percentage'] = "/(background(?:-position)?\s*:\s*[^%]*?)(-?{$patterns['num']})(%\s*(?:{$patterns['quantity']}|{$patterns['ident']}))/";
 		$patterns['bg_horizontal_percentage_x'] = "/(background-position-x\s*:\s*)(-?{$patterns['num']})(%)/";
+		// @codingStandardsIgnoreEnd
 	}
 
 	/**
@@ -145,15 +147,15 @@ class CSSJanus {
 		self::buildPatterns();
 
 		// Tokenize single line rules with /* @noflip */
-		$noFlipSingle = new CSSJanus_Tokenizer( self::$patterns['noflip_single'], '`NOFLIP_SINGLE`' );
+		$noFlipSingle = new CSSJanusTokenizer( self::$patterns['noflip_single'], '`NOFLIP_SINGLE`' );
 		$css = $noFlipSingle->tokenize( $css );
 
 		// Tokenize class rules with /* @noflip */
-		$noFlipClass = new CSSJanus_Tokenizer( self::$patterns['noflip_class'], '`NOFLIP_CLASS`' );
+		$noFlipClass = new CSSJanusTokenizer( self::$patterns['noflip_class'], '`NOFLIP_CLASS`' );
 		$css = $noFlipClass->tokenize( $css );
 
 		// Tokenize comments
-		$comments = new CSSJanus_Tokenizer( self::$patterns['comment'], '`C`' );
+		$comments = new CSSJanusTokenizer( self::$patterns['comment'], '`C`' );
 		$css = $comments->tokenize( $css );
 
 		// LTR->RTL fixes start here
@@ -308,17 +310,28 @@ class CSSJanus {
 			}
 		};
 
-		$css = preg_replace_callback( self::$patterns['box_shadow'], function ( $matches ) use ( $flipSign ) {
-			return $matches[1] . $flipSign( $matches[2] );
-		}, $css );
+		$css = preg_replace_callback(
+			self::$patterns['box_shadow'], function ( $matches ) use ( $flipSign ) {
+				return $matches[1] . $flipSign( $matches[2] );
+			},
+			$css
+		);
 
-		$css = preg_replace_callback( self::$patterns['text_shadow1'], function ( $matches ) use ( $flipSign ) {
-			return $matches[1] . $matches[2] . $matches[3] . $flipSign( $matches[4] );
-		}, $css );
+		$css = preg_replace_callback(
+			self::$patterns['text_shadow1'],
+			function ( $matches ) use ( $flipSign ) {
+				return $matches[1] . $matches[2] . $matches[3] . $flipSign( $matches[4] );
+			},
+			$css
+		);
 
-		$css = preg_replace_callback( self::$patterns['text_shadow2'], function ( $matches ) use ( $flipSign ) {
-			return $matches[1] . $flipSign( $matches[2] );
-		}, $css );
+		$css = preg_replace_callback(
+			self::$patterns['text_shadow2'],
+			function ( $matches ) use ( $flipSign ) {
+				return $matches[1] . $flipSign( $matches[2] );
+			},
+			$css
+		);
 
 		return $css;
 	}
@@ -359,7 +372,7 @@ class CSSJanus {
  * to protect from being janused.
  * @author Roan Kattouw
  */
-class CSSJanus_Tokenizer {
+class CSSJanusTokenizer {
 	private $regex, $token;
 	private $originals;
 

@@ -1,3 +1,4 @@
+/*jshint -W024 */
 ( function ( mw, $ ) {
 	var specialCharactersPageName;
 
@@ -8,35 +9,36 @@
 
 	QUnit.module( 'mediawiki', QUnit.newMwEnvironment( {
 		setup: function () {
-			// Messages used in multiple tests
-			mw.messages.set( {
-				'other-message': 'Other Message',
-				'mediawiki-test-pagetriage-del-talk-page-notify-summary': 'Notifying author of deletion nomination for [[$1]]',
-				'gender-plural-msg': '{{GENDER:$1|he|she|they}} {{PLURAL:$2|is|are}} awesome',
-				'grammar-msg': 'Przeszukaj {{GRAMMAR:grammar_case_foo|{{SITENAME}}}}',
-				'formatnum-msg': '{{formatnum:$1}}',
-				'int-msg': 'Some {{int:other-message}}',
-				'mediawiki-test-version-entrypoints-index-php': '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
-				'external-link-replace': 'Foo [$1 bar]'
-			} );
-
-			mw.config.set( {
-				wgArticlePath: '/wiki/$1',
-
-				// For formatnum tests
-				wgUserLanguage: 'en'
-			} );
-
 			specialCharactersPageName = '"Who" wants to be a millionaire & live on \'Exotic Island\'?';
+		},
+		config: {
+			wgArticlePath: '/wiki/$1',
+
+			// For formatnum tests
+			wgUserLanguage: 'en'
+		},
+		// Messages used in multiple tests
+		messages: {
+			'other-message': 'Other Message',
+			'mediawiki-test-pagetriage-del-talk-page-notify-summary': 'Notifying author of deletion nomination for [[$1]]',
+			'gender-plural-msg': '{{GENDER:$1|he|she|they}} {{PLURAL:$2|is|are}} awesome',
+			'grammar-msg': 'Przeszukaj {{GRAMMAR:grammar_case_foo|{{SITENAME}}}}',
+			'formatnum-msg': '{{formatnum:$1}}',
+			'int-msg': 'Some {{int:other-message}}',
+			'mediawiki-test-version-entrypoints-index-php': '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
+			'external-link-replace': 'Foo [$1 bar]'
 		}
 	} ) );
 
 	QUnit.test( 'Initial check', 8, function ( assert ) {
 		assert.ok( window.jQuery, 'jQuery defined' );
-		assert.ok( window.$, '$j defined' );
-		assert.ok( window.$j, '$j defined' );
+		assert.ok( window.$, '$ defined' );
 		assert.strictEqual( window.$, window.jQuery, '$ alias to jQuery' );
+
+		this.suppressWarnings();
+		assert.ok( window.$j, '$j defined' );
 		assert.strictEqual( window.$j, window.jQuery, '$j alias to jQuery' );
+		this.restoreWarnings();
 
 		assert.ok( window.mediaWiki, 'mediaWiki defined' );
 		assert.ok( window.mw, 'mw defined' );
@@ -75,7 +77,7 @@
 		assert.strictEqual( conf.get( 'constructor' ), 42, 'Map.get for key "constructor"' );
 
 		assert.strictEqual( conf.set( 'ImUndefined', undefined ), true, 'Map.set allows setting value to `undefined`' );
-		assert.equal( conf.get( 'ImUndefined', 'fallback' ), undefined , 'Map.get supports retreiving value of `undefined`' );
+		assert.equal( conf.get( 'ImUndefined', 'fallback' ), undefined, 'Map.get supports retreiving value of `undefined`' );
 
 		assert.strictEqual( conf.set( funky, 'Funky' ), false, 'Map.set returns boolean false if key was invalid (Function)' );
 		assert.strictEqual( conf.set( arry, 'Arry' ), false, 'Map.set returns boolean false if key was invalid (Array)' );
@@ -108,7 +110,6 @@
 			'foo': 'bar',
 			'notExist': null
 		}, 'Map.get return includes keys that were not found as null values' );
-
 
 		// Interacting with globals and accessing the values object
 		assert.strictEqual( conf.get(), conf.values, 'Map.get returns the entire values object by reference (if called without arguments)' );
@@ -181,7 +182,7 @@
 		assertMultipleFormats( ['mediawiki-test-version-entrypoints-index-php'], ['plain', 'text', 'escaped'], mw.messages.get( 'mediawiki-test-version-entrypoints-index-php' ), 'External link markup is unprocessed' );
 		assert.htmlEqual( mw.message( 'mediawiki-test-version-entrypoints-index-php' ).parse(), '<a href="https://www.mediawiki.org/wiki/Manual:index.php">index.php</a>', 'External link works correctly in parse mode' );
 
-		assertMultipleFormats( ['external-link-replace', 'http://example.org/?x=y&z'], ['plain', 'text'] , 'Foo [http://example.org/?x=y&z bar]', 'Parameters are substituted but external link is not processed' );
+		assertMultipleFormats( ['external-link-replace', 'http://example.org/?x=y&z'], ['plain', 'text'], 'Foo [http://example.org/?x=y&z bar]', 'Parameters are substituted but external link is not processed' );
 		assert.equal( mw.message( 'external-link-replace', 'http://example.org/?x=y&z' ).escaped(), 'Foo [http://example.org/?x=y&amp;z bar]', 'In escaped mode, parameters are substituted and ampersand is escaped, but external link is not processed' );
 		assert.htmlEqual( mw.message( 'external-link-replace', 'http://example.org/?x=y&z' ).parse(), 'Foo <a href="http://example.org/?x=y&amp;z">bar</a>', 'External link with replacement works in parse mode without double-escaping' );
 
@@ -216,13 +217,11 @@
 		assertMultipleFormats( ['plural-test-msg-explicit-beginning', 6], ['text', 'parse', 'escaped'], 'Basket has half a dozen eggs', 'explicit plural given at beginning get resolved for 6' );
 		assertMultipleFormats( ['plural-test-msg-explicit-beginning', 0], ['text', 'parse', 'escaped'], 'Basket has no eggs', 'explicit plural given at beginning get resolved for 0' );
 
-
 		assertMultipleFormats( ['mediawiki-test-pagetriage-del-talk-page-notify-summary'], ['plain', 'text'], mw.messages.get( 'mediawiki-test-pagetriage-del-talk-page-notify-summary' ), 'Double square brackets with no parameters unchanged' );
 
 		assertMultipleFormats( ['mediawiki-test-pagetriage-del-talk-page-notify-summary', specialCharactersPageName], ['plain', 'text'], 'Notifying author of deletion nomination for [[' + specialCharactersPageName + ']]', 'Double square brackets with one parameter' );
 
 		assert.equal( mw.message( 'mediawiki-test-pagetriage-del-talk-page-notify-summary', specialCharactersPageName ).escaped(), 'Notifying author of deletion nomination for [[' + mw.html.escape( specialCharactersPageName ) + ']]', 'Double square brackets with one parameter, when escaped' );
-
 
 		assert.ok( mw.messages.set( 'mediawiki-test-categorytree-collapse-bullet', '[<b>−</b>]' ), 'mw.messages.set: Register' );
 		assert.equal( mw.message( 'mediawiki-test-categorytree-collapse-bullet' ).plain(), mw.messages.get( 'mediawiki-test-categorytree-collapse-bullet' ), 'Single square brackets unchanged in plain mode' );
@@ -277,7 +276,6 @@
 			'Script escaped when using parse format'
 		);
 
-
 	} );
 
 	QUnit.test( 'mw.msg', 14, function ( assert ) {
@@ -285,7 +283,7 @@
 		assert.equal( mw.msg( 'hello' ), 'Hello <b>awesome</b> world', 'Gets message with default options (existing message)' );
 		assert.equal( mw.msg( 'goodbye' ), '<goodbye>', 'Gets message with default options (nonexistent message)' );
 
-		assert.ok( mw.messages.set( 'plural-item' , 'Found $1 {{PLURAL:$1|item|items}}' ), 'mw.messages.set: Register' );
+		assert.ok( mw.messages.set( 'plural-item', 'Found $1 {{PLURAL:$1|item|items}}' ), 'mw.messages.set: Register' );
 		assert.equal( mw.msg( 'plural-item', 5 ), 'Found 5 items', 'Apply plural for count 5' );
 		assert.equal( mw.msg( 'plural-item', 0 ), 'Found 0 items', 'Apply plural for count 0' );
 		assert.equal( mw.msg( 'plural-item', 1 ), 'Found 1 item', 'Apply plural for count 1' );
@@ -385,6 +383,32 @@
 		}, function () {
 			QUnit.start();
 			assert.ok( false, 'Error callback fired while loader.using "test.callback" module' );
+		} );
+	} );
+
+	QUnit.asyncTest( 'mw.loader.using( .. ).promise', 2, function ( assert ) {
+		var isAwesomeDone;
+
+		mw.loader.testCallback = function () {
+			QUnit.start();
+			assert.strictEqual( isAwesomeDone, undefined, 'Implementing module is.awesome: isAwesomeDone should still be undefined' );
+			isAwesomeDone = true;
+		};
+
+		mw.loader.implement( 'test.promise', [QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/callMwLoaderTestCallback.js' )], {}, {} );
+
+		mw.loader.using( 'test.promise' )
+		.done( function () {
+
+			// /sample/awesome.js declares the "mw.loader.testCallback" function
+			// which contains a call to start() and ok()
+			assert.strictEqual( isAwesomeDone, true, 'test.promise module should\'ve caused isAwesomeDone to be true' );
+			delete mw.loader.testCallback;
+
+		} )
+		.fail( function () {
+			QUnit.start();
+			assert.ok( false, 'Error callback fired while loader.using "test.promise" module' );
 		} );
 	} );
 
@@ -829,7 +853,7 @@
 
 	} );
 
-	QUnit.test( 'mw.hook', 10, function ( assert ) {
+	QUnit.test( 'mw.hook', 13, function ( assert ) {
 		var hook, add, fire, chars, callback;
 
 		mw.hook( 'test.hook.unfired' ).add( function () {
@@ -841,15 +865,21 @@
 		} );
 		mw.hook( 'test.hook.basic' ).fire();
 
+		mw.hook( 'hasOwnProperty' ).add( function () {
+			assert.ok( true, 'hook with name of predefined method' );
+		} );
+		mw.hook( 'hasOwnProperty' ).fire();
+
 		mw.hook( 'test.hook.data' ).add( function ( data1, data2 ) {
 			assert.equal( data1, 'example', 'Fire with data (string param)' );
 			assert.deepEqual( data2, ['two'], 'Fire with data (array param)' );
 		} );
 		mw.hook( 'test.hook.data' ).fire( 'example', ['two'] );
 
-		mw.hook( 'test.hook.chainable' ).add( function () {
-			assert.ok( true, 'Chainable' );
-		} ).fire();
+		hook = mw.hook( 'test.hook.chainable' );
+		assert.strictEqual( hook.add(), hook, 'hook.add is chainable' );
+		assert.strictEqual( hook.remove(), hook, 'hook.remove is chainable' );
+		assert.strictEqual( hook.fire(), hook, 'hook.fire is chainable' );
 
 		hook = mw.hook( 'test.hook.detach' );
 		add = hook.add;

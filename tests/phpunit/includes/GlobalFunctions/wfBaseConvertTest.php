@@ -176,7 +176,13 @@ class WfBaseConvertTest extends MediaWikiTestCase {
 
 	public function testPadding() {
 		$number = "10101010101";
-		$this->assertSame( strlen( $number ) + 5, strlen( wfBaseConvert( $number, 2, 2, strlen( $number ) + 5 ) ) );
-		$this->assertSame( strlen( $number ), strlen( wfBaseConvert( $number, 2, 2, strlen( $number ) - 5 ) ) );
+		$this->assertSame(
+			strlen( $number ) + 5,
+			strlen( wfBaseConvert( $number, 2, 2, strlen( $number ) + 5 ) )
+		);
+		$this->assertSame(
+			strlen( $number ),
+			strlen( wfBaseConvert( $number, 2, 2, strlen( $number ) - 5 ) )
+		);
 	}
 }

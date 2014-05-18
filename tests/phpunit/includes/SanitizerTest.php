@@ -84,15 +84,19 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @covers Sanitizer::decodeCharReferences
 	 */
 	public function testInvalidNumberedEntities() {
-		$this->assertEquals( UTF8_REPLACEMENT, Sanitizer::decodeCharReferences( "&#88888888888888;" ), 'Invalid numbered entity' );
+		$this->assertEquals(
+			UTF8_REPLACEMENT,
+			Sanitizer::decodeCharReferences( "&#88888888888888;" ),
+			'Invalid numbered entity'
+		);
 	}
 
 	/**
 	 * @covers Sanitizer::removeHTMLtags
 	 * @dataProvider provideHtml5Tags
 	 *
-	 * @param String $tag Name of an HTML5 element (ie: 'video')
-	 * @param Boolean $escaped Wheter sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
+	 * @param string $tag Name of an HTML5 element (ie: 'video')
+	 * @param bool $escaped Whether sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
 	 */
 	public function testRemovehtmltagsOnHtml5Tags( $tag, $escaped ) {
 		$this->setMwGlobals( array(
@@ -180,9 +184,21 @@ class SanitizerTest extends MediaWikiTestCase {
 			array( array( 'foo' => 'bar' ), '    foo   =   bar    ', 'Spaced attribute' ),
 			array( array( 'foo' => 'bar' ), 'foo="bar"', 'Double-quoted attribute' ),
 			array( array( 'foo' => 'bar' ), 'foo=\'bar\'', 'Single-quoted attribute' ),
-			array( array( 'foo' => 'bar', 'baz' => 'foo' ), 'foo=\'bar\'   baz="foo"', 'Several attributes' ),
-			array( array( 'foo' => 'bar', 'baz' => 'foo' ), 'foo=\'bar\'   baz="foo"', 'Several attributes' ),
-			array( array( 'foo' => 'bar', 'baz' => 'foo' ), 'foo=\'bar\'   baz="foo"', 'Several attributes' ),
+			array(
+				array( 'foo' => 'bar', 'baz' => 'foo' ),
+				'foo=\'bar\'   baz="foo"',
+				'Several attributes'
+			),
+			array(
+				array( 'foo' => 'bar', 'baz' => 'foo' ),
+				'foo=\'bar\'   baz="foo"',
+				'Several attributes'
+			),
+			array(
+				array( 'foo' => 'bar', 'baz' => 'foo' ),
+				'foo=\'bar\'   baz="foo"',
+				'Several attributes'
+			),
 			array( array( ':foo' => 'bar' ), ':foo=\'bar\'', 'Leading :' ),
 			array( array( '_foo' => 'bar' ), '_foo=\'bar\'', 'Leading _' ),
 			array( array( 'foo' => 'bar' ), 'Foo=\'bar\'', 'Leading capital' ),
@@ -203,9 +219,21 @@ class SanitizerTest extends MediaWikiTestCase {
 			array( array(), 'foo$=baz', 'Symbols are not allowed' ),
 			array( array(), 'foo@=baz', 'Symbols are not allowed' ),
 			array( array(), 'foo~=baz', 'Symbols are not allowed' ),
-			array( array( 'foo' => '1[#^`*%w/(' ), 'foo=1[#^`*%w/(', 'All kind of characters are allowed as values' ),
-			array( array( 'foo' => '1[#^`*%\'w/(' ), 'foo="1[#^`*%\'w/("', 'Double quotes are allowed if quoted by single quotes' ),
-			array( array( 'foo' => '1[#^`*%"w/(' ), 'foo=\'1[#^`*%"w/(\'', 'Single quotes are allowed if quoted by double quotes' ),
+			array(
+				array( 'foo' => '1[#^`*%w/(' ),
+				'foo=1[#^`*%w/(',
+				'All kind of characters are allowed as values'
+			),
+			array(
+				array( 'foo' => '1[#^`*%\'w/(' ),
+				'foo="1[#^`*%\'w/("',
+				'Double quotes are allowed if quoted by single quotes'
+			),
+			array(
+				array( 'foo' => '1[#^`*%"w/(' ),
+				'foo=\'1[#^`*%"w/(\'',
+				'Single quotes are allowed if quoted by double quotes'
+			),
 			array( array( 'foo' => '&"' ), 'foo=&amp;&quot;', 'Special chars can be provided as entities' ),
 			array( array( 'foo' => '&foobar;' ), 'foo=&foobar;', 'Entity-like items are accepted' ),
 		);
@@ -266,15 +294,29 @@ class SanitizerTest extends MediaWikiTestCase {
 				'Remove anything after a comment-start token' ),
 			array( '', "\\2f\\2a unifinished comment'",
 				'Remove anything after a backslash-escaped comment-start token' ),
-			array( '/* insecure input */', 'filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'asdf.png\',sizingMethod=\'scale\');' ),
-			array( '/* insecure input */', '-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'asdf.png\',sizingMethod=\'scale\')";' ),
+			array(
+				'/* insecure input */',
+				'filter: progid:DXImageTransform.Microsoft.AlphaImageLoader'
+					. '(src=\'asdf.png\',sizingMethod=\'scale\');'
+			),
+			array(
+				'/* insecure input */',
+				'-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader'
+					. '(src=\'asdf.png\',sizingMethod=\'scale\')";'
+			),
 			array( '/* insecure input */', 'width: expression(1+1);' ),
 			array( '/* insecure input */', 'background-image: image(asdf.png);' ),
 			array( '/* insecure input */', 'background-image: -webkit-image(asdf.png);' ),
 			array( '/* insecure input */', 'background-image: -moz-image(asdf.png);' ),
 			array( '/* insecure input */', 'background-image: image-set("asdf.png" 1x, "asdf.png" 2x);' ),
-			array( '/* insecure input */', 'background-image: -webkit-image-set("asdf.png" 1x, "asdf.png" 2x);' ),
-			array( '/* insecure input */', 'background-image: -moz-image-set("asdf.png" 1x, "asdf.png" 2x);' ),
+			array(
+				'/* insecure input */',
+				'background-image: -webkit-image-set("asdf.png" 1x, "asdf.png" 2x);'
+			),
+			array(
+				'/* insecure input */',
+				'background-image: -moz-image-set("asdf.png" 1x, "asdf.png" 2x);'
+			),
 		);
 	}
 
@@ -284,7 +326,12 @@ class SanitizerTest extends MediaWikiTestCase {
 	public static function provideAttributeSupport() {
 		/** array( <attributes>, <expected>, <message> ) */
 		return array(
-			array( 'div', ' role="presentation"', ' role="presentation"', 'Support for WAI-ARIA\'s role="presentation".' ),
+			array(
+				'div',
+				' role="presentation"',
+				' role="presentation"',
+				'Support for WAI-ARIA\'s role="presentation".'
+			),
 			array( 'div', ' role="main"', '', "Other WAI-ARIA roles are currently not supported." ),
 		);
 	}

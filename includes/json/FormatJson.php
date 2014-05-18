@@ -95,11 +95,17 @@ class FormatJson {
 	 *       (cf. FormatJson::XMLMETA_OK). Use Xml::encodeJsVar() instead in such cases.
 	 *
 	 * @param mixed $value The value to encode. Can be any type except a resource.
-	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
+	 * @param string|bool $pretty If a string, add non-significant whitespace to improve
+	 *   readability, using that string for indentation. If true, use the default indent
+	 *   string (four spaces).
 	 * @param int $escaping Bitfield consisting of _OK class constants
 	 * @return string|bool: String if successful; false upon failure
 	 */
 	public static function encode( $value, $pretty = false, $escaping = 0 ) {
+		if ( !is_string( $pretty ) ) {
+			$pretty = $pretty ? '    ' : false;
+		}
+
 		if ( defined( 'JSON_UNESCAPED_UNICODE' ) ) {
 			return self::encode54( $value, $pretty, $escaping );
 		}
@@ -125,16 +131,21 @@ class FormatJson {
 	 * JSON encoder wrapper for PHP >= 5.4, which supports useful encoding options.
 	 *
 	 * @param mixed $value
-	 * @param bool $pretty
+	 * @param string|bool $pretty
 	 * @param int $escaping
 	 * @return string|bool
 	 */
 	private static function encode54( $value, $pretty, $escaping ) {
+		static $bug66021;
+		if ( $pretty !== false && $bug66021 === null ) {
+			$bug66021 = json_encode( array(), JSON_PRETTY_PRINT ) !== '[]';
+		}
+
 		// PHP escapes '/' to prevent breaking out of inline script blocks using '</script>',
 		// which is hardly useful when '<' and '>' are escaped (and inadequate), and such
 		// escaping negatively impacts the human readability of URLs and similar strings.
 		$options = JSON_UNESCAPED_SLASHES;
-		$options |= $pretty ? JSON_PRETTY_PRINT : 0;
+		$options |= $pretty !== false ? JSON_PRETTY_PRINT : 0;
 		$options |= ( $escaping & self::UTF8_OK ) ? JSON_UNESCAPED_UNICODE : 0;
 		$options |= ( $escaping & self::XMLMETA_OK ) ? 0 : ( JSON_HEX_TAG | JSON_HEX_AMP );
 		$json = json_encode( $value, $options );
@@ -142,10 +153,23 @@ class FormatJson {
 			return false;
 		}
 
-		if ( $pretty ) {
-			// Remove whitespace inside empty arrays/objects; different JSON encoders
-			// vary on this, and we want our output to be consistent across implementations.
-			$json = preg_replace( self::WS_CLEANUP_REGEX, '', $json );
+		if ( $pretty !== false ) {
+			// Workaround for <https://bugs.php.net/bug.php?id=66021>
+			if ( $bug66021 ) {
+				$json = preg_replace( self::WS_CLEANUP_REGEX, '', $json );
+			}
+			if ( $pretty !== '    ' ) {
+				// Change the four-space indent to a tab indent
+				$json = str_replace( "\n    ", "\n\t", $json );
+				while ( strpos( $json, "\t    " ) !== false ) {
+					$json = str_replace( "\t    ", "\t\t", $json );
+				}
+
+				if ( $pretty !== "\t" ) {
+					// Change the tab indent to the provided indent
+					$json = str_replace( "\t", $pretty, $json );
+				}
+			}
 		}
 		if ( $escaping & self::UTF8_OK ) {
 			$json = str_replace( self::$badChars, self::$badCharsEscaped, $json );
@@ -159,7 +183,7 @@ class FormatJson {
 	 * Therefore, the missing options are implemented here purely in PHP code.
 	 *
 	 * @param mixed $value
-	 * @param bool $pretty
+	 * @param string|bool $pretty
 	 * @param int $escaping
 	 * @return string|bool
 	 */
@@ -188,8 +212,8 @@ class FormatJson {
 			$json = str_replace( self::$badChars, self::$badCharsEscaped, $json );
 		}
 
-		if ( $pretty ) {
-			return self::prettyPrint( $json );
+		if ( $pretty !== false ) {
+			return self::prettyPrint( $json, $pretty );
 		}
 
 		return $json;
@@ -200,9 +224,10 @@ class FormatJson {
 	 * Only needed for PHP < 5.4, which lacks the JSON_PRETTY_PRINT option.
 	 *
 	 * @param string $json
+	 * @param string $indentString
 	 * @return string
 	 */
-	private static function prettyPrint( $json ) {
+	private static function prettyPrint( $json, $indentString ) {
 		$buf = '';
 		$indent = 0;
 		$json = strtr( $json, array( '\\\\' => '\\\\', '\"' => "\x01" ) );
@@ -217,11 +242,11 @@ class FormatJson {
 					++$indent;
 					// falls through
 				case ',':
-					$buf .= $json[$i] . "\n" . str_repeat( '    ', $indent );
+					$buf .= $json[$i] . "\n" . str_repeat( $indentString, $indent );
 					break;
 				case ']':
 				case '}':
-					$buf .= "\n" . str_repeat( '    ', --$indent ) . $json[$i];
+					$buf .= "\n" . str_repeat( $indentString, --$indent ) . $json[$i];
 					break;
 				case '"':
 					$skip = strcspn( $json, '"', $i + 1 ) + 2;

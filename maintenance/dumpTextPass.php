@@ -3,7 +3,7 @@
  * Script that postprocesses XML dumps from dumpBackup.php to add page text
  *
  * Copyright (C) 2005 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,5 +61,5 @@ Options:
   --spawn	  Spawn a subprocess for loading text records
   --help      Display this help message
 ENDS
-);
+	);
 }

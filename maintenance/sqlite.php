@@ -32,7 +32,10 @@ class SqliteMaintenance extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Performs some operations specific to SQLite database backend";
-		$this->addOption( 'vacuum', 'Clean up database by removing deleted pages. Decreases database file size' );
+		$this->addOption(
+			'vacuum',
+			'Clean up database by removing deleted pages. Decreases database file size'
+		);
 		$this->addOption( 'integrity', 'Check database for integrity' );
 		$this->addOption( 'backup-to', 'Backup database to the given file', false, true );
 		$this->addOption( 'check-syntax', 'Check SQL file(s) for syntax errors', false, true );
@@ -52,6 +55,7 @@ class SqliteMaintenance extends Maintenance {
 		// Should work even if we use a non-SQLite database
 		if ( $this->hasOption( 'check-syntax' ) ) {
 			$this->checkSyntax();
+
 			return;
 		}
 
@@ -59,6 +63,7 @@ class SqliteMaintenance extends Maintenance {
 
 		if ( $this->db->getType() != 'sqlite' ) {
 			$this->error( "This maintenance script requires a SQLite database.\n" );
+
 			return;
 		}
 
@@ -98,6 +103,7 @@ class SqliteMaintenance extends Maintenance {
 
 		if ( !$res || $res->numRows() == 0 ) {
 			$this->error( "Error: integrity check query returned nothing.\n" );
+
 			return;
 		}
 

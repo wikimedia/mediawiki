@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Iltever"
+		]
+	},
+	"config-desc": "MediaWiki инсталлятор",
+	"config-title": "MediaWiki $1 инсталляциясы",
+	"config-information": "Информация",
+	"config-localsettings-key": "Джангыртыу ачхыч:",
+	"config-session-error": "Сессияны башланыу халат: $1",
+	"config-your-language": "Тилигиз:",
+	"config-wiki-language": "Викини тили:",
+	"config-back": "← Артха",
+	"config-continue": "Баргъаны →",
+	"config-page-language": "Тил",
+	"config-db-host-oracle": "Билгиле базаны TNS'и:",
+	"config-db-wiki-settings": "Бу Викини идентификациясы",
+	"config-db-name": "Билгиле базаны аты:",
+	"config-mysql-innodb": "InnoDB",
+	"config-mysql-myisam": "MyISAM",
+	"config-mysql-binary": "Экили",
+	"config-mysql-utf8": "UTF-8",
+	"config-ns-generic": "Проект",
+	"config-ns-other-default": "MyWiki",
+	"config-profile-private": "Джабыкъ вики",
+	"mainpagetext": "'''«MediaWiki» тыйыншлы салынды.'''",
+	"mainpagedocfooter": "Бу вики бла къалай ишлерге ангылатхан информацияны [//meta.wikimedia.org/wiki/Help:Contents_User's_Guide къошулуучугъа юретиуде] табаргъа боллукъду.\n\n== Файдалы ресурсла ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings тюрлендириулени списогу (ингил.)];\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki-ни юсюнден кёб берилген соруула];\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-ни джангы версиясыны чыкъгъанын билдириу письмола]."
+}

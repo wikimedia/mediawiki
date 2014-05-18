@@ -32,7 +32,7 @@
  */
 class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'pwp' );
 	}
 
@@ -49,7 +49,7 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
@@ -174,7 +174,7 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'List all pages using a given page prop';
+		return 'List all pages using a given page prop.';
 	}
 
 	public function getExamples() {

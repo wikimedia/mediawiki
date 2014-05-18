@@ -32,6 +32,8 @@ class MemcachedBagOStuff extends BagOStuff {
 	/**
 	 * Fill in the defaults for any parameters missing from $params, using the
 	 * backwards-compatible global variables
+	 * @param array $params
+	 * @return array
 	 */
 	protected function applyDefaultParams( $params ) {
 		if ( !isset( $params['servers'] ) ) {
@@ -56,18 +58,18 @@ class MemcachedBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $casToken[optional] mixed
-	 * @return Mixed
+	 * @param string $key
+	 * @param mixed $casToken [optional]
+	 * @return mixed
 	 */
 	public function get( $key, &$casToken = null ) {
 		return $this->client->get( $this->encodeKey( $key ), $casToken );
 	}
 
 	/**
-	 * @param $key string
-	 * @param $value
-	 * @param $exptime int
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exptime
 	 * @return bool
 	 */
 	public function set( $key, $value, $exptime = 0 ) {
@@ -76,10 +78,10 @@ class MemcachedBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $casToken mixed
-	 * @param $value
-	 * @param $exptime int
+	 * @param string $key
+	 * @param mixed $casToken
+	 * @param mixed $value
+	 * @param int $exptime
 	 * @return bool
 	 */
 	public function cas( $casToken, $key, $value, $exptime = 0 ) {
@@ -88,8 +90,8 @@ class MemcachedBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $time int
+	 * @param string $key
+	 * @param int $time
 	 * @return bool
 	 */
 	public function delete( $key, $time = 0 ) {
@@ -97,10 +99,10 @@ class MemcachedBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $value int
+	 * @param string $key
+	 * @param int $value
 	 * @param int $exptime (default 0)
-	 * @return Mixed
+	 * @return mixed
 	 */
 	public function add( $key, $value, $exptime = 0 ) {
 		return $this->client->add( $this->encodeKey( $key ), $value,
@@ -108,19 +110,9 @@ class MemcachedBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $value int
-	 * @param $exptime
-	 * @return Mixed
-	 */
-	public function replace( $key, $value, $exptime = 0 ) {
-		return $this->client->replace( $this->encodeKey( $key ), $value,
-			$this->fixExpiry( $exptime ) );
-	}
-
-	/**
 	 * Get the underlying client object. This is provided for debugging
 	 * purposes.
+	 * @return BagOStuff
 	 */
 	public function getClient() {
 		return $this->client;
@@ -133,7 +125,7 @@ class MemcachedBagOStuff extends BagOStuff {
 	 * the other control characters for compatibility with libmemcached
 	 * verify_key. We leave other punctuation alone, to maximise backwards
 	 * compatibility.
-	 * @param $key string
+	 * @param string $key
 	 * @return string
 	 */
 	public function encodeKey( $key ) {
@@ -142,7 +134,7 @@ class MemcachedBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $m array
+	 * @param array $m
 	 * @return string
 	 */
 	protected function encodeKeyCallback( $m ) {
@@ -155,6 +147,8 @@ class MemcachedBagOStuff extends BagOStuff {
 	 * discarded immediately because the expiry is in the past.
 	 * Clamp expiries >30d at 30d, unless they're >=1e9 in which
 	 * case they are likely to really be absolute (1e9 = 2011-09-09)
+	 * @param int $expiry
+	 * @return int
 	 */
 	function fixExpiry( $expiry ) {
 		if ( $expiry > 2592000 && $expiry < 1000000000 ) {
@@ -167,7 +161,7 @@ class MemcachedBagOStuff extends BagOStuff {
 	 * Decode a key encoded with encodeKey(). This is provided as a convenience
 	 * function for debugging.
 	 *
-	 * @param $key string
+	 * @param string $key
 	 *
 	 * @return string
 	 */
@@ -177,11 +171,9 @@ class MemcachedBagOStuff extends BagOStuff {
 
 	/**
 	 * Send a debug message to the log
+	 * @param string $text
 	 */
 	protected function debugLog( $text ) {
-		if ( substr( $text, -1 ) !== "\n" ) {
-			$text .= "\n";
-		}
 		wfDebugLog( 'memcached', $text );
 	}
 }

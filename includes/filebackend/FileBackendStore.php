@@ -46,7 +46,7 @@ abstract class FileBackendStore extends FileBackend {
 	/** @var array Map of container names to sharding config */
 	protected $shardViaHashLevels = array();
 
-	/** @var callback Method to get the MIME type of files */
+	/** @var callable Method to get the MIME type of files */
 	protected $mimeCallback;
 
 	protected $maxFileSize = 4294967296; // integer bytes (4GiB)
@@ -464,7 +464,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doPrepare()
-	 * @param $container
+	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
 	 * @return Status
@@ -499,7 +499,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doSecure()
-	 * @param $container
+	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
 	 * @return Status
@@ -534,7 +534,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doPublish()
-	 * @param $container
+	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
 	 * @return Status
@@ -590,7 +590,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doClean()
-	 * @param $container
+	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
 	 * @return Status
@@ -648,17 +648,23 @@ abstract class FileBackendStore extends FileBackend {
 		$stat = $this->doGetFileStat( $params );
 		wfProfileOut( __METHOD__ . '-miss-' . $this->name );
 		if ( is_array( $stat ) ) { // file exists
-			$stat['latest'] = $latest;
+			// Strongly consistent backends can automatically set "latest"
+			$stat['latest'] = isset( $stat['latest'] ) ? $stat['latest'] : $latest;
 			$this->cheapCache->set( $path, 'stat', $stat );
 			$this->setFileCache( $path, $stat ); // update persistent cache
 			if ( isset( $stat['sha1'] ) ) { // some backends store SHA-1 as metadata
 				$this->cheapCache->set( $path, 'sha1',
 					array( 'hash' => $stat['sha1'], 'latest' => $latest ) );
 			}
+			if ( isset( $stat['xattr'] ) ) { // some backends store headers/metadata
+				$stat['xattr'] = self::normalizeXAttributes( $stat['xattr'] );
+				$this->cheapCache->set( $path, 'xattr',
+					array( 'map' => $stat['xattr'], 'latest' => $latest ) );
+			}
 		} elseif ( $stat === false ) { // file does not exist
 			$this->cheapCache->set( $path, 'stat', $latest ? 'NOT_EXIST_LATEST' : 'NOT_EXIST' );
-			$this->cheapCache->set( $path, 'sha1', // the SHA-1 must be false too
-				array( 'hash' => false, 'latest' => $latest ) );
+			$this->cheapCache->set( $path, 'xattr', array( 'map' => false, 'latest' => $latest ) );
+			$this->cheapCache->set( $path, 'sha1', array( 'hash' => false, 'latest' => $latest ) );
 			wfDebug( __METHOD__ . ": File $path does not exist.\n" );
 		} else { // an error occurred
 			wfDebug( __METHOD__ . ": Could not stat file $path.\n" );
@@ -695,6 +701,40 @@ abstract class FileBackendStore extends FileBackend {
 		}
 
 		return $contents;
+	}
+
+	final public function getFileXAttributes( array $params ) {
+		$path = self::normalizeStoragePath( $params['src'] );
+		if ( $path === null ) {
+			return false; // invalid storage path
+		}
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$latest = !empty( $params['latest'] ); // use latest data?
+		if ( $this->cheapCache->has( $path, 'xattr', self::CACHE_TTL ) ) {
+			$stat = $this->cheapCache->get( $path, 'xattr' );
+			// If we want the latest data, check that this cached
+			// value was in fact fetched with the latest available data.
+			if ( !$latest || $stat['latest'] ) {
+				return $stat['map'];
+			}
+		}
+		wfProfileIn( __METHOD__ . '-miss' );
+		wfProfileIn( __METHOD__ . '-miss-' . $this->name );
+		$fields = $this->doGetFileXAttributes( $params );
+		$fields = is_array( $fields ) ? self::normalizeXAttributes( $fields ) : false;
+		wfProfileOut( __METHOD__ . '-miss-' . $this->name );
+		wfProfileOut( __METHOD__ . '-miss' );
+		$this->cheapCache->set( $path, 'xattr', array( 'map' => $fields, 'latest' => $latest ) );
+
+		return $fields;
+	}
+
+	/**
+	 * @see FileBackendStore::getFileXAttributes()
+	 * @return bool|string
+	 */
+	protected function doGetFileXAttributes( array $params ) {
+		return array( 'headers' => array(), 'metadata' => array() ); // not supported
 	}
 
 	final public function getFileSha1Base36( array $params ) {
@@ -922,7 +962,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param string $container Resolved container name
 	 * @param string $dir Resolved path relative to container
 	 * @param array $params
-	 * @return Traversable|Array|null Returns null on failure
+	 * @return Traversable|array|null Returns null on failure
 	 */
 	abstract public function getDirectoryListInternal( $container, $dir, array $params );
 
@@ -952,7 +992,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param string $container Resolved container name
 	 * @param string $dir Resolved path relative to container
 	 * @param array $params
-	 * @return Traversable|Array|null Returns null on failure
+	 * @return Traversable|array|null Returns null on failure
 	 */
 	abstract public function getFileListInternal( $container, $dir, array $params );
 
@@ -1056,17 +1096,40 @@ abstract class FileBackendStore extends FileBackend {
 			$this->clearCache();
 		}
 
-		// Load from the persistent file and container caches
-		$this->primeFileCache( $performOps );
-		$this->primeContainerCache( $performOps );
+		// Build the list of paths involved
+		$paths = array();
+		foreach ( $performOps as $op ) {
+			$paths = array_merge( $paths, $op->storagePathsRead() );
+			$paths = array_merge( $paths, $op->storagePathsChanged() );
+		}
 
-		// Actually attempt the operation batch...
-		$opts = $this->setConcurrencyFlags( $opts );
-		$subStatus = FileOpBatch::attempt( $performOps, $opts, $this->fileJournal );
+		// Enlarge the cache to fit the stat entries of these files
+		$this->cheapCache->resize( max( 2 * count( $paths ), self::CACHE_CHEAP_SIZE ) );
+
+		// Load from the persistent container caches
+		$this->primeContainerCache( $paths );
+		// Get the latest stat info for all the files (having locked them)
+		$ok = $this->preloadFileStat( array( 'srcs' => $paths, 'latest' => true ) );
+
+		if ( $ok ) {
+			// Actually attempt the operation batch...
+			$opts = $this->setConcurrencyFlags( $opts );
+			$subStatus = FileOpBatch::attempt( $performOps, $opts, $this->fileJournal );
+		} else {
+			// If we could not even stat some files, then bail out...
+			$subStatus = Status::newFatal( 'backend-fail-internal', $this->name );
+			foreach ( $ops as $i => $op ) { // mark each op as failed
+				$subStatus->success[$i] = false;
+				++$subStatus->failCount;
+			}
+		}
 
 		// Merge errors into status fields
 		$status->merge( $subStatus );
 		$status->success = $subStatus->success; // not done in merge()
+
+		// Shrink the stat cache back to normal size
+		$this->cheapCache->resize( self::CACHE_CHEAP_SIZE );
 
 		return $status;
 	}
@@ -1231,6 +1294,68 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param array $paths Storage paths (optional)
 	 */
 	protected function doClearCache( array $paths = null ) {
+	}
+
+	final public function preloadFileStat( array $params ) {
+		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
+		$success = true; // no network errors
+
+		$params['concurrency'] = ( $this->parallelize !== 'off' ) ? $this->concurrency : 1;
+		$stats = $this->doGetFileStatMulti( $params );
+		if ( $stats === null ) {
+			return true; // not supported
+		}
+
+		$latest = !empty( $params['latest'] ); // use latest data?
+		foreach ( $stats as $path => $stat ) {
+			$path = FileBackend::normalizeStoragePath( $path );
+			if ( $path === null ) {
+				continue; // this shouldn't happen
+			}
+			if ( is_array( $stat ) ) { // file exists
+				// Strongly consistent backends can automatically set "latest"
+				$stat['latest'] = isset( $stat['latest'] ) ? $stat['latest'] : $latest;
+				$this->cheapCache->set( $path, 'stat', $stat );
+				$this->setFileCache( $path, $stat ); // update persistent cache
+				if ( isset( $stat['sha1'] ) ) { // some backends store SHA-1 as metadata
+					$this->cheapCache->set( $path, 'sha1',
+						array( 'hash' => $stat['sha1'], 'latest' => $latest ) );
+				}
+				if ( isset( $stat['xattr'] ) ) { // some backends store headers/metadata
+					$stat['xattr'] = self::normalizeXAttributes( $stat['xattr'] );
+					$this->cheapCache->set( $path, 'xattr',
+						array( 'map' => $stat['xattr'], 'latest' => $latest ) );
+				}
+			} elseif ( $stat === false ) { // file does not exist
+				$this->cheapCache->set( $path, 'stat',
+					$latest ? 'NOT_EXIST_LATEST' : 'NOT_EXIST' );
+				$this->cheapCache->set( $path, 'xattr',
+					array( 'map' => false, 'latest' => $latest ) );
+				$this->cheapCache->set( $path, 'sha1',
+					array( 'hash' => false, 'latest' => $latest ) );
+				wfDebug( __METHOD__ . ": File $path does not exist.\n" );
+			} else { // an error occurred
+				$success = false;
+				wfDebug( __METHOD__ . ": Could not stat file $path.\n" );
+			}
+		}
+
+		return $success;
+	}
+
+	/**
+	 * Get file stat information (concurrently if possible) for several files
+	 *
+	 * @see FileBackend::getFileStat()
+	 *
+	 * @param array $params Parameters include:
+	 *   - srcs        : list of source storage paths
+	 *   - latest      : use the latest available data
+	 * @return array|null Map of storage paths to array|bool|null (returns null if not supported)
+	 * @since 1.23
+	 */
+	protected function doGetFileStatMulti( array $params ) {
+		return null; // not supported
 	}
 
 	/**
@@ -1462,7 +1587,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return string
 	 */
 	private function containerCacheKey( $container ) {
-		return wfMemcKey( 'backend', $this->getName(), 'container', $container );
+		return "filebackend:{$this->name}:{$this->wikiId}:container:{$container}";
 	}
 
 	/**
@@ -1489,7 +1614,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * Do a batch lookup from cache for container stats for all containers
-	 * used in a list of container names, storage paths, or FileOp objects.
+	 * used in a list of container names or storage paths objects.
 	 * This loads the persistent cache values into the process cache.
 	 *
 	 * @param array $items
@@ -1501,10 +1626,7 @@ abstract class FileBackendStore extends FileBackend {
 		$contNames = array(); // (cache key => resolved container name)
 		// Get all the paths/containers from the items...
 		foreach ( $items as $item ) {
-			if ( $item instanceof FileOp ) {
-				$paths = array_merge( $paths, $item->storagePathsRead() );
-				$paths = array_merge( $paths, $item->storagePathsChanged() );
-			} elseif ( self::isStoragePath( $item ) ) {
+			if ( self::isStoragePath( $item ) ) {
 				$paths[] = $item;
 			} elseif ( is_string( $item ) ) { // full container name
 				$contNames[$this->containerCacheKey( $item )] = $item;
@@ -1546,7 +1668,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return string
 	 */
 	private function fileCacheKey( $path ) {
-		return wfMemcKey( 'backend', $this->getName(), 'file', sha1( $path ) );
+		return "filebackend:{$this->name}:{$this->wikiId}:file:" . sha1( $path );
 	}
 
 	/**
@@ -1564,7 +1686,22 @@ abstract class FileBackendStore extends FileBackend {
 		}
 		$age = time() - wfTimestamp( TS_UNIX, $val['mtime'] );
 		$ttl = min( 7 * 86400, max( 300, floor( .1 * $age ) ) );
-		$this->memCache->add( $this->fileCacheKey( $path ), $val, $ttl );
+		$key = $this->fileCacheKey( $path );
+		// Set the cache unless it is currently salted with the value "PURGED".
+		// Using add() handles this except it also is a no-op in that case where
+		// the current value is not "latest" but $val is, so use CAS in that case.
+		if ( !$this->memCache->add( $key, $val, $ttl ) && !empty( $val['latest'] ) ) {
+			$this->memCache->merge(
+				$key,
+				function( BagOStuff $cache, $key, $cValue ) use ( $val ) {
+					return ( is_array( $cValue ) && empty( $cValue['latest'] ) )
+						? $val // update the stat cache with the lastest info
+						: false; // do nothing (cache is salted or some error happened)
+				},
+				$ttl,
+				1
+			);
+		}
 	}
 
 	/**
@@ -1590,7 +1727,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * used in a list of storage paths or FileOp objects.
 	 * This loads the persistent cache values into the process cache.
 	 *
-	 * @param array $items List of storage paths or FileOps
+	 * @param array $items List of storage paths
 	 */
 	final protected function primeFileCache( array $items ) {
 		$section = new ProfileSection( __METHOD__ . "-{$this->name}" );
@@ -1599,10 +1736,7 @@ abstract class FileBackendStore extends FileBackend {
 		$pathNames = array(); // (cache key => storage path)
 		// Get all the paths/containers from the items...
 		foreach ( $items as $item ) {
-			if ( $item instanceof FileOp ) {
-				$paths = array_merge( $paths, $item->storagePathsRead() );
-				$paths = array_merge( $paths, $item->storagePathsChanged() );
-			} elseif ( self::isStoragePath( $item ) ) {
+			if ( self::isStoragePath( $item ) ) {
 				$paths[] = FileBackend::normalizeStoragePath( $item );
 			}
 		}
@@ -1625,8 +1759,34 @@ abstract class FileBackendStore extends FileBackend {
 					$this->cheapCache->set( $path, 'sha1',
 						array( 'hash' => $val['sha1'], 'latest' => $val['latest'] ) );
 				}
+				if ( isset( $val['xattr'] ) ) { // some backends store headers/metadata
+					$val['xattr'] = self::normalizeXAttributes( $val['xattr'] );
+					$this->cheapCache->set( $path, 'xattr',
+						array( 'map' => $val['xattr'], 'latest' => $val['latest'] ) );
+				}
 			}
 		}
+	}
+
+	/**
+	 * Normalize file headers/metadata to the FileBackend::getFileXAttributes() format
+	 *
+	 * @param array $xattr
+	 * @return array
+	 * @since 1.22
+	 */
+	final protected static function normalizeXAttributes( array $xattr ) {
+		$newXAttr = array( 'headers' => array(), 'metadata' => array() );
+
+		foreach ( $xattr['headers'] as $name => $value ) {
+			$newXAttr['headers'][strtolower( $name )] = $value;
+		}
+
+		foreach ( $xattr['metadata'] as $name => $value ) {
+			$newXAttr['metadata'][strtolower( $name )] = $value;
+		}
+
+		return $newXAttr;
 	}
 
 	/**

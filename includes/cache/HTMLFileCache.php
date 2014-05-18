@@ -31,8 +31,8 @@
 class HTMLFileCache extends FileCacheBase {
 	/**
 	 * Construct an ObjectFileCache from a Title and an action
-	 * @param $title Title|string Title object or prefixed DB key string
-	 * @param $action string
+	 * @param Title|string $title Title object or prefixed DB key string
+	 * @param string $action
 	 * @throws MWException
 	 * @return HTMLFileCache
 	 */
@@ -84,7 +84,7 @@ class HTMLFileCache extends FileCacheBase {
 
 	/**
 	 * Check if pages can be cached for this request/user
-	 * @param $context IContextSource
+	 * @param IContextSource $context
 	 * @return bool
 	 */
 	public static function useFileCache( IContextSource $context ) {
@@ -125,7 +125,7 @@ class HTMLFileCache extends FileCacheBase {
 
 	/**
 	 * Read from cache to context output
-	 * @param $context IContextSource
+	 * @param IContextSource $context
 	 * @return void
 	 */
 	public function loadFromFileCache( IContextSource $context ) {
@@ -155,7 +155,7 @@ class HTMLFileCache extends FileCacheBase {
 	/**
 	 * Save this cache object with the given text.
 	 * Use this as an ob_start() handler.
-	 * @param $text string
+	 * @param string $text
 	 * @return bool Whether $wgUseFileCache is enabled
 	 */
 	public function saveToFileCache( $text ) {
@@ -166,7 +166,7 @@ class HTMLFileCache extends FileCacheBase {
 			return $text;
 		}
 
-		wfDebug( __METHOD__ . "()\n", false );
+		wfDebug( __METHOD__ . "()\n", 'log' );
 
 		$now = wfTimestampNow();
 		if ( $this->useGzip() ) {
@@ -200,7 +200,7 @@ class HTMLFileCache extends FileCacheBase {
 
 	/**
 	 * Clear the file caches for a page for all actions
-	 * @param $title Title
+	 * @param Title $title
 	 * @return bool Whether $wgUseFileCache is enabled
 	 */
 	public static function clearFileCache( Title $title ) {

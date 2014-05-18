@@ -28,12 +28,11 @@
  * @since 1.20
  */
 interface ICacheHelper {
-
 	/**
 	 * Sets if the cache should be enabled or not.
 	 *
 	 * @since 1.20
-	 * @param boolean $cacheEnabled
+	 * @param bool $cacheEnabled
 	 */
 	function setCacheEnabled( $cacheEnabled );
 
@@ -43,8 +42,8 @@ interface ICacheHelper {
 	 *
 	 * @since 1.20
 	 *
-	 * @param integer|null $cacheExpiry Sets the cache expiry, either ttl in seconds or unix timestamp.
-	 * @param boolean|null $cacheEnabled Sets if the cache should be enabled or not.
+	 * @param int|null $cacheExpiry Sets the cache expiry, either ttl in seconds or unix timestamp.
+	 * @param bool|null $cacheEnabled Sets if the cache should be enabled or not.
 	 */
 	function startCache( $cacheExpiry = null, $cacheEnabled = null );
 
@@ -78,10 +77,9 @@ interface ICacheHelper {
 	 *
 	 * @since 1.20
 	 *
-	 * @param integer $cacheExpiry
+	 * @param int $cacheExpiry
 	 */
 	function setExpiry( $cacheExpiry );
-
 }
 
 /**
@@ -103,12 +101,11 @@ interface ICacheHelper {
  * @since 1.20
  */
 class CacheHelper implements ICacheHelper {
-
 	/**
 	 * The time to live for the cache, in seconds or a unix timestamp indicating the point of expiry.
 	 *
 	 * @since 1.20
-	 * @var integer
+	 * @var int
 	 */
 	protected $cacheExpiry = 3600;
 
@@ -127,7 +124,7 @@ class CacheHelper implements ICacheHelper {
 	 * Null if this information is not available yet.
 	 *
 	 * @since 1.20
-	 * @var boolean|null
+	 * @var bool|null
 	 */
 	protected $hasCached = null;
 
@@ -135,7 +132,7 @@ class CacheHelper implements ICacheHelper {
 	 * If the cache is enabled or not.
 	 *
 	 * @since 1.20
-	 * @var boolean
+	 * @var bool
 	 */
 	protected $cacheEnabled = true;
 
@@ -159,7 +156,7 @@ class CacheHelper implements ICacheHelper {
 	 * Sets if the cache should be enabled or not.
 	 *
 	 * @since 1.20
-	 * @param boolean $cacheEnabled
+	 * @param bool $cacheEnabled
 	 */
 	public function setCacheEnabled( $cacheEnabled ) {
 		$this->cacheEnabled = $cacheEnabled;
@@ -171,8 +168,8 @@ class CacheHelper implements ICacheHelper {
 	 *
 	 * @since 1.20
 	 *
-	 * @param integer|null $cacheExpiry Sets the cache expiry, either ttl in seconds or unix timestamp.
-	 * @param boolean|null $cacheEnabled Sets if the cache should be enabled or not.
+	 * @param int|null $cacheExpiry Sets the cache expiry, either ttl in seconds or unix timestamp.
+	 * @param bool|null $cacheEnabled Sets if the cache should be enabled or not.
 	 */
 	public function startCache( $cacheExpiry = null, $cacheEnabled = null ) {
 		if ( is_null( $this->hasCached ) ) {
@@ -195,7 +192,7 @@ class CacheHelper implements ICacheHelper {
 	 * @since 1.20
 	 *
 	 * @param IContextSource $context
-	 * @param boolean $includePurgeLink
+	 * @param bool $includePurgeLink
 	 *
 	 * @return string
 	 */
@@ -205,8 +202,7 @@ class CacheHelper implements ICacheHelper {
 				'cachedspecial-viewing-cached-ttl',
 				$context->getLanguage()->formatDuration( $this->cacheExpiry )
 			)->escaped();
-		}
-		else {
+		} else {
 			$message = $context->msg(
 				'cachedspecial-viewing-cached-ts'
 			)->escaped();
@@ -276,26 +272,22 @@ class CacheHelper implements ICacheHelper {
 				$itemKey = array_shift( $itemKey );
 
 				if ( !is_integer( $itemKey ) ) {
-					wfWarn( "Attempted to get item with non-numeric key while the next item in the queue has a key ($itemKey) in " . __METHOD__ );
-				}
-				elseif ( is_null( $itemKey ) ) {
+					wfWarn( "Attempted to get item with non-numeric key while " .
+						"the next item in the queue has a key ($itemKey) in " . __METHOD__ );
+				} elseif ( is_null( $itemKey ) ) {
 					wfWarn( "Attempted to get an item while the queue is empty in " . __METHOD__ );
-				}
-				else {
+				} else {
 					$value = array_shift( $this->cachedChunks );
 				}
-			}
-			else {
+			} else {
 				if ( array_key_exists( $key, $this->cachedChunks ) ) {
 					$value = $this->cachedChunks[$key];
 					unset( $this->cachedChunks[$key] );
-				}
-				else {
+				} else {
 					wfWarn( "There is no item with key '$key' in this->cachedChunks in " . __METHOD__ );
 				}
 			}
-		}
-		else {
+		} else {
 			if ( !is_array( $args ) ) {
 				$args = array( $args );
 			}
@@ -305,8 +297,7 @@ class CacheHelper implements ICacheHelper {
 			if ( $this->cacheEnabled ) {
 				if ( is_null( $key ) ) {
 					$this->cachedChunks[] = $value;
-				}
-				else {
+				} else {
 					$this->cachedChunks[$key] = $value;
 				}
 			}
@@ -323,7 +314,11 @@ class CacheHelper implements ICacheHelper {
 	 */
 	public function saveCache() {
 		if ( $this->cacheEnabled && $this->hasCached === false && !empty( $this->cachedChunks ) ) {
-			wfGetCache( CACHE_ANYTHING )->set( $this->getCacheKeyString(), $this->cachedChunks, $this->cacheExpiry );
+			wfGetCache( CACHE_ANYTHING )->set(
+				$this->getCacheKeyString(),
+				$this->cachedChunks,
+				$this->cacheExpiry
+			);
 		}
 	}
 
@@ -333,7 +328,7 @@ class CacheHelper implements ICacheHelper {
 	 *
 	 * @since 1.20
 	 *
-	 * @param integer $cacheExpiry
+	 * @param int $cacheExpiry
 	 */
 	public function setExpiry( $cacheExpiry ) {
 		$this->cacheExpiry = $cacheExpiry;
@@ -383,10 +378,9 @@ class CacheHelper implements ICacheHelper {
 	 *
 	 * @since 1.20
 	 *
-	 * @param $handlerFunction
+	 * @param callable $handlerFunction
 	 */
 	public function setOnInitializedHandler( $handlerFunction ) {
 		$this->onInitHandler = $handlerFunction;
 	}
-
 }

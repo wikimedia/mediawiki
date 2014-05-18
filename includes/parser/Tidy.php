@@ -50,7 +50,7 @@ class MWTidyWrapper {
 	}
 
 	/**
-	 * @param $text string
+	 * @param string $text
 	 * @return string
 	 */
 	public function getWrapped( $text ) {
@@ -79,7 +79,7 @@ class MWTidyWrapper {
 	}
 
 	/**
-	 * @param $m array
+	 * @param array $m
 	 *
 	 * @return string
 	 */
@@ -91,7 +91,7 @@ class MWTidyWrapper {
 	}
 
 	/**
-	 * @param $text string
+	 * @param string $text
 	 * @return string
 	 */
 	public function postprocess( $text ) {
@@ -121,8 +121,8 @@ class MWTidy {
 	 * If tidy isn't able to correct the markup, the original will be
 	 * returned in all its glory with a warning comment appended.
 	 *
-	 * @param string $text hideous HTML input
-	 * @return String: corrected HTML output
+	 * @param string $text Hideous HTML input
+	 * @return string Corrected HTML output
 	 */
 	public static function tidy( $text ) {
 		global $wgTidyInternal;
@@ -153,9 +153,9 @@ class MWTidy {
 	/**
 	 * Check HTML for errors, used if $wgValidateAllHtml = true.
 	 *
-	 * @param $text String
-	 * @param &$errorStr String: return the error string
-	 * @return Boolean: whether the HTML is valid
+	 * @param string $text
+	 * @param string &$errorStr Return the error string
+	 * @return bool Whether the HTML is valid
 	 */
 	public static function checkErrors( $text, &$errorStr = null ) {
 		global $wgTidyInternal;
@@ -175,9 +175,9 @@ class MWTidy {
 	 * Also called in OutputHandler.php for full page validation
 	 *
 	 * @param string $text HTML to check
-	 * @param $stderr Boolean: Whether to read result from STDERR rather than STDOUT
-	 * @param &$retval int Exit code (-1 on internal error)
-	 * @return mixed String or null
+	 * @param bool $stderr Whether to read result from STDERR rather than STDOUT
+	 * @param int &$retval Exit code (-1 on internal error)
+	 * @return string|null
 	 */
 	private static function execExternalTidy( $text, $stderr = false, &$retval = null ) {
 		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
@@ -205,6 +205,9 @@ class MWTidy {
 
 		$process = proc_open(
 			"$wgTidyBin -config $wgTidyConf $wgTidyOpts$opts", $descriptorspec, $pipes );
+
+		//NOTE: At least on linux, the process will be created even if tidy is not installed.
+		//      This means that missing tidy will be treated as a validation failure.
 
 		if ( is_resource( $process ) ) {
 			// Theoretically, this style of communication could cause a deadlock
@@ -239,9 +242,9 @@ class MWTidy {
 	 * saving the overhead of spawning a new process.
 	 *
 	 * @param string $text HTML to check
-	 * @param $stderr Boolean: Whether to read result from error status instead of output
-	 * @param &$retval int Exit code (-1 on internal error)
-	 * @return mixed String or null
+	 * @param bool $stderr Whether to read result from error status instead of output
+	 * @param int &$retval Exit code (-1 on internal error)
+	 * @return string|null
 	 */
 	private static function execInternalTidy( $text, $stderr = false, &$retval = null ) {
 		global $wgTidyConf, $wgDebugTidy;

@@ -46,9 +46,9 @@ class UserCache {
 	/**
 	 * Get a property of a user based on their user ID
 	 *
-	 * @param $userId integer User ID
+	 * @param int $userId User ID
 	 * @param string $prop User property
-	 * @return mixed The property or false if the user does not exist
+	 * @return mixed|bool The property or false if the user does not exist
 	 */
 	public function getProp( $userId, $prop ) {
 		if ( !isset( $this->cache[$userId][$prop] ) ) {
@@ -64,7 +64,7 @@ class UserCache {
 	/**
 	 * Get the name of a user or return $ip if the user ID is 0
 	 *
-	 * @param integer $userId
+	 * @param int $userId
 	 * @param string $ip
 	 * @return string
 	 * @since 1.22
@@ -77,7 +77,7 @@ class UserCache {
 	 * Preloads user names for given list of users.
 	 * @param array $userIds List of user IDs
 	 * @param array $options Option flags; include 'userpage' and 'usertalk'
-	 * @param string $caller the calling method
+	 * @param string $caller The calling method
 	 */
 	public function doQuery( array $userIds, $options = array(), $caller = '' ) {
 		wfProfileIn( __METHOD__ );
@@ -140,7 +140,7 @@ class UserCache {
 	/**
 	 * Check if a cache type is in $options and was not loaded for this user
 	 *
-	 * @param $uid integer user ID
+	 * @param int $uid User ID
 	 * @param string $type Cache type
 	 * @param array $options Requested cache types
 	 * @return bool

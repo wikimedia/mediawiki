@@ -24,6 +24,6 @@
 
 define( 'THUMB_HANDLER', true );
 
-# Execute thumb.php, having set THUMB_HANDLER so that
-# it knows to extract params from a thumbnail file URL.
+// Execute thumb.php, having set THUMB_HANDLER so that
+// it knows to extract params from a thumbnail file URL.
 require __DIR__ . '/thumb.php';

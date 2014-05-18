@@ -1,0 +1,41 @@
+{
+	"@metadata": {
+		"authors": [
+			"Harald Khan",
+			"Nghtwlkr"
+		]
+	},
+	"config-your-language": "Språket ditt:",
+	"config-wiki-language": "Wikispråk:",
+	"config-back": "← Attende",
+	"config-continue": "Hald fram →",
+	"config-page-language": "Språk",
+	"config-memory-raised": "PHPs <code>memory_limit</code> er $1, auka til $2.",
+	"config-memory-bad": "'''Advarsel:''' PHPs <code>memory_limit</code> er $1.\nDette er sannsynlegvis for lågt.\nInstallasjonen kan mislukkast!",
+	"config-xcache": "[http://xcache.lighttpd.net/ XCache] er innstallert",
+	"config-apc": "[http://www.php.net/apc APC] er innstallert",
+	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] er installert",
+	"config-db-name": "Databasenamn:",
+	"config-db-username": "Databasebrukarnamn:",
+	"config-db-password": "Databasepassord:",
+	"config-db-charset": "Databaseteiknsett",
+	"config-charset-mysql5-binary": "MySQL 4.1/5.0 binær",
+	"config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
+	"config-charset-mysql4": "MySQL 4.0 bakoverkompatibel UTF-8",
+	"config-mysql-old": "MySQL $1 eller seinare krevst, du har $2.",
+	"config-db-port": "Databaseport:",
+	"config-db-schema": "Skjema for MediaWiki",
+	"config-header-mysql": "MySQL-innstillingar",
+	"config-header-postgres": "PostgreSQL-innstillingar",
+	"config-header-sqlite": "SQLite-innstillingar",
+	"config-header-oracle": "Oracle-innstillingar",
+	"config-invalid-db-type": "Ugyldig databasetype",
+	"config-invalid-db-name": "Ugyldig databasenamn «$1».\nBerre bruk ASCII-bokstavar (a-z, A-Z), tal (0-9) og undestrekar (_).",
+	"config-invalid-db-prefix": "Ugyldig databaseprefiks «$1».\nBerre bruk ASCII-bokstavar (a-z, A-Z), tal (0-9) og undestrekar (_).",
+	"config-invalid-schema": "Ugyldig skjema for MediaWiki «$1».\nBerre bruk ASCII-bokstavar (a-z, A-Z), tal (0-9) og undestrekar (_).",
+	"config-postgres-old": "PostgreSQL $1 eller seinare krevst, du har $2.",
+	"config-email-settings": "E-postinnstillingar",
+	"config-logo": "Logo-URL:",
+	"mainpagetext": "'''MediaWiki er no installert.'''",
+	"mainpagedocfooter": "Sjå [//meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og oppsettshjelp for wikiprogramvara.\n\n==Kome i gang==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste over oppsettsinnstillingar]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Spørsmål og svar om MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postliste med informasjon om nye MediaWiki-versjonar]"
+}

@@ -31,7 +31,7 @@
  *
  * @ingroup Profiler
  */
-class ProfilerSimpleText extends ProfilerSimple {
+class ProfilerSimpleText extends ProfilerStandard {
 	public $visible = false; /* Show as <PRE> or <!-- ? */
 	static private $out;
 
@@ -40,6 +40,10 @@ class ProfilerSimpleText extends ProfilerSimple {
 			$this->visible = true;
 		}
 		parent::__construct( $profileConfig );
+	}
+
+	protected function collateOnly() {
+		return true;
 	}
 
 	public function logData() {

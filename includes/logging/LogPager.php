@@ -3,7 +3,7 @@
  * Contain classes to list log entries
  *
  * Copyright © 2004 Brion Vibber <brion@pobox.com>, 2008 Aaron Schulz
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ class LogPager extends ReverseChronologicalPager {
 	/** @var string */
 	private $typeCGI = '';
 
-	/** @var LogEventsList  */
+	/** @var LogEventsList */
 	public $mLogEventsList;
 
 	/**
@@ -50,13 +50,13 @@ class LogPager extends ReverseChronologicalPager {
 	 *
 	 * @param LogEventsList $list
 	 * @param string|array $types Log types to show
-	 * @param string $performer the user who made the log entries
-	 * @param string|Title $title the page title the log entries are for
-	 * @param string $pattern do a prefix search rather than an exact title match
-	 * @param array $conds extra conditions for the query
+	 * @param string $performer The user who made the log entries
+	 * @param string|Title $title The page title the log entries are for
+	 * @param string $pattern Do a prefix search rather than an exact title match
+	 * @param array $conds Extra conditions for the query
 	 * @param int|bool $year The year to start from. Default: false
 	 * @param int|bool $month The month to start from. Default: false
-	 * @param string $tagFilter tag
+	 * @param string $tagFilter Tag
 	 */
 	public function __construct( $list, $types = array(), $performer = '', $title = '', $pattern = '',
 		$conds = array(), $year = false, $month = false, $tagFilter = '' ) {
@@ -154,15 +154,15 @@ class LogPager extends ReverseChronologicalPager {
 	 * Set the log reader to return only entries by the given user.
 	 *
 	 * @param string $name (In)valid user name
-	 * @return bool
+	 * @return void
 	 */
 	private function limitPerformer( $name ) {
 		if ( $name == '' ) {
-			return false;
+			return;
 		}
 		$usertitle = Title::makeTitleSafe( NS_USER, $name );
 		if ( is_null( $usertitle ) ) {
-			return false;
+			return;
 		}
 		/* Fetch userid at first, if known, provides awesome query plan afterwards */
 		$userid = User::idFromName( $name );
@@ -179,6 +179,7 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::SUPPRESSED_USER ) .
 				' != ' . LogPage::SUPPRESSED_USER;
 		}
+
 		$this->performer = $usertitle->getText();
 	}
 
@@ -188,7 +189,7 @@ class LogPager extends ReverseChronologicalPager {
 	 *
 	 * @param string|Title $page Title name
 	 * @param string $pattern
-	 * @return bool
+	 * @return void
 	 */
 	private function limitTitle( $page, $pattern ) {
 		global $wgMiserMode;
@@ -198,7 +199,7 @@ class LogPager extends ReverseChronologicalPager {
 		} else {
 			$title = Title::newFromText( $page );
 			if ( strlen( $page ) == 0 || !$title instanceof Title ) {
-				return false;
+				return;
 			}
 		}
 
@@ -288,7 +289,7 @@ class LogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Checks if $this->mConds has $field matched to a *single* value
-	 * @param $field
+	 * @param string $field
 	 * @return bool
 	 */
 	protected function hasEqualsClause( $field ) {

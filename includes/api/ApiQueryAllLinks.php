@@ -31,15 +31,21 @@
  */
 class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
+	private $table, $tablePrefix, $indexTag,
+		$description, $descriptionWhat, $descriptionTargets, $descriptionLinking;
+	private $fieldTitle = 'title';
+	private $dfltNamespace = NS_MAIN;
+	private $hasNamespace = true;
+	private $useIndex = null;
+	private $props = array(), $propHelp = array();
+
+	public function __construct( ApiQuery $query, $moduleName ) {
 		switch ( $moduleName ) {
 			case 'alllinks':
 				$prefix = 'al';
 				$this->table = 'pagelinks';
 				$this->tablePrefix = 'pl_';
-				$this->fieldTitle = 'title';
-				$this->dfltNamespace = NS_MAIN;
-				$this->hasNamespace = true;
+				$this->useIndex = 'pl_namespace';
 				$this->indexTag = 'l';
 				$this->description = 'Enumerate all links that point to a given namespace';
 				$this->descriptionWhat = 'link';
@@ -50,9 +56,8 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				$prefix = 'at';
 				$this->table = 'templatelinks';
 				$this->tablePrefix = 'tl_';
-				$this->fieldTitle = 'title';
 				$this->dfltNamespace = NS_TEMPLATE;
-				$this->hasNamespace = true;
+				$this->useIndex = 'tl_namespace';
 				$this->indexTag = 't';
 				$this->description =
 					'List all transclusions (pages embedded using {{x}}), including non-existing';
@@ -72,6 +77,24 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				$this->descriptionWhat = 'file';
 				$this->descriptionTargets = 'file titles';
 				$this->descriptionLinking = 'using';
+				break;
+			case 'allredirects':
+				$prefix = 'ar';
+				$this->table = 'redirect';
+				$this->tablePrefix = 'rd_';
+				$this->indexTag = 'r';
+				$this->description = 'List all redirects to a namespace';
+				$this->descriptionWhat = 'redirect';
+				$this->descriptionTargets = 'target pages';
+				$this->descriptionLinking = 'redirecting';
+				$this->props = array(
+					'fragment' => 'rd_fragment',
+					'interwiki' => 'rd_interwiki',
+				);
+				$this->propHelp = array(
+					' fragment - Adds the fragment from the redirect, if any',
+					' interwiki - Adds the interwiki prefix from the redirect, if any',
+				);
 				break;
 			default:
 				ApiBase::dieDebug( __METHOD__, 'Unknown module name' );
@@ -93,7 +116,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
@@ -112,10 +135,11 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		}
 
 		if ( $params['unique'] ) {
-			if ( $fld_ids ) {
+			$matches = array_intersect_key( $prop, $this->props + array( 'ids' => 1 ) );
+			if ( $matches ) {
+				$p = $this->getModulePrefix();
 				$this->dieUsage(
-					"{$this->getModuleName()} cannot return corresponding page " .
-						"ids in unique {$this->descriptionWhat}s mode",
+					"Cannot use {$p}prop=" . join( '|', array_keys( $matches ) ) . " with {$p}unique",
 					'params'
 				);
 			}
@@ -149,22 +173,24 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
 		// 'continue' always overrides 'from'
 		$from = ( $continue || $params['from'] === null ? null :
-			$this->titlePartToKey( $params['from'], $params['namespace'] ) );
+			$this->titlePartToKey( $params['from'], $namespace ) );
 		$to = ( $params['to'] === null ? null :
-			$this->titlePartToKey( $params['to'], $params['namespace'] ) );
+			$this->titlePartToKey( $params['to'], $namespace ) );
 		$this->addWhereRange( $pfx . $fieldTitle, 'newer', $from, $to );
-
 
 		if ( isset( $params['prefix'] ) ) {
 			$this->addWhere( $pfx . $fieldTitle . $db->buildLike( $this->titlePartToKey(
-				$params['prefix'], $params['namespace'] ), $db->anyString() ) );
+				$params['prefix'], $namespace ), $db->anyString() ) );
 		}
 
 		$this->addFields( array( 'pl_title' => $pfx . $fieldTitle ) );
 		$this->addFieldsIf( array( 'pl_from' => $pfx . 'from' ), !$params['unique'] );
+		foreach ( $this->props as $name => $field ) {
+			$this->addFieldsIf( $field, isset( $prop[$name] ) );
+		}
 
-		if ( $this->hasNamespace ) {
-			$this->addOption( 'USE INDEX', $pfx . 'namespace' );
+		if ( $this->useIndex ) {
+			$this->addOption( 'USE INDEX', $this->useIndex );
 		}
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
@@ -204,6 +230,11 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 					$title = Title::makeTitle( $namespace, $row->pl_title );
 					ApiQueryBase::addTitleInfo( $vals, $title );
 				}
+				foreach ( $this->props as $name => $field ) {
+					if ( isset( $prop[$name] ) && $row->$field !== null && $row->$field !== '' ) {
+						$vals[$name] = $row->$field;
+					}
+				}
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 				if ( !$fit ) {
 					if ( $params['unique'] ) {
@@ -239,10 +270,9 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'title',
-				ApiBase::PARAM_TYPE => array(
-					'ids',
-					'title'
-				)
+				ApiBase::PARAM_TYPE => array_merge(
+					array( 'ids', 'title' ), array_keys( $this->props )
+				),
 			),
 			'namespace' => array(
 				ApiBase::PARAM_DFLT => $this->dfltNamespace,
@@ -280,19 +310,23 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			'to' => "The title of the $what to stop enumerating at",
 			'prefix' => "Search for all $targets that begin with this value",
 			'unique' => array(
-				"Only show distinct $targets. Cannot be used with {$p}prop=ids.",
+				"Only show distinct $targets. Cannot be used with {$p}prop=" .
+					join( '|', array_keys( array( 'ids' => 1 ) + $this->props ) ) . '.',
 				'When used as a generator, yields target pages instead of source pages.',
 			),
 			'prop' => array(
 				'What pieces of information to include',
-				" ids    - Adds the pageid of the $linking page (Cannot be used with {$p}unique)",
-				" title  - Adds the title of the $what",
+				" ids      - Adds the pageid of the $linking page (Cannot be used with {$p}unique)",
+				" title    - Adds the title of the $what",
 			),
 			'namespace' => 'The namespace to enumerate',
 			'limit' => 'How many total items to return',
 			'continue' => 'When more results are available, use this to continue',
 			'dir' => 'The direction in which to list',
 		);
+		foreach ( $this->propHelp as $help ) {
+			$paramDescription['prop'][] = "$help (Cannot be used with {$p}unique)";
+		}
 		if ( !$this->hasNamespace ) {
 			unset( $paramDescription['namespace'] );
 		}

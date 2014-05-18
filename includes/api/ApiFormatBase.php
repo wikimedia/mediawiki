@@ -34,12 +34,11 @@ abstract class ApiFormatBase extends ApiBase {
 	private $mBufferResult = false, $mBuffer, $mDisabled = false;
 
 	/**
-	 * Constructor
 	 * If $format ends with 'fm', pretty-print the output in HTML.
-	 * @param $main ApiMain
+	 * @param ApiMain $main
 	 * @param string $format Format name
 	 */
-	public function __construct( $main, $format ) {
+	public function __construct( ApiMain $main, $format ) {
 		parent::__construct( $main, $format );
 
 		$this->mIsHtml = ( substr( $format, -2, 2 ) === 'fm' ); // ends with 'fm'
@@ -118,6 +117,16 @@ abstract class ApiFormatBase extends ApiBase {
 
 	public function isDisabled() {
 		return $this->mDisabled;
+	}
+
+	/**
+	 * Whether this formatter can handle printing API errors. If this returns
+	 * false, then on API errors the default printer will be instantiated.
+	 * @since 1.23
+	 * @return bool
+	 */
+	public function canPrintErrors() {
+		return true;
 	}
 
 	/**
@@ -214,7 +223,7 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 	 * The main format printing function. Call it to output the result
 	 * string to the user. This function will automatically output HTML
 	 * when format name ends in 'fm'.
-	 * @param $text string
+	 * @param string $text
 	 */
 	public function printText( $text ) {
 		if ( $this->mDisabled ) {
@@ -245,7 +254,7 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 
 	/**
 	 * Set the flag to buffer the result instead of printing it.
-	 * @param $value bool
+	 * @param bool $value
 	 */
 	public function setBufferResult( $value ) {
 		$this->mBufferResult = $value;
@@ -253,7 +262,7 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 
 	/**
 	 * Sets whether the pretty-printer should format *bold*
-	 * @param $help bool
+	 * @param bool $help
 	 */
 	public function setHelp( $help = true ) {
 		$this->mHelp = $help;
@@ -262,7 +271,7 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 	/**
 	 * Pretty-print various elements in HTML format, such as xml tags and
 	 * URLs. This method also escapes characters like <
-	 * @param $text string
+	 * @param string $text
 	 * @return string
 	 */
 	protected function formatHTML( $text ) {
@@ -271,12 +280,22 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 		// encode all comments or tags as safe blue strings
 		$text = str_replace( '&lt;', '<span style="color:blue;">&lt;', $text );
 		$text = str_replace( '&gt;', '&gt;</span>', $text );
+
 		// identify requests to api.php
-		$text = preg_replace( "#api\\.php\\?[^ <\n\t]+#", '<a href="\\0">\\0</a>', $text );
+		$text = preg_replace( '#^(\s*)(api\.php\?[^ <\n\t]+)$#m', '\1<a href="\2">\2</a>', $text );
 		if ( $this->mHelp ) {
-			// make strings inside * bold
-			$text = preg_replace( "#\\*[^<>\n]+\\*#", '<b>\\0</b>', $text );
+			// make lines inside * bold
+			$text = preg_replace( '#^(\s*)(\*[^<>\n]+\*)(\s*)$#m', '$1<b>$2</b>$3', $text );
 		}
+
+		// Armor links (bug 61362)
+		$masked = array();
+		$text = preg_replace_callback( '#<a .*?</a>#', function ( $matches ) use ( &$masked ) {
+			$sha = sha1( $matches[0] );
+			$masked[$sha] = $matches[0];
+			return "<$sha>";
+		}, $text );
+
 		// identify URLs
 		$protos = wfUrlProtocolsWithoutProtRel();
 		// This regex hacks around bug 13218 (&quot; included in the URL)
@@ -285,6 +304,12 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 			'<a href="\\1">\\1</a>\\3\\4',
 			$text
 		);
+
+		// Unarmor links
+		$text = preg_replace_callback( '#<([0-9a-f]{40})>#', function ( $matches ) use ( &$masked ) {
+			$sha = $matches[1];
+			return isset( $masked[$sha] ) ? $masked[$sha] : $matches[0];
+		}, $text );
 
 		/**
 		 * Temporary fix for bad links in help messages. As a special case,
@@ -321,14 +346,14 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
  */
 class ApiFormatFeedWrapper extends ApiFormatBase {
 
-	public function __construct( $main ) {
+	public function __construct( ApiMain $main ) {
 		parent::__construct( $main, 'feed' );
 	}
 
 	/**
 	 * Call this method to initialize output data. See execute()
-	 * @param $result ApiResult
-	 * @param $feed object an instance of one of the $wgFeedClasses classes
+	 * @param ApiResult $result
+	 * @param object $feed An instance of one of the $wgFeedClasses classes
 	 * @param array $feedItems of FeedItem objects
 	 */
 	public static function setResult( $result, $feed, $feedItems ) {
@@ -359,6 +384,15 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	 */
 	public function getNeedsRawData() {
 		return true;
+	}
+
+	/**
+	 * ChannelFeed doesn't give us a method to print errors in a friendly
+	 * manner, so just punt errors to the default printer.
+	 * @return bool
+	 */
+	public function canPrintErrors() {
+		return false;
 	}
 
 	/**

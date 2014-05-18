@@ -31,7 +31,7 @@
  * deprecated.
  */
 class MWInit {
-	static $compilerVersion;
+	private static $compilerVersion;
 
 	/**
 	 * @deprecated since 1.22
@@ -55,7 +55,7 @@ class MWInit {
 	 * Get a fully-qualified path for a source file relative to $IP.
 	 * @deprecated since 1.22
 	 *
-	 * @param $file string
+	 * @param string $file
 	 *
 	 * @return string
 	 */
@@ -66,7 +66,7 @@ class MWInit {
 
 	/**
 	 * @deprecated since 1.22
-	 * @param $file string
+	 * @param string $file
 	 * @return string
 	 */
 	static function compiledPath( $file ) {
@@ -76,7 +76,7 @@ class MWInit {
 
 	/**
 	 * @deprecated since 1.22
-	 * @param $file string
+	 * @param string $file
 	 * @return string
 	 */
 	static function extCompiledPath( $file ) {
@@ -87,7 +87,7 @@ class MWInit {
 	 * Deprecated wrapper for class_exists()
 	 * @deprecated since 1.22
 	 *
-	 * @param $class string
+	 * @param string $class
 	 *
 	 * @return bool
 	 */
@@ -99,8 +99,8 @@ class MWInit {
 	 * Deprecated wrapper for method_exists()
 	 * @deprecated since 1.22
 	 *
-	 * @param $class string
-	 * @param $method string
+	 * @param string $class
+	 * @param string $method
 	 *
 	 * @return bool
 	 */
@@ -112,7 +112,7 @@ class MWInit {
 	 * Deprecated wrapper for function_exists()
 	 * @deprecated since 1.22
 	 *
-	 * @param $function string
+	 * @param string $function
 	 *
 	 * @return bool
 	 */
@@ -124,9 +124,9 @@ class MWInit {
 	 * Deprecated wrapper for call_user_func_array()
 	 * @deprecated since 1.22
 	 *
-	 * @param $className string
-	 * @param $methodName string
-	 * @param $args array
+	 * @param string $className
+	 * @param string $methodName
+	 * @param array $args
 	 *
 	 * @return mixed
 	 */

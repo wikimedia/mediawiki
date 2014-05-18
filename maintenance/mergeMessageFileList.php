@@ -43,7 +43,12 @@ class MergeMessageFileList extends Maintenance {
 
 	function __construct() {
 		parent::__construct();
-		$this->addOption( 'list-file', 'A file containing a list of extension setup files, one per line.', false, true );
+		$this->addOption(
+			'list-file',
+			'A file containing a list of extension setup files, one per line.',
+			false,
+			true
+		);
 		$this->addOption( 'extensions-dir', 'Path where extensions can be found.', false, true );
 		$this->addOption( 'output', 'Send output to this file (omit for stdout)', false, true );
 		$this->mDescription = 'Merge $wgExtensionMessagesFiles and $wgMessagesDirs from ' .
@@ -51,7 +56,10 @@ class MergeMessageFileList extends Maintenance {
 	}
 
 	public function execute() {
-		global $mmfl, $wgExtensionEntryPointListFiles;
+		// @codingStandardsIgnoreStart Ignore error: Global variable "$mmfl" is lacking 'wg' prefix
+		global $mmfl;
+		// @codingStandardsIgnoreEnd
+		global $wgExtensionEntryPointListFiles;
 
 		if ( !count( $wgExtensionEntryPointListFiles )
 			&& !$this->hasOption( 'list-file' )
@@ -117,6 +125,7 @@ class MergeMessageFileList extends Maintenance {
 		if ( $fileLines === false ) {
 			$this->hasError = true;
 			$this->error( "Unable to open list file $fileName." );
+
 			return $files;
 		}
 		# Strip comments, discard empty lines, and trim leading and trailing
@@ -134,6 +143,7 @@ class MergeMessageFileList extends Maintenance {
 				}
 			}
 		}
+
 		return $files;
 	}
 }

@@ -75,7 +75,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		)
 	);
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		$settings = $this->backlinksSettings[$moduleName];
 		$prefix = $settings['prefix'];
 		$code = $settings['code'];
@@ -116,7 +116,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	private function prepareFirstQuery( $resultPageSet = null ) {
@@ -161,7 +161,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	private function prepareSecondQuery( $resultPageSet = null ) {
@@ -242,7 +242,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
@@ -534,13 +534,13 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	public function getDescription() {
 		switch ( $this->getModuleName() ) {
 			case 'backlinks':
-				return 'Find all pages that link to the given page';
+				return 'Find all pages that link to the given page.';
 			case 'embeddedin':
-				return 'Find all pages that embed (transclude) the given title';
+				return 'Find all pages that embed (transclude) the given title.';
 			case 'imageusage':
 				return 'Find all pages that use the given image title.';
 			default:
-				ApiBase::dieDebug( __METHOD__, 'Unknown module name' );
+				ApiBase::dieDebug( __METHOD__, 'Unknown module name.' );
 		}
 	}
 

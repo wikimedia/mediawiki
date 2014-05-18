@@ -29,8 +29,8 @@
 class EmptyBagOStuff extends BagOStuff {
 
 	/**
-	 * @param $key string
-	 * @param $casToken[optional] mixed
+	 * @param string $key
+	 * @param mixed $casToken [optional]
 	 * @return bool
 	 */
 	function get( $key, &$casToken = null ) {
@@ -38,9 +38,9 @@ class EmptyBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $value mixed
-	 * @param $exp int
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exp
 	 * @return bool
 	 */
 	function set( $key, $value, $exp = 0 ) {
@@ -48,10 +48,10 @@ class EmptyBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $casToken mixed
-	 * @param $key string
-	 * @param $value mixed
-	 * @param $exp int
+	 * @param mixed $casToken
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exp
 	 * @return bool
 	 */
 	function cas( $casToken, $key, $value, $exp = 0 ) {
@@ -59,8 +59,8 @@ class EmptyBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $time int
+	 * @param string $key
+	 * @param int $time
 	 * @return bool
 	 */
 	function delete( $key, $time = 0 ) {
@@ -68,20 +68,13 @@ class EmptyBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $callback closure Callback method to be executed
+	 * @param string $key
+	 * @param Closure $callback Callback method to be executed
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $attempts The amount of times to attempt a merge in case of failure
-	 * @return bool success
+	 * @return bool Success
 	 */
-	public function merge( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
+	public function merge( $key, Closure $callback, $exptime = 0, $attempts = 10 ) {
 		return true;
 	}
-}
-
-/**
- * Backwards compatibility alias for EmptyBagOStuff
- * @deprecated since 1.18
- */
-class FakeMemCachedClient extends EmptyBagOStuff {
 }

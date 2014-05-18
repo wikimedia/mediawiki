@@ -27,7 +27,6 @@
  * of a specific loader request
  */
 class ResourceLoaderContext {
-
 	/* Protected Members */
 
 	protected $resourceLoader;
@@ -46,8 +45,8 @@ class ResourceLoaderContext {
 	/* Methods */
 
 	/**
-	 * @param $resourceLoader ResourceLoader
-	 * @param $request WebRequest
+	 * @param ResourceLoader $resourceLoader
+	 * @param WebRequest $request
 	 */
 	public function __construct( $resourceLoader, WebRequest $request ) {
 		global $wgDefaultSkin, $wgResourceLoaderDebug;
@@ -79,12 +78,10 @@ class ResourceLoaderContext {
 	 * an array of module names like array( 'jquery.foo', 'jquery.bar',
 	 * 'jquery.ui.baz', 'jquery.ui.quux' )
 	 * @param string $modules Packed module name list
-	 * @return array of module names
+	 * @return array Array of module names
 	 */
 	public static function expandModuleNames( $modules ) {
 		$retval = array();
-		// For backwards compatibility with an earlier hack, replace ! with .
-		$modules = str_replace( '!', '.', $modules );
 		$exploded = explode( '|', $modules );
 		foreach ( $exploded as $group ) {
 			if ( strpos( $group, ',' ) === false ) {
@@ -111,7 +108,8 @@ class ResourceLoaderContext {
 	}
 
 	/**
-	 * Return a dummy ResourceLoaderContext object suitable for passing into things that don't "really" need a context
+	 * Return a dummy ResourceLoaderContext object suitable for passing into
+	 * things that don't "really" need a context.
 	 * @return ResourceLoaderContext
 	 */
 	public static function newDummyContext() {
@@ -144,11 +142,8 @@ class ResourceLoaderContext {
 	 */
 	public function getLanguage() {
 		if ( $this->language === null ) {
-			global $wgLang;
-			$this->language = $this->request->getVal( 'lang' );
-			if ( !$this->language ) {
-				$this->language = $wgLang->getCode();
-			}
+			// Must be a valid language code after this point (bug 62849)
+			$this->language = RequestContext::sanitizeLangCode( $this->request->getVal( 'lang' ) );
 		}
 		return $this->language;
 	}
@@ -160,7 +155,7 @@ class ResourceLoaderContext {
 		if ( $this->direction === null ) {
 			$this->direction = $this->request->getVal( 'dir' );
 			if ( !$this->direction ) {
-				# directionality based on user language (see bug 6100)
+				// Determine directionality based on user language (bug 6100)
 				$this->direction = Language::factory( $this->getLanguage() )->getDir();
 			}
 		}
@@ -189,14 +184,14 @@ class ResourceLoaderContext {
 	}
 
 	/**
-	 * @return String|null
+	 * @return string|null
 	 */
 	public function getOnly() {
 		return $this->only;
 	}
 
 	/**
-	 * @return String|null
+	 * @return string|null
 	 */
 	public function getVersion() {
 		return $this->version;

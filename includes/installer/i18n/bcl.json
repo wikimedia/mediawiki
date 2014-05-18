@@ -1,0 +1,37 @@
+{
+	"@metadata": {
+		"authors": [
+			"Geopoet"
+		]
+	},
+	"config-desc": "An tagapagkaag para sa MediaWiki",
+	"config-title": "MediaWiki $1 na pagkakaag",
+	"config-information": "Impormasyon",
+	"config-localsettings-key": "Ipag-angat an susi:",
+	"config-localsettings-badkey": "The susi na saimong pinagtao bakong tama.",
+	"config-your-language": "An Saimong lengguwahe:",
+	"config-wiki-language": "Lengguwahe sa Wiki:",
+	"config-back": "← Ibuwelta",
+	"config-continue": "Ipadagos →",
+	"config-page-language": "Lengguwahe",
+	"config-page-welcome": "Maogmang pag-abot sa MediaWiki!",
+	"config-page-dbsettings": "Mga panuytoy nin datos-sarayan",
+	"config-page-name": "Pangaran",
+	"config-page-options": "Mga Pagpipilian",
+	"config-page-install": "Kaagon",
+	"config-page-complete": "Kumpleto!",
+	"config-page-restart": "Poonan otro an pagkakaag",
+	"config-page-readme": "Basaha ako",
+	"config-page-releasenotes": "Buhian an mga katalaanan",
+	"config-page-copying": "Pinagkokopya",
+	"config-page-upgradedoc": "Ipinagpapalangkaw",
+	"config-page-existingwiki": "Eksistidong wiki",
+	"config-restart": "Iyo, pakipoon kaini otro",
+	"config-db-wiki-settings": "Bistohon ining wiki",
+	"config-db-name": "Pangaran kan datos-sarayan:",
+	"config-db-username": "Ngaran-paragamit nin datos-sarayan:",
+	"config-db-password": "Pasa-taramon nin datos-sarayan:",
+	"config-db-password-empty": "Pakilaog nin sarong pasa-taramon para sa baguhong paragamit nin datos-sarayan: $1.\nMantang ini posibleng makamukna nin mga paragamit na mayong mga pasa-taramon, bako po ining segurado.",
+	"mainpagetext": "'''Instalado na an MediaWiki.'''",
+	"mainpagedocfooter": "Konsultarón tabì an [//meta.wikimedia.org/wiki/Help:Contents User's Guide] para sa impormasyon sa paggamit nin progama kaining wiki.\n\n== Pagpopoon ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]"
+}

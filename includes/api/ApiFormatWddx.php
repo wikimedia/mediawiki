@@ -62,8 +62,8 @@ class ApiFormatWddx extends ApiFormatBase {
 
 	/**
 	 * Recursively go through the object and output its data in WDDX format.
-	 * @param $elemValue
-	 * @param $indent int
+	 * @param mixed $elemValue
+	 * @param int $indent
 	 */
 	function slowWddxPrinter( $elemValue, $indent = 0 ) {
 		$indstr = ( $this->getIsHtml() ? str_repeat( ' ', $indent ) : '' );

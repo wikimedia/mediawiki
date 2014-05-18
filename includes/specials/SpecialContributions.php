@@ -26,8 +26,7 @@
  *
  * @ingroup SpecialPage
  */
-
-class SpecialContributions extends SpecialPage {
+class SpecialContributions extends IncludableSpecialPage {
 	protected $opts;
 
 	public function __construct() {
@@ -63,7 +62,9 @@ class SpecialContributions extends SpecialPage {
 		$this->opts['deletedOnly'] = $request->getBool( 'deletedOnly' );
 
 		if ( !strlen( $target ) ) {
-			$out->addHTML( $this->getForm() );
+			if ( !$this->including() ) {
+				$out->addHTML( $this->getForm() );
+			}
 
 			return;
 		}
@@ -73,6 +74,7 @@ class SpecialContributions extends SpecialPage {
 		$this->opts['limit'] = $request->getInt( 'limit', $user->getOption( 'rclimit' ) );
 		$this->opts['target'] = $target;
 		$this->opts['topOnly'] = $request->getBool( 'topOnly' );
+		$this->opts['newOnly'] = $request->getBool( 'newOnly' );
 
 		$nt = Title::makeTitleSafe( NS_USER, $target );
 		if ( !$nt ) {
@@ -131,34 +133,40 @@ class SpecialContributions extends SpecialPage {
 		}
 
 		$feedType = $request->getVal( 'feed' );
+
+		$feedParams = array(
+			'action' => 'feedcontributions',
+			'user' => $target,
+		);
+		if ( $this->opts['topOnly'] ) {
+			$feedParams['toponly'] = true;
+		}
+		if ( $this->opts['newOnly'] ) {
+			$feedParams['newonly'] = true;
+		}
+		if ( $this->opts['deletedOnly'] ) {
+			$feedParams['deletedonly'] = true;
+		}
+		if ( $this->opts['tagfilter'] !== '' ) {
+			$feedParams['tagfilter'] = $this->opts['tagfilter'];
+		}
+		if ( $this->opts['namespace'] !== '' ) {
+			$feedParams['namespace'] = $this->opts['namespace'];
+		}
+		// Don't use year and month for the feed URL, but pass them on if
+		// we redirect to API (if $feedType is specified)
+		if ( $feedType && $this->opts['year'] !== null ) {
+			$feedParams['year'] = $this->opts['year'];
+		}
+		if ( $feedType && $this->opts['month'] !== null ) {
+			$feedParams['month'] = $this->opts['month'];
+		}
+
 		if ( $feedType ) {
 			// Maintain some level of backwards compatability
 			// If people request feeds using the old parameters, redirect to API
-			$apiParams = array(
-				'action' => 'feedcontributions',
-				'feedformat' => $feedType,
-				'user' => $target,
-			);
-			if ( $this->opts['topOnly'] ) {
-				$apiParams['toponly'] = true;
-			}
-			if ( $this->opts['deletedOnly'] ) {
-				$apiParams['deletedonly'] = true;
-			}
-			if ( $this->opts['tagfilter'] !== '' ) {
-				$apiParams['tagfilter'] = $this->opts['tagfilter'];
-			}
-			if ( $this->opts['namespace'] !== '' ) {
-				$apiParams['namespace'] = $this->opts['namespace'];
-			}
-			if ( $this->opts['year'] !== null ) {
-				$apiParams['year'] = $this->opts['year'];
-			}
-			if ( $this->opts['month'] !== null ) {
-				$apiParams['month'] = $this->opts['month'];
-			}
-
-			$url = wfAppendQuery( wfScript( 'api' ), $apiParams );
+			$feedParams['feedformat'] = $feedType;
+			$url = wfAppendQuery( wfScript( 'api' ), $feedParams );
 
 			$out->redirect( $url, '301' );
 
@@ -166,11 +174,12 @@ class SpecialContributions extends SpecialPage {
 		}
 
 		// Add RSS/atom links
-		$this->addFeedLinks( array( 'action' => 'feedcontributions', 'user' => $target ) );
+		$this->addFeedLinks( $feedParams );
 
 		if ( wfRunHooks( 'SpecialContributionsBeforeMainOutput', array( $id, $userObj, $this ) ) ) {
-			$out->addHTML( $this->getForm() );
-
+			if ( !$this->including() ) {
+				$out->addHTML( $this->getForm() );
+			}
 			$pager = new ContribsPager( $this->getContext(), array(
 				'target' => $target,
 				'contribs' => $this->opts['contribs'],
@@ -180,6 +189,7 @@ class SpecialContributions extends SpecialPage {
 				'month' => $this->opts['month'],
 				'deletedOnly' => $this->opts['deletedOnly'],
 				'topOnly' => $this->opts['topOnly'],
+				'newOnly' => $this->opts['newOnly'],
 				'nsInvert' => $this->opts['nsInvert'],
 				'associated' => $this->opts['associated'],
 			) );
@@ -214,10 +224,12 @@ class SpecialContributions extends SpecialPage {
 			}
 
 			if ( $message ) {
-				if ( !$this->msg( $message, $target )->isDisabled() ) {
-					$out->wrapWikiMsg(
-						"<div class='mw-contributions-footer'>\n$1\n</div>",
-						array( $message, $target ) );
+				if ( !$this->including() ) {
+					if ( !$this->msg( $message, $target )->isDisabled() ) {
+						$out->wrapWikiMsg(
+							"<div class='mw-contributions-footer'>\n$1\n</div>",
+							array( $message, $target ) );
+					}
 				}
 			}
 		}
@@ -225,13 +237,23 @@ class SpecialContributions extends SpecialPage {
 
 	/**
 	 * Generates the subheading with links
-	 * @param $userObj User object for the target
-	 * @return String: appropriately-escaped HTML to be output literally
+	 * @param User $userObj User object for the target
+	 * @return string Appropriately-escaped HTML to be output literally
 	 * @todo FIXME: Almost the same as getSubTitle in SpecialDeletedContributions.php.
 	 * Could be combined.
 	 */
 	protected function contributionsSub( $userObj ) {
 		if ( $userObj->isAnon() ) {
+			// Show a warning message that the user being searched for doesn't exists
+			if ( !User::isIP( $userObj->getName() ) ) {
+				$this->getOutput()->wrapWikiMsg(
+					"<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
+					array(
+						'contributions-userdoesnotexist',
+						wfEscapeWikiText( $userObj->getName() ),
+					)
+				);
+			}
 			$user = htmlspecialchars( $userObj->getName() );
 		} else {
 			$user = Linker::link( $userObj->getUserPage(), htmlspecialchars( $userObj->getName() ) );
@@ -273,9 +295,9 @@ class SpecialContributions extends SpecialPage {
 
 	/**
 	 * Links to different places.
-	 * @param $userpage Title: Target user page
-	 * @param $talkpage Title: Talk page
-	 * @param $target User: Target user object
+	 * @param Title $userpage Target user page
+	 * @param Title $talkpage Talk page
+	 * @param User $target Target user object
 	 * @return array
 	 */
 	public function getUserLinks( Title $userpage, Title $talkpage, User $target ) {
@@ -311,6 +333,16 @@ class SpecialContributions extends SpecialPage {
 				array(),
 				array( 'page' => $userpage->getPrefixedText() )
 			);
+
+			# Suppression log link (bug 59120)
+			if ( $this->getUser()->isAllowed( 'suppressionlog' ) ) {
+				$tools[] = Linker::linkKnown(
+					SpecialPage::getTitleFor( 'Log', 'suppress' ),
+					$this->msg( 'sp-contributions-suppresslog' )->escaped(),
+					array(),
+					array( 'offender' => $username )
+				);
+			}
 		}
 		# Uploads
 		$tools[] = Linker::linkKnown(
@@ -349,7 +381,7 @@ class SpecialContributions extends SpecialPage {
 
 	/**
 	 * Generates the namespace selector form with hidden attributes.
-	 * @return String: HTML fragment
+	 * @return string HTML fragment
 	 */
 	protected function getForm() {
 		global $wgScript;
@@ -397,6 +429,10 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['topOnly'] = false;
 		}
 
+		if ( !isset( $this->opts['newOnly'] ) ) {
+			$this->opts['newOnly'] = false;
+		}
+
 		$form = Html::openElement(
 			'form',
 			array(
@@ -416,6 +452,7 @@ class SpecialContributions extends SpecialPage {
 			'year',
 			'month',
 			'topOnly',
+			'newOnly',
 			'associated'
 		);
 
@@ -548,10 +585,21 @@ class SpecialContributions extends SpecialPage {
 				array( 'class' => 'mw-input' )
 			)
 		);
+		$checkLabelNewOnly = Html::rawElement(
+			'span',
+			array( 'style' => 'white-space: nowrap' ),
+			Xml::checkLabel(
+				$this->msg( 'sp-contributions-newonly' )->text(),
+				'newOnly',
+				'mw-show-new-only',
+				$this->opts['newOnly'],
+				array( 'class' => 'mw-input' )
+			)
+		);
 		$extraOptions = Html::rawElement(
 			'td',
 			array( 'colspan' => 2 ),
-			$deletedOnlyCheck . $checkLabelTopOnly
+			$deletedOnlyCheck . $checkLabelTopOnly . $checkLabelNewOnly
 		);
 
 		$dateSelectionAndSubmit = Xml::tags( 'td', array( 'colspan' => 2 ),
@@ -601,6 +649,9 @@ class ContribsPager extends ReverseChronologicalPager {
 	public $mDb;
 	public $preventClickjacking = false;
 
+	/** @var DatabaseBase */
+	public $mDbSecondary;
+
 	/**
 	 * @var array
 	 */
@@ -632,11 +683,16 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		$this->deletedOnly = !empty( $options['deletedOnly'] );
 		$this->topOnly = !empty( $options['topOnly'] );
+		$this->newOnly = !empty( $options['newOnly'] );
 
 		$year = isset( $options['year'] ) ? $options['year'] : false;
 		$month = isset( $options['month'] ) ? $options['month'] : false;
 		$this->getDateCond( $year, $month );
 
+		// Most of this code will use the 'contributions' group DB, which can map to slaves
+		// with extra user based indexes or partioning by user. The additional metadata
+		// queries should use a regular slave since the lookup pattern is not all by user.
+		$this->mDbSecondary = wfGetDB( DB_SLAVE ); // any random slave
 		$this->mDb = wfGetDB( DB_SLAVE, 'contributions' );
 	}
 
@@ -651,9 +707,9 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * This method basically executes the exact same code as the parent class, though with
 	 * a hook added, to allow extentions to add additional queries.
 	 *
-	 * @param string $offset index offset, inclusive
-	 * @param $limit Integer: exact query limit
-	 * @param $descending Boolean: query direction, false for ascending, true for descending
+	 * @param string $offset Index offset, inclusive
+	 * @param int $limit Exact query limit
+	 * @param bool $descending Query direction, false for ascending, true for descending
 	 * @return ResultWrapper
 	 */
 	function reallyDoQuery( $offset, $limit, $descending ) {
@@ -807,6 +863,10 @@ class ContribsPager extends ReverseChronologicalPager {
 			$condition[] = 'rev_id = page_latest';
 		}
 
+		if ( $this->newOnly ) {
+			$condition[] = 'rev_parent_id = 0';
+		}
+
 		return array( $tables, $index, $condition, $join_conds );
 	}
 
@@ -856,7 +916,7 @@ class ContribsPager extends ReverseChronologicalPager {
 				$batch->add( $row->page_namespace, $row->page_title );
 			}
 		}
-		$this->mParentLens = Revision::getParentLengths( $this->getDatabase(), $revIds );
+		$this->mParentLens = Revision::getParentLengths( $this->mDbSecondary, $revIds );
 		$batch->execute();
 		$this->mResult->seek( 0 );
 	}
@@ -884,7 +944,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * was not written by the target user.
 	 *
 	 * @todo This would probably look a lot nicer in a table.
-	 * @param $row
+	 * @param object $row
 	 * @return string
 	 */
 	function formatRow( $row ) {
@@ -901,8 +961,12 @@ class ContribsPager extends ReverseChronologicalPager {
 		 * to extensions to subscribe to the hook to parse the row.
 		 */
 		wfSuppressWarnings();
-		$rev = new Revision( $row );
-		$validRevision = (bool)$rev->getId();
+		try {
+			$rev = new Revision( $row );
+			$validRevision = (bool)$rev->getId();
+		} catch ( MWException $e ) {
+			$validRevision = false;
+		}
 		wfRestoreWarnings();
 
 		if ( $validRevision ) {
@@ -991,7 +1055,8 @@ class ContribsPager extends ReverseChronologicalPager {
 			# Show user names for /newbies as there may be different users.
 			# Note that we already excluded rows with hidden user names.
 			if ( $this->contribs == 'newbie' ) {
-				$userlink = ' . . ' . $lang->getDirMark() . Linker::userLink( $rev->getUser(), $rev->getUserText() );
+				$userlink = ' . . ' . $lang->getDirMark()
+					. Linker::userLink( $rev->getUser(), $rev->getUserText() );
 				$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
 					Linker::userTalkLink( $rev->getUser(), $rev->getUserText() ) )->escaped() . ' ';
 			} else {
@@ -1041,7 +1106,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		wfRunHooks( 'ContributionsLineEnding', array( $this, &$ret, $row, &$classes ) );
 
 		if ( $classes === array() && $ret === '' ) {
-			wfDebug( 'Dropping Special:Contribution row that could not be formatted' );
+			wfDebug( "Dropping Special:Contribution row that could not be formatted\n" );
 			$ret = "<!-- Could not format Special:Contribution row. -->\n";
 		} else {
 			$ret = Html::rawElement( 'li', array( 'class' => $classes ), $ret ) . "\n";

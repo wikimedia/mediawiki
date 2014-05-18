@@ -3,7 +3,7 @@
  * Tests for UtfNormal::cleanUp() function.
  *
  * Copyright © 2004 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -89,7 +89,9 @@ class CleanUpTest extends MediaWikiTestCase {
 				( $i > UNICODE_SURROGATE_LAST && $i < 0xfffe ) ||
 				( $i > 0xffff && $i <= UNICODE_MAX )
 			) {
-				if ( isset( UtfNormal::$utfCanonicalComp[$char] ) || isset( UtfNormal::$utfCanonicalDecomp[$char] ) ) {
+				if ( isset( UtfNormal::$utfCanonicalComp[$char] )
+					|| isset( UtfNormal::$utfCanonicalDecomp[$char] )
+				) {
 					$comp = UtfNormal::NFC( $char );
 					$this->assertEquals(
 						bin2hex( $comp ),
@@ -243,12 +245,14 @@ class CleanUpTest extends MediaWikiTestCase {
 						}
 					} elseif ( $first > 0xc1 && $first < 0xe0 && $second < 0xc0 ) {
 						$this->assertEquals(
-							bin2hex( UtfNormal::NFC( $head . chr( $first ) . chr( $second ) ) . UTF8_REPLACEMENT . $tail ),
+							bin2hex( UtfNormal::NFC( $head . chr( $first ) .
+									chr( $second ) ) . UTF8_REPLACEMENT . $tail ),
 							bin2hex( $clean ),
 							"Valid 2-byte $x + broken tail" );
 					} elseif ( $second > 0xc1 && $second < 0xe0 && $third < 0xc0 ) {
 						$this->assertEquals(
-							bin2hex( $head . UTF8_REPLACEMENT . UtfNormal::NFC( chr( $second ) . chr( $third ) . $tail ) ),
+							bin2hex( $head . UTF8_REPLACEMENT .
+								UtfNormal::NFC( chr( $second ) . chr( $third ) . $tail ) ),
 							bin2hex( $clean ),
 							"Broken head + valid 2-byte $x" );
 					} elseif ( ( $first > 0xfd || $second > 0xfd ) &&

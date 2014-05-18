@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Demmy"
+		]
+	},
+	"config-your-language": "Èdè yín:",
+	"config-wiki-language": "Èdè wiki:",
+	"config-back": "← Ẹ̀yìn",
+	"config-continue": "Ìtẹ̀síwájú →",
+	"config-page-language": "Èdè",
+	"config-page-welcome": "Ẹ kú àbò sí MediaWiki!",
+	"config-page-dbconnect": "Ìjápọ̀ mọ́ ibùdó dátà",
+	"config-page-name": "Orúkọ",
+	"config-db-type": "Irú ibùdó dátà:",
+	"config-db-host": "Agbàlejò ibùdó dátà:",
+	"mainpagetext": "'''MediaWiki ti jẹ́ gbígbékọ́sínú láyọrísírere.'''",
+	"mainpagedocfooter": "Ẹ ṣàbẹ̀wò sí [//meta.wikimedia.org/wiki/Help:Contents User's Guide] fún ìfitólétí nípa líló atòlànà wíkì.\n\n== Láti bẹ̀rẹ̀ ==\n*  [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]"
+}

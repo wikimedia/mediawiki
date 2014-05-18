@@ -78,7 +78,7 @@ class LinkCache {
 	/**
 	 * General accessor to get/set whether SELECT FOR UPDATE should be used
 	 *
-	 * @param $update
+	 * @param bool $update
 	 * @return bool
 	 */
 	public function forUpdate( $update = null ) {
@@ -86,8 +86,8 @@ class LinkCache {
 	}
 
 	/**
-	 * @param $title
-	 * @return array|int
+	 * @param string $title
+	 * @return int
 	 */
 	public function getGoodLinkID( $title ) {
 		if ( array_key_exists( $title, $this->mGoodLinks ) ) {
@@ -100,9 +100,9 @@ class LinkCache {
 	/**
 	 * Get a field of a title object from cache.
 	 * If this link is not good, it will return NULL.
-	 * @param $title Title
+	 * @param Title $title
 	 * @param string $field ('length','redirect','revision','model')
-	 * @return mixed
+	 * @return string|null
 	 */
 	public function getGoodLinkFieldObj( $title, $field ) {
 		$dbkey = $title->getPrefixedDBkey();
@@ -114,7 +114,7 @@ class LinkCache {
 	}
 
 	/**
-	 * @param $title
+	 * @param string $title
 	 * @return bool
 	 */
 	public function isBadLink( $title ) {
@@ -147,8 +147,8 @@ class LinkCache {
 	/**
 	 * Same as above with better interface.
 	 * @since 1.19
-	 * @param $title Title
-	 * @param $row object which has the fields page_id, page_is_redirect,
+	 * @param Title $title
+	 * @param stdClass $row Object which has the fields page_id, page_is_redirect,
 	 *  page_latest and page_content_model
 	 */
 	public function addGoodLinkObjFromRow( $title, $row ) {
@@ -163,7 +163,7 @@ class LinkCache {
 	}
 
 	/**
-	 * @param $title Title
+	 * @param Title $title
 	 */
 	public function addBadLinkObj( $title ) {
 		$dbkey = $title->getPrefixedDBkey();
@@ -177,7 +177,7 @@ class LinkCache {
 	}
 
 	/**
-	 * @param $title Title
+	 * @param Title $title
 	 */
 	public function clearLink( $title ) {
 		$dbkey = $title->getPrefixedDBkey();
@@ -197,8 +197,8 @@ class LinkCache {
 	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
 	 *
-	 * @param string $title title to add
-	 * @return Integer
+	 * @param string $title Title to add
+	 * @return int
 	 */
 	public function addLink( $title ) {
 		$nt = Title::newFromDBkey( $title );
@@ -212,8 +212,8 @@ class LinkCache {
 	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
 	 *
-	 * @param $nt Title object to add
-	 * @return Integer
+	 * @param Title $nt Title object to add
+	 * @return int
 	 */
 	public function addLinkObj( $nt ) {
 		global $wgAntiLockFlags, $wgContentHandlerUseDB;

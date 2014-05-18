@@ -75,8 +75,8 @@ class PruneFileCache extends Maintenance {
 	}
 
 	/**
-	 * @param $dir string
-	 * @param $report string|bool Use 'report' to report the directories being scanned
+	 * @param string $dir
+	 * @param string|bool $report Use 'report' to report the directories being scanned
 	 */
 	protected function prune_directory( $dir, $report = false ) {
 		$tsNow = time();

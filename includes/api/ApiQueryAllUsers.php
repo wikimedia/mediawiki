@@ -30,7 +30,7 @@
  * @ingroup API
  */
 class ApiQueryAllUsers extends ApiQueryBase {
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'au' );
 	}
 
@@ -38,7 +38,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	 * This function converts the user name to a canonical form
 	 * which is stored in the database.
 	 * @param string $name
-	 * @return String
+	 * @return string
 	 */
 	private function getCanonicalUserName( $name ) {
 		return str_replace( '_', ' ', $name );
@@ -438,7 +438,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Enumerate all registered users';
+		return 'Enumerate all registered users.';
 	}
 
 	public function getPossibleErrors() {

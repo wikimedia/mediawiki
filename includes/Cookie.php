@@ -43,8 +43,8 @@ class Cookie {
 	 * cookies. Used internally after a request to parse the
 	 * Set-Cookie headers.
 	 *
-	 * @param string $value the value of the cookie
-	 * @param array $attr possible key/values:
+	 * @param string $value The value of the cookie
+	 * @param array $attr Possible key/values:
 	 *        expires A date string
 	 *        path    The path this cookie is used on
 	 *        domain  Domain this cookie is used on
@@ -85,9 +85,9 @@ class Cookie {
 	 * @todo fixme fails to detect 2-letter top-level domains for single-domain use (probably
 	 * not a big problem in practice, but there are test cases)
 	 *
-	 * @param string $domain the domain to validate
+	 * @param string $domain The domain to validate
 	 * @param string $originDomain (optional) the domain the cookie originates from
-	 * @return Boolean
+	 * @return bool
 	 */
 	public static function validateCookieDomain( $domain, $originDomain = null ) {
 		// Don't allow a trailing dot
@@ -149,9 +149,9 @@ class Cookie {
 	/**
 	 * Serialize the cookie jar into a format useful for HTTP Request headers.
 	 *
-	 * @param string $path the path that will be used. Required.
-	 * @param string $domain the domain that will be used. Required.
-	 * @return String
+	 * @param string $path The path that will be used. Required.
+	 * @param string $domain The domain that will be used. Required.
+	 * @return string
 	 */
 	public function serializeToHttpRequest( $path, $domain ) {
 		$ret = '';
@@ -166,7 +166,7 @@ class Cookie {
 	}
 
 	/**
-	 * @param $domain
+	 * @param string $domain
 	 * @return bool
 	 */
 	protected function canServeDomain( $domain ) {
@@ -189,7 +189,7 @@ class Cookie {
 	}
 
 	/**
-	 * @param $path
+	 * @param string $path
 	 * @return bool
 	 */
 	protected function canServePath( $path ) {
@@ -210,6 +210,9 @@ class CookieJar {
 	/**
 	 * Set a cookie in the cookie jar. Make sure only one cookie per-name exists.
 	 * @see Cookie::set()
+	 * @param string $name
+	 * @param string $value
+	 * @param array $attr
 	 */
 	public function setCookie( $name, $value, $attr ) {
 		/* cookies: case insensitive, so this should work.
@@ -226,6 +229,8 @@ class CookieJar {
 
 	/**
 	 * @see Cookie::serializeToHttpRequest
+	 * @param string $path
+	 * @param string $domain
 	 * @return string
 	 */
 	public function serializeToHttpRequest( $path, $domain ) {
@@ -245,8 +250,8 @@ class CookieJar {
 	/**
 	 * Parse the content of an Set-Cookie HTTP Response header.
 	 *
-	 * @param $cookie String
-	 * @param string $domain cookie's domain
+	 * @param string $cookie
+	 * @param string $domain Cookie's domain
 	 * @return null
 	 */
 	public function parseCookieResponseHeader( $cookie, $domain ) {

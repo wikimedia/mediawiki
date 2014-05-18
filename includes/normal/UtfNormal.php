@@ -3,7 +3,7 @@
  * Unicode normalization routines
  *
  * Copyright © 2004 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,21 +50,20 @@ class UtfNormal {
 	 * For using the ICU wrapper
 	 */
 	const UNORM_NONE = 1;
-	const UNORM_NFD  = 2;
+	const UNORM_NFD = 2;
 	const UNORM_NFKD = 3;
-	const UNORM_NFC  = 4;
+	const UNORM_NFC = 4;
 	const UNORM_NFKC = 5;
-	const UNORM_FCD  = 6;
+	const UNORM_FCD = 6;
 	const UNORM_DEFAULT = self::UNORM_NFC;
 
-	static $utfCombiningClass = null;
-	static $utfCanonicalComp = null;
-	static $utfCanonicalDecomp = null;
+	public static $utfCombiningClass = null;
+	public static $utfCanonicalComp = null;
+	public static $utfCanonicalDecomp = null;
 
 	# Load compatibility decompositions on demand if they are needed.
-	static $utfCompatibilityDecomp = null;
-
-	static $utfCheckNFC;
+	public static $utfCompatibilityDecomp = null;
+	public static $utfCheckNFC;
 
 	/**
 	 * The ultimate convenience function! Clean up invalid UTF-8 sequences,
@@ -77,21 +76,21 @@ class UtfNormal {
 	 * @return string a clean, shiny, normalized UTF-8 string
 	 */
 	static function cleanUp( $string ) {
-		if( NORMALIZE_ICU ) {
+		if ( NORMALIZE_ICU ) {
 			$string = self::replaceForNativeNormalize( $string );
 
 			# UnicodeString constructor fails if the string ends with a
 			# head byte. Add a junk char at the end, we'll strip it off.
 			return rtrim( utf8_normalize( $string . "\x01", self::UNORM_NFC ), "\x01" );
-		} elseif( NORMALIZE_INTL ) {
+		} elseif ( NORMALIZE_INTL ) {
 			$string = self::replaceForNativeNormalize( $string );
 			$norm = normalizer_normalize( $string, Normalizer::FORM_C );
-			if( $norm === null || $norm === false ) {
+			if ( $norm === null || $norm === false ) {
 				# normalizer_normalize will either return false or null
 				# (depending on which doc you read) if invalid utf8 string.
 				# quickIsNFCVerify cleans up invalid sequences.
 
-				if( UtfNormal::quickIsNFCVerify( $string ) ) {
+				if ( UtfNormal::quickIsNFCVerify( $string ) ) {
 					# if that's true, the string is actually already normal.
 					return $string;
 				} else {
@@ -101,7 +100,7 @@ class UtfNormal {
 			} else {
 				return $norm;
 			}
-		} elseif( UtfNormal::quickIsNFCVerify( $string ) ) {
+		} elseif ( UtfNormal::quickIsNFCVerify( $string ) ) {
 			# Side effect -- $string has had UTF-8 errors cleaned up.
 			return $string;
 		} else {
@@ -118,11 +117,11 @@ class UtfNormal {
 	 * @return string a UTF-8 string in normal form C
 	 */
 	static function toNFC( $string ) {
-		if( NORMALIZE_INTL )
+		if ( NORMALIZE_INTL )
 			return normalizer_normalize( $string, Normalizer::FORM_C );
-		elseif( NORMALIZE_ICU )
+		elseif ( NORMALIZE_ICU )
 			return utf8_normalize( $string, self::UNORM_NFC );
-		elseif( UtfNormal::quickIsNFC( $string ) )
+		elseif ( UtfNormal::quickIsNFC( $string ) )
 			return $string;
 		else
 			return UtfNormal::NFC( $string );
@@ -136,11 +135,11 @@ class UtfNormal {
 	 * @return string a UTF-8 string in normal form D
 	 */
 	static function toNFD( $string ) {
-		if( NORMALIZE_INTL )
+		if ( NORMALIZE_INTL )
 			return normalizer_normalize( $string, Normalizer::FORM_D );
-		elseif( NORMALIZE_ICU )
+		elseif ( NORMALIZE_ICU )
 			return utf8_normalize( $string, self::UNORM_NFD );
-		elseif( preg_match( '/[\x80-\xff]/', $string ) )
+		elseif ( preg_match( '/[\x80-\xff]/', $string ) )
 			return UtfNormal::NFD( $string );
 		else
 			return $string;
@@ -155,11 +154,11 @@ class UtfNormal {
 	 * @return string a UTF-8 string in normal form KC
 	 */
 	static function toNFKC( $string ) {
-		if( NORMALIZE_INTL )
+		if ( NORMALIZE_INTL )
 			return normalizer_normalize( $string, Normalizer::FORM_KC );
-		elseif( NORMALIZE_ICU )
+		elseif ( NORMALIZE_ICU )
 			return utf8_normalize( $string, self::UNORM_NFKC );
-		elseif( preg_match( '/[\x80-\xff]/', $string ) )
+		elseif ( preg_match( '/[\x80-\xff]/', $string ) )
 			return UtfNormal::NFKC( $string );
 		else
 			return $string;
@@ -174,11 +173,11 @@ class UtfNormal {
 	 * @return string a UTF-8 string in normal form KD
 	 */
 	static function toNFKD( $string ) {
-		if( NORMALIZE_INTL )
+		if ( NORMALIZE_INTL )
 			return normalizer_normalize( $string, Normalizer::FORM_KD );
-		elseif( NORMALIZE_ICU )
+		elseif ( NORMALIZE_ICU )
 			return utf8_normalize( $string, self::UNORM_NFKD );
-		elseif( preg_match( '/[\x80-\xff]/', $string ) )
+		elseif ( preg_match( '/[\x80-\xff]/', $string ) )
 			return UtfNormal::NFKD( $string );
 		else
 			return $string;
@@ -189,7 +188,7 @@ class UtfNormal {
 	 * @private
 	 */
 	static function loadData() {
-		if( !isset( self::$utfCombiningClass ) ) {
+		if ( !isset( self::$utfCombiningClass ) ) {
 			require_once __DIR__ . '/UtfNormalData.inc';
 		}
 	}
@@ -203,34 +202,35 @@ class UtfNormal {
 	static function quickIsNFC( $string ) {
 		# ASCII is always valid NFC!
 		# If it's pure ASCII, let it through.
-		if( !preg_match( '/[\x80-\xff]/', $string ) ) return true;
+		if ( !preg_match( '/[\x80-\xff]/', $string ) ) return true;
 
 		UtfNormal::loadData();
 		$len = strlen( $string );
-		for( $i = 0; $i < $len; $i++ ) {
+		for ( $i = 0; $i < $len; $i++ ) {
 			$c = $string[$i];
 			$n = ord( $c );
-			if( $n < 0x80 ) {
+			if ( $n < 0x80 ) {
 				continue;
-			} elseif( $n >= 0xf0 ) {
+			} elseif ( $n >= 0xf0 ) {
 				$c = substr( $string, $i, 4 );
 				$i += 3;
-			} elseif( $n >= 0xe0 ) {
+			} elseif ( $n >= 0xe0 ) {
 				$c = substr( $string, $i, 3 );
 				$i += 2;
-			} elseif( $n >= 0xc0 ) {
+			} elseif ( $n >= 0xc0 ) {
 				$c = substr( $string, $i, 2 );
 				$i++;
 			}
-			if( isset( self::$utfCheckNFC[$c] ) ) {
+			if ( isset( self::$utfCheckNFC[$c] ) ) {
 				# If it's NO or MAYBE, bail and do the slow check.
 				return false;
 			}
-			if( isset( self::$utfCombiningClass[$c] ) ) {
+			if ( isset( self::$utfCombiningClass[$c] ) ) {
 				# Combining character? We might have to do sorting, at least.
 				return false;
 			}
 		}
+
 		return true;
 	}
 
@@ -247,10 +247,10 @@ class UtfNormal {
 		# ASCII is always valid NFC!
 		# If we're only ever given plain ASCII, we can avoid the overhead
 		# of initializing the decomposition tables by skipping out early.
-		if( !preg_match( '/[\x80-\xff]/', $string ) ) return true;
+		if ( !preg_match( '/[\x80-\xff]/', $string ) ) return true;
 
 		static $checkit = null, $tailBytes = null, $utfCheckOrCombining = null;
-		if( !isset( $checkit ) ) {
+		if ( !isset( $checkit ) ) {
 			# Load/build some scary lookup tables...
 			UtfNormal::loadData();
 
@@ -258,30 +258,30 @@ class UtfNormal {
 
 			# Head bytes for sequences which we should do further validity checks
 			$checkit = array_flip( array_map( 'chr',
-					array( 0xc0, 0xc1, 0xe0, 0xed, 0xef,
-						   0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7,
-						   0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff ) ) );
+				array( 0xc0, 0xc1, 0xe0, 0xed, 0xef,
+					0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7,
+					0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff ) ) );
 
 			# Each UTF-8 head byte is followed by a certain
 			# number of tail bytes.
 			$tailBytes = array();
-			for( $n = 0; $n < 256; $n++ ) {
-				if( $n < 0xc0 ) {
+			for ( $n = 0; $n < 256; $n++ ) {
+				if ( $n < 0xc0 ) {
 					$remaining = 0;
-				} elseif( $n < 0xe0 ) {
+				} elseif ( $n < 0xe0 ) {
 					$remaining = 1;
-				} elseif( $n < 0xf0 ) {
+				} elseif ( $n < 0xf0 ) {
 					$remaining = 2;
-				} elseif( $n < 0xf8 ) {
+				} elseif ( $n < 0xf8 ) {
 					$remaining = 3;
-				} elseif( $n < 0xfc ) {
+				} elseif ( $n < 0xfc ) {
 					$remaining = 4;
-				} elseif( $n < 0xfe ) {
+				} elseif ( $n < 0xfe ) {
 					$remaining = 5;
 				} else {
 					$remaining = 0;
 				}
-				$tailBytes[chr($n)] = $remaining;
+				$tailBytes[chr( $n )] = $remaining;
 			}
 		}
 
@@ -297,10 +297,10 @@ class UtfNormal {
 		$looksNormal = true;
 		$base = 0;
 		$replace = array();
-		foreach( $matches[1] as $str ) {
+		foreach ( $matches[1] as $str ) {
 			$chunk = strlen( $str );
 
-			if( $str[0] < "\x80" ) {
+			if ( $str[0] < "\x80" ) {
 				# ASCII chunk: guaranteed to be valid UTF-8
 				# and in normal form C, so skip over it.
 				$base += $chunk;
@@ -317,30 +317,30 @@ class UtfNormal {
 			$head = '';
 			$len = $chunk + 1; # Counting down is faster. I'm *so* sorry.
 
-			for( $i = -1; --$len; ) {
+			for ( $i = -1; --$len; ) {
 				$remaining = $tailBytes[$c = $str[++$i]];
-				if( $remaining ) {
+				if ( $remaining ) {
 					# UTF-8 head byte!
 					$sequence = $head = $c;
 					do {
 						# Look for the defined number of tail bytes...
-						if( --$len && ( $c = $str[++$i] ) >= "\x80" && $c < "\xc0" ) {
+						if ( --$len && ( $c = $str[++$i] ) >= "\x80" && $c < "\xc0" ) {
 							# Legal tail bytes are nice.
 							$sequence .= $c;
 						} else {
-							if( 0 == $len ) {
+							if ( 0 == $len ) {
 								# Premature end of string!
 								# Drop a replacement character into output to
 								# represent the invalid UTF-8 sequence.
 								$replace[] = array( UTF8_REPLACEMENT,
-													$base + $i + 1 - strlen( $sequence ),
-													strlen( $sequence ) );
+									$base + $i + 1 - strlen( $sequence ),
+									strlen( $sequence ) );
 								break 2;
 							} else {
 								# Illegal tail byte; abandon the sequence.
 								$replace[] = array( UTF8_REPLACEMENT,
-													$base + $i - strlen( $sequence ),
-													strlen( $sequence ) );
+									$base + $i - strlen( $sequence ),
+									strlen( $sequence ) );
 								# Back up and reprocess this byte; it may itself
 								# be a legal ASCII or UTF-8 sequence head.
 								--$i;
@@ -348,59 +348,60 @@ class UtfNormal {
 								continue 2;
 							}
 						}
-					} while( --$remaining );
+					} while ( --$remaining );
 
-					if( isset( $checkit[$head] ) ) {
+					if ( isset( $checkit[$head] ) ) {
 						# Do some more detailed validity checks, for
 						# invalid characters and illegal sequences.
-						if( $head == "\xed" ) {
+						if ( $head == "\xed" ) {
 							# 0xed is relatively frequent in Korean, which
 							# abuts the surrogate area, so we're doing
 							# this check separately to speed things up.
 
-							if( $sequence >= UTF8_SURROGATE_FIRST ) {
+							if ( $sequence >= UTF8_SURROGATE_FIRST ) {
 								# Surrogates are legal only in UTF-16 code.
 								# They are totally forbidden here in UTF-8
 								# utopia.
 								$replace[] = array( UTF8_REPLACEMENT,
-								             $base + $i + 1 - strlen( $sequence ),
-								             strlen( $sequence ) );
+									$base + $i + 1 - strlen( $sequence ),
+									strlen( $sequence ) );
 								$head = '';
 								continue;
 							}
 						} else {
 							# Slower, but rarer checks...
 							$n = ord( $head );
-							if(
+							if (
 								# "Overlong sequences" are those that are syntactically
 								# correct but use more UTF-8 bytes than are necessary to
 								# encode a character. Naïve string comparisons can be
 								# tricked into failing to see a match for an ASCII
 								# character, for instance, which can be a security hole
 								# if blacklist checks are being used.
-							       ($n  < 0xc2 && $sequence <= UTF8_OVERLONG_A)
-								|| ($n == 0xe0 && $sequence <= UTF8_OVERLONG_B)
-								|| ($n == 0xf0 && $sequence <= UTF8_OVERLONG_C)
+								( $n < 0xc2 && $sequence <= UTF8_OVERLONG_A )
+								|| ( $n == 0xe0 && $sequence <= UTF8_OVERLONG_B )
+								|| ( $n == 0xf0 && $sequence <= UTF8_OVERLONG_C )
 
 								# U+FFFE and U+FFFF are explicitly forbidden in Unicode.
-								|| ($n == 0xef &&
-									   ($sequence == UTF8_FFFE)
-									|| ($sequence == UTF8_FFFF) )
+								|| ( $n == 0xef &&
+									( $sequence == UTF8_FFFE )
+									|| ( $sequence == UTF8_FFFF ) )
 
 								# Unicode has been limited to 21 bits; longer
 								# sequences are not allowed.
-								|| ($n >= 0xf0 && $sequence > UTF8_MAX) ) {
+								|| ( $n >= 0xf0 && $sequence > UTF8_MAX )
+							) {
 
 								$replace[] = array( UTF8_REPLACEMENT,
-								                    $base + $i + 1 - strlen( $sequence ),
-								                    strlen( $sequence ) );
+									$base + $i + 1 - strlen( $sequence ),
+									strlen( $sequence ) );
 								$head = '';
 								continue;
 							}
 						}
 					}
 
-					if( isset( $utfCheckOrCombining[$sequence] ) ) {
+					if ( isset( $utfCheckOrCombining[$sequence] ) ) {
 						# If it's NO or MAYBE, we'll have to rip
 						# the string apart and put it back together.
 						# That's going to be mighty slow.
@@ -409,12 +410,12 @@ class UtfNormal {
 
 					# The sequence is legal!
 					$head = '';
-				} elseif( $c < "\x80" ) {
+				} elseif ( $c < "\x80" ) {
 					# ASCII byte.
 					$head = '';
-				} elseif( $c < "\xc0" ) {
+				} elseif ( $c < "\xc0" ) {
 					# Illegal tail bytes
-					if( $head == '' ) {
+					if ( $head == '' ) {
 						# Out of the blue!
 						$replace[] = array( UTF8_REPLACEMENT, $base + $i, 1 );
 					} else {
@@ -431,23 +432,24 @@ class UtfNormal {
 			}
 			$base += $chunk;
 		}
-		if( count( $replace ) ) {
+		if ( count( $replace ) ) {
 			# There were illegal UTF-8 sequences we need to fix up.
 			$out = '';
 			$last = 0;
-			foreach( $replace as $rep ) {
+			foreach ( $replace as $rep ) {
 				list( $replacement, $start, $length ) = $rep;
-				if( $last < $start ) {
+				if ( $last < $start ) {
 					$out .= substr( $string, $last, $start - $last );
 				}
 				$out .= $replacement;
 				$last = $start + $length;
 			}
-			if( $last < strlen( $string ) ) {
+			if ( $last < strlen( $string ) ) {
 				$out .= substr( $string, $last );
 			}
 			$string = $out;
 		}
+
 		return $looksNormal;
 	}
 
@@ -490,13 +492,13 @@ class UtfNormal {
 	 * @private
 	 */
 	static function NFKD( $string ) {
-		if( !isset( self::$utfCompatibilityDecomp ) ) {
+		if ( !isset( self::$utfCompatibilityDecomp ) ) {
 			require_once 'UtfNormalDataK.inc';
 		}
+
 		return self::fastCombiningSort(
 			self::fastDecompose( $string, self::$utfCompatibilityDecomp ) );
 	}
-
 
 	/**
 	 * Perform decomposition of a UTF-8 string into either D or KD form
@@ -511,45 +513,45 @@ class UtfNormal {
 		UtfNormal::loadData();
 		$len = strlen( $string );
 		$out = '';
-		for( $i = 0; $i < $len; $i++ ) {
+		for ( $i = 0; $i < $len; $i++ ) {
 			$c = $string[$i];
 			$n = ord( $c );
-			if( $n < 0x80 ) {
+			if ( $n < 0x80 ) {
 				# ASCII chars never decompose
 				# THEY ARE IMMORTAL
 				$out .= $c;
 				continue;
-			} elseif( $n >= 0xf0 ) {
+			} elseif ( $n >= 0xf0 ) {
 				$c = substr( $string, $i, 4 );
 				$i += 3;
-			} elseif( $n >= 0xe0 ) {
+			} elseif ( $n >= 0xe0 ) {
 				$c = substr( $string, $i, 3 );
 				$i += 2;
-			} elseif( $n >= 0xc0 ) {
+			} elseif ( $n >= 0xc0 ) {
 				$c = substr( $string, $i, 2 );
 				$i++;
 			}
-			if( isset( $map[$c] ) ) {
+			if ( isset( $map[$c] ) ) {
 				$out .= $map[$c];
 				continue;
 			} else {
-				if( $c >= UTF8_HANGUL_FIRST && $c <= UTF8_HANGUL_LAST ) {
+				if ( $c >= UTF8_HANGUL_FIRST && $c <= UTF8_HANGUL_LAST ) {
 					# Decompose a hangul syllable into jamo;
 					# hardcoded for three-byte UTF-8 sequence.
 					# A lookup table would be slightly faster,
 					# but adds a lot of memory & disk needs.
 					#
-					$index = ( (ord( $c[0] ) & 0x0f) << 12
-					         | (ord( $c[1] ) & 0x3f) <<  6
-					         | (ord( $c[2] ) & 0x3f) )
-					       - UNICODE_HANGUL_FIRST;
+					$index = ( ( ord( $c[0] ) & 0x0f ) << 12
+							| ( ord( $c[1] ) & 0x3f ) << 6
+							| ( ord( $c[2] ) & 0x3f ) )
+						- UNICODE_HANGUL_FIRST;
 					$l = intval( $index / UNICODE_HANGUL_NCOUNT );
-					$v = intval( ($index % UNICODE_HANGUL_NCOUNT) / UNICODE_HANGUL_TCOUNT);
+					$v = intval( ( $index % UNICODE_HANGUL_NCOUNT ) / UNICODE_HANGUL_TCOUNT );
 					$t = $index % UNICODE_HANGUL_TCOUNT;
 					$out .= "\xe1\x84" . chr( 0x80 + $l ) . "\xe1\x85" . chr( 0xa1 + $v );
-					if( $t >= 25 ) {
+					if ( $t >= 25 ) {
 						$out .= "\xe1\x87" . chr( 0x80 + $t - 25 );
-					} elseif( $t ) {
+					} elseif ( $t ) {
 						$out .= "\xe1\x86" . chr( 0xa7 + $t );
 					}
 					continue;
@@ -557,6 +559,7 @@ class UtfNormal {
 			}
 			$out .= $c;
 		}
+
 		return $out;
 	}
 
@@ -573,23 +576,23 @@ class UtfNormal {
 		$out = '';
 		$combiners = array();
 		$lastClass = -1;
-		for( $i = 0; $i < $len; $i++ ) {
+		for ( $i = 0; $i < $len; $i++ ) {
 			$c = $string[$i];
 			$n = ord( $c );
-			if( $n >= 0x80 ) {
-				if( $n >= 0xf0 ) {
+			if ( $n >= 0x80 ) {
+				if ( $n >= 0xf0 ) {
 					$c = substr( $string, $i, 4 );
 					$i += 3;
-				} elseif( $n >= 0xe0 ) {
+				} elseif ( $n >= 0xe0 ) {
 					$c = substr( $string, $i, 3 );
 					$i += 2;
-				} elseif( $n >= 0xc0 ) {
+				} elseif ( $n >= 0xc0 ) {
 					$c = substr( $string, $i, 2 );
 					$i++;
 				}
-				if( isset( self::$utfCombiningClass[$c] ) ) {
+				if ( isset( self::$utfCombiningClass[$c] ) ) {
 					$lastClass = self::$utfCombiningClass[$c];
-					if( isset( $combiners[$lastClass] ) ) {
+					if ( isset( $combiners[$lastClass] ) ) {
 						$combiners[$lastClass] .= $c;
 					} else {
 						$combiners[$lastClass] = $c;
@@ -597,7 +600,7 @@ class UtfNormal {
 					continue;
 				}
 			}
-			if( $lastClass ) {
+			if ( $lastClass ) {
 				ksort( $combiners );
 				$out .= implode( '', $combiners );
 				$combiners = array();
@@ -605,10 +608,11 @@ class UtfNormal {
 			$out .= $c;
 			$lastClass = 0;
 		}
-		if( $lastClass ) {
+		if ( $lastClass ) {
 			ksort( $combiners );
 			$out .= implode( '', $combiners );
 		}
+
 		return $out;
 	}
 
@@ -616,8 +620,10 @@ class UtfNormal {
 	 * Produces canonically composed sequences, i.e. normal form C or KC.
 	 *
 	 * @private
-	 * @param string $string a valid UTF-8 string in sorted normal form D or KD. Input is not validated.
-	 * @return string a UTF-8 string with canonical precomposed characters used where possible
+	 * @param string $string a valid UTF-8 string in sorted normal form D or KD.
+	 *   Input is not validated.
+	 * @return string a UTF-8 string with canonical precomposed characters used
+	 *   where possible.
 	 */
 	static function fastCompose( $string ) {
 		UtfNormal::loadData();
@@ -627,12 +633,12 @@ class UtfNormal {
 		$lastHangul = 0;
 		$startChar = '';
 		$combining = '';
-		$x1 = ord(substr(UTF8_HANGUL_VBASE, 0, 1));
-		$x2 = ord(substr(UTF8_HANGUL_TEND, 0, 1));
-		for( $i = 0; $i < $len; $i++ ) {
+		$x1 = ord( substr( UTF8_HANGUL_VBASE, 0, 1 ) );
+		$x2 = ord( substr( UTF8_HANGUL_TEND, 0, 1 ) );
+		for ( $i = 0; $i < $len; $i++ ) {
 			$c = $string[$i];
 			$n = ord( $c );
-			if( $n < 0x80 ) {
+			if ( $n < 0x80 ) {
 				# No combining characters here...
 				$out .= $startChar;
 				$out .= $combining;
@@ -640,25 +646,26 @@ class UtfNormal {
 				$combining = '';
 				$lastClass = 0;
 				continue;
-			} elseif( $n >= 0xf0 ) {
+			} elseif ( $n >= 0xf0 ) {
 				$c = substr( $string, $i, 4 );
 				$i += 3;
-			} elseif( $n >= 0xe0 ) {
+			} elseif ( $n >= 0xe0 ) {
 				$c = substr( $string, $i, 3 );
 				$i += 2;
-			} elseif( $n >= 0xc0 ) {
+			} elseif ( $n >= 0xc0 ) {
 				$c = substr( $string, $i, 2 );
 				$i++;
 			}
 			$pair = $startChar . $c;
-			if( $n > 0x80 ) {
-				if( isset( self::$utfCombiningClass[$c] ) ) {
+			if ( $n > 0x80 ) {
+				if ( isset( self::$utfCombiningClass[$c] ) ) {
 					# A combining char; see what we can do with it
 					$class = self::$utfCombiningClass[$c];
-					if( !empty( $startChar ) &&
+					if ( !empty( $startChar ) &&
 						$lastClass < $class &&
 						$class > 0 &&
-						isset( self::$utfCanonicalComp[$pair] ) ) {
+						isset( self::$utfCanonicalComp[$pair] )
+					) {
 						$startChar = self::$utfCanonicalComp[$pair];
 						$class = 0;
 					} else {
@@ -670,56 +677,58 @@ class UtfNormal {
 				}
 			}
 			# New start char
-			if( $lastClass == 0 ) {
-				if( isset( self::$utfCanonicalComp[$pair] ) ) {
+			if ( $lastClass == 0 ) {
+				if ( isset( self::$utfCanonicalComp[$pair] ) ) {
 					$startChar = self::$utfCanonicalComp[$pair];
 					$lastHangul = 0;
 					continue;
 				}
-				if( $n >= $x1 && $n <= $x2 ) {
+				if ( $n >= $x1 && $n <= $x2 ) {
 					# WARNING: Hangul code is painfully slow.
 					# I apologize for this ugly, ugly code; however
 					# performance is even more teh suck if we call
 					# out to nice clean functions. Lookup tables are
 					# marginally faster, but require a lot of space.
 					#
-					if( $c >= UTF8_HANGUL_VBASE &&
+					if ( $c >= UTF8_HANGUL_VBASE &&
 						$c <= UTF8_HANGUL_VEND &&
 						$startChar >= UTF8_HANGUL_LBASE &&
-						$startChar <= UTF8_HANGUL_LEND ) {
+						$startChar <= UTF8_HANGUL_LEND
+					) {
 						#
 						#$lIndex = utf8ToCodepoint( $startChar ) - UNICODE_HANGUL_LBASE;
 						#$vIndex = utf8ToCodepoint( $c ) - UNICODE_HANGUL_VBASE;
 						$lIndex = ord( $startChar[2] ) - 0x80;
-						$vIndex = ord( $c[2]         ) - 0xa1;
+						$vIndex = ord( $c[2] ) - 0xa1;
 
 						$hangulPoint = UNICODE_HANGUL_FIRST +
 							UNICODE_HANGUL_TCOUNT *
-							(UNICODE_HANGUL_VCOUNT * $lIndex + $vIndex);
+							( UNICODE_HANGUL_VCOUNT * $lIndex + $vIndex );
 
 						# Hardcode the limited-range UTF-8 conversion:
 						$startChar = chr( $hangulPoint >> 12 & 0x0f | 0xe0 ) .
-									 chr( $hangulPoint >>  6 & 0x3f | 0x80 ) .
-									 chr( $hangulPoint       & 0x3f | 0x80 );
+							chr( $hangulPoint >> 6 & 0x3f | 0x80 ) .
+							chr( $hangulPoint & 0x3f | 0x80 );
 						$lastHangul = 0;
 						continue;
-					} elseif( $c >= UTF8_HANGUL_TBASE &&
-							  $c <= UTF8_HANGUL_TEND &&
-							  $startChar >= UTF8_HANGUL_FIRST &&
-							  $startChar <= UTF8_HANGUL_LAST &&
-							  !$lastHangul ) {
+					} elseif ( $c >= UTF8_HANGUL_TBASE &&
+						$c <= UTF8_HANGUL_TEND &&
+						$startChar >= UTF8_HANGUL_FIRST &&
+						$startChar <= UTF8_HANGUL_LAST &&
+						!$lastHangul
+					) {
 						# $tIndex = utf8ToCodepoint( $c ) - UNICODE_HANGUL_TBASE;
 						$tIndex = ord( $c[2] ) - 0xa7;
-						if( $tIndex < 0 ) $tIndex = ord( $c[2] ) - 0x80 + (0x11c0 - 0x11a7);
+						if ( $tIndex < 0 ) $tIndex = ord( $c[2] ) - 0x80 + ( 0x11c0 - 0x11a7 );
 
 						# Increment the code point by $tIndex, without
 						# the function overhead of decoding and recoding UTF-8
 						#
 						$tail = ord( $startChar[2] ) + $tIndex;
-						if( $tail > 0xbf ) {
+						if ( $tail > 0xbf ) {
 							$tail -= 0x40;
 							$mid = ord( $startChar[1] ) + 1;
-							if( $mid > 0xbf ) {
+							if ( $mid > 0xbf ) {
 								$startChar[0] = chr( ord( $startChar[0] ) + 1 );
 								$mid -= 0x40;
 							}
@@ -741,6 +750,7 @@ class UtfNormal {
 			$lastHangul = 0;
 		}
 		$out .= $startChar . $combining;
+
 		return $out;
 	}
 
@@ -753,11 +763,13 @@ class UtfNormal {
 	static function placebo( $string ) {
 		$len = strlen( $string );
 		$out = '';
-		for( $i = 0; $i < $len; $i++ ) {
+		for ( $i = 0; $i < $len; $i++ ) {
 			$out .= $string[$i];
 		}
+
 		return $out;
 	}
+
 	/**
 	 * Function to replace some characters that we don't want
 	 * but most of the native normalize functions keep.
@@ -772,6 +784,7 @@ class UtfNormal {
 			$string );
 		$string = str_replace( UTF8_FFFE, UTF8_REPLACEMENT, $string );
 		$string = str_replace( UTF8_FFFF, UTF8_REPLACEMENT, $string );
+
 		return $string;
 	}
 }

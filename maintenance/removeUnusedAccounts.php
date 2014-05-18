@@ -58,12 +58,13 @@ class RemoveUnusedAccounts extends Maintenance {
 		}
 		$touchedSeconds = 86400 * $touched;
 		foreach ( $res as $row ) {
-			# Check the account, but ignore it if it's within a $excludedGroups group or if it's touched within the $touchedSeconds seconds.
+			# Check the account, but ignore it if it's within a $excludedGroups
+			# group or if it's touched within the $touchedSeconds seconds.
 			$instance = User::newFromId( $row->user_id );
 			if ( count( array_intersect( $instance->getEffectiveGroups(), $excludedGroups ) ) == 0
 				&& $this->isInactiveAccount( $row->user_id, true )
 				&& wfTimestamp( TS_UNIX, $row->user_touched ) < wfTimestamp( TS_UNIX, time() - $touchedSeconds )
-				) {
+			) {
 				# Inactive; print out the name and flag it
 				$del[] = $row->user_id;
 				$this->output( $row->user_name . "\n" );
@@ -85,7 +86,12 @@ class RemoveUnusedAccounts extends Maintenance {
 			$this->output( "done.\n" );
 			# Update the site_stats.ss_users field
 			$users = $dbw->selectField( 'user', 'COUNT(*)', array(), __METHOD__ );
-			$dbw->update( 'site_stats', array( 'ss_users' => $users ), array( 'ss_row_id' => 1 ), __METHOD__ );
+			$dbw->update(
+				'site_stats',
+				array( 'ss_users' => $users ),
+				array( 'ss_row_id' => 1 ),
+				__METHOD__
+			);
 		} elseif ( $count > 0 ) {
 			$this->output( "\nRun the script again with --delete to remove them from the database.\n" );
 		}
@@ -96,8 +102,8 @@ class RemoveUnusedAccounts extends Maintenance {
 	 * Could the specified user account be deemed inactive?
 	 * (No edits, no deleted edits, no log entries, no current/old uploads)
 	 *
-	 * @param $id User's ID
-	 * @param $master bool Perform checking on the master
+	 * @param int $id User's ID
+	 * @param bool $master Perform checking on the master
 	 * @return bool
 	 */
 	private function isInactiveAccount( $id, $master = false ) {

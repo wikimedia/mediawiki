@@ -30,13 +30,15 @@ class Xml {
 	 * Strings are assumed to not contain XML-illegal characters; special
 	 * characters (<, >, &) are escaped but illegals are not touched.
 	 *
-	 * @param string $element element name
+	 * @param string $element Element name
 	 * @param array $attribs Name=>value pairs. Values will be escaped.
-	 * @param string $contents NULL to make an open tag only; '' for a contentless closed tag (default)
-	 * @param bool $allowShortTag whether '' in $contents will result in a contentless closed tag
+	 * @param string $contents Null to make an open tag only; '' for a contentless closed tag (default)
+	 * @param bool $allowShortTag Whether '' in $contents will result in a contentless closed tag
 	 * @return string
 	 */
-	public static function element( $element, $attribs = null, $contents = '', $allowShortTag = true ) {
+	public static function element( $element, $attribs = null, $contents = '',
+		$allowShortTag = true
+	) {
 		$out = '<' . $element;
 		if ( !is_null( $attribs ) ) {
 			$out .= self::expandAttributes( $attribs );
@@ -58,7 +60,7 @@ class Xml {
 	 * to set the XML attributes : attributename="value".
 	 * The values are passed to Sanitizer::encodeAttribute.
 	 * Return null if no attributes given.
-	 * @param array $attribs of attributes for an XML element
+	 * @param array $attribs Array of attributes for an XML element
 	 * @throws MWException
 	 * @return null|string
 	 */
@@ -81,9 +83,9 @@ class Xml {
 	 * $wgContLang->normalize() validator first to ensure that no invalid UTF-8
 	 * is passed.
 	 *
-	 * @param $element String:
+	 * @param string $element
 	 * @param array $attribs Name=>value pairs. Values will be escaped.
-	 * @param string $contents NULL to make an open tag only; '' for a contentless closed tag (default)
+	 * @param string $contents Null to make an open tag only; '' for a contentless closed tag (default)
 	 * @return string
 	 */
 	public static function elementClean( $element, $attribs = array(), $contents = '' ) {
@@ -102,8 +104,8 @@ class Xml {
 	/**
 	 * This opens an XML element
 	 *
-	 * @param string $element name of the element
-	 * @param array $attribs of attributes, see Xml::expandAttributes()
+	 * @param string $element Name of the element
+	 * @param array $attribs Array of attributes, see Xml::expandAttributes()
 	 * @return string
 	 */
 	public static function openElement( $element, $attribs = null ) {
@@ -112,7 +114,7 @@ class Xml {
 
 	/**
 	 * Shortcut to close an XML element
-	 * @param string $element element name
+	 * @param string $element Element name
 	 * @return string
 	 */
 	public static function closeElement( $element ) {
@@ -123,9 +125,9 @@ class Xml {
 	 * Same as Xml::element(), but does not escape contents. Handy when the
 	 * content you have is already valid xml.
 	 *
-	 * @param string $element element name
-	 * @param array $attribs of attributes
-	 * @param string $contents content of the element
+	 * @param string $element Element name
+	 * @param array $attribs Array of attributes
+	 * @param string $contents Content of the element
 	 * @return string
 	 */
 	public static function tags( $element, $attribs = null, $contents ) {
@@ -135,14 +137,16 @@ class Xml {
 	/**
 	 * Build a drop-down box for selecting a namespace
 	 *
-	 * @param $selected Mixed: Namespace which should be pre-selected
-	 * @param $all Mixed: Value of an item denoting all namespaces, or null to omit
-	 * @param $element_name String: value of the "name" attribute of the select tag
-	 * @param string $label optional label to add to the field
+	 * @param string $selected Namespace which should be pre-selected
+	 * @param string|null $all Value of an item denoting all namespaces, or null to omit
+	 * @param string $element_name Value of the "name" attribute of the select tag
+	 * @param string $label Optional label to add to the field
 	 * @return string
 	 * @deprecated since 1.19
 	 */
-	public static function namespaceSelector( $selected = '', $all = null, $element_name = 'namespace', $label = null ) {
+	public static function namespaceSelector( $selected = '', $all = null,
+		$element_name = 'namespace', $label = null
+	) {
 		wfDeprecated( __METHOD__, '1.19' );
 		return Html::namespaceSelector( array(
 			'selected' => $selected,
@@ -158,10 +162,11 @@ class Xml {
 	/**
 	 * Create a date selector
 	 *
-	 * @param $selected Mixed: the month which should be selected, default ''
-	 * @param string $allmonths value of a special item denoting all month. Null to not include (default)
+	 * @param string $selected The month which should be selected, default ''.
+	 * @param string $allmonths Value of a special item denoting all month.
+	 *   Null to not include (default).
 	 * @param string $id Element identifier
-	 * @return String: Html string containing the month selector
+	 * @return string Html string containing the month selector
 	 */
 	public static function monthSelector( $selected = '', $allmonths = null, $id = 'month' ) {
 		global $wgLang;
@@ -170,19 +175,27 @@ class Xml {
 			$selected = '';
 		}
 		if ( !is_null( $allmonths ) ) {
-			$options[] = self::option( wfMessage( 'monthsall' )->text(), $allmonths, $selected === $allmonths );
+			$options[] = self::option(
+				wfMessage( 'monthsall' )->text(),
+				$allmonths,
+				$selected === $allmonths
+			);
 		}
 		for ( $i = 1; $i < 13; $i++ ) {
 			$options[] = self::option( $wgLang->getMonthName( $i ), $i, $selected === $i );
 		}
-		return self::openElement( 'select', array( 'id' => $id, 'name' => 'month', 'class' => 'mw-month-selector' ) )
+		return self::openElement( 'select', array(
+			'id' => $id,
+			'name' => 'month',
+			'class' => 'mw-month-selector'
+		) )
 			. implode( "\n", $options )
 			. self::closeElement( 'select' );
 	}
 
 	/**
-	 * @param $year Integer
-	 * @param $month Integer
+	 * @param int $year
+	 * @param int $month
 	 * @return string Formatted HTML
 	 */
 	public static function dateMenu( $year, $month ) {
@@ -216,13 +229,15 @@ class Xml {
 	 * Construct a language selector appropriate for use in a form or preferences
 	 *
 	 * @param string $selected The language code of the selected language
-	 * @param boolean $customisedOnly If true only languages which have some content are listed
+	 * @param bool $customisedOnly If true only languages which have some content are listed
 	 * @param string $inLanguage The ISO code of the language to display the select list in (optional)
 	 * @param array $overrideAttrs Override the attributes of the select tag (since 1.20)
 	 * @param Message|null $msg Label message key (since 1.20)
 	 * @return array containing 2 items: label HTML and select list HTML
 	 */
-	public static function languageSelector( $selected, $customisedOnly = true, $inLanguage = null, $overrideAttrs = array(), Message $msg = null ) {
+	public static function languageSelector( $selected, $customisedOnly = true,
+		$inLanguage = null, $overrideAttrs = array(), Message $msg = null
+	) {
 		global $wgLanguageCode;
 
 		$include = $customisedOnly ? 'mwfile' : 'mw';
@@ -262,9 +277,9 @@ class Xml {
 
 	/**
 	 * Shortcut to make a span element
-	 * @param string $text content of the element, will be escaped
-	 * @param string $class class name of the span element
-	 * @param array $attribs other attributes
+	 * @param string $text Content of the element, will be escaped
+	 * @param string $class Class name of the span element
+	 * @param array $attribs Other attributes
 	 * @return string
 	 */
 	public static function span( $text, $class, $attribs = array() ) {
@@ -273,10 +288,10 @@ class Xml {
 
 	/**
 	 * Shortcut to make a specific element with a class attribute
-	 * @param string $text content of the element, will be escaped
-	 * @param string $class class name of the span element
-	 * @param string $tag element name
-	 * @param array $attribs other attributes
+	 * @param string $text Content of the element, will be escaped
+	 * @param string $class Class name of the span element
+	 * @param string $tag Element name
+	 * @param array $attribs Other attributes
 	 * @return string
 	 */
 	public static function wrapClass( $text, $class, $tag = 'span', $attribs = array() ) {
@@ -285,10 +300,10 @@ class Xml {
 
 	/**
 	 * Convenience function to build an HTML text input field
-	 * @param string $name value of the name attribute
-	 * @param int $size value of the size attribute
-	 * @param $value mixed value of the value attribute
-	 * @param array $attribs other attributes
+	 * @param string $name Value of the name attribute
+	 * @param int $size Value of the size attribute
+	 * @param mixed $value Value of the value attribute
+	 * @param array $attribs Other attributes
 	 * @return string HTML
 	 */
 	public static function input( $name, $size = false, $value = false, $attribs = array() ) {
@@ -307,21 +322,24 @@ class Xml {
 
 	/**
 	 * Convenience function to build an HTML password input field
-	 * @param string $name value of the name attribute
-	 * @param int $size value of the size attribute
-	 * @param $value mixed value of the value attribute
-	 * @param array $attribs other attributes
+	 * @param string $name Value of the name attribute
+	 * @param int $size Value of the size attribute
+	 * @param mixed $value Value of the value attribute
+	 * @param array $attribs Other attributes
 	 * @return string HTML
 	 */
-	public static function password( $name, $size = false, $value = false, $attribs = array() ) {
-		return self::input( $name, $size, $value, array_merge( $attribs, array( 'type' => 'password' ) ) );
+	public static function password( $name, $size = false, $value = false,
+		$attribs = array()
+	) {
+		return self::input( $name, $size, $value,
+			array_merge( $attribs, array( 'type' => 'password' ) ) );
 	}
 
 	/**
 	 * Internal function for use in checkboxes and radio buttons and such.
 	 *
-	 * @param $name string
-	 * @param $present bool
+	 * @param string $name
+	 * @param bool $present
 	 *
 	 * @return array
 	 */
@@ -331,9 +349,9 @@ class Xml {
 
 	/**
 	 * Convenience function to build an HTML checkbox
-	 * @param string $name value of the name attribute
+	 * @param string $name Value of the name attribute
 	 * @param bool $checked Whether the checkbox is checked or not
-	 * @param array $attribs other attributes
+	 * @param array $attribs Array other attributes
 	 * @return string HTML
 	 */
 	public static function check( $name, $checked = false, $attribs = array() ) {
@@ -348,10 +366,10 @@ class Xml {
 
 	/**
 	 * Convenience function to build an HTML radio button
-	 * @param string $name value of the name attribute
-	 * @param string $value value of the value attribute
+	 * @param string $name Value of the name attribute
+	 * @param string $value Value of the value attribute
 	 * @param bool $checked Whether the checkbox is checked or not
-	 * @param array $attribs other attributes
+	 * @param array $attribs Other attributes
 	 * @return string HTML
 	 */
 	public static function radio( $name, $value, $checked = false, $attribs = array() ) {
@@ -363,9 +381,9 @@ class Xml {
 
 	/**
 	 * Convenience function to build an HTML form label
-	 * @param string $label text of the label
-	 * @param $id
-	 * @param array $attribs an attribute array.  This will usually be
+	 * @param string $label Text of the label
+	 * @param string $id
+	 * @param array $attribs An attribute array.  This will usually be
 	 *     the same array as is passed to the corresponding input element,
 	 *     so this function will cherry-pick appropriate attributes to
 	 *     apply to the label as well; only class and title are applied.
@@ -387,15 +405,17 @@ class Xml {
 
 	/**
 	 * Convenience function to build an HTML text input field with a label
-	 * @param string $label text of the label
-	 * @param string $name value of the name attribute
-	 * @param string $id id of the input
-	 * @param int|Bool $size value of the size attribute
-	 * @param string|Bool $value value of the value attribute
-	 * @param array $attribs other attributes
+	 * @param string $label Text of the label
+	 * @param string $name Value of the name attribute
+	 * @param string $id Id of the input
+	 * @param int|bool $size Value of the size attribute
+	 * @param string|bool $value Value of the value attribute
+	 * @param array $attribs Other attributes
 	 * @return string HTML
 	 */
-	public static function inputLabel( $label, $name, $id, $size = false, $value = false, $attribs = array() ) {
+	public static function inputLabel( $label, $name, $id, $size = false,
+		$value = false, $attribs = array()
+	) {
 		list( $label, $input ) = self::inputLabelSep( $label, $name, $id, $size, $value, $attribs );
 		return $label . '&#160;' . $input;
 	}
@@ -403,16 +423,18 @@ class Xml {
 	/**
 	 * Same as Xml::inputLabel() but return input and label in an array
 	 *
-	 * @param $label String
-	 * @param $name String
-	 * @param $id String
-	 * @param $size Int|Bool
-	 * @param $value String|Bool
-	 * @param $attribs array
+	 * @param string $label
+	 * @param string $name
+	 * @param string $id
+	 * @param int|bool $size
+	 * @param string|bool $value
+	 * @param array $attribs
 	 *
 	 * @return array
 	 */
-	public static function inputLabelSep( $label, $name, $id, $size = false, $value = false, $attribs = array() ) {
+	public static function inputLabelSep( $label, $name, $id, $size = false,
+		$value = false, $attribs = array()
+	) {
 		return array(
 			Xml::label( $label, $id, $attribs ),
 			self::input( $name, $size, $value, array( 'id' => $id ) + $attribs )
@@ -422,11 +444,11 @@ class Xml {
 	/**
 	 * Convenience function to build an HTML checkbox with a label
 	 *
-	 * @param $label
-	 * @param $name
-	 * @param $id
-	 * @param $checked bool
-	 * @param $attribs array
+	 * @param string $label
+	 * @param string $name
+	 * @param string $id
+	 * @param bool $checked
+	 * @param array $attribs
 	 *
 	 * @return string HTML
 	 */
@@ -439,16 +461,18 @@ class Xml {
 	/**
 	 * Convenience function to build an HTML radio button with a label
 	 *
-	 * @param $label
-	 * @param $name
-	 * @param $value
-	 * @param $id
-	 * @param $checked bool
-	 * @param $attribs array
+	 * @param string $label
+	 * @param string $name
+	 * @param string $value
+	 * @param string $id
+	 * @param bool $checked
+	 * @param array $attribs
 	 *
 	 * @return string HTML
 	 */
-	public static function radioLabel( $label, $name, $value, $id, $checked = false, $attribs = array() ) {
+	public static function radioLabel( $label, $name, $value, $id,
+		$checked = false, $attribs = array()
+	) {
 		return self::radio( $name, $value, $checked, array( 'id' => $id ) + $attribs ) .
 			'&#160;' .
 			self::label( $label, $id, $attribs );
@@ -456,8 +480,8 @@ class Xml {
 
 	/**
 	 * Convenience function to build an HTML submit button
-	 * @param string $value label text for the button
-	 * @param array $attribs optional custom attributes
+	 * @param string $value Label text for the button
+	 * @param array $attribs Optional custom attributes
 	 * @return string HTML
 	 */
 	public static function submitButton( $value, $attribs = array() ) {
@@ -466,10 +490,10 @@ class Xml {
 
 	/**
 	 * Convenience function to build an HTML drop-down list item.
-	 * @param string $text text for this item. Will be HTML escaped
-	 * @param string $value form submission value; if empty, use text
-	 * @param $selected boolean: if true, will be the default selected item
-	 * @param array $attribs optional additional HTML attributes
+	 * @param string $text Text for this item. Will be HTML escaped
+	 * @param string $value Form submission value; if empty, use text
+	 * @param bool $selected If true, will be the default selected item
+	 * @param array $attribs Optional additional HTML attributes
 	 * @return string HTML
 	 */
 	public static function option( $text, $value = null, $selected = false,
@@ -486,15 +510,18 @@ class Xml {
 	/**
 	 * Build a drop-down box from a textual list.
 	 *
-	 * @param $name Mixed: Name and id for the drop-down
-	 * @param $list Mixed: Correctly formatted text (newline delimited) to be used to generate the options
-	 * @param $other Mixed: Text for the "Other reasons" option
-	 * @param $selected Mixed: Option which should be pre-selected
-	 * @param $class Mixed: CSS classes for the drop-down
-	 * @param $tabindex Mixed: Value of the tabindex attribute
+	 * @param string $name Name and id for the drop-down
+	 * @param string $list Correctly formatted text (newline delimited) to be
+	 *   used to generate the options.
+	 * @param string $other Text for the "Other reasons" option
+	 * @param string $selected Option which should be pre-selected
+	 * @param string $class CSS classes for the drop-down
+	 * @param int $tabindex Value of the tabindex attribute
 	 * @return string
 	 */
-	public static function listDropDown( $name = '', $list = '', $other = '', $selected = '', $class = '', $tabindex = null ) {
+	public static function listDropDown( $name = '', $list = '', $other = '',
+		$selected = '', $class = '', $tabindex = null
+	) {
 		$optgroup = false;
 
 		$options = self::option( $other, 'other', $selected === 'other' );
@@ -554,8 +581,10 @@ class Xml {
 	/**
 	 * Shortcut for creating fieldsets.
 	 *
-	 * @param string|bool $legend Legend of the fieldset. If evaluates to false, legend is not added.
-	 * @param string $content Pre-escaped content for the fieldset. If false, only open fieldset is returned.
+	 * @param string|bool $legend Legend of the fieldset. If evaluates to false,
+	 *   legend is not added.
+	 * @param string $content Pre-escaped content for the fieldset. If false,
+	 *   only open fieldset is returned.
 	 * @param array $attribs Any attributes to fieldset-element.
 	 *
 	 * @return string
@@ -603,8 +632,8 @@ class Xml {
 	 * Illegal control characters are assumed not to be present.
 	 *
 	 * @deprecated since 1.21; use Xml::encodeJsVar() or Xml::encodeJsCall() instead
-	 * @param string $string to escape
-	 * @return String
+	 * @param string $string String to escape
+	 * @return string
 	 */
 	public static function escapeJsString( $string ) {
 		// See ECMA 262 section 7.8.4 for string literal format
@@ -642,7 +671,7 @@ class Xml {
 	 *
 	 * @param mixed $value The value being encoded. Can be any type except a resource.
 	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
-	 * @return string|bool: String if successful; false upon failure
+	 * @return string|bool String if successful; false upon failure
 	 */
 	public static function encodeJsVar( $value, $pretty = false ) {
 		if ( $value instanceof XmlJsCode ) {
@@ -660,7 +689,7 @@ class Xml {
 	 *    which evaluates to a function object which is called.
 	 * @param array $args The arguments to pass to the function.
 	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
-	 * @return string|bool: String if successful; false upon failure
+	 * @return string|bool String if successful; false upon failure
 	 */
 	public static function encodeJsCall( $name, $args, $pretty = false ) {
 		foreach ( $args as &$arg ) {
@@ -680,7 +709,7 @@ class Xml {
 	 * Check if a string is well-formed XML.
 	 * Must include the surrounding tag.
 	 *
-	 * @param string $text string to test.
+	 * @param string $text String to test.
 	 * @return bool
 	 *
 	 * @todo Error position reporting return
@@ -710,7 +739,7 @@ class Xml {
 	 * Wraps fragment in an \<html\> bit and doctype, so it can be a fragment
 	 * and can use HTML named entities.
 	 *
-	 * @param $text String:
+	 * @param string $text
 	 * @return bool
 	 */
 	public static function isWellFormedXmlFragment( $text ) {
@@ -727,7 +756,7 @@ class Xml {
 	 * Replace " > and < with their respective HTML entities ( &quot;,
 	 * &gt;, &lt;)
 	 *
-	 * @param string $in text that might contain HTML tags.
+	 * @param string $in Text that might contain HTML tags.
 	 * @return string Escaped string
 	 */
 	public static function escapeTagsOnly( $in ) {
@@ -740,8 +769,11 @@ class Xml {
 	/**
 	 * Generate a form (without the opening form element).
 	 * Output optionally includes a submit button.
-	 * @param array $fields Associative array, key is the name of a message that contains a description for the field, value is an HTML string containing the appropriate input.
-	 * @param string $submitLabel The name of a message containing a label for the submit button.
+	 * @param array $fields Associative array, key is the name of a message that
+	 *   contains a description for the field, value is an HTML string
+	 *   containing the appropriate input.
+	 * @param string $submitLabel The name of a message containing a label for
+	 *   the submit button.
 	 * @param array $submitAttribs The attributes to add to the submit button
 	 * @return string HTML form.
 	 */
@@ -758,14 +790,17 @@ class Xml {
 			// the input somehow.
 
 			$form .= Xml::tags( 'td', array( 'class' => 'mw-label' ), wfMessage( $labelmsg )->parse() );
-			$form .= Xml::openElement( 'td', array( 'class' => 'mw-input' ) ) . $input . Xml::closeElement( 'td' );
+			$form .= Xml::openElement( 'td', array( 'class' => 'mw-input' ) )
+				. $input . Xml::closeElement( 'td' );
 			$form .= Xml::closeElement( 'tr' );
 		}
 
 		if ( $submitLabel ) {
 			$form .= Xml::openElement( 'tr' );
 			$form .= Xml::tags( 'td', array(), '' );
-			$form .= Xml::openElement( 'td', array( 'class' => 'mw-submit' ) ) . Xml::submitButton( wfMessage( $submitLabel )->text(), $submitAttribs ) . Xml::closeElement( 'td' );
+			$form .= Xml::openElement( 'td', array( 'class' => 'mw-submit' ) )
+				. Xml::submitButton( wfMessage( $submitLabel )->text(), $submitAttribs )
+				. Xml::closeElement( 'td' );
 			$form .= Xml::closeElement( 'tr' );
 		}
 
@@ -859,22 +894,22 @@ class XmlSelect {
 	}
 
 	/**
-	 * @param $default
+	 * @param string $default
 	 */
 	public function setDefault( $default ) {
 		$this->default = $default;
 	}
 
 	/**
-	 * @param $name string
-	 * @param $value
+	 * @param string $name
+	 * @param array $value
 	 */
 	public function setAttribute( $name, $value ) {
 		$this->attributes[$name] = $value;
 	}
 
 	/**
-	 * @param $name
+	 * @param string $name
 	 * @return array|null
 	 */
 	public function getAttribute( $name ) {
@@ -886,8 +921,8 @@ class XmlSelect {
 	}
 
 	/**
-	 * @param $name
-	 * @param $value bool
+	 * @param string $name
+	 * @param bool $value
 	 */
 	public function addOption( $name, $value = false ) {
 		// Stab stab stab
@@ -901,7 +936,7 @@ class XmlSelect {
 	 * label => value
 	 * label => ( label => value, label => value )
 	 *
-	 * @param  $options
+	 * @param array $options
 	 */
 	public function addOptions( $options ) {
 		$this->options[] = $options;
@@ -912,7 +947,7 @@ class XmlSelect {
 	 * label => value
 	 * label => ( label => value, label => value )
 	 *
-	 * @param  $options
+	 * @param array $options
 	 * @param bool $default
 	 * @return string
 	 */

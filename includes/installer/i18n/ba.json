@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Haqmar",
+			"Seb35"
+		]
+	},
+	"mainpagetext": "«MediaWiki» уңышлы рәүештә ҡоролдо.",
+	"mainpagedocfooter": "Был вики менән эшләү тураһында мәғлүмәтте [//meta.wikimedia.org/wiki/Help:Contents ошонда] табып була.\n\n== Файҙалы сығанаҡтар ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Көйләүҙәр исемлеге (инг.)];\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki тураһында йыш бирелгән һорауҙар һәм яуаптар (инг.)];\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-ның яңы версиялары тураһында хәбәрҙәр алып тороу].\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki for your language]"
+}

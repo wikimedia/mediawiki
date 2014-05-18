@@ -65,7 +65,7 @@ class MysqlInstaller extends DatabaseInstaller {
 	}
 
 	/**
-	 * @return Bool
+	 * @return bool
 	 */
 	public function isCompiled() {
 		return self::checkExtension( 'mysql' ) || self::checkExtension( 'mysqli' );
@@ -100,7 +100,9 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	public function submitConnectForm() {
 		// Get variables from the request.
-		$newValues = $this->setVarsFromRequest( array( 'wgDBserver', 'wgDBname', 'wgDBprefix' ) );
+		$newValues = $this->setVarsFromRequest( array(
+			'wgDBserver', 'wgDBname', 'wgDBprefix', '_InstallUser', '_InstallPassword'
+		) );
 
 		// Validate them.
 		$status = Status::newGood();
@@ -114,6 +116,12 @@ class MysqlInstaller extends DatabaseInstaller {
 		}
 		if ( !preg_match( '/^[a-z0-9_-]*$/i', $newValues['wgDBprefix'] ) ) {
 			$status->fatal( 'config-invalid-db-prefix', $newValues['wgDBprefix'] );
+		}
+		if ( !strlen( $newValues['_InstallUser'] ) ) {
+			$status->fatal( 'config-db-username-empty' );
+		}
+		if (!strlen( $newValues['_InstallPassword'] ) ) {
+			$status->fatal( 'config-db-password-empty', $newValues['_InstallUser'] );
 		}
 		if ( !$status->isOK() ) {
 			return $status;
@@ -595,7 +603,7 @@ class MysqlInstaller extends DatabaseInstaller {
 	 * Return a formal 'User'@'Host' username for use in queries
 	 * @param string $name Username, quotes will be added
 	 * @param string $host Hostname, quotes will be added
-	 * @return String
+	 * @return string
 	 */
 	private function buildFullUserName( $name, $host ) {
 		return $this->db->addQuotes( $name ) . '@' . $this->db->addQuotes( $host );
@@ -606,7 +614,7 @@ class MysqlInstaller extends DatabaseInstaller {
 	 * access to mysql.user, so false means "no" or "maybe"
 	 * @param string $host Hostname to check
 	 * @param string $user Username to check
-	 * @return boolean
+	 * @return bool
 	 */
 	private function userDefinitelyExists( $host, $user ) {
 		try {
@@ -623,7 +631,7 @@ class MysqlInstaller extends DatabaseInstaller {
 	 * Return any table options to be applied to all tables that don't
 	 * override them.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	protected function getTableOptions() {
 		$options = array();

@@ -6,26 +6,32 @@
 .config-section {
 	margin-top: 2em;
 }
+
 .config-block {
 	margin-top: 2em;
 	display: block;
 
 }
+
 .config-block-label {
 	display: block;
 	margin-bottom: .2em;
 }
+
 .config-block-label label, .config-label {
 	font-weight: bold;
 	padding-right: .5em;
 	padding-top: .2em;
 }
+
 .config-block-elements {
 	margin-left: 2em;
 }
+
 .config-block-elements li {
 	list-style: none;
 }
+
 .config-input {
 	clear: left;
 	zoom: 100%; /* IE hack */
@@ -117,13 +123,14 @@
 	font-size: 110%;
 	color: green;
 }
+
 .success-box {
 	font-size: 130%;
 }
 
 .config-cc-wrapper {
 	clear: left;
-	/* If you change this height, also change it in WebInstaller_Options::submitCC() */
+	/* If you change this height, also change it in WebInstallerOptions::submitCC() */
 	height: 54em;
 }
 
@@ -137,6 +144,15 @@
 	margin-left: 2em;
 }
 
+.config-download-link a {
+	background: url(images/download-32.png) no-repeat center left;
+	padding-left: 40px; /* 32 px for the image (above), plus some breathing room */
+	height: 32px; /* provide enough vertical room for the image */
+	display: inline-block; /* allow the height property (above) to work */
+	line-height: 32px; /* center the text vertically */
+}
+
 #config-live-log {
-	margin-right: 18em;
+	overflow: hidden;
+	min-width: 20em;
 }

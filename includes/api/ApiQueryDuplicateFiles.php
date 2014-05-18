@@ -31,7 +31,7 @@
  */
 class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'df' );
 	}
 
@@ -200,7 +200,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'List all files that are duplicates of the given file(s) based on hash values';
+		return 'List all files that are duplicates of the given file(s) based on hash values.';
 	}
 
 	public function getExamples() {

@@ -139,9 +139,9 @@ class Html {
 	 * Identical to rawElement(), but HTML-escapes $contents (like
 	 * Xml::element()).
 	 *
-	 * @param $element string
-	 * @param $attribs array
-	 * @param $contents string
+	 * @param string $element
+	 * @param array $attribs
+	 * @param string $contents
 	 *
 	 * @return string
 	 */
@@ -158,8 +158,8 @@ class Html {
 	 * Identical to rawElement(), but has no third parameter and omits the end
 	 * tag (and the self-closing '/' in XML mode for empty elements).
 	 *
-	 * @param $element string
-	 * @param $attribs array
+	 * @param string $element
+	 * @param array $attribs
 	 *
 	 * @return string
 	 */
@@ -267,7 +267,7 @@ class Html {
 	 * to the input array (currently per the HTML 5 draft as of 2009-09-06).
 	 *
 	 * @param string $element Name of the element, e.g., 'a'
-	 * @param array $attribs  Associative array of attributes, e.g., array(
+	 * @param array $attribs Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ).  See expandAttributes() for
 	 *   further documentation.
 	 * @return array An array of attributes functionally identical to $attribs
@@ -583,7 +583,7 @@ class Html {
 	 * Output a "<script>" tag linking to the given URL, e.g.,
 	 * "<script src=foo.js></script>".
 	 *
-	 * @param $url string
+	 * @param string $url
 	 * @return string Raw HTML
 	 */
 	public static function linkedScript( $url ) {
@@ -598,7 +598,7 @@ class Html {
 	 * contains literal "</style>" (admittedly unlikely).
 	 *
 	 * @param string $contents CSS
-	 * @param $media mixed A media type string, like 'screen'
+	 * @param string $media A media type string, like 'screen'
 	 * @return string Raw HTML
 	 */
 	public static function inlineStyle( $contents, $media = 'all' ) {
@@ -618,8 +618,8 @@ class Html {
 	 * Output a "<link rel=stylesheet>" linking to the given URL for the given
 	 * media type (if any).
 	 *
-	 * @param $url string
-	 * @param $media mixed A media type string, like 'screen'
+	 * @param string $url
+	 * @param string $media A media type string, like 'screen'
 	 * @return string Raw HTML
 	 */
 	public static function linkedStyle( $url, $media = 'all' ) {
@@ -635,10 +635,10 @@ class Html {
 	 * Convenience function to produce an "<input>" element.  This supports the
 	 * new HTML5 input types and attributes.
 	 *
-	 * @param $name    string name attribute
-	 * @param $value   mixed  value attribute
-	 * @param $type    string type attribute
-	 * @param array $attribs  Associative array of miscellaneous extra
+	 * @param string $name Name attribute
+	 * @param array $value Value attribute
+	 * @param string $type Type attribute
+	 * @param array $attribs Associative array of miscellaneous extra
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
@@ -653,9 +653,9 @@ class Html {
 	/**
 	 * Convenience function to produce an input element with type=hidden
 	 *
-	 * @param $name    string name attribute
-	 * @param $value   string value attribute
-	 * @param array $attribs  Associative array of miscellaneous extra
+	 * @param string $name Name attribute
+	 * @param string $value Value attribute
+	 * @param array $attribs Associative array of miscellaneous extra
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
@@ -669,9 +669,9 @@ class Html {
 	 * This supports leaving out the cols= and rows= which Xml requires and are
 	 * required by HTML4/XHTML but not required by HTML5.
 	 *
-	 * @param $name    string name attribute
-	 * @param $value   string value attribute
-	 * @param array $attribs  Associative array of miscellaneous extra
+	 * @param string $name Name attribute
+	 * @param string $value Value attribute
+	 * @param array $attribs Associative array of miscellaneous extra
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
@@ -689,21 +689,26 @@ class Html {
 		}
 		return self::element( 'textarea', $attribs, $spacedValue );
 	}
+
 	/**
 	 * Build a drop-down box for selecting a namespace
 	 *
-	 * @param $params array:
+	 * @param array $params Params to set.
 	 * - selected: [optional] Id of namespace which should be pre-selected
-	 * - all: [optional] Value of item for "all namespaces". If null or unset, no "<option>" is generated to select all namespaces
-	 * - label: text for label to add before the field
-	 * - exclude: [optional] Array of namespace ids to exclude
-	 * - disable: [optional] Array of namespace ids for which the option should be disabled in the selector
+	 * - all: [optional] Value of item for "all namespaces". If null or unset,
+	 *   no "<option>" is generated to select all namespaces.
+	 * - label: text for label to add before the field.
+	 * - exclude: [optional] Array of namespace ids to exclude.
+	 * - disable: [optional] Array of namespace ids for which the option should
+	 *   be disabled in the selector.
 	 * @param array $selectAttribs HTML attributes for the generated select element.
-	 * - id:   [optional], default: 'namespace'
-	 * - name: [optional], default: 'namespace'
+	 * - id:   [optional], default: 'namespace'.
+	 * - name: [optional], default: 'namespace'.
 	 * @return string HTML code to select a namespace.
 	 */
-	public static function namespaceSelector( array $params = array(), array $selectAttribs = array() ) {
+	public static function namespaceSelector( array $params = array(),
+		array $selectAttribs = array()
+	) {
 		global $wgContLang;
 
 		ksort( $selectAttribs );
@@ -793,9 +798,9 @@ class Html {
 	 * Constructs the opening html-tag with necessary doctypes depending on
 	 * global variables.
 	 *
-	 * @param array $attribs  Associative array of miscellaneous extra
+	 * @param array $attribs Associative array of miscellaneous extra
 	 *   attributes, passed to Html::element() of html tag.
-	 * @return string  Raw HTML
+	 * @return string Raw HTML
 	 */
 	public static function htmlHeader( $attribs = array() ) {
 		$ret = '';
@@ -839,8 +844,8 @@ class Html {
 	/**
 	 * Determines if the given mime type is xml.
 	 *
-	 * @param $mimetype    string MimeType
-	 * @return Boolean
+	 * @param string $mimetype MimeType
+	 * @return bool
 	 */
 	public static function isXmlMimeType( $mimetype ) {
 		# http://www.whatwg.org/html/infrastructure.html#xml-mime-type
@@ -853,11 +858,11 @@ class Html {
 	/**
 	 * Get HTML for an info box with an icon.
 	 *
-	 * @param string $text wikitext, get this with wfMessage()->plain()
-	 * @param string $icon icon name, file in skins/common/images
-	 * @param string $alt alternate text for the icon
-	 * @param string $class additional class name to add to the wrapper div
-	 * @param $useStylePath
+	 * @param string $text Wikitext, get this with wfMessage()->plain()
+	 * @param string $icon Icon name, file in skins/common/images
+	 * @param string $alt Alternate text for the icon
+	 * @param string $class Additional class name to add to the wrapper div
+	 * @param bool $useStylePath
 	 *
 	 * @return string
 	 */

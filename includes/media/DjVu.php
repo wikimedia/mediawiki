@@ -73,6 +73,11 @@ class DjVuHandler extends ImageHandler {
 	 * @return bool
 	 */
 	function validateParam( $name, $value ) {
+		if ( $name === 'page' && trim( $value ) !== (string) intval( $value ) ) {
+			// Extra junk on the end of page, probably actually a caption
+			// e.g. [[File:Foo.djvu|thumb|Page 3 of the document shows foo]]
+			return false;
+		}
 		if ( in_array( $name, array( 'width', 'height', 'page' ) ) ) {
 			if ( $value <= 0 ) {
 				return false;
@@ -177,12 +182,41 @@ class DjVuHandler extends ImageHandler {
 			);
 		}
 
-		$srcPath = $image->getLocalRefPath();
+		// Get local copy source for shell scripts
+		// Thumbnail extraction is very inefficient for large files.
+		// Provide a way to pool count limit the number of downloaders.
+		if ( $image->getSize() >= 1e7 ) { // 10MB
+			$work = new PoolCounterWorkViaCallback( 'GetLocalFileCopy', sha1( $image->getName() ),
+				array(
+					'doWork' => function() use ( $image ) {
+						return $image->getLocalRefPath();
+					}
+				)
+			);
+			$srcPath = $work->execute();
+		} else {
+			$srcPath = $image->getLocalRefPath();
+		}
+
+		if ( $srcPath === false ) { // Failed to get local copy
+			wfDebugLog( 'thumbnail',
+				sprintf( 'Thumbnail failed on %s: could not get local copy of "%s"',
+					wfHostname(), $image->getName() ) );
+
+			return new MediaTransformError( 'thumbnail_error',
+				$params['width'], $params['height'],
+				wfMessage( 'filemissing' )->text()
+			);
+		}
+
 		# Use a subshell (brackets) to aggregate stderr from both pipeline commands
 		# before redirecting it to the overall stdout. This works in both Linux and Windows XP.
-		$cmd = '(' . wfEscapeShellArg( $wgDjvuRenderer ) . " -format=ppm -page={$page}" .
-			" -size={$params['physicalWidth']}x{$params['physicalHeight']} " .
-			wfEscapeShellArg( $srcPath );
+		$cmd = '(' . wfEscapeShellArg(
+			$wgDjvuRenderer,
+			"-format=ppm",
+			"-page={$page}",
+			"-size={$params['physicalWidth']}x{$params['physicalHeight']}",
+			$srcPath );
 		if ( $wgDjvuPostProcessor ) {
 			$cmd .= " | {$wgDjvuPostProcessor}";
 		}
@@ -228,6 +262,30 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
+	 * Get metadata, unserializing it if neccessary.
+	 *
+	 * @param File $file The DjVu file in question
+	 * @return string XML metadata as a string.
+	 */
+	private function getUnserializedMetadata( File $file ) {
+		$metadata = $file->getMetadata();
+		if ( substr( $metadata, 0, 3 ) === '<?xml' ) {
+			// Old style. Not serialized but instead just a raw string of XML.
+			return $metadata;
+		}
+
+		wfSuppressWarnings();
+		$unser = unserialize( $metadata );
+		wfRestoreWarnings();
+		if ( is_array( $unser ) ) {
+			return $unser['xml'];
+		}
+
+		// unserialize failed. Guess it wasn't really serialized after all,
+		return $metadata;
+	}
+
+	/**
 	 * Cache a document tree for the DjVu XML metadata
 	 * @param File $image
 	 * @param bool $gettext DOCUMENT (Default: false)
@@ -241,7 +299,7 @@ class DjVuHandler extends ImageHandler {
 			return $image->dejaMetaTree;
 		}
 
-		$metadata = $image->getMetadata();
+		$metadata = $this->getUnserializedMetadata( $image );
 		if ( !$this->isMetadataValid( $image, $metadata ) ) {
 			wfDebug( "DjVu XML metadata is invalid or missing, should have been fixed in upgradeRow\n" );
 
@@ -304,7 +362,12 @@ class DjVuHandler extends ImageHandler {
 	function getMetadata( $image, $path ) {
 		wfDebug( "Getting DjVu metadata for $path\n" );
 
-		return $this->getDjVuImage( $image, $path )->retrieveMetaData();
+		$xml = $this->getDjVuImage( $image, $path )->retrieveMetaData();
+		if ( $xml === false ) {
+			return false;
+		} else {
+			return serialize( array( 'xml' => $xml ) );
+		}
 	}
 
 	function getMetadataType( $image ) {

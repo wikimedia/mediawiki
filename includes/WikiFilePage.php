@@ -47,7 +47,7 @@ class WikiFilePage extends WikiPage {
 	}
 
 	/**
-	 * @param $file File:
+	 * @param File $file
 	 */
 	public function setFile( $file ) {
 		$this->mFile = $file;
@@ -85,7 +85,8 @@ class WikiFilePage extends WikiPage {
 		if ( $from == $to ) {
 			return null;
 		}
-		return $this->mRedirectTarget = Title::makeTitle( NS_FILE, $to );
+		$this->mRedirectTarget = Title::makeTitle( NS_FILE, $to );
+		return $this->mRedirectTarget;
 	}
 
 	/**
@@ -142,7 +143,8 @@ class WikiFilePage extends WikiPage {
 		}
 		$hash = $this->mFile->getSha1();
 		if ( !( $hash ) ) {
-			return $this->mDupes = array();
+			$this->mDupes = array();
+			return $this->mDupes;
 		}
 		$dupes = RepoGroup::singleton()->findBySha1( $hash );
 		// Remove duplicates with self and non matching file sizes
@@ -178,7 +180,8 @@ class WikiFilePage extends WikiPage {
 			$this->mFile->upgradeRow();
 			$this->mFile->purgeCache( array( 'forThumbRefresh' => true ) );
 		} else {
-			wfDebug( 'ImagePage::doPurge no image for ' . $this->mFile->getName() . "; limiting purge to cache only\n" );
+			wfDebug( 'ImagePage::doPurge no image for '
+				. $this->mFile->getName() . "; limiting purge to cache only\n" );
 			// even if the file supposedly doesn't exist, force any cached information
 			// to be updated (in case the cached information is wrong)
 			$this->mFile->purgeCache( array( 'forThumbRefresh' => true ) );
@@ -205,7 +208,7 @@ class WikiFilePage extends WikiPage {
 		$file = $this->mFile;
 
 		if ( ! $file instanceof LocalFile ) {
-			wfDebug( __CLASS__ . '::' . __METHOD__ . ' is not supported for this file' );
+			wfDebug( __CLASS__ . '::' . __METHOD__ . " is not supported for this file\n" );
 			return TitleArray::newFromResult( new FakeResultWrapper( array() ) );
 		}
 

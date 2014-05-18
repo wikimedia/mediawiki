@@ -28,7 +28,7 @@
  * @ingroup Language
  */
 class LanguageKsh extends Language {
-	static $familygender = array(
+	private static $familygender = array(
 		// Do not add male wiki families, since that's the default.
 		// No need add neuter wikis having names ending in -wiki.
 			'wikipedia' => 'f',
@@ -83,8 +83,8 @@ class LanguageKsh extends Language {
 	 * Contents of the leftmost table column can be copied and pasted as
 	 * "case" values.
 	 *
-	 * @param $word String
-	 * @param $case String
+	 * @param string $word
+	 * @param string $case
 	 *
 	 * @return string
 	 */
@@ -168,7 +168,7 @@ class LanguageKsh extends Language {
 	/**
 	 * Avoid grouping whole numbers between 0 to 9999
 	 *
-	 * @param $_ string
+	 * @param string $_
 	 *
 	 * @return string
 	 */
@@ -183,8 +183,8 @@ class LanguageKsh extends Language {
 	/**
 	 * Handle cases of (1, other, 0) or (1, other)
 	 *
-	 * @param $count int
-	 * @param $forms array
+	 * @param int $count
+	 * @param array $forms
 	 *
 	 * @return string
 	 */

@@ -83,7 +83,7 @@ STR;
 
 	/**
 	 * Checks that the request's result matches the expected results.
-	 * @param $values array is a two element array( request, expected_results )
+	 * @param array $values Array is a two element array( request, expected_results )
 	 * @throws Exception
 	 */
 	protected function check( $values ) {

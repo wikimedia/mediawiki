@@ -43,12 +43,12 @@ class ApiRollback extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		// User and title already validated in call to getTokenSalt from Main
-		$titleObj = $this->getRbTitle();
+		$titleObj = $this->getRbTitle( $params );
 		$pageObj = WikiPage::factory( $titleObj );
 		$summary = $params['summary'];
 		$details = array();
 		$retval = $pageObj->doRollback(
-			$this->getRbUser(),
+			$this->getRbUser( $params ),
 			$summary,
 			$params['token'],
 			$params['markbot'],
@@ -85,9 +85,9 @@ class ApiRollback extends ApiBase {
 
 	public function getAllowedParams() {
 		return array(
-			'title' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+			'title' => null,
+			'pageid' => array(
+				ApiBase::PARAM_TYPE => 'integer'
 			),
 			'user' => array(
 				ApiBase::PARAM_TYPE => 'string',
@@ -112,8 +112,11 @@ class ApiRollback extends ApiBase {
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
+
 		return array(
-			'title' => 'Title of the page you want to rollback.',
+			'title' => "Title of the page you want to delete. Cannot be used together with {$p}pageid",
+			'pageid' => "Page ID of the page you want to delete. Cannot be used together with {$p}title",
 			'user' => 'Name of the user whose edits are to be rolled back. If ' .
 				'set incorrectly, you\'ll get a badtoken error.',
 			'token' => 'A rollback token previously retrieved through ' .
@@ -141,7 +144,7 @@ class ApiRollback extends ApiBase {
 	public function getDescription() {
 		return array(
 			'Undo the last edit to the page. If the last user who edited the page made',
-			'multiple edits in a row, they will all be rolled back'
+			'multiple edits in a row, they will all be rolled back.'
 		);
 	}
 
@@ -149,6 +152,7 @@ class ApiRollback extends ApiBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'invalidtitle', 'title' ),
 			array( 'notanarticle' ),
+			array( 'nosuchpageid', 'pageid' ),
 			array( 'invaliduser', 'user' ),
 		) );
 	}
@@ -158,15 +162,23 @@ class ApiRollback extends ApiBase {
 	}
 
 	public function getTokenSalt() {
-		return array( $this->getRbTitle()->getPrefixedText(), $this->getRbUser() );
+		$params = $this->extractRequestParams();
+
+		return array(
+			$this->getRbTitle( $params )->getPrefixedText(),
+			$this->getRbUser( $params )
+		);
 	}
 
-	private function getRbUser() {
+	/**
+	 * @param array $params
+	 *
+	 * @return string
+	 */
+	private function getRbUser( array $params ) {
 		if ( $this->mUser !== null ) {
 			return $this->mUser;
 		}
-
-		$params = $this->extractRequestParams();
 
 		// We need to be able to revert IPs, but getCanonicalName rejects them
 		$this->mUser = User::isIP( $params['user'] )
@@ -180,20 +192,29 @@ class ApiRollback extends ApiBase {
 	}
 
 	/**
+	 * @param array $params
+	 *
 	 * @return Title
 	 */
-	private function getRbTitle() {
+	private function getRbTitle( array $params ) {
 		if ( $this->mTitleObj !== null ) {
 			return $this->mTitleObj;
 		}
 
-		$params = $this->extractRequestParams();
+		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
 
-		$this->mTitleObj = Title::newFromText( $params['title'] );
-
-		if ( !$this->mTitleObj || $this->mTitleObj->isExternal() ) {
-			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+		if ( isset( $params['title'] ) ) {
+			$this->mTitleObj = Title::newFromText( $params['title'] );
+			if ( !$this->mTitleObj || $this->mTitleObj->isExternal() ) {
+				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+			}
+		} elseif ( isset( $params['pageid'] ) ) {
+			$this->mTitleObj = Title::newFromID( $params['pageid'] );
+			if ( !$this->mTitleObj ) {
+				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
+			}
 		}
+
 		if ( !$this->mTitleObj->exists() ) {
 			$this->dieUsageMsg( 'notanarticle' );
 		}
@@ -204,6 +225,7 @@ class ApiRollback extends ApiBase {
 	public function getExamples() {
 		return array(
 			'api.php?action=rollback&title=Main%20Page&user=Catrope&token=123ABC',
+			'api.php?action=rollback&pageid=122&user=Catrope&token=123ABC',
 			'api.php?action=rollback&title=Main%20Page&user=217.121.114.116&' .
 				'token=123ABC&summary=Reverting%20vandalism&markbot=1'
 		);

@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ghaly"
+		]
+	},
+	"config-your-language": "اللغه بتاعتك:",
+	"config-your-language-help": " إختار لغة البرنامج بتاعتك:",
+	"config-wiki-language": " ويكى لانجواج :",
+	"config-back": "→ ارجع",
+	"config-continue": "استمر",
+	"config-page-language": "اللغه",
+	"config-page-welcome": "اهلا ف ميديا ويكى",
+	"config-page-name": "الاسم:",
+	"config-page-install": "تركيب",
+	"mainpagetext": "''' ميدياويكى اتنزلت بنجاح.'''",
+	"mainpagedocfooter": "اسال [//meta.wikimedia.org/wiki/Help:Contents دليل اليوزر] للمعلومات حوالين استخدام برنامج الويكى.\n\n== البداية ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings لستة اعدادات الضبط]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ أسئلة بتكرر حوالين الميدياويكى]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce لستة الايميلات بتاعة اعلانات الميدياويكى]"
+}

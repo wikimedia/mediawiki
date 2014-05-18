@@ -28,12 +28,26 @@
  * Could be replaced by curl_multi_exec() or some such.
  */
 class SquidPurgeClient {
-	var $host, $port, $ip;
+	/** @var string */
+	protected $host;
 
-	var $readState = 'idle';
-	var $writeBuffer = '';
-	var $requests = array();
-	var $currentRequestIndex;
+	/** @var int */
+	protected $port;
+
+	/** @var string|bool */
+	protected $ip;
+
+	/** @var string */
+	protected $readState = 'idle';
+
+	/** @var string */
+	protected $writeBuffer = '';
+
+	/** @var array */
+	protected $requests = array();
+
+	/** @var mixed */
+	protected $currentRequestIndex;
 
 	const EINTR = 4;
 	const EAGAIN = 11;
@@ -41,17 +55,20 @@ class SquidPurgeClient {
 	const BUFFER_SIZE = 8192;
 
 	/**
-	 * The socket resource, or null for unconnected, or false for disabled due to error
+	 * @var resource|null The socket resource, or null for unconnected, or false
+	 *   for disabled due to error.
 	 */
-	var $socket;
+	protected $socket;
 
-	var $readBuffer;
+	/** @var string */
+	protected $readBuffer;
 
-	var $bodyRemaining;
+	/** @var int */
+	protected $bodyRemaining;
 
 	/**
-	 * @param $server string
-	 * @param $options array
+	 * @param string $server
+	 * @param array $options
 	 */
 	public function __construct( $server, $options = array() ) {
 		$parts = explode( ':', $server, 2 );
@@ -126,6 +143,8 @@ class SquidPurgeClient {
 	/**
 	 * Get the host's IP address.
 	 * Does not support IPv6 at present due to the lack of a convenient interface in PHP.
+	 * @throws MWException
+	 * @return string
 	 */
 	protected function getIP() {
 		if ( $this->ip === null ) {
@@ -173,7 +192,7 @@ class SquidPurgeClient {
 	/**
 	 * Queue a purge operation
 	 *
-	 * @param $url string
+	 * @param string $url
 	 */
 	public function queuePurge( $url ) {
 		global $wgSquidPurgeUseHostHeader;
@@ -323,7 +342,7 @@ class SquidPurgeClient {
 	}
 
 	/**
-	 * @param $line
+	 * @param string $line
 	 * @return
 	 */
 	protected function processStatusLine( $line ) {
@@ -343,7 +362,7 @@ class SquidPurgeClient {
 	}
 
 	/**
-	 * @param $line string
+	 * @param string $line
 	 */
 	protected function processHeaderLine( $line ) {
 		if ( preg_match( '/^Content-Length: (\d+)$/i', $line, $m ) ) {
@@ -370,23 +389,22 @@ class SquidPurgeClient {
 	}
 
 	/**
-	 * @param $msg string
+	 * @param string $msg
 	 */
 	protected function log( $msg ) {
-		wfDebugLog( 'squid', __CLASS__ . " ($this->host): $msg\n" );
+		wfDebugLog( 'squid', __CLASS__ . " ($this->host): $msg" );
 	}
 }
 
 class SquidPurgeClientPool {
+	/** @var array of SquidPurgeClient */
+	protected $clients = array();
+
+	/** @var int */
+	protected $timeout = 5;
 
 	/**
-	 * @var array of SquidPurgeClient
-	 */
-	var $clients = array();
-	var $timeout = 5;
-
-	/**
-	 * @param $options array
+	 * @param array $options
 	 */
 	function __construct( $options = array() ) {
 		if ( isset( $options['timeout'] ) ) {
@@ -395,7 +413,7 @@ class SquidPurgeClientPool {
 	}
 
 	/**
-	 * @param $client SquidPurgeClient
+	 * @param SquidPurgeClient $client
 	 * @return void
 	 */
 	public function addClient( $client ) {

@@ -44,7 +44,7 @@ class CheckBadRedirects extends Maintenance {
 
 		$count = $result->numRows();
 		$this->output( "Found $count redirects.\n" .
-						"Checking for bad redirects:\n\n" );
+			"Checking for bad redirects:\n\n" );
 
 		foreach ( $result as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );

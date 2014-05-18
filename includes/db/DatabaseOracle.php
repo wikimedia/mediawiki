@@ -50,8 +50,8 @@ class ORAResult {
 	}
 
 	/**
-	 * @param $db DatabaseBase
-	 * @param $stmt
+	 * @param DatabaseBase $db
+	 * @param resource $stmt A valid OCI statement identifier
 	 * @param bool $unique
 	 */
 	function __construct( &$db, $stmt, $unique = false ) {
@@ -220,6 +220,7 @@ class DatabaseOracle extends DatabaseBase {
 				'dbname' => isset( $args[3] ) ? $args[3] : false,
 				'flags' => isset( $args[4] ) ? $args[4] : 0,
 				'tablePrefix' => isset( $args[5] ) ? $args[5] : 'get from global',
+				'schema' => 'get from global',
 				'foreign' => isset( $args[6] ) ? $args[6] : false
 			);
 		}
@@ -442,6 +443,10 @@ class DatabaseOracle extends DatabaseBase {
 		return $this->query( $sql, $fname, true );
 	}
 
+	/**
+	 * Frees resources associated with the LOB descriptor
+	 * @param ResultWrapper|resource $res
+	 */
 	function freeResult( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -450,6 +455,10 @@ class DatabaseOracle extends DatabaseBase {
 		$res->free();
 	}
 
+	/**
+	 * @param ResultWrapper|stdClass $res
+	 * @return mixed
+	 */
 	function fetchObject( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -494,6 +503,10 @@ class DatabaseOracle extends DatabaseBase {
 		return $this->mInsertId;
 	}
 
+	/**
+	 * @param mixed $res
+	 * @param int $row
+	 */
 	function dataSeek( $res, $row ) {
 		if ( $res instanceof ORAResult ) {
 			$res->seek( $row );
@@ -529,6 +542,9 @@ class DatabaseOracle extends DatabaseBase {
 	/**
 	 * Returns information about an index
 	 * If errors are explicitly ignored, returns NULL on failure
+	 * @param string $table
+	 * @param string $index
+	 * @param string $fname
 	 * @return bool
 	 */
 	function indexInfo( $table, $index, $fname = __METHOD__ ) {
@@ -603,6 +619,13 @@ class DatabaseOracle extends DatabaseBase {
 		return $bind;
 	}
 
+	/**
+	 * @param string $table
+	 * @param array $row
+	 * @param string $fname
+	 * @return bool
+	 * @throws DBUnexpectedError
+	 */
 	private function insertOneRow( $table, $row, $fname ) {
 		global $wgContLang;
 
@@ -619,8 +642,12 @@ class DatabaseOracle extends DatabaseBase {
 			} else {
 				$first = false;
 			}
-
-			$sql .= $this->fieldBindStatement( $table, $col, $val );
+			if ( $this->isQuotedIdentifier( $val ) ) {
+				$sql .= $this->removeIdentifierQuotes( $val );
+				unset( $row[$col] );
+			} else {
+				$sql .= $this->fieldBindStatement( $table, $col, $val );
+			}
 		}
 		$sql .= ')';
 
@@ -654,6 +681,7 @@ class DatabaseOracle extends DatabaseBase {
 					return false;
 				}
 			} else {
+				/** @var OCI_Lob[] $lob */
 				if ( ( $lob[$col] = oci_new_descriptor( $this->mConn, OCI_D_LOB ) ) === false ) {
 					$e = oci_error( $stmt );
 					throw new DBUnexpectedError( $this, "Cannot create LOB descriptor: " . $e['message'] );
@@ -700,7 +728,7 @@ class DatabaseOracle extends DatabaseBase {
 			oci_commit( $this->mConn );
 		}
 
-		oci_free_statement( $stmt );
+		return oci_free_statement( $stmt );
 	}
 
 	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
@@ -748,6 +776,32 @@ class DatabaseOracle extends DatabaseBase {
 		}
 
 		return $retval;
+	}
+
+	public function upsert( $table, array $rows, array $uniqueIndexes, array $set,
+		$fname = __METHOD__
+	) {
+		if ( !count( $rows ) ) {
+			return true; // nothing to do
+		}
+
+		if ( !is_array( reset( $rows ) ) ) {
+			$rows = array( $rows );
+		}
+
+		$sequenceData = $this->getSequenceData( $table );
+		if ( $sequenceData !== false ) {
+			// add sequence column to each list of columns, when not set
+			foreach ( $rows as &$row ) {
+				if ( !isset( $row[$sequenceData['column']] ) ) {
+					$row[$sequenceData['column']] =
+						$this->addIdentifierQuotes( 'GET_SEQUENCE_VALUE(\'' .
+							$sequenceData['sequence'] . '\')' );
+				}
+			}
+		}
+
+		return parent::upsert( $table, $rows, $uniqueIndexes, $set, $fname );
 	}
 
 	function tableName( $name, $format = 'quoted' ) {
@@ -822,7 +876,13 @@ class DatabaseOracle extends DatabaseBase {
 		return ( isset( $this->sequenceData[$table] ) ) ? $this->sequenceData[$table] : false;
 	}
 
-	# Returns the size of a text field, or -1 for "unlimited"
+	/**
+	 * Returns the size of a text field, or -1 for "unlimited"
+	 *
+	 * @param string $table
+	 * @param string $field
+	 * @return mixed
+	 */
 	function textFieldSize( $table, $field ) {
 		$fieldInfoData = $this->fieldInfo( $table, $field );
 
@@ -916,6 +976,10 @@ class DatabaseOracle extends DatabaseBase {
 
 	/**
 	 * Return aggregated value function call
+	 *
+	 * @param array $valuedata
+	 * @param string $valuename
+	 * @return mixed
 	 */
 	public function aggregateValue( $valuedata, $valuename = 'value' ) {
 		return $valuedata;
@@ -939,7 +1003,7 @@ class DatabaseOracle extends DatabaseBase {
 	 * @return string wikitext of a link to the server software's web site
 	 */
 	public function getSoftwareLink() {
-		return '[http://www.oracle.com/ Oracle]';
+		return '[{{int:version-db-oracle-url}} Oracle]';
 	}
 
 	/**
@@ -960,6 +1024,9 @@ class DatabaseOracle extends DatabaseBase {
 
 	/**
 	 * Query whether a given index exists
+	 * @param string $table
+	 * @param string $index
+	 * @param string $fname
 	 * @return bool
 	 */
 	function indexExists( $table, $index, $fname = __METHOD__ ) {
@@ -967,8 +1034,8 @@ class DatabaseOracle extends DatabaseBase {
 		$table = strtoupper( $this->removeIdentifierQuotes( $table ) );
 		$index = strtoupper( $index );
 		$owner = strtoupper( $this->mDBname );
-		$SQL = "SELECT 1 FROM all_indexes WHERE owner='$owner' AND index_name='{$table}_{$index}'";
-		$res = $this->doQuery( $SQL );
+		$sql = "SELECT 1 FROM all_indexes WHERE owner='$owner' AND index_name='{$table}_{$index}'";
+		$res = $this->doQuery( $sql );
 		if ( $res ) {
 			$count = $res->numRows();
 			$res->free();
@@ -981,14 +1048,16 @@ class DatabaseOracle extends DatabaseBase {
 
 	/**
 	 * Query whether a given table exists (in the given schema, or the default mw one if not given)
+	 * @param string $table
+	 * @param string $fname
 	 * @return bool
 	 */
 	function tableExists( $table, $fname = __METHOD__ ) {
 		$table = $this->tableName( $table );
 		$table = $this->addQuotes( strtoupper( $this->removeIdentifierQuotes( $table ) ) );
 		$owner = $this->addQuotes( strtoupper( $this->mDBname ) );
-		$SQL = "SELECT 1 FROM all_tables WHERE owner=$owner AND table_name=$table";
-		$res = $this->doQuery( $SQL );
+		$sql = "SELECT 1 FROM all_tables WHERE owner=$owner AND table_name=$table";
+		$res = $this->doQuery( $sql );
 		if ( $res && $res->numRows() > 0 ) {
 			$exists = true;
 		} else {
@@ -1006,8 +1075,8 @@ class DatabaseOracle extends DatabaseBase {
 	 * For internal calls. Use fieldInfo for normal usage.
 	 * Returns false if the field doesn't exist
 	 *
-	 * @param $table Array
-	 * @param $field String
+	 * @param array|string $table
+	 * @param string $field
 	 * @return ORAField|ORAResult
 	 */
 	private function fieldInfoMulti( $table, $field ) {
@@ -1064,8 +1133,8 @@ class DatabaseOracle extends DatabaseBase {
 
 	/**
 	 * @throws DBUnexpectedError
-	 * @param  $table
-	 * @param  $field
+	 * @param string $table
+	 * @param string $field
 	 * @return ORAField
 	 */
 	function fieldInfo( $table, $field ) {
@@ -1100,7 +1169,16 @@ class DatabaseOracle extends DatabaseBase {
 		}
 	}
 
-	/* defines must comply with ^define\s*([^\s=]*)\s*=\s?'\{\$([^\}]*)\}'; */
+	/**
+	 * defines must comply with ^define\s*([^\s=]*)\s*=\s?'\{\$([^\}]*)\}';
+	 *
+	 * @param resource $fp
+	 * @param bool|string $lineCallback
+	 * @param bool|callable $resultCallback
+	 * @param string $fname
+	 * @param bool|callable $inputCallback
+	 * @return bool|string
+	 */
 	function sourceStream( $fp, $lineCallback = false, $resultCallback = false,
 		$fname = __METHOD__, $inputCallback = false ) {
 		$cmd = '';
@@ -1275,10 +1353,8 @@ class DatabaseOracle extends DatabaseBase {
 	 * Returns an optional USE INDEX clause to go after the table, and a
 	 * string to go at the end of the query
 	 *
-	 * @private
-	 *
-	 * @param array $options an associative array of options to be turned into
-	 *              an SQL query, valid keys are listed in the function.
+	 * @param array $options An associative array of options to be turned into
+	 *   an SQL query, valid keys are listed in the function.
 	 * @return array
 	 */
 	function makeSelectOptions( $options ) {
@@ -1347,6 +1423,15 @@ class DatabaseOracle extends DatabaseBase {
 		return parent::delete( $table, $conds, $fname );
 	}
 
+	/**
+	 * @param string $table
+	 * @param array $values
+	 * @param array $conds
+	 * @param string $fname
+	 * @param array $options
+	 * @return bool
+	 * @throws DBUnexpectedError
+	 */
 	function update( $table, $values, $conds, $fname = __METHOD__, $options = array() ) {
 		global $wgContLang;
 
@@ -1443,7 +1528,7 @@ class DatabaseOracle extends DatabaseBase {
 			oci_commit( $this->mConn );
 		}
 
-		oci_free_statement( $stmt );
+		return oci_free_statement( $stmt );
 	}
 
 	function bitNot( $field ) {
@@ -1457,9 +1542,6 @@ class DatabaseOracle extends DatabaseBase {
 
 	function bitOr( $fieldLeft, $fieldRight ) {
 		return 'BITOR(' . $fieldLeft . ', ' . $fieldRight . ')';
-	}
-
-	function setFakeMaster( $enabled = true ) {
 	}
 
 	function getDBname() {
@@ -1485,4 +1567,4 @@ class DatabaseOracle extends DatabaseBase {
 	public function getInfinity() {
 		return '31-12-2030 12:00:00.000000';
 	}
-} // end DatabaseOracle class
+}

@@ -31,8 +31,8 @@ class ChangesFeed {
 	/**
 	 * Constructor
 	 *
-	 * @param string $format feed's format (either 'rss' or 'atom')
-	 * @param string $type type of feed (for cache keys)
+	 * @param string $format Feed's format (either 'rss' or 'atom')
+	 * @param string $type Type of feed (for cache keys)
 	 */
 	public function __construct( $format, $type ) {
 		$this->format = $format;
@@ -42,10 +42,10 @@ class ChangesFeed {
 	/**
 	 * Get a ChannelFeed subclass object to use
 	 *
-	 * @param string $title feed's title
-	 * @param string $description feed's description
-	 * @param string $url url of origin page
-	 * @return ChannelFeed subclass or false on failure
+	 * @param string $title Feed's title
+	 * @param string $description Feed's description
+	 * @param string $url Url of origin page
+	 * @return ChannelFeed|bool ChannelFeed subclass or false on failure
 	 */
 	public function getFeedObject( $title, $description, $url ) {
 		global $wgSitename, $wgLanguageCode, $wgFeedClasses;
@@ -67,10 +67,12 @@ class ChangesFeed {
 	/**
 	 * Generates feed's content
 	 *
-	 * @param $feed ChannelFeed subclass object (generally the one returned by getFeedObject())
-	 * @param $rows ResultWrapper object with rows in recentchanges table
-	 * @param $lastmod Integer: timestamp of the last item in the recentchanges table (only used for the cache key)
-	 * @param $opts FormOptions as in SpecialRecentChanges::getDefaultOptions()
+	 * @param ChannelFeed $feed ChannelFeed subclass object (generally the one returned
+	 *   by getFeedObject())
+	 * @param ResultWrapper $rows ResultWrapper object with rows in recentchanges table
+	 * @param int $lastmod Timestamp of the last item in the recentchanges table (only
+	 *   used for the cache key)
+	 * @param FormOptions $opts As in SpecialRecentChanges::getDefaultOptions()
 	 * @return null|bool True or null
 	 */
 	public function execute( $feed, $rows, $lastmod, $opts ) {
@@ -110,9 +112,9 @@ class ChangesFeed {
 	/**
 	 * Save to feed result to $messageMemc
 	 *
-	 * @param string $feed feed's content
-	 * @param string $timekey memcached key of the last modification
-	 * @param string $key memcached key of the content
+	 * @param string $feed Feed's content
+	 * @param string $timekey Memcached key of the last modification
+	 * @param string $key Memcached key of the content
 	 */
 	public function saveToCache( $feed, $timekey, $key ) {
 		global $messageMemc;
@@ -124,10 +126,10 @@ class ChangesFeed {
 	/**
 	 * Try to load the feed result from $messageMemc
 	 *
-	 * @param $lastmod Integer: timestamp of the last item in the recentchanges table
-	 * @param string $timekey memcached key of the last modification
-	 * @param string $key memcached key of the content
-	 * @return string|bool feed's content on cache hit or false on cache miss
+	 * @param int $lastmod Timestamp of the last item in the recentchanges table
+	 * @param string $timekey Memcached key of the last modification
+	 * @param string $key Memcached key of the content
+	 * @return string|bool Feed's content on cache hit or false on cache miss
 	 */
 	public function loadFromCache( $lastmod, $timekey, $key ) {
 		global $wgFeedCacheTimeout, $wgOut, $messageMemc;
@@ -160,14 +162,28 @@ class ChangesFeed {
 	}
 
 	/**
-	 * Generate the feed items given a row from the database.
-	 * @param $rows DatabaseBase resource with recentchanges rows
-	 * @param $feed Feed object
+	 * Generate the feed items given a row from the database, printing the feed.
+	 * @param object $rows DatabaseBase resource with recentchanges rows
+	 * @param Feed $feed
 	 */
 	public static function generateFeed( $rows, &$feed ) {
 		wfProfileIn( __METHOD__ );
-
+		$items = self::buildItems( $rows );
 		$feed->outHeader();
+		foreach ( $items as $item ) {
+			$feed->outItem( $item );
+		}
+		$feed->outFooter();
+		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Generate the feed items given a row from the database.
+	 * @param object $rows DatabaseBase resource with recentchanges rows
+	 */
+	public static function buildItems( $rows ) {
+		wfProfileIn( __METHOD__ );
+		$items = array();
 
 		# Merge adjacent edits by one user
 		$sorted = array();
@@ -187,7 +203,10 @@ class ChangesFeed {
 
 		foreach ( $sorted as $obj ) {
 			$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
-			$talkpage = MWNamespace::canTalk( $obj->rc_namespace ) ? $title->getTalkPage()->getFullURL() : '';
+			$talkpage = MWNamespace::canTalk( $obj->rc_namespace )
+				? $title->getTalkPage()->getFullURL()
+				: '';
+
 			// Skip items with deleted content (avoids partially complete/inconsistent output)
 			if ( $obj->rc_deleted ) {
 				continue;
@@ -203,7 +222,7 @@ class ChangesFeed {
 				$url = $title->getFullURL();
 			}
 
-			$item = new FeedItem(
+			$items[] = new FeedItem(
 				$title->getPrefixedText(),
 				FeedUtils::formatDiff( $obj ),
 				$url,
@@ -212,10 +231,9 @@ class ChangesFeed {
 					? wfMessage( 'rev-deleted-user' )->escaped() : $obj->rc_user_text,
 				$talkpage
 			);
-			$feed->outItem( $item );
 		}
-		$feed->outFooter();
-		wfProfileOut( __METHOD__ );
-	}
 
+		wfProfileOut( __METHOD__ );
+		return $items;
+	}
 }

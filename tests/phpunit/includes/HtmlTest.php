@@ -590,7 +590,8 @@ class HtmlTest extends MediaWikiTestCase {
 		# see remarks on http://msdn.microsoft.com/en-us/library/ie/ms535211%28v=vs.85%29.aspx
 		$cases[] = array( '<button type=submit></button>',
 			'button', array( 'type' => 'submit' ),
-			'According to standard the default type is "submit". Depending on compatibility mode IE might use "button", instead.',
+			'According to standard the default type is "submit". '
+				. 'Depending on compatibility mode IE might use "button", instead.',
 		);
 
 		# <select> specifc handling
@@ -640,13 +641,27 @@ class HtmlTest extends MediaWikiTestCase {
 	 */
 	public function testFormValidationBlacklist() {
 		$this->assertEmpty(
-			Html::expandAttributes( array( 'min' => 1, 'max' => 100, 'pattern' => 'abc', 'required' => true, 'step' => 2 ) ),
+			Html::expandAttributes( array(
+				'min' => 1,
+				'max' => 100,
+				'pattern' => 'abc',
+				'required' => true,
+				'step' => 2
+			) ),
 			'Blacklist form validation attributes.'
 		);
 		$this->assertEquals(
 			' step=any',
-			Html::expandAttributes( array( 'min' => 1, 'max' => 100, 'pattern' => 'abc', 'required' => true, 'step' => 'any' ) ),
-			'Allow special case "step=any".'
+			Html::expandAttributes(
+				array(
+					'min' => 1,
+					'max' => 100,
+					'pattern' => 'abc',
+					'required' => true,
+					'step' => 'any'
+				),
+				'Allow special case "step=any".'
+			)
 		);
 	}
 }

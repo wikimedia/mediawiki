@@ -29,8 +29,7 @@ require_once __DIR__ . '/Benchmarker.php';
  *
  * @ingroup Benchmark
  */
-class bench_wfBaseConvert extends Benchmarker {
-
+class BenchWfBaseConvert extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Benchmark for wfBaseConvert.";
@@ -58,7 +57,7 @@ class bench_wfBaseConvert extends Benchmarker {
 				'function' => 'wfBaseConvert',
 				'args' => array( $number, $inbase, $outbase, 0, true, 'gmp' )
 			),
-		));
+		) );
 
 		$this->output( $this->getFormattedResults() );
 	}
@@ -66,12 +65,13 @@ class bench_wfBaseConvert extends Benchmarker {
 	protected static function makeRandomNumber( $base, $length ) {
 		$baseChars = "0123456789abcdefghijklmnopqrstuvwxyz";
 		$res = "";
-		for( $i = 0; $i < $length; $i++ ) {
-			$res .= $baseChars[mt_rand(0, $base - 1)];
+		for ( $i = 0; $i < $length; $i++ ) {
+			$res .= $baseChars[mt_rand( 0, $base - 1 )];
 		}
+
 		return $res;
 	}
 }
 
-$maintClass = 'bench_wfBaseConvert';
+$maintClass = 'BenchWfBaseConvert';
 require_once RUN_MAINTENANCE_IF_MAIN;

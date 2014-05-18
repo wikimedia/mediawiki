@@ -28,10 +28,7 @@
  * @ingroup API
  */
 class ApiUpload extends ApiBase {
-
-	/**
-	 * @var UploadBase
-	 */
+	/** @var UploadBase */
 	protected $mUpload = null;
 
 	protected $mParams;
@@ -95,7 +92,7 @@ class ApiUpload extends ApiBase {
 		} elseif ( $this->mParams['async'] && $this->mParams['filekey'] ) {
 			// defer verification to background process
 		} else {
-			wfDebug( __METHOD__ . 'about to verify' );
+			wfDebug( __METHOD__ . " about to verify\n" );
 			$this->verifyUpload();
 		}
 
@@ -237,7 +234,7 @@ class ApiUpload extends ApiBase {
 					array( 'result' => 'Poll',
 						'stage' => 'queued', 'status' => Status::newGood() )
 				);
-				$ok = JobQueueGroup::singleton()->push( new AssembleUploadChunksJob(
+				JobQueueGroup::singleton()->push( new AssembleUploadChunksJob(
 					Title::makeTitle( NS_FILE, $filekey ),
 					array(
 						'filename' => $this->mParams['filename'],
@@ -245,13 +242,7 @@ class ApiUpload extends ApiBase {
 						'session' => $this->getContext()->exportSession()
 					)
 				) );
-				if ( $ok ) {
-					$result['result'] = 'Poll';
-				} else {
-					UploadBase::setSessionStatus( $filekey, false );
-					$this->dieUsage(
-						"Failed to start AssembleUploadChunks.php", 'stashfailed' );
-				}
+				$result['result'] = 'Poll';
 			} else {
 				$status = $this->mUpload->concatenateChunks();
 				if ( !$status->isGood() ) {
@@ -278,7 +269,7 @@ class ApiUpload extends ApiBase {
 	 * Stash the file and return the file key
 	 * Also re-raises exceptions with slightly more informative message strings (useful for API)
 	 * @throws MWException
-	 * @return String file key
+	 * @return string File key
 	 */
 	private function performStash() {
 		try {
@@ -449,7 +440,7 @@ class ApiUpload extends ApiBase {
 	/**
 	 * Checks that the user has permissions to perform this upload.
 	 * Dies with usage message on inadequate permissions.
-	 * @param $user User The user to check.
+	 * @param User $user The user to check.
 	 */
 	protected function checkPermissions( $user ) {
 		// Check whether the user has the appropriate permissions to upload anyway
@@ -628,7 +619,7 @@ class ApiUpload extends ApiBase {
 				$this->mParams['filekey'],
 				array( 'result' => 'Poll', 'stage' => 'queued', 'status' => Status::newGood() )
 			);
-			$ok = JobQueueGroup::singleton()->push( new PublishStashedFileJob(
+			JobQueueGroup::singleton()->push( new PublishStashedFileJob(
 				Title::makeTitle( NS_FILE, $this->mParams['filename'] ),
 				array(
 					'filename' => $this->mParams['filename'],
@@ -639,13 +630,7 @@ class ApiUpload extends ApiBase {
 					'session' => $this->getContext()->exportSession()
 				)
 			) );
-			if ( $ok ) {
-				$result['result'] = 'Poll';
-			} else {
-				UploadBase::setSessionStatus( $this->mParams['filekey'], false );
-				$this->dieUsage(
-					"Failed to start PublishStashedFile.php", 'publishfailed' );
-			}
+			$result['result'] = 'Poll';
 		} else {
 			/** @var $status Status */
 			$status = $this->mUpload->performUpload( $this->mParams['comment'],
@@ -822,7 +807,7 @@ class ApiUpload extends ApiBase {
 			' * Have the MediaWiki server fetch a file from a URL, using the "url" parameter',
 			' * Complete an earlier upload that failed due to warnings, using the "filekey" parameter',
 			'Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when',
-			'sending the "file". Also you must get and send an edit token before doing any upload stuff'
+			'sending the "file". Also you must get and send an edit token before doing any upload stuff.'
 		);
 	}
 

@@ -33,6 +33,7 @@
  * @since 1.17
  */
 class WebInstallerOutput {
+
 	/**
 	 * The WebInstaller object this WebInstallerOutput is used by.
 	 *
@@ -42,7 +43,7 @@ class WebInstallerOutput {
 
 	/**
 	 * Buffered contents that haven't been output yet
-	 * @var String
+	 * @var string
 	 */
 	private $contents = '';
 
@@ -52,6 +53,9 @@ class WebInstallerOutput {
 	 */
 	private $headerDone = false;
 
+	/**
+	 * @var string
+	 */
 	public $redirectTarget;
 
 	/**
@@ -69,27 +73,39 @@ class WebInstallerOutput {
 	private $useShortHeader = false;
 
 	/**
-	 * Constructor.
-	 *
-	 * @param $parent WebInstaller
+	 * @param WebInstaller $parent
 	 */
 	public function __construct( WebInstaller $parent ) {
 		$this->parent = $parent;
 	}
 
+	/**
+	 * @param string $html
+	 */
 	public function addHTML( $html ) {
 		$this->contents .= $html;
 		$this->flush();
 	}
 
+	/**
+	 * @param string $text
+	 */
 	public function addWikiText( $text ) {
 		$this->addHTML( $this->parent->parse( $text ) );
 	}
 
+	/**
+	 * @param string $html
+	 */
 	public function addHTMLNoFlush( $html ) {
 		$this->contents .= $html;
 	}
 
+	/**
+	 * @param string $url
+	 *
+	 * @throws MWException
+	 */
 	public function redirect( $url ) {
 		if ( $this->headerDone ) {
 			throw new MWException( __METHOD__ . ' called after sending headers' );
@@ -110,14 +126,15 @@ class WebInstallerOutput {
 	 *   and not properly handling such details as media types in module definitions.
 	 *
 	 * @param string $dir 'ltr' or 'rtl'
-	 * @return String
+	 *
+	 * @return string
 	 */
 	public function getCSS( $dir ) {
 		// All CSS files these modules reference will be concatenated in sequence
 		// and loaded as one file.
 		$moduleNames = array(
 			'mediawiki.legacy.shared',
-			'skins.common.interface',
+			'mediawiki.skinning.interface',
 			'skins.vector.styles',
 			'mediawiki.legacy.config',
 		);
@@ -192,7 +209,8 @@ class WebInstallerOutput {
 
 	/**
 	 * "<link>" to index.php?css=foobar for the "<head>"
-	 * @return String
+	 *
+	 * @return string
 	 */
 	private function getCssUrl() {
 		return Html::linkedStyle( $_SERVER['PHP_SELF'] . '?css=' . $this->getDir() );
@@ -236,7 +254,7 @@ class WebInstallerOutput {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	public function getHeadAttribs() {
 		return array(
@@ -247,6 +265,7 @@ class WebInstallerOutput {
 
 	/**
 	 * Get whether the header has been output
+	 *
 	 * @return bool
 	 */
 	public function headerDone() {
@@ -306,7 +325,7 @@ class WebInstallerOutput {
 <div id="mw-panel">
 	<div class="portal" id="p-logo">
 	  <a style="background-image: url(../skins/common/images/mediawiki.png);"
-		href="http://www.mediawiki.org/"
+		href="https://www.mediawiki.org/"
 		title="Main Page"></a>
 	</div>
 	<div class="portal"><div class="body">
@@ -341,7 +360,11 @@ class WebInstallerOutput {
 		echo wfMessage( 'config-title', $wgVersion )->escaped();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getJQuery() {
-		return Html::linkedScript( "../resources/jquery/jquery.js" );
+		return Html::linkedScript( "../resources/lib/jquery/jquery.js" );
 	}
+
 }

@@ -34,6 +34,7 @@
  * @ingroup DifferenceEngine
  */
 abstract class DiffFormatter {
+
 	/** @var int Number of leading context "lines" to preserve.
 	 *
 	 * This should be left at zero for this class, but subclasses
@@ -51,7 +52,8 @@ abstract class DiffFormatter {
 	/**
 	 * Format a diff.
 	 *
-	 * @param $diff Diff A Diff object.
+	 * @param Diff $diff
+	 *
 	 * @return string The formatted output.
 	 */
 	public function format( $diff ) {
@@ -123,8 +125,9 @@ abstract class DiffFormatter {
 	 * @param int $xlen
 	 * @param int $ybeg
 	 * @param int $ylen
-	 * @param $edits
-	 * @throws MWException
+	 * @param array $edits
+	 *
+	 * @throws MWException If the edit type is not known.
 	 */
 	protected function block( $xbeg, $xlen, $ybeg, $ylen, &$edits ) {
 		wfProfileIn( __METHOD__ );
@@ -161,10 +164,11 @@ abstract class DiffFormatter {
 	}
 
 	/**
-	 * @param $xbeg
-	 * @param $xlen
-	 * @param $ybeg
-	 * @param $ylen
+	 * @param int $xbeg
+	 * @param int $xlen
+	 * @param int $ybeg
+	 * @param int $ylen
+	 *
 	 * @return string
 	 */
 	protected function blockHeader( $xbeg, $xlen, $ybeg, $ylen ) {
@@ -178,16 +182,28 @@ abstract class DiffFormatter {
 		return $xbeg . ( $xlen ? ( $ylen ? 'c' : 'd' ) : 'a' ) . $ybeg;
 	}
 
+	/**
+	 * Called at the start of a block of connected edits.
+	 * This default implementation writes the header and a newline to the output buffer.
+	 *
+	 * @param string $header
+	 */
 	protected function startBlock( $header ) {
 		echo $header . "\n";
 	}
 
+	/**
+	 * Called at the end of a block of connected edits.
+	 * This default implementation does nothing.
+	 */
 	protected function endBlock() {
 	}
 
 	/**
-	 * @param $lines
-	 * @param $prefix string
+	 * Writes all (optionally prefixed) lines to the output buffer, separated by newlines.
+	 *
+	 * @param string[] $lines
+	 * @param string $prefix
 	 */
 	protected function lines( $lines, $prefix = ' ' ) {
 		foreach ( $lines as $line ) {
@@ -196,33 +212,36 @@ abstract class DiffFormatter {
 	}
 
 	/**
-	 * @param $lines
+	 * @param string[] $lines
 	 */
 	protected function context( $lines ) {
 		$this->lines( $lines );
 	}
 
 	/**
-	 * @param $lines
+	 * @param string[] $lines
 	 */
 	protected function added( $lines ) {
 		$this->lines( $lines, '>' );
 	}
 
 	/**
-	 * @param $lines
+	 * @param string[] $lines
 	 */
 	protected function deleted( $lines ) {
 		$this->lines( $lines, '<' );
 	}
 
 	/**
-	 * @param $orig
-	 * @param $closing
+	 * Writes the two sets of lines to the output buffer, separated by "---" and a newline.
+	 *
+	 * @param string[] $orig
+	 * @param string[] $closing
 	 */
 	protected function changed( $orig, $closing ) {
 		$this->deleted( $orig );
 		echo "---\n";
 		$this->added( $closing );
 	}
+
 }

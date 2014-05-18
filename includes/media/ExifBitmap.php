@@ -80,7 +80,7 @@ class ExifBitmapHandler extends BitmapHandler {
 	}
 
 	/**
-	 * @param $image
+	 * @param File $image
 	 * @param array $metadata
 	 * @return bool|int
 	 */
@@ -198,7 +198,7 @@ class ExifBitmapHandler extends BitmapHandler {
 	 * the width and height we normally work with is logical, and will match
 	 * any produced output views.
 	 *
-	 * @param $file File
+	 * @param File $file
 	 * @return int 0, 90, 180 or 270
 	 */
 	public function getRotation( $file ) {

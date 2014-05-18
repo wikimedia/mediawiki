@@ -28,13 +28,13 @@
  * @ingroup API
  */
 class ApiFileRevert extends ApiBase {
-
-	/**
-	 * @var File
-	 */
+	/** @var LocalFile */
 	protected $file;
+
+	/** @var string */
 	protected $archiveName;
 
+	/** @var array */
 	protected $params;
 
 	public function execute() {
@@ -71,7 +71,7 @@ class ApiFileRevert extends ApiBase {
 	/**
 	 * Checks that the user has permissions to perform this revert.
 	 * Dies with usage message on inadequate permissions.
-	 * @param $user User The user to check.
+	 * @param User $user The user to check.
 	 */
 	protected function checkPermissions( $user ) {
 		$title = $this->file->getTitle();
@@ -167,7 +167,7 @@ class ApiFileRevert extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Revert a file to an old version'
+			'Revert a file to an old version.'
 		);
 	}
 

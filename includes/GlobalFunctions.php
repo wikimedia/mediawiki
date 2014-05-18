@@ -108,8 +108,8 @@ if ( !function_exists( 'gzdecode' ) ) {
 
 /**
  * Like array_diff( $a, $b ) except that it works with two-dimensional arrays.
- * @param $a array
- * @param $b array
+ * @param array $a
+ * @param array $b
  * @return array
  */
 function wfArrayDiff2( $a, $b ) {
@@ -117,8 +117,8 @@ function wfArrayDiff2( $a, $b ) {
 }
 
 /**
- * @param $a array|string
- * @param $b array|string
+ * @param array|string $a
+ * @param array|string $b
  * @return int
  */
 function wfArrayDiff2_cmp( $a, $b ) {
@@ -145,8 +145,8 @@ function wfArrayDiff2_cmp( $a, $b ) {
  * values in array $a with the corresponding keys
  *
  * @deprecated since 1.22; use array_intersect_key()
- * @param $a Array
- * @param $b Array
+ * @param array $a
+ * @param array $b
  * @return array
  */
 function wfArrayLookup( $a, $b ) {
@@ -157,10 +157,10 @@ function wfArrayLookup( $a, $b ) {
 /**
  * Appends to second array if $value differs from that in $default
  *
- * @param $key String|Int
- * @param $value Mixed
- * @param $default Mixed
- * @param array $changed to alter
+ * @param string|int $key
+ * @param mixed $value
+ * @param mixed $default
+ * @param array $changed Array to alter
  * @throws MWException
  */
 function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
@@ -177,11 +177,12 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
  * XXX: will not darn your socks for you.
  *
  * @deprecated since 1.22; use array_replace()
- * @param $array1 Array
- * @param [$array2, [...]] Arrays
- * @return Array
+ *
+ * @param array $array1 Initial array to merge.
+ * @param array [$array2,...] Variable list of arrays to merge.
+ * @return array
  */
-function wfArrayMerge( $array1/* ... */ ) {
+function wfArrayMerge( $array1 /*...*/ ) {
 	wfDeprecated( __FUNCTION__, '1.22' );
 	$args = func_get_args();
 	$args = array_reverse( $args, true );
@@ -207,8 +208,9 @@ function wfArrayMerge( $array1/* ... */ ) {
  *   		array( 'x' ),
  *   		array( 'y' )
  *   	)
- * @param varargs
- * @return Array
+ *
+ * @param array [$array1,...]
+ * @return array
  */
 function wfMergeErrorArrays( /*...*/ ) {
 	$args = func_get_args();
@@ -229,8 +231,8 @@ function wfMergeErrorArrays( /*...*/ ) {
  *
  * @param array $array The array.
  * @param array $insert The array to insert.
- * @param $after Mixed: The key to insert after
- * @return Array
+ * @param mixed $after The key to insert after
+ * @return array
  */
 function wfArrayInsertAfter( array $array, array $insert, $after ) {
 	// Find the offset of the element to insert after.
@@ -251,9 +253,9 @@ function wfArrayInsertAfter( array $array, array $insert, $after ) {
 /**
  * Recursively converts the parameter (an object) to an array with the same data
  *
- * @param $objOrArray Object|Array
- * @param $recursive Bool
- * @return Array
+ * @param object|array $objOrArray
+ * @param bool $recursive
+ * @return array
  */
 function wfObjectToArray( $objOrArray, $recursive = true ) {
 	$array = array();
@@ -294,7 +296,7 @@ function wfRandom() {
  *       of token please use MWCryptRand instead.
  *
  * @param int $length The length of the string to generate
- * @return String
+ * @return string
  * @since 1.20
  */
 function wfRandomString( $length = 32 ) {
@@ -324,7 +326,7 @@ function wfRandomString( $length = 32 ) {
  *
  * %2F in the page titles seems to fatally break for some reason.
  *
- * @param $s String:
+ * @param string $s
  * @return string
  */
 function wfUrlencode( $s ) {
@@ -361,8 +363,8 @@ function wfUrlencode( $s ) {
  *
  * @param array $array1 ( String|Array )
  * @param array $array2 ( String|Array )
- * @param $prefix String
- * @return String
+ * @param string $prefix
+ * @return string
  */
 function wfArrayToCgi( $array1, $array2 = null, $prefix = '' ) {
 	if ( !is_null( $array2 ) ) {
@@ -406,8 +408,8 @@ function wfArrayToCgi( $array1, $array2 = null, $prefix = '' ) {
  * with legacy functions that accept raw query strings instead of nice
  * arrays.  Of course, keys and values are urldecode()d.
  *
- * @param string $query query string
- * @return array Array version of input
+ * @param string $query Query string
+ * @return string[] Array version of input
  */
 function wfCgiToArray( $query ) {
 	if ( isset( $query[0] ) && $query[0] == '?' ) {
@@ -452,8 +454,8 @@ function wfCgiToArray( $query ) {
  * Append a query string to an existing URL, which may or may not already
  * have query string parameters already. If so, they will be combined.
  *
- * @param $url String
- * @param $query Mixed: string or associative array
+ * @param string $url
+ * @param string|string[] $query String or associative array
  * @return string
  */
 function wfAppendQuery( $url, $query ) {
@@ -488,8 +490,8 @@ function wfAppendQuery( $url, $query ) {
  * @todo this won't work with current-path-relative URLs
  * like "subdir/foo.html", etc.
  *
- * @param string $url either fully-qualified or a local path + query
- * @param $defaultProto Mixed: one of the PROTO_* constants. Determines the
+ * @param string $url Either fully-qualified or a local path + query
+ * @param string $defaultProto One of the PROTO_* constants. Determines the
  *    protocol to use if $url or $wgServer is protocol-relative
  * @return string Fully-qualified URL, current-path-relative URL or false if
  *    no valid URL can be constructed
@@ -690,7 +692,7 @@ function wfRemoveDotSegments( $urlPath ) {
  *
  * @param bool $includeProtocolRelative If false, remove '//' from the returned protocol list.
  *        DO NOT USE this directly, use wfUrlProtocolsWithoutProtRel() instead
- * @return String
+ * @return string
  */
 function wfUrlProtocols( $includeProtocolRelative = true ) {
 	global $wgUrlProtocols;
@@ -735,7 +737,7 @@ function wfUrlProtocols( $includeProtocolRelative = true ) {
  * Like wfUrlProtocols(), but excludes '//' from the protocol list. Use this if
  * you need a regex that matches all URL protocols but does not match protocol-
  * relative URLs
- * @return String
+ * @return string
  */
 function wfUrlProtocolsWithoutProtRel() {
 	return wfUrlProtocols( false );
@@ -749,8 +751,8 @@ function wfUrlProtocolsWithoutProtRel() {
  *    protocol-relative URLs) correctly.
  * 3) Adds a "delimiter" element to the array, either '://', ':' or '//' (see (2)).
  *
- * @param string $url a URL to parse
- * @return Array: bits of the URL in an associative array, per PHP docs
+ * @param string $url A URL to parse
+ * @return string[] Bits of the URL in an associative array, per PHP docs
  */
 function wfParseUrl( $url ) {
 	global $wgUrlProtocols; // Allow all protocols defined in DefaultSettings/LocalSettings.php
@@ -819,7 +821,7 @@ function wfParseUrl( $url ) {
  *
  * @todo handle punycode domains too
  *
- * @param $url string
+ * @param string $url
  * @return string
  */
 function wfExpandIRI( $url ) {
@@ -842,7 +844,7 @@ function wfExpandIRI_callback( $matches ) {
 /**
  * Make URL indexes, appropriate for the el_index field of externallinks.
  *
- * @param $url String
+ * @param string $url
  * @return array
  */
 function wfMakeUrlIndexes( $url ) {
@@ -919,18 +921,29 @@ function wfMatchesDomainList( $url, $domains ) {
  *
  * Controlling globals:
  * $wgDebugLogFile - points to the log file
- * $wgProfileOnly - if set, normal debug messages will not be recorded.
  * $wgDebugRawPage - if false, 'action=raw' hits will not result in debug output.
  * $wgDebugComments - if on, some debug items may appear in comments in the HTML output.
  *
- * @param $text String
- * @param bool $logonly set true to avoid appearing in HTML when $wgDebugComments is set
+ * @param string $text
+ * @param string|bool $dest Destination of the message:
+ *     - 'all': both to the log and HTML (debug toolbar or HTML comments)
+ *     - 'log': only to the log and not in HTML
+ *   For backward compatibility, it can also take a boolean:
+ *     - true: same as 'all'
+ *     - false: same as 'log'
  */
-function wfDebug( $text, $logonly = false ) {
-	global $wgDebugLogFile, $wgProfileOnly, $wgDebugRawPage, $wgDebugLogPrefix;
+function wfDebug( $text, $dest = 'all' ) {
+	global $wgDebugLogFile, $wgDebugRawPage, $wgDebugLogPrefix;
 
 	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
+	}
+
+	// Turn $dest into a string if it's a boolean (for b/c)
+	if ( $dest === true ) {
+		$dest = 'all';
+	} elseif ( $dest === false ) {
+		$dest = 'log';
 	}
 
 	$timer = wfDebugTimer();
@@ -938,11 +951,11 @@ function wfDebug( $text, $logonly = false ) {
 		$text = preg_replace( '/[^\n]/', $timer . '\0', $text, 1 );
 	}
 
-	if ( !$logonly ) {
+	if ( $dest === 'all' ) {
 		MWDebug::debugMsg( $text );
 	}
 
-	if ( $wgDebugLogFile != '' && !$wgProfileOnly ) {
+	if ( $wgDebugLogFile != '' ) {
 		# Strip unprintables; they can switch terminal modes when binary data
 		# gets dumped, which is pretty annoying.
 		$text = preg_replace( '![\x00-\x08\x0b\x0c\x0e-\x1f]!', ' ', $text );
@@ -994,7 +1007,7 @@ function wfDebugTimer() {
 /**
  * Send a line giving PHP memory usage.
  *
- * @param bool $exact print exact values instead of kilobytes (default: false)
+ * @param bool $exact Print exact values instead of kilobytes (default: false)
  */
 function wfDebugMem( $exact = false ) {
 	$mem = memory_get_usage();
@@ -1015,23 +1028,44 @@ function wfDebugMem( $exact = false ) {
  *
  * @since 1.23 support for sampling log messages via $wgDebugLogGroups.
  *
- * @param $logGroup String
- * @param $text String
- * @param bool $public whether to log the event in the public log if no private
- *                     log file is specified, (default true)
+ * @param string $logGroup
+ * @param string $text
+ * @param string|bool $dest Destination of the message:
+ *     - 'all': both to the log and HTML (debug toolbar or HTML comments)
+ *     - 'log': only to the log and not in HTML
+ *     - 'private': only to the specifc log if set in $wgDebugLogGroups and
+ *       discarded otherwise
+ *   For backward compatibility, it can also take a boolean:
+ *     - true: same as 'all'
+ *     - false: same as 'private'
  */
-function wfDebugLog( $logGroup, $text, $public = true ) {
+function wfDebugLog( $logGroup, $text, $dest = 'all' ) {
 	global $wgDebugLogGroups;
+
 	$text = trim( $text ) . "\n";
 
+	// Turn $dest into a string if it's a boolean (for b/c)
+	if ( $dest === true ) {
+		$dest = 'all';
+	} elseif ( $dest === false ) {
+		$dest = 'private';
+	}
+
 	if ( !isset( $wgDebugLogGroups[$logGroup] ) ) {
-		if ( $public === true ) {
-			wfDebug( "[$logGroup] $text", false );
+		if ( $dest !== 'private' ) {
+			wfDebug( "[$logGroup] $text", $dest );
 		}
 		return;
 	}
 
+	if ( $dest === 'all' ) {
+		MWDebug::debugMsg( "[$logGroup] $text" );
+	}
+
 	$logConfig = $wgDebugLogGroups[$logGroup];
+	if ( $logConfig === false ) {
+		return;
+	}
 	if ( is_array( $logConfig ) ) {
 		if ( isset( $logConfig['sample'] ) && mt_rand( 1, $logConfig['sample'] ) !== 1 ) {
 			return;
@@ -1050,7 +1084,7 @@ function wfDebugLog( $logGroup, $text, $public = true ) {
 /**
  * Log for database errors
  *
- * @param string $text database error message.
+ * @param string $text Database error message.
  */
 function wfLogDBError( $text ) {
 	global $wgDBerrorLog, $wgDBerrorLogTZ;
@@ -1074,7 +1108,7 @@ function wfLogDBError( $text ) {
 
 		$date = $d->format( 'D M j G:i:s T Y' );
 
-		$text = "$date\t$host\t$wiki\t$text";
+		$text = "$date\t$host\t$wiki\t" . trim( $text ) . "\n";
 		wfErrorLog( $text, $wgDBerrorLog );
 	}
 }
@@ -1082,11 +1116,11 @@ function wfLogDBError( $text ) {
 /**
  * Throws a warning that $function is deprecated
  *
- * @param $function String
+ * @param string $function
  * @param string|bool $version Version of MediaWiki that the function
  *    was deprecated in (Added in 1.19).
  * @param string|bool $component Added in 1.19.
- * @param $callerOffset integer: How far up the call stack is the original
+ * @param int $callerOffset How far up the call stack is the original
  *    caller. 2 = function that called the function that called
  *    wfDeprecated (Added in 1.20)
  *
@@ -1101,9 +1135,9 @@ function wfDeprecated( $function, $version = false, $component = false, $callerO
  * $wgDevelopmentWarnings. To log warnings in production, use wfLogWarning() instead.
  *
  * @param string $msg message to send
- * @param $callerOffset Integer: number of items to go back in the backtrace to
+ * @param int $callerOffset Number of items to go back in the backtrace to
  *        find the correct caller (1 = function calling wfWarn, ...)
- * @param $level Integer: PHP error level; defaults to E_USER_NOTICE;
+ * @param int $level PHP error level; defaults to E_USER_NOTICE;
  *        only used when $wgDevelopmentWarnings is true
  */
 function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
@@ -1114,10 +1148,10 @@ function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
  * Send a warning as a PHP error and the debug log. This is intended for logging
  * warnings in production. For logging development warnings, use WfWarn instead.
  *
- * @param $msg String: message to send
- * @param $callerOffset Integer: number of items to go back in the backtrace to
+ * @param string $msg Message to send
+ * @param int $callerOffset Number of items to go back in the backtrace to
  *        find the correct caller (1 = function calling wfLogWarning, ...)
- * @param $level Integer: PHP error level; defaults to E_USER_WARNING
+ * @param int $level PHP error level; defaults to E_USER_WARNING
  */
 function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
 	MWDebug::warning( $msg, $callerOffset + 1, $level, 'production' );
@@ -1129,8 +1163,8 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
  * Can also log to TCP or UDP with the syntax udp://host:port/prefix. This will
  * send lines to the specified port, prefixed by the specified prefix and a space.
  *
- * @param $text String
- * @param string $file filename
+ * @param string $text
+ * @param string $file Filename
  * @throws MWException
  */
 function wfErrorLog( $text, $file ) {
@@ -1192,8 +1226,8 @@ function wfErrorLog( $text, $file ) {
  * @todo document
  */
 function wfLogProfilingData() {
-	global $wgRequestTime, $wgDebugLogFile, $wgDebugRawPage, $wgRequest;
-	global $wgProfileLimit, $wgUser;
+	global $wgRequestTime, $wgDebugLogFile, $wgDebugLogGroups, $wgDebugRawPage;
+	global $wgProfileLimit, $wgUser, $wgRequest;
 
 	StatCounter::singleton()->flush();
 
@@ -1214,7 +1248,17 @@ function wfLogProfilingData() {
 	$profiler->logData();
 
 	// Check whether this should be logged in the debug file.
-	if ( $wgDebugLogFile == '' || ( !$wgDebugRawPage && wfIsDebugRawPage() ) ) {
+	if ( isset( $wgDebugLogGroups['profileoutput'] )
+		&& $wgDebugLogGroups['profileoutput'] === false
+	) {
+		// Explicitely disabled
+		return;
+	}
+	if ( !isset( $wgDebugLogGroups['profileoutput'] ) && $wgDebugLogFile == '' ) {
+		// Logging not enabled; no point going further
+		return;
+	}
+	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
 	}
 
@@ -1249,14 +1293,14 @@ function wfLogProfilingData() {
 		gmdate( 'YmdHis' ), $elapsed,
 		urldecode( $requestUrl . $forward ) );
 
-	wfErrorLog( $log . $profiler->getOutput(), $wgDebugLogFile );
+	wfDebugLog( 'profileoutput', $log . $profiler->getOutput() );
 }
 
 /**
  * Increment a statistics counter
  *
- * @param $key String
- * @param $count Int
+ * @param string $key
+ * @param int $count
  * @return void
  */
 function wfIncrStats( $key, $count = 1 ) {
@@ -1275,7 +1319,7 @@ function wfReadOnly() {
 /**
  * Get the value of $wgReadOnly or the contents of $wgReadOnlyFile.
  *
- * @return string|bool: String when in read-only mode; false otherwise
+ * @return string|bool String when in read-only mode; false otherwise
  */
 function wfReadOnlyReason() {
 	global $wgReadOnly, $wgReadOnlyFile;
@@ -1295,7 +1339,7 @@ function wfReadOnlyReason() {
 /**
  * Return a Language object from $langcode
  *
- * @param $langcode Mixed: either:
+ * @param Language|string|bool $langcode Either:
  *                  - a Language object
  *                  - code of the language to get the message for, if it is
  *                    a valid code create a language for that language, if
@@ -1305,7 +1349,7 @@ function wfReadOnlyReason() {
  *                    the current user's language (as a fallback for the old parameter
  *                    functionality), or if it is true then use global object
  *                    for the wiki's content language.
- * @return Language object
+ * @return Language
  */
 function wfGetLangObj( $langcode = false ) {
 	# Identify which language to get or create a language object for.
@@ -1341,19 +1385,6 @@ function wfGetLangObj( $langcode = false ) {
 }
 
 /**
- * Old function when $wgBetterDirectionality existed
- * All usage removed, wfUILang can be removed in near future
- *
- * @deprecated since 1.18
- * @return Language
- */
-function wfUILang() {
-	wfDeprecated( __METHOD__, '1.18' );
-	global $wgLang;
-	return $wgLang;
-}
-
-/**
  * This is the function for getting translated interface messages.
  *
  * @see Message class for documentation how to use them.
@@ -1361,12 +1392,15 @@ function wfUILang() {
  *
  * This function replaces all old wfMsg* functions.
  *
- * @param $key \string Message key.
- * Varargs: normal message parameters.
+ * @param string $key Message key
+ * @param mixed [$params,...] Normal message parameters
  * @return Message
+ *
  * @since 1.17
+ *
+ * @see Message::__construct
  */
-function wfMessage( $key /*...*/) {
+function wfMessage( $key /*...*/ ) {
 	$params = func_get_args();
 	array_shift( $params );
 	if ( isset( $params[0] ) && is_array( $params[0] ) ) {
@@ -1379,9 +1413,13 @@ function wfMessage( $key /*...*/) {
  * This function accepts multiple message keys and returns a message instance
  * for the first message which is non-empty. If all messages are empty then an
  * instance of the first message key is returned.
- * @param varargs: message keys
+ *
+ * @param string|string[] [$keys,...] Message keys
  * @return Message
+ *
  * @since 1.18
+ *
+ * @see Message::newFallbackSequence
  */
 function wfMessageFallback( /*...*/ ) {
 	$args = func_get_args();
@@ -1405,7 +1443,7 @@ function wfMessageFallback( /*...*/ ) {
  * - As an array in the second parameter
  * These are not shown in the function definition.
  *
- * @return String
+ * @return string
  */
 function wfMsg( $key ) {
 	wfDeprecated( __METHOD__, '1.21' );
@@ -1420,8 +1458,8 @@ function wfMsg( $key ) {
  *
  * @deprecated since 1.18
  *
- * @param $key String
- * @return String
+ * @param string $key
+ * @return string
  */
 function wfMsgNoTrans( $key ) {
 	wfDeprecated( __METHOD__, '1.21' );
@@ -1452,9 +1490,9 @@ function wfMsgNoTrans( $key ) {
  *
  * @deprecated since 1.18
  *
- * @param string $key lookup key for the message, usually
+ * @param string $key Lookup key for the message, usually
  *     defined in languages/Language.php
- * @return String
+ * @return string
  */
 function wfMsgForContent( $key ) {
 	wfDeprecated( __METHOD__, '1.21' );
@@ -1476,8 +1514,8 @@ function wfMsgForContent( $key ) {
  *
  * @deprecated since 1.18
  *
- * @param $key String
- * @return String
+ * @param string $key
+ * @return string
  */
 function wfMsgForContentNoTrans( $key ) {
 	wfDeprecated( __METHOD__, '1.21' );
@@ -1499,12 +1537,12 @@ function wfMsgForContentNoTrans( $key ) {
  *
  * @deprecated since 1.18
  *
- * @param string $key key to get.
- * @param $args
- * @param $useDB Boolean
- * @param $forContent Mixed: Language code, or false for user lang, true for content lang.
- * @param $transform Boolean: Whether or not to transform the message.
- * @return String: the requested message.
+ * @param string $key Key to get.
+ * @param array $args
+ * @param bool $useDB
+ * @param string|bool $forContent Language code, or false for user lang, true for content lang.
+ * @param bool $transform Whether or not to transform the message.
+ * @return string The requested message.
  */
 function wfMsgReal( $key, $args, $useDB = true, $forContent = false, $transform = true ) {
 	wfDeprecated( __METHOD__, '1.21' );
@@ -1521,11 +1559,11 @@ function wfMsgReal( $key, $args, $useDB = true, $forContent = false, $transform 
  *
  * @deprecated since 1.18
  *
- * @param $key String
- * @param $useDB Bool
- * @param string $langCode Code of the language to get the message for, or
- *                  behaves as a content language switch if it is a boolean.
- * @param $transform Boolean: whether to parse magic words, etc.
+ * @param string $key
+ * @param bool $useDB
+ * @param string|bool $langCode Code of the language to get the message for, or
+ *   behaves as a content language switch if it is a boolean.
+ * @param bool $transform Whether to parse magic words, etc.
  * @return string
  */
 function wfMsgGetKey( $key, $useDB = true, $langCode = false, $transform = true ) {
@@ -1546,8 +1584,8 @@ function wfMsgGetKey( $key, $useDB = true, $langCode = false, $transform = true 
 /**
  * Replace message parameter keys on the given formatted output.
  *
- * @param $message String
- * @param $args Array
+ * @param string $message
+ * @param array $args
  * @return string
  * @private
  */
@@ -1580,8 +1618,8 @@ function wfMsgReplaceArgs( $message, $args ) {
  *
  * @deprecated since 1.18
  *
- * @param $key String
- * @param string ... parameters
+ * @param string $key
+ * @param string [$args,...] Parameters
  * @return string
  */
 function wfMsgHtml( $key ) {
@@ -1601,8 +1639,8 @@ function wfMsgHtml( $key ) {
  *
  * @deprecated since 1.18
  *
- * @param $key String
- * @param string ... parameters
+ * @param string $key
+ * @param string [$args,...] Parameters
  * @return string
  */
 function wfMsgWikiHtml( $key ) {
@@ -1621,8 +1659,8 @@ function wfMsgWikiHtml( $key ) {
  *
  * @deprecated since 1.18
  *
- * @param string $key key of the message
- * @param array $options processing rules.
+ * @param string $key Key of the message
+ * @param array $options Processing rules.
  *   Can take the following options:
  *     parse: parses wikitext to HTML
  *     parseinline: parses wikitext to HTML and removes the surrounding
@@ -1637,7 +1675,7 @@ function wfMsgWikiHtml( $key ) {
  *       (overridden by content).
  * Behavior for conflicting options (e.g., parse+parseinline) is undefined.
  *
- * @return String
+ * @return string
  */
 function wfMsgExt( $key, $options ) {
 	wfDeprecated( __METHOD__, '1.21' );
@@ -1688,10 +1726,7 @@ function wfMsgExt( $key, $options ) {
 		}
 
 		if ( $parseInline ) {
-			$m = array();
-			if ( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
-				$string = $m[1];
-			}
+			$string = Parser::stripOuterParagraph( $string );
 		}
 	} elseif ( in_array( 'parsemag', $options, true ) ) {
 		$string = $messageCache->transform( $string,
@@ -1718,8 +1753,8 @@ function wfMsgExt( $key, $options ) {
  *
  * @deprecated since 1.18. Use Message::isDisabled().
  *
- * @param $key      String: the message key looked up
- * @return Boolean True if the message *doesn't* exist.
+ * @param string $key The message key looked up
+ * @return bool True if the message *doesn't* exist.
  */
 function wfEmptyMsg( $key ) {
 	wfDeprecated( __METHOD__, '1.21' );
@@ -1732,7 +1767,7 @@ function wfEmptyMsg( $key ) {
  * but now throws an exception instead, with similar results.
  *
  * @deprecated since 1.22; just throw an MWException yourself
- * @param string $msg message shown when dying.
+ * @param string $msg Message shown when dying.
  * @throws MWException
  */
 function wfDebugDieBacktrace( $msg = '' ) {
@@ -1779,19 +1814,23 @@ function wfHostname() {
 }
 
 /**
- * Returns a HTML comment with the elapsed time since request.
- * This method has no side effects.
+ * Returns a script tag that stores the amount of time it took MediaWiki to
+ * handle the request in milliseconds as 'wgBackendResponseTime'.
+ *
+ * If $wgShowHostnames is true, the script will also set 'wgHostname' to the
+ * hostname of the server handling the request.
  *
  * @return string
  */
 function wfReportTime() {
 	global $wgRequestTime, $wgShowHostnames;
 
-	$elapsed = microtime( true ) - $wgRequestTime;
-
-	return $wgShowHostnames
-		? sprintf( '<!-- Served by %s in %01.3f secs. -->', wfHostname(), $elapsed )
-		: sprintf( '<!-- Served in %01.3f secs. -->', $elapsed );
+	$responseTime = round( ( microtime( true ) - $wgRequestTime ) * 1000 );
+	$reportVars = array( 'wgBackendResponseTime' => $responseTime );
+	if ( $wgShowHostnames ) {
+		$reportVars[ 'wgHostname' ] = wfHostname();
+	}
+	return Skin::makeVariablesScript( $reportVars );
 }
 
 /**
@@ -1807,7 +1846,7 @@ function wfReportTime() {
  *
  * @param int $limit This parameter can be used to limit the number of stack frames returned
  *
- * @return array of backtrace information
+ * @return array Array of backtrace information
  */
 function wfDebugBacktrace( $limit = 0 ) {
 	static $disabled = null;
@@ -1895,7 +1934,7 @@ function wfBacktrace() {
  * wfGetCaller( 2 ) [default] is the caller of the function running wfGetCaller()
  * wfGetCaller( 3 ) is the parent of that.
  *
- * @param $level Int
+ * @param int $level
  * @return string
  */
 function wfGetCaller( $level = 2 ) {
@@ -1911,9 +1950,8 @@ function wfGetCaller( $level = 2 ) {
  * Return a string consisting of callers in the stack. Useful sometimes
  * for profiling specific points.
  *
- * @param int $limit The maximum depth of the stack frame to return, or false for
- *               the entire stack.
- * @return String
+ * @param int $limit The maximum depth of the stack frame to return, or false for the entire stack.
+ * @return string
  */
 function wfGetAllCallers( $limit = 3 ) {
 	$trace = array_reverse( wfDebugBacktrace() );
@@ -1927,7 +1965,7 @@ function wfGetAllCallers( $limit = 3 ) {
 /**
  * Return a string representation of frame
  *
- * @param $frame Array
+ * @param array $frame
  * @return string
  */
 function wfFormatStackFrame( $frame ) {
@@ -1941,9 +1979,9 @@ function wfFormatStackFrame( $frame ) {
 /**
  * @todo document
  *
- * @param $offset Int
- * @param $limit Int
- * @return String
+ * @param int $offset
+ * @param int $limit
+ * @return string
  */
 function wfShowingResults( $offset, $limit ) {
 	return wfMessage( 'showingresults' )->numParams( $limit, $offset + 1 )->parse();
@@ -1952,13 +1990,13 @@ function wfShowingResults( $offset, $limit ) {
 /**
  * Generate (prev x| next x) (20|50|100...) type links for paging
  *
- * @param $offset String
- * @param $limit Integer
- * @param $link String
- * @param string $query optional URL query parameter string
- * @param bool $atend optional param for specified if this is the last page
- * @return String
- * @deprecated in 1.19; use Language::viewPrevNext() instead
+ * @param string $offset
+ * @param int $limit
+ * @param string $link
+ * @param string $query Optional URL query parameter string
+ * @param bool $atend Optional param for specified if this is the last page
+ * @return string
+ * @deprecated since 1.19; use Language::viewPrevNext() instead
  */
 function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 	wfDeprecated( __METHOD__, '1.19' );
@@ -1983,7 +2021,7 @@ function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
  * @todo document
  * @todo FIXME: We may want to blacklist some broken browsers
  *
- * @param $force Bool
+ * @param bool $force
  * @return bool Whereas client accept gzip compression
  */
 function wfClientAcceptsGzip( $force = false ) {
@@ -2015,10 +2053,9 @@ function wfClientAcceptsGzip( $force = false ) {
  * Obtain the offset and limit values from the request string;
  * used in special pages
  *
- * @param int $deflimit default limit if none supplied
+ * @param int $deflimit Default limit if none supplied
  * @param string $optionname Name of a user preference to check against
  * @return array
- *
  */
 function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
 	global $wgRequest;
@@ -2031,8 +2068,8 @@ function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
  * is achieved by substituting certain characters with HTML entities.
  * As required by the callers, "<nowiki>" is not used.
  *
- * @param string $text text to be escaped
- * @return String
+ * @param string $text Text to be escaped
+ * @return string
  */
 function wfEscapeWikiText( $text ) {
 	static $repl = null, $repl2 = null;
@@ -2079,7 +2116,7 @@ function wfEscapeWikiText( $text ) {
 /**
  * Get the current unix timestamp with microseconds.  Useful for profiling
  * @deprecated since 1.22; call microtime() directly
- * @return Float
+ * @return float
  */
 function wfTime() {
 	wfDeprecated( __FUNCTION__, '1.22' );
@@ -2091,10 +2128,10 @@ function wfTime() {
  * If source is NULL, it just returns the value, it doesn't set the variable
  * If force is true, it will set the value even if source is NULL
  *
- * @param $dest Mixed
- * @param $source Mixed
- * @param $force Bool
- * @return Mixed
+ * @param mixed $dest
+ * @param mixed $source
+ * @param bool $force
+ * @return mixed
  */
 function wfSetVar( &$dest, $source, $force = false ) {
 	$temp = $dest;
@@ -2107,9 +2144,9 @@ function wfSetVar( &$dest, $source, $force = false ) {
 /**
  * As for wfSetVar except setting a bit
  *
- * @param $dest Int
- * @param $bit Int
- * @param $state Bool
+ * @param int $dest
+ * @param int $bit
+ * @param bool $state
  *
  * @return bool
  */
@@ -2129,7 +2166,7 @@ function wfSetBit( &$dest, $bit, $state = true ) {
  * A wrapper around the PHP function var_export().
  * Either print it or add it to the regular output ($wgOut).
  *
- * @param $var mixed A PHP variable to dump.
+ * @param mixed $var A PHP variable to dump.
  */
 function wfVarDump( $var ) {
 	global $wgOut;
@@ -2144,9 +2181,9 @@ function wfVarDump( $var ) {
 /**
  * Provide a simple HTTP error.
  *
- * @param $code Int|String
- * @param $label String
- * @param $desc String
+ * @param int|string $code
+ * @param string $label
+ * @param string $desc
  */
 function wfHttpError( $code, $label, $desc ) {
 	global $wgOut;
@@ -2181,7 +2218,7 @@ function wfHttpError( $code, $label, $desc ) {
  * Note that some PHP configuration options may add output buffer
  * layers which cannot be removed; these are left in place.
  *
- * @param $resetGzipEncoding Bool
+ * @param bool $resetGzipEncoding
  */
 function wfResetOutputBuffers( $resetGzipEncoding = true ) {
 	if ( $resetGzipEncoding ) {
@@ -2235,9 +2272,9 @@ function wfClearOutputBuffers() {
  * Converts an Accept-* header into an array mapping string values to quality
  * factors
  *
- * @param $accept String
+ * @param string $accept
  * @param string $def default
- * @return Array
+ * @return float[] Associative array of string => float pairs
  */
 function wfAcceptToPrefs( $accept, $def = '*/*' ) {
 	# No arg means accept anything (per HTTP spec)
@@ -2270,8 +2307,8 @@ function wfAcceptToPrefs( $accept, $def = '*/*' ) {
  * Returns the matching MIME type (or wildcard) if a match, otherwise
  * NULL if no match.
  *
- * @param $type String
- * @param $avail Array
+ * @param string $type
+ * @param array $avail
  * @return string
  * @private
  */
@@ -2296,8 +2333,8 @@ function mimeTypeMatch( $type, $avail ) {
  * array of type to preference (preference is a float between 0.0 and 1.0).
  * Wildcards in the types are acceptable.
  *
- * @param array $cprefs client's acceptable type list
- * @param array $sprefs server's offered types
+ * @param array $cprefs Client's acceptable type list
+ * @param array $sprefs Server's offered types
  * @return string
  *
  * @todo FIXME: Doesn't handle params like 'text/plain; charset=UTF-8'
@@ -2342,7 +2379,7 @@ function wfNegotiateType( $cprefs, $sprefs ) {
 /**
  * Reference-counted warning suppression
  *
- * @param $end Bool
+ * @param bool $end
  */
 function wfSuppressWarnings( $end = false ) {
 	static $suppressCount = 0;
@@ -2434,11 +2471,10 @@ define( 'TS_ISO_8601_BASIC', 9 );
 /**
  * Get a timestamp string in one of various formats
  *
- * @param $outputtype Mixed: A timestamp in one of the supported formats, the
- *                    function will autodetect which format is supplied and act
- *                    accordingly.
- * @param $ts Mixed: optional timestamp to convert, default 0 for the current time
- * @return Mixed: String / false The same date in the format specified in $outputtype or false
+ * @param mixed $outputtype A timestamp in one of the supported formats, the
+ *   function will autodetect which format is supplied and act accordingly.
+ * @param mixed $ts Optional timestamp to convert, default 0 for the current time
+ * @return string|bool String / false The same date in the format specified in $outputtype or false
  */
 function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 	try {
@@ -2454,9 +2490,9 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
  * Return a formatted timestamp, or null if input is null.
  * For dealing with nullable timestamp columns in the database.
  *
- * @param $outputtype Integer
- * @param $ts String
- * @return String
+ * @param int $outputtype
+ * @param string $ts
+ * @return string
  */
 function wfTimestampOrNull( $outputtype = TS_UNIX, $ts = null ) {
 	if ( is_null( $ts ) ) {
@@ -2479,7 +2515,7 @@ function wfTimestampNow() {
 /**
  * Check if the operating system is Windows
  *
- * @return Bool: true if it's Windows, False otherwise.
+ * @return bool True if it's Windows, false otherwise.
  */
 function wfIsWindows() {
 	static $isWindows = null;
@@ -2492,7 +2528,7 @@ function wfIsWindows() {
 /**
  * Check if we are running under HHVM
  *
- * @return Bool
+ * @return bool
  */
 function wfIsHHVM() {
 	return defined( 'HHVM_VERSION' );
@@ -2501,8 +2537,8 @@ function wfIsHHVM() {
 /**
  * Swap two variables
  *
- * @param $x Mixed
- * @param $y Mixed
+ * @param mixed $x
+ * @param mixed $y
  */
 function swap( &$x, &$y ) {
 	$z = $x;
@@ -2519,7 +2555,7 @@ function swap( &$x, &$y ) {
  * NOTE: When possible, use instead the tmpfile() function to create
  * temporary files to avoid race conditions on file creation, etc.
  *
- * @return String
+ * @return string
  */
 function wfTempDir() {
 	global $wgTmpDirectory;
@@ -2541,9 +2577,9 @@ function wfTempDir() {
 /**
  * Make directory, and make all parent directories if they don't exist
  *
- * @param string $dir full path to directory to create
- * @param $mode Integer: chmod value to use, default is $wgDirectoryMode
- * @param string $caller optional caller param for debugging.
+ * @param string $dir Full path to directory to create
+ * @param int $mode Chmod value to use, default is $wgDirectoryMode
+ * @param string $caller Optional caller param for debugging.
  * @throws MWException
  * @return bool
  */
@@ -2588,6 +2624,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 /**
  * Remove a directory and all its content.
  * Does not hide error.
+ * @param string $dir
  */
 function wfRecursiveRemoveDir( $dir ) {
 	wfDebug( __FUNCTION__ . "( $dir )\n" );
@@ -2609,33 +2646,14 @@ function wfRecursiveRemoveDir( $dir ) {
 }
 
 /**
- * @param $nr Mixed: the number to format
- * @param $acc Integer: the number of digits after the decimal point, default 2
- * @param $round Boolean: whether or not to round the value, default true
- * @return float
+ * @param int $nr The number to format
+ * @param int $acc The number of digits after the decimal point, default 2
+ * @param bool $round Whether or not to round the value, default true
+ * @return string
  */
 function wfPercent( $nr, $acc = 2, $round = true ) {
 	$ret = sprintf( "%.${acc}f", $nr );
 	return $round ? round( $ret, $acc ) . '%' : "$ret%";
-}
-
-/**
- * Find out whether or not a mixed variable exists in a string
- *
- * @deprecated Just use str(i)pos
- * @param $needle String
- * @param $str String
- * @param $insensitive Boolean
- * @return Boolean
- */
-function in_string( $needle, $str, $insensitive = false ) {
-	wfDeprecated( __METHOD__, '1.21' );
-	$func = 'strpos';
-	if ( $insensitive ) {
-		$func = 'stripos';
-	}
-
-	return $func( $str, $needle ) !== false;
 }
 
 /**
@@ -2658,8 +2676,8 @@ function in_string( $needle, $str, $insensitive = false ) {
  *
  * I frickin' hate PHP... :P
  *
- * @param $setting String
- * @return Bool
+ * @param string $setting
+ * @return bool
  */
 function wfIniGetBool( $setting ) {
 	$val = strtolower( ini_get( $setting ) );
@@ -2678,10 +2696,10 @@ function wfIniGetBool( $setting ) {
  * Also fixes the locale problems on Linux in PHP 5.2.6+ (bug backported to
  * earlier distro releases of PHP)
  *
- * @param varargs
- * @return String
+ * @param string [$args,...]
+ * @return string
  */
-function wfEscapeShellArg() {
+function wfEscapeShellArg( /*...*/ ) {
 	wfInitShellLocale();
 
 	$args = func_get_args();
@@ -2738,6 +2756,7 @@ function wfEscapeShellArg() {
 
 /**
  * Check if wfShellExec() is effectively disabled via php.ini config
+ *
  * @return bool|string False or one of (safemode,disabled)
  * @since 1.22
  */
@@ -2764,19 +2783,20 @@ function wfShellExecDisabled() {
 /**
  * Execute a shell command, with time and memory limits mirrored from the PHP
  * configuration if supported.
- * @param string $cmd Command line, properly escaped for shell.
- * @param &$retval null|Mixed optional, will receive the program's exit code.
- *                 (non-zero is usually failure). If there is an error from
- *                 read, select, or proc_open(), this will be set to -1.
- * @param array $environ optional environment variables which should be
- *                 added to the executed command environment.
- * @param array $limits optional array with limits(filesize, memory, time, walltime)
- *                 this overwrites the global wgMaxShell* limits.
- * @param array $options Array of options:
- *    - duplicateStderr: Set this to true to duplicate stderr to stdout,
- *      including errors from limit.sh
  *
- * @return string collected stdout as a string
+ * @param string $cmd Command line, properly escaped for shell.
+ * @param null|mixed &$retval Optional, will receive the program's exit code.
+ *   (non-zero is usually failure). If there is an error from
+ *   read, select, or proc_open(), this will be set to -1.
+ * @param array $environ Optional environment variables which should be
+ *   added to the executed command environment.
+ * @param array $limits Optional array with limits(filesize, memory, time, walltime)
+ *   this overwrites the global wgMaxShell* limits.
+ * @param array $options Array of options:
+ *   - duplicateStderr: Set this to true to duplicate stderr to stdout,
+ *     including errors from limit.sh
+ *
+ * @return string Collected stdout as a string
  */
 function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	$limits = array(), $options = array()
@@ -2856,19 +2876,10 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	if ( $useLogPipe ) {
 		$desc[3] = array( 'pipe', 'w' );
 	}
-
-	# TODO/FIXME: This is a bad hack to workaround an HHVM bug that prevents
-	# proc_open() from opening stdin/stdout, so use /dev/null *for now*
-	# See bug 56597 / https://github.com/facebook/hhvm/issues/1247 for more info
-	if ( wfIsHHVM() ) {
-		$desc[0] = array( 'file', '/dev/null', 'r' );
-		$desc[2] = array( 'file', '/dev/null', 'w' );
-	}
-
 	$pipes = null;
 	$proc = proc_open( $cmd, $desc, $pipes );
 	if ( !$proc ) {
-		wfDebugLog( 'exec', "proc_open() failed: $cmd\n" );
+		wfDebugLog( 'exec', "proc_open() failed: $cmd" );
 		$retval = -1;
 		return '';
 	}
@@ -2908,8 +2919,10 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 		$readyPipes = $pipes;
 
 		// Clear last error
+		// @codingStandardsIgnoreStart Generic.PHP.NoSilencedErrors.Discouraged
 		@trigger_error( '' );
 		if ( @stream_select( $readyPipes, $emptyArray, $emptyArray, null ) === false ) {
+			// @codingStandardsIgnoreEnd
 			$error = error_get_last();
 			if ( strncmp( $error['message'], $eintrMessage, strlen( $eintrMessage ) ) == 0 ) {
 				continue;
@@ -2983,7 +2996,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	}
 
 	if ( $logMsg !== false ) {
-		wfDebugLog( 'exec', "$logMsg: $cmd\n" );
+		wfDebugLog( 'exec', "$logMsg: $cmd" );
 	}
 
 	return $outBuffer;
@@ -2995,13 +3008,13 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
  *
  * @note This also includes errors from limit.sh, e.g. if $wgMaxShellFileSize is exceeded.
  * @param string $cmd Command line, properly escaped for shell.
- * @param &$retval null|Mixed optional, will receive the program's exit code.
- *                 (non-zero is usually failure)
+ * @param null|mixed &$retval Optional, will receive the program's exit code.
+ *   (non-zero is usually failure)
  * @param array $environ optional environment variables which should be
- *                 added to the executed command environment.
- * @param array $limits optional array with limits(filesize, memory, time, walltime)
- *                 this overwrites the global wgShellMax* limits.
- * @return string collected stdout and stderr as a string
+ *   added to the executed command environment.
+ * @param array $limits Optional array with limits(filesize, memory, time, walltime)
+ *   this overwrites the global wgShellMax* limits.
+ * @return string Collected stdout and stderr as a string
  */
 function wfShellExecWithStderr( $cmd, &$retval = null, $environ = array(), $limits = array() ) {
 	return wfShellExec( $cmd, $retval, $environ, $limits, array( 'duplicateStderr' => true ) );
@@ -3026,6 +3039,7 @@ function wfInitShellLocale() {
 
 /**
  * Alias to wfShellWikiCmd()
+ *
  * @see wfShellWikiCmd()
  */
 function wfShellMaintenanceCmd( $script, array $parameters = array(), array $options = array() ) {
@@ -3036,12 +3050,13 @@ function wfShellMaintenanceCmd( $script, array $parameters = array(), array $opt
  * Generate a shell-escaped command line string to run a MediaWiki cli script.
  * Note that $parameters should be a flat array and an option with an argument
  * should consist of two consecutive items in the array (do not use "--option value").
+ *
  * @param string $script MediaWiki cli script path
  * @param array $parameters Arguments and options to the script
  * @param array $options Associative array of options:
  * 		'php': The path to the php executable
  * 		'wrapper': Path to a PHP wrapper to handle the maintenance script
- * @return Array
+ * @return string
  */
 function wfShellWikiCmd( $script, array $parameters = array(), array $options = array() ) {
 	global $wgPhpCli;
@@ -3061,11 +3076,11 @@ function wfShellWikiCmd( $script, array $parameters = array(), array $options = 
  * wfMerge attempts to merge differences between three texts.
  * Returns true for a clean merge and false for failure or a conflict.
  *
- * @param $old String
- * @param $mine String
- * @param $yours String
- * @param $result String
- * @return Bool
+ * @param string $old
+ * @param string $mine
+ * @param string $yours
+ * @param string $result
+ * @return bool
  */
 function wfMerge( $old, $mine, $yours, &$result ) {
 	global $wgDiff3;
@@ -3140,10 +3155,10 @@ function wfMerge( $old, $mine, $yours, &$result ) {
  * Returns unified plain-text diff of two texts.
  * Useful for machine processing of diffs.
  *
- * @param string $before the text before the changes.
- * @param string $after the text after the changes.
- * @param string $params command-line options for the diff command.
- * @return String: unified diff of $before and $after
+ * @param string $before The text before the changes.
+ * @param string $after The text after the changes.
+ * @param string $params Command-line options for the diff command.
+ * @return string Unified diff of $before and $after
  */
 function wfDiff( $before, $after, $params = '-u' ) {
 	if ( $before == $after ) {
@@ -3220,8 +3235,7 @@ function wfDiff( $before, $after, $params = '-u' ) {
  *
  * @see perldoc -f use
  *
- * @param $req_ver Mixed: the version to check, can be a string, an integer, or
- *                 a float
+ * @param string|int|float $req_ver The version to check, can be a string, an integer, or a float
  * @throws MWException
  */
 function wfUsePHP( $req_ver ) {
@@ -3250,8 +3264,7 @@ function wfUsePHP( $req_ver ) {
  *
  * @see perldoc -f use
  *
- * @param $req_ver Mixed: the version to check, can be a string, an integer, or
- *                 a float
+ * @param string|int|float $req_ver The version to check, can be a string, an integer, or a float
  * @throws MWException
  */
 function wfUseMW( $req_ver ) {
@@ -3270,9 +3283,9 @@ function wfUseMW( $req_ver ) {
  * PHP's basename() only considers '\' a pathchar on Windows and Netware.
  * We'll consider it so always, as we don't want '\s' in our Unix paths either.
  *
- * @param $path String
- * @param string $suffix to remove if present
- * @return String
+ * @param string $path
+ * @param string $suffix String to remove if present
+ * @return string
  */
 function wfBaseName( $path, $suffix = '' ) {
 	if ( $suffix == '' ) {
@@ -3294,9 +3307,9 @@ function wfBaseName( $path, $suffix = '' ) {
  * May explode on non-matching case-insensitive paths,
  * funky symlinks, etc.
  *
- * @param string $path absolute destination path including target filename
+ * @param string $path Absolute destination path including target filename
  * @param string $from Absolute source path, directory only
- * @return String
+ * @return string
  */
 function wfRelativePath( $path, $from ) {
 	// Normalize mixed input on Windows...
@@ -3393,9 +3406,11 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1,
 			$decimal = bcadd( $decimal, $baseChars[$char] );
 		}
 
+		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
 		for ( $result = ''; bccomp( $decimal, 0 ); $decimal = bcdiv( $decimal, $destBase, 0 ) ) {
 			$result .= $baseChars[bcmod( $decimal, $destBase )];
 		}
+		// @codingStandardsIgnoreEnd
 
 		$result = strrev( $result );
 	} else {
@@ -3441,24 +3456,8 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1,
 }
 
 /**
- * @return bool
- */
-function wfHttpOnlySafe() {
-	global $wgHttpOnlyBlacklist;
-
-	if ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
-		foreach ( $wgHttpOnlyBlacklist as $regex ) {
-			if ( preg_match( $regex, $_SERVER['HTTP_USER_AGENT'] ) ) {
-				return false;
-			}
-		}
-	}
-
-	return true;
-}
-
-/**
  * Check if there is sufficient entropy in php's built-in session generation
+ *
  * @return bool true = there is sufficient entropy
  */
 function wfCheckEntropy() {
@@ -3496,6 +3495,7 @@ function wfFixSessionID() {
 
 /**
  * Reset the session_id
+ *
  * @since 1.22
  */
 function wfResetSessionID() {
@@ -3517,7 +3517,7 @@ function wfResetSessionID() {
 /**
  * Initialise php session
  *
- * @param $sessionId Bool
+ * @param bool $sessionId
  */
 function wfSetupSession( $sessionId = false ) {
 	global $wgSessionsInMemcached, $wgSessionsInObjectCache, $wgCookiePath, $wgCookieDomain,
@@ -3529,16 +3529,8 @@ function wfSetupSession( $sessionId = false ) {
 		# hasn't already been set to the desired value (that causes errors)
 		ini_set( 'session.save_handler', $wgSessionHandler );
 	}
-	$httpOnlySafe = wfHttpOnlySafe() && $wgCookieHttpOnly;
-	wfDebugLog( 'cookie',
-		'session_set_cookie_params: "' . implode( '", "',
-			array(
-				0,
-				$wgCookiePath,
-				$wgCookieDomain,
-				$wgCookieSecure,
-				$httpOnlySafe ) ) . '"' );
-	session_set_cookie_params( 0, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $httpOnlySafe );
+	session_set_cookie_params(
+		0, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
 	session_cache_limiter( 'private, must-revalidate' );
 	if ( $sessionId ) {
 		session_id( $sessionId );
@@ -3553,8 +3545,8 @@ function wfSetupSession( $sessionId = false ) {
 /**
  * Get an object from the precompiled serialized directory
  *
- * @param $name String
- * @return Mixed: the variable on success, false on failure
+ * @param string $name
+ * @return mixed The variable on success, false on failure
  */
 function wfGetPrecompiledData( $name ) {
 	global $IP;
@@ -3572,10 +3564,10 @@ function wfGetPrecompiledData( $name ) {
 /**
  * Get a cache key
  *
- * @param varargs
- * @return String
+ * @param string [$args,...]
+ * @return string
  */
-function wfMemcKey( /*... */ ) {
+function wfMemcKey( /*...*/ ) {
 	global $wgCachePrefix;
 	$prefix = $wgCachePrefix === false ? wfWikiID() : $wgCachePrefix;
 	$args = func_get_args();
@@ -3587,12 +3579,12 @@ function wfMemcKey( /*... */ ) {
 /**
  * Get a cache key for a foreign DB
  *
- * @param $db String
- * @param $prefix String
- * @param varargs String
- * @return String
+ * @param string $db
+ * @param string $prefix
+ * @param string [$args,...]
+ * @return string
  */
-function wfForeignMemcKey( $db, $prefix /*, ... */ ) {
+function wfForeignMemcKey( $db, $prefix /*...*/ ) {
 	$args = array_slice( func_get_args(), 2 );
 	if ( $prefix ) {
 		$key = "$db-$prefix:" . implode( ':', $args );
@@ -3606,7 +3598,7 @@ function wfForeignMemcKey( $db, $prefix /*, ... */ ) {
  * Get an ASCII string identifying this wiki
  * This is used as a prefix in memcached keys
  *
- * @return String
+ * @return string
  */
 function wfWikiID() {
 	global $wgDBprefix, $wgDBname;
@@ -3620,7 +3612,7 @@ function wfWikiID() {
 /**
  * Split a wiki ID into DB name and table prefix
  *
- * @param $wiki String
+ * @param string $wiki
  *
  * @return array
  */
@@ -3635,15 +3627,15 @@ function wfSplitWikiID( $wiki ) {
 /**
  * Get a Database object.
  *
- * @param $db Integer: index of the connection to get. May be DB_MASTER for the
+ * @param int $db Index of the connection to get. May be DB_MASTER for the
  *            master (for write queries), DB_SLAVE for potentially lagged read
  *            queries, or an integer >= 0 for a particular server.
  *
- * @param $groups Mixed: query groups. An array of group names that this query
+ * @param string|string[] $groups Query groups. An array of group names that this query
  *                belongs to. May contain a single string if the query is only
  *                in one group.
  *
- * @param string $wiki the wiki ID, or false for the current wiki
+ * @param string|bool $wiki The wiki ID, or false for the current wiki
  *
  * Note: multiple calls to wfGetDB(DB_SLAVE) during the course of one request
  * will always return the same object, unless the underlying connection or load
@@ -3661,7 +3653,7 @@ function &wfGetDB( $db, $groups = array(), $wiki = false ) {
 /**
  * Get a load balancer object.
  *
- * @param string $wiki wiki ID, or false for the current wiki
+ * @param string|bool $wiki wiki ID, or false for the current wiki
  * @return LoadBalancer
  */
 function wfGetLB( $wiki = false ) {
@@ -3695,7 +3687,7 @@ function &wfGetLBFactory() {
  *
  *     bypassCache:    If true, do not use the process-local cache of File objects
  *
- * @return File, or false if the file does not exist
+ * @return File|bool File, or false if the file does not exist
  */
 function wfFindFile( $title, $options = array() ) {
 	return RepoGroup::singleton()->findFile( $title, $options );
@@ -3705,7 +3697,7 @@ function wfFindFile( $title, $options = array() ) {
  * Get an object referring to a locally registered file.
  * Returns a valid placeholder object if the file does not exist.
  *
- * @param $title Title|String
+ * @param Title|string $title
  * @return LocalFile|null A File, or null if passed an invalid Title
  */
 function wfLocalFile( $title ) {
@@ -3713,18 +3705,9 @@ function wfLocalFile( $title ) {
 }
 
 /**
- * Stream a file to the browser. Back-compat alias for StreamFile::stream()
- * @deprecated since 1.19
- */
-function wfStreamFile( $fname, $headers = array() ) {
-	wfDeprecated( __FUNCTION__, '1.19' );
-	StreamFile::stream( $fname, $headers );
-}
-
-/**
  * Should low-performance queries be disabled?
  *
- * @return Boolean
+ * @return bool
  * @codeCoverageIgnore
  */
 function wfQueriesMustScale() {
@@ -3740,8 +3723,8 @@ function wfQueriesMustScale() {
  * extensions; this is a wrapper around $wgScriptExtension etc.
  * except for 'index' and 'load' which use $wgScript/$wgLoadScript
  *
- * @param string $script script filename, sans extension
- * @return String
+ * @param string $script Script filename, sans extension
+ * @return string
  */
 function wfScript( $script = 'index' ) {
 	global $wgScriptPath, $wgScriptExtension, $wgScript, $wgLoadScript;
@@ -3781,8 +3764,8 @@ function wfGetScriptUrl() {
  * Convenience function converts boolean values into "true"
  * or "false" (string) values
  *
- * @param $value Boolean
- * @return String
+ * @param bool $value
+ * @return string
  */
 function wfBoolToStr( $value ) {
 	return $value ? 'true' : 'false';
@@ -3805,7 +3788,7 @@ function wfGetNull() {
  * a no-op if there are no slaves.
  *
  * @param int|bool $maxLag (deprecated)
- * @param mixed $wiki Wiki identifier accepted by wfGetLB
+ * @param string|bool $wiki Wiki identifier accepted by wfGetLB
  * @param string|bool $cluster Cluster name accepted by LBFactory. Default: false.
  */
 function wfWaitForSlaves( $maxLag = false, $wiki = false, $cluster = false ) {
@@ -3829,14 +3812,15 @@ function wfWaitForSlaves( $maxLag = false, $wiki = false, $cluster = false ) {
 }
 
 /**
- * Count down from $n to zero on the terminal, with a one-second pause
+ * Count down from $seconds to zero on the terminal, with a one-second pause
  * between showing each number. For use in command-line scripts.
+ *
  * @codeCoverageIgnore
- * @param $n int
+ * @param int $seconds
  */
-function wfCountDown( $n ) {
-	for ( $i = $n; $i >= 0; $i-- ) {
-		if ( $i != $n ) {
+function wfCountDown( $seconds ) {
+	for ( $i = $seconds; $i >= 0; $i-- ) {
+		if ( $i != $seconds ) {
 			echo str_repeat( "\x08", strlen( $i + 1 ) );
 		}
 		echo $i;
@@ -3849,29 +3833,12 @@ function wfCountDown( $n ) {
 }
 
 /**
- * Generate a random 32-character hexadecimal token.
- * @param $salt Mixed: some sort of salt, if necessary, to add to random
- *              characters before hashing.
- * @return string
- * @codeCoverageIgnore
- * @deprecated since 1.20; Please use MWCryptRand for security purposes and
- * wfRandomString for pseudo-random strings
- * @warning This method is NOT secure. Additionally it has many callers that
- * use it for pseudo-random purposes.
- */
-function wfGenerateToken( $salt = '' ) {
-	wfDeprecated( __METHOD__, '1.20' );
-	$salt = serialize( $salt );
-	return md5( mt_rand( 0, 0x7fffffff ) . $salt );
-}
-
-/**
  * Replace all invalid characters with -
  * Additional characters can be defined in $wgIllegalFileChars (see bug 20489)
  * By default, $wgIllegalFileChars = ':'
  *
- * @param $name Mixed: filename to process
- * @return String
+ * @param string $name Filename to process
+ * @return string
  */
 function wfStripIllegalFilenameChars( $name ) {
 	global $wgIllegalFileChars;
@@ -3888,7 +3855,7 @@ function wfStripIllegalFilenameChars( $name ) {
 /**
  * Set PHP's memory limit to the larger of php.ini or $wgMemoryLimit;
  *
- * @return Integer value memory was set to.
+ * @return int Value the memory limit was set to.
  */
 function wfMemoryLimit() {
 	global $wgMemoryLimit;
@@ -3915,8 +3882,8 @@ function wfMemoryLimit() {
 /**
  * Converts shorthand byte notation to integer form
  *
- * @param $string String
- * @return Integer
+ * @param string $string
+ * @return int
  */
 function wfShorthandToInteger( $string = '' ) {
 	$string = trim( $string );
@@ -3947,7 +3914,7 @@ function wfShorthandToInteger( $string = '' ) {
  * See unit test for examples.
  *
  * @param string $code The language code.
- * @return String: The language code which complying with BCP 47 standards.
+ * @return string The language code which complying with BCP 47 standards.
  */
 function wfBCP47( $code ) {
 	$codeSegment = explode( '-', $code );
@@ -3974,7 +3941,7 @@ function wfBCP47( $code ) {
 /**
  * Get a cache object.
  *
- * @param $inputType integer Cache type, one the the CACHE_* constants.
+ * @param int $inputType Cache type, one the the CACHE_* constants.
  * @return BagOStuff
  */
 function wfGetCache( $inputType ) {
@@ -4024,20 +3991,22 @@ function wfGetLangConverterCacheStorage() {
 /**
  * Call hook functions defined in $wgHooks
  *
- * @param string $event event name
- * @param array $args parameters passed to hook functions
- * @return Boolean True if no handler aborted the hook
+ * @param string $event Event name
+ * @param array $args Parameters passed to hook functions
+ * @param string|null $deprecatedVersion Optionally mark hook as deprecated with version number
+ *
+ * @return bool True if no handler aborted the hook
  */
-function wfRunHooks( $event, array $args = array() ) {
-	return Hooks::run( $event, $args );
+function wfRunHooks( $event, array $args = array(), $deprecatedVersion = null ) {
+	return Hooks::run( $event, $args, $deprecatedVersion );
 }
 
 /**
  * Wrapper around php's unpack.
  *
  * @param string $format The format string (See php's docs)
- * @param $data: A binary string of binary data
- * @param $length integer or false: The minimum length of $data. This is to
+ * @param string $data A binary string of binary data
+ * @param int|bool $length The minimum length of $data or false. This is to
  *	prevent reading beyond the end of $data. false to disable the check.
  *
  * Also be careful when using this function to read unsigned 32 bit integer
@@ -4077,9 +4046,9 @@ function wfUnpack( $format, $data, $length = false ) {
  *    * Any subsequent links on the same line are considered to be exceptions,
  *      i.e. articles where the image may occur inline.
  *
- * @param string $name the image name to check
- * @param $contextTitle Title|bool the page on which the image occurs, if known
- * @param string $blacklist wikitext of a file blacklist
+ * @param string $name The image name to check
+ * @param Title|bool $contextTitle The page on which the image occurs, if known
+ * @param string $blacklist Wikitext of a file blacklist
  * @return bool
  */
 function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
@@ -4154,7 +4123,7 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
  * access the wiki via HTTPS.
  *
  * @param string $ip The IPv4/6 address in the normal human-readable form
- * @return boolean
+ * @return bool
  */
 function wfCanIPUseHTTPS( $ip ) {
 	$canDo = true;
@@ -4166,7 +4135,7 @@ function wfCanIPUseHTTPS( $ip ) {
  * Work out the IP address based on various globals
  * For trusted proxies, use the XFF client IP (first of the chain)
  *
- * @deprecated in 1.19; call $wgRequest->getIP() directly.
+ * @deprecated since 1.19; call $wgRequest->getIP() directly.
  * @return string
  */
 function wfGetIP() {
@@ -4179,38 +4148,23 @@ function wfGetIP() {
  * Checks if an IP is a trusted proxy provider.
  * Useful to tell if X-Forwarded-For data is possibly bogus.
  * Squid cache servers for the site are whitelisted.
+ * @deprecated Since 1.24, use IP::isTrustedProxy()
  *
- * @param $ip String
+ * @param string $ip
  * @return bool
  */
 function wfIsTrustedProxy( $ip ) {
-	$trusted = wfIsConfiguredProxy( $ip );
-	wfRunHooks( 'IsTrustedProxy', array( &$ip, &$trusted ) );
-	return $trusted;
+	return IP::isTrustedProxy( $ip );
 }
 
 /**
  * Checks if an IP matches a proxy we've configured.
- * @param $ip String
+ * @deprecated Since 1.24, use IP::isConfiguredProxy()
+ *
+ * @param string $ip
  * @return bool
  * @since 1.23 Supports CIDR ranges in $wgSquidServersNoPurge
  */
 function wfIsConfiguredProxy( $ip ) {
-	global $wgSquidServers, $wgSquidServersNoPurge;
-
-	// quick check of known proxy servers
-	$trusted = in_array( $ip, $wgSquidServers )
-		|| in_array( $ip, $wgSquidServersNoPurge );
-
-	if ( !$trusted ) {
-		// slightly slower check to see if the ip is listed directly or in a CIDR
-		// block in $wgSquidServersNoPurge
-		foreach ( $wgSquidServersNoPurge as $block ) {
-			if ( strpos( $block, '/' ) !== false && IP::isInRange( $ip, $block ) ) {
-				$trusted = true;
-				break;
-			}
-		}
-	}
-	return $trusted;
+	return IP::isTrustedProxy( $ip );
 }

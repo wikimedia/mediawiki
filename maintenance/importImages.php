@@ -4,7 +4,8 @@
  * using the web-based interface.
  *
  * "Smart import" additions:
- * - aim: preserve the essential metadata (user, description) when importing medias from an existing wiki
+ * - aim: preserve the essential metadata (user, description) when importing media
+ *   files from an existing wiki.
  * - process:
  *      - interface with the source wiki, don't use bare files only (see --source-wiki-url).
  *      - fetch metadata from source wiki for each file to import.
@@ -87,16 +88,24 @@ if ( isset( $options['check-userblock'] ) ) {
 }
 
 # Get --from
-$from = @$options['from'];
+wfSuppressWarnings();
+$from = $options['from'];
+wfRestoreWarnings();
 
 # Get sleep time.
-$sleep = @$options['sleep'];
+wfSuppressWarnings();
+$sleep = $options['sleep'];
+wfRestoreWarnings();
+
 if ( $sleep ) {
 	$sleep = (int)$sleep;
 }
 
 # Get limit number
-$limit = @$options['limit'];
+wfSuppressWarnings();
+$limit = $options['limit'];
+wfRestoreWarnings();
+
 if ( $limit ) {
 	$limit = (int)$limit;
 }
@@ -167,7 +176,8 @@ if ( $count > 0 ) {
 		} else {
 			if ( isset( $options['skip-dupes'] ) ) {
 				$repo = $image->getRepo();
-				$sha1 = File::sha1Base36( $file ); # XXX: we end up calculating this again when actually uploading. that sucks.
+				# XXX: we end up calculating this again when actually uploading. that sucks.
+				$sha1 = File::sha1Base36( $file );
 
 				$dupes = $repo->findBySha1( $sha1 );
 
@@ -210,7 +220,8 @@ if ( $count > 0 ) {
 			if ( $commentExt ) {
 				$f = findAuxFile( $file, $commentExt );
 				if ( !$f ) {
-					echo " No comment file with extension {$commentExt} found for {$file}, using default comment. ";
+					echo " No comment file with extension {$commentExt} found "
+						. "for {$file}, using default comment. ";
 				} else {
 					$commentText = file_get_contents( $f );
 					if ( !$commentText ) {
@@ -254,7 +265,13 @@ if ( $count > 0 ) {
 
 		if ( isset( $options['dry'] ) ) {
 			echo "done.\n";
-		} elseif ( $image->recordUpload2( $archive->value, $summary, $commentText, $props, $timestamp ) ) {
+		} elseif ( $image->recordUpload2(
+			$archive->value,
+			$summary,
+			$commentText,
+			$props,
+			$timestamp
+		) ) {
 			# We're done!
 			echo "done.\n";
 
@@ -273,25 +290,24 @@ if ( $count > 0 ) {
 			}
 
 			if ( $doProtect ) {
-					# Protect the file
-					echo "\nWaiting for slaves...\n";
-					// Wait for slaves.
-					sleep( 2.0 ); # Why this sleep?
-					wfWaitForSlaves();
+				# Protect the file
+				echo "\nWaiting for slaves...\n";
+				// Wait for slaves.
+				sleep( 2.0 ); # Why this sleep?
+				wfWaitForSlaves();
 
-					echo "\nSetting image restrictions ... ";
+				echo "\nSetting image restrictions ... ";
 
-					$cascade = false;
-					$restrictions = array();
-					foreach ( $title->getRestrictionTypes() as $type ) {
-						$restrictions[$type] = $protectLevel;
-					}
+				$cascade = false;
+				$restrictions = array();
+				foreach ( $title->getRestrictionTypes() as $type ) {
+					$restrictions[$type] = $protectLevel;
+				}
 
-					$page = WikiPage::factory( $title );
-					$status = $page->doUpdateRestrictions( $restrictions, array(), $cascade, '', $user );
-					echo ( $status->isOK() ? 'done' : 'failed' ) . "\n";
+				$page = WikiPage::factory( $title );
+				$status = $page->doUpdateRestrictions( $restrictions, array(), $cascade, '', $user );
+				echo ( $status->isOK() ? 'done' : 'failed' ) . "\n";
 			}
-
 		} else {
 			echo "failed. (at recordUpload stage)\n";
 			$svar = 'failed';
@@ -311,14 +327,21 @@ if ( $count > 0 ) {
 
 	# Print out some statistics
 	echo "\n";
-	foreach ( array( 'count' => 'Found', 'limit' => 'Limit', 'ignored' => 'Ignored',
-		'added' => 'Added', 'skipped' => 'Skipped', 'overwritten' => 'Overwritten',
-		'failed' => 'Failed' ) as $var => $desc ) {
+	foreach (
+		array(
+			'count' => 'Found',
+			'limit' => 'Limit',
+			'ignored' => 'Ignored',
+			'added' => 'Added',
+			'skipped' => 'Skipped',
+			'overwritten' => 'Overwritten',
+			'failed' => 'Failed'
+		) as $var => $desc
+	) {
 		if ( $$var > 0 ) {
 			echo "{$desc}: {$$var}\n";
 		}
 	}
-
 } else {
 	echo "No suitable files could be found for import.\n";
 }
@@ -337,28 +360,37 @@ USAGE: php importImages.php [options] <dir>
 <dir> : Path to the directory containing images to be imported
 
 Options:
---extensions=<exts>     Comma-separated list of allowable extensions, defaults to \$wgFileExtensions
---overwrite             Overwrite existing images with the same name (default is to skip them)
---limit=<num>           Limit the number of images to process. Ignored or skipped images are not counted.
---from=<name>           Ignore all files until the one with the given name. Useful for resuming
-                        aborted imports. <name> should be the file's canonical database form.
---skip-dupes            Skip images that were already uploaded under a different name (check SHA1)
---search-recursively    Search recursively for files in subdirectories
+--extensions=<exts>     Comma-separated list of allowable extensions, defaults
+                        to \$wgFileExtensions.
+--overwrite             Overwrite existing images with the same name (default
+                        is to skip them).
+--limit=<num>           Limit the number of images to process. Ignored or
+                        skipped images are not counted.
+--from=<name>           Ignore all files until the one with the given name.
+                        Useful for resuming aborted imports. <name> should be
+                        the file's canonical database form.
+--skip-dupes            Skip images that were already uploaded under a different
+                        name (check SHA1).
+--search-recursively    Search recursively for files in subdirectories.
 --sleep=<sec>           Sleep between files. Useful mostly for debugging.
---user=<username>       Set username of uploader, default 'Maintenance script'
+--user=<username>       Set username of uploader, default 'Maintenance script'.
 --check-userblock       Check if the user got blocked during import.
 --comment=<text>        Set file description, default 'Importing file'.
 --comment-file=<file>   Set description to the content of <file>.
---comment-ext=<ext>     Causes the description for each file to be loaded from a file with the same name
-                        but the extension <ext>. If a global description is also given, it is appended.
---license=<code>        Use an optional license template
---dry                   Dry run, don't import anything
---protect=<protect>     Specify the protect value (autoconfirmed,sysop)
---summary=<summary>     Upload summary, description will be used if not provided
---timestamp=<timestamp> Override upload time/date, all MediaWiki timestamp formats are accepted
---unprotect             Unprotects all uploaded images
---source-wiki-url       If specified, take User and Comment data for each imported file from this URL.
-                        For example, --source-wiki-url="http://en.wikipedia.org/"
+--comment-ext=<ext>     Causes the description for each file to be loaded from a
+                        file with the same name, but the extension <ext>. If a
+                        global description is also given, it is appended.
+--license=<code>        Use an optional license template.
+--dry                   Dry run, don't import anything.
+--protect=<protect>     Specify the protect value (autoconfirmed,sysop).
+--summary=<summary>     Upload summary, description will be used if not
+                        provided.
+--timestamp=<timestamp> Override upload time/date, all MediaWiki timestamp
+                        formats are accepted.
+--unprotect             Unprotects all uploaded images.
+--source-wiki-url       If specified, take User and Comment data for each
+                        imported file from this URL. For example,
+                        --source-wiki-url="http://en.wikipedia.org/."
 
 TEXT;
 	exit( 1 );

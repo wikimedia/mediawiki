@@ -46,13 +46,16 @@ class UnwatchedpagesPage extends QueryPage {
 	function getQueryInfo() {
 		return array(
 			'tables' => array( 'page', 'watchlist' ),
-			'fields' => array( 'namespace' => 'page_namespace',
-					'title' => 'page_title',
-					'value' => 'page_namespace' ),
-			'conds' => array( 'wl_title IS NULL',
-					'page_is_redirect' => 0,
-					"page_namespace != '" . NS_MEDIAWIKI .
-					"'" ),
+			'fields' => array(
+				'namespace' => 'page_namespace',
+				'title' => 'page_title',
+				'value' => 'page_namespace'
+			),
+			'conds' => array(
+				'wl_title IS NULL',
+				'page_is_redirect' => 0,
+				"page_namespace != '" . NS_MEDIAWIKI . "'"
+			),
 			'join_conds' => array( 'watchlist' => array(
 				'LEFT JOIN', array( 'wl_title = page_title',
 					'wl_namespace = page_namespace' ) ) )
@@ -65,6 +68,14 @@ class UnwatchedpagesPage extends QueryPage {
 
 	function getOrderFields() {
 		return array( 'page_namespace', 'page_title' );
+	}
+
+	/**
+	 * Add the JS
+	 */
+	public function execute( $par ) {
+		parent::execute( $par );
+		$this->getOutput()->addModules( 'mediawiki.special.unwatchedPages' );
 	}
 
 	/**
@@ -88,7 +99,7 @@ class UnwatchedpagesPage extends QueryPage {
 		$wlink = Linker::linkKnown(
 			$nt,
 			$this->msg( 'watch' )->escaped(),
-			array(),
+			array( 'class' => 'mw-watch-link' ),
 			array( 'action' => 'watch', 'token' => $token )
 		);
 

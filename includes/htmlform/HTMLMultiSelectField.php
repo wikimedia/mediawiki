@@ -17,7 +17,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 
 		# If all options are valid, array_intersect of the valid options
 		# and the provided options will return the provided options.
-		$validOptions = HTMLFormField::flattenOptions( $this->mParams['options'] );
+		$validOptions = HTMLFormField::flattenOptions( $this->getOptions() );
 
 		$validValues = array_intersect( $value, $validOptions );
 		if ( count( $validValues ) == count( $value ) ) {
@@ -28,7 +28,8 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	}
 
 	function getInputHTML( $value ) {
-		$html = $this->formatOptions( $this->mParams['options'], $value );
+		$value = HTMLFormField::forceToStringRecursive( $value );
+		$html = $this->formatOptions( $this->getOptions(), $value );
 
 		return $html;
 	}
@@ -36,11 +37,8 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	function formatOptions( $options, $value ) {
 		$html = '';
 
-		$attribs = array();
-
-		if ( !empty( $this->mParams['disabled'] ) ) {
-			$attribs['disabled'] = 'disabled';
-		}
+		$attribs = $this->getAttributes( array( 'disabled', 'tabindex' ) );
+		$elementFunc = array( 'Html', $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element' );
 
 		foreach ( $options as $label => $info ) {
 			if ( is_array( $info ) ) {
@@ -54,7 +52,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 					in_array( $info, $value, true ),
 					$attribs + $thisAttribs
 				);
-				$checkbox .= '&#160;' . Html::rawElement(
+				$checkbox .= '&#160;' . call_user_func( $elementFunc,
 					'label',
 					array( 'for' => "{$this->mID}-$info" ),
 					$label
@@ -72,9 +70,9 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	}
 
 	/**
-	 * @param  $request WebRequest
+	 * @param WebRequest $request
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function loadDataFromRequest( $request ) {
 		if ( $this->mParent->getMethod() == 'post' ) {
@@ -106,11 +104,12 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	}
 
 	function filterDataForSubmit( $data ) {
-		$options = HTMLFormField::flattenOptions( $this->mParams['options'] );
+		$data = HTMLFormField::forceToStringRecursive( $data );
+		$options = HTMLFormField::flattenOptions( $this->getOptions() );
 
 		$res = array();
 		foreach ( $options as $opt ) {
-			$res["$opt"] = in_array( $opt, $data );
+			$res["$opt"] = in_array( $opt, $data, true );
 		}
 
 		return $res;

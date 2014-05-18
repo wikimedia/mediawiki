@@ -43,12 +43,10 @@ class TestSample extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * If you want to run a the same test with a variety of data. use a data provider.
+	 * If you want to run a the same test with a variety of data, use a data provider.
 	 * see: http://www.phpunit.de/manual/3.4/en/writing-tests-for-phpunit.html
-	 *
-	 * Note: Data providers are always called statically and outside setUp/tearDown!
 	 */
-	public static function provideTitles() {
+	public function provideTitles() {
 		return array(
 			array( 'Text', NS_MEDIA, 'Media:Text' ),
 			array( 'Text', null, 'Text' ),
@@ -58,10 +56,12 @@ class TestSample extends MediaWikiLangTestCase {
 		);
 	}
 
+	// @codingStandardsIgnoreStart Ignore long line warning
 	/**
 	 * @dataProvider provideTitles
-	 * See http://www.phpunit.de/manual/3.4/en/appendixes.annotations.html#appendixes.annotations.dataProvider
+	 * See http://phpunit.de/manual/3.7/en/appendixes.annotations.html#appendixes.annotations.dataProvider
 	 */
+	// @codingStandardsIgnoreEnd
 	public function testCreateBasicListOfTitles( $titleName, $ns, $text ) {
 		$title = Title::newFromText( $titleName, $ns );
 		$this->assertEquals( $text, "$title", "see if '$titleName' matches '$text'" );
@@ -88,16 +88,18 @@ class TestSample extends MediaWikiLangTestCase {
 
 	/**
 	 * @depends testSetUpMainPageTitleForNextTest
-	 * See http://www.phpunit.de/manual/3.4/en/appendixes.annotations.html#appendixes.annotations.depends
+	 * See http://phpunit.de/manual/3.7/en/appendixes.annotations.html#appendixes.annotations.depends
 	 */
 	public function testCheckMainPageTitleIsConsideredLocal( $title ) {
 		$this->assertTrue( $title->isLocal() );
 	}
 
+	// @codingStandardsIgnoreStart Ignore long line warning
 	/**
 	 * @expectedException MWException object
-	 * See http://www.phpunit.de/manual/3.4/en/appendixes.annotations.html#appendixes.annotations.expectedException
+	 * See http://phpunit.de/manual/3.7/en/appendixes.annotations.html#appendixes.annotations.expectedException
 	 */
+	// @codingStandardsIgnoreEnd
 	public function testTitleObjectFromObject() {
 		$title = Title::newFromText( Title::newFromText( "test" ) );
 		$this->assertEquals( "Test", $title->isLocal() );

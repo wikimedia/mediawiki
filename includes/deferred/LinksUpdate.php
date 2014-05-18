@@ -233,11 +233,15 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Queue recursive jobs for this page
 	 *
-	 * Which means do LinksUpdate on all templates
-	 * that include the current page, using the job queue.
+	 * Which means do LinksUpdate on all pages that include the current page,
+	 * using the job queue.
 	 */
 	function queueRecursiveJobs() {
 		self::queueRecursiveJobsForTable( $this->mTitle, 'templatelinks' );
+		if ( $this->mTitle->getNamespace() == NS_FILE ) {
+			// Process imagelinks in case the title is or was a redirect
+			self::queueRecursiveJobsForTable( $this->mTitle, 'imagelinks' );
+		}
 	}
 
 	/**
@@ -252,7 +256,7 @@ class LinksUpdate extends SqlDataUpdate {
 			$job = new RefreshLinksJob(
 				$title,
 				array(
-					'table'     => $table,
+					'table' => $table,
 					'recursive' => true,
 				) + Job::newRootJobParams( // "overall" refresh links job info
 					"refreshlinks:{$table}:{$title->getPrefixedText()}"
@@ -265,7 +269,7 @@ class LinksUpdate extends SqlDataUpdate {
 	}
 
 	/**
-	 * @param $cats
+	 * @param array $cats
 	 */
 	function invalidateCategories( $cats ) {
 		$this->invalidatePages( NS_CATEGORY, array_keys( $cats ) );
@@ -284,7 +288,7 @@ class LinksUpdate extends SqlDataUpdate {
 	}
 
 	/**
-	 * @param $images
+	 * @param array $images
 	 */
 	function invalidateImageDescriptions( $images ) {
 		$this->invalidatePages( NS_FILE, array_keys( $images ) );
@@ -325,7 +329,7 @@ class LinksUpdate extends SqlDataUpdate {
 				$toField = $prefix . '_to';
 			}
 			if ( count( $deletions ) ) {
-				$where[] = "$toField IN (" . $this->mDb->makeList( array_keys( $deletions ) ) . ')';
+				$where[$toField] = array_keys( $deletions );
 			} else {
 				$where = false;
 			}
@@ -414,6 +418,7 @@ class LinksUpdate extends SqlDataUpdate {
 		foreach ( $diffs as $url => $dummy ) {
 			foreach ( wfMakeUrlIndexes( $url ) as $index ) {
 				$arr[] = array(
+					'el_id' => $this->mDb->nextSequenceValue( 'externallinks_el_id_seq' ),
 					'el_from' => $this->mId,
 					'el_to' => $url,
 					'el_index' => $index,
@@ -427,7 +432,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Get an array of category insertions
 	 *
-	 * @param array $existing mapping existing category names to sort keys. If both
+	 * @param array $existing Mapping existing category names to sort keys. If both
 	 * match a link in $this, the link will be omitted from the output
 	 *
 	 * @return array
@@ -472,7 +477,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Get an array of interlanguage link insertions
 	 *
-	 * @param array $existing mapping existing language codes to titles
+	 * @param array $existing Mapping existing language codes to titles
 	 *
 	 * @return array
 	 */
@@ -497,16 +502,67 @@ class LinksUpdate extends SqlDataUpdate {
 	 */
 	function getPropertyInsertions( $existing = array() ) {
 		$diffs = array_diff_assoc( $this->mProperties, $existing );
+
 		$arr = array();
-		foreach ( $diffs as $name => $value ) {
-			$arr[] = array(
-				'pp_page' => $this->mId,
-				'pp_propname' => $name,
-				'pp_value' => $value,
-			);
+		foreach ( array_keys( $diffs ) as $name ) {
+			$arr[] = $this->getPagePropRowData( $name );
 		}
 
 		return $arr;
+	}
+
+	/**
+	 * Returns an associative array to be used for inserting a row into
+	 * the page_props table. Besides the given property name, this will
+	 * include the page id from $this->mId and any property value from
+	 * $this->mProperties.
+	 *
+	 * The array returned will include the pp_sortkey field if this
+	 * is present in the database (as indicated by $wgPagePropsHaveSortkey).
+	 * The sortkey value is currently determined by getPropertySortKeyValue().
+	 *
+	 * @note: this assumes that $this->mProperties[$prop] is defined.
+	 *
+	 * @param string $prop The name of the property.
+	 *
+	 * @return array
+	 */
+	private function getPagePropRowData( $prop ) {
+		global $wgPagePropsHaveSortkey;
+
+		$value = $this->mProperties[$prop];
+
+		$row = array(
+			'pp_page' => $this->mId,
+			'pp_propname' => $prop,
+			'pp_value' => $value,
+		);
+
+		if ( $wgPagePropsHaveSortkey ) {
+			$row['pp_sortkey'] = $this->getPropertySortKeyValue( $value );
+		}
+
+		return $row;
+	}
+
+	/**
+	 * Determines the sort key for the given property value.
+	 * This will return $value if it is a float or int,
+	 * 1 or resp. 0 if it is a bool, and null otherwise.
+	 *
+	 * @note: In the future, we may allow the sortkey to be specified explicitly
+	 *        in ParserOutput::setProperty.
+	 *
+	 * @param mixed $value
+	 *
+	 * @return float|null
+	 */
+	private function getPropertySortKeyValue( $value ) {
+		if ( is_int( $value ) || is_float( $value ) || is_bool( $value ) ) {
+			return floatval( $value );
+		}
+
+		return null;
 	}
 
 	/**
@@ -764,7 +820,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Get an array of existing categories, with the name in the key and sort key in the value.
 	 *
-	 * @return array of property names and values
+	 * @return array Array of property names and values
 	 */
 	private function getExistingProperties() {
 		$res = $this->mDb->select( 'page_props', array( 'pp_propname', 'pp_value' ),
@@ -826,7 +882,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Fetch page links added by this LinksUpdate.  Only available after the update is complete.
 	 * @since 1.22
-	 * @return null|array of Titles
+	 * @return null|array Array of Titles
 	 */
 	public function getAddedLinks() {
 		if ( $this->linkInsertions === null ) {
@@ -843,7 +899,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Fetch page links removed by this LinksUpdate.  Only available after the update is complete.
 	 * @since 1.22
-	 * @return null|array of Titles
+	 * @return null|array Array of Titles
 	 */
 	public function getRemovedLinks() {
 		if ( $this->linkDeletions === null ) {
@@ -864,8 +920,10 @@ class LinksUpdate extends SqlDataUpdate {
 	 */
 	protected function updateLinksTimestamp() {
 		if ( $this->mId ) {
+			// The link updates made here only reflect the freshness of the parser output
+			$timestamp = $this->mParserOutput->getCacheTime();
 			$this->mDb->update( 'page',
-				array( 'page_links_updated' => $this->mDb->timestamp() ),
+				array( 'page_links_updated' => $this->mDb->timestamp( $timestamp ) ),
 				array( 'page_id' => $this->mId ),
 				__METHOD__
 			);

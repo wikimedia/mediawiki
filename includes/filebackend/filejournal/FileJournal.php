@@ -36,7 +36,7 @@
  * @since 1.20
  */
 abstract class FileJournal {
-	/** @var  string */
+	/** @var string */
 	protected $backend;
 
 	/** @var int */
@@ -150,9 +150,9 @@ abstract class FileJournal {
 	 * Get an array of file change log entries.
 	 * A starting change ID and/or limit can be specified.
 	 *
-	 * @param $start integer Starting change ID or null
-	 * @param $limit integer Maximum number of items to return
-	 * @param &$next string Updated to the ID of the next entry.
+	 * @param int $start Starting change ID or null
+	 * @param int $limit Maximum number of items to return
+	 * @param string &$next Updated to the ID of the next entry.
 	 * @return array List of associative arrays, each having:
 	 *     id         : unique, monotonic, ID for this change
 	 *     batch_uuid : UUID for an operation batch

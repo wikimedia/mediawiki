@@ -13,14 +13,15 @@ class SpecialSearchTest extends MediaWikiTestCase {
 	/**
 	 * @covers SpecialSearch::load
 	 * @dataProvider provideSearchOptionsTests
-	 * @param $requested Array Request parameters. For example array( 'ns5' => true, 'ns6' => true). NULL to use default options.
-	 * @param $userOptions Array User options to test with. For example array('searchNs5' => 1 );. NULL to use default options.
-	 * @param $expectedProfile An expected search profile name
-	 * @param $expectedNs Array Expected namespaces
+	 * @param array $requested Request parameters. For example:
+	 *   array( 'ns5' => true, 'ns6' => true). Null to use default options.
+	 * @param array $userOptions User options to test with. For example:
+	 *   array('searchNs5' => 1 );. Null to use default options.
+	 * @param string $expectedProfile An expected search profile name
+	 * @param array $expectedNs Expected namespaces
 	 */
-	public function testProfileAndNamespaceLoading(
-		$requested, $userOptions, $expectedProfile, $expectedNS,
-		$message = 'Profile name and namespaces mismatches!'
+	public function testProfileAndNamespaceLoading( $requested, $userOptions,
+		$expectedProfile, $expectedNS, $message = 'Profile name and namespaces mismatches!'
 	) {
 		$context = new RequestContext;
 		$context->setUser(

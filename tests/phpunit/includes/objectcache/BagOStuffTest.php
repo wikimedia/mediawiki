@@ -74,8 +74,6 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$fork &= !$this->cache instanceof MultiWriteBagOStuff;
 		if ( $fork ) {
 			// callback should take awhile now so that we can test concurrent merge attempts
-			$usleep = 5000;
-
 			$pid = pcntl_fork();
 			if ( $pid == -1 ) {
 				// can't fork, ignore this test...
@@ -140,7 +138,10 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->cache->add( $key1, $value1 );
 		$this->cache->add( $key2, $value2 );
 
-		$this->assertEquals( $this->cache->getMulti( array( $key1, $key2 ) ), array( $key1 => $value1, $key2 => $value2 ) );
+		$this->assertEquals(
+			$this->cache->getMulti( array( $key1, $key2 ) ),
+			array( $key1 => $value1, $key2 => $value2 )
+		);
 
 		// cleanup
 		$this->cache->delete( $key1 );

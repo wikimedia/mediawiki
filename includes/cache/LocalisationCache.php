@@ -181,7 +181,7 @@ class LocalisationCache {
 	 * For constructor parameters, see the documentation in DefaultSettings.php
 	 * for $wgLocalisationCacheConf.
 	 *
-	 * @param $conf Array
+	 * @param array $conf
 	 * @throws MWException
 	 */
 	function __construct( $conf ) {
@@ -212,7 +212,7 @@ class LocalisationCache {
 			}
 		}
 
-		wfDebug( get_class( $this ) . ": using store $storeClass\n" );
+		wfDebugLog( 'caches', get_class( $this ) . ": using store $storeClass" );
 		if ( !empty( $conf['storeDirectory'] ) ) {
 			$storeConf['directory'] = $conf['storeDirectory'];
 		}
@@ -228,7 +228,7 @@ class LocalisationCache {
 	/**
 	 * Returns true if the given key is mergeable, that is, if it is an associative
 	 * array which can be merged through a fallback sequence.
-	 * @param $key
+	 * @param string $key
 	 * @return bool
 	 */
 	public function isMergeableKey( $key ) {
@@ -250,8 +250,8 @@ class LocalisationCache {
 	 *
 	 * Warning: this may be slow for split items (messages), since it will
 	 * need to fetch all of the subitems from the cache individually.
-	 * @param $code
-	 * @param $key
+	 * @param string $code
+	 * @param string $key
 	 * @return mixed
 	 */
 	public function getItem( $code, $key ) {
@@ -270,10 +270,10 @@ class LocalisationCache {
 
 	/**
 	 * Get a subitem, for instance a single message for a given language.
-	 * @param $code
-	 * @param $key
-	 * @param $subkey
-	 * @return null
+	 * @param string $code
+	 * @param string $key
+	 * @param string $subkey
+	 * @return mixed|null
 	 */
 	public function getSubitem( $code, $key, $subkey ) {
 		if ( !isset( $this->loadedSubitems[$code][$key][$subkey] ) &&
@@ -299,8 +299,8 @@ class LocalisationCache {
 	 *
 	 * Will return null if the item is not found, or false if the item is not an
 	 * array.
-	 * @param $code
-	 * @param $key
+	 * @param string $code
+	 * @param string $key
 	 * @return bool|null|string
 	 */
 	public function getSubitemList( $code, $key ) {
@@ -318,8 +318,8 @@ class LocalisationCache {
 
 	/**
 	 * Load an item into the cache.
-	 * @param $code
-	 * @param $key
+	 * @param string $code
+	 * @param string $key
 	 */
 	protected function loadItem( $code, $key ) {
 		if ( !isset( $this->initialisedLangs[$code] ) ) {
@@ -354,9 +354,9 @@ class LocalisationCache {
 
 	/**
 	 * Load a subitem into the cache
-	 * @param $code
-	 * @param $key
-	 * @param $subkey
+	 * @param string $code
+	 * @param string $key
+	 * @param string $subkey
 	 */
 	protected function loadSubitem( $code, $key, $subkey ) {
 		if ( !in_array( $key, self::$splitKeys ) ) {
@@ -429,7 +429,7 @@ class LocalisationCache {
 
 	/**
 	 * Initialise a language in this object. Rebuild the cache if necessary.
-	 * @param $code
+	 * @param string $code
 	 * @throws MWException
 	 */
 	protected function initLanguage( $code ) {
@@ -448,7 +448,7 @@ class LocalisationCache {
 
 		# Recache the data if necessary
 		if ( !$this->manualRecache && $this->isExpired( $code ) ) {
-			if ( file_exists( Language::getMessagesFileName( $code ) ) ) {
+			if ( Language::isSupportedLanguage( $code ) ) {
 				$this->recache( $code );
 			} elseif ( $code === 'en' ) {
 				throw new MWException( 'MessagesEn.php is missing.' );
@@ -490,8 +490,8 @@ class LocalisationCache {
 	/**
 	 * Create a fallback from one language to another, without creating a
 	 * complete persistent cache.
-	 * @param $primaryCode
-	 * @param $fallbackCode
+	 * @param string $primaryCode
+	 * @param string $fallbackCode
 	 */
 	public function initShallowFallback( $primaryCode, $fallbackCode ) {
 		$this->data[$primaryCode] =& $this->data[$fallbackCode];
@@ -502,17 +502,23 @@ class LocalisationCache {
 
 	/**
 	 * Read a PHP file containing localisation data.
-	 * @param $_fileName
-	 * @param $_fileType
+	 * @param string $_fileName
+	 * @param string $_fileType
 	 * @throws MWException
 	 * @return array
 	 */
 	protected function readPHPFile( $_fileName, $_fileType ) {
 		wfProfileIn( __METHOD__ );
 		// Disable APC caching
+		wfSuppressWarnings();
 		$_apcEnabled = ini_set( 'apc.cache_by_default', '0' );
+		wfRestoreWarnings();
+
 		include $_fileName;
+
+		wfSuppressWarnings();
 		ini_set( 'apc.cache_by_default', $_apcEnabled );
+		wfRestoreWarnings();
 
 		if ( $_fileType == 'core' || $_fileType == 'extension' ) {
 			$data = compact( self::$allKeys );
@@ -531,28 +537,40 @@ class LocalisationCache {
 	 * Read a JSON file containing localisation messages.
 	 * @param string $fileName Name of file to read
 	 * @throws MWException if there is a syntax error in the JSON file
-	 * @return array with a 'messages' key, or empty array if the file doesn't exist
+	 * @return array Array with a 'messages' key, or empty array if the file doesn't exist
 	 */
-	protected function readJSONFile( $fileName ) {
+	public function readJSONFile( $fileName ) {
 		wfProfileIn( __METHOD__ );
+
 		if ( !is_readable( $fileName ) ) {
+			wfProfileOut( __METHOD__ );
+
 			return array();
 		}
 
 		$json = file_get_contents( $fileName );
 		if ( $json === false ) {
+			wfProfileOut( __METHOD__ );
+
 			return array();
 		}
+
 		$data = FormatJson::decode( $json, true );
 		if ( $data === null ) {
+			wfProfileOut( __METHOD__ );
+
 			throw new MWException( __METHOD__ . ": Invalid JSON file: $fileName" );
 		}
+
 		// Remove keys starting with '@', they're reserved for metadata and non-message data
 		foreach ( $data as $key => $unused ) {
 			if ( $key === '' || $key[0] === '@' ) {
 				unset( $data[$key] );
 			}
 		}
+
+		wfProfileOut( __METHOD__ );
+
 		// The JSON format only supports messages, none of the other variables, so wrap the data
 		return array( 'messages' => $data );
 	}
@@ -560,6 +578,8 @@ class LocalisationCache {
 	/**
 	 * Get the compiled plural rules for a given language from the XML files.
 	 * @since 1.20
+	 * @param string $code
+	 * @return array|null
 	 */
 	public function getCompiledPluralRules( $code ) {
 		$rules = $this->getPluralRules( $code );
@@ -569,7 +589,7 @@ class LocalisationCache {
 		try {
 			$compiledRules = CLDRPluralRuleEvaluator::compile( $rules );
 		} catch ( CLDRPluralRuleError $e ) {
-			wfDebugLog( 'l10n', $e->getMessage() . "\n" );
+			wfDebugLog( 'l10n', $e->getMessage() );
 
 			return array();
 		}
@@ -581,6 +601,8 @@ class LocalisationCache {
 	 * Get the plural rules for a given language from the XML files.
 	 * Cached.
 	 * @since 1.20
+	 * @param string $code
+	 * @return array|null
 	 */
 	public function getPluralRules( $code ) {
 		if ( $this->pluralRules === null ) {
@@ -597,6 +619,8 @@ class LocalisationCache {
 	 * Get the plural rule types for a given language from the XML files.
 	 * Cached.
 	 * @since 1.22
+	 * @param string $code
+	 * @return array|null
 	 */
 	public function getPluralRuleTypes( $code ) {
 		if ( $this->pluralRuleTypes === null ) {
@@ -627,6 +651,8 @@ class LocalisationCache {
 	/**
 	 * Load a plural XML file with the given filename, compile the relevant
 	 * rules, and save the compiled rules in a process-local cache.
+	 *
+	 * @param string $fileName
 	 */
 	protected function loadPluralFile( $fileName ) {
 		$doc = new DOMDocument;
@@ -657,20 +683,22 @@ class LocalisationCache {
 	 * Read the data from the source files for a given language, and register
 	 * the relevant dependencies in the $deps array. If the localisation
 	 * exists, the data array is returned, otherwise false is returned.
+	 *
+	 * @param string $code
+	 * @param array $deps
 	 */
 	protected function readSourceFilesAndRegisterDeps( $code, &$deps ) {
 		global $IP;
 		wfProfileIn( __METHOD__ );
 
+		// This reads in the PHP i18n file with non-messages l10n data
 		$fileName = Language::getMessagesFileName( $code );
 		if ( !file_exists( $fileName ) ) {
-			wfProfileOut( __METHOD__ );
-
-			return false;
+			$data = array();
+		} else {
+			$deps[] = new FileDependency( $fileName );
+			$data = $this->readPHPFile( $fileName, 'core' );
 		}
-
-		$deps[] = new FileDependency( $fileName );
-		$data = $this->readPHPFile( $fileName, 'core' );
 
 		# Load CLDR plural rules for JavaScript
 		$data['pluralRules'] = $this->getPluralRules( $code );
@@ -690,9 +718,9 @@ class LocalisationCache {
 	/**
 	 * Merge two localisation values, a primary and a fallback, overwriting the
 	 * primary value in place.
-	 * @param $key
-	 * @param $value
-	 * @param $fallbackValue
+	 * @param string $key
+	 * @param mixed $value
+	 * @param mixed $fallbackValue
 	 */
 	protected function mergeItem( $key, &$value, $fallbackValue ) {
 		if ( !is_null( $value ) ) {
@@ -721,8 +749,8 @@ class LocalisationCache {
 	}
 
 	/**
-	 * @param $value
-	 * @param $fallbackValue
+	 * @param mixed $value
+	 * @param mixed $fallbackValue
 	 */
 	protected function mergeMagicWords( &$value, $fallbackValue ) {
 		foreach ( $fallbackValue as $magicName => $fallbackInfo ) {
@@ -745,10 +773,10 @@ class LocalisationCache {
 	 *
 	 * Returns true if any data from the extension array was used, false
 	 * otherwise.
-	 * @param $codeSequence
-	 * @param $key
-	 * @param $value
-	 * @param $fallbackValue
+	 * @param string $codeSequence
+	 * @param string $key
+	 * @param mixed $value
+	 * @param mixed $fallbackValue
 	 * @return bool
 	 */
 	protected function mergeExtensionItem( $codeSequence, $key, &$value, $fallbackValue ) {
@@ -766,7 +794,7 @@ class LocalisationCache {
 	/**
 	 * Load localisation data for a given language for both core and extensions
 	 * and save it to the persistent cache store and the process cache
-	 * @param $code
+	 * @param string $code
 	 * @throws MWException
 	 */
 	public function recache( $code ) {
@@ -838,10 +866,7 @@ class LocalisationCache {
 
 		$codeSequence = array_merge( array( $code ), $coreData['fallbackSequence'] );
 
-		# Load the extension localisations
-		# This is done after the core because we know the fallback sequence now.
-		# But it has a higher precedence for merging so that we can support things
-		# like site-specific message overrides.
+		# Load core messages and the extension localisations.
 		wfProfileIn( __METHOD__ . '-extensions' );
 		$allData = $initialData;
 		foreach ( $wgMessagesDirs as $dirs ) {
@@ -860,17 +885,15 @@ class LocalisationCache {
 		}
 
 		foreach ( $wgExtensionMessagesFiles as $extension => $fileName ) {
+			if ( isset( $wgMessagesDirs[$extension] ) ) {
+				# Already loaded the JSON files for this extension; skip the PHP shim
+				continue;
+			}
+
 			$data = $this->readPHPFile( $fileName, 'extension' );
 			$used = false;
 
 			foreach ( $data as $key => $item ) {
-				if ( $key === 'messages' && isset( $wgMessagesDirs[$extension] ) ) {
-					# For backwards compatibility, ignore messages from extensions in
-					# $wgExtensionMessagesFiles that are also present in $wgMessagesDirs.
-					# This allows extensions to use both and be backwards compatible.
-					# Variables other than $messages still need to be supported though.
-					continue;
-				}
 				if ( $this->mergeExtensionItem( $codeSequence, $key, $allData[$key], $item ) ) {
 					$used = true;
 				}
@@ -971,7 +994,7 @@ class LocalisationCache {
 	 *
 	 * The preload item will be loaded automatically, improving performance
 	 * for the commonly-requested items it contains.
-	 * @param $data
+	 * @param array $data
 	 * @return array
 	 */
 	protected function buildPreload( $data ) {
@@ -995,7 +1018,7 @@ class LocalisationCache {
 	/**
 	 * Unload the data for a given language from the object cache.
 	 * Reduces memory usage.
-	 * @param $code
+	 * @param string $code
 	 */
 	public function unload( $code ) {
 		unset( $this->data[$code] );
@@ -1148,7 +1171,7 @@ class LCStoreDB implements LCStore {
 		$row = $db->selectRow( 'l10n_cache', array( 'lc_value' ),
 			array( 'lc_lang' => $code, 'lc_key' => $key ), __METHOD__ );
 		if ( $row ) {
-			return unserialize( $row->lc_value );
+			return unserialize( $db->decodeBlob( $row->lc_value ) );
 		} else {
 			return null;
 		}
@@ -1210,7 +1233,7 @@ class LCStoreDB implements LCStore {
 		$this->batch[] = array(
 			'lc_lang' => $this->currentLang,
 			'lc_key' => $key,
-			'lc_value' => serialize( $value ) );
+			'lc_value' => $this->dbw->encodeBlob( serialize( $value ) ) );
 
 		if ( count( $this->batch ) >= 100 ) {
 			$this->dbw->insert( 'l10n_cache', $this->batch, __METHOD__ );
@@ -1232,9 +1255,16 @@ class LCStoreDB implements LCStore {
  * See Cdb.php and http://cr.yp.to/cdb.html
  */
 class LCStoreCDB implements LCStore {
+	/** @var CdbReader[] */
 	private $readers;
+
+	/** @var CdbWriter */
 	private $writer;
+
+	/** @var string Current language code */
 	private $currentLang;
+
+	/** @var bool|string Cache directory. False if not set */
 	private $directory;
 
 	function __construct( $conf = array() ) {
@@ -1256,7 +1286,7 @@ class LCStoreCDB implements LCStore {
 				try {
 					$this->readers[$code] = CdbReader::open( $fileName );
 				} catch ( CdbException $e ) {
-					wfDebug( __METHOD__ . ": unable to open cdb file for reading" );
+					wfDebug( __METHOD__ . ": unable to open cdb file for reading\n" );
 				}
 			}
 		}
@@ -1269,7 +1299,7 @@ class LCStoreCDB implements LCStore {
 				$value = $this->readers[$code]->get( $key );
 			} catch ( CdbException $e ) {
 				wfDebug( __METHOD__ . ": CdbException caught, error message was "
-					. $e->getMessage() );
+					. $e->getMessage() . "\n" );
 			}
 			if ( $value === false ) {
 				return null;
@@ -1374,8 +1404,8 @@ class LocalisationCacheBulkLoad extends LocalisationCache {
 	private $maxLoadedLangs = 10;
 
 	/**
-	 * @param $fileName
-	 * @param $fileType
+	 * @param string $fileName
+	 * @param string $fileType
 	 * @return array|mixed
 	 */
 	protected function readPHPFile( $fileName, $fileType ) {
@@ -1400,8 +1430,8 @@ class LocalisationCacheBulkLoad extends LocalisationCache {
 	}
 
 	/**
-	 * @param $code
-	 * @param $key
+	 * @param string $code
+	 * @param string $key
 	 * @return mixed
 	 */
 	public function getItem( $code, $key ) {
@@ -1412,10 +1442,10 @@ class LocalisationCacheBulkLoad extends LocalisationCache {
 	}
 
 	/**
-	 * @param $code
-	 * @param $key
-	 * @param $subkey
-	 * @return
+	 * @param string $code
+	 * @param string $key
+	 * @param string $subkey
+	 * @return mixed
 	 */
 	public function getSubitem( $code, $key, $subkey ) {
 		unset( $this->mruLangs[$code] );
@@ -1425,7 +1455,7 @@ class LocalisationCacheBulkLoad extends LocalisationCache {
 	}
 
 	/**
-	 * @param $code
+	 * @param string $code
 	 */
 	public function recache( $code ) {
 		parent::recache( $code );
@@ -1435,7 +1465,7 @@ class LocalisationCacheBulkLoad extends LocalisationCache {
 	}
 
 	/**
-	 * @param $code
+	 * @param string $code
 	 */
 	public function unload( $code ) {
 		unset( $this->mruLangs[$code] );

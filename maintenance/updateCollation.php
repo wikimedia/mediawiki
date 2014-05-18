@@ -120,6 +120,7 @@ TEXT;
 			}
 			if ( $count == 0 ) {
 				$this->output( "Collations up-to-date.\n" );
+
 				return;
 			}
 			$this->output( "Fixing collation for $count rows.\n" );
@@ -150,7 +151,8 @@ TEXT;
 					# This is an old-style row, so the sortkey needs to be
 					# converted.
 					if ( $row->cl_sortkey == $title->getText()
-						|| $row->cl_sortkey == $title->getPrefixedText() ) {
+						|| $row->cl_sortkey == $title->getPrefixedText()
+					) {
 						$prefix = '';
 					} else {
 						# Custom sortkey, use it as a prefix
@@ -236,6 +238,7 @@ TEXT;
 				$prefix .= " AND $equality";
 			}
 		}
+
 		return $cond;
 	}
 

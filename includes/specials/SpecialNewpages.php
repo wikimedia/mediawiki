@@ -27,15 +27,12 @@
  * @ingroup SpecialPage
  */
 class SpecialNewpages extends IncludableSpecialPage {
-	// Stored objects
-
 	/**
 	 * @var FormOptions
 	 */
 	protected $opts;
 	protected $customFilters;
 
-	// Some internal settings
 	protected $showNavigation = false;
 
 	public function __construct() {
@@ -124,8 +121,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 	/**
 	 * Show a form for filtering namespace and username
 	 *
-	 * @param $par String
-	 * @return String
+	 * @param string $par
+	 * @return string
 	 */
 	public function execute( $par ) {
 		$out = $this->getOutput();
@@ -301,7 +298,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * size, user links, and a comment
 	 *
 	 * @param object $result Result row
-	 * @return String
+	 * @return string
 	 */
 	public function formatRow( $result ) {
 		$title = Title::newFromRow( $result );
@@ -394,14 +391,15 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$oldTitleText = $this->msg( 'rc-old-title' )->params( $oldTitleText )->escaped();
 		}
 
-		return "<li{$css}>{$time} {$dm}{$plink} {$hist} {$dm}{$length} {$dm}{$ulink} {$comment} {$tagDisplay} {$oldTitleText}</li>\n";
+		return "<li{$css}>{$time} {$dm}{$plink} {$hist} {$dm}{$length} "
+			. "{$dm}{$ulink} {$comment} {$tagDisplay} {$oldTitleText}</li>\n";
 	}
 
 	/**
 	 * Should a specific result row provide "patrollable" links?
 	 *
 	 * @param object $result Result row
-	 * @return Boolean
+	 * @return bool
 	 */
 	protected function patrollable( $result ) {
 		return ( $this->getUser()->useNPPatrol() && !$result->rc_patrolled );
@@ -410,7 +408,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	/**
 	 * Output a subscription feed listing recent edits to this page.
 	 *
-	 * @param $type String
+	 * @param string $type
 	 */
 	protected function feed( $type ) {
 		global $wgFeed, $wgFeedClasses, $wgFeedLimit;

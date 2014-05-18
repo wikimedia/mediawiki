@@ -64,29 +64,29 @@ class RequestContext implements IContextSource {
 	private $skin;
 
 	/**
-	 * @var SiteConfiguration
+	 * @var Config
 	 */
 	private $config;
 
 	/**
-	 * Set the SiteConfiguration object
+	 * Set the Config object
 	 *
-	 * @param SiteConfiguration $c
+	 * @param Config $c
 	 */
-	public function setConfig( SiteConfiguration $c ) {
+	public function setConfig( Config $c ) {
 		$this->config = $c;
 	}
 
 	/**
-	 * Get the SiteConfiguration object
+	 * Get the Config object
 	 *
-	 * @return SiteConfiguration
+	 * @return Config
 	 */
 	public function getConfig() {
 		if ( $this->config === null ) {
-			global $wgConf;
-			$this->config = $wgConf;
+			$this->config = Config::factory();
 		}
+
 		return $this->config;
 	}
 
@@ -131,7 +131,7 @@ class RequestContext implements IContextSource {
 	/**
 	 * Get the Title object
 	 *
-	 * @return Title
+	 * @return Title|null
 	 */
 	public function getTitle() {
 		if ( $this->title === null ) {
@@ -204,7 +204,7 @@ class RequestContext implements IContextSource {
 	}
 
 	/**
-	 * @param $o OutputPage
+	 * @param OutputPage $o
 	 */
 	public function setOutput( OutputPage $o ) {
 		$this->output = $o;
@@ -436,7 +436,7 @@ class RequestContext implements IContextSource {
 	 * Export the resolved user IP, HTTP headers, user ID, and session ID.
 	 * The result will be reasonably sized to allow for serialization.
 	 *
-	 * @return Array
+	 * @return array
 	 * @since 1.21
 	 */
 	public function exportSession() {

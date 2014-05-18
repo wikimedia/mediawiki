@@ -57,15 +57,16 @@ class RefreshLinks extends Maintenance {
 
 	/**
 	 * Do the actual link refreshing.
-	 * @param $start int Page_id to start from
-	 * @param $newOnly bool Only do pages with 1 edit
-	 * @param $maxLag int Max DB replication lag
-	 * @param $end int Page_id to stop at
-	 * @param $redirectsOnly bool Only fix redirects
-	 * @param $oldRedirectsOnly bool Only fix redirects without redirect entries
+	 * @param int $start Page_id to start from
+	 * @param bool $newOnly Only do pages with 1 edit
+	 * @param int $maxLag Max DB replication lag
+	 * @param int $end Page_id to stop at
+	 * @param bool $redirectsOnly Only fix redirects
+	 * @param bool $oldRedirectsOnly Only fix redirects without redirect entries
 	 */
 	private function doRefreshLinks( $start, $newOnly = false, $maxLag = false,
-						$end = 0, $redirectsOnly = false, $oldRedirectsOnly = false ) {
+		$end = 0, $redirectsOnly = false, $oldRedirectsOnly = false
+	) {
 		global $wgParser, $wgUseTidy;
 
 		$reportingInterval = 100;
@@ -185,7 +186,7 @@ class RefreshLinks extends Maintenance {
 	 * entry in the "redirect" table points to the correct page and not to an
 	 * invalid one.
 	 *
-	 * @param $id int The page ID to check
+	 * @param int $id The page ID to check
 	 */
 	private function fixRedirect( $id ) {
 		$page = WikiPage::newFromID( $id );
@@ -196,6 +197,7 @@ class RefreshLinks extends Maintenance {
 			// Delete any redirect table entry for it
 			$dbw->delete( 'redirect', array( 'rd_from' => $id ),
 				__METHOD__ );
+
 			return;
 		}
 
@@ -222,7 +224,7 @@ class RefreshLinks extends Maintenance {
 
 	/**
 	 * Run LinksUpdate for all links on a given page_id
-	 * @param $id int The page_id
+	 * @param int $id The page_id
 	 */
 	public static function fixLinksFromArticle( $id ) {
 		$page = WikiPage::newFromID( $id );
@@ -251,8 +253,8 @@ class RefreshLinks extends Maintenance {
 	 * Removes non-existing links from pages from pagelinks, imagelinks,
 	 * categorylinks, templatelinks, externallinks, interwikilinks, langlinks and redirect tables.
 	 *
-	 * @param $maxLag int
-	 * @param $batchSize int The size of deletion batches
+	 * @param int $maxLag
+	 * @param int $batchSize The size of deletion batches
 	 *
 	 * @author Merlijn van Deen <valhallasw@arctus.nl>
 	 */

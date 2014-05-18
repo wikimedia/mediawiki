@@ -3,7 +3,7 @@
  * DjVu image handler.
  *
  * Copyright © 2006 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,7 +60,7 @@ class DjVuImage {
 
 	/**
 	 * Return data in the style of getimagesize()
-	 * @return array or false on failure
+	 * @return array|bool Array or false on failure
 	 */
 	public function getImageSize() {
 		$data = $this->getInfo();
@@ -330,7 +330,7 @@ EOR;
 
 	/**
 	 * Hack to temporarily work around djvutoxml bug
-	 * @param $dump
+	 * @param string $dump
 	 * @return string
 	 */
 	function convertDumpToXML( $dump ) {

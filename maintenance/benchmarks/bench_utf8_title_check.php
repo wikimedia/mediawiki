@@ -29,8 +29,7 @@ require_once __DIR__ . '/Benchmarker.php';
  *
  * @ingroup Benchmark
  */
-class bench_utf8_title_check extends Benchmarker {
-
+class BenchUtf8TitleCheck extends Benchmarker {
 	private $canRun;
 
 	private $data;
@@ -38,6 +37,7 @@ class bench_utf8_title_check extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
 
+		// @codingStandardsIgnoreStart Ignore long line warnings.
 		$this->data = array(
 			"",
 			"United States of America", // 7bit ASCII
@@ -59,11 +59,13 @@ class bench_utf8_title_check extends Benchmarker {
 			. "Sara%20Sidle%7CSofia%20Curtis%7CS%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e%7CWallace%20Langham%7C"
 			. "Warrick%20Brown%7CWendy%20Simms%7C%C3%89tats-Unis"
 		);
+		// @codingStandardsIgnoreEnd
 
-		$this->canRun = function_exists ( 'mb_check_encoding' );
+		$this->canRun = function_exists( 'mb_check_encoding' );
 
 		if ( $this->canRun ) {
-			$this->mDescription = "Benchmark for using a regexp vs. mb_check_encoding to check for UTF-8 encoding.";
+			$this->mDescription = "Benchmark for using a regexp vs. mb_check_encoding " .
+				"to check for UTF-8 encoding.";
 			mb_internal_encoding( 'UTF-8' );
 		} else {
 			$this->mDescription = "CANNOT RUN benchmark using mb_check_encoding: function not available.";
@@ -75,22 +77,22 @@ class bench_utf8_title_check extends Benchmarker {
 			return;
 		}
 		$benchmarks = array();
-		foreach ($this->data as $val) {
+		foreach ( $this->data as $val ) {
 			$benchmarks[] = array(
 				'function' => array( $this, 'use_regexp' ),
-				'args' => array( rawurldecode ( $val ) )
+				'args' => array( rawurldecode( $val ) )
 			);
 			$benchmarks[] = array(
 				'function' => array( $this, 'use_regexp_non_capturing' ),
-				'args' => array( rawurldecode ( $val ) )
+				'args' => array( rawurldecode( $val ) )
 			);
 			$benchmarks[] = array(
 				'function' => array( $this, 'use_regexp_once_only' ),
-				'args' => array( rawurldecode ( $val ) )
+				'args' => array( rawurldecode( $val ) )
 			);
 			$benchmarks[] = array(
 				'function' => array( $this, 'use_mb_check_encoding' ),
-				'args' => array( rawurldecode ( $val ) )
+				'args' => array( rawurldecode( $val ) )
 			);
 		}
 		$this->bench( $benchmarks );
@@ -101,26 +103,25 @@ class bench_utf8_title_check extends Benchmarker {
 
 	function use_regexp( $s ) {
 		$this->isutf8 = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-				'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
+			'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
 	}
 
 	function use_regexp_non_capturing( $s ) {
 		// Same as above with a non-capturing subgroup.
 		$this->isutf8 = preg_match( '/^(?:[\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-				'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
+			'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
 	}
 
 	function use_regexp_once_only( $s ) {
 		// Same as above with a once-only subgroup.
 		$this->isutf8 = preg_match( '/^(?>[\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-				'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
+			'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
 	}
 
 	function use_mb_check_encoding( $s ) {
 		$this->isutf8 = mb_check_encoding( $s, 'UTF-8' );
 	}
-
 }
 
-$maintClass = 'bench_utf8_title_check';
+$maintClass = 'BenchUtf8TitleCheck';
 require_once RUN_MAINTENANCE_IF_MAIN;

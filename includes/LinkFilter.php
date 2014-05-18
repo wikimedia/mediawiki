@@ -35,9 +35,9 @@ class LinkFilter {
 	/**
 	 * Check whether $content contains a link to $filterEntry
 	 *
-	 * @param $content Content: content to check
-	 * @param string $filterEntry domainparts, see makeRegex() for more details
-	 * @return Integer: 0 if no match or 1 if there's at least one match
+	 * @param Content $content Content to check
+	 * @param string $filterEntry Domainparts, see makeRegex() for more details
+	 * @return int 0 if no match or 1 if there's at least one match
 	 */
 	static function matchEntry( Content $content, $filterEntry ) {
 		if ( !( $content instanceof TextContent ) ) {
@@ -58,7 +58,7 @@ class LinkFilter {
 	 *
 	 * @param string $filterEntry URL, if it begins with "*.", it'll be
 	 *        replaced to match any subdomain
-	 * @return String: regex pattern, for preg_match()
+	 * @return string Regex pattern, for preg_match()
 	 */
 	private static function makeRegex( $filterEntry ) {
 		$regex = '!http://';
@@ -87,9 +87,9 @@ class LinkFilter {
 	 * This function does the same as wfMakeUrlIndexes(), except it also takes care
 	 * of adding wildcards
 	 *
-	 * @param String $filterEntry domainparts
-	 * @param String $protocol protocol (default http://)
-	 * @return Array to be passed to DatabaseBase::buildLike() or false on error
+	 * @param string $filterEntry Domainparts
+	 * @param string $protocol Protocol (default http://)
+	 * @return array Array to be passed to DatabaseBase::buildLike() or false on error
 	 */
 	public static function makeLikeArray( $filterEntry, $protocol = 'http://' ) {
 		$db = wfGetDB( DB_MASTER );
@@ -171,8 +171,8 @@ class LinkFilter {
 	 * Filters an array returned by makeLikeArray(), removing everything past first
 	 * pattern placeholder.
 	 *
-	 * @param array $arr array to filter
-	 * @return array filtered array
+	 * @param array $arr Array to filter
+	 * @return array Filtered array
 	 */
 	public static function keepOneWildcard( $arr ) {
 		if ( !is_array( $arr ) ) {

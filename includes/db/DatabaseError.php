@@ -26,21 +26,28 @@
  * @ingroup Database
  */
 class DBError extends MWException {
-	/**
-	 * @var DatabaseBase
-	 */
+	/** @var DatabaseBase */
 	public $db;
 
 	/**
 	 * Construct a database error
-	 * @param $db DatabaseBase object which threw the error
+	 * @param DatabaseBase $db Object which threw the error
 	 * @param string $error A simple error message to be used for debugging
 	 */
 	function __construct( DatabaseBase $db = null, $error ) {
 		$this->db = $db;
 		parent::__construct( $error );
 	}
+}
 
+/**
+ * Base class for the more common types of database errors. These are known to occur
+ * frequently, so we try to give friendly error messages for them.
+ *
+ * @ingroup Database
+ * @since 1.23
+ */
+class DBExpectedError extends DBError {
 	/**
 	 * @return string
 	 */
@@ -82,16 +89,21 @@ class DBError extends MWException {
 	 * @return string
 	 */
 	protected function getHTMLContent() {
-		return '<p>' . nl2br( htmlspecialchars( $this->getMessage() ) ) . '</p>';
+		return '<p>' . nl2br( htmlspecialchars( $this->getTextContent() ) ) . '</p>';
 	}
 }
 
 /**
  * @ingroup Database
  */
-class DBConnectionError extends DBError {
+class DBConnectionError extends DBExpectedError {
+	/** @var string Error text */
 	public $error;
 
+	/**
+	 * @param DatabaseBase $db Object throwing the error
+	 * @param string $error Error text
+	 */
 	function __construct( DatabaseBase $db = null, $error = 'unknown error' ) {
 		$msg = 'DB connection error';
 
@@ -114,9 +126,11 @@ class DBConnectionError extends DBError {
 	}
 
 	/**
-	 * @param $key
-	 * @param $fallback
-	 * @return string
+	 * @param string $key
+	 * @param string $fallback Unescaped alternative error text in case the
+	 *   message cache cannot be used. Can contain parameters as in regular
+	 *   messages, that should be passed as additional parameters.
+	 * @return string Unprocessed plain error text with parameters replaced
 	 */
 	function msg( $key, $fallback /*[, params...] */ ) {
 		global $wgLang;
@@ -133,7 +147,7 @@ class DBConnectionError extends DBError {
 	}
 
 	/**
-	 * @return boolean
+	 * @return bool
 	 */
 	function isLoggable() {
 		// Don't send to the exception log, already in dberror log
@@ -141,7 +155,7 @@ class DBConnectionError extends DBError {
 	}
 
 	/**
-	 * @return string
+	 * @return string Safe HTML
 	 */
 	function getHTML() {
 		global $wgShowDBErrorBacktrace, $wgShowHostnames, $wgShowSQLErrors;
@@ -192,6 +206,11 @@ class DBConnectionError extends DBError {
 		}
 	}
 
+	/**
+	 * Output the exception report using HTML.
+	 *
+	 * @return void
+	 */
 	public function reportHTML() {
 		global $wgUseFileCache;
 
@@ -270,21 +289,21 @@ EOT;
 	 * @return string
 	 */
 	private function fileCachedPage() {
-		global $wgTitle, $wgOut, $wgRequest;
+		$context = RequestContext::getMain();
 
-		if ( $wgOut->isDisabled() ) {
+		if ( $context->getOutput()->isDisabled() ) {
 			// Done already?
 			return '';
 		}
 
-		if ( $wgTitle ) {
-			// use $wgTitle if we managed to set it
-			$t = $wgTitle->getPrefixedDBkey();
+		if ( $context->getTitle() ) {
+			// Use the main context's title if we managed to set it
+			$t = $context->getTitle()->getPrefixedDBkey();
 		} else {
 			// Fallback to the raw title URL param. We can't use the Title
 			// class is it may hit the interwiki table and give a DB error.
 			// We may get a cache miss due to not sanitizing the title though.
-			$t = str_replace( ' ', '_', $wgRequest->getVal( 'title' ) );
+			$t = str_replace( ' ', '_', $context->getRequest()->getVal( 'title' ) );
 			if ( $t == '' ) { // fallback to main page
 				$t = Title::newFromText(
 					$this->msg( 'mainpage', 'Main Page' ) )->getPrefixedDBkey();
@@ -303,15 +322,15 @@ EOT;
 /**
  * @ingroup Database
  */
-class DBQueryError extends DBError {
+class DBQueryError extends DBExpectedError {
 	public $error, $errno, $sql, $fname;
 
 	/**
-	 * @param $db DatabaseBase
-	 * @param $error string
-	 * @param $errno int|string
-	 * @param $sql string
-	 * @param $fname string
+	 * @param DatabaseBase $db
+	 * @param string $error
+	 * @param int|string $errno
+	 * @param string $sql
+	 * @param string $fname
 	 */
 	function __construct( DatabaseBase $db, $error, $errno, $sql, $fname ) {
 		$message = "A database error has occurred. Did you forget to run " .
@@ -326,14 +345,6 @@ class DBQueryError extends DBError {
 		$this->errno = $errno;
 		$this->sql = $sql;
 		$this->fname = $fname;
-	}
-
-	/**
-	 * @return boolean
-	 */
-	function isLoggable() {
-		// Don't send to the exception log, already in dberror log
-		return false;
 	}
 
 	/**
@@ -391,7 +402,7 @@ class DBQueryError extends DBError {
 	 * sites using this option probably don't care much about "security by obscurity". Of course,
 	 * if $wgShowSQLErrors is true, the SQL query *is* shown.
 	 *
-	 * @return array: Keys are message keys; values are arrays of arguments for Html::element().
+	 * @return array Keys are message keys; values are arrays of arguments for Html::element().
 	 *   Array will be empty if users are not allowed to see any of these details at all.
 	 */
 	protected function getTechnicalDetails() {
@@ -416,7 +427,7 @@ class DBQueryError extends DBError {
 
 	/**
 	 * @param string $key Message key
-	 * @return string: English message text
+	 * @return string English message text
 	 */
 	private function getFallbackMessage( $key ) {
 		$messages = array(

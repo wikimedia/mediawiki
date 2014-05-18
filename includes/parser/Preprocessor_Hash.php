@@ -47,7 +47,7 @@ class Preprocessor_Hash implements Preprocessor {
 	}
 
 	/**
-	 * @param $args array
+	 * @param array $args
 	 * @return PPCustomFrame_Hash
 	 */
 	function newCustomFrame( $args ) {
@@ -55,7 +55,7 @@ class Preprocessor_Hash implements Preprocessor {
 	}
 
 	/**
-	 * @param $values array
+	 * @param array $values
 	 * @return PPNode_Hash_Array
 	 */
 	function newPartNodeArray( $values ) {
@@ -89,10 +89,10 @@ class Preprocessor_Hash implements Preprocessor {
 	 * Preprocess some wikitext and return the document tree.
 	 * This is the ghost of Parser::replace_variables().
 	 *
-	 * @param string $text the text to parse
-	 * @param $flags Integer: bitwise combination of:
-	 *          Parser::PTD_FOR_INCLUSION    Handle "<noinclude>" and "<includeonly>" as if the text is being
-	 *                                     included. Default is to assume a direct page view.
+	 * @param string $text The text to parse
+	 * @param int $flags Bitwise combination of:
+	 *    Parser::PTD_FOR_INCLUSION    Handle "<noinclude>" and "<includeonly>" as if the text is being
+	 *                                 included. Default is to assume a direct page view.
 	 *
 	 * The generated DOM tree must depend only on the input text and the flags.
 	 * The DOM tree must be the same in OT_HTML and OT_WIKI mode, to avoid a regression of bug 4899.
@@ -114,7 +114,9 @@ class Preprocessor_Hash implements Preprocessor {
 		// Check cache.
 		global $wgMemc, $wgPreprocessorCacheThreshold;
 
-		$cacheable = $wgPreprocessorCacheThreshold !== false && strlen( $text ) > $wgPreprocessorCacheThreshold;
+		$cacheable = $wgPreprocessorCacheThreshold !== false
+			&& strlen( $text ) > $wgPreprocessorCacheThreshold;
+
 		if ( $cacheable ) {
 			wfProfileIn( __METHOD__ . '-cacheable' );
 
@@ -161,7 +163,9 @@ class Preprocessor_Hash implements Preprocessor {
 			$ignoredTags = array( 'includeonly', '/includeonly' );
 			$ignoredElements = array( 'noinclude' );
 			$xmlishElements[] = 'noinclude';
-			if ( strpos( $text, '<onlyinclude>' ) !== false && strpos( $text, '</onlyinclude>' ) !== false ) {
+			if ( strpos( $text, '<onlyinclude>' ) !== false
+				&& strpos( $text, '</onlyinclude>' ) !== false
+			) {
 				$enableOnlyinclude = true;
 			}
 		} else {
@@ -177,18 +181,27 @@ class Preprocessor_Hash implements Preprocessor {
 		$stack = new PPDStack_Hash;
 
 		$searchBase = "[{<\n";
-		$revText = strrev( $text ); // For fast reverse searches
+		// For fast reverse searches
+		$revText = strrev( $text );
 		$lengthText = strlen( $text );
 
-		$i = 0;                     # Input pointer, starts out pointing to a pseudo-newline before the start
-		$accum =& $stack->getAccum();   # Current accumulator
-		$findEquals = false;            # True to find equals signs in arguments
-		$findPipe = false;              # True to take notice of pipe characters
+		// Input pointer, starts out pointing to a pseudo-newline before the start
+		$i = 0;
+		// Current accumulator
+		$accum =& $stack->getAccum();
+		// True to find equals signs in arguments
+		$findEquals = false;
+		// True to take notice of pipe characters
+		$findPipe = false;
 		$headingIndex = 1;
-		$inHeading = false;        # True if $i is inside a possible heading
-		$noMoreGT = false;         # True if there are no more greater-than (>) signs right of $i
-		$findOnlyinclude = $enableOnlyinclude; # True to ignore all input up to the next <onlyinclude>
-		$fakeLineStart = true;     # Do a line-start run without outputting an LF character
+		// True if $i is inside a possible heading
+		$inHeading = false;
+		// True if there are no more greater-than (>) signs right of $i
+		$noMoreGT = false;
+		// True to ignore all input up to the next <onlyinclude>
+		$findOnlyinclude = $enableOnlyinclude;
+		// Do a line-start run without outputting an LF character
+		$fakeLineStart = true;
 
 		while ( true ) {
 			//$this->memCheck();
@@ -273,7 +286,9 @@ class Preprocessor_Hash implements Preprocessor {
 			if ( $found == 'angle' ) {
 				$matches = false;
 				// Handle </onlyinclude>
-				if ( $enableOnlyinclude && substr( $text, $i, strlen( '</onlyinclude>' ) ) == '</onlyinclude>' ) {
+				if ( $enableOnlyinclude
+					&& substr( $text, $i, strlen( '</onlyinclude>' ) ) == '</onlyinclude>'
+				) {
 					$findOnlyinclude = true;
 					continue;
 				}
@@ -440,9 +455,7 @@ class Preprocessor_Hash implements Preprocessor {
 					$extNode->addChild( PPNode_Hash_Tree::newWithText( 'close', $close ) );
 				}
 				$accum->addNode( $extNode );
-			}
-
-			elseif ( $found == 'line-start' ) {
+			} elseif ( $found == 'line-start' ) {
 				// Is this the start of a heading?
 				// Line break belongs before the heading element in any case
 				if ( $fakeLineStart ) {
@@ -454,9 +467,10 @@ class Preprocessor_Hash implements Preprocessor {
 
 				$count = strspn( $text, '=', $i, 6 );
 				if ( $count == 1 && $findEquals ) {
-					// DWIM: This looks kind of like a name/value separator
-					// Let's let the equals handler have it and break the potential heading
-					// This is heuristic, but AFAICT the methods for completely correct disambiguation are very complex.
+					// DWIM: This looks kind of like a name/value separator.
+					// Let's let the equals handler have it and break the potential
+					// heading. This is heuristic, but AFAICT the methods for
+					// completely correct disambiguation are very complex.
 				} elseif ( $count > 0 ) {
 					$piece = array(
 						'open' => "\n",
@@ -474,8 +488,9 @@ class Preprocessor_Hash implements Preprocessor {
 				// A heading must be open, otherwise \n wouldn't have been in the search list
 				assert( '$piece->open == "\n"' );
 				$part = $piece->getCurrentPart();
-				// Search back through the input to see if it has a proper close
-				// Do this using the reversed string since the other solutions (end anchor, etc.) are inefficient
+				// Search back through the input to see if it has a proper close.
+				// Do this using the reversed string since the other solutions
+				// (end anchor, etc.) are inefficient.
 				$wsLength = strspn( $revText, " \t", $lengthText - $i );
 				$searchStart = $i - $wsLength;
 				if ( isset( $part->commentEnd ) && $searchStart - 1 == $part->commentEnd ) {
@@ -764,6 +779,7 @@ class PPDStackElement_Hash extends PPDStackElement {
 	/**
 	 * Get the accumulator that would result if the close is not found.
 	 *
+	 * @param int|bool $openingCount
 	 * @return PPDAccum_Hash
 	 */
 	function breakSyntax( $openingCount = false ) {
@@ -814,6 +830,7 @@ class PPDAccum_Hash {
 
 	/**
 	 * Append a string literal
+	 * @param string $s
 	 */
 	function addLiteral( $s ) {
 		if ( $this->lastNode === false ) {
@@ -828,6 +845,7 @@ class PPDAccum_Hash {
 
 	/**
 	 * Append a PPNode
+	 * @param PPNode $node
 	 */
 	function addNode( PPNode $node ) {
 		if ( $this->lastNode === false ) {
@@ -840,6 +858,8 @@ class PPDAccum_Hash {
 
 	/**
 	 * Append a tree node with text contents
+	 * @param string $name
+	 * @param string $value
 	 */
 	function addNodeWithText( $name, $value ) {
 		$node = PPNode_Hash_Tree::newWithText( $name, $value );
@@ -847,9 +867,10 @@ class PPDAccum_Hash {
 	}
 
 	/**
-	 * Append a PPAccum_Hash
+	 * Append a PPDAccum_Hash
 	 * Takes over ownership of the nodes in the source argument. These nodes may
 	 * subsequently be modified, especially nextSibling.
+	 * @param PPDAccum_Hash $accum
 	 */
 	function addAccum( $accum ) {
 		if ( $accum->lastNode === false ) {
@@ -900,7 +921,7 @@ class PPFrame_Hash implements PPFrame {
 
 	/**
 	 * Construct a new preprocessor frame.
-	 * @param $preprocessor Preprocessor: the parent preprocessor
+	 * @param Preprocessor $preprocessor The parent preprocessor
 	 */
 	function __construct( $preprocessor ) {
 		$this->preprocessor = $preprocessor;
@@ -915,9 +936,8 @@ class PPFrame_Hash implements PPFrame {
 	 * Create a new child frame
 	 * $args is optionally a multi-root PPNode or array containing the template arguments
 	 *
-	 * @param array|bool|\PPNode_Hash_Array $args PPNode_Hash_Array|array
-	 * @param $title Title|bool
-	 *
+	 * @param array|bool|PPNode_Hash_Array $args
+	 * @param Title|bool $title
 	 * @param int $indexOffset
 	 * @throws MWException
 	 * @return PPTemplateFrame_Hash
@@ -954,8 +974,8 @@ class PPFrame_Hash implements PPFrame {
 
 	/**
 	 * @throws MWException
-	 * @param $root
-	 * @param $flags int
+	 * @param string|PPNode$root
+	 * @param int $flags
 	 * @return string
 	 */
 	function expand( $root, $flags = 0 ) {
@@ -1035,7 +1055,11 @@ class PPFrame_Hash implements PPFrame {
 					# Double-brace expansion
 					$bits = $contextNode->splitTemplate();
 					if ( $flags & PPFrame::NO_TEMPLATES ) {
-						$newIterator = $this->virtualBracketedImplode( '{{', '|', '}}', $bits['title'], $bits['parts'] );
+						$newIterator = $this->virtualBracketedImplode(
+							'{{', '|', '}}',
+							$bits['title'],
+							$bits['parts']
+						);
 					} else {
 						$ret = $this->parser->braceSubstitution( $bits, $this );
 						if ( isset( $ret['object'] ) ) {
@@ -1048,7 +1072,11 @@ class PPFrame_Hash implements PPFrame {
 					# Triple-brace expansion
 					$bits = $contextNode->splitTemplate();
 					if ( $flags & PPFrame::NO_ARGS ) {
-						$newIterator = $this->virtualBracketedImplode( '{{{', '|', '}}}', $bits['title'], $bits['parts'] );
+						$newIterator = $this->virtualBracketedImplode(
+							'{{{', '|', '}}}',
+							$bits['title'],
+							$bits['parts']
+						);
 					} else {
 						$ret = $this->parser->argSubstitution( $bits, $this );
 						if ( isset( $ret['object'] ) ) {
@@ -1065,14 +1093,13 @@ class PPFrame_Hash implements PPFrame {
 						|| ( $flags & PPFrame::STRIP_COMMENTS )
 					) {
 						$out .= '';
-					}
-					# Add a strip marker in PST mode so that pstPass2() can run some old-fashioned regexes on the result
-					# Not in RECOVER_COMMENTS mode (extractSections) though
-					elseif ( $this->parser->ot['wiki'] && !( $flags & PPFrame::RECOVER_COMMENTS ) ) {
+					} elseif ( $this->parser->ot['wiki'] && !( $flags & PPFrame::RECOVER_COMMENTS ) ) {
+						# Add a strip marker in PST mode so that pstPass2() can
+						# run some old-fashioned regexes on the result.
+						# Not in RECOVER_COMMENTS mode (extractSections) though.
 						$out .= $this->parser->insertStripItem( $contextNode->firstChild->value );
-					}
-					# Recover the literal comment in RECOVER_COMMENTS and pre+no-remove
-					else {
+					} else {
+						# Recover the literal comment in RECOVER_COMMENTS and pre+no-remove
 						$out .= $contextNode->firstChild->value;
 					}
 				} elseif ( $contextNode->name == 'ignore' ) {
@@ -1080,7 +1107,9 @@ class PPFrame_Hash implements PPFrame {
 					# OT_WIKI will only respect <ignore> in substed templates.
 					# The other output types respect it unless NO_IGNORE is set.
 					# extractSections() sets NO_IGNORE and so never respects it.
-					if ( ( !isset( $this->parent ) && $this->parser->ot['wiki'] ) || ( $flags & PPFrame::NO_IGNORE ) ) {
+					if ( ( !isset( $this->parent ) && $this->parser->ot['wiki'] )
+						|| ( $flags & PPFrame::NO_IGNORE )
+					) {
 						$out .= $contextNode->firstChild->value;
 					} else {
 						//$out .= '';
@@ -1139,8 +1168,8 @@ class PPFrame_Hash implements PPFrame {
 	}
 
 	/**
-	 * @param $sep
-	 * @param $flags
+	 * @param string $sep
+	 * @param int $flags
 	 * @return string
 	 */
 	function implodeWithFlags( $sep, $flags /*, ... */ ) {
@@ -1170,6 +1199,7 @@ class PPFrame_Hash implements PPFrame {
 	/**
 	 * Implode with no flags specified
 	 * This previously called implodeWithFlags but has now been inlined to reduce stack depth
+	 * @param string $sep
 	 * @return string
 	 */
 	function implode( $sep /*, ... */ ) {
@@ -1200,6 +1230,7 @@ class PPFrame_Hash implements PPFrame {
 	 * Makes an object that, when expand()ed, will be the same as one obtained
 	 * with implode()
 	 *
+	 * @param string $sep
 	 * @return PPNode_Hash_Array
 	 */
 	function virtualImplode( $sep /*, ... */ ) {
@@ -1229,6 +1260,9 @@ class PPFrame_Hash implements PPFrame {
 	/**
 	 * Virtual implode with brackets
 	 *
+	 * @param string $start
+	 * @param string $sep
+	 * @param string $end
 	 * @return PPNode_Hash_Array
 	 */
 	function virtualBracketedImplode( $start, $sep, $end /*, ... */ ) {
@@ -1261,8 +1295,8 @@ class PPFrame_Hash implements PPFrame {
 	}
 
 	/**
-	 * @param $level bool
-	 * @return array|bool|String
+	 * @param bool $level
+	 * @return array|bool|string
 	 */
 	function getPDBK( $level = false ) {
 		if ( $level === false ) {
@@ -1303,7 +1337,7 @@ class PPFrame_Hash implements PPFrame {
 	}
 
 	/**
-	 * @param $name
+	 * @param string $name
 	 * @return bool
 	 */
 	function getArgument( $name ) {
@@ -1313,7 +1347,7 @@ class PPFrame_Hash implements PPFrame {
 	/**
 	 * Returns true if the infinite loop check is OK, false if a loop is detected
 	 *
-	 * @param $title Title
+	 * @param Title $title
 	 *
 	 * @return bool
 	 */
@@ -1349,13 +1383,15 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	var $numberedExpansionCache, $namedExpansionCache;
 
 	/**
-	 * @param $preprocessor
-	 * @param $parent
-	 * @param $numberedArgs array
-	 * @param $namedArgs array
-	 * @param $title Title
+	 * @param Preprocessor $preprocessor
+	 * @param bool|PPFrame $parent
+	 * @param array $numberedArgs
+	 * @param array $namedArgs
+	 * @param bool|Title $title
 	 */
-	function __construct( $preprocessor, $parent = false, $numberedArgs = array(), $namedArgs = array(), $title = false ) {
+	function __construct( $preprocessor, $parent = false, $numberedArgs = array(),
+		$namedArgs = array(), $title = false
+	) {
 		parent::__construct( $preprocessor );
 
 		$this->parent = $parent;
@@ -1389,6 +1425,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		$s .= '}';
 		return $s;
 	}
+
 	/**
 	 * Returns true if there are no arguments in this frame
 	 *
@@ -1434,7 +1471,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	}
 
 	/**
-	 * @param $index
+	 * @param int $index
 	 * @return array|bool
 	 */
 	function getNumberedArgument( $index ) {
@@ -1443,13 +1480,16 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		}
 		if ( !isset( $this->numberedExpansionCache[$index] ) ) {
 			# No trimming for unnamed arguments
-			$this->numberedExpansionCache[$index] = $this->parent->expand( $this->numberedArgs[$index], PPFrame::STRIP_COMMENTS );
+			$this->numberedExpansionCache[$index] = $this->parent->expand(
+				$this->numberedArgs[$index],
+				PPFrame::STRIP_COMMENTS
+			);
 		}
 		return $this->numberedExpansionCache[$index];
 	}
 
 	/**
-	 * @param $name
+	 * @param string $name
 	 * @return bool
 	 */
 	function getNamedArgument( $name ) {
@@ -1465,7 +1505,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	}
 
 	/**
-	 * @param $name
+	 * @param string $name
 	 * @return array|bool
 	 */
 	function getArgument( $name ) {
@@ -1522,7 +1562,7 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
 	}
 
 	/**
-	 * @param $index
+	 * @param int $index
 	 * @return bool
 	 */
 	function getArgument( $index ) {
@@ -1566,8 +1606,8 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 
 	/**
-	 * @param $name
-	 * @param $text
+	 * @param string $name
+	 * @param string $text
 	 * @return PPNode_Hash_Tree
 	 */
 	static function newWithText( $name, $text ) {
@@ -1622,7 +1662,7 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 
 	/**
-	 * @param  $i
+	 * @param int $i
 	 * @return bool
 	 */
 	function item( $i ) {
@@ -1780,15 +1820,41 @@ class PPNode_Hash_Text implements PPNode {
 		return $this->nextSibling;
 	}
 
-	function getChildren() { return false; }
-	function getFirstChild() { return false; }
-	function getChildrenOfType( $name ) { return false; }
-	function getLength() { return false; }
-	function item( $i ) { return false; }
-	function getName() { return '#text'; }
-	function splitArg() { throw new MWException( __METHOD__ . ': not supported' ); }
-	function splitExt() { throw new MWException( __METHOD__ . ': not supported' ); }
-	function splitHeading() { throw new MWException( __METHOD__ . ': not supported' ); }
+	function getChildren() {
+		return false;
+	}
+
+	function getFirstChild() {
+		return false;
+	}
+
+	function getChildrenOfType( $name ) {
+		return false;
+	}
+
+	function getLength() {
+		return false;
+	}
+
+	function item( $i ) {
+		return false;
+	}
+
+	function getName() {
+		return '#text';
+	}
+
+	function splitArg() {
+		throw new MWException( __METHOD__ . ': not supported' );
+	}
+
+	function splitExt() {
+		throw new MWException( __METHOD__ . ': not supported' );
+	}
+
+	function splitHeading() {
+		throw new MWException( __METHOD__ . ': not supported' );
+	}
 }
 
 /**
@@ -1813,18 +1879,37 @@ class PPNode_Hash_Array implements PPNode {
 		return $this->value[$i];
 	}
 
-	function getName() { return '#nodelist'; }
+	function getName() {
+		return '#nodelist';
+	}
 
 	function getNextSibling() {
 		return $this->nextSibling;
 	}
 
-	function getChildren() { return false; }
-	function getFirstChild() { return false; }
-	function getChildrenOfType( $name ) { return false; }
-	function splitArg() { throw new MWException( __METHOD__ . ': not supported' ); }
-	function splitExt() { throw new MWException( __METHOD__ . ': not supported' ); }
-	function splitHeading() { throw new MWException( __METHOD__ . ': not supported' ); }
+	function getChildren() {
+		return false;
+	}
+
+	function getFirstChild() {
+		return false;
+	}
+
+	function getChildrenOfType( $name ) {
+		return false;
+	}
+
+	function splitArg() {
+		throw new MWException( __METHOD__ . ': not supported' );
+	}
+
+	function splitExt() {
+		throw new MWException( __METHOD__ . ': not supported' );
+	}
+
+	function splitHeading() {
+		throw new MWException( __METHOD__ . ': not supported' );
+	}
 }
 
 /**
@@ -1850,12 +1935,35 @@ class PPNode_Hash_Attr implements PPNode {
 		return $this->nextSibling;
 	}
 
-	function getChildren() { return false; }
-	function getFirstChild() { return false; }
-	function getChildrenOfType( $name ) { return false; }
-	function getLength() { return false; }
-	function item( $i ) { return false; }
-	function splitArg() { throw new MWException( __METHOD__ . ': not supported' ); }
-	function splitExt() { throw new MWException( __METHOD__ . ': not supported' ); }
-	function splitHeading() { throw new MWException( __METHOD__ . ': not supported' ); }
+	function getChildren() {
+		return false;
+	}
+
+	function getFirstChild() {
+		return false;
+	}
+
+	function getChildrenOfType( $name ) {
+		return false;
+	}
+
+	function getLength() {
+		return false;
+	}
+
+	function item( $i ) {
+		return false;
+	}
+
+	function splitArg() {
+		throw new MWException( __METHOD__ . ': not supported' );
+	}
+
+	function splitExt() {
+		throw new MWException( __METHOD__ . ': not supported' );
+	}
+
+	function splitHeading() {
+		throw new MWException( __METHOD__ . ': not supported' );
+	}
 }

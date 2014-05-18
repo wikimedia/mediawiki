@@ -24,7 +24,8 @@
 /**
  * \brief Set options of the Parser
  *
- * All member variables are supposed to be private in theory, although in practise this is not the case.
+ * All member variables are supposed to be private in theory, although in
+ * practise this is not the case.
  *
  * @ingroup Parser
  */
@@ -165,11 +166,6 @@ class ParserOptions {
 	var $mNumberHeadings;
 
 	/**
-	 * User math preference (as integer). Not used (1.19)
-	 */
-	var $mMath;
-
-	/**
 	 * Thumb size preferred by the user.
 	 */
 	var $mThumbSize;
@@ -215,54 +211,133 @@ class ParserOptions {
 	 */
 	protected $onAccessCallback = null;
 
-	function getInterwikiMagic()                { return $this->mInterwikiMagic; }
-	function getAllowExternalImages()           { return $this->mAllowExternalImages; }
-	function getAllowExternalImagesFrom()       { return $this->mAllowExternalImagesFrom; }
-	function getEnableImageWhitelist()          { return $this->mEnableImageWhitelist; }
-	function getEditSection()                   { return $this->mEditSection; }
-	function getNumberHeadings()                { $this->optionUsed( 'numberheadings' );
-												  return $this->mNumberHeadings; }
-	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
-	function getTidy()                          { return $this->mTidy; }
-	function getInterfaceMessage()              { return $this->mInterfaceMessage; }
-	function getTargetLanguage()                { return $this->mTargetLanguage; }
-	function getMaxIncludeSize()                { return $this->mMaxIncludeSize; }
-	function getMaxPPNodeCount()                { return $this->mMaxPPNodeCount; }
-	function getMaxGeneratedPPNodeCount()       { return $this->mMaxGeneratedPPNodeCount; }
-	function getMaxPPExpandDepth()              { return $this->mMaxPPExpandDepth; }
-	function getMaxTemplateDepth()              { return $this->mMaxTemplateDepth; }
+	function getInterwikiMagic() {
+		return $this->mInterwikiMagic;
+	}
+
+	function getAllowExternalImages() {
+		return $this->mAllowExternalImages;
+	}
+
+	function getAllowExternalImagesFrom() {
+		return $this->mAllowExternalImagesFrom;
+	}
+
+	function getEnableImageWhitelist() {
+		return $this->mEnableImageWhitelist;
+	}
+
+	function getEditSection() {
+		return $this->mEditSection;
+	}
+
+	function getNumberHeadings() {
+		$this->optionUsed( 'numberheadings' );
+
+		return $this->mNumberHeadings;
+	}
+
+	function getAllowSpecialInclusion() {
+		return $this->mAllowSpecialInclusion;
+	}
+
+	function getTidy() {
+		return $this->mTidy;
+	}
+
+	function getInterfaceMessage() {
+		return $this->mInterfaceMessage;
+	}
+
+	function getTargetLanguage() {
+		return $this->mTargetLanguage;
+	}
+
+	function getMaxIncludeSize() {
+		return $this->mMaxIncludeSize;
+	}
+
+	function getMaxPPNodeCount() {
+		return $this->mMaxPPNodeCount;
+	}
+
+	function getMaxGeneratedPPNodeCount() {
+		return $this->mMaxGeneratedPPNodeCount;
+	}
+
+	function getMaxPPExpandDepth() {
+		return $this->mMaxPPExpandDepth;
+	}
+
+	function getMaxTemplateDepth() {
+		return $this->mMaxTemplateDepth;
+	}
+
 	/* @since 1.20 */
-	function getExpensiveParserFunctionLimit()  { return $this->mExpensiveParserFunctionLimit; }
-	function getRemoveComments()                { return $this->mRemoveComments; }
-	function getTemplateCallback()              { return $this->mTemplateCallback; }
-	function getEnableLimitReport()             { return $this->mEnableLimitReport; }
-	function getCleanSignatures()               { return $this->mCleanSignatures; }
-	function getExternalLinkTarget()            { return $this->mExternalLinkTarget; }
-	function getDisableContentConversion()      { return $this->mDisableContentConversion; }
-	function getDisableTitleConversion()        { return $this->mDisableTitleConversion; }
-	/** @deprecated since 1.22 use User::getOption('math') instead */
-	function getMath()                          { $this->optionUsed( 'math' );
-												  return $this->mMath; }
-	function getThumbSize()                     { $this->optionUsed( 'thumbsize' );
-												  return $this->mThumbSize; }
-	function getStubThreshold()                 { $this->optionUsed( 'stubthreshold' );
-												  return $this->mStubThreshold; }
+	function getExpensiveParserFunctionLimit() {
+		return $this->mExpensiveParserFunctionLimit;
+	}
 
-	function getIsPreview()                     { return $this->mIsPreview; }
-	function getIsSectionPreview()              { return $this->mIsSectionPreview; }
-	function getIsPrintable()                   { $this->optionUsed( 'printable' );
-												  return $this->mIsPrintable; }
-	function getUser()                          { return $this->mUser; }
-	function getPreSaveTransform()              { return $this->mPreSaveTransform; }
+	function getRemoveComments() {
+		return $this->mRemoveComments;
+	}
 
-	/**
-	 * @param $title Title
-	 * @return Skin
-	 * @deprecated since 1.18 Use Linker::* instead
-	 */
-	function getSkin( $title = null ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return new DummyLinker;
+	function getTemplateCallback() {
+		return $this->mTemplateCallback;
+	}
+
+	function getEnableLimitReport() {
+		return $this->mEnableLimitReport;
+	}
+
+	function getCleanSignatures() {
+		return $this->mCleanSignatures;
+	}
+
+	function getExternalLinkTarget() {
+		return $this->mExternalLinkTarget;
+	}
+
+	function getDisableContentConversion() {
+		return $this->mDisableContentConversion;
+	}
+
+	function getDisableTitleConversion() {
+		return $this->mDisableTitleConversion;
+	}
+
+	function getThumbSize() {
+		$this->optionUsed( 'thumbsize' );
+
+		return $this->mThumbSize;
+	}
+
+	function getStubThreshold() {
+		$this->optionUsed( 'stubthreshold' );
+
+		return $this->mStubThreshold;
+	}
+
+	function getIsPreview() {
+		return $this->mIsPreview;
+	}
+
+	function getIsSectionPreview() {
+		return $this->mIsSectionPreview;
+	}
+
+	function getIsPrintable() {
+		$this->optionUsed( 'printable' );
+
+		return $this->mIsPrintable;
+	}
+
+	function getUser() {
+		return $this->mUser;
+	}
+
+	function getPreSaveTransform() {
+		return $this->mPreSaveTransform;
 	}
 
 	function getDateFormat() {
@@ -293,7 +368,7 @@ class ParserOptions {
 	 *
 	 * {{int: }} uses this which used to produce inconsistent link tables (bug 14404).
 	 *
-	 * @return Language object
+	 * @return Language
 	 * @since 1.19
 	 */
 	function getUserLangObj() {
@@ -304,56 +379,146 @@ class ParserOptions {
 	/**
 	 * Same as getUserLangObj() but returns a string instead.
 	 *
-	 * @return String   Language code
+	 * @return string Language code
 	 * @since 1.17
 	 */
 	function getUserLang() {
 		return $this->getUserLangObj()->getCode();
 	}
 
-	function setInterwikiMagic( $x )            { return wfSetVar( $this->mInterwikiMagic, $x ); }
-	function setAllowExternalImages( $x )       { return wfSetVar( $this->mAllowExternalImages, $x ); }
-	function setAllowExternalImagesFrom( $x )   { return wfSetVar( $this->mAllowExternalImagesFrom, $x ); }
-	function setEnableImageWhitelist( $x )      { return wfSetVar( $this->mEnableImageWhitelist, $x ); }
-	function setDateFormat( $x )                { return wfSetVar( $this->mDateFormat, $x ); }
-	function setEditSection( $x )               { return wfSetVar( $this->mEditSection, $x ); }
-	function setNumberHeadings( $x )            { return wfSetVar( $this->mNumberHeadings, $x ); }
-	function setAllowSpecialInclusion( $x )     { return wfSetVar( $this->mAllowSpecialInclusion, $x ); }
-	function setTidy( $x )                      { return wfSetVar( $this->mTidy, $x ); }
+	function setInterwikiMagic( $x ) {
+		return wfSetVar( $this->mInterwikiMagic, $x );
+	}
 
-	/** @deprecated in 1.19 */
-	function setSkin( $x )                      { wfDeprecated( __METHOD__, '1.19' ); }
-	function setInterfaceMessage( $x )          { return wfSetVar( $this->mInterfaceMessage, $x ); }
-	function setTargetLanguage( $x )            { return wfSetVar( $this->mTargetLanguage, $x, true ); }
-	function setMaxIncludeSize( $x )            { return wfSetVar( $this->mMaxIncludeSize, $x ); }
-	function setMaxPPNodeCount( $x )            { return wfSetVar( $this->mMaxPPNodeCount, $x ); }
-	function setMaxGeneratedPPNodeCount( $x )   { return wfSetVar( $this->mMaxGeneratedPPNodeCount, $x ); }
-	function setMaxTemplateDepth( $x )          { return wfSetVar( $this->mMaxTemplateDepth, $x ); }
+	function setAllowExternalImages( $x ) {
+		return wfSetVar( $this->mAllowExternalImages, $x );
+	}
+
+	function setAllowExternalImagesFrom( $x ) {
+		return wfSetVar( $this->mAllowExternalImagesFrom, $x );
+	}
+
+	function setEnableImageWhitelist( $x ) {
+		return wfSetVar( $this->mEnableImageWhitelist, $x );
+	}
+
+	function setDateFormat( $x ) {
+		return wfSetVar( $this->mDateFormat, $x );
+	}
+
+	function setEditSection( $x ) {
+		return wfSetVar( $this->mEditSection, $x );
+	}
+
+	function setNumberHeadings( $x ) {
+		return wfSetVar( $this->mNumberHeadings, $x );
+	}
+
+	function setAllowSpecialInclusion( $x ) {
+		return wfSetVar( $this->mAllowSpecialInclusion, $x );
+	}
+
+	function setTidy( $x ) {
+		return wfSetVar( $this->mTidy, $x );
+	}
+
+	/** @deprecated since 1.19 */
+	function setSkin( $x ) {
+		wfDeprecated( __METHOD__, '1.19' );
+	}
+
+	function setInterfaceMessage( $x ) {
+		return wfSetVar( $this->mInterfaceMessage, $x );
+	}
+
+	function setTargetLanguage( $x ) {
+		return wfSetVar( $this->mTargetLanguage, $x, true );
+	}
+
+	function setMaxIncludeSize( $x ) {
+		return wfSetVar( $this->mMaxIncludeSize, $x );
+	}
+
+	function setMaxPPNodeCount( $x ) {
+		return wfSetVar( $this->mMaxPPNodeCount, $x );
+	}
+
+	function setMaxGeneratedPPNodeCount( $x ) {
+		return wfSetVar( $this->mMaxGeneratedPPNodeCount, $x );
+	}
+
+	function setMaxTemplateDepth( $x ) {
+		return wfSetVar( $this->mMaxTemplateDepth, $x );
+	}
+
 	/* @since 1.20 */
-	function setExpensiveParserFunctionLimit( $x ) { return wfSetVar( $this->mExpensiveParserFunctionLimit, $x ); }
-	function setRemoveComments( $x )            { return wfSetVar( $this->mRemoveComments, $x ); }
-	function setTemplateCallback( $x )          { return wfSetVar( $this->mTemplateCallback, $x ); }
-	function enableLimitReport( $x = true )     { return wfSetVar( $this->mEnableLimitReport, $x ); }
-	function setTimestamp( $x )                 { return wfSetVar( $this->mTimestamp, $x ); }
-	function setCleanSignatures( $x )           { return wfSetVar( $this->mCleanSignatures, $x ); }
-	function setExternalLinkTarget( $x )        { return wfSetVar( $this->mExternalLinkTarget, $x ); }
-	function disableContentConversion( $x = true ) { return wfSetVar( $this->mDisableContentConversion, $x ); }
-	function disableTitleConversion( $x = true ) { return wfSetVar( $this->mDisableTitleConversion, $x ); }
-	/** @deprecated since 1.22 */
-	function setMath( $x )                      { return wfSetVar( $this->mMath, $x ); }
-	function setUserLang( $x )                  {
+	function setExpensiveParserFunctionLimit( $x ) {
+		return wfSetVar( $this->mExpensiveParserFunctionLimit, $x );
+	}
+
+	function setRemoveComments( $x ) {
+		return wfSetVar( $this->mRemoveComments, $x );
+	}
+
+	function setTemplateCallback( $x ) {
+		return wfSetVar( $this->mTemplateCallback, $x );
+	}
+
+	function enableLimitReport( $x = true ) {
+		return wfSetVar( $this->mEnableLimitReport, $x );
+	}
+
+	function setTimestamp( $x ) {
+		return wfSetVar( $this->mTimestamp, $x );
+	}
+
+	function setCleanSignatures( $x ) {
+		return wfSetVar( $this->mCleanSignatures, $x );
+	}
+
+	function setExternalLinkTarget( $x ) {
+		return wfSetVar( $this->mExternalLinkTarget, $x );
+	}
+
+	function disableContentConversion( $x = true ) {
+		return wfSetVar( $this->mDisableContentConversion, $x );
+	}
+
+	function disableTitleConversion( $x = true ) {
+		return wfSetVar( $this->mDisableTitleConversion, $x );
+	}
+
+	function setUserLang( $x ) {
 		if ( is_string( $x ) ) {
 			$x = Language::factory( $x );
 		}
+
 		return wfSetVar( $this->mUserLang, $x );
 	}
-	function setThumbSize( $x )                 { return wfSetVar( $this->mThumbSize, $x ); }
-	function setStubThreshold( $x )             { return wfSetVar( $this->mStubThreshold, $x ); }
-	function setPreSaveTransform( $x )          { return wfSetVar( $this->mPreSaveTransform, $x ); }
 
-	function setIsPreview( $x )                 { return wfSetVar( $this->mIsPreview, $x ); }
-	function setIsSectionPreview( $x )          { return wfSetVar( $this->mIsSectionPreview, $x ); }
-	function setIsPrintable( $x )               { return wfSetVar( $this->mIsPrintable, $x ); }
+	function setThumbSize( $x ) {
+		return wfSetVar( $this->mThumbSize, $x );
+	}
+
+	function setStubThreshold( $x ) {
+		return wfSetVar( $this->mStubThreshold, $x );
+	}
+
+	function setPreSaveTransform( $x ) {
+		return wfSetVar( $this->mPreSaveTransform, $x );
+	}
+
+	function setIsPreview( $x ) {
+		return wfSetVar( $this->mIsPreview, $x );
+	}
+
+	function setIsSectionPreview( $x ) {
+		return wfSetVar( $this->mIsSectionPreview, $x );
+	}
+
+	function setIsPrintable( $x ) {
+		return wfSetVar( $this->mIsPrintable, $x );
+	}
 
 	/**
 	 * Extra key that should be present in the parser cache key.
@@ -364,8 +529,8 @@ class ParserOptions {
 
 	/**
 	 * Constructor
-	 * @param $user User object
-	 * @param $lang Language object
+	 * @param User $user
+	 * @param Language $lang
 	 */
 	function __construct( $user = null, $lang = null ) {
 		if ( $user === null ) {
@@ -390,8 +555,8 @@ class ParserOptions {
 	 * Get a ParserOptions object from a given user.
 	 * Language will be taken from $wgLang.
 	 *
-	 * @param $user User object
-	 * @return ParserOptions object
+	 * @param User $user
+	 * @return ParserOptions
 	 */
 	public static function newFromUser( $user ) {
 		return new ParserOptions( $user );
@@ -400,9 +565,9 @@ class ParserOptions {
 	/**
 	 * Get a ParserOptions object from a given user and language
 	 *
-	 * @param $user User object
-	 * @param $lang Language object
-	 * @return ParserOptions object
+	 * @param User $user
+	 * @param Language $lang
+	 * @return ParserOptions
 	 */
 	public static function newFromUserAndLang( User $user, Language $lang ) {
 		return new ParserOptions( $user, $lang );
@@ -411,8 +576,8 @@ class ParserOptions {
 	/**
 	 * Get a ParserOptions object from a IContextSource object
 	 *
-	 * @param $context IContextSource object
-	 * @return ParserOptions object
+	 * @param IContextSource $context
+	 * @return ParserOptions
 	 */
 	public static function newFromContext( IContextSource $context ) {
 		return new ParserOptions( $context->getUser(), $context->getLanguage() );
@@ -421,8 +586,8 @@ class ParserOptions {
 	/**
 	 * Get user options
 	 *
-	 * @param $user User object
-	 * @param $lang Language object
+	 * @param User $user
+	 * @param Language $lang
 	 */
 	private function initialiseFromUser( $user, $lang ) {
 		global $wgInterwikiMagic, $wgAllowExternalImages,
@@ -451,7 +616,6 @@ class ParserOptions {
 
 		$this->mUser = $user;
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
-		$this->mMath = $user->getOption( 'math' );
 		$this->mThumbSize = $user->getOption( 'thumbsize' );
 		$this->mStubThreshold = $user->getStubThreshold();
 		$this->mUserLang = $lang;
@@ -462,6 +626,7 @@ class ParserOptions {
 	/**
 	 * Registers a callback for tracking which ParserOptions which are used.
 	 * This is a private API with the parser.
+	 * @param callable $callback
 	 */
 	function registerWatcher( $callback ) {
 		$this->onAccessCallback = $callback;
@@ -469,8 +634,9 @@ class ParserOptions {
 
 	/**
 	 * Called when an option is accessed.
+	 * @param string $optionName Name of the option
 	 */
-	protected function optionUsed( $optionName ) {
+	public function optionUsed( $optionName ) {
 		if ( $this->onAccessCallback ) {
 			call_user_func( $this->onAccessCallback, $optionName );
 		}
@@ -483,7 +649,14 @@ class ParserOptions {
 	 * @return array
 	 */
 	public static function legacyOptions() {
-		return array( 'math', 'stubthreshold', 'numberheadings', 'userlang', 'thumbsize', 'editsection', 'printable' );
+		return array(
+			'stubthreshold',
+			'numberheadings',
+			'userlang',
+			'thumbsize',
+			'editsection',
+			'printable'
+		);
 	}
 
 	/**
@@ -498,20 +671,17 @@ class ParserOptions {
 	 * settings.
 	 *
 	 * @since 1.17
-	 * @param $forOptions Array
-	 * @param $title Title: used to get the content language of the page (since r97636)
+	 * @param array $forOptions
+	 * @param Title $title Used to get the content language of the page (since r97636)
 	 * @return string Page rendering hash
 	 */
 	public function optionsHash( $forOptions, $title = null ) {
 		global $wgRenderHashAppend;
 
-		$confstr = '';
-
-		if ( in_array( 'math', $forOptions ) ) {
-			$confstr .= $this->mMath;
-		} else {
-			$confstr .= '*';
-		}
+		// FIXME: Once the cache key is reorganized this argument
+		// can be dropped. It was used when the math extension was
+		// part of core.
+		$confstr = '*';
 
 		// Space assigned for the stubthreshold but unused
 		// since it disables the parser cache, its value will always
@@ -571,7 +741,7 @@ class ParserOptions {
 
 		// Give a chance for extensions to modify the hash, if they have
 		// extra options or other effects on the parser cache.
-		wfRunHooks( 'PageRenderingHash', array( &$confstr ) );
+		wfRunHooks( 'PageRenderingHash', array( &$confstr, $this->getUser(), &$forOptions ) );
 
 		// Make it a valid memcached key fragment
 		$confstr = str_replace( ' ', '_', $confstr );

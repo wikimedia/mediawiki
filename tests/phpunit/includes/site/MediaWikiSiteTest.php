@@ -46,9 +46,24 @@ class MediaWikiSiteTest extends SiteTest {
 			// url, filepath, path arg, expected
 			array( 'https://en.wikipedia.org', '/w/$1', 'api.php', 'https://en.wikipedia.org/w/api.php' ),
 			array( 'https://en.wikipedia.org', '/w/', 'api.php', 'https://en.wikipedia.org/w/' ),
-			array( 'https://en.wikipedia.org', '/foo/page.php?name=$1', 'api.php', 'https://en.wikipedia.org/foo/page.php?name=api.php' ),
-			array( 'https://en.wikipedia.org', '/w/$1', '', 'https://en.wikipedia.org/w/' ),
-			array( 'https://en.wikipedia.org', '/w/$1', 'foo/bar/api.php', 'https://en.wikipedia.org/w/foo/bar/api.php' ),
+			array(
+				'https://en.wikipedia.org',
+				'/foo/page.php?name=$1',
+				'api.php',
+				'https://en.wikipedia.org/foo/page.php?name=api.php'
+			),
+			array(
+				'https://en.wikipedia.org',
+				'/w/$1',
+				'',
+				'https://en.wikipedia.org/w/'
+			),
+			array(
+				'https://en.wikipedia.org',
+				'/w/$1',
+				'foo/bar/api.php',
+				'https://en.wikipedia.org/w/foo/bar/api.php'
+			),
 		);
 	}
 

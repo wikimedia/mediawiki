@@ -36,19 +36,19 @@ class RunJobs extends Maintenance {
 		$this->addOption( 'maxtime', 'Maximum amount of wall-clock time', false, true );
 		$this->addOption( 'type', 'Type of job to run', false, true );
 		$this->addOption( 'procs', 'Number of processes to use', false, true );
+		$this->addOption( 'nothrottle', 'Ignore job throttling configuration', false, false );
 	}
 
 	public function memoryLimit() {
 		if ( $this->hasOption( 'memory-limit' ) ) {
 			return parent::memoryLimit();
 		}
+
 		// Don't eat all memory on the machine if we get a bad job.
 		return "150M";
 	}
 
 	public function execute() {
-		global $wgTitle;
-
 		if ( wfReadOnly() ) {
 			$this->error( "Unable to run jobs; the wiki is in read-only mode.", 1 ); // die
 		}
@@ -68,8 +68,8 @@ class RunJobs extends Maintenance {
 		$type = $this->getOption( 'type', false );
 		$maxJobs = $this->getOption( 'maxjobs', false );
 		$maxTime = $this->getOption( 'maxtime', false );
+		$noThrottle = $this->hasOption( 'nothrottle' );
 		$startTime = time();
-		$wgTitle = Title::newFromText( 'RunJobs.php' );
 
 		$group = JobQueueGroup::singleton();
 		// Handle any required periodic queue maintenance
@@ -80,16 +80,20 @@ class RunJobs extends Maintenance {
 
 		$backoffs = $this->loadBackoffs(); // map of (type => UNIX expiry)
 		$startingBackoffs = $backoffs; // avoid unnecessary writes
-		$backoffExpireFunc = function( $t ) { return $t > time(); };
+		$backoffExpireFunc = function ( $t ) {
+			return $t > time();
+		};
 
 		$jobsRun = 0; // counter
 		$flags = JobQueueGroup::USE_CACHE;
 		$lastTime = time(); // time since last slave check
 		do {
+			$backoffs = array_filter( $backoffs, $backoffExpireFunc );
+			$blacklist = $noThrottle ? array() : array_keys( $backoffs );
 			if ( $type === false ) {
-				$backoffs = array_filter( $backoffs, $backoffExpireFunc );
-				$blacklist = array_keys( $backoffs );
 				$job = $group->pop( JobQueueGroup::TYPE_DEFAULT, $flags, $blacklist );
+			} elseif ( in_array( $type, $blacklist ) ) {
+				$job = false; // requested queue in backoff state
 			} else {
 				$job = $group->pop( $type ); // job from a single queue
 			}
@@ -98,7 +102,7 @@ class RunJobs extends Maintenance {
 				$this->runJobsLog( $job->toString() . " STARTING" );
 
 				// Set timer to stop the job if too much CPU time is used
-				set_time_limit( $maxTime ?: 0 );
+				set_time_limit( $maxTime ? : 0 );
 				// Run the job...
 				wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
 				$t = microtime( true );
@@ -106,6 +110,7 @@ class RunJobs extends Maintenance {
 					$status = $job->run();
 					$error = $job->getLastError();
 				} catch ( MWException $e ) {
+					MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 					$status = false;
 					$error = get_class( $e ) . ': ' . $e->getMessage();
 					$e->report(); // write error to STDERR and the log
@@ -165,15 +170,18 @@ class RunJobs extends Maintenance {
 
 	/**
 	 * @param Job $job
-	 * @return integer Seconds for this runner to avoid doing more jobs of this type
+	 * @return int Seconds for this runner to avoid doing more jobs of this type
 	 * @see $wgJobBackoffThrottling
 	 */
 	private function getBackoffTimeToWait( Job $job ) {
 		global $wgJobBackoffThrottling;
 
-		if ( !isset( $wgJobBackoffThrottling[$job->getType()] ) ) {
+		if ( !isset( $wgJobBackoffThrottling[$job->getType()] ) ||
+			$job instanceof DuplicateJob // no work was done
+		) {
 			return 0; // not throttled
 		}
+
 		$itemsPerSecond = $wgJobBackoffThrottling[$job->getType()];
 		if ( $itemsPerSecond <= 0 ) {
 			return 0; // not throttled
@@ -181,9 +189,11 @@ class RunJobs extends Maintenance {
 
 		$seconds = 0;
 		if ( $job->workItemCount() > 0 ) {
-			$seconds = floor( $job->workItemCount() / $itemsPerSecond );
-			$remainder = $job->workItemCount() % $itemsPerSecond;
-			$seconds += ( mt_rand( 1, $itemsPerSecond ) <= $remainder ) ? 1 : 0;
+			$exactSeconds = $job->workItemCount() / $itemsPerSecond;
+			// use randomized rounding
+			$seconds = floor( $exactSeconds );
+			$remainder = $exactSeconds - $seconds;
+			$seconds += ( mt_rand() / mt_getrandmax() < $remainder ) ? 1 : 0;
 		}
 
 		return (int)$seconds;
@@ -205,7 +215,7 @@ class RunJobs extends Maintenance {
 			$content = stream_get_contents( $handle );
 			flock( $handle, LOCK_UN );
 			fclose( $handle );
-			$backoffs = json_decode( $content, true ) ?: array();
+			$backoffs = json_decode( $content, true ) ? : array();
 		}
 
 		return $backoffs;
@@ -223,7 +233,7 @@ class RunJobs extends Maintenance {
 		$handle = fopen( $file, 'wb+' );
 		flock( $handle, LOCK_EX );
 		$content = stream_get_contents( $handle );
-		$cBackoffs = json_decode( $content, true ) ?: array();
+		$cBackoffs = json_decode( $content, true ) ? : array();
 		foreach ( $backoffs as $type => $timestamp ) {
 			$cBackoffs[$type] = isset( $cBackoffs[$type] ) ? $cBackoffs[$type] : 0;
 			$cBackoffs[$type] = max( $cBackoffs[$type], $backoffs[$type] );
@@ -259,7 +269,7 @@ class RunJobs extends Maintenance {
 
 	/**
 	 * Log the job message
-	 * @param $msg String The message to log
+	 * @param string $msg The message to log
 	 */
 	private function runJobsLog( $msg ) {
 		$this->output( wfTimestamp( TS_DB ) . " $msg\n" );

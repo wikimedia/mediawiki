@@ -78,6 +78,7 @@ class ApiFeedContributions extends ApiBase {
 			'tagFilter' => $params['tagfilter'],
 			'deletedOnly' => $params['deletedonly'],
 			'topOnly' => $params['toponly'],
+			'newOnly' => $params['newonly'],
 			'showSizeDiff' => $params['showsizediff'],
 		) );
 
@@ -111,7 +112,7 @@ class ApiFeedContributions extends ApiBase {
 			return new FeedItem(
 				$title->getPrefixedText(),
 				$this->feedItemDesc( $revision ),
-				$title->getFullURL(),
+				$title->getFullURL( array( 'diff' => $revision->getId() ) ),
 				$date,
 				$this->feedItemAuthor( $revision ),
 				$comments
@@ -122,7 +123,7 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	/**
-	 * @param $revision Revision
+	 * @param Revision $revision
 	 * @return string
 	 */
 	protected function feedItemAuthor( $revision ) {
@@ -130,7 +131,7 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	/**
-	 * @param $revision Revision
+	 * @param Revision $revision
 	 * @return string
 	 */
 	protected function feedItemDesc( $revision ) {
@@ -186,6 +187,7 @@ class ApiFeedContributions extends ApiBase {
 			),
 			'deletedonly' => false,
 			'toponly' => false,
+			'newonly' => false,
 			'showsizediff' => false,
 		);
 	}
@@ -200,12 +202,13 @@ class ApiFeedContributions extends ApiBase {
 			'tagfilter' => 'Filter contributions that have these tags',
 			'deletedonly' => 'Show only deleted contributions',
 			'toponly' => 'Only show edits that are latest revisions',
+			'newonly' => 'Only show edits that are page creations',
 			'showsizediff' => 'Show the size difference between revisions. Disabled in Miser Mode',
 		);
 	}
 
 	public function getDescription() {
-		return 'Returns a user contributions feed';
+		return 'Returns a user contributions feed.';
 	}
 
 	public function getPossibleErrors() {

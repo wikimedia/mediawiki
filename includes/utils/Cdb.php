@@ -158,4 +158,5 @@ abstract class CdbWriter {
  * Exception for Cdb errors.
  * This explicitly doesn't subclass MWException to encourage reuse.
  */
-class CdbException extends Exception {}
+class CdbException extends Exception {
+}

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @group API
  * @group Database
@@ -11,11 +10,12 @@
  * user that will run tests.
  */
 
-// Note for reviewers: this intentionally duplicates functionality already in "ApiSetup" and so on.
-// This framework works better IMO and has less strangeness (such as test cases inheriting from "ApiSetup"...)
-// (and in the case of the other Upload tests, this flat out just actually works... )
+// Note for reviewers: this intentionally duplicates functionality already in
+// "ApiSetup" and so on. This framework works better IMO and has less
+// strangeness (such as test cases inheriting from "ApiSetup"...) (and in the
+// case of the other Upload tests, this flat out just actually works... )
 
-// TODO: port the other Upload tests, and other API tests to this framework
+// @todo Port the other Upload tests, and other API tests to this framework
 
 require_once 'ApiTestCaseUpload.php';
 
@@ -427,14 +427,16 @@ class ApiUploadTest extends ApiTestCaseUpload {
 	 */
 	public function testUploadChunks( $session ) {
 		$this->setMwGlobals( array(
-			'wgUser' => self::$users['uploader']->user, // @todo FIXME: still used somewhere
+			// @todo FIXME: still used somewhere
+			'wgUser' => self::$users['uploader']->user,
 		) );
 
 		$chunkSize = 1048576;
 		// Download a large image file
 		// ( using RandomImageGenerator for large files is not stable )
 		$mimeType = 'image/jpeg';
-		$url = 'http://upload.wikimedia.org/wikipedia/commons/e/ed/Oberaargletscher_from_Oberaar%2C_2010_07.JPG';
+		$url = 'http://upload.wikimedia.org/wikipedia/commons/'
+			. 'e/ed/Oberaargletscher_from_Oberaar%2C_2010_07.JPG';
 		$filePath = wfTempDir() . '/Oberaargletscher_from_Oberaar.jpg';
 		try {
 			// Only download if the file is not avaliable in the temp location:
@@ -464,13 +466,19 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$chunkSessionKey = false;
 		$resultOffset = 0;
 		// Open the file:
-		$handle = @fopen( $filePath, "r" );
+		wfSuppressWarnings();
+		$handle = fopen( $filePath, "r" );
+		wfRestoreWarnings();
+
 		if ( $handle === false ) {
 			$this->markTestIncomplete( "could not open file: $filePath" );
 		}
+
 		while ( !feof( $handle ) ) {
 			// Get the current chunk
-			$chunkData = @fread( $handle, $chunkSize );
+			wfSuppressWarnings();
+			$chunkData = fread( $handle, $chunkSize );
+			wfRestoreWarnings();
 
 			// Upload the current chunk into the $_FILE object:
 			$this->fakeUploadChunk( 'chunk', 'blob', $mimeType, $chunkData );
@@ -500,7 +508,8 @@ class ApiUploadTest extends ApiTestCaseUpload {
 			}
 			// Filekey set to chunk session
 			$params['filekey'] = $chunkSessionKey;
-			// Update the offset ( always add chunkSize for subquent chunks should be in-sync with $result['upload']['offset'] )
+			// Update the offset ( always add chunkSize for subquent chunks
+			// should be in-sync with $result['upload']['offset'] )
 			$params['offset'] += $chunkSize;
 			// Make sure param offset is insync with resultOffset:
 			$this->assertEquals( $resultOffset, $params['offset'] );
@@ -528,7 +537,8 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		fclose( $handle );
 
 		// Check that we got a valid file result:
-		wfDebug( __METHOD__ . " hohoh filesize {$fileSize} info {$result['upload']['imageinfo']['size']}\n\n" );
+		wfDebug( __METHOD__
+			. " hohoh filesize {$fileSize} info {$result['upload']['imageinfo']['size']}\n\n" );
 		$this->assertEquals( $fileSize, $result['upload']['imageinfo']['size'] );
 		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
 		$this->assertTrue( isset( $result['upload']['filekey'] ) );

@@ -5,7 +5,7 @@
  * difference. Will run forever until it finds one or you kill it.
  *
  * Copyright (C) 2004 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
  * @ingroup UtfNormal
  */
 
-if( PHP_SAPI != 'cli' ) {
+if ( PHP_SAPI != 'cli' ) {
 	die( "Run me from the command line please.\n" );
 }
 
@@ -40,8 +40,9 @@ dl( 'php_utfnormal.so' );
 
 function randomString( $length, $nullOk, $ascii = false ) {
 	$out = '';
-	for( $i = 0; $i < $length; $i++ )
+	for ( $i = 0; $i < $length; $i++ )
 		$out .= chr( mt_rand( $nullOk ? 0 : 1, $ascii ? 127 : 255 ) );
+
 	return $out;
 }
 
@@ -66,7 +67,7 @@ function showDiffs( $a, $b ) {
 	$funky = $formatter->format( $diffs );
 	$matches = array();
 	preg_match_all( '/<(?:ins|del) class="diffchange">(.*?)<\/(?:ins|del)>/', $funky, $matches );
-	foreach( $matches[1] as $bit ) {
+	foreach ( $matches[1] as $bit ) {
 		$hex = bin2hex( $bit );
 		echo "\t$hex\n";
 	}
@@ -74,27 +75,26 @@ function showDiffs( $a, $b ) {
 
 $size = 16;
 $n = 0;
-while( true ) {
+while ( true ) {
 	$n++;
 	echo "$n\n";
 
-	$str = randomString( $size, true);
+	$str = randomString( $size, true );
 	$clean = UtfNormal::cleanUp( $str );
 	$norm = donorm( $str );
 
 	echo strlen( $clean ) . ", " . strlen( $norm );
-	if( $clean == $norm ) {
+	if ( $clean == $norm ) {
 		echo " (match)\n";
 	} else {
 		echo " (FAIL)\n";
 		echo "\traw: " . bin2hex( $str ) . "\n" .
-			 "\tphp: " . bin2hex( $clean ) . "\n" .
-			 "\ticu: " . bin2hex( $norm ) . "\n";
+			"\tphp: " . bin2hex( $clean ) . "\n" .
+			"\ticu: " . bin2hex( $norm ) . "\n";
 		echo "\n\tdiffs:\n";
 		showDiffs( $clean, $norm );
 		die();
 	}
-
 
 	$str = '';
 	$clean = '';

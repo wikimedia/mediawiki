@@ -64,214 +64,26 @@ class SpecialPage {
 	protected $mContext;
 
 	/**
-	 * Initialise the special page list
-	 * This must be called before accessing SpecialPage::$mList
-	 * @deprecated since 1.18
-	 */
-	static function initList() {
-		wfDeprecated( __METHOD__, '1.18' );
-		// Noop
-	}
-
-	/**
-	 * @deprecated since 1.18
-	 */
-	static function initAliasList() {
-		wfDeprecated( __METHOD__, '1.18' );
-		// Noop
-	}
-
-	/**
-	 * Given a special page alias, return the special page name.
-	 * Returns false if there is no such alias.
-	 *
-	 * @param $alias String
-	 * @return String or false
-	 * @deprecated since 1.18 call SpecialPageFactory method directly
-	 */
-	static function resolveAlias( $alias ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		list( $name, /*...*/ ) = SpecialPageFactory::resolveAlias( $alias );
-		return $name;
-	}
-
-	/**
-	 * Given a special page name with a possible subpage, return an array
-	 * where the first element is the special page name and the second is the
-	 * subpage.
-	 *
-	 * @param $alias String
-	 * @return Array
-	 * @deprecated since 1.18 call SpecialPageFactory method directly
-	 */
-	static function resolveAliasWithSubpage( $alias ) {
-		return SpecialPageFactory::resolveAlias( $alias );
-	}
-
-	/**
-	 * Add a page to a certain display group for Special:SpecialPages
-	 *
-	 * @param $page Mixed: SpecialPage or string
-	 * @param $group String
-	 * @deprecated since 1.18 call SpecialPageFactory method directly
-	 */
-	static function setGroup( $page, $group ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		SpecialPageFactory::setGroup( $page, $group );
-	}
-
-	/**
-	 * Get the group that the special page belongs in on Special:SpecialPage
-	 *
-	 * @param $page SpecialPage
-	 * @return string
-	 * @deprecated since 1.18 call SpecialPageFactory method directly
-	 */
-	static function getGroup( &$page ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return $page->getFinalGroupName();
-	}
-
-	/**
-	 * Remove a special page from the list
-	 * Formerly used to disable expensive or dangerous special pages. The
-	 * preferred method is now to add a SpecialPage_initList hook.
-	 * @deprecated since 1.18
-	 *
-	 * @param string $name the page to remove
-	 */
-	static function removePage( $name ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		unset( SpecialPageFactory::getList()->$name );
-	}
-
-	/**
-	 * Check if a given name exist as a special page or as a special page alias
-	 *
-	 * @param string $name name of a special page
-	 * @return Boolean: true if a special page exists with this name
-	 * @deprecated since 1.18 call SpecialPageFactory method directly
-	 */
-	static function exists( $name ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return SpecialPageFactory::exists( $name );
-	}
-
-	/**
-	 * Find the object with a given name and return it (or NULL)
-	 *
-	 * @param $name String
-	 * @return SpecialPage object or null if the page doesn't exist
-	 * @deprecated since 1.18 call SpecialPageFactory method directly
-	 */
-	static function getPage( $name ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return SpecialPageFactory::getPage( $name );
-	}
-
-	/**
-	 * Get a special page with a given localised name, or NULL if there
-	 * is no such special page.
-	 *
-	 * @param $alias String
-	 * @return SpecialPage object or null if the page doesn't exist
-	 * @deprecated since 1.18 call SpecialPageFactory method directly
-	 */
-	static function getPageByAlias( $alias ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return SpecialPageFactory::getPage( $alias );
-	}
-
-	/**
-	 * Return categorised listable special pages which are available
-	 * for the current user, and everyone.
-	 *
-	 * @param $user User object to check permissions, $wgUser will be used
-	 *              if not provided
-	 * @return array Associative array mapping page's name to its SpecialPage object
-	 * @deprecated since 1.18 call SpecialPageFactory method directly
-	 */
-	static function getUsablePages( User $user = null ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return SpecialPageFactory::getUsablePages( $user );
-	}
-
-	/**
-	 * Return categorised listable special pages for all users
-	 *
-	 * @return array Associative array mapping page's name to its SpecialPage object
-	 * @deprecated since 1.18 call SpecialPageFactory method directly
-	 */
-	static function getRegularPages() {
-		wfDeprecated( __METHOD__, '1.18' );
-		return SpecialPageFactory::getRegularPages();
-	}
-
-	/**
-	 * Return categorised listable special pages which are available
-	 * for the current user, but not for everyone
-	 *
-	 * @return array Associative array mapping page's name to its SpecialPage object
-	 * @deprecated since 1.18 call SpecialPageFactory method directly
-	 */
-	static function getRestrictedPages() {
-		wfDeprecated( __METHOD__, '1.18' );
-		return SpecialPageFactory::getRestrictedPages();
-	}
-
-	/**
-	 * Execute a special page path.
-	 * The path may contain parameters, e.g. Special:Name/Params
-	 * Extracts the special page name and call the execute method, passing the parameters
-	 *
-	 * Returns a title object if the page is redirected, false if there was no such special
-	 * page, and true if it was successful.
-	 *
-	 * @param $title          Title object
-	 * @param $context        IContextSource
-	 * @param $including      Bool output is being captured for use in {{special:whatever}}
-	 * @return Bool
-	 * @deprecated since 1.18 call SpecialPageFactory method directly
-	 */
-	public static function executePath( &$title, IContextSource &$context, $including = false ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return SpecialPageFactory::executePath( $title, $context, $including );
-	}
-
-	/**
-	 * Get the local name for a specified canonical name
-	 *
-	 * @param $name String
-	 * @param $subpage Mixed: boolean false, or string
-	 *
-	 * @return String
-	 * @deprecated since 1.18 call SpecialPageFactory method directly
-	 */
-	static function getLocalNameFor( $name, $subpage = false ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return SpecialPageFactory::getLocalNameFor( $name, $subpage );
-	}
-
-	/**
 	 * Get a localised Title object for a specified special page name
 	 *
-	 * @param $name String
-	 * @param string|Bool $subpage subpage string, or false to not use a subpage
-	 * @param string $fragment the link fragment (after the "#")
+	 * @param string $name
+	 * @param string|bool $subpage Subpage string, or false to not use a subpage
+	 * @param string $fragment The link fragment (after the "#")
+	 * @return Title
 	 * @throws MWException
-	 * @return Title object
 	 */
 	public static function getTitleFor( $name, $subpage = false, $fragment = '' ) {
 		$name = SpecialPageFactory::getLocalNameFor( $name, $subpage );
+
 		return Title::makeTitle( NS_SPECIAL, $name, $fragment );
 	}
 
 	/**
 	 * Get a localised Title object for a page name with a possibly unvalidated subpage
 	 *
-	 * @param $name String
-	 * @param string|Bool $subpage subpage string, or false to not use a subpage
-	 * @return Title object or null if the page doesn't exist
+	 * @param string $name
+	 * @param string|bool $subpage Subpage string, or false to not use a subpage
+	 * @return Title|null Title object or null if the page doesn't exist
 	 */
 	public static function getSafeTitleFor( $name, $subpage = false ) {
 		$name = SpecialPageFactory::getLocalNameFor( $name, $subpage );
@@ -280,18 +92,6 @@ class SpecialPage {
 		} else {
 			return null;
 		}
-	}
-
-	/**
-	 * Get a title for a given alias
-	 *
-	 * @param $alias String
-	 * @return Title or null if there is no such alias
-	 * @deprecated since 1.18 call SpecialPageFactory method directly
-	 */
-	static function getTitleForAlias( $alias ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return SpecialPageFactory::getTitleForAlias( $alias );
 	}
 
 	/**
@@ -307,32 +107,16 @@ class SpecialPage {
 	 * @param string $name Name of the special page, as seen in links and URLs
 	 * @param string $restriction User right required, e.g. "block" or "delete"
 	 * @param bool $listed Whether the page is listed in Special:Specialpages
-	 * @param Callback|Bool $function Function called by execute(). By default
-	 * it is constructed from $name
+	 * @param callable|bool $function Function called by execute(). By default
+	 *   it is constructed from $name
 	 * @param string $file File which is included by execute(). It is also
-	 * constructed from $name by default
+	 *   constructed from $name by default
 	 * @param bool $includable Whether the page can be included in normal pages
 	 */
 	public function __construct(
 		$name = '', $restriction = '', $listed = true,
 		$function = false, $file = 'default', $includable = false
 	) {
-		$this->init( $name, $restriction, $listed, $function, $file, $includable );
-	}
-
-	/**
-	 * Do the real work for the constructor, mainly so __call() can intercept
-	 * calls to SpecialPage()
-	 * @param string $name Name of the special page, as seen in links and URLs
-	 * @param string $restriction User right required, e.g. "block" or "delete"
-	 * @param bool $listed Whether the page is listed in Special:Specialpages
-	 * @param Callback|Bool $function Function called by execute(). By default
-	 * it is constructed from $name
-	 * @param string $file File which is included by execute(). It is also
-	 * constructed from $name by default
-	 * @param bool $includable Whether the page can be included in normal pages
-	 */
-	private function init( $name, $restriction, $listed, $function, $file, $includable ) {
 		$this->mName = $name;
 		$this->mRestriction = $restriction;
 		$this->mListed = $listed;
@@ -350,36 +134,8 @@ class SpecialPage {
 	}
 
 	/**
-	 * Use PHP's magic __call handler to get calls to the old PHP4 constructor
-	 * because PHP E_STRICT yells at you for having __construct() and SpecialPage()
-	 *
-	 * @param string $fName Name of called method
-	 * @param array $a Arguments to the method
-	 * @throws MWException
-	 * @deprecated since 1.17, call parent::__construct()
-	 */
-	public function __call( $fName, $a ) {
-		// Deprecated messages now, remove in 1.19 or 1.20?
-		wfDeprecated( __METHOD__, '1.17' );
-
-		// Sometimes $fName is SpecialPage, sometimes it's specialpage. <3 PHP
-		if ( strtolower( $fName ) == 'specialpage' ) {
-			$name = isset( $a[0] ) ? $a[0] : '';
-			$restriction = isset( $a[1] ) ? $a[1] : '';
-			$listed = isset( $a[2] ) ? $a[2] : true;
-			$function = isset( $a[3] ) ? $a[3] : false;
-			$file = isset( $a[4] ) ? $a[4] : 'default';
-			$includable = isset( $a[5] ) ? $a[5] : false;
-			$this->init( $name, $restriction, $listed, $function, $file, $includable );
-		} else {
-			$className = get_class( $this );
-			throw new MWException( "Call to undefined method $className::$fName" );
-		}
-	}
-
-	/**
 	 * Get the name of this Special Page.
-	 * @return String
+	 * @return string
 	 */
 	function getName() {
 		return $this->mName;
@@ -387,7 +143,7 @@ class SpecialPage {
 
 	/**
 	 * Get the permission that a user must have to execute this page
-	 * @return String
+	 * @return string
 	 */
 	function getRestriction() {
 		return $this->mRestriction;
@@ -397,11 +153,12 @@ class SpecialPage {
 	 * Get the file which will be included by SpecialPage::execute() if your extension is
 	 * still stuck in the past and hasn't overridden the execute() method.  No modern code
 	 * should want or need to know this.
-	 * @return String
+	 * @return string
 	 * @deprecated since 1.18
 	 */
 	function getFile() {
 		wfDeprecated( __METHOD__, '1.18' );
+
 		return $this->mFile;
 	}
 
@@ -409,25 +166,27 @@ class SpecialPage {
 	/**
 	 * Whether this special page is listed in Special:SpecialPages
 	 * @since r3583 (v1.3)
-	 * @return Bool
+	 * @return bool
 	 */
 	function isListed() {
 		return $this->mListed;
 	}
+
 	/**
 	 * Set whether this page is listed in Special:Specialpages, at run-time
-	 * @since r3583 (v1.3)
-	 * @param $listed Bool
-	 * @return Bool
+	 * @since 1.3
+	 * @param bool $listed
+	 * @return bool
 	 */
 	function setListed( $listed ) {
 		return wfSetVar( $this->mListed, $listed );
 	}
+
 	/**
 	 * Get or set whether this special page is listed in Special:SpecialPages
-	 * @since r11308 (v1.6)
-	 * @param $x Bool
-	 * @return Bool
+	 * @since 1.6
+	 * @param bool $x
+	 * @return bool
 	 */
 	function listed( $x = null ) {
 		return wfSetVar( $this->mListed, $x );
@@ -435,76 +194,16 @@ class SpecialPage {
 
 	/**
 	 * Whether it's allowed to transclude the special page via {{Special:Foo/params}}
-	 * @return Bool
+	 * @return bool
 	 */
 	public function isIncludable() {
 		return $this->mIncludable;
 	}
 
 	/**
-	 * These mutators are very evil, as the relevant variables should not mutate.  So
-	 * don't use them.
-	 * @param $x Mixed
-	 * @return Mixed
-	 * @deprecated since 1.18
-	 */
-	function name( $x = null ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return wfSetVar( $this->mName, $x );
-	}
-
-	/**
-	 * These mutators are very evil, as the relevant variables should not mutate.  So
-	 * don't use them.
-	 * @param $x Mixed
-	 * @return Mixed
-	 * @deprecated since 1.18
-	 */
-	function restriction( $x = null ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return wfSetVar( $this->mRestriction, $x );
-	}
-
-	/**
-	 * These mutators are very evil, as the relevant variables should not mutate.  So
-	 * don't use them.
-	 * @param $x Mixed
-	 * @return Mixed
-	 * @deprecated since 1.18
-	 */
-	function func( $x = null ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return wfSetVar( $this->mFunction, $x );
-	}
-
-	/**
-	 * These mutators are very evil, as the relevant variables should not mutate.  So
-	 * don't use them.
-	 * @param $x Mixed
-	 * @return Mixed
-	 * @deprecated since 1.18
-	 */
-	function file( $x = null ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return wfSetVar( $this->mFile, $x );
-	}
-
-	/**
-	 * These mutators are very evil, as the relevant variables should not mutate.  So
-	 * don't use them.
-	 * @param $x Mixed
-	 * @return Mixed
-	 * @deprecated since 1.18
-	 */
-	function includable( $x = null ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return wfSetVar( $this->mIncludable, $x );
-	}
-
-	/**
 	 * Whether the special page is being evaluated via transclusion
-	 * @param $x Bool
-	 * @return Bool
+	 * @param bool $x
+	 * @return bool
 	 */
 	function including( $x = null ) {
 		return wfSetVar( $this->mIncluding, $x );
@@ -512,11 +211,13 @@ class SpecialPage {
 
 	/**
 	 * Get the localised name of the special page
+	 * @return string
 	 */
 	function getLocalName() {
 		if ( !isset( $this->mLocalName ) ) {
 			$this->mLocalName = SpecialPageFactory::getLocalNameFor( $this->mName );
 		}
+
 		return $this->mLocalName;
 	}
 
@@ -526,7 +227,7 @@ class SpecialPage {
 	 * (and still overridden) by QueryPage and subclasses, moved here so that
 	 * Special:SpecialPages can safely call it for all special pages.
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isExpensive() {
 		return false;
@@ -538,7 +239,7 @@ class SpecialPage {
 	 * Used by QueryPage and subclasses, moved here so that
 	 * Special:SpecialPages can safely call it for all special pages.
 	 *
-	 * @return Boolean
+	 * @return bool
 	 * @since 1.21
 	 */
 	public function isCached() {
@@ -549,7 +250,7 @@ class SpecialPage {
 	 * Can be overridden by subclasses with more complicated permissions
 	 * schemes.
 	 *
-	 * @return Boolean: should the page be displayed with the restricted-access
+	 * @return bool Should the page be displayed with the restricted-access
 	 *   pages?
 	 */
 	public function isRestricted() {
@@ -562,8 +263,8 @@ class SpecialPage {
 	 * special page (as defined by $mRestriction).  Can be overridden by sub-
 	 * classes with more complicated permissions schemes.
 	 *
-	 * @param $user User: the user to check
-	 * @return Boolean: does the user have permission to view the page?
+	 * @param User $user The user to check
+	 * @return bool Does the user have permission to view the page?
 	 */
 	public function userCanExecute( User $user ) {
 		return $user->isAllowed( $this->mRestriction );
@@ -571,6 +272,7 @@ class SpecialPage {
 
 	/**
 	 * Output an error message telling the user what access level they have to have
+	 * @throws PermissionsError
 	 */
 	function displayRestrictionError() {
 		throw new PermissionsError( $this->mRestriction );
@@ -580,6 +282,8 @@ class SpecialPage {
 	 * Checks if userCanExecute, and if not throws a PermissionsError
 	 *
 	 * @since 1.19
+	 * @return void
+	 * @throws PermissionsError
 	 */
 	public function checkPermissions() {
 		if ( !$this->userCanExecute( $this->getUser() ) ) {
@@ -591,6 +295,7 @@ class SpecialPage {
 	 * If the wiki is currently in readonly mode, throws a ReadOnlyError
 	 *
 	 * @since 1.19
+	 * @return void
 	 * @throws ReadOnlyError
 	 */
 	public function checkReadOnly() {
@@ -648,7 +353,7 @@ class SpecialPage {
 	function setHeaders() {
 		$out = $this->getOutput();
 		$out->setArticleRelated( false );
-		$out->setRobotPolicy( "noindex,nofollow" );
+		$out->setRobotPolicy( $this->getRobotPolicy() );
 		$out->setPageTitle( $this->getDescription() );
 	}
 
@@ -657,7 +362,7 @@ class SpecialPage {
 	 *
 	 * @since 1.20
 	 *
-	 * @param $subPage string|null
+	 * @param string|null $subPage
 	 */
 	final public function run( $subPage ) {
 		/**
@@ -665,8 +370,8 @@ class SpecialPage {
 		 *
 		 * @since 1.20
 		 *
-		 * @param $special SpecialPage
-		 * @param $subPage string|null
+		 * @param SpecialPage $this
+		 * @param string|null $subPage
 		 */
 		wfRunHooks( 'SpecialPageBeforeExecute', array( $this, $subPage ) );
 
@@ -679,8 +384,8 @@ class SpecialPage {
 		 *
 		 * @since 1.20
 		 *
-		 * @param $special SpecialPage
-		 * @param $subPage string|null
+		 * @param SpecialPage $this
+		 * @param string|null $subPage
 		 */
 		wfRunHooks( 'SpecialPageAfterExecute', array( $this, $subPage ) );
 	}
@@ -690,7 +395,7 @@ class SpecialPage {
 	 *
 	 * @since 1.20
 	 *
-	 * @param $subPage string|null
+	 * @param string|null $subPage
 	 */
 	protected function beforeExecute( $subPage ) {
 		// No-op
@@ -701,7 +406,7 @@ class SpecialPage {
 	 *
 	 * @since 1.20
 	 *
-	 * @param $subPage string|null
+	 * @param string|null $subPage
 	 */
 	protected function afterExecute( $subPage ) {
 		// No-op
@@ -713,7 +418,7 @@ class SpecialPage {
 	 *
 	 * This must be overridden by subclasses; it will be made abstract in a future version
 	 *
-	 * @param $subPage string|null
+	 * @param string|null $subPage
 	 */
 	public function execute( $subPage ) {
 		$this->setHeaders();
@@ -734,7 +439,7 @@ class SpecialPage {
 	 * May be overridden, i.e. by extensions to stick with the naming conventions
 	 * for message keys: 'extensionname-xxx'
 	 *
-	 * @param string $summaryMessageKey message key of the summary
+	 * @param string $summaryMessageKey Message key of the summary
 	 */
 	function outputHeader( $summaryMessageKey = '' ) {
 		global $wgContLang;
@@ -748,7 +453,6 @@ class SpecialPage {
 			$this->getOutput()->wrapWikiMsg(
 				"<div class='mw-specialpage-summary'>\n$1\n</div>", $msg );
 		}
-
 	}
 
 	/**
@@ -767,20 +471,19 @@ class SpecialPage {
 	/**
 	 * Get a self-referential title object
 	 *
-	 * @param $subpage String|Bool
-	 * @return Title object
-	 * @deprecated in 1.23, use SpecialPage::getPageTitle
+	 * @param string|bool $subpage
+	 * @return Title
+	 * @deprecated since 1.23, use SpecialPage::getPageTitle
 	 */
 	function getTitle( $subpage = false ) {
-		wfDeprecated( __METHOD__, '1.23' );
 		return $this->getPageTitle( $subpage );
 	}
 
 	/**
 	 * Get a self-referential title object
 	 *
-	 * @param $subpage String|Bool
-	 * @return Title object
+	 * @param string|bool $subpage
+	 * @return Title
 	 * @since 1.23
 	 */
 	function getPageTitle( $subpage = false ) {
@@ -790,7 +493,7 @@ class SpecialPage {
 	/**
 	 * Sets the context this SpecialPage is executed in
 	 *
-	 * @param $context IContextSource
+	 * @param IContextSource $context
 	 * @since 1.18
 	 */
 	public function setContext( $context ) {
@@ -809,6 +512,7 @@ class SpecialPage {
 		} else {
 			wfDebug( __METHOD__ . " called and \$mContext is null. " .
 				"Return RequestContext::getMain(); for sanity\n" );
+
 			return RequestContext::getMain();
 		}
 	}
@@ -862,6 +566,7 @@ class SpecialPage {
 	 */
 	public function getLang() {
 		wfDeprecated( __METHOD__, '1.19' );
+
 		return $this->getLanguage();
 	}
 
@@ -886,6 +591,17 @@ class SpecialPage {
 	}
 
 	/**
+	 * Return the robot policy. Derived classes that override this can change
+	 * the robot policy set by setHeaders() from the default 'noindex,nofollow'.
+	 *
+	 * @return string
+	 * @since 1.23
+	 */
+	protected function getRobotPolicy() {
+		return 'noindex,nofollow';
+	}
+
+	/**
 	 * Wrapper around wfMessage that sets the current context.
 	 *
 	 * @return Message
@@ -903,13 +619,14 @@ class SpecialPage {
 		if ( $this->including() ) {
 			$message->setInterfaceMessageFlag( false );
 		}
+
 		return $message;
 	}
 
 	/**
 	 * Adds RSS/atom links
 	 *
-	 * @param $params array
+	 * @param array $params
 	 */
 	protected function addFeedLinks( $params ) {
 		global $wgFeedClasses;

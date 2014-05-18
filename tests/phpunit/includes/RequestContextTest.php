@@ -25,8 +25,11 @@ class RequestContextTest extends MediaWikiTestCase {
 
 		$curTitle = Title::newFromText( "C" );
 		$context->setTitle( $curTitle );
-		$this->assertTrue( $curTitle->equals( $context->getWikiPage()->getTitle() ),
-			"When a title is updated the WikiPage should be purged and recreated on-demand with the new title." );
+		$this->assertTrue(
+			$curTitle->equals( $context->getWikiPage()->getTitle() ),
+			"When a title is updated the WikiPage should be purged "
+				. "and recreated on-demand with the new title."
+		);
 	}
 
 	/**
@@ -46,7 +49,9 @@ class RequestContextTest extends MediaWikiTestCase {
 			'sessionId' => 'd612ee607c87e749ef14da4983a702cd',
 			'userId' => $user->getId(),
 			'ip' => '192.0.2.0',
-			'headers' => array( 'USER-AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:18.0) Gecko/20100101 Firefox/18.0' )
+			'headers' => array(
+				'USER-AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:18.0) Gecko/20100101 Firefox/18.0'
+			)
 		);
 		$sc = RequestContext::importScopedSession( $sinfo ); // load new context
 
@@ -55,12 +60,24 @@ class RequestContextTest extends MediaWikiTestCase {
 		$this->assertEquals( $sinfo['headers'], $info['headers'], "Correct headers." );
 		$this->assertEquals( $sinfo['sessionId'], $info['sessionId'], "Correct session ID." );
 		$this->assertEquals( $sinfo['userId'], $info['userId'], "Correct user ID." );
-		$this->assertEquals( $sinfo['ip'], $context->getRequest()->getIP(), "Correct context IP address." );
-		$this->assertEquals( $sinfo['headers'], $context->getRequest()->getAllHeaders(), "Correct context headers." );
+		$this->assertEquals(
+			$sinfo['ip'],
+			$context->getRequest()->getIP(),
+			"Correct context IP address."
+		);
+		$this->assertEquals(
+			$sinfo['headers'],
+			$context->getRequest()->getAllHeaders(),
+			"Correct context headers."
+		);
 		$this->assertEquals( $sinfo['sessionId'], session_id(), "Correct context session ID." );
 		$this->assertEquals( true, $context->getUser()->isLoggedIn(), "Correct context user." );
 		$this->assertEquals( $sinfo['userId'], $context->getUser()->getId(), "Correct context user ID." );
-		$this->assertEquals( 'UnitTestContextUser', $context->getUser()->getName(), "Correct context user name." );
+		$this->assertEquals(
+			'UnitTestContextUser',
+			$context->getUser()->getName(),
+			"Correct context user name."
+		);
 
 		unset( $sc ); // restore previous context
 

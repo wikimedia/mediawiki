@@ -59,9 +59,9 @@ class LanguageUzTest extends LanguageClassesTestCase {
 	##### HELPERS #####################################################
 	/**
 	 * Wrapper to verify text stay the same after applying conversion
-	 * @param $text string Text to convert
-	 * @param $variant string Language variant 'uz-cyrl' or 'uz-latn'
-	 * @param $msg string Optional message
+	 * @param string $text Text to convert
+	 * @param string $variant Language variant 'uz-cyrl' or 'uz-latn'
+	 * @param string $msg Optional message
 	 */
 	protected function assertUnConverted( $text, $variant, $msg = '' ) {
 		$this->assertEquals(
@@ -73,9 +73,9 @@ class LanguageUzTest extends LanguageClassesTestCase {
 
 	/**
 	 * Wrapper to verify a text is different once converted to a variant.
-	 * @param $text string Text to convert
-	 * @param $variant string Language variant 'uz-cyrl' or 'uz-latn'
-	 * @param $msg string Optional message
+	 * @param string $text Text to convert
+	 * @param string $variant Language variant 'uz-cyrl' or 'uz-latn'
+	 * @param string $msg Optional message
 	 */
 	protected function assertConverted( $text, $variant, $msg = '' ) {
 		$this->assertNotEquals(
@@ -89,6 +89,8 @@ class LanguageUzTest extends LanguageClassesTestCase {
 	 * Verifiy the given Cyrillic text is not converted when using
 	 * using the cyrillic variant and converted to Latin when using
 	 * the Latin variant.
+	 * @param string $text Text to convert
+	 * @param string $msg Optional message
 	 */
 	protected function assertCyrillic( $text, $msg = '' ) {
 		$this->assertUnConverted( $text, 'uz-cyrl', $msg );
@@ -99,6 +101,8 @@ class LanguageUzTest extends LanguageClassesTestCase {
 	 * Verifiy the given Latin text is not converted when using
 	 * using the Latin variant and converted to Cyrillic when using
 	 * the Cyrillic variant.
+	 * @param string $text Text to convert
+	 * @param string $msg Optional message
 	 */
 	protected function assertLatin( $text, $msg = '' ) {
 		$this->assertUnConverted( $text, 'uz-latn', $msg );

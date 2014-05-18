@@ -33,7 +33,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 	private $prop = array();
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ui' );
 	}
 
@@ -299,7 +299,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Get information about the current user';
+		return 'Get information about the current user.';
 	}
 
 	public function getExamples() {

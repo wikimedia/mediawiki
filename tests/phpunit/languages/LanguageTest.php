@@ -16,7 +16,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @dataProvider provideFormattableTimes#
+	 * @dataProvider provideFormattableTimes
 	 * @covers Language::formatTimePeriod
 	 */
 	public function testFormatTimePeriod( $seconds, $format, $expected, $desc ) {
@@ -412,7 +412,10 @@ class LanguageTest extends LanguageClassesTestCase {
 			array( 'fr-Latn-F', 'region too short' ),
 			array( 'a-value', 'language too short with region' ),
 			array( 'tlh-a-b-foo', 'valid three-letter with wrong variant' ),
-			array( 'i-notexist', 'grandfathered but not registered: invalid, even if we only test well-formedness' ),
+			array(
+				'i-notexist',
+				'grandfathered but not registered: invalid, even if we only test well-formedness'
+			),
 			array( 'abcdefghi-012345678', 'numbers too long' ),
 			array( 'ab-abc-abc-abc-abc', 'invalid extensions' ),
 			array( 'ab-abcd-abc', 'invalid extensions' ),
@@ -508,12 +511,14 @@ class LanguageTest extends LanguageClassesTestCase {
 	 */
 	public function testKnownCldrLanguageTag() {
 		if ( !class_exists( 'LanguageNames' ) ) {
-			$this->markTestSkipped( 'The LanguageNames class is not available. The cldr extension is probably not installed.' );
+			$this->markTestSkipped( 'The LanguageNames class is not available. '
+				. 'The CLDR extension is probably not installed.' );
 		}
 
 		$this->assertTrue(
 			(bool)Language::isKnownLanguageTag( 'pal' ),
-			'validating code "pal" an ancient language, which probably will not appear in Names.php, but appears in CLDR in English'
+			'validating code "pal" an ancient language, which probably will '
+				. 'not appear in Names.php, but appears in CLDR in English'
 		);
 	}
 
@@ -658,7 +663,8 @@ class LanguageTest extends LanguageClassesTestCase {
 				'2009-W53-4',
 				'leap week'
 			),
-			// What follows is mostly copied from http://www.mediawiki.org/wiki/Help:Extension:ParserFunctions#.23time
+			// What follows is mostly copied from
+			// https://www.mediawiki.org/wiki/Help:Extension:ParserFunctions#.23time
 			array(
 				'Y',
 				'20120102090705',
@@ -1284,6 +1290,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideCheckTitleEncodingData() {
+		// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
 		return array(
 			array( "" ),
 			array( "United States of America" ), // 7bit ASCII
@@ -1334,6 +1341,7 @@ class LanguageTest extends LanguageClassesTestCase {
 				)
 			)
 		);
+		// @codingStandardsIgnoreEnd
 	}
 
 	/**
@@ -1464,11 +1472,38 @@ class LanguageTest extends LanguageClassesTestCase {
 			array( array( 'formatDuration', 1023 * 60 * 60 ), '1023 hours', 'relative' ),
 			array( array( 'formatDuration', -1023 ), '-1023 seconds', 'negative relative' ),
 			array( array( 'formatDuration', 0 ), 'now', 'now' ),
-			array( array( 'timeanddate', '20120102070000' ), '2012-1-1 7:00 +1 day', 'mixed, handled as absolute' ),
+			array(
+				array( 'timeanddate', '20120102070000' ),
+				'2012-1-1 7:00 +1 day',
+				'mixed, handled as absolute'
+			),
 			array( array( 'timeanddate', '19910203040506' ), '1991-2-3 4:05:06', 'absolute' ),
 			array( array( 'timeanddate', '19700101000000' ), '1970-1-1 0:00:00', 'absolute at epoch' ),
 			array( array( 'timeanddate', '19691231235959' ), '1969-12-31 23:59:59', 'time before epoch' ),
 			array( 'dummy', 'dummy', 'return garbage as is' ),
+		);
+	}
+
+	/**
+	 * @dataProvider parseFormattedNumberProvider
+	 */
+	public function testParseFormattedNumber( $langCode, $number ) {
+		$lang = Language::factory( $langCode );
+
+		$localisedNum = $lang->formatNum( $number );
+		$normalisedNum = $lang->parseFormattedNumber( $localisedNum );
+
+		$this->assertEquals( $number, $normalisedNum );
+	}
+
+	public function parseFormattedNumberProvider() {
+		return array(
+			array( 'de', 377.01 ),
+			array( 'fa', 334 ),
+			array( 'fa', 382.772 ),
+			array( 'ar', 1844 ),
+			array( 'lzh', 3731 ),
+			array( 'zh-classical', 7432 )
 		);
 	}
 
@@ -1555,10 +1590,12 @@ class LanguageTest extends LanguageClassesTestCase {
 	public static function provideGetParentLanguage() {
 		return array(
 			array( 'zh-cn', 'zh', 'zh is the parent language of zh-cn' ),
-			array( 'zh', 'zh', 'zh is defined as the parent language of zh, because zh converter can convert zh-cn to zh' ),
+			array( 'zh', 'zh', 'zh is defined as the parent language of zh, '
+				. 'because zh converter can convert zh-cn to zh' ),
 			array( 'zh-invalid', null, 'do not be fooled by arbitrarily composed language codes' ),
 			array( 'en-gb', null, 'en does not have converter' ),
-			array( 'en', null, 'en does not have converter. Although FakeConverter handles en -> en conversion but it is useless' ),
+			array( 'en', null, 'en does not have converter. Although FakeConverter '
+					. 'handles en -> en conversion but it is useless' ),
 		);
 	}
 

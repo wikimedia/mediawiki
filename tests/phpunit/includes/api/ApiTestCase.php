@@ -43,11 +43,11 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 	/**
 	 * Edits or creates a page/revision
-	 * @param $pageName string page title
-	 * @param $text string content of the page
-	 * @param $summary string optional summary string for the revision
-	 * @param $defaultNs int optional namespace id
-	 * @return array as returned by WikiPage::doEditContent()
+	 * @param string $pageName page title
+	 * @param string $text content of the page
+	 * @param string $summary optional summary string for the revision
+	 * @param int $defaultNs optional namespace id
+	 * @return array Array as returned by WikiPage::doEditContent()
 	 */
 	protected function editPage( $pageName, $text, $summary = '', $defaultNs = NS_MAIN ) {
 		$title = Title::newFromText( $pageName, $defaultNs );
@@ -72,7 +72,9 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 *
 	 * @return array
 	 */
-	protected function doApiRequest( array $params, array $session = null, $appendModule = false, User $user = null ) {
+	protected function doApiRequest( array $params, array $session = null,
+		$appendModule = false, User $user = null
+	) {
 		global $wgRequest, $wgUser;
 
 		if ( is_null( $session ) ) {
@@ -112,15 +114,19 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 	/**
 	 * Add an edit token to the API request
-	 * This is cheating a bit -- we grab a token in the correct format and then add it to the pseudo-session and to the
-	 * request, without actually requesting a "real" edit token
-	 * @param $params Array: key-value API params
-	 * @param $session Array|null: session array
-	 * @param $user User|null A User object for the context
-	 * @return mixed result of the API call
+	 * This is cheating a bit -- we grab a token in the correct format and then
+	 * add it to the pseudo-session and to the request, without actually
+	 * requesting a "real" edit token.
+	 *
+	 * @param array $params Key-value API params
+	 * @param array|null $session session array
+	 * @param User|null $user A User object for the context
+	 * @return mixed Result of the API call
 	 * @throws Exception in case wsToken is not set in the session
 	 */
-	protected function doApiRequestWithToken( array $params, array $session = null, User $user = null ) {
+	protected function doApiRequestWithToken( array $params, array $session = null,
+		User $user = null
+	) {
 		global $wgRequest;
 
 		if ( $session === null ) {

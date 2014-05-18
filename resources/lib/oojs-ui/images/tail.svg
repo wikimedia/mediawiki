@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="15px" height="8px" viewBox="0 0 15 8" style="enable-background:new 0 0 15 8;" xml:space="preserve">
+<g id="tail">
+	<polygon id="outline" style="fill-rule:evenodd;clip-rule:evenodd;fill:#808080;" points="7.609,2.499 2.096,8 13.125,8"/>
+	<polygon id="fill" style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" points="7.609,3 2.598,8 12.622,8"/>
+</g>
+</svg>

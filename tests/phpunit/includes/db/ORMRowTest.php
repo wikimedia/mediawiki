@@ -71,7 +71,7 @@ abstract class ORMRowTest extends \MediaWikiTestCase {
 	/**
 	 * @since 1.20
 	 * @param array $data
-	 * @param boolean $loadDefaults
+	 * @param bool $loadDefaults
 	 * @return IORMRow
 	 */
 	protected function getRowInstance( array $data, $loadDefaults ) {

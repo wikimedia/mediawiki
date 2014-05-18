@@ -29,9 +29,6 @@
  * @author Petr Kadlec <mormegil@centrum.cz>
  */
 class SpecialListGroupRights extends SpecialPage {
-	/**
-	 * Constructor
-	 */
 	function __construct() {
 		parent::__construct( 'Listgrouprights' );
 	}
@@ -118,11 +115,12 @@ class SpecialListGroupRights extends SpecialPage {
 			$addgroups = isset( $wgAddGroups[$group] ) ? $wgAddGroups[$group] : array();
 			$removegroups = isset( $wgRemoveGroups[$group] ) ? $wgRemoveGroups[$group] : array();
 			$addgroupsSelf = isset( $wgGroupsAddToSelf[$group] ) ? $wgGroupsAddToSelf[$group] : array();
-			$removegroupsSelf = isset( $wgGroupsRemoveFromSelf[$group] ) ? $wgGroupsRemoveFromSelf[$group] : array();
+			$removegroupsSelf = isset( $wgGroupsRemoveFromSelf[$group] )
+				? $wgGroupsRemoveFromSelf[$group]
+				: array();
 
 			$id = $group == '*' ? false : Sanitizer::escapeId( $group );
-			$out->addHTML( Html::rawElement( 'tr', array( 'id' => $id ),
-				"
+			$out->addHTML( Html::rawElement( 'tr', array( 'id' => $id ), "
 				<td>$grouppage$grouplink</td>
 					<td>" .
 					$this->formatPermissions( $permissions, $revoke, $addgroups, $removegroups,
@@ -130,6 +128,88 @@ class SpecialListGroupRights extends SpecialPage {
 					'</td>
 				'
 			) );
+		}
+		$out->addHTML( Xml::closeElement( 'table' ) );
+		$this->outputNamespaceProtectionInfo();
+	}
+
+	private function outputNamespaceProtectionInfo() {
+		global $wgNamespaceProtection, $wgParser, $wgContLang;
+		$out = $this->getOutput();
+
+		if ( count( $wgNamespaceProtection ) == 0 ) {
+			return;
+		}
+
+		$header = $this->msg( 'listgrouprights-namespaceprotection-header' )->parse();
+		$out->addHTML(
+			Html::rawElement( 'h2', array(), Html::element( 'span', array(
+				'class' => 'mw-headline',
+				'id' => $wgParser->guessSectionNameFromWikiText( $header )
+			), $header ) ) .
+			Xml::openElement( 'table', array( 'class' => 'wikitable' ) ) .
+			Html::element(
+				'th',
+				array(),
+				$this->msg( 'listgrouprights-namespaceprotection-namespace' )->text()
+			) .
+			Html::element(
+				'th',
+				array(),
+				$this->msg( 'listgrouprights-namespaceprotection-restrictedto' )->text()
+			)
+		);
+
+		ksort( $wgNamespaceProtection );
+		foreach ( $wgNamespaceProtection as $namespace => $rights ) {
+			if ( !in_array( $namespace, MWNamespace::getValidNamespaces() ) ) {
+				continue;
+			}
+
+			if ( $namespace == NS_MAIN ) {
+				$namespaceText = $this->msg( 'blanknamespace' )->text();
+			} else {
+				$namespaceText = $wgContLang->convertNamespace( $namespace );
+			}
+
+			$out->addHTML(
+				Xml::openElement( 'tr' ) .
+				Html::rawElement(
+					'td',
+					array(),
+					Linker::link(
+						SpecialPage::getTitleFor( 'Allpages' ),
+						$namespaceText,
+						array(),
+						array( 'namespace' => $namespace )
+					)
+				) .
+				Xml::openElement( 'td' ) . Xml::openElement( 'ul' )
+			);
+
+			if ( !is_array( $rights ) ) {
+				$rights = array( $rights );
+			}
+
+			foreach ( $rights as $right ) {
+				$out->addHTML(
+					Html::rawElement( 'li', array(), $this->msg(
+						'listgrouprights-right-display',
+						User::getRightDescription( $right ),
+						Html::element(
+							'span',
+							array( 'class' => 'mw-listgrouprights-right-name' ),
+							$right
+						)
+					)->parse() )
+				);
+			}
+
+			$out->addHTML(
+				Xml::closeElement( 'ul' ) .
+				Xml::closeElement( 'td' ) .
+				Xml::closeElement( 'tr' )
+			);
 		}
 		$out->addHTML( Xml::closeElement( 'table' ) );
 	}

@@ -41,7 +41,7 @@ class Status {
 	/** @var bool */
 	public $ok = true;
 
-	/** @var mixed  */
+	/** @var mixed */
 	public $value;
 
 	/** Counters for batch operations */
@@ -52,7 +52,7 @@ class Status {
 	public $failCount = 0;
 
 	/** Array to indicate which items of the batch operations were successful */
-	/** @var array  */
+	/** @var array */
 	public $success = array();
 
 	/** @var array */
@@ -78,7 +78,7 @@ class Status {
 	/**
 	 * Factory function for good results
 	 *
-	 * @param $value Mixed
+	 * @param mixed $value
 	 * @return Status
 	 */
 	static function newGood( $value = null ) {
@@ -90,8 +90,8 @@ class Status {
 	/**
 	 * Change operation result
 	 *
-	 * @param $ok Boolean: whether the operation completed
-	 * @param $value Mixed
+	 * @param bool $ok Whether the operation completed
+	 * @param mixed $value
 	 */
 	public function setResult( $ok, $value = null ) {
 		$this->ok = $ok;
@@ -102,7 +102,7 @@ class Status {
 	 * Returns whether the operation completed and didn't have any error or
 	 * warnings
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isGood() {
 		return $this->ok && !$this->errors;
@@ -111,7 +111,7 @@ class Status {
 	/**
 	 * Returns whether the operation completed
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isOK() {
 		return $this->ok;
@@ -120,7 +120,7 @@ class Status {
 	/**
 	 * Add a new warning
 	 *
-	 * @param string|Message $message message name or object
+	 * @param string|Message $message Message name or object
 	 */
 	public function warning( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
@@ -134,7 +134,7 @@ class Status {
 	 * Add an error, do not set fatal flag
 	 * This can be used for non-fatal errors
 	 *
-	 * @param string|Message $message message name or object
+	 * @param string|Message $message Message name or object
 	 */
 	public function error( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
@@ -148,7 +148,7 @@ class Status {
 	 * Add an error and set OK to false, indicating that the operation
 	 * as a whole was fatal
 	 *
-	 * @param string|Message $message message name or object
+	 * @param string|Message $message Message name or object
 	 */
 	public function fatal( $message /*, parameters... */ ) {
 		$params = array_slice( func_get_args(), 1 );
@@ -167,7 +167,7 @@ class Status {
 	}
 
 	/**
-	 * @param $params array
+	 * @param array $params
 	 * @return array
 	 */
 	protected function cleanParams( $params ) {
@@ -184,10 +184,10 @@ class Status {
 	/**
 	 * Get the error list as a wikitext formatted list
 	 *
-	 * @param string $shortContext a short enclosing context message name, to
+	 * @param string $shortContext A short enclosing context message name, to
 	 *        be used when there is a single error
-	 * @param string $longContext a long enclosing context message name, for a list
-	 * @return String
+	 * @param string $longContext A long enclosing context message name, for a list
+	 * @return string
 	 */
 	public function getWikiText( $shortContext = false, $longContext = false ) {
 		if ( count( $this->errors ) == 0 ) {
@@ -224,9 +224,11 @@ class Status {
 	/**
 	 * Get the error list as a Message object
 	 *
-	 * @param string $shortContext a short enclosing context message name, to
-	 *        be used when there is a single error
-	 * @param string $longContext a long enclosing context message name, for a list
+	 * @param string|string[] $shortContext A short enclosing context message name (or an array of
+	 * message names), to be used when there is a single error.
+	 * @param string|string[] $longContext A long enclosing context message name (or an array of
+	 * message names), for a list.
+	 *
 	 * @return Message
 	 */
 	public function getMessage( $shortContext = false, $longContext = false ) {
@@ -256,13 +258,13 @@ class Status {
 				$msgCount++;
 			}
 
-			$wrapper = new RawMessage( '* $' . implode( "\n* \$", range( 1, $msgCount ) ) );
-			$s = $wrapper->params( $msgs )->parse();
+			$s = new RawMessage( '* $' . implode( "\n* \$", range( 1, $msgCount ) ) );
+			$s->params( $msgs )->parse();
 
 			if ( $longContext ) {
-				$s = wfMessage( $longContext, $wrapper );
+				$s = wfMessage( $longContext, $s );
 			} elseif ( $shortContext ) {
-				$wrapper = new RawMessage( "\n\$1\n", $wrapper );
+				$wrapper = new RawMessage( "\n\$1\n", $s );
 				$wrapper->parse();
 				$s = wfMessage( $shortContext, $wrapper );
 			}
@@ -273,12 +275,12 @@ class Status {
 
 	/**
 	 * Return the message for a single error.
-	 * @param $error Mixed With an array & two values keyed by
+	 * @param mixed $error With an array & two values keyed by
 	 * 'message' and 'params', use those keys-value pairs.
 	 * Otherwise, if its an array, just use the first value as the
 	 * message and the remaining items as the params.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	protected function getErrorMessage( $error ) {
 		if ( is_array( $error ) ) {
@@ -301,10 +303,10 @@ class Status {
 	/**
 	 * Get the error message as HTML. This is done by parsing the wikitext error
 	 * message.
-	 * @param string $shortContext a short enclosing context message name, to
+	 * @param string $shortContext A short enclosing context message name, to
 	 *        be used when there is a single error
-	 * @param string $longContext a long enclosing context message name, for a list
-	 * @return String
+	 * @param string $longContext A long enclosing context message name, for a list
+	 * @return string
 	 */
 	public function getHTML( $shortContext = false, $longContext = false ) {
 		$text = $this->getWikiText( $shortContext, $longContext );
@@ -314,8 +316,8 @@ class Status {
 
 	/**
 	 * Return an array with the wikitext for each item in the array.
-	 * @param $errors Array
-	 * @return Array
+	 * @param array $errors
+	 * @return array
 	 */
 	protected function getErrorMessageArray( $errors ) {
 		return array_map( array( $this, 'getErrorMessage' ), $errors );
@@ -324,8 +326,8 @@ class Status {
 	/**
 	 * Merge another status object into this one
 	 *
-	 * @param $other Status Other Status object
-	 * @param $overwriteValue Boolean: whether to override the "value" member
+	 * @param Status $other Other Status object
+	 * @param bool $overwriteValue Whether to override the "value" member
 	 */
 	public function merge( $other, $overwriteValue = false ) {
 		$this->errors = array_merge( $this->errors, $other->errors );
@@ -359,8 +361,8 @@ class Status {
 
 	/**
 	 * Returns a list of status messages of the given type
-	 * @param $type String
-	 * @return Array
+	 * @param string $type
+	 * @return array
 	 */
 	protected function getStatusArray( $type ) {
 		$result = array();
@@ -386,9 +388,9 @@ class Status {
 	 * Returns a list of status messages of the given type, with message and
 	 * params left untouched, like a sane version of getStatusArray
 	 *
-	 * @param $type String
+	 * @param string $type
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	public function getErrorsByType( $type ) {
 		$result = array();
@@ -403,15 +405,20 @@ class Status {
 	/**
 	 * Returns true if the specified message is present as a warning or error
 	 *
-	 * Note, due to the lack of tools for comparing Message objects, this
-	 * function will not work when using a Message object as a parameter.
+	 * @param string|Message $message Message key or object to search for
 	 *
-	 * @param string $msg message name
-	 * @return Boolean
+	 * @return bool
 	 */
-	public function hasMessage( $msg ) {
+	public function hasMessage( $message ) {
+		if ( $message instanceof Message ) {
+			$message = $message->getKey();
+		}
 		foreach ( $this->errors as $error ) {
-			if ( $error['message'] === $msg ) {
+			if ( $error['message'] instanceof Message
+				&& $error['message']->getKey() === $message
+			) {
+				return true;
+			} elseif ( $error['message'] === $message ) {
 				return true;
 			}
 		}
@@ -425,8 +432,8 @@ class Status {
 	 * Note, due to the lack of tools for comparing Message objects, this
 	 * function will not work when using a Message object as the search parameter.
 	 *
-	 * @param $source Message|String: Message key or object to search for
-	 * @param $dest Message|String: Replacement message key or object
+	 * @param Message|string $source Message key or object to search for
+	 * @param Message|string $dest Replacement message key or object
 	 * @return bool Return true if the replacement was done, false otherwise.
 	 */
 	public function replaceMessage( $source, $dest ) {

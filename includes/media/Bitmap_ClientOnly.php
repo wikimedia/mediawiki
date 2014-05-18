@@ -29,10 +29,13 @@
  *
  * @ingroup Media
  */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
 class BitmapHandler_ClientOnly extends BitmapHandler {
+	// @codingStandardsIgnoreEnd
+
 	/**
-	 * @param $image File
-	 * @param  $params
+	 * @param File $image
+	 * @param array $params
 	 * @return bool
 	 */
 	function normaliseParams( $image, &$params ) {

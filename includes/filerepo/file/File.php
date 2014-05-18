@@ -97,10 +97,10 @@ abstract class File {
 	/** @var Title|string|bool */
 	protected $title;
 
-	/** @var string Text of last error  */
+	/** @var string Text of last error */
 	protected $lastError;
 
-	/** @var string Main part of the title, with underscores (Title::getDBkey)  */
+	/** @var string Main part of the title, with underscores (Title::getDBkey) */
 	protected $redirected;
 
 	/** @var Title */
@@ -503,7 +503,7 @@ abstract class File {
 	 * format does not support that sort of thing, returns
 	 * an empty array.
 	 *
-	 * @return Array
+	 * @return array
 	 * @since 1.23
 	 */
 	public function getAvailableLanguages() {
@@ -519,7 +519,7 @@ abstract class File {
 	 * In files that support multiple language, what is the default language
 	 * to use if none specified.
 	 *
-	 * @return String lang code, or null if filetype doesn't support multiple languages.
+	 * @return string Lang code, or null if filetype doesn't support multiple languages.
 	 * @since 1.23
 	 */
 	public function getDefaultRenderLanguage() {
@@ -582,6 +582,10 @@ abstract class File {
 	 */
 	public function getCommonMetaArray() {
 		$handler = $this->getHandler();
+
+		if ( !$handler ) {
+			return false;
+		}
 
 		return $handler->getCommonMetaArray( $this );
 	}
@@ -838,6 +842,8 @@ abstract class File {
 			return $this->iconThumb();
 		}
 		$hp['width'] = $width;
+		// be sure to ignore any height specification as well (bug 62258)
+		unset( $hp['height'] );
 
 		return $this->transform( $hp );
 	}
@@ -847,7 +853,7 @@ abstract class File {
 	 * Use File::THUMB_FULL_NAME to always get a name like "<params>-<source>".
 	 * Otherwise, the format may be "<params>-<source>" or "<params>-thumbnail.<ext>".
 	 *
-	 * @param array $params handler-specific parameters
+	 * @param array $params Handler-specific parameters
 	 * @param int $flags Bitfield that supports THUMB_* constants
 	 * @return string
 	 */
@@ -935,7 +941,7 @@ abstract class File {
 	/**
 	 * Transform a media file
 	 *
-	 * @param array $params an associative array of handler-specific parameters.
+	 * @param array $params An associative array of handler-specific parameters.
 	 *   Typical keys are width, height and page.
 	 * @param int $flags A bitfield, may contain self::RENDER_NOW to force rendering
 	 * @return MediaTransformOutput|bool False on failure
@@ -976,15 +982,13 @@ abstract class File {
 			if ( $this->repo ) {
 				// Defer rendering if a 404 handler is set up...
 				if ( $this->repo->canTransformVia404() && !( $flags & self::RENDER_NOW ) ) {
-					wfDebug( __METHOD__ . " transformation deferred." );
+					wfDebug( __METHOD__ . " transformation deferred.\n" );
 					// XXX: Pass in the storage path even though we are not rendering anything
 					// and the path is supposed to be an FS path. This is due to getScalerType()
 					// getting called on the path and clobbering $thumb->getUrl() if it's false.
 					$thumb = $handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 					break;
 				}
-				// Clean up broken thumbnails as needed
-				$this->migrateThumbFile( $thumbName );
 				// Check if an up-to-date thumbnail already exists...
 				wfDebug( __METHOD__ . ": Doing stat for $thumbPath\n" );
 				if ( !( $flags & self::RENDER_FORCE ) && $this->repo->fileExists( $thumbPath ) ) {
@@ -1025,7 +1029,7 @@ abstract class File {
 			$tmpFile->bind( $thumb ); // keep alive with $thumb
 
 			if ( !$thumb ) { // bad params?
-				$thumb = null;
+				$thumb = false;
 			} elseif ( $thumb->isError() ) { // transform error
 				$this->lastError = $thumb->toText();
 				// Ignore errors if requested
@@ -1062,16 +1066,17 @@ abstract class File {
 
 	/**
 	 * @param string $thumbName Thumbnail name
+	 * @param string $dispositionType Type of disposition (either "attachment" or "inline")
 	 * @return string Content-Disposition header value
 	 */
-	function getThumbDisposition( $thumbName ) {
+	function getThumbDisposition( $thumbName, $dispositionType = 'inline' ) {
 		$fileName = $this->name; // file name to suggest
 		$thumbExt = FileBackend::extensionFromPath( $thumbName );
 		if ( $thumbExt != '' && $thumbExt !== $this->getExtension() ) {
 			$fileName .= ".$thumbExt";
 		}
 
-		return FileBackend::makeContentDisposition( 'inline', $fileName );
+		return FileBackend::makeContentDisposition( $dispositionType, $fileName );
 	}
 
 	/**
@@ -1181,8 +1186,8 @@ abstract class File {
 	 *
 	 * STUB
 	 * @param int $limit Limit of rows to return
-	 * @param string $start timestamp Only revisions older than $start will be returned
-	 * @param string $end timestamp Only revisions newer than $end will be returned
+	 * @param string $start Only revisions older than $start will be returned
+	 * @param string $end Only revisions newer than $end will be returned
 	 * @param bool $inc Include the endpoints of the time range
 	 *
 	 * @return array
@@ -1242,7 +1247,7 @@ abstract class File {
 	/**
 	 * Get the path of an archived file relative to the public zone root
 	 *
-	 * @param bool|string $suffix if not false, the name of an archived thumbnail file
+	 * @param bool|string $suffix If not false, the name of an archived thumbnail file
 	 *
 	 * @return string
 	 */
@@ -1261,7 +1266,7 @@ abstract class File {
 	 * Get the path, relative to the thumbnail zone root, of the
 	 * thumbnail directory or a particular file if $suffix is specified
 	 *
-	 * @param bool|string $suffix if not false, the name of a thumbnail file
+	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string
 	 */
 	function getThumbRel( $suffix = false ) {
@@ -1287,8 +1292,8 @@ abstract class File {
 	 * Get the path, relative to the thumbnail zone root, for an archived file's thumbs directory
 	 * or a specific thumb if the $suffix is given.
 	 *
-	 * @param string $archiveName the timestamped name of an archived image
-	 * @param bool|string $suffix if not false, the name of a thumbnail file
+	 * @param string $archiveName The timestamped name of an archived image
+	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string
 	 */
 	function getArchiveThumbRel( $archiveName, $suffix = false ) {
@@ -1305,7 +1310,7 @@ abstract class File {
 	/**
 	 * Get the path of the archived file.
 	 *
-	 * @param bool|string $suffix if not false, the name of an archived file.
+	 * @param bool|string $suffix If not false, the name of an archived file.
 	 * @return string
 	 */
 	function getArchivePath( $suffix = false ) {
@@ -1317,15 +1322,15 @@ abstract class File {
 	/**
 	 * Get the path of an archived file's thumbs, or a particular thumb if $suffix is specified
 	 *
-	 * @param string $archiveName the timestamped name of an archived image
-	 * @param bool|string $suffix if not false, the name of a thumbnail file
+	 * @param string $archiveName The timestamped name of an archived image
+	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string
 	 */
 	function getArchiveThumbPath( $archiveName, $suffix = false ) {
 		$this->assertRepoDefined();
 
 		return $this->repo->getZonePath( 'thumb' ) . '/' .
-			$this->getArchiveThumbRel( $archiveName, $suffix );
+		$this->getArchiveThumbRel( $archiveName, $suffix );
 	}
 
 	/**
@@ -1374,7 +1379,7 @@ abstract class File {
 	/**
 	 * Get the URL of the archived file's thumbs, or a particular thumb if $suffix is specified
 	 *
-	 * @param string $archiveName the timestamped name of an archived image
+	 * @param string $archiveName The timestamped name of an archived image
 	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string
 	 */
@@ -1395,7 +1400,7 @@ abstract class File {
 	/**
 	 * Get the URL of the zone directory, or a particular file if $suffix is specified
 	 *
-	 * @param string $zone name of requested zone
+	 * @param string $zone Name of requested zone
 	 * @param bool|string $suffix If not false, the name of a file in zone
 	 * @return string path
 	 */
@@ -1413,7 +1418,7 @@ abstract class File {
 	/**
 	 * Get the URL of the thumbnail directory, or a particular file if $suffix is specified
 	 *
-	 * @param bool|string $suffix if not false, the name of a thumbnail file
+	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string path
 	 */
 	function getThumbUrl( $suffix = false ) {
@@ -1500,8 +1505,8 @@ abstract class File {
 	 * Record a file upload in the upload log and the image table
 	 * STUB
 	 * Overridden by LocalFile
-	 * @param $oldver
-	 * @param $desc
+	 * @param string $oldver
+	 * @param string $desc
 	 * @param string $license
 	 * @param string $copyStatus
 	 * @param string $source
@@ -1528,7 +1533,7 @@ abstract class File {
 	 * Options to $options include:
 	 *   - headers : name/value map of HTTP headers to use in response to GET/HEAD requests
 	 *
-	 * @param string $srcPath local filesystem path to the source image
+	 * @param string $srcPath Local filesystem path to the source image
 	 * @param int $flags A bitwise combination of:
 	 *   File::DELETE_SOURCE    Delete the source file, i.e. move rather than copy
 	 * @param array $options Optional additional parameters
@@ -1594,7 +1599,7 @@ abstract class File {
 	 * Is this file a "deleted" file in a private archive?
 	 * STUB
 	 *
-	 * @param int $field one of DELETED_* bitfield constants
+	 * @param int $field One of DELETED_* bitfield constants
 	 * @return bool
 	 */
 	function isDeleted( $field ) {
@@ -1631,7 +1636,7 @@ abstract class File {
 	 * and logging are caller's responsibility
 	 *
 	 * @param Title $target New file name
-	 * @return FileRepoStatus object.
+	 * @return FileRepoStatus
 	 */
 	function move( $target ) {
 		$this->readOnlyError();
@@ -1647,11 +1652,12 @@ abstract class File {
 	 *
 	 * @param string $reason
 	 * @param bool $suppress Hide content from sysops?
-	 * @return bool on success, false on some kind of failure
+	 * @param User|null $user
+	 * @return bool Boolean on success, false on some kind of failure
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function delete( $reason, $suppress = false ) {
+	function delete( $reason, $suppress = false, $user = null ) {
 		$this->readOnlyError();
 	}
 
@@ -1661,10 +1667,10 @@ abstract class File {
 	 *
 	 * May throw database exceptions on error.
 	 *
-	 * @param array $versions set of record ids of deleted items to restore,
+	 * @param array $versions Set of record ids of deleted items to restore,
 	 *   or empty to restore all revisions.
-	 * @param bool $unsuppress remove restrictions on content upon restoration?
-	 * @return int|bool the number of file revisions restored if successful,
+	 * @param bool $unsuppress Remove restrictions on content upon restoration?
+	 * @return int|bool The number of file revisions restored if successful,
 	 *   or false on failure
 	 * STUB
 	 * Overridden by LocalFile
@@ -1862,7 +1868,7 @@ abstract class File {
 	/**
 	 * Get an associative array containing information about a file in the local filesystem.
 	 *
-	 * @param string $path absolute local filesystem path
+	 * @param string $path Absolute local filesystem path
 	 * @param string|bool $ext The file extension, or true to extract it from
 	 *   the filename. Set it to false to ignore the extension.
 	 *
@@ -1885,7 +1891,7 @@ abstract class File {
 	 * 160 log 2 / log 36 = 30.95, so the 160-bit hash fills 31 digits in base 36
 	 * fairly neatly.
 	 *
-	 * @param $path string
+	 * @param string $path
 	 * @return bool|string False on failure
 	 * @deprecated since 1.19
 	 */

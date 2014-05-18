@@ -49,7 +49,6 @@ class MinifyScript extends Maintenance {
 		$this->mDescription = "Minify a file or set of files.\n\n" .
 			"If --outfile is not specified, then the output file names will have a .min extension\n" .
 			"added, e.g. jquery.js -> jquery.min.js.";
-
 	}
 
 	public function execute() {
@@ -66,6 +65,7 @@ class MinifyScript extends Maintenance {
 
 			// Minify one file
 			$this->minify( $this->getArg( 0 ), $this->getOption( 'outfile' ) );
+
 			return;
 		}
 
@@ -103,6 +103,7 @@ class MinifyScript extends Maintenance {
 			$this->error( "No file extension, cannot determine type: $fileName" );
 			exit( 1 );
 		}
+
 		return substr( $fileName, $dotPos + 1 );
 	}
 

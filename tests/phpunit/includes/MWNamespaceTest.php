@@ -36,7 +36,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 * @covers MWNamespace::isMovable
 	 */
 	public function testIsMovable() {
-		$this->assertFalse( MWNamespace::isMovable( NS_CATEGORY ) );
+		$this->assertFalse( MWNamespace::isMovable( NS_SPECIAL ) );
 		# @todo FIXME: Write more tests!!
 	}
 
@@ -572,7 +572,11 @@ class MWNamespaceTest extends MediaWikiTestCase {
 			return $this->$method( $args );
 		}
 
-		if ( preg_match( '/^assert(Has|Is|Can)(Not|)(Subject|Talk|Watchable|Content|Subpages|Capitalized)$/', $method, $m ) ) {
+		if ( preg_match(
+			'/^assert(Has|Is|Can)(Not|)(Subject|Talk|Watchable|Content|Subpages|Capitalized)$/',
+			$method,
+			$m
+		) ) {
 			# Interprets arguments:
 			$ns = $args[0];
 			$msg = isset( $args[1] ) ? $args[1] : " dummy message";

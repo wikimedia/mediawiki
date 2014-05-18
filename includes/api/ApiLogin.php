@@ -32,7 +32,7 @@
  */
 class ApiLogin extends ApiBase {
 
-	public function __construct( $main, $action ) {
+	public function __construct( ApiMain $main, $action ) {
 		parent::__construct( $main, $action, 'lg' );
 	}
 
@@ -86,8 +86,7 @@ class ApiLogin extends ApiBase {
 			case LoginForm::SUCCESS:
 				$user = $context->getUser();
 				$this->getContext()->setUser( $user );
-				$user->setOption( 'rememberpassword', 1 );
-				$user->setCookies( $this->getRequest() );
+				$user->setCookies( $this->getRequest(), null, true );
 
 				ApiQueryInfo::resetTokenCache();
 
@@ -261,7 +260,7 @@ class ApiLogin extends ApiBase {
 			'In the event of a successful log-in, a cookie will be attached to your session.',
 			'In the event of a failed log-in, you will not be able to attempt another log-in',
 			'through this method for 5 seconds. This is to prevent password guessing by',
-			'automated password crackers'
+			'automated password crackers.'
 		);
 	}
 

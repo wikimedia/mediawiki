@@ -10,9 +10,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		if ( !extension_loaded( 'exif' ) ) {
-			$this->markTestSkipped( "This test needs the exif extension." );
-		}
+		$this->checkPHPExtension( 'exif' );
 
 		$this->handler = new BitmapHandler();
 		$filePath = __DIR__ . '/../../data/media';
@@ -72,8 +70,16 @@ class ExifRotationTest extends MediaWikiTestCase {
 			$file = $this->dataFile( $name, $type );
 			$thumb = $file->transform( $params, File::RENDER_NOW | File::RENDER_FORCE );
 
-			$this->assertEquals( $out[0], $thumb->getWidth(), "$name: thumb reported width check for $size" );
-			$this->assertEquals( $out[1], $thumb->getHeight(), "$name: thumb reported height check for $size" );
+			$this->assertEquals(
+				$out[0],
+				$thumb->getWidth(),
+				"$name: thumb reported width check for $size"
+			);
+			$this->assertEquals(
+				$out[1],
+				$thumb->getHeight(),
+				"$name: thumb reported height check for $size"
+			);
 
 			$gis = getimagesize( $thumb->getLocalCopyPath() );
 			if ( $out[0] > $info['width'] ) {
@@ -162,8 +168,16 @@ class ExifRotationTest extends MediaWikiTestCase {
 			$file = $this->dataFile( $name, $type );
 			$thumb = $file->transform( $params, File::RENDER_NOW | File::RENDER_FORCE );
 
-			$this->assertEquals( $out[0], $thumb->getWidth(), "$name: thumb reported width check for $size" );
-			$this->assertEquals( $out[1], $thumb->getHeight(), "$name: thumb reported height check for $size" );
+			$this->assertEquals(
+				$out[0],
+				$thumb->getWidth(),
+				"$name: thumb reported width check for $size"
+			);
+			$this->assertEquals(
+				$out[1],
+				$thumb->getHeight(),
+				"$name: thumb reported height check for $size"
+			);
 
 			$gis = getimagesize( $thumb->getLocalCopyPath() );
 			if ( $out[0] > $info['width'] ) {

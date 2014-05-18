@@ -24,8 +24,8 @@ class SvgTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $filename String
-	 * @param $expected Array The expected independent metadata
+	 * @param string $filename
+	 * @param array $expected The expected independent metadata
 	 * @dataProvider providerGetIndependentMetaArray
 	 * @covers SvgHandler::getCommonMetaArray
 	 */
@@ -40,7 +40,8 @@ class SvgTest extends MediaWikiTestCase {
 		return array(
 			array( 'Tux.svg', array(
 				'ObjectName' => 'Tux',
-				'ImageDescription' => 'For more information see: http://commons.wikimedia.org/wiki/Image:Tux.svg',
+				'ImageDescription' =>
+					'For more information see: http://commons.wikimedia.org/wiki/Image:Tux.svg',
 			) ),
 			array( 'Wikimedia-logo.svg', array() )
 		);

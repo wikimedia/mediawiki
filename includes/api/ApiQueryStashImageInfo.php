@@ -27,7 +27,7 @@
  */
 class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'sii' );
 	}
 
@@ -72,7 +72,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
 	private $propertyFilter = array(
 		'user', 'userid', 'comment', 'parsedcomment',
-		'mediatype', 'archivename',
+		'mediatype', 'archivename', 'uploadwarning',
 	);
 
 	public function getAllowedParams() {
@@ -108,7 +108,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
 	/**
 	 * Return the API documentation for the parameters.
-	 * @return Array parameter documentation.
+	 * @return array Parameter documentation.
 	 */
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
@@ -129,7 +129,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 	}
 
 	public function getDescription() {
-		return 'Returns image information for stashed images';
+		return 'Returns image information for stashed images.';
 	}
 
 	public function getExamples() {

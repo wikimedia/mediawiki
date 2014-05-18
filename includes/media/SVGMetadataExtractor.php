@@ -123,7 +123,7 @@ class SVGReader {
 	}
 
 	/**
-	 * @return Array with the known metadata
+	 * @return array Array with the known metadata
 	 */
 	public function getMetadata() {
 		return $this->metadata;

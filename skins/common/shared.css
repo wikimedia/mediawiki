@@ -14,6 +14,7 @@
 	/* @noflip */
 	direction: ltr;
 }
+
 .mw-content-rtl {
 	/* @noflip */
 	direction: rtl;
@@ -25,6 +26,7 @@
 	/* @noflip */
 	direction: ltr;
 }
+
 .sitedir-rtl textarea,
 .sitedir-rtl input {
 	/* @noflip */
@@ -35,6 +37,12 @@
 mark {
 	background-color: yellow;
 	color: black;
+}
+
+/* Helper for wbr element on IE 8+; in HTML5, but not supported by default as of IE 11. */
+/* Note canonical HTML5 styles recommend "content: \u200B", but this doesn't work as of IE 11. */
+wbr {
+	display: inline-block;
 }
 
 /* Input types that should follow user direction, like buttons */
@@ -52,6 +60,7 @@ input[dir="ltr"] {
 	/* @noflip */
 	direction: ltr;
 }
+
 textarea[dir="rtl"],
 input[dir="rtl"] {
 	/* @noflip */
@@ -69,9 +78,11 @@ abbr[title],
 .mw-plusminus-pos {
 	color: #006400; /* dark green */
 }
+
 .mw-plusminus-neg {
 	color: #8b0000; /* dark red */
 }
+
 .mw-plusminus-null {
 	color: #aaa; /* gray */
 }
@@ -100,9 +111,11 @@ span.changedby {
 	direction: ltr;
 	unicode-bidi: embed;
 }
+
 img.tex {
 	vertical-align: middle;
 }
+
 span.texhtml {
 	font-family: serif;
 }
@@ -145,9 +158,11 @@ table.filehistory th,
 table.filehistory td {
 	vertical-align: top;
 }
+
 table.filehistory th {
 	text-align: left;
 }
+
 table.filehistory td.mw-imagepage-filesize,
 table.filehistory th.mw-imagepage-filesize {
 	white-space: nowrap;
@@ -200,9 +215,11 @@ div.patrollink {
 td.mw-label {
 	text-align: right;
 }
+
 td.mw-input {
 	text-align: left;
 }
+
 td.mw-submit {
 	text-align: left;
 }
@@ -210,26 +227,29 @@ td.mw-submit {
 td.mw-label {
 	vertical-align: top;
 }
+
 .prefsection td.mw-label {
 	width: 20%;
 }
+
 .prefsection table {
 	width: 100%;
 }
+
 .prefsection table.mw-htmlform-matrix {
 	width: auto;
 }
 
 .mw-icon-question {
-	/* @embed */
-	background: url('images/question-small.png') no-repeat;
 	/* SVG support using a transparent gradient to guarantee cross-browser
-	 * compatibility (browsers able to understand gradient syntax support also SVG)
-	 * lifted from #pt-login css rule in skins/vector/screen.css */
+	 * compatibility (browsers able to understand gradient syntax support also SVG).
+	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
+	background-image: url(images/question-small.png);
 	/* @embed */
-	background: -webkit-linear-gradient(transparent, transparent), url('images/question.svg') no-repeat;
+	background-image: -webkit-linear-gradient(transparent, transparent), url(images/question.svg);
 	/* @embed */
-	background: linear-gradient(transparent, transparent), url('images/question.svg') no-repeat;
+	background-image: linear-gradient(transparent, transparent), url(images/question.svg);
+	background-repeat: no-repeat;
 	background-size: 13px 13px;
 	display: inline-block;
 	height: 13px;
@@ -284,14 +304,17 @@ input#wpSummary {
 .mw-content-ltr .thumbcaption {
 	text-align: left;
 }
+
 /* @noflip */
 .mw-content-rtl .thumbcaption {
 	text-align: right;
 }
+
 /* @noflip */
 .mw-content-ltr .magnify {
 	float: right;
 }
+
 /* @noflip */
 .mw-content-rtl .magnify {
 	float: left;
@@ -307,6 +330,7 @@ input#wpSummary {
 	 */
 	text-align: left;
 }
+
 .catlinks ul {
 	display: inline;
 	margin: 0;
@@ -336,12 +360,14 @@ input#wpSummary {
 .catlinks li a.mw-redirect {
 	font-style: italic;
 }
+
 /**
  * Hidden categories
  */
 .mw-hidden-cats-hidden {
 	display: none;
 }
+
 .catlinks-allhidden {
 	display: none;
 }
@@ -370,8 +396,8 @@ p.mw-revdel-editreasons {
 	border-style: solid;
 	border-color: #AAAAAA;
 	border-width: 1px;
-	z-index:99;
-	font-size:95%;
+	z-index: 99;
+	font-size: 95%;
 }
 
 table.os-suggest-results {
@@ -389,6 +415,7 @@ table.os-suggest-results {
 	color: black;
 	padding: 2px;
 }
+
 .os-suggest-result-hl,
 .os-suggest-result-hl-webkit {
 	background-color: #4C59A6;
@@ -400,6 +427,7 @@ table.os-suggest-results {
 	left: 1ex;
 	font-size: 65%;
 }
+
 .os-suggest-toggle-def {
 	position: absolute;
 	top: 0;
@@ -414,16 +442,20 @@ table.os-suggest-results {
 .autocomment {
 	color: gray;
 }
+
 #pagehistory .history-user {
 	margin-left: 0.4em;
 	margin-right: 0.2em;
 }
+
 #pagehistory span.minor {
 	font-weight: bold;
 }
+
 #pagehistory li {
 	border: 1px solid white;
 }
+
 #pagehistory li.selected {
 	background-color: #f9f9f9;
 	border: 1px dashed #aaa;
@@ -457,6 +489,7 @@ div.mw-warning-with-logexcerpt {
 	border: 2px solid #2F6FAB;
 	clear: both;
 }
+
 div.mw-warning-with-logexcerpt ul li {
 	font-size: 90%;
 }
@@ -466,6 +499,7 @@ span.mw-revdelundel-link,
 strong.mw-revdelundel-link {
 	font-size: 90%;
 }
+
 span.mw-revdelundel-hidden,
 input.mw-revdelundel-hidden {
 	visibility: hidden;
@@ -484,8 +518,13 @@ a.new {
 
 /* feed links */
 a.feedlink {
-	/* @embed */
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG).
+	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
 	background-image: url(images/feed-icon.png);
+	/* @embed */
+	background-image: -webkit-linear-gradient(transparent, transparent), url(images/feed-icon.svg);
+	/* @embed */
 	background-image: linear-gradient(transparent, transparent), url(images/feed-icon.svg);
 	background-position: center left;
 	background-repeat: no-repeat;
@@ -499,6 +538,7 @@ a.feedlink {
 	background: none !important;
 	padding: 0 !important;
 }
+
 /* External URLs should always be treated as LTR (bug 4330) */
 /* @noflip */ .rtl a.external.free,
 .rtl a.external.autonumber {
@@ -517,6 +557,7 @@ table.wikitable {
 	border-collapse: collapse;
 	color: black;
 }
+
 table.wikitable > tr > th,
 table.wikitable > tr > td,
 table.wikitable > * > tr > th,
@@ -524,11 +565,13 @@ table.wikitable > * > tr > td {
 	border: 1px #aaa solid;
 	padding: 0.2em;
 }
+
 table.wikitable > tr > th,
 table.wikitable > * > tr > th {
 	background-color: #f2f2f2;
 	text-align: center;
 }
+
 table.wikitable > caption {
 	font-weight: bold;
 }
@@ -548,12 +591,15 @@ table.collapsed tr.collapsable {
 .success {
 	font-size: larger;
 }
+
 .error {
 	color: #cc0000;
 }
+
 .warning {
 	color: #705000;
 }
+
 .success {
 	color: #009000;
 }
@@ -569,6 +615,7 @@ table.collapsed tr.collapsable {
 	zoom: 1;
 	*display: inline;
 }
+
 .errorbox h2,
 .warningbox h2,
 .successbox h2 {
@@ -579,16 +626,19 @@ table.collapsed tr.collapsable {
 	margin: 0 .5em 0 0;
 	border: none;
 }
+
 .errorbox {
 	color: #cc0000;
 	border-color: #fac5c5;
 	background-color: #fae3e3;
 }
+
 .warningbox {
 	color: #705000;
 	border-color: #fde29b;
 	background-color: #fdf1d1;
 }
+
 .successbox {
 	color: #009000;
 	border-color: #b7fdb5;
@@ -628,12 +678,6 @@ table.collapsed tr.collapsable {
 	clear: both;
 }
 
-#mw_trackbacks {
-	border: solid 1px #bbbbff;
-	background-color: #eeeeff;
-	padding: 0.2em;
-}
-
 /**
  * Data table style
  *
@@ -643,22 +687,25 @@ table.collapsed tr.collapsable {
 .mw-datatable {
 	border-collapse: collapse;
 }
+
 .mw-datatable,
 .mw-datatable td,
 .mw-datatable th {
 	border: 1px solid #aaaaaa;
 	padding: 0 0.15em 0 0.15em;
 }
+
 .mw-datatable th {
 	background-color: #ddddff;
 }
+
 .mw-datatable td {
 	background-color: #ffffff;
 }
+
 .mw-datatable tr:hover td {
 	background-color: #eeeeff;
 }
-
 
 /**
  * TablePager tables generated by the TablePager PHP class
@@ -667,13 +714,16 @@ table.collapsed tr.collapsable {
 .TablePager {
 	min-width: 80%;
 }
+
 .TablePager_nav {
 	margin: 0 auto;
 }
+
 .TablePager_nav td {
 	padding: 3px;
 	text-align: center;
 }
+
 .TablePager_nav a {
 	text-decoration: none;
 }
@@ -682,12 +732,15 @@ table.collapsed tr.collapsable {
 .imagelist th {
 	white-space: nowrap;
 }
+
 .imagelist .TablePager_col_links {
 	background-color: #eeeeff;
 }
+
 .imagelist .TablePager_col_img_description {
 	white-space: normal;
 }
+
 .imagelist th.TablePager_sort {
 	background-color: #ccccff;
 }
@@ -766,30 +819,35 @@ table.mw_metadata ul.metadata-langlist {
 	margin: 0.3em 0 0 1.6em;
 	padding: 0;
 }
+
 .mw-content-rtl ul,
 .mw-content-ltr .mw-content-rtl ul {
 	/* @noflip */
 	margin: 0.3em 1.6em 0 0;
 	padding: 0;
 }
+
 .mw-content-ltr ol,
 .mw-content-rtl .mw-content-ltr ol {
 	/* @noflip */
 	margin: 0.3em 0 0 3.2em;
 	padding: 0;
 }
+
 .mw-content-rtl ol,
 .mw-content-ltr .mw-content-rtl ol {
 	/* @noflip */
 	margin: 0.3em 3.2em 0 0;
 	padding: 0;
 }
+
 /* @noflip */
 .mw-content-ltr dd,
 .mw-content-rtl .mw-content-ltr dd {
 	margin-left: 1.6em;
 	margin-right: 0;
 }
+
 /* @noflip */
 .mw-content-rtl dd,
 .mw-content-ltr .mw-content-rtl dd {
@@ -862,6 +920,7 @@ ul.mw-gallery-packed-hover li.gallerybox div.thumb {
 	background-color: transparent;
 	border: none;
 }
+
 ul.mw-gallery-packed li.gallerybox div.thumb img,
 ul.mw-gallery-packed-overlay li.gallerybox div.thumb img,
 ul.mw-gallery-packed-hover li.gallerybox div.thumb img {
@@ -870,7 +929,7 @@ ul.mw-gallery-packed-hover li.gallerybox div.thumb img {
 
 ul.mw-gallery-packed-hover li.gallerybox,
 ul.mw-gallery-packed-overlay li.gallerybox {
-	position:relative;
+	position: relative;
 }
 
 ul.mw-gallery-packed-hover div.gallerytextwrapper {
@@ -881,11 +940,9 @@ ul.mw-gallery-packed-hover div.gallerytextwrapper {
 ul.mw-gallery-packed-hover li.gallerybox:hover div.gallerytextwrapper,
 ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper,
 ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper {
-	position:absolute;
-	opacity:.8;
-	filter:alpha(opacity=80);
-	zoom: 1;
-	background-color:white;
+	position: absolute;
+	background: white;
+	background: rgba(255, 255, 255, 0.8);
 	padding: 5px 10px;
 	bottom: 0;
 	left: 0; /* Needed for IE */
@@ -899,13 +956,6 @@ ul.mw-gallery-packed-overlay,
 ul.mw-gallery-packed {
 	text-align: center;
 }
-
-ul.mw-gallery-packed-hover div.gallerytext,
-ul.mw-gallery-packed-overlay div.gallerytext {
-	opacity: 1;
-	position: relative; /* Resets opacity in old IE */
-}
-
 
 .mw-ajax-loader {
 	/* @embed */
@@ -951,6 +1001,7 @@ h1:lang(ta),
 h1:lang(te) {
 	line-height: 1.6em !important;
 }
+
 h2:lang(anp), h3:lang(anp), h4:lang(anp), h5:lang(anp), h6:lang(anp),
 h2:lang(as), h3:lang(as), h4:lang(as), h5:lang(as), h6:lang(as),
 h2:lang(bho), h3:lang(bho), h4:lang(bho), h5:lang(bho), h6:lang(bho),
@@ -1019,18 +1070,21 @@ ol:lang(or) li {
 .mw-content-rtl .mw-content-ltr #toc ul {
 	text-align: left;
 }
+
 /* @noflip */ .mw-content-rtl .toc ul,
 .mw-content-rtl #toc ul,
 .mw-content-ltr .mw-content-rtl .toc ul,
 .mw-content-ltr .mw-content-rtl #toc ul {
 	text-align: right;
 }
+
 /* @noflip */ .mw-content-ltr .toc ul ul,
 .mw-content-ltr #toc ul ul,
 .mw-content-rtl .mw-content-ltr .toc ul ul,
 .mw-content-rtl .mw-content-ltr #toc ul ul {
 	margin: 0 0 0 2em;
 }
+
 /* @noflip */ .mw-content-rtl .toc ul ul,
 .mw-content-rtl #toc ul ul,
 .mw-content-ltr .mw-content-rtl .toc ul ul,
@@ -1052,7 +1106,7 @@ ol:lang(or) li {
 	margin-bottom: -8px;
 	padding: 0 0 0 15px;
 	/* @embed */
-	background-image: url('images/help-question.gif');
+	background-image: url(images/help-question.gif);
 	background-position: left center;
 	background-repeat: no-repeat;
 	cursor: pointer;
@@ -1060,17 +1114,20 @@ ol:lang(or) li {
 	text-decoration: underline;
 	color: #0645ad;
 }
+
 .mw-help-field-hint:hover {
 	/* @embed */
-	background-image: url('images/help-question-hover.gif');
+	background-image: url(images/help-question-hover.gif);
 }
+
 .mw-help-field-data {
 	display: block;
 	background-color: #d6f3ff;
-	padding:5px 8px 4px 8px;
+	padding: 5px 8px 4px 8px;
 	border: 1px solid #5dc9f4;
 	margin-left: 20px;
 }
+
 .tipsy {
 	padding: 5px 5px 10px;
 	font-size: 12px;
@@ -1078,6 +1135,7 @@ ol:lang(or) li {
 	z-index: 100000;
 	overflow: visible;
 }
+
 .tipsy-inner {
 	padding: 5px 8px 4px 8px;
 	background-color: #d6f3ff;
@@ -1086,6 +1144,7 @@ ol:lang(or) li {
 	max-width: 300px;
 	text-align: left;
 }
+
 .tipsy-arrow {
 	position: absolute;
 	/* @embed */
@@ -1093,6 +1152,7 @@ ol:lang(or) li {
 	width: 13px;
 	height: 13px;
 }
+
 .tipsy-se .tipsy-arrow {
 	bottom: -2px;
 	right: 10px;
@@ -1114,14 +1174,17 @@ ol:lang(or) li {
 	direction: ltr;
 	unicode-bidi: embed;
 }
+
 /* @noflip */ .diff-contentalign-right td {
 	direction: rtl;
 	unicode-bidi: embed;
 }
+
 /* @noflip */ .diff-contentalign-left td {
 	direction: ltr;
 	unicode-bidi: embed;
 }
+
 .diff-multi,
 .diff-otitle,
 .diff-ntitle,
@@ -1145,12 +1208,14 @@ table.floatright {
 	clear: right;
 	float: right;
 }
+
 /* @noflip */ div.tleft,
 div.floatleft,
 table.floatleft {
 	float: left;
 	clear: left;
 }
+
 div.floatright,
 table.floatright,
 div.floatleft,
@@ -1176,14 +1241,15 @@ table.floatleft {
 	display: none;
 }
 
-/* For developpers */
+/* For developers */
 .xdebug-error {
 	position: absolute;
 	z-index: 99;
 }
 
 .mw-editsection,
-.toctoggle {
+.toctoggle,
+#jump-to-nav {
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
@@ -1212,8 +1278,15 @@ table.floatleft {
 .mw-content-rtl .mw-content-ltr .mw-editsection {
 	margin-left: 1em;
 }
+
 /* @noflip */
 .mw-content-rtl .mw-editsection,
 .mw-content-ltr .mw-content-rtl .mw-editsection {
 	margin-right: 1em;
+}
+
+/* Prevent citations and subscripts from interfering with the line-height */
+sup,
+sub {
+	line-height: 1;
 }

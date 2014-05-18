@@ -34,7 +34,7 @@ class ApiParamInfo extends ApiBase {
 	 */
 	protected $queryObj;
 
-	public function __construct( $main, $action ) {
+	public function __construct( ApiMain $main, $action ) {
 		parent::__construct( $main, $action );
 		$this->queryObj = new ApiQuery( $this->getMain(), 'query' );
 	}
@@ -66,10 +66,10 @@ class ApiParamInfo extends ApiBase {
 
 	/**
 	 * If the type is requested in parameters, adds a section to res with module info.
-	 * @param array $params user parameters array
-	 * @param string $type parameter name
-	 * @param array $res store results in this array
-	 * @param ApiResult $resultObj results object to set indexed tag.
+	 * @param array $params User parameters array
+	 * @param string $type Parameter name
+	 * @param array $res Store results in this array
+	 * @param ApiResult $resultObj Results object to set indexed tag.
 	 */
 	private function addModulesInfo( $params, $type, &$res, $resultObj ) {
 		if ( !is_array( $params[$type] ) ) {
@@ -99,7 +99,7 @@ class ApiParamInfo extends ApiBase {
 	}
 
 	/**
-	 * @param $obj ApiBase
+	 * @param ApiBase $obj
 	 * @return ApiResult
 	 */
 	private function getClassInfo( $obj ) {
@@ -349,7 +349,7 @@ class ApiParamInfo extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Obtain information about certain API parameters and errors';
+		return 'Obtain information about certain API parameters and errors.';
 	}
 
 	public function getExamples() {

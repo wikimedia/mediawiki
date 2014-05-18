@@ -33,8 +33,14 @@ require_once __DIR__ . '/Maintenance.php';
 class RollbackEdits extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Rollback all edits by a given user or IP provided they're the most recent edit";
-		$this->addOption( 'titles', 'A list of titles, none means all titles where the given user is the most recent', false, true );
+		$this->mDescription =
+			"Rollback all edits by a given user or IP provided they're the most recent edit";
+		$this->addOption(
+			'titles',
+			'A list of titles, none means all titles where the given user is the most recent',
+			false,
+			true
+		);
 		$this->addOption( 'user', 'A user or IP to rollback all edits for', true, true );
 		$this->addOption( 'summary', 'Edit summary to use', false, true );
 		$this->addOption( 'bot', 'Mark the edits as bot' );
@@ -66,6 +72,7 @@ class RollbackEdits extends Maintenance {
 
 		if ( !$titles ) {
 			$this->output( 'No suitable titles to be rolled back' );
+
 			return;
 		}
 
@@ -84,7 +91,7 @@ class RollbackEdits extends Maintenance {
 
 	/**
 	 * Get all pages that should be rolled back for a given user
-	 * @param $user String a name to check against rev_user_text
+	 * @param string $user A name to check against rev_user_text
 	 * @return array
 	 */
 	private function getRollbackTitles( $user ) {
@@ -99,6 +106,7 @@ class RollbackEdits extends Maintenance {
 		foreach ( $results as $row ) {
 			$titles[] = Title::makeTitle( $row->page_namespace, $row->page_title );
 		}
+
 		return $titles;
 	}
 }

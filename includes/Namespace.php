@@ -45,8 +45,8 @@ class MWNamespace {
 	 * Special namespaces are defined in includes/Defines.php and have
 	 * a value below 0 (ex: NS_SPECIAL = -1 , NS_MEDIA = -2)
 	 *
-	 * @param $index
-	 * @param $method
+	 * @param int $index
+	 * @param string $method
 	 *
 	 * @throws MWException
 	 * @return bool
@@ -61,13 +61,13 @@ class MWNamespace {
 	/**
 	 * Can pages in the given namespace be moved?
 	 *
-	 * @param int $index namespace index
+	 * @param int $index Namespace index
 	 * @return bool
 	 */
 	public static function isMovable( $index ) {
 		global $wgAllowImageMoving;
 
-		$result = !( $index < NS_MAIN || ( $index == NS_FILE && !$wgAllowImageMoving ) || $index == NS_CATEGORY );
+		$result = !( $index < NS_MAIN || ( $index == NS_FILE && !$wgAllowImageMoving ) );
 
 		/**
 		 * @since 1.20
@@ -80,7 +80,7 @@ class MWNamespace {
 	/**
 	 * Is the given namespace is a subject (non-talk) namespace?
 	 *
-	 * @param int $index namespace index
+	 * @param int $index Namespace index
 	 * @return bool
 	 * @since 1.19
 	 */
@@ -90,7 +90,7 @@ class MWNamespace {
 
 	/**
 	 * @see self::isSubject
-	 * @deprecated Please use the more consistently named isSubject (since 1.19)
+	 * @deprecated since 1.19 Please use the more consistently named isSubject
 	 * @return bool
 	 */
 	public static function isMain( $index ) {
@@ -101,7 +101,7 @@ class MWNamespace {
 	/**
 	 * Is the given namespace a talk namespace?
 	 *
-	 * @param int $index namespace index
+	 * @param int $index Namespace index
 	 * @return bool
 	 */
 	public static function isTalk( $index ) {
@@ -112,7 +112,7 @@ class MWNamespace {
 	/**
 	 * Get the talk namespace index for a given namespace
 	 *
-	 * @param int $index namespace index
+	 * @param int $index Namespace index
 	 * @return int
 	 */
 	public static function getTalk( $index ) {
@@ -145,8 +145,8 @@ class MWNamespace {
 	 * For talk namespaces, returns the subject (non-talk) namespace
 	 * For subject (non-talk) namespaces, returns the talk namespace
 	 *
-	 * @param int $index namespace index
-	 * @return int or null if no associated namespace could be found
+	 * @param int $index Namespace index
+	 * @return int|null If no associated namespace could be found
 	 */
 	public static function getAssociated( $index ) {
 		self::isMethodValidFor( $index, __METHOD__ );
@@ -163,7 +163,7 @@ class MWNamespace {
 	/**
 	 * Returns whether the specified namespace exists
 	 *
-	 * @param $index
+	 * @param int $index
 	 *
 	 * @return bool
 	 * @since 1.19
@@ -210,7 +210,7 @@ class MWNamespace {
 	 * Returns array of all defined namespaces with their canonical
 	 * (English) names.
 	 *
-	 * @param bool $rebuild rebuild namespace list (default = false). Used for testing.
+	 * @param bool $rebuild Rebuild namespace list (default = false). Used for testing.
 	 *
 	 * @return array
 	 * @since 1.17
@@ -231,8 +231,8 @@ class MWNamespace {
 	/**
 	 * Returns the canonical (English) name for a given index
 	 *
-	 * @param int $index namespace index
-	 * @return string or false if no canonical definition.
+	 * @param int $index Namespace index
+	 * @return string|bool If no canonical definition.
 	 */
 	public static function getCanonicalName( $index ) {
 		$nslist = self::getCanonicalNamespaces();
@@ -247,7 +247,7 @@ class MWNamespace {
 	 * Returns the index for a given canonical name, or NULL
 	 * The input *must* be converted to lower case first
 	 *
-	 * @param string $name namespace name
+	 * @param string $name Namespace name
 	 * @return int
 	 */
 	public static function getCanonicalIndex( $name ) {
@@ -287,7 +287,7 @@ class MWNamespace {
 	/**
 	 * Can this namespace ever have a talk namespace?
 	 *
-	 * @param int $index namespace index
+	 * @param int $index Namespace index
 	 * @return bool
 	 */
 	public static function canTalk( $index ) {
@@ -298,7 +298,7 @@ class MWNamespace {
 	 * Does this namespace contain content, for the purposes of calculating
 	 * statistics, etc?
 	 *
-	 * @param int $index index to check
+	 * @param int $index Index to check
 	 * @return bool
 	 */
 	public static function isContent( $index ) {
@@ -309,7 +309,7 @@ class MWNamespace {
 	/**
 	 * Can pages in a namespace be watched?
 	 *
-	 * @param $index Int
+	 * @param int $index
 	 * @return bool
 	 */
 	public static function isWatchable( $index ) {
@@ -329,7 +329,7 @@ class MWNamespace {
 
 	/**
 	 * Get a list of all namespace indices which are considered to contain content
-	 * @return array of namespace indices
+	 * @return array Array of namespace indices
 	 */
 	public static function getContentNamespaces() {
 		global $wgContentNamespaces;
@@ -347,7 +347,7 @@ class MWNamespace {
 	 * List all namespace indices which are considered subject, aka not a talk
 	 * or special namespace. See also MWNamespace::isSubject
 	 *
-	 * @return array of namespace indices
+	 * @return array Array of namespace indices
 	 */
 	public static function getSubjectNamespaces() {
 		return array_filter(
@@ -360,7 +360,7 @@ class MWNamespace {
 	 * List all namespace indices which are considered talks, aka not a subject
 	 * or special namespace. See also MWNamespace::isTalk
 	 *
-	 * @return array of namespace indices
+	 * @return array Array of namespace indices
 	 */
 	public static function getTalkNamespaces() {
 		return array_filter(
@@ -425,7 +425,7 @@ class MWNamespace {
 	 *
 	 * @since 1.21
 	 * @param int $index Index to check
-	 * @return null|string default model name for the given namespace, if set
+	 * @return null|string Default model name for the given namespace, if set
 	 */
 	public static function getNamespaceContentModel( $index ) {
 		global $wgNamespaceContentModels;

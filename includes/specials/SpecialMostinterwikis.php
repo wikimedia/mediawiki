@@ -92,8 +92,8 @@ class MostinterwikisPage extends QueryPage {
 	}
 
 	/**
-	 * @param $skin Skin
-	 * @param $result
+	 * @param Skin $skin
+	 * @param object $result
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {

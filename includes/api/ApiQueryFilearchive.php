@@ -33,7 +33,7 @@
  */
 class ApiQueryFilearchive extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'fa' );
 	}
 
@@ -66,6 +66,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 		$this->addTables( 'filearchive' );
 
+		$this->addFields( ArchivedFile::selectFields() );
 		$this->addFields( array( 'fa_name', 'fa_deleted' ) );
 		$this->addFieldsIf( 'fa_sha1', $fld_sha1 );
 		$this->addFieldsIf( 'fa_timestamp', $fld_timestamp );
@@ -121,14 +122,16 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			}
 		}
 
-		if ( !$user->isAllowed( 'suppressrevision' ) ) {
-			// Filter out revisions that the user is not allowed to see. There
-			// is no way to indicate that we have skipped stuff because the
-			// continuation parameter is fa_name
-
-			// Note that this field is unindexed. This should however not be
-			// a big problem as files with fa_deleted are rare
-			$this->addWhereFld( 'fa_deleted', 0 );
+		// Exclude files this user can't view.
+		if ( !$user->isAllowed( 'deletedtext' ) ) {
+			$bitmask = File::DELETED_FILE;
+		} elseif ( !$user->isAllowed( 'suppressrevision' ) ) {
+			$bitmask = File::DELETED_FILE | File::DELETED_RESTRICTED;
+		} else {
+			$bitmask = 0;
+		}
+		if ( $bitmask ) {
+			$this->addWhere( $this->getDB()->bitAnd( 'fa_deleted', $bitmask ) . " != $bitmask" );
 		}
 
 		$limit = $params['limit'];
@@ -153,15 +156,26 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			$title = Title::makeTitle( NS_FILE, $row->fa_name );
 			self::addTitleInfo( $file, $title );
 
+			if ( $fld_description &&
+				Revision::userCanBitfield( $row->fa_deleted, File::DELETED_COMMENT, $user )
+			) {
+				$file['description'] = $row->fa_description;
+				if ( isset( $prop['parseddescription'] ) ) {
+					$file['parseddescription'] = Linker::formatComment(
+						$row->fa_description, $title );
+				}
+			}
+			if ( $fld_user &&
+				Revision::userCanBitfield( $row->fa_deleted, File::DELETED_USER, $user )
+			) {
+				$file['userid'] = $row->fa_user;
+				$file['user'] = $row->fa_user_text;
+			}
 			if ( $fld_sha1 ) {
 				$file['sha1'] = wfBaseConvert( $row->fa_sha1, 36, 16, 40 );
 			}
 			if ( $fld_timestamp ) {
 				$file['timestamp'] = wfTimestamp( TS_ISO_8601, $row->fa_timestamp );
-			}
-			if ( $fld_user ) {
-				$file['userid'] = $row->fa_user;
-				$file['user'] = $row->fa_user_text;
 			}
 			if ( $fld_size || $fld_dimensions ) {
 				$file['size'] = $row->fa_size;
@@ -173,13 +187,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 				$file['height'] = $row->fa_height;
 				$file['width'] = $row->fa_width;
-			}
-			if ( $fld_description ) {
-				$file['description'] = $row->fa_description;
-				if ( isset( $prop['parseddescription'] ) ) {
-					$file['parseddescription'] = Linker::formatComment(
-						$row->fa_description, $title );
-				}
 			}
 			if ( $fld_mediatype ) {
 				$file['mediatype'] = $row->fa_media_type;
@@ -360,7 +367,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Enumerate all deleted files sequentially';
+		return 'Enumerate all deleted files sequentially.';
 	}
 
 	public function getPossibleErrors() {

@@ -101,28 +101,28 @@ class CdbFunctions {
  */
 class CdbReaderPHP extends CdbReader {
 	/** The filename */
-	var $fileName;
+	protected $fileName;
 
 	/* number of hash slots searched under this key */
-	var $loop;
+	protected $loop;
 
 	/* initialized if loop is nonzero */
-	var $khash;
+	protected $khash;
 
 	/* initialized if loop is nonzero */
-	var $kpos;
+	protected $kpos;
 
 	/* initialized if loop is nonzero */
-	var $hpos;
+	protected $hpos;
 
 	/* initialized if loop is nonzero */
-	var $hslots;
+	protected $hslots;
 
 	/* initialized if findNext() returns true */
-	var $dpos;
+	protected $dpos;
 
 	/* initialized if cdb_findnext() returns 1 */
-	var $dlen;
+	protected $dlen;
 
 	/**
 	 * @param $fileName string
@@ -288,8 +288,11 @@ class CdbReaderPHP extends CdbReader {
  * CDB writer class
  */
 class CdbWriterPHP extends CdbWriter {
-	var $hplist;
-	var $numentries, $pos;
+	protected $hplist;
+
+	protected $numentries;
+
+	protected $pos;
 
 	/**
 	 * @param $fileName string

@@ -31,7 +31,7 @@
  */
 class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'pt' );
 	}
 
@@ -44,7 +44,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
@@ -62,6 +62,27 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$this->addTimestampWhereRange( 'pt_timestamp', $params['dir'], $params['start'], $params['end'] );
 		$this->addWhereFld( 'pt_namespace', $params['namespace'] );
 		$this->addWhereFld( 'pt_create_perm', $params['level'] );
+
+		// Include in ORDER BY for uniqueness
+		$this->addWhereRange( 'pt_namespace', $params['dir'], null, null );
+		$this->addWhereRange( 'pt_title', $params['dir'], null, null );
+
+		if ( !is_null( $params['continue'] ) ) {
+			$cont = explode( '|', $params['continue'] );
+			$this->dieContinueUsageIf( count( $cont ) != 3 );
+			$op = ( $params['dir'] === 'newer' ? '>' : '<' );
+			$db = $this->getDB();
+			$continueTimestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
+			$continueNs = (int)$cont[1];
+			$this->dieContinueUsageIf( $continueNs != $cont[1] );
+			$continueTitle = $db->addQuotes( $cont[2] );
+			$this->addWhere( "pt_timestamp $op $continueTimestamp OR " .
+				"(pt_timestamp = $continueTimestamp AND " .
+				"(pt_namespace $op $continueNs OR " .
+				"(pt_namespace = $continueNs AND " .
+				"pt_title $op= $continueTitle)))"
+			);
+		}
 
 		if ( isset( $prop['user'] ) ) {
 			$this->addTables( 'user' );
@@ -83,7 +104,9 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are
 				// additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->pt_timestamp ) );
+				$this->setContinueEnumParameter( 'continue',
+					"$row->pt_timestamp|$row->pt_namespace|$row->pt_title"
+				);
 				break;
 			}
 
@@ -122,8 +145,9 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'start',
-						wfTimestamp( TS_ISO_8601, $row->pt_timestamp ) );
+					$this->setContinueEnumParameter( 'continue',
+						"$row->pt_timestamp|$row->pt_namespace|$row->pt_title"
+					);
 					break;
 				}
 			} else {
@@ -195,6 +219,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 					'level'
 				)
 			),
+			'continue' => null,
 		);
 	}
 
@@ -216,6 +241,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				' level          - Adds the protection level',
 			),
 			'level' => 'Only list titles with these protection levels',
+			'continue' => 'When more results are available, use this to continue',
 		);
 	}
 
@@ -258,7 +284,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'List all titles protected from creation';
+		return 'List all titles protected from creation.';
 	}
 
 	public function getExamples() {

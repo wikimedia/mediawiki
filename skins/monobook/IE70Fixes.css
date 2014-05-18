@@ -8,11 +8,11 @@ div#column-content div#content {
 	margin-top: 3em;
 	height: 1%;
 }
+
 .rtl div#column-content div#content {
 	margin-right: 12.2em;
 	margin-left: 0;
 }
-
 
 .rtl div#column-one {
 	/* For some reason it tries to inherit the padding-top into every div,
@@ -37,12 +37,12 @@ li#pt-userpage, li#pt-anonuserpage, li#pt-login {
 	padding-right: 0;
 	padding-left: 16px;
 }
+
 /* the tabs */
 
 #p-cactions {
 	z-index: 3;
 }
-
 
 #p-cactions li {
 	padding-bottom: 0 !important;
@@ -59,20 +59,25 @@ li#pt-userpage, li#pt-anonuserpage, li#pt-login {
 	border: solid #aaa;
 	border-width: 1px 1px 0;
 }
+
 #p-cactions li.selected a {
 	border-color: #fabd23;
 	padding-bottom: 0.17em;
 }
+
 #p-cactions li a:hover {
 	padding-bottom: 0.17em;
 }
+
 #p-navigation a {
 	display: inline-block;
 	width: 100%;
 }
+
 #portal-personaltools {
 	padding-bottom: 0.1em;
 }
+
 textarea {
 	width: 96%;
 }
@@ -84,7 +89,6 @@ div.tleft {
 	position: relative;
 }
 */
-
 
 div#footer li {
 	/* Work around bug with inline <li> tags with right margins and nowrap */

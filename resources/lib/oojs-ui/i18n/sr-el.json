@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Milicevic01"
+		]
+	},
+	"ooui-dialog-action-close": "Zatvori",
+	"ooui-outline-control-move-down": "Premesti stavku na dole",
+	"ooui-outline-control-move-up": "Premesti stavku na gore",
+	"ooui-outline-control-remove": "Ukloni stavku",
+	"ooui-toolbar-more": "Više"
+}

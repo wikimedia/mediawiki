@@ -36,7 +36,12 @@ class UpdateDoubleWidthSearch extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Script to normalize double-byte latin UTF-8 characters";
 		$this->addOption( 'q', 'quiet', false, true );
-		$this->addOption( 'l', 'How long the searchindex and revision tables will be locked for', false, true );
+		$this->addOption(
+			'l',
+			'How long the searchindex and revision tables will be locked for',
+			false,
+			true
+		);
 	}
 
 	public function getDbType() {
@@ -67,6 +72,7 @@ class UpdateDoubleWidthSearch extends Maintenance {
 		$sql = "SELECT si_page FROM $searchindex
 				 WHERE ( si_text RLIKE '$regexp' )
 					OR ( si_title RLIKE '$regexp' )";
+
 		return $dbw->query( $sql, __METHOD__ );
 	}
 }

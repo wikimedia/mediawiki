@@ -62,7 +62,7 @@ class InstallDocFormatter {
 	}
 
 	protected function replaceConfigLinks( $matches ) {
-		return '<span class="config-plainlink">[http://www.mediawiki.org/wiki/Manual:' .
+		return '<span class="config-plainlink">[https://www.mediawiki.org/wiki/Manual:' .
 			$matches[1] . ' ' . $matches[1] . ']</span>';
 	}
 }

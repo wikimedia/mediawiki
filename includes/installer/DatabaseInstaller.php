@@ -219,7 +219,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * Get the DBMS-specific options for LocalSettings.php generation.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	abstract public function getLocalSettings();
 
@@ -267,7 +267,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * Perform database upgrades
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function doUpgrade() {
 		$this->setupSchemaVars();
@@ -314,7 +314,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * Construct and initialise parent.
 	 * This is typically only called from Installer::getDBInstaller()
-	 * @param $parent
+	 * @param WebInstaller $parent
 	 */
 	public function __construct( $parent ) {
 		$this->parent = $parent;
@@ -324,7 +324,7 @@ abstract class DatabaseInstaller {
 	 * Convenience function.
 	 * Check if a named extension is present.
 	 *
-	 * @param $name
+	 * @param string $name
 	 * @return bool
 	 */
 	protected static function checkExtension( $name ) {
@@ -333,7 +333,7 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Get the internationalised name for this DBMS.
-	 * @return String
+	 * @return string
 	 */
 	public function getReadableName() {
 		// Messages: config-type-mysql, config-type-postgres, config-type-sqlite,
@@ -360,8 +360,8 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Get a variable, taking local defaults into account.
-	 * @param $var string
-	 * @param $default null
+	 * @param string $var
+	 * @param mixed|null $default
 	 * @return mixed
 	 */
 	public function getVar( $var, $default = null ) {
@@ -378,8 +378,8 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Convenience alias for $this->parent->setVar()
-	 * @param $name string
-	 * @param $value mixed
+	 * @param string $name
+	 * @param mixed $value
 	 */
 	public function setVar( $name, $value ) {
 		$this->parent->setVar( $name, $value );
@@ -388,10 +388,10 @@ abstract class DatabaseInstaller {
 	/**
 	 * Get a labelled text box to configure a local variable.
 	 *
-	 * @param $var string
-	 * @param $label string
-	 * @param $attribs array
-	 * @param $helpData string
+	 * @param string $var
+	 * @param string $label
+	 * @param array $attribs
+	 * @param string $helpData
 	 * @return string
 	 */
 	public function getTextBox( $var, $label, $attribs = array(), $helpData = "" ) {
@@ -415,10 +415,10 @@ abstract class DatabaseInstaller {
 	 * Get a labelled password box to configure a local variable.
 	 * Implements password hiding.
 	 *
-	 * @param $var string
-	 * @param $label string
-	 * @param $attribs array
-	 * @param $helpData string
+	 * @param string $var
+	 * @param string $label
+	 * @param array $attribs
+	 * @param string $helpData
 	 * @return string
 	 */
 	public function getPasswordBox( $var, $label, $attribs = array(), $helpData = "" ) {
@@ -464,8 +464,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * Get a set of labelled radio buttons.
 	 *
-	 * @param $params Array:
-	 *    Parameters are:
+	 * @param array $params Parameters are:
 	 *      var:            The variable to be configured (required)
 	 *      label:          The message name for the label (required)
 	 *      itemLabelPrefix: The message name prefix for the item labels (required)
@@ -485,7 +484,7 @@ abstract class DatabaseInstaller {
 	 * Convenience function to set variables based on form data.
 	 * Assumes that variables containing "password" in the name are (potentially
 	 * fake) passwords.
-	 * @param $varNames Array
+	 * @param array $varNames
 	 * @return array
 	 */
 	public function setVarsFromRequest( $varNames ) {
@@ -500,7 +499,7 @@ abstract class DatabaseInstaller {
 	 * Traditionally, this is done by testing for the existence of either
 	 * the revision table or the cur table.
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function needsUpgrade() {
 		$status = $this->getConnection();
@@ -519,7 +518,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * Get a standard install-user fieldset.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getInstallUserBox() {
 		return Html::openElement( 'fieldset' ) .
@@ -554,7 +553,7 @@ abstract class DatabaseInstaller {
 	 * @param string|bool $noCreateMsg Message to display instead of the creation checkbox.
 	 *   Set this to false to show a creation checkbox (default).
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getWebUserBox( $noCreateMsg = false ) {
 		$wrapperStyle = $this->getVar( '_SameAccount' ) ? 'display: none' : '';

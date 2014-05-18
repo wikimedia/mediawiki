@@ -36,8 +36,8 @@ class GIFHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $filename String basename of the file to check
-	 * @param $expected boolean Expected result.
+	 * @param string $filename Basename of the file to check
+	 * @param bool $expected Expected result.
 	 * @dataProvider provideIsAnimated
 	 * @covers GIFHandler::isAnimatedImage
 	 */
@@ -55,8 +55,8 @@ class GIFHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $filename String
-	 * @param $expected Integer Total image area
+	 * @param string $filename
+	 * @param int $expected Total image area
 	 * @dataProvider provideGetImageArea
 	 * @covers GIFHandler::getImageArea
 	 */
@@ -74,8 +74,8 @@ class GIFHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $metadata String Serialized metadata
-	 * @param $expected Integer One of the class constants of GIFHandler
+	 * @param string $metadata Serialized metadata
+	 * @param int $expected One of the class constants of GIFHandler
 	 * @dataProvider provideIsMetadataValid
 	 * @covers GIFHandler::isMetadataValid
 	 */
@@ -90,13 +90,15 @@ class GIFHandlerTest extends MediaWikiTestCase {
 			array( '', GIFHandler::METADATA_BAD ),
 			array( null, GIFHandler::METADATA_BAD ),
 			array( 'Something invalid!', GIFHandler::METADATA_BAD ),
+			// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
 			array( 'a:4:{s:10:"frameCount";i:1;s:6:"looped";b:0;s:8:"duration";d:0.1000000000000000055511151231257827021181583404541015625;s:8:"metadata";a:2:{s:14:"GIFFileComment";a:1:{i:0;s:35:"GIF test file ⁕ Created with GIMP";}s:15:"_MW_GIF_VERSION";i:1;}}', GIFHandler::METADATA_GOOD ),
+			// @codingStandardsIgnoreEnd
 		);
 	}
 
 	/**
-	 * @param $filename String
-	 * @param $expected String Serialized array
+	 * @param string $filename
+	 * @param string $expected Serialized array
 	 * @dataProvider provideGetMetadata
 	 * @covers GIFHandler::getMetadata
 	 */
@@ -108,14 +110,16 @@ class GIFHandlerTest extends MediaWikiTestCase {
 
 	public static function provideGetMetadata() {
 		return array(
+			// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
 			array( 'nonanimated.gif', 'a:4:{s:10:"frameCount";i:1;s:6:"looped";b:0;s:8:"duration";d:0.1000000000000000055511151231257827021181583404541015625;s:8:"metadata";a:2:{s:14:"GIFFileComment";a:1:{i:0;s:35:"GIF test file ⁕ Created with GIMP";}s:15:"_MW_GIF_VERSION";i:1;}}' ),
 			array( 'animated-xmp.gif', 'a:4:{s:10:"frameCount";i:4;s:6:"looped";b:1;s:8:"duration";d:2.399999999999999911182158029987476766109466552734375;s:8:"metadata";a:5:{s:6:"Artist";s:7:"Bawolff";s:16:"ImageDescription";a:2:{s:9:"x-default";s:18:"A file to test GIF";s:5:"_type";s:4:"lang";}s:15:"SublocationDest";s:13:"The interwebs";s:14:"GIFFileComment";a:1:{i:0;s:16:"GIƒ·test·file";}s:15:"_MW_GIF_VERSION";i:1;}}' ),
+			// @codingStandardsIgnoreEnd
 		);
 	}
 
 	/**
-	 * @param $filename String
-	 * @param $expected String Serialized array
+	 * @param string $filename
+	 * @param string $expected Serialized array
 	 * @dataProvider provideGetIndependentMetaArray
 	 * @covers GIFHandler::getCommonMetaArray
 	 */

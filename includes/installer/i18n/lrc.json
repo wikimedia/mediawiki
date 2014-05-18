@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bonevarluri",
+			"Mogoeilor"
+		]
+	},
+	"config-information": "دونسمنيا",
+	"config-your-language": "زون شما:",
+	"config-wiki-language": "زون ویکی:",
+	"config-page-language": "زون",
+	"config-page-welcome": "د ویکی رسانه خوش اومایت!",
+	"config-page-name": "نوم",
+	"config-page-options": "گزينه يا هنی:",
+	"config-page-install": "پورنیئن",
+	"config-page-complete": "تموم بيه!",
+	"config-page-readme": "منه بحون",
+	"config-page-copying": "د حال ورداشتن",
+	"config-page-upgradedoc": "د حالت نو کردن",
+	"config-page-existingwiki": "ویکی یایی که هئن",
+	"config-restart": "هری، دواره رئش بون",
+	"config-env-php": "پی اچ پی $1  پورسته.",
+	"config-install-pg-plpgsql": "وارسی سی زون پی ال/پی جی اس کیو ال"
+}

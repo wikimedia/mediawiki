@@ -33,10 +33,10 @@ class RevisionDeleteUser {
 
 	/**
 	 * Update *_deleted bitfields in various tables to hide or unhide usernames
-	 * @param  $name String username
-	 * @param  $userId Int user id
-	 * @param  $op String operator '|' or '&'
-	 * @param  $dbw null|DatabaseBase, if you happen to have one lying around
+	 * @param string $name Username
+	 * @param int $userId User id
+	 * @param string $op Operator '|' or '&'
+	 * @param null|DatabaseBase $dbw If you happen to have one lying around
 	 * @return bool
 	 */
 	private static function setUsernameBitfields( $name, $userId, $op, $dbw ) {

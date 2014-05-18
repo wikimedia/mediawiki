@@ -3,7 +3,7 @@
  * Approximate benchmark for some basic operations.
  *
  * Copyright © 2004 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,11 +24,11 @@
  * @ingroup UtfNormal
  */
 
-if( PHP_SAPI != 'cli' ) {
+if ( PHP_SAPI != 'cli' ) {
 	die( "Run me from the command line please.\n" );
 }
 
-if( isset( $_SERVER['argv'] ) && in_array( '--icu', $_SERVER['argv'] ) ) {
+if ( isset( $_SERVER['argv'] ) && in_array( '--icu', $_SERVER['argv'] ) ) {
 	dl( 'php_utfnormal.so' );
 }
 
@@ -47,7 +47,7 @@ $testfiles = array(
 );
 $normalizer = new UtfNormal;
 UtfNormal::loadData();
-foreach( $testfiles as $file => $desc ) {
+foreach ( $testfiles as $file => $desc ) {
 	benchmarkTest( $normalizer, $file, $desc );
 }
 
@@ -67,11 +67,12 @@ function benchmarkTest( &$u, $filename, $desc ) {
 #		'NFD', 'NFKD',
 		array( 'fastDecompose', 'fastCombiningSort', 'fastCompose' ),
 #		'quickIsNFC', 'quickIsNFCVerify',
-		);
-	foreach( $forms as $form ) {
-		if( is_array( $form ) ) {
+	);
+
+	foreach ( $forms as $form ) {
+		if ( is_array( $form ) ) {
 			$str = $data;
-			foreach( $form as $step ) {
+			foreach ( $form as $step ) {
 				$str = benchmarkForm( $u, $str, $step );
 			}
 		} else {
@@ -82,27 +83,29 @@ function benchmarkTest( &$u, $filename, $desc ) {
 
 function benchTime() {
 	$st = explode( ' ', microtime() );
+
 	return (float)$st[0] + (float)$st[1];
 }
 
 function benchmarkForm( &$u, &$data, $form ) {
 	#$start = benchTime();
-	for( $i = 0; $i < BENCH_CYCLES; $i++ ) {
+	for ( $i = 0; $i < BENCH_CYCLES; $i++ ) {
 		$start = benchTime();
 		$out = $u->$form( $data, UtfNormal::$utfCanonicalDecomp );
-		$deltas[] = (benchTime() - $start);
+		$deltas[] = ( benchTime() - $start );
 	}
 	#$delta = (benchTime() - $start) / BENCH_CYCLES;
 	sort( $deltas );
 	$delta = $deltas[0]; # Take shortest time
 
 	$rate = intval( strlen( $data ) / $delta );
-	$same = (0 == strcmp( $data, $out ) );
+	$same = ( 0 == strcmp( $data, $out ) );
 
 	printf( " %20s %6.1fms %12s bytes/s (%s)\n",
 		$form,
-		$delta*1000.0,
+		$delta * 1000.0,
 		number_format( $rate ),
-		($same ? 'no change' : 'changed' ) );
+		( $same ? 'no change' : 'changed' ) );
+
 	return $out;
 }

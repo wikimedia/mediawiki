@@ -31,6 +31,71 @@
  * @ingroup Media
  */
 class JpegHandler extends ExifBitmapHandler {
+
+	function normaliseParams( $image, &$params ) {
+		if ( !parent::normaliseParams( $image, $params ) ) {
+			return false;
+		}
+		if ( isset( $params['quality'] ) && !self::validateQuality( $params['quality'] ) ) {
+			return false;
+		}
+		return true;
+	}
+
+	function validateParam( $name, $value ) {
+		if ( $name === 'quality' ) {
+			return self::validateQuality( $value );
+		} else {
+			return parent::validateParam( $name, $value );
+		}
+	}
+
+	/** Validate and normalize quality value to be between 1 and 100 (inclusive).
+	 * @param int $value quality value, will be converted to integer or 0 if invalid
+	 * @return bool true if the value is valid
+	 */
+	private static function validateQuality( $value ) {
+		return $value === 'low';
+	}
+
+	function makeParamString( $params ) {
+		// Prepend quality as "qValue-". This has to match parseParamString() below
+		$res = parent::makeParamString( $params );
+		if ( $res && isset( $params['quality'] ) ) {
+			$res = "q{$params['quality']}-$res";
+		}
+		return $res;
+	}
+
+	function parseParamString( $str ) {
+		// $str contains "qlow-200px" or "200px" strings because thumb.php would strip the filename
+		// first - check if the string begins with "qlow-", and if so, treat it as quality.
+		// Pass the first portion, or the whole string if "qlow-" not found, to the parent
+		// The parsing must match the makeParamString() above
+		$res = false;
+		$m = false;
+		if ( preg_match( '/q([^-]+)-(.*)$/', $str, $m ) ) {
+			$v = $m[1];
+			if ( self::validateQuality( $v ) ) {
+				$res = parent::parseParamString( $m[2] );
+				if ( $res ) {
+					$res['quality'] = $v;
+				}
+			}
+		} else {
+			$res = parent::parseParamString( $str );
+		}
+		return $res;
+	}
+
+	function getScriptParams( $params ) {
+		$res = parent::getScriptParams( $params );
+		if ( isset( $params['quality'] ) ) {
+			$res['quality'] = $params['quality'];
+		}
+		return $res;
+	}
+
 	function getMetadata( $image, $filename ) {
 		try {
 			$meta = BitmapMetadataHandler::Jpeg( $filename );
@@ -80,8 +145,7 @@ class JpegHandler extends ExifBitmapHandler {
 			wfDebug( __METHOD__ . ": running jpgtran: $cmd\n" );
 			wfProfileIn( 'jpegtran' );
 			$retval = 0;
-			// @todo FIXME Undefined variable $env
-			$err = wfShellExecWithStderr( $cmd, $retval, $env );
+			$err = wfShellExecWithStderr( $cmd, $retval );
 			wfProfileOut( 'jpegtran' );
 			if ( $retval !== 0 ) {
 				$this->logErrorForExternalProcess( $retval, $err, $cmd );

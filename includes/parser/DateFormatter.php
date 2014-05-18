@@ -49,7 +49,7 @@ class DateFormatter {
 	const LAST = 8;
 
 	/**
-	 * @param $lang Language In which language to format the date
+	 * @param Language $lang In which language to format the date
 	 */
 	function __construct( Language $lang ) {
 		$this->lang = $lang;
@@ -120,7 +120,7 @@ class DateFormatter {
 	/**
 	 * Get a DateFormatter object
 	 *
-	 * @param $lang Language|string|null In which language to format the date
+	 * @param Language|string|null $lang In which language to format the date
 	 * 		Defaults to the site content language
 	 * @return DateFormatter object
 	 */
@@ -142,8 +142,9 @@ class DateFormatter {
 	/**
 	 * @param string $preference User preference
 	 * @param string $text Text to reformat
-	 * @param array $options can contain 'linked' and/or 'match-whole'
-	 * @return mixed|String
+	 * @param array $options Array can contain 'linked' and/or 'match-whole'
+	 *
+	 * @return string
 	 */
 	function reformat( $preference, $text, $options = array( 'linked' ) ) {
 		$linked = in_array( 'linked', $options );
@@ -192,7 +193,7 @@ class DateFormatter {
 	}
 
 	/**
-	 * @param $matches
+	 * @param array $matches
 	 * @return string
 	 */
 	function replace( $matches ) {
@@ -204,7 +205,8 @@ class DateFormatter {
 
 		$bits = array();
 		$key = $this->keys[$this->mSource];
-		for ( $p = 0; $p < strlen( $key ); $p++ ) {
+		$keyLength = strlen( $key );
+		for ( $p = 0; $p < $keyLength; $p++ ) {
 			if ( $key[$p] != ' ' ) {
 				$bits[$key[$p]] = $matches[$p + 1];
 			}
@@ -214,8 +216,8 @@ class DateFormatter {
 	}
 
 	/**
-	 * @param $bits array
-	 * @param $link bool
+	 * @param array $bits
+	 * @param bool $link
 	 * @return string
 	 */
 	function formatDate( $bits, $link = true ) {
@@ -253,7 +255,8 @@ class DateFormatter {
 			$bits['d'] = sprintf( '%02d', $bits['j'] );
 		}
 
-		for ( $p = 0; $p < strlen( $format ); $p++ ) {
+		$formatLength = strlen( $format );
+		for ( $p = 0; $p < $formatLength; $p++ ) {
 			$char = $format[$p];
 			switch ( $char ) {
 				case 'd': # ISO day of month
@@ -292,6 +295,7 @@ class DateFormatter {
 			}
 		}
 		if ( $fail ) {
+			/** @todo FIXME: $matches doesn't exist here, what's expected? */
 			$text = $matches[0];
 		}
 
@@ -325,7 +329,7 @@ class DateFormatter {
 
 	/**
 	 * Makes an ISO month, e.g. 02, from a month name
-	 * @param string $monthName month name
+	 * @param string $monthName Month name
 	 * @return string ISO month name
 	 */
 	function makeIsoMonth( $monthName ) {
@@ -353,6 +357,7 @@ class DateFormatter {
 
 	/**
 	 * @todo document
+	 * @param string $iso
 	 * @return int|string
 	 */
 	function makeNormalYear( $iso ) {

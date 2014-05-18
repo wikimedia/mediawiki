@@ -244,17 +244,18 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Set the offset from an other source than the request
 	 *
-	 * @param $offset Int|String
+	 * @param int|string $offset
 	 */
 	function setOffset( $offset ) {
 		$this->mOffset = $offset;
 	}
+
 	/**
 	 * Set the limit from an other source than the request
 	 *
 	 * Verifies limit is between 1 and 5000
 	 *
-	 * @param $limit Int|String
+	 * @param int|string $limit
 	 */
 	function setLimit( $limit ) {
 		$limit = (int)$limit;
@@ -281,7 +282,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * in the result or not. By default this is not the case, but when the
 	 * offset is user-supplied this might be wanted.
 	 *
-	 * @param $include bool
+	 * @param bool $include
 	 */
 	public function setIncludeOffset( $include ) {
 		$this->mIncludeOffset = $include;
@@ -291,10 +292,10 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * Extract some useful data from the result object for use by
 	 * the navigation bar, put it into $this
 	 *
-	 * @param $isFirst bool: False if there are rows before those fetched (i.e.
+	 * @param bool $isFirst False if there are rows before those fetched (i.e.
 	 *     if a "previous" link would make sense)
-	 * @param $limit Integer: exact query limit
-	 * @param $res ResultWrapper
+	 * @param int $limit Exact query limit
+	 * @param ResultWrapper $res
 	 */
 	function extractResultInfo( $isFirst, $limit, ResultWrapper $res ) {
 		$numRows = $res->numRows();
@@ -348,7 +349,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Get some text to go in brackets in the "function name" part of the SQL comment
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function getSqlComment() {
 		return get_class( $this );
@@ -358,22 +359,24 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * Do a query with specified parameters, rather than using the object
 	 * context
 	 *
-	 * @param string $offset index offset, inclusive
-	 * @param $limit Integer: exact query limit
-	 * @param $descending Boolean: query direction, false for ascending, true for descending
+	 * @param string $offset Index offset, inclusive
+	 * @param int $limit Exact query limit
+	 * @param bool $descending Query direction, false for ascending, true for descending
 	 * @return ResultWrapper
 	 */
 	public function reallyDoQuery( $offset, $limit, $descending ) {
-		list( $tables, $fields, $conds, $fname, $options, $join_conds ) = $this->buildQueryInfo( $offset, $limit, $descending );
+		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
+			$this->buildQueryInfo( $offset, $limit, $descending );
+
 		return $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds );
 	}
 
 	/**
 	 * Build variables to use by the database wrapper.
 	 *
-	 * @param string $offset index offset, inclusive
-	 * @param $limit Integer: exact query limit
-	 * @param $descending Boolean: query direction, false for ascending, true for descending
+	 * @param string $offset Index offset, inclusive
+	 * @param int $limit Exact query limit
+	 * @param bool $descending Query direction, false for ascending, true for descending
 	 * @return array
 	 */
 	protected function buildQueryInfo( $offset, $limit, $descending ) {
@@ -406,15 +409,16 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Pre-process results; useful for performing batch existence checks, etc.
 	 *
-	 * @param $result ResultWrapper
+	 * @param ResultWrapper $result
 	 */
-	protected function preprocessResults( $result ) {}
+	protected function preprocessResults( $result ) {
+	}
 
 	/**
 	 * Get the formatted result list. Calls getStartBody(), formatRow() and
 	 * getEndBody(), concatenates the results and returns them.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getBody() {
 		if ( !$this->mQueryDone ) {
@@ -454,11 +458,11 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Make a self-link
 	 *
-	 * @param string $text text displayed on the link
-	 * @param array $query associative array of parameter to be in the query string
-	 * @param string $type value of the "rel" attribute
+	 * @param string $text Text displayed on the link
+	 * @param array $query Associative array of parameter to be in the query string
+	 * @param string $type Value of the "rel" attribute
 	 *
-	 * @return String: HTML fragment
+	 * @return string HTML fragment
 	 */
 	function makeLink( $text, array $query = null, $type = null ) {
 		if ( $query === null ) {
@@ -490,13 +494,14 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @return void
 	 */
-	protected function doBatchLookups() {}
+	protected function doBatchLookups() {
+	}
 
 	/**
 	 * Hook into getBody(), allows text to be inserted at the start. This
 	 * will be called even if there are no rows in the result set.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	protected function getStartBody() {
 		return '';
@@ -505,7 +510,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Hook into getBody() for the end of the list
 	 *
-	 * @return String
+	 * @return string
 	 */
 	protected function getEndBody() {
 		return '';
@@ -515,7 +520,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * Hook into getBody(), for the bit between the start and the
 	 * end when there are no rows
 	 *
-	 * @return String
+	 * @return string
 	 */
 	protected function getEmptyBody() {
 		return '';
@@ -545,7 +550,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Get the number of rows in the result set
 	 *
-	 * @return Integer
+	 * @return int
 	 */
 	function getNumRows() {
 		if ( !$this->mQueryDone ) {
@@ -557,7 +562,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Get a URL query array for the prev, next, first and last links.
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	function getPagingQueries() {
 		if ( !$this->mQueryDone ) {
@@ -596,7 +601,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Returns whether to show the "navigation bar"
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	function isNavigationBarShown() {
 		if ( !$this->mQueryDone ) {
@@ -612,9 +617,9 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * $linkTexts will be used. Both $linkTexts and $disabledTexts are arrays
 	 * of HTML.
 	 *
-	 * @param $linkTexts Array
-	 * @param $disabledTexts Array
-	 * @return Array
+	 * @param array $linkTexts
+	 * @param array $disabledTexts
+	 * @return array
 	 */
 	function getPagingLinks( $linkTexts, $disabledTexts = array() ) {
 		$queries = $this->getPagingQueries();
@@ -674,7 +679,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *    options => option array
 	 *    join_conds => JOIN conditions
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	abstract function getQueryInfo();
 
@@ -688,7 +693,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * Needless to say, it's really not a good idea to use a non-unique index
 	 * for this!  That won't page right.
 	 *
-	 * @return string|Array
+	 * @return string|array
 	 */
 	abstract function getIndexField();
 
@@ -706,7 +711,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * page_len,page_id avoids temp tables (given a page_len index). This would
 	 * also work if page_id was non-unique but we had a page_len,page_id index.
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	protected function getExtraSortFields() {
 		return array();
@@ -729,7 +734,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * particular instantiation, which is a single value.  This is the set of
 	 * all defaults for the class.
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	protected function getDefaultDirections() {
 		return false;
@@ -746,7 +751,7 @@ abstract class AlphabeticPager extends IndexPager {
 	 * Shamelessly stolen bits from ReverseChronologicalPager,
 	 * didn't want to do class magic as may be still revamped
 	 *
-	 * @return String HTML
+	 * @return string HTML
 	 */
 	function getNavigationBar() {
 		if ( !$this->isNavigationBarShown() ) {
@@ -815,7 +820,7 @@ abstract class AlphabeticPager extends IndexPager {
 	 * array whose keys must exactly match the keys of the array returned
 	 * by getIndexField(), and whose values are message keys.
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	protected function getOrderTypeMessages() {
 		return null;
@@ -923,8 +928,9 @@ abstract class ReverseChronologicalPager extends IndexPager {
  * @ingroup Pager
  */
 abstract class TablePager extends IndexPager {
-	var $mSort;
-	var $mCurrentRow;
+	protected $mSort;
+
+	protected $mCurrentRow;
 
 	public function __construct( IContextSource $context = null ) {
 		if ( $context ) {
@@ -994,7 +1000,10 @@ abstract class TablePager extends IndexPager {
 		}
 
 		$tableClass = $this->getTableClass();
-		$ret = Html::openElement( 'table', array( 'style' => 'border:1px;', 'class' => "mw-datatable $tableClass" ) );
+		$ret = Html::openElement( 'table', array(
+			'style' => 'border:1px;',
+			'class' => "mw-datatable $tableClass" )
+		);
 		$ret .= Html::rawElement( 'thead', array(), Html::rawElement( 'tr', array(), "\n" . $s . "\n" ) );
 		$ret .= Html::openElement( 'tbody' ) . "\n";
 
@@ -1023,7 +1032,7 @@ abstract class TablePager extends IndexPager {
 	/**
 	 * @protected
 	 * @param stdClass $row
-	 * @return String HTML
+	 * @return string HTML
 	 */
 	function formatRow( $row ) {
 		$this->mCurrentRow = $row; // In case formatValue etc need to know
@@ -1051,8 +1060,8 @@ abstract class TablePager extends IndexPager {
 	 *
 	 * @protected
 	 *
-	 * @param $row Object: the database result row
-	 * @return String
+	 * @param object $row The database result row
+	 * @return string
 	 */
 	function getRowClass( $row ) {
 		return '';
@@ -1063,8 +1072,8 @@ abstract class TablePager extends IndexPager {
 	 *
 	 * @protected
 	 *
-	 * @param $row Object: the database result row
-	 * @return Array of attribute => value
+	 * @param object $row The database result row
+	 * @return array Array of attribute => value
 	 */
 	function getRowAttrs( $row ) {
 		$class = $this->getRowClass( $row );
@@ -1085,7 +1094,7 @@ abstract class TablePager extends IndexPager {
 	 *
 	 * @param string $field The column
 	 * @param string $value The cell contents
-	 * @return Array of attr => value
+	 * @return array Array of attr => value
 	 */
 	function getCellAttrs( $field, $value ) {
 		return array( 'class' => 'TablePager_col_' . $field );
@@ -1125,7 +1134,7 @@ abstract class TablePager extends IndexPager {
 
 	/**
 	 * A navigation bar with images
-	 * @return String HTML
+	 * @return string HTML
 	 */
 	public function getNavigationBar() {
 		global $wgStylePath;
@@ -1183,8 +1192,8 @@ abstract class TablePager extends IndexPager {
 	/**
 	 * Get a "<select>" element which has options for each of the allowed limits
 	 *
-	 * @param $attribs String: Extra attributes to set
-	 * @return String: HTML fragment
+	 * @param string $attribs Extra attributes to set
+	 * @return string HTML fragment
 	 */
 	public function getLimitSelect( $attribs = array() ) {
 		$select = new XmlSelect( 'limit', false, $this->mLimit );
@@ -1231,8 +1240,8 @@ abstract class TablePager extends IndexPager {
 	 * Resubmits all defined elements of the query string, except for a
 	 * blacklist, passed in the $blacklist parameter.
 	 *
-	 * @param array $blacklist parameters from the request query which should not be resubmitted
-	 * @return String: HTML fragment
+	 * @param array $blacklist Parameters from the request query which should not be resubmitted
+	 * @return string HTML fragment
 	 */
 	function getHiddenFields( $blacklist = array() ) {
 		$blacklist = (array)$blacklist;
@@ -1250,7 +1259,7 @@ abstract class TablePager extends IndexPager {
 	/**
 	 * Get a form containing a limit selection dropdown
 	 *
-	 * @return String: HTML fragment
+	 * @return string HTML fragment
 	 */
 	function getLimitForm() {
 		global $wgScript;
@@ -1284,7 +1293,7 @@ abstract class TablePager extends IndexPager {
 	 * Return true if the named field should be sortable by the UI, false
 	 * otherwise
 	 *
-	 * @param $field String
+	 * @param string $field
 	 */
 	abstract function isFieldSortable( $field );
 
@@ -1297,8 +1306,8 @@ abstract class TablePager extends IndexPager {
 	 *
 	 * @protected
 	 *
-	 * @param string $name the database field name
-	 * @param string $value the value retrieved from the database
+	 * @param string $name The database field name
+	 * @param string $value The value retrieved from the database
 	 */
 	abstract function formatValue( $name, $value );
 
@@ -1316,7 +1325,7 @@ abstract class TablePager extends IndexPager {
 	 * field name, for use in the table header. The description should be plain
 	 * text, it will be HTML-escaped later.
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	abstract function getFieldNames();
 }

@@ -46,38 +46,38 @@ abstract class Benchmarker extends Maintenance {
 		$bench_number = 0;
 		$count = $this->getOption( 'count', 100 );
 
-		foreach( $benchs as $bench ) {
+		foreach ( $benchs as $bench ) {
 			// handle empty args
-			if( !array_key_exists( 'args', $bench ) ) {
+			if ( !array_key_exists( 'args', $bench ) ) {
 				$bench['args'] = array();
 			}
 
 			$bench_number++;
 			$start = microtime( true );
-			for( $i = 0; $i < $count; $i++ ) {
+			for ( $i = 0; $i < $count; $i++ ) {
 				call_user_func_array( $bench['function'], $bench['args'] );
 			}
 			$delta = microtime( true ) - $start;
 
 			// function passed as a callback
-			if( is_array( $bench['function'] ) ) {
+			if ( is_array( $bench['function'] ) ) {
 				$ret = get_class( $bench['function'][0] ) . '->' . $bench['function'][1];
 				$bench['function'] = $ret;
 			}
 
 			$this->results[$bench_number] = array(
-				'function'  => $bench['function'],
+				'function' => $bench['function'],
 				'arguments' => $bench['args'],
-				'count'     => $count,
-				'delta'     => $delta,
-				'average'   => $delta / $count,
-				);
+				'count' => $count,
+				'delta' => $delta,
+				'average' => $delta / $count,
+			);
 		}
 	}
 
 	public function getFormattedResults() {
 		$ret = '';
-		foreach( $this->results as $res ) {
+		foreach ( $this->results as $res ) {
 			// show function with args
 			$ret .= sprintf( "%s times: function %s(%s) :\n",
 				$res['count'],
@@ -89,6 +89,7 @@ abstract class Benchmarker extends Maintenance {
 				$res['average'] * 1000
 			);
 		}
+
 		return $ret;
 	}
 }

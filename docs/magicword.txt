@@ -86,10 +86,10 @@ function wfGetCustomMagicWordValue( &$parser, $var1, $var2 ){
 	return "custom: var1 is $var1, var2 is $var2";
 }
 
-Note: the 'ParserFirstCallInit' hook is only aviable since 1.12. To work with
+Note: the 'ParserFirstCallInit' hook is only available since 1.12. To work with
 an older version, you'll need to use an extension function.
 
 Online documentation (contains more informations):
-Magic words: http://www.mediawiki.org/wiki/Manual:Magic_words
-Variables: http://www.mediawiki.org/wiki/Manual:Variable
-Parser functions: http://www.mediawiki.org/wiki/Manual:Parser_functions
+Magic words: https://www.mediawiki.org/wiki/Manual:Magic_words
+Variables: https://www.mediawiki.org/wiki/Manual:Variable
+Parser functions: https://www.mediawiki.org/wiki/Manual:Parser_functions

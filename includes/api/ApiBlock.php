@@ -222,7 +222,7 @@ class ApiBlock extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Block a user';
+		return 'Block a user.';
 	}
 
 	public function getPossibleErrors() {

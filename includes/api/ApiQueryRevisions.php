@@ -37,7 +37,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 	private $diffto, $difftotext, $expandTemplates, $generateXML, $section,
 		$token, $parseContent, $contentFormat;
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'rv' );
 	}
 
@@ -72,10 +72,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 	}
 
 	/**
-	 * @param $pageid
-	 * @param $title Title
-	 * @param $rev Revision
-	 * @return bool|String
+	 * @param int $pageid
+	 * @param Title $title
+	 * @param Revision $rev
+	 * @return bool|string
 	 */
 	public static function getRollbackToken( $pageid, $title, $rev ) {
 		global $wgUser;
@@ -147,7 +147,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				if ( !$difftoRev ) {
 					$this->dieUsageMsg( array( 'nosuchrevid', $params['diffto'] ) );
 				}
-				if ( $difftoRev->isDeleted( Revision::DELETED_TEXT ) ) {
+				if ( !$difftoRev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
 					$this->setWarning( "Couldn't diff to r{$difftoRev->getID()}: content is hidden" );
 					$params['diffto'] = null;
 				}
@@ -316,7 +316,16 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 			if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
 				// Paranoia: avoid brute force searches (bug 17342)
-				$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
+				if ( !$this->getUser()->isAllowed( 'deletedhistory' ) ) {
+					$bitmask = Revision::DELETED_USER;
+				} elseif ( !$this->getUser()->isAllowed( 'suppressrevision' ) ) {
+					$bitmask = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
+				} else {
+					$bitmask = 0;
+				}
+				if ( $bitmask ) {
+					$this->addWhere( $db->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask" );
+				}
 			}
 		} elseif ( $revCount > 0 ) {
 			$max = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
@@ -408,7 +417,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 	private function extractRowInfo( $row ) {
 		$revision = new Revision( $row );
 		$title = $revision->getTitle();
+		$user = $this->getUser();
 		$vals = array();
+		$anyHidden = false;
 
 		if ( $this->fld_ids ) {
 			$vals['revid'] = intval( $revision->getId() );
@@ -425,11 +436,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 		if ( $this->fld_user || $this->fld_userid ) {
 			if ( $revision->isDeleted( Revision::DELETED_USER ) ) {
 				$vals['userhidden'] = '';
-			} else {
+				$anyHidden = true;
+			}
+			if ( $revision->userCan( Revision::DELETED_USER, $user ) ) {
 				if ( $this->fld_user ) {
-					$vals['user'] = $revision->getUserText();
+					$vals['user'] = $revision->getRawUserText();
 				}
-				$userid = $revision->getUser();
+				$userid = $revision->getRawUser();
 				if ( !$userid ) {
 					$vals['anon'] = '';
 				}
@@ -452,14 +465,18 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 		}
 
-		if ( $this->fld_sha1 && !$revision->isDeleted( Revision::DELETED_TEXT ) ) {
-			if ( $revision->getSha1() != '' ) {
-				$vals['sha1'] = wfBaseConvert( $revision->getSha1(), 36, 16, 40 );
-			} else {
-				$vals['sha1'] = '';
+		if ( $this->fld_sha1 ) {
+			if ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
+				$vals['sha1hidden'] = '';
+				$anyHidden = true;
 			}
-		} elseif ( $this->fld_sha1 ) {
-			$vals['sha1hidden'] = '';
+			if ( $revision->userCan( Revision::DELETED_TEXT, $user ) ) {
+				if ( $revision->getSha1() != '' ) {
+					$vals['sha1'] = wfBaseConvert( $revision->getSha1(), 36, 16, 40 );
+				} else {
+					$vals['sha1'] = '';
+				}
+			}
 		}
 
 		if ( $this->fld_contentmodel ) {
@@ -469,8 +486,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
 			if ( $revision->isDeleted( Revision::DELETED_COMMENT ) ) {
 				$vals['commenthidden'] = '';
-			} else {
-				$comment = $revision->getComment();
+				$anyHidden = true;
+			}
+			if ( $revision->userCan( Revision::DELETED_COMMENT, $user ) ) {
+				$comment = $revision->getRawComment();
 
 				if ( $this->fld_comment ) {
 					$vals['comment'] = $comment;
@@ -507,7 +526,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$content = null;
 		global $wgParser;
 		if ( $this->fld_content || !is_null( $this->diffto ) || !is_null( $this->difftotext ) ) {
-			$content = $revision->getContent();
+			$content = $revision->getContent( Revision::FOR_THIS_USER, $this->getUser() );
 			// Expand templates after getting section content because
 			// template-added sections don't count and Parser::preprocess()
 			// will have less input
@@ -520,8 +539,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 					);
 				}
 			}
+			if ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
+				$vals['texthidden'] = '';
+				$anyHidden = true;
+			} elseif ( !$content ) {
+				$vals['textmissing'] = '';
+			}
 		}
-		if ( $this->fld_content && $content && !$revision->isDeleted( Revision::DELETED_TEXT ) ) {
+		if ( $this->fld_content && $content ) {
 			$text = null;
 
 			if ( $this->generateXML ) {
@@ -596,21 +621,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 			if ( $text !== false ) {
 				ApiResult::setContent( $vals, $text );
 			}
-		} elseif ( $this->fld_content ) {
-			if ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
-				$vals['texthidden'] = '';
-			} else {
-				$vals['textmissing'] = '';
-			}
 		}
 
-		if ( !is_null( $this->diffto ) || !is_null( $this->difftotext ) ) {
+		if ( $content && ( !is_null( $this->diffto ) || !is_null( $this->difftotext ) ) ) {
 			global $wgAPIMaxUncachedDiffs;
 			static $n = 0; // Number of uncached diffs we've had
 
-			if ( is_null( $content ) ) {
-				$vals['textmissing'] = '';
-			} elseif ( $n < $wgAPIMaxUncachedDiffs ) {
+			if ( $n < $wgAPIMaxUncachedDiffs ) {
 				$vals['diff'] = array();
 				$context = new DerivativeContext( $this->getContext() );
 				$context->setTitle( $title );
@@ -653,11 +670,18 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 		}
 
+		if ( $anyHidden && $revision->isDeleted( Revision::DELETED_RESTRICTED ) ) {
+			$vals['suppressed'] = '';
+		}
+
 		return $vals;
 	}
 
 	public function getCacheMode( $params ) {
 		if ( isset( $params['token'] ) ) {
+			return 'private';
+		}
+		if ( $this->userCanSeeRevDel() ) {
 			return 'private';
 		}
 		if ( !is_null( $params['prop'] ) && in_array( 'parsedcomment', $params['prop'] ) ) {
@@ -850,12 +874,12 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 	public function getDescription() {
 		return array(
-			'Get revision information',
+			'Get revision information.',
 			'May be used in several ways:',
-			' 1) Get data about a set of pages (last revision), by setting titles or pageids parameter',
-			' 2) Get revisions for one given page, by using titles/pageids with start/end/limit params',
-			' 3) Get data about a set of revisions by setting their IDs with revids parameter',
-			'All parameters marked as (enum) may only be used with a single page (#2)'
+			' 1) Get data about a set of pages (last revision), by setting titles or pageids parameter.',
+			' 2) Get revisions for one given page, by using titles/pageids with start/end/limit params.',
+			' 3) Get data about a set of revisions by setting their IDs with revids parameter.',
+			'All parameters marked as (enum) may only be used with a single page (#2).'
 		);
 	}
 

@@ -49,6 +49,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 		$db = wfGetDB( DB_MASTER );
 		if ( !$db->tableExists( 'revision' ) ) {
 			$this->error( "revision table does not exist" );
+
 			return false;
 		}
 		$this->output( "Populating rev_parent_id column\n" );
@@ -56,6 +57,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 		$end = $db->selectField( 'revision', 'MAX(rev_id)', false, __FUNCTION__ );
 		if ( is_null( $start ) || is_null( $end ) ) {
 			$this->output( "...revision table seems to be empty, nothing to do.\n" );
+
 			return true;
 		}
 		# Do remaining chunk
@@ -85,10 +87,16 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 				# If there are none, check the the highest ID with a lower timestamp
 				if ( !$previousID ) {
 					# Get the highest older timestamp
-					$lastTimestamp = $db->selectField( 'revision', 'rev_timestamp',
-						array( 'rev_page' => $row->rev_page, "rev_timestamp < " . $db->addQuotes( $row->rev_timestamp ) ),
+					$lastTimestamp = $db->selectField(
+						'revision',
+						'rev_timestamp',
+						array(
+							'rev_page' => $row->rev_page,
+							"rev_timestamp < " . $db->addQuotes( $row->rev_timestamp )
+						),
 						__METHOD__,
-						array( 'ORDER BY' => 'rev_timestamp DESC' ) );
+						array( 'ORDER BY' => 'rev_timestamp DESC' )
+					);
 					# If there is one, let the highest rev ID win
 					if ( $lastTimestamp ) {
 						$previousID = $db->selectField( 'revision', 'rev_id',
@@ -113,6 +121,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 			wfWaitForSlaves();
 		}
 		$this->output( "rev_parent_id population complete ... {$count} rows [{$changed} changed]\n" );
+
 		return true;
 	}
 }

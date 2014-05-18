@@ -52,7 +52,7 @@ root, is /w (so, e.g., /var/www/w).  Rewrite rules can then be used to enable
 is the convention Wikipedia uses.)  In theory, it should be possible to enable
 the appropriate rewrite rules by default, if you can reconfigure the web
 server, but you'd need to alter LocalSettings.php too.  See
-<http://www.mediawiki.org/wiki/Manual:Short_URL> for details on short URLs.
+<https://www.mediawiki.org/wiki/Manual:Short_URL> for details on short URLs.
 
 If you really must mess around with the directory structure, note that the
 following files *must* all be web-accessible for MediaWiki to function
@@ -122,7 +122,7 @@ needed to rename LocalSettings.php in order to upgrade using the installer).
 == Documentation ==
 
 MediaWiki's official documentation is split between two places: the source
-code, and <http://www.mediawiki.org/>.  The source code documentation is written
+code, and <https://www.mediawiki.org/>.  The source code documentation is written
 exclusively by developers, and so is likely to be reliable (at worst,
 outdated).  However, it can be pretty sparse.  mediawiki.org documentation is
 often much more thorough, but it's maintained by a wiki that's open to
@@ -135,7 +135,7 @@ MediaWiki is a project hosted and led by the Wikimedia Foundation, the
 not-for-profit charity that operates Wikipedia.  Wikimedia employs the lead
 developer and several other paid developers, but commit access is given out
 liberally and there are multiple very active volunteer developers as well.  A
-list of developers can be found at <http://www.mediawiki.org/wiki/Developers>.
+list of developers can be found at <https://www.mediawiki.org/wiki/Developers>.
 
 MediaWiki's bug tracker is at <https://bugzilla.wikimedia.org>.  However, most
 developers follow the bug tracker little or not at all.  The best place to
@@ -179,7 +179,7 @@ perhaps configure it to use them (see Configuration section of this document):
   * Squid: Can provide a drastic speedup and a major cut in resource
   consumption, but enabling it may interfere with other applications.  It might
   be suitable for a separate mediawiki-squid package.  For setup details, see:
-  <http://www.mediawiki.org/wiki/Manual:Squid_caching>
+  <https://www.mediawiki.org/wiki/Manual:Squid_caching>
   * rsvg or other SVG rasterizer: ImageMagick can be used for SVG support, but
   is not ideal.  Wikipedia (as of the time of this writing) uses rsvg.  To
   enable, set "$wgSVGConverter = 'rsvg';" (or other as appropriate).

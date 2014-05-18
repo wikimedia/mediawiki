@@ -38,15 +38,18 @@
  * version are hardcoded here
  */
 function wfPHPVersionError( $type ) {
-	$mwVersion = '1.23';
+	$mwVersion = '1.24';
 	$minimumVersionPHP = '5.3.2';
 
 	$phpVersion = phpversion();
 	$protocol = isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
-	$message = "MediaWiki $mwVersion requires at least PHP version $minimumVersionPHP, you are using PHP $phpVersion.";
+	$message = "MediaWiki $mwVersion requires at least "
+		. "PHP version $minimumVersionPHP, you are using PHP $phpVersion.";
+
 	if ( $type == 'cli' ) {
-		$finalOutput = "You are using PHP version $phpVersion but MediaWiki $mwVersion needs PHP $minimumVersionPHP or higher. ABORTING.\n" .
-		"Check if you have a newer php executable with a different name, such as php5.\n";
+		$finalOutput = "You are using PHP version $phpVersion "
+			. "but MediaWiki $mwVersion needs PHP $minimumVersionPHP or higher. ABORTING.\n"
+			. "Check if you have a newer php executable with a different name, such as php5.\n";
 	} elseif ( $type == 'index.php' ) {
 		$pathinfo = pathinfo( $_SERVER['SCRIPT_NAME'] );
 		$encLogo = htmlspecialchars(
@@ -97,9 +100,9 @@ function wfPHPVersionError( $type ) {
 		</p>
 		<p>
 			If for some reason you are unable to upgrade your PHP version, you will need to
-			<a href="http://www.mediawiki.org/wiki/Download">download</a> an older version
+			<a href="https://www.mediawiki.org/wiki/Download">download</a> an older version
 			of MediaWiki from our website.  See our
-			<a href="http://www.mediawiki.org/wiki/Compatibility#PHP">compatibility page</a>
+			<a href="https://www.mediawiki.org/wiki/Compatibility#PHP">compatibility page</a>
 			for details of which versions are compatible with prior versions of PHP.
 		</p>
 		</div>

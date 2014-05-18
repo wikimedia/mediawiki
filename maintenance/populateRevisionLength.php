@@ -49,6 +49,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 			$this->error( "archive table does not exist", true );
 		} elseif ( !$db->fieldExists( 'revision', 'rev_len', __METHOD__ ) ) {
 			$this->output( "rev_len column does not exist\n\n", true );
+
 			return false;
 		}
 
@@ -58,7 +59,9 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 		$this->output( "Populating ar_len column\n" );
 		$ar = $this->doLenUpdates( 'archive', 'ar_id', 'ar', Revision::selectArchiveFields() );
 
-		$this->output( "rev_len and ar_len population complete [$rev revision rows, $ar archive rows].\n" );
+		$this->output( "rev_len and ar_len population complete "
+			. "[$rev revision rows, $ar archive rows].\n" );
+
 		return true;
 	}
 
@@ -75,6 +78,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 		$end = $db->selectField( $table, "MAX($idCol)", false, __METHOD__ );
 		if ( !$start || !$end ) {
 			$this->output( "...$table table seems to be empty.\n" );
+
 			return 0;
 		}
 
@@ -114,7 +118,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	}
 
 	/**
-	 * @param $row
+	 * @param stdClass $row
 	 * @param string $table
 	 * @param string $idCol
 	 * @param string $prefix
@@ -132,6 +136,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 			# This should not happen, but sometimes does (bug 20757)
 			$id = $row->$idCol;
 			$this->output( "Content of $table $id unavailable!\n" );
+
 			return false;
 		}
 

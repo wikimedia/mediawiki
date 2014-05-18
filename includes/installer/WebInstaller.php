@@ -44,13 +44,14 @@ class WebInstaller extends Installer {
 	/**
 	 * Cached session array.
 	 *
-	 * @var array
+	 * @var array[]
 	 */
 	protected $session;
 
 	/**
 	 * Captured PHP error text. Temporary.
-	 * @var array
+	 *
+	 * @var string[]
 	 */
 	protected $phpErrors;
 
@@ -60,8 +61,9 @@ class WebInstaller extends Installer {
 	 * To add a new installer page:
 	 *    * Add it to this WebInstaller::$pageSequence property
 	 *    * Add a "config-page-<name>" message
-	 *    * Add a "WebInstaller_<name>" class
-	 * @var array
+	 *    * Add a "WebInstaller<name>" class
+	 *
+	 * @var string[]
 	 */
 	public $pageSequence = array(
 		'Language',
@@ -78,7 +80,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Out of sequence pages, selectable by the user at any time.
-	 * @var array
+	 *
+	 * @var string[]
 	 */
 	protected $otherPages = array(
 		'Restart',
@@ -91,7 +94,8 @@ class WebInstaller extends Installer {
 	/**
 	 * Array of pages which have declared that they have been submitted, have validated
 	 * their input, and need no further processing.
-	 * @var array
+	 *
+	 * @var bool[]
 	 */
 	protected $happyPages;
 
@@ -99,24 +103,28 @@ class WebInstaller extends Installer {
 	 * List of "skipped" pages. These are pages that will automatically continue
 	 * to the next page on any GET request. To avoid breaking the "back" button,
 	 * they need to be skipped during a back operation.
-	 * @var array
+	 *
+	 * @var bool[]
 	 */
 	protected $skippedPages;
 
 	/**
 	 * Flag indicating that session data may have been lost.
+	 *
 	 * @var bool
 	 */
 	public $showSessionWarning = false;
 
 	/**
 	 * Numeric index of the page we're on
+	 *
 	 * @var int
 	 */
 	protected $tabIndex = 1;
 
 	/**
 	 * Name of the page we're on
+	 *
 	 * @var string
 	 */
 	protected $currentPageName;
@@ -140,9 +148,9 @@ class WebInstaller extends Installer {
 	/**
 	 * Main entry point.
 	 *
-	 * @param array $session initial session array
+	 * @param array[] $session initial session array
 	 *
-	 * @return array New session array
+	 * @return array[] New session array
 	 */
 	public function execute( array $session ) {
 		$this->session = $session;
@@ -384,7 +392,7 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Show an error message in a box. Parameters are like wfMessage().
-	 * @param $msg
+	 * @param string $msg
 	 */
 	public function showError( $msg /*...*/ ) {
 		$args = func_get_args();
@@ -396,7 +404,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Temporary error handler for session start debugging.
-	 * @param $errno
+	 *
+	 * @param int $errno Unused
 	 * @param string $errstr
 	 */
 	public function errorHandler( $errno, $errstr ) {
@@ -406,7 +415,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Clean up from execute()
 	 *
-	 * @return array
+	 * @return array[]
 	 */
 	public function finish() {
 		$this->output->output();
@@ -430,7 +439,8 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a URL for submission back to the same script.
 	 *
-	 * @param array $query
+	 * @param string[] $query
+	 *
 	 * @return string
 	 */
 	public function getUrl( $query = array() ) {
@@ -452,7 +462,7 @@ class WebInstaller extends Installer {
 	 * @return WebInstallerPage
 	 */
 	public function getPageByName( $pageName ) {
-		$pageClass = 'WebInstaller_' . $pageName;
+		$pageClass = 'WebInstaller' . $pageName;
 
 		return new $pageClass( $this );
 	}
@@ -461,8 +471,9 @@ class WebInstaller extends Installer {
 	 * Get a session variable.
 	 *
 	 * @param string $name
-	 * @param $default
-	 * @return null
+	 * @param array $default
+	 *
+	 * @return array
 	 */
 	public function getSession( $name, $default = null ) {
 		if ( !isset( $this->session[$name] ) ) {
@@ -474,6 +485,7 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Set a session variable.
+	 *
 	 * @param string $name Key for the variable
 	 * @param mixed $value
 	 */
@@ -483,6 +495,7 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Get the next tabindex attribute value.
+	 *
 	 * @return int
 	 */
 	public function nextTabIndex() {
@@ -678,7 +691,7 @@ class WebInstaller extends Installer {
 	 * Get small text indented help for a preceding form field.
 	 * Parameters like wfMessage().
 	 *
-	 * @param $msg
+	 * @param string $msg
 	 * @return string
 	 */
 	public function getHelpBox( $msg /*, ... */ ) {
@@ -689,8 +702,8 @@ class WebInstaller extends Installer {
 		$html = $this->parse( $text, true );
 
 		return "<div class=\"mw-help-field-container\">\n" .
-			"<span class=\"mw-help-field-hint\">" . wfMessage( 'config-help' )->escaped() .
-			"</span>\n" .
+			"<span class=\"mw-help-field-hint\" title=\"" .  wfMessage( 'config-help-tooltip' )->escaped() . "\">" .
+			wfMessage( 'config-help' )->escaped() . "</span>\n" .
 			"<span class=\"mw-help-field-data\">" . $html . "</span>\n" .
 			"</div>\n";
 	}
@@ -734,9 +747,9 @@ class WebInstaller extends Installer {
 	 * Label a control by wrapping a config-input div around it and putting a
 	 * label before it.
 	 *
-	 * @param $msg
-	 * @param $forId
-	 * @param $contents
+	 * @param string $msg
+	 * @param string $forId
+	 * @param string $contents
 	 * @param string $helpData
 	 * @return string
 	 */
@@ -770,7 +783,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a labelled text box to configure a variable.
 	 *
-	 * @param array $params
+	 * @param mixed[] $params
 	 *    Parameters are:
 	 *      var:         The variable to be configured (required)
 	 *      label:       The message name for the label (required)
@@ -817,7 +830,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a labelled textarea to configure a variable
 	 *
-	 * @param array $params
+	 * @param mixed[] $params
 	 *    Parameters are:
 	 *      var:         The variable to be configured (required)
 	 *      label:       The message name for the label (required)
@@ -866,7 +879,7 @@ class WebInstaller extends Installer {
 	 * Get a labelled password box to configure a variable.
 	 *
 	 * Implements password hiding
-	 * @param array $params
+	 * @param mixed[] $params
 	 *    Parameters are:
 	 *      var:         The variable to be configured (required)
 	 *      label:       The message name for the label (required)
@@ -895,7 +908,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a labelled checkbox to configure a boolean variable.
 	 *
-	 * @param array $params
+	 * @param mixed[] $params
 	 *    Parameters are:
 	 *      var:         The variable to be configured (required)
 	 *      label:       The message name for the label (required)
@@ -946,7 +959,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get a set of labelled radio buttons.
 	 *
-	 * @param array $params
+	 * @param mixed[] $params
 	 *    Parameters are:
 	 *      var:             The variable to be configured (required)
 	 *      label:           The message name for the label (required)
@@ -1033,10 +1046,10 @@ class WebInstaller extends Installer {
 	 * Assumes that variables containing "password" in the name are (potentially
 	 * fake) passwords.
 	 *
-	 * @param array $varNames
+	 * @param string[] $varNames
 	 * @param string $prefix The prefix added to variables to obtain form names
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function setVarsFromRequest( $varNames, $prefix = 'config_' ) {
 		$newValues = array();
@@ -1063,7 +1076,8 @@ class WebInstaller extends Installer {
 	/**
 	 * Helper for Installer::docLink()
 	 *
-	 * @param $page
+	 * @param string $page
+	 *
 	 * @return string
 	 */
 	protected function getDocUrl( $page ) {
@@ -1079,9 +1093,10 @@ class WebInstaller extends Installer {
 	/**
 	 * Extension tag hook for a documentation link.
 	 *
-	 * @param $linkText
-	 * @param $attribs
-	 * @param $parser
+	 * @param string $linkText
+	 * @param string[] $attribs
+	 * @param Parser $parser Unused
+	 *
 	 * @return string
 	 */
 	public function docLink( $linkText, $attribs, $parser ) {
@@ -1095,20 +1110,17 @@ class WebInstaller extends Installer {
 	/**
 	 * Helper for "Download LocalSettings" link on WebInstall_Complete
 	 *
-	 * @param $text
-	 * @param $attribs
-	 * @param $parser
+	 * @param string $text Unused
+	 * @param string[] $attribs Unused
+	 * @param Parser $parser Unused
+	 *
 	 * @return string Html for download link
 	 */
 	public function downloadLinkHook( $text, $attribs, $parser ) {
-		$img = Html::element( 'img', array(
-			'src' => '../skins/common/images/download-32.png',
-			'width' => '32',
-			'height' => '32',
-		) );
 		$anchor = Html::rawElement( 'a',
 			array( 'href' => $this->getURL( array( 'localsettings' => 1 ) ) ),
-			$img . ' ' . wfMessage( 'config-download-localsettings' )->parse() );
+			wfMessage( 'config-download-localsettings' )->parse()
+		);
 
 		return Html::rawElement( 'div', array( 'class' => 'config-download-link' ), $anchor );
 	}
@@ -1138,7 +1150,11 @@ class WebInstaller extends Installer {
 		return parent::envCheckPath();
 	}
 
+	/**
+	 * @return string
+	 */
 	protected function envGetDefaultServer() {
 		return WebRequest::detectServer();
 	}
+
 }

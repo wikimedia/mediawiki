@@ -7,7 +7,7 @@
  *   --fix  Actually clean up titles; otherwise just checks for them
  *
  * Copyright © 2005-2006 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -56,6 +56,7 @@ class ImageCleanup extends TableCleanup {
 		if ( $source == '' ) {
 			// Ye olde empty rows. Just kill them.
 			$this->killRow( $source );
+
 			return $this->progress( 1 );
 		}
 
@@ -82,6 +83,7 @@ class ImageCleanup extends TableCleanup {
 				return $this->progress( 0 );
 			}
 			$this->pokeFile( $source, $safe );
+
 			return $this->progress( 1 );
 		}
 
@@ -89,6 +91,7 @@ class ImageCleanup extends TableCleanup {
 			$munged = $title->getDBkey();
 			$this->output( "page $source ($munged) doesn't match self.\n" );
 			$this->pokeFile( $source, $munged );
+
 			return $this->progress( 1 );
 		}
 
@@ -96,7 +99,7 @@ class ImageCleanup extends TableCleanup {
 	}
 
 	/**
-	 * @param $name string
+	 * @param string $name
 	 */
 	private function killRow( $name ) {
 		if ( $this->dryrun ) {
@@ -114,6 +117,7 @@ class ImageCleanup extends TableCleanup {
 		if ( !isset( $this->repo ) ) {
 			$this->repo = RepoGroup::singleton()->getLocalRepo();
 		}
+
 		return $this->repo->getRootDirectory() . '/' . $this->repo->getHashPath( $name ) . $name;
 	}
 
@@ -122,7 +126,12 @@ class ImageCleanup extends TableCleanup {
 	}
 
 	private function pageExists( $name, $db ) {
-		return $db->selectField( 'page', '1', array( 'page_namespace' => NS_FILE, 'page_title' => $name ), __METHOD__ );
+		return $db->selectField(
+			'page',
+			'1',
+			array( 'page_namespace' => NS_FILE, 'page_title' => $name ),
+			__METHOD__
+		);
 	}
 
 	private function pokeFile( $orig, $new ) {
@@ -130,6 +139,7 @@ class ImageCleanup extends TableCleanup {
 		if ( !file_exists( $path ) ) {
 			$this->output( "missing file: $path\n" );
 			$this->killRow( $orig );
+
 			return;
 		}
 
@@ -145,7 +155,7 @@ class ImageCleanup extends TableCleanup {
 		$version = 0;
 		$final = $new;
 		$conflict = ( $this->imageExists( $final, $db ) ||
-				( $this->pageExists( $orig, $db ) && $this->pageExists( $final, $db ) ) );
+			( $this->pageExists( $orig, $db ) && $this->pageExists( $final, $db ) ) );
 
 		while ( $conflict ) {
 			$this->output( "Rename conflicts with '$final'...\n" );
@@ -179,6 +189,7 @@ class ImageCleanup extends TableCleanup {
 				if ( !wfMkdirParents( $dir, null, __METHOD__ ) ) {
 					$this->output( "RENAME FAILED, COULD NOT CREATE $dir" );
 					$db->rollback( __METHOD__ );
+
 					return;
 				}
 			}
@@ -205,6 +216,7 @@ class ImageCleanup extends TableCleanup {
 		$test = Title::makeTitleSafe( NS_FILE, $x );
 		if ( is_null( $test ) || $test->getDBkey() !== $x ) {
 			$this->error( "Unable to generate safe title from '$name', got '$x'" );
+
 			return false;
 		}
 

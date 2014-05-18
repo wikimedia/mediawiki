@@ -45,7 +45,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 */
 	protected $backends = array();
 
-	/** @var int Index of master backend  */
+	/** @var int Index of master backend */
 	protected $masterIndex = -1;
 
 	/** @var int Bitfield */
@@ -567,6 +567,12 @@ class FileBackendMultiWrite extends FileBackend {
 		return $this->backends[$this->masterIndex]->getFileStat( $realParams );
 	}
 
+	public function getFileXAttributes( array $params ) {
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+
+		return $this->backends[$this->masterIndex]->getFileXAttributes( $realParams );
+	}
+
 	public function getFileContentsMulti( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		$contentsM = $this->backends[$this->masterIndex]->getFileContentsMulti( $realParams );
@@ -645,11 +651,25 @@ class FileBackendMultiWrite extends FileBackend {
 		return $this->backends[$this->masterIndex]->getFileList( $realParams );
 	}
 
+	public function getFeatures() {
+		return $this->backends[$this->masterIndex]->getFeatures();
+	}
+
 	public function clearCache( array $paths = null ) {
 		foreach ( $this->backends as $backend ) {
 			$realPaths = is_array( $paths ) ? $this->substPaths( $paths, $backend ) : null;
 			$backend->clearCache( $realPaths );
 		}
+	}
+
+	public function preloadCache( array $paths ) {
+		$realPaths = $this->substPaths( $paths, $this->backends[$this->masterIndex] );
+		$this->backends[$this->masterIndex]->preloadCache( $realPaths );
+	}
+
+	public function preloadFileStat( array $params ) {
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+		return $this->backends[$this->masterIndex]->preloadFileStat( $realParams );
 	}
 
 	public function getScopedLocksForOps( array $ops, Status $status ) {

@@ -92,10 +92,13 @@ class ApiProtect extends ApiBase {
 				}
 				$expiryarray[$p[0]] = $exp;
 			}
-			$resultProtections[] = array( $p[0] => $protections[$p[0]],
-				'expiry' => ( $expiryarray[$p[0]] == $db->getInfinity() ?
-					'infinite' :
-					wfTimestamp( TS_ISO_8601, $expiryarray[$p[0]] ) ) );
+			$resultProtections[] = array(
+				$p[0] => $protections[$p[0]],
+				'expiry' => ( $expiryarray[$p[0]] == $db->getInfinity()
+					? 'infinite'
+					: wfTimestamp( TS_ISO_8601, $expiryarray[$p[0]] )
+				)
+			);
 		}
 
 		$cascade = $params['cascade'];
@@ -209,7 +212,7 @@ class ApiProtect extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Change the protection level of a page';
+		return 'Change the protection level of a page.';
 	}
 
 	public function getPossibleErrors() {

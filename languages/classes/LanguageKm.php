@@ -30,7 +30,7 @@
 class LanguageKm extends Language {
 
 	/**
-	 * @param $_ string
+	 * @param string $_
 	 * @return string
 	 */
 	function commafy( $_ ) {

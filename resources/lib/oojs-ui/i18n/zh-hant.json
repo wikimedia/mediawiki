@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Anakmalaysia",
+			"Ch.Andrew",
+			"Hydra",
+			"Justincheng12345",
+			"Liflon",
+			"Liuxinyu970226",
+			"Qiyue2001",
+			"Radish10cm",
+			"Shirayuki",
+			"Simon Shek",
+			"Spring Roll Conan",
+			"Waihorace",
+			"Cwlin0416"
+		]
+	},
+	"ooui-dialog-action-close": "關閉",
+	"ooui-outline-control-move-down": "項目下移",
+	"ooui-outline-control-move-up": "項目上移",
+	"ooui-outline-control-remove": "移除項目",
+	"ooui-toolbar-more": "更多",
+	"ooui-dialog-confirm-title": "確認",
+	"ooui-dialog-confirm-default-prompt": "您確定嗎？",
+	"ooui-dialog-confirm-default-ok": "確定",
+	"ooui-dialog-confirm-default-cancel": "取消"
+}

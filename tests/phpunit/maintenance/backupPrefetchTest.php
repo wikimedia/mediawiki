@@ -30,9 +30,9 @@ class BaseDumpTest extends MediaWikiTestCase {
 	/**
 	 * asserts that a prefetch yields an expected string
 	 *
-	 * @param $expected string|null: the exepcted result of the prefetch
-	 * @param $page int: the page number to prefetch the text for
-	 * @param $revision int: the revision number to prefetch the text for
+	 * @param string|null $expected The exepcted result of the prefetch
+	 * @param int $page The page number to prefetch the text for
+	 * @param int $revision The revision number to prefetch the text for
 	 */
 	private function assertPrefetchEquals( $expected, $page, $revision ) {
 		$this->assertEquals( $expected, $this->dump->prefetch( $page, $revision ),
@@ -142,15 +142,16 @@ class BaseDumpTest extends MediaWikiTestCase {
 	 *
 	 * The temporary file is removed by DumpBackup upon tearDown.
 	 *
-	 * @param $requested_pages Array The indices of the page parts that should
-	 *             go into the prefetch file. 1,2,4 are available.
-	 * @return String The file name of the created temporary file
+	 * @param array $requested_pages The indices of the page parts that should
+	 *    go into the prefetch file. 1,2,4 are available.
+	 * @return string The file name of the created temporary file
 	 */
 	private function setUpPrefetch( $requested_pages = array( 1, 2, 4 ) ) {
 		// The file name, where we store the prepared prefetch file
 		$fname = $this->getNewTempFile();
 
 		// The header of every prefetch file
+		// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
 		$header = '<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.7/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.7/ http://www.mediawiki.org/xml/export-0.7.xsd" version="0.7" xml:lang="en">
   <siteinfo>
     <sitename>wikisvn</sitename>
@@ -179,6 +180,7 @@ class BaseDumpTest extends MediaWikiTestCase {
     </namespaces>
   </siteinfo>
 ';
+		// @codingStandardsIgnoreEnd
 
 		// An array holding the pages that are available for prefetch
 		$available_pages = array();

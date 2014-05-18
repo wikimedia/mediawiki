@@ -51,9 +51,24 @@ When the script has finished, it will make a note of this in the database, and
 will not run again without the --force option.
 TEXT;
 # '
-		$this->addOption( 'begin', 'Only do categories whose names are alphabetically after the provided name', false, true );
-		$this->addOption( 'max-slave-lag', 'If slave lag exceeds this many seconds, wait until it drops before continuing.  Default: 10', false, true );
-		$this->addOption( 'throttle', 'Wait this many milliseconds after each category.  Default: 0', false, true );
+		$this->addOption(
+			'begin',
+			'Only do categories whose names are alphabetically after the provided name',
+			false,
+			true
+		);
+		$this->addOption(
+			'max-slave-lag',
+			'If slave lag exceeds this many seconds, wait until it drops before continuing. Default: 10',
+			false,
+			true
+		);
+		$this->addOption(
+			'throttle',
+			'Wait this many milliseconds after each category. Default: 0',
+			false,
+			true
+		);
 		$this->addOption( 'force', 'Run regardless of whether the database says it\'s been run already' );
 	}
 
@@ -77,8 +92,9 @@ TEXT;
 			);
 			if ( $row ) {
 				$this->output( "Category table already populated.  Use php " .
-				"maintenance/populateCategory.php\n--force from the command line " .
-				"to override.\n" );
+					"maintenance/populateCategory.php\n--force from the command line " .
+					"to override.\n" );
+
 				return true;
 			}
 		}
@@ -126,16 +142,17 @@ TEXT;
 		}
 
 		if ( $dbw->insert(
-				'updatelog',
-				array( 'ul_key' => 'populate category' ),
-				__METHOD__,
-				'IGNORE'
-			)
-		) {
+			'updatelog',
+			array( 'ul_key' => 'populate category' ),
+			__METHOD__,
+			'IGNORE'
+		) ) {
 			$this->output( "Category population complete.\n" );
+
 			return true;
 		} else {
 			$this->output( "Could not insert category population row.\n" );
+
 			return false;
 		}
 	}

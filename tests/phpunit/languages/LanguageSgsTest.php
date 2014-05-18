@@ -5,7 +5,7 @@
  * @file
  */
 
-/** Tests for MediaWiki languages/classes/LanguageSgs.php */
+/** Tests for Samogitian */
 class LanguageSgsTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePluralAllForms

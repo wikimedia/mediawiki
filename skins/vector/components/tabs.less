@@ -1,0 +1,274 @@
+/*
+Styling for namespace tabs (page, discussion) and views (read, edit, view history, watch and other actions)
+*/
+
+/* Navigation Labels */
+div.vectorTabs h3,
+div.vectorMenu h3 span {
+	display: none;
+}
+
+/* Namespaces and Views */
+div.vectorTabs {
+	/* @noflip */
+	float: left;
+	height: 2.5em;
+	.background-image('images/tab-break.png');
+	background-position: bottom left;
+	background-repeat: no-repeat;
+	padding-left: 1px;
+
+	ul {
+		/* @noflip */
+		float: left;
+		height: 100%;
+		list-style-type: none;
+		list-style-image: none;
+		margin: 0;
+		padding: 0;
+		.background-image('images/tab-break.png');
+		background-position: right bottom;
+		background-repeat: no-repeat;
+
+		li {
+			/* @noflip */
+			float: left;
+			line-height: 1.125em;
+			/* For IE6, overridden later to display:block by modern browsers */
+			display: inline-block;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			background-color: #f3f3f3;
+			.background-image('images/tab-normal-fade.png');
+			background-position: bottom left;
+			background-repeat: repeat-x;
+			white-space: nowrap;
+		}
+
+		/* IGNORED BY IE6 which doesn't support child selector */
+		> li {
+			display: block;
+		}
+	}
+
+	li {
+		&.new {
+			a,
+			a:visited{
+				color: #a55858;
+			}
+		}
+
+		&.selected {
+			.background-image('images/tab-current-fade.png');
+			a,
+			a:visited{
+				color: #333;
+				text-decoration: none;
+			}
+		}
+
+		&.icon {
+			a {
+				background-position: bottom right;
+				background-repeat: no-repeat;
+			}
+		}
+
+		a {
+			/* For IE6, overridden later to display:block by modern browsers */
+			display: inline-block;
+			height: 1.9em;
+			padding-left: 0.5em;
+			padding-right: 0.5em;
+			color: @menu-link-color;
+			cursor: pointer;
+			font-size: 0.8em;
+		}
+
+		/* Ignored by IE6 which doesn't support child selector */
+		> a {
+			display: block;
+		}
+	}
+
+	span {
+		display: inline-block;
+		.background-image('images/tab-break.png');
+		background-position: bottom right;
+		background-repeat: no-repeat;
+
+		a  {
+			/* For IE6, overridden later to display:block by modern browsers */
+			display: inline-block;
+			padding-top: 1.25em;
+		}
+
+		/* Ignored by IE6 which doesn't support child selector */
+		> a {
+			/* @noflip */
+			float: left;
+			display: block;
+		}
+	}
+}
+
+/* Variants and Actions */
+div.vectorMenu {
+	/* @noflip */
+	direction: ltr;
+	/* @noflip */
+	float: left;
+	.background-image-svg('images/arrow-down-icon.svg', 'images/arrow-down-icon.png');
+	/* @noflip */
+	background-position: 100% 60%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	.transition(background-position 250ms);
+}
+
+div.vectorMenu.menuForceShow {
+	background-position: 100% 100%;
+}
+
+div.vectorMenuFocus {
+	.background-image-svg('images/arrow-down-focus-icon.svg', 'images/arrow-down-focus-icon.png');
+	background-position: 100% 60%;
+}
+
+body.rtl div.vectorMenu {
+	/* @noflip */
+	direction: rtl;
+}
+
+/* OVERRIDDEN BY COMPLIANT BROWSERS */
+div#mw-head div.vectorMenu h3 {
+	/* @noflip */
+	float: left;
+	.background-image('images/tab-break.png');
+	background-repeat: no-repeat;
+	background-position: bottom left;
+	margin-left: -1px;
+}
+
+/* IGNORED BY IE6 */
+div#mw-head div.vectorMenu > h3 {
+	background-image: none;
+}
+
+div#mw-head div.vectorMenu h4,
+div.vectorMenu#p-variants #mw-vector-current-variant {
+	display: inline-block;
+	float: left;
+	font-size: 0.8em;
+	padding-left: 0.5em;
+	padding-top: 1.375em;
+	font-weight: normal;
+	border: none;
+}
+
+/* OVERRIDDEN BY COMPLIANT BROWSERS */
+div.vectorMenu h3 a {
+	display: inline-block;
+	width: 24px;
+	height: 1.9em;
+	text-decoration: none;
+	.background-image('images/tab-break.png');
+	background-repeat: no-repeat;
+	background-position: bottom right;
+}
+
+/* IGNORED BY IE6 */
+div.vectorMenu h3 > a {
+	display: block;
+}
+
+div.vectorMenu div.menu {
+	position: relative;
+	display: none;
+	clear: both;
+	text-align: left;
+}
+
+/* OVERRIDDEN BY COMPLIANT BROWSERS */
+body.rtl div.vectorMenu div.menu {
+	/* @noflip */
+	margin-left: 24px;
+}
+
+/* IGNORED BY IE6 */
+body.rtl div.vectorMenu > div.menu {
+	/* @noflip */
+	margin-left: auto;
+}
+
+/* IGNORED BY IE6 */
+/* Also fixes old versions of FireFox */
+body.rtl div.vectorMenu > div.menu,
+x:-moz-any-link {
+	/* @noflip */
+	margin-left: 23px;
+}
+
+/* Enable forcing showing of the menu for accessibility */
+div.vectorMenu:hover div.menu,
+div.vectorMenu.menuForceShow div.menu {
+	display: block;
+}
+
+div.vectorMenu ul {
+	position: absolute;
+	background-color: white;
+	border: solid 1px silver;
+	border-top-width: 0;
+	list-style-type: none;
+	list-style-image: none;
+	padding: 0;
+	margin: 0;
+	margin-left: -1px;
+	text-align: left;
+}
+
+/* Fixes old versions of FireFox */
+div.vectorMenu ul,
+x:-moz-any-link {
+	min-width: 5em;
+}
+
+/* Returns things back to normal in modern versions of FireFox */
+div.vectorMenu ul,
+x:-moz-any-link,
+x:default {
+	min-width: 0;
+}
+
+div.vectorMenu li {
+	padding: 0;
+	margin: 0;
+	text-align: left;
+	line-height: 1em;
+}
+
+/* OVERRIDDEN BY COMPLIANT BROWSERS */
+div.vectorMenu li a {
+	display: inline-block;
+	padding: 0.5em;
+	white-space: nowrap;
+	color: @menu-link-color;
+	cursor: pointer;
+	font-size: 0.8em;
+}
+
+/* IGNORED BY IE6 */
+div.vectorMenu li > a {
+	display: block;
+}
+
+div.vectorMenu li.selected a,
+div.vectorMenu li.selected a:visited {
+	color: #333;
+	text-decoration: none;
+}
+
+@import 'watchstar.less';

@@ -39,6 +39,7 @@ class SpecialPermanentLink extends RedirectSpecialPage {
 			throw new ErrorPageError( 'nopagetitle', 'nopagetext' );
 		}
 		$this->mAddedRedirectParams['oldid'] = $subpage;
+
 		return true;
 	}
 }

@@ -36,8 +36,8 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $filename String basename of the file to check
-	 * @param $expected boolean Expected result.
+	 * @param string $filename basename of the file to check
+	 * @param bool $expected Expected result.
 	 * @dataProvider provideIsAnimated
 	 * @covers PNGHandler::isAnimatedImage
 	 */
@@ -55,8 +55,8 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $filename String
-	 * @param $expected Integer Total image area
+	 * @param string $filename
+	 * @param int $expected Total image area
 	 * @dataProvider provideGetImageArea
 	 * @covers PNGHandler::getImageArea
 	 */
@@ -76,8 +76,8 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $metadata String Serialized metadata
-	 * @param $expected Integer One of the class constants of PNGHandler
+	 * @param string $metadata Serialized metadata
+	 * @param int $expected One of the class constants of PNGHandler
 	 * @dataProvider provideIsMetadataValid
 	 * @covers PNGHandler::isMetadataValid
 	 */
@@ -92,13 +92,15 @@ class PNGHandlerTest extends MediaWikiTestCase {
 			array( '', PNGHandler::METADATA_BAD ),
 			array( null, PNGHandler::METADATA_BAD ),
 			array( 'Something invalid!', PNGHandler::METADATA_BAD ),
+			// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
 			array( 'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:8;s:9:"colorType";s:10:"truecolour";s:8:"metadata";a:1:{s:15:"_MW_PNG_VERSION";i:1;}}', PNGHandler::METADATA_GOOD ),
+			// @codingStandardsIgnoreEnd
 		);
 	}
 
 	/**
-	 * @param $filename String
-	 * @param $expected String Serialized array
+	 * @param string $filename
+	 * @param string $expected Serialized array
 	 * @dataProvider provideGetMetadata
 	 * @covers PNGHandler::getMetadata
 	 */
@@ -111,14 +113,16 @@ class PNGHandlerTest extends MediaWikiTestCase {
 
 	public static function provideGetMetadata() {
 		return array(
+			// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
 			array( 'rgb-na-png.png', 'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:8;s:9:"colorType";s:10:"truecolour";s:8:"metadata";a:1:{s:15:"_MW_PNG_VERSION";i:1;}}' ),
 			array( 'xmp.png', 'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:1;s:9:"colorType";s:14:"index-coloured";s:8:"metadata";a:2:{s:12:"SerialNumber";s:9:"123456789";s:15:"_MW_PNG_VERSION";i:1;}}' ),
+			// @codingStandardsIgnoreEnd
 		);
 	}
 
 	/**
-	 * @param $filename String
-	 * @param $expected Array Expected standard metadata
+	 * @param string $filename
+	 * @param array $expected Expected standard metadata
 	 * @dataProvider provideGetIndependentMetaArray
 	 * @covers PNGHandler::getCommonMetaArray
 	 */

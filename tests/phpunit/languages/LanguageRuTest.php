@@ -13,7 +13,7 @@ class LanguageRuTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
-		$forms = array( 'one', 'few', 'many', 'other' );
+		$forms = array( 'one', 'many', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -22,9 +22,9 @@ class LanguageRuTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testExplicitPlural() {
-		$forms = array( 'one', 'few', 'many', 'other', '12=dozen' );
+		$forms = array( 'one', 'many', 'other', '12=dozen' );
 		$this->assertEquals( 'dozen', $this->getLang()->convertPlural( 12, $forms ) );
-		$forms = array( 'one', 'few', 'many', '100=hundred', 'other', '12=dozen' );
+		$forms = array( 'one', 'many', '100=hundred', 'other', '12=dozen' );
 		$this->assertEquals( 'hundred', $this->getLang()->convertPlural( 100, $forms ) );
 	}
 
@@ -42,10 +42,10 @@ class LanguageRuTest extends LanguageClassesTestCase {
 			array( 'many', 11 ),
 			array( 'one', 91 ),
 			array( 'one', 121 ),
-			array( 'few', 2 ),
-			array( 'few', 3 ),
-			array( 'few', 4 ),
-			array( 'few', 334 ),
+			array( 'other', 2 ),
+			array( 'other', 3 ),
+			array( 'other', 4 ),
+			array( 'other', 334 ),
 			array( 'many', 5 ),
 			array( 'many', 15 ),
 			array( 'many', 120 ),
@@ -57,7 +57,7 @@ class LanguageRuTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPluralTwoForms( $result, $value ) {
-		$forms = array( 'one', 'other' );
+		$forms = array( '1=one', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 

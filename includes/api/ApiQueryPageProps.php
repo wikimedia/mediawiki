@@ -33,7 +33,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 
 	private $params;
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'pp' );
 	}
 
@@ -104,9 +104,9 @@ class ApiQueryPageProps extends ApiQueryBase {
 	 * Add page properties to an ApiResult, adding a continue
 	 * parameter if it doesn't fit.
 	 *
-	 * @param $result ApiResult
-	 * @param $page int
-	 * @param $props array
+	 * @param ApiResult $result
+	 * @param int $page
+	 * @param array $props
 	 * @return bool True if it fits in the result
 	 */
 	private function addPageProps( $result, $page, $props ) {
@@ -141,7 +141,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Get various properties defined in the page content';
+		return 'Get various properties defined in the page content.';
 	}
 
 	public function getExamples() {

@@ -28,7 +28,6 @@
  * @ingroup SpecialPage
  */
 class BrokenRedirectsPage extends QueryPage {
-
 	function __construct( $name = 'BrokenRedirects' ) {
 		parent::__construct( $name );
 	}
@@ -148,7 +147,8 @@ class BrokenRedirectsPage extends QueryPage {
 			);
 		}
 
-		$out .= $this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList( $links ) )->escaped();
+		$out .= $this->msg( 'parentheses' )->rawParams( $this->getLanguage()
+			->pipeList( $links ) )->escaped();
 		$out .= " {$arr} {$to}";
 
 		return $out;

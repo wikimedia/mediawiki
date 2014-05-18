@@ -31,7 +31,7 @@
  */
 class ApiQueryCategories extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'cl' );
 	}
 
@@ -48,7 +48,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 */
 	private function run( $resultPageSet = null ) {
 		if ( $this->getPageSet()->getGoodTitleCount() == 0 ) {
@@ -254,7 +254,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'List all categories the page(s) belong to';
+		return 'List all categories the page(s) belong to.';
 	}
 
 	public function getPossibleErrors() {

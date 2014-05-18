@@ -31,6 +31,11 @@ class NewParserTest extends MediaWikiTestCase {
 	public $fuzzSeed = 0;
 	public $memoryLimit = 50;
 
+	/**
+	 * @var DjVuSupport
+	 */
+	private $djVuSupport;
+
 	protected $file = false;
 
 	public static function setUpBeforeClass() {
@@ -60,6 +65,7 @@ class NewParserTest extends MediaWikiTestCase {
 		$tmpGlobals['wgContLang'] = Language::factory( 'en' );
 		$tmpGlobals['wgSitename'] = 'MediaWiki';
 		$tmpGlobals['wgServer'] = 'http://example.org';
+		$tmpGlobals['wgServerName'] = 'example.org';
 		$tmpGlobals['wgScript'] = '/index.php';
 		$tmpGlobals['wgScriptPath'] = '/';
 		$tmpGlobals['wgArticlePath'] = '/wiki/$1';
@@ -130,6 +136,9 @@ class NewParserTest extends MediaWikiTestCase {
 		// Vector images have to be handled slightly differently
 		$tmpGlobals['wgMediaHandlers']['image/svg+xml'] = 'MockSvgHandler';
 
+		// DjVu images have to be handled slightly differently
+		$tmpGlobals['wgMediaHandlers']['image/vnd.djvu'] = 'MockDjVuHandler';
+
 		$tmpHooks = $wgHooks;
 		$tmpHooks['ParserTestParser'][] = 'ParserTestParserHook::setup';
 		$tmpHooks['ParserGetVariableValueTs'][] = 'ParserTest::getFakeTimestamp';
@@ -137,6 +146,9 @@ class NewParserTest extends MediaWikiTestCase {
 		# add a namespace shadowing a interwiki link, to test
 		# proper precedence when resolving links. (bug 51680)
 		$tmpGlobals['wgExtraNamespaces'] = array( 100 => 'MemoryAlpha' );
+
+		//DjVu support
+		$this->djVuSupport = new DjVuSupport();
 
 		$this->setMwGlobals( $tmpGlobals );
 
@@ -263,8 +275,8 @@ class NewParserTest extends MediaWikiTestCase {
 		if ( !$this->db->selectField( 'image', '1', array( 'img_name' => $image->getName() ) ) ) {
 			$image->recordUpload2( '', 'Upload of some lame SVG', 'Some lame SVG', array(
 					'size'        => 12345,
-					'width'       => 200,
-					'height'      => 200,
+					'width'       => 240,
+					'height'      => 180,
 					'bits'        => 24,
 					'media_type'  => MEDIATYPE_DRAWING,
 					'mime'        => 'image/svg+xml',
@@ -272,6 +284,47 @@ class NewParserTest extends MediaWikiTestCase {
 					'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
 					'fileExists'  => true
 			), $this->db->timestamp( '20010115123500' ), $user );
+		}
+
+		# A DjVu file
+		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'LoremIpsum.djvu' ) );
+		if ( !$this->db->selectField( 'image', '1', array( 'img_name' => $image->getName() ) ) ) {
+			$image->recordUpload2( '', 'Upload a DjVu', 'A DjVu', array(
+				'size' => 3249,
+				'width' => 2480,
+				'height' => 3508,
+				'bits' => 24,
+				'media_type' => MEDIATYPE_BITMAP,
+				'mime' => 'image/vnd.djvu',
+				'metadata' => '<?xml version="1.0" ?>
+<!DOCTYPE DjVuXML PUBLIC "-//W3C//DTD DjVuXML 1.1//EN" "pubtext/DjVuXML-s.dtd">
+<DjVuXML>
+<HEAD></HEAD>
+<BODY><OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+<OBJECT height="3508" width="2480">
+<PARAM name="DPI" value="300" />
+<PARAM name="GAMMA" value="2.2" />
+</OBJECT>
+</BODY>
+</DjVuXML>',
+				'sha1' => wfBaseConvert( '', 16, 36, 31 ),
+				'fileExists' => true
+			), $this->db->timestamp( '20140115123600' ), $user );
 		}
 	}
 
@@ -337,6 +390,7 @@ class NewParserTest extends MediaWikiTestCase {
 			'wgRawHtml' => self::getOptionValue( 'wgRawHtml', $opts, false ),
 			'wgNamespacesWithSubpages' => array( NS_MAIN => isset( $opts['subpage'] ) ),
 			'wgAllowExternalImages' => self::getOptionValue( 'wgAllowExternalImages', $opts, true ),
+			'wgThumbLimits' => array( self::getOptionValue( 'thumbsize', $opts, 180 ) ),
 			'wgMaxTocLevel' => $maxtoclevel,
 			'wgUseTeX' => isset( $opts['math'] ) || isset( $opts['texvc'] ),
 			'wgMathDirectory' => $uploadDir . '/math',
@@ -368,6 +422,9 @@ class NewParserTest extends MediaWikiTestCase {
 		$settings['wgUser'] = $context->getUser();
 		$settings['wgRequest'] = $context->getRequest();
 
+		// We (re)set $wgThumbLimits to a single-element array above.
+		$context->getUser()->setOption( 'thumbsize', 0 );
+
 		foreach ( $settings as $var => $val ) {
 			if ( array_key_exists( $var, $GLOBALS ) ) {
 				$this->savedGlobals[$var] = $GLOBALS[$var];
@@ -396,7 +453,7 @@ class NewParserTest extends MediaWikiTestCase {
 	/**
 	 * Get an FS upload directory (only applies to FSFileBackend)
 	 *
-	 * @return String: the directory
+	 * @return string The directory
 	 */
 	protected function getUploadDir() {
 		if ( $this->keepUploads ) {
@@ -423,7 +480,7 @@ class NewParserTest extends MediaWikiTestCase {
 	 * Create a dummy uploads directory which will contain a couple
 	 * of files in order to pass existence tests.
 	 *
-	 * @return String: the directory
+	 * @return string The directory
 	 */
 	protected function setupUploads() {
 		global $IP;
@@ -442,10 +499,15 @@ class NewParserTest extends MediaWikiTestCase {
 		$backend->store( array(
 			'src' => "$IP/skins/monobook/headbg.jpg", 'dst' => "$base/local-public/0/09/Bad.jpg"
 		) );
+		$backend->prepare( array( 'dir' => "$base/local-public/5/5f" ) );
+		$backend->store( array(
+			'src' => "$IP/tests/phpunit/data/media/LoremIpsum.djvu", 'dst' => "$base/local-public/5/5f/LoremIpsum.djvu"
+		) );
 
 		// No helpful SVG file to copy, so make one ourselves
 		$data = '<?xml version="1.0" encoding="utf-8"?>' .
-			'<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><text>Foo</text></svg>';
+			'<svg xmlns="http://www.w3.org/2000/svg"' .
+			' version="1.1" width="240" height="180"/>';
 
 		$backend->prepare( array( 'dir' => "$base/local-public/f/ff" ) );
 		$backend->quickCreate( array(
@@ -484,32 +546,57 @@ class NewParserTest extends MediaWikiTestCase {
 		self::deleteFiles(
 			array(
 				"$base/local-public/3/3a/Foobar.jpg",
-				"$base/local-thumb/3/3a/Foobar.jpg/180px-Foobar.jpg",
-				"$base/local-thumb/3/3a/Foobar.jpg/200px-Foobar.jpg",
-				"$base/local-thumb/3/3a/Foobar.jpg/640px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/1000px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/100px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/120px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/1280px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/137px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/1500px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/177px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/180px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/200px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/206px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/20px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/220px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/265px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/270px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/274px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/300px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/30px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/330px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/353px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/360px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/400px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/40px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/440px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/442px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/450px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/50px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/600px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/640px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/70px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/75px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/960px-Foobar.jpg",
 
 				"$base/local-public/e/ea/Thumb.png",
 
 				"$base/local-public/0/09/Bad.jpg",
 
+				"$base/local-public/5/5f/LoremIpsum.djvu",
+				"$base/local-thumb/5/5f/LoremIpsum.djvu/page2-2480px-LoremIpsum.djvu.jpg",
+				"$base/local-thumb/5/5f/LoremIpsum.djvu/page2-3720px-LoremIpsum.djvu.jpg",
+				"$base/local-thumb/5/5f/LoremIpsum.djvu/page2-4960px-LoremIpsum.djvu.jpg",
+
 				"$base/local-public/f/ff/Foobar.svg",
-				"$base/local-thumb/f/ff/Foobar.svg/180px-Foobar.svg.jpg",
-				"$base/local-thumb/f/ff/Foobar.svg/270px-Foobar.svg.jpg",
-				"$base/local-thumb/f/ff/Foobar.svg/360px-Foobar.svg.jpg",
-				"$base/local-thumb/f/ff/Foobar.svg/langde-180px-Foobar.svg.jpg",
-				"$base/local-thumb/f/ff/Foobar.svg/langde-270px-Foobar.svg.jpg",
-				"$base/local-thumb/f/ff/Foobar.svg/langde-360px-Foobar.svg.jpg",
+				"$base/local-thumb/f/ff/Foobar.svg/180px-Foobar.svg.png",
+				"$base/local-thumb/f/ff/Foobar.svg/2000px-Foobar.svg.png",
+				"$base/local-thumb/f/ff/Foobar.svg/270px-Foobar.svg.png",
+				"$base/local-thumb/f/ff/Foobar.svg/3000px-Foobar.svg.png",
+				"$base/local-thumb/f/ff/Foobar.svg/360px-Foobar.svg.png",
+				"$base/local-thumb/f/ff/Foobar.svg/4000px-Foobar.svg.png",
+				"$base/local-thumb/f/ff/Foobar.svg/langde-180px-Foobar.svg.png",
+				"$base/local-thumb/f/ff/Foobar.svg/langde-270px-Foobar.svg.png",
+				"$base/local-thumb/f/ff/Foobar.svg/langde-360px-Foobar.svg.png",
 
 				"$base/local-public/math/f/a/5/fa50b8b616463173474302ca3e63586b.png",
 			)
@@ -518,7 +605,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 	/**
 	 * Delete the specified files, if they exist.
-	 * @param $files Array: full paths to files to delete.
+	 * @param array $files Full paths to files to delete.
 	 */
 	private static function deleteFiles( $files ) {
 		$backend = RepoGroup::singleton()->getLocalRepo()->getBackend();
@@ -550,6 +637,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 	/**
 	 * Set the file from whose tests will be run by this instance
+	 * @param string $filename
 	 */
 	public function setParserTestFile( $filename ) {
 		$this->file = $filename;
@@ -558,6 +646,11 @@ class NewParserTest extends MediaWikiTestCase {
 	/**
 	 * @group medium
 	 * @dataProvider parserTestProvider
+	 * @param string $desc
+	 * @param string $input
+	 * @param string $result
+	 * @param array $opts
+	 * @param array $config
 	 */
 	public function testParserTest( $desc, $input, $result, $opts, $config ) {
 		if ( $this->regex != '' && !preg_match( '/' . $this->regex . '/', $desc ) ) {
@@ -605,6 +698,11 @@ class NewParserTest extends MediaWikiTestCase {
 				$this->markTestSkipped( "SKIPPED: texvc binary does not exist"
 					. " or is not executable.\n"
 					. "Current configuration is:\n\$wgTexvc = '$wgTexvc'" );
+			}
+		}
+		if ( isset( $opts['djvu'] ) ) {
+			if ( !$this->djVuSupport->isEnabled() ) {
+				$this->markTestSkipped( "SKIPPED: djvu binaries do not exist or are not executable.\n" );
 			}
 		}
 
@@ -743,6 +841,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 	/**
 	 * Get an input dictionary from a set of parser test files
+	 * @param array $filenames
 	 */
 	function getFuzzInput( $filenames ) {
 		$dict = '';
@@ -796,6 +895,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 	/**
 	 * Get a Parser object
+	 * @param Preprocessor $preprocessor
 	 */
 	function getParser( $preprocessor = null ) {
 		global $wgParserConf;
@@ -830,8 +930,8 @@ class NewParserTest extends MediaWikiTestCase {
 	 * application to our scary parser. If the hook is not installed,
 	 * abort processing of this file.
 	 *
-	 * @param $name String
-	 * @return Bool true if tag hook is present
+	 * @param string $name
+	 * @return bool True if tag hook is present
 	 */
 	public function requireHook( $name ) {
 		global $wgParser;
@@ -851,8 +951,8 @@ class NewParserTest extends MediaWikiTestCase {
 	 * Run the "tidy" command on text if the $wgUseTidy
 	 * global is true
 	 *
-	 * @param $text String: the text to tidy
-	 * @return String
+	 * @param string $text The text to tidy
+	 * @return string
 	 */
 	protected function tidy( $text ) {
 		global $wgUseTidy;
@@ -866,6 +966,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 	/**
 	 * Remove last character if it is a newline
+	 * @param string $s
 	 */
 	public function removeEndingNewline( $s ) {
 		if ( substr( $s, -1 ) === "\n" ) {
@@ -947,9 +1048,9 @@ class NewParserTest extends MediaWikiTestCase {
 
 	/**
 	 * Use a regex to find out the value of an option
-	 * @param $key String: name of option val to retrieve
-	 * @param $opts Options array to look in
-	 * @param $default Mixed: default value returned if not found
+	 * @param string $key Name of option val to retrieve
+	 * @param array $opts Options array to look in
+	 * @param mixed $default Default value returned if not found
 	 */
 	protected static function getOptionValue( $key, $opts, $default ) {
 		$key = strtolower( $key );

@@ -32,17 +32,12 @@
 class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	private $qpMap;
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'qp' );
-		// We need to do this to make sure $wgQueryPages is set up
-		// This SUCKS
-		global $IP;
-		require_once "$IP/includes/QueryPage.php";
-
 		// Build mapping from special page names to QueryPage classes
-		global $wgQueryPages, $wgAPIUselessQueryPages;
+		global $wgAPIUselessQueryPages;
 		$this->qpMap = array();
-		foreach ( $wgQueryPages as $page ) {
+		foreach ( QueryPage::getPages() as $page ) {
 			if ( !in_array( $page[1], $wgAPIUselessQueryPages ) ) {
 				$this->qpMap[$page[1]] = $page[0];
 			}
@@ -58,7 +53,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 */
 	public function run( $resultPageSet = null ) {
 		global $wgQueryCacheLimit;
@@ -203,7 +198,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Get a list provided by a QueryPage-based special page';
+		return 'Get a list provided by a QueryPage-based special page.';
 	}
 
 	public function getPossibleErrors() {

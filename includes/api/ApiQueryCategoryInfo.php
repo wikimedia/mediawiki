@@ -32,7 +32,7 @@
  */
 class ApiQueryCategoryInfo extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ci' );
 	}
 
@@ -143,7 +143,7 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Returns information about the given categories';
+		return 'Returns information about the given categories.';
 	}
 
 	public function getExamples() {

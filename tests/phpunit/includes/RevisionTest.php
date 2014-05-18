@@ -173,17 +173,19 @@ class RevisionTest extends MediaWikiTestCase {
 			Revision::getRevisionText( $row ), "getRevisionText" );
 	}
 
-	# =================================================================================================================
+	# =========================================================================
 
 	/**
 	 * @param string $text
 	 * @param string $title
 	 * @param string $model
-	 * @param null $format
+	 * @param string $format
 	 *
 	 * @return Revision
 	 */
-	function newTestRevision( $text, $title = "Test", $model = CONTENT_MODEL_WIKITEXT, $format = null ) {
+	function newTestRevision( $text, $title = "Test",
+		$model = CONTENT_MODEL_WIKITEXT, $format = null
+	) {
 		if ( is_string( $title ) ) {
 			$title = Title::newFromText( $title );
 		}
@@ -273,8 +275,22 @@ class RevisionTest extends MediaWikiTestCase {
 		//NOTE: we expect the help namespace to always contain wikitext
 		return array(
 			array( 'hello world', 'Help:Hello', null, null, Revision::FOR_PUBLIC, 'hello world' ),
-			array( serialize( 'hello world' ), 'Hello', "testing", null, Revision::FOR_PUBLIC, serialize( 'hello world' ) ),
-			array( serialize( 'hello world' ), 'Dummy:Hello', null, null, Revision::FOR_PUBLIC, serialize( 'hello world' ) ),
+			array(
+				serialize( 'hello world' ),
+				'Hello',
+				"testing",
+				null,
+				Revision::FOR_PUBLIC,
+				serialize( 'hello world' )
+			),
+			array(
+				serialize( 'hello world' ),
+				'Dummy:Hello',
+				null,
+				null,
+				Revision::FOR_PUBLIC,
+				serialize( 'hello world' )
+			),
 		);
 	}
 
@@ -283,11 +299,16 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @dataProvider dataGetContent
 	 * @covers Revision::getContent
 	 */
-	public function testGetContent( $text, $title, $model, $format, $audience, $expectedSerialization ) {
+	public function testGetContent( $text, $title, $model, $format,
+		$audience, $expectedSerialization
+	) {
 		$rev = $this->newTestRevision( $text, $title, $model, $format );
 		$content = $rev->getContent( $audience );
 
-		$this->assertEquals( $expectedSerialization, is_null( $content ) ? null : $content->serialize( $format ) );
+		$this->assertEquals(
+			$expectedSerialization,
+			is_null( $content ) ? null : $content->serialize( $format )
+		);
 	}
 
 	function dataGetText() {
@@ -345,7 +366,11 @@ class RevisionTest extends MediaWikiTestCase {
 	public function dataGetSha1() {
 		return array(
 			array( "hello world.", CONTENT_MODEL_WIKITEXT, Revision::base36Sha1( "hello world." ) ),
-			array( serialize( "hello world." ), "testing", Revision::base36Sha1( serialize( "hello world." ) ) ),
+			array(
+				serialize( "hello world." ),
+				"testing",
+				Revision::base36Sha1( serialize( "hello world." ) )
+			),
 		);
 	}
 
@@ -420,8 +445,10 @@ class RevisionTest extends MediaWikiTestCase {
 		$content->setText( "bar" );
 
 		$content2 = $rev->getContent( Revision::RAW );
-		$this->assertNotSame( $content, $content2, "expected a clone" ); // content is mutable, expect clone
-		$this->assertEquals( "foo", $content2->getText() ); // clone should contain the original text
+		// content is mutable, expect clone
+		$this->assertNotSame( $content, $content2, "expected a clone" );
+		// clone should contain the original text
+		$this->assertEquals( "foo", $content2->getText() );
 
 		$content2->setText( "bla bla" );
 		$this->assertEquals( "bar", $content->getText() ); // clones should be independent

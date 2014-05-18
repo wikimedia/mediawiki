@@ -33,9 +33,9 @@ class ForeignAPIFile extends File {
 	protected $repoClass = 'ForeignApiRepo';
 
 	/**
-	 * @param $title
+	 * @param Title|string|bool $title
 	 * @param ForeignApiRepo $repo
-	 * @param $info
+	 * @param array $info
 	 * @param bool $exists
 	 */
 	function __construct( $title, $repo, $info, $exists = false ) {
@@ -236,7 +236,7 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * @return null|String
+	 * @return null|string
 	 */
 	function getSha1() {
 		return isset( $this->mInfo['sha1'] )
