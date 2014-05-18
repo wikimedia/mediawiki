@@ -977,7 +977,12 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doUpdateMimeMinorField() {
-		if ( $this->updateRowExists( 'mime_minor_length' ) ) {
+		$table = $this->db->tableName( 'image' );
+		$field = $this->db->addQuotes( 'img_minor_mime' );
+		$res = $this->db->query( "SHOW COLUMNS FROM $table LIKE $field" );
+		$row = $this->db->fetchObject( $res );
+
+		if ( $row && $row->Type === 'varbinary(100)' ) {
 			$this->output( "...*_mime_minor fields are already long enough.\n" );
 
 			return;
