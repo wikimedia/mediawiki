@@ -364,6 +364,10 @@ class TestFileIterator implements Iterator {
 	private $sectionData = array();
 	private $lineNum;
 	private $eof;
+	# Create a fake parser tests which never run anything unless
+	# asked to do so. This will avoid running hooks for a disabled test
+	private $delayedParserTest;
+	private $nextSubTest = 0;
 
 	function __construct( $file, $parserTest ) {
 		$this->file = $file;
@@ -374,6 +378,7 @@ class TestFileIterator implements Iterator {
 		}
 
 		$this->parserTest = $parserTest;
+		$this->delayedParserTest = new DelayedParserTest();
 
 		$this->lineNum = $this->index = 0;
 	}
@@ -412,12 +417,71 @@ class TestFileIterator implements Iterator {
 		return $this->eof != true;
 	}
 
-	function readNextTest() {
-		$this->clearSection();
+	function setupCurrentTest() {
+		// "input" and "result" are old section names allowed
+		// for backwards-compatibility.
+		$input = $this->checkSection( array( 'wikitext', 'input' ), false );
+		$result = $this->checkSection( array( 'html/php', 'html/*', 'html', 'result' ), false );
+		// some tests have "with tidy" and "without tidy" variants
+		$tidy = $this->checkSection( array( 'html/php+tidy', 'html+tidy'), false );
+		if ( $tidy != false ) {
+			if ( $this->nextSubTest == 0 ) {
+				if ( $result != false ) {
+					$this->nextSubTest = 1; // rerun non-tidy variant later
+				}
+				$result = $tidy;
+			} else {
+				$this->nextSubTest = 0; // go on to next test after this
+				$tidy = false;
+			}
+		}
 
-		# Create a fake parser tests which never run anything unless
-		# asked to do so. This will avoid running hooks for a disabled test
-		$delayedParserTest = new DelayedParserTest();
+		if ( !isset( $this->sectionData['options'] ) ) {
+			$this->sectionData['options'] = '';
+		}
+
+		if ( !isset( $this->sectionData['config'] ) ) {
+			$this->sectionData['config'] = '';
+		}
+
+		$isDisabled = preg_match( '/\\bdisabled\\b/i', $this->sectionData['options'] ) && !$this->parserTest->runDisabled;
+		$isParsoidOnly = preg_match( '/\\bparsoid\\b/i', $this->sectionData['options'] ) && $result == 'html' && !$this->parserTest->runParsoid;
+		$isFiltered = !preg_match( "/" . $this->parserTest->regex . "/i", $this->sectionData['test'] );
+		if ( $input == false || $result == false || $isDisabled || $isParsoidOnly || $isFiltered ) {
+			# disabled test
+			return false;
+		}
+
+		# We are really going to run the test, run pending hooks and hooks function
+		wfDebug( __METHOD__ . " unleashing delayed test for: {$this->sectionData['test']}" );
+		$hooksResult = $this->delayedParserTest->unleash( $this->parserTest );
+		if ( !$hooksResult ) {
+			# Some hook reported an issue. Abort.
+			throw new MWException( "Problem running hook" );
+		}
+
+		$this->test = array(
+			'test' => ParserTest::chomp( $this->sectionData['test'] ),
+			'input' => ParserTest::chomp( $this->sectionData[$input] ),
+			'result' => ParserTest::chomp( $this->sectionData[$result] ),
+			'options' => ParserTest::chomp( $this->sectionData['options'] ),
+			'config' => ParserTest::chomp( $this->sectionData['config'] ),
+		);
+		if ( $tidy != false ) {
+			$this->test['options'] .= " tidy";
+		}
+		return true;
+	}
+
+	function readNextTest() {
+		# Run additional subtests of previous test
+		while ( $this->nextSubTest > 0 )
+			if ( $this->setupCurrentTest() )
+				return true;
+
+		$this->clearSection();
+		# Reset hooks for the delayed test object
+		$this->delayedParserTest->reset();
 
 		while ( false !== ( $line = fgets( $this->fh ) ) ) {
 			$this->lineNum++;
@@ -446,7 +510,7 @@ class TestFileIterator implements Iterator {
 						$line = trim( $line );
 
 						if ( $line ) {
-							$delayedParserTest->requireHook( $line );
+							$this->delayedParserTest->requireHook( $line );
 						}
 					}
 
@@ -462,7 +526,7 @@ class TestFileIterator implements Iterator {
 						$line = trim( $line );
 
 						if ( $line ) {
-							$delayedParserTest->requireFunctionHook( $line );
+							$this->delayedParserTest->requireFunctionHook( $line );
 						}
 					}
 
@@ -489,52 +553,14 @@ class TestFileIterator implements Iterator {
 
 				if ( $this->section == 'end' ) {
 					$this->checkSection( 'test' );
-					// "input" and "result" are old section names allowed
-					// for backwards-compatibility.
-					$input = $this->checkSection( array( 'wikitext', 'input' ), false );
-					$result = $this->checkSection( array( 'html/php', 'html/*', 'html', 'result' ), false );
-
-					if ( !isset( $this->sectionData['options'] ) ) {
-						$this->sectionData['options'] = '';
-					}
-
-					if ( !isset( $this->sectionData['config'] ) ) {
-						$this->sectionData['config'] = '';
-					}
-
-					if ( $input == false || $result == false ||
-						( ( preg_match( '/\\bdisabled\\b/i', $this->sectionData['options'] )
-							&& !$this->parserTest->runDisabled )
-						|| ( preg_match( '/\\bparsoid\\b/i', $this->sectionData['options'] )
-							&& $result != 'html/php' && !$this->parserTest->runParsoid )
-						|| !preg_match( "/" . $this->parserTest->regex . "/i", $this->sectionData['test'] ) )
-					) {
-						# disabled test
-						$this->clearSection();
-
-						# Forget any pending hooks call since test is disabled
-						$delayedParserTest->reset();
-
-						continue;
-					}
-
-					# We are really going to run the test, run pending hooks and hooks function
-					wfDebug( __METHOD__ . " unleashing delayed test for: {$this->sectionData['test']}" );
-					$hooksResult = $delayedParserTest->unleash( $this->parserTest );
-					if ( !$hooksResult ) {
-						# Some hook reported an issue. Abort.
-						return false;
-					}
-
-					$this->test = array(
-						'test' => ParserTest::chomp( $this->sectionData['test'] ),
-						'input' => ParserTest::chomp( $this->sectionData[$input] ),
-						'result' => ParserTest::chomp( $this->sectionData[$result] ),
-						'options' => ParserTest::chomp( $this->sectionData['options'] ),
-						'config' => ParserTest::chomp( $this->sectionData['config'] ),
-					);
-
-					return true;
+					do {
+						if ( $this->setupCurrentTest() )
+							return true;
+					} while ( $this->nextSubTest > 0 );
+					# go on to next test (since this was disabled)
+					$this->clearSection();
+					$this->delayedParserTest->reset();
+					continue;
 				}
 
 				if ( isset( $this->sectionData[$this->section] ) ) {
@@ -732,7 +758,7 @@ class DjVuSupport {
 	}
 
 	/**
-	 * Returns if the DjVu tools are usable
+	 * Returns true if the DjVu tools are usable
 	 *
 	 * @return bool
 	 */
@@ -743,5 +769,45 @@ class DjVuSupport {
 			&& is_executable( $wgDjvuDump )
 			&& is_executable( $wgDjvuToXML )
 			&& is_executable( $wgDjvuTxt );
+	}
+}
+
+/**
+ * Initialize and detect the tidy support
+ */
+class TidySupport {
+	private $internalTidy;
+	private $externalTidy;
+
+	/**
+	 * Determine if there is a usable tidy.
+	 */
+	public function __construct() {
+		global $wgTidyBin;
+
+		$this->internalTidy = extension_loaded( 'tidy' ) &&
+			class_exists( 'tidy' );
+
+		$this->externalTidy = is_executable( $wgTidyBin ) ||
+			Installer::locateExecutableInDefaultPaths( array( $wgTidyBin ) )
+			!== false;
+	}
+
+	/**
+	 * Returns true if we should use internal tidy.
+	 *
+	 * @return bool
+	 */
+	public function isInternal() {
+		return $this->internalTidy;
+	}
+
+	/**
+	 * Returns true if tidy is usable
+	 *
+	 * @return bool
+	 */
+	public function isEnabled() {
+		return $this->internalTidy || $this->externalTidy;
 	}
 }

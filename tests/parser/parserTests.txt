@@ -47,6 +47,12 @@ blah blah
 !! endarticle
 
 !!article
+Foo
+!!text
+FOO
+!!endarticle
+
+!!article
 Template:Foo
 !!text
 FOO
@@ -400,6 +406,13 @@ http://fr.wikipedia.org/wiki/🍺
 <p><a rel="nofollow" class="external free" href="http://fr.wikipedia.org/wiki/🍺">http://fr.wikipedia.org/wiki/🍺</a>
 </p>
 !! end
+
+# Note that the html+tidy output removes the spaces after the <li>,
+# which is a bug (http://sourceforge.net/p/tidy/bugs/945/, etc).
+# This is an issue for all tests with lists.  We intentionally do
+# *not* add html+tidy clauses for these, as we don't want to
+# document/test the broken behavior.  (Parsoid matches the non-tidy
+# output in these cases.)
 
 !! test
 Simple list
@@ -757,7 +770,7 @@ Italics and bold: 5-quote opening sequence: (5,2+3)
 parsoid=wt2wt,html2wt
 !! wikitext
 '''''foo'''''
-!! html/*
+!! html/parsoid
 <p><b><i>foo</i></b>
 </p>
 !! end
@@ -1037,7 +1050,16 @@ parsoid=wt2html,wt2wt
 !''a!!''b
 |''a||''b
 |}
-!! html
+!! html/php+tidy
+<table>
+<tr>
+<th><i>a</i></th>
+<th><i>b</i></th>
+<td><i>a</i></td>
+<td><i>b</i></td>
+</tr>
+</table>
+!! html/parsoid
 <table>
 <tbody><tr><th><i>a</i></th><th><i>b</i></th>
 <td><i>a</i></td><td><i>b</i></td></tr>
@@ -1179,6 +1201,7 @@ Ruby markup (W3C-style)
 </p>
 !! end
 
+# There is a tidy bug here: http://sourceforge.net/p/tidy/bugs/946/
 !! test
 Non-word characters don't terminate tag names (bug 17663, 40670, 52022)
 !! wikitext
@@ -1539,6 +1562,10 @@ b
 a <div>foo</div>
 <p>b
 </p>
+!! html+tidy
+<p>a</p>
+<div>foo</div>
+<p>b</p>
 !! end
 
 !! test
@@ -1551,6 +1578,12 @@ b
 a <blockquote>foo</blockquote>
 <p>b
 </p>
+!! html+tidy
+<p>a</p>
+<blockquote>
+<p>foo</p>
+</blockquote>
+<p>b</p>
 !! end
 
 !! test
@@ -1563,6 +1596,11 @@ b <div>foo</div>
 a <div>foo</div>
 b <div>foo</div>
 
+!! html+tidy
+<p>a</p>
+<div>foo</div>
+<p>b</p>
+<div>foo</div>
 !! end
 
 !! test
@@ -1575,6 +1613,15 @@ b <blockquote>foo</blockquote>
 a <blockquote>foo</blockquote>
 b <blockquote>foo</blockquote>
 
+!! html+tidy
+<p>a</p>
+<blockquote>
+<p>foo</p>
+</blockquote>
+<p>b</p>
+<blockquote>
+<p>foo</p>
+</blockquote>
 !! end
 
 !! test
@@ -1593,6 +1640,13 @@ d e
 </p>
 x <div>foo</div> z
 
+!! html+tidy
+<div>foo</div>
+<p>a</p>
+<p>b c d e</p>
+<p>x</p>
+<div>foo</div>
+<p>z</p>
 !! end
 
 !! test
@@ -1623,9 +1677,20 @@ b
 </p>
 <div>e</div>
 
+!! html+tidy
+<p><br /></p>
+<p>a</p>
+<p>b</p>
+<div>a</div>
+<p>b</p>
+<div>b</div>
+<p>d</p>
+<p><br /></p>
+<div>e</div>
 !! end
 
 ## PHP parser emits output which is broken
+## XXX The parsoid output doesn't match the tidy output.
 !! test
 Unclosed HTML p-tags should be handled properly
 !! wikitext
@@ -1633,6 +1698,11 @@ Unclosed HTML p-tags should be handled properly
 a
 
 b
+!! html/php+tidy
+<div>
+<p>foo&lt;/div&gt;</p>
+<p>a</p>
+b</div>
 !! html/parsoid
 <div data-parsoid='{"stx":"html"}'><p data-parsoid='{"stx":"html", "autoInsertedEnd":true}'>foo</p></div>
 <p>a</p>
@@ -1784,6 +1854,10 @@ Bug 15491: <ins>/<del> in blockquote (2)
 <blockquote>Foo <del>bar</del> <ins>baz</ins> quux
 </blockquote>
 
+!! html+tidy
+<blockquote>
+<p>Foo</p>
+<del>bar</del> <ins>baz</ins> quux</blockquote>
 !! end
 
 !! test
@@ -1909,6 +1983,12 @@ foo
 </pre></div>
 <pre></pre>
 
+!! html+tidy
+<p>a</p>
+<div>
+<pre>
+foo
+</pre></div>
 !! end
 
 !! test
@@ -2494,6 +2574,11 @@ c
  a
  | b
  | c
+!! html/php
+<pre>a
+| b
+| c
+</pre>
 !! html/parsoid
 <pre>a
 | b
@@ -2506,6 +2591,12 @@ c
 a
  | b
  | c
+!! html/php
+<p>a
+</p>
+<pre>| b
+| c
+</pre>
 !! html/parsoid
 <p>a</p>
 <pre>
@@ -2526,7 +2617,19 @@ a
  c <blockquote> foo </blockquote>
 <pre><span> foo </span>
 </pre>
-!!end
+!! html+tidy
+<p>a</p>
+<p>foo</p>
+<p>b</p>
+<div>foo</div>
+<p>c</p>
+<blockquote>
+<p>foo</p>
+</blockquote>
+<pre>
+<span> foo </span>
+</pre>
+!! end
 
 !!test
 3b. Indent-Pre and block tags (multi-line html)
@@ -2538,6 +2641,12 @@ a
 </pre>
  b <div> foo </div>
 
+!! html+tidy
+<pre>
+a <span>foo</span>
+</pre>
+<p>b</p>
+<div>foo</div>
 !!end
 
 !!test
@@ -2619,6 +2728,18 @@ File:foobar.jpg
 		</div></li>
 </ul>
 
+!! html+tidy
+<p>a</p>
+<ul class="gallery mw-gallery-traditional">
+<li class="gallerybox" style="width: 155px">
+<div style="width: 155px">
+<div class="thumb" style="width: 150px;">
+<div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" /></a></div>
+</div>
+<div class="gallerytext"></div>
+</div>
+</li>
+</ul>
 !!end
 
 !! test
@@ -3390,6 +3511,8 @@ Definition Lists: Nesting: Test 4
 ## The Parsoid team believes the following three test exposes a
 ## bug in the PHP parser.  (Parsoid team thinks the PHP parser is
 ## wrong to close the <dl> after the <dt> containing the <ul>.)
+
+## XXX but is Parsoid correct to use a <dt> for the <ul> ?
 !! test
 Definition Lists: Mixed Lists: Test 1
 !! wikitext
@@ -3401,6 +3524,22 @@ Definition Lists: Mixed Lists: Test 1
 <li> bar</li></ul></dt></dl>
 <dl><dt> baz</dt></dl></dd></dl>
 
+!! html/php+tidy
+<dl>
+<dd>
+<dl>
+<dd>
+<ul>
+<li>foo</li>
+<li>bar</li>
+</ul>
+</dd>
+</dl>
+<dl>
+<dt>baz</dt>
+</dl>
+</dd>
+</dl>
 !! html/parsoid
 <dl>
 <dd><dl>
@@ -3529,6 +3668,8 @@ Definition Lists: Mixed Lists: Test 10
 # consistent, and recognizes the shared nesting and keeps the
 # still-open tags around until the nesting is complete.
 
+# XXX again, tidy uses a <dd> before 'bar' here.
+
 !! test
 Definition Lists: Mixed Lists: Test 11
 !! wikitext
@@ -3540,6 +3681,43 @@ Definition Lists: Mixed Lists: Test 11
 <dl><dt>boo&#160;</dt>
 <dd>baz</dd></dl></li></ol></li></ul></li></ol></li></ul>
 
+!! html/php+tidy
+<ul>
+<li>
+<ol>
+<li>
+<ul>
+<li>
+<ol>
+<li>
+<dl>
+<dt>foo&#160;</dt>
+<dd>
+<ul>
+<li>
+<dl>
+<dd>
+<dl>
+<dt>bar</dt>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<dl>
+<dt>boo&#160;</dt>
+<dd>baz</dd>
+</dl>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
 !! html/parsoid
 <ul>
 <li>
@@ -3571,6 +3749,7 @@ Definition Lists: Mixed Lists: Test 11
 !! end
 
 
+# XXX another case where tidy fixes up a <dt> to a <dd> (but Parsoid doesn't)
 !! test
 Definition Lists: Weird Ones: Test 1
 !! wikitext
@@ -3579,6 +3758,39 @@ Definition Lists: Weird Ones: Test 1
 <ul><li><ol><li><dl><dt> foo&#160;</dt>
 <dd><ul><li><dl><dd><dl><dd><dl><dt><dl><dt> bar (who uses this?)</dt></dl></dd></dl></dd></dl></dd></dl></li></ul></dd></dl></li></ol></li></ul>
 
+!! html/php+tidy
+<ul>
+<li>
+<ol>
+<li>
+<dl>
+<dt>foo&#160;</dt>
+<dd>
+<ul>
+<li>
+<dl>
+<dd>
+<dl>
+<dd>
+<dl>
+<dd>
+<dl>
+<dt>bar (who uses this?)</dt>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</li>
+</ul>
 !! html/parsoid
 <ul>
 <li>
@@ -3789,6 +4001,11 @@ External links: with no contents
 [[wikipedia:Foo|Bar]]
 
 [[wikipedia:Foo|<span>Bar</span>]]
+!! html/php
+<p><a rel="nofollow" class="external autonumber" href="http://en.wikipedia.org/wiki/Foo">[1]</a>
+</p><p><a href="http://en.wikipedia.org/wiki/Foo" class="extiw" title="wikipedia:Foo">Bar</a>
+</p><p><a href="http://en.wikipedia.org/wiki/Foo" class="extiw" title="wikipedia:Foo"><span>Bar</span></a>
+</p>
 !! html/parsoid
 <p><a rel="mw:ExtLink" href="http://en.wikipedia.org/wiki/Foo"></a></p>
 <p><a rel="mw:ExtLink" href="http://en.wikipedia.org/wiki/Foo">Bar</a></p>
@@ -4374,6 +4591,8 @@ External link containing double-single-quotes with no space separating the url f
 !! html/php
 <p><a rel="nofollow" class="external text" href="http://www.musee-picasso.fr/pages/page_id18528_u1l2.htm"><i>La muerte de Casagemas</i> (1901) en el sitio de <a href="/index.php?title=Museo_Picasso_(Par%C3%ADs)&amp;action=edit&amp;redlink=1" class="new" title="Museo Picasso (París) (page does not exist)">Museo Picasso</a>.</a>
 </p>
+!! html/php+tidy
+<p><a rel="nofollow" class="external text" href="http://www.musee-picasso.fr/pages/page_id18528_u1l2.htm"><i>La muerte de Casagemas</i> (1901) en el sitio de</a> <a href="/index.php?title=Museo_Picasso_(Par%C3%ADs)&amp;action=edit&amp;redlink=1" class="new" title="Museo Picasso (París) (page does not exist)">Museo Picasso</a>.</p>
 !! html/parsoid
 <p><a rel="mw:ExtLink" href="http://www.musee-picasso.fr/pages/page_id18528_u1l2.htm"><i>La muerte de Casagemas</i> (1901) en el sitio de </a><a rel="mw:WikiLink" href="./Museo_Picasso_(París)">Museo Picasso</a><span>.</span></p>
 !! end
@@ -4906,6 +5125,13 @@ Accept "!!" in table data
 {|
 | Foo!! ||
 |}
+!! html
+<table>
+<tr>
+<td> Foo!! </td>
+<td>
+</td></tr></table>
+
 !! html/parsoid
 <table data-parsoid='{}'>
 <tbody data-parsoid='{}'><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'> Foo!! </td><td data-parsoid='{"stx_v":"row","autoInsertedEnd":true}'></td></tr>
@@ -5286,6 +5512,14 @@ Table-cell after a comment-only-empty-line
 <!--c1-->
 <!--c2-->| b
 |}
+!! html
+<table>
+<tr>
+<td>a
+</td>
+<td> b
+</td></tr></table>
+
 !! html/parsoid
 <table>
 <tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'>a</td>
@@ -5312,6 +5546,7 @@ Wikitext table with html-syntax row
 <td>foo</td></tr></tbody></table>
 !! end
 
+## xxx php+tidy output differs from parsoid.  is this right?
 !! test
 Implicit <td> after a |-
 (PHP parser relies on Tidy to add the missing <td> tags)
@@ -5322,12 +5557,21 @@ parsoid=wt2html,wt2wt
 |-
 a
 |}
-!! html
+!! html/php
+<table>
+
+a
+</table>
+
+!! html/php+tidy
+<p>a</p>
+!! html/parsoid
 <table>
 <tr><td>a</td></tr>
 </table>
 !! end
 
+# note divergence of parsoid and tidy output here as well
 !! test
 Pres should be recognized in an explicit <td> context, but not in an implicit <td> context
 (PHP parser relies on Tidy to add the missing <td> tags)
@@ -5341,7 +5585,28 @@ parsoid=wt2html,wt2wt
 |-
  b
 |}
-!! html
+!! html/php
+<table>
+
+<tr>
+<td>
+<pre>a
+</pre>
+</td></tr>
+ b
+</table>
+
+!! html/php+tidy
+<p>b</p>
+<table>
+<tr>
+<td>
+<pre>
+a
+</pre></td>
+</tr>
+</table>
+!! html/parsoid
 <table>
 <tbody>
 <tr><td><pre>a</pre></td></tr>
@@ -5350,6 +5615,7 @@ parsoid=wt2html,wt2wt
 </table>
 !! end
 
+# xxx again, note that tidy just strips the markup out of the table
 !! test
 Lists should be recognized in an implicit <td> context
 (PHP parser relies on Tidy to add the missing <td> tags)
@@ -5360,7 +5626,17 @@ parsoid=wt2html,wt2wt
 |-
 *a
 |}
-!! html
+!! html/php
+<table>
+
+<ul><li>a</li></ul>
+</table>
+
+!! html/php+tidy
+<ul>
+<li>a</li>
+</ul>
+!! html/parsoid
 <table>
 <tr>
 <td><ul>
@@ -5424,6 +5700,7 @@ parsoid=html2wt
  a<h1>foo</h1>
 !! end
 
+# XXX: whitespace is different between PHP and Parsoid
 !! test
 Parsoid: Row-syntax table headings followed by comment & table cells
 !! options
@@ -5433,6 +5710,16 @@ parsoid=wt2html,wt2wt
 ! foo || bar
 <!-- foo -->  || baz || quux
 |}
+!! html/php
+<table>
+<tr>
+<th> foo </th>
+<th> bar
+</th>
+<td> baz </td>
+<td> quux
+</td></tr></table>
+
 !! html/parsoid
 <table>
 <tbody>
@@ -5442,6 +5729,7 @@ parsoid=wt2html,wt2wt
 !! end
 
 
+# XXX note that PHP throws away the "foo" class here
 !!test
 Parsoid: Recover better from broken table attributes
 !!options
@@ -5451,6 +5739,14 @@ parsoid=wt2html
 | class="bar" |
 foo
 |}
+!!html/php+tidy
+<table>
+<tr>
+<td class="bar">
+<p>foo</p>
+</td>
+</tr>
+</table>
 !!html/parsoid
 <table class="foo">
 <tr>
@@ -6028,6 +6324,8 @@ title=[[Bug462]]
 !! html/php
 <p><strong class="selflink">Bu&#103;462</strong> <strong class="selflink">Bug462</strong>
 </p>
+!! html/php+tidy
+<p><strong class="selflink">Bug462</strong> <strong class="selflink">Bug462</strong></p>
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Bug462">Bug462</a> <a rel="mw:WikiLink" href="./Bug462">Bug462</a></p>
 !! end
@@ -6161,6 +6459,9 @@ Purely hash wikilink
 title=[[User:test/123]]
 !! wikitext
 [[#a|b]]
+!! html/php
+<p><a href="#a">b</a>
+</p>
 !! html/parsoid
 <p data-parsoid='{}'><a rel="mw:WikiLink" href="../User:Test/123#a" data-parsoid='{"stx":"piped","a":{"href":"../User:Test/123#a"},"sa":{"href":"#a"}}'>b</a></p>
 !! end
@@ -6269,8 +6570,8 @@ Parsoid-centric test: Whitespace in ext- and wiki-links should be preserved
 
 [http://wp.org   ''foo'']
 !! html
-<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">  bar</a>
-</p><p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">  <i>bar</i></a>
+<p><a href="/wiki/Foo" title="Foo">  bar</a>
+</p><p><a href="/wiki/Foo" title="Foo">  <i>bar</i></a>
 </p><p><a rel="nofollow" class="external text" href="http://wp.org">foo</a>
 </p><p><a rel="nofollow" class="external text" href="http://wp.org"><i>foo</i></a>
 </p>
@@ -6290,6 +6591,9 @@ parsoid
 Link with angle bracket after anchor
 !! wikitext
 [[Foo#<bar>]]
+!! html/php
+<p><a href="/wiki/Foo#.3Cbar.3E" title="Foo">Foo#&lt;bar&gt;</a>
+</p>
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Foo#%3Cbar%3E" data-parsoid='{"stx":"simple","a":{"href":"./Foo#%3Cbar%3E"},"sa":{"href":"Foo#&lt;bar>"}}'>Foo#&lt;bar></a></p>
 !! end
@@ -6325,6 +6629,11 @@ Interwiki link encoding conversion (bug 1636)
 <ul><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a></li>
 <li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a></li></ul>
 
+!! html+tidy
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteniţa</a></li>
+<li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteniţa</a></li>
+</ul>
 !! end
 
 !! test
@@ -6803,6 +7112,7 @@ Broken br tag sanitization
 !! end
 
 # TODO: Fix html2html mode (bug 51055)!
+# XXX note parsoid differs from PHP
 !! test
 Parsoid: Broken br tag recognition
 !! options
@@ -6811,6 +7121,9 @@ parsoid=wt2html
 </br>
 
 <br/ >
+!! html/php+tidy
+<p>&lt;/br&gt;</p>
+<p><br /></p>
 !! html/parsoid
 <p><br></p>
 <p><br/></p>
@@ -6938,6 +7251,9 @@ Horizontal ruler -- Supports content following dashes on same line
 !! html
 <hr /> Foo
 
+!! html+tidy
+<hr />
+<p>Foo</p>
 !! end
 
 ###
@@ -7189,6 +7505,12 @@ Multiple list tags generated by templates
 </li>
 </li>
 
+!! html+tidy
+<ul>
+<li>a</li>
+<li>b</li>
+<li>c</li>
+</ul>
 !!end
 
 !!test
@@ -7228,9 +7550,10 @@ Replacing whitespace with tabs still doesn't break the list (gerrit 78327)
 
 !!end
 
+## XXX parsoid doesn't display "unsupported li-hack" at all?
 !!test
 Test the li-hack
-(Cannot test this with PHP parser since it relies on Tidy for the hack)
+(The PHP parser relies on Tidy for the hack)
 !!options
 parsoid=wt2html,wt2wt
 !! wikitext
@@ -7243,7 +7566,17 @@ parsoid=wt2html,wt2wt
 <li><li>not a li-hack
 </li>
 </ul>
-!! html
+!! html+tidy
+<ul>
+<li>foo</li>
+<li>li-hack</li>
+<li>templated li-hack</li>
+<li>unsupported li-hack with preceding comments</li>
+</ul>
+<ul>
+<li>not a li-hack</li>
+</ul>
+!! html/parsoid
 <ul>
 <li> foo</li>
 <li>li-hack</li>
@@ -7305,30 +7638,37 @@ parsoid
 
 !! test
 Unbalanced closing block tags break a list
-(Parsoid-only since php parser generates broken html -- relies on Tidy to fix up)
+(php parser relies on Tidy to fix up)
 !! wikitext
 <div>
 *a</div><div>
 *b</div>
-!! html/parsoid
+!! html+tidy
 <div>
 <ul>
-<li>a
-</li>
-</ul></div><div>
+<li>a</li>
+</ul>
+</div>
+<div>
 <ul>
-<li>b
-</li>
-</ul></div>
+<li>b</li>
+</ul>
+</div>
 !! end
 
+# XXX note that parsoid and tidy disagree here
 !! test
 Unbalanced closing non-block tags don't break a list
-(Parsoid-only since php parser generates broken html -- relies on Tidy to fix up)
+(php parser relies on Tidy to fix up)
 !! wikitext
 <span>
 *a</span><span>
 *b</span>
+!! html/php+tidy
+<ul>
+<li><span>a</span></li>
+<li><span>b</span></li>
+</ul>
 !! html/parsoid
 <p><span></span>
 </p>
@@ -7342,10 +7682,15 @@ Unbalanced closing non-block tags don't break a list
 
 !! test
 Unclosed formatting tags that straddle lists are closed and reopened
-(Parsoid-only since php parser generates broken html -- relies on Tidy to fix up)
+(php parser relies on Tidy to fix up)
 !! wikitext
 # <s> a
 # b </s>
+!! html/php+tidy
+<ol>
+<li><s>a</s></li>
+<li><s>b</s></li>
+</ol>
 !! html/parsoid
 <ol>
 <li> <s> a </s>
@@ -7355,13 +7700,18 @@ Unclosed formatting tags that straddle lists are closed and reopened
 </ol>
 !! end
 
+# XXX parsoid isn't making the 'foo' text <small>
 !!test
 List embedded in a non-block tag
-(Ugly Parsoid output -- worth fixing; Disabled for PHP parser since it relies on Tidy)
+(Ugly Parsoid output -- worth fixing; PHP parser relies on Tidy)
 !! wikitext
 <small>
 * foo
 </small>
+!! html/php+tidy
+<ul>
+<li><small>foo</small></li>
+</ul>
 !! html/parsoid
 <p><small></small></p>
 <small>
@@ -7372,12 +7722,20 @@ List embedded in a non-block tag
 <p><small></small></p>
 !!end
 
+# whoa.  crazy.
 !! test
 Table with missing opening <tr> tag
 !! options
 parsoid=wt2html,wt2wt
 !! wikitext
 <table>
+<td>foo</td>
+</tr>
+</table>
+!! html/php+tidy
+<p>&lt;/tr&gt;</p>
+<table>
+<tr>
 <td>foo</td>
 </tr>
 </table>
@@ -7837,9 +8195,11 @@ Magic Word: {{PAGENAME}} with metacharacters
 title=[['foo & bar = baz']]
 !! wikitext
 ''{{PAGENAME}}''
-!! html
+!! html/php
 <p><i>&#39;foo &#38; bar &#61; baz&#39;</i>
 </p>
+!! html+tidy
+<p><i>'foo &amp; bar = baz'</i></p>
 !! end
 
 !! test
@@ -7848,9 +8208,11 @@ Magic Word: {{PAGENAME}} with metacharacters (bug 26781)
 title=[[*RFC 1234 http://example.com/]]
 !! wikitext
 {{PAGENAME}}
-!! html
+!! html/php
 <p>&#42;RFC&#32;1234 http&#58;//example.com/
 </p>
+!! html+tidy
+<p>*RFC 1234 http://example.com/</p>
 !! end
 
 !! test
@@ -7870,9 +8232,11 @@ Magic Word: {{PAGENAMEE}} with metacharacters (bug 26781)
 title=[[*RFC 1234 http://example.com/]]
 !! wikitext
 {{PAGENAMEE}}
-!! html
+!! html/php
 <p>&#42;RFC_1234_http&#58;//example.com/
 </p>
+!! html+tidy
+<p>*RFC_1234_http://example.com/</p>
 !! end
 
 !! test
@@ -8376,9 +8740,16 @@ Template with thumb image (with link in description)
 !! wikitext
 {{paramtest|
   param =[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]}}
-!! html
+!! html/php
 This is a test template with parameter <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Noimage.png" class="new" title="File:Noimage.png">File:Noimage.png</a>  <div class="thumbcaption"><a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">link</a> <a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">caption</a></div></div></div>
 
+!! html+tidy
+<p>This is a test template with parameter</p>
+<div class="thumb tright">
+<div class="thumbinner" style="width:182px;"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Noimage.png" class="new" title="File:Noimage.png">File:Noimage.png</a>
+<div class="thumbcaption"><a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">link</a> <a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">caption</a></div>
+</div>
+</div>
 !! end
 
 !! article
@@ -8580,8 +8951,8 @@ Template with targets containing wikilinks
 
 {{{{echo|[[foo}}]]}}
 !! html
-<p>{{<a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">foo</a>}}
-</p><p>{{<a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">foo</a>}}
+<p>{{<a href="/wiki/Foo" title="Foo">foo</a>}}
+</p><p>{{<a href="/wiki/Foo" title="Foo">foo</a>}}
 </p><p>{{[[foo}}]]
 </p>
 !! end
@@ -9071,6 +9442,11 @@ Templates: 2. Inside a block tag
 <div>Foo</div>
 <blockquote>Foo</blockquote>
 
+!! html+tidy
+<div>Foo</div>
+<blockquote>
+<p>Foo</p>
+</blockquote>
 !!end
 
 !!test
@@ -9108,7 +9484,11 @@ Templates: P-wrapping: 1c. Templates on consecutive lines
 </p>
 bar <div>baz</div>
 
-!!end
+!! html+tidy
+<p>Foo</p>
+<p>bar</p>
+<div>baz</div>
+!! end
 
 !!test
 Templates: P-wrapping: 1d. Template preceded by comment-only line
@@ -9164,7 +9544,7 @@ Templates: Links: 1. Simple example
 !! wikitext
 {{echo|[[Foo|bar]]}}
 !! html
-<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+<p><a href="/wiki/Foo" title="Foo">bar</a>
 </p>
 !!end
 
@@ -9173,7 +9553,7 @@ Templates: Links: 2. Generation of link href
 !! wikitext
 [[{{echo|Foo}}|bar]]
 !! html
-<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+<p><a href="/wiki/Foo" title="Foo">bar</a>
 </p>
 !!end
 
@@ -9192,7 +9572,7 @@ Templates: Links: 3. Generation of part of a link href
 
 [[:Foo{{echo|bar}}|bar]]
 !! html
-<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+<p><a href="/wiki/Foo" title="Foo">bar</a>
 </p><p><a href="/index.php?title=Foobar&amp;action=edit&amp;redlink=1" class="new" title="Foobar (page does not exist)">Foobar</a>
 </p><p><a href="/index.php?title=Foobarbaz&amp;action=edit&amp;redlink=1" class="new" title="Foobarbaz (page does not exist)">Foobarbaz</a>
 </p><p><a href="/index.php?title=Foobar&amp;action=edit&amp;redlink=1" class="new" title="Foobar (page does not exist)">bar</a>
@@ -9215,7 +9595,7 @@ Templates: Links: 5. Generation of link text
 !! wikitext
 [[Foo|{{echo|bar}}]]
 !! html
-<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+<p><a href="/wiki/Foo" title="Foo">bar</a>
 </p>
 !!end
 
@@ -9224,7 +9604,7 @@ Templates: Links: 5. Nested templates (only outermost template should be marked)
 !! wikitext
 {{echo|[[{{echo|Foo}}|bar]]}}
 !! html
-<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+<p><a href="/wiki/Foo" title="Foo">bar</a>
 </p>
 !!end
 
@@ -9406,7 +9786,14 @@ Templates: Wiki Tables: 1a. Fostering of entire template content
 a
 <tr><td></td></tr></table>
 
-!!end
+!! html+tidy
+<p>a</p>
+<table>
+<tr>
+<td></td>
+</tr>
+</table>
+!! end
 
 !!test
 Templates: Wiki Tables: 1b. Fostering of entire template content
@@ -9424,7 +9811,16 @@ foo
 </div>
 <tr><td></td></tr></table>
 
-!!end
+!! html+tidy
+<div>
+<p>foo</p>
+</div>
+<table>
+<tr>
+<td></td>
+</tr>
+</table>
+!! end
 
 !!test
 Templates: Wiki Tables: 2. Fostering of partial template content
@@ -9439,7 +9835,15 @@ a
 <div>b</div>
 <tr><td></td></tr></table>
 
-!!end
+!! html+tidy
+<p>a</p>
+<div>b</div>
+<table>
+<tr>
+<td></td>
+</tr>
+</table>
+!! end
 
 !!test
 Templates: Wiki Tables: 3. td-content via multiple templates
@@ -9545,7 +9949,11 @@ a<div>b{{echo|c</div>d}}e
 !! html
 a<div>bc</div>de
 
-!!end
+!! html+tidy
+<p>a</p>
+<div>bc</div>
+<p>de</p>
+!! end
 
 !!test
 Templates: Ugly templates: 1. Navbox template parses badly leading to table misnesting
@@ -10535,6 +10943,7 @@ Image with multiple attributes from the same template
 <figure class="mw-default-size mw-halign-right" typeof="mw:Image mw:Placeholder"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a><figcaption>Caption text</figcaption></figure>
 !! end
 
+# xxx parsoid doesn't match the tidy output in this case
 !! test
 Image with link tails
 !! options
@@ -10549,6 +10958,19 @@ thumbsize=220
 123<div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>456
 123<div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" width="220" height="25" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div></div></div></div>456
 
+!! html/php+tidy
+<p>123<a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>456</p>
+<p>123</p>
+<div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>
+<p>456 123</p>
+<div class="thumb tright">
+<div class="thumbinner" style="width:222px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" width="220" height="25" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>
+</div>
+</div>
+</div>
+<p>456</p>
 !! html/parsoid
 <p>123<span class="mw-default-size" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a></span>456</p>
 123<figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"></a></figure>456
@@ -12761,6 +13183,8 @@ I always thought &eacute; was a cute letter.
 !! html
 <p>I always thought &#233; was a cute letter.
 </p>
+!! html+tidy
+<p>I always thought é was a cute letter.</p>
 !! end
 
 !! test
@@ -12822,6 +13246,7 @@ Ensure that HTML adoption agency algorithm is properly implemented.
 !! end
 
 # This was bug 41545 in the PHP parser.
+# XXX htmltidy doesn't handle this correctly
 !! test
 Nesting of <kbd>
 !! wikitext
@@ -12834,6 +13259,8 @@ Nesting of <kbd>
 # The following cases were bug 51081 in the PHP parser.
 # Note that there are some other nestable tags (b, i, etc) which are
 # not covered; see bug 51081 for discussion.
+
+# XXX htmltidy doesn't handle this correctly
 !! test
 Nesting of <em>
 !! wikitext
@@ -12843,6 +13270,7 @@ Nesting of <em>
 </p>
 !! end
 
+# XXX htmltidy doesn't handle this correctly
 !! test
 Nesting of <strong>
 !! wikitext
@@ -12859,8 +13287,11 @@ Nesting of <q>
 !! html
 <p><q>X<q>Y</q>Z</q>
 </p>
+!! html+tidy
+<p><q>X<q>Y</q>Z</q></p>
 !! end
 
+# XXX htmltidy doesn't handle this correctly
 !! test
 Nesting of <ruby>
 !! wikitext
@@ -12870,6 +13301,7 @@ Nesting of <ruby>
 </p>
 !! end
 
+# XXX htmltidy doesn't handle this correctly
 !! test
 Nesting of <bdo>
 !! wikitext
@@ -12911,6 +13343,8 @@ fixme: doBlockLevels won't wrap this in a paragraph because it contains a div
 !! html
 <a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Safe Link&lt;div style="display:none"&gt;" onmouseover="alert(document.cookie)" onfoo="&lt;/div&gt;</a>
 
+!! html+tidy
+<p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Safe Link&lt;div style="display:none"&gt;" onmouseover="alert(document.cookie)" onfoo="&lt;/div&gt;</a></p>
 !! end
 
 !! test
@@ -14056,6 +14490,17 @@ http://<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 </div>
 
 
+!! html+tidy
+<h2><span class="mw-headline" id="onmouseover.3D">onmouseover=</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: onmouseover=">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>http://</p>
+<div id="toc" class="toc">
+<div id="toctitle">
+<h2>Contents</h2>
+</div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#onmouseover.3D"><span class="tocnumber">1</span> <span class="toctext">onmouseover=</span></a></li>
+</ul>
+</div>
 !! end
 
 !! test
@@ -14069,6 +14514,13 @@ Fuzz testing: Parser14-table
 <tr><td></td></tr>
 </table>
 
+!! html+tidy
+<h2><span class="mw-headline" id="a">a</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: a">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<table style="__TOC__">
+<tr>
+<td></td>
+</tr>
+</table>
 !! end
 
 # Known to produce bogus xml (extra </td>)
@@ -14090,6 +14542,15 @@ noxml
 </tr>
 </table>
 
+!! html+tidy
+<table>
+<tr>
+<th>https://</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</table>
 !! end
 
 !! test
@@ -14177,7 +14638,6 @@ Fuzz testing: Parser25 (bug 6055)
 
 !!test
 Fuzz testing: URL adjacent extension (with space, clean)
-!! options
 !! wikitext
 http://example.com <nowiki>junk</nowiki>
 !! html
@@ -14187,7 +14647,6 @@ http://example.com <nowiki>junk</nowiki>
 
 !!test
 Fuzz testing: URL adjacent extension (no space, dirty; nowiki)
-!! options
 !! wikitext
 http://example.com<nowiki>junk</nowiki>
 !! html
@@ -14197,12 +14656,16 @@ http://example.com<nowiki>junk</nowiki>
 
 !!test
 Fuzz testing: URL adjacent extension (no space, dirty; pre)
-!! options
 !! wikitext
 http://example.com<pre>junk</pre>
 !! html
 <a rel="nofollow" class="external free" href="http://example.com">http://example.com</a><pre>junk</pre>
 
+!! html+tidy
+<p><a rel="nofollow" class="external free" href="http://example.com">http://example.com</a></p>
+<pre>
+junk
+</pre>
 !!end
 
 !!test
@@ -15595,6 +16058,8 @@ parsoid=wt2html,wt2wt,html2html
 !! html/php
 <p>&#x4a;&#x61;&#x76;&#x61;&#x53;&#x63;&#114;&#x69;&#112;&#x74;
 </p>
+!! html/php+tidy
+<p>JavaScript</p>
 !! html/parsoid
 <p><span typeof="mw:Entity">J</span><span typeof="mw:Entity">a</span><span typeof="mw:Entity">v</span><span typeof="mw:Entity">a</span><span typeof="mw:Entity">S</span><span typeof="mw:Entity">c</span><span typeof="mw:Entity">r</span><span typeof="mw:Entity">i</span><span typeof="mw:Entity">p</span><span typeof="mw:Entity">t</span></p>
 !! end
@@ -15619,6 +16084,8 @@ parsoid=wt2html,wt2wt,html2html
 !! html/php
 <p>&#xee;&#xee;
 </p>
+!! html/php+tidy
+<p>îî</p>
 !! html/parsoid
 <p><span typeof="mw:Entity">î</span><span typeof="mw:Entity">î</span></p>
 !! end
@@ -15640,6 +16107,8 @@ ISBN  978-0-1234-56&#x20;789
 !! html
 <p><a href="/wiki/Special:BookSources/9780123456" class="internal mw-magiclink-isbn">ISBN 978-0-1234-56</a>&#x20;789
 </p>
+!! html+tidy
+<p><a href="/wiki/Special:BookSources/9780123456" class="internal mw-magiclink-isbn">ISBN 978-0-1234-56</a> 789</p>
 !! end
 
 !! test
@@ -15711,6 +16180,8 @@ RFC   983&#x20;987
 !! html
 <p><a class="external mw-magiclink-rfc" rel="nofollow" href="//tools.ietf.org/html/rfc983">RFC 983</a>&#x20;987
 </p>
+!! html+tidy
+<p><a class="external mw-magiclink-rfc" rel="nofollow" href="//tools.ietf.org/html/rfc983">RFC 983</a> 987</p>
 !! end
 
 !! test
@@ -16928,6 +17399,10 @@ Line two</blockquote>
 <blockquote>Line one
 Line two</blockquote>
 
+!! html+tidy
+<blockquote>
+<p>Line one Line two</p>
+</blockquote>
 !! end
 
 !! test
@@ -16943,6 +17418,10 @@ Line two</blockquote>
 </p>
 Line two</blockquote>
 
+!! html+tidy
+<blockquote>
+<p>Line one</p>
+Line two</blockquote>
 !! end
 
 !! test
@@ -16958,6 +17437,11 @@ Line two
 </p>
 </blockquote>
 
+!! html+tidy
+<blockquote>
+<p>Line one</p>
+<p>Line two</p>
+</blockquote>
 !! end
 
 !! test
@@ -16975,6 +17459,11 @@ Line two
 </p>
 </blockquote>
 
+!! html+tidy
+<blockquote>
+<p>Line one</p>
+<p>Line two</p>
+</blockquote>
 !! end
 
 !! test
@@ -17735,6 +18224,20 @@ __TOC__
 
 <h2><span class="mw-headline" id="Quote"><blockquote>Quote</blockquote></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Quote">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
+!! html+tidy
+<div id="toc" class="toc">
+<div id="toctitle">
+<h2>Contents</h2>
+</div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Quote"><span class="tocnumber">1</span> <span class="toctext">Quote</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Quote"></span></h2>
+<blockquote>
+<p><span class="mw-headline" id="Quote">Quote</span></p>
+</blockquote>
+<p><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Quote">edit</a><span class="mw-editsection-bracket">]</span></span></p>
 !! end
 
 !! test
@@ -17777,6 +18280,22 @@ __TOC__
 <h2><span class="mw-headline" id="Foo_Bar"><i>Foo</i> <b>Bar</b></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Foo_Bar_2"><i>Foo</i> <blockquote>Bar</blockquote></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
+!! html+tidy
+<div id="toc" class="toc">
+<div id="toctitle">
+<h2>Contents</h2>
+</div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Foo_Bar"><span class="tocnumber">1</span> <span class="toctext"><i>Foo</i> <b>Bar</b></span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Foo_Bar_2"><span class="tocnumber">2</span> <span class="toctext"><i>Foo</i> Bar</span></a></li>
+</ul>
+</div>
+<h2><span class="mw-headline" id="Foo_Bar"><i>Foo</i> <b>Bar</b></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Foo_Bar_2"><i>Foo</i></span></h2>
+<blockquote>
+<p><span class="mw-headline" id="Foo_Bar_2">Bar</span></p>
+</blockquote>
+<p><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></p>
 !! end
 
 !! test
@@ -17959,7 +18478,7 @@ nowiki inside link inside heading (bug 18295)
 !! wikitext
 ==[[foo|x<nowiki>y</nowiki>z]]==
 !! html
-<h2><span class="mw-headline" id="xyz"><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">xyz</a></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: xyz">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="xyz"><a href="/wiki/Foo" title="Foo">xyz</a></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: xyz">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
 !! end
 
@@ -20159,6 +20678,13 @@ Indented block & table
  {|
  |foo
  |}
+!! html/php
+ <div>foo</div>
+<table>
+<tr>
+<td>foo
+</td></tr></table>
+
 !! html/parsoid
  <div data-parsoid='{"stx":"html"}'>foo</div>
  <table><tbody>
@@ -20173,6 +20699,13 @@ Indent and comment before table row
  <!--hi-->|-
  | there
 |}
+!! html/php
+<table>
+
+<tr>
+<td> there
+</td></tr></table>
+
 !! html/parsoid
 <table data-parsoid='{}'>
  <!--hi--><tbody data-parsoid='{}'><tr data-parsoid='{"startTagSrc":"|-","autoInsertedEnd":true}'>
