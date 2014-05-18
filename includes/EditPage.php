@@ -797,9 +797,9 @@ class EditPage {
 				// suhosin.request.max_value_length (d'oh)
 				$this->incompleteForm = true;
 			} else {
-				// edittime should be one of our last fields; if it's missing,
-				// the submission probably broke somewhere in the middle.
-				$this->incompleteForm = is_null( $this->edittime );
+				// If we receive the last parameter of the request, we can fairly
+				// claim the POST request has not been truncated.
+				$this->incompleteForm = !$request->getVal( 'wpUltimateParam' );
 			}
 			if ( $this->incompleteForm ) {
 				# If the form is incomplete, force to preview.
@@ -1959,7 +1959,7 @@ class EditPage {
 		}
 
 		// Check for length errors again now that the section is merged in
-			$this->kblength = (int)( strlen( $this->toEditText( $content ) ) / 1024 );
+		$this->kblength = (int)( strlen( $this->toEditText( $content ) ) / 1024 );
 		if ( $this->kblength > $wgMaxArticleSize ) {
 			$this->tooBig = true;
 			$status->setResult( false, self::AS_MAX_ARTICLE_SIZE_EXCEEDED );
@@ -1972,8 +1972,8 @@ class EditPage {
 			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
 			( $bot ? EDIT_FORCE_BOT : 0 );
 
-			$doEditStatus = $this->mArticle->doEditContent( $content, $this->summary, $flags,
-															false, null, $this->contentFormat );
+		$doEditStatus = $this->mArticle->doEditContent( $content, $this->summary, $flags,
+														false, null, $this->contentFormat );
 
 		if ( !$doEditStatus->isOK() ) {
 			// Failure from doEdit()
@@ -2582,6 +2582,9 @@ class EditPage {
 				$wgOut->addWikiText( '<div class="error">' . $msg->text() . '</div>' );
 			}
 		}
+
+		// Marker for detecting truncated form data
+		$wgOut->addHTML( Html::hidden( 'wpUltimateParam', true ) );
 
 		$wgOut->addHTML( $this->editFormTextBottom . "\n</form>\n" );
 
