@@ -41,6 +41,7 @@ class ParserOutput extends CacheTime {
 		$mModuleScripts = array(),    # Modules of which only the JS will be loaded by the resource loader
 		$mModuleStyles = array(),     # Modules of which only the CSSS will be loaded by the resource loader
 		$mModuleMessages = array(),   # Modules of which only the messages will be loaded by the resource loader
+		$mJsConfigVars = array(),     # JavaScript config variable for mw.config combined with this page
 		$mOutputHooks = array(),      # Hook tags as per $wgParserOutputHooks
 		$mWarnings = array(),         # Warning text to be returned to the user. Wikitext formatted, in the key only
 		$mSections = array(),         # Table of contents
@@ -56,7 +57,8 @@ class ParserOutput extends CacheTime {
 		private $mLimitReportData = array(); # Parser limit report data
 		private $mParseStartTime = array(); # Timestamps for getTimeSinceStart()
 
-	const EDITSECTION_REGEX = '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
+	const EDITSECTION_REGEX =
+		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
 	function __construct( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false, $titletext = ''
@@ -95,7 +97,7 @@ class ParserOutput extends CacheTime {
 	/**
 	 * callback used by getText to replace editsection tokens
 	 * @private
-	 * @param $m
+	 * @param array $m
 	 * @throws MWException
 	 * @return mixed
 	 */
@@ -115,48 +117,166 @@ class ParserOutput extends CacheTime {
 		return call_user_func_array( array( $skin, 'doEditSectionLink' ), $args );
 	}
 
-	function &getLanguageLinks()         { return $this->mLanguageLinks; }
-	function getInterwikiLinks()         { return $this->mInterwikiLinks; }
-	function getCategoryLinks()          { return array_keys( $this->mCategories ); }
-	function &getCategories()            { return $this->mCategories; }
-	function getTitleText()              { return $this->mTitleText; }
-	function getSections()               { return $this->mSections; }
-	function getEditSectionTokens()      { return $this->mEditSectionTokens; }
-	function &getLinks()                 { return $this->mLinks; }
-	function &getTemplates()             { return $this->mTemplates; }
-	function &getTemplateIds()           { return $this->mTemplateIds; }
-	function &getImages()                { return $this->mImages; }
-	function &getFileSearchOptions()     { return $this->mFileSearchOptions; }
-	function &getExternalLinks()         { return $this->mExternalLinks; }
-	function getNoGallery()              { return $this->mNoGallery; }
-	function getHeadItems()              { return $this->mHeadItems; }
-	function getModules()                { return $this->mModules; }
-	function getModuleScripts()          { return $this->mModuleScripts; }
-	function getModuleStyles()           { return $this->mModuleStyles; }
-	function getModuleMessages()         { return $this->mModuleMessages; }
-	function getOutputHooks()            { return (array)$this->mOutputHooks; }
-	function getWarnings()               { return array_keys( $this->mWarnings ); }
-	function getIndexPolicy()            { return $this->mIndexPolicy; }
-	function getTOCHTML()                { return $this->mTOCHTML; }
-	function getTimestamp()              { return $this->mTimestamp; }
-	function getLimitReportData()        { return $this->mLimitReportData; }
-	function getTOCEnabled()             { return $this->mTOCEnabled; }
+	function &getLanguageLinks() {
+		return $this->mLanguageLinks;
+	}
 
-	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
-	function setLanguageLinks( $ll )     { return wfSetVar( $this->mLanguageLinks, $ll ); }
-	function setCategoryLinks( $cl )     { return wfSetVar( $this->mCategories, $cl ); }
+	function getInterwikiLinks() {
+		return $this->mInterwikiLinks;
+	}
 
-	function setTitleText( $t )          { return wfSetVar( $this->mTitleText, $t ); }
-	function setSections( $toc )         { return wfSetVar( $this->mSections, $toc ); }
-	function setEditSectionTokens( $t )  { return wfSetVar( $this->mEditSectionTokens, $t ); }
-	function setIndexPolicy( $policy )   { return wfSetVar( $this->mIndexPolicy, $policy ); }
-	function setTOCHTML( $tochtml )      { return wfSetVar( $this->mTOCHTML, $tochtml ); }
-	function setTimestamp( $timestamp )  { return wfSetVar( $this->mTimestamp, $timestamp ); }
-	function setTOCEnabled( $flag )      { return wfSetVar( $this->mTOCEnabled, $flag ); }
+	function getCategoryLinks() {
+		return array_keys( $this->mCategories );
+	}
 
-	function addCategory( $c, $sort )    { $this->mCategories[$c] = $sort; }
-	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }
-	function addWarning( $s )            { $this->mWarnings[$s] = 1; }
+	function &getCategories() {
+		return $this->mCategories;
+	}
+
+	function getTitleText() {
+		return $this->mTitleText;
+	}
+
+	function getSections() {
+		return $this->mSections;
+	}
+
+	function getEditSectionTokens() {
+		return $this->mEditSectionTokens;
+	}
+
+	function &getLinks() {
+		return $this->mLinks;
+	}
+
+	function &getTemplates() {
+		return $this->mTemplates;
+	}
+
+	function &getTemplateIds() {
+		return $this->mTemplateIds;
+	}
+
+	function &getImages() {
+		return $this->mImages;
+	}
+
+	function &getFileSearchOptions() {
+		return $this->mFileSearchOptions;
+	}
+
+	function &getExternalLinks() {
+		return $this->mExternalLinks;
+	}
+
+	function getNoGallery() {
+		return $this->mNoGallery;
+	}
+
+	function getHeadItems() {
+		return $this->mHeadItems;
+	}
+
+	function getModules() {
+		return $this->mModules;
+	}
+
+	function getModuleScripts() {
+		return $this->mModuleScripts;
+	}
+
+	function getModuleStyles() {
+		return $this->mModuleStyles;
+	}
+
+	function getModuleMessages() {
+		return $this->mModuleMessages;
+	}
+
+	/** @since 1.23 */
+	function getJsConfigVars() {
+		return $this->mJsConfigVars;
+	}
+
+	function getOutputHooks() {
+		return (array)$this->mOutputHooks;
+	}
+
+	function getWarnings() {
+		return array_keys( $this->mWarnings );
+	}
+
+	function getIndexPolicy() {
+		return $this->mIndexPolicy;
+	}
+
+	function getTOCHTML() {
+		return $this->mTOCHTML;
+	}
+
+	function getTimestamp() {
+		return $this->mTimestamp;
+	}
+
+	function getLimitReportData() {
+		return $this->mLimitReportData;
+	}
+
+	function getTOCEnabled() {
+		return $this->mTOCEnabled;
+	}
+
+	function setText( $text ) {
+		return wfSetVar( $this->mText, $text );
+	}
+
+	function setLanguageLinks( $ll ) {
+		return wfSetVar( $this->mLanguageLinks, $ll );
+	}
+
+	function setCategoryLinks( $cl ) {
+		return wfSetVar( $this->mCategories, $cl );
+	}
+
+	function setTitleText( $t ) {
+		return wfSetVar( $this->mTitleText, $t );
+	}
+
+	function setSections( $toc ) {
+		return wfSetVar( $this->mSections, $toc );
+	}
+
+	function setEditSectionTokens( $t ) {
+		return wfSetVar( $this->mEditSectionTokens, $t );
+	}
+
+	function setIndexPolicy( $policy ) {
+		return wfSetVar( $this->mIndexPolicy, $policy );
+	}
+
+	function setTOCHTML( $tochtml ) {
+		return wfSetVar( $this->mTOCHTML, $tochtml );
+	}
+
+	function setTimestamp( $timestamp ) {
+		return wfSetVar( $this->mTimestamp, $timestamp );
+	}
+
+	function setTOCEnabled( $flag ) {
+		return wfSetVar( $this->mTOCEnabled, $flag );
+	}
+
+	function addCategory( $c, $sort ) {
+		$this->mCategories[$c] = $sort;
+	}
+
+	function addLanguageLink( $t ) {
+		$this->mLanguageLinks[] = $t;
+	}
+
+	function addWarning( $s ) {
+		$this->mWarnings[$s] = 1;
+	}
 
 	function addOutputHook( $hook, $data = false ) {
 		$this->mOutputHooks[] = array( $hook, $data );
@@ -178,8 +298,8 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Checks, if a url is pointing to the own server
 	 *
-	 * @param string $internal the server to check against
-	 * @param string $url the url to check
+	 * @param string $internal The server to check against
+	 * @param string $url The url to check
 	 * @return bool
 	 */
 	static function isLinkInternal( $internal, $url ) {
@@ -209,8 +329,8 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Record a local or interwiki inline link for saving in future link tables.
 	 *
-	 * @param $title Title object
-	 * @param $id Mixed: optional known page_id so we can skip the lookup
+	 * @param Title $title
+	 * @param int|null $id Optional known page_id so we can skip the lookup
 	 */
 	function addLink( Title $title, $id = null ) {
 		if ( $title->isExternal() ) {
@@ -244,7 +364,7 @@ class ParserOutput extends CacheTime {
 	 * Register a file dependency for this output
 	 * @param string $name Title dbKey
 	 * @param string $timestamp MW timestamp of file creation (or false if non-existing)
-	 * @param string $sha1 base 36 SHA-1 of file (or false if non-existing)
+	 * @param string $sha1 Base 36 SHA-1 of file (or false if non-existing)
 	 * @return void
 	 */
 	function addImage( $name, $timestamp = null, $sha1 = null ) {
@@ -256,9 +376,9 @@ class ParserOutput extends CacheTime {
 
 	/**
 	 * Register a template dependency for this output
-	 * @param $title Title
-	 * @param $page_id
-	 * @param $rev_id
+	 * @param Title $title
+	 * @param int $page_id
+	 * @param int $rev_id
 	 * @return void
 	 */
 	function addTemplate( $title, $page_id, $rev_id ) {
@@ -275,14 +395,14 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * @param $title Title object, must be an interwiki link
+	 * @param Title $title Title object, must be an interwiki link
 	 * @throws MWException if given invalid input
 	 */
 	function addInterwikiLink( $title ) {
-		$prefix = $title->getInterwiki();
-		if ( $prefix == '' ) {
+		if ( !$title->isExternal() ) {
 			throw new MWException( 'Non-interwiki link passed, internal parser error.' );
 		}
+		$prefix = $title->getInterwiki();
 		if ( !isset( $this->mInterwikiLinks[$prefix] ) ) {
 			$this->mInterwikiLinks[$prefix] = array();
 		}
@@ -293,6 +413,8 @@ class ParserOutput extends CacheTime {
 	 * Add some text to the "<head>".
 	 * If $tag is set, the section with that tag will only be included once
 	 * in a given page.
+	 * @param string $section
+	 * @param string|bool $tag
 	 */
 	function addHeadItem( $section, $tag = false ) {
 		if ( $tag !== false ) {
@@ -319,15 +441,34 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
+	 * Add one or more variables to be set in mw.config in JavaScript.
+	 *
+	 * @param string|array $keys Key or array of key/value pairs.
+	 * @param mixed $value [optional] Value of the configuration variable.
+	 * @since 1.23
+	 */
+	public function addJsConfigVars( $keys, $value = null ) {
+		if ( is_array( $keys ) ) {
+			foreach ( $keys as $key => $value ) {
+				$this->mJsConfigVars[$key] = $value;
+			}
+			return;
+		}
+
+		$this->mJsConfigVars[$keys] = $value;
+	}
+
+	/**
 	 * Copy items from the OutputPage object into this one
 	 *
-	 * @param $out OutputPage object
+	 * @param OutputPage $out
 	 */
 	public function addOutputPageMetadata( OutputPage $out ) {
 		$this->addModules( $out->getModules() );
 		$this->addModuleScripts( $out->getModuleScripts() );
 		$this->addModuleStyles( $out->getModuleStyles() );
 		$this->addModuleMessages( $out->getModuleMessages() );
+		$this->addJsConfigVars( $out->getJsConfigVars() );
 
 		$this->mHeadItems = array_merge( $this->mHeadItems, $out->getHeadItemsArray() );
 	}
@@ -347,7 +488,7 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Get the title to be used for display
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getDisplayTitle() {
 		$t = $this->getTitleText();
@@ -376,6 +517,9 @@ class ParserOutput extends CacheTime {
 	 * retrieved given the page ID or via a DB join when given the page
 	 * title.
 	 *
+	 * Since 1.23, page_props are also indexed by numeric value, to allow
+	 * for efficient "top k" queries of pages wrt a given property.
+	 *
 	 * setProperty() is thus used to propagate properties from the parsed
 	 * page to request contexts other than a page view of the currently parsed
 	 * article.
@@ -396,7 +540,7 @@ class ParserOutput extends CacheTime {
 	 * @note: Do not use setProperty() to set a property which is only used
 	 * in a context where the ParserOutput object itself is already available,
 	 * for example a normal page view. There is no need to save such a property
-	 * in the database since it the text is already parsed. You can just hook
+	 * in the database since the text is already parsed. You can just hook
 	 * OutputPageParserOutput and get your data out of the ParserOutput object.
 	 *
 	 * If you are writing an extension where you want to set a property in the
@@ -443,7 +587,7 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Returns the options from its ParserOptions which have been taken
 	 * into account to produce this output or false if not available.
-	 * @return mixed Array
+	 * @return array
 	 */
 	public function getUsedOptions() {
 		if ( !isset( $this->mAccessedOptions ) ) {
@@ -453,16 +597,24 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Callback passed by the Parser to the ParserOptions to keep track of which options are used.
-	 * @access private
+	 * Tags a parser option for use in the cache key for this parser output.
+	 * Registered as a watcher at ParserOptions::registerWatcher() by Parser::clearState().
+	 *
+	 * @see ParserCache::getKey
+	 * @see ParserCache::save
+	 * @see ParserOptions::addExtraKey
+	 * @see ParserOptions::optionsHash
+	 * @param string $option
 	 */
-	function recordOption( $option ) {
+	public function recordOption( $option ) {
 		$this->mAccessedOptions[$option] = true;
 	}
 
 	/**
-	 * Adds an update job to the output. Any update jobs added to the output will eventually bexecuted in order to
-	 * store any secondary information extracted from the page's content.
+	 * Adds an update job to the output. Any update jobs added to the output will
+	 * eventually be executed in order to store any secondary information extracted
+	 * from the page's content. This is triggered by calling getSecondaryDataUpdates()
+	 * and is used for forward links updates on edit and backlink updates by jobs.
 	 *
 	 * @since 1.20
 	 *
@@ -477,16 +629,16 @@ class ParserOutput extends CacheTime {
 	 * extracted from the page's content, including a LinksUpdate object for all links stored in
 	 * this ParserOutput object.
 	 *
-	 * @note: Avoid using this method directly, use ContentHandler::getSecondaryDataUpdates() instead! The content
-	 *        handler may provide additional update objects.
+	 * @note Avoid using this method directly, use ContentHandler::getSecondaryDataUpdates()
+	 *   instead! The content handler may provide additional update objects.
 	 *
 	 * @since 1.20
 	 *
-	 * @param $title Title The title of the page we're updating. If not given, a title object will be created
-	 *                      based on $this->getTitleText()
-	 * @param $recursive Boolean: queue jobs for recursive updates?
+	 * @param Title $title The title of the page we're updating. If not given, a title object will
+	 *    be created based on $this->getTitleText()
+	 * @param bool $recursive Queue jobs for recursive updates?
 	 *
-	 * @return Array. An array of instances of DataUpdate
+	 * @return array An array of instances of DataUpdate
 	 */
 	public function getSecondaryDataUpdates( Title $title = null, $recursive = true ) {
 		if ( is_null( $title ) ) {
@@ -533,11 +685,10 @@ class ParserOutput extends CacheTime {
 	 * @since 1.21
 	 *
 	 * @param string $key The key for accessing the data. Extensions should take care to avoid
-	 *               conflicts in naming keys. It is suggested to use the extension's name as a
-	 *               prefix.
+	 *   conflicts in naming keys. It is suggested to use the extension's name as a prefix.
 	 *
 	 * @param mixed $value The value to set. Setting a value to null is equivalent to removing
-	 *              the value.
+	 *   the value.
 	 */
 	public function setExtensionData( $key, $value ) {
 		if ( $value === null ) {
@@ -628,5 +779,15 @@ class ParserOutput extends CacheTime {
 	 */
 	function setLimitReportData( $key, $value ) {
 		$this->mLimitReportData[$key] = $value;
+	}
+
+	/**
+	 * Save space for for serialization by removing useless values
+	 */
+	function __sleep() {
+		return array_diff(
+			array_keys( get_object_vars( $this ) ),
+			array( 'mSecondaryDataUpdates', 'mParseStartTime' )
+		);
 	}
 }

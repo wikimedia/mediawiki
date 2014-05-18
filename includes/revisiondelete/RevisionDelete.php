@@ -28,10 +28,11 @@
  * 'archive' table for traditionally-deleted revisions that have an
  * ar_rev_id saved.
  *
- * See RevDel_RevisionItem and RevDel_ArchivedRevisionItem for items.
+ * See RevDelRevisionItem and RevDelArchivedRevisionItem for items.
  */
-class RevDel_RevisionList extends RevDel_List {
-	var $currentRevId;
+class RevDelRevisionList extends RevDelList {
+	/** @var int */
+	protected $currentRevId;
 
 	public function getType() {
 		return 'revision';
@@ -55,7 +56,7 @@ class RevDel_RevisionList extends RevDel_List {
 	}
 
 	/**
-	 * @param $db DatabaseBase
+	 * @param DatabaseBase $db
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {
@@ -80,7 +81,7 @@ class RevDel_RevisionList extends RevDel_List {
 		}
 
 		// Check if any requested revisions are available fully deleted.
-		$archived = $db->select( array( 'archive' ), '*',
+		$archived = $db->select( array( 'archive' ), Revision::selectArchiveFields(),
 			array(
 				'ar_rev_id' => $ids
 			),
@@ -108,12 +109,12 @@ class RevDel_RevisionList extends RevDel_List {
 
 	public function newItem( $row ) {
 		if ( isset( $row->rev_id ) ) {
-			return new RevDel_RevisionItem( $this, $row );
+			return new RevDelRevisionItem( $this, $row );
 		} elseif ( isset( $row->ar_rev_id ) ) {
-			return new RevDel_ArchivedRevisionItem( $this, $row );
+			return new RevDelArchivedRevisionItem( $this, $row );
 		} else {
 			// This shouldn't happen. :)
-			throw new MWException( 'Invalid row type in RevDel_RevisionList' );
+			throw new MWException( 'Invalid row type in RevDelRevisionList' );
 		}
 	}
 
@@ -146,8 +147,8 @@ class RevDel_RevisionList extends RevDel_List {
 /**
  * Item class for a live revision table row
  */
-class RevDel_RevisionItem extends RevDel_Item {
-	var $revision;
+class RevDelRevisionItem extends RevDelItem {
+	protected $revision;
 
 	public function __construct( $list, $row ) {
 		parent::__construct( $list, $row );
@@ -167,7 +168,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 	}
 
 	public function getAuthorNameField() {
-		return 'user_name'; // see Revision::selectUserFields()
+		return 'rev_user_text';
 	}
 
 	public function canView() {
@@ -225,7 +226,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 
 	/**
 	 * Get the HTML link to the revision text.
-	 * Overridden by RevDel_ArchiveItem.
+	 * Overridden by RevDelArchiveItem.
 	 * @return string
 	 */
 	protected function getRevisionLink() {
@@ -248,7 +249,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 
 	/**
 	 * Get the HTML link to the diff.
-	 * Overridden by RevDel_ArchiveItem
+	 * Overridden by RevDelArchiveItem
 	 * @return string
 	 */
 	protected function getDiffLink() {
@@ -279,12 +280,36 @@ class RevDel_RevisionItem extends RevDel_Item {
 		}
 		return "<li>$difflink $revlink $userlink $comment</li>";
 	}
+
+	public function getApiData( ApiResult $result ) {
+		$rev = $this->revision;
+		$user = $this->list->getUser();
+		$ret = array(
+			'id' => $rev->getId(),
+			'timestamp' => wfTimestamp( TS_ISO_8601, $rev->getTimestamp() ),
+		);
+		$ret += $rev->isDeleted( Revision::DELETED_USER ) ? array( 'userhidden' => '' ) : array();
+		$ret += $rev->isDeleted( Revision::DELETED_COMMENT ) ? array( 'commenthidden' => '' ) : array();
+		$ret += $rev->isDeleted( Revision::DELETED_TEXT ) ? array( 'texthidden' => '' ) : array();
+		if ( $rev->userCan( Revision::DELETED_USER, $user ) ) {
+			$ret += array(
+				'userid' => $rev->getUser( Revision::FOR_THIS_USER ),
+				'user' => $rev->getUserText( Revision::FOR_THIS_USER ),
+			);
+		}
+		if ( $rev->userCan( Revision::DELETED_COMMENT, $user ) ) {
+			$ret += array(
+				'comment' => $rev->getComment( Revision::FOR_THIS_USER ),
+			);
+		}
+		return $ret;
+	}
 }
 
 /**
  * List for archive table items, i.e. revisions deleted via action=delete
  */
-class RevDel_ArchiveList extends RevDel_RevisionList {
+class RevDelArchiveList extends RevDelRevisionList {
 	public function getType() {
 		return 'archive';
 	}
@@ -294,7 +319,7 @@ class RevDel_ArchiveList extends RevDel_RevisionList {
 	}
 
 	/**
-	 * @param $db DatabaseBase
+	 * @param DatabaseBase $db
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {
@@ -302,7 +327,7 @@ class RevDel_ArchiveList extends RevDel_RevisionList {
 		foreach ( $this->ids as $id ) {
 			$timestamps[] = $db->timestamp( $id );
 		}
-		return $db->select( 'archive', '*',
+		return $db->select( 'archive', Revision::selectArchiveFields(),
 				array(
 					'ar_namespace' => $this->title->getNamespace(),
 					'ar_title' => $this->title->getDBkey(),
@@ -314,7 +339,7 @@ class RevDel_ArchiveList extends RevDel_RevisionList {
 	}
 
 	public function newItem( $row ) {
-		return new RevDel_ArchiveItem( $this, $row );
+		return new RevDelArchiveItem( $this, $row );
 	}
 
 	public function doPreCommitUpdates() {
@@ -329,9 +354,9 @@ class RevDel_ArchiveList extends RevDel_RevisionList {
 /**
  * Item class for a archive table row
  */
-class RevDel_ArchiveItem extends RevDel_RevisionItem {
+class RevDelArchiveItem extends RevDelRevisionItem {
 	public function __construct( $list, $row ) {
-		RevDel_Item::__construct( $list, $row );
+		RevDelItem::__construct( $list, $row );
 		$this->revision = Revision::newFromArchiveRow( $row,
 			array( 'page' => $this->list->title->getArticleID() ) );
 	}
@@ -412,11 +437,11 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 
 /**
  * Item class for a archive table row by ar_rev_id -- actually
- * used via RevDel_RevisionList.
+ * used via RevDelRevisionList.
  */
-class RevDel_ArchivedRevisionItem extends RevDel_ArchiveItem {
+class RevDelArchivedRevisionItem extends RevDelArchiveItem {
 	public function __construct( $list, $row ) {
-		RevDel_Item::__construct( $list, $row );
+		RevDelItem::__construct( $list, $row );
 
 		$this->revision = Revision::newFromArchiveRow( $row,
 			array( 'page' => $this->list->title->getArticleID() ) );
@@ -445,7 +470,16 @@ class RevDel_ArchivedRevisionItem extends RevDel_ArchiveItem {
 /**
  * List for oldimage table items
  */
-class RevDel_FileList extends RevDel_List {
+class RevDelFileList extends RevDelList {
+	/** @var array */
+	protected $storeBatch;
+
+	/** @var array */
+	protected $deleteBatch;
+
+	/** @var array */
+	protected $cleanupBatch;
+
 	public function getType() {
 		return 'oldimage';
 	}
@@ -462,10 +496,8 @@ class RevDel_FileList extends RevDel_List {
 		return File::DELETED_FILE;
 	}
 
-	var $storeBatch, $deleteBatch, $cleanupBatch;
-
 	/**
-	 * @param $db DatabaseBase
+	 * @param DatabaseBase $db
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {
@@ -486,7 +518,7 @@ class RevDel_FileList extends RevDel_List {
 	}
 
 	public function newItem( $row ) {
-		return new RevDel_FileItem( $this, $row );
+		return new RevDelFileItem( $this, $row );
 	}
 
 	public function clearFileOps() {
@@ -544,12 +576,9 @@ class RevDel_FileList extends RevDel_List {
 /**
  * Item class for an oldimage table row
  */
-class RevDel_FileItem extends RevDel_Item {
-
-	/**
-	 * @var File
-	 */
-	var $file;
+class RevDelFileItem extends RevDelItem {
+	/** @var File */
+	protected $file;
 
 	public function __construct( $list, $row ) {
 		parent::__construct( $list, $row );
@@ -633,7 +662,7 @@ class RevDel_FileItem extends RevDel_Item {
 
 	/**
 	 * Get the link to the file.
-	 * Overridden by RevDel_ArchivedFileItem.
+	 * Overridden by RevDelArchivedFileItem.
 	 * @return string
 	 */
 	protected function getLink() {
@@ -663,6 +692,7 @@ class RevDel_FileItem extends RevDel_Item {
 		}
 		return '<span class="history-deleted">' . $link . '</span>';
 	}
+
 	/**
 	 * Generate a user tool link cluster if the current user is allowed to view it
 	 * @return string HTML
@@ -708,12 +738,56 @@ class RevDel_FileItem extends RevDel_Item {
 		return '<li>' . $this->getLink() . ' ' . $this->getUserTools() . ' ' .
 			$data . ' ' . $this->getComment() . '</li>';
 	}
+
+	public function getApiData( ApiResult $result ) {
+		$file = $this->file;
+		$user = $this->list->getUser();
+		$ret = array(
+			'title' => $this->list->title->getPrefixedText(),
+			'archivename' => $file->getArchiveName(),
+			'timestamp' => wfTimestamp( TS_ISO_8601, $file->getTimestamp() ),
+			'width' => $file->getWidth(),
+			'height' => $file->getHeight(),
+			'size' => $file->getSize(),
+		);
+		$ret += $file->isDeleted( Revision::DELETED_USER ) ? array( 'userhidden' => '' ) : array();
+		$ret += $file->isDeleted( Revision::DELETED_COMMENT ) ? array( 'commenthidden' => '' ) : array();
+		$ret += $this->isDeleted() ? array( 'contenthidden' => '' ) : array();
+		if ( !$this->isDeleted() ) {
+			$ret += array(
+				'url' => $file->getUrl(),
+			);
+		} elseif ( $this->canViewContent() ) {
+			$ret += array(
+				'url' => SpecialPage::getTitleFor( 'Revisiondelete' )->getLinkURL(
+					array(
+						'target' => $this->list->title->getPrefixedText(),
+						'file' => $file->getArchiveName(),
+						'token' => $user->getEditToken( $file->getArchiveName() )
+					),
+					false, PROTO_RELATIVE
+				),
+			);
+		}
+		if ( $file->userCan( Revision::DELETED_USER, $user ) ) {
+			$ret += array(
+				'userid' => $file->user,
+				'user' => $file->user_text,
+			);
+		}
+		if ( $file->userCan( Revision::DELETED_COMMENT, $user ) ) {
+			$ret += array(
+				'comment' => $file->description,
+			);
+		}
+		return $ret;
+	}
 }
 
 /**
  * List for filearchive table items
  */
-class RevDel_ArchivedFileList extends RevDel_FileList {
+class RevDelArchivedFileList extends RevDelFileList {
 	public function getType() {
 		return 'filearchive';
 	}
@@ -723,7 +797,7 @@ class RevDel_ArchivedFileList extends RevDel_FileList {
 	}
 
 	/**
-	 * @param $db DatabaseBase
+	 * @param DatabaseBase $db
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {
@@ -741,16 +815,16 @@ class RevDel_ArchivedFileList extends RevDel_FileList {
 	}
 
 	public function newItem( $row ) {
-		return new RevDel_ArchivedFileItem( $this, $row );
+		return new RevDelArchivedFileItem( $this, $row );
 	}
 }
 
 /**
  * Item class for a filearchive table row
  */
-class RevDel_ArchivedFileItem extends RevDel_FileItem {
+class RevDelArchivedFileItem extends RevDelFileItem {
 	public function __construct( $list, $row ) {
-		RevDel_Item::__construct( $list, $row );
+		RevDelItem::__construct( $list, $row );
 		$this->file = ArchivedFile::newFromRow( $row );
 	}
 
@@ -815,7 +889,7 @@ class RevDel_ArchivedFileItem extends RevDel_FileItem {
 /**
  * List for logging table items
  */
-class RevDel_LogList extends RevDel_List {
+class RevDelLogList extends RevDelList {
 	public function getType() {
 		return 'logging';
 	}
@@ -847,12 +921,25 @@ class RevDel_LogList extends RevDel_List {
 	}
 
 	/**
-	 * @param $db DatabaseBase
+	 * @param DatabaseBase $db
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
-		return $db->select( 'logging', '*',
+		return $db->select( 'logging', array(
+				'log_id',
+				'log_type',
+				'log_action',
+				'log_timestamp',
+				'log_user',
+				'log_user_text',
+				'log_namespace',
+				'log_title',
+				'log_page',
+				'log_comment',
+				'log_params',
+				'log_deleted'
+			),
 			array( 'log_id' => $ids ),
 			__METHOD__,
 			array( 'ORDER BY' => 'log_id DESC' )
@@ -860,7 +947,7 @@ class RevDel_LogList extends RevDel_List {
 	}
 
 	public function newItem( $row ) {
-		return new RevDel_LogItem( $this, $row );
+		return new RevDelLogItem( $this, $row );
 	}
 
 	public function getSuppressBit() {
@@ -883,7 +970,7 @@ class RevDel_LogList extends RevDel_List {
 /**
  * Item class for a logging table row
  */
-class RevDel_LogItem extends RevDel_Item {
+class RevDelLogItem extends RevDelItem {
 	public function getIdField() {
 		return 'log_id';
 	}
@@ -955,11 +1042,56 @@ class RevDel_LogItem extends RevDel_Item {
 		// User links and action text
 		$action = $formatter->getActionText();
 		// Comment
-		$comment = $this->list->getLanguage()->getDirMark() . Linker::commentBlock( $this->row->log_comment );
+		$comment = $this->list->getLanguage()->getDirMark()
+			. Linker::commentBlock( $this->row->log_comment );
+
 		if ( LogEventsList::isDeleted( $this->row, LogPage::DELETED_COMMENT ) ) {
 			$comment = '<span class="history-deleted">' . $comment . '</span>';
 		}
 
 		return "<li>$loglink $date $action $comment</li>";
+	}
+
+	public function getApiData( ApiResult $result ) {
+		$logEntry = DatabaseLogEntry::newFromRow( $this->row );
+		$user = $this->list->getUser();
+		$ret = array(
+			'id' => $logEntry->getId(),
+			'type' => $logEntry->getType(),
+			'action' => $logEntry->getSubtype(),
+		);
+		$ret += $logEntry->isDeleted( LogPage::DELETED_USER )
+			? array( 'userhidden' => '' )
+			: array();
+		$ret += $logEntry->isDeleted( LogPage::DELETED_COMMENT )
+			? array( 'commenthidden' => '' )
+			: array();
+		$ret += $logEntry->isDeleted( LogPage::DELETED_ACTION )
+			? array( 'actionhidden' => '' )
+			: array();
+
+		if ( LogEventsList::userCan( $this->row, LogPage::DELETED_ACTION, $user ) ) {
+			ApiQueryLogEvents::addLogParams(
+				$result,
+				$ret,
+				$logEntry->getParameters(),
+				$logEntry->getType(),
+				$logEntry->getSubtype(),
+				$logEntry->getTimestamp(),
+				$logEntry->isLegacy()
+			);
+		}
+		if ( LogEventsList::userCan( $this->row, LogPage::DELETED_USER, $user ) ) {
+			$ret += array(
+				'userid' => $this->row->log_user,
+				'user' => $this->row->log_user_text,
+			);
+		}
+		if ( LogEventsList::userCan( $this->row, LogPage::DELETED_COMMENT, $user ) ) {
+			$ret += array(
+				'comment' => $this->row->log_comment,
+			);
+		}
+		return $ret;
 	}
 }

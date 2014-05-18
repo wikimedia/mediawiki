@@ -29,7 +29,6 @@ require_once __DIR__ . '/Benchmarker.php';
  * @ingroup Benchmark
  */
 class BenchmarkHooks extends Benchmarker {
-
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = 'Benchmark MediaWiki Hooks.';
@@ -46,13 +45,13 @@ class BenchmarkHooks extends Benchmarker {
 		$time = $this->benchHooks();
 		$this->output( 'Loaded (one) hook: ' . $time . "\n" );
 
-		for( $i = 0; $i < 9; $i++ ) {
+		for ( $i = 0; $i < 9; $i++ ) {
 			$wgHooks['Test'][] = array( $this, 'test' );
 		}
 		$time = $this->benchHooks();
 		$this->output( 'Loaded (ten) hook: ' . $time . "\n" );
 
-		for( $i = 0; $i < 90; $i++ ) {
+		for ( $i = 0; $i < 90; $i++ ) {
 			$wgHooks['Test'][] = array( $this, 'test' );
 		}
 		$time = $this->benchHooks();
@@ -61,7 +60,7 @@ class BenchmarkHooks extends Benchmarker {
 	}
 
 	/**
-	 * @param $trials int
+	 * @param int $trials
 	 * @return string
 	 */
 	private function benchHooks( $trials = 10 ) {
@@ -71,6 +70,7 @@ class BenchmarkHooks extends Benchmarker {
 		}
 		$delta = microtime( true ) - $start;
 		$pertrial = $delta / $trials;
+
 		return sprintf( "Took %6.3fms",
 			$pertrial * 1000 );
 	}

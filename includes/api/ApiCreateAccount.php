@@ -83,6 +83,7 @@ class ApiCreateAccount extends ApiBase {
 
 		$loginForm = new LoginForm();
 		$loginForm->setContext( $context );
+		wfRunHooks( 'AddNewAccountApiForm', array( $this, $loginForm ) );
 		$loginForm->load();
 
 		$status = $loginForm->addNewaccountInternal();
@@ -137,13 +138,13 @@ class ApiCreateAccount extends ApiBase {
 			// since not having the correct token is part of the normal
 			// flow of events.
 			$result['token'] = LoginForm::getCreateaccountToken();
-			$result['result'] = 'needtoken';
+			$result['result'] = 'NeedToken';
 		} elseif ( !$status->isOK() ) {
 			// There was an error. Die now.
 			$this->dieStatus( $status );
 		} elseif ( !$status->isGood() ) {
 			// Status is not good, but OK. This means warnings.
-			$result['result'] = 'warning';
+			$result['result'] = 'Warning';
 
 			// Add any warnings to the result
 			$warnings = $status->getErrorsByType( 'warning' );
@@ -156,8 +157,11 @@ class ApiCreateAccount extends ApiBase {
 			}
 		} else {
 			// Everything was fine.
-			$result['result'] = 'success';
+			$result['result'] = 'Success';
 		}
+
+		// Give extensions a chance to modify the API result data
+		wfRunHooks( 'AddNewAccountApiResult', array( $this, $loginForm, &$result ) );
 
 		$apiResult->addValue( null, 'createaccount', $result );
 	}
@@ -225,9 +229,9 @@ class ApiCreateAccount extends ApiBase {
 			'createaccount' => array(
 				'result' => array(
 					ApiBase::PROP_TYPE => array(
-						'success',
-						'warning',
-						'needtoken'
+						'Success',
+						'Warning',
+						'NeedToken'
 					)
 				),
 				'username' => array(

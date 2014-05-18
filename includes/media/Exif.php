@@ -319,13 +319,13 @@ class Exif {
 		$this->mFilteredExifData = array();
 
 		foreach ( array_keys( $this->mRawExifData ) as $section ) {
-			if ( !in_array( $section, array_keys( $this->mExifTags ) ) ) {
+			if ( !array_key_exists( $section, $this->mExifTags ) ) {
 				$this->debug( $section, __FUNCTION__, "'$section' is not a valid Exif section" );
 				continue;
 			}
 
 			foreach ( array_keys( $this->mRawExifData[$section] ) as $tag ) {
-				if ( !in_array( $tag, array_keys( $this->mExifTags[$section] ) ) ) {
+				if ( !array_key_exists( $tag, $this->mExifTags[$section] ) ) {
 					$this->debug( $tag, __FUNCTION__, "'$tag' is not a valid tag in '$section'" );
 					continue;
 				}
@@ -829,13 +829,13 @@ class Exif {
 		}
 
 		if ( $action === true ) {
-			wfDebugLog( $this->log, "$class::$fname: accepted: '$in' (type: $type)\n" );
+			wfDebugLog( $this->log, "$class::$fname: accepted: '$in' (type: $type)" );
 		} elseif ( $action === false ) {
-			wfDebugLog( $this->log, "$class::$fname: rejected: '$in' (type: $type)\n" );
+			wfDebugLog( $this->log, "$class::$fname: rejected: '$in' (type: $type)" );
 		} elseif ( $action === null ) {
-			wfDebugLog( $this->log, "$class::$fname: input was: '$in' (type: $type)\n" );
+			wfDebugLog( $this->log, "$class::$fname: input was: '$in' (type: $type)" );
 		} else {
-			wfDebugLog( $this->log, "$class::$fname: $action (type: $type; content: '$in')\n" );
+			wfDebugLog( $this->log, "$class::$fname: $action (type: $type; content: '$in')" );
 		}
 	}
 
@@ -851,9 +851,9 @@ class Exif {
 		}
 		$class = ucfirst( __CLASS__ );
 		if ( $io ) {
-			wfDebugLog( $this->log, "$class::$fname: begin processing: '{$this->basename}'\n" );
+			wfDebugLog( $this->log, "$class::$fname: begin processing: '{$this->basename}'" );
 		} else {
-			wfDebugLog( $this->log, "$class::$fname: end processing: '{$this->basename}'\n" );
+			wfDebugLog( $this->log, "$class::$fname: end processing: '{$this->basename}'" );
 		}
 	}
 }

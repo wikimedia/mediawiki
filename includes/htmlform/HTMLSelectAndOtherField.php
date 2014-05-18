@@ -16,66 +16,20 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		} elseif ( array_key_exists( 'other-message', $params ) ) {
 			$params['other'] = wfMessage( $params['other-message'] )->plain();
 		} else {
-			$params['other'] = null;
+			$params['other'] = wfMessage( 'htmlform-selectorother-other' )->plain();
 		}
 
-		if ( array_key_exists( 'options', $params ) ) {
-			# Options array already specified
-		} elseif ( array_key_exists( 'options-message', $params ) ) {
-			# Generate options array from a system message
-			$params['options'] =
-				self::parseMessage( wfMessage( $params['options-message'] )->inContentLanguage()->plain(),
-					$params['other'] );
-		} else {
+		parent::__construct( $params );
+
+		if ( $this->getOptions() === null ) {
 			# Sulk
 			throw new MWException( 'HTMLSelectAndOtherField called without any options' );
 		}
-		$this->mFlatOptions = self::flattenOptions( $params['options'] );
-
-		parent::__construct( $params );
-	}
-
-	/**
-	 * Build a drop-down box from a textual list.
-	 *
-	 * @param string $string message text
-	 * @param string $otherName name of "other reason" option
-	 *
-	 * @return Array
-	 * @todo This is copied from Xml::listDropDown(), deprecate/avoid duplication?
-	 */
-	public static function parseMessage( $string, $otherName = null ) {
-		if ( $otherName === null ) {
-			$otherName = wfMessage( 'htmlform-selectorother-other' )->plain();
+		if ( !in_array( 'other', $this->mOptions, true ) ) {
+			$this->mOptions[$params['other']] = 'other';
 		}
+		$this->mFlatOptions = self::flattenOptions( $this->getOptions() );
 
-		$optgroup = false;
-		$options = array( $otherName => 'other' );
-
-		foreach ( explode( "\n", $string ) as $option ) {
-			$value = trim( $option );
-			if ( $value == '' ) {
-				continue;
-			} elseif ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
-				# A new group is starting...
-				$value = trim( substr( $value, 1 ) );
-				$optgroup = $value;
-			} elseif ( substr( $value, 0, 2 ) == '**' ) {
-				# groupmember
-				$opt = trim( substr( $value, 2 ) );
-				if ( $optgroup === false ) {
-					$options[$opt] = $opt;
-				} else {
-					$options[$optgroup][$opt] = $opt;
-				}
-			} else {
-				# groupless reason list
-				$optgroup = false;
-				$options[$option] = $option;
-			}
-		}
-
-		return $options;
 	}
 
 	function getInputHTML( $value ) {
@@ -90,11 +44,15 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			$textAttribs['class'] = $this->mClass;
 		}
 
-		foreach ( array( 'required', 'autofocus', 'multiple', 'disabled' ) as $param ) {
-			if ( isset( $this->mParams[$param] ) ) {
-				$textAttribs[$param] = '';
-			}
-		}
+		$allowedParams = array(
+			'required',
+			'autofocus',
+			'multiple',
+			'disabled',
+			'tabindex'
+		);
+
+		$textAttribs += $this->getAttributes( $allowedParams );
 
 		$textbox = Html::input( $this->mName . '-other', $value[2], 'text', $textAttribs );
 
@@ -102,9 +60,9 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	}
 
 	/**
-	 * @param  $request WebRequest
+	 * @param WebRequest $request
 	 *
-	 * @return Array("<overall message>","<select value>","<text field value>")
+	 * @return array("<overall message>","<select value>","<text field value>")
 	 */
 	function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {
@@ -114,7 +72,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 
 			if ( $list == 'other' ) {
 				$final = $text;
-			} elseif ( !in_array( $list, $this->mFlatOptions ) ) {
+			} elseif ( !in_array( $list, $this->mFlatOptions, true ) ) {
 				# User has spoofed the select form to give an option which wasn't
 				# in the original offer.  Sulk...
 				$final = $text;

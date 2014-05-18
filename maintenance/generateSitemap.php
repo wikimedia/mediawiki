@@ -63,7 +63,8 @@ class GenerateSitemap extends Maintenance {
 	public $fspath;
 
 	/**
-	 * The URL path to prepend to filenames in the index; should resolve to the same directory as $fspath
+	 * The URL path to prepend to filenames in the index;
+	 * should resolve to the same directory as $fspath.
 	 *
 	 * @var string
 	 */
@@ -145,11 +146,32 @@ class GenerateSitemap extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Creates a sitemap for the site";
-		$this->addOption( 'fspath', 'The file system path to save to, e.g. /tmp/sitemap; defaults to current directory', false, true );
-		$this->addOption( 'urlpath', 'The URL path corresponding to --fspath, prepended to filenames in the index; defaults to an empty string', false, true );
-		$this->addOption( 'compress', 'Compress the sitemap files, can take value yes|no, default yes', false, true );
+		$this->addOption(
+			'fspath',
+			'The file system path to save to, e.g. /tmp/sitemap; defaults to current directory',
+			false,
+			true
+		);
+		$this->addOption(
+			'urlpath',
+			'The URL path corresponding to --fspath, prepended to filenames in the index; '
+				. 'defaults to an empty string',
+			false,
+			true
+		);
+		$this->addOption(
+			'compress',
+			'Compress the sitemap files, can take value yes|no, default yes',
+			false,
+			true
+		);
 		$this->addOption( 'skip-redirects', 'Do not include redirecting articles in the sitemap' );
-		$this->addOption( 'identifier', 'What site identifier to use for the wiki, defaults to $wgDBname', false, true );
+		$this->addOption(
+			'identifier',
+			'What site identifier to use for the wiki, defaults to $wgDBname',
+			false,
+			true
+		);
 	}
 
 	/**
@@ -218,7 +240,7 @@ class GenerateSitemap extends Maintenance {
 
 	/**
 	 * Create directory if it does not exist and return pathname with a trailing slash
-	 * @param $fspath string
+	 * @param string $fspath
 	 * @return null|string
 	 */
 	private static function init_path( $fspath ) {
@@ -241,6 +263,7 @@ class GenerateSitemap extends Maintenance {
 		global $wgSitemapNamespaces;
 		if ( is_array( $wgSitemapNamespaces ) ) {
 			$this->namespaces = $wgSitemapNamespaces;
+
 			return;
 		}
 
@@ -262,11 +285,13 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Get the priority of a given namespace
 	 *
-	 * @param $namespace Integer: the namespace to get the priority for
-	 * @return String
+	 * @param int $namespace The namespace to get the priority for
+	 * @return string
 	 */
 	function priority( $namespace ) {
-		return isset( $this->priorities[$namespace] ) ? $this->priorities[$namespace] : $this->guessPriority( $namespace );
+		return isset( $this->priorities[$namespace] )
+			? $this->priorities[$namespace]
+			: $this->guessPriority( $namespace );
 	}
 
 	/**
@@ -274,17 +299,19 @@ class GenerateSitemap extends Maintenance {
 	 * default priority for the namespace, varies depending on whether it's
 	 * a talkpage or not.
 	 *
-	 * @param $namespace Integer: the namespace to get the priority for
-	 * @return String
+	 * @param int $namespace The namespace to get the priority for
+	 * @return string
 	 */
 	function guessPriority( $namespace ) {
-		return MWNamespace::isSubject( $namespace ) ? $this->priorities[self::GS_MAIN] : $this->priorities[self::GS_TALK];
+		return MWNamespace::isSubject( $namespace )
+			? $this->priorities[self::GS_MAIN]
+			: $this->priorities[self::GS_TALK];
 	}
 
 	/**
 	 * Return a database resolution of all the pages in a given namespace
 	 *
-	 * @param $namespace Integer: limit the query to this namespace
+	 * @param int $namespace Limit the query to this namespace
 	 * @return Resource
 	 */
 	function getPageRes( $namespace ) {
@@ -317,14 +344,17 @@ class GenerateSitemap extends Maintenance {
 
 			$fns = $wgContLang->getFormattedNsText( $namespace );
 			$this->output( "$namespace ($fns)\n" );
-			$skippedRedirects = 0;  // Number of redirects skipped for that namespace
+			$skippedRedirects = 0; // Number of redirects skipped for that namespace
 			foreach ( $res as $row ) {
 				if ( $this->skipRedirects && $row->page_is_redirect ) {
 					$skippedRedirects++;
 					continue;
 				}
 
-				if ( $i++ === 0 || $i === $this->url_limit + 1 || $length + $this->limit[1] + $this->limit[2] > $this->size_limit ) {
+				if ( $i++ === 0
+					|| $i === $this->url_limit + 1
+					|| $length + $this->limit[1] + $this->limit[2] > $this->size_limit
+				) {
 					if ( $this->file !== false ) {
 						$this->write( $this->file, $this->closeFile() );
 						$this->close( $this->file );
@@ -349,7 +379,11 @@ class GenerateSitemap extends Maintenance {
 						if ( $vCode == $wgContLang->getCode() ) {
 							continue; // we don't want default variant
 						}
-						$entry = $this->fileEntry( $title->getCanonicalURL( '', $vCode ), $date, $this->priority( $namespace ) );
+						$entry = $this->fileEntry(
+							$title->getCanonicalURL( '', $vCode ),
+							$date,
+							$this->priority( $namespace )
+						);
 						$length += strlen( $entry );
 						$this->write( $this->file, $entry );
 					}
@@ -372,18 +406,25 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * gzopen() / fopen() wrapper
 	 *
-	 * @return Resource
+	 * @param string $file
+	 * @param string $flags
+	 * @return resource
 	 */
 	function open( $file, $flags ) {
 		$resource = $this->compress ? gzopen( $file, $flags ) : fopen( $file, $flags );
 		if ( $resource === false ) {
-			throw new MWException( __METHOD__ . " error opening file $file with flags $flags. Check permissions?" );
+			throw new MWException( __METHOD__
+				. " error opening file $file with flags $flags. Check permissions?" );
 		}
+
 		return $resource;
 	}
 
 	/**
 	 * gzwrite() / fwrite() wrapper
+	 *
+	 * @param resource $handle
+	 * @param string $str
 	 */
 	function write( &$handle, $str ) {
 		if ( $handle === true || $handle === false ) {
@@ -398,6 +439,8 @@ class GenerateSitemap extends Maintenance {
 
 	/**
 	 * gzclose() / fclose() wrapper
+	 *
+	 * @param resource $handle
 	 */
 	function close( &$handle ) {
 		if ( $this->compress ) {
@@ -410,12 +453,13 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Get a sitemap filename
 	 *
-	 * @param $namespace Integer: the namespace
-	 * @param $count Integer: the count
-	 * @return String
+	 * @param int $namespace The namespace
+	 * @param int $count The count
+	 * @return string
 	 */
 	function sitemapFilename( $namespace, $count ) {
 		$ext = $this->compress ? '.gz' : '';
+
 		return "sitemap-{$this->identifier}-NS_$namespace-$count.xml$ext";
 	}
 
@@ -431,7 +475,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML schema being used
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function xmlSchema() {
 		return 'http://www.sitemaps.org/schemas/sitemap/0.9';
@@ -440,7 +484,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML required to open a sitemap index file
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function openIndex() {
 		return $this->xmlHead() . '<sitemapindex xmlns="' . $this->xmlSchema() . '">' . "\n";
@@ -449,8 +493,8 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML for a single sitemap indexfile entry
 	 *
-	 * @param $filename String: the filename of the sitemap file
-	 * @return String
+	 * @param string $filename The filename of the sitemap file
+	 * @return string
 	 */
 	function indexEntry( $filename ) {
 		return
@@ -463,7 +507,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML required to close a sitemap index file
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function closeIndex() {
 		return "</sitemapindex>\n";
@@ -472,7 +516,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML required to open a sitemap file
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function openFile() {
 		return $this->xmlHead() . '<urlset xmlns="' . $this->xmlSchema() . '">' . "\n";
@@ -481,10 +525,10 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML for a single sitemap entry
 	 *
-	 * @param $url String: an RFC 2396 compliant URL
-	 * @param $date String: a ISO 8601 date
-	 * @param $priority String: a priority indicator, 0.0 - 1.0 inclusive with a 0.1 stepsize
-	 * @return String
+	 * @param string $url An RFC 2396 compliant URL
+	 * @param string $date A ISO 8601 date
+	 * @param string $priority A priority indicator, 0.0 - 1.0 inclusive with a 0.1 stepsize
+	 * @return string
 	 */
 	function fileEntry( $url, $date, $priority ) {
 		return
@@ -499,7 +543,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Return the XML required to close sitemap file
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function closeFile() {
 		return "</urlset>\n";
@@ -507,6 +551,8 @@ class GenerateSitemap extends Maintenance {
 
 	/**
 	 * Populate $this->limit
+	 *
+	 * @param int $namespace
 	 */
 	function generateLimit( $namespace ) {
 		// bug 17961: make a title with the longest possible URL in this namespace
@@ -514,7 +560,11 @@ class GenerateSitemap extends Maintenance {
 
 		$this->limit = array(
 			strlen( $this->openFile() ),
-			strlen( $this->fileEntry( $title->getCanonicalURL(), wfTimestamp( TS_ISO_8601, wfTimestamp() ), $this->priority( $namespace ) ) ),
+			strlen( $this->fileEntry(
+				$title->getCanonicalURL(),
+				wfTimestamp( TS_ISO_8601, wfTimestamp() ),
+				$this->priority( $namespace )
+			) ),
 			strlen( $this->closeFile() )
 		);
 	}

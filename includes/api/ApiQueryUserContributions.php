@@ -31,7 +31,7 @@
  */
 class ApiQueryContributions extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'uc' );
 	}
 
@@ -55,6 +55,11 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->fld_timestamp = isset( $prop['timestamp'] );
 		$this->fld_patrolled = isset( $prop['patrolled'] );
 		$this->fld_tags = isset( $prop['tags'] );
+
+		// Most of this code will use the 'contributions' group DB, which can map to slaves
+		// with extra user based indexes or partioning by user. The additional metadata
+		// queries should use a regular slave since the lookup pattern is not all by user.
+		$dbSecondary = $this->getDB(); // any random slave
 
 		// TODO: if the query is going only against the revision table, should this be done?
 		$this->selectNamedDB( 'contributions', DB_SLAVE, 'contributions' );
@@ -90,7 +95,7 @@ class ApiQueryContributions extends ApiQueryBase {
 					$revIds[] = $row->rev_parent_id;
 				}
 			}
-			$this->parentLens = Revision::getParentLengths( $this->getDB(), $revIds );
+			$this->parentLens = Revision::getParentLengths( $dbSecondary, $revIds );
 			$res->rewind(); // reset
 		}
 
@@ -103,22 +108,14 @@ class ApiQueryContributions extends ApiQueryBase {
 			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are
 				// additional pages to be had. Stop here...
-				if ( $this->multiUserMode ) {
-					$this->setContinueEnumParameter( 'continue', $this->continueStr( $row ) );
-				} else {
-					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->rev_timestamp ) );
-				}
+				$this->setContinueEnumParameter( 'continue', $this->continueStr( $row ) );
 				break;
 			}
 
 			$vals = $this->extractRowInfo( $row );
 			$fit = $this->getResult()->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 			if ( !$fit ) {
-				if ( $this->multiUserMode ) {
-					$this->setContinueEnumParameter( 'continue', $this->continueStr( $row ) );
-				} else {
-					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->rev_timestamp ) );
-				}
+				$this->setContinueEnumParameter( 'continue', $this->continueStr( $row ) );
 				break;
 			}
 		}
@@ -133,7 +130,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	 * Validate the 'user' parameter and set the value to compare
 	 * against `revision`.`rev_user_text`
 	 *
-	 * @param $user string
+	 * @param string $user
 	 */
 	private function prepareUsername( $user ) {
 		if ( !is_null( $user ) && $user !== '' ) {
@@ -162,23 +159,49 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addWhere( 'page_id=rev_page' );
 
 		// Handle continue parameter
-		if ( $this->multiUserMode && !is_null( $this->params['continue'] ) ) {
+		if ( !is_null( $this->params['continue'] ) ) {
 			$continue = explode( '|', $this->params['continue'] );
-			$this->dieContinueUsageIf( count( $continue ) != 2 );
 			$db = $this->getDB();
-			$encUser = $db->addQuotes( $continue[0] );
-			$encTS = $db->addQuotes( $db->timestamp( $continue[1] ) );
+			if ( $this->multiUserMode ) {
+				$this->dieContinueUsageIf( count( $continue ) != 3 );
+				$encUser = $db->addQuotes( array_shift( $continue ) );
+			} else {
+				$this->dieContinueUsageIf( count( $continue ) != 2 );
+			}
+			$encTS = $db->addQuotes( $db->timestamp( $continue[0] ) );
+			$encId = (int)$continue[1];
+			$this->dieContinueUsageIf( $encId != $continue[1] );
 			$op = ( $this->params['dir'] == 'older' ? '<' : '>' );
-			$this->addWhere(
-				"rev_user_text $op $encUser OR " .
-				"(rev_user_text = $encUser AND " .
-				"rev_timestamp $op= $encTS)"
-			);
+			if ( $this->multiUserMode ) {
+				$this->addWhere(
+					"rev_user_text $op $encUser OR " .
+					"(rev_user_text = $encUser AND " .
+					"(rev_timestamp $op $encTS OR " .
+					"(rev_timestamp = $encTS AND " .
+					"rev_id $op= $encId)))"
+				);
+			} else {
+				$this->addWhere(
+					"rev_timestamp $op $encTS OR " .
+					"(rev_timestamp = $encTS AND " .
+					"rev_id $op= $encId)"
+				);
+			}
 		}
 
-		if ( !$user->isAllowed( 'hideuser' ) ) {
-			$this->addWhere( $this->getDB()->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
+		// Don't include any revisions where we're not supposed to be able to
+		// see the username.
+		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+			$bitmask = Revision::DELETED_USER;
+		} elseif ( !$user->isAllowed( 'suppressrevision' ) ) {
+			$bitmask = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
+		} else {
+			$bitmask = 0;
 		}
+		if ( $bitmask ) {
+			$this->addWhere( $this->getDB()->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask" );
+		}
+
 		// We only want pages by the specified users.
 		if ( $this->prefixMode ) {
 			$this->addWhere( 'rev_user_text' .
@@ -194,13 +217,22 @@ class ApiQueryContributions extends ApiQueryBase {
 		}
 		$this->addTimestampWhereRange( 'rev_timestamp',
 			$this->params['dir'], $this->params['start'], $this->params['end'] );
+		// Include in ORDER BY for uniqueness
+		$this->addWhereRange( 'rev_id', $this->params['dir'], null, null );
+
 		$this->addWhereFld( 'page_namespace', $this->params['namespace'] );
 
 		$show = $this->params['show'];
+		if ( $this->params['toponly'] ) { // deprecated/old param
+			$show[] = 'top';
+		}
 		if ( !is_null( $show ) ) {
 			$show = array_flip( $show );
+
 			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
 				|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
+				|| ( isset( $show['top'] ) && isset( $show['!top'] ) )
+				|| ( isset( $show['new'] ) && isset( $show['!new'] ) )
 			) {
 				$this->dieUsageMsg( 'show' );
 			}
@@ -209,6 +241,10 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->addWhereIf( 'rev_minor_edit != 0', isset( $show['minor'] ) );
 			$this->addWhereIf( 'rc_patrolled = 0', isset( $show['!patrolled'] ) );
 			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
+			$this->addWhereIf( 'rev_id != page_latest', isset( $show['!top'] ) );
+			$this->addWhereIf( 'rev_id = page_latest', isset( $show['top'] ) );
+			$this->addWhereIf( 'rev_parent_id != 0', isset( $show['!new'] ) );
+			$this->addWhereIf( 'rev_parent_id = 0', isset( $show['new'] ) );
 		}
 		$this->addOption( 'LIMIT', $this->params['limit'] + 1 );
 		$index = array( 'revision' => 'usertext_timestamp' );
@@ -217,6 +253,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		// ns+title checks if the user has access rights for this page
 		// user_text is necessary if multiple users were specified
 		$this->addFields( array(
+			'rev_id',
 			'rev_timestamp',
 			'page_namespace',
 			'page_title',
@@ -259,7 +296,6 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		$this->addTables( $tables );
 		$this->addFieldsIf( 'rev_page', $this->fld_ids );
-		$this->addFieldsIf( 'rev_id', $this->fld_ids || $this->fld_flags );
 		$this->addFieldsIf( 'page_latest', $this->fld_flags );
 		// $this->addFieldsIf( 'rev_text_id', $this->fld_ids ); // Should this field be exposed?
 		$this->addFieldsIf( 'rev_comment', $this->fld_comment || $this->fld_parsedcomment );
@@ -284,26 +320,30 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->addWhereFld( 'ct_tag', $this->params['tag'] );
 		}
 
-		if ( $this->params['toponly'] ) {
-			$this->addWhere( 'rev_id = page_latest' );
-		}
-
 		$this->addOption( 'USE INDEX', $index );
 	}
 
 	/**
 	 * Extract fields from the database row and append them to a result array
 	 *
-	 * @param $row
+	 * @param mixed $row
 	 * @return array
 	 */
 	private function extractRowInfo( $row ) {
 		$vals = array();
+		$anyHidden = false;
 
+		if ( $row->rev_deleted & Revision::DELETED_TEXT ) {
+			$vals['texthidden'] = '';
+			$anyHidden = true;
+		}
+
+		// Any rows where we can't view the user were filtered out in the query.
 		$vals['userid'] = $row->rev_user;
 		$vals['user'] = $row->rev_user_text;
 		if ( $row->rev_deleted & Revision::DELETED_USER ) {
 			$vals['userhidden'] = '';
+			$anyHidden = true;
 		}
 		if ( $this->fld_ids ) {
 			$vals['pageid'] = intval( $row->rev_page );
@@ -340,7 +380,15 @@ class ApiQueryContributions extends ApiQueryBase {
 		if ( ( $this->fld_comment || $this->fld_parsedcomment ) && isset( $row->rev_comment ) ) {
 			if ( $row->rev_deleted & Revision::DELETED_COMMENT ) {
 				$vals['commenthidden'] = '';
-			} else {
+				$anyHidden = true;
+			}
+
+			$userCanView = Revision::userCanBitfield(
+				$row->rev_deleted,
+				Revision::DELETED_COMMENT, $this->getUser()
+			);
+
+			if ( $userCanView ) {
 				if ( $this->fld_comment ) {
 					$vals['comment'] = $row->rev_comment;
 				}
@@ -379,12 +427,19 @@ class ApiQueryContributions extends ApiQueryBase {
 			}
 		}
 
+		if ( $anyHidden && $row->rev_deleted & Revision::DELETED_RESTRICTED ) {
+			$vals['suppressed'] = '';
+		}
+
 		return $vals;
 	}
 
 	private function continueStr( $row ) {
-		return $row->rev_user_text . '|' .
-			wfTimestamp( TS_ISO_8601, $row->rev_timestamp );
+		if ( $this->multiUserMode ) {
+			return "$row->rev_user_text|$row->rev_timestamp|$row->rev_id";
+		} else {
+			return "$row->rev_timestamp|$row->rev_id";
+		}
 	}
 
 	public function getCacheMode( $params ) {
@@ -447,10 +502,17 @@ class ApiQueryContributions extends ApiQueryBase {
 					'!minor',
 					'patrolled',
 					'!patrolled',
+					'top',
+					'!top',
+					'new',
+					'!new',
 				)
 			),
 			'tag' => null,
-			'toponly' => false,
+			'toponly' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
 		);
 	}
 
@@ -553,7 +615,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Get all edits by a user';
+		return 'Get all edits by a user.';
 	}
 
 	public function getPossibleErrors() {

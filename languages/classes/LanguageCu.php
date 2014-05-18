@@ -27,23 +27,24 @@
  * @ingroup Language
  */
 class LanguageCu extends Language {
-
 	/**
 	 * Convert from the nominative form of a noun to some other case
 	 * Invoked with {{grammar:case|word}}
 	 *
-	 * @param $word string
-	 * @param $case string
+	 * @param string $word
+	 * @param string $case
 	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
+
 		if ( isset( $wgGrammarForms['сu'][$case][$word] ) ) {
 			return $wgGrammarForms['сu'][$case][$word];
 		}
 
-		# These rules are not perfect, but they are currently only used for site names so it doesn't
-		# matter if they are wrong sometimes. Just add a special case for your site name if necessary.
+		# These rules are not perfect, but they are currently only used for
+		# site names so it doesn't matter if they are wrong sometimes. Just add
+		# a special case for your site name if necessary.
 
 		# join and array_slice instead mb_substr
 		$ar = array();
@@ -51,7 +52,9 @@ class LanguageCu extends Language {
 		if ( !preg_match( "/[a-zA-Z_]/us", $word ) ) {
 			switch ( $case ) {
 				case 'genitive': # родительный падеж
-					if ( ( join( '', array_slice( $ar[0], -4 ) ) == 'вики' ) || ( join( '', array_slice( $ar[0], -4 ) ) == 'Вики' ) ) {
+					if ( ( join( '', array_slice( $ar[0], -4 ) ) == 'вики' )
+						|| ( join( '', array_slice( $ar[0], -4 ) ) == 'Вики' )
+					) {
 					} elseif ( join( '', array_slice( $ar[0], -2 ) ) == 'ї' ) {
 						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'їѩ';
 					}
@@ -61,6 +64,7 @@ class LanguageCu extends Language {
 					break;
 			}
 		}
+
 		return $word;
 	}
 }

@@ -49,8 +49,8 @@ class LinkHolderArray {
 	 * serializing at present.
 	 *
 	 * Compact the titles, only serialize the text form.
-	  * @return array
-	  */
+	 * @return array
+	 */
 	function __sleep() {
 		foreach ( $this->internals as &$nsLinks ) {
 			foreach ( $nsLinks as &$entry ) {
@@ -88,7 +88,7 @@ class LinkHolderArray {
 
 	/**
 	 * Merge another LinkHolderArray into this one
-	 * @param $other LinkHolderArray
+	 * @param LinkHolderArray $other
 	 */
 	function merge( $other ) {
 		foreach ( $other->internals as $ns => $entries ) {
@@ -110,9 +110,9 @@ class LinkHolderArray {
 	 * converted for use in the destination link holder. The resulting array of
 	 * strings will be returned.
 	 *
-	 * @param $other LinkHolderArray
-	 * @param array $texts of strings
-	 * @return Array
+	 * @param LinkHolderArray $other
+	 * @param array $texts Array of strings
+	 * @return array
 	 */
 	function mergeForeign( $other, $texts ) {
 		$this->tempIdOffset = $idOffset = $this->parent->nextLinkID();
@@ -151,6 +151,7 @@ class LinkHolderArray {
 	/**
 	 * Get a subset of the current LinkHolderArray which is sufficient to
 	 * interpret the given text.
+	 * @param string $text
 	 * @return LinkHolderArray
 	 */
 	function getSubArray( $text ) {
@@ -208,8 +209,8 @@ class LinkHolderArray {
 	 * parsing of interwiki links, and secondly to allow all existence checks and
 	 * article length checks (for stub links) to be bundled into a single query.
 	 *
-	 * @param $nt Title
-	 * @param $text String
+	 * @param Title $nt
+	 * @param string $text
 	 * @param array $query [optional]
 	 * @param string $trail [optional]
 	 * @param string $prefix [optional]
@@ -253,12 +254,14 @@ class LinkHolderArray {
 	/**
 	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
 	 *
-	 * @return array of link CSS classes, indexed by PDBK.
+	 * @param $text
+	 * @return array Array of link CSS classes, indexed by PDBK.
 	 */
 	function replace( &$text ) {
 		wfProfileIn( __METHOD__ );
 
-		$colours = $this->replaceInternal( $text ); // FIXME: replaceInternal doesn't return a value
+		/** @todo FIXME: replaceInternal doesn't return a value */
+		$colours = $this->replaceInternal( $text );
 		$this->replaceInterwiki( $text );
 
 		wfProfileOut( __METHOD__ );
@@ -267,6 +270,7 @@ class LinkHolderArray {
 
 	/**
 	 * Replace internal links
+	 * @param string $text
 	 */
 	protected function replaceInternal( &$text ) {
 		if ( !$this->internals ) {
@@ -333,7 +337,8 @@ class LinkHolderArray {
 
 			$res = $dbr->select(
 				'page',
-				array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect', 'page_len', 'page_latest' ),
+				array( 'page_id', 'page_namespace', 'page_title',
+					'page_is_redirect', 'page_len', 'page_latest' ),
 				$dbr->makeList( $where, LIST_OR ),
 				__METHOD__
 			);
@@ -418,6 +423,7 @@ class LinkHolderArray {
 
 	/**
 	 * Replace interwiki links
+	 * @param string $text
 	 */
 	protected function replaceInterwiki( &$text ) {
 		if ( empty( $this->interwikis ) ) {
@@ -443,6 +449,7 @@ class LinkHolderArray {
 
 	/**
 	 * Modify $this->internals and $colours according to language variant linking rules
+	 * @param array $colours
 	 */
 	protected function doVariants( &$colours ) {
 		global $wgContLang;
@@ -501,7 +508,7 @@ class LinkHolderArray {
 				// Self-link checking for mixed/different variant titles. At this point, we
 				// already know the exact title does not exist, so the link cannot be to a
 				// variant of the current title that exists as a separate page.
-				if ( $variantTitle->equals( $parentTitle ) && $title->getFragment() === '' ) {
+				if ( $variantTitle->equals( $parentTitle ) && !$title->hasFragment() ) {
 					$this->internals[$ns][$index]['selflink'] = true;
 					continue 2;
 				}
@@ -534,7 +541,8 @@ class LinkHolderArray {
 			// construct query
 			$dbr = wfGetDB( DB_SLAVE );
 			$varRes = $dbr->select( 'page',
-				array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect', 'page_len', 'page_latest' ),
+				array( 'page_id', 'page_namespace', 'page_title',
+					'page_is_redirect', 'page_len', 'page_latest' ),
 				$linkBatch->constructSet( 'page', $dbr ),
 				__METHOD__
 			);
@@ -606,8 +614,8 @@ class LinkHolderArray {
 	 * Replace <!--LINK--> link placeholders with plain text of links
 	 * (not HTML-formatted).
 	 *
-	 * @param $text String
-	 * @return String
+	 * @param string $text
+	 * @return string
 	 */
 	function replaceText( $text ) {
 		wfProfileIn( __METHOD__ );
@@ -624,7 +632,7 @@ class LinkHolderArray {
 	/**
 	 * Callback for replaceText()
 	 *
-	 * @param $matches Array
+	 * @param array $matches
 	 * @return string
 	 * @private
 	 */

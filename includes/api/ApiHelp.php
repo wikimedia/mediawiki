@@ -107,8 +107,8 @@ class ApiHelp extends ApiBase {
 	}
 
 	/**
-	 * @param  $module ApiBase
-	 * @param  $type String What type of request is this? e.g. action, query, list, prop, meta, format
+	 * @param ApiBase $module
+	 * @param string $type What type of request is this? e.g. action, query, list, prop, meta, format
 	 * @return string
 	 */
 	private function buildModuleHelp( $module, $type ) {
@@ -152,7 +152,7 @@ class ApiHelp extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Display this help screen. Or the help screen for the specified module';
+		return 'Display this help screen. Or the help screen for the specified module.';
 	}
 
 	public function getExamples() {

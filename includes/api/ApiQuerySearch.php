@@ -39,7 +39,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	 */
 	const BACKEND_NULL_PARAM = 'database-backed';
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'sr' );
 	}
 
@@ -52,7 +52,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
@@ -63,6 +63,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$limit = $params['limit'];
 		$query = $params['search'];
 		$what = $params['what'];
+		$interwiki = $params['interwiki'];
 		$searchInfo = array_flip( $params['info'] );
 		$prop = array_flip( $params['prop'] );
 
@@ -71,7 +72,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			SearchEngine::create( $params['backend'] ) : SearchEngine::create();
 		$search->setLimitOffset( $limit + 1, $params['offset'] );
 		$search->setNamespaces( $params['namespace'] );
-		$search->showRedirects = $params['redirects'];
 
 		$query = $search->transformSearchTerm( $query );
 		$query = $search->replacePrefixes( $query );
@@ -197,10 +197,56 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			$result = $matches->next();
 		}
 
+		$hasInterwikiResults = false;
+		if ( $interwiki && $resultPageSet === null && $matches->hasInterwikiResults() ) {
+			$matches = $matches->getInterwikiResults();
+			$iwprefixes = array();
+			$hasInterwikiResults = true;
+
+			// Include number of results if requested
+			if ( isset( $searchInfo['totalhits'] ) ) {
+				$totalhits = $matches->getTotalHits();
+				if ( $totalhits !== null ) {
+					$apiResult->addValue( array( 'query', 'interwikisearchinfo' ),
+						'totalhits', $totalhits );
+				}
+			}
+
+			$result = $matches->next();
+			while ( $result ) {
+				$title = $result->getTitle();
+				$vals = array(
+					'namespace' => $result->getInterwikiNamespaceText(),
+					'title' => $title->getText(),
+					'url' => $title->getFullUrl(),
+				);
+
+				// Add item to results and see whether it fits
+				$fit = $apiResult->addValue(
+					array( 'query', 'interwiki' . $this->getModuleName(), $result->getInterwikiPrefix()  ),
+					null,
+					$vals
+				);
+
+				if ( !$fit ) {
+					// We hit the limit. We can't really provide any meaningful
+					// pagination info so just bail out
+					break;
+				}
+
+				$result = $matches->next();
+			}
+		}
+
 		if ( is_null( $resultPageSet ) ) {
 			$apiResult->setIndexedTagName_internal( array(
 				'query', $this->getModuleName()
 			), 'p' );
+			if ( $hasInterwikiResults ) {
+				$apiResult->setIndexedTagName_internal( array(
+					'query', 'interwiki' . $this->getModuleName()
+				), 'p' );
+			}
 		} else {
 			$resultPageSet->populateFromTitles( $titles );
 		}
@@ -256,7 +302,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				),
 				ApiBase::PARAM_ISMULTI => true,
 			),
-			'redirects' => false,
 			'offset' => 0,
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
@@ -264,7 +309,8 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_SML1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_SML2
-			)
+			),
+			'interwiki' => false,
 		);
 
 		$alternatives = SearchEngine::getSearchTypes();
@@ -301,9 +347,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				' sectiontitle     - Adds the title of the matching section',
 				' hasrelated       - Indicates whether a related search is available',
 			),
-			'redirects' => 'Include redirect pages in the search',
 			'offset' => 'Use this value to continue paging (return by query)',
-			'limit' => 'How many total pages to return'
+			'limit' => 'How many total pages to return',
+			'interwiki' => 'Include interwiki results in the search, if available'
 		);
 
 		if ( count( SearchEngine::getSearchTypes() ) > 1 ) {
@@ -371,7 +417,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Perform a full text search';
+		return 'Perform a full text search.';
 	}
 
 	public function getPossibleErrors() {

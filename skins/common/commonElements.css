@@ -12,21 +12,27 @@ a {
 	color: #0645ad;
 	background: none;
 }
+
 a:visited {
 	color: #0b0080;
 }
+
 a:active {
 	color: #faa700;
 }
+
 a:hover, a:focus {
 	text-decoration: underline;
 }
+
 a.stub {
 	color: #772233;
 }
+
 a.new, #p-personal a.new {
 	color: #ba0000;
 }
+
 a.new:visited, #p-personal a.new:visited {
 	color: #a55858;
 }
@@ -36,9 +42,11 @@ a.new:visited, #p-personal a.new:visited {
 .mw-body a.extiw:active {
 	color: #36b;
 }
+
 .mw-body a.extiw:visited {
 	color: #636;
 }
+
 .mw-body a.extiw:active {
 	color: #b63;
 }
@@ -47,9 +55,11 @@ a.new:visited, #p-personal a.new:visited {
 .mw-body a.external {
 	color: #36b;
 }
+
 .mw-body a.external:visited {
 	color: #636; /* bug 3112 */
 }
+
 .mw-body a.external:active {
 	color: #b63;
 }
@@ -59,6 +69,7 @@ img {
 	border: none;
 	vertical-align: middle;
 }
+
 hr {
 	height: 1px;
 	color: #aaa;
@@ -83,12 +94,15 @@ h6 {
 	padding-bottom: .17em;
 	border-bottom: 1px solid #aaa;
 }
+
 h1 {
 	font-size: 188%;
 }
+
 h2 {
 	font-size: 150%;
 }
+
 h3,
 h4,
 h5,
@@ -96,15 +110,19 @@ h6 {
 	border-bottom: none;
 	font-weight: bold;
 }
+
 h3 {
 	font-size: 132%;
 }
+
 h4 {
 	font-size: 116%;
 }
+
 h5 {
 	font-size: 108%;
 }
+
 h6 {
 	font-size: 100%;
 }
@@ -114,6 +132,7 @@ h1,
 h2 {
 	margin-bottom: .6em;
 }
+
 h3,
 h4,
 h5 {
@@ -124,6 +143,7 @@ p {
 	margin: .4em 0 .5em 0;
 	line-height: 1.5em;
 }
+
 p img {
 	margin: 0;
 }
@@ -134,23 +154,28 @@ ul {
 	margin: .3em 0 0 1.6em;
 	padding: 0;
 }
+
 ol {
 	line-height: 1.5em;
 	margin: .3em 0 0 3.2em;
 	padding: 0;
 	list-style-image: none;
 }
+
 li {
 	margin-bottom: .1em;
 }
+
 dt {
 	font-weight: bold;
 	margin-bottom: .1em;
 }
+
 dl {
 	margin-top: .2em;
 	margin-bottom: .5em;
 }
+
 dd {
 	line-height: 1.5em;
 	margin-left: 1.6em;
@@ -170,9 +195,11 @@ pre, code, tt, kbd, samp, .mw-code {
 	 */
 	font-family: monospace, Courier;
 }
+
 code {
 	background-color: #f9f9f9;
 }
+
 pre, .mw-code {
 	padding: 1em;
 	border: 1px solid #ddd;
@@ -192,22 +219,31 @@ fieldset {
 	padding: 0 1em 1em;
 	line-height: 1.5em;
 }
+
 fieldset.nested {
 	margin: 0 0 0.5em 0;
 	padding: 0 0.5em 0.5em;
 }
+
 legend {
 	padding: .5em;
 	font-size: 95%;
 }
+
 form {
 	border: none;
 	margin: 0;
 }
+
 textarea {
 	width: 100%;
 	padding: .1em;
+	display: block;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
+
 select {
 	vertical-align: top;
 }
@@ -217,15 +253,17 @@ select {
 	width: 100%;
 	text-align: center;
 }
+
 *.center * {
 	margin-left: auto;
 	margin-right: auto;
 }
+
 /* Small for tables and similar */
 .small {
 	font-size: 94%;
 }
+
 table.small {
 	font-size: 100%;
 }
-

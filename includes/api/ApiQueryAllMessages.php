@@ -31,7 +31,7 @@
  */
 class ApiQueryAllMessages extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'am' );
 	}
 
@@ -285,7 +285,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Return messages from this site';
+		return 'Return messages from this site.';
 	}
 
 	public function getExamples() {

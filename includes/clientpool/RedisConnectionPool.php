@@ -44,11 +44,13 @@ class RedisConnectionPool {
 	 */
 	/** @var string Connection timeout in seconds */
 	protected $connectTimeout;
+	/** @var string Read timeout in seconds */
+	protected $readTimeout;
 	/** @var string Plaintext auth password */
 	protected $password;
 	/** @var bool Whether connections persist */
 	protected $persistent;
-	/** @var integer Serializer to use (Redis::SERIALIZER_*) */
+	/** @var int Serializer to use (Redis::SERIALIZER_*) */
 	protected $serializer;
 	/** @} */
 
@@ -76,6 +78,7 @@ class RedisConnectionPool {
 				'See https://www.mediawiki.org/wiki/Redis#Setup' );
 		}
 		$this->connectTimeout = $options['connectTimeout'];
+		$this->readTimeout = $options['readTimeout'];
 		$this->persistent = $options['persistent'];
 		$this->password = $options['password'];
 		if ( !isset( $options['serializer'] ) || $options['serializer'] === 'php' ) {
@@ -97,6 +100,9 @@ class RedisConnectionPool {
 		if ( !isset( $options['connectTimeout'] ) ) {
 			$options['connectTimeout'] = 1;
 		}
+		if ( !isset( $options['readTimeout'] ) ) {
+			$options['readTimeout'] = 31; // handles up to 30 second blocking commands
+		}
 		if ( !isset( $options['persistent'] ) ) {
 			$options['persistent'] = false;
 		}
@@ -112,6 +118,9 @@ class RedisConnectionPool {
 	 * $options include:
 	 *   - connectTimeout : The timeout for new connections, in seconds.
 	 *                      Optional, default is 1 second.
+	 *   - readTimeout    : The timeout for operation reads, in seconds.
+	 *                      Commands like BLPOP can fail if told to wait longer than this.
+	 *                      Optional, default is 60 seconds.
 	 *   - persistent     : Set this to true to allow connections to persist across
 	 *                      multiple web requests. False by default.
 	 *   - password       : The authentication password, will be sent to Redis in clear text.
@@ -127,7 +136,7 @@ class RedisConnectionPool {
 		// Initialize the object at the hash as needed...
 		if ( !isset( self::$instances[$id] ) ) {
 			self::$instances[$id] = new self( $options );
-			wfDebug( "Creating a new " . __CLASS__ . " instance with id $id." );
+			wfDebug( "Creating a new " . __CLASS__ . " instance with id $id.\n" );
 		}
 
 		return self::$instances[$id];
@@ -153,7 +162,7 @@ class RedisConnectionPool {
 			} else {
 				// Server is dead
 				wfDebug( "server $server is marked down for another " .
-					( $this->downServers[$server] - $now ) . " seconds, can't get connection" );
+					( $this->downServers[$server] - $now ) . " seconds, can't get connection\n" );
 
 				return false;
 			}
@@ -210,12 +219,13 @@ class RedisConnectionPool {
 			}
 		} catch ( RedisException $e ) {
 			$this->downServers[$server] = time() + self::SERVER_DOWN_TTL;
-			wfDebugLog( 'redis', "Redis exception connecting to $server: " . $e->getMessage() . "\n" );
+			wfDebugLog( 'redis', "Redis exception connecting to $server: " . $e->getMessage() );
 
 			return false;
 		}
 
 		if ( $conn ) {
+			$conn->setOption( Redis::OPT_READ_TIMEOUT, $this->readTimeout );
 			$conn->setOption( Redis::OPT_SERIALIZER, $this->serializer );
 			$this->connections[$server][] = array( 'conn' => $conn, 'free' => false );
 
@@ -277,8 +287,23 @@ class RedisConnectionPool {
 	 * @param string $server
 	 * @param RedisConnRef $cref
 	 * @param RedisException $e
+	 * @deprecated since 1.23
 	 */
 	public function handleException( $server, RedisConnRef $cref, RedisException $e ) {
+		return $this->handleError( $cref, $e );
+	}
+
+	/**
+	 * The redis extension throws an exception in response to various read, write
+	 * and protocol errors. Sometimes it also closes the connection, sometimes
+	 * not. The safest response for us is to explicitly destroy the connection
+	 * object and let it be reopened during the next request.
+	 *
+	 * @param RedisConnRef $cref
+	 * @param RedisException $e
+	 */
+	public function handleError( RedisConnRef $cref, RedisException $e ) {
+		$server = $cref->getServer();
 		wfDebugLog( 'redis', "Redis exception on server $server: " . $e->getMessage() . "\n" );
 		foreach ( $this->connections[$server] as $key => $connection ) {
 			if ( $cref->isConnIdentical( $connection['conn'] ) ) {
@@ -393,7 +418,7 @@ class RedisConnRef {
 	/**
 	 * @param string $script
 	 * @param array $params
-	 * @param integer $numKeys
+	 * @param int $numKeys
 	 * @return mixed
 	 * @throws RedisException
 	 */
@@ -406,7 +431,7 @@ class RedisConnRef {
 		$conn->clearLastError();
 		$res = $conn->evalSha( $sha1, $params, $numKeys );
 		// If we got a permission error reply that means that (a) we are not in
-		// multi()/pipeline() and (b) some connection problem likely occured. If
+		// multi()/pipeline() and (b) some connection problem likely occurred. If
 		// the password the client gave was just wrong, an exception should have
 		// been thrown back in getConnection() previously.
 		if ( preg_match( '/^ERR operation not permitted\b/', $conn->getLastError() ) ) {

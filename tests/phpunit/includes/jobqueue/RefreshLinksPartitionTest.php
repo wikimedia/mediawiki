@@ -6,7 +6,7 @@
  * @group Database
  */
 class RefreshLinksPartitionTest extends MediaWikiTestCase {
-	function __construct( $name = null, array $data = array(), $dataName = '' ) {
+	public function __construct( $name = null, array $data = array(), $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->tablesUsed[] = 'page';
@@ -20,9 +20,6 @@ class RefreshLinksPartitionTest extends MediaWikiTestCase {
 	public function testRefreshLinks( $ns, $dbKey, $pages ) {
 		$title = Title::makeTitle( $ns, $dbKey );
 
-		$dbw = wfGetDB( DB_MASTER );
-
-		$rows = array();
 		foreach ( $pages as $page ) {
 			list( $bns, $bdbkey ) = $page;
 			$bpage = WikiPage::factory( Title::makeTitle( $bns, $bdbkey ) );
@@ -31,7 +28,11 @@ class RefreshLinksPartitionTest extends MediaWikiTestCase {
 		}
 
 		$title->getBacklinkCache()->clear();
-		$this->assertEquals( 20, $title->getBacklinkCache()->getNumLinks( 'pagelinks' ), 'Correct number of backlinks' );
+		$this->assertEquals(
+			20,
+			$title->getBacklinkCache()->getNumLinks( 'pagelinks' ),
+			'Correct number of backlinks'
+		);
 
 		$job = new RefreshLinksJob( $title, array( 'recursive' => true, 'table' => 'pagelinks' )
 			+ Job::newRootJobParams( "refreshlinks:pagelinks:{$title->getPrefixedText()}" ) );
@@ -58,7 +59,12 @@ class RefreshLinksPartitionTest extends MediaWikiTestCase {
 		$this->assertEquals( $extraParams['rootJobSignature'], $jobs[9]->params['rootJobSignature'],
 			'Recursive sub-job has root params' );
 
-		$jobs2 = BacklinkJobUtils::partitionBacklinkJob( $jobs[9], 9, 1, array( 'params' => $extraParams ) );
+		$jobs2 = BacklinkJobUtils::partitionBacklinkJob(
+			$jobs[9],
+			9,
+			1,
+			array( 'params' => $extraParams )
+		);
 
 		$this->assertEquals( 10, count( $jobs2 ), 'Correct number of sub-jobs' );
 		$this->assertEquals( $pages[9], current( $jobs2[0]->params['pages'] ),
@@ -76,7 +82,12 @@ class RefreshLinksPartitionTest extends MediaWikiTestCase {
 		$this->assertEquals( $extraParams['rootJobSignature'], $jobs2[9]->params['rootJobSignature'],
 			'Recursive sub-job has root params' );
 
-		$jobs3 = BacklinkJobUtils::partitionBacklinkJob( $jobs2[9], 9, 1, array( 'params' => $extraParams ) );
+		$jobs3 = BacklinkJobUtils::partitionBacklinkJob(
+			$jobs2[9],
+			9,
+			1,
+			array( 'params' => $extraParams )
+		);
 
 		$this->assertEquals( 2, count( $jobs3 ), 'Correct number of sub-jobs' );
 		$this->assertEquals( $pages[18], current( $jobs3[0]->params['pages'] ),

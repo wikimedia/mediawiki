@@ -52,7 +52,10 @@ class GetTextMaint extends Maintenance {
 			$titleText = $title->getPrefixedText();
 			$this->error( "Page $titleText does not exist.\n", true );
 		}
-		$content = $rev->getContent( $this->hasOption( 'show-private' ) ? Revision::RAW : Revision::FOR_PUBLIC );
+		$content = $rev->getContent( $this->hasOption( 'show-private' )
+			? Revision::RAW
+			: Revision::FOR_PUBLIC );
+
 		if ( $content === false ) {
 			$titleText = $title->getPrefixedText();
 			$this->error( "Couldn't extract the text from $titleText.\n", true );

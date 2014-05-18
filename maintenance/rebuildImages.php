@@ -8,7 +8,7 @@
  *              add them only.
  *
  * Copyright © 2005 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -79,6 +79,7 @@ class ImageBuilder extends Maintenance {
 		if ( !isset( $this->repo ) ) {
 			$this->repo = RepoGroup::singleton()->getLocalRepo();
 		}
+
 		return $this->repo;
 	}
 
@@ -149,6 +150,7 @@ class ImageBuilder extends Maintenance {
 		// Create a File object from the row
 		// This will also upgrade it
 		$file = $this->getRepo()->newFileFromRow( $row );
+
 		return $file->getUpgraded();
 	}
 
@@ -161,9 +163,11 @@ class ImageBuilder extends Maintenance {
 		// This will also upgrade it
 		if ( $row->oi_archive_name == '' ) {
 			$this->output( "Empty oi_archive_name for oi_name={$row->oi_name}\n" );
+
 			return false;
 		}
 		$file = $this->getRepo()->newFileFromRow( $row );
+
 		return $file->getUpgraded();
 	}
 
@@ -201,21 +205,22 @@ class ImageBuilder extends Maintenance {
 
 		if ( $filename == '' ) {
 			$this->output( "Empty filename for $fullpath\n" );
+
 			return;
 		}
 		if ( !$this->dryrun ) {
 			$file = wfLocalFile( $filename );
 			if ( !$file->recordUpload(
-					'',
-					'(recovered file, missing upload log entry)',
-					'',
-					'',
-					'',
-					false,
-					$timestamp
-				)
-			) {
+				'',
+				'(recovered file, missing upload log entry)',
+				'',
+				'',
+				'',
+				false,
+				$timestamp
+			) ) {
 				$this->output( "Error uploading file $fullpath\n" );
+
 				return;
 			}
 		}

@@ -11,11 +11,10 @@
  * ^--- important, causes tests not to fail with timeout
  */
 class RevisionStorageTest extends MediaWikiTestCase {
-
 	/**
 	 * @var WikiPage $the_page
 	 */
-	var $the_page;
+	private $the_page;
 
 	function __construct( $name = null, array $data = array(), $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
@@ -52,7 +51,11 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
 		if ( !$this->the_page ) {
-			$this->the_page = $this->createPage( 'RevisionStorageTest_the_page', "just a dummy page", CONTENT_MODEL_WIKITEXT );
+			$this->the_page = $this->createPage(
+				'RevisionStorageTest_the_page',
+				"just a dummy page",
+				CONTENT_MODEL_WIKITEXT
+			);
 		}
 	}
 
@@ -174,7 +177,11 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 * @covers Revision::newFromArchiveRow
 	 */
 	public function testNewFromArchiveRow() {
-		$page = $this->createPage( 'RevisionStorageTest_testNewFromArchiveRow', 'Lorem Ipsum', CONTENT_MODEL_WIKITEXT );
+		$page = $this->createPage(
+			'RevisionStorageTest_testNewFromArchiveRow',
+			'Lorem Ipsum',
+			CONTENT_MODEL_WIKITEXT
+		);
 		$orig = $page->getRevision();
 		$page->doDeleteArticle( 'test Revision::newFromArchiveRow' );
 
@@ -205,11 +212,17 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 * @covers Revision::fetchRevision
 	 */
 	public function testFetchRevision() {
-		$page = $this->createPage( 'RevisionStorageTest_testFetchRevision', 'one', CONTENT_MODEL_WIKITEXT );
-		$id1 = $page->getRevision()->getId();
+		$page = $this->createPage(
+			'RevisionStorageTest_testFetchRevision',
+			'one',
+			CONTENT_MODEL_WIKITEXT
+		);
+
+		// Hidden process cache assertion below
+		$page->getRevision()->getId();
 
 		$page->doEditContent( new WikitextContent( 'two' ), 'second rev' );
-		$id2 = $page->getRevision()->getId();
+		$id = $page->getRevision()->getId();
 
 		$res = Revision::fetchRevision( $page->getTitle() );
 
@@ -219,9 +232,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 			$rows[$row->rev_id] = $row;
 		}
 
-		$row = $res->fetchObject();
 		$this->assertEquals( 1, count( $rows ), 'expected exactly one revision' );
-		$this->assertArrayHasKey( $id2, $rows, 'missing revision with id ' . $id2 );
+		$this->assertArrayHasKey( $id, $rows, 'missing revision with id ' . $id );
 	}
 
 	/**
@@ -234,7 +246,10 @@ class RevisionStorageTest extends MediaWikiTestCase {
 
 		$this->assertTrue( in_array( 'rev_id', $fields ), 'missing rev_id in list of fields' );
 		$this->assertTrue( in_array( 'rev_page', $fields ), 'missing rev_page in list of fields' );
-		$this->assertTrue( in_array( 'rev_timestamp', $fields ), 'missing rev_timestamp in list of fields' );
+		$this->assertTrue(
+			in_array( 'rev_timestamp', $fields ),
+			'missing rev_timestamp in list of fields'
+		);
 		$this->assertTrue( in_array( 'rev_user', $fields ), 'missing rev_user in list of fields' );
 
 		if ( $wgContentHandlerUseDB ) {
@@ -350,7 +365,11 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 * @covers Revision::isCurrent
 	 */
 	public function testIsCurrent() {
-		$page = $this->createPage( 'RevisionStorageTest_testIsCurrent', 'Lorem Ipsum', CONTENT_MODEL_WIKITEXT );
+		$page = $this->createPage(
+			'RevisionStorageTest_testIsCurrent',
+			'Lorem Ipsum',
+			CONTENT_MODEL_WIKITEXT
+		);
 		$rev1 = $page->getRevision();
 
 		# @todo find out if this should be true
@@ -359,7 +378,10 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$rev1x = Revision::newFromId( $rev1->getId() );
 		$this->assertTrue( $rev1x->isCurrent() );
 
-		$page->doEditContent( ContentHandler::makeContent( 'Bla bla', $page->getTitle(), CONTENT_MODEL_WIKITEXT ), 'second rev' );
+		$page->doEditContent(
+			ContentHandler::makeContent( 'Bla bla', $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
+			'second rev'
+		);
 		$rev2 = $page->getRevision();
 
 		# @todo find out if this should be true
@@ -376,12 +398,17 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 * @covers Revision::getPrevious
 	 */
 	public function testGetPrevious() {
-		$page = $this->createPage( 'RevisionStorageTest_testGetPrevious', 'Lorem Ipsum testGetPrevious', CONTENT_MODEL_WIKITEXT );
+		$page = $this->createPage(
+			'RevisionStorageTest_testGetPrevious',
+			'Lorem Ipsum testGetPrevious',
+			CONTENT_MODEL_WIKITEXT
+		);
 		$rev1 = $page->getRevision();
 
 		$this->assertNull( $rev1->getPrevious() );
 
-		$page->doEditContent( ContentHandler::makeContent( 'Bla bla', $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
+		$page->doEditContent(
+			ContentHandler::makeContent( 'Bla bla', $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
 			'second rev testGetPrevious' );
 		$rev2 = $page->getRevision();
 
@@ -393,13 +420,19 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 * @covers Revision::getNext
 	 */
 	public function testGetNext() {
-		$page = $this->createPage( 'RevisionStorageTest_testGetNext', 'Lorem Ipsum testGetNext', CONTENT_MODEL_WIKITEXT );
+		$page = $this->createPage(
+			'RevisionStorageTest_testGetNext',
+			'Lorem Ipsum testGetNext',
+			CONTENT_MODEL_WIKITEXT
+		);
 		$rev1 = $page->getRevision();
 
 		$this->assertNull( $rev1->getNext() );
 
-		$page->doEditContent( ContentHandler::makeContent( 'Bla bla', $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
-			'second rev testGetNext' );
+		$page->doEditContent(
+			ContentHandler::makeContent( 'Bla bla', $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
+			'second rev testGetNext'
+		);
 		$rev2 = $page->getRevision();
 
 		$this->assertNotNull( $rev1->getNext() );
@@ -410,7 +443,11 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 * @covers Revision::newNullRevision
 	 */
 	public function testNewNullRevision() {
-		$page = $this->createPage( 'RevisionStorageTest_testNewNullRevision', 'some testing text', CONTENT_MODEL_WIKITEXT );
+		$page = $this->createPage(
+			'RevisionStorageTest_testNewNullRevision',
+			'some testing text',
+			CONTENT_MODEL_WIKITEXT
+		);
 		$orig = $page->getRevision();
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -468,7 +505,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		# zero
 		$revisions[0] = new Revision( array(
 			'page' => $page->getId(),
-			'title' => $page->getTitle(), // we need the title to determine the page's default content model
+			// we need the title to determine the page's default content model
+			'title' => $page->getTitle(),
 			'timestamp' => '20120101000000',
 			'user' => $userA->getId(),
 			'text' => 'zero',
@@ -480,7 +518,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		# one
 		$revisions[1] = new Revision( array(
 			'page' => $page->getId(),
-			'title' => $page->getTitle(), // still need the title, because $page->getId() is 0 (there's no entry in the page table)
+			// still need the title, because $page->getId() is 0 (there's no entry in the page table)
+			'title' => $page->getTitle(),
 			'timestamp' => '20120101000100',
 			'user' => $userA->getId(),
 			'text' => 'one',

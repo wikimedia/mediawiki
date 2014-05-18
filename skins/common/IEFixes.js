@@ -1,30 +1,32 @@
-// IE fixes javascript loaded by wikibits.js for IE <= 6.0
+/**
+ * IE fixes javascript loaded by wikibits.js for IE <= 6.0
+ */
+/*global isMSIE55:true, doneIETransform:true, doneIEAlphaFix:true */
+/*global hookit:true, fixalpha:true */
 ( function ( mw, $ ) {
 
-var doneIEAlphaFix, doneIETransform, expandedURLs, fixalpha, isMSIE55,
-	relativeforfloats, setrelative, hasClass;
+var expandedURLs, hasClass;
 
 // Also returns true for IE6, 7, 8, 9 and 10. createPopup is removed in IE11.
 // Good thing this is only loaded for IE <= 6 by wikibits.
 // Might as well set it to true.
-isMSIE55 = window.isMSIE55 = ( window.showModalDialog && window.clipboardData && window.createPopup );
-doneIETransform = window.doneIETransform = undefined;
-doneIEAlphaFix = window.doneIEAlphaFix = undefined;
+isMSIE55 = ( window.showModalDialog && window.clipboardData && window.createPopup );
+doneIETransform = false;
+doneIEAlphaFix = false;
 
-window.hookit = function () {
+hookit = function () {
 	if ( !doneIETransform && document.getElementById && document.getElementById( 'bodyContent' ) ) {
 		doneIETransform = true;
-		relativeforfloats();
 		fixalpha();
 	}
 };
 
 if ( document.attachEvent ) {
-	document.attachEvent( 'onreadystatechange', window.hookit );
+	document.attachEvent( 'onreadystatechange', hookit );
 }
 
 // png alpha transparency fixes
-fixalpha = window.fixalpha = function ( logoId ) {
+fixalpha = function ( logoId ) {
 	// bg
 	if ( isMSIE55 && !doneIEAlphaFix ) {
 		var bg, imageUrl, linkFix, logoa, logospan, plogo;
@@ -76,31 +78,6 @@ if ( isMSIE55 ) {
 	$( fixalpha );
 }
 
-// fix ie6 disappering float bug
-relativeforfloats = window.relativeforfloats = function () {
-	var bc, tables, divs;
-	bc = document.getElementById( 'bodyContent' );
-	if ( bc ) {
-		tables = bc.getElementsByTagName( 'table' );
-		divs = bc.getElementsByTagName( 'div' );
-		setrelative( tables );
-		setrelative( divs );
-	}
-};
-
-setrelative = window.setrelative = function ( nodes ) {
-	var i = 0;
-	while ( i < nodes.length ) {
-		if( ( ( nodes[i].style.float && nodes[i].style.float !== ( 'none' ) ||
-			( nodes[i].align && nodes[i].align !== ( 'none' ) ) ) &&
-			( !nodes[i].style.position || nodes[i].style.position !== 'relative' ) ) )
-		{
-			nodes[i].style.position = 'relative';
-		}
-		i++;
-	}
-};
-
 // Expand links for printing
 hasClass = function ( classText, classWanted ) {
 	var i = 0, classArr = classText.split(/\s/);
@@ -111,8 +88,6 @@ hasClass = function ( classText, classWanted ) {
 	}
 	return false;
 };
-
-expandedURLs = window.expandedURLs = undefined;
 
 window.onbeforeprint = function () {
 	var allLinks, contentEl, expandedLink, expandedText, i;
@@ -135,7 +110,7 @@ window.onbeforeprint = function () {
 	}
 };
 
-window.onafterprint = function() {
+window.onafterprint = function () {
 	for ( var i = 0; i < expandedURLs.length; i++ ) {
 		if ( expandedURLs[i] ) {
 			expandedURLs[i].removeNode( true );

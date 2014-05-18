@@ -97,7 +97,7 @@ class BacklinkCache {
 	 * Currently, only one cache instance can exist; callers that
 	 * need multiple backlink cache objects should keep them in scope.
 	 *
-	 * @param Title $title : Title object to get a backlink cache for
+	 * @param Title $title Title object to get a backlink cache for
 	 * @return BacklinkCache
 	 */
 	public static function get( Title $title ) {
@@ -135,7 +135,7 @@ class BacklinkCache {
 	/**
 	 * Set the Database object to use
 	 *
-	 * @param $db DatabaseBase
+	 * @param DatabaseBase $db
 	 */
 	public function setDB( $db ) {
 		$this->db = $db;
@@ -144,7 +144,7 @@ class BacklinkCache {
 	/**
 	 * Get the slave connection to the database
 	 * When non existing, will initialize the connection.
-	 * @return DatabaseBase object
+	 * @return DatabaseBase
 	 */
 	protected function getDB() {
 		if ( !isset( $this->db ) ) {
@@ -168,11 +168,11 @@ class BacklinkCache {
 
 	/**
 	 * Get the backlinks for a given table. Cached in process memory only.
-	 * @param $table String
-	 * @param $startId Integer|false
-	 * @param $endId Integer|false
-	 * @param $max Integer|INF
-	 * @param $select string 'all' or 'ids'
+	 * @param string $table
+	 * @param int|bool $startId
+	 * @param int|bool $endId
+	 * @param int|INF $max
+	 * @param string $select 'all' or 'ids'
 	 * @return ResultWrapper
 	 */
 	protected function queryLinks( $table, $startId, $endId, $max, $select = 'all' ) {
@@ -238,7 +238,7 @@ class BacklinkCache {
 
 	/**
 	 * Get the field name prefix for a given table
-	 * @param $table String
+	 * @param string $table
 	 * @throws MWException
 	 * @return null|string
 	 */
@@ -267,7 +267,7 @@ class BacklinkCache {
 	/**
 	 * Get the SQL condition array for selecting backlinks, with a join
 	 * on the page table.
-	 * @param $table String
+	 * @param string $table
 	 * @throws MWException
 	 * @return array|null
 	 */
@@ -314,7 +314,7 @@ class BacklinkCache {
 
 	/**
 	 * Check if there are any backlinks
-	 * @param $table String
+	 * @param string $table
 	 * @return bool
 	 */
 	public function hasLinks( $table ) {
@@ -323,9 +323,9 @@ class BacklinkCache {
 
 	/**
 	 * Get the approximate number of backlinks
-	 * @param $table String
-	 * @param $max integer|INF Only count up to this many backlinks
-	 * @return integer
+	 * @param string $table
+	 * @param int|INF $max Only count up to this many backlinks
+	 * @return int
 	 */
 	public function getNumLinks( $table, $max = INF ) {
 		global $wgMemc, $wgUpdateRowsPerJob;
@@ -372,9 +372,9 @@ class BacklinkCache {
 	 * Returns an array giving the start and end of each range. The first
 	 * batch has a start of false, and the last batch has an end of false.
 	 *
-	 * @param string $table the links table name
-	 * @param $batchSize Integer
-	 * @return Array
+	 * @param string $table The links table name
+	 * @param int $batchSize
+	 * @return array
 	 */
 	public function partition( $table, $batchSize ) {
 		global $wgMemc;
@@ -450,9 +450,9 @@ class BacklinkCache {
 
 	/**
 	 * Partition a DB result with backlinks in it into batches
-	 * @param $res ResultWrapper database result
-	 * @param $batchSize integer
-	 * @param $isComplete bool Whether $res includes all the backlinks
+	 * @param ResultWrapper $res Database result
+	 * @param int $batchSize
+	 * @param bool $isComplete Whether $res includes all the backlinks
 	 * @throws MWException
 	 * @return array
 	 */

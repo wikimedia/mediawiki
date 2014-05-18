@@ -32,8 +32,8 @@ class LanguageSl extends Language {
 	/**
 	 * Cases: rodilnik, dajalnik, tožilnik, mestnik, orodnik
 	 *
-	 * @param $word string
-	 * @param $case string
+	 * @param string $word
+	 * @param string $case
 	 *
 	 * @return string
 	 */
@@ -52,7 +52,8 @@ class LanguageSl extends Language {
 				break;
 		}
 
-		return $word; # this will return the original value for 'imenovalnik' (nominativ) and all undefined case values
+		# this will return the original value for 'imenovalnik' (nominativ) and
+		# all undefined case values.
+		return $word;
 	}
-
 }

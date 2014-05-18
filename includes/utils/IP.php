@@ -65,6 +65,8 @@ define( 'IP_ADDRESS_STRING',
  * and IP blocks.
  */
 class IP {
+	/** @var IPSet */
+	private static $ipSet = null;
 	/**
 	 * Determine if a string is as valid IP address or network (CIDR prefix).
 	 * SIIT IPv4-translated addresses are rejected.
@@ -489,6 +491,8 @@ class IP {
 		if ( self::isIPv6( $ip ) ) {
 			$n = self::toUnsigned6( $ip );
 		} else {
+			// Bug 60035: an IP with leading 0's fails in ip2long sometimes (e.g. *.08)
+			$ip = preg_replace( '/(?<=\.)0+(?=[1-9])/', '', $ip );
 			$n = ip2long( $ip );
 			if ( $n < 0 ) {
 				$n += pow( 2, 32 );
@@ -769,5 +773,53 @@ class IP {
 		}
 
 		return "$start/$bits";
+	}
+
+	/**
+	 * Checks if an IP is a trusted proxy provider.
+	 * Useful to tell if X-Forwarded-For data is possibly bogus.
+	 * Squid cache servers for the site are whitelisted.
+	 * @since 1.24
+	 *
+	 * @param string $ip
+	 * @return bool
+	 */
+	public static function isTrustedProxy( $ip ) {
+		$trusted = self::isConfiguredProxy( $ip );
+		wfRunHooks( 'IsTrustedProxy', array( &$ip, &$trusted ) );
+		return $trusted;
+	}
+
+	/**
+	 * Checks if an IP matches a proxy we've configured
+	 * @since 1.24
+	 *
+	 * @param string $ip
+	 * @return bool
+	 */
+	public static function isConfiguredProxy( $ip ) {
+		global $wgSquidServers, $wgSquidServersNoPurge;
+
+		wfProfileIn( __METHOD__ );
+		// Quick check of known singular proxy servers
+		$trusted = in_array( $ip, $wgSquidServers );
+
+		// Check against addresses and CIDR nets in the NoPurge list
+		if ( !$trusted ) {
+			if ( !self::$ipSet ) {
+				self::$ipSet = new IPSet( $wgSquidServersNoPurge );
+			}
+			$trusted = self::$ipSet->match( $ip );
+		}
+		wfProfileOut( __METHOD__ );
+		return $trusted;
+	}
+
+	/**
+	 * Clears precomputed data used for proxy support.
+	 * Use this only for unit tests.
+	 */
+	public static function clearCaches() {
+		self::$ipSet = null;
 	}
 }

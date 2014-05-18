@@ -42,6 +42,14 @@ abstract class Installer {
 	const MINIMUM_PHP_VERSION = '5.3.2';
 
 	/**
+	 * The oldest version of PCRE we can support.
+	 *
+	 * Defining this is necessary because PHP may be linked with a system version
+	 * of PCRE, which may be older than that bundled with the minimum PHP version.
+	 */
+	const MINIMUM_PCRE_VERSION = '7.2';
+
+	/**
 	 * @var array
 	 */
 	protected $settings;
@@ -63,7 +71,7 @@ abstract class Installer {
 	/**
 	 * Minimum memory size in MB.
 	 *
-	 * @var integer
+	 * @var int
 	 */
 	protected $minMemorySize = 50;
 
@@ -94,6 +102,7 @@ abstract class Installer {
 		'mysql',
 		'postgres',
 		'oracle',
+		'mssql',
 		'sqlite',
 	);
 
@@ -108,11 +117,9 @@ abstract class Installer {
 		'envCheckDB',
 		'envCheckRegisterGlobals',
 		'envCheckBrokenXML',
-		'envCheckPHP531',
 		'envCheckMagicQuotes',
 		'envCheckMagicSybase',
 		'envCheckMbstring',
-		'envCheckZE1',
 		'envCheckSafeMode',
 		'envCheckXML',
 		'envCheckPCRE',
@@ -163,7 +170,6 @@ abstract class Installer {
 		'wgMetaNamespace',
 		'wgDeletedDirectory',
 		'wgEnableUploads',
-		'wgLogo',
 		'wgShellLocale',
 		'wgSecretKey',
 		'wgUseInstantCommons',
@@ -193,7 +199,7 @@ abstract class Installer {
 		'_NamespaceType' => 'site-name',
 		'_AdminName' => '', // will be set later, when the user selects language
 		'_AdminPassword' => '',
-		'_AdminPassword2' => '',
+		'_AdminPasswordConfirm' => '',
 		'_AdminEmail' => '',
 		'_Subscribe' => false,
 		'_SkipOptional' => 'continue',
@@ -204,6 +210,10 @@ abstract class Installer {
 		'_MemCachedServers' => '',
 		'_UpgradeKeySupplied' => false,
 		'_ExistingDBSettings' => false,
+
+		// $wgLogo is probably wrong (bug 48084); set something that will work.
+		// Single quotes work fine here, as LocalSettingsGenerator outputs this unescaped.
+		'wgLogo' => '$wgStylePath/common/images/wiki.png',
 	);
 
 	/**
@@ -319,19 +329,19 @@ abstract class Installer {
 	 * The parameters are like parameters to wfMessage().
 	 * The messages will be in wikitext format, which will be converted to an
 	 * output format such as HTML or text before being sent to the user.
-	 * @param $msg
+	 * @param string $msg
 	 */
 	abstract public function showMessage( $msg /*, ... */ );
 
 	/**
 	 * Same as showMessage(), but for displaying errors
-	 * @param $msg
+	 * @param string $msg
 	 */
 	abstract public function showError( $msg /*, ... */ );
 
 	/**
 	 * Show a message to the installing user by using a Status object
-	 * @param $status Status
+	 * @param Status $status
 	 */
 	abstract public function showStatusMessage( Status $status );
 
@@ -339,15 +349,14 @@ abstract class Installer {
 	 * Constructor, always call this from child classes.
 	 */
 	public function __construct() {
-		global $wgExtensionMessagesFiles, $wgUser;
+		global $wgMessagesDirs, $wgUser;
 
 		// Disable the i18n cache and LoadBalancer
 		Language::getLocalisationCache()->disableBackend();
 		LBFactory::disableBackend();
 
-		// Load the installer's i18n file.
-		$wgExtensionMessagesFiles['MediawikiInstaller'] =
-			__DIR__ . '/Installer.i18n.php';
+		// Load the installer's i18n.
+		$wgMessagesDirs['MediawikiInstaller'] = __DIR__ . '/i18n';
 
 		// Having a user with id = 0 safeguards us from DB access via User::loadOptions().
 		$wgUser = User::newFromId( 0 );
@@ -416,6 +425,15 @@ abstract class Installer {
 			$good = false;
 		}
 
+		// Must go here because an old version of PCRE can prevent other checks from completing
+		if ( $good ) {
+			list( $pcreVersion ) = explode( ' ', PCRE_VERSION, 2 );
+			if ( version_compare( $pcreVersion, self::MINIMUM_PCRE_VERSION, '<' ) ) {
+				$this->showError( 'config-pcre-old', self::MINIMUM_PCRE_VERSION, $pcreVersion );
+				$good = false;
+			}
+		}
+
 		if ( $good ) {
 			foreach ( $this->envChecks as $check ) {
 				$status = $this->$check();
@@ -433,8 +451,8 @@ abstract class Installer {
 	/**
 	 * Set a MW configuration variable, or internal installer configuration variable.
 	 *
-	 * @param $name String
-	 * @param $value Mixed
+	 * @param string $name
+	 * @param mixed $value
 	 */
 	public function setVar( $name, $value ) {
 		$this->settings[$name] = $value;
@@ -445,8 +463,8 @@ abstract class Installer {
 	 * The defaults come from $GLOBALS (ultimately DefaultSettings.php).
 	 * Installer variables are typically prefixed by an underscore.
 	 *
-	 * @param $name String
-	 * @param $default Mixed
+	 * @param string $name
+	 * @param mixed $default
 	 *
 	 * @return mixed
 	 */
@@ -470,7 +488,7 @@ abstract class Installer {
 	/**
 	 * Get an instance of DatabaseInstaller for the specified DB type.
 	 *
-	 * @param $type Mixed: DB installer for which is needed, false to use default.
+	 * @param mixed $type DB installer for which is needed, false to use default.
 	 *
 	 * @return DatabaseInstaller
 	 */
@@ -490,10 +508,9 @@ abstract class Installer {
 	}
 
 	/**
-	 * Determine if LocalSettings.php exists. If it does, return its variables,
-	 * merged with those from AdminSettings.php, as an array.
+	 * Determine if LocalSettings.php exists. If it does, return its variables.
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	public static function getExistingLocalSettings() {
 		global $IP;
@@ -509,9 +526,6 @@ abstract class Installer {
 
 		require "$IP/includes/DefaultSettings.php";
 		require "$IP/LocalSettings.php";
-		if ( file_exists( "$IP/AdminSettings.php" ) ) {
-			require "$IP/AdminSettings.php";
-		}
 
 		return get_defined_vars();
 	}
@@ -521,7 +535,7 @@ abstract class Installer {
 	 * This is a security mechanism to avoid compromise of the password in the
 	 * event of session ID compromise.
 	 *
-	 * @param $realPassword String
+	 * @param string $realPassword
 	 *
 	 * @return string
 	 */
@@ -533,8 +547,8 @@ abstract class Installer {
 	 * Set a variable which stores a password, except if the new value is a
 	 * fake password in which case leave it as it is.
 	 *
-	 * @param $name String
-	 * @param $value Mixed
+	 * @param string $name
+	 * @param mixed $value
 	 */
 	public function setPassword( $name, $value ) {
 		if ( !preg_match( '/^\*+$/', $value ) ) {
@@ -580,9 +594,9 @@ abstract class Installer {
 	 * whatever, this function is guarded to catch the attempted DB access and to present
 	 * some fallback text.
 	 *
-	 * @param $text String
-	 * @param $lineStart Boolean
-	 * @return String
+	 * @param string $text
+	 * @param bool $lineStart
+	 * @return string
 	 */
 	public function parse( $text, $lineStart = false ) {
 		global $wgParser;
@@ -621,7 +635,7 @@ abstract class Installer {
 	 * Install step which adds a row to the site_stats table with appropriate
 	 * initial values.
 	 *
-	 * @param $installer DatabaseInstaller
+	 * @param DatabaseInstaller $installer
 	 *
 	 * @return Status
 	 */
@@ -630,15 +644,19 @@ abstract class Installer {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-		$status->value->insert( 'site_stats', array(
-			'ss_row_id' => 1,
-			'ss_total_views' => 0,
-			'ss_total_edits' => 0,
-			'ss_good_articles' => 0,
-			'ss_total_pages' => 0,
-			'ss_users' => 0,
-			'ss_images' => 0 ),
-			__METHOD__, 'IGNORE' );
+		$status->value->insert(
+			'site_stats',
+			array(
+				'ss_row_id' => 1,
+				'ss_total_views' => 0,
+				'ss_total_edits' => 0,
+				'ss_good_articles' => 0,
+				'ss_total_pages' => 0,
+				'ss_users' => 0,
+				'ss_images' => 0
+			),
+			__METHOD__, 'IGNORE'
+		);
 
 		return Status::newGood();
 	}
@@ -718,23 +736,6 @@ abstract class Installer {
 	}
 
 	/**
-	 * Test PHP (probably 5.3.1, but it could regress again) to make sure that
-	 * reference parameters to __call() are not converted to null
-	 * @return bool
-	 */
-	protected function envCheckPHP531() {
-		$test = new PhpRefCallBugTester;
-		$test->execute();
-		if ( !$test->ok ) {
-			$this->showError( 'config-using531', phpversion() );
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
 	 * Environment check for magic_quotes_runtime.
 	 * @return bool
 	 */
@@ -769,20 +770,6 @@ abstract class Installer {
 	protected function envCheckMbstring() {
 		if ( wfIniGetBool( 'mbstring.func_overload' ) ) {
 			$this->showError( 'config-mbstring' );
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Environment check for zend.ze1_compatibility_mode.
-	 * @return bool
-	 */
-	protected function envCheckZE1() {
-		if ( wfIniGetBool( 'zend.ze1_compatibility_mode' ) ) {
-			$this->showError( 'config-ze1' );
 
 			return false;
 		}
@@ -826,11 +813,6 @@ abstract class Installer {
 	 * @return bool
 	 */
 	protected function envCheckPCRE() {
-		if ( !function_exists( 'preg_match' ) ) {
-			$this->showError( 'config-pcre' );
-
-			return false;
-		}
 		wfSuppressWarnings();
 		$regexd = preg_replace( '/[\x{0430}-\x{04FF}]/iu', '', '-АБВГД-' );
 		// Need to check for \p support too, as PCRE can be compiled
@@ -990,7 +972,7 @@ abstract class Installer {
 
 	/**
 	 * Helper function to be called from envCheckServer()
-	 * @return String
+	 * @return string
 	 */
 	abstract protected function envGetDefaultServer();
 
@@ -1141,7 +1123,7 @@ abstract class Installer {
 
 	/**
 	 * Convert a hex string representing a Unicode code point to that code point.
-	 * @param $c String
+	 * @param string $c
 	 * @return string
 	 */
 	protected function unicodeChar( $c ) {
@@ -1244,7 +1226,7 @@ abstract class Installer {
 	 * of known Unix-like defaults, as well as the PATH environment variable
 	 * (which should maybe make it work for Windows?)
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	protected static function getPossibleBinPaths() {
 		return array_merge(
@@ -1263,9 +1245,9 @@ abstract class Installer {
 	 *
 	 * @param string $path path to search
 	 * @param array $names of executable names
-	 * @param $versionInfo Boolean false or array with two members:
-	 *         0 => Command to run for version check, with $1 for the full executable name
-	 *         1 => String to compare the output with
+	 * @param array|bool $versionInfo False or array with two members:
+	 *   0 => Command to run for version check, with $1 for the full executable name
+	 *   1 => String to compare the output with
 	 *
 	 * If $versionInfo is not false, only executables with a version
 	 * matching $versionInfo[1] will be returned.
@@ -1303,8 +1285,8 @@ abstract class Installer {
 	 * @see locateExecutable()
 	 * @param array $names Array of possible names.
 	 * @param array|bool $versionInfo Default: false or array with two members:
-	 *         0 => Command to run for version check, with $1 for the full executable name
-	 *         1 => String to compare the output with
+	 *   0 => Command to run for version check, with $1 for the full executable name
+	 *   1 => String to compare the output with
 	 *
 	 * If $versionInfo is not false, only executables with a version
 	 * matching $versionInfo[1] will be returned.
@@ -1325,8 +1307,8 @@ abstract class Installer {
 	 * Checks if scripts located in the given directory can be executed via the given URL.
 	 *
 	 * Used only by environment checks.
-	 * @param $dir string
-	 * @param $url string
+	 * @param string $dir
+	 * @param string $url
 	 * @return bool|int|string
 	 */
 	public function dirIsExecutable( $dir, $url ) {
@@ -1391,7 +1373,7 @@ abstract class Installer {
 	/**
 	 * ParserOptions are constructed before we determined the language, so fix it
 	 *
-	 * @param $lang Language
+	 * @param Language $lang
 	 */
 	public function setParserLanguage( $lang ) {
 		$this->parserOptions->setTargetLanguage( $lang );
@@ -1400,7 +1382,7 @@ abstract class Installer {
 
 	/**
 	 * Overridden by WebInstaller to provide lastPage parameters.
-	 * @param $page string
+	 * @param string $page
 	 * @return string
 	 */
 	protected function getDocUrl( $page ) {
@@ -1485,7 +1467,7 @@ abstract class Installer {
 	 * There must be a config-install-$name message defined per step, which will
 	 * be shown on install.
 	 *
-	 * @param $installer DatabaseInstaller so we can make callbacks
+	 * @param DatabaseInstaller $installer DatabaseInstaller so we can make callbacks
 	 * @return array
 	 */
 	protected function getInstallSteps( DatabaseInstaller $installer ) {
@@ -1539,7 +1521,7 @@ abstract class Installer {
 	 * @param array $startCB A callback array for the beginning of each step
 	 * @param array $endCB A callback array for the end of each step
 	 *
-	 * @return Array of Status objects
+	 * @return array Array of Status objects
 	 */
 	public function performInstallation( $startCB, $endCB ) {
 		$installResults = array();
@@ -1588,7 +1570,7 @@ abstract class Installer {
 	 * Generate a secret value for variables using our CryptRand generator.
 	 * Produce a warning if the random source was insecure.
 	 *
-	 * @param $keys Array
+	 * @param array $keys
 	 * @return Status
 	 */
 	protected function doGenerateKeys( $keys ) {
@@ -1658,7 +1640,7 @@ abstract class Installer {
 	}
 
 	/**
-	 * @param $s Status
+	 * @param Status $s
 	 */
 	private function subscribeToMediaWikiAnnounce( Status $s ) {
 		$params = array(
@@ -1689,7 +1671,7 @@ abstract class Installer {
 	/**
 	 * Insert Main Page with default content.
 	 *
-	 * @param $installer DatabaseInstaller
+	 * @param DatabaseInstaller $installer
 	 * @return Status
 	 */
 	protected function createMainpage( DatabaseInstaller $installer ) {
@@ -1754,7 +1736,7 @@ abstract class Installer {
 	 *
 	 * @param array $callback A valid installation callback array, in this form:
 	 *    array( 'name' => 'some-unique-name', 'callback' => array( $obj, 'function' ) );
-	 * @param string $findStep the step to find. Omit to put the step at the beginning
+	 * @param string $findStep The step to find. Omit to put the step at the beginning
 	 */
 	public function addInstallStep( $callback, $findStep = 'BEGINNING' ) {
 		$this->extraInstallSteps[$findStep][] = $callback;

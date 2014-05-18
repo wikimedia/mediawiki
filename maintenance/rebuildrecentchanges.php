@@ -69,25 +69,31 @@ class RebuildRecentchanges extends Maintenance {
 		$cutoff = time() - $wgRCMaxAge;
 		$dbw->insertSelect( 'recentchanges', array( 'page', 'revision' ),
 			array(
-				'rc_timestamp'  => 'rev_timestamp',
-				'rc_user'       => 'rev_user',
-				'rc_user_text'  => 'rev_user_text',
-				'rc_namespace'  => 'page_namespace',
-				'rc_title'      => 'page_title',
-				'rc_comment'    => 'rev_comment',
-				'rc_minor'      => 'rev_minor_edit',
-				'rc_bot'        => 0,
-				'rc_new'        => 'page_is_new',
-				'rc_cur_id'     => 'page_id',
+				'rc_timestamp' => 'rev_timestamp',
+				'rc_user' => 'rev_user',
+				'rc_user_text' => 'rev_user_text',
+				'rc_namespace' => 'page_namespace',
+				'rc_title' => 'page_title',
+				'rc_comment' => 'rev_comment',
+				'rc_minor' => 'rev_minor_edit',
+				'rc_bot' => 0,
+				'rc_new' => 'page_is_new',
+				'rc_cur_id' => 'page_id',
 				'rc_this_oldid' => 'rev_id',
 				'rc_last_oldid' => 0, // is this ok?
-				'rc_type'       => $dbw->conditional( 'page_is_new != 0', RC_NEW, RC_EDIT ),
-				'rc_source'     => $dbw->conditional( 'page_is_new != 0', $dbw->addQuotes( RecentChange::SRC_NEW ), $dbw->addQuotes( RecentChange::SRC_EDIT ) ),
-				'rc_deleted'    => 'rev_deleted'
-			), array(
+				'rc_type' => $dbw->conditional( 'page_is_new != 0', RC_NEW, RC_EDIT ),
+				'rc_source' => $dbw->conditional(
+						'page_is_new != 0',
+						$dbw->addQuotes( RecentChange::SRC_NEW ),
+						$dbw->addQuotes( RecentChange::SRC_EDIT )
+				),
+				'rc_deleted' => 'rev_deleted'
+			),
+			array(
 				'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $cutoff ) ),
 				'rev_page=page_id'
-			), __METHOD__,
+			),
+			__METHOD__,
 			array(), // INSERT options
 			array( 'ORDER BY' => 'rev_timestamp DESC', 'LIMIT' => 5000 ) // SELECT options
 		);
@@ -144,6 +150,7 @@ class RebuildRecentchanges extends Maintenance {
 						'rc_last_oldid' => $lastOldId,
 						'rc_new' => $new,
 						'rc_type' => $new,
+						'rc_source' => $new === 1 ? RecentChange::SRC_NEW : RecentChange::SRC_EDIT,
 						'rc_old_len' => $lastSize,
 						'rc_new_len' => $size,
 					), array(
@@ -181,32 +188,40 @@ class RebuildRecentchanges extends Maintenance {
 
 		$cutoff = time() - $wgRCMaxAge;
 		list( $logging, $page ) = $dbw->tableNamesN( 'logging', 'page' );
-		$dbw->insertSelect( 'recentchanges', array( 'user', "$logging LEFT JOIN $page ON (log_namespace=page_namespace AND log_title=page_title)" ),
+		$dbw->insertSelect(
+			'recentchanges',
 			array(
-				'rc_timestamp'  => 'log_timestamp',
-				'rc_user'       => 'log_user',
-				'rc_user_text'  => 'user_name',
-				'rc_namespace'  => 'log_namespace',
-				'rc_title'      => 'log_title',
-				'rc_comment'    => 'log_comment',
-				'rc_minor'      => 0,
-				'rc_bot'        => 0,
-				'rc_patrolled'  => 1,
-				'rc_new'        => 0,
+				'user',
+				"$logging LEFT JOIN $page ON (log_namespace=page_namespace AND log_title=page_title)"
+			),
+			array(
+				'rc_timestamp' => 'log_timestamp',
+				'rc_user' => 'log_user',
+				'rc_user_text' => 'user_name',
+				'rc_namespace' => 'log_namespace',
+				'rc_title' => 'log_title',
+				'rc_comment' => 'log_comment',
+				'rc_minor' => 0,
+				'rc_bot' => 0,
+				'rc_patrolled' => 1,
+				'rc_new' => 0,
 				'rc_this_oldid' => 0,
 				'rc_last_oldid' => 0,
-				'rc_type'       => RC_LOG,
-				'rc_cur_id'     => $dbw->cascadingDeletes() ? 'page_id' : 'COALESCE(page_id, 0)',
-				'rc_log_type'   => 'log_type',
+				'rc_type' => RC_LOG,
+				'rc_source' => $dbw->addQuotes( RecentChange::SRC_LOG ),
+				'rc_cur_id' => $dbw->cascadingDeletes() ? 'page_id' : 'COALESCE(page_id, 0)',
+				'rc_log_type' => 'log_type',
 				'rc_log_action' => 'log_action',
-				'rc_logid'      => 'log_id',
-				'rc_params'     => 'log_params',
-				'rc_deleted'    => 'log_deleted'
-			), array(
+				'rc_logid' => 'log_id',
+				'rc_params' => 'log_params',
+				'rc_deleted' => 'log_deleted'
+			),
+			array(
 				'log_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $cutoff ) ),
 				'log_user=user_id',
 				'log_type IN(' . implode( ',', $selectLogs ) . ')'
-			), __METHOD__,
+			),
+			__METHOD__,
 			array(), // INSERT options
 			array( 'ORDER BY' => 'log_timestamp DESC', 'LIMIT' => 5000 ) // SELECT options
 		);
@@ -221,7 +236,8 @@ class RebuildRecentchanges extends Maintenance {
 
 		$dbw = wfGetDB( DB_MASTER );
 
-		list( $recentchanges, $usergroups, $user ) = $dbw->tableNamesN( 'recentchanges', 'user_groups', 'user' );
+		list( $recentchanges, $usergroups, $user ) =
+			$dbw->tableNamesN( 'recentchanges', 'user_groups', 'user' );
 
 		$botgroups = User::getGroupsWithPermission( 'bot' );
 		$autopatrolgroups = $wgUseRCPatrol ? User::getGroupsWithPermission( 'autopatrol' ) : array();
@@ -287,7 +303,6 @@ class RebuildRecentchanges extends Maintenance {
 			$messageMemc->delete( wfMemcKey( 'rcfeed', $feed, 'timestamp' ) ); # Good enough for now.
 		}
 	}
-
 }
 
 $maintClass = "RebuildRecentchanges";

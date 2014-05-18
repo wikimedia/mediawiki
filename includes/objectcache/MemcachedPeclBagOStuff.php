@@ -42,6 +42,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 *   - serializer:          May be either "php" or "igbinary". Igbinary produces more compact
 	 *                          values, but serialization is much slower unless the php.ini option
 	 *                          igbinary.compact_strings is off.
+	 * @param array $params
 	 */
 	function __construct( $params ) {
 		$params = $this->applyDefaultParams( $params );
@@ -113,9 +114,9 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $casToken[optional] float
-	 * @return Mixed
+	 * @param string $key
+	 * @param float $casToken [optional]
+	 * @return mixed
 	 */
 	public function get( $key, &$casToken = null ) {
 		wfProfileIn( __METHOD__ );
@@ -127,9 +128,9 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $value
-	 * @param $exptime int
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exptime
 	 * @return bool
 	 */
 	public function set( $key, $value, $exptime = 0 ) {
@@ -138,10 +139,10 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	}
 
 	/**
-	 * @param $casToken float
-	 * @param $key string
-	 * @param $value
-	 * @param $exptime int
+	 * @param float $casToken
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exptime
 	 * @return bool
 	 */
 	public function cas( $casToken, $key, $value, $exptime = 0 ) {
@@ -150,8 +151,8 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $time int
+	 * @param string $key
+	 * @param int $time
 	 * @return bool
 	 */
 	public function delete( $key, $time = 0 ) {
@@ -166,10 +167,10 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $value int
-	 * @param $exptime int
-	 * @return Mixed
+	 * @param string $key
+	 * @param int $value
+	 * @param int $exptime
+	 * @return mixed
 	 */
 	public function add( $key, $value, $exptime = 0 ) {
 		$this->debugLog( "add($key)" );
@@ -177,20 +178,9 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $value int
-	 * @param $exptime
-	 * @return Mixed
-	 */
-	public function replace( $key, $value, $exptime = 0 ) {
-		$this->debugLog( "replace($key)" );
-		return $this->checkResult( $key, parent::replace( $key, $value, $exptime ) );
-	}
-
-	/**
-	 * @param $key string
-	 * @param $value int
-	 * @return Mixed
+	 * @param string $key
+	 * @param int $value
+	 * @return mixed
 	 */
 	public function incr( $key, $value = 1 ) {
 		$this->debugLog( "incr($key)" );
@@ -199,9 +189,9 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $value int
-	 * @return Mixed
+	 * @param string $key
+	 * @param int $value
+	 * @return mixed
 	 */
 	public function decr( $key, $value = 1 ) {
 		$this->debugLog( "decr($key)" );
@@ -217,8 +207,8 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * different.
 	 *
 	 * @param string $key The key used by the caller, or false if there wasn't one.
-	 * @param $result Mixed The return value
-	 * @return Mixed
+	 * @param mixed $result The return value
+	 * @return mixed
 	 */
 	protected function checkResult( $key, $result ) {
 		if ( $result !== false ) {
@@ -242,13 +232,14 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 					$msg = "Memcached error: $msg";
 				}
 				wfDebugLog( 'memcached-serious', $msg );
+				$this->setLastError( BagOStuff::ERR_UNEXPECTED );
 		}
 		return $result;
 	}
 
 	/**
-	 * @param $keys Array
-	 * @return Array
+	 * @param array $keys
+	 * @return array
 	 */
 	public function getMulti( array $keys ) {
 		wfProfileIn( __METHOD__ );
@@ -258,6 +249,27 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		wfProfileOut( __METHOD__ );
 		return $this->checkResult( false, $result );
 	}
+
+	/**
+	 * @param array $data
+	 * @param int $exptime
+	 * @return bool
+	 */
+	public function setMulti( array $data, $exptime = 0 ) {
+		wfProfileIn( __METHOD__ );
+		foreach ( $data as $key => $value ) {
+			$encKey = $this->encodeKey( $key );
+			if ( $encKey !== $key ) {
+				$data[$encKey] = $value;
+				unset( $data[$key] );
+			}
+		}
+		$this->debugLog( 'setMulti(' . implode( ', ', array_keys( $data ) ) . ')' );
+		$result = $this->client->setMulti( $data, $this->fixExpiry( $exptime ) );
+		wfProfileOut( __METHOD__ );
+		return $this->checkResult( false, $result );
+	}
+
 
 	/* NOTE: there is no cas() method here because it is currently not supported
 	 * by the BagOStuff interface and other BagOStuff subclasses, such as

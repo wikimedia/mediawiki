@@ -71,16 +71,23 @@ abstract class MediaTransformOutput {
 	}
 
 	/**
+	 * @return File file
+	 */
+	public function getFile() {
+		return $this->file;
+	}
+
+	/**
 	 * Get the final extension of the thumbnail.
 	 * Returns false for scripted transformations.
-	 * @return string|false
+	 * @return string|bool
 	 */
 	public function getExtension() {
 		return $this->path ? FileBackend::extensionFromPath( $this->path ) : false;
 	}
 
 	/**
-	 * @return string|false The thumbnail URL
+	 * @return string|bool The thumbnail URL
 	 */
 	public function getUrl() {
 		return $this->url;
@@ -99,6 +106,9 @@ abstract class MediaTransformOutput {
 	 */
 	public function setStoragePath( $storagePath ) {
 		$this->storagePath = $storagePath;
+		if ( $this->path === false ) {
+			$this->path = $storagePath;
+		}
 	}
 
 	/**
@@ -133,9 +143,12 @@ abstract class MediaTransformOutput {
 
 	/**
 	 * Check if an output thumbnail file actually exists.
+	 *
 	 * This will return false if there was an error, the
 	 * thumbnail is to be handled client-side only, or if
 	 * transformation was deferred via TRANSFORM_LATER.
+	 * This file may exist as a new file in /tmp, a file
+	 * in permanent storage, or even refer to the original.
 	 *
 	 * @return bool
 	 */
@@ -211,7 +224,7 @@ abstract class MediaTransformOutput {
 	}
 
 	/**
-	 * @param $title string
+	 * @param string $title
 	 * @param string|array $params Query parameters to add
 	 * @return array
 	 */
@@ -374,6 +387,7 @@ class ThumbnailImage extends MediaTransformOutput {
 			'alt' => $alt,
 			'src' => $this->url,
 		);
+
 		if ( empty( $options['no-dimensions'] ) ) {
 			$attribs['width'] = $this->width;
 			$attribs['height'] = $this->height;

@@ -27,7 +27,11 @@
  *  http://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile)
  * @ingroup Profiler
  */
-class ProfilerSimpleUDP extends ProfilerSimple {
+class ProfilerSimpleUDP extends ProfilerStandard {
+	protected function collateOnly() {
+		return true;
+	}
+
 	public function isPersistent() {
 		return true;
 	}
@@ -36,11 +40,6 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgUDPProfilerFormatString;
 
 		$this->close();
-
-		if ( isset( $this->mCollated['-total'] ) && $this->mCollated['-total']['real'] < $this->mMinimumTime ) {
-			# Less than minimum, ignore
-			return;
-		}
 
 		if ( !function_exists( 'socket_create' ) ) {
 			# Sockets are not enabled

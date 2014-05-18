@@ -142,30 +142,29 @@ END_STRING
  * of MimeMagic. Please use MimeMagic::singleton() to get that instance.
  */
 class MimeMagic {
-
 	/**
-	 * Mapping of media types to arrays of mime types.
+	 * @var array Mapping of media types to arrays of mime types.
 	 * This is used by findMediaType and getMediaType, respectively
 	 */
-	var $mMediaTypes = null;
+	protected $mMediaTypes = null;
 
-	/** Map of mime type aliases
+	/** @var array Map of mime type aliases
 	 */
-	var $mMimeTypeAliases = null;
+	protected $mMimeTypeAliases = null;
 
-	/** map of mime types to file extensions (as a space separated list)
+	/** @var array Map of mime types to file extensions (as a space separated list)
 	 */
-	var $mMimeToExt = null;
+	protected $mMimeToExt = null;
 
-	/** map of file extensions types to mime types (as a space separated list)
+	/** @var array Map of file extensions types to mime types (as a space separated list)
 	 */
-	var $mExtToMime = null;
+	public $mExtToMime = null;
 
-	/** IEContentAnalyzer instance
+	/** @var IEContentAnalyzer
 	 */
-	var $mIEAnalyzer;
+	protected $mIEAnalyzer;
 
-	/** The singleton instance
+	/** @var MimeMagic The singleton instance
 	 */
 	private static $instance = null;
 
@@ -323,13 +322,13 @@ class MimeMagic {
 
 			if ( count( $m ) > 1 ) {
 				$main = $m[0];
-				for ( $i = 1; $i < count( $m ); $i += 1 ) {
+				$mCount = count( $m );
+				for ( $i = 1; $i < $mCount; $i += 1 ) {
 					$mime = $m[$i];
 					$this->mMimeTypeAliases[$mime] = $main;
 				}
 			}
 		}
-
 	}
 
 	/**
@@ -348,7 +347,7 @@ class MimeMagic {
 	 * separated string or null if the mime type was unrecognized. Resolves
 	 * mime type aliases.
 	 *
-	 * @param $mime string
+	 * @param string $mime
 	 * @return string|null
 	 */
 	public function getExtensionsForType( $mime ) {
@@ -374,7 +373,7 @@ class MimeMagic {
 	 * Returns a list of mime types for a given file extension as a space
 	 * separated string or null if the extension was unrecognized.
 	 *
-	 * @param $ext string
+	 * @param string $ext
 	 * @return string|null
 	 */
 	public function getTypesForExtension( $ext ) {
@@ -388,7 +387,7 @@ class MimeMagic {
 	 * Returns a single mime type for a given file extension or null if unknown.
 	 * This is always the first type from the list returned by getTypesForExtension($ext).
 	 *
-	 * @param $ext string
+	 * @param string $ext
 	 * @return string|null
 	 */
 	public function guessTypesForExtension( $ext ) {
@@ -409,8 +408,8 @@ class MimeMagic {
 	 * match was found, null if the mime type is unknown, and false if the
 	 * mime type is known but no matches where found.
 	 *
-	 * @param $extension string
-	 * @param $mime string
+	 * @param string $extension
+	 * @param string $mime
 	 * @return bool|null
 	 */
 	public function isMatchingExtension( $extension, $mime ) {
@@ -430,7 +429,7 @@ class MimeMagic {
 	 * Returns true if the mime type is known to represent an image format
 	 * supported by the PHP GD library.
 	 *
-	 * @param $mime string
+	 * @param string $mime
 	 *
 	 * @return bool
 	 */
@@ -458,6 +457,7 @@ class MimeMagic {
 	 *
 	 * @todo Be more accurate when using fancy mime detector plugins;
 	 *       right now this is the bare minimum getimagesize() list.
+	 * @param string $extension
 	 * @return bool
 	 */
 	function isRecognizableExtension( $extension ) {
@@ -493,10 +493,10 @@ class MimeMagic {
 	 * If $mime is "application/x-opc+zip" and isMatchingExtension( $ext, $mime )
 	 * gives true, return the result of guessTypesForExtension($ext).
 	 *
-	 * @param string $mime the mime type, typically guessed from a file's content.
-	 * @param string $ext the file extension, as taken from the file name
+	 * @param string $mime The mime type, typically guessed from a file's content.
+	 * @param string $ext The file extension, as taken from the file name
 	 *
-	 * @return string the mime type
+	 * @return string The mime type
 	 */
 	public function improveTypeFromExtension( $mime, $ext ) {
 		if ( $mime === 'unknown/unknown' ) {
@@ -508,8 +508,7 @@ class MimeMagic {
 				// trust the file extension
 				$mime = $this->guessTypesForExtension( $ext );
 			}
-		}
-		elseif ( $mime === 'application/x-opc+zip' ) {
+		} elseif ( $mime === 'application/x-opc+zip' ) {
 			if ( $this->isMatchingExtension( $ext, $mime ) ) {
 				// A known file extension for an OPC file,
 				// find the proper mime type for that file extension
@@ -536,12 +535,12 @@ class MimeMagic {
 	 * detection (namely XML based formats like XHTML or SVG, as well as ZIP
 	 * based formats like OPC/ODF files).
 	 *
-	 * @param string $file the file to check
-	 * @param $ext Mixed: the file extension, or true (default) to extract it from the filename.
-	 *             Set it to false to ignore the extension. DEPRECATED! Set to false, use
-	 *             improveTypeFromExtension($mime, $ext) later to improve mime type.
+	 * @param string $file The file to check
+	 * @param string|bool $ext The file extension, or true (default) to extract it from the filename.
+	 *   Set it to false to ignore the extension. DEPRECATED! Set to false, use
+	 *   improveTypeFromExtension($mime, $ext) later to improve mime type.
 	 *
-	 * @return string the mime type of $file
+	 * @return string The mime type of $file
 	 */
 	public function guessMimeType( $file, $ext = true ) {
 		if ( $ext ) { // TODO: make $ext default to false. Or better, remove it.
@@ -745,11 +744,11 @@ class MimeMagic {
 	 * header data.  Currently works for OpenDocument and OpenXML types...
 	 * If can't tell, returns 'application/zip'.
 	 *
-	 * @param string $header some reasonably-sized chunk of file header
-	 * @param $tail   String: the tail of the file
-	 * @param $ext Mixed: the file extension, or true to extract it from the filename.
-	 *             Set it to false (default) to ignore the extension. DEPRECATED! Set to false,
-	 *             use improveTypeFromExtension($mime, $ext) later to improve mime type.
+	 * @param string $header Some reasonably-sized chunk of file header
+	 * @param string|null $tail The tail of the file
+	 * @param string|bool $ext The file extension, or true to extract it from the filename.
+	 *   Set it to false (default) to ignore the extension. DEPRECATED! Set to false,
+	 *   use improveTypeFromExtension($mime, $ext) later to improve mime type.
 	 *
 	 * @return string
 	 */
@@ -851,18 +850,20 @@ class MimeMagic {
 	 * mime type if the file is an image. If no mime type can be determined,
 	 * this function returns 'unknown/unknown'.
 	 *
-	 * @param string $file the file to check
-	 * @param $ext Mixed: the file extension, or true (default) to extract it from the filename.
-	 *             Set it to false to ignore the extension. DEPRECATED! Set to false, use
-	 *             improveTypeFromExtension($mime, $ext) later to improve mime type.
+	 * @param string $file The file to check
+	 * @param string|bool $ext The file extension, or true (default) to extract it from the filename.
+	 *   Set it to false to ignore the extension. DEPRECATED! Set to false, use
+	 *   improveTypeFromExtension($mime, $ext) later to improve mime type.
 	 *
-	 * @return string the mime type of $file
+	 * @return string The mime type of $file
 	 */
 	private function detectMimeType( $file, $ext = true ) {
 		global $wgMimeDetectorCommand;
 
-		if ( $ext ) { # TODO:  make $ext default to false. Or better, remove it.
-			wfDebug( __METHOD__ . ": WARNING: use of the \$ext parameter is deprecated. Use improveTypeFromExtension(\$mime, \$ext) instead.\n" );
+		/** @todo Make $ext default to false. Or better, remove it. */
+		if ( $ext ) {
+			wfDebug( __METHOD__ . ": WARNING: use of the \$ext parameter is deprecated. "
+				. "Use improveTypeFromExtension(\$mime, \$ext) instead.\n" );
 		}
 
 		$m = null;
@@ -892,13 +893,16 @@ class MimeMagic {
 		} elseif ( function_exists( "mime_content_type" ) ) {
 
 			# NOTE: this function is available since PHP 4.3.0, but only if
-			# PHP was compiled with --with-mime-magic or, before 4.3.2, with --enable-mime-magic.
+			# PHP was compiled with --with-mime-magic or, before 4.3.2, with
+			# --enable-mime-magic.
 			#
-			# On Windows, you must set mime_magic.magicfile in php.ini to point to the mime.magic file bundled with PHP;
-			# sometimes, this may even be needed under linus/unix.
+			# On Windows, you must set mime_magic.magicfile in php.ini to point
+			# to the mime.magic file bundled with PHP; sometimes, this may even
+			# be needed under *nix.
 			#
-			# Also note that this has been DEPRECATED in favor of the fileinfo extension by PECL, see above.
-			# see http://www.php.net/manual/en/ref.mime-magic.php for details.
+			# Also note that this has been DEPRECATED in favor of the fileinfo
+			# extension by PECL, see above.
+			# See http://www.php.net/manual/en/ref.mime-magic.php for details.
 
 			$m = mime_content_type( $file );
 		} else {
@@ -926,7 +930,8 @@ class MimeMagic {
 		}
 		if ( $ext ) {
 			if ( $this->isRecognizableExtension( $ext ) ) {
-				wfDebug( __METHOD__ . ": refusing to guess mime type for .$ext file, we should have recognized it\n" );
+				wfDebug( __METHOD__ . ": refusing to guess mime type for .$ext file, "
+					. "we should have recognized it\n" );
 			} else {
 				$m = $this->guessTypesForExtension( $ext );
 				if ( $m ) {
@@ -951,11 +956,11 @@ class MimeMagic {
 	 * @todo analyse file if need be
 	 * @todo look at multiple extension, separately and together.
 	 *
-	 * @param string $path full path to the image file, in case we have to look at the contents
+	 * @param string $path Full path to the image file, in case we have to look at the contents
 	 *        (if null, only the mime type is used to determine the media type code).
-	 * @param string $mime mime type. If null it will be guessed using guessMimeType.
+	 * @param string $mime Mime type. If null it will be guessed using guessMimeType.
 	 *
-	 * @return (int?string?) a value to be used with the MEDIATYPE_xxx constants.
+	 * @return string A value to be used with the MEDIATYPE_xxx constants.
 	 */
 	function getMediaType( $path = null, $mime = null ) {
 		if ( !$mime && !$path ) {
@@ -1041,6 +1046,7 @@ class MimeMagic {
 	 *
 	 * This function relies on the mapping defined by $this->mMediaTypes
 	 * @access private
+	 * @param string $extMime
 	 * @return int|string
 	 */
 	function findMediaType( $extMime ) {
@@ -1076,10 +1082,10 @@ class MimeMagic {
 	 * Get the MIME types that various versions of Internet Explorer would
 	 * detect from a chunk of the content.
 	 *
-	 * @param string $fileName the file name (unused at present)
-	 * @param string $chunk the first 256 bytes of the file
-	 * @param string $proposed the MIME type proposed by the server
-	 * @return Array
+	 * @param string $fileName The file name (unused at present)
+	 * @param string $chunk The first 256 bytes of the file
+	 * @param string $proposed The MIME type proposed by the server
+	 * @return array
 	 */
 	public function getIEMimeTypes( $fileName, $chunk, $proposed ) {
 		$ca = $this->getIEContentAnalyzer();

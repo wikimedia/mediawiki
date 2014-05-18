@@ -35,7 +35,7 @@ class SearchUpdate implements DeferrableUpdate {
 	/** @var Title Title we're updating */
 	private $title;
 
-	/** @var Content|false Content of the page (not text) */
+	/** @var Content|bool Content of the page (not text) */
 	private $content;
 
 	/**
@@ -81,7 +81,7 @@ class SearchUpdate implements DeferrableUpdate {
 		wfProfileIn( __METHOD__ );
 
 		$page = WikiPage::newFromId( $this->id, WikiPage::READ_LATEST );
-		$indexTitle = Title::indexTitle( $this->title->getNamespace(), $this->title->getText() );
+		$indexTitle = $this->indexTitle();
 
 		foreach ( SearchEngine::getSearchTypes() as $type ) {
 			$search = SearchEngine::create( $type );
@@ -173,5 +173,34 @@ class SearchUpdate implements DeferrableUpdate {
 		wfProfileOut( __METHOD__ . '-regexps' );
 
 		return $text;
+	}
+
+	/**
+	 * Get a string representation of a title suitable for
+	 * including in a search index
+	 *
+	 * @return string A stripped-down title string ready for the search index
+	 */
+	private function indexTitle() {
+		global $wgContLang;
+
+		$ns = $this->title->getNamespace();
+		$title = $this->title->getText();
+
+		$lc = SearchEngine::legalSearchChars() . '&#;';
+		$t = $wgContLang->normalizeForSearch( $title );
+		$t = preg_replace( "/[^{$lc}]+/", ' ', $t );
+		$t = $wgContLang->lc( $t );
+
+		# Handle 's, s'
+		$t = preg_replace( "/([{$lc}]+)'s( |$)/", "\\1 \\1's ", $t );
+		$t = preg_replace( "/([{$lc}]+)s'( |$)/", "\\1s ", $t );
+
+		$t = preg_replace( "/\\s+/", ' ', $t );
+
+		if ( $ns == NS_FILE ) {
+			$t = preg_replace( "/ (png|gif|jpg|jpeg|ogg)$/", "", $t );
+		}
+		return trim( $t );
 	}
 }

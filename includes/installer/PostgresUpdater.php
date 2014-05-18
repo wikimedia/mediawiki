@@ -27,7 +27,6 @@
  * @ingroup Deployment
  * @since 1.17
  */
-
 class PostgresUpdater extends DatabaseUpdater {
 
 	/**
@@ -169,6 +168,7 @@ class PostgresUpdater extends DatabaseUpdater {
 				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('archive_ar_id_seq')" ),
 			array( 'addPgField', 'externallinks', 'el_id',
 				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('externallinks_el_id_seq')" ),
+			array( 'addPgField', 'uploadstash', 'us_props', "BYTEA" ),
 
 			# type changes
 			array( 'changeField', 'archive', 'ar_deleted', 'smallint', '' ),
@@ -234,6 +234,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'changeNullableField', 'image', 'img_metadata', 'NOT NULL' ),
 			array( 'changeNullableField', 'filearchive', 'fa_metadata', 'NOT NULL' ),
 			array( 'changeNullableField', 'recentchanges', 'rc_cur_id', 'NULL' ),
+			array( 'changeNullableField', 'recentchanges', 'rc_cur_time', 'NULL' ),
 
 			array( 'checkOiDeleted' ),
 
@@ -259,7 +260,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgIndex', 'job', 'job_cmd_token', '(job_cmd, job_token, job_random)' ),
 			array( 'addPgIndex', 'job', 'job_cmd_token_id', '(job_cmd, job_token, job_id)' ),
 			array( 'addPgIndex', 'filearchive', 'fa_sha1', '(fa_sha1)' ),
-			array( 'addPgIndex', 'logging', 'logging_user_text_type_time', '(log_user_text, log_type, log_timestamp)' ),
+			array( 'addPgIndex', 'logging', 'logging_user_text_type_time',
+				'(log_user_text, log_type, log_timestamp)' ),
 			array( 'addPgIndex', 'logging', 'logging_user_text_time', '(log_user_text, log_timestamp)' ),
 
 			array( 'checkIndex', 'pagelink_unique', array(
@@ -403,6 +405,14 @@ class PostgresUpdater extends DatabaseUpdater {
 			// 1.23
 			array( 'addPgField', 'recentchanges', 'rc_source', "TEXT NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'page', 'page_links_updated', "TIMESTAMPTZ NULL" ),
+			array( 'addPgField', 'mwuser', 'user_password_expires', 'TIMESTAMPTZ NULL' ),
+			array( 'changeFieldPurgeTable', 'l10n_cache', 'lc_value', 'bytea',
+				"replace(lc_value,'\','\\\\')::bytea" ),
+
+			// 1.24
+			array( 'addPgField', 'page_props', 'pp_sortkey', 'float NULL' ),
+			array( 'addPgIndex', 'page_props', 'pp_propname_sortkey_page',
+					'( pp_propname, pp_sortkey, pp_page ) WHERE ( pp_sortkey IS NOT NULL )' ),
 		);
 	}
 
@@ -654,6 +664,35 @@ END;
 		if ( $fi->type() === $newtype ) {
 			$this->output( "...column '$table.$field' is already of type '$newtype'\n" );
 		} else {
+			$this->output( "Changing column type of '$table.$field' from '{$fi->type()}' to '$newtype'\n" );
+			$sql = "ALTER TABLE $table ALTER $field TYPE $newtype";
+			if ( strlen( $default ) ) {
+				$res = array();
+				if ( preg_match( '/DEFAULT (.+)/', $default, $res ) ) {
+					$sqldef = "ALTER TABLE $table ALTER $field SET DEFAULT $res[1]";
+					$this->db->query( $sqldef );
+					$default = preg_replace( '/\s*DEFAULT .+/', '', $default );
+				}
+				$sql .= " USING $default";
+			}
+			$this->db->query( $sql );
+		}
+	}
+
+	protected function changeFieldPurgeTable( $table, $field, $newtype, $default ) {
+		## For a cache table, empty it if the field needs to be changed, because the old contents
+		## may be corrupted.  If the column is already the desired type, refrain from purging.
+		$fi = $this->db->fieldInfo( $table, $field );
+		if ( is_null( $fi ) ) {
+			$this->output( "...ERROR: expected column $table.$field to exist\n" );
+			exit( 1 );
+		}
+
+		if ( $fi->type() === $newtype ) {
+			$this->output( "...column '$table.$field' is already of type '$newtype'\n" );
+		} else {
+			$this->output( "Purging data from cache table '$table'\n" );
+			$this->db->query("DELETE from $table" );
 			$this->output( "Changing column type of '$table.$field' from '{$fi->type()}' to '$newtype'\n" );
 			$sql = "ALTER TABLE $table ALTER $field TYPE $newtype";
 			if ( strlen( $default ) ) {

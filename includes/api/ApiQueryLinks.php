@@ -36,7 +36,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 	private $table, $prefix, $description, $helpUrl;
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		switch ( $moduleName ) {
 			case self::LINKS:
 				$this->table = 'pagelinks';
@@ -233,7 +233,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return "Returns all {$this->description}s from the given page(s)";
+		return "Returns all {$this->description}s from the given page(s).";
 	}
 
 	public function getExamples() {

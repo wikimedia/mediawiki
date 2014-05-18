@@ -31,13 +31,15 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class CreateAndPromote extends Maintenance {
-
-	static $permitRoles = array( 'sysop', 'bureaucrat', 'bot' );
+	private static $permitRoles = array( 'sysop', 'bureaucrat', 'bot' );
 
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Create a new user account and/or grant it additional rights";
-		$this->addOption( "force", "If acccount exists already, just grant it rights or change password." );
+		$this->addOption(
+			'force',
+			'If acccount exists already, just grant it rights or change password.'
+		);
 		foreach ( self::$permitRoles as $role ) {
 			$this->addOption( $role, "Add the account to the {$role} group" );
 		}
@@ -67,10 +69,14 @@ class CreateAndPromote extends Maintenance {
 			$inGroups = $user->getGroups();
 		}
 
-		$promotions = array_diff( array_filter( self::$permitRoles, array( $this, 'hasOption' ) ), $inGroups );
+		$promotions = array_diff(
+			array_filter( self::$permitRoles, array( $this, 'hasOption' ) ),
+			$inGroups
+		);
 
 		if ( $exists && !$password && count( $promotions ) === 0 ) {
 			$this->output( "Account exists and nothing to do.\n" );
+
 			return;
 		} elseif ( count( $promotions ) !== 0 ) {
 			$promoText = "User:{$username} into " . implode( ', ', $promotions ) . "...\n";

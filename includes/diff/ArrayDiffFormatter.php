@@ -29,51 +29,54 @@
  * @ingroup DifferenceEngine
  */
 class ArrayDiffFormatter extends DiffFormatter {
+
 	/**
-	 * @param $diff
-	 * @return array
+	 * @param Diff $diff A Diff object.
+	 *
+	 * @return array[] List of associative arrays, each describing a difference.
 	 */
 	public function format( $diff ) {
 		$oldline = 1;
 		$newline = 1;
 		$retval = array();
-		foreach ( $diff->edits as $edit ) {
-			switch ( $edit->type ) {
+		foreach ( $diff->getEdits() as $edit ) {
+			switch ( $edit->getType() ) {
 				case 'add':
-					foreach ( $edit->closing as $l ) {
+					foreach ( $edit->getClosing() as $line ) {
 						$retval[] = array(
 							'action' => 'add',
-							'new' => $l,
+							'new' => $line,
 							'newline' => $newline++
 						);
 					}
 					break;
 				case 'delete':
-					foreach ( $edit->orig as $l ) {
+					foreach ( $edit->getOrig() as $line ) {
 						$retval[] = array(
 							'action' => 'delete',
-							'old' => $l,
+							'old' => $line,
 							'oldline' => $oldline++,
 						);
 					}
 					break;
 				case 'change':
-					foreach ( $edit->orig as $i => $l ) {
+					foreach ( $edit->getOrig() as $key => $line ) {
 						$retval[] = array(
 							'action' => 'change',
-							'old' => $l,
-							'new' => isset( $edit->closing[$i] ) ? $edit->closing[$i] : null,
+							'old' => $line,
+							'new' => $edit->getClosing( $key ),
 							'oldline' => $oldline++,
 							'newline' => $newline++,
 						);
 					}
 					break;
 				case 'copy':
-					$oldline += count( $edit->orig );
-					$newline += count( $edit->orig );
+					$oldline += count( $edit->getOrig() );
+					$newline += count( $edit->getOrig() );
 			}
 		}
 
 		return $retval;
 	}
+
 }

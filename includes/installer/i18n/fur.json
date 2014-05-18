@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tocaibon"
+		]
+	},
+	"config-desc": "Program di instalazion di Mediawiki",
+	"config-title": "Instalazion MediaWiki $1",
+	"config-information": "Informazions",
+	"config-localsettings-upgrade": "Al è stât cjatât un file <code>LocalSettings.php</code>.\nPar inzornâ cheste instalazion, si à di inserî il valôr di <code>$wgUpgradeKey</code> inte casele sot.\nIl valôr lu si cjate in <code>LocalSettings.php</code>.",
+	"config-localsettings-cli-upgrade": "Al è stât cjatât un file <code>LocalSettings.php</code>.\nPar inzornâ cheste instalazion, si à di eseguî  <code>update.php</code>.",
+	"config-localsettings-key": "Clâf di inzornament.",
+	"config-localsettings-badkey": "La Clâf metude no jê juste",
+	"mainpagetext": "'''MediaWiki e je stade instalade cun sucès.'''"
+}

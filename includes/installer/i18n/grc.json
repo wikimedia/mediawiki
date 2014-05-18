@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Crazymadlover",
+			"Omnipaedista"
+		]
+	},
+	"config-page-language": "Γλῶττα",
+	"mainpagetext": "'''Ἡ ἐγκατάστασις τῆς MediaWiki ἦν ἐπιτυχής'''",
+	"mainpagedocfooter": "Βουλευθήσεσθε τὰς [//meta.wikimedia.org/wiki/Help:Contents βουλὰς τοῖς Χρωμένοις] ἵνα πληροφορηθῇτε περὶ τοῦ βίκιλογισμικοῦ.\n\n== Ἄρξασθε ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Διαλογή παραμέτρων διαμορφώσεως]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki: τὰ πολλάκις αἰτηθέντα]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Διαλογή διαλέξεων ἐπὶ τῶν διανομῶν τῆς MediaWiki]"
+}

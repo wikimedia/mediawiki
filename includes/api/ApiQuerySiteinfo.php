@@ -31,7 +31,7 @@
  */
 class ApiQuerySiteinfo extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'si' );
 	}
 
@@ -77,6 +77,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					break;
 				case 'rightsinfo':
 					$fit = $this->appendRightsInfo( $p );
+					break;
+				case 'restrictions':
+					$fit = $this->appendRestrictions( $p );
 					break;
 				case 'languages':
 					$fit = $this->appendLanguages( $p );
@@ -124,7 +127,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['mainpage'] = $mainPage->getPrefixedText();
 		$data['base'] = wfExpandUrl( $mainPage->getFullURL(), PROTO_CURRENT );
 		$data['sitename'] = $GLOBALS['wgSitename'];
-		$data['logo'] = $GLOBALS['wgLogo'];
+
+		// wgLogo can either be a relative or an absolute path
+		// make sure we always return an absolute path
+		$data['logo'] = wfExpandUrl( $GLOBALS['wgLogo'], PROTO_RELATIVE );
+
 		$data['generator'] = "MediaWiki {$GLOBALS['wgVersion']}";
 		$data['phpversion'] = phpversion();
 		$data['phpsapi'] = PHP_SAPI;
@@ -173,6 +180,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$git = SpecialVersion::getGitHeadSha1( $GLOBALS['IP'] );
 		if ( $git ) {
 			$data['git-hash'] = $git;
+			$data['git-branch'] =
+				SpecialVersion::getGitCurrentBranch( $GLOBALS['IP'] );
 		} else {
 			$svn = SpecialVersion::getSvnRevision( $GLOBALS['IP'] );
 			if ( $svn ) {
@@ -183,10 +192,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		// 'case-insensitive' option is reserved for future
 		$data['case'] = $GLOBALS['wgCapitalLinks'] ? 'first-letter' : 'case-sensitive';
 
-		if ( isset( $GLOBALS['wgRightsCode'] ) ) {
-			$data['rightscode'] = $GLOBALS['wgRightsCode'];
-		}
-		$data['rights'] = $GLOBALS['wgRightsText'];
 		$data['lang'] = $GLOBALS['wgLanguageCode'];
 
 		$fallbacks = array();
@@ -236,6 +241,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['script'] = $GLOBALS['wgScript'];
 		$data['variantarticlepath'] = $GLOBALS['wgVariantArticlePath'];
 		$data['server'] = $GLOBALS['wgServer'];
+		$data['servername'] = $GLOBALS['wgServerName'];
 		$data['wikiid'] = wfWikiID();
 		$data['time'] = wfTimestamp( TS_ISO_8601, time() );
 
@@ -251,6 +257,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$this->getResult()->setIndexedTagName( $data['imagelimits'], 'limit' );
 		foreach ( $GLOBALS['wgImageLimits'] as $k => $limit ) {
 			$data['imagelimits'][$k] = array( 'width' => $limit[0], 'height' => $limit[1] );
+		}
+
+		if ( !empty( $GLOBALS['wgFavicon'] ) ) {
+			// wgFavicon can either be a relative or an absolute path
+			// make sure we always return an absolute path
+			$data['favicon'] = wfExpandUrl( $GLOBALS['wgFavicon'], PROTO_RELATIVE );
 		}
 
 		wfRunHooks( 'APIQuerySiteInfoGeneralInfo', array( $this, &$data ) );
@@ -550,6 +562,42 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				) {
 					$ret['version'] = 'r' . $m[1];
 				}
+				if ( isset( $ext['path'] ) ) {
+					$extensionPath = dirname( $ext['path'] );
+					$gitInfo = new GitInfo( $extensionPath );
+					$vcsVersion = $gitInfo->getHeadSHA1();
+					if ( $vcsVersion !== false ) {
+						$ret['vcs-system'] = 'git';
+						$ret['vcs-version'] = $vcsVersion;
+						$ret['vcs-url'] = $gitInfo->getHeadViewUrl();
+						$vcsDate = $gitInfo->getHeadCommitDate();
+						if ( $vcsDate !== false ) {
+							$ret['vcs-date'] = wfTimestamp( TS_ISO_8601, $vcsDate );
+						}
+					} else {
+						$svnInfo = SpecialVersion::getSvnInfo( $extensionPath );
+						if ( $svnInfo !== false ) {
+							$ret['vcs-system'] = 'svn';
+							$ret['vcs-version'] = $svnInfo['checkout-rev'];
+							$ret['vcs-url'] = isset( $svnInfo['viewvc-url'] ) ? $svnInfo['viewvc-url'] : '';
+						}
+					}
+
+					if ( SpecialVersion::getExtLicenseFileName( $extensionPath ) ) {
+						$ret['license-name'] = isset( $ext['license-name'] ) ? $ext['license-name'] : '';
+						$ret['license'] = SpecialPage::getTitleFor(
+							'Version',
+							"License/{$ext['name']}"
+						)->getLinkURL();
+					}
+
+					if ( SpecialVersion::getExtAuthorsFileName( $extensionPath ) ) {
+						$ret['credits'] = SpecialPage::getTitleFor(
+							'Version',
+							"Credits/{$ext['name']}"
+						)->getLinkURL();
+					}
+				}
 				$data[] = $ret;
 			}
 		}
@@ -576,6 +624,25 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
+	protected function appendRestrictions( $property ) {
+		global $wgRestrictionTypes, $wgRestrictionLevels,
+			$wgCascadingRestrictionLevels, $wgSemiprotectedRestrictionLevels;
+
+		$data = array(
+			'types' => $wgRestrictionTypes,
+			'levels' => $wgRestrictionLevels,
+			'cascadinglevels' => $wgCascadingRestrictionLevels,
+			'semiprotectedlevels' => $wgSemiprotectedRestrictionLevels,
+		);
+
+		$this->getResult()->setIndexedTagName( $data['types'], 'type' );
+		$this->getResult()->setIndexedTagName( $data['levels'], 'level' );
+		$this->getResult()->setIndexedTagName( $data['cascadinglevels'], 'level' );
+		$this->getResult()->setIndexedTagName( $data['semiprotectedlevels'], 'level' );
+
+		return $this->getResult()->addValue( 'query', $property, $data );
+	}
+
 	public function appendLanguages( $property ) {
 		$params = $this->extractRequestParams();
 		$langCode = isset( $params['inlanguagecode'] ) ? $params['inlanguagecode'] : '';
@@ -595,12 +662,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function appendSkins( $property ) {
 		$data = array();
-		$usable = Skin::getUsableSkins();
+		$allowed = Skin::getAllowedSkins();
 		$default = Skin::normalizeKey( 'default' );
 		foreach ( Skin::getSkinNames() as $name => $displayName ) {
 			$skin = array( 'code' => $name );
 			ApiResult::setContent( $skin, $displayName );
-			if ( !isset( $usable[$name] ) ) {
+			if ( !isset( $allowed[$name] ) ) {
 				$skin['unusable'] = '';
 			}
 			if ( $name === $default ) {
@@ -698,6 +765,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'extensions',
 					'fileextensions',
 					'rightsinfo',
+					'restrictions',
 					'languages',
 					'skins',
 					'extensiontags',
@@ -739,6 +807,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' extensions            - Returns extensions installed on the wiki',
 				' fileextensions        - Returns list of file extensions allowed to be uploaded',
 				' rightsinfo            - Returns wiki rights (license) information if available',
+				' restrictions          - Returns information on available restriction (protection) types',
 				' languages             - Returns a list of languages MediaWiki supports' .
 					"(optionally localised by using {$p}inlanguagecode)",
 				' skins                 - Returns a list of all enabled skins',
@@ -758,7 +827,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Return general information about the site';
+		return 'Return general information about the site.';
 	}
 
 	public function getPossibleErrors() {

@@ -985,7 +985,7 @@ class FormatMetadata extends ContextSource {
 	 * @param bool $noHtml If to avoid returning anything resembling HTML.
 	 *   (Ugly hack for backwards compatibility with old MediaWiki).
 	 * @param bool|IContextSource $context
-	 * @return String single value (in wiki-syntax).
+	 * @return string Single value (in wiki-syntax).
 	 * @since 1.23
 	 */
 	public static function flattenArrayContentLang( $vals, $type = 'ul',
@@ -1036,9 +1036,9 @@ class FormatMetadata extends ContextSource {
 	 *     lang = language assoc array with keys being the lang code
 	 *     ul = unordered list, ol = ordered list
 	 *     type can also come from the '_type' member of $vals.
-	 * @param $noHtml Boolean If to avoid returning anything resembling HTML.
+	 * @param bool $noHtml If to avoid returning anything resembling HTML.
 	 *   (Ugly hack for backwards compatibility with old mediawiki).
-	 * @return String single value (in wiki-syntax).
+	 * @return string Single value (in wiki-syntax).
 	 * @since 1.23
 	 */
 	public function flattenArrayReal( $vals, $type = 'ul', $noHtml = false ) {
@@ -1156,8 +1156,8 @@ class FormatMetadata extends ContextSource {
 
 	/** Helper function for creating lists of translations.
 	 *
-	 * @param string $value value (this is not escaped)
-	 * @param string $lang lang code of item or false
+	 * @param string $value Value (this is not escaped)
+	 * @param string $lang Lang code of item or false
 	 * @param bool $default If it is default value.
 	 * @param bool $noHtml If to avoid html (for back-compat)
 	 * @throws MWException

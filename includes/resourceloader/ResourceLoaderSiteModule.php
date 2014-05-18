@@ -32,9 +32,9 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 	/**
 	 * Gets list of pages used by this module
 	 *
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 *
-	 * @return Array: List of pages
+	 * @return array List of pages
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
 		global $wgUseSiteJs, $wgUseSiteCss;
@@ -58,7 +58,7 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 	/**
 	 * Gets group name
 	 *
-	 * @return String: Name of group
+	 * @return string Name of group
 	 */
 	public function getGroup() {
 		return 'site';

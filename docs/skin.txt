@@ -55,7 +55,7 @@ These can also be customised on a per-user basis, by editing
 
 This feature has led to a wide variety of "user styles" becoming available:
 
-http://www.mediawiki.org/wiki/Manual:Gallery_of_user_styles
+https://www.mediawiki.org/wiki/Manual:Gallery_of_user_styles
 
 If you want a different look for your wiki, that gallery is a good place to start.
 
@@ -76,7 +76,7 @@ This technique is used by the more ambitious MediaWiki site operators, to
 create complex custom skins for their wikis. It should be preferred over 
 editing the core Monobook skin directly.
 
-See http://www.mediawiki.org/wiki/Manual:Skinning for more information.
+See https://www.mediawiki.org/wiki/Manual:Skinning for more information.
 
 == Extension skins ==
 

@@ -27,7 +27,6 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class Site implements Serializable {
-
 	const TYPE_UNKNOWN = 'unknown';
 	const TYPE_MEDIAWIKI = 'mediawiki';
 
@@ -234,7 +233,7 @@ class Site implements Serializable {
 	 *
 	 * @since 1.21
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function shouldForward() {
 		return $this->forward;
@@ -246,7 +245,7 @@ class Site implements Serializable {
 	 *
 	 * @since 1.21
 	 *
-	 * @param boolean $shouldForward
+	 * @param bool $shouldForward
 	 *
 	 * @throws MWException
 	 */
@@ -340,11 +339,12 @@ class Site implements Serializable {
 	}
 
 	/**
-	 * Returns the main path type, that is the type of the path that should generally be used to construct links
-	 * to the target site.
+	 * Returns the main path type, that is the type of the path that should
+	 * generally be used to construct links to the target site.
 	 *
-	 * This default implementation returns Site::PATH_LINK as the default path type. Subclasses can override this
-	 * to define a different default path type, or return false to disable site links.
+	 * This default implementation returns Site::PATH_LINK as the default path
+	 * type. Subclasses can override this to define a different default path
+	 * type, or return false to disable site links.
 	 *
 	 * @since 1.21
 	 *
@@ -365,9 +365,9 @@ class Site implements Serializable {
 	 *
 	 * @since 1.21
 	 *
-	 * @param bool|String $pageName
+	 * @param bool|string $pageName
 	 *
-	 * @return string|boolean false
+	 * @return string|bool
 	 */
 	public function getPageUrl( $pageName = false ) {
 		$url = $this->getLinkPath();
@@ -541,7 +541,9 @@ class Site implements Serializable {
 	 * @return string[]
 	 */
 	public function getInterwikiIds() {
-		return array_key_exists( self::ID_INTERWIKI, $this->localIds ) ? $this->localIds[self::ID_INTERWIKI] : array();
+		return array_key_exists( self::ID_INTERWIKI, $this->localIds )
+			? $this->localIds[self::ID_INTERWIKI]
+			: array();
 	}
 
 	/**
@@ -553,7 +555,9 @@ class Site implements Serializable {
 	 * @return string[]
 	 */
 	public function getNavigationIds() {
-		return array_key_exists( self::ID_EQUIVALENT, $this->localIds ) ? $this->localIds[self::ID_EQUIVALENT] : array();
+		return array_key_exists( self::ID_EQUIVALENT, $this->localIds )
+			? $this->localIds[self::ID_EQUIVALENT] :
+			array();
 	}
 
 	/**
@@ -693,10 +697,10 @@ class Site implements Serializable {
 		$this->setForward( $fields['forward'] );
 		$this->setInternalId( $fields['internalid'] );
 	}
-
 }
 
 /**
  * @deprecated
  */
-class SiteObject extends Site {}
+class SiteObject extends Site {
+}

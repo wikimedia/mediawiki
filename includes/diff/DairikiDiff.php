@@ -31,23 +31,63 @@
  * @ingroup DifferenceEngine
  */
 abstract class DiffOp {
+
+	/**
+	 * @var string
+	 */
 	public $type;
+
+	/**
+	 * @var string[]
+	 */
 	public $orig;
+
+	/**
+	 * @var string[]
+	 */
 	public $closing;
+
+	/**
+	 * @return string
+	 */
+	public function getType() {
+		return $this->type;
+	}
+
+	/**
+	 * @return string[]
+	 */
+	public function getOrig() {
+		return $this->orig;
+	}
+
+	/**
+	 * @param int $i
+	 * @return string|null
+	 */
+	public function getClosing( $i = null ) {
+		if ( $i === null ) {
+			return $this->closing;
+		}
+		if ( array_key_exists( $i, $this->closing ) ) {
+			return $this->closing[$i];
+		}
+		return null;
+	}
 
 	abstract public function reverse();
 
 	/**
 	 * @return int
 	 */
-	function norig() {
+	public function norig() {
 		return $this->orig ? count( $this->orig ) : 0;
 	}
 
 	/**
 	 * @return int
 	 */
-	function nclosing() {
+	public function nclosing() {
 		return $this->closing ? count( $this->closing ) : 0;
 	}
 }
@@ -60,7 +100,7 @@ abstract class DiffOp {
 class DiffOpCopy extends DiffOp {
 	public $type = 'copy';
 
-	function __construct( $orig, $closing = false ) {
+	public function __construct( $orig, $closing = false ) {
 		if ( !is_array( $closing ) ) {
 			$closing = $orig;
 		}
@@ -71,7 +111,7 @@ class DiffOpCopy extends DiffOp {
 	/**
 	 * @return DiffOpCopy
 	 */
-	function reverse() {
+	public function reverse() {
 		return new DiffOpCopy( $this->closing, $this->orig );
 	}
 }
@@ -84,7 +124,7 @@ class DiffOpCopy extends DiffOp {
 class DiffOpDelete extends DiffOp {
 	public $type = 'delete';
 
-	function __construct( $lines ) {
+	public function __construct( $lines ) {
 		$this->orig = $lines;
 		$this->closing = false;
 	}
@@ -92,7 +132,7 @@ class DiffOpDelete extends DiffOp {
 	/**
 	 * @return DiffOpAdd
 	 */
-	function reverse() {
+	public function reverse() {
 		return new DiffOpAdd( $this->orig );
 	}
 }
@@ -105,7 +145,7 @@ class DiffOpDelete extends DiffOp {
 class DiffOpAdd extends DiffOp {
 	public $type = 'add';
 
-	function __construct( $lines ) {
+	public function __construct( $lines ) {
 		$this->closing = $lines;
 		$this->orig = false;
 	}
@@ -113,7 +153,7 @@ class DiffOpAdd extends DiffOp {
 	/**
 	 * @return DiffOpDelete
 	 */
-	function reverse() {
+	public function reverse() {
 		return new DiffOpDelete( $this->closing );
 	}
 }
@@ -126,7 +166,7 @@ class DiffOpAdd extends DiffOp {
 class DiffOpChange extends DiffOp {
 	public $type = 'change';
 
-	function __construct( $orig, $closing ) {
+	public function __construct( $orig, $closing ) {
 		$this->orig = $orig;
 		$this->closing = $closing;
 	}
@@ -134,7 +174,7 @@ class DiffOpChange extends DiffOp {
 	/**
 	 * @return DiffOpChange
 	 */
-	function reverse() {
+	public function reverse() {
 		return new DiffOpChange( $this->closing, $this->orig );
 	}
 }
@@ -176,11 +216,12 @@ class DiffEngine {
 	protected $lcs = 0;
 
 	/**
-	 * @param $from_lines
-	 * @param $to_lines
-	 * @return array
+	 * @param string[] $from_lines
+	 * @param string[] $to_lines
+	 *
+	 * @return DiffOp[]
 	 */
-	function diff( $from_lines, $to_lines ) {
+	public function diff( $from_lines, $to_lines ) {
 		wfProfileIn( __METHOD__ );
 
 		// Diff and store locally
@@ -237,8 +278,8 @@ class DiffEngine {
 	}
 
 	/**
-	 * @param $from_lines
-	 * @param $to_lines
+	 * @param string[] $from_lines
+	 * @param string[] $to_lines
 	 */
 	private function diffLocal( $from_lines, $to_lines ) {
 		global $wgExternalDiffEngine;
@@ -310,7 +351,9 @@ class DiffEngine {
 
 	/**
 	 * Returns the whole line if it's small enough, or the MD5 hash otherwise
-	 * @param $line string
+	 *
+	 * @param string $line
+	 *
 	 * @return string
 	 */
 	private function lineHash( $line ) {
@@ -337,12 +380,14 @@ class DiffEngine {
 	 * of the two files do not match, and likewise that the last lines do not
 	 * match.  The caller must trim matching lines from the beginning and end
 	 * of the portions it is going to specify.
-	 * @param $xoff
-	 * @param $xlim
-	 * @param $yoff
-	 * @param $ylim
-	 * @param $nchunks
-	 * @return array
+	 *
+	 * @param int $xoff
+	 * @param int $xlim
+	 * @param int $yoff
+	 * @param int $ylim
+	 * @param int $nchunks
+	 *
+	 * @return array List of two elements, integer and array[].
 	 */
 	private function diag( $xoff, $xlim, $yoff, $ylim, $nchunks ) {
 		$flip = false;
@@ -379,7 +424,9 @@ class DiffEngine {
 			}
 
 			$x1 = $xoff + (int)( ( $numer + ( $xlim - $xoff ) * $chunk ) / $nchunks );
+			// @codingStandardsIgnoreFile Ignore Squiz.WhiteSpace.SemicolonSpacing.Incorrect
 			for ( ; $x < $x1; $x++ ) {
+				// @codingStandardsIgnoreEnd
 				$line = $flip ? $this->yv[$x] : $this->xv[$x];
 				if ( empty( $ymatches[$line] ) ) {
 					continue;
@@ -427,7 +474,8 @@ class DiffEngine {
 	}
 
 	/**
-	 * @param $ypos
+	 * @param int $ypos
+	 *
 	 * @return int
 	 */
 	private function lcsPos( $ypos ) {
@@ -469,10 +517,11 @@ class DiffEngine {
 	 *
 	 * Note that XLIM, YLIM are exclusive bounds.
 	 * All line numbers are origin-0 and discarded lines are not counted.
-	 * @param $xoff
-	 * @param $xlim
-	 * @param $yoff
-	 * @param $ylim
+	 *
+	 * @param int $xoff
+	 * @param int $xlim
+	 * @param int $yoff
+	 * @param int $ylim
 	 */
 	private function compareSeq( $xoff, $xlim, $yoff, $ylim ) {
 		// Slide down the bottom initial diagonal.
@@ -659,19 +708,30 @@ class DiffEngine {
  * @ingroup DifferenceEngine
  */
 class Diff {
+
+	/**
+	 * @var DiffOp[]
+	 */
 	public $edits;
 
 	/**
 	 * Constructor.
 	 * Computes diff between sequences of strings.
 	 *
-	 * @param $from_lines array An array of strings.
+	 * @param string[] $from_lines An array of strings.
 	 *   Typically these are lines from a file.
-	 * @param $to_lines array An array of strings.
+	 * @param string[] $to_lines An array of strings.
 	 */
-	function __construct( $from_lines, $to_lines ) {
+	public function __construct( $from_lines, $to_lines ) {
 		$eng = new DiffEngine;
 		$this->edits = $eng->diff( $from_lines, $to_lines );
+	}
+
+	/**
+	 * @return DiffOp[]
+	 */
+	public function getEdits() {
+		return $this->edits;
 	}
 
 	/**
@@ -681,10 +741,11 @@ class Diff {
 	 *
 	 *    $diff = new Diff($lines1, $lines2);
 	 *    $rev = $diff->reverse();
+	 *
 	 * @return Object A Diff object representing the inverse of the
 	 *   original diff.
 	 */
-	function reverse() {
+	public function reverse() {
 		$rev = $this;
 		$rev->edits = array();
 		/** @var DiffOp $edit */
@@ -700,7 +761,7 @@ class Diff {
 	 *
 	 * @return bool True if two sequences were identical.
 	 */
-	function isEmpty() {
+	public function isEmpty() {
 		foreach ( $this->edits as $edit ) {
 			if ( $edit->type != 'copy' ) {
 				return false;
@@ -717,7 +778,7 @@ class Diff {
 	 *
 	 * @return int The length of the LCS.
 	 */
-	function lcs() {
+	public function lcs() {
 		$lcs = 0;
 		foreach ( $this->edits as $edit ) {
 			if ( $edit->type == 'copy' ) {
@@ -734,9 +795,9 @@ class Diff {
 	 * This reconstructs the $from_lines parameter passed to the
 	 * constructor.
 	 *
-	 * @return array The original sequence of strings.
+	 * @return string[] The original sequence of strings.
 	 */
-	function orig() {
+	public function orig() {
 		$lines = array();
 
 		foreach ( $this->edits as $edit ) {
@@ -754,9 +815,9 @@ class Diff {
 	 * This reconstructs the $to_lines parameter passed to the
 	 * constructor.
 	 *
-	 * @return array The sequence of strings.
+	 * @return string[] The sequence of strings.
 	 */
-	function closing() {
+	public function closing() {
 		$lines = array();
 
 		foreach ( $this->edits as $edit ) {
@@ -784,21 +845,18 @@ class MappedDiff extends Diff {
 	 * case-insensitve diffs, or diffs which ignore
 	 * changes in white-space.
 	 *
-	 * @param $from_lines array An array of strings.
+	 * @param string[] $from_lines An array of strings.
 	 *   Typically these are lines from a file.
-	 *
-	 * @param $to_lines array An array of strings.
-	 *
-	 * @param $mapped_from_lines array This array should
+	 * @param string[] $to_lines An array of strings.
+	 * @param string[] $mapped_from_lines This array should
 	 *   have the same size number of elements as $from_lines.
 	 *   The elements in $mapped_from_lines and
 	 *   $mapped_to_lines are what is actually compared
 	 *   when computing the diff.
-	 *
-	 * @param $mapped_to_lines array This array should
+	 * @param string[] $mapped_to_lines This array should
 	 *   have the same number of elements as $to_lines.
 	 */
-	function __construct( $from_lines, $to_lines,
+	public function __construct( $from_lines, $to_lines,
 		$mapped_from_lines, $mapped_to_lines ) {
 		wfProfileIn( __METHOD__ );
 
@@ -845,7 +903,7 @@ class HWLDFWordAccumulator {
 	private $tag = '';
 
 	/**
-	 * @param $new_tag
+	 * @param string $new_tag
 	 */
 	private function flushGroup( $new_tag ) {
 		if ( $this->group !== '' ) {
@@ -864,7 +922,7 @@ class HWLDFWordAccumulator {
 	}
 
 	/**
-	 * @param $new_tag
+	 * @param string $new_tag
 	 */
 	private function flushLine( $new_tag ) {
 		$this->flushGroup( $new_tag );
@@ -878,8 +936,8 @@ class HWLDFWordAccumulator {
 	}
 
 	/**
-	 * @param $words
-	 * @param $tag string
+	 * @param string[] $words
+	 * @param string $tag
 	 */
 	public function addWords( $words, $tag = '' ) {
 		if ( $tag != $this->tag ) {
@@ -901,7 +959,7 @@ class HWLDFWordAccumulator {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	public function getLines() {
 		$this->flushLine( '~done' );
@@ -919,10 +977,10 @@ class WordLevelDiff extends MappedDiff {
 	const MAX_LINE_LENGTH = 10000;
 
 	/**
-	 * @param $orig_lines
-	 * @param $closing_lines
+	 * @param string[] $orig_lines
+	 * @param string[] $closing_lines
 	 */
-	function __construct( $orig_lines, $closing_lines ) {
+	public function __construct( $orig_lines, $closing_lines ) {
 		wfProfileIn( __METHOD__ );
 
 		list( $orig_words, $orig_stripped ) = $this->split( $orig_lines );
@@ -934,8 +992,9 @@ class WordLevelDiff extends MappedDiff {
 	}
 
 	/**
-	 * @param $lines
-	 * @return array
+	 * @param string[] $lines
+	 *
+	 * @return array[]
 	 */
 	private function split( $lines ) {
 		wfProfileIn( __METHOD__ );
@@ -975,7 +1034,7 @@ class WordLevelDiff extends MappedDiff {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	public function orig() {
 		wfProfileIn( __METHOD__ );
@@ -995,7 +1054,7 @@ class WordLevelDiff extends MappedDiff {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	public function closing() {
 		wfProfileIn( __METHOD__ );
@@ -1013,4 +1072,5 @@ class WordLevelDiff extends MappedDiff {
 
 		return $lines;
 	}
+
 }

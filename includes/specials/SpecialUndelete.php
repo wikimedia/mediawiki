@@ -27,19 +27,13 @@
  * @ingroup SpecialPage
  */
 class PageArchive {
-	/**
-	 * @var Title
-	 */
+	/** @var Title */
 	protected $title;
 
-	/**
-	 * @var Status
-	 */
+	/** @var Status */
 	protected $fileStatus;
 
-	/**
-	 * @var Status
-	 */
+	/** @var Status */
 	protected $revisionStatus;
 
 	function __construct( $title ) {
@@ -58,6 +52,7 @@ class PageArchive {
 	 */
 	public static function listAllPages() {
 		$dbr = wfGetDB( DB_SLAVE );
+
 		return self::listPages( $dbr, '' );
 	}
 
@@ -137,7 +132,7 @@ class PageArchive {
 		}
 
 		$conds = array( 'ar_namespace' => $this->title->getNamespace(),
-				'ar_title' => $this->title->getDBkey() );
+			'ar_title' => $this->title->getDBkey() );
 
 		$options = array( 'ORDER BY' => 'ar_timestamp DESC' );
 
@@ -336,7 +331,7 @@ class PageArchive {
 	/**
 	 * Quick check if any archived revisions are present for the page.
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	function isDeleted() {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -354,16 +349,18 @@ class PageArchive {
 	 * Once restored, the items will be removed from the archive tables.
 	 * The deletion log will be updated with an undeletion notice.
 	 *
-	 * @param array $timestamps Pass an empty array to restore all revisions, otherwise list the ones to undelete.
+	 * @param array $timestamps Pass an empty array to restore all revisions,
+	 *   otherwise list the ones to undelete.
 	 * @param string $comment
 	 * @param array $fileVersions
 	 * @param bool $unsuppress
 	 * @param User $user User performing the action, or null to use $wgUser
-	 *
-	 * @return array(number of file revisions restored, number of image revisions restored, log message)
-	 * on success, false on failure
+	 * @return array(number of file revisions restored, number of image revisions
+	 *   restored, log message) on success, false on failure.
 	 */
-	function undelete( $timestamps, $comment = '', $fileVersions = array(), $unsuppress = false, User $user = null ) {
+	function undelete( $timestamps, $comment = '', $fileVersions = array(),
+		$unsuppress = false, User $user = null
+	) {
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.
 		$restoreAll = empty( $timestamps ) && empty( $fileVersions );
@@ -406,6 +403,7 @@ class PageArchive {
 				->inContentLanguage()->text();
 		} else {
 			wfDebug( "Undelete: nothing undeleted...\n" );
+
 			return false;
 		}
 
@@ -436,11 +434,12 @@ class PageArchive {
 	 * to the cur/old tables. If the page currently exists, all revisions will
 	 * be stuffed into old, otherwise the most recent will go into cur.
 	 *
-	 * @param array $timestamps Pass an empty array to restore all revisions, otherwise list the ones to undelete.
+	 * @param array $timestamps Pass an empty array to restore all revisions,
+	 *   otherwise list the ones to undelete.
 	 * @param bool $unsuppress Remove all ar_deleted/fa_deleted restrictions of seletected revs
 	 * @param string $comment
 	 * @throws ReadOnlyError
-	 * @return Status Object containing the number of revisions restored on success
+	 * @return Status Status object containing the number of revisions restored on success
 	 */
 	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {
 		global $wgContentHandlerUseDB;
@@ -545,6 +544,7 @@ class PageArchive {
 
 			$status = Status::newGood( 0 );
 			$status->warning( "undelete-no-results" );
+
 			return $status;
 		}
 
@@ -635,7 +635,11 @@ class PageArchive {
 		if ( $created || $wasnew ) {
 			// Update site stats, link tables, etc
 			$user = User::newFromName( $revision->getRawUserText(), false );
-			$article->doEditUpdates( $revision, $user, array( 'created' => $created, 'oldcountable' => $oldcountable ) );
+			$article->doEditUpdates(
+				$revision,
+				$user,
+				array( 'created' => $created, 'oldcountable' => $oldcountable )
+			);
 		}
 
 		wfRunHooks( 'ArticleUndelete', array( &$this->title, $created, $comment ) );
@@ -670,13 +674,20 @@ class PageArchive {
  * @ingroup SpecialPage
  */
 class SpecialUndelete extends SpecialPage {
-	var $mAction, $mTarget, $mTimestamp, $mRestore, $mInvert, $mFilename;
-	var $mTargetTimestamp, $mAllowed, $mCanView, $mComment, $mToken;
+	private $mAction;
+	private	$mTarget;
+	private	$mTimestamp;
+	private	$mRestore;
+	private	$mInvert;
+	private	$mFilename;
+	private $mTargetTimestamp;
+	private	$mAllowed;
+	private	$mCanView;
+	private	$mComment;
+	private	$mToken;
 
-	/**
-	 * @var Title
-	 */
-	var $mTargetObj;
+	/** @var Title */
+	private $mTargetObj;
 
 	function __construct() {
 		parent::__construct( 'Undelete', 'deletedhistory' );
@@ -765,6 +776,7 @@ class SpecialUndelete extends SpecialPage {
 			if ( $user->isAllowed( 'browsearchive' ) ) {
 				$this->showSearchForm();
 			}
+
 			return;
 		}
 
@@ -844,6 +856,7 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( $result->numRows() == 0 ) {
 			$out->addWikiMsg( 'undelete-no-results' );
+
 			return false;
 		}
 
@@ -897,6 +910,7 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( !$rev ) {
 			$out->addWikiMsg( 'undeleterevision-missing' );
+
 			return;
 		}
 
@@ -906,6 +920,7 @@ class SpecialUndelete extends SpecialPage {
 					"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 					'rev-deleted-text-permission'
 				);
+
 				return;
 			}
 
@@ -1132,6 +1147,7 @@ class SpecialUndelete extends SpecialPage {
 
 	/**
 	 * Show a form confirming whether a tokenless user really wants to see a file
+	 * @param string $key
 	 */
 	private function showFileConfirmationForm( $key ) {
 		$out = $this->getOutput();
@@ -1159,6 +1175,7 @@ class SpecialUndelete extends SpecialPage {
 
 	/**
 	 * Show a deleted file version requested by the visitor.
+	 * @param string $key
 	 */
 	private function showFile( $key ) {
 		$this->getOutput()->disable();
@@ -1269,32 +1286,42 @@ class SpecialUndelete extends SpecialPage {
 				$unsuppressBox = '';
 			}
 
-			$table =
-				Xml::fieldset( $this->msg( 'undelete-fieldset-title' )->text() ) .
-					Xml::openElement( 'table', array( 'id' => 'mw-undelete-table' ) ) .
-					"<tr>
-						<td colspan='2' class='mw-undelete-extrahelp'>" .
-					$this->msg( 'undeleteextrahelp' )->parseAsBlock() .
-					"</td>
-				</tr>
-				<tr>
-					<td class='mw-label'>" .
-					Xml::label( $this->msg( 'undeletecomment' )->text(), 'wpComment' ) .
-					"</td>
-					<td class='mw-input'>" .
-					Xml::input( 'wpComment', 50, $this->mComment, array( 'id' => 'wpComment', 'autofocus' => true ) ) .
-					"</td>
-				</tr>
-				<tr>
-					<td>&#160;</td>
-					<td class='mw-submit'>" .
-					Xml::submitButton( $this->msg( 'undeletebtn' )->text(), array( 'name' => 'restore', 'id' => 'mw-undelete-submit' ) ) . ' ' .
-					Xml::submitButton( $this->msg( 'undeleteinvert' )->text(), array( 'name' => 'invert', 'id' => 'mw-undelete-invert' ) ) .
-					"</td>
-				</tr>" .
-					$unsuppressBox .
-					Xml::closeElement( 'table' ) .
-					Xml::closeElement( 'fieldset' );
+			$table = Xml::fieldset( $this->msg( 'undelete-fieldset-title' )->text() ) .
+				Xml::openElement( 'table', array( 'id' => 'mw-undelete-table' ) ) .
+				"<tr>
+					<td colspan='2' class='mw-undelete-extrahelp'>" .
+				$this->msg( 'undeleteextrahelp' )->parseAsBlock() .
+				"</td>
+			</tr>
+			<tr>
+				<td class='mw-label'>" .
+				Xml::label( $this->msg( 'undeletecomment' )->text(), 'wpComment' ) .
+				"</td>
+				<td class='mw-input'>" .
+				Xml::input(
+					'wpComment',
+					50,
+					$this->mComment,
+					array( 'id' => 'wpComment', 'autofocus' => true )
+				) .
+				"</td>
+			</tr>
+			<tr>
+				<td>&#160;</td>
+				<td class='mw-submit'>" .
+				Xml::submitButton(
+					$this->msg( 'undeletebtn' )->text(),
+					array( 'name' => 'restore', 'id' => 'mw-undelete-submit' )
+				) . ' ' .
+				Xml::submitButton(
+					$this->msg( 'undeleteinvert' )->text(),
+					array( 'name' => 'invert', 'id' => 'mw-undelete-invert' )
+				) .
+				"</td>
+			</tr>" .
+				$unsuppressBox .
+				Xml::closeElement( 'table' ) .
+				Xml::closeElement( 'fieldset' );
 
 			$out->addHTML( $table );
 		}
@@ -1416,7 +1443,17 @@ class SpecialUndelete extends SpecialPage {
 		$revdlink = Linker::getRevDeleteLink( $user, $rev, $this->mTargetObj );
 
 		$revisionRow = $this->msg( 'undelete-revision-row' )
-			->rawParams( $checkBox, $revdlink, $last, $pageLink, $userLink, $minor, $revTextSize, $comment, $tagSummary )
+			->rawParams(
+				$checkBox,
+				$revdlink,
+				$last,
+				$pageLink,
+				$userLink,
+				$minor,
+				$revTextSize,
+				$comment,
+				$tagSummary
+			)
 			->escaped();
 
 		return Xml::tags( 'li', $attribs, $revisionRow ) . "\n";
@@ -1504,7 +1541,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @param File|ArchivedFile $file
 	 * @param Title $titleObj
 	 * @param string $ts A timestamp
-	 * @param string $key a storage key
+	 * @param string $key A storage key
 	 *
 	 * @return string HTML fragment
 	 */
@@ -1616,13 +1653,23 @@ class SpecialUndelete extends SpecialPage {
 		// Show revision undeletion warnings and errors
 		$status = $archive->getRevisionStatus();
 		if ( $status && !$status->isGood() ) {
-			$out->addWikiText( '<div class="error">' . $status->getWikiText( 'cannotundelete', 'cannotundelete' ) . '</div>' );
+			$out->addWikiText( '<div class="error">' .
+				$status->getWikiText(
+					'cannotundelete',
+					'cannotundelete'
+				) . '</div>'
+			);
 		}
 
 		// Show file undeletion warnings and errors
 		$status = $archive->getFileStatus();
 		if ( $status && !$status->isGood() ) {
-			$out->addWikiText( '<div class="error">' . $status->getWikiText( 'undelete-error-short', 'undelete-error-long' ) . '</div>' );
+			$out->addWikiText( '<div class="error">' .
+				$status->getWikiText(
+					'undelete-error-short',
+					'undelete-error-long'
+				) . '</div>'
+			);
 		}
 	}
 

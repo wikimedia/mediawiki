@@ -1,4 +1,5 @@
 <?php
+// @codingStandardsIgnoreFile
 /**
  * Html form for account creation (since 1.22 with VForm appearance).
  *
@@ -22,7 +23,6 @@
  */
 
 class UsercreateTemplate extends BaseTemplate {
-
 	/**
 	 * Extensions (AntiSpoof and TitleBlacklist) call this in response to
 	 * UserCreateForm hook to add checkboxes to the create account form.
@@ -51,22 +51,27 @@ class UsercreateTemplate extends BaseTemplate {
 		<div id="signupstart"><?php $this->msgWiki( 'signupstart' ); ?></div>
 	<?php } ?>
 	<div id="userloginForm">
-		<h2 class="createaccount-join">
-			<?php $this->msg( $this->data['loggedin'] ? 'createacct-another-join' : 'createacct-join' ); ?>
-		</h2>
 		<form name="userlogin2" id="userlogin2" class="mw-ui-vform" method="post" action="<?php $this->text( 'action' ); ?>">
 			<section class="mw-form-header">
 				<?php $this->html( 'header' ); /* extensions such as ConfirmEdit add form HTML here */ ?>
 			</section>
+			<!-- This element is used by the mediawiki.special.userlogin.signup.js module. -->
+			<div
+				id="mw-createacct-status-area"
+				<?php if ( $this->data['message'] ) { ?>
+					class="<?php echo $this->data['messagetype']; ?>box"
+				<?php } else { ?>
+					style="display: none;"
+				<?php } ?>
+			>
 			<?php if ( $this->data['message'] ) { ?>
-				<div class="<?php $this->text( 'messagetype' ); ?>box">
 					<?php if ( $this->data['messagetype'] == 'error' ) { ?>
 						<strong><?php $this->msg( 'createacct-error' ); ?></strong>
 						<br />
 					<?php } ?>
 					<?php $this->html( 'message' ); ?>
-				</div>
 			<?php } ?>
+			</div>
 
 			<div>
 				<label for='wpName2'>
@@ -212,7 +217,7 @@ class UsercreateTemplate extends BaseTemplate {
 										echo 'checked="checked"';
 									} ?>
 								>
-								<?php $this->msg( $inputItem['msg'] ); ?>
+								<?php $this->msgHtml( $inputItem['msg'] ); ?>
 							</label>
 						<?php
 						} else {
@@ -254,7 +259,7 @@ class UsercreateTemplate extends BaseTemplate {
 					$this->getMsg( $this->data['loggedin'] ? 'createacct-another-submit' : 'createacct-submit' ),
 					'submit',
 					array(
-						'class' => "mw-ui-button mw-ui-big mw-ui-block mw-ui-primary",
+						'class' => "mw-ui-button mw-ui-big mw-ui-block mw-ui-constructive",
 						'id' => 'wpCreateaccount',
 						'tabindex' => $tabIndex++
 					)

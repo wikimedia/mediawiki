@@ -18,6 +18,13 @@ class ApiEditPageTest extends ApiTestCase {
 
 		parent::setUp();
 
+		$this->setMwGlobals( array(
+			'wgExtraNamespaces' => $wgExtraNamespaces,
+			'wgNamespaceContentModels' => $wgNamespaceContentModels,
+			'wgContentHandlers' => $wgContentHandlers,
+			'wgContLang' => $wgContLang,
+		) );
+
 		$wgExtraNamespaces[12312] = 'Dummy';
 		$wgExtraNamespaces[12313] = 'Dummy_talk';
 
@@ -31,17 +38,7 @@ class ApiEditPageTest extends ApiTestCase {
 	}
 
 	protected function tearDown() {
-		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
-
-		unset( $wgExtraNamespaces[12312] );
-		unset( $wgExtraNamespaces[12313] );
-
-		unset( $wgNamespaceContentModels[12312] );
-		unset( $wgContentHandlers["testing"] );
-
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
-		$wgContLang->resetNamespaces(); # reset namespace cache
-
 		parent::tearDown();
 	}
 
@@ -215,8 +212,10 @@ class ApiEditPageTest extends ApiTestCase {
 			'text' => "==section 1==\nnew content 1",
 		) );
 		$this->assertEquals( 'Success', $re['edit']['result'] );
-		$newtext = WikiPage::factory( Title::newFromText( $name ) )->getContent( Revision::RAW )->getNativeData();
-		$this->assertEquals( $newtext, "==section 1==\nnew content 1\n\n==section 2==\ncontent2" );
+		$newtext = WikiPage::factory( Title::newFromText( $name ) )
+			->getContent( Revision::RAW )
+			->getNativeData();
+		$this->assertEquals( "==section 1==\nnew content 1\n\n==section 2==\ncontent2", $newtext );
 
 		// Test that we raise a 'nosuchsection' error
 		try {
@@ -228,7 +227,7 @@ class ApiEditPageTest extends ApiTestCase {
 			) );
 			$this->fail( "Should have raised a UsageException" );
 		} catch ( UsageException $e ) {
-			$this->assertEquals( $e->getCodeString(), 'nosuchsection' );
+			$this->assertEquals( 'nosuchsection', $e->getCodeString() );
 		}
 	}
 
@@ -253,8 +252,10 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->assertEquals( 'Success', $re['edit']['result'] );
 		// Check the page text is correct
-		$text = WikiPage::factory( Title::newFromText( $name ) )->getContent( Revision::RAW )->getNativeData();
-		$this->assertEquals( $text, "== header ==\n\ntest" );
+		$text = WikiPage::factory( Title::newFromText( $name ) )
+			->getContent( Revision::RAW )
+			->getNativeData();
+		$this->assertEquals( "== header ==\n\ntest", $text );
 
 		// Now on one that does
 		$this->assertTrue( Title::newFromText( $name )->exists() );
@@ -267,8 +268,10 @@ class ApiEditPageTest extends ApiTestCase {
 		));
 
 		$this->assertEquals( 'Success', $re2['edit']['result'] );
-		$text = WikiPage::factory( Title::newFromText( $name ) )->getContent( Revision::RAW )->getNativeData();
-		$this->assertEquals( $text, "== header ==\n\ntest\n\n== header ==\n\ntest" );
+		$text = WikiPage::factory( Title::newFromText( $name ) )
+			->getContent( Revision::RAW )
+			->getNativeData();
+		$this->assertEquals( "== header ==\n\ntest\n\n== header ==\n\ntest", $text );
 	}
 
 	public function testEditConflict() {
@@ -391,7 +394,6 @@ class ApiEditPageTest extends ApiTestCase {
 		$rpage->doEditContent( new WikitextContent( "#REDIRECT [[$name]]" ),
 			"testing 1", EDIT_NEW, false, self::$users['sysop']->user );
 		$this->forceRevisionDate( $rpage, '20120101000000' );
-		$baseTime = $rpage->getRevision()->getTimestamp();
 
 		// new edit to content
 		$page->doEditContent( new WikitextContent( "Foo bar" ),

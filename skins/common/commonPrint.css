@@ -32,18 +32,22 @@ div.floatright {
 	position: relative;
 	margin: 0.5em 0 0.8em 1.4em;
 }
+
 div.floatright p {
 	font-style: italic;
 }
+
 div.floatleft {
 	float: left;
 	clear: left;
 	position: relative;
 	margin: 0.5em 1.4em 0.8em 0;
 }
+
 div.floatleft p {
 	font-style: italic;
 }
+
 div.center {
 	text-align: center;
 }
@@ -56,17 +60,20 @@ div.thumb {
 	margin-bottom: 0.8em;
 	background-color: transparent;
 }
+
 div.thumbinner {
-	border:1px solid #cccccc;
+	border: 1px solid #cccccc;
 	padding: 3px !important;
 	background-color: White;
 	font-size: 94%;
 	text-align: center;
 	overflow: hidden;
 }
+
 html .thumbimage {
 	border: 1px solid #cccccc;
 }
+
 html .thumbcaption {
 	border: none;
 	text-align: left;
@@ -78,30 +85,23 @@ html .thumbcaption {
 div.magnify {
 	display: none;
 }
+
 /* @noflip */
 div.tright {
 	float: right;
 	clear: right;
 	margin: 0.5em 0 0.8em 1.4em;
 }
+
 /* @noflip */
 div.tleft {
 	float: left;
 	clear: left;
 	margin: 0.5em 1.4em 0.8em 0;
 }
+
 img.thumbborder {
 	border: 1px solid #dddddd;
-}
-
-/* table standards */
-table.rimage {
-	float: right;
-	width: 1pt;
-	position: relative;
-	margin-left: 1em;
-	margin-bottom: 1em;
-	text-align: center;
 }
 
 body {
@@ -151,15 +151,20 @@ ul {
 	margin: 0 !important;
 	direction: ltr;
 }
+
 #footer {
-	background : white;
-	color : black;
+	background: white;
+	color: black;
 	margin-top: 1em;
 	border-top: 1px solid #AAA;
 	direction: ltr;
 }
 
 h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
+
+dt {
 	font-weight: bold;
 }
 
@@ -200,6 +205,12 @@ a:link, a:visited {
 #content a.external.autonumber:after {
 	/* Expand URLs for printing */
 	content: " (" attr(href) ")";
+}
+
+#content a.external.text[href^='//']:after,
+#content a.external.autonumber[href^='//']:after {
+	/* Expand protocol-relative URLs for printing */
+	content: " (https:" attr(href) ")";
 }
 
 #globalWrapper {
@@ -256,7 +267,6 @@ span.texhtml {
 /* Galleries (see shared.css for more info) */
 li.gallerybox {
 	vertical-align: top;
-	display: -moz-inline-box;
 	display: inline-block;
 }
 
@@ -297,26 +307,32 @@ div.gallerytext {
 table.diff {
 	background: white;
 }
+
 td.diff-otitle {
 	background: #ffffff;
 }
+
 td.diff-ntitle {
 	background: #ffffff;
 }
+
 td.diff-addedline {
 	background: #ccffcc;
 	font-size: smaller;
 	border: solid 2px black;
 }
+
 td.diff-deletedline {
 	background: #ffffaa;
 	font-size: smaller;
 	border: dotted 2px black;
 }
+
 td.diff-context {
 	background: #eeeeee;
 	font-size: smaller;
 }
+
 .diffchange {
 	color: silver;
 	font-weight: bold;
@@ -334,12 +350,14 @@ table.mw_metadata {
 	background: white;
 	border-collapse: collapse;
 }
+
 table.wikitable > tr > th, table.wikitable > tr > td,
 table.wikitable > * > tr > th, table.wikitable > * > tr > td,
 .mw_metadata th, .mw_metadata td {
 	border: 1px #aaa solid;
 	padding: 0.2em;
 }
+
 table.wikitable > tr > th,
 table.wikitable > * > tr > th,
 .mw_metadata th {
@@ -347,6 +365,7 @@ table.wikitable > * > tr > th,
 	background: white;
 	font-weight: bold;
 }
+
 table.wikitable > caption,
 .mw_metadata caption {
 	font-weight: bold;
@@ -360,9 +379,11 @@ a.sortheader {
 .wikitable, .thumb, img {
 	page-break-inside: avoid;
 }
+
 h2, h3, h4, h5, h6 {
 	page-break-after: avoid;
 }
+
 p {
 	widows: 3;
 	orphans: 3;

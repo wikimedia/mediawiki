@@ -34,7 +34,7 @@
 class LanguageTr extends Language {
 
 	/**
-	 * @param $string string
+	 * @param string $string
 	 * @return string
 	 */
 	function ucfirst( $string ) {
@@ -46,7 +46,7 @@ class LanguageTr extends Language {
 	}
 
 	/**
-	 * @param $string string
+	 * @param string $string
 	 * @return mixed|string
 	 */
 	function lcfirst( $string ) {

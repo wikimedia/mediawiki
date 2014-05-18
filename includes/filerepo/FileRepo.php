@@ -52,10 +52,10 @@ class FileRepo {
 	/** @var FileBackend */
 	protected $backend;
 
-	/** @var Array Map of zones to config */
+	/** @var array Map of zones to config */
 	protected $zones = array();
 
-	/** @var string URL of thumb.php  */
+	/** @var string URL of thumb.php */
 	protected $thumbScriptUrl;
 
 	/** @var bool Whether to skip media file transformation on parse and rely
@@ -111,6 +111,9 @@ class FileRepo {
 	 */
 	protected $abbrvThreshold;
 
+	/** @var string The URL of the repo's favicon, if any */
+	protected $favicon;
+
 	/**
 	 * Factory functions for creating new files
 	 * Override these in the base class
@@ -147,7 +150,7 @@ class FileRepo {
 		$optionalSettings = array(
 			'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription',
 			'thumbScriptUrl', 'pathDisclosureProtection', 'descriptionCacheExpiry',
-			'scriptExtension'
+			'scriptExtension', 'favicon'
 		);
 		foreach ( $optionalSettings as $var ) {
 			if ( isset( $info[$var] ) ) {
@@ -293,26 +296,10 @@ class FileRepo {
 	}
 
 	/**
-	 * Get the thumb zone URL configured to be handled by scripts like thumb_handler.php.
-	 * This is probably only useful for internal requests, such as from a fast frontend server
-	 * to a slower backend server.
-	 *
-	 * Large sites may use a different host name for uploads than for wikis. In any case, the
-	 * wiki configuration is needed in order to use thumb.php. To avoid extracting the wiki ID
-	 * from the URL path, one can configure thumb_handler.php to recognize a special path on the
-	 * same host name as the wiki that is used for viewing thumbnails.
-	 *
-	 * @param string $zone one of: public, deleted, temp, thumb
-	 * @return string|bool String or false
+	 * @return bool Whether non-ASCII path characters are allowed
 	 */
-	public function getZoneHandlerUrl( $zone ) {
-		if ( isset( $this->zones[$zone]['handlerUrl'] )
-			&& in_array( $zone, array( 'public', 'temp', 'thumb', 'transcoded' ) )
-		) {
-			return $this->zones[$zone]['handlerUrl'];
-		}
-
-		return false;
+	public function backendSupportsUnicodePaths() {
+		return ( $this->getBackend()->getFeatures() & FileBackend::ATTR_UNICODE_PATHS );
 	}
 
 	/**
@@ -416,7 +403,7 @@ class FileRepo {
 	 *   ignoreRedirect: If true, do not follow file redirects
 	 *   private:        If true, return restricted (deleted) files if the current
 	 *                   user is allowed to view them. Otherwise, such files will not
-	 *                   be found.
+	 *                   be found. If a User object, use that user instead of the current.
 	 * @return File|bool False on failure
 	 */
 	public function findFile( $title, $options = array() ) {
@@ -439,7 +426,11 @@ class FileRepo {
 			if ( $img && $img->exists() ) {
 				if ( !$img->isDeleted( File::DELETED_FILE ) ) {
 					return $img; // always OK
-				} elseif ( !empty( $options['private'] ) && $img->userCan( File::DELETED_FILE ) ) {
+				} elseif ( !empty( $options['private'] ) &&
+					$img->userCan( File::DELETED_FILE,
+						$options['private'] instanceof User ? $options['private'] : null
+					)
+				) {
 					return $img;
 				}
 			}
@@ -498,7 +489,7 @@ class FileRepo {
 				$searchName = File::normalizeTitle( $title )->getDBkey(); // must be valid
 				if ( $flags & self::NAME_AND_TIME_ONLY ) {
 					$result[$searchName] = array(
-						'title'     => $file->getTitle()->getDBkey(),
+						'title' => $file->getTitle()->getDBkey(),
 						'timestamp' => $file->getTimestamp()
 					);
 				} else {
@@ -536,7 +527,11 @@ class FileRepo {
 			if ( $img && $img->exists() ) {
 				if ( !$img->isDeleted( File::DELETED_FILE ) ) {
 					return $img; // always OK
-				} elseif ( !empty( $options['private'] ) && $img->userCan( File::DELETED_FILE ) ) {
+				} elseif ( !empty( $options['private'] ) &&
+					$img->userCan( File::DELETED_FILE,
+						$options['private'] instanceof User ? $options['private'] : null
+					)
+				) {
 					return $img;
 				}
 			}
@@ -955,11 +950,13 @@ class FileRepo {
 	 *
 	 * @param string $src Source file system path, storage path, or virtual URL
 	 * @param string $dst Virtual URL or storage path
-	 * @param string|null $disposition Content-Disposition if given and supported
+	 * @param array|string|null $options An array consisting of a key named headers
+	 *   listing extra headers. If a string, taken as content-disposition header.
+	 *   (Support for array of options new in 1.23)
 	 * @return FileRepoStatus
 	 */
-	final public function quickImport( $src, $dst, $disposition = null ) {
-		return $this->quickImportBatch( array( array( $src, $dst, $disposition ) ) );
+	final public function quickImport( $src, $dst, $options = null ) {
+		return $this->quickImportBatch( array( array( $src, $dst, $options ) ) );
 	}
 
 	/**
@@ -996,7 +993,7 @@ class FileRepo {
 	 * This is intended for copying generated thumbnails into the repo.
 	 *
 	 * All path parameters may be a file system path, storage path, or virtual URL.
-	 * When "dispositions" are given they are used as Content-Disposition if supported.
+	 * When "headers" are given they are used as HTTP headers if supported.
 	 *
 	 * @param array $triples List of (source path, destination path, disposition)
 	 * @return FileRepoStatus
@@ -1008,11 +1005,20 @@ class FileRepo {
 			list( $src, $dst ) = $triple;
 			$src = $this->resolveToStoragePath( $src );
 			$dst = $this->resolveToStoragePath( $dst );
+
+			if ( !isset( $triple[2] ) ) {
+				$headers = array();
+			} elseif ( is_string( $triple[2] ) ) {
+				// back-compat
+				$headers = array( 'Content-Disposition' => $triple[2] );
+			} elseif ( is_array( $triple[2] ) && isset( $triple[2]['headers'] ) ) {
+				$headers = $triple[2]['headers'];
+			}
 			$operations[] = array(
 				'op' => FileBackend::isStoragePath( $src ) ? 'copy' : 'store',
 				'src' => $src,
 				'dst' => $dst,
-				'disposition' => isset( $triple[2] ) ? $triple[2] : null
+				'headers' => $headers
 			);
 			$status->merge( $this->initDirectory( dirname( $dst ) ) );
 		}
@@ -1222,7 +1228,7 @@ class FileRepo {
 			// This will check if the archive file also exists and fail if does.
 			// This is a sanity check to avoid data loss. On Windows and Linux,
 			// copy() will overwrite, so the existence check is vulnerable to
-			// race conditions unless an functioning LockManager is used.
+			// race conditions unless a functioning LockManager is used.
 			// LocalFile also uses SELECT FOR UPDATE for synchronization.
 			$operations[] = array(
 				'op' => 'copy',
@@ -1359,7 +1365,7 @@ class FileRepo {
 	 * @param mixed $srcRel Relative path for the file to be deleted
 	 * @param mixed $archiveRel Relative path for the archive location.
 	 *   Relative to a private archive directory.
-	 * @return FileRepoStatus object
+	 * @return FileRepoStatus
 	 */
 	public function delete( $srcRel, $archiveRel ) {
 		$this->assertWritableRepo(); // fail out if read-only
@@ -1514,7 +1520,7 @@ class FileRepo {
 	 * Properties should ultimately be obtained via FSFile::getProps().
 	 *
 	 * @param string $virtualUrl
-	 * @return Array
+	 * @return array
 	 */
 	public function getFileProps( $virtualUrl ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );
@@ -1538,7 +1544,7 @@ class FileRepo {
 	 * Get the size of a file with a given virtual URL/storage path
 	 *
 	 * @param string $virtualUrl
-	 * @return integer|bool False on failure
+	 * @return int|bool False on failure
 	 */
 	public function getFileSize( $virtualUrl ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );
@@ -1613,7 +1619,7 @@ class FileRepo {
 	/**
 	 * Determine if a relative path is valid, i.e. not blank or involving directory traveral
 	 *
-	 * @param $filename string
+	 * @param string $filename
 	 * @return bool
 	 */
 	public function validateFilename( $filename ) {
@@ -1664,7 +1670,7 @@ class FileRepo {
 	/**
 	 * Create a new fatal error
 	 *
-	 * @param $message
+	 * @param string $message
 	 * @return FileRepoStatus
 	 */
 	public function newFatal( $message /*, parameters...*/ ) {
@@ -1712,9 +1718,10 @@ class FileRepo {
 	 * @return string
 	 */
 	public function getDisplayName() {
-		// We don't name our own repo, return nothing
+		global $wgSitename;
+
 		if ( $this->isLocal() ) {
-			return null;
+			return $wgSitename;
 		}
 
 		// 'shared-repo-name-wikimediacommons' is used when $wgUseInstantCommons = true
@@ -1725,7 +1732,7 @@ class FileRepo {
 	 * Get the portion of the file that contains the origin file name.
 	 * If that name is too long, then the name "thumbnail.<ext>" will be given.
 	 *
-	 * @param $name string
+	 * @param string $name
 	 * @return string
 	 */
 	public function nameForThumb( $name ) {
@@ -1845,7 +1852,7 @@ class FileRepo {
 
 		$optionalSettings = array(
 			'url', 'thumbUrl', 'initialCapital', 'descBaseUrl', 'scriptDirUrl', 'articleUrl',
-			'fetchDescription', 'descriptionCacheExpiry', 'scriptExtension'
+			'fetchDescription', 'descriptionCacheExpiry', 'scriptExtension', 'favicon'
 		);
 		foreach ( $optionalSettings as $k ) {
 			if ( isset( $this->$k ) ) {

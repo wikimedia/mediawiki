@@ -52,6 +52,7 @@
 	'ar' => 'العربية',	# Arabic
 	'arc' => 'ܐܪܡܝܐ',	# Aramaic
 	'arn' => 'mapudungun',	# Mapuche, Mapudungu, Araucanian (Araucano)
+	'arq' => 'جزائري', # Algerian Spoken Arabic
 	'ary' => 'Maġribi',	# Moroccan Spoken Arabic
 	'arz' => 'مصرى',	# Egyptian Spoken Arabic
 	'as' => 'অসমীয়া',	# Assamese
@@ -167,6 +168,7 @@
 	'hil' => 'Ilonggo',	# Hiligaynon
 	'ho' => 'Hiri Motu',	# Hiri Motu
 	'hr' => 'hrvatski',		# Croatian
+	'hrx' => 'Hunsrik', # Riograndenser Hunsrückisch
 	'hsb' => 'hornjoserbsce',	# Upper Sorbian
 	'ht' => 'Kreyòl ayisyen',		# Haitian Creole French
 	'hu' => 'magyar',		# Hungarian

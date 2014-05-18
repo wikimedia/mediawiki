@@ -15,20 +15,24 @@ div#column-content {
 	margin: 0 0 .6em -12.2em;
 	padding: 0;
 }
+
 div#content {
 	margin: 2.8em 0 0 12.2em;
 	padding: 1em;
 	position: relative;
 	z-index: 2;
 }
+
 div#column-one {
 	padding-top: 160px;
 }
+
 /* Hide, but keep accessible for screen-readers */
 #column-one h2 {
 	position: absolute;
 	top: -9999px;
 }
+
 div#content {
 	background: white;
 	color: black;
@@ -36,6 +40,7 @@ div#content {
 	border-right: none;
 	line-height: 1.5em;
 }
+
 /* the left column width is specified in class .portlet */
 
 /* Font size:
@@ -67,9 +72,11 @@ div#globalWrapper {
 a {
 	color: #002bb8;
 }
+
 a:visited {
 	color: #5a3696;
 }
+
 a.new,
 #p-personal a.new {
 	color: #cc2200;
@@ -96,6 +103,7 @@ pre, .mw-code {
 #firstHeading {
 	padding-top: 0;
 }
+
 /*
 ** the main content area
 */
@@ -104,9 +112,11 @@ pre, .mw-code {
 	font-size: 95%;
 	padding: 0 0.9em;
 }
+
 #localNotice {
 	margin: 0;
 }
+
 #siteNotice p {
 	margin: 0;
 	padding: 0;
@@ -147,29 +157,34 @@ table.rimage {
 	background: url(external-ltr.png) center right no-repeat;
 	padding-right: 13px;
 }
+
 #bodyContent a.external[href ^="https://"],
 .link-https {
 	/* @embed */
 	background: url(lock_icon.gif) center right no-repeat;
 	padding-right: 16px;
 }
+
 #bodyContent a.external[href ^="mailto:"],
 .link-mailto {
 	/* @embed */
 	background: url(mail_icon.gif) center right no-repeat;
 	padding-right: 18px;
 }
+
 #bodyContent a.external[href ^="news:"] {
 	/* @embed */
 	background: url(news_icon.png) center right no-repeat;
 	padding-right: 18px;
 }
+
 #bodyContent a.external[href ^="ftp://"],
 .link-ftp {
 	/* @embed */
 	background: url(file_icon.gif) center right no-repeat;
 	padding-right: 18px;
 }
+
 #bodyContent a.external[href ^="irc://"],
 #bodyContent a.external[href ^="ircs://"],
 .link-irc {
@@ -177,6 +192,7 @@ table.rimage {
 	background: url(discussionitem_icon.gif) center right no-repeat;
 	padding-right: 18px;
 }
+
 #bodyContent a.external[href $=".ogg"], #bodyContent a.external[href $=".OGG"],
 #bodyContent a.external[href $=".mid"], #bodyContent a.external[href $=".MID"],
 #bodyContent a.external[href $=".midi"], #bodyContent a.external[href $=".MIDI"],
@@ -188,6 +204,7 @@ table.rimage {
 	background: url(audio.png) center right no-repeat;
 	padding-right: 13px;
 }
+
 #bodyContent a.external[href $=".ogm"], #bodyContent a.external[href $=".OGM"],
 #bodyContent a.external[href $=".avi"], #bodyContent a.external[href $=".AVI"],
 #bodyContent a.external[href $=".mpeg"], #bodyContent a.external[href $=".MPEG"],
@@ -197,6 +214,7 @@ table.rimage {
 	background: url(video.png) center right no-repeat;
 	padding-right: 13px;
 }
+
 #bodyContent a.external[href $=".pdf"], #bodyContent a.external[href $=".PDF"],
 #bodyContent a.external[href *=".pdf#"], #bodyContent a.external[href *=".PDF#"],
 #bodyContent a.external[href *=".pdf?"], #bodyContent a.external[href *=".PDF?"],
@@ -232,6 +250,7 @@ table.rimage {
 	width: 11.6em;
 	overflow: hidden;
 }
+
 .portlet h3 {
 	background: transparent;
 	padding: 0 1em 0 .5em;
@@ -242,6 +261,7 @@ table.rimage {
 	font-weight: normal;
 	white-space: nowrap;
 }
+
 .pBody {
 	font-size: 95%;
 	background-color: white;
@@ -250,10 +270,19 @@ table.rimage {
 	border: 1px solid #aaa;
 	padding: 0 .8em .3em .5em;
 }
+
+/* allows .pBody styles to wrap around content added via BaseTemplateAfterPortlet hook */
+.pBody:after {
+	content: '';
+	clear: both;
+	display: block;
+}
+
 .portlet ul {
 	line-height: 1.5em;
 	font-size: 95%;
 }
+
 .portlet li {
 	padding: 0;
 	margin: 0;
@@ -272,9 +301,11 @@ table.rimage {
 	width: 12em;
 	overflow: visible;
 }
+
 #p-logo h3 {
 	display: none;
 }
+
 #p-logo a,
 #p-logo a:hover {
 	display: block;
@@ -292,28 +323,34 @@ table.rimage {
 	position: relative;
 	z-index: 3;
 }
+
 input.searchButton {
 	margin-top: 1px;
 	font-size: 95%;
 }
+
 #searchGoButton {
 	padding-left: .5em;
 	padding-right: .5em;
 	font-weight: bold;
 }
+
 #searchInput {
 	width: 10.9em;
 	margin: 0;
 	font-size: 95%;
 }
+
 #p-search .pBody {
 	padding: .5em .4em .4em .4em;
 	text-align: center;
 }
+
 #p-search #searchform div div {
 	margin-top: .4em;
 	font-size: 95%;
 }
+
 /*
 ** the personal toolbar
 */
@@ -323,6 +360,7 @@ input.searchButton {
 	top: 0;
 	z-index: 3;
 }
+
 #p-personal {
 	width: 100%;
 	white-space: nowrap;
@@ -333,9 +371,11 @@ input.searchButton {
 	overflow: visible;
 	line-height: 1.2em;
 }
+
 #p-personal h3 {
 	display: none;
 }
+
 #p-personal .portlet,
 #p-personal .pBody {
 	z-index: 0;
@@ -345,6 +385,7 @@ input.searchButton {
 	overflow: visible;
 	background: none;
 }
+
 /* this is the ul contained in the portlet */
 #p-personal ul {
 	border: none;
@@ -359,6 +400,7 @@ input.searchButton {
 	background: none;
 	cursor: default;
 }
+
 #p-personal li {
 	z-index: 0;
 	border: none;
@@ -369,20 +411,24 @@ input.searchButton {
 	line-height: 1.2em;
 	background: none;
 }
+
 #p-personal li a {
 	text-decoration: none;
 	color: #005896;
 	padding-bottom: .2em;
 	background: none;
 }
+
 #p-personal li a:hover {
 	background-color: white;
 	padding-bottom: .2em;
 	text-decoration: none;
 }
+
 #p-personal li.active a:hover {
 	background-color: transparent;
 }
+
 /* The icon in front of the username / login link */
 li#pt-userpage,
 li#pt-anonuserpage,
@@ -391,17 +437,21 @@ li#pt-login {
 	background: url(user.gif) top left no-repeat;
 	padding-left: 20px;
 }
+
 #p-personal ul {
 	text-transform: lowercase;
 }
+
 /* Don't lowercase username or IP addresses (IPv6) */
 li#pt-userpage,
 li#pt-anonuserpage {
 	text-transform: none;
 }
+
 #p-personal li.active {
 	font-weight: bold;
 }
+
 /*
 ** the page-related actions- page/talk, edit etc
 */
@@ -419,10 +469,12 @@ li#pt-anonuserpage {
 	padding-left: 1em;
 	font-size: 95%;
 }
+
 #p-cactions ul {
 	list-style-type: none;
 	list-style-image: none;
 }
+
 #p-cactions li {
 	display: inline;
 	border: 1px solid #aaa;
@@ -432,10 +484,12 @@ li#pt-anonuserpage {
 	overflow: visible;
 	background: white;
 }
+
 #p-cactions li.selected {
 	border-color: #fabd23;
 	font-weight: bold;
 }
+
 #p-cactions li a {
 	background-color: #fbfbfb;
 	color: #002bb8;
@@ -446,41 +500,51 @@ li#pt-anonuserpage {
 	margin: 0;
 	text-decoration: none;
 }
+
 #p-cactions li.selected a {
 	z-index: 3;
 	background-color: white;
 }
+
 #p-cactions .new a {
 	color: #ba0000;
 }
+
 #p-cactions li a:hover {
 	z-index: 3;
 	text-decoration: none;
 	background-color: white;
 }
+
 #p-cactions h3 {
 	display: none;
 }
+
 #p-cactions li.istalk {
 	margin-right: 0;
 }
+
 #p-cactions li.istalk a {
 	padding-right: .5em;
 }
+
 #p-cactions #ca-addsection a {
 	padding-left: .4em;
 	padding-right: .4em;
 }
+
 /* offsets to distinguish the tab groups */
 li#ca-talk {
 	margin-right: 1.6em;
 }
+
 li#ca-watch,
 li#ca-unwatch,
 li#ca-varlang-0,
 li#ca-print {
 	margin-left: 1.6em;
 }
+
 #p-cactions .pBody {
 	font-size: 1em;
 	background-color: transparent;
@@ -489,6 +553,7 @@ li#ca-print {
 	border: 0;
 	padding: 0;
 }
+
 #p-cactions li a {
 	text-transform: lowercase;
 }
@@ -511,6 +576,7 @@ li#ca-print {
 #t-ispermalink, #t-iscite {
 	color: #999;
 }
+
 /*
 ** footer
 */
@@ -524,19 +590,23 @@ div#footer {
 	text-align: center;
 	font-size: 90%;
 }
+
 div#footer li {
 	display: inline;
 	margin: 0 1.3em;
 }
+
 #f-poweredbyico, #f-copyrightico {
 	margin: 0 8px;
 	position: relative;
 	top: -2px; /* Bump it up just a tad */
 }
+
 #f-poweredbyico {
 	float: right;
 	height: 1%;
 }
+
 #f-copyrightico {
 	float: left;
 	height: 1%;
@@ -556,10 +626,12 @@ div#footer li {
 	width: 100%;
 	clear: both;
 }
+
 #preftoc li {
 	background-color: #f0f0f0;
 	color: #000;
 }
+
 #preftoc li {
 	margin: 1px -2px 1px 2px;
 	float: left;
@@ -573,6 +645,7 @@ div#footer li {
 	list-style-image: none;
 	z-index: 3;
 }
+
 #preftoc li.selected {
 	font-weight: bold;
 	background-color: #f9f9f9;
@@ -583,9 +656,11 @@ div#footer li {
 	padding-top: 2px;
 	margin-right: -3px;
 }
+
 #preftoc > li.selected {
 	top: 2px;
 }
+
 #preftoc a,
 #preftoc a:active {
 	display: block;
@@ -594,10 +669,12 @@ div#footer li {
 	position: relative;
 	text-decoration: none;
 }
+
 #preftoc li.selected a {
 	cursor: default;
 	text-decoration: none;
 }
+
 #preferences {
 	margin: 0;
 	border: 1px solid #aaa;
@@ -605,6 +682,7 @@ div#footer li {
 	padding: 1.5em;
 	background-color: #F9F9F9;
 }
+
 .prefsection {
 	border: none;
 	padding: 0;
@@ -614,12 +692,15 @@ div#footer li {
 .prefsection legend {
 	font-weight: bold;
 }
+
 .prefsection table, .prefsection legend {
 	background-color: #F9F9F9;
 }
+
 .mainLegend {
 	display: none;
 }
+
 td.htmlform-tip {
 	font-size: x-small;
 	padding: .2em 2em;
@@ -636,10 +717,6 @@ td.htmlform-tip {
 	margin-top: 2em;
 }
 
-#loginend, #signupend {
-	clear: both;
-}
-
 #userloginprompt, #languagelinks {
 	font-size: 85%;
 }
@@ -654,59 +731,17 @@ td.htmlform-tip {
 	font-weight: bold;
 }
 
-/*
-** IE/Mac fixes, hope to find a validating way to move this
-** to a separate stylesheet. This would work but doesn't validate:
-** @import("IEMacFixes.css");
-*/
-/* tabs: border on the a, not the div */
-* > html #p-cactions li {
-	border: none;
-}
-* > html #p-cactions li a {
-	border: 1px solid #aaa;
-	border-bottom: none;
-}
-* > html #p-cactions li.selected a {
-	border-color: #fabd23;
-}
-/* footer icons need a fixed width */
-* > html #f-poweredbyico,
-* > html #f-copyrightico {
-	width: 88px;
-}
-* > html #bodyContent,
-* > html #bodyContent pre {
-	overflow-x: auto;
-	width: 100%;
-	padding-bottom: 25px;
-}
-
-/* more IE fixes */
-/* float/negative margin brokenness */
-* html div#footer {
-	margin-top: 0;
-}
-* html div#column-content {
-	display: inline;
-	margin-bottom: 0;
-}
+/**
+ * This was originally added by Gabriel Wicke in r3681 (committed on 25 May 2004)
+ * with the commit message "tweaks to page history".
+ * Unlike the other IE/Mac fixes that used to be present here, this seems to get
+ * applied on more modern browsers, so let's keep it here until someone has the
+ * time to properly test it out.
+ */
 #pagehistory li.selected {
 	position: relative;
 }
 
-/* Mac IE 5.0 fix; floated content turns invisible */
-* > html div#column-content {
-	float: none;
-}
-* > html div#column-one {
-	position: absolute;
-	left: 0;
-	top: 0;
-}
-* > html div#footer {
-	margin-left: 13.2em;
-}
 .redirectText {
 	font-size: 150%;
 	margin: 5px;
@@ -734,6 +769,7 @@ span.updatedmarker {
 	font-size: small;
 	text-align: center;
 }
+
 .editExternallyHelp {
 	font-style: italic;
 	color: gray;
@@ -833,10 +869,12 @@ div.mw-lag-warn-high {
 	text-align: center;
 	margin: 3px auto;
 }
+
 div.mw-lag-warn-normal {
 	border: 1px solid #FFCC66;
 	background-color: #FFFFCC;
 }
+
 div.mw-lag-warn-high {
 	font-weight: bold;
 	border: 2px solid #FF0033;
@@ -847,6 +885,7 @@ div.mw-lag-warn-high {
 	background-color: #ccc;
 	padding: 0.1em;
 }
+
 .MediaTransformError td {
 	text-align: center;
 	vertical-align: middle;
@@ -870,6 +909,5 @@ div.mw-lag-warn-high {
 
 /* mediawiki.notification */
 .skin-monobook .mw-notification {
-	-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.125);
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.125);
 }

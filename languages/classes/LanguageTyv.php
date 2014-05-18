@@ -33,8 +33,8 @@ class LanguageTyv extends Language {
 	 * Grammatical transformations, needed for inflected languages
 	 * Invoked by putting {{grammar:case|word}} in a message
 	 *
-	 * @param $word string
-	 * @param $case string
+	 * @param string $word
+	 * @param string $case
 	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {
@@ -44,7 +44,8 @@ class LanguageTyv extends Language {
 		}
 
 		// Set up some constants...
-		$allVowels = array( "е", "и", "э", "ө", "ү", "а", "ё", "о", "у", "ы", "ю", "я", "a", "e", "i", "o", "ö", "u", "ü", "y" );
+		$allVowels = array( "е", "и", "э", "ө", "ү", "а", "ё", "о", "у", "ы",
+			"ю", "я", "a", "e", "i", "o", "ö", "u", "ü", "y" );
 		$frontVowels = array( "е", "и", "э", "ө", "ү", "e", "i", "ö", "ü" );
 		$backVowels = array( "а", "ё", "о", "у", "ы", "ю", "я", "a", "o", "u", "y" );
 		$unroundFrontVowels = array( "е", "и", "э", "e", "i" );
@@ -53,7 +54,8 @@ class LanguageTyv extends Language {
 		$roundBackVowels = array( "ё", "о", "у", "ю", "o", "u" );
 		//$voicedPhonemes = array( "д", "б", "з", "ж", "г", "d", "b", "z", "g" );
 		$unvoicedPhonemes = array( "т", "п", "с", "ш", "к", "ч", "х", "t", "p", "s", "k", "x" );
-		$directiveUnvoicedStems = array( "т", "п", "с", "ш", "к", "ч", "х", "л", "м", "н", "ң", "t", "p", "s", "k", "x", "l", "m", "n", "ŋ" );
+		$directiveUnvoicedStems = array( "т", "п", "с", "ш", "к", "ч", "х", "л",
+			"м", "н", "ң", "t", "p", "s", "k", "x", "l", "m", "n", "ŋ" );
 		$directiveVoicedStems = array( "д", "б", "з", "ж", "г", "р", "й", "d", "b", "z", "g", "r", "j" );
 
 		//$allSonants = array("л", "м", "н", "ң", "р", "й");
@@ -62,8 +64,11 @@ class LanguageTyv extends Language {
 		//Put the word in a form we can play with since we're using UTF-8
 		preg_match_all( '/./us', $word, $ar );
 
-		$wordEnding = $ar[0][count( $ar[0] ) - 1]; // Here's the last letter in the word
-		$wordReversed = array_reverse( $ar[0] ); // Here's an array with the order of the letters in the word reversed so we can find a match quicker *shrug*
+		// Here's the last letter in the word
+		$wordEnding = $ar[0][count( $ar[0] ) - 1];
+		// Here's an array with the order of the letters in the word reversed so
+		// we can find a match quicker. *shrug*
+		$wordReversed = array_reverse( $ar[0] );
 
 		// Find the last vowel in the word
 		$wordLastVowel = null;

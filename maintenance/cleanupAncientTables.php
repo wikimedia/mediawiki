@@ -40,8 +40,9 @@ class CleanupAncientTables extends Maintenance {
 	public function execute() {
 		if ( !$this->hasOption( 'force' ) ) {
 			$this->error( "This maintenance script will remove old columns and indexes.\n"
-				. "It is recommended to backup your database first, and ensure all your data has been migrated to newer tables\n"
-				. "If you want to continue, run this script again with the --force \n"
+				. "It is recommended to backup your database first, and ensure all your data has\n"
+				. "been migrated to newer tables. If you want to continue, run this script again\n"
+				. "with --force.\n"
 			);
 		}
 
@@ -82,7 +83,7 @@ class CleanupAncientTables extends Maintenance {
 			if ( $db->indexExists( 'text', $index, __METHOD__ ) ) {
 				$this->output( "Dropping index $index from the text table..." );
 				$db->query( "DROP INDEX " . $db->addIdentifierQuotes( $index )
-						. " ON " . $db->tableName( 'text' ) );
+					. " ON " . $db->tableName( 'text' ) );
 				$this->output( "done.\n" );
 			}
 		}
@@ -101,7 +102,7 @@ class CleanupAncientTables extends Maintenance {
 			if ( $db->fieldExists( 'text', $field, __METHOD__ ) ) {
 				$this->output( "Dropping the $field field from the text table..." );
 				$db->query( "ALTER TABLE  " . $db->tableName( 'text' )
-						. " DROP COLUMN " . $db->addIdentifierQuotes( $field )  );
+					. " DROP COLUMN " . $db->addIdentifierQuotes( $field ) );
 				$this->output( "done.\n" );
 			}
 		}

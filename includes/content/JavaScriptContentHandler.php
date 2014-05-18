@@ -28,16 +28,33 @@
  * @todo make ScriptContentHandler base class, do highlighting stuff there?
  */
 class JavaScriptContentHandler extends TextContentHandler {
+
+	/**
+	 * @param string $modelId
+	 */
 	public function __construct( $modelId = CONTENT_MODEL_JAVASCRIPT ) {
 		parent::__construct( $modelId, array( CONTENT_FORMAT_JAVASCRIPT ) );
 	}
 
+	/**
+	 * @param string $text
+	 * @param string $format
+	 *
+	 * @return JavaScriptContent
+	 *
+	 * @see ContentHandler::unserializeContent()
+	 */
 	public function unserializeContent( $text, $format = null ) {
 		$this->checkFormat( $format );
 
 		return new JavaScriptContent( $text );
 	}
 
+	/**
+	 * @return JavaScriptContent A new JavaScriptContent object with empty text.
+	 *
+	 * @see ContentHandler::makeEmptyContent()
+	 */
 	public function makeEmptyContent() {
 		return new JavaScriptContent( '' );
 	}
@@ -47,6 +64,7 @@ class JavaScriptContentHandler extends TextContentHandler {
 	 *
 	 * @param Title $title
 	 * @param Content $content
+	 *
 	 * @return Language wfGetLangObj( 'en' )
 	 *
 	 * @see ContentHandler::getPageLanguage()
@@ -60,6 +78,7 @@ class JavaScriptContentHandler extends TextContentHandler {
 	 *
 	 * @param Title $title
 	 * @param Content $content
+	 *
 	 * @return Language wfGetLangObj( 'en' )
 	 *
 	 * @see ContentHandler::getPageViewLanguage()
@@ -67,4 +86,5 @@ class JavaScriptContentHandler extends TextContentHandler {
 	public function getPageViewLanguage( Title $title, Content $content = null ) {
 		return wfGetLangObj( 'en' );
 	}
+
 }

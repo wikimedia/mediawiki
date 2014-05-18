@@ -27,11 +27,11 @@
  * @private
  * @ingroup Skins
  */
-class MediaWiki_I18N {
-	var $_context = array();
+class MediaWikiI18N {
+	private $context = array();
 
 	function set( $varName, $value ) {
-		$this->_context[$varName] = $value;
+		$this->context[$varName] = $value;
 	}
 
 	function translate( $value ) {
@@ -46,7 +46,7 @@ class MediaWiki_I18N {
 		while ( preg_match( '/\$([0-9]*?)/sm', $value, $m ) ) {
 			list( $src, $var ) = $m;
 			wfSuppressWarnings();
-			$varValue = $this->_context[$var];
+			$varValue = $this->context[$var];
 			wfRestoreWarnings();
 			$value = str_replace( $src, $varValue, $value );
 		}
@@ -68,43 +68,41 @@ class MediaWiki_I18N {
  * @ingroup Skins
  */
 class SkinTemplate extends Skin {
-	/**#@+
-	 * @private
+	/**
+	 * @var string Name of our skin, it probably needs to be all lower case.
+	 *   Child classes should override the default.
 	 */
+	public $skinname = 'monobook';
 
 	/**
-	 * Name of our skin, it probably needs to be all lower case.  Child classes
-	 * should override the default.
+	 * @var string Stylesheets set to use. Subdirectory in skins/ where various
+	 *   stylesheets are located.  Child classes should override the default.
 	 */
-	var $skinname = 'monobook';
+	public $stylename = 'monobook';
 
 	/**
-	 * Stylesheets set to use.  Subdirectory in skins/ where various stylesheets
-	 * are located.  Child classes should override the default.
+	 * @var string For QuickTemplate, the name of the subclass which will
+	 *   actually fill the template.  Child classes should override the default.
 	 */
-	var $stylename = 'monobook';
+	public $template = 'QuickTemplate';
 
 	/**
-	 * For QuickTemplate, the name of the subclass which will actually fill the
-	 * template.  Child classes should override the default.
+	 * @var bool Whether this skin use OutputPage::headElement() to generate
+	 *   the "<head>" tag.
 	 */
-	var $template = 'QuickTemplate';
-
-	/**
-	 * Whether this skin use OutputPage::headElement() to generate the "<head>"
-	 * tag
-	 */
-	var $useHeadElement = false;
-
-	/**#@-*/
+	public $useHeadElement = false;
 
 	/**
 	 * Add specific styles for this skin
 	 *
-	 * @param $out OutputPage
+	 * @param OutputPage $out
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
-		$out->addModuleStyles( array( 'mediawiki.legacy.shared', 'mediawiki.legacy.commonPrint' ) );
+		$out->addModuleStyles( array(
+			'mediawiki.legacy.shared',
+			'mediawiki.legacy.commonPrint',
+			'mediawiki.ui.button'
+		) );
 	}
 
 	/**
@@ -112,9 +110,9 @@ class SkinTemplate extends Skin {
 	 * and eventually it spits out some HTML. Should have interface
 	 * roughly equivalent to PHPTAL 0.7.
 	 *
-	 * @param $classname String
-	 * @param string $repository subdirectory where we keep template files
-	 * @param $cache_dir string
+	 * @param string $classname
+	 * @param bool|string $repository Subdirectory where we keep template files
+	 * @param bool|string $cache_dir
 	 * @return QuickTemplate
 	 * @private
 	 */
@@ -175,7 +173,7 @@ class SkinTemplate extends Skin {
 				}
 
 				$ilInterwikiCodeBCP47 = wfBCP47( $ilInterwikiCode );
-				$languageLinks[] = array(
+				$languageLink = array(
 					'href' => $languageLinkTitle->getFullURL(),
 					'text' => $ilLangName,
 					'title' => $ilTitle,
@@ -183,6 +181,11 @@ class SkinTemplate extends Skin {
 					'lang' => $ilInterwikiCodeBCP47,
 					'hreflang' => $ilInterwikiCodeBCP47,
 				);
+				wfRunHooks(
+					'SkinTemplateGetLanguageLink',
+					array( &$languageLink, $languageLinkTitle, $this->getTitle() )
+				);
+				$languageLinks[] = $languageLink;
 			}
 		}
 
@@ -233,7 +236,7 @@ class SkinTemplate extends Skin {
 	/**
 	 * initialize various variables and generate the template
 	 *
-	 * @param $out OutputPage
+	 * @param OutputPage $out
 	 */
 	function outputPage( OutputPage $out = null ) {
 		wfProfileIn( __METHOD__ );
@@ -271,7 +274,7 @@ class SkinTemplate extends Skin {
 	 * initialize various variables and generate the template
 	 *
 	 * @since 1.23
-	 * @return QuickTemplate the template to be executed by outputPage
+	 * @return QuickTemplate The template to be executed by outputPage
 	 */
 	protected function prepareQuickTemplate() {
 		global $wgContLang, $wgScript, $wgStylePath,
@@ -396,6 +399,9 @@ class SkinTemplate extends Skin {
 		// that interface elements are in a different language.
 		$tpl->set( 'userlangattributes', '' );
 		$tpl->set( 'specialpageattributes', '' ); # obsolete
+		// Used by VectorBeta to insert HTML before content but after the
+		// heading for the page title. Defaults to empty string.
+		$tpl->set( 'prebodyhtml', '' );
 
 		if ( $userLangCode !== $wgContLang->getHtmlCode() || $userLangDir !== $wgContLang->getDir() ) {
 			$escUserlang = htmlspecialchars( $userLangCode );
@@ -553,9 +559,14 @@ class SkinTemplate extends Skin {
 		// and output printfooter and debughtml separately
 		$tpl->set( 'bodycontent', $tpl->data['bodytext'] );
 
-		// Append printfooter and debughtml onto bodytext so that skins that were already
-		// using bodytext before they were split out don't suddenly start not outputting information
-		$tpl->data['bodytext'] .= Html::rawElement( 'div', array( 'class' => 'printfooter' ), "\n{$tpl->data['printfooter']}" ) . "\n";
+		// Append printfooter and debughtml onto bodytext so that skins that
+		// were already using bodytext before they were split out don't suddenly
+		// start not outputting information.
+		$tpl->data['bodytext'] .= Html::rawElement(
+			'div',
+			array( 'class' => 'printfooter' ),
+			"\n{$tpl->data['printfooter']}"
+		) . "\n";
 		$tpl->data['bodytext'] .= $tpl->data['debughtml'];
 
 		// allow extensions adding stuff after the page content.
@@ -598,7 +609,7 @@ class SkinTemplate extends Skin {
 	 * an error object of the appropriate type.
 	 * For the base class, assume strings all around.
 	 *
-	 * @param $str Mixed
+	 * @param string $str
 	 * @private
 	 */
 	function printOrError( $str ) {
@@ -707,7 +718,7 @@ class SkinTemplate extends Skin {
 				'active' => $active
 			);
 			$personal_urls['logout'] = array(
-				'text' => $this->msg( 'userlogout' )->text(),
+				'text' => $this->msg( 'pt-userlogout' )->text(),
 				'href' => self::makeSpecialUrl( 'Userlogout',
 					// userlogout link must always contain an & character, otherwise we might not be able
 					// to detect a buggy precaching proxy (bug 17790)
@@ -719,17 +730,17 @@ class SkinTemplate extends Skin {
 			$useCombinedLoginLink = $this->useCombinedLoginLink();
 			$loginlink = $this->getUser()->isAllowed( 'createaccount' ) && $useCombinedLoginLink
 				? 'nav-login-createaccount'
-				: 'login';
+				: 'pt-login';
 			$is_signup = $request->getText( 'type' ) == 'signup';
 
-			$login_id = $this->showIPinHeader() ? 'anonlogin' : 'login';
 			$login_url = array(
 				'text' => $this->msg( $loginlink )->text(),
 				'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
-				'active' => $title->isSpecial( 'Userlogin' ) && ( $loginlink == 'nav-login-createaccount' || !$is_signup ),
+				'active' => $title->isSpecial( 'Userlogin' )
+					&& ( $loginlink == 'nav-login-createaccount' || !$is_signup ),
 			);
 			$createaccount_url = array(
-				'text' => $this->msg( 'createaccount' )->text(),
+				'text' => $this->msg( 'pt-createaccount' )->text(),
 				'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup" ),
 				'active' => $title->isSpecial( 'Userlogin' ) && $is_signup,
 			);
@@ -756,7 +767,7 @@ class SkinTemplate extends Skin {
 				$personal_urls['createaccount'] = $createaccount_url;
 			}
 
-			$personal_urls[$login_id] = $login_url;
+			$personal_urls['login'] = $login_url;
 		}
 
 		wfRunHooks( 'PersonalUrls', array( &$personal_urls, &$title, $this ) );
@@ -767,11 +778,11 @@ class SkinTemplate extends Skin {
 	/**
 	 * Builds an array with tab definition
 	 *
-	 * @param Title $title page where the tab links to
-	 * @param string|array $message message key or an array of message keys (will fall back)
-	 * @param boolean $selected display the tab as selected
-	 * @param string $query query string attached to tab URL
-	 * @param boolean $checkEdit check if $title exists and mark with .new if one doesn't
+	 * @param Title $title page Where the tab links to
+	 * @param string|array $message Message key or an array of message keys (will fall back)
+	 * @param bool $selected Display the tab as selected
+	 * @param string $query Query string attached to tab URL
+	 * @param bool $checkEdit Check if $title exists and mark with .new if one doesn't
 	 *
 	 * @return array
 	 */
@@ -868,9 +879,10 @@ class SkinTemplate extends Skin {
 	 * links, however these are usually automatically generated by SkinTemplate
 	 * itself and are not necessary when using a hook. The only things these may
 	 * matter to are people modifying content_navigation after it's initial creation:
-	 * - id: A "preferred" id, most skins are best off outputting this preferred id for best compatibility
+	 * - id: A "preferred" id, most skins are best off outputting this preferred
+	 *   id for best compatibility.
 	 * - tooltiponly: This is set to true for some tabs in cases where the system
-	 *                believes that the accesskey should not be added to the tab.
+	 *   believes that the accesskey should not be added to the tab.
 	 *
 	 * @return array
 	 */
@@ -937,8 +949,11 @@ class SkinTemplate extends Skin {
 			$content_navigation['namespaces'][$talkId]['context'] = 'talk';
 
 			if ( $userCanRead ) {
+				$isForeignFile = $title->inNamespace( NS_FILE ) && $this->canUseWikiPage() &&
+					$this->getWikiPage() instanceof WikiFilePage && !$this->getWikiPage()->isLocal();
+
 				// Adds view view link
-				if ( $title->exists() ) {
+				if ( $title->exists() || $isForeignFile ) {
 					$content_navigation['views']['view'] = $this->tabAction(
 						$isTalk ? $talkPage : $subjectPage,
 						array( "$skname-view-view", 'view' ),
@@ -948,10 +963,25 @@ class SkinTemplate extends Skin {
 					$content_navigation['views']['view']['redundant'] = true;
 				}
 
+				// If it is a non-local file, show a link to the file in its own repository
+				if ( $isForeignFile ) {
+					$file = $this->getWikiPage()->getFile();
+					$content_navigation['views']['view-foreign'] = array(
+						'class' => '',
+						'text' => wfMessageFallback( "$skname-view-foreign", 'view-foreign' )->
+							setContext( $this->getContext() )->
+							params( $file->getRepo()->getDisplayName() )->text(),
+						'href' => $file->getDescriptionUrl(),
+						'primary' => false,
+					);
+				}
+
 				wfProfileIn( __METHOD__ . '-edit' );
 
 				// Checks if user can edit the current page if it exists or create it otherwise
-				if ( $title->quickUserCan( 'edit', $user ) && ( $title->exists() || $title->quickUserCan( 'create', $user ) ) ) {
+				if ( $title->quickUserCan( 'edit', $user )
+					&& ( $title->exists() || $title->quickUserCan( 'create', $user ) )
+				) {
 					// Builds CSS class for talk page links
 					$isTalkClass = $isTalk ? ' istalk' : '';
 					// Whether the user is editing the page
@@ -962,13 +992,24 @@ class SkinTemplate extends Skin {
 						&& ( ( $isTalk && $this->isRevisionCurrent() ) || $out->showNewSectionLink() );
 					$section = $request->getVal( 'section' );
 
-					$msgKey = $title->exists() || ( $title->getNamespace() == NS_MEDIAWIKI && $title->getDefaultMessageText() !== false ) ?
-						'edit' : 'create';
+					if ( $title->exists()
+						|| ( $title->getNamespace() == NS_MEDIAWIKI
+							&& $title->getDefaultMessageText() !== false
+						)
+					) {
+						$msgKey = $isForeignFile ? 'edit-local' : 'edit';
+					} else {
+						$msgKey = $isForeignFile ? 'create-local' : 'create';
+					}
 					$content_navigation['views']['edit'] = array(
-						'class' => ( $isEditing && ( $section !== 'new' || !$showNewSection ) ? 'selected' : '' ) . $isTalkClass,
-						'text' => wfMessageFallback( "$skname-view-$msgKey", $msgKey )->setContext( $this->getContext() )->text(),
+						'class' => ( $isEditing && ( $section !== 'new' || !$showNewSection )
+							? 'selected'
+							: ''
+						) . $isTalkClass,
+						'text' => wfMessageFallback( "$skname-view-$msgKey", $msgKey )
+							->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( $this->editUrlOptions() ),
-						'primary' => true, // don't collapse this in vector
+						'primary' => !$isForeignFile, // don't collapse this in vector
 					);
 
 					// section link
@@ -977,7 +1018,8 @@ class SkinTemplate extends Skin {
 						//$content_navigation['actions']['addsection']
 						$content_navigation['views']['addsection'] = array(
 							'class' => ( $isEditing && $section == 'new' ) ? 'selected' : false,
-							'text' => wfMessageFallback( "$skname-action-addsection", 'addsection' )->setContext( $this->getContext() )->text(),
+							'text' => wfMessageFallback( "$skname-action-addsection", 'addsection' )
+								->setContext( $this->getContext() )->text(),
 							'href' => $title->getLocalURL( 'action=edit&section=new' )
 						);
 					}
@@ -986,7 +1028,8 @@ class SkinTemplate extends Skin {
 					// Adds view source view link
 					$content_navigation['views']['viewsource'] = array(
 						'class' => ( $onPage && $action == 'edit' ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-action-viewsource", 'viewsource' )->setContext( $this->getContext() )->text(),
+						'text' => wfMessageFallback( "$skname-action-viewsource", 'viewsource' )
+							->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( $this->editUrlOptions() ),
 						'primary' => true, // don't collapse this in vector
 					);
@@ -999,7 +1042,8 @@ class SkinTemplate extends Skin {
 					// Adds history view link
 					$content_navigation['views']['history'] = array(
 						'class' => ( $onPage && $action == 'history' ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-view-history", 'history_short' )->setContext( $this->getContext() )->text(),
+						'text' => wfMessageFallback( "$skname-view-history", 'history_short' )
+							->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( 'action=history' ),
 						'rel' => 'archives',
 					);
@@ -1007,7 +1051,8 @@ class SkinTemplate extends Skin {
 					if ( $title->quickUserCan( 'delete', $user ) ) {
 						$content_navigation['actions']['delete'] = array(
 							'class' => ( $onPage && $action == 'delete' ) ? 'selected' : false,
-							'text' => wfMessageFallback( "$skname-action-delete", 'delete' )->setContext( $this->getContext() )->text(),
+							'text' => wfMessageFallback( "$skname-action-delete", 'delete' )
+								->setContext( $this->getContext() )->text(),
 							'href' => $title->getLocalURL( 'action=delete' )
 						);
 					}
@@ -1016,7 +1061,8 @@ class SkinTemplate extends Skin {
 						$moveTitle = SpecialPage::getTitleFor( 'Movepage', $title->getPrefixedDBkey() );
 						$content_navigation['actions']['move'] = array(
 							'class' => $this->getTitle()->isSpecial( 'Movepage' ) ? 'selected' : false,
-							'text' => wfMessageFallback( "$skname-action-move", 'move' )->setContext( $this->getContext() )->text(),
+							'text' => wfMessageFallback( "$skname-action-move", 'move' )
+								->setContext( $this->getContext() )->text(),
 							'href' => $moveTitle->getLocalURL()
 						);
 					}
@@ -1026,7 +1072,8 @@ class SkinTemplate extends Skin {
 						$n = $title->isDeleted();
 						if ( $n ) {
 							$undelTitle = SpecialPage::getTitleFor( 'Undelete' );
-							// If the user can't undelete but can view deleted history show them a "View .. deleted" tab instead
+							// If the user can't undelete but can view deleted
+							// history show them a "View .. deleted" tab instead.
 							$msgKey = $user->isAllowed( 'undelete' ) ? 'undelete' : 'viewdeleted';
 							$content_navigation['actions']['undelete'] = array(
 								'class' => $this->getTitle()->isSpecial( 'Undelete' ) ? 'selected' : false,
@@ -1044,7 +1091,8 @@ class SkinTemplate extends Skin {
 					$mode = $title->isProtected() ? 'unprotect' : 'protect';
 					$content_navigation['actions'][$mode] = array(
 						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-action-$mode", $mode )->setContext( $this->getContext() )->text(),
+						'text' => wfMessageFallback( "$skname-action-$mode", $mode )
+							->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( "action=$mode" )
 					);
 				}
@@ -1164,10 +1212,10 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * an array of edit links by default used for the tabs
+	 * @param $content_navigation
 	 * @return array
-	 * @private
 	 */
-	function buildContentActionUrls( $content_navigation ) {
+	private function buildContentActionUrls( $content_navigation ) {
 
 		wfProfileIn( __METHOD__ );
 
@@ -1178,9 +1226,7 @@ class SkinTemplate extends Skin {
 		$content_actions = array();
 
 		foreach ( $content_navigation as $links ) {
-
 			foreach ( $links as $key => $value ) {
-
 				if ( isset( $value['redundant'] ) && $value['redundant'] ) {
 					// Redundant tabs are dropped from content_actions
 					continue;
@@ -1195,14 +1241,13 @@ class SkinTemplate extends Skin {
 				}
 
 				if ( isset( $content_actions[$key] ) ) {
-					wfDebug( __METHOD__ . ": Found a duplicate key for $key while flattening content_navigation into content_actions." );
+					wfDebug( __METHOD__ . ": Found a duplicate key for $key while flattening " .
+						"content_navigation into content_actions.\n" );
 					continue;
 				}
 
 				$content_actions[$key] = $value;
-
 			}
-
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -1213,7 +1258,6 @@ class SkinTemplate extends Skin {
 	/**
 	 * build array of common navigation links
 	 * @return array
-	 * @private
 	 */
 	protected function buildNavUrls() {
 		global $wgUploadNavigationUrl;
@@ -1330,9 +1374,8 @@ class SkinTemplate extends Skin {
 	/**
 	 * Generate strings used for xml 'id' names
 	 * @return string
-	 * @private
 	 */
-	function getNameSpaceKey() {
+	protected function getNameSpaceKey() {
 		return $this->getTitle()->getNamespaceKey();
 	}
 }
@@ -1348,13 +1391,13 @@ abstract class QuickTemplate {
 	 */
 	function __construct() {
 		$this->data = array();
-		$this->translator = new MediaWiki_I18N();
+		$this->translator = new MediaWikiI18N();
 	}
 
 	/**
 	 * Sets the value $value to $name
-	 * @param $name
-	 * @param $value
+	 * @param string $name
+	 * @param mixed $value
 	 */
 	public function set( $name, $value ) {
 		$this->data[$name] = $value;
@@ -1376,15 +1419,15 @@ abstract class QuickTemplate {
 	}
 
 	/**
-	 * @param $name
-	 * @param $value
+	 * @param string $name
+	 * @param mixed $value
 	 */
 	public function setRef( $name, &$value ) {
 		$this->data[$name] =& $value;
 	}
 
 	/**
-	 * @param $t
+	 * @param MediaWikiI18N $t
 	 */
 	public function setTranslator( &$t ) {
 		$this->translator = &$t;
@@ -1398,6 +1441,8 @@ abstract class QuickTemplate {
 
 	/**
 	 * @private
+	 * @param string $str
+	 * @return string
 	 */
 	function text( $str ) {
 		echo htmlspecialchars( $this->data[$str] );
@@ -1405,6 +1450,8 @@ abstract class QuickTemplate {
 
 	/**
 	 * @private
+	 * @param string $str
+	 * @return string
 	 */
 	function html( $str ) {
 		echo $this->data[$str];
@@ -1412,6 +1459,8 @@ abstract class QuickTemplate {
 
 	/**
 	 * @private
+	 * @param string $str
+	 * @return string
 	 */
 	function msg( $str ) {
 		echo htmlspecialchars( $this->translator->translate( $str ) );
@@ -1419,6 +1468,8 @@ abstract class QuickTemplate {
 
 	/**
 	 * @private
+	 * @param string $str
+	 * @return string
 	 */
 	function msgHtml( $str ) {
 		echo $this->translator->translate( $str );
@@ -1427,6 +1478,8 @@ abstract class QuickTemplate {
 	/**
 	 * An ugly, ugly hack.
 	 * @private
+	 * @param string $str
+	 * @return string
 	 */
 	function msgWiki( $str ) {
 		global $wgOut;
@@ -1437,6 +1490,7 @@ abstract class QuickTemplate {
 
 	/**
 	 * @private
+	 * @param string $str
 	 * @return bool
 	 */
 	function haveData( $str ) {
@@ -1446,6 +1500,7 @@ abstract class QuickTemplate {
 	/**
 	 * @private
 	 *
+	 * @param string $str
 	 * @return bool
 	 */
 	function haveMsg( $str ) {
@@ -1456,7 +1511,7 @@ abstract class QuickTemplate {
 	/**
 	 * Get the Skin object related to this object
 	 *
-	 * @return Skin object
+	 * @return Skin
 	 */
 	public function getSkin() {
 		return $this->data['skin'];
@@ -1466,7 +1521,7 @@ abstract class QuickTemplate {
 	 * Fetch the output of a QuickTemplate and return it
 	 *
 	 * @since 1.23
-	 * @return String
+	 * @return string
 	 */
 	public function getHTML() {
 		ob_start();
@@ -1487,7 +1542,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	/**
 	 * Get a Message object with its context set
 	 *
-	 * @param string $name message name
+	 * @param string $name Message name
 	 * @return Message
 	 */
 	public function getMsg( $name ) {
@@ -1517,11 +1572,15 @@ abstract class BaseTemplate extends QuickTemplate {
 		wfProfileIn( __METHOD__ );
 
 		$toolbox = array();
-		if ( isset( $this->data['nav_urls']['whatlinkshere'] ) && $this->data['nav_urls']['whatlinkshere'] ) {
+		if ( isset( $this->data['nav_urls']['whatlinkshere'] )
+			&& $this->data['nav_urls']['whatlinkshere']
+		) {
 			$toolbox['whatlinkshere'] = $this->data['nav_urls']['whatlinkshere'];
 			$toolbox['whatlinkshere']['id'] = 't-whatlinkshere';
 		}
-		if ( isset( $this->data['nav_urls']['recentchangeslinked'] ) && $this->data['nav_urls']['recentchangeslinked'] ) {
+		if ( isset( $this->data['nav_urls']['recentchangeslinked'] )
+			&& $this->data['nav_urls']['recentchangeslinked']
+		) {
 			$toolbox['recentchangeslinked'] = $this->data['nav_urls']['recentchangeslinked'];
 			$toolbox['recentchangeslinked']['msg'] = 'recentchangeslinked-toolbox';
 			$toolbox['recentchangeslinked']['id'] = 't-recentchangeslinked';
@@ -1537,7 +1596,9 @@ abstract class BaseTemplate extends QuickTemplate {
 				$toolbox['feeds']['links'][$key]['class'] = 'feedlink';
 			}
 		}
-		foreach ( array( 'contributions', 'log', 'blockip', 'emailuser', 'userrights', 'upload', 'specialpages' ) as $special ) {
+		foreach ( array( 'contributions', 'log', 'blockip', 'emailuser',
+			'userrights', 'upload', 'specialpages' ) as $special
+		) {
 			if ( isset( $this->data['nav_urls'][$special] ) && $this->data['nav_urls'][$special] ) {
 				$toolbox[$special] = $this->data['nav_urls'][$special];
 				$toolbox[$special]['id'] = "t-$special";
@@ -1595,7 +1656,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			if ( isset( $plink['active'] ) ) {
 				$ptool['active'] = $plink['active'];
 			}
-			foreach ( array( 'href', 'class', 'text' ) as $k ) {
+			foreach ( array( 'href', 'class', 'text', 'dir' ) as $k ) {
 				if ( isset( $plink[$k] ) ) {
 					$ptool['links'][0][$k] = $plink[$k];
 				}
@@ -1734,6 +1795,19 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
+	 * @param string $name
+	 */
+	protected function renderAfterPortlet( $name ) {
+		$content = '';
+		wfRunHooks( 'BaseTemplateAfterPortlet', array( $this, $name, &$content ) );
+
+		if ( $content !== '' ) {
+			echo "<div class='after-portlet after-portlet-$name'>$content</div>";
+		}
+
+	}
+
+	/**
 	 * Makes a link, usually used by makeListItem to generate a link for an item
 	 * in a list used in navigation lists, portlets, portals, sidebars, etc...
 	 *
@@ -1792,7 +1866,9 @@ abstract class BaseTemplate extends QuickTemplate {
 			}
 			while ( count( $wrapper ) > 0 ) {
 				$element = array_pop( $wrapper );
-				$html = Html::rawElement( $element['tag'], isset( $element['attributes'] ) ? $element['attributes'] : null, $html );
+				$html = Html::rawElement( $element['tag'], isset( $element['attributes'] )
+					? $element['attributes']
+					: null, $html );
 			}
 		}
 
@@ -1828,7 +1904,9 @@ abstract class BaseTemplate extends QuickTemplate {
 					$attrs['class'] = $options['link-class'];
 				}
 			}
-			$html = Html::rawElement( isset( $attrs['href'] ) ? 'a' : $options['link-fallback'], $attrs, $html );
+			$html = Html::rawElement( isset( $attrs['href'] )
+				? 'a'
+				: $options['link-fallback'], $attrs, $html );
 		}
 
 		return $html;
@@ -1837,12 +1915,12 @@ abstract class BaseTemplate extends QuickTemplate {
 	/**
 	 * Generates a list item for a navigation, portlet, portal, sidebar... list
 	 *
-	 * @param $key string, usually a key from the list you are generating this link from.
-	 * @param $item array, of list item data containing some of a specific set of keys.
-	 * The "id" and "class" keys will be used as attributes for the list item,
+	 * @param string $key Usually a key from the list you are generating this link from.
+	 * @param array $item Array of list item data containing some of a specific set of keys.
+	 * The "id", "class" and "itemtitle" keys will be used as attributes for the list item,
 	 * if "active" contains a value of true a "active" class will also be appended to class.
 	 *
-	 * @param $options array
+	 * @param array $options
 	 *
 	 * If you want something other than a "<li>" you can pass a tag name such as
 	 * "tag" => "span" in the $options array to change the tag used.
@@ -1856,21 +1934,23 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * list item directly so they will not be passed to makeLink
 	 * (however the link will still support a tooltip and accesskey from it)
 	 * If you need an id or class on a single link you should include a "links"
-	 * array with just one link item inside of it.
+	 * array with just one link item inside of it. If you want to add a title
+	 * to the list item itself, you can set "itemtitle" to the value.
 	 * $options is also passed on to makeLink calls
 	 *
 	 * @return string
 	 */
 	function makeListItem( $key, $item, $options = array() ) {
 		if ( isset( $item['links'] ) ) {
-			$html = '';
+			$links = array();
 			foreach ( $item['links'] as $linkKey => $link ) {
-				$html .= $this->makeLink( $linkKey, $link, $options );
+				$links[] = $this->makeLink( $linkKey, $link, $options );
 			}
+			$html = implode( ' ', $links );
 		} else {
 			$link = $item;
 			// These keys are used by makeListItem and shouldn't be passed on to the link
-			foreach ( array( 'id', 'class', 'active', 'tag' ) as $k ) {
+			foreach ( array( 'id', 'class', 'active', 'tag', 'itemtitle' ) as $k ) {
 				unset( $link[$k] );
 			}
 			if ( isset( $item['id'] ) && !isset( $item['single-id'] ) ) {
@@ -1894,6 +1974,9 @@ abstract class BaseTemplate extends QuickTemplate {
 			}
 			$attrs['class'] .= ' active';
 			$attrs['class'] = trim( $attrs['class'] );
+		}
+		if ( isset( $item['itemtitle'] ) ) {
+			$attrs['title'] = $item['itemtitle'];
 		}
 		return Html::rawElement( isset( $options['tag'] ) ? $options['tag'] : 'li', $attrs, $html );
 	}
@@ -1959,6 +2042,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * If you pass "flat" as an option then the returned array will be a flat array
 	 * of footer icons instead of a key/value array of footerlinks arrays broken
 	 * up into categories.
+	 * @param string $option
 	 * @return array|mixed
 	 */
 	function getFooterLinks( $option = null ) {
@@ -1998,7 +2082,8 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * in the list of footer icons. This is mostly useful for skins which only
 	 * display the text from footericons instead of the images and don't want a
 	 * duplicate copyright statement because footerlinks already rendered one.
-	 * @return
+	 * @param string $option
+	 * @return string
 	 */
 	function getFooterIcons( $option = null ) {
 		// Generate additional footer icons
@@ -2040,5 +2125,4 @@ abstract class BaseTemplate extends QuickTemplate {
 <?php $this->html( 'reporttime' ) ?>
 <?php
 	}
-
 }

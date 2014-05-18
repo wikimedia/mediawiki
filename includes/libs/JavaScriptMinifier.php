@@ -1,4 +1,5 @@
 <?php
+// @codingStandardsIgnoreFile File external to MediaWiki. Ignore coding conventions checks.
 /**
  * JavaScript Minifier
  *

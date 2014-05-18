@@ -8,19 +8,40 @@
  * http://www.w3.org/TR/CSS21/sample.html to make sure the editsection links scale right
  */
 
-h1 { font-size: 2em; }
-h2 { font-size: 1.5em; }
-h3 { font-size: 1.17em; }
-h4 { font-size: 1.11em; }
-h5 { font-size: 1.05em; }
-h6 { font-size: 1em; }
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 1.5em;
+}
+
+h3 {
+	font-size: 1.17em;
+}
+
+h4 {
+	font-size: 1.11em;
+}
+
+h5 {
+	font-size: 1.05em;
+}
+
+h6 {
+	font-size: 1em;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	font-weight: bolder;
 }
 
 /* Now the custom parts */
 
-#footer { clear: both }
+#footer {
+	clear: both;
+}
+
 /* images */
 /* @noflip */
 div.floatright {
@@ -62,6 +83,7 @@ div.thumb {
 	border-color: white;
 	width: auto;
 }
+
 div.thumbinner {
 	border: 1px solid #ccc;
 	padding: 3px !important;
@@ -70,9 +92,11 @@ div.thumbinner {
 	text-align: center;
 	overflow: hidden;
 }
+
 html .thumbimage {
 	border: 1px solid #ccc;
 }
+
 html .thumbcaption {
 	border: none;
 	text-align: left;
@@ -80,24 +104,28 @@ html .thumbcaption {
 	padding: 3px !important;
 	font-size: 94%;
 }
+
 div.magnify {
 	float: right;
 	border: none !important;
 	background: none !important;
 	margin-left: 3px;
 }
+
 div.magnify a,
 div.magnify img {
 	display: block;
 	border: none !important;
 	background: none !important;
 }
+
 /* @noflip */
 div.tright {
 	clear: right;
 	float: right;
 	border-width: .5em 0 .8em 1.4em;
 }
+
 /* @noflip */
 div.tleft {
 	float: left;
@@ -105,15 +133,20 @@ div.tleft {
 	margin-right: .5em;
 	border-width: .5em 1.4em .8em 0;
 }
+
 img.thumbborder {
 	border: 1px solid #dddddd;
 }
 
 /* Page history styling */
 /* the auto-generated edit comments */
-.autocomment { color: #4b4b4b; }
+.autocomment {
+	color: #4b4b4b;
+}
 
-img { border: none; }
+img {
+	border: none;
+}
 
 #toc,
 .toc {
@@ -132,16 +165,19 @@ img { border: none; }
 
 	padding: 7px;
 }
+
 /* CSS for backwards-compatibility with cached page renders and creative uses in wikitext */
 table#toc,
 table.toc {
 	border-collapse: collapse;
 }
+
 /* Remove additional paddings inside table-cells that are not present in <div>s */
 table#toc td,
 table.toc td {
 	padding: 0;
 }
+
 #toc h2,
 .toc h2 {
 	display: inline;
@@ -150,6 +186,7 @@ table.toc td {
 	font-size: 100%;
 	font-weight: bold;
 }
+
 #toc ul,
 .toc ul {
 	list-style-type: none;
@@ -157,10 +194,12 @@ table.toc td {
 	padding: 0;
 	text-align: left;
 }
+
 #toc ul ul,
 .toc ul ul {
 	margin: 0 0 0 2em;
 }
+
 #toc .toctoggle,
 .toc .toctoggle {
 	font-size: 94%;
@@ -177,31 +216,38 @@ table.toc td {
 	margin: 1em 1em 1em 1em;
 	width: 13em;
 }
+
 #preftoc li {
 	border: 1px solid White;
 }
+
 #preftoc li.selected {
-	background-color:#f9f9f9;
-	border:1px dashed #aaaaaa;
+	background-color: #f9f9f9;
+	border: 1px dashed #aaaaaa;
 }
+
 #preftoc a,
 #preftoc a:active {
 	display: block;
 	color: #005189;
 }
+
 .mw-prefs-buttons {
 	clear: left;
 	float: left;
 	margin-top: 1em;
 }
+
 div.htmlform-tip {
 	font-size: 94%;
 	margin-top: 0.4em;
 	color: #666;
 }
+
 fieldset.prefsection {
 	margin-top: 1em;
 }
+
 fieldset.operaprefsection {
 	margin-left: 15em;
 }
@@ -211,6 +257,7 @@ fieldset.operaprefsection {
 	width: 100%;
 	text-align: center;
 }
+
 *.center * {
 	margin-left: auto;
 	margin-right: auto;
@@ -220,6 +267,7 @@ fieldset.operaprefsection {
 .small {
 	font-size: 94%;
 }
+
 table.small {
 	font-size: 100%;
 }
@@ -231,18 +279,22 @@ table.small {
 	padding: 5px;
 	font-size: 95%;
 }
+
 #siteNotice {
 	border: 1px solid #aaaaaa;
 	padding-left: 0.5em;
 	padding-right: 0.5em;
 }
+
 .redirectText {
 	font-size: 150%;
 	margin: 5px;
 }
+
 .sharedUploadNotice {
 	font-style: italic;
 }
+
 span.unpatrolled {
 	font-weight: bold;
 	color: red;
@@ -269,6 +321,7 @@ span.changedby {
 	text-align: center;
 	color: #cc0000;
 }
+
 .editExternally {
 	border-style: solid;
 	border-width: 1px;
@@ -280,6 +333,7 @@ span.changedby {
 	font-size: small;
 	text-align: center;
 }
+
 .editExternallyHelp {
 	font-style: italic;
 	color: gray;
@@ -299,9 +353,11 @@ table.mw_metadata {
 table.mw_metadata caption {
 	font-weight: bold;
 }
+
 table.mw_metadata th {
 	font-weight: normal;
 }
+
 table.mw_metadata td {
 	padding: 0.1em;
 }
@@ -310,23 +366,28 @@ table.mw_metadata {
 	border: none;
 	border-collapse: collapse;
 }
+
 table.mw_metadata td,
 table.mw_metadata th {
 	border: 1px solid #aaaaaa;
 	padding-left: 4px;
 	padding-right: 4px;
 }
+
 table.mw_metadata th {
 	background-color: #f9f9f9;
 }
+
 table.mw_metadata td {
 	background-color: #fcfcfc;
 }
+
 table.mw_metadata td.spacer {
 	background: inherit;
 	border-top: none;
 	border-bottom: none;
 }
+
 table.collapsed tr.collapsable {
 	display: none;
 }
@@ -388,21 +449,26 @@ table.multipageimage td {
 .TablePager_nav a {
 	text-decoration: none;
 }
+
 .TablePager {
 	border-collapse: collapse;
 }
+
 .TablePager,
 .TablePager td,
 .TablePager th {
 	border: 0.15em solid #777777;
 	padding: 0 0.15em 0 0.15em;
 }
+
 .TablePager th {
 	background-color: #eeeeff;
 }
+
 .TablePager td {
 	background-color: #ffffff;
 }
+
 .TablePager tr:hover td {
 	background-color: #eeeeff;
 }
@@ -411,12 +477,15 @@ table.multipageimage td {
 .imagelist th {
 	white-space: nowrap;
 }
+
 .imagelist .TablePager_col_links {
 	background-color: #eeeeff;
 }
+
 .imagelist .TablePager_col_img_description {
 	white-space: normal;
 }
+
 .imagelist th.TablePager_sort {
 	background-color: #ccccff;
 }
@@ -430,6 +499,7 @@ table.multipageimage td {
 	background-color: #ccc;
 	padding: 0.1em;
 }
+
 .MediaTransformError td {
 	text-align: center;
 	vertical-align: middle;
@@ -445,6 +515,7 @@ body {
 	unicode-bidi: embed;
 	background-color: #ffffec;
 }
+
 body.ns-0 {
 	background-color: white;
 }
@@ -461,6 +532,7 @@ body.ns-0 {
 html > body.rtl div#article ul {
 	display: table;
 }
+
 /* @noflip */
 html > body.rtl div#bodyContent ul#filetoc {
 	display: block;

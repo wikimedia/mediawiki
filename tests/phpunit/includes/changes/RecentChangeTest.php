@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @group Database
  */
@@ -136,7 +137,8 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# move/move
 		$this->assertIRCComment(
-			$this->context->msg( '1movedto2', 'SomeTitle', 'TestTarget' )->plain() . $sep . $this->user_comment,
+			$this->context->msg( '1movedto2', 'SomeTitle', 'TestTarget' )
+				->plain() . $sep . $this->user_comment,
 			'move', 'move',
 			$move_params,
 			$this->user_comment
@@ -144,7 +146,8 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# move/move_redir
 		$this->assertIRCComment(
-			$this->context->msg( '1movedto2_redir', 'SomeTitle', 'TestTarget' )->plain() . $sep . $this->user_comment,
+			$this->context->msg( '1movedto2_redir', 'SomeTitle', 'TestTarget' )
+				->plain() . $sep . $this->user_comment,
 			'move', 'move_redir',
 			$move_params,
 			$this->user_comment
@@ -178,7 +181,8 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# protect/protect
 		$this->assertIRCComment(
-			$this->context->msg( 'protectedarticle', 'SomeTitle ' . $protectParams[0] )->plain() . $sep . $this->user_comment,
+			$this->context->msg( 'protectedarticle', 'SomeTitle ' . $protectParams[0] )
+				->plain() . $sep . $this->user_comment,
 			'protect', 'protect',
 			$protectParams,
 			$this->user_comment
@@ -194,7 +198,8 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# protect/modify
 		$this->assertIRCComment(
-			$this->context->msg( 'modifiedarticleprotection', 'SomeTitle ' . $protectParams[0] )->plain() . $sep . $this->user_comment,
+			$this->context->msg( 'modifiedarticleprotection', 'SomeTitle ' . $protectParams[0] )
+				->plain() . $sep . $this->user_comment,
 			'protect', 'modify',
 			$protectParams,
 			$this->user_comment
@@ -248,15 +253,16 @@ class RecentChangeTest extends MediaWikiTestCase {
 	*/
 
 	/**
-	 * @param $expected String Expected IRC text without colors codes
-	 * @param $type String Log type (move, delete, suppress, patrol ...)
-	 * @param $action String A log type action
-	 * @param $params
-	 * @param $comment String (optional) A comment for the log action
-	 * @param $msg String (optional) A message for PHPUnit :-)
+	 * @param string $expected Expected IRC text without colors codes
+	 * @param string $type Log type (move, delete, suppress, patrol ...)
+	 * @param string $action A log type action
+	 * @param array $params
+	 * @param string $comment (optional) A comment for the log action
+	 * @param string $msg (optional) A message for PHPUnit :-)
 	 */
-	protected function assertIRCComment( $expected, $type, $action, $params, $comment = null, $msg = '' ) {
-
+	protected function assertIRCComment( $expected, $type, $action, $params,
+		$comment = null, $msg = ''
+	) {
 		$logEntry = new ManualLogEntry( $type, $action );
 		$logEntry->setPerformer( $this->user );
 		$logEntry->setTarget( $this->title );

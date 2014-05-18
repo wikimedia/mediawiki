@@ -124,7 +124,7 @@ class MessageCache {
 	}
 
 	/**
-	 * @param ObjectCache $memCached A cache instance. If none, fall back to CACHE_NONE.
+	 * @param BagOStuff $memCached A cache instance. If none, fall back to CACHE_NONE.
 	 * @param bool $useDB
 	 * @param int $expiry Lifetime for cache. @see $mExpiry.
 	 */
@@ -155,8 +155,8 @@ class MessageCache {
 	/**
 	 * Try to load the cache from a local file.
 	 *
-	 * @param string $hash the hash of contents, to check validity.
-	 * @param Mixed $code Optional language code, see documenation of load().
+	 * @param string $hash The hash of contents, to check validity.
+	 * @param string $code Optional language code, see documenation of load().
 	 * @return array The cache array
 	 */
 	function getLocalCache( $hash, $code ) {
@@ -192,6 +192,9 @@ class MessageCache {
 
 	/**
 	 * Save the cache to a local file.
+	 * @param string $serialized
+	 * @param string $hash
+	 * @param string $code
 	 */
 	function saveToLocal( $serialized, $hash, $code ) {
 		global $wgCacheDirectory;
@@ -232,7 +235,7 @@ class MessageCache {
 	 * or false if populating empty cache fails. Also returns true if MessageCache
 	 * is disabled.
 	 *
-	 * @param bool|String $code Language to which load messages
+	 * @param bool|string $code Language to which load messages
 	 * @throws MWException
 	 * @return bool
 	 */
@@ -580,7 +583,7 @@ class MessageCache {
 	/**
 	 * Is the given cache array expired due to time passing or a version change?
 	 *
-	 * @param $cache
+	 * @param array $cache
 	 * @return bool
 	 */
 	protected function isCacheExpired( $cache ) {
@@ -638,7 +641,7 @@ class MessageCache {
 	 * a timeout of MessageCache::MSG_LOCK_TIMEOUT.
 	 *
 	 * @param string $key
-	 * @return Boolean: success
+	 * @return bool Success
 	 */
 	function lock( $key ) {
 		$lockKey = $key . ':lock';
@@ -687,17 +690,16 @@ class MessageCache {
 	 *  * Fallbacks will be just that: fallbacks. A fallback language will never be reached if
 	 *    the message is available *anywhere* in the language for which it is a fallback.
 	 *
-	 * @param string $key the message key
+	 * @param string $key The message key
 	 * @param bool $useDB If true, look for the message in the DB, false
-	 *                    to use only the compiled l10n cache.
+	 *   to use only the compiled l10n cache.
 	 * @param bool|string|object $langcode Code of the language to get the message for.
-	 *        - If string and a valid code, will create a standard language object
-	 *        - If string but not a valid code, will create a basic language object
-	 *        - If boolean and false, create object from the current users language
-	 *        - If boolean and true, create object from the wikis content language
-	 *        - If language object, use it as given
-	 * @param bool $isFullKey specifies whether $key is a two part key
-	 *                   "msg/lang".
+	 *   - If string and a valid code, will create a standard language object
+	 *   - If string but not a valid code, will create a basic language object
+	 *   - If boolean and false, create object from the current users language
+	 *   - If boolean and true, create object from the wikis content language
+	 *   - If language object, use it as given
+	 * @param bool $isFullKey specifies whether $key is a two part key "msg/lang".
 	 *
 	 * @throws MWException when given an invalid key
 	 * @return string|bool False if the message doesn't exist, otherwise the
@@ -728,11 +730,17 @@ class MessageCache {
 
 		// Normalise title-case input (with some inlining)
 		$lckey = strtr( $key, ' ', '_' );
-		if ( ord( $key ) < 128 ) {
+		if ( ord( $lckey ) < 128 ) {
 			$lckey[0] = strtolower( $lckey[0] );
-			$uckey = ucfirst( $lckey );
 		} else {
 			$lckey = $wgContLang->lcfirst( $lckey );
+		}
+
+		wfRunHooks( 'MessageCache::get', array( &$lckey ) );
+
+		if ( ord( $lckey ) < 128 ) {
+			$uckey = ucfirst( $lckey );
+		} else {
 			$uckey = $wgContLang->ucfirst( $lckey );
 		}
 
@@ -1092,7 +1100,7 @@ class MessageCache {
 	}
 
 	/**
-	 * @param $key
+	 * @param string $key
 	 * @return array
 	 */
 	public function figureMessage( $key ) {
@@ -1118,7 +1126,7 @@ class MessageCache {
 	 * for which MediaWiki:msgkey exists. If $code is another language code, this
 	 * will ONLY return message keys for which MediaWiki:msgkey/$code exists.
 	 * @param string $code Language code
-	 * @return array of message keys (strings)
+	 * @return array Array of message keys (strings)
 	 */
 	public function getAllMessageKeys( $code ) {
 		global $wgContLang;

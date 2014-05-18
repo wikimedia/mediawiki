@@ -116,6 +116,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			'testmultiselect-opt2' => 'registered-multiselect',
 			'testmultiselect-opt3' => 'registered-multiselect',
 			'testmultiselect-opt4' => 'registered-multiselect',
+			'special' => 'special',
 		);
 
 		if ( $options === null ) {
@@ -317,7 +318,9 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->mUserMock->expects( $this->once() )
 			->method( 'saveSettings' );
 
-		$request = $this->getSampleRequest( array( 'change' => 'willBeNull|willBeEmpty=|willBeHappy=Happy' ) );
+		$request = $this->getSampleRequest( array(
+			'change' => 'willBeNull|willBeEmpty=|willBeHappy=Happy'
+		) );
 
 		$response = $this->executeQuery( $request );
 
@@ -381,12 +384,36 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			->method( 'saveSettings' );
 
 		$request = $this->getSampleRequest( array(
-			'change' => 'testmultiselect-opt1=1|testmultiselect-opt2|testmultiselect-opt3=|testmultiselect-opt4=0'
+			'change' => 'testmultiselect-opt1=1|testmultiselect-opt2|'
+				. 'testmultiselect-opt3=|testmultiselect-opt4=0'
 		) );
 
 		$response = $this->executeQuery( $request );
 
 		$this->assertEquals( self::$Success, $response );
+	}
+
+	public function testSpecialOption() {
+		$this->mUserMock->expects( $this->never() )
+			->method( 'resetOptions' );
+
+		$this->mUserMock->expects( $this->never() )
+			->method( 'saveSettings' );
+
+		$request = $this->getSampleRequest( array(
+			'change' => 'special=1'
+		) );
+
+		$response = $this->executeQuery( $request );
+
+		$this->assertEquals( array(
+			'options' => 'success',
+			'warnings' => array(
+				'options' => array(
+					'*' => "Validation error for 'special': cannot be set by this module"
+				)
+			)
+		), $response );
 	}
 
 	public function testUnknownOption() {

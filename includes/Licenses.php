@@ -28,31 +28,25 @@
  * A License class for use on Special:Upload
  */
 class Licenses extends HTMLFormField {
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	protected $msg;
 
-	/**
-	 * @var array
-	 */
+	/** @var array */
 	protected $licenses = array();
 
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	protected $html;
 	/**#@-*/
 
 	/**
-	 * Constructor
-	 *
-	 * @param $params array
+	 * @param array $params
 	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );
 
-		$this->msg = empty( $params['licenses'] ) ? wfMessage( 'licenses' )->inContentLanguage()->plain() : $params['licenses'];
+		$this->msg = empty( $params['licenses'] )
+			? wfMessage( 'licenses' )->inContentLanguage()->plain()
+			: $params['licenses'];
 		$this->selected = null;
 
 		$this->makeLicenses();
@@ -89,7 +83,7 @@ class Licenses extends HTMLFormField {
 	}
 
 	/**
-	 * @param $str
+	 * @param string $str
 	 * @return array
 	 */
 	protected function trimStars( $str ) {
@@ -98,9 +92,9 @@ class Licenses extends HTMLFormField {
 	}
 
 	/**
-	 * @param $list
-	 * @param $path
-	 * @param $item
+	 * @param array $list
+	 * @param array $path
+	 * @param mixed $item
 	 */
 	protected function stackItem( &$list, $path, $item ) {
 		$position =& $list;
@@ -113,8 +107,8 @@ class Licenses extends HTMLFormField {
 	}
 
 	/**
-	 * @param $tagset
-	 * @param $depth int
+	 * @param array $tagset
+	 * @param int $depth
 	 */
 	protected function makeHtml( $tagset, $depth = 0 ) {
 		foreach ( $tagset as $key => $val ) {
@@ -139,10 +133,10 @@ class Licenses extends HTMLFormField {
 	}
 
 	/**
-	 * @param $message
-	 * @param $value
-	 * @param $attribs null
-	 * @param $depth int
+	 * @param string $message
+	 * @param string $value
+	 * @param null|array $attribs
+	 * @param int $depth
 	 * @return string
 	 */
 	protected function outputOption( $message, $value, $attribs = null, $depth = 0 ) {
@@ -171,7 +165,7 @@ class Licenses extends HTMLFormField {
 	/**
 	 * Accessor for $this->html
 	 *
-	 * @param $value bool
+	 * @param bool $value
 	 *
 	 * @return string
 	 */
@@ -198,19 +192,13 @@ class Licenses extends HTMLFormField {
  * A License class for use on Special:Upload (represents a single type of license).
  */
 class License {
-	/**
-	 * @var string
-	 */
-	var $template;
+	/** @var string */
+	public $template;
+
+	/** @var string */
+	public $text;
 
 	/**
-	 * @var string
-	 */
-	var $text;
-
-	/**
-	 * Constructor
-	 *
 	 * @param string $str license name??
 	 */
 	function __construct( $str ) {

@@ -161,7 +161,7 @@ interface IORMTable {
 	 * @param array|string|null $fields
 	 * @param array $conditions
 	 * @param array $options
-	 * @param boolean $collapse Set to false to always return each result row as associative array.
+	 * @param bool $collapse Set to false to always return each result row as associative array.
 	 * @param string|null $functionName
 	 *
 	 * @return array of array
@@ -213,7 +213,7 @@ interface IORMTable {
 	 * @param array|string|null $fields
 	 * @param array $conditions
 	 * @param array $options
-	 * @param boolean $collapse Set to false to always return each result row as associative array.
+	 * @param bool $collapse Set to false to always return each result row as associative array.
 	 * @param string|null $functionName
 	 *
 	 * @return mixed|array|bool False on failure
@@ -229,7 +229,7 @@ interface IORMTable {
 	 *
 	 * @param array $conditions
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function has( array $conditions = array() );
 
@@ -238,7 +238,7 @@ interface IORMTable {
 	 *
 	 * @since 1.21
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function exists();
 
@@ -254,7 +254,7 @@ interface IORMTable {
 	 * @param array $conditions
 	 * @param array $options
 	 *
-	 * @return integer
+	 * @return int
 	 */
 	public function count( array $conditions = array(), array $options = array() );
 
@@ -266,7 +266,7 @@ interface IORMTable {
 	 * @param array $conditions
 	 * @param string|null $functionName
 	 *
-	 * @return boolean Success indicator
+	 * @return bool Success indicator
 	 */
 	public function delete( array $conditions, $functionName = null );
 
@@ -275,8 +275,8 @@ interface IORMTable {
 	 *
 	 * @since 1.20
 	 *
-	 * @param boolean $requireParams
-	 * @param boolean $setDefaults
+	 * @param bool $requireParams
+	 * @param bool $setDefaults
 	 *
 	 * @return array
 	 */
@@ -298,14 +298,14 @@ interface IORMTable {
 	 *
 	 * @since 1.20
 	 *
-	 * @return integer DB_ enum
+	 * @return int DB_ enum
 	 */
 	public function getReadDb();
 
 	/**
 	 * Set the database type to use for read operations.
 	 *
-	 * @param integer $db
+	 * @param int $db
 	 *
 	 * @since 1.20
 	 */
@@ -316,7 +316,7 @@ interface IORMTable {
 	 *
 	 * @since 1.20
 	 *
-	 * @return String|bool The target wiki, in a form that LBFactory
+	 * @return string|bool The target wiki, in a form that LBFactory
 	 *   understands (or false if the local wiki is used)
 	 */
 	public function getTargetWiki();
@@ -372,7 +372,7 @@ interface IORMTable {
 	 *
 	 * @see LoadBalancer::reuseConnection
 	 *
-	 * @param DatabaseBase $db the database
+	 * @param DatabaseBase $db The database
 	 *
 	 * @since 1.20
 	 */
@@ -388,7 +388,7 @@ interface IORMTable {
 	 * @param array $values
 	 * @param array $conditions
 	 *
-	 * @return boolean Success indicator
+	 * @return bool Success indicator
 	 */
 	public function update( array $values, array $conditions = array() );
 
@@ -490,7 +490,7 @@ interface IORMTable {
 	 * @since 1.20
 	 *
 	 * @param array $data
-	 * @param boolean $loadDefaults
+	 * @param bool $loadDefaults
 	 *
 	 * @return IORMRow
 	 */
@@ -512,7 +512,7 @@ interface IORMTable {
 	 *
 	 * @param string $name
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function canHaveField( $name );
 }

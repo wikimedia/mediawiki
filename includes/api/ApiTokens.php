@@ -98,7 +98,7 @@ class ApiTokens extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Gets tokens for data-modifying actions';
+		return 'Gets tokens for data-modifying actions.';
 	}
 
 	protected function getExamples() {

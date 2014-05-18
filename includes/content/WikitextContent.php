@@ -31,11 +31,16 @@
  * @ingroup Content
  */
 class WikitextContent extends TextContent {
+
 	public function __construct( $text ) {
 		parent::__construct( $text, CONTENT_MODEL_WIKITEXT );
 	}
 
 	/**
+	 * @param string $section
+	 *
+	 * @return Content|bool|null
+	 *
 	 * @see Content::getSection()
 	 */
 	public function getSection( $section ) {
@@ -52,6 +57,13 @@ class WikitextContent extends TextContent {
 	}
 
 	/**
+	 * @param string $section
+	 * @param Content $with
+	 * @param string $sectionTitle
+	 *
+	 * @throws MWException
+	 * @return Content
+	 *
 	 * @see Content::replaceSection()
 	 */
 	public function replaceSection( $section, Content $with, $sectionTitle = '' ) {
@@ -103,7 +115,8 @@ class WikitextContent extends TextContent {
 	 * Returns a new WikitextContent object with the given section heading
 	 * prepended.
 	 *
-	 * @param $header string
+	 * @param string $header
+	 *
 	 * @return Content
 	 */
 	public function addSectionHeader( $header ) {
@@ -119,9 +132,10 @@ class WikitextContent extends TextContent {
 	 * Returns a Content object with pre-save transformations applied using
 	 * Parser::preSaveTransform().
 	 *
-	 * @param $title Title
-	 * @param $user User
-	 * @param $popts ParserOptions
+	 * @param Title $title
+	 * @param User $user
+	 * @param ParserOptions $popts
+	 *
 	 * @return Content
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
@@ -138,43 +152,44 @@ class WikitextContent extends TextContent {
 	 * Returns a Content object with preload transformations applied (or this
 	 * object if no transformations apply).
 	 *
-	 * @param $title Title
-	 * @param $popts ParserOptions
+	 * @param Title $title
+	 * @param ParserOptions $popts
+	 * @param array $params
+	 *
 	 * @return Content
 	 */
-	public function preloadTransform( Title $title, ParserOptions $popts ) {
+	public function preloadTransform( Title $title, ParserOptions $popts, $params = array() ) {
 		global $wgParser;
 
 		$text = $this->getNativeData();
-		$plt = $wgParser->getPreloadText( $text, $title, $popts );
+		$plt = $wgParser->getPreloadText( $text, $title, $popts, $params );
 
 		return new WikitextContent( $plt );
 	}
 
 	/**
-	 * Implement redirect extraction for wikitext.
-	 *
-	 * @return null|Title
+	 * Extract the redirect target and the remaining text on the page.
 	 *
 	 * @note: migrated here from Title::newFromRedirectInternal()
 	 *
-	 * @see Content::getRedirectTarget
-	 * @see AbstractContent::getRedirectTarget
+	 * @since 1.23
+	 *
+	 * @return array List of two elements: Title|null and string.
 	 */
-	public function getRedirectTarget() {
+	protected function getRedirectTargetAndText() {
 		global $wgMaxRedirects;
 		if ( $wgMaxRedirects < 1 ) {
 			// redirects are disabled, so quit early
-			return null;
+			return array( null, $this->getNativeData() );
 		}
 		$redir = MagicWord::get( 'redirect' );
-		$text = trim( $this->getNativeData() );
+		$text = ltrim( $this->getNativeData() );
 		if ( $redir->matchStartAndRemove( $text ) ) {
 			// Extract the first link and see if it's usable
 			// Ensure that it really does come directly after #REDIRECT
 			// Some older redirects included a colon, so don't freak about that!
 			$m = array();
-			if ( preg_match( '!^\s*:?\s*\[{2}(.*?)(?:\|.*?)?\]{2}!', $text, $m ) ) {
+			if ( preg_match( '!^\s*:?\s*\[{2}(.*?)(?:\|.*?)?\]{2}\s*!', $text, $m ) ) {
 				// Strip preceding colon used to "escape" categories, etc.
 				// and URL-decode links
 				if ( strpos( $m[1], '%' ) !== false ) {
@@ -184,19 +199,30 @@ class WikitextContent extends TextContent {
 				$title = Title::newFromText( $m[1] );
 				// If the title is a redirect to bad special pages or is invalid, return null
 				if ( !$title instanceof Title || !$title->isValidRedirectTarget() ) {
-					return null;
+					return array( null, $this->getNativeData() );
 				}
 
-				return $title;
+				return array( $title, substr( $text, strlen( $m[0] ) ) );
 			}
 		}
 
-		return null;
+		return array( null, $this->getNativeData() );
 	}
 
 	/**
-	 * @see Content::updateRedirect()
+	 * Implement redirect extraction for wikitext.
 	 *
+	 * @return Title|null
+	 *
+	 * @see Content::getRedirectTarget
+	 */
+	public function getRedirectTarget() {
+		list( $title, ) = $this->getRedirectTargetAndText();
+
+		return $title;
+	}
+
+	/**
 	 * This implementation replaces the first link on the page with the given new target
 	 * if this Content object is a redirect. Otherwise, this method returns $this.
 	 *
@@ -204,8 +230,9 @@ class WikitextContent extends TextContent {
 	 *
 	 * @param Title $target
 	 *
-	 * @return Content a new Content object with the updated redirect (or $this
-	 *   if this Content object isn't a redirect)
+	 * @return Content
+	 *
+	 * @see Content::updateRedirect()
 	 */
 	public function updateRedirect( Title $target ) {
 		if ( !$this->isRedirect() ) {
@@ -226,14 +253,12 @@ class WikitextContent extends TextContent {
 	 * Returns true if this content is not a redirect, and this content's text
 	 * is countable according to the criteria defined by $wgArticleCountMethod.
 	 *
-	 * @param bool $hasLinks if it is known whether this content contains
+	 * @param bool $hasLinks If it is known whether this content contains
 	 *    links, provide this information here, to avoid redundant parsing to
 	 *    find out (default: null).
-	 * @param $title Title: (default: null)
+	 * @param Title $title Optional title, defaults to the title from the current main request.
 	 *
-	 * @internal param \IContextSource $context context for parsing if necessary
-	 *
-	 * @return bool True if the content is countable
+	 * @return bool
 	 */
 	public function isCountable( $hasLinks = null, Title $title = null ) {
 		global $wgArticleCountMethod;
@@ -267,6 +292,10 @@ class WikitextContent extends TextContent {
 		return false;
 	}
 
+	/**
+	 * @param int $maxlength
+	 * @return string
+	 */
 	public function getTextForSummary( $maxlength = 250 ) {
 		$truncatedtext = parent::getTextForSummary( $maxlength );
 
@@ -282,32 +311,38 @@ class WikitextContent extends TextContent {
 	 * Returns a ParserOutput object resulting from parsing the content's text
 	 * using $wgParser.
 	 *
-	 * @since    1.21
-	 *
-	 * @param $title Title
+	 * @param Title $title
 	 * @param int $revId Revision to pass to the parser (default: null)
-	 * @param $options ParserOptions (default: null)
-	 * @param bool $generateHtml (default: false)
-	 *
-	 * @internal param \IContextSource|null $context
-	 * @return ParserOutput representing the HTML form of the text
+	 * @param ParserOptions $options (default: null)
+	 * @param bool $generateHtml (default: true)
+	 * @param &$output ParserOutput representing the HTML form of the text,
+	 *           may be manipulated or replaced.
 	 */
-	public function getParserOutput( Title $title,
-		$revId = null,
-		ParserOptions $options = null, $generateHtml = true
+	protected function fillParserOutput( Title $title, $revId,
+			ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
 		global $wgParser;
 
-		if ( !$options ) {
-			//NOTE: use canonical options per default to produce cacheable output
-			$options = $this->getContentHandler()->makeParserOptions( 'canonical' );
+		list( $redir, $text ) = $this->getRedirectTargetAndText();
+		$output = $wgParser->parse( $text, $title, $options, true, true, $revId );
+
+		// Add redirect indicator at the top
+		if ( $redir ) {
+			// Make sure to include the redirect link in pagelinks
+			$output->addLink( $redir );
+			if ( $generateHtml ) {
+				$chain = $this->getRedirectChain();
+				$output->setText(
+					Article::getRedirectHeaderHtml( $title->getPageLanguage(), $chain, false ) .
+					$output->getText()
+				);
+			}
 		}
-
-		$po = $wgParser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
-
-		return $po;
 	}
 
+	/**
+	 * @throws MWException
+	 */
 	protected function getHtml() {
 		throw new MWException(
 			"getHtml() not implemented for wikitext. "
@@ -316,15 +351,16 @@ class WikitextContent extends TextContent {
 	}
 
 	/**
-	 * @see  Content::matchMagicWord()
-	 *
 	 * This implementation calls $word->match() on the this TextContent object's text.
 	 *
 	 * @param MagicWord $word
 	 *
-	 * @return bool whether this Content object matches the given magic word.
+	 * @return bool
+	 *
+	 * @see Content::matchMagicWord()
 	 */
 	public function matchMagicWord( MagicWord $word ) {
 		return $word->match( $this->getNativeData() );
 	}
+
 }

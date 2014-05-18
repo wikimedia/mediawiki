@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Peter Alberti",
+			"Christian List",
+			"Tjernobyl"
+		]
+	},
+	"config-page-language": "Sprog",
+	"config-page-welcome": "Velkommen til MediaWiki!",
+	"config-page-dbconnect": "Forbind til database",
+	"config-page-upgrade": "Opgrader eksisterende installation",
+	"config-page-dbsettings": "Databaseindstillinger",
+	"config-page-name": "Navn",
+	"config-page-options": "Indstillinger",
+	"config-page-install": "Installer",
+	"config-header-mysql": "MySQL-indstillinger",
+	"config-header-postgres": "PostgreSQL-indstillinger",
+	"config-header-sqlite": "SQLite-indstillinger",
+	"config-header-oracle": "Oracle-indstillinger",
+	"config-invalid-db-type": "Ugyldig databasetype",
+	"mainpagetext": "'''MediaWiki er nu installeret.'''",
+	"mainpagedocfooter": "Se [//meta.wikimedia.org/wiki/Help:Contents brugervejledningen] for oplysninger om brugen af wikiprogrammellet.\n\n== At komme i gang ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Listen over opsætningsmuligheder]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki ofte stillede spørgsmål]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Postliste angående udgivelser af MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Oversæt MediaWiki til dit sprog]"
+}

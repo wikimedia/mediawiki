@@ -25,6 +25,8 @@
  * for primarily page content: links, embedded images, table of contents. Links
  * are also used in the skin.
  *
+ * @todo: turn this into a legacy interface for HtmlPageLinkRenderer and similar services.
+ *
  * @ingroup Skins
  */
 class Linker {
@@ -39,7 +41,7 @@ class Linker {
 	 * Get the appropriate HTML attributes to add to the "a" element of an
 	 * external link, as created by [wikisyntax].
 	 *
-	 * @param string $class the contents of the class attribute; if an empty
+	 * @param string $class The contents of the class attribute; if an empty
 	 *   string is passed, which is the default value, defaults to 'external'.
 	 * @return string
 	 * @deprecated since 1.18 Just pass the external class directly to something using Html::expandAttributes
@@ -52,10 +54,10 @@ class Linker {
 	/**
 	 * Get the appropriate HTML attributes to add to the "a" element of an interwiki link.
 	 *
-	 * @param string $title the title text for the link, URL-encoded (???) but
+	 * @param string $title The title text for the link, URL-encoded (???) but
 	 *   not HTML-escaped
-	 * @param string $unused unused
-	 * @param string $class the contents of the class attribute; if an empty
+	 * @param string $unused Unused
+	 * @param string $class The contents of the class attribute; if an empty
 	 *   string is passed, which is the default value, defaults to 'external'.
 	 * @return string
 	 */
@@ -74,10 +76,10 @@ class Linker {
 	/**
 	 * Get the appropriate HTML attributes to add to the "a" element of an internal link.
 	 *
-	 * @param string $title the title text for the link, URL-encoded (???) but
+	 * @param string $title The title text for the link, URL-encoded (???) but
 	 *   not HTML-escaped
-	 * @param string $unused unused
-	 * @param string $class the contents of the class attribute, default none
+	 * @param string $unused Unused
+	 * @param string $class The contents of the class attribute, default none
 	 * @return string
 	 */
 	static function getInternalLinkAttributes( $title, $unused = null, $class = '' ) {
@@ -90,10 +92,10 @@ class Linker {
 	 * Get the appropriate HTML attributes to add to the "a" element of an internal
 	 * link, given the Title object for the page we want to link to.
 	 *
-	 * @param $nt Title
-	 * @param string $unused unused
-	 * @param string $class the contents of the class attribute, default none
-	 * @param $title Mixed: optional (unescaped) string to use in the title
+	 * @param Title $nt
+	 * @param string $unused Unused
+	 * @param string $class The contents of the class attribute, default none
+	 * @param string|bool $title Optional (unescaped) string to use in the title
 	 *   attribute; if false, default to the name of the page we're linking to
 	 * @return string
 	 */
@@ -107,8 +109,8 @@ class Linker {
 	/**
 	 * Common code for getLinkAttributesX functions
 	 *
-	 * @param $title string
-	 * @param $class string
+	 * @param string $title
+	 * @param string $class
 	 *
 	 * @return string
 	 */
@@ -128,9 +130,9 @@ class Linker {
 	/**
 	 * Return the CSS colour of a known link
 	 *
-	 * @param $t Title object
-	 * @param $threshold Integer: user defined threshold
-	 * @return String: CSS class
+	 * @param Title $t
+	 * @param int $threshold User defined threshold
+	 * @return string CSS class
 	 */
 	public static function getLinkColour( $t, $threshold ) {
 		$colour = '';
@@ -159,25 +161,22 @@ class Linker {
 	 * link() replaces the old functions in the makeLink() family.
 	 *
 	 * @since 1.18 Method exists since 1.16 as non-static, made static in 1.18.
-	 * You can call it using this if you want to keep compat with these:
-	 * $linker = class_exists( 'DummyLinker' ) ? new DummyLinker() : new Linker();
-	 * $linker->link( ... );
 	 *
-	 * @param $target        Title  Can currently only be a Title, but this may
+	 * @param Title $target Can currently only be a Title, but this may
 	 *   change to support Images, literal URLs, etc.
-	 * @param $html          string The HTML contents of the <a> element, i.e.,
+	 * @param string $html The HTML contents of the <a> element, i.e.,
 	 *   the link text.  This is raw HTML and will not be escaped.  If null,
 	 *   defaults to the prefixed text of the Title; or if the Title is just a
 	 *   fragment, the contents of the fragment.
-	 * @param array $customAttribs  A key => value array of extra HTML attributes,
+	 * @param array $customAttribs A key => value array of extra HTML attributes,
 	 *   such as title and class.  (href is ignored.)  Classes will be
 	 *   merged with the default classes, while other attributes will replace
 	 *   default attributes.  All passed attribute values will be HTML-escaped.
 	 *   A false attribute value means to suppress that attribute.
-	 * @param $query         array  The query string to append to the URL
+	 * @param array $query The query string to append to the URL
 	 *   you're linking to, in key => value array form.  Query keys and values
 	 *   will be URL-encoded.
-	 * @param string|array $options  String or array of strings:
+	 * @param string|array $options String or array of strings:
 	 *     'known': Page is known to exist, so don't check if it does.
 	 *     'broken': Page is known not to exist, so don't check if it does.
 	 *     'noclasses': Don't add any classes automatically (includes "new",
@@ -272,18 +271,18 @@ class Linker {
 	/**
 	 * Returns the Url used to link to a Title
 	 *
-	 * @param $target Title
+	 * @param Title $target
 	 * @param array $query query parameters
-	 * @param $options Array
-	 * @return String
+	 * @param array $options
+	 * @return string
 	 */
 	private static function linkUrl( $target, $query, $options ) {
 		wfProfileIn( __METHOD__ );
 		# We don't want to include fragments for broken links, because they
 		# generally make no sense.
-		if ( in_array( 'broken', $options ) && $target->mFragment !== '' ) {
+		if ( in_array( 'broken', $options ) && $target->hasFragment() ) {
 			$target = clone $target;
-			$target->mFragment = '';
+			$target->setFragment( '' );
 		}
 
 		# If it's a broken link, add the appropriate query pieces, unless
@@ -311,9 +310,9 @@ class Linker {
 	/**
 	 * Returns the array of attributes used when linking to the Title $target
 	 *
-	 * @param $target Title
-	 * @param $attribs
-	 * @param $options
+	 * @param Title $target
+	 * @param array $attribs
+	 * @param array $options
 	 *
 	 * @return array
 	 */
@@ -375,7 +374,7 @@ class Linker {
 	/**
 	 * Default text of the links to the Title $target
 	 *
-	 * @param $target Title
+	 * @param Title $target
 	 *
 	 * @return string
 	 */
@@ -387,7 +386,7 @@ class Linker {
 
 		// If the target is just a fragment, with no title, we return the fragment
 		// text.  Otherwise, we return the title text itself.
-		if ( $target->getPrefixedText() === '' && $target->getFragment() !== '' ) {
+		if ( $target->getPrefixedText() === '' && $target->hasFragment() ) {
 			return htmlspecialchars( $target->getFragment() );
 		}
 		return htmlspecialchars( $target->getPrefixedText() );
@@ -398,7 +397,7 @@ class Linker {
 	 * as the bold link text. The calling sequence is the same as the other make*LinkObj static functions,
 	 * despite $query not being used.
 	 *
-	 * @param $nt Title
+	 * @param Title $nt
 	 * @param string $html [optional]
 	 * @param string $query [optional]
 	 * @param string $trail [optional]
@@ -420,7 +419,7 @@ class Linker {
 	 * This should be called after a method like Title::makeTitleSafe() returned
 	 * a value indicating that the title object is invalid.
 	 *
-	 * @param $context IContextSource context to use to get the messages
+	 * @param IContextSource $context Context to use to get the messages
 	 * @param int $namespace Namespace number
 	 * @param string $title Text of the title, without the namespace part
 	 * @return string
@@ -442,7 +441,7 @@ class Linker {
 	}
 
 	/**
-	 * @param $title Title
+	 * @param Title $title
 	 * @return Title
 	 */
 	static function normaliseSpecialPage( Title $title ) {
@@ -451,8 +450,7 @@ class Linker {
 			if ( !$name ) {
 				return $title;
 			}
-			$ret = SpecialPage::getTitleFor( $name, $subpage );
-			$ret->mFragment = $title->getFragment();
+			$ret = SpecialPage::getTitleFor( $name, $subpage, $title->getFragment() );
 			return $ret;
 		} else {
 			return $title;
@@ -463,7 +461,7 @@ class Linker {
 	 * Returns the filename part of an url.
 	 * Used as alternative text for external images.
 	 *
-	 * @param $url string
+	 * @param string $url
 	 *
 	 * @return string
 	 */
@@ -481,8 +479,8 @@ class Linker {
 	 * Return the code for images which were added via external links,
 	 * via Parser::maybeMakeExternalImage().
 	 *
-	 * @param $url
-	 * @param $alt
+	 * @param string $url
+	 * @param string $alt
 	 *
 	 * @return string
 	 */
@@ -506,10 +504,10 @@ class Linker {
 	 * Given parameters derived from [[Image:Foo|options...]], generate the
 	 * HTML that that syntax inserts in the page.
 	 *
-	 * @param $parser Parser object
-	 * @param $title Title object of the file (not the currently viewed page)
-	 * @param $file File object, or false if it doesn't exist
-	 * @param array $frameParams associative array of parameters external to the media handler.
+	 * @param Parser $parser
+	 * @param Title $title Title object of the file (not the currently viewed page)
+	 * @param File $file File object, or false if it doesn't exist
+	 * @param array $frameParams Associative array of parameters external to the media handler.
 	 *     Boolean parameters are indicated by presence or absence, the value is arbitrary and
 	 *     will often be false.
 	 *          thumbnail       If present, downscale and frame
@@ -530,13 +528,13 @@ class Linker {
 	 *          link-target     Value for the target attribute, only with link-url
 	 *          no-link         Boolean, suppress description link
 	 *
-	 * @param array $handlerParams associative array of media handler parameters, to be passed
+	 * @param array $handlerParams Associative array of media handler parameters, to be passed
 	 *       to transform(). Typical keys are "width" and "page".
-	 * @param string $time timestamp of the file, set as false for current
-	 * @param string $query query params for desc url
-	 * @param $widthOption: Used by the parser to remember the user preference thumbnailsize
+	 * @param string|bool $time Timestamp of the file, set as false for current
+	 * @param string $query Query params for desc url
+	 * @param int|null $widthOption Used by the parser to remember the user preference thumbnailsize
 	 * @since 1.20
-	 * @return String: HTML for an image, with links, wrappers, etc.
+	 * @return string HTML for an image, with links, wrappers, etc.
 	 */
 	public static function makeImageLink( /*Parser*/ $parser, Title $title, $file, $frameParams = array(),
 		$handlerParams = array(), $time = false, $query = "", $widthOption = null
@@ -715,15 +713,15 @@ class Linker {
 
 	/**
 	 * Make HTML for a thumbnail including image, border and caption
-	 * @param $title Title object
-	 * @param $file File object or false if it doesn't exist
-	 * @param $label String
-	 * @param $alt String
-	 * @param $align String
-	 * @param $params Array
-	 * @param $framed Boolean
-	 * @param $manualthumb String
-	 * @return mixed
+	 * @param Title $title
+	 * @param File|bool $file File object or false if it doesn't exist
+	 * @param string $label
+	 * @param string $alt
+	 * @param string $align
+	 * @param array $params
+	 * @param bool $framed
+	 * @param string $manualthumb
+	 * @return string
 	 */
 	public static function makeThumbLinkObj( Title $title, $file, $label = '', $alt,
 		$align = 'right', $params = array(), $framed = false, $manualthumb = ""
@@ -743,13 +741,13 @@ class Linker {
 	}
 
 	/**
-	 * @param $title Title
-	 * @param  $file File
+	 * @param Title $title
+	 * @param File $file
 	 * @param array $frameParams
 	 * @param array $handlerParams
 	 * @param bool $time
 	 * @param string $query
-	 * @return mixed
+	 * @return string
 	 */
 	public static function makeThumbLink2( Title $title, $file, $frameParams = array(),
 		$handlerParams = array(), $time = false, $query = ""
@@ -876,7 +874,7 @@ class Linker {
 	 *
 	 * @param File $file
 	 * @param MediaTransformOutput $thumb
-	 * @param array $hp image parameters
+	 * @param array $hp Image parameters
 	 */
 	public static function processResponsiveImages( $file, $thumb, $hp ) {
 		global $wgResponsiveImages;
@@ -904,13 +902,13 @@ class Linker {
 	/**
 	 * Make a "broken" link to an image
 	 *
-	 * @param $title Title object
-	 * @param string $label link label (plain text)
-	 * @param string $query query string
-	 * @param $unused1 Unused parameter kept for b/c
-	 * @param $unused2 Unused parameter kept for b/c
-	 * @param $time Boolean: a file of a certain timestamp was requested
-	 * @return String
+	 * @param Title $title
+	 * @param string $label Link label (plain text)
+	 * @param string $query Query string
+	 * @param string $unused1 Unused parameter kept for b/c
+	 * @param string $unused2 Unused parameter kept for b/c
+	 * @param bool $time A file of a certain timestamp was requested
+	 * @return string
 	 */
 	public static function makeBrokenImageLinkObj( $title, $label = '', $query = '', $unused1 = '', $unused2 = '', $time = false ) {
 		global $wgEnableUploads, $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
@@ -947,9 +945,9 @@ class Linker {
 	/**
 	 * Get the URL to upload a certain file
 	 *
-	 * @param $destFile Title object of the file to upload
-	 * @param string $query urlencoded query string to prepend
-	 * @return String: urlencoded URL
+	 * @param Title $destFile Title object of the file to upload
+	 * @param string $query Urlencoded query string to prepend
+	 * @return string Urlencoded URL
 	 */
 	protected static function getUploadUrl( $destFile, $query = '' ) {
 		global $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
@@ -971,10 +969,10 @@ class Linker {
 	/**
 	 * Create a direct link to a given uploaded file.
 	 *
-	 * @param $title Title object.
-	 * @param string $html pre-sanitized HTML
+	 * @param Title $title
+	 * @param string $html Pre-sanitized HTML
 	 * @param string $time MW timestamp of file creation time
-	 * @return String: HTML
+	 * @return string HTML
 	 */
 	public static function makeMediaLinkObj( $title, $html = '', $time = false ) {
 		$img = wfFindFile( $title, array( 'time' => $time ) );
@@ -985,10 +983,10 @@ class Linker {
 	 * Create a direct link to a given uploaded file.
 	 * This will make a broken link if $file is false.
 	 *
-	 * @param $title Title object.
-	 * @param $file File|bool mixed File object or false
-	 * @param string $html pre-sanitized HTML
-	 * @return String: HTML
+	 * @param Title $title
+	 * @param File|bool $file File object or false
+	 * @param string $html Pre-sanitized HTML
+	 * @return string HTML
 	 *
 	 * @todo Handle invalid or missing images better.
 	 */
@@ -1000,12 +998,26 @@ class Linker {
 			$url = self::getUploadUrl( $title );
 			$class = 'new';
 		}
-		$alt = htmlspecialchars( $title->getText(), ENT_QUOTES );
+
+		$alt = $title->getText();
 		if ( $html == '' ) {
 			$html = $alt;
 		}
-		$u = htmlspecialchars( $url );
-		return "<a href=\"{$u}\" class=\"$class\" title=\"{$alt}\">{$html}</a>";
+
+		$ret = '';
+		$attribs = array(
+			'href' => $url,
+			'class' => $class,
+			'title' => $alt
+		);
+
+		if ( !wfRunHooks( 'LinkerMakeMediaLinkFile',
+			array( $title, $file, &$html, &$attribs, &$ret ) ) ) {
+			wfDebug( "Hook LinkerMakeMediaLinkFile changed the output of link with url {$url} and text {$html} to {$ret}\n", true );
+			return $ret;
+		}
+
+		return Html::rawElement( 'a', $attribs, $html );
 	}
 
 	/**
@@ -1013,6 +1025,8 @@ class Linker {
 	 * a message key from the link text.
 	 * Usage example: Linker::specialLink( 'Recentchanges' )
 	 *
+	 * @param string $name
+	 * @param string $key
 	 * @return string
 	 */
 	public static function specialLink( $name, $key = '' ) {
@@ -1026,11 +1040,11 @@ class Linker {
 	/**
 	 * Make an external link
 	 * @param string $url URL to link to
-	 * @param string $text text of link
-	 * @param $escape Boolean: do we escape the link text?
-	 * @param string $linktype type of external link. Gets added to the classes
-	 * @param array $attribs of extra attributes to <a>
-	 * @param $title Title|null Title object used for title specific link attributes
+	 * @param string $text Text of link
+	 * @param bool $escape Do we escape the link text?
+	 * @param string $linktype Type of external link. Gets added to the classes
+	 * @param array $attribs Array of extra attributes to <a>
+	 * @param Title|null $title Title object used for title specific link attributes
 	 * @return string
 	 */
 	public static function makeExternalLink( $url, $text, $escape = true, $linktype = '', $attribs = array(), $title = null ) {
@@ -1065,18 +1079,20 @@ class Linker {
 
 	/**
 	 * Make user link (or user contributions for unregistered users)
-	 * @param $userId   Integer: user id in database.
-	 * @param string $userName user name in database.
-	 * @param string $altUserName text to display instead of the user name (optional)
-	 * @return String: HTML fragment
+	 * @param int $userId User id in database.
+	 * @param string $userName User name in database.
+	 * @param string $altUserName Text to display instead of the user name (optional)
+	 * @return string HTML fragment
 	 * @since 1.19 Method exists for a long time. $altUserName was added in 1.19.
 	 */
 	public static function userLink( $userId, $userName, $altUserName = false ) {
+		$classes = 'mw-userlink';
 		if ( $userId == 0 ) {
 			$page = SpecialPage::getTitleFor( 'Contributions', $userName );
 			if ( $altUserName === false ) {
 				$altUserName = IP::prettifyIP( $userName );
 			}
+			$classes .= ' mw-anonuserlink'; // Separate link class for anons (bug 43179)
 		} else {
 			$page = Title::makeTitle( NS_USER, $userName );
 		}
@@ -1084,20 +1100,20 @@ class Linker {
 		return self::link(
 			$page,
 			htmlspecialchars( $altUserName !== false ? $altUserName : $userName ),
-			array( 'class' => 'mw-userlink' )
+			array( 'class' => $classes )
 		);
 	}
 
 	/**
 	 * Generate standard user tool links (talk, contributions, block link, etc.)
 	 *
-	 * @param $userId Integer: user identifier
-	 * @param string $userText user name or IP address
-	 * @param $redContribsWhenNoEdits Boolean: should the contributions link be
-	 *        red if the user has no edits?
-	 * @param $flags Integer: customisation flags (e.g. Linker::TOOL_LINKS_NOBLOCK and Linker::TOOL_LINKS_EMAIL)
-	 * @param $edits Integer: user edit count (optional, for performance)
-	 * @return String: HTML fragment
+	 * @param int $userId User identifier
+	 * @param string $userText User name or IP address
+	 * @param bool $redContribsWhenNoEdits Should the contributions link be
+	 *   red if the user has no edits?
+	 * @param int $flags Customisation flags (e.g. Linker::TOOL_LINKS_NOBLOCK and Linker::TOOL_LINKS_EMAIL)
+	 * @param int $edits User edit count (optional, for performance)
+	 * @return string HTML fragment
 	 */
 	public static function userToolLinks(
 		$userId, $userText, $redContribsWhenNoEdits = false, $flags = 0, $edits = null
@@ -1149,19 +1165,19 @@ class Linker {
 
 	/**
 	 * Alias for userToolLinks( $userId, $userText, true );
-	 * @param $userId Integer: user identifier
-	 * @param string $userText user name or IP address
-	 * @param $edits Integer: user edit count (optional, for performance)
-	 * @return String
+	 * @param int $userId User identifier
+	 * @param string $userText User name or IP address
+	 * @param int $edits User edit count (optional, for performance)
+	 * @return string
 	 */
 	public static function userToolLinksRedContribs( $userId, $userText, $edits = null ) {
 		return self::userToolLinks( $userId, $userText, true, 0, $edits );
 	}
 
 	/**
-	 * @param $userId Integer: user id in database.
-	 * @param string $userText user name in database.
-	 * @return String: HTML fragment with user talk link
+	 * @param int $userId User id in database.
+	 * @param string $userText User name in database.
+	 * @return string HTML fragment with user talk link
 	 */
 	public static function userTalkLink( $userId, $userText ) {
 		$userTalkPage = Title::makeTitle( NS_USER_TALK, $userText );
@@ -1170,9 +1186,9 @@ class Linker {
 	}
 
 	/**
-	 * @param $userId Integer: userid
-	 * @param string $userText user name in database.
-	 * @return String: HTML fragment with block link
+	 * @param int $userId Userid
+	 * @param string $userText User name in database.
+	 * @return string HTML fragment with block link
 	 */
 	public static function blockLink( $userId, $userText ) {
 		$blockPage = SpecialPage::getTitleFor( 'Block', $userText );
@@ -1181,9 +1197,9 @@ class Linker {
 	}
 
 	/**
-	 * @param $userId Integer: userid
-	 * @param string $userText user name in database.
-	 * @return String: HTML fragment with e-mail user link
+	 * @param int $userId Userid
+	 * @param string $userText User name in database.
+	 * @return string HTML fragment with e-mail user link
 	 */
 	public static function emailLink( $userId, $userText ) {
 		$emailPage = SpecialPage::getTitleFor( 'Emailuser', $userText );
@@ -1193,9 +1209,9 @@ class Linker {
 
 	/**
 	 * Generate a user link if the current user is allowed to view it
-	 * @param $rev Revision object.
-	 * @param $isPublic Boolean: show only if all users can see it
-	 * @return String: HTML fragment
+	 * @param Revision $rev
+	 * @param bool $isPublic Show only if all users can see it
+	 * @return string HTML fragment
 	 */
 	public static function revUserLink( $rev, $isPublic = false ) {
 		if ( $rev->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
@@ -1214,8 +1230,8 @@ class Linker {
 
 	/**
 	 * Generate a user tool link cluster if the current user is allowed to view it
-	 * @param $rev Revision object.
-	 * @param $isPublic Boolean: show only if all users can see it
+	 * @param Revision $rev
+	 * @param bool $isPublic Show only if all users can see it
 	 * @return string HTML
 	 */
 	public static function revUserTools( $rev, $isPublic = false ) {
@@ -1248,10 +1264,10 @@ class Linker {
 	 * Since you can't set a default parameter for a reference, I've turned it
 	 * temporarily to a value pass. Should be adjusted further. --brion
 	 *
-	 * @param $comment String
-	 * @param $title Mixed: Title object (to generate link to the section in autocomment) or null
-	 * @param $local Boolean: whether section links should refer to local page
-	 * @return mixed|String
+	 * @param string $comment
+	 * @param Title|null $title Title object (to generate link to the section in autocomment) or null
+	 * @param bool $local Whether section links should refer to local page
+	 * @return mixed|string
 	 */
 	public static function formatComment( $comment, $title = null, $local = false ) {
 		wfProfileIn( __METHOD__ );
@@ -1283,10 +1299,10 @@ class Linker {
 	 * add a separator where needed and format the comment itself with CSS
 	 * Called by Linker::formatComment.
 	 *
-	 * @param string $comment comment text
-	 * @param $title Title|null An optional title object used to links to sections
-	 * @param $local Boolean: whether section links should refer to local page
-	 * @return String: formatted comment
+	 * @param string $comment Comment text
+	 * @param Title|null $title An optional title object used to links to sections
+	 * @param bool $local Whether section links should refer to local page
+	 * @return string Formatted comment
 	 */
 	private static function formatAutocomments( $comment, $title = null, $local = false ) {
 		// Bah!
@@ -1303,7 +1319,7 @@ class Linker {
 
 	/**
 	 * Helper function for Linker::formatAutocomments
-	 * @param $match
+	 * @param array $match
 	 * @return string
 	 */
 	private static function formatAutocommentsCallback( $match ) {
@@ -1367,10 +1383,10 @@ class Linker {
 	 * is ignored
 	 *
 	 * @todo FIXME: Doesn't handle sub-links as in image thumb texts like the main parser
-	 * @param string $comment text to format links in
-	 * @param $title Title|null An optional title object used to links to sections
-	 * @param $local Boolean: whether section links should refer to local page
-	 * @return String
+	 * @param string $comment Text to format links in
+	 * @param Title|null $title An optional title object used to links to sections
+	 * @param bool $local Whether section links should refer to local page
+	 * @return string
 	 */
 	public static function formatLinksInComment( $comment, $title = null, $local = false ) {
 		self::$commentContextTitle = $title;
@@ -1396,7 +1412,7 @@ class Linker {
 	}
 
 	/**
-	 * @param $match
+	 * @param array $match
 	 * @return mixed
 	 */
 	protected static function formatLinksInCommentCallback( $match ) {
@@ -1446,7 +1462,7 @@ class Linker {
 
 			$target = Title::newFromText( $linkTarget );
 			if ( $target ) {
-				if ( $target->getText() == '' && $target->getInterwiki() === ''
+				if ( $target->getText() == '' && !$target->isExternal()
 					&& !self::$commentLocal && self::$commentContextTitle
 				) {
 					$newTarget = clone ( self::$commentContextTitle );
@@ -1468,9 +1484,9 @@ class Linker {
 	}
 
 	/**
-	 * @param $contextTitle Title
-	 * @param  $target
-	 * @param  $text
+	 * @param Title $contextTitle
+	 * @param string $target
+	 * @param string $text
 	 * @return string
 	 */
 	public static function normalizeSubpageLink( $contextTitle, $target, &$text ) {
@@ -1549,9 +1565,9 @@ class Linker {
 	 * Wrap a comment in standard punctuation and formatting if
 	 * it's non-empty, otherwise return empty string.
 	 *
-	 * @param $comment String
-	 * @param $title Mixed: Title object (to generate link to section in autocomment) or null
-	 * @param $local Boolean: whether section links should refer to local page
+	 * @param string $comment
+	 * @param Title|null $title Title object (to generate link to section in autocomment) or null
+	 * @param bool $local Whether section links should refer to local page
 	 *
 	 * @return string
 	 */
@@ -1572,10 +1588,10 @@ class Linker {
 	 * Wrap and format the given revision's comment block, if the current
 	 * user is allowed to view it.
 	 *
-	 * @param $rev Revision object
-	 * @param $local Boolean: whether section links should refer to local page
-	 * @param $isPublic Boolean: show only if all users can see it
-	 * @return String: HTML fragment
+	 * @param Revision $rev
+	 * @param bool $local Whether section links should refer to local page
+	 * @param bool $isPublic Show only if all users can see it
+	 * @return string HTML fragment
 	 */
 	public static function revComment( Revision $rev, $local = false, $isPublic = false ) {
 		if ( $rev->getRawComment() == "" ) {
@@ -1596,7 +1612,7 @@ class Linker {
 	}
 
 	/**
-	 * @param $size
+	 * @param int $size
 	 * @return string
 	 */
 	public static function formatRevisionSize( $size ) {
@@ -1621,6 +1637,7 @@ class Linker {
 	/**
 	 * Finish one or more sublevels on the Table of Contents
 	 *
+	 * @param int $level
 	 * @return string
 	 */
 	public static function tocUnindent( $level ) {
@@ -1630,6 +1647,11 @@ class Linker {
 	/**
 	 * parameter level defines if we are on an indentation level
 	 *
+	 * @param string $anchor
+	 * @param string $tocline
+	 * @param string $tocnumber
+	 * @param string $level
+	 * @param string|bool $sectionIndex
 	 * @return string
 	 */
 	public static function tocLine( $anchor, $tocline, $tocnumber, $level, $sectionIndex = false ) {
@@ -1656,9 +1678,9 @@ class Linker {
 	/**
 	 * Wraps the TOC in a table and provides the hide/collapse javascript.
 	 *
-	 * @param string $toc html of the Table Of Contents
-	 * @param $lang String|Language|false: Language for the toc title, defaults to user language
-	 * @return String: full html of the TOC
+	 * @param string $toc Html of the Table Of Contents
+	 * @param string|Language|bool $lang Language for the toc title, defaults to user language
+	 * @return string Full html of the TOC
 	 */
 	public static function tocList( $toc, $lang = false ) {
 		$lang = wfGetLangObj( $lang );
@@ -1675,7 +1697,7 @@ class Linker {
 	 * Currently unused.
 	 *
 	 * @param array $tree Return value of ParserOutput::getSections()
-	 * @return String: HTML fragment
+	 * @return string HTML fragment
 	 */
 	public static function generateTOC( $tree ) {
 		$toc = '';
@@ -1702,17 +1724,17 @@ class Linker {
 	/**
 	 * Create a headline for content
 	 *
-	 * @param $level Integer: the level of the headline (1-6)
-	 * @param string $attribs any attributes for the headline, starting with
-	 *                 a space and ending with '>'
-	 *                 This *must* be at least '>' for no attribs
-	 * @param string $anchor the anchor to give the headline (the bit after the #)
-	 * @param string $html html for the text of the header
+	 * @param int $level The level of the headline (1-6)
+	 * @param string $attribs Any attributes for the headline, starting with
+	 *   a space and ending with '>'
+	 *   This *must* be at least '>' for no attribs
+	 * @param string $anchor The anchor to give the headline (the bit after the #)
+	 * @param string $html Html for the text of the header
 	 * @param string $link HTML to add for the section edit link
-	 * @param $legacyAnchor Mixed: a second, optional anchor to give for
+	 * @param bool|string $legacyAnchor A second, optional anchor to give for
 	 *   backward compatibility (false to omit)
 	 *
-	 * @return String: HTML headline
+	 * @return string HTML headline
 	 */
 	public static function makeHeadline( $level, $attribs, $anchor, $html, $link, $legacyAnchor = false ) {
 		$ret = "<h$level$attribs"
@@ -1728,6 +1750,7 @@ class Linker {
 	/**
 	 * Split a link trail, return the "inside" portion and the remainder of the trail
 	 * as a two-element array
+	 * @param string $trail
 	 * @return array
 	 */
 	static function splitTrail( $trail ) {
@@ -1764,9 +1787,9 @@ class Linker {
 	 *
 	 * If the option noBrackets is set the rollback link wont be enclosed in []
 	 *
-	 * @param $rev Revision object
-	 * @param $context IContextSource context to use or null for the main context.
-	 * @param $options array
+	 * @param Revision $rev
+	 * @param IContextSource $context Context to use or null for the main context.
+	 * @param array $options
 	 * @return string
 	 */
 	public static function generateRollback( $rev, IContextSource $context = null, $options = array( 'verify' ) ) {
@@ -1801,9 +1824,9 @@ class Linker {
 	 * Returns null if $wgShowRollbackEditCount is disabled or false if $verify
 	 * is set and the user is the only contributor of the page.
 	 *
-	 * @param $rev Revision object
+	 * @param Revision $rev
 	 * @param bool $verify Try to verify that this revision can really be rolled back
-	 * @return integer|bool|null
+	 * @return int|bool|null
 	 */
 	public static function getRollbackEditCount( $rev, $verify ) {
 		global $wgShowRollbackEditCount;
@@ -1855,10 +1878,10 @@ class Linker {
 	/**
 	 * Build a raw rollback link, useful for collections of "tool" links
 	 *
-	 * @param $rev Revision object
-	 * @param $context IContextSource context to use or null for the main context.
-	 * @param $editCount integer Number of edits that would be reverted
-	 * @return String: HTML fragment
+	 * @param Revision $rev
+	 * @param IContextSource|null $context Context to use or null for the main context.
+	 * @param int $editCount Number of edits that would be reverted
+	 * @return string HTML fragment
 	 */
 	public static function buildRollbackLink( $rev, IContextSource $context = null, $editCount = false ) {
 		global $wgShowRollbackEditCount, $wgMiserMode;
@@ -1933,7 +1956,7 @@ class Linker {
 	 * @param bool $preview Whether this is for a preview
 	 * @param bool $section Whether this is for a section edit
 	 * @param Title|Message|string|null $more An escaped link for "More..." of the templates
-	 * @return String: HTML output
+	 * @return string HTML output
 	 */
 	public static function formatTemplates( $templates, $preview = false, $section = false, $more = null ) {
 		global $wgLang;
@@ -2024,9 +2047,9 @@ class Linker {
 	/**
 	 * Returns HTML for the "hidden categories on this page" list.
 	 *
-	 * @param array $hiddencats of hidden categories from Article::getHiddenCategories
-	 * or similar
-	 * @return String: HTML output
+	 * @param array $hiddencats Array of hidden categories from Article::getHiddenCategories
+	 *   or similar
+	 * @return string HTML output
 	 */
 	public static function formatHiddenCategories( $hiddencats ) {
 		wfProfileIn( __METHOD__ );
@@ -2052,7 +2075,7 @@ class Linker {
 	 * unit (B, KB, MB or GB) according to the magnitude in question
 	 *
 	 * @param int $size Size to format
-	 * @return String
+	 * @return string
 	 */
 	public static function formatSize( $size ) {
 		global $wgLang;
@@ -2065,10 +2088,10 @@ class Linker {
 	 * isn't always, because sometimes the accesskey needs to go on a different
 	 * element than the id, for reverse-compatibility, etc.)
 	 *
-	 * @param string $name id of the element, minus prefixes.
-	 * @param $options Mixed: null or the string 'withaccess' to add an access-
+	 * @param string $name Id of the element, minus prefixes.
+	 * @param string|null $options Null or the string 'withaccess' to add an access-
 	 *   key hint
-	 * @return String: contents of the title attribute (which you must HTML-
+	 * @return string Contents of the title attribute (which you must HTML-
 	 *   escape), or false for no title attribute
 	 */
 	public static function titleAttrib( $name, $options = null ) {
@@ -2091,11 +2114,12 @@ class Linker {
 		if ( $options == 'withaccess' ) {
 			$accesskey = self::accesskey( $name );
 			if ( $accesskey !== false ) {
+				// Should be build the same as in jquery.accessKeyLabel.js
 				if ( $tooltip === false || $tooltip === '' ) {
-					$tooltip = wfMessage( 'brackets', $accesskey )->escaped();
+					$tooltip = wfMessage( 'brackets', $accesskey )->text();
 				} else {
-					$tooltip .= wfMessage( 'word-separator' )->escaped();
-					$tooltip .= wfMessage( 'brackets', $accesskey )->escaped();
+					$tooltip .= wfMessage( 'word-separator' )->text();
+					$tooltip .= wfMessage( 'brackets', $accesskey )->text();
 				}
 			}
 		}
@@ -2112,8 +2136,8 @@ class Linker {
 	 * the id but isn't always, because sometimes the accesskey needs to go on
 	 * a different element than the id, for reverse-compatibility, etc.)
 	 *
-	 * @param string $name id of the element, minus prefixes.
-	 * @return String: contents of the accesskey attribute (which you must HTML-
+	 * @param string $name Id of the element, minus prefixes.
+	 * @return string Contents of the accesskey attribute (which you must HTML-
 	 *   escape), or false for no accesskey attribute
 	 */
 	public static function accesskey( $name ) {
@@ -2137,7 +2161,8 @@ class Linker {
 		}
 
 		wfProfileOut( __METHOD__ );
-		return self::$accesskeycache[$name] = $accesskey;
+		self::$accesskeycache[$name] = $accesskey;
+		return self::$accesskeycache[$name];
 	}
 
 	/**
@@ -2187,11 +2212,11 @@ class Linker {
 	/**
 	 * Creates a (show/hide) link for deleting revisions/log entries
 	 *
-	 * @param array $query query parameters to be passed to link()
-	 * @param $restricted Boolean: set to true to use a "<strong>" instead of a "<span>"
-	 * @param $delete Boolean: set to true to use (show/hide) rather than (show)
+	 * @param array $query Query parameters to be passed to link()
+	 * @param bool $restricted Set to true to use a "<strong>" instead of a "<span>"
+	 * @param bool $delete Set to true to use (show/hide) rather than (show)
 	 *
-	 * @return String: HTML "<a>" link to Special:Revisiondelete, wrapped in a
+	 * @return string HTML "<a>" link to Special:Revisiondelete, wrapped in a
 	 * span to allow for customization of appearance with CSS
 	 */
 	public static function revDeleteLink( $query = array(), $restricted = false, $delete = true ) {
@@ -2206,7 +2231,7 @@ class Linker {
 	/**
 	 * Creates a dead (show/hide) link for deleting revisions/log entries
 	 *
-	 * @param $delete Boolean: set to true to use (show/hide) rather than (show)
+	 * @param bool $delete Set to true to use (show/hide) rather than (show)
 	 *
 	 * @return string HTML text wrapped in a span to allow for customization
 	 * of appearance with CSS
@@ -2227,14 +2252,13 @@ class Linker {
 	 * call this lots of times, pre-fill the link cache with a LinkBatch, otherwise each
 	 * call to this will result in a DB query.
 	 *
-	 * @param $nt     Title: the title object to make the link from, e.g. from
-	 *                      Title::newFromText.
-	 * @param $text  String: link text
-	 * @param string $query optional query part
-	 * @param string $trail optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after
-	 *                      the end of the link.
-	 * @param string $prefix optional prefix. As trail, only before instead of after.
+	 * @param Title $nt The title object to make the link from, e.g. from Title::newFromText.
+	 * @param string $text Link text
+	 * @param string $query Optional query part
+	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
+	 *   be included in the link text. Other characters will be appended after
+	 *   the end of the link.
+	 * @param string $prefix Optional prefix. As trail, only before instead of after.
 	 * @return string
 	 */
 	static function makeLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
@@ -2260,14 +2284,14 @@ class Linker {
 	 * it doesn't have to do a database query. It's also valid for interwiki titles and special
 	 * pages.
 	 *
-	 * @param $title  Title object of target page
-	 * @param $text   String: text to replace the title
-	 * @param $query  String: link target
-	 * @param $trail  String: text after link
-	 * @param string $prefix text before link text
-	 * @param string $aprops extra attributes to the a-element
-	 * @param $style  String: style to apply - if empty, use getInternalLinkAttributesObj instead
-	 * @return string the a-element
+	 * @param Title $title Title object of target page
+	 * @param string $text Text to replace the title
+	 * @param string $query Link target
+	 * @param string $trail Text after link
+	 * @param string $prefix Text before link text
+	 * @param string $aprops Extra attributes to the a-element
+	 * @param string $style Style to apply - if empty, use getInternalLinkAttributesObj instead
+	 * @return string The a-element
 	 */
 	static function makeKnownLinkObj(
 		$title, $text = '', $query = '', $trail = '', $prefix = '', $aprops = '', $style = ''
@@ -2295,6 +2319,7 @@ class Linker {
 
 	/**
 	 * Returns the attributes for the tooltip and access key.
+	 * @param string $name
 	 * @return array
 	 */
 	public static function tooltipAndAccesskeyAttribs( $name ) {
@@ -2316,6 +2341,8 @@ class Linker {
 
 	/**
 	 * Returns raw bits of HTML, use titleAttrib()
+	 * @param string $name
+	 * @param array|null $options
 	 * @return null|string
 	 */
 	public static function tooltip( $name, $options = null ) {

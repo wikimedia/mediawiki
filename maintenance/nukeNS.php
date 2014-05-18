@@ -91,7 +91,7 @@ class NukeNS extends Maintenance {
 					$child = $this->runChild( 'NukePage', 'nukePage.php' );
 					$child->deleteRevisions( $revs );
 					$this->purgeRedundantText( true );
-					$n_deleted ++;
+					$n_deleted++;
 				}
 			} else {
 				$this->output( "skip: " . $title->getPrefixedText() . "\n" );

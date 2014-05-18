@@ -40,10 +40,18 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 			$noOldArchive = ""; // yes this really needs to be set this way
 			$comment = "removing for test";
 			$restrictDeletedVersions = false;
-			$status = FileDeleteForm::doDelete( $title, $file, $noOldArchive, $comment, $restrictDeletedVersions );
+			$status = FileDeleteForm::doDelete(
+				$title,
+				$file,
+				$noOldArchive,
+				$comment,
+				$restrictDeletedVersions
+			);
+
 			if ( !$status->isGood() ) {
 				return false;
 			}
+
 			$page = WikiPage::factory( $title );
 			$page->doDeleteArticle( "removing for test" );
 
@@ -66,7 +74,8 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 	}
 
 	/**
-	 * Helper function -- given a file on the filesystem, find matching content in the db (and associated articles) and remove them.
+	 * Helper function -- given a file on the filesystem, find matching
+	 * content in the db (and associated articles) and remove them.
 	 *
 	 * @param string $filePath path to file on the filesystem
 	 *

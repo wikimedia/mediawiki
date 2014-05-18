@@ -580,6 +580,7 @@ class WikiDiff3 {
 
 		return $this->length;
 	}
+
 }
 
 /**
@@ -589,6 +590,7 @@ class WikiDiff3 {
  * @ingroup DifferenceEngine
  */
 class RangeDifference {
+
 	/** @var int */
 	public $leftstart;
 
@@ -615,4 +617,5 @@ class RangeDifference {
 		$this->rightend = $rightend;
 		$this->rightlength = $rightend - $rightstart;
 	}
+
 }

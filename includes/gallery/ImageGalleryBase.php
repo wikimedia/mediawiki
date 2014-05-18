@@ -28,30 +28,46 @@
  * @ingroup Media
  */
 abstract class ImageGalleryBase extends ContextSource {
-	/** @var array Gallery images  */
-	protected $mImages;
+	/**
+	 * @var array Gallery images
+	 * @deprecated in 1.23 (was declared "var") and will be removed in 1.24
+	 */
+	public $mImages;
 
-	/** @var bool Whether to show the filesize in bytes in categories   */
-	protected $mShowBytes;
+	/**
+	 * @var bool Whether to show the filesize in bytes in categories
+	 * @deprecated in 1.23 (was declared "var") and will be removed in 1.24
+	 */
+	public $mShowBytes;
 
-	/** @var bool Whether to show the filename. Default: true */
-	protected $mShowFilename;
+	/**
+	 * @var bool Whether to show the filename. Default: true
+	 * @deprecated in 1.23 (was declared "var") and will be removed in 1.24
+	 */
+	public $mShowFilename;
 
-	/** @var string Gallery mode. Default: traditional */
-	protected $mMode;
+	/**
+	 * @var string Gallery mode. Default: traditional
+	 * @deprecated in 1.23 (was declared "var") and will be removed in 1.24
+	 */
+	public $mMode;
 
-	/** @var bool|string Gallery caption. Default: false */
-	protected $mCaption = false;
+	/**
+	 * @var bool|string Gallery caption. Default: false
+	 * @deprecated in 1.23 (was declared "var") and will be removed in 1.24
+	 */
+	public $mCaption = false;
 
 	/**
 	 * @var bool Hide blacklisted images?
+	 * @deprecated in 1.23 (was declared "var") and will be removed in 1.24
 	 */
-	protected $mHideBadImages;
+	public $mHideBadImages;
 
 	/**
 	 * @var Parser Registered parser object for output callbacks
 	 */
-	protected $mParser;
+	public $mParser;
 
 	/**
 	 * @var Title Contextual title, used when images are being screened against
@@ -69,7 +85,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * Get a new image gallery. This is the method other callers
 	 * should use to get a gallery.
 	 *
-	 * @param string|bool $mode Mode to use. False to use the default.
+	 * @param string|bool $mode Mode to use. False to use the default
 	 * @throws MWException
 	 */
 	static function factory( $mode = false ) {
@@ -130,7 +146,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @note This also triggers using the page's target
 	 *  language instead of the user language.
 	 *
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 */
 	function setParser( $parser ) {
 		$this->mParser = $parser;
@@ -200,7 +216,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * to allow extensions to add additional parameters to
 	 * <gallery> parser tag.
 	 *
-	 * @param array $options Attributes of gallery tag.
+	 * @param array $options Attributes of gallery tag
 	 */
 	public function setAdditionalOptions( $options ) {
 	}
@@ -242,7 +258,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $html Additional HTML text to be shown. The name and size
 	 *   of the image are always shown.
 	 * @param string $alt Alt text for the image
-	 * @param string $link  Override image link (optional)
+	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
 	 */
 	function insert( $title, $html = '', $alt = '', $link = '', $handlerOpts = array() ) {
@@ -265,7 +281,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * Enable/Disable showing of the file size of an image in the gallery.
 	 * Enabled by default.
 	 *
-	 * @param bool $f Set to false to disable.
+	 * @param bool $f Set to false to disable
 	 */
 	function setShowBytes( $f ) {
 		$this->mShowBytes = (bool)$f;
@@ -275,7 +291,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * Enable/Disable showing of the filename of an image in the gallery.
 	 * Enabled by default.
 	 *
-	 * @param bool $f Set to false to disable.
+	 * @param bool $f Set to false to disable
 	 */
 	function setShowFilename( $f ) {
 		$this->mShowFilename = (bool)$f;

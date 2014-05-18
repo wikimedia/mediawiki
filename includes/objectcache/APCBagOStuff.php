@@ -28,8 +28,8 @@
  */
 class APCBagOStuff extends BagOStuff {
 	/**
-	 * @param $key string
-	 * @param $casToken[optional] int
+	 * @param string $key
+	 * @param int $casToken [optional]
 	 * @return mixed
 	 */
 	public function get( $key, &$casToken = null ) {
@@ -49,9 +49,9 @@ class APCBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $value mixed
-	 * @param $exptime int
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exptime
 	 * @return bool
 	 */
 	public function set( $key, $value, $exptime = 0 ) {
@@ -65,10 +65,10 @@ class APCBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $casToken mixed
-	 * @param $key string
-	 * @param $value mixed
-	 * @param $exptime int
+	 * @param mixed $casToken
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exptime
 	 * @return bool
 	 */
 	public function cas( $casToken, $key, $value, $exptime = 0 ) {
@@ -77,8 +77,8 @@ class APCBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $time int
+	 * @param string $key
+	 * @param int $time
 	 * @return bool
 	 */
 	public function delete( $key, $time = 0 ) {
@@ -88,13 +88,13 @@ class APCBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $callback closure Callback method to be executed
+	 * @param string $key
+	 * @param Closure $callback Callback method to be executed
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $attempts The amount of times to attempt a merge in case of failure
-	 * @return bool success
+	 * @return bool Success
 	 */
-	public function merge( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
+	public function merge( $key, Closure $callback, $exptime = 0, $attempts = 10 ) {
 		return $this->mergeViaLock( $key, $callback, $exptime, $attempts );
 	}
 

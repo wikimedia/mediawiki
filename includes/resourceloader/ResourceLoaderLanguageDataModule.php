@@ -27,99 +27,50 @@
  */
 class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 
-	protected $language;
 	protected $targets = array( 'desktop', 'mobile' );
-	/**
-	 * Get the grammar forms for the site content language.
-	 *
-	 * @return array
-	 */
-	protected function getSiteLangGrammarForms() {
-		return $this->language->getGrammarForms();
-	}
-
-	/**
-	 * Get the plural forms for the site content language.
-	 *
-	 * @return array
-	 */
-	protected function getPluralRules() {
-		return $this->language->getPluralRules();
-	}
-
-	/**
-	 * Get the digit groupin Pattern for the site content language.
-	 *
-	 * @return array
-	 */
-	protected function getDigitGroupingPattern() {
-		return $this->language->digitGroupingPattern();
-	}
-
-	/**
-	 * Get the digit transform table for the content language
-	 *
-	 * @return array
-	 */
-	protected function getDigitTransformTable() {
-		return $this->language->digitTransformTable();
-	}
-
-	/**
-	 * Get seperator transform table required for converting
-	 * the . and , sign to appropriate forms in site content language.
-	 *
-	 * @return array
-	 */
-	protected function getSeparatorTransformTable() {
-		return $this->language->separatorTransformTable();
-	}
 
 	/**
 	 * Get all the dynamic data for the content language to an array.
 	 *
-	 * NOTE: Before calling this you HAVE to make sure $this->language is set.
-	 *
+	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
-	protected function getData() {
+	protected function getData( ResourceLoaderContext $context ) {
+		$language = Language::factory( $context->getLanguage() );
 		return array(
-			'digitTransformTable' => $this->getDigitTransformTable(),
-			'separatorTransformTable' => $this->getSeparatorTransformTable(),
-			'grammarForms' => $this->getSiteLangGrammarForms(),
-			'pluralRules' => $this->getPluralRules(),
-			'digitGroupingPattern' => $this->getDigitGroupingPattern(),
+			'digitTransformTable' => $language->digitTransformTable(),
+			'separatorTransformTable' => $language->separatorTransformTable(),
+			'grammarForms' => $language->getGrammarForms(),
+			'pluralRules' => $language->getPluralRules(),
+			'digitGroupingPattern' => $language->digitGroupingPattern(),
 		);
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
-	 * @return string: JavaScript code
+	 * @param ResourceLoaderContext $context
+	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		$this->language = Language::factory( $context->getLanguage() );
 		return Xml::encodeJsCall( 'mw.language.setData', array(
-			$this->language->getCode(),
-			$this->getData()
+			$context->getLanguage(),
+			$this->getData( $context )
 		) );
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
-	 * @return int: UNIX timestamp
+	 * @param ResourceLoaderContext $context
+	 * @return int UNIX timestamp
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		return max( 1, $this->getHashMtime( $context ) );
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
-	 * @return string: Hash
+	 * @param ResourceLoaderContext $context
+	 * @return string Hash
 	 */
 	public function getModifiedHash( ResourceLoaderContext $context ) {
-		$this->language = Language::factory( $context->getLanguage() );
-
-		return md5( serialize( $this->getData() ) );
+		return md5( serialize( $this->getData( $context ) ) );
 	}
 
 	/**

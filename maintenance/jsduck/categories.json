@@ -10,7 +10,6 @@
 					"mw.Message",
 					"mw.loader",
 					"mw.loader.store",
-					"mw.log",
 					"mw.html",
 					"mw.html.Cdata",
 					"mw.html.Raw",
@@ -21,12 +20,13 @@
 				"name": "General",
 				"classes": [
 					"mw.Title",
-					"mw.inspect",
-					"mw.inspect.reports",
+					"mw.Uri",
 					"mw.notification",
+					"mw.Notification_",
 					"mw.user",
 					"mw.util",
-					"mw.plugin.*"
+					"mw.plugin.*",
+					"mw.cookie"
 				]
 			},
 			{
@@ -36,6 +36,42 @@
 			{
 				"name": "API",
 				"classes": ["mw.Api*"]
+			},
+			{
+				"name": "Language",
+				"classes": [
+					"mw.language*",
+					"mw.cldr",
+					"mw.jqueryMsg"
+				]
+			},
+			{
+				"name": "Page",
+				"classes": [
+					"mw.page*"
+				]
+			},
+			{
+				"name": "Interfaces",
+				"classes": [
+					"mw.Feedback"
+				]
+			},
+			{
+				"name": "Special",
+				"classes": [
+					"mw.special*"
+				]
+			},
+			{
+				"name": "Development",
+				"classes": [
+					"mw.log",
+					"mw.inspect",
+					"mw.inspect.reports",
+					"mw.Debug",
+					"mw.Debug.profile"
+				]
 			}
 		]
 	},
@@ -44,13 +80,21 @@
 		"groups": [
 			{
 				"name": "Plugins",
-				"classes": ["jQuery.plugin.*"]
+				"classes": [
+					"jQuery.client",
+					"jQuery.colorUtil",
+					"jQuery.plugin.*"
+				]
 			}
 		]
 	},
 	{
 		"name": "Upstream",
 		"groups": [
+			{
+				"name": "OOJS",
+				"classes": ["OO", "OO.*"]
+			},
 			{
 				"name": "jQuery",
 				"classes": ["jQuery", "jQuery.Event", "jQuery.Callbacks", "jQuery.Promise", "jQuery.Deferred", "jQuery.jqXHR", "QUnit"]

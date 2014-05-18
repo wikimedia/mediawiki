@@ -74,7 +74,8 @@ class IPTCTest extends MediaWikiTestCase {
 	 */
 	public function testIPTCParseUTF8() {
 		// This has the magic "\x1c\x01\x5A\x00\x03\x1B\x25\x47" which marks content as UTF8.
-		$iptcData = "Photoshop 3.0\08BIM\4\4\0\0\0\0\0\x0F\x1c\x02\x19\x00\x02¼\x1c\x01\x5A\x00\x03\x1B\x25\x47";
+		$iptcData =
+			"Photoshop 3.0\08BIM\4\4\0\0\0\0\0\x0F\x1c\x02\x19\x00\x02¼\x1c\x01\x5A\x00\x03\x1B\x25\x47";
 		$res = IPTC::Parse( $iptcData );
 		$this->assertEquals( array( '¼' ), $res['Keywords'] );
 	}

@@ -158,12 +158,12 @@ class MaintenanceTest extends MediaWikiTestCase {
 	 *
 	 * This function simulates shutdown of self::m.
 	 *
-	 * @param $preShutdownOutput string: expected output before simulating shutdown
-	 * @param $expectNLAppending bool: Whether or not shutdown simulation is expected
-	 *            to add a newline to the output. If false, $preShutdownOutput is the
-	 *            expected output after shutdown simulation. Otherwise,
-	 *            $preShutdownOutput with an appended newline is the expected output
-	 *            after shutdown simulation.
+	 * @param string $preShutdownOutput Expected output before simulating shutdown
+	 * @param bool $expectNLAppending Whether or not shutdown simulation is expected
+	 *   to add a newline to the output. If false, $preShutdownOutput is the
+	 *   expected output after shutdown simulation. Otherwise,
+	 *   $preShutdownOutput with an appended newline is the expected output
+	 *   after shutdown simulation.
 	 */
 	private function assertOutputPrePostShutdown( $preShutdownOutput, $expectNLAppending ) {
 

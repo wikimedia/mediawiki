@@ -65,14 +65,14 @@ class ForeignDBFile extends LocalFile {
 	}
 
 	/**
-	 * @param $oldver
-	 * @param $desc string
-	 * @param $license string
-	 * @param $copyStatus string
-	 * @param $source string
-	 * @param $watch bool
-	 * @param $timestamp bool|string
-	 * @param $user User object or null to use $wgUser
+	 * @param string $oldver
+	 * @param string $desc
+	 * @param string $license
+	 * @param string $copyStatus
+	 * @param string $source
+	 * @param bool $watch
+	 * @param bool|string $timestamp
+	 * @param User $user User object or null to use $wgUser
 	 * @return bool
 	 * @throws MWException
 	 */
@@ -94,10 +94,11 @@ class ForeignDBFile extends LocalFile {
 	/**
 	 * @param string $reason
 	 * @param bool $suppress
+	 * @param User|null $user
 	 * @return FileRepoStatus
 	 * @throws MWException
 	 */
-	function delete( $reason, $suppress = false ) {
+	function delete( $reason, $suppress = false, $user = null ) {
 		$this->readOnlyError();
 	}
 

@@ -3,7 +3,7 @@
  * Contain classes to list log entries
  *
  * Copyright © 2004 Brion Vibber <brion@pobox.com>, 2008 Aaron Schulz
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ class LogEventsList extends ContextSource {
 	public $flags;
 
 	/**
-	 * @var Array
+	 * @var array
 	 */
 	protected $mDefaultQuery;
 
@@ -60,7 +60,7 @@ class LogEventsList extends ContextSource {
 	/**
 	 * Deprecated alias for getTitle(); do not use.
 	 *
-	 * @deprecated in 1.20; use getTitle() instead.
+	 * @deprecated since 1.20; use getTitle() instead.
 	 * @return Title
 	 */
 	public function getDisplayTitle() {
@@ -71,7 +71,7 @@ class LogEventsList extends ContextSource {
 	/**
 	 * Set page title and show header for this log type
 	 * @param array $type
-	 * @deprecated in 1.19
+	 * @deprecated since 1.19
 	 */
 	public function showHeader( $type ) {
 		wfDeprecated( __METHOD__, '1.19' );
@@ -276,7 +276,7 @@ class LogEventsList extends ContextSource {
 	}
 
 	/**
-	 * @param $pattern
+	 * @param string $pattern
 	 * @return string Checkbox
 	 */
 	private function getTitlePattern( $pattern ) {
@@ -502,6 +502,7 @@ class LogEventsList extends ContextSource {
 	 * - wrap String Wrap the message in html (usually something like "<div ...>$1</div>").
 	 * - flags Integer display flags (NO_ACTION_LINK,NO_EXTRA_USER_LINKS)
 	 * - useRequestParams boolean Set true to use Pager-related parameters in the WebRequest
+	 * - useMaster boolean Use master DB
 	 * @return int Number of total log items (not limited by $lim)
 	 */
 	public static function showLogExtract(
@@ -515,6 +516,7 @@ class LogEventsList extends ContextSource {
 			'wrap' => "$1",
 			'flags' => 0,
 			'useRequestParams' => false,
+			'useMaster' => false,
 		);
 		# The + operator appends elements of remaining keys from the right
 		# handed array to the left handed, whereas duplicated keys are NOT overwritten.
@@ -548,6 +550,9 @@ class LogEventsList extends ContextSource {
 			$pager->mIsBackwards = false;
 		}
 
+		if ( $param['useMaster'] ) {
+			$pager->mDb = wfGetDB( DB_MASTER );
+		}
 		if ( isset( $param['offset'] ) ) { # Tell pager to ignore WebRequest offset
 			$pager->setOffset( $param['offset'] );
 		}

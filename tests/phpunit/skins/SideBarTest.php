@@ -15,7 +15,8 @@ class SideBarTest extends MediaWikiLangTestCase {
 
 	/** Build $this->messages array */
 	private function initMessagesHref() {
-		# List of default messages for the sidebar:
+		# List of default messages for the sidebar. The sidebar doesn't care at
+		# all whether they are full URLs, interwiki links or local titles.
 		$URL_messages = array(
 			'mainpage',
 			'portal-url',
@@ -25,10 +26,16 @@ class SideBarTest extends MediaWikiLangTestCase {
 			'helppage',
 		);
 
+		# We're assuming that isValidURI works as advertised: it's also
+		# tested separately, in tests/phpunit/includes/HttpTest.php.
 		foreach ( $URL_messages as $m ) {
 			$titleName = MessageCache::singleton()->get( $m );
-			$title = Title::newFromText( $titleName );
-			$this->messages[$m]['href'] = $title->getLocalURL();
+			if ( Http::isValidURI( $titleName ) ) {
+				$this->messages[$m]['href'] = $titleName;
+			} else {
+				$title = Title::newFromText( $titleName );
+				$this->messages[$m]['href'] = $title->getLocalURL();
+			}
 		}
 	}
 
@@ -41,9 +48,9 @@ class SideBarTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Internal helper to test the sidebar
-	 * @param $expected
-	 * @param $text
-	 * @param $message (Default: '')
+	 * @param array $expected
+	 * @param string $text
+	 * @param string $message (Default: '')
 	 * @todo this assert method to should be converted to a test using a dataprovider..
 	 */
 	private function assertSideBar( $expected, $text, $message = '' ) {

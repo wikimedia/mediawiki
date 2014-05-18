@@ -27,7 +27,7 @@
  * @ingroup SpecialPage
  */
 class SpecialLockdb extends FormSpecialPage {
-	var $reason = '';
+	protected $reason = '';
 
 	public function __construct() {
 		parent::__construct( 'Lockdb', 'siteadmin' );

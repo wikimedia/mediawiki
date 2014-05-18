@@ -3,7 +3,7 @@
  * Oracle search engine
  *
  * Copyright © 2004 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,8 +28,7 @@
  * Search engine hook base class for Oracle (ConText).
  * @ingroup Search
  */
-class SearchOracle extends SearchEngine {
-
+class SearchOracle extends SearchDatabase {
 	private $reservedWords = array(
 		'ABOUT' => 1,
 		'ACCUM' => 1,
@@ -60,17 +59,9 @@ class SearchOracle extends SearchEngine {
 	);
 
 	/**
-	 * Creates an instance of this class
-	 * @param $db DatabasePostgres: database object
-	 */
-	function __construct( $db ) {
-		parent::__construct( $db );
-	}
-
-	/**
 	 * Perform a full text search query and return a result set.
 	 *
-	 * @param string $term raw search term
+	 * @param string $term Raw search term
 	 * @return SqlSearchResultSet
 	 */
 	function searchText( $term ) {
@@ -78,14 +69,17 @@ class SearchOracle extends SearchEngine {
 			return new SqlSearchResultSet( false, '' );
 		}
 
-		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), true ) ) );
+		$resultSet = $this->db->resultObject(
+			$this->db->query( $this->getQuery( $this->filter( $term ), true ) )
+		);
+
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
 	/**
 	 * Perform a title-only search query and return a result set.
 	 *
-	 * @param string $term raw search term
+	 * @param string $term Raw search term
 	 * @return SqlSearchResultSet
 	 */
 	function searchTitle( $term ) {
@@ -93,25 +87,16 @@ class SearchOracle extends SearchEngine {
 			return new SqlSearchResultSet( false, '' );
 		}
 
-		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), false ) ) );
-		return new MySQLSearchResultSet( $resultSet, $this->searchTerms );
-	}
+		$resultSet = $this->db->resultObject(
+			$this->db->query( $this->getQuery( $this->filter( $term ), false ) )
+		);
 
-	/**
-	 * Return a partial WHERE clause to exclude redirects, if so set
-	 * @return String
-	 */
-	function queryRedirect() {
-		if ( $this->showRedirects ) {
-			return '';
-		} else {
-			return 'AND page_is_redirect=0';
-		}
+		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
 	/**
 	 * Return a partial WHERE clause to limit the search to the given namespaces
-	 * @return String
+	 * @return string
 	 */
 	function queryNamespaces() {
 		if ( is_null( $this->namespaces ) ) {
@@ -128,9 +113,9 @@ class SearchOracle extends SearchEngine {
 	/**
 	 * Return a LIMIT clause to limit results on the query.
 	 *
-	 * @param $sql string
+	 * @param string $sql
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function queryLimit( $sql ) {
 		return $this->db->limitResult( $sql, $this->limit, $this->offset );
@@ -140,7 +125,7 @@ class SearchOracle extends SearchEngine {
 	 * Does not do anything for generic search engine
 	 * subclasses may define this though
 	 *
-	 * @return String
+	 * @return string
 	 */
 	function queryRanking( $filteredTerm, $fulltext ) {
 		return ' ORDER BY score(1)';
@@ -149,21 +134,20 @@ class SearchOracle extends SearchEngine {
 	/**
 	 * Construct the full SQL query to do the search.
 	 * The guts shoulds be constructed in queryMain()
-	 * @param $filteredTerm String
-	 * @param $fulltext Boolean
-	 * @return String
+	 * @param string $filteredTerm
+	 * @param bool $fulltext
+	 * @return string
 	 */
 	function getQuery( $filteredTerm, $fulltext ) {
 		return $this->queryLimit( $this->queryMain( $filteredTerm, $fulltext ) . ' ' .
-			$this->queryRedirect() . ' ' .
 			$this->queryNamespaces() . ' ' .
 			$this->queryRanking( $filteredTerm, $fulltext ) . ' ' );
 	}
 
 	/**
 	 * Picks which field to index on, depending on what type of query.
-	 * @param $fulltext Boolean
-	 * @return String
+	 * @param bool $fulltext
+	 * @return string
 	 */
 	function getIndexField( $fulltext ) {
 		return $fulltext ? 'si_text' : 'si_title';
@@ -172,9 +156,9 @@ class SearchOracle extends SearchEngine {
 	/**
 	 * Get the base part of the search query.
 	 *
-	 * @param $filteredTerm String
-	 * @param $fulltext Boolean
-	 * @return String
+	 * @param string $filteredTerm
+	 * @param bool $fulltext
+	 * @return string
 	 */
 	function queryMain( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
@@ -192,7 +176,7 @@ class SearchOracle extends SearchEngine {
 	 */
 	function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;
-		$lc = SearchEngine::legalSearchChars();
+		$lc = $this->legalSearchChars();
 		$this->searchTerms = array();
 
 		# @todo FIXME: This doesn't handle parenthetical expressions.
@@ -238,13 +222,14 @@ class SearchOracle extends SearchEngine {
 		$t = preg_replace( '/([-&|])/', '\\\\$1', $t );
 		return $t;
 	}
+
 	/**
 	 * Create or update the search index record for the given page.
 	 * Title and text should be pre-processed.
 	 *
-	 * @param $id Integer
-	 * @param $title String
-	 * @param $text String
+	 * @param int $id
+	 * @param string $title
+	 * @param string $text
 	 */
 	function update( $id, $title, $text ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -271,8 +256,8 @@ class SearchOracle extends SearchEngine {
 	 * Update a search index record's title only.
 	 * Title should be pre-processed.
 	 *
-	 * @param $id Integer
-	 * @param $title String
+	 * @param int $id
+	 * @param string $title
 	 */
 	function updateTitle( $id, $title ) {
 		$dbw = wfGetDB( DB_MASTER );

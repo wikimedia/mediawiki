@@ -32,7 +32,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 			'wgExtensionMessagesFiles' => array( 'LogTests' => __DIR__ . '/LogTests.i18n.php' ),
 		) );
 
-		$wgLang->getLocalisationCache()->recache( $wgLang->getCode() );
+		Language::getLocalisationCache()->recache( $wgLang->getCode() );
 
 		$this->user = User::newFromName( 'Testuser' );
 		$this->title = Title::newMainPage();
@@ -47,7 +47,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		parent::tearDown();
 
 		global $wgLang;
-		$wgLang->getLocalisationCache()->recache( $wgLang->getCode() );
+		Language::getLocalisationCache()->recache( $wgLang->getCode() );
 	}
 
 	public function newLogEntry( $action, $params ) {

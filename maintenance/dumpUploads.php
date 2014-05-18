@@ -64,7 +64,7 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 				$this->mSharedSupplement = true;
 			}
 		}
-		$this->{ $this->mAction } ( $this->mShared );
+		$this->{$this->mAction} ( $this->mShared );
 		if ( $this->mSharedSupplement ) {
 			$this->fetchUsed( true );
 		}
@@ -73,7 +73,7 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 	/**
 	 * Fetch a list of used images from a particular image source.
 	 *
-	 * @param $shared Boolean: true to pass shared-dir settings to hash func
+	 * @param bool $shared True to pass shared-dir settings to hash func
 	 */
 	function fetchUsed( $shared ) {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -94,7 +94,7 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 	/**
 	 * Fetch a list of all images from a particular image source.
 	 *
-	 * @param $shared Boolean: true to pass shared-dir settings to hash func
+	 * @param bool $shared True to pass shared-dir settings to hash func
 	 */
 	function fetchLocal( $shared ) {
 		$dbr = wfGetDB( DB_SLAVE );

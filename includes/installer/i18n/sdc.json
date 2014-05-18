@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jun Misugi",
+			"Seb35"
+		]
+	},
+	"config-title": "Isthallazioni di MediaWiki $1",
+	"config-information": "Infuimmazioni",
+	"config-localsettings-key": "Ciabi di attuarizazioni",
+	"config-your-language": "Linga tòia",
+	"config-wiki-language": "Linga di la Vichi",
+	"config-back": "← Indareddu",
+	"config-continue": "Continuà →",
+	"config-page-language": "Linga",
+	"config-page-welcome": "Binvinuddi in MediaWiki!",
+	"mainpagetext": "'''Isthallazioni di MediaWiki accabadda currentementi.'''",
+	"mainpagedocfooter": "Cunsultha la [//meta.wikimedia.org/wiki/Help:Contents Ghia utenti] pa maggiori infuimmazioni i l'usu di chisthu software wiki.\n\n== Pa ischuminzà ==\nLi sighenti cullegamenti so in linga ingrese:\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Impusthazioni di cunfigurazioni]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Prigonti friquenti i MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annùnzii MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki for your language]"
+}

@@ -5,7 +5,7 @@
  * @file
  */
 
-/** Tests for MediaWiki languages/LanguageHy.php */
+/** Tests for Armenian (Հայերեն) */
 class LanguageHyTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural
@@ -21,13 +21,12 @@ class LanguageHyTest extends LanguageClassesTestCase {
 	 * @covers Language::getPluralRuleType
 	 */
 	public function testGetPluralRuleType( $result, $value ) {
-		// This fails for 0, but I'm not sure why. Some voodoo going on here.
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
 	public static function providePlural() {
 		return array(
-			array( 'other', 0 ),
+			array( 'one', 0 ),
 			array( 'one', 1 ),
 			array( 'other', 2 ),
 			array( 'other', 200 ),

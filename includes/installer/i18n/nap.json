@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"C.R."
+		]
+	},
+	"config-mssql-install-auth": "Sceglie 'o tipo d'autenticazziona ca s'ausarrà pe cunnettà â database, durante ll'operazziona d'istallazziona. Si piglie \"{{int:config-mssql-windowsauth}}\", 'e credenziale 'e qualunque fosse ll'utenza ca 'o webserver sta pruciessanno sarranno ausate.",
+	"config-mssql-web-auth": "Sceglie 'o tipo d'autenticazziona ca 'o web server pigliarrà pe se cunnettà a 'o server 'e bbase 'e dati, durante ll'operazziona nurmale d&#39;'a wiki.\nSi piglie \"{{int:config-mssql-windowsauth}}\", 'e credenziale 'e qualunque fosse ll'utenza ca 'o webserver sta pruciessanno sarranno ausate."
+}

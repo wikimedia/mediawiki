@@ -78,19 +78,18 @@ class CopyJobQueue extends Maintenance {
 			++$total;
 			$batch[] = $job;
 			if ( count( $batch ) >= $this->mBatchSize ) {
-				if ( $dst->push( $batch ) ) {
-					$totalOK += count( $batch );
-				}
+				$dst->push( $batch );
+				$totalOK += count( $batch );
 				$batch = array();
 				$dst->waitForBackups();
 			}
 		}
 		if ( count( $batch ) ) {
-			if ( $dst->push( $batch ) ) {
-				$totalOK += count( $batch );
-			}
+			$dst->push( $batch );
+			$totalOK += count( $batch );
 			$dst->waitForBackups();
 		}
+
 		return array( $total, $totalOK );
 	}
 }

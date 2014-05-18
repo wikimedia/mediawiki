@@ -27,14 +27,16 @@ require __DIR__ . '/../commandLine.inc';
 
 if ( count( $args ) < 1 ) {
 	echo "Usage: php recompressTracked.php [options] <cluster> [... <cluster>...]
-Moves blobs indexed by trackBlobs.php to a specified list of destination clusters, and recompresses them in the process. Restartable.
+Moves blobs indexed by trackBlobs.php to a specified list of destination clusters,
+and recompresses them in the process. Restartable.
 
 Options:
-	--procs <procs>         Set the number of child processes (default 1)
-	--copy-only             Copy only, do not update the text table. Restart without this option to complete.
-	--debug-log <file>      Log debugging data to the specified file
-	--info-log <file>       Log progress messages to the specified file
-	--critical-log <file>   Log error messages to the specified file
+	--procs <procs>       Set the number of child processes (default 1)
+	--copy-only           Copy only, do not update the text table. Restart
+	                      without this option to complete.
+	--debug-log <file>    Log debugging data to the specified file
+	--info-log <file>     Log progress messages to the specified file
+	--critical-log <file> Log error messages to the specified file
 ";
 	exit( 1 );
 }
@@ -63,8 +65,15 @@ class RecompressTracked {
 	public $debugLog, $infoLog, $criticalLog;
 	public $store;
 
-	static $optionsWithArgs = array( 'procs', 'slave-id', 'debug-log', 'info-log', 'critical-log' );
-	static $cmdLineOptionMap = array(
+	private static $optionsWithArgs = array(
+		'procs',
+		'slave-id',
+		'debug-log',
+		'info-log',
+		'critical-log'
+	);
+
+	private static $cmdLineOptionMap = array(
 		'no-count' => 'noCount',
 		'procs' => 'numProcs',
 		'copy-only' => 'copyOnly',
@@ -86,6 +95,7 @@ class RecompressTracked {
 				$jobOptions[$classOption] = $options[$cmdOption];
 			}
 		}
+
 		return new self( $jobOptions );
 	}
 
@@ -109,7 +119,6 @@ class RecompressTracked {
 		if ( $this->debugLog ) {
 			$this->logToFile( $msg, $this->debugLog );
 		}
-
 	}
 
 	function info( $msg ) {
@@ -181,13 +190,16 @@ class RecompressTracked {
 		$dbr = wfGetDB( DB_SLAVE );
 		if ( !$dbr->tableExists( 'blob_tracking' ) ) {
 			$this->critical( "Error: blob_tracking table does not exist" );
+
 			return false;
 		}
 		$row = $dbr->selectRow( 'blob_tracking', '*', false, __METHOD__ );
 		if ( !$row ) {
 			$this->info( "Warning: blob_tracking table contains no rows, skipping this wiki." );
+
 			return false;
 		}
+
 		return true;
 	}
 
@@ -267,6 +279,7 @@ class RecompressTracked {
 			if ( isset( $pipes[$slaveId] ) ) {
 				$this->prevSlaveId = $slaveId;
 				$this->dispatchToSlave( $slaveId, $args );
+
 				return;
 			}
 		}
@@ -434,14 +447,14 @@ class RecompressTracked {
 			$args = explode( ' ', $line );
 			$cmd = array_shift( $args );
 			switch ( $cmd ) {
-			case 'doPage':
-				$this->doPage( intval( $args[0] ) );
-				break;
-			case 'doOrphanList':
-				$this->doOrphanList( array_map( 'intval', $args ) );
-				break;
-			case 'quit':
-				return;
+				case 'doPage':
+					$this->doPage( intval( $args[0] ) );
+					break;
+				case 'doOrphanList':
+					$this->doOrphanList( array_map( 'intval', $args ) );
+					break;
+				case 'quit':
+					return;
 			}
 			$this->waitForSlaves();
 		}
@@ -449,6 +462,8 @@ class RecompressTracked {
 
 	/**
 	 * Move tracked text in a given page
+	 *
+	 * @param int $pageId
 	 */
 	function doPage( $pageId ) {
 		$title = Title::newFromId( $pageId );
@@ -527,6 +542,9 @@ class RecompressTracked {
 	 * without data loss.
 	 *
 	 * The transaction is kept short to reduce locking.
+	 *
+	 * @param int $textId
+	 * @param string $url
 	 */
 	function moveTextRow( $textId, $url ) {
 		if ( $this->copyOnly ) {
@@ -560,6 +578,8 @@ class RecompressTracked {
 	 *
 	 * This function completes any moves that only have done bt_new_url. This
 	 * can happen when the script is interrupted, or when --copy-only is used.
+	 *
+	 * @param array $conds
 	 */
 	function finishIncompleteMoves( $conds ) {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -602,21 +622,25 @@ class RecompressTracked {
 		if ( $cluster === false ) {
 			$cluster = reset( $this->destClusters );
 		}
+
 		return $cluster;
 	}
 
 	/**
 	 * Gets a DB master connection for the given external cluster name
-	 * @param $cluster string
+	 * @param string $cluster
 	 * @return DatabaseBase
 	 */
 	function getExtDB( $cluster ) {
 		$lb = wfGetLBFactory()->getExternalLB( $cluster );
+
 		return $lb->getConnection( DB_MASTER );
 	}
 
 	/**
 	 * Move an orphan text_id to the new cluster
+	 *
+	 * @param array $textIds
 	 */
 	function doOrphanList( $textIds ) {
 		// Finish incomplete moves
@@ -694,8 +718,8 @@ class CgzCopyTransaction {
 	/**
 	 * Add text.
 	 * Returns false if it's ready to commit.
-	 * @param $text string
-	 * @param $textId
+	 * @param string $text
+	 * @param int $textId
 	 * @return bool
 	 */
 	function addItem( $text, $textId ) {
@@ -706,6 +730,7 @@ class CgzCopyTransaction {
 		$hash = $this->cgz->addItem( $text );
 		$this->referrers[$textId] = $hash;
 		$this->texts[$textId] = $text;
+
 		return $this->cgz->isHappy();
 	}
 
@@ -769,6 +794,7 @@ class CgzCopyTransaction {
 					$this->critical( "Warning: concurrent operation detected, are there two conflicting " .
 						"processes running, doing the same job?" );
 				}
+
 				return;
 			}
 			$this->recompress();

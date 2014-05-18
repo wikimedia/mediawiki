@@ -82,14 +82,14 @@ class SpecialUnblock extends SpecialPage {
 		$fields = array(
 			'Target' => array(
 				'type' => 'text',
-				'label-message' => 'ipadressorusername',
+				'label-message' => 'ipaddressorusername',
 				'tabindex' => '1',
 				'size' => '45',
 				'required' => true,
 			),
 			'Name' => array(
 				'type' => 'info',
-				'label-message' => 'ipadressorusername',
+				'label-message' => 'ipaddressorusername',
 			),
 			'Reason' => array(
 				'type' => 'text',
@@ -107,7 +107,6 @@ class SpecialUnblock extends SpecialPage {
 			if ( $type == Block::TYPE_AUTO && $this->type == Block::TYPE_IP ) {
 				$fields['Target']['default'] = $this->target;
 				unset( $fields['Name'] );
-
 			} else {
 				$fields['Target']['default'] = $target;
 				$fields['Target']['type'] = 'hidden';
@@ -133,11 +132,11 @@ class SpecialUnblock extends SpecialPage {
 						break;
 				}
 			}
-
 		} else {
 			$fields['Target']['default'] = $this->target;
 			unset( $fields['Name'] );
 		}
+
 		return $fields;
 	}
 
@@ -145,7 +144,7 @@ class SpecialUnblock extends SpecialPage {
 	 * Submit callback for an HTMLForm object
 	 * @param array $data
 	 * @param HTMLForm $form
-	 * @return Array( Array(message key, parameters)
+	 * @return array|bool Array(message key, parameters)
 	 */
 	public static function processUIUnblock( array $data, HTMLForm $form ) {
 		return self::processUnblock( $data, $form->getContext() );
@@ -154,10 +153,10 @@ class SpecialUnblock extends SpecialPage {
 	/**
 	 * Process the form
 	 *
-	 * @param $data Array
-	 * @param $context IContextSource
+	 * @param array $data
+	 * @param IContextSource $context
 	 * @throws ErrorPageError
-	 * @return Array( Array(message key, parameters) ) on failure, True on success
+	 * @return array|bool Array(message key, parameters) on failure, True on success
 	 */
 	public static function processUnblock( array $data, IContextSource $context ) {
 		$performer = $context->getUser();
@@ -181,6 +180,7 @@ class SpecialUnblock extends SpecialPage {
 		list( $target, $type ) = SpecialBlock::getTargetAndType( $target );
 		if ( $block->getType() == Block::TYPE_RANGE && $type == Block::TYPE_IP ) {
 			$range = $block->getTarget();
+
 			return array( array( 'ipb_blocked_as_range', $target, $range ) );
 		}
 

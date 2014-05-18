@@ -34,7 +34,7 @@
  * @ingroup FileAbstraction
  */
 class UnregisteredLocalFile extends File {
-	/** @var Title  */
+	/** @var Title */
 	protected $title;
 
 	/** @var string */

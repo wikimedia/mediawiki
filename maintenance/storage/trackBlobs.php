@@ -126,6 +126,7 @@ class TrackBlobs {
 				$this->textClause .= 'old_text' . $dbr->buildLike( "DB://$cluster/", $dbr->anyString() );
 			}
 		}
+
 		return $this->textClause;
 	}
 
@@ -133,6 +134,7 @@ class TrackBlobs {
 		if ( !preg_match( '!^DB://(\w+)/(\d+)(?:/([0-9a-fA-F]+)|)$!', $text, $m ) ) {
 			return false;
 		}
+
 		return array(
 			'cluster' => $m[1],
 			'id' => intval( $m[2] ),
@@ -305,6 +307,7 @@ class TrackBlobs {
 	function findOrphanBlobs() {
 		if ( !extension_loaded( 'gmp' ) ) {
 			echo "Can't find orphan blobs, need bitfield support provided by GMP.\n";
+
 			return;
 		}
 

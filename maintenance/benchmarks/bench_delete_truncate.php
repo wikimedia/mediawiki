@@ -29,7 +29,6 @@ require_once __DIR__ . '/Benchmarker.php';
  * @ingroup Benchmark
  */
 class BenchmarkDeleteTruncate extends Benchmarker {
-
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Benchmarks SQL DELETE vs SQL TRUNCATE.";
@@ -70,20 +69,20 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 	}
 
 	/**
-	 * @param  $dbw DatabaseBase
+	 * @param DatabaseBase $dbw
 	 * @return void
 	 */
 	private function insertData( $dbw ) {
 		$range = range( 0, 1024 );
 		$data = array();
-		foreach( $range as $r ) {
+		foreach ( $range as $r ) {
 			$data[] = array( 'text' => $r );
 		}
 		$dbw->insert( 'test', $data, __METHOD__ );
 	}
 
 	/**
-	 * @param  $dbw DatabaseBase
+	 * @param DatabaseBase $dbw
 	 * @return void
 	 */
 	private function delete( $dbw ) {
@@ -91,7 +90,7 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 	}
 
 	/**
-	 * @param  $dbw DatabaseBase
+	 * @param DatabaseBase $dbw
 	 * @return void
 	 */
 	private function truncate( $dbw ) {

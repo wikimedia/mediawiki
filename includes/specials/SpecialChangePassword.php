@@ -27,8 +27,14 @@
  * @ingroup SpecialPage
  */
 class SpecialChangePassword extends FormSpecialPage {
+	protected $mUserName;
+	protected $mDomain;
 
-	protected $mUserName, $mDomain;
+	// Optional Wikitext Message to show above the password change form
+	protected $mPreTextMessage = null;
+
+	// label for old password input
+	protected $mOldPassMsg = null;
 
 	public function __construct() {
 		parent::__construct( 'ChangePassword', 'editmyprivateinfo' );
@@ -52,13 +58,34 @@ class SpecialChangePassword extends FormSpecialPage {
 		}
 	}
 
+	/**
+	 * Set a message at the top of the Change Password form
+	 * @since 1.23
+	 * @param Message $msg to parse and add to the form header
+	 */
+	public function setChangeMessage( Message $msg ) {
+		$this->mPreTextMessage = $msg;
+	}
+
+	/**
+	 * Set a message at the top of the Change Password form
+	 * @since 1.23
+	 * @param string $msg Message label for old/temp password field
+	 */
+	public function setOldPasswordMessage( $msg ) {
+		$this->mOldPassMsg = $msg;
+	}
+
 	protected function getFormFields() {
 		global $wgCookieExpiration;
 
 		$user = $this->getUser();
 		$request = $this->getRequest();
 
-		$oldpassMsg = $user->isLoggedIn() ? 'oldpassword' : 'resetpass-temp-password';
+		$oldpassMsg = $this->mOldPassMsg;
+		if ( !isset( $oldpassMsg ) ) {
+			$oldpassMsg = $user->isLoggedIn() ? 'oldpassword' : 'resetpass-temp-password';
+		}
 
 		$fields = array(
 			'Name' => array(
@@ -79,6 +106,17 @@ class SpecialChangePassword extends FormSpecialPage {
 				'label-message' => 'retypenew',
 			),
 		);
+
+		if ( !$this->getUser()->isLoggedIn() ) {
+			if ( !LoginForm::getLoginToken() ) {
+				LoginForm::setLoginToken();
+			}
+			$fields['LoginOnChangeToken'] = array(
+				'type' => 'hidden',
+				'label' => 'Change Password Token',
+				'default' => LoginForm::getLoginToken(),
+			);
+		}
 
 		$extraFields = array();
 		wfRunHooks( 'ChangePasswordForm', array( &$extraFields ) );
@@ -114,8 +152,11 @@ class SpecialChangePassword extends FormSpecialPage {
 				? 'resetpass-submit-loggedin'
 				: 'resetpass_submit'
 		);
-		$form->addButton( 'wpCancel',  $this->msg( 'resetpass-submit-cancel' )->text() );
+		$form->addButton( 'wpCancel', $this->msg( 'resetpass-submit-cancel' )->text() );
 		$form->setHeaderText( $this->msg( 'resetpass_text' )->parseAsBlock() );
+		if ( $this->mPreTextMessage instanceof Message ) {
+			$form->addPreText( $this->mPreTextMessage->parseAsBlock() );
+		}
 		$form->addHiddenFields(
 			$this->getRequest()->getValues( 'wpName', 'wpDomain', 'returnto', 'returntoquery' ) );
 	}
@@ -130,6 +171,13 @@ class SpecialChangePassword extends FormSpecialPage {
 			return false;
 		}
 
+		if ( !$this->getUser()->isLoggedIn()
+			&& $request->getVal( 'wpLoginOnChangeToken' ) !== LoginForm::getLoginToken()
+		) {
+			// Potential CSRF (bug 62497)
+			return false;
+		}
+
 		if ( $request->getCheck( 'wpCancel' ) ) {
 			$titleObj = Title::newFromText( $request->getVal( 'returnto' ) );
 			if ( !$titleObj instanceof Title ) {
@@ -137,6 +185,7 @@ class SpecialChangePassword extends FormSpecialPage {
 			}
 			$query = $request->getVal( 'returntoquery' );
 			$this->getOutput()->redirect( $titleObj->getFullURL( $query ) );
+
 			return true;
 		}
 
@@ -205,21 +254,29 @@ class SpecialChangePassword extends FormSpecialPage {
 		$throttleCount = LoginForm::incLoginThrottle( $this->mUserName );
 		if ( $throttleCount === true ) {
 			$lang = $this->getLanguage();
-			throw new PasswordError( $this->msg( 'login-throttled' )
+			throw new PasswordError( $this->msg( 'changepassword-throttled' )
 				->params( $lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) )
 				->text()
 			);
 		}
 
+		// @TODO Make these separate messages, since the message is written for both cases
+		if ( !$user->checkTemporaryPassword( $oldpass ) && !$user->checkPassword( $oldpass ) ) {
+			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
+			throw new PasswordError( $this->msg( 'resetpass-wrong-oldpass' )->text() );
+		}
+
+		// User is resetting their password to their old password
+		if ( $oldpass === $newpass ) {
+			throw new PasswordError( $this->msg( 'resetpass-recycled' )->text() );
+		}
+
+		// Do AbortChangePassword after checking mOldpass, so we don't leak information
+		// by possibly aborting a new password before verifying the old password.
 		$abortMsg = 'resetpass-abort-generic';
 		if ( !wfRunHooks( 'AbortChangePassword', array( $user, $oldpass, $newpass, &$abortMsg ) ) ) {
 			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'abortreset' ) );
 			throw new PasswordError( $this->msg( $abortMsg )->text() );
-		}
-
-		if ( !$user->checkTemporaryPassword( $oldpass ) && !$user->checkPassword( $oldpass ) ) {
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
-			throw new PasswordError( $this->msg( 'resetpass-wrong-oldpass' )->text() );
 		}
 
 		// Please reset throttle for successful logins, thanks!
@@ -238,9 +295,10 @@ class SpecialChangePassword extends FormSpecialPage {
 		if ( $isSelf ) {
 			// This is needed to keep the user connected since
 			// changing the password also modifies the user's token.
-			$user->setCookies();
+			$remember = $this->getRequest()->getCookie( 'Token' ) !== null;
+			$user->setCookies( null, null, $remember );
 		}
-
+		$user->resetPasswordExpiration();
 		$user->saveSettings();
 	}
 

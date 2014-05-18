@@ -44,7 +44,7 @@ class FormOptions implements ArrayAccess {
 	/** Integer type, maps guessType() to WebRequest::getInt() */
 	const INT = 1;
 	/** Float type, maps guessType() to WebRequest::getFloat()
-	  * @since 1.23 */
+	 * @since 1.23 */
 	const FLOAT = 4;
 	/** Boolean type, maps guessType() to WebRequest::getBool() */
 	const BOOL = 2;
@@ -373,22 +373,32 @@ class FormOptions implements ArrayAccess {
 	 * @see http://php.net/manual/en/class.arrayaccess.php
 	 */
 	/* @{ */
-	/** Whether the option exists. */
+	/**
+	 * Whether the option exists.
+	 * @return bool
+	 */
 	public function offsetExists( $name ) {
 		return isset( $this->options[$name] );
 	}
 
-	/** Retrieve an option value. */
+	/**
+	 * Retrieve an option value.
+	 * @return mixed
+	 */
 	public function offsetGet( $name ) {
 		return $this->getValue( $name );
 	}
 
-	/** Set an option to given value. */
+	/**
+	 * Set an option to given value.
+	 */
 	public function offsetSet( $name, $value ) {
 		$this->setValue( $name, $value );
 	}
 
-	/** Delete the option. */
+	/**
+	 * Delete the option.
+	 */
 	public function offsetUnset( $name ) {
 		$this->delete( $name );
 	}

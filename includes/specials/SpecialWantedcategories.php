@@ -38,9 +38,11 @@ class WantedCategoriesPage extends WantedQueryPage {
 	function getQueryInfo() {
 		return array(
 			'tables' => array( 'categorylinks', 'page' ),
-			'fields' => array( 'namespace' => NS_CATEGORY,
-					'title' => 'cl_to',
-					'value' => 'COUNT(*)' ),
+			'fields' => array(
+				'namespace' => NS_CATEGORY,
+				'title' => 'cl_to',
+				'value' => 'COUNT(*)'
+			),
 			'conds' => array( 'page_title IS NULL' ),
 			'options' => array( 'GROUP BY' => 'cl_to' ),
 			'join_conds' => array( 'page' => array( 'LEFT JOIN',
@@ -73,7 +75,7 @@ class WantedCategoriesPage extends WantedQueryPage {
 			__METHOD__
 		);
 		foreach ( $categoryRes as $row ) {
-			$this->currentCategoryCounts[ $row->cat_title ] = $row->cat_pages;
+			$this->currentCategoryCounts[$row->cat_title] = intval( $row->cat_pages );
 		}
 
 		// Back to start for display
@@ -104,8 +106,8 @@ class WantedCategoriesPage extends WantedQueryPage {
 		} else {
 			$plink = Linker::link( $nt, $text );
 
-			$currentValue = isset( $this->currentCategoryCounts[ $result->title ] )
-				? $this->currentCategoryCounts[ $result->title ]
+			$currentValue = isset( $this->currentCategoryCounts[$result->title] )
+				? $this->currentCategoryCounts[$result->title]
 				: 0;
 
 			// If the category has been created or emptied since the list was refreshed, strike it

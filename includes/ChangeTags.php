@@ -21,18 +21,15 @@
  */
 
 class ChangeTags {
-
 	/**
 	 * Creates HTML for the given tags
 	 *
 	 * @param string $tags Comma-separated list of tags
 	 * @param string $page A label for the type of action which is being displayed,
-	 *                     for example: 'history', 'contributions' or 'newpages'
-	 *
-	 * @return Array with two items: (html, classes)
-	 *            - html: String: HTML for displaying the tags (empty string when param $tags is empty)
-	 *            - classes: Array of strings: CSS classes used in the generated html, one class for each tag
-	 *
+	 *   for example: 'history', 'contributions' or 'newpages'
+	 * @return array Array with two items: (html, classes)
+	 *   - html: String: HTML for displaying the tags (empty string when param $tags is empty)
+	 *   - classes: Array of strings: CSS classes used in the generated html, one class for each tag
 	 */
 	public static function formatSummaryRow( $tags, $page ) {
 		global $wgLang;
@@ -68,8 +65,8 @@ class ChangeTags {
 	 *
 	 * @param string $tag tag
 	 *
-	 * @return String: Short description of the tag from "mediawiki:tag-$tag" if this message exists,
-	 *                 html-escaped version of $tag otherwise
+	 * @return string Short description of the tag from "mediawiki:tag-$tag" if this message exists,
+	 *   html-escaped version of $tag otherwise
 	 */
 	public static function tagDescription( $tag ) {
 		$msg = wfMessage( "tag-$tag" );
@@ -80,17 +77,19 @@ class ChangeTags {
 	 * Add tags to a change given its rc_id, rev_id and/or log_id
 	 *
 	 * @param string|array $tags Tags to add to the change
-	 * @param $rc_id int: rc_id of the change to add the tags to
-	 * @param $rev_id int: rev_id of the change to add the tags to
-	 * @param $log_id int: log_id of the change to add the tags to
+	 * @param int $rc_id rc_id of the change to add the tags to
+	 * @param int $rev_id rev_id of the change to add the tags to
+	 * @param int $log_id Log_id of the change to add the tags to
 	 * @param string $params params to put in the ct_params field of table 'change_tag'
 	 *
 	 * @throws MWException
-	 * @return bool: false if no changes are made, otherwise true
+	 * @return bool false if no changes are made, otherwise true
 	 *
 	 * @exception MWException when $rc_id, $rev_id and $log_id are all null
 	 */
-	public static function addTags( $tags, $rc_id = null, $rev_id = null, $log_id = null, $params = null ) {
+	public static function addTags( $tags, $rc_id = null, $rev_id = null,
+		$log_id = null, $params = null
+	) {
 		if ( !is_array( $tags ) ) {
 			$tags = array( $tags );
 		}
@@ -106,19 +105,45 @@ class ChangeTags {
 
 		// Might as well look for rcids and so on.
 		if ( !$rc_id ) {
-			$dbr = wfGetDB( DB_MASTER ); // Info might be out of date, somewhat fractionally, on slave.
+			// Info might be out of date, somewhat fractionally, on slave.
+			$dbr = wfGetDB( DB_MASTER );
 			if ( $log_id ) {
-				$rc_id = $dbr->selectField( 'recentchanges', 'rc_id', array( 'rc_logid' => $log_id ), __METHOD__ );
+				$rc_id = $dbr->selectField(
+					'recentchanges',
+					'rc_id',
+					array( 'rc_logid' => $log_id ),
+					__METHOD__
+				);
 			} elseif ( $rev_id ) {
-				$rc_id = $dbr->selectField( 'recentchanges', 'rc_id', array( 'rc_this_oldid' => $rev_id ), __METHOD__ );
+				$rc_id = $dbr->selectField(
+					'recentchanges',
+					'rc_id',
+					array( 'rc_this_oldid' => $rev_id ),
+					__METHOD__
+				);
 			}
 		} elseif ( !$log_id && !$rev_id ) {
-			$dbr = wfGetDB( DB_MASTER ); // Info might be out of date, somewhat fractionally, on slave.
-			$log_id = $dbr->selectField( 'recentchanges', 'rc_logid', array( 'rc_id' => $rc_id ), __METHOD__ );
-			$rev_id = $dbr->selectField( 'recentchanges', 'rc_this_oldid', array( 'rc_id' => $rc_id ), __METHOD__ );
+			// Info might be out of date, somewhat fractionally, on slave.
+			$dbr = wfGetDB( DB_MASTER );
+			$log_id = $dbr->selectField(
+				'recentchanges',
+				'rc_logid',
+				array( 'rc_id' => $rc_id ),
+				__METHOD__
+			);
+			$rev_id = $dbr->selectField(
+				'recentchanges',
+				'rc_this_oldid',
+				array( 'rc_id' => $rc_id ),
+				__METHOD__
+			);
 		}
 
-		$tsConds = array_filter( array( 'ts_rc_id' => $rc_id, 'ts_rev_id' => $rev_id, 'ts_log_id' => $log_id ) );
+		$tsConds = array_filter( array(
+			'ts_rc_id' => $rc_id,
+			'ts_rev_id' => $rev_id,
+			'ts_log_id' => $log_id )
+		);
 
 		## Update the summary row.
 		$prevTags = $dbr->selectField( 'tag_summary', 'ts_tags', $tsConds, __METHOD__ );
@@ -167,9 +192,9 @@ class ChangeTags {
 	 *
 	 * @param string|array $tables Table names, see DatabaseBase::select
 	 * @param string|array $fields Fields used in query, see DatabaseBase::select
-	 * @param string|array $conds conditions used in query, see DatabaseBase::select
-	 * @param $join_conds Array: join conditions, see DatabaseBase::select
-	 * @param array $options options, see Database::select
+	 * @param string|array $conds Conditions used in query, see DatabaseBase::select
+	 * @param array $join_conds Join conditions, see DatabaseBase::select
+	 * @param array $options Options, see Database::select
 	 * @param bool|string $filter_tag Tag to select on
 	 *
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
@@ -213,33 +238,54 @@ class ChangeTags {
 	 * Build a text box to select a change tag
 	 *
 	 * @param string $selected tag to select by default
-	 * @param $fullForm Boolean:
+	 * @param bool $fullForm
 	 *        - if false, then it returns an array of (label, form).
 	 *        - if true, it returns an entire form around the selector.
-	 * @param $title Title object to send the form to.
+	 * @param Title $title Title object to send the form to.
 	 *        Used when, and only when $fullForm is true.
-	 * @return String or array:
+	 * @return string|array
 	 *        - if $fullForm is false: Array with
 	 *        - if $fullForm is true: String, html fragment
 	 */
-	public static function buildTagFilterSelector( $selected = '', $fullForm = false, Title $title = null ) {
+	public static function buildTagFilterSelector( $selected = '',
+		$fullForm = false, Title $title = null
+	) {
 		global $wgUseTagFilter;
 
 		if ( !$wgUseTagFilter || !count( self::listDefinedTags() ) ) {
 			return $fullForm ? '' : array();
 		}
 
-		$data = array( Html::rawElement( 'label', array( 'for' => 'tagfilter' ), wfMessage( 'tag-filter' )->parse() ),
-			Xml::input( 'tagfilter', 20, $selected, array( 'class' => 'mw-tagfilter-input', 'id' => 'tagfilter' ) ) );
+		$data = array(
+			Html::rawElement(
+				'label',
+				array( 'for' => 'tagfilter' ),
+				wfMessage( 'tag-filter' )->parse()
+			),
+			Xml::input(
+				'tagfilter',
+				20,
+				$selected,
+				array( 'class' => 'mw-tagfilter-input', 'id' => 'tagfilter' )
+			)
+		);
 
 		if ( !$fullForm ) {
 			return $data;
 		}
 
 		$html = implode( '&#160;', $data );
-		$html .= "\n" . Xml::element( 'input', array( 'type' => 'submit', 'value' => wfMessage( 'tag-filter-submit' )->text() ) );
+		$html .= "\n" .
+			Xml::element(
+				'input',
+				array( 'type' => 'submit', 'value' => wfMessage( 'tag-filter-submit' )->text() )
+			);
 		$html .= "\n" . Html::hidden( 'title', $title->getPrefixedText() );
-		$html = Xml::tags( 'form', array( 'action' => $title->getLocalURL(), 'class' => 'mw-tagfilter-form', 'method' => 'get' ), $html );
+		$html = Xml::tags(
+			'form',
+			array( 'action' => $title->getLocalURL(), 'class' => 'mw-tagfilter-form', 'method' => 'get' ),
+			$html
+		);
 
 		return $html;
 	}
@@ -251,7 +297,7 @@ class ChangeTags {
 	 *
 	 * Tries memcached first.
 	 *
-	 * @return Array of strings: tags
+	 * @return string[] Array of strings: tags
 	 */
 	public static function listDefinedTags() {
 		// Caching...

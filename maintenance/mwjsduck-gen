@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 JSDUCK_MWVERSION=master
 if [[ "$1" == "--version" && "$2" != "" ]]
@@ -6,7 +7,8 @@ then
 	JSDUCK_MWVERSION="$2"
 elif [[ "$*" != "" ]]
 then
-	echo "Usage: $0 [--version <mediawiki version>]"
+	FILENAME=$(basename $0)
+	echo "Usage: $FILENAME [--version <mediawiki version>]"
 	echo
 	exit 1
 fi
@@ -15,7 +17,9 @@ MWCORE_DIR=$(cd $(dirname $0)/..; pwd)
 
 jsduck \
 --config=$MWCORE_DIR/maintenance/jsduck/config.json \
---footer="Documentation for MediaWiki core ($JSDUCK_MWVERSION). Generated on {DATE} by {JSDUCK} {VERSION}." \
-&& echo 'JSDuck execution finished.'
+--footer="Documentation for branch ($JSDUCK_MWVERSION) on {DATE} by {JSDUCK} {VERSION}." \
+--processes 0
+
+echo 'JSDuck execution finished.'
 
 ln -s ../../resources $MWCORE_DIR/docs/js/modules

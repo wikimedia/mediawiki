@@ -3,7 +3,7 @@
  * MediaWiki page data importer.
  *
  * Copyright © 2003,2005 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ class WikiImporter {
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
-	 * @param $source
+	 * @param string $source
 	 */
 	function __construct( $source ) {
 		$this->reader = new XMLReader();
@@ -60,22 +60,29 @@ class WikiImporter {
 		$this->setPageOutCallback( array( $this, 'finishImportPage' ) );
 	}
 
-	private function throwXmlError( $err ) {
+	/**
+	 * @return null|XMLReader
+	 */
+	public function getReader() {
+		return $this->reader;
+	}
+
+	public function throwXmlError( $err ) {
 		$this->debug( "FAILURE: $err" );
 		wfDebug( "WikiImporter XML error: $err\n" );
 	}
 
-	private function debug( $data ) {
+	public function debug( $data ) {
 		if ( $this->mDebug ) {
 			wfDebug( "IMPORT: $data\n" );
 		}
 	}
 
-	private function warn( $data ) {
+	public function warn( $data ) {
 		wfDebug( "IMPORT: $data\n" );
 	}
 
-	private function notice( $msg /*, $param, ...*/ ) {
+	public function notice( $msg /*, $param, ...*/ ) {
 		$params = func_get_args();
 		array_shift( $params );
 
@@ -88,7 +95,7 @@ class WikiImporter {
 
 	/**
 	 * Set debug mode...
-	 * @param $debug bool
+	 * @param bool $debug
 	 */
 	function setDebug( $debug ) {
 		$this->mDebug = $debug;
@@ -96,7 +103,7 @@ class WikiImporter {
 
 	/**
 	 * Set 'no updates' mode. In this mode, the link tables will not be updated by the importer
-	 * @param $noupdates bool
+	 * @param bool $noupdates
 	 */
 	function setNoUpdates( $noupdates ) {
 		$this->mNoUpdates = $noupdates;
@@ -105,8 +112,8 @@ class WikiImporter {
 	/**
 	 * Set a callback that displays notice messages
 	 *
-	 * @param $callback callback
-	 * @return callback
+	 * @param callable $callback
+	 * @return callable
 	 */
 	public function setNoticeCallback( $callback ) {
 		return wfSetVar( $this->mNoticeCallback, $callback );
@@ -114,8 +121,8 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform as each new page in the stream is reached.
-	 * @param $callback callback
-	 * @return callback
+	 * @param callable $callback
+	 * @return callable
 	 */
 	public function setPageCallback( $callback ) {
 		$previous = $this->mPageCallback;
@@ -129,8 +136,8 @@ class WikiImporter {
 	 * with the original title form (in case it's been overridden into a
 	 * local namespace), and a count of revisions.
 	 *
-	 * @param $callback callback
-	 * @return callback
+	 * @param callable $callback
+	 * @return callable
 	 */
 	public function setPageOutCallback( $callback ) {
 		$previous = $this->mPageOutCallback;
@@ -140,8 +147,8 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform as each page revision is reached.
-	 * @param $callback callback
-	 * @return callback
+	 * @param callable $callback
+	 * @return callable
 	 */
 	public function setRevisionCallback( $callback ) {
 		$previous = $this->mRevisionCallback;
@@ -151,8 +158,8 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform as each file upload version is reached.
-	 * @param $callback callback
-	 * @return callback
+	 * @param callable $callback
+	 * @return callable
 	 */
 	public function setUploadCallback( $callback ) {
 		$previous = $this->mUploadCallback;
@@ -162,8 +169,8 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform as each log item reached.
-	 * @param $callback callback
-	 * @return callback
+	 * @param callable $callback
+	 * @return callable
 	 */
 	public function setLogItemCallback( $callback ) {
 		$previous = $this->mLogItemCallback;
@@ -173,8 +180,8 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform when site info is encountered
-	 * @param $callback callback
-	 * @return callback
+	 * @param callable $callback
+	 * @return callable
 	 */
 	public function setSiteInfoCallback( $callback ) {
 		$previous = $this->mSiteInfoCallback;
@@ -184,7 +191,7 @@ class WikiImporter {
 
 	/**
 	 * Set a target namespace to override the defaults
-	 * @param $namespace
+	 * @param null|int $namespace
 	 * @return bool
 	 */
 	public function setTargetNamespace( $namespace ) {
@@ -201,8 +208,8 @@ class WikiImporter {
 
 	/**
 	 * Set a target root page under which all pages are imported
-	 * @param $rootpage
-	 * @return status object
+	 * @param null|string $rootpage
+	 * @return Status
 	 */
 	public function setTargetRootPage( $rootpage ) {
 		$status = Status::newGood();
@@ -233,14 +240,14 @@ class WikiImporter {
 	}
 
 	/**
-	 * @param $dir
+	 * @param string $dir
 	 */
 	public function setImageBasePath( $dir ) {
 		$this->mImageBasePath = $dir;
 	}
 
 	/**
-	 * @param $import
+	 * @param bool $import
 	 */
 	public function setImportUploads( $import ) {
 		$this->mImportUploads = $import;
@@ -248,10 +255,20 @@ class WikiImporter {
 
 	/**
 	 * Default per-revision callback, performs the import.
-	 * @param $revision WikiRevision
+	 * @param WikiRevision $revision
 	 * @return bool
 	 */
 	public function importRevision( $revision ) {
+		if ( !$revision->getContent()->getContentHandler()->canBeUsedOn( $revision->getTitle() ) ) {
+			$this->notice( 'import-error-bad-location',
+				$revision->getTitle()->getPrefixedText(),
+				$revision->getID(),
+				$revision->getModel(),
+				$revision->getFormat() );
+
+			return false;
+		}
+
 		try {
 			$dbw = wfGetDB( DB_MASTER );
 			return $dbw->deadlockLoop( array( $revision, 'importOldRevision' ) );
@@ -262,11 +279,13 @@ class WikiImporter {
 				$revision->getModel(),
 				$revision->getFormat() );
 		}
+
+		return false;
 	}
 
 	/**
 	 * Default per-revision callback, performs the import.
-	 * @param $rev WikiRevision
+	 * @param WikiRevision $rev
 	 * @return bool
 	 */
 	public function importLogItem( $rev ) {
@@ -276,7 +295,7 @@ class WikiImporter {
 
 	/**
 	 * Dummy for now...
-	 * @param $revision
+	 * @param WikiRevision $revision
 	 * @return bool
 	 */
 	public function importUpload( $revision ) {
@@ -286,11 +305,11 @@ class WikiImporter {
 
 	/**
 	 * Mostly for hook use
-	 * @param $title
-	 * @param $origTitle
-	 * @param $revCount
-	 * @param $sRevCount
-	 * @param $pageInfo
+	 * @param Title $title
+	 * @param string $origTitle
+	 * @param int $revCount
+	 * @param int $sRevCount
+	 * @param array $pageInfo
 	 * @return
 	 */
 	public function finishImportPage( $title, $origTitle, $revCount, $sRevCount, $pageInfo ) {
@@ -300,7 +319,7 @@ class WikiImporter {
 
 	/**
 	 * Alternate per-revision callback, for debugging.
-	 * @param $revision WikiRevision
+	 * @param WikiRevision $revision
 	 */
 	public function debugRevisionHandler( &$revision ) {
 		$this->debug( "Got revision:" );
@@ -317,7 +336,7 @@ class WikiImporter {
 
 	/**
 	 * Notify the callback function when a new "<page>" is reached.
-	 * @param $title Title
+	 * @param Title $title
 	 */
 	function pageCallback( $title ) {
 		if ( isset( $this->mPageCallback ) ) {
@@ -327,11 +346,11 @@ class WikiImporter {
 
 	/**
 	 * Notify the callback function when a "</page>" is closed.
-	 * @param $title Title
-	 * @param $origTitle Title
-	 * @param $revCount Integer
-	 * @param int $sucCount number of revisions for which callback returned true
-	 * @param array $pageInfo associative array of page information
+	 * @param Title $title
+	 * @param Title $origTitle
+	 * @param int $revCount
+	 * @param int $sucCount Number of revisions for which callback returned true
+	 * @param array $pageInfo Associative array of page information
 	 */
 	private function pageOutCallback( $title, $origTitle, $revCount, $sucCount, $pageInfo ) {
 		if ( isset( $this->mPageOutCallback ) ) {
@@ -342,7 +361,7 @@ class WikiImporter {
 
 	/**
 	 * Notify the callback function of a revision
-	 * @param $revision WikiRevision object
+	 * @param WikiRevision $revision
 	 * @return bool|mixed
 	 */
 	private function revisionCallback( $revision ) {
@@ -356,7 +375,7 @@ class WikiImporter {
 
 	/**
 	 * Notify the callback function of a new log item
-	 * @param $revision WikiRevision object
+	 * @param WikiRevision $revision
 	 * @return bool|mixed
 	 */
 	private function logItemCallback( $revision ) {
@@ -375,7 +394,7 @@ class WikiImporter {
 	 * @return string
 	 * @access private
 	 */
-	private function nodeContents() {
+	public function nodeContents() {
 		if ( $this->reader->isEmptyElement ) {
 			return "";
 		}
@@ -539,7 +558,7 @@ class WikiImporter {
 	}
 
 	/**
-	 * @param $logInfo
+	 * @param array $logInfo
 	 * @return bool|mixed
 	 */
 	private function processLogItem( $logInfo ) {
@@ -622,7 +641,7 @@ class WikiImporter {
 	}
 
 	/**
-	 * @param $pageInfo array
+	 * @param array $pageInfo
 	 */
 	private function handleRevision( &$pageInfo ) {
 		$this->debug( "Enter revision handler" );
@@ -661,8 +680,8 @@ class WikiImporter {
 	}
 
 	/**
-	 * @param $pageInfo
-	 * @param $revisionInfo
+	 * @param array $pageInfo
+	 * @param array $revisionInfo
 	 * @return bool|mixed
 	 */
 	private function processRevision( $pageInfo, $revisionInfo ) {
@@ -707,7 +726,7 @@ class WikiImporter {
 	}
 
 	/**
-	 * @param $pageInfo
+	 * @param array $pageInfo
 	 * @return mixed
 	 */
 	private function handleUpload( &$pageInfo ) {
@@ -762,7 +781,7 @@ class WikiImporter {
 	}
 
 	/**
-	 * @param $contents
+	 * @param string $contents
 	 * @return string
 	 */
 	private function dumpTemp( $contents ) {
@@ -772,8 +791,8 @@ class WikiImporter {
 	}
 
 	/**
-	 * @param $pageInfo
-	 * @param $uploadInfo
+	 * @param array $pageInfo
+	 * @param array $uploadInfo
 	 * @return mixed
 	 */
 	private function processUpload( $pageInfo, $uploadInfo ) {
@@ -834,8 +853,8 @@ class WikiImporter {
 	}
 
 	/**
-	 * @param $text string
-	 * @return Array or false
+	 * @param string $text
+	 * @return array|bool
 	 */
 	private function processTitle( $text ) {
 		global $wgCommandLineMode;
@@ -888,7 +907,7 @@ class UploadSourceAdapter {
 	private $mPosition;
 
 	/**
-	 * @param $source
+	 * @param string $source
 	 * @return string
 	 */
 	static function registerSource( $source ) {
@@ -900,10 +919,10 @@ class UploadSourceAdapter {
 	}
 
 	/**
-	 * @param $path
-	 * @param $mode
-	 * @param $options
-	 * @param $opened_path
+	 * @param string $path
+	 * @param string $mode
+	 * @param array $options
+	 * @param string $opened_path
 	 * @return bool
 	 */
 	function stream_open( $path, $mode, $options, &$opened_path ) {
@@ -920,7 +939,7 @@ class UploadSourceAdapter {
 	}
 
 	/**
-	 * @param $count
+	 * @param int $count
 	 * @return string
 	 */
 	function stream_read( $count ) {
@@ -949,7 +968,7 @@ class UploadSourceAdapter {
 	}
 
 	/**
-	 * @param $data
+	 * @param string $data
 	 * @return bool
 	 */
 	function stream_write( $data ) {
@@ -1050,7 +1069,7 @@ class WikiRevision {
 	private $mNoUpdates = false;
 
 	/**
-	 * @param $title
+	 * @param Title $title
 	 * @throws MWException
 	 */
 	function setTitle( $title ) {
@@ -1064,14 +1083,14 @@ class WikiRevision {
 	}
 
 	/**
-	 * @param $id
+	 * @param int $id
 	 */
 	function setID( $id ) {
 		$this->id = $id;
 	}
 
 	/**
-	 * @param $ts
+	 * @param string $ts
 	 */
 	function setTimestamp( $ts ) {
 		# 2003-08-05T18:30:02Z
@@ -1079,64 +1098,64 @@ class WikiRevision {
 	}
 
 	/**
-	 * @param $user
+	 * @param string $user
 	 */
 	function setUsername( $user ) {
 		$this->user_text = $user;
 	}
 
 	/**
-	 * @param $ip
+	 * @param string $ip
 	 */
 	function setUserIP( $ip ) {
 		$this->user_text = $ip;
 	}
 
 	/**
-	 * @param $model
+	 * @param string $model
 	 */
 	function setModel( $model ) {
 		$this->model = $model;
 	}
 
 	/**
-	 * @param $format
+	 * @param string $format
 	 */
 	function setFormat( $format ) {
 		$this->format = $format;
 	}
 
 	/**
-	 * @param $text
+	 * @param string $text
 	 */
 	function setText( $text ) {
 		$this->text = $text;
 	}
 
 	/**
-	 * @param $text
+	 * @param string $text
 	 */
 	function setComment( $text ) {
 		$this->comment = $text;
 	}
 
 	/**
-	 * @param $minor
+	 * @param bool $minor
 	 */
 	function setMinor( $minor ) {
 		$this->minor = (bool)$minor;
 	}
 
 	/**
-	 * @param $src
+	 * @param mixed $src
 	 */
 	function setSrc( $src ) {
 		$this->src = $src;
 	}
 
 	/**
-	 * @param $src
-	 * @param $isTemp
+	 * @param string $src
+	 * @param bool $isTemp
 	 */
 	function setFileSrc( $src, $isTemp ) {
 		$this->fileSrc = $src;
@@ -1144,56 +1163,56 @@ class WikiRevision {
 	}
 
 	/**
-	 * @param $sha1base36
+	 * @param string $sha1base36
 	 */
 	function setSha1Base36( $sha1base36 ) {
 		$this->sha1base36 = $sha1base36;
 	}
 
 	/**
-	 * @param $filename
+	 * @param string $filename
 	 */
 	function setFilename( $filename ) {
 		$this->filename = $filename;
 	}
 
 	/**
-	 * @param $archiveName
+	 * @param string $archiveName
 	 */
 	function setArchiveName( $archiveName ) {
 		$this->archiveName = $archiveName;
 	}
 
 	/**
-	 * @param $size
+	 * @param int $size
 	 */
 	function setSize( $size ) {
 		$this->size = intval( $size );
 	}
 
 	/**
-	 * @param $type
+	 * @param string $type
 	 */
 	function setType( $type ) {
 		$this->type = $type;
 	}
 
 	/**
-	 * @param $action
+	 * @param string $action
 	 */
 	function setAction( $action ) {
 		$this->action = $action;
 	}
 
 	/**
-	 * @param $params
+	 * @param array $params
 	 */
 	function setParams( $params ) {
 		$this->params = $params;
 	}
 
 	/**
-	 * @param $noupdates
+	 * @param bool $noupdates
 	 */
 	public function setNoUpdates( $noupdates ) {
 		$this->mNoUpdates = $noupdates;
@@ -1256,7 +1275,7 @@ class WikiRevision {
 	}
 
 	/**
-	 * @return String
+	 * @return string
 	 */
 	function getModel() {
 		if ( is_null( $this->model ) ) {
@@ -1267,7 +1286,7 @@ class WikiRevision {
 	}
 
 	/**
-	 * @return String
+	 * @return string
 	 */
 	function getFormat() {
 		if ( is_null( $this->model ) ) {
@@ -1299,7 +1318,7 @@ class WikiRevision {
 	}
 
 	/**
-	 * @return bool|String
+	 * @return bool|string
 	 */
 	function getSha1() {
 		if ( $this->sha1base36 ) {
@@ -1636,7 +1655,7 @@ class ImportStreamSource {
 	}
 
 	/**
-	 * @param $filename string
+	 * @param string $filename
 	 * @return Status
 	 */
 	static function newFromFile( $filename ) {
@@ -1650,7 +1669,7 @@ class ImportStreamSource {
 	}
 
 	/**
-	 * @param $fieldname string
+	 * @param string $fieldname
 	 * @return Status
 	 */
 	static function newFromUpload( $fieldname = "xmlimport" ) {
@@ -1682,8 +1701,8 @@ class ImportStreamSource {
 	}
 
 	/**
-	 * @param $url
-	 * @param $method string
+	 * @param string $url
+	 * @param string $method
 	 * @return Status
 	 */
 	static function newFromURL( $url, $method = 'GET' ) {
@@ -1705,11 +1724,11 @@ class ImportStreamSource {
 	}
 
 	/**
-	 * @param $interwiki
-	 * @param $page
-	 * @param $history bool
-	 * @param $templates bool
-	 * @param $pageLinkDepth int
+	 * @param string $interwiki
+	 * @param string $page
+	 * @param bool $history
+	 * @param bool $templates
+	 * @param int $pageLinkDepth
 	 * @return Status
 	 */
 	public static function newFromInterwiki( $interwiki, $page, $history = false, $templates = false, $pageLinkDepth = 0 ) {
@@ -1717,7 +1736,7 @@ class ImportStreamSource {
 			return Status::newFatal( 'import-noarticle' );
 		}
 		$link = Title::newFromText( "$interwiki:Special:Export/$page" );
-		if ( is_null( $link ) || $link->getInterwiki() == '' ) {
+		if ( is_null( $link ) || !$link->isExternal() ) {
 			return Status::newFatal( 'importbadinterwiki' );
 		} else {
 			$params = array();

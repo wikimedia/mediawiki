@@ -31,34 +31,70 @@
  */
 class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	// From DatabaseBase
-	function __construct() {}
-	protected function closeConnection() {}
-	protected function doQuery( $sql ) {}
+	function __construct() {
+	}
+
+	protected function closeConnection() {
+	}
+
+	protected function doQuery( $sql ) {
+	}
 
 	// From DatabaseMysql
-	protected function mysqlConnect( $realServer ) {}
-	protected function mysqlSetCharset( $charset ) {}
-	protected function mysqlFreeResult( $res ) {}
-	protected function mysqlFetchObject( $res ) {}
-	protected function mysqlFetchArray( $res ) {}
-	protected function mysqlNumRows( $res ) {}
-	protected function mysqlNumFields( $res ) {}
-	protected function mysqlFieldName( $res, $n ) {}
-	protected function mysqlFieldType( $res, $n ) {}
-	protected function mysqlDataSeek( $res, $row ) {}
-	protected function mysqlError( $conn = null ) {}
-	protected function mysqlFetchField( $res, $n ) {}
-	protected function mysqlPing() {}
+	protected function mysqlConnect( $realServer ) {
+	}
+
+	protected function mysqlSetCharset( $charset ) {
+	}
+
+	protected function mysqlFreeResult( $res ) {
+	}
+
+	protected function mysqlFetchObject( $res ) {
+	}
+
+	protected function mysqlFetchArray( $res ) {
+	}
+
+	protected function mysqlNumRows( $res ) {
+	}
+
+	protected function mysqlNumFields( $res ) {
+	}
+
+	protected function mysqlFieldName( $res, $n ) {
+	}
+
+	protected function mysqlFieldType( $res, $n ) {
+	}
+
+	protected function mysqlDataSeek( $res, $row ) {
+	}
+
+	protected function mysqlError( $conn = null ) {
+	}
+
+	protected function mysqlFetchField( $res, $n ) {
+	}
+
+	protected function mysqlPing() {
+	}
 
 	// From interface DatabaseType
-	function insertId() {}
-	function lastErrno() {}
-	function affectedRows() {}
-	function getServerVersion() {}
+	function insertId() {
+	}
+
+	function lastErrno() {
+	}
+
+	function affectedRows() {
+	}
+
+	function getServerVersion() {
+	}
 }
 
 class DatabaseMysqlBaseTest extends MediaWikiTestCase {
-
 	/**
 	 * @dataProvider provideDiapers
 	 * @covers DatabaseMysqlBase::addIdentifierQuotes

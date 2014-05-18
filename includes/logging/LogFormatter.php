@@ -64,7 +64,7 @@ class LogFormatter {
 	/**
 	 * Handy shortcut for constructing a formatter directly from
 	 * database row.
-	 * @param $row
+	 * @param object $row
 	 * @see DatabaseLogEntry::getSelectQueryData
 	 * @return LogFormatter
 	 */
@@ -77,10 +77,10 @@ class LogFormatter {
 	/** @var LogEntryBase */
 	protected $entry;
 
-	/// Integer constant for handling log_deleted
+	/** @var int Constant for handling log_deleted */
 	protected $audience = self::FOR_PUBLIC;
 
-	/// Whether to output user tool links
+	/** @var bool Whether to output user tool links */
 	protected $linkFlood = false;
 
 	/**
@@ -455,7 +455,8 @@ class LogFormatter {
 		// Bad things happens if the numbers are not in correct order
 		ksort( $params );
 
-		return $this->parsedParameters = $params;
+		$this->parsedParameters = $params;
+		return $this->parsedParameters;
 	}
 
 	/**
@@ -572,7 +573,7 @@ class LogFormatter {
 	}
 
 	/**
-	 * Gets the luser provided comment
+	 * Gets the user provided comment
 	 * @return string HTML
 	 */
 	public function getComment() {
@@ -737,7 +738,8 @@ class LegacyLogFormatter extends LogFormatter {
 		}
 
 		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) ) {
-			return $this->revert = '';
+			$this->revert = '';
+			return $this->revert;
 		}
 
 		$title = $this->entry->getTarget();

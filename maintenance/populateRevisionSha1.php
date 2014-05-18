@@ -50,6 +50,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$this->error( "archive table does not exist", true );
 		} elseif ( !$db->fieldExists( 'revision', 'rev_sha1', __METHOD__ ) ) {
 			$this->output( "rev_sha1 column does not exist\n\n", true );
+
 			return false;
 		}
 
@@ -61,15 +62,17 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		$this->output( "Populating ar_sha1 column legacy rows\n" );
 		$ac += $this->doSha1LegacyUpdates();
 
-		$this->output( "rev_sha1 and ar_sha1 population complete [$rc revision rows, $ac archive rows].\n" );
+		$this->output( "rev_sha1 and ar_sha1 population complete "
+			. "[$rc revision rows, $ac archive rows].\n" );
+
 		return true;
 	}
 
 	/**
-	 * @param $table string
-	 * @param $idCol
-	 * @param $prefix string
-	 * @return Integer Rows changed
+	 * @param string $table
+	 * @param string $idCol
+	 * @param string $prefix
+	 * @return int Rows changed
 	 */
 	protected function doSha1Updates( $table, $idCol, $prefix ) {
 		$db = $this->getDB( DB_MASTER );
@@ -77,6 +80,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		$end = $db->selectField( $table, "MAX($idCol)", false, __METHOD__ );
 		if ( !$start || !$end ) {
 			$this->output( "...$table table seems to be empty.\n" );
+
 			return 0;
 		}
 
@@ -103,6 +107,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$blockEnd += $this->mBatchSize;
 			wfWaitForSlaves();
 		}
+
 		return $count;
 	}
 
@@ -130,14 +135,15 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			}
 		}
 		$db->commit( __METHOD__ );
+
 		return $count;
 	}
 
 	/**
-	 * @param $row
-	 * @param $table
-	 * @param $idCol
-	 * @param $prefix
+	 * @param stdClass $row
+	 * @param string $table
+	 * @param string $idCol
+	 * @param string $prefix
 	 * @return bool
 	 */
 	protected function upgradeRow( $row, $table, $idCol, $prefix ) {
@@ -149,11 +155,13 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$text = $rev->getSerializedData();
 		} catch ( MWException $e ) {
 			$this->output( "Data of revision with {$idCol}={$row->$idCol} unavailable!\n" );
+
 			return false; // bug 22624?
 		}
 		if ( !is_string( $text ) ) {
 			# This should not happen, but sometimes does (bug 20757)
 			$this->output( "Data of revision with {$idCol}={$row->$idCol} unavailable!\n" );
+
 			return false;
 		} else {
 			$db->update( $table,
@@ -161,12 +169,13 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 				array( $idCol => $row->$idCol ),
 				__METHOD__
 			);
+
 			return true;
 		}
 	}
 
 	/**
-	 * @param $row
+	 * @param stdClass $row
 	 * @return bool
 	 */
 	protected function upgradeLegacyArchiveRow( $row ) {
@@ -175,12 +184,14 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$rev = Revision::newFromArchiveRow( $row );
 		} catch ( MWException $e ) {
 			$this->output( "Text of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
+
 			return false; // bug 22624?
 		}
 		$text = $rev->getSerializedData();
 		if ( !is_string( $text ) ) {
 			# This should not happen, but sometimes does (bug 20757)
 			$this->output( "Data of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
+
 			return false;
 		} else {
 			# Archive table as no PK, but (NS,title,time) should be near unique.
@@ -195,6 +206,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 				),
 				__METHOD__
 			);
+
 			return true;
 		}
 	}

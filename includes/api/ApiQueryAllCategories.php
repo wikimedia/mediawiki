@@ -32,7 +32,7 @@
  */
 class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ac' );
 	}
 
@@ -49,7 +49,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 */
 	private function run( $resultPageSet = null ) {
 		$db = $this->getDB();
@@ -67,8 +67,12 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		}
 
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
-		$from = ( $params['from'] === null ? null : $this->titlePartToKey( $params['from'], NS_CATEGORY ) );
-		$to = ( $params['to'] === null ? null : $this->titlePartToKey( $params['to'], NS_CATEGORY ) );
+		$from = ( $params['from'] === null
+			? null
+			: $this->titlePartToKey( $params['from'], NS_CATEGORY ) );
+		$to = ( $params['to'] === null
+			? null
+			: $this->titlePartToKey( $params['to'], NS_CATEGORY ) );
 		$this->addWhereRange( 'cat_title', $dir, $from, $to );
 
 		$min = $params['min'];
@@ -221,7 +225,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Enumerate all categories';
+		return 'Enumerate all categories.';
 	}
 
 	public function getExamples() {

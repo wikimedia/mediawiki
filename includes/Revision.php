@@ -86,9 +86,9 @@ class Revision implements IDBAccessObject {
 	 *      Revision::READ_LATEST  : Select the data from the master
 	 *      Revision::READ_LOCKING : Select & lock the data from the master
 	 *
-	 * @param $id Integer
-	 * @param $flags Integer (optional)
-	 * @return Revision or null
+	 * @param int $id
+	 * @param int $flags (optional)
+	 * @return Revision|null
 	 */
 	public static function newFromId( $id, $flags = 0 ) {
 		return self::newFromConds( array( 'rev_id' => intval( $id ) ), $flags );
@@ -103,10 +103,10 @@ class Revision implements IDBAccessObject {
 	 *      Revision::READ_LATEST  : Select the data from the master
 	 *      Revision::READ_LOCKING : Select & lock the data from the master
 	 *
-	 * @param $title Title
-	 * @param $id Integer (optional)
-	 * @param $flags Integer Bitfield (optional)
-	 * @return Revision or null
+	 * @param Title $title
+	 * @param int $id (optional)
+	 * @param int $flags Bitfield (optional)
+	 * @return Revision|null
 	 */
 	public static function newFromTitle( $title, $id = 0, $flags = 0 ) {
 		$conds = array(
@@ -134,10 +134,10 @@ class Revision implements IDBAccessObject {
 	 *      Revision::READ_LATEST  : Select the data from the master (since 1.20)
 	 *      Revision::READ_LOCKING : Select & lock the data from the master
 	 *
-	 * @param $revId Integer
-	 * @param $pageId Integer (optional)
-	 * @param $flags Integer Bitfield (optional)
-	 * @return Revision or null
+	 * @param int $pageId
+	 * @param int $revId (optional)
+	 * @param int $flags Bitfield (optional)
+	 * @return Revision|null
 	 */
 	public static function newFromPageId( $pageId, $revId = 0, $flags = 0 ) {
 		$conds = array( 'page_id' => $pageId );
@@ -155,8 +155,8 @@ class Revision implements IDBAccessObject {
 	 * for permissions or even inserted (as in Special:Undelete)
 	 * @todo FIXME: Should be a subclass for RevisionDelete. [TS]
 	 *
-	 * @param $row
-	 * @param $overrides array
+	 * @param object $row
+	 * @param array $overrides
 	 *
 	 * @throws MWException
 	 * @return Revision
@@ -205,7 +205,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * @since 1.19
 	 *
-	 * @param $row
+	 * @param object $row
 	 * @return Revision
 	 */
 	public static function newFromRow( $row ) {
@@ -216,9 +216,9 @@ class Revision implements IDBAccessObject {
 	 * Load a page revision from a given revision ID number.
 	 * Returns null if no such revision can be found.
 	 *
-	 * @param $db DatabaseBase
-	 * @param $id Integer
-	 * @return Revision or null
+	 * @param DatabaseBase $db
+	 * @param int $id
+	 * @return Revision|null
 	 */
 	public static function loadFromId( $db, $id ) {
 		return self::loadFromConds( $db, array( 'rev_id' => intval( $id ) ) );
@@ -229,10 +229,10 @@ class Revision implements IDBAccessObject {
 	 * that's attached to a given page. If not attached
 	 * to that page, will return null.
 	 *
-	 * @param $db DatabaseBase
-	 * @param $pageid Integer
-	 * @param $id Integer
-	 * @return Revision or null
+	 * @param DatabaseBase $db
+	 * @param int $pageid
+	 * @param int $id
+	 * @return Revision|null
 	 */
 	public static function loadFromPageId( $db, $pageid, $id = 0 ) {
 		$conds = array( 'rev_page' => intval( $pageid ), 'page_id' => intval( $pageid ) );
@@ -249,10 +249,10 @@ class Revision implements IDBAccessObject {
 	 * that's attached to a given page. If not attached
 	 * to that page, will return null.
 	 *
-	 * @param $db DatabaseBase
-	 * @param $title Title
-	 * @param $id Integer
-	 * @return Revision or null
+	 * @param DatabaseBase $db
+	 * @param Title $title
+	 * @param int $id
+	 * @return Revision|null
 	 */
 	public static function loadFromTitle( $db, $title, $id = 0 ) {
 		if ( $id ) {
@@ -274,10 +274,10 @@ class Revision implements IDBAccessObject {
 	 * WARNING: Timestamps may in some circumstances not be unique,
 	 * so this isn't the best key to use.
 	 *
-	 * @param $db DatabaseBase
-	 * @param $title Title
-	 * @param $timestamp String
-	 * @return Revision or null
+	 * @param DatabaseBase $db
+	 * @param Title $title
+	 * @param string $timestamp
+	 * @return Revision|null
 	 */
 	public static function loadFromTimestamp( $db, $title, $timestamp ) {
 		return self::loadFromConds( $db,
@@ -292,9 +292,9 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Given a set of conditions, fetch a revision.
 	 *
-	 * @param $conditions Array
-	 * @param $flags integer (optional)
-	 * @return Revision or null
+	 * @param array $conditions
+	 * @param int $flags (optional)
+	 * @return Revision|null
 	 */
 	private static function newFromConds( $conditions, $flags = 0 ) {
 		$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
@@ -315,10 +315,10 @@ class Revision implements IDBAccessObject {
 	 * Given a set of conditions, fetch a revision from
 	 * the given database connection.
 	 *
-	 * @param $db DatabaseBase
-	 * @param $conditions Array
-	 * @param $flags integer (optional)
-	 * @return Revision or null
+	 * @param DatabaseBase $db
+	 * @param array $conditions
+	 * @param int $flags (optional)
+	 * @return Revision|null
 	 */
 	private static function loadFromConds( $db, $conditions, $flags = 0 ) {
 		$res = self::fetchFromConds( $db, $conditions, $flags );
@@ -338,7 +338,7 @@ class Revision implements IDBAccessObject {
 	 * fetch all of a given page's revisions in turn.
 	 * Each row can be fed to the constructor to get objects.
 	 *
-	 * @param $title Title
+	 * @param Title $title
 	 * @return ResultWrapper
 	 */
 	public static function fetchRevision( $title ) {
@@ -357,9 +357,9 @@ class Revision implements IDBAccessObject {
 	 * which will return matching database rows with the
 	 * fields necessary to build Revision objects.
 	 *
-	 * @param $db DatabaseBase
-	 * @param $conditions Array
-	 * @param $flags integer (optional)
+	 * @param DatabaseBase $db
+	 * @param array $conditions
+	 * @param int $flags (optional)
 	 * @return ResultWrapper
 	 */
 	private static function fetchFromConds( $db, $conditions, $flags = 0 ) {
@@ -386,7 +386,7 @@ class Revision implements IDBAccessObject {
 	 * Return the value of a select() JOIN conds array for the user table.
 	 * This will get user table rows for logged-in users.
 	 * @since 1.19
-	 * @return Array
+	 * @return array
 	 */
 	public static function userJoinCond() {
 		return array( 'LEFT JOIN', array( 'rev_user != 0', 'user_id = rev_user' ) );
@@ -396,7 +396,7 @@ class Revision implements IDBAccessObject {
 	 * Return the value of a select() page conds array for the page table.
 	 * This will assure that the revision(s) are not orphaned from live pages.
 	 * @since 1.19
-	 * @return Array
+	 * @return array
 	 */
 	public static function pageJoinCond() {
 		return array( 'INNER JOIN', array( 'page_id = rev_page' ) );
@@ -500,8 +500,8 @@ class Revision implements IDBAccessObject {
 
 	/**
 	 * Do a batched query to get the parent revision lengths
-	 * @param $db DatabaseBase
-	 * @param $revIds Array
+	 * @param DatabaseBase $db
+	 * @param array $revIds
 	 * @return array
 	 */
 	public static function getParentLengths( $db, array $revIds ) {
@@ -524,7 +524,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Constructor
 	 *
-	 * @param $row Mixed: either a database row or an array
+	 * @param object $row Either a database row or an array
 	 * @throws MWException
 	 * @access private
 	 */
@@ -698,7 +698,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get revision ID
 	 *
-	 * @return Integer|null
+	 * @return int|null
 	 */
 	public function getId() {
 		return $this->mId;
@@ -708,7 +708,7 @@ class Revision implements IDBAccessObject {
 	 * Set the revision ID
 	 *
 	 * @since 1.19
-	 * @param $id Integer
+	 * @param int $id
 	 */
 	public function setId( $id ) {
 		$this->mId = $id;
@@ -717,7 +717,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get text row ID
 	 *
-	 * @return Integer|null
+	 * @return int|null
 	 */
 	public function getTextId() {
 		return $this->mTextId;
@@ -726,7 +726,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get parent revision ID (the original previous page revision)
 	 *
-	 * @return Integer|null
+	 * @return int|null
 	 */
 	public function getParentId() {
 		return $this->mParentId;
@@ -735,7 +735,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Returns the length of the text in this revision, or null if unknown.
 	 *
-	 * @return Integer|null
+	 * @return int|null
 	 */
 	public function getSize() {
 		return $this->mSize;
@@ -744,7 +744,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Returns the base36 sha1 of the text in this revision, or null if unknown.
 	 *
-	 * @return String|null
+	 * @return string|null
 	 */
 	public function getSha1() {
 		return $this->mSha1;
@@ -785,7 +785,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Set the title of the revision
 	 *
-	 * @param $title Title
+	 * @param Title $title
 	 */
 	public function setTitle( $title ) {
 		$this->mTitle = $title;
@@ -794,7 +794,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get the page ID
 	 *
-	 * @return Integer|null
+	 * @return int|null
 	 */
 	public function getPage() {
 		return $this->mPage;
@@ -805,13 +805,13 @@ class Revision implements IDBAccessObject {
 	 * If the specified audience does not have access to it, zero will be
 	 * returned.
 	 *
-	 * @param $audience Integer: one of:
-	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to the given user
-	 *      Revision::RAW              get the ID regardless of permissions
-	 * @param $user User object to check for, only if FOR_THIS_USER is passed
-	 *              to the $audience parameter
-	 * @return Integer
+	 * @param int $audience One of:
+	 *   Revision::FOR_PUBLIC       to be displayed to all users
+	 *   Revision::FOR_THIS_USER    to be displayed to the given user
+	 *   Revision::RAW              get the ID regardless of permissions
+	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
+	 *   to the $audience parameter
+	 * @return int
 	 */
 	public function getUser( $audience = self::FOR_PUBLIC, User $user = null ) {
 		if ( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_USER ) ) {
@@ -826,7 +826,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Fetch revision's user id without regard for the current user's permissions
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getRawUser() {
 		return $this->mUser;
@@ -837,12 +837,12 @@ class Revision implements IDBAccessObject {
 	 * If the specified audience does not have access to the username, an
 	 * empty string will be returned.
 	 *
-	 * @param $audience Integer: one of:
-	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to the given user
-	 *      Revision::RAW              get the text regardless of permissions
-	 * @param $user User object to check for, only if FOR_THIS_USER is passed
-	 *              to the $audience parameter
+	 * @param int $audience One of:
+	 *   Revision::FOR_PUBLIC       to be displayed to all users
+	 *   Revision::FOR_THIS_USER    to be displayed to the given user
+	 *   Revision::RAW              get the text regardless of permissions
+	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
+	 *   to the $audience parameter
 	 * @return string
 	 */
 	public function getUserText( $audience = self::FOR_PUBLIC, User $user = null ) {
@@ -858,7 +858,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Fetch revision's username without regard for view restrictions
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getRawUserText() {
 		if ( $this->mUserText === null ) {
@@ -877,13 +877,13 @@ class Revision implements IDBAccessObject {
 	 * If the specified audience does not have access to the comment, an
 	 * empty string will be returned.
 	 *
-	 * @param $audience Integer: one of:
-	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to the given user
-	 *      Revision::RAW              get the text regardless of permissions
-	 * @param $user User object to check for, only if FOR_THIS_USER is passed
-	 *              to the $audience parameter
-	 * @return String
+	 * @param int $audience One of:
+	 *   Revision::FOR_PUBLIC       to be displayed to all users
+	 *   Revision::FOR_THIS_USER    to be displayed to the given user
+	 *   Revision::RAW              get the text regardless of permissions
+	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
+	 *   to the $audience parameter
+	 * @return string
 	 */
 	function getComment( $audience = self::FOR_PUBLIC, User $user = null ) {
 		if ( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_COMMENT ) ) {
@@ -898,21 +898,21 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Fetch revision comment without regard for the current user's permissions
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getRawComment() {
 		return $this->mComment;
 	}
 
 	/**
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isMinor() {
 		return (bool)$this->mMinorEdit;
 	}
 
 	/**
-	 * @return integer rcid of the unpatrolled row, zero if there isn't one
+	 * @return int Rcid of the unpatrolled row, zero if there isn't one
 	 */
 	public function isUnpatrolled() {
 		if ( $this->mUnpatrolled !== null ) {
@@ -948,7 +948,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * @param int $field one of DELETED_* bitfield constants
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isDeleted( $field ) {
 		return ( $this->mDeleted & $field ) == $field;
@@ -968,16 +968,16 @@ class Revision implements IDBAccessObject {
 	 * If the specified audience does not have the ability to view this
 	 * revision, an empty string will be returned.
 	 *
-	 * @param $audience Integer: one of:
-	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to the given user
-	 *      Revision::RAW              get the text regardless of permissions
-	 * @param $user User object to check for, only if FOR_THIS_USER is passed
-	 *              to the $audience parameter
+	 * @param int $audience One of:
+	 *   Revision::FOR_PUBLIC       to be displayed to all users
+	 *   Revision::FOR_THIS_USER    to be displayed to the given user
+	 *   Revision::RAW              get the text regardless of permissions
+	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
+	 *   to the $audience parameter
 	 *
-	 * @deprecated in 1.21, use getContent() instead
+	 * @deprecated since 1.21, use getContent() instead
 	 * @todo Replace usage in core
-	 * @return String
+	 * @return string
 	 */
 	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) {
 		ContentHandler::deprecated( __METHOD__, '1.21' );
@@ -991,12 +991,12 @@ class Revision implements IDBAccessObject {
 	 * If the specified audience does not have the ability to view this
 	 * revision, null will be returned.
 	 *
-	 * @param $audience Integer: one of:
-	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
-	 *      Revision::RAW              get the text regardless of permissions
-	 * @param $user User object to check for, only if FOR_THIS_USER is passed
-	 *              to the $audience parameter
+	 * @param int $audience One of:
+	 *   Revision::FOR_PUBLIC       to be displayed to all users
+	 *   Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *   Revision::RAW              get the text regardless of permissions
+	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
+	 *   to the $audience parameter
 	 * @since 1.21
 	 * @return Content|null
 	 */
@@ -1013,7 +1013,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Fetch revision text without regard for view restrictions
 	 *
-	 * @return String
+	 * @return string
 	 *
 	 * @deprecated since 1.21. Instead, use Revision::getContent( Revision::RAW )
 	 *                         or Revision::getSerializedData() as appropriate.
@@ -1027,7 +1027,7 @@ class Revision implements IDBAccessObject {
 	 * Fetch original serialized data without regard for view restrictions
 	 *
 	 * @since 1.21
-	 * @return String
+	 * @return string
 	 */
 	public function getSerializedData() {
 		if ( is_null( $this->mText ) ) {
@@ -1044,7 +1044,7 @@ class Revision implements IDBAccessObject {
 	 * fresh clone.
 	 *
 	 * @since 1.21
-	 * @return Content|null the Revision's content, or null on failure.
+	 * @return Content|null The Revision's content, or null on failure.
 	 */
 	protected function getContentInternal() {
 		if ( is_null( $this->mContent ) ) {
@@ -1075,7 +1075,7 @@ class Revision implements IDBAccessObject {
 	 * used to determine the content model to use. If no title is know, CONTENT_MODEL_WIKITEXT
 	 * is used as a last resort.
 	 *
-	 * @return String the content model id associated with this revision,
+	 * @return string The content model id associated with this revision,
 	 *     see the CONTENT_MODEL_XXX constants.
 	 **/
 	public function getContentModel() {
@@ -1095,7 +1095,7 @@ class Revision implements IDBAccessObject {
 	 * If no content format was stored in the database, the default format for this
 	 * revision's content model is returned.
 	 *
-	 * @return String the content format id associated with this revision,
+	 * @return string The content format id associated with this revision,
 	 *     see the CONTENT_FORMAT_XXX constants.
 	 **/
 	public function getContentFormat() {
@@ -1132,14 +1132,14 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * @return String
+	 * @return string
 	 */
 	public function getTimestamp() {
 		return wfTimestamp( TS_MW, $this->mTimestamp );
 	}
 
 	/**
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isCurrent() {
 		return $this->mCurrent;
@@ -1163,7 +1163,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get next revision for this title
 	 *
-	 * @return Revision or null
+	 * @return Revision|null
 	 */
 	public function getNext() {
 		if ( $this->getTitle() ) {
@@ -1179,8 +1179,8 @@ class Revision implements IDBAccessObject {
 	 * Get previous revision Id for this page_id
 	 * This is used to populate rev_parent_id on save
 	 *
-	 * @param $db DatabaseBase
-	 * @return Integer
+	 * @param DatabaseBase $db
+	 * @return int
 	 */
 	private function getPreviousRevisionId( $db ) {
 		if ( is_null( $this->mPage ) ) {
@@ -1201,18 +1201,18 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	  * Get revision text associated with an old or archive row
-	  * $row is usually an object from wfFetchRow(), both the flags and the text
-	  * field must be included.
-	  *
-	  * @param stdClass $row The text data
-	  * @param string $prefix Table prefix (default 'old_')
-	  * @param string|bool $wiki The name of the wiki to load the revision text from
-	  *   (same as the the wiki $row was loaded from) or false to indicate the local
-	  *   wiki (this is the default). Otherwise, it must be a symbolic wiki database
-	  *   identifier as understood by the LoadBalancer class.
-	  * @return string Text the text requested or false on failure
-	  */
+	 * Get revision text associated with an old or archive row
+	 * $row is usually an object from wfFetchRow(), both the flags and the text
+	 * field must be included.
+	 *
+	 * @param stdClass $row The text data
+	 * @param string $prefix Table prefix (default 'old_')
+	 * @param string|bool $wiki The name of the wiki to load the revision text from
+	 *   (same as the the wiki $row was loaded from) or false to indicate the local
+	 *   wiki (this is the default). Otherwise, it must be a symbolic wiki database
+	 *   identifier as understood by the LoadBalancer class.
+	 * @return string Text the text requested or false on failure
+	 */
 	public static function getRevisionText( $row, $prefix = 'old_', $wiki = false ) {
 		wfProfileIn( __METHOD__ );
 
@@ -1259,8 +1259,8 @@ class Revision implements IDBAccessObject {
 	 * data is compressed, and 'utf-8' if we're saving in UTF-8
 	 * mode.
 	 *
-	 * @param $text Mixed: reference to a text
-	 * @return String
+	 * @param mixed $text Reference to a text
+	 * @return string
 	 */
 	public static function compressRevisionText( &$text ) {
 		global $wgCompressRevisions;
@@ -1284,9 +1284,9 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Re-converts revision text according to it's flags.
 	 *
-	 * @param $text Mixed: reference to a text
-	 * @param $flags array: compression flags
-	 * @return String|bool decompressed text, or false on failure
+	 * @param mixed $text Reference to a text
+	 * @param array $flags Compression flags
+	 * @return string|bool Decompressed text, or false on failure
 	 */
 	public static function decompressRevisionText( $text, $flags ) {
 		if ( in_array( 'gzip', $flags ) ) {
@@ -1325,9 +1325,9 @@ class Revision implements IDBAccessObject {
 	 * Insert a new revision into the database, returning the new revision ID
 	 * number on success and dies horribly on failure.
 	 *
-	 * @param $dbw DatabaseBase: (master connection)
+	 * @param DatabaseBase $dbw (master connection)
 	 * @throws MWException
-	 * @return Integer
+	 * @return int
 	 */
 	public function insertOn( $dbw ) {
 		global $wgDefaultExternalStore, $wgContentHandlerUseDB;
@@ -1477,8 +1477,8 @@ class Revision implements IDBAccessObject {
 
 	/**
 	 * Get the base 36 SHA-1 value for a string of text
-	 * @param $text String
-	 * @return String
+	 * @param string $text
+	 * @return string
 	 */
 	public static function base36Sha1( $text ) {
 		return wfBaseConvert( sha1( $text ), 16, 36, 31 );
@@ -1488,7 +1488,7 @@ class Revision implements IDBAccessObject {
 	 * Lazy-load the revision's text.
 	 * Currently hardcoded to the 'text' table storage engine.
 	 *
-	 * @return String|bool the revision's text, or false on failure
+	 * @return string|bool The revision's text, or false on failure
 	 */
 	protected function loadText() {
 		wfProfileIn( __METHOD__ );
@@ -1562,13 +1562,14 @@ class Revision implements IDBAccessObject {
 	 * Such revisions can for instance identify page rename
 	 * operations and other such meta-modifications.
 	 *
-	 * @param $dbw DatabaseBase
-	 * @param $pageId Integer: ID number of the page to read from
-	 * @param string $summary revision's summary
-	 * @param $minor Boolean: whether the revision should be considered as minor
-	 * @return Revision|null on error
+	 * @param DatabaseBase $dbw
+	 * @param int $pageId: ID number of the page to read from
+	 * @param string $summary Revision's summary
+	 * @param bool $minor Whether the revision should be considered as minor
+	 * @param User|null $user User object to use or null for $wgUser
+	 * @return Revision|null Revision or null on error
 	 */
-	public static function newNullRevision( $dbw, $pageId, $summary, $minor ) {
+	public static function newNullRevision( $dbw, $pageId, $summary, $minor, $user = null ) {
 		global $wgContentHandlerUseDB;
 
 		wfProfileIn( __METHOD__ );
@@ -1591,8 +1592,15 @@ class Revision implements IDBAccessObject {
 			__METHOD__ );
 
 		if ( $current ) {
+			if ( !$user ) {
+				global $wgUser;
+				$user = $wgUser;
+			}
+
 			$row = array(
 				'page'       => $pageId,
+				'user_text'  => $user->getName(),
+				'user'       => $user->getId(),
 				'comment'    => $summary,
 				'minor_edit' => $minor,
 				'text_id'    => $current->rev_text_id,
@@ -1620,11 +1628,11 @@ class Revision implements IDBAccessObject {
 	 * Determine if the current user is allowed to view a particular
 	 * field of this revision, if it's marked as deleted.
 	 *
-	 * @param $field Integer:one of self::DELETED_TEXT,
+	 * @param int $field One of self::DELETED_TEXT,
 	 *                              self::DELETED_COMMENT,
 	 *                              self::DELETED_USER
-	 * @param $user User object to check, or null to use $wgUser
-	 * @return Boolean
+	 * @param User|null $user User object to check, or null to use $wgUser
+	 * @return bool
 	 */
 	public function userCan( $field, User $user = null ) {
 		return self::userCanBitfield( $this->mDeleted, $field, $user );
@@ -1635,12 +1643,12 @@ class Revision implements IDBAccessObject {
 	 * field of this revision, if it's marked as deleted. This is used
 	 * by various classes to avoid duplication.
 	 *
-	 * @param $bitfield Integer: current field
-	 * @param $field Integer: one of self::DELETED_TEXT = File::DELETED_FILE,
+	 * @param int $bitfield Current field
+	 * @param int $field One of self::DELETED_TEXT = File::DELETED_FILE,
 	 *                               self::DELETED_COMMENT = File::DELETED_COMMENT,
 	 *                               self::DELETED_USER = File::DELETED_USER
-	 * @param $user User object to check, or null to use $wgUser
-	 * @return Boolean
+	 * @param User|null $user User object to check, or null to use $wgUser
+	 * @return bool
 	 */
 	public static function userCanBitfield( $bitfield, $field, User $user = null ) {
 		if ( $bitfield & $field ) { // aspect is deleted
@@ -1665,9 +1673,9 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get rev_timestamp from rev_id, without loading the rest of the row
 	 *
-	 * @param $title Title
-	 * @param $id Integer
-	 * @return String
+	 * @param Title $title
+	 * @param int $id
+	 * @return string
 	 */
 	static function getTimestampFromId( $title, $id ) {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -1689,9 +1697,9 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get count of revisions per page...not very efficient
 	 *
-	 * @param $db DatabaseBase
-	 * @param $id Integer: page id
-	 * @return Integer
+	 * @param DatabaseBase $db
+	 * @param int $id Page id
+	 * @return int
 	 */
 	static function countByPageId( $db, $id ) {
 		$row = $db->selectRow( 'revision', array( 'revCount' => 'COUNT(*)' ),
@@ -1705,9 +1713,9 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get count of revisions per page...not very efficient
 	 *
-	 * @param $db DatabaseBase
-	 * @param $title Title
-	 * @return Integer
+	 * @param DatabaseBase $db
+	 * @param Title $title
+	 * @return int
 	 */
 	static function countByTitle( $db, $title ) {
 		$id = $title->getArticleID();
@@ -1724,11 +1732,11 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @since 1.20
 	 *
-	 * @param DatabaseBase|int $db the Database to perform the check on. May be given as a
+	 * @param DatabaseBase|int $db The Database to perform the check on. May be given as a
 	 *        Database object or a database identifier usable with wfGetDB.
-	 * @param int $pageId the ID of the page in question
-	 * @param int $userId the ID of the user in question
-	 * @param string $since look at edits since this time
+	 * @param int $pageId The ID of the page in question
+	 * @param int $userId The ID of the user in question
+	 * @param string $since Look at edits since this time
 	 *
 	 * @return bool True if the given user was the only one to edit since the given timestamp
 	 */

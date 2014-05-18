@@ -1,0 +1,9 @@
+.box {
+  content: not-embeddable;
+}
+.box {
+  content: embeddable;
+}
+.box {
+  content: embeddable;
+}

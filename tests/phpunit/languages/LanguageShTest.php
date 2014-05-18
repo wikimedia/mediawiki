@@ -5,14 +5,14 @@
  * @file
  */
 
-/** Tests for MediaWiki languages/classes/LanguageSh.php */
+/** Tests for  srpskohrvatski / српскохрватски / Serbocroatian */
 class LanguageShTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural
 	 * @covers Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
-		$forms = array( 'one', 'few', 'many', 'other' );
+		$forms = array( 'one', 'few', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -26,17 +26,17 @@ class LanguageShTest extends LanguageClassesTestCase {
 
 	public static function providePlural() {
 		return array(
-			array( 'many', 0 ),
+			array( 'other', 0 ),
 			array( 'one', 1 ),
 			array( 'few', 2 ),
 			array( 'few', 4 ),
-			array( 'many', 5 ),
-			array( 'many', 10 ),
-			array( 'many', 11 ),
-			array( 'many', 12 ),
+			array( 'other', 5 ),
+			array( 'other', 10 ),
+			array( 'other', 11 ),
+			array( 'other', 12 ),
 			array( 'one', 101 ),
 			array( 'few', 102 ),
-			array( 'many', 111 ),
+			array( 'other', 111 ),
 		);
 	}
 }

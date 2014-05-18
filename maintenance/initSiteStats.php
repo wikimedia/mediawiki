@@ -34,7 +34,10 @@ class InitSiteStats extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Re-initialise the site statistics tables";
-		$this->addOption( 'update', 'Update the existing statistics (preserves the ss_total_views field)' );
+		$this->addOption(
+			'update',
+			'Update the existing statistics (preserves the ss_total_views field)'
+		);
 		$this->addOption( 'noviews', "Don't update the page view counter" );
 		$this->addOption( 'active', 'Also update active users count' );
 		$this->addOption( 'use-master', 'Count using the master database' );

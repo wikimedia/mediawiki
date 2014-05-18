@@ -26,7 +26,6 @@
  * Abstraction for resource loader modules, with name registration and maxage functionality.
  */
 abstract class ResourceLoaderModule {
-
 	# Type of resource
 	const TYPE_SCRIPTS = 'scripts';
 	const TYPE_STYLES = 'styles';
@@ -71,7 +70,7 @@ abstract class ResourceLoaderModule {
 	 * Get this module's name. This is set when the module is registered
 	 * with ResourceLoader::register()
 	 *
-	 * @return mixed: Name (string) or null if no name was set
+	 * @return string|null Name (string) or null if no name was set
 	 */
 	public function getName() {
 		return $this->name;
@@ -91,7 +90,7 @@ abstract class ResourceLoaderModule {
 	 * Get this module's origin. This is set when the module is registered
 	 * with ResourceLoader::register()
 	 *
-	 * @return int: ResourceLoaderModule class constant, the subclass default
+	 * @return int ResourceLoaderModule class constant, the subclass default
 	 *     if not set manually
 	 */
 	public function getOrigin() {
@@ -102,7 +101,7 @@ abstract class ResourceLoaderModule {
 	 * Set this module's origin. This is called by ResourceLoader::register()
 	 * when registering the module. Other code should not call this.
 	 *
-	 * @param int $origin origin
+	 * @param int $origin Origin
 	 */
 	public function setOrigin( $origin ) {
 		$this->origin = $origin;
@@ -123,7 +122,7 @@ abstract class ResourceLoaderModule {
 	 * Includes all relevant JS except loader scripts.
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return string: JavaScript code
+	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		// Stub, override expected
@@ -142,7 +141,7 @@ abstract class ResourceLoaderModule {
 	 * MUST return either an only= URL or a non-load.php URL.
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return array: Array of URLs
+	 * @return array Array of URLs
 	 */
 	public function getScriptURLsForDebug( ResourceLoaderContext $context ) {
 		$url = ResourceLoader::makeLoaderURL(
@@ -173,7 +172,7 @@ abstract class ResourceLoaderModule {
 	 * Get all CSS for this module for a given skin.
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return array: List of CSS strings or array of CSS strings keyed by media type.
+	 * @return array List of CSS strings or array of CSS strings keyed by media type.
 	 *  like array( 'screen' => '.foo { width: 0 }' );
 	 *  or array( 'screen' => array( '.foo { width: 0 }' ) );
 	 */
@@ -189,7 +188,7 @@ abstract class ResourceLoaderModule {
 	 * load the files directly. See also getScriptURLsForDebug()
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return array: array( mediaType => array( URL1, URL2, ... ), ... )
+	 * @return array array( mediaType => array( URL1, URL2, ... ), ... )
 	 */
 	public function getStyleURLsForDebug( ResourceLoaderContext $context ) {
 		$url = ResourceLoader::makeLoaderURL(
@@ -211,7 +210,7 @@ abstract class ResourceLoaderModule {
 	 *
 	 * To get a JSON blob with messages, use MessageBlobStore::get()
 	 *
-	 * @return array: List of message keys. Keys may occur more than once
+	 * @return array List of message keys. Keys may occur more than once
 	 */
 	public function getMessages() {
 		// Stub, override expected
@@ -221,7 +220,7 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Get the group this module is in.
 	 *
-	 * @return string: Group name
+	 * @return string Group name
 	 */
 	public function getGroup() {
 		// Stub, override expected
@@ -231,7 +230,7 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Get the origin of this module. Should only be overridden for foreign modules.
 	 *
-	 * @return string: Origin name, 'local' for local modules
+	 * @return string Origin name, 'local' for local modules
 	 */
 	public function getSource() {
 		// Stub, override expected
@@ -263,7 +262,7 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Get the loader JS for this module, if set.
 	 *
-	 * @return mixed: JavaScript loader code as a string or boolean false if no custom loader set
+	 * @return mixed JavaScript loader code as a string or boolean false if no custom loader set
 	 */
 	public function getLoaderScript() {
 		// Stub, override expected
@@ -278,7 +277,7 @@ abstract class ResourceLoaderModule {
 	 *
 	 * To add dependencies dynamically on the client side, use a custom
 	 * loader script, see getLoaderScript()
-	 * @return array: List of module names as strings
+	 * @return array List of module names as strings
 	 */
 	public function getDependencies() {
 		// Stub, override expected
@@ -288,7 +287,7 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Get target(s) for the module, eg ['desktop'] or ['desktop', 'mobile']
 	 *
-	 * @return array: Array of strings
+	 * @return array Array of strings
 	 */
 	public function getTargets() {
 		return $this->targets;
@@ -299,7 +298,7 @@ abstract class ResourceLoaderModule {
 	 * Currently these are only image files referenced by the module's CSS.
 	 *
 	 * @param string $skin Skin name
-	 * @return array: List of files
+	 * @return array List of files
 	 */
 	public function getFileDependencies( $skin ) {
 		// Try in-object cache first
@@ -335,7 +334,7 @@ abstract class ResourceLoaderModule {
 	 * Get the last modification timestamp of the message blob for this
 	 * module in a given language.
 	 * @param string $lang Language code
-	 * @return int: UNIX timestamp, or 0 if the module doesn't have messages
+	 * @return int UNIX timestamp, or 0 if the module doesn't have messages
 	 */
 	public function getMsgBlobMtime( $lang ) {
 		if ( !isset( $this->msgBlobMtime[$lang] ) ) {
@@ -363,7 +362,7 @@ abstract class ResourceLoaderModule {
 	 * Set a preloaded message blob last modification timestamp. Used so we
 	 * can load this information for all modules at once.
 	 * @param string $lang Language code
-	 * @param $mtime Integer: UNIX timestamp or 0 if there is no such blob
+	 * @param int $mtime UNIX timestamp or 0 if there is no such blob
 	 */
 	public function setMsgBlobMtime( $lang, $mtime ) {
 		$this->msgBlobMtime[$lang] = $mtime;
@@ -387,7 +386,7 @@ abstract class ResourceLoaderModule {
 	 * yourself and take its result into consideration.
 	 *
 	 * @param ResourceLoaderContext $context Context object
-	 * @return integer UNIX timestamp
+	 * @return int UNIX timestamp
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		// 0 would mean now
@@ -398,7 +397,7 @@ abstract class ResourceLoaderModule {
 	 * Helper method for calculating when the module's hash (if it has one) changed.
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return integer: UNIX timestamp or 0 if no hash was provided
+	 * @return int UNIX timestamp or 0 if no hash was provided
 	 *  by getModifiedHash()
 	 */
 	public function getHashMtime( ResourceLoaderContext $context ) {
@@ -432,7 +431,7 @@ abstract class ResourceLoaderModule {
 	 * use of getHashMTime() inside getModifiedTime().
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return string|null: Hash
+	 * @return string|null Hash
 	 */
 	public function getModifiedHash( ResourceLoaderContext $context ) {
 		return null;
@@ -441,7 +440,9 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Helper method for calculating when this module's definition summary was last changed.
 	 *
-	 * @return integer: UNIX timestamp or 0 if no definition summary was provided
+	 * @since 1.23
+	 *
+	 * @return int UNIX timestamp or 0 if no definition summary was provided
 	 *  by getDefinitionSummary()
 	 */
 	public function getDefinitionMtime( ResourceLoaderContext $context ) {
@@ -474,7 +475,8 @@ abstract class ResourceLoaderModule {
 			return $data;
 		}
 
-		wfDebugLog( 'resourceloader', __METHOD__ . ": New definition hash for module {$this->getName()} in context {$context->getHash()}: $hash." );
+		wfDebugLog( 'resourceloader', __METHOD__ . ": New definition hash for module "
+			. "{$this->getName()} in context {$context->getHash()}: $hash." );
 
 		$timestamp = time();
 		$cache->set( $key, $timestamp );
@@ -505,7 +507,9 @@ abstract class ResourceLoaderModule {
 	 * contain arrays and scalars as values (avoid object instances) which means
 	 * it requires abstraction.
 	 *
-	 * @return Array|null
+	 * @since 1.23
+	 *
+	 * @return array|null
 	 */
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
 		return array(
@@ -536,7 +540,7 @@ abstract class ResourceLoaderModule {
 	 *
 	 * @param string $fileName
 	 * @param string $contents
-	 * @return string: JS with the original, or a replacement error
+	 * @return string JS with the original, or a replacement error
 	 */
 	protected function validateScriptFile( $fileName, $contents ) {
 		global $wgResourceLoaderValidateJS;

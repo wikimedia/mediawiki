@@ -37,7 +37,7 @@ interface IContextSource {
 	/**
 	 * Get the Title object
 	 *
-	 * @return Title
+	 * @return Title|null
 	 */
 	public function getTitle();
 
@@ -103,7 +103,7 @@ interface IContextSource {
 	 * Get the site configuration
 	 *
 	 * @since 1.23
-	 * @return SiteConfiguration
+	 * @return Config
 	 */
 	public function getConfig();
 
@@ -118,7 +118,7 @@ interface IContextSource {
 	 * Export the resolved user IP, HTTP headers, user ID, and session ID.
 	 * The result will be reasonably sized to allow for serialization.
 	 *
-	 * @return Array
+	 * @return array
 	 * @since 1.21
 	 */
 	public function exportSession();

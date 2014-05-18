@@ -30,7 +30,6 @@
  * @ingroup SpecialPage
  */
 class SpecialBookSources extends SpecialPage {
-
 	/**
 	 * ISBN passed to the page, if any
 	 */
@@ -55,7 +54,10 @@ class SpecialBookSources extends SpecialPage {
 		$this->getOutput()->addHTML( $this->makeForm() );
 		if ( strlen( $this->isbn ) > 0 ) {
 			if ( !self::isValidISBN( $this->isbn ) ) {
-				$this->getOutput()->wrapWikiMsg( "<div class=\"error\">\n$1\n</div>", 'booksources-invalid-isbn' );
+				$this->getOutput()->wrapWikiMsg(
+					"<div class=\"error\">\n$1\n</div>",
+					'booksources-invalid-isbn'
+				);
 			}
 			$this->showList();
 		}
@@ -118,13 +120,25 @@ class SpecialBookSources extends SpecialPage {
 		global $wgScript;
 
 		$form = Html::openElement( 'fieldset' ) . "\n";
-		$form .= Html::element( 'legend', array(), $this->msg( 'booksources-search-legend' )->text() ) . "\n";
+		$form .= Html::element(
+			'legend',
+			array(),
+			$this->msg( 'booksources-search-legend' )->text()
+		) . "\n";
 		$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) . "\n";
 		$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) . "\n";
-		$form .= '<p>' . Xml::inputLabel( $this->msg( 'booksources-isbn' )->text(), 'isbn', 'isbn', 20, $this->isbn, array( 'autofocus' => true ) );
+		$form .= '<p>' . Xml::inputLabel(
+			$this->msg( 'booksources-isbn' )->text(),
+			'isbn',
+			'isbn',
+			20,
+			$this->isbn,
+			array( 'autofocus' => true )
+		);
 		$form .= '&#160;' . Xml::submitButton( $this->msg( 'booksources-go' )->text() ) . "</p>\n";
 		$form .= Html::closeElement( 'form' ) . "\n";
 		$form .= Html::closeElement( 'fieldset' ) . "\n";
+
 		return $form;
 	}
 
@@ -188,6 +202,6 @@ class SpecialBookSources extends SpecialPage {
 	}
 
 	protected function getGroupName() {
-		return 'other';
+		return 'wiki';
 	}
 }

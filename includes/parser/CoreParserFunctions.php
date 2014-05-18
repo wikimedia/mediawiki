@@ -27,7 +27,7 @@
  */
 class CoreParserFunctions {
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @return void
 	 */
 	static function register( $parser ) {
@@ -60,30 +60,36 @@ class CoreParserFunctions {
 			$parser->setFunctionHook( $func, array( __CLASS__, $func ), SFH_NO_HASH );
 		}
 
-		$parser->setFunctionHook( 'namespace',  array( __CLASS__, 'mwnamespace' ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'int',        array( __CLASS__, 'intFunction' ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'special',    array( __CLASS__, 'special'     ) );
-		$parser->setFunctionHook( 'speciale',   array( __CLASS__, 'speciale'    ) );
-		$parser->setFunctionHook( 'tag',        array( __CLASS__, 'tagObj'      ), SFH_OBJECT_ARGS );
-		$parser->setFunctionHook( 'formatdate', array( __CLASS__, 'formatDate'  ) );
+		$parser->setFunctionHook( 'namespace', array( __CLASS__, 'mwnamespace' ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'int', array( __CLASS__, 'intFunction' ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'special', array( __CLASS__, 'special' ) );
+		$parser->setFunctionHook( 'speciale', array( __CLASS__, 'speciale' ) );
+		$parser->setFunctionHook( 'tag', array( __CLASS__, 'tagObj' ), SFH_OBJECT_ARGS );
+		$parser->setFunctionHook( 'formatdate', array( __CLASS__, 'formatDate' ) );
 
 		if ( $wgAllowDisplayTitle ) {
 			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), SFH_NO_HASH );
 		}
 		if ( $wgAllowSlowParserFunctions ) {
-			$parser->setFunctionHook( 'pagesinnamespace', array( __CLASS__, 'pagesinnamespace' ), SFH_NO_HASH );
+			$parser->setFunctionHook(
+				'pagesinnamespace',
+				array( __CLASS__, 'pagesinnamespace' ),
+				SFH_NO_HASH
+			);
 		}
 	}
 
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @param string $part1
 	 * @return array
 	 */
 	static function intFunction( $parser, $part1 = '' /*, ... */ ) {
 		if ( strval( $part1 ) !== '' ) {
 			$args = array_slice( func_get_args(), 2 );
-			$message = wfMessage( $part1, $args )->inLanguage( $parser->getOptions()->getUserLangObj() )->plain();
+			$message = wfMessage( $part1, $args )
+				->inLanguage( $parser->getOptions()->getUserLangObj() )->plain();
+
 			return array( $message, 'noparse' => false );
 		} else {
 			return array( 'found' => false );
@@ -91,10 +97,11 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
-	 * @param  $date
-	 * @param null $defaultPref
-	 * @return mixed|string
+	 * @param Parser $parser
+	 * @param string $date
+	 * @param string $defaultPref
+	 *
+	 * @return string
 	 */
 	static function formatDate( $parser, $date, $defaultPref = null ) {
 		$lang = $parser->getFunctionLang();
@@ -143,7 +150,7 @@ class CoreParserFunctions {
 	 * Or to encode a value for the HTTP "path", spaces are encoded as '%20'.
 	 * For links to "wiki"s, or similar software, spaces are encoded as '_',
 	 *
-	 * @param $parser Parser object
+	 * @param Parser $parser
 	 * @param string $s The text to encode.
 	 * @param string $arg (optional): The type of encoding.
 	 * @return string
@@ -185,9 +192,9 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @param string $s
-	 * @return
+	 * @return string
 	 */
 	static function lc( $parser, $s = '' ) {
 		global $wgContLang;
@@ -195,9 +202,9 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @param string $s
-	 * @return
+	 * @return string
 	 */
 	static function uc( $parser, $s = '' ) {
 		global $wgContLang;
@@ -209,7 +216,12 @@ class CoreParserFunctions {
 	}
 
 	static function localurle( $parser, $s = '', $arg = null ) {
-		return htmlspecialchars( self::urlFunction( 'getLocalURL', $s, $arg ) );
+		$temp = self::urlFunction( 'getLocalURL', $s, $arg );
+		if ( !is_string( $temp ) ) {
+			return $temp;
+		} else {
+			return htmlspecialchars( $temp );
+		}
 	}
 
 	static function fullurl( $parser, $s = '', $arg = null ) {
@@ -217,7 +229,12 @@ class CoreParserFunctions {
 	}
 
 	static function fullurle( $parser, $s = '', $arg = null ) {
-		return htmlspecialchars( self::urlFunction( 'getFullURL', $s, $arg ) );
+		$temp = self::urlFunction( 'getFullURL', $s, $arg );
+		if ( !is_string( $temp ) ) {
+			return $temp;
+		} else {
+			return htmlspecialchars( $temp );
+		}
 	}
 
 	static function canonicalurl( $parser, $s = '', $arg = null ) {
@@ -254,7 +271,7 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @param string $num
 	 * @param string $arg
 	 * @return string
@@ -271,10 +288,10 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @param string $case
 	 * @param string $word
-	 * @return
+	 * @return string
 	 */
 	static function grammar( $parser, $case = '', $word = '' ) {
 		$word = $parser->killMarkers( $word );
@@ -282,9 +299,9 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
-	 * @param $username string
-	 * @return
+	 * @param Parser $parser
+	 * @param string $username
+	 * @return string
 	 */
 	static function gender( $parser, $username ) {
 		wfProfileIn( __METHOD__ );
@@ -324,9 +341,9 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @param string $text
-	 * @return
+	 * @return string
 	 */
 	static function plural( $parser, $text = '' ) {
 		$forms = array_slice( func_get_args(), 2 );
@@ -339,9 +356,9 @@ class CoreParserFunctions {
 	 * Override the title of the page when viewed, provided we've been given a
 	 * title which will normalise to the canonical title
 	 *
-	 * @param $parser Parser: parent parser
-	 * @param string $text desired title text
-	 * @return String
+	 * @param Parser $parser Parent parser
+	 * @param string $text Desired title text
+	 * @return string
 	 */
 	static function displaytitle( $parser, $text = '' ) {
 		global $wgRestrictDisplayTitle;
@@ -382,12 +399,21 @@ class CoreParserFunctions {
 		// only requested titles that normalize to the actual title are allowed through
 		// if $wgRestrictDisplayTitle is true (it is by default)
 		// mimic the escaping process that occurs in OutputPage::setPageTitle
-		$text = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $text, $htmlTagsCallback, array(), array(), $bad ) );
+		$text = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags(
+			$text,
+			$htmlTagsCallback,
+			array(),
+			array(),
+			$bad
+		) );
 		$title = Title::newFromText( Sanitizer::stripAllTags( $text ) );
 
 		if ( !$wgRestrictDisplayTitle ) {
 			$parser->mOutput->setDisplayTitle( $text );
-		} elseif ( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) ) {
+		} elseif ( $title instanceof Title
+			&& !$title->hasFragment()
+			&& $title->equals( $parser->mTitle )
+		) {
 			$parser->mOutput->setDisplayTitle( $text );
 		}
 
@@ -397,16 +423,17 @@ class CoreParserFunctions {
 	/**
 	 * Matches the given value against the value of given magic word
 	 *
-	 * @param string $magicword magic word key
-	 * @param mixed $value value to match
-	 * @return boolean true on successful match
+	 * @param string $magicword Magic word key
+	 * @param string $value Value to match
+	 * @return bool True on successful match
 	 */
 	private static function matchAgainstMagicword( $magicword, $value ) {
-		if ( strval( $value ) === '' ) {
+		$value = trim( strval( $value ) );
+		if ( $value === '' ) {
 			return false;
 		}
 		$mwObject = MagicWord::get( $magicword );
-		return $mwObject->match( $value );
+		return $mwObject->matchStartToEnd( $value );
 	}
 
 	static function formatRaw( $num, $raw ) {
@@ -454,6 +481,8 @@ class CoreParserFunctions {
 	 * corresponding magic word
 	 * Note: function name changed to "mwnamespace" rather than "namespace"
 	 * to not break PHP 5.3
+	 * @param Parser $parser
+	 * @param string $title
 	 * @return mixed|string
 	 */
 	static function mwnamespace( $parser, $title = null ) {
@@ -509,7 +538,9 @@ class CoreParserFunctions {
 	/**
 	 * Functions to get and normalize pagenames, corresponding to the magic words
 	 * of the same names
-	 * @return String
+	 * @param Parser $parser
+	 * @param string $title
+	 * @return string
 	 */
 	static function pagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
@@ -614,6 +645,10 @@ class CoreParserFunctions {
 	 * Return the number of pages, files or subcats in the given category,
 	 * or 0 if it's nonexistent. This is an expensive parser function and
 	 * can't be called too many times per page.
+	 * @param Parser $parser
+	 * @param string $name
+	 * @param string $arg1
+	 * @param string $arg2
 	 * @return string
 	 */
 	static function pagesincategory( $parser, $name = '', $arg1 = null, $arg2 = null ) {
@@ -678,15 +713,9 @@ class CoreParserFunctions {
 	 * Return the size of the given page, or 0 if it's nonexistent.  This is an
 	 * expensive parser function and can't be called too many times per page.
 	 *
-	 * @todo FIXME: Title::getLength() documentation claims that it adds things
-	 *   to the link cache, so the local cache here should be unnecessary, but
-	 *   in fact calling getLength() repeatedly for the same $page does seem to
-	 *   run one query for each call?
-	 * @todo Document parameters
-	 *
-	 * @param $parser Parser
-	 * @param $page String Name of page to check (Default: empty string)
-	 * @param $raw String Should number be human readable with commas or just number
+	 * @param Parser $parser
+	 * @param string $page Name of page to check (Default: empty string)
+	 * @param string $raw Should number be human readable with commas or just number
 	 * @return string
 	 */
 	static function pagesize( $parser, $page = '', $raw = null ) {
@@ -703,7 +732,10 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * Returns the requested protection level for the current page
+	 * Returns the requested protection level for the current page. This
+	 * is an expensive parser function and can't be called too many times
+	 * per page, unless the protection levels for the given title have
+	 * already been retrieved
 	 *
 	 * @param Parser $parser
 	 * @param string $type
@@ -716,18 +748,21 @@ class CoreParserFunctions {
 		if ( !( $titleObject instanceof Title ) ) {
 			$titleObject = $parser->mTitle;
 		}
-		$restrictions = $titleObject->getRestrictions( strtolower( $type ) );
-		# Title::getRestrictions returns an array, its possible it may have
-		# multiple values in the future
-		return implode( $restrictions, ',' );
+		if ( $titleObject->areRestrictionsLoaded() || $parser->incrementExpensiveFunctionCount() ) {
+			$restrictions = $titleObject->getRestrictions( strtolower( $type ) );
+			# Title::getRestrictions returns an array, its possible it may have
+			# multiple values in the future
+			return implode( $restrictions, ',' );
+		}
+		return '';
 	}
 
 	/**
 	 * Gives language names.
-	 * @param $parser Parser
-	 * @param string $code  Language code (of which to get name)
-	 * @param string $inLanguage  Language code (in which to get name)
-	 * @return String
+	 * @param Parser $parser
+	 * @param string $code Language code (of which to get name)
+	 * @param string $inLanguage Language code (in which to get name)
+	 * @return string
 	 */
 	static function language( $parser, $code = '', $inLanguage = '' ) {
 		$code = strtolower( $code );
@@ -738,6 +773,11 @@ class CoreParserFunctions {
 
 	/**
 	 * Unicode-safe str_pad with the restriction that $length is forced to be <= 500
+	 * @param Parser $parser
+	 * @param string $string
+	 * @param int $length
+	 * @param string $padding
+	 * @param int $direction
 	 * @return string
 	 */
 	static function pad( $parser, $string, $length, $padding = '0', $direction = STR_PAD_RIGHT ) {
@@ -775,8 +815,8 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
-	 * @param  $text
+	 * @param Parser $parser
+	 * @param string $text
 	 * @return string
 	 */
 	static function anchorencode( $parser, $text ) {
@@ -801,7 +841,7 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
+	 * @param Parser $parser
 	 * @param string $text The sortkey to use
 	 * @param string $uarg Either "noreplace" or "noerror" (in en)
 	 *   both suppress errors, and noreplace does nothing if
@@ -838,8 +878,9 @@ class CoreParserFunctions {
 		}
 	}
 
-	// Usage {{filepath|300}}, {{filepath|nowiki}}, {{filepath|nowiki|300}} or {{filepath|300|nowiki}}
-	// or {{filepath|300px}}, {{filepath|200x300px}}, {{filepath|nowiki|200x300px}}, {{filepath|200x300px|nowiki}}
+	// Usage {{filepath|300}}, {{filepath|nowiki}}, {{filepath|nowiki|300}}
+	// or {{filepath|300|nowiki}} or {{filepath|300px}}, {{filepath|200x300px}},
+	// {{filepath|nowiki|200x300px}}, {{filepath|200x300px|nowiki}}.
 	public static function filepath( $parser, $name = '', $argA = '', $argB = '' ) {
 		$file = wfFindFile( $name );
 
@@ -876,6 +917,9 @@ class CoreParserFunctions {
 
 	/**
 	 * Parser function to extension tag adaptor
+	 * @param Parser $parser
+	 * @param PPFrame $frame
+	 * @param array $args
 	 * @return string
 	 */
 	public static function tagObj( $parser, $frame, $args ) {
@@ -926,8 +970,8 @@ class CoreParserFunctions {
 	 * For a given title, which is equal to the current parser title,
 	 * the revision object from the parser is used, when that is the current one
 	 *
-	 * @param $parser Parser
-	 * @param $title Title
+	 * @param Parser $parser
+	 * @param Title $title
 	 * @return Revision
 	 * @since 1.23
 	 */
@@ -973,8 +1017,9 @@ class CoreParserFunctions {
 
 	/**
 	 * Get the pageid of a specified page
-	 * @param $parser Parser
-	 * @param $title string Title to get the pageid from
+	 * @param Parser $parser
+	 * @param string $title Title to get the pageid from
+	 * @return int|null|string
 	 * @since 1.23
 	 */
 	public static function pageid( $parser, $title = null ) {
@@ -985,16 +1030,41 @@ class CoreParserFunctions {
 		// Use title from parser to have correct pageid after edit
 		if ( $t->equals( $parser->getTitle() ) ) {
 			$t = $parser->getTitle();
+			return $t->getArticleID();
 		}
-		// fetch pageid from cache/database and return the value
-		$pageid = $t->getArticleID();
-		return $pageid ? $pageid : '';
+
+		// These can't have ids
+		if ( !$t->canExist() || $t->isExternal() ) {
+			return 0;
+		}
+
+		// Check the link cache, maybe something already looked it up.
+		$linkCache = LinkCache::singleton();
+		$pdbk = $t->getPrefixedDBkey();
+		$id = $linkCache->getGoodLinkID( $pdbk );
+		if ( $id != 0 ) {
+			$parser->mOutput->addLink( $t, $id );
+			return $id;
+		}
+		if ( $linkCache->isBadLink( $pdbk ) ) {
+			$parser->mOutput->addLink( $t, 0 );
+			return $id;
+		}
+
+		// We need to load it from the DB, so mark expensive
+		if ( $parser->incrementExpensiveFunctionCount() ) {
+			$id = $t->getArticleID();
+			$parser->mOutput->addLink( $t, $id );
+			return $id;
+		}
+		return null;
 	}
 
 	/**
 	 * Get the id from the last revision of a specified page.
-	 * @param $parser Parser
-	 * @param $title string Title to get the id from
+	 * @param Parser $parser
+	 * @param string $title Title to get the id from
+	 * @return int|null|string
 	 * @since 1.23
 	 */
 	public static function revisionid( $parser, $title = null ) {
@@ -1009,8 +1079,9 @@ class CoreParserFunctions {
 
 	/**
 	 * Get the day from the last revision of a specified page.
-	 * @param $parser Parser
-	 * @param $title string Title to get the day from
+	 * @param Parser $parser
+	 * @param string $title Title to get the day from
+	 * @return string
 	 * @since 1.23
 	 */
 	public static function revisionday( $parser, $title = null ) {
@@ -1025,8 +1096,9 @@ class CoreParserFunctions {
 
 	/**
 	 * Get the day with leading zeros from the last revision of a specified page.
-	 * @param $parser Parser
-	 * @param $title string Title to get the day from
+	 * @param Parser $parser
+	 * @param string $title Title to get the day from
+	 * @return string
 	 * @since 1.23
 	 */
 	public static function revisionday2( $parser, $title = null ) {
@@ -1041,8 +1113,9 @@ class CoreParserFunctions {
 
 	/**
 	 * Get the month with leading zeros from the last revision of a specified page.
-	 * @param $parser Parser
-	 * @param $title string Title to get the month from
+	 * @param Parser $parser
+	 * @param string $title Title to get the month from
+	 * @return string
 	 * @since 1.23
 	 */
 	public static function revisionmonth( $parser, $title = null ) {
@@ -1057,8 +1130,9 @@ class CoreParserFunctions {
 
 	/**
 	 * Get the month from the last revision of a specified page.
-	 * @param $parser Parser
-	 * @param $title string Title to get the month from
+	 * @param Parser $parser
+	 * @param string $title Title to get the month from
+	 * @return string
 	 * @since 1.23
 	 */
 	public static function revisionmonth1( $parser, $title = null ) {
@@ -1073,8 +1147,9 @@ class CoreParserFunctions {
 
 	/**
 	 * Get the year from the last revision of a specified page.
-	 * @param $parser Parser
-	 * @param $title string Title to get the year from
+	 * @param Parser $parser
+	 * @param string $title Title to get the year from
+	 * @return string
 	 * @since 1.23
 	 */
 	public static function revisionyear( $parser, $title = null ) {
@@ -1089,8 +1164,9 @@ class CoreParserFunctions {
 
 	/**
 	 * Get the timestamp from the last revision of a specified page.
-	 * @param $parser Parser
-	 * @param $title string Title to get the timestamp from
+	 * @param Parser $parser
+	 * @param string $title Title to get the timestamp from
+	 * @return string
 	 * @since 1.23
 	 */
 	public static function revisiontimestamp( $parser, $title = null ) {
@@ -1105,8 +1181,9 @@ class CoreParserFunctions {
 
 	/**
 	 * Get the user from the last revision of a specified page.
-	 * @param $parser Parser
-	 * @param $title string Title to get the user from
+	 * @param Parser $parser
+	 * @param string $title Title to get the user from
+	 * @return string
 	 * @since 1.23
 	 */
 	public static function revisionuser( $parser, $title = null ) {
@@ -1122,7 +1199,8 @@ class CoreParserFunctions {
 	/**
 	 * Returns the sources of any cascading protection acting on a specified page.
 	 * Pages will not return their own title unless they transclude themselves.
-	 * This is an expensive parser function and can't be called too many times per page.
+	 * This is an expensive parser function and can't be called too many times per page,
+	 * unless cascading protection sources for the page have already been loaded.
 	 *
 	 * @param Parser $parser
 	 * @param string $title
@@ -1135,15 +1213,26 @@ class CoreParserFunctions {
 		if ( !( $titleObject instanceof Title ) ) {
 			$titleObject = $parser->mTitle;
 		}
-		$names = array();
-		if ( $parser->incrementExpensiveFunctionCount() ) {
+		if ( $titleObject->areCascadeProtectionSourcesLoaded()
+			|| $parser->incrementExpensiveFunctionCount()
+		) {
+			$names = array();
 			$sources = $titleObject->getCascadeProtectionSources();
 			foreach ( $sources[0] as $sourceTitle ) {
+<<<<<<< HEAD   (f99440 Add wikitext formatting to "CASCADINGSOURCES")
 				$names[] = "* " . $sourceTitle->getText();
+=======
+				$names[] = $sourceTitle->getPrefixedText();
+>>>>>>> BRANCH (444bcb Localisation updates from https://translatewiki.net.)
 			}
+			return implode( $names, '|' );
 		}
+<<<<<<< HEAD   (f99440 Add wikitext formatting to "CASCADINGSOURCES")
 
 		return implode( $names, '\n' );
+=======
+		return '';
+>>>>>>> BRANCH (444bcb Localisation updates from https://translatewiki.net.)
 	}
 
 }

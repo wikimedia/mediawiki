@@ -27,8 +27,9 @@
  * @ingroup SpecialPage
  */
 class SpecialBlockList extends SpecialPage {
+	protected $target;
 
-	protected $target, $options;
+	protected $options;
 
 	function __construct() {
 		parent::__construct( 'BlockList' );
@@ -37,7 +38,7 @@ class SpecialBlockList extends SpecialPage {
 	/**
 	 * Main execution point
 	 *
-	 * @param string $par title fragment
+	 * @param string $par Title fragment
 	 */
 	public function execute( $par ) {
 		$this->setHeaders();
@@ -67,7 +68,7 @@ class SpecialBlockList extends SpecialPage {
 		$fields = array(
 			'Target' => array(
 				'type' => 'text',
-				'label-message' => 'ipadressorusername',
+				'label-message' => 'ipaddressorusername',
 				'tabindex' => '1',
 				'size' => '45',
 				'default' => $this->target,
@@ -203,7 +204,11 @@ class SpecialBlockList extends SpecialPage {
 			foreach ( $otherBlockLink as $link ) {
 				$list .= Html::rawElement( 'li', array(), $link ) . "\n";
 			}
-			$out->addHTML( Html::rawElement( 'ul', array( 'class' => 'mw-ipblocklist-otherblocks' ), $list ) . "\n" );
+			$out->addHTML( Html::rawElement(
+				'ul',
+				array( 'class' => 'mw-ipblocklist-otherblocks' ),
+				$list
+			) . "\n" );
 		}
 	}
 
@@ -217,8 +222,8 @@ class BlockListPager extends TablePager {
 	protected $page;
 
 	/**
-	 * @param $page SpecialPage
-	 * @param $conds Array
+	 * @param SpecialPage $page
+	 * @param array $conds
 	 */
 	function __construct( $page, $conds ) {
 		$this->page = $page;
@@ -461,8 +466,8 @@ class HTMLBlockedUsersItemSelect extends HTMLSelectField {
 	 * Basically don't do any validation. If it's a number that's fine. Also,
 	 * add it to the list if it's not there already
 	 *
-	 * @param $value
-	 * @param $alldata
+	 * @param string $value
+	 * @param array $alldata
 	 * @return bool
 	 */
 	function validate( $value, $alldata ) {
@@ -471,11 +476,15 @@ class HTMLBlockedUsersItemSelect extends HTMLSelectField {
 		}
 
 		// Let folks pick an explicit limit not from our list, as long as it's a real numbr.
-		if ( !in_array( $value, $this->mParams['options'] ) && $value == intval( $value ) && $value > 0 ) {
+		if ( !in_array( $value, $this->mParams['options'] )
+			&& $value == intval( $value )
+			&& $value > 0
+		) {
 			// This adds the explicitly requested limit value to the drop-down,
 			// then makes sure it's sorted correctly so when we output the list
 			// later, the custom option doesn't just show up last.
-			$this->mParams['options'][$this->mParent->getLanguage()->formatNum( $value )] = intval( $value );
+			$this->mParams['options'][$this->mParent->getLanguage()->formatNum( $value )] =
+				intval( $value );
 			asort( $this->mParams['options'] );
 		}
 

@@ -13,11 +13,26 @@ class HooksTest extends MediaWikiTestCase {
 		$i = new NothingClass();
 
 		return array(
-			array( 'Object and method', array( $i, 'someNonStatic' ), 'changed-nonstatic', 'changed-nonstatic' ),
+			array(
+				'Object and method',
+				array( $i, 'someNonStatic' ),
+				'changed-nonstatic',
+				'changed-nonstatic'
+			),
 			array( 'Object and no method', array( $i ), 'changed-onevent', 'original' ),
-			array( 'Object and method with data', array( $i, 'someNonStaticWithData', 'data' ), 'data', 'original' ),
+			array(
+				'Object and method with data',
+				array( $i, 'someNonStaticWithData', 'data' ),
+				'data',
+				'original'
+			),
 			array( 'Object and static method', array( $i, 'someStatic' ), 'changed-static', 'original' ),
-			array( 'Class::method static call', array( 'NothingClass::someStatic' ), 'changed-static', 'original' ),
+			array(
+				'Class::method static call',
+				array( 'NothingClass::someStatic' ),
+				'changed-static',
+				'original'
+			),
 			array( 'Global function', array( 'NothingFunction' ), 'changed-func', 'original' ),
 			array( 'Global function with data', array( 'NothingFunctionData', 'data' ), 'data', 'original' ),
 			array( 'Closure', array( function ( &$foo, $bar ) {
@@ -76,17 +91,32 @@ class HooksTest extends MediaWikiTestCase {
 		$b = new NothingClass();
 
 		$wgHooks['MediaWikiHooksTest001'][] = $a;
-		$this->assertTrue( Hooks::isRegistered( 'MediaWikiHooksTest001' ), 'Hook registered via $wgHooks should be noticed by Hooks::isRegistered' );
+		$this->assertTrue(
+			Hooks::isRegistered( 'MediaWikiHooksTest001' ),
+			'Hook registered via $wgHooks should be noticed by Hooks::isRegistered'
+		);
 
 		Hooks::register( 'MediaWikiHooksTest001', $b );
-		$this->assertEquals( 2, count( Hooks::getHandlers( 'MediaWikiHooksTest001' ) ), 'Hooks::getHandlers() should return hooks registered via wgHooks as well as Hooks::register' );
+		$this->assertEquals(
+			2,
+			count( Hooks::getHandlers( 'MediaWikiHooksTest001' ) ),
+			'Hooks::getHandlers() should return hooks registered via wgHooks as well as Hooks::register'
+		);
 
 		$foo = 'quux';
 		$bar = 'qaax';
 
 		Hooks::run( 'MediaWikiHooksTest001', array( &$foo, &$bar ) );
-		$this->assertEquals( 1, $a->calls, 'Hooks::run() should run hooks registered via wgHooks as well as Hooks::register' );
-		$this->assertEquals( 1, $b->calls, 'Hooks::run() should run hooks registered via wgHooks as well as Hooks::register' );
+		$this->assertEquals(
+			1,
+			$a->calls,
+			'Hooks::run() should run hooks registered via wgHooks as well as Hooks::register'
+		);
+		$this->assertEquals(
+			1,
+			$b->calls,
+			'Hooks::run() should run hooks registered via wgHooks as well as Hooks::register'
+		);
 	}
 
 	/**

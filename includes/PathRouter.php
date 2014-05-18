@@ -27,7 +27,7 @@
  *
  * $router->add( "/wiki/$1" );
  *   - Matches /wiki/Foo style urls and extracts the title
- * $router->add( array( 'edit' => "/edit/$1" ), array( 'action' => '$key' ) );
+ * $router->add( array( 'edit' => "/edit/$key" ), array( 'action' => '$key' ) );
  *   - Matches /edit/Foo style urls and sets action=edit
  * $router->add( '/$2/$1',
  *   array( 'variant' => '$2' ),
@@ -82,10 +82,10 @@ class PathRouter {
 	 * This is in a separate method so that add() can handle the difference between
 	 * a single string $path and an array() $path that contains multiple path
 	 * patterns each with an associated $key to pass on.
-	 * @param $path string
-	 * @param $params array
-	 * @param $options array
-	 * @param $key null|string
+	 * @param string $path
+	 * @param array $params
+	 * @param array $options
+	 * @param null|string $key
 	 */
 	protected function doAdd( $path, $params, $options, $key = null ) {
 		// Make sure all paths start with a /
@@ -170,9 +170,9 @@ class PathRouter {
 	/**
 	 * Add a new path pattern to the path router with the strict option on
 	 * @see self::add
-	 * @param $path string|array
-	 * @param $params array
-	 * @param $options array
+	 * @param string|array $path
+	 * @param array $params
+	 * @param array $options
 	 */
 	public function addStrict( $path, $params = array(), $options = array() ) {
 		$options['strict'] = true;
@@ -192,7 +192,7 @@ class PathRouter {
 	}
 
 	/**
-	 * @param $pattern object
+	 * @param object $pattern
 	 * @return float|int
 	 */
 	protected static function makeWeight( $pattern ) {
@@ -233,7 +233,7 @@ class PathRouter {
 	 * Parse a path and return the query matches for the path
 	 *
 	 * @param string $path The path to parse
-	 * @return Array The array of matches for the path
+	 * @return array The array of matches for the path
 	 */
 	public function parse( $path ) {
 		// Make sure our patterns are sorted by weight so the most specific
@@ -257,8 +257,8 @@ class PathRouter {
 	}
 
 	/**
-	 * @param $path string
-	 * @param $pattern string
+	 * @param string $path
+	 * @param string $pattern
 	 * @return array|null
 	 */
 	protected static function extractTitle( $path, $pattern ) {
@@ -363,7 +363,7 @@ class PathRouterPatternReplacer {
 	 * We do this inside of a replacement callback because after replacement we can't tell the
 	 * difference between a $1 that was not replaced and a $1 that was part of
 	 * the content a $1 was replaced with.
-	 * @param $value string
+	 * @param string $value
 	 * @return string
 	 */
 	public function replace( $value ) {
@@ -376,7 +376,7 @@ class PathRouterPatternReplacer {
 	}
 
 	/**
-	 * @param $m array
+	 * @param array $m
 	 * @return string
 	 */
 	protected function callback( $m ) {

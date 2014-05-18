@@ -94,8 +94,13 @@ class OracleUpdater extends DatabaseUpdater {
 				'patch-ufg_group-length-increase-255.sql' ),
 
 			//1.23
-			array( 'addIndex', 'logging', 'i06',  'patch-logging_user_text_type_time_index.sql' ),
-			array( 'addIndex', 'logging', 'i07',  'patch-logging_user_text_time_index.sql' ),
+			array( 'addIndex', 'logging', 'i06', 'patch-logging_user_text_type_time_index.sql' ),
+			array( 'addIndex', 'logging', 'i07', 'patch-logging_user_text_time_index.sql' ),
+			array( 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ),
+			array( 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ),
+			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
+
+			//1.24
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),
@@ -258,7 +263,7 @@ class OracleUpdater extends DatabaseUpdater {
 	/**
 	 * Overload: after this action field info table has to be rebuilt
 	 *
-	 * @param $what array
+	 * @param array $what
 	 */
 	public function doUpdates( $what = array( 'core', 'extensions', 'purge', 'stats' ) ) {
 		parent::doUpdates( $what );

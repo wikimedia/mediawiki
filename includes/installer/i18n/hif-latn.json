@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Thakurji"
+		]
+	},
+	"mainpagetext": "'''MediaWiki ke safalta se install kar dewa gais hai.'''",
+	"mainpagedocfooter": "Wiki software ke use kare ke aur jaankari ke khatir [//meta.wikimedia.org/wiki/Help:Contents User's Guide] ke dekho.\n\n== Getting started ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]"
+}

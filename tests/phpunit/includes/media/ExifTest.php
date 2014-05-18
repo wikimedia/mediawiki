@@ -10,9 +10,7 @@ class ExifTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		if ( !extension_loaded( 'exif' ) ) {
-			$this->markTestSkipped( "This test needs the exif extension." );
-		}
+		$this->checkPHPExtension( 'exif' );
 
 		$this->mediaPath = __DIR__ . '/../../data/media/';
 

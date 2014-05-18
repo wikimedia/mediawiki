@@ -59,14 +59,14 @@ class ForeignAPIRepo extends FileRepo {
 	/** @var int Redownload thumbnail files after a month (86400*30) */
 	protected $fileCacheExpiry = 2592000;
 
-	/** @var array  */
+	/** @var array */
 	protected $mFileExists = array();
 
-	/** @var array  */
+	/** @var array */
 	private $mQueryCache = array();
 
 	/**
-	 * @param $info array|null
+	 * @param array|null $info
 	 */
 	function __construct( $info ) {
 		global $wgLocalFileRepo;
@@ -252,8 +252,9 @@ class ForeignAPIRepo extends FileRepo {
 	 * @param string $name
 	 * @param int $width
 	 * @param int $height
-	 * @param null $result
+	 * @param array $result Out parameter that will be changed by the function.
 	 * @param string $otherParams
+	 *
 	 * @return bool
 	 */
 	function getThumbUrl( $name, $width = -1, $height = -1, &$result = null, $otherParams = '' ) {
@@ -318,7 +319,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * If the url has been requested today, get it from cache
 	 * Otherwise retrieve remote thumb url, check for local file.
 	 *
-	 * @param string $name is a dbkey form of a title
+	 * @param string $name Is a dbkey form of a title
 	 * @param int $width
 	 * @param int $height
 	 * @param string $params Other rendering parameters (page number, etc)
@@ -417,7 +418,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @see FileRepo::getZoneUrl()
 	 * @param string $zone
 	 * @param string|null $ext Optional file extension
-	 * @return String
+	 * @return string
 	 */
 	function getZoneUrl( $zone, $ext = null ) {
 		switch ( $zone ) {
@@ -485,6 +486,10 @@ class ForeignAPIRepo extends FileRepo {
 
 			$info['articlepath'] = $general['articlepath'];
 			$info['server'] = $general['server'];
+
+			if ( isset( $general['favicon'] ) ) {
+				$info['favicon'] = $general['favicon'];
+			}
 		}
 
 		return $info;
@@ -496,7 +501,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @param string $url
 	 * @param string $timeout
 	 * @param array $options
-	 * @return bool|String
+	 * @return bool|string
 	 */
 	public static function httpGet( $url, $timeout = 'default', $options = array() ) {
 		$options['timeout'] = $timeout;

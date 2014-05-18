@@ -42,7 +42,7 @@ class RepoGroup {
 	/** @var array */
 	protected $foreignInfo;
 
-	/** @var ProcessCacheLRU  */
+	/** @var ProcessCacheLRU */
 	protected $cache;
 
 	/** @var RepoGroup */
@@ -90,7 +90,7 @@ class RepoGroup {
 	 * Construct a group of file repositories.
 	 *
 	 * @param array $localInfo Associative array for local repo's info
-	 * @param array $foreignInfo of repository info arrays.
+	 * @param array $foreignInfo Array of repository info arrays.
 	 *   Each info array is an associative array with the 'class' member
 	 *   giving the class name. The entire array is passed to the repository
 	 *   constructor as the first parameter.
@@ -105,7 +105,7 @@ class RepoGroup {
 	 * Search repositories for an image.
 	 * You can also use wfFindFile() to do this.
 	 *
-	 * @param $title Title|string Title object or string
+	 * @param Title|string $title Title object or string
 	 * @param array $options Associative array of options:
 	 *   time:           requested time for an archived image, or false for the
 	 *                   current version. An image object will be returned which was
@@ -185,7 +185,7 @@ class RepoGroup {
 	 * @return array Map of (file name => File objects) for matches
 	 *
 	 * @param array $inputItems
-	 * @param integer $flags
+	 * @param int $flags
 	 * @return array
 	 */
 	function findFiles( array $inputItems, $flags = 0 ) {
@@ -220,7 +220,7 @@ class RepoGroup {
 
 	/**
 	 * Interface for FileRepo::checkRedirect()
-	 * @param $title Title
+	 * @param Title $title
 	 * @return bool
 	 */
 	function checkRedirect( Title $title ) {
@@ -247,9 +247,9 @@ class RepoGroup {
 	 * Find an instance of the file with this key, created at the specified time
 	 * Returns false if the file does not exist.
 	 *
-	 * @param string $hash base 36 SHA-1 hash
+	 * @param string $hash Base 36 SHA-1 hash
 	 * @param array $options Option array, same as findFile()
-	 * @return File object or false if it is not found
+	 * @return File|bool File object or false if it is not found
 	 */
 	function findFileFromKey( $hash, $options = array() ) {
 		if ( !$this->reposInitialised ) {
@@ -273,7 +273,7 @@ class RepoGroup {
 	 * Find all instances of files with this key
 	 *
 	 * @param string $hash base 36 SHA-1 hash
-	 * @return Array of File objects
+	 * @return array Array of File objects
 	 */
 	function findBySha1( $hash ) {
 		if ( !$this->reposInitialised ) {
@@ -293,7 +293,7 @@ class RepoGroup {
 	 * Find all instances of files with this keys
 	 *
 	 * @param array $hashes base 36 SHA-1 hashes
-	 * @return array of array of File objects
+	 * @return array Array of array of File objects
 	 */
 	function findBySha1s( array $hashes ) {
 		if ( !$this->reposInitialised ) {

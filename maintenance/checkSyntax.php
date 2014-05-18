@@ -38,10 +38,23 @@ class CheckSyntax extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Check syntax for all PHP files in MediaWiki";
 		$this->addOption( 'with-extensions', 'Also recurse the extensions folder' );
-		$this->addOption( 'path', 'Specific path (file or directory) to check, either with absolute path or relative to the root of this MediaWiki installation',
-			false, true );
-		$this->addOption( 'list-file', 'Text file containing list of files or directories to check', false, true );
-		$this->addOption( 'modified', 'Check only files that were modified (requires Git command-line client)' );
+		$this->addOption(
+			'path',
+			'Specific path (file or directory) to check, either with absolute path or '
+				. 'relative to the root of this MediaWiki installation',
+			false,
+			true
+		);
+		$this->addOption(
+			'list-file',
+			'Text file containing list of files or directories to check',
+			false,
+			true
+		);
+		$this->addOption(
+			'modified',
+			'Check only files that were modified (requires Git command-line client)'
+		);
 		$this->addOption( 'syntax-only', 'Check for syntax validity only, skip code style warnings' );
 	}
 
@@ -53,7 +66,8 @@ class CheckSyntax extends Maintenance {
 		$this->buildFileList();
 
 		// ParseKit is broken on PHP 5.3+, disabled until this is fixed
-		$useParseKit = function_exists( 'parsekit_compile_file' ) && version_compare( PHP_VERSION, '5.3', '<' );
+		$useParseKit = function_exists( 'parsekit_compile_file' )
+			&& version_compare( PHP_VERSION, '5.3', '<' );
 
 		$str = 'Checking syntax (using ' . ( $useParseKit ?
 			'parsekit' : ' php -l, this can take a long time' ) . ")\n";
@@ -82,7 +96,7 @@ class CheckSyntax extends Maintenance {
 		$this->mIgnorePaths = array(
 			// Compat stuff, explodes on PHP 5.3
 			"includes/NamespaceCompat.php$",
-			);
+		);
 
 		$this->mNoStyleCheckPaths = array(
 			// Third-party code we don't care about
@@ -96,13 +110,14 @@ class CheckSyntax extends Maintenance {
 			"QPoll/Excel/",
 			"/geshi/",
 			"/smarty/",
-			);
+		);
 
 		if ( $this->hasOption( 'path' ) ) {
 			$path = $this->getOption( 'path' );
 			if ( !$this->addPath( $path ) ) {
 				$this->error( "Error: can't find file or directory $path\n", true );
 			}
+
 			return; // process only this path
 		} elseif ( $this->hasOption( 'list-file' ) ) {
 			$file = $this->getOption( 'list-file' );
@@ -117,6 +132,7 @@ class CheckSyntax extends Maintenance {
 				$this->addPath( $path );
 			}
 			fclose( $f );
+
 			return;
 		} elseif ( $this->hasOption( 'modified' ) ) {
 			$this->output( "Retrieving list from Git... " );
@@ -127,6 +143,7 @@ class CheckSyntax extends Maintenance {
 					$this->mFiles[] = $file;
 				}
 			}
+
 			return;
 		}
 
@@ -153,17 +170,14 @@ class CheckSyntax extends Maintenance {
 		if ( file_exists( "$IP/LocalSettings.php" ) ) {
 			$this->mFiles[] = "$IP/LocalSettings.php";
 		}
-		if ( file_exists( "$IP/AdminSettings.php" ) ) {
-			$this->mFiles[] = "$IP/AdminSettings.php";
-		}
 
 		$this->output( 'done.', 'listfiles' );
 	}
 
 	/**
 	 * Returns a list of tracked files in a Git work tree differing from the master branch.
-	 * @param $path string: Path to the repository
-	 * @return array: Resulting list of changed files
+	 * @param string $path Path to the repository
+	 * @return array Resulting list of changed files
 	 */
 	private function getGitModifiedFiles( $path ) {
 
@@ -215,7 +229,7 @@ class CheckSyntax extends Maintenance {
 
 	/**
 	 * Returns true if $file is of a type we can check
-	 * @param $file string
+	 * @param string $file
 	 * @return bool
 	 */
 	private function isSuitableFile( $file ) {
@@ -230,22 +244,24 @@ class CheckSyntax extends Maintenance {
 				return false;
 			}
 		}
+
 		return true;
 	}
 
 	/**
 	 * Add given path to file list, searching it in include path if needed
-	 * @param $path string
+	 * @param string $path
 	 * @return bool
 	 */
 	private function addPath( $path ) {
 		global $IP;
+
 		return $this->addFileOrDir( $path ) || $this->addFileOrDir( "$IP/$path" );
 	}
 
 	/**
 	 * Add given file to file list, or, if it's a directory, add its content
-	 * @param $path string
+	 * @param string $path
 	 * @return bool
 	 */
 	private function addFileOrDir( $path ) {
@@ -256,13 +272,14 @@ class CheckSyntax extends Maintenance {
 		} else {
 			return false;
 		}
+
 		return true;
 	}
 
 	/**
 	 * Add all suitable files in given directory or its subdirectories to the file list
 	 *
-	 * @param $dir String: directory to process
+	 * @param string $dir Directory to process
 	 */
 	private function addDirectoryContent( $dir ) {
 		$iterator = new RecursiveIteratorIterator(
@@ -279,8 +296,8 @@ class CheckSyntax extends Maintenance {
 	/**
 	 * Check a file for syntax errors using Parsekit. Shamelessly stolen
 	 * from tools/lint.php by TimStarling
-	 * @param $file String Path to a file to check for syntax errors
-	 * @return boolean
+	 * @param string $file Path to a file to check for syntax errors
+	 * @return bool
 	 */
 	private function checkFileWithParsekit( $file ) {
 		static $okErrors = array(
@@ -302,21 +319,24 @@ class CheckSyntax extends Maintenance {
 				$this->mFailures[$file] = $errors;
 			}
 		}
+
 		return $ret;
 	}
 
 	/**
 	 * Check a file for syntax errors using php -l
-	 * @param $file String Path to a file to check for syntax errors
-	 * @return boolean
+	 * @param string $file Path to a file to check for syntax errors
+	 * @return bool
 	 */
 	private function checkFileWithCli( $file ) {
 		$res = exec( 'php -l ' . wfEscapeShellArg( $file ) );
 		if ( strpos( $res, 'No syntax errors detected' ) === false ) {
 			$this->mFailures[$file] = $res;
 			$this->output( $res . "\n" );
+
 			return false;
 		}
+
 		return true;
 	}
 
@@ -324,8 +344,8 @@ class CheckSyntax extends Maintenance {
 	 * Check a file for non-fatal coding errors, such as byte-order marks in the beginning
 	 * or pointless ?> closing tags at the end.
 	 *
-	 * @param $file String String Path to a file to check for errors
-	 * @return boolean
+	 * @param string $file String Path to a file to check for errors
+	 * @return bool
 	 */
 	private function checkForMistakes( $file ) {
 		foreach ( $this->mNoStyleCheckPaths as $regex ) {

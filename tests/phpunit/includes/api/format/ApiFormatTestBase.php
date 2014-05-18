@@ -5,7 +5,7 @@ abstract class ApiFormatTestBase extends ApiTestCase {
 	/**
 	 * @param string $format
 	 * @param array $params
-	 * @param $data
+	 * @param array $data
 	 *
 	 * @return string
 	 */

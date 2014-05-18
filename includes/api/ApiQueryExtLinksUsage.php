@@ -29,7 +29,7 @@
  */
 class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'eu' );
 	}
 
@@ -46,7 +46,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
@@ -257,7 +257,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Enumerate pages that contain a given URL';
+		return 'Enumerate pages that contain a given URL.';
 	}
 
 	public function getPossibleErrors() {

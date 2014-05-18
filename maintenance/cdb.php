@@ -77,7 +77,8 @@ do {
 			print "Loading cdb file $file...";
 			try {
 				$fileHandle = CdbReader::open( $file );
-			} catch ( CdbException $e ) {}
+			} catch ( CdbException $e ) {
+			}
 
 			if ( !$fileHandle ) {
 				print "not a cdb file or unable to read it\n";

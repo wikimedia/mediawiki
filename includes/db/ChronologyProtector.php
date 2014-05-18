@@ -26,12 +26,14 @@
  * Kind of like Hawking's [[Chronology Protection Agency]].
  */
 class ChronologyProtector {
-	/** @var Array (DB master name => position) */
+	/** @var array (DB master name => position) */
 	protected $startupPositions = array();
-	/** @var Array (DB master name => position) */
+
+	/** @var array (DB master name => position) */
 	protected $shutdownPositions = array();
 
-	protected $initialized = false; // bool; whether the session data was loaded
+	/** @var bool Whether the session data was loaded */
+	protected $initialized = false;
 
 	/**
 	 * Initialise a LoadBalancer to give it appropriate chronology protection.
@@ -41,7 +43,7 @@ class ChronologyProtector {
 	 * to that position by delaying execution. The delay may timeout and allow stale
 	 * data if no non-lagged slaves are available.
 	 *
-	 * @param $lb LoadBalancer
+	 * @param LoadBalancer $lb
 	 * @return void
 	 */
 	public function initLB( LoadBalancer $lb ) {
@@ -67,7 +69,7 @@ class ChronologyProtector {
 	 * Notify the ChronologyProtector that the LoadBalancer is about to shut
 	 * down. Saves replication positions.
 	 *
-	 * @param $lb LoadBalancer
+	 * @param LoadBalancer $lb
 	 * @return void
 	 */
 	public function shutdownLB( LoadBalancer $lb ) {

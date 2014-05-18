@@ -40,7 +40,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 	/** @var bool Whether a transaction is open on this object (internal use only!) */
 	private $mHasTransaction;
 
-	/** @var  bool Whether this update should be wrapped in a transaction */
+	/** @var bool Whether this update should be wrapped in a transaction */
 	protected $mUseTransaction;
 
 	/**

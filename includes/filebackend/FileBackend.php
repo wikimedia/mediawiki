@@ -104,6 +104,11 @@ abstract class FileBackend {
 	/** @var FileJournal */
 	protected $fileJournal;
 
+	/** Bitfield flags for supported features */
+	const ATTR_HEADERS = 1; // files can be tagged with standard HTTP headers
+	const ATTR_METADATA = 2; // files can be stored with metadata key/values
+	const ATTR_UNICODE_PATHS = 4; // files can have Unicode paths (not just ASCII)
+
 	/**
 	 * Create a new backend instance from configuration.
 	 * This should only be called from within FileBackendGroup.
@@ -198,6 +203,27 @@ abstract class FileBackend {
 	 */
 	final public function getReadOnlyReason() {
 		return ( $this->readOnly != '' ) ? $this->readOnly : false;
+	}
+
+	/**
+	 * Get the a bitfield of extra features supported by the backend medium
+	 *
+	 * @return int Bitfield of FileBackend::ATTR_* flags
+	 * @since 1.23
+	 */
+	public function getFeatures() {
+		return self::ATTR_UNICODE_PATHS;
+	}
+
+	/**
+	 * Check if the backend medium supports a field of extra features
+	 *
+	 * @return int Bitfield of FileBackend::ATTR_* flags
+	 * @return bool
+	 * @since 1.23
+	 */
+	final public function hasFeatures( $bitfield ) {
+		return ( $this->getFeatures() & $bitfield ) === $bitfield;
 	}
 
 	/**
@@ -902,6 +928,26 @@ abstract class FileBackend {
 	abstract public function getFileContentsMulti( array $params );
 
 	/**
+	 * Get metadata about a file at a storage path in the backend.
+	 * If the file does not exist, then this returns false.
+	 * Otherwise, the result is an associative array that includes:
+	 *   - headers  : map of HTTP headers used for GET/HEAD requests (name => value)
+	 *   - metadata : map of file metadata (name => value)
+	 * Metadata keys and headers names will be returned in all lower-case.
+	 * Additional values may be included for internal use only.
+	 *
+	 * Use FileBackend::hasFeatures() to check how well this is supported.
+	 *
+	 * @param array $params
+	 * $params include:
+	 *   - src    : source storage path
+	 *   - latest : use the latest available data
+	 * @return array|bool Returns false on failure
+	 * @since 1.23
+	 */
+	abstract public function getFileXAttributes( array $params );
+
+	/**
 	 * Get the size (bytes) of a file at a storage path in the backend.
 	 *
 	 * @param array $params Parameters include:
@@ -1083,7 +1129,7 @@ abstract class FileBackend {
 	 * @param array $params Parameters include:
 	 *   - dir     : storage directory
 	 *   - topOnly : only return direct child dirs of the directory
-	 * @return Traversable|Array|null Returns null on failure
+	 * @return Traversable|array|null Returns null on failure
 	 * @since 1.20
 	 */
 	abstract public function getDirectoryList( array $params );
@@ -1098,7 +1144,7 @@ abstract class FileBackend {
 	 *
 	 * @param array $params Parameters include:
 	 *   - dir : storage directory
-	 * @return Traversable|Array|null Returns null on failure
+	 * @return Traversable|array|null Returns null on failure
 	 * @since 1.20
 	 */
 	final public function getTopDirectoryList( array $params ) {
@@ -1121,7 +1167,7 @@ abstract class FileBackend {
 	 *   - dir        : storage directory
 	 *   - topOnly    : only return direct child files of the directory (since 1.20)
 	 *   - adviseStat : set to true if stat requests will be made on the files (since 1.22)
-	 * @return Traversable|Array|null Returns null on failure
+	 * @return Traversable|array|null Returns null on failure
 	 */
 	abstract public function getFileList( array $params );
 
@@ -1136,7 +1182,7 @@ abstract class FileBackend {
 	 * @param array $params Parameters include:
 	 *   - dir        : storage directory
 	 *   - adviseStat : set to true if stat requests will be made on the files (since 1.22)
-	 * @return Traversable|Array|null Returns null on failure
+	 * @return Traversable|array|null Returns null on failure
 	 * @since 1.20
 	 */
 	final public function getTopFileList( array $params ) {
@@ -1144,22 +1190,38 @@ abstract class FileBackend {
 	}
 
 	/**
-	 * Preload persistent file stat and property cache into in-process cache.
+	 * Preload persistent file stat cache and property cache into in-process cache.
 	 * This should be used when stat calls will be made on a known list of a many files.
+	 *
+	 * @see FileBackend::getFileStat()
 	 *
 	 * @param array $paths Storage paths
 	 */
-	public function preloadCache( array $paths ) {
-	}
+	abstract public function preloadCache( array $paths );
 
 	/**
 	 * Invalidate any in-process file stat and property cache.
 	 * If $paths is given, then only the cache for those files will be cleared.
 	 *
+	 * @see FileBackend::getFileStat()
+	 *
 	 * @param array $paths Storage paths (optional)
 	 */
-	public function clearCache( array $paths = null ) {
-	}
+	abstract public function clearCache( array $paths = null );
+
+	/**
+	 * Preload file stat information (concurrently if possible) into in-process cache.
+	 * This should be used when stat calls will be made on a known list of a many files.
+	 *
+	 * @see FileBackend::getFileStat()
+	 *
+	 * @param array $params Parameters include:
+	 *   - srcs        : list of source storage paths
+	 *   - latest      : use the latest available data
+	 * @return bool All requests proceeded without I/O errors (since 1.24)
+	 * @since 1.23
+	 */
+	abstract public function preloadFileStat( array $params );
 
 	/**
 	 * Lock the files at the given storage paths in the backend.
@@ -1341,12 +1403,20 @@ abstract class FileBackend {
 	 * Get the final extension from a storage or FS path
 	 *
 	 * @param string $path
+	 * @param string $case One of (rawcase, uppercase, lowercase) (since 1.24)
 	 * @return string
 	 */
-	final public static function extensionFromPath( $path ) {
+	final public static function extensionFromPath( $path, $case = 'lowercase' ) {
 		$i = strrpos( $path, '.' );
+		$ext = $i ? substr( $path, $i + 1 ) : '';
 
-		return strtolower( $i ? substr( $path, $i + 1 ) : '' );
+		if ( $case === 'lowercase' ) {
+			$ext = strtolower( $ext );
+		} elseif ( $case === 'uppercase' ) {
+			$ext = strtoupper( $ext );
+		}
+
+		return $ext;
 	}
 
 	/**

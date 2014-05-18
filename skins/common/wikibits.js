@@ -6,7 +6,6 @@
 		win = window,
 		ua = navigator.userAgent.toLowerCase(),
 		isIE6 = ( /msie ([0-9]{1,}[\.0-9]{0,})/.exec( ua ) && parseFloat( RegExp.$1 ) <= 6.0 ),
-		isGecko = /gecko/.test( ua ) && !/khtml|spoofer|netscape\/7\.0/.test( ua ),
 		onloadFuncts = [];
 
 if ( mw.config.get( 'wgBreakFrames' ) ) {
@@ -18,44 +17,13 @@ if ( mw.config.get( 'wgBreakFrames' ) ) {
 	}
 }
 
-win.redirectToFragment = function ( fragment ) {
-	var webKitVersion,
-		match = navigator.userAgent.match( /AppleWebKit\/(\d+)/ );
-	if ( match ) {
-		webKitVersion = parseInt( match[1], 10 );
-		if ( webKitVersion < 420 ) {
-			// Released Safari w/ WebKit 418.9.1 messes up horribly
-			// Nightlies of 420+ are ok
-			return;
-		}
-	}
-	if ( !win.location.hash ) {
-		win.location.hash = fragment;
-
-		// Mozilla needs to wait until after load, otherwise the window doesn't
-		// scroll.  See <https://bugzilla.mozilla.org/show_bug.cgi?id=516293>.
-		// There's no obvious way to detect this programmatically, so we use
-		// version-testing.  If Firefox fixes the bug, they'll jump twice, but
-		// better twice than not at all, so make the fix hit future versions as
-		// well.
-		if ( isGecko ) {
-			$( function () {
-				if ( win.location.hash === fragment ) {
-					win.location.hash = fragment;
-				}
-			} );
-		}
-	}
-};
-
 /**
  * User-agent sniffing.
- * To be removed in MediaWiki 1.23.
  *
  * @deprecated since 1.17 Use jquery.client instead
  */
 
-msg = 'Use feature detection or module jquery.client instead';
+msg = 'Use feature detection or module jquery.client instead.';
 
 mw.log.deprecate( win, 'clientPC', ua, msg );
 
@@ -82,11 +50,9 @@ mw.log.deprecate( win, 'ie6_bugs', false, msg );
 /**
  * DOM utilities for handling of events, text nodes and selecting elements
  *
- * To be removed in MediaWiki 1.23.
- *
  * @deprecated since 1.17 Use jQuery instead
  */
-msg = 'Use jQuery instead';
+msg = 'Use jQuery instead.';
 
 // Ignored dummy values
 mw.log.deprecate( win, 'doneOnloadHook', undefined, msg );
@@ -135,11 +101,9 @@ $( win ).on( 'load', function () {
 /**
  * Toggle checkboxes with shift selection
  *
- * To be removed in MediaWiki 1.23.
- *
  * @deprecated since 1.17 Use jquery.checkboxShiftClick instead
  */
-msg = 'Use jquery.checkboxShiftClick instead';
+msg = 'Use jquery.checkboxShiftClick instead.';
 mw.log.deprecate( win, 'checkboxes', [], msg );
 mw.log.deprecate( win, 'lastCheckbox', null, msg );
 mw.log.deprecate( win, 'setupCheckboxShiftClick', $.noop, msg );
@@ -149,56 +113,56 @@ mw.log.deprecate( win, 'checkboxClickHandler', $.noop, msg );
 /**
  * Add a button to the default editor toolbar
  *
- * To be removed in MediaWiki 1.23.
- *
  * @deprecated since 1.17 Use mw.toolbar instead
  */
-mw.log.deprecate( win, 'mwEditButtons', [], 'Use mw.toolbar instead' );
-mw.log.deprecate( win, 'mwCustomEditButtons', [], 'Use mw.toolbar instead' );
+mw.log.deprecate( win, 'mwEditButtons', [], 'Use mw.toolbar instead.' );
+mw.log.deprecate( win, 'mwCustomEditButtons', [], 'Use mw.toolbar instead.' );
 
 /**
  * Spinner creation, injection and removal
  *
- * To be removed in MediaWiki 1.23.
- *
  * @deprecated since 1.18 Use jquery.spinner instead
  */
-mw.log.deprecate( win, 'injectSpinner', $.noop, 'Use jquery.spinner instead' );
-mw.log.deprecate( win, 'removeSpinner', $.noop, 'Use jquery.spinner instead' );
+mw.log.deprecate( win, 'injectSpinner', $.noop, 'Use jquery.spinner instead.' );
+mw.log.deprecate( win, 'removeSpinner', $.noop, 'Use jquery.spinner instead.' );
 
 /**
  * Escape utilities
  *
- * To be removed in MediaWiki 1.23.
- *
  * @deprecated since 1.18 Use mw.html instead
  */
-mw.log.deprecate( win, 'escapeQuotes', $.noop,'Use mw.html instead' );
-mw.log.deprecate( win, 'escapeQuotesHTML', $.noop,'Use mw.html instead' );
+mw.log.deprecate( win, 'escapeQuotes', $.noop, 'Use mw.html instead.' );
+mw.log.deprecate( win, 'escapeQuotesHTML', $.noop, 'Use mw.html instead.' );
 
 /**
  * Display a message to the user
  *
- * To be removed in MediaWiki 1.23.
- *
  * @deprecated since 1.17 Use mediawiki.notify instead
  * @param {string|HTMLElement} message To be put inside the message box
  */
-mw.log.deprecate( win, 'jsMsg', mw.util.jsMessage, 'Use mediawiki.notify instead' );
+mw.log.deprecate( win, 'jsMsg', function ( message ) {
+	if ( !arguments.length || message === '' || message === null ) {
+		return true;
+	}
+	if ( typeof message !== 'object' ) {
+		message = $.parseHTML( message );
+	}
+	mw.notify( message, { autoHide: true, tag: 'legacy' } );
+	return true;
+}, 'Use mediawiki.notify instead.' );
 
 /**
  * Misc. utilities
  *
- * To be removed in MediaWiki 1.23.
- *
  * @deprecated since 1.17 Use mediawiki.util instead
  */
-msg = 'Use mediawiki.util instead';
-mw.log.deprecate( win, 'tooltipAccessKeyPrefix', 'alt-', msg );
-mw.log.deprecate( win, 'tooltipAccessKeyRegexp', /\[(alt-)?(.)\]$/, msg );
+msg = 'Use mediawiki.util instead.';
 mw.log.deprecate( win, 'updateTooltipAccessKeys', mw.util.updateTooltipAccessKeys, msg );
 mw.log.deprecate( win, 'addPortletLink', mw.util.addPortletLink, msg );
 mw.log.deprecate( win, 'appendCSS', mw.util.addCSS, msg );
+msg = 'Use jquery.accessKeyLabel instead.';
+mw.log.deprecate( win, 'tooltipAccessKeyPrefix', 'alt-', msg );
+mw.log.deprecate( win, 'tooltipAccessKeyRegexp', /\[(alt-)?(.)\]$/, msg );
 
 /**
  * Wikipage import methods
@@ -226,11 +190,14 @@ win.importScriptURI = function ( url ) {
 	return s;
 };
 
-win.importStylesheet = function( page ) {
-	return win.importStylesheetURI( mw.config.get( 'wgScript' ) + '?action=raw&ctype=text/css&title=' + mw.util.wikiUrlencode( page ) );
+win.importStylesheet = function ( page ) {
+	var uri = mw.config.get( 'wgScript' ) + '?title=' +
+		mw.util.wikiUrlencode( page ) +
+		'&action=raw&ctype=text/css';
+	return win.importStylesheetURI( uri );
 };
 
-win.importStylesheetURI = function( url, media ) {
+win.importStylesheetURI = function ( url, media ) {
 	var l = document.createElement( 'link' );
 	l.rel = 'stylesheet';
 	l.href = url;

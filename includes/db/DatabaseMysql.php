@@ -29,8 +29,8 @@
  */
 class DatabaseMysql extends DatabaseMysqlBase {
 	/**
-	 * @param $sql string
-	 * @return resource
+	 * @param string $sql
+	 * @return resource False on error
 	 */
 	protected function doQuery( $sql ) {
 		if ( $this->bufferResults() ) {
@@ -42,6 +42,11 @@ class DatabaseMysql extends DatabaseMysqlBase {
 		return $ret;
 	}
 
+	/**
+	 * @param string $realServer
+	 * @return bool|resource MySQL Database connection or false on failure to connect
+	 * @throws DBConnectionError
+	 */
 	protected function mysqlConnect( $realServer ) {
 		# Fail now
 		# Otherwise we get a suppressed fatal error, which is very hard to track down
@@ -84,6 +89,7 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	}
 
 	/**
+	 * @param string $charset
 	 * @return bool
 	 */
 	protected function mysqlSetCharset( $charset ) {
@@ -127,7 +133,7 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param $db
+	 * @param string $db
 	 * @return bool
 	 */
 	function selectDB( $db ) {

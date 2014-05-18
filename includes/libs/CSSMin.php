@@ -61,23 +61,38 @@ class CSSMin {
 	/**
 	 * Gets a list of local file paths which are referenced in a CSS style sheet
 	 *
+	 * This function will always return an empty array if the second parameter is not given or null
+	 * for backwards-compatibility.
+	 *
 	 * @param string $source CSS data to remap
 	 * @param string $path File path where the source was read from (optional)
 	 * @return array List of local file references
 	 */
 	public static function getLocalFileReferences( $source, $path = null ) {
+		if ( $path === null ) {
+			return array();
+		}
+
+		$path = rtrim( $path, '/' ) . '/';
 		$files = array();
+
 		$rFlags = PREG_OFFSET_CAPTURE | PREG_SET_ORDER;
 		if ( preg_match_all( '/' . self::URL_REGEX . '/', $source, $matches, $rFlags ) ) {
 			foreach ( $matches as $match ) {
-				$file = ( isset( $path )
-					? rtrim( $path, '/' ) . '/'
-					: '' ) . "{$match['file'][0]}";
+				$url = $match['file'][0];
 
-				// Only proceed if we can access the file
-				if ( !is_null( $path ) && file_exists( $file ) ) {
-					$files[] = $file;
+				// Skip fully-qualified and protocol-relative URLs and data URIs
+				if ( substr( $url, 0, 2 ) === '//' || parse_url( $url, PHP_URL_SCHEME ) ) {
+					break;
 				}
+
+				$file = $path . $url;
+				// Skip non-existent files
+				if ( file_exists( $file ) ) {
+					break;
+				}
+
+				$files[] = $file;
 			}
 		}
 		return $files;
@@ -97,7 +112,9 @@ class CSSMin {
 	 *     instead. If $sizeLimit is false, no limit is enforced.
 	 * @return string|bool: Image contents encoded as a data URI or false.
 	 */
-	public static function encodeImageAsDataURI( $file, $type = null, $sizeLimit = self::EMBED_SIZE_LIMIT ) {
+	public static function encodeImageAsDataURI( $file, $type = null,
+		$sizeLimit = self::EMBED_SIZE_LIMIT
+	) {
 		if ( $sizeLimit !== false && filesize( $file ) >= $sizeLimit ) {
 			return false;
 		}
@@ -160,13 +177,14 @@ class CSSMin {
 	}
 
 	/**
-	 * Remaps CSS URL paths and automatically embeds data URIs for CSS rules or url() values
-	 * preceded by an / * @embed * / comment.
+	 * Remaps CSS URL paths and automatically embeds data URIs for CSS rules
+	 * or url() values preceded by an / * @embed * / comment.
 	 *
 	 * @param string $source CSS data to remap
 	 * @param string $local File path where the source was read from
 	 * @param string $remote URL path to the file
-	 * @param bool $embedData If false, never do any data URI embedding, even if / * @embed * / is found
+	 * @param bool $embedData If false, never do any data URI embedding,
+	 *   even if / * @embed * / is found.
 	 * @return string Remapped CSS data
 	 */
 	public static function remap( $source, $local, $remote, $embedData = true ) {
@@ -185,46 +203,65 @@ class CSSMin {
 			$remote = substr( $remote, 0, -1 );
 		}
 
-		// Note: This will not correctly handle cases where ';', '{' or '}' appears in the rule itself,
-		// e.g. in a quoted string. You are advised not to use such characters in file names.
-		// We also match start/end of the string to be consistent in edge-cases ('@import url(…)').
+		// Note: This will not correctly handle cases where ';', '{' or '}'
+		// appears in the rule itself, e.g. in a quoted string. You are advised
+		// not to use such characters in file names. We also match start/end of
+		// the string to be consistent in edge-cases ('@import url(…)').
 		$pattern = '/(?:^|[;{])\K[^;{}]*' . CSSMin::URL_REGEX . '[^;}]*(?=[;}]|$)/';
-		return preg_replace_callback( $pattern, function ( $matchOuter ) use ( $local, $remote, $embedData ) {
-			$rule = $matchOuter[0];
 
-			// Check for global @embed comment and remove it
-			$embedAll = false;
-			$rule = preg_replace( '/^(\s*)' . CSSMin::EMBED_REGEX . '\s*/', '$1', $rule, 1, $embedAll );
+		return preg_replace_callback(
+			$pattern,
+			function ( $matchOuter ) use ( $local, $remote, $embedData ) {
+				$rule = $matchOuter[0];
 
-			// Build two versions of current rule: with remapped URLs and with embedded data: URIs (where possible)
-			$pattern = '/(?P<embed>' . CSSMin::EMBED_REGEX . '\s*|)' . CSSMin::URL_REGEX . '/';
+				// Check for global @embed comment and remove it
+				$embedAll = false;
+				$rule = preg_replace( '/^(\s*)' . CSSMin::EMBED_REGEX . '\s*/', '$1', $rule, 1, $embedAll );
 
-			$ruleWithRemapped = preg_replace_callback( $pattern, function ( $match ) use ( $local, $remote ) {
-				$remapped = CSSMin::remapOne( $match['file'], $match['query'], $local, $remote, false );
-				return CSSMin::buildUrlValue( $remapped );
-			}, $rule );
+				// Build two versions of current rule: with remapped URLs
+				// and with embedded data: URIs (where possible).
+				$pattern = '/(?P<embed>' . CSSMin::EMBED_REGEX . '\s*|)' . CSSMin::URL_REGEX . '/';
 
-			if ( $embedData ) {
-				$ruleWithEmbedded = preg_replace_callback( $pattern, function ( $match ) use ( $embedAll, $local, $remote ) {
-					$embed = $embedAll || $match['embed'];
-					$embedded = CSSMin::remapOne( $match['file'], $match['query'], $local, $remote, $embed );
-					return CSSMin::buildUrlValue( $embedded );
-				}, $rule );
-			}
+				$ruleWithRemapped = preg_replace_callback(
+					$pattern,
+					function ( $match ) use ( $local, $remote ) {
+						$remapped = CSSMin::remapOne( $match['file'], $match['query'], $local, $remote, false );
 
-			if ( $embedData && $ruleWithEmbedded !== $ruleWithRemapped ) {
-				// Build 2 CSS properties; one which uses a base64 encoded data URI in place
-				// of the @embed comment to try and retain line-number integrity, and the
-				// other with a remapped an versioned URL and an Internet Explorer hack
-				// making it ignored in all browsers that support data URIs
-				return "$ruleWithEmbedded;$ruleWithRemapped!ie";
-			} else {
-				// No reason to repeat twice
-				return $ruleWithRemapped;
-			}
-		}, $source );
+						return CSSMin::buildUrlValue( $remapped );
+					},
+					$rule
+				);
 
-		return $source;
+				if ( $embedData ) {
+					$ruleWithEmbedded = preg_replace_callback(
+						$pattern,
+						function ( $match ) use ( $embedAll, $local, $remote ) {
+							$embed = $embedAll || $match['embed'];
+							$embedded = CSSMin::remapOne(
+								$match['file'],
+								$match['query'],
+								$local,
+								$remote,
+								$embed
+							);
+
+							return CSSMin::buildUrlValue( $embedded );
+						},
+						$rule
+					);
+				}
+
+				if ( $embedData && $ruleWithEmbedded !== $ruleWithRemapped ) {
+					// Build 2 CSS properties; one which uses a base64 encoded data URI in place
+					// of the @embed comment to try and retain line-number integrity, and the
+					// other with a remapped an versioned URL and an Internet Explorer hack
+					// making it ignored in all browsers that support data URIs
+					return "$ruleWithEmbedded;$ruleWithRemapped!ie";
+				} else {
+					// No reason to repeat twice
+					return $ruleWithRemapped;
+				}
+			}, $source );
 	}
 
 	/**
@@ -242,8 +279,7 @@ class CSSMin {
 		$url = $file . $query;
 
 		// Skip fully-qualified and protocol-relative URLs and data URIs
-		$urlScheme = substr( $url, 0, 2 ) === '//' || parse_url( $url, PHP_URL_SCHEME );
-		if ( $urlScheme ) {
+		if ( substr( $url, 0, 2 ) === '//' || parse_url( $url, PHP_URL_SCHEME ) ) {
 			return $url;
 		}
 

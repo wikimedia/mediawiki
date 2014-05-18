@@ -27,15 +27,35 @@
  * @ingroup SpecialPage
  */
 class MovePageForm extends UnlistedSpecialPage {
-	/**
-	 * Objects
-	 * @var Title
-	 */
-	var $oldTitle, $newTitle;
-	// Text input
-	var $reason;
+	/** @var Title */
+	protected $oldTitle;
+
+	/** @var Title */
+	protected $newTitle;
+
+
+	/** @var string Text input */
+	protected $reason;
+
 	// Checks
-	var $moveTalk, $deleteAndMove, $moveSubpages, $fixRedirects, $leaveRedirect, $moveOverShared;
+
+	/** @var bool */
+	protected $moveTalk;
+
+	/** @var bool */
+	protected $deleteAndMove;
+
+	/** @var bool */
+	protected $moveSubpages;
+
+	/** @var bool */
+	protected $fixRedirects;
+
+	/** @var bool */
+	protected $leaveRedirect;
+
+	/** @var bool */
+	protected $moveOverShared;
 
 	private $watch = false;
 
@@ -162,6 +182,11 @@ class MovePageForm extends UnlistedSpecialPage {
 				$out->wrapWikiMsg(
 					"<div class=\"error mw-moveuserpage-warning\">\n$1\n</div>",
 					'moveuserpage-warning'
+				);
+			} elseif ( $this->oldTitle->getNamespace() == NS_CATEGORY ) {
+				$out->wrapWikiMsg(
+					"<div class=\"error mw-movecategorypage-warning\">\n$1\n</div>",
+					'movecategorypage-warning'
 				);
 			}
 
@@ -467,7 +492,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$nt = $this->newTitle;
 
 		# don't allow moving to pages with # in
-		if ( !$nt || $nt->getFragment() != '' ) {
+		if ( !$nt || $nt->hasFragment() ) {
 			$this->showForm( array( array( 'badtitletext' ) ) );
 
 			return;
@@ -593,8 +618,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		$dbr = wfGetDB( DB_MASTER );
 		if ( $this->moveSubpages && (
 			MWNamespace::hasSubpages( $nt->getNamespace() ) || (
-				$this->moveTalk &&
-					MWNamespace::hasSubpages( $nt->getTalkPage()->getNamespace() )
+				$this->moveTalk
+					&& MWNamespace::hasSubpages( $nt->getTalkPage()->getNamespace() )
 			)
 		) ) {
 			$conds = array(
@@ -680,17 +705,20 @@ class MovePageForm extends UnlistedSpecialPage {
 					);
 
 					$newLink = Linker::linkKnown( $newSubpage );
-					$extraOutput[] = $this->msg( 'movepage-page-moved' )->rawParams( $oldLink, $newLink )->escaped();
+					$extraOutput[] = $this->msg( 'movepage-page-moved' )
+						->rawParams( $oldLink, $newLink )->escaped();
 					++$count;
 
 					if ( $count >= $wgMaximumMovedPages ) {
-						$extraOutput[] = $this->msg( 'movepage-max-pages' )->numParams( $wgMaximumMovedPages )->escaped();
+						$extraOutput[] = $this->msg( 'movepage-max-pages' )
+							->numParams( $wgMaximumMovedPages )->escaped();
 						break;
 					}
 				} else {
 					$oldLink = Linker::linkKnown( $oldSubpage );
 					$newLink = Linker::link( $newSubpage );
-					$extraOutput[] = $this->msg( 'movepage-page-unmoved' )->rawParams( $oldLink, $newLink )->escaped();
+					$extraOutput[] = $this->msg( 'movepage-page-unmoved' )
+						->rawParams( $oldLink, $newLink )->escaped();
 				}
 			}
 		}

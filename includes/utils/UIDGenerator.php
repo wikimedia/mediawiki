@@ -30,6 +30,7 @@ class UIDGenerator {
 	/** @var UIDGenerator */
 	protected static $instance = null;
 
+	protected $nodeIdFile; // string; local file path
 	protected $nodeId32; // string; node ID in binary (32 bits)
 	protected $nodeId48; // string; node ID in binary (48 bits)
 
@@ -40,10 +41,14 @@ class UIDGenerator {
 	protected $fileHandles = array(); // cache file handles
 
 	const QUICK_RAND = 1; // get randomness from fast and insecure sources
+	const QUICK_VOLATILE = 2; // use an APC like in-memory counter if available
 
 	protected function __construct() {
-		$idFile = wfTempDir() . '/mw-' . __CLASS__ . '-UID-nodeid';
-		$nodeId = is_file( $idFile ) ? file_get_contents( $idFile ) : '';
+		$this->nodeIdFile = wfTempDir() . '/mw-' . __CLASS__ . '-UID-nodeid';
+		$nodeId = '';
+		if ( is_file( $this->nodeIdFile ) ) {
+			$nodeId = file_get_contents( $this->nodeIdFile );
+		}
 		// Try to get some ID that uniquely identifies this machine (RFC 4122)...
 		if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
 			wfSuppressWarnings();
@@ -65,7 +70,7 @@ class UIDGenerator {
 				$nodeId = MWCryptRand::generateHex( 12, true );
 				$nodeId[1] = dechex( hexdec( $nodeId[1] ) | 0x1 ); // set multicast bit
 			}
-			file_put_contents( $idFile, $nodeId ); // cache
+			file_put_contents( $this->nodeIdFile, $nodeId ); // cache
 		}
 		$this->nodeId32 = wfBaseConvert( substr( sha1( $nodeId ), 0, 8 ), 16, 2, 32 );
 		$this->nodeId48 = wfBaseConvert( $nodeId, 16, 2, 48 );
@@ -215,6 +220,118 @@ class UIDGenerator {
 	}
 
 	/**
+	 * Return an ID that is sequential *only* for this node and bucket
+	 *
+	 * These IDs are suitable for per-host sequence numbers, e.g. for some packet protocols.
+	 * If UIDGenerator::QUICK_VOLATILE is used the counter might reset on server restart.
+	 *
+	 * @param string $bucket Arbitrary bucket name (should be ASCII)
+	 * @param integer $bits Bit size (<=48) of resulting numbers before wrap-around
+	 * @param integer $flags (supports UIDGenerator::QUICK_VOLATILE)
+	 * @return float Integer value as float
+	 * @since 1.23
+	 */
+	public static function newSequentialPerNodeID( $bucket, $bits = 48, $flags = 0 ) {
+		return current( self::newSequentialPerNodeIDs( $bucket, $bits, 1, $flags ) );
+	}
+
+	/**
+	 * Return IDs that are sequential *only* for this node and bucket
+	 *
+	 * @see UIDGenerator::newSequentialPerNodeID()
+	 * @param string $bucket Arbitrary bucket name (should be ASCII)
+	 * @param integer $bits Bit size (16 to 48) of resulting numbers before wrap-around
+	 * @param integer $count Number of IDs to return (1 to 10000)
+	 * @param integer $flags (supports UIDGenerator::QUICK_VOLATILE)
+	 * @return array Ordered list of float integer values
+	 * @since 1.23
+	 */
+	public static function newSequentialPerNodeIDs( $bucket, $bits, $count, $flags = 0 ) {
+		$gen = self::singleton();
+		return $gen->getSequentialPerNodeIDs( $bucket, $bits, $count, $flags );
+	}
+
+	/**
+	 * Return IDs that are sequential *only* for this node and bucket
+	 *
+	 * @see UIDGenerator::newSequentialPerNodeID()
+	 * @param string $bucket Arbitrary bucket name (should be ASCII)
+	 * @param integer $bits Bit size (16 to 48) of resulting numbers before wrap-around
+	 * @param integer $count Number of IDs to return (1 to 10000)
+	 * @param integer $flags (supports UIDGenerator::QUICK_VOLATILE)
+	 * @return array Ordered list of float integer values
+	 */
+	protected function getSequentialPerNodeIDs( $bucket, $bits, $count, $flags ) {
+		if ( $count <= 0 ) {
+			return array(); // nothing to do
+		} elseif ( $count > 10000 ) {
+			throw new MWException( "Number of requested IDs ($count) is too high." );
+		} elseif ( $bits < 16 || $bits > 48 ) {
+			throw new MWException( "Requested bit size ($bits) is out of range." );
+		}
+
+		$counter = null; // post-increment persistent counter value
+
+		// Use APC/eAccelerator/xcache if requested, available, and not in CLI mode;
+		// Counter values would not survive accross script instances in CLI mode.
+		$cache = null;
+		if ( ( $flags & self::QUICK_VOLATILE ) && PHP_SAPI !== 'cli' ) {
+			try {
+				$cache = ObjectCache::newAccelerator( array() );
+			} catch ( MWException $e ) {
+				// not supported
+			}
+		}
+		if ( $cache ) {
+			$counter = $cache->incr( $bucket, $count );
+			if ( $counter === false ) {
+				if ( !$cache->add( $bucket, $count ) ) {
+					throw new MWException( 'Unable to set value to ' . get_class( $cache ) );
+				}
+				$counter = $count;
+			}
+		}
+
+		// Note: use of fmod() avoids "division by zero" on 32 bit machines
+		if ( $counter === null ) {
+			$path = wfTempDir() . '/mw-' . __CLASS__ . '-' . rawurlencode( $bucket ) . '-48';
+			// Get the UID lock file handle
+			if ( isset( $this->fileHandles[$path] ) ) {
+				$handle = $this->fileHandles[$path];
+			} else {
+				$handle = fopen( $path, 'cb+' );
+				$this->fileHandles[$path] = $handle ?: null; // cache
+			}
+			// Acquire the UID lock file
+			if ( $handle === false ) {
+				throw new MWException( "Could not open '{$path}'." );
+			} elseif ( !flock( $handle, LOCK_EX ) ) {
+				fclose( $handle );
+				throw new MWException( "Could not acquire '{$path}'." );
+			}
+			// Fetch the counter value and increment it...
+			rewind( $handle );
+			$counter = floor( trim( fgets( $handle ) ) ) + $count; // fetch as float
+			// Write back the new counter value
+			ftruncate( $handle, 0 );
+			rewind( $handle );
+			fwrite( $handle, fmod( $counter, pow( 2, 48 ) ) ); // warp-around as needed
+			fflush( $handle );
+			// Release the UID lock file
+			flock( $handle, LOCK_UN );
+		}
+
+		$ids = array();
+		$divisor = pow( 2, $bits );
+		$currentId = floor( $counter - $count ); // pre-increment counter value
+		for ( $i = 0; $i < $count; ++$i ) {
+			$ids[] = fmod( ++$currentId, $divisor );
+		}
+
+		return $ids;
+	}
+
+	/**
 	 * Get a (time,counter,clock sequence) where (time,counter) is higher
 	 * than any previous (time,counter) value for the given clock sequence.
 	 * This is useful for making UIDs sequential on a per-node bases.
@@ -227,16 +344,18 @@ class UIDGenerator {
 	 */
 	protected function getTimestampAndDelay( $lockFile, $clockSeqSize, $counterSize ) {
 		// Get the UID lock file handle
-		if ( isset( $this->fileHandles[$lockFile] ) ) {
-			$handle = $this->fileHandles[$lockFile];
+		$path = $this->$lockFile;
+		if ( isset( $this->fileHandles[$path] ) ) {
+			$handle = $this->fileHandles[$path];
 		} else {
-			$handle = fopen( $this->$lockFile, 'cb+' );
-			$this->fileHandles[$lockFile] = $handle ?: null; // cache
+			$handle = fopen( $path, 'cb+' );
+			$this->fileHandles[$path] = $handle ?: null; // cache
 		}
 		// Acquire the UID lock file
 		if ( $handle === false ) {
 			throw new MWException( "Could not open '{$this->$lockFile}'." );
 		} elseif ( !flock( $handle, LOCK_EX ) ) {
+			fclose( $handle );
 			throw new MWException( "Could not acquire '{$this->$lockFile}'." );
 		}
 		// Get the current timestamp, clock sequence number, last time, and counter
@@ -338,7 +457,51 @@ class UIDGenerator {
 		return array( (int)$sec, (int)( $msec * 1000 ) );
 	}
 
+	/**
+	 * Delete all cache files that have been created.
+	 *
+	 * This is a cleanup method primarily meant to be used from unit tests to
+	 * avoid poluting the local filesystem. If used outside of a unit test
+	 * environment it should be used with caution as it may destroy state saved
+	 * in the files.
+	 *
+	 * @see unitTestTearDown
+	 * @since 1.23
+	 */
+	protected function deleteCacheFiles() {
+		// Bug: 44850
+		foreach ( $this->fileHandles as $path => $handle ) {
+			if ( $handle !== null ) {
+				fclose( $handle );
+			}
+			if ( is_file( $path ) ) {
+				unlink( $path );
+			}
+			unset( $this->fileHandles[$path] );
+		}
+		if ( is_file( $this->nodeIdFile ) ) {
+			unlink( $this->nodeIdFile );
+		}
+	}
+
+	/**
+	 * Cleanup resources when tearing down after a unit test.
+	 *
+	 * This is a cleanup method primarily meant to be used from unit tests to
+	 * avoid poluting the local filesystem. If used outside of a unit test
+	 * environment it should be used with caution as it may destroy state saved
+	 * in the files.
+	 *
+	 * @see deleteCacheFiles
+	 * @since 1.23
+	 */
+	public static function unitTestTearDown() {
+		// Bug: 44850
+		$gen = self::singleton();
+		$gen->deleteCacheFiles();
+	}
+
 	function __destruct() {
-		array_map( 'fclose', $this->fileHandles );
+		array_map( 'fclose', array_filter( $this->fileHandles ) );
 	}
 }

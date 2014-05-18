@@ -78,9 +78,9 @@ class ApiComparePages extends ApiBase {
 	}
 
 	/**
-	 * @param $revision int
-	 * @param $titleText string
-	 * @param $titleId int
+	 * @param int $revision
+	 * @param string $titleText
+	 * @param int $titleId
 	 * @return int
 	 */
 	private function revisionOrTitleOrId( $revision, $titleText, $titleId ) {
@@ -157,8 +157,8 @@ class ApiComparePages extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Get the difference between 2 pages',
-			'You must pass a revision number or a page title or a page ID id for each part (1 and 2)'
+			'Get the difference between 2 pages.',
+			'You must pass a revision number or a page title or a page ID id for each part (1 and 2).'
 		);
 	}
 

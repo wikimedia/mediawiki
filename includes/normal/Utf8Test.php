@@ -4,7 +4,7 @@
  * http://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-test.txt
  *
  * Copyright © 2004 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,27 +40,27 @@ $verbose = false;
 #$verbose = true;
 
 $in = fopen( "UTF-8-test.txt", "rt" );
-if( !$in ) {
+if ( !$in ) {
 	print "Couldn't open UTF-8-test.txt -- can't run tests.\n";
 	print "If necessary, manually download this file. It can be obtained at\n";
 	print "http://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-test.txt\n";
-	exit(-1);
+	exit( -1 );
 }
 
 $columns = 0;
-while( false !== ( $line = fgets( $in ) ) ) {
+while ( false !== ( $line = fgets( $in ) ) ) {
 	$matches = array();
-	if( preg_match( '/^(Here come the tests:\s*)\|$/', $line, $matches ) ) {
+	if ( preg_match( '/^(Here come the tests:\s*)\|$/', $line, $matches ) ) {
 		$columns = strpos( $line, '|' );
 		break;
 	}
 }
 
-if( !$columns ) {
+if ( !$columns ) {
 	print "Something seems to be wrong; couldn't extract line length.\n";
 	print "Check that UTF-8-test.txt was downloaded correctly from\n";
 	print "http://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-test.txt\n";
-	exit(-1);
+	exit( -1 );
 }
 
 # print "$columns\n";
@@ -90,22 +90,26 @@ $test = '';
 $failed = 0;
 $success = 0;
 $total = 0;
-while( false !== ( $line = fgets( $in ) ) ) {
+while ( false !== ( $line = fgets( $in ) ) ) {
 	$matches = array();
-	if( preg_match( '/^(\d+)\s+(.*?)\s*\|/', $line, $matches ) ) {
+	if ( preg_match( '/^(\d+)\s+(.*?)\s*\|/', $line, $matches ) ) {
 		$section = $matches[1];
 		print $line;
 		continue;
 	}
-	if( preg_match( '/^(\d+\.\d+\.\d+)\s*/', $line, $matches ) ) {
+	if ( preg_match( '/^(\d+\.\d+\.\d+)\s*/', $line, $matches ) ) {
 		$test = $matches[1];
 
-		if( in_array( $test, $ignore ) ) {
+		if ( in_array( $test, $ignore ) ) {
 			continue;
 		}
-		if( in_array( $test, $longTests ) ) {
+		if ( in_array( $test, $longTests ) ) {
 			$line = fgets( $in );
-			for( $line = fgets( $in ); !preg_match( '/^\s+\|/', $line ); $line = fgets( $in ) ) {
+
+			// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
+			for ( $line = fgets( $in ); !preg_match( '/^\s+\|/', $line ); $line = fgets( $in ) ) {
+				// @codingStandardsIgnoreEnd
+
 				testLine( $test, $line, $total, $success, $failed, $columns, $exceptions, $verbose );
 			}
 		} else {
@@ -114,15 +118,14 @@ while( false !== ( $line = fgets( $in ) ) ) {
 	}
 }
 
-if( $failed ) {
+if ( $failed ) {
 	echo "\nFailed $failed tests.\n";
 	echo "UTF-8 DECODER TEST FAILED\n";
-	exit (-1);
+	exit ( -1 );
 }
 
 echo "UTF-8 DECODER TEST SUCCESS!\n";
-exit (0);
-
+exit ( 0 );
 
 function testLine( $test, $line, &$total, &$success, &$failed, $columns, $exceptions, $verbose ) {
 	$stripped = $line;
@@ -130,24 +133,24 @@ function testLine( $test, $line, &$total, &$success, &$failed, $columns, $except
 
 	$same = ( $line == $stripped );
 	$len = mb_strlen( substr( $stripped, 0, strpos( $stripped, '|' ) ) );
-	if( $len == 0 ) {
+	if ( $len == 0 ) {
 		$len = strlen( substr( $stripped, 0, strpos( $stripped, '|' ) ) );
 	}
 
-	$ok = $same ^ ($test >= 3 );
+	$ok = $same ^ ( $test >= 3 );
 
 	$ok ^= in_array( $test, $exceptions );
 
-	$ok &= ($columns == $len);
+	$ok &= ( $columns == $len );
 
 	$total++;
-	if( $ok ) {
+	if ( $ok ) {
 		$success++;
 	} else {
 		$failed++;
 	}
 
-	if( $verbose || !$ok ) {
+	if ( $verbose || !$ok ) {
 		print str_replace( "\n", "$len\n", $stripped );
 	}
 }

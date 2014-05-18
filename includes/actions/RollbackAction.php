@@ -62,6 +62,7 @@ class RollbackAction extends FormlessAction {
 			$this->getOutput()->addWikiMsgArray( $errMsg, $errArray );
 
 			if ( isset( $details['current'] ) ) {
+				/** @var Revision $current */
 				$current = $details['current'];
 
 				if ( $current->getComment() != '' ) {
@@ -85,6 +86,7 @@ class RollbackAction extends FormlessAction {
 			throw new ErrorPageError( 'rollbackfailed', $error[0], array_slice( $error, 1 ) );
 		}
 
+		/** @var Revision $current */
 		$current = $details['current'];
 		$target = $details['target'];
 		$newId = $details['newid'];

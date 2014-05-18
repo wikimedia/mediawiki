@@ -18,7 +18,7 @@ ContentHandler::getDefaultModelFor($title) as follows:
 
 * The global setting $wgNamespaceContentModels specifies a content model for the given namespace.
 * The hook ContentHandlerDefaultModelFor may be used to override the page's default model.
-* Pages in NS_MEDIAWIKI and NS_USER default to the CSS or JavaScript model if they end in .js or .css, respectively.
+* Pages in NS_MEDIAWIKI and NS_USER default to the CSS or JavaScript model if they end in .css or .js, respectively.
   Pages in NS_MEDIAWIKI default to the wikitext model otherwise.
 * The hook TitleIsCssOrJsPage may be used to force a page to use the CSS or JavaScript model.
   This is a compatibility feature. The ContentHandlerDefaultModelFor hook should be used instead if possible.

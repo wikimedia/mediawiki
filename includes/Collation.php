@@ -21,7 +21,7 @@
  */
 
 abstract class Collation {
-	static $instance;
+	private static $instance;
 
 	/**
 	 * @return Collation
@@ -36,7 +36,7 @@ abstract class Collation {
 
 	/**
 	 * @throws MWException
-	 * @param $collationName string
+	 * @param string $collationName
 	 * @return Collation
 	 */
 	static function factory( $collationName ) {
@@ -108,7 +108,8 @@ abstract class Collation {
 }
 
 class UppercaseCollation extends Collation {
-	var $lang;
+	private $lang;
+
 	function __construct() {
 		// Get a language object so that we can use the generic UTF-8 uppercase
 		// function there
@@ -153,8 +154,20 @@ class IdentityCollation extends Collation {
 class IcuCollation extends Collation {
 	const FIRST_LETTER_VERSION = 2;
 
-	var $primaryCollator, $mainCollator, $locale, $digitTransformLanguage;
-	var $firstLetterData;
+	/** @var Collator */
+	private $primaryCollator;
+
+	/** @var Collator */
+	private $mainCollator;
+
+	/** @var  */
+	private $locale;
+
+	/** @var Language */
+	protected $digitTransformLanguage;
+
+	/** @var array */
+	private $firstLetterData;
 
 	/**
 	 * Unified CJK blocks.
@@ -165,7 +178,7 @@ class IcuCollation extends Collation {
 	 * is pretty useless for sorting Chinese text anyway. Japanese and Korean
 	 * blocks are not included here, because they are smaller and more useful.
 	 */
-	static $cjkBlocks = array(
+	private static $cjkBlocks = array(
 		array( 0x2E80, 0x2EFF ), // CJK Radicals Supplement
 		array( 0x2F00, 0x2FDF ), // Kangxi Radicals
 		array( 0x2FF0, 0x2FFF ), // Ideographic Description Characters
@@ -204,14 +217,19 @@ class IcuCollation extends Collation {
 	 * Empty arrays are intended; this signifies that the data for the language is
 	 * available and that there are, in fact, no additional letters to consider.
 	 */
-	static $tailoringFirstLetters = array(
+	private static $tailoringFirstLetters = array(
 		// Verified by native speakers
 		'be' => array( "Ё" ),
 		'be-tarask' => array( "Ё" ),
+		'cy' => array( "Ch", "Dd", "Ff", "Ng", "Ll", "Ph", "Rh", "Th" ),
 		'en' => array(),
+		'fa' => array( "آ", "ء", "ه" ),
 		'fi' => array( "Å", "Ä", "Ö" ),
+		'fr' => array(),
 		'hu' => array( "Cs", "Dz", "Dzs", "Gy", "Ly", "Ny", "Ö", "Sz", "Ty", "Ü", "Zs" ),
+		'is' => array( "Á", "Ð", "É", "Í", "Ó", "Ú", "Ý", "Þ", "Æ", "Ö", "Å" ),
 		'it' => array(),
+		'lv' => array( "Č", "Ģ", "Ķ", "Ļ", "Ņ", "Š", "Ž" ),
 		'pl' => array( "Ą", "Ć", "Ę", "Ł", "Ń", "Ó", "Ś", "Ź", "Ż" ),
 		'pt' => array(),
 		'ru' => array(),
@@ -229,7 +247,6 @@ class IcuCollation extends Collation {
 		'ca' => array(),
 		'co' => array(),
 		'cs' => array( "Č", "Ch", "Ř", "Š", "Ž" ),
-		'cy' => array( "Ch", "Dd", "Ff", "Ng", "Ll", "Ph", "Rh", "Th" ),
 		'da' => array( "Æ", "Ø", "Å" ),
 		'de' => array(),
 		'dsb' => array( "Č", "Ć", "Dź", "Ě", "Ch", "Ł", "Ń", "Ŕ", "Š", "Ś", "Ž", "Ź" ),
@@ -238,9 +255,7 @@ class IcuCollation extends Collation {
 		'es' => array( "Ñ" ),
 		'et' => array( "Š", "Ž", "Õ", "Ä", "Ö", "Ü" ),
 		'eu' => array( "Ñ" ),
-		'fa' => array( "آ", "ء", "ه" ),
 		'fo' => array( "Á", "Ð", "Í", "Ó", "Ú", "Ý", "Æ", "Ø", "Å" ),
-		'fr' => array(),
 		'fur' => array( "À", "Á", "Â", "È", "Ì", "Ò", "Ù" ),
 		'fy' => array(),
 		'ga' => array(),
@@ -248,7 +263,6 @@ class IcuCollation extends Collation {
 		'gl' => array( "Ch", "Ll", "Ñ" ),
 		'hr' => array( "Č", "Ć", "Dž", "Đ", "Lj", "Nj", "Š", "Ž" ),
 		'hsb' => array( "Č", "Dź", "Ě", "Ch", "Ł", "Ń", "Ř", "Š", "Ć", "Ž" ),
-		'is' => array( "Á", "Ð", "É", "Í", "Ó", "Ú", "Ý", "Þ", "Æ", "Ö", "Å" ),
 		'kk' => array( "Ү", "І" ),
 		'kl' => array( "Æ", "Ø", "Å" ),
 		'ku' => array( "Ç", "Ê", "Î", "Ş", "Û" ),
@@ -256,7 +270,6 @@ class IcuCollation extends Collation {
 		'la' => array(),
 		'lb' => array(),
 		'lt' => array( "Č", "Š", "Ž" ),
-		'lv' => array( "Č", "Ģ", "Ķ", "Ļ", "Ņ", "Š", "Ž" ),
 		'mk' => array(),
 		'mo' => array( "Ă", "Â", "Î", "Ş", "Ţ" ),
 		'mt' => array( "Ċ", "Ġ", "Għ", "Ħ", "Ż" ),
@@ -333,7 +346,7 @@ class IcuCollation extends Collation {
 		$sortKey = $this->getPrimarySortKey( $string );
 
 		// Do a binary search to find the correct letter to sort under
-		$min = $this->findLowerBound(
+		$min = ArrayUtils::findLowerBound(
 			array( $this, 'getSortKeyByLetterIndex' ),
 			$this->getFirstLetterCount(),
 			'strcmp',
@@ -470,7 +483,7 @@ class IcuCollation extends Collation {
 			$prev = $trimmedKey;
 		}
 		foreach ( $duplicatePrefixes as $badKey ) {
-			wfDebug( "Removing '{$letterMap[$badKey]}' from first letters." );
+			wfDebug( "Removing '{$letterMap[$badKey]}' from first letters.\n" );
 			unset( $letterMap[$badKey] );
 			// This code assumes that unsetting does not change sort order.
 		}
@@ -514,6 +527,8 @@ class IcuCollation extends Collation {
 	 * Do a binary search, and return the index of the largest item that sorts
 	 * less than or equal to the target value.
 	 *
+	 * @deprecated since 1.23; use ArrayUtils::findLowerBound() instead
+	 *
 	 * @param array $valueCallback A function to call to get the value with
 	 *     a given array index.
 	 * @param int $valueCount The number of items accessible via $valueCallback,
@@ -526,35 +541,8 @@ class IcuCollation extends Collation {
 	 *     sorts before all items.
 	 */
 	function findLowerBound( $valueCallback, $valueCount, $comparisonCallback, $target ) {
-		if ( $valueCount === 0 ) {
-			return false;
-		}
-
-		$min = 0;
-		$max = $valueCount;
-		do {
-			$mid = $min + ( ( $max - $min ) >> 1 );
-			$item = call_user_func( $valueCallback, $mid );
-			$comparison = call_user_func( $comparisonCallback, $target, $item );
-			if ( $comparison > 0 ) {
-				$min = $mid;
-			} elseif ( $comparison == 0 ) {
-				$min = $mid;
-				break;
-			} else {
-				$max = $mid;
-			}
-		} while ( $min < $max - 1 );
-
-		if ( $min == 0 ) {
-			$item = call_user_func( $valueCallback, $min );
-			$comparison = call_user_func( $comparisonCallback, $target, $item );
-			if ( $comparison < 0 ) {
-				// Before the first item
-				return false;
-			}
-		}
-		return $min;
+		wfDeprecated( __METHOD__, '1.23' );
+		return ArrayUtils::findLowerBound( $valueCallback, $valueCount, $comparisonCallback, $target );
 	}
 
 	static function isCjk( $codepoint ) {
@@ -576,7 +564,7 @@ class IcuCollation extends Collation {
 	 * This function will return false on older PHPs.
 	 *
 	 * @since 1.21
-	 * @return string|false
+	 * @return string|bool
 	 */
 	static function getICUVersion() {
 		return defined( 'INTL_ICU_VERSION' ) ? INTL_ICU_VERSION : false;
@@ -587,7 +575,7 @@ class IcuCollation extends Collation {
 	 * currently in use, or false when it can't be determined.
 	 *
 	 * @since 1.21
-	 * @return string|false
+	 * @return string|bool
 	 */
 	static function getUnicodeVersionForICU() {
 		$icuVersion = IcuCollation::getICUVersion();

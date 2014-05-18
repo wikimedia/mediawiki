@@ -68,14 +68,20 @@ class SpecialListFiles extends IncludableSpecialPage {
  * @ingroup SpecialPage Pager
  */
 class ImageListPager extends TablePager {
-	var $mFieldNames = null;
+	protected $mFieldNames = null;
+
 	// Subclasses should override buildQueryConds instead of using $mQueryConds variable.
-	var $mQueryConds = array();
-	var $mUserName = null;
-	var $mSearch = '';
-	var $mIncluding = false;
-	var $mShowAll = false;
-	var $mTableName = 'image';
+	protected $mQueryConds = array();
+
+	protected $mUserName = null;
+
+	protected $mSearch = '';
+
+	protected $mIncluding = false;
+
+	protected $mShowAll = false;
+
+	protected $mTableName = 'image';
 
 	function __construct( IContextSource $context, $userName = null, $search = '',
 		$including = false, $showAll = false
@@ -121,7 +127,7 @@ class ImageListPager extends TablePager {
 	 * Build the where clause of the query.
 	 *
 	 * Replaces the older mQueryConds member variable.
-	 * @param $table String Either "image" or "oldimage"
+	 * @param string $table Either "image" or "oldimage"
 	 * @return array The query conditions.
 	 */
 	protected function buildQueryConds( $table ) {
@@ -129,7 +135,7 @@ class ImageListPager extends TablePager {
 		$conds = array();
 
 		if ( !is_null( $this->mUserName ) ) {
-			$conds[ $prefix . '_user_text' ] = $this->mUserName;
+			$conds[$prefix . '_user_text'] = $this->mUserName;
 		}
 
 		if ( $this->mSearch !== '' ) {
@@ -154,7 +160,7 @@ class ImageListPager extends TablePager {
 	}
 
 	/**
-	 * @return Array
+	 * @return array
 	 */
 	function getFieldNames() {
 		if ( !$this->mFieldNames ) {
@@ -215,6 +221,7 @@ class ImageListPager extends TablePager {
 		// for two different tables, without reimplementing
 		// the pager class.
 		$qi = $this->getQueryInfoReal( $this->mTableName );
+
 		return $qi;
 	}
 
@@ -225,7 +232,7 @@ class ImageListPager extends TablePager {
 	 *
 	 * This is a bit hacky.
 	 *
-	 * @param $table String Either 'image' or 'oldimage'
+	 * @param string $table Either 'image' or 'oldimage'
 	 * @return array Query info
 	 */
 	protected function getQueryInfoReal( $table ) {
@@ -290,11 +297,15 @@ class ImageListPager extends TablePager {
 	 * @note $asc is named $descending in IndexPager base class. However
 	 *   it is true when the order is ascending, and false when the order
 	 *   is descending, so I renamed it to $asc here.
+	 * @param int $offset
+	 * @param int $limit
+	 * @param bool $asc
 	 */
 	function reallyDoQuery( $offset, $limit, $asc ) {
 		$prevTableName = $this->mTableName;
 		$this->mTableName = 'image';
-		list( $tables, $fields, $conds, $fname, $options, $join_conds ) = $this->buildQueryInfo( $offset, $limit, $asc );
+		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
+			$this->buildQueryInfo( $offset, $limit, $asc );
 		$imageRes = $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds );
 		$this->mTableName = $prevTableName;
 
@@ -311,7 +322,8 @@ class ImageListPager extends TablePager {
 		}
 		$this->mIndexField = 'oi_' . substr( $this->mIndexField, 4 );
 
-		list( $tables, $fields, $conds, $fname, $options, $join_conds ) = $this->buildQueryInfo( $offset, $limit, $asc );
+		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
+			$this->buildQueryInfo( $offset, $limit, $asc );
 		$oldimageRes = $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds );
 
 		$this->mTableName = $prevTableName;
@@ -325,10 +337,10 @@ class ImageListPager extends TablePager {
 	 *
 	 * Note: This will throw away some results
 	 *
-	 * @param $res1 ResultWrapper
-	 * @param $res2 ResultWrapper
-	 * @param $limit int
-	 * @param $ascending boolean See note about $asc in $this->reallyDoQuery
+	 * @param ResultWrapper $res1
+	 * @param ResultWrapper $res2
+	 * @param int $limit
+	 * @param bool $ascending See note about $asc in $this->reallyDoQuery
 	 * @return FakeResultWrapper $res1 and $res2 combined
 	 */
 	protected function combineResult( $res1, $res2, $limit, $ascending ) {
@@ -338,7 +350,7 @@ class ImageListPager extends TablePager {
 		$topRes2 = $res2->next();
 		$resultArray = array();
 		for ( $i = 0; $i < $limit && $topRes1 && $topRes2; $i++ ) {
-			if ( strcmp( $topRes1->{ $this->mIndexField }, $topRes2->{ $this->mIndexField } ) > 0 ) {
+			if ( strcmp( $topRes1->{$this->mIndexField}, $topRes2->{$this->mIndexField} ) > 0 ) {
 				if ( !$ascending ) {
 					$resultArray[] = $topRes1;
 					$topRes1 = $res1->next();
@@ -356,14 +368,21 @@ class ImageListPager extends TablePager {
 				}
 			}
 		}
+
+		// @codingStandardsIgnoreStart Squiz.WhiteSpace.SemicolonSpacing.Incorrect
 		for ( ; $i < $limit && $topRes1; $i++ ) {
+			// @codingStandardsIgnoreEnd
 			$resultArray[] = $topRes1;
 			$topRes1 = $res1->next();
 		}
+
+		// @codingStandardsIgnoreStart Squiz.WhiteSpace.SemicolonSpacing.Incorrect
 		for ( ; $i < $limit && $topRes2; $i++ ) {
+			// @codingStandardsIgnoreEnd
 			$resultArray[] = $topRes2;
 			$topRes2 = $res2->next();
 		}
+
 		return new FakeResultWrapper( $resultArray );
 	}
 
@@ -409,6 +428,7 @@ class ImageListPager extends TablePager {
 				// If statement for paranoia
 				if ( $file ) {
 					$thumb = $file->transform( array( 'width' => 180, 'height' => 360 ) );
+
 					return $thumb->toHtml( array( 'desc-link' => true ) );
 				} else {
 					return htmlspecialchars( $value );
@@ -493,6 +513,7 @@ class ImageListPager extends TablePager {
 			'checked' => $this->mShowAll,
 			'tabindex' => 4,
 		) );
+
 		return Html::openElement( 'form',
 			array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listfiles-form' )
 		) .

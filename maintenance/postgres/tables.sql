@@ -12,18 +12,23 @@ SET client_min_messages = 'ERROR';
 DROP SEQUENCE IF EXISTS user_user_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS page_page_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS revision_rev_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS page_restrictions_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS text_old_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS page_restrictions_pr_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS ipblocks_ipb_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS filearchive_fa_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS uploadstash_us_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS recentchanges_rc_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS logging_log_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS job_job_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS category_cat_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS archive_ar_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS externallinks_el_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS sites_site_id_seq CASCADE;
 DROP FUNCTION IF EXISTS page_deleted() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_title() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_text() CASCADE;
 DROP FUNCTION IF EXISTS add_interwiki(TEXT,INT,SMALLINT) CASCADE;
+DROP TYPE IF EXISTS media_type CASCADE;
 
 CREATE SEQUENCE user_user_id_seq MINVALUE 0 START WITH 0;
 CREATE TABLE mwuser ( -- replace reserved word 'user'
@@ -40,7 +45,8 @@ CREATE TABLE mwuser ( -- replace reserved word 'user'
   user_email_authenticated  TIMESTAMPTZ,
   user_touched              TIMESTAMPTZ,
   user_registration         TIMESTAMPTZ,
-  user_editcount            INTEGER
+  user_editcount            INTEGER,
+  user_password_expires     TIMESTAMPTZ NULL
 );
 CREATE INDEX user_email_token_idx ON mwuser (user_email_token);
 
@@ -153,11 +159,13 @@ ALTER TABLE page_restrictions ADD CONSTRAINT page_restrictions_pk PRIMARY KEY (p
 CREATE TABLE page_props (
   pp_page      INTEGER  NOT NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   pp_propname  TEXT     NOT NULL,
-  pp_value     TEXT     NOT NULL
+  pp_value     TEXT     NOT NULL,
+  pp_sortkey   FLOAT
 );
 ALTER TABLE page_props ADD CONSTRAINT page_props_pk PRIMARY KEY (pp_page,pp_propname);
 CREATE INDEX page_props_propname ON page_props (pp_propname);
 CREATE UNIQUE INDEX pp_propname_page ON page_props (pp_propname,pp_page);
+CREATE INDEX pp_propname_sortkey_page ON page_props (pp_propname, pp_sortkey, pp_page) WHERE (pp_sortkey IS NOT NULL);
 
 CREATE SEQUENCE archive_ar_id_seq;
 CREATE TABLE archive (
@@ -229,9 +237,9 @@ CREATE TABLE categorylinks (
 CREATE UNIQUE INDEX cl_from ON categorylinks (cl_from, cl_to);
 CREATE INDEX cl_sortkey     ON categorylinks (cl_to, cl_sortkey, cl_from);
 
-CREATE SEQUENCE externallinks_id_seq;
+CREATE SEQUENCE externallinks_el_id_seq;
 CREATE TABLE externallinks (
-  el_id     INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('externallinks_id_seq'),
+  el_id     INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('externallinks_el_id_seq'),
   el_from   INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   el_to     TEXT     NOT NULL,
   el_index  TEXT     NOT NULL
@@ -377,6 +385,7 @@ CREATE TABLE uploadstash (
   us_key          TEXT,
   us_orig_path    TEXT,
   us_path         TEXT,
+  us_props        BYTEA,
   us_source_type  TEXT,
   us_timestamp    TIMESTAMPTZ,
   us_status       TEXT,
@@ -399,7 +408,7 @@ CREATE SEQUENCE recentchanges_rc_id_seq;
 CREATE TABLE recentchanges (
   rc_id              INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('recentchanges_rc_id_seq'),
   rc_timestamp       TIMESTAMPTZ  NOT NULL,
-  rc_cur_time        TIMESTAMPTZ  NOT NULL,
+  rc_cur_time        TIMESTAMPTZ      NULL,
   rc_user            INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   rc_user_text       TEXT         NOT NULL,
   rc_namespace       SMALLINT     NOT NULL,
@@ -669,7 +678,7 @@ CREATE INDEX user_properties_property ON user_properties (up_property);
 CREATE TABLE l10n_cache (
   lc_lang   TEXT  NOT NULL,
   lc_key    TEXT  NOT NULL,
-  lc_value  TEXT  NOT NULL
+  lc_value  BYTEA NOT NULL
 );
 CREATE INDEX l10n_cache_lc_lang_key ON l10n_cache (lc_lang, lc_key);
 

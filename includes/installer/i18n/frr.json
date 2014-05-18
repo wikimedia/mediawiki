@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Murma174",
+			"Pyt"
+		]
+	},
+	"mainpagetext": "'''Det instaliarin faan MediaWiki hää loket.'''",
+	"mainpagedocfooter": "Consult the [//meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.\n\n== Getting started ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki for your language]"
+}

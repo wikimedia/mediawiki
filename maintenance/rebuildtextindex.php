@@ -50,8 +50,6 @@ class RebuildTextIndex extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgTitle;
-
 		// Shouldn't be needed for Postgres
 		$this->db = wfGetDB( DB_MASTER );
 		if ( $this->db->getType() == 'postgres' ) {
@@ -61,14 +59,14 @@ class RebuildTextIndex extends Maintenance {
 		$this->db = wfGetDB( DB_MASTER );
 		if ( $this->db->getType() == 'sqlite' ) {
 			if ( !DatabaseSqlite::getFulltextSearchModule() ) {
-				$this->error( "Your version of SQLite module for PHP doesn't support full-text search (FTS3).\n", true );
+				$this->error( "Your version of SQLite module for PHP doesn't "
+					. "support full-text search (FTS3).\n", true );
 			}
 			if ( !$this->db->checkForEnabledSearch() ) {
-				$this->error( "Your database schema is not configured for full-text search support. Run update.php.\n", true );
+				$this->error( "Your database schema is not configured for "
+					. "full-text search support. Run update.php.\n", true );
 			}
 		}
-
-		$wgTitle = Title::newFromText( "Rebuild text index script" );
 
 		if ( $this->db->getType() == 'mysql' ) {
 			$this->dropMysqlTextIndex();

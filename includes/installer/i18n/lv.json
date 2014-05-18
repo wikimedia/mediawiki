@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"GreenZeb",
+			"Papuass"
+		]
+	},
+	"config-information": "Informācija",
+	"config-your-language": "Jūsu valoda:",
+	"config-wiki-language": "Wiki valoda:",
+	"config-back": "← Atpakaļ",
+	"config-continue": "Turpināt →",
+	"config-page-language": "Valoda",
+	"config-page-welcome": "Laipni lūdzam MediaWiki!",
+	"config-page-dbconnect": "Savienoties ar datubāzi",
+	"config-page-upgrade": "Atjaunināt pašreizējo instalāciju",
+	"config-page-dbsettings": "Datubāzes iestatījumi",
+	"config-page-name": "Vārds",
+	"config-page-options": "Iespējas",
+	"config-page-install": "Instalēt",
+	"config-page-complete": "Pabeigts!",
+	"config-page-restart": "Pārstartēt instalāciju",
+	"config-page-readme": "Lasīt mani",
+	"config-page-releasenotes": "Informācija par laidienu",
+	"config-db-charset": "Datubāzes rakstzīmju kopa",
+	"config-charset-mysql5-binary": "MySQL 4.1/5.0 binārs",
+	"config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
+	"config-charset-mysql4": "MySQL 4.0 atpakaļsaderīgs UTF-8",
+	"config-db-port": "Datubāzes ports:",
+	"config-db-schema": "MediaWiki shēma:",
+	"config-db-schema-help": "Šī shēma derēs vairumā gadījumu.\nMainiet to tikai, ja zināt, ka tas nepieciešams.",
+	"config-type-mysql": "MySQL (vai saderīga)",
+	"config-header-mysql": "MySQL iestatījumi",
+	"config-header-postgres": "PostgreSQL iestatījumi",
+	"config-header-sqlite": "SQLite iestatījumi",
+	"config-header-oracle": "Oracle iestatījumi",
+	"config-header-mssql": "Microsoft SQL servera iestatījumi",
+	"config-mysql-innodb": "InnoDB",
+	"config-mysql-myisam": "MyISAM",
+	"mainpagetext": "'''MediaWiki veiksmīgi ieinstalēts'''",
+	"mainpagedocfooter": "Izlasi [//meta.wikimedia.org/wiki/Help:Contents Lietotāja pamācību], lai iegūtu vairāk informācijas par Wiki programmatūras lietošanu.\n\n== Pirmie soļi ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigurācijas iespēju saraksts]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki J&A]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Parakstīties uz paziņojumiem par jaunām MediaWiki versijām]"
+}

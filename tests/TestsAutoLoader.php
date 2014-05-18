@@ -34,23 +34,23 @@ $wgAutoloadClasses += array(
 	'TestFileIterator' => "$testDir/testHelpers.inc",
 	'TestRecorder' => "$testDir/testHelpers.inc",
 	'ITestRecorder' => "$testDir/testHelpers.inc",
+	'DjVuSupport' => "$testDir/testHelpers.inc",
 
 	# tests/phpunit
 	'MediaWikiTestCase' => "$testDir/phpunit/MediaWikiTestCase.php",
 	'MediaWikiPHPUnitCommand' => "$testDir/phpunit/MediaWikiPHPUnitCommand.php",
 	'MediaWikiPHPUnitTestListener' => "$testDir/phpunit/MediaWikiPHPUnitTestListener.php",
 	'MediaWikiLangTestCase' => "$testDir/phpunit/MediaWikiLangTestCase.php",
+	'ResourceLoaderTestCase' => "$testDir/phpunit/ResourceLoaderTestCase.php",
+	'ResourceLoaderTestModule' => "$testDir/phpunit/ResourceLoaderTestCase.php",
+	'ResourceLoaderFileModuleTestModule' => "$testDir/phpunit/ResourceLoaderTestCase.php",
 	'TestUser' => "$testDir/phpunit/includes/TestUser.php",
+	'LessFileCompilationTest' => "$testDir/phpunit/LessFileCompilationTest.php",
 
 	# tests/phpunit/includes
 	'BlockTest' => "$testDir/phpunit/includes/BlockTest.php",
 	'RevisionStorageTest' => "$testDir/phpunit/includes/RevisionStorageTest.php",
 	'WikiPageTest' => "$testDir/phpunit/includes/WikiPageTest.php",
-
-	//db
-	'ORMTableTest' => "$testDir/phpunit/includes/db/ORMTableTest.php",
-	'PageORMTableForTesting' => "$testDir/phpunit/includes/db/ORMTableTest.php",
-	'DatabaseTestHelper' => "$testDir/phpunit/includes/db/DatabaseTestHelper.php",
 
 	# tests/phpunit/includes/api
 	'ApiFormatTestBase' => "$testDir/phpunit/includes/api/format/ApiFormatTestBase.php",
@@ -71,20 +71,21 @@ $wgAutoloadClasses += array(
 
 	# tests/phpunit/includes/db
 	'ORMRowTest' => "$testDir/phpunit/includes/db/ORMRowTest.php",
+	'ORMTableTest' => "$testDir/phpunit/includes/db/ORMTableTest.php",
+	'PageORMTableForTesting' => "$testDir/phpunit/includes/db/ORMTableTest.php",
+	'DatabaseTestHelper' => "$testDir/phpunit/includes/db/DatabaseTestHelper.php",
 
-	# tests/phpunit/includes/parser
-	'NewParserTest' => "$testDir/phpunit/includes/parser/NewParserTest.php",
-	'MediaWikiParserTest' => "$testDir/phpunit/includes/parser/MediaWikiParserTest.php",
+	# tests/phpunit/languages
+	'LanguageClassesTestCase' => "$testDir/phpunit/languages/LanguageClassesTestCase.php",
 
 	# tests/phpunit/includes/libs
 	'GenericArrayObjectTest' => "$testDir/phpunit/includes/libs/GenericArrayObjectTest.php",
 
+	# tests/phpunit/maintenance
+	'DumpTestCase' => "$testDir/phpunit/maintenance/DumpTestCase.php",
+
 	# tests/phpunit/media
 	'FakeDimensionFile' => "$testDir/phpunit/includes/media/FakeDimensionFile.php",
-
-	# tests/phpunit/includes/site
-	'SiteTest' => "$testDir/phpunit/includes/site/SiteTest.php",
-	'TestSites' => "$testDir/phpunit/includes/site/TestSites.php",
 
 	# tests/phpunit/mocks
 	'MockFSFile' => "$testDir/phpunit/mocks/filebackend/MockFSFile.php",
@@ -92,14 +93,15 @@ $wgAutoloadClasses += array(
 	'MockBitmapHandler' => "$testDir/phpunit/mocks/media/MockBitmapHandler.php",
 	'MockImageHandler' => "$testDir/phpunit/mocks/media/MockImageHandler.php",
 	'MockSvgHandler' => "$testDir/phpunit/mocks/media/MockSvgHandler.php",
-
-	# tests/phpunit/languages
-	'LanguageClassesTestCase' => "$testDir/phpunit/languages/LanguageClassesTestCase.php",
-
-	# tests/phpunit/maintenance
-	'DumpTestCase' => "$testDir/phpunit/maintenance/DumpTestCase.php",
+	'MockDjVuHandler' => "$testDir/phpunit/mocks/media/MockDjVuHandler.php",
 
 	# tests/parser
+	'NewParserTest' => "$testDir/phpunit/includes/parser/NewParserTest.php",
+	'MediaWikiParserTest' => "$testDir/phpunit/includes/parser/MediaWikiParserTest.php",
 	'ParserTest' => "$testDir/parser/parserTest.inc",
 	'ParserTestParserHook' => "$testDir/parser/parserTestsParserHook.php",
+
+	# tests/phpunit/includes/site
+	'SiteTest' => "$testDir/phpunit/includes/site/SiteTest.php",
+	'TestSites' => "$testDir/phpunit/includes/site/TestSites.php",
 );

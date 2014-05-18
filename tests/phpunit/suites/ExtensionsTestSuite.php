@@ -1,7 +1,8 @@
 <?php
 /**
  * This test suite runs unit tests registered by extensions.
- * See http://www.mediawiki.org/wiki/Manual:Hooks/UnitTestsList for details of how to register your tests.
+ * See https://www.mediawiki.org/wiki/Manual:Hooks/UnitTestsList for details of
+ * how to register your tests.
  */
 
 class ExtensionsTestSuite extends PHPUnit_Framework_TestSuite {

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- colors don't work on Windows! -->
+<!--
+Colors don't work on Windows!
+phpunit.php enables colors for other OSs at runtime
+-->
 <phpunit bootstrap="./bootstrap.php"
-	colors="true"
+	colors="false"
 	backupGlobals="false"
 	convertErrorsToExceptions="true"
 	convertNoticesToExceptions="true"
@@ -38,6 +41,7 @@
 		<testsuite name="extensions">
 			<file>suites/ExtensionsTestSuite.php</file>
 			<file>suites/ExtensionsParserTestSuite.php</file>
+			<file>suites/LessTestSuite.php</file>
 		</testsuite>
 	</testsuites>
 	<groups>
@@ -48,4 +52,13 @@
 			<group>Stub</group>
 		</exclude>
 	</groups>
+	<filter>
+		<whitelist addUncoveredFilesFromWhitelist="true">
+			<directory suffix=".php">../../includes</directory>
+			<directory suffix=".php">../../languages</directory>
+			<directory suffix=".php">../../maintenance</directory>
+			<directory suffix=".php">../../resources</directory>
+			<directory suffix=".php">../../skins</directory>
+		</whitelist>
+	</filter>
 </phpunit>

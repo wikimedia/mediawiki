@@ -30,7 +30,7 @@
  */
 class DatabaseMysqli extends DatabaseMysqlBase {
 	/**
-	 * @param $sql string
+	 * @param string $sql
 	 * @return resource
 	 */
 	protected function doQuery( $sql ) {
@@ -43,6 +43,11 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return $ret;
 	}
 
+	/**
+	 * @param string $realServer
+	 * @return bool|mysqli
+	 * @throws DBConnectionError
+	 */
 	protected function mysqlConnect( $realServer ) {
 		global $wgDBmysql5;
 		# Fail now
@@ -50,6 +55,17 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		if ( !function_exists( 'mysqli_init' ) ) {
 			throw new DBConnectionError( $this, "MySQLi functions missing,"
 				. " have you compiled PHP with the --with-mysqli option?\n" );
+		}
+
+		// Other than mysql_connect, mysqli_real_connect expects an explicit port
+		// parameter. So we need to parse the port out of $realServer
+		$port = null;
+		$hostAndPort = IP::splitHostAndPort( $realServer );
+		if ( $hostAndPort ) {
+			$realServer = $hostAndPort[0];
+			if ( $hostAndPort[1] ) {
+				$port = $hostAndPort[1];
+			}
 		}
 
 		$connFlags = 0;
@@ -78,7 +94,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 				usleep( 1000 );
 			}
 			if ( $mysqli->real_connect( $realServer, $this->mUser,
-				$this->mPassword, $this->mDBname, null, null, $connFlags )
+				$this->mPassword, $this->mDBname, $port, null, $connFlags )
 			) {
 				return $mysqli;
 			}
@@ -93,6 +109,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
+	 * @param string $charset
 	 * @return bool
 	 */
 	protected function mysqlSetCharset( $charset ) {
@@ -136,7 +153,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param $db
+	 * @param string $db
 	 * @return bool
 	 */
 	function selectDB( $db ) {
@@ -152,12 +169,20 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return $this->mConn->server_info;
 	}
 
+	/**
+	 * @param mysqli $res
+	 * @return bool
+	 */
 	protected function mysqlFreeResult( $res ) {
 		$res->free_result();
 
 		return true;
 	}
 
+	/**
+	 * @param mysqli $res
+	 * @return bool
+	 */
 	protected function mysqlFetchObject( $res ) {
 		$object = $res->fetch_object();
 		if ( $object === null ) {
@@ -167,6 +192,10 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return $object;
 	}
 
+	/**
+	 * @param mysqli $res
+	 * @return bool
+	 */
 	protected function mysqlFetchArray( $res ) {
 		$array = $res->fetch_array();
 		if ( $array === null ) {
@@ -176,14 +205,27 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return $array;
 	}
 
+	/**
+	 * @param mysqli $res
+	 * @return mixed
+	 */
 	protected function mysqlNumRows( $res ) {
 		return $res->num_rows;
 	}
 
+	/**
+	 * @param mysqli $res
+	 * @return mixed
+	 */
 	protected function mysqlNumFields( $res ) {
 		return $res->field_count;
 	}
 
+	/**
+	 * @param mysqli $res
+	 * @param int $n
+	 * @return mixed
+	 */
 	protected function mysqlFetchField( $res, $n ) {
 		$field = $res->fetch_field_direct( $n );
 		$field->not_null = $field->flags & MYSQLI_NOT_NULL_FLAG;
@@ -195,21 +237,41 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return $field;
 	}
 
+	/**
+	 * @param resource|ResultWrapper $res
+	 * @param int $n
+	 * @return mixed
+	 */
 	protected function mysqlFieldName( $res, $n ) {
 		$field = $res->fetch_field_direct( $n );
 
 		return $field->name;
 	}
 
+	/**
+	 * @param resource|ResultWrapper $res
+	 * @param int $n
+	 * @return mixed
+	 */
 	protected function mysqlFieldType( $res, $n ) {
 		$field = $res->fetch_field_direct( $n );
+
 		return $field->type;
 	}
 
+	/**
+	 * @param resource|ResultWrapper $res
+	 * @param int $row
+	 * @return mixed
+	 */
 	protected function mysqlDataSeek( $res, $row ) {
 		return $res->data_seek( $row );
 	}
 
+	/**
+	 * @param mysqli $conn Optional connection object
+	 * @return string
+	 */
 	protected function mysqlError( $conn = null ) {
 		if ( $conn === null ) {
 			return mysqli_connect_error();
@@ -218,11 +280,30 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		}
 	}
 
+	/**
+	 * Escapes special characters in a string for use in an SQL statement
+	 * @param string $s
+	 * @return string
+	 */
 	protected function mysqlRealEscapeString( $s ) {
 		return $this->mConn->real_escape_string( $s );
 	}
 
 	protected function mysqlPing() {
 		return $this->mConn->ping();
+	}
+
+	/**
+	 * Give an id for the connection
+	 *
+	 * mysql driver used resource id, but mysqli objects cannot be cast to string.
+	 */
+	public function __toString() {
+		if ( $this->mConn instanceof Mysqli ) {
+			return (string)$this->mConn->thread_id;
+		} else {
+			// mConn might be false or something.
+			return (string)$this->mConn;
+		}
 	}
 }

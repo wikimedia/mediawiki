@@ -28,14 +28,15 @@
  * @ingroup Cache
  */
 class HashBagOStuff extends BagOStuff {
-	var $bag;
+	/** @var array */
+	protected $bag;
 
 	function __construct() {
 		$this->bag = array();
 	}
 
 	/**
-	 * @param $key string
+	 * @param string $key
 	 * @return bool
 	 */
 	protected function expire( $key ) {
@@ -51,8 +52,8 @@ class HashBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $casToken[optional] mixed
+	 * @param string $key
+	 * @param mixed $casToken [optional]
 	 * @return bool|mixed
 	 */
 	function get( $key, &$casToken = null ) {
@@ -64,15 +65,15 @@ class HashBagOStuff extends BagOStuff {
 			return false;
 		}
 
-		$casToken = $this->bag[$key][0];
+		$casToken = serialize( $this->bag[$key][0] );
 
 		return $this->bag[$key][0];
 	}
 
 	/**
-	 * @param $key string
-	 * @param $value mixed
-	 * @param $exptime int
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exptime
 	 * @return bool
 	 */
 	function set( $key, $value, $exptime = 0 ) {
@@ -81,14 +82,14 @@ class HashBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $casToken mixed
-	 * @param $key string
-	 * @param $value mixed
-	 * @param $exptime int
+	 * @param mixed $casToken
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exptime
 	 * @return bool
 	 */
 	function cas( $casToken, $key, $value, $exptime = 0 ) {
-		if ( $this->get( $key ) === $casToken ) {
+		if ( serialize( $this->get( $key ) ) === $casToken ) {
 			return $this->set( $key, $value, $exptime );
 		}
 
@@ -96,8 +97,8 @@ class HashBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $time int
+	 * @param string $key
+	 * @param int $time
 	 * @return bool
 	 */
 	function delete( $key, $time = 0 ) {

@@ -3,7 +3,7 @@
  * 7z stream wrapper
  *
  * Copyright © 2005 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@ class SevenZipStream {
 
 	private function stripPath( $path ) {
 		$prefix = 'mediawiki.compress.7z://';
+
 		return substr( $path, strlen( $prefix ) );
 	}
 
@@ -91,4 +92,5 @@ class SevenZipStream {
 		return fseek( $this->stream, $offset, $whence );
 	}
 }
+
 stream_wrapper_register( 'mediawiki.compress.7z', 'SevenZipStream' );

@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sociologist"
+		]
+	},
+	"config-admin-password-blank": "Administrator hisob yozuvi uchun maxfiy soʻz kiriting.",
+	"mainpagetext": "'''MediaWiki muvaffaqiyatli o'rnatildi.'''",
+	"mainpagedocfooter": "Wiki dasturini ishlatish haqida ma'lumot olish uchun  [//meta.wikimedia.org/wiki/Help:Contents Foydalanuvchi qo'llanmasi] sahifasiga murojaat qiling.\n\n== Dastlabki qadamlar ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Moslamalar ro'yxati]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki haqida ko'p so'raladigan savollar]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki yangi versiyasi chiqqanda xabar berish ro'yxati]"
+}

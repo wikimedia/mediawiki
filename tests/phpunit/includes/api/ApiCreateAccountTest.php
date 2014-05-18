@@ -45,7 +45,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 
 		// Should first ask for token.
 		$a = $result['createaccount'];
-		$this->assertEquals( 'needtoken', $a['result'] );
+		$this->assertEquals( 'NeedToken', $a['result'] );
 		$token = $a['token'];
 
 		// Finally create the account
@@ -63,7 +63,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 
 		$result = $ret[0];
 		$this->assertNotInternalType( 'bool', $result );
-		$this->assertEquals( 'success', $result['createaccount']['result'] );
+		$this->assertEquals( 'Success', $result['createaccount']['result'] );
 
 		// Try logging in with the new user.
 		$ret = $this->doApiRequest( array(

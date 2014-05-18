@@ -17,6 +17,7 @@
  *
  * @file
  */
+
 class RCCacheEntry extends RecentChange {
 	public $curlink;
 	public $difflink;
@@ -29,7 +30,7 @@ class RCCacheEntry extends RecentChange {
 	public $watched;
 
 	/**
-	 * @param $rc RecentChange
+	 * @param RecentChange $rc
 	 * @return RCCacheEntry
 	 */
 	static function newFromParent( $rc ) {

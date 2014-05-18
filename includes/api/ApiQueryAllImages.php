@@ -34,7 +34,7 @@
 class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	protected $mRepo;
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ai' );
 		$this->mRepo = RepoGroup::singleton()->getLocalRepo();
 	}
@@ -59,7 +59,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	public function executeGenerator( $resultPageSet ) {
@@ -75,7 +75,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param $resultPageSet ApiPageSet
+	 * @param ApiPageSet $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
@@ -168,6 +168,20 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 				$params['start'],
 				$params['end']
 			);
+			// Include in ORDER BY for uniqueness
+			$this->addWhereRange( 'img_name', $ascendingOrder ? 'newer' : 'older', null, null );
+
+			if ( !is_null( $params['continue'] ) ) {
+				$cont = explode( '|', $params['continue'] );
+				$this->dieContinueUsageIf( count( $cont ) != 2 );
+				$op = ( $ascendingOrder ? '>' : '<' );
+				$continueTimestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
+				$continueName = $db->addQuotes( $cont[1] );
+				$this->addWhere( "img_timestamp $op $continueTimestamp OR " .
+					"(img_timestamp = $continueTimestamp AND " .
+					"img_name $op= $continueName)"
+				);
+			}
 
 			// Image filters
 			if ( !is_null( $params['user'] ) ) {
@@ -254,7 +268,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 				if ( $params['sort'] == 'name' ) {
 					$this->setContinueEnumParameter( 'continue', $row->img_name );
 				} else {
-					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->img_timestamp ) );
+					$this->setContinueEnumParameter( 'continue', "$row->img_timestamp|$row->img_name" );
 				}
 				break;
 			}
@@ -270,7 +284,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 					if ( $params['sort'] == 'name' ) {
 						$this->setContinueEnumParameter( 'continue', $row->img_name );
 					} else {
-						$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->img_timestamp ) );
+						$this->setContinueEnumParameter( 'continue', "$row->img_timestamp|$row->img_name" );
 					}
 					break;
 				}
@@ -378,7 +392,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		);
 	}
 
-	private $propertyFilter = array( 'archivename', 'thumbmime' );
+	private $propertyFilter = array( 'archivename', 'thumbmime', 'uploadwarning' );
 
 	public function getResultProperties() {
 		return array_merge(
@@ -394,7 +408,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Enumerate all images sequentially';
+		return 'Enumerate all images sequentially.';
 	}
 
 	public function getPossibleErrors() {

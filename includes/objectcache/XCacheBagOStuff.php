@@ -31,8 +31,8 @@ class XCacheBagOStuff extends BagOStuff {
 	/**
 	 * Get a value from the XCache object cache
 	 *
-	 * @param string $key cache key
-	 * @param $casToken mixed: cas token
+	 * @param string $key Cache key
+	 * @param mixed $casToken Cas token
 	 * @return mixed
 	 */
 	public function get( $key, &$casToken = null ) {
@@ -54,9 +54,9 @@ class XCacheBagOStuff extends BagOStuff {
 	/**
 	 * Store a value in the XCache object cache
 	 *
-	 * @param string $key cache key
-	 * @param $value Mixed: object to store
-	 * @param int $expire expiration time
+	 * @param string $key Cache key
+	 * @param mixed $value Object to store
+	 * @param int $expire Expiration time
 	 * @return bool
 	 */
 	public function set( $key, $value, $expire = 0 ) {
@@ -69,10 +69,10 @@ class XCacheBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param $casToken mixed
-	 * @param $key string
-	 * @param $value mixed
-	 * @param $exptime int
+	 * @param mixed $casToken
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exptime
 	 * @return bool
 	 */
 	public function cas( $casToken, $key, $value, $exptime = 0 ) {
@@ -83,8 +83,8 @@ class XCacheBagOStuff extends BagOStuff {
 	/**
 	 * Remove a value from the XCache object cache
 	 *
-	 * @param string $key cache key
-	 * @param int $time not used in this implementation
+	 * @param string $key Cache key
+	 * @param int $time Not used in this implementation
 	 * @return bool
 	 */
 	public function delete( $key, $time = 0 ) {
@@ -97,13 +97,13 @@ class XCacheBagOStuff extends BagOStuff {
 	 * XCache does not seem to support any way of performing CAS - this however will
 	 * provide a way to perform CAS-like functionality.
 	 *
-	 * @param $key string
-	 * @param $callback closure Callback method to be executed
+	 * @param string $key
+	 * @param Closure $callback Callback method to be executed
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $attempts The amount of times to attempt a merge in case of failure
-	 * @return bool success
+	 * @return bool Success
 	 */
-	public function merge( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
+	public function merge( $key, Closure $callback, $exptime = 0, $attempts = 10 ) {
 		return $this->mergeViaLock( $key, $callback, $exptime, $attempts );
 	}
 

@@ -26,9 +26,9 @@ class PostgresField implements Field {
 		$has_default, $default;
 
 	/**
-	 * @param $db DatabaseBase
-	 * @param  $table
-	 * @param  $field
+	 * @param DatabaseBase $db
+	 * @param string $table
+	 * @param string $field
 	 * @return null|PostgresField
 	 */
 	static function fromText( $db, $table, $field ) {
@@ -135,8 +135,7 @@ SQL;
  * @ingroup Database
  */
 class PostgresTransactionState {
-
-	static $WATCHED = array(
+	private static $WATCHED = array(
 		array(
 			"desc" => "%s: Connection state changed from %s -> %s\n",
 			"states" => array(
@@ -155,6 +154,12 @@ class PostgresTransactionState {
 			)
 		)
 	);
+
+	/** @var array */
+	private $mNewState;
+
+	/** @var array */
+	private $mCurrentState;
 
 	public function __construct( $conn ) {
 		$this->mConn = $conn;
@@ -211,13 +216,15 @@ class PostgresTransactionState {
  * @since 1.19
  */
 class SavepointPostgres {
-	/**
-	 * Establish a savepoint within a transaction
-	 */
+	/** @var DatabaseBase Establish a savepoint within a transaction */
 	protected $dbw;
 	protected $id;
 	protected $didbegin;
 
+	/**
+	 * @param DatabaseBase $dbw
+	 * @param int $id
+	 */
 	public function __construct( $dbw, $id ) {
 		$this->dbw = $dbw;
 		$this->id = $id;
@@ -284,10 +291,26 @@ class SavepointPostgres {
  * @ingroup Database
  */
 class DatabasePostgres extends DatabaseBase {
-	var $mInsertId = null;
-	var $mLastResult = null;
-	var $numeric_version = null;
-	var $mAffectedRows = null;
+	/** @var resource */
+	protected $mLastResult = null;
+
+	/** @var int The number of rows affected as an integer */
+	protected $mAffectedRows = null;
+
+	/** @var int */
+	private $mInsertId = null;
+
+	/** @var float|string */
+	private $numericVersion = null;
+
+	/** @var string Connect string to open a PostgreSQL connection */
+	private $connectString;
+
+	/** @var PostgresTransactionState */
+	private $mTransactionState;
+
+	/** @var string */
+	private $mCoreSchema;
 
 	function getType() {
 		return 'postgres';
@@ -326,11 +349,11 @@ class DatabasePostgres extends DatabaseBase {
 	}
 
 	function hasConstraint( $name ) {
-		$SQL = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n " .
+		$sql = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n " .
 			"WHERE c.connamespace = n.oid AND conname = '" .
 			pg_escape_string( $this->mConn, $name ) . "' AND n.nspname = '" .
 			pg_escape_string( $this->mConn, $this->getCoreSchema() ) . "'";
-		$res = $this->doQuery( $SQL );
+		$res = $this->doQuery( $sql );
 
 		return $this->numRows( $res );
 	}
@@ -341,7 +364,7 @@ class DatabasePostgres extends DatabaseBase {
 	 * @param string $user
 	 * @param string $password
 	 * @param string $dbName
-	 * @throws DBConnectionError
+	 * @throws DBConnectionError|Exception
 	 * @return DatabaseBase|null
 	 */
 	function open( $server, $user, $password, $dbName ) {
@@ -358,7 +381,7 @@ class DatabasePostgres extends DatabaseBase {
 		global $wgDBport;
 
 		if ( !strlen( $user ) ) { # e.g. the class is being loaded
-			return;
+			return null;
 		}
 
 		$this->mServer = $server;
@@ -429,7 +452,8 @@ class DatabasePostgres extends DatabaseBase {
 	/**
 	 * Postgres doesn't support selectDB in the same way MySQL does. So if the
 	 * DB name doesn't match the open connection, open a new one
-	 * @return
+	 * @param string $db
+	 * @return bool
 	 */
 	function selectDB( $db ) {
 		if ( $this->mDBname !== $db ) {
@@ -515,6 +539,10 @@ class DatabasePostgres extends DatabaseBase {
 		return $this->query( $sql, $fname, true );
 	}
 
+	/**
+	 * @param stdClass|ResultWrapper $res
+	 * @throws DBUnexpectedError
+	 */
 	function freeResult( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -527,6 +555,11 @@ class DatabasePostgres extends DatabaseBase {
 		}
 	}
 
+	/**
+	 * @param ResultWrapper|stdClass $res
+	 * @return stdClass
+	 * @throws DBUnexpectedError
+	 */
 	function fetchObject( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -602,12 +635,17 @@ class DatabasePostgres extends DatabaseBase {
 	 * Return the result of the last call to nextSequenceValue();
 	 * This must be called after nextSequenceValue().
 	 *
-	 * @return integer|null
+	 * @return int|null
 	 */
 	function insertId() {
 		return $this->mInsertId;
 	}
 
+	/**
+	 * @param mixed $res
+	 * @param int $row
+	 * @return bool
+	 */
 	function dataSeek( $res, $row ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -654,6 +692,12 @@ class DatabasePostgres extends DatabaseBase {
 	 * This is not necessarily an accurate estimate, so use sparingly
 	 * Returns -1 if count cannot be found
 	 * Takes same arguments as Database::select()
+	 *
+	 * @param string $table
+	 * @param string $vars
+	 * @param string $conds
+	 * @param string $fname
+	 * @param array $options
 	 * @return int
 	 */
 	function estimateRowCount( $table, $vars = '*', $conds = '',
@@ -676,6 +720,10 @@ class DatabasePostgres extends DatabaseBase {
 	/**
 	 * Returns information about an index
 	 * If errors are explicitly ignored, returns NULL on failure
+	 *
+	 * @param string $table
+	 * @param string $index
+	 * @param string $fname
 	 * @return bool|null
 	 */
 	function indexInfo( $table, $index, $fname = __METHOD__ ) {
@@ -697,7 +745,9 @@ class DatabasePostgres extends DatabaseBase {
 	 * Returns is of attributes used in index
 	 *
 	 * @since 1.19
-	 * @return Array
+	 * @param string $index
+	 * @param bool|string $schema
+	 * @return array
 	 */
 	function indexAttributes( $index, $schema = false ) {
 		if ( $schema === false ) {
@@ -770,16 +820,42 @@ __INDEXATTR__;
 	}
 
 	/**
+	 * Change the FOR UPDATE option as necessary based on the join conditions. Then pass
+	 * to the parent function to get the actual SQL text.
+	 *
+	 * In Postgres when using FOR UPDATE, only the main table and tables that are inner joined
+	 * can be locked. That means tables in an outer join cannot be FOR UPDATE locked. Trying to do
+	 * so causes a DB error. This wrapper checks which tables can be locked and adjusts it accordingly.
+	 */
+	function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
+		$options = array(), $join_conds = array()
+	) {
+		if ( is_array( $options ) ) {
+			$forUpdateKey = array_search( 'FOR UPDATE', $options, true );
+			if ( $forUpdateKey !== false && $join_conds ) {
+				unset( $options[$forUpdateKey] );
+
+				foreach ( $join_conds as $table_cond => $join_cond ) {
+					if ( 0 === preg_match( '/^(?:LEFT|RIGHT|FULL)(?: OUTER)? JOIN$/i', $join_cond[0] ) ) {
+						$options['FOR UPDATE'][] = $table_cond;
+					}
+				}
+			}
+		}
+
+		return parent::selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
+	}
+
+	/**
 	 * INSERT wrapper, inserts an array into a table
 	 *
 	 * $args may be a single associative array, or an array of these with numeric keys,
 	 * for multi-row insert (Postgres version 8.2 and above only).
 	 *
-	 * @param $table   String: Name of the table to insert to.
-	 * @param $args    Array: Items to insert into the table.
-	 * @param $fname   String: Name of the function, for profiling
-	 * @param string $options or Array. Valid options: IGNORE
-	 *
+	 * @param string $table Name of the table to insert to.
+	 * @param array $args Items to insert into the table.
+	 * @param string $fname Name of the function, for profiling
+	 * @param array|string $options String or array. Valid options: IGNORE
 	 * @return bool Success of insert operation. IGNORE always returns true.
 	 */
 	function insert( $table, $args, $fname = __METHOD__, $options = array() ) {
@@ -788,7 +864,7 @@ __INDEXATTR__;
 		}
 
 		$table = $this->tableName( $table );
-		if ( !isset( $this->numeric_version ) ) {
+		if ( !isset( $this->numericVersion ) ) {
 			$this->getServerVersion();
 		}
 
@@ -817,7 +893,7 @@ __INDEXATTR__;
 		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ') VALUES ';
 
 		if ( $multi ) {
-			if ( $this->numeric_version >= 8.2 && !$savepoint ) {
+			if ( $this->numericVersion >= 8.2 && !$savepoint ) {
 				$first = true;
 				foreach ( $args as $row ) {
 					if ( $first ) {
@@ -898,6 +974,14 @@ __INDEXATTR__;
 	 * $conds may be "*" to copy the whole table
 	 * srcTable may be an array of tables.
 	 * @todo FIXME: Implement this a little better (seperate select/insert)?
+	 *
+	 * @param string $destTable
+	 * @param array|string $srcTable
+	 * @param array $varMap
+	 * @param array $conds
+	 * @param string $fname
+	 * @param array $insertOptions
+	 * @param array $selectOptions
 	 * @return bool
 	 */
 	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
@@ -981,7 +1065,9 @@ __INDEXATTR__;
 
 	/**
 	 * Return the next in a sequence, save the value for retrieval via insertId()
-	 * @return null
+	 *
+	 * @param string $seqName
+	 * @return int|null
 	 */
 	function nextSequenceValue( $seqName ) {
 		$safeseq = str_replace( "'", "''", $seqName );
@@ -994,7 +1080,9 @@ __INDEXATTR__;
 
 	/**
 	 * Return the current value of a sequence. Assumes it has been nextval'ed in this session.
-	 * @return
+	 *
+	 * @param string $seqName
+	 * @return int
 	 */
 	function currentSequenceValue( $seqName ) {
 		$safeseq = str_replace( "'", "''", $seqName );
@@ -1071,10 +1159,10 @@ __INDEXATTR__;
 	 * This should really be handled by PHP PostgreSQL module
 	 *
 	 * @since 1.19
-	 * @param $text   string: postgreql array returned in a text form like {a,b}
-	 * @param $output string
-	 * @param $limit  int
-	 * @param $offset int
+	 * @param string $text Postgreql array returned in a text form like {a,b}
+	 * @param string $output
+	 * @param int $limit
+	 * @param int $offset
 	 * @return string
 	 */
 	function pg_array_parse( $text, &$output, $limit = false, $offset = 1 ) {
@@ -1112,10 +1200,10 @@ __INDEXATTR__;
 	}
 
 	/**
-	 * @return string wikitext of a link to the server software's web site
+	 * @return string Wikitext of a link to the server software's web site
 	 */
 	public function getSoftwareLink() {
-		return '[http://www.postgresql.org/ PostgreSQL]';
+		return '[{{int:version-db-postgres-url}} PostgreSQL]';
 	}
 
 	/**
@@ -1123,7 +1211,7 @@ __INDEXATTR__;
 	 * Needs transaction
 	 *
 	 * @since 1.19
-	 * @return string return default schema for the current session
+	 * @return string Default schema for the current session
 	 */
 	function getCurrentSchema() {
 		$res = $this->query( "SELECT current_schema()", __METHOD__ );
@@ -1159,7 +1247,7 @@ __INDEXATTR__;
 	 * Needs transaction
 	 *
 	 * @since 1.19
-	 * @return array how to search for table names schemas for the current user
+	 * @return array How to search for table names schemas for the current user
 	 */
 	function getSearchPath() {
 		$res = $this->query( "SHOW search_path", __METHOD__ );
@@ -1175,7 +1263,7 @@ __INDEXATTR__;
 	 * Values may contain magic keywords like "$user"
 	 * @since 1.19
 	 *
-	 * @param $search_path array list of schemas to be searched by default
+	 * @param array $search_path List of schemas to be searched by default
 	 */
 	function setSearchPath( $search_path ) {
 		$this->query( "SET search_path = " . implode( ", ", $search_path ) );
@@ -1192,14 +1280,15 @@ __INDEXATTR__;
 	 * This will be also called by the installer after the schema is created
 	 *
 	 * @since 1.19
-	 * @param $desired_schema string
+	 *
+	 * @param string $desiredSchema
 	 */
-	function determineCoreSchema( $desired_schema ) {
+	function determineCoreSchema( $desiredSchema ) {
 		$this->begin( __METHOD__ );
-		if ( $this->schemaExists( $desired_schema ) ) {
-			if ( in_array( $desired_schema, $this->getSchemas() ) ) {
-				$this->mCoreSchema = $desired_schema;
-				wfDebug( "Schema \"" . $desired_schema . "\" already in the search path\n" );
+		if ( $this->schemaExists( $desiredSchema ) ) {
+			if ( in_array( $desiredSchema, $this->getSchemas() ) ) {
+				$this->mCoreSchema = $desiredSchema;
+				wfDebug( "Schema \"" . $desiredSchema . "\" already in the search path\n" );
 			} else {
 				/**
 				 * Prepend our schema (e.g. 'mediawiki') in front
@@ -1208,14 +1297,14 @@ __INDEXATTR__;
 				 */
 				$search_path = $this->getSearchPath();
 				array_unshift( $search_path,
-					$this->addIdentifierQuotes( $desired_schema ) );
+					$this->addIdentifierQuotes( $desiredSchema ) );
 				$this->setSearchPath( $search_path );
-				$this->mCoreSchema = $desired_schema;
-				wfDebug( "Schema \"" . $desired_schema . "\" added to the search path\n" );
+				$this->mCoreSchema = $desiredSchema;
+				wfDebug( "Schema \"" . $desiredSchema . "\" added to the search path\n" );
 			}
 		} else {
 			$this->mCoreSchema = $this->getCurrentSchema();
-			wfDebug( "Schema \"" . $desired_schema . "\" not found, using current \"" .
+			wfDebug( "Schema \"" . $desiredSchema . "\" not found, using current \"" .
 				$this->mCoreSchema . "\"\n" );
 		}
 		/* Commit SET otherwise it will be rollbacked on error or IGNORE SELECT */
@@ -1236,26 +1325,29 @@ __INDEXATTR__;
 	 * @return string Version information from the database
 	 */
 	function getServerVersion() {
-		if ( !isset( $this->numeric_version ) ) {
+		if ( !isset( $this->numericVersion ) ) {
 			$versionInfo = pg_version( $this->mConn );
 			if ( version_compare( $versionInfo['client'], '7.4.0', 'lt' ) ) {
 				// Old client, abort install
-				$this->numeric_version = '7.3 or earlier';
+				$this->numericVersion = '7.3 or earlier';
 			} elseif ( isset( $versionInfo['server'] ) ) {
 				// Normal client
-				$this->numeric_version = $versionInfo['server'];
+				$this->numericVersion = $versionInfo['server'];
 			} else {
 				// Bug 16937: broken pgsql extension from PHP<5.3
-				$this->numeric_version = pg_parameter_status( $this->mConn, 'server_version' );
+				$this->numericVersion = pg_parameter_status( $this->mConn, 'server_version' );
 			}
 		}
 
-		return $this->numeric_version;
+		return $this->numericVersion;
 	}
 
 	/**
 	 * Query whether a given relation exists (in the given schema, or the
 	 * default mw one if not given)
+	 * @param string $table
+	 * @param array|string $types
+	 * @param bool|string $schema
 	 * @return bool
 	 */
 	function relationExists( $table, $types, $schema = false ) {
@@ -1268,10 +1360,10 @@ __INDEXATTR__;
 		$table = $this->realTableName( $table, 'raw' );
 		$etable = $this->addQuotes( $table );
 		$eschema = $this->addQuotes( $schema );
-		$SQL = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
+		$sql = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
 			. "WHERE c.relnamespace = n.oid AND c.relname = $etable AND n.nspname = $eschema "
 			. "AND c.relkind IN ('" . implode( "','", $types ) . "')";
-		$res = $this->query( $SQL );
+		$res = $this->query( $sql );
 		$count = $res ? $res->numRows() : 0;
 
 		return (bool)$count;
@@ -1280,6 +1372,9 @@ __INDEXATTR__;
 	/**
 	 * For backward compatibility, this function checks both tables and
 	 * views.
+	 * @param string $table
+	 * @param string $fname
+	 * @param bool|string $schema
 	 * @return bool
 	 */
 	function tableExists( $table, $fname = __METHOD__, $schema = false ) {
@@ -1326,13 +1421,13 @@ SQL;
 	}
 
 	function constraintExists( $table, $constraint ) {
-		$SQL = sprintf( "SELECT 1 FROM information_schema.table_constraints " .
+		$sql = sprintf( "SELECT 1 FROM information_schema.table_constraints " .
 			"WHERE constraint_schema = %s AND table_name = %s AND constraint_name = %s",
 			$this->addQuotes( $this->getCoreSchema() ),
 			$this->addQuotes( $table ),
 			$this->addQuotes( $constraint )
 		);
-		$res = $this->query( $SQL );
+		$res = $this->query( $sql );
 		if ( !$res ) {
 			return null;
 		}
@@ -1343,6 +1438,7 @@ SQL;
 
 	/**
 	 * Query whether a given schema exists. Returns true if it does, false if it doesn't.
+	 * @param string $schema
 	 * @return bool
 	 */
 	function schemaExists( $schema ) {
@@ -1354,6 +1450,7 @@ SQL;
 
 	/**
 	 * Returns true if a given role (i.e. user) exists, false otherwise.
+	 * @param string $roleName
 	 * @return bool
 	 */
 	function roleExists( $roleName ) {
@@ -1369,6 +1466,8 @@ SQL;
 
 	/**
 	 * pg_field_type() wrapper
+	 * @param ResultWrapper|resource $res ResultWrapper or PostgreSQL query result resource
+	 * @param int $index Field number, starting from 0
 	 * @return string
 	 */
 	function fieldType( $res, $index ) {
@@ -1380,7 +1479,7 @@ SQL;
 	}
 
 	/**
-	 * @param $b
+	 * @param string $b
 	 * @return Blob
 	 */
 	function encodeBlob( $b ) {
@@ -1400,7 +1499,7 @@ SQL;
 	}
 
 	/**
-	 * @param $s null|bool|Blob
+	 * @param null|bool|Blob $s
 	 * @return int|string
 	 */
 	function addQuotes( $s ) {
@@ -1419,21 +1518,18 @@ SQL;
 	 * Postgres specific version of replaceVars.
 	 * Calls the parent version in Database.php
 	 *
-	 * @private
-	 *
 	 * @param string $ins SQL string, read from a stream (usually tables.sql)
-	 *
 	 * @return string SQL string
 	 */
 	protected function replaceVars( $ins ) {
 		$ins = parent::replaceVars( $ins );
 
-		if ( $this->numeric_version >= 8.3 ) {
+		if ( $this->numericVersion >= 8.3 ) {
 			// Thanks for not providing backwards-compatibility, 8.3
 			$ins = preg_replace( "/to_tsvector\s*\(\s*'default'\s*,/", 'to_tsvector(', $ins );
 		}
 
-		if ( $this->numeric_version <= 8.1 ) { // Our minimum version
+		if ( $this->numericVersion <= 8.1 ) { // Our minimum version
 			$ins = str_replace( 'USING gin', 'USING gist', $ins );
 		}
 
@@ -1443,10 +1539,8 @@ SQL;
 	/**
 	 * Various select options
 	 *
-	 * @private
-	 *
 	 * @param array $options an associative array of options to be turned into
-	 *              an SQL query, valid keys are listed in the function.
+	 *   an SQL query, valid keys are listed in the function.
 	 * @return array
 	 */
 	function makeSelectOptions( $options ) {
@@ -1470,17 +1564,17 @@ SQL;
 		//		: false );
 		//}
 
-		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
+		if ( isset( $options['FOR UPDATE'] ) ) {
+			$postLimitTail .= ' FOR UPDATE OF ' . implode( ', ', $options['FOR UPDATE'] );
+		} elseif ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE';
 		}
+
 		if ( isset( $noKeyOptions['DISTINCT'] ) || isset( $noKeyOptions['DISTINCTROW'] ) ) {
 			$startOpts .= 'DISTINCT';
 		}
 
 		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
-	}
-
-	function setFakeMaster( $enabled = true ) {
 	}
 
 	function getDBname() {
@@ -1524,9 +1618,9 @@ SQL;
 	 * Check to see if a named lock is available. This is non-blocking.
 	 * See http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 	 *
-	 * @param string $lockName name of lock to poll
-	 * @param string $method name of method calling us
-	 * @return Boolean
+	 * @param string $lockName Name of lock to poll
+	 * @param string $method Name of method calling us
+	 * @return bool
 	 * @since 1.20
 	 */
 	public function lockIsFree( $lockName, $method ) {
@@ -1540,9 +1634,9 @@ SQL;
 
 	/**
 	 * See http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
-	 * @param $lockName string
-	 * @param $method string
-	 * @param $timeout int
+	 * @param string $lockName
+	 * @param string $method
+	 * @param int $timeout
 	 * @return bool
 	 */
 	public function lock( $lockName, $method, $timeout = 5 ) {
@@ -1565,8 +1659,8 @@ SQL;
 	/**
 	 * See http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKSFROM
 	 * PG DOCS: http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
-	 * @param $lockName string
-	 * @param $method string
+	 * @param string $lockName
+	 * @param string $method
 	 * @return bool
 	 */
 	public function unlock( $lockName, $method ) {

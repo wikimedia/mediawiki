@@ -3,7 +3,7 @@
  * Authentication plugin interface
  *
  * Copyright © 2004 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -204,8 +204,8 @@ class AuthPlugin {
 	 * Update user information in the external authentication database.
 	 * Return true if successful.
 	 *
-	 * @param $user User object.
-	 * @return Boolean
+	 * @param User $user
+	 * @return bool
 	 */
 	public function updateExternalDB( $user ) {
 		return true;

@@ -1,0 +1,84 @@
+/*!
+ * Logger for MediaWiki javascript.
+ * Implements the stub left by the main 'mediawiki' module.
+ *
+ * @author Michael Dale <mdale@wikimedia.org>
+ * @author Trevor Parscal <tparscal@wikimedia.org>
+ */
+
+( function ( mw, $ ) {
+
+	// Reference to dummy
+	// We don't need the dummy, but it has other methods on it
+	// that we need to restore afterwards.
+	var original = mw.log,
+		slice = Array.prototype.slice;
+
+	/**
+	 * Logs a message to the console in debug mode.
+	 *
+	 * In the case the browser does not have a console API, a console is created on-the-fly by appending
+	 * a `<div id="mw-log-console">` element to the bottom of the body and then appending this and future
+	 * messages to that, instead of the console.
+	 *
+	 * @member mw.log
+	 * @param {string...} msg Messages to output to console.
+	 */
+	mw.log = function () {
+		// Turn arguments into an array
+		var args = slice.call( arguments ),
+			// Allow log messages to use a configured prefix to identify the source window (ie. frame)
+			prefix = mw.config.exists( 'mw.log.prefix' ) ? mw.config.get( 'mw.log.prefix' ) + '> ' : '';
+
+		// Try to use an existing console
+		// Generally we can cache this, but in this case we want to re-evaluate this as a
+		// global property live so that things like Firebug Lite can take precedence.
+		if ( window.console && window.console.log && window.console.log.apply ) {
+			args.unshift( prefix );
+			window.console.log.apply( window.console, args );
+			return;
+		}
+
+		// If there is no console, use our own log box
+		mw.loader.using( 'jquery.footHovzer', function () {
+
+			var	hovzer,
+				d = new Date(),
+				// Create HH:MM:SS.MIL timestamp
+				time = ( d.getHours() < 10 ? '0' + d.getHours() : d.getHours() ) +
+					':' + ( d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes() ) +
+					':' + ( d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds() ) +
+					'.' + ( d.getMilliseconds() < 10 ? '00' + d.getMilliseconds() : ( d.getMilliseconds() < 100 ? '0' + d.getMilliseconds() : d.getMilliseconds() ) ),
+				$log = $( '#mw-log-console' );
+
+			if ( !$log.length ) {
+				$log = $( '<div id="mw-log-console"></div>' ).css( {
+						overflow: 'auto',
+						height: '150px',
+						backgroundColor: 'white',
+						borderTop: 'solid 2px #ADADAD'
+					} );
+				hovzer = $.getFootHovzer();
+				hovzer.$.append( $log );
+				hovzer.update();
+			}
+			$log.append(
+				$( '<div>' )
+					.css( {
+						borderBottom: 'solid 1px #DDDDDD',
+						fontSize: 'small',
+						fontFamily: 'monospace',
+						whiteSpace: 'pre-wrap',
+						padding: '0.125em 0.25em'
+					} )
+					.text( prefix + args.join( ', ' ) )
+					.prepend( '<span style="float: right;">[' + time + ']</span>' )
+			);
+		} );
+	};
+
+	// Restore original methods
+	mw.log.warn = original.warn;
+	mw.log.deprecate = original.deprecate;
+
+}( mediaWiki, jQuery ) );

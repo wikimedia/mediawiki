@@ -113,7 +113,6 @@ define( 'CACHE_NONE', 0 );       // Do not cache
 define( 'CACHE_DB', 1 );         // Store cache objects in the DB
 define( 'CACHE_MEMCACHED', 2 );  // MemCached, must specify servers in $wgMemCacheServers
 define( 'CACHE_ACCEL', 3 );      // APC, XCache or WinCache
-define( 'CACHE_DBA', 4 );        // Use PHP's DBA extension to store in a DBM-style database
 /**@}*/
 
 /**@{
@@ -166,11 +165,6 @@ define( 'ALF_NO_BLOCK_LOCK', 8 );
  * Date format selectors; used in user preference storage and by
  * Language::date() and co.
  */
-/*define( 'MW_DATE_DEFAULT', '0' );
-define( 'MW_DATE_MDY', '1' );
-define( 'MW_DATE_DMY', '2' );
-define( 'MW_DATE_YMD', '3' );
-define( 'MW_DATE_ISO', 'ISO 8601' );*/
 define( 'MW_DATE_DEFAULT', 'default' );
 define( 'MW_DATE_MDY', 'mdy' );
 define( 'MW_DATE_DMY', 'dmy' );

@@ -127,7 +127,7 @@ class SpecialRandomInCategory extends SpecialPage {
 
 	/**
 	 * Choose a random title.
-	 * @return Title object (or null if nothing to choose from)
+	 * @return Title|null Title object (or null if nothing to choose from)
 	 */
 	public function getRandomTitle() {
 		// Convert to float, since we do math with the random number.
@@ -177,7 +177,7 @@ class SpecialRandomInCategory extends SpecialPage {
 	 *   was a large gap in the distribution of cl_timestamp values. This way instead
 	 *   of things to the right of the gap being favoured, both sides of the gap
 	 *   are favoured.
-	 * @return Array Query information.
+	 * @return array Query information.
 	 */
 	protected function getQueryInfo( $rand, $offset, $up ) {
 		$op = $up ? '>=' : '<=';
@@ -207,6 +207,7 @@ class SpecialRandomInCategory extends SpecialPage {
 			$qi['conds'][] = 'cl_timestamp ' . $op . ' ' .
 				$dbr->addQuotes( $dbr->timestamp( $minClTime ) );
 		}
+
 		return $qi;
 	}
 
@@ -229,6 +230,7 @@ class SpecialRandomInCategory extends SpecialPage {
 		}
 
 		$ts = ( $this->maxTimestamp - $this->minTimestamp ) * $rand + $this->minTimestamp;
+
 		return intval( $ts );
 	}
 
@@ -236,7 +238,7 @@ class SpecialRandomInCategory extends SpecialPage {
 	 * Get the lowest and highest timestamp for a category.
 	 *
 	 * @param Title $category
-	 * @return Array The lowest and highest timestamp
+	 * @return array The lowest and highest timestamp
 	 * @throws MWException if category has no entries.
 	 */
 	protected function getMinAndMaxForCat( Title $category ) {
@@ -258,6 +260,7 @@ class SpecialRandomInCategory extends SpecialPage {
 		if ( !$res ) {
 			throw new MWException( 'No entries in category' );
 		}
+
 		return array( wfTimestamp( TS_UNIX, $res->low ), wfTimestamp( TS_UNIX, $res->high ) );
 	}
 
@@ -265,8 +268,8 @@ class SpecialRandomInCategory extends SpecialPage {
 	 * @param float $rand A random number that is converted to a random timestamp
 	 * @param int $offset A small offset to make the result seem more "random"
 	 * @param bool $up Get the result above the random value
-	 * @param String $fname The name of the calling method
-	 * @return Array Info for the title selected.
+	 * @param string $fname The name of the calling method
+	 * @return array Info for the title selected.
 	 */
 	private function selectRandomPageFromDB( $rand, $offset, $up, $fname = __METHOD__ ) {
 		$dbr = wfGetDB( DB_SLAVE );

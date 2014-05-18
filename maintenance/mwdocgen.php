@@ -152,15 +152,13 @@ You might want to delete the temporary file:
 ---------------------------------------------------
 
 TEXT
-	);
+		);
 
 		if ( $exitcode !== 0 ) {
 			$this->error( "Something went wrong (exit: $exitcode)\n",
 				$exitcode );
 		}
-
 	}
-
 }
 
 $maintClass = 'MWDocGen';

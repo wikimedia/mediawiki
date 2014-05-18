@@ -5,7 +5,7 @@
  */
 class MWCallableUpdate implements DeferrableUpdate {
 	/**
-	 * @var closure/callback
+	 * @var Closure|callable
 	 */
 	private $callback;
 

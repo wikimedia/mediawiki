@@ -54,7 +54,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * There is an optional media key, the value of which can be the
 	 * medium ('screen', 'print', etc.) of the stylesheet.
 	 *
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
 	abstract protected function getPages( ResourceLoaderContext $context );
@@ -77,7 +77,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param $title Title
+	 * @param Title $title
 	 * @return null|string
 	 */
 	protected function getContent( $title ) {
@@ -109,7 +109,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	/* Methods */
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return string
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
@@ -125,17 +125,14 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			$script = $this->getContent( $title );
 			if ( strval( $script ) !== '' ) {
 				$script = $this->validateScriptFile( $titleText, $script );
-				if ( strpos( $titleText, '*/' ) === false ) {
-					$scripts .= "/* $titleText */\n";
-				}
-				$scripts .= $script . "\n";
+				$scripts .= ResourceLoader::makeComment( $titleText ) . $script . "\n";
 			}
 		}
 		return $scripts;
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
@@ -162,16 +159,14 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( !isset( $styles[$media] ) ) {
 				$styles[$media] = array();
 			}
-			if ( strpos( $titleText, '*/' ) === false ) {
-				$style = "/* $titleText */\n" . $style;
-			}
+			$style = ResourceLoader::makeComment( $titleText ) . $style;
 			$styles[$media][] = $style;
 		}
 		return $styles;
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return int|mixed
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
@@ -191,7 +186,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	/**
 	 * Get the definition summary for this module.
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
 		return array(
@@ -201,7 +196,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param $context ResourceLoaderContext
+	 * @param ResourceLoaderContext $context
 	 * @return bool
 	 */
 	public function isKnownEmpty( ResourceLoaderContext $context ) {
@@ -211,7 +206,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	/**
 	 * Get the modification times of all titles that would be loaded for
 	 * a given context.
-	 * @param $context ResourceLoaderContext: Context object
+	 * @param ResourceLoaderContext $context Context object
 	 * @return array( prefixed DB key => UNIX timestamp ), nonexistent titles are dropped
 	 */
 	protected function getTitleMtimes( ResourceLoaderContext $context ) {

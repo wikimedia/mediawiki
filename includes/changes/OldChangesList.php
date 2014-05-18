@@ -19,6 +19,7 @@
  *
  * @file
  */
+
 class OldChangesList extends ChangesList {
 	/**
 	 * Format a line using the old system (aka without any javascript).
@@ -35,9 +36,6 @@ class OldChangesList extends ChangesList {
 
 		# Should patrol-related stuff be shown?
 		$unpatrolled = $this->showAsUnpatrolled( $rc );
-
-		$dateheader = ''; // $s now contains only <li>...</li>, for hooks' convenience.
-		$this->insertDateHeader( $dateheader, $rc->mAttribs['rc_timestamp'] );
 
 		$s = '';
 		$classes = array();
@@ -126,6 +124,9 @@ class OldChangesList extends ChangesList {
 		}
 
 		wfProfileOut( __METHOD__ );
+
+		$dateheader = ''; // $s now contains only <li>...</li>, for hooks' convenience.
+		$this->insertDateHeader( $dateheader, $rc->mAttribs['rc_timestamp'] );
 
 		return "$dateheader<li class=\"" . implode( ' ', $classes ) . "\">" . $s . "</li>\n";
 	}

@@ -73,13 +73,13 @@ class CheckImages extends Maintenance {
 				}
 
 				if ( $stat['size'] != $row->img_size ) {
-					$this->output( "{$row->img_name}: size mismatch DB={$row->img_size}, actual={$stat['size']}\n" );
+					$this->output( "{$row->img_name}: size mismatch DB={$row->img_size}, "
+						. "actual={$stat['size']}\n" );
 					continue;
 				}
 
 				$numGood++;
 			}
-
 		} while ( $res->numRows() );
 
 		$this->output( "Good images: $numGood/$numImages\n" );

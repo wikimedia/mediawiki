@@ -4,7 +4,7 @@
  * http://www.unicode.org/Public/UNIDATA/NormalizationTest.txt
  *
  * Copyright © 2004 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,14 +25,14 @@
  * @ingroup UtfNormal
  */
 
-if( PHP_SAPI != 'cli' ) {
+if ( PHP_SAPI != 'cli' ) {
 	die( "Run me from the command line please.\n" );
 }
 
 $verbose = true;
 #define( 'PRETTY_UTF8', true );
 
-if( defined( 'PRETTY_UTF8' ) ) {
+if ( defined( 'PRETTY_UTF8' ) ) {
 	function pretty( $string ) {
 		return strtoupper( bin2hex( $string ) );
 	}
@@ -47,7 +47,7 @@ if( defined( 'PRETTY_UTF8' ) ) {
 	}
 }
 
-if( isset( $_SERVER['argv'] ) && in_array( '--icu', $_SERVER['argv'] ) ) {
+if ( isset( $_SERVER['argv'] ) && in_array( '--icu', $_SERVER['argv'] ) ) {
 	dl( 'php_utfnormal.so' );
 }
 
@@ -55,12 +55,12 @@ require_once 'UtfNormalDefines.php';
 require_once 'UtfNormalUtil.php';
 require_once 'UtfNormal.php';
 
-$in = fopen("NormalizationTest.txt", "rt");
-if( !$in ) {
+$in = fopen( "NormalizationTest.txt", "rt" );
+if ( !$in ) {
 	print "Couldn't open NormalizationTest.txt -- can't run tests.\n";
 	print "If necessary, manually download this file. It can be obtained at\n";
 	print "http://www.unicode.org/Public/UNIDATA/NormalizationTest.txt";
-	exit(-1);
+	exit( -1 );
 }
 
 $normalizer = new UtfNormal;
@@ -70,12 +70,13 @@ $success = 0;
 $failure = 0;
 $ok = true;
 $testedChars = array();
-while( false !== ( $line = fgets( $in ) ) ) {
+
+while ( false !== ( $line = fgets( $in ) ) ) {
 	list( $data, $comment ) = explode( '#', $line );
-	if( $data === '' ) continue;
+	if ( $data === '' ) continue;
 	$matches = array();
-	if( preg_match( '/@Part([\d])/', $data, $matches ) ) {
-		if( $matches[1] > 0 ) {
+	if ( preg_match( '/@Part([\d])/', $data, $matches ) ) {
+		if ( $matches[1] > 0 ) {
 			$ok = reportResults( $total, $success, $failure ) && $ok;
 		}
 		print "Part {$matches[1]}: $comment";
@@ -87,56 +88,57 @@ while( false !== ( $line = fgets( $in ) ) ) {
 
 	$testedChars[$columns[1]] = true;
 	$total++;
-	if( testNormals( $normalizer, $columns, $comment, $verbose ) ) {
+	if ( testNormals( $normalizer, $columns, $comment, $verbose ) ) {
 		$success++;
 	} else {
 		$failure++;
 		# print "FAILED: $comment";
 	}
-	if( $total % 100 == 0 ) print "$total ";
+	if ( $total % 100 == 0 ) print "$total ";
 }
 fclose( $in );
 
 $ok = reportResults( $total, $success, $failure ) && $ok;
 
-$in = fopen("UnicodeData.txt", "rt" );
-if( !$in ) {
+$in = fopen( "UnicodeData.txt", "rt" );
+if ( !$in ) {
 	print "Can't open UnicodeData.txt for reading.\n";
 	print "If necessary, fetch this file from the internet:\n";
 	print "http://www.unicode.org/Public/UNIDATA/UnicodeData.txt\n";
-	exit(-1);
+	exit( -1 );
 }
 print "Now testing invariants...\n";
-while( false !== ($line = fgets( $in ) ) ) {
+
+while ( false !== ( $line = fgets( $in ) ) ) {
 	$cols = explode( ';', $line );
 	$char = codepointToUtf8( hexdec( $cols[0] ) );
 	$desc = $cols[0] . ": " . $cols[1];
-	if( $char < "\x20" || $char >= UTF8_SURROGATE_FIRST && $char <= UTF8_SURROGATE_LAST ) {
+	if ( $char < "\x20" || $char >= UTF8_SURROGATE_FIRST && $char <= UTF8_SURROGATE_LAST ) {
 		# Can't check NULL with the ICU plugin, as null bytes fail in C land.
 		# Skip other control characters, as we strip them for XML safety.
 		# Surrogates are illegal on their own or in UTF-8, ignore.
 		continue;
 	}
-	if( empty( $testedChars[$char] ) ) {
+	if ( empty( $testedChars[$char] ) ) {
 		$total++;
-		if( testInvariant( $normalizer, $char, $desc, $verbose ) ) {
+		if ( testInvariant( $normalizer, $char, $desc, $verbose ) ) {
 			$success++;
 		} else {
 			$failure++;
 		}
-		if( $total % 100 == 0 ) print "$total ";
+		if ( $total % 100 == 0 ) print "$total ";
 	}
 }
 fclose( $in );
 
 $ok = reportResults( $total, $success, $failure ) && $ok;
 
-if( $ok ) {
+if ( $ok ) {
 	print "TEST SUCCEEDED!\n";
-	exit(0);
+	exit( 0 );
 } else {
 	print "TEST FAILED!\n";
-	exit(-1);
+	exit( -1 );
 }
 
 ## ------
@@ -147,10 +149,11 @@ function reportResults( &$total, &$success, &$failure ) {
 	print "\n";
 	print "$success tests successful ($percSucc%)\n";
 	print "$failure tests failed ($percFail%)\n\n";
-	$ok = ($success > 0 && $failure == 0);
+	$ok = ( $success > 0 && $failure == 0 );
 	$total = 0;
 	$success = 0;
 	$failure = 0;
+
 	return $ok;
 }
 
@@ -161,23 +164,25 @@ function testNormals( &$u, $c, $comment, $verbose, $reportFailure = false ) {
 	$result = testNFKD( $u, $c, $comment, $reportFailure ) && $result;
 	$result = testCleanUp( $u, $c, $comment, $reportFailure ) && $result;
 
-	if( $verbose && !$result && !$reportFailure ) {
+	if ( $verbose && !$result && !$reportFailure ) {
 		print $comment;
 		testNormals( $u, $c, $comment, $verbose, true );
 	}
+
 	return $result;
 }
 
 function verbosify( $a, $b, $col, $form, $verbose ) {
 	#$result = ($a === $b);
-	$result = (strcmp( $a, $b ) == 0);
-	if( $verbose ) {
+	$result = ( strcmp( $a, $b ) == 0 );
+	if ( $verbose ) {
 		$aa = pretty( $a );
 		$bb = pretty( $b );
 		$ok = $result ? "succeed" : " failed";
 		$eq = $result ? "==" : "!=";
 		print "  $ok $form c$col '$aa' $eq '$bb'\n";
 	}
+
 	return $result;
 }
 
@@ -187,6 +192,7 @@ function testNFC( &$u, $c, $comment, $verbose ) {
 	$result = verbosify( $c[2], $u->toNFC( $c[3] ), 3, 'NFC', $verbose ) && $result;
 	$result = verbosify( $c[4], $u->toNFC( $c[4] ), 4, 'NFC', $verbose ) && $result;
 	$result = verbosify( $c[4], $u->toNFC( $c[5] ), 5, 'NFC', $verbose ) && $result;
+
 	return $result;
 }
 
@@ -201,6 +207,7 @@ function testCleanUp( &$u, $c, $comment, $verbose ) {
 	$result = verbosify( $c[4], $u->cleanUp( $x ), 4, 'cleanUp', $verbose ) && $result;
 	$x = $c[5];
 	$result = verbosify( $c[4], $u->cleanUp( $x ), 5, 'cleanUp', $verbose ) && $result;
+
 	return $result;
 }
 
@@ -210,6 +217,7 @@ function testNFD( &$u, $c, $comment, $verbose ) {
 	$result = verbosify( $c[3], $u->toNFD( $c[3] ), 3, 'NFD', $verbose ) && $result;
 	$result = verbosify( $c[5], $u->toNFD( $c[4] ), 4, 'NFD', $verbose ) && $result;
 	$result = verbosify( $c[5], $u->toNFD( $c[5] ), 5, 'NFD', $verbose ) && $result;
+
 	return $result;
 }
 
@@ -219,6 +227,7 @@ function testNFKC( &$u, $c, $comment, $verbose ) {
 	$result = verbosify( $c[4], $u->toNFKC( $c[3] ), 3, 'NFKC', $verbose ) && $result;
 	$result = verbosify( $c[4], $u->toNFKC( $c[4] ), 4, 'NFKC', $verbose ) && $result;
 	$result = verbosify( $c[4], $u->toNFKC( $c[5] ), 5, 'NFKC', $verbose ) && $result;
+
 	return $result;
 }
 
@@ -228,6 +237,7 @@ function testNFKD( &$u, $c, $comment, $verbose ) {
 	$result = verbosify( $c[5], $u->toNFKD( $c[3] ), 3, 'NFKD', $verbose ) && $result;
 	$result = verbosify( $c[5], $u->toNFKD( $c[4] ), 4, 'NFKD', $verbose ) && $result;
 	$result = verbosify( $c[5], $u->toNFKD( $c[5] ), 5, 'NFKD', $verbose ) && $result;
+
 	return $result;
 }
 
@@ -238,9 +248,10 @@ function testInvariant( &$u, $char, $desc, $verbose, $reportFailure = false ) {
 	$result = verbosify( $char, $u->toNFKD( $char ), 1, 'NFKD', $reportFailure ) && $result;
 	$result = verbosify( $char, $u->cleanUp( $char ), 1, 'cleanUp', $reportFailure ) && $result;
 
-	if( $verbose && !$result && !$reportFailure ) {
+	if ( $verbose && !$result && !$reportFailure ) {
 		print $desc;
 		testInvariant( $u, $char, $desc, $verbose, true );
 	}
+
 	return $result;
 }

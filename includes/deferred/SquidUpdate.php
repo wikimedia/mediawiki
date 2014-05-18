@@ -139,7 +139,7 @@ class SquidUpdate {
 			return;
 		}
 
-		wfDebugLog( 'squid', __METHOD__ . ': ' . implode( ' ', $urlArr ) . "\n" );
+		wfDebugLog( 'squid', __METHOD__ . ': ' . implode( ' ', $urlArr ) );
 
 		if ( $wgHTCPRouting ) {
 			self::HTCPPurge( $urlArr );
@@ -200,7 +200,7 @@ class SquidUpdate {
 		if ( !$conn ) {
 			$errstr = socket_strerror( socket_last_error() );
 			wfDebugLog( 'squid', __METHOD__ .
-				": Error opening UDP socket: $errstr\n" );
+				": Error opening UDP socket: $errstr" );
 			wfProfileOut( __METHOD__ );
 
 			return;
@@ -216,6 +216,11 @@ class SquidUpdate {
 
 		// Remove duplicate URLs from collection
 		$urlArr = array_unique( $urlArr );
+		// Get sequential trx IDs for packet loss counting
+		$ids = UIDGenerator::newSequentialPerNodeIDs(
+			'squidhtcppurge', 32, count( $urlArr ), UIDGenerator::QUICK_VOLATILE
+		);
+
 		foreach ( $urlArr as $url ) {
 			if ( !is_string( $url ) ) {
 				wfProfileOut( __METHOD__ );
@@ -225,7 +230,7 @@ class SquidUpdate {
 			$conf = self::getRuleForURL( $url, $wgHTCPRouting );
 			if ( !$conf ) {
 				wfDebugLog( 'squid', __METHOD__ .
-					"No HTCP rule configured for URL {$url} , skipping\n" );
+					"No HTCP rule configured for URL {$url} , skipping" );
 				continue;
 			}
 
@@ -243,7 +248,8 @@ class SquidUpdate {
 			// Construct a minimal HTCP request diagram
 			// as per RFC 2756
 			// Opcode 'CLR', no response desired, no auth
-			$htcpTransID = rand();
+			$htcpTransID = current( $ids );
+			next( $ids );
 
 			$htcpSpecifier = pack( 'na4na*na8n',
 				4, 'HEAD', strlen( $url ), $url,
@@ -260,7 +266,7 @@ class SquidUpdate {
 				$htcpTransID, $htcpSpecifier, 2 );
 
 			wfDebugLog( 'squid', __METHOD__ .
-				"Purging URL $url via HTCP\n" );
+				"Purging URL $url via HTCP" );
 			foreach ( $conf as $subconf ) {
 				socket_sendto( $conn, $htcpPacket, $htcpLen, 0,
 					$subconf['host'], $subconf['port'] );

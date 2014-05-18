@@ -1,0 +1,171 @@
+Security reminder: MediaWiki does not require PHP's register_globals. If you
+have it on, turn it '''off''' if you can.
+
+== MediaWiki 1.24 ==
+
+THIS IS NOT A RELEASE YET
+
+MediaWiki 1.24 is an alpha-quality branch and is not recommended for use in
+production.
+
+=== Configuration changes in 1.24 ===
+* The server's canonical hostname is available as $wgServerName, which is
+  exposed in both mw.config and ApiQuerySiteInfo.
+
+=== New features in 1.24 ===
+* Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
+  WhatLinksHere entries.
+* Added a new hook, "ContentGetParserOutput", to customize parser output for
+  a given content object.
+* Deprecated the hook "ShowRawCssJs", use "ContentGetParserOutput" instead.
+* HTMLForm's HTMLTextField now supports the 'url' type.
+* HTMLForm fields may now be dynamically hidden based on the values of other
+  fields in the form.
+* HTMLForm now supports multiple copies of an input field or set of input
+  fields, e.g. the form may request "one or more usernames" without having to
+  have the user enter delimited list of names into a text field.
+* Added a new hook, "SidebarBeforeOutput", to allow to edit the structure of
+  the sidebar just before its display.
+* (bug 49156) Added the mediawiki.cookie ResourceLoader module, which wraps
+  jQuery.cookie so that getting/setting a cookie is syntactically and functionally
+  similar to using the WebRequest#getCookie/WebResponse#setcookie methods.
+* (bug 44740) jQuery upgraded from 1.8.3 to 1.11.1.
+
+=== Bug fixes in 1.24 ===
+* (bug 49116) Footer copyright notice is now always displayed in user language
+  rather than content language (same as copyright notice for editing interface).
+* (bug 62258) A bug was fixed in File::getUnscaledThumb when a height
+  restriction was present in the parameters.  Images with both the "frame"
+  option and a size specification set will now always ignore the provided
+  size and display an unscaled image, as the documentation has always
+  claimed it would.
+* (bug 39035) Improved Vector skin performance by removing collapsibleNav,
+  which used to collapse some sidebar elements by default.
+* (bug 890) Links in Special:RecentChanges and Special:Watchlist no longer
+  follow redirects to their target pages.
+* Parser now dies early if called recursively, instead of producing subtle bugs.
+
+=== Web API changes in 1.24 ===
+* action=parse API now supports prop=modules, which provides the list of
+  ResourceLoader modules that should be used to enhance the parsed content.
+
+=== Languages updated in 1.24 ===
+
+MediaWiki supports over 350 languages. Many localisations are updated
+regularly. Below only new and removed languages are listed, as well as
+changes to languages because of Bugzilla reports.
+
+=== Other changes in 1.24 ===
+* The deprecated jquery.delayedBind ResourceLoader module was removed.
+* The deprecated function mw.util.toggleToc was removed.
+* The Special:Search hooks SpecialSearchGo and SpecialSearchResultsAppend
+  were removed as they were unused.
+* mediawiki.util.$content no longer supports old versions of the Vector,
+  Monobook, Modern and CologneBlue skins that don't yet implement the "mw-body"
+  and/or "mw-body-primary" class name in their html.
+
+==== Renamed classes ====
+* CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
+* CLDRPluralRuleConverter_Fragment to CLDRPluralRuleConverterFragment
+* CLDRPluralRuleConverter_Operator to CLDRPluralRuleConverterOperator
+* CLDRPluralRuleEvaluator_Range to CLDRPluralRuleEvaluatorRange
+* CSSJanus_Tokenizer to CSSJanusTokenizer
+* MediaWiki_I18N to MediaWikiI18N
+* RevDel_ArchiveItem to RevDelArchiveItem
+* RevDel_ArchiveList to RevDelArchiveList
+* RevDel_ArchivedFileItem to RevDelArchivedFileItem
+* RevDel_ArchivedFileList to RevDelArchivedFileList
+* RevDel_ArchivedRevisionItem to RevDelArchivedRevisionItem
+* RevDel_FileItem to RevDelFileItem
+* RevDel_FileList to RevDelFileList
+* RevDel_Item to RevDelItem
+* RevDel_List to RevDelList
+* RevDel_LogItem to RevDelLogItem
+* RevDel_LogList to RevDelLogList
+* RevDel_RevisionItem to RevDelRevisionItem
+* RevDel_RevisionList to RevDelRevisionList
+* WebInstaller_Complete to WebInstallerComplete
+* WebInstaller_Copying to WebInstallerCopying
+* WebInstaller_DBConnect to WebInstallerDBConnect
+* WebInstaller_DBSettings to WebInstallerDBSettings
+* WebInstaller_Document to WebInstallerDocument
+* WebInstaller_ExistingWiki to WebInstallerExistingWiki
+* WebInstaller_Install to WebInstallerInstall
+* WebInstaller_Language to WebInstallerLanguage
+* WebInstaller_Name to WebInstallerName
+* WebInstaller_Options to WebInstallerOptions
+* WebInstaller_Readme to WebInstallerReadme
+* WebInstaller_ReleaseNotes to WebInstallerReleaseNotes
+* WebInstaller_Restart to WebInstallerRestart
+* WebInstaller_Upgrade to WebInstallerUpgrade
+* WebInstaller_UpgradeDoc to WebInstallerUpgradeDoc
+* WebInstaller_Welcome to WebInstallerWelcome
+
+==== Removed classes ====
+* IPBlockForm - Use SpecialBlock directly
+* WatchlistEditor - Use SpecialEditWatchlist directly
+
+== Compatibility ==
+
+MediaWiki 1.24 requires PHP 5.3.2 or later.
+
+MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but
+support for them is somewhat less mature. There is experimental support for
+Oracle and Microsoft SQL Server.
+
+The supported versions are:
+
+* MySQL 5.0.2 or later
+* PostgreSQL 8.3 or later
+* SQLite 3.3.7 or later
+* Oracle 9.0.1 or later
+* Microsoft SQL Server 2005 (9.00.1399)
+
+== Upgrading ==
+
+1.24 has several database changes since 1.23, and will not work without schema
+updates. Note that due to changes to some very large tables like the revision
+table, the schema update may take quite long (minutes on a medium sized site,
+many hours on a large site).
+
+If upgrading from before 1.11, and you are using a wiki as a commons
+repository, make sure that it is updated as well. Otherwise, errors may arise
+due to database schema changes.
+
+If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
+new database fields are filled with data.
+
+If you are upgrading from MediaWiki 1.4.x or earlier, you should upgrade to
+1.5 first. The upgrade script maintenance/upgrade1_5.php has been removed
+with MediaWiki 1.21.
+
+Don't forget to always back up your database before upgrading!
+
+See the file UPGRADE for more detailed upgrade instructions.
+
+For notes on 1.22.x and older releases, see HISTORY.
+
+== Online documentation ==
+
+Documentation for both end-users and site administrators is available on
+MediaWiki.org, and is covered under the GNU Free Documentation License (except
+for pages that explicitly state that their contents are in the public domain):
+
+	https://www.mediawiki.org/wiki/Documentation
+
+== Mailing list ==
+
+A mailing list is available for MediaWiki user support and discussion:
+
+	https://lists.wikimedia.org/mailman/listinfo/mediawiki-l
+
+A low-traffic announcements-only list is also available:
+
+	https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce
+
+It's highly recommended that you sign up for one of these lists if you're
+going to run a public MediaWiki, so you can be notified of security fixes.
+
+== IRC help ==
+
+There's usually someone online in #mediawiki on irc.freenode.net.

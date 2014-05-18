@@ -35,8 +35,8 @@ class AnsiTermColorer {
 	/**
 	 * Return ANSI terminal escape code for changing text attribs/color
 	 *
-	 * @param $color String: semicolon-separated list of attribute/color codes
-	 * @return String
+	 * @param string $color Semicolon-separated list of attribute/color codes
+	 * @return string
 	 */
 	public function color( $color ) {
 		global $wgCommandLineDarkBg;
@@ -49,7 +49,7 @@ class AnsiTermColorer {
 	/**
 	 * Return ANSI terminal escape code for restoring default text attributes
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function reset() {
 		return $this->color( 0 );

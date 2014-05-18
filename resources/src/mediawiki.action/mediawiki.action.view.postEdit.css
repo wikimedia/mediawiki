@@ -1,0 +1,76 @@
+.postedit-container {
+	margin: 0 auto;
+	position: fixed;
+	top: 0;
+	height: 0;
+	left: 50%;
+	z-index: 1000;
+	font-size: 13px;
+}
+
+.postedit-container:hover {
+	cursor: pointer;
+}
+
+.postedit {
+	position: relative;
+	top: 0.6em;
+	left: -50%;
+	padding: .6em 3.6em .6em 1.1em;
+	line-height: 1.5625em;
+	color: #626465;
+	background-color: #f4f4f4;
+	border: 1px solid #dcd9d9;
+	text-shadow: 0 0.0625em 0 rgba(255, 255, 255, 0.5);
+	border-radius: 5px;
+	box-shadow: 0 2px 5px 0 #ccc;
+	-webkit-transition: all 0.25s ease-in-out;
+	-moz-transition: all 0.25s ease-in-out;
+	-ms-transition: all 0.25s ease-in-out;
+	-o-transition: all 0.25s ease-in-out;
+	transition: all 0.25s ease-in-out;
+}
+
+.skin-monobook .postedit {
+	top: 6em !important;
+}
+
+.postedit-faded {
+	opacity: 0;
+}
+
+.postedit-icon {
+	padding-left: 41px; /* 25 + 8 + 8 */
+	/* like min-height, but old IE compatible and keeps text vertically aligned, too */
+	line-height: 25px;
+	background-repeat: no-repeat;
+	background-position: 8px 50%;
+}
+
+.postedit-icon-checkmark {
+	/* @embed */
+	background-image: url(images/green-checkmark.png);
+	background-position: left;
+}
+
+.postedit-close {
+	position: absolute;
+	padding: 0 .8em;
+	right: 0;
+	top: 0;
+	font-size: 1.25em;
+	font-weight: bold;
+	line-height: 2.3em;
+	color: black;
+	text-shadow: 0 0.0625em 0 white;
+	text-decoration: none;
+	opacity: 0.2;
+	filter: alpha(opacity=20);
+}
+
+.postedit-close:hover {
+	color: black;
+	text-decoration: none;
+	opacity: 0.4;
+	filter: alpha(opacity=40);
+}

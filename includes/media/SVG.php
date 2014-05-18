@@ -86,7 +86,7 @@ class SvgHandler extends ImageHandler {
 	 * this list.
 	 *
 	 * @param File $file
-	 * @return Array of language codes, or empty if no language switching supported.
+	 * @return array Array of language codes, or empty if no language switching supported.
 	 */
 	public function getAvailableLanguages( File $file ) {
 		$metadata = $file->getMetadata();
@@ -107,7 +107,7 @@ class SvgHandler extends ImageHandler {
 	/**
 	 * What language to render file in if none selected.
 	 *
-	 * @return String language code.
+	 * @return string Language code.
 	 */
 	public function getDefaultRenderLanguage( File $file ) {
 		return 'en';

@@ -4,7 +4,6 @@
  * Base class that store and restore the Language objects
  */
 abstract class MediaWikiLangTestCase extends MediaWikiTestCase {
-
 	protected function setUp() {
 		global $wgLanguageCode, $wgContLang;
 		parent::setUp();

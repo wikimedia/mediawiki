@@ -44,6 +44,7 @@ class AlterSharedConstraints extends Maintenance {
 
 		if ( $wgSharedDB == null ) {
 			$this->output( "Database sharing is not enabled\n" );
+
 			return;
 		}
 
@@ -56,35 +57,38 @@ class AlterSharedConstraints extends Maintenance {
 				$ltable = "{$wgDBprefix}{$stable}";
 			}
 
-			$result = $dbw->query( "SELECT uc.constraint_name, uc.table_name, ucc.column_name, uccpk.table_name pk_table_name, uccpk.column_name pk_column_name, uc.delete_rule, uc.deferrable, uc.deferred
-					  FROM user_constraints uc, user_cons_columns ucc, user_cons_columns uccpk
-					 WHERE uc.constraint_type = 'R'
-					   AND ucc.constraint_name = uc.constraint_name
-					   AND uccpk.constraint_name = uc.r_constraint_name
-					   AND uccpk.table_name = '$ltable'" );
+			$result = $dbw->query( "SELECT uc.constraint_name, uc.table_name, ucc.column_name,
+						uccpk.table_name pk_table_name, uccpk.column_name pk_column_name,
+						uc.delete_rule, uc.deferrable, uc.deferred
+					FROM user_constraints uc, user_cons_columns ucc, user_cons_columns uccpk
+					WHERE uc.constraint_type = 'R'
+						AND ucc.constraint_name = uc.constraint_name
+						AND uccpk.constraint_name = uc.r_constraint_name
+						AND uccpk.table_name = '$ltable'" );
 			while ( ( $row = $result->fetchRow() ) !== false ) {
 
-					$this->output( "Altering {$row['constraint_name']} ..." );
+				$this->output( "Altering {$row['constraint_name']} ..." );
 
-					try {
-						$dbw->query( "ALTER TABLE {$row['table_name']} DROP CONSTRAINT {$wgDBprefix}{$row['constraint_name']}" );
-					} catch ( DBQueryError $exdb ) {
-						if ( $exdb->errno != 2443 ) {
-							throw $exdb;
-						}
+				try {
+					$dbw->query( "ALTER TABLE {$row['table_name']}
+							DROP CONSTRAINT {$wgDBprefix}{$row['constraint_name']}" );
+				} catch ( DBQueryError $exdb ) {
+					if ( $exdb->errno != 2443 ) {
+						throw $exdb;
 					}
+				}
 
-					$deleteRule = $row['delete_rule'] == 'NO ACTION' ? '' : "ON DELETE {$row['delete_rule']}";
-					$dbw->query( "ALTER TABLE {$row['table_name']} ADD CONSTRAINT {$wgDBprefix}{$row['constraint_name']}
+				$deleteRule = $row['delete_rule'] == 'NO ACTION' ? '' : "ON DELETE {$row['delete_rule']}";
+				$dbw->query( "ALTER TABLE {$row['table_name']}
+						ADD CONSTRAINT {$wgDBprefix}{$row['constraint_name']}
 						FOREIGN KEY ({$row['column_name']})
 						REFERENCES {$wgSharedDB}.$stable({$row['pk_column_name']})
 						{$deleteRule} {$row['deferrable']} INITIALLY {$row['deferred']}" );
 
-					$this->output( "DONE\n" );
+				$this->output( "DONE\n" );
 			}
 		}
 	}
-
 }
 
 $maintClass = "AlterSharedConstraints";

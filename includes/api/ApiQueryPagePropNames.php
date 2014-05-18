@@ -32,7 +32,7 @@
  */
 class ApiQueryPagePropNames extends ApiQueryBase {
 
-	public function __construct( $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ppn' );
 	}
 
@@ -102,7 +102,7 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'List all page prop names in use on the wiki';
+		return 'List all page prop names in use on the wiki.';
 	}
 
 	public function getExamples() {

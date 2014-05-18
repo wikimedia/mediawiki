@@ -1,0 +1,13 @@
+{
+	"name": "mediawiki-ui-dependencies",
+	"description": "Node.js dependencies used for KSS generation",
+	"version": "0.0.1",
+	"dependencies": {
+		"kss": ">=0.3.7"
+	},
+	"repository" : {
+		"type" : "git",
+		"url" : "https://gerrit.wikimedia.org/r/p/mediawiki/core.git"
+	}
+
+}

@@ -126,7 +126,12 @@ CREATE TABLE /*_*/user (
   -- Meant primarily for heuristic checks to give an impression of whether
   -- the account has been used much.
   --
-  user_editcount int
+  user_editcount int,
+
+  -- Expiration date for user password. Use $user->expirePassword()
+  -- to force a password reset.
+  user_password_expires varbinary(14) DEFAULT NULL
+
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/user_name ON /*_*/user (user_name);
@@ -1030,11 +1035,6 @@ CREATE TABLE /*_*/recentchanges (
   rc_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   rc_timestamp varbinary(14) NOT NULL default '',
 
-  -- This is no longer used
-  -- Field kept in database for downgrades
-  -- @todo: add drop patch with 1.24
-  rc_cur_time varbinary(14) NOT NULL default '',
-
   -- As in revision
   rc_user int unsigned NOT NULL default 0,
   rc_user_text varchar(255) binary NOT NULL,
@@ -1424,12 +1424,13 @@ CREATE INDEX /*i*/pt_timestamp ON /*_*/protected_titles (pt_timestamp);
 CREATE TABLE /*_*/page_props (
   pp_page int NOT NULL,
   pp_propname varbinary(60) NOT NULL,
-  pp_value blob NOT NULL
+  pp_value blob NOT NULL,
+  pp_sortkey float DEFAULT NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/pp_page_propname ON /*_*/page_props (pp_page,pp_propname);
 CREATE UNIQUE INDEX /*i*/pp_propname_page ON /*_*/page_props (pp_propname,pp_page);
-
+CREATE UNIQUE INDEX /*i*/pp_propname_sortkey_page ON /*_*/page_props (pp_propname,pp_sortkey,pp_page);
 
 -- A table to log updates, one text key row per update.
 CREATE TABLE /*_*/updatelog (

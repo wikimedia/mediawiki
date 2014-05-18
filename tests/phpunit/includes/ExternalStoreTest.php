@@ -57,7 +57,7 @@ class ExternalStoreFOO {
 
 	/**
 	 * Fetch data from given URL
-	 * @param $url String: an url of the form FOO://cluster/id or FOO://cluster/id/itemid.
+	 * @param string $url An url of the form FOO://cluster/id or FOO://cluster/id/itemid.
 	 * @return mixed
 	 */
 	function fetchFromURL( $url ) {
@@ -75,7 +75,10 @@ class ExternalStoreFOO {
 			return null;
 		}
 
-		if ( $itemID !== false && is_array( $this->data[$cluster][$id] ) && isset( $this->data[$cluster][$id][$itemID] ) ) {
+		if ( $itemID !== false
+			&& is_array( $this->data[$cluster][$id] )
+			&& isset( $this->data[$cluster][$id][$itemID] )
+		) {
 			return $this->data[$cluster][$id][$itemID];
 		}
 

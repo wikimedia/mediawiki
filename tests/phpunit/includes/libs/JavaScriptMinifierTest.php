@@ -14,16 +14,28 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 			 * At some point there was a bug that caused this comment to be ended at '* /',
 			 * causing /M... to be left as the beginning of a regex.
 			 */
-			array( "/**\n * Foo\n * {\n * 'bar' : {\n * //Multiple rules with configurable operators\n * 'baz' : false\n * }\n */", "" ),
+			array(
+				"/**\n * Foo\n * {\n * 'bar' : {\n * "
+					. "//Multiple rules with configurable operators\n * 'baz' : false\n * }\n */",
+				"" ),
 
 			/**
 			 * '  Foo \' bar \
 			 *  baz \' quox '  .
 			 */
-			array( "'  Foo  \\'  bar  \\\n  baz  \\'  quox  '  .length", "'  Foo  \\'  bar  \\\n  baz  \\'  quox  '.length" ),
-			array( "\"  Foo  \\\"  bar  \\\n  baz  \\\"  quox  \"  .length", "\"  Foo  \\\"  bar  \\\n  baz  \\\"  quox  \".length" ),
+			array(
+				"'  Foo  \\'  bar  \\\n  baz  \\'  quox  '  .length",
+				"'  Foo  \\'  bar  \\\n  baz  \\'  quox  '.length"
+			),
+			array(
+				"\"  Foo  \\\"  bar  \\\n  baz  \\\"  quox  \"  .length",
+				"\"  Foo  \\\"  bar  \\\n  baz  \\\"  quox  \".length"
+			),
 			array( "// Foo b/ar baz", "" ),
-			array( "/  Foo  \\/  bar  [  /  \\]  /  ]  baz  /  .length", "/  Foo  \\/  bar  [  /  \\]  /  ]  baz  /.length" ),
+			array(
+				"/  Foo  \\/  bar  [  /  \\]  /  ]  baz  /  .length",
+				"/  Foo  \\/  bar  [  /  \\]  /  ]  baz  /.length"
+			),
 
 			// HTML comments
 			array( "<!-- Foo bar", "" ),
@@ -49,7 +61,10 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 
 			// Semicolon insertion between an expression having an inline
 			// comment after it, and a statement on the next line (bug 27046).
-			array( "var a = this //foo bar \n for ( b = 0; c < d; b++ ) {}", "var a=this\nfor(b=0;c<d;b++){}" ),
+			array(
+				"var a = this //foo bar \n for ( b = 0; c < d; b++ ) {}",
+				"var a=this\nfor(b=0;c<d;b++){}"
+			),
 
 			// Token separation
 			array( "x  in  y", "x in y" ),
@@ -85,16 +100,28 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 			array( "var foo=\"\\\nblah\\\n\";", "var foo=\"\\\nblah\\\n\";" ),
 
 			// Multiline quoted string followed by string with spaces
-			array( "var foo=\"\\\nblah\\\n\";\nvar baz = \" foo \";\n", "var foo=\"\\\nblah\\\n\";var baz=\" foo \";" ),
+			array(
+				"var foo=\"\\\nblah\\\n\";\nvar baz = \" foo \";\n",
+				"var foo=\"\\\nblah\\\n\";var baz=\" foo \";"
+			),
 
 			// URL in quoted string ( // is not a comment)
-			array( "aNode.setAttribute('href','http://foo.bar.org/baz');", "aNode.setAttribute('href','http://foo.bar.org/baz');" ),
+			array(
+				"aNode.setAttribute('href','http://foo.bar.org/baz');",
+				"aNode.setAttribute('href','http://foo.bar.org/baz');"
+			),
 
 			// URL in quoted string after multiline quoted string
-			array( "var foo=\"\\\nblah\\\n\";\naNode.setAttribute('href','http://foo.bar.org/baz');", "var foo=\"\\\nblah\\\n\";aNode.setAttribute('href','http://foo.bar.org/baz');" ),
+			array(
+				"var foo=\"\\\nblah\\\n\";\naNode.setAttribute('href','http://foo.bar.org/baz');",
+				"var foo=\"\\\nblah\\\n\";aNode.setAttribute('href','http://foo.bar.org/baz');"
+			),
 
 			// Division vs. regex nastiness
-			array( "alert( (10+10) / '/'.charCodeAt( 0 ) + '//' );", "alert((10+10)/'/'.charCodeAt(0)+'//');" ),
+			array(
+				"alert( (10+10) / '/'.charCodeAt( 0 ) + '//' );",
+				"alert((10+10)/'/'.charCodeAt(0)+'//');"
+			),
 			array( "if(1)/a /g.exec('Pa ss');", "if(1)/a /g.exec('Pa ss');" ),
 
 			// newline insertion after 1000 chars: break after the "++", not before
@@ -130,7 +157,11 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 		wfRestoreWarnings();
 		$parser->parse( $minified, 'minify-test.js', 1 );
 
-		$this->assertEquals( $expectedOutput, $minified, "Minified output should be in the form expected." );
+		$this->assertEquals(
+			$expectedOutput,
+			$minified,
+			"Minified output should be in the form expected."
+		);
 	}
 
 	public static function provideBug32548() {
@@ -154,6 +185,7 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideBug32548
 	 * @covers JavaScriptMinifier::minify
+	 * @todo give this test a real name explaining what is being tested here
 	 */
 	public function testBug32548Exponent( $num ) {
 		// Long line breaking was being incorrectly done between the base and

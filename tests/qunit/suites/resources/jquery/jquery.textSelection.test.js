@@ -32,29 +32,33 @@
 		}, opt.after );
 
 		QUnit.test( opt.description, function ( assert ) {
-			/*jshint onevar: false */
-			var tests = 1;
+			var $textarea, start, end, options, text,
+				tests = 1;
 			if ( opt.after.selected !== null ) {
 				tests++;
 			}
 			QUnit.expect( tests );
 
-			var $textarea = $( '<textarea>' );
+			$textarea = $( '<textarea>' );
 
 			$( '#qunit-fixture' ).append( $textarea );
 
-			//$textarea.textSelection( 'setContents', opt.before.text); // this method is actually missing atm...
-			$textarea.val( opt.before.text ); // won't work with the WikiEditor iframe?
+			// This method is actually missing atm...
+			//$textarea.textSelection( 'setContents', opt.before.text);
 
-			var start = opt.before.start,
-				end = opt.before.end;
+			// Won't work with the WikiEditor iframe?
+			$textarea.val( opt.before.text );
 
-			var options = $.extend( {}, opt.replace ); // Clone opt.replace
+			start = opt.before.start;
+			end = opt.before.end;
+
+			// Clone opt.replace
+			options = $.extend( {}, opt.replace );
 			options.selectionStart = start;
 			options.selectionEnd = end;
 			$textarea.textSelection( 'encapsulateSelection', options );
 
-			var text = $textarea.textSelection( 'getContents' ).replace( /\r\n/g, '\n' );
+			text = $textarea.textSelection( 'getContents' ).replace( /\r\n/g, '\n' );
 
 			assert.equal( text, opt.after.text, 'Checking full text after encapsulation' );
 
@@ -161,7 +165,6 @@
 		replace: h2
 	} );
 
-
 	encapsulateTest( {
 		description: 'ownline option: turn a partial line into new h2',
 		before: {
@@ -175,7 +178,6 @@
 		},
 		replace: h2
 	} );
-
 
 	encapsulateTest( {
 		description: 'splitlines option: no selection, insert new list item',
@@ -216,10 +218,10 @@
 		replace: ulist
 	} );
 
-
 	function caretTest( options ) {
 		QUnit.test( options.description, 2, function ( assert ) {
-			var pos, $textarea = $( '<textarea>' ).text( options.text );
+			var pos,
+				$textarea = $( '<textarea>' ).text( options.text );
 
 			$( '#qunit-fixture' ).append( $textarea );
 

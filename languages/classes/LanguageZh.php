@@ -28,14 +28,13 @@ require_once __DIR__ . '/LanguageZh_hans.php';
  * @ingroup Language
  */
 class ZhConverter extends LanguageConverter {
-
 	/**
-	 * @param $langobj Language
-	 * @param $maincode string
-	 * @param $variants array
-	 * @param $variantfallbacks array
-	 * @param $flags array
-	 * @param $manualLevel array
+	 * @param Language $langobj
+	 * @param string $maincode
+	 * @param array $variants
+	 * @param array $variantfallbacks
+	 * @param array $flags
+	 * @param array $manualLevel
 	 */
 	function __construct( $langobj, $maincode,
 								$variants = array(),
@@ -88,8 +87,8 @@ class ZhConverter extends LanguageConverter {
 	}
 
 	/**
-	 * @param $key string
-	 * @return String
+	 * @param string $key
+	 * @return string
 	 */
 	function convertCategoryKey( $key ) {
 		return $this->autoConvert( $key, 'zh' );
@@ -103,12 +102,22 @@ class ZhConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageZh extends LanguageZh_hans {
-
 	function __construct() {
 		global $wgHooks;
+
 		parent::__construct();
 
-		$variants = array( 'zh', 'zh-hans', 'zh-hant', 'zh-cn', 'zh-hk', 'zh-mo', 'zh-my', 'zh-sg', 'zh-tw' );
+		$variants = array(
+			'zh',
+			'zh-hans',
+			'zh-hant',
+			'zh-cn',
+			'zh-hk',
+			'zh-mo',
+			'zh-my',
+			'zh-sg',
+			'zh-tw'
+		);
 
 		$variantfallbacks = array(
 			'zh' => array( 'zh-hans', 'zh-hant', 'zh-cn', 'zh-tw', 'zh-hk', 'zh-sg', 'zh-mo', 'zh-my' ),
@@ -138,7 +147,7 @@ class LanguageZh extends LanguageZh_hans {
 	/**
 	 * this should give much better diff info
 	 *
-	 * @param $text string
+	 * @param string $text
 	 * @return string
 	 */
 	function segmentForDiff( $text ) {
@@ -146,7 +155,7 @@ class LanguageZh extends LanguageZh_hans {
 	}
 
 	/**
-	 * @param $text string
+	 * @param string $text
 	 * @return string
 	 */
 	function unsegmentForDiff( $text ) {
@@ -156,9 +165,9 @@ class LanguageZh extends LanguageZh_hans {
 	/**
 	 * auto convert to zh-hans and normalize special characters.
 	 *
-	 * @param $string String
-	 * @param $autoVariant String, default to 'zh-hans'
-	 * @return String
+	 * @param string $string
+	 * @param string $autoVariant default to 'zh-hans'
+	 * @return string
 	 */
 	function normalizeForSearch( $string, $autoVariant = 'zh-hans' ) {
 		wfProfileIn( __METHOD__ );
@@ -176,7 +185,7 @@ class LanguageZh extends LanguageZh_hans {
 	}
 
 	/**
-	 * @param $termsArray array
+	 * @param array $termsArray
 	 * @return array
 	 */
 	function convertForSearchResult( $termsArray ) {
@@ -187,4 +196,3 @@ class LanguageZh extends LanguageZh_hans {
 		return $ret;
 	}
 }
-

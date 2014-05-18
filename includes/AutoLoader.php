@@ -29,7 +29,6 @@ global $wgAutoloadLocalClasses;
 
 $wgAutoloadLocalClasses = array(
 	# Includes
-	'Action' => 'includes/Action.php',
 	'AjaxDispatcher' => 'includes/AjaxDispatcher.php',
 	'AjaxResponse' => 'includes/AjaxResponse.php',
 	'AlphabeticPager' => 'includes/Pager.php',
@@ -38,7 +37,6 @@ $wgAutoloadLocalClasses = array(
 	'AuthPlugin' => 'includes/AuthPlugin.php',
 	'AuthPluginUser' => 'includes/AuthPlugin.php',
 	'Autopromote' => 'includes/Autopromote.php',
-	'BadTitleError' => 'includes/Exception.php',
 	'BaseTemplate' => 'includes/SkinTemplate.php',
 	'Block' => 'includes/Block.php',
 	'CacheHelper' => 'includes/CacheHelper.php',
@@ -72,20 +70,14 @@ $wgAutoloadLocalClasses = array(
 	'DumpPipeOutput' => 'includes/Export.php',
 	'EditPage' => 'includes/EditPage.php',
 	'EmailNotification' => 'includes/UserMailer.php',
-	'ErrorPageError' => 'includes/Exception.php',
-	'FakeTitle' => 'includes/FakeTitle.php',
 	'Fallback' => 'includes/Fallback.php',
-	'FatalError' => 'includes/Exception.php',
 	'FauxRequest' => 'includes/WebRequest.php',
 	'FauxResponse' => 'includes/WebResponse.php',
 	'FeedItem' => 'includes/Feed.php',
 	'FeedUtils' => 'includes/FeedUtils.php',
 	'FileDeleteForm' => 'includes/FileDeleteForm.php',
 	'ForkController' => 'includes/ForkController.php',
-	'FormlessAction' => 'includes/Action.php',
-	'FormAction' => 'includes/Action.php',
 	'FormOptions' => 'includes/FormOptions.php',
-	'FormSpecialPage' => 'includes/specialpage/FormSpecialPage.php',
 	'GitInfo' => 'includes/GitInfo.php',
 	'HistoryBlob' => 'includes/HistoryBlob.php',
 	'HistoryBlobCurStub' => 'includes/HistoryBlob.php',
@@ -97,11 +89,13 @@ $wgAutoloadLocalClasses = array(
 	'HTMLButtonField' => 'includes/htmlform/HTMLButtonField.php',
 	'HTMLCheckField' => 'includes/htmlform/HTMLCheckField.php',
 	'HTMLCheckMatrix' => 'includes/htmlform/HTMLCheckMatrix.php',
+	'HTMLFormFieldCloner' => 'includes/htmlform/HTMLFormFieldCloner.php',
 	'HTMLEditTools' => 'includes/htmlform/HTMLEditTools.php',
 	'HTMLFloatField' => 'includes/htmlform/HTMLFloatField.php',
 	'HTMLForm' => 'includes/htmlform/HTMLForm.php',
 	'HTMLFormField' => 'includes/htmlform/HTMLFormField.php',
-	'HTMLFormFieldRequiredOptionsException' => 'includes/htmlform/HTMLFormFieldRequiredOptionsException.php',
+	'HTMLFormFieldRequiredOptionsException' =>
+		'includes/htmlform/HTMLFormFieldRequiredOptionsException.php',
 	'HTMLHiddenField' => 'includes/htmlform/HTMLHiddenField.php',
 	'HTMLInfoField' => 'includes/htmlform/HTMLInfoField.php',
 	'HTMLIntField' => 'includes/htmlform/HTMLIntField.php',
@@ -115,7 +109,6 @@ $wgAutoloadLocalClasses = array(
 	'HTMLTextAreaField' => 'includes/htmlform/HTMLTextAreaField.php',
 	'HTMLTextField' => 'includes/htmlform/HTMLTextField.php',
 	'Http' => 'includes/HttpFunctions.php',
-	'HttpError' => 'includes/Exception.php',
 	'ICacheHelper' => 'includes/CacheHelper.php',
 	'IcuCollation' => 'includes/Collation.php',
 	'IdentityCollation' => 'includes/Collation.php',
@@ -125,7 +118,6 @@ $wgAutoloadLocalClasses = array(
 	'ImageQueryPage' => 'includes/ImageQueryPage.php',
 	'ImportStreamSource' => 'includes/Import.php',
 	'ImportStringSource' => 'includes/Import.php',
-	'IncludableSpecialPage' => 'includes/specialpage/IncludableSpecialPage.php',
 	'IndexPager' => 'includes/Pager.php',
 	'Interwiki' => 'includes/interwiki/Interwiki.php',
 	'LCStore' => 'includes/cache/LocalisationCache.php',
@@ -143,12 +135,11 @@ $wgAutoloadLocalClasses = array(
 	'MagicWordArray' => 'includes/MagicWord.php',
 	'MailAddress' => 'includes/UserMailer.php',
 	'MediaWiki' => 'includes/Wiki.php',
-	'MediaWiki_I18N' => 'includes/SkinTemplate.php',
+	'MediaWikiI18N' => 'includes/SkinTemplate.php',
+	'MediaWikiVersionFetcher' => 'includes/MediaWikiVersionFetcher.php',
 	'Message' => 'includes/Message.php',
 	'MessageBlobStore' => 'includes/MessageBlobStore.php',
 	'MimeMagic' => 'includes/MimeMagic.php',
-	'MWException' => 'includes/Exception.php',
-	'MWExceptionHandler' => 'includes/Exception.php',
 	'MWHookException' => 'includes/Hooks.php',
 	'MWHttpRequest' => 'includes/HttpFunctions.php',
 	'MWInit' => 'includes/Init.php',
@@ -160,12 +151,12 @@ $wgAutoloadLocalClasses = array(
 	'PasswordError' => 'includes/User.php',
 	'PathRouter' => 'includes/PathRouter.php',
 	'PathRouterPatternReplacer' => 'includes/PathRouter.php',
-	'PermissionsError' => 'includes/Exception.php',
 	'PhpHttpRequest' => 'includes/HttpFunctions.php',
-	'PoolCounter' => 'includes/PoolCounter.php',
-	'PoolCounter_Stub' => 'includes/PoolCounter.php',
-	'PoolCounterWork' => 'includes/PoolCounter.php',
-	'PoolCounterWorkViaCallback' => 'includes/PoolCounter.php',
+	'PoolCounter' => 'includes/poolcounter/PoolCounter.php',
+	'PoolCounter_Stub' => 'includes/poolcounter/PoolCounter.php',
+	'PoolCounterRedis' => 'includes/poolcounter/PoolCounterRedis.php',
+	'PoolCounterWork' => 'includes/poolcounter/PoolCounterWork.php',
+	'PoolCounterWorkViaCallback' => 'includes/poolcounter/PoolCounterWork.php',
 	'PoolWorkArticleView' => 'includes/WikiPage.php',
 	'Preferences' => 'includes/Preferences.php',
 	'PreferencesForm' => 'includes/Preferences.php',
@@ -174,10 +165,6 @@ $wgAutoloadLocalClasses = array(
 	'QueryPage' => 'includes/QueryPage.php',
 	'QuickTemplate' => 'includes/SkinTemplate.php',
 	'RawMessage' => 'includes/Message.php',
-	'RdfMetaData' => 'includes/Metadata.php',
-	'ReadOnlyError' => 'includes/Exception.php',
-	'RedirectSpecialArticle' => 'includes/specialpage/RedirectSpecialPage.php',
-	'RedirectSpecialPage' => 'includes/specialpage/RedirectSpecialPage.php',
 	'ReverseChronologicalPager' => 'includes/Pager.php',
 	'RevisionItem' => 'includes/RevisionList.php',
 	'RevisionItemBase' => 'includes/RevisionList.php',
@@ -185,47 +172,33 @@ $wgAutoloadLocalClasses = array(
 	'Revision' => 'includes/Revision.php',
 	'RevisionList' => 'includes/RevisionList.php',
 	'RSSFeed' => 'includes/Feed.php',
-	'RunningStat' => 'includes/profiler/RunningStat.php',
 	'Sanitizer' => 'includes/Sanitizer.php',
 	'SiteConfiguration' => 'includes/SiteConfiguration.php',
 	'SiteStats' => 'includes/SiteStats.php',
 	'SiteStatsInit' => 'includes/SiteStats.php',
 	'Skin' => 'includes/Skin.php',
 	'SkinTemplate' => 'includes/SkinTemplate.php',
-	'SpecialCreateAccount' => 'includes/specials/SpecialCreateAccount.php',
-	'SpecialListAdmins' => 'includes/specials/SpecialListusers.php',
-	'SpecialListBots' => 'includes/specials/SpecialListusers.php',
-	'SpecialMycontributions' => 'includes/specials/SpecialMyRedirectPages.php',
-	'SpecialMypage' => 'includes/specials/SpecialMyRedirectPages.php',
-	'SpecialMytalk' => 'includes/specials/SpecialMyRedirectPages.php',
-	'SpecialMyuploads' => 'includes/specials/SpecialMyRedirectPages.php',
-	'SpecialAllMyUploads' => 'includes/specials/SpecialMyRedirectPages.php',
-	'SpecialPage' => 'includes/specialpage/SpecialPage.php',
-	'SpecialPageFactory' => 'includes/SpecialPageFactory.php',
-	'SpecialRedirectToSpecial' => 'includes/specialpage/RedirectSpecialPage.php',
 	'SquidPurgeClient' => 'includes/SquidPurgeClient.php',
 	'SquidPurgeClientPool' => 'includes/SquidPurgeClient.php',
 	'StatCounter' => 'includes/StatCounter.php',
 	'Status' => 'includes/Status.php',
 	'StreamFile' => 'includes/StreamFile.php',
+	'StringPrefixSearch' => 'includes/PrefixSearch.php',
 	'StubContLang' => 'includes/StubObject.php',
 	'StubObject' => 'includes/StubObject.php',
 	'StubUserLang' => 'includes/StubObject.php',
 	'TablePager' => 'includes/Pager.php',
-	'MWTimestamp' => 'includes/Timestamp.php',
-	'TimestampException' => 'includes/Timestamp.php',
+	'MWTimestamp' => 'includes/MWTimestamp.php',
+	'TimestampException' => 'includes/TimestampException.php',
 	'Title' => 'includes/Title.php',
 	'TitleArray' => 'includes/TitleArray.php',
-	'TitleArrayFromResult' => 'includes/TitleArray.php',
-	'ThrottledError' => 'includes/Exception.php',
-	'UnlistedSpecialPage' => 'includes/specialpage/UnlistedSpecialPage.php',
+	'TitleArrayFromResult' => 'includes/TitleArrayFromResult.php',
+	'TitlePrefixSearch' => 'includes/PrefixSearch.php',
 	'UploadSourceAdapter' => 'includes/Import.php',
 	'UppercaseCollation' => 'includes/Collation.php',
 	'User' => 'includes/User.php',
 	'UserArray' => 'includes/UserArray.php',
-	'UserArrayFromResult' => 'includes/UserArray.php',
-	'UserBlockedError' => 'includes/Exception.php',
-	'UserNotLoggedIn' => 'includes/Exception.php',
+	'UserArrayFromResult' => 'includes/UserArrayFromResult.php',
 	'UserCache' => 'includes/cache/UserCache.php',
 	'UserMailer' => 'includes/UserMailer.php',
 	'UserRightsProxy' => 'includes/UserRightsProxy.php',
@@ -235,8 +208,6 @@ $wgAutoloadLocalClasses = array(
 	'WebRequestUpload' => 'includes/WebRequest.php',
 	'WebResponse' => 'includes/WebResponse.php',
 	'WikiCategoryPage' => 'includes/WikiCategoryPage.php',
-	'WikiError' => 'includes/WikiError.php',
-	'WikiErrorMsg' => 'includes/WikiError.php',
 	'WikiExporter' => 'includes/Export.php',
 	'WikiFilePage' => 'includes/WikiFilePage.php',
 	'WikiImporter' => 'includes/Import.php',
@@ -244,19 +215,20 @@ $wgAutoloadLocalClasses = array(
 	'WikiRevision' => 'includes/Import.php',
 	'WikiMap' => 'includes/WikiMap.php',
 	'WikiReference' => 'includes/WikiMap.php',
-	'WikiXmlError' => 'includes/WikiError.php',
 	'Xml' => 'includes/Xml.php',
 	'XmlDumpWriter' => 'includes/Export.php',
 	'XmlJsCode' => 'includes/Xml.php',
 	'XMLReader2' => 'includes/Import.php',
 	'XmlSelect' => 'includes/Xml.php',
-	'ZhClient' => 'includes/ZhClient.php',
 
 	# includes/actions
+	'Action' => 'includes/actions/Action.php',
 	'CachedAction' => 'includes/actions/CachedAction.php',
 	'CreditsAction' => 'includes/actions/CreditsAction.php',
 	'DeleteAction' => 'includes/actions/DeleteAction.php',
 	'EditAction' => 'includes/actions/EditAction.php',
+	'FormlessAction' => 'includes/actions/FormlessAction.php',
+	'FormAction' => 'includes/actions/FormAction.php',
 	'HistoryAction' => 'includes/actions/HistoryAction.php',
 	'HistoryPage' => 'includes/actions/HistoryAction.php',
 	'HistoryPager' => 'includes/actions/HistoryAction.php',
@@ -288,6 +260,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiEmailUser' => 'includes/api/ApiEmailUser.php',
 	'ApiExpandTemplates' => 'includes/api/ApiExpandTemplates.php',
 	'ApiFeedContributions' => 'includes/api/ApiFeedContributions.php',
+	'ApiFeedRecentChanges' => 'includes/api/ApiFeedRecentChanges.php',
 	'ApiFeedWatchlist' => 'includes/api/ApiFeedWatchlist.php',
 	'ApiFileRevert' => 'includes/api/ApiFileRevert.php',
 	'ApiFormatBase' => 'includes/api/ApiFormatBase.php',
@@ -334,6 +307,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiQueryCategoryInfo' => 'includes/api/ApiQueryCategoryInfo.php',
 	'ApiQueryCategoryMembers' => 'includes/api/ApiQueryCategoryMembers.php',
 	'ApiQueryContributions' => 'includes/api/ApiQueryUserContributions.php',
+	'ApiQueryContributors' => 'includes/api/ApiQueryContributors.php',
 	'ApiQueryDeletedrevs' => 'includes/api/ApiQueryDeletedrevs.php',
 	'ApiQueryDisabled' => 'includes/api/ApiQueryDisabled.php',
 	'ApiQueryDuplicateFiles' => 'includes/api/ApiQueryDuplicateFiles.php',
@@ -354,11 +328,13 @@ $wgAutoloadLocalClasses = array(
 	'ApiQueryPageProps' => 'includes/api/ApiQueryPageProps.php',
 	'ApiQueryPagesWithProp' => 'includes/api/ApiQueryPagesWithProp.php',
 	'ApiQueryPagePropNames' => 'includes/api/ApiQueryPagePropNames.php',
+	'ApiQueryPrefixSearch' => 'includes/api/ApiQueryPrefixSearch.php',
 	'ApiQueryProtectedTitles' => 'includes/api/ApiQueryProtectedTitles.php',
 	'ApiQueryQueryPage' => 'includes/api/ApiQueryQueryPage.php',
 	'ApiQueryRandom' => 'includes/api/ApiQueryRandom.php',
 	'ApiQueryRecentChanges' => 'includes/api/ApiQueryRecentChanges.php',
 	'ApiQueryFileRepoInfo' => 'includes/api/ApiQueryFileRepoInfo.php',
+	'ApiQueryRedirects' => 'includes/api/ApiQueryRedirects.php',
 	'ApiQueryRevisions' => 'includes/api/ApiQueryRevisions.php',
 	'ApiQuerySearch' => 'includes/api/ApiQuerySearch.php',
 	'ApiQuerySiteinfo' => 'includes/api/ApiQuerySiteinfo.php',
@@ -369,6 +345,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiQueryWatchlist' => 'includes/api/ApiQueryWatchlist.php',
 	'ApiQueryWatchlistRaw' => 'includes/api/ApiQueryWatchlistRaw.php',
 	'ApiResult' => 'includes/api/ApiResult.php',
+	'ApiRevisionDelete' => 'includes/api/ApiRevisionDelete.php',
 	'ApiRollback' => 'includes/api/ApiRollback.php',
 	'ApiRsd' => 'includes/api/ApiRsd.php',
 	'ApiSetNotificationTimestamp' => 'includes/api/ApiSetNotificationTimestamp.php',
@@ -395,7 +372,6 @@ $wgAutoloadLocalClasses = array(
 	'MapCacheLRU' => 'includes/cache/MapCacheLRU.php',
 	'MessageCache' => 'includes/cache/MessageCache.php',
 	'ObjectFileCache' => 'includes/cache/ObjectFileCache.php',
-	'ProcessCacheLRU' => 'includes/cache/ProcessCacheLRU.php',
 	'ResourceFileCache' => 'includes/cache/ResourceFileCache.php',
 
 	# includes/changes
@@ -403,11 +379,20 @@ $wgAutoloadLocalClasses = array(
 	'EnhancedChangesList' => 'includes/changes/EnhancedChangesList.php',
 	'OldChangesList' => 'includes/changes/OldChangesList.php',
 	'RCCacheEntry' => 'includes/changes/RCCacheEntry.php',
+	'RCCacheEntryFactory' => 'includes/changes/RCCacheEntryFactory.php',
 	'RecentChange' => 'includes/changes/RecentChange.php',
 
 	# includes/clientpool
 	'RedisConnectionPool' => 'includes/clientpool/RedisConnectionPool.php',
 	'RedisConnRef' => 'includes/clientpool/RedisConnectionPool.php',
+
+	# includes/composer
+	'ComposerPackageModifier' => 'includes/composer/ComposerPackageModifier.php',
+	'ComposerVersionNormalizer' => 'includes/composer/ComposerVersionNormalizer.php',
+
+	# includes/config
+	'Config' => 'includes/config/Config.php',
+	'GlobalConfig' => 'includes/config/GlobalConfig.php',
 
 	# includes/content
 	'AbstractContent' => 'includes/content/AbstractContent.php',
@@ -452,6 +437,7 @@ $wgAutoloadLocalClasses = array(
 	'DBConnectionError' => 'includes/db/DatabaseError.php',
 	'DBConnRef' => 'includes/db/LoadBalancer.php',
 	'DBError' => 'includes/db/DatabaseError.php',
+	'DBExpectedError' => 'includes/db/DatabaseError.php',
 	'DBObject' => 'includes/db/DatabaseUtility.php',
 	'IDatabase'  => 'includes/db/Database.php',
 	'IORMRow' => 'includes/db/IORMRow.php',
@@ -473,7 +459,8 @@ $wgAutoloadLocalClasses = array(
 	'LoadMonitorMySQL' => 'includes/db/LoadMonitor.php',
 	'LoadMonitorNull' => 'includes/db/LoadMonitor.php',
 	'MssqlField' => 'includes/db/DatabaseMssql.php',
-	'MssqlResult' => 'includes/db/DatabaseMssql.php',
+	'MssqlBlob' => 'includes/db/DatabaseMssql.php',
+	'MssqlResultWrapper' => 'includes/db/DatabaseMssql.php',
 	'MySQLField' => 'includes/db/DatabaseMysqlBase.php',
 	'MySQLMasterPos' => 'includes/db/DatabaseMysqlBase.php',
 	'ORAField' => 'includes/db/DatabaseOracle.php',
@@ -524,6 +511,19 @@ $wgAutoloadLocalClasses = array(
 	'WikiDiff3' => 'includes/diff/WikiDiff3.php',
 	'WordLevelDiff' => 'includes/diff/DairikiDiff.php',
 
+	# includes/exception
+	'UserBlockedError' => 'includes/exception/UserBlockedError.php',
+	'UserNotLoggedIn' => 'includes/exception/UserNotLoggedIn.php',
+	'ThrottledError' => 'includes/exception/ThrottledError.php',
+	'ReadOnlyError' => 'includes/exception/ReadOnlyError.php',
+	'PermissionsError' => 'includes/exception/PermissionsError.php',
+	'MWException' => 'includes/exception/MWException.php',
+	'MWExceptionHandler' => 'includes/exception/MWExceptionHandler.php',
+	'HttpError' => 'includes/exception/HttpError.php',
+	'BadTitleError' => 'includes/exception/BadTitleError.php',
+	'ErrorPageError' => 'includes/exception/ErrorPageError.php',
+	'FatalError' => 'includes/exception/FatalError.php',
+
 	# includes/externalstore
 	'ExternalStore' => 'includes/externalstore/ExternalStore.php',
 	'ExternalStoreDB' => 'includes/externalstore/ExternalStoreDB.php',
@@ -563,7 +563,6 @@ $wgAutoloadLocalClasses = array(
 	'ScopedLock' => 'includes/filebackend/lockmanager/ScopedLock.php',
 	'FSLockManager' => 'includes/filebackend/lockmanager/FSLockManager.php',
 	'DBLockManager' => 'includes/filebackend/lockmanager/DBLockManager.php',
-	'LSLockManager' => 'includes/filebackend/lockmanager/LSLockManager.php',
 	'MemcLockManager' => 'includes/filebackend/lockmanager/MemcLockManager.php',
 	'QuorumLockManager' => 'includes/filebackend/lockmanager/QuorumLockManager.php',
 	'MySqlLockManager' => 'includes/filebackend/lockmanager/DBLockManager.php',
@@ -611,76 +610,82 @@ $wgAutoloadLocalClasses = array(
 	'InstallDocFormatter' => 'includes/installer/InstallDocFormatter.php',
 	'Installer' => 'includes/installer/Installer.php',
 	'LocalSettingsGenerator' => 'includes/installer/LocalSettingsGenerator.php',
+	'MssqlInstaller' => 'includes/installer/MssqlInstaller.php',
+	'MssqlUpdater' => 'includes/installer/MssqlUpdater.php',
 	'MysqlInstaller' => 'includes/installer/MysqlInstaller.php',
 	'MysqlUpdater' => 'includes/installer/MysqlUpdater.php',
 	'OracleInstaller' => 'includes/installer/OracleInstaller.php',
 	'OracleUpdater' => 'includes/installer/OracleUpdater.php',
-	'PhpRefCallBugTester' => 'includes/installer/PhpBugTests.php',
 	'PhpXmlBugTester' => 'includes/installer/PhpBugTests.php',
 	'PostgresInstaller' => 'includes/installer/PostgresInstaller.php',
 	'PostgresUpdater' => 'includes/installer/PostgresUpdater.php',
 	'SqliteInstaller' => 'includes/installer/SqliteInstaller.php',
 	'SqliteUpdater' => 'includes/installer/SqliteUpdater.php',
 	'WebInstaller' => 'includes/installer/WebInstaller.php',
-	'WebInstaller_Complete' => 'includes/installer/WebInstallerPage.php',
-	'WebInstaller_Copying' => 'includes/installer/WebInstallerPage.php',
-	'WebInstaller_DBConnect' => 'includes/installer/WebInstallerPage.php',
-	'WebInstaller_DBSettings' => 'includes/installer/WebInstallerPage.php',
-	'WebInstaller_Document' => 'includes/installer/WebInstallerPage.php',
-	'WebInstaller_ExistingWiki' => 'includes/installer/WebInstallerPage.php',
-	'WebInstaller_Install' => 'includes/installer/WebInstallerPage.php',
-	'WebInstaller_Language' => 'includes/installer/WebInstallerPage.php',
-	'WebInstaller_Name' => 'includes/installer/WebInstallerPage.php',
-	'WebInstaller_Options' => 'includes/installer/WebInstallerPage.php',
-	'WebInstaller_Readme' => 'includes/installer/WebInstallerPage.php',
-	'WebInstaller_ReleaseNotes' => 'includes/installer/WebInstallerPage.php',
-	'WebInstaller_Restart' => 'includes/installer/WebInstallerPage.php',
-	'WebInstaller_Upgrade' => 'includes/installer/WebInstallerPage.php',
-	'WebInstaller_UpgradeDoc' => 'includes/installer/WebInstallerPage.php',
-	'WebInstaller_Welcome' => 'includes/installer/WebInstallerPage.php',
+	'WebInstallerComplete' => 'includes/installer/WebInstallerPage.php',
+	'WebInstallerCopying' => 'includes/installer/WebInstallerPage.php',
+	'WebInstallerDBConnect' => 'includes/installer/WebInstallerPage.php',
+	'WebInstallerDBSettings' => 'includes/installer/WebInstallerPage.php',
+	'WebInstallerDocument' => 'includes/installer/WebInstallerPage.php',
+	'WebInstallerExistingWiki' => 'includes/installer/WebInstallerPage.php',
+	'WebInstallerInstall' => 'includes/installer/WebInstallerPage.php',
+	'WebInstallerLanguage' => 'includes/installer/WebInstallerPage.php',
+	'WebInstallerName' => 'includes/installer/WebInstallerPage.php',
+	'WebInstallerOptions' => 'includes/installer/WebInstallerPage.php',
+	'WebInstallerReadme' => 'includes/installer/WebInstallerPage.php',
+	'WebInstallerReleaseNotes' => 'includes/installer/WebInstallerPage.php',
+	'WebInstallerRestart' => 'includes/installer/WebInstallerPage.php',
+	'WebInstallerUpgrade' => 'includes/installer/WebInstallerPage.php',
+	'WebInstallerUpgradeDoc' => 'includes/installer/WebInstallerPage.php',
+	'WebInstallerWelcome' => 'includes/installer/WebInstallerPage.php',
 	'WebInstallerOutput' => 'includes/installer/WebInstallerOutput.php',
 	'WebInstallerPage' => 'includes/installer/WebInstallerPage.php',
 
 	# includes/job
-	'Job' => 'includes/job/Job.php',
-	'JobQueue' => 'includes/job/JobQueue.php',
-	'JobQueueAggregator' => 'includes/job/aggregator/JobQueueAggregator.php',
-	'JobQueueAggregatorMemc' => 'includes/job/aggregator/JobQueueAggregatorMemc.php',
-	'JobQueueAggregatorRedis' => 'includes/job/aggregator/JobQueueAggregatorRedis.php',
-	'JobQueueDB' => 'includes/job/JobQueueDB.php',
-	'JobQueueConnectionError' => 'includes/job/JobQueue.php',
-	'JobQueueError' => 'includes/job/JobQueue.php',
-	'JobQueueGroup' => 'includes/job/JobQueueGroup.php',
-	'JobQueueFederated' => 'includes/job/JobQueueFederated.php',
-	'JobQueueRedis' => 'includes/job/JobQueueRedis.php',
+	'IJobSpecification' => 'includes/jobqueue/JobSpecification.php',
+	'Job' => 'includes/jobqueue/Job.php',
+	'JobQueue' => 'includes/jobqueue/JobQueue.php',
+	'JobQueueAggregator' => 'includes/jobqueue/aggregator/JobQueueAggregator.php',
+	'JobQueueAggregatorMemc' => 'includes/jobqueue/aggregator/JobQueueAggregatorMemc.php',
+	'JobQueueAggregatorRedis' => 'includes/jobqueue/aggregator/JobQueueAggregatorRedis.php',
+	'JobQueueDB' => 'includes/jobqueue/JobQueueDB.php',
+	'JobQueueConnectionError' => 'includes/jobqueue/JobQueue.php',
+	'JobQueueError' => 'includes/jobqueue/JobQueue.php',
+	'JobQueueGroup' => 'includes/jobqueue/JobQueueGroup.php',
+	'JobQueueFederated' => 'includes/jobqueue/JobQueueFederated.php',
+	'JobQueueRedis' => 'includes/jobqueue/JobQueueRedis.php',
+	'JobSpecification' => 'includes/jobqueue/JobSpecification.php',
 
-	# includes/job/jobs
-	'DoubleRedirectJob' => 'includes/job/jobs/DoubleRedirectJob.php',
-	'DuplicateJob' => 'includes/job/jobs/DuplicateJob.php',
-	'EmaillingJob' => 'includes/job/jobs/EmaillingJob.php',
-	'EnotifNotifyJob' => 'includes/job/jobs/EnotifNotifyJob.php',
-	'HTMLCacheUpdateJob' => 'includes/job/jobs/HTMLCacheUpdateJob.php',
-	'NullJob' => 'includes/job/jobs/NullJob.php',
-	'RefreshLinksJob' => 'includes/job/jobs/RefreshLinksJob.php',
-	'RefreshLinksJob2' => 'includes/job/jobs/RefreshLinksJob2.php',
-	'UploadFromUrlJob' => 'includes/job/jobs/UploadFromUrlJob.php',
-	'AssembleUploadChunksJob' => 'includes/job/jobs/AssembleUploadChunksJob.php',
-	'PublishStashedFileJob' => 'includes/job/jobs/PublishStashedFileJob.php',
+	# includes/jobqueue/jobs
+	'DoubleRedirectJob' => 'includes/jobqueue/jobs/DoubleRedirectJob.php',
+	'DuplicateJob' => 'includes/jobqueue/jobs/DuplicateJob.php',
+	'EmaillingJob' => 'includes/jobqueue/jobs/EmaillingJob.php',
+	'EnotifNotifyJob' => 'includes/jobqueue/jobs/EnotifNotifyJob.php',
+	'HTMLCacheUpdateJob' => 'includes/jobqueue/jobs/HTMLCacheUpdateJob.php',
+	'NullJob' => 'includes/jobqueue/jobs/NullJob.php',
+	'RefreshLinksJob' => 'includes/jobqueue/jobs/RefreshLinksJob.php',
+	'RefreshLinksJob2' => 'includes/jobqueue/jobs/RefreshLinksJob2.php',
+	'UploadFromUrlJob' => 'includes/jobqueue/jobs/UploadFromUrlJob.php',
+	'AssembleUploadChunksJob' => 'includes/jobqueue/jobs/AssembleUploadChunksJob.php',
+	'PublishStashedFileJob' => 'includes/jobqueue/jobs/PublishStashedFileJob.php',
 
-	# includes/job/utils
-	'BacklinkJobUtils' => 'includes/job/utils/BacklinkJobUtils.php',
+	# includes/jobqueue/utils
+	'BacklinkJobUtils' => 'includes/jobqueue/utils/BacklinkJobUtils.php',
 
 	# includes/json
 	'FormatJson' => 'includes/json/FormatJson.php',
 
 	# includes/libs
 	'CSSJanus' => 'includes/libs/CSSJanus.php',
-	'CSSJanus_Tokenizer' => 'includes/libs/CSSJanus.php',
+	'CSSJanusTokenizer' => 'includes/libs/CSSJanus.php',
 	'CSSMin' => 'includes/libs/CSSMin.php',
 	'GenericArrayObject' => 'includes/libs/GenericArrayObject.php',
+	'HashRing' => 'includes/libs/HashRing.php',
 	'HttpStatus' => 'includes/libs/HttpStatus.php',
 	'IEContentAnalyzer' => 'includes/libs/IEContentAnalyzer.php',
 	'IEUrlExtension' => 'includes/libs/IEUrlExtension.php',
+	'MappedIterator' => 'includes/libs/MappedIterator.php',
+	'IPSet' => 'includes/libs/IPSet.php',
 	'JavaScriptMinifier' => 'includes/libs/JavaScriptMinifier.php',
 	'JSCompilerContext' => 'includes/libs/jsminplus.php',
 	'JSMinPlus' => 'includes/libs/jsminplus.php',
@@ -688,8 +693,15 @@ $wgAutoloadLocalClasses = array(
 	'JSParser' => 'includes/libs/jsminplus.php',
 	'JSToken' => 'includes/libs/jsminplus.php',
 	'JSTokenizer' => 'includes/libs/jsminplus.php',
+	'MultiHttpClient' => 'includes/libs/MultiHttpClient.php',
+	'MWMessagePack' => 'includes/libs/MWMessagePack.php',
+	'ProcessCacheLRU' => 'includes/libs/ProcessCacheLRU.php',
+	'RunningStat' => 'includes/libs/RunningStat.php',
 	'ScopedCallback' => 'includes/libs/ScopedCallback.php',
 	'ScopedPHPTimeout' => 'includes/libs/ScopedPHPTimeout.php',
+	'SwiftVirtualRESTService' => 'includes/libs/virtualrest/SwiftVirtualRESTService.php',
+	'VirtualRESTService' => 'includes/libs/virtualrest/VirtualRESTService.php',
+	'VirtualRESTServiceClient' => 'includes/libs/virtualrest/VirtualRESTServiceClient.php',
 	'XmlTypeCheck' => 'includes/libs/XmlTypeCheck.php',
 
 	# includes/libs/lessphp
@@ -766,10 +778,7 @@ $wgAutoloadLocalClasses = array(
 	# includes/objectcache
 	'APCBagOStuff' => 'includes/objectcache/APCBagOStuff.php',
 	'BagOStuff' => 'includes/objectcache/BagOStuff.php',
-	'DBABagOStuff' => 'includes/objectcache/DBABagOStuff.php',
-	'EhcacheBagOStuff' => 'includes/objectcache/EhcacheBagOStuff.php',
 	'EmptyBagOStuff' => 'includes/objectcache/EmptyBagOStuff.php',
-	'FakeMemCachedClient' => 'includes/objectcache/EmptyBagOStuff.php',
 	'HashBagOStuff' => 'includes/objectcache/HashBagOStuff.php',
 	'MediaWikiBagOStuff' => 'includes/objectcache/SqlBagOStuff.php',
 	'MemCachedClientforWiki' => 'includes/objectcache/MemcachedClient.php',
@@ -825,12 +834,15 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/profiler
 	'Profiler' => 'includes/profiler/Profiler.php',
-	'ProfilerSimple' => 'includes/profiler/ProfilerSimple.php',
+	'ProfilerMwprof' => 'includes/profiler/ProfilerMwprof.php',
+	'ProfilerSimpleDB' => 'includes/profiler/ProfilerSimpleDB.php',
 	'ProfilerSimpleText' => 'includes/profiler/ProfilerSimpleText.php',
 	'ProfilerSimpleTrace' => 'includes/profiler/ProfilerSimpleTrace.php',
 	'ProfilerSimpleUDP' => 'includes/profiler/ProfilerSimpleUDP.php',
+	'ProfilerStandard' => 'includes/profiler/ProfilerStandard.php',
 	'ProfilerStub' => 'includes/profiler/ProfilerStub.php',
 	'ProfileSection' => 'includes/profiler/Profiler.php',
+	'TransactionProfiler' => 'includes/profiler/Profiler.php',
 
 	# includes/rcfeed
 	'RCFeedEngine' => 'includes/rcfeed/RCFeedEngine.php',
@@ -839,6 +851,8 @@ $wgAutoloadLocalClasses = array(
 	'RCFeedFormatter' => 'includes/rcfeed/RCFeedFormatter.php',
 	'IRCColourfulRCFeedFormatter' => 'includes/rcfeed/IRCColourfulRCFeedFormatter.php',
 	'JSONRCFeedFormatter' => 'includes/rcfeed/JSONRCFeedFormatter.php',
+	'XMLRCFeedFormatter' => 'includes/rcfeed/XMLRCFeedFormatter.php',
+	'MachineReadableRCFeedFormatter' => 'includes/rcfeed/MachineReadableRCFeedFormatter.php',
 
 	# includes/resourceloader
 	'ResourceLoader' => 'includes/resourceloader/ResourceLoader.php',
@@ -858,44 +872,44 @@ $wgAutoloadLocalClasses = array(
 	'ResourceLoaderUserTokensModule' => 'includes/resourceloader/ResourceLoaderUserTokensModule.php',
 	'ResourceLoaderLanguageDataModule' =>
 		'includes/resourceloader/ResourceLoaderLanguageDataModule.php',
+	'ResourceLoaderLanguageNamesModule' =>
+		'includes/resourceloader/ResourceLoaderLanguageNamesModule.php',
 	'ResourceLoaderWikiModule' => 'includes/resourceloader/ResourceLoaderWikiModule.php',
 
 	# includes/revisiondelete
-	'RevDel_ArchivedFileItem' => 'includes/revisiondelete/RevisionDelete.php',
-	'RevDel_ArchivedFileList' => 'includes/revisiondelete/RevisionDelete.php',
-	'RevDel_ArchivedRevisionItem' => 'includes/revisiondelete/RevisionDelete.php',
-	'RevDel_ArchiveItem' => 'includes/revisiondelete/RevisionDelete.php',
-	'RevDel_ArchiveList' => 'includes/revisiondelete/RevisionDelete.php',
-	'RevDel_FileItem' => 'includes/revisiondelete/RevisionDelete.php',
-	'RevDel_FileList' => 'includes/revisiondelete/RevisionDelete.php',
-	'RevDel_Item' => 'includes/revisiondelete/RevisionDeleteAbstracts.php',
-	'RevDel_List' => 'includes/revisiondelete/RevisionDeleteAbstracts.php',
-	'RevDel_LogItem' => 'includes/revisiondelete/RevisionDelete.php',
-	'RevDel_LogList' => 'includes/revisiondelete/RevisionDelete.php',
-	'RevDel_RevisionItem' => 'includes/revisiondelete/RevisionDelete.php',
-	'RevDel_RevisionList' => 'includes/revisiondelete/RevisionDelete.php',
+	'RevDelArchivedFileItem' => 'includes/revisiondelete/RevisionDelete.php',
+	'RevDelArchivedFileList' => 'includes/revisiondelete/RevisionDelete.php',
+	'RevDelArchivedRevisionItem' => 'includes/revisiondelete/RevisionDelete.php',
+	'RevDelArchiveItem' => 'includes/revisiondelete/RevisionDelete.php',
+	'RevDelArchiveList' => 'includes/revisiondelete/RevisionDelete.php',
+	'RevDelFileItem' => 'includes/revisiondelete/RevisionDelete.php',
+	'RevDelFileList' => 'includes/revisiondelete/RevisionDelete.php',
+	'RevDelItem' => 'includes/revisiondelete/RevisionDeleteAbstracts.php',
+	'RevDelList' => 'includes/revisiondelete/RevisionDeleteAbstracts.php',
+	'RevDelLogItem' => 'includes/revisiondelete/RevisionDelete.php',
+	'RevDelLogList' => 'includes/revisiondelete/RevisionDelete.php',
+	'RevDelRevisionItem' => 'includes/revisiondelete/RevisionDelete.php',
+	'RevDelRevisionList' => 'includes/revisiondelete/RevisionDelete.php',
 	'RevisionDeleter' => 'includes/revisiondelete/RevisionDeleter.php',
 	'RevisionDeleteUser' => 'includes/revisiondelete/RevisionDeleteUser.php',
 
 	# includes/search
-	'MssqlSearchResultSet' => 'includes/search/SearchMssql.php',
-	'MySQLSearchResultSet' => 'includes/search/SearchMySQL.php',
 	'PostgresSearchResult' => 'includes/search/SearchPostgres.php',
 	'PostgresSearchResultSet' => 'includes/search/SearchPostgres.php',
+	'SearchDatabase' => 'includes/search/SearchDatabase.php',
 	'SearchEngine' => 'includes/search/SearchEngine.php',
 	'SearchEngineDummy' => 'includes/search/SearchEngine.php',
-	'SearchHighlighter' => 'includes/search/SearchEngine.php',
+	'SearchHighlighter' => 'includes/search/SearchHighlighter.php',
 	'SearchMssql' => 'includes/search/SearchMssql.php',
 	'SearchMySQL' => 'includes/search/SearchMySQL.php',
-	'SearchNearMatchResultSet' => 'includes/search/SearchEngine.php',
+	'SearchNearMatchResultSet' => 'includes/search/SearchResultSet.php',
 	'SearchOracle' => 'includes/search/SearchOracle.php',
 	'SearchPostgres' => 'includes/search/SearchPostgres.php',
-	'SearchResult' => 'includes/search/SearchEngine.php',
-	'SearchResultSet' => 'includes/search/SearchEngine.php',
+	'SearchResult' => 'includes/search/SearchResult.php',
+	'SearchResultSet' => 'includes/search/SearchResultSet.php',
 	'SearchResultTooMany' => 'includes/search/SearchEngine.php',
 	'SearchSqlite' => 'includes/search/SearchSqlite.php',
-	'SqliteSearchResultSet' => 'includes/search/SearchSqlite.php',
-	'SqlSearchResultSet' => 'includes/search/SearchEngine.php',
+	'SqlSearchResultSet' => 'includes/search/SearchResultSet.php',
 
 	# includes/site
 	'MediaWikiSite' => 'includes/site/MediaWikiSite.php',
@@ -906,6 +920,17 @@ $wgAutoloadLocalClasses = array(
 	'SiteSQLStore' => 'includes/site/SiteSQLStore.php',
 	'Sites' => 'includes/site/SiteSQLStore.php',
 	'SiteStore' => 'includes/site/SiteStore.php',
+
+	# includes/specialpage
+	'ChangesListSpecialPage' => 'includes/specialpage/ChangesListSpecialPage.php',
+	'FormSpecialPage' => 'includes/specialpage/FormSpecialPage.php',
+	'IncludableSpecialPage' => 'includes/specialpage/IncludableSpecialPage.php',
+	'RedirectSpecialArticle' => 'includes/specialpage/RedirectSpecialPage.php',
+	'RedirectSpecialPage' => 'includes/specialpage/RedirectSpecialPage.php',
+	'SpecialPage' => 'includes/specialpage/SpecialPage.php',
+	'SpecialPageFactory' => 'includes/specialpage/SpecialPageFactory.php',
+	'SpecialRedirectToSpecial' => 'includes/specialpage/RedirectSpecialPage.php',
+	'UnlistedSpecialPage' => 'includes/specialpage/UnlistedSpecialPage.php',
 
 	# includes/specials
 	'ActiveUsersPager' => 'includes/specials/SpecialActiveusers.php',
@@ -928,9 +953,9 @@ $wgAutoloadLocalClasses = array(
 	'HTMLBlockedUsersItemSelect' => 'includes/specials/SpecialBlockList.php',
 	'ImageListPager' => 'includes/specials/SpecialListfiles.php',
 	'ImportReporter' => 'includes/specials/SpecialImport.php',
-	'IPBlockForm' => 'includes/specials/SpecialBlock.php',
 	'LinkSearchPage' => 'includes/specials/SpecialLinkSearch.php',
 	'ListredirectsPage' => 'includes/specials/SpecialListredirects.php',
+	'ListDuplicatedFilesPage' => 'includes/specials/SpecialListDuplicatedFiles.php',
 	'LoginForm' => 'includes/specials/SpecialUserlogin.php',
 	'LonelyPagesPage' => 'includes/specials/SpecialLonelypages.php',
 	'LongPagesPage' => 'includes/specials/SpecialLongpages.php',
@@ -954,6 +979,7 @@ $wgAutoloadLocalClasses = array(
 	'ShortPagesPage' => 'includes/specials/SpecialShortpages.php',
 	'SpecialActiveUsers' => 'includes/specials/SpecialActiveusers.php',
 	'SpecialAllmessages' => 'includes/specials/SpecialAllmessages.php',
+	'SpecialAllMyUploads' => 'includes/specials/SpecialMyRedirectPages.php',
 	'SpecialAllpages' => 'includes/specials/SpecialAllpages.php',
 	'SpecialBlankpage' => 'includes/specials/SpecialBlankpage.php',
 	'SpecialBlock' => 'includes/specials/SpecialBlock.php',
@@ -965,6 +991,8 @@ $wgAutoloadLocalClasses = array(
 	'SpecialChangePassword' => 'includes/specials/SpecialChangePassword.php',
 	'SpecialComparePages' => 'includes/specials/SpecialComparePages.php',
 	'SpecialContributions' => 'includes/specials/SpecialContributions.php',
+	'SpecialCreateAccount' => 'includes/specials/SpecialCreateAccount.php',
+	'SpecialDiff' => 'includes/specials/SpecialDiff.php',
 	'SpecialEditWatchlist' => 'includes/specials/SpecialEditWatchlist.php',
 	'SpecialEmailUser' => 'includes/specials/SpecialEmailuser.php',
 	'SpecialExpandTemplates' => 'includes/specials/SpecialExpandTemplates.php',
@@ -972,12 +1000,18 @@ $wgAutoloadLocalClasses = array(
 	'SpecialFilepath' => 'includes/specials/SpecialFilepath.php',
 	'SpecialImport' => 'includes/specials/SpecialImport.php',
 	'SpecialJavaScriptTest' => 'includes/specials/SpecialJavaScriptTest.php',
+	'SpecialListAdmins' => 'includes/specials/SpecialListusers.php',
+	'SpecialListBots' => 'includes/specials/SpecialListusers.php',
 	'SpecialListFiles' => 'includes/specials/SpecialListfiles.php',
 	'SpecialListGroupRights' => 'includes/specials/SpecialListgrouprights.php',
 	'SpecialListUsers' => 'includes/specials/SpecialListusers.php',
 	'SpecialLockdb' => 'includes/specials/SpecialLockdb.php',
 	'SpecialLog' => 'includes/specials/SpecialLog.php',
 	'SpecialMergeHistory' => 'includes/specials/SpecialMergeHistory.php',
+	'SpecialMycontributions' => 'includes/specials/SpecialMyRedirectPages.php',
+	'SpecialMypage' => 'includes/specials/SpecialMyRedirectPages.php',
+	'SpecialMytalk' => 'includes/specials/SpecialMyRedirectPages.php',
+	'SpecialMyuploads' => 'includes/specials/SpecialMyRedirectPages.php',
 	'SpecialNewFiles' => 'includes/specials/SpecialNewimages.php',
 	'SpecialNewpages' => 'includes/specials/SpecialNewpages.php',
 	'SpecialPasswordReset' => 'includes/specials/SpecialPasswordReset.php',
@@ -994,10 +1028,12 @@ $wgAutoloadLocalClasses = array(
 	'SpecialRedirect' => 'includes/specials/SpecialRedirect.php',
 	'SpecialResetTokens' => 'includes/specials/SpecialResetTokens.php',
 	'SpecialRevisionDelete' => 'includes/specials/SpecialRevisiondelete.php',
+	'SpecialRunJobs' => 'includes/specials/SpecialRunJobs.php',
 	'SpecialSearch' => 'includes/specials/SpecialSearch.php',
 	'SpecialSpecialpages' => 'includes/specials/SpecialSpecialpages.php',
 	'SpecialStatistics' => 'includes/specials/SpecialStatistics.php',
 	'SpecialTags' => 'includes/specials/SpecialTags.php',
+	'SpecialTrackingCategories' => 'includes/specials/SpecialTrackingCategories.php',
 	'SpecialUnblock' => 'includes/specials/SpecialUnblock.php',
 	'SpecialUndelete' => 'includes/specials/SpecialUndelete.php',
 	'SpecialUnlockdb' => 'includes/specials/SpecialUnlockdb.php',
@@ -1027,12 +1063,20 @@ $wgAutoloadLocalClasses = array(
 	'WantedFilesPage' => 'includes/specials/SpecialWantedfiles.php',
 	'WantedPagesPage' => 'includes/specials/SpecialWantedpages.php',
 	'WantedTemplatesPage' => 'includes/specials/SpecialWantedtemplates.php',
-	'WatchlistEditor' => 'includes/specials/SpecialEditWatchlist.php',
 	'WithoutInterwikiPage' => 'includes/specials/SpecialWithoutinterwiki.php',
 
 	# includes/templates
 	'UserloginTemplate' => 'includes/templates/Userlogin.php',
 	'UsercreateTemplate' => 'includes/templates/Usercreate.php',
+
+	# includes/title
+	'PageLinkRenderer' => 'includes/title/PageLinkRenderer.php',
+	'TitleFormatter' => 'includes/title/TitleFormatter.php',
+	'TitleParser' => 'includes/title/TitleParser.php',
+	'TitleValue' => 'includes/title/TitleValue.php',
+	'MalformedTitleException' => 'includes/title/MalformedTitleException.php',
+	'MediaWikiPageLinkRenderer' => 'includes/title/MediaWikiPageLinkRenderer.php',
+	'MediaWikiTitleCodec' => 'includes/title/MediaWikiTitleCodec.php',
 
 	# includes/upload
 	'UploadBase' => 'includes/upload/UploadBase.php',
@@ -1062,17 +1106,12 @@ $wgAutoloadLocalClasses = array(
 	'CdbWriter' => 'includes/utils/Cdb.php',
 	'CdbWriterDBA' => 'includes/utils/CdbDBA.php',
 	'CdbWriterPHP' => 'includes/utils/CdbPHP.php',
-	'ConfEditor' => 'includes/utils/ConfEditor.php',
-	'ConfEditorParseError' => 'includes/utils/ConfEditor.php',
-	'ConfEditorToken' => 'includes/utils/ConfEditor.php',
 	'DoubleReplacer' => 'includes/utils/StringUtils.php',
 	'ExplodeIterator' => 'includes/utils/StringUtils.php',
-	'HashRing' => 'includes/utils/HashRing.php',
 	'HashtableReplacer' => 'includes/utils/StringUtils.php',
 	'IP' => 'includes/utils/IP.php',
 	'MWCryptRand' => 'includes/utils/MWCryptRand.php',
 	'MWFunction' => 'includes/utils/MWFunction.php',
-	'MappedIterator' => 'includes/utils/MappedIterator.php',
 	'RegexlikeReplacer' => 'includes/utils/StringUtils.php',
 	'ReplacementArray' => 'includes/utils/StringUtils.php',
 	'Replacer' => 'includes/utils/StringUtils.php',
@@ -1082,17 +1121,17 @@ $wgAutoloadLocalClasses = array(
 	'ZipDirectoryReaderError' => 'includes/utils/ZipDirectoryReader.php',
 
 	# languages
-	'ConverterRule' => 'languages/LanguageConverter.php',
-	'FakeConverter' => 'languages/Language.php',
+	'ConverterRule' => 'languages/ConverterRule.php',
+	'FakeConverter' => 'languages/FakeConverter.php',
 	'Language' => 'languages/Language.php',
 	'LanguageConverter' => 'languages/LanguageConverter.php',
-	'CLDRPluralRuleConverter' => 'languages/utils/CLDRPluralRuleEvaluator.php',
-	'CLDRPluralRuleConverter_Expression' => 'languages/utils/CLDRPluralRuleEvaluator.php',
-	'CLDRPluralRuleConverter_Fragment' => 'languages/utils/CLDRPluralRuleEvaluator.php',
-	'CLDRPluralRuleConverter_Operator' => 'languages/utils/CLDRPluralRuleEvaluator.php',
+	'CLDRPluralRuleConverter' => 'languages/utils/CLDRPluralRuleConverter.php',
+	'CLDRPluralRuleConverterExpression' => 'languages/utils/CLDRPluralRuleConverterExpression.php',
+	'CLDRPluralRuleConverterFragment' => 'languages/utils/CLDRPluralRuleConverterFragment.php',
+	'CLDRPluralRuleConverterOperator' => 'languages/utils/CLDRPluralRuleConverterOperator.php',
 	'CLDRPluralRuleEvaluator' => 'languages/utils/CLDRPluralRuleEvaluator.php',
-	'CLDRPluralRuleEvaluator_Range' => 'languages/utils/CLDRPluralRuleEvaluator.php',
-	'CLDRPluralRuleError' => 'languages/utils/CLDRPluralRuleEvaluator.php',
+	'CLDRPluralRuleEvaluatorRange' => 'languages/utils/CLDRPluralRuleEvaluatorRange.php',
+	'CLDRPluralRuleError' => 'languages/utils/CLDRPluralRuleError.php',
 
 	# maintenance
 	'BackupDumper' => 'maintenance/backup.inc',
@@ -1125,7 +1164,6 @@ $wgAutoloadLocalClasses = array(
 	'CsvStatsOutput' => 'maintenance/language/StatOutputs.php',
 	'ExtensionLanguages' => 'maintenance/language/languages.inc',
 	'Languages' => 'maintenance/language/languages.inc',
-	'MessageWriter' => 'maintenance/language/writeMessagesArray.inc',
 	'StatsOutput' => 'maintenance/language/StatOutputs.php',
 	'TextStatsOutput' => 'maintenance/language/StatOutputs.php',
 	'WikiStatsOutput' => 'maintenance/language/StatOutputs.php',
@@ -1156,9 +1194,6 @@ class AutoLoader {
 	 * autoload - take a class name and attempt to load it
 	 *
 	 * @param string $className name of class we're looking for.
-	 * @return bool Returning false is important on failure as
-	 * it allows Zend to try and look in other registered autoloaders
-	 * as well.
 	 */
 	static function autoload( $className ) {
 		global $wgAutoloadClasses, $wgAutoloadLocalClasses,
@@ -1194,32 +1229,25 @@ class AutoLoader {
 			}
 
 			if ( isset( self::$autoloadLocalClassesLower[$lowerClass] ) ) {
-				if ( function_exists( 'wfDebug' ) ) {
-					wfDebug( "Class {$className} was loaded using incorrect case.\n" );
+				if ( function_exists( 'wfDebugLog' ) ) {
+					wfDebugLog( 'autoloader', "Class {$className} was loaded using incorrect case" );
 				}
 				$filename = self::$autoloadLocalClassesLower[$lowerClass];
 			}
 		}
 
 		if ( !$filename ) {
-			if ( function_exists( 'wfDebug' ) ) {
-				# FIXME: This is not very polite.  Assume we do not manage the class.
-				wfDebug( "Class {$className} not found; skipped loading\n" );
-			}
-
-			# Give up
-			return false;
+			// Class not found; let the next autoloader try to find it
+			return;
 		}
 
-		# Make an absolute path, this improves performance by avoiding some stat calls
+		// Make an absolute path, this improves performance by avoiding some stat calls
 		if ( substr( $filename, 0, 1 ) != '/' && substr( $filename, 1, 1 ) != ':' ) {
 			global $IP;
 			$filename = "$IP/$filename";
 		}
 
 		require $filename;
-
-		return true;
 	}
 
 	/**
@@ -1227,8 +1255,8 @@ class AutoLoader {
 	 * Sanitizer that have define()s outside of their class definition. Of course
 	 * this wouldn't be necessary if everything in MediaWiki was class-based. Sigh.
 	 *
-	 * @param $class string
-	 * @return Boolean Return the results of class_exists() so we know if we were successful
+	 * @param string $class
+	 * @return bool Return the results of class_exists() so we know if we were successful
 	 */
 	static function loadClass( $class ) {
 		return class_exists( $class );

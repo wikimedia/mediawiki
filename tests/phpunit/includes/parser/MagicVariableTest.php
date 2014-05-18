@@ -48,14 +48,16 @@ class MagicVariableTest extends MediaWikiTestCase {
 
 		# Needs a title to do magic word stuff
 		$title = Title::newFromText( 'Tests' );
-		$title->mRedirect = false; # Else it needs a db connection just to check if it's a redirect (when deciding the page language)
+		# Else it needs a db connection just to check if it's a redirect
+		# (when deciding the page language).
+		$title->mRedirect = false;
 
 		$this->testParser->setTitle( $title );
 	}
 
 	/**
-	 * @param int $num upper limit for numbers
-	 * @return array of numbers from 1 up to $num
+	 * @param int $num Upper limit for numbers
+	 * @return array Array of numbers from 1 up to $num
 	 */
 	private static function createProviderUpTo( $num ) {
 		$ret = array();
@@ -67,14 +69,14 @@ class MagicVariableTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return array of months numbers (as an integer)
+	 * @return array Array of months numbers (as an integer)
 	 */
 	public static function provideMonths() {
 		return self::createProviderUpTo( 12 );
 	}
 
 	/**
-	 * @return array of days numbers (as an integer)
+	 * @return array Array of days numbers (as an integer)
 	 */
 	public static function provideDays() {
 		return self::createProviderUpTo( 31 );
@@ -187,9 +189,9 @@ class MagicVariableTest extends MediaWikiTestCase {
 
 	/**
 	 * Main assertion helper for magic variables padding
-	 * @param $magic string Magic variable name
-	 * @param $value mixed Month or day
-	 * @param $format string sprintf format for $value
+	 * @param string $magic Magic variable name
+	 * @param mixed $value Month or day
+	 * @param string $format sprintf format for $value
 	 */
 	private function assertMagicPadding( $magic, $value, $format ) {
 		# Initialize parser timestamp as year 2010 at 12h34 56s.
@@ -212,7 +214,10 @@ class MagicVariableTest extends MediaWikiTestCase {
 		$this->assertMagic( $expected, $magic );
 	}
 
-	/** helper to set the parser timestamp and revision timestamp */
+	/**
+	 * helper to set the parser timestamp and revision timestamp
+	 * @param string $ts
+	 */
 	private function setParserTS( $ts ) {
 		$this->testParser->Options()->setTimestamp( $ts );
 		$this->testParser->mRevisionTimestamp = $ts;
@@ -220,6 +225,8 @@ class MagicVariableTest extends MediaWikiTestCase {
 
 	/**
 	 * Assertion helper to test a magic variable output
+	 * @param string|int $expected
+	 * @param string $magic
 	 */
 	private function assertMagic( $expected, $magic ) {
 		if ( in_array( $magic, $this->expectedAsInteger ) ) {

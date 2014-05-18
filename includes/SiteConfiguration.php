@@ -108,7 +108,7 @@
  * extract( $globals );
  * @endcode
  *
- * TODO: give examples for,
+ * @todo Give examples for,
  * suffixes:
  * $conf->suffixes = array( 'wiki' );
  * localVHosts
@@ -174,9 +174,11 @@ class SiteConfiguration {
 	 * @param string $suffix The suffix of the wiki in question.
 	 * @param array $params List of parameters. $.'key' is replaced by $value in all returned data.
 	 * @param array $wikiTags The tags assigned to the wiki.
-	 * @return Mixed the value of the setting requested.
+	 * @return mixed The value of the setting requested.
 	 */
-	public function get( $settingName, $wiki, $suffix = null, $params = array(), $wikiTags = array() ) {
+	public function get( $settingName, $wiki, $suffix = null, $params = array(),
+		$wikiTags = array()
+	) {
 		$params = $this->mergeParams( $wiki, $suffix, $params, $wikiTags );
 		return $this->getSetting( $settingName, $wiki, $params );
 	}
@@ -186,8 +188,8 @@ class SiteConfiguration {
 	 *
 	 * @param string $settingName ID of the setting name to retrieve.
 	 * @param string $wiki Wiki ID of the wiki in question.
-	 * @param array $params array of parameters.
-	 * @return Mixed the value of the setting requested.
+	 * @param array $params Array of parameters.
+	 * @return mixed The value of the setting requested.
 	 */
 	protected function getSetting( $settingName, $wiki, /*array*/ $params ) {
 		$retval = null;
@@ -228,7 +230,9 @@ class SiteConfiguration {
 							$retval = $thisSetting[$suffix];
 						}
 						break;
-					} elseif ( array_key_exists( "+$suffix", $thisSetting ) && is_array( $thisSetting["+$suffix"] ) ) {
+					} elseif ( array_key_exists( "+$suffix", $thisSetting )
+						&& is_array( $thisSetting["+$suffix"] )
+					) {
 						if ( !isset( $retval ) ) {
 							$retval = array();
 						}
@@ -260,9 +264,9 @@ class SiteConfiguration {
 	 * Type-safe string replace; won't do replacements on non-strings
 	 * private?
 	 *
-	 * @param $from
-	 * @param $to
-	 * @param $in
+	 * @param string $from
+	 * @param string $to
+	 * @param string|array $in
 	 * @return string
 	 */
 	function doReplace( $from, $to, $in ) {
@@ -284,7 +288,7 @@ class SiteConfiguration {
 	 * @param string $suffix The suffix of the wiki in question.
 	 * @param array $params List of parameters. $.'key' is replaced by $value in all returned data.
 	 * @param array $wikiTags The tags assigned to the wiki.
-	 * @return Array Array of settings requested.
+	 * @return array Array of settings requested.
 	 */
 	public function getAll( $wiki, $suffix = null, $params = array(), $wikiTags = array() ) {
 		$params = $this->mergeParams( $wiki, $suffix, $params, $wikiTags );
@@ -338,7 +342,9 @@ class SiteConfiguration {
 	 * @param array $params List of parameters. $.'key' is replaced by $value in all returned data.
 	 * @param array $wikiTags The tags assigned to the wiki.
 	 */
-	public function extractVar( $setting, $wiki, $suffix, &$var, $params = array(), $wikiTags = array() ) {
+	public function extractVar( $setting, $wiki, $suffix, &$var,
+		$params = array(), $wikiTags = array()
+	) {
 		$value = $this->get( $setting, $wiki, $suffix, $params, $wikiTags );
 		if ( !is_null( $value ) ) {
 			$var = $value;
@@ -353,15 +359,17 @@ class SiteConfiguration {
 	 * @param array $params List of parameters. $.'key' is replaced by $value in all returned data.
 	 * @param array $wikiTags The tags assigned to the wiki.
 	 */
-	public function extractGlobal( $setting, $wiki, $suffix = null, $params = array(), $wikiTags = array() ) {
+	public function extractGlobal( $setting, $wiki, $suffix = null,
+		$params = array(), $wikiTags = array()
+	) {
 		$params = $this->mergeParams( $wiki, $suffix, $params, $wikiTags );
 		$this->extractGlobalSetting( $setting, $wiki, $params );
 	}
 
 	/**
-	 * @param $setting string
-	 * @param $wiki string
-	 * @param $params array
+	 * @param string $setting
+	 * @param string $wiki
+	 * @param array $params
 	 */
 	public function extractGlobalSetting( $setting, $wiki, $params ) {
 		$value = $this->getSetting( $setting, $wiki, $params );
@@ -386,7 +394,9 @@ class SiteConfiguration {
 	 * @param array $params List of parameters. $.'key' is replaced by $value in all returned data.
 	 * @param array $wikiTags The tags assigned to the wiki.
 	 */
-	public function extractAllGlobals( $wiki, $suffix = null, $params = array(), $wikiTags = array() ) {
+	public function extractAllGlobals( $wiki, $suffix = null, $params = array(),
+		$wikiTags = array()
+	) {
 		$params = $this->mergeParams( $wiki, $suffix, $params, $wikiTags );
 		foreach ( $this->settings as $varName => $setting ) {
 			$this->extractGlobalSetting( $varName, $wiki, $params );
@@ -398,7 +408,7 @@ class SiteConfiguration {
 	 * See the documentation of self::$siteParamsCallback for more in-depth
 	 * documentation about this function
 	 *
-	 * @param $wiki String
+	 * @param string $wiki
 	 * @return array
 	 */
 	protected function getWikiParams( $wiki ) {
@@ -436,7 +446,7 @@ class SiteConfiguration {
 	 * @param string $wiki Wiki ID of the wiki in question.
 	 * @param string $suffix The suffix of the wiki in question.
 	 * @param array $params List of parameters. $.'key' is replaced by $value in
-	 *                all returned data.
+	 *   all returned data.
 	 * @param array $wikiTags The tags assigned to the wiki.
 	 * @return array
 	 */
@@ -464,7 +474,7 @@ class SiteConfiguration {
 
 	/**
 	 * Work out the site and language name from a database name
-	 * @param $db
+	 * @param string $db
 	 *
 	 * @return array
 	 */
@@ -499,7 +509,7 @@ class SiteConfiguration {
 	 *
 	 * @param string $wiki
 	 * @param array|string $settings A setting name or array of setting names
-	 * @return Array|mixed Array if $settings is an array, otherwise the value
+	 * @return mixed|mixed[] Array if $settings is an array, otherwise the value
 	 * @throws MWException
 	 * @since 1.21
 	 */
@@ -555,7 +565,7 @@ class SiteConfiguration {
 
 	/**
 	 * Returns true if the given vhost is handled locally.
-	 * @param $vhost String
+	 * @param string $vhost
 	 * @return bool
 	 */
 	public function isLocalVHost( $vhost ) {
@@ -568,18 +578,20 @@ class SiteConfiguration {
 	 * PHP's array_merge_recursive() merges ANY duplicate values into arrays,
 	 * which is not fun
 	 *
-	 * @param $array1 array
+	 * @param array $array1
 	 *
 	 * @return array
 	 */
 	static function arrayMerge( $array1/* ... */ ) {
 		$out = $array1;
-		for ( $i = 1; $i < func_num_args(); $i++ ) {
+		$argsCount = func_num_args();
+		for ( $i = 1; $i < $argsCount; $i++ ) {
 			foreach ( func_get_arg( $i ) as $key => $value ) {
 				if ( isset( $out[$key] ) && is_array( $out[$key] ) && is_array( $value ) ) {
 					$out[$key] = self::arrayMerge( $out[$key], $value );
 				} elseif ( !isset( $out[$key] ) || !$out[$key] && !is_numeric( $key ) ) {
-					// Values that evaluate to true given precedence, for the primary purpose of merging permissions arrays.
+					// Values that evaluate to true given precedence, for the
+					// primary purpose of merging permissions arrays.
 					$out[$key] = $value;
 				} elseif ( is_numeric( $key ) ) {
 					$out[] = $value;

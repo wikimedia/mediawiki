@@ -35,7 +35,7 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class CopyFileBackend extends Maintenance {
-	/** @var Array|null (path sha1 => stat) Pre-computed dst stat entries from listings */
+	/** @var array|null (path sha1 => stat) Pre-computed dst stat entries from listings */
 	protected $statCache = null;
 
 	public function __construct() {
@@ -347,15 +347,34 @@ class CopyFileBackend extends Maintenance {
 		} else {
 			$dstStat = $dst->getFileStat( array( 'src' => $dPath ) );
 		}
-		return (
+		// Initial fast checks to see if files are obviously different
+		$sameFast = (
 			is_array( $srcStat ) // sanity check that source exists
 			&& is_array( $dstStat ) // dest exists
 			&& $srcStat['size'] === $dstStat['size']
-			&& ( !$skipHash || $srcStat['mtime'] <= $dstStat['mtime'] )
-			&& ( $skipHash || $src->getFileSha1Base36( array( 'src' => $sPath, 'latest' => 1 ) )
-				=== $dst->getFileSha1Base36( array( 'src' => $dPath, 'latest' => 1 ) )
-			)
 		);
+		// More thorough checks against files
+		if ( !$sameFast ) {
+			$same = false; // no need to look farther
+		} elseif ( isset( $srcStat['md5'] ) && isset( $dstStat['md5'] ) ) {
+			// If MD5 was already in the stat info, just use it.
+			// This is useful as many objects stores can return this in object listing,
+			// so we can use it to avoid slow per-file HEADs.
+			$same = ( $srcStat['md5'] === $dstStat['md5'] );
+		} elseif ( $skipHash ) {
+			// This mode is good for copying to a backup location or resyncing clone
+			// backends in FileBackendMultiWrite (since they get writes second, they have
+			// higher timestamps). However, when copying the other way, this hits loads of
+			// false positives (possibly 100%) and wastes a bunch of time on GETs/PUTs.
+			$same = ( $srcStat['mtime'] <= $dstStat['mtime'] );
+		} else {
+			// This is the slowest method which does many per-file HEADs (unless an object
+			// store tracks SHA-1 in listings).
+			$same = ( $src->getFileSha1Base36( array( 'src' => $sPath, 'latest' => 1 ) )
+				=== $dst->getFileSha1Base36( array( 'src' => $dPath, 'latest' => 1 ) ) );
+		}
+
+		return $same;
 	}
 }
 

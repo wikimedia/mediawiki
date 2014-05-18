@@ -1,0 +1,40 @@
+{
+	"@metadata": {
+		"authors": [
+			"EileenSanda"
+		]
+	},
+	"config-desc": "Innstallasjónsforrit til MediaWiki",
+	"config-title": "Innstallering av MediaWiki $1",
+	"config-information": "Kunning",
+	"config-localsettings-upgrade": "Ein <code>LocalSettings.php</code> fíla er funnin.\nFyri at uppstiga hesa innstallasjón, vinarliga skriva hetta virði <code>$wgUpgradeKey</code> í teigin niðanfyri.\nTú finnur tað í <code>LocalSettings.php</code>.",
+	"config-localsettings-cli-upgrade": "Ein <code>LocalSettings.php</code> fíla er funnin.\nFyri at uppstiga hesa innstallasjónina, vinarliga koyr <code>update.php</code> ístaðin",
+	"config-localsettings-key": "Uppstiganarlykil:",
+	"config-localsettings-badkey": "Lykilin ið tú skrivaði er skeivur.",
+	"config-upgrade-key-missing": "Ein núverandi installasjón av MediaWiki er funnin.\nFyri at uppstiga hesa installasjónina, vinarliga set hesa linjuna niðast í tinari <code>LocalSettings.php</code>-fílu:\n\n$1",
+	"config-your-language": "Títt mál:",
+	"config-your-language-help": "Vel eitt mál, sum tú ynskir at nýta meðan tú installerar.",
+	"config-wiki-language": "Wikimál:",
+	"config-wiki-language-help": "Vel tað málið, ið wiki'in fyrst og fremst verður skrivað á.",
+	"config-back": "← Aftur",
+	"config-continue": "Halt fram →",
+	"config-page-language": "Mál",
+	"config-page-welcome": "Vælkomin til MediaWiki!",
+	"config-page-dbconnect": "Fá samband við dátugrunnin",
+	"config-page-upgrade": "Dagfør verandi installasjón",
+	"config-page-dbsettings": "Innstillingar fyri dátugrunnin",
+	"config-page-name": "Navn",
+	"config-page-options": "Møguleikar",
+	"config-page-install": "Innstallera",
+	"config-page-complete": "Liðugt!",
+	"config-page-restart": "Byrja umaftur at installera",
+	"config-page-readme": "Les meg",
+	"config-page-copying": "Avritan",
+	"config-page-upgradedoc": "Dagføring/uppgradering",
+	"config-page-existingwiki": "Verandi wiki",
+	"config-help-restart": "Ynskir tú at sletta øll goymd dáta sum tú hevur skrivað og byrja umaftur at installera?",
+	"config-restart": "Ja, byrja umaftur",
+	"config-env-php": "PHP $1 er innstallerað.",
+	"config-env-php-toolow": "PHP $1 er installerað.\nMen, MediaWiki krevur PHP $2 ella hægri.",
+	"mainpagetext": "'''Innlegging av Wiki-ritbúnaði væleydnað.'''"
+}

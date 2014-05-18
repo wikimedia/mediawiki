@@ -3,7 +3,7 @@
  * Contain log classes
  *
  * Copyright © 2002, 2004 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -215,7 +215,7 @@ class LogPage {
 	 *
 	 * @param string $type Log type
 	 * @return string Log name
-	 * @deprecated in 1.19, warnings in 1.21. Use getName()
+	 * @deprecated since 1.19, warnings in 1.21. Use getName()
 	 */
 	public static function logName( $type ) {
 		global $wgLogNames;
@@ -236,7 +236,7 @@ class LogPage {
 	 * @todo handle missing log types
 	 * @param string $type logtype
 	 * @return string Header text of this logtype
-	 * @deprecated in 1.19, warnings in 1.21. Use getDescription()
+	 * @deprecated since 1.19, warnings in 1.21. Use getDescription()
 	 */
 	public static function logHeader( $type ) {
 		global $wgLogHeaders;
@@ -358,10 +358,10 @@ class LogPage {
 
 	/**
 	 * @todo Document
-	 * @param  string $type
-	 * @param  Language|null $lang
-	 * @param  Title $title
-	 * @param  array $params
+	 * @param string $type
+	 * @param Language|null $lang
+	 * @param Title $title
+	 * @param array $params
 	 * @return string
 	 */
 	protected static function getTitleLink( $type, $lang, $title, &$params ) {

@@ -4,7 +4,7 @@
  * It may be useful for getting preprocessor statistics or filling the
  * preprocessor cache.
  *
- * Copyright © 2011 Platonides - http://www.mediawiki.org/
+ * Copyright © 2011 Platonides - https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,6 +41,7 @@ class PreprocessDump extends DumpIterator {
 
 	public function getStripList() {
 		global $wgParser;
+
 		return $wgParser->getStripList();
 	}
 
@@ -75,7 +76,7 @@ class PreprocessDump extends DumpIterator {
 
 	/**
 	 * Callback function for each revision, preprocessToObj()
-	 * @param $rev Revision
+	 * @param Revision $rev
 	 */
 	public function processRevision( $rev ) {
 		$content = $rev->getContent( Revision::RAW );
@@ -87,7 +88,8 @@ class PreprocessDump extends DumpIterator {
 		try {
 			$this->mPreprocessor->preprocessToObj( strval( $content->getNativeData() ), 0 );
 		} catch ( Exception $e ) {
-			$this->error( "Caught exception " . $e->getMessage() . " in " . $rev->getTitle()->getPrefixedText() );
+			$this->error( "Caught exception " . $e->getMessage() . " in "
+				. $rev->getTitle()->getPrefixedText() );
 		}
 	}
 }

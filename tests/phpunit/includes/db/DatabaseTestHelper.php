@@ -156,6 +156,10 @@ class DatabaseTestHelper extends DatabaseBase {
 		return 'test';
 	}
 
+	function isOpen() {
+		return true;
+	}
+
 	protected function closeConnection() {
 		return false;
 	}

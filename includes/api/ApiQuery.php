@@ -44,6 +44,7 @@ class ApiQuery extends ApiBase {
 	private static $QueryPropModules = array(
 		'categories' => 'ApiQueryCategories',
 		'categoryinfo' => 'ApiQueryCategoryInfo',
+		'contributors' => 'ApiQueryContributors',
 		'duplicatefiles' => 'ApiQueryDuplicateFiles',
 		'extlinks' => 'ApiQueryExternalLinks',
 		'images' => 'ApiQueryImages',
@@ -53,6 +54,7 @@ class ApiQuery extends ApiBase {
 		'iwlinks' => 'ApiQueryIWLinks',
 		'langlinks' => 'ApiQueryLangLinks',
 		'pageprops' => 'ApiQueryPageProps',
+		'redirects' => 'ApiQueryRedirects',
 		'revisions' => 'ApiQueryRevisions',
 		'stashimageinfo' => 'ApiQueryStashImageInfo',
 		'templates' => 'ApiQueryLinks',
@@ -68,6 +70,7 @@ class ApiQuery extends ApiBase {
 		'allimages' => 'ApiQueryAllImages',
 		'alllinks' => 'ApiQueryAllLinks',
 		'allpages' => 'ApiQueryAllPages',
+		'allredirects' => 'ApiQueryAllLinks',
 		'alltransclusions' => 'ApiQueryAllLinks',
 		'allusers' => 'ApiQueryAllUsers',
 		'backlinks' => 'ApiQueryBacklinks',
@@ -83,6 +86,7 @@ class ApiQuery extends ApiBase {
 		'logevents' => 'ApiQueryLogEvents',
 		'pageswithprop' => 'ApiQueryPagesWithProp',
 		'pagepropnames' => 'ApiQueryPagePropNames',
+		'prefixsearch' => 'ApiQueryPrefixSearch',
 		'protectedtitles' => 'ApiQueryProtectedTitles',
 		'querypage' => 'ApiQueryQueryPage',
 		'random' => 'ApiQueryRandom',
@@ -118,10 +122,10 @@ class ApiQuery extends ApiBase {
 	private $mUseLegacyContinue;
 
 	/**
-	 * @param $main ApiMain
-	 * @param $action string
+	 * @param ApiMain $main
+	 * @param string $action
 	 */
-	public function __construct( $main, $action ) {
+	public function __construct( ApiMain $main, $action ) {
 		parent::__construct( $main, $action );
 
 		$this->mModuleMgr = new ApiModuleManager( $this );
@@ -207,7 +211,7 @@ class ApiQuery extends ApiBase {
 	 * Get whether the specified module is a prop, list or a meta query module
 	 * @deprecated since 1.21, use getModuleManager()->getModuleGroup()
 	 * @param string $moduleName Name of the module to find type for
-	 * @return mixed string or null
+	 * @return string|null
 	 */
 	function getModuleType( $moduleName ) {
 		return $this->getModuleManager()->getModuleGroup( $moduleName );
@@ -344,8 +348,8 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Parse 'continue' parameter into the list of complete modules and a list of generator parameters
-	 * @param array|null $pagesetParams returns list of generator params or null if pageset is done
-	 * @param array|null $completeModules returns list of finished modules (as keys), or null if legacy
+	 * @param array|null $pagesetParams Returns list of generator params or null if pageset is done
+	 * @param array|null $completeModules Returns list of finished modules (as keys), or null if legacy
 	 */
 	private function initContinue( &$pagesetParams, &$completeModules ) {
 		$pagesetParams = array();
@@ -379,9 +383,9 @@ class ApiQuery extends ApiBase {
 	/**
 	 * Validate sub-modules, filter out completed ones, and do requestExtraData()
 	 * @param array $allModules An dict of name=>instance of all modules requested by the client
-	 * @param array|null $completeModules list of finished modules, or null if legacy continue
+	 * @param array|null $completeModules List of finished modules, or null if legacy continue
 	 * @param bool $usePageset True if pageset will be executed
-	 * @return array of modules to be processed during this execution
+	 * @return array Array of modules to be processed during this execution
 	 */
 	private function initModules( $allModules, $completeModules, $usePageset ) {
 		$modules = $allModules;
@@ -419,8 +423,8 @@ class ApiQuery extends ApiBase {
 	 * The cache mode may increase in the level of privacy, but public modules
 	 * added to private data do not decrease the level of privacy.
 	 *
-	 * @param $cacheMode string
-	 * @param $modCacheMode string
+	 * @param string $cacheMode
+	 * @param string $modCacheMode
 	 * @return string
 	 */
 	protected function mergeCacheMode( $cacheMode, $modCacheMode ) {
@@ -439,7 +443,7 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Create instances of all modules requested by the client
-	 * @param array $modules to append instantiated modules to
+	 * @param array $modules To append instantiated modules to
 	 * @param string $param Parameter name to read modules from
 	 */
 	private function instantiateModules( &$modules, $param ) {
@@ -559,10 +563,10 @@ class ApiQuery extends ApiBase {
 	 * This method is called by the generator base when generator in the smart-continue
 	 * mode tries to set 'query-continue' value. ApiQuery stores those values separately
 	 * until the post-processing when it is known if the generation should continue or repeat.
-	 * @param ApiQueryGeneratorBase $module generator module
+	 * @param ApiQueryGeneratorBase $module Generator module
 	 * @param string $paramName
 	 * @param mixed $paramValue
-	 * @return bool true if processed, false if this is a legacy continue
+	 * @return bool True if processed, false if this is a legacy continue
 	 */
 	public function setGeneratorContinue( $module, $paramName, $paramValue ) {
 		if ( $this->mUseLegacyContinue ) {
@@ -578,8 +582,8 @@ class ApiQuery extends ApiBase {
 	}
 
 	/**
-	 * @param $pageSet ApiPageSet Pages to be exported
-	 * @param $result ApiResult Result to output to
+	 * @param ApiPageSet $pageSet Pages to be exported
+	 * @param ApiResult $result Result to output to
 	 */
 	private function doExport( $pageSet, $result ) {
 		$exportTitles = array();
@@ -733,7 +737,7 @@ class ApiQuery extends ApiBase {
 				'from the MediaWiki databases,',
 			'and is loosely based on the old query.php interface.',
 			'All data modifications will first have to use query to acquire a ' .
-				'token to prevent abuse from malicious sites'
+				'token to prevent abuse from malicious sites.'
 		);
 	}
 

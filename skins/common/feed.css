@@ -32,55 +32,104 @@ rss:before {
 feed:before {
 	content: "This Atom feed is meant to be read in a syndicated news reader, and isn't ideal for a web browser.";
 }
+
 rss:before, feed:before {
 	color: red;
 	text-align: center;
 	line-height: 2em;
 }
 
-channel>title,
-item>title,
-feed>title,
-entry>title {
+channel > title,
+item > title,
+feed > title,
+entry > title {
 	font-weight: bold;
 	border-bottom: solid 1px #aaa;
 	margin-left: -0.5em;
 }
-channel>title, feed>title {
+
+channel > title, feed > title {
 	font-size: larger;
 }
-item>title, entry>title {
+
+item > title, entry > title {
 	font-size: large;
 }
+
 item, entry {
 	margin-top: 1em;
 	margin-left: 2em;
 }
 
-item>description, entry>summary {
+item > description, entry > summary {
 	white-space: pre;
 	overflow: auto;
 	background: #f8f8ff;
 }
 
-pubDate:before { content: "Date: " }
-link:before { content: "Link: " }
-author:before, creator:before { content: "Author: " }
-description:before { content: "Description: " }
-id:before { content: "Id: " }
+pubDate:before {
+	content: "Date: ";
+}
 
-generator:before { content: "Generator: " }
-language:before { content: "Language: " }
-lastBuildDate:before { content: "Updated: " }
-comments:before { content: "Comments page: " }
+link:before {
+	content: "Link: ";
+}
 
-tagline:before { content: "Tagline: " }
-issued:before { content: "Issued: " }
-created:before { content: "Created: " }
-modified:before { content: "Modified: " }
-updated:before { content: "Updated: " }
-summary:before { content: "Summary: " }
-comment:before { content: "Comment: " }
+author:before, creator:before {
+	content: "Author: ";
+}
+
+description:before {
+	content: "Description: ";
+}
+
+id:before {
+	content: "Id: ";
+}
+
+generator:before {
+	content: "Generator: ";
+}
+
+language:before {
+	content: "Language: ";
+}
+
+lastBuildDate:before {
+	content: "Updated: ";
+}
+
+comments:before {
+	content: "Comments page: ";
+}
+
+tagline:before {
+	content: "Tagline: ";
+}
+
+issued:before {
+	content: "Issued: ";
+}
+
+created:before {
+	content: "Created: ";
+}
+
+modified:before {
+	content: "Modified: ";
+}
+
+updated:before {
+	content: "Updated: ";
+}
+
+summary:before {
+	content: "Summary: ";
+}
+
+comment:before {
+	content: "Comment: ";
+}
 
 pubDate:before, link:before, author:before, description:before,
 language:before, generator:before, lastBuildDate:before, comments:before,

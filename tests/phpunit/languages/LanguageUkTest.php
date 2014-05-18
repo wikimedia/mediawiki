@@ -6,7 +6,7 @@
  * @file
  */
 
-/** Tests for MediaWiki languages/classes/LanguageUk.php */
+/** Tests for Ukrainian */
 class LanguageUkTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural
@@ -57,7 +57,7 @@ class LanguageUkTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testPluralTwoForms( $result, $value ) {
-		$forms = array( 'one', 'other' );
+		$forms = array( '1=one', 'other' );
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 

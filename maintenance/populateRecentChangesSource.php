@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once dirname( __FILE__ ) . '/Maintenance.php';
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to populate the rc_source field.
@@ -32,7 +32,8 @@ require_once dirname( __FILE__ ) . '/Maintenance.php';
 class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Populates rc_source field of the recentchanges table with the data in rc_type.";
+		$this->mDescription =
+			"Populates rc_source field of the recentchanges table with the data in rc_type.";
 		$this->setBatchSize( 100 );
 	}
 
@@ -45,6 +46,7 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 		$start = $dbw->selectField( 'recentchanges', 'MIN(rc_id)', false, __METHOD__ );
 		if ( !$start ) {
 			$this->output( "Nothing to do.\n" );
+
 			return true;
 		}
 		$end = $dbw->selectField( 'recentchanges', 'MAX(rc_id)', false, __METHOD__ );

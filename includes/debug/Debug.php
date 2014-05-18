@@ -82,7 +82,7 @@ class MWDebug {
 	 * enabled.
 	 *
 	 * @since 1.19
-	 * @param $out OutputPage
+	 * @param OutputPage $out
 	 */
 	public static function addModules( OutputPage $out ) {
 		if ( self::$enabled ) {
@@ -96,7 +96,7 @@ class MWDebug {
 	 * @todo Add support for passing objects
 	 *
 	 * @since 1.19
-	 * @param $str string
+	 * @param string $str
 	 */
 	public static function log( $str ) {
 		if ( !self::$enabled ) {
@@ -132,12 +132,12 @@ class MWDebug {
 	 * Adds a warning entry to the log
 	 *
 	 * @since 1.19
-	 * @param $msg string
-	 * @param $callerOffset int
-	 * @param $level int A PHP error level. See sendWarning()
-	 * @param $log string: 'production' will always trigger a php error, 'auto'
-	 *        will trigger an error if $wgDevelopmentWarnings is true, and 'debug'
-	 *        will only write to the debug log(s).
+	 * @param string $msg
+	 * @param int $callerOffset
+	 * @param int $level A PHP error level. See sendMessage()
+	 * @param string $log 'production' will always trigger a php error, 'auto'
+	 *    will trigger an error if $wgDevelopmentWarnings is true, and 'debug'
+	 *    will only write to the debug log(s).
 	 *
 	 * @return mixed
 	 */
@@ -154,7 +154,7 @@ class MWDebug {
 
 		$callerDescription = self::getCallerDescription( $callerOffset );
 
-		self::sendWarning( $msg, $callerDescription, $level );
+		self::sendMessage( $msg, $callerDescription, 'warning', $level );
 
 		if ( self::$enabled ) {
 			self::$log[] = array(
@@ -178,8 +178,8 @@ class MWDebug {
 	 * @param string $function Function that is deprecated.
 	 * @param string|bool $version Version in which the function was deprecated.
 	 * @param string|bool $component Component to which the function belongs.
-	 *     If false, it is assumbed the function is in MediaWiki core.
-	 * @param $callerOffset integer: How far up the callstack is the original
+	 *    If false, it is assumbed the function is in MediaWiki core.
+	 * @param int $callerOffset How far up the callstack is the original
 	 *    caller. 2 = function that called the function that called
 	 *    MWDebug::deprecated() (Added in 1.20).
 	 * @return mixed
@@ -228,9 +228,10 @@ class MWDebug {
 
 		if ( $sendToLog ) {
 			global $wgDevelopmentWarnings; // we could have a more specific $wgDeprecationWarnings setting.
-			self::sendWarning(
+			self::sendMessage(
 				$msg,
 				$callerDescription,
+				'deprecated',
 				$wgDevelopmentWarnings ? E_USER_DEPRECATED : false
 			);
 		}
@@ -252,9 +253,9 @@ class MWDebug {
 	/**
 	 * Get an array describing the calling function at a specified offset.
 	 *
-	 * @param $callerOffset integer: How far up the callstack is the original
+	 * @param int $callerOffset How far up the callstack is the original
 	 *    caller. 0 = function that called getCallerDescription()
-	 * @return array with two keys: 'file' and 'func'
+	 * @return array Array with two keys: 'file' and 'func'
 	 */
 	private static function getCallerDescription( $callerOffset ) {
 		$callers = wfDebugBacktrace();
@@ -287,21 +288,22 @@ class MWDebug {
 	}
 
 	/**
-	 * Send a warning to the debug log and optionally also trigger a PHP
+	 * Send a message to the debug log and optionally also trigger a PHP
 	 * error, depending on the $level argument.
 	 *
-	 * @param $msg string Message to send
-	 * @param $caller array caller description get from getCallerDescription()
-	 * @param $level int|bool error level to use; set to false to not trigger an error
+	 * @param string $msg Message to send
+	 * @param array $caller Caller description get from getCallerDescription()
+	 * @param string $group Log group on which to send the message
+	 * @param int|bool $level Error level to use; set to false to not trigger an error
 	 */
-	private static function sendWarning( $msg, $caller, $level ) {
+	private static function sendMessage( $msg, $caller, $group, $level ) {
 		$msg .= ' [Called from ' . $caller['func'] . ' in ' . $caller['file'] . ']';
 
 		if ( $level !== false ) {
 			trigger_error( $msg, $level );
 		}
 
-		wfDebug( "$msg\n" );
+		wfDebugLog( $group, $msg, 'log' );
 	}
 
 	/**
@@ -309,7 +311,7 @@ class MWDebug {
 	 * Do NOT use this method, use MWDebug::log or wfDebug()
 	 *
 	 * @since 1.19
-	 * @param $str string
+	 * @param string $str
 	 */
 	public static function debugMsg( $str ) {
 		global $wgDebugComments, $wgShowDebug;
@@ -323,9 +325,9 @@ class MWDebug {
 	 * Begins profiling on a database query
 	 *
 	 * @since 1.19
-	 * @param $sql string
-	 * @param $function string
-	 * @param $isMaster bool
+	 * @param string $sql
+	 * @param string $function
+	 * @param bool $isMaster
 	 * @return int ID number of the query to pass to queryTime or -1 if the
 	 *  debugger is disabled
 	 */
@@ -349,7 +351,7 @@ class MWDebug {
 	 * Calculates how long a query took.
 	 *
 	 * @since 1.19
-	 * @param $id int
+	 * @param int $id
 	 */
 	public static function queryTime( $id ) {
 		if ( $id === -1 || !self::$enabled ) {
@@ -363,7 +365,7 @@ class MWDebug {
 	/**
 	 * Returns a list of files included, along with their size
 	 *
-	 * @param $context IContextSource
+	 * @param IContextSource $context
 	 * @return array
 	 */
 	protected static function getFilesIncluded( IContextSource $context ) {
@@ -384,7 +386,7 @@ class MWDebug {
 	 * Returns the HTML to add to the page for the toolbar
 	 *
 	 * @since 1.19
-	 * @param $context IContextSource
+	 * @param IContextSource $context
 	 * @return string
 	 */
 	public static function getDebugHTML( IContextSource $context ) {
@@ -483,8 +485,8 @@ class MWDebug {
 	/**
 	 * Append the debug info to given ApiResult
 	 *
-	 * @param $context IContextSource
-	 * @param $result ApiResult
+	 * @param IContextSource $context
+	 * @param ApiResult $result
 	 */
 	public static function appendDebugInfoToApiResult( IContextSource $context, ApiResult $result ) {
 		if ( !self::$enabled ) {
@@ -517,7 +519,7 @@ class MWDebug {
 	/**
 	 * Returns the HTML to add to the page for the toolbar
 	 *
-	 * @param $context IContextSource
+	 * @param IContextSource $context
 	 * @return array
 	 */
 	public static function getDebugInfo( IContextSource $context ) {
@@ -527,6 +529,12 @@ class MWDebug {
 
 		global $wgVersion, $wgRequestTime;
 		$request = $context->getRequest();
+
+		// HHVM's reported memory usage from memory_get_peak_usage()
+		// is not useful when passing false, but we continue passing
+		// false for consistency of historical data in zend.
+		// see: https://github.com/facebook/hhvm/issues/2257#issuecomment-39362246
+		$realMemoryUsage = wfIsHHVM();
 
 		return array(
 			'mwVersion' => $wgVersion,
@@ -544,9 +552,10 @@ class MWDebug {
 				'headers' => $request->getAllHeaders(),
 				'params' => $request->getValues(),
 			),
-			'memory' => $context->getLanguage()->formatSize( memory_get_usage() ),
-			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage() ),
+			'memory' => $context->getLanguage()->formatSize( memory_get_usage( $realMemoryUsage ) ),
+			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage( $realMemoryUsage ) ),
 			'includes' => self::getFilesIncluded( $context ),
+			'profile' => Profiler::instance()->getRawData(),
 		);
 	}
 }

@@ -1,9 +1,12 @@
 <?php
 /**
- * This does the initial setup for a web request.
+ * This does the initial set up for a web request.
  * It does some security checks, starts the profiler and loads the
  * configuration, and optionally loads Setup.php depending on whether
  * MW_NO_SETUP is defined.
+ *
+ * Setup.php (if loaded) then sets up GlobalFunctions, the AutoLoader,
+ * and the configuration globals (though not $wgTitle).
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,8 +30,10 @@
 # This must be done before any globals are set by the code
 if ( ini_get( 'register_globals' ) ) {
 	if ( isset( $_REQUEST['GLOBALS'] ) || isset( $_FILES['GLOBALS'] ) ) {
-		die( '<a href="http://www.hardened-php.net/globals-problem">$GLOBALS overwrite vulnerability</a>' );
+		die( '<a href="http://www.hardened-php.net/globals-problem">'
+			. '$GLOBALS overwrite vulnerability</a>' );
 	}
+
 	$verboten = array(
 		'GLOBALS',
 		'_SERVER',
@@ -47,6 +52,7 @@ if ( ini_get( 'register_globals' ) ) {
 		'_SESSION',
 		'HTTP_SESSION_VARS'
 	);
+
 	foreach ( $_REQUEST as $name => $value ) {
 		if ( in_array( $name, $verboten ) ) {
 			header( "HTTP/1.1 500 Internal Server Error" );
@@ -126,8 +132,8 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 
 	# LocalSettings.php is the per site customization file. If it does not exist
 	# the wiki installer needs to be launched or the generated file uploaded to
-	# the root wiki directory
-	if ( !file_exists( MW_CONFIG_FILE ) ) {
+	# the root wiki directory. Give a hint, if it is not readable by the server.
+	if ( !is_readable( MW_CONFIG_FILE ) ) {
 		require_once "$IP/includes/templates/NoLocalSettings.php";
 		die();
 	}

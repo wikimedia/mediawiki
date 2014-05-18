@@ -23,7 +23,9 @@ class UploadFromUrlTest extends ApiTestCase {
 		}
 	}
 
-	protected function doApiRequest( array $params, array $unused = null, $appendModule = false, User $user = null ) {
+	protected function doApiRequest( array $params, array $unused = null,
+		$appendModule = false, User $user = null
+	) {
 		$sessionId = session_id();
 		session_write_close();
 
@@ -203,7 +205,10 @@ class UploadFromUrlTest extends ApiTestCase {
 			$page->doDeleteArticle( '' );
 		}
 
-		$this->assertFalse( (bool)$talk->getArticleID( Title::GAID_FOR_UPDATE ), 'User talk does not exist' );
+		$this->assertFalse(
+			(bool)$talk->getArticleID( Title::GAID_FOR_UPDATE ),
+			'User talk does not exist'
+		);
 
 		$this->doApiRequest( array(
 			'action' => 'upload',
@@ -224,9 +229,6 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$this->deleteFile( 'UploadFromUrlTest.png' );
 
-		$talkRev = Revision::newFromTitle( $talk );
-		$talkSize = $talkRev->getSize();
-
 		$exception = false;
 		try {
 			$this->doApiRequest( array(
@@ -239,7 +241,10 @@ class UploadFromUrlTest extends ApiTestCase {
 			) );
 		} catch ( UsageException $e ) {
 			$exception = true;
-			$this->assertEquals( 'Using leavemessage without ignorewarnings is not supported', $e->getMessage() );
+			$this->assertEquals(
+				'Using leavemessage without ignorewarnings is not supported',
+				$e->getMessage()
+			);
 		}
 		$this->assertTrue( $exception );
 
@@ -249,6 +254,9 @@ class UploadFromUrlTest extends ApiTestCase {
 		return;
 		/*
 		// Broken until using leavemessage with ignorewarnings is supported
+		$talkRev = Revision::newFromTitle( $talk );
+		$talkSize = $talkRev->getSize();
+
 		$job->run();
 
 		$this->assertFalse( wfLocalFile( 'UploadFromUrlTest.png' )->exists() );

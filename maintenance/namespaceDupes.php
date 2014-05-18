@@ -3,7 +3,7 @@
  * Check for articles to fix after adding/deleting namespaces
  *
  * Copyright © 2005-2007 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,16 +44,13 @@ class NamespaceConflictChecker extends Maintenance {
 		$this->mDescription = "";
 		$this->addOption( 'fix', 'Attempt to automatically fix errors' );
 		$this->addOption( 'suffix', "Dupes will be renamed with correct namespace with " .
-									"<text> appended after the article name", false, true );
+			"<text> appended after the article name", false, true );
 		$this->addOption( 'prefix', "Do an explicit check for the given title prefix " .
-									"appended after the article name", false, true );
+			"appended after the article name", false, true );
 	}
 
 	public function execute() {
-		global $wgTitle;
-
 		$this->db = wfGetDB( DB_MASTER );
-		$wgTitle = Title::newFromText( 'Namespace title conflict cleanup script' );
 
 		$fix = $this->hasOption( 'fix' );
 		$suffix = $this->getOption( 'suffix', '' );
@@ -75,8 +72,8 @@ class NamespaceConflictChecker extends Maintenance {
 
 	/**
 	 * @todo Document
-	 * @param $fix Boolean: whether or not to fix broken entries
-	 * @param $suffix String: suffix to append to renamed articles
+	 * @param bool $fix Whether or not to fix broken entries
+	 * @param string $suffix Suffix to append to renamed articles
 	 *
 	 * @return bool
 	 */
@@ -141,13 +138,14 @@ class NamespaceConflictChecker extends Maintenance {
 		foreach ( $spaces as $name => $ns ) {
 			$ok = $this->checkNamespace( $ns, $name, $fix, $suffix ) && $ok;
 		}
+
 		return $ok;
 	}
 
 	/**
 	 * Get the interwiki list
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	private function getInterwikiList() {
 		$result = Interwiki::getAllPrefixes();
@@ -155,15 +153,16 @@ class NamespaceConflictChecker extends Maintenance {
 		foreach ( $result as $row ) {
 			$prefixes[] = $row['iw_prefix'];
 		}
+
 		return $prefixes;
 	}
 
 	/**
 	 * @todo Document
-	 * @param $ns Integer: a namespace id
-	 * @param $name String
-	 * @param $fix Boolean: whether to fix broken entries
-	 * @param $suffix String: suffix to append to renamed articles
+	 * @param int $ns A namespace id
+	 * @param string $name
+	 * @param bool $fix Whether to fix broken entries
+	 * @param string $suffix Suffix to append to renamed articles
 	 * @return bool
 	 */
 	private function checkNamespace( $ns, $name, $fix, $suffix = '' ) {
@@ -181,19 +180,21 @@ class NamespaceConflictChecker extends Maintenance {
 				$ok = $this->resolveConflict( $row, $resolvable, $suffix ) && $ok;
 			}
 		}
+
 		return $ok;
 	}
 
 	/**
 	 * @todo Do this for real
-	 * @param $key
-	 * @param $prefix
-	 * @param $fix
-	 * @param $suffix string
+	 * @param int $ns
+	 * @param string $name
+	 * @param bool $fix
+	 * @param string $suffix
 	 * @return bool
 	 */
 	private function checkPrefix( $key, $prefix, $fix, $suffix = '' ) {
 		$this->output( "Checking prefix \"$prefix\" vs namespace $key\n" );
+
 		return $this->checkNamespace( $key, $prefix, $fix, $suffix );
 	}
 
@@ -201,8 +202,8 @@ class NamespaceConflictChecker extends Maintenance {
 	 * Find pages in mainspace that have a prefix of the new namespace
 	 * so we know titles that will need migrating
 	 *
-	 * @param $ns Integer: namespace id (id for new namespace?)
-	 * @param $name String: prefix that is being made a namespace
+	 * @param int $ns Namespace id (id for new namespace?)
+	 * @param string $name Prefix that is being made a namespace
 	 *
 	 * @return array
 	 */
@@ -234,12 +235,15 @@ class NamespaceConflictChecker extends Maintenance {
 		foreach ( $result as $row ) {
 			$set[] = $row;
 		}
+
 		return $set;
 	}
 
 	/**
 	 * Report any conflicts we find
 	 *
+	 * @param stdClass $row
+	 * @param string $suffix
 	 * @return bool
 	 */
 	private function reportConflict( $row, $suffix ) {
@@ -252,6 +256,7 @@ class NamespaceConflictChecker extends Maintenance {
 				$row->oldnamespace,
 				$row->oldtitle ) );
 			$this->output( "...  *** cannot resolve automatically; illegal title ***\n" );
+
 			return false;
 		}
 
@@ -266,6 +271,7 @@ class NamespaceConflictChecker extends Maintenance {
 		$id = $newTitle->getArticleID();
 		if ( $id ) {
 			$this->output( "...  *** cannot resolve automatically; page exists with ID $id ***\n" );
+
 			return false;
 		} else {
 			return true;
@@ -275,9 +281,9 @@ class NamespaceConflictChecker extends Maintenance {
 	/**
 	 * Resolve any conflicts
 	 *
-	 * @param $row Object: row from the page table to fix
-	 * @param $resolvable Boolean
-	 * @param $suffix String: suffix to append to the fixed page
+	 * @param stClass $row Row from the page table to fix
+	 * @param bool $resolvable
+	 * @param string $suffix Suffix to append to the fixed page
 	 * @return bool
 	 */
 	private function resolveConflict( $row, $resolvable, $suffix ) {
@@ -289,6 +295,7 @@ class NamespaceConflictChecker extends Maintenance {
 				$title = Title::makeTitleSafe( $row->namespace, $row->title );
 				if ( !$title ) {
 					$this->output( "... !!! invalid title\n" );
+
 					return false;
 				}
 				$id = $title->getArticleID();
@@ -301,15 +308,16 @@ class NamespaceConflictChecker extends Maintenance {
 			$this->output( "...  *** using suffixed form [[" . $title->getPrefixedText() . "]] ***\n" );
 		}
 		$this->resolveConflictOn( $row, 'page', 'page' );
+
 		return true;
 	}
 
 	/**
 	 * Resolve a given conflict
 	 *
-	 * @param $row Object: row from the old broken entry
-	 * @param $table String: table to update
-	 * @param $prefix String: prefix for column name, like page or ar
+	 * @param stdClass $row Row from the old broken entry
+	 * @param string $table Table to update
+	 * @param string $prefix Prefix for column name, like page or ar
 	 * @return bool
 	 */
 	private function resolveConflictOn( $row, $table, $prefix ) {
@@ -327,6 +335,7 @@ class NamespaceConflictChecker extends Maintenance {
 			),
 			__METHOD__ );
 		$this->output( "ok.\n" );
+
 		return true;
 	}
 }

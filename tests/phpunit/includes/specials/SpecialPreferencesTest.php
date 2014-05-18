@@ -17,6 +17,7 @@ class SpecialPreferencesTest extends MediaWikiTestCase {
 	 * is not throwing a fatal error.
 	 *
 	 * Test specifications by Alexandre "ialex" Emsenhuber.
+	 * @todo give this test a real name explaining what is being tested here
 	 */
 	public function testBug41337() {
 
@@ -40,13 +41,6 @@ class SpecialPreferencesTest extends MediaWikiTestCase {
 				array( 'nickname', null, false, 'superlongnickname' ),
 			)
 			) );
-
-		# Validate the mock (FIXME should probably be removed)
-		$this->assertFalse( $user->isAnon() );
-		$this->assertEquals( array(),
-			$user->getEffectiveGroups() );
-		$this->assertEquals( 'superlongnickname',
-			$user->getOption( 'nickname' ) );
 
 		# Forge a request to call the special page
 		$context = new RequestContext();

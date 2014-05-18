@@ -29,13 +29,14 @@
  */
 class DependencyWrapper {
 	private $value;
+	/** @var CacheDependency[] */
 	private $deps;
 
 	/**
 	 * Create an instance.
-	 * @param $value Mixed: the user-supplied value
-	 * @param $deps Mixed: a dependency or dependency array. All dependencies
-	 *        must be objects implementing CacheDependency.
+	 * @param mixed $value The user-supplied value
+	 * @param CacheDependency|CacheDependency[] $deps A dependency or dependency
+	 *   array. All dependencies must be objects implementing CacheDependency.
 	 */
 	function __construct( $value = false, $deps = array() ) {
 		$this->value = $value;
@@ -74,7 +75,7 @@ class DependencyWrapper {
 
 	/**
 	 * Get the user-defined value
-	 * @return bool|Mixed
+	 * @return bool|mixed
 	 */
 	function getValue() {
 		return $this->value;
@@ -83,9 +84,9 @@ class DependencyWrapper {
 	/**
 	 * Store the wrapper to a cache
 	 *
-	 * @param $cache BagOStuff
-	 * @param $key
-	 * @param $expiry
+	 * @param BagOStuff $cache
+	 * @param string $key
+	 * @param int $expiry
 	 */
 	function storeToCache( $cache, $key, $expiry = 0 ) {
 		$this->initialiseDeps();
@@ -97,12 +98,12 @@ class DependencyWrapper {
 	 * it will be generated with the callback function (if present), and the newly
 	 * calculated value will be stored to the cache in a wrapper.
 	 *
-	 * @param $cache BagOStuff a cache object such as $wgMemc
-	 * @param string $key the cache key
-	 * @param $expiry Integer: the expiry timestamp or interval in seconds
-	 * @param $callback Mixed: the callback for generating the value, or false
-	 * @param array $callbackParams the function parameters for the callback
-	 * @param array $deps the dependencies to store on a cache miss. Note: these
+	 * @param BagOStuff $cache A cache object such as $wgMemc
+	 * @param string $key The cache key
+	 * @param int $expiry The expiry timestamp or interval in seconds
+	 * @param bool|array $callback The callback for generating the value, or false
+	 * @param array $callbackParams The function parameters for the callback
+	 * @param array $deps The dependencies to store on a cache miss. Note: these
 	 *    are not the dependencies used on a cache hit! Cache hits use the stored
 	 *    dependency array.
 	 *
@@ -156,7 +157,7 @@ class FileDependency extends CacheDependency {
 	 * Create a file dependency
 	 *
 	 * @param string $filename the name of the file, preferably fully qualified
-	 * @param $timestamp Mixed: the unix last modified timestamp, or false if the
+	 * @param null|bool|int $timestamp The unix last modified timestamp, or false if the
 	 *        file does not exist. If omitted, the timestamp will be loaded from
 	 *        the file.
 	 *

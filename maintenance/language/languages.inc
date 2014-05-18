@@ -26,9 +26,9 @@
  */
 class Languages {
 	/** @var array List of languages */
-	protected $mLanguages; #
+	protected $mLanguages;
 
-	/** @var array Raw list of the messages in each language  */
+	/** @var array Raw list of the messages in each language */
 	protected $mRawMessages;
 
 	/** @var array Messages in each language (except for English), divided to groups */
@@ -61,17 +61,10 @@ class Languages {
 	/**
 	 * Load the list of languages: all the Messages*.php
 	 * files in the languages directory.
-	 *
-	 * @param $exif bool Treat the Exif messages?
 	 */
-	function __construct( $exif = true ) {
-		require __DIR__ . '/messageTypes.inc';
-		$this->mIgnoredMessages = $wgIgnoredMessages;
-		if ( $exif ) {
-			$this->mOptionalMessages = array_merge( $wgOptionalMessages );
-		} else {
-			$this->mOptionalMessages = array_merge( $wgOptionalMessages, $wgEXIFMessages );
-		}
+	function __construct() {
+		wfRunHooks( 'LocalisationIgnoredOptionalMessages',
+			array( &$this->mIgnoredMessages, &$this->mOptionalMessages ) );
 
 		$this->mLanguages = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
 		sort( $this->mLanguages );
@@ -107,7 +100,7 @@ class Languages {
 	/**
 	 * Load the language file.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 */
 	protected function loadFile( $code ) {
 		if ( isset( $this->mRawMessages[$code] ) &&
@@ -125,12 +118,16 @@ class Languages {
 		$this->mNamespaceAliases[$code] = array();
 		$this->mMagicWords[$code] = array();
 		$this->mSpecialPageAliases[$code] = array();
+
+		$jsonfilename = Language::getJsonMessagesFileName( $code );
+		if ( file_exists( $jsonfilename ) ) {
+			$json = Language::getLocalisationCache()->readJSONFile( $jsonfilename );
+			$this->mRawMessages[$code] = $json['messages'];
+		}
+
 		$filename = Language::getMessagesFileName( $code );
 		if ( file_exists( $filename ) ) {
 			require $filename;
-			if ( isset( $messages ) ) {
-				$this->mRawMessages[$code] = $messages;
-			}
 			if ( isset( $fallback ) ) {
 				$this->mFallback[$code] = $fallback;
 			}
@@ -161,7 +158,7 @@ class Languages {
 	 * translated - messages which are either required or optional, but translated from
 	 *   English and needed.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 */
 	private function loadMessages( $code ) {
 		if ( isset( $this->mMessages[$code] ) ) {
@@ -233,7 +230,7 @@ class Languages {
 	 * translated - messages which are either required or optional, but translated from
 	 *   English and needed.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return string The messages in this language.
 	 */
@@ -265,7 +262,7 @@ class Languages {
 	/**
 	 * Get fallback language code for a specific language.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return string Fallback code.
 	 */
@@ -278,7 +275,7 @@ class Languages {
 	/**
 	 * Get namespace names for a specific language.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array Namespace names.
 	 */
@@ -291,7 +288,7 @@ class Languages {
 	/**
 	 * Get namespace aliases for a specific language.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array Namespace aliases.
 	 */
@@ -304,7 +301,7 @@ class Languages {
 	/**
 	 * Get magic words for a specific language.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array Magic words.
 	 */
@@ -317,7 +314,7 @@ class Languages {
 	/**
 	 * Get special page aliases for a specific language.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array Special page aliases.
 	 */
@@ -330,7 +327,7 @@ class Languages {
 	/**
 	 * Get the untranslated messages for a specific language.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The untranslated messages for this language.
 	 */
@@ -344,7 +341,7 @@ class Languages {
 	/**
 	 * Get the duplicate messages for a specific language.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The duplicate messages for this language.
 	 */
@@ -364,7 +361,7 @@ class Languages {
 	/**
 	 * Get the obsolete messages for a specific language.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The obsolete messages for this language.
 	 */
@@ -378,7 +375,7 @@ class Languages {
 	/**
 	 * Get the messages whose variables do not match the original ones.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The messages whose variables do not match the original ones.
 	 */
@@ -412,7 +409,7 @@ class Languages {
 	/**
 	 * Get the messages which do not use plural.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The messages which do not use plural in this language.
 	 */
@@ -434,7 +431,7 @@ class Languages {
 	/**
 	 * Get the empty messages.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The empty messages for this language.
 	 */
@@ -454,7 +451,7 @@ class Languages {
 	/**
 	 * Get the messages with trailing whitespace.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The messages with trailing whitespace in this language.
 	 */
@@ -474,7 +471,7 @@ class Languages {
 	/**
 	 * Get the non-XHTML messages.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The non-XHTML messages for this language.
 	 */
@@ -503,7 +500,7 @@ class Languages {
 	/**
 	 * Get the messages which include wrong characters.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The messages which include wrong characters in this language.
 	 */
@@ -541,7 +538,7 @@ class Languages {
 	/**
 	 * Get the messages which include dubious links.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The messages which include dubious links in this language.
 	 */
@@ -571,7 +568,7 @@ class Languages {
 	/**
 	 * Get the messages which include unbalanced brackets.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The messages which include unbalanced brackets in this language.
 	 */
@@ -609,7 +606,7 @@ class Languages {
 	/**
 	 * Get the untranslated namespace names.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The untranslated namespace names in this language.
 	 */
@@ -627,7 +624,7 @@ class Languages {
 	/**
 	 * Get the project talk namespace names with no $1.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The problematic project talk namespaces in this language.
 	 */
@@ -656,7 +653,7 @@ class Languages {
 	/**
 	 * Get the untranslated magic words.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The untranslated magic words in this language.
 	 */
@@ -676,7 +673,7 @@ class Languages {
 	/**
 	 * Get the obsolete magic words.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The obsolete magic words in this language.
 	 */
@@ -696,7 +693,7 @@ class Languages {
 	/**
 	 * Get the magic words that override the original English magic word.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The overriding magic words in this language.
 	 */
@@ -726,7 +723,7 @@ class Languages {
 	/**
 	 * Get the magic words which do not match the case-sensitivity of the original words.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The magic words whose case does not match in this language.
 	 */
@@ -750,7 +747,7 @@ class Languages {
 	/**
 	 * Get the untranslated special page names.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The untranslated special page names in this language.
 	 */
@@ -770,7 +767,7 @@ class Languages {
 	/**
 	 * Get the obsolete special page names.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 *
 	 * @return array The obsolete special page names in this language.
 	 */
@@ -796,7 +793,7 @@ class ExtensionLanguages extends Languages {
 
 	/**
 	 * Load the messages group.
-	 * @param $group MessageGroup The messages group.
+	 * @param MessageGroup $group The messages group.
 	 */
 	function __construct( MessageGroup $group ) {
 		$this->mMessageGroup = $group;
@@ -817,7 +814,7 @@ class ExtensionLanguages extends Languages {
 	/**
 	 * Load the language file.
 	 *
-	 * @param $code string The language code.
+	 * @param string $code The language code.
 	 */
 	protected function loadFile( $code ) {
 		if ( !isset( $this->mRawMessages[$code] ) ) {

@@ -49,9 +49,9 @@ class CliInstaller extends Installer {
 	/**
 	 * Constructor.
 	 *
-	 * @param $siteName
-	 * @param $admin
-	 * @param $option Array
+	 * @param string $siteName
+	 * @param string $admin
+	 * @param array $option
 	 */
 	function __construct( $siteName, $admin = null, array $option = array() ) {
 		global $wgContLang;
@@ -138,7 +138,8 @@ class CliInstaller extends Installer {
 
 	public function startStage( $step ) {
 		// Messages: config-install-database, config-install-tables, config-install-interwiki,
-		// config-install-stats, config-install-keys, config-install-sysop, config-install-mainpage
+		// config-install-stats, config-install-keys, config-install-sysop, config-install-mainpage,
+		// config-install-extensions
 		$this->showMessage( "config-install-$step" );
 	}
 
@@ -158,7 +159,7 @@ class CliInstaller extends Installer {
 	}
 
 	/**
-	 * @param $params array
+	 * @param array $params
 	 *
 	 * @return string
 	 */

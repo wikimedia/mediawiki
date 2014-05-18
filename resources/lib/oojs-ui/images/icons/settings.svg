@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24" height="24" viewBox="0, 0, 24, 24">
+  <g id="settings" opacity="0.75">
+    <path d="M3,4 L6,4 L6,6 L3,6 z" fill="#000000"/>
+    <path d="M12,4 L21,4 L21,6 L12,6 z" fill="#000000"/>
+    <path d="M8,3 L10,3 C10.552,3 11,3.448 11,4 L11,6 C11,6.552 10.552,7 10,7 L8,7 C7.448,7 7,6.552 7,6 L7,4 C7,3.448 7.448,3 8,3 z" fill="#000000"/>
+    <path d="M3,11 L12,11 L12,13 L3,13 z" fill="#000000"/>
+    <path d="M18,11 L21,11 L21,13 L18,13 z" fill="#000000"/>
+    <path d="M14,10 L16,10 C16.552,10 17,10.448 17,11 L17,13 C17,13.552 16.552,14 16,14 L14,14 C13.448,14 13,13.552 13,13 L13,11 C13,10.448 13.448,10 14,10 z" fill="#000000"/>
+    <path d="M3,18 L9,18 L9,20 L3,20 z" fill="#000000"/>
+    <path d="M15,18 L21,18 L21,20 L15,20 z" fill="#000000"/>
+    <path d="M11,17 L13,17 C13.552,17 14,17.448 14,18 L14,20 C14,20.552 13.552,21 13,21 L11,21 C10.448,21 10,20.552 10,20 L10,18 C10,17.448 10.448,17 11,17 z" fill="#000000"/>
+  </g>
+  <defs/>
+</svg>

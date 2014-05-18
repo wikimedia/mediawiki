@@ -57,7 +57,7 @@ class ChangesList extends ContextSource {
 	 * Some users might want to use an enhanced list format, for instance
 	 *
 	 * @param IContextSource $context
-	 * @return ChangesList derivative
+	 * @return ChangesList
 	 */
 	public static function newFromContext( IContextSource $context ) {
 		$user = $context->getUser();
@@ -74,10 +74,18 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Sets the list to use a "<li class='watchlist-(namespace)-(page)'>" tag
-	 * @param $value Boolean
+	 * @param bool $value
 	 */
 	public function setWatchlistDivs( $value = true ) {
 		$this->watchlist = $value;
+	}
+
+	/**
+	 * @return bool True when setWatchlistDivs has been called
+	 * @since 1.23
+	 */
+	public function isWatchlist() {
+		return (bool)$this->watchlist;
 	}
 
 	/**
@@ -98,7 +106,7 @@ class ChangesList extends ContextSource {
 	/**
 	 * Returns the appropriate flags for new page, minor change and patrolling
 	 * @param array $flags Associative array of 'flag' => Bool
-	 * @param string $nothing to use for empty space
+	 * @param string $nothing To use for empty space
 	 * @return string
 	 */
 	public function recentChangesFlags( $flags, $nothing = '&#160;' ) {
@@ -161,9 +169,15 @@ class ChangesList extends ContextSource {
 		$this->lastdate = '';
 		$this->rclistOpen = false;
 		$this->getOutput()->addModuleStyles( 'mediawiki.special.changeslist' );
-		$this->getOutput()->addModules( 'mediawiki.special.changeslist.js' );
 
 		return '<div class="mw-changeslist">';
+	}
+
+	/**
+	 * @param ResultWrapper|array $rows
+	 */
+	public function initChangesListRows( $rows ) {
+		wfRunHooks( 'ChangesListInitRows', array( $this, $rows ) );
 	}
 
 	/**
@@ -222,8 +236,8 @@ class ChangesList extends ContextSource {
 	/**
 	 * Format the character difference of one or several changes.
 	 *
-	 * @param $old RecentChange
-	 * @param $new RecentChange last change to use, if not provided, $old will be used
+	 * @param RecentChange $old
+	 * @param RecentChange $new Last change to use, if not provided, $old will be used
 	 * @return string HTML fragment
 	 */
 	public function formatCharacterDifference( RecentChange $old, RecentChange $new = null ) {
@@ -244,17 +258,18 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Returns text for the end of RC
-	 * @return String
+	 * @return string
 	 */
 	public function endRecentChangesList() {
 		$out = $this->rclistOpen ? "</ul>\n" : '';
 		$out .= '</div>';
+
 		return $out;
 	}
 
 	/**
 	 * @param string $s HTML to update
-	 * @param $rc_timestamp mixed
+	 * @param mixed $rc_timestamp
 	 */
 	public function insertDateHeader( &$s, $rc_timestamp ) {
 		# Make date header if necessary
@@ -271,8 +286,8 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * @param string $s HTML to update
-	 * @param $title Title
-	 * @param $logtype string
+	 * @param Title $title
+	 * @param string $logtype
 	 */
 	public function insertLog( &$s, $title, $logtype ) {
 		$page = new LogPage( $logtype );
@@ -282,8 +297,8 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * @param string $s HTML to update
-	 * @param $rc RecentChange
-	 * @param $unpatrolled
+	 * @param RecentChange $rc
+	 * @param bool $unpatrolled
 	 */
 	public function insertDiffHist( &$s, &$rc, $unpatrolled ) {
 		# Diff link
@@ -323,12 +338,15 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * @param string $s HTML to update
-	 * @param $rc RecentChange
-	 * @param $unpatrolled
-	 * @param $watched
+	 * @param RecentChange $rc
+	 * @param bool $unpatrolled
+	 * @param bool $watched
 	 */
 	public function insertArticleLink( &$s, &$rc, $unpatrolled, $watched ) {
 		$params = array();
+		if ( $rc->getTitle()->isRedirect() ) {
+			$params = array( 'redirect' => 'no' );
+		}
 
 		$articlelink = Linker::linkKnown(
 			$rc->getTitle(),
@@ -354,7 +372,7 @@ class ChangesList extends ContextSource {
 	 * Get the timestamp from $rc formatted with current user's settings
 	 * and a separator
 	 *
-	 * @param $rc RecentChange
+	 * @param RecentChange $rc
 	 * @return string HTML fragment
 	 */
 	public function getTimestamp( $rc ) {
@@ -370,7 +388,7 @@ class ChangesList extends ContextSource {
 	 * Insert time timestamp string from $rc into $s
 	 *
 	 * @param string $s HTML to update
-	 * @param $rc RecentChange
+	 * @param RecentChange $rc
 	 */
 	public function insertTimestamp( &$s, $rc ) {
 		$s .= $this->getTimestamp( $rc );
@@ -379,8 +397,8 @@ class ChangesList extends ContextSource {
 	/**
 	 * Insert links to user page, user talk page and eventually a blocking link
 	 *
-	 * @param &$s String HTML to update
-	 * @param &$rc RecentChange
+	 * @param string &$s HTML to update
+	 * @param RecentChange &$rc
 	 */
 	public function insertUserRelatedLinks( &$s, &$rc ) {
 		if ( $this->isDeleted( $rc, Revision::DELETED_USER ) ) {
@@ -396,7 +414,7 @@ class ChangesList extends ContextSource {
 	/**
 	 * Insert a formatted action
 	 *
-	 * @param $rc RecentChange
+	 * @param RecentChange $rc
 	 * @return string
 	 */
 	public function insertLogEntry( $rc ) {
@@ -410,7 +428,7 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Insert a formatted comment
-	 * @param $rc RecentChange
+	 * @param RecentChange $rc
 	 * @return string
 	 */
 	public function insertComment( $rc ) {
@@ -430,7 +448,7 @@ class ChangesList extends ContextSource {
 	 * Check whether to enable recent changes patrol features
 	 *
 	 * @deprecated since 1.22
-	 * @return Boolean
+	 * @return bool
 	 */
 	public static function usePatrol() {
 		global $wgUser;
@@ -486,8 +504,8 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param $link string
-	 * @param $watched bool
+	 * @param string $link
+	 * @param bool $watched
 	 * @return string
 	 */
 	protected function maybeWatchedLink( $link, $watched = false ) {
@@ -500,8 +518,8 @@ class ChangesList extends ContextSource {
 
 	/** Inserts a rollback link
 	 *
-	 * @param $s string
-	 * @param $rc RecentChange
+	 * @param string $s
+	 * @param RecentChange $rc
 	 */
 	public function insertRollback( &$s, &$rc ) {
 		if ( $rc->mAttribs['rc_type'] == RC_EDIT
@@ -527,9 +545,9 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param $s string
-	 * @param $rc RecentChange
-	 * @param $classes
+	 * @param string $s
+	 * @param RecentChange $rc
+	 * @param array $classes
 	 */
 	public function insertTags( &$s, &$rc, &$classes ) {
 		if ( empty( $rc->mAttribs['ts_tags'] ) ) {

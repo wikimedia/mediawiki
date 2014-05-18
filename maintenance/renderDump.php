@@ -7,7 +7,7 @@
  * Templates etc are pulled from the local wiki database, not from the dump.
  *
  * Copyright (C) 2006 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -78,12 +78,13 @@ class DumpRenderer extends Maintenance {
 
 	/**
 	 * Callback function for each revision, turn into HTML and save
-	 * @param $rev Revision
+	 * @param Revision $rev
 	 */
 	public function handleRevision( $rev ) {
 		$title = $rev->getTitle();
 		if ( !$title ) {
 			$this->error( "Got bogus revision with null title!" );
+
 			return;
 		}
 		$display = $title->getPrefixedText();

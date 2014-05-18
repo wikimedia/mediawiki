@@ -495,7 +495,7 @@ abstract class MediaHandler {
 	 * This is used by the media handlers that use the FormatMetadata class
 	 *
 	 * @param array $metadataArray Metadata array
-	 * @return array for use displaying metadata.
+	 * @return array Array for use displaying metadata.
 	 */
 	function formatMetadataHelper( $metadataArray ) {
 		$result = array(
@@ -523,7 +523,7 @@ abstract class MediaHandler {
 	 * Get a list of metadata items which should be displayed when
 	 * the metadata table is collapsed.
 	 *
-	 * @return array of strings
+	 * @return array Array of strings
 	 */
 	protected function visibleMetadataFields() {
 		return FormatMetadata::getVisibleFields();
@@ -644,7 +644,7 @@ abstract class MediaHandler {
 	 * Shown in file history box on image description page.
 	 *
 	 * @param File $file
-	 * @return String Dimensions
+	 * @return string Dimensions
 	 */
 	function getDimensionsString( $file ) {
 		return '';
@@ -776,7 +776,7 @@ abstract class MediaHandler {
 	 * Get list of languages file can be viewed in.
 	 *
 	 * @param File $file
-	 * @return Array Array of language codes, or empty array if unsupported.
+	 * @return string[] Array of language codes, or empty array if unsupported.
 	 * @since 1.23
 	 */
 	public function getAvailableLanguages( File $file ) {
@@ -792,10 +792,24 @@ abstract class MediaHandler {
 	 * type do not support alternative language renderings.
 	 *
 	 * @param File $file
-	 * @return String language code or null if multi-language not supported for filetype.
+	 * @return string|null Language code or null if multi-language not supported for filetype.
 	 * @since 1.23
 	 */
 	public function getDefaultRenderLanguage( File $file ) {
 		return null;
+	}
+
+	/**
+	 * If its an audio file, return the length of the file. Otherwise 0.
+	 *
+	 * File::getLength() existed for a long time, but was calling a method
+	 * that only existed in some subclasses of this class (The TMH ones).
+	 *
+	 * @param File $file
+	 * @return float Length in seconds
+	 * @since 1.23
+	 */
+	public function getLength( $file ) {
+		return 0.0;
 	}
 }

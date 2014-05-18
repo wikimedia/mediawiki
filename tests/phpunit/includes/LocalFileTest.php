@@ -67,20 +67,44 @@ class LocalFileTest extends MediaWikiTestCase {
 	 * @covers File::getArchivePath
 	 */
 	public function testGetArchivePath() {
-		$this->assertEquals( 'mwstore://local-backend/test-public/archive', $this->file_hl0->getArchivePath() );
-		$this->assertEquals( 'mwstore://local-backend/test-public/archive/a/a2', $this->file_hl2->getArchivePath() );
-		$this->assertEquals( 'mwstore://local-backend/test-public/archive/!', $this->file_hl0->getArchivePath( '!' ) );
-		$this->assertEquals( 'mwstore://local-backend/test-public/archive/a/a2/!', $this->file_hl2->getArchivePath( '!' ) );
+		$this->assertEquals(
+			'mwstore://local-backend/test-public/archive',
+			$this->file_hl0->getArchivePath()
+		);
+		$this->assertEquals(
+			'mwstore://local-backend/test-public/archive/a/a2',
+			$this->file_hl2->getArchivePath()
+		);
+		$this->assertEquals(
+			'mwstore://local-backend/test-public/archive/!',
+			$this->file_hl0->getArchivePath( '!' )
+		);
+		$this->assertEquals(
+			'mwstore://local-backend/test-public/archive/a/a2/!',
+			$this->file_hl2->getArchivePath( '!' )
+		);
 	}
 
 	/**
 	 * @covers File::getThumbPath
 	 */
 	public function testGetThumbPath() {
-		$this->assertEquals( 'mwstore://local-backend/test-thumb/Test!', $this->file_hl0->getThumbPath() );
-		$this->assertEquals( 'mwstore://local-backend/test-thumb/a/a2/Test!', $this->file_hl2->getThumbPath() );
-		$this->assertEquals( 'mwstore://local-backend/test-thumb/Test!/x', $this->file_hl0->getThumbPath( 'x' ) );
-		$this->assertEquals( 'mwstore://local-backend/test-thumb/a/a2/Test!/x', $this->file_hl2->getThumbPath( 'x' ) );
+		$this->assertEquals(
+			'mwstore://local-backend/test-thumb/Test!',
+			$this->file_hl0->getThumbPath()
+		);
+		$this->assertEquals(
+			'mwstore://local-backend/test-thumb/a/a2/Test!',
+			$this->file_hl2->getThumbPath()
+		);
+		$this->assertEquals(
+			'mwstore://local-backend/test-thumb/Test!/x',
+			$this->file_hl0->getThumbPath( 'x' )
+		);
+		$this->assertEquals(
+			'mwstore://local-backend/test-thumb/a/a2/Test!/x',
+			$this->file_hl2->getThumbPath( 'x' )
+		);
 	}
 
 	/**
@@ -108,9 +132,18 @@ class LocalFileTest extends MediaWikiTestCase {
 	 */
 	public function testGetArchiveVirtualUrl() {
 		$this->assertEquals( 'mwrepo://test/public/archive', $this->file_hl0->getArchiveVirtualUrl() );
-		$this->assertEquals( 'mwrepo://test/public/archive/a/a2', $this->file_hl2->getArchiveVirtualUrl() );
-		$this->assertEquals( 'mwrepo://test/public/archive/%21', $this->file_hl0->getArchiveVirtualUrl( '!' ) );
-		$this->assertEquals( 'mwrepo://test/public/archive/a/a2/%21', $this->file_hl2->getArchiveVirtualUrl( '!' ) );
+		$this->assertEquals(
+			'mwrepo://test/public/archive/a/a2',
+			$this->file_hl2->getArchiveVirtualUrl()
+		);
+		$this->assertEquals(
+			'mwrepo://test/public/archive/%21',
+			$this->file_hl0->getArchiveVirtualUrl( '!' )
+		);
+		$this->assertEquals(
+			'mwrepo://test/public/archive/a/a2/%21',
+			$this->file_hl2->getArchiveVirtualUrl( '!' )
+		);
 	}
 
 	/**
@@ -119,8 +152,14 @@ class LocalFileTest extends MediaWikiTestCase {
 	public function testGetThumbVirtualUrl() {
 		$this->assertEquals( 'mwrepo://test/thumb/Test%21', $this->file_hl0->getThumbVirtualUrl() );
 		$this->assertEquals( 'mwrepo://test/thumb/a/a2/Test%21', $this->file_hl2->getThumbVirtualUrl() );
-		$this->assertEquals( 'mwrepo://test/thumb/Test%21/%21', $this->file_hl0->getThumbVirtualUrl( '!' ) );
-		$this->assertEquals( 'mwrepo://test/thumb/a/a2/Test%21/%21', $this->file_hl2->getThumbVirtualUrl( '!' ) );
+		$this->assertEquals(
+			'mwrepo://test/thumb/Test%21/%21',
+			$this->file_hl0->getThumbVirtualUrl( '!' )
+		);
+		$this->assertEquals(
+			'mwrepo://test/thumb/a/a2/Test%21/%21',
+			$this->file_hl2->getThumbVirtualUrl( '!' )
+		);
 	}
 
 	/**
@@ -136,6 +175,10 @@ class LocalFileTest extends MediaWikiTestCase {
 	 */
 	public function testWfLocalFile() {
 		$file = wfLocalFile( "File:Some_file_that_probably_doesn't exist.png" );
-		$this->assertThat( $file, $this->isInstanceOf( 'LocalFile' ), 'wfLocalFile() returns LocalFile for valid Titles' );
+		$this->assertThat(
+			$file,
+			$this->isInstanceOf( 'LocalFile' ),
+			'wfLocalFile() returns LocalFile for valid Titles'
+		);
 	}
 }

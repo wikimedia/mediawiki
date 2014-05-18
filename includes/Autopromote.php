@@ -29,7 +29,7 @@ class Autopromote {
 	/**
 	 * Get the groups for the given user based on $wgAutopromote.
 	 *
-	 * @param $user User The user to get the groups for
+	 * @param User $user The user to get the groups for
 	 * @return array Array of groups to promote to.
 	 */
 	public static function getAutopromoteGroups( User $user ) {
@@ -53,8 +53,8 @@ class Autopromote {
 	 *
 	 * Does not return groups the user already belongs to or has once belonged.
 	 *
-	 * @param $user User The user to get the groups for
-	 * @param string $event key in $wgAutopromoteOnce (each one has groups/criteria)
+	 * @param User $user The user to get the groups for
+	 * @param string $event Key in $wgAutopromoteOnce (each one has groups/criteria)
 	 *
 	 * @return array Groups the user should be promoted to.
 	 *
@@ -99,8 +99,8 @@ class Autopromote {
 	 * This function evaluates the former type recursively, and passes off to
 	 * self::checkCondition for evaluation of the latter type.
 	 *
-	 * @param $cond Mixed: a condition, possibly containing other conditions
-	 * @param $user User The user to check the conditions against
+	 * @param mixed $cond A condition, possibly containing other conditions
+	 * @param User $user The user to check the conditions against
 	 * @return bool Whether the condition is true
 	 */
 	private static function recCheckCondition( $cond, User $user ) {
@@ -156,7 +156,7 @@ class Autopromote {
 	 * APCOND_AGE.  Other types will throw an exception if no extension evaluates them.
 	 *
 	 * @param array $cond A condition, which must not contain other conditions
-	 * @param $user User The user to check the condition against
+	 * @param User $user The user to check the condition against
 	 * @throws MWException
 	 * @return bool Whether the condition is true for the user
 	 */
@@ -197,7 +197,8 @@ class Autopromote {
 				return in_array( 'bot', User::getGroupPermissions( $user->getGroups() ) );
 			default:
 				$result = null;
-				wfRunHooks( 'AutopromoteCondition', array( $cond[0], array_slice( $cond, 1 ), $user, &$result ) );
+				wfRunHooks( 'AutopromoteCondition', array( $cond[0],
+					array_slice( $cond, 1 ), $user, &$result ) );
 				if ( $result === null ) {
 					throw new MWException( "Unrecognized condition {$cond[0]} for autopromotion!" );
 				}

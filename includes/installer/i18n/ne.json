@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bhawani Gautam",
+			"RajeshPandey",
+			"सरोज कुमार ढकाल"
+		]
+	},
+	"config-page-name": "नाम",
+	"config-page-options": "विकल्पहरु",
+	"config-page-install": "स्थापना गर्ने",
+	"config-page-complete": "पूरा भयो !",
+	"config-page-restart": "स्थापना फेरि सुरु गर्ने",
+	"config-page-readme": "पढ्नुहोस्",
+	"config-page-releasenotes": "प्रकाशन टिप्पणी",
+	"mainpagetext": "'''मीडिया सफलतापूर्वक कम्प्यूटरमा स्थापित भयो ।'''",
+	"mainpagedocfooter": " विकी अनुप्रयोग कसरी प्रयोग गर्ने भन्ने जानकारीको लागि  [//meta.wikimedia.org/wiki/Help:Contents प्रयोगकर्ता सहायता] हेर्नुहोस्\n\n== सुरू गर्नको लागि  ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings विन्यास सेटिङ्ग सूची]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ मेडियाविकि सामान्य प्रश्नका उत्तरहरु]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मेडियाविकि सुचना मेलिङ्ग सूची]"
+}

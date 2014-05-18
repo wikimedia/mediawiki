@@ -107,7 +107,8 @@ class ApiLoginTest extends ApiTestCase {
 	 * @group Broken
 	 */
 	public function testApiLoginGotCookie() {
-		$this->markTestIncomplete( "The server can't do external HTTP requests, and the internal one won't give cookies" );
+		$this->markTestIncomplete( "The server can't do external HTTP requests, "
+			. "and the internal one won't give cookies" );
 
 		global $wgServer, $wgScriptPath;
 
@@ -147,7 +148,10 @@ class ApiLoginTest extends ApiTestCase {
 		$this->assertNotEquals( false, $serverName );
 		$serializedCookie = $cj->serializeToHttpRequest( $wgScriptPath, $serverName );
 		$this->assertNotEquals( '', $serializedCookie );
-		$this->assertRegexp( '/_session=[^;]*; .*UserID=[0-9]*; .*UserName=' . $user->userName . '; .*Token=/', $serializedCookie );
+		$this->assertRegexp(
+			'/_session=[^;]*; .*UserID=[0-9]*; .*UserName=' . $user->userName . '; .*Token=/',
+			$serializedCookie
+		);
 	}
 
 	public function testRunLogin() {

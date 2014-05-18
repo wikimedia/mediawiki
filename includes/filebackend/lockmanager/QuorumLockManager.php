@@ -178,8 +178,8 @@ abstract class QuorumLockManager extends LockManager {
 		foreach ( $this->srvsByBucket[$bucket] as $lockSrv ) {
 			if ( !$this->isServerUp( $lockSrv ) ) {
 				$status->warning( 'lockmanager-fail-svr-release', $lockSrv );
-			// Attempt to release the lock on this peer
 			} else {
+				// Attempt to release the lock on this peer
 				$status->merge( $this->freeLocksOnServer( $lockSrv, $pathsByType ) );
 				++$yesVotes; // success for this peer
 				// Normally the first peers form the quorum, and the others are ignored.

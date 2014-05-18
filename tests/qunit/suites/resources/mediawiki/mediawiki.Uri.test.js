@@ -1,3 +1,4 @@
+/*jshint -W024 */
 ( function ( mw, $ ) {
 	QUnit.module( 'mediawiki.Uri', QUnit.newMwEnvironment( {
 		setup: function () {

@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lezgia"
+		]
+	},
+	"config-desc": "Инстайлер MediaWiki-диз",
+	"config-title": "Эцигун $1 MediaWiki",
+	"config-information": "Хабар",
+	"config-localsettings-key": "Цийиладин кюлег",
+	"config-localsettings-badkey": "Кюне тъунвай кюлег чlурудия",
+	"config-session-error": "Гъалатl  ахъагъдала сессиа",
+	"config-your-language": "Кю чlал",
+	"config-your-language-help": "Хкягъа чlaл, эцигунин юзун тхудай",
+	"config-wiki-language": "Wiki-дин чlaл",
+	"config-wiki-language-help": "Хкягъа чlал викидин акунар къалурдай",
+	"config-back": "Кьулухъ",
+	"config-continue": "Яргъахъ",
+	"config-page-language": "Чlал",
+	"config-page-welcome": "Хийирдиз ша MediaWiki-диз!",
+	"config-page-name": "Тlор",
+	"config-page-options": "Тькlюрнар",
+	"config-page-install": "Эцигун",
+	"config-page-complete": "Гьазур я",
+	"config-page-restart": "Гатlунин эцигун сифтедла",
+	"config-page-readme": "Кlела зу"
+}

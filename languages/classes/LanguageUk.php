@@ -32,8 +32,8 @@ class LanguageUk extends Language {
 	 * Convert from the nominative form of a noun to some other case
 	 * Invoked with {{grammar:case|word}}
 	 *
-	 * @param $word string
-	 * @param $case string
+	 * @param string $word
+	 * @param string $case
 	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {
@@ -51,7 +51,9 @@ class LanguageUk extends Language {
 		if ( !preg_match( "/[a-zA-Z_]/us", $word ) ) {
 			switch ( $case ) {
 				case 'genitive': # родовий відмінок
-					if ( ( join( '', array_slice( $ar[0], -4 ) ) == 'вікі' ) || ( join( '', array_slice( $ar[0], -4 ) ) == 'Вікі' ) ) {
+					if ( ( join( '', array_slice( $ar[0], -4 ) ) == 'вікі' )
+						|| ( join( '', array_slice( $ar[0], -4 ) ) == 'Вікі' )
+					) {
 					} elseif ( join( '', array_slice( $ar[0], -1 ) ) == 'ь' ) {
 						$word = join( '', array_slice( $ar[0], 0, -1 ) ) . 'я';
 					} elseif ( join( '', array_slice( $ar[0], -2 ) ) == 'ія' ) {
@@ -70,7 +72,9 @@ class LanguageUk extends Language {
 					# stub
 					break;
 				case 'accusative': # знахідний відмінок
-					if ( ( join( '', array_slice( $ar[0], -4 ) ) == 'вікі' ) || ( join( '', array_slice( $ar[0], -4 ) ) == 'Вікі' ) ) {
+					if ( ( join( '', array_slice( $ar[0], -4 ) ) == 'вікі' )
+						|| ( join( '', array_slice( $ar[0], -4 ) ) == 'Вікі' )
+					) {
 					} elseif ( join( '', array_slice( $ar[0], -2 ) ) == 'ія' ) {
 						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'ію';
 					}
@@ -87,48 +91,9 @@ class LanguageUk extends Language {
 	}
 
 	/**
-	 * @param $count int
-	 * @param $forms array
-	 * @return string
-	 */
-	function convertPlural( $count, $forms ) {
-		$forms = $this->handleExplicitPluralForms( $count, $forms );
-		if ( is_string( $forms ) ) {
-			return $forms;
-		}
-		if ( !count( $forms ) ) {
-			return '';
-		}
-
-		// If the actual number is not mentioned in the expression, then just two forms are enough:
-		// singular for $count == 1
-		// plural   for $count != 1
-		// For example, "This user belongs to {{PLURAL:$1|one group|several groups}}."
-		if ( count( $forms ) === 2 ) {
-			return $count == 1 ? $forms[0] : $forms[1];
-		}
-
-		// @todo FIXME: CLDR defines 4 plural forms. Form for decimals is missing/
-		// See http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html#uk
-		$forms = $this->preConvertPlural( $forms, 3 );
-
-		if ( $count > 10 && floor( ( $count % 100 ) / 10 ) == 1 ) {
-			return $forms[2];
-		} else {
-			switch ( $count % 10 ) {
-				case 1: return $forms[0];
-				case 2:
-				case 3:
-				case 4: return $forms[1];
-				default: return $forms[2];
-			}
-		}
-	}
-
-	/**
 	 * Ukrainian numeric format is "12 345,67" but "1234,56"
 	 *
-	 * @param $_ string
+	 * @param string $_
 	 *
 	 * @return string
 	 */

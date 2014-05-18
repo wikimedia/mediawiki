@@ -25,6 +25,7 @@
  * An LBFactory class that always returns a single database object.
  */
 class LBFactorySingle extends LBFactory {
+	/** @var LoadBalancerSingle */
 	protected $lb;
 
 	/**
@@ -36,8 +37,7 @@ class LBFactorySingle extends LBFactory {
 	}
 
 	/**
-	 * @param $wiki bool|string
-	 *
+	 * @param bool|string $wiki
 	 * @return LoadBalancerSingle
 	 */
 	function newMainLB( $wiki = false ) {
@@ -45,8 +45,7 @@ class LBFactorySingle extends LBFactory {
 	}
 
 	/**
-	 * @param $wiki bool|string
-	 *
+	 * @param bool|string $wiki
 	 * @return LoadBalancerSingle
 	 */
 	function getMainLB( $wiki = false ) {
@@ -54,9 +53,8 @@ class LBFactorySingle extends LBFactory {
 	}
 
 	/**
-	 * @param $cluster
-	 * @param $wiki bool|string
-	 *
+	 * @param string $cluster External storage cluster, or false for core
+	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancerSingle
 	 */
 	function newExternalLB( $cluster, $wiki = false ) {
@@ -64,9 +62,8 @@ class LBFactorySingle extends LBFactory {
 	}
 
 	/**
-	 * @param $cluster
-	 * @param $wiki bool|string
-	 *
+	 * @param string $cluster External storage cluster, or false for core
+	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancerSingle
 	 */
 	function &getExternalLB( $cluster, $wiki = false ) {
@@ -74,8 +71,8 @@ class LBFactorySingle extends LBFactory {
 	}
 
 	/**
-	 * @param $callback string|array
-	 * @param $params array
+	 * @param string|array $callback
+	 * @param array $params
 	 */
 	function forEachLB( $callback, $params = array() ) {
 		call_user_func_array( $callback, array_merge( array( $this->lb ), $params ) );
@@ -90,7 +87,7 @@ class LoadBalancerSingle extends LoadBalancer {
 	protected $db;
 
 	/**
-	 * @param $params array
+	 * @param array $params
 	 */
 	function __construct( $params ) {
 		$this->db = $params['connection'];
@@ -104,8 +101,8 @@ class LoadBalancerSingle extends LoadBalancer {
 
 	/**
 	 *
-	 * @param $server string
-	 * @param $dbNameOverride bool
+	 * @param string $server
+	 * @param bool $dbNameOverride
 	 *
 	 * @return DatabaseBase
 	 */

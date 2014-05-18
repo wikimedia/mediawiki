@@ -48,13 +48,14 @@ class DeleteLogFormatter extends LogFormatter {
 		$params = parent::getMessageParameters();
 		$subtype = $this->entry->getSubtype();
 		if ( in_array( $subtype, array( 'event', 'revision' ) ) ) {
-			// $params[3] here is 'revision' for page revisions, 'oldimage' for
-			// file versions, or a comma-separated list of log_ids for log
+			// $params[3] here is 'revision' or 'archive' for page revisions, 'oldimage' or
+			// 'filearchive' for file versions, or a comma-separated list of log_ids for log
 			// entries. $subtype here is 'revision' for page revisions and file
 			// versions, or 'event' for log entries.
 			if ( ( $subtype === 'event' && count( $params ) === 6 )
 				|| ( $subtype === 'revision' && isset( $params[3] )
-					&& ( $params[3] === 'revision' || $params[3] === 'oldimage' )
+					&& ( $params[3] === 'revision' || $params[3] === 'oldimage'
+						|| $params[3] === 'archive' || $params[3] === 'filearchive' )
 				)
 			) {
 				$paramStart = $subtype === 'revision' ? 4 : 3;
@@ -63,9 +64,11 @@ class DeleteLogFormatter extends LogFormatter {
 				$new = $this->parseBitField( $params[$paramStart + 2] );
 				list( $hid, $unhid, $extra ) = RevisionDeleter::getChanges( $new, $old );
 				$changes = array();
+				// messages used: revdelete-content-hid, revdelete-summary-hid, revdelete-uname-hid
 				foreach ( $hid as $v ) {
 					$changes[] = $this->msg( "$v-hid" )->plain();
 				}
+				// messages used: revdelete-content-unhid, revdelete-summary-unhid, revdelete-uname-unhid
 				foreach ( $unhid as $v ) {
 					$changes[] = $this->msg( "$v-unhid" )->plain();
 				}
@@ -79,13 +82,16 @@ class DeleteLogFormatter extends LogFormatter {
 				$count = count( explode( ',', $params[$paramStart] ) );
 				$newParams[4] = $this->context->getLanguage()->formatNum( $count );
 
-				return $this->parsedParametersDeleteLog = $newParams;
+				$this->parsedParametersDeleteLog = $newParams;
+				return $this->parsedParametersDeleteLog;
 			} else {
-				return $this->parsedParametersDeleteLog = array_slice( $params, 0, 3 );
+				$this->parsedParametersDeleteLog = array_slice( $params, 0, 3 );
+				return $this->parsedParametersDeleteLog;
 			}
 		}
 
-		return $this->parsedParametersDeleteLog = $params;
+		$this->parsedParametersDeleteLog = $params;
+		return $this->parsedParametersDeleteLog;
 	}
 
 	protected function parseBitField( $string ) {

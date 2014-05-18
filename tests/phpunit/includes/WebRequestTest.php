@@ -10,10 +10,12 @@ class WebRequestTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		$this->oldServer = $_SERVER;
+		IP::clearCaches();
 	}
 
 	protected function tearDown() {
 		$_SERVER = $this->oldServer;
+		IP::clearCaches();
 
 		parent::tearDown();
 	}
@@ -317,14 +319,30 @@ class WebRequestTest extends MediaWikiTestCase {
 			array( '', array(), 'Empty Accept-Language header' ),
 			array( 'en', array( 'en' => 1 ), 'One language' ),
 			array( 'en, ar', array( 'en' => 1, 'ar' => 1 ), 'Two languages listed in appearance order.' ),
-			array( 'zh-cn,zh-tw', array( 'zh-cn' => 1, 'zh-tw' => 1 ), 'Two equally prefered languages, listed in appearance order per rfc3282. Checks c9119' ),
-			array( 'es, en; q=0.5', array( 'es' => 1, 'en' => '0.5' ), 'Spanish as first language and English and second' ),
+			array(
+				'zh-cn,zh-tw',
+				array( 'zh-cn' => 1, 'zh-tw' => 1 ),
+				'Two equally prefered languages, listed in appearance order per rfc3282. Checks c9119'
+			),
+			array(
+				'es, en; q=0.5',
+				array( 'es' => 1, 'en' => '0.5' ),
+				'Spanish as first language and English and second'
+			),
 			array( 'en; q=0.5, es', array( 'es' => 1, 'en' => '0.5' ), 'Less prefered language first' ),
 			array( 'fr, en; q=0.5, es', array( 'fr' => 1, 'es' => 1, 'en' => '0.5' ), 'Three languages' ),
 			array( 'en; q=0.5, es', array( 'es' => 1, 'en' => '0.5' ), 'Two languages' ),
 			array( 'en, zh;q=0', array( 'en' => 1 ), "It's Chinese to me" ),
-			array( 'es; q=1, pt;q=0.7, it; q=0.6, de; q=0.1, ru;q=0', array( 'es' => '1', 'pt' => '0.7', 'it' => '0.6', 'de' => '0.1' ), 'Preference for romance languages' ),
-			array( 'en-gb, en-us; q=1', array( 'en-gb' => 1, 'en-us' => '1' ), 'Two equally prefered English variants' ),
+			array(
+				'es; q=1, pt;q=0.7, it; q=0.6, de; q=0.1, ru;q=0',
+				array( 'es' => '1', 'pt' => '0.7', 'it' => '0.6', 'de' => '0.1' ),
+				'Preference for Romance languages'
+			),
+			array(
+				'en-gb, en-us; q=1',
+				array( 'en-gb' => 1, 'en-us' => '1' ),
+				'Two equally prefered English variants'
+			),
 		);
 	}
 

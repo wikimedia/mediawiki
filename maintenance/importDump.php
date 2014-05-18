@@ -3,7 +3,7 @@
  * Import XML dump files into the current wiki.
  *
  * Copyright © 2005 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,8 +42,12 @@ class BackupReader extends Maintenance {
 
 	function __construct() {
 		parent::__construct();
-		$gz = in_array( 'compress.zlib', stream_get_wrappers() ) ? 'ok' : '(disabled; requires PHP zlib module)';
-		$bz2 = in_array( 'compress.bzip2', stream_get_wrappers() ) ? 'ok' : '(disabled; requires PHP bzip2 module)';
+		$gz = in_array( 'compress.zlib', stream_get_wrappers() )
+			? 'ok'
+			: '(disabled; requires PHP zlib module)';
+		$bz2 = in_array( 'compress.bzip2', stream_get_wrappers() )
+			? 'ok'
+			: '(disabled; requires PHP bzip2 module)';
 
 		$this->mDescription = <<<TEXT
 This script reads pages from an XML file as produced from Special:Export or
@@ -56,7 +60,7 @@ Compressed XML files may be read directly:
 
 Note that for very large data sets, importDump.php may be slow; there are
 alternate methods which can be much faster for full site restoration:
-<http://www.mediawiki.org/wiki/Manual:Importing_XML_dumps>
+<https://www.mediawiki.org/wiki/Manual:Importing_XML_dumps>
 TEXT;
 		$this->stderr = fopen( "php://stderr", "wt" );
 		$this->addOption( 'report',
@@ -67,7 +71,10 @@ TEXT;
 		$this->addOption( 'dry-run', 'Parse dump without actually importing pages' );
 		$this->addOption( 'debug', 'Output extra verbose debug information' );
 		$this->addOption( 'uploads', 'Process file upload data if included (experimental)' );
-		$this->addOption( 'no-updates', 'Disable link table updates. Is faster but leaves the wiki in an inconsistent state' );
+		$this->addOption(
+			'no-updates',
+			'Disable link table updates. Is faster but leaves the wiki in an inconsistent state'
+		);
 		$this->addOption( 'image-base-path', 'Import files from a specified path', false, true );
 		$this->addArg( 'file', 'Dump file to import [else use stdin]', false );
 	}
@@ -104,6 +111,7 @@ TEXT;
 	function setNsfilter( array $namespaces ) {
 		if ( count( $namespaces ) == 0 ) {
 			$this->nsFilter = false;
+
 			return;
 		}
 		$this->nsFilter = array_unique( array_map( array( $this, 'getNsIndex' ), $namespaces ) );
@@ -122,7 +130,7 @@ TEXT;
 	}
 
 	/**
-	 * @param $obj Title|Revision
+	 * @param Title|Revision $obj
 	 * @return bool
 	 */
 	private function skippedNamespace( $obj ) {
@@ -136,6 +144,7 @@ TEXT;
 			echo wfBacktrace();
 			$this->error( "Cannot get namespace of object in " . __METHOD__, true );
 		}
+
 		return is_array( $this->nsFilter ) && !in_array( $ns, $this->nsFilter );
 	}
 
@@ -144,13 +153,13 @@ TEXT;
 	}
 
 	/**
-	 * @param $rev Revision
-	 * @return mixed
+	 * @param Revision $rev
 	 */
 	function handleRevision( $rev ) {
 		$title = $rev->getTitle();
 		if ( !$title ) {
 			$this->progress( "Got bogus revision with null title!" );
+
 			return;
 		}
 
@@ -167,7 +176,7 @@ TEXT;
 	}
 
 	/**
-	 * @param $revision Revision
+	 * @param Revision $revision
 	 * @return bool
 	 */
 	function handleUpload( $revision ) {
@@ -183,6 +192,7 @@ TEXT;
 				// bluuuh hack
 				// call_user_func( $this->uploadCallback, $revision );
 				$dbw = wfGetDB( DB_MASTER );
+
 				return $dbw->deadlockLoop( array( $revision, 'importUpload' ) );
 			}
 		}
@@ -242,6 +252,7 @@ TEXT;
 		}
 
 		$file = fopen( $filename, 'rt' );
+
 		return $this->importFromHandle( $file );
 	}
 
@@ -250,6 +261,7 @@ TEXT;
 		if ( self::posix_isatty( $file ) ) {
 			$this->maybeHelp( true );
 		}
+
 		return $this->importFromHandle( $file );
 	}
 

@@ -34,6 +34,7 @@ class WaitForSlave extends Maintenance {
 		parent::__construct();
 		$this->addArg( 'maxlag', 'How long to wait for the slaves, default 10 seconds', false );
 	}
+
 	public function execute() {
 		wfWaitForSlaves( $this->getArg( 0, 10 ) );
 	}

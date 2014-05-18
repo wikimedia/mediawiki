@@ -88,8 +88,8 @@ interface LogEntry {
 	public function getDeleted();
 
 	/**
-	 * @param $field Integer: one of LogPage::DELETED_* bitfield constants
-	 * @return Boolean
+	 * @param int $field One of LogPage::DELETED_* bitfield constants
+	 * @return bool
 	 */
 	public function isDeleted( $field );
 }
@@ -407,7 +407,7 @@ class ManualLogEntry extends LogEntryBase {
 	 * Declare arbitrary tag/value relations to this log entry.
 	 * These can be used to filter log entries later on.
 	 *
-	 * @param array $relations Map of (tag => (list of values))
+	 * @param array $relations Map of (tag => (list of values|value))
 	 * @since 1.22
 	 */
 	public function setRelations( array $relations ) {
@@ -463,7 +463,7 @@ class ManualLogEntry extends LogEntryBase {
 	 *
 	 * @since 1.19
 	 *
-	 * @param integer $deleted
+	 * @param int $deleted
 	 */
 	public function setDeleted( $deleted ) {
 		$this->deleted = $deleted;
@@ -512,6 +512,11 @@ class ManualLogEntry extends LogEntryBase {
 			if ( !strlen( $tag ) ) {
 				throw new MWException( "Got empty log search tag." );
 			}
+
+			if ( !is_array( $values ) ) {
+				$values = array( $values );
+			}
+
 			foreach ( $values as $value ) {
 				$rows[] = array(
 					'ls_field' => $tag,
@@ -569,8 +574,8 @@ class ManualLogEntry extends LogEntryBase {
 
 	/**
 	 * Publishes the log entry.
-	 * @param int $newId id of the log entry.
-	 * @param string $to rcandudp (default), rc, udp
+	 * @param int $newId Id of the log entry.
+	 * @param string $to One of: rcandudp (default), rc, udp
 	 */
 	public function publish( $newId, $to = 'rcandudp' ) {
 		$log = new LogPage( $this->getType() );

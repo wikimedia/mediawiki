@@ -84,6 +84,7 @@ class MIMEsearchPage extends QueryPage {
 				),
 			),
 		);
+
 		return $qi;
 	}
 
@@ -165,7 +166,7 @@ class MIMEsearchPage extends QueryPage {
 	}
 
 	/**
-	 * @param $type string
+	 * @param string $type
 	 * @return bool
 	 */
 	protected static function isValidType( $type ) {

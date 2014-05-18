@@ -1,4 +1,5 @@
 <?php
+// @codingStandardsIgnoreFile
 /**
  * Html form for user login (since 1.22 with VForm appearance).
  *
@@ -146,25 +147,34 @@ class UserloginTemplate extends BaseTemplate {
 
 			<div>
 				<?php
-				echo Html::input( 'wpLoginAttempt', $this->getMsg( 'login' )->text(), 'submit', array(
+				echo Html::input( 'wpLoginAttempt', $this->getMsg( 'pt-login-button' )->text(), 'submit', array(
 					'id' => 'wpLoginAttempt',
 					'tabindex' => '6',
-					'class' => 'mw-ui-button mw-ui-big mw-ui-block mw-ui-primary'
+					'class' => 'mw-ui-button mw-ui-big mw-ui-block mw-ui-constructive'
 				) );
 				?>
 			</div>
-
 			<div id="mw-userlogin-help">
-				<?php echo $this->getMsg( 'userlogin-helplink' )->parse(); ?>
+				<?php
+				echo Html::element(
+					'a',
+					array(
+						'href' => Skin::makeInternalOrExternalUrl(
+							wfMessage( 'helplogin-url' )->inContentLanguage()->text()
+						),
+					),
+					$this->getMsg( 'userlogin-helplink2' )->text()
+				);
+				?>
 			</div>
 			<?php if ( $this->haveData( 'createOrLoginHref' ) ) { ?>
 				<?php if ( $this->data['loggedin'] ) { ?>
 					<div id="mw-createaccount-another">
-						<h3 id="mw-userloginlink"><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button"><?php $this->msg( 'userlogin-createanother' ); ?></a></h3>
+						<a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button"><?php $this->msg( 'userlogin-createanother' ); ?></a>
 					</div>
 				<?php } else { ?>
 					<div id="mw-createaccount-cta">
-						<h3 id="mw-userloginlink"><?php $this->msg( 'userlogin-noaccount' ); ?><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button mw-ui-constructive"><?php $this->msg( 'userlogin-joinproject' ); ?></a></h3>
+						<?php $this->msg( 'userlogin-noaccount' ); ?><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button mw-ui-progressive"><?php $this->msg( 'userlogin-joinproject' ); ?></a>
 					</div>
 				<?php } ?>
 			<?php } ?>

@@ -43,7 +43,7 @@ class LocalSettingsGenerator {
 	/**
 	 * Constructor.
 	 *
-	 * @param $installer Installer subclass
+	 * @param Installer $installer
 	 */
 	public function __construct( Installer $installer ) {
 		$this->installer = $installer;
@@ -105,9 +105,9 @@ class LocalSettingsGenerator {
 	/**
 	 * Returns the escaped version of a string of php code.
 	 *
-	 * @param $string String
+	 * @param string $string
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public static function escapePhpString( $string ) {
 		if ( is_array( $string ) || is_object( $string ) ) {
@@ -131,7 +131,7 @@ class LocalSettingsGenerator {
 	 * Return the full text of the generated LocalSettings.php file,
 	 * including the extensions
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getText() {
 		$localSettings = $this->getDefaultText();
@@ -164,7 +164,7 @@ class LocalSettingsGenerator {
 	}
 
 	/**
-	 * @return String
+	 * @return string
 	 */
 	protected function buildMemcachedServerList() {
 		$servers = $this->values['_MemCachedServers'];
@@ -185,7 +185,7 @@ class LocalSettingsGenerator {
 	}
 
 	/**
-	 * @return String
+	 * @return string
 	 */
 	protected function getDefaultText() {
 		if ( !$this->values['wgImageMagickConvertCommand'] ) {
@@ -223,7 +223,8 @@ class LocalSettingsGenerator {
 			}
 			if ( $this->groupPermissions['*']['edit'] === false
 				&& $this->groupPermissions['*']['createaccount'] === false
-				&& $this->groupPermissions['*']['read'] !== false ) {
+				&& $this->groupPermissions['*']['read'] !== false
+			) {
 				$noFollow = "\n# Set \$wgNoFollowLinks to true if you open up your wiki to editing by\n"
 					. "# the general public and wish to apply nofollow to external links as a\n"
 					. "# deterrent to spammers. Nofollow is not a comprehensive anti-spam solution\n"
@@ -263,7 +264,7 @@ class LocalSettingsGenerator {
 # file, not there.
 #
 # Further documentation for configuration settings may be found at:
-# http://www.mediawiki.org/wiki/Manual:Configuration_settings
+# https://www.mediawiki.org/wiki/Manual:Configuration_settings
 
 # Protect against web entry
 if ( !defined( 'MEDIAWIKI' ) ) {
@@ -279,7 +280,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## defaults for all runtime URL paths are based off of this.
 ## For more information on customizing the URLs
 ## (like /w/index.php/Page_title to /wiki/Page_title) please see:
-## http://www.mediawiki.org/wiki/Manual:Short_URL
+## https://www.mediawiki.org/wiki/Manual:Short_URL
 \$wgScriptPath = \"{$this->values['wgScriptPath']}\";
 \$wgScriptExtension = \"{$this->values['wgScriptExtension']}\";
 ${serverSetting}

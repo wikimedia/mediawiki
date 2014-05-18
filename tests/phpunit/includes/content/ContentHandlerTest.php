@@ -4,9 +4,9 @@
  * @group ContentHandler
  * @group Database
  *
- * @note Declare that we are using the database, because otherwise we'll fail in the "databaseless" test run.
- * This is because the LinkHolderArray used by the parser needs database access.
- *
+ * @note Declare that we are using the database, because otherwise we'll fail in
+ * the "databaseless" test run. This is because the LinkHolderArray used by the
+ * parser needs database access.
  */
 class ContentHandlerTest extends MediaWikiTestCase {
 
@@ -238,13 +238,45 @@ class ContentHandlerTest extends MediaWikiTestCase {
 			array( 'hallo', 'MediaWiki:Test.js', null, null, CONTENT_MODEL_JAVASCRIPT, 'hallo', false ),
 			array( serialize( 'hallo' ), 'Dummy:Test', null, null, "testing", 'hallo', false ),
 
-			array( 'hallo', 'Help:Test', null, CONTENT_FORMAT_WIKITEXT, CONTENT_MODEL_WIKITEXT, 'hallo', false ),
-			array( 'hallo', 'MediaWiki:Test.js', null, CONTENT_FORMAT_JAVASCRIPT, CONTENT_MODEL_JAVASCRIPT, 'hallo', false ),
+			array(
+				'hallo',
+				'Help:Test',
+				null,
+				CONTENT_FORMAT_WIKITEXT,
+				CONTENT_MODEL_WIKITEXT,
+				'hallo',
+				false
+			),
+			array(
+				'hallo',
+				'MediaWiki:Test.js',
+				null,
+				CONTENT_FORMAT_JAVASCRIPT,
+				CONTENT_MODEL_JAVASCRIPT,
+				'hallo',
+				false
+			),
 			array( serialize( 'hallo' ), 'Dummy:Test', null, "testing", "testing", 'hallo', false ),
 
 			array( 'hallo', 'Help:Test', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, 'hallo', false ),
-			array( 'hallo', 'MediaWiki:Test.js', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, 'hallo', false ),
-			array( serialize( 'hallo' ), 'Dummy:Test', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, serialize( 'hallo' ), false ),
+			array(
+				'hallo',
+				'MediaWiki:Test.js',
+				CONTENT_MODEL_CSS,
+				null,
+				CONTENT_MODEL_CSS,
+				'hallo',
+				false
+			),
+			array(
+				serialize( 'hallo' ),
+				'Dummy:Test',
+				CONTENT_MODEL_CSS,
+				null,
+				CONTENT_MODEL_CSS,
+				serialize( 'hallo' ),
+				false
+			),
 
 			array( 'hallo', 'Help:Test', CONTENT_MODEL_WIKITEXT, "testing", null, null, true ),
 			array( 'hallo', 'MediaWiki:Test.js', CONTENT_MODEL_CSS, "testing", null, null, true ),
@@ -256,7 +288,9 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	 * @dataProvider dataMakeContent
 	 * @covers ContentHandler::makeContent
 	 */
-	public function testMakeContent( $data, $title, $modelId, $format, $expectedModelId, $expectedNativeData, $shouldFail ) {
+	public function testMakeContent( $data, $title, $modelId, $format,
+		$expectedModelId, $expectedNativeData, $shouldFail
+	) {
 		$title = Title::newFromText( $title );
 
 		try {
@@ -291,7 +325,11 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		Hooks::register( 'testRunLegacyHooks', __CLASS__ . '::dummyHookHandler' );
 
 		$content = new WikitextContent( 'test text' );
-		$ok = ContentHandler::runLegacyHooks( 'testRunLegacyHooks', array( 'foo', &$content, 'bar' ), false );
+		$ok = ContentHandler::runLegacyHooks(
+			'testRunLegacyHooks',
+			array( 'foo', &$content, 'bar' ),
+			false
+		);
 
 		$this->assertTrue( $ok, "runLegacyHooks should have returned true" );
 		$this->assertEquals( "TEST TEXT", $content->getNativeData() );
@@ -315,22 +353,24 @@ class DummyContentHandlerForTesting extends ContentHandler {
 	}
 
 	/**
-	 * Serializes Content object of the type supported by this ContentHandler.
+	 * @see ContentHandler::serializeContent
 	 *
-	 * @param Content $content the Content object to serialize
-	 * @param null $format the desired serialization format
-	 * @return String serialized form of the content
+	 * @param Content $content
+	 * @param string $format
+	 *
+	 * @return string
 	 */
 	public function serializeContent( Content $content, $format = null ) {
 		return $content->serialize();
 	}
 
 	/**
-	 * Unserializes a Content object of the type supported by this ContentHandler.
+	 * @see ContentHandler::unserializeContent
 	 *
-	 * @param $blob String serialized form of the content
-	 * @param null $format the format used for serialization
-	 * @return Content the Content object created by deserializing $blob
+	 * @param string $blob
+	 * @param string $format Unused.
+	 *
+	 * @return Content
 	 */
 	public function unserializeContent( $blob, $format = null ) {
 		$d = unserialize( $blob );
@@ -360,23 +400,25 @@ class DummyContentForTesting extends AbstractContent {
 	}
 
 	/**
-	 * @return String a string representing the content in a way useful for building a full text search index.
-	 *         If no useful representation exists, this method returns an empty string.
+	 * @return string A string representing the content in a way useful for
+	 *   building a full text search index. If no useful representation exists,
+	 *   this method returns an empty string.
 	 */
 	public function getTextForSearchIndex() {
 		return '';
 	}
 
 	/**
-	 * @return String the wikitext to include when another page includes this  content, or false if the content is not
-	 *  includable in a wikitext page.
+	 * @return string|bool The wikitext to include when another page includes this  content,
+	 *  or false if the content is not includable in a wikitext page.
 	 */
 	public function getWikitextForTransclusion() {
 		return false;
 	}
 
 	/**
-	 * Returns a textual representation of the content suitable for use in edit summaries and log messages.
+	 * Returns a textual representation of the content suitable for use in edit
+	 * summaries and log messages.
 	 *
 	 * @param int $maxlength Maximum length of the summary text.
 	 * @return string The summary text.
@@ -427,9 +469,9 @@ class DummyContentForTesting extends AbstractContent {
 	 * Returns true if this content is countable as a "real" wiki page, provided
 	 * that it's also in a countable location (e.g. a current revision in the main namespace).
 	 *
-	 * @param boolean $hasLinks if it is known whether this content contains links, provide this information here,
-	 *  to avoid redundant parsing to find out.
-	 * @return boolean
+	 * @param bool $hasLinks if it is known whether this content contains links,
+	 * provide this information here, to avoid redundant parsing to find out.
+	 * @return bool
 	 */
 	public function isCountable( $hasLinks = null ) {
 		return false;
@@ -437,15 +479,30 @@ class DummyContentForTesting extends AbstractContent {
 
 	/**
 	 * @param Title $title
-	 * @param null $revId
+	 * @param int $revId Unused.
 	 * @param null|ParserOptions $options
-	 * @param boolean $generateHtml whether to generate Html (default: true). If false,
-	 *  the result of calling getText() on the ParserOutput object returned by
-	 *   this method is undefined.
+	 * @param bool $generateHtml whether to generate Html (default: true). If false, the result
+	 *  of calling getText() on the ParserOutput object returned by this method is undefined.
 	 *
 	 * @return ParserOutput
 	 */
-	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
+	public function getParserOutput( Title $title, $revId = null,
+		ParserOptions $options = null, $generateHtml = true
+	) {
 		return new ParserOutput( $this->getNativeData() );
+	}
+
+	/**
+	 * @see AbstractContent::fillParserOutput()
+	 *
+	 * @param Title $title Context title for parsing
+	 * @param int|null $revId Revision ID (for {{REVISIONID}})
+	 * @param ParserOptions|null $options Parser options
+	 * @param bool $generateHtml Whether or not to generate HTML
+	 * @param ParserOutput &$output The output object to fill (reference).
+	 */
+	protected function fillParserOutput( Title $title, $revId,
+			ParserOptions $options, $generateHtml, ParserOutput &$output ) {
+		$output = new ParserOutput( $this->getNativeData() );
 	}
 }

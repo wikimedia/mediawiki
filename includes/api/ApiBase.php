@@ -93,7 +93,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Constructor
-	 * @param $mainModule ApiMain object
+	 * @param ApiMain $mainModule
 	 * @param string $moduleName Name of this module
 	 * @param string $modulePrefix Prefix to use for parameter names
 	 */
@@ -170,7 +170,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Get the name of the module as shown in the profiler log
 	 *
-	 * @param $db DatabaseBase|bool
+	 * @param DatabaseBase|bool $db
 	 *
 	 * @return string
 	 */
@@ -184,7 +184,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Get the main module
-	 * @return ApiMain object
+	 * @return ApiMain
 	 */
 	public function getMain() {
 		return $this->mMainModule;
@@ -274,7 +274,7 @@ abstract class ApiBase extends ContextSource {
 	 * If the module may only be used with a certain format module,
 	 * it should override this method to return an instance of that formatter.
 	 * A value of null means the default format will be used.
-	 * @return mixed instance of a derived class of ApiFormatBase, or null
+	 * @return mixed Instance of a derived class of ApiFormatBase, or null
 	 */
 	public function getCustomPrinter() {
 		return null;
@@ -282,7 +282,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Generates help message for this module, or false if there is no description
-	 * @return mixed string or false
+	 * @return string|bool
 	 */
 	public function makeHelpMsg() {
 		static $lnPrfx = "\n  ";
@@ -349,7 +349,7 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * @param $item string
+	 * @param string $item
 	 * @return string
 	 */
 	private function indentExampleText( $item ) {
@@ -359,7 +359,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * @param string $prefix Text to split output items
 	 * @param string $title What is being output
-	 * @param $input string|array
+	 * @param string|array $input
 	 * @return string
 	 */
 	protected function makeHelpArrayToString( $prefix, $title, $input ) {
@@ -387,7 +387,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Generates the parameter descriptions for this module, to be displayed in the
 	 * module's help.
-	 * @return string or false
+	 * @return string|bool
 	 */
 	public function makeHelpMsgParameters() {
 		$params = $this->getFinalParams( ApiBase::GET_VALUES_FOR_HELP );
@@ -537,7 +537,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Returns the description string for this module
-	 * @return mixed string or array of strings
+	 * @return string|array
 	 */
 	protected function getDescription() {
 		return false;
@@ -584,7 +584,7 @@ abstract class ApiBase extends ContextSource {
 	 * tweak it as needed.
 	 *
 	 * @param int $flags Zero or more flags like GET_VALUES_FOR_HELP
-	 * @return array|Bool False on no parameters
+	 * @return array|bool False on no parameters
 	 * @since 1.21 $flags param added
 	 */
 	public function getFinalParams( $flags = 0 ) {
@@ -643,6 +643,8 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Add token properties to the array used by getResultProperties,
 	 * based on a token functions mapping.
+	 * @param array $props
+	 * @param array $tokenFunctions
 	 */
 	protected static function addTokenProperties( &$props, $tokenFunctions ) {
 		foreach ( array_keys( $tokenFunctions ) as $token ) {
@@ -682,7 +684,7 @@ abstract class ApiBase extends ContextSource {
 	 * value - validated value from user or default. limits will not be
 	 * parsed if $parseLimit is set to false; use this when the max
 	 * limit is not definitive yet, e.g. when getting revisions.
-	 * @param $parseLimit Boolean: true by default
+	 * @param bool $parseLimit True by default
 	 * @return array
 	 */
 	public function extractRequestParams( $parseLimit = true ) {
@@ -706,7 +708,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Get a value for the given parameter
 	 * @param string $paramName Parameter name
-	 * @param bool $parseLimit see extractRequestParams()
+	 * @param bool $parseLimit See extractRequestParams()
 	 * @return mixed Parameter value
 	 */
 	protected function getParameter( $paramName, $parseLimit = true ) {
@@ -718,9 +720,10 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Die if none or more than one of a certain set of parameters is set and not false.
-	 * @param array $params of parameter names
+	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
+	 * @param string $required,... Names of parameters of which exactly one must be set
 	 */
-	public function requireOnlyOneParameter( $params ) {
+	public function requireOnlyOneParameter( $params, $required /*...*/ ) {
 		$required = func_get_args();
 		array_shift( $required );
 		$p = $this->getModulePrefix();
@@ -743,7 +746,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Generates the possible errors requireOnlyOneParameter() can die with
 	 *
-	 * @param $params array
+	 * @param array $params
 	 * @return array
 	 */
 	public function getRequireOnlyOneParameterErrorMessages( $params ) {
@@ -764,10 +767,10 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Die if more than one of a certain set of parameters is set and not false.
-	 *
-	 * @param $params array
+	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
+	 * @param string $required,... Names of parameters of which at most one must be set
 	 */
-	public function requireMaxOneParameter( $params ) {
+	public function requireMaxOneParameter( $params, $required /*...*/ ) {
 		$required = func_get_args();
 		array_shift( $required );
 		$p = $this->getModulePrefix();
@@ -786,7 +789,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Generates the possible error requireMaxOneParameter() can die with
 	 *
-	 * @param $params array
+	 * @param array $params
 	 * @return array
 	 */
 	public function getRequireMaxOneParameterErrorMessages( $params ) {
@@ -802,7 +805,49 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * @param $params array
+	 * Die if none of a certain set of parameters is set and not false.
+	 *
+	 * @since 1.23
+	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
+	 * @param string $required,... Names of parameters of which at least one must be set
+	 */
+	public function requireAtLeastOneParameter( $params, $required /*...*/ ) {
+		$required = func_get_args();
+		array_shift( $required );
+		$p = $this->getModulePrefix();
+
+		$intersection = array_intersect(
+			array_keys( array_filter( $params, array( $this, "parameterNotEmpty" ) ) ),
+			$required
+		);
+
+		if ( count( $intersection ) == 0 ) {
+			$this->dieUsage( "At least one of the parameters {$p}" .
+				implode( ", {$p}", $required ) . ' is required', "{$p}missingparam" );
+		}
+	}
+
+	/**
+	 * Generates the possible errors requireAtLeastOneParameter() can die with
+	 *
+	 * @since 1.23
+	 * @param array $params Array of parameter key names
+	 * @return array
+	 */
+	public function getRequireAtLeastOneParameterErrorMessages( $params ) {
+		$p = $this->getModulePrefix();
+		$params = implode( ", {$p}", $params );
+
+		return array(
+			array(
+				'code' => "{$p}missingparam",
+				'info' => "At least one of the parameters {$p}{$params} is required",
+			),
+		);
+	}
+
+	/**
+	 * @param array $params
 	 * @param bool|string $load Whether load the object's state from the database:
 	 *        - false: don't load (if the pageid is given, it will still be loaded)
 	 *        - 'fromdb': load from a slave database
@@ -854,7 +899,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Callback function used in requireOnlyOneParameter to check whether required parameters are set
 	 *
-	 * @param  $x object Parameter to check is not null/false
+	 * @param object $x Parameter to check is not null/false
 	 * @return bool
 	 */
 	private function parameterNotEmpty( $x ) {
@@ -862,20 +907,9 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * @deprecated since 1.17 use MWNamespace::getValidNamespaces()
-	 *
-	 * @return array
-	 */
-	public static function getValidNamespaces() {
-		wfDeprecated( __METHOD__, '1.17' );
-
-		return MWNamespace::getValidNamespaces();
-	}
-
-	/**
 	 * Return true if we're to watch the page, false if not, null if no change.
 	 * @param string $watchlist Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
-	 * @param $titleObj Title the page under consideration
+	 * @param Title $titleObj The page under consideration
 	 * @param string $userOption The user option to consider when $watchlist=preferences.
 	 *    If not set will use watchdefault always and watchcreations if $titleObj doesn't exist.
 	 * @return bool
@@ -916,7 +950,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Set a watch (or unwatch) based the based on a watchlist parameter.
 	 * @param string $watch Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
-	 * @param $titleObj Title the article's title to change
+	 * @param Title $titleObj The article's title to change
 	 * @param string $userOption The user option to consider when $watch=preferences
 	 */
 	protected function setWatch( $watch, $titleObj, $userOption = null ) {
@@ -931,10 +965,10 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Using the settings determine the value for the given parameter
 	 *
-	 * @param string $paramName parameter name
-	 * @param array|mixed $paramSettings default value or an array of settings
+	 * @param string $paramName Parameter name
+	 * @param array|mixed $paramSettings Default value or an array of settings
 	 *  using PARAM_* constants.
-	 * @param $parseLimit Boolean: parse limit?
+	 * @param bool $parseLimit Parse limit?
 	 * @return mixed Parameter value
 	 */
 	protected function getParameterFromSettings( $paramName, $paramSettings, $parseLimit ) {
@@ -1149,10 +1183,10 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @param string $valueName The name of the parameter (for error
 	 *  reporting)
-	 * @param $value mixed The value being parsed
+	 * @param mixed $value The value being parsed
 	 * @param bool $allowMultiple Can $value contain more than one value
 	 *  separated by '|'?
-	 * @param $allowedValues mixed An array of values to check against. If
+	 * @param mixed $allowedValues An array of values to check against. If
 	 *  null, all values are accepted.
 	 * @return mixed (allowMultiple ? an_array_of_values : a_single_value)
 	 */
@@ -1218,7 +1252,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param int|null $min Minimum value
 	 * @param int|null $max Maximum value for users
 	 * @param int $botMax Maximum value for sysops/bots
-	 * @param $enforceLimits Boolean Whether to enforce (die) if value is outside limits
+	 * @param bool $enforceLimits Whether to enforce (die) if value is outside limits
 	 */
 	function validateLimit( $paramName, &$value, $min, $max, $botMax = null, $enforceLimits = false ) {
 		if ( !is_null( $min ) && $value < $min ) {
@@ -1291,8 +1325,8 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Adds a warning to the output, else dies
 	 *
-	 * @param  $msg String Message to show as a warning, or error message if dying
-	 * @param  $enforceLimits Boolean Whether this is an enforce (die)
+	 * @param string $msg Message to show as a warning, or error message if dying
+	 * @param bool $enforceLimits Whether this is an enforce (die)
 	 */
 	private function warnOrDie( $msg, $enforceLimits = false ) {
 		if ( $enforceLimits ) {
@@ -1341,13 +1375,13 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Throw a UsageException based on the errors in the Status object.
+	 * Get error (as code, string) from a Status object.
 	 *
-	 * @since 1.22
-	 * @param Status $status Status object
-	 * @throws MWException
+	 * @since 1.23
+	 * @param Status $status
+	 * @return array Array of code and error string
 	 */
-	public function dieStatus( $status ) {
+	public function getErrorFromStatus( $status ) {
 		if ( $status->isGood() ) {
 			throw new MWException( 'Successful status passed to ApiBase::dieStatus' );
 		}
@@ -1375,7 +1409,21 @@ abstract class ApiBase extends ContextSource {
 			// Translate message to code, for backwards compatability
 			$code = ApiBase::$messageMap[$code]['code'];
 		}
-		$this->dieUsage( $msg->inLanguage( 'en' )->useDatabase( false )->plain(), $code );
+
+		return array( $code, $msg->inLanguage( 'en' )->useDatabase( false )->plain() );
+	}
+
+	/**
+	 * Throw a UsageException based on the errors in the Status object.
+	 *
+	 * @since 1.22
+	 * @param Status $status
+	 * @throws MWException
+	 */
+	public function dieStatus( $status ) {
+
+		list( $code, $msg ) = $this->getErrorFromStatus( $status );
+		$this->dieUsage( $msg, $code );
 	}
 
 	// @codingStandardsIgnoreStart Allow long lines. Cannot split these.
@@ -1880,7 +1928,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Output the error message related to a certain array
-	 * @param $error (array|string) Element of a getUserPermissionsErrors()-style array
+	 * @param array|string $error Element of a getUserPermissionsErrors()-style array
 	 */
 	public function dieUsageMsg( $error ) {
 		# most of the time we send a 1 element, so we might as well send it as
@@ -1895,7 +1943,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Will only set a warning instead of failing if the global $wgDebugAPI
 	 * is set to true. Otherwise behaves exactly as dieUsageMsg().
-	 * @param $error (array|string) Element of a getUserPermissionsErrors()-style array
+	 * @param array|string $error Element of a getUserPermissionsErrors()-style array
 	 * @since 1.21
 	 */
 	public function dieUsageMsgOrDebug( $error ) {
@@ -1915,7 +1963,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Die with the $prefix.'badcontinue' error. This call is common enough to
 	 * make it into the base method.
-	 * @param $condition boolean will only die if this value is true
+	 * @param bool $condition Will only die if this value is true
 	 * @since 1.21
 	 */
 	protected function dieContinueUsageIf( $condition ) {
@@ -2020,7 +2068,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Gets the user for whom to get the watchlist
 	 *
-	 * @param $params array
+	 * @param array $params
 	 * @return User
 	 */
 	public function getWatchlistUser( $params ) {
@@ -2063,7 +2111,7 @@ abstract class ApiBase extends ContextSource {
 	 * Don't call this function directly: use getFinalPossibleErrors() to allow
 	 * hooks to modify parameters as needed.
 	 *
-	 * @return array in the format of array( key, param1, param2, ... )
+	 * @return array Array in the format of array( key, param1, param2, ... )
 	 *   or array( 'code' => ..., 'info' => ... )
 	 */
 	public function getPossibleErrors() {
@@ -2277,7 +2325,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Debugging function that prints a value and an optional backtrace
-	 * @param $value mixed Value to print
+	 * @param mixed $value Value to print
 	 * @param string $name Description of the printed value
 	 * @param bool $backtrace If true, print a backtrace
 	 */
