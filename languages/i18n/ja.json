@@ -2955,7 +2955,7 @@
 	"watchlistedit-raw-done": "ウォッチリストを更新しました。",
 	"watchlistedit-raw-added": "{{PLURAL:$1|$1 ページ}}を追加しました:",
 	"watchlistedit-raw-removed": "{{PLURAL:$1|$1 ページ}}を除去しました:",
-	"watchlistedit-clear-title": "ウォッチリストを白紙化",
+	"watchlistedit-clear-title": "ウォッチリストの白紙化",
 	"watchlistedit-clear-legend": "ウォッチリストの白紙化",
 	"watchlistedit-clear-explain": "ウォッチリストに追加されたページ名がすべて除去されます",
 	"watchlistedit-clear-titles": "ページ名:",

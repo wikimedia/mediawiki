@@ -2018,7 +2018,7 @@
 	"contribslink": "contribs",
 	"emaillink": "enviar um e-mail",
 	"autoblocker": "Você foi automaticamente bloqueado, pois o seu Endereço IP foi recentemente usado por \"[[User:$1|$1]]\". \nO motivo apresentado para o bloqueio de $1 é: \"$2\".",
-	"blocklogpage": "Registro de bloqueio",
+	"blocklogpage": "Registro de bloqueios",
 	"blocklog-showlog": "Este usuário já foi bloqueado anteriormente.\nO registro de bloqueio é fornecido abaixo, para referência:",
 	"blocklog-showsuppresslog": "O usuário foi bloqueado e ocultado anteriormente.\nO registro de supressão é fornecido abaixo para referência:",
 	"blocklogentry": "bloqueou \"[[$1]]\" por $2. $3",
