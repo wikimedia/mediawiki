@@ -36,6 +36,10 @@ class NewParserTest extends MediaWikiTestCase {
 	 * @var DjVuSupport
 	 */
 	private $djVuSupport;
+	/**
+	 * @var TidySupport
+	 */
+	private $tidySupport;
 
 	protected $file = false;
 
@@ -95,8 +99,6 @@ class NewParserTest extends MediaWikiTestCase {
 		$tmpGlobals['wgUseImageResize'] = true;
 		$tmpGlobals['wgAllowExternalImages'] = true;
 		$tmpGlobals['wgRawHtml'] = false;
-		$tmpGlobals['wgUseTidy'] = false;
-		$tmpGlobals['wgAlwaysUseTidy'] = false;
 		$tmpGlobals['wgWellFormedXml'] = true;
 		$tmpGlobals['wgAllowMicrodataAttributes'] = true;
 		$tmpGlobals['wgExperimentalHtmlIds'] = false;
@@ -152,8 +154,19 @@ class NewParserTest extends MediaWikiTestCase {
 		# see https://gerrit.wikimedia.org/r/111390
 		$tmpGlobals['wgExtraInterlanguageLinkPrefixes'] = array( 'mul' );
 
-		//DjVu support
+		// DjVu support
 		$this->djVuSupport = new DjVuSupport();
+		// Tidy support
+		$this->tidySupport = new TidySupport();
+		// We always set 'wgUseTidy' to false when parsing, but certain
+		// test-running modes still use tidy if available, so ensure
+		// that the tidy-related options are all set to their defaults.
+		$tmpGlobals['wgUseTidy'] = false;
+		$tmpGlobals['wgAlwaysUseTidy'] = false;
+		$tmpGlobals['wgDebugTidy'] = false;
+		$tmpGlobals['wgTidyConf'] = $IP . '/includes/tidy.conf';
+		$tmpGlobals['wgTidyOpts'] = '';
+		$tmpGlobals['wgTidyInternal'] = $this->tidySupport->isInternal();
 
 		$this->setMwGlobals( $tmpGlobals );
 
@@ -730,6 +743,14 @@ class NewParserTest extends MediaWikiTestCase {
 			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
 			$output->setTOCEnabled( !isset( $opts['notoc'] ) );
 			$out = $output->getText();
+			if ( isset( $opts['tidy'] ) ) {
+				if ( !$this->tidySupport->isEnabled() ) {
+					$this->markTestSkipped( "SKIPPED: tidy extension is not installed.\n" );
+				} else {
+					$out = MWTidy::tidy( $out );
+					$out = preg_replace( '/\s+$/', '', $out);
+				}
+			}
 
 			if ( isset( $opts['showtitle'] ) ) {
 				if ( $output->getTitleText() ) {
@@ -740,21 +761,19 @@ class NewParserTest extends MediaWikiTestCase {
 			}
 
 			if ( isset( $opts['ill'] ) ) {
-				$out = $this->tidy( implode( ' ', $output->getLanguageLinks() ) );
+				$out = implode( ' ', $output->getLanguageLinks() );
 			} elseif ( isset( $opts['cat'] ) ) {
 				$outputPage = $context->getOutput();
 				$outputPage->addCategoryLinks( $output->getCategories() );
 				$cats = $outputPage->getCategoryLinks();
 
 				if ( isset( $cats['normal'] ) ) {
-					$out = $this->tidy( implode( ' ', $cats['normal'] ) );
+					$out = implode( ' ', $cats['normal'] );
 				} else {
 					$out = '';
 				}
 			}
 			$parser->mPreprocessor = null;
-
-			$result = $this->tidy( $result );
 		}
 
 		$this->teardownGlobals();
@@ -957,23 +976,6 @@ class NewParserTest extends MediaWikiTestCase {
 	}
 
 	//Various "cleanup" functions
-
-	/**
-	 * Run the "tidy" command on text if the $wgUseTidy
-	 * global is true
-	 *
-	 * @param string $text The text to tidy
-	 * @return string
-	 */
-	protected function tidy( $text ) {
-		global $wgUseTidy;
-
-		if ( $wgUseTidy ) {
-			$text = MWTidy::tidy( $text );
-		}
-
-		return $text;
-	}
 
 	/**
 	 * Remove last character if it is a newline
