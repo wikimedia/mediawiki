@@ -825,7 +825,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 */
 	protected function replaceVars( $s ) {
 		$s = parent::replaceVars( $s );
-		if ( preg_match( '/^\s*(CREATE|ALTER) TABLE/i', $s ) ) {
+		if ( preg_match( '/^\s*(CREATE|ALTER) (TEMPORARY )?TABLE/i', $s ) ) {
 			// CREATE TABLE hacks to allow schema file sharing with MySQL
 
 			// binary/varbinary column type -> blob
