@@ -16,6 +16,7 @@
         this.$element = $(element);
         this.options = options;
         this.enabled = true;
+        this.keyHandler = $.proxy( this.closeOnEsc, this );
         this.fixTitle();
     }
 
@@ -30,7 +31,10 @@
                 if (this.options.className) {
                     $tip.addClass(maybeCall(this.options.className, this.$element[0]));
                 }
-                $tip.remove().css({top: 0, left: 0, visibility: 'hidden', display: 'block'}).appendTo(document.body);
+                $tip.remove()
+                    .css({top: 0, left: 0, visibility: 'hidden', display: 'block'})
+                    .attr( 'aria-hidden', 'false' )
+                    .appendTo(document.body);
 
                 var pos = $.extend({}, this.$element.offset(), {
                     width: this.$element[0].offsetWidth,
@@ -82,15 +86,22 @@
                 }
                 $tip.css(tp);
 
+                $( document ).on( 'keydown', this.keyHandler );
                 if (this.options.fade) {
-                    $tip.stop().css({opacity: 0, display: 'block', visibility: 'visible'}).animate({opacity: this.options.opacity}, 100);
+                    $tip.stop()
+                        .css({opacity: 0, display: 'block', visibility: 'visible'})
+                        .attr( 'aria-hidden', 'false' )
+                        .animate({opacity: this.options.opacity}, 100);
                 } else {
-                    $tip.css({visibility: 'visible', opacity: this.options.opacity});
+                    $tip
+                        .css({visibility: 'visible', opacity: this.options.opacity})
+                        .attr( 'aria-hidden', 'false' );
                 }
             }
         },
 
         hide: function() {
+            $( document ).off( 'keydown', this.keyHandler );
             if (this.options.fade) {
                 this.tip().stop().fadeOut(100, function() { $(this).remove(); });
             } else {
@@ -120,7 +131,7 @@
 
         tip: function() {
             if (!this.$tip) {
-                this.$tip = $('<div class="tipsy"></div>').html('<div class="tipsy-arrow"></div><div class="tipsy-inner"></div>');
+                this.$tip = $('<div class="tipsy" role="tooltip"></div>').html('<div class="tipsy-arrow"></div><div class="tipsy-inner"></div>');
             }
             return this.$tip;
         },
@@ -130,6 +141,13 @@
                 this.hide();
                 this.$element = null;
                 this.options = null;
+            }
+        },
+
+        // $.proxy event handler
+        closeOnEsc: function ( e ) {
+            if ( e.keyCode === 27 ) {
+                this.hide();
             }
         },
 
@@ -184,8 +202,8 @@
 
         if (options.trigger != 'manual') {
             var binder   = options.live ? 'live' : 'bind',
-                eventIn  = options.trigger == 'hover' ? 'mouseenter' : 'focus',
-                eventOut = options.trigger == 'hover' ? 'mouseleave' : 'blur';
+                eventIn  = options.trigger == 'hover' ? 'mouseenter focus' : 'focus',
+                eventOut = options.trigger == 'hover' ? 'mouseleave blur' : 'blur';
             this[binder](eventIn, enter)[binder](eventOut, leave);
         }
 
