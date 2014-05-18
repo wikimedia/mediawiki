@@ -70,6 +70,11 @@ class ParserTest {
 	private $djVuSupport;
 
 	/**
+	 * @var TidySupport
+	 */
+	private $tidySupport;
+
+	/**
 	 * @var string $oldTablePrefix Original table prefix
 	 */
 	private $oldTablePrefix;
@@ -142,6 +147,10 @@ class ParserTest {
 		$this->runParsoid = isset( $options['run-parsoid'] );
 
 		$this->djVuSupport = new DjVuSupport();
+		$this->tidySupport = new TidySupport();
+		if ( !$this->tidySupport->isEnabled() ) {
+			echo "Warning: tidy is not installed, skipping some tests\n";
+		}
 
 		$this->hooks = array();
 		$this->functionHooks = array();
@@ -606,6 +615,13 @@ class ParserTest {
 			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
 			$output->setTOCEnabled( !isset( $opts['notoc'] ) );
 			$out = $output->getText();
+			if ( isset( $opts['tidy'] ) ) {
+				if ( !$this->tidySupport->isEnabled() ) {
+					return $this->showSkipped();
+				}
+				$out = MWTidy::tidy( $out );
+				$out = preg_replace( '/\s+$/', '', $out);
+			}
 
 			if ( isset( $opts['showtitle'] ) ) {
 				if ( $output->getTitleText() ) {
@@ -616,20 +632,18 @@ class ParserTest {
 			}
 
 			if ( isset( $opts['ill'] ) ) {
-				$out = $this->tidy( implode( ' ', $output->getLanguageLinks() ) );
+				$out = implode( ' ', $output->getLanguageLinks() );
 			} elseif ( isset( $opts['cat'] ) ) {
 				$outputPage = $context->getOutput();
 				$outputPage->addCategoryLinks( $output->getCategories() );
 				$cats = $outputPage->getCategoryLinks();
 
 				if ( isset( $cats['normal'] ) ) {
-					$out = $this->tidy( implode( ' ', $cats['normal'] ) );
+					$out = implode( ' ', $cats['normal'] );
 				} else {
 					$out = '';
 				}
 			}
-
-			$result = $this->tidy( $result );
 		}
 
 		$this->teardownGlobals();
@@ -765,6 +779,8 @@ class ParserTest {
 	 * @param string $config
 	 */
 	private function setupGlobals( $opts = '', $config = '' ) {
+		global $IP;
+
 		# Find out values for some special options.
 		$lang =
 			self::getOptionValue( 'language', $opts, 'en' );
@@ -827,7 +843,6 @@ class ParserTest {
 			'wgLocaltimezone' => 'UTC',
 			'wgAllowExternalImages' => self::getOptionValue( 'wgAllowExternalImages', $opts, true ),
 			'wgThumbLimits' => array( self::getOptionValue( 'thumbsize', $opts, 180 ) ),
-			'wgUseTidy' => false,
 			'wgDefaultLanguageVariant' => $variant,
 			'wgVariantArticlePath' => false,
 			'wgGroupPermissions' => array( '*' => array(
@@ -843,13 +858,22 @@ class ParserTest {
 			'wgLinkHolderBatchSize' => $linkHolderBatchSize,
 			'wgExperimentalHtmlIds' => false,
 			'wgExternalLinkTarget' => false,
-			'wgAlwaysUseTidy' => false,
 			'wgHtml5' => true,
 			'wgWellFormedXml' => true,
 			'wgAllowMicrodataAttributes' => true,
 			'wgAdaptiveMessageCache' => true,
 			'wgDisableLangConversion' => false,
 			'wgDisableTitleConversion' => false,
+			// Tidy options.
+			// We always set 'wgUseTidy' to false when parsing, but certain
+			// test-running modes still use tidy if available, so ensure
+			// that the tidy-related options are all set to their defaults.
+			'wgUseTidy' => false,
+			'wgAlwaysUseTidy' => false,
+			'wgDebugTidy' => false,
+			'wgTidyConf' => $IP . '/includes/tidy.conf',
+			'wgTidyOpts' => '',
+			'wgTidyInternal' => $this->tidySupport->isInternal(),
 		);
 
 		if ( $config ) {
@@ -1558,23 +1582,6 @@ class ParserTest {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Run the "tidy" command on text if the $wgUseTidy
-	 * global is true
-	 *
-	 * @param string $text The text to tidy
-	 * @return string
-	 */
-	private function tidy( $text ) {
-		global $wgUseTidy;
-
-		if ( $wgUseTidy ) {
-			$text = MWTidy::tidy( $text );
-		}
-
-		return $text;
 	}
 
 	private function wellFormed( $text ) {
