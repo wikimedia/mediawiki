@@ -101,7 +101,7 @@
 		this.methodCallTracker = {};
 		this.missingTests = {};
 
-		this.ignoreFn = undefined === ignoreFn ? function () { return false; } : ignoreFn;
+		this.ignoreFn = ignoreFn === undefined ? function () { return false; } : ignoreFn;
 
 		// Lazy limit in case something weird happends (like recurse (part of) ourself).
 		this.lazyLimit = 2000;

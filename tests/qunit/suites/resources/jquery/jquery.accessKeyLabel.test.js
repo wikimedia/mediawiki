@@ -30,7 +30,7 @@
 		//strings appended to title to make sure updateTooltipAccessKeys handles them correctly
 		updateTooltipAccessKeysTestData = [ '', ' [a]', ' [test-a]', ' [alt-b]' ];
 
-	function makeInput ( title, accessKey ) {
+	function makeInput( title, accessKey ) {
 		//The properties aren't escaped, so make sure you don't call this function with values that need to be escaped!
 		return '<input title="' + title + '" ' + ( accessKey ? 'accessKey="' + accessKey + '" ' : '' ) + ' />';
 	}

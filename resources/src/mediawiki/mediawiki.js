@@ -1606,7 +1606,7 @@
 						version: version !== undefined ? parseInt( version, 10 ) : 0,
 						dependencies: [],
 						group: typeof group === 'string' ? group : null,
-						source: typeof source === 'string' ? source: 'local',
+						source: typeof source === 'string' ? source : 'local',
 						state: 'registered'
 					};
 					if ( typeof dependencies === 'string' ) {

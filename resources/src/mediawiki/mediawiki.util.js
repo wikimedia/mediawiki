@@ -414,7 +414,7 @@
 				// RegExp is case insensitive
 				'i'
 			);
-			return ( null !== mailtxt.match( html5EmailRegexp ) );
+			return ( mailtxt.match( html5EmailRegexp ) !== null );
 		},
 
 		/**
