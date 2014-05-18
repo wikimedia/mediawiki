@@ -1139,11 +1139,11 @@ class CoreParserFunctions {
 		if ( $parser->incrementExpensiveFunctionCount() ) {
 			$sources = $titleObject->getCascadeProtectionSources();
 			foreach ( $sources[0] as $sourceTitle ) {
-				$names[] = $sourceTitle->getText();
+				$names[] = "* " . $sourceTitle->getText();
 			}
 		}
 
-		return implode( $names, '|' );
+		return implode( $names, '\n' );
 	}
 
 }
