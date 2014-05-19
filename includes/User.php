@@ -1672,6 +1672,9 @@ class User {
 	 * Primitive rate limits: enforce maximum actions per time period
 	 * to put a brake on flooding.
 	 *
+	 * The method generates both a generic profiling point and a per action one
+	 * (suffix being "-$action".
+	 *
 	 * @note When using a shared cache like memcached, IP-address
 	 * last-hit counters will be shared across wikis.
 	 *
@@ -1698,6 +1701,7 @@ class User {
 
 		global $wgMemc;
 		wfProfileIn( __METHOD__ );
+		wfProfileIn( __METHOD__ . '-' . $action );
 
 		$limits = $wgRateLimits[$action];
 		$keys = array();
@@ -1776,6 +1780,7 @@ class User {
 			}
 		}
 
+		wfProfileOut( __METHOD__ . '-' . $action );
 		wfProfileOut( __METHOD__ );
 		return $triggered;
 	}
