@@ -1,10 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vikassy"
+			"Vikassy",
+			"Nayvik"
 		]
 	},
 	"ooui-dialog-action-close": "ಮುಚ್ಚಿ",
 	"ooui-outline-control-remove": "ವಸ್ತು ತೆಗೆ",
-	"ooui-toolbar-more": "ಹೆಚ್ಚು"
+	"ooui-toolbar-more": "ಹೆಚ್ಚು",
+	"ooui-dialog-confirm-title": "ಧೃಡಪಡಿಸು",
+	"ooui-dialog-confirm-default-prompt": "ನೀವು ಖ‍ಚಿತವಾಗಿದ್ದೀರಾ?",
+	"ooui-dialog-confirm-default-ok": "ಸರಿ",
+	"ooui-dialog-confirm-default-cancel": "ರದ್ದು"
 }

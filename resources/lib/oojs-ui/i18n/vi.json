@@ -10,5 +10,9 @@
 	"ooui-outline-control-move-down": "Chuyển mục xuống",
 	"ooui-outline-control-move-up": "Chuyển mục lên",
 	"ooui-outline-control-remove": "Xóa khoản",
-	"ooui-toolbar-more": "Thêm"
+	"ooui-toolbar-more": "Thêm",
+	"ooui-dialog-confirm-title": "Xác nhận",
+	"ooui-dialog-confirm-default-prompt": "Bạn có chắc chắn?",
+	"ooui-dialog-confirm-default-ok": "OK",
+	"ooui-dialog-confirm-default-cancel": "Hủy bỏ"
 }

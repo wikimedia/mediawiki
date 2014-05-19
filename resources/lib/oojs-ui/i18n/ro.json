@@ -4,12 +4,16 @@
 			"AlimanRuna",
 			"Firilacroco",
 			"Minisarm",
-			"Stelistcristi"
+			"Stelistcristi",
+			"Gloria sah"
 		]
 	},
 	"ooui-dialog-action-close": "Închide",
 	"ooui-outline-control-move-down": "Mută elementul mai jos",
 	"ooui-outline-control-move-up": "Mută elementul mai sus",
 	"ooui-outline-control-remove": "Elimină elementul",
-	"ooui-toolbar-more": "Mai mult"
+	"ooui-toolbar-more": "Mai mult",
+	"ooui-dialog-confirm-title": "Confirmă",
+	"ooui-dialog-confirm-default-prompt": "Ești sigur?",
+	"ooui-dialog-confirm-default-cancel": "Renunță"
 }
