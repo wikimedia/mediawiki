@@ -20,5 +20,6 @@
 	"ooui-toolbar-more": "Mais",
 	"ooui-dialog-confirm-title": "Confirmar",
 	"ooui-dialog-confirm-default-prompt": "Tem a certeza?",
+	"ooui-dialog-confirm-default-ok": "Aceitar",
 	"ooui-dialog-confirm-default-cancel": "Cancelar"
 }

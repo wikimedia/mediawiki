@@ -13,12 +13,17 @@
 			"Jduranboger",
 			"PoLuX124",
 			"Ralgis",
-			"Thehelpfulone"
+			"Thehelpfulone",
+			"Gloria sah"
 		]
 	},
 	"ooui-dialog-action-close": "Cerrar",
 	"ooui-outline-control-move-down": "Bajar elemento",
 	"ooui-outline-control-move-up": "Subir elemento",
 	"ooui-outline-control-remove": "Eliminar elemento",
-	"ooui-toolbar-more": "Más"
+	"ooui-toolbar-more": "Más",
+	"ooui-dialog-confirm-title": "Confirmar",
+	"ooui-dialog-confirm-default-prompt": "¿Está seguro?",
+	"ooui-dialog-confirm-default-ok": "Aceptar",
+	"ooui-dialog-confirm-default-cancel": "Cancelar"
 }

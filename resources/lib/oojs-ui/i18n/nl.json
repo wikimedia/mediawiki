@@ -16,12 +16,17 @@
 			"Siebrand",
 			"Southparkfan",
 			"सरोज कुमार ढकाल",
-			"Sjoerddebruin"
+			"Sjoerddebruin",
+			"Gloria sah"
 		]
 	},
 	"ooui-dialog-action-close": "Sluiten",
 	"ooui-outline-control-move-down": "Item omlaag verplaatsen",
 	"ooui-outline-control-move-up": "Item omhoog verplaatsen",
 	"ooui-outline-control-remove": "Item verwijderen",
-	"ooui-toolbar-more": "Meer"
+	"ooui-toolbar-more": "Meer",
+	"ooui-dialog-confirm-title": "Bevestigen",
+	"ooui-dialog-confirm-default-prompt": "Weet u het zeker?",
+	"ooui-dialog-confirm-default-ok": "Oké",
+	"ooui-dialog-confirm-default-cancel": "Annuleren"
 }

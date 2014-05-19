@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (d4086ff6e6)
+ * OOjs UI v0.1.0-pre (0fbf6bd14e)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri May 16 2014 16:32:36 GMT-0700 (PDT)
+ * Date: Mon May 19 2014 14:09:28 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -986,6 +986,7 @@ OO.ui.Frame.prototype.setSize = function ( width, height ) {
  * @fires initialize
  */
 OO.ui.Window = function OoUiWindow( config ) {
+	var element = this;
 	// Parent constructor
 	OO.ui.Window.super.call( this, config );
 
@@ -1016,7 +1017,14 @@ OO.ui.Window = function OoUiWindow( config ) {
 		.append( this.frame.$element );
 
 	// Events
-	this.frame.connect( this, { 'load': 'initialize' } );
+	this.frame.on( 'load', function () {
+		element.initialize();
+		// Undo the visibility: hidden; hack and apply display: none;
+		// We can do this safely now that the iframe has initialized
+		// (don't do this from within #initialize because it has to happen
+		// after the all subclasses have been handled as well).
+		element.$element.hide().css( 'visibility', '' );
+	} );
 };
 
 /* Setup */
@@ -1260,12 +1268,6 @@ OO.ui.Window.prototype.initialize = function () {
 		this.$foot,
 		this.$overlay
 	);
-
-	// Undo the visibility: hidden; hack from the constructor and apply display: none;
-	// We can do this safely now that the iframe has initialized
-	this.$element.hide().css( 'visibility', '' );
-
-	this.emit( 'initialize' );
 
 	return this;
 };
@@ -1955,14 +1957,10 @@ OO.ui.ConfirmationDialog.prototype.initialize = function () {
 
 	this.$promptContainer = this.$( '<div>' ).addClass( 'oo-ui-dialog-confirm-promptContainer' );
 
-	this.cancelButton = new OO.ui.ButtonWidget( {
-		'flags': [ 'destructive' ]
-	} );
+	this.cancelButton = new OO.ui.ButtonWidget();
 	this.cancelButton.connect( this, { 'click': [ 'emit', 'cancel' ] } );
 
-	this.okButton = new OO.ui.ButtonWidget( {
-		'flags': [ 'constructive' ]
-	} );
+	this.okButton = new OO.ui.ButtonWidget();
 	this.okButton.connect( this, { 'click': [ 'emit', 'ok' ] } );
 
 	// Make the buttons
@@ -1988,6 +1986,8 @@ OO.ui.ConfirmationDialog.prototype.initialize = function () {
  * @param {jQuery|string} [data.prompt] The text of the dialog.
  * @param {jQuery|string|Function|null} [data.okLabel] The text used on the OK button
  * @param {jQuery|string|Function|null} [data.cancelLabel] The text used on the cancel button
+ * @param {string[]} [data.okFlags] Flags for the OK button
+ * @param {string[]} [data.cancelFlags] Flags for the cancel button
  */
 OO.ui.ConfirmationDialog.prototype.setup = function ( data ) {
 	// Parent method
@@ -1995,7 +1995,9 @@ OO.ui.ConfirmationDialog.prototype.setup = function ( data ) {
 
 	var prompt = data.prompt || OO.ui.deferMsg( 'ooui-dialog-confirm-default-prompt' ),
 		okLabel = data.okLabel || OO.ui.deferMsg( 'ooui-dialog-confirm-default-ok' ),
-		cancelLabel = data.cancelLabel || OO.ui.deferMsg( 'ooui-dialog-confirm-default-cancel' );
+		cancelLabel = data.cancelLabel || OO.ui.deferMsg( 'ooui-dialog-confirm-default-cancel' ),
+		okFlags = data.okFlags || [ 'constructive'],
+		cancelFlags = data.cancelFlags || [ 'destructive' ];
 
 	if ( typeof prompt === 'string' ) {
 		this.$promptContainer.text( prompt );
@@ -2003,8 +2005,8 @@ OO.ui.ConfirmationDialog.prototype.setup = function ( data ) {
 		this.$promptContainer.empty().append( prompt );
 	}
 
-	this.okButton.setLabel( okLabel );
-	this.cancelButton.setLabel( cancelLabel );
+	this.okButton.setLabel( okLabel ).clearFlags().setFlags( okFlags );
+	this.cancelButton.setLabel( cancelLabel ).clearFlags().setFlags( cancelFlags );
 };
 /**
  * Element with a button.
