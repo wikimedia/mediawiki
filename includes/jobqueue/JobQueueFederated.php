@@ -195,7 +195,7 @@ class JobQueueFederated extends JobQueue {
 		$key = $this->getCacheKey( $type );
 
 		$count = $this->cache->get( $key );
-		if ( is_int( $count ) ) {
+		if ( $count !== false ) {
 			return $count;
 		}
 
