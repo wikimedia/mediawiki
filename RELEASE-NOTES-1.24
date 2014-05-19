@@ -48,6 +48,9 @@ production.
 === Web API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of
   ResourceLoader modules that should be used to enhance the parsed content.
+* action=query&meta=siteinfo&siprop=interwikimap returns a new "protorel"
+  field which is true iff protocol-relative urls can be used to access
+  a particular interwiki map entry.
 
 === Languages updated in 1.24 ===
 
