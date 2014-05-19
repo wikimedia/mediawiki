@@ -523,28 +523,6 @@ class IcuCollation extends Collation {
 		return count( $this->firstLetterData['chars'] );
 	}
 
-	/**
-	 * Do a binary search, and return the index of the largest item that sorts
-	 * less than or equal to the target value.
-	 *
-	 * @deprecated since 1.23; use ArrayUtils::findLowerBound() instead
-	 *
-	 * @param array $valueCallback A function to call to get the value with
-	 *     a given array index.
-	 * @param int $valueCount The number of items accessible via $valueCallback,
-	 *     indexed from 0 to $valueCount - 1
-	 * @param array $comparisonCallback A callback to compare two values, returning
-	 *     -1, 0 or 1 in the style of strcmp().
-	 * @param string $target The target value to find.
-	 *
-	 * @return int|bool The item index of the lower bound, or false if the target value
-	 *     sorts before all items.
-	 */
-	function findLowerBound( $valueCallback, $valueCount, $comparisonCallback, $target ) {
-		wfDeprecated( __METHOD__, '1.23' );
-		return ArrayUtils::findLowerBound( $valueCallback, $valueCount, $comparisonCallback, $target );
-	}
-
 	static function isCjk( $codepoint ) {
 		foreach ( self::$cjkBlocks as $block ) {
 			if ( $codepoint >= $block[0] && $codepoint <= $block[1] ) {
