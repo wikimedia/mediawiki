@@ -394,6 +394,15 @@ class WikiImporter {
 	}
 
 	/**
+	 * Retrieves the contents of the named attribute of the current element.
+	 * @param string $attr the name of the attribute
+	 * @return string the value of the attribute or an empty string if it is not set in the current element.
+	 */
+	public function nodeAttribute( $attr ) {
+		return $this->reader->getAttribute( $attr );
+	}
+
+	/**
 	 * Shouldn't something like this be built-in to XMLReader?
 	 * Fetches text contents of the current element, assuming
 	 * no sub-elements or such scary things.
@@ -618,17 +627,28 @@ class WikiImporter {
 						&$pageInfo ) ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
-				$pageInfo[$tag] = $this->nodeContents();
-				if ( $tag == 'title' ) {
-					$title = $this->processTitle( $pageInfo['title'] );
+				// An XML snippet:
+				// <page>
+				//     <id>123</id>
+				//     <title>Page</title>
+				//     <redirect title="NewTitle"/>
+				//     ...
+				// Because the redirect tag is built differently, we need special handling for that case.
+				if ( $tag == 'redirect' ) {
+					$pageInfo[$tag] = $this->nodeAttribute( 'title' );
+				} else {
+					$pageInfo[$tag] = $this->nodeContents();
+					if ( $tag == 'title' ) {
+						$title = $this->processTitle( $pageInfo['title'] );
 
-					if ( !$title ) {
-						$badTitle = true;
-						$skip = true;
+						if ( !$title ) {
+							$badTitle = true;
+							$skip = true;
+						}
+
+						$this->pageCallback( $title );
+						list( $pageInfo['_title'], $origTitle ) = $title;
 					}
-
-					$this->pageCallback( $title );
-					list( $pageInfo['_title'], $origTitle ) = $title;
 				}
 			} elseif ( $tag == 'revision' ) {
 				$this->handleRevision( $pageInfo );
