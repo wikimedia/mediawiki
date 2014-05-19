@@ -396,6 +396,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				$val['language'] = $langNames[$prefix];
 			}
 			$val['url'] = wfExpandUrl( $row['iw_url'], PROTO_CURRENT );
+			$val['proto'] = (substr( $row['iw_url'], 0, 2) == '//');
 			if ( isset( $row['iw_wikiid'] ) ) {
 				$val['wikiid'] = $row['iw_wikiid'];
 			}
