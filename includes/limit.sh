@@ -76,7 +76,10 @@ if [ "$MW_MEM_LIMIT" -gt 0 ]; then
 		# Memory
 		echo $(($MW_MEM_LIMIT*1024)) > "$MW_CGROUP"/$$/memory.limit_in_bytes
 		# Memory+swap
-		echo $(($MW_MEM_LIMIT*1024)) > "$MW_CGROUP"/$$/memory.memsw.limit_in_bytes
+		# This will be missing if there is no swap
+		if [ -e "$MW_CGROUP"/$$/memory.memsw.limit_in_bytes ]; then
+			echo $(($MW_MEM_LIMIT*1024)) > "$MW_CGROUP"/$$/memory.memsw.limit_in_bytes
+		fi
 	else
 		ulimit -v "$MW_MEM_LIMIT"
 	fi
