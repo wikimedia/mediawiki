@@ -2233,7 +2233,7 @@
 	"tooltip-recreate": "D'Säit nees uleeën, obwuel se geläscht gi war.",
 	"tooltip-upload": "Mam eroplueden ufänken",
 	"tooltip-rollback": "\"Zrécksetzen\" mécht all Ännerunge vum leschten \"Auteur\" an engem Klick nees réckgängeg.",
-	"tooltip-undo": "\"Zréck\" setzt dës Ännerung zréck a mécht den Ännerungsformulaire am Modus \"kucken ouni ofzespäicheren\" op.\nErlaabt et e Grond an de Resumé derbäizesetzen.",
+	"tooltip-undo": "\"Zréck\" setzt dës Ännerung zréck a mécht den Ännerungsformulaire am Modus \"kucken ouni ofzespäicheren\" op, fir datt een  eventuell eng Ursaach an de Resumé ka schreiwen.",
 	"tooltip-preferences-save": "Astellunge späicheren",
 	"tooltip-summary": "Gitt e kuerze Resumé an",
 	"interlanguage-link-title": "$1 - $2",

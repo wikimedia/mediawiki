@@ -12,7 +12,8 @@
 			"Marmzok",
 			"Muhammed taha",
 			"رزگار",
-			"아라"
+			"아라",
+			"Serwan"
 		]
 	},
 	"tog-underline": "ھێڵ ھێنان بەژێر بەستەرەکان:",
@@ -2389,6 +2390,7 @@
 	"watchlistedit-raw-done": "لیستی چاودێریەکەت نوێ‌کرایەوە",
 	"watchlistedit-raw-added": "{{PLURAL:$1|1 سەردێڕ|$1 سەردێڕ}} زیادکرا:",
 	"watchlistedit-raw-removed": "{{PLURAL:$1|1 سەردێڕ|$1 سەردێڕ}} لابرا:",
+	"watchlistedit-clear-titles": "ناونیشانەکان :",
 	"watchlisttools-view": "گۆڕانکارییە پەیوەندیدارەکان ببینە",
 	"watchlisttools-edit": "لیستی چاودێری ببینە و دەستکاری بکە",
 	"watchlisttools-raw": "لیستی خاوی چاودێری دەستکاری بکە",

@@ -601,7 +601,7 @@
 	"session_fail_preview": "'''Nismo mogli da obradimo vašu izmenu zbog gubitka podataka sesije.'''\nPokušajte ponovo.\nAko i dalje ne radi, pokušajte da se [[Special:UserLogout|odjavite]] i ponovo prijavite.",
 	"session_fail_preview_html": "'''Nismo mogli da obradimo vašu izmenu zbog gubitka podataka sesije.'''\n\n''Budući da je na ovom vikiju omogućen unos HTML oznaka, pregled je sakriven kao mera predostrožnosti protiv napada preko javaskripta.''\n\n'''Ako ste pokušali da napravite pravu izmenu, pokušajte ponovo.\nAko i dalje ne radi, pokušajte da se [[Special:UserLogout|odjavite]] i ponovo prijavite.'''",
 	"token_suffix_mismatch": "'''Vaša izmena je odbačena jer je vaš pregledač ubacio znakove interpunkcije u novčić uređivanja.\nTo se ponekad događa kada se koristi neispravan posrednik.'''",
-	"edit_form_incomplete": "'''Neki delovi obrasca za uređivanje nisu dostigli do servera. Proverite da li su izmene promenjene i pokušajte ponovo.'''",
+	"edit_form_incomplete": "<strong>Neki delovi obrasca za uređivanje nisu stigli do servera. Proverite da li su vaše izmene nepromenjene i pokušajte ponovo.</strong>",
 	"editing": "Uređujete $1",
 	"creating": "Pravljenje stranice $1",
 	"editingsection": "Uređujete $1 (odeljak)",
