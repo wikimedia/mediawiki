@@ -3417,6 +3417,11 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			$this->runOnTransactionIdleCallbacks();
 		}
 
+		# Avoid fatals if close() was called
+		if ( !$this->isOpen() ) {
+			throw new DBUnexpectedError( $this, "DB connection was already closed." );
+		}
+
 		$this->doBegin( $fname );
 		$this->mTrxFname = $fname;
 		$this->mTrxDoneWrites = false;
@@ -3475,6 +3480,11 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			}
 		}
 
+		# Avoid fatals if close() was called
+		if ( !$this->isOpen() ) {
+			throw new DBUnexpectedError( $this, "DB connection was already closed." );
+		}
+
 		$this->runOnTransactionPreCommitCallbacks();
 		$this->doCommit( $fname );
 		if ( $this->mTrxDoneWrites ) {
@@ -3523,6 +3533,11 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			} elseif ( !$this->mTrxAutomatic ) {
 				wfWarn( "$fname: Flushing an explicit transaction, getting out of sync!" );
 			}
+		}
+
+		# Avoid fatals if close() was called
+		if ( !$this->isOpen() ) {
+			throw new DBUnexpectedError( $this, "DB connection was already closed." );
 		}
 
 		$this->doRollback( $fname );
