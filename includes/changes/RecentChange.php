@@ -103,6 +103,70 @@ class RecentChange {
 	}
 
 	/**
+	 * Parsing text to RC_* constants
+	 * @since 1.24
+	 * @param string|array $type
+	 * @throws MWException
+	 * @return int|array RC_TYPE
+	 */
+	public static function parseToRCType( $type ) {
+		if ( is_array( $type ) ) {
+			$retval = array();
+			foreach ( $type as $t ) {
+				$retval[] = RecentChange::parseToRCType( $t );
+			}
+
+			return $retval;
+		}
+
+		switch ( $type ) {
+			case 'edit':
+				return RC_EDIT;
+			case 'new':
+				return RC_NEW;
+			case 'log':
+				return RC_LOG;
+			case 'external':
+				return RC_EXTERNAL;
+			default:
+				throw new MWException( "Unknown type '$type'" );
+		}
+	}
+
+	/**
+	 * Parsing RC_* constants to human-readable test
+	 * @since 1.24
+	 * @param int $rc_type
+	 * @return string $type
+	 */
+	public static function parseFromRCType( $rcType ) {
+		switch ( $rcType ) {
+			case RC_EDIT:
+				$type = 'edit';
+				break;
+			case RC_NEW:
+				$type = 'new';
+				break;
+			case RC_MOVE:
+				$type = 'move';
+				break;
+			case RC_LOG:
+				$type = 'log';
+				break;
+			case RC_EXTERNAL:
+				$type = 'external';
+				break;
+			case RC_MOVE_OVER_REDIRECT:
+				$type = 'move over redirect';
+				break;
+			default:
+				$type = "$rcType";
+		}
+
+		return $type;
+	}
+
+	/**
 	 * No uses left in Gerrit on 2013-11-19.
 	 * @deprecated since 1.22
 	 * @param mixed $row
