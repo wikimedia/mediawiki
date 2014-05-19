@@ -2758,7 +2758,8 @@ class LocalFileMoveBatch {
 		$result = $this->db->select( 'oldimage',
 			array( 'oi_archive_name', 'oi_deleted' ),
 			array( 'oi_name' => $this->oldName ),
-			__METHOD__
+			__METHOD__,
+			array( 'FOR UPDATE' ) // ignore snapshot
 		);
 
 		foreach ( $result as $row ) {
