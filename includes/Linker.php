@@ -30,7 +30,6 @@
  * @ingroup Skins
  */
 class Linker {
-
 	/**
 	 * Flags for userToolLinks()
 	 */
@@ -44,7 +43,8 @@ class Linker {
 	 * @param string $class The contents of the class attribute; if an empty
 	 *   string is passed, which is the default value, defaults to 'external'.
 	 * @return string
-	 * @deprecated since 1.18 Just pass the external class directly to something using Html::expandAttributes
+	 * @deprecated since 1.18 Just pass the external class directly to something
+	 *   using Html::expandAttributes.
 	 */
 	static function getExternalLinkAttributes( $class = 'external' ) {
 		wfDeprecated( __METHOD__, '1.18' );
@@ -389,20 +389,21 @@ class Linker {
 		if ( $target->getPrefixedText() === '' && $target->hasFragment() ) {
 			return htmlspecialchars( $target->getFragment() );
 		}
+
 		return htmlspecialchars( $target->getPrefixedText() );
 	}
 
 	/**
-	 * Make appropriate markup for a link to the current article. This is currently rendered
-	 * as the bold link text. The calling sequence is the same as the other make*LinkObj static functions,
-	 * despite $query not being used.
+	 * Make appropriate markup for a link to the current article. This is
+	 * currently rendered as the bold link text. The calling sequence is the
+	 * same as the other make*LinkObj static functions, despite $query not
+	 * being used.
 	 *
 	 * @param Title $nt
 	 * @param string $html [optional]
 	 * @param string $query [optional]
 	 * @param string $trail [optional]
 	 * @param string $prefix [optional]
-	 *
 	 *
 	 * @return string
 	 */
@@ -491,7 +492,8 @@ class Linker {
 		$img = '';
 		$success = wfRunHooks( 'LinkerMakeExternalImage', array( &$url, &$alt, &$img ) );
 		if ( !$success ) {
-			wfDebug( "Hook LinkerMakeExternalImage changed the output of external image with url {$url} and alt text {$alt} to {$img}\n", true );
+			wfDebug( "Hook LinkerMakeExternalImage changed the output of external image "
+				. "with url {$url} and alt text {$alt} to {$img}\n", true );
 			return $img;
 		}
 		return Html::element( 'img',
@@ -536,8 +538,9 @@ class Linker {
 	 * @since 1.20
 	 * @return string HTML for an image, with links, wrappers, etc.
 	 */
-	public static function makeImageLink( /*Parser*/ $parser, Title $title, $file, $frameParams = array(),
-		$handlerParams = array(), $time = false, $query = "", $widthOption = null
+	public static function makeImageLink( /*Parser*/ $parser, Title $title,
+		$file, $frameParams = array(), $handlerParams = array(), $time = false,
+		$query = "", $widthOption = null
 	) {
 		$res = null;
 		$dummy = new DummyLinker;
@@ -587,8 +590,14 @@ class Linker {
 				$hp['width'] = $file->getWidth( $page );
 			}
 
-			if ( isset( $fp['thumbnail'] ) || isset( $fp['manualthumb'] ) || isset( $fp['framed'] ) || isset( $fp['frameless'] ) || !$hp['width'] ) {
+			if ( isset( $fp['thumbnail'] )
+				|| isset( $fp['manualthumb'] )
+				|| isset( $fp['framed'] )
+				|| isset( $fp['frameless'] )
+				|| !$hp['width']
+			) {
 				global $wgThumbLimits, $wgThumbUpright;
+
 				if ( $widthOption === null || !isset( $wgThumbLimits[$widthOption] ) ) {
 					$widthOption = User::getDefaultOption( 'thumbsize' );
 				}
@@ -597,7 +606,10 @@ class Linker {
 				if ( isset( $fp['upright'] ) && $fp['upright'] == 0 ) {
 					$fp['upright'] = $wgThumbUpright;
 				}
-				// For caching health: If width scaled down due to upright parameter, round to full __0 pixel to avoid the creation of a lot of odd thumbs
+
+				// For caching health: If width scaled down due to upright
+				// parameter, round to full __0 pixel to avoid the creation of a
+				// lot of odd thumbs.
 				$prefWidth = isset( $fp['upright'] ) ?
 					round( $wgThumbLimits[$widthOption] * $fp['upright'], -1 ) :
 					$wgThumbLimits[$widthOption];
@@ -632,8 +644,9 @@ class Linker {
 
 		if ( $file && isset( $fp['frameless'] ) ) {
 			$srcWidth = $file->getWidth( $page );
-			# For "frameless" option: do not present an image bigger than the source (for bitmap-style images)
-			# This is the same behavior as the "thumb" option does it already.
+			# For "frameless" option: do not present an image bigger than the
+			# source (for bitmap-style images). This is the same behavior as the
+			# "thumb" option does it already.
 			if ( $srcWidth && !$file->mustRender() && $hp['width'] > $srcWidth ) {
 				$hp['width'] = $srcWidth;
 			}
@@ -831,7 +844,9 @@ class Linker {
 			$fp['link-url'] = $url;
 		}
 
-		$s = "<div class=\"thumb t{$fp['align']}\"><div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
+		$s = "<div class=\"thumb t{$fp['align']}\">"
+			. "<div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
+
 		if ( !$exists ) {
 			$s .= self::makeBrokenImageLinkObj( $title, $fp['title'], '', '', '', $time == true );
 			$zoomIcon = '';
@@ -845,7 +860,9 @@ class Linker {
 			$params = array(
 				'alt' => $fp['alt'],
 				'title' => $fp['title'],
-				'img-class' => ( isset( $fp['class'] ) && $fp['class'] !== '' ? $fp['class'] . ' ' : '' ) . 'thumbimage'
+				'img-class' => ( isset( $fp['class'] ) && $fp['class'] !== ''
+					? $fp['class'] . ' '
+					: '' ) . 'thumbimage'
 			);
 			$params = self::getImageLinkMTOParams( $fp, $query ) + $params;
 			$s .= $thumb->toHtml( $params );
@@ -858,7 +875,8 @@ class Linker {
 						'class' => 'internal',
 						'title' => wfMessage( 'thumbnail-more' )->text() ),
 						Html::element( 'img', array(
-							'src' => $wgStylePath . '/common/images/magnify-clip' . ( $wgContLang->isRTL() ? '-rtl' : '' ) . '.png',
+							'src' => $wgStylePath . '/common/images/magnify-clip'
+								. ( $wgContLang->isRTL() ? '-rtl' : '' ) . '.png',
 							'width' => 15,
 							'height' => 11,
 							'alt' => "" ) ) ) );
@@ -910,7 +928,9 @@ class Linker {
 	 * @param bool $time A file of a certain timestamp was requested
 	 * @return string
 	 */
-	public static function makeBrokenImageLinkObj( $title, $label = '', $query = '', $unused1 = '', $unused2 = '', $time = false ) {
+	public static function makeBrokenImageLinkObj( $title, $label = '',
+		$query = '', $unused1 = '', $unused2 = '', $time = false
+	) {
 		global $wgEnableUploads, $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
 		if ( ! $title instanceof Title ) {
 			return "<!-- ERROR -->" . htmlspecialchars( $label );
@@ -922,7 +942,9 @@ class Linker {
 		$encLabel = htmlspecialchars( $label );
 		$currentExists = $time ? ( wfFindFile( $title ) != false ) : false;
 
-		if ( ( $wgUploadMissingFileUrl || $wgUploadNavigationUrl || $wgEnableUploads ) && !$currentExists ) {
+		if ( ( $wgUploadMissingFileUrl || $wgUploadNavigationUrl || $wgEnableUploads )
+			&& !$currentExists
+		) {
 			$redir = RepoGroup::singleton()->getLocalRepo()->checkRedirect( $title );
 
 			if ( $redir ) {
@@ -1013,7 +1035,8 @@ class Linker {
 
 		if ( !wfRunHooks( 'LinkerMakeMediaLinkFile',
 			array( $title, $file, &$html, &$attribs, &$ret ) ) ) {
-			wfDebug( "Hook LinkerMakeMediaLinkFile changed the output of link with url {$url} and text {$html} to {$ret}\n", true );
+			wfDebug( "Hook LinkerMakeMediaLinkFile changed the output of link "
+				. "with url {$url} and text {$html} to {$ret}\n", true );
 			return $ret;
 		}
 
@@ -1047,7 +1070,9 @@ class Linker {
 	 * @param Title|null $title Title object used for title specific link attributes
 	 * @return string
 	 */
-	public static function makeExternalLink( $url, $text, $escape = true, $linktype = '', $attribs = array(), $title = null ) {
+	public static function makeExternalLink( $url, $text, $escape = true,
+		$linktype = '', $attribs = array(), $title = null
+	) {
 		global $wgTitle;
 		$class = "external";
 		if ( $linktype ) {
@@ -1070,7 +1095,8 @@ class Linker {
 		$success = wfRunHooks( 'LinkerMakeExternalLink',
 			array( &$url, &$text, &$link, &$attribs, $linktype ) );
 		if ( !$success ) {
-			wfDebug( "Hook LinkerMakeExternalLink changed the output of link with url {$url} and text {$text} to {$link}\n", true );
+			wfDebug( "Hook LinkerMakeExternalLink changed the output of link "
+				. "with url {$url} and text {$text} to {$link}\n", true );
 			return $link;
 		}
 		$attribs['href'] = $url;
@@ -1111,7 +1137,8 @@ class Linker {
 	 * @param string $userText User name or IP address
 	 * @param bool $redContribsWhenNoEdits Should the contributions link be
 	 *   red if the user has no edits?
-	 * @param int $flags Customisation flags (e.g. Linker::TOOL_LINKS_NOBLOCK and Linker::TOOL_LINKS_EMAIL)
+	 * @param int $flags Customisation flags (e.g. Linker::TOOL_LINKS_NOBLOCK
+	 *   and Linker::TOOL_LINKS_EMAIL).
 	 * @param int $edits User edit count (optional, for performance)
 	 * @return string HTML fragment
 	 */
@@ -1285,11 +1312,11 @@ class Linker {
 		return $comment;
 	}
 
-	/**
-	 * @var Title
-	 */
-	static $autocommentTitle;
-	static $autocommentLocal;
+	/** @var Title */
+	private static $autocommentTitle;
+
+	/** @var bool Whether section links should refer to local page */
+	private static $autocommentLocal;
 
 	/**
 	 * Converts autogenerated comments in edit summaries into section links.
@@ -1367,16 +1394,17 @@ class Linker {
 				$auto .= wfMessage( 'colon-separator' )->inContentLanguage()->escaped();
 			}
 			$auto = '<span class="autocomment">' . $auto . '</span>';
-			$comment = $pre . $link . $wgLang->getDirMark() . '<span dir="auto">' . $auto . $post . '</span>';
+			$comment = $pre . $link . $wgLang->getDirMark()
+				. '<span dir="auto">' . $auto . $post . '</span>';
 		}
 		return $comment;
 	}
 
-	/**
-	 * @var Title
-	 */
-	static $commentContextTitle;
-	static $commentLocal;
+	/** @var Title */
+	private static $commentContextTitle;
+
+	/** @var bool Whether section links should refer to local page */
+	private static $commentLocal;
 
 	/**
 	 * Formats wiki links and media links in text; all other wiki formatting
@@ -1477,7 +1505,12 @@ class Linker {
 		}
 		if ( $thelink ) {
 			// If the link is still valid, go ahead and replace it in!
-			$comment = preg_replace( $linkRegexp, StringUtils::escapeRegexReplacement( $thelink ), $comment, 1 );
+			$comment = preg_replace(
+				$linkRegexp,
+				StringUtils::escapeRegexReplacement( $thelink ),
+				$comment,
+				1
+			);
 		}
 
 		return $comment;
@@ -1736,7 +1769,9 @@ class Linker {
 	 *
 	 * @return string HTML headline
 	 */
-	public static function makeHeadline( $level, $attribs, $anchor, $html, $link, $legacyAnchor = false ) {
+	public static function makeHeadline( $level, $attribs, $anchor, $html,
+		$link, $legacyAnchor = false
+	) {
 		$ret = "<h$level$attribs"
 			. "<span class=\"mw-headline\" id=\"$anchor\">$html</span>"
 			. $link
@@ -1792,10 +1827,13 @@ class Linker {
 	 * @param array $options
 	 * @return string
 	 */
-	public static function generateRollback( $rev, IContextSource $context = null, $options = array( 'verify' ) ) {
+	public static function generateRollback( $rev, IContextSource $context = null,
+		$options = array( 'verify' )
+	) {
 		if ( $context === null ) {
 			$context = RequestContext::getMain();
 		}
+
 		$editCount = false;
 		if ( in_array( 'verify', $options ) ) {
 			$editCount = self::getRollbackEditCount( $rev, true );
@@ -1855,9 +1893,13 @@ class Linker {
 		$moreRevs = false;
 		foreach ( $res as $row ) {
 			if ( $rev->getRawUserText() != $row->rev_user_text ) {
-				if ( $verify && ( $row->rev_deleted & Revision::DELETED_TEXT || $row->rev_deleted & Revision::DELETED_USER ) ) {
-					// If the user or the text of the revision we might rollback to is deleted in some way we can't rollback
-					// Similar to the sanity checks in WikiPage::commitRollback
+				if ( $verify &&
+					( $row->rev_deleted & Revision::DELETED_TEXT
+						|| $row->rev_deleted & Revision::DELETED_USER
+				) ) {
+					// If the user or the text of the revision we might rollback
+					// to is deleted in some way we can't rollback. Similar to
+					// the sanity checks in WikiPage::commitRollback.
 					return false;
 				}
 				$moreRevs = true;
@@ -1883,7 +1925,9 @@ class Linker {
 	 * @param int $editCount Number of edits that would be reverted
 	 * @return string HTML fragment
 	 */
-	public static function buildRollbackLink( $rev, IContextSource $context = null, $editCount = false ) {
+	public static function buildRollbackLink( $rev, IContextSource $context = null,
+		$editCount = false
+	) {
 		global $wgShowRollbackEditCount, $wgMiserMode;
 
 		// To config which pages are effected by miser mode
@@ -1897,7 +1941,10 @@ class Linker {
 		$query = array(
 			'action' => 'rollback',
 			'from' => $rev->getUserText(),
-			'token' => $context->getUser()->getEditToken( array( $title->getPrefixedText(), $rev->getUserText() ) ),
+			'token' => $context->getUser()->getEditToken( array(
+				$title->getPrefixedText(),
+				$rev->getUserText()
+			) ),
 		);
 		if ( $context->getRequest()->getBool( 'bot' ) ) {
 			$query['bot'] = '1';
@@ -1914,13 +1961,17 @@ class Linker {
 			}
 		}
 
-		if ( !$disableRollbackEditCount && is_int( $wgShowRollbackEditCount ) && $wgShowRollbackEditCount > 0 ) {
+		if ( !$disableRollbackEditCount
+			&& is_int( $wgShowRollbackEditCount )
+			&& $wgShowRollbackEditCount > 0
+		) {
 			if ( !is_numeric( $editCount ) ) {
 				$editCount = self::getRollbackEditCount( $rev, false );
 			}
 
 			if ( $editCount > $wgShowRollbackEditCount ) {
-				$editCount_output = $context->msg( 'rollbacklinkcount-morethan' )->numParams( $wgShowRollbackEditCount )->parse();
+				$editCount_output = $context->msg( 'rollbacklinkcount-morethan' )
+					->numParams( $wgShowRollbackEditCount )->parse();
 			} else {
 				$editCount_output = $context->msg( 'rollbacklinkcount' )->numParams( $editCount )->parse();
 			}
@@ -1958,7 +2009,9 @@ class Linker {
 	 * @param Title|Message|string|null $more An escaped link for "More..." of the templates
 	 * @return string HTML output
 	 */
-	public static function formatTemplates( $templates, $preview = false, $section = false, $more = null ) {
+	public static function formatTemplates( $templates, $preview = false,
+		$section = false, $more = null
+	) {
 		global $wgLang;
 		wfProfileIn( __METHOD__ );
 
@@ -2062,7 +2115,10 @@ class Linker {
 			$outText .= "</div><ul>\n";
 
 			foreach ( $hiddencats as $titleObj ) {
-				$outText .= '<li>' . self::link( $titleObj, null, array(), array(), 'known' ) . "</li>\n"; # If it's hidden, it must exist - no need to check with a LinkBatch
+				# If it's hidden, it must exist - no need to check with a LinkBatch
+				$outText .= '<li>'
+					. self::link( $titleObj, null, array(), array(), 'known' )
+					. "</li>\n";
 			}
 			$outText .= '</ul>';
 		}
@@ -2128,7 +2184,7 @@ class Linker {
 		return $tooltip;
 	}
 
-	static $accesskeycache;
+	private static $accesskeycache;
 
 	/**
 	 * Given the id of an interface element, constructs the appropriate
@@ -2225,7 +2281,11 @@ class Linker {
 		$html = wfMessage( $msgKey )->escaped();
 		$tag = $restricted ? 'strong' : 'span';
 		$link = self::link( $sp, $html, array(), $query, array( 'known', 'noclasses' ) );
-		return Xml::tags( $tag, array( 'class' => 'mw-revdelundel-link' ), wfMessage( 'parentheses' )->rawParams( $link )->escaped() );
+		return Xml::tags(
+			$tag,
+			array( 'class' => 'mw-revdelundel-link' ),
+			wfMessage( 'parentheses' )->rawParams( $link )->escaped()
+		);
 	}
 
 	/**
