@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (d4086ff6e6)
+ * OOjs UI v0.1.0-pre (521a9e242b)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri May 16 2014 16:32:36 GMT-0700 (PDT)
+ * Date: Mon May 19 2014 10:42:43 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -986,6 +986,7 @@ OO.ui.Frame.prototype.setSize = function ( width, height ) {
  * @fires initialize
  */
 OO.ui.Window = function OoUiWindow( config ) {
+	var element = this;
 	// Parent constructor
 	OO.ui.Window.super.call( this, config );
 
@@ -1016,7 +1017,14 @@ OO.ui.Window = function OoUiWindow( config ) {
 		.append( this.frame.$element );
 
 	// Events
-	this.frame.connect( this, { 'load': 'initialize' } );
+	this.frame.on( 'load', function () {
+		element.initialize();
+		// Undo the visibility: hidden; hack and apply display: none;
+		// We can do this safely now that the iframe has initialized
+		// (don't do this from within #initialize because it has to happen
+		// after the all subclasses have been handled as well).
+		element.$element.hide().css( 'visibility', '' );
+	} );
 };
 
 /* Setup */
@@ -1260,12 +1268,6 @@ OO.ui.Window.prototype.initialize = function () {
 		this.$foot,
 		this.$overlay
 	);
-
-	// Undo the visibility: hidden; hack from the constructor and apply display: none;
-	// We can do this safely now that the iframe has initialized
-	this.$element.hide().css( 'visibility', '' );
-
-	this.emit( 'initialize' );
 
 	return this;
 };
