@@ -11,7 +11,8 @@
 			"Salvator",
 			"Samar88",
 			"Srabony90",
-			"아라"
+			"아라",
+			"Shirayuki"
 		]
 	},
 	"tog-underline": "Joṛaoko latarre dag udugoḱma:",
@@ -455,7 +456,7 @@
 	"accmailtitle": "Uku nambar do kulena.",
 	"accmailtext": "[[User talk:$1 $1]] lạgit́te aćte benaoen uku nambar do $2 kul hoena.\nBhitri bolo kateḱ noa nãwã ekaunṭ lạgit uku nambar \"[[Special:ChangePassword Change password]]\" sakam khonem bodol daṛyakya.",
 	"newarticle": "(Nãwa)",
-	"newarticletext": "Am do oka mitṭen joṛaoem pańja akada, onaṭak do bạnuḱa.\nOna sakam tear lạgit́te, latar reaḱ baksore ol ehoṕmẽ (arhõ jạsti baḍae lạgit́te [[{{mediaWiki:Helppage}}help page] pańjaemẽ).\nAm do judi nonḍe vulkatem heć akan khan, tobe amaḱ sendrakore '''back''' baṭon linmẽ.",
+	"newarticletext": "Am do oka mitṭen joṛaoem pańja akada, onaṭak do bạnuḱa.\nOna sakam tear lạgit́te, latar reaḱ baksore ol ehoṕmẽ (arhõ jạsti baḍae lạgit́te [$1 help page] pańjaemẽ).\nAm do judi nonḍe vulkatem heć akan khan, tobe amaḱ sendrakore '''back''' baṭon linmẽ.",
 	"noarticletext": "Nitoḱ noa sakamre do ol bạnuḱa.\n\nYou can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],\nor [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.",
 	"noarticletext-nopermission": "Noa sakamre do nitoḱ o̠l banuḱa.\n\nYou can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,\nor <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>.",
 	"userpage-userdoesnotexist": "\"<nowiki>$1</nowiki>\" ńutuman jahãe beoharićaḱ ekaunṭ do baṅ resṭri hoeakana. Daya kate biḍạo katet́ ńelmẽ noa sakam do benoa/sompadonem menet́ kana se baṅ.",
@@ -602,7 +603,6 @@
 	"prefs-files": "Rẽtko",
 	"youremail": "E-mail:",
 	"username": "Beoharićaḱ ńutum:",
-	"uid": "Beoharićaḱ cinhạo nombor",
 	"yourrealname": "Sạri ńutum",
 	"yourlanguage": "Pạrsi:",
 	"gender-male": "Baba hoṛ",
@@ -720,7 +720,6 @@
 	"booksources-go": "Calaḱme",
 	"log": "Cạbiko",
 	"allpages": "joto sakam",
-	"alphaindexline": "$1 hạbić $2",
 	"allarticles": "Sanam sakam",
 	"allpagessubmit": "Calaḱme",
 	"categories": "rokom sokom",

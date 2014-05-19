@@ -73,7 +73,8 @@
 			"Ziko",
 			"Zylbath",
 			"לערי ריינהארט",
-			"✓"
+			"✓",
+			"XenonX3"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -879,7 +880,7 @@
 	"showhideselectedversions": "Gewählte Versionen zeigen/verstecken",
 	"editundo": "rückgängig machen",
 	"diff-empty": "(kein Unterschied)",
-	"diff-multi-sameuser": "({{PLURAL:$1|Eine dazwischenliegende Version des gleichen Benutzers wird|$1 dazwischenliegende Versionen des gleichen Benutzers werden}} nicht angezeigt)",
+	"diff-multi-sameuser": "({{PLURAL:$1|Eine dazwischenliegende Version desselben Benutzers wird|$1 dazwischenliegende Versionen desselben Benutzers werden}} nicht angezeigt)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Eine dazwischenliegende Version|$1 dazwischenliegende Versionen}} von {{PLURAL:$2|einem anderen Benutzer|$2 Benutzern}} werden nicht angezeigt)",
 	"diff-multi-manyusers": "({{PLURAL:$1|$1 dazwischenliegende Versionen}} von mehr als {{PLURAL:$2|$2 Benutzern}}, die nicht angezeigt werden)",
 	"difference-missing-revision": "{{PLURAL:$2|Eine Version|$2 Versionen}} dieser Unterschiedsanzeige ($1) {{PLURAL:$2|wurde|wurden}} nicht gefunden.\n\nDieser Fehler wird normalerweise von einem veralteten Link zur Versionsgeschichte einer Seite verursacht, die zwischenzeitlich gelöscht wurde.\nEinzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch] vorhanden.",

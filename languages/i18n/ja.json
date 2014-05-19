@@ -790,6 +790,7 @@
 	"revdelete-show-file-submit": "はい",
 	"revdelete-selected-text": "[[:$2]] の{{PLURAL:$1|選択された版}}:",
 	"logdelete-selected": "{{PLURAL:$1|選択された記録項目}}:",
+	"revdelete-text-text": "削除された版は履歴に表示され続けますが、一般の利用者が内容を閲覧できなくなります。",
 	"revdelete-text-others": "追加の制限を設定しない限り、{{SITENAME}} の他の管理者は非表示コンテンツにまだアクセスでき、この同じインターフェースを通してそれを復元することができます。",
 	"revdelete-confirm": "この操作を行おうとしていること、その結果を理解していること、[[{{MediaWiki:Policy-url}}|方針]]に従っていること、を確認してください。",
 	"revdelete-suppress-text": "秘匿は、<strong>以下の場合に限って</strong>使用すべきです:\n* 名誉毀損のおそれがある記述\n* 非公開個人情報\n*: <em>自宅の住所、電話番号、個人を識別できる公的な番号など</em>",
