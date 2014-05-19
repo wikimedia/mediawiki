@@ -22,15 +22,15 @@
 			}
 		},
 		// Keyed by ajax url and symbolic name for the individual request
-		deferreds = {};
+		promises = {};
 
-	// Pre-populate with fake ajax deferreds to save http requests for tokens
+	// Pre-populate with fake ajax promises to save http requests for tokens
 	// we already have on the page via the user.tokens module (bug 34733).
-	deferreds[ defaultOptions.ajax.url ] = {};
+	promises[ defaultOptions.ajax.url ] = {};
 	$.each( mw.user.tokens.get(), function ( key, value ) {
 		// This requires #getToken to use the same key as user.tokens.
 		// Format: token-type + "Token" (eg. editToken, patrolToken, watchToken).
-		deferreds[ defaultOptions.ajax.url ][ key ] = $.Deferred()
+		promises[ defaultOptions.ajax.url ][ key ] = $.Deferred()
 			.resolve( value )
 			.promise( { abort: function () {} } );
 	} );
@@ -266,7 +266,7 @@
 					function ( code ) {
 						if ( code === 'badtoken' ) {
 							// Clear from cache
-							deferreds[ api.defaults.ajax.url ][ tokenType + 'Token' ] =
+							promises[ api.defaults.ajax.url ][ tokenType + 'Token' ] =
 								params.token = undefined;
 
 							// Try again, once
@@ -294,39 +294,39 @@
 		 */
 		getToken: function ( type ) {
 			var apiPromise,
-				deferredGroup = deferreds[ this.defaults.ajax.url ],
-				d = deferredGroup && deferredGroup[ type + 'Token' ];
+				promiseGroup = promises[ this.defaults.ajax.url ],
+				d = promiseGroup && promiseGroup[ type + 'Token' ];
 
 			if ( !d ) {
-				d = $.Deferred();
+				apiPromise = this.get( { action: 'tokens', type: type } );
 
-				apiPromise = this.get( { action: 'tokens', type: type } )
-					.done( function ( data ) {
+				d = apiPromise
+					.then( function ( data ) {
 						// If token type is not available for this user,
-						// key '...token' is missing or can contain Boolean false
+						// key '...token' is either missing or set to boolean false
 						if ( data.tokens && data.tokens[type + 'token'] ) {
-							d.resolve( data.tokens[type + 'token'] );
-						} else {
-							d.reject( 'token-missing', data );
+							return data.tokens[type + 'token'];
 						}
+
+						return $.Deferred().reject( 'token-missing', data );
+					}, function () {
+						// Clear promise. Do not cache errors.
+						delete promiseGroup[ type + 'Token' ];
+
+						// Pass on to allow the caller to handle the error
+						return this;
 					} )
-					.fail( function ( code, result ) {
-						// Delete promise. Do not cache errors.
-						delete deferredGroup[ type + 'Token' ];
-						d.reject( code, result );
-					} );
+					// Attach abort handler
+					.promise( { abort: apiPromise.abort } );
 
-				// Attach abort handler
-				d.abort = apiPromise.abort;
-
-				// Store deferred now so that we can use this again even if it isn't ready yet
-				if ( !deferredGroup ) {
-					deferredGroup = deferreds[ this.defaults.ajax.url ] = {};
+				// Store deferred now so that we can use it again even if it isn't ready yet
+				if ( !promiseGroup ) {
+					promiseGroup = promises[ this.defaults.ajax.url ] = {};
 				}
-				deferredGroup[ type + 'Token' ] = d;
+				promiseGroup[ type + 'Token' ] = d;
 			}
 
-			return d.promise( { abort: d.abort } );
+			return d;
 		}
 	};
 
