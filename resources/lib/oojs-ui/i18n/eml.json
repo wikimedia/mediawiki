@@ -7,7 +7,11 @@
 	},
 	"ooui-dialog-action-close": "Sèra",
 	"ooui-outline-control-move-down": "Spôsta in bâs",
-	"ooui-outline-control-move-up": "Spôsta in êlt",
+	"ooui-outline-control-move-up": "Spôsta in êlta",
 	"ooui-outline-control-remove": "Tór vìa 'l elemèint",
-	"ooui-toolbar-more": "Êter"
+	"ooui-toolbar-more": "Êter",
+	"ooui-dialog-confirm-title": "Cunfirmèr",
+	"ooui-dialog-confirm-default-prompt": "Sî-'v sicùr?",
+	"ooui-dialog-confirm-default-ok": "'D acòrdi",
+	"ooui-dialog-confirm-default-cancel": "Scanślèr"
 }
