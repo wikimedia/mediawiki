@@ -1,5 +1,10 @@
 ( function ( mw, $ ) {
-	QUnit.module( 'mediawiki.toc', QUnit.newMwEnvironment() );
+	QUnit.module( 'mediawiki.toc', QUnit.newMwEnvironment( {
+		setup: function () {
+			// Prevent live cookies like mw_hidetoc=1 from interferring with the test
+			this.stub( $, 'cookie' ).returns( null );
+		}
+	} ) );
 
 	QUnit.asyncTest( 'toggleToc', 4, function ( assert ) {
 		var tocHtml, $toggleLink, $tocList;
