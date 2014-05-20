@@ -431,6 +431,20 @@ abstract class ContentHandler {
 	abstract public function serializeContent( Content $content, $format = null );
 
 	/**
+	 * Applies transformations on export (returns the blob unchanged per default).
+	 * Subclasses may override this to perform transformations such as conversion
+	 * of legacy formats or filtering of internal meta-data.
+	 *
+	 * @param string $blob The blob to be exported
+	 * @param string|null $format The blob's serialization format
+	 *
+	 * @return string
+	 */
+	public function exportTransform( $blob, $format = null ) {
+		return $blob;
+	}
+
+	/**
 	 * Unserializes a Content object of the type supported by this ContentHandler.
 	 *
 	 * @since 1.21
