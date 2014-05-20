@@ -153,6 +153,11 @@ class SpecialUpload extends SpecialPage {
 			throw new ErrorPageError( 'uploaddisabled', 'uploaddisabledtext' );
 		}
 
+		# Check if licenses are configured
+		if ( wfMessage( 'licenses' )->isDisabled() ) {
+			throw new ErrorPageError( 'uploaddisabled', 'upload-nolicenses' );
+		}
+
 		# Check permissions
 		$user = $this->getUser();
 		$permissionRequired = UploadBase::isAllowed( $user );

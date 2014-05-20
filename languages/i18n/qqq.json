@@ -1422,6 +1422,7 @@
 	"upload_directory_read_only": "Parameters:\n* $1 - directory name",
 	"uploaderror": "Used as section header in [[Special:Upload]].\n\nSee also:\n* {{msg-mw|upload-tryagain|Submit text}}",
 	"upload-summary": "{{doc-specialpagesummary|upload}}",
+	"upload-nolicenses": "This error is shown on [[Special:Upload]] when no license options are configured on [[MediaWiki:Licenses]].\n\nSee also [[mw:Manual:Image administration]].",
 	"upload-recreate-warning": "Used as warning in [[Special:Upload]].",
 	"uploadtext": "{{doc-important|<code>thumb</code> and <code>left</code> are magic words. Leave them untranslated!}}\nText displayed when uploading a file using [[Special:Upload]].",
 	"upload-permitted": "Used in [[Special:Upload]]. Parameters:\n* $1 - list of file types, defined in the variable [[mw:Special:MyLanguage/Manual:$wgFileExtensions|$wgFileExtensions]]\nSee also:\n* {{msg-mw|Upload-preferred}}\n* {{msg-mw|Upload-prohibited}}",
