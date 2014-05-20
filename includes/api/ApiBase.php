@@ -907,6 +907,7 @@ abstract class ApiBase extends ContextSource {
 			array(
 				array( 'invalidtitle', 'title' ),
 				array( 'nosuchpageid', 'pageid' ),
+				array( 'code' => 'pagecannotexist', 'info' => "Namespace doesn't allow actual pages" ),
 			)
 		);
 	}
