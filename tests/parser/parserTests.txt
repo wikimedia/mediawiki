@@ -413,12 +413,8 @@ Simple list
 * Item 1
 * Item 2
 !! html
-<ul>
-<li> Item 1
-</li>
-<li> Item 2
-</li>
-</ul>
+<ul><li> Item 1</li>
+<li> Item 2</li></ul>
 
 !! end
 
@@ -441,38 +437,21 @@ Italics and bold
 * plain l'''italic''plain
 * plain l''''bold''' plain
 !! html
-<ul>
-<li> plain
-</li>
-<li> plain<i>italic</i>plain
-</li>
-<li> plain<i>italic</i>plain<i>italic</i>plain
-</li>
-<li> plain<b>bold</b>plain
-</li>
-<li> plain<b>bold</b>plain<b>bold</b>plain
-</li>
-<li> plain<i>italic</i>plain<b>bold</b>plain
-</li>
-<li> plain<b>bold</b>plain<i>italic</i>plain
-</li>
-<li> plain<i>italic<b>bold-italic</b>italic</i>plain
-</li>
-<li> plain<b>bold<i>bold-italic</i>bold</b>plain
-</li>
-<li> plain<i><b>bold-italic</b>italic</i>plain
-</li>
-<li> plain<b><i>bold-italic</i>bold</b>plain
-</li>
-<li> plain<i>italic<b>bold-italic</b></i>plain
-</li>
-<li> plain<b>bold<i>bold-italic</i></b>plain
-</li>
-<li> plain l'<i>italic</i>plain
-</li>
-<li> plain l'<b>bold</b> plain
-</li>
-</ul>
+<ul><li> plain</li>
+<li> plain<i>italic</i>plain</li>
+<li> plain<i>italic</i>plain<i>italic</i>plain</li>
+<li> plain<b>bold</b>plain</li>
+<li> plain<b>bold</b>plain<b>bold</b>plain</li>
+<li> plain<i>italic</i>plain<b>bold</b>plain</li>
+<li> plain<b>bold</b>plain<i>italic</i>plain</li>
+<li> plain<i>italic<b>bold-italic</b>italic</i>plain</li>
+<li> plain<b>bold<i>bold-italic</i>bold</b>plain</li>
+<li> plain<i><b>bold-italic</b>italic</i>plain</li>
+<li> plain<b><i>bold-italic</i>bold</b>plain</li>
+<li> plain<i>italic<b>bold-italic</b></i>plain</li>
+<li> plain<b>bold<i>bold-italic</i></b>plain</li>
+<li> plain l'<i>italic</i>plain</li>
+<li> plain l'<b>bold</b> plain</li></ul>
 
 !! end
 
@@ -1215,24 +1194,12 @@ nowiki 3
 *There is not nowiki.
 *There is <nowiki>nowiki</nowiki>.
 !! html
-<dl>
-<dd>There is not nowiki.
-</dd>
-<dd>There is nowiki.
-</dd>
-</dl>
-<ol>
-<li>There is not nowiki.
-</li>
-<li>There is nowiki.
-</li>
-</ol>
-<ul>
-<li>There is not nowiki.
-</li>
-<li>There is nowiki.
-</li>
-</ul>
+<dl><dd>There is not nowiki.</dd>
+<dd>There is nowiki.</dd></dl>
+<ol><li>There is not nowiki.</li>
+<li>There is nowiki.</li></ol>
+<ul><li>There is not nowiki.</li>
+<li>There is nowiki.</li></ul>
 
 !! end
 
@@ -2085,10 +2052,7 @@ Templates: Strip leading and trailing whitespace from named-param values
 </p><p>b
 </p><p>c
 </p>
-<ul>
-<li> d
-</li>
-</ul>
+<ul><li> d</li></ul>
 
 !! end
 
@@ -2129,10 +2093,7 @@ Templates: Don't strip whitespace from positional-param values
 </pre>
 <p><br />
 </p>
-<ul>
-<li> f
-</li>
-</ul>
+<ul><li> f</li></ul>
 <p><br />
 </p>
 <pre>g
@@ -2733,11 +2694,8 @@ Simple definition
 !! wikitext
 ; name : Definition
 !! html
-<dl>
-<dt> name&#160;</dt>
-<dd> Definition
-</dd>
-</dl>
+<dl><dt> name&#160;</dt>
+<dd> Definition</dd></dl>
 
 !! end
 
@@ -2746,10 +2704,7 @@ Definition list for indentation only
 !! wikitext
 : Indented text
 !! html
-<dl>
-<dd> Indented text
-</dd>
-</dl>
+<dl><dd> Indented text</dd></dl>
 
 !! end
 
@@ -2758,11 +2713,8 @@ Definition list with no space
 !! wikitext
 ;name:Definition
 !! html
-<dl>
-<dt>name</dt>
-<dd>Definition
-</dd>
-</dl>
+<dl><dt>name</dt>
+<dd>Definition</dd></dl>
 
 !!end
 
@@ -2771,11 +2723,8 @@ Definition list with URL link
 !! wikitext
 ; http://example.com/ : definition
 !! html
-<dl>
-<dt> <a rel="nofollow" class="external free" href="http://example.com/">http://example.com/</a>&#160;</dt>
-<dd> definition
-</dd>
-</dl>
+<dl><dt> <a rel="nofollow" class="external free" href="http://example.com/">http://example.com/</a>&#160;</dt>
+<dd> definition</dd></dl>
 
 !! end
 
@@ -2784,11 +2733,8 @@ Definition list with bracketed URL link
 !! wikitext
 ;[http://www.example.com/ Example]:Something about it
 !! html
-<dl>
-<dt><a rel="nofollow" class="external text" href="http://www.example.com/">Example</a></dt>
-<dd>Something about it
-</dd>
-</dl>
+<dl><dt><a rel="nofollow" class="external text" href="http://www.example.com/">Example</a></dt>
+<dd>Something about it</dd></dl>
 
 !! end
 
@@ -2797,11 +2743,8 @@ Definition list with wikilink containing colon
 !! wikitext
 ; [[Help:FAQ]]: The least-read page on Wikipedia
 !! html
-<dl>
-<dt> <a href="/index.php?title=Help:FAQ&amp;action=edit&amp;redlink=1" class="new" title="Help:FAQ (page does not exist)">Help:FAQ</a></dt>
-<dd> The least-read page on Wikipedia
-</dd>
-</dl>
+<dl><dt> <a href="/index.php?title=Help:FAQ&amp;action=edit&amp;redlink=1" class="new" title="Help:FAQ (page does not exist)">Help:FAQ</a></dt>
+<dd> The least-read page on Wikipedia</dd></dl>
 
 !! end
 
@@ -2811,11 +2754,8 @@ Definition list with news link containing colon
 !! wikitext
 ;  news:alt.wikipedia.rox: This isn't even a real newsgroup!
 !! html
-<dl>
-<dt>  <a rel="nofollow" class="external free" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a></dt>
-<dd> This isn't even a real newsgroup!
-</dd>
-</dl>
+<dl><dt>  <a rel="nofollow" class="external free" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a></dt>
+<dd> This isn't even a real newsgroup!</dd></dl>
 
 !! end
 
@@ -2824,10 +2764,7 @@ Malformed definition list with colon
 !! wikitext
 ;  news:alt.wikipedia.rox -- don't crash or enter an infinite loop
 !! html
-<dl>
-<dt>  <a rel="nofollow" class="external free" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a> -- don't crash or enter an infinite loop
-</dt>
-</dl>
+<dl><dt>  <a rel="nofollow" class="external free" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a> -- don't crash or enter an infinite loop</dt></dl>
 
 !! end
 
@@ -2836,11 +2773,8 @@ Definition lists: colon in external link text
 !! wikitext
 ; [http://www.wikipedia2.org/ Wikipedia : The Next Generation]: OK, I made that up
 !! html
-<dl>
-<dt> <a rel="nofollow" class="external text" href="http://www.wikipedia2.org/">Wikipedia&#160;: The Next Generation</a></dt>
-<dd> OK, I made that up
-</dd>
-</dl>
+<dl><dt> <a rel="nofollow" class="external text" href="http://www.wikipedia2.org/">Wikipedia&#160;: The Next Generation</a></dt>
+<dd> OK, I made that up</dd></dl>
 
 !! end
 
@@ -2849,10 +2783,7 @@ Definition lists: colon in HTML attribute
 !! wikitext
 ;<b style="display: inline">bold</b>
 !! html
-<dl>
-<dt><b style="display: inline">bold</b>
-</dt>
-</dl>
+<dl><dt><b style="display: inline">bold</b></dt></dl>
 
 !! end
 
@@ -2861,11 +2792,8 @@ Definition lists: self-closed tag
 !! wikitext
 ;one<br/>two : two-line fun
 !! html
-<dl>
-<dt>one<br />two&#160;</dt>
-<dd> two-line fun
-</dd>
-</dl>
+<dl><dt>one<br />two&#160;</dt>
+<dd> two-line fun</dd></dl>
 
 !! end
 
@@ -2897,15 +2825,9 @@ Definition and unordered list using wiki syntax nested in unordered list using h
 </li></ul>
 !! html
 <ul><li>
-<dl>
-<dt> term&#160;</dt>
-<dd> description
-</dd>
-</dl>
-<ul>
-<li> unordered
-</li>
-</ul>
+<dl><dt> term&#160;</dt>
+<dd> description</dd></dl>
+<ul><li> unordered</li></ul>
 </li></ul>
 
 !! end
@@ -2917,11 +2839,8 @@ Definition list with empty definition and following paragraph
 ; term:
 Paragraph text
 !! html
-<dl>
-<dt> term</dt>
-<dd>
-</dd>
-</dl>
+<dl><dt> term</dt>
+<dd></dd></dl>
 <p>Paragraph text
 </p>
 !! end
@@ -2929,17 +2848,9 @@ Paragraph text
 !! test
 Nested definition lists using html syntax
 !! wikitext
-<dl><dd>
-<dl>
-<dd>Foo</dd>
-</dl>
-</dd></dl>
-!! html
-<dl><dd>
-<dl>
-<dd>Foo</dd>
-</dl>
-</dd></dl>
+<dl><dt>x</dt>
+<dd>a</dd>
+<dd>b</dd></dl>
 
 !! end
 
@@ -2950,14 +2861,9 @@ Definition Lists: No nesting: Multiple dd's
 :a
 :b
 !! html
-<dl>
-<dt>x
-</dt>
-<dd>a
-</dd>
-<dd>b
-</dd>
-</dl>
+<dl><dt>x</dt>
+<dd>a</dd>
+<dd>b</dd></dl>
 
 !! end
 
@@ -2968,18 +2874,9 @@ Definition Lists: Indentation: Regular
 ::i2
 :::i3
 !! html
-<dl>
-<dd>i1
-<dl>
-<dd>i2
-<dl>
-<dd>i3
-</dd>
-</dl>
-</dd>
-</dl>
-</dd>
-</dl>
+<dl><dd>i1
+<dl><dd>i2
+<dl><dd>i3</dd></dl></dd></dl></dd></dl>
 
 !! end
 
@@ -2989,17 +2886,8 @@ Definition Lists: Indentation: Missing 1st level
 ::i2
 :::i3
 !! html
-<dl>
-<dd><dl>
-<dd>i2
-<dl>
-<dd>i3
-</dd>
-</dl>
-</dd>
-</dl>
-</dd>
-</dl>
+<dl><dd><dl><dd>i2
+<dl><dd>i3</dd></dl></dd></dl></dd></dl>
 
 !! end
 
@@ -3008,16 +2896,7 @@ Definition Lists: Indentation: Multi-level indent
 !! wikitext
 :::i3
 !! html
-<dl>
-<dd><dl>
-<dd><dl>
-<dd>i3
-</dd>
-</dl>
-</dd>
-</dl>
-</dd>
-</dl>
+<dl><dd><dl><dd><dl><dd>i3</dd></dl></dd></dl></dd></dl>
 
 !! end
 
@@ -3139,17 +3018,11 @@ Table / list interaction: indented table with lists in table contents
 
 <tr>
 <td> a
-<ul>
-<li> b
-</li>
-</ul>
+<ul><li> b</li></ul>
 </td></tr>
 <tr>
 <td> c
-<ul>
-<li> d
-</li>
-</ul>
+<ul><li> d</li></ul>
 </td></tr></table></dd></dl>
 
 !! end
@@ -3172,27 +3045,15 @@ Table / list interaction: lists nested in tables nested in indented lists
 <dl><dd><table>
 <tr>
 <td>
-<dl>
-<dd>a
-</dd>
-<dd>b
-</dd>
-</dl>
+<dl><dd>a</dd>
+<dd>b</dd></dl>
 </td>
 <td>
-<ul>
-<li>c
-</li>
-<li>d
-</li>
-</ul>
+<ul><li>c</li>
+<li>d</li></ul>
 </td></tr></table></dd></dl>
-<ul>
-<li>e
-</li>
-<li>f
-</li>
-</ul>
+<ul><li>e</li>
+<li>f</li></ul>
 
 !!end
 
@@ -3280,18 +3141,8 @@ Definition Lists: Nesting: Test 4
 ::;t3
 :::d3
 !! html
-<dl>
-<dd><dl>
-<dd><dl>
-<dt>t3
-</dt>
-<dd>d3
-</dd>
-</dl>
-</dd>
-</dl>
-</dd>
-</dl>
+<dl><dd><dl><dd><dl><dt>t3</dt>
+<dd>d3</dd></dl></dd></dl></dd></dl>
 
 !! end
 
@@ -3306,22 +3157,9 @@ Definition Lists: Mixed Lists: Test 1
 ::* bar
 :; baz
 !! html/php
-<dl>
-<dd><dl>
-<dt><ul>
-<li> foo
-</li>
-<li> bar
-</li>
-</ul>
-</dt>
-</dl>
-<dl>
-<dt> baz
-</dt>
-</dl>
-</dd>
-</dl>
+<dl><dd><dl><dt><ul><li> foo</li>
+<li> bar</li></ul></dt></dl>
+<dl><dt> baz</dt></dl></dd></dl>
 
 !! html/parsoid
 <dl>
@@ -3345,15 +3183,8 @@ Definition Lists: Mixed Lists: Test 2
 *: d1
 *: d2
 !! html
-<ul>
-<li><dl>
-<dd> d1
-</dd>
-<dd> d2
-</dd>
-</dl>
-</li>
-</ul>
+<ul><li><dl><dd> d1</dd>
+<dd> d2</dd></dl></li></ul>
 
 !! end
 
@@ -3364,21 +3195,8 @@ Definition Lists: Mixed Lists: Test 3
 *::: d1
 *::: d2
 !! html
-<ul>
-<li><dl>
-<dd><dl>
-<dd><dl>
-<dd> d1
-</dd>
-<dd> d2
-</dd>
-</dl>
-</dd>
-</dl>
-</dd>
-</dl>
-</li>
-</ul>
+<ul><li><dl><dd><dl><dd><dl><dd> d1</dd>
+<dd> d2</dd></dl></dd></dl></dd></dl></li></ul>
 
 !! end
 
@@ -3389,17 +3207,10 @@ Definition Lists: Mixed Lists: Test 4
 *;d1 :d2
 *;d3 :d4
 !! html
-<ul>
-<li><dl>
-<dt>d1&#160;</dt>
-<dd>d2
-</dd>
+<ul><li><dl><dt>d1&#160;</dt>
+<dd>d2</dd>
 <dt>d3&#160;</dt>
-<dd>d4
-</dd>
-</dl>
-</li>
-</ul>
+<dd>d4</dd></dl></li></ul>
 
 !! end
 
@@ -3410,17 +3221,8 @@ Definition Lists: Mixed Lists: Test 5
 *:d1
 *:: d2
 !! html
-<ul>
-<li><dl>
-<dd>d1
-<dl>
-<dd> d2
-</dd>
-</dl>
-</dd>
-</dl>
-</li>
-</ul>
+<ul><li><dl><dd>d1
+<dl><dd> d2</dd></dl></dd></dl></li></ul>
 
 !! end
 
@@ -3431,23 +3233,8 @@ Definition Lists: Mixed Lists: Test 6
 #*:d1
 #*::: d3
 !! html
-<ol>
-<li><ul>
-<li><dl>
-<dd>d1
-<dl>
-<dd><dl>
-<dd> d3
-</dd>
-</dl>
-</dd>
-</dl>
-</dd>
-</dl>
-</li>
-</ul>
-</li>
-</ol>
+<ol><li><ul><li><dl><dd>d1
+<dl><dd><dl><dd> d3</dd></dl></dd></dl></dd></dl></li></ul></li></ol>
 
 !! end
 
@@ -3458,15 +3245,8 @@ Definition Lists: Mixed Lists: Test 7
 :* d1
 :* d2
 !! html
-<dl>
-<dd><ul>
-<li> d1
-</li>
-<li> d2
-</li>
-</ul>
-</dd>
-</dl>
+<dl><dd><ul><li> d1</li>
+<li> d2</li></ul></dd></dl>
 
 !! end
 
@@ -3477,20 +3257,8 @@ Definition Lists: Mixed Lists: Test 8
 :* d1
 ::* d2
 !! html
-<dl>
-<dd><ul>
-<li> d1
-</li>
-</ul>
-<dl>
-<dd><ul>
-<li> d2
-</li>
-</ul>
-</dd>
-</dl>
-</dd>
-</dl>
+<dl><dd><ul><li> d1</li></ul>
+<dl><dd><ul><li> d2</li></ul></dd></dl></dd></dl>
 
 !! end
 
@@ -3500,14 +3268,8 @@ Definition Lists: Mixed Lists: Test 9
 !! wikitext
 *;foo :bar
 !! html
-<ul>
-<li><dl>
-<dt>foo&#160;</dt>
-<dd>bar
-</dd>
-</dl>
-</li>
-</ul>
+<ul><li><dl><dt>foo&#160;</dt>
+<dd>bar</dd></dl></li></ul>
 
 !! end
 
@@ -3517,17 +3279,8 @@ Definition Lists: Mixed Lists: Test 10
 !! wikitext
 *#;foo :bar
 !! html
-<ul>
-<li><ol>
-<li><dl>
-<dt>foo&#160;</dt>
-<dd>bar
-</dd>
-</dl>
-</li>
-</ol>
-</li>
-</ul>
+<ul><li><ol><li><dl><dt>foo&#160;</dt>
+<dd>bar</dd></dl></li></ol></li></ul>
 
 !! end
 
@@ -3542,37 +3295,10 @@ Definition Lists: Mixed Lists: Test 11
 *#*#;*;;foo :bar
 *#*#;boo :baz
 !! html/php
-<ul>
-<li><ol>
-<li><ul>
-<li><ol>
-<li><dl>
-<dt>foo&#160;</dt>
-<dd><ul>
-<li><dl>
-<dt><dl>
-<dt>bar
-</dt>
-</dl>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-<dl>
-<dt>boo&#160;</dt>
-<dd>baz
-</dd>
-</dl>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
+<ul><li><ol><li><ul><li><ol><li><dl><dt>foo&#160;</dt>
+<dd><ul><li><dl><dt><dl><dt>bar</dt></dl></dd></dl></li></ul></dd></dl>
+<dl><dt>boo&#160;</dt>
+<dd>baz</dd></dl></li></ol></li></ul></li></ol></li></ul>
 
 !! html/parsoid
 <ul>
@@ -3610,32 +3336,8 @@ Definition Lists: Weird Ones: Test 1
 !! wikitext
 *#;*::;; foo : bar (who uses this?)
 !! html/php
-<ul>
-<li><ol>
-<li><dl>
-<dt> foo&#160;</dt>
-<dd><ul>
-<li><dl>
-<dd><dl>
-<dd><dl>
-<dt><dl>
-<dt> bar (who uses this?)
-</dt>
-</dl>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ol>
-</li>
-</ul>
+<ul><li><ol><li><dl><dt> foo&#160;</dt>
+<dd><ul><li><dl><dd><dl><dd><dl><dt><dl><dt> bar (who uses this?)</dt></dl></dd></dl></dd></dl></dd></dl></li></ul></dd></dl></li></ol></li></ul>
 
 !! html/parsoid
 <ul>
@@ -6186,12 +5888,8 @@ Interwiki link encoding conversion (bug 1636)
 *[[Wikipedia:ro:Olteni&#0355;a]]
 *[[Wikipedia:ro:Olteni&#355;a]]
 !! html
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a>
-</li>
-<li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a>
-</li>
-</ul>
+<ul><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a></li>
+<li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a></li></ul>
 
 !! end
 
@@ -6705,14 +6403,9 @@ Common list
 * item 2
 *item 3
 !! html
-<ul>
-<li>Common list
-</li>
-<li> item 2
-</li>
-<li>item 3
-</li>
-</ul>
+<ul><li>Common list</li>
+<li> item 2</li>
+<li>item 3</li></ul>
 
 !! end
 
@@ -6723,14 +6416,9 @@ Numbered list
 #item 2
 # item 3
 !! html
-<ol>
-<li>Numbered list
-</li>
-<li>item 2
-</li>
-<li> item 3
-</li>
-</ol>
+<ol><li>Numbered list</li>
+<li>item 2</li>
+<li> item 3</li></ol>
 
 !! end
 
@@ -6753,67 +6441,21 @@ Mixed list
 *** Level 3
 #** Level 3, but ordered
 !! html
-<ul>
-<li>Mixed list
-<ol>
-<li> with numbers
-</li>
-</ol>
-<ul>
-<li> and bullets
-</li>
-</ul>
-<ol>
-<li> and numbers
-</li>
-</ol>
-</li>
+<ul><li>Mixed list
+<ol><li> with numbers</li></ol>
+<ul><li> and bullets</li></ul>
+<ol><li> and numbers</li></ol></li>
 <li>bullets again
-<ul>
+<ul><li>bullet level 2
+<ul><li>bullet level 3
+<ol><li>Number on level 4</li></ol></li></ul></li>
 <li>bullet level 2
-<ul>
-<li>bullet level 3
-<ol>
-<li>Number on level 4
-</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>bullet level 2
-<ol>
-<li>Number on level 3
-</li>
-<li>Number on level 3
-</li>
-</ol>
-</li>
-</ul>
-<ol>
-<li>number level 2
-</li>
-</ol>
-</li>
+<ol><li>Number on level 3</li>
+<li>Number on level 3</li></ol></li></ul>
+<ol><li>number level 2</li></ol></li>
 <li>Level 1
-<ul>
-<li><ul>
-<li> Level 3
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li><ul>
-<li><ul>
-<li> Level 3, but ordered
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
+<ul><li><ul><li> Level 3</li></ul></li></ul></li></ul>
+<ol><li><ul><li><ul><li> Level 3, but ordered</li></ul></li></ul></li></ol>
 
 !! end
 
@@ -6823,14 +6465,8 @@ Nested lists 1
 *foo
 **bar
 !! html
-<ul>
-<li>foo
-<ul>
-<li>bar
-</li>
-</ul>
-</li>
-</ul>
+<ul><li>foo
+<ul><li>bar</li></ul></li></ul>
 
 !! end
 
@@ -6840,15 +6476,8 @@ Nested lists 2
 **foo
 *bar
 !! html
-<ul>
-<li><ul>
-<li>foo
-</li>
-</ul>
-</li>
-<li>bar
-</li>
-</ul>
+<ul><li><ul><li>foo</li></ul></li>
+<li>bar</li></ul>
 
 !! end
 
@@ -6858,14 +6487,8 @@ Nested lists 3 (first element empty)
 *
 **bar
 !! html
-<ul>
-<li>
-<ul>
-<li>bar
-</li>
-</ul>
-</li>
-</ul>
+<ul><li>
+<ul><li>bar</li></ul></li></ul>
 
 !! end
 
@@ -6875,15 +6498,8 @@ Nested lists 4 (first element empty)
 **
 *bar
 !! html
-<ul>
-<li><ul>
-<li>
-</li>
-</ul>
-</li>
-<li>bar
-</li>
-</ul>
+<ul><li><ul><li></li></ul></li>
+<li>bar</li></ul>
 
 !! end
 
@@ -6893,15 +6509,8 @@ Nested lists 5 (both elements empty)
 **
 *
 !! html
-<ul>
-<li><ul>
-<li>
-</li>
-</ul>
-</li>
-<li>
-</li>
-</ul>
+<ul><li><ul><li></li></ul></li>
+<li></li></ul>
 
 !! end
 
@@ -6911,14 +6520,8 @@ Nested lists 6 (both elements empty)
 *
 **
 !! html
-<ul>
-<li>
-<ul>
-<li>
-</li>
-</ul>
-</li>
-</ul>
+<ul><li>
+<ul><li></li></ul></li></ul>
 
 !! end
 
@@ -6927,16 +6530,7 @@ Nested lists 7 (skip initial nesting levels)
 !! wikitext
 *** foo
 !! html
-<ul>
-<li><ul>
-<li><ul>
-<li> foo
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<ul><li><ul><li><ul><li> foo</li></ul></li></ul></li></ul>
 
 !! end
 
@@ -6948,21 +6542,10 @@ Nested lists 8 (multiple nesting transitions)
 ** baz
 * boo
 !! html
-<ul>
-<li> foo
-<ul>
-<li><ul>
-<li> bar
-</li>
-</ul>
-</li>
-<li> baz
-</li>
-</ul>
-</li>
-<li> boo
-</li>
-</ul>
+<ul><li> foo
+<ul><li><ul><li> bar</li></ul></li>
+<li> baz</li></ul></li>
+<li> boo</li></ul>
 
 !! end
 
@@ -6973,14 +6556,9 @@ Nested lists 8 (multiple nesting transitions)
 *<!--cmt-->bar
 <!--cmt-->*baz
 !! html
-<ul>
-<li>foo
-</li>
-<li>bar
-</li>
-<li>baz
-</li>
-</ul>
+<ul><li>foo</li>
+<li>bar</li>
+<li>baz</li></ul>
 
 !! end
 
@@ -6990,12 +6568,8 @@ Nested lists 8 (multiple nesting transitions)
 *foo {{echo|bar
 }}*baz
 !! html
-<ul>
-<li>foo bar
-</li>
-<li>baz
-</li>
-</ul>
+<ul><li>foo bar</li>
+<li>baz</li></ul>
 
 !! end
 
@@ -7006,14 +6580,9 @@ List items are not parsed correctly following a <pre> block (bug 785)
 * <pre>bar</pre>
 * zar
 !! html
-<ul>
-<li> <pre>foo</pre>
-</li>
-<li> <pre>bar</pre>
-</li>
-<li> zar
-</li>
-</ul>
+<ul><li> <pre>foo</pre></li>
+<li> <pre>bar</pre></li>
+<li> zar</li></ul>
 
 !! end
 
@@ -7032,30 +6601,15 @@ List items from template
 * notSOL{{inner list}}
 * item 2
 !! html
-<ul>
-<li> item 1
-</li>
-<li> item 2
-</li>
-</ul>
-<ul>
-<li> item 0
-</li>
-<li> item 1
-</li>
-<li> item 2
-</li>
-</ul>
-<ul>
-<li> item 0
-</li>
-<li> notSOL
-</li>
-<li> item 1
-</li>
-<li> item 2
-</li>
-</ul>
+<ul><li> item 1</li>
+<li> item 2</li></ul>
+<ul><li> item 0</li>
+<li> item 1</li>
+<li> item 2</li></ul>
+<ul><li> item 0</li>
+<li> notSOL</li>
+<li> item 1</li>
+<li> item 2</li></ul>
 
 !! end
 
@@ -7068,22 +6622,10 @@ List interrupted by empty line or heading
 == A heading ==
 * Another list item
 !! html
-<ul>
-<li> foo
-</li>
-</ul>
-<ul>
-<li><ul>
-<li> bar
-</li>
-</ul>
-</li>
-</ul>
+<ul><li> foo</li></ul>
+<ul><li><ul><li> bar</li></ul></li></ul>
 <h2><span class="mw-headline" id="A_heading">A heading</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: A heading">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<ul>
-<li> Another list item
-</li>
-</ul>
+<ul><li> Another list item</li></ul>
 
 !!end
 
@@ -7113,16 +6655,10 @@ Single-comment whitespace lines dont break lists, and neither do multi-comment w
  <!--foo--> <!----> <!--This line NOT split the list either--> 
 *d
 !! html
-<ul>
-<li>a
-</li>
-<li>b
-</li>
-<li>c
-</li>
-<li>d
-</li>
-</ul>
+<ul><li>a</li>
+<li>b</li>
+<li>c</li>
+<li>d</li></ul>
 
 !!end
 
@@ -7138,16 +6674,10 @@ Replacing whitespace with tabs still doesn't break the list (gerrit 78327)
         either-->	 
 *d
 !! html
-<ul>
-<li>a
-</li>
-<li>b
-</li>
-<li>c
-</li>
-<li>d
-</li>
-</ul>
+<ul><li>a</li>
+<li>b</li>
+<li>c</li>
+<li>d</li></ul>
 
 !!end
 
@@ -7465,36 +6995,20 @@ Magic Words LOCAL (UTC)
 * {{LOCALDOW}}
 * {{LOCALTIMESTAMP}}
 !! html
-<ul>
-<li> 01
-</li>
-<li> 1
-</li>
-<li> January
-</li>
-<li> January
-</li>
-<li> Jan
-</li>
-<li> 1
-</li>
-<li> 01
-</li>
-<li> Thursday
-</li>
-<li> 1970
-</li>
-<li> 00:02
-</li>
-<li> 00
-</li>
-<li> 1
-</li>
-<li> 4
-</li>
-<li> 19700101000203
-</li>
-</ul>
+<ul><li> 01</li>
+<li> 1</li>
+<li> January</li>
+<li> January</li>
+<li> Jan</li>
+<li> 1</li>
+<li> 01</li>
+<li> Thursday</li>
+<li> 1970</li>
+<li> 00:02</li>
+<li> 00</li>
+<li> 1</li>
+<li> 4</li>
+<li> 19700101000203</li></ul>
 
 !! end
 
@@ -9362,12 +8876,8 @@ unused}}}}
 *{{echo|b {{nonexistent|
 unused}}}}
 !! html
-<ul>
-<li>a <a href="/index.php?title=Template:Nonexistent&amp;action=edit&amp;redlink=1" class="new" title="Template:Nonexistent (page does not exist)">Template:Nonexistent</a>
-</li>
-<li>b <a href="/index.php?title=Template:Nonexistent&amp;action=edit&amp;redlink=1" class="new" title="Template:Nonexistent (page does not exist)">Template:Nonexistent</a>
-</li>
-</ul>
+<ul><li>a <a href="/index.php?title=Template:Nonexistent&amp;action=edit&amp;redlink=1" class="new" title="Template:Nonexistent (page does not exist)">Template:Nonexistent</a></li>
+<li>b <a href="/index.php?title=Template:Nonexistent&amp;action=edit&amp;redlink=1" class="new" title="Template:Nonexistent (page does not exist)">Template:Nonexistent</a></li></ul>
 
 !!end
 
@@ -15078,13 +14588,7 @@ Handling of &#x0A; in URLs
 !! wikitext
 ** irc://&#x0A;a
 !! html/php
-<ul>
-<li><ul>
-<li> <a rel="nofollow" class="external free" href="irc://%0Aa">irc://%0Aa</a>
-</li>
-</ul>
-</li>
-</ul>
+<ul><li><ul><li> <a rel="nofollow" class="external free" href="irc://%0Aa">irc://%0Aa</a></li></ul></li></ul>
 
 !! html/parsoid
 <ul><li><ul><li> <a rel="mw:ExtLink" href="irc://
@@ -15097,13 +14601,7 @@ Handling of %0A in URLs
 !! wikitext
 ** irc://%0Aa
 !! html/php
-<ul>
-<li><ul>
-<li> <a rel="nofollow" class="external free" href="irc://%0Aa">irc://%0Aa</a>
-</li>
-</ul>
-</li>
-</ul>
+<ul><li><ul><li> <a rel="nofollow" class="external free" href="irc://%0Aa">irc://%0Aa</a></li></ul></li></ul>
 
 !! html/parsoid
 <ul><li><ul><li> <a rel="mw:ExtLink" href="irc://%0Aa">irc://%0Aa</a></li></ul></li></ul>
@@ -15186,52 +14684,28 @@ title=[[Parser test]]
 * {{SUBJECTSPACEE}}
 * {{Dynamic|{{NUMBEROFUSERS}}|{{NUMBEROFPAGES}}|{{CURRENTVERSION}}|{{CONTENTLANGUAGE}}|{{DIRECTIONMARK}}|{{CURRENTTIMESTAMP}}|{{NUMBEROFARTICLES}}}}
 !! html
-<ul>
-<li> Parser test
-</li>
-<li> Parser_test
-</li>
-<li> Parser test
-</li>
-<li> Parser_test
-</li>
-<li> Parser test
-</li>
-<li> Parser_test
-</li>
-<li> Parser test
-</li>
-<li> Parser_test
-</li>
-<li> Parser test
-</li>
-<li> Parser_test
-</li>
-<li> Talk:Parser test
-</li>
-<li> Talk:Parser_test
-</li>
-<li> Parser test
-</li>
-<li> Parser_test
-</li>
-<li> 
-</li>
-<li> 
-</li>
-<li> 0
-</li>
-<li> Talk
-</li>
-<li> Talk
-</li>
-<li> 
-</li>
-<li> 
-</li>
-<li> <a href="/index.php?title=Template:Dynamic&amp;action=edit&amp;redlink=1" class="new" title="Template:Dynamic (page does not exist)">Template:Dynamic</a>
-</li>
-</ul>
+<ul><li> Parser test</li>
+<li> Parser_test</li>
+<li> Parser test</li>
+<li> Parser_test</li>
+<li> Parser test</li>
+<li> Parser_test</li>
+<li> Parser test</li>
+<li> Parser_test</li>
+<li> Parser test</li>
+<li> Parser_test</li>
+<li> Talk:Parser test</li>
+<li> Talk:Parser_test</li>
+<li> Parser test</li>
+<li> Parser_test</li>
+<li> </li>
+<li> </li>
+<li> 0</li>
+<li> Talk</li>
+<li> Talk</li>
+<li> </li>
+<li> </li>
+<li> <a href="/index.php?title=Template:Dynamic&amp;action=edit&amp;redlink=1" class="new" title="Template:Dynamic (page does not exist)">Template:Dynamic</a></li></ul>
 
 !! end
 ### Note: Above tests excludes the "{{NUMBEROFADMINS}}" magic word because it generates a MySQL error when included.
@@ -15819,17 +15293,12 @@ Definition list code coverage
 ; title : def
 ;title: def
 !! html
-<dl>
-<dt> title  &#160;</dt>
-<dd> def
-</dd>
+<dl><dt> title  &#160;</dt>
+<dd> def</dd>
 <dt> title&#160;</dt>
-<dd> def
-</dd>
+<dd> def</dd>
 <dt>title</dt>
-<dd> def
-</dd>
-</dl>
+<dd> def</dd></dl>
 
 !! end
 
@@ -16565,12 +16034,8 @@ Bug 529: Uncovered bullet
 !! wikitext
 * Foo {{bullet}}
 !! html
-<ul>
-<li> Foo 
-</li>
-<li> Bar
-</li>
-</ul>
+<ul><li> Foo </li>
+<li> Bar</li></ul>
 
 !! end
 
@@ -16585,30 +16050,8 @@ Bug 529: Uncovered bullet leaving empty list, normally removed by tidy
 !! wikitext
 ******* Foo {{bullet}}
 !! html
-<ul>
-<li><ul>
-<li><ul>
-<li><ul>
-<li><ul>
-<li><ul>
-<li><ul>
-<li> Foo 
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li> Bar
-</li>
-</ul>
+<ul><li><ul><li><ul><li><ul><li><ul><li><ul><li><ul><li> Foo </li></ul></li></ul></li></ul></li></ul></li></ul></li></ul></li>
+<li> Bar</li></ul>
 
 !! end
 
@@ -16640,12 +16083,8 @@ Bug 529: Uncovered bullet in parser function result
 !! wikitext
 * Foo {{lc:{{bullet}} }}
 !! html
-<ul>
-<li> Foo 
-</li>
-<li> bar
-</li>
-</ul>
+<ul><li> Foo </li>
+<li> bar</li></ul>
 
 !! end
 
@@ -18821,38 +18260,14 @@ Lists: 1. Nested inside html
 
 #<nowiki>;foo</nowiki>
 !! html
-<ul>
-<li>*foo
-</li>
-</ul>
-<ul>
-<li>#foo
-</li>
-</ul>
-<ul>
-<li>:foo
-</li>
-</ul>
-<ul>
-<li>;foo
-</li>
-</ul>
-<ol>
-<li>*foo
-</li>
-</ol>
-<ol>
-<li>#foo
-</li>
-</ol>
-<ol>
-<li>:foo
-</li>
-</ol>
-<ol>
-<li>;foo
-</li>
-</ol>
+<ul><li>*foo</li></ul>
+<ul><li>#foo</li></ul>
+<ul><li>:foo</li></ul>
+<ul><li>;foo</li></ul>
+<ol><li>*foo</li></ol>
+<ol><li>#foo</li></ol>
+<ol><li>:foo</li></ol>
+<ol><li>;foo</li></ol>
 
 !!end
 
@@ -18868,24 +18283,11 @@ Lists: 2. Inside definition lists
 
 :<nowiki>:foo</nowiki>
 !! html
-<dl>
-<dt>;foo
-</dt>
-</dl>
-<dl>
-<dt>:foo
-</dt>
-</dl>
-<dl>
-<dt>:foo
-</dt>
-<dd>bar
-</dd>
-</dl>
-<dl>
-<dd>:foo
-</dd>
-</dl>
+<dl><dt>;foo</dt></dl>
+<dl><dt>:foo</dt></dl>
+<dl><dt>:foo</dt>
+<dd>bar</dd></dl>
+<dl><dd>:foo</dd></dl>
 
 !!end
 
@@ -18896,14 +18298,8 @@ Lists: 3. Only bullets at start of text should be escaped
 
 *<nowiki>*foo</nowiki>''it''*bar
 !! html
-<ul>
-<li>*foo*bar
-</li>
-</ul>
-<ul>
-<li>*foo<i>it</i>*bar
-</li>
-</ul>
+<ul><li>*foo*bar</li></ul>
+<ul><li>*foo<i>it</i>*bar</li></ul>
 
 !!end
 
@@ -18953,30 +18349,12 @@ Lists: 5. No unnecessary escapes
 
 * <s></s>: a
 !! html
-<ul>
-<li> bar <span>[[foo]]</span>
-</li>
-</ul>
-<ul>
-<li>=bar <span>[[foo]]</span>
-</li>
-</ul>
-<ul>
-<li>[[bar <span>[[foo]]</span>
-</li>
-</ul>
-<ul>
-<li>]]bar <span>[[foo]]</span>
-</li>
-</ul>
-<ul>
-<li>=bar <span>foo]]</span>=
-</li>
-</ul>
-<ul>
-<li> <s></s>: a
-</li>
-</ul>
+<ul><li> bar <span>[[foo]]</span></li></ul>
+<ul><li>=bar <span>[[foo]]</span></li></ul>
+<ul><li>[[bar <span>[[foo]]</span></li></ul>
+<ul><li>]]bar <span>[[foo]]</span></li></ul>
+<ul><li>=bar <span>foo]]</span>=</li></ul>
+<ul><li> <s></s>: a</li></ul>
 
 !!end
 
