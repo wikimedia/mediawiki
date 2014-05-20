@@ -1,6 +1,7 @@
 The Makefile, package.json, scripts, styleguide-template, and
-mediawiki.ui/styleguide.md files and directories in here support the automatic
-generation of CSS documentation from the source LESS files using kss for
+mediawiki.ui/styleguide.md files and directories here and in
+resources/src/mediawiki.ui/ support the automatic generation
+of CSS documentation from the source LESS files using kss for
 node.js, https://github.com/kneath/kss
 
 To build and open in your web browser, run:
