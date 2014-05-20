@@ -4,6 +4,9 @@
 	QUnit.asyncTest( 'toggleToc', 4, function ( assert ) {
 		var tocHtml, $toggleLink, $tocList;
 
+		// Prevent live cookies like mw_hidetoc=1 from interferring with the test
+		this.stub( $, 'cookie' ).returns( null );
+
 		assert.strictEqual( $( '#toc' ).length, 0, 'There is no table of contents on the page at the beginning' );
 
 		tocHtml = '<div id="toc" class="toc">' +
