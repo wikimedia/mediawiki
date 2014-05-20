@@ -2327,13 +2327,13 @@ class Parser {
 		$result = $this->closeParagraph();
 
 		if ( '*' === $char ) {
-			$result .= "<ul>\n<li>";
+			$result .= "<ul><li>";
 		} elseif ( '#' === $char ) {
-			$result .= "<ol>\n<li>";
+			$result .= "<ol><li>";
 		} elseif ( ':' === $char ) {
-			$result .= "<dl>\n<dd>";
+			$result .= "<dl><dd>";
 		} elseif ( ';' === $char ) {
-			$result .= "<dl>\n<dt>";
+			$result .= "<dl><dt>";
 			$this->mDTopen = true;
 		} else {
 			$result = '<!-- ERR 1 -->';
@@ -2377,20 +2377,20 @@ class Parser {
 	 */
 	function closeList( $char ) {
 		if ( '*' === $char ) {
-			$text = "</li>\n</ul>";
+			$text = "</li></ul>";
 		} elseif ( '#' === $char ) {
-			$text = "</li>\n</ol>";
+			$text = "</li></ol>";
 		} elseif ( ':' === $char ) {
 			if ( $this->mDTopen ) {
 				$this->mDTopen = false;
-				$text = "</dt>\n</dl>";
+				$text = "</dt></dl>";
 			} else {
-				$text = "</dd>\n</dl>";
+				$text = "</dd></dl>";
 			}
 		} else {
 			return '<!-- ERR 3 -->';
 		}
-		return $text . "\n";
+		return $text;
 	}
 	/**#@-*/
 
@@ -2488,6 +2488,9 @@ class Parser {
 				}
 
 				# Open prefixes where appropriate.
+				if (  $lastPrefix && $prefixLength > $commonPrefixLength ) {
+					$output .= "\n";
+				}
 				while ( $prefixLength > $commonPrefixLength ) {
 					$char = substr( $prefix, $commonPrefixLength, 1 );
 					$output .= $this->openList( $char );
@@ -2500,6 +2503,9 @@ class Parser {
 						}
 					}
 					++$commonPrefixLength;
+				}
+				if ( !$prefixLength && $lastPrefix ) {
+					$output .= "\n";
 				}
 				$lastPrefix = $prefix2;
 			}
@@ -2582,12 +2588,18 @@ class Parser {
 				$this->mInPre = false;
 			}
 			if ( $paragraphStack === false ) {
-				$output .= $t . "\n";
+				$output .= $t;
+				if ( $prefixLength === 0 ) {
+					$output	.= "\n";
+				}
 			}
 		}
 		while ( $prefixLength ) {
 			$output .= $this->closeList( $prefix2[$prefixLength - 1] );
 			--$prefixLength;
+			if ( !$prefixLength ) {
+				$output .= "\n";
+			}
 		}
 		if ( $this->mLastSection != '' ) {
 			$output .= '</' . $this->mLastSection . '>';
