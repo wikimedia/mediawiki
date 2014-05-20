@@ -601,7 +601,7 @@
 	"token_suffix_mismatch": "'''Zure aldaketa ezeztatua izan da zure bezeroak puntuazio-karaktereak itxuragabetu dituelako.\nAldaketa ezeztatua izan da testuaren galtzea galarazteko.\nHau batzuetan gertatzen da buggyan oinarritutako web proxy zerbitzua erabiltzean.'''",
 	"edit_form_incomplete": "'''Aldaketa formularioaren atal batzuk ez dira iritsi zerbitzarira; bi aldiz ziurtatu zure aldaketak osorik daudela eta berriro saiatu.'''",
 	"editing": "«$1» aldatzen",
-	"creating": "$1 sortzen",
+	"creating": "«$1» sortzen",
 	"editingsection": "«$1» aldatzen (atala)",
 	"editingcomment": "«$1» aldatzen (atal berria)",
 	"editconflict": "Aldaketa gatazka: $1",

@@ -247,7 +247,7 @@
 	"pool-errorunknown": "অজানা ত্রুটি",
 	"aboutsite": "{{SITENAME}} বৃত্তান্ত",
 	"aboutpage": "Project:বৃত্তান্ত",
-	"copyright": "$1 এর আওতায় প্রকাশিত যদি অন্য কিছু নির্ধারিত না থাকে।",
+	"copyright": "বিষয়বস্তু $1-এর আওতায় প্রকাশিত যদি না অন্য কিছু নির্ধারিত থাকে।",
 	"copyrightpage": "{{ns:project}}:কপিরাইট",
 	"currentevents": "সমসাময়িক ঘটনা",
 	"currentevents-url": "Project:সমসাময়িক ঘটনাসমূহ",

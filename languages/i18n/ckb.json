@@ -1595,7 +1595,7 @@
 	"protect-default": "بە ھەموو بەکارھێنەران ڕێگە بدە",
 	"protect-fallback": "تەنیا بە بەکارھێنەران بە مافی «$1» ڕێگە بدە",
 	"protect-level-autoconfirmed": "تەنیا بە بەکارھێنەرانی پەسندکراو ڕێگە بدە",
-	"protect-level-sysop": "تەنیا بەڕێوەبەران",
+	"protect-level-sysop": "تەنیا بە بەڕێوەبەران ڕێگە بدە",
 	"protect-summary-cascade": "تاڤگەیی",
 	"protect-expiring": "بەسەردەچێ لە ڕێکەوتی $1 (UTC)",
 	"protect-expiring-local": "بە سەر دەچێ لە $1",

@@ -314,6 +314,7 @@
 	"config-install-done": "<strong>Gratulrerer!</strong>\nDu har lykkes i å installere MediaWiki.\n\nInstallasjonsprogrammet har generert en <code>LocalSettings.php</code>-fil.\nDen inneholder alle dine konfigureringer.\n\nDu må laste den ned og legge den på hovedfolderen for din wiki-installasjon (der index.php ligger). Nedlastingen skulle ha startet automatisk.\n\nHvis ingen nedlasting ble tilbudt, eller du avbrøt den, kan du få den i gang ved å klikke på lenken under:\n\n$3\n\n<strong>OBS:</strong> Hvis du ikke gjør dette nå, vil den genererte konfigurasjonsfilen ikke være tilgjengelig for deg senere.\n\nNår dette er gjort, kan du <strong>[$2 gå inn i wikien]</strong>.",
 	"config-download-localsettings": "Last ned <code>LocalSettings.php</code>",
 	"config-help": "hjelp",
+	"config-help-tooltip": "klikk for å utvide",
 	"config-nofile": "Filen \"$1\" ble ikke funnet. Kan den være blitt slettet?",
 	"config-extension-link": "Visste du at wikien din kan brukes sammen med en mengde [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions utvidelser]?\n\nDu kan sjekke gjennom [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category utvidelser per kategori] eller [//www.mediawiki.org/wiki/Extension_Matrix utvidelsesmatrisen] for å se den komplette listen av utvidelser.",
 	"mainpagetext": "'''MediaWiki-programvaren er nå installert.'''",
