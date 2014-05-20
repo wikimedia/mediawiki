@@ -1249,7 +1249,7 @@ class LocalFile extends File {
 		}
 
 		if ( $timestamp === false ) {
-			// Use FOR UPDATE in case lock()/unlock() did not start the transaction
+			// Use FOR UPDATE to ignore any transaction snapshotting
 			$ltimestamp = $dbw->selectField( 'image', 'img_timestamp',
 				array( 'img_name' => $this->getName() ), __METHOD__, array( 'FOR UPDATE' ) );
 			$ltime = $ltimestamp ? wfTimestamp( TS_UNIX, $ltimestamp ) : false;
@@ -1836,8 +1836,8 @@ class LocalFile extends File {
 	/**
 	 * Start a transaction and lock the image for update
 	 * Increments a reference counter if the lock is already held
-	 * @throws MWException
-	 * @return bool True if the image exists, false otherwise
+	 * @throws MWException Throws an error if the lock was not acquired
+	 * @return bool success
 	 */
 	function lock() {
 		$dbw = $this->repo->getMasterDB();
@@ -1849,21 +1849,22 @@ class LocalFile extends File {
 			}
 			$this->locked++;
 			// Bug 54736: use simple lock to handle when the file does not exist.
-			// SELECT FOR UPDATE only locks records not the gaps where there are none.
-			$cache = wfGetMainCache();
-			$key = $this->getCacheKey();
-			if ( !$cache->lock( $key, 5 ) ) {
+			// SELECT FOR UPDATE prevents changes, not other SELECTs with FOR UPDATE.
+			// Also, that would cause contention on INSERT of similarly named rows.
+			$backend = $this->getRepo()->getBackend();
+			$lockPaths = array( $this->getPath() ); // represents all versions of the file
+			$status = $backend->lockFiles( $lockPaths, LockManager::LOCK_EX, 5 );
+			if ( !$status->isGood() ) {
 				throw new MWException( "Could not acquire lock for '{$this->getName()}.'" );
 			}
-			$dbw->onTransactionIdle( function () use ( $cache, $key ) {
-				$cache->unlock( $key ); // release on commit
+			$dbw->onTransactionIdle( function () use ( $backend, $lockPaths ) {
+				$backend->unlockFiles( $lockPaths, LockManager::LOCK_EX ); // release on commit
 			} );
 		}
 
 		$this->markVolatile(); // file may change soon
 
-		return $dbw->selectField( 'image', '1',
-			array( 'img_name' => $this->getName() ), __METHOD__, array( 'FOR UPDATE' ) );
+		return true;
 	}
 
 	/**
@@ -2394,9 +2395,13 @@ class LocalFileRestoreBatch {
 			return $this->file->repo->newGood();
 		}
 
-		$exists = $this->file->lock();
+		$this->file->lock();
+
 		$dbw = $this->file->repo->getMasterDB();
 		$status = $this->file->repo->newGood();
+
+		$exists = (bool)$dbw->selectField( 'image', '1',
+			array( 'img_name' => $this->file->getName() ), __METHOD__, array( 'FOR UPDATE' ) );
 
 		// Fetch all or selected archived revisions for the file,
 		// sorted from the most recent to the oldest.
