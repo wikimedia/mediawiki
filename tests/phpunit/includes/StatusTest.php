@@ -355,7 +355,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		$testCases[ '2StringWarnings' ] = array(
 			$status,
 			"* <fooBar!>\n* <fooBar2!>\n",
-			"<ul>\n<li> &lt;fooBar!&gt;\n</li>\n<li> &lt;fooBar2!&gt;\n</li>\n</ul>\n",
+			"<ul><li> &lt;fooBar!&gt;</li>\n<li> &lt;fooBar2!&gt;</li></ul>\n",
 		);
 
 		$status = new Status();
@@ -372,7 +372,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		$testCases[ '2MessageWarnings' ] = array(
 			$status,
 			"* <fooBar!>\n* <fooBar2!>\n",
-			"<ul>\n<li> &lt;fooBar!&gt;\n</li>\n<li> &lt;fooBar2!&gt;\n</li>\n</ul>\n",
+			"<ul><li> &lt;fooBar!&gt;</li>\n<li> &lt;fooBar2!&gt;</li></ul>\n",
 		);
 
 		return $testCases;
