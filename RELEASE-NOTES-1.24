@@ -63,6 +63,8 @@ changes to languages because of Bugzilla reports.
 * The deprecated function mw.util.toggleToc was removed.
 * The Special:Search hooks SpecialSearchGo and SpecialSearchResultsAppend
   were removed as they were unused.
+* (bug 65477) User::pingLimiter() now has an additional profile point varying
+  by action being used.
 * mediawiki.util.$content no longer supports old versions of the Vector,
   Monobook, Modern and CologneBlue skins that don't yet implement the "mw-body"
   and/or "mw-body-primary" class name in their html.
