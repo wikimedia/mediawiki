@@ -1248,19 +1248,13 @@ class LocalFile extends File {
 			wfProfileOut( __METHOD__ . '-getProps' );
 		}
 
+		# Imports or such might force a certain timestamp; otherwise we generate
+		# it and can fudge it slightly to keep (name,timestamp) unique on re-upload.
 		if ( $timestamp === false ) {
-			// Use FOR UPDATE to ignore any transaction snapshotting
-			$ltimestamp = $dbw->selectField( 'image', 'img_timestamp',
-				array( 'img_name' => $this->getName() ), __METHOD__, array( 'FOR UPDATE' ) );
-			$ltime = $ltimestamp ? wfTimestamp( TS_UNIX, $ltimestamp ) : false;
-			$ctime = time();
-			// Avoid a timestamp that is not newer than the last version
-			if ( $ctime > $ltime ) {
-				$timestamp = $dbw->timestamp( $ctime );
-			} else {
-				sleep( 1 ); // fast enough uploads will go in to the future otherwise
-				$timestamp = $dbw->timestamp( $ltime + 1 );
-			}
+			$timestamp = $dbw->timestamp();
+			$allowTimeKludge = true;
+		} else {
+			$allowTimeKludge = false;
 		}
 
 		$props['description'] = $comment;
@@ -1303,6 +1297,20 @@ class LocalFile extends File {
 			'IGNORE'
 		);
 		if ( $dbw->affectedRows() == 0 ) {
+			if ( $allowTimeKludge ) {
+				# Use FOR UPDATE to ignore any transaction snapshotting
+				$ltimestamp = $dbw->selectField( 'image', 'img_timestamp',
+					array( 'img_name' => $this->getName() ), __METHOD__, array( 'FOR UPDATE' ) );
+				$lUnixtime = $ltimestamp ? wfTimestamp( TS_UNIX, $ltimestamp ) : false;
+				# Avoid a timestamp that is not newer than the last version
+				# TODO: the image/oldimage tables should be like page/revision with an ID field
+				if ( $lUnixtime && wfTimestamp( TS_UNIX, $timestamp ) <= $lUnixtime ) {
+					sleep( 1 ); // fast enough re-uploads would go far in the future otherwise
+					$timestamp = $dbw->timestamp( $lUnixtime + 1 );
+					$this->timestamp = wfTimestamp( TS_MW, $timestamp ); // DB -> TS_MW
+				}
+			}
+
 			# (bug 34993) Note: $oldver can be empty here, if the previous
 			# version of the file was broken. Allow registration of the new
 			# version to continue anyway, because that's better than having
