@@ -12,10 +12,14 @@ production.
 * Removed $wgUseLinkNamespaceDBFields
 
 === New features in 1.27 ===
+* Added a new hook, "DatabaseFactoryOptions", to allow extensions to modify parameters
+  that will be passed into the Database object constructor.
 
 ==== External libraries ====
 
 === Bug fixes in 1.27 ===
+* (bug 64365) Gracefully fail when getting the default schema if we get a
+  non-standard db type.
 
 === Action API changes in 1.27 ===
 
