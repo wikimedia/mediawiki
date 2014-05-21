@@ -275,9 +275,6 @@ changes to languages because of Bugzilla reports.
 * Support was added for Northern Luri (lrc).
 
 === Other changes in 1.23 ===
-* Added pp_sortkey column to page_props table, so pages can be efficiently
-  queried and sorted by property value (bug 58032).
-  See $wgPagePropsHaveSortkey if you want to postpone the schema change.
 * The rc_type field in the recentchanges table has been superseded by a new
   rc_source field.  The rc_source field is a string representation of the
   change type where rc_type was a numeric constant.  This field is not yet
