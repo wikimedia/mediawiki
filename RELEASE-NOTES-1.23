@@ -9,9 +9,6 @@ MediaWiki 1.23 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.23 ===
-* Introduced $wgPagePropsHaveSortkey as a backwards-compatibility switch,
-  for using the old schema of the page_props table, in case the respective
-  schema update was not applied.
 * When $wgJobRunRate is higher that zero, jobs are now executed via an
   asynchronous HTTP request to a MediaWiki entry point. This may require
   increasing the number of server worker threads. $wgRunJobsAsync has been

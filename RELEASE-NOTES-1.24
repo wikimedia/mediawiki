@@ -11,6 +11,9 @@ production.
 === Configuration changes in 1.24 ===
 * The server's canonical hostname is available as $wgServerName, which is
   exposed in both mw.config and ApiQuerySiteInfo.
+* Introduced $wgPagePropsHaveSortkey as a backwards-compatibility switch,
+  for using the old schema of the page_props table, in case the respective
+  schema update was not applied.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
