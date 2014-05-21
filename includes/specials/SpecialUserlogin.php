@@ -118,8 +118,8 @@ class LoginForm extends SpecialPage {
 		$this->mAction = $request->getVal( 'action' );
 		$this->mRemember = $request->getCheck( 'wpRemember' );
 		$this->mFromHTTP = $request->getBool( 'fromhttp', false );
-		$this->mStickHTTPS = ( !$this->mFromHTTP && $request->getProtocol() === 'https' )
-			|| $request->getBool( 'wpForceHttps', false );
+		$this->mStickHTTPS = $request->getBool( 'wpForceHttps',
+			( !$this->mFromHTTP && $request->getProtocol() === 'https' ) );
 		$this->mLanguage = $request->getText( 'uselang' );
 		$this->mSkipCookieCheck = $request->getCheck( 'wpSkipCookieCheck' );
 		$this->mToken = $this->mType == 'signup'
