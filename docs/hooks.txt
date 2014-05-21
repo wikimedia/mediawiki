@@ -943,6 +943,13 @@ Return true to allow the normal editor to be used, or false
 if implementing a custom editor, e.g. for a special namespace,
 etc.
 
+'DatabaseFactoryOptions': Called right before constructing a database object.
+$dbType: The type of database we are using, usually all-lowercase but not guaranteed to be.
+&$driver: The class name that will be constructed for the database object. MediaWiki expects there
+  to be class named 'Database' . ucfirst( $driver ).
+&$p: An associative array of parameters that are passed to the driver class constructor.
+  See DatabaseBase::factory for a list of valid key names.
+
 'DatabaseOraclePostInit': Called after initialising an Oracle database
 &$db: the DatabaseOracle object
 

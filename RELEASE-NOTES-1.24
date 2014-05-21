@@ -59,6 +59,8 @@ production.
   than in a dedicated pane in the preferences panel.
 * (bug 44591) The dropdown actions menu (little triangle next to page tabs) in
   the Vector skin has gained a label that should make it more discoverable.
+* Added a new hook, "DatabaseFactoryOptions", to allow extensions to modify parameters
+  that will be passed into the Database object constructor.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
@@ -80,6 +82,8 @@ production.
 * (bug 52587) Maintenance script deleteBatch.php no longer follows redirects
   in the file namespace and delete the file on the target page. It will still
   however delete the redirect page.
+* (bug 64365) Gracefully fail when getting the default schema if we get a
+  non-standard db type.
 
 === Web API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of
