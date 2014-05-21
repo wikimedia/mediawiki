@@ -172,7 +172,6 @@ class DeleteEqualMessages extends Maintenance {
 		foreach ( $messageInfo['results'] as $result ) {
 			wfWaitForSlaves();
 			$dbw->ping();
-			$dbw->begin( __METHOD__ );
 			$title = Title::makeTitle( NS_MEDIAWIKI, $result['title'] );
 			$this->output( "\n* [[$title]]" );
 			$page = WikiPage::factory( $title );
@@ -185,7 +184,6 @@ class DeleteEqualMessages extends Maintenance {
 				$error = ''; // Passed by ref
 				$page->doDeleteArticle( 'Orphaned talk page of no longer required message', false, 0, false, $error, $user );
 			}
-			$dbw->commit( __METHOD__ );
 		}
 		$this->output( "\n\ndone!\n" );
 	}
