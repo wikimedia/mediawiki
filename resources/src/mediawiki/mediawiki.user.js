@@ -247,13 +247,13 @@
 	 * @inheritdoc #getName
 	 * @deprecated since 1.20 Use #getName instead
 	 */
-	mw.log.deprecate( user, 'name', user.getName );
+	mw.log.deprecate( user, 'name', user.getName, 'Use mw.user.getName instead.' );
 
 	/**
 	 * @method anonymous
 	 * @inheritdoc #isAnon
 	 * @deprecated since 1.20 Use #isAnon instead
 	 */
-	mw.log.deprecate( user, 'anonymous', user.isAnon );
+	mw.log.deprecate( user, 'anonymous', user.isAnon, 'Use mw.user.isAnon instead.' );
 
 }( mediaWiki, jQuery ) );
