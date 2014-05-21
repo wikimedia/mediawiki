@@ -46,7 +46,6 @@ class SpecialAllmessages extends SpecialPage {
 	 * @param string $par Parameter passed to the page or null
 	 */
 	public function execute( $par ) {
-		$request = $this->getRequest();
 		$out = $this->getOutput();
 
 		$this->setHeaders();
@@ -65,7 +64,7 @@ class SpecialAllmessages extends SpecialPage {
 		$this->table = new AllmessagesTablePager(
 			$this,
 			array(),
-			wfGetLangObj( $request->getVal( 'lang', $par ) )
+			$this->getContext()->getLanguage()
 		);
 
 		$this->langcode = $this->table->lang->getCode();
