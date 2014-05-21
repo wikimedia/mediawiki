@@ -863,6 +863,14 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			'oracle' => null,
 			'mssql' => 'get from global',
 		);
+		
+		// To prevent a PHP notice, default any unknown db type to no schema.
+		// This choice can be modified via the DatabaseFactoryOptions hook by setting $p['schema']
+		if ( !array_key_exists( $dbType, $defaultSchemas ) ) {
+			$defaultSchemas[$dbType] = null;
+		}
+		
+		wfRunHooks( 'DatabaseFactoryOptions', array( $dbType, &$driver, &$p ) );
 
 		$class = 'Database' . ucfirst( $driver );
 		if ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) {
