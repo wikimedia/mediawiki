@@ -45,7 +45,9 @@ class WikiImporter {
 	function __construct( $source ) {
 		$this->reader = new XMLReader();
 
-		stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
+		if ( !in_array(  'uploadsource', stream_get_wrappers() ) ) {
+			stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
+		}
 		$id = UploadSourceAdapter::registerSource( $source );
 		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
 			$this->reader->open( "uploadsource://$id", null, LIBXML_PARSEHUGE );
