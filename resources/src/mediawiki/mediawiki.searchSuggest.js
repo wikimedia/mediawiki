@@ -3,7 +3,7 @@
  */
 ( function ( mw, $ ) {
 	$( function () {
-		var api, map, resultRenderCache, searchboxesSelectors,
+		var api, map, cache, hasOwn, resultRenderCache, searchboxesSelectors,
 			// Region where the suggestions box will appear directly below
 			// (using the same width). Can be a container element or the input
 			// itself, depending on what suits best in the environment.
@@ -29,6 +29,9 @@
 		if ( !$.client.test( map ) ) {
 			return;
 		}
+
+		cache = {};
+		hasOwn = cache.hasOwnProperty;
 
 		// Compute form data for search suggestions functionality.
 		function computeResultRenderCache( context ) {
@@ -124,6 +127,11 @@
 					var $textbox = this,
 						node = this[0];
 
+					if ( hasOwn.call( cache, query ) ) {
+						$textbox.suggestions( 'suggestions', cache[ query ] );
+						return;
+					}
+
 					api = api || new mw.Api();
 
 					$.data( node, 'request', api.get( {
@@ -132,7 +140,8 @@
 						namespace: 0,
 						suggest: ''
 					} ).done( function ( data ) {
-						$textbox.suggestions( 'suggestions', data[1] );
+						cache[ query ] = data[ 1 ];
+						$textbox.suggestions( 'suggestions', data[ 1 ] );
 					} ) );
 				},
 				cancel: function () {
