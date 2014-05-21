@@ -1230,12 +1230,13 @@ abstract class FileBackend {
 	 *
 	 * @param array $paths Storage paths
 	 * @param int $type LockManager::LOCK_* constant
+	 * @param int $timeout Timeout in seconds (0 means non-blocking) (since 1.24)
 	 * @return Status
 	 */
-	final public function lockFiles( array $paths, $type ) {
+	final public function lockFiles( array $paths, $type, $timeout = 0 ) {
 		$paths = array_map( 'FileBackend::normalizeStoragePath', $paths );
 
-		return $this->lockManager->lock( $paths, $type );
+		return $this->lockManager->lock( $paths, $type, $timeout );
 	}
 
 	/**
@@ -1264,9 +1265,10 @@ abstract class FileBackend {
 	 * @param array $paths List of storage paths or map of lock types to path lists
 	 * @param int|string $type LockManager::LOCK_* constant or "mixed"
 	 * @param Status $status Status to update on lock/unlock
+	 * @param int $timeout Timeout in seconds (0 means non-blocking) (since 1.24)
 	 * @return ScopedLock|null Returns null on failure
 	 */
-	final public function getScopedFileLocks( array $paths, $type, Status $status ) {
+	final public function getScopedFileLocks( array $paths, $type, Status $status, $timeout = 0 ) {
 		if ( $type === 'mixed' ) {
 			foreach ( $paths as &$typePaths ) {
 				$typePaths = array_map( 'FileBackend::normalizeStoragePath', $typePaths );
@@ -1275,7 +1277,7 @@ abstract class FileBackend {
 			$paths = array_map( 'FileBackend::normalizeStoragePath', $paths );
 		}
 
-		return ScopedLock::factory( $this->lockManager, $paths, $type, $status );
+		return ScopedLock::factory( $this->lockManager, $paths, $type, $status, $timeout );
 	}
 
 	/**
