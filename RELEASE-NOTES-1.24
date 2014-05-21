@@ -35,6 +35,9 @@ production.
 * (bug 44740) jQuery upgraded from 1.8.3 to 1.11.1.
 * Changes to content typography (fonts, etc.). See
   https://www.mediawiki.org/wiki/Typography_refresh for further information.
+* WikitextContent will now render redirects with the expected "redirect"
+  header, rather than as an ordered list. Code calling Article::viewRedirect
+  can probably be changed to no longer special-case redirects.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
@@ -49,6 +52,8 @@ production.
 * (bug 890) Links in Special:RecentChanges and Special:Watchlist no longer
   follow redirects to their target pages.
 * Parser now dies early if called recursively, instead of producing subtle bugs.
+* (bug 14323) Redirect pages, when viewed with redirect=no, no longer hide the
+  remaining page content.
 
 === Web API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of

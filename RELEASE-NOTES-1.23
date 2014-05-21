@@ -110,9 +110,6 @@ production.
   'user' or 'bot'. The API will throw an error if the user is not logged
   in (user) or does not have the 'bot' userright (bot). Based off of the
   AssertEdit extension by Steve Sanbeg.
-* WikitextContent will now render redirects with the expected "redirect"
-  header, rather than as an ordered list. Code calling Article::viewRedirect
-  can probably be changed to no longer special-case redirects.
 * [[Special:Diff]] was added, allowing users to create internal links to
   revision comparison pages using syntax such as [[Special:Diff/12345]],
   [[Special:Diff/12345/prev]] or [[Special:Diff/12345/98765]].
@@ -190,8 +187,6 @@ production.
   the JavaScript evaluator were updated to support the new format. Plural rules
   for some languages have changed, most notably Russian. Affected software
   messages have been updated and marked for review at translatewiki.net.
-* (bug 14323) Redirect pages, when viewed with redirect=no, no longer hide the
-  remaining page content.
 * (bug 23542) imagelinks now stores both the redirect and target (as
   templatelinks does).
 * (bug 58167) The web installer no longer throws an exception when PHP is
