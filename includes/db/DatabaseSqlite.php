@@ -342,8 +342,8 @@ class DatabaseSqlite extends DatabaseBase {
 	 */
 	function numFields( $res ) {
 		$r = $res instanceof ResultWrapper ? $res->result : $res;
-
-		return is_array( $r ) ? count( $r[0] ) : 0;
+		// The size of the result array is twice the number of fields. (Bug: 65578)
+		return is_array( $r ) ? count( $r[0] ) / 2  : 0;
 	}
 
 	/**
