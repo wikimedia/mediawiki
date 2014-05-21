@@ -1597,7 +1597,8 @@ class EditPage {
 		# Check image redirect
 		if ( $this->mTitle->getNamespace() == NS_FILE &&
 			$textbox_content->isRedirect() &&
-			!$wgUser->isAllowed( 'upload' ) ) {
+			!$wgUser->isAllowed( 'upload' )
+		) {
 				$code = $wgUser->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
 				$status->setResult( false, $code );
 
@@ -1959,7 +1960,7 @@ class EditPage {
 		}
 
 		// Check for length errors again now that the section is merged in
-			$this->kblength = (int)( strlen( $this->toEditText( $content ) ) / 1024 );
+		$this->kblength = (int)( strlen( $this->toEditText( $content ) ) / 1024 );
 		if ( $this->kblength > $wgMaxArticleSize ) {
 			$this->tooBig = true;
 			$status->setResult( false, self::AS_MAX_ARTICLE_SIZE_EXCEEDED );
@@ -1972,8 +1973,8 @@ class EditPage {
 			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
 			( $bot ? EDIT_FORCE_BOT : 0 );
 
-			$doEditStatus = $this->mArticle->doEditContent( $content, $this->summary, $flags,
-															false, null, $this->contentFormat );
+		$doEditStatus = $this->mArticle->doEditContent( $content, $this->summary, $flags,
+														false, null, $this->contentFormat );
 
 		if ( !$doEditStatus->isOK() ) {
 			// Failure from doEdit()
@@ -3482,7 +3483,6 @@ HTML
 			if ( $this->mTriedSave && !$this->mTokenOk ) {
 				if ( $this->mTokenOkExceptSuffix ) {
 					$note = wfMessage( 'token_suffix_mismatch' )->plain();
-
 				} else {
 					$note = wfMessage( 'session_fail_preview' )->plain();
 				}
@@ -3890,11 +3890,11 @@ HTML
 		#$categories = $skin->getCategoryLinks();
 
 		$s =
-		'<?xml version="1.0" encoding="UTF-8" ?>' . "\n" .
-		Xml::tags( 'livepreview', null,
-			Xml::element( 'preview', null, $previewText )
-			#.	Xml::element( 'category', null, $categories )
-		);
+			'<?xml version="1.0" encoding="UTF-8" ?>' . "\n" .
+			Xml::tags( 'livepreview', null,
+				Xml::element( 'preview', null, $previewText )
+				#.	Xml::element( 'category', null, $categories )
+			);
 		echo $s;
 	}
 
