@@ -77,7 +77,9 @@ class UsercreateTemplate extends BaseTemplate {
 				<label for='wpName2'>
 					<?php $this->msg( 'userlogin-yourname' ); ?>
 
-					<span class="mw-ui-flush-right"><?php echo $this->getMsg( 'createacct-helpusername' )->parse(); ?></span>
+					<!-- Bug 65514 - ensure message exists before parse -->
+					<?php $helpusername = $this->getMsg( 'createacct-helpusername' ); ?>
+					<span class="mw-ui-flush-right"><?php if ( $helpusername->exists() ) echo $helpusername->parse(); ?></span>
 				</label>
 				<?php
 				echo Html::input( 'wpName', $this->data['name'], 'text', array(
