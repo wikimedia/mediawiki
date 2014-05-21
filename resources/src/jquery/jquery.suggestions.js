@@ -31,6 +31,10 @@
  *		Type: Number, Range: 1 - 100, Default: 7
  * delay: Number of ms to wait for the user to stop typing
  *		Type: Number, Range: 0 - 1200, Default: 120
+ * cache: Whether to cache results from a fetch
+ *		Type: Boolean, Default: false
+ * cacheMaxAge: Number of ms to cache results from a fetch
+ *		Type: Number, Range: 1 - Infinity, Default: 60000 (1 minute)
  * submitOnClick: Whether to submit the form containing the textbox when a suggestion is clicked
  *		Type: Boolean, Default: false
  * maxExpandFactor: Maximum suggestions box width relative to the textbox width. If set
@@ -46,6 +50,8 @@
  *		Type: Boolean, Default: false
  */
 ( function ( $ ) {
+
+var hasOwn = Object.hasOwnProperty;
 
 $.suggestions = {
 	/**
@@ -90,18 +96,44 @@ $.suggestions = {
 	 */
 	update: function ( context, delayed ) {
 		function maybeFetch() {
+			var val = context.data.$textbox.val(),
+				cache = context.data.cache,
+				cacheHit;
+
 			// Only fetch if the value in the textbox changed and is not empty, or if the results were hidden
 			// if the textbox is empty then clear the result div, but leave other settings intouched
-			if ( context.data.$textbox.val().length === 0 ) {
+			if ( val.length === 0 ) {
 				$.suggestions.hide( context );
 				context.data.prevText = '';
 			} else if (
-				context.data.$textbox.val() !== context.data.prevText ||
+				val !== context.data.prevText ||
 				!context.data.$container.is( ':visible' )
 			) {
-				if ( typeof context.config.fetch === 'function' ) {
-					context.data.prevText = context.data.$textbox.val();
-					context.config.fetch.call( context.data.$textbox, context.data.$textbox.val() );
+				context.data.prevText = val;
+				// Try cache first
+				if ( context.config.cache && hasOwn.call( cache, val ) ) {
+					if ( +new Date() - cache[ val ].timestamp < context.config.cacheMaxAge ) {
+						context.data.$textbox.suggestions( 'suggestions', cache[ val ].suggestions );
+						cacheHit = true;
+					} else {
+						// Cache expired
+						delete cache[ val ];
+					}
+				}
+				if ( !cacheHit && typeof context.config.fetch === 'function' ) {
+					context.config.fetch.call(
+						context.data.$textbox,
+						val,
+						function ( suggestions ) {
+							context.data.$textbox.suggestions( 'suggestions', suggestions );
+							if ( context.config.cache ) {
+								cache[ val ] = {
+									suggestions: suggestions,
+									timestamp: +new Date()
+								};
+							}
+						}
+					);
 				}
 			}
 
@@ -291,13 +323,17 @@ $.suggestions = {
 			case 'delay':
 				context.config[property] = Math.max( 0, Math.min( 1200, value ) );
 				break;
+			case 'cacheMaxAge':
+				context.config[property] = Math.max( 1, value );
+				break;
 			case 'maxExpandFactor':
 				context.config[property] = Math.max( 1, value );
 				break;
+			case 'cache':
 			case 'submitOnClick':
 			case 'positionFromLeft':
 			case 'highlightInput':
-				context.config[property] = value ? true : false;
+				context.config[property] = !!value;
 				break;
 		}
 	},
@@ -469,6 +505,8 @@ $.fn.suggestions = function () {
 					suggestions: [],
 					maxRows: 7,
 					delay: 120,
+					cache: false,
+					cacheMaxAge: 60000,
 					submitOnClick: false,
 					maxExpandFactor: 3,
 					expandFrom: 'auto',
@@ -506,6 +544,9 @@ $.fn.suggestions = function () {
 
 				// Text in textbox when suggestions were last fetched
 				prevText: null,
+
+				// Cache of fetched suggestions
+				cache: {},
 
 				// Number of results visible without scrolling
 				visibleResults: 0,
