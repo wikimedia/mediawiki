@@ -9,6 +9,9 @@ MediaWiki 1.23 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.23 ===
+* (bug 13250) Restored method for clearing a watchlist in web UI
+  so that users with large watchlists don't have to perform
+  contortions to clear them.
 * When $wgJobRunRate is higher that zero, jobs are now executed via an
   asynchronous HTTP request to a MediaWiki entry point. This may require
   increasing the number of server worker threads. $wgRunJobsAsync has been
