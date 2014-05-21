@@ -13,7 +13,8 @@
 			"Wikifan",
 			"bar.wikipedia.org administrators",
 			"✓",
-			"아라"
+			"아라",
+			"Matthias Klostermayr"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -61,7 +62,7 @@
 	"editfont-monospace": "Schrift mid ner festen Zeichenbreaden",
 	"editfont-sansserif": "Serifenlose Groteskschrift",
 	"editfont-serif": "Schrift mid Serifen",
-	"sunday": "Sundog",
+	"sunday": "Sunda",
 	"monday": "Mondog",
 	"tuesday": "Deansdog",
 	"wednesday": "Midwoch",
@@ -404,7 +405,7 @@
 	"anoneditwarning": "Obocht: Du bist ned eigloggt.\nDei IP-Adress wead in da Versionsgschicht afzoachnet.",
 	"missingsummary": "'''Hiwais:''' du host koa Zåmmfossung ågeem. Wånn du ernait auf „{{int:savearticle}}“ druckst, werd dai Enderung one a Zåmmfossung ywernumma.",
 	"missingcommenttext": "Bittschee gib a Zåmmfossung ai.",
-	"summary-preview": "Vurschau vo da Zåmmfossung:",
+	"summary-preview": "Voaschau vo da Zammfossung:",
 	"subject-preview": "Vurschau vom Bedreff:",
 	"blockedtitle": "Da Benytzer is gsperrt",
 	"whitelistedittext": "Du muasst de $1, um Saiten beorwaiten z' kenna.",
@@ -771,7 +772,6 @@
 	"logempty": "Koane passenden Einträg.",
 	"log-title-wildcard": "Da Titel faungt auh mid ....",
 	"allpages": "Olle Seitn",
-	"alphaindexline": "$1 bis $2",
 	"nextpage": "Naxde Seiten ($1)",
 	"prevpage": "Vurherige Seiten ($1)",
 	"allpagesfrom": "Seiten auhzoang ob:",

@@ -583,7 +583,7 @@
 	"permissionserrorstext": "Inti m'għandhekx dritt li tagħmel hekk, għar-{{PLURAL:$1|raġuni|raġunijiet}} segwenti:",
 	"permissionserrorstext-withaction": "M'għandekx il-permessi neċessarji biex $2, minħabba r-{{PLURAL:$1|raġuni|raġunijiet}} segwenti:",
 	"recreate-moveddeleted-warn": "'''Twissija: Inti qiegħed toħloq mill-ġdid paġna li ġiet imħassra.'''\n\nAċċerta ruħek jekk huwiex opportun li tkompli timmodifika din il-paġna.\nIr-reġistru tat-tħassir u tal-mixi huwa pprovdut għal aktar konvenjenza:",
-	"moveddeleted-notice": "Din il-paġna ġiet imħassra. Ir-reġistri tat-tħassir u tal-mixi għal din il-paġna huma provduti hawn taħt bħala referenza.",
+	"moveddeleted-notice": "Din il-paġna ġiet imħassra. \nIr-reġistri tat-tħassir u jimxu għal din il-paġna huma provduti hawn taħt bħala referenza.",
 	"log-fulllog": "Uri r-reġistru sħiħ",
 	"edit-hook-aborted": "Il-modifika ġiet abbandunata mill-''hook''.\nMa ngħatat l-ebda spjegazzjoni.",
 	"edit-gone-missing": "Il-paġna ma tistax tiġi aġġornata.\nJidher li din ġiet imħassra.",
