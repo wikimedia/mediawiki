@@ -120,9 +120,8 @@
 		];
 		$( searchboxesSelectors.join( ', ' ) )
 			.suggestions( {
-				fetch: function ( query ) {
-					var $textbox = this,
-						node = this[0];
+				fetch: function ( query, response ) {
+					var node = this[0];
 
 					api = api || new mw.Api();
 
@@ -132,7 +131,7 @@
 						namespace: 0,
 						suggest: ''
 					} ).done( function ( data ) {
-						$textbox.suggestions( 'suggestions', data[1] );
+						response( data[ 1 ] );
 					} ) );
 				},
 				cancel: function () {
@@ -151,7 +150,7 @@
 						return true;
 					}
 				},
-				delay: 120,
+				cache: true,
 				highlightInput: true
 			} )
 			.bind( 'paste cut drop', function () {
