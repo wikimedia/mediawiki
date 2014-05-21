@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (0fbf6bd14e)
+ * OOjs UI v0.1.0-pre (0436296667)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Mon May 19 2014 14:09:28 GMT-0700 (PDT)
+ * Date: Wed May 21 2014 13:17:11 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -1982,12 +1982,12 @@ OO.ui.ConfirmationDialog.prototype.initialize = function () {
 /*
  * Open a confirmation dialog.
  *
- * @param {object} [data] Window opening data including text of the dialog and text for the buttons
- * @param {jQuery|string} [data.prompt] The text of the dialog.
- * @param {jQuery|string|Function|null} [data.okLabel] The text used on the OK button
- * @param {jQuery|string|Function|null} [data.cancelLabel] The text used on the cancel button
- * @param {string[]} [data.okFlags] Flags for the OK button
- * @param {string[]} [data.cancelFlags] Flags for the cancel button
+ * @param {Object} [data] Window opening data including text of the dialog and text for the buttons
+ * @param {jQuery|string} [data.prompt] Text to display or list of nodes to use as content of the dialog.
+ * @param {jQuery|string|Function|null} [data.okLabel] Label of the OK button
+ * @param {jQuery|string|Function|null} [data.cancelLabel] Label of the cancel button
+ * @param {string|string[]} [data.okFlags="constructive"] Flags for the OK button
+ * @param {string|string[]} [data.cancelFlags="destructive"] Flags for the cancel button
  */
 OO.ui.ConfirmationDialog.prototype.setup = function ( data ) {
 	// Parent method
@@ -1996,8 +1996,8 @@ OO.ui.ConfirmationDialog.prototype.setup = function ( data ) {
 	var prompt = data.prompt || OO.ui.deferMsg( 'ooui-dialog-confirm-default-prompt' ),
 		okLabel = data.okLabel || OO.ui.deferMsg( 'ooui-dialog-confirm-default-ok' ),
 		cancelLabel = data.cancelLabel || OO.ui.deferMsg( 'ooui-dialog-confirm-default-cancel' ),
-		okFlags = data.okFlags || [ 'constructive'],
-		cancelFlags = data.cancelFlags || [ 'destructive' ];
+		okFlags = data.okFlags || 'constructive',
+		cancelFlags = data.cancelFlags || 'destructive';
 
 	if ( typeof prompt === 'string' ) {
 		this.$promptContainer.text( prompt );
@@ -2299,15 +2299,19 @@ OO.ui.FlaggableElement.prototype.clearFlags = function () {
 /**
  * Add one or more flags.
  *
- * @param {string[]|Object.<string, boolean>} flags List of flags to add, or list of set/remove
- *  values, keyed by flag name
+ * @param {string|string[]|Object.<string, boolean>} flags One or more flags to add, or an object
+ *  keyed by flag name containing boolean set/remove instructions.
  * @chainable
  */
 OO.ui.FlaggableElement.prototype.setFlags = function ( flags ) {
 	var i, len, flag,
 		classPrefix = 'oo-ui-flaggableElement-';
 
-	if ( $.isArray( flags ) ) {
+	if ( typeof flags === 'string' ) {
+		// Set
+		this.flags[flags] = true;
+		this.$element.addClass( classPrefix + flags );
+	} else if ( $.isArray( flags ) ) {
 		for ( i = 0, len = flags.length; i < len; i++ ) {
 			flag = flags[i];
 			// Set
@@ -4068,14 +4072,14 @@ OO.ui.GridLayout = function OoUiGridLayout( panels, config ) {
 		this.$element.append( panels[i].$element );
 	}
 	if ( config.widths || config.heights ) {
-		this.layout( config.widths || [1], config.heights || [1] );
+		this.layout( config.widths || [ 1 ], config.heights || [ 1 ] );
 	} else {
 		// Arrange in columns by default
 		widths = [];
 		for ( i = 0, len = this.panels.length; i < len; i++ ) {
 			widths[i] = 1;
 		}
-		this.layout( widths, [1] );
+		this.layout( widths, [ 1 ] );
 	}
 };
 
@@ -4231,7 +4235,8 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 		this.outlineWidget = new OO.ui.OutlineWidget( { '$': this.$ } );
 		this.outlinePanel = new OO.ui.PanelLayout( { '$': this.$, 'scrollable': true } );
 		this.gridLayout = new OO.ui.GridLayout(
-			[this.outlinePanel, this.stackLayout], { '$': this.$, 'widths': [1, 2] }
+			[ this.outlinePanel, this.stackLayout ],
+			{ '$': this.$, 'widths': [ 1, 2 ] }
 		);
 		this.outlineVisible = true;
 		if ( this.editable ) {
@@ -7234,9 +7239,9 @@ OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, confi
 		'add': 'onOutlineChange',
 		'remove': 'onOutlineChange'
 	} );
-	this.upButton.connect( this, { 'click': ['emit', 'move', -1] } );
-	this.downButton.connect( this, { 'click': ['emit', 'move', 1] } );
-	this.removeButton.connect( this, { 'click': ['emit', 'remove'] } );
+	this.upButton.connect( this, { 'click': [ 'emit', 'move', -1 ] } );
+	this.downButton.connect( this, { 'click': [ 'emit', 'move', 1 ] } );
+	this.removeButton.connect( this, { 'click': [ 'emit', 'remove' ] } );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-outlineControlsWidget' );

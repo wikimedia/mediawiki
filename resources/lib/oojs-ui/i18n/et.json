@@ -9,5 +9,9 @@
 	"ooui-outline-control-move-down": "Liiguta üksust allapoole",
 	"ooui-outline-control-move-up": "Liiguta üksust ülespoole",
 	"ooui-outline-control-remove": "Eemalda üksus",
-	"ooui-toolbar-more": "Veel"
+	"ooui-toolbar-more": "Veel",
+	"ooui-dialog-confirm-title": "Kinnitus",
+	"ooui-dialog-confirm-default-prompt": "Kas oled kindel?",
+	"ooui-dialog-confirm-default-ok": "Sobib",
+	"ooui-dialog-confirm-default-cancel": "Loobu"
 }

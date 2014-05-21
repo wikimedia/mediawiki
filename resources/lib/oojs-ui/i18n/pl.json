@@ -15,7 +15,8 @@
 			"Wpedzich",
 			"Jacenty359",
 			"Matik7",
-			"Gloria sah"
+			"Gloria sah",
+			"Andrzej aa"
 		]
 	},
 	"ooui-dialog-action-close": "Zamknij",
@@ -25,6 +26,6 @@
 	"ooui-toolbar-more": "Więcej",
 	"ooui-dialog-confirm-title": "Potwierdź",
 	"ooui-dialog-confirm-default-prompt": "Jesteś pewien?",
-	"ooui-dialog-confirm-default-ok": "Ok",
+	"ooui-dialog-confirm-default-ok": "OK",
 	"ooui-dialog-confirm-default-cancel": "Anuluj"
 }
