@@ -110,9 +110,6 @@ production.
   'user' or 'bot'. The API will throw an error if the user is not logged
   in (user) or does not have the 'bot' userright (bot). Based off of the
   AssertEdit extension by Steve Sanbeg.
-* WikitextContent will now render redirects with the expected "redirect"
-  header, rather than as an ordered list. Code calling Article::viewRedirect
-  can probably be changed to no longer special-case redirects.
 * [[Special:Diff]] was added, allowing users to create internal links to
   revision comparison pages using syntax such as [[Special:Diff/12345]],
   [[Special:Diff/12345/prev]] or [[Special:Diff/12345/98765]].
@@ -158,10 +155,10 @@ production.
   process the result set prior to rendering.
 * A PoolCounterRedis class was added which can be make use of in $wgPoolCounterConf.
   This requires at least one Redis 2.6+ server.
-* (bug 63444) Made it possible to change the indent string (default: 4 spaces)
-  used by FormatJson::encode().
 * $wgProfileToDatabase was removed. Set $wgProfiler to ProfilerSimpleDB
   in StartProfiler.php instead of using this.
+* (bug 63444) Made it possible to change the indent string (default: 4 spaces)
+  used by FormatJson::encode().
 
 === Bug fixes in 1.23 ===
 * (bug 41759) The "updated since last visit" markers (on history pages, recent
