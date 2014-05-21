@@ -41,10 +41,14 @@ production.
 * $wgCdnMaxageLagged was added, which limits the CDN cache TTL
   when any load balancer uses a DB that is lagged beyond the 'max lag'
   setting in the relevant section of $wgLBFactoryConf.
+* Added a new hook, "DatabaseFactoryOptions", to allow extensions to modify parameters
+  that will be passed into the Database object constructor.
 
 ==== External libraries ====
 
 === Bug fixes in 1.27 ===
+* (bug 64365) Gracefully fail when getting the default schema if we get a
+  non-standard db type.
 
 === Action API changes in 1.27 ===
 * Added list=allrevisions.
