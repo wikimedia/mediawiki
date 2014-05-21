@@ -1838,11 +1838,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 					// Update page
 					//
-					// Note that we use $this->mLatest instead of fetching a value from the master DB
-					// during the course of this function. This makes sure that EditPage can detect
-					// edit conflicts reliably, either by $ok here, or by $article->getTimestamp()
-					// before this function is called. A previous function used a separate query, this
-					// creates a window where concurrent edits can cause an ignored edit conflict.
+					// We check for conflicts by comparing $oldid with the current latest revision ID.
 					$ok = $this->updateRevisionOn( $dbw, $revision, $oldid, $oldIsRedirect );
 
 					if ( !$ok ) {
