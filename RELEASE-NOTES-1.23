@@ -144,7 +144,7 @@ production.
 * Added BaseTemplateAfterPortlet hook to allow injecting html after portlets in skins.
 * Support has been added for a JSON based localisation file format. The
   installer has been updated to use it.
-* Changes to content typography (fonts, line-height, etc.). See
+* Changes to content typography (colors, line-height etc.). See
   https://www.mediawiki.org/wiki/Typography_refresh for further information.
 * The Vector skin's visual treatment of external links has been simplified to a
   single icon (from nine). This should not affect local rules unless they were

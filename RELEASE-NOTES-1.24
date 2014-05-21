@@ -33,6 +33,8 @@ production.
   jQuery.cookie so that getting/setting a cookie is syntactically and functionally
   similar to using the WebRequest#getCookie/WebResponse#setcookie methods.
 * (bug 44740) jQuery upgraded from 1.8.3 to 1.11.1.
+* Changes to content typography (fonts, etc.). See
+  https://www.mediawiki.org/wiki/Typography_refresh for further information.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
