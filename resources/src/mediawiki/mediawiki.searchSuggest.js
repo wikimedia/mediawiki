@@ -3,7 +3,7 @@
  */
 ( function ( mw, $ ) {
 	$( function () {
-		var map, resultRenderCache, searchboxesSelectors,
+		var api, map, resultRenderCache, searchboxesSelectors,
 			// Region where the suggestions box will appear directly below
 			// (using the same width). Can be a container element or the input
 			// itself, depending on what suits best in the environment.
@@ -121,33 +121,34 @@
 		$( searchboxesSelectors.join( ', ' ) )
 			.suggestions( {
 				fetch: function ( query ) {
-					var $el;
+					var $textbox = this,
+						node = this[0];
 
-					if ( query.length !== 0 ) {
-						$el = $( this );
-						$el.data( 'request', ( new mw.Api() ).get( {
-							action: 'opensearch',
-							search: query,
-							namespace: 0,
-							suggest: ''
-						} ).done( function ( data ) {
-							$el.suggestions( 'suggestions', data[1] );
-						} ) );
-					}
+					api = api || new mw.Api();
+
+					$.data( node, 'request', api.get( {
+						action: 'opensearch',
+						search: query,
+						namespace: 0,
+						suggest: ''
+					} ).done( function ( data ) {
+						$textbox.suggestions( 'suggestions', data[1] );
+					} ) );
 				},
 				cancel: function () {
-					var apiPromise = $( this ).data( 'request' );
-					// If the delay setting has caused the fetch to have not even happened
-					// yet, the apiPromise object will have never been set.
-					if ( apiPromise && $.isFunction( apiPromise.abort ) ) {
-						apiPromise.abort();
-						$( this ).removeData( 'request' );
+					var node = this[0],
+						request = $.data( node, 'request' );
+
+					if ( request ) {
+						request.abort();
+						$.removeData( node, 'request' );
 					}
 				},
 				result: {
 					render: renderFunction,
 					select: function () {
-						return true; // allow the form to be submitted
+						// allow the form to be submitted
+						return true;
 					}
 				},
 				delay: 120,
