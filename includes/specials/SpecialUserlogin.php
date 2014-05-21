@@ -1213,8 +1213,16 @@ class LoginForm extends SpecialPage {
 		if ( $this->mType == 'signup' ) {
 			// XXX hack pending RL or JS parse() support for complex content messages
 			// https://bugzilla.wikimedia.org/show_bug.cgi?id=25349
+			// Bug 65514 - ensure that message exists before parse
+			$imgcapturehelp = $this->msg( 'createacct-imgcaptcha-help' );
+			if ( $imgcapturehelp->exists() ) {
+				$imgcapturehelp = $imgcapturehelp->parse();
+			} else {
+				$imgcapturehelp = '';
+			}
+
 			$out->addJsConfigVars( 'wgCreateacctImgcaptchaHelp',
-				$this->msg( 'createacct-imgcaptcha-help' )->parse() );
+				$imgcapturehelp );
 
 			// Additional styles and scripts for signup form
 			$out->addModules( array(
