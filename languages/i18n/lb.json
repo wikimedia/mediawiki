@@ -2028,6 +2028,7 @@
 	"movenotallowedfile": "Dir hutt net d'Recht fir Fichieren ze réckelen.",
 	"cant-move-user-page": "Dir hutt net déi néideg Rechter fir Benotzerhaaptsäiten ze réckelen.",
 	"cant-move-to-user-page": "Dir hutt net d'Recht fir eng Säit op eng Benotzersäit (ausser op eng Ënnersäit vun enger Benotzersäit) ze réckelen.",
+	"cant-move-category-page": "Dir hutt net déi néideg Rechter fir Kategorie-Säiten ze réckelen.",
 	"newtitle": "Op den neien Titel:",
 	"move-watch": "Dës Säit iwwerwaachen",
 	"movepagebtn": "Säit réckelen",
