@@ -1178,6 +1178,7 @@ class SkinTemplate extends Skin {
 					$xmlID = 'ca-nstab-' . $xmlID;
 				} elseif ( isset( $link['context'] ) && $link['context'] == 'talk' ) {
 					$xmlID = 'ca-talk';
+					$link['rel'] = 'discussion';
 				} elseif ( $section == 'variants' ) {
 					$xmlID = 'ca-varlang-' . $xmlID;
 				} else {
