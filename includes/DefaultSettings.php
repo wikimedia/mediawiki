@@ -70,7 +70,7 @@ $wgConfigClass = 'GlobalConfig';
  * MediaWiki version number
  * @since 1.2
  */
-$wgVersion = '1.23.0-rc.1';
+$wgVersion = '1.23.0-rc.2';
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
