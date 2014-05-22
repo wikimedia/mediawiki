@@ -48,6 +48,9 @@ class ApiEditPage extends ApiBase {
 		$apiResult = $this->getResult();
 
 		if ( $params['redirect'] ) {
+			if ( $params['prependtext'] === null && $params['appendtext'] === null && $params['section'] !== 'new' ) {
+				$this->dieUsage( 'You have attempted to edit using the "redirect"-following mode, which must be used in conjuction with section=new, prependtext, or appendtext.', 'redirect-appendonly' );
+			}
 			if ( $titleObj->isRedirect() ) {
 				$oldTitle = $titleObj;
 
@@ -526,7 +529,7 @@ class ApiEditPage extends ApiBase {
 				array( 'editconflict' ),
 				array( 'emptynewsection' ),
 				array( 'unknownerror', 'retval' ),
-				array( 'code' => 'nosuchsection', 'info' => 'There is no section section.' ),
+				array( 'code' => 'nosuchsection', 'info' => 'There is no such section.' ),
 				array(
 					'code' => 'invalidsection',
 					'info' => 'The section parameter must be a valid section id or \'new\''
@@ -542,6 +545,10 @@ class ApiEditPage extends ApiBase {
 				array(
 					'code' => 'appendnotsupported',
 					'info' => 'This type of page can not be edited by appending or prepending text.' ),
+				array(
+					'code' => 'redirect-appendonly',
+					'info' => 'You have attempted to edit using the "redirect"-following mode, which must be used in conjuction with section=new, prependtext, or appendtext.',
+				),
 				array(
 					'code' => 'badformat',
 					'info' => 'The requested serialization format can not be applied to the page\'s content model'
