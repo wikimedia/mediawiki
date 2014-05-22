@@ -55,7 +55,8 @@
 			"Wikiklaas",
 			"Wolf Lambert",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Mar(c)"
 		]
 	},
 	"tog-underline": "Koppelingen onderstrepen:",
@@ -718,8 +719,10 @@
 	"parser-template-recursion-depth-warning": "De recursiediepte voor sjablonen is overschreden ($1)",
 	"language-converter-depth-warning": "De dieptelimiet voor de taalconvertor is overschreden ($1)",
 	"node-count-exceeded-category": "Pagina's waar het maximaal aantal nodes is overschreden",
+	"node-count-exceeded-category-desc": "Een categorie voor pagina's waar het aantal knooppunten is overschreden.",
 	"node-count-exceeded-warning": "Op de pagina is het maximale aantal nodes overschreden",
 	"expansion-depth-exceeded-category": "Pagina's waar de expansiediepte is overschreden",
+	"expansion-depth-exceeded-category-desc": "Dit is een categorie voor pagina's waar de expansiediepte is overschreden.",
 	"expansion-depth-exceeded-warning": "De pagina bevat te veel sjablonen",
 	"parser-unstrip-loop-warning": "Er is een \"unstrip\"-lus gedetecteerd",
 	"parser-unstrip-recursion-limit": "De recursielimiet ($1) voor \"unstrip\" is overschreden",
@@ -2088,6 +2091,7 @@
 	"movepagetalktext": "De bijbehorende overlegpagina krijgt automatisch een andere naam, '''tenzij''':\n* De overlegpagina onder de nieuwe naam al bestaat;\n* U het onderstaande vinkje deselecteert.\n\nIn die gevallen moet u de pagina handmatig hernoemen of samenvoegen.",
 	"movearticle": "Te hernoemen pagina:",
 	"moveuserpage-warning": "'''Waarschuwing:''' u gaat een gebruikerspagina hernoemen. Houd er rekening mee dat alleen de pagina wordt hernoemd, ''niet'' de gebruiker.",
+	"movecategorypage-warning": "<strong>Waarschuwing:</strong> U staat op het punt een categoriepagina te hernoemen. Houdt u er rekening mee dat alleen de categoriepagina zelf hernoemd zal worden; pagina's in de oude categorie zullen <em>niet</em> automatisch naar de nieuwe worden verplaatst.",
 	"movenologintext": "U moet [[Special:UserLogin|aangemeld]] zijn om een pagina te hernoemen.",
 	"movenotallowed": "U hebt geen rechten om pagina's te hernoemen.",
 	"movenotallowedfile": "U hebt geen rechten om bestanden te hernoemen.",

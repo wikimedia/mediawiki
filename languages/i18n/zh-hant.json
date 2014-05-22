@@ -1837,7 +1837,7 @@
 	"protect-locked-blocked": "頁面被封鎖，無法更改保護層級。\n以下為頁面 <strong>$1</strong> 目前的設定：",
 	"protect-locked-dblock": "資料庫被鎖定，無法更改保護層級。\n以下為頁面 <strong>$1</strong> 目前的設定：",
 	"protect-locked-access": "您的帳號沒有權限更改保護層級。\n以下為頁面 <strong>$1</strong> 目前的設定：",
-	"protect-cascadeon": "此頁面目前受保護，因此頁面被下列啟動連鎖保護的 $1 個頁面引用。\n更改此頁面的保護層級不會影響連鎖保護的作用。",
+	"protect-cascadeon": "此頁面目前受保護，因頁面被下列啟動連鎖保護的 $1 個頁面引用。\n更改此頁面的保護層級不會影響連鎖保護的作用。",
 	"protect-default": "允許所有使用者",
 	"protect-fallback": "僅允許有 \"$1\" 權限的使用者",
 	"protect-level-autoconfirmed": "僅允許已自動確認的使用者",

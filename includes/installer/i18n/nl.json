@@ -11,7 +11,8 @@
 			"Arent",
 			"JurgenNL",
 			"Southparkfan",
-			"Seb35"
+			"Seb35",
+			"Mar(c)"
 		]
 	},
 	"config-desc": "Het installatieprogramma voor MediaWiki",
@@ -320,6 +321,7 @@
 	"config-install-done": "'''Gefeliciteerd!'''\nU hebt MediaWiki met succes geïnstalleerd.\n\nHet installatieprogramma heeft het bestand <code>LocalSettings.php</code> aangemaakt.\nDit bevat al uw instellingen.\n\nU moet het bestand downloaden en in de hoofdmap van uw wiki-installatie plaatsten, in dezelfde map als index.php.\nDe download moet u automatisch zijn aangeboden.\n\nAls de download niet is aangeboden of als u de download hebt geannuleerd, dan kunt u de download opnieuw starten door op de onderstaande koppeling te klikken:\n\n$3\n\n'''Let op''': als u dit niet nu doet, dan is het bestand als u later de installatieprocedure afsluit zonder het bestand te downloaden niet meer beschikbaar.\n\nNa het plaatsen van het bestand met instellingen kunt u '''[$2 uw wiki gebruiken]'''.",
 	"config-download-localsettings": "<code>LocalSettings.php</code> downloaden",
 	"config-help": "hulp",
+	"config-help-tooltip": "klik om uit te klappen",
 	"config-nofile": "Het bestand \"$1\" is niet gevonden. Is het verwijderd?",
 	"config-extension-link": "Weet u dat u [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions uitbreidingen] kunt gebruiken voor uw wiki?\nU kunt [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category uitbreidingen op categorie] bekijken of ga naar de [//www.mediawiki.org/wiki/Extension_Matrix uitbreidingenmatrix] om de volledige lijst met uitbreidingen te bekijken.",
 	"mainpagetext": "'''De installatie van MediaWiki is geslaagd.'''",

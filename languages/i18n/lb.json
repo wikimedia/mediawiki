@@ -1747,7 +1747,7 @@
 	"rollbacklinkcount-morethan": "méi wéi {{PLURAL:$1|Eng Ännerung|$1 Ännerungen}} zrécksetzen",
 	"rollbackfailed": "Zrécksetzen huet net geklappt",
 	"cantrollback": "Lescht Ännerung kann net zréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.",
-	"alreadyrolled": "Déi lescht Ännerung vun der Säit [[:$1]] vum [[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);; kann net zeréckgesat ginn;\neen Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen.\n\nDéi lescht Ännerung vun der Säit ass vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
+	"alreadyrolled": "Déi lescht Ännerung vun der Säit [[:$1]] vum [[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);; kann net zréckgesat ginn;\neen Aneren huet dat entweder scho gemaach oder nei Ännerungen agedroen.\n\nDéi lescht Ännerung vun der Säit ass vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "De Resumé vun der Ännerung war: \"''$1''\".",
 	"revertpage": "Ännerunge vum [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]",
 	"revertpage-nouser": "Zréckgesaten Ännerungen duerch e verstoppte Benotzer op déi lescht Versioun vum {{GENDER:$1|[[User:$1|$1]]}}",
