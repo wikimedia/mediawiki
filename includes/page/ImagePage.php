@@ -296,7 +296,7 @@ class ImagePage extends Article {
 	}
 
 	protected function openShowImage() {
-		global $wgImageLimits, $wgEnableUploads, $wgSend404Code;
+		global $wgEnableUploads, $wgSend404Code;
 
 		$this->loadFile();
 		$out = $this->getContext()->getOutput();
@@ -341,49 +341,17 @@ class ImagePage extends Article {
 
 			if ( $this->displayImg->allowInlineDisplay() ) {
 				# image
-
 				# "Download high res version" link below the image
 				# $msgsize = wfMessage( 'file-info-size', $width_orig, $height_orig,
 				#   Linker::formatSize( $this->displayImg->getSize() ), $mime )->escaped();
 				# We'll show a thumbnail of this image
-				if ( $width > $maxWidth || $height > $maxHeight ) {
-					# Calculate the thumbnail size.
-					# First case, the limiting factor is the width, not the height.
-					/** @todo // FIXME: Possible division by 0. bug 36911 */
-					if ( $width / $height >= $maxWidth / $maxHeight ) {
-						/** @todo // FIXME: Possible division by 0. bug 36911 */
-						$height = round( $height * $maxWidth / $width );
-						$width = $maxWidth;
-						# Note that $height <= $maxHeight now.
-					} else {
-						/** @todo // FIXME: Possible division by 0. bug 36911 */
-						$newwidth = floor( $width * $maxHeight / $height );
-						/** @todo // FIXME: Possible division by 0. bug 36911 */
-						$height = round( $height * $newwidth / $width );
-						$width = $newwidth;
-						# Note that $height <= $maxHeight now, but might not be identical
-						# because of rounding.
-					}
+				if ( $width > $maxWidth || $height > $maxHeight || $this->displayImg->isVectorized() ) {
+					list( $width, $height ) = $this->getDisplayWidthHeight(
+						$maxWidth, $maxHeight, $width, $height
+					);
 					$linktext = wfMessage( 'show-big-image' )->escaped();
-					if ( $this->displayImg->getRepo()->canTransformVia404() ) {
-						$thumbSizes = $wgImageLimits;
-						// Also include the full sized resolution in the list, so
-						// that users know they can get it. This will link to the
-						// original file asset if mustRender() === false. In the case
-						// that we mustRender, some users have indicated that they would
-						// find it useful to have the full size image in the rendered
-						// image format.
-						$thumbSizes[] = array( $width_orig, $height_orig );
-					} else {
-						# Creating thumb links triggers thumbnail generation.
-						# Just generate the thumb for the current users prefs.
-						$thumbSizes = array( $this->getImageLimitsFromOption( $user, 'thumbsize' ) );
-						if ( !$this->displayImg->mustRender() ) {
-							// We can safely include a link to the "full-size" preview,
-							// without actually rendering.
-							$thumbSizes[] = array( $width_orig, $height_orig );
-						}
-					}
+
+					$thumbSizes = $this->getThumbSizes( $width, $height, $width_orig, $height_orig );
 					# Generate thumbnails or thumbnail links as needed...
 					$otherSizes = array();
 					foreach ( $thumbSizes as $size ) {
@@ -393,7 +361,10 @@ class ImagePage extends Article {
 						// the current thumbnail's size ($width/$height)
 						// since that is added to the message separately, so
 						// it can be denoted as the current size being shown.
-						if ( $size[0] <= $width_orig && $size[1] <= $height_orig
+						// Vectorized images are "infinitely" big, so all thumb
+						// sizes are shown.
+						if ( ( ($size[0] <= $width_orig && $size[1] <= $height_orig)
+								|| $this->displayImg->isVectorized() )
 							&& $size[0] != $width && $size[1] != $height
 						) {
 							$sizeLink = $this->makeSizeLink( $params, $size[0], $size[1] );
@@ -403,6 +374,7 @@ class ImagePage extends Article {
 						}
 					}
 					$otherSizes = array_unique( $otherSizes );
+
 					$msgsmall = '';
 					$sizeLinkBigImagePreview = $this->makeSizeLink( $params, $width, $height );
 					if ( $sizeLinkBigImagePreview ) {
@@ -420,9 +392,6 @@ class ImagePage extends Article {
 				} elseif ( $width == 0 && $height == 0 ) {
 					# Some sort of audio file that doesn't have dimensions
 					# Don't output a no hi res message for such a file
-					$msgsmall = '';
-				} elseif ( $this->displayImg->isVectorized() ) {
-					# For vectorized images, full size is just the frame size
 					$msgsmall = '';
 				} else {
 					# Image is small enough to show full size on image page
@@ -1084,6 +1053,77 @@ EOT
 		);
 		return $langSelectLine;
 	}
+
+	/**
+	 * Get the width and height to display image at.
+	 *
+	 * @note This method assumes that it is only called if one
+	 *  of the dimensions are bigger than the max, or if the
+	 *  image is vectorized.
+	 *
+	 * @param $maxWidth integer Max width to display at
+	 * @param $maxHeight integer Max height to display at
+	 * @param $width integer Actual width of the image
+	 * @param $height integer Actual height of the image
+	 * @throws MWException
+	 * @return Array (width, height)
+	 */
+	protected function getDisplayWidthHeight( $maxWidth, $maxHeight, $width, $height ) {
+		if ( !$maxWidth || !$maxHeight ) {
+			// should never happen
+			throw new MWException( 'Using a choice from $wgImageLimits that is 0x0' );
+		}
+
+		# Calculate the thumbnail size.
+		if ( $width <= $maxWidth && $height <= $maxHeight ) {
+			// Vectorized image, do nothing.
+		} elseif ( $width / $height >= $maxWidth / $maxHeight ) {
+			# The limiting factor is the width, not the height.
+			$height = round( $height * $maxWidth / $width );
+			$width = $maxWidth;
+			# Note that $height <= $maxHeight now.
+		} else {
+			$newwidth = floor( $width * $maxHeight / $height );
+			$height = round( $height * $newwidth / $width );
+			$width = $newwidth;
+			# Note that $height <= $maxHeight now, but might not be identical
+			# because of rounding.
+		}
+		return array( $width, $height );
+	}
+
+	/**
+	 * Get alternative thumbnail sizes.
+	 *
+	 * @note This will only list several alternatives if thumbnails are rendered on 404
+	 * @param $origWidth Actual width of image
+	 * @param $origHeight Actual height of image
+	 * @return Array An array of [width, height] pairs.
+	 */
+	protected function getThumbSizes( $origWidth, $origHeight ) {
+		global $wgImageLimits;
+		if ( $this->displayImg->getRepo()->canTransformVia404() ) {
+			$thumbSizes = $wgImageLimits;
+			// Also include the full sized resolution in the list, so
+			// that users know they can get it. This will link to the
+			// original file asset if mustRender() === false. In the case
+			// that we mustRender, some users have indicated that they would
+			// find it useful to have the full size image in the rendered
+			// image format.
+			$thumbSizes[] = array( $origWidth, $origHeight );
+		} else {
+			# Creating thumb links triggers thumbnail generation.
+			# Just generate the thumb for the current users prefs.
+			$thumbSizes = array( $this->getImageLimitsFromOption( $this->getContext()->getUser(), 'thumbsize' ) );
+			if ( !$this->displayImg->mustRender() ) {
+				// We can safely include a link to the "full-size" preview,
+				// without actually rendering.
+				$thumbSizes[] = array( $origWidth, $origHeight );
+			}
+		}
+		return $thumbSizes;
+	}
+
 }
 
 /**
