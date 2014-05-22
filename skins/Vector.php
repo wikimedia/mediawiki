@@ -118,25 +118,25 @@ class VectorTemplate extends BaseTemplate {
 		}
 
 		$xmlID = '';
-		foreach ( $nav as $section => $links ) {
-			foreach ( $links as $key => $link ) {
+		foreach ( $nav as $section => &$links ) {
+			foreach ( $links as $key => &$link ) {
 				if ( $section == 'views' && !( isset( $link['primary'] ) && $link['primary'] ) ) {
 					$link['class'] = rtrim( 'collapsible ' . $link['class'], ' ' );
 				}
 
 				$xmlID = isset( $link['id'] ) ? $link['id'] : 'ca-' . $xmlID;
-				$nav[$section][$key]['attributes'] =
+				$link['attributes'] =
 					' id="' . Sanitizer::escapeId( $xmlID ) . '"';
 				if ( $link['class'] ) {
-					$nav[$section][$key]['attributes'] .=
+					$link['attributes'] .=
 						' class="' . htmlspecialchars( $link['class'] ) . '"';
-					unset( $nav[$section][$key]['class'] );
+					unset( $link['class'] );
 				}
 				if ( isset( $link['tooltiponly'] ) && $link['tooltiponly'] ) {
-					$nav[$section][$key]['key'] =
+					$link['key'] =
 						Linker::tooltip( $xmlID );
 				} else {
-					$nav[$section][$key]['key'] =
+					$link['key'] =
 						Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( $xmlID ) );
 				}
 			}
@@ -459,7 +459,10 @@ class VectorTemplate extends BaseTemplate {
 								?>><span><a href="<?php
 										echo htmlspecialchars( $link['href'] )
 										?>" <?php
-										echo $link['key']
+										echo $link['key'];
+										if ( isset( $link['rel'] ) ) {
+											echo ' rel="' . $link['rel'] . '"';
+										}
 										?>><?php
 											echo htmlspecialchars( $link['text'] )
 											?></a></span></li>
@@ -542,7 +545,10 @@ class VectorTemplate extends BaseTemplate {
 								?>><span><a href="<?php
 										echo htmlspecialchars( $link['href'] )
 										?>" <?php
-										echo $link['key']
+										echo $link['key'];
+										if ( isset( $link['rel'] ) ) {
+											echo ' rel="' . $link['rel'] . '"';
+										}
 										?>><?php
 											// $link['text'] can be undefined - bug 27764
 											if ( array_key_exists( 'text', $link ) ) {
