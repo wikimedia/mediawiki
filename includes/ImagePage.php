@@ -346,11 +346,13 @@ class ImagePage extends Article {
 				# $msgsize = wfMessage( 'file-info-size', $width_orig, $height_orig,
 				#   Linker::formatSize( $this->displayImg->getSize() ), $mime )->escaped();
 				# We'll show a thumbnail of this image
-				if ( $width > $maxWidth || $height > $maxHeight ) {
+				if ( $width > $maxWidth || $height > $maxHeight || $this->displayImg->isVectorized() ) {
 					# Calculate the thumbnail size.
-					# First case, the limiting factor is the width, not the height.
 					/** @todo // FIXME: Possible division by 0. bug 36911 */
-					if ( $width / $height >= $maxWidth / $maxHeight ) {
+					if ( $width <= $maxWidth && $height <= $maxHeight ) {
+						// Vectorized image, do nothing.
+					} elseif ( $width / $height >= $maxWidth / $maxHeight ) {
+						# The limiting factor is the width, not the height.
 						/** @todo // FIXME: Possible division by 0. bug 36911 */
 						$height = round( $height * $maxWidth / $width );
 						$width = $maxWidth;
@@ -393,7 +395,8 @@ class ImagePage extends Article {
 						// the current thumbnail's size ($width/$height)
 						// since that is added to the message separately, so
 						// it can be denoted as the current size being shown.
-						if ( $size[0] <= $width_orig && $size[1] <= $height_orig
+						if ( ( ($size[0] <= $width_orig && $size[1] <= $height_orig)
+								|| $this->displayImg->isVectorized() )
 							&& $size[0] != $width && $size[1] != $height
 						) {
 							$sizeLink = $this->makeSizeLink( $params, $size[0], $size[1] );
@@ -420,9 +423,6 @@ class ImagePage extends Article {
 				} elseif ( $width == 0 && $height == 0 ) {
 					# Some sort of audio file that doesn't have dimensions
 					# Don't output a no hi res message for such a file
-					$msgsmall = '';
-				} elseif ( $this->displayImg->isVectorized() ) {
-					# For vectorized images, full size is just the frame size
 					$msgsmall = '';
 				} else {
 					# Image is small enough to show full size on image page
