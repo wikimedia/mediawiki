@@ -38,9 +38,13 @@ class BlockTest extends MediaWikiLangTestCase {
 			$oldBlock->delete();
 		}
 
-		$this->block = new Block( 'UTBlockee', $user->getID(), 0,
-			'Parce que', 0, false, time() + 100500
+		$blockOptions = array(
+			'address' => 'UTBlockee',
+			'user' => $user->getID(),
+			'reason' => 'Parce que',
+			'expiry' => time() + 100500,
 		);
+		$this->block = new Block( $blockOptions );
 		$this->madeAt = wfTimestamp( TS_MW );
 
 		$this->block->insert();
@@ -150,22 +154,19 @@ class BlockTest extends MediaWikiLangTestCase {
 		);
 
 		// Foreign perspective (blockee not on current wiki)...
-		$block = new Block(
-			/* $address */ $username,
-			/* $user */ 14146,
-			/* $by */ 0,
-			/* $reason */ 'crosswiki block...',
-			/* $timestamp */ wfTimestampNow(),
-			/* $auto */ false,
-			/* $expiry */ $this->db->getInfinity(),
-			/* anonOnly */ false,
-			/* $createAccount */ true,
-			/* $enableAutoblock */ true,
-			/* $hideName (ipb_deleted) */ true,
-			/* $blockEmail */ true,
-			/* $allowUsertalk */ false,
-			/* $byName */ 'MetaWikiUser'
+		$blockOptions = array(
+			'address' => $username,
+			'user' => 14146,
+			'reason' => 'crosswiki block...',
+			'timestamp' => wfTimestampNow(),
+			'expiry' => $this->db->getInfinity(),
+			'createAccount' => true,
+			'enableAutoblock' => true,
+			'hideName' => true,
+			'blockEmail' => true,
+			'byText' => 'MetaWikiUser',
 		);
+		$block = new Block( $blockOptions);
 		$block->insert();
 
 		// Reload block from DB
@@ -201,22 +202,19 @@ class BlockTest extends MediaWikiLangTestCase {
 		}
 
 		// Foreign perspective (blockee not on current wiki)...
-		$block = new Block(
-			/* $address */ 'UserOnForeignWiki',
-			/* $user */ 14146,
-			/* $by */ 0,
-			/* $reason */ 'crosswiki block...',
-			/* $timestamp */ wfTimestampNow(),
-			/* $auto */ false,
-			/* $expiry */ $this->db->getInfinity(),
-			/* anonOnly */ false,
-			/* $createAccount */ true,
-			/* $enableAutoblock */ true,
-			/* $hideName (ipb_deleted) */ true,
-			/* $blockEmail */ true,
-			/* $allowUsertalk */ false,
-			/* $byName */ 'MetaWikiUser'
+		$blockOptions = array(
+			'address' => 'UserOnForeignWiki',
+			'user' => 14146,
+			'reason' => 'crosswiki block...',
+			'timestamp' => wfTimestampNow(),
+			'expiry' => $this->db->getInfinity(),
+			'createAccount' => true,
+			'enableAutoblock' => true,
+			'hideName' => true,
+			'blockEmail' => true,
+			'byText' => 'MetaWikiUser',
 		);
+		$block = new Block( $blockOptions );
 
 		$res = $block->insert( $this->db );
 		$this->assertTrue( (bool)$res['id'], 'Block succeeded' );
