@@ -1007,14 +1007,14 @@ function wfDebugTimer() {
 /**
  * Send a line giving PHP memory usage.
  *
- * @param bool $exact Print exact values instead of kilobytes (default: false)
+ * @param bool $exact Print exact byte values instead of kibibytes (default: false)
  */
 function wfDebugMem( $exact = false ) {
 	$mem = memory_get_usage();
 	if ( !$exact ) {
-		$mem = floor( $mem / 1024 ) . ' kilobytes';
+		$mem = floor( $mem / 1024 ) . ' KiB';
 	} else {
-		$mem .= ' bytes';
+		$mem .= ' B';
 	}
 	wfDebug( "Memory usage: $mem\n" );
 }
