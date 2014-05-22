@@ -71,7 +71,13 @@ class CloneDatabase {
 	 * Clone the table structure
 	 */
 	public function cloneTableStructure() {
+		global $wgSharedTables;
 		foreach ( $this->tablesToClone as $tbl ) {
+			if ( in_array( $tbl, $wgSharedTables, true ) ) {
+				// Shared tables don't work properly when cloning due to
+				// how prefixes are handled (bug 65654)
+				throw new MWException( "Cannot clone shared table $tbl." );
+			}
 			# Clean up from previous aborted run.  So that table escaping
 			# works correctly across DB engines, we need to change the pre-
 			# fix back and forth so tableName() works right.
