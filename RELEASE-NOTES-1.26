@@ -93,6 +93,9 @@ changes to languages because of Bugzilla reports.
 * wfSuppressWarnings() and wfRestoreWarnings() were split into a separate library,
   mediawiki/at-ease, and are now deprecated. Callers should use
   MediaWiki\suppressWarnings() and MediaWiki\restoreWarnings() directly.
+* The Block class constructor now takes an associative array of parameters
+  instead of many optional positional arguments. Calling the constructor the old
+  way will issue a deprecation warning.
 
 
 == Compatibility ==
