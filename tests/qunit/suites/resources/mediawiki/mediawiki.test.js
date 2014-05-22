@@ -45,7 +45,7 @@
 		assert.strictEqual( window.mw, window.mediaWiki, 'mw alias to mediaWiki' );
 	} );
 
-	QUnit.test( 'mw.Map', 28, function ( assert ) {
+	QUnit.test( 'mw.Map', 32, function ( assert ) {
 		var arry, conf, funky, globalConf, nummy, someValues;
 
 		conf = new mw.Map();
@@ -122,6 +122,14 @@
 		globalConf.set( 'anotherGlobalMapChecker', 'Hello' );
 
 		assert.ok( 'anotherGlobalMapChecker' in window, 'new mw.Map( true ) did store its values in the global window object' );
+
+		assert.equal( globalConf.get( 'anotherGlobalMapChecker' ), 'Hello', 'get value from global Map via get()' );
+		assert.equal( window.anotherGlobalMapChecker, 'Hello', 'get value from global Map via global window object' );
+
+		// Change value via global window object
+		window.anotherGlobalMapChecker = 'World';
+		assert.equal( globalConf.get( 'anotherGlobalMapChecker' ), 'World', 'get changed value from global Map via get()' );
+		assert.equal( window.anotherGlobalMapChecker, 'World', 'get changed value from global Map via global window object' );
 
 		// Whitelist this global variable for QUnit's 'noglobal' mode
 		if ( QUnit.config.noglobals ) {
