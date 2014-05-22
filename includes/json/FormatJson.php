@@ -106,7 +106,7 @@ class FormatJson {
 			$pretty = $pretty ? '    ' : false;
 		}
 
-		if ( defined( 'JSON_UNESCAPED_UNICODE' ) ) {
+		if ( defined( 'JSON_UNESCAPED_UNICODE' ) && defined( 'JSON_PRETTY_PRINT' ) ) {
 			return self::encode54( $value, $pretty, $escaping );
 		}
 
