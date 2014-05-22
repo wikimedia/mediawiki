@@ -23,15 +23,16 @@ class Block {
 	/** @var string */
 	public $mReason;
 
-	/** @var bool|string */
+	/** @var string */
 	public $mTimestamp;
 
-	/** @var int */
+	/** @var bool */
 	public $mAuto;
 
-	/** @var bool|string */
+	/** @var bool */
 	public $mExpiry;
 
+	/** @var bool */
 	public $mHideName;
 
 	/** @var int */
@@ -65,10 +66,10 @@ class Block {
 	protected $blocker;
 
 	/** @var bool */
-	protected $isHardblock = true;
+	protected $mHardblock;
 
 	/** @var bool */
-	protected $isAutoblocking = true;
+	protected $mAutoblock;
 
 	# TYPE constants
 	const TYPE_USER = 1;
@@ -78,45 +79,88 @@ class Block {
 	const TYPE_ID = 5;
 
 	/**
-	 * @todo FIXME: Don't know what the best format to have for this constructor
-	 *   is, but fourteen optional parameters certainly isn't it.
+	 * Create a new block with specified parameters on a user, IP or IP range.
+	 *
+	 * @param array $options Parameters of the block:
+	 *   - address : Target user name, User object, IP address or IP range
+	 *   - user : Override target user ID (for foreign users)
+	 *   - by : User ID of the blocker
+	 *   - byText : Username of the blocker (for foreign users)
+	 *   - reason : Reason of the block
+	 *   - timestamp : The time at which the block comes into effect
+	 *   - auto : Is this an automatic block?
+	 *   - hideName : Hide the target user name
+	 *   - anonOnly : Only disallow anonymous actions
+	 *   - enableAutoblock : Enable automatic blocking
+	 *   - blockEmail : Disallow sending emails
+	 *   - allowUsertalk : Allow the target to edit its own talk page
+	 *   - createAccount : Disallow creation of new accounts
+	 *   - expiry : Timestamp of expiration of the block or 'infinity'
 	 */
-	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
-		$timestamp = 0, $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0,
-		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byText = ''
-	) {
-		if ( $timestamp === 0 ) {
-			$timestamp = wfTimestampNow();
+	function __construct( $options = array() ) {
+		$defaults = array(
+			'address'         => '',
+			'user'            => null,
+			'by'              => null,
+			'reason'          => '',
+			'timestamp'       => 0,
+			'auto'            => false,
+			'expiry'          => 0,
+			'anonOnly'        => false,
+			'createAccount'   => true,
+			'enableAutoblock' => false,
+			'hideName'        => false,
+			'blockEmail'      => false,
+			'allowUsertalk'   => true,
+			'byText'          => '',
+		);
+
+		if ( func_num_args() > 1 ) {
+			$options = array_combine(
+				array_slice( array_keys( $defaults ), 0, func_num_args() ),
+				func_get_args()
+			);
+			wfDeprecated( __METHOD__ . ' with multiple arguments', '1.24' );
 		}
 
-		if ( count( func_get_args() ) > 0 ) {
-			# Soon... :D
-			# wfDeprecated( __METHOD__ . " with arguments" );
+		$options += $defaults;
+
+		$this->setTarget( $options['address'] );
+
+		if ( $this->target instanceof User && $options['user'] ) {
+			# Needed for foreign users
+			$this->forcedTargetID = $options['user'];
 		}
 
-		$this->setTarget( $address );
-		if ( $this->target instanceof User && $user ) {
-			$this->forcedTargetID = $user; // needed for foreign users
+		if ( $options['by'] ) {
+			# Local user
+			$this->setBlocker( User::newFromID( $options['by'] ) );
+		} elseif ( $options['byText'] ) {
+			# Foreign user
+			$this->setBlocker( $options['byText'] );
 		}
-		if ( $by ) { // local user
-			$this->setBlocker( User::newFromID( $by ) );
-		} else { // foreign user
-			$this->setBlocker( $byText );
-		}
-		$this->mReason = $reason;
-		$this->mTimestamp = wfTimestamp( TS_MW, $timestamp );
-		$this->mAuto = $auto;
-		$this->isHardblock( !$anonOnly );
-		$this->prevents( 'createaccount', $createAccount );
-		if ( $expiry == 'infinity' || $expiry == wfGetDB( DB_SLAVE )->getInfinity() ) {
+
+		$this->mReason = $options['reason'];
+		$this->mTimestamp = wfTimestamp( TS_MW, $options['timestamp'] );
+
+		# Boolean settings
+		$this->mAuto = (bool)$options['auto'];
+		$this->mHideName = (bool)$options['hideName'];
+		$this->isHardblock( !$options['anonOnly'] );
+		$this->isAutoblocking( (bool)$options['enableAutoblock'] );
+
+		# Prevention measures
+		$this->prevents( 'sendemail', (bool)$options['blockEmail'] );
+		$this->prevents( 'editownusertalk', !$options['allowUsertalk'] );
+		$this->prevents( 'createaccount', (bool)$options['createAccount'] );
+
+		if ( $options['expiry'] == 'infinity'
+			|| $options['expiry'] == wfGetDB( DB_SLAVE )->getInfinity() )
+		{
 			$this->mExpiry = 'infinity';
 		} else {
-			$this->mExpiry = wfTimestamp( TS_MW, $expiry );
+			$this->mExpiry = wfTimestamp( TS_MW, $options['expiry'] );
 		}
-		$this->isAutoblocking( $enableAutoblock );
-		$this->mHideName = $hideName;
-		$this->prevents( 'sendemail', $blockEmail );
-		$this->prevents( 'editownusertalk', !$allowUsertalk );
 
 		$this->mFromMaster = false;
 	}
@@ -885,21 +929,21 @@ class Block {
 	 * @return bool
 	 */
 	public function isHardblock( $x = null ) {
-		wfSetVar( $this->isHardblock, $x );
+		wfSetVar( $this->mHardblock, $x );
 
 		# You can't *not* hardblock a user
 		return $this->getType() == self::TYPE_USER
 			? true
-			: $this->isHardblock;
+			: $this->mHardblock;
 	}
 
 	public function isAutoblocking( $x = null ) {
-		wfSetVar( $this->isAutoblocking, $x );
+		wfSetVar( $this->mAutoblocking, $x );
 
 		# You can't put an autoblock on an IP or range as we don't have any history to
 		# look over to get more IPs from
 		return $this->getType() == self::TYPE_USER
-			? $this->isAutoblocking
+			? $this->mAutoblocking
 			: false;
 	}
 
