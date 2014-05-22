@@ -85,6 +85,11 @@ class CloneDatabase {
 			if ( $this->dropCurrentTables
 				&& !in_array( $this->db->getType(), array( 'postgres', 'oracle' ) )
 			) {
+				if ( $oldTableName === $newTableName ) {
+					// Last ditch check to avoid data loss
+					throw new MWException( "Not dropping new table, as '$newTableName'"
+						. " is name of both the old and the new table." );
+				}
 				$this->db->dropTable( $tbl, __METHOD__ );
 				wfDebug( __METHOD__ . " dropping {$newTableName}\n" );
 				//Dropping the oldTable because the prefix was changed
