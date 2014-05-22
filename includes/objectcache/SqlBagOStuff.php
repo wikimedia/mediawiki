@@ -270,7 +270,6 @@ class SqlBagOStuff extends BagOStuff {
 							array( 'keyname' => $key, 'exptime' => $row->exptime ),
 							__METHOD__ );
 						$db->commit( __METHOD__, 'flush' );
-						$values[$key] = false;
 					} else { // HIT
 						$values[$key] = $this->unserialize( $db->decodeBlob( $row->value ) );
 					}
@@ -278,7 +277,6 @@ class SqlBagOStuff extends BagOStuff {
 					$this->handleWriteError( $e, $row->serverIndex );
 				}
 			} else { // MISS
-				$values[$key] = false;
 				$this->debug( 'get: no matching rows' );
 			}
 		}
