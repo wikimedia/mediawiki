@@ -43,6 +43,7 @@ production.
   non-landscape thumbnails.
 
 === Bug fixes in 1.24 ===
+* (bug 63198) Add rel=discussion to talkpage tabs
 * (bug 49116) Footer copyright notice is now always displayed in user language
   rather than content language (same as copyright notice for editing interface).
 * (bug 62258) A bug was fixed in File::getUnscaledThumb when a height

@@ -459,7 +459,10 @@ class VectorTemplate extends BaseTemplate {
 								?>><span><a href="<?php
 										echo htmlspecialchars( $link['href'] )
 										?>" <?php
-										echo $link['key']
+										echo $link['key'];
+										if ( isset( $link['rel'] ) ) {
+											echo ' rel="' . $link['rel'] . '"';
+										}
 										?>><?php
 											echo htmlspecialchars( $link['text'] )
 											?></a></span></li>
