@@ -29,11 +29,18 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 			'wikiId' => wfWikiId(),
 			'containerPaths' => $containers
 		) );
-		$this->repo = new FSRepo( array(
+		$this->repo = new FSRepo( $this->getRepoOptions() );
+	}
+
+	/**
+	 * @return Array Argument for FSRepo constructor
+	 */
+	protected function getRepoOptions() {
+		return array(
 			'name' => 'temp',
 			'url' => 'http://localhost/thumbtest',
 			'backend' => $this->backend
-		) );
+		);
 	}
 
 	/**
