@@ -216,7 +216,7 @@ class MagicWord {
 		'numberofadmins' => 3600,
 		'numberofviews' => 3600,
 		'numberingroup' => 3600,
-		);
+	);
 
 	static public $mDoubleUnderscoreIDs = array(
 		'notoc',
