@@ -116,9 +116,7 @@ class TextContent extends AbstractContent {
 	 * @return string The raw text.
 	 */
 	public function getNativeData() {
-		$text = $this->mText;
-
-		return $text;
+		return $this->mText;
 	}
 
 	/**
