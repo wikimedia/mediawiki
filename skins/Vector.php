@@ -542,7 +542,10 @@ class VectorTemplate extends BaseTemplate {
 								?>><span><a href="<?php
 										echo htmlspecialchars( $link['href'] )
 										?>" <?php
-										echo $link['key']
+										echo $link['key'];
+										if ( isset ( $link['rel'] ) ) {
+											echo ' rel="' . htmlspecialchars( $link['rel'] ) . '"';
+										}
 										?>><?php
 											// $link['text'] can be undefined - bug 27764
 											if ( array_key_exists( 'text', $link ) ) {
