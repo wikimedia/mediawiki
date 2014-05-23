@@ -83,7 +83,13 @@
 	 *  true to map over the global object. Defaults to an empty object.
 	 */
 	function Map( values ) {
-		this.values = values === true ? window : ( values || {} );
+		if ( values === true ) {
+			this.global = true;
+			this.values = {};
+		} else {
+			this.global = false;
+			this.values = values || {};
+		}
 		return this;
 	}
 
@@ -139,16 +145,33 @@
 		 * @return {Boolean} This returns true on success, false on failure.
 		 */
 		set: function ( selection, value ) {
-			var s;
+			var s, map = this;
+
+			// Simulate an alias on the global object window.
+			function setGlobal( key ) {
+				if ( map.global ) {
+					mw.log.deprecate(
+						window,
+						key,
+						map.values[key],
+						'Use mw.config instead.',
+						function ( newVal ) {
+							map.values[key] = newVal;
+						}
+					);
+				}
+			}
 
 			if ( $.isPlainObject( selection ) ) {
 				for ( s in selection ) {
 					this.values[s] = selection[s];
+					setGlobal( s );
 				}
 				return true;
 			}
 			if ( typeof selection === 'string' && arguments.length > 1 ) {
 				this.values[selection] = value;
+				setGlobal( selection );
 				return true;
 			}
 			return false;
@@ -554,10 +577,11 @@
 			 * @param {string} key Name of property to create in `obj`
 			 * @param {Mixed} val The value this property should return when accessed
 			 * @param {string} [msg] Optional text to include in the deprecation message.
+			 * @param {function} [setter] function called as setter.
 			 */
 			log.deprecate = !Object.defineProperty ? function ( obj, key, val ) {
 				obj[key] = val;
-			} : function ( obj, key, val, msg ) {
+			} : function ( obj, key, val, msg, setter ) {
 				msg = 'Use of "' + key + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' );
 				try {
 					Object.defineProperty( obj, key, {
@@ -572,6 +596,9 @@
 							mw.track( 'mw.deprecate', key );
 							mw.log.warn( msg );
 							val = newVal;
+							if ( $.isFunction( setter ) ) {
+								setter( newVal );
+							}
 						}
 					} );
 				} catch ( err ) {
