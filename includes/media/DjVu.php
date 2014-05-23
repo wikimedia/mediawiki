@@ -278,7 +278,14 @@ class DjVuHandler extends ImageHandler {
 		$unser = unserialize( $metadata );
 		wfRestoreWarnings();
 		if ( is_array( $unser ) ) {
-			return $unser['xml'];
+			if ( isset( $unser['error'] ) ) {
+				return false;
+			} elseif ( isset( $unser['xml'] ) ) {
+				return $unser['xml'];
+			} else {
+				// Should never ever reach here.
+				throw new MWException( "Error unserializing DjVu metadata." );
+			}
 		}
 
 		// unserialize failed. Guess it wasn't really serialized after all,
@@ -364,7 +371,8 @@ class DjVuHandler extends ImageHandler {
 
 		$xml = $this->getDjVuImage( $image, $path )->retrieveMetaData();
 		if ( $xml === false ) {
-			return false;
+			// Special value so that we don't repetitively try and decode a broken file.
+			return serialize( array( 'error' => 'Error extracting metadata' ) );
 		} else {
 			return serialize( array( 'xml' => $xml ) );
 		}
