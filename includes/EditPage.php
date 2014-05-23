@@ -2302,7 +2302,7 @@ class EditPage {
 			if ( $title instanceof Title && $title->exists() && $title->userCan( 'read' ) ) {
 				global $wgOut;
 				// Added using template syntax, to take <noinclude>'s into account.
-				$wgOut->addWikiTextTitleTidy( '{{:' . $title->getFullText() . '}}', $this->mTitle );
+				$wgOut->addWikiTextTitleTidy( '<div class="mw-editintro">{{:' . $title->getFullText() . '}}</div>', $this->mTitle );
 				return true;
 			}
 		}
