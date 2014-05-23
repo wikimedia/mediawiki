@@ -1494,6 +1494,7 @@ class Article implements Page {
 	 * Handle action=render
 	 */
 	public function render() {
+		$this->getContext()->getRequest()->response()->header( 'X-Robots-Tag: noindex' );
 		$this->getContext()->getOutput()->setArticleBodyOnly( true );
 		$this->getContext()->getOutput()->enableSectionEditLinks( false );
 		$this->view();
