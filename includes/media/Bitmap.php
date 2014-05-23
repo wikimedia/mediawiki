@@ -117,6 +117,7 @@ class BitmapHandler extends ImageHandler {
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
 		}
+
 		# Create a parameter array to pass to the scaler
 		$scalerParams = array(
 			# The size to which the image will be resized
@@ -187,7 +188,8 @@ class BitmapHandler extends ImageHandler {
 		}
 
 		# Transform functions and binaries need a FS source file
-		$scalerParams['srcPath'] = $image->getLocalRefPath();
+		$scalerParams['srcPath'] = $image->getSourcePath( $params );
+
 		if ( $scalerParams['srcPath'] === false ) { // Failed to get local copy
 			wfDebugLog( 'thumbnail',
 				sprintf( 'Thumbnail failed on %s: could not get local copy of "%s"',
@@ -845,7 +847,7 @@ class BitmapHandler extends ImageHandler {
 	}
 
 	/**
-	 * Rerurns whether the file needs to be rendered. Returns true if the
+	 * Returns whether the file needs to be rendered. Returns true if the
 	 * file requires rotation and we are able to rotate it.
 	 *
 	 * @param File $file
@@ -853,5 +855,9 @@ class BitmapHandler extends ImageHandler {
 	 */
 	public function mustRender( $file ) {
 		return self::canRotate() && $this->getRotation( $file ) != 0;
+	}
+
+	public function supportsBucketing() {
+		return true;
 	}
 }
