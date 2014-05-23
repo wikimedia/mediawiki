@@ -457,6 +457,48 @@ abstract class File {
 	}
 
 	/**
+	 * Return the nearest width thumbnail bucket, if any
+	 *
+	 * $param int $desiredWidth
+	 * @param int $page
+	 * @return bool|int
+	 */
+	public function getThumbnailBucket( $desiredWidth, $page = 1 ) {
+		global $wgThumbnailBuckets;
+
+		$imageWidth = $this->getWidth( $page );
+
+		if ( $imageWidth === false ) {
+			return false;
+		}
+
+		if ( $desiredWidth > $imageWidth ) {
+			return false;
+		}
+
+		if ( !is_array( $wgThumbnailBuckets ) || empty( $wgThumbnailBuckets ) ) {
+			return false;
+		}
+
+		$sortedBuckets = $wgThumbnailBuckets;
+
+		sort( $sortedBuckets );
+
+		foreach ( $sortedBuckets as $bucket ) {
+			if ( $bucket > $imageWidth ) {
+				return false;
+			}
+
+			if ( $bucket >= $desiredWidth ) {
+				return $bucket;
+			}
+		}
+
+		// Image is bigger than any available bucket
+		return false;
+	}
+
+	/**
 	 * Returns ID or name of user who uploaded the file
 	 * STUB
 	 *
@@ -1004,18 +1046,16 @@ abstract class File {
 				} elseif ( $flags & self::RENDER_FORCE ) {
 					wfDebug( __METHOD__ . " forcing rendering per flag File::RENDER_FORCE\n" );
 				}
+
+				// If the backend is ready-only, don't keep generating thumbnails
+				// only to return transformation errors, just return the error now.
+				if ( $this->repo->getReadOnlyReason() !== false ) {
+					$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
+					break;
+				}
 			}
 
-			// If the backend is ready-only, don't keep generating thumbnails
-			// only to return transformation errors, just return the error now.
-			if ( $this->repo->getReadOnlyReason() !== false ) {
-				$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
-				break;
-			}
-
-			// Create a temp FS file with the same extension and the thumbnail
-			$thumbExt = FileBackend::extensionFromPath( $thumbPath );
-			$tmpFile = TempFSFile::factory( 'transform_', $thumbExt );
+			$tmpFile = $this->makeTransformTmpFile( $thumbPath );
 			if ( !$tmpFile ) {
 				$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
 				break;
@@ -1062,6 +1102,16 @@ abstract class File {
 		wfProfileOut( __METHOD__ );
 
 		return is_object( $thumb ) ? $thumb : false;
+	}
+
+	/**
+	 * Creates a temp FS file with the same extension and the thumbnail
+	 * @param string $thumbPath Thumbnail path
+	 * @returns TempFSFile
+	 */
+	public function makeTransformTmpFile( $thumbPath ) {
+		$thumbExt = FileBackend::extensionFromPath( $thumbPath );
+		return TempFSFile::factory( 'transform_', $thumbExt );
 	}
 
 	/**

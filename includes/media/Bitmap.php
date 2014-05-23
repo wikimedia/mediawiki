@@ -117,6 +117,42 @@ class BitmapHandler extends ImageHandler {
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
 		}
+
+		$bucket = $image->getThumbnailBucket( $params[ 'physicalWidth' ] );
+
+		if ( $image->repo && $bucket && $bucket != $params[ 'physicalWidth' ] ) {
+			wfDebug( __METHOD__ . ": checking existence of {$bucket} bucket\n" );
+
+			$normalisedParams = $params;
+			$normalisedParams['physicalWidth'] = $bucket;
+			unset( $normalisedParams['physicalHeight'] );
+			$this->normaliseParams( $image, $normalisedParams );
+			$thumbName = $image->thumbName( $normalisedParams );
+			$thumbUrl = $image->getThumbUrl( $thumbName );
+			$thumbPath = $image->getThumbPath( $thumbName );
+
+			if ( !$image->repo->fileExists( $thumbPath ) ) {
+				wfDebug( __METHOD__ . ": {$bucket} bucket doesn't exist yet: {$thumbPath}\n" );
+
+				$bucketTmpFile = $image->makeTransformTmpFile( $thumbPath );
+
+				if ( $bucketTmpFile ) {
+					wfDebug( __METHOD__ . ": generating {$bucket} bucket\n" );
+					$this->doTransform( $image, $bucketTmpFile->getPath(), $thumbUrl, $normalisedParams );
+				} else {
+					wfDebug( __METHOD__ . ": Could not create temp file for bucket: {$thumbPath}\n" );
+				}
+			}
+		} else {
+			if ( !$image->repo ) {
+				wfDebug( __METHOD__ . ": no repo for image\n" );
+			} elseif ( !$bucket ) {
+				wfDebug( __METHOD__ . ": no corresponding thumbnail bucket\n" );
+			} else ( !$bucket ) {
+				wfDebug( __METHOD__ . ": bucket is the same size as current doTransform request\n" );
+			}
+		}
+
 		# Create a parameter array to pass to the scaler
 		$scalerParams = array(
 			# The size to which the image will be resized
