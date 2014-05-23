@@ -812,4 +812,14 @@ abstract class MediaHandler {
 	public function getLength( $file ) {
 		return 0.0;
 	}
+
+	/**
+	 * Returns whether or not this handler supports the chained generation of thumbnails according
+	 * to buckets
+	 * @return boolean
+	 * @since  1.24
+	 */
+	public function supportsBucketing() {
+		return false;
+	}
 }
