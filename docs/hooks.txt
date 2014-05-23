@@ -638,6 +638,7 @@ $title: Title corresponding to the article restored
 $create: Whether or not the restoration caused the page to be created (i.e. it
   didn't exist before).
 $comment: The comment associated with the undeletion.
+$oldPageId: ID of page previously deleted (from archive table)
 
 'ArticleUndeleteLogEntry': When a log entry is generated but not yet saved.
 $pageArchive: the PageArchive object
