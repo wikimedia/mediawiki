@@ -357,8 +357,8 @@ abstract class FileBackendStore extends FileBackend {
 			$status->merge( $this->doConcatenate( $params ) );
 			$sec = microtime( true ) - $start_time;
 			if ( !$status->isOK() ) {
-				wfDebugLog( 'FileOperation', get_class( $this ) . " failed to concatenate " .
-					count( $params['srcs'] ) . " file(s) [$sec sec]" );
+				wfDebugLog( 'FileOperation', get_class( $this ) . "-{$this->name}" .
+					" failed to concatenate " . count( $params['srcs'] ) . " file(s) [$sec sec]" );
 			}
 		}
 
@@ -1122,6 +1122,8 @@ abstract class FileBackendStore extends FileBackend {
 				$subStatus->success[$i] = false;
 				++$subStatus->failCount;
 			}
+			wfDebugLog( 'FileOperation', get_class( $this ) . "-{$this->name} " .
+				" stat failure; aborted operations: " . FormatJson::encode( $ops ) );
 		}
 
 		// Merge errors into status fields
