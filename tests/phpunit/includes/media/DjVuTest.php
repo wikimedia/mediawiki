@@ -64,7 +64,8 @@ class DjVuTest extends MediaWikiTestCase {
 	}
 
 	public function testInvalidFile() {
-		$this->assertFalse(
+		$this->assertEquals(
+			'a:1:{s:5:"error";s:25:"Error extracting metadata";}',
 			$this->handler->getMetadata( null, $this->filePath . '/README' ),
 			'Getting Metadata for an inexistent file should returns false'
 		);
