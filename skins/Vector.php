@@ -125,19 +125,11 @@ class VectorTemplate extends BaseTemplate {
 				}
 
 				$xmlID = isset( $link['id'] ) ? $link['id'] : 'ca-' . $xmlID;
-				$nav[$section][$key]['attributes'] =
-					' id="' . Sanitizer::escapeId( $xmlID ) . '"';
-				if ( $link['class'] ) {
-					$nav[$section][$key]['attributes'] .=
-						' class="' . htmlspecialchars( $link['class'] ) . '"';
-					unset( $nav[$section][$key]['class'] );
-				}
+				$nav[$section][$key]['id'] = $xmlID;
 				if ( isset( $link['tooltiponly'] ) && $link['tooltiponly'] ) {
-					$nav[$section][$key]['key'] =
-						Linker::tooltip( $xmlID );
+					$nav[$section][$key]['key'] = Linker::titleAttrib( $xmlID );
 				} else {
-					$nav[$section][$key]['key'] =
-						Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( $xmlID ) );
+					$nav[$section][$key]['key'] = Linker::tooltipAndAccesskeyAttribs( $xmlID );
 				}
 			}
 		}
@@ -453,17 +445,16 @@ class VectorTemplate extends BaseTemplate {
 						<ul<?php $this->html( 'userlangattributes' ) ?>>
 							<?php
 							foreach ( $this->data['namespace_urls'] as $link ) {
-								?>
-								<li <?php
-								echo $link['attributes']
-								?>><span><a href="<?php
-										echo htmlspecialchars( $link['href'] )
-										?>" <?php
-										echo $link['key']
-										?>><?php
-											echo htmlspecialchars( $link['text'] )
-											?></a></span></li>
-							<?php
+								echo Html::openElement( 'li', array(
+										'id'    => $link['id'],
+										'class' => isset( $link['class'] )
+											? $link['class']
+											: null ) ),
+									Html::openElement( 'span' ),
+									Html::element( 'a', array( 'href' => $link['href'], )
+										+ $link['key'], $link['text'] ),
+									Html::closeElement( 'span' ),
+									Html::closeElement( 'li' );
 							}
 							?>
 						</ul>
@@ -482,7 +473,7 @@ class VectorTemplate extends BaseTemplate {
 							foreach ( $this->data['variant_urls'] as $link ) {
 								?>
 								<?php
-								if ( stripos( $link['attributes'], 'selected' ) !== false ) {
+								if ( isset( $link['selected'] ) && $link['selected'] ) {
 									?>
 									<?php
 									echo htmlspecialchars( $link['text'] )
@@ -501,21 +492,17 @@ class VectorTemplate extends BaseTemplate {
 							<ul>
 								<?php
 								foreach ( $this->data['variant_urls'] as $link ) {
-									?>
-									<li<?php
-									echo $link['attributes']
-									?>><a href="<?php
-										echo htmlspecialchars( $link['href'] )
-										?>" lang="<?php
-										echo htmlspecialchars( $link['lang'] )
-										?>" hreflang="<?php
-										echo htmlspecialchars( $link['hreflang'] )
-										?>" <?php
-										echo $link['key']
-										?>><?php
-											echo htmlspecialchars( $link['text'] )
-											?></a></li>
-								<?php
+									echo Html::openElement( 'li', array(
+											'id'    => $link['id'],
+											'class' => isset( $link['class'] )
+												? $link['class']
+												: null, ) ),
+										Html::element( 'a', array(
+											'href'     => $link['href'],
+											'lang'     => $link['lang'],
+											'hreflang' => $link['hreflang'],
+											) + $link['key'], $link['text'] ),
+										Html::closeElement( 'li' );
 								}
 								?>
 							</ul>
@@ -536,22 +523,28 @@ class VectorTemplate extends BaseTemplate {
 						?>>
 							<?php
 							foreach ( $this->data['view_urls'] as $link ) {
-								?>
-								<li<?php
-								echo $link['attributes']
-								?>><span><a href="<?php
-										echo htmlspecialchars( $link['href'] )
-										?>" <?php
-										echo $link['key']
-										?>><?php
-											// $link['text'] can be undefined - bug 27764
-											if ( array_key_exists( 'text', $link ) ) {
-												echo array_key_exists( 'img', $link )
-													? '<img src="' . $link['img'] . '" alt="' . $link['text'] . '" />'
-													: htmlspecialchars( $link['text'] );
-											}
-											?></a></span></li>
-							<?php
+								echo Html::openElement( 'li', array(
+										'id'    => $link['id'],
+										'class' => isset( $link['class'] )
+											? $link['class']
+											: null, ) ),
+									Html::openElement( 'span' ),
+									Html::openElement( 'a', array( 'href' => $link['href'], )
+										+ $link['key'] );
+
+								if ( isset( $link['text'] ) ) {
+									if ( isset( $link['img'] ) ) {
+										echo Html::element( 'img', array(
+											'src' => $link['img'],
+											'alt' => $link['text'], ) );
+									} else {
+										echo htmlspecialchars( $link['text'] );
+									}
+								}
+
+								echo Html::closeElement( 'a' ),
+									Html::closeElement( 'span' ),
+									Html::closeElement( 'li' );
 							}
 							?>
 						</ul>
@@ -571,17 +564,15 @@ class VectorTemplate extends BaseTemplate {
 							<ul<?php $this->html( 'userlangattributes' ) ?>>
 								<?php
 								foreach ( $this->data['action_urls'] as $link ) {
-									?>
-									<li<?php
-									echo $link['attributes']
-									?>>
-										<a href="<?php
-										echo htmlspecialchars( $link['href'] )
-										?>" <?php
-										echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] )
-											?></a>
-									</li>
-								<?php
+									echo Html::openElement( 'li', array(
+											'id'    => $link['id'],
+											'class' => isset( $link['class'] )
+												? $link['class']
+												: null, ) ),
+										Html::element( 'a', array(
+											'href' => $link['href'],
+											) + $link['key'], $link['text'] ),
+										Html::closeElement( 'li' );
 								}
 								?>
 							</ul>
