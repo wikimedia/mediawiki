@@ -117,6 +117,9 @@ class BitmapHandler extends ImageHandler {
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
 		}
+
+		$this->generateBucketIfNeeded( $image, $params, $flags );
+
 		# Create a parameter array to pass to the scaler
 		$scalerParams = array(
 			# The size to which the image will be resized
@@ -187,7 +190,8 @@ class BitmapHandler extends ImageHandler {
 		}
 
 		# Transform functions and binaries need a FS source file
-		$scalerParams['srcPath'] = $image->getLocalRefPath();
+		$scalerParams['srcPath'] = $this->getSourcePath( $image, $params );
+
 		if ( $scalerParams['srcPath'] === false ) { // Failed to get local copy
 			wfDebugLog( 'thumbnail',
 				sprintf( 'Thumbnail failed on %s: could not get local copy of "%s"',
@@ -251,6 +255,106 @@ class BitmapHandler extends ImageHandler {
 			}
 			return new ThumbnailImage( $image, $dstUrl, $dstPath, $newParams );
 		}
+	}
+
+	protected function generateBucketIfNeeded( $image, $params, $flags ) {
+		$bucket = $image->getThumbnailBucket( $params[ 'physicalWidth' ] );
+
+		if ( $image->repo && $bucket && $bucket != $params[ 'physicalWidth' ] ) {
+			wfDebug( __METHOD__ . ": checking existence of {$bucket} bucket\n" );
+
+			$bucketPath = $this->getBucketThumbPath( $image, $bucket );
+
+			if ( !$image->repo->fileExists( $bucketPath ) ) {
+				wfDebug( __METHOD__ . ": {$bucket} bucket doesn't exist yet: {$bucketPath}\n" );
+
+				$reducedHeight = ( $bucket / $params['physicalWidth'] ) * $params['physicalHeight'];
+
+				$params['physicalHeight'] = round( $reducedHeight );
+				$params['physicalWidth'] = $bucket;
+
+				$bucketName = $this->getBucketThumbName( $image, $bucket );
+
+				$image->generateAndSaveThumb( $bucketName, $params, $flags );
+			} else {
+				wfDebug( __METHOD__ . ": {$bucket} bucket already exists\n" );
+			}
+		} else {
+			if ( !$image->repo ) {
+				wfDebug( __METHOD__ . ": no repo for image\n" );
+			} elseif ( !$bucket ) {
+				wfDebug( __METHOD__ . ": no corresponding thumbnail bucket\n" );
+			} else {
+				wfDebug( __METHOD__ . ": bucket is the same size as current doTransform request\n" );
+			}
+		}
+	}
+
+	/**
+	 * Returns the repo path of the thumb for a given bucket
+	 * @param File $image
+	 * @param int $bucket
+	 * @return string
+	 */
+	protected function getBucketThumbPath( $image, $bucket ) {
+		$thumbName = $this->getBucketThumbName( $image, $bucket );
+		return $image->getThumbPath( $thumbName );
+	}
+
+	/**
+	 * Returns the url of the thumb for a given bucket
+	 * @param File $image
+	 * @param int $bucket
+	 * @return string
+	 */
+	protected function getBucketThumbUrl( $image, $bucket ) {
+		$thumbName = $this->getBucketThumbName( $image, $bucket );
+		return $image->getThumbUrl( $thumbName );
+	}
+
+	protected function getBucketThumbName( $image, $bucket ) {
+		return $image->thumbName( array( 'physicalWidth' => $bucket ) );
+	}
+
+	/**
+	 * Returns the most appropriate source image for the image, given a target thumbnail size
+	 * @param File $image
+	 * @param array $params
+	 * @return string
+	 */
+	protected function getSourcePath( $image, $params ) {
+		$bucket = $image->getThumbnailBucket( $params[ 'physicalWidth' ] );
+
+		if ( $image->repo && $bucket ) {
+			wfDebug( __METHOD__ . ": checking if source path of {$bucket} can be obtained\n" );
+
+			$bucketPath = $this->getBucketThumbPath( $image, $bucket );
+
+			if ( $image->repo->fileExists( $bucketPath ) ) {
+				wfDebug( __METHOD__ . ": {$bucket} bucket exists at {$bucketPath}\n" );
+
+				$fsFile = $image->repo->getLocalReference( $bucketPath );
+
+				if ( $fsFile ) {
+					$localPath = $fsFile->getPath();
+					wfDebug( __METHOD__ . ": {$bucket} bucket was downloaded locally at {$localPath}\n" );
+					return $localPath;
+				} else {
+					wfDebug( __METHOD__ . ": {$bucket} bucket could not be downloaded locally at {$localPath}\n" );
+				}
+			} else {
+				wfDebug( __METHOD__ . ": {$bucket} bucket does not exist at {$bucketPath}\n" );
+			}
+		} else {
+			if ( !$image->repo ) {
+				wfDebug( __METHOD__ . ": no repo for image\n" );
+			} else {
+				wfDebug( __METHOD__ . ": no corresponding thumbnail bucket\n" );
+			}
+		}
+
+		// Original
+		return $image->getLocalRefPath();
 	}
 
 	/**

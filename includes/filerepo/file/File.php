@@ -457,6 +457,48 @@ abstract class File {
 	}
 
 	/**
+	 * Return the nearest width thumbnail bucket, if any
+	 *
+	 * $param int $desiredWidth
+	 * @param int $page
+	 * @return bool|int
+	 */
+	public function getThumbnailBucket( $desiredWidth, $page = 1 ) {
+		global $wgThumbnailBuckets;
+
+		$imageWidth = $this->getWidth( $page );
+
+		if ( $imageWidth === false ) {
+			return false;
+		}
+
+		if ( $desiredWidth > $imageWidth ) {
+			return false;
+		}
+
+		if ( !is_array( $wgThumbnailBuckets ) || empty( $wgThumbnailBuckets ) ) {
+			return false;
+		}
+
+		$sortedBuckets = $wgThumbnailBuckets;
+
+		sort( $sortedBuckets );
+
+		foreach ( $sortedBuckets as $bucket ) {
+			if ( $bucket > $imageWidth ) {
+				return false;
+			}
+
+			if ( $bucket > $desiredWidth ) {
+				return $bucket;
+			}
+		}
+
+		// Image is bigger than any available bucket
+		return false;
+	}
+
+	/**
 	 * Returns ID or name of user who uploaded the file
 	 * STUB
 	 *
@@ -947,7 +989,7 @@ abstract class File {
 	 * @return MediaTransformOutput|bool False on failure
 	 */
 	function transform( $params, $flags = 0 ) {
-		global $wgUseSquid, $wgIgnoreImageErrors, $wgThumbnailEpoch;
+		global $wgThumbnailEpoch;
 
 		wfProfileIn( __METHOD__ );
 		do {
@@ -1004,64 +1046,86 @@ abstract class File {
 				} elseif ( $flags & self::RENDER_FORCE ) {
 					wfDebug( __METHOD__ . " forcing rendering per flag File::RENDER_FORCE\n" );
 				}
-			}
 
-			// If the backend is ready-only, don't keep generating thumbnails
-			// only to return transformation errors, just return the error now.
-			if ( $this->repo->getReadOnlyReason() !== false ) {
-				$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
-				break;
-			}
-
-			// Create a temp FS file with the same extension and the thumbnail
-			$thumbExt = FileBackend::extensionFromPath( $thumbPath );
-			$tmpFile = TempFSFile::factory( 'transform_', $thumbExt );
-			if ( !$tmpFile ) {
-				$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
-				break;
-			}
-			$tmpThumbPath = $tmpFile->getPath(); // path of 0-byte temp file
-
-			// Actually render the thumbnail...
-			wfProfileIn( __METHOD__ . '-doTransform' );
-			$thumb = $handler->doTransform( $this, $tmpThumbPath, $thumbUrl, $params );
-			wfProfileOut( __METHOD__ . '-doTransform' );
-			$tmpFile->bind( $thumb ); // keep alive with $thumb
-
-			if ( !$thumb ) { // bad params?
-				$thumb = false;
-			} elseif ( $thumb->isError() ) { // transform error
-				$this->lastError = $thumb->toText();
-				// Ignore errors if requested
-				if ( $wgIgnoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
-					$thumb = $handler->getTransform( $this, $tmpThumbPath, $thumbUrl, $params );
-				}
-			} elseif ( $this->repo && $thumb->hasFile() && !$thumb->fileIsSource() ) {
-				// Copy the thumbnail from the file system into storage...
-				$disposition = $this->getThumbDisposition( $thumbName );
-				$status = $this->repo->quickImport( $tmpThumbPath, $thumbPath, $disposition );
-				if ( $status->isOK() ) {
-					$thumb->setStoragePath( $thumbPath );
-				} else {
+				// If the backend is ready-only, don't keep generating thumbnails
+				// only to return transformation errors, just return the error now.
+				if ( $this->repo->getReadOnlyReason() !== false ) {
 					$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
+					break;
 				}
-				// Give extensions a chance to do something with this thumbnail...
-				wfRunHooks( 'FileTransformed', array( $this, $thumb, $tmpThumbPath, $thumbPath ) );
 			}
 
-			// Purge. Useful in the event of Core -> Squid connection failure or squid
-			// purge collisions from elsewhere during failure. Don't keep triggering for
-			// "thumbs" which have the main image URL though (bug 13776)
-			if ( $wgUseSquid ) {
-				if ( !$thumb || $thumb->isError() || $thumb->getUrl() != $this->getURL() ) {
-					SquidUpdate::purge( array( $thumbUrl ) );
-				}
-			}
+			$thumb = $this->generateAndSaveThumb( $thumbName, $params, $flags );
 		} while ( false );
 
 		wfProfileOut( __METHOD__ );
 
 		return is_object( $thumb ) ? $thumb : false;
+	}
+
+	public function generateAndSaveThumb( $thumbName, $transformParams, $flags ) {
+		global $wgUseSquid, $wgIgnoreImageErrors;
+
+		$thumbUrl = $this->getThumbUrl( $thumbName );
+		$thumbPath = $this->getThumbPath( $thumbName ); // final thumb path
+
+		$handler = $this->getHandler();
+
+		$tmpFile = $this->makeTransformTmpFile( $thumbPath );
+
+		if ( !$tmpFile ) {
+			return $this->transformErrorOutput( $thumbPath, $thumbUrl, $transformParams, $flags );
+		}
+
+		$tmpThumbPath = $tmpFile->getPath(); // path of 0-byte temp file
+
+		// Actually render the thumbnail...
+		wfProfileIn( __METHOD__ . '-doTransform' );
+		$thumb = $handler->doTransform( $this, $tmpThumbPath, $thumbUrl, $transformParams );
+		wfProfileOut( __METHOD__ . '-doTransform' );
+		$tmpFile->bind( $thumb ); // keep alive with $thumb
+
+		if ( !$thumb ) { // bad params?
+			$thumb = false;
+		} elseif ( $thumb->isError() ) { // transform error
+			$this->lastError = $thumb->toText();
+			// Ignore errors if requested
+			if ( $wgIgnoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
+				$thumb = $handler->getTransform( $this, $tmpThumbPath, $thumbUrl, $transformParams );
+			}
+		} elseif ( $this->repo && $thumb->hasFile() && !$thumb->fileIsSource() ) {
+			// Copy the thumbnail from the file system into storage...
+			$disposition = $this->getThumbDisposition( $thumbName );
+			$status = $this->repo->quickImport( $tmpThumbPath, $thumbPath, $disposition );
+			if ( $status->isOK() ) {
+				$thumb->setStoragePath( $thumbPath );
+			} else {
+				$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $transformParams, $flags );
+			}
+			// Give extensions a chance to do something with this thumbnail...
+			wfRunHooks( 'FileTransformed', array( $this, $thumb, $tmpThumbPath, $thumbPath ) );
+		}
+
+		// Purge. Useful in the event of Core -> Squid connection failure or squid
+		// purge collisions from elsewhere during failure. Don't keep triggering for
+		// "thumbs" which have the main image URL though (bug 13776)
+		if ( $wgUseSquid ) {
+			if ( !$thumb || $thumb->isError() || $thumb->getUrl() != $this->getURL() ) {
+				SquidUpdate::purge( array( $thumbUrl ) );
+			}
+		}
+
+		return $thumb;
+	}
+
+	/**
+	 * Creates a temp FS file with the same extension and the thumbnail
+	 * @param string $thumbPath Thumbnail path
+	 * @returns TempFSFile
+	 */
+	public function makeTransformTmpFile( $thumbPath ) {
+		$thumbExt = FileBackend::extensionFromPath( $thumbPath );
+		return TempFSFile::factory( 'transform_', $thumbExt );
 	}
 
 	/**
