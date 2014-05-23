@@ -12,6 +12,13 @@
 	margin-right: 100px;
 }
 
+/* Hide benefits container if screen is smaller than 940px */
+@media only screen and (max-width : 940px) {
+	div.mw-createacct-benefits-container {
+		display: none;
+	}
+}
+
 div.mw-createacct-benefits-container {
 	/* Keeps this column compact and close to the form, but tends to squish contents. */
 	float: left;
