@@ -81,6 +81,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		) );
 
 		$this->addFieldsIf( 'page_id', $this->fld_ids );
+		// log_page is the page_id saved at log time, whereas page_id is from a
+		// join at query time.  This leads to different results in various
+		// scenarios, e.g. deletion, recreation.
+		$this->addFieldsIf( 'log_page', $this->fld_ids );
 		$this->addFieldsIf( array( 'log_user', 'log_user_text', 'user_name' ), $this->fld_user );
 		$this->addFieldsIf( 'log_user', $this->fld_userid );
 		$this->addFieldsIf(
@@ -364,6 +368,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				}
 				if ( $this->fld_ids ) {
 					$vals['pageid'] = intval( $row->page_id );
+					$vals['logpage'] = intval( $row->log_page );
 				}
 				if ( $this->fld_details && $row->log_params !== '' ) {
 					self::addLogParams(
