@@ -3435,6 +3435,7 @@
 	"newuserlog-autocreate-entry": "Account created automatically",
 	"rightslogentry": "changed group membership for $1 from $2 to $3",
 	"rightslogentry-autopromote": "was automatically promoted from $2 to $3",
+	"usergroup-remove-summary": "Removing all users from the usergroup \"$1\".",
 	"feedback-bugornote": "If you are ready to describe a technical problem in detail please [$1 report a bug].\nOtherwise, you can use the easy form below. Your comment will be added to the page \"[$3 $2]\", along with your username.",
 	"feedback-subject": "Subject:",
 	"feedback-message": "Message:",
