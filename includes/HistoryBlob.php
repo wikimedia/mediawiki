@@ -374,7 +374,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	protected $mDefaultKey;
 
 	/** @var string Compressed storage */
-	protected $mCompressed;
+	public $mCompressed;
 
 	/** @var bool True if the object is locked against further writes */
 	protected $mFrozen = false;
