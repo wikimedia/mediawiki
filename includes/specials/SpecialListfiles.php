@@ -170,9 +170,14 @@ class ImageListPager extends TablePager {
 				'img_name' => $this->msg( 'listfiles_name' )->text(),
 				'thumb' => $this->msg( 'listfiles_thumb' )->text(),
 				'img_size' => $this->msg( 'listfiles_size' )->text(),
-				'img_user_text' => $this->msg( 'listfiles_user' )->text(),
-				'img_description' => $this->msg( 'listfiles_description' )->text(),
 			);
+			if ( is_null( $this->mUserName ) ) {
+				// Do not show username if filtering by username
+				$this->mFieldNames['img_user_text'] = $this->msg( 'listfiles_user' )->text();
+			}
+			// img_description down here, in order so that its still after the username field.
+			$this->mFieldNames['img_description'] = $this->msg( 'listfiles_description' )->text();
+
 			if ( !$wgMiserMode && !$this->mShowAll ) {
 				$this->mFieldNames['count'] = $this->msg( 'listfiles_count' )->text();
 			}
