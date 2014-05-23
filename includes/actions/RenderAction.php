@@ -41,7 +41,7 @@ class RenderAction extends FormlessAction {
 	}
 
 	public function show() {
-
+		$this->getRequest()->response()->header('X-Robots-Tag: noindex');
 		$this->page->render();
 	}
 }
