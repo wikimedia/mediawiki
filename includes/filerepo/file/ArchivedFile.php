@@ -281,6 +281,10 @@ class ArchivedFile {
 	 * @return string
 	 */
 	public function getName() {
+		if ( $this->name === false ) {
+			$this->load();
+		}
+
 		return $this->name;
 	}
 
