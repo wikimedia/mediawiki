@@ -86,6 +86,7 @@ changes to languages because of Bugzilla reports.
 * Added pp_sortkey column to page_props table, so pages can be efficiently
   queried and sorted by property value (bug 58032).
   See $wgPagePropsHaveSortkey if you want to postpone the schema change.
+* (bug 63891) Add 'X-Robots-Tag: noindex' header in action=render pages.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
