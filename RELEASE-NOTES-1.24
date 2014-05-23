@@ -122,6 +122,7 @@ changes to languages because of Bugzilla reports.
   $useHeadElement = false; is no longer supported and will not cause old keys
   like "headlinks", "skinnameclass", etc. to be defined.
 * The deprecated 'SpecialVersionExtensionTypes' hook was removed.
+* (bug 63891) Add 'X-Robots-Tag: noindex' header in action=render pages.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
