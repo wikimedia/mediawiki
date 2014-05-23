@@ -95,6 +95,7 @@ changes to languages because of Bugzilla reports.
   core to their own respective repositories. See also
   https://www.mediawiki.org/wiki/Skin:Modern and
   https://www.mediawiki.org/wiki/Skin:CologneBlue.
+* (bug 63891) Add 'X-Robots-Tag: noindex' header in action=render pages.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
