@@ -2,6 +2,8 @@
  * Vector-specific scripts
  */
 jQuery( function ( $ ) {
+	$( '#searchInput' ).attr( 'tabindex', $( document ).lastTabIndex() + 1 );
+
 	$( 'div.vectorMenu' ).each( function () {
 		var $el = $( this );
 		$el.find( '> h3 > a' ).parent()
