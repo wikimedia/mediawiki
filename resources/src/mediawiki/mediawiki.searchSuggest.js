@@ -14,6 +14,8 @@
 			$searchRegion = $( '#simpleSearch, #searchInput' ).first(),
 			$searchInput = $( '#searchInput' );
 
+		$( '#searchInput' ).attr( 'tabindex', $( document ).lastTabIndex() + 1 );
+
 		// Compatibility map
 		map = {
 			// SimpleSearch is broken in Opera < 9.6
