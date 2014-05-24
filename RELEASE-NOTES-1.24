@@ -71,6 +71,10 @@ production.
   a particular interwiki map entry.
 * ApiQueryLogEvents now provides logpage, which is the page ID from the
   logging table, if ids are requested and the user has the permissions.
+* action=logevents will now return an error if both letitle and leprefix are
+  specified.
+* action=logevents has a new parameter, lenamespace, to allow filtering by
+  namespace.
 
 === Languages updated in 1.24 ===
 
