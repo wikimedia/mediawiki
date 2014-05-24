@@ -175,7 +175,10 @@ return array(
 			'vector/vector.js',
 		),
 		'position' => 'top',
-		'dependencies' => 'jquery.throttle-debounce',
+		'dependencies' => array(
+			'jquery.throttle-debounce',
+			'jquery.tabIndex',
+		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
