@@ -1853,6 +1853,7 @@
 	"rfcurl": "{{notranslate}}\nParameters:\n* $1 - RFC number\nSee also:\n* {{msg-mw|Pubmedurl}}",
 	"pubmedurl": "{{notranslate}}\nParameters:\n* $1 - Pubmed number\nSee also:\n* {{msg-mw|Rfcurl}}",
 	"specialloguserlabel": "Used in [[Special:Log]] as a label for an input field with which the log can be filtered for entries describing actions ''performed'' by the specified user.  \"Carried out\" and \"done\" are possible alternatives for \"performed\".",
+	"speciallognamespacelabel": "Used in [[Special:Log]] as a label for an input field with which the log can be filtered.  This filter selects for namespaces of the target of the logged action.",
 	"speciallogtitlelabel": "Used in [[Special:Log]] as a label for an input field with which the log can be filtered.  This filter selects for pages or users on which a log action was performed.",
 	"log": "{{doc-special|Log}}",
 	"all-logs-page": "{{doc-logpage}}\nTitle of [[Special:Log]].",
