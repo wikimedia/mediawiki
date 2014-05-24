@@ -33,6 +33,9 @@ class LogPager extends ReverseChronologicalPager {
 	/** @var string Events limited to those by performer when set */
 	private $performer = '';
 
+	/** @var int Events limited to those about namespace when set */
+	private $namespace = '';
+
 	/** @var string|Title Events limited to those about Title when set */
 	private $title = '';
 
@@ -44,6 +47,12 @@ class LogPager extends ReverseChronologicalPager {
 
 	/** @var string */
 	private $action = '';
+
+	/** @var bool */
+	private $performerRestrictionsEnforced = false;
+
+	/** @var bool */
+	private $actionRestrictionsEnforced = false;
 
 	/** @var LogEventsList */
 	public $mLogEventsList;
@@ -61,10 +70,11 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param int|bool $month The month to start from. Default: false
 	 * @param string $tagFilter Tag
 	 * @param string $action Specific action (subtype) requested
+	 * @param string|int $namespace The namespace the log entries affected
 	 */
 	public function __construct( $list, $types = [], $performer = '', $title = '',
 		$pattern = '', $conds = [], $year = false, $month = false, $tagFilter = '',
-		$action = ''
+		$action = '', $namespace = ''
 	) {
 		parent::__construct( $list->getContext() );
 		$this->mConds = $conds;
@@ -75,6 +85,7 @@ class LogPager extends ReverseChronologicalPager {
 		$this->limitPerformer( $performer );
 		$this->limitTitle( $title, $pattern );
 		$this->limitAction( $action );
+		$this->limitNamespace( $namespace );
 		$this->getDateCond( $year, $month );
 		$this->mTagFilter = $tagFilter;
 
@@ -181,14 +192,8 @@ class LogPager extends ReverseChronologicalPager {
 		} else {
 			$this->mConds['log_user'] = $userid;
 		}
-		// Paranoia: avoid brute force searches (bug 17342)
-		$user = $this->getUser();
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
-			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::DELETED_USER ) . ' = 0';
-		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
-			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::SUPPRESSED_USER ) .
-				' != ' . LogPage::SUPPRESSED_USER;
-		}
+		// Prevent inferring performer of a log entry with deleted or supressed performer
+		$this->enforcePerformerRestrictions();
 
 		$this->performer = $name;
 	}
@@ -256,14 +261,8 @@ class LogPager extends ReverseChronologicalPager {
 		} else {
 			$this->mConds['log_title'] = $title->getDBkey();
 		}
-		// Paranoia: avoid brute force searches (bug 17342)
-		$user = $this->getUser();
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
-			$this->mConds[] = $db->bitAnd( 'log_deleted', LogPage::DELETED_ACTION ) . ' = 0';
-		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
-			$this->mConds[] = $db->bitAnd( 'log_deleted', LogPage::SUPPRESSED_ACTION ) .
-				' != ' . LogPage::SUPPRESSED_ACTION;
-		}
+		// Prevent inferring target of a log entry with deleted or supressed action
+		$this->enforceActionRestrictions();
 	}
 
 	/**
@@ -289,6 +288,28 @@ class LogPager extends ReverseChronologicalPager {
 				$this->action = $action;
 			}
 		}
+	}
+
+	/**
+	 * Set the log reader to return only entries affecting the given namespace.
+	 *
+	 * @param string|int The namespace
+	 */
+	private function limitNamespace( $namespace ) {
+		$noNamespaceLogs = [ 'upload', 'newusers', 'managetags', 'rights', 'block' ];
+		if ( in_array( $this->typeCGI, $noNamespaceLogs ) ||
+			( $this->typeCGI === 'delete' && $this->action === 'event' )
+		) {
+			$this->mLogEventsList->disableNamespaceInput();
+			return;
+		}
+		if ( $namespace === '' ) {
+			return;
+		}
+		$this->mConds['log_namespace'] = $namespace;
+		$this->namespace = $namespace;
+		// Prevent inferring target namespace of a log entry with deleted or supressed action
+		$this->enforceActionRestrictions();
 	}
 
 	/**
@@ -395,6 +416,10 @@ class LogPager extends ReverseChronologicalPager {
 		return $this->performer;
 	}
 
+	public function getNamespace() {
+		return $this->namespace;
+	}
+
 	/**
 	 * @return string
 	 */
@@ -427,5 +452,39 @@ class LogPager extends ReverseChronologicalPager {
 		$this->mDb->setBigSelects();
 		parent::doQuery();
 		$this->mDb->setBigSelects( 'default' );
+	}
+
+	/**
+	 * Paranoia: avoid brute force searches (T19342)
+	 */
+	private function enforceActionRestrictions() {
+		if ( $this->actionRestrictionsEnforced ) {
+			return;
+		}
+		$user = $this->getUser();
+		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::DELETED_ACTION ) . ' = 0';
+		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::SUPPRESSED_ACTION ) .
+				' != ' . LogPage::SUPPRESSED_ACTION;
+		}
+		$this->actionRestrictionsEnforced = true;
+	}
+
+	/**
+	 * Paranoia: avoid brute force searches (T19342)
+	 */
+	private function enforcePerformerRestrictions() {
+		if ( $this->performerRestrictionsEnforced ) {
+			return;
+		}
+		$user = $this->getUser();
+		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::DELETED_USER ) . ' = 0';
+		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::SUPPRESSED_USER ) .
+				' != ' . LogPage::SUPPRESSED_USER;
+		}
+		$this->performerRestrictionsEnforced = true;
 	}
 }
