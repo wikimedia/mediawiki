@@ -1987,7 +1987,6 @@ abstract class BaseTemplate extends QuickTemplate {
 			'name' => 'search',
 			'placeholder' => wfMessage( 'searchsuggest-search' )->text(),
 			'value' => $this->get( 'search', '' ),
-			'tabindex' => 1
 		);
 		$realAttrs = array_merge( $realAttrs, Linker::tooltipAndAccesskeyAttribs( 'search' ), $attrs );
 		return Html::element( 'input', $realAttrs );
