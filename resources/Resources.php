@@ -895,6 +895,7 @@ return array(
 			'jquery.placeholder',
 			'jquery.suggestions',
 			'mediawiki.api',
+			'jquery.tabIndex',
 		),
 	),
 	'mediawiki.Title' => array(
