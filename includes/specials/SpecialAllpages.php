@@ -296,7 +296,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$bottomLinks = array();
 
 		# Do we put a previous link ?
-		if ( isset( $prevTitle ) && $pt = $prevTitle->getText() ) {
+		if ( $prevTitle && $pt = $prevTitle->getText() ) {
 			$query = array( 'from' => $prevTitle->getText() );
 
 			if ( $namespace ) {

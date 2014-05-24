@@ -64,7 +64,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$opts->validateIntBounds( 'limit', 0, 5000 );
 
 		// Give precedence to subpage syntax
-		if ( isset( $par ) ) {
+		if ( $par !== null ) {
 			$opts->setValue( 'target', $par );
 		}
 

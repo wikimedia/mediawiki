@@ -209,7 +209,7 @@ class LinkSearchPage extends QueryPage {
 		global $wgMiserMode;
 		$params = array();
 		$params['target'] = $this->mProt . $this->mQuery;
-		if ( isset( $this->mNs ) && !$wgMiserMode ) {
+		if ( $this->mNs !== null && !$wgMiserMode ) {
 			$params['namespace'] = $this->mNs;
 		}
 
@@ -244,7 +244,7 @@ class LinkSearchPage extends QueryPage {
 			'options' => array( 'USE INDEX' => $clause )
 		);
 
-		if ( isset( $this->mNs ) && !$wgMiserMode ) {
+		if ( $this->mNs !== null && !$wgMiserMode ) {
 			$retval['conds']['page_namespace'] = $this->mNs;
 		}
 
