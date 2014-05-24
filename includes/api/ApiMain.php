@@ -957,7 +957,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * Encode a value in a format suitable for a space-separated log line.
 	 * @param string $s
-	 * return string
+	 * @return string
 	 */
 	protected function encodeRequestLogValue( $s ) {
 		static $table;

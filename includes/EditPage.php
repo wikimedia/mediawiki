@@ -1254,7 +1254,7 @@ class EditPage {
 	 * @param array|bool $resultDetails
 	 *
 	 * @throws ErrorPageError
-	 * return bool false, if output is done, true if rest of the form should be displayed
+	 * @return bool false, if output is done, true if rest of the form should be displayed
 	 */
 	private function handleStatus( Status $status, $resultDetails ) {
 		global $wgUser, $wgOut;

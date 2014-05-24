@@ -546,6 +546,9 @@ class ZipDirectoryReader {
 	 * If there are not enough bytes in the file to satisfy the request, the
 	 * return value will be truncated. If a request is made for a segment beyond
 	 * the end of the file, an empty string will be returned.
+	 *
+	 * @param int $segIndex
+	 *
 	 * @return string
 	 */
 	function getSegment( $segIndex ) {
