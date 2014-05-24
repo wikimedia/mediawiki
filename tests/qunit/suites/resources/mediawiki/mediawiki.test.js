@@ -55,7 +55,7 @@
 		this.restoreWarnings();
 	} );
 
-	QUnit.test( 'mw.Map', 28, function ( assert ) {
+	QUnit.test( 'mw.Map', 34, function ( assert ) {
 		var arry, conf, funky, globalConf, nummy, someValues;
 
 		conf = new mw.Map();
@@ -126,12 +126,31 @@
 
 		conf.set( 'globalMapChecker', 'Hi' );
 
-		assert.ok( 'globalMapChecker' in window === false, 'new mw.Map did not store its values in the global window object by default' );
+		assert.ok( ( 'globalMapChecker' in window ) === false, 'Map does not its store values in the window object by default' );
 
 		globalConf = new mw.Map( true );
 		globalConf.set( 'anotherGlobalMapChecker', 'Hello' );
 
-		assert.ok( 'anotherGlobalMapChecker' in window, 'new mw.Map( true ) did store its values in the global window object' );
+		assert.ok( 'anotherGlobalMapChecker' in window, 'global Map stores its values in the window object' );
+
+		assert.equal( globalConf.get( 'anotherGlobalMapChecker' ), 'Hello', 'get value from global Map via get()' );
+		this.suppressWarnings();
+		assert.equal( window.anotherGlobalMapChecker, 'Hello', 'get value from global Map via window object' );
+		this.restoreWarnings();
+
+		// Change value via global Map
+		globalConf.set('anotherGlobalMapChecker', 'Again');
+		assert.equal( globalConf.get( 'anotherGlobalMapChecker' ), 'Again', 'Change in global Map reflected via get()' );
+		this.suppressWarnings();
+		assert.equal( window.anotherGlobalMapChecker, 'Again', 'Change in global Map reflected window object' );
+		this.restoreWarnings();
+
+		// Change value via window object
+		this.suppressWarnings();
+		window.anotherGlobalMapChecker = 'World';
+		assert.equal( window.anotherGlobalMapChecker, 'World', 'Change in window object works' );
+		this.restoreWarnings();
+		assert.equal( globalConf.get( 'anotherGlobalMapChecker' ), 'Again', 'Change in window object not reflected in global Map' );
 
 		// Whitelist this global variable for QUnit's 'noglobal' mode
 		if ( QUnit.config.noglobals ) {
