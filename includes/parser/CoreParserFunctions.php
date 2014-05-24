@@ -1204,11 +1204,12 @@ class CoreParserFunctions {
 	 *
 	 * @param Parser $parser
 	 * @param string $title
+	 * @param string $separator
 	 *
 	 * @return string
 	 * @since 1.23
 	 */
-	public static function cascadingsources( $parser, $title = '' ) {
+	public static function cascadingsources( $parser, $title = '', $separator = '|' ) {
 		$titleObject = Title::newFromText( $title );
 		if ( !( $titleObject instanceof Title ) ) {
 			$titleObject = $parser->mTitle;
@@ -1221,7 +1222,7 @@ class CoreParserFunctions {
 			foreach ( $sources[0] as $sourceTitle ) {
 				$names[] = $sourceTitle->getPrefixedText();
 			}
-			return implode( $names, '|' );
+			return implode( $names, $separator );
 		}
 		return '';
 	}
