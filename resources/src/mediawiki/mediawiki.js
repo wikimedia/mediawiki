@@ -79,15 +79,32 @@
 	 * @class mw.Map
 	 *
 	 * @constructor
-	 * @param {Object|boolean} [values] Value-bearing object to map, or boolean
-	 *  true to map over the global object. Defaults to an empty object.
+	 * @param {Object|boolean} [values] Value-bearing object to map, defaults to an empty object.
+	 *  For backwards-compatibility with mw.config, this can also be `true` in which case values
+	 *  will be copied to the Window object as global variables (bug 70470). Values are copied
+	 *  to the global scope in one direction only. Changes to the global variables directly are not
+	 *  reflected in the map.
 	 */
 	function Map( values ) {
-		this.values = values === true ? window : ( values || {} );
-		return this;
+		if ( values === true ) {
+			this.global = true;
+			this.values = {};
+		} else {
+			this.values = values || {};
+		}
 	}
 
 	Map.prototype = {
+
+		/**
+		 * Whether keys are also exposed as global variables.
+		 *
+		 * @private
+		 * @deprecated since 1.24
+		 * @property {boolean}
+		 */
+		global: false,
+
 		/**
 		 * Get the value of one or multiple a keys.
 		 *
@@ -136,21 +153,37 @@
 		 *
 		 * @param {string|Object} selection String key to set value for, or object mapping keys to values.
 		 * @param {Mixed} [value] Value to set (optional, only in use when key is a string)
-		 * @return {Boolean} This returns true on success, false on failure.
+		 * @return {boolean} This returns true on success, false on failure.
 		 */
 		set: function ( selection, value ) {
-			var s;
+			var s, map = this;
+
+			// Simulate an alias on the global object window.
+			function setValue( key, value ) {
+				map.values[key] = value;
+				if ( map.global ) {
+					mw.log.deprecate(
+						window,
+						key,
+						value,
+						// Deprecation notice for mw.config globals (bug 56550, bug 70470)
+						map === mw.config && 'Use mw.config instead.'
+					);
+				}
+			}
 
 			if ( $.isPlainObject( selection ) ) {
 				for ( s in selection ) {
-					this.values[s] = selection[s];
+					setValue( s, selection[s] );
 				}
 				return true;
 			}
-			if ( typeof selection === 'string' && arguments.length > 1 ) {
-				this.values[selection] = value;
+
+			if ( typeof selection === 'string' && arguments.length ) {
+				setValue( selection, value );
 				return true;
 			}
+
 			return false;
 		},
 
@@ -582,6 +615,7 @@
 					} );
 				} catch ( err ) {
 					// IE8 can throw on Object.defineProperty
+					// Create a copy of the value to the object.
 					obj[key] = val;
 				}
 			};
