@@ -3932,7 +3932,7 @@ class Title {
 
 		if ( $createRedirect ) {
 			if ( $this->getNamespace() == NS_CATEGORY
-				&& !wfMessage( 'category-move-redirect-override' )->isDisabled()
+				&& !wfMessage( 'category-move-redirect-override' )->inContentLanguage()->isDisabled()
 			) {
 				$redirectContent = new WikitextContent(
 					wfMessage( 'category-move-redirect-override' )
