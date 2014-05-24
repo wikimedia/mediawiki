@@ -179,6 +179,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addWhereFld( 'log_title', $titleObj->getDBkey() );
 		}
 
+		if ( $params['namespace'] !== null ) {
+			$this->addWhereFld( 'log_namespace', $params['namespace'] );
+		}
+
 		$prefix = $params['prefix'];
 
 		if ( !is_null( $prefix ) ) {
@@ -510,6 +514,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			),
 			'user' => null,
 			'title' => null,
+			'namespace' => array(
+				ApiBase::PARAM_TYPE => 'namespace'
+			),
 			'prefix' => null,
 			'tag' => null,
 			'limit' => array(
@@ -550,6 +557,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'dir' => $this->getDirectionDescription( $p ),
 			'user' => 'Filter entries to those made by the given user',
 			'title' => 'Filter entries to those related to a page',
+			'namespace' => 'Filter entries to those in the given namespace',
 			'prefix' => 'Filter entries that start with this prefix. Disabled in Miser Mode',
 			'limit' => 'How many total event entries to return',
 			'tag' => 'Only list event entries tagged with this tag',
