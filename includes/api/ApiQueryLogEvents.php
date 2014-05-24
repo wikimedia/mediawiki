@@ -43,6 +43,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$db = $this->getDB();
+		$this->requireMaxOneParameter( $params, 'title', 'prefix', 'namespace' );
 
 		$prop = array_flip( $params['prop'] );
 
@@ -179,6 +180,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addWhereFld( 'log_title', $titleObj->getDBkey() );
 		}
 
+		if ( $params['namespace'] !== null ) {
+			$this->addWhereFld( 'log_namespace', $params['namespace'] );
+		}
+
 		$prefix = $params['prefix'];
 
 		if ( !is_null( $prefix ) ) {
@@ -196,7 +201,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 
 		// Paranoia: avoid brute force searches (bug 17342)
-		if ( !is_null( $title ) || !is_null( $user ) ) {
+		if ( $params['namespace'] !== null || !is_null( $title ) || !is_null( $user ) ) {
 			if ( !$this->getUser()->isAllowed( 'deletedhistory' ) ) {
 				$titleBits = LogPage::DELETED_ACTION;
 				$userBits = LogPage::DELETED_USER;
@@ -207,7 +212,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$titleBits = 0;
 				$userBits = 0;
 			}
-			if ( !is_null( $title ) && $titleBits ) {
+			if ( ( $params['namespace'] !== 'null' || !is_null( $title ) ) && $titleBits ) {
 				$this->addWhere( $db->bitAnd( 'log_deleted', $titleBits ) . " != $titleBits" );
 			}
 			if ( !is_null( $user ) && $userBits ) {
@@ -510,6 +515,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			),
 			'user' => null,
 			'title' => null,
+			'namespace' => array(
+				ApiBase::PARAM_TYPE => 'namespace'
+			),
 			'prefix' => null,
 			'tag' => null,
 			'limit' => array(
@@ -550,6 +558,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'dir' => $this->getDirectionDescription( $p ),
 			'user' => 'Filter entries to those made by the given user',
 			'title' => 'Filter entries to those related to a page',
+			'namespace' => 'Filter entries to those in the given namespace',
 			'prefix' => 'Filter entries that start with this prefix. Disabled in Miser Mode',
 			'limit' => 'How many total event entries to return',
 			'tag' => 'Only list event entries tagged with this tag',
