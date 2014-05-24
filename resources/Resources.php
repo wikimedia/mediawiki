@@ -1246,6 +1246,11 @@ return array(
 		'dependencies' => array( 'mediawiki.special' ),
 		'position' => 'top',
 	),
+	'mediawiki.special.revisiondelete' => array(
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.revisiondelete.js',
+		'dependencies' => 'jquery.byteLimit',
+		'messages' => 'colon-separator',
+	),
 	'mediawiki.special.search' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.search.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.search.css',
