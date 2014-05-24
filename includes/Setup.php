@@ -426,6 +426,14 @@ require_once "$IP/includes/GlobalFunctions.php";
 require_once "$IP/includes/normal/UtfNormalDefines.php";
 wfProfileOut( $fname . '-includes' );
 
+wfProfileIn( $fname . '-validation');
+// bug 46998: Bail out early if $wgArticlePath is non-absolute
+if ( !preg_match('/^(http:\/\/|https:\/\/|\/).*$/', $wgArticlePath) ) {
+	throw new FatalError( 'If you use a relative URL on $wgArticlePath, it must start with a slash (/).<br><br>See <a href="https://www.mediawiki.org/wiki/Manual:$wgArticlePath">https://www.mediawiki.org/wiki/Manual:$wgArticlePath</a>' );
+}
+wfProfileOut( $fname . '-validation');
+
+
 wfProfileIn( $fname . '-defaults2' );
 
 if ( $wgCanonicalServer === false ) {
