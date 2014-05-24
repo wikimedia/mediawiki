@@ -1691,6 +1691,7 @@
 	"rfcurl": "//tools.ietf.org/html/rfc$1",
 	"pubmedurl": "//www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract",
 	"specialloguserlabel": "Performer:",
+	"speciallognamespacelabel": "Namespace:",
 	"speciallogtitlelabel": "Target (title or user):",
 	"log": "Logs",
 	"all-logs-page": "All public logs",
