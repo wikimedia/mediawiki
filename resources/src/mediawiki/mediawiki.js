@@ -79,15 +79,61 @@
 	 * @class mw.Map
 	 *
 	 * @constructor
-	 * @param {Object|boolean} [values] Value-bearing object to map, or boolean
-	 *  true to map over the global object. Defaults to an empty object.
+	 * @param {Object|boolean} [values] Value-bearing object to map, defaults to an empty object.
+	 *  For backwards-compatibility with mw.config, this can also be `true` in which case values
+	 *  will be copied to the Window object as global variables (T72470). Values are copied in one
+	 *  direction only. Changes to globals are not reflected in the map.
 	 */
 	function Map( values ) {
-		this.values = values === true ? window : ( values || {} );
-		return this;
+		if ( values === true ) {
+			this.values = {};
+
+			// Override #set to update the global update
+			this.set = function ( selection, value ) {
+				var s;
+
+				if ( $.isPlainObject( selection ) ) {
+					for ( s in selection ) {
+						setGlobalMapValue( this, s, selection[s] );
+					}
+					return true;
+				}
+
+				if ( typeof selection === 'string' && arguments.length ) {
+					setGlobalMapValue( this, selection, value );
+					return true;
+				}
+				return false;
+			};
+
+			return;
+		}
+
+		this.values = values || {};
+	}
+
+	/**
+	 * Alias property to the global object.
+	 *
+	 * @private
+	 * @static
+	 * @param {mw.Map} map
+	 * @param {string} key
+	 * @param {Mixed} value
+	 */
+	function setGlobalMapValue( map, key, value ) {
+		map.values[key] = value;
+		mw.log.deprecate(
+			window,
+			key,
+			value,
+			// Deprecation notice for mw.config globals (T58550, T72470)
+			map === mw.config && 'Use mw.config instead.'
+		);
 	}
 
 	Map.prototype = {
+
 		/**
 		 * Get the value of one or multiple a keys.
 		 *
@@ -136,7 +182,7 @@
 		 *
 		 * @param {string|Object} selection String key to set value for, or object mapping keys to values.
 		 * @param {Mixed} [value] Value to set (optional, only in use when key is a string)
-		 * @return {Boolean} This returns true on success, false on failure.
+		 * @return {boolean} This returns true on success, false on failure.
 		 */
 		set: function ( selection, value ) {
 			var s;
@@ -147,10 +193,12 @@
 				}
 				return true;
 			}
-			if ( typeof selection === 'string' && arguments.length > 1 ) {
+
+			if ( typeof selection === 'string' && arguments.length ) {
 				this.values[selection] = value;
 				return true;
 			}
+
 			return false;
 		},
 
@@ -582,6 +630,7 @@
 					} );
 				} catch ( err ) {
 					// IE8 can throw on Object.defineProperty
+					// Create a copy of the value to the object.
 					obj[key] = val;
 				}
 			};
