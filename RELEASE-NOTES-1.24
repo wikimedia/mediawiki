@@ -41,6 +41,8 @@ production.
 * (bug 63903) Thumbnails without an explicit size specification are
   now resized to a square bounding box. This gives better results for
   non-landscape thumbnails.
+* (bug 35067) Provide "Show changes against previous revision" button
+  when editing older revision.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language

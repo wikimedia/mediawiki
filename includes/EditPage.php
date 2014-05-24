@@ -284,6 +284,9 @@ class EditPage {
 	protected $diff = false;
 
 	/** @var bool */
+	protected $prevdiff = false;
+
+	/** @var bool */
 	public $minoredit = false;
 
 	/** @var bool */
@@ -481,6 +484,8 @@ class EditPage {
 			$this->formtype = 'preview';
 		} elseif ( $this->diff ) {
 			$this->formtype = 'diff';
+		} elseif ( $this->prevdiff ) {
+			$this->formtype = 'prevdiff';
 		} else { # First time through
 			$this->firsttime = true;
 			if ( $this->previewOnOpen() ) {
@@ -567,7 +572,7 @@ class EditPage {
 		# Ignore some permissions errors when a user is just previewing/viewing diffs
 		$remove = array();
 		foreach ( $permErrors as $error ) {
-			if ( ( $this->preview || $this->diff )
+			if ( ( $this->preview || $this->diff || $this->prevdiff )
 				&& ( $error[0] == 'blockedtext' || $error[0] == 'autoblockedtext' )
 			) {
 				$remove[] = $error;
@@ -810,6 +815,7 @@ class EditPage {
 				/* Fallback for live preview */
 				$this->preview = $request->getCheck( 'wpPreview' ) || $request->getCheck( 'wpLivePreview' );
 				$this->diff = $request->getCheck( 'wpDiff' );
+				$this->prevdiff = $request->getCheck( 'wpPrevDiff' );
 
 				// Remember whether a save was requested, so we can indicate
 				// if we forced preview due to session failure.
@@ -821,7 +827,7 @@ class EditPage {
 					# The unmarked state will be assumed to be a save,
 					# if the form seems otherwise complete.
 					wfDebug( __METHOD__ . ": Passed token check.\n" );
-				} elseif ( $this->diff ) {
+				} elseif ( $this->diff || $this->prevdiff ) {
 					# Failed token check, but only requested "Show Changes".
 					wfDebug( __METHOD__ . ": Failed token check; Show Changes requested.\n" );
 				} else {
@@ -831,7 +837,7 @@ class EditPage {
 					$this->preview = true;
 				}
 			}
-			$this->save = !$this->preview && !$this->diff;
+			$this->save = !$this->preview && !$this->diff && !$this->prevdiff;
 			if ( !preg_match( '/^\d{14}$/', $this->edittime ) ) {
 				$this->edittime = null;
 			}
@@ -868,6 +874,7 @@ class EditPage {
 			$this->preview = false;
 			$this->save = false;
 			$this->diff = false;
+			$this->prevdiff = false;
 			$this->minoredit = false;
 			// Watch may be overridden by request parameters
 			$this->watchthis = $request->getBool( 'watchthis', false );
@@ -2635,7 +2642,7 @@ class EditPage {
 			}
 
 			if ( $this->section != '' && $this->section != 'new' ) {
-				if ( !$this->summary && !$this->preview && !$this->diff ) {
+				if ( !$this->summary && !$this->preview && !$this->diff && !$this->prevdiff ) {
 					$sectionTitle = self::extractSectionTitle( $this->textbox1 ); //FIXME: use Content object
 					if ( $sectionTitle !== false ) {
 						$this->summary = "/* $sectionTitle */ ";
@@ -2882,7 +2889,7 @@ class EditPage {
 	protected function getSummaryPreview( $isSubjectPreview, $summary = "" ) {
 		// avoid spaces in preview, gets always trimmed on save
 		$summary = trim( $summary );
-		if ( !$summary || ( !$this->preview && !$this->diff ) ) {
+		if ( !$summary || ( !$this->preview && !$this->diff && !$this->prevdiff ) ) {
 			return "";
 		}
 
@@ -3049,7 +3056,7 @@ HTML
 
 		$wgOut->addHTML( '</div>' );
 
-		if ( $this->formtype == 'diff' ) {
+		if ( $this->formtype == 'diff' || $this->formtype == 'prevdiff' ) {
 			try {
 				$this->showDiff();
 			} catch ( MWContentSerializationException $ex ) {
@@ -3105,7 +3112,12 @@ HTML
 				$oldContent = null;
 			}
 		} else {
-			$oldContent = $this->getCurrentContent();
+			if ( $this->prevdiff ) {
+				$oldContent = $this->getOriginalContent( $wgUser );
+				$oldtitlemsg = 'previousrev';
+			} else { # $this->diff
+				$oldContent = $this->getCurrentContent();
+			}
 		}
 
 		$textboxContent = $this->toEditContent( $this->textbox1 );
@@ -3814,7 +3826,7 @@ HTML
 
 	/**
 	 * Returns an array of html code of the following buttons:
-	 * save, diff, preview and live
+	 * save, diff, prevdiff, preview, and live
 	 *
 	 * @param int $tabindex Current tabindex
 	 *
@@ -3863,6 +3875,22 @@ HTML
 				. ' [' . wfMessage( 'accesskey-diff' )->text() . ']',
 		);
 		$buttons['diff'] = Xml::element( 'input', $temp, '' );
+
+		$temp = '';
+		if ( !$this->mArticle->getRevisionFetched()->isCurrent() ) {
+			$temp = array(
+				'id' => 'wpPrevDiff',
+				'name' => 'wpPrevDiff',
+				'type' => 'submit',
+				'tabindex' => ++$tabindex,
+				'value' => wfMessage( 'showprevdiff' )->text(),
+				'accesskey' => wfMessage( 'accesskey-prevdiff' )->text(),
+				'title' => wfMessage( 'tooltip-prevdiff' )->text()
+					. ' [' . wfMessage( 'accesskey-prevdiff' )->text() . ']',
+			);
+			$temp = Xml::element( 'input', $temp, '' );
+		}
+		$buttons['prevdiff'] = $temp;
 
 		wfRunHooks( 'EditPageBeforeEditButtons', array( &$this, &$buttons, &$tabindex ) );
 		return $buttons;
