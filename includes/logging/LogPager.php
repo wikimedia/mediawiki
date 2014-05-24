@@ -33,6 +33,9 @@ class LogPager extends ReverseChronologicalPager {
 	/** @var string Events limited to those by performer when set */
 	private $performer = '';
 
+	/** @var int Events limited to those about namespace when set */
+	private $namespace = '';
+
 	/** @var string|Title Events limited to those about Title when set */
 	private $title = '';
 
@@ -51,6 +54,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param LogEventsList $list
 	 * @param string|array $types Log types to show
 	 * @param string $performer The user who made the log entries
+	 * @param string|int $namespace The namespace the log entries affected
 	 * @param string|Title $title The page title the log entries are for
 	 * @param string $pattern Do a prefix search rather than an exact title match
 	 * @param array $conds Extra conditions for the query
@@ -58,7 +62,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param int|bool $month The month to start from. Default: false
 	 * @param string $tagFilter Tag
 	 */
-	public function __construct( $list, $types = array(), $performer = '', $title = '', $pattern = '',
+	public function __construct( $list, $types = array(), $performer = '', $namespace = '', $title = '', $pattern = '',
 		$conds = array(), $year = false, $month = false, $tagFilter = '' ) {
 		parent::__construct( $list->getContext() );
 		$this->mConds = $conds;
@@ -67,6 +71,7 @@ class LogPager extends ReverseChronologicalPager {
 
 		$this->limitType( $types ); // also excludes hidden types
 		$this->limitPerformer( $performer );
+		$this->limitNamespace( $namespace );
 		$this->limitTitle( $title, $pattern );
 		$this->getDateCond( $year, $month );
 		$this->mTagFilter = $tagFilter;
@@ -181,6 +186,19 @@ class LogPager extends ReverseChronologicalPager {
 		}
 
 		$this->performer = $usertitle->getText();
+	}
+
+	/**
+	 * Set the log reader to return only entries affecting the given namespace.
+	 *
+	 * @param string|int The namespace
+	 * @return void
+	 */
+	private function limitNamespace( $namespace ) {
+		if ( $namespace != '' ) {
+			$this->mConds['log_namespace'] = $namespace;
+			$this->namespace = $namespace;
+		}
 	}
 
 	/**
@@ -338,6 +356,10 @@ class LogPager extends ReverseChronologicalPager {
 	 */
 	public function getPerformer() {
 		return $this->performer;
+	}
+
+	public function getNamespace() {
+		return $this->namespace;
 	}
 
 	/**
