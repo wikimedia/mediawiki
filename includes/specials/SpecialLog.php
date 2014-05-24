@@ -41,6 +41,7 @@ class SpecialLog extends SpecialPage {
 		$opts = new FormOptions;
 		$opts->add( 'type', '' );
 		$opts->add( 'user', '' );
+		$opts->add( 'namespace', '' );
 		$opts->add( 'page', '' );
 		$opts->add( 'pattern', false );
 		$opts->add( 'year', null, FormOptions::INTNULL );
@@ -192,6 +193,7 @@ class SpecialLog extends SpecialPage {
 			$loglist,
 			$opts->getValue( 'type' ),
 			$opts->getValue( 'user' ),
+			$opts->getValue( 'namespace' ),
 			$opts->getValue( 'page' ),
 			$opts->getValue( 'pattern' ),
 			$extraConds,
@@ -211,6 +213,7 @@ class SpecialLog extends SpecialPage {
 		$loglist->showOptions(
 			$pager->getType(),
 			$opts->getValue( 'user' ),
+			$pager->getNamespace(),
 			$pager->getPage(),
 			$pager->getPattern(),
 			$pager->getYear(),
