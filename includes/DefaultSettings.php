@@ -7603,6 +7603,46 @@ $wgActionFilteredLogs = [
 ];
 
 /**
+ * List of log types that can or cannot be filtered by namespace
+ * Assign a log type to true when it makes sense to have a namespace filter,
+ * and to false otherwise.
+ * If it depends on the requested action type (from $wgActionFilteredLogs),
+ * use an array specifiying the desired behavior in each case.
+ *
+ * If a log is not specified, the namespace filter is shown by default.
+ *
+ * Extensions may append to this array
+ * @since 1.28
+ */
+$wgNamespaceFilteredLogs = [
+	'block' => false,
+	'contentmodel'=> true,
+	'delete' => [
+		'delete' => true,
+		'restore' => true,
+		'event' => false,
+		'revision' => true,
+	],
+	'import' => true,
+	'move' => true,
+	'managetags'=> false,
+	'merge' => true,
+	'newusers' => false,
+	'patrol' => true,
+	'protect' => true,
+	'rights' => false,
+	'suppress' => [
+		'event' => false,
+		'revision' => true,
+		'delete' => true,
+		'block' => false,
+		'reblock' => false,
+	],
+	'tag' => true,
+	'upload'=> false,
+];
+
+/**
  * Maintain a log of newusers at Log/newusers?
  */
 $wgNewUserLog = true;
