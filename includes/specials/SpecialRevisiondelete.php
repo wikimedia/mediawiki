@@ -403,6 +403,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 		// Show form if the user can submit
 		if ( $this->mIsAllowed ) {
+			$this->getOutput()->addModules( 'mediawiki.special.revisiondelete' );
+
 			$out = Xml::openElement( 'form', array( 'method' => 'post',
 					'action' => $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) ),
 					'id' => 'mw-revdel-form-revisions' ) ) .
@@ -429,6 +431,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 							'wpReason',
 							60,
 							$this->otherReason,
+							// maxlength gets dynamic with javascript, see mediawiki.special.revisiondelete.js
 							array( 'id' => 'wpReason', 'maxlength' => 100 )
 						) .
 					'</td>' .
@@ -570,6 +573,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		}
 		$bitParams = $this->extractBitParams();
 		// from dropdown
+		// Should be build the same as in mediawiki.special.revisiondelete.js
 		$listReason = $this->getRequest()->getText( 'wpRevDeleteReasonList', 'other' );
 		$comment = $listReason;
 		if ( $comment != 'other' && $this->otherReason != '' ) {
