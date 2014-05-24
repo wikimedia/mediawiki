@@ -1728,17 +1728,20 @@ abstract class File {
 
 	/**
 	 * Get an image size array like that returned by getImageSize(), or false if it
-	 * can't be determined.
+	 * can't be determined. Loads the image size directly from the file ignoring caches.
 	 *
-	 * @param string $fileName The filename
-	 * @return array
+	 * @note Use getWidth()/getHeight() instead of this method unless you have a
+	 *  a good reason. This method skips all caches.
+	 *
+	 * @param string $fileName The path to the file (e.g. From getLocalPathRef() )
+	 * @return array The width, followed by height, with optionally more things after
 	 */
-	function getImageSize( $fileName ) {
+	function getImageSize( $filePath ) {
 		if ( !$this->getHandler() ) {
 			return false;
 		}
 
-		return $this->handler->getImageSize( $this, $fileName );
+		return $this->handler->getImageSize( $this, $filePath );
 	}
 
 	/**
