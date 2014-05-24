@@ -41,6 +41,7 @@ class SpecialLog extends SpecialPage {
 		$opts = new FormOptions;
 		$opts->add( 'type', '' );
 		$opts->add( 'user', '' );
+		$opts->add( 'namespace', '' );
 		$opts->add( 'page', '' );
 		$opts->add( 'pattern', false );
 		$opts->add( 'year', null, FormOptions::INTNULL );
@@ -176,7 +177,8 @@ class SpecialLog extends SpecialPage {
 			$extraConds,
 			$opts->getValue( 'year' ),
 			$opts->getValue( 'month' ),
-			$opts->getValue( 'tagfilter' )
+			$opts->getValue( 'tagfilter' ),
+			$opts->getValue( 'namespace' )
 		);
 
 		$this->addHeader( $opts->getValue( 'type' ) );
@@ -195,7 +197,8 @@ class SpecialLog extends SpecialPage {
 			$pager->getYear(),
 			$pager->getMonth(),
 			$pager->getFilterParams(),
-			$opts->getValue( 'tagfilter' )
+			$opts->getValue( 'tagfilter' ),
+			$pager->getNamespace()
 		);
 
 		# Insert list
