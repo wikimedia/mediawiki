@@ -821,7 +821,6 @@
 	"revdelete-concurrent-change": "Error modifying the item dated $2, $1: Its status appears to have been changed by someone else while you attempted to modify it.\nPlease check the logs.",
 	"revdelete-only-restricted": "Error hiding the item dated $2, $1: You cannot suppress items from view by administrators without also selecting one of the other visibility options.",
 	"revdelete-reason-dropdown": "*Common delete reasons\n** Copyright violation\n** Inappropriate comment or personal information\n** Inappropriate username\n** Potentially libelous information",
-	"revdelete-otherreason": "Other/additional reason:",
 	"revdelete-reasonotherlist": "Other reason",
 	"revdelete-edit-reasonlist": "Edit delete reasons",
 	"revdelete-offender": "Revision author:",
