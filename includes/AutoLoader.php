@@ -102,6 +102,7 @@ $wgAutoloadLocalClasses = array(
 	'HTMLNestedFilterable' => 'includes/htmlform/HTMLNestedFilterable.php',
 	'HTMLMultiSelectField' => 'includes/htmlform/HTMLMultiSelectField.php',
 	'HTMLRadioField' => 'includes/htmlform/HTMLRadioField.php',
+	'HTMLRadioMatrix' => 'includes/htmlform/HTMLRadioMatrix.php',
 	'HTMLSelectAndOtherField' => 'includes/htmlform/HTMLSelectAndOtherField.php',
 	'HTMLSelectField' => 'includes/htmlform/HTMLSelectField.php',
 	'HTMLSelectLimitField' => 'includes/htmlform/HTMLSelectLimitField.php',
