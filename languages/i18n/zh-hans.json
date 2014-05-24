@@ -74,7 +74,8 @@
 			"范",
 			"阿pp",
 			"Hudafu",
-			"아라"
+			"아라",
+			"Mywood"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -2271,7 +2272,7 @@
 	"tooltip-pt-watchlist": "你正在监视更改的页面的列表",
 	"tooltip-pt-mycontris": "你的贡献的列表",
 	"tooltip-pt-login": "我们鼓励您登录，不过这不是强制的",
-	"tooltip-pt-logout": "退出",
+	"tooltip-pt-logout": "退出登录",
 	"tooltip-ca-talk": "关于内容页面的讨论",
 	"tooltip-ca-edit": "你可以编辑本页面。请在保存前使用预览按钮",
 	"tooltip-ca-addsection": "开始新段落",

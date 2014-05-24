@@ -2886,7 +2886,7 @@
 	"watchlistedit-clear-done": "주시문서 목록을 지웠습니다.",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|제목 1개|제목 $1개}}를 제거했습니다:",
 	"watchlistedit-too-many": "여기에 보여질 문서가 너무 많습니다.",
-	"watchlisttools-clear": "주시문서 목록 지우기",
+	"watchlisttools-clear": "주시문서 목록 비우기",
 	"watchlisttools-view": "주시문서 최근 바뀜",
 	"watchlisttools-edit": "주시문서 목록 보기/편집하기",
 	"watchlisttools-raw": "주시문서 목록 직접 편집하기",
