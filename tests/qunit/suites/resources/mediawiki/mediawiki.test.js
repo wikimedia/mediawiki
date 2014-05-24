@@ -40,9 +40,14 @@
 		assert.strictEqual( window.$j, window.jQuery, '$j alias to jQuery' );
 		this.restoreWarnings();
 
+		// window.mw and window.mediaWiki are not deprecated, but for some reason
+		// PhantomJS is triggerring the accessors on all mw.* properties in this test,
+		// and with that lots of unrelated deprecation notices.
+		this.suppressWarnings();
 		assert.ok( window.mediaWiki, 'mediaWiki defined' );
 		assert.ok( window.mw, 'mw defined' );
 		assert.strictEqual( window.mw, window.mediaWiki, 'mw alias to mediaWiki' );
+		this.restoreWarnings();
 	} );
 
 	QUnit.test( 'mw.Map', 28, function ( assert ) {
