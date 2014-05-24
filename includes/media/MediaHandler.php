@@ -579,9 +579,7 @@ abstract class MediaHandler {
 	 * @return string
 	 */
 	function getShortDesc( $file ) {
-		global $wgLang;
-
-		return htmlspecialchars( $wgLang->formatSize( $file->getSize() ) );
+		return self::getGeneralShortDesc( $file );
 	}
 
 	/**
@@ -591,10 +589,7 @@ abstract class MediaHandler {
 	 * @return string
 	 */
 	function getLongDesc( $file ) {
-		global $wgLang;
-
-		return wfMessage( 'file-info', htmlspecialchars( $wgLang->formatSize( $file->getSize() ) ),
-			$file->getMimeType() )->parse();
+		return self::getGeneralLongDesc( $file );
 	}
 
 	/**
@@ -616,10 +611,8 @@ abstract class MediaHandler {
 	 * @return string
 	 */
 	static function getGeneralLongDesc( $file ) {
-		global $wgLang;
-
-		return wfMessage( 'file-info', $wgLang->formatSize( $file->getSize() ),
-			$file->getMimeType() )->parse();
+		return wfMessage( 'file-info' )->sizeParams( $file->getSize() )
+			->params( $file->getMimeType() )->parse();
 	}
 
 	/**
