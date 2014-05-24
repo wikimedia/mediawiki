@@ -80,9 +80,11 @@ class LogEventsList extends ContextSource {
 	 * @param array $filter
 	 * @param string $tagFilter Tag to select by default
 	 * @param string $action
+	 * @param string|int $namespace
 	 */
-	public function showOptions( $types = [], $user = '', $page = '', $pattern = '', $year = 0,
-		$month = 0, $filter = null, $tagFilter = '', $action = null
+	public function showOptions( $types = [], $user = '', $page = '', $pattern = '',
+		$year = 0, $month = 0, $filter = null, $tagFilter = '', $action = null,
+		$namespace = ''
 	) {
 		global $wgScript, $wgMiserMode;
 
@@ -98,6 +100,7 @@ class LogEventsList extends ContextSource {
 		// Basic selectors
 		$html .= $this->getTypeMenu( $types ) . "\n";
 		$html .= $this->getUserInput( $user ) . "\n";
+		$html .= $this->getNamespaceInput( $namespace ) . "\n";
 		$html .= $this->getTitleInput( $page ) . "\n";
 		$html .= $this->getExtraInputs( $types ) . "\n";
 
@@ -245,6 +248,22 @@ class LogEventsList extends ContextSource {
 		);
 
 		return '<span class="mw-input-with-label">' . $label . '</span>';
+	}
+
+	/**
+	 * @param int $namespace
+	 * @return string Formatted HTML
+	 */
+	private function getNamespaceInput( $namespace ) {
+		$label = Html::namespaceSelector( [
+			'label' => $this->msg( 'speciallognamespacelabel' )->text(),
+			'name' => 'namespace',
+			'id' => 'mw-log-namespace',
+			'all' => '',
+			'selected' => $namespace
+		] );
+
+		return '<span style="white-space: nowrap">' . $label .	'</span>';
 	}
 
 	/**

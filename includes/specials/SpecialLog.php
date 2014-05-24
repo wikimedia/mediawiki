@@ -50,6 +50,7 @@ class SpecialLog extends SpecialPage {
 		$opts->add( 'dir', '' );
 		$opts->add( 'offender', '' );
 		$opts->add( 'subtype', '' );
+		$opts->add( 'namespace', '' );
 
 		// Set values
 		$opts->fetchValuesFromRequest( $this->getRequest() );
@@ -197,7 +198,8 @@ class SpecialLog extends SpecialPage {
 			$extraConds,
 			$opts->getValue( 'year' ),
 			$opts->getValue( 'month' ),
-			$opts->getValue( 'tagfilter' )
+			$opts->getValue( 'tagfilter' ),
+			$opts->getValue( 'namespace' )
 		);
 
 		$this->addHeader( $opts->getValue( 'type' ) );
@@ -217,7 +219,8 @@ class SpecialLog extends SpecialPage {
 			$pager->getMonth(),
 			$pager->getFilterParams(),
 			$opts->getValue( 'tagfilter' ),
-			$action
+			$action,
+			$pager->getNamespace()
 		);
 
 		# Insert list
