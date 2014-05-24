@@ -351,9 +351,9 @@
 						// Make sure the numeral order doesn't get messed up, force the first (soon to be second) item
 						// to be "1". Except if the value-attribute is already used.
 						// If no value was set WebKit returns "", Mozilla returns '-1', others return 0, null or undefined.
-						firstval = $firstItem.attr( 'value' );
+						firstval = $firstItem.prop( 'value' );
 						if ( firstval === undefined || !firstval || firstval === '-1' || firstval === -1 ) {
-							$firstItem.attr( 'value', '1' );
+							$firstItem.prop( 'value', '1' );
 						}
 						$toggleLink = buildDefaultToggleLink();
 						$toggleLink.wrap( '<li class="mw-collapsible-toggle-li"></li>' ).parent().prependTo( $collapsible );
