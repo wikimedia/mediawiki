@@ -146,6 +146,8 @@ production.
 * (bug 15484) Users will now be redirected to the login page when they need to
   log in, rather than being shown a page asking them to log in and having to click
   another link to actually get to the login page.
+* (bug 35067) Provide "Show changes against previous revision" button
+  when editing older revision.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
