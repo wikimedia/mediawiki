@@ -388,6 +388,11 @@ if ( $wgNewUserLog ) {
 	$wgLogActionsHandlers['newusers/autocreate'] = 'NewUsersLogFormatter';
 }
 
+if ( $wgPageLanguage ) {
+	$wgLogTypes[] = 'pagelang';
+	$wgLogActionsHandlers['pagelang/pagelang'] = 'PageLangLogFormatter';
+}
+
 if ( $wgCookieSecure === 'detect' ) {
 	$wgCookieSecure = ( WebRequest::detectProtocol() === 'https' );
 }

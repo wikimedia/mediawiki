@@ -6333,6 +6333,7 @@ $wgLogTypes = array(
 	'patrol',
 	'merge',
 	'suppress',
+	#'pagelang'
 );
 
 /**
@@ -6461,6 +6462,7 @@ $wgLogActionsHandlers = array(
 	'patrol/patrol' => 'PatrolLogFormatter',
 	'rights/rights' => 'RightsLogFormatter',
 	'rights/autopromote' => 'RightsLogFormatter',
+	#'pagelang/pagelang' => 'PageLangLogFormatter'
 );
 
 /**
@@ -7112,6 +7114,14 @@ $wgHttpsPort = 443;
  */
 $wgHKDFSecret = false;
 $wgHKDFAlgorithm = 'sha256';
+
+/**
+ * Enable page language feature
+ * Allows setting page language in database
+ * @var bool
+ * @since 1.24
+ */
+$wgPageLanguage = false;
 
 /**
  * For really cool vim folding this needs to be at the end:

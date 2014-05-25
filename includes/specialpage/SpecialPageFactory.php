@@ -183,6 +183,7 @@ class SpecialPageFactory {
 		global $wgSpecialPages;
 		global $wgDisableCounters, $wgDisableInternalSearch, $wgEmailAuthentication;
 		global $wgEnableEmail, $wgEnableJavaScriptTest;
+		global $wgPageLanguage;
 
 		if ( !is_object( self::$list ) ) {
 			wfProfileIn( __METHOD__ );
@@ -206,6 +207,10 @@ class SpecialPageFactory {
 
 			if ( $wgEnableJavaScriptTest ) {
 				self::$list['JavaScriptTest'] = 'SpecialJavaScriptTest';
+			}
+
+			if ( $wgPageLanguage ) {
+				self::$list['PageLanguage'] = 'SpecialPageLanguage';
 			}
 
 			self::$list['Activeusers'] = 'SpecialActiveUsers';
