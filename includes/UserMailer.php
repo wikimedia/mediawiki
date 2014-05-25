@@ -84,7 +84,7 @@ class UserMailer {
 	private static $mErrorString;
 
 	/**
-	 * Send mail using a PEAR mailer
+	 * Send mail using a SWIFT mailer
 	 *
 	 * @param UserMailer $mailer
 	 * @param string $dest
@@ -93,13 +93,20 @@ class UserMailer {
 	 *
 	 * @return Status
 	 */
-	protected static function sendWithPear( $mailer, $dest, $headers, $body ) {
-		$mailResult = $mailer->send( $dest, $headers, $body );
+	protected static function sendWithSwift( $mailer, $dest, $from, $headers, $body ) {
+		//Create the SwiftMailer message object
+		$message = Swift_Message::newInstance()
+				->setSubject( $headers['Subject'] )
+				->setFrom( array( $from->address => $from->name ) )
+				->setTo( array( $dest->address => $dest->name ) )
+				->setBody( $body );
+
+		$mailResult =  $mailer->send( $message );
 
 		# Based on the result return an error string,
-		if ( PEAR::isError( $mailResult ) ) {
-			wfDebug( "PEAR::Mail failed: " . $mailResult->getMessage() . "\n" );
-			return Status::newFatal( 'pear-mail-error', $mailResult->getMessage() );
+		if ( !($mailResult) ) {
+			wfDebug( "Swift Mailer failed: \n" );
+			return Status::newFatal( 'swift-mail-error');
 		} else {
 			return Status::newGood();
 		}
@@ -163,6 +170,7 @@ class UserMailer {
 	public static function send( $to, $from, $subject, $body, $replyto = null,
 		$contentType = 'text/plain; charset=UTF-8'
 	) {
+		require_once 'mailer/SwiftMailer/lib/swift_required.php';
 		global $wgSMTP, $wgEnotifMaxRecips, $wgAdditionalMailParams, $wgAllowHTMLEmail;
 		$mime = null;
 		if ( !is_array( $to ) ) {
@@ -210,33 +218,6 @@ class UserMailer {
 		if ( !$has_address ) {
 			return Status::newFatal( 'user-mail-no-addy' );
 		}
-
-		# Forge email headers
-		# -------------------
-		#
-		# WARNING
-		#
-		# DO NOT add To: or Subject: headers at this step. They need to be
-		# handled differently depending upon the mailer we are going to use.
-		#
-		# To:
-		#  PHP mail() first argument is the mail receiver. The argument is
-		#  used as a recipient destination and as a To header.
-		#
-		#  PEAR mailer has a recipient argument which is only used to
-		#  send the mail. If no To header is given, PEAR will set it to
-		#  to 'undisclosed-recipients:'.
-		#
-		#  NOTE: To: is for presentation, the actual recipient is specified
-		#  by the mailer using the Rcpt-To: header.
-		#
-		# Subject:
-		#  PHP mail() second argument to pass the subject, passing a Subject
-		#  as an additional header will result in a duplicate header.
-		#
-		#  PEAR mailer should be passed a Subject header.
-		#
-		# -- hashar 20120218
 
 		$headers['From'] = $from->toString();
 		$headers['Return-Path'] = $from->address;
@@ -303,25 +284,25 @@ class UserMailer {
 
 		if ( is_array( $wgSMTP ) ) {
 			#
-			# PEAR MAILER
+			# SWIFT MAILER
 			#
-
-			if ( !stream_resolve_include_path( 'Mail.php' ) ) {
-				throw new MWException( 'PEAR mail package is not installed' );
-			}
-			require_once 'Mail.php';
 
 			wfSuppressWarnings();
 
-			// Create the mail object using the Mail::factory method
-			$mail_object =& Mail::factory( 'smtp', $wgSMTP );
-			if ( PEAR::isError( $mail_object ) ) {
-				wfDebug( "PEAR::Mail factory failed: " . $mail_object->getMessage() . "\n" );
+			try {
+				// Create the Transport with Swift_Message::newInstance() method
+				$transport = Swift_SmtpTransport::newInstance( $wgSMTP['host'], $wgSMTP['port'] )
+						->setUsername( $wgSMTP['username'] )
+						->setPassword( $wgSMTP['password'] );
+				// Create the SwiftMailer::Mailer Object using the above Transport
+				$mail_object = Swift_Mailer::newInstance( $transport );
+			} catch ( Swift_TransportException $e ) {
+				wfDebug( "SWIFT::Mail SMTP configuration failed \n" );
 				wfRestoreWarnings();
-				return Status::newFatal( 'pear-mail-error', $mail_object->getMessage() );
+				return Status::newFatal( 'swift-mail-error' );
 			}
 
-			wfDebug( "Sending mail via PEAR::Mail\n" );
+			wfDebug( "Sending mail via Swift::Mail\n" );
 
 			$headers['Subject'] = self::quotedPrintable( $subject );
 
@@ -332,9 +313,8 @@ class UserMailer {
 
 			# Split jobs since SMTP servers tends to limit the maximum
 			# number of possible recipients.
-			$chunks = array_chunk( $to, $wgEnotifMaxRecips );
-			foreach ( $chunks as $chunk ) {
-				$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
+			foreach ( $to as $chunk ) {
+				$status = self::sendWithSwift( $mail_object, $chunk, $from, $headers, $body );
 				# FIXME : some chunks might be sent while others are not!
 				if ( !$status->isOK() ) {
 					wfRestoreWarnings();
@@ -345,35 +325,32 @@ class UserMailer {
 			return Status::newGood();
 		} else {
 			#
-			# PHP mail()
+			# Sending messages by delegating to PHP's internal mail() function using Swift Mailer
 			#
 			if ( count( $to ) > 1 ) {
 				$headers['To'] = 'undisclosed-recipients:;';
 			}
 			$headers = self::arrayToHeaderString( $headers, $endl );
 
-			wfDebug( "Sending mail via internal mail() function\n" );
+			$transport = Swift_MailTransport::newInstance();
+			// Create the Mailer using the above Transport
+			$mailer = Swift_Mailer::newInstance($transport);
+
+			$message = Swift_Message::newInstance()
+					->setSubject( self::quotedPrintable( $subject ) )
+					->setFrom( array( $from->address => $from->name ) )
+					->setBody( $body );
+
+			wfDebug( "Sending mail via internal mail() using Swiftmailer \n" );
 
 			self::$mErrorString = '';
 			$html_errors = ini_get( 'html_errors' );
 			ini_set( 'html_errors', '0' );
-			set_error_handler( 'UserMailer::errorHandler' );
-
 			try {
 				$safeMode = wfIniGetBool( 'safe_mode' );
-
 				foreach ( $to as $recip ) {
-					if ( $safeMode ) {
-						$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
-					} else {
-						$sent = mail(
-							$recip,
-							self::quotedPrintable( $subject ),
-							$body,
-							$headers,
-							$wgAdditionalMailParams
-						);
-					}
+					$message->setTo( array( $recip->address => $recip->name) );
+					$sent = $mailer->send( $message );
 				}
 			} catch ( Exception $e ) {
 				restore_error_handler();
