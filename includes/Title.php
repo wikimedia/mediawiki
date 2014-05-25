@@ -150,6 +150,9 @@ class Title {
 	/** @var bool The (string) language code of the page's language and content code. */
 	private $mPageLanguage = false;
 
+	/** @var string The page language code from the database */
+	private $mDbPageLanguage = null;
+
 	/** @var TitleValue A corresponding TitleValue object */
 	private $mTitleValue = null;
 	// @}
@@ -438,6 +441,9 @@ class Title {
 				$this->mContentModel = strval( $row->page_content_model );
 			} else {
 				$this->mContentModel = false; # initialized lazily in getContentModel()
+			}
+			if ( isset( $row->page_lang ) ) {
+				$this->mDbPageLanguage = (string)$row->page_lang;
 			}
 		} else { // page not found
 			$this->mArticleID = 0;
@@ -3320,6 +3326,7 @@ class Title {
 		$this->mContentModel = false;
 		$this->mEstimateRevisions = null;
 		$this->mPageLanguage = false;
+		$this->mDbPageLanguage = null;
 	}
 
 	/**
@@ -4977,6 +4984,12 @@ class Title {
 			return $wgLang;
 		}
 
+		// Checking if DB language is set
+		if ( $this->mDbPageLanguage ) {
+			wfProfileOut( __METHOD__ );
+			return wfGetLangObj( $this->mDbPageLanguage );
+		}
+
 		if ( !$this->mPageLanguage || $this->mPageLanguage[1] !== $wgLanguageCode ) {
 			// Note that this may depend on user settings, so the cache should
 			// be only per-request.
@@ -4990,6 +5003,7 @@ class Title {
 		} else {
 			$langObj = wfGetLangObj( $this->mPageLanguage[0] );
 		}
+
 		wfProfileOut( __METHOD__ );
 		return $langObj;
 	}

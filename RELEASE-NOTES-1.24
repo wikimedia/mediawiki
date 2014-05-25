@@ -96,6 +96,10 @@ production.
   for Template:! for purposes such as passing pipes inside of parameters.
 * (bug 20790) The block log snippet on Special:Contributions and while
   editing user and user talk pages now works for IP range blocks.
+* (bug 35489) Added ability to change the page language for MediaWiki pages using
+  Special:PageLanguage. All pages are set to wiki language by default.
+  The feature needs to be enabled with $wgPageLanguageUseDB=true and
+  permission needs to be set for 'pagelang'.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
