@@ -59,6 +59,8 @@ production.
   than in a dedicated pane in the preferences panel.
 * (bug 44591) The dropdown actions menu (little triangle next to page tabs) in
   the Vector skin has gained a label that should make it more discoverable.
+* (bug 35489) Added ability to change the Page Language for mediawiki pages. Using
+  Special:PageLanguage. All pages are set to wiki language by default.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
