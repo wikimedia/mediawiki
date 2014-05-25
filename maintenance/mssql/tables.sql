@@ -593,7 +593,8 @@ CREATE TABLE /*_*/image (
   -- SHA-1 content hash in base-36
   img_sha1 nvarchar(32) NOT NULL default '',
 
-  CONSTRAINT CKC__image_img_major_mime check (img_major_mime IN('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart')),
+  -- for "chemical" cf. http://dx.doi.org/10.1021/ci9803233 by the ACS
+  CONSTRAINT CKC__image_img_major_mime check (img_major_mime IN('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart', 'chemical')),
   CONSTRAINT CKC__image_img_media_type check (img_media_type in('UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO', 'VIDEO', 'MULTIMEDIA', 'OFFICE', 'TEXT', 'EXECUTABLE', 'ARCHIVE'))
 );
 
@@ -638,7 +639,7 @@ CREATE TABLE /*_*/oldimage (
   oi_deleted tinyint NOT NULL default 0,
   oi_sha1 nvarchar(32) NOT NULL default '',
 
-  CONSTRAINT CKC__oldimage_oi_major_mime check (oi_major_mime IN('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart')),
+  CONSTRAINT CKC__oldimage_oi_major_mime check (oi_major_mime IN('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart', 'chemical')),
   CONSTRAINT CKC__oldimage_oi_media_type check (oi_media_type IN('UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO', 'VIDEO', 'MULTIMEDIA', 'OFFICE', 'TEXT', 'EXECUTABLE', 'ARCHIVE'))
 );
 
@@ -699,7 +700,7 @@ CREATE TABLE /*_*/filearchive (
   -- sha1 hash of file content
   fa_sha1 nvarchar(32) NOT NULL default '',
 
-  CONSTRAINT CKC__filearchive_fa_major_mime check (fa_major_mime in('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart')),
+  CONSTRAINT CKC__filearchive_fa_major_mime check (fa_major_mime in('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart', 'chemical')),
   CONSTRAINT CKC__filearchive_fa_media_type check (fa_media_type in('UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO', 'VIDEO', 'MULTIMEDIA', 'OFFICE', 'TEXT', 'EXECUTABLE', 'ARCHIVE'))
 );
 
@@ -1183,6 +1184,11 @@ CREATE TABLE /*_*/updatelog (
   ul_key nvarchar(255) NOT NULL PRIMARY KEY,
   ul_value nvarchar(max)
 );
+
+INSERT INTO /*_*/updatelog
+      SELECT 'filearchive-fa_major_mime-patch-fa_major_mime-chemical.sql' AS ul_key, null as ul_value
+UNION SELECT 'image-img_major_mime-patch-img_major_mime-chemical.sql', null
+UNION SELECT 'oldimage-oi_major_mime-patch-oi_major_mime-chemical.sql', null;
 
 
 -- A table to track tags for revisions, logs and recent changes.
