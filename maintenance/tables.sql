@@ -275,7 +275,10 @@ CREATE TABLE /*_*/page (
   page_len int unsigned NOT NULL,
 
   -- content model, see CONTENT_MODEL_XXX constants
-  page_content_model varbinary(32) DEFAULT NULL
+  page_content_model varbinary(32) DEFAULT NULL,
+
+  -- Page content language
+  page_lang varchar(35) DEFAULT NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/name_title ON /*_*/page (page_namespace,page_title);

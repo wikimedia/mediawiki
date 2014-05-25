@@ -677,7 +677,6 @@ abstract class ContentHandler {
 	 *
 	 * Also note that the page language may or may not depend on the actual content of the page,
 	 * that is, this method may load the content in order to determine the language.
-	 *
 	 * @since 1.21
 	 *
 	 * @param Title $title The page to determine the language for.
