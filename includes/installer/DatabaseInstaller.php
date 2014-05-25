@@ -163,19 +163,26 @@ abstract class DatabaseInstaller {
 	}
 
 	/**
-	 * Create database tables from scratch.
+	 * Apply a SQL source file to the database as part of running an installation step.
 	 *
+	 * @param string $sourceFileMethod
+	 * @param string $stepName
+	 * @param string $archiveTableMustNotExist
 	 * @return Status
 	 */
-	public function createTables() {
+	private function stepApplySourceFile(
+		$sourceFileMethod,
+		$stepName,
+		$archiveTableMustNotExist = false
+	) {
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
 			return $status;
 		}
 		$this->db->selectDB( $this->getVar( 'wgDBname' ) );
 
-		if ( $this->db->tableExists( 'archive', __METHOD__ ) ) {
-			$status->warning( 'config-install-tables-exist' );
+		if ( $archiveTableMustNotExist && $this->db->tableExists( 'archive', __METHOD__ ) ) {
+			$status->warning( "config-$stepName-tables-exist" );
 			$this->enableLB();
 
 			return $status;
@@ -184,11 +191,13 @@ abstract class DatabaseInstaller {
 		$this->db->setFlag( DBO_DDLMODE ); // For Oracle's handling of schema files
 		$this->db->begin( __METHOD__ );
 
-		$error = $this->db->sourceFile( $this->db->getSchemaPath() );
+		$error = $this->db->sourceFile(
+			call_user_func( array( $this->db, $sourceFileMethod ) )
+		);
 		if ( $error !== true ) {
 			$this->db->reportQueryError( $error, 0, '', __METHOD__ );
 			$this->db->rollback( __METHOD__ );
-			$status->fatal( 'config-install-tables-failed', $error );
+			$status->fatal( "config-$stepName-tables-failed", $error );
 		} else {
 			$this->db->commit( __METHOD__ );
 		}
@@ -198,6 +207,24 @@ abstract class DatabaseInstaller {
 		}
 
 		return $status;
+	}
+
+	/**
+	 * Create database tables from scratch.
+	 *
+	 * @return Status
+	 */
+	public function createTables() {
+		return $this->stepApplySourceFile( 'getSchemaPath', 'install', true );
+	}
+
+	/**
+	 * Insert update keys into table to prevent running unneded updates.
+	 *
+	 * @return Status
+	 */
+	public function insertUpdateKeys() {
+		return $this->stepApplySourceFile( 'getUpdateKeysPath', 'updates', false );
 	}
 
 	/**

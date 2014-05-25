@@ -710,17 +710,40 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	}
 
 	/**
-	 * Return a path to the DBMS-specific schema file, otherwise default to tables.sql
+	 * Return a path to the DBMS-specific SQL file if it exists,
+	 * otherwise default SQL file
+	 *
+	 * @param string $filename
+	 * @return string
+	 */
+	private function getSqlFilePath( $filename ) {
+		global $IP;
+		$dbmsSpecificFilePath = "$IP/maintenance/" . $this->getType() . "/$filename";
+		if ( file_exists( $dbmsSpecificFilePath ) ) {
+			return $dbmsSpecificFilePath;
+		} else {
+			return "$IP/maintenance/$filename";
+		}
+	}
+
+	/**
+	 * Return a path to the DBMS-specific schema file,
+	 * otherwise default to tables.sql
 	 *
 	 * @return string
 	 */
 	public function getSchemaPath() {
-		global $IP;
-		if ( file_exists( "$IP/maintenance/" . $this->getType() . "/tables.sql" ) ) {
-			return "$IP/maintenance/" . $this->getType() . "/tables.sql";
-		} else {
-			return "$IP/maintenance/tables.sql";
-		}
+		return $this->getSqlFilePath( 'tables.sql' );
+	}
+
+	/**
+	 * Return a path to the DBMS-specific update key file,
+	 * otherwise default to update-keys.sql
+	 *
+	 * @return string
+	 */
+	public function getUpdateKeysPath() {
+		return $this->getSqlFilePath( 'update-keys.sql' );
 	}
 
 # ------------------------------------------------------------------------------

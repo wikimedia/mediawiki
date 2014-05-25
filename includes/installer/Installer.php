@@ -1520,6 +1520,7 @@ abstract class Installer {
 			array( 'name' => 'interwiki', 'callback' => array( $installer, 'populateInterwikiTable' ) ),
 			array( 'name' => 'stats', 'callback' => array( $this, 'populateSiteStats' ) ),
 			array( 'name' => 'keys', 'callback' => array( $this, 'generateKeys' ) ),
+			array( 'name' => 'updates', 'callback' => array( $installer, 'insertUpdateKeys' ) ),
 			array( 'name' => 'sysop', 'callback' => array( $this, 'createSysop' ) ),
 			array( 'name' => 'mainpage', 'callback' => array( $this, 'createMainpage' ) ),
 		);
