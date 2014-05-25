@@ -180,7 +180,8 @@ class MIMEsearchPage extends QueryPage {
 			'video',
 			'message',
 			'model',
-			'multipart'
+			'multipart',
+			'chemical'
 		);
 
 		return in_array( $type, $types );
