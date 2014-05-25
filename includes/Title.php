@@ -150,6 +150,9 @@ class Title {
 	/** @var bool The (string) language code of the page's language and content code. */
 	private $mPageLanguage = false;
 
+	/** @var string The page language code from the database */
+	private $mDbPageLanguage = null;
+
 	/** @var TitleValue A corresponding TitleValue object */
 	private $mTitleValue = null;
 	// @}
@@ -344,6 +347,7 @@ class Title {
 		$fields = array(
 			'page_namespace', 'page_title', 'page_id',
 			'page_len', 'page_is_redirect', 'page_latest',
+			'page_lang'
 		);
 
 		if ( $wgContentHandlerUseDB ) {
@@ -438,6 +442,9 @@ class Title {
 				$this->mContentModel = strval( $row->page_content_model );
 			} else {
 				$this->mContentModel = false; # initialized lazily in getContentModel()
+			}
+			if ( isset( $row->page_lang ) ) {
+				$this->mDbPageLanguage = (string)$row->page_lang;
 			}
 		} else { // page not found
 			$this->mArticleID = 0;
@@ -3320,6 +3327,7 @@ class Title {
 		$this->mContentModel = false;
 		$this->mEstimateRevisions = null;
 		$this->mPageLanguage = false;
+		$this->mDbPageLanguage = null;
 	}
 
 	/**
@@ -4990,6 +4998,12 @@ class Title {
 		} else {
 			$langObj = wfGetLangObj( $this->mPageLanguage[0] );
 		}
+
+		// Checking if DB language is set
+		if ( $this->mDbPageLanguage ) {
+			$langObj = wfGetLangObj( $this->mDbPageLanguage );
+		}
+
 		wfProfileOut( __METHOD__ );
 		return $langObj;
 	}
@@ -5064,5 +5078,14 @@ class Title {
 
 		wfRunHooks( 'TitleGetEditNotices', array( $this, $oldid, &$notices ) );
 		return $notices;
+	}
+
+	/**
+	 * Get the DB value of page language
+	 * @return string DBLanguageCode
+	 * @since 1.24
+	 */
+	public function getDBPageLanguage() {
+		return $this->mDbPageLanguage;
 	}
 }

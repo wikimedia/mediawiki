@@ -71,6 +71,8 @@ production.
 * (bug 20210) Special pages may now provide autocompletion of their subpage
   names in search suggestions. Right now the only useful implementation is in
   Special:Log, but more are to come.
+* (bug 35489) Added ability to change the Page Language for mediawiki pages. Using
+  Special:PageLanguage. All pages are set to wiki language by default.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
