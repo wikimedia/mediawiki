@@ -154,16 +154,16 @@ return array(
 	 */
 	'skins.cologneblue' => array(
 		'styles' => array(
-			'cologneblue/screen.css' => array( 'media' => 'screen' ),
-			'cologneblue/print.css' => array( 'media' => 'print' ),
+			'CologneBlue/resources/screen.css' => array( 'media' => 'screen' ),
+			'CologneBlue/resources/print.css' => array( 'media' => 'print' ),
 		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'skins.modern' => array(
 		'styles' => array(
-			'modern/main.css' => array( 'media' => 'screen' ),
-			'modern/print.css' => array( 'media' => 'print' ),
+			'Modern/resources/main.css' => array( 'media' => 'screen' ),
+			'Modern/resources/print.css' => array( 'media' => 'print' ),
 		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
@@ -171,23 +171,23 @@ return array(
 	'skins.vector.styles' => array(
 		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array(
-			'vector/screen.less' => array( 'media' => 'screen' ),
-			'vector/screen-hd.less' => array( 'media' => 'screen and (min-width: 982px)' ),
+			'Vector/resources/screen.less' => array( 'media' => 'screen' ),
+			'Vector/resources/screen-hd.less' => array( 'media' => 'screen and (min-width: 982px)' ),
 		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'skins.monobook.styles' => array(
 		'styles' => array(
-			'monobook/main.css' => array( 'media' => 'screen' ),
+			'MonoBook/resources/main.css' => array( 'media' => 'screen' ),
 		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'skins.vector.js' => array(
 		'scripts' => array(
-			'vector/collapsibleTabs.js',
-			'vector/vector.js',
+			'Vector/resources/collapsibleTabs.js',
+			'Vector/resources/vector.js',
 		),
 		'position' => 'top',
 		'dependencies' => 'jquery.throttle-debounce',
@@ -1183,7 +1183,7 @@ return array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.css',
 		'skinStyles' => array(
-			'vector' => 'skins/vector/special.less',
+			'vector' => 'skins/Vector/resources/special.less', // FIXME this should use $wgStyleDirectory
 		),
 	),
 	'mediawiki.special.block' => array(
@@ -1232,7 +1232,7 @@ return array(
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.preferences.css',
 		'position' => 'top',
 		'skinStyles' => array(
-			'vector' => 'skins/vector/special.preferences.less',
+			'vector' => 'skins/Vector/resources/special.preferences.less', // FIXME this should use $wgStyleDirectory
 		),
 		'messages' => array(
 			'prefs-tabs-navigation-hint',
