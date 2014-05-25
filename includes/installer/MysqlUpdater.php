@@ -229,7 +229,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'job', 'job_attempts', 'patch-job_attempts.sql' ),
 			array( 'doEnableProfiling' ),
 			array( 'addField', 'uploadstash', 'us_props', 'patch-uploadstash-us_props.sql' ),
-			array( 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ),
+			array( 'modifyField', 'us0er_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ),
 			array( 'modifyField', 'user_former_groups', 'ufg_group',
 				'patch-ufg_group-length-increase-255.sql' ),
 			array( 'addIndex', 'page_props', 'pp_propname_page',
@@ -254,6 +254,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.24
 			array( 'addField', 'page_props', 'pp_sortkey', 'patch-pp_sortkey.sql' ),
 			array( 'dropField', 'recentchanges', 'rc_cur_time', 'patch-drop-rc_cur_time.sql' ),
+			//array( 'addField', 'page', 'page_lang', 'patch-page_lang.sql' ),
+			array ( 'setPageLangs' ),
 		);
 	}
 
@@ -511,6 +513,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			page_touched char(14) binary NOT NULL default '',
 			page_latest int(8) unsigned NOT NULL,
 			page_len int(8) unsigned NOT NULL,
+			page_lang varchar(32) NOT NULL,
 
 			PRIMARY KEY page_id (page_id),
 			UNIQUE INDEX name_title (page_namespace,page_title),
@@ -1060,5 +1063,39 @@ class MysqlUpdater extends DatabaseUpdater {
 			false,
 			'Making iwl_prefix_title_from index non-UNIQUE'
 		);
+	}
+
+	protected function setPageLangs() {
+		if ( $this->db->fieldExists( 'page', 'page_lang', __METHOD__ ) ) {
+			$this->output( "...already have pagelangs field.\n" );
+
+		}
+		else {
+			$this->applyPatch(
+				'patch-page_lang.sql',
+				false,
+				'Setting page language for existing pages'
+			);
+			// This part might not be needed as Brian Wolff suggested.
+			// Set the field as some value only if it is not the default wiki language.
+			/*
+			$page = $this->db->tableName( 'page' );
+			$res = $this->db->query( "
+				SELECT page_title, page_lang
+				FROM $page",
+				__METHOD__
+			);
+
+			foreach ( $res as $row ) {
+				$lang = Title::newFromRow( $row )->getPageLanguage()->getCode();
+				$sql = "UPDATE $page
+							SET page_lang = '$lang'
+							WHERE page_title = '$row->page_title'";
+
+					$this->db->query( $sql, __METHOD__ );
+					$this->output( "done.\n" );
+			}
+			*/
+		}
 	}
 }
