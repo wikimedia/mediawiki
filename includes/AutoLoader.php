@@ -973,6 +973,7 @@ $wgAutoloadLocalClasses = array(
 	'MovePageForm' => 'includes/specials/SpecialMovepage.php',
 	'NewFilesPager' => 'includes/specials/SpecialNewimages.php',
 	'NewPagesPager' => 'includes/specials/SpecialNewpages.php',
+	'SpecialPageLanguage' => 'includes/specials/SpecialPageLanguage.php',
 	'PageArchive' => 'includes/specials/SpecialUndelete.php',
 	'PopularPagesPage' => 'includes/specials/SpecialPopularpages.php',
 	'ProtectedPagesPager' => 'includes/specials/SpecialProtectedpages.php',
