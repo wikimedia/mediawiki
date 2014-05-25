@@ -78,6 +78,7 @@ class SpecialPageFactory {
 		'Prefixindex' => 'SpecialPrefixindex',
 		'Categories' => 'SpecialCategories',
 		'Listredirects' => 'ListredirectsPage',
+		'PageLanguage' => 'SpecialPageLanguage',
 		'PagesWithProp' => 'SpecialPagesWithProp',
 		'TrackingCategories' => 'SpecialTrackingCategories',
 
