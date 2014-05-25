@@ -84,26 +84,53 @@ class UserMailer {
 	private static $mErrorString;
 
 	/**
-	 * Send mail using a PEAR mailer
+	 * Creates a SwiftMailer::Transport Object
 	 *
-	 * @param UserMailer $mailer
-	 * @param string $dest
-	 * @param string $headers
-	 * @param string $body
+	 * @return $transport
+	 */
+	protected static function getSwiftMailer() {
+		global $wgSMTP;
+		try {
+			if ( is_array( $wgSMTP ) ) {
+				// Create the Transport with Swift_Message::newInstance() method
+				$transport = Swift_SmtpTransport::newInstance( $wgSMTP['host'], $wgSMTP['port'] )
+						->setUsername( $wgSMTP['username'] )
+						->setPassword( $wgSMTP['password'] );
+			} else {
+				$transport = Swift_MailTransport::newInstance();
+			}
+		} catch ( Swift_TransportException $e ) {
+			wfDebug( "SWIFT::Mail SMTP configuration failed \n" );
+			wfRestoreWarnings();
+			return Status::newFatal( 'swift-mail-error', $e );
+		}
+		return $transport;
+	}
+
+	/**
+	 * Send mail using a SWIFT mailer
+	 *
+	 * @param SwiftMailer $mailer
+	 * @param $message
 	 *
 	 * @return Status
 	 */
-	protected static function sendWithPear( $mailer, $dest, $headers, $body ) {
-		$mailResult = $mailer->send( $dest, $headers, $body );
-
+	protected static function sendWithSwift( $mailer, $message ) {
+		//Create the SwiftMailer message object
+		try {
+			$mailResult =  $mailer->send( $message );
+		} catch (Exception $e ) {
+		  throw $e;
+		}
 		# Based on the result return an error string,
-		if ( PEAR::isError( $mailResult ) ) {
-			wfDebug( "PEAR::Mail failed: " . $mailResult->getMessage() . "\n" );
-			return Status::newFatal( 'pear-mail-error', $mailResult->getMessage() );
+		if ( !($mailResult) ) {
+			wfDebug( "Swift Mailer failed: ". $e. "\n" );
+			return Status::newFatal( 'swift-mail-error', $e );
 		} else {
 			return Status::newGood();
 		}
 	}
+
 
 	/**
 	 * Creates a single string from an associative array
@@ -163,6 +190,7 @@ class UserMailer {
 	public static function send( $to, $from, $subject, $body, $replyto = null,
 		$contentType = 'text/plain; charset=UTF-8'
 	) {
+		require_once 'mailer/SwiftMailer/lib/swift_required.php';
 		global $wgSMTP, $wgEnotifMaxRecips, $wgAdditionalMailParams, $wgAllowHTMLEmail;
 		$mime = null;
 		if ( !is_array( $to ) ) {
@@ -210,33 +238,6 @@ class UserMailer {
 		if ( !$has_address ) {
 			return Status::newFatal( 'user-mail-no-addy' );
 		}
-
-		# Forge email headers
-		# -------------------
-		#
-		# WARNING
-		#
-		# DO NOT add To: or Subject: headers at this step. They need to be
-		# handled differently depending upon the mailer we are going to use.
-		#
-		# To:
-		#  PHP mail() first argument is the mail receiver. The argument is
-		#  used as a recipient destination and as a To header.
-		#
-		#  PEAR mailer has a recipient argument which is only used to
-		#  send the mail. If no To header is given, PEAR will set it to
-		#  to 'undisclosed-recipients:'.
-		#
-		#  NOTE: To: is for presentation, the actual recipient is specified
-		#  by the mailer using the Rcpt-To: header.
-		#
-		# Subject:
-		#  PHP mail() second argument to pass the subject, passing a Subject
-		#  as an additional header will result in a duplicate header.
-		#
-		#  PEAR mailer should be passed a Subject header.
-		#
-		# -- hashar 20120218
 
 		$headers['From'] = $from->toString();
 		$headers['Return-Path'] = $from->address;
@@ -300,100 +301,40 @@ class UserMailer {
 			// the hook implementation will return a string to pass an error message
 			return Status::newFatal( 'php-mail-error', $ret );
 		}
+		wfSuppressWarnings();
+		$transport = self::getSwiftMailer();
 
-		if ( is_array( $wgSMTP ) ) {
-			#
-			# PEAR MAILER
-			#
+		// Create the SwiftMailer::Mailer Object using the above Transport
+		$mailer = Swift_Mailer::newInstance( $transport );
 
-			if ( !stream_resolve_include_path( 'Mail.php' ) ) {
-				throw new MWException( 'PEAR mail package is not installed' );
-			}
-			require_once 'Mail.php';
+		wfDebug( "Sending mail via Swift::Mail\n" );
 
-			wfSuppressWarnings();
+		$headers['Subject'] = self::quotedPrintable( $subject );
 
-			// Create the mail object using the Mail::factory method
-			$mail_object =& Mail::factory( 'smtp', $wgSMTP );
-			if ( PEAR::isError( $mail_object ) ) {
-				wfDebug( "PEAR::Mail factory failed: " . $mail_object->getMessage() . "\n" );
-				wfRestoreWarnings();
-				return Status::newFatal( 'pear-mail-error', $mail_object->getMessage() );
-			}
-
-			wfDebug( "Sending mail via PEAR::Mail\n" );
-
-			$headers['Subject'] = self::quotedPrintable( $subject );
-
-			# When sending only to one recipient, shows it its email using To:
-			if ( count( $to ) == 1 ) {
-				$headers['To'] = $to[0]->toString();
-			}
-
-			# Split jobs since SMTP servers tends to limit the maximum
-			# number of possible recipients.
-			$chunks = array_chunk( $to, $wgEnotifMaxRecips );
-			foreach ( $chunks as $chunk ) {
-				$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
-				# FIXME : some chunks might be sent while others are not!
-				if ( !$status->isOK() ) {
-					wfRestoreWarnings();
-					return $status;
-				}
-			}
-			wfRestoreWarnings();
-			return Status::newGood();
+		# When sending only to one recipient, shows it its email using To:
+		if ( count( $to ) == 1 ) {
+			$headers['To'] = $to[0]->toString();
 		} else {
-			#
-			# PHP mail()
-			#
-			if ( count( $to ) > 1 ) {
-				$headers['To'] = 'undisclosed-recipients:;';
-			}
-			$headers = self::arrayToHeaderString( $headers, $endl );
+			$headers['To'] = 'undisclosed-recipients:;';
+		}
+		$message = Swift_Message::newInstance()
+				->setSubject( $headers['Subject'] )
+				->setFrom( array( $from->address => $from->name ) )
+				->setBody( $body );
 
-			wfDebug( "Sending mail via internal mail() function\n" );
-
-			self::$mErrorString = '';
-			$html_errors = ini_get( 'html_errors' );
-			ini_set( 'html_errors', '0' );
-			set_error_handler( 'UserMailer::errorHandler' );
-
-			try {
-				$safeMode = wfIniGetBool( 'safe_mode' );
-
-				foreach ( $to as $recip ) {
-					if ( $safeMode ) {
-						$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
-					} else {
-						$sent = mail(
-							$recip,
-							self::quotedPrintable( $subject ),
-							$body,
-							$headers,
-							$wgAdditionalMailParams
-						);
-					}
-				}
-			} catch ( Exception $e ) {
-				restore_error_handler();
-				throw $e;
-			}
-
-			restore_error_handler();
-			ini_set( 'html_errors', $html_errors );
-
-			if ( self::$mErrorString ) {
-				wfDebug( "Error sending mail: " . self::$mErrorString . "\n" );
-				return Status::newFatal( 'php-mail-error', self::$mErrorString );
-			} elseif ( ! $sent ) {
-				// mail function only tells if there's an error
-				wfDebug( "Unknown error sending mail\n" );
-				return Status::newFatal( 'php-mail-error-unknown' );
-			} else {
-				return Status::newGood();
+		# Split jobs since SMTP servers tends to limit the maximum
+		# number of possible recipients.
+		foreach ( $to as $recip ) {
+			$message->setTo( array( $recip->address => $recip->name) );
+			$status = self::sendWithSwift( $mailer, $message );
+			# FIXME : some chunks might be sent while others are not!
+			if ( !$status->isOK() ) {
+				wfRestoreWarnings();
+				return $status;
 			}
 		}
+		wfRestoreWarnings();
+		return Status::newGood();
 	}
 
 	/**
