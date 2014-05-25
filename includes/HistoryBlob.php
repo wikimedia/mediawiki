@@ -197,13 +197,13 @@ class HistoryBlobStub {
 	protected static $blobCache = array();
 
 	/** @var int */
-	protected $mOldId;
+	public $mOldId;
 
 	/** @var string */
-	protected $mHash;
+	public $mHash;
 
 	/** @var  */
-	protected $mRef;
+	public $mRef;
 
 	/**
 	 * @param string $hash The content hash of the text
@@ -313,7 +313,7 @@ class HistoryBlobStub {
  */
 class HistoryBlobCurStub {
 	/** @var int */
-	private $mCurId;
+	public $mCurId;
 
 	/**
 	 * @param int $curid The cur_id pointed to
