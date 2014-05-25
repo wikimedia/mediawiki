@@ -26,8 +26,6 @@ require_once __DIR__ . '/Maintenance.php';
 /**
  * Maintenance script to convert user options to the new `user_properties` table.
  *
- * Do each user sequentially, since accounts can't be deleted
- *
  * @ingroup Maintenance
  */
 class ConvertUserOptions extends Maintenance {
@@ -37,6 +35,7 @@ class ConvertUserOptions extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Convert user options from old to new system";
+		$this->setBatchSize( 50 );
 	}
 
 	public function execute() {
@@ -50,14 +49,19 @@ class ConvertUserOptions extends Maintenance {
 			return;
 		}
 		while ( $id !== null ) {
-			$idCond = 'user_id > ' . $dbw->addQuotes( $id );
-			$optCond = "user_options != " . $dbw->addQuotes( '' ); // For compatibility
-			$res = $dbw->select( 'user', '*',
-				array( $optCond, $idCond ), __METHOD__,
-				array( 'LIMIT' => 50, 'FOR UPDATE' )
+			$res = $dbw->select( 'user',
+				array( 'user_id', 'user_options' ),
+				array(
+					'user_id > ' . $dbw->addQuotes( $id ),
+					"user_options != " . $dbw->addQuotes( '' ),
+				),
+				__METHOD__,
+				array(
+					'ORDER BY' => 'user_id',
+					'LIMIT' => $this->mBatchSize,
+				)
 			);
 			$id = $this->convertOptionBatch( $res, $dbw );
-			$dbw->commit( __METHOD__ );
 
 			wfWaitForSlaves();
 
@@ -77,12 +81,29 @@ class ConvertUserOptions extends Maintenance {
 		$id = null;
 		foreach ( $res as $row ) {
 			$this->mConversionCount++;
+			$insertRows = array();
+			foreach ( explode( "\n", $row->user_options ) as $s ) {
+				$m = array();
+				if ( !preg_match( "/^(.[^=]*)=(.*)$/", $s, $m ) ) {
+					continue;
+				}
 
-			$u = User::newFromRow( $row );
+				// MW < 1.16 would save even default values. Filter them out
+				// here (as in User) to avoid adding many unnecessary rows.
+				$defaultOption = User::getDefaultOption( $m[1] );
+				if ( is_null( $defaultOption ) || $m[2] != $defaultOption ) {
+					$insertRows[] = array(
+						'up_user' => $row->user_id,
+						'up_property' => $m[1],
+						'up_value' => $m[2],
+					);
+				}
+			}
 
-			$u->saveSettings();
+			if ( count( $insertRows ) ) {
+				$dbw->insert( 'user_properties', $insertRows, __METHOD__, array( 'IGNORE' ) );
+			}
 
-			// Do this here as saveSettings() doesn't set user_options to '' anymore!
 			$dbw->update(
 				'user',
 				array( 'user_options' => '' ),
