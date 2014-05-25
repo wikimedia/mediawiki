@@ -3672,5 +3672,15 @@
 	"expand_templates_remove_nowiki": "Option on [[Special:Expandtemplates]]\n\nHere's what the tick box does:\n\nFor:\n<pre>\n&lt;nowiki>test&lt;/nowiki>\n</pre>\n\nNot ticked:\n<pre>\n&lt;nowiki>test&lt;/nowiki>\n</pre>\n\nTicked:\n<pre>\ntest\n</pre>",
 	"expand_templates_generate_xml": "Used as checkbox label.",
 	"expand_templates_generate_rawhtml": "Used as checkbox label.",
-	"expand_templates_preview": "{{Identical|Preview}}"
+	"expand_templates_preview": "{{Identical|Preview}}",
+	"pagelanguage": "Title for page Special:PageLanguage",
+	"pagelang-name": "Input label for page name on Special:PageLanguage",
+	"pagelang-language": "Language selector label for Special:PageLanguage",
+	"pagelang-use-default": "Radio label for selector on Special:PageLanguage for default language",
+	"pagelang-select-lang": "Radio label for selector on Special:PageLanguage for language selection",
+	"right-pagelang": "{{Doc-right|pagelang}}\nRight to change page language on Special:PageLanguage",
+	"action-pagelang": "{{Doc-action|pagelang}}",
+	"log-name-pagelang": "Display entry for log name for changes in page language in Special:Log.",
+	"log-description-pagelang": "Display description for log name for changes in page language in Special:Log.",
+	"logentry-pagelang-pagelang": "Log entry for page language changes in Special:Log."
 }
