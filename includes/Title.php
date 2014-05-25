@@ -147,8 +147,8 @@ class Title {
 	/** @var bool Whether a page has any subpages */
 	private $mHasSubpages;
 
-	/** @var bool The (string) language code of the page's language and content code. */
-	private $mPageLanguage = false;
+	/** @var string The (string) language code of the page's language and content code. */
+	private $mPageLanguage = null;
 
 	/** @var TitleValue A corresponding TitleValue object */
 	private $mTitleValue = null;
@@ -421,6 +421,7 @@ class Title {
 	 * @param stdClass|bool $row Database row
 	 */
 	public function loadFromRow( $row ) {
+		global $wgLanguageCode;
 		if ( $row ) { // page found
 			if ( isset( $row->page_id ) ) {
 				$this->mArticleID = (int)$row->page_id;
@@ -438,6 +439,9 @@ class Title {
 				$this->mContentModel = strval( $row->page_content_model );
 			} else {
 				$this->mContentModel = false; # initialized lazily in getContentModel()
+			}
+			if ( isset( $row->page_lang ) ) {
+				$this->mPageLanguage = (string)$row->page_lang;
 			}
 		} else { // page not found
 			$this->mArticleID = 0;
@@ -3316,7 +3320,7 @@ class Title {
 		$this->mLatestID = false;
 		$this->mContentModel = false;
 		$this->mEstimateRevisions = null;
-		$this->mPageLanguage = false;
+		$this->mPageLanguage = null;
 	}
 
 	/**
@@ -4967,28 +4971,53 @@ class Title {
 	 */
 	public function getPageLanguage() {
 		global $wgLang, $wgLanguageCode;
+
+		// Defaults to Wiki language
+		$lang = $wgLanguageCode;
+
 		wfProfileIn( __METHOD__ );
 		if ( $this->isSpecialPage() ) {
 			// special pages are in the user language
 			wfProfileOut( __METHOD__ );
 			return $wgLang;
+		} else if ( $this->getNamespace() == NS_MEDIAWIKI ) {
+			// Parse mediawiki messages with correct target language
+			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $this->getText() );
+		} else if ( $this->mPageLanguage ) {
+			// Page language from the DB if set
+			$lang = $this->mPageLanguage;
 		}
 
-		if ( !$this->mPageLanguage || $this->mPageLanguage[1] !== $wgLanguageCode ) {
-			// Note that this may depend on user settings, so the cache should
-			// be only per-request.
-			// NOTE: ContentHandler::getPageLanguage() may need to load the
-			// content to determine the page language!
-			// Checking $wgLanguageCode hasn't changed for the benefit of unit
-			// tests.
-			$contentHandler = ContentHandler::getForTitle( $this );
-			$langObj = wfGetLangObj( $contentHandler->getPageLanguage( $this ) );
-			$this->mPageLanguage = array( $langObj->getCode(), $wgLanguageCode );
-		} else {
-			$langObj = wfGetLangObj( $this->mPageLanguage[0] );
-		}
+		$pageLang = wfGetLangObj( $lang );
+		wfRunHooks( 'PageContentLanguage', array( $this, &$pageLang, $wgLang ) );
+
 		wfProfileOut( __METHOD__ );
-		return $langObj;
+		return $pageLang;
+	}
+
+	/**
+	 * Set the language in which the content of this page is written in
+	 * Parameter $lang(string) is the language code to set the language in
+	 *
+	 * @since 1.24
+	 */
+	public function setPageLanguage( $lang ) {
+		$db = wfGetDB( DB_MASTER );
+
+		// Separate the title text and the namespace
+		$title = $this->getDBkey();
+		$ns = $this->getNamespace();
+
+		$db->update( 'page',
+			array(
+				'page_lang' => $lang
+			),
+			array(
+				'page_title' => $title,
+				'page_namespace' => $ns,
+			),
+			__METHOD__
+		);
 	}
 
 	/**
