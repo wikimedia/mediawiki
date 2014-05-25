@@ -6306,6 +6306,7 @@ $wgLogTypes = array(
 	'patrol',
 	'merge',
 	'suppress',
+	'pagelang'
 );
 
 /**
@@ -6366,6 +6367,7 @@ $wgLogNames = array(
 	'patrol' => 'patrol-log-page',
 	'merge' => 'mergelog',
 	'suppress' => 'suppressionlog',
+	'pagelang' => 'pagelang-log'
 );
 
 /**
@@ -6389,6 +6391,7 @@ $wgLogHeaders = array(
 	'patrol' => 'patrol-log-header',
 	'merge' => 'mergelogpagetext',
 	'suppress' => 'suppressionlogtext',
+	'pagelang' => 'pagelang-logtext'
 );
 
 /**
@@ -6434,6 +6437,7 @@ $wgLogActionsHandlers = array(
 	'patrol/patrol' => 'PatrolLogFormatter',
 	'rights/rights' => 'RightsLogFormatter',
 	'rights/autopromote' => 'RightsLogFormatter',
+	'pagelang/pagelang' => 'PageLangLogFormatter'
 );
 
 /**
