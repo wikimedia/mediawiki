@@ -255,6 +255,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'page_props', 'pp_sortkey', 'patch-pp_sortkey.sql' ),
 			array( 'dropField', 'recentchanges', 'rc_cur_time', 'patch-drop-rc_cur_time.sql' ),
 			array( 'addIndex', 'watchlist', 'wl_user_notificationtimestamp', 'patch-watchlist-user-notificationtimestamp-index.sql' ),
+			array( 'addField', 'page', 'page_lang', 'patch-page_lang.sql' ),
 		);
 	}
 

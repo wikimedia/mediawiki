@@ -119,7 +119,8 @@ CREATE TABLE /*_*/page (
    page_links_updated varchar(14) DEFAULT NULL,
    page_latest INT, -- FK inserted later
    page_len INT NOT NULL,
-   page_content_model nvarchar(32) default null
+   page_content_model nvarchar(32) default null,
+   page_lang VARBINARY(35) DEFAULT NULL
 );
 CREATE UNIQUE INDEX /*i*/name_title ON /*_*/page (page_namespace,page_title);
 CREATE INDEX /*i*/page_random ON /*_*/page (page_random);

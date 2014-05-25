@@ -75,6 +75,8 @@ production.
   Special:Log, but more are to come.
 * Special:MostLinkedTemplates is no longer limited to transclusions from the
   Template namespace.
+* (bug 35489) Added ability to change the page language for MediaWiki pages. Using
+  Special:PageLanguage. All pages are set to wiki language by default.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language

@@ -6315,6 +6315,7 @@ $wgLogTypes = array(
 	'patrol',
 	'merge',
 	'suppress',
+	'pagelang'
 );
 
 /**
@@ -6443,6 +6444,7 @@ $wgLogActionsHandlers = array(
 	'patrol/patrol' => 'PatrolLogFormatter',
 	'rights/rights' => 'RightsLogFormatter',
 	'rights/autopromote' => 'RightsLogFormatter',
+	'pagelang/pagelang' => 'PageLangLogFormatter'
 );
 
 /**
