@@ -392,7 +392,9 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/config
 	'Config' => 'includes/config/Config.php',
-	'GlobalConfig' => 'includes/config/GlobalConfig.php',
+	'ConfigException' => 'includes/config/ConfigException.php',
+	'ConfigFactory' => 'includes/config/ConfigFactory.php',
+	'GlobalVarConfig' => 'includes/config/GlobalVarConfig.php',
 
 	# includes/content
 	'AbstractContent' => 'includes/content/AbstractContent.php',
@@ -1177,11 +1179,7 @@ $wgAutoloadLocalClasses = array(
 	'MyLocalSettingsGenerator' => 'mw-config/overrides.php',
 
 	# skins
-	'CologneBlueTemplate' => 'skins/CologneBlue.php',
-	'ModernTemplate' => 'skins/Modern.php',
 	'MonoBookTemplate' => 'skins/MonoBook.php',
-	'SkinCologneBlue' => 'skins/CologneBlue.php',
-	'SkinModern' => 'skins/Modern.php',
 	'SkinMonoBook' => 'skins/MonoBook.php',
 	'SkinVector' => 'skins/Vector.php',
 	'VectorTemplate' => 'skins/Vector.php',
