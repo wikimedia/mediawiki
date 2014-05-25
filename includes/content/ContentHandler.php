@@ -651,7 +651,8 @@ abstract class ContentHandler {
 	 * @return Language The page's language
 	 */
 	public function getPageLanguage( Title $title, Content $content = null ) {
-		global $wgContLang, $wgLang;
+		global $wgLang,$wgContLang;
+		// Use the Title::getPageLanguage() method
 		$pageLang = $wgContLang;
 
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
@@ -677,7 +678,7 @@ abstract class ContentHandler {
 	 *
 	 * Also note that the page language may or may not depend on the actual content of the page,
 	 * that is, this method may load the content in order to determine the language.
-	 *
+ *`~
 	 * @since 1.21
 	 *
 	 * @param Title $title The page to determine the language for.
