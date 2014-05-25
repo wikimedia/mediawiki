@@ -1242,6 +1242,9 @@ return array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.movePage.js',
 		'dependencies' => 'jquery.byteLimit',
 	),
+	'mediawiki.special.pageLanguage' => array(
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.pageLanguage.js',
+	),
 	'mediawiki.special.pagesWithProp' => array(
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.pagesWithProp.css',
 	),

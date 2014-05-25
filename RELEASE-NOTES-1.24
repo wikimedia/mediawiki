@@ -94,6 +94,10 @@ production.
 * Upgrade jStorage to v0.4.10.
 * {{!}} is now a magic word that produces the | character. This removes the need
   for Template:! for purposes such as passing pipes inside of parameters.
+* (bug 35489) Added ability to change the page language for MediaWiki pages. Using
+  Special:PageLanguage. All pages are set to wiki language by default.
+  Need to enable feature using $wgPageLanguageUseDB=true
+  Permission needs to be set for 'pagelang'
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
