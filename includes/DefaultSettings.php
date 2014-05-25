@@ -4341,6 +4341,7 @@ $wgGroupPermissions['sysop']['noratelimit'] = true;
 $wgGroupPermissions['sysop']['movefile'] = true;
 $wgGroupPermissions['sysop']['unblockself'] = true;
 $wgGroupPermissions['sysop']['suppressredirect'] = true;
+$wgGroupPermissions['sysop']['pagelang'] = true;
 #$wgGroupPermissions['sysop']['upload_by_url'] = true;
 #$wgGroupPermissions['sysop']['mergehistory'] = true;
 
@@ -6306,6 +6307,7 @@ $wgLogTypes = array(
 	'patrol',
 	'merge',
 	'suppress',
+	'pagelang'
 );
 
 /**
@@ -6366,6 +6368,7 @@ $wgLogNames = array(
 	'patrol' => 'patrol-log-page',
 	'merge' => 'mergelog',
 	'suppress' => 'suppressionlog',
+	'pagelang' => 'pagelang-log'
 );
 
 /**
@@ -6389,6 +6392,7 @@ $wgLogHeaders = array(
 	'patrol' => 'patrol-log-header',
 	'merge' => 'mergelogpagetext',
 	'suppress' => 'suppressionlogtext',
+	'pagelang' => 'pagelang-logtext'
 );
 
 /**
@@ -6412,7 +6416,7 @@ $wgLogActions = array(
 	'import/interwiki' => 'import-logentry-interwiki',
 	'merge/merge' => 'pagemerge-logentry',
 	'suppress/block' => 'blocklogentry',
-	'suppress/reblock' => 'reblock-logentry',
+	'suppress/reblock' => 'reblock-logentry'
 );
 
 /**
@@ -6434,6 +6438,7 @@ $wgLogActionsHandlers = array(
 	'patrol/patrol' => 'PatrolLogFormatter',
 	'rights/rights' => 'RightsLogFormatter',
 	'rights/autopromote' => 'RightsLogFormatter',
+	'pagelang/pagelang' => 'PageLangLogFormatter'
 );
 
 /**
