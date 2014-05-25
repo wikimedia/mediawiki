@@ -40,7 +40,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $params, $titles, $missing, $everything, $pageCounter;
 
 	private $pageRestrictions, $pageIsRedir, $pageIsNew, $pageTouched,
-		$pageLatest, $pageLength;
+		$pageLatest, $pageLength, $pageLanguage;
 
 	private $protections, $watched, $watchers, $notificationtimestamps,
 		$talkids, $subjectids, $displaytitles;
@@ -71,6 +71,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageSet->requestField( 'page_touched' );
 		$pageSet->requestField( 'page_latest' );
 		$pageSet->requestField( 'page_len' );
+		$pageSet->requestField( 'page_lang' );
 		if ( $wgContentHandlerUseDB ) {
 			$pageSet->requestField( 'page_content_model' );
 		}
@@ -303,6 +304,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->pageTouched = $pageSet->getCustomField( 'page_touched' );
 		$this->pageLatest = $pageSet->getCustomField( 'page_latest' );
 		$this->pageLength = $pageSet->getCustomField( 'page_len' );
+		$this->pageLanguage = $pageSet->getCustomField( 'page_lang' );
 
 		// Get protection info if requested
 		if ( $this->fld_protection ) {
@@ -836,6 +838,7 @@ class ApiQueryInfo extends ApiQueryBase {
 					ApiBase::PROP_NULLABLE => true
 				),
 				'contentmodel' => 'string',
+				'pagelanguage' => 'string',
 			),
 			'watched' => array(
 				'watched' => 'boolean'
@@ -876,7 +879,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			),
 			'displaytitle' => array(
 				'displaytitle' => 'string'
-			)
+			),
 		);
 
 		self::addTokenProperties( $props, $this->getTokenFunctions() );
