@@ -292,6 +292,7 @@ class WikiPage implements Page, IDBAccessObject {
 			'page_links_updated',
 			'page_latest',
 			'page_len',
+			'page_lang',
 		);
 
 		if ( $wgContentHandlerUseDB ) {
