@@ -4352,6 +4352,7 @@ $wgGroupPermissions['sysop']['noratelimit'] = true;
 $wgGroupPermissions['sysop']['movefile'] = true;
 $wgGroupPermissions['sysop']['unblockself'] = true;
 $wgGroupPermissions['sysop']['suppressredirect'] = true;
+$wgGroupPermissions['sysop']['pagelang'] = true;
 #$wgGroupPermissions['sysop']['upload_by_url'] = true;
 #$wgGroupPermissions['sysop']['mergehistory'] = true;
 
@@ -7097,6 +7098,14 @@ $wgHttpsPort = 443;
  */
 $wgHKDFSecret = false;
 $wgHKDFAlgorithm = 'sha256';
+
+/**
+ * Enable page language feature
+ * Allows setting page language in database
+ * @var bool
+ * @since 1.24
+ */
+$wgPageLanguageUseDB = false;
 
 /**
  * For really cool vim folding this needs to be at the end:
