@@ -149,6 +149,7 @@ class User implements IDBAccessObject {
 		'nominornewtalk',
 		'noratelimit',
 		'override-export-depth',
+		'page_lang',
 		'passwordreset',
 		'patrol',
 		'patrolmarks',

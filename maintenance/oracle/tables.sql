@@ -77,7 +77,8 @@ CREATE TABLE &mw_prefix.page (
   page_links_updated TIMESTAMP(6) WITH TIME ZONE,
   page_latest        NUMBER        DEFAULT 0 NOT NULL, -- FK?
   page_len           NUMBER        DEFAULT 0 NOT NULL,
-  page_content_model VARCHAR2(32)
+  page_content_model VARCHAR2(32),
+  page_lang VARCHAR2(35) DEFAULT NULL
 );
 ALTER TABLE &mw_prefix.page ADD CONSTRAINT &mw_prefix.page_pk PRIMARY KEY (page_id);
 CREATE UNIQUE INDEX &mw_prefix.page_u01 ON &mw_prefix.page (page_namespace,page_title);
