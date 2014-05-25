@@ -47,26 +47,49 @@ class ApiWatch extends ApiBase {
 		// by default we use pageset to extract the page to work on.
 		// title is still supported for backward compatibility
 		if ( !isset( $params['title'] ) ) {
-			$pageSet->execute();
-			$res = $pageSet->getInvalidTitlesAndRevisions( array(
-				'invalidTitles',
-				'special',
-				'missingIds',
-				'missingRevIds',
-				'interwikiTitles'
-			) );
-
-			foreach ( $pageSet->getMissingTitles() as $title ) {
-				$r = $this->watchTitle( $title, $user, $params );
-				$r['missing'] = 1;
-				$res[] = $r;
+			if ( $params['entirewatchlist'] && $pageSet->getDataSource() !== null ) {
+				$this->dieUsage(
+					"Cannot use 'entirewatchlist' at the same time as '{$pageSet->getDataSource()}'",
+					'multisource'
+				);
 			}
 
-			foreach ( $pageSet->getGoodTitles() as $title ) {
-				$r = $this->watchTitle( $title, $user, $params );
-				$res[] = $r;
+			if ( $params['entirewatchlist'] ) {
+				if ( !$params['unwatch'] ) {
+					$this->dieUsage(
+						"'entirewatchlist' option can only be used with 'unwatch' parameter.",
+						'invalidparammix'
+					);
+				} else {
+					// We're going to do this in the database as a bulk operation
+					// instead of one at a time, so it doesn't time out on largeish lists.
+					$dbw = wfGetDB( DB_MASTER );
+					$dbw->delete( 'watchlist', array( 'wl_user' => $user->getId() ), __METHOD__ );
+					$user->invalidateCache();
+					$res = array();
+				}
+			} else {
+				$pageSet->execute();
+				$res = $pageSet->getInvalidTitlesAndRevisions( array(
+					'invalidTitles',
+					'special',
+					'missingIds',
+					'missingRevIds',
+					'interwikiTitles'
+				) );
+
+				foreach ( $pageSet->getMissingTitles() as $title ) {
+					$r = $this->watchTitle( $title, $user, $params );
+					$r['missing'] = 1;
+					$res[] = $r;
+				}
+
+				foreach ( $pageSet->getGoodTitles() as $title ) {
+					$r = $this->watchTitle( $title, $user, $params );
+					$res[] = $r;
+				}
+				$this->getResult()->setIndexedTagName( $res, 'w' );
 			}
-			$this->getResult()->setIndexedTagName( $res, 'w' );
 		} else {
 			// dont allow use of old title parameter with new pageset parameters.
 			$extraParams = array_keys( array_filter( $pageSet->extractRequestParams(), function ( $x ) {
@@ -175,6 +198,7 @@ class ApiWatch extends ApiBase {
 				ApiBase::PARAM_DEPRECATED => true
 			),
 			'unwatch' => false,
+			'entirewatchlist' => false,
 			'uselang' => null,
 			'token' => array(
 				ApiBase::PARAM_TYPE => 'string',
@@ -194,6 +218,8 @@ class ApiWatch extends ApiBase {
 		return $psModule->getParamDescription() + array(
 			'title' => 'The page to (un)watch. use titles instead',
 			'unwatch' => 'If set the page will be unwatched rather than watched',
+			'entirewatchlist' => 'Work on all watched pages without returning a list; '
+				. 'can only be used together with \'unwatch\' option.',
 			'uselang' => 'Language to show the message in',
 			'token' => 'A token previously acquired via prop=info',
 		);
