@@ -101,6 +101,7 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
 
 			//1.24
+			array( 'addField', 'page', 'page_lang', 'patch-page_lang.sql' ),
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),

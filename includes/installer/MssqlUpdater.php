@@ -41,6 +41,7 @@ class MssqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'mwuser', 'user_password_expires', 'patch-user_password_expires.sql' ),
 
 			// 1.24
+			array( 'addField', 'page', 'page_lang', 'patch-page_lang.sql' ),
 		);
 	}
 }

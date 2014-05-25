@@ -414,6 +414,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'page_props', 'pp_sortkey', 'float NULL' ),
 			array( 'addPgIndex', 'page_props', 'pp_propname_sortkey_page',
 					'( pp_propname, pp_sortkey, pp_page ) WHERE ( pp_sortkey IS NOT NULL )' ),
+			array( 'addField', 'page', 'page_lang', 'patch-page_lang.sql' ),
 		);
 	}
 
