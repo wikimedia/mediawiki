@@ -86,6 +86,8 @@ production.
   to 'name', to allow for the name to be localizable. 'name' should still be
   specified for backwards-compatibility and to define the path Special:Version
   uses to find extension license information.
+* (bug 35489) Added ability to change the page language for MediaWiki pages. Using
+  Special:PageLanguage. All pages are set to wiki language by default.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
