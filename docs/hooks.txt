@@ -313,11 +313,11 @@ $apiModule: the ApiCreateAccount module calling
 $loginForm: the LoginForm used
 &$result: associative array for API result data
 
-'AfterFinalPageOutput': At the end of OutputPage::output() but before final
-ob_end_flush() which will send the buffered output to the client. This allows
-for last-minute modification of the output within the buffer by using
-ob_get_clean().
-&$output: OutputPage object
+'AfterFinalPageOutput': Nearly at the end of OutputPage::output() but
+before OutputPage::sendCacheControl() and final ob_end_flush() which
+will send the buffered output to the client. This allows for last-minute
+modification of the output within the buffer by using ob_get_clean().
+$output: The OutputPage object where output() was called
 
 'AfterImportPage': When a page import is completed.
 $title: Title under which the revisions were imported
@@ -325,12 +325,6 @@ $origTitle: Title provided by the XML file
 $revCount: Number of revisions in the XML file
 $sRevCount: Number of successfully imported revisions
 $pageInfo: associative array of page information
-
-'AfterFinalPageOutput': Nearly at the end of OutputPage::output() but
-before OutputPage::sendCacheControl() and final ob_end_flush() which
-will send the buffered output to the client. This allows for last-minute
-modification of the output within the buffer by using ob_get_clean().
-$output: The OutputPage object where output() was called
 
 'AjaxAddScript': Called in output page just before the initialisation
 of the javascript ajax engine. The hook is only called when ajax
