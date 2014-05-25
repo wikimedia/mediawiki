@@ -121,6 +121,13 @@ class MssqlUpdater extends DatabaseUpdater {
 			array( 'updateConstraints', 'media_type', 'image', 'img_media_type' ),
 			array( 'updateConstraints', 'media_type', 'uploadstash', 'us_media_type' ),
 			// END: Constraint updates
+			array( 'modifyField', 'image', 'img_major_mime',
+				'patch-img_major_mime-chemical.sql' ),
+			array( 'modifyField', 'oldimage', 'oi_major_mime',
+				'patch-oi_major_mime-chemical.sql' ),
+			array( 'modifyField', 'filearchive', 'fa_major_mime',
+				'patch-fa_major_mime-chemical.sql' ),
+
 		);
 	}
 }

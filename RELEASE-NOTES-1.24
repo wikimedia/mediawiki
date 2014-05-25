@@ -98,6 +98,8 @@ changes to languages because of Bugzilla reports.
   core to their own respective repositories. See also
   https://www.mediawiki.org/wiki/Skin:Modern and
   https://www.mediawiki.org/wiki/Skin:CologneBlue.
+* MYSQL: Enum item added to "major MIME type" columns.
+  Running update.php on MySQL < v5.1 may result in heavy processing.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
