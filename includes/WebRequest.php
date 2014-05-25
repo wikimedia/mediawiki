@@ -489,7 +489,7 @@ class WebRequest {
 	 * @param float $default
 	 * @return float
 	 */
-	public function getFloat( $name, $default = 0 ) {
+	public function getFloat( $name, $default = 0.0 ) {
 		return floatval( $this->getVal( $name, $default ) );
 	}
 
