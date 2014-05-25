@@ -126,4 +126,11 @@ class MssqlUpdater extends DatabaseUpdater {
 
 		return true;
 	}
+			array( 'modifyField', 'image', 'img_major_mime',
+				'patch-img_major_mime-chemical.sql' ),
+			array( 'modifyField', 'oldimage', 'oi_major_mime',
+				'patch-oi_major_mime-chemical.sql' ),
+			array( 'modifyField', 'filearchive', 'fa_major_mime',
+				'patch-fa_major_mime-chemical.sql' ),
+
 }
