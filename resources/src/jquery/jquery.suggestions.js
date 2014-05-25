@@ -269,7 +269,7 @@ $.suggestions = {
 							// Widen results box if needed (new width is only calculated here, applied later).
 							// We need this awful hack to calculate the actual pre-ellipsis width.
 							$spanForWidth = $result.wrapInner( '<span>' ).children();
-							childrenWidth = $spanForWidth.outerWidth();
+							childrenWidth = $spanForWidth.css( 'position', 'absolute' ).outerWidth();
 							$spanForWidth.contents().unwrap();
 							if ( childrenWidth > $result.width() && childrenWidth > expWidth ) {
 								// factor in any padding, margin, or border space on the parent
