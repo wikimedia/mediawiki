@@ -7099,6 +7099,14 @@ $wgHKDFSecret = false;
 $wgHKDFAlgorithm = 'sha256';
 
 /**
+ * Enable page language feature
+ * Allows setting page language in database
+ * @var bool
+ * @since 1.24
+ */
+$wgPageLanguageUseDB = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
