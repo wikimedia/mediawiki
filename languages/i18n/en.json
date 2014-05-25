@@ -3521,5 +3521,13 @@
 	"expand_templates_remove_nowiki": "Suppress <nowiki> tags in result",
 	"expand_templates_generate_xml": "Show XML parse tree",
 	"expand_templates_generate_rawhtml": "Show raw HTML",
-	"expand_templates_preview": "Preview"
+	"expand_templates_preview": "Preview",
+	"pagelanguage": "Page language selector",
+	"pagelanguage-summary": "This page is used to set the content language for mediawiki pages.",
+	"page-name": "Page",
+	"language": "Language",
+	"changelang": "Change language",
+	"changelang-log": "Change language log",
+	"changelang-logtext": "This is a list of changes in Page Languages.",
+	"changelang-logentry": "changed page language for $1 to $2."
 }
