@@ -1014,6 +1014,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialMyuploads' => 'includes/specials/SpecialMyRedirectPages.php',
 	'SpecialNewFiles' => 'includes/specials/SpecialNewimages.php',
 	'SpecialNewpages' => 'includes/specials/SpecialNewpages.php',
+	'SpecialPageLanguage' => 'includes/specials/SpecialPageLanguage.php',
 	'SpecialPasswordReset' => 'includes/specials/SpecialPasswordReset.php',
 	'SpecialPagesWithProp' => 'includes/specials/SpecialPagesWithProp.php',
 	'SpecialPermanentLink' => 'includes/specials/SpecialPermanentLink.php',
