@@ -243,6 +243,8 @@ changes to languages because of Bugzilla reports.
   PHP compiler called hphpc. (deprecated since 1.22)
 * ApiResult::enableSizeCheck() and disableSizeCheck() are now obsolete.
 * Removed ResourceLoaderGetStartupModules hook. (deprecated since 1.23)
+* MYSQL: Enum item added to "major MIME type" columns.
+  Running update.php on MySQL < v5.1 may result in heavy processing.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
