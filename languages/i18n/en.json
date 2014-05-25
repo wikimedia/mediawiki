@@ -500,7 +500,7 @@
 	"pt-login-button": "Log in",
 	"pt-createaccount": "Create account",
 	"pt-userlogout": "Log out",
-	"pear-mail-error": "$1",
+	"swift-mail-error": "$1",
 	"php-mail-error": "$1",
 	"php-mail-error-unknown": "Unknown error in PHP's mail() function.",
 	"user-mail-no-addy": "Tried to send email without an email address.",
