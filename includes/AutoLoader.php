@@ -1177,14 +1177,14 @@ $wgAutoloadLocalClasses = array(
 	'MyLocalSettingsGenerator' => 'mw-config/overrides.php',
 
 	# skins
-	'CologneBlueTemplate' => 'skins/CologneBlue.php',
-	'ModernTemplate' => 'skins/Modern.php',
-	'MonoBookTemplate' => 'skins/MonoBook.php',
-	'SkinCologneBlue' => 'skins/CologneBlue.php',
-	'SkinModern' => 'skins/Modern.php',
-	'SkinMonoBook' => 'skins/MonoBook.php',
-	'SkinVector' => 'skins/Vector.php',
-	'VectorTemplate' => 'skins/Vector.php',
+	'CologneBlueTemplate' => 'skins/CologneBlue/CologneBlue.php',
+	'ModernTemplate' => 'skins/Modern/Modern.php',
+	'MonoBookTemplate' => 'skins/MonoBook/MonoBook.php',
+	'SkinCologneBlue' => 'skins/CologneBlue/CologneBlue.php',
+	'SkinModern' => 'skins/Modern/Modern.php',
+	'SkinMonoBook' => 'skins/MonoBook/MonoBook.php',
+	'SkinVector' => 'skins/Vector/Vector.php',
+	'VectorTemplate' => 'skins/Vector/Vector.php',
 );
 
 class AutoLoader {
