@@ -1,8 +1,9 @@
 */
-!cologneblue/
-!cologneblue/*
 !common/
 !common/*
+
+!cologneblue/
+!cologneblue/*
 !modern/
 !modern/*
 !monobook/
@@ -11,7 +12,3 @@
 !vector/*
 
 *.php
-!CologneBlue.php
-!Modern.php
-!MonoBook.php
-!Vector.php

@@ -1183,7 +1183,7 @@ return array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.css',
 		'skinStyles' => array(
-			'vector' => 'skins/vector/special.less',
+			'vector' => 'skins/vector/special.less', // FIXME this should use $wgStyleDirectory
 		),
 	),
 	'mediawiki.special.block' => array(
@@ -1232,7 +1232,7 @@ return array(
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.preferences.css',
 		'position' => 'top',
 		'skinStyles' => array(
-			'vector' => 'skins/vector/special.preferences.less',
+			'vector' => 'skins/vector/special.preferences.less', // FIXME this should use $wgStyleDirectory
 		),
 		'messages' => array(
 			'prefs-tabs-navigation-hint',
