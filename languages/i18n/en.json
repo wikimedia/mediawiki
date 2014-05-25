@@ -737,7 +737,7 @@
 	"currentrev": "Latest revision",
 	"currentrev-asof": "Latest revision as of $1",
 	"revisionasof": "Revision as of $1",
-	"revision-info": "Revision as of $1 by $2",
+	"revision-info": "Revision as of $1 by {{GENDER:$6|$2}}$7",
 	"revision-info-current": "-",
 	"revision-nav": "($1) $2{{int:pipe-separator}}$3 ($4){{int:pipe-separator}}$5 ($6)",
 	"previousrevision": "← Older revision",
