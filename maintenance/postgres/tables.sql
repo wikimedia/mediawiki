@@ -89,7 +89,8 @@ CREATE TABLE page (
   page_links_updated TIMESTAMPTZ    NULL,
   page_latest        INTEGER        NOT NULL, -- FK?
   page_len           INTEGER        NOT NULL,
-  page_content_model TEXT
+  page_content_model TEXT,
+  page_lang          TEXT                     DEFAULT NULL
 );
 CREATE UNIQUE INDEX page_unique_name ON page (page_namespace, page_title);
 CREATE INDEX page_main_title         ON page (page_title text_pattern_ops) WHERE page_namespace = 0;
