@@ -17,7 +17,8 @@
 	},
 	"require": {
 		"php": ">=5.3.2",
-		"psr/log": "1.0.0"
+		"psr/log": "1.0.0",
+		"swiftmailer/swiftmailer": "~5.2.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "*"
