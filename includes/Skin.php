@@ -63,6 +63,19 @@ abstract class Skin extends ContextSource {
 
 					if ( preg_match( '/^([^.]*)\.php$/', $file, $matches ) ) {
 						$aSkin = $matches[1];
+
+						// Explicitly disallow loading core skins via the autodiscovery mechanism.
+						//
+						// They should be loaded already (in a non-autodicovery way), but old files might still
+						// exist on the server because our MW version upgrade process is widely documented as
+						// requiring just copying over all files, without removing old ones.
+						//
+						// This is one of the reasons we should have never used autodiscovery in the first
+						// place. This hack can be safely removed when autodiscovery is gone.
+						if ( in_array( $aSkin, array( 'CologneBlue', 'Modern', 'MonoBook', 'Vector' ) ) ) {
+							continue;
+						}
+
 						$wgValidSkinNames[strtolower( $aSkin )] = $aSkin;
 					}
 				}
@@ -184,7 +197,6 @@ abstract class Skin extends ContextSource {
 				# is no longer valid.
 				wfDebug( "Skin class does not exist: $className\n" );
 				$className = 'SkinVector';
-				require_once "{$wgStyleDirectory}/Vector.php";
 			}
 		}
 		$skin = new $className( $key );

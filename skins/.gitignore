@@ -7,5 +7,3 @@
 !vector/*
 
 *.php
-!MonoBook.php
-!Vector.php
