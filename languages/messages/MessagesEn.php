@@ -444,6 +444,7 @@ $specialPageAliases = array(
 	'Myuploads'                 => array( 'MyUploads', 'MyFiles' ),
 	'Newimages'                 => array( 'NewFiles', 'NewImages' ),
 	'Newpages'                  => array( 'NewPages' ),
+	'PageLanguage'              => array( 'PageLanguage' ), 	
 	'PagesWithProp'             => array( 'PagesWithProp', 'Pageswithprop', 'PagesByProp', 'Pagesbyprop' ),
 	'PasswordReset'             => array( 'PasswordReset' ),
 	'PermanentLink'             => array( 'PermanentLink', 'PermaLink' ),

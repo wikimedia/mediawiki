@@ -79,6 +79,7 @@ class SpecialPageFactory {
 		'Categories' => 'SpecialCategories',
 		'Listredirects' => 'ListredirectsPage',
 		'PagesWithProp' => 'SpecialPagesWithProp',
+		'PageLanguage' => 'SpecialPageLanguage',
 		'TrackingCategories' => 'SpecialTrackingCategories',
 
 		// Login/create account
