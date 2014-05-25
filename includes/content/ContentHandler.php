@@ -651,18 +651,8 @@ abstract class ContentHandler {
 	 * @return Language The page's language
 	 */
 	public function getPageLanguage( Title $title, Content $content = null ) {
-		global $wgContLang, $wgLang;
-		$pageLang = $wgContLang;
-
-		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
-			// Parse mediawiki messages with correct target language
-			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $title->getText() );
-			$pageLang = wfGetLangObj( $lang );
-		}
-
-		wfRunHooks( 'PageContentLanguage', array( $title, &$pageLang, $wgLang ) );
-
-		return wfGetLangObj( $pageLang );
+		// Use the Title::getPageLanguage() method
+		return $title->getPageLanguage();
 	}
 
 	/**
@@ -677,7 +667,7 @@ abstract class ContentHandler {
 	 *
 	 * Also note that the page language may or may not depend on the actual content of the page,
 	 * that is, this method may load the content in order to determine the language.
-	 *
+ *`~
 	 * @since 1.21
 	 *
 	 * @param Title $title The page to determine the language for.
