@@ -662,7 +662,7 @@
 	"pt-login-button": "Shown as the caption of the button at [[Special:UserLogin]].\n{{Identical|Log in}}",
 	"pt-createaccount": "Used on the top of the page for logged out users, where it appears next to {{msg-mw|login}}, so consider making them similar.\n{{Identical|Create account}}",
 	"pt-userlogout": "{{Doc-actionlink}}\n{{Identical|Log out}}",
-	"pear-mail-error": "{{notranslate}}\nParameters:\n* $1 - error message which is returned by PEAR mailer.",
+	"swift-mail-error": "{{notranslate}}\nParameters:\n* $1 - error message which is returned by Swift mailer.",
 	"php-mail-error": "{{notranslate}}\nParameters:\n* $1 - error message",
 	"php-mail-error-unknown": "Used as error message when <code>mail()</code> returned empty error message.",
 	"user-mail-no-addy": "This is the error message in case an email could not be sent because there was no email address to send it to.",

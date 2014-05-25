@@ -84,26 +84,48 @@ class UserMailer {
 	private static $mErrorString;
 
 	/**
-	 * Send mail using a PEAR mailer
+	 * Creates a SwiftMailer::Transport Object
 	 *
-	 * @param UserMailer $mailer
-	 * @param string $dest
-	 * @param string $headers
-	 * @param string $body
+	 * @return array
+	 */
+	protected static function getSwiftMailer() {
+		global $wgSMTP;
+		try {
+			if ( is_array( $wgSMTP ) ) {
+				// Create the Transport with Swift_Message::newInstance() method
+				$transport = Swift_SmtpTransport::newInstance( $wgSMTP['host'], $wgSMTP['port'] )
+						->setUsername( $wgSMTP['username'] )
+						->setPassword( $wgSMTP['password'] );
+			} else {
+				$transport = Swift_MailTransport::newInstance();
+			}
+		} catch ( Swift_TransportException $e ) {
+			wfDebug( "SWIFT::Mail SMTP configuration failed \n" );
+			return Status::newFatal( 'swift-mail-error', $e );
+		}
+
+		return $transport;
+	}
+
+	/**
+	 * Send mail using a SWIFT mailer
+	 *
+	 * @param SwiftMailer $mailer
+	 * @param $message
 	 *
 	 * @return Status
 	 */
-	protected static function sendWithPear( $mailer, $dest, $headers, $body ) {
-		$mailResult = $mailer->send( $dest, $headers, $body );
-
-		# Based on the result return an error string,
-		if ( PEAR::isError( $mailResult ) ) {
-			wfDebug( "PEAR::Mail failed: " . $mailResult->getMessage() . "\n" );
-			return Status::newFatal( 'pear-mail-error', $mailResult->getMessage() );
-		} else {
-			return Status::newGood();
+	protected static function sendWithSwift( $mailer, $message ) {
+		//Create the SwiftMailer message object
+		try {
+			$mailResult = $mailer->send( $message );
+		} catch ( Swit_SwiftException $e ) {
+			wfDebug( "Swift Mailer failed: ". $e. "\n" );
+			return Status::newFatal( 'swift-mail-error', $e );
 		}
+		return Status::newGood();
 	}
+
 
 	/**
 	 * Creates a single string from an associative array
@@ -128,43 +150,24 @@ class UserMailer {
 	}
 
 	/**
-	 * Create a value suitable for the MessageId Header
-	 *
-	 * @return string
-	 */
-	static function makeMsgId() {
-		global $wgSMTP, $wgServer;
-
-		$msgid = uniqid( wfWikiID() . ".", true ); /* true required for cygwin */
-		if ( is_array( $wgSMTP ) && isset( $wgSMTP['IDHost'] ) && $wgSMTP['IDHost'] ) {
-			$domain = $wgSMTP['IDHost'];
-		} else {
-			$url = wfParseUrl( $wgServer );
-			$domain = $url['host'];
-		}
-		return "<$msgid@$domain>";
-	}
-
-	/**
 	 * This function will perform a direct (authenticated) login to
 	 * a SMTP Server to use for mail relaying if 'wgSMTP' specifies an
-	 * array of parameters. It requires PEAR:Mail to do that.
-	 * Otherwise it just uses the standard PHP 'mail' function.
+	 * array of parameters using SwiftMailer. Otherwise it just uses SwiftMailer's 
+	 * standard PHP 'mail' transport.
 	 *
 	 * @param MailAddress $to Recipient's email (or an array of them)
 	 * @param MailAddress $from Sender's email
 	 * @param string $subject Email's subject.
 	 * @param string $body Email's text or Array of two strings to be the text and html bodies
 	 * @param MailAddress $replyto Optional reply-to email (default: null).
-	 * @param string $contentType Optional custom Content-Type (default: text/plain; charset=UTF-8)
+	 * @param array $contentType Optional custom Content-Type (default: text/plain; charset=utf-8)
 	 * @throws MWException
 	 * @return Status
 	 */
 	public static function send( $to, $from, $subject, $body, $replyto = null,
-		$contentType = 'text/plain; charset=UTF-8'
+		$contentType = array('type' => 'text/plain', 'charset' => 'utf-8')
 	) {
-		global $wgSMTP, $wgEnotifMaxRecips, $wgAdditionalMailParams, $wgAllowHTMLEmail;
-		$mime = null;
+		global $wgSMTP, $wgAllowHTMLEmail;
 		if ( !is_array( $to ) ) {
 			$to = array( $to );
 		}
@@ -210,86 +213,29 @@ class UserMailer {
 		if ( !$has_address ) {
 			return Status::newFatal( 'user-mail-no-addy' );
 		}
+		//Create the message via Swift_Mailer::newInstance()
+		$message = Swift_Message::newInstance()
+				->setSubject( $subject )
+				->setFrom( array( $from->address => $from->name ) );
 
-		# Forge email headers
-		# -------------------
-		#
-		# WARNING
-		#
-		# DO NOT add To: or Subject: headers at this step. They need to be
-		# handled differently depending upon the mailer we are going to use.
-		#
-		# To:
-		#  PHP mail() first argument is the mail receiver. The argument is
-		#  used as a recipient destination and as a To header.
-		#
-		#  PEAR mailer has a recipient argument which is only used to
-		#  send the mail. If no To header is given, PEAR will set it to
-		#  to 'undisclosed-recipients:'.
-		#
-		#  NOTE: To: is for presentation, the actual recipient is specified
-		#  by the mailer using the Rcpt-To: header.
-		#
-		# Subject:
-		#  PHP mail() second argument to pass the subject, passing a Subject
-		#  as an additional header will result in a duplicate header.
-		#
-		#  PEAR mailer should be passed a Subject header.
-		#
-		# -- hashar 20120218
-
-		$headers['From'] = $from->toString();
-		$headers['Return-Path'] = $from->address;
+		$message->setReturnPath( $from->address );
 
 		if ( $replyto ) {
-			$headers['Reply-To'] = $replyto->toString();
+			$message->setReplyTo( $replyto->toString() );
 		}
 
-		$headers['Date'] = MWTimestamp::getLocalInstance()->format( 'r' );
-		$headers['Message-ID'] = self::makeMsgId();
-		$headers['X-Mailer'] = 'MediaWiki mailer';
-
-		# Line endings need to be different on Unix and Windows due to
-		# the bug described at http://trac.wordpress.org/ticket/2603
-		if ( wfIsWindows() ) {
-			$endl = "\r\n";
-		} else {
-			$endl = "\n";
-		}
-
+		//If $body contains both plaintext and HTML version
 		if ( is_array( $body ) ) {
-			// we are sending a multipart message
-			wfDebug( "Assembling multipart mime email\n" );
-			if ( !stream_resolve_include_path( 'Mail/mime.php' ) ) {
-				wfDebug( "PEAR Mail_Mime package is not installed. Falling back to text email.\n" );
-				// remove the html body for text email fall back
-				$body = $body['text'];
-			} else {
-				require_once 'Mail/mime.php';
-				if ( wfIsWindows() ) {
-					$body['text'] = str_replace( "\n", "\r\n", $body['text'] );
-					$body['html'] = str_replace( "\n", "\r\n", $body['html'] );
-				}
-				$mime = new Mail_mime( array(
-					'eol' => $endl,
-					'text_charset' => 'UTF-8',
-					'html_charset' => 'UTF-8'
-				) );
-				$mime->setTXTBody( $body['text'] );
-				$mime->setHTMLBody( $body['html'] );
-				$body = $mime->get(); // must call get() before headers()
-				$headers = $mime->headers( $headers );
-			}
+			$message->setBody( $body['html'], 'text/html' );
+			$message->addPart( $body['text'], 'text/plain' );
+		} else {
+			$message->setBody( $body );
 		}
-		if ( $mime === null ) {
-			// sending text only, either deliberately or as a fallback
-			if ( wfIsWindows() ) {
-				$body = str_replace( "\n", "\r\n", $body );
-			}
-			$headers['MIME-Version'] = '1.0';
-			$headers['Content-type'] = ( is_null( $contentType ) ?
-				'text/plain; charset=UTF-8' : $contentType );
-			$headers['Content-transfer-encoding'] = '8bit';
+		//To set the email Content type
+		$contentTypeHeader = $message->getHeaders()->get( 'Content-Type' );
+		if ( is_array( $contentType ) ) {
+			$contentTypeHeader->setValue( $contentType['type'] );
+			$contentTypeHeader->setParameter( 'charset', $contentType['charset'] );
 		}
 
 		$ret = wfRunHooks( 'AlternateUserMailer', array( $headers, $to, $from, $subject, $body ) );
@@ -301,99 +247,23 @@ class UserMailer {
 			return Status::newFatal( 'php-mail-error', $ret );
 		}
 
-		if ( is_array( $wgSMTP ) ) {
-			#
-			# PEAR MAILER
-			#
+		$transport = self::getSwiftMailer();
 
-			if ( !stream_resolve_include_path( 'Mail.php' ) ) {
-				throw new MWException( 'PEAR mail package is not installed' );
-			}
-			require_once 'Mail.php';
+		// Create the SwiftMailer::Mailer Object using the above Transport
+		$mailer = Swift_Mailer::newInstance( $transport );
 
-			wfSuppressWarnings();
+		wfDebug( "Sending mail via Swift::Mail\n" );
 
-			// Create the mail object using the Mail::factory method
-			$mail_object =& Mail::factory( 'smtp', $wgSMTP );
-			if ( PEAR::isError( $mail_object ) ) {
-				wfDebug( "PEAR::Mail factory failed: " . $mail_object->getMessage() . "\n" );
+		foreach ( $to as $recip ) {
+			$message->setTo( array( $recip->address => $recip->name) );
+			$status = self::sendWithSwift( $mailer, $message );
+			# FIXME : some chunks might be sent while others are not!
+			if ( !$status->isOK() ) {
 				wfRestoreWarnings();
-				return Status::newFatal( 'pear-mail-error', $mail_object->getMessage() );
-			}
-
-			wfDebug( "Sending mail via PEAR::Mail\n" );
-
-			$headers['Subject'] = self::quotedPrintable( $subject );
-
-			# When sending only to one recipient, shows it its email using To:
-			if ( count( $to ) == 1 ) {
-				$headers['To'] = $to[0]->toString();
-			}
-
-			# Split jobs since SMTP servers tends to limit the maximum
-			# number of possible recipients.
-			$chunks = array_chunk( $to, $wgEnotifMaxRecips );
-			foreach ( $chunks as $chunk ) {
-				$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
-				# FIXME : some chunks might be sent while others are not!
-				if ( !$status->isOK() ) {
-					wfRestoreWarnings();
-					return $status;
-				}
-			}
-			wfRestoreWarnings();
-			return Status::newGood();
-		} else {
-			#
-			# PHP mail()
-			#
-			if ( count( $to ) > 1 ) {
-				$headers['To'] = 'undisclosed-recipients:;';
-			}
-			$headers = self::arrayToHeaderString( $headers, $endl );
-
-			wfDebug( "Sending mail via internal mail() function\n" );
-
-			self::$mErrorString = '';
-			$html_errors = ini_get( 'html_errors' );
-			ini_set( 'html_errors', '0' );
-			set_error_handler( 'UserMailer::errorHandler' );
-
-			try {
-				$safeMode = wfIniGetBool( 'safe_mode' );
-
-				foreach ( $to as $recip ) {
-					if ( $safeMode ) {
-						$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
-					} else {
-						$sent = mail(
-							$recip,
-							self::quotedPrintable( $subject ),
-							$body,
-							$headers,
-							$wgAdditionalMailParams
-						);
-					}
-				}
-			} catch ( Exception $e ) {
-				restore_error_handler();
-				throw $e;
-			}
-
-			restore_error_handler();
-			ini_set( 'html_errors', $html_errors );
-
-			if ( self::$mErrorString ) {
-				wfDebug( "Error sending mail: " . self::$mErrorString . "\n" );
-				return Status::newFatal( 'php-mail-error', self::$mErrorString );
-			} elseif ( ! $sent ) {
-				// mail function only tells if there's an error
-				wfDebug( "Unknown error sending mail\n" );
-				return Status::newFatal( 'php-mail-error-unknown' );
-			} else {
-				return Status::newGood();
+				return $status;
 			}
 		}
+		return Status::newGood();
 	}
 
 	/**
