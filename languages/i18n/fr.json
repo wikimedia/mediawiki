@@ -2145,7 +2145,7 @@
 	"movepagetalktext": "La page de discussion associée, si présente, sera automatiquement renommée '''sauf si :'''\n* vous déplacez la page vers un autre espace de noms, ou\n* une page de discussion non vide existe déjà sous le nouveau nom, ou\n* vous décochez la case ci-dessous.\n\nDans ces cas-là, vous devrez renommer ou fusionner cette page de discussion manuellement si vous le désirez.",
 	"movearticle": "Renommer la page :",
 	"moveuserpage-warning": "'''Attention :''' Vous êtes sur le point de renommer une page d’utilisateur. Veuillez noter que seule la page sera renommée et que l’utilisateur '''ne''' sera '''pas''' renommé.",
-	"movecategorypage-warning": "<strong>Avertissement :</strong> Vous êtes sur le point de renommer une page de catégorie. Veuillez noter que seul la page sera renommée et que toutes les pages dans l'ancienne catégorie ne seront <em>pas</em> transférées dans la nouvelle.",
+	"movecategorypage-warning": "<strong>Avertissement :</strong> Vous êtes sur le point de renommer une page de catégorie. Veuillez noter que seule la page sera renommée et que toutes les pages dans l'ancienne catégorie ne seront <em>pas</em> transférées dans la nouvelle.",
 	"movenologintext": "Pour pouvoir renommer une page, vous devez être [[Special:UserLogin|identifié{{GENDER:||e|(e)}}]] avec un compte utilisateur enregistré et d'ancienneté suffisante.",
 	"movenotallowed": "Vous n'avez pas la permission de renommer les pages.",
 	"movenotallowedfile": "Vous n'avez pas la permission de renommer les fichiers.",

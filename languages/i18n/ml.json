@@ -2996,6 +2996,7 @@
 	"htmlform-chosen-placeholder": "ഒരു ഐച്ഛികം തിരഞ്ഞെടുക്കുക",
 	"htmlform-cloner-create": "കൂടുതൽ ചേർക്കുക",
 	"htmlform-cloner-delete": "നീക്കം ചെയ്യുക",
+	"htmlform-cloner-required": "കുറഞ്ഞത് ഒരു വിലയെങ്കിലും നൽകിയിരിക്കണം.",
 	"sqlite-has-fts": "പൂർണ്ണ-എഴുത്ത് തിരച്ചിൽ പിന്തുണയുള്ള $1",
 	"sqlite-no-fts": "പൂർണ്ണ-എഴുത്ത് തിരച്ചിൽ പിന്തുണയില്ലാത്ത $1",
 	"logentry-delete-delete": "$3 എന്ന താൾ $1 {{GENDER:$2|മായ്ച്ചിരിക്കുന്നു}}",

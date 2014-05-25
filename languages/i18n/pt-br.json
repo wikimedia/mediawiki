@@ -2089,7 +2089,7 @@
 	"movepage-moved-noredirect": "A criação de um redirecionamento foi suprimida.",
 	"articleexists": "Uma página com este título já existe, ou o título que escolheu é inválido.\nPor favor, escolha outro nome.",
 	"cantmove-titleprotected": "Você não pode mover uma página para tal denominação uma vez que o novo título se encontra protegido contra criação",
-	"movetalk": "Mover também a página de discussão associada.",
+	"movetalk": "Mover também a página de discussão associada",
 	"move-subpages": "Mover subpáginas (até $1)",
 	"move-talk-subpages": "Mover subpáginas da página de discussão (até $1)",
 	"movepage-page-exists": "A página $1 já existe e não pode ser substituída.",

@@ -459,7 +459,7 @@
 	"userlogout": "Abmelden",
 	"notloggedin": "Nicht angemeldet",
 	"userlogin-noaccount": "Du hast noch kein Benutzerkonto?",
-	"userlogin-joinproject": "{{SITENAME}} beitreten",
+	"userlogin-joinproject": "Bei {{SITENAME}} anmelden",
 	"nologin": "Du hast kein Benutzerkonto? $1.",
 	"nologinlink": "Neues Benutzerkonto anlegen",
 	"createaccount": "Benutzerkonto anlegen",

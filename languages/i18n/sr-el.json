@@ -687,7 +687,7 @@
 	"parser-unstrip-recursion-limit": "Prekoračeno je ograničenje rekurzije ($1)",
 	"converter-manual-rule-error": "Pronađena je greška u pravilu za ručno pretvaranje jezika",
 	"undo-success": "Izmena se može vratiti.\nProverite razlike ispod, pa sačuvajte izmene.",
-	"undo-failure": "Ova izmena se ne može poništiti zbog konflikta izmena.",
+	"undo-failure": "Ova izmena se ne može poništiti zbog sukoba izmena.",
 	"undo-norev": "Ne mogu da vratim izmenu jer ne postoji ili je obrisana.",
 	"undo-nochange": "Izgleda da je izmena već poništena.",
 	"undo-summary": "Poništena izmena $1 {{GENDER:$2|korisnika|korisnice}} [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]])",
