@@ -3521,5 +3521,13 @@
 	"expand_templates_remove_nowiki": "Suppress <nowiki> tags in result",
 	"expand_templates_generate_xml": "Show XML parse tree",
 	"expand_templates_generate_rawhtml": "Show raw HTML",
-	"expand_templates_preview": "Preview"
+	"expand_templates_preview": "Preview",
+	"pagelanguage": "Page language selector",
+	"pagelang-name": "Page",
+	"pagelang-language": "Language",
+	"pagelang-use-default": "Use default language",
+	"pagelang-select-lang": "Select language",
+	"pagelang-log": "Change language log",
+	"pagelang-logtext": "This is a log of changes in page languages.",
+	"logentry-pagelang-pagelang": "$1 {{GENDER:$2|changed}} page language for $3 from $4 to $5."
 }
