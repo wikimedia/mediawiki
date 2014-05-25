@@ -594,7 +594,7 @@ CREATE TABLE /*_*/image (
   -- SHA-1 content hash in base-36
   img_sha1 nvarchar(32) NOT NULL default '',
 
-  CONSTRAINT img_major_mime_ckc check (img_major_mime IN('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart')),
+  CONSTRAINT img_major_mime_ckc check (img_major_mime IN('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart', 'chemical')),
   CONSTRAINT img_media_type_ckc check (img_media_type in('UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO', 'VIDEO', 'MULTIMEDIA', 'OFFICE', 'TEXT', 'EXECUTABLE', 'ARCHIVE'))
 );
 
@@ -639,7 +639,7 @@ CREATE TABLE /*_*/oldimage (
   oi_deleted tinyint NOT NULL default 0,
   oi_sha1 nvarchar(32) NOT NULL default '',
 
-  CONSTRAINT oi_major_mime_ckc check (oi_major_mime IN('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart')),
+  CONSTRAINT oi_major_mime_ckc check (oi_major_mime IN('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart', 'chemical')),
   CONSTRAINT oi_media_type_ckc check (oi_media_type IN('UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO', 'VIDEO', 'MULTIMEDIA', 'OFFICE', 'TEXT', 'EXECUTABLE', 'ARCHIVE'))
 );
 
@@ -700,7 +700,7 @@ CREATE TABLE /*_*/filearchive (
   -- sha1 hash of file content
   fa_sha1 nvarchar(32) NOT NULL default '',
 
-  CONSTRAINT fa_major_mime_ckc check (fa_major_mime in('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart')),
+  CONSTRAINT fa_major_mime_ckc check (fa_major_mime in('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart', 'chemical')),
   CONSTRAINT fa_media_type_ckc check (fa_media_type in('UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO', 'VIDEO', 'MULTIMEDIA', 'OFFICE', 'TEXT', 'EXECUTABLE', 'ARCHIVE'))
 );
 
