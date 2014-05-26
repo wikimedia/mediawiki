@@ -1162,25 +1162,25 @@ class ParserTest {
 		}
 
 		wfMkdirParents( $dir . '/3/3a', null, __METHOD__ );
-		copy( "$IP/skins/monobook/headbg.jpg", "$dir/3/3a/Foobar.jpg" );
+		copy( "$IP/tests/phpunit/data/parser/headbg.jpg", "$dir/3/3a/Foobar.jpg" );
 		wfMkdirParents( $dir . '/e/ea', null, __METHOD__ );
-		copy( "$IP/skins/monobook/wiki.png", "$dir/e/ea/Thumb.png" );
+		copy( "$IP/tests/phpunit/data/parser/wiki.png", "$dir/e/ea/Thumb.png" );
 		wfMkdirParents( $dir . '/0/09', null, __METHOD__ );
-		copy( "$IP/skins/monobook/headbg.jpg", "$dir/0/09/Bad.jpg" );
+		copy( "$IP/tests/phpunit/data/parser/headbg.jpg", "$dir/0/09/Bad.jpg" );
 		wfMkdirParents( $dir . '/f/ff', null, __METHOD__ );
 		file_put_contents( "$dir/f/ff/Foobar.svg",
 			'<?xml version="1.0" encoding="utf-8"?>' .
 			'<svg xmlns="http://www.w3.org/2000/svg"' .
 			' version="1.1" width="240" height="180"/>' );
 		wfMkdirParents( $dir . '/9/93', null, __METHOD__ );
-		copy( "$IP/tests/phpunit/data/media/Portrait.png", "$dir/9/93/Portrait.png" );
+		copy( "$IP/tests/phpunit/data/parser/Portrait.png", "$dir/9/93/Portrait.png" );
 		wfMkdirParents( $dir . '/f/fc', null, __METHOD__ );
 		file_put_contents( "$dir/f/fc/Portrait.svg",
 			'<?xml version="1.0" encoding="utf-8"?>' .
 			'<svg xmlns="http://www.w3.org/2000/svg"' .
 			' version="1.1" width="180" height="240"/>' );
 		wfMkdirParents( $dir . '/5/5f', null, __METHOD__ );
-		copy( "$IP/tests/phpunit/data/media/LoremIpsum.djvu", "$dir/5/5f/LoremIpsum.djvu" );
+		copy( "$IP/tests/phpunit/data/parser/LoremIpsum.djvu", "$dir/5/5f/LoremIpsum.djvu" );
 
 		return $dir;
 	}
