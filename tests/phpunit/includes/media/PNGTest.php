@@ -1,29 +1,11 @@
 <?php
-class PNGHandlerTest extends MediaWikiTestCase {
+class PNGHandlerTest extends MediaWikiMediaTestCase {
 
 	/** @var PNGHandler */
 	protected $handler;
-	/** @var FSRepo */
-	protected $repo;
-	/** @var FSFileBackend */
-	protected $backend;
-	/** @var string */
-	protected $filePath;
 
 	protected function setUp() {
 		parent::setUp();
-
-		$this->filePath = __DIR__ . '/../../data/media';
-		$this->backend = new FSFileBackend( array(
-			'name' => 'localtesting',
-			'wikiId' => wfWikiId(),
-			'containerPaths' => array( 'data' => $this->filePath )
-		) );
-		$this->repo = new FSRepo( array(
-			'name' => 'temp',
-			'url' => 'http://localhost/thumbtest',
-			'backend' => $this->backend
-		) );
 		$this->handler = new PNGHandler();
 	}
 
@@ -141,10 +123,5 @@ class PNGHandlerTest extends MediaWikiTestCase {
 				)
 			),
 		);
-	}
-
-	private function dataFile( $name, $type ) {
-		return new UnregisteredLocalFile( false, $this->repo,
-			"mwstore://localtesting/data/$name", $type );
 	}
 }
