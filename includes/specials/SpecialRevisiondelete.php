@@ -572,12 +572,12 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		// from dropdown
 		$listReason = $this->getRequest()->getText( 'wpRevDeleteReasonList', 'other' );
 		$comment = $listReason;
-		if ( $comment != 'other' && $this->otherReason != '' ) {
+		if ( $comment === 'other' ) {
+			$comment = $this->otherReason;
+		} elseif ( $this->otherReason !== '' ) {
 			// Entry from drop down menu + additional comment
 			$comment .= $this->msg( 'colon-separator' )->inContentLanguage()->text()
 				. $this->otherReason;
-		} elseif ( $comment == 'other' ) {
-			$comment = $this->otherReason;
 		}
 		# Can the user set this field?
 		if ( $bitParams[Revision::DELETED_RESTRICTED] == 1
