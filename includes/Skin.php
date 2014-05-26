@@ -26,14 +26,13 @@
 
 /**
  * The main skin class which provides methods and properties for all other skins.
- * This base class is also the "Standard" skin.
  *
  * See docs/skin.txt for more information.
  *
  * @ingroup Skins
  */
 abstract class Skin extends ContextSource {
-	protected $skinname = 'standard';
+	protected $skinname = null;
 	protected $mRelevantTitle = null;
 	protected $mRelevantUser = null;
 
@@ -132,8 +131,8 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Normalize a skin preference value to a form that can be loaded.
 	 * If a skin can't be found, it will fall back to the configured
-	 * default (or the old 'Classic' skin if that's broken).
-	 * @param string $key 'monobook', 'standard', etc.
+	 * default, or the default default if that's broken.
+	 * @param string $key 'monobook', 'vector', etc.
 	 * @return string
 	 */
 	static function normalizeKey( $key ) {
@@ -173,7 +172,7 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Factory method for loading a skin of a given type
-	 * @param string $key 'monobook', 'standard', etc.
+	 * @param string $key 'monobook', 'vector', etc.
 	 * @return Skin
 	 */
 	static function &newFromKey( $key ) {
