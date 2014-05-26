@@ -608,7 +608,7 @@ $wgDeferredUpdateList = array();
 $wgValidSkinNames['cologneblue'] = 'CologneBlue';
 $wgValidSkinNames['modern'] = 'Modern';
 $wgValidSkinNames['monobook'] = 'MonoBook';
-$wgValidSkinNames['vector'] = 'Vector';
+require "$wgStyleDirectory/Vector/Vector.php";
 
 wfProfileOut( $fname . '-globals' );
 wfProfileIn( $fname . '-extensions' );
