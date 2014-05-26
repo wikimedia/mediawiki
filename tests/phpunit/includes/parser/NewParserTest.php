@@ -517,23 +517,23 @@ class NewParserTest extends MediaWikiTestCase {
 		$backend = RepoGroup::singleton()->getLocalRepo()->getBackend();
 		$backend->prepare( array( 'dir' => "$base/local-public/3/3a" ) );
 		$backend->store( array(
-			'src' => "$IP/skins/monobook/headbg.jpg", 'dst' => "$base/local-public/3/3a/Foobar.jpg"
+			'src' => "$IP/tests/phpunit/data/parser/headbg.jpg", 'dst' => "$base/local-public/3/3a/Foobar.jpg"
 		) );
 		$backend->prepare( array( 'dir' => "$base/local-public/e/ea" ) );
 		$backend->store( array(
-			'src' => "$IP/skins/monobook/wiki.png", 'dst' => "$base/local-public/e/ea/Thumb.png"
+			'src' => "$IP/tests/phpunit/data/parser/wiki.png", 'dst' => "$base/local-public/e/ea/Thumb.png"
 		) );
 		$backend->prepare( array( 'dir' => "$base/local-public/0/09" ) );
 		$backend->store( array(
-			'src' => "$IP/skins/monobook/headbg.jpg", 'dst' => "$base/local-public/0/09/Bad.jpg"
+			'src' => "$IP/tests/phpunit/data/parser/headbg.jpg", 'dst' => "$base/local-public/0/09/Bad.jpg"
 		) );
 		$backend->prepare( array( 'dir' => "$base/local-public/9/93" ) );
 		$backend->store( array(
-			'src' => "$IP/tests/phpunit/data/media/Portrait.png", 'dst' => "$base/local-public/9/93/Portrait.png"
+			'src' => "$IP/tests/phpunit/data/parser/Portrait.png", 'dst' => "$base/local-public/9/93/Portrait.png"
 		) );
 		$backend->prepare( array( 'dir' => "$base/local-public/5/5f" ) );
 		$backend->store( array(
-			'src' => "$IP/tests/phpunit/data/media/LoremIpsum.djvu", 'dst' => "$base/local-public/5/5f/LoremIpsum.djvu"
+			'src' => "$IP/tests/phpunit/data/parser/LoremIpsum.djvu", 'dst' => "$base/local-public/5/5f/LoremIpsum.djvu"
 		) );
 
 		// No helpful SVG file to copy, so make one ourselves
