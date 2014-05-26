@@ -132,14 +132,14 @@ class StoreBatchTest extends MediaWikiTestCase {
 		global $IP;
 		$this->storecohort(
 			"Test1.png",
-			"$IP/skins/monobook/wiki.png",
-			"$IP/skins/monobook/video.png",
+			"$IP/tests/phpunit/data/filerepo/wiki.png",
+			"$IP/tests/phpunit/data/filerepo/video.png",
 			false
 		);
 		$this->storecohort(
 			"Test2.png",
-			"$IP/skins/monobook/wiki.png",
-			"$IP/skins/monobook/video.png",
+			"$IP/tests/phpunit/data/filerepo/wiki.png",
+			"$IP/tests/phpunit/data/filerepo/video.png",
 			true
 		);
 	}
