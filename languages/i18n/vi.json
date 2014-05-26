@@ -1548,7 +1548,7 @@
 	"mostinterwikis": "Trang có nhiều liên kết liên wiki nhất",
 	"mostrevisions": "Trang được sửa đổi nhiều lần nhất",
 	"prefixindex": "Tất cả các trang trùng với tiền tố",
-	"prefixindex-namespace": "Tất cả các trang trùng với tiền tố (không gian $1)",
+	"prefixindex-namespace": "Tất cả các trang trùng với tiền tố (không gian tên $1)",
 	"prefixindex-strip": "Ẩn tiền tố trong danh sách",
 	"shortpages": "Trang ngắn nhất",
 	"longpages": "Trang dài nhất",

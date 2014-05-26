@@ -494,7 +494,7 @@
 	"createaccounterror": "Benutzerkonto konnte nicht erstellt werden: $1",
 	"nocookiesnew": "Der Benutzerzugang wurde erstellt, aber du bist nicht angemeldet. {{SITENAME}} benötigt für diese Funktion Cookies, bitte aktiviere diese und melde dich dann mit deinem neuen Benutzernamen und dem zugehörigen Passwort an.",
 	"nocookieslogin": "{{SITENAME}} benutzt Cookies zur Anmeldung der Benutzer. Du hast Cookies deaktiviert, bitte aktiviere diese und versuche es erneut.",
-	"nocookiesfornew": "Das Benutzerkonto wurde nicht erstellt, da die Datenherkunft nicht ermittelt werden konnte.\nBitte stelle sicher, dass du Cookies aktiviert hast, lade diese Seite erneut und versuche es nochmal.",
+	"nocookiesfornew": "Das Benutzerkonto wurde nicht erstellt, da die Datenherkunft nicht ermittelt werden konnte.\nBitte stelle sicher, dass du Cookies aktiviert hast. Lade diese Seite danach erneut und versuche es noch einmal.",
 	"noname": "Du musst einen gültigen Benutzernamen angeben.",
 	"loginsuccesstitle": "Anmeldung erfolgreich",
 	"loginsuccess": "<strong>Du bist jetzt als „$1“ bei {{SITENAME}} angemeldet.</strong>",

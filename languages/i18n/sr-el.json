@@ -3106,7 +3106,7 @@
 	"logentry-newusers-create2": "$1 je {{GENDER:$2|otvorio|otvorila}} korisnički nalog $3",
 	"logentry-newusers-byemail": "Korisnički nalog $3 je {{GENDER:$2|napravljen}} od strane $1 i lozinka je poslata na e-poštu",
 	"logentry-newusers-autocreate": "Korisnički nalog $1 je automatski {{GENDER:$2|otvoren}}",
-	"logentry-rights-rights": "$1 je {{GENDER:$1|promenio|promenila}} članstvo grupe za $3 iz $4 u $5",
+	"logentry-rights-rights": "$1 je {{GENDER:$2|promenio|promenila}} članstvo grupe za $3 iz $4 u $5",
 	"logentry-rights-rights-legacy": "$1 je {{GENDER:$2|promenio|promenila}} čalnstvo grupe za $3",
 	"logentry-rights-autopromote": "$1 je automatski {{GENDER:$1|unapređen|unapređena}} iz $4 u $5",
 	"rightsnone": "(nema)",

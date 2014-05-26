@@ -3125,7 +3125,7 @@
 	"exif-flash-function-1": "Exif is a format for storing metadata in image files. See this [[w:Exchangeable_image_file_format|Wikipedia article]] and the example at the bottom of [[commons:File:Phalacrocorax-auritus-020.jpg|this page on Commons]]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].\n{{Related|Exif-flash}}",
 	"exif-flash-redeye-1": "{{Related|Exif-flash}}",
 	"exif-focalplaneresolutionunit-2": "See also:\n* {{msg-mw|Exif-focalplaneresolutionunit}}",
-	"exif-sensingmethod-1": "{{Related|Exif-sensingmethod}}",
+	"exif-sensingmethod-1": "{{Related|Exif-sensingmethod}}\n{{Identical|Undefined}}",
 	"exif-sensingmethod-2": "{{Related|Exif-sensingmethod}}",
 	"exif-sensingmethod-3": "{{Related|Exif-sensingmethod}}",
 	"exif-sensingmethod-4": "{{Related|Exif-sensingmethod}}",

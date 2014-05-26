@@ -1958,7 +1958,7 @@
 	"sp-contributions-talk": "discussione",
 	"sp-contributions-userrights": "gestione dei permessi",
 	"sp-contributions-blocked-notice": "Questo utente è attualmente bloccato. L'ultimo elemento del registro dei blocchi è riportato di seguito per informazione:",
-	"sp-contributions-blocked-notice-anon": "Questo indirizzo IP è attualmente bloccato. Di seguito è riportato l'ultimo elemento del registro dei blocchi:",
+	"sp-contributions-blocked-notice-anon": "Questo indirizzo IP è attualmente bloccato.\nL'ultimo elemento del registro dei blocchi è riportato di seguito per informazione:",
 	"sp-contributions-search": "Ricerca contributi",
 	"sp-contributions-username": "Indirizzo IP o nome utente:",
 	"sp-contributions-toponly": "Mostra solo i contributi che sono le ultime revisioni per la pagina",
