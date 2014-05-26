@@ -130,6 +130,9 @@ changes to languages because of Bugzilla reports.
 * (bug 63891) Add 'X-Robots-Tag: noindex' header in action=render pages.
 * SpecialPage no longer supports the syntax for invoking wfSpecial*() functions.
   All special pages should subclass SpecialPage and implement the execute() method.
+* The skin autodiscovery mechanism has been deprecated and will be removed in
+  MediaWiki 1.25. See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery
+  for migration guide for creators and users of custom skins that relied on it.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
