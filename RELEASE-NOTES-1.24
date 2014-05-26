@@ -91,6 +91,9 @@ changes to languages because of Bugzilla reports.
 * Added pp_sortkey column to page_props table, so pages can be efficiently
   queried and sorted by property value (bug 58032).
   See $wgPagePropsHaveSortkey if you want to postpone the schema change.
+* The skin autodiscovery mechanism has been deprecated and will be removed in
+  MediaWiki 1.25. See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery
+  for migration guide for creators and users of custom skins that relied on it.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
