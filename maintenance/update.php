@@ -147,7 +147,7 @@ class UpdateMediaWiki extends Maintenance {
 			wfCountDown( 5 );
 		}
 
-		$time1 = new MWTimestamp();
+		$time1 = time();
 
 		$shared = $this->hasOption( 'doshared' );
 
@@ -181,10 +181,14 @@ class UpdateMediaWiki extends Maintenance {
 		if ( !$this->hasOption( 'nopurge' ) ) {
 			$updater->purgeCache();
 		}
-		$time2 = new MWTimestamp();
+		$time2 = time();
 
-		$timeDiff = $time2->diff( $time1 );
-		$this->output( "\nDone in " . $timeDiff->format( "%i:%S" ) . ".\n" );
+		$timeDiff = $time2 - $time1;
+		$this->output( sprintf(
+			"\nDone in %d:%02d.\n",
+			(int)( $timeDiff / 60 ),
+			$timeDiff % 60
+		) );
 	}
 
 	function afterFinalSetup() {
