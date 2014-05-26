@@ -74,9 +74,19 @@ abstract class Skin extends ContextSource {
 						// This is one of the reasons we should have never used autodiscovery in the first
 						// place. This hack can be safely removed when autodiscovery is gone.
 						if ( in_array( $aSkin, array( 'CologneBlue', 'Modern', 'MonoBook', 'Vector' ) ) ) {
+							wfLogWarning(
+								"An old copy of the $aSkin skin was found in your skins/ directory. " .
+								"You should remove it to avoid problems in the future." .
+								"See https://www.mediawiki.org/wiki/Help:Skin_autodiscovery for details."
+							);
 							continue;
 						}
 
+						wfLogWarning(
+							"A skin using autodiscovery mechanism, $aSkin, was found in your skins/ directory. " .
+							"The mechanism will be removed in MediaWiki 1.25 and the skin will no longer be recognized. " .
+							"See https://www.mediawiki.org/wiki/Help:Skin_autodiscovery for information how to fix this."
+						);
 						$wgValidSkinNames[strtolower( $aSkin )] = $aSkin;
 					}
 				}
