@@ -59,6 +59,7 @@ production.
   than in a dedicated pane in the preferences panel.
 
 === Bug fixes in 1.24 ===
+* (bug 50572) MediaWiki:Blockip should support gender
 * (bug 49116) Footer copyright notice is now always displayed in user language
   rather than content language (same as copyright notice for editing interface).
 * (bug 62258) A bug was fixed in File::getUnscaledThumb when a height
