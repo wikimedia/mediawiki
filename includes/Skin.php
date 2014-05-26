@@ -43,58 +43,6 @@ abstract class Skin extends ContextSource {
 	 */
 	static function getSkinNames() {
 		global $wgValidSkinNames;
-		static $skinsInitialised = false;
-
-		if ( !$skinsInitialised || !count( $wgValidSkinNames ) ) {
-			# Get a list of available skins
-			# Build using the regular expression '^(.*).php$'
-			# Array keys are all lower case, array value keep the case used by filename
-			#
-			wfProfileIn( __METHOD__ . '-init' );
-
-			global $wgStyleDirectory;
-
-			$skinDir = dir( $wgStyleDirectory );
-
-			if ( $skinDir !== false && $skinDir !== null ) {
-				# while code from www.php.net
-				while ( false !== ( $file = $skinDir->read() ) ) {
-					// Skip non-PHP files, hidden files, and '.dep' includes
-					$matches = array();
-
-					if ( preg_match( '/^([^.]*)\.php$/', $file, $matches ) ) {
-						$aSkin = $matches[1];
-
-						// Explicitly disallow loading core skins via the autodiscovery mechanism.
-						//
-						// They should be loaded already (in a non-autodicovery way), but old files might still
-						// exist on the server because our MW version upgrade process is widely documented as
-						// requiring just copying over all files, without removing old ones.
-						//
-						// This is one of the reasons we should have never used autodiscovery in the first
-						// place. This hack can be safely removed when autodiscovery is gone.
-						if ( in_array( $aSkin, array( 'CologneBlue', 'Modern', 'MonoBook', 'Vector' ) ) ) {
-							wfLogWarning(
-								"An old copy of the $aSkin skin was found in your skins/ directory. " .
-								"You should remove it to avoid problems in the future." .
-								"See https://www.mediawiki.org/wiki/Help:Skin_autodiscovery for details."
-							);
-							continue;
-						}
-
-						wfLogWarning(
-							"A skin using autodiscovery mechanism, $aSkin, was found in your skins/ directory. " .
-							"The mechanism will be removed in MediaWiki 1.25 and the skin will no longer be recognized. " .
-							"See https://www.mediawiki.org/wiki/Help:Skin_autodiscovery for information how to fix this."
-						);
-						$wgValidSkinNames[strtolower( $aSkin )] = $aSkin;
-					}
-				}
-				$skinDir->close();
-			}
-			$skinsInitialised = true;
-			wfProfileOut( __METHOD__ . '-init' );
-		}
 		return $wgValidSkinNames;
 	}
 
@@ -195,21 +143,15 @@ abstract class Skin extends ContextSource {
 		$skinName = $skinNames[$key];
 		$className = "Skin{$skinName}";
 
-		# Grab the skin class and initialise it.
 		if ( !class_exists( $className ) ) {
-
-			require_once "{$wgStyleDirectory}/{$skinName}.php";
-
-			# Check if we got if not fallback to default skin
-			if ( !class_exists( $className ) ) {
-				# DO NOT die if the class isn't found. This breaks maintenance
-				# scripts and can cause a user account to be unrecoverable
-				# except by SQL manipulation if a previously valid skin name
-				# is no longer valid.
-				wfDebug( "Skin class does not exist: $className\n" );
-				$className = 'SkinVector';
-			}
+			// DO NOT die if the class isn't found. This breaks maintenance
+			// scripts and can cause a user account to become unrecoverable,
+			// except by SQL manipulation, if a previously valid skin name
+			// is no longer valid.
+			wfDebug( "Skin class does not exist: $className\n" );
+			$className = 'SkinVector';
 		}
+
 		$skin = new $className( $key );
 		return $skin;
 	}

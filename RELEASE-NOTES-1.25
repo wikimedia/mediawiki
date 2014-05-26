@@ -1,0 +1,9 @@
+=== Configuration changes in 1.25 ===
+* $wgSkipSkins is no longer necessary now that skin autodiscovery is gone and
+  has been deprecated. It will be removed together with $wgSkipSkin (already
+  deprecated in 1.23) in the future.
+
+=== Other changes in 1.25 ===
+* The skin autodiscovery mechanism, deprecated in MediaWiki 1.23, has been
+  removed. See https://www.mediawiki.org/wiki/Help:Skin_autodiscovery for
+  migration guide for creators and users of custom skins that relied on it.
