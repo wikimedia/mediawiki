@@ -2,17 +2,7 @@
 /**
  * @covers DjVuHandler
  */
-class DjVuTest extends MediaWikiTestCase {
-
-	/**
-	 * @var string the directory where test files are
-	 */
-	protected $filePath;
-
-	/**
-	 * @var FSRepo the repository to use
-	 */
-	protected $repo;
+class DjVuTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * @var DjVuHandler
@@ -29,30 +19,7 @@ class DjVuTest extends MediaWikiTestCase {
 			$this->markTestSkipped( 'This test needs the installation of the ddjvu, djvutoxml and djvudump tools' );
 		}
 
-		//file repo setup
-		$this->filePath = __DIR__ . '/../../data/media/';
-		$backend = new FSFileBackend( array(
-			'name' => 'localtesting',
-			'wikiId' => wfWikiId(),
-			'lockManager' => new NullLockManager( array() ),
-			'containerPaths' => array( 'data' => $this->filePath )
-		) );
-		$this->repo = new FSRepo( array(
-			'name' => 'temp',
-			'url' => 'http://localhost/thumbtest',
-			'backend' => $backend
-		) );
-
 		$this->handler = new DjVuHandler();
-	}
-
-	protected function dataFile( $name, $type ) {
-		return new UnregisteredLocalFile(
-			false,
-			$this->repo,
-			'mwstore://localtesting/data/' . $name,
-			$type
-		);
 	}
 
 	public function testGetImageSize() {
