@@ -2913,16 +2913,18 @@ $wgValidateAllHtml = false;
 $wgDefaultSkin = 'vector';
 
 /**
- * Specify the name of a skin that should not be presented in the list of
- * available skins.  Use for blacklisting a skin which you do not want to
- * remove from the .../skins/ directory
- *
  * @deprecated since 1.23; use $wgSkipSkins instead
  */
 $wgSkipSkin = '';
 
 /**
- * Array for more like $wgSkipSkin.
+ * Names of skins that should not be presented in the list of available skins.
+ *
+ * This configuration option allowed one to disable skins that used the
+ * autodiscovery mechanism removed in MediaWiki 1.25 and is no longer useful,
+ * but was kept for backwards-compatibility.
+ *
+ * @deprecated since 1.25; just remove the require_once line for given skin instead
  */
 $wgSkipSkins = array();
 
@@ -6038,12 +6040,12 @@ $wgEnableParserLimitReporting = true;
 
 /**
  * List of valid skin names.
+ *
  * The key should be the name in all lower case, the value should be a properly
  * cased name for the skin. This value will be prefixed with "Skin" to create the
- * class name of the skin to load, and if the skin's class cannot be found through
- * the autoloader it will be used to load a .php file by that name in the skins directory.
- * The default skins will be added later, by Skin::getSkinNames(). Use
- * Skin::getSkinNames() as an accessor if you wish to have access to the full list.
+ * class name of the skin to load.
+ *
+ * Use Skin::getSkinNames() instead of accessing the variable directly.
  */
 $wgValidSkinNames = array();
 
