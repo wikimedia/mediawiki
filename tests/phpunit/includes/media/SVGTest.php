@@ -1,6 +1,6 @@
 <?php
 
-class SvgTest extends MediaWikiTestCase {
+class SvgTest extends MediaWikiMediaTestCase {
 
 	protected function setUp() {
 		parent::setUp();
@@ -8,17 +8,6 @@ class SvgTest extends MediaWikiTestCase {
 		$this->filePath = __DIR__ . '/../../data/media/';
 
 		$this->setMwGlobals( 'wgShowEXIF', true );
-
-		$this->backend = new FSFileBackend( array(
-			'name' => 'localtesting',
-			'wikiId' => wfWikiId(),
-			'containerPaths' => array( 'data' => $this->filePath )
-		) );
-		$this->repo = new FSRepo( array(
-			'name' => 'temp',
-			'url' => 'http://localhost/thumbtest',
-			'backend' => $this->backend
-		) );
 
 		$this->handler = new SvgHandler;
 	}
@@ -45,10 +34,5 @@ class SvgTest extends MediaWikiTestCase {
 			) ),
 			array( 'Wikimedia-logo.svg', array() )
 		);
-	}
-
-	private function dataFile( $name, $type ) {
-		return new UnregisteredLocalFile( false, $this->repo,
-			"mwstore://localtesting/data/$name", $type );
 	}
 }

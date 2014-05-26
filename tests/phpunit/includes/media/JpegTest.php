@@ -2,28 +2,13 @@
 /**
  * @covers JpegHandler
  */
-class JpegTest extends MediaWikiTestCase {
-
-	protected $filePath;
+class JpegTest extends MediaWikiMediaTestCase {
 
 	protected function setUp() {
 		parent::setUp();
 		$this->checkPHPExtension( 'exif' );
 
-		$this->filePath = __DIR__ . '/../../data/media/';
-
 		$this->setMwGlobals( 'wgShowEXIF', true );
-
-		$this->backend = new FSFileBackend( array(
-			'name' => 'localtesting',
-			'wikiId' => wfWikiId(),
-			'containerPaths' => array( 'data' => $this->filePath )
-		) );
-		$this->repo = new FSRepo( array(
-			'name' => 'temp',
-			'url' => 'http://localhost/thumbtest',
-			'backend' => $this->backend
-		) );
 
 		$this->handler = new JpegHandler;
 	}
@@ -63,10 +48,5 @@ class JpegTest extends MediaWikiTestCase {
 		);
 
 		$this->assertEquals( $res, $expected );
-	}
-
-	private function dataFile( $name, $type ) {
-		return new UnregisteredLocalFile( false, $this->repo,
-			"mwstore://localtesting/data/$name", $type );
 	}
 }
