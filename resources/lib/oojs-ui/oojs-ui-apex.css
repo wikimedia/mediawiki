@@ -107,6 +107,16 @@
   box-shadow: 0 0 0.66em rgba(0, 0, 0, 0.25);
 }
 
+.oo-ui-dialog-content .oo-ui-window-foot {
+  bottom: 0;
+  height: 4.8em;
+  padding: 1em;
+}
+
+.oo-ui-dialog-content .oo-ui-window-foot .oo-ui-buttonedElement-framed {
+  margin: 0.125em 0.25em;
+}
+
 .oo-ui-dialog-content .oo-ui-window-overlay {
   z-index: 3;
 }
@@ -226,6 +236,8 @@
 }
 
 .oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button {
+  padding: 0.2em 0.8em;
+  margin: 0.1em 0;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
   background: #eeeeee;
   background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
@@ -262,6 +274,16 @@
   border-color: #c9c9c9;
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#dddddd', endColorstr='#ffffff');
   box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.07);
+}
+
+.oo-ui-buttonedElement-framed.oo-ui-iconedElement .oo-ui-buttonedElement-button > .oo-ui-iconedElement-icon {
+  margin-right: -0.5em;
+  margin-left: -0.5em;
+}
+
+.oo-ui-buttonedElement-framed.oo-ui-iconedElement.oo-ui-labeledElement .oo-ui-buttonedElement-button > .oo-ui-iconedElement-icon {
+  margin-right: 0.3em;
+  margin-left: -0.5em;
 }
 
 .oo-ui-buttonedElement-framed.oo-ui-flaggableElement-primary .oo-ui-buttonedElement-button {
@@ -346,6 +368,10 @@
 .oo-ui-buttonedElement-framed.oo-ui-widget-disabled .oo-ui-buttonedElement-button.oo-ui-buttonedElement-pressed:focus {
   border-color: #ccc;
   box-shadow: none;
+}
+
+.oo-ui-bookletLayout-stackLayout .oo-ui-panelLayout {
+  padding: 1.5em;
 }
 
 .oo-ui-bookletLayout-outlinePanel {

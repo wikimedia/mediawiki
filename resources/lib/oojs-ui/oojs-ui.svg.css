@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (0436296667)
+ * OOjs UI v0.1.0-pre (7b283a9dcc)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed May 21 2014 13:17:11 GMT-0700 (PDT)
+ * Date: Tue May 27 2014 15:41:42 GMT-0700 (PDT)
  */
 
 /* Textures */
@@ -67,15 +67,8 @@
   height: 100%;
 }
 
-.oo-ui-dialog-content .oo-ui-window-foot {
-  bottom: 0;
-  height: 4.8em;
-  padding: 1em;
-}
-
 .oo-ui-dialog-content .oo-ui-window-foot .oo-ui-buttonedElement-framed {
   float: left;
-  margin: 0.125em 0.25em;
 }
 
 .oo-ui-dialog-content .oo-ui-window-foot .oo-ui-flaggableElement-primary,
@@ -236,8 +229,6 @@
 
 .oo-ui-buttonedElement-framed .oo-ui-buttonedElement-button {
   display: inline-block;
-  padding: 0.2em 0.8em;
-  margin: 0.1em 0;
   text-align: center;
   vertical-align: top;
 }
@@ -246,16 +237,6 @@
   display: inline-block;
   line-height: 1.9em;
   vertical-align: middle;
-}
-
-.oo-ui-buttonedElement-framed.oo-ui-iconedElement .oo-ui-buttonedElement-button > .oo-ui-iconedElement-icon {
-  margin-right: -0.5em;
-  margin-left: -0.5em;
-}
-
-.oo-ui-buttonedElement-framed.oo-ui-iconedElement.oo-ui-labeledElement .oo-ui-buttonedElement-button > .oo-ui-iconedElement-icon {
-  margin-right: 0.3em;
-  margin-left: -0.5em;
 }
 
 .oo-ui-buttonedElement-framed.oo-ui-widget-disabled .oo-ui-buttonedElement-button,
@@ -276,7 +257,6 @@
 
 .oo-ui-bookletLayout-stackLayout .oo-ui-panelLayout {
   width: 100%;
-  padding: 1.5em;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
@@ -546,6 +526,13 @@
 .oo-ui-popupToolGroup-handle .oo-ui-labeledElement-label {
   margin: 0 1em;
   font-size: 0.8em;
+  line-height: 2.6em;
+}
+
+.oo-ui-popupToolGroup-header {
+  margin: 0 0.6em;
+  font-size: 0.8em;
+  font-weight: bold;
   line-height: 2.6em;
 }
 

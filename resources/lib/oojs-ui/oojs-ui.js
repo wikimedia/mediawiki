@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (0436296667)
+ * OOjs UI v0.1.0-pre (7b283a9dcc)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed May 21 2014 13:17:11 GMT-0700 (PDT)
+ * Date: Tue May 27 2014 15:41:42 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -905,7 +905,7 @@ OO.ui.Frame.prototype.load = function () {
 	this.loading = true;
 
 	// Figure out directionality:
-	this.dir = this.$element.closest( '[dir]' ).prop( 'dir' ) || 'ltr';
+	this.dir = OO.ui.Element.getDir( this.$element ) || 'ltr';
 
 	// Initialize contents
 	doc.open();
@@ -4928,6 +4928,7 @@ OO.ui.BarToolGroup.static.name = 'bar';
  * @constructor
  * @param {OO.ui.Toolbar} toolbar
  * @param {Object} [config] Configuration options
+ * @cfg {string} [header] Text to display at the top of the pop-up
  */
 OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	// Configuration initialization
@@ -4959,6 +4960,16 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	this.$handle
 		.addClass( 'oo-ui-popupToolGroup-handle' )
 		.append( this.$icon, this.$label, this.$indicator );
+	// If the pop-up should have a header, add it to the top of the toolGroup.
+	// Note: If this feature is useful for other widgets, we could abstract it into an
+	// OO.ui.HeaderedElement mixin constructor.
+	if ( config.header !== undefined ) {
+		this.$group
+			.prepend( this.$( '<span>' )
+				.addClass( 'oo-ui-popupToolGroup-header' )
+				.text( config.header )
+			);
+	}
 	this.$element
 		.addClass( 'oo-ui-popupToolGroup' )
 		.prepend( this.$handle );

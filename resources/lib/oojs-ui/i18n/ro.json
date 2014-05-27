@@ -13,8 +13,8 @@
 	"ooui-outline-control-move-up": "Mută elementul mai sus",
 	"ooui-outline-control-remove": "Elimină elementul",
 	"ooui-toolbar-more": "Mai mult",
-	"ooui-dialog-confirm-title": "Confirmă",
-	"ooui-dialog-confirm-default-prompt": "Ești sigur?",
+	"ooui-dialog-confirm-title": "Confirmare",
+	"ooui-dialog-confirm-default-prompt": "Sunteți sigur(ă)?",
 	"ooui-dialog-confirm-default-ok": "OK",
-	"ooui-dialog-confirm-default-cancel": "Renunță"
+	"ooui-dialog-confirm-default-cancel": "Revocare"
 }

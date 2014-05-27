@@ -9,7 +9,29 @@
 }
 
 .oo-ui-dialog-content .oo-ui-window-body {
-  position: relative;
+  position: absolute;
+  top: 3.35em;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+}
+
+.oo-ui-dialog-content .oo-ui-window-foot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 3.35em;
+}
+
+.oo-ui-dialog-content .oo-ui-window-foot .oo-ui-buttonedElement-button {
+  height: 100%;
+}
+
+.oo-ui-dialog-content .oo-ui-window-foot .oo-ui-buttonedElement-button .oo-ui-labeledElement-label {
+  display: inline-block;
+  width: 0;
+  text-indent: -9999px;
 }
 
 .oo-ui-dialog-medium .oo-ui-window-frame {
@@ -21,6 +43,9 @@
 .oo-ui-window-head {
   height: 3.35em;
   border-bottom: 1px solid #dddddd;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .oo-ui-window-body {
@@ -43,6 +68,10 @@
   width: 3.35em;
   height: 3.35em;
   background-size: 2em auto;
+}
+
+.oo-ui-bookletLayout-stackLayout .oo-ui-panelLayout {
+  padding: 0 0 1em;
 }
 
 .oo-ui-optionWidget {
@@ -97,4 +126,11 @@
 .oo-ui-textInputWidget input,
 .oo-ui-textInputWidget textarea {
   padding: .8em 1em;
+}
+
+/* Icons */
+
+.oo-ui-icon-check {
+  background: #347bff;
+  background-image: /* @embed */ url(themes/agora/images/icons/check.svg);
 }

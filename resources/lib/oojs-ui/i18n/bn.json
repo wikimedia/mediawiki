@@ -13,5 +13,8 @@
 	"ooui-outline-control-move-down": "আইটেম নিচে স্থানান্তর",
 	"ooui-outline-control-move-up": "আইটেম উপরে স্থানান্তর",
 	"ooui-outline-control-remove": "আইটেম সরান",
-	"ooui-toolbar-more": "আরও"
+	"ooui-toolbar-more": "আরও",
+	"ooui-dialog-confirm-title": "নিশ্চিত করুন",
+	"ooui-dialog-confirm-default-ok": "ঠিক আছে",
+	"ooui-dialog-confirm-default-cancel": "বাতিল"
 }
