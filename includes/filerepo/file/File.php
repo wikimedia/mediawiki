@@ -72,6 +72,8 @@ abstract class File {
 	// Options for File::thumbName()
 	const THUMB_FULL_NAME = 1;
 
+	const FLAG_EXPENSIVE = 'expensive';
+
 	/**
 	 * Some member variables can be lazy-initialised using __get(). The
 	 * initialisation function for these variables is always a function named
@@ -2017,5 +2019,15 @@ abstract class File {
 		if ( !( $this->title instanceof Title ) ) {
 			throw new MWException( "A Title object is not set for this File.\n" );
 		}
+	}
+
+	/**
+	 * Checks if the file has a certain flag. Flags can be set by the media handlers to signal
+	 * that the file needs some sort of special processing.
+	 * @param string $flag a flag name, should be one of the File::FLAG_* constants
+	 * @return bool
+	 */
+	public function hasFlag( $flag ) {
+		return $this->getHandler()->hasFlag( $flag, $this );
 	}
 }
