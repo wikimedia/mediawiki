@@ -444,6 +444,7 @@ class Revision implements IDBAccessObject {
 			'ar_id',
 			'ar_page_id',
 			'ar_rev_id',
+			'ar_text',
 			'ar_text_id',
 			'ar_timestamp',
 			'ar_comment',
