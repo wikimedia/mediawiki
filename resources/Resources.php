@@ -140,6 +140,7 @@ return array(
 		'skinStyles' => array(
 			'default' => 'resources/src/mediawiki.skinning/content.parsoid.less',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 
 	/**
