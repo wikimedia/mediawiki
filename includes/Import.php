@@ -265,7 +265,7 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function importRevision( $revision ) {
-		if ( !$revision->getContent()->getContentHandler()->canBeUsedOn( $revision->getTitle() ) ) {
+		if ( !$revision->getContentHandler()->canBeUsedOn( $revision->getTitle() ) ) {
 			$this->notice( 'import-error-bad-location',
 				$revision->getTitle()->getPrefixedText(),
 				$revision->getID(),
@@ -696,9 +696,6 @@ class WikiImporter {
 		if ( isset( $revisionInfo['id'] ) ) {
 			$revision->setID( $revisionInfo['id'] );
 		}
-		if ( isset( $revisionInfo['text'] ) ) {
-			$revision->setText( $revisionInfo['text'] );
-		}
 		if ( isset( $revisionInfo['model'] ) ) {
 			$revision->setModel( $revisionInfo['model'] );
 		}
@@ -707,6 +704,14 @@ class WikiImporter {
 		}
 		$revision->setTitle( $pageInfo['_title'] );
 
+		if ( isset( $revisionInfo['text'] ) ) {
+			$handler = $revision->getContentHandler();
+			$text = $handler->importTransform(
+				$revisionInfo['text'],
+				$revision->getFormat() );
+
+			$revision->setText( $text );
+		}
 		if ( isset( $revisionInfo['timestamp'] ) ) {
 			$revision->setTimestamp( $revisionInfo['timestamp'] );
 		} else {
@@ -1089,6 +1094,9 @@ class WikiRevision {
 	/** @var Content */
 	protected $content = null;
 
+	/** @var ContentHandler */
+	protected $contentHandler = null;
+
 	/** @var string */
 	public $comment = "";
 
@@ -1321,17 +1329,23 @@ class WikiRevision {
 	}
 
 	/**
+	 * @return ContentHandler
+	 */
+	function getContentHandler() {
+		if ( is_null( $this->contentHandler ) ) {
+			$this->contentHandler = ContentHandler::getForModelID( $this->getModel() );
+		}
+
+		return $this->contentHandler;
+	}
+
+	/**
 	 * @return Content
 	 */
 	function getContent() {
 		if ( is_null( $this->content ) ) {
-			$this->content =
-				ContentHandler::makeContent(
-					$this->text,
-					$this->getTitle(),
-					$this->getModel(),
-					$this->getFormat()
-				);
+			$handler = $this->getContentHandler();
+			$this->content = $handler->unserializeContent( $this->text, $this->getFormat() );
 		}
 
 		return $this->content;
@@ -1352,8 +1366,8 @@ class WikiRevision {
 	 * @return string
 	 */
 	function getFormat() {
-		if ( is_null( $this->model ) ) {
-			$this->format = ContentHandler::getForTitle( $this->getTitle() )->getDefaultFormat();
+		if ( is_null( $this->format ) ) {
+			$this->format = $this->getContentHandler()->getDefaultFormat();
 		}
 
 		return $this->format;

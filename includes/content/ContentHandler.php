@@ -443,6 +443,21 @@ abstract class ContentHandler {
 	abstract public function unserializeContent( $blob, $format = null );
 
 	/**
+	 * Apply import transformation (per default, returns $blob unchanged).
+	 * This gives subclasses an opportunity to transform data blobs on import.
+	 *
+	 * @singe 1.24
+	 *
+	 * @param string $blob
+	 * @param string|null $format
+	 *
+	 * @return string
+	 */
+	public function importTransform( $blob, $format = null ) {
+		return $blob;
+	}
+
+	/**
 	 * Creates an empty Content object of the type supported by this
 	 * ContentHandler.
 	 *
