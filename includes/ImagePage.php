@@ -1303,7 +1303,7 @@ class ImageHistoryList extends ContextSource {
 		$row .= htmlspecialchars( $file->getDimensionsString() );
 		$row .= $this->msg( 'word-separator' )->plain();
 		$row .= '<span style="white-space: nowrap;">';
-		$row .= $this->msg( 'parentheses' )->rawParams( Linker::formatSize( $file->getSize() ) )->plain();
+		$row .= $this->msg( 'parentheses' )->sizeParams( $file->getSize() )->plain();
 		$row .= '</span>';
 		$row .= '</td>';
 
