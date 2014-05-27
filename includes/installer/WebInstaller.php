@@ -182,10 +182,7 @@ class WebInstaller extends Installer {
 
 		$cssDir = $this->request->getVal( 'css' );
 		if ( $cssDir ) {
-			$cssDir = ( $cssDir == 'rtl' ? 'rtl' : 'ltr' );
-			$this->request->response()->header( 'Content-type: text/css' );
-			echo $this->output->getCSS( $cssDir );
-
+			$this->outputCss( $cssDir );
 			return $this->session;
 		}
 
@@ -354,8 +351,6 @@ class WebInstaller extends Installer {
 		restore_error_handler();
 
 		if ( $this->phpErrors ) {
-			$this->showError( 'config-session-error', $this->phpErrors[0] );
-
 			return false;
 		}
 
@@ -1156,6 +1151,22 @@ class WebInstaller extends Installer {
 	 */
 	protected function envGetDefaultServer() {
 		return WebRequest::detectServer();
+	}
+
+	/**
+	 * @param string $dir CSS direction ( rtl or ltr )
+	 */
+	public function outputCss( $dir ) {
+		$dir = ( $dir == 'rtl' ? 'rtl' : 'ltr' );
+		$this->request->response()->header( 'Content-type: text/css' );
+		echo $this->output->getCSS( $dir );
+	}
+
+	/**
+	 * @return string[]
+	 */
+	public function getPhpErrors() {
+		return $this->phpErrors;
 	}
 
 }

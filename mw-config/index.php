@@ -36,6 +36,16 @@ function wfInstallerMain() {
 	$installer = InstallerOverrides::getWebInstaller( $wgRequest );
 
 	if ( !$installer->startSession() ) {
+
+		if( $installer->request->getVal( "css" ) ) {
+			// Do not display errors on css pages
+			$cssDir = $installer->request->getVal( "css" );
+			$installer->outputCss( $cssDir );
+			exit;
+		}
+
+		$errors = $installer->getPhpErrors();
+		$installer->showError( 'config-session-error', $errors[0] );
 		$installer->finish();
 		exit;
 	}
