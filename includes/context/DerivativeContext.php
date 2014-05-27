@@ -66,7 +66,7 @@ class DerivativeContext extends ContextSource {
 	private $skin;
 
 	/**
-	 * @var SiteConfiguration
+	 * @var Config
 	 */
 	private $config;
 
@@ -81,9 +81,9 @@ class DerivativeContext extends ContextSource {
 	/**
 	 * Set the SiteConfiguration object
 	 *
-	 * @param SiteConfiguration $s
+	 * @param Config $s
 	 */
-	public function setConfig( SiteConfiguration $s ) {
+	public function setConfig( Config $s ) {
 		$this->config = $s;
 	}
 
