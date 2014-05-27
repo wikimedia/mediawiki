@@ -298,8 +298,9 @@ CREATE TABLE /*_*/categorylinks (
   -- paginate the three categories separately.  This never has to be updated
   -- after the page is created, since none of these page types can be moved to
   -- any other.
+  cl_type varchar(10) NOT NULL default 'page',
   -- SQL server doesn't have enums, so we approximate with this
-  cl_type varchar(10) NOT NULL default 'page' CHECK (cl_type IN('page', 'subcat', 'file'))
+  CONSTRAINT CKC__categorylinks_cl_type CHECK (cl_type IN('page', 'subcat', 'file'))
 );
 
 CREATE UNIQUE INDEX /*i*/cl_from ON /*_*/categorylinks (cl_from,cl_to);
@@ -566,11 +567,11 @@ CREATE TABLE /*_*/image (
   img_bits int NOT NULL default 0,
 
   -- Media type as defined by the MEDIATYPE_xxx constants
-  img_media_type varchar(16) default null check (img_media_type in('UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO', 'VIDEO', 'MULTIMEDIA', 'OFFICE', 'TEXT', 'EXECUTABLE', 'ARCHIVE')),
+  img_media_type varchar(16) default null,
 
   -- major part of a MIME media type as defined by IANA
   -- see http://www.iana.org/assignments/media-types/
-  img_major_mime varchar(16) not null default 'unknown' check (img_major_mime IN('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart')),
+  img_major_mime varchar(16) not null default 'unknown',
 
   -- minor part of a MIME media type as defined by IANA
   -- the minor parts are not required to adher to any standard
@@ -590,7 +591,10 @@ CREATE TABLE /*_*/image (
   img_timestamp nvarchar(14) NOT NULL default '',
 
   -- SHA-1 content hash in base-36
-  img_sha1 nvarchar(32) NOT NULL default ''
+  img_sha1 nvarchar(32) NOT NULL default '',
+
+  CONSTRAINT CKC__image_img_major_mime check (img_major_mime IN('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart')),
+  CONSTRAINT CKC__image_img_media_type check (img_media_type in('UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO', 'VIDEO', 'MULTIMEDIA', 'OFFICE', 'TEXT', 'EXECUTABLE', 'ARCHIVE'))
 );
 
 CREATE INDEX /*i*/img_usertext_timestamp ON /*_*/image (img_user_text,img_timestamp);
@@ -628,11 +632,14 @@ CREATE TABLE /*_*/oldimage (
   oi_timestamp varchar(14) NOT NULL default '',
 
   oi_metadata nvarchar(max) NOT NULL,
-  oi_media_type varchar(16) default null check (oi_media_type IN('UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO', 'VIDEO', 'MULTIMEDIA', 'OFFICE', 'TEXT', 'EXECUTABLE', 'ARCHIVE')),
-  oi_major_mime varchar(16) not null default 'unknown' check (oi_major_mime IN('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart')),
+  oi_media_type varchar(16) default null,
+  oi_major_mime varchar(16) not null default 'unknown',
   oi_minor_mime nvarchar(100) NOT NULL default 'unknown',
   oi_deleted tinyint NOT NULL default 0,
-  oi_sha1 nvarchar(32) NOT NULL default ''
+  oi_sha1 nvarchar(32) NOT NULL default '',
+
+  CONSTRAINT CKC__oldimage_oi_major_mime check (oi_major_mime IN('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart')),
+  CONSTRAINT CKC__oldimage_oi_media_type check (oi_media_type IN('UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO', 'VIDEO', 'MULTIMEDIA', 'OFFICE', 'TEXT', 'EXECUTABLE', 'ARCHIVE'))
 );
 
 CREATE INDEX /*i*/oi_usertext_timestamp ON /*_*/oldimage (oi_user_text,oi_timestamp);
@@ -678,8 +685,8 @@ CREATE TABLE /*_*/filearchive (
   fa_height int default 0,
   fa_metadata nvarchar(max),
   fa_bits int default 0,
-  fa_media_type varchar(16) default null check (fa_media_type in('UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO', 'VIDEO', 'MULTIMEDIA', 'OFFICE', 'TEXT', 'EXECUTABLE', 'ARCHIVE')),
-  fa_major_mime varchar(16) not null default 'unknown' check (fa_major_mime in('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart')),
+  fa_media_type varchar(16) default null,
+  fa_major_mime varchar(16) not null default 'unknown',
   fa_minor_mime nvarchar(100) default 'unknown',
   fa_description nvarchar(255),
   fa_user int default 0 REFERENCES /*_*/mwuser(user_id) ON DELETE SET NULL,
@@ -690,7 +697,10 @@ CREATE TABLE /*_*/filearchive (
   fa_deleted tinyint NOT NULL default 0,
 
   -- sha1 hash of file content
-  fa_sha1 nvarchar(32) NOT NULL default ''
+  fa_sha1 nvarchar(32) NOT NULL default '',
+
+  CONSTRAINT CKC__filearchive_fa_major_mime check (fa_major_mime in('unknown', 'application', 'audio', 'image', 'text', 'video', 'message', 'model', 'multipart')),
+  CONSTRAINT CKC__filearchive_fa_media_type check (fa_media_type in('UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO', 'VIDEO', 'MULTIMEDIA', 'OFFICE', 'TEXT', 'EXECUTABLE', 'ARCHIVE'))
 );
 
 -- pick out by image name
@@ -745,12 +755,13 @@ CREATE TABLE /*_*/uploadstash (
   us_sha1 nvarchar(31) NOT NULL,
   us_mime nvarchar(255),
   -- Media type as defined by the MEDIATYPE_xxx constants, should duplicate definition in the image table
-  us_media_type varchar(16) default null check (us_media_type in('UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO', 'VIDEO', 'MULTIMEDIA', 'OFFICE', 'TEXT', 'EXECUTABLE', 'ARCHIVE')),
+  us_media_type varchar(16) default null,
   -- image-specific properties
   us_image_width int,
   us_image_height int,
-  us_image_bits smallint
+  us_image_bits smallint,
 
+  CONSTRAINT CKC__uploadstash_us_media_type check (us_media_type in('UNKNOWN', 'BITMAP', 'DRAWING', 'AUDIO', 'VIDEO', 'MULTIMEDIA', 'OFFICE', 'TEXT', 'EXECUTABLE', 'ARCHIVE'))
 );
 
 -- sometimes there's a delete for all of a user's stuff.

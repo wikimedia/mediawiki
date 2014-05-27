@@ -476,7 +476,7 @@ abstract class DatabaseUpdater {
 	public function updateRowExists( $key ) {
 		$row = $this->db->selectRow(
 			'updatelog',
-			'1',
+			'1 AS X',
 			array( 'ul_key' => $key ),
 			__METHOD__
 		);
