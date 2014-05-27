@@ -53,8 +53,15 @@ abstract class PoolCounter {
 
 	/** @var string All workers with the same key share the lock */
 	protected $key;
-	/** @var int Maximum number of workers doing the task simultaneously */
+	/** @var int Maximum number of workers working on tasks with the same key simultaneously */
 	protected $workers;
+	/**
+	 * Maximum number of workers working on this task type, regardless of key.
+	 * 0 means unlimited. Max allowed value is 65536.
+	 * The way the slot limit is enforced is overzealous - this option should be used with caution.
+	 * @var int
+	 */
+	protected $slots = 0;
 	/** @var int If this number of workers are already working/waiting, fail instead of wait */
 	protected $maxqueue;
 	/** @var float Maximum time in seconds to wait for the lock */
@@ -66,10 +73,17 @@ abstract class PoolCounter {
 	 * @param string $key
 	 */
 	protected function __construct( $conf, $type, $key ) {
-		$this->key = $key;
 		$this->workers = $conf['workers'];
 		$this->maxqueue = $conf['maxqueue'];
 		$this->timeout = $conf['timeout'];
+		if ( isset( $conf['slots'] ) ) {
+			$this->slots = $conf['slots'];
+		}
+
+		if ( $this->slots ) {
+			$key = $this->hashKeyIntoSlots( $key, $this->slots );
+		}
+		$this->key = $key;
 	}
 
 	/**
@@ -121,6 +135,20 @@ abstract class PoolCounter {
 	 * @return Status value is one of Released/NotLocked/Error
 	 */
 	abstract public function release();
+
+	/**
+	 * Given a key (any string) and the number of lots, returns a slot number (an integer from the [0..($slots-1)] range).
+	 * This is used for a global limit on the number of instances  of a given type that can acquire a lock.
+	 * The hashing is deterministic so that PoolCounter::$workers is always an upper limit of how many instances with
+	 * the same key can acquire a lock.
+	 *
+	 * @param string $key PoolCounter instance key (any string)
+	 * @param int $slots the number of slots (max allowed value is 65536)
+	 * @return int
+	 */
+	protected function hashKeyIntoSlots( $key, $slots ) {
+		return hexdec( substr( sha1( $key ), 0, 4 ) ) % $slots;
+	}
 }
 
 // @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
