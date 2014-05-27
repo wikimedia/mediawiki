@@ -83,7 +83,7 @@ class SpecialChangePassword extends FormSpecialPage {
 		$request = $this->getRequest();
 
 		$oldpassMsg = $this->mOldPassMsg;
-		if ( !isset( $oldpassMsg ) ) {
+		if ( $oldpassMsg === null ) {
 			$oldpassMsg = $user->isLoggedIn() ? 'oldpassword' : 'resetpass-temp-password';
 		}
 

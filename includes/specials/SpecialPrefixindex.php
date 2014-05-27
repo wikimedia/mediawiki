@@ -76,7 +76,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 		);
 
 		$showme = '';
-		if ( isset( $par ) ) {
+		if ( $par !== null ) {
 			$showme = $par;
 		} elseif ( $prefix != '' ) {
 			$showme = $prefix;
@@ -167,6 +167,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 		$fromList = $this->getNamespaceKeyAndText( $namespace, $from );
 		$prefixList = $this->getNamespaceKeyAndText( $namespace, $prefix );
 		$namespaces = $wgContLang->getNamespaces();
+		$res = null;
 
 		if ( !$prefixList || !$fromList ) {
 			$out = $this->msg( 'allpagesbadtitle' )->parseAsBlock();
@@ -261,9 +262,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 				'</td>
 				<td id="mw-prefixindex-nav-form" class="mw-prefixindex-nav">';
 
-			if ( isset( $res ) && $res && ( $n == $this->maxPerPage ) &&
-				( $s = $res->fetchObject() )
-			) {
+			if ( $res && ( $n == $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 				$query = array(
 					'from' => $s->page_title,
 					'prefix' => $prefix,
