@@ -124,6 +124,9 @@ production.
   however delete the redirect page.
 * (bug 22683) {{msgnw:}} and other uses of PPFrame::RECOVER_ORIG will correctly
   recover the original code of extension tags.
+* (bug 65757) MSSQL: Update script drops unnamed constraints to be prepared
+  for future updates. Because it's doing so heuristically, it may fail or drop
+  wrong constraints.
 
 === Web API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of
