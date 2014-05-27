@@ -390,13 +390,17 @@ class RecentChange {
 
 	/**
 	 * Notify all the feeds about the change.
+	 * @param array $feeds Optional feeds to send to, defaults to $wgRCFeeds
 	 */
-	public function notifyRCFeeds() {
+	public function notifyRCFeeds( $feeds = array() ) {
 		global $wgRCFeeds;
+		if ( empty( $feeds ) ) {
+			$feeds = $wgRCFeeds;
+		}
 
 		$performer = $this->getPerformer();
 
-		foreach ( $wgRCFeeds as $feed ) {
+		foreach ( $feeds as $feed ) {
 			$feed += array(
 				'omit_bots' => false,
 				'omit_anon' => false,
@@ -425,7 +429,7 @@ class RecentChange {
 			}
 
 			/** @var $formatter RCFeedFormatter */
-			$formatter = new $feed['formatter']();
+			$formatter = is_object( $feed['formatter'] ) ? $feed['formatter'] : new $feed['formatter']();
 			$line = $formatter->getLine( $feed, $this, $actionComment );
 
 			$engine->send( $feed, $line );
