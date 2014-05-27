@@ -4728,6 +4728,10 @@ class Title {
 			return false;
 		}
 
+		if ( $this->mArticleID === 0 ) {
+			return true; // avoid gap locking if we know it's not there
+		}
+
 		$method = __METHOD__;
 		$dbw = wfGetDB( DB_MASTER );
 		$conds = $this->pageCond();
