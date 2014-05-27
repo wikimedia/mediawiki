@@ -54,8 +54,8 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 			)
 		);
 
-		$count = $this->mTitle->getBacklinkCache()->getNumLinks( $this->mTable, 200 );
-		if ( $count >= 200 ) { // many backlinks
+		$count = $this->mTitle->getBacklinkCache()->getNumLinks( $this->mTable, 100 );
+		if ( $count >= 100 ) { // many backlinks
 			JobQueueGroup::singleton()->push( $job );
 			JobQueueGroup::singleton()->deduplicateRootJob( $job );
 		} else { // few backlinks ($count might be off even if 0)
