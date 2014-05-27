@@ -573,7 +573,7 @@ abstract class MediaHandler {
 	}
 
 	/**
-	 * Used instead of getLongDesc if there is no handler registered for file.
+	 * Short description. Shown on Special:Search results.
 	 *
 	 * @param File $file
 	 * @return string
@@ -585,7 +585,7 @@ abstract class MediaHandler {
 	}
 
 	/**
-	 * Short description. Shown on Special:Search results.
+	 * Long description. Shown under image on image description page surounded by ().
 	 *
 	 * @param File $file
 	 * @return string
@@ -598,7 +598,7 @@ abstract class MediaHandler {
 	}
 
 	/**
-	 * Long description. Shown under image on image description page surounded by ().
+	 * Used instead of getShortDesc if there is no handler registered for file.
 	 *
 	 * @param File $file
 	 * @return string
@@ -610,7 +610,7 @@ abstract class MediaHandler {
 	}
 
 	/**
-	 * Used instead of getShortDesc if there is no handler registered for file.
+	 * Used instead of getLongDesc if there is no handler registered for file.
 	 *
 	 * @param File $file
 	 * @return string
