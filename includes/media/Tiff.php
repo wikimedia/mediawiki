@@ -27,6 +27,8 @@
  * @ingroup Media
  */
 class TiffHandler extends ExifBitmapHandler {
+	const EXPENSIVE_SIZE_LIMIT = 10485760; // TIFF files over 10M are considered expensive to thumbnail
+
 	/**
 	 * Conversion to PNG for inline display can be disabled here...
 	 * Note scaling should work with ImageMagick, but may not with GD scaling.
@@ -96,5 +98,9 @@ class TiffHandler extends ExifBitmapHandler {
 		} else {
 			return '';
 		}
+	}
+
+	public function isExpensiveToThumbnail( $file ) {
+		return $file->getSize() > static::EXPENSIVE_SIZE_LIMIT;
 	}
 }
