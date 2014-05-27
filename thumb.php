@@ -388,8 +388,15 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 	$errorHtml = false;
 
 	// Thumbnail isn't already there, so create the new thumbnail...
+	if ( $file->hasFlag( File::FLAG_EXPENSIVE ) ) {
+		// expensive file, limit parallel thumbnail attempts globally
+		$poolCounterType = 'FileRenderExpensive';
+	} else {
+		// normal file, limit parallel thumbnail attempts per file to avoid stampedes
+		$poolCounterType = 'FileRender';
+	}
 	try {
-		$work = new PoolCounterWorkViaCallback( 'FileRender', sha1( $file->getName() ),
+		$work = new PoolCounterWorkViaCallback( $poolCounterType, sha1( $file->getName() ),
 			array(
 				'doWork' => function() use ( $file, $params ) {
 					return $file->transform( $params, File::RENDER_NOW );
