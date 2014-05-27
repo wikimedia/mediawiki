@@ -5611,7 +5611,7 @@ $wgRC2UDPOmitBots = false;
  * The common options are:
  *   * 'uri' -- the address to which the notices are to be sent.
  *   * 'formatter' -- the class name (implementing RCFeedFormatter) which will
- *     produce the text to send.
+ *     produce the text to send. This can also be an object of the class.
  *   * 'omit_bots' -- whether the bot edits should be in the feed
  *   * 'omit_anon' -- whether anonymous edits should be in the feed
  *   * 'omit_user' -- whether edits by registered users should be in the feed
