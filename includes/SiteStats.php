@@ -260,7 +260,8 @@ class SiteStatsInit {
 	private $db;
 
 	// Various stats
-	private $mEdits, $mArticles, $mPages, $mUsers, $mViews, $mFiles = 0;
+	private $mEdits = null, $mArticles = null, $mPages = null;
+	private $mUsers = null, $mViews = null, $mFiles = null;
 
 	/**
 	 * Constructor
@@ -389,16 +390,17 @@ class SiteStatsInit {
 	}
 
 	/**
-	 * Refresh site_stats.
+	 * Refresh site_stats. If you want ss_total_views to be updated, be sure to
+	 * call views() first.
 	 */
-	protected function refresh() {
+	public function refresh() {
 		$values = array(
 			'ss_row_id' => 1,
-			'ss_total_edits' => $this->mEdits,
-			'ss_good_articles' => $this->mArticles,
-			'ss_total_pages' => $this->mPages,
-			'ss_users' => $this->mUsers,
-			'ss_images' => $this->mFiles,
+			'ss_total_edits' => ( $this->mEdits === null ? $this->edits() : $this->mEdits ),
+			'ss_good_articles' => ( $this->mArticles === null ? $this->articles() : $this->mArticles ),
+			'ss_total_pages' => ( $this->mPages === null ? $this->pages() : $this->mPages ),
+			'ss_users' => ( $this->mUsers === null ? $this->users() : $this->mUsers ),
+			'ss_images' => ( $this->mFiles === null ? $this->files() : $this->mFiles ),
 		) + (
 			$this->mViews ? array( 'ss_total_views' => $this->mViews ) : array()
 		);
