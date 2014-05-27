@@ -670,12 +670,30 @@ class XmlDumpWriter {
 			$out .= "      " . Xml::elementClean( 'comment', array(), strval( $row->rev_comment ) ) . "\n";
 		}
 
+		if ( isset( $row->rev_content_model ) && !is_null( $row->rev_content_model ) ) {
+			$content_model = strval( $row->rev_content_model );
+		} else {
+			// probably using $wgContentHandlerUseDB = false;
+			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+			$content_model = ContentHandler::getDefaultModelFor( $title );
+		}
+
+		$content_handler = ContentHandler::getForModelID( $content_model );
+
+		if ( isset( $row->rev_content_format ) && !is_null( $row->rev_content_format ) ) {
+			$content_format = strval( $row->rev_content_format );
+		} else {
+			// probably using $wgContentHandlerUseDB = false;
+			$content_format = $content_handler->getDefaultFormat();
+		}
+
 		$text = '';
 		if ( isset( $row->rev_deleted ) && ( $row->rev_deleted & Revision::DELETED_TEXT ) ) {
 			$out .= "      " . Xml::element( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
 		} elseif ( isset( $row->old_text ) ) {
 			// Raw text from the database may have invalid chars
 			$text = strval( Revision::getRevisionText( $row ) );
+			$text = $content_handler->exportTransform( $text, $content_format );
 			$out .= "      " . Xml::elementClean( 'text',
 				array( 'xml:space' => 'preserve', 'bytes' => intval( $row->rev_len ) ),
 				strval( $text ) ) . "\n";
@@ -695,26 +713,7 @@ class XmlDumpWriter {
 			$out .= "      <sha1/>\n";
 		}
 
-		if ( isset( $row->rev_content_model ) && !is_null( $row->rev_content_model ) ) {
-			$content_model = strval( $row->rev_content_model );
-		} else {
-			// probably using $wgContentHandlerUseDB = false;
-			// @todo test!
-			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-			$content_model = ContentHandler::getDefaultModelFor( $title );
-		}
-
 		$out .= "      " . Xml::element( 'model', null, strval( $content_model ) ) . "\n";
-
-		if ( isset( $row->rev_content_format ) && !is_null( $row->rev_content_format ) ) {
-			$content_format = strval( $row->rev_content_format );
-		} else {
-			// probably using $wgContentHandlerUseDB = false;
-			// @todo test!
-			$content_handler = ContentHandler::getForModelID( $content_model );
-			$content_format = $content_handler->getDefaultFormat();
-		}
-
 		$out .= "      " . Xml::element( 'format', null, strval( $content_format ) ) . "\n";
 
 		wfRunHooks( 'XmlDumpWriterWriteRevision', array( &$this, &$out, $row, $text ) );
