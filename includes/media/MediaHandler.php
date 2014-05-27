@@ -812,4 +812,15 @@ abstract class MediaHandler {
 	public function getLength( $file ) {
 		return 0.0;
 	}
+
+	/**
+	 * Checks if a file has a certain flag. Flags can be set by the media handlers to signal
+	 * that the file needs some sort of special processing.
+	 * @param string $flag a flag name, should be one of the File::FLAG_* constants
+	 * @param File $file
+	 * @return bool
+	 */
+	public function hasFlag( $flag, $file ) {
+		return false;
+	}
 }
