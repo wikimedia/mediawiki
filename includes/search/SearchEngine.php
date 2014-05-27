@@ -432,17 +432,6 @@ class SearchEngine {
 	}
 
 	/**
-	 * Return the help namespaces to be shown on Special:Search
-	 *
-	 * @return array
-	 */
-	public static function helpNamespaces() {
-		global $wgNamespacesToBeSearchedHelp;
-
-		return array_keys( $wgNamespacesToBeSearchedHelp, true );
-	}
-
-	/**
 	 * Return a 'cleaned up' search string
 	 *
 	 * @param string $text
