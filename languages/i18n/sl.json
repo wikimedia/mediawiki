@@ -8,7 +8,8 @@
 			"Smihael",
 			"Vadgt",
 			"Yerpo",
-			"아라"
+			"아라",
+			"MaGa"
 		]
 	},
 	"tog-underline": "Podčrtavanje povezav:",
@@ -833,12 +834,10 @@
 	"searchmenu-exists": "'''Na tem wikiju obstaja stran »[[:$1]]«'''",
 	"searchmenu-new": "<strong>Ustvari stran »[[:$1]]« na tem wikiju!</strong> {{PLURAL:$2|0=|Oglejte si tudi rezultate iskanja.}}",
 	"searchprofile-articles": "Članki",
-	"searchprofile-project": "Pomoč in projektne strani",
 	"searchprofile-images": "Večpredstavnost",
 	"searchprofile-everything": "Vse",
 	"searchprofile-advanced": "Napredni pogled",
 	"searchprofile-articles-tooltip": "Išči v $1",
-	"searchprofile-project-tooltip": "Išči v $1",
 	"searchprofile-images-tooltip": "Išči datoteke",
 	"searchprofile-everything-tooltip": "Išči po vsej vsebini (vključno s pogovornimi stranmi)",
 	"searchprofile-advanced-tooltip": "Iskanje v imenskih prostorih po meri",

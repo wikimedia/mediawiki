@@ -9,7 +9,8 @@
 			"아라",
 			"Lucas2",
 			"Ontsed",
-			"Seb35"
+			"Seb35",
+			"Nemo bis"
 		]
 	},
 	"config-desc": "Il programma di installazione per MediaWiki",
@@ -123,7 +124,7 @@
 	"config-db-schema-help": "Questo schema in genere andrà bene.\nDa cambiare solamente se si è sicuri di averne bisogno.",
 	"config-pg-test-error": "Impossibile connettersi al database '''$1''': $2",
 	"config-sqlite-dir": "Directory data di SQLite:",
-	"config-sqlite-dir-help": "SQLite memorizza tutti i dati in un unico file.\n\nLa directory che indicherai deve essere scrivibile dal server web durante l'installazione.\n\nDovrebbe essere <strong>non accessibile via web</strong>, è per questo che non la stiamo mettendo dove ci sono i file PHP.\n\nL'installatore scriverà insieme ad essa un file <code>.htaccess</code>, ma se il tentativo fallisse qualcuno potrebbe avere accesso al database grezzo.\nQuesto include dati utente grezzi (indirizzi, password cifrate) così come revisioni eliminate e altri dati ad accesso limitato del wiki.\n\nConsidera l'opportunità di sistemare allo stesso tempo il database da qualche altra parte, per esempio in <code>/var/lib/mediawiki/tuowiki</code>.",
+	"config-sqlite-dir-help": "SQLite memorizza tutti i dati in un unico file.\n\nLa directory che indicherai deve essere scrivibile dal server web durante l'installazione.\n\nDovrebbe essere <strong>non accessibile via web</strong>, è per questo che non la stiamo mettendo dove ci sono i file PHP.\n\nL'installatore scriverà insieme ad essa un file <code>.htaccess</code>, ma se il tentativo fallisse qualcuno potrebbe avere accesso al database grezzo.\nQuesto include dati utente grezzi (indirizzi, password cifrate) così come versioni eliminate e altri dati ad accesso limitato del wiki.\n\nConsidera l'opportunità di sistemare allo stesso tempo il database da qualche altra parte, per esempio in <code>/var/lib/mediawiki/tuowiki</code>.",
 	"config-oracle-def-ts": "Tablespace di default:",
 	"config-oracle-temp-ts": "Tablespace temporaneo:",
 	"config-type-mysql": "MySQL (o compatibile)",
