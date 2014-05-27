@@ -402,16 +402,17 @@ class SiteStatsInit {
 	}
 
 	/**
-	 * Refresh site_stats.
+	 * Refresh site_stats. If you want ss_total_views to be updated, be sure to
+	 * call views() first.
 	 */
-	protected function refresh() {
+	public function refresh() {
 		$values = array(
 			'ss_row_id' => 1,
-			'ss_total_edits' => $this->mEdits,
-			'ss_good_articles' => $this->mArticles,
-			'ss_total_pages' => $this->mPages,
-			'ss_users' => $this->mUsers,
-			'ss_images' => $this->mFiles,
+			'ss_total_edits' => ( $this->mEdits === 0 ? $this->edits() : $this->mEdits ),
+			'ss_good_articles' => ( $this->mArticles === 0 ? $this->articles() : $this->mArticles ),
+			'ss_total_pages' => ( $this->mPages === 0 ? $this->pages() : $this->mPages ),
+			'ss_users' => ( $this->mUsers === 0 ? $this->users() : $this->mUsers ),
+			'ss_images' => ( $this->mFiles === 0 ? $this->files() : $this->mFiles ),
 		) + (
 			$this->mViews ? array( 'ss_total_views' => $this->mViews ) : array()
 		);
