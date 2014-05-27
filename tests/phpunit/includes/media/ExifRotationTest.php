@@ -6,31 +6,25 @@
  *
  * @todo covers tags
  */
-class ExifRotationTest extends MediaWikiTestCase {
+class ExifRotationTest extends MediaWikiMediaTestCase {
 
 	protected function setUp() {
 		parent::setUp();
 		$this->checkPHPExtension( 'exif' );
 
 		$this->handler = new BitmapHandler();
-		$filePath = __DIR__ . '/../../data/media';
-
-		$tmpDir = $this->getNewTempDirectory();
-
-		$this->repo = new FSRepo( array(
-			'name' => 'temp',
-			'url' => 'http://localhost/thumbtest',
-			'backend' => new FSFileBackend( array(
-				'name' => 'localtesting',
-				'wikiId' => wfWikiId(),
-				'containerPaths' => array( 'temp-thumb' => $tmpDir, 'data' => $filePath )
-			) )
-		) );
 
 		$this->setMwGlobals( array(
 			'wgShowEXIF' => true,
 			'wgEnableAutoRotation' => true,
 		) );
+	}
+
+	/**
+	 * Mark this test as creating thumbnail files.
+	 */
+	protected function createsThumbnails() {
+		return true;
 	}
 
 	/**
@@ -91,12 +85,6 @@ class ExifRotationTest extends MediaWikiTestCase {
 				$this->assertEquals( $out[1], $gis[1], "$name: thumb actual height check for $size" );
 			}
 		}
-	}
-
-	/* Utility function */
-	private function dataFile( $name, $type ) {
-		return new UnregisteredLocalFile( false, $this->repo,
-			"mwstore://localtesting/data/$name", $type );
 	}
 
 	public static function provideFiles() {
