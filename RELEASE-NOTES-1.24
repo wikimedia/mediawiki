@@ -68,6 +68,9 @@ production.
 * (bug 52587) Maintenance script deleteBatch.php no longer follows redirects
   in the file namespace and delete the file on the target page. It will still
   however delete the redirect page.
+* (bug 65757) MSSQL: Update script drops unnamed constraints to be prepared
+  for future updates. Because it's doing so heuristically, it may fail or drop
+  wrong constraints.
 
 === Web API changes in 1.24 ===
 * action=parse API now supports prop=modules, which provides the list of
