@@ -133,17 +133,13 @@ class DBConnectionError extends DBExpectedError {
 	 * @return string Unprocessed plain error text with parameters replaced
 	 */
 	function msg( $key, $fallback /*[, params...] */ ) {
-		global $wgLang;
-
 		$args = array_slice( func_get_args(), 2 );
 
 		if ( $this->useMessageCache() ) {
-			$message = $wgLang->getMessage( $key );
+			return wfMessage( $key, $args )->useDatabase( false )->text();
 		} else {
-			$message = $fallback;
+			return wfMsgReplaceArgs( $fallback, $args );
 		}
-
-		return wfMsgReplaceArgs( $message, $args );
 	}
 
 	/**
