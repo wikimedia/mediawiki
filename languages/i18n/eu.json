@@ -732,7 +732,7 @@
 	"revdelete-hide-user": "Egilearen erabiltzaile izena/IPa ezkutatu",
 	"revdelete-hide-restricted": "Mugapen hauek administratzaileei zein besteei aplikatu",
 	"revdelete-radio-same": "(ez aldatu)",
-	"revdelete-radio-set": "Izkutua",
+	"revdelete-radio-set": "Ezkutua",
 	"revdelete-radio-unset": "Ikusgarria",
 	"revdelete-suppress": "Administratzaileen eta bestelakoen datuak kendu",
 	"revdelete-unsuppress": "Berrezarritako aldaketen mugak kendu",

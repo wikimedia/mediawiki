@@ -11,7 +11,8 @@
 			"Anaclaudiaml",
 			"Cybermandrake",
 			"Fabsouza1",
-			"Rodrigo codignoli"
+			"Rodrigo codignoli",
+			"Tuliouel"
 		]
 	},
 	"config-desc": "O instalador do MediaWiki",
@@ -129,7 +130,7 @@
 	"config-missing-db-name": "Você deve inserir um valor para \"{{int:config-db-name}}\".",
 	"config-missing-db-host": "Você deve inserir um valor para \"{{int:config-db-host}}\".",
 	"config-missing-db-server-oracle": "Você deve inserir um valor para \"{{int:config-db-host-oracle}}\".",
-	"config-connection-error": "$1\n\nVerifique o servidor hospedeiro, nome de usuário e senha e tente novamente.",
+	"config-connection-error": "$1\n\nVerifique o servidor, nome de usuário e senha e tente novamente.",
 	"config-db-sys-user-exists-oracle": "A conta de usuário $1 já existe. SYSDBA somente pode ser utilizado na criação de uma nova conta!",
 	"config-postgres-old": "PostgreSQL $1 ou posterior é necessário. Você tem $2.",
 	"config-mssql-old": "Microsoft SQL Server $1 ou posterior é necessário.Você tem $2.",
@@ -224,7 +225,7 @@
 	"config-install-done": "<strong>Parabéns!</strong>\nVocê concluiu a instalação do MediaWiki.\n\nO instalador gerou um arquivo <code>LocalSettings.php</code>.\nEste arquivo contém todas as suas configurações.\n\nVocê precisa fazer o download desse arquivo e colocá-lo na raiz da sua instalação (o mesmo diretório onde está o arquivo <code>index.php</code>). Este download deve ter sido iniciado automaticamente.\n\nSe o download não foi iniciado, ou se ele foi cancelado, pode recomeçá-lo clicando no link abaixo:\n\n$3\n\n<strong>Nota</strong>: Se não fizer isto agora, o arquivo que foi gerado não estará disponível depois que você sair do processo de instalação sem baixá-lo.\n\nQuando isso tiver sido feito, pode <strong>[$2 entrar na sua wiki]</strong>.",
 	"config-download-localsettings": "Baixar <code>LocalSettings.php</code>",
 	"config-help": "ajuda",
-	"config-nofile": "O arquivo \"$1\" não pode ser encontrado. Este arquivo foi apagado?",
+	"config-nofile": "O arquivo \"$1\" não foi encontrado. Ele foi apagado?",
 	"config-extension-link": "Você sabia que sua wiki suporta [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensões]?\n\nVocê pode explorar as  [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensões por categoria] ou visitar a [//www.mediawiki.org/wiki/Extension_Matrix Matriz de Extensões] para ver a lista completa.",
 	"mainpagetext": "<strong>O MediaWiki foi instalado com sucesso.</strong>",
 	"mainpagedocfooter": "Consulte o [//meta.wikimedia.org/wiki/Help:Contents Manual de Usuário] para informações de como usar o software wiki.\n\n== Começando ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de opções de configuração]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ do MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussão com avisos de novas versões do MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traduza o MediaWiki para seu idioma]"
