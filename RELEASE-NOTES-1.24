@@ -38,6 +38,8 @@ production.
 * WikitextContent will now render redirects with the expected "redirect"
   header, rather than as an ordered list. Code calling Article::viewRedirect
   can probably be changed to no longer special-case redirects.
+* Header font set to a serif font stack. See
+  https://www.mediawiki.org/wiki/Typography_refresh for further information.
 * (bug 63903) Thumbnails without an explicit size specification are
   now resized to a square bounding box. This gives better results for
   non-landscape thumbnails.
