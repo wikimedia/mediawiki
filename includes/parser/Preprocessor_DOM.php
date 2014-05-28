@@ -983,6 +983,8 @@ class PPFrame_DOM implements PPFrame {
 	 */
 	var $depth;
 
+	private $ttl = null;
+
 	/**
 	 * Construct a new preprocessor frame.
 	 * @param Preprocessor $preprocessor The parent preprocessor
@@ -1467,6 +1469,26 @@ class PPFrame_DOM implements PPFrame {
 	function getTitle() {
 		return $this->title;
 	}
+
+	/**
+	 * Set the TTL
+	 *
+	 * @param int $ttl
+	 */
+	function setTTL( $ttl ) {
+		if ( $this->ttl === null || $ttl < $this->ttl ) {
+			$this->ttl = $ttl;
+		}
+	}
+
+	/**
+	 * Get the TTL
+	 *
+	 * @return int|null
+	 */
+	function getTTL() {
+		return $this->ttl;
+	}
 }
 
 /**
@@ -1602,6 +1624,11 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	 */
 	function isTemplate() {
 		return true;
+	}
+
+	function setTTL( $ttl ) {
+		parent::setTTL( $ttl );
+		$this->parent->setTTL( $ttl );
 	}
 }
 
