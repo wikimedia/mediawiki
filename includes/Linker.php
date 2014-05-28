@@ -408,6 +408,11 @@ class Linker {
 	 * @return string
 	 */
 	public static function makeSelfLinkObj( $nt, $html = '', $query = '', $trail = '', $prefix = '' ) {
+		$ret = "<strong class=\"selflink\">{$prefix}{$html}</strong>{$trail}";
+		if ( !wfRunHooks( 'SelfLinkBegin', array( $nt, &$html, &$trail, &$prefix, &$ret ) ) ) {
+			return $ret;
+		}
+
 		if ( $html == '' ) {
 			$html = htmlspecialchars( $nt->getPrefixedText() );
 		}
