@@ -3,6 +3,15 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.19.16 ==
+
+This is a security release of the MediaWiki 1.19 branch.
+
+=== Changes since 1.19.15 ===
+
+* (bug 65501) SECURITY: Don't parse usernames as wikitext on
+  Special:PasswordReset.
+
 == MediaWiki 1.19.15 ==
 
 This is a maintenance release of the MediaWiki 1.19 branch.
