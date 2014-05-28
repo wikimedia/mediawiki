@@ -1283,10 +1283,19 @@ abstract class UploadBase {
 				return true;
 			}
 
-			# href with javascript target
-			if ( $stripped == 'href' && strpos( strtolower( $value ), 'javascript:' ) !== false ) {
-				wfDebug( __METHOD__ . ": Found script in href attribute '$attrib'='$value' in uploaded file.\n" );
-				return true;
+			# href with non-local target (don't allow http://, javascript:, etc)
+			if ( $stripped == 'href'
+				&& strpos( $value, 'data:' ) !== 0
+				&& strpos( $value, '#' ) !== 0
+			) {
+				if ( !( $strippedElement === 'a'
+					&& preg_match( '!^https?://!im', $value ) )
+				) {
+					wfDebug( __METHOD__ . ": Found href attribute <$strippedElement "
+						. "'$attrib'='$value' in uploaded file.\n" );
+
+					return true;
+				}
 			}
 
 			# href with embedded svg as target
