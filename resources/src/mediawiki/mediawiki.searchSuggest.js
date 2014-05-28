@@ -66,6 +66,7 @@
 				.wrap(
 					$( '<a>' )
 						.attr( 'href', resultRenderCache.baseHref + $.param( resultRenderCache.linkParams ) )
+						.attr( 'title', text )
 						.addClass( 'mw-searchSuggest-link' )
 				);
 		}
