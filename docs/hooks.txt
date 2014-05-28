@@ -2039,6 +2039,16 @@ $oldtext : the text of the article before editing
 $subject : subject of the new section
 &$text : text of the new section
 
+'PostLoginRedirect': Modify the post login redirect behavior.
+Occurs after signing up or logging in, allows for interception of redirect.
+&$returnTo: The page name to return to, as a string
+&$returnToQuery: array of url parameters, mapping parameter names to values
+&$type: type of login redirect as string;
+  success: display a return to link using $wgRedirectOnLogin if needed
+  signup: display a return to link using $wgRedirectOnLogin if needed
+  successredirect: send an HTTP redirect using $wgRedirectOnLogin if needed
+  error: display a return to link ignoring $wgRedirectOnLogin
+
 'PreferencesGetLegend': Override the text used for the <legend> of a
 preferences section.
 $form: the PreferencesForm object. This is a ContextSource as well
@@ -2873,11 +2883,11 @@ $user  : User object that was changed
 $add   : Array of strings corresponding to groups added
 $remove: Array of strings corresponding to groups removed
 
+
 'UserRequiresHTTPS': Called to determine whether a user needs
 to be switched to HTTPS.
 $user: User in question.
 &$https: Boolean whether $user should be switched to HTTPS.
-
 
 'UserRetrieveNewTalks': Called when retrieving "You have new messages!"
 message(s).
