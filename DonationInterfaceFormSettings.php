@@ -486,12 +486,12 @@ if ( $wgDonationInterfaceEnableAdyen === true ) {
 /**********
  * WorldPay *
  **********/
-// This is at the bottom so that we prefer GC over adyen
+// This is at the bottom so that we prefer GC over WorldPay
 if ( $wgDonationInterfaceEnableWorldPay === true ) {
 	$forms_whitelist['worldpay'] = array(
 		'file' => $form_dirs['worldpay'] . '/worldpay.html',
 		'gateway' => 'worldpay',
-		'countries' => array( '+' => array( 'US', 'FR' ) ),
+		'countries' => array( '+' => array( 'BE', 'FR', 'US' ) ),
 		'currencies' => array( '+' => 'ALL' ),
 		'payment_methods' => array( 'cc' => 'ALL' ),
 		'selection_weight' => 0
