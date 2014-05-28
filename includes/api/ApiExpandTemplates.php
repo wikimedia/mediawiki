@@ -77,6 +77,10 @@ class ApiExpandTemplates extends ApiBase {
 		if ( $frame->isVolatile() ) {
 			$retval_array['volatile'] = '';
 		}
+		$ttl = $frame->getTTL();
+		if ( $ttl !== null ) {
+			$retval_array['ttl'] = $ttl;
+		}
 		$result->addValue( null, $this->getModuleName(), $retval_array );
 	}
 
