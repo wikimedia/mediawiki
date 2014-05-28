@@ -622,9 +622,10 @@ class Parser {
 	 * @param Title $title
 	 * @param ParserOptions $options
 	 * @param int|null $revid
+	 * @param bool|PPFrame $frame
 	 * @return mixed|string
 	 */
-	function preprocess( $text, Title $title = null, ParserOptions $options, $revid = null ) {
+	function preprocess( $text, Title $title = null, ParserOptions $options, $revid = null, $frame = false ) {
 		wfProfileIn( __METHOD__ );
 		$magicScopeVariable = $this->lock();
 		$this->startParse( $title, $options, self::OT_PREPROCESS, true );
@@ -633,7 +634,7 @@ class Parser {
 		}
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
-		$text = $this->replaceVariables( $text );
+		$text = $this->replaceVariables( $text, $frame );
 		$text = $this->mStripState->unstripBoth( $text );
 		wfProfileOut( __METHOD__ );
 		return $text;
@@ -3566,7 +3567,11 @@ class Parser {
 					$text = $this->mTplExpandCache[$titleText];
 				} else {
 					$text = $newFrame->expand( $text );
-					$this->mTplExpandCache[$titleText] = $text;
+					// a TTL of 0 indicates that the frame's output shouldn't be cached at all,
+					// not even within the same parse (due to nondeterministic output, etc.)
+					if ( $newFrame->getTTL() !== 0 ) {
+						$this->mTplExpandCache[$titleText] = $text;
+					}
 				}
 			} else {
 				# Uncached expansion
