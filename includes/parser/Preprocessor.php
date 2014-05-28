@@ -190,6 +190,31 @@ interface PPFrame {
 	function isVolatile();
 
 	/**
+	 * Get the TTL of the frame's output.
+	 *
+	 * This is the maximum amount of time, in seconds, that this frame's
+	 * output should be cached for. A value of null indicates that no
+	 * maximum has been specified.
+	 *
+	 * Note that this TTL only applies to caching frames as parts of pages.
+	 * It is not relevant to caching the entire rendered output of a page.
+	 *
+	 * @return int|null
+	 */
+	function getTTL();
+
+	/**
+	 * Set the TTL of the output of this frame and all of its ancestors.
+	 * Has no effect if the new TTL is greater than the one already set.
+	 * Note that it is the caller's responsibility to change the cache
+	 * expiry of the page as a whole, if such behavior is desired.
+	 *
+	 * @see self::getTTL()
+	 * @param int $ttl
+	 */
+	function setTTL( $ttl );
+
+	/**
 	 * Get a title of frame
 	 *
 	 * @return Title

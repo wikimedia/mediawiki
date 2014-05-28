@@ -984,6 +984,7 @@ class PPFrame_DOM implements PPFrame {
 	var $depth;
 
 	private $volatile = false;
+	private $ttl = null;
 
 	/**
 	 * @var array
@@ -1505,6 +1506,26 @@ class PPFrame_DOM implements PPFrame {
 	function isVolatile() {
 		return $this->volatile;
 	}
+
+	/**
+	 * Set the TTL
+	 *
+	 * @param int $ttl
+	 */
+	function setTTL( $ttl ) {
+		if ( $this->ttl === null || $ttl < $this->ttl ) {
+			$this->ttl = $ttl;
+		}
+	}
+
+	/**
+	 * Get the TTL
+	 *
+	 * @return int|null
+	 */
+	function getTTL() {
+		return $this->ttl;
+	}
 }
 
 /**
@@ -1663,6 +1684,11 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	function setVolatile( $flag = true ) {
 		parent::setVolatile( $flag );
 		$this->parent->setVolatile( $flag );
+	}
+
+	function setTTL( $ttl ) {
+		parent::setTTL( $ttl );
+		$this->parent->setTTL( $ttl );
 	}
 }
 
