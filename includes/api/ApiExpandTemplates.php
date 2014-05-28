@@ -109,10 +109,13 @@ class ApiExpandTemplates extends ApiBase {
 						$retval['categories'] = $categories_result;
 					}
 				}
-				if ( isset ( $prop['volatile'] ) && $frame->isVolatile() ) {
+				if ( isset( $prop['volatile'] ) && $frame->isVolatile() ) {
 					$retval['volatile'] = '';
 				}
-				if ( isset ( $prop['wikitext'] ) ) {
+				if ( isset( $prop['ttl'] ) && $frame->getTTL() !== null ) {
+					$retval['ttl'] = $frame->getTTL();
+				}
+				if ( isset( $prop['wikitext'] ) ) {
 					$retval['wikitext'] = $wikitext;
 				}
 			}
