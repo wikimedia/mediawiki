@@ -109,10 +109,13 @@ class ApiExpandTemplates extends ApiBase {
 						$retval['categories'] = $categories_result;
 					}
 				}
-				if ( isset ( $prop['volatile'] ) && $frame->isVolatile() ) {
+				if ( isset( $prop['volatile'] ) && $frame->isVolatile() ) {
 					$retval['volatile'] = '';
 				}
-				if ( isset ( $prop['wikitext'] ) ) {
+				if ( isset( $prop['ttl'] ) && $frame->getTTL() !== null ) {
+					$retval['ttl'] = $frame->getTTL();
+				}
+				if ( isset( $prop['wikitext'] ) ) {
 					$retval['wikitext'] = $wikitext;
 				}
 			}
@@ -135,6 +138,7 @@ class ApiExpandTemplates extends ApiBase {
 					'wikitext',
 					'categories',
 					'volatile',
+					'ttl',
 					'parsetree',
 				),
 				ApiBase::PARAM_ISMULTI => true,
@@ -156,6 +160,7 @@ class ApiExpandTemplates extends ApiBase {
 				' wikitext   - The expanded wikitext',
 				' categories - Any categories present in the input that are not represented in the wikitext output',
 				' volatile   - Whether the output is volatile and should not be reused elsewhere within the page',
+				' ttl        - The maximum time after which caches of the result should be invalidated',
 				' parsetree  - The XML parse tree of the input',
 				'Note that if no values are selected, the result will contain the wikitext,',
 				'but the output will be in a deprecated format.',
@@ -179,6 +184,12 @@ class ApiExpandTemplates extends ApiBase {
 			'volatile' => array(
 				'volatile' => array(
 					ApiBase::PROP_TYPE => 'boolean',
+					ApiBase::PROP_NULLABLE => true,
+				),
+			),
+			'ttl' => array(
+				'ttl' => array(
+					ApiBase::PROP_TYPE => 'integer',
 					ApiBase::PROP_NULLABLE => true,
 				),
 			),
