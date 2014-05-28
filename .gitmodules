@@ -322,3 +322,9 @@
 [submodule "extensions/WikiForum"]
 	path = extensions/WikiForum
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikiForum.git
+[submodule "extensions/TorBlock"]
+	path = extensions/TorBlock
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TorBlock.git
+[submodule "extensions/Maps"]
+	path = extensions/Maps
+	url = https://github.com/JeroenDeDauw/Maps.git
