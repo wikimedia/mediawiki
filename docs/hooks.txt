@@ -2852,6 +2852,11 @@ $user: User object
 $user: the user object that was created on login
 $inject_html: Any HTML to inject after the "logged in" message.
 
+'UserPostLoginRedirect': Modify the post login redirect behavior
+&$returnTo: The return url
+&$returnToQuery: array of url parameters
+&$type: string value for login type.  either: success, success-redirect, signup
+
 'UserLoginForm': change to manipulate the login form
 $template: SimpleTemplate instance for the form
 
@@ -2877,7 +2882,6 @@ $remove: Array of strings corresponding to groups removed
 to be switched to HTTPS.
 $user: User in question.
 &$https: Boolean whether $user should be switched to HTTPS.
-
 
 'UserRetrieveNewTalks': Called when retrieving "You have new messages!"
 message(s).

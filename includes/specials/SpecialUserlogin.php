@@ -1009,7 +1009,7 @@ class LoginForm extends SpecialPage {
 		wfRunHooks( 'UserLoginComplete', array( &$currentUser, &$injected_html ) );
 
 		if ( $injected_html !== '' ) {
-			$this->displaySuccessfulAction( $this->msg( 'loginsuccesstitle' ),
+			$this->displaySuccessfulAction( 'success', $this->msg( 'loginsuccesstitle' ),
 				'loginsuccess', $injected_html );
 		} else {
 			$this->executeReturnTo( 'successredirect' );
@@ -1037,18 +1037,19 @@ class LoginForm extends SpecialPage {
 		 */
 		wfRunHooks( 'BeforeWelcomeCreation', array( &$welcome_creation_msg, &$injected_html ) );
 
-		$this->displaySuccessfulAction( $this->msg( 'welcomeuser', $this->getUser()->getName() ),
+		$this->displaySuccessfulAction( 'signup', $this->msg( 'welcomeuser', $this->getUser()->getName() ),
 			$welcome_creation_msg, $injected_html );
 	}
 
 	/**
-	 * Display an "successful action" page.
+	 * Display a "successful action" page.
 	 *
+	 * @param string $type condition of return to
 	 * @param string|Message $title Page's title
 	 * @param string $msgname
 	 * @param string $injected_html
 	 */
-	private function displaySuccessfulAction( $title, $msgname, $injected_html ) {
+	private function displaySuccessfulAction( $type, $title, $msgname, $injected_html ) {
 		$out = $this->getOutput();
 		$out->setPageTitle( $title );
 		if ( $msgname ) {
@@ -1057,7 +1058,7 @@ class LoginForm extends SpecialPage {
 
 		$out->addHTML( $injected_html );
 
-		$this->executeReturnTo( 'success' );
+		$this->executeReturnTo( $type );
 	}
 
 	/**
@@ -1124,7 +1125,7 @@ class LoginForm extends SpecialPage {
 	 *
 	 * @param string $type One of the following:
 	 *    - error: display a return to link ignoring $wgRedirectOnLogin
-	 *    - success: display a return to link using $wgRedirectOnLogin if needed
+	 *    - signup, success: display a return to link using $wgRedirectOnLogin if needed
 	 *    - successredirect: send an HTTP redirect using $wgRedirectOnLogin if needed
 	 */
 	private function executeReturnTo( $type ) {
@@ -1137,6 +1138,9 @@ class LoginForm extends SpecialPage {
 			$returnTo = $this->mReturnTo;
 			$returnToQuery = wfCgiToArray( $this->mReturnToQuery );
 		}
+
+		// Allow modification of redirect behavior
+		wfRunHooks( 'UserPostLoginRedirect', array( &$returnTo, &$returnToQuery, &$type ) );
 
 		$returnToTitle = Title::newFromText( $returnTo );
 		if ( !$returnToTitle ) {
