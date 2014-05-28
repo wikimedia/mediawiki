@@ -149,12 +149,16 @@ class ApiRollback extends ApiBase {
 	}
 
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'invalidtitle', 'title' ),
-			array( 'notanarticle' ),
-			array( 'nosuchpageid', 'pageid' ),
-			array( 'invaliduser', 'user' ),
-		) );
+		return array_merge(
+			parent::getPossibleErrors(),
+			$this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) ),
+			array(
+				array( 'invalidtitle', 'title' ),
+				array( 'notanarticle' ),
+				array( 'nosuchpageid', 'pageid' ),
+				array( 'invaliduser', 'user' ),
+			)
+		);
 	}
 
 	public function needsToken() {
