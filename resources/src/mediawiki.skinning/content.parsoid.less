@@ -38,7 +38,6 @@ figure[typeof*='mw:Image'] {
 		float: right;
 	}
 
-	/* @noflip */
 	&.mw-halign-left {
 		/* @noflip */
 		margin: .5em 1.4em 1.3em 0;
@@ -68,9 +67,17 @@ figure[typeof*='mw:Image'] {
 	}
 }
 
-figure[typeof~='mw:Image/Thumb'], figure[typeof~='mw:Image/Frame'] {
+figure[typeof~='mw:Image/Thumb'],
+figure[typeof~='mw:Image/Frame'] {
 	display: table;
 	overflow: hidden;
 	text-align: center;
 	padding: 3px;
+	border: 1px solid #ccc;
+	background-color: #f9f9f9;
+}
+
+figure[typeof~='mw:Image/Thumb'] img,
+.mw-image-border img {
+	border: 1px solid #cccccc;
 }
