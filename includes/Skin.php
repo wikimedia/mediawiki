@@ -1562,19 +1562,20 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Get the site notice
 	 *
+	 * @param string $prefix Prefix for messages used for notices
 	 * @return string HTML fragment
 	 */
-	function getSiteNotice() {
+	function getSiteNotice( $prefix = '' ) {
 		wfProfileIn( __METHOD__ );
 		$siteNotice = '';
 
 		if ( wfRunHooks( 'SiteNoticeBefore', array( &$siteNotice, $this ) ) ) {
 			if ( is_object( $this->getUser() ) && $this->getUser()->isLoggedIn() ) {
-				$siteNotice = $this->getCachedNotice( 'sitenotice' );
+				$siteNotice = $this->getCachedNotice( "{$prefix}sitenotice" );
 			} else {
-				$anonNotice = $this->getCachedNotice( 'anonnotice' );
+				$anonNotice = $this->getCachedNotice( "{$prefix}anonnotice" );
 				if ( !$anonNotice ) {
-					$siteNotice = $this->getCachedNotice( 'sitenotice' );
+					$siteNotice = $this->getCachedNotice( "{$prefix}sitenotice" );
 				} else {
 					$siteNotice = $anonNotice;
 				}
