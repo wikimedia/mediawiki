@@ -920,6 +920,11 @@ class PPFrame_Hash implements PPFrame {
 	var $depth;
 
 	/**
+	 * @var array
+	 */
+	protected $childExpansionCache;
+
+	/**
 	 * Construct a new preprocessor frame.
 	 * @param Preprocessor $preprocessor The parent preprocessor
 	 */
@@ -930,6 +935,7 @@ class PPFrame_Hash implements PPFrame {
 		$this->titleCache = array( $this->title ? $this->title->getPrefixedDBkey() : false );
 		$this->loopCheckHash = array();
 		$this->depth = 0;
+		$this->childExpansionCache = array();
 	}
 
 	/**
@@ -970,6 +976,18 @@ class PPFrame_Hash implements PPFrame {
 			}
 		}
 		return new PPTemplateFrame_Hash( $this->preprocessor, $this, $numberedArgs, $namedArgs, $title );
+	}
+
+	/**
+	 * @throws MWException
+	 * @param string|int $key
+	 * @param string|PPNode_Hash|DOMDocument $root
+	 * @param int $flags
+	 * @return string
+	 */
+	function cachedExpand( $key, $root, $flags = 0 ) {
+		// we don't have a parent, so we don't have a cache
+		return $this->expand( $root, $flags );
 	}
 
 	/**
@@ -1424,6 +1442,20 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		}
 		$s .= '}';
 		return $s;
+	}
+
+	/**
+	 * @throws MWException
+	 * @param string|int $key
+	 * @param string|PPNode_Hash|DOMDocument $root
+	 * @param int $flags
+	 * @return string
+	 */
+	function cachedExpand( $key, $root, $flags = 0 ) {
+		if ( !isset( $this->parent->childExpansionCache[$key] ) ) {
+			$this->parent->childExpansionCache[$key] = $this->expand( $root, $flags );
+		}
+		return $this->parent->childExpansionCache[$key];
 	}
 
 	/**

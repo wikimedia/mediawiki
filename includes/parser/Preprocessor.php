@@ -95,6 +95,11 @@ interface PPFrame {
 	function newChild( $args = false, $title = false, $indexOffset = 0 );
 
 	/**
+	 * Expand a document tree node, caching the result on its parent with the given key
+	 */
+	function cachedExpand( $key, $root, $flags = 0 );
+
+	/**
 	 * Expand a document tree node
 	 */
 	function expand( $root, $flags = 0 );

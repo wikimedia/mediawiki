@@ -167,7 +167,6 @@ class Parser {
 	var $mLinkID;
 	var $mIncludeSizes, $mPPNodeCount, $mGeneratedPPNodeCount, $mHighestExpansionDepth;
 	var $mDefaultSort;
-	var $mTplExpandCache; # empty-frame expansion cache
 	var $mTplRedirCache, $mTplDomCache, $mHeadings, $mDoubleUnderscores;
 	var $mExpensiveFunctionCount; # number of expensive parser function calls
 	var $mShowToc, $mForceTocPosition;
@@ -321,7 +320,7 @@ class Parser {
 		$this->mStripState = new StripState( $this->mUniqPrefix );
 
 		# Clear these on every parse, bug 4549
-		$this->mTplExpandCache = $this->mTplRedirCache = $this->mTplDomCache = array();
+		$this->mTplRedirCache = $this->mTplDomCache = array();
 
 		$this->mShowToc = true;
 		$this->mForceTocPosition = false;
@@ -3562,12 +3561,7 @@ class Parser {
 				$text = $newFrame->expand( $text, PPFrame::RECOVER_ORIG );
 			} elseif ( $titleText !== false && $newFrame->isEmpty() ) {
 				# Expansion is eligible for the empty-frame cache
-				if ( isset( $this->mTplExpandCache[$titleText] ) ) {
-					$text = $this->mTplExpandCache[$titleText];
-				} else {
-					$text = $newFrame->expand( $text );
-					$this->mTplExpandCache[$titleText] = $text;
-				}
+				$text = $newFrame->cachedExpand( $titleText, $text );
 			} else {
 				# Uncached expansion
 				$text = $newFrame->expand( $text );
