@@ -2804,6 +2804,9 @@ class Parser {
 		$pageLang = $this->getFunctionLang();
 
 		switch ( $index ) {
+			case '!':
+				$value = '|';
+				break;
 			case 'currentmonth':
 				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'm' ) );
 				break;
