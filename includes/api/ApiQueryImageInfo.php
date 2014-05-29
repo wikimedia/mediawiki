@@ -33,7 +33,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	const TRANSFORM_LIMIT = 50;
 	private static $transformCount = 0;
 
-	public function __construct( ApiQuery $query, $moduleName, $prefix = 'ii' ) {
+	public function __construct( $query, $moduleName, $prefix = 'ii' ) {
 		// We allow a subclass to override the prefix, to create a related API
 		// module. Some other parts of MediaWiki construct this with a null
 		// $prefix, which used to be ignored when this only took two arguments

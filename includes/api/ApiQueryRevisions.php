@@ -37,7 +37,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 	private $diffto, $difftotext, $expandTemplates, $generateXML, $section,
 		$token, $parseContent, $contentFormat;
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'rv' );
 	}
 
