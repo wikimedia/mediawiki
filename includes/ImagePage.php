@@ -1301,9 +1301,9 @@ class ImageHistoryList extends ContextSource {
 		// Image dimensions + size
 		$row .= '<td>';
 		$row .= htmlspecialchars( $file->getDimensionsString() );
-		$row .= $this->msg( 'word-separator' )->plain();
+		$row .= $this->msg( 'word-separator' )->escaped();
 		$row .= '<span style="white-space: nowrap;">';
-		$row .= $this->msg( 'parentheses' )->sizeParams( $file->getSize() )->plain();
+		$row .= $this->msg( 'parentheses' )->sizeParams( $file->getSize() )->escaped();
 		$row .= '</span>';
 		$row .= '</td>';
 
@@ -1316,7 +1316,7 @@ class ImageHistoryList extends ContextSource {
 		} else {
 			if ( $local ) {
 				$row .= Linker::userLink( $userId, $userText );
-				$row .= $this->msg( 'word-separator' )->plain();
+				$row .= $this->msg( 'word-separator' )->escaped();
 				$row .= '<span style="white-space: nowrap;">';
 				$row .= Linker::userToolLinks( $userId, $userText );
 				$row .= '</span>';
