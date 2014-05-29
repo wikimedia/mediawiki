@@ -39,7 +39,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	private $useIndex = null;
 	private $props = array(), $propHelp = array();
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	public function __construct( $query, $moduleName ) {
 		switch ( $moduleName ) {
 			case 'alllinks':
 				$prefix = 'al';
