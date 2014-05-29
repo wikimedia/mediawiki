@@ -377,8 +377,12 @@ class TransactionProfiler {
 		if ( isset( $this->mDBTrxHoldingLocks[$name] ) ) {
 			++$this->mDBTrxHoldingLocks[$name]['refs'];
 		} else {
-			$this->mDBTrxHoldingLocks[$name] = array( 'refs' => 1, 'start' => microtime( true ) );
+			$this->mDBTrxHoldingLocks[$name] = array(
+				'refs' => 1, 'start' => microtime( true ), 'conns' => array() );
 			$this->mDBTrxMethodTimes[$name] = array();
+		}
+		foreach ( $this->mDBTrxHoldingLocks as $name => &$info ) {
+			$info['conns'][] = $name; // track all DBs in transactions for this transaction
 		}
 	}
 
@@ -424,15 +428,15 @@ class TransactionProfiler {
 		if ( --$this->mDBTrxHoldingLocks[$name]['refs'] <= 0 ) {
 			$slow = false;
 			foreach ( $this->mDBTrxMethodTimes[$name] as $info ) {
-				list( $method, $realtime ) = $info;
+				$realtime = $info[1];
 				if ( $realtime >= $this->mDBLockThreshold ) {
 					$slow = true;
 					break;
 				}
 			}
 			if ( $slow ) {
-				$dbs = implode( ', ', array_keys( $this->mDBTrxHoldingLocks ) );
-				$msg = "Sub-optimal transaction on DB(s) {$dbs}:\n";
+				$dbs = implode( ', ', $this->mDBTrxHoldingLocks[$name]['conns'] );
+				$msg = "Sub-optimal transaction on DB(s) [{$dbs}]:\n";
 				foreach ( $this->mDBTrxMethodTimes[$name] as $i => $info ) {
 					list( $method, $realtime ) = $info;
 					$msg .= sprintf( "%d\t%.6f\t%s\n", $i, $realtime, $method );
