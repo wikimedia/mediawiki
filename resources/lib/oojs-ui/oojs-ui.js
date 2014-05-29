@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (7b283a9dcc)
+ * OOjs UI v0.1.0-pre (09b223d279)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Tue May 27 2014 15:41:42 GMT-0700 (PDT)
+ * Date: Wed May 28 2014 18:37:12 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -4791,7 +4791,7 @@ OO.mixinClass( OO.ui.StackLayout, OO.ui.GroupElement );
 
 /**
  * @event set
- * @param {OO.ui.Layout|null} [item] Current item
+ * @param {OO.ui.Layout|null} item Current item or null if there is no longer a layout shown
  */
 
 /* Methods */
@@ -4799,10 +4799,27 @@ OO.mixinClass( OO.ui.StackLayout, OO.ui.GroupElement );
 /**
  * Get the current item.
  *
- * @return {OO.ui.Layout|null} [description]
+ * @return {OO.ui.Layout|null}
  */
 OO.ui.StackLayout.prototype.getCurrentItem = function () {
 	return this.currentItem;
+};
+
+/**
+ * Unset the current item.
+ *
+ * @private
+ * @param {OO.ui.StackLayout} layout
+ * @fires set
+ */
+OO.ui.StackLayout.prototype.unsetCurrentItem = function () {
+	var prevItem = this.currentItem;
+	if ( prevItem === null ) {
+		return;
+	}
+
+	this.currentItem = null;
+	this.emit( 'set', null );
 };
 
 /**
@@ -4831,13 +4848,16 @@ OO.ui.StackLayout.prototype.addItems = function ( items, index ) {
  *
  * @param {OO.ui.Layout[]} items Items to remove
  * @chainable
+ * @fires set
  */
 OO.ui.StackLayout.prototype.removeItems = function ( items ) {
 	OO.ui.GroupElement.prototype.removeItems.call( this, items );
+
 	if ( $.inArray( this.currentItem, items  ) !== -1 ) {
-		this.currentItem = null;
-		if ( !this.currentItem && this.items.length ) {
+		if ( this.items.length ) {
 			this.setItem( this.items[0] );
+		} else {
+			this.unsetCurrentItem();
 		}
 	}
 
@@ -4850,9 +4870,10 @@ OO.ui.StackLayout.prototype.removeItems = function ( items ) {
  * Items will be detached, not removed, so they can be used later.
  *
  * @chainable
+ * @fires set
  */
 OO.ui.StackLayout.prototype.clearItems = function () {
-	this.currentItem = null;
+	this.unsetCurrentItem();
 	OO.ui.GroupElement.prototype.clearItems.call( this );
 
 	return this;
@@ -4863,8 +4884,12 @@ OO.ui.StackLayout.prototype.clearItems = function () {
  *
  * Any currently shown item will be hidden.
  *
+ * FIXME: If the passed item to show has not been added in the items list, then
+ * this method drops it and unsets the current item.
+ *
  * @param {OO.ui.Layout} item Item to show
  * @chainable
+ * @fires set
  */
 OO.ui.StackLayout.prototype.setItem = function ( item ) {
 	if ( item !== this.currentItem ) {
@@ -4875,11 +4900,11 @@ OO.ui.StackLayout.prototype.setItem = function ( item ) {
 			if ( !this.continuous ) {
 				item.$element.css( 'display', 'block' );
 			}
+			this.currentItem = item;
+			this.emit( 'set', item );
 		} else {
-			item = null;
+			this.unsetCurrentItem();
 		}
-		this.currentItem = item;
-		this.emit( 'set', item );
 	}
 
 	return this;
