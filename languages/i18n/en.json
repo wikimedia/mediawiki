@@ -704,6 +704,7 @@
 	"content-model-text": "plain text",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"duplicate-args-category": "Pages with duplicated arguments",
 	"expensive-parserfunction-warning": "<strong>Warning:</strong> This page contains too many expensive parser function calls.\n\nIt should have less than $2 {{PLURAL:$2|call|calls}}, there {{PLURAL:$1|is now $1 call|are now $1 calls}}.",
 	"expensive-parserfunction-category": "Pages with too many expensive parser function calls",
 	"post-expand-template-inclusion-warning": "<strong>Warning:</strong> Template include size is too large.\nSome templates will not be included.",
