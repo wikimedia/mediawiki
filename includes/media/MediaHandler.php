@@ -812,4 +812,13 @@ abstract class MediaHandler {
 	public function getLength( $file ) {
 		return 0.0;
 	}
+
+	/**
+	 * True if creating thumbnails from the file is large or otherwise resource-intensive.
+	 * @param File $file
+	 * @return bool
+	 */
+	public function isExpensiveToThumbnail( $file ) {
+		return false;
+	}
 }

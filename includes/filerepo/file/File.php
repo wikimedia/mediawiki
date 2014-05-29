@@ -2018,4 +2018,13 @@ abstract class File {
 			throw new MWException( "A Title object is not set for this File.\n" );
 		}
 	}
+
+	/**
+	 * True if creating thumbnails from the file is large or otherwise resource-intensive.
+	 * @return bool
+	 */
+	public function isExpensiveToThumbnail() {
+		$handler = $this->getHandler();
+		return $handler ? $handler->isExpensiveToThumbnail( $this ) : false;
+	}
 }
