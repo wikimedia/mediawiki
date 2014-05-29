@@ -246,13 +246,13 @@ class InfoAction extends FormlessAction {
 			$pageInfo['header-basic'][] = array(
 				$this->msg( 'pageinfo-redirectsto' ),
 				Linker::link( $this->page->getRedirectTarget() ) .
-				$this->msg( 'word-separator' )->text() .
-				$this->msg( 'parentheses', Linker::link(
+				$this->msg( 'word-separator' )->escaped() .
+				$this->msg( 'parentheses' )->rawParams( Linker::link(
 					$this->page->getRedirectTarget(),
 					$this->msg( 'pageinfo-redirectsto-info' )->escaped(),
 					array(),
 					array( 'action' => 'info' )
-				) )->text()
+				) )->escaped()
 			);
 		}
 
