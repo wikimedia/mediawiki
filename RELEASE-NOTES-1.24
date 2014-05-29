@@ -47,6 +47,8 @@ production.
   to HTTPS redirect due to forceHTTPS cookie, userRequires, etc.  This is only for page views,
   since this hook doesn't affect UserLogin, OAuth, CentralAuth, etc.
   ATTENTION: This hook is likely to be removed soon due to overall design of the system.
+* {{!}} is now a magic word that produces the | character. This removes the need
+  for Template:! for purposes such as passing pipes inside of parameters.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
