@@ -38,7 +38,7 @@ class ApiQueryContributors extends ApiQueryBase {
 	 */
 	const MAX_PAGES = 100;
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	public function __construct( $query, $moduleName ) {
 		// "pc" is short for "page contributors", "co" was already taken by the
 		// GeoData extension's prop=coordinates.
 		parent::__construct( $query, $moduleName, 'pc' );

@@ -125,7 +125,7 @@ class ApiQuery extends ApiBase {
 	 * @param ApiMain $main
 	 * @param string $action
 	 */
-	public function __construct( ApiMain $main, $action ) {
+	public function __construct( $main, $action ) {
 		parent::__construct( $main, $action );
 
 		$this->mModuleMgr = new ApiModuleManager( $this );
