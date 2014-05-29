@@ -92,6 +92,8 @@ production.
 * Browser tests are now included to verify basic wiki functionality in developer
   environments. For details on running tests, see tests/browser/README.mediawiki.
 * Upgrade jStorage to v0.4.10.
+* {{!}} is now a magic word that produces the | character. This removes the need
+  for Template:! for purposes such as passing pipes inside of parameters.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
