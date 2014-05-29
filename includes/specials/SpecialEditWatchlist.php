@@ -760,7 +760,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		return Html::rawElement(
 			'span',
 			array( 'class' => 'mw-watchlist-toollinks' ),
-			wfMessage( 'parentheses', $wgLang->pipeList( $tools ) )->text()
+			wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $tools ) )->escaped()
 		);
 	}
 }
