@@ -896,6 +896,8 @@ class PPFrame_Hash implements PPFrame {
 	 */
 	var $parser;
 
+	private $cacheBetweenFrames = true;
+
 	/**
 	 * @var Preprocessor
 	 */
@@ -920,6 +922,11 @@ class PPFrame_Hash implements PPFrame {
 	var $depth;
 
 	/**
+	 * @var array
+	 */
+	protected $childExpansionCache;
+
+	/**
 	 * Construct a new preprocessor frame.
 	 * @param Preprocessor $preprocessor The parent preprocessor
 	 */
@@ -930,6 +937,7 @@ class PPFrame_Hash implements PPFrame {
 		$this->titleCache = array( $this->title ? $this->title->getPrefixedDBkey() : false );
 		$this->loopCheckHash = array();
 		$this->depth = 0;
+		$this->childExpansionCache = array();
 	}
 
 	/**
@@ -970,6 +978,18 @@ class PPFrame_Hash implements PPFrame {
 			}
 		}
 		return new PPTemplateFrame_Hash( $this->preprocessor, $this, $numberedArgs, $namedArgs, $title );
+	}
+
+	/**
+	 * @throws MWException
+	 * @param string|int $key
+	 * @param string|PPNode_Hash|DOMDocument $root
+	 * @param int $flags
+	 * @return string
+	 */
+	function cachedExpand( $key, $root, $flags = 0 ) {
+		// we don't have a parent, so we don't have a cache
+		return $this->expand( $root, $flags );
 	}
 
 	/**
@@ -1372,6 +1392,22 @@ class PPFrame_Hash implements PPFrame {
 	function getTitle() {
 		return $this->title;
 	}
+
+	/**
+	 * Prevent sharing cache outside of the parent frame
+	 */
+	function disableCacheBetweenFrames( $levels ) {
+		$this->cacheBetweenFrames = false;
+	}
+
+	/**
+	 * See if cache can be shared outside of the parent frame
+	 *
+	 * @return bool
+	 */
+	function canCacheBetweenFrames() {
+		return $this->cacheBetweenFrames;
+	}
 }
 
 /**
@@ -1424,6 +1460,20 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		}
 		$s .= '}';
 		return $s;
+	}
+
+	/**
+	 * @throws MWException
+	 * @param string|int $key
+	 * @param string|PPNode_Hash|DOMDocument $root
+	 * @param int $flags
+	 * @return string
+	 */
+	function cachedExpand( $key, $root, $flags = 0 ) {
+		if ( !isset( $this->parent->childExpansionCache[$key] ) ) {
+			$this->parent->childExpansionCache[$key] = $this->expand( $root, $flags );
+		}
+		return $this->parent->childExpansionCache[$key];
 	}
 
 	/**
@@ -1523,6 +1573,13 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	 */
 	function isTemplate() {
 		return true;
+	}
+
+	function disableCacheBetweenFrames( $levels ) {
+		parent::disableCacheBetweenFrames( $levels );
+		if ( $levels !== 0 ) {
+			$this->parent->disableCacheBetweenFrames( $levels - 1 );
+		}
 	}
 }
 

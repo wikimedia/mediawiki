@@ -95,6 +95,11 @@ interface PPFrame {
 	function newChild( $args = false, $title = false, $indexOffset = 0 );
 
 	/**
+	 * Expand a document tree node, caching the result on its parent with the given key
+	 */
+	function cachedExpand( $key, $root, $flags = 0 );
+
+	/**
 	 * Expand a document tree node
 	 */
 	function expand( $root, $flags = 0 );
@@ -159,6 +164,25 @@ interface PPFrame {
 	 * Return true if the frame is a template frame
 	 */
 	function isTemplate();
+
+	/**
+	 * Determine whether cached output from this frame can be reused outside
+	 * of its parent frame.
+	 *
+	 * @return bool
+	 */
+	function canCacheBetweenFrames();
+
+	/**
+	 * Request that cached output from this frame not be reused outside of
+	 * its parent frame. This must be called if this frame accesses any of
+	 * its ancestor frames.
+	 *
+	 * @param int $levels The number of parent frames that this affects.
+	 * Zero causes only this frame to be affected, and negative values cause
+	 * all of the frame's ancestors to be affected.
+	 */
+	function disableCacheBetweenFrames( $levels );
 
 	/**
 	 * Get a title of frame
