@@ -6,7 +6,7 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 	 */
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgLocalInterwiki,
-			$wgCanonicalServer, $wgScript;
+			$wgCanonicalServer, $wgScript, $wgDBname;
 		$attribs = $rc->getAttributes();
 		if ( $attribs['rc_type'] == RC_LOG ) {
 			// Don't use SpecialPage::getTitleFor, backwards compatibility with
@@ -78,7 +78,7 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 
 		# see http://www.irssi.org/documentation/formats for some colour codes. prefix is \003,
 		# no colour (\003) switches back to the term default
-		$fullString = "$titleString\0034 $flag\00310 " .
+		$fullString = "$wgDBname \0035*\003 $titleString\0034 $flag\00310 " .
 			"\00302$url\003 \0035*\003 \00303$user\003 \0035*\003 $szdiff \00310$comment\003\n";
 
 		return $fullString;
