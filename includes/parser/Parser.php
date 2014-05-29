@@ -3565,8 +3565,10 @@ class Parser {
 				if ( isset( $this->mTplExpandCache[$titleText] ) ) {
 					$text = $this->mTplExpandCache[$titleText];
 				} else {
-					$text = $newFrame->expand( $text );
-					$this->mTplExpandCache[$titleText] = $text;
+					$text = $newFrame->cachedExpand( $titleText, $text );
+					if ( $newFrame->canCacheBetweenFrames() ) {
+						$this->mTplExpandCache[$titleText] = $text;
+					}
 				}
 			} else {
 				# Uncached expansion

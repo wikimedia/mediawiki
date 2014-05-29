@@ -955,6 +955,8 @@ class PPDPart {
  */
 class PPFrame_DOM implements PPFrame {
 
+	private $cacheBetweenFrames = true;
+
 	/**
 	 * @var Preprocessor
 	 */
@@ -984,6 +986,11 @@ class PPFrame_DOM implements PPFrame {
 	var $depth;
 
 	/**
+	 * @var array
+	 */
+	protected $childExpansionCache;
+
+	/**
 	 * Construct a new preprocessor frame.
 	 * @param Preprocessor $preprocessor The parent preprocessor
 	 */
@@ -994,6 +1001,7 @@ class PPFrame_DOM implements PPFrame {
 		$this->titleCache = array( $this->title ? $this->title->getPrefixedDBkey() : false );
 		$this->loopCheckHash = array();
 		$this->depth = 0;
+		$this->childExpansionCache = array();
 	}
 
 	/**
@@ -1041,6 +1049,18 @@ class PPFrame_DOM implements PPFrame {
 			}
 		}
 		return new PPTemplateFrame_DOM( $this->preprocessor, $this, $numberedArgs, $namedArgs, $title );
+	}
+
+	/**
+	 * @throws MWException
+	 * @param string|int $key
+	 * @param string|PPNode_DOM|DOMDocument $root
+	 * @param int $flags
+	 * @return string
+	 */
+	function cachedExpand( $key, $root, $flags = 0 ) {
+		// we don't have a parent, so we don't have a cache
+		return $this->expand( $root, $flags );
 	}
 
 	/**
@@ -1467,6 +1487,22 @@ class PPFrame_DOM implements PPFrame {
 	function getTitle() {
 		return $this->title;
 	}
+
+	/**
+	 * Prevent sharing cache outside of the parent frame
+	 */
+	function disableCacheBetweenFrames() {
+		$this->cacheBetweenFrames = false;
+	}
+
+	/**
+	 * See if cache can be shared outside of the parent frame
+	 *
+	 * @return bool
+	 */
+	function canCacheBetweenFrames() {
+		return $this->cacheBetweenFrames;
+	}
 }
 
 /**
@@ -1524,6 +1560,20 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 		}
 		$s .= '}';
 		return $s;
+	}
+
+	/**
+	 * @throws MWException
+	 * @param string|int $key
+	 * @param string|PPNode_DOM|DOMDocument $root
+	 * @param int $flags
+	 * @return string
+	 */
+	function cachedExpand( $key, $root, $flags = 0 ) {
+		if ( !isset( $this->parent->childExpansionCache[$key] ) ) {
+			$this->parent->childExpansionCache[$key] = $this->expand( $root, $flags );
+		}
+		return $this->parent->childExpansionCache[$key];
 	}
 
 	/**
@@ -1602,6 +1652,11 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	 */
 	function isTemplate() {
 		return true;
+	}
+
+	function disableCacheBetweenFrames() {
+		parent::disableCacheBetweenFrames();
+		$this->parent->disableCacheBetweenFrames();
 	}
 }
 
