@@ -64,6 +64,16 @@ abstract class Skin extends ContextSource {
 
 					if ( preg_match( '/^([^.]*)\.php$/', $file, $matches ) ) {
 						$aSkin = $matches[1];
+
+						// We're still loading core skins via the autodiscovery mechanism... :(
+						if ( !in_array( $aSkin, array( 'CologneBlue', 'Modern', 'MonoBook', 'Vector' ) ) ) {
+							wfLogWarning(
+								"A skin using autodiscovery mechanism, $aSkin, was found in your skins/ directory. " .
+								"The mechanism will be removed in MediaWiki 1.25 and the skin will no longer be recognized. " .
+								"See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery for information how to fix this."
+							);
+						}
+
 						$wgValidSkinNames[strtolower( $aSkin )] = $aSkin;
 					}
 				}

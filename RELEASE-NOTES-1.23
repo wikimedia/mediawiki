@@ -359,6 +359,9 @@ changes to languages because of Bugzilla reports.
   to use different names to or re-bind them at the top of each
   ResourceLoader-loaded module.
 * (bug 52342) Preference "Remember my login" was removed.
+* The skin autodiscovery mechanism has been deprecated and will be removed in
+  MediaWiki 1.25. See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery
+  for migration guide for creators and users of custom skins that relied on it.
 
 ==== Removed classes ====
 * FakeMemCachedClient (deprecated in 1.18)
