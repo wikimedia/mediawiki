@@ -968,11 +968,17 @@ class PPFrame_Hash implements PPFrame {
 				if ( $bits['index'] !== '' ) {
 					// Numbered parameter
 					$index = $bits['index'] - $indexOffset;
+					if ( isset( $namedArgs[$index] ) || isset( $numberedArgs[$index] ) ) {
+						$this->parser->addTrackingCategory( 'duplicate-args-category' );
+					}
 					$numberedArgs[$index] = $bits['value'];
 					unset( $namedArgs[$index] );
 				} else {
 					// Named parameter
 					$name = trim( $this->expand( $bits['name'], PPFrame::STRIP_COMMENTS ) );
+					if ( isset( $namedArgs[$name] ) || isset( $numberedArgs[$name] ) ) {
+						$this->parser->addTrackingCategory( 'duplicate-args-category' );
+					}
 					$namedArgs[$name] = $bits['value'];
 					unset( $numberedArgs[$name] );
 				}
