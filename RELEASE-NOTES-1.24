@@ -73,6 +73,8 @@ production.
   Special:Log, but more are to come.
 * Special:MostLinkedTemplates is no longer limited to transclusions from the
   Template namespace.
+* {{!}} is now a magic word that produces the | character. This removes the need
+  for Template:! for purposes such as passing pipes inside of parameters.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
