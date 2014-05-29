@@ -1601,7 +1601,7 @@ class Article implements Page {
 			// @todo FIXME: i18n issue/patchwork message
 			$this->getContext()->getOutput()->addHTML( '<strong class="mw-delete-warning-revisions">' .
 				wfMessage( 'historywarning' )->numParams( $revisions )->parse() .
-				wfMessage( 'word-separator' )->plain() . Linker::linkKnown( $title,
+				wfMessage( 'word-separator' )->escaped() . Linker::linkKnown( $title,
 					wfMessage( 'history' )->escaped(),
 					array( 'rel' => 'archives' ),
 					array( 'action' => 'history' ) ) .
