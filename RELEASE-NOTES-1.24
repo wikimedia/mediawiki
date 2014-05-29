@@ -59,6 +59,8 @@ production.
   than in a dedicated pane in the preferences panel.
 * (bug 44591) The dropdown actions menu (little triangle next to page tabs) in
   the Vector skin has gained a label that should make it more discoverable.
+* {{!}} is now a magic word that produces the | character. This removes the need
+  for Template:! for purposes such as passing pipes inside of parameters.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
