@@ -69,6 +69,18 @@ class ApiExpandTemplates extends ApiBase {
 			$result->addValue( null, 'parsetree', $xml_result );
 		}
 		$retval = $wgParser->preprocess( $params['text'], $title_obj, $options );
+		$categories = $wgParser->getOutput()->getCategories();
+		if ( !empty( $categories ) ) {
+			$categories_result = array();
+			foreach ( $categories as $category => $sortkey ) {
+				$entry = array();
+				$entry['sortkey'] = $sortkey;
+				ApiResult::setContent( $entry, $category );
+				$categories_result[] = $entry;
+			}
+			$result->setIndexedTagName( $categories_result, 'category' );
+			$result->addValue( null, 'categories', $categories_result );
+		}
 
 		// Return result
 		$retval_array = array();
