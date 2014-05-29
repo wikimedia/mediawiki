@@ -530,7 +530,7 @@
 	"nocookieslogin": "{{SITENAME}} utiliza <em>cookies</em> para la autenticación de usuarios. Las <em>cookies</em> están desactivadas en tu navegador. Por favor, actívalas e inténtalo de nuevo.",
 	"nocookiesfornew": "No se pudo crear la cuenta de usuario, porque no pudimos confirmar su origen.\nAsegúrate de que tienes las cookies activadas, luego recarga esta página e inténtalo de nuevo.",
 	"noname": "No se ha especificado un nombre de usuario válido.",
-	"loginsuccesstitle": "Has accedido correctamente",
+	"loginsuccesstitle": "Ya iniciaste sesión",
 	"loginsuccess": "'''Has iniciado sesión en {{SITENAME}} como «$1».'''",
 	"nosuchuser": "No existe ningún usuario llamado «$1».\nLos nombres de usuario son sensibles a las mayúsculas.\nRevisa la ortografía, o [[Special:UserLogin/signup|crea una cuenta nueva]].",
 	"nosuchusershort": "No hay un usuario con el nombre «$1». Comprueba que lo has escrito correctamente.",
