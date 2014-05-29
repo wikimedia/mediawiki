@@ -837,7 +837,7 @@ __INDEXATTR__;
 
 				foreach ( $join_conds as $table_cond => $join_cond ) {
 					if ( 0 === preg_match( '/^(?:LEFT|RIGHT|FULL)(?: OUTER)? JOIN$/i', $join_cond[0] ) ) {
-						$options['FOR UPDATE'][] = $table_cond;
+						$options['FOR UPDATE'][] = $this->tableName($table_cond);
 					}
 				}
 			}
