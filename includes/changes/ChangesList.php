@@ -230,7 +230,7 @@ class ChangesList extends ContextSource {
 
 		return Html::element( $tag,
 			array( 'dir' => 'ltr', 'class' => $formattedSizeClass, 'title' => $formattedTotalSize ),
-			$context->msg( 'parentheses', $formattedSize )->plain() ) . $lang->getDirMark();
+			$context->msg( 'parentheses', $formattedSize )->escaped() ) . $lang->getDirMark();
 	}
 
 	/**

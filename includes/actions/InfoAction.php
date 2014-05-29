@@ -246,13 +246,13 @@ class InfoAction extends FormlessAction {
 			$pageInfo['header-basic'][] = array(
 				$this->msg( 'pageinfo-redirectsto' ),
 				Linker::link( $this->page->getRedirectTarget() ) .
-				$this->msg( 'word-separator' )->text() .
+				$this->msg( 'word-separator' )->escaped() .
 				$this->msg( 'parentheses', Linker::link(
 					$this->page->getRedirectTarget(),
 					$this->msg( 'pageinfo-redirectsto-info' )->escaped(),
 					array(),
 					array( 'action' => 'info' )
-				) )->text()
+				) )->escaped()
 			);
 		}
 
@@ -277,7 +277,7 @@ class InfoAction extends FormlessAction {
 		$pageLang = $title->getPageLanguage()->getCode();
 		$pageInfo['header-basic'][] = array( $this->msg( 'pageinfo-language' ),
 			Language::fetchLanguageName( $pageLang, $lang->getCode() )
-			. ' ' . $this->msg( 'parentheses', $pageLang ) );
+			. ' ' . $this->msg( 'parentheses', $pageLang )->escaped() );
 
 		// Content model of the page
 		$pageInfo['header-basic'][] = array(
