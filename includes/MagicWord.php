@@ -96,6 +96,7 @@ class MagicWord {
 
 	static public $mVariableIDsInitialised = false;
 	static public $mVariableIDs = array(
+		'!',
 		'currentmonth',
 		'currentmonth1',
 		'currentmonthname',

@@ -88,12 +88,6 @@ Template:tbl-end
 !! endarticle
 
 !! article
-Template:!
-!! text
-|
-!! endarticle
-
-!! article
 Template:echo
 !! text
 {{{1}}}
