@@ -3618,6 +3618,7 @@ $wgNamespacesWithSubpages = array(
 $wgTrackingCategories = array(
 	'index-category',
 	'noindex-category',
+	'duplicate-args-category',
 	'expensive-parserfunction-category',
 	'post-expand-template-argument-category',
 	'post-expand-template-inclusion-category',
