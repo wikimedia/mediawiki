@@ -331,10 +331,10 @@ class Preferences {
 			'section' => 'personal/i18n',
 			'options' => array(
 				$context->msg( 'parentheses',
-					$context->msg( 'gender-unknown' )->text()
-				)->text() => 'unknown',
-				$context->msg( 'gender-female' )->text() => 'female',
-				$context->msg( 'gender-male' )->text() => 'male',
+					$context->msg( 'gender-unknown' )->escaped()
+				)->escaped() => 'unknown',
+				$context->msg( 'gender-female' )->escaped() => 'female',
+				$context->msg( 'gender-male' )->escaped() => 'male',
 			),
 			'label-message' => 'yourgender',
 			'help-message' => 'prefs-help-gender',
@@ -442,8 +442,8 @@ class Preferences {
 						array( 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ) );
 
 					$emailAddress .= $emailAddress == '' ? $link : (
-						$context->msg( 'word-separator' )->plain()
-						. $context->msg( 'parentheses' )->rawParams( $link )->plain()
+						$context->msg( 'word-separator' )->escaped()
+						. $context->msg( 'parentheses' )->rawParams( $link )->escaped()
 					);
 				}
 
