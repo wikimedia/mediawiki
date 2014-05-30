@@ -663,7 +663,7 @@ class ParserOptions {
 	 * Generate a hash string with the values set on these ParserOptions
 	 * for the keys given in the array.
 	 * This will be used as part of the hash key for the parser cache,
-	 * so users sharign the options with vary for the same page share
+	 * so users sharing the options with vary for the same page share
 	 * the same cached data safely.
 	 *
 	 * Extensions which require it should install 'PageRenderingHash' hook,
