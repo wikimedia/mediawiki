@@ -233,6 +233,12 @@ class SpecialBlock extends FormSpecialPage {
 		# This will be overwritten by request data
 		$fields['Target']['default'] = (string)$this->target;
 
+		$status = self::validateTarget( $this->target, $this->getUser() );
+		if ( !$status->isOK() ) {
+			$errors = $status->getErrorsArray();
+			$this->preErrors = array_merge( $this->preErrors, $errors );
+		}
+
 		# This won't be
 		$fields['PreviousTarget']['default'] = (string)$this->target;
 
