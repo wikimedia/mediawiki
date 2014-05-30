@@ -47,6 +47,18 @@ class LocalRepo extends FileRepo {
 	/** @var array */
 	protected $oldFileFactoryKey = array( 'OldLocalFile', 'newFromKey' );
 
+	function __construct( array $info = null ) {
+		parent::__construct( $info );
+
+		if ( isset( $info['storageLayout'] ) && $info['storageLayout'] === 'sha1' ) {
+			$this->backend = new FileBackendDBRepoWrapper( array(
+				'backend'         => $this->backend,
+				'repoName'        => $this->name,
+				'dbHandleFactory' => $this->getDBFactory()
+			) );
+		}
+	}
+
 	/**
 	 * @throws MWException
 	 * @param array $row
@@ -71,6 +83,10 @@ class LocalRepo extends FileRepo {
 		return OldLocalFile::newFromArchiveName( $title, $this, $archiveName );
 	}
 
+	public function storagePathLayout() {
+		return ( $this->backend instanceof FileBackendDBRepoWrapper ) ? 'sha1' : 'name';
+	}
+
 	/**
 	 * Delete files in the deleted directory if they are not referenced in the
 	 * filearchive table. This needs to be done in the repo because it needs to
@@ -82,6 +98,10 @@ class LocalRepo extends FileRepo {
 	 * @return FileRepoStatus
 	 */
 	function cleanupDeletedBatch( array $storageKeys ) {
+		if ( $this->storagePathLayout() !== 'name' ) {
+			throw new MWException( __METHOD__ . ' disabled; files stored under immutable paths.' );
+		}
+
 		$backend = $this->backend; // convenience
 		$root = $this->getZonePath( 'deleted' );
 		$dbw = $this->getMasterDB();
@@ -467,6 +487,16 @@ class LocalRepo extends FileRepo {
 	 */
 	function getMasterDB() {
 		return wfGetDB( DB_MASTER );
+	}
+
+	/**
+	 * Get a callback to get a DB handle given an index (DB_SLAVE/DB_MASTER)
+	 * @return Closure
+	 */
+	protected function getDBFactory() {
+		return function( $index ) {
+			return wfGetDB( $index );
+		};
 	}
 
 	/**
