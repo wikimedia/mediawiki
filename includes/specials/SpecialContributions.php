@@ -270,30 +270,32 @@ class SpecialContributions extends IncludableSpecialPage {
 			// Show a note if the user is blocked and display the last block log entry.
 			// Do not expose the autoblocks, since that may lead to a leak of accounts' IPs,
 			// and also this will display a totally irrelevant log entry as a current block.
-			$block = Block::newFromTarget( $userObj, $userObj );
-			if ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) {
-				if ( $block->getType() == Block::TYPE_RANGE ) {
-					$nt = MWNamespace::getCanonicalName( NS_USER ) . ':' . $block->getTarget();
-				}
+			if ( !$this->including() ) {
+				$block = Block::newFromTarget( $userObj, $userObj );
+				if ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) {
+					if ( $block->getType() == Block::TYPE_RANGE ) {
+						$nt = MWNamespace::getCanonicalName( NS_USER ) . ':' . $block->getTarget();
+					}
 
-				$out = $this->getOutput(); // showLogExtract() wants first parameter by reference
-				LogEventsList::showLogExtract(
-					$out,
-					'block',
-					$nt,
-					'',
-					array(
-						'lim' => 1,
-						'showIfEmpty' => false,
-						'msgKey' => array(
-							$userObj->isAnon() ?
-								'sp-contributions-blocked-notice-anon' :
-								'sp-contributions-blocked-notice',
-							$userObj->getName() # Support GENDER in 'sp-contributions-blocked-notice'
-						),
-						'offset' => '' # don't use WebRequest parameter offset
-					)
-				);
+					$out = $this->getOutput(); // showLogExtract() wants first parameter by reference
+					LogEventsList::showLogExtract(
+						$out,
+						'block',
+						$nt,
+						'',
+						array(
+							'lim' => 1,
+							'showIfEmpty' => false,
+							'msgKey' => array(
+								$userObj->isAnon() ?
+									'sp-contributions-blocked-notice-anon' :
+									'sp-contributions-blocked-notice',
+								$userObj->getName() # Support GENDER in 'sp-contributions-blocked-notice'
+							),
+							'offset' => '' # don't use WebRequest parameter offset
+						)
+					);
+				}
 			}
 		}
 
