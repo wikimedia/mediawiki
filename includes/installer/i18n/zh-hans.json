@@ -18,7 +18,8 @@
 			"Liuxinyu970226",
 			"Qiyue2001",
 			"Kuailong",
-			"Zjzengdongyang"
+			"Zjzengdongyang",
+			"Mywood"
 		]
 	},
 	"config-desc": "MediaWiki安装程序",
@@ -271,7 +272,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons 即时共享资源]可以让wiki使用来自[//commons.wikimedia.org/ 维基共享资源]网站的图像、音频和其他媒体文件。要启用该功能，MediaWiki必须能够访问互联网。\n\n有关此功能的详细信息，包括如何将其他wiki网站设为具有类似共享功能的方法，请参考[//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos 手册]。",
 	"config-cc-error": "知识共享许可证挑选器无法找到结果，请手动输入许可证的名称。",
 	"config-cc-again": "重新挑选……",
-	"config-cc-not-chosen": "选择您希望使用的知识共享许可证，并点击“继续”。",
+	"config-cc-not-chosen": "选择你想要的知识共享许可协议并单击“proceed”。",
 	"config-advanced-settings": "高级设置",
 	"config-cache-options": "对象缓存设置：",
 	"config-cache-help": "对象缓存可通过缓存频繁使用的数据来提高MediaWiki的速度。高度推荐中到大型的网站启用该功能，小型网站亦能从其中受益。",
