@@ -521,7 +521,6 @@ class DatabasePostgres extends DatabaseBase {
 	}
 
 	function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
-		/* Transaction stays in the ERROR state until rolledback */
 		if ( $tempIgnore ) {
 			/* Check for constraint violation */
 			if ( $errno === '23505' ) {
@@ -530,8 +529,10 @@ class DatabasePostgres extends DatabaseBase {
 				return;
 			}
 		}
-		/* Don't ignore serious errors */
-		$this->rollback( __METHOD__ );
+		/* Transaction stays in the ERROR state until rolledback */
+		if ( $this->mTrxLevel ) {
+			$this->rollback( __METHOD__ );
+		};
 		parent::reportQueryError( $error, $errno, $sql, $fname, false );
 	}
 
