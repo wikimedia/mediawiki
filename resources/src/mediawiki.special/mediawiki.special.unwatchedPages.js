@@ -7,7 +7,7 @@
 			var promise,
 				api = new mw.Api(),
 				$link = $( this ),
-				$subjectLink = $link.parents( 'li' ).children( 'a' ).eq( 0 ),
+				$subjectLink = $link.closest( 'li' ).children( 'a' ).eq( 0 ),
 				title = mw.util.getParamValue( 'title', $link.attr( 'href' ) );
 			// nice format
 			title = mw.Title.newFromText( title ).toText();
