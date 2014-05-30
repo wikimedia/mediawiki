@@ -29,6 +29,9 @@
  * @ingroup FileRepo
  */
 class LocalRepo extends FileRepo {
+	/** @var bool */
+	public $isSha1Storage = false;
+
 	/** @var array */
 	protected $fileFactory = array( 'LocalFile', 'newFromTitle' );
 
@@ -46,6 +49,20 @@ class LocalRepo extends FileRepo {
 
 	/** @var array */
 	protected $oldFileFactoryKey = array( 'OldLocalFile', 'newFromKey' );
+
+	function __construct( array $info = null ) {
+		parent::__construct( $info );
+
+		$this->isSha1Storage = isset( $info['storageLayout'] ) && $info['storageLayout'] === 'sha1';
+
+		if ( $this->isSha1Storage ) {
+			$this->backend = new FileBackendDBRepoWrapper( array(
+				'backend'         => $this->backend,
+				'repoName'        => $this->name,
+				'dbHandleFactory' => $this->getDBFactory()
+			) );
+		}
+	}
 
 	/**
 	 * @throws MWException
@@ -82,6 +99,11 @@ class LocalRepo extends FileRepo {
 	 * @return FileRepoStatus
 	 */
 	function cleanupDeletedBatch( array $storageKeys ) {
+		if ( $this->isSha1Storage ) {
+			wfDebug( __METHOD__ . ": skipped because storage uses sha1 paths\n" );
+			return Status::newGood();
+		}
+
 		$backend = $this->backend; // convenience
 		$root = $this->getZonePath( 'deleted' );
 		$dbw = $this->getMasterDB();
@@ -470,6 +492,16 @@ class LocalRepo extends FileRepo {
 	}
 
 	/**
+	 * Get a callback to get a DB handle given an index (DB_SLAVE/DB_MASTER)
+	 * @return Closure
+	 */
+	protected function getDBFactory() {
+		return function( $index ) {
+			return wfGetDB( $index );
+		};
+	}
+
+	/**
 	 * Get a key on the primary cache for this repository.
 	 * Returns false if the repository's cache is not accessible at this site.
 	 * The parameters are the parts of the key, as for wfMemcKey().
@@ -512,5 +544,57 @@ class LocalRepo extends FileRepo {
 		return array_merge( parent::getInfo(), array(
 			'favicon' => wfExpandUrl( $wgFavicon ),
 		) );
+	}
+
+	public function store( $srcPath, $dstZone, $dstRel, $flags = 0 ) {
+		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
+	}
+
+	public function storeBatch( array $triplets, $flags = 0 ) {
+		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
+	}
+
+	public function cleanupBatch( array $files, $flags = 0 ) {
+		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
+	}
+
+	public function publish(
+		$srcPath,
+		$dstRel,
+		$archiveRel,
+		$flags = 0,
+		array $options = array()
+	) {
+		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
+	}
+
+	public function publishBatch( array $ntuples, $flags = 0 ) {
+		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
+	}
+
+	public function delete( $srcRel, $archiveRel ) {
+		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
+	}
+
+	public function deleteBatch( array $sourceDestPairs ) {
+		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
+	}
+
+	/**
+	 * Skips the write operation if storage is sha1-based, executes it normally otherwise
+	 *
+	 * @param string $function
+	 * @param array $args
+	 * @return FileRepoStatus
+	 */
+	protected function skipWriteOperationIfSha1( $function, array $args ) {
+		$this->assertWritableRepo(); // fail out if read-only
+
+		if ( $this->isSha1Storage ) {
+			wfDebug( __METHOD__ . ": skipped because storage uses sha1 paths\n" );
+			return Status::newGood();
+		} else {
+			return call_user_func_array('parent::' . $function, $args );
+		}
 	}
 }

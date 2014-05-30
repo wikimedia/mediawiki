@@ -49,6 +49,9 @@ class FileRepo {
 	/** @var int */
 	public $descriptionCacheExpiry;
 
+	/** @var bool */
+	public $isSha1Storage = false;
+
 	/** @var FileBackend */
 	protected $backend;
 

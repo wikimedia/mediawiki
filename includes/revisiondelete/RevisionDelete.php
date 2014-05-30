@@ -31,7 +31,7 @@
  * See RevDelRevisionItem and RevDelArchivedRevisionItem for items.
  */
 class RevDelRevisionList extends RevDelList {
-	var $currentRevId;
+	protected $currentRevId;
 
 	public function getType() {
 		return 'revision';
@@ -147,7 +147,7 @@ class RevDelRevisionList extends RevDelList {
  * Item class for a live revision table row
  */
 class RevDelRevisionItem extends RevDelItem {
-	var $revision;
+	protected $revision;
 
 	public function __construct( $list, $row ) {
 		parent::__construct( $list, $row );
@@ -470,6 +470,10 @@ class RevDelArchivedRevisionItem extends RevDelArchiveItem {
  * List for oldimage table items
  */
 class RevDelFileList extends RevDelList {
+	protected $storeBatch;
+	protected $deleteBatch;
+	protected $cleanupBatch;
+
 	public function getType() {
 		return 'oldimage';
 	}
@@ -485,8 +489,6 @@ class RevDelFileList extends RevDelList {
 	public static function getRevdelConstant() {
 		return File::DELETED_FILE;
 	}
-
-	var $storeBatch, $deleteBatch, $cleanupBatch;
 
 	/**
 	 * @param DatabaseBase $db
@@ -522,19 +524,20 @@ class RevDelFileList extends RevDelList {
 	public function doPreCommitUpdates() {
 		$status = Status::newGood();
 		$repo = RepoGroup::singleton()->getLocalRepo();
+
 		if ( $this->storeBatch ) {
 			$status->merge( $repo->storeBatch( $this->storeBatch, FileRepo::OVERWRITE_SAME ) );
-		}
-		if ( !$status->isOK() ) {
-			return $status;
+			if ( !$status->isOK() ) {
+				return $status;
+			}
 		}
 		if ( $this->deleteBatch ) {
 			$status->merge( $repo->deleteBatch( $this->deleteBatch ) );
-		}
-		if ( !$status->isOK() ) {
-			// Running cleanupDeletedBatch() after a failed storeBatch() with the DB already
-			// modified (but destined for rollback) causes data loss
-			return $status;
+			if ( !$status->isOK() ) {
+				// Running cleanupDeletedBatch() after a failed storeBatch() with the DB already
+				// modified (but destined for rollback) causes data loss
+				return $status;
+			}
 		}
 		if ( $this->cleanupBatch ) {
 			$status->merge( $repo->cleanupDeletedBatch( $this->cleanupBatch ) );
@@ -569,11 +572,10 @@ class RevDelFileList extends RevDelList {
  * Item class for an oldimage table row
  */
 class RevDelFileItem extends RevDelItem {
-
 	/**
 	 * @var File
 	 */
-	var $file;
+	protected $file;
 
 	public function __construct( $list, $row ) {
 		parent::__construct( $list, $row );
@@ -1037,7 +1039,9 @@ class RevDelLogItem extends RevDelItem {
 		// User links and action text
 		$action = $formatter->getActionText();
 		// Comment
-		$comment = $this->list->getLanguage()->getDirMark() . Linker::commentBlock( $this->row->log_comment );
+		$comment = $this->list->getLanguage()->getDirMark()
+			. Linker::commentBlock( $this->row->log_comment );
+
 		if ( LogEventsList::isDeleted( $this->row, LogPage::DELETED_COMMENT ) ) {
 			$comment = '<span class="history-deleted">' . $comment . '</span>';
 		}
