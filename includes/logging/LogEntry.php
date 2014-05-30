@@ -504,6 +504,10 @@ class ManualLogEntry extends LogEntryBase {
 			'log_comment' => $comment,
 			'log_params' => serialize( (array)$this->getParameters() ),
 		);
+		if ( isset( $this->deleted ) ) {
+			$data['log_deleted'] = $this->deleted;
+		}
+
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$this->id = !is_null( $id ) ? $id : $dbw->insertId();
 
