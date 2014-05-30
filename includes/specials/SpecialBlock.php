@@ -233,6 +233,10 @@ class SpecialBlock extends FormSpecialPage {
 		# This will be overwritten by request data
 		$fields['Target']['default'] = (string)$this->target;
 
+		if ( $this->type == Block::TYPE_USER && $this->target->isAnon() ) {
+			$this->preErrors[] = array( 'nosuchusershort', wfEscapeWikiText( (string)$this->target ) );
+		}
+
 		# This won't be
 		$fields['PreviousTarget']['default'] = (string)$this->target;
 
