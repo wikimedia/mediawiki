@@ -44,13 +44,14 @@ class FixDoubleRedirects extends Maintenance {
 	public function execute() {
 		$async = $this->getOption( 'async', false );
 		$dryrun = $this->getOption( 'dry-run', false );
-		$title = $this->getOption( 'title' );
 
-		if ( isset( $title ) ) {
-			$title = Title::newFromText( $title );
+		if ( $this->hasOption( 'title' ) ) {
+			$title = Title::newFromText( $this->getOption( 'title' ) );
 			if ( !$title || !$title->isRedirect() ) {
 				$this->error( $title->getPrefixedText() . " is not a redirect!\n", true );
 			}
+		} else {
+			$title = null;
 		}
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -75,7 +76,7 @@ class FixDoubleRedirects extends Maintenance {
 			'pb.page_is_redirect' => 1,
 		);
 
-		if ( isset( $title ) ) {
+		if ( $title != null ) {
 			$conds['pb.page_namespace'] = $title->getNamespace();
 			$conds['pb.page_title'] = $title->getDBkey();
 		}

@@ -59,7 +59,7 @@ class DumpLinks extends Maintenance {
 		$lastPage = null;
 		foreach ( $result as $row ) {
 			if ( $lastPage != $row->page_id ) {
-				if ( isset( $lastPage ) ) {
+				if ( $lastPage !== null ) {
 					$this->output( "\n" );
 				}
 				$page = Title::makeTitle( $row->page_namespace, $row->page_title );
@@ -69,7 +69,7 @@ class DumpLinks extends Maintenance {
 			$link = Title::makeTitle( $row->pl_namespace, $row->pl_title );
 			$this->output( " " . $link->getPrefixedURL() );
 		}
-		if ( isset( $lastPage ) ) {
+		if ( $lastPage !== null ) {
 			$this->output( "\n" );
 		}
 	}
