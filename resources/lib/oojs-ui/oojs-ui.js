@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (469d40c88f)
+ * OOjs UI v0.1.0-pre (0f101c6f5d)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri May 30 2014 15:29:30 GMT-0700 (PDT)
+ * Date: Fri May 30 2014 16:23:01 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -1958,10 +1958,10 @@ OO.ui.ConfirmationDialog.prototype.initialize = function () {
 	this.$promptContainer = this.$( '<div>' ).addClass( 'oo-ui-dialog-confirm-promptContainer' );
 
 	this.cancelButton = new OO.ui.ButtonWidget();
-	this.cancelButton.connect( this, { 'click': [ 'emit', 'cancel' ] } );
+	this.cancelButton.connect( this, { 'click': [ 'emit', 'done', 'cancel' ] } );
 
 	this.okButton = new OO.ui.ButtonWidget();
-	this.okButton.connect( this, { 'click': [ 'emit', 'ok' ] } );
+	this.okButton.connect( this, { 'click': [ 'emit', 'done', 'ok' ] } );
 
 	// Make the buttons
 	contentLayout.$element.append( this.$promptContainer );
@@ -1973,8 +1973,7 @@ OO.ui.ConfirmationDialog.prototype.initialize = function () {
 	);
 
 	this.connect( this, {
-		'ok': 'close',
-		'cancel': 'close',
+		'done': 'close',
 		'close': [ 'emit', 'cancel' ]
 	} );
 };
