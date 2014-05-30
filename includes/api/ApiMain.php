@@ -99,13 +99,6 @@ class ApiMain extends ApiBase {
 		'xmlfm' => 'ApiFormatXml',
 		'yaml' => 'ApiFormatYaml',
 		'yamlfm' => 'ApiFormatYaml',
-		'rawfm' => 'ApiFormatJson',
-		'txt' => 'ApiFormatTxt',
-		'txtfm' => 'ApiFormatTxt',
-		'dbg' => 'ApiFormatDbg',
-		'dbgfm' => 'ApiFormatDbg',
-		'dump' => 'ApiFormatDump',
-		'dumpfm' => 'ApiFormatDump',
 		'none' => 'ApiFormatNone',
 	);
 
