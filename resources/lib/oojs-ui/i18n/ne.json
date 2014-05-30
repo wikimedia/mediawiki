@@ -2,12 +2,17 @@
 	"@metadata": {
 		"authors": [
 			"RajeshPandey",
-			"सरोज कुमार ढकाल"
+			"सरोज कुमार ढकाल",
+			"Ganesh Paudel"
 		]
 	},
 	"ooui-dialog-action-close": "बन्द गर्ने",
 	"ooui-outline-control-move-down": "वस्तुलाई तल सार्ने",
 	"ooui-outline-control-move-up": "वस्तुलाई माथि सार्ने",
 	"ooui-outline-control-remove": "वस्तुलाई हटाउने",
-	"ooui-toolbar-more": "थप"
+	"ooui-toolbar-more": "थप",
+	"ooui-dialog-confirm-title": "निश्चित गर्ने",
+	"ooui-dialog-confirm-default-prompt": "निश्चित हुनुहुन्छ ?",
+	"ooui-dialog-confirm-default-ok": "हुन्छ",
+	"ooui-dialog-confirm-default-cancel": "रद्द गर्ने"
 }
