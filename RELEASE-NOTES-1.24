@@ -47,6 +47,8 @@ production.
   to HTTPS redirect due to forceHTTPS cookie, userRequires, etc.  This is only for page views,
   since this hook doesn't affect UserLogin, OAuth, CentralAuth, etc.
   ATTENTION: This hook is likely to be removed soon due to overall design of the system.
+* (bug 17367) It is now possible to add pages to your watchlist from
+  Special:UnwatchedPages without reloading the special page.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
