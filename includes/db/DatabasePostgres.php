@@ -1565,7 +1565,8 @@ SQL;
 		//}
 
 		if ( isset( $options['FOR UPDATE'] ) ) {
-			$postLimitTail .= ' FOR UPDATE OF ' . implode( ', ', $options['FOR UPDATE'] );
+			$postLimitTail .= ' FOR UPDATE OF ' .
+				implode( ', ', array_map( array( &$this, 'tableName' ), $options['FOR UPDATE'] ) );
 		} elseif ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE';
 		}
