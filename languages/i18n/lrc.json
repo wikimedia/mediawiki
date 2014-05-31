@@ -683,7 +683,6 @@
 	"search-interwiki-default": "$1 نتیجه یا:",
 	"search-interwiki-more": "(بیشتر)",
 	"search-relatedarticle": "مرتوط",
-	"searcheverything-enable": "همه نوم جايا نوم ديار بگرد",
 	"searchrelated": "مرتوط",
 	"searchall": "همه",
 	"showingresultsheader": "{{PLURAL:$5|نتيجه '''$1''' د'''$3'''|نتيجه يا '''$1 - $2''' د'''$3'''}} سيli'''$4'''",
