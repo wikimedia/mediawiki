@@ -492,15 +492,12 @@ class PageArchive {
 			$previousTimestamp = 0;
 		}
 
-		if ( $restoreAll ) {
-			$oldones = '1 = 1'; # All revisions...
-		} else {
-			$oldts = implode( ',',
-				array_map( array( &$dbw, 'addQuotes' ),
-					array_map( array( &$dbw, 'timestamp' ),
-						$timestamps ) ) );
-
-			$oldones = "ar_timestamp IN ( {$oldts} )";
+		$oldWhere = array(
+			'ar_namespace' => $this->title->getNamespace(),
+			'ar_title' => $this->title->getDBkey(),
+		);
+		if ( !$restoreAll ) {
+			$oldWhere['ar_timestamp'] = array_map( array( &$dbw, 'timestamp' ), $timestamps );
 		}
 
 		$fields = array(
@@ -529,10 +526,7 @@ class PageArchive {
 		 */
 		$result = $dbw->select( 'archive',
 			$fields,
-			/* WHERE */ array(
-				'ar_namespace' => $this->title->getNamespace(),
-				'ar_title' => $this->title->getDBkey(),
-				$oldones ),
+			$oldWhere,
 			__METHOD__,
 			/* options */ array( 'ORDER BY' => 'ar_timestamp' )
 		);
@@ -618,10 +612,7 @@ class PageArchive {
 		}
 		# Now that it's safely stored, take it out of the archive
 		$dbw->delete( 'archive',
-			/* WHERE */ array(
-				'ar_namespace' => $this->title->getNamespace(),
-				'ar_title' => $this->title->getDBkey(),
-				$oldones ),
+			$oldWhere,
 			__METHOD__ );
 
 		// Was anything restored at all?
