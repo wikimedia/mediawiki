@@ -233,9 +233,6 @@
 		var a = mw.util.jsMessage( 'MediaWiki is <b>Awesome</b>.' );
 		this.restoreWarnings();
 		assert.ok( a, 'Basic checking of return value' );
-
-		// Clean up
-		$( '#mw-js-message' ).remove();
 	} );
 
 	QUnit.test( 'validateEmail', 6, function ( assert ) {
