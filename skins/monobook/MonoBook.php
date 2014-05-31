@@ -37,7 +37,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class SkinMonoBook extends SkinTemplate {
 	/** Using monobook. */
 	public $skinname = 'monobook';
-	public $stylename = 'monobook';
 	public $template = 'MonoBookTemplate';
 
 	/**
