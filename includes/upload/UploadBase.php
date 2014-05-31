@@ -1753,7 +1753,10 @@ abstract class UploadBase {
 		}
 
 		foreach ( self::getFilenamePrefixBlacklist() as $prefix ) {
-			if ( substr( $partname, 0, strlen( $prefix ) ) == $prefix ) {
+			// warn about short undescriptive digital camera filenames
+			if ( substr( $partname, 0, strlen( $prefix ) ) == $prefix
+				&& strlen( $partname ) < ( strlen( $prefix ) + 15 )
+			) {
 				return array(
 					'warning' => 'bad-prefix',
 					'file' => $file,
