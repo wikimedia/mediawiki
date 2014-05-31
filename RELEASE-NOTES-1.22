@@ -3,6 +3,33 @@
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.22.7 ==
+
+This is a security and maintenance release of the MediaWiki 1.22 branch.
+
+=== Changes since 1.22.6 ===
+
+* (bug 65501) SECURITY: Don't parse usernames as wikitext on
+  Special:PasswordReset.
+* (bug 36356) Add space between two feed links.
+* (bug 63269) Email notifications were not correctly handling the
+  [[MediaWiki:Helppage]] message being set to a full URL. This is a regression
+  from the 1.22.5 point release, which made the default value for it a URL.
+  If you customized [[MediaWiki:Enotif body]] (the text of email notifications),
+  you'll need to edit it locally to include the URL via the new variable
+  $HELPPAGE instead of the parser functions fullurl and canonicalurl; otherwise
+  you don't have to do anything.
+* Add missing uploadstash.us_props for PostgreSQL.
+* (bug 56047) Fixed stream wrapper in PhpHttpRequest.
+
+== MediaWiki 1.22.6 ==
+
+This is a security release of the MediaWiki 1.22 branch.
+
+=== Changes since 1.22.5 ===
+
+* (bug 63251) SECURITY: Escape sortKey in pageInfo.
+
 == MediaWiki 1.22.5 ==
 
 This is a security and maintenance release of the MediaWiki 1.22 branch.

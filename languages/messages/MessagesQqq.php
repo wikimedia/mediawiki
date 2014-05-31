@@ -5525,6 +5525,7 @@ Parameters:
 ***{{msg-mw|Enotif lastvisited}}
 *$PAGEEDITOR_EMAIL and $PAGEEDITOR_WIKI are links respectively to the email user special page and user page for the user who performed the action.
 *$PAGEEDITOR is the username of the user who performed the action.
+*$HELPPAGE is the full URL to the help page, defined by {{msg-mw|helppage}}.
 
 The subject of the email is one of the following messages:
 *{{msg-mw|Enotif subject deleted}}
