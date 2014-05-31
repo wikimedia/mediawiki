@@ -35,7 +35,8 @@ jQuery( function ( $ ) {
 	/**
 	 * Collapsible tabs for Vector
 	 */
-	var $cactions = $( '#p-cactions' );
+	var $cactions = $( '#p-cactions' ),
+		originalWidth = $cactions.width();
 
 	// Bind callback functions to animate our drop down menu in and out
 	// and then call the collapsibleTabs function on the menu
@@ -46,17 +47,26 @@ jQuery( function ( $ ) {
 				$cactions
 					.removeClass( 'emptyPortlet' )
 					.find( 'h3' )
-						.css( 'width', '1px' ).animate( { 'width': '24px' }, 390 );
+						.css( 'width', '1px' ).animate( { 'width': originalWidth }, 'normal' );
 			}
 		} )
 		.bind( 'beforeTabExpand', function () {
 			// If we're removing the last child node right now, hide the dropdown
 			if ( $cactions.find( 'li' ).length === 1 ) {
-				$cactions.find( 'h3' ).animate( { 'width': '1px' }, 390, function () {
+				$cactions.find( 'h3' ).animate( { 'width': '1px' }, 'normal', function () {
 					$( this ).attr( 'style', '' )
 						.parent().addClass( 'emptyPortlet' );
 				});
 			}
 		} )
-		.collapsibleTabs();
+		.collapsibleTabs( {
+			expandCondition: function ( eleWidth ) {
+				var isLastCaction = $cactions.find( 'li' ).length === 1;
+				// If there are at least eleWidth + 1 pixels of free space, expand.
+				// Account for the width of the "Actions" dropdown if the expansion would hide it.
+				// We add 1 because .width() will truncate fractional values but .offset() will not.
+				return $.collapsibleTabs.calculateTabDistance()
+					>= eleWidth + 1 - ( isLastCaction ? originalWidth : 0 );
+			}
+		} );
 } );
