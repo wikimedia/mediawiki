@@ -57,6 +57,7 @@ production.
   shouldn't be cached.
 * (bug 52817) Advanced search options are now saved on the search page itself, rather
   than in a dedicated pane in the preferences panel.
+* (bug 45731) Allow <noscript> tag in wikitext.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
