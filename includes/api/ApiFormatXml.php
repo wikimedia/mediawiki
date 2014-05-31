@@ -171,15 +171,7 @@ class ApiFormatXml extends ApiFormatBase {
 					"without _element value. Use ApiResult::setIndexedTagName()." );
 			}
 
-			if ( count( $subElements ) && count( $indElements ) && !is_null( $subElemContent ) ) {
-				ApiBase::dieDebug( __METHOD__, "($elemName, ...) has content and subelements" );
-			}
-
-			if ( !is_null( $subElemContent ) ) {
-				$retval .= $indstr . Xml::element( $elemName, $elemValue, $subElemContent );
-			} elseif ( !count( $indElements ) && !count( $subElements ) ) {
-				$retval .= $indstr . Xml::element( $elemName, $elemValue );
-			} else {
+			if ( !is_null( $subElemContent ) || count( $indElements ) || count( $subElements ) ) {
 				$retval .= $indstr . Xml::element( $elemName, $elemValue, null );
 
 				foreach ( $subElements as $subElemId => & $subElemValue ) {
@@ -190,7 +182,15 @@ class ApiFormatXml extends ApiFormatBase {
 					$retval .= self::recXmlPrint( $subElemIndName, $subElemValue, $indent );
 				}
 
-				$retval .= $indstr . Xml::closeElement( $elemName );
+				if ( !is_null( $subElemContent ) ) {
+					$retval .= htmlspecialchars( $subElemContent );
+				} else {
+					$retval .= $indstr;
+				}
+
+				$retval .= Xml::closeElement( $elemName );
+			} else {
+				$retval .= $indstr . Xml::element( $elemName, $elemValue );
 			}
 		} elseif ( !is_object( $elemValue ) ) {
 			// to make sure null value doesn't produce unclosed element,

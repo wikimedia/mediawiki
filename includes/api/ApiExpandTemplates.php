@@ -70,6 +70,10 @@ class ApiExpandTemplates extends ApiBase {
 		}
 		$frame = $wgParser->getPreprocessor()->newFrame();
 		$retval = $wgParser->preprocess( $params['text'], $title_obj, $options, null, $frame );
+
+		// Return result
+		$retval_array = array();
+		ApiResult::setContent( $retval_array, $retval );
 		$categories = $wgParser->getOutput()->getCategories();
 		if ( !empty( $categories ) ) {
 			$categories_result = array();
@@ -80,12 +84,8 @@ class ApiExpandTemplates extends ApiBase {
 				$categories_result[] = $entry;
 			}
 			$result->setIndexedTagName( $categories_result, 'category' );
-			$result->addValue( null, 'categories', $categories_result );
+			$retval_array['categories'] = $categories_result;
 		}
-
-		// Return result
-		$retval_array = array();
-		ApiResult::setContent( $retval_array, $retval );
 		if ( $frame->isVolatile() ) {
 			$retval_array['volatile'] = '';
 		}
