@@ -65,7 +65,8 @@
 			"לערי ריינהארט",
 			"Meshkov.a",
 			"아라",
-			"Eroha"
+			"Eroha",
+			"Niklem"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -906,7 +907,6 @@
 	"search-interwiki-default": "Результаты из $1:",
 	"search-interwiki-more": "(ещё)",
 	"search-relatedarticle": "Связанный",
-	"searcheverything-enable": "Поиск по всем пространствам имён",
 	"searchrelated": "связанный",
 	"searchall": "все",
 	"showingresults": "Ниже {{PLURAL:$1|1=показан результат|показаны  результаты}} с № '''$2''' и вплоть до № '''$1'''.",
@@ -978,7 +978,6 @@
 	"allowemail": "Разрешить получение электронной почты от других участников",
 	"prefs-searchoptions": "Поиск",
 	"prefs-namespaces": "Пространства имён",
-	"defaultns": "Иначе искать в следующих пространствах имён:",
 	"default": "по умолчанию",
 	"prefs-files": "Файлы",
 	"prefs-custom-css": "Собственный CSS",
@@ -2915,7 +2914,7 @@
 	"watchlistedit-raw-done": "Ваш список наблюдения сохранён.",
 	"watchlistedit-raw-added": "{{PLURAL:$1|Была добавлена|Было добавлено|Были добавлены}} $1 {{PLURAL:$1|запись|записей|записи}}:",
 	"watchlistedit-raw-removed": "{{PLURAL:$1|Была удалена|Было удалено|Были удалены}} $1 {{PLURAL:$1|запись|записей|записи}}:",
-	"watchlistedit-clear-title": "Список наблюдения очищен",
+	"watchlistedit-clear-title": "Очищение списка наблюдения",
 	"watchlistedit-clear-legend": "Очистить список наблюдения",
 	"watchlistedit-clear-explain": "Все записи будут удалены из вашего списка наблюдения",
 	"watchlistedit-clear-titles": "Заголовки:",
