@@ -57,6 +57,8 @@ production.
   shouldn't be cached.
 * (bug 52817) Advanced search options are now saved on the search page itself, rather
   than in a dedicated pane in the preferences panel.
+* (bug 44591) The dropdown actions menu (little triangle next to page tabs) in
+  the Vector skin has gained a label that should make it more discoverable.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
