@@ -75,12 +75,6 @@ class SkinTemplate extends Skin {
 	public $skinname = 'monobook';
 
 	/**
-	 * @var string Stylesheets set to use. Subdirectory in skins/ where various
-	 *   stylesheets are located.  Child classes should override the default.
-	 */
-	public $stylename = 'monobook';
-
-	/**
 	 * @var string For QuickTemplate, the name of the subclass which will
 	 *   actually fill the template.  Child classes should override the default.
 	 */

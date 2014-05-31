@@ -37,6 +37,12 @@ abstract class Skin extends ContextSource {
 	protected $mRelevantUser = null;
 
 	/**
+	 * @var string Stylesheets set to use. Subdirectory in skins/ where various stylesheets are
+	 *   located. Only needs to be set if you intend to use the getSkinStylePath() method.
+	 */
+	public $stylename = null;
+
+	/**
 	 * Fetch the set of available skins.
 	 * @return array Associative array of strings
 	 */
@@ -1070,11 +1076,20 @@ abstract class Skin extends ContextSource {
 	 * Return a fully resolved style path url to images or styles stored in the current skins's folder.
 	 * This method returns a url resolved using the configured skin style path
 	 * and includes the style version inside of the url.
+	 *
+	 * Requires $stylename to be set, otherwise throws MWException.
+	 *
 	 * @param string $name The name or path of a skin resource file
 	 * @return string The fully resolved style path url including styleversion
 	 */
 	function getSkinStylePath( $name ) {
 		global $wgStylePath, $wgStyleVersion;
+
+		if ( $this->stylename === null ) {
+			$class = get_class( $this );
+			throw new MWException( "$class::\$stylename must be set to use getSkinStylePath()" );
+		}
+
 		return "$wgStylePath/{$this->stylename}/$name?$wgStyleVersion";
 	}
 
