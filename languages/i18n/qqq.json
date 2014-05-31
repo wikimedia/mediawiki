@@ -324,6 +324,7 @@
 	"vector-view-view": "Tab label in the Vector skin (verb). See for example {{canonicalurl:Main_Page|useskin=vector}}.\n{{Identical|Read}}",
 	"vector-view-viewsource": "Tab label in the Vector skin.\n{{Identical|View source}}",
 	"actions": "{{Identical|Action}}",
+	"more": "{{Identical|More}}",
 	"namespaces": "{{Identical|Namespace}}",
 	"variants": "Used by the Vector skin.",
 	"navigation-heading": "Heading shown above the navigation menu (sidebar) for screen-readers (or in non-standard skins).",
