@@ -1754,11 +1754,14 @@ abstract class UploadBase {
 
 		foreach ( self::getFilenamePrefixBlacklist() as $prefix ) {
 			if ( substr( $partname, 0, strlen( $prefix ) ) == $prefix ) {
-				return array(
-					'warning' => 'bad-prefix',
-					'file' => $file,
-					'prefix' => $prefix
-				);
+				// 15 more chars should be enough to make a filename descriptive
+				if ( strlen( $partname ) < ( strlen( $prefix ) + 15 ) ) {
+					return array(
+						'warning' => 'bad-prefix',
+						'file' => $file,
+						'prefix' => $prefix
+					);
+				}
 			}
 		}
 
