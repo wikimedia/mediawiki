@@ -36,34 +36,6 @@
 		$.collapsibleTabs.handleResize();
 		return this;
 	};
-	/**
-	 * Returns the amount of horizontal distance between the two tabs groups
-	 * (#left-navigation and #right-navigation), in pixels. If negative, this
-	 * means that the tabs overlap, and the value is the width of overlapping
-	 * parts.
-	 *
-	 * Used in default expandCondition and collapseCondition.
-	 *
-	 * @return {Numeric} distance/overlap in pixels
-	 */
-	function calculateTabDistance() {
-		var $leftTab, $rightTab, leftEnd, rightStart;
-
-		// In RTL, #right-navigation is actually on the left and vice versa.
-		// Hooray for descriptive naming.
-		if ( !rtl ) {
-			$leftTab = $( '#left-navigation' );
-			$rightTab = $( '#right-navigation' );
-		} else {
-			$leftTab = $( '#right-navigation' );
-			$rightTab = $( '#left-navigation' );
-		}
-
-		leftEnd = $leftTab.offset().left + $leftTab.width();
-		rightStart = $rightTab.offset().left;
-
-		return rightStart - leftEnd;
-	}
 	$.collapsibleTabs = {
 		instances: [],
 		boundEvent: null,
@@ -74,13 +46,12 @@
 			shifting: false,
 			expandCondition: function ( eleWidth ) {
 				// If there are at least eleWidth + 1 pixels of free space, expand.
-				// We add 1 because .width() will truncate fractional values
-				// but .offset() will not.
-				return calculateTabDistance() >= (eleWidth + 1);
+				// We add 1 because .width() will truncate fractional values but .offset() will not.
+				return $.collapsibleTabs.calculateTabDistance() >= eleWidth + 1;
 			},
 			collapseCondition: function () {
 				// If there's an overlap, collapse.
-				return calculateTabDistance() < 0;
+				return $.collapsibleTabs.calculateTabDistance() < 0;
 			}
 		},
 		addData: function ( $collapsible ) {
@@ -202,6 +173,34 @@
 					}
 				} )
 			);
+		},
+		/**
+		 * Returns the amount of horizontal distance between the two tabs groups
+		 * (#left-navigation and #right-navigation), in pixels. If negative, this
+		 * means that the tabs overlap, and the value is the width of overlapping
+		 * parts.
+		 *
+		 * Used in default expandCondition and collapseCondition.
+		 *
+		 * @return {Numeric} distance/overlap in pixels
+		 */
+		calculateTabDistance: function () {
+			var $leftTab, $rightTab, leftEnd, rightStart;
+
+			// In RTL, #right-navigation is actually on the left and vice versa.
+			// Hooray for descriptive naming.
+			if ( !rtl ) {
+				$leftTab = $( '#left-navigation' );
+				$rightTab = $( '#right-navigation' );
+			} else {
+				$leftTab = $( '#right-navigation' );
+				$rightTab = $( '#left-navigation' );
+			}
+
+			leftEnd = $leftTab.offset().left + $leftTab.width();
+			rightStart = $rightTab.offset().left;
+
+			return rightStart - leftEnd;
 		}
 	};
 
