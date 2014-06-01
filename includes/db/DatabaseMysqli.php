@@ -58,14 +58,22 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		}
 
 		// Other than mysql_connect, mysqli_real_connect expects an explicit port
-		// parameter. So we need to parse the port out of $realServer
+		// and socket parameters. So we need to parse the port and socket out of
+		// $realServer
 		$port = null;
+		$socket = null;
 		$hostAndPort = IP::splitHostAndPort( $realServer );
 		if ( $hostAndPort ) {
 			$realServer = $hostAndPort[0];
 			if ( $hostAndPort[1] ) {
 				$port = $hostAndPort[1];
 			}
+		} elseif ( substr_count( $realServer, ':' ) == 1 ) {
+			// If we have a colon and something that's not a port number
+			// inside the hostname, assume it's the socket location
+			$hostAndSocket = explode( ':', $realServer );
+			$realServer = $hostAndSocket[0];
+			$socket = $hostAndSocket[1];
 		}
 
 		$connFlags = 0;
@@ -90,7 +98,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		$mysqli->options( MYSQLI_OPT_CONNECT_TIMEOUT, 3 );
 
 		if ( $mysqli->real_connect( $realServer, $this->mUser,
-			$this->mPassword, $this->mDBname, $port, null, $connFlags )
+			$this->mPassword, $this->mDBname, $port, $socket, $connFlags )
 		) {
 			return $mysqli;
 		}
