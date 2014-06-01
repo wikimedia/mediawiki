@@ -59,6 +59,10 @@ production.
   than in a dedicated pane in the preferences panel.
 * (bug 44591) The dropdown actions menu (little triangle next to page tabs) in
   the Vector skin has gained a label that should make it more discoverable.
+* Extensions and skins may now use 'namemsg' in $wgExtensionCredits instead of 'name',
+  to allow for the extension name to be specified as a localizable name.
+  'name' may still be specified for backwards-compatibility and to override the
+  path Special:Version uses for extension license info.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language

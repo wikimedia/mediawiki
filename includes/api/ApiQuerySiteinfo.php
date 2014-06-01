@@ -537,6 +537,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				if ( isset( $ext['name'] ) ) {
 					$ret['name'] = $ext['name'];
 				}
+				if ( isset( $ext['namemsg'] ) ) {
+					$ret['namemsg'] = $ext['namemsg'];
+				}
 				if ( isset( $ext['description'] ) ) {
 					$ret['description'] = $ext['description'];
 				}

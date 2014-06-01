@@ -67,7 +67,8 @@ class SpecialVersion extends SpecialPage {
 			// Find it!
 			foreach ( $wgExtensionCredits as $group => $extensions ) {
 				foreach ( $extensions as $ext ) {
-					if ( isset( $ext['name'] ) && ( $ext['name'] === $extName ) ) {
+					$curExtKey = $this->getKeyForExtension( $ext );
+					if ( $curExtKey === $extName && $curExtKey !== '[no name]' ) {
 						$extNode = &$ext;
 						break 2;
 					}
@@ -556,12 +557,56 @@ class SpecialVersion extends SpecialPage {
 	 * @return int
 	 */
 	function compare( $a, $b ) {
-		if ( $a['name'] === $b['name'] ) {
+		$aName = $this->getNameForExtension( $a );
+		$bName = $this->getNameForExtension( $b );
+
+		if ( $aName === $bName ) {
 			return 0;
 		} else {
-			return $this->getLanguage()->lc( $a['name'] ) > $this->getLanguage()->lc( $b['name'] )
+			return $this->getLanguage()->lc( $aName ) > $this->getLanguage()->lc( $bName )
 				? 1
 				: -1;
+		}
+	}
+
+	/**
+	 * Return the key for an extension (an untranslated name used for License paths)
+	 * @param  array $extension The same $extension array passed to getCreditsForExtension
+	 * @return string
+	 */
+	function getKeyForExtension( array $extension ) {
+		if ( isset( $extension['name'] ) ) {
+			// If the non localized 'name' is still set we might as well use it for the key
+			return $extension['name'];
+		} elseif ( isset( $extension['namemsg'] ) ) {
+			// Otherwise use the English version of the message as the key
+			$nameMsg = $extension['namemsg'];
+
+			return $this->msg( $nameMsg )
+				->inLanguage( 'en' )
+				->setInterfaceMessageFlag( true ) // inLanguage removes this
+				->text();
+		} else {
+			return '[no name]';
+		}
+	}
+
+	/**
+	 * Return the localized name for an extension
+	 * @param  array $extension The same $extension array passed to getCreditsForExtension
+	 * @return string
+	 */
+	function getNameForExtension( array $extension ) {
+		if ( isset( $extension['namemsg'] ) ) {
+			// Localized name of extension
+			$nameMsg = $extension['namemsg'];
+
+			return $this->msg( $nameMsg )->text();
+		} elseif ( isset( $extension['name'] ) ) {
+			// Non localized version
+			return $extension['name'];
+		} else {
+			return '[no name]';
 		}
 	}
 
@@ -587,7 +632,10 @@ class SpecialVersion extends SpecialPage {
 
 		// We must obtain the information for all the bits and pieces!
 		// ... such as extension names and links
-		$extensionName = isset( $extension['name'] ) ? $extension['name'] : '[no name]';
+		// The name and key are used elsewhere so they're in a function
+		$extensionKey = $this->getKeyForExtension( $extension );
+		$extensionName = $this->getNameForExtension( $extension );
+
 		if ( isset( $extension['url'] ) ) {
 			$extensionNameLink = Linker::makeExternalLink(
 				$extension['url'],
@@ -632,7 +680,7 @@ class SpecialVersion extends SpecialPage {
 			list( $vcsVersion, $vcsLink, $vcsDate ) = $cache->get( $memcKey );
 
 			if ( !$vcsVersion ) {
-				wfDebug( "Getting VCS info for extension $extensionName" );
+				wfDebug( "Getting VCS info for extension $extensionKey" );
 				$extensionPath = dirname( $extension['path'] );
 				$gitInfo = new GitInfo( $extensionPath );
 				$vcsVersion = $gitInfo->getHeadSHA1();
@@ -649,7 +697,7 @@ class SpecialVersion extends SpecialPage {
 				}
 				$cache->set( $memcKey, array( $vcsVersion, $vcsLink, $vcsDate ), 60 * 60 * 24 );
 			} else {
-				wfDebug( "Pulled VCS info for extension $extensionName from cache" );
+				wfDebug( "Pulled VCS info for extension $extensionKey from cache" );
 			}
 		}
 
@@ -694,13 +742,13 @@ class SpecialVersion extends SpecialPage {
 		$licenseLink = '';
 		if ( isset( $extension['license-name'] ) ) {
 			$licenseLink = Linker::link(
-				$this->getPageTitle( 'License/' . $extensionName ),
+				$this->getPageTitle( 'License/' . $extensionKey ),
 				$out->parseInline( $extension['license-name'] ),
 				array( 'class' => 'mw-version-ext-license' )
 			);
 		} elseif ( $this->getExtLicenseFileName( $extensionPath ) ) {
 			$licenseLink = Linker::link(
-				$this->getPageTitle( 'License/' . $extensionName ),
+				$this->getPageTitle( 'License/' . $extensionKey ),
 				$this->msg( 'version-ext-license' ),
 				array( 'class' => 'mw-version-ext-license' )
 			);
@@ -736,7 +784,7 @@ class SpecialVersion extends SpecialPage {
 		// Finally! Create the table
 		$html = Html::openElement( 'tr', array(
 				'class' => 'mw-version-ext',
-				'id' => "mw-version-ext-{$extensionName}"
+				'id' => "mw-version-ext-{$extensionKey}"
 			)
 		);
 
@@ -848,12 +896,12 @@ class SpecialVersion extends SpecialPage {
 	 *   'and others' will be added to the end of the credits.
 	 *
 	 * @param string|array $authors
-	 * @param string $extName Name of the extension for link creation
+	 * @param string $extKey Name of the extension for link creation
 	 * @param string $extDir Path to the extension root directory
 	 *
 	 * @return string HTML fragment
 	 */
-	function listAuthors( $authors, $extName, $extDir ) {
+	function listAuthors( $authors, $extKey, $extDir ) {
 		$hasOthers = false;
 
 		$list = array();
@@ -863,7 +911,7 @@ class SpecialVersion extends SpecialPage {
 
 				if ( $this->getExtAuthorsFileName( $extDir ) ) {
 					$text = Linker::link(
-						$this->getPageTitle( "Credits/$extName" ),
+						$this->getPageTitle( "Credits/$extKey" ),
 						$this->msg( 'version-poweredby-others' )->text()
 					);
 				} else {
@@ -882,7 +930,7 @@ class SpecialVersion extends SpecialPage {
 
 		if ( !$hasOthers && $this->getExtAuthorsFileName( $extDir ) ) {
 			$list[] = $text = Linker::link(
-				$this->getPageTitle( "Credits/$extName" ),
+				$this->getPageTitle( "Credits/$extKey" ),
 				$this->msg( 'version-poweredby-others' )->text()
 			);
 		}

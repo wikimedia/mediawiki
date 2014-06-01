@@ -6051,12 +6051,12 @@ $wgAutoloadAttemptLowercase = true;
 /**
  * An array of information about installed extensions keyed by their type.
  *
- * All but 'name', 'path' and 'author' can be omitted.
+ * All but 'name' or 'namemsg'; 'path'; and 'author' can be omitted.
  *
  * @code
  * $wgExtensionCredits[$type][] = array(
  *     'path' => __FILE__,
- *     'name' => 'Example extension',
+ *     'namemsg' => 'exampleextension-name',
  *     'author' => array(
  *         'Foo Barstein',
  *     ),
@@ -6071,6 +6071,15 @@ $wgAutoloadAttemptLowercase = true;
  * named COPYING or LICENSE (optional .txt extension) and provides a link to
  * view said file. When the 'license-name' key is specified, this file is
  * interpreted as wikitext.
+ *
+ * - $namemsg: A message key for a message containing the Extension's name.
+ *    The English translation will be used in the Special:Version License info path
+ *    when $name is not provided.
+ *    Since 1.24.
+ *
+ * - $name: Name of extension as inline string instead of localizable message.
+ *    Used for either backwards-compatibility or to overide the Special:Version path
+ *    used for this extension's license info.
  *
  * - $type: One of 'specialpage', 'parserhook', 'variable', 'media', 'antispam',
  *    'skin', 'api', or 'other', or any additional types as specified through the
