@@ -124,6 +124,7 @@ changes to languages because of Bugzilla reports.
   the "headelement" template key are no longer supported. Setting
   $useHeadElement = false; is no longer supported and will not cause old keys
   like "headlinks", "skinnameclass", etc. to be defined.
+* The deprecated 'SpecialVersionExtensionTypes' hook was removed.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression

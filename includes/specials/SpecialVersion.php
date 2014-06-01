@@ -377,9 +377,7 @@ class SpecialVersion extends SpecialPage {
 	 * Returns an array with the base extension types.
 	 * Type is stored as array key, the message as array value.
 	 *
-	 * TODO: ideally this would return all extension types, including
-	 * those added by SpecialVersionExtensionTypes. This is not possible
-	 * since this hook is passing along $this though.
+	 * TODO: ideally this would return all extension types.
 	 *
 	 * @since 1.17
 	 *
@@ -432,8 +430,6 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		$extensionTypes = self::getExtensionTypes();
-
-		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ), '1.17' );
 
 		$out = Xml::element(
 				'h2',
