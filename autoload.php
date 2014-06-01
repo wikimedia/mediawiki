@@ -826,6 +826,7 @@ $wgAutoloadLocalClasses = array(
 	'PageLangLogFormatter' => __DIR__ . '/includes/logging/PageLangLogFormatter.php',
 	'PageLinkRenderer' => __DIR__ . '/includes/title/PageLinkRenderer.php',
 	'PageQueryPage' => __DIR__ . '/includes/specialpage/PageQueryPage.php',
+    'PageLanguage' => __DIR__ .'/includes/PageLanguage.php',
 	'Pager' => __DIR__ . '/includes/pager/Pager.php',
 	'ParameterizedPassword' => __DIR__ . '/includes/password/ParameterizedPassword.php',
 	'Parser' => __DIR__ . '/includes/parser/Parser.php',
