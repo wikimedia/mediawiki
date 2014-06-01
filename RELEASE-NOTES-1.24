@@ -59,6 +59,9 @@ production.
   than in a dedicated pane in the preferences panel.
 * (bug 44591) The dropdown actions menu (little triangle next to page tabs) in
   the Vector skin has gained a label that should make it more discoverable.
+* Skins can now use 'remoteSkinPath' when defining ResourceLoader modules.
+  This works the same as 'remoteExtPath' but is relative to the skins/ folder
+  instead of the extensions/ folder.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
