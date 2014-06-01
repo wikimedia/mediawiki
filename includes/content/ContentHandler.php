@@ -643,7 +643,44 @@ abstract class ContentHandler {
 	 * Also note that the page language may or may not depend on the actual content of the page,
 	 * that is, this method may load the content in order to determine the language.
 	 *
+	 * @since 1.24
+	 *
+	 * @param array $settings The settings array from Title::getPageLanguageSettings().
+	 * @param Title $title The page to determine the language for.
+	 * @param Content $content The page's content, if you have it handy, to avoid reloading it.
+	 *
+	 * @return Language The page's language
+	 */
+	public function getPageLanguageSettings( $settings, Title $title, $content = null ) {
+		global $wgLang;
+		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
+			// Parse mediawiki messages with correct target language
+			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $title->getText() );
+			$settings['pagelanguage'] = wfGetLangObj( $lang );
+		} else {
+			// it's a normal wikitext page, let users set the language on-wiki
+			$settings['usedb'] = true;
+		}
+
+		wfRunHooks( 'PageContentLanguage', array( $title, &$settings['pagelanguage'], $wgLang ) );
+
+		return $settings;
+	}
+
+	/**
+	 * Get the language in which the content of the given page is written.
+	 *
+	 * This default implementation just returns $wgContLang (except for pages
+	 * in the MediaWiki namespace)
+	 *
+	 * Note that the pages language is not cacheable, since it may in some
+	 * cases depend on user settings.
+	 *
+	 * Also note that the page language may or may not depend on the actual content of the page,
+	 * that is, this method may load the content in order to determine the language.
+	 *
 	 * @since 1.21
+	 * @deprecated 1.24
 	 *
 	 * @param Title $title The page to determine the language for.
 	 * @param Content $content The page's content, if you have it handy, to avoid reloading it.
@@ -679,6 +716,7 @@ abstract class ContentHandler {
 	 * that is, this method may load the content in order to determine the language.
 	 *
 	 * @since 1.21
+	 * @deprecated 1.24
 	 *
 	 * @param Title $title The page to determine the language for.
 	 * @param Content $content The page's content, if you have it handy, to avoid reloading it.
