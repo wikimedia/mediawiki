@@ -83,54 +83,54 @@ return array(
 	 */
 	'mediawiki.skinning.elements' => array(
 		'styles' => array(
-			'common/commonElements.css' => array( 'media' => 'screen' ),
+			'commonElements.css' => array( 'media' => 'screen' ),
 		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'remoteSkinPath' => 'common',
+		'localBasePath' => $GLOBALS['wgStyleDirectory'] . '/common',
 	),
 	'mediawiki.skinning.content' => array(
 		'styles' => array(
-			'common/commonElements.css' => array( 'media' => 'screen' ),
-			'common/commonContent.css' => array( 'media' => 'screen' ),
+			'commonElements.css' => array( 'media' => 'screen' ),
+			'commonContent.css' => array( 'media' => 'screen' ),
 		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'remoteSkinPath' => 'common',
+		'localBasePath' => $GLOBALS['wgStyleDirectory'] . '/common',
 	),
 	'mediawiki.skinning.interface' => array(
 		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array(
-			'common/commonElements.css' => array( 'media' => 'screen' ),
-			'common/commonContent.css' => array( 'media' => 'screen' ),
-			'common/commonInterface.css' => array( 'media' => 'screen' ),
+			'commonElements.css' => array( 'media' => 'screen' ),
+			'commonContent.css' => array( 'media' => 'screen' ),
+			'commonInterface.css' => array( 'media' => 'screen' ),
 		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'remoteSkinPath' => 'common',
+		'localBasePath' => $GLOBALS['wgStyleDirectory'] . '/common',
 	),
 
 	// Temporarily kept for backwards-compatibility with generated HTML
 	'skins.common.elements' => array(
 		'styles' => array(
-			'common/commonElements.css' => array( 'media' => 'screen' ),
+			'commonElements.css' => array( 'media' => 'screen' ),
 		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'remoteSkinPath' => 'common',
+		'localBasePath' => $GLOBALS['wgStyleDirectory'] . '/common',
 	),
 	'skins.common.content' => array(
 		'styles' => array(
-			'common/commonElements.css' => array( 'media' => 'screen' ),
-			'common/commonContent.css' => array( 'media' => 'screen' ),
+			'commonElements.css' => array( 'media' => 'screen' ),
+			'commonContent.css' => array( 'media' => 'screen' ),
 		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'remoteSkinPath' => 'common',
+		'localBasePath' => $GLOBALS['wgStyleDirectory'] . '/common',
 	),
 	'skins.common.interface' => array(
 		'styles' => array(
-			'common/commonElements.css' => array( 'media' => 'screen' ),
-			'common/commonContent.css' => array( 'media' => 'screen' ),
-			'common/commonInterface.css' => array( 'media' => 'screen' ),
+			'commonElements.css' => array( 'media' => 'screen' ),
+			'commonContent.css' => array( 'media' => 'screen' ),
+			'commonInterface.css' => array( 'media' => 'screen' ),
 		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'remoteSkinPath' => 'common',
+		'localBasePath' => $GLOBALS['wgStyleDirectory'] . '/common',
 	),
 
 	'mediawiki.skinning.content.parsoid' => array(
@@ -156,31 +156,31 @@ return array(
 	'skins.vector.styles' => array(
 		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array(
-			'vector/screen.less' => array( 'media' => 'screen' ),
-			'vector/screen-hd.less' => array( 'media' => 'screen and (min-width: 982px)' ),
+			'screen.less' => array( 'media' => 'screen' ),
+			'screen-hd.less' => array( 'media' => 'screen and (min-width: 982px)' ),
 		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'remoteSkinPath' => 'vector',
+		'localBasePath' => $GLOBALS['wgStyleDirectory'] . '/vector',
 	),
 	'skins.monobook.styles' => array(
 		'styles' => array(
-			'monobook/main.css' => array( 'media' => 'screen' ),
+			'main.css' => array( 'media' => 'screen' ),
 		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'remoteSkinPath' => 'monobook',
+		'localBasePath' => $GLOBALS['wgStyleDirectory'] . '/monobook',
 	),
 	'skins.vector.js' => array(
 		'scripts' => array(
-			'vector/collapsibleTabs.js',
-			'vector/vector.js',
+			'collapsibleTabs.js',
+			'vector.js',
 		),
 		'position' => 'top',
 		'dependencies' => array(
 			'jquery.throttle-debounce',
 			'jquery.tabIndex',
 		),
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'remoteSkinPath' => 'vector',
+		'localBasePath' => $GLOBALS['wgStyleDirectory'] . '/vector',
 	),
 
 	/* jQuery */
