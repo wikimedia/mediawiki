@@ -4968,6 +4968,120 @@ class Title {
 	}
 
 	/**
+	 * Main function to determine the page content language
+	 * and the page view language.
+	 * The default is the site language ($wgContLang), but
+	 * it can be customized via ContentHandler, via the
+	 * PageContentLanguage hook as well as on-wiki via
+	 * Special:PageLanguage.
+	 * Use getPageLanguage() and getPageViewLanguage() for
+	 * easy access to these settings.
+	 *
+	 * @since 1.24
+	 * @return array
+	 * 	'pagelanguage': Language object,
+	 *  'pageviewlanguage': Language object,
+	 *  'usedb': boolean
+	 */
+	public function getPageLanguageSettings( $allowDB = true ) {
+		global $wgContLang, $wgLang, $wgLanguageCode, $wgPageLanguageUseDB;
+		wfProfileIn( __METHOD__ );
+		$settings = array(
+			// default; ContentHandlers can just give a language code
+			'pagelanguage' => $wgContLang,
+			// if 'usedefault' it will take the variant of the above language
+			'pageviewlanguage' => 'usedefault',
+			// whether it is changeable on-wiki using Special:PageLanguage
+			'usedb' => false,
+			'dbvalue' => null,
+		);
+
+		if( $this->isSpecialPage() ) {
+			// special pages are in the user language
+			$settings['pagelanguage'] = $settings['pageviewlanguage'] = $wgLang;
+			return $settings;
+			wfProfileOut( __METHOD__ );
+		}
+
+		if ( !$this->mPageLanguage || $this->mPageLanguage[1] !== $wgLanguageCode ) {
+			// This is the main place to determine the page language,
+			// it calls ContentHandler and the DB.
+
+			// NOTE: ContentHandler::getPageLanguage() may need to load the
+			// content to determine the page language!
+
+			// Checking $wgLanguageCode hasn't changed for the benefit of unit
+			// tests.
+
+			$contentHandler = ContentHandler::getForTitle( $this );
+
+			// backwards compatibility for ContentHandlers that are not yet updated
+			if( !method_exists( $contentHandler, 'getPageLanguageSettings' ) ) {
+				$settings['pagelanguage'] = $contentHandler->getPageLanguage();
+				$settings['pageviewlanguage'] = $contentHandler->getPageViewLanguage();
+			} else {
+				$settings = $contentHandler->getPageLanguageSettings( $settings, $this );
+			}
+
+			// if the page content lang is defined on-wiki, use that
+			// "usedb" should also (especially) be checked for in the frontend
+			if( $wgPageLanguageUseDB && $settings['usedb'] === true ) {
+				if( $this->mDbPageLanguage ) {
+					$settings['dbvalue'] = $this->mDbPageLanguage;
+				} else {
+					$dbr = wfGetDB( DB_SLAVE );
+					$row = $dbr->selectRow(
+						'page',
+						'page_lang',
+						array( 'page_id' => $this->getArticleID() ),
+						__METHOD__
+					);
+					if( isset( $row->page_lang ) ) {
+						$settings['dbvalue'] = $row->page_lang;
+					}
+				}
+			}
+
+			// cache our settings for this Title object
+			$this->mPageLanguage = array( $settings, $wgLanguageCode );
+
+		} else {
+			$settings = $this->mPageLanguage[0];
+		}
+
+		// use the DB value
+		// $allowDB is available in case we want to know
+		// what the default page language is
+		if( $settings['dbvalue'] && $allowDB === true ) {
+			$settings['pagelanguage'] = $settings['dbvalue'];
+		}
+
+		// get the final page content language's object
+		$settings['pagelanguage'] = wfGetLangObj( $settings['pagelanguage'] );
+
+		// get the final page view language's object
+		if( $settings['pageviewlanguage'] === 'usedefault' ) {
+			// if not explicitly set, it should probably assume
+			// it is a normal text/string that can be converted
+			// when the user chooses a variant.
+			// Then the content displayed is actually
+			// in a language whose code is the variant code.
+			$variant = $settings['pagelanguage']->getPreferredVariant();
+			if ( $settings['pagelanguage']->getCode() !== $variant ) {
+				$settings['pageviewlanguage'] = Language::factory( $variant );
+			} else {
+				$settings['pageviewlanguage'] = $settings['pagelanguage'];
+			}
+		} else {
+			$settings['pageviewlanguage'] = wfGetLangObj( $settings['pageviewlanguage'] );
+		}
+
+		wfProfileOut( __METHOD__ );
+
+		return $settings;
+	}
+
+	/**
 	 * Get the language in which the content of this page is written in
 	 * wikitext. Defaults to $wgContLang, but in certain cases it can be
 	 * e.g. $wgLang (such as special pages, which are in the user language).
@@ -4976,36 +5090,8 @@ class Title {
 	 * @return Language
 	 */
 	public function getPageLanguage() {
-		global $wgLang, $wgLanguageCode;
-		wfProfileIn( __METHOD__ );
-		if ( $this->isSpecialPage() ) {
-			// special pages are in the user language
-			wfProfileOut( __METHOD__ );
-			return $wgLang;
-		}
-
-		// Checking if DB language is set
-		if ( $this->mDbPageLanguage ) {
-			wfProfileOut( __METHOD__ );
-			return wfGetLangObj( $this->mDbPageLanguage );
-		}
-
-		if ( !$this->mPageLanguage || $this->mPageLanguage[1] !== $wgLanguageCode ) {
-			// Note that this may depend on user settings, so the cache should
-			// be only per-request.
-			// NOTE: ContentHandler::getPageLanguage() may need to load the
-			// content to determine the page language!
-			// Checking $wgLanguageCode hasn't changed for the benefit of unit
-			// tests.
-			$contentHandler = ContentHandler::getForTitle( $this );
-			$langObj = wfGetLangObj( $contentHandler->getPageLanguage( $this ) );
-			$this->mPageLanguage = array( $langObj->getCode(), $wgLanguageCode );
-		} else {
-			$langObj = wfGetLangObj( $this->mPageLanguage[0] );
-		}
-
-		wfProfileOut( __METHOD__ );
-		return $langObj;
+		$settings = $this->getPageLanguageSettings();
+		return $settings['pagelanguage'];
 	}
 
 	/**
@@ -5017,25 +5103,8 @@ class Title {
 	 * @return Language
 	 */
 	public function getPageViewLanguage() {
-		global $wgLang;
-
-		if ( $this->isSpecialPage() ) {
-			// If the user chooses a variant, the content is actually
-			// in a language whose code is the variant code.
-			$variant = $wgLang->getPreferredVariant();
-			if ( $wgLang->getCode() !== $variant ) {
-				return Language::factory( $variant );
-			}
-
-			return $wgLang;
-		}
-
-		// @note Can't be cached persistently, depends on user settings.
-		// @note ContentHandler::getPageViewLanguage() may need to load the
-		//   content to determine the page language!
-		$contentHandler = ContentHandler::getForTitle( $this );
-		$pageLang = $contentHandler->getPageViewLanguage( $this );
-		return $pageLang;
+		$settings = $this->getPageLanguageSettings();
+		return $settings['pageviewlanguage'];
 	}
 
 	/**
