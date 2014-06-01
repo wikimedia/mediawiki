@@ -41,4 +41,26 @@ class JavaScriptContentHandler extends CodeContentHandler {
 	protected function getContentClass() {
 		return 'JavaScriptContent';
 	}
+
+	/**
+	 * @return JavaScriptContent A new JavaScriptContent object with empty text.
+	 *
+	 * @see ContentHandler::makeEmptyContent()
+	 */
+	public function makeEmptyContent() {
+		return new JavaScriptContent( '' );
+	}
+
+	/**
+	 * Returns the English language, because JS is English, and should be handled as such.
+	 *
+	 * @param PageLanguage $pageLang
+	 * @param Content $content
+	 *
+	 * @see ContentHandler::setPageLanguageSettings()
+	 */
+	public function setPageLanguageSettings( PageLanguage $pageLang, Content $content = null ) {
+		$pageLang->setPageLanguage( 'en' );
+		$pageLang->setPageViewLanguage( 'en' );
+	}
 }

@@ -36,7 +36,44 @@ class CssContentHandler extends CodeContentHandler {
 		parent::__construct( $modelId, array( CONTENT_FORMAT_CSS ) );
 	}
 
-	protected function getContentClass() {
-		return 'CssContent';
+	protected function getContentClass()
+    {
+        return 'CssContent';
+    }
+
+	/**
+	 * @param string $text
+	 * @param string $format
+	 *
+	 * @return CssContent
+	 *
+	 * @see ContentHandler::unserializeContent()
+	 */
+	public function unserializeContent( $text, $format = null ) {
+		$this->checkFormat( $format );
+
+		return new CssContent( $text );
+	}
+
+	/**
+	 * @return CssContent A new CssContent object with empty text.
+	 *
+	 * @see ContentHandler::makeEmptyContent()
+	 */
+	public function makeEmptyContent() {
+		return new CssContent( '' );
+	}
+
+	/**
+	 * Returns the English language, because CSS is English, and should be handled as such.
+	 *
+	 * @param PageLanguage $pageLang
+	 * @param Content $content
+	 *
+	 * @see ContentHandler::setPageLanguageSettings()
+	 */
+	public function setPageLanguageSettings( PageLanguage $pageLang, Content $content = null ) {
+		$pageLang->setPageLanguage( 'en' );
+		$pageLang->setPageViewLanguage( 'en' );
 	}
 }
