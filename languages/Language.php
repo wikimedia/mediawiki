@@ -1031,6 +1031,18 @@ class Language {
 	}
 
 	/**
+	 * Pass through result from $dateTimeObj->format()
+	 */
+	private static function dateTimeObjFormat( &$dateTimeObj, $ts, $zone, $code ) {
+		if ( !$dateTimeObj ) {
+			$dateTimeObj = DateTime::createFromFormat(
+				'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' )
+			);
+		}
+		return $dateTimeObj->format( $code );
+	}
+
+	/**
 	 * This is a workalike of PHP's date() function, but with better
 	 * internationalisation, a reduced set of format characters, and a better
 	 * escaping format.
@@ -1090,12 +1102,14 @@ class Language {
 	 *      YYYYMMDDHHMMSS
 	 *      01234567890123
 	 * @param DateTimeZone $zone Timezone of $ts
+	 * @param[out] int $ttl The amount of time (in seconds) the output may be cached for.
+	 * Only makes sense if $ts is the current time.
 	 * @todo handling of "o" format character for Iranian, Hebrew, Hijri & Thai?
 	 *
 	 * @throws MWException
 	 * @return string
 	 */
-	function sprintfDate( $format, $ts, DateTimeZone $zone = null ) {
+	function sprintfDate( $format, $ts, DateTimeZone $zone = null, &$ttl = null ) {
 		$s = '';
 		$raw = false;
 		$roman = false;
@@ -1108,6 +1122,25 @@ class Language {
 		$thai = false;
 		$minguo = false;
 		$tenno = false;
+
+		$usedSecond = false;
+		$usedMinute = false;
+		$usedHour = false;
+		$usedAMPM = false;
+		$usedDay = false;
+		$usedWeek = false;
+		$usedMonth = false;
+		$usedYear = false;
+		$usedISOYear = false;
+		$usedIsLeapYear = false;
+
+		$usedHebrewMonth = false;
+		$usedIranianMonth = false;
+		$usedHijriMonth = false;
+		$usedHebrewYear = false;
+		$usedIranianYear = false;
+		$usedHijriYear = false;
+		$usedTennoYear = false;
 
 		if ( strlen( $ts ) !== 14 ) {
 			throw new MWException( __METHOD__ . ": The timestamp $ts should have 14 characters" );
@@ -1152,213 +1185,247 @@ class Language {
 					$hebrewNum = true;
 					break;
 				case 'xg':
+					$usedMonth = true;
 					$s .= $this->getMonthNameGen( substr( $ts, 4, 2 ) );
 					break;
 				case 'xjx':
+					$usedHebrewMonth = true;
 					if ( !$hebrew ) {
 						$hebrew = self::tsToHebrew( $ts );
 					}
 					$s .= $this->getHebrewCalendarMonthNameGen( $hebrew[1] );
 					break;
 				case 'd':
+					$usedDay = true;
 					$num = substr( $ts, 6, 2 );
 					break;
 				case 'D':
-					if ( !$dateTimeObj ) {
-						$dateTimeObj = DateTime::createFromFormat(
-							'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' )
-						);
-					}
-					$s .= $this->getWeekdayAbbreviation( $dateTimeObj->format( 'w' ) + 1 );
+					$usedDay = true;
+					$s .= $this->getWeekdayAbbreviation( Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'w' ) + 1 );
 					break;
 				case 'j':
+					$usedDay = true;
 					$num = intval( substr( $ts, 6, 2 ) );
 					break;
 				case 'xij':
+					$usedDay = true;
 					if ( !$iranian ) {
 						$iranian = self::tsToIranian( $ts );
 					}
 					$num = $iranian[2];
 					break;
 				case 'xmj':
+					$usedDay = true;
 					if ( !$hijri ) {
 						$hijri = self::tsToHijri( $ts );
 					}
 					$num = $hijri[2];
 					break;
 				case 'xjj':
+					$usedDay = true;
 					if ( !$hebrew ) {
 						$hebrew = self::tsToHebrew( $ts );
 					}
 					$num = $hebrew[2];
 					break;
 				case 'l':
-					if ( !$dateTimeObj ) {
-						$dateTimeObj = DateTime::createFromFormat(
-							'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' )
-						);
-					}
-					$s .= $this->getWeekdayName( $dateTimeObj->format( 'w' ) + 1 );
+					$usedDay = true;
+					$s .= $this->getWeekdayName( Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'w' ) + 1 );
 					break;
 				case 'F':
+					$usedMonth = true;
 					$s .= $this->getMonthName( substr( $ts, 4, 2 ) );
 					break;
 				case 'xiF':
+					$usedIranianMonth = true;
 					if ( !$iranian ) {
 						$iranian = self::tsToIranian( $ts );
 					}
 					$s .= $this->getIranianCalendarMonthName( $iranian[1] );
 					break;
 				case 'xmF':
+					$usedHijriMonth = true;
 					if ( !$hijri ) {
 						$hijri = self::tsToHijri( $ts );
 					}
 					$s .= $this->getHijriCalendarMonthName( $hijri[1] );
 					break;
 				case 'xjF':
+					$usedHebrewMonth = true;
 					if ( !$hebrew ) {
 						$hebrew = self::tsToHebrew( $ts );
 					}
 					$s .= $this->getHebrewCalendarMonthName( $hebrew[1] );
 					break;
 				case 'm':
+					$usedMonth = true;
 					$num = substr( $ts, 4, 2 );
 					break;
 				case 'M':
+					$usedMonth = true;
 					$s .= $this->getMonthAbbreviation( substr( $ts, 4, 2 ) );
 					break;
 				case 'n':
+					$usedMonth = true;
 					$num = intval( substr( $ts, 4, 2 ) );
 					break;
 				case 'xin':
+					$usedIranianMonth = true;
 					if ( !$iranian ) {
 						$iranian = self::tsToIranian( $ts );
 					}
 					$num = $iranian[1];
 					break;
 				case 'xmn':
+					$usedHijriMonth = true;
 					if ( !$hijri ) {
 						$hijri = self::tsToHijri ( $ts );
 					}
 					$num = $hijri[1];
 					break;
 				case 'xjn':
+					$usedHebrewMonth = true;
 					if ( !$hebrew ) {
 						$hebrew = self::tsToHebrew( $ts );
 					}
 					$num = $hebrew[1];
 					break;
 				case 'xjt':
+					$usedHebrewMonth = true;
 					if ( !$hebrew ) {
 						$hebrew = self::tsToHebrew( $ts );
 					}
 					$num = $hebrew[3];
 					break;
 				case 'Y':
+					$usedYear = true;
 					$num = substr( $ts, 0, 4 );
 					break;
 				case 'xiY':
+					$usedIranianYear = true;
 					if ( !$iranian ) {
 						$iranian = self::tsToIranian( $ts );
 					}
 					$num = $iranian[0];
 					break;
 				case 'xmY':
+					$usedHijriYear = true;
 					if ( !$hijri ) {
 						$hijri = self::tsToHijri( $ts );
 					}
 					$num = $hijri[0];
 					break;
 				case 'xjY':
+					$usedHebrewYear = true;
 					if ( !$hebrew ) {
 						$hebrew = self::tsToHebrew( $ts );
 					}
 					$num = $hebrew[0];
 					break;
 				case 'xkY':
+					$usedYear = true;
 					if ( !$thai ) {
 						$thai = self::tsToYear( $ts, 'thai' );
 					}
 					$num = $thai[0];
 					break;
 				case 'xoY':
+					$usedYear = true;
 					if ( !$minguo ) {
 						$minguo = self::tsToYear( $ts, 'minguo' );
 					}
 					$num = $minguo[0];
 					break;
 				case 'xtY':
+					$usedTennoYear = true;
 					if ( !$tenno ) {
 						$tenno = self::tsToYear( $ts, 'tenno' );
 					}
 					$num = $tenno[0];
 					break;
 				case 'y':
+					$usedYear = true;
 					$num = substr( $ts, 2, 2 );
 					break;
 				case 'xiy':
+					$usedIranianYear = true;
 					if ( !$iranian ) {
 						$iranian = self::tsToIranian( $ts );
 					}
 					$num = substr( $iranian[0], -2 );
 					break;
 				case 'a':
+					$usedAMPM = true;
 					$s .= intval( substr( $ts, 8, 2 ) ) < 12 ? 'am' : 'pm';
 					break;
 				case 'A':
+					$usedAMPM = true;
 					$s .= intval( substr( $ts, 8, 2 ) ) < 12 ? 'AM' : 'PM';
 					break;
 				case 'g':
+					$usedHour = true;
 					$h = substr( $ts, 8, 2 );
 					$num = $h % 12 ? $h % 12 : 12;
 					break;
 				case 'G':
+					$usedHour = true;
 					$num = intval( substr( $ts, 8, 2 ) );
 					break;
 				case 'h':
+					$usedHour = true;
 					$h = substr( $ts, 8, 2 );
 					$num = sprintf( '%02d', $h % 12 ? $h % 12 : 12 );
 					break;
 				case 'H':
+					$usedHour = true;
 					$num = substr( $ts, 8, 2 );
 					break;
 				case 'i':
+					$usedMinute = true;
 					$num = substr( $ts, 10, 2 );
 					break;
 				case 's':
+					$usedSecond = true;
 					$num = substr( $ts, 12, 2 );
 					break;
 				case 'c':
 				case 'r':
+					$usedSecond = true;
+					// fall through
 				case 'e':
 				case 'O':
 				case 'P':
 				case 'T':
-					// Pass through string from $dateTimeObj->format()
-					if ( !$dateTimeObj ) {
-						$dateTimeObj = DateTime::createFromFormat(
-							'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' )
-						);
-					}
-					$s .= $dateTimeObj->format( $code );
+					$s .= Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, $code );
 					break;
 				case 'w':
 				case 'N':
 				case 'z':
+					$usedDay = true;
+					$num = Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, $code );
+					break;
 				case 'W':
+					$usedWeek = true;
+					$num = Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, $code );
+					break;
 				case 't':
+					$usedMonth = true;
+					$num = Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, $code );
+					break;
 				case 'L':
+					$usedIsLeapYear = true;
+					$num = Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, $code );
+					break;
 				case 'o':
+					$usedISOYear = true;
+					$num = Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, $code );
+					break;
 				case 'U':
+					$usedSecond = true;
+					// fall through
 				case 'I':
 				case 'Z':
-					// Pass through number from $dateTimeObj->format()
-					if ( !$dateTimeObj ) {
-						$dateTimeObj = DateTime::createFromFormat(
-							'YmdHis', $ts, $zone ?: new DateTimeZone( 'UTC' )
-						);
-					}
-					$num = $dateTimeObj->format( $code );
+					$num = Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, $code );
 					break;
 				case '\\':
 					# Backslash escaping
@@ -1400,6 +1467,62 @@ class Language {
 				} else {
 					$s .= $this->formatNum( $num, true );
 				}
+			}
+		}
+
+		if ( $usedSecond ) {
+			$ttl = 1;
+		} elseif ( $usedMinute ) {
+			$ttl = 60 - substr( $ts, 12, 2 );
+		} elseif ( $usedHour ) {
+			$ttl = 3600 - substr( $ts, 10, 2 ) * 60 - substr( $ts, 12, 2 );
+		} elseif ( $usedAMPM ) {
+			$ttl = 43200 - ( substr( $ts, 8, 2 ) % 12 ) * 3600 - substr( $ts, 10, 2 ) * 60 - substr( $ts, 12, 2 );
+		} elseif ( $usedDay || $usedHebrewMonth || $usedIranianMonth || $usedHijriMonth || $usedHebrewYear || $usedIranianYear || $usedHijriYear || $usedTennoYear ) {
+			// @todo Someone who understands the non-Gregorian calendars should write proper logic for them
+			// so that they don't need purged every day.
+			$ttl = 86400 - substr( $ts, 8, 2 ) * 3600 - substr( $ts, 10, 2 ) * 60 - substr( $ts, 12, 2 );
+		} else {
+			$possibleTtls = array();
+			$timeRemainingInDay = 86400 - substr( $ts, 8, 2 ) * 3600 - substr( $ts, 10, 2 ) * 60 - substr( $ts, 12, 2 );
+			if ( $usedWeek ) {
+				$possibleTtls[] = ( 7 - Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'N' ) ) * 86400 + $timeRemainingInDay;
+			} elseif ( $usedISOYear ) {
+				// December 28th falls on the last ISO week of the year, every year.
+				// The last ISO week of a year can be 52 or 53.
+				$lastWeekOfISOYear = DateTime::createFromFormat( 'Ymd', substr( $ts, 0, 4 ) . '1228', $zone ?: new DateTimeZone( 'UTC' ) )->format( 'W' );
+				$currentISOWeek = Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'W' );
+				$weeksRemaining = $lastWeekOfISOYear - $currentISOWeek;
+				$timeRemainingInWeek = ( 7 - Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'N' ) ) * 86400 + $timeRemainingInDay;
+				$possibleTtls[] = $weeksRemaining * 604800 + $timeRemainingInWeek;
+			}
+
+			if ( $usedMonth ) {
+				$possibleTtls[] = ( Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 't' ) - substr( $ts, 6, 2 ) ) * 86400 + $timeRemainingInDay;
+			} elseif ( $usedYear ) {
+				$possibleTtls[] = ( Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'L' ) + 364 - Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'z' ) ) * 86400
+					+ $timeRemainingInDay;
+			} elseif ( $usedIsLeapYear ) {
+				$year = substr( $ts, 0, 4 );
+				$timeRemainingInYear = ( Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'L' ) + 364 - Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'z' ) ) * 86400
+					+ $timeRemainingInDay;
+				$mod = $year % 4;
+				if ( $mod || ( !( $year % 100 ) && $year % 400 ) ) {
+					// this isn't a leap year. see when the next one starts
+					$nextCandidate = $year - $mod + 4;
+					if ( $nextCandidate % 100 || !( $nextCandidate % 400 ) ) {
+						$possibleTtls[] = ( $nextCandidate - $year - 1 ) * 365 * 86400 + $timeRemainingInYear;
+					} else {
+						$possibleTtls[] = ( $nextCandidate - $year + 3 ) * 365 * 86400 + $timeRemainingInYear;
+					}
+				} else {
+					// this is a leap year, so the next year isn't
+					$possibleTtls[] = $timeRemainingInYear;
+				}
+			}
+
+			if ( $possibleTtls ) {
+				$ttl = min( $possibleTtls );
 			}
 		}
 
