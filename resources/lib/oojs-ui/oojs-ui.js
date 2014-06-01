@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (0f101c6f5d)
+ * OOjs UI v0.1.0-pre (dd888aba5c)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri May 30 2014 16:23:01 GMT-0700 (PDT)
+ * Date: Fri May 30 2014 21:28:55 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -743,8 +743,7 @@ OO.ui.Frame = function OoUiFrame( config ) {
 	OO.EventEmitter.call( this );
 
 	// Properties
-	this.loading = false;
-	this.loaded = false;
+	this.loading = null;
 	this.config = config;
 
 	// Initialize
@@ -780,10 +779,10 @@ OO.ui.Frame.static.tagName = 'iframe';
  *
  * This loops over the style sheets in the parent document, and copies their nodes to the
  * frame's document. It then polls the document to see when all styles have loaded, and once they
- * have, invokes the callback.
+ * have, resolves the promise.
  *
  * If the styles still haven't loaded after a long time (5 seconds by default), we give up waiting
- * and invoke the callback anyway. This protects against cases like a display: none; iframe in
+ * and resolve the promise anyway. This protects against cases like a display: none; iframe in
  * Firefox, where the styles won't load until the iframe becomes visible.
  *
  * For details of how we arrived at the strategy used in this function, see #load.
@@ -792,18 +791,19 @@ OO.ui.Frame.static.tagName = 'iframe';
  * @inheritable
  * @param {HTMLDocument} parentDoc Document to transplant styles from
  * @param {HTMLDocument} frameDoc Document to transplant styles to
- * @param {Function} [callback] Callback to execute once styles have loaded
  * @param {number} [timeout=5000] How long to wait before giving up (in ms). If 0, never give up.
+ * @return {jQuery.Promise} Promise resolved when styles have loaded
  */
-OO.ui.Frame.static.transplantStyles = function ( parentDoc, frameDoc, callback, timeout ) {
+OO.ui.Frame.static.transplantStyles = function ( parentDoc, frameDoc, timeout ) {
 	var i, numSheets, styleNode, newNode, timeoutID, pollNodeId, $pendingPollNodes,
 		$pollNodes = $( [] ),
 		// Fake font-family value
-		fontFamily = 'oo-ui-frame-transplantStyles-loaded';
+		fontFamily = 'oo-ui-frame-transplantStyles-loaded',
+		deferred = $.Deferred();
 
 	for ( i = 0, numSheets = parentDoc.styleSheets.length; i < numSheets; i++ ) {
 		styleNode = parentDoc.styleSheets[i].ownerNode;
-		if ( callback && styleNode.nodeName.toLowerCase() === 'link' ) {
+		if ( styleNode.nodeName.toLowerCase() === 'link' ) {
 			// External stylesheet
 			// Create a node with a unique ID that we're going to monitor to see when the CSS
 			// has loaded
@@ -825,40 +825,40 @@ OO.ui.Frame.static.transplantStyles = function ( parentDoc, frameDoc, callback, 
 		frameDoc.head.appendChild( newNode );
 	}
 
-	if ( callback ) {
-		// Poll every 100ms until all external stylesheets have loaded
-		$pendingPollNodes = $pollNodes;
-		timeoutID = setTimeout( function pollExternalStylesheets() {
-			while (
-				$pendingPollNodes.length > 0 &&
-				$pendingPollNodes.eq( 0 ).css( 'font-family' ) === fontFamily
-			) {
-				$pendingPollNodes = $pendingPollNodes.slice( 1 );
-			}
-
-			if ( $pendingPollNodes.length === 0 ) {
-				// We're done!
-				if ( timeoutID !== null ) {
-					timeoutID = null;
-					$pollNodes.remove();
-					callback();
-				}
-			} else {
-				timeoutID = setTimeout( pollExternalStylesheets, 100 );
-			}
-		}, 100 );
-		// ...but give up after a while
-		if ( timeout !== 0 ) {
-			setTimeout( function () {
-				if ( timeoutID ) {
-					clearTimeout( timeoutID );
-					timeoutID = null;
-					$pollNodes.remove();
-					callback();
-				}
-			}, timeout || 5000 );
+	// Poll every 100ms until all external stylesheets have loaded
+	$pendingPollNodes = $pollNodes;
+	timeoutID = setTimeout( function pollExternalStylesheets() {
+		while (
+			$pendingPollNodes.length > 0 &&
+			$pendingPollNodes.eq( 0 ).css( 'font-family' ) === fontFamily
+		) {
+			$pendingPollNodes = $pendingPollNodes.slice( 1 );
 		}
+
+		if ( $pendingPollNodes.length === 0 ) {
+			// We're done!
+			if ( timeoutID !== null ) {
+				timeoutID = null;
+				$pollNodes.remove();
+				deferred.resolve();
+			}
+		} else {
+			timeoutID = setTimeout( pollExternalStylesheets, 100 );
+		}
+	}, 100 );
+	// ...but give up after a while
+	if ( timeout !== 0 ) {
+		setTimeout( function () {
+			if ( timeoutID ) {
+				clearTimeout( timeoutID );
+				timeoutID = null;
+				$pollNodes.remove();
+				deferred.reject();
+			}
+		}, timeout || 5000 );
 	}
+
+	return deferred.promise();
 };
 
 /* Methods */
@@ -866,7 +866,10 @@ OO.ui.Frame.static.transplantStyles = function ( parentDoc, frameDoc, callback, 
 /**
  * Load the frame contents.
  *
- * Once the iframe's stylesheets are loaded, the `initialize` event will be emitted.
+ * Once the iframe's stylesheets are loaded, the `load` event will be emitted and the returned
+ * promise will be resolved. Calling while loading will return a promise but not trigger a new
+ * loading cycle. Calling after loading is complete will return a promise that's already been
+ * resolved.
  *
  * Sounds simple right? Read on...
  *
@@ -894,15 +897,22 @@ OO.ui.Frame.static.transplantStyles = function ( parentDoc, frameDoc, callback, 
  *
  * All this stylesheet injection and polling magic is in #transplantStyles.
  *
- * @private
+ * @return {jQuery.Promise} Promise resolved when loading is complete
  * @fires load
  */
 OO.ui.Frame.prototype.load = function () {
-	var win = this.$element.prop( 'contentWindow' ),
-		doc = win.document,
-		frame = this;
+	var win, doc;
 
-	this.loading = true;
+	// Return existing promise if already loading or loaded
+	if ( this.loading ) {
+		return this.loading.promise();
+	}
+
+	// Load the frame
+	this.loading = $.Deferred();
+
+	win = this.$element.prop( 'contentWindow' );
+	doc = win.document;
 
 	// Figure out directionality:
 	this.dir = OO.ui.Element.getDir( this.$element ) || 'ltr';
@@ -924,37 +934,14 @@ OO.ui.Frame.prototype.load = function () {
 	this.$content = this.$( '.oo-ui-frame-content' ).attr( 'tabIndex', 0 );
 	this.$document = this.$( doc );
 
-	this.constructor.static.transplantStyles(
-		this.getElementDocument(),
-		this.$document[0],
-		function () {
-			frame.loading = false;
-			frame.loaded = true;
-			frame.emit( 'load' );
-		}
-	);
-};
+	// Initialization
+	this.constructor.static.transplantStyles( this.getElementDocument(), this.$document[0] )
+		.always( OO.ui.bind( function () {
+			this.emit( 'load' );
+			this.loading.resolve();
+		}, this ) );
 
-/**
- * Run a callback as soon as the frame has been loaded.
- *
- *
- * This will start loading if it hasn't already, and runs
- * immediately if the frame is already loaded.
- *
- * Don't call this until the element is attached.
- *
- * @param {Function} callback
- */
-OO.ui.Frame.prototype.run = function ( callback ) {
-	if ( this.loaded ) {
-		callback();
-	} else {
-		if ( !this.loading ) {
-			this.load();
-		}
-		this.once( 'load', callback );
-	}
+	return this.loading.promise();
 };
 
 /**
@@ -995,8 +982,9 @@ OO.ui.Window = function OoUiWindow( config ) {
 
 	// Properties
 	this.visible = false;
-	this.opening = false;
-	this.closing = false;
+	this.opening = null;
+	this.closing = null;
+	this.opened = null;
 	this.title = OO.ui.resolveMsg( config.title || this.constructor.static.title );
 	this.icon = config.icon || this.constructor.static.icon;
 	this.frame = new OO.ui.Frame( { '$': this.$ } );
@@ -1033,14 +1021,6 @@ OO.inheritClass( OO.ui.Window, OO.ui.Element );
 OO.mixinClass( OO.ui.Window, OO.EventEmitter );
 
 /* Events */
-
-/**
- * Initialize contents.
- *
- * Fired asynchronously after construction when iframe is ready.
- *
- * @event initialize
- */
 
 /**
  * Open window.
@@ -1101,7 +1081,7 @@ OO.ui.Window.prototype.isVisible = function () {
  * @return {boolean} Window is opening
  */
 OO.ui.Window.prototype.isOpening = function () {
-	return this.opening;
+	return !!this.opening && !this.opening.isResolved();
 };
 
 /**
@@ -1110,7 +1090,16 @@ OO.ui.Window.prototype.isOpening = function () {
  * @return {boolean} Window is closing
  */
 OO.ui.Window.prototype.isClosing = function () {
-	return this.closing;
+	return !!this.closing && !this.closing.isResolved();
+};
+
+/**
+ * Check if window is opened.
+ *
+ * @return {boolean} Window is opened
+ */
+OO.ui.Window.prototype.isOpened = function () {
+	return !!this.opened && !this.opened.isResolved();
 };
 
 /**
@@ -1246,7 +1235,6 @@ OO.ui.Window.prototype.fitWidthToContents = function ( min, max ) {
  *
  * Once this method is called, this.$$ can be used to create elements within the frame.
  *
- * @fires initialize
  * @chainable
  */
 OO.ui.Window.prototype.initialize = function () {
@@ -1273,93 +1261,137 @@ OO.ui.Window.prototype.initialize = function () {
 };
 
 /**
- * Setup window for use.
+ * Get a process for setting up a window for use.
  *
- * Each time the window is opened, once it's ready to be interacted with, this will set it up for
- * use in a particular context, based on the `data` argument.
+ * Each time the window is opened this process will set it up for use in a particular context, based
+ * on the `data` argument.
  *
- * When you override this method, you must call the parent method at the very beginning.
+ * When you override this method, you can add additional setup steps to the process the parent
+ * method provides using the 'first' and 'next' methods.
  *
  * @abstract
  * @param {Object} [data] Window opening data
+ * @return {OO.ui.Process} Setup process
  */
-OO.ui.Window.prototype.setup = function () {
-	// Override to do something
+OO.ui.Window.prototype.getSetupProcess = function () {
+	return new OO.ui.Process();
 };
 
 /**
- * Tear down window after use.
+ * Get a process for readying a window for use.
  *
- * Each time the window is closed, and it's done being interacted with, this will tear it down and
- * do something with the user's interactions within the window, based on the `data` argument.
+ * Each time the window is open and setup, this process will ready it up for use in a particular
+ * context, based on the `data` argument.
  *
- * When you override this method, you must call the parent method at the very end.
+ * When you override this method, you can add additional setup steps to the process the parent
+ * method provides using the 'first' and 'next' methods.
+ *
+ * @abstract
+ * @param {Object} [data] Window opening data
+ * @return {OO.ui.Process} Setup process
+ */
+OO.ui.Window.prototype.getReadyProcess = function () {
+	return new OO.ui.Process();
+};
+
+/**
+ * Get a process for tearing down a window after use.
+ *
+ * Each time the window is closed this process will tear it down and do something with the user's
+ * interactions within the window, based on the `data` argument.
+ *
+ * When you override this method, you can add additional teardown steps to the process the parent
+ * method provides using the 'first' and 'next' methods.
  *
  * @abstract
  * @param {Object} [data] Window closing data
+ * @return {OO.ui.Process} Teardown process
  */
-OO.ui.Window.prototype.teardown = function () {
-	// Override to do something
+OO.ui.Window.prototype.getTeardownProcess = function () {
+	return new OO.ui.Process();
 };
 
 /**
  * Open window.
  *
- * Do not override this method. See #setup for a way to make changes each time the window opens.
+ * Do not override this method. Use #geSetupProcess to do something each time the window closes.
  *
  * @param {Object} [data] Window opening data
+ * @fires initialize
  * @fires opening
  * @fires open
  * @fires ready
- * @chainable
+ * @return {jQuery.Promise} Promise resolved when window is opened; when the promise is resolved the
+ *   first argument will be a promise which will be resolved when the window begins closing
  */
 OO.ui.Window.prototype.open = function ( data ) {
-	if ( !this.opening && !this.closing && !this.visible ) {
-		this.opening = true;
-		this.frame.run( OO.ui.bind( function () {
-			this.$element.show();
-			this.visible = true;
-			this.emit( 'opening', data );
-			this.setup( data );
+	// Return existing promise if already opening or open
+	if ( this.opening ) {
+		return this.opening.promise();
+	}
+
+	// Open the window
+	this.opening = $.Deferred();
+	this.frame.load().done( OO.ui.bind( function () {
+		this.$element.show();
+		this.visible = true;
+		this.emit( 'opening', data );
+		this.getSetupProcess( data ).execute().done( OO.ui.bind( function () {
 			this.emit( 'open', data );
 			setTimeout( OO.ui.bind( function () {
 				// Focus the content div (which has a tabIndex) to inactivate
 				// (but not clear) selections in the parent frame.
 				// Must happen after 'open' is emitted (to ensure it is visible)
-				// but before 'ready' is emitted (so subclasses can give focus to something else)
+				// but before 'ready' is emitted (so subclasses can give focus to something
+				// else)
 				this.frame.$content.focus();
-				this.emit( 'ready', data );
-				this.opening = false;
+				this.getReadyProcess( data ).execute().done( OO.ui.bind( function () {
+					this.emit( 'ready', data );
+					this.opened = $.Deferred();
+					this.opening.resolve( this.opened.promise() );
+					// Now that we are totally done opening, it's safe to allow closing
+					this.closing = null;
+				}, this ) );
 			}, this ) );
 		}, this ) );
-	}
+	}, this ) );
 
-	return this;
+	return this.opening.promise();
 };
 
 /**
  * Close window.
  *
- * See #teardown for a way to do something each time the window closes.
+ * Do not override this method. Use #getTeardownProcess to do something each time the window closes.
  *
  * @param {Object} [data] Window closing data
  * @fires closing
  * @fires close
- * @chainable
+ * @return {jQuery.Promise} Promise resolved when window is closed
  */
 OO.ui.Window.prototype.close = function ( data ) {
-	if ( !this.opening && !this.closing && this.visible ) {
-		this.frame.$content.find( ':focus' ).blur();
-		this.closing = true;
-		this.$element.hide();
-		this.visible = false;
-		this.emit( 'closing', data );
-		this.teardown( data );
-		this.emit( 'close', data );
-		this.closing = false;
+	// Return existing promise if already closing or closed
+	if ( this.closing ) {
+		return this.closing.promise();
 	}
 
-	return this;
+	// Close the window
+	this.opened.resolve();
+	// This.closing needs to exist before we emit the closing event so that handlers can call
+	// window.close() and trigger the safety check above
+	this.closing = $.Deferred();
+	this.frame.$content.find( ':focus' ).blur();
+	this.emit( 'closing', data );
+	this.getTeardownProcess( data ).execute().done( OO.ui.bind( function () {
+		this.emit( 'close', data );
+		this.$element.hide();
+		this.visible = false;
+		this.closing.resolve();
+		// Now that we are totally done closing, it's safe to allow opening
+		this.opening = null;
+	}, this ) );
+
+	return this.closing.promise();
 };
 /**
  * Set of mutually exclusive windows.
@@ -1573,7 +1605,7 @@ OO.ui.Dialog = function OoUiDialog( config ) {
 
 	// Events
 	this.$element.on( 'mousedown', false );
-	this.connect( this, { 'opening': 'onOpening' } );
+	this.connect( this, { 'open': 'onOpen' } );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-dialog' );
@@ -1659,8 +1691,10 @@ OO.ui.Dialog.prototype.onFrameDocumentKeyDown = function ( e ) {
 	}
 };
 
-/** */
-OO.ui.Dialog.prototype.onOpening = function () {
+/**
+ * Handle window open events.
+ */
+OO.ui.Dialog.prototype.onOpen = function () {
 	this.$element.addClass( 'oo-ui-dialog-open' );
 };
 
@@ -1692,7 +1726,7 @@ OO.ui.Dialog.prototype.setSize = function ( size ) {
  */
 OO.ui.Dialog.prototype.initialize = function () {
 	// Parent method
-	OO.ui.Window.prototype.initialize.call( this );
+	OO.ui.Dialog.super.prototype.initialize.call( this );
 
 	// Properties
 	this.closeButton = new OO.ui.ButtonWidget( {
@@ -1718,41 +1752,29 @@ OO.ui.Dialog.prototype.initialize = function () {
 /**
  * @inheritdoc
  */
-OO.ui.Dialog.prototype.setup = function ( data ) {
-	// Parent method
-	OO.ui.Window.prototype.setup.call( this, data );
-
-	// Prevent scrolling in top-level window
-	this.$( window ).on( 'mousewheel', this.onWindowMouseWheelHandler );
-	this.$( document ).on( 'keydown', this.onDocumentKeyDownHandler );
+OO.ui.Dialog.prototype.getSetupProcess = function ( data ) {
+	return OO.ui.Dialog.super.prototype.getSetupProcess.call( this, data )
+		.next( function () {
+			// Prevent scrolling in top-level window
+			this.$( window ).on( 'mousewheel', this.onWindowMouseWheelHandler );
+			this.$( document ).on( 'keydown', this.onDocumentKeyDownHandler );
+		}, this );
 };
 
 /**
  * @inheritdoc
  */
-OO.ui.Dialog.prototype.teardown = function ( data ) {
-	// Parent method
-	OO.ui.Window.prototype.teardown.call( this, data );
-
-	// Allow scrolling in top-level window
-	this.$( window ).off( 'mousewheel', this.onWindowMouseWheelHandler );
-	this.$( document ).off( 'keydown', this.onDocumentKeyDownHandler );
-};
-
-/**
- * @inheritdoc
- */
-OO.ui.Dialog.prototype.close = function ( data ) {
-	var dialog = this;
-	if ( !dialog.opening && !dialog.closing && dialog.visible ) {
-		// Trigger transition
-		dialog.$element.removeClass( 'oo-ui-dialog-open' );
-		// Allow transition to complete before actually closing
-		setTimeout( function () {
-			// Parent method
-			OO.ui.Window.prototype.close.call( dialog, data );
-		}, 250 );
-	}
+OO.ui.Dialog.prototype.getTeardownProcess = function ( data ) {
+	return OO.ui.Dialog.super.prototype.getTeardownProcess.call( this, data )
+		.first( function () {
+			this.$element.removeClass( 'oo-ui-dialog-open' );
+			return OO.ui.Process.static.delay( 250 );
+		}, this )
+		.next( function () {
+			// Allow scrolling in top-level window
+			this.$( window ).off( 'mousewheel', this.onWindowMouseWheelHandler );
+			this.$( document ).off( 'keydown', this.onDocumentKeyDownHandler );
+		}, this );
 };
 
 /**
@@ -1909,6 +1931,122 @@ OO.ui.Widget.prototype.setDisabled = function ( disabled ) {
 		this.emit( 'disable', isDisabled );
 	}
 	this.wasDisabled = isDisabled;
+	return this;
+};
+/**
+ * A list of functions, called in sequence.
+ *
+ * If a function added to a process returns boolean false the process will stop; if it returns an
+ * object with a `promise` method the process will use the promise to either continue to the next
+ * step when the promise is resolved or stop when the promise is rejected.
+ *
+ * @class
+ *
+ * @constructor
+ */
+OO.ui.Process = function () {
+	// Properties
+	this.steps = [];
+};
+
+/* Setup */
+
+OO.initClass( OO.ui.Process );
+
+/* Static Methods */
+
+/**
+ * Generate a promise which is resolved after a set amount of time.
+ *
+ * @param {number} length Number of milliseconds before resolving the promise
+ * @return {jQuery.Promise} Promise that will be resolved after a set amount of time
+ */
+OO.ui.Process.static.delay = function ( length ) {
+	var deferred = $.Deferred();
+
+	setTimeout( function () {
+		deferred.resolve();
+	}, length );
+
+	return deferred.promise();
+};
+
+/* Methods */
+
+/**
+ * Start the process.
+ *
+ * @return {jQuery.Promise} Promise that is resolved when all steps have completed or rejected when
+ *   any of the steps return boolean false or a promise which gets rejected; upon stopping the
+ *   process, the remaining steps will not be taken
+ */
+OO.ui.Process.prototype.execute = function () {
+	var i, len, promise;
+
+	/**
+	 * Continue execution.
+	 *
+	 * @ignore
+	 * @param {Array} step A function and the context it should be called in
+	 * @return {Function} Function that continues the process
+	 */
+	function proceed( step ) {
+		return function () {
+			// Execute step in the correct context
+			var result = step[0].call( step[1] );
+
+			if ( result === false ) {
+				// Use rejected promise for boolean false results
+				return $.Deferred().reject().promise();
+			}
+			// Duck-type the object to see if it can produce a promise
+			if ( result && $.isFunction( result.promise ) ) {
+				// Use a promise generated from the result
+				return result.promise();
+			}
+			// Use resolved promise for other results
+			return $.Deferred().resolve().promise();
+		};
+	}
+
+	if ( this.steps.length ) {
+		// Generate a chain reaction of promises
+		promise = proceed( this.steps[0] )();
+		for ( i = 1, len = this.steps.length; i < len; i++ ) {
+			promise = promise.then( proceed( this.steps[i] ) );
+		}
+	} else {
+		promise = $.Deferred().resolve().promise();
+	}
+
+	return promise;
+};
+
+/**
+ * Add step to the beginning of the process.
+ *
+ * @param {Function} step Function to execute; if it returns boolean false the process will stop; if
+ *   it returns an object with a `promise` method the process will use the promise to either
+ *   continue to the next step when the promise is resolved or stop when the promise is rejected
+ * @param {Object} [context=null] Context to call the step function in
+ * @chainable
+ */
+OO.ui.Process.prototype.first = function ( step, context ) {
+	this.steps.unshift( [ step, context || null ] );
+	return this;
+};
+
+/**
+ * Add step to the end of the process.
+ *
+ * @param {Function} step Function to execute; if it returns boolean false the process will stop; if
+ *   it returns an object with a `promise` method the process will use the promise to either
+ *   continue to the next step when the promise is resolved or stop when the promise is rejected
+ * @param {Object} [context=null] Context to call the step function in
+ * @chainable
+ */
+OO.ui.Process.prototype.next = function ( step, context ) {
+	this.steps.push( [ step, context || null ] );
 	return this;
 };
 /**
@@ -4851,6 +4989,7 @@ OO.ui.StackLayout.prototype.unsetCurrentItem = function () {
  * @chainable
  */
 OO.ui.StackLayout.prototype.addItems = function ( items, index ) {
+	// Mixin method
 	OO.ui.GroupElement.prototype.addItems.call( this, items, index );
 
 	if ( !this.currentItem && items.length ) {
@@ -4870,6 +5009,7 @@ OO.ui.StackLayout.prototype.addItems = function ( items, index ) {
  * @fires set
  */
 OO.ui.StackLayout.prototype.removeItems = function ( items ) {
+	// Mixin method
 	OO.ui.GroupElement.prototype.removeItems.call( this, items );
 
 	if ( $.inArray( this.currentItem, items  ) !== -1 ) {
@@ -5065,7 +5205,7 @@ OO.ui.PopupToolGroup.prototype.onMouseUp = function ( e ) {
 	if ( !this.isDisabled() && e.which === 1 ) {
 		this.setActive( false );
 	}
-	return OO.ui.ToolGroup.prototype.onMouseUp.call( this, e );
+	return OO.ui.PopupToolGroup.super.prototype.onMouseUp.call( this, e );
 };
 
 /**
@@ -5285,8 +5425,7 @@ OO.ui.GroupWidget.prototype.setDisabled = function ( disabled ) {
 	var i, len;
 
 	// Parent method
-	// Note this is calling OO.ui.Widget; we're assuming the class this is mixed into
-	// is a subclass of OO.ui.Widget.
+	// Note: Calling #setDisabled this way assumes this is mixed into an OO.ui.Widget
 	OO.ui.Widget.prototype.setDisabled.call( this, disabled );
 
 	// During construction, #setDisabled is called before the OO.ui.GroupElement constructor
@@ -5334,6 +5473,7 @@ OO.ui.ItemWidget.prototype.isDisabled = function () {
  */
 OO.ui.ItemWidget.prototype.setElementGroup = function ( group ) {
 	// Parent method
+	// Note: Calling #setElementGroup this way assumes this is mixed into an OO.ui.Element
 	OO.ui.Element.prototype.setElementGroup.call( this, group );
 
 	// Initialize item disabled states
@@ -5721,7 +5861,7 @@ OO.ui.InputWidget.prototype.setReadOnly = function ( state ) {
  * @inheritdoc
  */
 OO.ui.InputWidget.prototype.setDisabled = function ( state ) {
-	OO.ui.Widget.prototype.setDisabled.call( this, state );
+	OO.ui.InputWidget.super.prototype.setDisabled.call( this, state );
 	if ( this.$input ) {
 		this.$input.prop( 'disabled', this.isDisabled() );
 	}
@@ -6754,7 +6894,8 @@ OO.ui.SelectWidget.prototype.addItems = function ( items, index ) {
 		this.removeItems( remove );
 	}
 
-	OO.ui.GroupElement.prototype.addItems.call( this, items, index );
+	// Mixin method
+	OO.ui.GroupWidget.prototype.addItems.call( this, items, index );
 
 	// Always provide an index, even if it was omitted
 	this.emit( 'add', items, index === undefined ? this.items.length - items.length - 1 : index );
@@ -6785,7 +6926,9 @@ OO.ui.SelectWidget.prototype.removeItems = function ( items ) {
 			this.selectItem( null );
 		}
 	}
-	OO.ui.GroupElement.prototype.removeItems.call( this, items );
+
+	// Mixin method
+	OO.ui.GroupWidget.prototype.removeItems.call( this, items );
 
 	this.emit( 'remove', items );
 
@@ -6805,7 +6948,8 @@ OO.ui.SelectWidget.prototype.clearItems = function () {
 
 	// Clear all items
 	this.hashes = {};
-	OO.ui.GroupElement.prototype.clearItems.call( this );
+	// Mixin method
+	OO.ui.GroupWidget.prototype.clearItems.call( this );
 	this.selectItem( null );
 
 	this.emit( 'remove', items );
@@ -7014,7 +7158,7 @@ OO.ui.MenuWidget.prototype.addItems = function ( items, index ) {
 	var i, len, item;
 
 	// Parent method
-	OO.ui.SelectWidget.prototype.addItems.call( this, items, index );
+	OO.ui.MenuWidget.super.prototype.addItems.call( this, items, index );
 
 	// Auto-initialize
 	if ( !this.newItems ) {
@@ -7540,7 +7684,7 @@ OO.ui.ButtonOptionWidget.static.cancelButtonMouseDownEvents = false;
  * @inheritdoc
  */
 OO.ui.ButtonOptionWidget.prototype.setSelected = function ( state ) {
-	OO.ui.OptionWidget.prototype.setSelected.call( this, state );
+	OO.ui.ButtonOptionWidget.super.prototype.setSelected.call( this, state );
 
 	this.setActive( state );
 
@@ -7860,7 +8004,7 @@ OO.ui.PopupButtonWidget.prototype.onClick = function ( e ) {
 		} else {
 			this.showPopup();
 		}
-		OO.ui.ButtonWidget.prototype.onClick.call( this );
+		OO.ui.PopupButtonWidget.super.prototype.onClick.call( this );
 	}
 	return false;
 };
@@ -8109,7 +8253,7 @@ OO.ui.TextInputWidget.prototype.onEdit = function () {
 	this.adjustSize();
 
 	// Parent method
-	return OO.ui.InputWidget.prototype.onEdit.call( this );
+	return OO.ui.TextInputWidget.super.prototype.onEdit.call( this );
 };
 
 /**
@@ -8275,7 +8419,7 @@ OO.ui.TextInputMenuWidget.prototype.onWindowResize = function () {
  */
 OO.ui.TextInputMenuWidget.prototype.show = function () {
 	// Parent method
-	OO.ui.MenuWidget.prototype.show.call( this );
+	OO.ui.TextInputMenuWidget.super.prototype.show.call( this );
 
 	this.position();
 	this.$( this.getElementWindow() ).on( 'resize', this.onWindowResizeHandler );
@@ -8289,7 +8433,7 @@ OO.ui.TextInputMenuWidget.prototype.show = function () {
  */
 OO.ui.TextInputMenuWidget.prototype.hide = function () {
 	// Parent method
-	OO.ui.MenuWidget.prototype.hide.call( this );
+	OO.ui.TextInputMenuWidget.super.prototype.hide.call( this );
 
 	this.$( this.getElementWindow() ).off( 'resize', this.onWindowResizeHandler );
 	return this;
@@ -8429,7 +8573,7 @@ OO.ui.ToggleButtonWidget.prototype.onClick = function () {
 	}
 
 	// Parent method
-	return OO.ui.ButtonWidget.prototype.onClick.call( this );
+	return OO.ui.ToggleButtonWidget.super.prototype.onClick.call( this );
 };
 
 /**
@@ -8442,7 +8586,7 @@ OO.ui.ToggleButtonWidget.prototype.setValue = function ( value ) {
 	}
 
 	// Parent method
-	OO.ui.ToggleWidget.prototype.setValue.call( this, value );
+	OO.ui.ToggleButtonWidget.super.prototype.setValue.call( this, value );
 
 	return this;
 };
