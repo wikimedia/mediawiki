@@ -75,6 +75,9 @@ production.
   Special:Log, but more are to come.
 * Special:MostLinkedTemplates is no longer limited to transclusions from the
   Template namespace.
+* Skins can now use 'remoteSkinPath' when defining ResourceLoader modules.
+  This works the same as 'remoteExtPath' but is relative to the skins/ folder
+  instead of the extensions/ folder.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language

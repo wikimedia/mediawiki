@@ -181,6 +181,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *         'remoteBasePath' => [base path],
 	 *         // Equivalent of remoteBasePath, but relative to $wgExtensionAssetsPath
 	 *         'remoteExtPath' => [base path],
+	 *         // Equivalent of remoteBasePath, but relative to $wgStylePath
+	 *         'remoteSkinPath' => [base path],
 	 *         // Scripts to always include
 	 *         'scripts' => [file path string or array of file path strings],
 	 *         // Scripts to include in specific language contexts
@@ -230,6 +232,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( isset( $options['remoteExtPath'] ) ) {
 			global $wgExtensionAssetsPath;
 			$this->remoteBasePath = $wgExtensionAssetsPath . '/' . $options['remoteExtPath'];
+		}
+
+		if ( isset( $options['remoteSkinPath'] ) ) {
+			global $wgStylePath;
+			$this->remoteBasePath = $wgStylePath . '/' . $options['remoteSkinPath'];
 		}
 
 		foreach ( $options as $member => $option ) {
