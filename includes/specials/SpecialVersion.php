@@ -129,6 +129,7 @@ class SpecialVersion extends SpecialPage {
 					$this->getEntryPointInfo()
 				);
 				$out->addHtml(
+					$this->getSkinCredits() .
 					$this->getExtensionCredits() .
 					$this->getParserTags() .
 					$this->getParserFunctionHooks()
@@ -450,15 +451,38 @@ class SpecialVersion extends SpecialPage {
 			}
 		}
 
+		$this->firstExtOpened = false;
 		// Loop through the extension categories to display their extensions in the list.
 		foreach ( $extensionTypes as $type => $message ) {
-			if ( $type != 'other' ) {
+			// Skins have a separate section
+			if ( $type !== 'other' && $type !== 'skin' ) {
 				$out .= $this->getExtensionCategory( $type, $message );
 			}
 		}
 
 		// We want the 'other' type to be last in the list.
 		$out .= $this->getExtensionCategory( 'other', $extensionTypes['other'] );
+
+		$out .= Xml::closeElement( 'table' );
+
+		return $out;
+	}
+
+	/**
+	 * Generate wikitext showing skins name, URL, author and description.
+	 *
+	 * @return string Wikitext
+	 */
+	function getSkinCredits() {
+		$out = Xml::element(
+				'h2',
+				array( 'id' => 'mw-version-skin' ),
+				$this->msg( 'version-skins' )->text()
+			) .
+			Xml::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'sv-skin' ) );
+
+		$this->firstExtOpened = false;
+		$out .= $this->getExtensionCategory( 'skin', null );
 
 		$out .= Xml::closeElement( 'table' );
 
@@ -795,7 +819,7 @@ class SpecialVersion extends SpecialPage {
 		}
 	}
 
-	private function openExtType( $text, $name = null ) {
+	private function openExtType( $text = null, $name = null ) {
 		$out = '';
 
 		$opt = array( 'colspan' => 5 );
@@ -811,13 +835,18 @@ class SpecialVersion extends SpecialPage {
 			$opt['id'] = "sv-$name";
 		}
 
-		$out .= Html::rawElement( 'tr', array(),
-			Html::element( 'th', $opt, $text )
-		);
+		if ( $text !== null ) {
+			$out .= Html::rawElement( 'tr', array(),
+				Html::element( 'th', $opt, $text )
+			);
+		}
 
+		$firstHeadingMsg = ( $name === 'credits-skin' )
+			? 'version-skin-colheader-name'
+			: 'version-ext-colheader-name';
 		$out .= Html::openElement( 'tr' );
 		$out .= Html::element( 'th', array( 'class' => 'mw-version-ext-col-label' ),
-			$this->msg( 'version-ext-colheader-name' )->text() );
+			$this->msg( $firstHeadingMsg )->text() );
 		$out .= Html::element( 'th', array( 'class' => 'mw-version-ext-col-label' ),
 			$this->msg( 'version-ext-colheader-version' )->text() );
 		$out .= Html::element( 'th', array( 'class' => 'mw-version-ext-col-label' ),
