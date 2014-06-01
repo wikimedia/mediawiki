@@ -129,6 +129,7 @@ $wgAutoloadLocalClasses = array(
 	'MWHttpRequest' => 'includes/HttpFunctions.php',
 	'MWNamespace' => 'includes/MWNamespace.php',
 	'OutputPage' => 'includes/OutputPage.php',
+	'PageLanguage' => 'includes/PageLanguage.php',
 	'Pager' => 'includes/Pager.php',
 	'PathRouter' => 'includes/PathRouter.php',
 	'PathRouterPatternReplacer' => 'includes/PathRouter.php',
