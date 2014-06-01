@@ -150,11 +150,15 @@ class Title {
 	/** @var bool Whether a page has any subpages */
 	private $mHasSubpages;
 
-	/** @var bool The (string) language code of the page's language and content code. */
+	/**
+	 * @var bool|array Caching the page language. If false, cache not yet set.
+	 *   If array, it contains the PageLanguage object associated with this title
+	 *   and $wgLanguageCode (due to unit tests)
+	 */
 	private $mPageLanguage = false;
 
-	/** @var string The page language code from the database */
-	private $mDbPageLanguage = null;
+	/** @var bool|string The page language code from the database, false means not read from DB */
+	private $mDbPageLanguage = false;
 
 	/** @var TitleValue A corresponding TitleValue object */
 	private $mTitleValue = null;
@@ -4610,6 +4614,26 @@ class Title {
 	}
 
 	/**
+	 * @return PageLanguage
+	 */
+	private function getPageLanguageObject() {
+		global $wgLanguageCode;
+
+		// set $this->mPageLanguage cache if not yet set
+		if ( !$this->mPageLanguage || $this->mPageLanguage[1] !== $wgLanguageCode ) {
+			// if this Title object already queried the DB,
+			// provide it to PageLanguage to avoid double loading
+			$dbValue = false;
+			if ( $this->mDbPageLanguage !== false ) {
+				$dbValue = $this->mDbPageLanguage;
+			}
+			$pageLang = new PageLanguage( $this, $dbValue );
+			$this->mPageLanguage = array( $pageLang, $wgLanguageCode );
+		}
+		return $this->mPageLanguage[0];
+	}
+
+	/**
 	 * Get the language in which the content of this page is written in
 	 * wikitext. Defaults to $wgContLang, but in certain cases it can be
 	 * e.g. $wgLang (such as special pages, which are in the user language).
@@ -4618,32 +4642,7 @@ class Title {
 	 * @return Language
 	 */
 	public function getPageLanguage() {
-		global $wgLang, $wgLanguageCode;
-		if ( $this->isSpecialPage() ) {
-			// special pages are in the user language
-			return $wgLang;
-		}
-
-		// Checking if DB language is set
-		if ( $this->mDbPageLanguage ) {
-			return wfGetLangObj( $this->mDbPageLanguage );
-		}
-
-		if ( !$this->mPageLanguage || $this->mPageLanguage[1] !== $wgLanguageCode ) {
-			// Note that this may depend on user settings, so the cache should
-			// be only per-request.
-			// NOTE: ContentHandler::getPageLanguage() may need to load the
-			// content to determine the page language!
-			// Checking $wgLanguageCode hasn't changed for the benefit of unit
-			// tests.
-			$contentHandler = ContentHandler::getForTitle( $this );
-			$langObj = wfGetLangObj( $contentHandler->getPageLanguage( $this ) );
-			$this->mPageLanguage = array( $langObj->getCode(), $wgLanguageCode );
-		} else {
-			$langObj = wfGetLangObj( $this->mPageLanguage[0] );
-		}
-
-		return $langObj;
+		return $this->getPageLanguageObject()->getPageLanguage();
 	}
 
 	/**
@@ -4655,25 +4654,7 @@ class Title {
 	 * @return Language
 	 */
 	public function getPageViewLanguage() {
-		global $wgLang;
-
-		if ( $this->isSpecialPage() ) {
-			// If the user chooses a variant, the content is actually
-			// in a language whose code is the variant code.
-			$variant = $wgLang->getPreferredVariant();
-			if ( $wgLang->getCode() !== $variant ) {
-				return Language::factory( $variant );
-			}
-
-			return $wgLang;
-		}
-
-		// @note Can't be cached persistently, depends on user settings.
-		// @note ContentHandler::getPageViewLanguage() may need to load the
-		//   content to determine the page language!
-		$contentHandler = ContentHandler::getForTitle( $this );
-		$pageLang = $contentHandler->getPageViewLanguage( $this );
-		return $pageLang;
+		return $this->getPageLanguageObject()->getPageViewLanguage();
 	}
 
 	/**
