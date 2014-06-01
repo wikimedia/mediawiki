@@ -2516,11 +2516,6 @@ $term: string of search term
 Special:Upload.
 $form: The SpecialUpload object
 
-'SpecialVersionExtensionTypes': Called when generating the extensions credits,
-use this to change the tables headers. Deprecated since MediaWiki 1.17, use the
-ExtensionTypes hook instead.
-$extTypes: associative array of extensions types
-
 'SpecialVersionVersionUrl': Called when building the URL for Special:Version.
 $wgVersion: Current $wgVersion for you to use
 &$versionUrl: Raw url to link to (eg: release notes)
