@@ -62,29 +62,17 @@ class CssContentHandler extends TextContentHandler {
 	/**
 	 * Returns the english language, because CSS is english, and should be handled as such.
 	 *
+	 * @param array $settings
 	 * @param Title $title
 	 * @param Content $content
 	 *
-	 * @return Language wfGetLangObj( 'en' )
+	 * @return array
 	 *
-	 * @see ContentHandler::getPageLanguage()
+	 * @see ContentHandler::getPageLanguageSettings()
 	 */
-	public function getPageLanguage( Title $title, Content $content = null ) {
-		return wfGetLangObj( 'en' );
-	}
-
-	/**
-	 * Returns the english language, because CSS is english, and should be handled as such.
-	 *
-	 * @param Title $title
-	 * @param Content $content
-	 *
-	 * @return Language wfGetLangObj( 'en' )
-	 *
-	 * @see ContentHandler::getPageViewLanguage()
-	 */
-	public function getPageViewLanguage( Title $title, Content $content = null ) {
-		return wfGetLangObj( 'en' );
+	public function getPageLanguageSettings( $settings, Title $title, Content $content = null ) {
+		$settings['pagelanguage'] = $settings['pageviewlanguage'] = 'en';
+		return $settings;
 	}
 
 }
