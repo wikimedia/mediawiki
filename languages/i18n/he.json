@@ -880,6 +880,7 @@
 	"powersearch-togglelabel": "בחירה:",
 	"powersearch-toggleall": "הכול",
 	"powersearch-togglenone": "אף אחד",
+	"powersearch-remember": "שמירת הבחירה עבור חיפושים עתידיים",
 	"search-external": "חיפוש חיצוני",
 	"searchdisabled": "חיפוש ב{{grammar:תחילית|{{SITENAME}}}} אינו מופעל כעת.\nבינתיים אפשר לחפש באמצעות גוגל.\nשימו לב שייתכן שהמידע של {{SITENAME}} שם אינו מעודכן.",
 	"search-error": "אירעה שגיאה במהלך החיפוש: $1",

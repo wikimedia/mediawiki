@@ -864,6 +864,7 @@
 	"powersearch-togglelabel": "Izberi:",
 	"powersearch-toggleall": "Vse",
 	"powersearch-togglenone": "Nič",
+	"powersearch-remember": "Zapomni si izbiro za nadaljnja iskanja",
 	"search-external": "Zunanji iskalnik",
 	"searchdisabled": "Iskanje po {{GRAMMAR:dajalnik|{{SITENAME}}}} je onemogoočeno.\nMedtem lahko iščete preko Googla.\nUpoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} morda zastareli.",
 	"search-error": "Med iskanjem je prišlo do napake: $1",

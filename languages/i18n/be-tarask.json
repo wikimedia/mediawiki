@@ -866,6 +866,7 @@
 	"powersearch-togglelabel": "Пазначыць:",
 	"powersearch-toggleall": "Усе",
 	"powersearch-togglenone": "Нічога",
+	"powersearch-remember": "Запомніць выбар для будучых пошукаў",
 	"search-external": "Вонкавы пошук",
 	"searchdisabled": "Функцыя пошуку ў {{GRAMMAR:месны|{{SITENAME}}}} адключаная.\nВы можаце пашукаць з дапамогай Google, але заўважце, што там інфармацыя пра старонкі {{GRAMMAR:родны|{{SITENAME}}}} можа быць састарэлай.",
 	"search-error": "Узьнікла памылка пры пошуку: $1",
