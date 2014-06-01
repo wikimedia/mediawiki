@@ -6072,7 +6072,9 @@ $wgAutoloadAttemptLowercase = true;
  * view said file. When the 'license-name' key is specified, this file is
  * interpreted as wikitext.
  *
- * - $type: One of 'specialpage', 'parserhook', 'variable', 'media' or 'other'.
+ * - $type: One of 'specialpage', 'parserhook', 'variable', 'media', 'antispam',
+ *    'skin', 'api', or 'other', or any additional types as specified through the
+ *    ExtensionTypes hook as used in SpecialVersion::getExtensionTypes().
  *
  * - author: A string or an array of strings. Authors can be linked using
  *    the regular wikitext link syntax. To have an internationalized version of
