@@ -643,7 +643,41 @@ abstract class ContentHandler {
 	 * Also note that the page language may or may not depend on the actual content of the page,
 	 * that is, this method may load the content in order to determine the language.
 	 *
+	 * @since 1.24
+	 *
+	 * @param PageLanguage $pageLang The PageLanguage class
+	 * @param Content $content The page's content, if you have it handy, to avoid reloading it.
+	 */
+	public function setPageLanguageSettings( $pageLang, Content $content = null ) {
+		global $wgLang;
+		if ( $pageLang->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+			// Parse MediaWiki messages with correct target language
+			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $pageLang->mTitle->getText() );
+			// This prevents returning the variant for pageviewlanguage,
+			// not sure if it should
+			$pageLang->mPageLanguage = $pageLang->mPageViewLanguage = $lang;
+		} else {
+			wfRunHooks( 'PageContentLanguage', array( $pageLang->mTitle, &$pageLang->mPageLanguage, $wgLang ) );
+			// it's a normal wikitext page, let users set the language on-wiki
+			$pageLang->mUseDB = true;
+		}
+	}
+
+	/**
+	 * Get the language in which the content of the given page is written.
+	 *
+	 * This default implementation just returns $wgContLang (except for pages
+	 * in the MediaWiki namespace)
+	 *
+	 * Note that the pages language is not cacheable, since it may in some
+	 * cases depend on user settings.
+	 *
+	 * Also note that the page language may or may not depend on the actual content of the page,
+	 * that is, this method may load the content in order to determine the language.
+	 *
 	 * @since 1.21
+	 * @deprecated 1.24 use setPageLanguageSettings() in a ContentHandler to modify the page
+	 *   language; use Title::getPageLanguage() to actually get the page language for a page.
 	 *
 	 * @param Title $title The page to determine the language for.
 	 * @param Content $content The page's content, if you have it handy, to avoid reloading it.
@@ -658,9 +692,9 @@ abstract class ContentHandler {
 			// Parse mediawiki messages with correct target language
 			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $title->getText() );
 			$pageLang = wfGetLangObj( $lang );
+		} else {
+			wfRunHooks( 'PageContentLanguage', array( $title, &$pageLang, $wgLang ) );
 		}
-
-		wfRunHooks( 'PageContentLanguage', array( $title, &$pageLang, $wgLang ) );
 
 		return wfGetLangObj( $pageLang );
 	}
@@ -679,6 +713,8 @@ abstract class ContentHandler {
 	 * that is, this method may load the content in order to determine the language.
 	 *
 	 * @since 1.21
+	 * @deprecated  1.24 use setPageLanguageSettings() in a ContentHandler to modify the page
+	 *   language; use Title::getPageLanguage() to actually get the page language for a page.
 	 *
 	 * @param Title $title The page to determine the language for.
 	 * @param Content $content The page's content, if you have it handy, to avoid reloading it.
