@@ -1298,6 +1298,8 @@ abstract class UploadBase {
 	public function checkSvgScriptCallback( $element, $attribs ) {
 		list( $namespace, $strippedElement ) = $this->splitXmlNamespace( $element );
 
+		// We specifically don't include:
+		// http://www.w3.org/1999/xhtml (bug 60771)
 		static $validNamespaces = array(
 			'',
 			'adobe:ns:meta/',
@@ -1328,11 +1330,14 @@ abstract class UploadBase {
 			'http://purl.org/dc/elements/1.1',
 			'http://schemas.microsoft.com/visio/2003/svgextensions/',
 			'http://sodipodi.sourceforge.net/dtd/sodipodi-0.dtd',
+			'http://taptrix.com/inkpad/svg_extensions',
 			'http://web.resource.org/cc/',
 			'http://www.freesoftware.fsf.org/bkchem/cdml',
 			'http://www.inkscape.org/namespaces/inkscape',
+			'http://www.opengis.net/gml',
 			'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
 			'http://www.w3.org/2000/svg',
+			'http://www.w3.org/tr/rec-rdf-syntax/',
 		);
 
 		if ( !in_array( $namespace, $validNamespaces ) ) {
