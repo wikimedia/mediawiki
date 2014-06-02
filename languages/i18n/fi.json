@@ -894,6 +894,7 @@
 	"powersearch-togglelabel": "Muuta valintaa",
 	"powersearch-toggleall": "Valitse kaikki",
 	"powersearch-togglenone": "Ei mitään",
+	"powersearch-remember": "Muista valinta tulevia hakuja varten",
 	"search-external": "Ulkoinen haku",
 	"searchdisabled": "Tekstihaku on poistettu toistaiseksi käytöstä suuren kuorman vuoksi. Voit käyttää alla olevaa Googlen hakukenttää sivujen etsimiseen, kunnes haku tulee taas käyttöön. <small>Huomaa, että ulkopuoliset kopiot {{GRAMMAR:genitive|{{SITENAME}}}} sisällöstä eivät välttämättä ole ajan tasalla.</small>",
 	"search-error": "Virhe ilmaantui haettaessa: $1",

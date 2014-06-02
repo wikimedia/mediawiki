@@ -22,12 +22,13 @@
 			"TTO",
 			"Urhixidur",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"XXN"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
 	"tog-hideminor": "Ascunde modificările minore în schimbări recente",
-	"tog-hidepatrolled": "Ascunde modificările patrulate în schimbări recente",
+	"tog-hidepatrolled": "Ascunde modificările patrulate în schimbările recente",
 	"tog-newpageshidepatrolled": "Ascunde paginile patrulate din lista de pagini noi",
 	"tog-extendwatchlist": "Extinde lista de articole urmărite pentru a arăta toate schimbările efectuate, nu doar pe cele mai recente",
 	"tog-usenewrc": "Grupează modificările după pagină în cadrul schimbărilor recente și listei paginilor urmărite",

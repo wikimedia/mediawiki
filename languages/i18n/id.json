@@ -33,7 +33,8 @@
 			"William Surya Permana",
 			"לערי ריינהארט",
 			"아라",
-			"C5st4wr6ch"
+			"C5st4wr6ch",
+			"Raynasution"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -889,6 +890,7 @@
 	"powersearch-togglelabel": "Pilih:",
 	"powersearch-toggleall": "Semua",
 	"powersearch-togglenone": "Tidak ada",
+	"powersearch-remember": "Ingar pilihan untuk pencarian selanjutnya",
 	"search-external": "Pencarian eksternal",
 	"searchdisabled": "Pencarian {{SITENAME}} sementara dimatikan.\nAnda dapat mencari melalui Google untuk sementara waktu.\nPerlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencakup perubahan-perubahan terakhir.",
 	"search-error": "Kesalahan terjadi saat mencari: $1",

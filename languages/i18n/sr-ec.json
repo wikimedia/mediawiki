@@ -2885,7 +2885,7 @@
 	"watchlistedit-normal-submit": "Уклони",
 	"watchlistedit-normal-done": "{{PLURAL:$1|Једна страница је уклоњена|$1 странице су уклоњене|$1 страница је уклоњено}} с вашег списка надгледања:",
 	"watchlistedit-raw-title": "Измени сиров списак надгледања",
-	"watchlistedit-raw-legend": "Напредно уређивање списка надгледања",
+	"watchlistedit-raw-legend": "Измени сиров списак надгледања",
 	"watchlistedit-raw-explain": "Наслови са списка надгледања су приказани испод и могу се уређивати додавањем или уклањањем ставки са списка;\nједан наслов по реду.\nКада завршите, кликните на „{{int:Watchlistedit-raw-submit}}“.\nМожете да [[Special:EditWatchlist|користите и обичан уређивач]].",
 	"watchlistedit-raw-titles": "Наслови:",
 	"watchlistedit-raw-submit": "Ажурирај списак",

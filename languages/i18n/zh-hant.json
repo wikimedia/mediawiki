@@ -903,6 +903,7 @@
 	"powersearch-togglelabel": "請選擇：",
 	"powersearch-toggleall": "全部",
 	"powersearch-togglenone": "無",
+	"powersearch-remember": "記住選項用於以後搜索",
 	"search-external": "外部搜尋",
 	"searchdisabled": "{{SITENAME}} 已停用搜尋功能。\n您可以改透過 Google 搜尋。\n請注意，在 Google 中搜尋到的 {{SITENAME}} 頁面內容可能不是最新的。",
 	"search-error": "搜尋時發生錯誤：$1",

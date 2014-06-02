@@ -2842,6 +2842,7 @@
 	"watchlistedit-clear-submit": "Ачысьціць сьпіс назіраньня (гэта незваротна!)",
 	"watchlistedit-clear-done": "Ваш сьпіс назіраньня быў ачышчаны.",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|$1 запіс быў выдалены|$1 запісы былі выдаленыя|$1 запісаў былі выдаленыя}}:",
+	"watchlistedit-too-many": "Зашмат старонак, каб паказаць іх тут.",
 	"watchlisttools-view": "Паказаць зьмены ў старонках зь сьпісу",
 	"watchlisttools-edit": "Праглядзець альбо рэдагаваць сьпіс назіраньня",
 	"watchlisttools-raw": "Рэдагаваць як тэкст",
