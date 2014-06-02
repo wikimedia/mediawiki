@@ -40,9 +40,9 @@ class WikiImporter {
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
-	 * @param string $source
+	 * @param ImportStreamSource $source
 	 */
-	function __construct( $source ) {
+	function __construct( ImportStreamSource $source ) {
 		$this->reader = new XMLReader();
 
 		if ( !in_array(  'uploadsource', stream_get_wrappers() ) ) {
@@ -944,10 +944,10 @@ class UploadSourceAdapter {
 	private $mPosition;
 
 	/**
-	 * @param string $source
+	 * @param ImportStreamSource $source
 	 * @return string
 	 */
-	static function registerSource( $source ) {
+	static function registerSource( ImportStreamSource $source ) {
 		$id = wfRandomString();
 
 		self::$sourceRegistrations[$id] = $source;
