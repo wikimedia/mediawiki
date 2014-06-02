@@ -202,7 +202,7 @@ $magicWords = array(
 	'subjectpagenamee'          => array( '1', 'HAUPTSEITENNAME_URL', 'VORDERSEITE_URL', 'HAUPTSEITE_URL', 'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE' ),
 	'subst'                     => array( '0', 'ERS:', 'SUBST:' ),
 	'safesubst'                 => array( '0', 'SICHER_ERS:', 'SICHERERS:', 'SAFESUBST:' ),
-	'img_thumbnail'             => array( '1', 'miniatur', 'mini', 'thumbnail', 'thumb' ),
+	'img_thumbnail'             => array( '1', 'mini', 'miniatur', 'thumbnail', 'thumb' ),
 	'img_manualthumb'           => array( '1', 'miniatur=$1', 'mini=$1', 'thumbnail=$1', 'thumb=$1' ),
 	'img_right'                 => array( '1', 'rechts', 'right' ),
 	'img_left'                  => array( '1', 'links', 'left' ),
