@@ -88,15 +88,22 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 */
 	public function store( $cluster, $data ) {
 		$dbw = $this->getMaster( $cluster );
+		$hasTrx = $dbw->getFlag( DBO_TRX );
+		if ( $hasTrx ) {
+			$dbw->begin( __METHOD__ );
+		}
 		$id = $dbw->nextSequenceValue( 'blob_blob_id_seq' );
 		$dbw->insert( $this->getTable( $dbw ),
 			array( 'blob_id' => $id, 'blob_text' => $data ),
 			__METHOD__ );
 		$id = $dbw->insertId();
 		if ( !$id ) {
+			if ( $hasTrx ) {
+				$dbw->rollback( __METHOD__ );
+			}
 			throw new MWException( __METHOD__ . ': no insert ID' );
 		}
-		if ( $dbw->getFlag( DBO_TRX ) ) {
+		if ( $hasTrx ) {
 			$dbw->commit( __METHOD__ );
 		}
 
