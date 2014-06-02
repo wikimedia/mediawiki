@@ -430,9 +430,7 @@ class ZipDirectoryReader {
 				$year, $month, $day, $hour, $minute, $second );
 
 			// Convert the character set in the file name
-			if ( !function_exists( 'iconv' )
-				|| $this->testBit( $data['general bits'], self::GENERAL_UTF8 )
-			) {
+			if ( $this->testBit( $data['general bits'], self::GENERAL_UTF8 ) ) {
 				$name = $data['name'];
 			} else {
 				$name = iconv( 'CP437', 'UTF-8', $data['name'] );
