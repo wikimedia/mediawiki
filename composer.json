@@ -17,7 +17,22 @@
 	},
 	"require": {
 		"php": ">=5.3.2",
-		"psr/log": "1.0.0"
+		"psr/log": "1.0.0",
+		"symfony/class-loader": "dev-master",
+        	"symfony/browser-kit": "dev-master",
+        	"symfony/debug": "dev-master",
+        	"symfony/event-dispatcher": "dev-master",
+        	"symfony/http-kernel": "dev-master",
+        	"symfony/yaml": "dev-master",
+        	"symfony/config": "dev-master",
+        	"symfony/filesystem": "dev-master",
+        	"symfony/process": "dev-master",
+        	"symfony/finder": "dev-master",
+        	"symfony/console": "dev-master",
+        	"symfony/dom-crawler": "dev-master",
+        	"symfony/css-selector": "dev-master",
+        	"symfony/routing": "dev-master",
+        	"symfony/dependency-injection": "dev-master"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "*"
