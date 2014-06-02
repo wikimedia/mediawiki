@@ -797,9 +797,9 @@ class EditPage {
 				// suhosin.request.max_value_length (d'oh)
 				$this->incompleteForm = true;
 			} else {
-				// edittime should be one of our last fields; if it's missing,
-				// the submission probably broke somewhere in the middle.
-				$this->incompleteForm = is_null( $this->edittime );
+				// If we receive the last parameter of the request, we can fairly
+				// claim the POST request has not been truncated.
+				$this->incompleteForm = !$request->getVal( 'wpUltimateParam' );
 			}
 			if ( $this->incompleteForm ) {
 				# If the form is incomplete, force to preview.
@@ -2584,6 +2584,9 @@ class EditPage {
 			}
 		}
 
+		// Marker for detecting truncated form data.  This must be the last
+		// parameter sent in order to be of use, so do not move me.
+		$wgOut->addHTML( Html::hidden( 'wpUltimateParam', true ) );
 		$wgOut->addHTML( $this->editFormTextBottom . "\n</form>\n" );
 
 		if ( !$wgUser->getOption( 'previewontop' ) ) {
