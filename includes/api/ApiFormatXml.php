@@ -147,6 +147,15 @@ class ApiFormatXml extends ApiFormatBase {
 				$subElemIndName = null;
 			}
 
+			if ( isset( $elemValue['_subelements'] ) ) {
+				foreach ( $elemValue['_subelements'] as $subElemId ) {
+					if ( isset( $elemValue[$subElemId] ) && !is_array( $elemValue[$subElemId] ) ) {
+						$elemValue[$subElemId] = array( '*' => $elemValue[$subElemId] );
+					}
+				}
+				unset( $elemValue['_subelements'] );
+			}
+
 			$indElements = array();
 			$subElements = array();
 			foreach ( $elemValue as $subElemId => & $subElemValue ) {
