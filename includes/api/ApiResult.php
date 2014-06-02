@@ -33,11 +33,13 @@
  * Each subarray may either be a dictionary - key-value pairs with unique keys,
  * or lists, where the items are added using $data[] = $value notation.
  *
- * There are two special key values that change how XML output is generated:
- *   '_element' This key sets the tag name for the rest of the elements in the current array.
- *              It is only inserted if the formatter returned true for getNeedsRawData()
- *   '*'        This key has special meaning only to the XML formatter, and is outputted as is
- *              for all others. In XML it becomes the content of the current element.
+ * There are three special key values that change how XML output is generated:
+ *   '_element'     This key sets the tag name for the rest of the elements in the current array.
+ *                  It is only inserted if the formatter returned true for getNeedsRawData()
+ *   '_subelements' This key causes the specified elements to be returned as subelements rather than attributes.
+ *                  It is only inserted if the formatter returned true for getNeedsRawData()
+ *   '*'            This key has special meaning only to the XML formatter, and is outputted as is
+ *                  for all others. In XML it becomes the content of the current element.
  *
  * @ingroup API
  */
@@ -208,6 +210,30 @@ class ApiResult extends ApiBase {
 				$arr[$subElemName] = array();
 			}
 			ApiResult::setElement( $arr[$subElemName], '*', $value );
+		}
+	}
+
+	/**
+	 * Causes the elements with the specified names to be output as
+	 * subelements rather than attributes.
+	 * @param array $arr
+	 * @param array|string $names The element name(s) to be output as subelements
+	 */
+	public function setSubelements( &$arr, $names ) {
+		// In raw mode, add the '_subelements', otherwise just ignore
+		if ( !$this->getIsRawMode() ) {
+			return;
+		}
+		if ( $arr === null || $names === null || !is_array( $arr ) ) {
+			ApiBase::dieDebug( __METHOD__, 'Bad parameter' );
+		}
+		if ( !is_array( $names ) ) {
+			$names = array( $names );
+		}
+		if ( !isset( $arr['_subelements'] ) ) {
+			$arr['_subelements'] = $names;
+		} else {
+			$arr['_subelements'] = array_merge( $arr['_subelements'], $names );
 		}
 	}
 
