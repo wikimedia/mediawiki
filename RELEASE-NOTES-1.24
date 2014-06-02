@@ -38,9 +38,6 @@ production.
 * WikitextContent will now render redirects with the expected "redirect"
   header, rather than as an ordered list. Code calling Article::viewRedirect
   can probably be changed to no longer special-case redirects.
-* (bug 63903) Thumbnails without an explicit size specification are
-  now resized to a square bounding box. This gives better results for
-  non-landscape thumbnails.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language

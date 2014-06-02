@@ -285,34 +285,6 @@ class NewParserTest extends MediaWikiTestCase {
 					'fileExists'  => true
 			), $this->db->timestamp( '20010115123500' ), $user );
 		}
-		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Portrait.png' ) );
-		if ( !$this->db->selectField( 'image', '1', array( 'img_name' => $image->getName() ) ) ) {
-			$image->recordUpload2( '', 'Upload of tall bitmap', 'Some tall bitmap', array(
-					'size'        => 12345,
-					'width'       => 180,
-					'height'      => 240,
-					'bits'        => 8,
-					'media_type'  => MEDIATYPE_BITMAP,
-					'mime'        => 'image/png',
-					'metadata'    => serialize( array() ),
-					'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
-					'fileExists'  => true
-			), $this->db->timestamp( '20140515134200' ), $user );
-		}
-		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Portrait.svg' ) );
-		if ( !$this->db->selectField( 'image', '1', array( 'img_name' => $image->getName() ) ) ) {
-			$image->recordUpload2( '', 'Upload of tall SVG', 'Some tall SVG', array(
-					'size'        => 12345,
-					'width'       => 180,
-					'height'      => 240,
-					'bits'        => 24,
-					'media_type'  => MEDIATYPE_DRAWING,
-					'mime'        => 'image/svg+xml',
-					'metadata'    => serialize( array() ),
-					'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
-					'fileExists'  => true
-			), $this->db->timestamp( '20140325124200' ), $user );
-		}
 
 		# A DjVu file
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'LoremIpsum.djvu' ) );
@@ -527,10 +499,6 @@ class NewParserTest extends MediaWikiTestCase {
 		$backend->store( array(
 			'src' => "$IP/skins/monobook/headbg.jpg", 'dst' => "$base/local-public/0/09/Bad.jpg"
 		) );
-		$backend->prepare( array( 'dir' => "$base/local-public/9/93" ) );
-		$backend->store( array(
-			'src' => "$IP/tests/phpunit/data/media/Portrait.png", 'dst' => "$base/local-public/9/93/Portrait.png"
-		) );
 		$backend->prepare( array( 'dir' => "$base/local-public/5/5f" ) );
 		$backend->store( array(
 			'src' => "$IP/tests/phpunit/data/media/LoremIpsum.djvu", 'dst' => "$base/local-public/5/5f/LoremIpsum.djvu"
@@ -544,15 +512,6 @@ class NewParserTest extends MediaWikiTestCase {
 		$backend->prepare( array( 'dir' => "$base/local-public/f/ff" ) );
 		$backend->quickCreate( array(
 			'content' => $data, 'dst' => "$base/local-public/f/ff/Foobar.svg"
-		) );
-
-		$data = '<?xml version="1.0" encoding="utf-8"?>' .
-			'<svg xmlns="http://www.w3.org/2000/svg"' .
-			' version="1.1" width="180" height="240"/>';
-
-		$backend->prepare( array( 'dir' => "$base/local-public/f/fc" ) );
-		$backend->quickCreate( array(
-			'content' => $data, 'dst' => "$base/local-public/f/fc/Portrait.svg"
 		) );
 	}
 
@@ -628,9 +587,6 @@ class NewParserTest extends MediaWikiTestCase {
 				"$base/local-thumb/5/5f/LoremIpsum.djvu/page2-3720px-LoremIpsum.djvu.jpg",
 				"$base/local-thumb/5/5f/LoremIpsum.djvu/page2-4960px-LoremIpsum.djvu.jpg",
 
-				"$base/local-public/9/93/Portrait.png",
-				"$base/local-thumb/9/93/Portrait.png/165px-Portrait.png",
-
 				"$base/local-public/f/ff/Foobar.svg",
 				"$base/local-thumb/f/ff/Foobar.svg/180px-Foobar.svg.png",
 				"$base/local-thumb/f/ff/Foobar.svg/2000px-Foobar.svg.png",
@@ -641,14 +597,6 @@ class NewParserTest extends MediaWikiTestCase {
 				"$base/local-thumb/f/ff/Foobar.svg/langde-180px-Foobar.svg.png",
 				"$base/local-thumb/f/ff/Foobar.svg/langde-270px-Foobar.svg.png",
 				"$base/local-thumb/f/ff/Foobar.svg/langde-360px-Foobar.svg.png",
-
-				"$base/local-public/f/fc/Portrait.svg",
-				"$base/local-thumb/f/fc/Portrait.svg/165px-Portrait.svg.png",
-				"$base/local-thumb/f/fc/Portrait.svg/225px-Portrait.svg.png",
-				"$base/local-thumb/f/fc/Portrait.svg/247px-Portrait.svg.png",
-				"$base/local-thumb/f/fc/Portrait.svg/330px-Portrait.svg.png",
-				"$base/local-thumb/f/fc/Portrait.svg/337px-Portrait.svg.png",
-				"$base/local-thumb/f/fc/Portrait.svg/450px-Portrait.svg.png",
 
 				"$base/local-public/math/f/a/5/fa50b8b616463173474302ca3e63586b.png",
 			)
