@@ -2,15 +2,36 @@
 /**
  * @group Search
  * @group Database
+ * @covers PrefixSearch
  */
-class PrefixSearchTest extends MediaWikiLangTestCase {
+class PrefixSearchTest extends MediaWikiTestCase {
+	const NS_NONCAP = 12346;
+
+	protected function setUp() {
+		parent::setUp();
+
+		$lang = Language::factory( 'en' );
+
+		$this->setMwGlobals( array(
+			'wgLanguageCode' => 'en',
+			'wgContLang' => $lang,
+			'wgCapitalLinkOverrides' => array(
+				self::NS_NONCAP => false,
+			),
+			'wgContentNamespaces' => array( NS_MAIN, self::NS_NONCAP ),
+			'wgNamespaceContentModels' => array(),
+			'wgSpecialPages' => array(),
+			'wgHooks' => array(),
+			'wgExtraNamespaces' => array( self::NS_NONCAP => 'NonCap' ),
+		) );
+
+		// Oh please!
+		SpecialPageFactory::resetList();
+		MWNamespace::getCanonicalNamespaces( true );
+		$lang->resetNamespaces();
+	}
 
 	public function addDBData() {
-		if ( !$this->isWikitextNS( NS_MAIN ) ) {
-			// tests are skipped if NS_MAIN is not wikitext
-			return;
-		}
-
 		$this->insertPage( 'Sandbox' );
 		$this->insertPage( 'Bar' );
 		$this->insertPage( 'Example' );
@@ -30,17 +51,10 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 		$this->insertPage( 'Talk:Example' );
 
 		$this->insertPage( 'User:Example' );
-	}
 
-	protected function setUp() {
-		parent::setUp();
-
-		if ( !$this->isWikitextNS( NS_MAIN ) ) {
-			$this->markTestSkipped( 'Main namespace does not support wikitext.' );
-		}
-
-		// Avoid special pages from extensions interferring with the tests
-		$this->setMwGlobals( 'wgSpecialPages', array() );
+		$this->insertPage( Title::makeTitle( self::NS_NONCAP, 'Bar' ) );
+		$this->insertPage( Title::makeTitle( self::NS_NONCAP, 'Upper' ) );
+		$this->insertPage( Title::makeTitle( self::NS_NONCAP, 'sandbox' ) );
 	}
 
 	protected function searchProvision( Array $results = null ) {
@@ -141,6 +155,29 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 					'Special:EditWatchlist/clear',
 				),
 			) ),
+			array( array(
+				'Namespace with case sensitive first letter',
+				'query' => 'NonCap:upper',
+				'results' => array(),
+			) ),
+			array( array(
+				'Multinamespace search',
+				'query' => 'B',
+				'results' => array(
+					'Bar',
+					'NonCap:Bar',
+				),
+				'namespaces' => array( NS_MAIN, self::NS_NONCAP ),
+			) ),
+			array( array(
+				'Multinamespace search with lowercase first letter',
+				'query' => 'sand',
+				'results' => array(
+					'Sandbox',
+					'NonCap:sandbox',
+				),
+				'namespaces' => array( NS_MAIN, self::NS_NONCAP ),
+			) ),
 		);
 	}
 
@@ -149,10 +186,13 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 	 * @covers PrefixSearch::search
 	 * @covers PrefixSearch::searchBackend
 	 */
-	public function testSearch( Array $case ) {
+	public function testSearch( array $case ) {
 		$this->searchProvision( null );
+
+		$namespaces = isset( $case['namespaces'] ) ? $case['namespaces'] : array();
+
 		$searcher = new StringPrefixSearch;
-		$results = $searcher->search( $case['query'], 3 );
+		$results = $searcher->search( $case['query'], 3, $namespaces );
 		$this->assertEquals(
 			$case['results'],
 			$results,
@@ -165,10 +205,13 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 	 * @covers PrefixSearch::search
 	 * @covers PrefixSearch::searchBackend
 	 */
-	public function testSearchWithOffset( Array $case ) {
+	public function testSearchWithOffset( array $case ) {
 		$this->searchProvision( null );
+
+		$namespaces = isset( $case['namespaces'] ) ? $case['namespaces'] : array();
+
 		$searcher = new StringPrefixSearch;
-		$results = $searcher->search( $case['query'], 3, array(), 1 );
+		$results = $searcher->search( $case['query'], 3, $namespaces, 1 );
 
 		// We don't expect the first result when offsetting
 		array_shift( $case['results'] );
