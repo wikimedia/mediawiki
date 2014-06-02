@@ -40,9 +40,6 @@ production.
   can probably be changed to no longer special-case redirects.
 * Header font set to a serif font stack. See
   https://www.mediawiki.org/wiki/Typography_refresh for further information.
-* (bug 63903) Thumbnails without an explicit size specification are
-  now resized to a square bounding box. This gives better results for
-  non-landscape thumbnails.
 * (bug 65567) Added a new hook, "BeforeHttpsRedirect", to allow cancellation of the HTTP
   to HTTPS redirect due to forceHTTPS cookie, userRequires, etc.  This is only for page views,
   since this hook doesn't affect UserLogin, OAuth, CentralAuth, etc.
