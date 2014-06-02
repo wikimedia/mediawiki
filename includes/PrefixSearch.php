@@ -51,32 +51,33 @@ abstract class PrefixSearch {
 	 */
 	public function search( $search, $limit, $namespaces = array() ) {
 		$search = trim( $search );
-		if ( $search == '' ) {
-			return array(); // Return empty result
+		if ( $search === '' ) {
+			return array();
 		}
+
 		$namespaces = $this->validateNamespaces( $namespaces );
 
-		// Find a Title which is not an interwiki and is in NS_MAIN
-		$title = Title::newFromText( $search );
-		if ( $title && !$title->isExternal() ) {
-			$ns = array( $title->getNamespace() );
-			if ( $ns[0] == NS_MAIN ) {
-				$ns = $namespaces; // no explicit prefix, use default namespaces
-			}
-			return $this->searchBackend(
-				$ns, $title->getText(), $limit );
-		}
-
-		// Is this a namespace prefix?
+		// Is this a namespace prefix? Start listing all pages in it.
 		$title = Title::newFromText( $search . 'Dummy' );
-		if ( $title && $title->getText() == 'Dummy'
-			&& $title->getNamespace() != NS_MAIN
-			&& !$title->isExternal() )
-		{
-			$namespaces = array( $title->getNamespace() );
-			$search = '';
+		if ( $title
+			&& $title->getText() === 'Dummy'
+			&& !$title->inNamespace( NS_MAIN )
+			&& !$title->isExternal()
+		) {
+			return $this->searchBackend( array( $title->getNamespace() ), '', $limit );
 		}
 
+		// Explicit namespace prefix? Limit search to that namespace.
+		$title = Title::newFromText( $search );
+		if ( $title
+			&& !$title->isExternal()
+			&& !$title->inNamespace( NS_MAIN )
+		) {
+			// This will convert first letter to uppercase if appropriate for the namespace
+			return $this->searchBackend( array( $title->getNamespace() ), $title->getText(), $limit );
+		}
+
+		// Search in all requested namespaces
 		return $this->searchBackend( $namespaces, $search, $limit );
 	}
 
@@ -166,7 +167,9 @@ abstract class PrefixSearch {
 	protected function specialSearch( $search, $limit ) {
 		global $wgContLang;
 
-		list( $searchKey, $subpageSearch ) = explode( '/', $search, 2 );
+		$parts = explode( '/', $search, 2 );
+		$searchKey = $parts[0];
+		$subpageSearch = isset( $parts[1] ) ? $parts[1] : null;
 
 		// Handle subpage search separately.
 		if ( $subpageSearch !== null ) {
@@ -235,28 +238,33 @@ abstract class PrefixSearch {
 	 * @return array Array of Title objects
 	 */
 	protected function defaultSearchBackend( $namespaces, $search, $limit ) {
-		$ns = array_shift( $namespaces ); // support only one namespace
-		if ( in_array( NS_MAIN, $namespaces ) ) {
-			$ns = NS_MAIN; // if searching on many always default to main
+		$dbr = wfGetDB( DB_SLAVE );
+
+		// Construct suitable prefix for each namespace, they might differ
+		$prefixes = array();
+		foreach ( $namespaces as $ns ) {
+			$title = Title::makeTitleSafe( $ns, $search );
+			$prefix = $title ? $title->getDBkey() : '';
+			$prefixes[$prefix][] = $ns;
 		}
 
-		$t = Title::newFromText( $search, $ns );
-		$prefix = $t ? $t->getDBkey() : '';
-		$dbr = wfGetDB( DB_SLAVE );
+		$conds = array();
+		foreach ( $prefixes as $prefix => $nss ) {
+			$conds[] = $dbr->makeList( array(
+				'page_namespace' => $nss,
+				'page_title' . $dbr->buildLike( $prefix, $dbr->anyString() ),
+			), LIST_AND );
+		}
+
 		$res = $dbr->select( 'page',
 			array( 'page_id', 'page_namespace', 'page_title' ),
-			array(
-				'page_namespace' => $ns,
-				'page_title ' . $dbr->buildLike( $prefix, $dbr->anyString() )
-			),
+			$dbr->makeList( $conds, LIST_OR ),
 			__METHOD__,
 			array( 'LIMIT' => $limit, 'ORDER BY' => 'page_title' )
 		);
-		$srchres = array();
-		foreach ( $res as $row ) {
-			$srchres[] = Title::newFromRow( $row );
-		}
-		return $srchres;
+
+		// Shorter than a loop, and doesn't break class api
+		return iterator_to_array( TitleArray::newFromResult( $res ) );
 	}
 
 	/**
