@@ -2,6 +2,7 @@
 /**
  * @group Search
  * @group Database
+ * @covers PrefixSearch
  */
 class PrefixSearchTest extends MediaWikiTestCase {
 
