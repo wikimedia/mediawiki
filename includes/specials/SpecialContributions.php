@@ -203,11 +203,13 @@ class SpecialContributions extends IncludableSpecialPage {
 					$out->showLagWarning( $lag );
 				}
 
-				$out->addHTML(
-					'<p>' . $pager->getNavigationBar() . '</p>' .
-						$pager->getBody() .
-						'<p>' . $pager->getNavigationBar() . '</p>'
-				);
+				$output = $pager->getBody();
+				if ( !$this->including() ) {
+					$output = '<p>' . $pager->getNavigationBar() . '</p>' .
+						$output.
+						'<p>' . $pager->getNavigationBar() . '</p>';
+				}
+				$out->addHTML( $output );
 			}
 			$out->preventClickjacking( $pager->getPreventClickjacking() );
 
