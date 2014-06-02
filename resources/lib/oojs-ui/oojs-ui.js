@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (dd888aba5c)
+ * OOjs UI v0.1.0-pre (527ad0ee5a)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Fri May 30 2014 21:28:55 GMT-0700 (PDT)
+ * Date: Mon Jun 02 2014 12:15:09 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -1376,13 +1376,16 @@ OO.ui.Window.prototype.close = function ( data ) {
 	}
 
 	// Close the window
-	this.opened.resolve();
 	// This.closing needs to exist before we emit the closing event so that handlers can call
 	// window.close() and trigger the safety check above
 	this.closing = $.Deferred();
 	this.frame.$content.find( ':focus' ).blur();
 	this.emit( 'closing', data );
 	this.getTeardownProcess( data ).execute().done( OO.ui.bind( function () {
+		// To do something different with #opened, resolve/reject #opened in the teardown process
+		if ( !this.opened.isResolved() && !this.opened.isRejected() ) {
+			this.opened.resolve();
+		}
 		this.emit( 'close', data );
 		this.$element.hide();
 		this.visible = false;
@@ -8585,8 +8588,8 @@ OO.ui.ToggleButtonWidget.prototype.setValue = function ( value ) {
 		this.setActive( value );
 	}
 
-	// Parent method
-	OO.ui.ToggleButtonWidget.super.prototype.setValue.call( this, value );
+	// Parent method (from mixin)
+	OO.ui.ToggleWidget.prototype.setValue.call( this, value );
 
 	return this;
 };
