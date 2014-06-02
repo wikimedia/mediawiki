@@ -1183,6 +1183,14 @@ $wgAutoloadLocalClasses = array(
 	'SkinMonoBook' => 'skins/MonoBook.php',
 	'SkinVector' => 'skins/Vector.php',
 	'VectorTemplate' => 'skins/Vector.php',
+	
+	# Symfony Framework - Browser Kit
+	'Response' => 'vendor/symfony/browser-kit/Symfony/Component/BrowserKit/Response.php',
+	'Request' => 'vendor/symfony/browser-kit/Symfony/Component/BrowserKit/Request.php',
+	'Client' => 'vendor/symfony/browser-kit/Symfony/Component/BrowserKit/Client.php',
+	'CookieJar' => 'vendor/symfony/browser-kit/Symfony/Component/BrowserKit/CookieJar.php',
+	'Cookie' => 'vendor/symfony/browser-kit/Symfony/Component/BrowserKit/Cookie.php',
+	'History' => 'vendor/symfony/browser-kit/Symfony/Component/BrowserKit/History.php',
 );
 
 class AutoLoader {
