@@ -1253,9 +1253,6 @@ class User {
 			$this->mNewpassword = $row->user_newpassword;
 			$this->mNewpassTime = wfTimestampOrNull( TS_MW, $row->user_newpass_time );
 			$this->mEmail = $row->user_email;
-			if ( isset( $row->user_options ) ) {
-				$this->decodeOptions( $row->user_options );
-			}
 			$this->mTouched = wfTimestamp( TS_MW, $row->user_touched );
 			$this->mToken = $row->user_token;
 			if ( $this->mToken == '' ) {
@@ -3301,34 +3298,6 @@ class User {
 			);
 			// We also need to clear here the "you have new message" notification for the own user_talk page;
 			// it's cleared one page view later in WikiPage::doViewUpdates().
-		}
-	}
-
-	/**
-	 * Set this user's options from an encoded string
-	 * @param string $str Encoded options to import
-	 *
-	 * @deprecated since 1.19 due to removal of user_options from the user table
-	 */
-	private function decodeOptions( $str ) {
-		wfDeprecated( __METHOD__, '1.19' );
-		if ( !$str ) {
-			return;
-		}
-
-		$this->mOptionsLoaded = true;
-		$this->mOptionOverrides = array();
-
-		// If an option is not set in $str, use the default value
-		$this->mOptions = self::getDefaultOptions();
-
-		$a = explode( "\n", $str );
-		foreach ( $a as $s ) {
-			$m = array();
-			if ( preg_match( "/^(.[^=]*)=(.*)$/", $s, $m ) ) {
-				$this->mOptions[$m[1]] = $m[2];
-				$this->mOptionOverrides[$m[1]] = $m[2];
-			}
 		}
 	}
 
