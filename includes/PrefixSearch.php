@@ -53,36 +53,49 @@ abstract class PrefixSearch {
 	 */
 	public function search( $search, $limit, $namespaces = array(), $offset = 0 ) {
 		$search = trim( $search );
-		if ( $search == '' ) {
-			return array(); // Return empty result
-		}
-		$namespaces = $this->validateNamespaces( $namespaces );
-
-		// Find a Title which is not an interwiki and is in NS_MAIN
-		$title = Title::newFromText( $search );
-		if ( $title && !$title->isExternal() ) {
-			$ns = array( $title->getNamespace() );
-			$search = $title->getText();
-			if ( $ns[0] == NS_MAIN ) {
-				$ns = $namespaces; // no explicit prefix, use default namespaces
-				Hooks::run( 'PrefixSearchExtractNamespace', array( &$ns, &$search ) );
-			}
-			return $this->searchBackend( $ns, $search, $limit, $offset );
+		if ( $search === '' ) {
+			return array();
 		}
 
-		// Is this a namespace prefix?
-		$title = Title::newFromText( $search . 'Dummy' );
-		if ( $title && $title->getText() == 'Dummy'
-			&& $title->getNamespace() != NS_MAIN
-			&& !$title->isExternal() )
-		{
-			$namespaces = array( $title->getNamespace() );
-			$search = '';
+		$hasNamespace = $this->extractNamespace( $search );
+		if ( $hasNamespace ) {
+			list( $namespace, $search ) = $hasNamespace;
+			$namespaces = array( $namespace );
 		} else {
-			Hooks::run( 'PrefixSearchExtractNamespace', array( &$namespaces, &$search ) );
+			$namespaces = $this->validateNamespaces( $namespaces );
 		}
 
 		return $this->searchBackend( $namespaces, $search, $limit, $offset );
+	}
+
+	protected function extractNamespace( $input ) {
+		if ( strpos( $input, ':' ) === false ) {
+			return false;
+		}
+
+		// Namespace prefix only
+		$title = Title::newFromText( $input . 'Dummy' );
+		if (
+			$title &&
+			$title->getText() === 'Dummy' &&
+			!$title->inNamespace( NS_MAIN ) &&
+			!$title->isExternal()
+		) {
+			return array( $title->getNamespace(), '' );
+		}
+
+		// Namespace prefix with additional input
+		$title = Title::newFromText( $input );
+		if (
+			$title &&
+			!$title->inNamespace( NS_MAIN ) &&
+			!$title->isExternal()
+		) {
+			// getText provides correct capitalization
+			return array( $title->getNamespace(), $title->getText() );
+		}
+
+		return false;
 	}
 
 	/**
@@ -257,36 +270,43 @@ abstract class PrefixSearch {
 	 * @param string $search Term
 	 * @param int $limit Max number of items to return
 	 * @param int $offset Number of items to skip
-	 * @return array Array of Title objects
+	 * @return Title[] Array of Title objects
 	 */
 	protected function defaultSearchBackend( $namespaces, $search, $limit, $offset ) {
-		$ns = array_shift( $namespaces ); // support only one namespace
-		if ( in_array( NS_MAIN, $namespaces ) ) {
-			$ns = NS_MAIN; // if searching on many always default to main
-		}
-
-		$t = Title::newFromText( $search, $ns );
-
-		$prefix = $t ? $t->getDBkey() : '';
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'page',
-			array( 'page_id', 'page_namespace', 'page_title' ),
-			array(
-				'page_namespace' => $ns,
-				'page_title ' . $dbr->buildLike( $prefix, $dbr->anyString() )
-			),
-			__METHOD__,
-			array(
-				'LIMIT' => $limit,
-				'ORDER BY' => 'page_title',
-				'OFFSET' => $offset
-			)
-		);
-		$srchres = array();
-		foreach ( $res as $row ) {
-			$srchres[] = Title::newFromRow( $row );
+
+		// Construct suitable prefix for each namespace. They differ in cases where
+		// some namespaces always capitalize and some don't.
+		$prefixes = array();
+		foreach ( $namespaces as $ns ) {
+			$title = Title::makeTitleSafe( $ns, $search );
+			// Why does the prefix default to empty?
+			$prefix = $title ? $title->getDBkey() : '';
+			$prefixes[$prefix][] = $ns;
 		}
-		return $srchres;
+
+		// Prepare the list of ORed conditions
+		$conds = array();
+		foreach ( $prefixes as $prefix => $nss ) {
+			$condition = array(
+				'page_namespace' => $nss,
+				'page_title' . $dbr->buildLike( $prefix, $dbr->anyString() ),
+			);
+			$conds[] = $dbr->makeList( $condition, LIST_AND );
+		}
+
+		$table = 'page';
+		$fields = array( 'page_id', 'page_namespace', 'page_title' );
+		$conds = $dbr->makeList( $conds, LIST_OR );
+		$options = array(
+			'LIMIT' => $limit,
+			'ORDER BY' => array( 'page_title', 'page_namespace' ),
+			'OFFSET' => $offset
+		);
+
+		$res = $dbr->select( $table, $fields, $conds, __METHOD__, $options );
+
+		return iterator_to_array( TitleArray::newFromResult( $res ) );
 	}
 
 	/**
@@ -307,6 +327,7 @@ abstract class PrefixSearch {
 					$valid[] = $ns;
 				}
 			}
+
 			if ( count( $valid ) > 0 ) {
 				return $valid;
 			}
