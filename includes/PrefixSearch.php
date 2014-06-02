@@ -51,31 +51,41 @@ abstract class PrefixSearch {
 	 */
 	public function search( $search, $limit, $namespaces = array() ) {
 		$search = trim( $search );
-		if ( $search == '' ) {
-			return array(); // Return empty result
+		if ( $search === '' ) {
+			return array();
 		}
+
 		$namespaces = $this->validateNamespaces( $namespaces );
 
-		// Find a Title which is not an interwiki and is in NS_MAIN
-		$title = Title::newFromText( $search );
-		if ( $title && !$title->isExternal() ) {
-			$ns = array( $title->getNamespace() );
-			if ( $ns[0] == NS_MAIN ) {
-				$ns = $namespaces; // no explicit prefix, use default namespaces
-			}
-			return $this->searchBackend( $ns, $title->getText(), $limit );
-		}
-
-		// Is this a namespace prefix?
+		// Given a mere namespace prefix, list all pages in that namespace
 		$title = Title::newFromText( $search . 'Dummy' );
-		if ( $title && $title->getText() == 'Dummy'
-			&& $title->getNamespace() != NS_MAIN
-			&& !$title->isExternal() )
-		{
-			$namespaces = array( $title->getNamespace() );
-			$search = '';
+		if ( $title
+			&& $title->getText() === 'Dummy'
+			&& !$title->inNamespace( NS_MAIN )
+			&& !$title->isExternal()
+		) {
+			return $this->searchBackend(
+				array( $title->getNamespace() ),
+				'',
+				$limit
+			);
 		}
 
+		// Namespace prefix with (partial?) title, limit search to that namespace
+		$title = Title::newFromText( $search );
+		if ( $title
+			&& !$title->isExternal()
+			&& !$title->inNamespace( NS_MAIN )
+		) {
+			// Use Title::getText so that prefix is converted to uppercase if appropriate
+			return $this->searchBackend(
+				array( $title->getNamespace() ),
+				$title->getText(),
+				$limit
+			);
+		}
+
+		// Search in all requested namespaces
 		return $this->searchBackend( $namespaces, $search, $limit );
 	}
 
