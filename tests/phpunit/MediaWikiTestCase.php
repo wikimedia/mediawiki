@@ -492,7 +492,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		User::resetIdByNameCache();
 
-		//Make sysop user
+		// Make sysop user
 		$user = User::newFromName( 'UTSysop' );
 
 		if ( $user->idForName() == 0 ) {
@@ -504,7 +504,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$user->saveSettings();
 		}
 
-		//Make 1 page with 1 revision
+		// Make 1 page with 1 revision
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		if ( $page->getId() == 0 ) {
 			$page->doEditContent(
@@ -512,7 +512,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				'UTPageSummary',
 				EDIT_NEW,
 				false,
-				User::newFromName( 'UTSysop' ) );
+				User::newFromName( 'UTSysop' )
+			);
 		}
 	}
 
