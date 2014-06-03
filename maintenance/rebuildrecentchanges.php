@@ -179,13 +179,6 @@ class RebuildRecentchanges extends Maintenance {
 		// Some logs don't go in RC. This should check for that
 		$basicRCLogs = array_diff( $wgLogTypes, array_keys( $wgLogRestrictions ) );
 
-		// Escape...blah blah
-		$selectLogs = array();
-		foreach ( $basicRCLogs as $logtype ) {
-			$safetype = $dbw->strencode( $logtype );
-			$selectLogs[] = "'$safetype'";
-		}
-
 		$cutoff = time() - $wgRCMaxAge;
 		list( $logging, $page ) = $dbw->tableNamesN( 'logging', 'page' );
 		$dbw->insertSelect(
@@ -219,7 +212,7 @@ class RebuildRecentchanges extends Maintenance {
 			array(
 				'log_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $cutoff ) ),
 				'log_user=user_id',
-				'log_type IN(' . implode( ',', $selectLogs ) . ')'
+				'log_type' => $basicRCLogs,
 			),
 			__METHOD__,
 			array(), // INSERT options

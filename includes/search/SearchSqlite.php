@@ -115,9 +115,9 @@ class SearchSqlite extends SearchDatabase {
 			wfDebug( __METHOD__ . ": Can't understand search query '{$filteredText}'\n" );
 		}
 
-		$searchon = $this->db->strencode( $searchon );
+		$searchon = $this->db->addQuotes( $searchon );
 		$field = $this->getIndexField( $fulltext );
-		return " $field MATCH '$searchon' ";
+		return " $field MATCH $searchon ";
 	}
 
 	function regexTerm( $string, $wildcard ) {

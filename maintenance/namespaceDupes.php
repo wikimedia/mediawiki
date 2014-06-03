@@ -208,35 +208,29 @@ class NamespaceConflictChecker extends Maintenance {
 	 * @return array
 	 */
 	private function getConflicts( $ns, $name ) {
-		$page = 'page';
-		$table = $this->db->tableName( $page );
-
-		$prefix = $this->db->strencode( $name );
-		$encNamespace = $this->db->addQuotes( $ns );
-
-		$titleSql = "TRIM(LEADING '$prefix:' FROM {$page}_title)";
+		$titleSql = "TRIM(LEADING {$this->db->addQuotes( "$name:" )} FROM page_title)";
 		if ( $ns == 0 ) {
 			// An interwiki; try an alternate encoding with '-' for ':'
-			$titleSql = $this->db->buildConcat( array( "'$prefix-'", $titleSql ) );
+			$titleSql = $this->db->buildConcat( array(
+				$this->db->addQuotes( "$name-" ),
+				$titleSql,
+			) );
 		}
 
-		$sql = "SELECT {$page}_id    AS id,
-					   {$page}_title AS oldtitle,
-					   $encNamespace + {$page}_namespace AS namespace,
-				   $titleSql     AS title,
-				   {$page}_namespace AS oldnamespace
-				  FROM {$table}
-				 WHERE ( {$page}_namespace=0 OR {$page}_namespace=1 )
-				   AND {$page}_title " . $this->db->buildLike( $name . ':', $this->db->anyString() );
-
-		$result = $this->db->query( $sql, __METHOD__ );
-
-		$set = array();
-		foreach ( $result as $row ) {
-			$set[] = $row;
-		}
-
-		return $set;
+		return iterator_to_array( $this->db->select( 'page',
+			array(
+				'id' => 'page_id',
+				'oldtitle' => 'page_title',
+				'namespace' => $this->db->addQuotes( $ns ) . ' + page_namespace',
+				'title' => $titleSql,
+				'oldnamespace' => 'page_namespace',
+			),
+			array(
+				'page_namespace' => array( 0, 1 ),
+				'page_title' . $this->db->buildLike( "$name:", $this->db->anyString() ),
+			),
+			__METHOD__
+		) );
 	}
 
 	/**
