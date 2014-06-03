@@ -3441,6 +3441,70 @@ HTML
 	}
 
 	/**
+	 * Create a template callback to use given content in place of a page's actual content
+	 * @param Title $title
+	 * @param Content $content
+	 * @param callable $oldTemplateCallback
+	 * @return function
+	 */
+	public static function makeTemplateCallback( $title, $content, &$oldTemplateCallback ) {
+		$titleText = $title->getFullText();
+		return function( $title, $parser = false ) use( $titleText, $content, &$oldTemplateCallback ) {
+			global $wgUser;
+
+			// Note that Parser::statelessFetchTemplate currently only handles one
+			// level of redirection, regardless of $wgMaxRedirects. We reproduce
+			// this behavior here.
+			$match = ( $title->getFullText() == $titleText );
+			$rtitle = null;
+			if ( !$match && $title->isRedirect() ) {
+				$rtitle = WikiPage::factory( $title )->getRedirectTarget();
+				$match = ( $rtitle->getFullText() == $titleText );
+			}
+			if ( $match ) {
+				$deps[] = array(
+					'title' => $title,
+					'page_id' => $title->getArticleID(),
+					'rev_id' => 0,
+				);
+				$finalTitle = $title;
+				if ( $rtitle ) {
+					$deps[] = array(
+						'title' => $rtitle,
+						'page_id' => $rtitle->getArticleID(),
+						'rev_id' => 0,
+					);
+					$finalTitle = $rtitle;
+				}
+
+				if ( !$rtitle && $content->isRedirect() ) {
+					$newTitle = $content->getRedirectTarget();
+					$rev = Revision::newFromTitle( $newTitle );
+					if ( $rev ) {
+						$content = $rev->getContent( Revision::FOR_THIS_USER, $wgUser );
+						$finalTitle = $newTitle;
+					}
+					$deps[] = array(
+						'title' => $newTitle,
+						'page_id' => $newTitle->getArticleID(),
+						'rev_id' => 0,
+					);
+				}
+				$text = $content->getWikitextForTransclusion();
+				if ( $text === null ) {
+					$text = false;
+				}
+				return array(
+					'text' => $text,
+					'finalTitle' => $finalTitle,
+					'deps' => $deps,
+				);
+			}
+			return call_user_func( $oldTemplateCallback, $title, $parser );
+		};
+	}
+
+	/**
 	 * Get the rendered text for previewing.
 	 * @throws MWException
 	 * @return string
@@ -3543,6 +3607,9 @@ HTML
 			# But it's now deprecated, so never mind
 
 			$content = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
+			$oldTemplateCallback = $parserOptions->setTemplateCallback(
+				EditPage::makeTemplateCallback( $this->mTitle, $content, $oldTemplateCallback )
+			);
 			$parserOutput = $content->getParserOutput(
 				$this->getArticle()->getTitle(),
 				null,
