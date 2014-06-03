@@ -127,7 +127,9 @@ class IPSet {
 		$mask = intval( $mask ); // explicit integer convert, checked above
 
 		// convert $net to an array of integer bytes, length 4 or 16:
+		wfSuppressWarnings();
 		$raw = inet_pton( $net );
+		wfRestoreWarnings();
 		if ( $raw === false ) {
 			return; // inet_pton() sends an E_WARNING for us
 		}
@@ -168,7 +170,9 @@ class IPSet {
 	 * If $ip is unparseable, inet_pton may issue an E_WARNING to that effect
 	 */
 	public function match( $ip ) {
+		wfSuppressWarnings();
 		$raw = inet_pton( $ip );
+		wfRestoreWarnings();
 		if ( $raw === false ) {
 			return false; // inet_pton() sends an E_WARNING for us
 		}
