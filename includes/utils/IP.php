@@ -66,7 +66,7 @@ define( 'IP_ADDRESS_STRING',
  */
 class IP {
 	/** @var IPSet */
-	private static $ipSet = null;
+	private static $proxyIpSet = null;
 
 	/**
 	 * Determine if a string is as valid IP address or network (CIDR prefix).
@@ -718,10 +718,10 @@ class IP {
 
 		// Check against addresses and CIDR nets in the NoPurge list
 		if ( !$trusted ) {
-			if ( !self::$ipSet ) {
-				self::$ipSet = new IPSet( $wgSquidServersNoPurge );
+			if ( !self::$proxyIpSet ) {
+				self::$proxyIpSet = new IPSet( $wgSquidServersNoPurge );
 			}
-			$trusted = self::$ipSet->match( $ip );
+			$trusted = self::$proxyIpSet->match( $ip );
 		}
 		wfProfileOut( __METHOD__ );
 
@@ -733,6 +733,6 @@ class IP {
 	 * Use this only for unit tests.
 	 */
 	public static function clearCaches() {
-		self::$ipSet = null;
+		self::$proxyIpSet = null;
 	}
 }
