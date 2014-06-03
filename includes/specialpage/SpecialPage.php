@@ -581,6 +581,15 @@ class SpecialPage {
 	}
 
 	/**
+	 * Shortcut to get main config object
+	 * @return Config
+	 * @since 1.24
+	 */
+	public function getConfig() {
+		return $this->getContext()->getConfig();
+	}
+
+	/**
 	 * Return the full title, including $par
 	 *
 	 * @return Title
