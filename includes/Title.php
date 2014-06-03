@@ -2723,11 +2723,14 @@ class Title {
 	 * Cascading protection: Get the source of any cascading restrictions on this page.
 	 *
 	 * @param bool $getPages Whether or not to retrieve the actual pages
-	 *        that the restrictions have come from.
-	 * @return array|bool Array of Title objects of the pages from which cascading restrictions
-	 *     have come, false for none, or true if such restrictions exist, but $getPages
-	 *     was not set.  The restriction array is an array of each type, each of which
-	 *     contains a array of unique groups.
+	 *        that the restrictions have come from and the actual restrictions
+	 *        themselves.
+	 * @return array Two elements: First is an array of Title objects of the
+	 *        pages from which cascading restrictions have come, false for
+	 *        none, or true if such restrictions exist but $getPages was not
+	 *        set. Second is an array like that returned by
+	 *        Title::getAllRestrictions(), or an empty array if $getPages is
+	 *        false.
 	 */
 	public function getCascadeProtectionSources( $getPages = true ) {
 		global $wgContLang;
@@ -2834,7 +2837,8 @@ class Title {
 	 * Accessor/initialisation for mRestrictions
 	 *
 	 * @param string $action Action that permission needs to be checked for
-	 * @return array Array of Strings the array of groups allowed to edit this article
+	 * @return array Restriction levels needed to take the action. All levels
+	 *     are required.
 	 */
 	public function getRestrictions( $action ) {
 		if ( !$this->mRestrictionsLoaded ) {
@@ -2848,9 +2852,8 @@ class Title {
 	/**
 	 * Accessor/initialisation for mRestrictions
 	 *
-	 * @return array Array of Arrays of Strings the first level indexed by
-	 * action, the second level containing the names of the groups
-	 * allowed to perform each action
+	 * @return array Keys are actions, values are arrays as returned by
+	 *     Title::getRestrictions()
 	 * @since 1.23
 	 */
 	public function getAllRestrictions() {
