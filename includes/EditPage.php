@@ -3478,6 +3478,8 @@ HTML
 			# But it's now deprecated, so never mind
 
 			$content = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
+			$scopedCallback = $parserOptions->setupFakeRevision(
+				$this->mTitle, $content, $wgUser );
 			$parserOutput = $content->getParserOutput(
 				$this->getArticle()->getTitle(),
 				null,
