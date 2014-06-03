@@ -3981,9 +3981,11 @@ class Language {
 	}
 
 	/**
+	 * @deprecated since 1.24, will be removed in 1.25
 	 * @return Language
 	 */
 	function getLangObj() {
+		wfDeprecated( __METHOD__, '1.24' );
 		return $this;
 	}
 
