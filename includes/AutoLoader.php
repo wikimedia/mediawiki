@@ -1113,6 +1113,7 @@ $wgAutoloadLocalClasses = array(
 	'HashtableReplacer' => 'includes/utils/StringUtils.php',
 	'IP' => 'includes/utils/IP.php',
 	'MWCryptRand' => 'includes/utils/MWCryptRand.php',
+	'MWCryptHKDF' => 'includes/utils/MWCryptHKDF.php',
 	'MWFunction' => 'includes/utils/MWFunction.php',
 	'RegexlikeReplacer' => 'includes/utils/StringUtils.php',
 	'ReplacementArray' => 'includes/utils/StringUtils.php',
