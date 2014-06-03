@@ -99,6 +99,7 @@ production.
   namespace.
 * action=expandtemplates has a new parameter, prop, and a new output format.
   The old format is still used if prop isn't provided, but this is deprecated.
+* list=watchlist can now filter by unread status.
 
 === Languages updated in 1.24 ===
 

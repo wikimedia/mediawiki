@@ -168,6 +168,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				|| ( isset( $show['bot'] ) && isset( $show['!bot'] ) )
 				|| ( isset( $show['anon'] ) && isset( $show['!anon'] ) )
 				|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
+				|| ( isset( $show['unread'] ) && isset( $show['!unread'] ) )
 			) {
 				$this->dieUsageMsg( 'show' );
 			}
@@ -191,6 +192,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addWhereIf( 'rc_user != 0', isset( $show['!anon'] ) );
 			$this->addWhereIf( 'rc_patrolled = 0', isset( $show['!patrolled'] ) );
 			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
+			$this->addWhereIf( 'wl_notificationtimestamp IS NOT NULL', isset( $show['unread'] ) );
+			$this->addWhereIf( 'wl_notificationtimestamp IS NULL', isset( $show['!unread'] ) );
 		}
 
 		if ( !is_null( $params['type'] ) ) {
@@ -490,6 +493,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'!anon',
 					'patrolled',
 					'!patrolled',
+					'unread',
+					'!unread',
 				)
 			),
 			'type' => array(
