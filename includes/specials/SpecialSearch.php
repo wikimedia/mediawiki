@@ -539,9 +539,7 @@ class SpecialSearch extends SpecialPage {
 			// Reset namespace preferences: namespaces are not searched
 			// when they're not mentioned in the URL parameters.
 			foreach ( MWNamespace::getValidNamespaces() as $n ) {
-				if ( $n >= 0 ) {
-					$user->setOption( 'searchNs' . $n, false );
-				}
+				$user->setOption( 'searchNs' . $n, false );
 			}
 			// The request parameters include all the namespaces we just searched.
 			// Even if they're the same as an existing profile, they're not eaten.
