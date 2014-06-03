@@ -1732,6 +1732,7 @@ class Revision implements IDBAccessObject {
 	 * 50 revisions for the sake of performance.
 	 *
 	 * @since 1.20
+	 * @deprecated since 1.24
 	 *
 	 * @param DatabaseBase|int $db The Database to perform the check on. May be given as a
 	 *        Database object or a database identifier usable with wfGetDB.
