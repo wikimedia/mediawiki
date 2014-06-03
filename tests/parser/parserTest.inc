@@ -1007,7 +1007,7 @@ class ParserTest {
 				'size'        => 12345,
 				'width'       => 240,
 				'height'      => 180,
-				'bits'        => 24,
+				'bits'        => 0,
 				'media_type'  => MEDIATYPE_DRAWING,
 				'mime'        => 'image/svg+xml',
 				'metadata'    => serialize( array() ),
@@ -1035,6 +1035,7 @@ class ParserTest {
 			'size' => 3249,
 			'width' => 2480,
 			'height' => 3508,
+			'bits' => 0,
 			'media_type' => MEDIATYPE_BITMAP,
 			'mime' => 'image/vnd.djvu',
 			'metadata' => '<?xml version="1.0" ?>
