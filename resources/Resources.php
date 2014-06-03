@@ -121,14 +121,9 @@ return array(
 	/* jQuery */
 
 	'jquery' => array(
-		'scripts' => ( $GLOBALS['wgIncludejQueryMigrate'] ?
-			array(
-				'resources/lib/jquery/jquery.js',
-				'resources/lib/jquery/jquery.migrate.js'
-			) :
-			array(
-				'resources/lib/jquery/jquery.js'
-			) ),
+		'scripts' => array(
+			'resources/lib/jquery/jquery.js',
+		),
 		'raw' => true,
 		'targets' => array( 'desktop', 'mobile' ),
 	),
