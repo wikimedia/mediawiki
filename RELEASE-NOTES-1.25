@@ -19,6 +19,9 @@ production.
 * (bug 72951) The UserGetLanguageObject hook may be passed any IContextSource
   for its $context parameter. Formerly it was documented as receiving a
   RequestContext specifically.
+* (bug 44740) The temporary option $wgIncludejQueryMigrate was removed, along
+  with the jQuery Migrate library, as indicated when this option was provided in
+  MediaWiki 1.24.
 
 === New features in 1.25 ===
 * (bug 62861) Updated plural rules to CLDR 26. Includes incompatible changes
