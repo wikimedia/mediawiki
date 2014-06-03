@@ -99,6 +99,7 @@ production.
   namespace.
 * action=expandtemplates has a new parameter, prop, and a new output format.
   The old format is still used if prop isn't provided, but this is deprecated.
+* meta=userinfo can now return the count of unread pages on the watchlist.
 
 === Languages updated in 1.24 ===
 
