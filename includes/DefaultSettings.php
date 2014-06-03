@@ -1218,6 +1218,34 @@ $wgThumbLimits = array(
 );
 
 /**
+ * When defined, is an array of image widths used as buckets for thumbnail generation.
+ * The goal is to save resources by generating thumbnails based on reference buckets instead of
+ * always using the original. This will incur a speed gain but cause a quality loss for lossy
+ * file formats.
+ *
+ * The buckets generation is chained, with each bucket generated based on the above bucket
+ * when possible. File handlers have to opt into using that feature. For now only BitmapHandler
+ * supports it.
+ */
+$wgThumbnailBuckets = null;
+
+/**
+ * When using thumbnail buckets as defined above, this sets the minimum distance with the bucket
+ * above the requested size. The distance represents how pany extra pixels of width the bucket needs
+ * in order to be used as the reference for a given thumbnail. For example, with the following buckets:
+ *
+ * $wgThumbnailBuckets = array ( 128, 256, 512 );
+ *
+ * and a distance of 50:
+ *
+ * $wgThumbnailMinimumBucketDistance = 50;
+ *
+ * If we want to render a thumbnail of width 220px, the 512px bucket will be used,
+ * because 220 + 50 = 270 and the closest bucket bigger than 270px is 512.
+ */
+$wgThumbnailMinimumBucketDistance = 0;
+
+/**
  * Default parameters for the "<gallery>" tag
  */
 $wgGalleryOptions = array(
