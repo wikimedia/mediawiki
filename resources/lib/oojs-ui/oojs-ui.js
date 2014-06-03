@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (527ad0ee5a)
+ * OOjs UI v0.1.0-pre (6379e76bf5)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Mon Jun 02 2014 12:15:09 GMT-0700 (PDT)
+ * Date: Mon Jun 02 2014 17:52:03 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -1081,7 +1081,7 @@ OO.ui.Window.prototype.isVisible = function () {
  * @return {boolean} Window is opening
  */
 OO.ui.Window.prototype.isOpening = function () {
-	return !!this.opening && !this.opening.isResolved();
+	return !!this.opening && this.opening.state() !== 'resolved';
 };
 
 /**
@@ -1090,7 +1090,7 @@ OO.ui.Window.prototype.isOpening = function () {
  * @return {boolean} Window is closing
  */
 OO.ui.Window.prototype.isClosing = function () {
-	return !!this.closing && !this.closing.isResolved();
+	return !!this.closing && this.closing.state() !== 'resolved';
 };
 
 /**
@@ -1099,7 +1099,7 @@ OO.ui.Window.prototype.isClosing = function () {
  * @return {boolean} Window is opened
  */
 OO.ui.Window.prototype.isOpened = function () {
-	return !!this.opened && !this.opened.isResolved();
+	return !!this.opened && this.opened.state() !== 'resolved';
 };
 
 /**
@@ -1383,7 +1383,7 @@ OO.ui.Window.prototype.close = function ( data ) {
 	this.emit( 'closing', data );
 	this.getTeardownProcess( data ).execute().done( OO.ui.bind( function () {
 		// To do something different with #opened, resolve/reject #opened in the teardown process
-		if ( !this.opened.isResolved() && !this.opened.isRejected() ) {
+		if ( this.opened.state() === 'pending' ) {
 			this.opened.resolve();
 		}
 		this.emit( 'close', data );
