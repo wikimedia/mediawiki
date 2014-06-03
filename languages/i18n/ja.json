@@ -745,7 +745,7 @@
 	"currentrev": "最新版",
 	"currentrev-asof": "$1時点における最新版",
 	"revisionasof": "$1時点における版",
-	"revision-info": "$1時点における$2による版",
+	"revision-info": "$1時点における{{GENDER:$6|$2}}による版$7",
 	"previousrevision": "←前の版",
 	"nextrevision": "次の版→",
 	"currentrevisionlink": "最新版",

@@ -745,7 +745,7 @@
 	"currentrev": "Revisão atual",
 	"currentrev-asof": "Edição atual desde as $1",
 	"revisionasof": "Revisão das $1",
-	"revision-info": "Revisão das $1 por $2",
+	"revision-info": "Revisão em $1 por {{GENDER:$6|$2}}$7",
 	"previousrevision": "← Revisão anterior",
 	"nextrevision": "Revisão seguinte →",
 	"currentrevisionlink": "Revisão atual",

@@ -105,7 +105,8 @@
 			"Горан Анђелковић",
 			"לערי ריינהארט",
 			"아라",
-			"Scoopfinder"
+			"Scoopfinder",
+			"Akeron"
 		]
 	},
 	"tog-underline": "Souligner les liens :",
@@ -259,7 +260,7 @@
 	"vector-action-unprotect": "Changer la protection",
 	"vector-view-create": "Créer",
 	"vector-view-edit": "Modifier",
-	"vector-view-history": "Afficher l’historique",
+	"vector-view-history": "Historique",
 	"vector-view-view": "Lire",
 	"vector-view-viewsource": "Voir la source",
 	"actions": "Actions",
@@ -792,7 +793,7 @@
 	"currentrev": "Version actuelle",
 	"currentrev-asof": "Version actuelle en date du $1",
 	"revisionasof": "Version du $1",
-	"revision-info": "Version du $1 par $2",
+	"revision-info": "Révision de $1 par {{GENDER:$6|$2}}$7",
 	"previousrevision": "← Version précédente",
 	"nextrevision": "Version suivante →",
 	"currentrevisionlink": "Voir la version courante",

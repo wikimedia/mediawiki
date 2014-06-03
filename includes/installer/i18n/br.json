@@ -92,6 +92,7 @@
 	"config-db-username": "Anv implijer an diaz roadennoù :",
 	"config-db-password": "Ger-tremen an diaz roadennoù :",
 	"config-db-password-empty": "Lakait ur ger-tremen evit kont nevez an diaz roadennoù : $1.\nHa pa vefe posupl da grouiñ kontoù hep ger-tremen, n'eo ket erbedet evit abegoù surentez.",
+	"config-db-username-empty": "Ret eo deoc'h ebarzhiñ un talvoud evit  \"{{int:config-db-username}}\".",
 	"config-db-install-username": "Ebarzhit an anv implijer a vo implijet da gevreañ ouzh an diaz roadennoù e-pad an argerzh staliañ.\nN'eo ket anv implijer ar gont MediaWiki, an anv implijer evit ho tiaz roadennoù eo.",
 	"config-db-install-password": "Ebarzhit ar ger-tremen a vo implijet da gevreañ ouzh an diaz roadennoù e-pad an argerzh staliañ.\nN'eo ket ar ger-tremen evit ar gont MediaWiki, ar ger-tremen evit ho tiaz roadennoù eo.",
 	"config-db-install-help": "Merkañ anv an implijer hag ar ger-tremen a vo implijet evit kevreañ ouzh an diaz roadennoù e-pad an argerzh staliañ.",
@@ -270,6 +271,7 @@
 	"config-install-mainpage-failed": "Ne c'haller ket ensoc'hañ ar bajenn bennañ: $1",
 	"config-download-localsettings": "Pellgargañ <code>LocalSettings.php</code>",
 	"config-help": "skoazell",
+	"config-help-tooltip": "klikañ evit astenn",
 	"config-nofile": "N'eus ket bet gallet kavout ar restr \"$1\". Daoust ha dilamet eo bet ?",
 	"mainpagetext": "'''Meziant MediaWiki staliet.'''",
 	"mainpagedocfooter": "Sellit ouzh [//meta.wikimedia.org/wiki/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.\n\n== Kregiñ ganti ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Roll an arventennoù kefluniañ]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAG MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Roll ar c'haozeadennoù diwar-benn dasparzhoù MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lec'hiañ MediaWiki en ho yezh"

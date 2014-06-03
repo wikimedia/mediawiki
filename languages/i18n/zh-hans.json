@@ -762,7 +762,7 @@
 	"currentrev": "最后版本",
 	"currentrev-asof": "$1的最后版本",
 	"revisionasof": "$1的版本",
-	"revision-info": "$1$2的版本",
+	"revision-info": "{{GENDER:$6|$2}}$1的版本$7",
 	"previousrevision": "←上一版本",
 	"nextrevision": "下一版本→",
 	"currentrevisionlink": "最后版本",

@@ -734,7 +734,7 @@
 	"currentrev": "最新修訂",
 	"currentrev-asof": "於 $1 的最新修訂",
 	"revisionasof": "於 $1 的修訂",
-	"revision-info": "於 $1 由 $2 所做的修訂",
+	"revision-info": "於 $1 由 {{GENDER:$6|$2}} 所做的修訂 $7",
 	"previousrevision": "←上個修訂",
 	"nextrevision": "下個修訂→",
 	"currentrevisionlink": "最新修訂",

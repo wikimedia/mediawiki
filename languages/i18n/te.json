@@ -699,7 +699,7 @@
 	"currentrev": "ప్రస్తుతపు సంచిక",
 	"currentrev-asof": "$1 నాటి చిట్టచివరి కూర్పు",
 	"revisionasof": "$1 నాటి కూర్పు",
-	"revision-info": "$1 నాటి కూర్పు. రచయిత: $2",
+	"revision-info": "{{GENDER:$6|$2}}$7 ద్వారా $1 నాటి కూర్పు",
 	"previousrevision": "← పాత కూర్పు",
 	"nextrevision": "తరువాతి కూర్పు →",
 	"currentrevisionlink": "ప్రస్తుత కూర్పు",

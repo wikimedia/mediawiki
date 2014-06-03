@@ -708,7 +708,7 @@
 	"currentrev": "Versiunea curentă",
 	"currentrev-asof": "Versiunea curentă din $1",
 	"revisionasof": "Versiunea de la data $1",
-	"revision-info": "Versiunea din $1; autor: $2",
+	"revision-info": "Versiunea din $1; autor: {{GENDER:$6|$2}}$7",
 	"previousrevision": "←Versiunea anterioară",
 	"nextrevision": "Versiunea următoare →",
 	"currentrevisionlink": "Versiunea curentă",

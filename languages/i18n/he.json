@@ -711,7 +711,7 @@
 	"currentrev": "גרסה אחרונה",
 	"currentrev-asof": "גרסה אחרונה מתאריך $1",
 	"revisionasof": "גרסה מתאריך $1",
-	"revision-info": "גרסה מתאריך $1 מאת $2",
+	"revision-info": "גרסה מ־$1 מאת {{GENDER:$6|$2}}$7",
 	"previousrevision": "→ הגרסה הקודמת",
 	"nextrevision": "הגרסה הבאה ←",
 	"currentrevisionlink": "הגרסה האחרונה",

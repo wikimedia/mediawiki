@@ -1,5 +1,9 @@
 {
-	"@metadata": [],
+	"@metadata": {
+		"authors": [
+			"Milicevic01"
+		]
+	},
 	"config-session-error": "Greška pri započinjanju sesije: $1",
 	"config-session-expired": "Vaši podaci o sesiji su istekli.\nSesije su podešene da traju $1.\nNjihov rok možete povećati postavljanjem <code>session.gc_maxlifetime</code> u php.ini.\nPonovo pokrenite instalaciju.",
 	"config-no-session": "Vaši podaci o sesiji su izgubljeni!\nProverite Vaš php.ini i obezbedite da je <code>session.save_path</code> postavljen na odgovarajući direktorijum.",
@@ -28,6 +32,8 @@
 	"config-type-postgres": "PostgreSQL",
 	"config-type-sqlite": "SQLite",
 	"config-type-oracle": "Oracle",
+	"config-site-name": "Ime vikija:",
+	"config-license-cc-0": "Creative Commons Zero (javno vlasništvo)",
 	"mainpagetext": "'''MedijaViki je uspešno instaliran.'''",
 	"mainpagedocfooter": "Molimo vidite [//meta.wikimedia.org/wiki/Help:Contents korisnički vodič] za informacije o upotrebi viki softvera.\n\n== Za početak ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Pomoć u vezi sa podešavanjima]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Najčešće postavljena pitanja]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mejling lista o izdanjima MedijaVikija]"
 }

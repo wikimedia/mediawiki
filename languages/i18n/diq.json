@@ -274,7 +274,7 @@
 	"youhavenewmessagesfromusers": "Zey $1 ra {{PLURAL:$3|zewbi karber|$3 karberi}} ($2) esto.",
 	"youhavenewmessagesmanyusers": "$1 ra tay karberi ($2) dı estê.",
 	"newmessageslinkplural": "{{PLURAL:$1|yew mesaco newe|999=mesacê newey}}",
-	"newmessagesdifflinkplural": "{{PLURAL:$1|vırnayışa|999=vırnayışé}} peyéni",
+	"newmessagesdifflinkplural": "{{PLURAL:$1|vurnayışo peyên|999=vurnayışê peyêni}}",
 	"youhavenewmessagesmulti": "$1 mesaco newe esto",
 	"editsection": "bıvurne",
 	"editold": "bıvurne",

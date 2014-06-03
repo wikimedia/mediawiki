@@ -705,7 +705,7 @@
 	"currentrev": "Тековна преработка",
 	"currentrev-asof": "Последна преработка од $1",
 	"revisionasof": "Преработка од $1",
-	"revision-info": "Преработка од $1; направена од $2",
+	"revision-info": "Преработка од $1; направена од {{GENDER:$6|$2}}$7",
 	"previousrevision": "← Претходна преработка",
 	"nextrevision": "Следна преработка →",
 	"currentrevisionlink": "Последна преработка",

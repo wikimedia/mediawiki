@@ -692,7 +692,7 @@
 	"currentrev": "Aktuell Versioun",
 	"currentrev-asof": "Aktuell Versioun vum $1",
 	"revisionasof": "Versioun vum $1",
-	"revision-info": "Versioun vum $1 vum $2.",
+	"revision-info": "Versioun vum $1 vum {{GENDER:$6|$2}}$7.",
 	"previousrevision": "← Méi al Versioun",
 	"nextrevision": "Méi rezent Versioun →",
 	"currentrevisionlink": "Aktuell Versioun",
