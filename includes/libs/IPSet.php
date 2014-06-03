@@ -168,7 +168,9 @@ class IPSet {
 	 * If $ip is unparseable, inet_pton may issue an E_WARNING to that effect
 	 */
 	public function match( $ip ) {
+		wfSuppressWarnings();
 		$raw = inet_pton( $ip );
+		wfRestoreWarnings();
 		if ( $raw === false ) {
 			return false; // inet_pton() sends an E_WARNING for us
 		}
