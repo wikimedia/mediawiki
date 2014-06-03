@@ -3482,6 +3482,7 @@ HTML
 			# But it's now deprecated, so never mind
 
 			$content = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
+			$parserOptions->addContentOverrideTemplateCallback( $this->mTitle, $content );
 			$parserOutput = $content->getParserOutput(
 				$this->getArticle()->getTitle(),
 				null,
