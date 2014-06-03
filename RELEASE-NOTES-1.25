@@ -16,6 +16,9 @@ production.
   validity must be checked by passing the user-supplied token to
   User::matchEditToken rather than by testing for equality with a
   newly-generated token.
+* (bug 44740) The temporary option $wgIncludejQueryMigrate was removed, along
+  with the jQuery Migrate library, as indicated when this option was provided in
+  MediaWiki 1.24.
 
 === New features in 1.25 ===
 * (bug 62861) Updated plural rules to CLDR 26. Includes incompatible changes
