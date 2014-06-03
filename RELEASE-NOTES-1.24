@@ -93,6 +93,7 @@ production.
   specified.
 * action=logevents has a new parameter, lenamespace, to allow filtering by
   namespace.
+* list=watchlist can now filter by unread status.
 
 === Languages updated in 1.24 ===
 
