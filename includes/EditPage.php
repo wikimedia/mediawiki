@@ -3561,6 +3561,8 @@ HTML
 			# But it's now deprecated, so never mind
 
 			$pstContent = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
+			$scopedCallback = $parserOptions->setupFakeRevision(
+				$this->mTitle, $pstContent, $wgUser );
 			$parserOutput = $pstContent->getParserOutput( $this->mTitle, null, $parserOptions );
 
 			# Try to stash the edit for the final submission step
