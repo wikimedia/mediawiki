@@ -818,4 +818,47 @@ class ParserOptions {
 
 		return $confstr;
 	}
+
+	/**
+	 * Sets a hook to force that a page exists, and sets a current revision callback to return a
+	 * revision with custom content when the current revision of the page is requested.
+	 *
+	 * @since 1.25
+	 * @param Title $title
+	 * @param Content $content
+	 * @param User $user The user that the fake revision is attributed to
+	 * @return ScopedCallback to unset the hook
+	 */
+	public function setupFakeRevision( $title, $content, $user ) {
+		$titleText = $title->getFullText();
+		$oldCallback = $this->setCurrentRevisionCallback( function( $title, $parser = false ) use( $titleText, $content, $user, &$oldCallback ) {
+			if ( $title->getFullText() == $titleText ) {
+				return new Revision( array(
+					'page' => $title->getArticleID(),
+					'user_text' => $user->getName(),
+					'user' => $user->getId(),
+					'parent_id' => $title->getLatestRevId(),
+					'title' => $title,
+					'content' => $content
+				) );
+			} else {
+				return call_user_func( $oldCallback, $title, $parser );
+			}
+		} );
+		global $wgHooks;
+		$wgHooks['TitleExists'][] =
+			function( $title, &$exists ) use( $titleText ) {
+				if ( $title->getFullText() == $titleText ) {
+					$exists = true;
+				}
+			};
+		end( $wgHooks['TitleExists'] );
+		$key = key( $wgHooks['TitleExists'] );
+		LinkCache::singleton()->clearBadLink( $title->getPrefixedDBkey() );
+		return new ScopedCallback( function() use( $title, $key ) {
+			global $wgHooks;
+			unset( $wgHooks['TitleExists'][$key] );
+			LinkCache::singleton()->clearLink( $title );
+		} );
+	}
 }
