@@ -75,7 +75,10 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 			return false;
 		}
 		try {
+			$conn->multi( Redis::PIPELINE );
+			$conn->hSet( $this->getQueueTypesKey(), $type, 'enabled' );
 			$conn->hSet( $this->getReadyQueueKey(), $this->encQueueName( $type, $wiki ), time() );
+			$conn->exec();
 
 			return true;
 		} catch ( RedisException $e ) {
@@ -183,6 +186,13 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 	 */
 	private function getReadyQueueKey() {
 		return "jobqueue:aggregator:h-ready-queues:v1"; // global
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getQueueTypesKey() {
+		return "jobqueue:aggregator:h-queue-types:v1"; // global
 	}
 
 	/**
