@@ -791,4 +791,64 @@ class ParserOptions {
 
 		return $confstr;
 	}
+
+	/**
+	 * Create a template callback to use given content in place of a page's real content
+	 * @param Title $title
+	 * @param Content $content
+	 */
+	public function addContentOverrideTemplateCallback( $title, $content ) {
+		$titleText = $title->getFullText();
+		$oldTemplateCallback = $this->setTemplateCallback( function( $title, $parser = false ) use( $titleText, $content, &$oldTemplateCallback ) {
+			// Note that Parser::statelessFetchTemplate currently only handles one
+			// level of redirection, regardless of $wgMaxRedirects. We reproduce
+			// this behavior here.
+			$match = ( $title->getFullText() == $titleText );
+			$rtitle = null;
+			if ( !$match && $title->isRedirect() ) {
+				$rtitle = WikiPage::factory( $title )->getRedirectTarget();
+				$match = ( $rtitle->getFullText() == $titleText );
+			}
+			if ( $match ) {
+				$deps[] = array(
+					'title' => $title,
+					'page_id' => $title->getArticleID(),
+					'rev_id' => 0,
+				);
+				$finalTitle = $title;
+				if ( $rtitle ) {
+					$deps[] = array(
+						'title' => $rtitle,
+						'page_id' => $rtitle->getArticleID(),
+						'rev_id' => 0,
+					);
+					$finalTitle = $rtitle;
+				}
+
+				if ( !$rtitle && $content->isRedirect() ) {
+					$newTitle = $content->getRedirectTarget();
+					$rev = Revision::newFromTitle( $newTitle );
+					if ( $rev ) {
+						$content = $rev->getContent();
+						$finalTitle = $newTitle;
+					}
+					$deps[] = array(
+						'title' => $newTitle,
+						'page_id' => $newTitle->getArticleID(),
+						'rev_id' => 0,
+					);
+				}
+				$text = $content->getWikitextForTransclusion();
+				if ( $text === null ) {
+					$text = false;
+				}
+				return array(
+					'text' => $text,
+					'finalTitle' => $finalTitle,
+					'deps' => $deps,
+				);
+			}
+			return call_user_func( $oldTemplateCallback, $title, $parser );
+		} );
+	}
 }
