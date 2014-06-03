@@ -93,6 +93,7 @@ production.
   specified.
 * action=logevents has a new parameter, lenamespace, to allow filtering by
   namespace.
+* meta=userinfo can now return the count of unread pages on the watchlist.
 
 === Languages updated in 1.24 ===
 
