@@ -180,9 +180,9 @@ class WebInstaller extends Installer {
 			return $this->session;
 		}
 
-		$cssDir = $this->request->getVal( 'css' );
-		if ( $cssDir ) {
-			$this->outputCss( $cssDir );
+		$isCSS = $this->request->getVal( 'css' );
+		if ( $isCSS ) {
+			$this->outputCss();
 			return $this->session;
 		}
 
@@ -1154,12 +1154,11 @@ class WebInstaller extends Installer {
 	}
 
 	/**
-	 * @param string $dir CSS direction ( rtl or ltr )
+	 * Output stylesheet for web installer pages
 	 */
-	public function outputCss( $dir ) {
-		$dir = ( $dir == 'rtl' ? 'rtl' : 'ltr' );
+	public function outputCss() {
 		$this->request->response()->header( 'Content-type: text/css' );
-		echo $this->output->getCSS( $dir );
+		echo $this->output->getCSS();
 	}
 
 	/**

@@ -125,11 +125,9 @@ class WebInstallerOutput {
 	 *   designed to be used in, rather than just grabbing a list of filenames from it,
 	 *   and not properly handling such details as media types in module definitions.
 	 *
-	 * @param string $dir 'ltr' or 'rtl'
-	 *
 	 * @return string
 	 */
-	public function getCSS( $dir ) {
+	public function getCSS() {
 		// All CSS files these modules reference will be concatenated in sequence
 		// and loaded as one file.
 		$moduleNames = array(
@@ -200,7 +198,7 @@ class WebInstallerOutput {
 
 		$css = $prepend . $css;
 
-		if ( $dir == 'rtl' ) {
+		if ( $this->getDir() == 'rtl' ) {
 			$css = CSSJanus::transform( $css, true );
 		}
 
@@ -208,12 +206,12 @@ class WebInstallerOutput {
 	}
 
 	/**
-	 * "<link>" to index.php?css=foobar for the "<head>"
+	 * "<link>" to index.php?css=1 for the "<head>"
 	 *
 	 * @return string
 	 */
 	private function getCssUrl() {
-		return Html::linkedStyle( $_SERVER['PHP_SELF'] . '?css=' . $this->getDir() );
+		return Html::linkedStyle( $_SERVER['PHP_SELF'] . '?css=1' );
 	}
 
 	public function useShortHeader( $use = true ) {
