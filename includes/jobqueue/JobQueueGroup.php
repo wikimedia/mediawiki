@@ -389,6 +389,10 @@ class JobQueueGroup {
 			}
 		}
 
+		if ( $count === 0 ) {
+			return $count; // nothing to update
+		}
+
 		$wgMemc->merge( $key, function ( $cache, $key, $lastRuns ) use ( $tasksRun ) {
 			if ( is_array( $lastRuns ) ) {
 				foreach ( $tasksRun as $type => $tasks ) {
