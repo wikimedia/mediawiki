@@ -137,69 +137,26 @@ class WebInstallerOutput {
 			'mediawiki.legacy.config',
 		);
 
-		$prepend = '';
 		$css = '';
 
 		$resourceLoader = new ResourceLoader();
+		$rlContext = new ResourceLoaderContext( $resourceLoader, new FauxRequest( array(
+				'debug' => 'true',
+				'lang' => $this->getLanguageCode(),
+				'only' => 'styles',
+				'skin' => 'vector',
+		) ) );
 		foreach ( $moduleNames as $moduleName ) {
 			/** @var ResourceLoaderFileModule $module */
 			$module = $resourceLoader->getModule( $moduleName );
-			$cssFileNames = $module->getAllStyleFiles();
 
-			wfSuppressWarnings();
-			foreach ( $cssFileNames as $cssFileName ) {
-				if ( !file_exists( $cssFileName ) ) {
-					$prepend .= ResourceLoader::makeComment( "Unable to find $cssFileName." );
-					continue;
-				}
+			// Based on: ResourceLoaderFileModule::getStyles (without the DB query)
+			$styles = ResourceLoader::makeCombinedStyles( $module->readStyleFiles(
+				$module->getStyleFiles( $rlContext ),
+				$module->getFlip( $rlContext )
+			) );
 
-				if ( !is_readable( $cssFileName ) ) {
-					$prepend .= ResourceLoader::makeComment( "Unable to read $cssFileName. " .
-						"Please check file permissions." );
-					continue;
-				}
-
-				try {
-
-					if ( preg_match( '/\.less$/', $cssFileName ) ) {
-						// Run the LESS compiler for *.less files (bug 55589)
-						$compiler = ResourceLoader::getLessCompiler();
-						$cssFileContents = $compiler->compileFile( $cssFileName );
-					} else {
-						// Regular CSS file
-						$cssFileContents = file_get_contents( $cssFileName );
-					}
-
-					if ( $cssFileContents ) {
-						// Rewrite URLs, though don't bother embedding images. While static image
-						// files may be cached, CSS returned by this function is definitely not.
-						$cssDirName = dirname( $cssFileName );
-						$css .= CSSMin::remap(
-							/* source */ $cssFileContents,
-							/* local */ $cssDirName,
-							/* remote */ '..' . str_replace(
-								array( $GLOBALS['IP'], DIRECTORY_SEPARATOR ),
-								array( '', '/' ),
-								$cssDirName
-							),
-							/* embedData */ false
-						);
-					} else {
-						$prepend .= ResourceLoader::makeComment( "Unable to read $cssFileName." );
-					}
-				} catch ( Exception $e ) {
-					$prepend .= ResourceLoader::formatException( $e );
-				}
-
-				$css .= "\n";
-			}
-			wfRestoreWarnings();
-		}
-
-		$css = $prepend . $css;
-
-		if ( $this->getDir() == 'rtl' ) {
-			$css = CSSJanus::transform( $css, true );
+			$css .= implode( "\n", $styles );
 		}
 
 		return $css;

@@ -327,7 +327,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * Gets all styles for a given context concatenated together.
 	 *
 	 * @param ResourceLoaderContext $context Context in which to generate styles
-	 * @return string CSS code for $context
+	 * @return array CSS code for $context keyed by media
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
 		$styles = $this->readStyleFiles(
@@ -626,7 +626,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return array List of file paths
 	 */
-	protected function getStyleFiles( ResourceLoaderContext $context ) {
+	public function getStyleFiles( ResourceLoaderContext $context ) {
 		return array_merge_recursive(
 			self::collateFilePathListByOption( $this->styles, 'media', 'all' ),
 			self::collateFilePathListByOption(
@@ -696,7 +696,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return array List of concatenated and remapped CSS data from $styles,
 	 *     keyed by media type
 	 */
-	protected function readStyleFiles( array $styles, $flip ) {
+	public function readStyleFiles( array $styles, $flip ) {
 		if ( empty( $styles ) ) {
 			return array();
 		}
