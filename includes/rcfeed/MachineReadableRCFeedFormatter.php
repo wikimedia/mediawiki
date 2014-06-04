@@ -46,7 +46,7 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 			// but there is no real reason not to expose it in other cases,
 			// and I can see how this may be potentially useful for clients.
 			'id' => $attrib['rc_id'],
-			'type' => $attrib['rc_type'],
+			'type' => RecentChange::parseFromRCType( $attrib['rc_type'] ),
 			'namespace' => $rc->getTitle()->getNamespace(),
 			'title' => $rc->getTitle()->getPrefixedText(),
 			'comment' => $attrib['rc_comment'],

@@ -147,7 +147,7 @@ class RecentChange {
 			case RC_NEW:
 				$type = 'new';
 				break;
-			case RC_MOVE:
+			case RC_MOVE: // obsolete
 				$type = 'move';
 				break;
 			case RC_LOG:
@@ -156,7 +156,7 @@ class RecentChange {
 			case RC_EXTERNAL:
 				$type = 'external';
 				break;
-			case RC_MOVE_OVER_REDIRECT:
+			case RC_MOVE_OVER_REDIRECT: // obsolete
 				$type = 'move over redirect';
 				break;
 			default:
