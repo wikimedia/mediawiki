@@ -312,22 +312,22 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Gets loader script.
+	 * Get loader script.
 	 *
-	 * @return string JavaScript code to be added to startup module
+	 * @return string|false JavaScript code to be added to startup module
 	 */
 	public function getLoaderScript() {
-		if ( count( $this->loaderScripts ) == 0 ) {
+		if ( count( $this->loaderScripts ) === 0 ) {
 			return false;
 		}
 		return $this->readScriptFiles( $this->loaderScripts );
 	}
 
 	/**
-	 * Gets all styles for a given context concatenated together.
+	 * Get all styles for a given context.
 	 *
-	 * @param ResourceLoaderContext $context Context in which to generate styles
-	 * @return string CSS code for $context
+	 * @param ResourceLoaderContext $context
+	 * @return array CSS code for $context as an associative array mapping media type to CSS text.
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
 		$styles = $this->readStyleFiles(
@@ -581,13 +581,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Gets a list of element that match a key, optionally using a fallback key.
+	 * Get a list of element that match a key, optionally using a fallback key.
 	 *
 	 * @param array $list List of lists to select from
 	 * @param string $key Key to look for in $map
 	 * @param string $fallback Key to look for in $list if $key doesn't exist
 	 * @return array List of elements from $map which matched $key or $fallback,
-	 *     or an empty list in case of no match
+	 *  or an empty list in case of no match
 	 */
 	protected static function tryForKey( array $list, $key, $fallback = null ) {
 		if ( isset( $list[$key] ) && is_array( $list[$key] ) ) {
@@ -602,7 +602,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Gets a list of file paths for all scripts in this module, in order of propper execution.
+	 * Get a list of file paths for all scripts in this module, in order of proper execution.
 	 *
 	 * @param ResourceLoaderContext $context
 	 * @return array List of file paths
@@ -621,12 +621,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Gets a list of file paths for all styles in this module, in order of propper inclusion.
+	 * Get a list of file paths for all styles in this module, in order of proper inclusion.
 	 *
 	 * @param ResourceLoaderContext $context
 	 * @return array List of file paths
 	 */
-	protected function getStyleFiles( ResourceLoaderContext $context ) {
+	public function getStyleFiles( ResourceLoaderContext $context ) {
 		return array_merge_recursive(
 			self::collateFilePathListByOption( $this->styles, 'media', 'all' ),
 			self::collateFilePathListByOption(
@@ -696,7 +696,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return array List of concatenated and remapped CSS data from $styles,
 	 *     keyed by media type
 	 */
-	protected function readStyleFiles( array $styles, $flip ) {
+	public function readStyleFiles( array $styles, $flip ) {
 		if ( empty( $styles ) ) {
 			return array();
 		}

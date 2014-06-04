@@ -814,7 +814,7 @@ class ResourceLoader {
 					// Don't create empty stylesheets like array( '' => '' ) for modules
 					// that don't *have* any stylesheets (bug 38024).
 					$stylePairs = $module->getStyles( $context );
-					if ( count ( $stylePairs ) ) {
+					if ( count( $stylePairs ) ) {
 						// If we are in debug mode without &only= set, we'll want to return an array of URLs
 						// See comment near shouldIncludeScripts() for more details
 						if ( $context->getDebug() && !$context->getOnly() && $module->supportsURLLoading() ) {
@@ -988,7 +988,7 @@ class ResourceLoader {
 	 * @param array $stylePairs Array keyed by media type containing (arrays of) CSS strings
 	 * @return array
 	 */
-	private static function makeCombinedStyles( array $stylePairs ) {
+	public static function makeCombinedStyles( array $stylePairs ) {
 		$out = array();
 		foreach ( $stylePairs as $media => $styles ) {
 			// ResourceLoaderFileModule::getStyle can return the styles
