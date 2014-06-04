@@ -637,11 +637,11 @@ class Message {
 		$string = $this->fetchMessage();
 
 		if ( $string === false ) {
-			$key = htmlspecialchars( is_array( $this->key ) ? $this->key[0] : $this->key );
-			if ( $this->format === 'plain' ) {
+			$key = is_array( $this->key ) ? $this->key[0] : $this->key;
+			if ( $this->format === 'plain' || $this->format === 'text' ) {
 				return '<' . $key . '>';
 			}
-			return '&lt;' . $key . '&gt;';
+			return '&lt;' . htmlspecialchars( $key ) . '&gt;';
 		}
 
 		# Replace $* with a list of parameters for &uselang=qqx.
@@ -698,10 +698,10 @@ class Message {
 				// Doh! Cause a fatal error after all?
 			}
 
-			if ( $this->format === 'plain' ) {
+			if ( in_array( $this->format, array( 'plain', 'text' ) ) ) {
 				return '<' . $this->key . '>';
 			}
-			return '&lt;' . $this->key . '&gt;';
+			return '&lt;' . htmlspecialchars( $this->key ) . '&gt;';
 		}
 	}
 
