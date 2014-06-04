@@ -46,7 +46,11 @@ class SkinMonoBook extends SkinTemplate {
 	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
 
-		$out->addModuleStyles( array( 'mediawiki.skinning.interface', 'skins.monobook.styles' ) );
+		$out->addModuleStyles( array(
+			'mediawiki.skinning.interface',
+			'mediawiki.skinning.content.externallinks',
+			'skins.monobook.styles'
+		) );
 
 		// TODO: Migrate all of these
 		$out->addStyle( 'monobook/IE60Fixes.css', 'screen', 'IE 6' );

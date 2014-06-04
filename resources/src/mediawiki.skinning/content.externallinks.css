@@ -1,0 +1,86 @@
+/*
+** keep the whitespace in front of the ^=, hides rule from Konqueror
+** this is CSS3, the validator doesn't like it when validating as CSS2
+*/
+.mw-body a.external {
+	/* @embed */
+	background: url(images/external-ltr.png) center right no-repeat;
+	padding-right: 13px;
+}
+
+.mw-body a.external[href ^="https://"],
+.link-https {
+	/* @embed */
+	background: url(images/lock_icon.gif) center right no-repeat;
+	padding-right: 16px;
+}
+
+.mw-body a.external[href ^="mailto:"],
+.link-mailto {
+	/* @embed */
+	background: url(images/mail_icon.gif) center right no-repeat;
+	padding-right: 18px;
+}
+
+.mw-body a.external[href ^="news:"] {
+	/* @embed */
+	background: url(images/news_icon.png) center right no-repeat;
+	padding-right: 18px;
+}
+
+.mw-body a.external[href ^="ftp://"],
+.link-ftp {
+	/* @embed */
+	background: url(images/file_icon.gif) center right no-repeat;
+	padding-right: 18px;
+}
+
+.mw-body a.external[href ^="irc://"],
+.mw-body a.external[href ^="ircs://"],
+.link-irc {
+	/* @embed */
+	background: url(images/discussionitem_icon.gif) center right no-repeat;
+	padding-right: 18px;
+}
+
+.mw-body a.external[href $=".ogg"], .mw-body a.external[href $=".OGG"],
+.mw-body a.external[href $=".mid"], .mw-body a.external[href $=".MID"],
+.mw-body a.external[href $=".midi"], .mw-body a.external[href $=".MIDI"],
+.mw-body a.external[href $=".mp3"], .mw-body a.external[href $=".MP3"],
+.mw-body a.external[href $=".wav"], .mw-body a.external[href $=".WAV"],
+.mw-body a.external[href $=".wma"], .mw-body a.external[href $=".WMA"],
+.link-audio {
+	/* @embed */
+	background: url(images/audio.png) center right no-repeat;
+	padding-right: 13px;
+}
+
+.mw-body a.external[href $=".ogm"], .mw-body a.external[href $=".OGM"],
+.mw-body a.external[href $=".avi"], .mw-body a.external[href $=".AVI"],
+.mw-body a.external[href $=".mpeg"], .mw-body a.external[href $=".MPEG"],
+.mw-body a.external[href $=".mpg"], .mw-body a.external[href $=".MPG"],
+.link-video {
+	/* @embed */
+	background: url(images/video.png) center right no-repeat;
+	padding-right: 13px;
+}
+
+.mw-body a.external[href $=".pdf"], .mw-body a.external[href $=".PDF"],
+.mw-body a.external[href *=".pdf#"], .mw-body a.external[href *=".PDF#"],
+.mw-body a.external[href *=".pdf?"], .mw-body a.external[href *=".PDF?"],
+.link-document {
+	/* @embed */
+	background: url(images/document.png) center right no-repeat;
+	padding-right: 12px;
+}
+
+/* Interwiki styling */
+.mw-body a.extiw,
+.mw-body a.extiw:active {
+	color: #36b;
+}
+
+/* External links */
+.mw-body a.external {
+	color: #36b;
+}

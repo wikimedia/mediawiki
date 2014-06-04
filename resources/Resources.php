@@ -143,6 +143,12 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
+	'mediawiki.skinning.content.externallinks' => array(
+		'styles' => array(
+			'resources/src/mediawiki.skinning/content.externallinks.css' => array( 'media' => 'screen' ),
+		),
+	),
+
 	/**
 	 * Skins
 	 * Be careful not to add 'scripts' to these modules,
