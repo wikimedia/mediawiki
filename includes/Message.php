@@ -638,7 +638,7 @@ class Message {
 
 		if ( $string === false ) {
 			$key = htmlspecialchars( is_array( $this->key ) ? $this->key[0] : $this->key );
-			if ( $this->format === 'plain' ) {
+			if ( $this->format === 'plain' || $this->format === 'text' ) {
 				return '<' . $key . '>';
 			}
 			return '&lt;' . $key . '&gt;';
