@@ -707,7 +707,7 @@
 	"currentrev": "Текућа измена",
 	"currentrev-asof": "Текућа измена од $2 у $3",
 	"revisionasof": "Измена од $2 у $3",
-	"revision-info": "Измена од $1; $2",
+	"revision-info": "Измена од $1; {{GENDER:$6|$2}}$7",
 	"previousrevision": "← Старија измена",
 	"nextrevision": "Новија измена →",
 	"currentrevisionlink": "Текућа измена",

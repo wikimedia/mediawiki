@@ -699,7 +699,7 @@
 	"currentrev": "Tekuća izmena",
 	"currentrev-asof": "Tekuća izmena od $2 u $3",
 	"revisionasof": "Izmena od $2 u $3",
-	"revision-info": "Izmena od $1; $2",
+	"revision-info": "Izmena od $1; {{GENDER:$6|$2}}$7",
 	"previousrevision": "← Starija izmena",
 	"nextrevision": "Novija izmena →",
 	"currentrevisionlink": "Tekuća izmena",

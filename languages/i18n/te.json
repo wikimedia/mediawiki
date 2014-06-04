@@ -2787,6 +2787,8 @@
 	"watchlistedit-raw-done": "మీ వీక్షణ జాబితాను తాజాకరించాం.",
 	"watchlistedit-raw-added": "{{PLURAL:$1|1 శీర్షికను|$1 శీర్షికలను}} చేర్చాం:",
 	"watchlistedit-raw-removed": "{{PLURAL:$1|1 శీర్షికను|$1 శీర్షికలను}} తీసివేశాం:",
+	"watchlistedit-clear-title": "వీక్షణజాబితా చెరిపివేయబడింది",
+	"watchlistedit-clear-legend": "వీక్షణజాబితా చెరిపివేయి",
 	"watchlistedit-clear-titles": "శీర్షికలు:",
 	"watchlistedit-clear-submit": "వీక్షణ జాబితా శుభ్రం చేయి (ఇది శాశ్వతం!)",
 	"watchlistedit-clear-done": "మీ వీక్షణ జాబితాను శుభ్రం చేశాం.",
