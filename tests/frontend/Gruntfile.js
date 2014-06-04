@@ -16,14 +16,14 @@ module.exports = function ( grunt ) {
 		pkg: grunt.file.readJSON( __dirname + '/package.json' ),
 		jshint: {
 			options: {
-				jshintrc: '.jshintrc'
+				jshintrc: true
 			},
-			all: [ '*.js', '{includes,languages,resources,skins,tests}/**/*.js' ]
+			all: [
+				'*.js',
+				'{includes,languages,resources,skins,tests}/**/*.js'
+			]
 		},
 		jscs: {
-			// Known issues:
-			// - https://github.com/mdevils/node-jscs/issues/277
-			// - https://github.com/mdevils/node-jscs/issues/278
 			all: [
 				'<%= jshint.all %>',
 				// Auto-generated file with JSON (double quotes)
