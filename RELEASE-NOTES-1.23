@@ -3,10 +3,13 @@ have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.23 ==
 
-THIS IS NOT A RELEASE YET
+MediaWiki 1.23.0 is the stable branch and is recommended for use in production.
 
-MediaWiki 1.23.0-rc.3 is a release candidate. It is not recommended for use in
-production.
+MediaWiki 1.23 is a large release that contains many new features and bug
+fixes. This is the full list of changes in this version.
+
+Our thanks go to everyone who helped to improve MediaWiki by testing the beta
+release and submitting bug reports.
 
 === Configuration changes in 1.23 ===
 * (bug 13250) Restored method for clearing a watchlist in web UI
