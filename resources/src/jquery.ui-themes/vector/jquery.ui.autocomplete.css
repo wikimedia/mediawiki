@@ -1,6 +1,6 @@
 /* Autocomplete
 ----------------------------------*/
-.ui-autocomplete { position: absolute; cursor: default; }	
+.ui-autocomplete { position: absolute; cursor: default; }
 .ui-autocomplete-loading { /* @embed */ background: white url('images/ui-anim_basic_16x16.gif') right center no-repeat; }
 
 /* workarounds */
