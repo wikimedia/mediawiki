@@ -725,7 +725,7 @@
 	"currentrev": "Nykyinen versio",
 	"currentrev-asof": "Nykyinen versio $1",
 	"revisionasof": "Versio $1",
-	"revision-info": "Versio hetkellä $1 – tehnyt $2",
+	"revision-info": "Versio hetkellä $1 – tehnyt {{GENDER:$6|$2}}$7",
 	"previousrevision": "← Vanhempi versio",
 	"nextrevision": "Uudempi versio →",
 	"currentrevisionlink": "Nykyinen versio",

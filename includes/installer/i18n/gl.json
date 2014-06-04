@@ -313,6 +313,7 @@
 	"config-install-done": "'''Parabéns!'''\nInstalou correctamente MediaWiki.\n\nO programa de instalación xerou un ficheiro <code>LocalSettings.php</code>.\nEste ficheiro contén toda a súa configuración.\n\nTerá que descargalo e poñelo na base da instalación do seu wiki (no mesmo directorio ca index.php). A descarga debería comezar automaticamente.\n\nSe non comezou a descarga ou se a cancelou, pode facer que comece de novo premendo na ligazón que aparece a continuación:\n\n$3\n\n'''Nota:''' Se non fai iso agora, este ficheiro de configuración xerado non estará dispoñible máis adiante se sae da instalación sen descargalo.\n\nCando faga todo isto, xa poderá '''[$2 entrar no seu wiki]'''.",
 	"config-download-localsettings": "Descargar o <code>LocalSettings.php</code>",
 	"config-help": "axuda",
+	"config-help-tooltip": "prema para expandir",
 	"config-nofile": "Non se puido atopar o ficheiro \"$1\". Se cadra, foi borrado.",
 	"config-extension-link": "Sabía que o seu wiki soporta [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensións]?\n\nPode explorar as [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensións por categoría] ou a [//www.mediawiki.org/wiki/Extension_Matrix matriz de extensións] para ollar a lista completa de extensións.",
 	"mainpagetext": "'''MediaWiki instalouse correctamente.'''",

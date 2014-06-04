@@ -2869,6 +2869,7 @@
 	"version-version": "(Вэрсія $1)",
 	"version-svn-revision": "(r$2)",
 	"version-license": "Ліцэнзія MediaWiki",
+	"version-ext-license": "Ліцэнзія",
 	"version-poweredby-credits": "{{SITENAME}} працуе на праграмным забесьпячэньні '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 	"version-poweredby-others": "іншыя",
 	"version-poweredby-translators": "перакладчыкі з translatewiki.net",

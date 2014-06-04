@@ -3,7 +3,8 @@
 		"authors": [
 			"Firilacroco",
 			"Minisarm",
-			"Stelistcristi"
+			"Stelistcristi",
+			"XXN"
 		]
 	},
 	"config-desc": "Programul de instalare pentru MediaWiki",
@@ -62,6 +63,7 @@
 	"config-header-postgres": "Setări PostgreSQL",
 	"config-header-sqlite": "Setări SQLite",
 	"config-header-oracle": "Setări Oracle",
+	"config-header-mssql": "Setările Microsoft SQL Server",
 	"config-invalid-db-type": "Tip de bază de date incorect",
 	"config-missing-db-name": "Trebuie să introduci o valoare pentru „Numele bazei de date”",
 	"config-connection-error": "$1.\n\nVerificați gazda, numele de utilizator și parola și reîncercați.",
