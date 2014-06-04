@@ -5,8 +5,8 @@
 /*jshint node:true */
 module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
-	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
+	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-jscs-checker' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 
@@ -16,14 +16,14 @@ module.exports = function ( grunt ) {
 		pkg: grunt.file.readJSON( __dirname + '/package.json' ),
 		jshint: {
 			options: {
-				jshintrc: '.jshintrc'
+				jshintrc: true
 			},
-			all: [ '*.js', '{includes,languages,resources,skins,tests}/**/*.js' ]
+			all: [
+				'*.js',
+				'{includes,languages,resources,skins,tests}/**/*.js'
+			]
 		},
 		jscs: {
-			// Known issues:
-			// - https://github.com/mdevils/node-jscs/issues/277
-			// - https://github.com/mdevils/node-jscs/issues/278
 			all: [
 				'<%= jshint.all %>',
 				// Auto-generated file with JSON (double quotes)
@@ -56,7 +56,7 @@ module.exports = function ( grunt ) {
 				'.jshintignore',
 				'.jshintrc'
 			],
-			tasks: ['test']
+			tasks: 'test'
 		}
 	} );
 
