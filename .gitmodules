@@ -116,6 +116,7 @@
 [submodule "extensions/GoogleSiteVerification"]
 	path = extensions/GoogleSiteVerification
 	url = https://github.com/addshore/GoogleSiteVerification.git
+	branch = master
 [submodule "extensions/HeaderTabs"]
 	path = extensions/HeaderTabs
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/HeaderTabs.git
@@ -159,6 +160,7 @@
 [submodule "extensions/Math"]
 	path = extensions/Math
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Math.git
+	branch = REL1_22
 [submodule "extensions/MassMessage"]
 	path = extensions/MassMessage
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MassMessage.git
@@ -178,9 +180,11 @@
 [submodule "extensions/NativeSvgHandler"]
 	path = extensions/NativeSvgHandler
 	url = https://github.com/p12tic/NativeSvgHandler.git
+	branch = master
 [submodule "extensions/NewUserMessage"]
 	path = extensions/NewUserMessage
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/NewUserMessage.git
+	branch = REL1_22
 [submodule "extensions/Nuke"]
 	path = extensions/Nuke
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Nuke.git
@@ -208,6 +212,7 @@
 [submodule "extensions/RegexFun"]
 	path = extensions/RegexFun
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/RegexFun.git
+	branch = REL1_22
 [submodule "extensions/Renameuser"]
 	path = extensions/Renameuser
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Renameuser.git
@@ -247,9 +252,11 @@
 [submodule "extensions/SubpageFun"]
 	path = extensions/SubpageFun
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SubpageFun.git
+	branch = REL1_22
 [submodule "extensions/SubPageList3"]
 	path = extensions/SubPageList3
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SubPageList3.git
+	branch = REL1_22
 [submodule "extensions/SyntaxHighlight_GeSHi"]
 	path = extensions/SyntaxHighlight_GeSHi
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SyntaxHighlight_GeSHi.git
@@ -261,6 +268,7 @@
 [submodule "extensions/Tabs"]
 	path = extensions/Tabs
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Tabs.git
+	branch = master
 [submodule "extensions/TemplateSandbox"]
 	path = extensions/TemplateSandbox
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TemplateSandbox.git
@@ -304,12 +312,15 @@
 [submodule "skins/filament"]
 	path = skins/filament
 	url = https://github.com/WikiWonders/filament.git
+	branch = master
 [submodule "skins/foreground"]
 	path = skins/foreground
 	url = https://github.com/WikiWonders/foreground.git
+	branch = master
 [submodule "skins/monaco"]
 	path = skins/monaco
-  url = https://github.com/dantman/monaco-port.git
+	url = https://github.com/dantman/monaco-port.git
+	branch = master
 [submodule "extensions/SocialProfile"]
 	path = extensions/SocialProfile
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SocialProfile.git
