@@ -120,7 +120,7 @@
 
 		namespace = defaultNamespace === undefined ? NS_MAIN : defaultNamespace;
 
-		title = title
+		title = String( title )
 			// Normalise whitespace to underscores and remove duplicates
 			.replace( /[ _\s]+/g, '_' )
 			// Trim underscores
