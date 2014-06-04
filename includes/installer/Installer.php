@@ -351,9 +351,22 @@ abstract class Installer {
 	public function __construct() {
 		global $wgMessagesDirs, $wgUser;
 
-		// Disable the i18n cache and LoadBalancer
+		// Disable the i18n cache
 		Language::getLocalisationCache()->disableBackend();
+		// Disable LoadBalancer and wfGetDB etc.
 		LBFactory::disableBackend();
+
+		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
+		// SqlBagOStuff will then throw since we just disabled wfGetDB)
+		$GLOBALS['wgMemc'] = new EmptyBagOStuff;
+		ObjectCache::clear();
+		$emptyCache = array( 'class' => 'EmptyBagOStuff' );
+		$GLOBALS['wgObjectCaches'] = array(
+			CACHE_NONE => $emptyCache,
+			CACHE_DB => $emptyCache,
+			CACHE_ANYTHING => $emptyCache,
+			CACHE_MEMCACHED => $emptyCache,
+		);
 
 		// Load the installer's i18n.
 		$wgMessagesDirs['MediawikiInstaller'] = __DIR__ . '/i18n';
@@ -389,7 +402,7 @@ abstract class Installer {
 		$this->compiledDBs = $compiledDBs;
 
 		$this->parserTitle = Title::newFromText( 'Installer' );
-		$this->parserOptions = new ParserOptions; // language will  be wrong :(
+		$this->parserOptions = new ParserOptions; // language will be wrong :(
 		$this->parserOptions->setEditSection( false );
 	}
 
