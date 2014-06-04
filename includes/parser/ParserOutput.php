@@ -573,6 +573,14 @@ class ParserOutput extends CacheTime {
 		$this->mProperties[$name] = $value;
 	}
 
+	/**
+	 * @param string $name The property name to look up.
+	 *
+	 * @return mixed|false The value previously set using setProperty(). False if null or no value
+	 * was set for the given property name.
+	 *
+	 * @note You need to use getProperties() to check for boolean and null properties.
+	 */
 	public function getProperty( $name ) {
 		return isset( $this->mProperties[$name] ) ? $this->mProperties[$name] : false;
 	}
@@ -706,7 +714,7 @@ class ParserOutput extends CacheTime {
 	 *
 	 * @param string $key The key to look up.
 	 *
-	 * @return mixed The value previously set for the given key using setExtensionData( $key ),
+	 * @return mixed|null The value previously set for the given key using setExtensionData()
 	 *         or null if no value was set for this key.
 	 */
 	public function getExtensionData( $key ) {
