@@ -585,6 +585,10 @@ class ParserOutput extends CacheTime {
 		return isset( $this->mProperties[$name] ) ? $this->mProperties[$name] : false;
 	}
 
+	public function unsetProperty( $name ) {
+		unset( $this->mProperties[$name] );
+	}
+
 	public function getProperties() {
 		if ( !isset( $this->mProperties ) ) {
 			$this->mProperties = array();
