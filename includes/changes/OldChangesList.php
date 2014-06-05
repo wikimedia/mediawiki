@@ -53,10 +53,7 @@ class OldChangesList extends ChangesList {
 		$classes[] = $watched && $rc->mAttribs['rc_timestamp'] >= $watched
 			? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
 
-		// Moved pages (very very old, not supported anymore)
-		if ( $rc->mAttribs['rc_type'] == RC_MOVE || $rc->mAttribs['rc_type'] == RC_MOVE_OVER_REDIRECT ) {
-		// Log entries
-		} elseif ( $rc->mAttribs['rc_log_type'] ) {
+		if ( $rc->mAttribs['rc_log_type'] ) {
 			$logtitle = SpecialPage::getTitleFor( 'Log', $rc->mAttribs['rc_log_type'] );
 			$this->insertLog( $s, $logtitle, $rc->mAttribs['rc_log_type'] );
 		// Log entries (old format) or log targets, and special pages
