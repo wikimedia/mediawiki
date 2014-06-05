@@ -329,7 +329,39 @@ class DeletedContributionsPage extends SpecialPage {
 		$this->getSkin()->setRelevantUser( $userObj );
 
 		$target = $userObj->getName();
-		$out->addSubtitle( $this->getSubTitle( $userObj ) );
+		$out->addSubtitle( $userObj->getNavigationLinks() );
+
+		if ( $userObj->isAnon() && !User::isIP( $userObj->getName() ) ) {
+			$out->wrapWikiMsg(
+				"<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
+				array(
+					'contributions-userdoesnotexist',
+					wfEscapeWikiText( $userObj->getName() ),
+				)
+			);
+		}
+
+		// Show a note if the user is blocked and display the last block log entry.
+		if ( $userObj->isBlocked() && $userObj->getBlock()->getType() != Block::TYPE_AUTO ) {
+			// LogEventsList::showLogExtract() wants the first parameter by ref
+			LogEventsList::showLogExtract(
+				$out,
+				'block',
+				$userObj->getUserpage(),
+				'',
+				array(
+					'lim' => 1,
+					'showIfEmpty' => false,
+					'msgKey' => array(
+						'sp-contributions-blocked-notice',
+						// Support GENDER in 'sp-contributions-blocked-notice'
+						$userObj->getName()
+					),
+					// don't use $this->getRequest() parameter offset
+					'offset' => ''
+				)
+			);
+		}
 
 		if ( ( $ns = $request->getVal( 'namespace', null ) ) !== null && $ns !== '' ) {
 			$options['namespace'] = intval( $ns );
@@ -380,120 +412,6 @@ class DeletedContributionsPage extends SpecialPage {
 	 * @todo FIXME: Almost the same as contributionsSub in SpecialContributions.php. Could be combined.
 	 */
 	function getSubTitle( $userObj ) {
-		if ( $userObj->isAnon() ) {
-			$user = htmlspecialchars( $userObj->getName() );
-		} else {
-			$user = Linker::link( $userObj->getUserPage(), htmlspecialchars( $userObj->getName() ) );
-		}
-		$links = '';
-		$nt = $userObj->getUserPage();
-		$id = $userObj->getID();
-		$talk = $nt->getTalkPage();
-		if ( $talk ) {
-			# Talk page link
-			$tools[] = Linker::link( $talk, $this->msg( 'sp-contributions-talk' )->escaped() );
-			if ( ( $id !== null ) || ( $id === null && IP::isIPAddress( $nt->getText() ) ) ) {
-				# Block / Change block / Unblock links
-				if ( $this->getUser()->isAllowed( 'block' ) ) {
-					if ( $userObj->isBlocked() ) {
-						$tools[] = Linker::linkKnown( # Change block link
-							SpecialPage::getTitleFor( 'Block', $nt->getDBkey() ),
-							$this->msg( 'change-blocklink' )->escaped()
-						);
-						$tools[] = Linker::linkKnown( # Unblock link
-							SpecialPage::getTitleFor( 'BlockList' ),
-							$this->msg( 'unblocklink' )->escaped(),
-							array(),
-							array(
-								'action' => 'unblock',
-								'ip' => $nt->getDBkey()
-							)
-						);
-					} else {
-						# User is not blocked
-						$tools[] = Linker::linkKnown( # Block link
-							SpecialPage::getTitleFor( 'Block', $nt->getDBkey() ),
-							$this->msg( 'blocklink' )->escaped()
-						);
-					}
-				}
-				# Block log link
-				$tools[] = Linker::linkKnown(
-					SpecialPage::getTitleFor( 'Log' ),
-					$this->msg( 'sp-contributions-blocklog' )->escaped(),
-					array(),
-					array(
-						'type' => 'block',
-						'page' => $nt->getPrefixedText()
-					)
-				);
-				# Suppression log link (bug 59120)
-				if ( $this->getUser()->isAllowed( 'suppressionlog' ) ) {
-					$tools[] = Linker::linkKnown(
-						SpecialPage::getTitleFor( 'Log', 'suppress' ),
-						$this->msg( 'sp-contributions-suppresslog' )->escaped(),
-						array(),
-						array( 'offender' => $userObj->getName() )
-					);
-				}
-			}
-
-			# Uploads
-			$tools[] = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Listfiles', $userObj->getName() ),
-				$this->msg( 'sp-contributions-uploads' )->escaped()
-			);
-
-			# Other logs link
-			$tools[] = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Log' ),
-				$this->msg( 'sp-contributions-logs' )->escaped(),
-				array(),
-				array( 'user' => $nt->getText() )
-			);
-			# Link to contributions
-			$tools[] = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Contributions', $nt->getDBkey() ),
-				$this->msg( 'sp-deletedcontributions-contribs' )->escaped()
-			);
-
-			# Add a link to change user rights for privileged users
-			$userrightsPage = new UserrightsPage();
-			$userrightsPage->setContext( $this->getContext() );
-			if ( $userrightsPage->userCanChangeRights( $userObj ) ) {
-				$tools[] = Linker::linkKnown(
-					SpecialPage::getTitleFor( 'Userrights', $nt->getDBkey() ),
-					$this->msg( 'sp-contributions-userrights' )->escaped()
-				);
-			}
-
-			wfRunHooks( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
-
-			$links = $this->getLanguage()->pipeList( $tools );
-
-			// Show a note if the user is blocked and display the last block log entry.
-			if ( $userObj->isBlocked() ) {
-				// LogEventsList::showLogExtract() wants the first parameter by ref
-				$out = $this->getOutput();
-				LogEventsList::showLogExtract(
-					$out,
-					'block',
-					$nt,
-					'',
-					array(
-						'lim' => 1,
-						'showIfEmpty' => false,
-						'msgKey' => array(
-							'sp-contributions-blocked-notice',
-							$nt->getText() # Support GENDER in 'sp-contributions-blocked-notice'
-						),
-						'offset' => '' # don't use $this->getRequest() parameter offset
-					)
-				);
-			}
-		}
-
-		return $this->msg( 'contribsub2' )->rawParams( $user, $links )->params( $userObj->getName() );
 	}
 
 	/**
