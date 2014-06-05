@@ -112,6 +112,10 @@ abstract class PoolCounterWork {
 		}
 
 		switch ( $status->value ) {
+			case PoolCounter::LOCK_HELD:
+				// Better to ignore nesting pool counter limits than to fail.
+				// Assume that the outer pool limiting is reasonable enough.
+				/* no break */
 			case PoolCounter::LOCKED:
 				$result = $this->doWork();
 				$this->poolCounter->release();
