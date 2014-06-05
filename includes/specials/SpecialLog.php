@@ -106,9 +106,27 @@ class SpecialLog extends SpecialPage {
 			$target = Title::newFromText( $opts->getValue( 'page' ) );
 			if ( $target && $target->getNamespace() === NS_MAIN ) {
 				# User forgot to add 'User:', we are adding it for him
-				$opts->setValue( 'page',
-					Title::makeTitleSafe( NS_USER, $opts->getValue( 'page' ) )
-				);
+				$title = Title::makeTitleSafe( NS_USER, $opts->getValue( 'page' ) );
+				if ( $title ) {
+					$title = $title->getPrefixedText();
+				}
+				$opts->setValue( 'page', $title );
+			}
+		}
+
+		$title = Title::makeTitleSafe( NS_USER, $opts->getValue( 'user' ) );
+		if ( $title ) {
+			$user = User::newFromName( $title->getText() );
+			if ( $user ) {
+				$this->getOutput()->addSubtitle( $user->getNavigationLinks() );
+			}
+		}
+
+		$title = Title::newFromText( $opts->getValue( 'page' ) );
+		if ( $title && $title->getNamespace() === NS_USER ) {
+			$user = User::newFromName( $title->getText() );
+			if ( $user ) {
+				$this->getOutput()->addSubtitle( $user->getNavigationLinks() );
 			}
 		}
 
