@@ -51,6 +51,13 @@ class SpecialListFiles extends IncludableSpecialPage {
 		if ( $this->including() ) {
 			$html = $pager->getBody();
 		} else {
+			$title = Title::makeTitleSafe( NS_USER, $userName );
+			if ( $title ) {
+				$user = User::newFromName( $title->getText(), false );
+				if ( $user ) {
+					$this->getOutput()->addSubtitle( $user->getNavigationLinks() );
+				}
+			}
 			$form = $pager->getForm();
 			$body = $pager->getBody();
 			$nav = $pager->getNavigationBar();
