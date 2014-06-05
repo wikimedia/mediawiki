@@ -547,7 +547,7 @@ class UserrightsPage extends SpecialPage {
 				->rawParams( $userToolLinks )->parse() .
 			$this->msg( 'userrights-groups-help', $user->getName() )->parse() .
 			$grouplist .
-			Xml::tags( 'p', null, $this->groupCheckboxes( $groups, $user ) ) .
+			$this->groupCheckboxes( $groups, $user ) .
 			Xml::openElement( 'table', array( 'id' => 'mw-userrights-table-outer' ) ) .
 				"<tr>
 					<td class='mw-label'>" .
