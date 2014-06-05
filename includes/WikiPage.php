@@ -1479,7 +1479,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @throws MWException
 	 * @return string New complete article text, or null if error.
 	 *
-	 * @deprecated since 1.21, use replaceSectionContent() instead
+	 * @deprecated since 1.21, use replaceSectionAtRev() instead
 	 */
 	public function replaceSection( $section, $text, $sectionTitle = '',
 		$edittime = null
@@ -1540,13 +1540,9 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $edittime && $section !== 'new' ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );
-			if ( !$rev ) {
-				wfDebug( __METHOD__ . " given bad revision time for page " .
-					$this->getId() . "; edittime: $edittime)\n" );
-				wfProfileOut( __METHOD__ );
-				return null;
+			if ( $rev ) {
+				$baseRevId = $rev->getId();
 			}
-			$baseRevId = $rev->getId();
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -1583,12 +1579,12 @@ class WikiPage implements Page, IDBAccessObject {
 			if ( is_null( $baseRevId ) || $section == 'new' ) {
 				$oldContent = $this->getContent();
 			} else {
-				// TODO: try DB_READ first
+				// TODO: try DB_SLAVE first
 				$dbw = wfGetDB( DB_MASTER );
 				$rev = Revision::loadFromId( $dbw, $baseRevId );
 
 				if ( !$rev ) {
-					wfDebug( "WikiPage::replaceSection asked for bogus section (page: " .
+					wfDebug( __METHOD__ . " asked for bogus section (page: " .
 						$this->getId() . "; section: $section; edittime: $edittime)\n" );
 					wfProfileOut( __METHOD__ );
 					return null;
@@ -1603,7 +1599,6 @@ class WikiPage implements Page, IDBAccessObject {
 				return null;
 			}
 
-			// FIXME: $oldContent might be null?
 			$newContent = $oldContent->replaceSection( $section, $sectionContent, $sectionTitle );
 		}
 
