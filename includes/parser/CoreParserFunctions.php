@@ -934,8 +934,8 @@ class CoreParserFunctions {
 			$inner = null;
 		}
 
-		$stripList = $parser->getStripList();
-		if ( !in_array( $tagName, $stripList ) ) {
+		$tags = $parser->getTags();
+		if ( !in_array( $tagName, $tags ) ) {
 			return '<span class="error">' .
 				wfMessage( 'unknown_extension_tag', $tagName )->inContentLanguage()->text() .
 				'</span>';
@@ -952,6 +952,19 @@ class CoreParserFunctions {
 				}
 				$attributes[$name] = $value;
 			}
+		}
+
+		$stripList = $parser->getStripList();
+		if ( !in_array( $tagName, $stripList ) ) {
+			// it's a transparent tag. we're not really designed for this, so act like we're being substed
+			$attrText = '';
+			foreach ( $attributes as $name => $value ) {
+				$attrText .= ' ' . htmlspecialchars( $name ) . '="' . htmlspecialchars( $value ) . '"';
+			}
+			if ( $inner === null ) {
+				return "<$tagName$attrText/>";
+			}
+			return "<$tagName$attrText>$inner</$tagName>";
 		}
 
 		$params = array(
