@@ -451,6 +451,7 @@ class ImagePage extends Article {
 						'alt' => $this->displayImg->getTitle()->getPrefixedText(),
 						'file-link' => true,
 					);
+					wfRunHooks( 'ThumbnailBeforeAddHTML', array( $options, &$out, &$thumbnail, &$anchorclose ) );
 					$out->addHTML( '<div class="fullImageLink" id="file">' .
 						$thumbnail->toHtml( $options ) .
 						$anchorclose . "</div>\n" );
