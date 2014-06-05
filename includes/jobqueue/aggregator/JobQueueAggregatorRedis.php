@@ -118,16 +118,19 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 
 				$pendingDBs = $this->findPendingWikiQueues(); // (type => list of wikis)
 
-				$conn->delete( $this->getReadyQueueKey() . ":lock" ); // unlock
-
+				$conn->multi( Redis::PIPELINE );
 				$now = time();
 				$map = array();
 				foreach ( $pendingDBs as $type => $wikis ) {
+					$conn->hSetNx( $this->getQueueTypesKey(), $type, 'enabled' );
 					foreach ( $wikis as $wiki ) {
 						$map[$this->encQueueName( $type, $wiki )] = $now;
 					}
 				}
 				$conn->hMSet( $this->getReadyQueueKey(), $map );
+				$conn->exec();
+
+				$conn->delete( $this->getReadyQueueKey() . ":lock" ); // unlock
 			}
 
 			return $pendingDBs;
@@ -145,6 +148,7 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 		}
 		try {
 			$conn->delete( $this->getReadyQueueKey() );
+			// leave key at getQueueTypesKey() alone
 		} catch ( RedisException $e ) {
 			$this->handleException( $conn, $e );
 
