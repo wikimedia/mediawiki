@@ -143,11 +143,7 @@ class EnhancedChangesList extends ChangesList {
 
 		$type = $cacheEntry->mAttribs['rc_type'];
 
-		// @todo remove handling for RC_MOVE and RC_MOVE_OVER_REDIRECT (bug 63755)
-		if ( $type == RC_MOVE || $type == RC_MOVE_OVER_REDIRECT ) {
-			// Use an # character to prevent collision with page names
-			$cacheGroupingKey = '##' . ( $this->rcMoveIndex++ );
-		} elseif ( $type == RC_LOG ) {
+		if ( $type == RC_LOG ) {
 			// Group by log type
 			$cacheGroupingKey = SpecialPage::getTitleFor(
 				'Log',
@@ -551,16 +547,12 @@ class EnhancedChangesList extends ChangesList {
 
 		$r .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow-space"></span>';
 		# Flag and Timestamp
-		if ( $type == RC_MOVE || $type == RC_MOVE_OVER_REDIRECT ) {
-			$r .= $this->recentChangesFlags( array() ); // no flags, but need the placeholders
-		} else {
-			$r .= $this->recentChangesFlags( array(
-				'newpage' => $type == RC_NEW,
-				'minor' => $rcObj->mAttribs['rc_minor'],
-				'unpatrolled' => $rcObj->unpatrolled,
-				'bot' => $rcObj->mAttribs['rc_bot'],
-			) );
-		}
+		$r .= $this->recentChangesFlags( array(
+			'newpage' => $type == RC_NEW,
+			'minor' => $rcObj->mAttribs['rc_minor'],
+			'unpatrolled' => $rcObj->unpatrolled,
+			'bot' => $rcObj->mAttribs['rc_bot'],
+		) );
 		$r .= '&#160;' . $rcObj->timestamp . '&#160;</td><td>';
 		# Article or log link
 		if ( $logType ) {
