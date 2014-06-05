@@ -2781,14 +2781,21 @@ class WikiPage implements Page, IDBAccessObject {
 			return $status;
 		}
 
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->begin( __METHOD__ );
+
 		if ( $id == 0 ) {
 			$this->loadPageData( 'forupdate' );
 			$id = $this->getID();
 			if ( $id == 0 ) {
+				$dbw->rollback( __METHOD__ );
 				$status->error( 'cannotdelete', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
 				return $status;
 			}
 		}
+
+		// we need to remember the old content so we can use it to generate all deletion updates.
+		$content = $this->getContent( Revision::RAW );
 
 		// Bitfields to further suppress the content
 		if ( $suppress ) {
@@ -2802,11 +2809,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$bitfield = 'rev_deleted';
 		}
 
-		// we need to remember the old content so we can use it to generate all deletion updates.
-		$content = $this->getContent( Revision::RAW );
-
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin( __METHOD__ );
 		// For now, shunt the revision data into the archive table.
 		// Text is *not* removed from the text table; bulk storage
 		// is left intact to avoid breaking block-compression or
