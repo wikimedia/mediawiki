@@ -419,6 +419,12 @@ class MWMemcached {
 			$this->_debugprint( "get($key)\n" );
 		}
 
+		if ( !is_array( $key ) && strval( $key ) === '' ) {
+			$this->_debugprint( "Skipping key which equals to an empty string" );
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+
 		if ( !$this->_active ) {
 			wfProfileOut( __METHOD__ );
 			return false;
