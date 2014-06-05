@@ -460,3 +460,7 @@
 [submodule "vendor"]
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/core/vendor.git
+[submodule "extensions/Nostalgia"]
+	path = extensions/Nostalgia
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Nostalgia.git
+	branch = wmf/1.24wmf8
