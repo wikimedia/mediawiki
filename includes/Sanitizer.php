@@ -368,7 +368,7 @@ class Sanitizer {
 	) {
 		global $wgUseTidy, $wgAllowMicrodataAttributes, $wgAllowImageTag;
 
-		static $htmlpairsStatic, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags,
+		static $htmlpairs, $htmlsingle, $htmlsingleonly, $htmlnestStatic, $tabletags,
 			$htmllist, $listtags, $htmlsingleallowed, $htmlelementsStatic, $staticInitialised;
 
 		wfProfileIn( __METHOD__ );
@@ -378,7 +378,7 @@ class Sanitizer {
 		$globalContext = implode( '-', compact( 'wgAllowMicrodataAttributes', 'wgAllowImageTag' ) );
 		if ( !$staticInitialised || $staticInitialised != $globalContext ) {
 
-			$htmlpairsStatic = array( # Tags that must be closed
+			$htmlpairs = array( # Tags that must be closed
 				'b', 'bdi', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
 				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
@@ -396,7 +396,7 @@ class Sanitizer {
 				$htmlsingle[] = $htmlsingleonly[] = 'meta';
 				$htmlsingle[] = $htmlsingleonly[] = 'link';
 			}
-			$htmlnest = array( # Tags that can be nested--??
+			$htmlnestStatic = array( # Tags that can be nested--??
 				'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
 				'li', 'dl', 'dt', 'dd', 'font', 'big', 'small', 'sub', 'sup', 'span',
 				'var', 'kbd', 'samp', 'em', 'strong', 'q', 'ruby', 'bdo'
@@ -417,20 +417,20 @@ class Sanitizer {
 			}
 
 			$htmlsingleallowed = array_unique( array_merge( $htmlsingle, $tabletags ) );
-			$htmlelementsStatic = array_unique( array_merge( $htmlsingle, $htmlpairsStatic, $htmlnest ) );
+			$htmlelementsStatic = array_unique( array_merge( $htmlsingle, $htmlpairs, $htmlnestStatic ) );
 
 			# Convert them all to hashtables for faster lookup
-			$vars = array( 'htmlpairsStatic', 'htmlsingle', 'htmlsingleonly', 'htmlnest', 'tabletags',
+			$vars = array( 'htmlpairs', 'htmlsingle', 'htmlsingleonly', 'htmlnestStatic', 'tabletags',
 				'htmllist', 'listtags', 'htmlsingleallowed', 'htmlelementsStatic' );
 			foreach ( $vars as $var ) {
 				$$var = array_flip( $$var );
 			}
 			$staticInitialised = $globalContext;
 		}
-		# Populate $htmlpairs and $htmlelements with the $extratags and $removetags arrays
+		# Populate $htmlnest and $htmlelements with the $extratags and $removetags arrays
 		$extratags = array_flip( $extratags );
 		$removetags = array_flip( $removetags );
-		$htmlpairs = array_merge( $extratags, $htmlpairsStatic );
+		$htmlnest = array_merge( $extratags, $htmlnestStatic );
 		$htmlelements = array_diff_key( array_merge( $extratags, $htmlelementsStatic ), $removetags );
 
 		# Remove HTML comments
@@ -533,7 +533,9 @@ class Sanitizer {
 						&& in_array( $t, $tagstack ) ) {
 							// New table tag but forgot to close the previous one
 							$text .= "</$t>";
-						} else {
+						} elseif ( $brace != '/>' || !isset( $extratags[$t] ) ) {
+							# Not a self-closing extra tag
+							# Make sure it gets closed
 							if ( $t == 'table' ) {
 								array_push( $tablestack, $tagstack );
 								$tagstack = array();
@@ -551,8 +553,12 @@ class Sanitizer {
 							$badtag = true;
 						}
 
-						# Strip non-approved attributes from the tag
-						$newparams = Sanitizer::fixTagAttributes( $params, $t );
+						if ( !isset( $extratags[$t] ) ) {
+							# Strip non-approved attributes from the tag
+							$newparams = Sanitizer::fixTagAttributes( $params, $t );
+						} else {
+							$newparams = $params;
+						}
 					}
 					if ( !$badtag ) {
 						$rest = str_replace( '>', '&gt;', $rest );
@@ -593,7 +599,12 @@ class Sanitizer {
 						$badtag = true;
 					}
 
-					$newparams = Sanitizer::fixTagAttributes( $params, $t );
+					if ( !isset( $extratags[$t] ) ) {
+						# Strip non-approved attributes from the tag
+						$newparams = Sanitizer::fixTagAttributes( $params, $t );
+					} else {
+						$newparams = $params;
+					}
 					if ( !$badtag ) {
 						$rest = str_replace( '>', '&gt;', $rest );
 						$text .= "<$slash$t$newparams$brace$rest";
