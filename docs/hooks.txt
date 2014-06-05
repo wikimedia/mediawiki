@@ -2585,6 +2585,13 @@ $thumbnail: the ThumbnailImage object
 &$attribs: image attribute array
 &$linkAttribs: image link attribute array
 
+'ThumbnailBeforeAddHTML': Called before the produced image HTML is added to
+OutputPage.
+$options options for ThumbnailImage::toHtml()
+&$out OutputPage object
+&$thumbnail the ThumbnailImage object
+&$anchorclose raw html content displayed before closing div
+
 'TitleArrayFromResult': Called when creating an TitleArray object from a
 database result.
 &$titleArray: set this to an object to override the default object returned
