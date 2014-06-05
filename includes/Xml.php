@@ -317,6 +317,10 @@ class Xml {
 			$attributes['value'] = $value;
 		}
 
+		if ( isset( $attribs['autofocus'] ) ) {
+			$attribs['autofocus'] = 'autofocus';
+		}
+
 		return self::element( 'input', $attributes + $attribs );
 	}
 
