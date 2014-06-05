@@ -357,7 +357,7 @@ abstract class Profiler {
  */
 class TransactionProfiler {
 	/** @var float seconds */
-	protected $mDBLockThreshold = 5.0;
+	protected $mDBLockThreshold = 3.0;
 	/** @var array DB/server name => (active trx count, time, DBs involved) */
 	protected $mDBTrxHoldingLocks = array();
 	/** @var array DB/server name => list of (function name, elapsed time) */
