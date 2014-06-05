@@ -1,8 +1,7 @@
 <?php
 /** Belarusian (беларуская)
  *
- * See MessagesQqq.php for message documentation incl. usage of parameters
- * To improve a translation please visit http://translatewiki.net
+ * To improve a translation please visit https://translatewiki.net
  *
  * @ingroup Language
  * @file
@@ -64,7 +63,7 @@ $dateFormats = array(
 	'dmy both' => 'H:i, j xg Y',
 );
 
-# Per discussion on http://translatewiki.net/wiki/Thread:Support/Customization_of number format
+# Per discussion on https://translatewiki.net/wiki/Thread:Support/Customization_of number format
 $separatorTransformTable = array(
 	',' => "\xc2\xa0", # nbsp
 	'.' => ','
