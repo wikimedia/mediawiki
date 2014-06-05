@@ -173,14 +173,11 @@ div.vectorMenu h3 a {
 	.background-image-svg('images/arrow-down-icon.svg', 'images/arrow-down-icon.png');
 	background-position: 100% 70%;
 	background-repeat: no-repeat;
-	.transition(all 250ms);
+	.transition(background-position 250ms);
 }
 
 div.vectorMenu.menuForceShow h3 a {
-	-webkit-transform: rotate(-45deg) translate(-5px, 5px);
-	-moz-transform: rotate(-45deg) translate(-5px, 5px);
-	-ms-transform: rotate(-45deg) translate(-5px, 5px);
-	transform: rotate(-45deg) translate(-5px, 5px);
+	background-position: 100% 100%;
 }
 
 div.vectorMenuFocus h3 a {
