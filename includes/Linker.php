@@ -1185,6 +1185,102 @@ class Linker {
 	}
 
 	/**
+	 * Generate user navigation with links
+	 *
+	 * @since 1.25
+	 * @param User The user object that target of navigation
+	 * @return Message User navigations (mostly for subheader)
+	 */
+	public static function userNavigationLinks( $userObj ) {
+		global $wgUser, $wgLang;
+		if ( $userObj->isAnon() ) {
+			$user = htmlspecialchars( $userObj->getName() );
+		} else {
+			$user = self::link( $userObj->getUserPage(), htmlspecialchars( $userObj->getName() ) );
+		}
+
+		$tools[] = self::link( $userObj->getTalkPage(), wfMessage( 'sp-contributions-talk' )->escaped() );
+		$tools[] = self::linkKnown(
+			SpecialPage::getTitleFor( 'Contributions', $userObj->getName() ),
+			wfMessage( 'contribslink' )
+		);
+		if ( $userObj->isLoggedIn() || IP::isIPAddress( $userObj->getName() ) ) {
+			if ( $wgUser->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
+				if ( $userObj->isBlocked() && $userObj->getBlock()->getType() != Block::TYPE_AUTO) {
+					$tools[] = self::linkKnown( # Change block link
+						SpecialPage::getTitleFor( 'Block', $userObj->getName() ),
+						wfMessage( 'change-blocklink' )->escaped()
+					);
+					$tools[] = self::linkKnown( # Unblock link
+						SpecialPage::getTitleFor( 'Block', $userObj->getName() ),
+						wfMessage( 'unblocklink' )->escaped()
+					);
+				} else { # User is not blocked
+					$tools[] = self::linkKnown( # Block link
+						SpecialPage::getTitleFor( 'Block', $userObj->getName() ),
+						wfMessage( 'blocklink' )->escaped()
+					);
+				}
+			}
+
+			# Block log link
+			$tools[] = self::linkKnown(
+				SpecialPage::getTitleFor( 'Log', 'block' ),
+				wfMessage( 'sp-contributions-blocklog' )->escaped(),
+				array(),
+				array( 'page' => $userObj->getUserPage()->getPrefixedText() )
+			);
+		}
+
+		# Uploads
+		$tools[] = self::linkKnown(
+			SpecialPage::getTitleFor( 'Listfiles', $userObj->getName() ),
+			wfMessage( 'sp-contributions-uploads' )->escaped()
+		);
+
+		# Other logs link
+		$tools[] = self::linkKnown(
+			SpecialPage::getTitleFor( 'Log', $userObj->getName() ),
+			wfMessage( 'sp-contributions-logs' )->escaped()
+		);
+
+		# Add link to deleted user contributions for priviledged users
+		if ( $wgUser->isAllowed( 'deletedhistory' ) ) {
+			$tools[] = self::linkKnown(
+				SpecialPage::getTitleFor( 'DeletedContributions', $userObj->getName() ),
+				wfMessage( 'sp-contributions-deleted' )
+			);
+		}
+
+		# Add link to suppressed user contributions for priviledged users (bug 59120)
+		if ( $wgUser->isAllowed( 'suppressionlog' ) ) {
+			$tools[] = self::linkKnown(
+				SpecialPage::getTitleFor( 'Log', 'suppress' ),
+				wfMessage( 'sp-contributions-suppresslog' )->escaped(),
+				array(),
+				array( 'offender' => $userObj->getName() )
+			);
+		}
+
+		# Add a link to change user rights for priviledged users
+		$userrightspage = new UserrightsPage();
+		$userrightspage->setContext( RequestContext::getMain() );
+		if ( $userrightspage->userCanChangeRights( $userObj ) ) {
+			$tools[] = self::linkKnown(
+				SpecialPage::getTitleFor( 'Userrights', $userObj->getName() ),
+				wfMessage( 'sp-contributions-userrights' )->escaped()
+			);
+		}
+
+		# Hook name changed in 1.25 (gerrit #137581)
+		Hooks::run( 'ContributionsToolLinks', array( $userObj->getId(), $userObj->getUserPage(), &$tools ), '1.25' );
+		Hooks::run( 'UserNavigationLinks', array( $userObj->getId(), $userObj->getUserPage(), &$tools ) );
+
+		$links = $wgLang->pipeList( $tools );
+		return wfMessage( 'usersub' )->rawParams( $user, $links )->params( $userObj->getName() );
+	}
+
+	/**
 	 * @param int $userId User id in database.
 	 * @param string $userText User name in database.
 	 * @return string HTML fragment with user talk link
