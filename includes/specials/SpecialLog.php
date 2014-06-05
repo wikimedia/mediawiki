@@ -109,9 +109,32 @@ class SpecialLog extends SpecialPage {
 			$target = Title::newFromText( $opts->getValue( 'page' ) );
 			if ( $target && $target->getNamespace() === NS_MAIN ) {
 				# User forgot to add 'User:', we are adding it for him
-				$opts->setValue( 'page',
-					Title::makeTitleSafe( NS_USER, $opts->getValue( 'page' ) )
-				);
+				$title = Title::makeTitleSafe( NS_USER, $opts->getValue( 'page' ) );
+				if ( $title ) {
+					$title = $title->getPrefixedText();
+				}
+				$opts->setValue( 'page', $title );
+			}
+		}
+
+		$users = array();
+		$user = User::newFromName( $opts->getValue( 'user' ) );
+		if ( $user ) { # Performer is present
+			$users[] = $user->mName;
+			$this->getOutput()->addSubtitle( Linker::userNavigationLinks( $userObj ) );
+		}
+		$title = Title::newFromText( $opts->getValue( 'page' ) );
+		if ( $title && $title->getNamespace() === NS_USER ) {
+			$user = User::newFromName( $title->getText() );
+			if ( $user && !in_array( $user->mName, $users ) ) {
+				$users[] = $user->mName;
+				$this->getOutput()->addSubtitle( Linker::userNavigationLinks( $userObj ) );
+			}
+		}
+		if ( $opts->getValue( 'type' ) == 'suppress' ) { # type=suppress
+			$user = User::newFromName( $opts->getValue( 'offender' ) );
+			if ( $user && !in_array( $user->mName, $users ) ) {
+				$this->getOutput()->addSubtitle( Linker::userNavigationLinks( $userObj ) );
 			}
 		}
 
