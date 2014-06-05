@@ -52,6 +52,15 @@ class SpecialListFiles extends IncludableSpecialPage {
 		if ( $this->including() ) {
 			$out->addParserOutputContent( $pager->getBodyOutput() );
 		} else {
+			// Check $userName is not illegal title
+			$title = Title::makeTitleSafe( NS_USER, $userName );
+			if ( $title ) {
+				// Disabling user name validation so that navigation links for IP users is shown
+				$user = User::newFromName( $title->getText(), false );
+				if ( $user ) {
+					$out->addSubtitle( Linker::userNavigationLinks( $user ) );
+				}
+			}
 			$out->addHTML( $pager->getForm() );
 			$out->addParserOutputContent( $pager->getFullOutput() );
 		}
