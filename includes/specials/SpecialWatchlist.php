@@ -490,7 +490,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$form .= "</p>";
 
 		if ( $numItems > 0 && $wgShowUpdatedMarker ) {
-			$form .= Xml::openElement( 'form', array( 'method' => 'post',
+			$form .= Xml::openElement( 'form', array( 'method' => 'get',
 				'action' => $this->getPageTitle()->getLocalURL(),
 				'id' => 'mw-watchlist-resetbutton' ) ) . "\n" .
 			Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) . "\n" .
@@ -502,7 +502,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 
 		$form .= Xml::openElement( 'form', array(
-			'method' => 'post',
+			'method' => 'get',
 			'action' => $this->getPageTitle()->getLocalURL(),
 			'id' => 'mw-watchlist-form'
 		) );
