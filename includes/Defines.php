@@ -177,9 +177,7 @@ define( 'MW_DATE_ISO', 'ISO 8601' );
  */
 define( 'RC_EDIT', 0 );
 define( 'RC_NEW', 1 );
-define( 'RC_MOVE', 2 ); // obsolete
 define( 'RC_LOG', 3 );
-define( 'RC_MOVE_OVER_REDIRECT', 4 ); // obsolete
 define( 'RC_EXTERNAL', 5 );
 /**@}*/
 
