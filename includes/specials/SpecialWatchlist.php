@@ -465,7 +465,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	function setTopText( FormOptions $opts ) {
-		global $wgEnotifWatchlist, $wgShowUpdatedMarker;
+		global $wgEnotifWatchlist, $wgShowUpdatedMarker, $wgScript;
 
 		$nondefaults = $opts->getChangedValues();
 		$form = "";
@@ -502,10 +502,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 
 		$form .= Xml::openElement( 'form', array(
-			'method' => 'post',
-			'action' => $this->getPageTitle()->getLocalURL(),
+			'method' => 'get',
+			'action' => $wgScript,
 			'id' => 'mw-watchlist-form'
 		) );
+		$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
 		$form .= Xml::fieldset(
 			$this->msg( 'watchlist-options' )->text(),
 			false,
