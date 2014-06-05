@@ -4938,4 +4938,104 @@ class User {
 			return Status::newFatal( 'badaccess-group0' );
 		}
 	}
+
+	/**
+	 * Generate user navigation with links
+	 *
+	 * @since 1.24
+	 * @param IContextSource $context
+	 * @return Message User navigations (mostly for subheader)
+	 */
+	public function getNavigationLinks(IContextSource $context) {
+		if ( $this->isAnon() ) {
+			$user = htmlspecialchars( $this->getName() );
+		} else {
+			$user = Linker::link( $this->getUserPage(), htmlspecialchars( $this->getName() ) );
+		}
+
+		$tools[] = Linker::link( $this->getTalkPage(), $context->msg( 'sp-contributions-talk' )->escaped() );
+		$tools[] = Linker::linkKnown(
+			SpecialPage::getTitleFor( 'Contributions', $this->getName() ),
+			$context->msg( 'contribslink' )
+		);
+		if ( $this->isLoggedIn() || IP::isIPAddress( $this->getName() ) ) {
+			// Block / Change Block / Unblock links
+			if ( $context->getUser()->isAllowed( 'block' ) ) {
+				if ( $this->isBlocked() && $this->getBlock()->getType() != Block::TYPE_AUTO) {
+					// Change block link
+					$tools[] = Linker::linkKnown(
+						SpecialPage::getTitleFor( 'Block', $this->getName() ),
+						$context->msg( 'change-blocklink' )->escaped()
+					);
+					// Unblock link
+					$tools[] = Linker::linkKnown(
+						SpecialPage::getTitleFor( 'Block', $this->getName() ),
+						$context->msg( 'unblocklink' )->escaped()
+					);
+				// User is not blocked
+				} else {
+					// Block link
+					$tools[] = Linker::linkKnown(
+						SpecialPage::getTitleFor( 'Block', $this->getName() ),
+						$context->msg( 'blocklink' )->escaped()
+					);
+				}
+			}
+
+			# Block log link
+			$tools[] = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Log', 'block' ),
+				$context->msg( 'sp-contributions-blocklog' )->escaped(),
+				array(),
+				array( 'page' => $this->getUserPage()->getPrefixedText() )
+			);
+		}
+
+		if ( $this->isAllowed( 'upload' ) ) {
+			# Uploads
+			$tools[] = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Listfiles', $this->getName() ),
+				$context->msg( 'sp-contributions-uploads' )->escaped()
+			);
+		}
+
+		# Other logs link
+		$tools[] = Linker::linkKnown(
+			SpecialPage::getTitleFor( 'Log', $this->getName() ),
+			$context->msg( 'sp-contributions-logs' )->escaped()
+		);
+
+		# Add link to deleted user contributions for priviledged users
+		if ( $context->getUser()->isAllowed( 'deletedhistory' ) ) {
+			$tools[] = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'DeletedContributions', $this->getName() ),
+				$context->msg( 'sp-contributions-deleted' )
+			);
+		}
+
+		# Add link to suppressed user contributions for priviledged users (bug 59120)
+		if ( $context->getUser()->isAllowed( 'suppressionlog' ) ) {
+			$tools[] = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Log', 'suppress' ),
+				$context->msg( 'sp-contributions-suppresslog' )->escaped(),
+				array(),
+				array( 'offender' => $this->getName() )
+			);
+		}
+
+		# Add a link to change user rights for priviledged users
+		$userrightspage = new UserrightsPage();
+		$userrightspage->setContext( $context );
+		if ( $userrightspage->userCanChangeRights( $this ) ) {
+			$tools[] = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Userrights', $this->getName() ),
+				$context->msg( 'sp-contributions-userrights' )->escaped()
+			);
+		}
+
+		wfRunHooks( 'ContributionsToolLinks', array ( $this->getId(), $this->getUserPage(), &$tools ) );
+
+		$links = $context->getLanguage()->pipeList( $tools );
+		return $context->msg( 'usersub' )->rawParams( $user, $links )->params( $this->getName() );
+	}
 }

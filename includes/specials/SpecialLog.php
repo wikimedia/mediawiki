@@ -106,10 +106,54 @@ class SpecialLog extends SpecialPage {
 			$target = Title::newFromText( $opts->getValue( 'page' ) );
 			if ( $target && $target->getNamespace() === NS_MAIN ) {
 				# User forgot to add 'User:', we are adding it for him
-				$opts->setValue( 'page',
-					Title::makeTitleSafe( NS_USER, $opts->getValue( 'page' ) )
-				);
+				$title = Title::makeTitleSafe( NS_USER, $opts->getValue( 'page' ) );
+				if ( $title ) {
+					$title = $title->getPrefixedText();
+				}
+				$opts->setValue( 'page', $title );
 			}
+		}
+
+		// Adding user nagivation links when available. Used little bit magic.
+		switch ('user') {
+			case 'user':
+				// Check $userName is not illegal title
+				$title = Title::makeTitleSafe( NS_USER, $opts->getValue( 'user' ) );
+				if ( $title ) {
+					// Disabling user name validation so that navigation links for IP users is shown.
+					$user = User::newFromName( $title->getText(), false );
+					// Performer is present
+					if ( $user ) {
+						$this->getOutput()->addSubtitle( $user->getNavigationLinks( $this->getContext() ) );
+						break;
+					}
+					// continue to try with 'offender'
+				}
+			case 'offender':
+				// type=suppress
+				if ( ( $opts->getValue( 'type' ) == 'suppress' ) ) {
+					// Check $userName is not illegal title
+					$title = Title::makeTitleSafe( NS_USER, $opts->getValue( 'offender' ) );
+					if ( $title ) {
+						// Disabling user name validation so that navigation links for IP users is shown.
+						$user = User::newFromName( $opts->getValue( 'offender' ), false );
+						if ( $user ) {
+							$this->getOutput()->addSubtitle( $user->getNavigationLinks( $this->getContext() ) );
+							break;
+						}
+					}
+					// continue to try with 'page'
+				}
+			case 'page':
+				$title = Title::newFromText( $opts->getValue( 'page' ) );
+				if ( $title && $title->getNamespace() === NS_USER ) {
+					// Disabling user name validation so that navigation links for IP users is shown.
+					$user = User::newFromName( $title->getText(), false );
+					if ( $user ) {
+						$this->getOutput()->addSubtitle( $user->getNavigationLinks( $this->getContext() ) );
+						break;
+					}
+				}
 		}
 
 		$this->show( $opts, $qc );
