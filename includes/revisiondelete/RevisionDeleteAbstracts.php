@@ -105,7 +105,9 @@ abstract class RevDelList extends RevisionListBase {
 			$status->itemStatuses = array();
 		}
 
+		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
 		for ( $this->reset(); $this->current(); $this->next() ) {
+			// @codingStandardsIgnoreEnd
 			$item = $this->current();
 			unset( $missing[$item->getId()] );
 
