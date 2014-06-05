@@ -146,7 +146,10 @@ class ChangeTags {
 		);
 
 		## Update the summary row.
-		$prevTags = $dbr->selectField( 'tag_summary', 'ts_tags', $tsConds, __METHOD__ );
+		// $prevTags can be out of date on slaves, especially when addTags is called consecutively,
+		// causing loss of tags added recently in tag_summary table.
+		$dbw = wfGetDB( DB_MASTER );
+		$prevTags = $dbw->selectField( 'tag_summary', 'ts_tags', $tsConds, __METHOD__ );
 		$prevTags = $prevTags ? $prevTags : '';
 		$prevTags = array_filter( explode( ',', $prevTags ) );
 		$newTags = array_unique( array_merge( $prevTags, $tags ) );
@@ -158,7 +161,6 @@ class ChangeTags {
 			return false;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
 		$dbw->replace(
 			'tag_summary',
 			array( 'ts_rev_id', 'ts_rc_id', 'ts_log_id' ),
