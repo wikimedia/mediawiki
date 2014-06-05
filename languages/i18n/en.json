@@ -1998,7 +1998,7 @@
 	"contributions-summary": "",
 	"contributions-title": "User contributions for $1",
 	"mycontris": "Contributions",
-	"contribsub2": "For {{GENDER:$3|$1}} ($2)",
+	"usersub": "{{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "User account \"$1\" is not registered.",
 	"nocontribs": "No changes were found matching these criteria.",
 	"uctop": "(current)",

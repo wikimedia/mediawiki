@@ -4938,4 +4938,97 @@ class User {
 			return Status::newFatal( 'badaccess-group0' );
 		}
 	}
+
+	/**
+	 * Generate user navigation with links
+	 *
+	 * @since 1.24
+	 * @return Message User navigations (mostly for subheader)
+	 */
+	public function getNavigationLinks() {
+		global $wgUser, $wgLang;
+		if ( $this->isAnon() ) {
+			$user = htmlspecialchars( $this->getName() );
+		} else {
+			$user = Linker::link( $this->getUserPage(), htmlspecialchars( $this->getName() ) );
+		}
+
+		$tools[] = Linker::link( $this->getTalkPage(), wfMessage( 'sp-contributions-talk' )->escaped() );
+		$tools[] = Linker::linkKnown(
+			SpecialPage::getTitleFor( 'Contributions', $this->getName() ),
+			wfMessage( 'contribslink' )
+		);
+		if ( $this->isLoggedIn() || IP::isIPAddress( $this->getName() ) ) {
+			if ( $wgUser->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
+				if ( $this->isBlocked() && $this->getBlock()->getType() != Block::TYPE_AUTO) {
+					$tools[] = Linker::linkKnown( # Change block link
+						SpecialPage::getTitleFor( 'Block', $this->getName() ),
+						wfMessage( 'change-blocklink' )->escaped()
+					);
+					$tools[] = Linker::linkKnown( # Unblock link
+						SpecialPage::getTitleFor( 'Block', $this->getName() ),
+						wfMessage( 'unblocklink' )->escaped()
+					);
+				} else { # User is not blocked
+					$tools[] = Linker::linkKnown( # Block link
+						SpecialPage::getTitleFor( 'Block', $this->getName() ),
+						wfMessage( 'blocklink' )->escaped()
+					);
+				}
+			}
+
+			# Block log link
+			$tools[] = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Log', 'block' ),
+				wfMessage( 'sp-contributions-blocklog' )->escaped(),
+				array(),
+				array( 'page' => $this->getUserPage()->getPrefixedText() )
+			);
+		}
+
+		# Uploads
+		$tools[] = Linker::linkKnown(
+			SpecialPage::getTitleFor( 'Listfiles', $this->getName() ),
+			wfMessage( 'sp-contributions-uploads' )->escaped()
+		);
+
+		# Other logs link
+		$tools[] = Linker::linkKnown(
+			SpecialPage::getTitleFor( 'Log', $this->getName() ),
+			wfMessage( 'sp-contributions-logs' )->escaped()
+		);
+
+		# Add link to deleted user contributions for priviledged users
+		if ( $wgUser->isAllowed( 'deletedhistory' ) ) {
+			$tools[] = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'DeletedContributions', $this->getName() ),
+				wfMessage( 'sp-contributions-deleted' )
+			);
+		}
+
+		# Add link to suppressed user contributions for priviledged users (bug 59120)
+		if ( $wgUser->isAllowed( 'suppressionlog' ) ) {
+			$tools[] = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Log', 'suppress' ),
+				wfMessage( 'sp-contributions-suppresslog' )->escaped(),
+				array(),
+				array( 'offender' => $this->getName() )
+			);
+		}
+
+		# Add a link to change user rights for priviledged users
+		$userrightspage = new UserrightsPage();
+		$userrightspage->setContext( RequestContext::getMain() );
+		if ( $userrightspage->userCanChangeRights( $this ) ) {
+			$tools[] = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Userrights', $this->getName() ),
+				wfMessage( 'sp-contributions-userrights' )->escaped()
+			);
+		}
+
+		wfRunHooks( 'ContributionsToolLinks', array ( $this->getId(), $this->getUserPage(), &$tools ) );
+
+		$links = $wgLang->pipeList( $tools );
+		return wfMessage( 'usersub' )->rawParams( $user, $links )->params( $this->getName() );
+	}
 }
