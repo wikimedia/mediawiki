@@ -603,7 +603,7 @@ class SpecialVersion extends SpecialPage {
 		// ... and the version information
 		// If the extension path is set we will check that directory for GIT and SVN
 		// metadata in an attempt to extract date and vcs commit metadata.
-		$canonicalVersion = '&ndash;';
+		$canonicalVersion = '';
 		$extensionPath = null;
 		$vcsVersion = null;
 		$vcsLink = null;
