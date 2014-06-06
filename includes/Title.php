@@ -423,6 +423,7 @@ class Title {
 	 * @param stdClass|bool $row Database row
 	 */
 	public function loadFromRow( $row ) {
+		global $wgLanguageCode;
 		if ( $row ) { // page found
 			if ( isset( $row->page_id ) ) {
 				$this->mArticleID = (int)$row->page_id;
@@ -444,6 +445,7 @@ class Title {
 			if ( isset( $row->page_lang ) ) {
 				$this->mDBPageLanguage = (string)$row->page_lang;
 			}
+			$mPageLanguage[1] = $wgLanguageCode;
 		} else { // page not found
 			$this->mArticleID = 0;
 			$this->mLength = 0;
@@ -4992,8 +4994,21 @@ class Title {
 			$settings = $contentHandler->getPageLanguageSettings( $settings, $this );
 		}
 
-		if ( !$this->mPageLanguage || $this->mPageLanguage[1] !== $wgLanguageCode ) {
-			// NOTE: ContentHandler::getPageLanguage() may need to load the
+		// If mPageLanguage is false, means we haven't checked DB yet for page language
+		if ( !$this->mPageLanguage ) {
+			$dbr = wfGetDB( DB_SLAVE );
+			$row = $dbr->selectRow(
+				'page',
+				'page_lang',
+				array( 'page_id' => $this->getArticleID() ),
+				__METHOD__
+			);
+			$this->mDBPageLanguage = $row->page_lang;
+			$this->mPageLanguage[1] = $wgLanguageCode;
+		}
+
+		// If mPageLanguage[0] is set, no need to run this again
+		if ( !isset( $this->mPageLanguage[0] ) || $this->mPageLanguage[1] !== $wgLanguageCode ) {
 			// content to determine the page language!
 			// Checking $wgLanguageCode hasn't changed for the benefit of unit
 			// tests.
