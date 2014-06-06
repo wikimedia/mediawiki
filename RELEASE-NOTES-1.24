@@ -39,6 +39,7 @@ production.
   $wgIncludejQueryMigrate, also loads the jQuery Migrate hack to let extensions
   and gadgets use the long-deprecated functions that were removed in jQuery 1.9.
   This option is turned off by default, and will be removed in MediaWiki 1.25.
+* (bug 47076) jQuery UI upgraded from 1.8.24 to 1.10.4.
 * Changes to content typography (fonts, etc.). See
   https://www.mediawiki.org/wiki/Typography_refresh for further information.
 * WikitextContent will now render redirects with the expected "redirect"
@@ -128,8 +129,6 @@ changes to languages because of Bugzilla reports.
   like "headlinks", "skinnameclass", etc. to be defined.
 * The deprecated 'SpecialVersionExtensionTypes' hook was removed.
 * (bug 63891) Add 'X-Robots-Tag: noindex' header in action=render pages.
-* SpecialPage no longer supports the syntax for invoking wfSpecial*() functions.
-  All special pages should subclass SpecialPage and implement the execute() method.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
