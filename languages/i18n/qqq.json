@@ -3411,6 +3411,7 @@
 	"version-ext-license": "Used in [[Special:Version]].\n\nUsed as label for the link pointing to the extension's license page. e.g. [[Special:Version/License/Maps]]\n{{Identical|License}}",
 	"version-ext-colheader-name": "Column header for the name of an extension.\n{{Identical|Extension}}",
 	"version-skin-colheader-name": "Column header for the name of a skin.\n{{Identical|Skin}}",
+	"version-skin-alt-screenshot": "Alt text for a MediaWiki skin screenshot.\n\nParameters:\n* $1 - skin name",
 	"version-ext-colheader-version": "Column header for describing an extensions version.\n{{Identical|Version}}",
 	"version-ext-colheader-license": "Column header for describing an extensions license.\n{{Identical|License}}",
 	"version-ext-colheader-description": "Column header for the description of an extension.\n{{Identical|Description}}",

@@ -624,6 +624,23 @@ class SpecialVersion extends SpecialPage {
 			$extensionNameLink = $extensionName;
 		}
 
+		// A screenshot, mostly for skins...
+		if ( isset( $extension['screenshot'] ) ) {
+			if ( is_array( $extension['screenshot'] ) ) {
+				$screenshotImagePath = $extension['screenshot'][ $this->getLanguage()->getDir() ];
+			} else {
+				$screenshotImagePath = $extension['screenshot'];
+			}
+
+			$screenshot = Html::element( 'img', array(
+				'src' => $screenshotImagePath,
+				'alt' => $this->msg( 'version-skin-alt-screenshot', $extensionName ),
+				'class' => 'mw-version-skin-screenshot',
+			) );
+		} else {
+			$screenshot = null;
+		}
+
 		// ... and the version information
 		// If the extension path is set we will check that directory for GIT and SVN
 		// metadata in an attempt to extract date and vcs commit metadata.
@@ -764,7 +781,12 @@ class SpecialVersion extends SpecialPage {
 			)
 		);
 
-		$html .= Html::rawElement( 'td', array(), $extensionNameLink );
+		if ( $screenshot ) {
+			$html .= Html::rawElement( 'td', array(), $extensionNameLink );
+			$html .= Html::rawElement( 'td', array(), $screenshot );
+		} else {
+			$html .= Html::rawElement( 'td', array( 'colspan' => 2 ), $extensionNameLink );
+		}
 		$html .= Html::rawElement( 'td', array(), $versionString );
 		$html .= Html::rawElement( 'td', array(), $licenseLink );
 		$html .= Html::rawElement( 'td', array( 'class' => 'mw-version-ext-description' ), $description );
@@ -813,7 +835,7 @@ class SpecialVersion extends SpecialPage {
 	private function openExtType( $text = null, $name = null ) {
 		$out = '';
 
-		$opt = array( 'colspan' => 5 );
+		$opt = array( 'colspan' => 6 );
 		if ( $this->firstExtOpened ) {
 			// Insert a spacing line
 			$out .= Html::rawElement( 'tr', array( 'class' => 'sv-space' ),
@@ -836,7 +858,7 @@ class SpecialVersion extends SpecialPage {
 			? 'version-skin-colheader-name'
 			: 'version-ext-colheader-name';
 		$out .= Html::openElement( 'tr' );
-		$out .= Html::element( 'th', array( 'class' => 'mw-version-ext-col-label' ),
+		$out .= Html::element( 'th', array( 'class' => 'mw-version-ext-col-label', 'colspan' => 2 ),
 			$this->msg( $firstHeadingMsg )->text() );
 		$out .= Html::element( 'th', array( 'class' => 'mw-version-ext-col-label' ),
 			$this->msg( 'version-ext-colheader-version' )->text() );
