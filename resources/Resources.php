@@ -1461,4 +1461,12 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+
+	/* WikiFont */
+	// https://github.com/munmay/WikiFont
+	'wikifont' => array(
+		'styles' => array(
+			'resources/lib/wikifont/wikifont.css',
+        ),
+	),
 );

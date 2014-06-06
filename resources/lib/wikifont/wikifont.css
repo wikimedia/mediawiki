@@ -1,0 +1,308 @@
+@font-face {
+	font-family: 'wikifont';
+	src: url('wikifont.eot'); /* IE9 Compat Modes */
+	src: url('wikifont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('wikifont.woff') format('woff'), /* Modern Browsers */
+		url('wikifont.ttf')  format('truetype'), /* Safari, Android, iOS */
+		url('wikifont.svg#8088f7bbbdba5c9832b27edb3dfcdf09') format('svg'); /* Legacy iOS */
+}
+
+/* UI ELEMENTS e000-023 */
+.wikifont-magnifying-glass:before {
+	content: "\e000";
+}
+
+.wikifont-arrow-left:before {
+	content: "\e001";
+}
+
+.wikifont-tick:before {
+	content: "\e002";
+}
+
+.wikifont-x:before {
+	content: "\e003";
+}
+
+.wikifont-x-circle:before {
+	content: "\e004";
+}
+
+.wikifont-unstar:before {
+	content: "\e005";
+}
+
+.wikifont-star:before {
+	content: "\e006";
+}
+
+.wikifont-star-list:before {
+	content: "\e007";
+}
+
+.wikifont-sun:before {
+	content: "\e008";
+}
+
+.wikifont-star-circle:before {
+	content: "\e009";
+}
+
+.wikifont-eye:before {
+	content: "\e010";
+}
+
+.wikifont-eye-lid:before {
+	content: "\e011";
+}
+
+.wikifont-bookmark:before {
+	content: "\e012";
+}
+
+.wikifont-printer:before {
+	content: "\e013";
+}
+
+.wikifont-puzzle:before {
+	content: "\e014";
+}
+
+.wikifont-clock:before {
+	content: "\e015";
+}
+
+.wikifont-dice:before {
+	content: "\e016";
+}
+
+.wikifont-move:before {
+	content: "\e017";
+}
+
+.wikifont-gear:before {
+	content: "\e018";
+}
+
+.wikifont-ellipsis:before {
+	content: "\e019";
+}
+
+.wikifont-envelope:before {
+	content: "\e020";
+}
+
+.wikifont-pin:before {
+	content: "\e021";
+}
+
+.wikifont-funnel:before {
+	content: "\e022";
+}
+
+.wikifont-download:before {
+	content: "\e023";
+}
+
+.wikifont-bell:before {
+	content: "\e025";
+}
+
+.wikifont-bell-ring:before {
+	content: "\e026";
+}
+
+.wikifont-caret-left:before {
+	content: "\e027";
+}
+
+.wikifont-caret-down:before {
+	content: "\e028";
+}
+
+/* STRIPES e040-043 */
+.wikifont-stripe-compact:before {
+	content: "\e040";
+}
+
+.wikifont-stripe-toc:before {
+	content: "\e041";
+}
+
+.wikifont-stripe-expanded:before {
+	content: "\e042";
+}
+
+/* WIKIPEDIA LOGO e400-401 */
+.wikifont-w:before {
+	content: "\e400";
+}
+
+/* UI MODERATION ELEMENTS e500-508 */
+.wikifont-article:before {
+	content: "\e100";
+}
+
+.wikifont-article-check:before {
+	content: "\e101";
+}
+
+.wikifont-article-search:before {
+	content: "\e102";
+}
+
+wikifont-trash:before {
+	content: "\e500";
+}
+
+.wikifont-trash-slash:before {
+	content: "\e501";
+}
+
+.wikifont-block:before {
+	content: "\e502";
+}
+
+.wikifont-block-slash:before {
+	content: "\e503";
+}
+
+.wikifont-flag:before {
+	content: "\e504";
+}
+
+.wikifont-flag-slash:before {
+	content: "\e505";
+}
+
+.wikifont-play:before {
+	content: "\e506";
+}
+
+.wikifont-stop:before {
+	content: "\e507";
+}
+
+.wikifont-lock:before {
+	content: "\e508";
+}
+
+/* USER e600-602 */
+.wikifont-user-bust:before {
+	content: "\e600";
+}
+
+.wikifont-user-smile:before {
+	content: "\e601";
+}
+
+.wikifont-user-sleep:before {
+	content: "\e602";
+}
+
+/* TRANSLATION e700 */
+.wikifont-translate:before {
+	content: "\e700";
+}
+
+/* CONTRIBUTION e800-845 */
+.wikifont-pencil:before {
+	content: "\e800";
+}
+
+.wikifont-pencil-revert-full:before {
+	content: "\e801";
+}
+
+.wikifont-pencil-revert-pt1:before {
+	content: "\e802";
+}
+
+.wikifont-pencil-revert-pt2:before {
+	content: "\e803";
+}
+
+.wikifont-pencil-lock-full:before {
+	content: "\e804";
+}
+
+.wikifont-pencil-lock-pt1:before {
+	content: "\e805";
+}
+
+.wikifont-pencil-lock-pt2:before {
+	content: "\e806";
+}
+
+.wikifont-speech-bubble:before {
+	content: "\e810";
+}
+
+.wikifont-speech-bubbles:before {
+	content: "\e811";
+}
+
+.wikifont-speech-bubble-add:before {
+	content: "\e812";
+}
+
+.wikifont-speech-bubble-smile:before {
+	content: "\e813";
+}
+
+.wikifont-link:before {
+	content: "\e820";
+}
+
+.wikifont-quotes:before {
+	content: "\e830";
+}
+
+.wikifont-quotes-add:before {
+	content: "\e831";
+}
+
+.wikifont-image:before {
+	content: "\e840";
+}
+
+.wikifont-image-lock-full:before {
+	content: "\e841";
+}
+
+.wikifont-image-lock-pt1:before {
+	content: "\e842";
+}
+
+.wikifont-image-lock-pt2:before {
+	content: "\e843";
+}
+
+.wikifont-image-add-full:before {
+	content: "\e844";
+}
+
+.wikifont-image-add-pt1:before {
+	content: "\e845";
+}
+
+.wikifont-image-add-pt2:before {
+	content: "\e846";
+}
+
+.wikifont-image-main-placeholder:before {
+	content: "\e847";
+}
+
+.wikifont-folder:before {
+	content: "\e848";
+}
+
+.wikifont-folder-main-placeholder:before {
+	content: "\e849";
+}
+
+/* WIKI-X e900 */
+.wikifont-wikitrail:before {
+	content: "\e900";
+}
