@@ -5642,6 +5642,12 @@ $wgRCEngines = array(
 );
 
 /**
+ * URL pointing to your instance of RCStream, value will be exposed client-side
+ * @since 1.24
+ */
+$wgRCStreamHost = '';
+
+/**
  * Enable user search in Special:Newpages
  * This is really a temporary hack around an index install bug on some Wikipedias.
  * Kill it once fixed.
