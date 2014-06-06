@@ -8663,3 +8663,4 @@ OO.ui.ToggleSwitchWidget.prototype.onClick = function ( e ) {
 	}
 };
 }( OO ) );
+
