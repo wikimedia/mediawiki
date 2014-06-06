@@ -1,6 +1,6 @@
 <?php
 /**
- * Implements Special:Mostlinkedtemplates
+ * Implements Special:Mosttranscluded
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,8 +28,8 @@
  *
  * @ingroup SpecialPage
  */
-class MostlinkedTemplatesPage extends QueryPage {
-	function __construct( $name = 'Mostlinkedtemplates' ) {
+class MosttranscludedPage extends QueryPage {
+	function __construct( $name = 'Mosttranscluded' ) {
 		parent::__construct( $name );
 	}
 
@@ -68,7 +68,6 @@ class MostlinkedTemplatesPage extends QueryPage {
 				'title' => 'tl_title',
 				'value' => 'COUNT(*)'
 			),
-			'conds' => array( 'tl_namespace' => NS_TEMPLATE ),
 			'options' => array( 'GROUP BY' => array( 'tl_namespace', 'tl_title' ) )
 		);
 	}

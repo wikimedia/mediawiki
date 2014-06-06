@@ -138,7 +138,7 @@ class SpecialPageFactory {
 		'Mostimages' => 'MostimagesPage',
 		'Mostinterwikis' => 'MostinterwikisPage',
 		'Mostlinked' => 'MostlinkedPage',
-		'Mostlinkedtemplates' => 'MostlinkedTemplatesPage',
+		'Mosttranscluded' => 'MosttranscludedPage',
 		'Mostcategories' => 'MostcategoriesPage',
 		'Mostrevisions' => 'MostrevisionsPage',
 

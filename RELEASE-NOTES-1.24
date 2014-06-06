@@ -130,6 +130,8 @@ changes to languages because of Bugzilla reports.
 * (bug 63891) Add 'X-Robots-Tag: noindex' header in action=render pages.
 * SpecialPage no longer supports the syntax for invoking wfSpecial*() functions.
   All special pages should subclass SpecialPage and implement the execute() method.
+* Special:MostLinkedTemplates has been renamed to Special:MostTranscludedPages and
+  will now display pages regardless of namespace.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
