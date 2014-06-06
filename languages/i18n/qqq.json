@@ -1619,7 +1619,7 @@
 	"filehist-dimensions": "Used as label in file description page.\n\nFollowed by length, filesize, and width x height. e.g. \"1.5 s (13 KB)\".",
 	"filehist-filesize": "Used in image description page.\n{{Identical|File size}}",
 	"filehist-comment": "In file description page\n\n{{Identical|Comment}}",
-	"imagelinks": "In top header of the image description page, see for example [[:Image:Yes.png]]. Shows a list of pages where this file is used.",
+	"imagelinks": "In top header of the image description page, see for example [[:Image:Yes.png]]. Shows a list of pages where this file is used.\n{{Identical|File usage}}",
 	"linkstoimage": "Used on image description, see for example [[:Image:Yes.png#filelinks]].\n\nParameters:\n* $1 - the number of pages that link to the file/image\nSee also:\n* {{msg-mw|Linkstoimage-more}}",
 	"linkstoimage-more": "Shown on an image description page when a file is used/linked more than 100 times on other pages.\n\nParameters:\n* $1 - limit. At the moment hardcoded at 100\n* $2 - page title of the file\nSee also:\n* {{msg-mw|Linkstoimage}}",
 	"nolinkstoimage": "Displayed on image description pages, see for exampe [[:Image:Tournesol.png#filelinks]].",

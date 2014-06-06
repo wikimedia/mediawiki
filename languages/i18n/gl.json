@@ -402,7 +402,7 @@
 	"userlogin-joinproject": "Únase a {{SITENAME}}",
 	"nologin": "Non está rexistrado? $1.",
 	"nologinlink": "Cree unha conta",
-	"createaccount": "Crear unha conta nova",
+	"createaccount": "Crear unha conta",
 	"gotaccount": "Xa ten unha conta? $1.",
 	"gotaccountlink": "Acceda ao sistema",
 	"userlogin-resetlink": "Esqueceu os seus datos de rexistro?",

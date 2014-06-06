@@ -2096,7 +2096,7 @@
 	"movepagetalktext": "Powiązana strona dyskusji, jeśli istnieje, będzie przeniesiona automatycznie, chyba że:\n*niepusta strona dyskusji już jest pod nową nazwą\n*usuniesz zaznaczenie z poniższego pola wyboru\n\nW takich przypadkach treść dyskusji można przenieść tylko ręcznie.",
 	"movearticle": "Przeniesienie strony",
 	"moveuserpage-warning": "'''Uwaga!''' Masz zamiar przenieść stronę użytkownika. Miej na uwadze, że zostanie przeniesiona tylko strona, a '''nazwa użytkownika pozostanie niezmieniona'''.",
-	"movecategorypage-warning": "<strong>Uwaga!</strong> Masz zamiar przenieść stronę opisu kategorii. Miej na uwadze, że strony, które należały do starej kategorii, <em>nie</em> zostaną przeniesione do nowej.",
+	"movecategorypage-warning": "<strong>Uwaga!</strong> Masz zamiar przenieść stronę kategorii. Miej na uwadze, że strony, które należały do starej kategorii, <em>nie</em> zostaną przeniesione do nowej.",
 	"movenologintext": "Przenoszenie stron jest możliwe dopiero po zarejestrowaniu się i [[Special:UserLogin|zalogowaniu]].",
 	"movenotallowed": "Nie masz uprawnień do przenoszenia stron.",
 	"movenotallowedfile": "Nie masz uprawnień do przenoszenia plików.",

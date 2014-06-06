@@ -2894,7 +2894,7 @@
 	"watchlistedit-raw-done": "Ваш списак надгледања је ажуриран.",
 	"watchlistedit-raw-added": "{{PLURAL:$1|Додат је један наслов|Додата су $1 наслова|Додато је $1 наслова}}:",
 	"watchlistedit-raw-removed": "{{PLURAL:$1|1 наслов је уклоњен|Уклоњена су $1 наслова|Уклоњено је $1 наслова}}:",
-	"watchlistedit-clear-title": "Пражњење списка надгледања",
+	"watchlistedit-clear-title": "Испразни списак надгледања",
 	"watchlistedit-clear-legend": "Испразни списак надгледања",
 	"watchlistedit-clear-explain": "Сви наслови ће бити уклоњени из вашег списка надгледања.",
 	"watchlistedit-clear-titles": "Наслови:",

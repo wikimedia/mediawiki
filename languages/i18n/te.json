@@ -2794,6 +2794,7 @@
 	"watchlistedit-clear-titles": "శీర్షికలు:",
 	"watchlistedit-clear-submit": "వీక్షణ జాబితా శుభ్రం చేయి (ఇది శాశ్వతం!)",
 	"watchlistedit-clear-done": "మీ వీక్షణ జాబితాను శుభ్రం చేశాం.",
+	"watchlistedit-clear-removed": "{{PLURAL:$1|1 శీర్షికను|$1 శీర్షికలను}} తీసివేశాం:",
 	"watchlisttools-clear": "వీక్షణజాబితాను శుభ్రం చేయి",
 	"watchlisttools-view": "సంబంధిత మార్పులను చూడండి",
 	"watchlisttools-edit": "వీక్షణ జాబితాను చూడండి లేదా మార్చండి",
