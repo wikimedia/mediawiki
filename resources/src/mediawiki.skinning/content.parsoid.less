@@ -23,7 +23,11 @@ span.reference {
  * Block media items
  */
 figure[typeof*='mw:Image'] {
-	margin: 0;
+	// Default to right alignment. This is needed since Parsoid only specifies the
+	// alignment class when the alignment is explicitly set.
+	margin: .5em 0 1.3em 1.4em;
+	clear: right;
+	float: right;
 
 	a {
 		border: 0;
@@ -48,8 +52,9 @@ figure[typeof*='mw:Image'] {
 	}
 
 	&.mw-halign-center {
-		margin-left: auto;
-		margin-right: auto;
+		margin: 0 auto .5em auto;
+		clear: none;
+		float: none;
 	}
 
 	figcaption {
