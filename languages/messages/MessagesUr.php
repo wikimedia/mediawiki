@@ -25,6 +25,8 @@
  * @author පසිඳු කාවින්ද
  */
 
+$fallback = 'fa';
+
 $fallback8bitEncoding = 'windows-1256';
 $rtl = true;
 

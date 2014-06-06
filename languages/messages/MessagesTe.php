@@ -137,6 +137,22 @@ $magicWords = array(
 	'special'                   => array( '0', 'ప్రత్యేక', 'special' ),
 );
 
+$digitTransformTable = array(
+	'0' => '౦',
+	'1' => '౧',
+	'2' => '౨',
+	'3' => '౩',
+	'4' => '౪',
+	'5' => '౫',
+	'6' => '౬',
+	'7' => '౭',
+	'8' => '౮',
+	'9' => '౯',
+	# '%' => '',
+	# '.' => '',
+	# ',' => '',
+);
+
 $linkTrail = "/^([\xE0\xB0\x81-\xE0\xB1\xAF]+)(.*)$/sDu";
 
 $digitGroupingPattern = "##,##,###";
