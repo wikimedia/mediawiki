@@ -3408,7 +3408,6 @@
 	"signature": "This will be substituted in the signature (~<nowiki></nowiki>~~ or ~~<nowiki></nowiki>~~ excluding timestamp).\n\nParameters:\n* $1 - the username that is currently login\n* $2 - the customized signature which is specified in [[Special:Preferences|user's preferences]] as non-raw\nUse your language default parentheses ({{msg-mw|parentheses}}), but not use the message direct.\n\nSee also:\n* {{msg-mw|Signature-anon}} - signature for anonymous user",
 	"signature-anon": "{{notranslate}}\nUsed as signature for anonymous user. Parameters:\n* $1 - username (IP address?)\n* $2 - nickname (IP address?)\nSee also:\n* {{msg-mw|Signature}} - signature for registered user",
 	"timezone-utc": "{{optional}}",
-	"unknown_extension_tag": "This is an error shown when you use an unknown extension tag name.\n\nThis feature allows tags like <code><nowiki><pre></nowiki></code> to be called with a parser like <code><nowiki>{{#tag:pre}}</nowiki></code>.\n\nParameters:\n* $1 - the unknown extension tag name",
 	"duplicate-defaultsort": "See definition of [[w:Sorting|sort key]] on Wikipedia. Parameters:\n* $1 - old default sort key\n* $2 - new default sort key",
 	"duplicate-displaytitle": "Warning shown when a page has its display title set multiple times. Parameters:\n* $1 - old display title\n* $2 - new display title",
 	"invalid-indicator-name": "Warning shown when the [https://www.mediawiki.org/wiki/Help:Page_status_indicators &lt;indicator name=\"''unique-identifier''\">''content''&lt;/indicator>] parser tag is used incorrectly.",
