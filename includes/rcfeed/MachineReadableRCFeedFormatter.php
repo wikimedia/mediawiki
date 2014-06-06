@@ -87,6 +87,7 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 				break;
 
 			case RC_LOG:
+				$packet['log_id'] = $attrib['rc_logid'];
 				$packet['log_type'] = $attrib['rc_log_type'];
 				$packet['log_action'] = $attrib['rc_log_action'];
 				if ( $attrib['rc_params'] ) {
