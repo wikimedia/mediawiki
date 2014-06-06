@@ -51,7 +51,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$wgCookiePrefix, $wgCookieDomain, $wgCookiePath,
 			$wgCookieExpiration, $wgResourceLoaderMaxQueryLength,
 			$wgResourceLoaderStorageEnabled, $wgResourceLoaderStorageVersion,
-			$wgSearchType;
+			$wgSearchType, $wgRCStreamHost;
 
 		$mainPage = Title::newMainPage();
 
@@ -114,6 +114,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
 			'wgResourceLoaderStorageVersion' => $wgResourceLoaderStorageVersion,
 			'wgResourceLoaderStorageEnabled' => $wgResourceLoaderStorageEnabled,
+			'wgRCStreamHost' => $wgRCStreamHost,
 		);
 
 		wfRunHooks( 'ResourceLoaderGetConfigVars', array( &$vars ) );
