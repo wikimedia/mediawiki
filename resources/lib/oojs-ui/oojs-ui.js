@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (cbc62ac803)
+ * OOjs UI v0.1.0-pre (c9b9f8345d)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Wed Jun 04 2014 17:11:52 GMT-0700 (PDT)
+ * Date: Thu Jun 05 2014 18:43:23 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -6377,7 +6377,7 @@ OO.ui.OptionWidget.prototype.isPressed = function () {
  * @chainable
  */
 OO.ui.OptionWidget.prototype.setSelected = function ( state ) {
-	if ( !this.isDisabled() && this.constructor.static.selectable ) {
+	if ( this.constructor.static.selectable ) {
 		this.selected = !!state;
 		if ( this.selected ) {
 			this.$element.addClass( 'oo-ui-optionWidget-selected' );
@@ -6398,7 +6398,7 @@ OO.ui.OptionWidget.prototype.setSelected = function ( state ) {
  * @chainable
  */
 OO.ui.OptionWidget.prototype.setHighlighted = function ( state ) {
-	if ( !this.isDisabled() && this.constructor.static.highlightable ) {
+	if ( this.constructor.static.highlightable ) {
 		this.highlighted = !!state;
 		if ( this.highlighted ) {
 			this.$element.addClass( 'oo-ui-optionWidget-highlighted' );
@@ -6416,7 +6416,7 @@ OO.ui.OptionWidget.prototype.setHighlighted = function ( state ) {
  * @chainable
  */
 OO.ui.OptionWidget.prototype.setPressed = function ( state ) {
-	if ( !this.isDisabled() && this.constructor.static.pressable ) {
+	if ( this.constructor.static.pressable ) {
 		this.pressed = !!state;
 		if ( this.pressed ) {
 			this.$element.addClass( 'oo-ui-optionWidget-pressed' );
@@ -7703,7 +7703,9 @@ OO.ui.ButtonOptionWidget.static.cancelButtonMouseDownEvents = false;
 OO.ui.ButtonOptionWidget.prototype.setSelected = function ( state ) {
 	OO.ui.ButtonOptionWidget.super.prototype.setSelected.call( this, state );
 
-	this.setActive( state );
+	if ( this.constructor.static.selectable ) {
+		this.setActive( state );
+	}
 
 	return this;
 };
