@@ -953,13 +953,6 @@ class CoreParserFunctions {
 			$inner = null;
 		}
 
-		$stripList = $parser->getStripList();
-		if ( !in_array( $tagName, $stripList ) ) {
-			return '<span class="error">' .
-				wfMessage( 'unknown_extension_tag', $tagName )->inContentLanguage()->text() .
-				'</span>';
-		}
-
 		$attributes = array();
 		foreach ( $args as $arg ) {
 			$bits = $arg->splitArg();
@@ -971,6 +964,19 @@ class CoreParserFunctions {
 				}
 				$attributes[$name] = $value;
 			}
+		}
+
+		$stripList = $parser->getStripList();
+		if ( !in_array( $tagName, $stripList ) ) {
+			// we can't handle this tag (at least not now), so just re-emit it as an ordinary tag
+			$attrText = '';
+			foreach ( $attributes as $name => $value ) {
+				$attrText .= ' ' . htmlspecialchars( $name ) . '="' . htmlspecialchars( $value ) . '"';
+			}
+			if ( $inner === null ) {
+				return "<$tagName$attrText/>";
+			}
+			return "<$tagName$attrText>$inner</$tagName>";
 		}
 
 		$params = array(
