@@ -101,19 +101,20 @@ class ChangeTags {
 				'specified when adding a tag to a change!' );
 		}
 
+		$dbw = wfGetDB( DB_MASTER );
+
 		// Might as well look for rcids and so on.
 		if ( !$rc_id ) {
 			// Info might be out of date, somewhat fractionally, on slave.
-			$dbr = wfGetDB( DB_MASTER );
 			if ( $log_id ) {
-				$rc_id = $dbr->selectField(
+				$rc_id = $dbw->selectField(
 					'recentchanges',
 					'rc_id',
 					array( 'rc_logid' => $log_id ),
 					__METHOD__
 				);
 			} elseif ( $rev_id ) {
-				$rc_id = $dbr->selectField(
+				$rc_id = $dbw->selectField(
 					'recentchanges',
 					'rc_id',
 					array( 'rc_this_oldid' => $rev_id ),
@@ -122,14 +123,13 @@ class ChangeTags {
 			}
 		} elseif ( !$log_id && !$rev_id ) {
 			// Info might be out of date, somewhat fractionally, on slave.
-			$dbr = wfGetDB( DB_MASTER );
-			$log_id = $dbr->selectField(
+			$log_id = $dbw->selectField(
 				'recentchanges',
 				'rc_logid',
 				array( 'rc_id' => $rc_id ),
 				__METHOD__
 			);
-			$rev_id = $dbr->selectField(
+			$rev_id = $dbw->selectField(
 				'recentchanges',
 				'rc_this_oldid',
 				array( 'rc_id' => $rc_id ),
@@ -144,7 +144,6 @@ class ChangeTags {
 		);
 
 		## Update the summary row.
-		$dbw = wfGetDB( DB_MASTER );
 		// $prevTags can be out of date on slaves, especially when addTags is called consecutively,
 		// causing loss of tags added recently in tag_summary table.
 		$prevTags = $dbw->selectField( 'tag_summary', 'ts_tags', $tsConds, __METHOD__ );
