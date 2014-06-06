@@ -383,6 +383,10 @@ return array(
 
 	/* jQuery UI */
 
+	'jquery.ui' => array(
+		'scripts' => 'resources/lib/jquery.ui/jquery.ui.js',
+		'group' => 'jquery.ui',
+	),
 	// Core
 	'jquery.ui.core' => array(
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.core.js',
@@ -485,15 +489,20 @@ return array(
 		'languageScripts' => array(
 			'af' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-af.js',
 			'ar' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-ar.js',
+			'ar-dz' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-ar-DZ.js',
 			'az' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-az.js',
+			'bz' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-bz.js',
 			'bg' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-bg.js',
 			'bs' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-bs.js',
 			'ca' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-ca.js',
 			'cs' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-cs.js',
+			'cy-gb' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-cy-GB.js',
 			'da' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-da.js',
 			'de' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-de.js',
 			'el' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-el.js',
+			'en-au' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-en-AU.js',
 			'en-gb' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-en-GB.js',
+			'en-nz' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-en-NZ.js',
 			'eo' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-eo.js',
 			'es' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-es.js',
 			'et' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-et.js',
@@ -502,6 +511,8 @@ return array(
 			'fi' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-fi.js',
 			'fo' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-fo.js',
 			'fr' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-fr.js',
+			'fr-ca' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-fr-CA.js',
+			'fr-ch' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-fr-CH.js',
 			'gl' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-gl.js',
 			'he' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-he.js',
 			'hi' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-hi.js',
@@ -522,7 +533,10 @@ return array(
 			'mk' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-mk.js',
 			'ml' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-ml.js',
 			'ms' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-ms.js',
+			'nb' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-nb.js',
 			'nl' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-nl.js',
+			'nl-be' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-nl_BE.js',
+			'nn' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-nn.js',
 			'no' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-no.js',
 			'pl' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-pl.js',
 			'pt' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-pt.js',
@@ -538,6 +552,7 @@ return array(
 			'sv' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-sv.js',
 			'ta' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-ta.js',
 			'th' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-th.js',
+			'tj' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-tj.js',
 			'tr' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-tr.js',
 			'uk' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-uk.js',
 			'vi' => 'resources/lib/jquery.ui/i18n/jquery.ui.datepicker-vi.js',
