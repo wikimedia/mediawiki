@@ -64,6 +64,8 @@ production.
   that won't deplete openssl's entropy pool.
 * ResourceLoader: File modules can now provide a skip function that uses an
   inline feature test to bypass loading of the module.
+* Special:MostLinkedTemplates is no longer limited to transclusions from the
+  Template namespace.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
@@ -139,6 +141,7 @@ changes to languages because of Bugzilla reports.
   All special pages should subclass SpecialPage and implement the execute() method.
 * (bug 63755) The deprecated constants RC_MOVE and RC_MOVE_OVER_REDIRECT were
   removed.
+* Special:MostLinkedTemplates has been renamed to Special:MostTranscludedPages.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
