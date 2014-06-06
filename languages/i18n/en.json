@@ -3225,7 +3225,6 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|talk]])",
 	"signature-anon": "[[{{#special:Contributions}}/$1|$2]]",
 	"timezone-utc": "UTC",
-	"unknown_extension_tag": "Unknown extension tag \"$1\"",
 	"duplicate-defaultsort": "<strong>Warning:</strong> Default sort key \"$2\" overrides earlier default sort key \"$1\".",
 	"version": "Version",
 	"version-summary": "",
