@@ -650,14 +650,20 @@ class SpecialVersion extends SpecialPage {
 		// ... and the version information
 		// If the extension path is set we will check that directory for GIT and SVN
 		// metadata in an attempt to extract date and vcs commit metadata.
-		$canonicalVersion = '&ndash;';
 		$extensionPath = null;
 		$vcsVersion = null;
 		$vcsLink = null;
 		$vcsDate = null;
+		$versionString = '';
 
 		if ( isset( $extension['version'] ) ) {
 			$canonicalVersion = $out->parseInline( $extension['version'] );
+
+			$versionString = Html::rawElement(
+				'span',
+				array( 'class' => 'mw-version-ext-version' ),
+				$canonicalVersion
+			);
 		}
 
 		if ( isset( $extension['path'] ) ) {
@@ -690,7 +696,6 @@ class SpecialVersion extends SpecialPage {
 				} else {
 					$svnInfo = self::getSvnInfo( $extensionPath );
 					if ( $svnInfo !== false ) {
-						$vcsVersion = $this->msg( 'version-svn-revision', $svnInfo['checkout-rev'] )->text();
 						$vcsLink = isset( $svnInfo['viewvc-url'] ) ? $svnInfo['viewvc-url'] : '';
 					}
 				}
@@ -700,17 +705,17 @@ class SpecialVersion extends SpecialPage {
 			}
 		}
 
-		$versionString = Html::rawElement(
-			'span',
-			array( 'class' => 'mw-version-ext-version' ),
-			$canonicalVersion
-		);
-
 		if ( $vcsVersion ) {
 			if ( $vcsLink ) {
+				if ( $versionString ) {
+					$vcsVerText = $this->msg('version-version', $vcsVersion); // show brackets
+				} else {
+					$vcsVerText = $vcsVersion; // don't show brackets
+				}
+
 				$vcsVerString = Linker::makeExternalLink(
 					$vcsLink,
-					$this->msg( 'version-version', $vcsVersion ),
+					$vcsVerText,
 					true,
 					'',
 					array( 'class' => 'mw-version-ext-vcs-version' )
