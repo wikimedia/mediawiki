@@ -628,12 +628,18 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'param_user', 'info' => 'User name $user not found' ),
-			array( 'code' => 'param_title', 'info' => 'Bad title value \'title\'' ),
-			array( 'code' => 'param_prefix', 'info' => 'Bad title value \'prefix\'' ),
-			array( 'code' => 'prefixsearchdisabled', 'info' => 'Prefix search disabled in Miser Mode' ),
-		) );
+		return array_merge(
+			parent::getPossibleErrors(),
+			$this->getRequireMaxOneParameterErrorMessages(
+				array( 'title', 'prefix', 'namespace' ) ),
+			array(
+				array( 'code' => 'param_user', 'info' => 'User name $user not found' ),
+				array( 'code' => 'param_title', 'info' => 'Bad title value \'title\'' ),
+				array( 'code' => 'param_prefix', 'info' => 'Bad title value \'prefix\'' ),
+				array( 'code' => 'prefixsearchdisabled',
+					'info' => 'Prefix search disabled in Miser Mode' ),
+			)
+		);
 	}
 
 	public function getExamples() {
