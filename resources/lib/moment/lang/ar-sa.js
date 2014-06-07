@@ -1,7 +1,6 @@
 // moment.js language configuration
-// language : Arabic (ar)
-// author : Abdel Said : https://github.com/abdelsaid
-// changes in months, weekdays : Ahmed Elkhatib
+// language : Arabic Saudi Arabia (ar-sa)
+// author : Suhail Alkowaileet : https://github.com/xsoh
 
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
@@ -36,9 +35,9 @@
         '٠': '0'
     };
 
-    return moment.lang('ar', {
-        months : "يناير/ كانون الثاني_فبراير/ شباط_مارس/ آذار_أبريل/ نيسان_مايو/ أيار_يونيو/ حزيران_يوليو/ تموز_أغسطس/ آب_سبتمبر/ أيلول_أكتوبر/ تشرين الأول_نوفمبر/ تشرين الثاني_ديسمبر/ كانون الأول".split("_"),
-        monthsShort : "يناير/ كانون الثاني_فبراير/ شباط_مارس/ آذار_أبريل/ نيسان_مايو/ أيار_يونيو/ حزيران_يوليو/ تموز_أغسطس/ آب_سبتمبر/ أيلول_أكتوبر/ تشرين الأول_نوفمبر/ تشرين الثاني_ديسمبر/ كانون الأول".split("_"),
+    return moment.lang('ar-sa', {
+        months : "يناير_فبراير_مارس_أبريل_مايو_يونيو_يوليو_أغسطس_سبتمبر_أكتوبر_نوفمبر_ديسمبر".split("_"),
+        monthsShort : "يناير_فبراير_مارس_أبريل_مايو_يونيو_يوليو_أغسطس_سبتمبر_أكتوبر_نوفمبر_ديسمبر".split("_"),
         weekdays : "الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت".split("_"),
         weekdaysShort : "أحد_إثنين_ثلاثاء_أربعاء_خميس_جمعة_سبت".split("_"),
         weekdaysMin : "ح_ن_ث_ر_خ_ج_س".split("_"),

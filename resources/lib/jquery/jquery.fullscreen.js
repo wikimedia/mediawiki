@@ -1,5 +1,5 @@
 /**
- * jQuery fullscreen plugin v2.0.0-git (9f8f97d127)
+ * jQuery fullscreen plugin
  * https://github.com/theopolisme/jquery-fullscreen
  *
  * Copyright (c) 2013 Theopolisme <theopolismewiki@gmail.com>
@@ -22,6 +22,7 @@
 	var setupFullscreen,
 		fsClass = 'jq-fullscreened';
 
+
 	/**
 	 * On fullscreenchange, trigger a jq-fullscreen-change event
 	 * The event is given an object, which contains the fullscreened DOM element (element), if any
@@ -34,12 +35,15 @@
 			document.webkitFullscreenElement ||
 			document.msFullscreenElement;
 
+
 		if ( !fullscreenElement ) {
 			$( '.' + fsClass ).data( 'isFullscreened', false ).removeClass( fsClass );
 		}
 
+
 		$( document ).trigger( $.Event( 'jq-fullscreen-change', { element: fullscreenElement, fullscreen: !!fullscreenElement } ) );
 	}
+
 
 	/**
 	 * Enters full screen with the "this" element in focus.
@@ -74,6 +78,7 @@
 		}
 	}
 
+
 	/**
 	 * Brings the "this" element out of fullscreen.
 	 * Check the .data( 'isFullscreened' ) of the return value to check
@@ -86,6 +91,7 @@
 				document.mozFullScreenElement ||
 				document.webkitFullscreenElement ||
 				document.msFullscreenElement );
+
 
 		// Ensure that we only exit fullscreen if exitFullscreen() is being called on the same element that is currently fullscreen
 		if ( fullscreenElement && this.get(0) === fullscreenElement ) {
@@ -108,8 +114,10 @@
 			this.first().data( 'isFullscreened', false );
 		}
 
+
 		return this;
 	}
+
 
 	/**
 	 * Set up fullscreen handling and install necessary event handlers.
@@ -136,6 +144,7 @@
 		}
 	};
 
+
 	/**
 	 * Set up fullscreen handling if necessary, then make the first element
 	 * matching the given selector fullscreen
@@ -152,6 +161,7 @@
 		}
 	};
 
+
 	/**
 	 * Set up fullscreen handling if necessary, then cancel fullscreen mode
 	 * for the first element matching the given selector.
@@ -167,6 +177,7 @@
 			return this;
 		}
 	};
+
 
 	$.support.fullscreen = document.fullscreenEnabled ||
 		document.webkitFullscreenEnabled ||

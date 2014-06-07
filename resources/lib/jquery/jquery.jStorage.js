@@ -502,7 +502,7 @@
 
         // set next check
         if(nextExpire != Infinity){
-            _ttl_timeout = setTimeout(_handleTTL, nextExpire - curtime);
+            _ttl_timeout = setTimeout(Math.min(_handleTTL, nextExpire - curtime, 0x7FFFFFFF));
         }
 
         // save changes
@@ -664,7 +664,7 @@
          * @param {Mixed} value Value to set. This can be any value that is JSON
          *              compatible (Numbers, Strings, Objects etc.).
          * @param {Object} [options] - possible options to use
-         * @param {Number} [options.TTL] - optional TTL value
+         * @param {Number} [options.TTL] - optional TTL value, in milliseconds
          * @return {Mixed} the used value
          */
         set: function(key, value, options){
