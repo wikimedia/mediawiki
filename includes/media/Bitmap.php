@@ -355,6 +355,16 @@ class BitmapHandler extends ImageHandler {
 			}
 		} elseif ( $params['mimeType'] == 'image/x-xcf' ) {
 			$animation_post = array( '-layers', 'merge' );
+			wfSuppressWarnings();
+			$xcfMeta = unserialize( $image->getMetadata() );
+			wfRestoreWarnings();
+			if ( $xcfMeta && isset( $xcfMeta['colorType'] ) && $xcfMeta['colorType'] === 'greyscale-alpha' ) {
+				// bug 66323 - Greyscale images not rendered properly.
+				// So only take the "red" channel.
+				$animation_post[] = '-channel';
+				$animation_post[] = 'R';
+				$animation_post[] = '-separate';
+			}
 		}
 
 		// Use one thread only, to avoid deadlock bugs on OOM
