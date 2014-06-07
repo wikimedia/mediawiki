@@ -315,7 +315,7 @@
 	branch = master
 [submodule "skins/monaco"]
 	path = skins/monaco
-	url = https://github.com/dantman/monaco-port.git
+	url = https://github.com/Orain/monaco.git
 	branch = master
 [submodule "extensions/TorBlock"]
 	path = extensions/TorBlock
