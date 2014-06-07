@@ -428,6 +428,16 @@ class InfoAction extends FormlessAction {
 				$this->msg( "restriction-$restrictionType" ), $message
 			);
 		}
+		$protectLog = SpecialPage::getTitleFor( 'Log' );
+		$pageInfo['header-restrictions'][] = array(
+			$this->msg( 'protectlogpage' ),
+			Linker::link(
+				$protectLog,
+				$this->msg( 'protectlogpage' )->escaped(),
+				array(),
+				array( 'type' => 'protect', 'page' => $title->getPrefixedText() )
+			),
+		);
 
 		if ( !$this->page->exists() ) {
 			return $pageInfo;
