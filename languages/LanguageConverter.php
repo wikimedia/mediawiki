@@ -41,6 +41,7 @@ class LanguageConverter {
 		'en',
 		'crh',
 		'gan',
+		'hak',
 		'iu',
 		'kk',
 		'ku',
