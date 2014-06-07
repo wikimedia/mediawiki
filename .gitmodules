@@ -225,10 +225,6 @@
 	path = extensions/Scribunto
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Scribunto.git
 	branch = REL1_23
-[submodule "extensions/SideBarMenu"]
-	path = extensions/SideBarMenu
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SideBarMenu.git
-	branch = REL1_23
 [submodule "extensions/SimpleAntiSpam"]
 	path = extensions/SimpleAntiSpam
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SimpleAntiSpam.git
