@@ -1,5 +1,5 @@
 /**
- * jQuery fullscreen plugin v2.0.0-git (9f8f97d127)
+ * jQuery fullscreen plugin
  * https://github.com/theopolisme/jquery-fullscreen
  *
  * Copyright (c) 2013 Theopolisme <theopolismewiki@gmail.com>
