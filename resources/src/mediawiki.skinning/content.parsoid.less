@@ -63,18 +63,24 @@ figure[typeof*='mw:Image'] {
 		line-height: 1.4em;
 		text-align: left;
 
-		/* taken from .thumbcaption */
-		padding: 3px;
+		border: 1px solid #ccc;
+		border-top: 0;
+
+		/* taken from .thumbcaption, plus .thumbinner */
+		padding: 1px 5px 5px;
+		background-color: #f9f9f9;
 	}
 }
 
 figure[typeof~='mw:Image/Thumb'],
 figure[typeof~='mw:Image/Frame'] {
 	display: table;
-	overflow: hidden;
+	overflow: auto;
 	text-align: center;
 	padding: 3px;
 	border: 1px solid #ccc;
+	border-bottom: 0; // No border to caption
+	border-collapse: collapse;
 	background-color: #f9f9f9;
 	// Default to right alignment. This is needed since Parsoid only specifies the
 	// alignment class when the alignment is explicitly set.
@@ -84,6 +90,13 @@ figure[typeof~='mw:Image/Frame'] {
 }
 
 figure[typeof~='mw:Image/Thumb'] img,
+figure[typeof~='mw:Image/Frame'] img,
 .mw-image-border img {
 	border: 1px solid #cccccc;
+	margin: 4px;
+}
+
+// temporary hack for testing
+body[data-parsoid] {
+	background-color: #fff;
 }
