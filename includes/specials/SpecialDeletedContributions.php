@@ -472,7 +472,12 @@ class DeletedContributionsPage extends SpecialPage {
 			$links = $this->getLanguage()->pipeList( $tools );
 
 			// Show a note if the user is blocked and display the last block log entry.
-			if ( $userObj->isBlocked() ) {
+			$block = Block::newFromTarget( $userObj, $userObj );
+			if ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) {
+				if ( $block->getType() == Block::TYPE_RANGE ) {
+					$nt = MWNamespace::getCanonicalName( NS_USER ) . ':' . $block->getTarget();
+				}
+
 				// LogEventsList::showLogExtract() wants the first parameter by ref
 				$out = $this->getOutput();
 				LogEventsList::showLogExtract(
@@ -485,7 +490,7 @@ class DeletedContributionsPage extends SpecialPage {
 						'showIfEmpty' => false,
 						'msgKey' => array(
 							'sp-contributions-blocked-notice',
-							$nt->getText() # Support GENDER in 'sp-contributions-blocked-notice'
+							$userObj->getName() # Support GENDER in 'sp-contributions-blocked-notice'
 						),
 						'offset' => '' # don't use $this->getRequest() parameter offset
 					)
