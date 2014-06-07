@@ -37,7 +37,8 @@
 			"לערי ריינהארט",
 			"관인생략",
 			"아라",
-			"Keysuck"
+			"Keysuck",
+			"Infinity"
 		]
 	},
 	"tog-underline": "링크에 밑줄:",
@@ -1673,9 +1674,9 @@
 	"listgrouprights-namespaceprotection-header": "이름공간 제한",
 	"listgrouprights-namespaceprotection-namespace": "이름공간",
 	"listgrouprights-namespaceprotection-restrictedto": "사용자가 편집할 수 있는 권한",
-	"trackingcategories": "분류 추적",
-	"trackingcategories-summary": "이 페이지는 미디어위키 소프트웨어에 의해 자동으로 채워지는 분류 추적을 나열합니다. 그들의 이름은 {{ns:8}} 이름공간에 관련된 시스템 메시지를 바꾸어서 바꿀 수 있습니다.",
-	"trackingcategories-msg": "분류 추적",
+	"trackingcategories": "추적용 분류",
+	"trackingcategories-summary": "이 페이지는 미디어위키 소프트웨어에 의해 자동으로 만들어지는 추적용 분류를 나열합니다. 그들의 이름은 {{ns:8}} 이름공간에 관련된 시스템 메시지를 바꾸어서 바꿀 수 있습니다.",
+	"trackingcategories-msg": "추적용 분류",
 	"trackingcategories-name": "메시지 이름",
 	"trackingcategories-desc": "분류 포함 기준",
 	"noindex-category-desc": "문서는 그것과 그 플래그가 허용된 곳에 있는 이름공간에서 <code><nowiki>__NOINDEX__</nowiki></code> 특수 명령이 있기 때문에 로봇이 색인하지 않습니다.",
