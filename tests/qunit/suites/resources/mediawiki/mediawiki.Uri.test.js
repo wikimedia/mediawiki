@@ -1,3 +1,4 @@
+/*jshint -W024 */
 ( function ( mw, $ ) {
 	QUnit.module( 'mediawiki.Uri', QUnit.newMwEnvironment( {
 		setup: function () {
@@ -117,7 +118,7 @@
 
 		assert.throws(
 			function () {
-				return new mw.Uri( 'foo.com/bar/baz', {
+				return new mw.Uri( 'example.com/bar/baz', {
 					strictMode: true
 				} );
 			},
@@ -127,10 +128,10 @@
 			'throw error on URI without protocol or // or leading / in strict mode'
 		);
 
-		uri = new mw.Uri( 'foo.com/bar/baz', {
+		uri = new mw.Uri( 'example.com/bar/baz', {
 			strictMode: false
 		} );
-		assert.equal( uri.toString(), 'http://foo.com/bar/baz', 'normalize URI without protocol or // in loose mode' );
+		assert.equal( uri.toString(), 'http://example.com/bar/baz', 'normalize URI without protocol or // in loose mode' );
 	} );
 
 	QUnit.test( 'Constructor( Object )', 3, function ( assert ) {
@@ -217,7 +218,7 @@
 	} );
 
 	QUnit.test( '.getQueryString()', 2, function ( assert ) {
-		var uri = new mw.Uri( 'http://www.google.com/?q=uri' );
+		var uri = new mw.Uri( 'http://search.example.com/?q=uri' );
 
 		assert.deepEqual(
 			{
@@ -231,7 +232,7 @@
 			},
 			{
 				protocol: 'http',
-				host: 'www.google.com',
+				host: 'search.example.com',
 				port: undefined,
 				path: '/',
 				query: { q: 'uri' },
@@ -241,7 +242,7 @@
 			'basic object properties'
 		);
 
-		uri = new mw.Uri( 'https://example.org/mw/index.php?title=Sandbox/7&other=Sandbox/7&foo' );
+		uri = new mw.Uri( 'https://example.com/mw/index.php?title=Sandbox/7&other=Sandbox/7&foo' );
 		assert.equal(
 			uri.getQueryString(),
 			'title=Sandbox/7&other=Sandbox%2F7&foo',

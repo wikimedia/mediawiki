@@ -60,5 +60,6 @@ function getVars( $filename ) {
 	require $filename;
 	$vars = get_defined_vars();
 	unset( $vars['filename'] );
+
 	return $vars;
 }

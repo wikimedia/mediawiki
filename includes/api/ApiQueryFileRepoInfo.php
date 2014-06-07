@@ -35,10 +35,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 
 	protected function getInitialisedRepoGroup() {
 		$repoGroup = RepoGroup::singleton();
-
-		if ( !$repoGroup->reposInitialised ) {
-			$repoGroup->initialiseRepos();
-		}
+		$repoGroup->initialiseRepos();
 
 		return $repoGroup;
 	}
@@ -55,7 +52,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 			$repos[] = array_intersect_key( $repo->getInfo(), $props );
 		} );
 
-		$repos[] = array_intersect_key( $repoGroup->localRepo->getInfo(), $props );
+		$repos[] = array_intersect_key( $repoGroup->getLocalRepo()->getInfo(), $props );
 
 		$result = $this->getResult();
 		$result->setIndexedTagName( $repos, 'repo' );
@@ -86,16 +83,19 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 			$props = array_merge( $props, array_keys( $repo->getInfo() ) );
 		} );
 
-		return array_values( array_unique( array_merge( $props, array_keys( $repoGroup->localRepo->getInfo() ) ) ) );
+		return array_values( array_unique( array_merge(
+			$props,
+			array_keys( $repoGroup->getLocalRepo()->getInfo() )
+		) ) );
 	}
 
 	public function getParamDescription() {
-		$p = $this->getModulePrefix();
 		return array(
 			'prop' => array(
 				'Which repository properties to get (there may be more available on some wikis):',
 				' apiurl      - URL to the repository API - helpful for getting image info from the host.',
-				' name        - The key of the repository - used in e.g. $wgForeignFileRepos and imageinfo return values.',
+				' name        - The key of the repository - used in e.g. ' .
+					'$wgForeignFileRepos and imageinfo return values.',
 				' displayname - The human-readable name of the repository wiki.',
 				' rooturl     - Root URL for image paths.',
 				' local       - Whether that repository is the local one or not.',

@@ -21,7 +21,6 @@
  * @ingroup Language
  */
 
-
 /**
  * Turkish (Türkçe)
  *

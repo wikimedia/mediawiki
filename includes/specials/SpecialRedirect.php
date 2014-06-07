@@ -78,6 +78,7 @@ class SpecialRedirect extends FormSpecialPage {
 			return null;
 		}
 		$userpage = Title::makeTitle( NS_USER, $username );
+
 		return $userpage->getFullURL( '', false, PROTO_CURRENT );
 	}
 
@@ -89,7 +90,7 @@ class SpecialRedirect extends FormSpecialPage {
 	function dispatchFile() {
 		$title = Title::makeTitleSafe( NS_FILE, $this->mValue );
 
-		if ( ! $title instanceof Title ) {
+		if ( !$title instanceof Title ) {
 			return null;
 		}
 		$file = wfFindFile( $title );
@@ -112,6 +113,7 @@ class SpecialRedirect extends FormSpecialPage {
 				$url = $mto->getURL();
 			}
 		}
+
 		return $url;
 	}
 
@@ -130,8 +132,29 @@ class SpecialRedirect extends FormSpecialPage {
 		if ( $oldid === 0 ) {
 			return null;
 		}
+
 		return wfAppendQuery( wfScript( 'index' ), array(
 			'oldid' => $oldid
+		) );
+	}
+
+	/**
+	 * Handle Special:Redirect/page/xxx (by redirecting to index.php?curid=xxx)
+	 *
+	 * @return string|null url to redirect to, or null if $mValue is invalid.
+	 */
+	function dispatchPage() {
+		$curid = $this->mValue;
+		if ( !ctype_digit( $curid ) ) {
+			return null;
+		}
+		$curid = (int)$curid;
+		if ( $curid === 0 ) {
+			return null;
+		}
+
+		return wfAppendQuery( wfScript( 'index' ), array(
+			'curid' => $curid
 		) );
 	}
 
@@ -146,30 +169,36 @@ class SpecialRedirect extends FormSpecialPage {
 	function dispatch() {
 		// the various namespaces supported by Special:Redirect
 		switch ( $this->mType ) {
-		case 'user':
-			$url = $this->dispatchUser();
-			break;
-		case 'file':
-			$url = $this->dispatchFile();
-			break;
-		case 'revision':
-			$url = $this->dispatchRevision();
-			break;
-		default:
-			$this->getOutput()->setStatusCode( 404 );
-			$url = null;
-			break;
+			case 'user':
+				$url = $this->dispatchUser();
+				break;
+			case 'file':
+				$url = $this->dispatchFile();
+				break;
+			case 'revision':
+				$url = $this->dispatchRevision();
+				break;
+			case 'page':
+				$url = $this->dispatchPage();
+				break;
+			default:
+				$this->getOutput()->setStatusCode( 404 );
+				$url = null;
+				break;
 		}
 		if ( $url ) {
 			$this->getOutput()->redirect( $url );
+
 			return true;
 		}
 		if ( !is_null( $this->mValue ) ) {
 			$this->getOutput()->setStatusCode( 404 );
 			// Message: redirect-not-exists
 			$msg = $this->getMessagePrefix() . '-not-exists';
+
 			return Status::newFatal( $msg );
 		}
+
 		return false;
 	}
 
@@ -177,8 +206,10 @@ class SpecialRedirect extends FormSpecialPage {
 		$mp = $this->getMessagePrefix();
 		$ns = array(
 			// subpage => message
-			// Messages: redirect-user, redirect-revision, redirect-file
+			// Messages: redirect-user, redirect-page, redirect-revision,
+			// redirect-file
 			'user' => $mp . '-user',
+			'page' => $mp . '-page',
 			'revision' => $mp . '-revision',
 			'file' => $mp . '-file',
 		);
@@ -204,6 +235,7 @@ class SpecialRedirect extends FormSpecialPage {
 		if ( !empty( $this->mValue ) ) {
 			$a['value']['default'] = $this->mValue;
 		}
+
 		return $a;
 	}
 
@@ -211,6 +243,7 @@ class SpecialRedirect extends FormSpecialPage {
 		if ( !empty( $data['type'] ) && !empty( $data['value'] ) ) {
 			$this->setParameter( $data['type'] . '/' . $data['value'] );
 		}
+
 		/* if this returns false, will show the form */
 		return $this->dispatch();
 	}

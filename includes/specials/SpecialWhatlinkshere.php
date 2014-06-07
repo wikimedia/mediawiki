@@ -26,18 +26,13 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialWhatLinksHere extends SpecialPage {
-
-	/**
-	 * @var FormOptions
-	 */
+class SpecialWhatLinksHere extends IncludableSpecialPage {
+	/** @var FormOptions */
 	protected $opts;
 
 	protected $selfTitle;
 
-	/**
-	 * @var Title
-	 */
+	/** @var Title */
 	protected $target;
 
 	protected $limits = array( 20, 50, 100, 250, 500 );
@@ -79,18 +74,23 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$this->target = Title::newFromURL( $opts->getValue( 'target' ) );
 		if ( !$this->target ) {
 			$out->addHTML( $this->whatlinkshereForm() );
+
 			return;
 		}
 
 		$this->getSkin()->setRelevantTitle( $this->target );
 
-		$this->selfTitle = $this->getTitle( $this->target->getPrefixedDBkey() );
+		$this->selfTitle = $this->getPageTitle( $this->target->getPrefixedDBkey() );
 
 		$out->setPageTitle( $this->msg( 'whatlinkshere-title', $this->target->getPrefixedText() ) );
 		$out->addBacklinkSubtitle( $this->target );
-
-		$this->showIndirectLinks( 0, $this->target, $opts->getValue( 'limit' ),
-			$opts->getValue( 'from' ), $opts->getValue( 'back' ) );
+		$this->showIndirectLinks(
+			0,
+			$this->target,
+			$opts->getValue( 'limit' ),
+			$opts->getValue( 'from' ),
+			$opts->getValue( 'back' )
+		);
 	}
 
 	/**
@@ -152,10 +152,6 @@ class SpecialWhatLinksHere extends SpecialPage {
 		// Read an extra row as an at-end check
 		$queryLimit = $limit + 1;
 
-		// Enforce join order, sometimes namespace selector may
-		// trigger filesorts which are far less efficient than scanning many entries
-		$options[] = 'STRAIGHT_JOIN';
-
 		$options['LIMIT'] = $queryLimit;
 		$fields = array( 'page_id', 'page_namespace', 'page_title', 'rd_from' );
 
@@ -164,7 +160,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 			'rd_namespace' => $target->getNamespace(),
 			'rd_title' => $target->getDBkey(),
 			'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL'
-		)));
+		) ) );
 
 		if ( $fetchlinks ) {
 			$options['ORDER BY'] = 'pl_from';
@@ -190,18 +186,23 @@ class SpecialWhatLinksHere extends SpecialPage {
 			);
 		}
 
-		if ( ( !$fetchlinks || !$plRes->numRows() ) && ( $hidetrans || !$tlRes->numRows() ) && ( $hideimages || !$ilRes->numRows() ) ) {
+		if ( ( !$fetchlinks || !$plRes->numRows() )
+			&& ( $hidetrans || !$tlRes->numRows() )
+			&& ( $hideimages || !$ilRes->numRows() )
+		) {
 			if ( 0 == $level ) {
-				$out->addHTML( $this->whatlinkshereForm() );
+				if ( !$this->including() ) {
+					$out->addHTML( $this->whatlinkshereForm() );
 
-				// Show filters only if there are links
-				if ( $hidelinks || $hidetrans || $hideredirs || $hideimages ) {
-					$out->addHTML( $this->getFilterPanel() );
+					// Show filters only if there are links
+					if ( $hidelinks || $hidetrans || $hideredirs || $hideimages ) {
+						$out->addHTML( $this->getFilterPanel() );
+					}
+					$errMsg = is_int( $namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
+					$out->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
 				}
-
-				$errMsg = is_int( $namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
-				$out->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
 			}
+
 			return;
 		}
 
@@ -250,14 +251,15 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$prevId = $from;
 
 		if ( $level == 0 ) {
-			$out->addHTML( $this->whatlinkshereForm() );
-			$out->addHTML( $this->getFilterPanel() );
-			$out->addWikiMsg( 'linkshere', $this->target->getPrefixedText() );
+			if ( !$this->including() ) {
+				$out->addHTML( $this->whatlinkshereForm() );
+				$out->addHTML( $this->getFilterPanel() );
+				$out->addWikiMsg( 'linkshere', $this->target->getPrefixedText() );
 
-			$prevnext = $this->getPrevNext( $prevId, $nextId );
-			$out->addHTML( $prevnext );
+				$prevnext = $this->getPrevNext( $prevId, $nextId );
+				$out->addHTML( $prevnext );
+			}
 		}
-
 		$out->addHTML( $this->listStart( $level ) );
 		foreach ( $rows as $row ) {
 			$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
@@ -274,7 +276,9 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$out->addHTML( $this->listEnd() );
 
 		if ( $level == 0 ) {
-			$out->addHTML( $prevnext );
+			if ( !$this->including() ) {
+				$out->addHTML( $prevnext );
+			}
 		}
 	}
 
@@ -323,12 +327,16 @@ class SpecialWhatLinksHere extends SpecialPage {
 		}
 
 		if ( count( $props ) ) {
-			$propsText = $this->msg( 'parentheses' )->rawParams( implode( $msgcache['semicolon-separator'], $props ) )->escaped();
+			$propsText = $this->msg( 'parentheses' )
+				->rawParams( implode( $msgcache['semicolon-separator'], $props ) )->escaped();
 		}
 
 		# Space for utilities links, with a what-links-here link provided
 		$wlhLink = $this->wlhLink( $nt, $msgcache['whatlinkshere-links'] );
-		$wlh = Xml::wrapClass( $this->msg( 'parentheses' )->rawParams( $wlhLink )->escaped(), 'mw-whatlinkshere-tools' );
+		$wlh = Xml::wrapClass(
+			$this->msg( 'parentheses' )->rawParams( $wlhLink )->escaped(),
+			'mw-whatlinkshere-tools'
+		);
 
 		return $notClose ?
 			Xml::openElement( 'li' ) . "$link $propsText $dirmark $wlh\n" :
@@ -342,7 +350,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 	protected function wlhLink( Title $target, $text ) {
 		static $title = null;
 		if ( $title === null ) {
-			$title = $this->getTitle();
+			$title = $this->getPageTitle();
 		}
 
 		return Linker::linkKnown(
@@ -407,7 +415,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$f = Xml::openElement( 'form', array( 'action' => $wgScript ) );
 
 		# Values that should not be forgotten
-		$f .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() );
+		$f .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
 		foreach ( $this->opts->getUnconsumedValues() as $name => $value ) {
 			$f .= Html::hidden( $name, $value );
 		}
@@ -416,7 +424,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 
 		# Target input
 		$f .= Xml::inputLabel( $this->msg( 'whatlinkshere-page' )->text(), 'target',
-				'mw-whatlinkshere-target', 40, $target );
+			'mw-whatlinkshere-target', 40, $target );
 
 		$f .= ' ';
 
@@ -462,7 +470,8 @@ class SpecialWhatLinksHere extends SpecialPage {
 			$types[] = 'hideimages';
 		}
 
-		// Combined message keys: 'whatlinkshere-hideredirs', 'whatlinkshere-hidetrans', 'whatlinkshere-hidelinks', 'whatlinkshere-hideimages'
+		// Combined message keys: 'whatlinkshere-hideredirs', 'whatlinkshere-hidetrans',
+		// 'whatlinkshere-hidelinks', 'whatlinkshere-hideimages'
 		// To be sure they will be found by grep
 		foreach ( $types as $type ) {
 			$chosen = $this->opts->getValue( $type );
@@ -471,7 +480,11 @@ class SpecialWhatLinksHere extends SpecialPage {
 			$links[] = $this->msg( "whatlinkshere-{$type}" )->rawParams(
 				$this->makeSelfLink( $msg, array_merge( $changed, $overrides ) ) )->escaped();
 		}
-		return Xml::fieldset( $this->msg( 'whatlinkshere-filters' )->text(), $this->getLanguage()->pipeList( $links ) );
+
+		return Xml::fieldset(
+			$this->msg( 'whatlinkshere-filters' )->text(),
+			$this->getLanguage()->pipeList( $links )
+		);
 	}
 
 	protected function getGroupName() {

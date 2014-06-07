@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @todo covers tags
+ * @covers SVGMetadataExtractor
  */
 class SVGMetadataExtractorTest extends MediaWikiTestCase {
 
@@ -54,6 +54,7 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 					'height' => 1024,
 					'originalWidth' => '1024',
 					'originalHeight' => '1024',
+					'translations' => array(),
 				)
 			),
 			array(
@@ -63,6 +64,7 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 					'height' => 60,
 					'originalWidth' => '60',
 					'originalHeight' => '60',
+					'translations' => array(),
 				)
 			),
 			array(
@@ -72,6 +74,7 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 					'height' => 60,
 					'originalWidth' => '60.0000000',
 					'originalHeight' => '60.0000000',
+					'translations' => array(),
 				)
 			),
 			array(
@@ -82,8 +85,37 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 					'height' => 385,
 					'originalWidth' => '385',
 					'originalHeight' => '385.0004883',
+					'translations' => array(),
 				)
-			)
+			),
+			array(
+				"$base/Tux.svg",
+				array(
+					'width' => 512,
+					'height' => 594,
+					'originalWidth' => '100%',
+					'originalHeight' => '100%',
+					'title' => 'Tux',
+					'translations' => array(),
+					'description' => 'For more information see: http://commons.wikimedia.org/wiki/Image:Tux.svg',
+				)
+			),
+			array(
+				"$base/Speech_bubbles.svg",
+				array(
+					'width' => 627,
+					'height' => 461,
+					'originalWidth' => '17.7cm',
+					'originalHeight' => '13cm',
+					'translations' => array(
+						'de' => SVGReader::LANG_FULL_MATCH,
+						'fr' => SVGReader::LANG_FULL_MATCH,
+						'nl' => SVGReader::LANG_FULL_MATCH,
+						'tlh-ca' => SVGReader::LANG_FULL_MATCH,
+						'tlh' => SVGReader::LANG_PREFIX_MATCH
+					),
+				)
+			),
 		);
 	}
 
@@ -105,6 +137,7 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 					'width' => 959,
 					'originalWidth' => '958.69',
 					'originalHeight' => '592.78998',
+					'translations' => array(),
 				)
 			),
 		);

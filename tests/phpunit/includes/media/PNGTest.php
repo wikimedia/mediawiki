@@ -16,7 +16,7 @@ class PNGHandlerTest extends MediaWikiTestCase {
 		$this->filePath = __DIR__ . '/../../data/media';
 		$this->backend = new FSFileBackend( array(
 			'name' => 'localtesting',
-			'lockManager' => 'nullLockManager',
+			'wikiId' => wfWikiId(),
 			'containerPaths' => array( 'data' => $this->filePath )
 		) );
 		$this->repo = new FSRepo( array(
@@ -113,6 +113,29 @@ class PNGHandlerTest extends MediaWikiTestCase {
 		return array(
 			array( 'rgb-na-png.png', 'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:8;s:9:"colorType";s:10:"truecolour";s:8:"metadata";a:1:{s:15:"_MW_PNG_VERSION";i:1;}}' ),
 			array( 'xmp.png', 'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:1;s:9:"colorType";s:14:"index-coloured";s:8:"metadata";a:2:{s:12:"SerialNumber";s:9:"123456789";s:15:"_MW_PNG_VERSION";i:1;}}' ),
+		);
+	}
+
+	/**
+	 * @param $filename String
+	 * @param $expected Array Expected standard metadata
+	 * @dataProvider provideGetIndependentMetaArray
+	 * @covers PNGHandler::getCommonMetaArray
+	 */
+	public function testGetIndependentMetaArray( $filename, $expected ) {
+		$file = $this->dataFile( $filename, 'image/png' );
+		$actual = $this->handler->getCommonMetaArray( $file );
+		$this->assertEquals( $expected, $actual );
+	}
+
+	public function provideGetIndependentMetaArray() {
+		return array(
+			array( 'rgb-na-png.png', array() ),
+			array( 'xmp.png',
+				array(
+					'SerialNumber' => '123456789',
+				)
+			),
 		);
 	}
 

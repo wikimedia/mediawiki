@@ -249,6 +249,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	function setOffset( $offset ) {
 		$this->mOffset = $offset;
 	}
+
 	/**
 	 * Set the limit from an other source than the request
 	 *
@@ -265,6 +266,15 @@ abstract class IndexPager extends ContextSource implements Pager {
 		if ( $limit > 0 ) {
 			$this->mLimit = $limit;
 		}
+	}
+
+	/**
+	 * Get the current limit
+	 *
+	 * @return int
+	 */
+	function getLimit() {
+		return $this->mLimit;
 	}
 
 	/**
@@ -650,8 +660,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * representing the result row $row. Rows will be concatenated and
 	 * returned by getBody()
 	 *
-	 * @param $row Object: database row
-	 * @return String
+	 * @param array|stdClass $row Database row
+	 * @return string
 	 */
 	abstract function formatRow( $row );
 

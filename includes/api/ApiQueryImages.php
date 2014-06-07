@@ -79,9 +79,9 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 			$this->addOption( 'ORDER BY', 'il_to' . $sort );
 		} else {
 			$this->addOption( 'ORDER BY', array(
-						'il_from' . $sort,
-						'il_to' . $sort
-			));
+				'il_from' . $sort,
+				'il_to' . $sort
+			) );
 		}
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
@@ -164,7 +164,8 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 		return array(
 			'limit' => 'How many images to return',
 			'continue' => 'When more results are available, use this to continue',
-			'images' => 'Only list these images. Useful for checking whether a certain page has a certain Image.',
+			'images' => 'Only list these images. Useful for checking whether a ' .
+				'certain page has a certain Image.',
 			'dir' => 'The direction in which to list',
 		);
 	}
@@ -179,13 +180,15 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'Returns all images contained on the given page(s)';
+		return 'Returns all images contained on the given page(s).';
 	}
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&prop=images&titles=Main%20Page' => 'Get a list of images used in the [[Main Page]]',
-			'api.php?action=query&generator=images&titles=Main%20Page&prop=info' => 'Get information about all images used in the [[Main Page]]',
+			'api.php?action=query&prop=images&titles=Main%20Page'
+				=> 'Get a list of images used in the [[Main Page]]',
+			'api.php?action=query&generator=images&titles=Main%20Page&prop=info'
+				=> 'Get information about all images used in the [[Main Page]]',
 		);
 	}
 

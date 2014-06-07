@@ -221,15 +221,15 @@ td.mw-label {
 }
 
 .mw-icon-question {
-	/* @embed */
-	background: url('images/question-small.png') no-repeat;
 	/* SVG support using a transparent gradient to guarantee cross-browser
-	 * compatibility (browsers able to understand gradient syntax support also SVG)
-	 * lifted from #pt-login css rule in skins/vector/screen.css */
+	 * compatibility (browsers able to understand gradient syntax support also SVG).
+	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
+	background-image: url(images/question-small.png);
 	/* @embed */
-	background: -webkit-linear-gradient(transparent, transparent), url('images/question.svg') no-repeat;
+	background-image: -webkit-linear-gradient(transparent, transparent), url(images/question.svg);
 	/* @embed */
-	background: linear-gradient(transparent, transparent), url('images/question.svg') no-repeat;
+	background-image: linear-gradient(transparent, transparent), url(images/question.svg);
+	background-repeat: no-repeat;
 	background-size: 13px 13px;
 	display: inline-block;
 	height: 13px;
@@ -484,8 +484,17 @@ a.new {
 
 /* feed links */
 a.feedlink {
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG).
+	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
+	background-image: url(images/feed-icon.png);
 	/* @embed */
-	background: url(images/feed-icon.png) center left no-repeat;
+	background-image: -webkit-linear-gradient(transparent, transparent), url(images/feed-icon.svg);
+	/* @embed */
+	background-image: linear-gradient(transparent, transparent), url(images/feed-icon.svg);
+	background-position: center left;
+	background-repeat: no-repeat;
+	background-size: 12px 12px;
 	padding-left: 16px;
 }
 
@@ -529,7 +538,11 @@ table.wikitable > caption {
 	font-weight: bold;
 }
 
-/* hide initially collapsed collapsable tables */
+/**
+ * Hide collapsable rows in a collapsed table.
+ *
+ * Used by ImagePage and the mediawiki.action.view.metadata module.
+ */
 table.collapsed tr.collapsable {
 	display: none;
 }
@@ -618,12 +631,6 @@ table.collapsed tr.collapsable {
 
 .visualClear {
 	clear: both;
-}
-
-#mw_trackbacks {
-	border: solid 1px #bbbbff;
-	background-color: #eeeeff;
-	padding: 0.2em;
 }
 
 /**
@@ -874,10 +881,8 @@ ul.mw-gallery-packed-hover li.gallerybox:hover div.gallerytextwrapper,
 ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper,
 ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper {
 	position:absolute;
-	opacity:.8;
-	filter:alpha(opacity=80);
-	zoom: 1;
-	background-color:white;
+	background: white;
+	background: rgba(255, 255, 255, 0.8);
 	padding: 5px 10px;
 	bottom: 0;
 	left: 0; /* Needed for IE */
@@ -891,13 +896,6 @@ ul.mw-gallery-packed-overlay,
 ul.mw-gallery-packed {
 	text-align: center;
 }
-
-ul.mw-gallery-packed-hover div.gallerytext,
-ul.mw-gallery-packed-overlay div.gallerytext {
-	opacity: 1;
-	position: relative; /* Resets opacity in old IE */
-}
-
 
 .mw-ajax-loader {
 	/* @embed */
@@ -1044,7 +1042,7 @@ ol:lang(or) li {
 	margin-bottom: -8px;
 	padding: 0 0 0 15px;
 	/* @embed */
-	background-image: url('images/help-question.gif');
+	background-image: url(images/help-question.gif);
 	background-position: left center;
 	background-repeat: no-repeat;
 	cursor: pointer;
@@ -1054,7 +1052,7 @@ ol:lang(or) li {
 }
 .mw-help-field-hint:hover {
 	/* @embed */
-	background-image: url('images/help-question-hover.gif');
+	background-image: url(images/help-question-hover.gif);
 }
 .mw-help-field-data {
 	display: block;
@@ -1168,14 +1166,15 @@ table.floatleft {
 	display: none;
 }
 
-/* For developpers */
+/* For developers */
 .xdebug-error {
 	position: absolute;
 	z-index: 99;
 }
 
 .mw-editsection,
-.toctoggle {
+.toctoggle,
+#jump-to-nav {
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
@@ -1183,7 +1182,8 @@ table.floatleft {
 }
 
 /* Display editsection links smaller and next to headings */
-.mw-editsection {
+.mw-editsection,
+.mw-editsection-like {
 	font-size: small;
 	font-weight: normal;
 	margin-left: 1em;
@@ -1207,4 +1207,10 @@ table.floatleft {
 .mw-content-rtl .mw-editsection,
 .mw-content-ltr .mw-content-rtl .mw-editsection {
 	margin-right: 1em;
+}
+
+/* Prevent citations and subscripts from interfering with the line-height */
+sup,
+sub {
+	line-height: 1;
 }

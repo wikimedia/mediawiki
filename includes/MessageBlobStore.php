@@ -242,8 +242,9 @@ class MessageBlobStore {
 
 	public static function clear() {
 		// TODO: Give this some more thought
-		// TODO: Is TRUNCATE better?
 		try {
+			// Not using TRUNCATE, because that needs extra permissions,
+			// which maybe not granted to the database user.
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->delete( 'msg_resource', '*', __METHOD__ );
 			$dbw->delete( 'msg_resource_links', '*', __METHOD__ );

@@ -94,6 +94,7 @@ class HTMLFileCache extends FileCacheBase {
 		}
 		if ( $wgShowIPinHeader || $wgDebugToolbar ) {
 			wfDebug( "HTML file cache skipped. Either \$wgShowIPinHeader and/or \$wgDebugToolbar on\n" );
+
 			return false;
 		}
 
@@ -109,6 +110,7 @@ class HTMLFileCache extends FileCacheBase {
 			} elseif ( $query === 'maxage' || $query === 'smaxage' ) {
 				continue;
 			}
+
 			return false;
 		}
 		$user = $context->getUser();
@@ -116,6 +118,7 @@ class HTMLFileCache extends FileCacheBase {
 		// and extensions for auto-detecting user language.
 		$ulang = $context->getLanguage()->getCode();
 		$clang = $wgContLang->getCode();
+
 		// Check that there are no other sources of variation
 		return !$user->getId() && !$user->getNewtalk() && $ulang == $clang;
 	}
@@ -163,7 +166,7 @@ class HTMLFileCache extends FileCacheBase {
 			return $text;
 		}
 
-		wfDebug( __METHOD__ . "()\n", false );
+		wfDebug( __METHOD__ . "()\n", 'log' );
 
 		$now = wfTimestampNow();
 		if ( $this->useGzip() ) {
@@ -185,6 +188,7 @@ class HTMLFileCache extends FileCacheBase {
 			// @todo Ugly wfClientAcceptsGzip() function - use context!
 			if ( wfClientAcceptsGzip() ) {
 				header( 'Content-Encoding: gzip' );
+
 				return $compressed;
 			} else {
 				return $text;

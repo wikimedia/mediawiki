@@ -241,7 +241,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				case 'dependencies':
 				case 'messages':
 				case 'targets':
-					$this->{$member} = (array)$option;
+					// Normalise
+					$option = array_values( array_unique( (array)$option ) );
+					sort( $option );
+
+					$this->{$member} = $option;
 					break;
 				// Single strings
 				case 'group':
@@ -425,10 +429,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		foreach ( $styles as $styleFiles ) {
 			$files = array_merge( $files, $styleFiles );
 		}
-		$skinFiles = self::tryForKey(
-			self::collateFilePathListByOption( $this->skinStyles, 'media', 'all' ),
-			$context->getSkin(),
-			'default'
+
+		$skinFiles = self::collateFilePathListByOption(
+			self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' ),
+			'media',
+			'all'
 		);
 		foreach ( $skinFiles as $styleFiles ) {
 			$files = array_merge( $files, $styleFiles );
@@ -450,19 +455,55 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// If a module is nothing but a list of dependencies, we need to avoid
 		// giving max() an empty array
 		if ( count( $files ) === 0 ) {
+			$this->modifiedTime[$context->getHash()] = 1;
 			wfProfileOut( __METHOD__ );
-			return $this->modifiedTime[$context->getHash()] = 1;
+			return $this->modifiedTime[$context->getHash()];
 		}
 
 		wfProfileIn( __METHOD__ . '-filemtime' );
 		$filesMtime = max( array_map( array( __CLASS__, 'safeFilemtime' ), $files ) );
 		wfProfileOut( __METHOD__ . '-filemtime' );
+
 		$this->modifiedTime[$context->getHash()] = max(
 			$filesMtime,
-			$this->getMsgBlobMtime( $context->getLanguage() ) );
+			$this->getMsgBlobMtime( $context->getLanguage() ),
+			$this->getDefinitionMtime( $context )
+		);
 
 		wfProfileOut( __METHOD__ );
 		return $this->modifiedTime[$context->getHash()];
+	}
+
+	/**
+	 * Get the definition summary for this module.
+	 *
+	 * @return Array
+	 */
+	public function getDefinitionSummary( ResourceLoaderContext $context ) {
+		$summary = array(
+			'class' => get_class( $this ),
+		);
+		foreach ( array(
+			'scripts',
+			'debugScripts',
+			'loaderScripts',
+			'styles',
+			'languageScripts',
+			'skinScripts',
+			'skinStyles',
+			'dependencies',
+			'messages',
+			'targets',
+			'group',
+			'position',
+			'localBasePath',
+			'remoteBasePath',
+			'debugRaw',
+			'raw',
+		) as $member ) {
+			$summary[$member] = $this->{$member};
+		};
+		return $summary;
 	}
 
 	/* Protected Methods */
@@ -538,8 +579,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			return $list[$key];
 		} elseif ( is_string( $fallback )
 			&& isset( $list[$fallback] )
-			&& is_array( $list[$fallback] ) )
-		{
+			&& is_array( $list[$fallback] )
+		) {
 			return $list[$fallback];
 		}
 		return array();
@@ -574,7 +615,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		return array_merge_recursive(
 			self::collateFilePathListByOption( $this->styles, 'media', 'all' ),
 			self::collateFilePathListByOption(
-				self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' ), 'media', 'all'
+				self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' ),
+				'media',
+				'all'
 			)
 		);
 	}
@@ -585,7 +628,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	public function getAllStyleFiles() {
 		$files = array();
-		foreach( (array)$this->styles as $key => $value ) {
+		foreach ( (array)$this->styles as $key => $value ) {
 			if ( is_array( $value ) ) {
 				$path = $key;
 			} else {
@@ -634,6 +677,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *
 	 * @param bool $flip
 	 *
+	 * @throws MWException
 	 * @return array: List of concatenated and remapped CSS data from $styles,
 	 *     keyed by media type
 	 */
@@ -643,14 +687,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 		foreach ( $styles as $media => $files ) {
 			$uniqueFiles = array_unique( $files );
-			$styles[$media] = implode(
-				"\n",
-				array_map(
-					array( $this, 'readStyleFile' ),
-					$uniqueFiles,
-					array_fill( 0, count( $uniqueFiles ), $flip )
-				)
-			);
+			$styleFiles = array();
+			foreach ( $uniqueFiles as $file ) {
+				$styleFiles[] = $this->readStyleFile( $file, $flip );
+			}
+			$styles[$media] = implode( "\n", $styleFiles );
 		}
 		return $styles;
 	}
@@ -745,6 +786,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * recompiles as necessary.
 	 *
 	 * @since 1.22
+	 * @throws Exception If Less encounters a parse error
+	 * @throws MWException If Less compilation returns unexpection result
 	 * @param string $fileName File path of LESS source
 	 * @return string: CSS source
 	 */

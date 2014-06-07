@@ -1,0 +1,20 @@
+{
+    "@metadata": {
+        "authors": [
+            "Airon90",
+            "Yekrats"
+        ]
+    },
+    "config-your-language": "Via lingvo:",
+    "config-your-language-help": "Elekti lingvon uzi dum la instalada procezo.",
+    "config-wiki-language": "Lingvo de la vikio:",
+    "config-wiki-language-help": "Elekti la ĉefe skribotan lingvon de la vikio.",
+    "config-page-welcome": "Bonvenon al MediaWiki!",
+    "config-page-dbsettings": "Agordoj de la datumbazo",
+    "config-page-name": "Nomo",
+    "config-page-options": "Agordoj",
+    "config-page-install": "Instali",
+    "config-page-complete": "Farita!",
+    "mainpagetext": "'''MediaWiki estis sukcese instalita.'''",
+    "mainpagedocfooter": "Konsultu la [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] por informo pri uzado de vikia programaro.\n\n==Kiel komenci==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Listo de konfiguraĵoj] (angla)\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki Oftaj Demandoj] (angla)\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki dissendolisto pri anoncoj] (angla)"
+}

@@ -76,7 +76,9 @@ class CategoryViewer extends ContextSource {
 	 * @param array $until An array with 3 keys for until of each section (since 1.17)
 	 * @param $query Array
 	 */
-	function __construct( $title, IContextSource $context, $from = array(), $until = array(), $query = array() ) {
+	function __construct( $title, IContextSource $context, $from = array(),
+		$until = array(), $query = array()
+	) {
 		global $wgCategoryPagingLimit;
 		$this->title = $title;
 		$this->setContext( $context );
@@ -179,15 +181,6 @@ class CategoryViewer extends ContextSource {
 
 		$this->children_start_char[] =
 			$this->getSubcategorySortChar( $cat->getTitle(), $sortkey );
-	}
-
-	/**
-	 * Add a subcategory to the internal lists, using a title object
-	 * @deprecated since 1.17 kept for compatibility, use addSubcategoryObject instead
-	 */
-	function addSubcategory( Title $title, $sortkey, $pageLength ) {
-		wfDeprecated( __METHOD__, '1.17' );
-		$this->addSubcategoryObject( Category::newFromTitle( $title ), $sortkey, $pageLength );
 	}
 
 	/**
@@ -432,7 +425,12 @@ class CategoryViewer extends ContextSource {
 			$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'file' );
 
 			$r .= "<div id=\"mw-category-media\">\n";
-			$r .= '<h2>' . $this->msg( 'category-media-header', wfEscapeWikiText( $this->title->getText() ) )->text() . "</h2>\n";
+			$r .= '<h2>' .
+				$this->msg(
+					'category-media-header',
+					wfEscapeWikiText( $this->title->getText() )
+				)->text() .
+				"</h2>\n";
 			$r .= $countmsg;
 			$r .= $this->getSectionPagingLinks( 'file' );
 			if ( $this->showGallery ) {
@@ -451,12 +449,14 @@ class CategoryViewer extends ContextSource {
 	 * of the output.
 	 *
 	 * @param string $type 'page', 'subcat', or 'file'
-	 * @return String: HTML output, possibly empty if there are no other pages
+	 * @return string HTML output, possibly empty if there are no other pages
 	 */
 	private function getSectionPagingLinks( $type ) {
 		if ( isset( $this->until[$type] ) && $this->until[$type] !== null ) {
 			return $this->pagingLinks( $this->nextPage[$type], $this->until[$type], $type );
-		} elseif ( $this->nextPage[$type] !== null || ( isset( $this->from[$type] ) && $this->from[$type] !== null ) ) {
+		} elseif ( $this->nextPage[$type] !== null
+			|| ( isset( $this->from[$type] ) && $this->from[$type] !== null )
+		) {
 			return $this->pagingLinks( $this->from[$type], $this->nextPage[$type], $type );
 		} else {
 			return '';
@@ -571,7 +571,8 @@ class CategoryViewer extends ContextSource {
 	static function shortList( $articles, $articles_start_char ) {
 		$r = '<h3>' . htmlspecialchars( $articles_start_char[0] ) . "</h3>\n";
 		$r .= '<ul><li>' . $articles[0] . '</li>';
-		for ( $index = 1; $index < count( $articles ); $index++ ) {
+		$articleCount = count( $articles );
+		for ( $index = 1; $index < $articleCount; $index++ ) {
 			if ( $articles_start_char[$index] != $articles_start_char[$index - 1] ) {
 				$r .= "</ul><h3>" . htmlspecialchars( $articles_start_char[$index] ) . "</h3>\n<ul>";
 			}
@@ -627,8 +628,8 @@ class CategoryViewer extends ContextSource {
 	 * Takes a title, and adds the fragment identifier that
 	 * corresponds to the correct segment of the category.
 	 *
-	 * @param Title $title: The title (usually $this->title)
-	 * @param string $section: Which section
+	 * @param Title $title The title (usually $this->title)
+	 * @param string $section Which section
 	 * @throws MWException
 	 * @return Title
 	 */
@@ -660,7 +661,7 @@ class CategoryViewer extends ContextSource {
 	 * @param int $rescnt The number of items returned by our database query.
 	 * @param int $dbcnt The number of items according to the category table.
 	 * @param string $type 'subcat', 'article', or 'file'
-	 * @return string: A message giving the number of items, to output to HTML.
+	 * @return string A message giving the number of items, to output to HTML.
 	 */
 	private function getCountMessage( $rescnt, $dbcnt, $type ) {
 		// There are three cases:

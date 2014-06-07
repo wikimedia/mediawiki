@@ -35,7 +35,8 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class CopyFileBackend extends Maintenance {
-	protected $statCache = array();
+	/** @var Array|null (path sha1 => stat) Pre-computed dst stat entries from listings */
+	protected $statCache = null;
 
 	public function __construct() {
 		parent::__construct();
@@ -98,7 +99,7 @@ class CopyFileBackend extends Maintenance {
 				if ( $dstPathsRel === null ) {
 					$this->error( "Could not list files in $container.", 1 ); // die
 				}
-				$this->statCache = array(); // clear
+				$this->statCache = array();
 				foreach ( $dstPathsRel as $dstPathRel ) {
 					$path = $dst->getRootStoragePath() . "/$backendRel/$dstPathRel";
 					$this->statCache[sha1( $path )] = $dst->getFileStat( array( 'src' => $path ) );
@@ -238,8 +239,8 @@ class CopyFileBackend extends Maintenance {
 				$this->error( "$wikiId: Detected illegal (non-UTF8) path for $srcPath." );
 				continue;
 			} elseif ( !$this->hasOption( 'missingonly' )
-				&& $this->filesAreSame( $src, $dst, $srcPath, $dstPath ) )
-			{
+				&& $this->filesAreSame( $src, $dst, $srcPath, $dstPath )
+			) {
 				$this->output( "\tAlready have $srcPathRel.\n" );
 				continue; // assume already copied...
 			}
@@ -338,18 +339,41 @@ class CopyFileBackend extends Maintenance {
 		$skipHash = $this->hasOption( 'skiphash' );
 		$srcStat = $src->getFileStat( array( 'src' => $sPath ) );
 		$dPathSha1 = sha1( $dPath );
-		$dstStat = isset( $this->statCache[$dPathSha1] )
-			? $this->statCache[$dPathSha1]
-			: $dst->getFileStat( array( 'src' => $dPath ) );
-		return (
+		if ( $this->statCache !== null ) {
+			// All dst files are already in stat cache
+			$dstStat = isset( $this->statCache[$dPathSha1] )
+				? $this->statCache[$dPathSha1]
+				: false;
+		} else {
+			$dstStat = $dst->getFileStat( array( 'src' => $dPath ) );
+		}
+		// Initial fast checks to see if files are obviously different
+		$sameFast = (
 			is_array( $srcStat ) // sanity check that source exists
 			&& is_array( $dstStat ) // dest exists
 			&& $srcStat['size'] === $dstStat['size']
-			&& ( !$skipHash || $srcStat['mtime'] <= $dstStat['mtime'] )
-			&& ( $skipHash || $src->getFileSha1Base36( array( 'src' => $sPath, 'latest' => 1 ) )
-				=== $dst->getFileSha1Base36( array( 'src' => $dPath, 'latest' => 1 ) )
-			)
 		);
+		// More thorough checks against files
+		if ( !$sameFast ) {
+			$same = false; // no need to look farther
+		} elseif ( isset( $srcStat['md5'] ) && isset( $dstStat['md5'] ) ) {
+			// If MD5 was already in the stat info, just use it.
+			// This is useful as many objects stores can return this in object listing,
+			// so we can use it to avoid slow per-file HEADs.
+			$same = ( $srcStat['md5'] === $dstStat['md5'] );
+		} elseif ( $skipHash ) {
+			// This mode is good for copying to a backup location or resyncing clone
+			// backends in FileBackendMultiWrite (since they get writes second, they have
+			// higher timestamps). However, when copying the other way, this hits loads of
+			// false positives (possibly 100%) and wastes a bunch of time on GETs/PUTs.
+			$same = ( $srcStat['mtime'] <= $dstStat['mtime'] );
+		} else {
+			// This is the slowest method which does many per-file HEADs (unless an object
+			// store tracks SHA-1 in listings).
+			$same = ( $src->getFileSha1Base36( array( 'src' => $sPath, 'latest' => 1 ) )
+				=== $dst->getFileSha1Base36( array( 'src' => $dPath, 'latest' => 1 ) ) );
+		}
+		return $same;
 	}
 }
 

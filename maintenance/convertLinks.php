@@ -209,7 +209,6 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 			$dbw->query( "RENAME TABLE links TO $links_backup, $links_temp TO $links", __METHOD__ );
 			$this->output( " done.\n\n" );
 
-			$dbw->close();
 			$this->output( "Conversion complete. The old table remains at $links_backup;\n" );
 			$this->output( "delete at your leisure.\n" );
 		} else {

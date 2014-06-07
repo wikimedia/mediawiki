@@ -62,7 +62,6 @@ class FakeConverter {
 	function getParsedTitle() { return ''; }
 	function markNoConversion( $text, $noParse = false ) { return $text; }
 	function convertCategoryKey( $key ) { return $key; }
-	function convertLinkToAllVariants( $text ) { return $this->autoConvertToAllVariants( $text ); }
 	/** @deprecated since 1.22 is no longer used */
 	function armourMath( $text ) { return $text; }
 	function validateVariant( $variant = null ) { return $variant === $this->mLang->getCode() ? $variant : null; }
@@ -213,8 +212,8 @@ class Language {
 	protected static function newFromCode( $code ) {
 		// Protect against path traversal below
 		if ( !Language::isValidCode( $code )
-			|| strcspn( $code, ":/\\\000" ) !== strlen( $code ) )
-		{
+			|| strcspn( $code, ":/\\\000" ) !== strlen( $code )
+		) {
 			throw new MWException( "Invalid language code \"$code\"" );
 		}
 
@@ -262,7 +261,10 @@ class Language {
 	 * @since 1.21
 	 */
 	public static function isSupportedLanguage( $code ) {
-		return $code === strtolower( $code ) && is_readable( self::getMessagesFileName( $code ) );
+		return self::isValidBuiltInCode( $code )
+			&& ( is_readable( self::getMessagesFileName( $code ) )
+				|| is_readable( self::getJsonMessagesFileName( $code ) )
+		);
 	}
 
 	/**
@@ -352,7 +354,7 @@ class Language {
 
 	/**
 	 * Returns true if a language code is of a valid form for the purposes of
-	 * internal customisation of MediaWiki, via Messages*.php.
+	 * internal customisation of MediaWiki, via Messages*.php or *.json.
 	 *
 	 * @param $code string
 	 *
@@ -610,6 +612,7 @@ class Language {
 
 	/**
 	 * Returns gender-dependent namespace alias if available.
+	 * See https://www.mediawiki.org/wiki/Manual:$wgExtraGenderNamespaces
 	 * @param $index Int: namespace index
 	 * @param $gender String: gender key (male, female... )
 	 * @return String
@@ -623,8 +626,8 @@ class Language {
 	}
 
 	/**
-	 * Whether this language makes distinguishes genders for example in
-	 * namespaces.
+	 * Whether this language uses gender-dependent namespace aliases.
+	 * See https://www.mediawiki.org/wiki/Manual:$wgExtraGenderNamespaces
 	 * @return bool
 	 * @since 1.18
 	 */
@@ -811,7 +814,7 @@ class Language {
 	}
 
 	/**
-	 * @param  $image
+	 * @param $image
 	 * @return array|null
 	 */
 	function getImageFile( $image ) {
@@ -826,7 +829,7 @@ class Language {
 	}
 
 	/**
-	 * @param  $tog
+	 * @param $tog
 	 * @return string
 	 */
 	function getUserToggle( $tog ) {
@@ -911,12 +914,16 @@ class Language {
 			# We do this using a foreach over the codes instead of a directory
 			# loop so that messages files in extensions will work correctly.
 			foreach ( $returnMw as $code => $value ) {
-				if ( is_readable( self::getMessagesFileName( $code ) ) ) {
+				if ( is_readable( self::getMessagesFileName( $code ) )
+					|| is_readable( self::getJsonMessagesFileName( $code ) )
+				) {
 					$namesMwFile[$code] = $names[$code];
 				}
 			}
+
 			return $namesMwFile;
 		}
+
 		# 'mw' option; default if it's not one of the other two options (all/mwfile)
 		return $returnMw;
 	}
@@ -929,6 +936,7 @@ class Language {
 	 * @since 1.20
 	 */
 	public static function fetchLanguageName( $code, $inLanguage = null, $include = 'all' ) {
+		$code = strtolower( $code );
 		$array = self::fetchLanguageNames( $inLanguage, $include );
 		return !array_key_exists( $code, $array ) ? '' : $array[$code];
 	}
@@ -1502,8 +1510,7 @@ class Language {
 		if (
 			( $zy > 1582 ) || ( ( $zy == 1582 ) && ( $zm > 10 ) ) ||
 			( ( $zy == 1582 ) && ( $zm == 10 ) && ( $zd > 14 ) )
-		)
-		{
+		) {
 			$zjd = (int)( ( 1461 * ( $zy + 4800 + (int)( ( $zm - 14 ) / 12 ) ) ) / 4 ) +
 					(int)( ( 367 * ( $zm - 2 - 12 * ( (int)( ( $zm - 14 ) / 12 ) ) ) ) / 12 ) -
 					(int)( ( 3 * (int)( ( ( $zy + 4900 + (int)( ( $zm - 14 ) / 12 ) ) / 100 ) ) ) / 4 ) +
@@ -1753,8 +1760,7 @@ class Language {
 				( ( $gy > 1912 ) && ( $gy < 1926 ) ) ||
 				( ( $gy == 1926 ) && ( $gm < 12 ) ) ||
 				( ( $gy == 1926 ) && ( $gm == 12 ) && ( $gd < 26 ) )
-			)
-			{
+			) {
 				# Taishō period
 				$gy_gannen = $gy - 1912 + 1;
 				$gy_offset = $gy_gannen;
@@ -1766,8 +1772,7 @@ class Language {
 				( ( $gy == 1926 ) && ( $gm == 12 ) && ( $gd >= 26 ) ) ||
 				( ( $gy > 1926 ) && ( $gy < 1989 ) ) ||
 				( ( $gy == 1989 ) && ( $gm == 1 ) && ( $gd < 8 ) )
-			)
-			{
+			) {
 				# Shōwa period
 				$gy_gannen = $gy - 1926 + 1;
 				$gy_offset = $gy_gannen;
@@ -3078,8 +3083,7 @@ class Language {
 	 * wfMessage( 'message' )->numParams( $num )->text()
 	 * </code>
 	 *
-	 * See LanguageGu.php for the Gujarati implementation and
-	 * $separatorTransformTable on MessageIs.php for
+	 * See $separatorTransformTable on MessageIs.php for
 	 * the , => . and . => , implementation.
 	 *
 	 * @todo check if it's viable to use localeconv() for the decimal
@@ -3325,11 +3329,13 @@ class Language {
 				$length -= $eLength;
 				$string = substr( $string, 0, $length ); // xyz...
 				$string = $this->removeBadCharLast( $string );
+				$string = rtrim( $string );
 				$string = $string . $ellipsis;
 			} else {
 				$length += $eLength;
 				$string = substr( $string, $length ); // ...xyz
 				$string = $this->removeBadCharFirst( $string );
+				$string = ltrim( $string );
 				$string = $ellipsis . $string;
 			}
 		}
@@ -3585,7 +3591,7 @@ class Language {
 	}
 	/**
 	 * Provides an alternative text depending on specified gender.
-	 * Usage {{gender:username|masculine|feminine|neutral}}.
+	 * Usage {{gender:username|masculine|feminine|unknown}}.
 	 * username is optional, in which case the gender of current user is used,
 	 * but only in (some) interface messages; otherwise default gender is used.
 	 *
@@ -3593,9 +3599,9 @@ class Language {
 	 * given, it will be returned unconditionally. These details are implied by
 	 * the caller and cannot be overridden in subclasses.
 	 *
-	 * If more than one form is given, the default is to use the neutral one
-	 * if it is specified, and to use the masculine one otherwise. These
-	 * details can be overridden in subclasses.
+	 * If three forms are given, the default is to use the third (unknown) form.
+	 * If fewer than three forms are given, the default is to use the first (masculine) form.
+	 * These details can be overridden in subclasses.
 	 *
 	 * @param $gender string
 	 * @param $forms array
@@ -3654,7 +3660,7 @@ class Language {
 	 * string value returned, otherwise array returned for further consideration
 	 * by CLDR rules or overridden convertPlural().
 	 *
-	 * @since 1.22.1
+	 * @since 1.23
 	 *
 	 * @param int $count non-localized number
 	 * @param array $forms different plural forms
@@ -3906,21 +3912,6 @@ class Language {
 	}
 
 	/**
-	 * If a language supports multiple variants, converts text
-	 * into an array of all possible variants of the text:
-	 *  'variant' => text in that variant
-	 *
-	 * @deprecated since 1.17 Use autoConvertToAllVariants()
-	 *
-	 * @param $text string
-	 *
-	 * @return string
-	 */
-	public function convertLinkToAllVariants( $text ) {
-		return $this->mConverter->convertLinkToAllVariants( $text );
-	}
-
-	/**
 	 * returns language specific options used by User::getPageRenderHash()
 	 * for example, the preferred language variant
 	 *
@@ -3970,6 +3961,16 @@ class Language {
 	 */
 	public function linkTrail() {
 		return self::$dataCache->getItem( $this->mCode, 'linkTrail' );
+	}
+
+	/**
+	 * A regular expression character set to match legal word-prefixing
+	 * characters which should be merged onto a link of the form foo[[bar]].
+	 *
+	 * @return string
+	 */
+	public function linkPrefixCharset() {
+		return self::$dataCache->getItem( $this->mCode, 'linkPrefixCharset' );
 	}
 
 	/**
@@ -4055,10 +4056,7 @@ class Language {
 	 * @return string $prefix . $mangledCode . $suffix
 	 */
 	public static function getFileName( $prefix = 'Language', $code, $suffix = '.php' ) {
-		// Protect against path traversal
-		if ( !Language::isValidCode( $code )
-			|| strcspn( $code, ":/\\\000" ) !== strlen( $code ) )
-		{
+		if ( !self::isValidBuiltInCode( $code ) ) {
 			throw new MWException( "Invalid language code \"$code\"" );
 		}
 
@@ -4091,6 +4089,21 @@ class Language {
 		$file = self::getFileName( "$IP/languages/messages/Messages", $code, '.php' );
 		wfRunHooks( 'Language::getMessagesFileName', array( $code, &$file ) );
 		return $file;
+	}
+
+	/**
+	 * @param $code string
+	 * @return string
+	 * @since 1.23
+	 */
+	public static function getJsonMessagesFileName( $code ) {
+		global $IP;
+
+		if ( !self::isValidBuiltInCode( $code ) ) {
+			throw new MWException( "Invalid language code \"$code\"" );
+		}
+
+		return "$IP/languages/i18n/$code.json" ;
 	}
 
 	/**

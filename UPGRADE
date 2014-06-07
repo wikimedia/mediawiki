@@ -2,7 +2,7 @@
 This file provides an overview of the MediaWiki upgrade process. For help with
 specific problems, check
 
-* the documentation at http://www.mediawiki.org
+* the documentation at https://www.mediawiki.org
 * the mediawiki-l mailing list archive at
   http://lists.wikimedia.org/pipermail/mediawiki-l/
 * the bug tracker at https://bugzilla.wikimedia.org
@@ -12,7 +12,7 @@ for information and workarounds to common issues.
 == Overview ==
 
 Comprehensive documentation on upgrading to the latest version of the software
-is available at http://www.mediawiki.org/wiki/Manual:Upgrading.
+is available at https://www.mediawiki.org/wiki/Manual:Upgrading.
 
 === Consult the release notes ===
 
@@ -28,7 +28,7 @@ you take a complete backup of your wiki database and files and verify it. While
 the upgrade scripts are somewhat robust, there is no guarantee that things will
 not fail, leaving the database in an inconsistent state.
 
-http://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki provides an overview of
+https://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki provides an overview of
 the backup process. You should also refer to the documentation for your
 database management system for information on backing up a database, and to
 your operating system documentation for information on making copies of files.

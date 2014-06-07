@@ -87,7 +87,7 @@ class GetConfiguration extends Maintenance {
 	public function finalSetup() {
 		parent::finalSetup();
 
-		$this->regex = $this->getOption( 'regex' ) ? : $this->getOption( 'iregex' );
+		$this->regex = $this->getOption( 'regex' ) ?: $this->getOption( 'iregex' );
 		if ( $this->regex ) {
 			$this->regex = '/' . $this->regex . '/';
 			if ( $this->hasOption( 'iregex' ) ) {

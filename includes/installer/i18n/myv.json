@@ -1,0 +1,16 @@
+{
+    "@metadata": {
+        "authors": [
+            "Botuzhaleny-sodamo"
+        ]
+    },
+    "config-page-language": "Кель",
+    "config-page-name": "Лемезэ",
+    "config-page-readme": "Ловномак",
+    "config-admin-name": "Леметь:",
+    "config-admin-password": "Совамо валот:",
+    "config-admin-password-confirm": "Совамо валот одов:",
+    "config-admin-email": "Е-сёрма паргот:",
+    "config-install-step-done": "теезь",
+    "mainpagetext": "'''МедияВикинь тевс аравтомазо парсте лиссь.'''"
+}

@@ -87,7 +87,6 @@ class SpecialRandomInCategory extends SpecialPage {
 			$this->setCategory( $cat );
 		}
 
-
 		if ( !$this->category && $categoryStr ) {
 			$this->setHeaders();
 			$this->getOutput()->addWikiMsg( 'randomincategory-invalidcategory',
@@ -102,7 +101,7 @@ class SpecialRandomInCategory extends SpecialPage {
 
 			$msg = $this->msg( 'randomincategory-selectcategory' );
 			$form = Html::rawElement( 'form', array( 'action' => $wgScript ),
-				Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
+				Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
 				$msg->rawParams( $input, $submit )->parse()
 			);
 			$this->getOutput()->addHtml( $form );
@@ -208,6 +207,7 @@ class SpecialRandomInCategory extends SpecialPage {
 			$qi['conds'][] = 'cl_timestamp ' . $op . ' ' .
 				$dbr->addQuotes( $dbr->timestamp( $minClTime ) );
 		}
+
 		return $qi;
 	}
 
@@ -230,6 +230,7 @@ class SpecialRandomInCategory extends SpecialPage {
 		}
 
 		$ts = ( $this->maxTimestamp - $this->minTimestamp ) * $rand + $this->minTimestamp;
+
 		return intval( $ts );
 	}
 
@@ -259,6 +260,7 @@ class SpecialRandomInCategory extends SpecialPage {
 		if ( !$res ) {
 			throw new MWException( 'No entries in category' );
 		}
+
 		return array( wfTimestamp( TS_UNIX, $res->low ), wfTimestamp( TS_UNIX, $res->high ) );
 	}
 

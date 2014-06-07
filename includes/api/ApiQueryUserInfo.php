@@ -152,6 +152,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$result->setIndexedTagName( $acceptLang, 'lang' );
 			$vals['acceptlang'] = $acceptLang;
 		}
+
 		return $vals;
 	}
 
@@ -188,6 +189,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				}
 			}
 		}
+
 		return $retval;
 	}
 
@@ -232,7 +234,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				'  ratelimits       - Lists all rate limits applying to the current user',
 				'  realname         - Adds the user\'s real name',
 				'  email            - Adds the user\'s email address and email authentication date',
-				'  acceptlang       - Echoes the Accept-Language header sent by the client in a structured format',
+				'  acceptlang       - Echoes the Accept-Language header sent by ' .
+					'the client in a structured format',
 				'  registrationdate - Adds the user\'s registration date',
 			)
 		);
@@ -296,7 +299,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Get information about the current user';
+		return 'Get information about the current user.';
 	}
 
 	public function getExamples() {

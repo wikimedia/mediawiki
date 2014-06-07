@@ -27,7 +27,6 @@
  * @ingroup Media
  */
 class IPTC {
-
 	/**
 	 * This takes the results of iptcparse() and puts it into a
 	 * form that can be handled by mediawiki. Generally called from
@@ -36,13 +35,13 @@ class IPTC {
 	 * @see http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf
 	 *
 	 * @param string $rawData app13 block from jpeg containing iptc/iim data
-	 * @return Array iptc metadata array
+	 * @return array IPTC metadata array
 	 */
 	static function parse( $rawData ) {
 		$parsed = iptcparse( $rawData );
-		$data = Array();
+		$data = array();
 		if ( !is_array( $parsed ) ) {
-				return $data;
+			return $data;
 		}
 
 		$c = '';
@@ -85,7 +84,8 @@ class IPTC {
 						$titles = array();
 					}
 
-					for ( $i = 0; $i < count( $titles ); $i++ ) {
+					$titleCount = count( $titles );
+					for ( $i = 0; $i < $titleCount; $i++ ) {
 						if ( isset( $bylines[$i] ) ) {
 							// theoretically this should always be set
 							// but doesn't hurt to be careful.
@@ -225,7 +225,7 @@ class IPTC {
 					if ( isset( $parsed['2#060'] ) ) {
 						$time = $parsed['2#060'];
 					} else {
-						$time = Array();
+						$time = array();
 					}
 					$timestamp = self::timeHelper( $val, $time, $c );
 					if ( $timestamp ) {
@@ -239,7 +239,7 @@ class IPTC {
 					if ( isset( $parsed['2#063'] ) ) {
 						$time = $parsed['2#063'];
 					} else {
-						$time = Array();
+						$time = array();
 					}
 					$timestamp = self::timeHelper( $val, $time, $c );
 					if ( $timestamp ) {
@@ -252,7 +252,7 @@ class IPTC {
 					if ( isset( $parsed['2#035'] ) ) {
 						$time = $parsed['2#035'];
 					} else {
-						$time = Array();
+						$time = array();
 					}
 					$timestamp = self::timeHelper( $val, $time, $c );
 					if ( $timestamp ) {
@@ -265,7 +265,7 @@ class IPTC {
 					if ( isset( $parsed['2#038'] ) ) {
 						$time = $parsed['2#038'];
 					} else {
-						$time = Array();
+						$time = array();
 					}
 					$timestamp = self::timeHelper( $val, $time, $c );
 					if ( $timestamp ) {
@@ -300,7 +300,7 @@ class IPTC {
 						wfDebugLog( 'iptc', 'IPTC: '
 							. '2:04 too short. '
 							. 'Ignoring.' );
-							break;
+						break;
 					}
 					$extracted = substr( $con[0], 4 );
 					$data['IntellectualGenre'] = $extracted;
@@ -315,9 +315,7 @@ class IPTC {
 					foreach ( $codes as $ic ) {
 						$fields = explode( ':', $ic, 3 );
 
-						if ( count( $fields ) < 2 ||
-							$fields[0] !== 'IPTC' )
-						{
+						if ( count( $fields ) < 2 || $fields[0] !== 'IPTC' ) {
 							wfDebugLog( 'IPTC', 'IPTC: '
 								. 'Invalid 2:12 - ' . $ic );
 							break;
@@ -341,11 +339,11 @@ class IPTC {
 					break;
 
 				default:
-					wfDebugLog( 'iptc', "Unsupported iptc tag: $tag. Value: " . implode( ',', $val ));
+					wfDebugLog( 'iptc', "Unsupported iptc tag: $tag. Value: " . implode( ',', $val ) );
 					break;
 			}
-
 		}
+
 		return $data;
 	}
 
@@ -355,8 +353,8 @@ class IPTC {
 	 * @todo Potentially this should also capture the timezone offset.
 	 * @param array $date The date tag
 	 * @param array $time The time tag
-	 * @param $c
-	 * @return String Date in exif format.
+	 * @param string $c The charset
+	 * @return string Date in EXIF format.
 	 */
 	private static function timeHelper( $date, $time, $c ) {
 		if ( count( $date ) === 1 ) {
@@ -387,12 +385,14 @@ class IPTC {
 			// April, but the year and day is unknown. We don't process these
 			// types of incomplete dates atm.
 			wfDebugLog( 'iptc', "IPTC: invalid time ( $time ) or date ( $date )" );
+
 			return null;
 		}
 
-		$unixTS = wfTimestamp( TS_UNIX, $date . substr( $time, 0, 6 ));
+		$unixTS = wfTimestamp( TS_UNIX, $date . substr( $time, 0, 6 ) );
 		if ( $unixTS === false ) {
 			wfDebugLog( 'iptc', "IPTC: can't convert date to TS_UNIX: $date $time." );
+
 			return null;
 		}
 
@@ -400,12 +400,13 @@ class IPTC {
 			+ ( intval( substr( $time, 9, 2 ) ) * 60 );
 
 		if ( substr( $time, 6, 1 ) === '-' ) {
-			$tz = - $tz;
+			$tz = -$tz;
 		}
 
 		$finalTimestamp = wfTimestamp( TS_EXIF, $unixTS + $tz );
 		if ( $finalTimestamp === false ) {
 			wfDebugLog( 'iptc', "IPTC: can't make final timestamp. Date: " . ( $unixTS + $tz ) );
+
 			return null;
 		}
 		if ( $dateOnly ) {
@@ -434,9 +435,10 @@ class IPTC {
 
 		return $data;
 	}
+
 	/**
 	 * Helper function of a helper function to convert charset for iptc values.
-	 * @param $data Mixed String or Array: The iptc string
+	 * @param string|array $data The IPTC string
 	 * @param string $charset The charset
 	 *
 	 * @return string
@@ -461,6 +463,7 @@ class IPTC {
 				return self::convIPTCHelper( $oldData, 'Windows-1252' );
 			}
 		}
+
 		return trim( $data );
 	}
 

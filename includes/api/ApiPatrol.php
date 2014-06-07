@@ -109,7 +109,7 @@ class ApiPatrol extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Patrol a page or revision';
+		return 'Patrol a page or revision.';
 	}
 
 	public function getPossibleErrors() {
@@ -123,7 +123,8 @@ class ApiPatrol extends ApiBase {
 					'code' => 'notpatrollable',
 					'info' => "The revision can't be patrolled as it's too old"
 				)
-		) );
+			)
+		);
 	}
 
 	public function needsToken() {

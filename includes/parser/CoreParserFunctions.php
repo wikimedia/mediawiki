@@ -38,68 +38,34 @@ class CoreParserFunctions {
 		#  function callback,
 		#  optional SFH_NO_HASH to omit the hash from calls (e.g. {{int:...}}
 		#    instead of {{#int:...}})
+		$noHashFunctions = array(
+			'ns', 'nse', 'urlencode', 'lcfirst', 'ucfirst', 'lc', 'uc',
+			'localurl', 'localurle', 'fullurl', 'fullurle', 'canonicalurl',
+			'canonicalurle', 'formatnum', 'grammar', 'gender', 'plural',
+			'numberofpages', 'numberofusers', 'numberofactiveusers',
+			'numberofarticles', 'numberoffiles', 'numberofadmins',
+			'numberingroup', 'numberofedits', 'numberofviews', 'language',
+			'padleft', 'padright', 'anchorencode', 'defaultsort', 'filepath',
+			'pagesincategory', 'pagesize', 'protectionlevel',
+			'namespacee', 'namespacenumber', 'talkspace', 'talkspacee',
+			'subjectspace', 'subjectspacee', 'pagename', 'pagenamee',
+			'fullpagename', 'fullpagenamee', 'rootpagename', 'rootpagenamee',
+			'basepagename', 'basepagenamee', 'subpagename', 'subpagenamee',
+			'talkpagename', 'talkpagenamee', 'subjectpagename',
+			'subjectpagenamee', 'pageid', 'revisionid', 'revisionday',
+			'revisionday2', 'revisionmonth', 'revisionmonth1', 'revisionyear',
+			'revisiontimestamp', 'revisionuser', 'cascadingsources',
+		);
+		foreach ( $noHashFunctions as $func ) {
+			$parser->setFunctionHook( $func, array( __CLASS__, $func ), SFH_NO_HASH );
+		}
 
-		$parser->setFunctionHook( 'int',              array( __CLASS__, 'intFunction'      ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'ns',               array( __CLASS__, 'ns'               ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'nse',              array( __CLASS__, 'nse'              ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'urlencode',        array( __CLASS__, 'urlencode'        ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'lcfirst',          array( __CLASS__, 'lcfirst'          ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'ucfirst',          array( __CLASS__, 'ucfirst'          ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'lc',               array( __CLASS__, 'lc'               ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'uc',               array( __CLASS__, 'uc'               ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'localurl',         array( __CLASS__, 'localurl'         ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'localurle',        array( __CLASS__, 'localurle'        ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'fullurl',          array( __CLASS__, 'fullurl'          ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'fullurle',         array( __CLASS__, 'fullurle'         ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'canonicalurl',     array( __CLASS__, 'canonicalurl'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'canonicalurle',    array( __CLASS__, 'canonicalurle'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'formatnum',        array( __CLASS__, 'formatnum'        ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'grammar',          array( __CLASS__, 'grammar'          ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'gender',           array( __CLASS__, 'gender'           ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'plural',           array( __CLASS__, 'plural'           ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberofpages',    array( __CLASS__, 'numberofpages'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberofusers',    array( __CLASS__, 'numberofusers'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberofactiveusers', array( __CLASS__, 'numberofactiveusers' ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberofarticles', array( __CLASS__, 'numberofarticles' ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberoffiles',    array( __CLASS__, 'numberoffiles'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberofadmins',   array( __CLASS__, 'numberofadmins'   ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberingroup',    array( __CLASS__, 'numberingroup'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberofedits',    array( __CLASS__, 'numberofedits'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberofviews',    array( __CLASS__, 'numberofviews'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'language',         array( __CLASS__, 'language'         ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'padleft',          array( __CLASS__, 'padleft'          ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'padright',         array( __CLASS__, 'padright'         ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'anchorencode',     array( __CLASS__, 'anchorencode'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'special',          array( __CLASS__, 'special'          ) );
-		$parser->setFunctionHook( 'speciale',         array( __CLASS__, 'speciale'         ) );
-		$parser->setFunctionHook( 'defaultsort',      array( __CLASS__, 'defaultsort'      ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'filepath',         array( __CLASS__, 'filepath'         ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'pagesincategory',  array( __CLASS__, 'pagesincategory'  ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'pagesize',         array( __CLASS__, 'pagesize'         ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'protectionlevel',  array( __CLASS__, 'protectionlevel'  ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'namespace',        array( __CLASS__, 'mwnamespace'      ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'namespacee',       array( __CLASS__, 'namespacee'       ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'namespacenumber',  array( __CLASS__, 'namespacenumber'  ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'talkspace',        array( __CLASS__, 'talkspace'        ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'talkspacee',       array( __CLASS__, 'talkspacee'       ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'subjectspace',     array( __CLASS__, 'subjectspace'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'subjectspacee',    array( __CLASS__, 'subjectspacee'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'pagename',         array( __CLASS__, 'pagename'         ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'pagenamee',        array( __CLASS__, 'pagenamee'        ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'fullpagename',     array( __CLASS__, 'fullpagename'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'fullpagenamee',    array( __CLASS__, 'fullpagenamee'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'rootpagename',     array( __CLASS__, 'rootpagename'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'rootpagenamee',    array( __CLASS__, 'rootpagenamee'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'basepagename',     array( __CLASS__, 'basepagename'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'basepagenamee',    array( __CLASS__, 'basepagenamee'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'subpagename',      array( __CLASS__, 'subpagename'      ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'subpagenamee',     array( __CLASS__, 'subpagenamee'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'talkpagename',     array( __CLASS__, 'talkpagename'     ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'talkpagenamee',    array( __CLASS__, 'talkpagenamee'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'subjectpagename',  array( __CLASS__, 'subjectpagename'  ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'subjectpagenamee', array( __CLASS__, 'subjectpagenamee' ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
-		$parser->setFunctionHook( 'formatdate',       array( __CLASS__, 'formatDate'       ) );
+		$parser->setFunctionHook( 'namespace', array( __CLASS__, 'mwnamespace' ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'int', array( __CLASS__, 'intFunction' ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'special', array( __CLASS__, 'special' ) );
+		$parser->setFunctionHook( 'speciale', array( __CLASS__, 'speciale' ) );
+		$parser->setFunctionHook( 'tag', array( __CLASS__, 'tagObj' ), SFH_OBJECT_ARGS );
+		$parser->setFunctionHook( 'formatdate', array( __CLASS__, 'formatDate' ) );
 
 		if ( $wgAllowDisplayTitle ) {
 			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), SFH_NO_HASH );
@@ -125,10 +91,11 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * @param $parser Parser
-	 * @param  $date
-	 * @param null $defaultPref
-	 * @return mixed|string
+	 * @param Parser $parser
+	 * @param string $date
+	 * @param string $defaultPref
+	 *
+	 * @return string
 	 */
 	static function formatDate( $parser, $date, $defaultPref = null ) {
 		$lang = $parser->getFunctionLang();
@@ -238,12 +205,39 @@ class CoreParserFunctions {
 		return $parser->markerSkipCallback( $s, array( $wgContLang, 'uc' ) );
 	}
 
-	static function localurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getLocalURL', $s, $arg ); }
-	static function localurle( $parser, $s = '', $arg = null ) { return self::urlFunction( 'escapeLocalURL', $s, $arg ); }
-	static function fullurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getFullURL', $s, $arg ); }
-	static function fullurle( $parser, $s = '', $arg = null ) { return self::urlFunction( 'escapeFullURL', $s, $arg ); }
-	static function canonicalurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getCanonicalURL', $s, $arg ); }
-	static function canonicalurle( $parser, $s = '', $arg = null ) { return self::urlFunction( 'escapeCanonicalURL', $s, $arg ); }
+	static function localurl( $parser, $s = '', $arg = null ) {
+		return self::urlFunction( 'getLocalURL', $s, $arg );
+	}
+
+	static function localurle( $parser, $s = '', $arg = null ) {
+		$temp = self::urlFunction( 'getLocalURL', $s, $arg );
+		if ( !is_string( $temp ) ) {
+			return $temp;
+		} else {
+			return htmlspecialchars( $temp );
+		}
+	}
+
+	static function fullurl( $parser, $s = '', $arg = null ) {
+		return self::urlFunction( 'getFullURL', $s, $arg );
+	}
+
+	static function fullurle( $parser, $s = '', $arg = null ) {
+		$temp = self::urlFunction( 'getFullURL', $s, $arg );
+		if ( !is_string( $temp ) ) {
+			return $temp;
+		} else {
+			return htmlspecialchars( $temp );
+		}
+	}
+
+	static function canonicalurl( $parser, $s = '', $arg = null ) {
+		return self::urlFunction( 'getCanonicalURL', $s, $arg );
+	}
+
+	static function canonicalurle( $parser, $s = '', $arg = null ) {
+		return self::urlFunction( 'escapeCanonicalURL', $s, $arg );
+	}
 
 	static function urlFunction( $func, $s = '', $arg = null ) {
 		$title = Title::newFromText( $s );
@@ -404,7 +398,7 @@ class CoreParserFunctions {
 
 		if ( !$wgRestrictDisplayTitle ) {
 			$parser->mOutput->setDisplayTitle( $text );
-		} elseif ( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) ) {
+		} elseif ( $title instanceof Title && !$title->hasFragment() && $title->equals( $parser->mTitle ) ) {
 			$parser->mOutput->setDisplayTitle( $text );
 		}
 
@@ -418,12 +412,13 @@ class CoreParserFunctions {
 	 * @param mixed $value value to match
 	 * @return boolean true on successful match
 	 */
-	static private function matchAgainstMagicword( $magicword, $value ) {
-		if ( strval( $value ) === '' ) {
+	private static function matchAgainstMagicword( $magicword, $value ) {
+		$value = trim( strval( $value ) );
+		if ( $value === '' ) {
 			return false;
 		}
 		$mwObject = MagicWord::get( $magicword );
-		return $mwObject->match( $value );
+		return $mwObject->matchStartToEnd( $value );
 	}
 
 	static function formatRaw( $num, $raw ) {
@@ -695,46 +690,29 @@ class CoreParserFunctions {
 	 * Return the size of the given page, or 0 if it's nonexistent.  This is an
 	 * expensive parser function and can't be called too many times per page.
 	 *
-	 * @todo FIXME: Title::getLength() documentation claims that it adds things
-	 *   to the link cache, so the local cache here should be unnecessary, but
-	 *   in fact calling getLength() repeatedly for the same $page does seem to
-	 *   run one query for each call?
-	 * @todo Document parameters
-	 *
 	 * @param $parser Parser
 	 * @param $page String Name of page to check (Default: empty string)
 	 * @param $raw String Should number be human readable with commas or just number
 	 * @return string
 	 */
 	static function pagesize( $parser, $page = '', $raw = null ) {
-		static $cache = array();
 		$title = Title::newFromText( $page );
 
 		if ( !is_object( $title ) ) {
-			$cache[$page] = 0;
 			return self::formatRaw( 0, $raw );
 		}
 
-		# Normalize name for cache
-		$page = $title->getPrefixedText();
-
-		$length = 0;
-		if ( isset( $cache[$page] ) ) {
-			$length = $cache[$page];
-		} elseif ( $parser->incrementExpensiveFunctionCount() ) {
-			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
-			$pageID = $rev ? $rev->getPage() : 0;
-			$revID = $rev ? $rev->getId() : 0;
-			$length = $cache[$page] = $rev ? $rev->getSize() : 0;
-
-			// Register dependency in templatelinks
-			$parser->mOutput->addTemplate( $title, $pageID, $revID );
-		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $title );
+		$length = $rev ? $rev->getSize() : 0;
 		return self::formatRaw( $length, $raw );
 	}
 
 	/**
-	 * Returns the requested protection level for the current page
+	 * Returns the requested protection level for the current page. This
+	 * is an expensive parser function and can't be called too many times
+	 * per page, unless the protection levels for the given title have
+	 * already been retrieved
 	 *
 	 * @param Parser $parser
 	 * @param string $type
@@ -747,10 +725,13 @@ class CoreParserFunctions {
 		if ( !( $titleObject instanceof Title ) ) {
 			$titleObject = $parser->mTitle;
 		}
-		$restrictions = $titleObject->getRestrictions( strtolower( $type ) );
-		# Title::getRestrictions returns an array, its possible it may have
-		# multiple values in the future
-		return implode( $restrictions, ',' );
+		if ( $titleObject->areRestrictionsLoaded() || $parser->incrementExpensiveFunctionCount() ) {
+			$restrictions = $titleObject->getRestrictions( strtolower( $type ) );
+			# Title::getRestrictions returns an array, its possible it may have
+			# multiple values in the future
+			return implode( $restrictions, ',' );
+		}
+		return '';
 	}
 
 	/**
@@ -807,7 +788,7 @@ class CoreParserFunctions {
 
 	/**
 	 * @param $parser Parser
-	 * @param  $text
+	 * @param $text
 	 * @return string
 	 */
 	static function anchorencode( $parser, $text ) {
@@ -949,4 +930,259 @@ class CoreParserFunctions {
 		);
 		return $parser->extensionSubstitution( $params, $frame );
 	}
+
+	/**
+	 * Fetched the current revision of the given title and return this.
+	 * Will increment the expensive function count and
+	 * add a template link to get the value refreshed on changes.
+	 * For a given title, which is equal to the current parser title,
+	 * the revision object from the parser is used, when that is the current one
+	 *
+	 * @param $parser Parser
+	 * @param $title Title
+	 * @return Revision
+	 * @since 1.23
+	 */
+	private static function getCachedRevisionObject( $parser, $title = null ) {
+		static $cache = array();
+
+		if ( is_null( $title ) ) {
+			return null;
+		}
+
+		// Use the revision from the parser itself, when param is the current page
+		// and the revision is the current one
+		if ( $title->equals( $parser->getTitle() ) ) {
+			$parserRev = $parser->getRevisionObject();
+			if ( $parserRev && $parserRev->isCurrent() ) {
+				// force reparse after edit with vary-revision flag
+				$parser->getOutput()->setFlag( 'vary-revision' );
+				wfDebug( __METHOD__ . ": use current revision from parser, setting vary-revision...\n" );
+				return $parserRev;
+			}
+		}
+
+		// Normalize name for cache
+		$page = $title->getPrefixedDBkey();
+
+		if ( array_key_exists( $page, $cache ) ) { // cache contains null values
+			return $cache[$page];
+		}
+		if ( $parser->incrementExpensiveFunctionCount() ) {
+			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
+			$pageID = $rev ? $rev->getPage() : 0;
+			$revID = $rev ? $rev->getId() : 0;
+			$cache[$page] = $rev; // maybe null
+
+			// Register dependency in templatelinks
+			$parser->getOutput()->addTemplate( $title, $pageID, $revID );
+
+			return $rev;
+		}
+		$cache[$page] = null;
+		return null;
+	}
+
+	/**
+	 * Get the pageid of a specified page
+	 * @param $parser Parser
+	 * @param $title string Title to get the pageid from
+	 * @since 1.23
+	 */
+	public static function pageid( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// Use title from parser to have correct pageid after edit
+		if ( $t->equals( $parser->getTitle() ) ) {
+			$t = $parser->getTitle();
+			return $t->getArticleID();
+		}
+
+		// These can't have ids
+		if ( !$t->canExist() || $t->isExternal() ) {
+			return 0;
+		}
+
+		// Check the link cache, maybe something already looked it up.
+		$linkCache = LinkCache::singleton();
+		$pdbk = $t->getPrefixedDBkey();
+		$id = $linkCache->getGoodLinkID( $pdbk );
+		if ( $id != 0 ) {
+			$parser->mOutput->addLink( $t, $id );
+			return $id;
+		}
+		if ( $linkCache->isBadLink( $pdbk ) ) {
+			$parser->mOutput->addLink( $t, 0 );
+			return $id;
+		}
+
+		// We need to load it from the DB, so mark expensive
+		if ( $parser->incrementExpensiveFunctionCount() ) {
+			$id = $t->getArticleID();
+			$parser->mOutput->addLink( $t, $id );
+			return $id;
+		}
+		return null;
+	}
+
+	/**
+	 * Get the id from the last revision of a specified page.
+	 * @param $parser Parser
+	 * @param $title string Title to get the id from
+	 * @since 1.23
+	 */
+	public static function revisionid( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? $rev->getId() : '';
+	}
+
+	/**
+	 * Get the day from the last revision of a specified page.
+	 * @param $parser Parser
+	 * @param $title string Title to get the day from
+	 * @since 1.23
+	 */
+	public static function revisionday( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'j' ) : '';
+	}
+
+	/**
+	 * Get the day with leading zeros from the last revision of a specified page.
+	 * @param $parser Parser
+	 * @param $title string Title to get the day from
+	 * @since 1.23
+	 */
+	public static function revisionday2( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'd' ) : '';
+	}
+
+	/**
+	 * Get the month with leading zeros from the last revision of a specified page.
+	 * @param $parser Parser
+	 * @param $title string Title to get the month from
+	 * @since 1.23
+	 */
+	public static function revisionmonth( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'm' ) : '';
+	}
+
+	/**
+	 * Get the month from the last revision of a specified page.
+	 * @param $parser Parser
+	 * @param $title string Title to get the month from
+	 * @since 1.23
+	 */
+	public static function revisionmonth1( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'n' ) : '';
+	}
+
+	/**
+	 * Get the year from the last revision of a specified page.
+	 * @param $parser Parser
+	 * @param $title string Title to get the year from
+	 * @since 1.23
+	 */
+	public static function revisionyear( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'Y' ) : '';
+	}
+
+	/**
+	 * Get the timestamp from the last revision of a specified page.
+	 * @param $parser Parser
+	 * @param $title string Title to get the timestamp from
+	 * @since 1.23
+	 */
+	public static function revisiontimestamp( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'YmdHis' ) : '';
+	}
+
+	/**
+	 * Get the user from the last revision of a specified page.
+	 * @param $parser Parser
+	 * @param $title string Title to get the user from
+	 * @since 1.23
+	 */
+	public static function revisionuser( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) ) {
+			return '';
+		}
+		// fetch revision from cache/database and return the value
+		$rev = self::getCachedRevisionObject( $parser, $t );
+		return $rev ? $rev->getUserText() : '';
+	}
+
+	/**
+	 * Returns the sources of any cascading protection acting on a specified page.
+	 * Pages will not return their own title unless they transclude themselves.
+	 * This is an expensive parser function and can't be called too many times per page,
+	 * unless cascading protection sources for the page have already been loaded.
+	 *
+	 * @param Parser $parser
+	 * @param string $title
+	 *
+	 * @return string
+	 * @since 1.23
+	 */
+	public static function cascadingsources( $parser, $title = '' ) {
+		$titleObject = Title::newFromText( $title );
+		if ( !( $titleObject instanceof Title ) ) {
+			$titleObject = $parser->mTitle;
+		}
+		if ( $titleObject->areCascadeProtectionSourcesLoaded()
+			|| $parser->incrementExpensiveFunctionCount()
+		) {
+			$names = array();
+			$sources = $titleObject->getCascadeProtectionSources();
+			foreach ( $sources[0] as $sourceTitle ) {
+				$names[] = $sourceTitle->getPrefixedText();
+			}
+			return implode( $names, '|' );
+		}
+		return '';
+	}
+
 }

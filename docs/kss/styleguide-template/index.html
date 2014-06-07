@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>MediaWiki Living Styleguide</title>
+	<meta name="description" content="">
+	<meta name="generator" content="kss-node" />
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="public/kss.css">
+	<link rel="stylesheet" href="public/style.css">
+</head>
+<body><div id="kss-wrapper">
+	<header id="kss-header">
+		<hgroup><h1>MediaWiki Living Styleguide</h1></hgroup>
+	</header>
+	<nav class="content">
+		<ul>
+		<li><a href="index.html">0.0: Overview</a></li>
+		{{#eachRoot}}
+		<li>
+			<a href="section-{{reference}}.html">{{reference}}.0: {{header}}</a>
+		</li>
+		{{/eachRoot}}
+		</ul>
+	</nav>
+	<article>
+		{{#if overview}}
+			{{html overview}}
+		{{else}}
+			{{#eachSection rootNumber}}
+				{{#whenDepth 1}}
+					<h1>{{ reference }}.0 - {{ header }}</h1>
+				{{else}}
+					{{#whenDepth 2}}
+					<h2>{{ reference }} - {{ header }}</h2>
+					{{/whenDepth}}
+					{{#whenDepth 3}}
+					<h3>{{ reference }} - {{ header }}</h3>
+					{{/whenDepth}}
+				{{/whenDepth}}
+				{{#ifAny markup modifiers}}
+						<div>{{html description}}</div>
+						<strong>Default styling</strong><br>
+						{{modifierMarkup}}
+						{{#eachModifier}}
+						{{html description}}<br>
+						<p>{{name}}</p>
+						{{modifierMarkup}}
+						{{/eachModifier}}
+						<pre class="prettyprint lang-html">{{markup}}</pre>
+				{{else}}
+						{{#if description}}
+							{{html description}}
+						{{/if}}
+				{{/ifAny}}
+			{{/eachSection}}
+		{{/if}}
+	</article>
+</div></body>
+</html>

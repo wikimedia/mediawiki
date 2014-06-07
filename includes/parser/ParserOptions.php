@@ -165,11 +165,6 @@ class ParserOptions {
 	var $mNumberHeadings;
 
 	/**
-	 * User math preference (as integer). Not used (1.19)
-	 */
-	var $mMath;
-
-	/**
 	 * Thumb size preferred by the user.
 	 */
 	var $mThumbSize;
@@ -240,9 +235,6 @@ class ParserOptions {
 	function getExternalLinkTarget()            { return $this->mExternalLinkTarget; }
 	function getDisableContentConversion()      { return $this->mDisableContentConversion; }
 	function getDisableTitleConversion()        { return $this->mDisableTitleConversion; }
-	/** @deprecated since 1.22 use User::getOption('math') instead */
-	function getMath()                          { $this->optionUsed( 'math' );
-												  return $this->mMath; }
 	function getThumbSize()                     { $this->optionUsed( 'thumbsize' );
 												  return $this->mThumbSize; }
 	function getStubThreshold()                 { $this->optionUsed( 'stubthreshold' );
@@ -254,16 +246,6 @@ class ParserOptions {
 												  return $this->mIsPrintable; }
 	function getUser()                          { return $this->mUser; }
 	function getPreSaveTransform()              { return $this->mPreSaveTransform; }
-
-	/**
-	 * @param $title Title
-	 * @return Skin
-	 * @deprecated since 1.18 Use Linker::* instead
-	 */
-	function getSkin( $title = null ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return new DummyLinker;
-	}
 
 	function getDateFormat() {
 		$this->optionUsed( 'dateformat' );
@@ -304,7 +286,7 @@ class ParserOptions {
 	/**
 	 * Same as getUserLangObj() but returns a string instead.
 	 *
-	 * @return String   Language code
+	 * @return String Language code
 	 * @since 1.17
 	 */
 	function getUserLang() {
@@ -339,8 +321,6 @@ class ParserOptions {
 	function setExternalLinkTarget( $x )        { return wfSetVar( $this->mExternalLinkTarget, $x ); }
 	function disableContentConversion( $x = true ) { return wfSetVar( $this->mDisableContentConversion, $x ); }
 	function disableTitleConversion( $x = true ) { return wfSetVar( $this->mDisableTitleConversion, $x ); }
-	/** @deprecated since 1.22 */
-	function setMath( $x )                      { return wfSetVar( $this->mMath, $x ); }
 	function setUserLang( $x )                  {
 		if ( is_string( $x ) ) {
 			$x = Language::factory( $x );
@@ -451,7 +431,6 @@ class ParserOptions {
 
 		$this->mUser = $user;
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
-		$this->mMath = $user->getOption( 'math' );
 		$this->mThumbSize = $user->getOption( 'thumbsize' );
 		$this->mStubThreshold = $user->getStubThreshold();
 		$this->mUserLang = $lang;
@@ -469,8 +448,9 @@ class ParserOptions {
 
 	/**
 	 * Called when an option is accessed.
+	 * @param string $optionName name of the option
 	 */
-	protected function optionUsed( $optionName ) {
+	public function optionUsed( $optionName ) {
 		if ( $this->onAccessCallback ) {
 			call_user_func( $this->onAccessCallback, $optionName );
 		}
@@ -483,7 +463,7 @@ class ParserOptions {
 	 * @return array
 	 */
 	public static function legacyOptions() {
-		return array( 'math', 'stubthreshold', 'numberheadings', 'userlang', 'thumbsize', 'editsection', 'printable' );
+		return array( 'stubthreshold', 'numberheadings', 'userlang', 'thumbsize', 'editsection', 'printable' );
 	}
 
 	/**
@@ -493,27 +473,22 @@ class ParserOptions {
 	 * so users sharign the options with vary for the same page share
 	 * the same cached data safely.
 	 *
-	 * Replaces User::getPageRenderingHash()
-	 *
 	 * Extensions which require it should install 'PageRenderingHash' hook,
 	 * which will give them a chance to modify this key based on their own
 	 * settings.
 	 *
 	 * @since 1.17
-	 * @param $forOptions Array
-	 * @param $title Title: used to get the content language of the page (since r97636)
+	 * @param array $forOptions
+	 * @param Title $title Used to get the content language of the page (since r97636)
 	 * @return string Page rendering hash
 	 */
 	public function optionsHash( $forOptions, $title = null ) {
 		global $wgRenderHashAppend;
 
-		$confstr = '';
-
-		if ( in_array( 'math', $forOptions ) ) {
-			$confstr .= $this->mMath;
-		} else {
-			$confstr .= '*';
-		}
+		// FIXME: Once the cache key is reorganized this argument
+		// can be dropped. It was used when the math extension was
+		// part of core.
+		$confstr = '*';
 
 		// Space assigned for the stubthreshold but unused
 		// since it disables the parser cache, its value will always
@@ -573,7 +548,7 @@ class ParserOptions {
 
 		// Give a chance for extensions to modify the hash, if they have
 		// extra options or other effects on the parser cache.
-		wfRunHooks( 'PageRenderingHash', array( &$confstr ) );
+		wfRunHooks( 'PageRenderingHash', array( &$confstr, $this->getUser(), &$forOptions ) );
 
 		// Make it a valid memcached key fragment
 		$confstr = str_replace( ' ', '_', $confstr );

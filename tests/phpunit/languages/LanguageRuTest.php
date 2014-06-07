@@ -22,7 +22,7 @@ class LanguageRuTest extends LanguageClassesTestCase {
 	 * @covers Language::convertPlural
 	 */
 	public function testExplicitPlural() {
-		$forms = array( 'one','many', 'other', '12=dozen' );
+		$forms = array( 'one', 'many', 'other', '12=dozen' );
 		$this->assertEquals( 'dozen', $this->getLang()->convertPlural( 12, $forms ) );
 		$forms = array( 'one', 'many', '100=hundred', 'other', '12=dozen' );
 		$this->assertEquals( 'hundred', $this->getLang()->convertPlural( 100, $forms ) );

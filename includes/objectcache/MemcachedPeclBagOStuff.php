@@ -179,17 +179,6 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	/**
 	 * @param $key string
 	 * @param $value int
-	 * @param $exptime
-	 * @return Mixed
-	 */
-	public function replace( $key, $value, $exptime = 0 ) {
-		$this->debugLog( "replace($key)" );
-		return $this->checkResult( $key, parent::replace( $key, $value, $exptime ) );
-	}
-
-	/**
-	 * @param $key string
-	 * @param $value int
 	 * @return Mixed
 	 */
 	public function incr( $key, $value = 1 ) {
@@ -242,6 +231,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 					$msg = "Memcached error: $msg";
 				}
 				wfDebugLog( 'memcached-serious', $msg );
+				$this->setLastError( BagOStuff::ERR_UNEXPECTED );
 		}
 		return $result;
 	}

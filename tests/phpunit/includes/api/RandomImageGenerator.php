@@ -66,7 +66,6 @@ class RandomImageGenerator {
 		)
 	);
 
-
 	public function __construct( $options = array() ) {
 		foreach ( array( 'dictionaryFile', 'minWidth', 'minHeight', 'maxWidth', 'maxHeight', 'shapesToDraw' ) as $property ) {
 			if ( isset( $options[$property] ) ) {
@@ -97,10 +96,10 @@ class RandomImageGenerator {
 	/**
 	 * Writes random images with random filenames to disk in the directory you specify, or current working directory
 	 *
-	 * @param $number Integer: number of filenames to write
-	 * @param $format String: optional, must be understood by ImageMagick, such as 'jpg' or 'gif'
-	 * @param $dir String: directory, optional (will default to current working directory)
-	 * @return Array: filenames we just wrote
+	 * @param int $number number of filenames to write
+	 * @param string $format optional, must be understood by ImageMagick, such as 'jpg' or 'gif'
+	 * @param string $dir directory, optional (will default to current working directory)
+	 * @return array filenames we just wrote
 	 */
 	function writeImages( $number, $format = 'jpg', $dir = null ) {
 		$filenames = $this->getRandomFilenames( $number, $format, $dir );
@@ -112,10 +111,13 @@ class RandomImageGenerator {
 		return $filenames;
 	}
 
-
 	/**
 	 * Figure out how we write images. This is a factor of both format and the local system
-	 * @param $format (a typical extension like 'svg', 'jpg', etc.)
+	 *
+	 * @param string $format (a typical extension like 'svg', 'jpg', etc.)
+	 *
+	 * @throws Exception
+	 * @return string
 	 */
 	function getImageWriteMethod( $format ) {
 		global $wgUseImageMagick, $wgImageMagickConvertCommand;
@@ -137,10 +139,10 @@ class RandomImageGenerator {
 	 * Return a number of randomly-generated filenames
 	 * Each filename uses two words randomly drawn from the dictionary, like elephantine_spatula.jpg
 	 *
-	 * @param $number Integer: of filenames to generate
-	 * @param $extension String: optional, defaults to 'jpg'
-	 * @param $dir String: optional, defaults to current working directory
-	 * @return Array: of filenames
+	 * @param int $number Number of filenames to generate
+	 * @param string $extension Optional, defaults to 'jpg'
+	 * @param string $dir Optional, defaults to current working directory
+	 * @return array Array of filenames
 	 */
 	private function getRandomFilenames( $number, $extension = 'jpg', $dir = null ) {
 		if ( is_null( $dir ) ) {
@@ -158,7 +160,6 @@ class RandomImageGenerator {
 
 		return $filenames;
 	}
-
 
 	/**
 	 * Generate data representing an image of random size (within limits),
@@ -207,7 +208,7 @@ class RandomImageGenerator {
 	 * Given array( array('x' => 10, 'y' => 20), array( 'x' => 30, y=> 5 ) )
 	 * returns "10,20 30,5"
 	 * Useful for SVG and imagemagick command line arguments
-	 * @param $shape: Array of arrays, each array containing x & y keys mapped to numeric values
+	 * @param array $shape Array of arrays, each array containing x & y keys mapped to numeric values
 	 * @return string
 	 */
 	static function shapePointsToString( $shape ) {
@@ -222,9 +223,12 @@ class RandomImageGenerator {
 	/**
 	 * Based on image specification, write a very simple SVG file to disk.
 	 * Ignores the background spec because transparency is cool. :)
-	 * @param $spec: spec describing background and shapes to draw
-	 * @param $format: file format to write (which is obviously always svg here)
-	 * @param $filename: filename to write to
+	 *
+	 * @param array $spec spec describing background and shapes to draw
+	 * @param string $format file format to write (which is obviously always svg here)
+	 * @param string $filename filename to write to
+	 *
+	 * @throws Exception
 	 */
 	public function writeSvg( $spec, $format, $filename ) {
 		$svg = new SimpleXmlElement( '<svg/>' );
@@ -250,9 +254,9 @@ class RandomImageGenerator {
 
 	/**
 	 * Based on an image specification, write such an image to disk, using Imagick PHP extension
-	 * @param $spec: spec describing background and circles to draw
-	 * @param $format: file format to write
-	 * @param $filename: filename to write to
+	 * @param array $spec spec describing background and circles to draw
+	 * @param string $format file format to write
+	 * @param string $filename filename to write to
 	 */
 	public function writeImageWithApi( $spec, $format, $filename ) {
 		// this is a hack because I can't get setImageOrientation() to work. See below.
@@ -307,7 +311,7 @@ class RandomImageGenerator {
 	 * This is used when simulating a rotated image capture with Exif orientation
 	 * @param $spec Object returned by getImageSpec
 	 * @param $matrix 2x2 transformation matrix
-	 * @return transformed Spec
+	 * @return array transformed Spec
 	 */
 	private static function rotateImageSpec( &$spec, $matrix ) {
 		$tSpec = array();
@@ -343,10 +347,10 @@ class RandomImageGenerator {
 
 	/**
 	 * Given a matrix and a pair of images, return new position
-	 * @param $matrix: 2x2 rotation matrix
-	 * @param $x: x-coordinate number
-	 * @param $y: y-coordinate number
-	 * @return Array transformed with properties x, y
+	 * @param array $matrix 2x2 rotation matrix
+	 * @param int $x x-coordinate number
+	 * @param int $y y-coordinate number
+	 * @return array Transformed with properties x, y
 	 */
 	private static function matrixMultiply2x2( $matrix, $x, $y ) {
 		return array(
@@ -354,7 +358,6 @@ class RandomImageGenerator {
 			'y' => $x * $matrix[1][0] + $y * $matrix[1][1]
 		);
 	}
-
 
 	/**
 	 * Based on an image specification, write such an image to disk, using the command line ImageMagick program ('convert').
@@ -365,9 +368,12 @@ class RandomImageGenerator {
 	 *   -draw 'fill rgb(99,123,231) circle 59,39 56,57' \
 	 *   -draw 'fill rgb(240,12,32)  circle 50,21 50,3'  filename.png
 	 *
-	 * @param $spec: spec describing background and shapes to draw
-	 * @param $format: file format to write (unused by this method but kept so it has the same signature as writeImageWithApi)
-	 * @param $filename: filename to write to
+	 * @param array $spec spec describing background and shapes to draw
+	 * @param string $format file format to write (unused by this method but kept so it has the same signature as
+	 * writeImageWithApi)
+	 * @param string $filename filename to write to
+	 *
+	 * @return bool
 	 */
 	public function writeImageWithCommandLine( $spec, $format, $filename ) {
 		global $wgImageMagickConvertCommand;
@@ -392,7 +398,7 @@ class RandomImageGenerator {
 	/**
 	 * Generate a string of random colors for ImageMagick or SVG, like "rgb(12, 37, 98)"
 	 *
-	 * @return {String}
+	 * @return string
 	 */
 	public function getRandomColor() {
 		$components = array();
@@ -406,8 +412,8 @@ class RandomImageGenerator {
 	/**
 	 * Get an array of random pairs of random words, like array( array( 'foo', 'bar' ), array( 'quux', 'baz' ) );
 	 *
-	 * @param $number Integer: number of pairs
-	 * @return Array: of two-element arrays
+	 * @param int $number Number of pairs
+	 * @return array two-element arrays
 	 */
 	private function getRandomWordPairs( $number ) {
 		$lines = $this->getRandomLines( $number * 2 );
@@ -426,8 +432,10 @@ class RandomImageGenerator {
 	 *
 	 * Will throw exception if the file could not be read or if it had fewer lines than requested.
 	 *
-	 * @param $number_desired Integer: number of lines desired
-	 * @return Array: of exactly n elements, drawn randomly from lines the file
+	 * @param int $number_desired number of lines desired
+	 *
+	 * @throws Exception
+	 * @return array of exactly n elements, drawn randomly from lines the file
 	 */
 	private function getRandomLines( $number_desired ) {
 		$filepath = $this->dictionaryFile;

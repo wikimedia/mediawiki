@@ -1,15 +1,22 @@
 @html-font-size: 1em;
 
-@body-font-size: 1em;
 
 // Page content
+// FIXME: Use global variable since Echo and CentralNotice use this variable
+@content-border-color: #a7d7f9;
+// FIXME: Find an open font that works with this stack and is readable by Windows users
 @content-font-family: sans-serif;
-@content-font-color: black;
-@content-font-size: 0.8em;
-@content-line-height: 1.5em;
-@content-padding: 1.5em 1.5em 1.5em 1.75em;
-@content-heading-font-size: 1.6em;
+@content-font-color: #252525;
+@content-font-size: 0.875em;
+@content-line-height: 1.6;
+@content-padding: 1em;
+@content-heading-font-size: 1.8em;
 @content-heading-font-family: sans-serif;
+@body-background-color: #fff;
+@heading-line-height: 1.3;
+
+// Navigation
+@menu-background-color: #f6f6f6;
 
 // Common menu
 @menu-link-color: #0645ad;
@@ -30,8 +37,8 @@
 @menu-personal-font-size: 0.75em;
 
 // Collapsible nav
-@collapsible-nav-heading-color: #4D4D4D;
-@collapsible-nav-heading-collapsed-color: #0645AD;
+@collapsible-nav-heading-color: #4d4d4d;
+@collapsible-nav-heading-collapsed-color: #0645ad;
 
 @collapsible-nav-heading-padding: 4px 0 3px 1.5em;
 @collapsible-nav-body-margin: 0 0 0 1.25em;

@@ -29,9 +29,10 @@
  * @since 1.20
  */
 abstract class QuorumLockManager extends LockManager {
-	/** @var Array Map of bucket indexes to peer server lists */
+	/** @var array Map of bucket indexes to peer server lists */
 	protected $srvsByBucket = array(); // (bucket index => (lsrv1, lsrv2, ...))
-	/** @var Array Map of degraded buckets */
+
+	/** @var array Map of degraded buckets */
 	protected $degradedBuckets = array(); // (buckey index => UNIX timestamp)
 
 	final protected function doLock( array $paths, $type ) {
@@ -65,6 +66,7 @@ abstract class QuorumLockManager extends LockManager {
 			$status->merge( $this->doLockingRequestBucket( $bucket, $pathsToLockByType ) );
 			if ( !$status->isOK() ) {
 				$status->merge( $this->doUnlockByType( $lockedPaths ) );
+
 				return $status;
 			}
 			// Record these locks as active
@@ -120,7 +122,7 @@ abstract class QuorumLockManager extends LockManager {
 	 * Attempt to acquire locks with the peers for a bucket.
 	 * This is all or nothing; if any key is locked then this totally fails.
 	 *
-	 * @param $bucket integer
+	 * @param int $bucket
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @return Status
 	 */
@@ -162,7 +164,7 @@ abstract class QuorumLockManager extends LockManager {
 	/**
 	 * Attempt to release locks with the peers for a bucket
 	 *
-	 * @param $bucket integer
+	 * @param int $bucket
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @return Status
 	 */
@@ -176,8 +178,8 @@ abstract class QuorumLockManager extends LockManager {
 		foreach ( $this->srvsByBucket[$bucket] as $lockSrv ) {
 			if ( !$this->isServerUp( $lockSrv ) ) {
 				$status->warning( 'lockmanager-fail-svr-release', $lockSrv );
-			// Attempt to release the lock on this peer
 			} else {
+				// Attempt to release the lock on this peer
 				$status->merge( $this->freeLocksOnServer( $lockSrv, $pathsByType ) );
 				++$yesVotes; // success for this peer
 				// Normally the first peers form the quorum, and the others are ignored.
@@ -198,8 +200,8 @@ abstract class QuorumLockManager extends LockManager {
 	 * Get the bucket for resource path.
 	 * This should avoid throwing any exceptions.
 	 *
-	 * @param $path string
-	 * @return integer
+	 * @param string $path
+	 * @return int
 	 */
 	protected function getBucketFromPath( $path ) {
 		$prefix = substr( sha1( $path ), 0, 2 ); // first 2 hex chars (8 bits)
@@ -210,7 +212,7 @@ abstract class QuorumLockManager extends LockManager {
 	 * Check if a lock server is up.
 	 * This should process cache results to reduce RTT.
 	 *
-	 * @param $lockSrv string
+	 * @param string $lockSrv
 	 * @return bool
 	 */
 	abstract protected function isServerUp( $lockSrv );
@@ -218,7 +220,7 @@ abstract class QuorumLockManager extends LockManager {
 	/**
 	 * Get a connection to a lock server and acquire locks
 	 *
-	 * @param $lockSrv string
+	 * @param string $lockSrv
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @return Status
 	 */
@@ -229,7 +231,7 @@ abstract class QuorumLockManager extends LockManager {
 	 *
 	 * Subclasses must effectively implement this or releaseAllLocks().
 	 *
-	 * @param $lockSrv string
+	 * @param string $lockSrv
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @return Status
 	 */

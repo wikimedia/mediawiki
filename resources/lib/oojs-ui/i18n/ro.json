@@ -1,0 +1,15 @@
+{
+    "@metadata": {
+        "authors": [
+            "AlimanRuna",
+            "Firilacroco",
+            "Minisarm",
+            "Stelistcristi"
+        ]
+    },
+    "ooui-dialog-action-close": "Închide",
+    "ooui-outline-control-move-down": "Mută elementul mai jos",
+    "ooui-outline-control-move-up": "Mută elementul mai sus",
+    "ooui-outline-control-remove": "Elimină elementul",
+    "ooui-toolbar-more": "Mai mult"
+}

@@ -67,8 +67,7 @@ if ( $runTest ) {
 	$messagesFileC = $messagesDir . 'Messages' . $langCodeFC . '.php';
 	if ( file_exists( $messagesFile ) && file_exists( $messagesFileC ) ) {
 		$run = true;
-	}
-	else {
+	} else {
 		echo "Messages file(s) could not be found.\nMake sure both files are exists.\n";
 	}
 }

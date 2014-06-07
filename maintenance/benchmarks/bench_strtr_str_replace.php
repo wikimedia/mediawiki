@@ -63,7 +63,6 @@ class bench_strtr_str_replace extends Benchmarker {
 		str_replace( "_", " ", "[[MediaWiki:Some_random_test_page]]");
 	}
 
-
 	function benchstrtr_indirect() {
 		bfNormalizeTitleStrTr( "[[MediaWiki:Some_random_test_page]]" );
 	}

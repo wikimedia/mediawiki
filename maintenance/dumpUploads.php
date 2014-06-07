@@ -64,7 +64,7 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 				$this->mSharedSupplement = true;
 			}
 		}
-		$this-> { $this->mAction } ( $this->mShared );
+		$this->{ $this->mAction } ( $this->mShared );
 		if ( $this->mSharedSupplement ) {
 			$this->fetchUsed( true );
 		}

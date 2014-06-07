@@ -19,12 +19,12 @@
  *
  * @file
  */
-class OldChangesList extends ChangesList {
 
+class OldChangesList extends ChangesList {
 	/**
 	 * Format a line using the old system (aka without any javascript).
 	 *
-	 * @param $rc RecentChange, passed by reference
+	 * @param RecentChange $rc Passed by reference
 	 * @param bool $watched (default false)
 	 * @param int $linenumber (default null)
 	 *
@@ -36,9 +36,6 @@ class OldChangesList extends ChangesList {
 
 		# Should patrol-related stuff be shown?
 		$unpatrolled = $this->showAsUnpatrolled( $rc );
-
-		$dateheader = ''; // $s now contains only <li>...</li>, for hooks' convenience.
-		$this->insertDateHeader( $dateheader, $rc->mAttribs['rc_timestamp'] );
 
 		$s = '';
 		$classes = array();
@@ -116,15 +113,21 @@ class OldChangesList extends ChangesList {
 		}
 
 		if ( $this->watchlist ) {
-			$classes[] = Sanitizer::escapeClass( 'watchlist-' . $rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
+			$classes[] = Sanitizer::escapeClass( 'watchlist-' .
+				$rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
 		}
 
 		if ( !wfRunHooks( 'OldChangesListRecentChangesLine', array( &$this, &$s, $rc, &$classes ) ) ) {
 			wfProfileOut( __METHOD__ );
+
 			return false;
 		}
 
 		wfProfileOut( __METHOD__ );
+
+		$dateheader = ''; // $s now contains only <li>...</li>, for hooks' convenience.
+		$this->insertDateHeader( $dateheader, $rc->mAttribs['rc_timestamp'] );
+
 		return "$dateheader<li class=\"" . implode( ' ', $classes ) . "\">" . $s . "</li>\n";
 	}
 }

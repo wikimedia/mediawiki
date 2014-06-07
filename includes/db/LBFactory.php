@@ -26,11 +26,8 @@
  * @ingroup Database
  */
 abstract class LBFactory {
-
-	/**
-	 * @var LBFactory
-	 */
-	static $instance;
+	/** @var LBFactory */
+	protected static $instance;
 
 	/**
 	 * Disables all access to the load balancer, will cause all database access
@@ -38,7 +35,7 @@ abstract class LBFactory {
 	 */
 	public static function disableBackend() {
 		global $wgLBFactoryConf;
-		self::$instance = new LBFactory_Fake( $wgLBFactoryConf );
+		self::$instance = new LBFactoryFake( $wgLBFactoryConf );
 	}
 
 	/**
@@ -47,12 +44,44 @@ abstract class LBFactory {
 	 * @return LBFactory
 	 */
 	static function &singleton() {
+		global $wgLBFactoryConf;
+
 		if ( is_null( self::$instance ) ) {
-			global $wgLBFactoryConf;
-			$class = $wgLBFactoryConf['class'];
+			$class = self::getLBFactoryClass( $wgLBFactoryConf );
+
 			self::$instance = new $class( $wgLBFactoryConf );
 		}
+
 		return self::$instance;
+	}
+
+	/**
+	 * Returns the LBFactory class to use and the load balancer configuration.
+	 *
+	 * @param array $config (e.g. $wgLBFactoryConf)
+	 * @return string class name
+	 */
+	public static function getLBFactoryClass( array $config ) {
+		// For configuration backward compatibility after removing
+		// underscores from class names in MediaWiki 1.23.
+		$bcClasses = array(
+			'LBFactory_Simple' => 'LBFactorySimple',
+			'LBFactory_Single' => 'LBFactorySingle',
+			'LBFactory_Multi' => 'LBFactoryMulti',
+			'LBFactory_Fake' => 'LBFactoryFake',
+		);
+
+		$class = $config['class'];
+
+		if ( isset( $bcClasses[$class] ) ) {
+			$class = $bcClasses[$class];
+			wfDeprecated(
+				'$wgLBFactoryConf must be updated. See RELEASE-NOTES for details',
+				'1.23'
+			);
+		}
+
+		return $class;
 	}
 
 	/**
@@ -69,7 +98,7 @@ abstract class LBFactory {
 	/**
 	 * Set the instance to be the given object
 	 *
-	 * @param $instance LBFactory
+	 * @param LBFactory $instance
 	 */
 	static function setInstance( $instance ) {
 		self::destroyInstance();
@@ -78,7 +107,7 @@ abstract class LBFactory {
 
 	/**
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
-	 * @param $conf
+	 * @param array $conf
 	 */
 	abstract function __construct( $conf );
 
@@ -86,7 +115,7 @@ abstract class LBFactory {
 	 * Create a new load balancer object. The resulting object will be untracked,
 	 * not chronology-protected, and the caller is responsible for cleaning it up.
 	 *
-	 * @param string $wiki wiki ID, or false for the current wiki
+	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
 	abstract function newMainLB( $wiki = false );
@@ -94,7 +123,7 @@ abstract class LBFactory {
 	/**
 	 * Get a cached (tracked) load balancer object.
 	 *
-	 * @param string $wiki wiki ID, or false for the current wiki
+	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
 	abstract function getMainLB( $wiki = false );
@@ -104,9 +133,8 @@ abstract class LBFactory {
 	 * untracked, not chronology-protected, and the caller is responsible for
 	 * cleaning it up.
 	 *
-	 * @param string $cluster external storage cluster, or false for core
-	 * @param string $wiki wiki ID, or false for the current wiki
-	 *
+	 * @param string $cluster External storage cluster, or false for core
+	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
 	abstract function newExternalLB( $cluster, $wiki = false );
@@ -115,8 +143,7 @@ abstract class LBFactory {
 	 * Get a cached (tracked) load balancer for external storage
 	 *
 	 * @param string $cluster external storage cluster, or false for core
-	 * @param string $wiki wiki ID, or false for the current wiki
-	 *
+	 * @param bool|string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
 	abstract function &getExternalLB( $cluster, $wiki = false );
@@ -125,7 +152,8 @@ abstract class LBFactory {
 	 * Execute a function for each tracked load balancer
 	 * The callback is called with the load balancer as the first parameter,
 	 * and $params passed as the subsequent parameters.
-	 * @param $callback string|array
+	 *
+	 * @param callable $callback
 	 * @param array $params
 	 */
 	abstract function forEachLB( $callback, $params = array() );
@@ -139,8 +167,9 @@ abstract class LBFactory {
 
 	/**
 	 * Call a method of each tracked load balancer
-	 * @param $methodName string
-	 * @param $args array
+	 *
+	 * @param string $methodName
+	 * @param array $args
 	 */
 	function forEachLBCallMethod( $methodName, $args = array() ) {
 		$this->forEachLB( array( $this, 'callMethod' ), array( $methodName, $args ) );
@@ -148,8 +177,8 @@ abstract class LBFactory {
 
 	/**
 	 * Private helper for forEachLBCallMethod
-	 * @param $loadBalancer
-	 * @param $methodName string
+	 * @param LoadBalancer $loadBalancer
+	 * @param string $methodName
 	 * @param $args
 	 */
 	function callMethod( $loadBalancer, $methodName, $args ) {
@@ -162,28 +191,48 @@ abstract class LBFactory {
 	function commitMasterChanges() {
 		$this->forEachLBCallMethod( 'commitMasterChanges' );
 	}
+
+	/**
+	 * Rollback changes on all master connections
+	 * @since 1.23
+	 */
+	function rollbackMasterChanges() {
+		$this->forEachLBCallMethod( 'rollbackMasterChanges' );
+	}
+
+	/**
+	 * Detemine if any master connection has pending changes.
+	 * @since 1.23
+	 * @return bool
+	 */
+	function hasMasterChanges() {
+		$ret = false;
+		$this->forEachLB( function ( $lb ) use ( &$ret ) {
+			$ret = $ret || $lb->hasMasterChanges();
+		} );
+		return $ret;
+	}
 }
 
 /**
  * A simple single-master LBFactory that gets its configuration from the b/c globals
  */
-class LBFactory_Simple extends LBFactory {
+class LBFactorySimple extends LBFactory {
+	/** @var LoadBalancer */
+	protected $mainLB;
 
-	/**
-	 * @var LoadBalancer
-	 */
-	var $mainLB;
-	var $extLBs = array();
+	/** @var LoadBalancer[] */
+	protected $extLBs = array();
 
-	# Chronology protector
-	var $chronProt;
+	/** @var ChronologyProtector */
+	protected $chronProt;
 
 	function __construct( $conf ) {
 		$this->chronProt = new ChronologyProtector;
 	}
 
 	/**
-	 * @param $wiki
+	 * @param bool|string $wiki
 	 * @return LoadBalancer
 	 */
 	function newMainLB( $wiki = false ) {
@@ -194,7 +243,10 @@ class LBFactory_Simple extends LBFactory {
 			global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype, $wgDebugDumpSql;
 			global $wgDBssl, $wgDBcompress;
 
-			$flags = ( $wgDebugDumpSql ? DBO_DEBUG : 0 ) | DBO_DEFAULT;
+			$flags = DBO_DEFAULT;
+			if ( $wgDebugDumpSql ) {
+				$flags |= DBO_DEBUG;
+			}
 			if ( $wgDBssl ) {
 				$flags |= DBO_SSL;
 			}
@@ -210,17 +262,17 @@ class LBFactory_Simple extends LBFactory {
 				'type' => $wgDBtype,
 				'load' => 1,
 				'flags' => $flags
-			));
+			) );
 		}
 
 		return new LoadBalancer( array(
 			'servers' => $servers,
 			'masterWaitTimeout' => $wgMasterWaitTimeout
-		));
+		) );
 	}
 
 	/**
-	 * @param $wiki
+	 * @param bool|string $wiki
 	 * @return LoadBalancer
 	 */
 	function getMainLB( $wiki = false ) {
@@ -229,13 +281,14 @@ class LBFactory_Simple extends LBFactory {
 			$this->mainLB->parentInfo( array( 'id' => 'main' ) );
 			$this->chronProt->initLB( $this->mainLB );
 		}
+
 		return $this->mainLB;
 	}
 
 	/**
 	 * @throws MWException
-	 * @param $cluster
-	 * @param $wiki
+	 * @param string $cluster
+	 * @param bool|string $wiki
 	 * @return LoadBalancer
 	 */
 	function newExternalLB( $cluster, $wiki = false ) {
@@ -243,14 +296,15 @@ class LBFactory_Simple extends LBFactory {
 		if ( !isset( $wgExternalServers[$cluster] ) ) {
 			throw new MWException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
 		}
+
 		return new LoadBalancer( array(
 			'servers' => $wgExternalServers[$cluster]
-		));
+		) );
 	}
 
 	/**
-	 * @param $cluster
-	 * @param $wiki
+	 * @param string $cluster
+	 * @param bool|string $wiki
 	 * @return array
 	 */
 	function &getExternalLB( $cluster, $wiki = false ) {
@@ -259,6 +313,7 @@ class LBFactory_Simple extends LBFactory {
 			$this->extLBs[$cluster]->parentInfo( array( 'id' => "ext-$cluster" ) );
 			$this->chronProt->initLB( $this->extLBs[$cluster] );
 		}
+
 		return $this->extLBs[$cluster];
 	}
 
@@ -266,8 +321,9 @@ class LBFactory_Simple extends LBFactory {
 	 * Execute a function for each tracked load balancer
 	 * The callback is called with the load balancer as the first parameter,
 	 * and $params passed as the subsequent parameters.
-	 * @param $callback
-	 * @param $params array
+	 *
+	 * @param callable $callback
+	 * @param array $params
 	 */
 	function forEachLB( $callback, $params = array() ) {
 		if ( isset( $this->mainLB ) ) {
@@ -296,7 +352,7 @@ class LBFactory_Simple extends LBFactory {
  * Call LBFactory::disableBackend() to start using this, and
  * LBFactory::enableBackend() to return to normal behavior
  */
-class LBFactory_Fake extends LBFactory {
+class LBFactoryFake extends LBFactory {
 	function __construct( $conf ) {
 	}
 
@@ -325,6 +381,7 @@ class LBFactory_Fake extends LBFactory {
  */
 class DBAccessError extends MWException {
 	function __construct() {
-		parent::__construct( "Mediawiki tried to access the database via wfGetDB(). This is not allowed." );
+		parent::__construct( "Mediawiki tried to access the database via wfGetDB(). " .
+			"This is not allowed." );
 	}
 }

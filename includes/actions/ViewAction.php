@@ -43,5 +43,4 @@ class ViewAction extends FormlessAction {
 	public function show() {
 		$this->page->view();
 	}
-
 }

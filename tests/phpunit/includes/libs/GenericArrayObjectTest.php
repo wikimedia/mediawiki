@@ -83,6 +83,8 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 	 * @since 1.20
 	 *
 	 * @param array $elements
+	 *
+	 * @covers GenericArrayObject::__construct
 	 */
 	public function testConstructor( array $elements ) {
 		$arrayObject = $this->getNew( $elements );
@@ -96,6 +98,8 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 	 * @since 1.20
 	 *
 	 * @param array $elements
+	 *
+	 * @covers GenericArrayObject::isEmpty
 	 */
 	public function testIsEmpty( array $elements ) {
 		$arrayObject = $this->getNew( $elements );
@@ -109,6 +113,8 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 	 * @since 1.20
 	 *
 	 * @param GenericArrayObject $list
+	 *
+	 * @covers GenericArrayObject::offsetUnset
 	 */
 	public function testUnset( GenericArrayObject $list ) {
 		if ( $list->isEmpty() ) {
@@ -134,6 +140,8 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 	 * @since 1.20
 	 *
 	 * @param array $elements
+	 *
+	 * @covers GenericArrayObject::append
 	 */
 	public function testAppend( array $elements ) {
 		$list = $this->getNew();
@@ -163,6 +171,8 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 	 * @since 1.20
 	 *
 	 * @param callback $function
+	 *
+	 * @covers GenericArrayObject::getObjectType
 	 */
 	protected function checkTypeChecks( $function ) {
 		$excption = null;
@@ -194,6 +204,8 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 	 * @since 1.20
 	 *
 	 * @param array $elements
+	 *
+	 * @covers GenericArrayObject::offsetSet
 	 */
 	public function testOffsetSet( array $elements ) {
 		if ( $elements === array() ) {
@@ -247,6 +259,10 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 	 * @since 1.21
 	 *
 	 * @param GenericArrayObject $list
+	 *
+	 * @covers GenericArrayObject::getSerializationData
+	 * @covers GenericArrayObject::serialize
+	 * @covers GenericArrayObject::unserialize
 	 */
 	public function testSerialization( GenericArrayObject $list ) {
 		$serialization = serialize( $list );

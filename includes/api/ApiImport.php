@@ -99,6 +99,7 @@ class ApiImport extends ApiBase {
 
 	public function getAllowedParams() {
 		global $wgImportSources;
+
 		return array(
 			'token' => array(
 				ApiBase::PARAM_TYPE => 'string',
@@ -176,7 +177,8 @@ class ApiImport extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=import&interwikisource=meta&interwikipage=Help:ParserFunctions&namespace=100&fullhistory=&token=123ABC'
+			'api.php?action=import&interwikisource=meta&interwikipage=Help:ParserFunctions&' .
+				'namespace=100&fullhistory=&token=123ABC'
 				=> 'Import [[meta:Help:Parserfunctions]] to namespace 100 with full history',
 		);
 	}

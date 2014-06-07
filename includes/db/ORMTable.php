@@ -29,7 +29,6 @@
  */
 
 class ORMTable extends DBAccessBase implements IORMTable {
-
 	/**
 	 * Cache for instances, used by the singleton method.
 	 *
@@ -96,7 +95,9 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param string|null $rowClass
 	 * @param string $fieldPrefix
 	 */
-	public function __construct( $tableName = '', array $fields = array(), array $defaults = array(), $rowClass = null, $fieldPrefix = '' ) {
+	public function __construct( $tableName = '', array $fields = array(),
+		array $defaults = array(), $rowClass = null, $fieldPrefix = ''
+	) {
 		$this->tableName = $tableName;
 		$this->fields = $fields;
 		$this->defaults = $defaults;
@@ -201,8 +202,10 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return ORMResult
 	 */
 	public function select( $fields = null, array $conditions = array(),
-							array $options = array(), $functionName = null ) {
+		array $options = array(), $functionName = null
+	) {
 		$res = $this->rawSelect( $fields, $conditions, $options, $functionName );
+
 		return new ORMResult( $this, $res );
 	}
 
@@ -221,7 +224,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @throws DBQueryError if the query failed (even if the database was in ignoreErrors mode).
 	 */
 	public function selectObjects( $fields = null, array $conditions = array(),
-								   array $options = array(), $functionName = null ) {
+		array $options = array(), $functionName = null
+	) {
 		$result = $this->selectFields( $fields, $conditions, $options, false, $functionName );
 
 		$objects = array();
@@ -239,19 +243,19 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @since 1.20
 	 *
 	 * @param null|string|array $fields
-	 * @param array             $conditions
-	 * @param array             $options
-	 * @param null|string       $functionName
-	 *
+	 * @param array $conditions
+	 * @param array $options
+	 * @param null|string $functionName
 	 * @return ResultWrapper
-	 * @throws DBQueryError if the quey failed (even if the database was in ignoreErrors mode).
+	 * @throws DBQueryError if the query failed (even if the database was in
+	 *   ignoreErrors mode).
 	 */
 	public function rawSelect( $fields = null, array $conditions = array(),
-							   array $options = array(), $functionName = null ) {
+		array $options = array(), $functionName = null
+	) {
 		if ( is_null( $fields ) ) {
 			$fields = array_keys( $this->getFields() );
-		}
-		else {
+		} else {
 			$fields = (array)$fields;
 		}
 
@@ -313,7 +317,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return array of array
 	 */
 	public function selectFields( $fields = null, array $conditions = array(),
-								  array $options = array(), $collapse = true, $functionName = null ) {
+		array $options = array(), $collapse = true, $functionName = null
+	) {
 		$objects = array();
 
 		$result = $this->rawSelect( $fields, $conditions, $options, $functionName );
@@ -325,8 +330,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 		if ( $collapse ) {
 			if ( count( $fields ) === 1 ) {
 				$objects = array_map( 'array_shift', $objects );
-			}
-			elseif ( count( $fields ) === 2 ) {
+			} elseif ( count( $fields ) === 2 ) {
 				$o = array();
 
 				foreach ( $objects as $object ) {
@@ -354,7 +358,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return IORMRow|bool False on failure
 	 */
 	public function selectRow( $fields = null, array $conditions = array(),
-							   array $options = array(), $functionName = null ) {
+		array $options = array(), $functionName = null
+	) {
 		$options['LIMIT'] = 1;
 
 		$objects = $this->select( $fields, $conditions, $options, $functionName );
@@ -373,10 +378,11 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @param array $options
 	 * @param string|null $functionName
 	 *
-	 * @return ResultWrapper
+	 * @return stdClass
 	 */
 	public function rawSelectRow( array $fields, array $conditions = array(),
-								  array $options = array(), $functionName = null ) {
+		array $options = array(), $functionName = null
+	) {
 		$dbr = $this->getReadDbConnection();
 
 		$result = $dbr->selectRow(
@@ -388,6 +394,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 		);
 
 		$this->releaseConnection( $dbr );
+
 		return $result;
 	}
 
@@ -409,7 +416,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @return mixed|array|bool False on failure
 	 */
 	public function selectFieldsRow( $fields = null, array $conditions = array(),
-									 array $options = array(), $collapse = true, $functionName = null ) {
+		array $options = array(), $collapse = true, $functionName = null
+	) {
 		$options['LIMIT'] = 1;
 
 		$objects = $this->selectFields( $fields, $conditions, $options, $collapse, $functionName );
@@ -491,6 +499,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 		) !== false; // DatabaseBase::delete does not always return true for success as documented...
 
 		$this->releaseConnection( $dbw );
+
 		return $result;
 	}
 
@@ -535,7 +544,9 @@ class ORMTable extends DBAccessBase implements IORMTable {
 			}
 
 			if ( $setDefaults && $hasDefault ) {
-				$default = is_array( $defaults[$field] ) ? implode( '|', $defaults[$field] ) : $defaults[$field];
+				$default = is_array( $defaults[$field] )
+					? implode( '|', $defaults[$field] )
+					: $defaults[$field];
 				$params[$field][ApiBase::PARAM_DFLT] = $default;
 			}
 		}
@@ -568,7 +579,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	}
 
 	/**
-	 * Set the database ID to use for read operations, use DB_XXX constants or an index to the load balancer setup.
+	 * Set the database ID to use for read operations, use DB_XXX constants or
+	 *   an index to the load balancer setup.
 	 *
 	 * @param integer $db
 	 *
@@ -583,7 +595,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 *
 	 * @since 1.20
 	 *
-	 * @return String|bool The target wiki, in a form that  LBFactory understands (or false if the local wiki is used)
+	 * @return String|bool The target wiki, in a form that LBFactory understands
+	 *   (or false if the local wiki is used)
 	 */
 	public function getTargetWiki() {
 		return $this->wiki;
@@ -592,7 +605,8 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	/**
 	 * Set the ID of the any foreign wiki to use as a target for database operations
 	 *
-	 * @param string|bool $wiki The target wiki, in a form that  LBFactory understands (or false if the local wiki shall be used)
+	 * @param string|bool $wiki The target wiki, in a form that  LBFactory
+	 *   understands (or false if the local wiki shall be used)
 	 *
 	 * @since 1.20
 	 */
@@ -638,9 +652,11 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 *
 	 * @since 1.20
 	 */
+	// @codingStandardsIgnoreStart Suppress "useless method overriding" sniffer warning
 	public function releaseConnection( DatabaseBase $db ) {
 		parent::releaseConnection( $db ); // just make it public
 	}
+	// @codingStandardsIgnoreEnd
 
 	/**
 	 * Update the records matching the provided conditions by
@@ -665,6 +681,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 		) !== false; // DatabaseBase::update does not always return true for success as documented...
 
 		$this->releaseConnection( $dbw );
+
 		return $result;
 	}
 
@@ -711,8 +728,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 				if ( is_array( $value ) ) {
 					$field = $value[0];
 					$value = $value[1];
-				}
-				else {
+				} else {
 					$value = explode( ' ', $value, 2 );
 					$value[0] = $this->getPrefixedField( $value[0] );
 					$prefixedValues[] = implode( ' ', $value );
@@ -809,7 +825,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 * @since 1.20
 	 *
 	 * @param stdClass $result
-	 *
+	 * @throws MWException
 	 * @return array
 	 */
 	public function getFieldsFromDBResult( stdClass $result ) {
@@ -1103,5 +1119,4 @@ class ORMTable extends DBAccessBase implements IORMTable {
 
 		return $success;
 	}
-
 }

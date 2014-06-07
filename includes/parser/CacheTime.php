@@ -27,24 +27,64 @@
  * @ingroup Parser
  */
 class CacheTime {
+	/** @var array|bool ParserOptions which have been taken into account to
+	 * produce output or false if not available.
+	 */
+	public $mUsedOptions;
 
 	var	$mVersion = Parser::VERSION,  # Compatibility check
 		$mCacheTime = '',             # Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
 		$mCacheExpiry = null,         # Seconds after which the object should expire, use 0 for uncachable. Used in ParserCache.
-		$mContainsOldMagic;           # Boolean variable indicating if the input contained variables like {{CURRENTDAY}}
+		$mContainsOldMagic,           # Boolean variable indicating if the input contained variables like {{CURRENTDAY}}
+		$mCacheRevisionId = null;     # Revision ID that was parsed
 
-	function getCacheTime()              { return $this->mCacheTime; }
+	/**
+	 * @return string TS_MW timestamp
+	 */
+	function getCacheTime() {
+		return wfTimestamp( TS_MW, $this->mCacheTime );
+	}
 
-	function containsOldMagic()          { return $this->mContainsOldMagic; }
-	function setContainsOldMagic( $com ) { return wfSetVar( $this->mContainsOldMagic, $com ); }
+	/**
+	 * @return bool
+	 */
+	function containsOldMagic() {
+		return $this->mContainsOldMagic;
+	}
+
+	/**
+	 * @param $com bool
+	 * @return bool
+	 */
+	function setContainsOldMagic( $com ) {
+		return wfSetVar( $this->mContainsOldMagic, $com );
+	}
 
 	/**
 	 * setCacheTime() sets the timestamp expressing when the page has been rendered.
-	 * This doesn not control expiry, see updateCacheExpiry() for that!
+	 * This does not control expiry, see updateCacheExpiry() for that!
 	 * @param $t string
 	 * @return string
 	 */
-	function setCacheTime( $t )          { return wfSetVar( $this->mCacheTime, $t ); }
+	function setCacheTime( $t ) {
+		return wfSetVar( $this->mCacheTime, $t );
+	}
+
+	/**
+	 * @since 1.23
+	 * @return int|null Revision id, if any was set
+	 */
+	function getCacheRevisionId() {
+		return $this->mCacheRevisionId;
+	}
+
+	/**
+	 * @since 1.23
+	 * @param $id int Revision id
+	 */
+	function setCacheRevisionId( $id ) {
+		$this->mCacheRevisionId = $id;
+	}
 
 	/**
 	 * Sets the number of seconds after which this object should expire.
@@ -129,4 +169,20 @@ class CacheTime {
 			version_compare( $this->mVersion, Parser::VERSION, "lt" );
 	}
 
+	/**
+	 * Return true if this cached output object is for a different revision of
+	 * the page.
+	 *
+	 * @todo We always return false if $this->getCacheRevisionId() is null;
+	 * this prevents invalidating the whole parser cache when this change is
+	 * deployed. Someday that should probably be changed.
+	 *
+	 * @since 1.23
+	 * @param int $id the affected article's current revision id
+	 * @return Boolean
+	 */
+	public function isDifferentRevision( $id ) {
+		$cached = $this->getCacheRevisionId();
+		return $cached !== null && $id !== $cached;
+	}
 }

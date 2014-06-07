@@ -131,8 +131,14 @@ class Cookie {
 			}
 
 			if ( substr( $domain, 0, 1 ) == '.'
-				&& substr_compare( $originDomain, $domain, -strlen( $domain ),
-								   strlen( $domain ), true ) != 0 ) {
+				&& substr_compare(
+					$originDomain,
+					$domain,
+					-strlen( $domain ),
+					strlen( $domain ),
+					true
+				) != 0
+			) {
 				return false;
 			}
 		}
@@ -167,8 +173,15 @@ class Cookie {
 		if ( $domain == $this->domain
 			|| ( strlen( $domain ) > strlen( $this->domain )
 				&& substr( $this->domain, 0, 1 ) == '.'
-				&& substr_compare( $domain, $this->domain, -strlen( $this->domain ),
-									strlen( $this->domain ), true ) == 0 ) ) {
+				&& substr_compare(
+					$domain,
+					$this->domain,
+					-strlen( $this->domain ),
+					strlen( $this->domain ),
+					true
+				) == 0
+			)
+		) {
 			return true;
 		}
 

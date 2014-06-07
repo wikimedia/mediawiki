@@ -1,0 +1,9 @@
+{
+    "@metadata": {
+        "authors": [
+            "Ianbu"
+        ]
+    },
+    "mainpagetext": "'''MediaWiki已經裝好矣。'''",
+    "mainpagedocfooter": "請查看[//meta.wikimedia.org/wiki/Help:Contents 用者說明書]的資料通使用wiki 軟體\n\n== 入門 ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings 配置的設定]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki時常問答]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki的公布列單]"
+}

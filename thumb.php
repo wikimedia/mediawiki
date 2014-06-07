@@ -36,6 +36,10 @@ if ( defined( 'THUMB_HANDLER' ) ) {
 }
 
 wfLogProfilingData();
+// Commit and close up!
+$factory = wfGetLBFactory();
+$factory->commitMasterChanges();
+$factory->shutdown();
 
 //--------------------------------------------------------------------------
 
@@ -107,6 +111,15 @@ function wfStreamThumb( array $params ) {
 
 	$fileName = isset( $params['f'] ) ? $params['f'] : '';
 
+	// Backwards compatibility parameters
+	if ( isset( $params['w'] ) ) {
+		$params['width'] = $params['w'];
+		unset( $params['w'] );
+	}
+	if ( isset( $params['p'] ) ) {
+		$params['page'] = $params['p'];
+	}
+
 	// Is this a thumb of an archived file?
 	$isOld = ( isset( $params['archived'] ) && $params['archived'] );
 	unset( $params['archived'] ); // handlers don't care
@@ -171,7 +184,6 @@ function wfStreamThumb( array $params ) {
 		return;
 	}
 
-
 	// Check the source file storage path
 	if ( !$img->exists() ) {
 		$redirectedLocation = false;
@@ -235,17 +247,8 @@ function wfStreamThumb( array $params ) {
 		}
 	}
 
-	// Backwards compatibility parameters
-	if ( isset( $params['w'] ) ) {
-		$params['width'] = $params['w'];
-		unset( $params['w'] );
-	}
-	if ( isset( $params['p'] ) ) {
-		$params['page'] = $params['p'];
-	}
 	unset( $params['r'] ); // ignore 'r' because we unconditionally pass File::RENDER
 	unset( $params['f'] ); // We're done with 'f' parameter.
-
 
 	// Get the normalized thumbnail name from the parameters...
 	try {
@@ -290,8 +293,10 @@ function wfStreamThumb( array $params ) {
 		}
 	}
 
+	$dispositionType = isset( $params['download'] ) ? 'attachment' : 'inline';
+
 	// Suggest a good name for users downloading this thumbnail
-	$headers[] = "Content-Disposition: {$img->getThumbDisposition( $thumbName )}";
+	$headers[] = "Content-Disposition: {$img->getThumbDisposition( $thumbName, $dispositionType )}";
 
 	if ( count( $varyHeader ) ) {
 		$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
@@ -307,6 +312,9 @@ function wfStreamThumb( array $params ) {
 	$user = RequestContext::getMain()->getUser();
 	if ( $user->pingLimiter( 'renderfile' ) ) {
 		wfThumbError( 500, wfMessage( 'actionthrottledtext' ) );
+		return;
+	} elseif ( wfThumbIsAttemptThrottled( $img, $thumbName, 5 ) ) {
+		wfThumbError( 500, wfMessage( 'thumbnail_image-failure-limit', 5 ) );
 		return;
 	}
 
@@ -333,11 +341,51 @@ function wfStreamThumb( array $params ) {
 	}
 
 	if ( $errorMsg !== false ) {
+		wfThumbIncrAttemptFailures( $img, $thumbName );
 		wfThumbError( 500, $errorMsg );
 	} else {
 		// Stream the file if there were no errors
 		$thumb->streamFile( $headers );
 	}
+}
+
+/**
+ * @param File $img
+ * @param string $thumbName
+ * @param int $limit
+ * @return int|bool
+ */
+function wfThumbIsAttemptThrottled( File $img, $thumbName, $limit ) {
+	global $wgMemc;
+
+	return ( $wgMemc->get( wfThumbAttemptKey( $img, $thumbName ) ) >= $limit );
+}
+
+/**
+ * @param File $img
+ * @param string $thumbName
+ */
+function wfThumbIncrAttemptFailures( File $img, $thumbName ) {
+	global $wgMemc;
+
+	$key = wfThumbAttemptKey( $img, $thumbName );
+	if ( !$wgMemc->incr( $key, 1 ) ) {
+		if ( !$wgMemc->add( $key, 1, 3600 ) ) {
+			$wgMemc->incr( $key, 1 );
+		}
+	}
+}
+
+/**
+ * @param File $img
+ * @param string $thumbName
+ * @return string
+ */
+function wfThumbAttemptKey( File $img, $thumbName ) {
+	global $wgAttemptFailureEpoch;
+
+	return wfMemcKey( 'attempt-failures', $wgAttemptFailureEpoch,
+		$img->getRepo()->getName(), md5( $img->getName() ), md5( $thumbName ) );
 }
 
 /**

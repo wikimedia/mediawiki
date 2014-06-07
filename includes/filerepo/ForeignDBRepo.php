@@ -27,17 +27,37 @@
  * @ingroup FileRepo
  */
 class ForeignDBRepo extends LocalRepo {
-	# Settings
-	var $dbType, $dbServer, $dbUser, $dbPassword, $dbName, $dbFlags,
-		$tablePrefix, $hasSharedCache;
+	/** @var string */
+	protected $dbType;
+
+	/** @var string */
+	protected $dbServer;
+
+	/** @var string */
+	protected $dbUser;
+
+	/** @var string */
+	protected $dbPassword;
+
+	/** @var string */
+	protected $dbName;
+
+	/** @var string */
+	protected $dbFlags;
+
+	/** @var string */
+	protected $tablePrefix;
+
+	/** @var bool */
+	protected $hasSharedCache;
 
 	# Other stuff
-	var $dbConn;
-	var $fileFactory = array( 'ForeignDBFile', 'newFromTitle' );
-	var $fileFromRowFactory = array( 'ForeignDBFile', 'newFromRow' );
+	protected $dbConn;
+	protected $fileFactory = array( 'ForeignDBFile', 'newFromTitle' );
+	protected $fileFromRowFactory = array( 'ForeignDBFile', 'newFromRow' );
 
 	/**
-	 * @param $info array|null
+	 * @param array|null $info
 	 */
 	function __construct( $info ) {
 		parent::__construct( $info );
@@ -68,6 +88,7 @@ class ForeignDBRepo extends LocalRepo {
 				)
 			);
 		}
+
 		return $this->dbConn;
 	}
 
@@ -95,6 +116,7 @@ class ForeignDBRepo extends LocalRepo {
 		if ( $this->hasSharedCache() ) {
 			$args = func_get_args();
 			array_unshift( $args, $this->dbName, $this->tablePrefix );
+
 			return call_user_func_array( 'wfForeignMemcKey', $args );
 		} else {
 			return false;
@@ -103,5 +125,15 @@ class ForeignDBRepo extends LocalRepo {
 
 	protected function assertWritableRepo() {
 		throw new MWException( get_class( $this ) . ': write operations are not supported.' );
+	}
+
+	/**
+	 * Return information about the repository.
+	 *
+	 * @return array
+	 * @since 1.22
+	 */
+	function getInfo() {
+		return FileRepo::getInfo();
 	}
 }

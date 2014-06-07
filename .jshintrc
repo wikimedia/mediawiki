@@ -2,23 +2,20 @@
 	/* Common */
 
 	// Enforcing
-	"camelcase": true,
-	"curly": true,
 	"eqeqeq": true,
-	"immed": true,
+	"es3": true,
 	"latedef": true,
-	"newcap": true,
 	"noarg": true,
-	"noempty": true,
 	"nonew": true,
-	"quotmark": "single",
-	"trailing": true,
 	"undef": true,
 	"unused": true,
-	// Legacy
-	"onevar": true,
 
 	/* Local */
+
+	// FIXME: Deprecated, handle these with node-jscs instead.
+	// Handled here because we still have inline overrides in some places.
+	"camelcase": true,
+	"nomen": true,
 
 	// Enforcing
 	"bitwise": true,
@@ -31,8 +28,6 @@
 	"multistr": true,
 	// Environment
 	"browser": true,
-	// Legacy
-	"nomen": true,
 
 	"predef": [
 		"mediaWiki",

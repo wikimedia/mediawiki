@@ -3,7 +3,7 @@
  * Page protection
  *
  * Copyright © 2005 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -83,8 +83,8 @@ class ProtectionForm {
 	 */
 	function loadData() {
 		global $wgRequest, $wgUser;
-		global $wgRestrictionLevels;
 
+		$levels = MWNamespace::getRestrictionLevels( $this->mTitle->getNamespace(), $wgUser );
 		$this->mCascade = $this->mTitle->areRestrictionsCascading();
 
 		$this->mReason = $wgRequest->getText( 'mwProtect-reason' );
@@ -132,21 +132,7 @@ class ProtectionForm {
 			}
 
 			$val = $wgRequest->getVal( "mwProtect-level-$action" );
-			if ( isset( $val ) && in_array( $val, $wgRestrictionLevels ) ) {
-				// Prevent users from setting levels that they cannot later unset
-				if ( $val == 'sysop' ) {
-					// Special case, rewrite sysop to editprotected
-					if ( !$wgUser->isAllowed( 'editprotected' ) ) {
-						continue;
-					}
-				} elseif ( $val == 'autoconfirmed' ) {
-					// Special case, rewrite autoconfirmed to editsemiprotected
-					if ( !$wgUser->isAllowed( 'editsemiprotected' ) ) {
-						continue;
-					}
-				} elseif ( !$wgUser->isAllowed( $val ) ) {
-					continue;
-				}
+			if ( isset( $val ) && in_array( $val, $levels ) ) {
 				$this->mRestrictions[$action] = $val;
 			}
 		}
@@ -189,7 +175,7 @@ class ProtectionForm {
 	function execute() {
 		global $wgRequest, $wgOut;
 
-		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+		if ( MWNamespace::getRestrictionLevels( $this->mTitle->getNamespace() ) === array( '' ) ) {
 			throw new ErrorPageError( 'protect-badnamespace-title', 'protect-badnamespace-text' );
 		}
 
@@ -556,28 +542,13 @@ class ProtectionForm {
 	 * @return String: HTML fragment
 	 */
 	function buildSelector( $action, $selected ) {
-		global $wgRestrictionLevels, $wgUser;
+		global $wgUser;
 
-		$levels = array();
-		foreach ( $wgRestrictionLevels as $key ) {
-			//don't let them choose levels above their own (aka so they can still unprotect and edit the page). but only when the form isn't disabled
-			if ( $key == 'sysop' ) {
-				//special case, rewrite sysop to editprotected
-				if ( !$wgUser->isAllowed( 'editprotected' ) && !$this->disabled ) {
-					continue;
-				}
-			} elseif ( $key == 'autoconfirmed' ) {
-				//special case, rewrite autoconfirmed to editsemiprotected
-				if ( !$wgUser->isAllowed( 'editsemiprotected' ) && !$this->disabled ) {
-					continue;
-				}
-			} else {
-				if ( !$wgUser->isAllowed( $key ) && !$this->disabled ) {
-					continue;
-				}
-			}
-			$levels[] = $key;
-		}
+		// If the form is disabled, display all relevant levels. Otherwise,
+		// just show the ones this user can use.
+		$levels = MWNamespace::getRestrictionLevels( $this->mTitle->getNamespace(),
+			$this->disabled ? null : $wgUser
+		);
 
 		$id = 'mwProtect-level-' . $action;
 		$attribs = array(

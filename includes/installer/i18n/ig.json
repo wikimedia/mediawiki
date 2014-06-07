@@ -1,0 +1,17 @@
+{
+    "@metadata": {
+        "authors": [
+            "Ukabia"
+        ]
+    },
+    "config-back": "← Laàzú",
+    "config-continue": "Gawazie →",
+    "config-page-language": "Ásụ̀sụ̀",
+    "config-page-name": "Áhà",
+    "config-page-install": "Sụ̀ímé",
+    "config-restart": "Eeh, bìdówárí ya.",
+    "config-admin-password": "Okwúngáfè:",
+    "config-admin-password-confirm": "Okwúngáfè mgbe ozor:",
+    "mainpagetext": "'''MediaWiki a banyélé nke oma.'''",
+    "mainpagedocfooter": "Gbàkpó [//meta.wikimedia.org/wiki/Help:Contents Ǹdù Ọ'bànifé] màkà ụmá màkà Í jí ngwa nsónùsòrò bu wiki.\n\n== I bídó ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Ndétu ndósé ihe]\n* [//www.mediawiki.org/wiki/Manual:FAQ FAQ MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce wéfù ndétu nke ozi MediaWiki]"
+}

@@ -59,6 +59,7 @@ class ExternalStore {
 		}
 
 		$class = 'ExternalStore' . ucfirst( $proto );
+
 		// Any custom modules should be added to $wgAutoLoadClasses for on-demand loading
 		return class_exists( $class ) ? new $class( $params ) : false;
 	}
@@ -120,6 +121,7 @@ class ExternalStore {
 				$retval[$url] = false;
 			}
 		}
+
 		return $retval;
 	}
 

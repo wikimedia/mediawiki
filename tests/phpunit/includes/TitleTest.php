@@ -3,6 +3,8 @@
 /**
  * @group Database
  *        ^--- needed for language cache stuff
+ *
+ * @group Title
  */
 class TitleTest extends MediaWikiTestCase {
 	protected function setUp() {
@@ -38,8 +40,24 @@ class TitleTest extends MediaWikiTestCase {
 	 * See also mediawiki.Title.test.js
 	 * @covers Title::secureAndSplit
 	 * @todo This method should be split into 2 separate tests each with a provider
+	 * @note: This mainly tests MediaWikiTitleCodec::parseTitle().
 	 */
 	public function testSecureAndSplit() {
+		$this->setMwGlobals( array(
+			'wgLocalInterwikis' => array( 'localtestiw' ),
+			'wgHooks' => array(
+				'InterwikiLoadPrefix' => array(
+					function ( $prefix, &$data ) {
+						if ( $prefix === 'localtestiw' ) {
+							$data = array( 'iw_url' => 'localtestiw' );
+						} elseif ( $prefix === 'remotetestiw' ) {
+							$data = array( 'iw_url' => 'remotetestiw' );
+						}
+						return false;
+					}
+				)
+			)
+		));
 		// Valid
 		foreach ( array(
 			'Sandbox',
@@ -47,6 +65,7 @@ class TitleTest extends MediaWikiTestCase {
 			'A \'B\'',
 			'.com',
 			'~',
+			'#',
 			'"',
 			'\'',
 			'Talk:Sandbox',
@@ -58,7 +77,17 @@ class TitleTest extends MediaWikiTestCase {
 			'A~~',
 			// Length is 256 total, but only title part matters
 			'Category:' . str_repeat( 'x', 248 ),
-			str_repeat( 'x', 252 )
+			str_repeat( 'x', 252 ),
+			// interwiki prefix
+			'localtestiw: #anchor',
+			'localtestiw:foo',
+			'localtestiw: foo # anchor',
+			'localtestiw: Talk: Sandbox # anchor',
+			'remotetestiw:',
+			'remotetestiw: Talk: # anchor',
+			'remotetestiw: #bar',
+			'remotetestiw: Talk:',
+			'remotetestiw: Talk: Foo'
 		) as $text ) {
 			$this->assertInstanceOf( 'Title', Title::newFromText( $text ), "Valid: $text" );
 		}
@@ -66,6 +95,7 @@ class TitleTest extends MediaWikiTestCase {
 		// Invalid
 		foreach ( array(
 			'',
+			':',
 			'__  __',
 			'  __  ',
 			// Bad characters forbidden regardless of wgLegalTitleChars
@@ -103,10 +133,14 @@ class TitleTest extends MediaWikiTestCase {
 			'A ~~~~~ Timestamp',
 			str_repeat( 'x', 256 ),
 			// Namespace prefix without actual title
-			// ':', // bug 54044
 			'Talk:',
+			'Talk:#',
 			'Category: ',
-			'Category: #bar'
+			'Category: #bar',
+			// interwiki prefix
+			'localtestiw:',
+			'localtestiw: Talk: # anchor',
+			'localtestiw: Talk:'
 		) as $text ) {
 			$this->assertNull( Title::newFromText( $text ), "Invalid: $text" );
 		}
@@ -184,6 +218,7 @@ class TitleTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideBug31100
 	 * @covers Title::fixSpecialName
+	 * @todo give this test a real name explaining what is being tested here
 	 */
 	public function testBug31100FixSpecialName( $text, $expectedParam ) {
 		$title = Title::newFromText( $text );
@@ -481,5 +516,75 @@ class TitleTest extends MediaWikiTestCase {
 			array( 'User:John_Doe/subOne/subTwo', 'subTwo' ),
 			array( 'User:John_Doe/subOne', 'subOne' ),
 		);
+	}
+
+	public function provideNewFromTitleValue() {
+		return array(
+			array( new TitleValue( NS_MAIN, 'Foo' ) ),
+			array( new TitleValue( NS_MAIN, 'Foo', 'bar' ) ),
+			array( new TitleValue( NS_USER, 'Hansi_Maier' ) ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideNewFromTitleValue
+	 */
+	public function testNewFromTitleValue( TitleValue $value ) {
+		$title = Title::newFromTitleValue( $value );
+
+		$dbkey = str_replace( ' ', '_', $value->getText() );
+		$this->assertEquals( $dbkey, $title->getDBkey() );
+		$this->assertEquals( $value->getNamespace(), $title->getNamespace() );
+		$this->assertEquals( $value->getFragment(), $title->getFragment() );
+	}
+
+	public function provideGetTitleValue() {
+		return array(
+			array( 'Foo' ),
+			array( 'Foo#bar' ),
+			array( 'User:Hansi_Maier' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideGetTitleValue
+	 */
+	public function testGetTitleValue( $text ) {
+		$title = Title::newFromText( $text );
+		$value = $title->getTitleValue();
+
+		$dbkey = str_replace( ' ', '_', $value->getText() );
+		$this->assertEquals( $title->getDBkey(), $dbkey );
+		$this->assertEquals( $title->getNamespace(), $value->getNamespace() );
+		$this->assertEquals( $title->getFragment(), $value->getFragment() );
+	}
+
+	public function provideGetFragment() {
+		return array(
+			array( 'Foo', '' ),
+			array( 'Foo#bar', 'bar' ),
+			array( 'Foo#bär', 'bär' ),
+
+			// Inner whitespace is normalized
+			array( 'Foo#bar_bar', 'bar bar' ),
+			array( 'Foo#bar bar', 'bar bar' ),
+			array( 'Foo#bar   bar', 'bar bar' ),
+
+			// Leading whitespace is kept, trailing whitespace is trimmed.
+			// XXX: Is this really want we want?
+			array( 'Foo#_bar_bar_', ' bar bar' ),
+			array( 'Foo# bar bar ', ' bar bar' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideGetFragment
+	 *
+	 * @param $full
+	 * @param $fragment
+	 */
+	public function testGetFragment( $full, $fragment ) {
+		$title = Title::newFromText( $full );
+		$this->assertEquals( $fragment, $title->getFragment() );
 	}
 }

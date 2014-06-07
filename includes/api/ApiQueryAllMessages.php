@@ -241,10 +241,10 @@ class ApiQueryAllMessages extends ApiQueryBase {
 			'messages' => 'Which messages to output. "*" (default) means all messages',
 			'prop' => 'Which properties to get',
 			'enableparser' => array( 'Set to enable parser, will preprocess the wikitext of message',
-							'Will substitute magic words, handle templates etc.' ),
+				'Will substitute magic words, handle templates etc.' ),
 			'nocontent' => 'If set, do not include the content of the messages in the output.',
 			'includelocal' => array( "Also include local messages, i.e. messages that don't exist in the software but do exist as a MediaWiki: page.",
-							"This lists all MediaWiki: pages, so it will also list those that aren't 'really' messages such as Common.js",
+				"This lists all MediaWiki: pages, so it will also list those that aren't 'really' messages such as Common.js",
 			),
 			'title' => 'Page name to use as context when parsing message (for enableparser option)',
 			'args' => 'Arguments to be substituted into message',
@@ -285,7 +285,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Return messages from this site';
+		return 'Return messages from this site.';
 	}
 
 	public function getExamples() {

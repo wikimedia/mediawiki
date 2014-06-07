@@ -135,7 +135,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	function showOptions( $namespace, $type = 'edit', $level ) {
 		global $wgScript;
 		$action = htmlspecialchars( $wgScript );
-		$title = $this->getTitle();
+		$title = $this->getPageTitle();
 		$special = htmlspecialchars( $title->getPrefixedDBkey() );
 
 		return "<form action=\"$action\" method=\"get\">\n" .

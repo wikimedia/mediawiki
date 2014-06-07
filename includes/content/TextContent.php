@@ -34,12 +34,16 @@
  */
 class TextContent extends AbstractContent {
 
+	/**
+	 * @param string $text
+	 * @param string $model_id
+	 */
 	public function __construct( $text, $model_id = CONTENT_MODEL_TEXT ) {
 		parent::__construct( $model_id );
 
 		if ( $text === null || $text === false ) {
 			wfWarn( "TextContent constructed with \$text = " . var_export( $text, true ) . "! "
-					. "This may indicate an error in the caller's scope." );
+				. "This may indicate an error in the caller's scope.", 2 );
 
 			$text = '';
 		}
@@ -51,6 +55,11 @@ class TextContent extends AbstractContent {
 		$this->mText = $text;
 	}
 
+	/**
+	 * @note Mutable subclasses MUST override this to return a copy!
+	 *
+	 * @return Content $this
+	 */
 	public function copy() {
 		return $this; # NOTE: this is ok since TextContent are immutable.
 	}
@@ -74,6 +83,7 @@ class TextContent extends AbstractContent {
 	 */
 	public function getSize() {
 		$text = $this->getNativeData();
+
 		return strlen( $text );
 	}
 
@@ -81,10 +91,10 @@ class TextContent extends AbstractContent {
 	 * Returns true if this content is not a redirect, and $wgArticleCountMethod
 	 * is "any".
 	 *
-	 * @param bool $hasLinks if it is known whether this content contains links,
+	 * @param bool $hasLinks If it is known whether this content contains links,
 	 * provide this information here, to avoid redundant parsing to find out.
 	 *
-	 * @return bool True if the content is countable
+	 * @return bool
 	 */
 	public function isCountable( $hasLinks = null ) {
 		global $wgArticleCountMethod;
@@ -103,17 +113,18 @@ class TextContent extends AbstractContent {
 	/**
 	 * Returns the text represented by this Content object, as a string.
 	 *
-	 * @return string: the raw text
+	 * @return string The raw text.
 	 */
 	public function getNativeData() {
 		$text = $this->mText;
+
 		return $text;
 	}
 
 	/**
 	 * Returns the text represented by this Content object, as a string.
 	 *
-	 * @return string: the raw text
+	 * @return string The raw text.
 	 */
 	public function getTextForSearchIndex() {
 		return $this->getNativeData();
@@ -125,7 +136,7 @@ class TextContent extends AbstractContent {
 	 *
 	 * @note: this allows any text-based content to be transcluded as if it was wikitext.
 	 *
-	 * @return string|false: the raw text, or null if the conversion failed
+	 * @return string|false The raw text, or false if the conversion failed.
 	 */
 	public function getWikitextForTransclusion() {
 		$wikitext = $this->convert( CONTENT_MODEL_WIKITEXT, 'lossy' );
@@ -141,29 +152,30 @@ class TextContent extends AbstractContent {
 	 * Returns a Content object with pre-save transformations applied.
 	 * This implementation just trims trailing whitespace.
 	 *
-	 * @param $title Title
-	 * @param $user User
-	 * @param $popts ParserOptions
+	 * @param Title $title
+	 * @param User $user
+	 * @param ParserOptions $popts
+	 *
 	 * @return Content
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
 		$text = $this->getNativeData();
 		$pst = rtrim( $text );
 
-		return ( $text === $pst ) ? $this : new WikitextContent( $pst );
+		return ( $text === $pst ) ? $this : new static( $pst );
 	}
 
 	/**
 	 * Diff this content object with another content object.
 	 *
-	 * @since 1.21diff
+	 * @since 1.21
 	 *
-	 * @param $that Content: The other content object to compare this content
+	 * @param Content $that The other content object to compare this content
 	 * object to.
-	 * @param $lang Language: The language object to use for text segmentation.
+	 * @param Language $lang The language object to use for text segmentation.
 	 *    If not given, $wgContentLang is used.
 	 *
-	 * @return DiffResult: A diff representing the changes that would have to be
+	 * @return Diff A diff representing the changes that would have to be
 	 *    made to this content object to make it equal to $that.
 	 */
 	public function diff( Content $that, Language $lang = null ) {
@@ -178,13 +190,14 @@ class TextContent extends AbstractContent {
 		}
 
 		$otext = $this->getNativeData();
-		$ntext = $this->getNativeData();
+		$ntext = $that->getNativeData();
 
 		# Note: Use native PHP diff, external engines don't give us abstract output
 		$ota = explode( "\n", $lang->segmentForDiff( $otext ) );
 		$nta = explode( "\n", $lang->segmentForDiff( $ntext ) );
 
 		$diff = new Diff( $ota, $nta );
+
 		return $diff;
 	}
 
@@ -192,17 +205,15 @@ class TextContent extends AbstractContent {
 	 * Returns a generic ParserOutput object, wrapping the HTML returned by
 	 * getHtml().
 	 *
-	 * @param $title Title Context title for parsing
-	 * @param int|null $revId Revision ID (for {{REVISIONID}})
-	 * @param $options ParserOptions|null Parser options
+	 * @param Title $title Context title for parsing
+	 * @param int $revId Revision ID (for {{REVISIONID}})
+	 * @param ParserOptions $options Parser options
 	 * @param bool $generateHtml Whether or not to generate HTML
 	 *
-	 * @return ParserOutput representing the HTML form of the text
+	 * @return ParserOutput Representing the HTML form of the text.
 	 */
-	public function getParserOutput( Title $title,
-		$revId = null,
-		ParserOptions $options = null, $generateHtml = true
-	) {
+	public function getParserOutput( Title $title, $revId = null,
+		ParserOptions $options = null, $generateHtml = true ) {
 		global $wgParser, $wgTextModelsToParse;
 
 		if ( !$options ) {
@@ -224,6 +235,7 @@ class TextContent extends AbstractContent {
 		}
 
 		$po->setText( $html );
+
 		return $po;
 	}
 
@@ -246,7 +258,7 @@ class TextContent extends AbstractContent {
 	 * Generates a syntax-highlighted version of the content, as HTML.
 	 * Used by the default implementation of getHtml().
 	 *
-	 * @return string an HTML representation of the content's markup
+	 * @return string A HTML representation of the content's markup
 	 */
 	protected function getHighlightHtml() {
 		# TODO: make Highlighter interface, use highlighter here, if available
@@ -254,17 +266,15 @@ class TextContent extends AbstractContent {
 	}
 
 	/**
-	 * @see Content::convert()
-	 *
 	 * This implementation provides lossless conversion between content models based
 	 * on TextContent.
 	 *
-	 * @param string  $toModel the desired content model, use the CONTENT_MODEL_XXX flags.
-	 * @param string  $lossy flag, set to "lossy" to allow lossy conversion. If lossy conversion is
-	 * not allowed, full round-trip conversion is expected to work without losing information.
+	 * @param string $toModel
+	 * @param string $lossy
 	 *
-	 * @return Content|bool A content object with the content model $toModel, or false if
-	 * that conversion is not supported.
+	 * @return Content|bool
+	 *
+	 * @see Content::convert()
 	 */
 	public function convert( $toModel, $lossy = '' ) {
 		$converted = parent::convert( $toModel, $lossy );
@@ -283,4 +293,5 @@ class TextContent extends AbstractContent {
 
 		return $converted;
 	}
+
 }

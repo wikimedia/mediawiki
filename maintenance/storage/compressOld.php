@@ -177,8 +177,8 @@ class CompressOld extends Maintenance {
 	 * @return bool
 	 */
 	private function compressWithConcat( $startId, $maxChunkSize, $beginDate,
-		$endDate, $extdb = "", $maxPageId = false )
-	{
+		$endDate, $extdb = "", $maxPageId = false
+	) {
 		$loadStyle = self::LS_CHUNKED;
 
 		$dbr = wfGetDB( DB_SLAVE );

@@ -10,7 +10,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	 */
 	var $handler;
 
-	public function setUp() {
+	protected function setUp() {
 		parent::setUp();
 
 		$this->handler = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT );
@@ -78,6 +78,8 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	public function testMakeRedirectContent( $title, $expected ) {
 		global $wgContLang;
 		$wgContLang->resetNamespaces();
+
+		MagicWord::clearCache();
 
 		if ( is_string( $title ) ) {
 			$title = Title::newFromText( $title );

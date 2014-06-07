@@ -46,17 +46,6 @@ class ShowCacheStats extends Maintenance {
 		if ( get_class( $wgMemc ) == 'EmptyBagOStuff' ) {
 			$this->error( "You are running EmptyBagOStuff, I can not provide any statistics.", true );
 		}
-		$session = intval( $wgMemc->get( wfMemcKey( 'stats', 'request_with_session' ) ) );
-		$noSession = intval( $wgMemc->get( wfMemcKey( 'stats', 'request_without_session' ) ) );
-		$total = $session + $noSession;
-		if ( $total == 0 ) {
-			$this->error( "You either have no stats or the cache isn't running. Aborting.", true );
-		}
-		$this->output( "Requests\n" );
-		$this->output( sprintf( "with session:      %-10d %6.2f%%\n", $session, $session / $total * 100 ) );
-		$this->output( sprintf( "without session:   %-10d %6.2f%%\n", $noSession, $noSession / $total * 100 ) );
-		$this->output( sprintf( "total:             %-10d %6.2f%%\n", $total, 100 ) );
-
 
 		$this->output( "\nParser cache\n" );
 		$hits = intval( $wgMemc->get( wfMemcKey( 'stats', 'pcache_hit' ) ) );

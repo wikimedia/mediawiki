@@ -41,6 +41,7 @@ class NewUsersLogFormatter extends LogFormatter {
 			$params[2] = Message::rawParam( $this->makeUserLink( $target ) );
 			$params[3] = $target->getName();
 		}
+
 		return $params;
 	}
 
@@ -51,6 +52,7 @@ class NewUsersLogFormatter extends LogFormatter {
 			# not needed and can contain incorrect links
 			return '';
 		}
+
 		return parent::getComment();
 	}
 
@@ -60,6 +62,7 @@ class NewUsersLogFormatter extends LogFormatter {
 			//add the user talk to LinkBatch for the userLink
 			return array( Title::makeTitle( NS_USER_TALK, $this->entry->getTarget()->getText() ) );
 		}
+
 		return array();
 	}
 }

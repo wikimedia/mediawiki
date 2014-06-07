@@ -29,8 +29,7 @@ class FileRepoStatus extends Status {
 	/**
 	 * Factory function for fatal errors
 	 *
-	 * @param $repo FileRepo
-	 *
+	 * @param FileRepo $repo
 	 * @return FileRepoStatus
 	 */
 	static function newFatal( $repo /*, parameters...*/ ) {
@@ -38,22 +37,24 @@ class FileRepoStatus extends Status {
 		$result = new self( $repo );
 		call_user_func_array( array( &$result, 'error' ), $params );
 		$result->ok = false;
+
 		return $result;
 	}
 
 	/**
-	 * @param $repo FileRepo
+	 * @param FileRepo|bool $repo Default: false
 	 * @param $value
 	 * @return FileRepoStatus
 	 */
 	static function newGood( $repo = false, $value = null ) {
 		$result = new self( $repo );
 		$result->value = $value;
+
 		return $result;
 	}
 
 	/**
-	 * @param $repo FileRepo
+	 * @param bool|FileRepo $repo
 	 */
 	function __construct( $repo = false ) {
 		if ( $repo ) {

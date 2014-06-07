@@ -111,7 +111,6 @@ class MaintenanceFixup extends Maintenance {
 		$this->testCase = $testCase;
 	}
 
-
 	// --- Making protected functions visible for test
 
 	public function output( $out, $channel = null ) {
@@ -122,7 +121,6 @@ class MaintenanceFixup extends Maintenance {
 		return call_user_func_array( array( "parent", __FUNCTION__ ), func_get_args() );
 	}
 
-
 	// --- Requirements for getting instance of abstract class
 
 	public function execute() {
@@ -130,8 +128,10 @@ class MaintenanceFixup extends Maintenance {
 	}
 }
 
+/**
+ * @covers Maintenance
+ */
 class MaintenanceTest extends MediaWikiTestCase {
-
 
 	/**
 	 * The main Maintenance instance that is used for testing.
@@ -139,7 +139,6 @@ class MaintenanceTest extends MediaWikiTestCase {
 	 * @var MaintenanceFixup
 	 */
 	private $m;
-
 
 	protected function setUp() {
 		parent::setUp();
@@ -153,7 +152,6 @@ class MaintenanceTest extends MediaWikiTestCase {
 		}
 		parent::tearDown();
 	}
-
 
 	/**
 	 * asserts the output before and after simulating shutdown
@@ -178,7 +176,6 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$postShutdownOutput = $preShutdownOutput . ( $expectNLAppending ? "\n" : "" );
 		$this->expectOutputString( $postShutdownOutput );
 	}
-
 
 	// Although the following tests do not seem to be too consistent (compare for
 	// example the newlines within the test.*StringString tests, or the

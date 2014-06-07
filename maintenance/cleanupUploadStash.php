@@ -38,6 +38,7 @@ class UploadStashCleanup extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Clean up abandoned files in temporary uploaded file stash";
+		$this->setBatchSize( 50 );
 	}
 
 	public function execute() {
@@ -81,10 +82,9 @@ class UploadStashCleanup extends Maintenance {
 				try {
 					$stash->getFile( $key, true );
 					$stash->removeFileNoAuth( $key );
-				} catch ( UploadStashBadPathException $ex ) {
-					$this->output( "Failed removing stashed upload with key: $key\n" );
-				} catch ( UploadStashZeroLengthFileException $ex ) {
-					$this->output( "Failed removing stashed upload with key: $key\n" );
+				} catch ( UploadStashException $ex ) {
+					$type = get_class( $ex );
+					$this->output( "Failed removing stashed upload with key: $key ($type)\n" );
 				}
 				if ( $i % 100 == 0 ) {
 					$this->output( "$i\n" );
@@ -95,19 +95,24 @@ class UploadStashCleanup extends Maintenance {
 
 		// Delete all the corresponding thumbnails...
 		$dir = $tempRepo->getZonePath( 'thumb' );
-		$iterator = $tempRepo->getBackend()->getFileList( array( 'dir' => $dir ) );
+		$iterator = $tempRepo->getBackend()->getFileList( array( 'dir' => $dir, 'adviseStat' => 1 ) );
 		$this->output( "Deleting old thumbnails...\n" );
 		$i = 0;
+		$batch = array(); // operation batch
 		foreach ( $iterator as $file ) {
 			if ( wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) ) < $cutoff ) {
-				$status = $tempRepo->quickPurge( "$dir/$file" );
-				if ( !$status->isOK() ) {
-					$this->error( print_r( $status->getErrorsArray(), true ) );
-				}
-				if ( ( ++$i % 100 ) == 0 ) {
+				$batch[] = array( 'op' => 'delete', 'src' => "$dir/$file" );
+				if ( count( $batch ) >= $this->mBatchSize ) {
+					$this->doOperations( $tempRepo, $batch );
+					$i += count( $batch );
+					$batch = array();
 					$this->output( "$i\n" );
 				}
 			}
+		}
+		if ( count( $batch ) ) {
+			$this->doOperations( $tempRepo, $batch );
+			$i += count( $batch );
 		}
 		$this->output( "$i done\n" );
 
@@ -119,23 +124,30 @@ class UploadStashCleanup extends Maintenance {
 			$this->error( "Temp repo is not using the temp container.", 1 ); // die
 		}
 		$i = 0;
+		$batch = array(); // operation batch
 		foreach ( $iterator as $file ) {
-			// Absolute sanity check for stashed files and file segments
-			if ( !preg_match( '#(^\d{14}!|\.\d+\.\w+\.\d+$)#', basename( $file ) ) ) {
-				$this->output( "Skipped non-stash $file\n" );
-				continue;
-			}
 			if ( wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) ) < $cutoff ) {
-				$status = $tempRepo->quickPurge( "$dir/$file" );
-				if ( !$status->isOK() ) {
-					$this->error( print_r( $status->getErrorsArray(), true ) );
-				}
-				if ( ( ++$i % 100 ) == 0 ) {
+				$batch[] = array( 'op' => 'delete', 'src' => "$dir/$file" );
+				if ( count( $batch ) >= $this->mBatchSize ) {
+					$this->doOperations( $tempRepo, $batch );
+					$i += count( $batch );
+					$batch = array();
 					$this->output( "$i\n" );
 				}
 			}
 		}
+		if ( count( $batch ) ) {
+			$this->doOperations( $tempRepo, $batch );
+			$i += count( $batch );
+		}
 		$this->output( "$i done\n" );
+	}
+
+	protected function doOperations( FileRepo $tempRepo, array $ops ) {
+		$status = $tempRepo->getBackend()->doQuickOperations( $ops );
+		if ( !$status->isOK() ) {
+			$this->error( print_r( $status->getErrorsArray(), true ) );
+		}
 	}
 }
 

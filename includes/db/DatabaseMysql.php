@@ -28,10 +28,9 @@
  * @see Database
  */
 class DatabaseMysql extends DatabaseMysqlBase {
-
 	/**
-	 * @param $sql string
-	 * @return resource
+	 * @param string $sql
+	 * @return resource False on error
 	 */
 	protected function doQuery( $sql ) {
 		if ( $this->bufferResults() ) {
@@ -39,14 +38,23 @@ class DatabaseMysql extends DatabaseMysqlBase {
 		} else {
 			$ret = mysql_unbuffered_query( $sql, $this->mConn );
 		}
+
 		return $ret;
 	}
 
+	/**
+	 * @param string $realServer
+	 * @return bool|resource MySQL Database connection or false on failure to connect
+	 * @throws DBConnectionError
+	 */
 	protected function mysqlConnect( $realServer ) {
 		# Fail now
 		# Otherwise we get a suppressed fatal error, which is very hard to track down
 		if ( !extension_loaded( 'mysql' ) ) {
-			throw new DBConnectionError( $this, "MySQL functions missing, have you compiled PHP with the --with-mysql option?\n" );
+			throw new DBConnectionError(
+				$this,
+				"MySQL functions missing, have you compiled PHP with the --with-mysql option?\n"
+			);
 		}
 
 		$connFlags = 0;
@@ -78,6 +86,18 @@ class DatabaseMysql extends DatabaseMysqlBase {
 		}
 
 		return $conn;
+	}
+
+	/**
+	 * @param string $charset
+	 * @return bool
+	 */
+	protected function mysqlSetCharset( $charset ) {
+		if ( function_exists( 'mysql_set_charset' ) ) {
+			return mysql_set_charset( $charset, $this->mConn );
+		} else {
+			return $this->query( 'SET NAMES ' . $charset, __METHOD__ );
+		}
 	}
 
 	/**
@@ -113,11 +133,12 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param $db
+	 * @param string $db
 	 * @return bool
 	 */
 	function selectDB( $db ) {
 		$this->mDBname = $db;
+
 		return mysql_select_db( $db, $this->mConn );
 	}
 
@@ -154,6 +175,10 @@ class DatabaseMysql extends DatabaseMysqlBase {
 
 	protected function mysqlFieldName( $res, $n ) {
 		return mysql_field_name( $res, $n );
+	}
+
+	protected function mysqlFieldType( $res, $n ) {
+		return mysql_field_type( $res, $n );
 	}
 
 	protected function mysqlDataSeek( $res, $row ) {

@@ -75,11 +75,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		$user = $this->getUser();
 		$request = $this->getRequest();
 
-		if ( !$request->wasPosted() && !$user->isLoggedIn() ) {
-			$this->error( 'changeemail-no-info' );
-
-			return;
-		}
+		$this->requireLogin( 'changeemail-no-info' );
 
 		if ( $request->wasPosted() && $request->getBool( 'wpCancel' ) ) {
 			$this->doReturnTo();
@@ -92,7 +88,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 
 		// This could also let someone check the current email address, so
 		// require both permissions.
-		if ( !$this->getUser()->isAllowed( 'viewmyprivateinfo' ) ) {
+		if ( !$user->isAllowed( 'viewmyprivateinfo' ) ) {
 			throw new PermissionsError( 'viewmyprivateinfo' );
 		}
 
@@ -152,7 +148,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 				Xml::openElement( 'form',
 					array(
 						'method' => 'post',
-						'action' => $this->getTitle()->getLocalURL(),
+						'action' => $this->getPageTitle()->getLocalURL(),
 						'id' => 'mw-changeemail-form' ) ) . "\n" .
 				Html::hidden( 'token', $user->getEditToken() ) . "\n" .
 				Html::hidden( 'returnto', $this->getRequest()->getVal( 'returnto' ) ) . "\n" .
@@ -236,7 +232,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		$throttleCount = LoginForm::incLoginThrottle( $user->getName() );
 		if ( $throttleCount === true ) {
 			$lang = $this->getLanguage();
-			$this->error( array( 'login-throttled', $lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) ) );
+			$this->error( array( 'changeemail-throttled', $lang->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) ) );
 
 			return false;
 		}

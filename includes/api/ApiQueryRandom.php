@@ -30,9 +30,7 @@
  *
  * @ingroup API
  */
-
 class ApiQueryRandom extends ApiQueryGeneratorBase {
-
 	private $pageIDs;
 
 	public function __construct( $query, $moduleName ) {
@@ -48,11 +46,11 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param  $randstr
-	 * @param  $limit
-	 * @param  $namespace
+	 * @param $randstr
+	 * @param $limit
+	 * @param $namespace
 	 * @param $resultPageSet ApiPageSet
-	 * @param  $redirect
+	 * @param $redirect
 	 * @return void
 	 */
 	protected function prepareQuery( $randstr, $limit, $namespace, &$resultPageSet, $redirect ) {
@@ -62,7 +60,6 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		$this->addWhereFld( 'page_namespace', $namespace );
 		$this->addWhereRange( 'page_random', 'newer', $randstr, null );
 		$this->addWhereFld( 'page_is_redirect', $redirect );
-		$this->addOption( 'USE INDEX', 'page_random' );
 		if ( is_null( $resultPageSet ) ) {
 			$this->addFields( array( 'page_id', 'page_title', 'page_namespace' ) );
 		} else {
@@ -83,8 +80,8 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 				// Prevent duplicates
 				if ( !in_array( $row->page_id, $this->pageIDs ) ) {
 					$fit = $this->getResult()->addValue(
-							array( 'query', $this->getModuleName() ),
-							null, $this->extractRowInfo( $row ) );
+						array( 'query', $this->getModuleName() ),
+						null, $this->extractRowInfo( $row ) );
 					if ( !$fit ) {
 						// We can't really query-continue a random list.
 						// Return an insanely high value so
@@ -110,14 +107,26 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		$result = $this->getResult();
 		$this->pageIDs = array();
 
-		$this->prepareQuery( wfRandom(), $params['limit'], $params['namespace'], $resultPageSet, $params['redirect'] );
+		$this->prepareQuery(
+			wfRandom(),
+			$params['limit'],
+			$params['namespace'],
+			$resultPageSet,
+			$params['redirect']
+		);
 		$count = $this->runQuery( $resultPageSet );
 		if ( $count < $params['limit'] ) {
 			/* We got too few pages, we probably picked a high value
 			 * for page_random. We'll just take the lowest ones, see
 			 * also the comment in Title::getRandomTitle()
 			 */
-			$this->prepareQuery( 0, $params['limit'] - $count, $params['namespace'], $resultPageSet, $params['redirect'] );
+			$this->prepareQuery(
+				0,
+				$params['limit'] - $count,
+				$params['namespace'],
+				$resultPageSet,
+				$params['redirect']
+			);
 			$this->runQuery( $resultPageSet );
 		}
 
@@ -131,6 +140,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		$vals = array();
 		$vals['id'] = intval( $row->page_id );
 		ApiQueryBase::addTitleInfo( $vals, $title );
+
 		return $vals;
 	}
 
@@ -175,10 +185,13 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 
 	public function getDescription() {
 		return array(
-			'Get a set of random pages',
-			'NOTE: Pages are listed in a fixed sequence, only the starting point is random. This means that if, for example, "Main Page" is the first ',
-			'      random page on your list, "List of fictional monkeys" will *always* be second, "List of people on stamps of Vanuatu" third, etc',
-			'NOTE: If the number of pages in the namespace is lower than rnlimit, you will get fewer pages. You will not get the same page twice'
+			'Get a set of random pages.',
+			'NOTE: Pages are listed in a fixed sequence, only the starting point is random.',
+			'      This means that if, for example, "Main Page" is the first random page on',
+			'      your list, "List of fictional monkeys" will *always* be second, "List of',
+			'      people on stamps of Vanuatu" third, etc.',
+			'NOTE: If the number of pages in the namespace is lower than rnlimit, you will',
+			'      get fewer pages. You will not get the same page twice.'
 		);
 	}
 

@@ -1,0 +1,31 @@
+{
+    "@metadata": {
+        "authors": [
+            "Asoxor",
+            "Calak",
+            "Muhammed taha"
+        ]
+    },
+    "config-wiki-language": "زمانی ویکی:",
+    "config-back": "→ گەڕانەوە",
+    "config-continue": "بەردەوامبوون ←",
+    "config-page-language": "زمان",
+    "config-page-welcome": "بەخێربێیت بۆ میدیاویکی!",
+    "config-page-dbconnect": "پەیوەندی دەکات بەبنکەی زانیارییەکان",
+    "config-page-upgrade": "نويکردنەوەی دابەزاندنی پێشوو",
+    "config-page-dbsettings": "ڕێکخستنەکانی بنکەی زانیارییەکان",
+    "config-page-name": "ناو",
+    "config-page-options": "ھەڵبژاردەکان",
+    "config-page-install": "دابەزاندن",
+    "config-page-complete": "تەواو!",
+    "config-page-restart": "دەست پێکردنەوە بەدابەزاندن",
+    "config-page-readme": "بمخوێنەوە",
+    "config-page-copying": "لەبەردەگیرێتەوە",
+    "config-page-upgradedoc": "نوێدەکرێتەوە",
+    "config-page-existingwiki": "ویکی پێشوو",
+    "config-restart": "بەڵێ، دەستی پێ بکەرەوە",
+    "config-env-php": "PHP $1 دابەزێندرا.",
+    "config-env-php-toolow": "PHP $1 دابەزێندرا.\nھەرچۆنێک بێت میدیاویکی پێویستی بە PHP $2 یان بەرزتر ھەیە.",
+    "mainpagetext": "'''میدیاویکی بە سەرکەوتوویی دامەزرا.'''",
+    "mainpagedocfooter": "لە [//meta.wikimedia.org/wiki/Help:Contents ڕێنوێنیی بەکارھێنەران] بۆ زانیاری سەبارەت بە بەکارھێنانی نەرمامێری ویکی کەڵک وەربگرە.\n\n== دەستپێکردن ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings پێرستی ڕێکخستنەکانی شێوەپێدان]\n* [//www.mediawiki.org/wiki/Manual:FAQ پرسیارە دووپاتکراوەکانی میدیاویکی (MediaWiki FAQ)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce پێرستی ئیمەیلی وەشانەکانی میدیاویکی]\n* [//www.mediawiki.org/wiki/Localisation#Translation_resources خۆماڵیکردنی ویکیمیدیا بۆ زمانەکەت]"
+}

@@ -29,8 +29,36 @@
 class ProfilerSimple extends Profiler {
 	var $mMinimumTime = 0;
 
-	var $zeroEntry = array( 'cpu' => 0.0, 'cpu_sq' => 0.0, 'real' => 0.0, 'real_sq' => 0.0, 'count' => 0 );
 	var $errorEntry;
+
+	public function getZeroEntry() {
+		return array(
+			'cpu'     => 0.0,
+			'cpu_sq'  => 0.0,
+			'real'    => 0.0,
+			'real_sq' => 0.0,
+			'count'   => 0
+		);
+	}
+
+	public function getErrorEntry() {
+		$entry = $this->getZeroEntry();
+		$entry['count'] = 1;
+		return $entry;
+	}
+
+	public function updateEntry( $name, $elapsedCpu, $elapsedReal ) {
+		$entry =& $this->mCollated[$name];
+		if ( !is_array( $entry ) ) {
+			$entry = $this->getZeroEntry();
+			$this->mCollated[$name] =& $entry;
+		}
+		$entry['cpu'] += $elapsedCpu;
+		$entry['cpu_sq'] += $elapsedCpu * $elapsedCpu;
+		$entry['real'] += $elapsedReal;
+		$entry['real_sq'] += $elapsedReal * $elapsedReal;
+		$entry['count']++;
+	}
 
 	public function isPersistent() {
 		/* Implement in output subclasses */
@@ -38,8 +66,7 @@ class ProfilerSimple extends Profiler {
 	}
 
 	protected function addInitialStack() {
-		$this->errorEntry = $this->zeroEntry;
-		$this->errorEntry['count'] = 1;
+		$this->errorEntry = $this->getErrorEntry();
 
 		$initialTime = $this->getInitialTime();
 		$initialCpu = $this->getInitialTime( 'cpu' );
@@ -75,34 +102,31 @@ class ProfilerSimple extends Profiler {
 		list( $ofname, /* $ocount */, $ortime, $octime ) = array_pop( $this->mWorkStack );
 
 		if ( !$ofname ) {
-			$this->debug( "Profiling error: $functionname\n" );
+			$this->debugGroup( 'profileerror', "Profiling error: $functionname" );
 		} else {
 			if ( $functionname == 'close' ) {
-				$message = "Profile section ended by close(): {$ofname}";
+				if ( $ofname != '-total' ) {
+					$message = "Profile section ended by close(): {$ofname}";
+					$this->debugGroup( 'profileerror', $message );
+					$this->mCollated[$message] = $this->errorEntry;
+				}
 				$functionname = $ofname;
-				$this->debug( "$message\n" );
-				$this->mCollated[$message] = $this->errorEntry;
-			}
-			elseif ( $ofname != $functionname ) {
+			} elseif ( $ofname != $functionname ) {
 				$message = "Profiling error: in({$ofname}), out($functionname)";
-				$this->debug( "$message\n" );
+				$this->debugGroup( 'profileerror', $message );
 				$this->mCollated[$message] = $this->errorEntry;
 			}
-			$entry =& $this->mCollated[$functionname];
 			$elapsedcpu = $this->getTime( 'cpu' ) - $octime;
 			$elapsedreal = $this->getTime() - $ortime;
-			if ( !is_array( $entry ) ) {
-				$entry = $this->zeroEntry;
-				$this->mCollated[$functionname] =& $entry;
-			}
-			$entry['cpu'] += $elapsedcpu;
-			$entry['cpu_sq'] += $elapsedcpu * $elapsedcpu;
-			$entry['real'] += $elapsedreal;
-			$entry['real_sq'] += $elapsedreal * $elapsedreal;
-			$entry['count']++;
-
+			$this->updateEntry( $functionname, $elapsedcpu, $elapsedreal );
 			$this->updateTrxProfiling( $functionname, $elapsedreal );
 		}
+	}
+
+	public function getRawData() {
+		// Calling the method of the parent class results in fatal error.
+		// @todo Implement this correctly.
+		return array();
 	}
 
 	public function getFunctionReport() {
@@ -112,22 +136,5 @@ class ProfilerSimple extends Profiler {
 
 	public function logData() {
 		/* Implement in subclasses */
-	}
-
-	/**
-	 * Get the actual CPU time or the initial one if $ru is set.
-	 *
-	 * @deprecated in 1.20
-	 * @return float|null
-	 */
-	function getCpuTime( $ru = null ) {
-		wfDeprecated( __METHOD__, '1.20' );
-
-		if ( $ru === null ) {
-			return $this->getTime( 'cpu' );
-		} else {
-			# It theory we should use $ru here, but it always $wgRUstart that is passed here
-			return $this->getInitialTime( 'cpu' );
-		}
 	}
 }

@@ -58,6 +58,7 @@ class ApiQueryUsers extends ApiQueryBase {
 			'userrights' => array( 'ApiQueryUsers', 'getUserrightsToken' ),
 		);
 		wfRunHooks( 'APIQueryUsersTokens', array( &$this->tokenFunctions ) );
+
 		return $this->tokenFunctions;
 	}
 
@@ -67,6 +68,7 @@ class ApiQueryUsers extends ApiQueryBase {
 	 */
 	public static function getUserrightsToken( $user ) {
 		global $wgUser;
+
 		// Since the permissions check for userrights is non-trivial,
 		// don't bother with it here
 		return $wgUser->getEditToken( $user->getName() );
@@ -90,10 +92,10 @@ class ApiQueryUsers extends ApiQueryBase {
 			if ( $n === false || $n === '' ) {
 				$vals = array( 'name' => $u, 'invalid' => '' );
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ),
-						null, $vals );
+					null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'users',
-							implode( '|', array_diff( $users, $done ) ) );
+						implode( '|', array_diff( $users, $done ) ) );
 					$goodNames = array();
 					break;
 				}
@@ -244,10 +246,10 @@ class ApiQueryUsers extends ApiQueryBase {
 			}
 
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ),
-					null, $data[$u] );
+				null, $data[$u] );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'users',
-						implode( '|', array_diff( $users, $done ) ) );
+					implode( '|', array_diff( $users, $done ) ) );
 				break;
 			}
 			$done[] = $u;
@@ -269,11 +271,7 @@ class ApiQueryUsers extends ApiQueryBase {
 	}
 
 	public function getCacheMode( $params ) {
-		if ( isset( $params['token'] ) ) {
-			return 'private';
-		} else {
-			return 'anon-public-user-private';
-		}
+		return isset( $params['token'] ) ? 'private' : 'anon-public-user-private';
 	}
 
 	public function getAllowedParams() {
@@ -312,7 +310,8 @@ class ApiQueryUsers extends ApiQueryBase {
 				'  rights         - Lists all the rights the user(s) has',
 				'  editcount      - Adds the user\'s edit count',
 				'  registration   - Adds the user\'s registration timestamp',
-				'  emailable      - Tags if the user can and wants to receive email through [[Special:Emailuser]]',
+				'  emailable      - Tags if the user can and wants to receive ' .
+					'email through [[Special:Emailuser]]',
 				'  gender         - Tags the gender of the user. Returns "male", "female", or "unknown"',
 			),
 			'users' => 'A list of users to obtain the same information for',
@@ -388,7 +387,7 @@ class ApiQueryUsers extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Get information about a list of users';
+		return 'Get information about a list of users.';
 	}
 
 	public function getExamples() {

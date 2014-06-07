@@ -263,8 +263,8 @@ class NewParserTest extends MediaWikiTestCase {
 		if ( !$this->db->selectField( 'image', '1', array( 'img_name' => $image->getName() ) ) ) {
 			$image->recordUpload2( '', 'Upload of some lame SVG', 'Some lame SVG', array(
 					'size'        => 12345,
-					'width'       => 200,
-					'height'      => 200,
+					'width'       => 240,
+					'height'      => 180,
 					'bits'        => 24,
 					'media_type'  => MEDIATYPE_DRAWING,
 					'mime'        => 'image/svg+xml',
@@ -306,7 +306,9 @@ class NewParserTest extends MediaWikiTestCase {
 					}
 				}
 				$useConfig['name'] = 'local-backend'; // swap name
-				$class = $conf['class'];
+				unset( $useConfig['lockManager'] );
+				unset( $useConfig['fileJournal'] );
+				$class = $useConfig['class'];
 				self::$backendToUse = new $class( $useConfig );
 				$backend = self::$backendToUse;
 			}
@@ -316,11 +318,7 @@ class NewParserTest extends MediaWikiTestCase {
 			# informations.
 			$backend = new MockFileBackend( array(
 				'name' => 'local-backend',
-				'lockManager' => 'nullLockManager',
-				'containerPaths' => array(
-					'local-public' => "$uploadDir",
-					'local-thumb' => "$uploadDir/thumb",
-				)
+				'wikiId' => wfWikiId()
 			) );
 		}
 
@@ -339,6 +337,7 @@ class NewParserTest extends MediaWikiTestCase {
 			'wgRawHtml' => self::getOptionValue( 'wgRawHtml', $opts, false ),
 			'wgNamespacesWithSubpages' => array( NS_MAIN => isset( $opts['subpage'] ) ),
 			'wgAllowExternalImages' => self::getOptionValue( 'wgAllowExternalImages', $opts, true ),
+			'wgThumbLimits' => array( self::getOptionValue( 'thumbsize', $opts, 180 ) ),
 			'wgMaxTocLevel' => $maxtoclevel,
 			'wgUseTeX' => isset( $opts['math'] ) || isset( $opts['texvc'] ),
 			'wgMathDirectory' => $uploadDir . '/math',
@@ -369,6 +368,9 @@ class NewParserTest extends MediaWikiTestCase {
 		$settings['wgOut'] = $context->getOutput();
 		$settings['wgUser'] = $context->getUser();
 		$settings['wgRequest'] = $context->getRequest();
+
+		// We (re)set $wgThumbLimits to a single-element array above.
+		$context->getUser()->setOption( 'thumbsize', 0 );
 
 		foreach ( $settings as $var => $val ) {
 			if ( array_key_exists( $var, $GLOBALS ) ) {
@@ -446,16 +448,13 @@ class NewParserTest extends MediaWikiTestCase {
 		) );
 
 		// No helpful SVG file to copy, so make one ourselves
-		$tmpDir = wfTempDir();
-		$tempFsFile = new TempFSFile( "$tmpDir/Foobar.svg" );
-		$tempFsFile->autocollect(); // destroy file when $tempFsFile leaves scope
-		file_put_contents( "$tmpDir/Foobar.svg",
-			'<?xml version="1.0" encoding="utf-8"?>' .
-			'<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><text>Foo</text></svg>' );
+		$data = '<?xml version="1.0" encoding="utf-8"?>' .
+			'<svg xmlns="http://www.w3.org/2000/svg"' .
+			' version="1.1" width="240" height="180"/>';
 
 		$backend->prepare( array( 'dir' => "$base/local-public/f/ff" ) );
-		$backend->quickStore( array(
-			'src' => "$tmpDir/Foobar.svg", 'dst' => "$base/local-public/f/ff/Foobar.svg"
+		$backend->quickCreate( array(
+			'content' => $data, 'dst' => "$base/local-public/f/ff/Foobar.svg"
 		) );
 	}
 
@@ -490,19 +489,36 @@ class NewParserTest extends MediaWikiTestCase {
 		self::deleteFiles(
 			array(
 				"$base/local-public/3/3a/Foobar.jpg",
-				"$base/local-thumb/3/3a/Foobar.jpg/180px-Foobar.jpg",
-				"$base/local-thumb/3/3a/Foobar.jpg/200px-Foobar.jpg",
-				"$base/local-thumb/3/3a/Foobar.jpg/640px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/1000px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/100px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/120px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/1280px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/137px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/1500px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/177px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/180px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/200px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/206px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/20px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/220px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/265px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/270px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/274px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/300px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/30px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/330px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/353px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/360px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/400px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/40px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/440px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/442px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/450px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/50px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/600px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/640px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/70px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/75px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/960px-Foobar.jpg",
 
 				"$base/local-public/e/ea/Thumb.png",
@@ -510,12 +526,15 @@ class NewParserTest extends MediaWikiTestCase {
 				"$base/local-public/0/09/Bad.jpg",
 
 				"$base/local-public/f/ff/Foobar.svg",
-				"$base/local-thumb/f/ff/Foobar.svg/180px-Foobar.svg.jpg",
-				"$base/local-thumb/f/ff/Foobar.svg/270px-Foobar.svg.jpg",
-				"$base/local-thumb/f/ff/Foobar.svg/360px-Foobar.svg.jpg",
-				"$base/local-thumb/f/ff/Foobar.svg/langde-180px-Foobar.svg.jpg",
-				"$base/local-thumb/f/ff/Foobar.svg/langde-270px-Foobar.svg.jpg",
-				"$base/local-thumb/f/ff/Foobar.svg/langde-360px-Foobar.svg.jpg",
+				"$base/local-thumb/f/ff/Foobar.svg/180px-Foobar.svg.png",
+				"$base/local-thumb/f/ff/Foobar.svg/2000px-Foobar.svg.png",
+				"$base/local-thumb/f/ff/Foobar.svg/270px-Foobar.svg.png",
+				"$base/local-thumb/f/ff/Foobar.svg/3000px-Foobar.svg.png",
+				"$base/local-thumb/f/ff/Foobar.svg/360px-Foobar.svg.png",
+				"$base/local-thumb/f/ff/Foobar.svg/4000px-Foobar.svg.png",
+				"$base/local-thumb/f/ff/Foobar.svg/langde-180px-Foobar.svg.png",
+				"$base/local-thumb/f/ff/Foobar.svg/langde-270px-Foobar.svg.png",
+				"$base/local-thumb/f/ff/Foobar.svg/langde-360px-Foobar.svg.png",
 
 				"$base/local-public/math/f/a/5/fa50b8b616463173474302ca3e63586b.png",
 			)

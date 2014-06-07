@@ -91,7 +91,7 @@ class ResetUserTokens extends Maintenance {
 
 			wfWaitForSlaves();
 
-		} while ( $max <= $maxid );
+		} while ( $min <= $maxid );
 
 	}
 

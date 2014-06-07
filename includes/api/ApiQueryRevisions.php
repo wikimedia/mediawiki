@@ -25,9 +25,10 @@
  */
 
 /**
- * A query action to enumerate revisions of a given page, or show top revisions of multiple pages.
- * Various pieces of information may be shown - flags, comments, and the actual wiki markup of the rev.
- * In the enumeration mode, ranges of revisions may be requested and filtered.
+ * A query action to enumerate revisions of a given page, or show top revisions
+ * of multiple pages. Various pieces of information may be shown - flags,
+ * comments, and the actual wiki markup of the rev. In the enumeration mode,
+ * ranges of revisions may be requested and filtered.
  *
  * @ingroup API
  */
@@ -40,9 +41,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 		parent::__construct( $query, $moduleName, 'rv' );
 	}
 
-	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false, $fld_size = false, $fld_sha1 = false,
-			$fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
-			$fld_content = false, $fld_tags = false, $fld_contentmodel = false;
+	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false,
+		$fld_size = false, $fld_sha1 = false, $fld_comment = false,
+		$fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
+		$fld_content = false, $fld_tags = false, $fld_contentmodel = false;
 
 	private $tokenFunctions;
 
@@ -65,6 +67,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'rollback' => array( 'ApiQueryRevisions', 'getRollbackToken' )
 		);
 		wfRunHooks( 'APIQueryRevisionsTokens', array( &$this->tokenFunctions ) );
+
 		return $this->tokenFunctions;
 	}
 
@@ -79,6 +82,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		if ( !$wgUser->isAllowed( 'rollback' ) ) {
 			return false;
 		}
+
 		return $wgUser->getEditToken(
 			array( $title->getPrefixedText(), $rev->getUserText() ) );
 	}
@@ -91,9 +95,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 		// Enumerating revisions on multiple pages make it extremely
 		// difficult to manage continuations and require additional SQL indexes
 		$enumRevMode = ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ||
-				!is_null( $params['limit'] ) || !is_null( $params['startid'] ) ||
-				!is_null( $params['endid'] ) || $params['dir'] === 'newer' ||
-				!is_null( $params['start'] ) || !is_null( $params['end'] ) );
+			!is_null( $params['limit'] ) || !is_null( $params['startid'] ) ||
+			!is_null( $params['endid'] ) || $params['dir'] === 'newer' ||
+			!is_null( $params['start'] ) || !is_null( $params['end'] ) );
 
 		$pageSet = $this->getPageSet();
 		$pageCount = $pageSet->getGoodTitleCount();
@@ -105,11 +109,20 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		if ( $revCount > 0 && $enumRevMode ) {
-			$this->dieUsage( 'The revids= parameter may not be used with the list options (limit, startid, endid, dirNewer, start, end).', 'revids' );
+			$this->dieUsage(
+				'The revids= parameter may not be used with the list options ' .
+					'(limit, startid, endid, dirNewer, start, end).',
+				'revids'
+			);
 		}
 
 		if ( $pageCount > 1 && $enumRevMode ) {
-			$this->dieUsage( 'titles, pageids or a generator was used to supply multiple pages, but the limit, startid, endid, dirNewer, user, excludeuser, start and end parameters may only be used on a single page.', 'multpages' );
+			$this->dieUsage(
+				'titles, pageids or a generator was used to supply multiple pages, ' .
+					'but the limit, startid, endid, dirNewer, user, excludeuser, start ' .
+					'and end parameters may only be used on a single page.',
+				'multpages'
+			);
 		}
 
 		if ( !is_null( $params['difftotext'] ) ) {
@@ -119,8 +132,12 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$params['diffto'] = 0;
 			}
 			if ( ( !ctype_digit( $params['diffto'] ) || $params['diffto'] < 0 )
-					&& $params['diffto'] != 'prev' && $params['diffto'] != 'next' ) {
-				$this->dieUsage( 'rvdiffto must be set to a non-negative number, "prev", "next" or "cur"', 'diffto' );
+				&& $params['diffto'] != 'prev' && $params['diffto'] != 'next'
+			) {
+				$this->dieUsage(
+					'rvdiffto must be set to a non-negative number, "prev", "next" or "cur"',
+					'diffto'
+				);
 			}
 			// Check whether the revision exists and is readable,
 			// DifferenceEngine returns a rather ambiguous empty
@@ -130,7 +147,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				if ( !$difftoRev ) {
 					$this->dieUsageMsg( array( 'nosuchrevid', $params['diffto'] ) );
 				}
-				if ( $difftoRev->isDeleted( Revision::DELETED_TEXT ) ) {
+				if ( !$difftoRev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
 					$this->setWarning( "Couldn't diff to r{$difftoRev->getID()}: content is hidden" );
 					$params['diffto'] = null;
 				}
@@ -163,9 +180,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->contentFormat = $params['contentformat'];
 		}
 
-		// Possible indexes used
-		$index = array();
-
 		$userMax = ( $this->fld_content ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1 );
 		$botMax = ( $this->fld_content ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_BIG2 );
 		$limit = $params['limit'];
@@ -181,15 +195,18 @@ class ApiQueryRevisions extends ApiQueryBase {
 		if ( isset( $prop['tags'] ) ) {
 			$this->fld_tags = true;
 			$this->addTables( 'tag_summary' );
-			$this->addJoinConds( array( 'tag_summary' => array( 'LEFT JOIN', array( 'rev_id=ts_rev_id' ) ) ) );
+			$this->addJoinConds(
+				array( 'tag_summary' => array( 'LEFT JOIN', array( 'rev_id=ts_rev_id' ) ) )
+			);
 			$this->addFields( 'ts_tags' );
 		}
 
 		if ( !is_null( $params['tag'] ) ) {
 			$this->addTables( 'change_tag' );
-			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN', array( 'rev_id=ct_rev_id' ) ) ) );
+			$this->addJoinConds(
+				array( 'change_tag' => array( 'INNER JOIN', array( 'rev_id=ct_rev_id' ) ) )
+			);
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
-			$index['change_tag'] = 'change_tag_tag_id';
 		}
 
 		if ( isset( $prop['content'] ) || !is_null( $this->difftotext ) ) {
@@ -299,7 +316,16 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 			if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
 				// Paranoia: avoid brute force searches (bug 17342)
-				$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
+				if ( !$this->getUser()->isAllowed( 'deletedhistory' ) ) {
+					$bitmask = Revision::DELETED_USER;
+				} elseif ( !$this->getUser()->isAllowed( 'suppressrevision' ) ) {
+					$bitmask = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
+				} else {
+					$bitmask = 0;
+				}
+				if ( $bitmask ) {
+					$this->addWhere( $db->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask" );
+				}
 			}
 		} elseif ( $revCount > 0 ) {
 			$max = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
@@ -349,7 +375,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->addOption( 'ORDER BY', array(
 				'rev_page',
 				'rev_id'
-			));
+			) );
 
 			// assumption testing -- we should never get more then $pageCount rows.
 			$limit = $pageCount;
@@ -358,14 +384,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		$this->addOption( 'LIMIT', $limit + 1 );
-		$this->addOption( 'USE INDEX', $index );
 
 		$count = 0;
 		$res = $this->select( __METHOD__ );
 
 		foreach ( $res as $row ) {
-			if ( ++ $count > $limit ) {
-				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+			if ( ++$count > $limit ) {
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
 				if ( !$enumRevMode ) {
 					ApiBase::dieDebug( __METHOD__, 'Got more rows then expected' ); // bug report
 				}
@@ -391,7 +417,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 	private function extractRowInfo( $row ) {
 		$revision = new Revision( $row );
 		$title = $revision->getTitle();
+		$user = $this->getUser();
 		$vals = array();
+		$anyHidden = false;
 
 		if ( $this->fld_ids ) {
 			$vals['revid'] = intval( $revision->getId() );
@@ -408,11 +436,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 		if ( $this->fld_user || $this->fld_userid ) {
 			if ( $revision->isDeleted( Revision::DELETED_USER ) ) {
 				$vals['userhidden'] = '';
-			} else {
+				$anyHidden = true;
+			}
+			if ( $revision->userCan( Revision::DELETED_USER, $user ) ) {
 				if ( $this->fld_user ) {
-					$vals['user'] = $revision->getUserText();
+					$vals['user'] = $revision->getRawUserText();
 				}
-				$userid = $revision->getUser();
+				$userid = $revision->getRawUser();
 				if ( !$userid ) {
 					$vals['anon'] = '';
 				}
@@ -435,14 +465,18 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 		}
 
-		if ( $this->fld_sha1 && !$revision->isDeleted( Revision::DELETED_TEXT ) ) {
-			if ( $revision->getSha1() != '' ) {
-				$vals['sha1'] = wfBaseConvert( $revision->getSha1(), 36, 16, 40 );
-			} else {
-				$vals['sha1'] = '';
+		if ( $this->fld_sha1 ) {
+			if ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
+				$vals['sha1hidden'] = '';
+				$anyHidden = true;
 			}
-		} elseif ( $this->fld_sha1 ) {
-			$vals['sha1hidden'] = '';
+			if ( $revision->userCan( Revision::DELETED_TEXT, $user ) ) {
+				if ( $revision->getSha1() != '' ) {
+					$vals['sha1'] = wfBaseConvert( $revision->getSha1(), 36, 16, 40 );
+				} else {
+					$vals['sha1'] = '';
+				}
+			}
 		}
 
 		if ( $this->fld_contentmodel ) {
@@ -452,8 +486,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
 			if ( $revision->isDeleted( Revision::DELETED_COMMENT ) ) {
 				$vals['commenthidden'] = '';
-			} else {
-				$comment = $revision->getComment();
+				$anyHidden = true;
+			}
+			if ( $revision->userCan( Revision::DELETED_COMMENT, $user ) ) {
+				$comment = $revision->getRawComment();
 
 				if ( $this->fld_comment ) {
 					$vals['comment'] = $comment;
@@ -490,25 +526,38 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$content = null;
 		global $wgParser;
 		if ( $this->fld_content || !is_null( $this->diffto ) || !is_null( $this->difftotext ) ) {
-			$content = $revision->getContent();
+			$content = $revision->getContent( Revision::FOR_THIS_USER, $this->getUser() );
 			// Expand templates after getting section content because
 			// template-added sections don't count and Parser::preprocess()
 			// will have less input
 			if ( $content && $this->section !== false ) {
 				$content = $content->getSection( $this->section, false );
 				if ( !$content ) {
-					$this->dieUsage( "There is no section {$this->section} in r" . $revision->getId(), 'nosuchsection' );
+					$this->dieUsage(
+						"There is no section {$this->section} in r" . $revision->getId(),
+						'nosuchsection'
+					);
 				}
 			}
+			if ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
+				$vals['texthidden'] = '';
+				$anyHidden = true;
+			} elseif ( !$content ) {
+				$vals['textmissing'] = '';
+			}
 		}
-		if ( $this->fld_content && $content && !$revision->isDeleted( Revision::DELETED_TEXT ) ) {
+		if ( $this->fld_content && $content ) {
 			$text = null;
 
 			if ( $this->generateXML ) {
 				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
 					$t = $content->getNativeData(); # note: don't set $text
 
-					$wgParser->startExternalParse( $title, ParserOptions::newFromContext( $this->getContext() ), OT_PREPROCESS );
+					$wgParser->startExternalParse(
+						$title,
+						ParserOptions::newFromContext( $this->getContext() ),
+						OT_PREPROCESS
+					);
 					$dom = $wgParser->preprocessToDom( $t );
 					if ( is_callable( array( $dom, 'saveXML' ) ) ) {
 						$xml = $dom->saveXML();
@@ -518,8 +567,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 					$vals['parsetree'] = $xml;
 				} else {
 					$this->setWarning( "Conversion to XML is supported for wikitext only, " .
-										$title->getPrefixedDBkey() .
-										" uses content model " . $content->getModel() );
+						$title->getPrefixedDBkey() .
+						" uses content model " . $content->getModel() );
 				}
 			}
 
@@ -528,7 +577,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
 					$text = $content->getNativeData();
 
-					$text = $wgParser->preprocess( $text, $title, ParserOptions::newFromContext( $this->getContext() ) );
+					$text = $wgParser->preprocess(
+						$text,
+						$title,
+						ParserOptions::newFromContext( $this->getContext() )
+					);
 				} else {
 					$this->setWarning( "Template expansion is supported for wikitext only, " .
 						$title->getPrefixedDBkey() .
@@ -538,7 +591,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 				}
 			}
 			if ( $this->parseContent ) {
-				$po = $content->getParserOutput( $title, $revision->getId(), ParserOptions::newFromContext( $this->getContext() ) );
+				$po = $content->getParserOutput(
+					$title,
+					$revision->getId(),
+					ParserOptions::newFromContext( $this->getContext() )
+				);
 				$text = $po->getText();
 			}
 
@@ -550,7 +607,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 					$name = $title->getPrefixedDBkey();
 
 					$this->dieUsage( "The requested format {$this->contentFormat} is not supported " .
-									"for content model $model used by $name", 'badformat' );
+						"for content model $model used by $name", 'badformat' );
 				}
 
 				$text = $content->serialize( $format );
@@ -564,21 +621,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 			if ( $text !== false ) {
 				ApiResult::setContent( $vals, $text );
 			}
-		} elseif ( $this->fld_content ) {
-			if ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
-				$vals['texthidden'] = '';
-			} else {
-				$vals['textmissing'] = '';
-			}
 		}
 
-		if ( !is_null( $this->diffto ) || !is_null( $this->difftotext ) ) {
+		if ( $content && ( !is_null( $this->diffto ) || !is_null( $this->difftotext ) ) ) {
 			global $wgAPIMaxUncachedDiffs;
 			static $n = 0; // Number of uncached diffs we've had
 
-			if ( is_null( $content ) ) {
-				$vals['textmissing'] = '';
-			} elseif ( $n < $wgAPIMaxUncachedDiffs ) {
+			if ( $n < $wgAPIMaxUncachedDiffs ) {
 				$vals['diff'] = array();
 				$context = new DerivativeContext( $this->getContext() );
 				$context->setTitle( $title );
@@ -588,15 +637,21 @@ class ApiQueryRevisions extends ApiQueryBase {
 					$model = $title->getContentModel();
 
 					if ( $this->contentFormat
-						&& !ContentHandler::getForModelID( $model )->isSupportedFormat( $this->contentFormat ) ) {
+						&& !ContentHandler::getForModelID( $model )->isSupportedFormat( $this->contentFormat )
+					) {
 
 						$name = $title->getPrefixedDBkey();
 
 						$this->dieUsage( "The requested format {$this->contentFormat} is not supported for " .
-											"content model $model used by $name", 'badformat' );
+							"content model $model used by $name", 'badformat' );
 					}
 
-					$difftocontent = ContentHandler::makeContent( $this->difftotext, $title, $model, $this->contentFormat );
+					$difftocontent = ContentHandler::makeContent(
+						$this->difftotext,
+						$title,
+						$model,
+						$this->contentFormat
+					);
 
 					$engine = $handler->createDifferenceEngine( $context );
 					$engine->setContent( $content, $difftocontent );
@@ -614,6 +669,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$vals['diff']['notcached'] = '';
 			}
 		}
+
+		if ( $anyHidden && $revision->isDeleted( Revision::DELETED_RESTRICTED ) ) {
+			$vals['suppressed'] = '';
+		}
+
 		return $vals;
 	}
 
@@ -621,10 +681,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 		if ( isset( $params['token'] ) ) {
 			return 'private';
 		}
+		if ( $this->userCanSeeRevDel() ) {
+			return 'private';
+		}
 		if ( !is_null( $params['prop'] ) && in_array( 'parsedcomment', $params['prop'] ) ) {
 			// formatComment() calls wfMessage() among other things
 			return 'anon-public-user-private';
 		}
+
 		return 'public';
 	}
 
@@ -700,6 +764,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
+
 		return array(
 			'prop' => array(
 				'Which properties to get for each revision:',
@@ -733,8 +798,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'continue' => 'When more results are available, use this to continue',
 			'diffto' => array( 'Revision ID to diff each revision to.',
 				'Use "prev", "next" and "cur" for the previous, next and current revision respectively' ),
-			'difftotext' => array( 'Text to diff each revision to. Only diffs a limited number of revisions.',
-				"Overrides {$p}diffto. If {$p}section is set, only that section will be diffed against this text" ),
+			'difftotext' => array(
+				'Text to diff each revision to. Only diffs a limited number of revisions.',
+				"Overrides {$p}diffto. If {$p}section is set, only that section will be",
+				'diffed against this text',
+			),
 			'tag' => 'Only list revisions tagged with this tag',
 			'contentformat' => 'Serialization format used for difftotext and expected for output of content',
 		);
@@ -806,47 +874,62 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 	public function getDescription() {
 		return array(
-			'Get revision information',
+			'Get revision information.',
 			'May be used in several ways:',
-			' 1) Get data about a set of pages (last revision), by setting titles or pageids parameter',
-			' 2) Get revisions for one given page, by using titles/pageids with start/end/limit params',
-			' 3) Get data about a set of revisions by setting their IDs with revids parameter',
-			'All parameters marked as (enum) may only be used with a single page (#2)'
+			' 1) Get data about a set of pages (last revision), by setting titles or pageids parameter.',
+			' 2) Get revisions for one given page, by using titles/pageids with start/end/limit params.',
+			' 3) Get data about a set of revisions by setting their IDs with revids parameter.',
+			'All parameters marked as (enum) may only be used with a single page (#2).'
 		);
 	}
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'nosuchrevid', 'diffto' ),
-			array( 'code' => 'revids', 'info' => 'The revids= parameter may not be used with the list options '
-					. '(limit, startid, endid, dirNewer, start, end).' ),
-			array( 'code' => 'multpages', 'info' => 'titles, pageids or a generator was used to supply multiple pages, '
+			array(
+				'code' => 'revids',
+				'info' => 'The revids= parameter may not be used with the list options '
+					. '(limit, startid, endid, dirNewer, start, end).'
+			),
+			array(
+				'code' => 'multpages',
+				'info' => 'titles, pageids or a generator was used to supply multiple pages, '
 					. ' but the limit, startid, endid, dirNewer, user, excludeuser, '
-					. 'start and end parameters may only be used on a single page.' ),
-			array( 'code' => 'diffto', 'info' => 'rvdiffto must be set to a non-negative number, "prev", "next" or "cur"' ),
+					. 'start and end parameters may only be used on a single page.'
+			),
+			array(
+				'code' => 'diffto',
+				'info' => 'rvdiffto must be set to a non-negative number, "prev", "next" or "cur"'
+			),
 			array( 'code' => 'badparams', 'info' => 'start and startid cannot be used together' ),
 			array( 'code' => 'badparams', 'info' => 'end and endid cannot be used together' ),
 			array( 'code' => 'badparams', 'info' => 'user and excludeuser cannot be used together' ),
 			array( 'code' => 'nosuchsection', 'info' => 'There is no section section in rID' ),
 			array( 'code' => 'badformat', 'info' => 'The requested serialization format can not be applied '
-													. ' to the page\'s content model' ),
+				. ' to the page\'s content model' ),
 		) );
 	}
 
 	public function getExamples() {
 		return array(
 			'Get data with content for the last revision of titles "API" and "Main Page"',
-			'  api.php?action=query&prop=revisions&titles=API|Main%20Page&rvprop=timestamp|user|comment|content',
+			'  api.php?action=query&prop=revisions&titles=API|Main%20Page&' .
+				'rvprop=timestamp|user|comment|content',
 			'Get last 5 revisions of the "Main Page"',
-			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment',
+			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+				'rvprop=timestamp|user|comment',
 			'Get first 5 revisions of the "Main Page"',
-			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvdir=newer',
+			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+				'rvprop=timestamp|user|comment&rvdir=newer',
 			'Get first 5 revisions of the "Main Page" made after 2006-05-01',
-			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvdir=newer&rvstart=20060501000000',
+			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+				'rvprop=timestamp|user|comment&rvdir=newer&rvstart=20060501000000',
 			'Get first 5 revisions of the "Main Page" that were not made made by anonymous user "127.0.0.1"',
-			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvexcludeuser=127.0.0.1',
+			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+				'rvprop=timestamp|user|comment&rvexcludeuser=127.0.0.1',
 			'Get first 5 revisions of the "Main Page" that were made by the user "MediaWiki default"',
-			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvuser=MediaWiki%20default',
+			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+				'rvprop=timestamp|user|comment&rvuser=MediaWiki%20default',
 		);
 	}
 

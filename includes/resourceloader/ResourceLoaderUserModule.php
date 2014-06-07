@@ -27,8 +27,11 @@
  */
 class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 
-	/* Protected Methods */
+	/* Protected Members */
+
 	protected $origin = self::ORIGIN_USER_INDIVIDUAL;
+
+	/* Protected Methods */
 
 	/**
 	 * @param $context ResourceLoaderContext

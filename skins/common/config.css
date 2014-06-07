@@ -144,5 +144,6 @@
 }
 
 #config-live-log {
-	margin-right: 18em;
+	overflow: hidden;
+	min-width: 20em;
 }

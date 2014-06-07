@@ -396,7 +396,7 @@
 					rtl: true
 				}
 			},
-			// Bug #34924
+			// Rekonq (bug 34924)
 			'Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.34 (KHTML, like Gecko) rekonq Safari/534.34': {
 				title: 'Rekonq',
 				platform: 'Linux i686',
@@ -413,12 +413,99 @@
 					ltr: true,
 					rtl: true
 				}
+			},
+			// Konqueror
+			'Mozilla/5.0 (X11; Linux i686) KHTML/4.9.1 (like Gecko) Konqueror/4.9': {
+				title: 'Konqueror',
+				platform: 'Linux i686',
+				profile: {
+					name: 'konqueror',
+					layout: 'khtml',
+					layoutVersion: 'unknown',
+					platform: 'linux',
+					version: '4.9.1',
+					versionBase: '4',
+					versionNumber: 4.9
+				},
+				wikiEditor: {
+					// '4.9' is less than '4.11'.
+					ltr: false,
+					rtl: false
+				},
+				wikiEditorLegacy: {
+					// The check is missing in legacyTestMap
+					ltr: true,
+					rtl: true
+				}
+			},
+			// Amazon Silk
+			'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-us; Silk/1.0.13.81_10003810) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16 Silk-Accelerated=true': {
+				title: 'Silk',
+				platform: 'Desktop',
+				profile: {
+					name: 'silk',
+					layout: 'webkit',
+					layoutVersion: 533,
+					platform: 'unknown',
+					version: '1.0.13.81_10003810',
+					versionBase: '1',
+					versionNumber: 1
+				},
+				wikiEditor: {
+					ltr: true,
+					rtl: true
+				}
+			},
+			'Mozilla/5.0 (Linux; U; Android 4.0.3; en-us; KFTT Build/IML74K) AppleWebKit/535.19 (KHTML, like Gecko) Silk/2.1 Mobile Safari/535.19 Silk-Accelerated=true': {
+				title: 'Silk',
+				platform: 'Mobile',
+				profile: {
+					name: 'silk',
+					layout: 'webkit',
+					layoutVersion: 535,
+					platform: 'unknown',
+					version: '2.1',
+					versionBase: '2',
+					versionNumber: 2.1
+				},
+				wikiEditor: {
+					ltr: true,
+					rtl: true
+				}
 			}
 		},
 		testMap = {
-			// Example from WikiEditor
-			// Make sure to use raw numbers, a string like "7.0" would fail on a
-			// version 10 browser since in string comparaison "10" is before "7.0" :)
+			// Example from WikiEditor, modified to provide version identifiers as strings and with
+			// Konqueror 4.11 check added.
+			'ltr': {
+				'msie': [['>=', '7.0']],
+				'firefox': [['>=', '2']],
+				'opera': [['>=', '9.6']],
+				'safari': [['>=', '3']],
+				'chrome': [['>=', '3']],
+				'netscape': [['>=', '9']],
+				'konqueror': [['>=', '4.11']],
+				'blackberry': false,
+				'ipod': false,
+				'iphone': false
+			},
+			'rtl': {
+				'msie': [['>=', '8']],
+				'firefox': [['>=', '2']],
+				'opera': [['>=', '9.6']],
+				'safari': [['>=', '3']],
+				'chrome': [['>=', '3']],
+				'netscape': [['>=', '9']],
+				'konqueror': [['>=', '4.11']],
+				'blackberry': false,
+				'ipod': false,
+				'iphone': false
+			}
+		},
+		legacyTestMap = {
+			// Original example from WikiEditor.
+			// This is using the old, but still supported way of providing version identifiers as numbers
+			// instead of strings; with this method, 4.9 would be considered larger than 4.11.
 			'ltr': {
 				'msie': [['>=', 7.0]],
 				'firefox': [['>=', 2]],
@@ -516,23 +603,33 @@
 		}, ie7Profile, true ), false, 'returns false if browser not found and exactMatchOnly is set' );
 	} );
 
-	QUnit.test( 'test( testMap) - WikiEditor sample', uacount * 2, function ( assert ) {
+	QUnit.test( 'test( testMap ), test( legacyTestMap ) - WikiEditor sample', uacount * 2 * 2, function ( assert ) {
 		var $body = $( 'body' ),
 			bodyClasses = $body.attr( 'class' );
 
 		// Loop through and run tests
 		$.each( uas, function ( agent, data ) {
 			$.each( ['ltr', 'rtl'], function ( i, dir ) {
-				var profile, testMatch;
+				var profile, testMatch, legacyTestMatch;
 				$body.removeClass( 'ltr rtl' ).addClass( dir );
 				profile = $.client.profile( {
 					userAgent: agent,
 					platform: data.platform
 				} );
 				testMatch = $.client.test( testMap, profile );
+				legacyTestMatch = $.client.test( legacyTestMap, profile );
 				$body.removeClass( dir );
 
-				assert.equal( testMatch, data.wikiEditor[dir], 'testing comparison based on ' + dir + ', ' + agent );
+				assert.equal(
+					testMatch,
+					data.wikiEditor[dir],
+					'testing comparison based on ' + dir + ', ' + agent
+				);
+				assert.equal(
+					legacyTestMatch,
+					data.wikiEditorLegacy ? data.wikiEditorLegacy[dir] : data.wikiEditor[dir],
+					'testing comparison based on ' + dir + ', ' + agent + ' (legacyTestMap)'
+				);
 			} );
 		} );
 

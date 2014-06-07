@@ -3,7 +3,7 @@
  * Helper class for update.php.
  *
  * Copyright © 2005 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -184,7 +184,7 @@ class UserDupes {
 	function getDupes() {
 		$user = $this->db->tableName( 'user' );
 		$result = $this->db->query(
-			 "SELECT user_name,COUNT(*) AS n
+			"SELECT user_name,COUNT(*) AS n
 				FROM $user
 			GROUP BY user_name
 			  HAVING n > 1", __METHOD__ );

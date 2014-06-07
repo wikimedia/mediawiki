@@ -51,6 +51,7 @@ class WatchAction extends FormAction {
 		wfProfileIn( __METHOD__ );
 		self::doWatch( $this->getTitle(), $this->getUser() );
 		wfProfileOut( __METHOD__ );
+
 		return true;
 	}
 
@@ -81,7 +82,14 @@ class WatchAction extends FormAction {
 	protected function checkCanExecute( User $user ) {
 		// Must be logged in
 		if ( $user->isAnon() ) {
-			throw new ErrorPageError( 'watchnologin', 'watchnologintext' );
+			$loginreqlink = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Userlogin' ),
+				$this->msg( 'loginreqlink' )->escaped(),
+				array(),
+				array( 'returnto' => $this->getPageTitle(), 'returntoquery' => 'action=' . $this->getName() )
+			);
+			$reasonMsg = $this->msg( 'watchlistanontext' )->rawParams( $loginreqlink );
+			throw new UserNotLoggedIn( $reasonMsg, 'watchnologin' );
 		}
 
 		return parent::checkCanExecute( $user );
@@ -96,7 +104,9 @@ class WatchAction extends FormAction {
 	 * @return Status
 	 */
 	public static function doWatchOrUnwatch( $watch, Title $title, User $user ) {
-		if ( $user->isLoggedIn() && $user->isWatched( $title, WatchedItem::IGNORE_USER_RIGHTS ) != $watch ) {
+		if ( $user->isLoggedIn() &&
+			$user->isWatched( $title, WatchedItem::IGNORE_USER_RIGHTS ) != $watch
+		) {
 			// If the user doesn't have 'editmywatchlist', we still want to
 			// allow them to add but not remove items via edits and such.
 			if ( $watch ) {
@@ -105,6 +115,7 @@ class WatchAction extends FormAction {
 				return self::doUnwatch( $title, $user );
 			}
 		}
+
 		return Status::newGood();
 	}
 
@@ -116,8 +127,12 @@ class WatchAction extends FormAction {
 	 * @param int $checkRights Passed through to $user->addWatch()
 	 * @return Status
 	 */
-	public static function doWatch( Title $title, User $user, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
-		if ( $checkRights !== WatchedItem::IGNORE_USER_RIGHTS && !$user->isAllowed( 'editmywatchlist' ) ) {
+	public static function doWatch( Title $title, User $user,
+		$checkRights = WatchedItem::CHECK_USER_RIGHTS
+	) {
+		if ( $checkRights !== WatchedItem::IGNORE_USER_RIGHTS &&
+			!$user->isAllowed( 'editmywatchlist' )
+		) {
 			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
 		}
 
@@ -129,6 +144,7 @@ class WatchAction extends FormAction {
 			$user->addWatch( $title, $checkRights );
 			wfRunHooks( 'WatchArticleComplete', array( &$user, &$page ) );
 		}
+
 		return $status;
 	}
 
@@ -152,6 +168,7 @@ class WatchAction extends FormAction {
 			$user->removeWatch( $title );
 			wfRunHooks( 'UnwatchArticleComplete', array( &$user, &$page ) );
 		}
+
 		return $status;
 	}
 
@@ -220,6 +237,7 @@ class UnwatchAction extends WatchAction {
 		wfProfileIn( __METHOD__ );
 		self::doUnwatch( $this->getTitle(), $this->getUser() );
 		wfProfileOut( __METHOD__ );
+
 		return true;
 	}
 

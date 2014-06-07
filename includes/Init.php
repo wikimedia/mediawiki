@@ -48,7 +48,7 @@ class MWInit {
 	 * @return bool
 	 */
 	static function isHipHop() {
-		return defined( 'HPHP_VERSION' );
+		return wfIsHHVM();
 	}
 
 	/**

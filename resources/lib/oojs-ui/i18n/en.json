@@ -1,0 +1,24 @@
+{
+    "@metadata": {
+        "authors": [
+            "Trevor Parscal",
+            "Ed Sanders",
+            "James D. Forrester",
+            "Raimond Spekking",
+            "Erik Moeller",
+            "Moriel Schottlender",
+            "Yuki Shira",
+            "Siebrand Mazeland",
+            "Rob Moen",
+            "Timo Tijhof",
+            "Roan Kattouw",
+            "Christian Williams",
+            "Amir E. Aharoni"
+        ]
+    },
+    "ooui-dialog-action-close": "Close",
+    "ooui-outline-control-move-down": "Move item down",
+    "ooui-outline-control-move-up": "Move item up",
+    "ooui-outline-control-remove": "Remove item",
+    "ooui-toolbar-more": "More"
+}

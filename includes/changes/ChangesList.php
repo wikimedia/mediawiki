@@ -23,20 +23,23 @@
  */
 
 class ChangesList extends ContextSource {
-
 	/**
 	 * @var Skin
 	 */
 	public $skin;
 
 	protected $watchlist = false;
-
+	protected $lastdate;
 	protected $message;
+	protected $rc_cache;
+	protected $rcCacheIndex;
+	protected $rclistOpen;
+	protected $rcMoveIndex;
 
 	/**
 	 * Changeslist constructor
 	 *
-	 * @param $obj Skin or IContextSource
+	 * @param Skin|IContextSource $obj
 	 */
 	public function __construct( $obj ) {
 		if ( $obj instanceof IContextSource ) {
@@ -50,24 +53,11 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * Fetch an appropriate changes list class for the main context
-	 * This first argument used to be an User object.
-	 *
-	 * @deprecated in 1.18; use newFromContext() instead
-	 * @param string|User $unused Unused
-	 * @return ChangesList|EnhancedChangesList|OldChangesList derivative
-	 */
-	public static function newFromUser( $unused ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return self::newFromContext( RequestContext::getMain() );
-	}
-
-	/**
 	 * Fetch an appropriate changes list class for the specified context
 	 * Some users might want to use an enhanced list format, for instance
 	 *
-	 * @param $context IContextSource to use
-	 * @return ChangesList|EnhancedChangesList|OldChangesList derivative
+	 * @param IContextSource $context
+	 * @return ChangesList derivative
 	 */
 	public static function newFromContext( IContextSource $context ) {
 		$user = $context->getUser();
@@ -75,6 +65,7 @@ class ChangesList extends ContextSource {
 		$list = null;
 		if ( wfRunHooks( 'FetchChangesList', array( $user, &$sk, &$list ) ) ) {
 			$new = $context->getRequest()->getBool( 'enhanced', $user->getOption( 'usenewrc' ) );
+
 			return $new ? new EnhancedChangesList( $context ) : new OldChangesList( $context );
 		} else {
 			return $list;
@@ -87,6 +78,14 @@ class ChangesList extends ContextSource {
 	 */
 	public function setWatchlistDivs( $value = true ) {
 		$this->watchlist = $value;
+	}
+
+	/**
+	 * @return bool true when setWatchlistDivs has been called
+	 * @since 1.23
+	 */
+	public function isWatchlist() {
+		return (bool)$this->watchlist;
 	}
 
 	/**
@@ -108,7 +107,7 @@ class ChangesList extends ContextSource {
 	 * Returns the appropriate flags for new page, minor change and patrolling
 	 * @param array $flags Associative array of 'flag' => Bool
 	 * @param string $nothing to use for empty space
-	 * @return String
+	 * @return string
 	 */
 	public function recentChangesFlags( $flags, $nothing = '&#160;' ) {
 		global $wgRecentChangesFlags;
@@ -118,6 +117,7 @@ class ChangesList extends ContextSource {
 				? self::flag( $flag )
 				: $nothing;
 		}
+
 		return $f;
 	}
 
@@ -128,7 +128,7 @@ class ChangesList extends ContextSource {
 	 * "!" respectively, plus it will have an appropriate title and class.
 	 *
 	 * @param string $flag One key of $wgRecentChangesFlags
-	 * @return String: Raw HTML
+	 * @return string Raw HTML
 	 */
 	public static function flag( $flag ) {
 		static $flagInfos = null;
@@ -153,14 +153,14 @@ class ChangesList extends ContextSource {
 			$flag = $map[$flag];
 		}
 
-		return "<abbr class='" . $flagInfos[$flag]['class'] . "' title='" . $flagInfos[$flag]['title'] . "'>" .
-			$flagInfos[$flag]['letter'] .
+		return "<abbr class='" . $flagInfos[$flag]['class'] . "' title='" .
+			$flagInfos[$flag]['title'] . "'>" . $flagInfos[$flag]['letter'] .
 			'</abbr>';
 	}
 
 	/**
 	 * Returns text for the start of the tabular part of RC
-	 * @return String
+	 * @return string
 	 */
 	public function beginRecentChangesList() {
 		$this->rc_cache = array();
@@ -169,15 +169,23 @@ class ChangesList extends ContextSource {
 		$this->lastdate = '';
 		$this->rclistOpen = false;
 		$this->getOutput()->addModuleStyles( 'mediawiki.special.changeslist' );
-		return '';
+
+		return '<div class="mw-changeslist">';
+	}
+
+	/**
+	 * @param ResultWrapper|array $rows
+	 */
+	public function initChangesListRows( $rows ) {
+		wfRunHooks( 'ChangesListInitRows', array( $this, $rows ) );
 	}
 
 	/**
 	 * Show formatted char difference
-	 * @param $old Integer: bytes
-	 * @param $new Integer: bytes
-	 * @param $context IContextSource context to use
-	 * @return String
+	 * @param int $old Number of bytes
+	 * @param int $new Number of bytes
+	 * @param IContextSource $context
+	 * @return string
 	 */
 	public static function showCharacterDifference( $old, $new, IContextSource $context = null ) {
 		global $wgRCChangedSizeThreshold, $wgMiserMode;
@@ -211,12 +219,10 @@ class ChangesList extends ContextSource {
 
 		if ( $szdiff === 0 ) {
 			$formattedSizeClass = 'mw-plusminus-null';
-		}
-		if ( $szdiff > 0 ) {
+		} elseif ( $szdiff > 0 ) {
 			$formattedSize = '+' . $formattedSize;
 			$formattedSizeClass = 'mw-plusminus-pos';
-		}
-		if ( $szdiff < 0 ) {
+		} else {
 			$formattedSizeClass = 'mw-plusminus-neg';
 		}
 
@@ -255,11 +261,10 @@ class ChangesList extends ContextSource {
 	 * @return String
 	 */
 	public function endRecentChangesList() {
-		if ( $this->rclistOpen ) {
-			return "</ul>\n";
-		} else {
-			return '';
-		}
+		$out = $this->rclistOpen ? "</ul>\n" : '';
+		$out .= '</div>';
+
+		return $out;
 	}
 
 	/**
@@ -326,7 +331,9 @@ class ChangesList extends ContextSource {
 				'action' => 'history'
 			)
 		);
-		$s .= $this->msg( 'parentheses' )->rawParams( $diffhist )->escaped() . ' <span class="mw-changeslist-separator">. .</span> ';
+		// @todo FIXME: Hard coded ". .". Is there a message for this? Should there be?
+		$s .= $this->msg( 'parentheses' )->rawParams( $diffhist )->escaped() .
+			' <span class="mw-changeslist-separator">. .</span> ';
 	}
 
 	/**
@@ -366,8 +373,12 @@ class ChangesList extends ContextSource {
 	 * @return string HTML fragment
 	 */
 	public function getTimestamp( $rc ) {
+		// @todo FIXME: Hard coded ". .". Is there a message for this? Should there be?
 		return $this->message['semicolon-separator'] . '<span class="mw-changeslist-date">' .
-			$this->getLanguage()->userTime( $rc->mAttribs['rc_timestamp'], $this->getUser() ) . '</span> <span class="mw-changeslist-separator">. .</span> ';
+			$this->getLanguage()->userTime(
+				$rc->mAttribs['rc_timestamp'],
+				$this->getUser()
+			) . '</span> <span class="mw-changeslist-separator">. .</span> ';
 	}
 
 	/**
@@ -388,7 +399,8 @@ class ChangesList extends ContextSource {
 	 */
 	public function insertUserRelatedLinks( &$s, &$rc ) {
 		if ( $this->isDeleted( $rc, Revision::DELETED_USER ) ) {
-			$s .= ' <span class="history-deleted">' . $this->msg( 'rev-deleted-user' )->escaped() . '</span>';
+			$s .= ' <span class="history-deleted">' .
+				$this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
 			$s .= $this->getLanguage()->getDirMark() . Linker::userLink( $rc->mAttribs['rc_user'],
 				$rc->mAttribs['rc_user_text'] );
@@ -407,6 +419,7 @@ class ChangesList extends ContextSource {
 		$formatter->setContext( $this->getContext() );
 		$formatter->setShowUserToolLinks( true );
 		$mark = $this->getLanguage()->getDirMark();
+
 		return $formatter->getActionText() . " $mark" . $formatter->getComment();
 	}
 
@@ -418,11 +431,13 @@ class ChangesList extends ContextSource {
 	public function insertComment( $rc ) {
 		if ( $rc->mAttribs['rc_type'] != RC_MOVE && $rc->mAttribs['rc_type'] != RC_MOVE_OVER_REDIRECT ) {
 			if ( $this->isDeleted( $rc, Revision::DELETED_COMMENT ) ) {
-				return ' <span class="history-deleted">' . $this->msg( 'rev-deleted-comment' )->escaped() . '</span>';
+				return ' <span class="history-deleted">' .
+					$this->msg( 'rev-deleted-comment' )->escaped() . '</span>';
 			} else {
 				return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle() );
 			}
 		}
+
 		return '';
 	}
 
@@ -442,14 +457,17 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Returns the string which indicates the number of watching users
+	 * @param int $count Number of user watching a page
 	 * @return string
 	 */
 	protected function numberofWatchingusers( $count ) {
 		static $cache = array();
 		if ( $count > 0 ) {
 			if ( !isset( $cache[$count] ) ) {
-				$cache[$count] = $this->msg( 'number_of_watching_users_RCview' )->numParams( $count )->escaped();
+				$cache[$count] = $this->msg( 'number_of_watching_users_RCview' )
+					->numParams( $count )->escaped();
 			}
+
 			return $cache[$count];
 		} else {
 			return '';
@@ -458,9 +476,9 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Determine if said field of a revision is hidden
-	 * @param $rc RCCacheEntry
-	 * @param $field Integer: one of DELETED_* bitfield constants
-	 * @return Boolean
+	 * @param RCCacheEntry|RecentChange $rc
+	 * @param int $field One of DELETED_* bitfield constants
+	 * @return bool
 	 */
 	public static function isDeleted( $rc, $field ) {
 		return ( $rc->mAttribs['rc_deleted'] & $field ) == $field;
@@ -469,10 +487,10 @@ class ChangesList extends ContextSource {
 	/**
 	 * Determine if the current user is allowed to view a particular
 	 * field of this revision, if it's marked as deleted.
-	 * @param $rc RCCacheEntry
-	 * @param $field Integer
-	 * @param $user User object to check, or null to use $wgUser
-	 * @return Boolean
+	 * @param RCCacheEntry|RecentChange $rc
+	 * @param int $field
+	 * @param User $user User object to check, or null to use $wgUser
+	 * @return bool
 	 */
 	public static function userCan( $rc, $field, User $user = null ) {
 		if ( $rc->mAttribs['rc_type'] == RC_LOG ) {
@@ -501,12 +519,16 @@ class ChangesList extends ContextSource {
 	 * @param $rc RecentChange
 	 */
 	public function insertRollback( &$s, &$rc ) {
-		if ( $rc->mAttribs['rc_type'] == RC_EDIT && $rc->mAttribs['rc_this_oldid'] && $rc->mAttribs['rc_cur_id'] ) {
+		if ( $rc->mAttribs['rc_type'] == RC_EDIT
+			&& $rc->mAttribs['rc_this_oldid']
+			&& $rc->mAttribs['rc_cur_id']
+		) {
 			$page = $rc->getTitle();
 			/** Check for rollback and edit permissions, disallow special pages, and only
-			  * show a link on the top-most revision */
-			if ( $this->getUser()->isAllowed( 'rollback' ) && $rc->mAttribs['page_latest'] == $rc->mAttribs['rc_this_oldid'] )
-			{
+			 * show a link on the top-most revision */
+			if ( $this->getUser()->isAllowed( 'rollback' )
+				&& $rc->mAttribs['page_latest'] == $rc->mAttribs['rc_this_oldid']
+			) {
 				$rev = new Revision( array(
 					'title' => $page,
 					'id' => $rc->mAttribs['rc_this_oldid'],
@@ -529,7 +551,10 @@ class ChangesList extends ContextSource {
 			return;
 		}
 
-		list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow( $rc->mAttribs['ts_tags'], 'changeslist' );
+		list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow(
+			$rc->mAttribs['ts_tags'],
+			'changeslist'
+		);
 		$classes = array_merge( $classes, $newClasses );
 		$s .= ' ' . $tagSummary;
 	}
@@ -539,14 +564,32 @@ class ChangesList extends ContextSource {
 	}
 
 	protected function showAsUnpatrolled( RecentChange $rc ) {
-		$unpatrolled = false;
-		if ( !$rc->mAttribs['rc_patrolled'] ) {
-			if ( $this->getUser()->useRCPatrol() ) {
-				$unpatrolled = true;
-			} elseif ( $this->getUser()->useNPPatrol() && $rc->mAttribs['rc_type'] == RC_NEW ) {
-				$unpatrolled = true;
+		return self::isUnpatrolled( $rc, $this->getUser() );
+	}
+
+	/**
+	 * @param object|RecentChange $rc Database row from recentchanges or a RecentChange object
+	 * @param User $user
+	 * @return bool
+	 */
+	public static function isUnpatrolled( $rc, User $user ) {
+		if ( $rc instanceof RecentChange ) {
+			$isPatrolled = $rc->mAttribs['rc_patrolled'];
+			$rcType = $rc->mAttribs['rc_type'];
+		} else {
+			$isPatrolled = $rc->rc_patrolled;
+			$rcType = $rc->rc_type;
+		}
+
+		if ( !$isPatrolled ) {
+			if ( $user->useRCPatrol() ) {
+				return true;
+			}
+			if ( $user->useNPPatrol() && $rcType == RC_NEW ) {
+				return true;
 			}
 		}
-		return $unpatrolled;
+
+		return false;
 	}
 }

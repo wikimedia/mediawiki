@@ -33,7 +33,7 @@ class InfoAction extends FormlessAction {
 	/**
 	 * Returns the name of the action this object responds to.
 	 *
-	 * @return string lowercase
+	 * @return string Lowercase name
 	 */
 	public function getName() {
 		return 'info';
@@ -153,6 +153,7 @@ class InfoAction extends FormlessAction {
 	 */
 	protected function makeHeader( $header ) {
 		$spanAttribs = array( 'class' => 'mw-headline', 'id' => Sanitizer::escapeId( $header ) );
+
 		return Html::rawElement( 'h2', array(), Html::element( 'span', $spanAttribs, $header ) );
 	}
 
@@ -192,7 +193,7 @@ class InfoAction extends FormlessAction {
 	 * @return array
 	 */
 	protected function pageInfo() {
-		global $wgContLang, $wgRCMaxAge, $wgMemc,
+		global $wgContLang, $wgRCMaxAge, $wgMemc, $wgMiserMode,
 			$wgUnwatchedPageThreshold, $wgPageInfoTransclusionLimit;
 
 		$user = $this->getUser();
@@ -278,10 +279,19 @@ class InfoAction extends FormlessAction {
 			Language::fetchLanguageName( $pageLang, $lang->getCode() )
 			. ' ' . $this->msg( 'parentheses', $pageLang ) );
 
+		// Content model of the page
+		$pageInfo['header-basic'][] = array(
+			$this->msg( 'pageinfo-content-model' ),
+			ContentHandler::getLocalizedName( $title->getContentModel() )
+		);
+
 		// Search engine status
 		$pOutput = new ParserOutput();
 		if ( isset( $pageProperties['noindex'] ) ) {
 			$pOutput->setIndexPolicy( 'noindex' );
+		}
+		if ( isset( $pageProperties['index'] ) ) {
+			$pOutput->setIndexPolicy( 'index' );
 		}
 
 		// Use robot policy logic
@@ -301,7 +311,7 @@ class InfoAction extends FormlessAction {
 		if (
 			$user->isAllowed( 'unwatchedpages' ) ||
 			( $wgUnwatchedPageThreshold !== false &&
-			  $pageCounts['watchers'] >= $wgUnwatchedPageThreshold )
+				$pageCounts['watchers'] >= $wgUnwatchedPageThreshold )
 		) {
 			// Number of page watchers
 			$pageInfo['header-basic'][] = array(
@@ -534,7 +544,11 @@ class InfoAction extends FormlessAction {
 		) {
 			$options = array( 'LIMIT' => $wgPageInfoTransclusionLimit );
 			$transcludedTemplates = $title->getTemplateLinksFrom( $options );
-			$transcludedTargets = $title->getTemplateLinksTo( $options );
+			if ( $wgMiserMode ) {
+				$transcludedTargets = array();
+			} else {
+				$transcludedTargets = $title->getTemplateLinksTo( $options );
+			}
 
 			// Page properties
 			$pageInfo['header-properties'] = array();
@@ -575,7 +589,7 @@ class InfoAction extends FormlessAction {
 				);
 			}
 
-			if ( $pageCounts['transclusion']['to'] > 0 ) {
+			if ( !$wgMiserMode && $pageCounts['transclusion']['to'] > 0 ) {
 				if ( $pageCounts['transclusion']['to'] > count( $transcludedTargets ) ) {
 					$more = Linker::link(
 						$whatLinksHere,
@@ -609,7 +623,7 @@ class InfoAction extends FormlessAction {
 	 * @return array
 	 */
 	protected static function pageCounts( Title $title ) {
-		global $wgRCMaxAge, $wgDisableCounters;
+		global $wgRCMaxAge, $wgDisableCounters, $wgMiserMode;
 
 		wfProfileIn( __METHOD__ );
 		$id = $title->getArticleID();
@@ -713,15 +727,19 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Counts for the number of transclusion links (to/from)
-		$result['transclusion']['to'] = (int)$dbr->selectField(
-			'templatelinks',
-			'COUNT(tl_from)',
-			array(
-				'tl_namespace' => $title->getNamespace(),
-				'tl_title' => $title->getDBkey()
-			),
-			__METHOD__
-		);
+		if ( $wgMiserMode ) {
+			$result['transclusion']['to'] = 0;
+		} else {
+			$result['transclusion']['to'] = (int)$dbr->selectField(
+				'templatelinks',
+				'COUNT(tl_from)',
+				array(
+					'tl_namespace' => $title->getNamespace(),
+					'tl_title' => $title->getDBkey()
+				),
+				__METHOD__
+			);
+		}
 
 		$result['transclusion']['from'] = (int)$dbr->selectField(
 			'templatelinks',
@@ -731,6 +749,7 @@ class InfoAction extends FormlessAction {
 		);
 
 		wfProfileOut( __METHOD__ );
+
 		return $result;
 	}
 
@@ -745,7 +764,7 @@ class InfoAction extends FormlessAction {
 
 	/**
 	 * Get a list of contributors of $article
-	 * @return string: html
+	 * @return string Html
 	 */
 	protected function getContributors() {
 		global $wgHiddenPrefs;
@@ -756,6 +775,7 @@ class InfoAction extends FormlessAction {
 		$anon_ips = array();
 
 		# Sift for real versus user names
+		/** @var $user User */
 		foreach ( $contributors as $user ) {
 			$page = $user->isAnon()
 				? SpecialPage::getTitleFor( 'Contributions', $user->getName() )
@@ -798,6 +818,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		$count = count( $fulllist );
+
 		# "Based on work by ..."
 		return $count
 			? $this->msg( 'othercontribs' )->rawParams(

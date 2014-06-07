@@ -7,6 +7,7 @@ require_once __DIR__ . "/../../../maintenance/backupTextPass.inc";
  *
  * @group Database
  * @group Dump
+ * @covers TextPassDumper
  */
 class TextPassDumperTest extends DumpTestCase {
 
@@ -416,7 +417,6 @@ class TextPassDumperTest extends DumpTestCase {
 		$this->checkHasGzip();
 		$this->checkpointHelper( "gzip" );
 	}
-
 
 	/**
 	 * Creates a stub file that is used for testing the text pass of dumps

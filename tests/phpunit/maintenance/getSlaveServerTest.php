@@ -6,6 +6,7 @@ require_once __DIR__ . "/../../../maintenance/getSlaveServer.php";
  * Tests for getSlaveServer
  *
  * @group Database
+ * @covers GetSlaveServer
  */
 class GetSlaveServerTest extends MediaWikiTestCase {
 

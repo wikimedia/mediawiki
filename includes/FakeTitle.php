@@ -39,6 +39,7 @@ class FakeTitle extends Title {
 	function canTalk() { $this->error(); }
 	function getInterwiki() { $this->error(); }
 	function getFragment() { $this->error(); }
+	function hasFragment() { $this->error(); }
 	function getFragmentForURL() { $this->error(); }
 	function getDefaultNamespace() { $this->error(); }
 	function getIndexTitle() { $this->error(); }

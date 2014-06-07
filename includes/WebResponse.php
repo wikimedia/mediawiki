@@ -28,11 +28,10 @@
 class WebResponse {
 
 	/**
-	 * Output a HTTP header, wrapper for PHP's
-	 * header()
+	 * Output a HTTP header, wrapper for PHP's header()
 	 * @param string $string header to output
 	 * @param bool $replace replace current similar header
-	 * @param $http_response_code null|int Forces the HTTP response code to the specified value.
+	 * @param null|int $http_response_code Forces the HTTP response code to the specified value.
 	 */
 	public function header( $string, $replace = true, $http_response_code = null ) {
 		header( $string, $replace, $http_response_code );
@@ -88,12 +87,6 @@ class WebResponse {
 			$expire = time() + $wgCookieExpiration;
 		}
 
-		// Don't mark the cookie as httpOnly if the requesting user-agent is
-		// known to have trouble with httpOnly cookies.
-		if ( !wfHttpOnlySafe() ) {
-			$options['httpOnly'] = false;
-		}
-
 		$func = $options['raw'] ? 'setrawcookie' : 'setcookie';
 
 		if ( wfRunHooks( 'WebResponseSetCookie', array( &$name, &$value, &$expire, $options ) ) ) {
@@ -132,7 +125,7 @@ class FauxResponse extends WebResponse {
 	 * Stores a HTTP header
 	 * @param string $string header to output
 	 * @param bool $replace replace current similar header
-	 * @param $http_response_code null|int Forces the HTTP response code to the specified value.
+	 * @param null|int $http_response_code Forces the HTTP response code to the specified value.
 	 */
 	public function header( $string, $replace = true, $http_response_code = null ) {
 		if ( substr( $string, 0, 5 ) == 'HTTP/' ) {
@@ -169,7 +162,7 @@ class FauxResponse extends WebResponse {
 	/**
 	 * Get the HTTP response code, null if not set
 	 *
-	 * @return Int or null
+	 * @return int|null
 	 */
 	public function getStatusCode() {
 		return $this->code;
@@ -188,7 +181,7 @@ class FauxResponse extends WebResponse {
 	}
 
 	/**
-	 * @param $name string
+	 * @param string $name
 	 * @return string
 	 */
 	public function getcookie( $name ) {

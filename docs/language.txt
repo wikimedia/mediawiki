@@ -2,4 +2,4 @@ language.txt
 
 The Language object handles all readable text produced by the software.
 
-See http://www.mediawiki.org/wiki/Localisation#General_use_.28for_developers.29
+See https://www.mediawiki.org/wiki/Localisation#General_use_.28for_developers.29

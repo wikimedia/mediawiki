@@ -27,5 +27,4 @@
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 interface ORMIterator extends Iterator {
-
 }

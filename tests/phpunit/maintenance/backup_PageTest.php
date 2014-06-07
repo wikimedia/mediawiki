@@ -4,6 +4,7 @@
  *
  * @group Database
  * @group Dump
+ * @covers BackupDumper
  */
 class BackupDumperPageTest extends DumpTestCase {
 
@@ -270,7 +271,6 @@ class BackupDumperPageTest extends DumpTestCase {
 
 		$this->assertDumpEnd();
 	}
-
 
 	function testXmlDumpsBackupUseCase() {
 		// xmldumps-backup typically performs a single dump that that writes

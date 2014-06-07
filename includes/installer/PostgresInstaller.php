@@ -83,8 +83,10 @@ class PostgresInstaller extends DatabaseInstaller {
 
 	function submitConnectForm() {
 		// Get variables from the request
-		$newValues = $this->setVarsFromRequest( array( 'wgDBserver', 'wgDBport',
-			'wgDBname', 'wgDBmwschema' ) );
+		$newValues = $this->setVarsFromRequest( array(
+			'wgDBserver', 'wgDBport','wgDBname', 'wgDBmwschema',
+			'_InstallUser', '_InstallPassword'
+		) );
 
 		// Validate them
 		$status = Status::newGood();
@@ -95,6 +97,12 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 		if ( !preg_match( '/^[a-zA-Z0-9_]*$/', $newValues['wgDBmwschema'] ) ) {
 			$status->fatal( 'config-invalid-schema', $newValues['wgDBmwschema'] );
+		}
+		if ( !strlen( $newValues['_InstallUser'] ) ) {
+			$status->fatal( 'config-db-username-empty' );
+		}
+		if ( !strlen( $newValues['_InstallPassword'] ) ) {
+			$status->fatal( 'config-db-password-empty', $newValues['_InstallUser'] );
 		}
 
 		// Submit user box

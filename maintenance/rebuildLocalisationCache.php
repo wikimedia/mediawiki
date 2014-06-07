@@ -90,7 +90,7 @@ class RebuildLocalisationCache extends Maintenance {
 		if ( $this->hasOption( 'outdir' ) ) {
 			$conf['storeDirectory'] = $this->getOption( 'outdir' );
 		}
-		$lc = new LocalisationCache_BulkLoad( $conf );
+		$lc = new LocalisationCacheBulkLoad( $conf );
 
 		$allCodes = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
 		if ( $this->hasOption( 'lang' ) ) {
@@ -149,7 +149,7 @@ class RebuildLocalisationCache extends Maintenance {
 	 * Helper function to rebuild list of languages codes. Prints the code
 	 * for each language which is rebuilt.
 	 * @param $codes array List of language codes to rebuild.
-	 * @param $lc LocalisationCache Instance of LocalisationCache_BulkLoad (?)
+	 * @param $lc LocalisationCache Instance of LocalisationCacheBulkLoad (?)
 	 * @param $force bool Rebuild up-to-date languages
 	 * @return int Number of rebuilt languages
 	 */

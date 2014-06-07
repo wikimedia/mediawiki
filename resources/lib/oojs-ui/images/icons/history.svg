@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px"
+	 height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<g id="history" style="opacity:0.75;">
+	<path id="clock_hands" style="fill-rule:evenodd;clip-rule:evenodd;" d="M17.26,15.076c0,0-2.385-1.935-4.005-3.062 c0.72-2.397,1.702-6.559,1.702-6.559s-4.35,5.363-4.877,6.699c-0.463,1.168,1.459,2.209,2.346,1.678 C14.326,14.383,17.26,15.076,17.26,15.076z"/>
+	<path id="arrow" style="fill-rule:evenodd;clip-rule:evenodd;" d="M12.086,2.085c-5.478,0-9.916,4.438-9.916,9.916 c0,1.783,0.476,3.454,1.301,4.898l-2.223,2.04h5.688v-5.219l-2.066,1.896c-0.55-1.088-0.866-2.312-0.866-3.615 c0-4.465,3.619-8.084,8.084-8.084c4.464,0,8.083,3.619,8.083,8.084c0,4.464-3.619,8.083-8.083,8.083 c-1.145,0-2.228-0.247-3.213-0.678l-0.833,1.634c1.235,0.557,2.602,0.874,4.045,0.874c5.476,0,9.914-4.438,9.914-9.914 C22,6.523,17.562,2.085,12.086,2.085z"/>
+</g>
+</svg>

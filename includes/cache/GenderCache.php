@@ -41,10 +41,12 @@ class GenderCache {
 		if ( $that === null ) {
 			$that = new self();
 		}
+
 		return $that;
 	}
 
-	protected function __construct() {}
+	protected function __construct() {
+	}
 
 	/**
 	 * Returns the default gender option in this wiki.
@@ -54,6 +56,7 @@ class GenderCache {
 		if ( $this->default === null ) {
 			$this->default = User::getDefaultOption( 'gender' );
 		}
+
 		return $this->default;
 	}
 
@@ -77,8 +80,8 @@ class GenderCache {
 					$this->misses++;
 					wfDebug( __METHOD__ . ": too many misses, returning default onwards\n" );
 				}
-				return $this->getDefault();
 
+				return $this->getDefault();
 			} else {
 				$this->misses++;
 				$this->doQuery( $username, $caller );
@@ -184,6 +187,7 @@ class GenderCache {
 		if ( $indexSlash !== false ) {
 			$username = substr( $username, 0, $indexSlash );
 		}
+
 		// normalize underscore/spaces
 		return strtr( $username, '_', ' ' );
 	}

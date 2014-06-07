@@ -237,13 +237,13 @@ CREATE UNIQUE INDEX /*i*/iw_prefix ON /*_*/interwiki_tmp (iw_prefix);
 
 
 CREATE TABLE /*_*/page_restrictions_tmp (
+  pr_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   pr_page int NOT NULL,
   pr_type varbinary(60) NOT NULL,
   pr_level varbinary(60) NOT NULL,
   pr_cascade tinyint NOT NULL,
   pr_user int NULL,
-  pr_expiry varbinary(14) NULL,
-  pr_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT
+  pr_expiry varbinary(14) NULL
 );
 
 CREATE UNIQUE INDEX /*i*/pr_pagetype ON /*_*/page_restrictions_tmp (pr_page,pr_type);

@@ -3,7 +3,7 @@
  * Corrects wrong values in the `page_latest` field in the database.
  *
  * Copyright © 2005 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,15 +37,21 @@ class AttachLatest extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( "fix", "Actually fix the entries, will dry run otherwise" );
+		$this->addOption( "regenerate-all",
+			"Regenerate the page_latest field for all records in table page" );
 		$this->mDescription = "Fix page_latest entries in the page table";
 	}
 
 	public function execute() {
 		$this->output( "Looking for pages with page_latest set to 0...\n" );
 		$dbw = wfGetDB( DB_MASTER );
+		$conds = array( 'page_latest' => 0 );
+		if ( $this->hasOption( 'regenerate-all' ) ) {
+			$conds = '';
+		}
 		$result = $dbw->select( 'page',
 			array( 'page_id', 'page_namespace', 'page_title' ),
-			array( 'page_latest' => 0 ),
+			$conds,
 			__METHOD__ );
 
 		$n = 0;

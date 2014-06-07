@@ -70,7 +70,6 @@ class RebuildRecentchanges extends Maintenance {
 		$dbw->insertSelect( 'recentchanges', array( 'page', 'revision' ),
 			array(
 				'rc_timestamp'  => 'rev_timestamp',
-				'rc_cur_time'   => 'rev_timestamp',
 				'rc_user'       => 'rev_user',
 				'rc_user_text'  => 'rev_user_text',
 				'rc_namespace'  => 'page_namespace',
@@ -83,6 +82,7 @@ class RebuildRecentchanges extends Maintenance {
 				'rc_this_oldid' => 'rev_id',
 				'rc_last_oldid' => 0, // is this ok?
 				'rc_type'       => $dbw->conditional( 'page_is_new != 0', RC_NEW, RC_EDIT ),
+				'rc_source'     => $dbw->conditional( 'page_is_new != 0', $dbw->addQuotes( RecentChange::SRC_NEW ), $dbw->addQuotes( RecentChange::SRC_EDIT ) ),
 				'rc_deleted'    => 'rev_deleted'
 			), array(
 				'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $cutoff ) ),
@@ -144,6 +144,7 @@ class RebuildRecentchanges extends Maintenance {
 						'rc_last_oldid' => $lastOldId,
 						'rc_new' => $new,
 						'rc_type' => $new,
+						'rc_source' => $new === 1 ? RecentChange::SRC_NEW : RecentChange::SRC_EDIT,
 						'rc_old_len' => $lastSize,
 						'rc_new_len' => $size,
 					), array(
@@ -184,7 +185,6 @@ class RebuildRecentchanges extends Maintenance {
 		$dbw->insertSelect( 'recentchanges', array( 'user', "$logging LEFT JOIN $page ON (log_namespace=page_namespace AND log_title=page_title)" ),
 			array(
 				'rc_timestamp'  => 'log_timestamp',
-				'rc_cur_time'   => 'log_timestamp',
 				'rc_user'       => 'log_user',
 				'rc_user_text'  => 'user_name',
 				'rc_namespace'  => 'log_namespace',
@@ -197,6 +197,7 @@ class RebuildRecentchanges extends Maintenance {
 				'rc_this_oldid' => 0,
 				'rc_last_oldid' => 0,
 				'rc_type'       => RC_LOG,
+				'rc_source'     => $dbw->addQuotes( RecentChange::SRC_LOG ),
 				'rc_cur_id'     => $dbw->cascadingDeletes() ? 'page_id' : 'COALESCE(page_id, 0)',
 				'rc_log_type'   => 'log_type',
 				'rc_log_action' => 'log_action',

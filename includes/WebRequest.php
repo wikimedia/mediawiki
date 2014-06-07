@@ -3,7 +3,7 @@
  * Deal with importing all those nasty globals and things
  *
  * Copyright © 2003 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,6 +49,12 @@ class WebRequest {
 	 * @var String
 	 */
 	private $ip;
+
+	/**
+	 * Cached URL protocol
+	 * @var string
+	 */
+	protected $protocol;
 
 	public function __construct() {
 		/// @todo FIXME: This preemptive de-quoting can interfere with other web libraries
@@ -107,8 +113,8 @@ class WebRequest {
 				$router->add( "$wgScript/$1" );
 
 				if ( isset( $_SERVER['SCRIPT_NAME'] )
-					&& preg_match( '/\.php5?/', $_SERVER['SCRIPT_NAME'] ) )
-				{
+					&& preg_match( '/\.php5?/', $_SERVER['SCRIPT_NAME'] )
+				) {
 					# Check for SCRIPT_NAME, we handle index.php explicitly
 					# But we do have some other .php files such as img_auth.php
 					# Don't let root article paths clober the parsing for them
@@ -160,7 +166,8 @@ class WebRequest {
 	 * @return string
 	 */
 	public static function detectServer() {
-		list( $proto, $stdPort ) = self::detectProtocolAndStdPort();
+		$proto = self::detectProtocol();
+		$stdPort = $proto === 'https' ? 443 : 80;
 
 		$varNames = array( 'HTTP_HOST', 'SERVER_NAME', 'HOSTNAME', 'SERVER_ADDR' );
 		$host = 'localhost';
@@ -189,25 +196,31 @@ class WebRequest {
 	}
 
 	/**
+	 * Detect the protocol from $_SERVER.
+	 * This is for use prior to Setup.php, when no WebRequest object is available.
+	 * At other times, use the non-static function getProtocol().
+	 *
 	 * @return array
 	 */
-	public static function detectProtocolAndStdPort() {
+	public static function detectProtocol() {
 		if ( ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on' ) ||
 			( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) &&
 			$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' ) ) {
-			$arr = array( 'https', 443 );
+			return 'https';
 		} else {
-			$arr = array( 'http', 80 );
+			return 'http';
 		}
-		return $arr;
 	}
 
 	/**
+	 * Get the current URL protocol (http or https)
 	 * @return string
 	 */
-	public static function detectProtocol() {
-		list( $proto, ) = self::detectProtocolAndStdPort();
-		return $proto;
+	public function getProtocol() {
+		if ( $this->protocol === null ) {
+			$this->protocol = self::detectProtocol();
+		}
+		return $this->protocol;
 	}
 
 	/**
@@ -464,6 +477,20 @@ class WebRequest {
 		return is_numeric( $val )
 			? intval( $val )
 			: null;
+	}
+
+	/**
+	 * Fetch a floating point value from the input or return $default if not set.
+	 * Guaranteed to return a float; non-numeric input will typically
+	 * return 0.
+	 *
+	 * @since 1.23
+	 * @param $name String
+	 * @param $default Float
+	 * @return Float
+	 */
+	public function getFloat( $name, $default = 0 ) {
+		return floatval( $this->getVal( $name, $default ) );
 	}
 
 	/**
@@ -809,19 +836,6 @@ class WebRequest {
 	}
 
 	/**
-	 * Return the size of the upload, or 0.
-	 *
-	 * @deprecated since 1.17
-	 * @param $key String:
-	 * @return integer
-	 */
-	public function getFileSize( $key ) {
-		wfDeprecated( __METHOD__, '1.17' );
-		$file = new WebRequestUpload( $this, $key );
-		return $file->getSize();
-	}
-
-	/**
 	 * Return the upload error or 0
 	 *
 	 * @param $key String:
@@ -1009,35 +1023,6 @@ HTML;
 	}
 
 	/**
-	 * Returns true if the PATH_INFO ends with an extension other than a script
-	 * extension. This could confuse IE for scripts that send arbitrary data which
-	 * is not HTML but may be detected as such.
-	 *
-	 * Various past attempts to use the URL to make this check have generally
-	 * run up against the fact that CGI does not provide a standard method to
-	 * determine the URL. PATH_INFO may be mangled (e.g. if cgi.fix_pathinfo=0),
-	 * but only by prefixing it with the script name and maybe some other stuff,
-	 * the extension is not mangled. So this should be a reasonably portable
-	 * way to perform this security check.
-	 *
-	 * Also checks for anything that looks like a file extension at the end of
-	 * QUERY_STRING, since IE 6 and earlier will use this to get the file type
-	 * if there was no dot before the question mark (bug 28235).
-	 *
-	 * @deprecated Use checkUrlExtension().
-	 *
-	 * @param $extWhitelist array
-	 *
-	 * @return bool
-	 */
-	public function isPathInfoBad( $extWhitelist = array() ) {
-		wfDeprecated( __METHOD__, '1.17' );
-		global $wgScriptExtension;
-		$extWhitelist[] = ltrim( $wgScriptExtension, '.' );
-		return IEUrlExtension::areServerVarsBad( $_SERVER, $extWhitelist );
-	}
-
-	/**
 	 * Parse the Accept-Language header sent by the client into an array
 	 * @return array array( languageCode => q-value ) sorted by q-value in descending order then
 	 *                                                appearing time in the header in ascending order.
@@ -1142,6 +1127,10 @@ HTML;
 			# unless the address is not sensible (e.g. private). However, prefer private
 			# IP addresses over proxy servers controlled by this site (more sensible).
 			foreach ( $ipchain as $i => $curIP ) {
+				// ignore 'unknown' value from Squid when 'forwarded_for off' and try next
+				if ( $curIP === 'unknown' ) {
+					continue;
+				}
 				$curIP = IP::sanitizeIP( IP::canonicalize( $curIP ) );
 				if ( wfIsTrustedProxy( $curIP ) && isset( $ipchain[$i + 1] ) ) {
 					if ( wfIsConfiguredProxy( $curIP ) || // bug 48919; treat IP as sane
@@ -1312,9 +1301,10 @@ class FauxRequest extends WebRequest {
 	 *   fake GET/POST values
 	 * @param bool $wasPosted whether to treat the data as POST
 	 * @param $session Mixed: session array or null
+	 * @param string $protocol 'http' or 'https'
 	 * @throws MWException
 	 */
-	public function __construct( $data = array(), $wasPosted = false, $session = null ) {
+	public function __construct( $data = array(), $wasPosted = false, $session = null, $protocol = 'http' ) {
 		if ( is_array( $data ) ) {
 			$this->data = $data;
 		} else {
@@ -1324,6 +1314,7 @@ class FauxRequest extends WebRequest {
 		if ( $session ) {
 			$this->session = $session;
 		}
+		$this->protocol = $protocol;
 	}
 
 	/**
@@ -1385,6 +1376,10 @@ class FauxRequest extends WebRequest {
 		$this->notImplemented( __METHOD__ );
 	}
 
+	public function getProtocol() {
+		return $this->protocol;
+	}
+
 	/**
 	 * @param string $name The name of the header to get (case insensitive).
 	 * @return bool|string
@@ -1427,14 +1422,6 @@ class FauxRequest extends WebRequest {
 	 */
 	public function getSessionArray() {
 		return $this->session;
-	}
-
-	/**
-	 * @param array $extWhitelist
-	 * @return bool
-	 */
-	public function isPathInfoBad( $extWhitelist = array() ) {
-		return false;
 	}
 
 	/**
@@ -1488,6 +1475,12 @@ class FauxRequest extends WebRequest {
 class DerivativeRequest extends FauxRequest {
 	private $base;
 
+	/**
+	 * @param WebRequest $base
+	 * @param array $data Array of *non*-urlencoded key => value pairs, the
+	 *   fake GET/POST values
+	 * @param bool $wasPosted Whether to treat the data as POST
+	 */
 	public function __construct( WebRequest $base, $data, $wasPosted = false ) {
 		$this->base = $base;
 		parent::__construct( $data, $wasPosted );
@@ -1523,5 +1516,9 @@ class DerivativeRequest extends FauxRequest {
 
 	public function getIP() {
 		return $this->base->getIP();
+	}
+
+	public function getProtocol() {
+		return $this->base->getProtocol();
 	}
 }

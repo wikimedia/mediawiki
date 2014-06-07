@@ -160,7 +160,6 @@ class Preprocessor_DOM implements Preprocessor {
 			$xml = $this->preprocessToXml( $text, $flags );
 		}
 
-
 		// Fail if the number of elements exceeds acceptable limits
 		// Do not attempt to generate the DOM
 		$this->parser->mGeneratedPPNodeCount += substr_count( $xml, '<' );
@@ -400,14 +399,14 @@ class Preprocessor_DOM implements Preprocessor {
 						// the overall start. That's not how Sanitizer::removeHTMLcomments() did it, but
 						// it's a possible beneficial b/c break.
 						if ( $wsStart > 0 && substr( $text, $wsStart - 1, 1 ) == "\n"
-							&& substr( $text, $wsEnd + 1, 1 ) == "\n" )
-						{
+							&& substr( $text, $wsEnd + 1, 1 ) == "\n"
+						) {
 							// Remove leading whitespace from the end of the accumulator
 							// Sanity check first though
 							$wsLength = $i - $wsStart;
 							if ( $wsLength > 0
-								&& strspn( $accum, " \t", -$wsLength ) === $wsLength )
-							{
+								&& strspn( $accum, " \t", -$wsLength ) === $wsLength
+							) {
 								$accum = substr( $accum, 0, -$wsLength );
 							}
 
@@ -476,8 +475,8 @@ class Preprocessor_DOM implements Preprocessor {
 					$attrEnd = $tagEndPos;
 					// Find closing tag
 					if ( preg_match( "/<\/" . preg_quote( $name, '/' ) . "\s*>/i",
-							$text, $matches, PREG_OFFSET_CAPTURE, $tagEndPos + 1 ) )
-					{
+							$text, $matches, PREG_OFFSET_CAPTURE, $tagEndPos + 1 )
+					) {
 						$inner = substr( $text, $tagEndPos + 1, $matches[0][1] - $tagEndPos - 1 );
 						$i = $matches[0][1] + strlen( $matches[0][0] );
 						$close = '<close>' . htmlspecialchars( $matches[0][0] ) . '</close>';
@@ -1142,17 +1141,15 @@ class PPFrame_DOM implements PPFrame {
 					# Remove it in HTML, pre+remove and STRIP_COMMENTS modes
 					if ( $this->parser->ot['html']
 						|| ( $this->parser->ot['pre'] && $this->parser->mOptions->getRemoveComments() )
-						|| ( $flags & PPFrame::STRIP_COMMENTS ) )
-					{
+						|| ( $flags & PPFrame::STRIP_COMMENTS )
+					) {
 						$out .= '';
-					}
-					# Add a strip marker in PST mode so that pstPass2() can run some old-fashioned regexes on the result
-					# Not in RECOVER_COMMENTS mode (extractSections) though
-					elseif ( $this->parser->ot['wiki'] && !( $flags & PPFrame::RECOVER_COMMENTS ) ) {
+					} elseif ( $this->parser->ot['wiki'] && !( $flags & PPFrame::RECOVER_COMMENTS ) ) {
+						# Add a strip marker in PST mode so that pstPass2() can run some old-fashioned regexes on the result
+						# Not in RECOVER_COMMENTS mode (extractSections) though
 						$out .= $this->parser->insertStripItem( $contextNode->textContent );
-					}
-					# Recover the literal comment in RECOVER_COMMENTS and pre+no-remove
-					else {
+					} else {
+						# Recover the literal comment in RECOVER_COMMENTS and pre+no-remove
 						$out .= $contextNode->textContent;
 					}
 				} elseif ( $contextNode->nodeName == 'ignore' ) {

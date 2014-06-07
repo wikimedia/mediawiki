@@ -40,6 +40,7 @@ class ApiOpenSearch extends ApiBase {
 		if ( in_array( $format, $allowed ) ) {
 			return $this->getMain()->createPrinterByName( $format );
 		}
+
 		return $this->getMain()->createPrinterByName( $allowed[0] );
 	}
 
@@ -59,28 +60,8 @@ class ApiOpenSearch extends ApiBase {
 			$this->getMain()->setCacheMaxAge( $wgSearchSuggestCacheExpiry );
 			$this->getMain()->setCacheMode( 'public' );
 
-			$searches = PrefixSearch::titleSearch( $search, $limit,
-				$namespaces );
-
-			// if the content language has variants, try to retrieve fallback results
-			$fallbackLimit = $limit - count( $searches );
-			if ( $fallbackLimit > 0 ) {
-				global $wgContLang;
-
-				$fallbackSearches = $wgContLang->autoConvertToAllVariants( $search );
-				$fallbackSearches = array_diff( array_unique( $fallbackSearches ), array( $search ) );
-
-				foreach ( $fallbackSearches as $fbs ) {
-					$fallbackSearchResult = PrefixSearch::titleSearch( $fbs, $fallbackLimit,
-						$namespaces );
-					$searches = array_merge( $searches, $fallbackSearchResult );
-					$fallbackLimit -= count( $fallbackSearchResult );
-
-					if ( $fallbackLimit == 0 ) {
-						break;
-					}
-				}
-			}
+			$searcher = new StringPrefixSearch;
+			$searches = $searcher->searchWithVariants( $search, $limit, $namespaces );
 		}
 		// Set top level elements
 		$result = $this->getResult();
@@ -89,10 +70,12 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function getAllowedParams() {
+		global $wgOpenSearchDefaultLimit;
+
 		return array(
 			'search' => null,
 			'limit' => array(
-				ApiBase::PARAM_DFLT => 10,
+				ApiBase::PARAM_DFLT => $wgOpenSearchDefaultLimit,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => 100,
@@ -122,7 +105,7 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Search the wiki using the OpenSearch protocol';
+		return 'Search the wiki using the OpenSearch protocol.';
 	}
 
 	public function getExamples() {

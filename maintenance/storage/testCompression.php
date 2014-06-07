@@ -45,7 +45,6 @@ if ( isset( $options['limit'] ) ) {
 }
 $type = isset( $options['type'] ) ? $options['type'] : 'ConcatenatedGzipHistoryBlob';
 
-
 $dbr = wfGetDB( DB_SLAVE );
 $res = $dbr->select(
 	array( 'page', 'revision', 'text' ),

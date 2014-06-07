@@ -28,7 +28,6 @@
  * @ingroup Media
  */
 class ExifBitmapHandler extends BitmapHandler {
-
 	const BROKEN_FILE = '-1'; // error extracting metadata
 	const OLD_BROKEN_FILE = '0'; // outdated error extracting metadata.
 
@@ -61,22 +60,30 @@ class ExifBitmapHandler extends BitmapHandler {
 				. $metadata['Software'][0][1] . ')';
 		}
 
+		$formatter = new FormatMetadata;
+
 		// ContactInfo also has to be dealt with specially
 		if ( isset( $metadata['Contact'] ) ) {
 			$metadata['Contact'] =
-				FormatMetadata::collapseContactInfo(
+				$formatter->collapseContactInfo(
 					$metadata['Contact'] );
 		}
 
 		foreach ( $metadata as &$val ) {
 			if ( is_array( $val ) ) {
-				$val = FormatMetadata::flattenArray( $val, 'ul', $avoidHtml );
+				$val = $formatter->flattenArrayReal( $val, 'ul', $avoidHtml );
 			}
 		}
 		$metadata['MEDIAWIKI_EXIF_VERSION'] = 1;
+
 		return $metadata;
 	}
 
+	/**
+	 * @param $image
+	 * @param array $metadata
+	 * @return bool|int
+	 */
 	function isMetadataValid( $image, $metadata ) {
 		global $wgShowEXIF;
 		if ( !$wgShowEXIF ) {
@@ -87,6 +94,7 @@ class ExifBitmapHandler extends BitmapHandler {
 			# Old special value indicating that there is no Exif data in the file.
 			# or that there was an error well extracting the metadata.
 			wfDebug( __METHOD__ . ": back-compat version\n" );
+
 			return self::METADATA_COMPATIBLE;
 		}
 		if ( $metadata === self::BROKEN_FILE ) {
@@ -95,47 +103,57 @@ class ExifBitmapHandler extends BitmapHandler {
 		wfSuppressWarnings();
 		$exif = unserialize( $metadata );
 		wfRestoreWarnings();
-		if ( !isset( $exif['MEDIAWIKI_EXIF_VERSION'] ) ||
-			$exif['MEDIAWIKI_EXIF_VERSION'] != Exif::version() )
-		{
-			if ( isset( $exif['MEDIAWIKI_EXIF_VERSION'] ) &&
-				$exif['MEDIAWIKI_EXIF_VERSION'] == 1 )
-			{
+		if ( !isset( $exif['MEDIAWIKI_EXIF_VERSION'] )
+			|| $exif['MEDIAWIKI_EXIF_VERSION'] != Exif::version()
+		) {
+			if ( isset( $exif['MEDIAWIKI_EXIF_VERSION'] )
+				&& $exif['MEDIAWIKI_EXIF_VERSION'] == 1
+			) {
 				//back-compatible but old
 				wfDebug( __METHOD__ . ": back-compat version\n" );
+
 				return self::METADATA_COMPATIBLE;
 			}
 			# Wrong (non-compatible) version
 			wfDebug( __METHOD__ . ": wrong version\n" );
+
 			return self::METADATA_BAD;
 		}
+
 		return self::METADATA_GOOD;
 	}
 
 	/**
-	 * @param $image File
+	 * @param File $image
 	 * @return array|bool
 	 */
 	function formatMetadata( $image ) {
-		$metadata = $image->getMetadata();
-		if ( $metadata === self::OLD_BROKEN_FILE ||
-			$metadata === self::BROKEN_FILE ||
-			$this->isMetadataValid( $image, $metadata ) === self::METADATA_BAD )
-		{
+		$meta = $this->getCommonMetaArray( $image );
+		if ( count( $meta ) === 0 ) {
+			return false;
+		}
+
+		return $this->formatMetadataHelper( $meta );
+	}
+
+	public function getCommonMetaArray( File $file ) {
+		$metadata = $file->getMetadata();
+		if ( $metadata === self::OLD_BROKEN_FILE
+			|| $metadata === self::BROKEN_FILE
+			|| $this->isMetadataValid( $file, $metadata ) === self::METADATA_BAD
+		) {
 			// So we don't try and display metadata from PagedTiffHandler
 			// for example when using InstantCommons.
-			return false;
+			return array();
 		}
 
 		$exif = unserialize( $metadata );
 		if ( !$exif ) {
-			return false;
+			return array();
 		}
 		unset( $exif['MEDIAWIKI_EXIF_VERSION'] );
-		if ( count( $exif ) == 0 ) {
-			return false;
-		}
-		return $this->formatMetadataHelper( $exif );
+
+		return $exif;
 	}
 
 	function getMetadataType( $image ) {
@@ -151,12 +169,11 @@ class ExifBitmapHandler extends BitmapHandler {
 	 * @return array
 	 */
 	function getImageSize( $image, $path ) {
-		global $wgEnableAutoRotation;
 		$gis = parent::getImageSize( $image, $path );
 
 		// Don't just call $image->getMetadata(); FSFile::getPropsFromPath() calls us with a bogus object.
 		// This may mean we read EXIF data twice on initial upload.
-		if ( $wgEnableAutoRotation ) {
+		if ( BitmapHandler::autoRotateEnabled() ) {
 			$meta = $this->getMetadata( $image, $path );
 			$rotation = $this->getRotationForExif( $meta );
 		} else {
@@ -168,6 +185,7 @@ class ExifBitmapHandler extends BitmapHandler {
 			$gis[0] = $gis[1];
 			$gis[1] = $width;
 		}
+
 		return $gis;
 	}
 
@@ -184,12 +202,12 @@ class ExifBitmapHandler extends BitmapHandler {
 	 * @return int 0, 90, 180 or 270
 	 */
 	public function getRotation( $file ) {
-		global $wgEnableAutoRotation;
-		if ( !$wgEnableAutoRotation ) {
+		if ( !BitmapHandler::autoRotateEnabled() ) {
 			return 0;
 		}
 
 		$data = $file->getMetadata();
+
 		return $this->getRotationForExif( $data );
 	}
 
@@ -199,8 +217,7 @@ class ExifBitmapHandler extends BitmapHandler {
 	 *
 	 * @param string $data
 	 * @return int 0, 90, 180 or 270
-	 * @todo FIXME orientation can include flipping as well; see if this is an
-	 * issue!
+	 * @todo FIXME: Orientation can include flipping as well; see if this is an issue!
 	 */
 	protected function getRotationForExif( $data ) {
 		if ( !$data ) {
@@ -222,6 +239,7 @@ class ExifBitmapHandler extends BitmapHandler {
 					return 0;
 			}
 		}
+
 		return 0;
 	}
 }

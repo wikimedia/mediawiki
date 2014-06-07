@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Licenses
+ */
 class LicensesTest extends MediaWikiTestCase {
 
 	public function testLicenses() {

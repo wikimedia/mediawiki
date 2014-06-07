@@ -37,7 +37,7 @@
  * @since 1.19
  */
 abstract class DBLockManager extends QuorumLockManager {
-	/** @var Array Map of DB names to server config */
+	/** @var array Map of DB names to server config */
 	protected $dbServers; // (DB name => server config array)
 	/** @var BagOStuff */
 	protected $statusCache;
@@ -46,13 +46,13 @@ abstract class DBLockManager extends QuorumLockManager {
 	protected $safeDelay; // integer number of seconds
 
 	protected $session = 0; // random integer
-	/** @var Array Map Database connections (DB name => Database) */
+	/** @var array Map Database connections (DB name => Database) */
 	protected $conns = array();
 
 	/**
 	 * Construct a new instance from configuration.
 	 *
-	 * $config paramaters include:
+	 * @param array $config Paramaters include:
 	 *   - dbServers   : Associative array of DB names to server configuration.
 	 *                   Configuration is an associative array that includes:
 	 *                     - host        : DB server name
@@ -70,8 +70,6 @@ abstract class DBLockManager extends QuorumLockManager {
 	 *   - lockExpiry  : Lock timeout (seconds) for dropped connections. [optional]
 	 *                   This tells the DB server how long to wait before assuming
 	 *                   connection failure and releasing all the locks for a session.
-	 *
-	 * @param array $config
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -116,6 +114,7 @@ abstract class DBLockManager extends QuorumLockManager {
 		foreach ( $pathsByType as $type => $paths ) {
 			$status->merge( $this->doGetLocksOnServer( $lockSrv, $paths, $type ) );
 		}
+
 		return $status;
 	}
 
@@ -125,6 +124,7 @@ abstract class DBLockManager extends QuorumLockManager {
 
 	/**
 	 * @see QuorumLockManager::isServerUp()
+	 * @param string $lockSrv
 	 * @return bool
 	 */
 	protected function isServerUp( $lockSrv ) {
@@ -135,15 +135,17 @@ abstract class DBLockManager extends QuorumLockManager {
 			$this->getConnection( $lockSrv );
 		} catch ( DBError $e ) {
 			$this->cacheRecordFailure( $lockSrv );
+
 			return false; // failed to connect
 		}
+
 		return true;
 	}
 
 	/**
 	 * Get (or reuse) a connection to a lock DB
 	 *
-	 * @param $lockDb string
+	 * @param string $lockDb
 	 * @return DatabaseBase
 	 * @throws DBError
 	 */
@@ -175,18 +177,19 @@ abstract class DBLockManager extends QuorumLockManager {
 		if ( !$this->conns[$lockDb]->trxLevel() ) {
 			$this->conns[$lockDb]->begin( __METHOD__ ); // start transaction
 		}
+
 		return $this->conns[$lockDb];
 	}
 
 	/**
 	 * Do additional initialization for new lock DB connection
 	 *
-	 * @param $lockDb string
-	 * @param $db DatabaseBase
-	 * @return void
+	 * @param string $lockDb
+	 * @param DatabaseBase $db
 	 * @throws DBError
 	 */
-	protected function initConnection( $lockDb, DatabaseBase $db ) {}
+	protected function initConnection( $lockDb, DatabaseBase $db ) {
+	}
 
 	/**
 	 * Checks if the DB has not recently had connection/query errors.
@@ -204,7 +207,7 @@ abstract class DBLockManager extends QuorumLockManager {
 	/**
 	 * Log a lock request failure to the cache
 	 *
-	 * @param $lockDb string
+	 * @param string $lockDb
 	 * @return bool Success
 	 */
 	protected function cacheRecordFailure( $lockDb ) {
@@ -216,7 +219,7 @@ abstract class DBLockManager extends QuorumLockManager {
 	/**
 	 * Get a cache key for recent query misses for a DB
 	 *
-	 * @param $lockDb string
+	 * @param string $lockDb
 	 * @return string
 	 */
 	protected function getMissKey( $lockDb ) {
@@ -242,7 +245,7 @@ abstract class DBLockManager extends QuorumLockManager {
  * @ingroup LockManager
  */
 class MySqlLockManager extends DBLockManager {
-	/** @var Array Mapping of lock types to the type actually used */
+	/** @var array Mapping of lock types to the type actually used */
 	protected $lockTypeMap = array(
 		self::LOCK_SH => self::LOCK_SH,
 		self::LOCK_UW => self::LOCK_SH,
@@ -250,8 +253,8 @@ class MySqlLockManager extends DBLockManager {
 	);
 
 	/**
-	 * @param $lockDb string
-	 * @param $db DatabaseBase
+	 * @param string $lockDb
+	 * @param DatabaseBase $db
 	 */
 	protected function initConnection( $lockDb, DatabaseBase $db ) {
 		# Let this transaction see lock rows from other transactions
@@ -263,6 +266,9 @@ class MySqlLockManager extends DBLockManager {
 	 * This does not use GET_LOCK() per http://bugs.mysql.com/bug.php?id=1118.
 	 *
 	 * @see DBLockManager::getLocksOnServer()
+	 * @param string $lockSrv
+	 * @param array $paths
+	 * @param string $type
 	 * @return Status
 	 */
 	protected function doGetLocksOnServer( $lockSrv, array $paths, $type ) {
@@ -359,7 +365,7 @@ class MySqlLockManager extends DBLockManager {
  * @ingroup LockManager
  */
 class PostgreSqlLockManager extends DBLockManager {
-	/** @var Array Mapping of lock types to the type actually used */
+	/** @var array Mapping of lock types to the type actually used */
 	protected $lockTypeMap = array(
 		self::LOCK_SH => self::LOCK_SH,
 		self::LOCK_UW => self::LOCK_SH,
@@ -374,7 +380,7 @@ class PostgreSqlLockManager extends DBLockManager {
 
 		$db = $this->getConnection( $lockSrv ); // checked in isServerUp()
 		$bigints = array_unique( array_map(
-			function( $key ) {
+			function ( $key ) {
 				return wfBaseConvert( substr( $key, 0, 15 ), 16, 10 );
 			},
 			array_map( array( $this, 'sha1Base16Absolute' ), $paths )

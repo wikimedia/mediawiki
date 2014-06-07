@@ -33,6 +33,7 @@
  * @since 1.17
  */
 class WebInstallerOutput {
+
 	/**
 	 * The WebInstaller object this WebInstallerOutput is used by.
 	 *
@@ -52,6 +53,9 @@ class WebInstallerOutput {
 	 */
 	private $headerDone = false;
 
+	/**
+	 * @var string
+	 */
 	public $redirectTarget;
 
 	/**
@@ -69,27 +73,39 @@ class WebInstallerOutput {
 	private $useShortHeader = false;
 
 	/**
-	 * Constructor.
-	 *
-	 * @param $parent WebInstaller
+	 * @param WebInstaller $parent
 	 */
 	public function __construct( WebInstaller $parent ) {
 		$this->parent = $parent;
 	}
 
+	/**
+	 * @param string $html
+	 */
 	public function addHTML( $html ) {
 		$this->contents .= $html;
 		$this->flush();
 	}
 
+	/**
+	 * @param string $text
+	 */
 	public function addWikiText( $text ) {
 		$this->addHTML( $this->parent->parse( $text ) );
 	}
 
+	/**
+	 * @param string $html
+	 */
 	public function addHTMLNoFlush( $html ) {
 		$this->contents .= $html;
 	}
 
+	/**
+	 * @param string $url
+	 *
+	 * @throws MWException
+	 */
 	public function redirect( $url ) {
 		if ( $this->headerDone ) {
 			throw new MWException( __METHOD__ . ' called after sending headers' );
@@ -110,6 +126,7 @@ class WebInstallerOutput {
 	 *   and not properly handling such details as media types in module definitions.
 	 *
 	 * @param string $dir 'ltr' or 'rtl'
+	 *
 	 * @return String
 	 */
 	public function getCSS( $dir ) {
@@ -117,16 +134,17 @@ class WebInstallerOutput {
 		// and loaded as one file.
 		$moduleNames = array(
 			'mediawiki.legacy.shared',
-			'skins.vector',
+			'mediawiki.skinning.interface',
+			'skins.vector.styles',
 			'mediawiki.legacy.config',
 		);
 
 		$prepend = '';
 		$css = '';
 
-		$cssFileNames = array();
 		$resourceLoader = new ResourceLoader();
 		foreach ( $moduleNames as $moduleName ) {
+			/** @var ResourceLoaderFileModule $module */
 			$module = $resourceLoader->getModule( $moduleName );
 			$cssFileNames = $module->getAllStyleFiles();
 
@@ -138,7 +156,8 @@ class WebInstallerOutput {
 				}
 
 				if ( !is_readable( $cssFileName ) ) {
-					$prepend .= ResourceLoader::makeComment( "Unable to read $cssFileName. Please check file permissions." );
+					$prepend .= ResourceLoader::makeComment( "Unable to read $cssFileName. " .
+						"Please check file permissions." );
 					continue;
 				}
 
@@ -170,7 +189,6 @@ class WebInstallerOutput {
 					} else {
 						$prepend .= ResourceLoader::makeComment( "Unable to read $cssFileName." );
 					}
-
 				} catch ( Exception $e ) {
 					$prepend .= ResourceLoader::formatException( $e );
 				}
@@ -191,6 +209,7 @@ class WebInstallerOutput {
 
 	/**
 	 * "<link>" to index.php?css=foobar for the "<head>"
+	 *
 	 * @return String
 	 */
 	private function getCssUrl() {
@@ -235,7 +254,7 @@ class WebInstallerOutput {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	public function getHeadAttribs() {
 		return array(
@@ -246,6 +265,7 @@ class WebInstallerOutput {
 
 	/**
 	 * Get whether the header has been output
+	 *
 	 * @return bool
 	 */
 	public function headerDone() {
@@ -294,20 +314,18 @@ class WebInstallerOutput {
 
 	public function outputFooter() {
 		if ( $this->useShortHeader ) {
-?>
-</body></html>
-<?php
+			echo Html::closeElement( 'body' ) . Html::closeElement( 'html' );
+
 			return;
 		}
 ?>
 
 </div></div>
 
-
 <div id="mw-panel">
 	<div class="portal" id="p-logo">
 	  <a style="background-image: url(../skins/common/images/mediawiki.png);"
-		href="http://www.mediawiki.org/"
+		href="https://www.mediawiki.org/"
 		title="Main Page"></a>
 	</div>
 	<div class="portal"><div class="body">
@@ -317,9 +335,8 @@ class WebInstallerOutput {
 	</div></div>
 </div>
 
-</body>
-</html>
 <?php
+		echo Html::closeElement( 'body' ) . Html::closeElement( 'html' );
 	}
 
 	public function outputShortHeader() {
@@ -343,7 +360,11 @@ class WebInstallerOutput {
 		echo wfMessage( 'config-title', $wgVersion )->escaped();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getJQuery() {
-		return Html::linkedScript( "../resources/jquery/jquery.js" );
+		return Html::linkedScript( "../resources/lib/jquery/jquery.js" );
 	}
+
 }

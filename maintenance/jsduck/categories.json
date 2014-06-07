@@ -9,7 +9,7 @@
 					"mw.Map",
 					"mw.Message",
 					"mw.loader",
-					"mw.log",
+					"mw.loader.store",
 					"mw.html",
 					"mw.html.Cdata",
 					"mw.html.Raw",
@@ -20,9 +20,9 @@
 				"name": "General",
 				"classes": [
 					"mw.Title",
-					"mw.inspect",
-					"mw.inspect.reports",
+					"mw.Uri",
 					"mw.notification",
+					"mw.Notification_",
 					"mw.user",
 					"mw.util",
 					"mw.plugin.*"
@@ -35,6 +35,36 @@
 			{
 				"name": "API",
 				"classes": ["mw.Api*"]
+			},
+			{
+				"name": "Language",
+				"classes": [
+					"mw.language*",
+					"mw.cldr",
+					"mw.jqueryMsg"
+				]
+			},
+			{
+				"name": "Page",
+				"classes": [
+					"mw.page*"
+				]
+			},
+			{
+				"name": "Interfaces",
+				"classes": [
+					"mw.Feedback"
+				]
+			},
+			{
+				"name": "Development",
+				"classes": [
+					"mw.log",
+					"mw.inspect",
+					"mw.inspect.reports",
+					"mw.Debug",
+					"mw.Debug.profile"
+				]
 			}
 		]
 	},
@@ -50,6 +80,10 @@
 	{
 		"name": "Upstream",
 		"groups": [
+			{
+				"name": "OOJS",
+				"classes": ["OO", "OO.*"]
+			},
 			{
 				"name": "jQuery",
 				"classes": ["jQuery", "jQuery.Event", "jQuery.Callbacks", "jQuery.Promise", "jQuery.Deferred", "jQuery.jqXHR", "QUnit"]

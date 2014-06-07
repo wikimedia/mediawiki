@@ -50,6 +50,16 @@ class SpecialAllpages extends IncludableSpecialPage {
 	protected $maxPageLength = 70;
 
 	/**
+	 * Maximum number of pages in a hierarchical ("top level") list.
+	 *
+	 * Traversal of the entire page list by spidering the top levels is thought
+	 * to require O(N^3) DB CPU time where N is the number of pages on the wiki.
+	 * See bug 56840. If this limit is exceeded, the behaviour becomes like a
+	 * simple alphabetic pager.
+	 */
+	protected $maxTopLevelPages = 50000;
+
+	/**
 	 * Determines, which message describes the input field 'nsfrom'.
 	 *
 	 * @var string $nsfromMsg
@@ -87,7 +97,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$namespaces = $this->getContext()->getLanguage()->getNamespaces();
 
 		$out->setPageTitle(
-			( $namespace > 0 && in_array( $namespace, array_keys( $namespaces ) ) ) ?
+			( $namespace > 0 && array_key_exists( $namespace, $namespaces ) ) ?
 				$this->msg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) ) :
 				$this->msg( 'allarticles' )
 		);
@@ -113,7 +123,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 	 */
 	function namespaceForm( $namespace = NS_MAIN, $from = '', $to = '', $hideredirects = false ) {
 		global $wgScript;
-		$t = $this->getTitle();
+		$t = $this->getPageTitle();
 
 		$out = Xml::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
 		$out .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
@@ -201,6 +211,15 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$lines = $wgMemc->get( $key );
 
 		$count = $dbr->estimateRowCount( 'page', '*', $where, __METHOD__ );
+
+		// Don't show a hierarchical list if the number of pages is very large,
+		// since generating it will cause a lot of scanning
+		if ( $count > $this->maxTopLevelPages ) {
+			$this->showChunk( $namespace, $from, $to, $hideredirects );
+
+			return;
+		}
+
 		$maxPerSubpage = intval( $count / $this->maxLineCount );
 		$maxPerSubpage = max( $maxPerSubpage, $this->maxPerPage );
 
@@ -284,7 +303,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 					$nsForm .
 					'</td>
 							<td class="mw-allpages-nav">' .
-					Linker::link( $this->getTitle(), $this->msg( 'allpages' )->escaped(),
+					Linker::link( $this->getPageTitle(), $this->msg( 'allpages' )->escaped(),
 						array(), array(), 'known' ) .
 					"</td>
 						</tr>" .
@@ -328,7 +347,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			$queryParams['hideredirects'] = 1;
 		}
 
-		$url = $this->getTitle()->getLocalURL( $queryParams );
+		$url = $this->getPageTitle()->getLocalURL( $queryParams );
 		$inlink = Html::element( 'a', array( 'href' => $url ), $inpointf );
 		$outlink = Html::element( 'a', array( 'href' => $url ), $outpointf );
 
@@ -356,7 +375,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 		if ( !$fromList || !$toList ) {
 			$out = $this->msg( 'allpagesbadtitle' )->parseAsBlock();
-		} elseif ( !in_array( $namespace, array_keys( $namespaces ) ) ) {
+		} elseif ( !array_key_exists( $namespace, $namespaces ) ) {
 			// Show errormessage and reset to NS_MAIN
 			$out = $this->msg( 'allpages-bad-ns', $namespace )->parse();
 			$namespace = NS_MAIN;
@@ -462,7 +481,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 				}
 			}
 
-			$self = $this->getTitle();
+			$self = $this->getPageTitle();
 
 			$nsForm = $this->namespaceForm( $namespace, $from, $to, $hideredirects );
 			$out2 = Xml::openElement( 'table', array( 'class' => 'mw-allpages-table-form' ) ) .

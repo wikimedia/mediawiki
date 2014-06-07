@@ -70,16 +70,26 @@ class WatchedItem {
 		return $this->mTitle;
 	}
 
-	/** Helper to retrieve the title namespace */
+	/**
+	 * Helper to retrieve the title namespace
+	 * @return int
+	 */
 	protected function getTitleNs() {
 		return $this->getTitle()->getNamespace();
 	}
 
-	/** Helper to retrieve the title DBkey */
+	/**
+	 * Helper to retrieve the title DBkey
+	 * @return string
+	 */
 	protected function getTitleDBkey() {
 		return $this->getTitle()->getDBkey();
 	}
-	/** Helper to retrieve the user id */
+
+	/**
+	 * Helper to retrieve the user id
+	 * @return int
+	 */
 	protected function getUserId() {
 		return $this->mUser->getId();
 	}
@@ -109,6 +119,12 @@ class WatchedItem {
 
 		// Only loggedin user can have a watchlist
 		if ( $this->mUser->isAnon() ) {
+			$this->watched = false;
+			return;
+		}
+
+		// some pages cannot be watched
+		if ( !$this->getTitle()->isWatchable() ) {
 			$this->watched = false;
 			return;
 		}
@@ -173,8 +189,9 @@ class WatchedItem {
 	 *
 	 * @param $force Whether to force the write query to be executed even if the
 	 *        page is not watched or the notification timestamp is already NULL.
+	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
 	 */
-	public function resetNotificationTimestamp( $force = '' ) {
+	public function resetNotificationTimestamp( $force = '', $oldid = 0 ) {
 		// Only loggedin user can have a watchlist
 		if ( wfReadOnly() || $this->mUser->isAnon() || !$this->isAllowed( 'editmywatchlist' ) ) {
 			return;
@@ -187,10 +204,50 @@ class WatchedItem {
 			}
 		}
 
+		$title = $this->getTitle();
+		if ( !$oldid ) {
+			// No oldid given, assuming latest revision; clear the timestamp.
+			$notificationTimestamp = null;
+		} elseif ( !$title->getNextRevisionID( $oldid ) ) {
+			// Oldid given and is the latest revision for this title; clear the timestamp.
+			$notificationTimestamp = null;
+		} else {
+			// See if the version marked as read is more recent than the one we're viewing.
+			// Call load() if it wasn't called before due to $force.
+			$this->load();
+
+			if ( $this->timestamp === null ) {
+				// This can only happen if $force is enabled.
+				$notificationTimestamp = null;
+			} else {
+				// Oldid given and isn't the latest; update the timestamp.
+				// This will result in no further notification emails being sent!
+				$dbr = wfGetDB( DB_SLAVE );
+				$notificationTimestamp = $dbr->selectField(
+					'revision', 'rev_timestamp',
+					array( 'rev_page' => $title->getArticleID(), 'rev_id' => $oldid )
+				);
+				// We need to go one second to the future because of various strict comparisons
+				// throughout the codebase
+				$ts = new MWTimestamp( $notificationTimestamp );
+				$ts->timestamp->add( new DateInterval( 'PT1S' ) );
+				$notificationTimestamp = $ts->getTimestamp( TS_MW );
+
+				if ( $notificationTimestamp < $this->timestamp ) {
+					if ( $force != 'force' ) {
+						return;
+					} else {
+						// This is a little silly…
+						$notificationTimestamp = $this->timestamp;
+					}
+				}
+			}
+		}
+
 		// If the page is watched by the user (or may be watched), update the timestamp on any
 		// any matching rows
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->update( 'watchlist', array( 'wl_notificationtimestamp' => null ),
+		$dbw->update( 'watchlist', array( 'wl_notificationtimestamp' => $notificationTimestamp ),
 			$this->dbCond(), __METHOD__ );
 		$this->timestamp = null;
 	}

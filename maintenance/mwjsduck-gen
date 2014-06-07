@@ -6,16 +6,25 @@ then
 	JSDUCK_MWVERSION="$2"
 elif [[ "$*" != "" ]]
 then
-	echo "Usage $0: [--version <mediawiki version>]"
+	echo "Usage: $0 [--version <mediawiki version>]"
 	echo
 	exit 1
+fi
+
+# Support jsduck 4.x and 5.x
+JSDUCK_VERSION="$(jsduck --version | sed -e 's/[.].*//')"
+if [  "$JSDUCK_VERSION" = "JSDuck 4" ]; then
+	JSDUCK_VERSION_OPT="--meta-tags ./maintenance/jsduck/MetaTags.rb --warnings=-no_doc"
+else
+	JSDUCK_VERSION_OPT="--tags ./maintenance/jsduck/CustomTags.rb --warnings=-nodoc(class,public)"
 fi
 
 MWCORE_DIR=$(cd $(dirname $0)/..; pwd)
 
 jsduck \
 --config=$MWCORE_DIR/maintenance/jsduck/config.json \
---footer="Documentation for MediaWiki core ($JSDUCK_MWVERSION). Generated on {DATE} by {JSDUCK} {VERSION}." \
-&& echo 'JSDuck execution finished.'
-
-ln -s ../../resources $MWCORE_DIR/docs/js/modules
+$JSDUCK_VERSION_OPT \
+--footer="Documentation for branch ($JSDUCK_MWVERSION) on {DATE} by {JSDUCK} {VERSION}." \
+--processes 0 --warnings-exit-nonzero \
+&& echo 'JSDuck execution finished.' \
+&& ln -s ../../resources $MWCORE_DIR/docs/js/modules

@@ -1,0 +1,12 @@
+{
+    "@metadata": {
+        "authors": [
+            "Mimarik",
+            "Teslaton"
+        ]
+    },
+    "ooui-dialog-action-close": "Zatvoriť",
+    "ooui-outline-control-move-down": "Posunúť položku nadol",
+    "ooui-outline-control-move-up": "Posunúť položku nahor",
+    "ooui-toolbar-more": "Viac"
+}

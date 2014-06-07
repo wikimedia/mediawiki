@@ -1,7 +1,5 @@
 <?php
 /**
- *
- *
  * Created on Jan 1, 2013
  *
  * Copyright © 2013 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
@@ -112,6 +110,9 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 		} while ( true );
 	}
 
+	/**
+	 * @param array $data
+	 */
 	private function printResult( $data ) {
 		$q = $data['query'];
 		$print = array();
@@ -151,7 +152,8 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 	private static function GetItems( $q, $moduleName, $name, &$print ) {
 		if ( isset( $q[$moduleName] ) ) {
 			$print[] = "*$name/[" . implode( ',',
-				array_map( function ( $v ) {
+				array_map(
+					function ( $v ) {
 						return $v['title'];
 					},
 					$q[$moduleName] ) ) . ']';
@@ -202,7 +204,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 			if ( $numericIds ) {
 				ksort( $results, SORT_NUMERIC );
 			} elseif ( $sort !== null && $sort !== false ) {
-				uasort( $results, $sort );
+				usort( $results, $sort );
 			}
 		}
 	}

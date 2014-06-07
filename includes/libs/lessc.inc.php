@@ -1,7 +1,7 @@
 <?php
 
 /**
- * lessphp v0.4.0@261f1bd28f
+ * lessphp v0.4.0@2cc77e3c7b
  * http://leafo.net/lessphp
  *
  * LESS CSS compiler, adapted from http://lesscss.org
@@ -847,7 +847,7 @@ class lessc {
 	 * The input is expected to be reduced. This function will not work on
 	 * things like expressions and variables.
 	 */
-	protected function compileValue($value) {
+	public function compileValue($value) {
 		switch ($value[0]) {
 		case 'list':
 			// [1] - delimiter
@@ -1009,6 +1009,39 @@ class lessc {
 
 	protected function lib_argb($color){
 		return $this->lib_rgbahex($color);
+	}
+
+	/**
+	 * Given an url, decide whether to output a regular link or the base64-encoded contents of the file
+	 *
+	 * @param  array  $value either an argument list (two strings) or a single string
+	 * @return string        formatted url(), either as a link or base64-encoded
+	 */
+	protected function lib_data_uri($value) {
+		$mime = ($value[0] === 'list') ? $value[2][0][2] : null;
+		$url = ($value[0] === 'list') ? $value[2][1][2][0] : $value[2][0];
+
+		$fullpath = $this->findImport($url);
+
+		if($fullpath && ($fsize = filesize($fullpath)) !== false) {
+			// IE8 can't handle data uris larger than 32KB
+			if($fsize/1024 < 32) {
+				if(is_null($mime)) {
+					if(class_exists('finfo')) { // php 5.3+
+						$finfo = new finfo(FILEINFO_MIME);
+						$mime = explode('; ', $finfo->file($fullpath));
+						$mime = $mime[0];
+					} elseif(function_exists('mime_content_type')) { // PHP 5.2
+						$mime = mime_content_type($fullpath);
+					}
+				}
+
+				if(!is_null($mime)) // fallback if the mime type is still unknown
+					$url = sprintf('data:%s;base64,%s', $mime, base64_encode(file_get_contents($fullpath)));
+			}
+		}
+
+		return 'url("'.$url.'")';
 	}
 
 	// utility func to unquote a string
@@ -1234,23 +1267,43 @@ class lessc {
 	}
 
 	protected function lib_contrast($args) {
-		if ($args[0] != 'list' || count($args[2]) < 3) {
-			return array(array('color', 0, 0, 0), 0);
-		}
+	    $darkColor  = array('color', 0, 0, 0);
+	    $lightColor = array('color', 255, 255, 255);
+	    $threshold  = 0.43;
 
-		list($inputColor, $darkColor, $lightColor) = $args[2];
+	    if ( $args[0] == 'list' ) {
+	        $inputColor = ( isset($args[2][0]) ) ? $this->assertColor($args[2][0])  : $lightColor;
+	        $darkColor  = ( isset($args[2][1]) ) ? $this->assertColor($args[2][1])  : $darkColor;
+	        $lightColor = ( isset($args[2][2]) ) ? $this->assertColor($args[2][2])  : $lightColor;
+	        $threshold  = ( isset($args[2][3]) ) ? $this->assertNumber($args[2][3]) : $threshold;
+	    }
+	    else {
+	        $inputColor  = $this->assertColor($args);
+	    }
 
-		$inputColor = $this->assertColor($inputColor);
-		$darkColor = $this->assertColor($darkColor);
-		$lightColor = $this->assertColor($lightColor);
-		$hsl = $this->toHSL($inputColor);
+	    $inputColor = $this->coerceColor($inputColor);
+	    $darkColor  = $this->coerceColor($darkColor);
+	    $lightColor = $this->coerceColor($lightColor);
 
-		if ($hsl[3] > 50) {
-			return $darkColor;
-		}
+	    //Figure out which is actually light and dark!
+	    if ( $this->lib_luma($darkColor) > $this->lib_luma($lightColor) ) {
+	        $t  = $lightColor;
+	        $lightColor = $darkColor;
+	        $darkColor  = $t;
+	    }
 
-		return $lightColor;
+	    $inputColor_alpha = $this->lib_alpha($inputColor);
+	    if ( ( $this->lib_luma($inputColor) * $inputColor_alpha) < $threshold) {
+	        return $lightColor;
+	    }
+	    return $darkColor;
 	}
+
+	protected function lib_luma($color) {
+	    $color = $this->coerceColor($color);
+	    return (0.2126 * $color[0] / 255) + (0.7152 * $color[1] / 255) + (0.0722 * $color[2] / 255);
+	}
+
 
 	public function assertColor($value, $error = "expected color value") {
 		$color = $this->coerceColor($value);
@@ -1475,8 +1528,9 @@ class lessc {
 
 			list(, $name, $args) = $value;
 			if ($name == "%") $name = "_sprintf";
+
 			$f = isset($this->libFunctions[$name]) ?
-				$this->libFunctions[$name] : array($this, 'lib_'.$name);
+				$this->libFunctions[$name] : array($this, 'lib_'.str_replace('-', '_', $name));
 
 			if (is_callable($f)) {
 				if ($args[0] == 'list')
@@ -2338,7 +2392,7 @@ class lessc_parser {
 			$this->throwError();
 
 		// TODO report where the block was opened
-		if (!is_null($this->env->parent))
+		if ( !property_exists($this->env, 'parent') || !is_null($this->env->parent) )
 			throw new exception('parse error: unclosed block');
 
 		return $this->env;

@@ -27,7 +27,6 @@
  * @ingroup Media
  */
 class DjVuHandler extends ImageHandler {
-
 	/**
 	 * @return bool
 	 */
@@ -35,6 +34,7 @@ class DjVuHandler extends ImageHandler {
 		global $wgDjvuRenderer, $wgDjvuDump, $wgDjvuToXML;
 		if ( !$wgDjvuRenderer || ( !$wgDjvuDump && !$wgDjvuToXML ) ) {
 			wfDebug( "DjVu is disabled, please set \$wgDjvuRenderer and \$wgDjvuDump\n" );
+
 			return false;
 		} else {
 			return true;
@@ -42,7 +42,7 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $file
+	 * @param File $file
 	 * @return bool
 	 */
 	function mustRender( $file ) {
@@ -50,7 +50,7 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $file
+	 * @param File $file
 	 * @return bool
 	 */
 	function isMultiPage( $file ) {
@@ -68,8 +68,8 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $name
-	 * @param $value
+	 * @param string $name
+	 * @param mixed $value
 	 * @return bool
 	 */
 	function validateParam( $name, $value ) {
@@ -85,7 +85,7 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $params
+	 * @param array $params
 	 * @return bool|string
 	 */
 	function makeParamString( $params ) {
@@ -93,11 +93,12 @@ class DjVuHandler extends ImageHandler {
 		if ( !isset( $params['width'] ) ) {
 			return false;
 		}
+
 		return "page{$page}-{$params['width']}px";
 	}
 
 	/**
-	 * @param $str
+	 * @param string $str
 	 * @return array|bool
 	 */
 	function parseParamString( $str ) {
@@ -110,7 +111,7 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $params
+	 * @param array $params
 	 * @return array
 	 */
 	function getScriptParams( $params ) {
@@ -121,10 +122,10 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
-	 * @param $image File
-	 * @param  $dstPath
-	 * @param  $dstUrl
-	 * @param  $params
+	 * @param File $image
+	 * @param string $dstPath
+	 * @param string $dstUrl
+	 * @param array $params
 	 * @param int $flags
 	 * @return MediaTransformError|ThumbnailImage|TransformParameterError
 	 */
@@ -137,6 +138,7 @@ class DjVuHandler extends ImageHandler {
 		if ( !$xml ) {
 			$width = isset( $params['width'] ) ? $params['width'] : 0;
 			$height = isset( $params['height'] ) ? $params['height'] : 0;
+
 			return new MediaTransformError( 'thumbnail_error', $width, $height,
 				wfMessage( 'djvu_no_xml' )->text() );
 		}
@@ -162,6 +164,7 @@ class DjVuHandler extends ImageHandler {
 				'height' => $height,
 				'page' => $page
 			);
+
 			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		}
 
@@ -174,7 +177,33 @@ class DjVuHandler extends ImageHandler {
 			);
 		}
 
-		$srcPath = $image->getLocalRefPath();
+		// Get local copy source for shell scripts
+		// Thumbnail extraction is very inefficient for large files.
+		// Provide a way to pool count limit the number of downloaders.
+		if ( $image->getSize() >= 1e7 ) { // 10MB
+			$work = new PoolCounterWorkViaCallback( 'GetLocalFileCopy', sha1( $image->getName() ),
+				array(
+					'doWork' => function() use ( $image ) {
+						return $image->getLocalRefPath();
+					}
+				)
+			);
+			$srcPath = $work->execute();
+		} else {
+			$srcPath = $image->getLocalRefPath();
+		}
+
+		if ( $srcPath === false ) { // Failed to get local copy
+			wfDebugLog( 'thumbnail',
+				sprintf( 'Thumbnail failed on %s: could not get local copy of "%s"',
+					wfHostname(), $image->getName() ) );
+
+			return new MediaTransformError( 'thumbnail_error',
+				$params['width'], $params['height'],
+				wfMessage( 'filemissing' )->text()
+			);
+		}
+
 		# Use a subshell (brackets) to aggregate stderr from both pipeline commands
 		# before redirecting it to the overall stdout. This works in both Linux and Windows XP.
 		$cmd = '(' . wfEscapeShellArg(
@@ -195,9 +224,7 @@ class DjVuHandler extends ImageHandler {
 
 		$removed = $this->removeBadFile( $dstPath, $retval );
 		if ( $retval != 0 || $removed ) {
-			wfDebugLog( 'thumbnail',
-				sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
-					wfHostname(), $retval, trim( $err ), $cmd ) );
+			$this->logErrorForExternalProcess( $retval, $err, $cmd );
 			return new MediaTransformError( 'thumbnail_error', $width, $height, $err );
 		} else {
 			$params = array(
@@ -205,6 +232,7 @@ class DjVuHandler extends ImageHandler {
 				'height' => $height,
 				'page' => $page
 			);
+
 			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		}
 	}
@@ -212,6 +240,8 @@ class DjVuHandler extends ImageHandler {
 	/**
 	 * Cache an instance of DjVuImage in an Image object, return that instance
 	 *
+	 * @param File $image
+	 * @param string $path
 	 * @return DjVuImage
 	 */
 	function getDjVuImage( $image, $path ) {
@@ -222,23 +252,52 @@ class DjVuHandler extends ImageHandler {
 		} else {
 			$deja = $image->dejaImage;
 		}
+
 		return $deja;
 	}
 
 	/**
+	 * Get metadata, unserializing it if neccessary.
+	 *
+	 * @param File $file The DjVu file in question
+	 * @return String XML metadata as a string.
+	 */
+	private function getUnserializedMetadata( File $file ) {
+		$metadata = $file->getMetadata();
+		if ( substr( $metadata, 0, 3 ) === '<?xml' ) {
+			// Old style. Not serialized but instead just a raw string of XML.
+			return $metadata;
+		}
+
+		wfSuppressWarnings();
+		$unser = unserialize( $metadata );
+		wfRestoreWarnings();
+		if ( is_array( $unser ) ) {
+			return $unser['xml'];
+		}
+
+		// unserialize failed. Guess it wasn't really serialized after all,
+		return $metadata;
+	}
+
+	/**
 	 * Cache a document tree for the DjVu XML metadata
-	 * @param $image File
-	 * @param $gettext Boolean: DOCUMENT (Default: false)
-	 * @return bool
+	 * @param File $image
+	 * @param bool $gettext DOCUMENT (Default: false)
+	 * @return bool|SimpleXMLElement
 	 */
 	function getMetaTree( $image, $gettext = false ) {
-		if ( isset( $image->dejaMetaTree ) ) {
+		if ( $gettext && isset( $image->djvuTextTree ) ) {
+			return $image->djvuTextTree;
+		}
+		if ( !$gettext && isset( $image->dejaMetaTree ) ) {
 			return $image->dejaMetaTree;
 		}
 
-		$metadata = $image->getMetadata();
+		$metadata = $this->getUnserializedMetadata( $image );
 		if ( !$this->isMetadataValid( $image, $metadata ) ) {
 			wfDebug( "DjVu XML metadata is invalid or missing, should have been fixed in upgradeRow\n" );
+
 			return false;
 		}
 		wfProfileIn( __METHOD__ );
@@ -250,8 +309,11 @@ class DjVuHandler extends ImageHandler {
 			$image->djvuTextTree = false;
 			$tree = new SimpleXMLElement( $metadata );
 			if ( $tree->getName() == 'mw-djvu' ) {
+				/** @var SimpleXMLElement $b */
 				foreach ( $tree->children() as $b ) {
 					if ( $b->getName() == 'DjVuTxt' ) {
+						// @todo File::djvuTextTree and File::dejaMetaTree are declared
+						// dynamically. Add a public File::$data to facilitate this?
 						$image->djvuTextTree = $b;
 					} elseif ( $b->getName() == 'DjVuXML' ) {
 						$image->dejaMetaTree = $b;
@@ -272,6 +334,11 @@ class DjVuHandler extends ImageHandler {
 		}
 	}
 
+	/**
+	 * @param File $image
+	 * @param string $path
+	 * @return bool|array False on failure
+	 */
 	function getImageSize( $image, $path ) {
 		return $this->getDjVuImage( $image, $path )->getImageSize();
 	}
@@ -283,12 +350,19 @@ class DjVuHandler extends ImageHandler {
 			$magic = MimeMagic::singleton();
 			$mime = $magic->guessTypesForExtension( $wgDjvuOutputExtension );
 		}
+
 		return array( $wgDjvuOutputExtension, $mime );
 	}
 
 	function getMetadata( $image, $path ) {
 		wfDebug( "Getting DjVu metadata for $path\n" );
-		return $this->getDjVuImage( $image, $path )->retrieveMetaData();
+
+		$xml = $this->getDjVuImage( $image, $path )->retrieveMetaData();
+		if ( $xml === false ) {
+			return false;
+		} else {
+			return serialize( array( 'xml' => $xml ) );
+		}
 	}
 
 	function getMetadataType( $image ) {
@@ -304,6 +378,7 @@ class DjVuHandler extends ImageHandler {
 		if ( !$tree ) {
 			return false;
 		}
+
 		return count( $tree->xpath( '//OBJECT' ) );
 	}
 
@@ -324,6 +399,11 @@ class DjVuHandler extends ImageHandler {
 		}
 	}
 
+	/**
+	 * @param File $image
+	 * @param int $page Page number to get information for
+	 * @return bool|string Page text or false when no text found.
+	 */
 	function getPageText( $image, $page ) {
 		$tree = $this->getMetaTree( $image, true );
 		if ( !$tree ) {
@@ -333,11 +413,10 @@ class DjVuHandler extends ImageHandler {
 		$o = $tree->BODY[0]->PAGE[$page - 1];
 		if ( $o ) {
 			$txt = $o['value'];
+
 			return $txt;
 		} else {
 			return false;
 		}
-
 	}
-
 }

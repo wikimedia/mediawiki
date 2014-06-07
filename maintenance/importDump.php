@@ -3,7 +3,7 @@
  * Import XML dump files into the current wiki.
  *
  * Copyright © 2005 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -56,7 +56,7 @@ Compressed XML files may be read directly:
 
 Note that for very large data sets, importDump.php may be slow; there are
 alternate methods which can be much faster for full site restoration:
-<http://www.mediawiki.org/wiki/Manual:Importing_XML_dumps>
+<https://www.mediawiki.org/wiki/Manual:Importing_XML_dumps>
 TEXT;
 		$this->stderr = fopen( "php://stderr", "wt" );
 		$this->addOption( 'report',

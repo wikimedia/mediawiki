@@ -433,4 +433,74 @@ class MWNamespace {
 			? $wgNamespaceContentModels[$index]
 			: null;
 	}
+
+	/**
+	 * Determine which restriction levels it makes sense to use in a namespace,
+	 * optionally filtered by a user's rights.
+	 *
+	 * @since 1.23
+	 * @param int $index Index to check
+	 * @param User $user User to check
+	 * @return array
+	 */
+	public static function getRestrictionLevels( $index, User $user = null ) {
+		global $wgNamespaceProtection, $wgRestrictionLevels;
+
+		if ( !isset( $wgNamespaceProtection[$index] ) ) {
+			// All levels are valid if there's no namespace restriction.
+			// But still filter by user, if necessary
+			$levels = $wgRestrictionLevels;
+			if ( $user ) {
+				$levels = array_values( array_filter( $levels, function ( $level ) use ( $user ) {
+					$right = $level;
+					if ( $right == 'sysop' ) {
+						$right = 'editprotected'; // BC
+					}
+					if ( $right == 'autoconfirmed' ) {
+						$right = 'editsemiprotected'; // BC
+					}
+					return ( $right == '' || $user->isAllowed( $right ) );
+				} ) );
+			}
+			return $levels;
+		}
+
+		// First, get the list of groups that can edit this namespace.
+		$namespaceGroups = array();
+		$combine = 'array_merge';
+		foreach ( (array)$wgNamespaceProtection[$index] as $right ) {
+			if ( $right == 'sysop' ) {
+				$right = 'editprotected'; // BC
+			}
+			if ( $right == 'autoconfirmed' ) {
+				$right = 'editsemiprotected'; // BC
+			}
+			if ( $right != '' ) {
+				$namespaceGroups = call_user_func( $combine, $namespaceGroups,
+					User::getGroupsWithPermission( $right ) );
+				$combine = 'array_intersect';
+			}
+		}
+
+		// Now, keep only those restriction levels where there is at least one
+		// group that can edit the namespace but would be blocked by the
+		// restriction.
+		$usableLevels = array( '' );
+		foreach ( $wgRestrictionLevels as $level ) {
+			$right = $level;
+			if ( $right == 'sysop' ) {
+				$right = 'editprotected'; // BC
+			}
+			if ( $right == 'autoconfirmed' ) {
+				$right = 'editsemiprotected'; // BC
+			}
+			if ( $right != '' && ( !$user || $user->isAllowed( $right ) ) &&
+				array_diff( $namespaceGroups, User::getGroupsWithPermission( $right ) )
+			) {
+				$usableLevels[] = $level;
+			}
+		}
+
+		return $usableLevels;
+	}
 }

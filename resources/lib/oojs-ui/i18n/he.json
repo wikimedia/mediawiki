@@ -1,0 +1,23 @@
+{
+    "@metadata": {
+        "authors": [
+            "Amire80",
+            "ExampleTomer",
+            "Guycn2",
+            "Matanya",
+            "Mooeypoo",
+            "Orsa",
+            "Shimmin Beg",
+            "אור שפירא",
+            "חיים",
+            "ערן",
+            "פוילישער",
+            "קיפודנחש"
+        ]
+    },
+    "ooui-dialog-action-close": "סגירה",
+    "ooui-outline-control-move-down": "להזיז את הפריט מטה",
+    "ooui-outline-control-move-up": "להזיז את הפריט מעלה",
+    "ooui-outline-control-remove": "הסרת פריט",
+    "ooui-toolbar-more": "עוד"
+}

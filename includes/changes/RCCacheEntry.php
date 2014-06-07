@@ -17,10 +17,17 @@
  *
  * @file
  */
+
 class RCCacheEntry extends RecentChange {
-	var $secureName, $link;
-	var $curlink, $difflink, $lastlink, $usertalklink, $versionlink;
-	var $userlink, $timestamp, $watched;
+	public $curlink;
+	public $difflink;
+	public $lastlink;
+	public $link;
+	public $timestamp;
+	public $unpatrolled;
+	public $userlink;
+	public $usertalklink;
+	public $watched;
 
 	/**
 	 * @param $rc RecentChange
@@ -30,6 +37,7 @@ class RCCacheEntry extends RecentChange {
 		$rc2 = new RCCacheEntry;
 		$rc2->mAttribs = $rc->mAttribs;
 		$rc2->mExtra = $rc->mExtra;
+
 		return $rc2;
 	}
 }

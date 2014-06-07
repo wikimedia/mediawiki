@@ -67,10 +67,12 @@ class ChangesFeed {
 	/**
 	 * Generates feed's content
 	 *
-	 * @param $feed ChannelFeed subclass object (generally the one returned by getFeedObject())
-	 * @param $rows ResultWrapper object with rows in recentchanges table
-	 * @param $lastmod Integer: timestamp of the last item in the recentchanges table (only used for the cache key)
-	 * @param $opts FormOptions as in SpecialRecentChanges::getDefaultOptions()
+	 * @param ChannelFeed $feed ChannelFeed subclass object (generally the one returned
+	 *   by getFeedObject())
+	 * @param ResultWrapper $rows ResultWrapper object with rows in recentchanges table
+	 * @param int $lastmod Timestamp of the last item in the recentchanges table (only
+	 *   used for the cache key)
+	 * @param FormOptions $opts As in SpecialRecentChanges::getDefaultOptions()
 	 * @return null|bool True or null
 	 */
 	public function execute( $feed, $rows, $lastmod, $opts ) {
@@ -160,14 +162,28 @@ class ChangesFeed {
 	}
 
 	/**
-	 * Generate the feed items given a row from the database.
+	 * Generate the feed items given a row from the database, printing the feed.
 	 * @param $rows DatabaseBase resource with recentchanges rows
 	 * @param $feed Feed object
 	 */
 	public static function generateFeed( $rows, &$feed ) {
 		wfProfileIn( __METHOD__ );
-
+		$items = self::buildItems( $rows );
 		$feed->outHeader();
+		foreach ( $items as $item ) {
+			$feed->outItem( $item );
+		}
+		$feed->outFooter();
+		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Generate the feed items given a row from the database.
+	 * @param $rows DatabaseBase resource with recentchanges rows
+	 */
+	public static function buildItems( $rows ) {
+		wfProfileIn( __METHOD__ );
+		$items = array();
 
 		# Merge adjacent edits by one user
 		$sorted = array();
@@ -187,7 +203,10 @@ class ChangesFeed {
 
 		foreach ( $sorted as $obj ) {
 			$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
-			$talkpage = MWNamespace::canTalk( $obj->rc_namespace ) ? $title->getTalkPage()->getFullURL() : '';
+			$talkpage = MWNamespace::canTalk( $obj->rc_namespace )
+				? $title->getTalkPage()->getFullURL()
+				: '';
+
 			// Skip items with deleted content (avoids partially complete/inconsistent output)
 			if ( $obj->rc_deleted ) {
 				continue;
@@ -203,7 +222,7 @@ class ChangesFeed {
 				$url = $title->getFullURL();
 			}
 
-			$item = new FeedItem(
+			$items[] = new FeedItem(
 				$title->getPrefixedText(),
 				FeedUtils::formatDiff( $obj ),
 				$url,
@@ -212,10 +231,9 @@ class ChangesFeed {
 					? wfMessage( 'rev-deleted-user' )->escaped() : $obj->rc_user_text,
 				$talkpage
 			);
-			$feed->outItem( $item );
 		}
-		$feed->outFooter();
-		wfProfileOut( __METHOD__ );
-	}
 
+		wfProfileOut( __METHOD__ );
+		return $items;
+	}
 }

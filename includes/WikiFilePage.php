@@ -47,7 +47,7 @@ class WikiFilePage extends WikiPage {
 	}
 
 	/**
-	 * @param $file File:
+	 * @param File $file
 	 */
 	public function setFile( $file ) {
 		$this->mFile = $file;
@@ -85,7 +85,8 @@ class WikiFilePage extends WikiPage {
 		if ( $from == $to ) {
 			return null;
 		}
-		return $this->mRedirectTarget = Title::makeTitle( NS_FILE, $to );
+		$this->mRedirectTarget = Title::makeTitle( NS_FILE, $to );
+		return $this->mRedirectTarget;
 	}
 
 	/**
@@ -142,7 +143,8 @@ class WikiFilePage extends WikiPage {
 		}
 		$hash = $this->mFile->getSha1();
 		if ( !( $hash ) ) {
-			return $this->mDupes = array();
+			$this->mDupes = array();
+			return $this->mDupes;
 		}
 		$dupes = RepoGroup::singleton()->findBySha1( $hash );
 		// Remove duplicates with self and non matching file sizes
@@ -188,5 +190,46 @@ class WikiFilePage extends WikiPage {
 			$this->mRepo->invalidateImageRedirect( $this->mTitle );
 		}
 		return parent::doPurge();
+	}
+
+	/**
+	 * Get the categories this file is a member of on the wiki where it was uploaded.
+	 * For local files, this is the same as getCategories().
+	 * For foreign API files (InstantCommons), this is not supported currently.
+	 * Results will include hidden categories.
+	 *
+	 * @return TitleArray|Title[]
+	 * @since 1.23
+	 */
+	public function getForeignCategories() {
+		$this->loadFile();
+		$title = $this->mTitle;
+		$file = $this->mFile;
+
+		if ( ! $file instanceof LocalFile ) {
+			wfDebug( __CLASS__ . '::' . __METHOD__ . " is not supported for this file\n" );
+			return TitleArray::newFromResult( new FakeResultWrapper( array() ) );
+		}
+
+		/** @var LocalRepo $repo */
+		$repo = $file->getRepo();
+		$dbr = $repo->getSlaveDB();
+
+		$res = $dbr->select(
+			array( 'page', 'categorylinks' ),
+			array(
+				'page_title' => 'cl_to',
+				'page_namespace' => NS_CATEGORY,
+			),
+			array(
+				'page_namespace' => $title->getNamespace(),
+				'page_title' => $title->getDBkey(),
+			),
+			__METHOD__,
+			array(),
+			array( 'categorylinks' => array( 'INNER JOIN', 'page_id = cl_from' ) )
+		);
+
+		return TitleArray::newFromResult( $res );
 	}
 }

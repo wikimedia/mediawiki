@@ -23,7 +23,6 @@
 /**
  * Class to allow throwing wfDeprecated warnings
  * when people use globals that we do not want them to.
- * (For example like $wgArticle)
  */
 
 class DeprecatedGlobal extends StubObject {

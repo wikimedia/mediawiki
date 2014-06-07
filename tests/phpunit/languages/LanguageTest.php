@@ -241,6 +241,26 @@ class LanguageTest extends LanguageClassesTestCase {
 			$this->getLang()->truncate( "123456789", -5, 'XXXXXXXXXXXXXXX' ),
 			'truncate suffix, large ellipsis'
 		);
+		$this->assertEquals(
+			"123XXX",
+			$this->getLang()->truncate( "123                ", 9, 'XXX' ),
+			'truncate prefix, with spaces'
+		);
+		$this->assertEquals(
+			"12345XXX",
+			$this->getLang()->truncate( "12345            8", 11, 'XXX' ),
+			'truncate prefix, with spaces and non-space ending'
+		);
+		$this->assertEquals(
+			"XXX234",
+			$this->getLang()->truncate( "1              234", -8, 'XXX' ),
+			'truncate suffix, with spaces'
+		);
+		$this->assertEquals(
+			"12345XXX",
+			$this->getLang()->truncate( "1234567890", 5, 'XXX', false ),
+			'truncate without adjustment'
+		);
 	}
 
 	/**
@@ -638,7 +658,7 @@ class LanguageTest extends LanguageClassesTestCase {
 				'2009-W53-4',
 				'leap week'
 			),
-			// What follows is mostly copied from http://www.mediawiki.org/wiki/Help:Extension:ParserFunctions#.23time
+			// What follows is mostly copied from https://www.mediawiki.org/wiki/Help:Extension:ParserFunctions#.23time
 			array(
 				'Y',
 				'20120102090705',
@@ -1114,7 +1134,6 @@ class LanguageTest extends LanguageClassesTestCase {
 		);
 	}
 
-
 	/**
 	 * @dataProvider provideFormatDuration
 	 * @covers Language::formatDuration
@@ -1467,13 +1486,14 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	public static function provideCommafyData() {
 		return array(
-			array( 1, '1' ),
+			array( -1, '-1' ),
 			array( 10, '10' ),
 			array( 100, '100' ),
 			array( 1000, '1,000' ),
 			array( 10000, '10,000' ),
 			array( 100000, '100,000' ),
 			array( 1000000, '1,000,000' ),
+			array( -1.0001, '-1.0001' ),
 			array( 1.0001, '1.0001' ),
 			array( 10.0001, '10.0001' ),
 			array( 100.0001, '100.0001' ),
@@ -1481,6 +1501,8 @@ class LanguageTest extends LanguageClassesTestCase {
 			array( 10000.0001, '10,000.0001' ),
 			array( 100000.0001, '100,000.0001' ),
 			array( 1000000.0001, '1,000,000.0001' ),
+			array( '200000000000000000000', '200,000,000,000,000,000,000' ),
+			array( '-200000000000000000000', '-200,000,000,000,000,000,000' ),
 		);
 	}
 

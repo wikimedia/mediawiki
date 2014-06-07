@@ -32,9 +32,14 @@
  * @ingroup Media
  */
 class GIFMetadataExtractor {
-	static $gif_frame_sep;
-	static $gif_extension_sep;
-	static $gif_term;
+	/** @var string */
+	private static $gifFrameSep;
+
+	/** @var string */
+	private static $gifExtensionSep;
+
+	/** @var string */
+	private static $gifTerm;
 
 	const VERSION = 1;
 
@@ -45,13 +50,13 @@ class GIFMetadataExtractor {
 
 	/**
 	 * @throws Exception
-	 * @param $filename string
+	 * @param string $filename
 	 * @return array
 	 */
 	static function getMetadata( $filename ) {
-		self::$gif_frame_sep = pack( "C", ord( "," ) );
-		self::$gif_extension_sep = pack( "C", ord( "!" ) );
-		self::$gif_term = pack( "C", ord( ";" ) );
+		self::$gifFrameSep = pack( "C", ord( "," ) );
+		self::$gifExtensionSep = pack( "C", ord( "!" ) );
+		self::$gifTerm = pack( "C", ord( ";" ) );
 
 		$frameCount = 0;
 		$duration = 0.0;
@@ -93,7 +98,7 @@ class GIFMetadataExtractor {
 		while ( !feof( $fh ) ) {
 			$buf = fread( $fh, 1 );
 
-			if ( $buf == self::$gif_frame_sep ) {
+			if ( $buf == self::$gifFrameSep ) {
 				// Found a frame
 				$frameCount++;
 
@@ -108,7 +113,7 @@ class GIFMetadataExtractor {
 				self::readGCT( $fh, $bpp );
 				fread( $fh, 1 );
 				self::skipBlock( $fh );
-			} elseif ( $buf == self::$gif_extension_sep ) {
+			} elseif ( $buf == self::$gifExtensionSep ) {
 				$buf = fread( $fh, 1 );
 				if ( strlen( $buf ) < 1 ) {
 					throw new Exception( "Ran out of input" );
@@ -163,8 +168,8 @@ class GIFMetadataExtractor {
 
 					$commentCount = count( $comment );
 					if ( $commentCount === 0
-						|| $comment[$commentCount - 1] !== $data )
-					{
+						|| $comment[$commentCount - 1] !== $data
+					) {
 						// Some applications repeat the same comment on each
 						// frame of an animated GIF image, so if this comment
 						// is identical to the last, only extract once.
@@ -217,15 +222,14 @@ class GIFMetadataExtractor {
 						$xmp = self::readBlock( $fh, true );
 
 						if ( substr( $xmp, -257, 3 ) !== "\x01\xFF\xFE"
-							|| substr( $xmp, -4 ) !== "\x03\x02\x01\x00" )
-						{
+							|| substr( $xmp, -4 ) !== "\x03\x02\x01\x00"
+						) {
 							// this is just a sanity check.
 							throw new Exception( "XMP does not have magic trailer!" );
 						}
 
 						// strip out trailer.
 						$xmp = substr( $xmp, 0, -257 );
-
 					} else {
 						// unrecognized extension block
 						fseek( $fh, -( $blockLength + 1 ), SEEK_CUR );
@@ -235,7 +239,7 @@ class GIFMetadataExtractor {
 				} else {
 					self::skipBlock( $fh );
 				}
-			} elseif ( $buf == self::$gif_term ) {
+			} elseif ( $buf == self::$gifTerm ) {
 				break;
 			} else {
 				if ( strlen( $buf ) < 1 ) {
@@ -257,20 +261,21 @@ class GIFMetadataExtractor {
 	}
 
 	/**
-	 * @param $fh
-	 * @param $bpp
+	 * @param resource $fh
+	 * @param int $bpp
 	 * @return void
 	 */
 	static function readGCT( $fh, $bpp ) {
 		if ( $bpp > 0 ) {
-			for ( $i = 1; $i <= pow( 2, $bpp ); ++$i ) {
+			$max = pow( 2, $bpp );
+			for ( $i = 1; $i <= $max; ++$i ) {
 				fread( $fh, 3 );
 			}
 		}
 	}
 
 	/**
-	 * @param $data
+	 * @param string $data
 	 * @throws Exception
 	 * @return int
 	 */
@@ -289,7 +294,7 @@ class GIFMetadataExtractor {
 	}
 
 	/**
-	 * @param $fh
+	 * @param resource $fh
 	 * @throws Exception
 	 */
 	static function skipBlock( $fh ) {
@@ -313,8 +318,8 @@ class GIFMetadataExtractor {
 	 * saying how long the sub-block is, followed by the sub-block.
 	 * The entire block is terminated by a sub-block of length
 	 * 0.
-	 * @param $fh FileHandle
-	 * @param $includeLengths Boolean Include the length bytes of the
+	 * @param resource $fh File handle
+	 * @param bool $includeLengths Include the length bytes of the
 	 *  sub-blocks in the returned value. Normally this is false,
 	 *  except XMP is weird and does a hack where you need to keep
 	 *  these length bytes.
@@ -341,7 +346,7 @@ class GIFMetadataExtractor {
 			$data .= fread( $fh, ord( $subLength ) );
 			$subLength = fread( $fh, 1 );
 		}
+
 		return $data;
 	}
-
 }

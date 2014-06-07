@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "Xqt"
+        ]
+    },
+    "config-continue": "Weider →",
+    "config-page-language": "Schprooch",
+    "config-admin-password": "Paesswatt:",
+    "config-install-step-done": "geduh",
+    "config-help": "Hilf",
+    "mainpagedocfooter": "Hilf fer's Yuuse unn Konfiguriere vun de Wiki-Software kansch finne im [//meta.wikimedia.org/wiki/Help:Contents Handbuch fer Yuuser].\n\n== Hilf zum Schtaerte ==\n\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Lischt vun Gnepp zum Konfiguriere]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Eposchde-Lischt fer neie MediaWiki-Versione]"
+}

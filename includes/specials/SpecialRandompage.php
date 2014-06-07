@@ -144,7 +144,6 @@ class RandomPage extends SpecialPage {
 			), $this->extra ),
 			'options' => array(
 				'ORDER BY' => 'page_random',
-				'USE INDEX' => 'page_random',
 				'LIMIT' => 1,
 			),
 			'join_conds' => array()

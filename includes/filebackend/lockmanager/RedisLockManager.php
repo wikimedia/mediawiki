@@ -38,7 +38,7 @@
  * @since 1.22
  */
 class RedisLockManager extends QuorumLockManager {
-	/** @var Array Mapping of lock types to the type actually used */
+	/** @var array Mapping of lock types to the type actually used */
 	protected $lockTypeMap = array(
 		self::LOCK_SH => self::LOCK_SH,
 		self::LOCK_UW => self::LOCK_SH,
@@ -47,21 +47,21 @@ class RedisLockManager extends QuorumLockManager {
 
 	/** @var RedisConnectionPool */
 	protected $redisPool;
-	/** @var Array Map server names to hostname/IP and port numbers */
+
+	/** @var array Map server names to hostname/IP and port numbers */
 	protected $lockServers = array();
 
-	protected $session = ''; // string; random UUID
+	/** @var string random UUID */
+	protected $session = '';
 
 	/**
 	 * Construct a new instance from configuration.
 	 *
-	 * $config paramaters include:
+	 * @param array $config Parameters include:
 	 *   - lockServers  : Associative array of server names to "<IP>:<port>" strings.
 	 *   - srvsByBucket : Array of 1-16 consecutive integer keys, starting from 0,
 	 *                    each having an odd-numbered list of server names (peers) as values.
 	 *   - redisConfig  : Configuration for RedisConnectionPool::__construct().
-	 *
-	 * @param Array $config
 	 * @throws MWException
 	 */
 	public function __construct( array $config ) {
@@ -78,115 +78,89 @@ class RedisLockManager extends QuorumLockManager {
 		$this->session = wfRandomString( 32 );
 	}
 
-	// @TODO: change this code to work in one batch
 	protected function getLocksOnServer( $lockSrv, array $pathsByType ) {
-		$status = Status::newGood();
-
-		$lockedPaths = array();
-		foreach ( $pathsByType as $type => $paths ) {
-			$status->merge( $this->doGetLocksOnServer( $lockSrv, $paths, $type ) );
-			if ( $status->isOK() ) {
-				$lockedPaths[$type] = isset( $lockedPaths[$type] )
-					? array_merge( $lockedPaths[$type], $paths )
-					: $paths;
-			} else {
-				foreach ( $lockedPaths as $type => $paths ) {
-					$status->merge( $this->doFreeLocksOnServer( $lockSrv, $paths, $type ) );
-				}
-				break;
-			}
-		}
-
-		return $status;
-	}
-
-	// @TODO: change this code to work in one batch
-	protected function freeLocksOnServer( $lockSrv, array $pathsByType ) {
-		$status = Status::newGood();
-
-		foreach ( $pathsByType as $type => $paths ) {
-			$status->merge( $this->doFreeLocksOnServer( $lockSrv, $paths, $type ) );
-		}
-
-		return $status;
-	}
-
-	protected function doGetLocksOnServer( $lockSrv, array $paths, $type ) {
 		$status = Status::newGood();
 
 		$server = $this->lockServers[$lockSrv];
 		$conn = $this->redisPool->getConnection( $server );
 		if ( !$conn ) {
-			foreach ( $paths as $path ) {
+			foreach ( array_merge( array_values( $pathsByType ) ) as $path ) {
 				$status->fatal( 'lockmanager-fail-acquirelock', $path );
 			}
+
 			return $status;
 		}
 
-		$keys = array_map( array( $this, 'recordKeyForPath' ), $paths ); // lock records
+		$pathsByKey = array(); // (type:hash => path) map
+		foreach ( $pathsByType as $type => $paths ) {
+			$typeString = ( $type == LockManager::LOCK_SH ) ? 'SH' : 'EX';
+			foreach ( $paths as $path ) {
+				$pathsByKey[$this->recordKeyForPath( $path, $typeString )] = $path;
+			}
+		}
 
 		try {
 			static $script =
 <<<LUA
-			if ARGV[1] ~= 'EX' and ARGV[1] ~= 'SH' then
-				return redis.error_reply('Unrecognized lock type given (must be EX or SH)')
-			end
 			local failed = {}
+			-- Load input params (e.g. session, ttl, time of request)
+			local rSession, rTTL, rTime = unpack(ARGV)
 			-- Check that all the locks can be acquired
-			for i,resourceKey in ipairs(KEYS) do
+			for i,requestKey in ipairs(KEYS) do
+				local _, _, rType, resourceKey = string.find(requestKey,"(%w+):(%w+)$")
 				local keyIsFree = true
 				local currentLocks = redis.call('hKeys',resourceKey)
 				for i,lockKey in ipairs(currentLocks) do
+					-- Get the type and session of this lock
 					local _, _, type, session = string.find(lockKey,"(%w+):(%w+)")
 					-- Check any locks that are not owned by this session
-					if session ~= ARGV[2] then
-						local lockTimestamp = redis.call('hGet',resourceKey,lockKey)
-						if 1*lockTimestamp < ( ARGV[4] - ARGV[3] ) then
+					if session ~= rSession then
+						local lockExpiry = redis.call('hGet',resourceKey,lockKey)
+						if 1*lockExpiry < 1*rTime then
 							-- Lock is stale, so just prune it out
 							redis.call('hDel',resourceKey,lockKey)
-						elseif ARGV[1] == 'EX' or type == 'EX' then
+						elseif rType == 'EX' or type == 'EX' then
 							keyIsFree = false
 							break
 						end
 					end
 				end
 				if not keyIsFree then
-					failed[#failed+1] = resourceKey
+					failed[#failed+1] = requestKey
 				end
 			end
 			-- If all locks could be acquired, then do so
 			if #failed == 0 then
-				for i,resourceKey in ipairs(KEYS) do
-					redis.call('hSet',resourceKey,ARGV[1] .. ':' .. ARGV[2],ARGV[4])
+				for i,requestKey in ipairs(KEYS) do
+					local _, _, rType, resourceKey = string.find(requestKey,"(%w+):(%w+)$")
+					redis.call('hSet',resourceKey,rType .. ':' .. rSession,rTime + rTTL)
 					-- In addition to invalidation logic, be sure to garbage collect
-					redis.call('expire',resourceKey,ARGV[3])
+					redis.call('expire',resourceKey,rTTL)
 				end
 			end
 			return failed
 LUA;
 			$res = $conn->luaEval( $script,
 				array_merge(
-					$keys, // KEYS[0], KEYS[1],...KEYS[N]
+					array_keys( $pathsByKey ), // KEYS[0], KEYS[1],...,KEYS[N]
 					array(
-						$type === self::LOCK_SH ? 'SH' : 'EX', // ARGV[1]
-						$this->session, // ARGV[2]
-						$this->lockTTL, // ARGV[3]
-						time() // ARGV[4]
+						$this->session, // ARGV[1]
+						$this->lockTTL, // ARGV[2]
+						time() // ARGV[3]
 					)
 				),
-				count( $keys ) # number of first argument(s) that are keys
+				count( $pathsByKey ) # number of first argument(s) that are keys
 			);
 		} catch ( RedisException $e ) {
 			$res = false;
-			$this->redisPool->handleException( $server, $conn, $e );
+			$this->redisPool->handleError( $conn, $e );
 		}
 
 		if ( $res === false ) {
-			foreach ( $paths as $path ) {
+			foreach ( array_merge( array_values( $pathsByType ) ) as $path ) {
 				$status->fatal( 'lockmanager-fail-acquirelock', $path );
 			}
 		} else {
-			$pathsByKey = array_combine( $keys, $paths );
 			foreach ( $res as $key ) {
 				$status->fatal( 'lockmanager-fail-acquirelock', $pathsByKey[$key] );
 			}
@@ -195,61 +169,66 @@ LUA;
 		return $status;
 	}
 
-	protected function doFreeLocksOnServer( $lockSrv, array $paths, $type ) {
+	protected function freeLocksOnServer( $lockSrv, array $pathsByType ) {
 		$status = Status::newGood();
 
 		$server = $this->lockServers[$lockSrv];
 		$conn = $this->redisPool->getConnection( $server );
 		if ( !$conn ) {
-			foreach ( $paths as $path ) {
+			foreach ( array_merge( array_values( $pathsByType ) ) as $path ) {
 				$status->fatal( 'lockmanager-fail-releaselock', $path );
 			}
+
 			return $status;
 		}
 
-		$keys = array_map( array( $this, 'recordKeyForPath' ), $paths ); // lock records
+		$pathsByKey = array(); // (type:hash => path) map
+		foreach ( $pathsByType as $type => $paths ) {
+			$typeString = ( $type == LockManager::LOCK_SH ) ? 'SH' : 'EX';
+			foreach ( $paths as $path ) {
+				$pathsByKey[$this->recordKeyForPath( $path, $typeString )] = $path;
+			}
+		}
 
 		try {
 			static $script =
 <<<LUA
-			if ARGV[1] ~= 'EX' and ARGV[1] ~= 'SH' then
-				return redis.error_reply('Unrecognized lock type given (must be EX or SH)')
-			end
 			local failed = {}
-			for i,resourceKey in ipairs(KEYS) do
-				local released = redis.call('hDel',resourceKey,ARGV[1] .. ':' .. ARGV[2])
+			-- Load input params (e.g. session)
+			local rSession = unpack(ARGV)
+			for i,requestKey in ipairs(KEYS) do
+				local _, _, rType, resourceKey = string.find(requestKey,"(%w+):(%w+)$")
+				local released = redis.call('hDel',resourceKey,rType .. ':' .. rSession)
 				if released > 0 then
 					-- Remove the whole structure if it is now empty
 					if redis.call('hLen',resourceKey) == 0 then
 						redis.call('del',resourceKey)
 					end
 				else
-					failed[#failed+1] = resourceKey
+					failed[#failed+1] = requestKey
 				end
 			end
 			return failed
 LUA;
 			$res = $conn->luaEval( $script,
 				array_merge(
-					$keys, // KEYS[0], KEYS[1],...KEYS[N]
+					array_keys( $pathsByKey ), // KEYS[0], KEYS[1],...,KEYS[N]
 					array(
-						$type === self::LOCK_SH ? 'SH' : 'EX', // ARGV[1]
-						$this->session // ARGV[2]
+						$this->session, // ARGV[1]
 					)
 				),
-				count( $keys ) # number of first argument(s) that are keys
+				count( $pathsByKey ) # number of first argument(s) that are keys
 			);
 		} catch ( RedisException $e ) {
 			$res = false;
-			$this->redisPool->handleException( $server, $conn, $e );
+			$this->redisPool->handleError( $conn, $e );
 		}
 
 		if ( $res === false ) {
-			foreach ( $paths as $path ) {
+			foreach ( array_merge( array_values( $pathsByType ) ) as $path ) {
 				$status->fatal( 'lockmanager-fail-releaselock', $path );
 			}
 		} else {
-			$pathsByKey = array_combine( $keys, $paths );
 			foreach ( $res as $key ) {
 				$status->fatal( 'lockmanager-fail-releaselock', $pathsByKey[$key] );
 			}
@@ -267,11 +246,13 @@ LUA;
 	}
 
 	/**
-	 * @param $path string
+	 * @param string $path
+	 * @param string $type One of (EX,SH)
 	 * @return string
 	 */
-	protected function recordKeyForPath( $path ) {
-		return implode( ':', array( __CLASS__, 'locks', $this->sha1Base36Absolute( $path ) ) );
+	protected function recordKeyForPath( $path, $type ) {
+		return implode( ':',
+			array( __CLASS__, 'locks', "$type:" . $this->sha1Base36Absolute( $path ) ) );
 	}
 
 	/**
@@ -279,10 +260,13 @@ LUA;
 	 */
 	function __destruct() {
 		while ( count( $this->locksHeld ) ) {
+			$pathsByType = array();
 			foreach ( $this->locksHeld as $path => $locks ) {
-				$this->doUnlock( array( $path ), self::LOCK_EX );
-				$this->doUnlock( array( $path ), self::LOCK_SH );
+				foreach ( $locks as $type => $count ) {
+					$pathsByType[$type][] = $path;
+				}
 			}
+			$this->unlockByType( $pathsByType );
 		}
 	}
 }

@@ -109,7 +109,7 @@ class DatabaseTest extends MediaWikiTestCase {
 		}
 
 		if ( $this->db->getType() === 'oracle' ) {
-			return strtoupper($database . $quote . $prefix . $table);
+			return strtoupper( $database . $quote . $prefix . $table );
 		} else {
 			return $database . $quote . $prefix . $table . $quote;
 		}

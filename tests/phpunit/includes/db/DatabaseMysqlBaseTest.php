@@ -31,17 +31,20 @@
  */
 class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	// From DatabaseBase
+	function __construct() {}
 	protected function closeConnection() {}
 	protected function doQuery( $sql ) {}
 
 	// From DatabaseMysql
 	protected function mysqlConnect( $realServer ) {}
+	protected function mysqlSetCharset( $charset ) {}
 	protected function mysqlFreeResult( $res ) {}
 	protected function mysqlFetchObject( $res ) {}
 	protected function mysqlFetchArray( $res ) {}
 	protected function mysqlNumRows( $res ) {}
 	protected function mysqlNumFields( $res ) {}
 	protected function mysqlFieldName( $res, $n ) {}
+	protected function mysqlFieldType( $res, $n ) {}
 	protected function mysqlDataSeek( $res, $row ) {}
 	protected function mysqlError( $conn = null ) {}
 	protected function mysqlFetchField( $res, $n ) {}
@@ -63,9 +66,8 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 	public function testAddIdentifierQuotes( $expected, $in ) {
 		$db = new FakeDatabaseMysqlBase();
 		$quoted = $db->addIdentifierQuotes( $in );
-		$this->assertEquals($expected, $quoted);
+		$this->assertEquals( $expected, $quoted );
 	}
-
 
 	/**
 	 * Feeds testAddIdentifierQuotes
@@ -119,7 +121,7 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 		);
 	}
 
-	private static function createUnicodeString($str) {
+	private static function createUnicodeString( $str ) {
 		return json_decode( '"' . $str . '"' );
 	}
 
@@ -154,9 +156,9 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 		$db = $this->getMockForViews();
 
 		// The first call populate an internal cache of views
-		$this->assertEquals( array( 'view1', 'view2', 'myview'),
+		$this->assertEquals( array( 'view1', 'view2', 'myview' ),
 			$db->listViews() );
-		$this->assertEquals( array( 'view1', 'view2', 'myview'),
+		$this->assertEquals( array( 'view1', 'view2', 'myview' ),
 			$db->listViews() );
 
 		// Prefix filtering
@@ -166,7 +168,7 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 			$db->listViews( 'my' ) );
 		$this->assertEquals( array(),
 			$db->listViews( 'UNUSED_PREFIX' ) );
-		$this->assertEquals( array( 'view1', 'view2', 'myview'),
+		$this->assertEquals( array( 'view1', 'view2', 'myview' ),
 			$db->listViews( '' ) );
 	}
 
@@ -177,7 +179,7 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 	function testIsView( $isView, $viewName ) {
 		$db = $this->getMockForViews();
 
-		switch( $isView ) {
+		switch ( $isView ) {
 			case true:
 				$this->assertTrue( $db->isView( $viewName ),
 					"$viewName should be considered a view" );

@@ -1,0 +1,17 @@
+{
+    "@metadata": {
+        "authors": [
+            "Alvaro Vidal-Abarca",
+            "Amire80",
+            "Arnaugir",
+            "Pginer",
+            "QuimGil",
+            "SMP",
+            "Vriullop"
+        ]
+    },
+    "ooui-dialog-action-close": "Tanca",
+    "ooui-outline-control-move-down": "Baixa element",
+    "ooui-outline-control-move-up": "Puja element",
+    "ooui-toolbar-more": "Més"
+}

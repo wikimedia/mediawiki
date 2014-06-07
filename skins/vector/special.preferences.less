@@ -1,0 +1,114 @@
+@import "mediawiki.mixins";
+@import "variables";
+
+/**
+ * The following code is highly modified from monobook. It would be nice if the
+ * preftoc id was more human readable like preferences-toc for instance,
+ * howerver this would require backporting the other skins.
+ */
+
+#preftoc {
+	/* Tabs */
+	width: 100%;
+	float: left;
+	clear: both;
+	margin: 0 !important;
+	padding: 0 !important;
+	.background-image('images/preferences/break.png');
+	background-position: bottom left;
+	background-repeat: no-repeat;
+
+	li {
+		/* Tab */
+		float: left;
+		margin: 0;
+		padding: 0;
+		padding-right: 1px;
+		height: 2.25em;
+		white-space: nowrap;
+		list-style-type: none;
+		list-style-image: none;
+		.background-image('images/preferences/break.png');
+		background-position: bottom right;
+		background-repeat: no-repeat;
+
+		/* Sadly, IE6 won't understand this */
+		&:first-child {
+			margin-left: 1px;
+		}
+
+		&.selected {
+			a {
+				.background-image('images/preferences/fade.png');
+				background-position: bottom;
+				background-repeat: repeat-x;
+				color: #333;
+				text-decoration: none;
+			}
+		}
+	}
+
+	a,
+	a:active {
+		display: inline-block;
+		position: relative;
+		color: @menu-link-color;
+		padding: 0.5em;
+		text-decoration: none;
+		background-image: none;
+		font-size: 0.9em;
+	}
+
+	a:hover,
+	a:focus {
+		text-decoration: underline;
+	}
+}
+
+#preferences {
+	float: left;
+	width: 100%;
+	margin: 0;
+	margin-top: -2px;
+	clear: both;
+	border: solid 1px #ccc;
+	background-color: #fafafa;
+
+	fieldset {
+		border: none;
+		border-top: solid 1px #ccc;
+
+		&.prefsection {
+			border: none;
+			padding: 0;
+			margin: 1em;
+
+			legend.mainLegend {
+				display: none;
+			}
+		}
+	}
+
+	legend {
+		color: #666;
+	}
+
+	td {
+		padding-left: 0.5em;
+		padding-right: 0.5em;
+	}
+
+	div.mw-prefs-buttons {
+		padding: 1em;
+
+		input {
+			margin-right: 0.25em;
+		}
+	}
+}
+
+.htmlform-tip {
+	font-size: x-small;
+	padding: .2em 2em;
+	color: #666;
+}

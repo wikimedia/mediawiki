@@ -2,7 +2,9 @@
 
 /**
  * @group Database
- * @todo covers tags
+ *
+ * @covers Title::getUserPermissionsErrors
+ * @covers Title::getUserPermissionsErrorsInternal
  */
 class TitlePermissionTest extends MediaWikiLangTestCase {
 
@@ -45,7 +47,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		date_default_timezone_set( $localZone );
 
 		$this->title = Title::makeTitle( NS_MAIN, "Main Page" );
-		if ( !isset( $this->userUser ) || !( $this->userUser instanceOf User ) ) {
+		if ( !isset( $this->userUser ) || !( $this->userUser instanceof User ) ) {
 			$this->userUser = User::newFromName( $this->userName );
 
 			if ( !$this->userUser->getID() ) {

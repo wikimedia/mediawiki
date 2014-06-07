@@ -40,15 +40,25 @@
  * @since 1.19
  */
 class FileBackendMultiWrite extends FileBackend {
-	/** @var Array Prioritized list of FileBackendStore objects */
-	protected $backends = array(); // array of (backend index => backends)
-	protected $masterIndex = -1; // integer; index of master backend
-	protected $syncChecks = 0; // integer; bitfield
-	protected $autoResync = false; // boolean
+	/** @var array Prioritized list of FileBackendStore objects.
+	 * array of (backend index => backends)
+	 */
+	protected $backends = array();
 
-	/** @var Array */
+	/** @var int Index of master backend */
+	protected $masterIndex = -1;
+
+	/** @var int Bitfield */
+	protected $syncChecks = 0;
+
+	/** @var string|bool */
+	protected $autoResync = false;
+
+	/** @var array */
 	protected $noPushDirConts = array();
-	protected $noPushQuickOps = false; // boolean
+
+	/** @var bool */
+	protected $noPushQuickOps = false;
 
 	/* Possible internal backend consistency checks */
 	const CHECK_SIZE = 1;
@@ -81,8 +91,8 @@ class FileBackendMultiWrite extends FileBackend {
 	 *   - noPushQuickOps : (hack) Only apply doQuickOperations() to the master backend.
 	 *   - noPushDirConts : (hack) Only apply directory functions to the master backend.
 	 *
-	 * @param Array $config
-	 * @throws MWException
+	 * @param array $config
+	 * @throws FileBackendError
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -109,30 +119,30 @@ class FileBackendMultiWrite extends FileBackend {
 			}
 			$name = $config['name'];
 			if ( isset( $namesUsed[$name] ) ) { // don't break FileOp predicates
-				throw new MWException( "Two or more backends defined with the name $name." );
+				throw new FileBackendError( "Two or more backends defined with the name $name." );
 			}
 			$namesUsed[$name] = 1;
 			// Alter certain sub-backend settings for sanity
 			unset( $config['readOnly'] ); // use proxy backend setting
 			unset( $config['fileJournal'] ); // use proxy backend journal
+			unset( $config['lockManager'] ); // lock under proxy backend
 			$config['wikiId'] = $this->wikiId; // use the proxy backend wiki ID
-			$config['lockManager'] = 'nullLockManager'; // lock under proxy backend
 			if ( !empty( $config['isMultiMaster'] ) ) {
 				if ( $this->masterIndex >= 0 ) {
-					throw new MWException( 'More than one master backend defined.' );
+					throw new FileBackendError( 'More than one master backend defined.' );
 				}
 				$this->masterIndex = $index; // this is the "master"
 				$config['fileJournal'] = $this->fileJournal; // log under proxy backend
 			}
 			// Create sub-backend object
 			if ( !isset( $config['class'] ) ) {
-				throw new MWException( 'No class given for a backend config.' );
+				throw new FileBackendError( 'No class given for a backend config.' );
 			}
 			$class = $config['class'];
 			$this->backends[$index] = new $class( $config );
 		}
 		if ( $this->masterIndex < 0 ) { // need backends and must have a master
-			throw new MWException( 'No master backend defined.' );
+			throw new FileBackendError( 'No master backend defined.' );
 		}
 	}
 
@@ -167,6 +177,7 @@ class FileBackendMultiWrite extends FileBackend {
 			// Try to resync the clone backends to the master on the spot...
 			if ( !$this->autoResync || !$this->resyncFiles( $relevantPaths )->isOK() ) {
 				$status->merge( $syncStatus );
+
 				return $status; // abort
 			}
 		}
@@ -321,8 +332,8 @@ class FileBackendMultiWrite extends FileBackend {
 					// already synced; nothing to do
 				} elseif ( $mSha1 !== false ) { // file is in master
 					if ( $this->autoResync === 'conservative'
-						&& $cStat && $cStat['mtime'] > $mStat['mtime'] )
-					{
+						&& $cStat && $cStat['mtime'] > $mStat['mtime']
+					) {
 						$status->fatal( 'backend-fail-synced', $path );
 						continue; // don't rollback data
 					}
@@ -348,7 +359,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 * Get a list of file storage paths to read or write for a list of operations
 	 *
 	 * @param array $ops Same format as doOperations()
-	 * @return Array List of storage paths to files (does not include directories)
+	 * @return array List of storage paths to files (does not include directories)
 	 */
 	protected function fileStoragePathsForOps( array $ops ) {
 		$paths = array();
@@ -357,8 +368,8 @@ class FileBackendMultiWrite extends FileBackend {
 				// For things like copy/move/delete with "ignoreMissingSource" and there
 				// is no source file, nothing should happen and there should be no errors.
 				if ( empty( $op['ignoreMissingSource'] )
-					|| $this->fileExists( array( 'src' => $op['src'] ) ) )
-				{
+					|| $this->fileExists( array( 'src' => $op['src'] ) )
+				) {
 					$paths[] = $op['src'];
 				}
 			}
@@ -369,6 +380,7 @@ class FileBackendMultiWrite extends FileBackend {
 				$paths[] = $op['dst'];
 			}
 		}
+
 		return array_values( array_unique( array_filter( $paths, 'FileBackend::isStoragePath' ) ) );
 	}
 
@@ -378,7 +390,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 *
 	 * @param array $ops List of file operation arrays
 	 * @param FileBackendStore $backend
-	 * @return Array
+	 * @return array
 	 */
 	protected function substOpBatchPaths( array $ops, FileBackendStore $backend ) {
 		$newOps = array(); // operations
@@ -391,6 +403,7 @@ class FileBackendMultiWrite extends FileBackend {
 			}
 			$newOps[] = $newOp;
 		}
+
 		return $newOps;
 	}
 
@@ -399,10 +412,11 @@ class FileBackendMultiWrite extends FileBackend {
 	 *
 	 * @param array $ops File operation array
 	 * @param FileBackendStore $backend
-	 * @return Array
+	 * @return array
 	 */
 	protected function substOpPaths( array $ops, FileBackendStore $backend ) {
 		$newOps = $this->substOpBatchPaths( array( $ops ), $backend );
+
 		return $newOps[0];
 	}
 
@@ -411,7 +425,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 *
 	 * @param array|string $paths List of paths or single string path
 	 * @param FileBackendStore $backend
-	 * @return Array|string
+	 * @return array|string
 	 */
 	protected function substPaths( $paths, FileBackendStore $backend ) {
 		return preg_replace(
@@ -425,7 +439,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 * Substitute the backend of internal storage paths with the proxy backend's name
 	 *
 	 * @param array|string $paths List of paths or single string path
-	 * @return Array|string
+	 * @return array|string
 	 */
 	protected function unsubstPaths( $paths ) {
 		return preg_replace(
@@ -456,6 +470,7 @@ class FileBackendMultiWrite extends FileBackend {
 		$status->success = $masterStatus->success;
 		$status->successCount = $masterStatus->successCount;
 		$status->failCount = $masterStatus->failCount;
+
 		return $status;
 	}
 
@@ -465,6 +480,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 */
 	protected function replicateContainerDirChanges( $path ) {
 		list( , $shortCont, ) = self::splitStoragePath( $path );
+
 		return !in_array( $shortCont, $this->noPushDirConts );
 	}
 
@@ -477,6 +493,7 @@ class FileBackendMultiWrite extends FileBackend {
 				$status->merge( $backend->doPrepare( $realParams ) );
 			}
 		}
+
 		return $status;
 	}
 
@@ -489,6 +506,7 @@ class FileBackendMultiWrite extends FileBackend {
 				$status->merge( $backend->doSecure( $realParams ) );
 			}
 		}
+
 		return $status;
 	}
 
@@ -501,6 +519,7 @@ class FileBackendMultiWrite extends FileBackend {
 				$status->merge( $backend->doPublish( $realParams ) );
 			}
 		}
+
 		return $status;
 	}
 
@@ -513,33 +532,45 @@ class FileBackendMultiWrite extends FileBackend {
 				$status->merge( $backend->doClean( $realParams ) );
 			}
 		}
+
 		return $status;
 	}
 
 	public function concatenate( array $params ) {
 		// We are writing to an FS file, so we don't need to do this per-backend
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+
 		return $this->backends[$this->masterIndex]->concatenate( $realParams );
 	}
 
 	public function fileExists( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+
 		return $this->backends[$this->masterIndex]->fileExists( $realParams );
 	}
 
 	public function getFileTimestamp( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+
 		return $this->backends[$this->masterIndex]->getFileTimestamp( $realParams );
 	}
 
 	public function getFileSize( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+
 		return $this->backends[$this->masterIndex]->getFileSize( $realParams );
 	}
 
 	public function getFileStat( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+
 		return $this->backends[$this->masterIndex]->getFileStat( $realParams );
+	}
+
+	public function getFileXAttributes( array $params ) {
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+
+		return $this->backends[$this->masterIndex]->getFileXAttributes( $realParams );
 	}
 
 	public function getFileContentsMulti( array $params ) {
@@ -550,21 +581,25 @@ class FileBackendMultiWrite extends FileBackend {
 		foreach ( $contentsM as $path => $data ) {
 			$contents[$this->unsubstPaths( $path )] = $data;
 		}
+
 		return $contents;
 	}
 
 	public function getFileSha1Base36( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+
 		return $this->backends[$this->masterIndex]->getFileSha1Base36( $realParams );
 	}
 
 	public function getFileProps( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+
 		return $this->backends[$this->masterIndex]->getFileProps( $realParams );
 	}
 
 	public function streamFile( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+
 		return $this->backends[$this->masterIndex]->streamFile( $realParams );
 	}
 
@@ -576,6 +611,7 @@ class FileBackendMultiWrite extends FileBackend {
 		foreach ( $fsFilesM as $path => $fsFile ) {
 			$fsFiles[$this->unsubstPaths( $path )] = $fsFile;
 		}
+
 		return $fsFiles;
 	}
 
@@ -587,27 +623,36 @@ class FileBackendMultiWrite extends FileBackend {
 		foreach ( $tempFilesM as $path => $tempFile ) {
 			$tempFiles[$this->unsubstPaths( $path )] = $tempFile;
 		}
+
 		return $tempFiles;
 	}
 
 	public function getFileHttpUrl( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+
 		return $this->backends[$this->masterIndex]->getFileHttpUrl( $realParams );
 	}
 
 	public function directoryExists( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+
 		return $this->backends[$this->masterIndex]->directoryExists( $realParams );
 	}
 
 	public function getDirectoryList( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+
 		return $this->backends[$this->masterIndex]->getDirectoryList( $realParams );
 	}
 
 	public function getFileList( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+
 		return $this->backends[$this->masterIndex]->getFileList( $realParams );
+	}
+
+	public function getFeatures() {
+		return $this->backends[$this->masterIndex]->getFeatures();
 	}
 
 	public function clearCache( array $paths = null ) {
@@ -615,6 +660,16 @@ class FileBackendMultiWrite extends FileBackend {
 			$realPaths = is_array( $paths ) ? $this->substPaths( $paths, $backend ) : null;
 			$backend->clearCache( $realPaths );
 		}
+	}
+
+	public function preloadCache( array $paths ) {
+		$realPaths = $this->substPaths( $paths, $this->backends[$this->masterIndex] );
+		$this->backends[$this->masterIndex]->preloadCache( $realPaths );
+	}
+
+	public function preloadFileStat( array $params ) {
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+		$this->backends[$this->masterIndex]->preloadFileStat( $realParams );
 	}
 
 	public function getScopedLocksForOps( array $ops, Status $status ) {
@@ -627,6 +682,7 @@ class FileBackendMultiWrite extends FileBackend {
 			LockManager::LOCK_UW => $this->unsubstPaths( $paths[LockManager::LOCK_UW] ),
 			LockManager::LOCK_EX => $this->unsubstPaths( $paths[LockManager::LOCK_EX] )
 		);
+
 		// Actually acquire the locks
 		return array( $this->getScopedFileLocks( $pbPaths, 'mixed', $status ) );
 	}

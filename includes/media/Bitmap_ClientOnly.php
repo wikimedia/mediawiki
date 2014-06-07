@@ -30,10 +30,9 @@
  * @ingroup Media
  */
 class BitmapHandler_ClientOnly extends BitmapHandler {
-
 	/**
 	 * @param $image File
-	 * @param  $params
+	 * @param $params
 	 * @return bool
 	 */
 	function normaliseParams( $image, &$params ) {
@@ -41,10 +40,10 @@ class BitmapHandler_ClientOnly extends BitmapHandler {
 	}
 
 	/**
-	 * @param $image File
-	 * @param  $dstPath
-	 * @param  $dstUrl
-	 * @param  $params
+	 * @param File $image
+	 * @param string $dstPath
+	 * @param string $dstUrl
+	 * @param array $params
 	 * @param int $flags
 	 * @return ThumbnailImage|TransformParameterError
 	 */
@@ -52,6 +51,7 @@ class BitmapHandler_ClientOnly extends BitmapHandler {
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
 		}
+
 		return new ThumbnailImage( $image, $image->getURL(), $image->getLocalRefPath(), $params );
 	}
 }

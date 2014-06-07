@@ -36,7 +36,8 @@
  */
 class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/**
-	 * Editing modes
+	 * Editing modes. EDIT_CLEAR is no longer used; the "Clear" link scared people
+	 * too much. Now it's passed on to the raw editor, from which it's very easy to clear.
 	 */
 	const EDIT_CLEAR = 1;
 	const EDIT_RAW = 2;
@@ -60,21 +61,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	public function execute( $mode ) {
 		$this->setHeaders();
 
-		$out = $this->getOutput();
-
 		# Anons don't get a watchlist
-		if ( $this->getUser()->isAnon() ) {
-			$out->setPageTitle( $this->msg( 'watchnologin' ) );
-			$llink = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Userlogin' ),
-				$this->msg( 'loginreqlink' )->escaped(),
-				array(),
-				array( 'returnto' => $this->getTitle()->getPrefixedText() )
-			);
-			$out->addHTML( $this->msg( 'watchlistanontext' )->rawParams( $llink )->parse() );
+		$this->requireLogin( 'watchlistanontext' );
 
-			return;
-		}
+		$out = $this->getOutput();
 
 		$this->checkPermissions();
 		$this->checkReadOnly();
@@ -95,13 +85,17 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$mode = self::getMode( $this->getRequest(), $mode );
 
 		switch ( $mode ) {
-			case self::EDIT_CLEAR:
-				// The "Clear" link scared people too much.
-				// Pass on to the raw editor, from which it's very easy to clear.
-
 			case self::EDIT_RAW:
 				$out->setPageTitle( $this->msg( 'watchlistedit-raw-title' ) );
 				$form = $this->getRawForm();
+				if ( $form->show() ) {
+					$out->addHTML( $this->successMessage );
+					$out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
+				}
+				break;
+			case self::EDIT_CLEAR:
+				$out->setPageTitle( $this->msg( 'watchlistedit-clear-title' ) );
+				$form = $this->getClearForm();
 				if ( $form->show() ) {
 					$out->addHTML( $this->successMessage );
 					$out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
@@ -176,14 +170,14 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			}
 
 			if ( count( $toWatch ) > 0 ) {
-				$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-added'
-				)->numParams( count( $toWatch ) )->parse();
+				$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-added' )
+					->numParams( count( $toWatch ) )->parse();
 				$this->showTitles( $toWatch, $this->successMessage );
 			}
 
 			if ( count( $toUnwatch ) > 0 ) {
-				$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-removed'
-				)->numParams( count( $toUnwatch ) )->parse();
+				$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-removed' )
+					->numParams( count( $toUnwatch ) )->parse();
 				$this->showTitles( $toUnwatch, $this->successMessage );
 			}
 		} else {
@@ -204,6 +198,18 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		return true;
 	}
 
+      public function submitClear( $data ) {
+		$current = $this->getWatchlist();
+		$this->clearWatchlist();
+		$this->getUser()->invalidateCache();
+			$this->successMessage = $this->msg( 'watchlistedit-clear-done' )->parse();
+		$this->successMessage .= ' ' . $this->msg( 'watchlistedit-clear-removed' )
+			->numParams( count( $current ) )->parse();
+		$this->showTitles( $current, $this->successMessage );
+
+		return true;
+}
+
 	/**
 	 * Print out a list of linked titles
 	 *
@@ -217,6 +223,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$talk = $this->msg( 'talkpagelinktext' )->escaped();
 		// Do a batch existence check
 		$batch = new LinkBatch();
+		if (count($titles) >= 100) {
+			$output = wfMessage( 'watchlistedit-too-many' )->parse();
+			return;
+		}
 		foreach ( $titles as $title ) {
 			if ( !$title instanceof Title ) {
 				$title = Title::newFromText( $title );
@@ -548,7 +558,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		}
 
 		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getTitle() ); // Remove subpage
+		$context->setTitle( $this->getPageTitle() ); // Remove subpage
 		$form = new EditWatchlistNormalHTMLForm( $fields, $context );
 		$form->setSubmitTextMsg( 'watchlistedit-normal-submit' );
 		# Used message keys: 'accesskey-watchlistedit-normal-submit', 'tooltip-watchlistedit-normal-submit'
@@ -612,7 +622,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			),
 		);
 		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getTitle( 'raw' ) ); // Reset subpage
+		$context->setTitle( $this->getPageTitle( 'raw' ) ); // Reset subpage
 		$form = new HTMLForm( $fields, $context );
 		$form->setSubmitTextMsg( 'watchlistedit-raw-submit' );
 		# Used message keys: 'accesskey-watchlistedit-raw-submit', 'tooltip-watchlistedit-raw-submit'
@@ -620,6 +630,25 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$form->setWrapperLegendMsg( 'watchlistedit-raw-legend' );
 		$form->addHeaderText( $this->msg( 'watchlistedit-raw-explain' )->parse() );
 		$form->setSubmitCallback( array( $this, 'submitRaw' ) );
+
+		return $form;
+	}
+
+	/**
+	 * Get a form for clearing the watchlist
+	 *
+	 * @return HTMLForm
+	 */
+	protected function getClearForm() {
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getPageTitle( 'clear' ) ); // Reset subpage
+		$form = new HTMLForm( array(), $context );
+		$form->setSubmitTextMsg( 'watchlistedit-clear-submit' );
+		# Used message keys: 'accesskey-watchlistedit-clear-submit', 'tooltip-watchlistedit-clear-submit'
+		$form->setSubmitTooltip( 'watchlistedit-clear-submit' );
+		$form->setWrapperLegendMsg( 'watchlistedit-clear-legend' );
+		$form->addHeaderText( $this->msg( 'watchlistedit-clear-explain' )->parse() );
+		$form->setSubmitCallback( array( $this, 'submitClear' ) );
 
 		return $form;
 	}
@@ -665,6 +694,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			'view' => array( 'Watchlist', false ),
 			'edit' => array( 'EditWatchlist', false ),
 			'raw' => array( 'EditWatchlist', 'raw' ),
+			'clear' => array( 'EditWatchlist', 'clear' ),
 		);
 
 		foreach ( $modes as $mode => $arr ) {

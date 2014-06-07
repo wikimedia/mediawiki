@@ -32,7 +32,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 			'wgExtensionMessagesFiles' => array( 'LogTests' => __DIR__ . '/LogTests.i18n.php' ),
 		) );
 
-		$wgLang->getLocalisationCache()->recache( $wgLang->getCode() );
+		Language::getLocalisationCache()->recache( $wgLang->getCode() );
 
 		$this->user = User::newFromName( 'Testuser' );
 		$this->title = Title::newMainPage();
@@ -47,7 +47,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		parent::tearDown();
 
 		global $wgLang;
-		$wgLang->getLocalisationCache()->recache( $wgLang->getCode() );
+		Language::getLocalisationCache()->recache( $wgLang->getCode() );
 	}
 
 	public function newLogEntry( $action, $params ) {
@@ -61,6 +61,9 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		return $logEntry;
 	}
 
+	/**
+	 * @covers LogFormatter::newFromEntry
+	 */
 	public function testNormalLogParams() {
 		$entry = $this->newLogEntry( 'test', array() );
 		$formatter = LogFormatter::newFromEntry( $entry );
@@ -99,6 +102,10 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $titleLink, $paramsWithoutTools[2]['raw'] );
 	}
 
+	/**
+	 * @covers LogFormatter::newFromEntry
+	 * @covers LogFormatter::getActionText
+	 */
 	public function testLogParamsTypeRaw() {
 		$params = array( '4:raw:raw' => Linker::link( $this->title, null, array(), array() ) );
 		$expected = Linker::link( $this->title, null, array(), array() );
@@ -112,6 +119,10 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $logParam );
 	}
 
+	/**
+	 * @covers LogFormatter::newFromEntry
+	 * @covers LogFormatter::getActionText
+	 */
 	public function testLogParamsTypeMsg() {
 		$params = array( '4:msg:msg' => 'log-description-phpunit' );
 		$expected = wfMessage( 'log-description-phpunit' )->text();
@@ -125,6 +136,10 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $logParam );
 	}
 
+	/**
+	 * @covers LogFormatter::newFromEntry
+	 * @covers LogFormatter::getActionText
+	 */
 	public function testLogParamsTypeMsgContent() {
 		$params = array( '4:msg-content:msgContent' => 'log-description-phpunit' );
 		$expected = wfMessage( 'log-description-phpunit' )->inContentLanguage()->text();
@@ -138,6 +153,10 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $logParam );
 	}
 
+	/**
+	 * @covers LogFormatter::newFromEntry
+	 * @covers LogFormatter::getActionText
+	 */
 	public function testLogParamsTypeNumber() {
 		global $wgLang;
 
@@ -153,6 +172,10 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $logParam );
 	}
 
+	/**
+	 * @covers LogFormatter::newFromEntry
+	 * @covers LogFormatter::getActionText
+	 */
 	public function testLogParamsTypeUserLink() {
 		$params = array( '4:user-link:userLink' => $this->user->getName() );
 		$expected = Linker::userLink(
@@ -169,6 +192,10 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $logParam );
 	}
 
+	/**
+	 * @covers LogFormatter::newFromEntry
+	 * @covers LogFormatter::getActionText
+	 */
 	public function testLogParamsTypeTitleLink() {
 		$params = array( '4:title-link:titleLink' => $this->title->getText() );
 		$expected = Linker::link( $this->title, null, array(), array() );
@@ -182,6 +209,10 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $logParam );
 	}
 
+	/**
+	 * @covers LogFormatter::newFromEntry
+	 * @covers LogFormatter::getActionText
+	 */
 	public function testLogParamsTypePlain() {
 		$params = array( '4:plain:plain' => 'Some plain text' );
 		$expected = 'Some plain text';
@@ -195,6 +226,10 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $logParam );
 	}
 
+	/**
+	 * @covers LogFormatter::newFromEntry
+	 * @covers LogFormatter::getComment
+	 */
 	public function testLogComment() {
 		$entry = $this->newLogEntry( 'test', array() );
 		$formatter = LogFormatter::newFromEntry( $entry );

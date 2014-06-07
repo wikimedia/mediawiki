@@ -30,7 +30,7 @@ require_once __DIR__ . '/Maintenance.php';
  *
  * @ingroup Maintenance
  */
-class mcTest extends Maintenance {
+class McTest extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Makes several 'set', 'incr' and 'get' requests on every"
@@ -111,5 +111,5 @@ class mcTest extends Maintenance {
 	}
 }
 
-$maintClass = "mcTest";
+$maintClass = "McTest";
 require_once RUN_MAINTENANCE_IF_MAIN;

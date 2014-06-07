@@ -6,8 +6,6 @@
  * @file
  */
 
-/* Configuration */
-
 // Set a flag which can be used to detect when other scripts have been entered through this entry point or not
 define( 'MW_PHPUNIT_TEST', true );
 
@@ -16,7 +14,7 @@ require_once dirname( dirname( __DIR__ ) ) . "/maintenance/Maintenance.php";
 
 class PHPUnitMaintClass extends Maintenance {
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'with-phpunitdir',
 			'Directory to include PHPUnit from, for example when using a git fetchout from upstream. Path will be prepended to PHP `include_path`.',
@@ -49,7 +47,7 @@ class PHPUnitMaintClass extends Maintenance {
 		// Assume UTC for testing purposes
 		$wgLocaltimezone = 'UTC';
 
-		$wgLocalisationCacheConf['storeClass'] = 'LCStore_Null';
+		$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
 
 		// Bug 44192 Do not attempt to send a real e-mail
 		Hooks::clear( 'AlternateUserMailer' );
@@ -72,7 +70,8 @@ class PHPUnitMaintClass extends Maintenance {
 		}
 
 		# --with-phpunitdir let us override the default PHPUnit version
-		if ( $phpunitDir = $this->getOption( 'with-phpunitdir' ) ) {
+		if ( $this->hasOption( 'with-phpunitdir' ) ) {
+			$phpunitDir = $this->getOption( 'with-phpunitdir' );
 			# Sanity checks
 			if ( !is_dir( $phpunitDir ) ) {
 				$this->error( "--with-phpunitdir should be set to an existing directory", 1 );
@@ -83,8 +82,7 @@ class PHPUnitMaintClass extends Maintenance {
 
 			# Now prepends provided PHPUnit directory
 			$this->output( "Will attempt loading PHPUnit from `$phpunitDir`\n" );
-			set_include_path( $phpunitDir
-				. PATH_SEPARATOR . get_include_path() );
+			set_include_path( $phpunitDir . PATH_SEPARATOR . get_include_path() );
 
 			# Cleanup $args array so the option and its value do not
 			# pollute PHPUnit
@@ -108,12 +106,23 @@ if ( !class_exists( 'PHPUnit_Runner_Version' ) ) {
 }
 
 if ( PHPUnit_Runner_Version::id() !== '@package_version@'
-	&& version_compare( PHPUnit_Runner_Version::id(), '3.6.7', '<' )
+	&& version_compare( PHPUnit_Runner_Version::id(), '3.7.0', '<' )
 ) {
-	die( 'PHPUnit 3.6.7 or later required, you have ' . PHPUnit_Runner_Version::id() . ".\n" );
+	die( 'PHPUnit 3.7.0 or later required, you have ' . PHPUnit_Runner_Version::id() . ".\n" );
 }
 
 if ( !class_exists( 'PHPUnit_TextUI_Command' ) ) {
 	require_once 'PHPUnit/Autoload.php';
 }
+
+// Prevent segfault when we have lots of unit tests (bug 62623)
+if ( version_compare( PHP_VERSION, '5.4.0', '<' )
+	&& version_compare( PHP_VERSION, '5.3.0', '>=' )
+) {
+	register_shutdown_function( function() {
+		gc_collect_cycles();
+		gc_disable();
+	} );
+}
+
 MediaWikiPHPUnitCommand::main();

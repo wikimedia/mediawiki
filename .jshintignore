@@ -1,29 +1,14 @@
 # Generated documentation
-docs/html/
-docs/js/
+docs/**
 
 # third-party libs
-extensions/
-node_modules/
-resources/jquery/jquery.appear.js
-resources/jquery/jquery.async.js
-resources/jquery/jquery.cycle.all.js
-resources/jquery/jquery.cookie.js
-resources/jquery/jquery.farbtastic.js
-resources/jquery/jquery.form.js
-resources/jquery/jquery.hoverIntent.js
-resources/jquery/jquery.js
-resources/jquery/jquery.json.js
-resources/jquery/jquery.jStorage.js
-resources/jquery/jquery.mockjax.js
-resources/jquery/jquery.qunit.js
-resources/jquery/jquery.validate.js
-resources/jquery/jquery.xmldom.js
-resources/jquery.effects/
-resources/jquery.tipsy/
-resources/jquery.ui/
-resources/mediawiki.libs/
-resources/jquery.chosen/chosen.jquery.js
+extensions/**
+node_modules/**
+resources/lib/**
+resources/src/jquery.tipsy/**
+resources/src/jquery/jquery.farbtastic.js
+resources/src/mediawiki.libs/**
+tests/frontend/node_modules/**
 
 # github.com/jshint/jshint/issues/729
 tests/qunit/suites/resources/mediawiki/mediawiki.jscompat.test.js

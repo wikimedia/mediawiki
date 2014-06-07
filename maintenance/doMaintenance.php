@@ -90,23 +90,14 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	require $maintenance->loadSettings();
 }
 
-if ( $maintenance->getDbType() === Maintenance::DB_ADMIN &&
-	is_readable( "$IP/AdminSettings.php" ) )
-{
-	require "$IP/AdminSettings.php";
-}
-
 if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
 	if ( $wgLocalisationCacheConf['storeClass'] === false && ( $wgLocalisationCacheConf['store'] == 'db' || ( $wgLocalisationCacheConf['store'] == 'detect' && !$wgCacheDirectory ) ) ) {
-		$wgLocalisationCacheConf['storeClass'] = 'LCStore_Null';
+		$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
 	}
 }
 $maintenance->finalSetup();
 // Some last includes
 require_once "$IP/includes/Setup.php";
-
-// Much much faster startup than creating a title object
-$wgTitle = null;
 
 // Do the work
 try {

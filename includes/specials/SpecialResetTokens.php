@@ -61,6 +61,7 @@ class SpecialResetTokens extends FormSpecialPage {
 	public function execute( $par ) {
 		// This is a preferences page, so no user JS for y'all.
 		$this->getOutput()->disallowUserJs();
+		$this->requireLogin();
 
 		parent::execute( $par );
 
@@ -89,7 +90,7 @@ class SpecialResetTokens extends FormSpecialPage {
 					->rawParams( $this->msg( $tok['label-message'] )->parse() )
 					->params( $user->getTokenFromOption( $tok['preference'] ) )
 					->escaped();
-				$tokensForForm[ $label ] = $tok['preference'];
+				$tokensForForm[$label] = $tok['preference'];
 			}
 
 			$desc = array(

@@ -25,13 +25,14 @@
  * @ingroup MaintenanceLanguage
  */
 class MessageWriter {
-	static $optionalComment = 'only translate this message to other languages if you have to change it';
-	static $ignoredComment = "do not translate or duplicate this message to other languages";
+	protected static $optionalComment =
+		'only translate this message to other languages if you have to change it';
+	protected static $ignoredComment = "do not translate or duplicate this message to other languages";
 
-	static $messageStructure;
-	static $blockComments;
-	static $ignoredMessages;
-	static $optionalMessages;
+	protected static $messageStructure;
+	protected static $blockComments;
+	protected static $ignoredMessages;
+	protected static $optionalMessages;
 
 	/**
 	 * Write a messages array as a PHP text and write it to the messages file.
@@ -41,9 +42,12 @@ class MessageWriter {
 	 * @param $write Boolean: write to the messages file?
 	 * @param $listUnknown Boolean: list the unknown messages?
 	 * @param $removeUnknown Boolean: whether to remove unkown messages
-	 * @param $messagesFolder String: path to a folder to store the MediaWiki messages. Defaults to the current install.
+	 * @param $messagesFolder String: path to a folder to store the MediaWiki messages.
+	 *        Defaults to the current install.
 	 */
-	public static function writeMessagesToFile( $messages, $code, $write, $listUnknown, $removeUnknown, $messagesFolder = false ) {
+	public static function writeMessagesToFile( $messages, $code, $write, $listUnknown,
+		$removeUnknown, $messagesFolder = false
+	) {
 		# Rewrite the messages array
 		$messages = self::writeMessagesArray( $messages, $code == 'en', false, $removeUnknown );
 		$messagesText = $messages[0];
@@ -76,14 +80,20 @@ $messages = array(
 					file_put_contents( $filename, $new );
 					echo "Generated and wrote messages for language $code.\n";
 				} else {
-					echo "Generated messages for language $code. Please run the script again (without the parameter \"dry-run\") to write the array to the file.\n";
+					echo "Generated messages for language $code.\n" .
+						"Please run the script again (without the parameter \"dry-run\") " .
+						"to write the array to the file.\n";
 				}
 			}
-			if ( $listUnknown && isset( $sortedMessages['unknown'] ) && !empty( $sortedMessages['unknown'] ) ) {
+			if ( $listUnknown && isset( $sortedMessages['unknown'] ) &&
+				!empty( $sortedMessages['unknown'] )
+			) {
 				if ( $removeUnknown ) {
-					echo "\nThe following " . count( $sortedMessages['unknown'] ) . " unknown messages have been removed:\n";
+					echo "\nThe following " . count( $sortedMessages['unknown'] ) .
+						" unknown messages have been removed:\n";
 				} else {
-					echo "\nThere are " . count( $sortedMessages['unknown'] ) . " unknown messages, please check them:\n";
+					echo "\nThere are " . count( $sortedMessages['unknown'] ) .
+						" unknown messages, please check them:\n";
 				}
 				foreach ( $sortedMessages['unknown'] as $key => $value ) {
 					echo "* " . $key . "\n";
@@ -106,7 +116,9 @@ $messages = array(
 	 *
 	 * @return Array of the PHP text and the sorted messages array.
 	 */
-	public static function writeMessagesArray( $messages, $ignoredComments = false, $prefix = false, $removeUnknown = false ) {
+	public static function writeMessagesArray( $messages, $ignoredComments = false,
+		$prefix = false, $removeUnknown = false
+	) {
 		# Load messages
 		$dir = $prefix ? $prefix : __DIR__;
 
@@ -162,6 +174,7 @@ $messages = array(
 		}
 		$messagesText .= ");
 ";
+
 		return array( $messagesText, $sortedMessages );
 	}
 
@@ -247,12 +260,22 @@ $blockComment
 			if ( strpos( $value, $single ) === false ) {
 				# Nothing ugly, just use '
 				$blockText .= $single . $value . $single;
-			} elseif ( strpos( $value, $double ) === false && !preg_match( '/\$[a-zA-Z_\x7f-\xff]/', $value ) ) {
+			} elseif ( strpos( $value, $double ) === false &&
+				!preg_match( '/\$[a-zA-Z_\x7f-\xff]/', $value )
+			) {
 				# No "-quotes, no variables that need quoting, use "
 				$blockText .= $double . $value . $double;
 			} else {
 				# Something needs quoting, pick the quote which causes less quoting
-				$quote = substr_count( $value, $double ) + substr_count( $value, '$' ) >= substr_count( $value, $single ) ? $single : $double;
+
+				if ( substr_count( $value, $double ) + substr_count( $value, '$' ) >=
+					substr_count( $value, $single )
+				) {
+					$quote = $single;
+				} else {
+					$quote = $double;
+				}
+
 				if ( $quote === $double ) {
 					$extra = '$';
 				} else {

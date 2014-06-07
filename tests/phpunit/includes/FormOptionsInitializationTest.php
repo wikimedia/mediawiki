@@ -35,7 +35,6 @@ class FormOptionsInitializationTest extends MediaWikiTestCase {
 	 */
 	protected $object;
 
-
 	/**
 	 * A new fresh and empty FormOptions object to test initialization
 	 * with.
@@ -45,6 +44,9 @@ class FormOptionsInitializationTest extends MediaWikiTestCase {
 		$this->object = new FormOptionsExposed();
 	}
 
+	/**
+	 * @covers FormOptionsExposed::add
+	 */
 	public function testAddStringOption() {
 		$this->object->add( 'foo', 'string value' );
 		$this->assertEquals(
@@ -60,6 +62,9 @@ class FormOptionsInitializationTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers FormOptionsExposed::add
+	 */
 	public function testAddIntegers() {
 		$this->object->add( 'one', 1 );
 		$this->object->add( 'negone', -1 );

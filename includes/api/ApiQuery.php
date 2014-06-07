@@ -44,6 +44,7 @@ class ApiQuery extends ApiBase {
 	private static $QueryPropModules = array(
 		'categories' => 'ApiQueryCategories',
 		'categoryinfo' => 'ApiQueryCategoryInfo',
+		'contributors' => 'ApiQueryContributors',
 		'duplicatefiles' => 'ApiQueryDuplicateFiles',
 		'extlinks' => 'ApiQueryExternalLinks',
 		'images' => 'ApiQueryImages',
@@ -53,6 +54,7 @@ class ApiQuery extends ApiBase {
 		'iwlinks' => 'ApiQueryIWLinks',
 		'langlinks' => 'ApiQueryLangLinks',
 		'pageprops' => 'ApiQueryPageProps',
+		'redirects' => 'ApiQueryRedirects',
 		'revisions' => 'ApiQueryRevisions',
 		'stashimageinfo' => 'ApiQueryStashImageInfo',
 		'templates' => 'ApiQueryLinks',
@@ -68,6 +70,7 @@ class ApiQuery extends ApiBase {
 		'allimages' => 'ApiQueryAllImages',
 		'alllinks' => 'ApiQueryAllLinks',
 		'allpages' => 'ApiQueryAllPages',
+		'allredirects' => 'ApiQueryAllLinks',
 		'alltransclusions' => 'ApiQueryAllLinks',
 		'allusers' => 'ApiQueryAllUsers',
 		'backlinks' => 'ApiQueryBacklinks',
@@ -83,6 +86,7 @@ class ApiQuery extends ApiBase {
 		'logevents' => 'ApiQueryLogEvents',
 		'pageswithprop' => 'ApiQueryPagesWithProp',
 		'pagepropnames' => 'ApiQueryPagePropNames',
+		'prefixsearch' => 'ApiQueryPrefixSearch',
 		'protectedtitles' => 'ApiQueryProtectedTitles',
 		'querypage' => 'ApiQueryQueryPage',
 		'random' => 'ApiQueryRandom',
@@ -163,6 +167,7 @@ class ApiQuery extends ApiBase {
 			$this->mNamedDB[$name] = wfGetDB( $db, $groups );
 			$this->profileDBOut();
 		}
+
 		return $this->mNamedDB[$name];
 	}
 
@@ -181,6 +186,7 @@ class ApiQuery extends ApiBase {
 	 */
 	public function getModules() {
 		wfDeprecated( __METHOD__, '1.21' );
+
 		return $this->getModuleManager()->getNamesWithClasses();
 	}
 
@@ -197,6 +203,7 @@ class ApiQuery extends ApiBase {
 				$gens[$name] = $class;
 			}
 		}
+
 		return $gens;
 	}
 
@@ -216,8 +223,8 @@ class ApiQuery extends ApiBase {
 	public function getCustomPrinter() {
 		// If &exportnowrap is set, use the raw formatter
 		if ( $this->getParameter( 'export' ) &&
-				$this->getParameter( 'exportnowrap' ) )
-		{
+			$this->getParameter( 'exportnowrap' )
+		) {
 			return new ApiFormatRaw( $this->getMain(),
 				$this->getMain()->createPrinterByName( 'xml' ) );
 		} else {
@@ -407,6 +414,7 @@ class ApiQuery extends ApiBase {
 			}
 		}
 		$this->dieContinueUsageIf( $completeModules !== null && count( $tmp ) !== 0 );
+
 		return $modules;
 	}
 
@@ -429,6 +437,7 @@ class ApiQuery extends ApiBase {
 		} else { // private
 			$cacheMode = 'private';
 		}
+
 		return $cacheMode;
 	}
 
@@ -514,10 +523,12 @@ class ApiQuery extends ApiBase {
 			ApiQueryBase::addTitleInfo( $vals, $title );
 			$vals['special'] = '';
 			if ( $title->isSpecialPage() &&
-					!SpecialPageFactory::exists( $title->getDBkey() ) ) {
+				!SpecialPageFactory::exists( $title->getDBkey() )
+			) {
 				$vals['missing'] = '';
 			} elseif ( $title->getNamespace() == NS_MEDIA &&
-					!wfFindFile( $title ) ) {
+				!wfFindFile( $title )
+			) {
 				$vals['missing'] = '';
 			}
 			$pages[$fakeId] = $vals;
@@ -566,6 +577,7 @@ class ApiQuery extends ApiBase {
 			$this->mGeneratorContinue = array();
 		}
 		$this->mGeneratorContinue[$paramName] = $paramValue;
+
 		return true;
 	}
 
@@ -638,6 +650,7 @@ class ApiQuery extends ApiBase {
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
 		}
+
 		return $result;
 	}
 
@@ -699,25 +712,32 @@ class ApiQuery extends ApiBase {
 
 	public function getParamDescription() {
 		return $this->getPageSet()->getFinalParamDescription() + array(
-			'prop' => 'Which properties to get for the titles/revisions/pageids. Module help is available below',
+			'prop' => 'Which properties to get for the titles/revisions/pageids. ' .
+				'Module help is available below',
 			'list' => 'Which lists to get. Module help is available below',
 			'meta' => 'Which metadata to get about the site. Module help is available below',
 			'indexpageids' => 'Include an additional pageids section listing all returned page IDs',
 			'export' => 'Export the current revisions of all given or generated pages',
-			'exportnowrap' => 'Return the export XML without wrapping it in an XML result (same format as Special:Export). Can only be used with export',
+			'exportnowrap' => 'Return the export XML without wrapping it in an ' .
+				'XML result (same format as Special:Export). Can only be used with export',
 			'iwurl' => 'Whether to get the full URL if the title is an interwiki link',
 			'continue' => array(
-				'When present, formats query-continue as key-value pairs that should simply be merged into the original request.',
+				'When present, formats query-continue as key-value pairs that ' .
+					'should simply be merged into the original request.',
 				'This parameter must be set to an empty string in the initial query.',
-				'This parameter is recommended for all new development, and will be made default in the next API version.' ),
+				'This parameter is recommended for all new development, and ' .
+					'will be made default in the next API version.'
+			),
 		);
 	}
 
 	public function getDescription() {
 		return array(
-			'Query API module allows applications to get needed pieces of data from the MediaWiki databases,',
+			'Query API module allows applications to get needed pieces of data ' .
+				'from the MediaWiki databases,',
 			'and is loosely based on the old query.php interface.',
-			'All data modifications will first have to use query to acquire a token to prevent abuse from malicious sites'
+			'All data modifications will first have to use query to acquire a ' .
+				'token to prevent abuse from malicious sites.'
 		);
 	}
 
@@ -730,7 +750,8 @@ class ApiQuery extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&prop=revisions&meta=siteinfo&titles=Main%20Page&rvprop=user|comment&continue=',
+			'api.php?action=query&prop=revisions&meta=siteinfo&' .
+				'titles=Main%20Page&rvprop=user|comment&continue=',
 			'api.php?action=query&generator=allpages&gapprefix=API/&prop=revisions&continue=',
 		);
 	}

@@ -1,0 +1,27 @@
+{
+    "@metadata": {
+        "authors": [
+            "Amire80",
+            "Beta16",
+            "Erik Moeller",
+            "Jdforrester",
+            "Lloffiwr",
+            "Mooeypoo",
+            "Mormegil",
+            "Nike",
+            "PoLuX124",
+            "Purodha",
+            "Raymond",
+            "Sagan",
+            "Sayak Sarkar",
+            "Shirayuki",
+            "Siebrand",
+            "Trevor Parscal"
+        ]
+    },
+    "ooui-dialog-action-close": "Label text for button to exit from dialog.\n\n{{Identical|Close}}",
+    "ooui-outline-control-move-down": "Tool tip for a button that moves items in a list down one place",
+    "ooui-outline-control-move-up": "Tool tip for a button that moves items in a list up one place",
+    "ooui-outline-control-remove": "Tool tip for a button that removes items from a list.\n{{Identical|Remove item}}",
+    "ooui-toolbar-more": "Label for the toolbar group that contains a list of all other available tools.\n{{Identical|More}}"
+}

@@ -3,7 +3,7 @@ design.txt
 This is a brief overview of the new design.
 
 More thorough and up-to-date information is available on the documentation
-wiki at http://www.mediawiki.org/
+wiki at https://www.mediawiki.org/
 
 Primary classes:
 

@@ -43,9 +43,7 @@ class ProtectAction extends FormlessAction {
 	public function show() {
 
 		$this->page->protect();
-
 	}
-
 }
 
 /**
@@ -64,7 +62,5 @@ class UnprotectAction extends ProtectAction {
 	public function show() {
 
 		$this->page->unprotect();
-
 	}
-
 }

@@ -36,7 +36,7 @@ if ( count( $args ) < 1 || isset( $options['help'] ) ) {
 	if ( is_file( $filename ) ) {
 
 		$title = isset( $options['title'] ) ? $options['title'] : titleFromFilename( $filename );
-		$title = Title::newFromURL( $title );
+		$title = Title::newFromText( $title );
 
 		if ( is_object( $title ) ) {
 

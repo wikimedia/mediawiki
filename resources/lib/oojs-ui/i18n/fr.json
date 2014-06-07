@@ -1,0 +1,36 @@
+{
+    "@metadata": {
+        "authors": [
+            "Automatik",
+            "Benoit Rochon",
+            "Boniface",
+            "Brunoperel",
+            "Crochet.david",
+            "DavidL",
+            "Dereckson",
+            "Gomoko",
+            "Guillom",
+            "Hello71",
+            "Jean-Frédéric",
+            "Linedwell",
+            "Ltrlg",
+            "Metroitendo",
+            "NemesisIII",
+            "Nicolas NALLET",
+            "Npettiaux",
+            "Rastus Vernon",
+            "Seb35",
+            "Sherbrooke",
+            "Tpt",
+            "Trizek",
+            "Urhixidur",
+            "Verdy p",
+            "Wyz"
+        ]
+    },
+    "ooui-dialog-action-close": "Fermer",
+    "ooui-outline-control-move-down": "Faire descendre l’élément",
+    "ooui-outline-control-move-up": "Faire monter l’élément",
+    "ooui-outline-control-remove": "Supprimer l’élément",
+    "ooui-toolbar-more": "Plus"
+}

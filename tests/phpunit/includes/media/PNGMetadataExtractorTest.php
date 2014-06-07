@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @todo covers tags
+ * @covers PNGMetadataExtractor
  */
 class PNGMetadataExtractorTest extends MediaWikiTestCase {
 
@@ -120,7 +120,6 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 			'1bit-png.png' );
 		$this->assertEquals( 1, $meta['bitDepth'] );
 	}
-
 
 	public function testPngIndexColour() {
 		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .

@@ -234,4 +234,57 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertEquals( $wgDefaultUserOptions['cols'], $this->user->getOption( 'cols' ) );
 		$this->assertEquals( 'test', $this->user->getOption( 'someoption' ) );
 	}
+
+	/**
+	 * Test password expiration.
+	 * @covers User::getPasswordExpired()
+	 */
+	public function testPasswordExpire() {
+		global $wgPasswordExpireGrace;
+		$wgTemp = $wgPasswordExpireGrace;
+		$wgPasswordExpireGrace = 3600 * 24 * 7; // 7 days
+
+		$user = User::newFromName( 'UnitTestUser' );
+		$user->loadDefaults();
+		$this->assertEquals( false, $user->getPasswordExpired() );
+
+		$ts = time() - ( 3600 * 24 * 1 ); // 1 day ago
+		$user->expirePassword( $ts );
+		$this->assertEquals( 'soft', $user->getPasswordExpired() );
+
+		$ts = time() - ( 3600 * 24 * 10 ); // 10 days ago
+		$user->expirePassword( $ts );
+		$this->assertEquals( 'hard', $user->getPasswordExpired() );
+
+		$wgPasswordExpireGrace = $wgTemp;
+	}
+
+	/**
+	 * Test password validity checks. There are 3 checks in core,
+	 *	- ensure the password meets the minimal length
+	 *	- ensure the password is not the same as the username
+	 *	- ensure the username/password combo isn't forbidden
+	 * @covers User::checkPasswordValidity()
+	 * @covers User::getPasswordValidity()
+	 * @covers User::isValidPassword()
+	 */
+	public function testCheckPasswordValidity() {
+		$this->setMwGlobals( 'wgMinimalPasswordLength', 6 );
+		$user = User::newFromName( 'Useruser' );
+		// Sanity
+		$this->assertTrue( $user->isValidPassword( 'Password1234' ) );
+
+		// Minimum length
+		$this->assertFalse( $user->isValidPassword( 'a' ) );
+		$this->assertFalse( $user->checkPasswordValidity( 'a' )->isGood() );
+		$this->assertEquals( 'passwordtooshort', $user->getPasswordValidity( 'a' ) );
+
+		// Matches username
+		$this->assertFalse( $user->checkPasswordValidity( 'Useruser' )->isGood() );
+		$this->assertEquals( 'password-name-match', $user->getPasswordValidity( 'Useruser' ) );
+
+		// On the forbidden list
+		$this->assertFalse( $user->checkPasswordValidity( 'Passpass' )->isGood() );
+		$this->assertEquals( 'password-login-forbidden', $user->getPasswordValidity( 'Passpass' ) );
+	}
 }

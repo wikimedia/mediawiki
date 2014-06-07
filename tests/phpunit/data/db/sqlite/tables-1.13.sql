@@ -50,12 +50,12 @@ CREATE TABLE /*$wgDBprefix*/revision (
   rev_minor_edit tinyint  default '0',
   rev_deleted tinyint  default '0',
   rev_len int,
-  rev_parent_id INTEGER default NULL) /*$wgDBTableOptions*/  ;
+  rev_parent_id INTEGER default NULL) /*$wgDBTableOptions*/;
 
 CREATE TABLE /*$wgDBprefix*/text (
   old_id INTEGER  PRIMARY KEY AUTOINCREMENT,
   old_text mediumblob ,
-  old_flags tinyblob ) /*$wgDBTableOptions*/  ;
+  old_flags tinyblob ) /*$wgDBTableOptions*/;
 
 CREATE TABLE /*$wgDBprefix*/archive (
   ar_namespace INTEGER  default '0',
@@ -124,7 +124,7 @@ CREATE TABLE /*$wgDBprefix*/site_stats (
 
 CREATE TABLE /*$wgDBprefix*/hitcounter (
   hc_id INTEGER
-)  ;
+);
 
 CREATE TABLE /*$wgDBprefix*/ipblocks (
   ipb_id INTEGER  PRIMARY KEY AUTOINCREMENT,
@@ -245,7 +245,7 @@ CREATE TABLE /*$wgDBprefix*/math (
 CREATE TABLE /*$wgDBprefix*/searchindex (
   si_page INTEGER ,
   si_title varchar(255)  default '',
-  si_text mediumtext ) ;
+  si_text mediumtext );
 
 CREATE TABLE /*$wgDBprefix*/interwiki (
   iw_prefix varchar(32) ,

@@ -10,9 +10,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		if ( !extension_loaded( 'exif' ) ) {
-			$this->markTestSkipped( "This test needs the exif extension." );
-		}
+		$this->checkPHPExtension( 'exif' );
 
 		$this->handler = new BitmapHandler();
 		$filePath = __DIR__ . '/../../data/media';
@@ -24,7 +22,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 			'url' => 'http://localhost/thumbtest',
 			'backend' => new FSFileBackend( array(
 				'name' => 'localtesting',
-				'lockManager' => 'nullLockManager',
+				'wikiId' => wfWikiId(),
 				'containerPaths' => array( 'temp-thumb' => $tmpDir, 'data' => $filePath )
 			) )
 		) );
@@ -209,7 +207,6 @@ class ExifRotationTest extends MediaWikiTestCase {
 			)
 		);
 	}
-
 
 	const TEST_WIDTH = 100;
 	const TEST_HEIGHT = 200;

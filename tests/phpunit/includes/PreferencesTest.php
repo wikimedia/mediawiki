@@ -81,9 +81,9 @@ class PreferencesTest extends MediaWikiTestCase {
 	protected function prefsFor( $user_key ) {
 		$preferences = array();
 		Preferences::profilePreferences(
-			$this->prefUsers[$user_key]
-			, $this->context
-			, $preferences
+			$this->prefUsers[$user_key],
+			$this->context,
+			$preferences
 		);
 
 		return $preferences;

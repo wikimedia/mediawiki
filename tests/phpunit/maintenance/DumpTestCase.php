@@ -48,7 +48,6 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		throw new MWException( "Could not determine revision id (" . $status->getWikiText() . ")" );
 	}
 
-
 	/**
 	 * gunzips the given file and stores the result in the original file name
 	 *
@@ -109,7 +108,6 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 			$this->assertRegExp( "/$timestamp_re: .* \(ID [0-9]+\) [0-9]* pages .*, [0-9]* revs .*, ETA/", $line );
 		}
 	}
-
 
 	/**
 	 * Step the current XML reader until node end of given name is found.
@@ -229,7 +227,6 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 			$this->assertTrue( $this->xml->read(), "Skipping past end tag" );
 		}
 	}
-
 
 	/**
 	 * Asserts that the xml reader is at an element of given tag that contains a given text,

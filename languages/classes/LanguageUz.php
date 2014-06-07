@@ -54,7 +54,8 @@ class UzConverter extends LanguageConverter {
 		'ф' => 'f', 'Ф' => 'F',
 		'ц' => 'c', 'Ц' => 'C',
 		'ў' => 'oʻ', 'Ў' => 'Oʻ',
-		'ц' => 'ts', 'Ц' => 'Ts', // note: at the beginning of a word and right after a consonant, only "s" is used
+		// note: at the beginning of a word and right after a consonant, only "s" is used
+		'ц' => 'ts', 'Ц' => 'Ts',
 		'қ' => 'q', 'Қ' => 'Q',
 		'ё' => 'yo', 'Ё' => 'Yo',
 		'ю' => 'yu', 'Ю' => 'Yu',
@@ -69,9 +70,9 @@ class UzConverter extends LanguageConverter {
 		'a' => 'а', 'A' => 'А',
 		'b' => 'б', 'B' => 'Б',
 		'd' => 'д', 'D' => 'Д',
-		'e' => 'е', 'E' => 'Е',
-		' e' => ' э', ' E' => ' Э', // "э" is used at the beginning of a word instead of "e"
-		'ye' => 'е', 'Ye' => 'Е',
+		// at the beginning of a word and after a vowel, "э" is used instead of "e"
+		// (see regex below)
+		'e' => 'э', 'E' => 'Э',
 		'f' => 'ф', 'F' => 'Ф',
 		'g' => 'г', 'G' => 'Г',
 		'g‘' => 'ғ', 'G‘' => 'Ғ', 'gʻ' => 'ғ', 'Gʻ' => 'Ғ',
@@ -110,6 +111,18 @@ class UzConverter extends LanguageConverter {
 			'uz-latn' => new ReplacementArray( $this->toLatin ),
 			'uz' => new ReplacementArray()
 		);
+	}
+
+	function translate( $text, $toVariant ) {
+		if ( $toVariant == 'uz-cyrl' ) {
+			$text = str_replace( 'ye', 'е', $text );
+			$text = str_replace( 'Ye', 'Е', $text );
+			$text = str_replace( 'YE', 'Е', $text );
+			// "е" after consonants, otherwise "э" (see above)
+			$text = preg_replace( '/([BVGDJZYKLMNPRSTFXCWQʻ‘H])E/u', '$1Е', $text );
+			$text = preg_replace( '/([bvgdjzyklmnprstfxcwqʻ‘h])e/ui', '$1е', $text );
+		}
+		return parent::translate( $text, $toVariant );
 	}
 
 }

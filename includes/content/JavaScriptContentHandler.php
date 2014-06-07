@@ -29,22 +29,41 @@
  */
 class JavaScriptContentHandler extends TextContentHandler {
 
+	/**
+	 * @param string $modelId
+	 */
 	public function __construct( $modelId = CONTENT_MODEL_JAVASCRIPT ) {
 		parent::__construct( $modelId, array( CONTENT_FORMAT_JAVASCRIPT ) );
 	}
 
+	/**
+	 * @param string $text
+	 * @param string $format
+	 *
+	 * @return JavaScriptContent
+	 *
+	 * @see ContentHandler::unserializeContent()
+	 */
 	public function unserializeContent( $text, $format = null ) {
 		$this->checkFormat( $format );
 
 		return new JavaScriptContent( $text );
 	}
 
+	/**
+	 * @return JavaScriptContent A new JavaScriptContent object with empty text.
+	 *
+	 * @see ContentHandler::makeEmptyContent()
+	 */
 	public function makeEmptyContent() {
 		return new JavaScriptContent( '' );
 	}
 
 	/**
 	 * Returns the english language, because JS is english, and should be handled as such.
+	 *
+	 * @param Title $title
+	 * @param Content $content
 	 *
 	 * @return Language wfGetLangObj( 'en' )
 	 *
@@ -57,6 +76,9 @@ class JavaScriptContentHandler extends TextContentHandler {
 	/**
 	 * Returns the english language, because JS is english, and should be handled as such.
 	 *
+	 * @param Title $title
+	 * @param Content $content
+	 *
 	 * @return Language wfGetLangObj( 'en' )
 	 *
 	 * @see ContentHandler::getPageViewLanguage()
@@ -64,4 +86,5 @@ class JavaScriptContentHandler extends TextContentHandler {
 	public function getPageViewLanguage( Title $title, Content $content = null ) {
 		return wfGetLangObj( 'en' );
 	}
+
 }

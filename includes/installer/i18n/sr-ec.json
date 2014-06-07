@@ -1,0 +1,38 @@
+{
+    "@metadata": {
+        "authors": [
+            "Rancher",
+            "Михајло Анђелковић"
+        ]
+    },
+    "config-session-error": "Грешка при започињању сесије: $1",
+    "config-session-expired": "Ваши подаци о сесији су истекли.\nСесије су подешене да трају $1.\nЊихов рок можете повећати постављањем <code>session.gc_maxlifetime</code> у php.ini.\nПоново покрените инсталацију.",
+    "config-no-session": "Ваши подаци о сесији су изгубљени!\nПроверите Ваш php.ini и обезбедите да је <code>session.save_path</code> постављен на одговарајући директоријум.",
+    "config-your-language": "Ваш језик:",
+    "config-your-language-help": "Изаберите језик који желите да користите током инсталације.",
+    "config-wiki-language": "Језик викија:",
+    "config-wiki-language-help": "Изаберите језик на ком ће бити садржај викија.",
+    "config-back": "← Назад",
+    "config-continue": "Настави →",
+    "config-page-language": "Језик",
+    "config-page-welcome": "Добро дошли на МедијаВики!",
+    "config-page-dbconnect": "Повезивање са базом података",
+    "config-page-upgrade": "Надоградња постојеће инсталације",
+    "config-page-dbsettings": "Подешавања базе података",
+    "config-page-name": "Назив",
+    "config-page-options": "Поставке",
+    "config-page-install": "Инсталирај",
+    "config-page-complete": "Завршено!",
+    "config-page-restart": "Поновно покретање инсталације",
+    "config-page-copying": "Умножавање",
+    "config-page-upgradedoc": "Надоградња",
+    "config-page-existingwiki": "Постојећи вики",
+    "config-help-restart": "Желите ли да обришете све сачуване податке које сте унели и поново покренете инсталацију?",
+    "config-restart": "Да, покрени поново",
+    "config-type-mysql": "MySQL",
+    "config-type-postgres": "PostgreSQL",
+    "config-type-sqlite": "SQLite",
+    "config-type-oracle": "Oracle",
+    "mainpagetext": "'''Медијавики је успешно инсталиран.'''",
+    "mainpagedocfooter": "Погледајте [//meta.wikimedia.org/wiki/Help:Contents кориснички водич] за коришћење програма.\n\n== Увод ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Помоћ у вези са подешавањима]\n* [//www.mediawiki.org/wiki/Manual:FAQ Често постављена питања]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о издањима Медијавикија]"
+}

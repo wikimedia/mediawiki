@@ -28,13 +28,13 @@
  * @ingroup API
  */
 class ApiFileRevert extends ApiBase {
-
-	/**
-	 * @var File
-	 */
+	/** @var LocalFile */
 	protected $file;
+
+	/** @var string */
 	protected $archiveName;
 
+	/** @var array */
 	protected $params;
 
 	public function execute() {
@@ -46,7 +46,15 @@ class ApiFileRevert extends ApiBase {
 		$this->checkPermissions( $this->getUser() );
 
 		$sourceUrl = $this->file->getArchiveVirtualUrl( $this->archiveName );
-		$status = $this->file->upload( $sourceUrl, $this->params['comment'], $this->params['comment'], 0, false, false, $this->getUser() );
+		$status = $this->file->upload(
+			$sourceUrl,
+			$this->params['comment'],
+			$this->params['comment'],
+			0,
+			false,
+			false,
+			$this->getUser()
+		);
 
 		if ( $status->isGood() ) {
 			$result = array( 'result' => 'Success' );
@@ -58,7 +66,6 @@ class ApiFileRevert extends ApiBase {
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
-
 	}
 
 	/**
@@ -130,7 +137,6 @@ class ApiFileRevert extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true
 			),
 		);
-
 	}
 
 	public function getParamDescription() {
@@ -161,7 +167,7 @@ class ApiFileRevert extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Revert a file to an old version'
+			'Revert a file to an old version.'
 		);
 	}
 
@@ -187,7 +193,8 @@ class ApiFileRevert extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=filerevert&filename=Wiki.png&comment=Revert&archivename=20110305152740!Wiki.png&token=123ABC'
+			'api.php?action=filerevert&filename=Wiki.png&comment=Revert&' .
+				'archivename=20110305152740!Wiki.png&token=123ABC'
 				=> 'Revert Wiki.png to the version of 20110305152740',
 		);
 	}

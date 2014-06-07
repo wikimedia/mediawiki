@@ -47,6 +47,16 @@ class SiteList extends GenericArrayObject {
 	protected $byGlobalId = array();
 
 	/**
+	 * Navigational site identifiers alias inter-language prefixes
+	 * pointing to their sites offset value.
+	 *
+	 * @since 1.23
+	 *
+	 * @var array of string
+	 */
+	protected $byNavigationId = array();
+
+	/**
 	 * @see GenericArrayObject::getObjectType
 	 *
 	 * @since 1.21
@@ -75,6 +85,11 @@ class SiteList extends GenericArrayObject {
 		$this->byGlobalId[$site->getGlobalId()] = $index;
 		$this->byInternalId[$site->getInternalId()] = $index;
 
+		$ids = $site->getNavigationIds();
+		foreach ( $ids as $navId ) {
+			$this->byNavigationId[$navId] = $index;
+		}
+
 		return true;
 	}
 
@@ -94,6 +109,11 @@ class SiteList extends GenericArrayObject {
 
 			unset( $this->byGlobalId[$site->getGlobalId()] );
 			unset( $this->byInternalId[$site->getInternalId()] );
+
+			$ids = $site->getNavigationIds();
+			foreach ( $ids as $navId ) {
+				unset( $this->byNavigationId[$navId] );
+			}
 		}
 
 		parent::offsetUnset( $index );
@@ -197,6 +217,43 @@ class SiteList extends GenericArrayObject {
 	}
 
 	/**
+	 * Returns if the list contains the site with the provided navigational site id.
+	 *
+	 * @param string $id
+	 *
+	 * @return boolean
+	 */
+	public function hasNavigationId( $id ) {
+		return array_key_exists( $id, $this->byNavigationId );
+	}
+
+	/**
+	 * Returns the Site with the provided navigational site id.
+	 * The site needs to exist, so if not sure, call has first.
+	 *
+	 * @since 1.23
+	 *
+	 * @param string $id
+	 *
+	 * @return Site
+	 */
+	public function getSiteByNavigationId( $id ) {
+		return $this->offsetGet( $this->byNavigationId[$id] );
+	}
+
+	/**
+	 * Removes the site with the specified navigational site id.
+	 * The site needs to exist, so if not sure, call has first.
+	 *
+	 * @since 1.23
+	 *
+	 * @param string $id
+	 */
+	public function removeSiteByNavigationId( $id ) {
+		$this->offsetUnset( $this->byNavigationId[$id] );
+	}
+
+	/**
 	 * Sets a site in the list. If the site was not there,
 	 * it will be added. If it was, it will be updated.
 	 *
@@ -240,7 +297,7 @@ class SiteList extends GenericArrayObject {
 	 * @var string A string uniquely identifying the version of the serialization structure,
 	 *             not including any sub-structures.
 	 */
-	const SERIAL_VERSION_ID = '2013-02-07';
+	const SERIAL_VERSION_ID = '2014-03-17';
 
 	/**
 	 * Returns the version ID that identifies the serialization structure used by
@@ -270,6 +327,7 @@ class SiteList extends GenericArrayObject {
 			array(
 				'internalIds' => $this->byInternalId,
 				'globalIds' => $this->byGlobalId,
+				'navigationIds' => $this->byNavigationId
 			)
 		);
 	}
@@ -288,6 +346,7 @@ class SiteList extends GenericArrayObject {
 
 		$this->byInternalId = $serializationData['internalIds'];
 		$this->byGlobalId = $serializationData['globalIds'];
+		$this->byNavigationId = $serializationData['navigationIds'];
 
 		return $serializationData;
 	}

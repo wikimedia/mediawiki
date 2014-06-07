@@ -51,7 +51,8 @@ class DBObject {
  * This allows us to distinguish a blob from a normal string and an array of strings
  */
 class Blob {
-	private $mData;
+	/** @var string */
+	protected $mData;
 
 	function __construct( $data ) {
 		$this->mData = $data;
@@ -97,13 +98,23 @@ interface Field {
  * @ingroup Database
  */
 class ResultWrapper implements Iterator {
-	var $db, $result, $pos = 0, $currentRow = null;
+	/** @var resource */
+	public $result;
+
+	/** @var DatabaseBase */
+	protected $db;
+
+	/** @var int */
+	protected $pos = 0;
+
+	/** @var */
+	protected $currentRow = null;
 
 	/**
 	 * Create a new result object from a result resource and a Database object
 	 *
 	 * @param DatabaseBase $database
-	 * @param resource $result
+	 * @param resource|ResultWrapper $result
 	 */
 	function __construct( $database, $result ) {
 		$this->db = $database;
@@ -118,7 +129,7 @@ class ResultWrapper implements Iterator {
 	/**
 	 * Get the number of rows in a result object
 	 *
-	 * @return integer
+	 * @return int
 	 */
 	function numRows() {
 		return $this->db->numRows( $this );
@@ -140,7 +151,7 @@ class ResultWrapper implements Iterator {
 	 * Fetch the next row from the given result object, in associative array
 	 * form. Fields are retrieved with $row['fieldname'].
 	 *
-	 * @return Array
+	 * @return array
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchRow() {
@@ -160,7 +171,7 @@ class ResultWrapper implements Iterator {
 	 * Change the position of the cursor in a result object.
 	 * See mysql_data_seek()
 	 *
-	 * @param $row integer
+	 * @param int $row
 	 */
 	function seek( $row ) {
 		$this->db->dataSeek( $this, $row );
@@ -187,6 +198,7 @@ class ResultWrapper implements Iterator {
 		if ( is_null( $this->currentRow ) ) {
 			$this->next();
 		}
+
 		return $this->currentRow;
 	}
 
@@ -203,6 +215,7 @@ class ResultWrapper implements Iterator {
 	function next() {
 		$this->pos++;
 		$this->currentRow = $this->fetchObject();
+
 		return $this->currentRow;
 	}
 
@@ -219,10 +232,17 @@ class ResultWrapper implements Iterator {
  * doesn't go anywhere near an actual database.
  */
 class FakeResultWrapper extends ResultWrapper {
-	var $result = array();
-	var $db = null; // And it's going to stay that way :D
-	var $pos = 0;
-	var $currentRow = null;
+	/** @var array */
+	public $result = array();
+
+	/** @var null And it's going to stay that way :D */
+	protected $db = null;
+
+	/** @var int */
+	protected $pos = 0;
+
+	/** @var array|stdClass|bool */
+	protected $currentRow = null;
 
 	function __construct( $array ) {
 		$this->result = $array;
@@ -277,10 +297,12 @@ class FakeResultWrapper extends ResultWrapper {
 }
 
 /**
- * Used by DatabaseBase::buildLike() to represent characters that have special meaning in SQL LIKE clauses
- * and thus need no escaping. Don't instantiate it manually, use DatabaseBase::anyChar() and anyString() instead.
+ * Used by DatabaseBase::buildLike() to represent characters that have special
+ * meaning in SQL LIKE clauses and thus need no escaping. Don't instantiate it
+ * manually, use DatabaseBase::anyChar() and anyString() instead.
  */
 class LikeMatch {
+	/** @var string */
 	private $str;
 
 	/**
@@ -295,7 +317,7 @@ class LikeMatch {
 	/**
 	 * Return the original stored string.
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function toString() {
 		return $this->str;
@@ -304,6 +326,8 @@ class LikeMatch {
 
 /**
  * An object representing a master or slave position in a replicated setup.
+ *
+ * The implementation details of this opaque type are up to the database subclass.
  */
 interface DBMasterPos {
 }

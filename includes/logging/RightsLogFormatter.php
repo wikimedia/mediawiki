@@ -55,6 +55,7 @@ class RightsLogFormatter extends LogFormatter {
 		if ( !isset( $params[3] ) && !isset( $params[4] ) ) {
 			$key .= '-legacy';
 		}
+
 		return $key;
 	}
 

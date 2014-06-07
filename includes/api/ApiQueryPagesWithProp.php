@@ -92,7 +92,8 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 		$count = 0;
 		foreach ( $this->select( __METHOD__ ) as $row ) {
 			if ( ++$count > $limit ) {
-				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'continue', $row->page_id );
 				break;
 			}
@@ -173,13 +174,15 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 	}
 
 	public function getDescription() {
-		return 'List all pages using a given page prop';
+		return 'List all pages using a given page prop.';
 	}
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&list=pageswithprop&pwppropname=displaytitle&pwpprop=ids|title|value' => 'Get first 10 pages using {{DISPLAYTITLE:}}',
-			'api.php?action=query&generator=pageswithprop&gpwppropname=notoc&prop=info' => 'Get page info about first 10 pages using __NOTOC__',
+			'api.php?action=query&list=pageswithprop&pwppropname=displaytitle&pwpprop=ids|title|value'
+				=> 'Get first 10 pages using {{DISPLAYTITLE:}}',
+			'api.php?action=query&generator=pageswithprop&gpwppropname=notoc&prop=info'
+				=> 'Get page info about first 10 pages using __NOTOC__',
 		);
 	}
 

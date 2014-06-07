@@ -24,8 +24,11 @@ require_once 'ApiQueryContinueTestBase.php';
  * @group API
  * @group Database
  * @group medium
+ * @covers ApiQuery
  */
 class ApiQueryContinue2Test extends ApiQueryContinueTestBase {
+	protected $exceptionFromAddDBData;
+
 	/**
 	 * Create a set of pages. These must not change, otherwise the tests might give wrong results.
 	 * @see MediaWikiTestCase::addDBData()

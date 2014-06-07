@@ -47,7 +47,7 @@ class bench_wfIsWindows extends Benchmarker {
 	}
 
 	static function is_win() {
-		return substr( php_uname(), 0, 7 ) == 'Windows' ;
+		return substr( php_uname(), 0, 7 ) == 'Windows';
 	}
 
 	// bench function 1

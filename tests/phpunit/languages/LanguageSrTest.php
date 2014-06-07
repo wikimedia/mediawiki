@@ -226,7 +226,6 @@ class LanguageSrTest extends LanguageClassesTestCase {
 		$this->assertConverted( $text, 'sr-ec', $msg );
 	}
 
-
 	/** Wrapper for converter::convertTo() method*/
 	protected function convertTo( $text, $variant ) {
 		return $this->getLang()

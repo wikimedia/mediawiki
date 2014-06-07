@@ -5,6 +5,9 @@
 
 class ExternalStoreTest extends MediaWikiTestCase {
 
+	/**
+	 * @covers ExternalStore::fetchFromURL
+	 */
 	public function testExternalFetchFromURL() {
 		$this->setMwGlobals( 'wgExternalStores', false );
 

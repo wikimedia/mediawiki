@@ -25,12 +25,16 @@ class ArticleTest extends MediaWikiTestCase {
 		$this->article = null;
 	}
 
+	/**
+	 * @covers Article::__get
+	 */
 	public function testImplementsGetMagic() {
 		$this->assertEquals( false, $this->article->mLatest, "Article __get magic" );
 	}
 
 	/**
 	 * @depends testImplementsGetMagic
+	 * @covers Article::__set
 	 */
 	public function testImplementsSetMagic() {
 		$this->article->mLatest = 2;
@@ -39,6 +43,7 @@ class ArticleTest extends MediaWikiTestCase {
 
 	/**
 	 * @depends testImplementsSetMagic
+	 * @covers Article::__call
 	 */
 	public function testImplementsCallMagic() {
 		$this->article->mLatest = 33;
@@ -46,6 +51,10 @@ class ArticleTest extends MediaWikiTestCase {
 		$this->assertEquals( 33, $this->article->getLatest(), "Article __call magic" );
 	}
 
+	/**
+	 * @covers Article::__get
+	 * @covers Article::__set
+	 */
 	public function testGetOrSetOnNewProperty() {
 		$this->article->ext_someNewProperty = 12;
 		$this->assertEquals( 12, $this->article->ext_someNewProperty,
@@ -58,6 +67,11 @@ class ArticleTest extends MediaWikiTestCase {
 
 	/**
 	 * Checks for the existence of the backwards compatibility static functions (forwarders to WikiPage class)
+	 * @covers Article::selectFields
+	 * @covers Article::onArticleCreate
+	 * @covers Article::onArticleDelete
+	 * @covers Article::onArticleEdit
+	 * @covers Article::getAutosummary
 	 */
 	public function testStaticFunctions() {
 		$this->hideDeprecated( 'Article::getAutosummary' );
@@ -74,19 +88,5 @@ class ArticleTest extends MediaWikiTestCase {
 			"Article static functions" );
 		$this->assertTrue( is_string( CategoryPage::getAutosummary( '', '', 0 ) ),
 			"Article static functions" );
-	}
-
-	public function testWikiPageFactory() {
-		$title = Title::makeTitle( NS_FILE, 'Someimage.png' );
-		$page = WikiPage::factory( $title );
-		$this->assertEquals( 'WikiFilePage', get_class( $page ) );
-
-		$title = Title::makeTitle( NS_CATEGORY, 'SomeCategory' );
-		$page = WikiPage::factory( $title );
-		$this->assertEquals( 'WikiCategoryPage', get_class( $page ) );
-
-		$title = Title::makeTitle( NS_MAIN, 'SomePage' );
-		$page = WikiPage::factory( $title );
-		$this->assertEquals( 'WikiPage', get_class( $page ) );
 	}
 }

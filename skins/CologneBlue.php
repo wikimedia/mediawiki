@@ -90,21 +90,37 @@ class CologneBlueTemplate extends BaseTemplate {
 			return "";
 		}
 
+		$html = '';
+
 		// We override SkinTemplate->formatLanguageName() in SkinCologneBlue
 		// not to capitalize the language names.
 		$language_urls = $this->data['language_urls'];
-		if ( empty( $language_urls ) ) {
-			return "";
+		if ( !empty( $language_urls ) ) {
+			$s = array();
+			foreach ( $language_urls as $key => $data ) {
+				$s[] = $this->makeListItem( $key, $data, array( 'tag' => 'span' ) );
+			}
+
+			$html = wfMessage( 'otherlanguages' )->text()
+				. wfMessage( 'colon-separator' )->text()
+				. $this->getSkin()->getLanguage()->pipeList( $s );
 		}
 
-		$s = array();
-		foreach ( $language_urls as $key => $data ) {
-			$s[] = $this->makeListItem( $key, $data, array( 'tag' => 'span' ) );
-		}
+		$html .= $this->renderAfterPortlet( 'lang' );
 
-		return wfMessage( 'otherlanguages' )->text()
-			. wfMessage( 'colon-separator' )->text()
-			. $this->getSkin()->getLanguage()->pipeList( $s );
+		return $html;
+	}
+
+	/**
+	 * @param string $name
+	 */
+	protected function renderAfterPortlet( $name ) {
+		$content = '';
+		wfRunHooks( 'BaseTemplateAfterPortlet', array( $this, $name, &$content ) );
+
+		$html = $content !== '' ? "<div class='after-portlet after-portlet-$name'>$content</div>" : '';
+
+		return $html;
 	}
 
 	function pageTitleLinks() {
@@ -169,7 +185,6 @@ class CologneBlueTemplate extends BaseTemplate {
 
 			$lines[] = $this->getSkin()->getLanguage()->pipeList( array_filter( $element ) );
 
-
 			// Second row. Privileged actions.
 			$element = array();
 
@@ -182,7 +197,6 @@ class CologneBlueTemplate extends BaseTemplate {
 			$element[] = $this->processBottomLink( 'move', $content_nav['actions']['move'], 'movethispage' );
 
 			$lines[] = $this->getSkin()->getLanguage()->pipeList( array_filter( $element ) );
-
 
 			// Third row. Language links.
 			$lines[] = $this->otherLanguages();
@@ -285,7 +299,7 @@ class CologneBlueTemplate extends BaseTemplate {
 			<?php } ?>
 		</div>
 	</div>
-	<div id="article" role="main">
+	<div id="article" class="mw-body" role="main">
 		<?php if ( $this->getSkin()->getSiteNotice() ) { ?>
 		<div id="siteNotice"><?php echo $this->getSkin()->getSiteNotice() ?></div>
 		<?php } ?>
@@ -381,7 +395,7 @@ class CologneBlueTemplate extends BaseTemplate {
 		);
 
 		$personalUrls = $this->getPersonalTools();
-		foreach ( array( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
+		foreach ( array( 'logout', 'createaccount', 'login' ) as $key ) {
 			if ( $personalUrls[$key] ) {
 				$s[] = $this->makeListItem( $key, $personalUrls[$key], array( 'tag' => 'span' ) );
 			}
@@ -422,7 +436,7 @@ class CologneBlueTemplate extends BaseTemplate {
 
 		// Personal tools ("My pages")
 		$qbmyoptions = $this->getPersonalTools();
-		foreach ( array( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
+		foreach ( array( 'logout', 'createaccount', 'login', ) as $key ) {
 			$qbmyoptions[$key] = null;
 		}
 
@@ -468,7 +482,6 @@ class CologneBlueTemplate extends BaseTemplate {
 			$bar = $this->sidebarAdditions( $bar );
 		}
 
-
 		// Fill out special sidebar items with content
 		$orig_bar = $bar;
 		$bar = array();
@@ -481,7 +494,6 @@ class CologneBlueTemplate extends BaseTemplate {
 				$bar[$heading] = $data;
 			}
 		}
-
 
 		// Output the sidebar
 		// CologneBlue uses custom messages for some portlets, but we should keep the ids for consistency
@@ -522,6 +534,8 @@ class CologneBlueTemplate extends BaseTemplate {
 				$role = ( $heading == 'search' ) ? 'search' : 'navigation';
 				$s .= "<div class=\"portlet\" id=\"$portletId\" role=\"$role\">\n$headingHTML\n$listHTML\n</div>\n";
 			}
+
+			$s .= $this->renderAfterPortlet( $heading );
 		}
 
 		$s .= "</div>\n";

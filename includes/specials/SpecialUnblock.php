@@ -42,6 +42,11 @@ class SpecialUnblock extends SpecialPage {
 
 		list( $this->target, $this->type ) = SpecialBlock::getTargetAndType( $par, $this->getRequest() );
 		$this->block = Block::newFromTarget( $this->target );
+		if ( $this->target instanceof User ) {
+			# Set the 'relevant user' in the skin, so it displays links like Contributions,
+			# User logs, UserRights, etc.
+			$this->getSkin()->setRelevantUser( $this->target );
+		}
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -102,7 +107,6 @@ class SpecialUnblock extends SpecialPage {
 			if ( $type == Block::TYPE_AUTO && $this->type == Block::TYPE_IP ) {
 				$fields['Target']['default'] = $this->target;
 				unset( $fields['Name'] );
-
 			} else {
 				$fields['Target']['default'] = $target;
 				$fields['Target']['type'] = 'hidden';
@@ -128,11 +132,11 @@ class SpecialUnblock extends SpecialPage {
 						break;
 				}
 			}
-
 		} else {
 			$fields['Target']['default'] = $this->target;
 			unset( $fields['Name'] );
 		}
+
 		return $fields;
 	}
 
@@ -176,6 +180,7 @@ class SpecialUnblock extends SpecialPage {
 		list( $target, $type ) = SpecialBlock::getTargetAndType( $target );
 		if ( $block->getType() == Block::TYPE_RANGE && $type == Block::TYPE_IP ) {
 			$range = $block->getTarget();
+
 			return array( array( 'ipb_blocked_as_range', $target, $range ) );
 		}
 

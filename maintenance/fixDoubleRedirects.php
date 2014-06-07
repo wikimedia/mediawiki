@@ -3,7 +3,7 @@
  * Fix double redirects.
  *
  * Copyright © 2011 Ilmari Karonen <nospam@vyznev.net>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@ class FixDoubleRedirects extends Maintenance {
 			'rd_from = pa.page_id',
 			'rd_namespace = pb.page_namespace',
 			'rd_title = pb.page_title',
-			'(rd_interwiki IS NULL OR rd_interwiki = "")', // bug 40352
+			'rd_interwiki IS NULL OR rd_interwiki = ' . $dbr->addQuotes( '' ), // bug 40352
 			'pb.page_is_redirect' => 1,
 		);
 
@@ -94,6 +94,7 @@ class FixDoubleRedirects extends Maintenance {
 		foreach ( $res as $row ) {
 			$titleA = Title::makeTitle( $row->pa_namespace, $row->pa_title );
 			$titleB = Title::makeTitle( $row->pb_namespace, $row->pb_title );
+			RequestContext::getMain()->setTitle( $titleA );
 
 			$processedTitles .= "* [[$titleA]]\n";
 

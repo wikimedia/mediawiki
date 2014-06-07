@@ -66,7 +66,7 @@ class LanguageTyv extends Language {
 		$wordReversed = array_reverse( $ar[0] ); // Here's an array with the order of the letters in the word reversed so we can find a match quicker *shrug*
 
 		// Find the last vowel in the word
-		$wordLastVowel = NULL;
+		$wordLastVowel = null;
 		foreach ( $wordReversed as $xvalue ) {
 			foreach ( $allVowels as $yvalue ) {
 				if ( strcmp( $xvalue, $yvalue ) == 0 ) {
@@ -76,7 +76,7 @@ class LanguageTyv extends Language {
 					continue;
 				}
 			}
-			if ( $wordLastVowel !== NULL ) {
+			if ( $wordLastVowel !== null ) {
 				break;
 			} else {
 				continue;

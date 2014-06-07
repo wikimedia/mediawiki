@@ -69,7 +69,9 @@ class PurgeChangedFiles extends Maintenance {
 			implode( ',', array_keys( self::$typeMappings ) ) . ',all)', false, true );
 		$this->addOption( 'htcp-dest', 'HTCP announcement destination (IP:port)', false, true );
 		$this->addOption( 'dry-run', 'Do not send purge requests' );
+		$this->addOption( 'sleep-per-batch', 'Milliseconds to sleep between batches', false, true );
 		$this->addOption( 'verbose', 'Show more output', false, false, 'v' );
+		$this->setBatchSize( 100 );
 	}
 
 	public function execute() {
@@ -119,7 +121,7 @@ class PurgeChangedFiles extends Maintenance {
 			$this->mOptions['verbose'] = 1;
 		}
 
-		$this->verbose( 'Purging files that were: ' . implode( ', ', $typeList ) . "\n");
+		$this->verbose( 'Purging files that were: ' . implode( ', ', $typeList ) . "\n" );
 		foreach ( $typeList as $type ) {
 			$this->verbose( "Checking for {$type} files...\n" );
 			$this->purgeFromLogType( $type );
@@ -154,6 +156,7 @@ class PurgeChangedFiles extends Maintenance {
 				__METHOD__
 			);
 
+			$bSize = 0;
 			foreach ( $res as $row ) {
 				$file = $repo->newFile( Title::makeTitle( NS_FILE, $row->log_title ) );
 
@@ -183,7 +186,7 @@ class PurgeChangedFiles extends Maintenance {
 					// Purge items from fileachive table (rows are likely here)
 					$this->purgeFromArchiveTable( $repo, $file );
 
-				} else if ( $logType === 'move' ) {
+				} elseif ( $logType === 'move' ) {
 					// Purge the target file as well
 
 					$params = unserialize( $row->log_params );
@@ -197,6 +200,12 @@ class PurgeChangedFiles extends Maintenance {
 				}
 
 				$this->verbose( "Purged file {$row->log_title}; {$type} @{$row->log_timestamp}.\n" );
+
+				if ( $this->hasOption( 'sleep-per-batch' ) && ++$bSize > $this->mBatchSize ) {
+					$bSize = 0;
+					// sleep-per-batch is milliseconds, usleep wants micro seconds.
+					usleep( 1000 * (int)$this->getOption( 'sleep-per-batch' ) );
+				}
 			}
 		}
 	}

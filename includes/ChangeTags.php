@@ -21,18 +21,15 @@
  */
 
 class ChangeTags {
-
 	/**
 	 * Creates HTML for the given tags
 	 *
 	 * @param string $tags Comma-separated list of tags
 	 * @param string $page A label for the type of action which is being displayed,
-	 *                     for example: 'history', 'contributions' or 'newpages'
-	 *
-	 * @return Array with two items: (html, classes)
-	 *            - html: String: HTML for displaying the tags (empty string when param $tags is empty)
-	 *            - classes: Array of strings: CSS classes used in the generated html, one class for each tag
-	 *
+	 *   for example: 'history', 'contributions' or 'newpages'
+	 * @return array Array with two items: (html, classes)
+	 *   - html: String: HTML for displaying the tags (empty string when param $tags is empty)
+	 *   - classes: Array of strings: CSS classes used in the generated html, one class for each tag
 	 */
 	public static function formatSummaryRow( $tags, $page ) {
 		global $wgLang;
@@ -90,7 +87,9 @@ class ChangeTags {
 	 *
 	 * @exception MWException when $rc_id, $rev_id and $log_id are all null
 	 */
-	public static function addTags( $tags, $rc_id = null, $rev_id = null, $log_id = null, $params = null ) {
+	public static function addTags( $tags, $rc_id = null, $rev_id = null,
+		$log_id = null, $params = null
+	) {
 		if ( !is_array( $tags ) ) {
 			$tags = array( $tags );
 		}
@@ -106,19 +105,45 @@ class ChangeTags {
 
 		// Might as well look for rcids and so on.
 		if ( !$rc_id ) {
-			$dbr = wfGetDB( DB_MASTER ); // Info might be out of date, somewhat fractionally, on slave.
+			// Info might be out of date, somewhat fractionally, on slave.
+			$dbr = wfGetDB( DB_MASTER );
 			if ( $log_id ) {
-				$rc_id = $dbr->selectField( 'recentchanges', 'rc_id', array( 'rc_logid' => $log_id ), __METHOD__ );
+				$rc_id = $dbr->selectField(
+					'recentchanges',
+					'rc_id',
+					array( 'rc_logid' => $log_id ),
+					__METHOD__
+				);
 			} elseif ( $rev_id ) {
-				$rc_id = $dbr->selectField( 'recentchanges', 'rc_id', array( 'rc_this_oldid' => $rev_id ), __METHOD__ );
+				$rc_id = $dbr->selectField(
+					'recentchanges',
+					'rc_id',
+					array( 'rc_this_oldid' => $rev_id ),
+					__METHOD__
+				);
 			}
 		} elseif ( !$log_id && !$rev_id ) {
-			$dbr = wfGetDB( DB_MASTER ); // Info might be out of date, somewhat fractionally, on slave.
-			$log_id = $dbr->selectField( 'recentchanges', 'rc_logid', array( 'rc_id' => $rc_id ), __METHOD__ );
-			$rev_id = $dbr->selectField( 'recentchanges', 'rc_this_oldid', array( 'rc_id' => $rc_id ), __METHOD__ );
+			// Info might be out of date, somewhat fractionally, on slave.
+			$dbr = wfGetDB( DB_MASTER );
+			$log_id = $dbr->selectField(
+				'recentchanges',
+				'rc_logid',
+				array( 'rc_id' => $rc_id ),
+				__METHOD__
+			);
+			$rev_id = $dbr->selectField(
+				'recentchanges',
+				'rc_this_oldid',
+				array( 'rc_id' => $rc_id ),
+				__METHOD__
+			);
 		}
 
-		$tsConds = array_filter( array( 'ts_rc_id' => $rc_id, 'ts_rev_id' => $rev_id, 'ts_log_id' => $log_id ) );
+		$tsConds = array_filter( array(
+			'ts_rc_id' => $rc_id,
+			'ts_rev_id' => $rev_id,
+			'ts_log_id' => $log_id )
+		);
 
 		## Update the summary row.
 		$prevTags = $dbr->selectField( 'tag_summary', 'ts_tags', $tsConds, __METHOD__ );
@@ -184,29 +209,27 @@ class ChangeTags {
 
 		// Figure out which conditions can be done.
 		if ( in_array( 'recentchanges', $tables ) ) {
-			$join_cond = 'rc_id';
+			$join_cond = 'ct_rc_id=rc_id';
 		} elseif ( in_array( 'logging', $tables ) ) {
-			$join_cond = 'log_id';
+			$join_cond = 'ct_log_id=log_id';
 		} elseif ( in_array( 'revision', $tables ) ) {
-			$join_cond = 'rev_id';
+			$join_cond = 'ct_rev_id=rev_id';
+		} elseif ( in_array( 'archive', $tables ) ) {
+			$join_cond = 'ct_rev_id=ar_rev_id';
 		} else {
 			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
-		// JOIN on tag_summary
-		$tables[] = 'tag_summary';
-		$join_conds['tag_summary'] = array( 'LEFT JOIN', "ts_$join_cond=$join_cond" );
-		$fields[] = 'ts_tags';
+		$fields['ts_tags'] = wfGetDB( DB_SLAVE )->buildGroupConcatField(
+			',', 'change_tag', 'ct_tag', $join_cond
+		);
 
 		if ( $wgUseTagFilter && $filter_tag ) {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
 
-			// FORCE INDEX -- change_tags will almost ALWAYS be the correct query plan.
-			$options['USE INDEX'] = array( 'change_tag' => 'change_tag_tag_id' );
-			unset( $options['FORCE INDEX'] );
 			$tables[] = 'change_tag';
-			$join_conds['change_tag'] = array( 'INNER JOIN', "ct_$join_cond=$join_cond" );
+			$join_conds['change_tag'] = array( 'INNER JOIN', $join_cond );
 			$conds['ct_tag'] = $filter_tag;
 		}
 	}
@@ -224,24 +247,45 @@ class ChangeTags {
 	 *        - if $fullForm is false: Array with
 	 *        - if $fullForm is true: String, html fragment
 	 */
-	public static function buildTagFilterSelector( $selected = '', $fullForm = false, Title $title = null ) {
+	public static function buildTagFilterSelector( $selected = '',
+		$fullForm = false, Title $title = null
+	) {
 		global $wgUseTagFilter;
 
 		if ( !$wgUseTagFilter || !count( self::listDefinedTags() ) ) {
 			return $fullForm ? '' : array();
 		}
 
-		$data = array( Html::rawElement( 'label', array( 'for' => 'tagfilter' ), wfMessage( 'tag-filter' )->parse() ),
-			Xml::input( 'tagfilter', 20, $selected, array( 'class' => 'mw-tagfilter-input' ) ) );
+		$data = array(
+			Html::rawElement(
+				'label',
+				array( 'for' => 'tagfilter' ),
+				wfMessage( 'tag-filter' )->parse()
+			),
+			Xml::input(
+				'tagfilter',
+				20,
+				$selected,
+				array( 'class' => 'mw-tagfilter-input', 'id' => 'tagfilter' )
+			)
+		);
 
 		if ( !$fullForm ) {
 			return $data;
 		}
 
 		$html = implode( '&#160;', $data );
-		$html .= "\n" . Xml::element( 'input', array( 'type' => 'submit', 'value' => wfMessage( 'tag-filter-submit' )->text() ) );
+		$html .= "\n" .
+			Xml::element(
+				'input',
+				array( 'type' => 'submit', 'value' => wfMessage( 'tag-filter-submit' )->text() )
+			);
 		$html .= "\n" . Html::hidden( 'title', $title->getPrefixedText() );
-		$html = Xml::tags( 'form', array( 'action' => $title->getLocalURL(), 'class' => 'mw-tagfilter-form', 'method' => 'get' ), $html );
+		$html = Xml::tags(
+			'form',
+			array( 'action' => $title->getLocalURL(), 'class' => 'mw-tagfilter-form', 'method' => 'get' ),
+			$html
+		);
 
 		return $html;
 	}

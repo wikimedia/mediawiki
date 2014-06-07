@@ -4,7 +4,8 @@
  * @group Parser
  */
 class TidyTest extends MediaWikiTestCase {
-	public function setUp() {
+
+	protected function setUp() {
 		parent::setUp();
 		$check = MWTidy::tidy( '' );
 		if ( strpos( $check, '<!--' ) !== false ) {

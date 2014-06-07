@@ -12,18 +12,23 @@ SET client_min_messages = 'ERROR';
 DROP SEQUENCE IF EXISTS user_user_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS page_page_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS revision_rev_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS page_restrictions_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS text_old_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS page_restrictions_pr_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS ipblocks_ipb_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS filearchive_fa_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS uploadstash_us_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS recentchanges_rc_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS logging_log_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS job_job_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS category_cat_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS archive_ar_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS externallinks_el_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS sites_site_id_seq CASCADE;
 DROP FUNCTION IF EXISTS page_deleted() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_title() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_text() CASCADE;
 DROP FUNCTION IF EXISTS add_interwiki(TEXT,INT,SMALLINT) CASCADE;
+DROP TYPE IF EXISTS media_type CASCADE;
 
 CREATE SEQUENCE user_user_id_seq MINVALUE 0 START WITH 0;
 CREATE TABLE mwuser ( -- replace reserved word 'user'
@@ -40,7 +45,8 @@ CREATE TABLE mwuser ( -- replace reserved word 'user'
   user_email_authenticated  TIMESTAMPTZ,
   user_touched              TIMESTAMPTZ,
   user_registration         TIMESTAMPTZ,
-  user_editcount            INTEGER
+  user_editcount            INTEGER,
+  user_password_expires     TIMESTAMPTZ NULL
 );
 CREATE INDEX user_email_token_idx ON mwuser (user_email_token);
 
@@ -80,6 +86,7 @@ CREATE TABLE page (
   page_is_new        SMALLINT       NOT NULL  DEFAULT 0,
   page_random        NUMERIC(15,14) NOT NULL  DEFAULT RANDOM(),
   page_touched       TIMESTAMPTZ,
+  page_links_updated TIMESTAMPTZ    NULL,
   page_latest        INTEGER        NOT NULL, -- FK?
   page_len           INTEGER        NOT NULL,
   page_content_model TEXT
@@ -399,7 +406,7 @@ CREATE SEQUENCE recentchanges_rc_id_seq;
 CREATE TABLE recentchanges (
   rc_id              INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('recentchanges_rc_id_seq'),
   rc_timestamp       TIMESTAMPTZ  NOT NULL,
-  rc_cur_time        TIMESTAMPTZ  NOT NULL,
+  rc_cur_time        TIMESTAMPTZ      NULL,
   rc_user            INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   rc_user_text       TEXT         NOT NULL,
   rc_namespace       SMALLINT     NOT NULL,
@@ -412,6 +419,7 @@ CREATE TABLE recentchanges (
   rc_this_oldid      INTEGER      NOT NULL,
   rc_last_oldid      INTEGER      NOT NULL,
   rc_type            SMALLINT     NOT NULL  DEFAULT 0,
+  rc_source          TEXT         NOT NULL,
   rc_patrolled       SMALLINT     NOT NULL  DEFAULT 0,
   rc_ip              CIDR,
   rc_old_len         INTEGER,
@@ -510,6 +518,8 @@ CREATE INDEX logging_page_time ON logging (log_namespace, log_title, log_timesta
 CREATE INDEX logging_times ON logging (log_timestamp);
 CREATE INDEX logging_user_type_time ON logging (log_user, log_type, log_timestamp);
 CREATE INDEX logging_page_id_time ON logging (log_page, log_timestamp);
+CREATE INDEX logging_user_text_type_time ON logging (log_user_text, log_type, log_timestamp);
+CREATE INDEX logging_user_text_time ON logging (log_user_text, log_timestamp);
 
 CREATE TABLE log_search (
   ls_field   TEXT     NOT NULL,
@@ -666,7 +676,7 @@ CREATE INDEX user_properties_property ON user_properties (up_property);
 CREATE TABLE l10n_cache (
   lc_lang   TEXT  NOT NULL,
   lc_key    TEXT  NOT NULL,
-  lc_value  TEXT  NOT NULL
+  lc_value  BYTEA NOT NULL
 );
 CREATE INDEX l10n_cache_lc_lang_key ON l10n_cache (lc_lang, lc_key);
 

@@ -46,12 +46,12 @@ class SpecialSearchTest extends MediaWikiTestCase {
 			array( /** Expected: */
 				'ProfileName' => $expectedProfile,
 				'Namespaces' => $expectedNS,
-			)
-			, array( /** Actual: */
+			),
+			array( /** Actual: */
 				'ProfileName' => $search->getProfile(),
 				'Namespaces' => $search->getNamespaces(),
-			)
-			, $message
+			),
+			$message
 		);
 	}
 

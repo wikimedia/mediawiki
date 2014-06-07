@@ -1,0 +1,65 @@
+/* Styles for user login and signup forms */
+#mw-userlogin-help {
+	text-align: center;
+}
+
+.mw-ui-vform .mw-secure {
+	/* @embed */
+	background: url(images/icon-lock.png) no-repeat scroll left center transparent;
+	margin: 0 0 0 1px;
+	padding: 0 0 0 11px;
+}
+
+/*
+ * When inside the VForm style, disable the border that Vector and other skins
+ * put on the div surrounding the login/create account form.
+ * Also disable the margin and padding that Vector puts around the form.
+ */
+.mw-ui-container #userloginForm,
+.mw-ui-container #userlogin {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+/* Reposition and resize language links, which appear on a per-wiki basis */
+.mw-ui-container #languagelinks {
+	margin-bottom: 2em;
+	font-size: 0.8em;
+}
+
+/* Put some space under template's header, which may contain CAPTCHA HTML.*/
+section.mw-form-header {
+	margin-bottom: 10px;
+}
+
+/**** shuffled CAPTCHA ****/
+#wpCaptchaWord {
+	margin-top: 6px;
+}
+
+.mw-createacct-captcha-container {
+	background-color: #f8f8f8;
+	border: 1px solid #c9c9c9;
+	padding: 10px;
+	text-align: center;
+}
+
+.mw-createacct-captcha-assisted {
+	display: block;
+	margin-top: 0.5em;
+}
+
+/* Put a border around the fancycaptcha-image-container. */
+.mw-createacct-captcha-and-reload {
+	border: 1px solid #c9c9c9;
+	/* Other display formats end up too wide */
+	display: table-cell;
+	width: 270px;
+	background-color: #FFF;
+}
+
+/* Make the fancycaptcha-image-container full-width within its parent. */
+.fancycaptcha-image-container {
+	width: 100%;
+}

@@ -39,7 +39,6 @@
  * @since 1.21 derives from ApiBase instead of ApiQueryBase
  */
 class ApiPageSet extends ApiBase {
-
 	/**
 	 * Constructor flag: The new instance of ApiPageSet will ignore the 'generator=' parameter
 	 * @since 1.21
@@ -73,6 +72,30 @@ class ApiPageSet extends ApiBase {
 	 * @var int
 	 */
 	private $mDefaultNamespace = NS_MAIN;
+
+	/**
+	 * Add all items from $values into the result
+	 * @param array $result output
+	 * @param array $values values to add
+	 * @param string $flag the name of the boolean flag to mark this element
+	 * @param string $name if given, name of the value
+	 */
+	private static function addValues( array &$result, $values, $flag = null, $name = null ) {
+		foreach ( $values as $val ) {
+			if ( $val instanceof Title ) {
+				$v = array();
+				ApiQueryBase::addTitleInfo( $v, $val );
+			} elseif ( $name !== null ) {
+				$v = array( $name => $val );
+			} else {
+				$v = $val;
+			}
+			if ( $flag !== null ) {
+				$v[$flag] = '';
+			}
+			$result[] = $v;
+		}
+	}
 
 	/**
 	 * Constructor
@@ -112,7 +135,8 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Populate the PageSet from the request parameters.
-	 * @param bool $isDryRun If true, instantiates generator, but only to mark relevant parameters as used
+	 * @param bool $isDryRun If true, instantiates generator, but only to mark
+	 *    relevant parameters as used
 	 */
 	private function executeInternal( $isDryRun ) {
 		$this->profileIn();
@@ -200,8 +224,9 @@ class ApiPageSet extends ApiBase {
 						break;
 					case 'revids':
 						if ( $this->mResolveRedirects ) {
-							$this->setWarning( 'Redirect resolution cannot be used together with the revids= parameter. ' .
-								'Any redirects the revids= point to have not been resolved.' );
+							$this->setWarning( 'Redirect resolution cannot be used ' .
+								'together with the revids= parameter. Any redirects ' .
+								'the revids= point to have not been resolved.' );
 						}
 						$this->mResolveRedirects = false;
 						$this->initFromRevIDs( $this->mParams['revids'] );
@@ -244,6 +269,7 @@ class ApiPageSet extends ApiBase {
 		if ( isset( $this->mParams['revids'] ) ) {
 			return 'revids';
 		}
+
 		return null;
 	}
 
@@ -289,6 +315,7 @@ class ApiPageSet extends ApiBase {
 		$this->mRequestedPageFields = array_diff_key( $this->mRequestedPageFields, $pageFlds );
 
 		$pageFlds = array_merge( $pageFlds, $this->mRequestedPageFields );
+
 		return array_keys( $pageFlds );
 	}
 
@@ -304,7 +331,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * All Title objects provided.
-	 * @return array of Title objects
+	 * @return Title[]
 	 */
 	public function getTitles() {
 		return $this->mTitles;
@@ -320,7 +347,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Title objects that were found in the database.
-	 * @return array page_id (int) => Title (obj)
+	 * @return Title[] Array page_id (int) => Title (obj)
 	 */
 	public function getGoodTitles() {
 		return $this->mGoodTitles;
@@ -337,7 +364,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Title objects that were NOT found in the database.
 	 * The array's index will be negative for each item
-	 * @return array of Title objects
+	 * @return Title[]
 	 */
 	public function getMissingTitles() {
 		return $this->mMissingTitles;
@@ -346,7 +373,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Titles that were deemed invalid by Title::newFromText()
 	 * The array's index will be unique and negative for each item
-	 * @return array of strings (not Title objects)
+	 * @return string[] Array of strings (not Title objects)
 	 */
 	public function getInvalidTitles() {
 		return $this->mInvalidTitles;
@@ -383,7 +410,7 @@ class ApiPageSet extends ApiBase {
 				'from' => strval( $titleStrFrom ),
 				'to' => $titleTo->getPrefixedText(),
 			);
-			if ( $titleTo->getFragment() !== '' ) {
+			if ( $titleTo->hasFragment() ) {
 				$r['tofragment'] = $titleTo->getFragment();
 			}
 			$values[] = $r;
@@ -391,6 +418,7 @@ class ApiPageSet extends ApiBase {
 		if ( !empty( $values ) && $result ) {
 			$result->setIndexedTagName( $values, 'r' );
 		}
+
 		return $values;
 	}
 
@@ -421,6 +449,7 @@ class ApiPageSet extends ApiBase {
 		if ( !empty( $values ) && $result ) {
 			$result->setIndexedTagName( $values, 'n' );
 		}
+
 		return $values;
 	}
 
@@ -451,6 +480,7 @@ class ApiPageSet extends ApiBase {
 		if ( !empty( $values ) && $result ) {
 			$result->setIndexedTagName( $values, 'c' );
 		}
+
 		return $values;
 	}
 
@@ -487,7 +517,48 @@ class ApiPageSet extends ApiBase {
 		if ( !empty( $values ) && $result ) {
 			$result->setIndexedTagName( $values, 'i' );
 		}
+
 		return $values;
+	}
+
+	/**
+	 * Get an array of invalid/special/missing titles.
+	 *
+	 * @param $invalidChecks List of types of invalid titles to include.
+	 *   Recognized values are:
+	 *   - invalidTitles: Titles from $this->getInvalidTitles()
+	 *   - special: Titles from $this->getSpecialTitles()
+	 *   - missingIds: ids from $this->getMissingPageIDs()
+	 *   - missingRevIds: ids from $this->getMissingRevisionIDs()
+	 *   - missingTitles: Titles from $this->getMissingTitles()
+	 *   - interwikiTitles: Titles from $this->getInterwikiTitlesAsResult()
+	 * @return array Array suitable for inclusion in the response
+	 * @since 1.23
+	 */
+	public function getInvalidTitlesAndRevisions( $invalidChecks = array( 'invalidTitles',
+		'special', 'missingIds', 'missingRevIds', 'missingTitles', 'interwikiTitles' )
+	) {
+		$result = array();
+		if ( in_array( "invalidTitles", $invalidChecks ) ) {
+			self::addValues( $result, $this->getInvalidTitles(), 'invalid', 'title' );
+		}
+		if ( in_array( "special", $invalidChecks ) ) {
+			self::addValues( $result, $this->getSpecialTitles(), 'special', 'title' );
+		}
+		if ( in_array( "missingIds", $invalidChecks ) ) {
+			self::addValues( $result, $this->getMissingPageIDs(), 'missing', 'pageid' );
+		}
+		if ( in_array( "missingRevIds", $invalidChecks ) ) {
+			self::addValues( $result, $this->getMissingRevisionIDs(), 'missing', 'revid' );
+		}
+		if ( in_array( "missingTitles", $invalidChecks ) ) {
+			self::addValues( $result, $this->getMissingTitles(), 'missing' );
+		}
+		if ( in_array( "interwikiTitles", $invalidChecks ) ) {
+			self::addValues( $result, $this->getInterwikiTitlesAsResult() );
+		}
+
+		return $result;
 	}
 
 	/**
@@ -522,6 +593,7 @@ class ApiPageSet extends ApiBase {
 		if ( !empty( $values ) && $result ) {
 			$result->setIndexedTagName( $values, 'rev' );
 		}
+
 		return $values;
 	}
 
@@ -584,7 +656,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Extract all requested fields from the row received from the database
-	 * @param $row Result row
+	 * @param stdClass $row Result row
 	 */
 	public function processDbRow( $row ) {
 		// Store Title object in various data structures
@@ -642,7 +714,7 @@ class ApiPageSet extends ApiBase {
 		// Get pageIDs data from the `page` table
 		$this->profileDBIn();
 		$res = $db->select( 'page', $this->getPageTableFields(), $set,
-					__METHOD__ );
+			__METHOD__ );
 		$this->profileDBOut();
 
 		// Hack: get the ns:titles stored in array(ns => array(titles)) format
@@ -676,7 +748,7 @@ class ApiPageSet extends ApiBase {
 			// Get pageIDs data from the `page` table
 			$this->profileDBIn();
 			$res = $db->select( 'page', $this->getPageTableFields(), $set,
-						__METHOD__ );
+				__METHOD__ );
 			$this->profileDBOut();
 		}
 
@@ -863,7 +935,12 @@ class ApiPageSet extends ApiBase {
 		foreach ( $res as $row ) {
 			$rdfrom = intval( $row->rd_from );
 			$from = $this->mPendingRedirectIDs[$rdfrom]->getPrefixedText();
-			$to = Title::makeTitle( $row->rd_namespace, $row->rd_title, $row->rd_fragment, $row->rd_interwiki );
+			$to = Title::makeTitle(
+				$row->rd_namespace,
+				$row->rd_title,
+				$row->rd_fragment,
+				$row->rd_interwiki
+			);
 			unset( $this->mPendingRedirectIDs[$rdfrom] );
 			if ( !$to->isExternal() && !isset( $this->mAllPages[$row->rd_namespace][$row->rd_title] ) ) {
 				$lb->add( $row->rd_namespace, $row->rd_title );
@@ -886,6 +963,7 @@ class ApiPageSet extends ApiBase {
 				unset( $this->mPendingRedirectIDs[$id] );
 			}
 		}
+
 		return $lb;
 	}
 
@@ -941,8 +1019,9 @@ class ApiPageSet extends ApiBase {
 				// Variants checking
 				global $wgContLang;
 				if ( $this->mConvertTitles &&
-						count( $wgContLang->getVariants() ) > 1 &&
-						!$titleObj->exists() ) {
+					count( $wgContLang->getVariants() ) > 1 &&
+					!$titleObj->exists()
+				) {
 					// Language::findVariantLink will modify titleText and titleObj into
 					// the canonical variant if possible
 					$titleText = is_string( $title ) ? $title : $titleObj->getPrefixedText();
@@ -1040,6 +1119,7 @@ class ApiPageSet extends ApiBase {
 				$result['generator'] = null;
 			}
 		}
+
 		return $result;
 	}
 
@@ -1067,6 +1147,7 @@ class ApiPageSet extends ApiBase {
 			sort( $gens );
 			self::$generators = $gens;
 		}
+
 		return self::$generators;
 	}
 
@@ -1075,19 +1156,34 @@ class ApiPageSet extends ApiBase {
 			'titles' => 'A list of titles to work on',
 			'pageids' => 'A list of page IDs to work on',
 			'revids' => 'A list of revision IDs to work on',
-			'generator' => array( 'Get the list of pages to work on by executing the specified query module.',
-				'NOTE: generator parameter names must be prefixed with a \'g\', see examples' ),
+			'generator' => array(
+				'Get the list of pages to work on by executing the specified query module.',
+				'NOTE: generator parameter names must be prefixed with a \'g\', see examples'
+			),
 			'redirects' => 'Automatically resolve redirects',
-			'converttitles' => array( 'Convert titles to other variants if necessary. Only works if the wiki\'s content language supports variant conversion.',
-				'Languages that support variant conversion include ' . implode( ', ', LanguageConverter::$languagesWithVariants ) ),
+			'converttitles' => array(
+				'Convert titles to other variants if necessary. Only works if ' .
+					'the wiki\'s content language supports variant conversion.',
+				'Languages that support variant conversion include ' .
+					implode( ', ', LanguageConverter::$languagesWithVariants )
+			),
 		);
 	}
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'multisource', 'info' => "Cannot use 'pageids' at the same time as 'dataSource'" ),
-			array( 'code' => 'multisource', 'info' => "Cannot use 'revids' at the same time as 'dataSource'" ),
-			array( 'code' => 'badgenerator', 'info' => 'Module $generatorName cannot be used as a generator' ),
+			array(
+				'code' => 'multisource',
+				'info' => "Cannot use 'pageids' at the same time as 'dataSource'"
+			),
+			array(
+				'code' => 'multisource',
+				'info' => "Cannot use 'revids' at the same time as 'dataSource'"
+			),
+			array(
+				'code' => 'badgenerator',
+				'info' => 'Module $generatorName cannot be used as a generator'
+			),
 		) );
 	}
 }

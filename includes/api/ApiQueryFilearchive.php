@@ -41,7 +41,10 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$user = $this->getUser();
 		// Before doing anything at all, let's check permissions
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
-			$this->dieUsage( 'You don\'t have permission to view deleted file information', 'permissiondenied' );
+			$this->dieUsage(
+				'You don\'t have permission to view deleted file information',
+				'permissiondenied'
+			);
 		}
 
 		$db = $this->getDB();
@@ -63,6 +66,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 		$this->addTables( 'filearchive' );
 
+		$this->addFields( ArchivedFile::selectFields() );
 		$this->addFields( array( 'fa_name', 'fa_deleted' ) );
 		$this->addFieldsIf( 'fa_sha1', $fld_sha1 );
 		$this->addFieldsIf( 'fa_timestamp', $fld_timestamp );
@@ -85,14 +89,16 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 		// Image filters
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
-		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
+		$from = ( $params['from'] === null ? null : $this->titlePartToKey( $params['from'], NS_FILE ) );
 		if ( !is_null( $params['continue'] ) ) {
 			$from = $params['continue'];
 		}
-		$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
+		$to = ( $params['to'] === null ? null : $this->titlePartToKey( $params['to'], NS_FILE ) );
 		$this->addWhereRange( 'fa_name', $dir, $from, $to );
 		if ( isset( $params['prefix'] ) ) {
-			$this->addWhere( 'fa_name' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
+			$this->addWhere( 'fa_name' . $db->buildLike(
+				$this->titlePartToKey( $params['prefix'], NS_FILE ),
+				$db->anyString() ) );
 		}
 
 		$sha1Set = isset( $params['sha1'] );
@@ -116,14 +122,16 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			}
 		}
 
-		if ( !$user->isAllowed( 'suppressrevision' ) ) {
-			// Filter out revisions that the user is not allowed to see. There
-			// is no way to indicate that we have skipped stuff because the
-			// continuation parameter is fa_name
-
-			// Note that this field is unindexed. This should however not be
-			// a big problem as files with fa_deleted are rare
-			$this->addWhereFld( 'fa_deleted', 0 );
+		// Exclude files this user can't view.
+		if ( !$user->isAllowed( 'deletedtext' ) ) {
+			$bitmask = File::DELETED_FILE;
+		} elseif ( !$user->isAllowed( 'suppressrevision' ) ) {
+			$bitmask = File::DELETED_FILE | File::DELETED_RESTRICTED;
+		} else {
+			$bitmask = 0;
+		}
+		if ( $bitmask ) {
+			$this->addWhere( $this->getDB()->bitAnd( 'fa_deleted', $bitmask ) . " != $bitmask" );
 		}
 
 		$limit = $params['limit'];
@@ -137,7 +145,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$result = $this->getResult();
 		foreach ( $res as $row ) {
 			if ( ++$count > $limit ) {
-				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'continue', $row->fa_name );
 				break;
 			}
@@ -147,15 +156,26 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			$title = Title::makeTitle( NS_FILE, $row->fa_name );
 			self::addTitleInfo( $file, $title );
 
+			if ( $fld_description &&
+				Revision::userCanBitfield( $row->fa_deleted, File::DELETED_COMMENT, $user )
+			) {
+				$file['description'] = $row->fa_description;
+				if ( isset( $prop['parseddescription'] ) ) {
+					$file['parseddescription'] = Linker::formatComment(
+						$row->fa_description, $title );
+				}
+			}
+			if ( $fld_user &&
+				Revision::userCanBitfield( $row->fa_deleted, File::DELETED_USER, $user )
+			) {
+				$file['userid'] = $row->fa_user;
+				$file['user'] = $row->fa_user_text;
+			}
 			if ( $fld_sha1 ) {
 				$file['sha1'] = wfBaseConvert( $row->fa_sha1, 36, 16, 40 );
 			}
 			if ( $fld_timestamp ) {
 				$file['timestamp'] = wfTimestamp( TS_ISO_8601, $row->fa_timestamp );
-			}
-			if ( $fld_user ) {
-				$file['userid'] = $row->fa_user;
-				$file['user'] = $row->fa_user_text;
 			}
 			if ( $fld_size || $fld_dimensions ) {
 				$file['size'] = $row->fa_size;
@@ -168,20 +188,13 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['height'] = $row->fa_height;
 				$file['width'] = $row->fa_width;
 			}
-			if ( $fld_description ) {
-				$file['description'] = $row->fa_description;
-				if ( isset( $prop['parseddescription'] ) ) {
-					$file['parseddescription'] = Linker::formatComment(
-						$row->fa_description, $title );
-				}
-			}
 			if ( $fld_mediatype ) {
 				$file['mediatype'] = $row->fa_media_type;
 			}
 			if ( $fld_metadata ) {
 				$file['metadata'] = $row->fa_metadata
-						? ApiQueryImageInfo::processMetaData( unserialize( $row->fa_metadata ), $result )
-						: null;
+					? ApiQueryImageInfo::processMetaData( unserialize( $row->fa_metadata ), $result )
+					: null;
 			}
 			if ( $fld_bitdepth ) {
 				$file['bitdepth'] = $row->fa_bits;
@@ -275,7 +288,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				' sha1              - Adds SHA-1 hash for the image',
 				' timestamp         - Adds timestamp for the uploaded version',
 				' user              - Adds user who uploaded the image version',
-				' size              - Adds the size of the image in bytes and the height, width and page count (if applicable)',
+				' size              - Adds the size of the image in bytes and the height, ' .
+					'width and page count (if applicable)',
 				' dimensions        - Alias for size',
 				' description       - Adds description the image version',
 				' parseddescription - Parse the description on the version',
@@ -353,15 +367,21 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Enumerate all deleted files sequentially';
+		return 'Enumerate all deleted files sequentially.';
 	}
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted file information' ),
+			array(
+				'code' => 'permissiondenied',
+				'info' => 'You don\'t have permission to view deleted file information'
+			),
 			array( 'code' => 'hashsearchdisabled', 'info' => 'Search by hash disabled in Miser Mode' ),
-			array( 'code' => 'invalidsha1hash', 'info' => 'The SHA1 hash provided is not valid' ),
-			array( 'code' => 'invalidsha1base36hash', 'info' => 'The SHA1Base36 hash provided is not valid' ),
+			array( 'code' => 'invalidsha1hash', 'info' => 'The SHA-1 hash provided is not valid' ),
+			array(
+				'code' => 'invalidsha1base36hash',
+				'info' => 'The SHA1Base36 hash provided is not valid'
+			),
 		) );
 	}
 

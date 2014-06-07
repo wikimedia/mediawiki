@@ -28,7 +28,10 @@
  * @author Bryan Tong Minh
  */
 class UploadFromStash extends UploadBase {
-	protected $mFileKey, $mVirtualTempPath, $mFileProps, $mSourceType;
+	protected $mFileKey;
+	protected $mVirtualTempPath;
+	protected $mFileProps;
+	protected $mSourceType;
 
 	// an instance of UploadStash
 	private $stash;
@@ -37,9 +40,9 @@ class UploadFromStash extends UploadBase {
 	private $repo;
 
 	/**
-	 * @param $user User
-	 * @param $stash UploadStash
-	 * @param $repo FileRepo
+	 * @param User|bool $user Default: false
+	 * @param UploadStash|bool $stash Default: false
+	 * @param FileRepo|bool $repo Default: false
 	 */
 	public function __construct( $user = false, $stash = false, $repo = false ) {
 		// user object. sometimes this won't exist, as when running from cron.
@@ -65,7 +68,7 @@ class UploadFromStash extends UploadBase {
 	}
 
 	/**
-	 * @param $key string
+	 * @param string $key
 	 * @return bool
 	 */
 	public static function isValidKey( $key ) {
@@ -74,9 +77,8 @@ class UploadFromStash extends UploadBase {
 	}
 
 	/**
-	 * @param $request WebRequest
-	 *
-	 * @return Boolean
+	 * @param WebRequest $request
+	 * @return bool
 	 */
 	public static function isValidRequest( $request ) {
 		// this passes wpSessionKey to getText() as a default when wpFileKey isn't set.
@@ -86,8 +88,9 @@ class UploadFromStash extends UploadBase {
 	}
 
 	/**
-	 * @param $key string
-	 * @param $name string
+	 * @param string $key
+	 * @param string $name
+	 * @param bool $initTempFile
 	 */
 	public function initialize( $key, $name = 'upload_file', $initTempFile = true ) {
 		/**
@@ -110,14 +113,17 @@ class UploadFromStash extends UploadBase {
 	}
 
 	/**
-	 * @param $request WebRequest
+	 * @param WebRequest $request
 	 */
 	public function initializeFromRequest( &$request ) {
 		// sends wpSessionKey as a default when wpFileKey is missing
 		$fileKey = $request->getText( 'wpFileKey', $request->getText( 'wpSessionKey' ) );
 
 		// chooses one of wpDestFile, wpUploadFile, filename in that order.
-		$desiredDestName = $request->getText( 'wpDestFile', $request->getText( 'wpUploadFile', $request->getText( 'filename' ) ) );
+		$desiredDestName = $request->getText(
+			'wpDestFile',
+			$request->getText( 'wpUploadFile', $request->getText( 'filename' ) )
+		);
 
 		$this->initialize( $fileKey, $desiredDestName );
 	}
@@ -144,7 +150,7 @@ class UploadFromStash extends UploadBase {
 	/**
 	 * Stash the file.
 	 *
-	 * @param $user User
+	 * @param User $user
 	 * @return UploadStashFile
 	 */
 	public function stashFile( User $user = null ) {
@@ -156,7 +162,7 @@ class UploadFromStash extends UploadBase {
 
 	/**
 	 * This should return the key instead of the UploadStashFile instance, for backward compatibility.
-	 * @return String
+	 * @return string
 	 */
 	public function stashSession() {
 		return $this->stashFile()->getFileKey();
@@ -164,7 +170,7 @@ class UploadFromStash extends UploadBase {
 
 	/**
 	 * Remove a temporarily kept file stashed by saveTempUploadedFile().
-	 * @return bool success
+	 * @return bool Success
 	 */
 	public function unsaveUploadedFile() {
 		return $this->stash->removeFile( $this->mFileKey );
@@ -172,10 +178,10 @@ class UploadFromStash extends UploadBase {
 
 	/**
 	 * Perform the upload, then remove the database record afterward.
-	 * @param $comment string
-	 * @param $pageText string
-	 * @param $watch bool
-	 * @param $user User
+	 * @param string $comment
+	 * @param string $pageText
+	 * @param bool $watch
+	 * @param User $user
 	 * @return Status
 	 */
 	public function performUpload( $comment, $pageText, $watch, $user ) {

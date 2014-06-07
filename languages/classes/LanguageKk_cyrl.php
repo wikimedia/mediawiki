@@ -727,7 +727,7 @@ class LanguageKk_cyrl extends Language {
 		$lastLetter[0] = $ar[count( $ar ) - 1];
 
 		// Find the last vowel in the word
-		$lastLetter[1] = NULL;
+		$lastLetter[1] = null;
 		foreach ( $wordReversed as $xvalue ) {
 			foreach ( $allVowels as $yvalue ) {
 				if ( strcmp( $xvalue, $yvalue ) == 0 ) {
@@ -737,7 +737,7 @@ class LanguageKk_cyrl extends Language {
 					continue;
 				}
 			}
-			if ( $lastLetter[1] !== NULL ) {
+			if ( $lastLetter[1] !== null ) {
 				break;
 			} else {
 				continue;

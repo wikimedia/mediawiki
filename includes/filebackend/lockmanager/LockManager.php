@@ -43,14 +43,14 @@
  * @since 1.19
  */
 abstract class LockManager {
-	/** @var Array Mapping of lock types to the type actually used */
+	/** @var array Mapping of lock types to the type actually used */
 	protected $lockTypeMap = array(
 		self::LOCK_SH => self::LOCK_SH,
 		self::LOCK_UW => self::LOCK_EX, // subclasses may use self::LOCK_SH
 		self::LOCK_EX => self::LOCK_EX
 	);
 
-	/** @var Array Map of (resource path => lock type => count) */
+	/** @var array Map of (resource path => lock type => count) */
 	protected $locksHeld = array();
 
 	protected $domain; // string; domain (usually wiki ID)
@@ -64,12 +64,10 @@ abstract class LockManager {
 	/**
 	 * Construct a new instance from configuration
 	 *
-	 * $config paramaters include:
+	 * @param array $config Paramaters include:
 	 *   - domain  : Domain (usually wiki ID) that all resources are relative to [optional]
 	 *   - lockTTL : Age (in seconds) at which resource locks should expire.
 	 *               This only applies if locks are not tied to a connection/process.
-	 *
-	 * @param $config Array
 	 */
 	public function __construct( array $config ) {
 		$this->domain = isset( $config['domain'] ) ? $config['domain'] : wfWikiID();
@@ -87,8 +85,8 @@ abstract class LockManager {
 	 * Lock the resources at the given abstract paths
 	 *
 	 * @param array $paths List of resource names
-	 * @param $type integer LockManager::LOCK_* constant
-	 * @param integer $timeout Timeout in seconds (0 means non-blocking) (since 1.21)
+	 * @param int $type LockManager::LOCK_* constant
+	 * @param int $timeout Timeout in seconds (0 means non-blocking) (since 1.21)
 	 * @return Status
 	 */
 	final public function lock( array $paths, $type = self::LOCK_EX, $timeout = 0 ) {
@@ -99,7 +97,7 @@ abstract class LockManager {
 	 * Lock the resources at the given abstract paths
 	 *
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
-	 * @param integer $timeout Timeout in seconds (0 means non-blocking) (since 1.21)
+	 * @param int $timeout Timeout in seconds (0 means non-blocking) (since 1.21)
 	 * @return Status
 	 * @since 1.22
 	 */
@@ -119,6 +117,7 @@ abstract class LockManager {
 			$elapsed = microtime( true ) - $start;
 		} while ( $elapsed < $timeout && $elapsed >= 0 );
 		wfProfileOut( __METHOD__ );
+
 		return $status;
 	}
 
@@ -126,7 +125,7 @@ abstract class LockManager {
 	 * Unlock the resources at the given abstract paths
 	 *
 	 * @param array $paths List of paths
-	 * @param $type integer LockManager::LOCK_* constant
+	 * @param int $type LockManager::LOCK_* constant
 	 * @return Status
 	 */
 	final public function unlock( array $paths, $type = self::LOCK_EX ) {
@@ -145,6 +144,7 @@ abstract class LockManager {
 		$pathsByType = $this->normalizePathsByType( $pathsByType );
 		$status = $this->doUnlockByType( $pathsByType );
 		wfProfileOut( __METHOD__ );
+
 		return $status;
 	}
 
@@ -153,7 +153,7 @@ abstract class LockManager {
 	 * Before hashing, the path will be prefixed with the domain ID.
 	 * This should be used interally for lock key or file names.
 	 *
-	 * @param $path string
+	 * @param string $path
 	 * @return string
 	 */
 	final protected function sha1Base36Absolute( $path ) {
@@ -165,7 +165,7 @@ abstract class LockManager {
 	 * Before hashing, the path will be prefixed with the domain ID.
 	 * This should be used interally for lock key or file names.
 	 *
-	 * @param $path string
+	 * @param string $path
 	 * @return string
 	 */
 	final protected function sha1Base16Absolute( $path ) {
@@ -176,8 +176,8 @@ abstract class LockManager {
 	 * Normalize the $paths array by converting LOCK_UW locks into the
 	 * appropriate type and removing any duplicated paths for each lock type.
 	 *
-	 * @param array $paths Map of LockManager::LOCK_* constants to lists of paths
-	 * @return Array
+	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
+	 * @return array
 	 * @since 1.22
 	 */
 	final protected function normalizePathsByType( array $pathsByType ) {
@@ -185,12 +185,13 @@ abstract class LockManager {
 		foreach ( $pathsByType as $type => $paths ) {
 			$res[$this->lockTypeMap[$type]] = array_unique( $paths );
 		}
+
 		return $res;
 	}
 
 	/**
 	 * @see LockManager::lockByType()
-	 * @param array $paths Map of LockManager::LOCK_* constants to lists of paths
+	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @return Status
 	 * @since 1.22
 	 */
@@ -203,12 +204,13 @@ abstract class LockManager {
 				$lockedByType[$type] = $paths;
 			} else {
 				// Release the subset of locks that were acquired
-				foreach ( $lockedByType as $type => $paths ) {
-					$status->merge( $this->doUnlock( $paths, $type ) );
+				foreach ( $lockedByType as $lType => $lPaths ) {
+					$status->merge( $this->doUnlock( $lPaths, $lType ) );
 				}
 				break;
 			}
 		}
+
 		return $status;
 	}
 
@@ -216,14 +218,14 @@ abstract class LockManager {
 	 * Lock resources with the given keys and lock type
 	 *
 	 * @param array $paths List of paths
-	 * @param $type integer LockManager::LOCK_* constant
+	 * @param int $type LockManager::LOCK_* constant
 	 * @return Status
 	 */
 	abstract protected function doLock( array $paths, $type );
 
 	/**
 	 * @see LockManager::unlockByType()
-	 * @param array $paths Map of LockManager::LOCK_* constants to lists of paths
+	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @return Status
 	 * @since 1.22
 	 */
@@ -232,6 +234,7 @@ abstract class LockManager {
 		foreach ( $pathsByType as $type => $paths ) {
 			$status->merge( $this->doUnlock( $paths, $type ) );
 		}
+
 		return $status;
 	}
 
@@ -239,7 +242,7 @@ abstract class LockManager {
 	 * Unlock resources with the given keys and lock type
 	 *
 	 * @param array $paths List of paths
-	 * @param $type integer LockManager::LOCK_* constant
+	 * @param int $type LockManager::LOCK_* constant
 	 * @return Status
 	 */
 	abstract protected function doUnlock( array $paths, $type );

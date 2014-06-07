@@ -38,6 +38,8 @@ class OracleUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return array(
+			array( 'disableContentHandlerUseDB' ),
+
 			// 1.17
 			array( 'doNamespaceDefaults' ),
 			array( 'doFKRenameDeferr' ),
@@ -79,6 +81,7 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addField', 'archive', 'ar_id', 'patch-archive-ar_id.sql' ),
 			array( 'addField', 'externallinks', 'el_id', 'patch-externallinks-el_id.sql' ),
 			array( 'addField', 'page', 'page_content_model', 'patch-page-page_content_model.sql' ),
+			array( 'enableContentHandlerUseDB' ),
 			array( 'dropField', 'site_stats', 'ss_admins', 'patch-ss_admins.sql' ),
 			array( 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ),
 			array( 'addTable', 'sites', 'patch-sites.sql' ),
@@ -89,6 +92,13 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ),
 			array( 'modifyField', 'user_former_groups', 'ufg_group',
 				'patch-ufg_group-length-increase-255.sql' ),
+
+			//1.23
+			array( 'addIndex', 'logging', 'i06', 'patch-logging_user_text_type_time_index.sql' ),
+			array( 'addIndex', 'logging', 'i07', 'patch-logging_user_text_time_index.sql' ),
+			array( 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ),
+			array( 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ),
+			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),

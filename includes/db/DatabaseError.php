@@ -26,22 +26,28 @@
  * @ingroup Database
  */
 class DBError extends MWException {
-
-	/**
-	 * @var DatabaseBase
-	 */
+	/** @var DatabaseBase */
 	public $db;
 
 	/**
 	 * Construct a database error
-	 * @param $db DatabaseBase object which threw the error
+	 * @param DatabaseBase $db Object which threw the error
 	 * @param string $error A simple error message to be used for debugging
 	 */
 	function __construct( DatabaseBase $db = null, $error ) {
 		$this->db = $db;
 		parent::__construct( $error );
 	}
+}
 
+/**
+ * Base class for the more common types of database errors. These are known to occur
+ * frequently, so we try to give friendly error messages for them.
+ *
+ * @ingroup Database
+ * @since 1.23
+ */
+class DBExpectedError extends DBError {
 	/**
 	 * @return string
 	 */
@@ -66,8 +72,7 @@ class DBError extends MWException {
 		$s = $this->getHTMLContent();
 
 		if ( $wgShowDBErrorBacktrace ) {
-			$s .= '<p>Backtrace:</p><p>' .
-				nl2br( htmlspecialchars( $this->getTraceAsString() ) ) . '</p>';
+			$s .= '<p>Backtrace:</p><pre>' . htmlspecialchars( $this->getTraceAsString() ) . '</pre>';
 		}
 
 		return $s;
@@ -84,16 +89,21 @@ class DBError extends MWException {
 	 * @return string
 	 */
 	protected function getHTMLContent() {
-		return '<p>' . nl2br( htmlspecialchars( $this->getMessage() ) ) . '</p>';
+		return '<p>' . nl2br( htmlspecialchars( $this->getTextContent() ) ) . '</p>';
 	}
 }
 
 /**
  * @ingroup Database
  */
-class DBConnectionError extends DBError {
+class DBConnectionError extends DBExpectedError {
+	/** @var string Error text */
 	public $error;
 
+	/**
+	 * @param DatabaseBase $db Object throwing the error
+	 * @param string $error Error text
+	 */
 	function __construct( DatabaseBase $db = null, $error = 'unknown error' ) {
 		$msg = 'DB connection error';
 
@@ -116,9 +126,11 @@ class DBConnectionError extends DBError {
 	}
 
 	/**
-	 * @param $key
-	 * @param $fallback
-	 * @return string
+	 * @param string $key
+	 * @param string $fallback Unescaped alternative error text in case the
+	 *   message cache cannot be used. Can contain parameters as in regular
+	 *   messages, that should be passed as additional parameters.
+	 * @return string Unprocessed plain error text with parameters replaced
 	 */
 	function msg( $key, $fallback /*[, params...] */ ) {
 		global $wgLang;
@@ -130,6 +142,7 @@ class DBConnectionError extends DBError {
 		} else {
 			$message = $fallback;
 		}
+
 		return wfMsgReplaceArgs( $message, $args );
 	}
 
@@ -142,20 +155,19 @@ class DBConnectionError extends DBError {
 	}
 
 	/**
-	 * @return string
-	 */
-	function getPageTitle() {
-		return $this->msg( 'dberr-header', 'This wiki has a problem' );
-	}
-
-	/**
-	 * @return string
+	 * @return string Safe HTML
 	 */
 	function getHTML() {
 		global $wgShowDBErrorBacktrace, $wgShowHostnames, $wgShowSQLErrors;
 
-		$sorry = htmlspecialchars( $this->msg( 'dberr-problems', "Sorry!\nThis site is experiencing technical difficulties." ) );
-		$again = htmlspecialchars( $this->msg( 'dberr-again', 'Try waiting a few minutes and reloading.' ) );
+		$sorry = htmlspecialchars( $this->msg(
+			'dberr-problems',
+			'Sorry! This site is experiencing technical difficulties.'
+		) );
+		$again = htmlspecialchars( $this->msg(
+			'dberr-again',
+			'Try waiting a few minutes and reloading.'
+		) );
 
 		if ( $wgShowHostnames || $wgShowSQLErrors ) {
 			$info = str_replace(
@@ -163,23 +175,25 @@ class DBConnectionError extends DBError {
 				htmlspecialchars( $this->msg( 'dberr-info', '(Cannot contact the database server: $1)' ) )
 			);
 		} else {
-			$info = htmlspecialchars( $this->msg( 'dberr-info-hidden', '(Cannot contact the database server)' ) );
+			$info = htmlspecialchars( $this->msg(
+				'dberr-info-hidden',
+				'(Cannot contact the database server)'
+			) );
 		}
 
 		# No database access
 		MessageCache::singleton()->disable();
 
-		$text = "<h1>$sorry</h1><p>$again</p><p><small>$info</small></p>";
+		$html = "<h1>$sorry</h1><p>$again</p><p><small>$info</small></p>";
 
 		if ( $wgShowDBErrorBacktrace ) {
-			$text .= '<p>Backtrace:</p><p>' .
-				nl2br( htmlspecialchars( $this->getTraceAsString() ) ) . '</p>';
+			$html .= '<p>Backtrace:</p><pre>' . htmlspecialchars( $this->getTraceAsString() ) . '</pre>';
 		}
 
-		$text .= '<hr />';
-		$text .= $this->searchForm();
+		$html .= '<hr />';
+		$html .= $this->searchForm();
 
-		return $text;
+		return $html;
 	}
 
 	protected function getTextContent() {
@@ -192,25 +206,31 @@ class DBConnectionError extends DBError {
 		}
 	}
 
+	/**
+	 * Output the exception report using HTML.
+	 *
+	 * @return void
+	 */
 	public function reportHTML() {
 		global $wgUseFileCache;
 
-		# Check whether we can serve a file-cached copy of the page with the error underneath
+		// Check whether we can serve a file-cached copy of the page with the error underneath
 		if ( $wgUseFileCache ) {
 			try {
 				$cache = $this->fileCachedPage();
-				# Cached version on file system?
+				// Cached version on file system?
 				if ( $cache !== null ) {
-					# Hack: extend the body for error messages
+					// Hack: extend the body for error messages
 					$cache = str_replace( array( '</html>', '</body>' ), '', $cache );
-					# Add cache notice...
-					$cache .= '<div style="color:red;font-size:150%;font-weight:bold;">' .
+					// Add cache notice...
+					$cache .= '<div style="border:1px solid #ffd0d0;padding:1em;">' .
 						htmlspecialchars( $this->msg( 'dberr-cachederror',
-							'This is a cached copy of the requested page, and may not be up to date. ' ) ) .
+							'This is a cached copy of the requested page, and may not be up to date.' ) ) .
 						'</div>';
 
-					# Output cached page with notices on bottom and re-close body
+					// Output cached page with notices on bottom and re-close body
 					echo "{$cache}<hr />{$this->getHTML()}</body></html>";
+
 					return;
 				}
 			} catch ( MWException $e ) {
@@ -218,7 +238,7 @@ class DBConnectionError extends DBError {
 			}
 		}
 
-		# We can't, cough and die in the usual fashion
+		// We can't, cough and die in the usual fashion
 		parent::reportHTML();
 	}
 
@@ -228,8 +248,14 @@ class DBConnectionError extends DBError {
 	function searchForm() {
 		global $wgSitename, $wgCanonicalServer, $wgRequest;
 
-		$usegoogle = htmlspecialchars( $this->msg( 'dberr-usegoogle', 'You can try searching via Google in the meantime.' ) );
-		$outofdate = htmlspecialchars( $this->msg( 'dberr-outofdate', 'Note that their indexes of our content may be out of date.' ) );
+		$usegoogle = htmlspecialchars( $this->msg(
+			'dberr-usegoogle',
+			'You can try searching via Google in the meantime.'
+		) );
+		$outofdate = htmlspecialchars( $this->msg(
+			'dberr-outofdate',
+			'Note that their indexes of our content may be out of date.'
+		) );
 		$googlesearch = htmlspecialchars( $this->msg( 'searchbutton', 'Search' ) );
 
 		$search = htmlspecialchars( $wgRequest->getVal( 'search' ) );
@@ -239,8 +265,8 @@ class DBConnectionError extends DBError {
 
 		$trygoogle = <<<EOT
 <div style="margin: 1.5em">$usegoogle<br />
-<small>$outofdate</small></div>
-<!-- SiteSearch Google -->
+<small>$outofdate</small>
+</div>
 <form method="get" action="//www.google.com/search" id="googlesearch">
 	<input type="hidden" name="domains" value="$server" />
 	<input type="hidden" name="num" value="50" />
@@ -249,13 +275,13 @@ class DBConnectionError extends DBError {
 
 	<input type="text" name="q" size="31" maxlength="255" value="$search" />
 	<input type="submit" name="btnG" value="$googlesearch" />
-  <div>
-	<input type="radio" name="sitesearch" id="gwiki" value="$server" checked="checked" /><label for="gwiki">$sitename</label>
-	<input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
-  </div>
+	<p>
+		<label><input type="radio" name="sitesearch" value="$server" checked="checked" />$sitename</label>
+		<label><input type="radio" name="sitesearch" value="" />WWW</label>
+	</p>
 </form>
-<!-- SiteSearch Google -->
 EOT;
+
 		return $trygoogle;
 	}
 
@@ -263,19 +289,21 @@ EOT;
 	 * @return string
 	 */
 	private function fileCachedPage() {
-		global $wgTitle, $wgOut, $wgRequest;
+		$context = RequestContext::getMain();
 
-		if ( $wgOut->isDisabled() ) {
-			return ''; // Done already?
+		if ( $context->getOutput()->isDisabled() ) {
+			// Done already?
+			return '';
 		}
 
-		if ( $wgTitle ) { // use $wgTitle if we managed to set it
-			$t = $wgTitle->getPrefixedDBkey();
+		if ( $context->getTitle() ) {
+			// Use the main context's title if we managed to set it
+			$t = $context->getTitle()->getPrefixedDBkey();
 		} else {
-			# Fallback to the raw title URL param. We can't use the Title
-			# class is it may hit the interwiki table and give a DB error.
-			# We may get a cache miss due to not sanitizing the title though.
-			$t = str_replace( ' ', '_', $wgRequest->getVal( 'title' ) );
+			// Fallback to the raw title URL param. We can't use the Title
+			// class is it may hit the interwiki table and give a DB error.
+			// We may get a cache miss due to not sanitizing the title though.
+			$t = str_replace( ' ', '_', $context->getRequest()->getVal( 'title' ) );
 			if ( $t == '' ) { // fallback to main page
 				$t = Title::newFromText(
 					$this->msg( 'mainpage', 'Main Page' ) )->getPrefixedDBkey();
@@ -294,18 +322,20 @@ EOT;
 /**
  * @ingroup Database
  */
-class DBQueryError extends DBError {
+class DBQueryError extends DBExpectedError {
 	public $error, $errno, $sql, $fname;
 
 	/**
-	 * @param $db DatabaseBase
-	 * @param $error string
-	 * @param $errno int|string
-	 * @param $sql string
-	 * @param $fname string
+	 * @param DatabaseBase $db
+	 * @param string $error
+	 * @param int|string $errno
+	 * @param string $sql
+	 * @param string $fname
 	 */
 	function __construct( DatabaseBase $db, $error, $errno, $sql, $fname ) {
-		$message = "A database error has occurred. Did you forget to run maintenance/update.php after upgrading?  See: https://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
+		$message = "A database error has occurred. Did you forget to run " .
+			"maintenance/update.php after upgrading?  See: " .
+			"https://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
 			"Query: $sql\n" .
 			"Function: $fname\n" .
 			"Error: $errno $error\n";
@@ -380,7 +410,7 @@ class DBQueryError extends DBError {
 	 * sites using this option probably don't care much about "security by obscurity". Of course,
 	 * if $wgShowSQLErrors is true, the SQL query *is* shown.
 	 *
-	 * @return array: Keys are message keys; values are arrays of arguments for Html::element().
+	 * @return array Keys are message keys; values are arrays of arguments for Html::element().
 	 *   Array will be empty if users are not allowed to see any of these details at all.
 	 */
 	protected function getTechnicalDetails() {
@@ -405,7 +435,7 @@ class DBQueryError extends DBError {
 
 	/**
 	 * @param string $key Message key
-	 * @return string: English message text
+	 * @return string English message text
 	 */
 	private function getFallbackMessage( $key ) {
 		$messages = array(
@@ -416,12 +446,13 @@ This may indicate a bug in the software.',
 			'databaseerror-function' => 'Function: $1',
 			'databaseerror-error' => 'Error: $1',
 		);
+
 		return $messages[$key];
 	}
-
 }
 
 /**
  * @ingroup Database
  */
-class DBUnexpectedError extends DBError {}
+class DBUnexpectedError extends DBError {
+}

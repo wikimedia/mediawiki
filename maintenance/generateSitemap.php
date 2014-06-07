@@ -125,7 +125,6 @@ class GenerateSitemap extends Maintenance {
 	 */
 	public $findex;
 
-
 	/**
 	 * A resource pointing to a sitemap file
 	 *

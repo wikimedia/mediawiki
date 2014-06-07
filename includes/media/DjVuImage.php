@@ -3,7 +3,7 @@
  * DjVu image handler.
  *
  * Copyright © 2006 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,6 +35,11 @@
  */
 class DjVuImage {
 	/**
+	 * @const DJVUTXT_MEMORY_LIMIT Memory limit for the DjVu description software
+	 */
+	const DJVUTXT_MEMORY_LIMIT = 300000;
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $filename The DjVu file name.
@@ -44,16 +49,12 @@ class DjVuImage {
 	}
 
 	/**
-	 * @const DJVUTXT_MEMORY_LIMIT Memory limit for the DjVu description software
-	 */
-	const DJVUTXT_MEMORY_LIMIT = 300000;
-
-	/**
 	 * Check if the given file is indeed a valid DjVu image file
 	 * @return bool
 	 */
 	public function isValid() {
 		$info = $this->getInfo();
+
 		return $info !== false;
 	}
 
@@ -71,6 +72,7 @@ class DjVuImage {
 			return array( $width, $height, 'DjVu',
 				"width=\"$width\" height=\"$height\"" );
 		}
+
 		return false;
 	}
 
@@ -82,8 +84,11 @@ class DjVuImage {
 	function dump() {
 		$file = fopen( $this->mFilename, 'rb' );
 		$header = fread( $file, 12 );
-		// @todo FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
+		// @todo FIXME: Would be good to replace this extract() call with
+		// something that explicitly initializes local variables.
 		extract( unpack( 'a4magic/a4chunk/NchunkLength', $header ) );
+		/** @var string $chunk
+		 *  @var string $chunkLength */
 		echo "$chunk $chunkLength\n";
 		$this->dumpForm( $file, $chunkLength, 1 );
 		fclose( $file );
@@ -98,8 +103,11 @@ class DjVuImage {
 			if ( $chunkHeader == '' ) {
 				break;
 			}
-			// @todo FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
+			// @todo FIXME: Would be good to replace this extract() call with
+			// something that explicitly initializes local variables.
 			extract( unpack( 'a4chunk/NchunkLength', $chunkHeader ) );
+			/** @var string $chunk
+			 *  @var string $chunkLength */
 			echo str_repeat( ' ', $indent * 4 ) . "$chunk $chunkLength\n";
 
 			if ( $chunk == 'FORM' ) {
@@ -120,6 +128,7 @@ class DjVuImage {
 		wfRestoreWarnings();
 		if ( $file === false ) {
 			wfDebug( __METHOD__ . ": missing or failed file read\n" );
+
 			return false;
 		}
 
@@ -129,9 +138,14 @@ class DjVuImage {
 		if ( strlen( $header ) < 16 ) {
 			wfDebug( __METHOD__ . ": too short file header\n" );
 		} else {
-			// @todo FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
+			// @todo FIXME: Would be good to replace this extract() call with
+			// something that explicitly initializes local variables.
 			extract( unpack( 'a4magic/a4form/NformLength/a4subtype', $header ) );
 
+			/** @var string $magic
+			 *  @var string $subtype
+			 *  @var string $formLength
+			 *  @var string $formType */
 			if ( $magic != 'AT&T' ) {
 				wfDebug( __METHOD__ . ": not a DjVu file\n" );
 			} elseif ( $subtype == 'DJVU' ) {
@@ -145,6 +159,7 @@ class DjVuImage {
 			}
 		}
 		fclose( $file );
+
 		return $info;
 	}
 
@@ -153,8 +168,12 @@ class DjVuImage {
 		if ( strlen( $header ) < 8 ) {
 			return array( false, 0 );
 		} else {
-			// @todo FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
+			// @todo FIXME: Would be good to replace this extract() call with
+			// something that explicitly initializes local variables.
 			extract( unpack( 'a4chunk/Nlength', $header ) );
+
+			/** @var string $chunk
+			 *  @var string $length */
 			return array( $chunk, $length );
 		}
 	}
@@ -182,6 +201,7 @@ class DjVuImage {
 				$subtype = fread( $file, 4 );
 				if ( $subtype == 'DJVU' ) {
 					wfDebug( __METHOD__ . ": found first subpage\n" );
+
 					return $this->getPageInfo( $file, $length );
 				}
 				$this->skipChunk( $file, $length - 4 );
@@ -192,6 +212,7 @@ class DjVuImage {
 		} while ( $length != 0 && !feof( $file ) && ftell( $file ) - $start < $formLength );
 
 		wfDebug( __METHOD__ . ": multi-page DJVU file contained no pages\n" );
+
 		return false;
 	}
 
@@ -199,20 +220,24 @@ class DjVuImage {
 		list( $chunk, $length ) = $this->readChunk( $file );
 		if ( $chunk != 'INFO' ) {
 			wfDebug( __METHOD__ . ": expected INFO chunk, got '$chunk'\n" );
+
 			return false;
 		}
 
 		if ( $length < 9 ) {
 			wfDebug( __METHOD__ . ": INFO should be 9 or 10 bytes, found $length\n" );
+
 			return false;
 		}
 		$data = fread( $file, $length );
 		if ( strlen( $data ) < $length ) {
 			wfDebug( __METHOD__ . ": INFO chunk cut off\n" );
+
 			return false;
 		}
 
-		// @todo FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
+		// @todo FIXME: Would be good to replace this extract() call with
+		// something that explicitly initializes local variables.
 		extract( unpack(
 			'nwidth/' .
 			'nheight/' .
@@ -220,8 +245,16 @@ class DjVuImage {
 			'Cmajor/' .
 			'vresolution/' .
 			'Cgamma', $data ) );
+
 		# Newer files have rotation info in byte 10, but we don't use it yet.
 
+		/** @var string $width
+		 *  @var string $height
+		 *  @var string $major
+		 *  @var string $minor
+		 *  @var string $resolution
+		 *  @var string $length
+		 *  @var string $gamma */
 		return array(
 			'width' => $width,
 			'height' => $height,
@@ -284,17 +317,21 @@ EOR;
 			}
 		}
 		wfProfileOut( __METHOD__ );
+
 		return $xml;
 	}
 
 	function pageTextCallback( $matches ) {
 		# Get rid of invalid UTF-8, strip control characters
-		return '<PAGE value="' . htmlspecialchars( UtfNormal::cleanUp( $matches[1] ) ) . '" />';
+		$val = htmlspecialchars( UtfNormal::cleanUp( stripcslashes( $matches[1] ) ) );
+		$val = str_replace( array( "\n", '�' ), array( '&#10;', '' ), $val );
+		return '<PAGE value="' . $val . '" />';
 	}
 
 	/**
 	 * Hack to temporarily work around djvutoxml bug
-	 * @return bool|string
+	 * @param $dump
+	 * @return string
 	 */
 	function convertDumpToXML( $dump ) {
 		if ( strval( $dump ) == '' ) {
@@ -334,6 +371,7 @@ EOT;
 
 				if ( preg_match( '/^ *DIRM.*indirect/', $line ) ) {
 					wfDebug( "Indirect multi-page DjVu document, bad for server!\n" );
+
 					return false;
 				}
 				if ( preg_match( '/^ *FORM:DJVU/', $line ) ) {
@@ -352,6 +390,7 @@ EOT;
 		}
 
 		$xml .= "</BODY>\n</DjVuXML>\n";
+
 		return $xml;
 	}
 
@@ -367,8 +406,13 @@ EOT;
 				break;
 			}
 
-			if ( preg_match( '/^ *INFO *\[\d*\] *DjVu *(\d+)x(\d+), *\w*, *(\d+) *dpi, *gamma=([0-9.-]+)/', $line, $m ) ) {
-				$xml .= Xml::tags( 'OBJECT',
+			if ( preg_match(
+				'/^ *INFO *\[\d*\] *DjVu *(\d+)x(\d+), *\w*, *(\d+) *dpi, *gamma=([0-9.-]+)/',
+				$line,
+				$m
+			) ) {
+				$xml .= Xml::tags(
+					'OBJECT',
 					array(
 						#'data' => '',
 						#'type' => 'image/x.djvu',
@@ -377,13 +421,15 @@ EOT;
 						#'usemap' => '',
 					),
 					"\n" .
-					Xml::element( 'PARAM', array( 'name' => 'DPI', 'value' => $m[3] ) ) . "\n" .
-					Xml::element( 'PARAM', array( 'name' => 'GAMMA', 'value' => $m[4] ) ) . "\n"
+						Xml::element( 'PARAM', array( 'name' => 'DPI', 'value' => $m[3] ) ) . "\n" .
+						Xml::element( 'PARAM', array( 'name' => 'GAMMA', 'value' => $m[4] ) ) . "\n"
 				) . "\n";
+
 				return true;
 			}
 			$line = strtok( "\n" );
 		}
+
 		# Not found
 		return false;
 	}

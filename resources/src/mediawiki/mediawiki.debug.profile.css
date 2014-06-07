@@ -1,0 +1,46 @@
+
+.mw-debug-profile-tipsy .tipsy-inner {
+	/* undo max-width from vector on .tipsy-inner */
+	max-width: none;
+	/* needed for some browsers to provide space for the scrollbar without wrapping text */
+	min-width: 100%;
+	max-height: 150px;
+	overflow-y: auto;
+}
+
+.mw-debug-profile-underline {
+	stroke-width: 1;
+	stroke: #dfdfdf;
+}
+
+.mw-debug-profile-period {
+	fill: red;
+}
+
+/* connecting line between endpoints on long events */
+.mw-debug-profile-period line {
+	stroke: red;
+	stroke-width: 2;
+}
+
+.mw-debug-profile-tipsy,
+.mw-debug-profile-timeline text {
+	color: #444;
+	fill: #444;
+	/* using em's causes the two locations to have different sizes */
+	font-size: 12px;
+	font-family: sans-serif;
+}
+
+.mw-debug-profile-meta,
+.mw-debug-profile-timeline tspan {
+	/* using em's causes the two locations to have different sizes */
+	font-size: 10px;
+}
+
+.mw-debug-profile-no-data {
+	text-align: center;
+	padding-top: 5em;
+	font-weight: bold;
+	font-size: 1.2em;
+}

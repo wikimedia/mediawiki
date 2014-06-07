@@ -36,6 +36,9 @@ class SpecialPrefixindex extends SpecialAllpages {
 
 	protected $hideRedirects = false;
 
+	// number of columns in output table
+	protected $columns = 3;
+
 	// Inherit $maxPerPage
 
 	function __construct() {
@@ -63,10 +66,11 @@ class SpecialPrefixindex extends SpecialAllpages {
 		$namespace = (int)$ns; // if no namespace given, use 0 (NS_MAIN).
 		$this->hideRedirects = $request->getBool( 'hideredirects', $this->hideRedirects );
 		$this->stripPrefix = $request->getBool( 'stripprefix', $this->stripPrefix );
+		$this->columns = $request->getInt( 'columns', $this->columns );
 
 		$namespaces = $wgContLang->getNamespaces();
 		$out->setPageTitle(
-			( $namespace > 0 && in_array( $namespace, array_keys( $namespaces ) ) )
+			( $namespace > 0 && array_key_exists( $namespace, $namespaces ) )
 				? $this->msg( 'prefixindex-namespace', str_replace( '_', ' ', $namespaces[$namespace] ) )
 				: $this->msg( 'prefixindex' )
 		);
@@ -101,7 +105,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 
 		$out = Xml::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
 		$out .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
-		$out .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() );
+		$out .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
 		$out .= Xml::openElement( 'fieldset' );
 		$out .= Xml::element( 'legend', null, $this->msg( 'allpages' )->text() );
 		$out .= Xml::openElement( 'table', array( 'id' => 'nsselect', 'class' => 'allpages' ) );
@@ -166,7 +170,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 
 		if ( !$prefixList || !$fromList ) {
 			$out = $this->msg( 'allpagesbadtitle' )->parseAsBlock();
-		} elseif ( !in_array( $namespace, array_keys( $namespaces ) ) ) {
+		} elseif ( !array_key_exists( $namespace, $namespaces ) ) {
 			// Show errormessage and reset to NS_MAIN
 			$out = $this->msg( 'allpages-bad-ns', $namespace )->parse();
 			$namespace = NS_MAIN;
@@ -203,7 +207,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 
 			$n = 0;
 			if ( $res->numRows() > 0 ) {
-				$out = Xml::openElement( 'table', array( 'id' => 'mw-prefixindex-list-table' ) );
+				$out = Xml::openElement( 'table', array( 'class' => 'mw-prefixindex-list-table' ) );
 
 				$prefixLength = strlen( $prefix );
 				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
@@ -224,17 +228,17 @@ class SpecialPrefixindex extends SpecialAllpages {
 					} else {
 						$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
 					}
-					if ( $n % 3 == 0 ) {
+					if ( $n % $this->columns == 0 ) {
 						$out .= '<tr>';
 					}
 					$out .= "<td>$link</td>";
 					$n++;
-					if ( $n % 3 == 0 ) {
+					if ( $n % $this->columns == 0 ) {
 						$out .= '</tr>';
 					}
 				}
 
-				if ( $n % 3 != 0 ) {
+				if ( $n % $this->columns != 0 ) {
 					$out .= '</tr>';
 				}
 
@@ -249,7 +253,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 			$out2 = '';
 		} else {
 			$nsForm = $this->namespacePrefixForm( $namespace, $prefix );
-			$self = $this->getTitle();
+			$self = $this->getPageTitle();
 			$out2 = Xml::openElement( 'table', array( 'id' => 'mw-prefixindex-nav-table' ) ) .
 				'<tr>
 					<td>' .
@@ -265,6 +269,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 					'prefix' => $prefix,
 					'hideredirects' => $this->hideRedirects,
 					'stripprefix' => $this->stripPrefix,
+					'columns' => $this->columns,
 				);
 
 				if ( $namespace || $prefix == '' ) {

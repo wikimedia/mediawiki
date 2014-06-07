@@ -34,6 +34,7 @@ class FormOptionsTest extends MediaWikiTestCase {
 		$this->object->add( 'string1', 'string one' );
 		$this->object->add( 'string2', 'string two' );
 		$this->object->add( 'integer', 0 );
+		$this->object->add( 'float', 0.0 );
 		$this->object->add( 'intnull', 0, FormOptions::INTNULL );
 	}
 
@@ -44,6 +45,9 @@ class FormOptionsTest extends MediaWikiTestCase {
 	}
 	private function assertGuessInt( $data ) {
 		$this->guess( FormOptions::INT, $data );
+	}
+	private function assertGuessFloat( $data ) {
+		$this->guess( FormOptions::FLOAT, $data );
 	}
 	private function assertGuessString( $data ) {
 		$this->guess( FormOptions::STRING, $data );
@@ -60,6 +64,7 @@ class FormOptionsTest extends MediaWikiTestCase {
 
 	/**
 	 * Reuse helpers above assertGuessBoolean assertGuessInt assertGuessString
+	 * @covers FormOptions::guessType
 	 */
 	public function testGuessTypeDetection() {
 		$this->assertGuessBoolean( true );
@@ -70,20 +75,27 @@ class FormOptionsTest extends MediaWikiTestCase {
 		$this->assertGuessInt( 5 );
 		$this->assertGuessInt( 0x0F );
 
+		$this->assertGuessFloat( 0.0 );
+		$this->assertGuessFloat( 1.5 );
+		$this->assertGuessFloat( 1e3 );
+
 		$this->assertGuessString( 'true' );
 		$this->assertGuessString( 'false' );
 		$this->assertGuessString( '5' );
 		$this->assertGuessString( '0' );
+		$this->assertGuessString( '1.5' );
 	}
 
 	/**
 	 * @expectedException MWException
+	 * @covers FormOptions::guessType
 	 */
 	public function testGuessTypeOnArrayThrowException() {
 		$this->object->guessType( array( 'foo' ) );
 	}
 	/**
 	 * @expectedException MWException
+	 * @covers FormOptions::guessType
 	 */
 	public function testGuessTypeOnNullThrowException() {
 		$this->object->guessType( null );

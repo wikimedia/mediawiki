@@ -32,7 +32,6 @@ $wgIgnoredMessages = array(
 	'accesskey-pt-watchlist',
 	'accesskey-pt-mycontris',
 	'accesskey-pt-login',
-	'accesskey-pt-anonlogin',
 	'accesskey-pt-logout',
 	'accesskey-ca-talk',
 	'accesskey-ca-edit',
@@ -124,6 +123,7 @@ $wgIgnoredMessages = array(
 	'recentchanges-url',
 	'recentchangestext',
 	'revision-info-current',
+	'createaccount-hook-aborted',
 	'revision-nav',
 	'rfcurl',
 	'shareddescriptionfollows',
@@ -131,6 +131,7 @@ $wgIgnoredMessages = array(
 	'signupstart',
 	'signupend',
 	'signupend-https',
+	'emailsender',
 	'sitenotice',
 	'sitesubtitle',
 	'sitetitle',
@@ -148,7 +149,6 @@ $wgIgnoredMessages = array(
 	'booksources-summary',
 	'categories-summary',
 	'blocklist-summary',
-	'protectedtitles-summary',
 	'listusers-summary',
 	'longpages-summary',
 	'preferences-summary',
@@ -179,7 +179,7 @@ $wgIgnoredMessages = array(
 	'userrights-summary',
 	'brokenredirects-summary',
 	'deadendpages-summary',
-	'protectedpages-summary',
+	'protectedpages-unknown-reason',
 	'disambiguations-summary',
 	'pageswithprop-summary',
 	'doubleredirects-summary',
@@ -271,16 +271,16 @@ $wgIgnoredMessages = array(
 	'helplogin-url',
 	'autocomment-prefix',
 	'move-redirect-text',
+	'interlanguage-link-title-langonly',
+	'createaccount-hook-abort',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
 $wgOptionalMessages = array(
-	'linkprefix',
 	'feed-atom',
 	'feed-rss',
 	'unit-pixel',
 	'userrights-irreversible-marker',
-	'tog-noconvertlink',
 	'variantname-zh-hans',
 	'variantname-zh-hant',
 	'variantname-zh-cn',
@@ -331,6 +331,7 @@ $wgOptionalMessages = array(
 	'print.css',
 	'noscript.css',
 	'group-autoconfirmed.css',
+	'group-user.css',
 	'group-bot.css',
 	'group-sysop.css',
 	'group-bureaucrat.css',
@@ -340,6 +341,7 @@ $wgOptionalMessages = array(
 	'modern.js',
 	'vector.js',
 	'group-autoconfirmed.js',
+	'group-user.js',
 	'group-bot.js',
 	'group-sysop.js',
 	'group-bureaucrat.js',
@@ -456,6 +458,7 @@ $wgOptionalMessages = array(
 	'hebrew-calendar-m11-gen',
 	'hebrew-calendar-m12-gen',
 	'version-api',
+	'version-version',
 	'version-svn-revision',
 	'semicolon-separator',
 	'comma-separator',
@@ -486,7 +489,7 @@ $wgOptionalMessages = array(
 	'version-entrypoints-scriptpath',
 	'mergehistory-revisionrow',
 	'categoryviewer-pagedlinks',
-	'undelete-revisionrow',
+	'undelete-revision-row',
 	'pageinfo-redirects-value',
 	'created', // @deprecated. Remove in MediaWiki 1.23.
 	'changed', // @deprecated. Remove in MediaWiki 1.23.
@@ -494,7 +497,9 @@ $wgOptionalMessages = array(
 	'limitreport-ppgeneratednodes-value',
 	'limitreport-expansiondepth-value',
 	'limitreport-expensivefunctioncount-value',
-	'tooltip-iwiki',
+	'interlanguage-link-title',
+	'img-lang-opt',
+	'recentchanges-legend-plusminus',
 );
 
 /** Exif messages, which may be set as optional in several checks, but are generally mandatory */

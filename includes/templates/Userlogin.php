@@ -113,16 +113,15 @@ class UserloginTemplate extends BaseTemplate {
 
 			<?php
 			if ( isset( $this->data['usedomain'] ) && $this->data['usedomain'] ) {
-				$doms = "";
+				$select = new XmlSelect( 'wpDomain', false, $this->data['domain'] );
+				$select->setAttribute( 'tabindex', 3 );
 				foreach ( $this->data['domainnames'] as $dom ) {
-					$doms .= "<option>" . htmlspecialchars( $dom ) . "</option>";
+					$select->addOption( $dom );
 				}
 			?>
 				<div id="mw-user-domain-section">
 					<label for='wpDomain'><?php $this->msg( 'yourdomainname' ); ?></label>
-					<select name="wpDomain" value="<?php $this->text( 'domain' ); ?>" tabindex="3">
-						<?php echo $doms; ?>
-					</select>
+					<?php echo $select->getHTML(); ?>
 				</div>
 			<?php } ?>
 
@@ -147,10 +146,10 @@ class UserloginTemplate extends BaseTemplate {
 
 			<div>
 				<?php
-				echo Html::input( 'wpLoginAttempt', $this->getMsg( 'login' )->text(), 'submit', array(
+				echo Html::input( 'wpLoginAttempt', $this->getMsg( 'pt-login-button' )->text(), 'submit', array(
 					'id' => 'wpLoginAttempt',
 					'tabindex' => '6',
-					'class' => 'mw-ui-button mw-ui-big mw-ui-block mw-ui-primary'
+					'class' => 'mw-ui-button mw-ui-big mw-ui-block mw-ui-constructive'
 				) );
 				?>
 			</div>
@@ -170,11 +169,11 @@ class UserloginTemplate extends BaseTemplate {
 			<?php if ( $this->haveData( 'createOrLoginHref' ) ) { ?>
 				<?php if ( $this->data['loggedin'] ) { ?>
 					<div id="mw-createaccount-another">
-						<h3 id="mw-userloginlink"><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button"><?php $this->msg( 'userlogin-createanother' ); ?></a></h3>
+						<a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button"><?php $this->msg( 'userlogin-createanother' ); ?></a>
 					</div>
 				<?php } else { ?>
 					<div id="mw-createaccount-cta">
-						<h3 id="mw-userloginlink"><?php $this->msg( 'userlogin-noaccount' ); ?><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button mw-ui-constructive"><?php $this->msg( 'userlogin-joinproject' ); ?></a></h3>
+						<?php $this->msg( 'userlogin-noaccount' ); ?><a href="<?php $this->text( 'createOrLoginHref' ); ?>" id="mw-createaccount-join" tabindex="7"  class="mw-ui-button mw-ui-progressive"><?php $this->msg( 'userlogin-joinproject' ); ?></a>
 					</div>
 				<?php } ?>
 			<?php } ?>

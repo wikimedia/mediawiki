@@ -149,6 +149,14 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$this->assertEquals( "ALTER TABLE foo ADD COLUMN foo_bar INTEGER DEFAULT 42",
 			$this->replaceVars( "ALTER TABLE foo\nADD COLUMN foo_bar int(10) unsigned DEFAULT 42" )
 		);
+
+		$this->assertEquals( "DROP INDEX foo",
+			$this->replaceVars( "DROP INDEX /*i*/foo ON /*_*/bar" )
+		);
+
+		$this->assertEquals( "DROP INDEX foo -- dropping index",
+			$this->replaceVars( "DROP INDEX /*i*/foo ON /*_*/bar -- dropping index" )
+		);
 	}
 
 	/**

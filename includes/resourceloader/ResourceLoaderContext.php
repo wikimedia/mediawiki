@@ -83,8 +83,6 @@ class ResourceLoaderContext {
 	 */
 	public static function expandModuleNames( $modules ) {
 		$retval = array();
-		// For backwards compatibility with an earlier hack, replace ! with .
-		$modules = str_replace( '!', '.', $modules );
 		$exploded = explode( '|', $modules );
 		foreach ( $exploded as $group ) {
 			if ( strpos( $group, ',' ) === false ) {
@@ -144,11 +142,8 @@ class ResourceLoaderContext {
 	 */
 	public function getLanguage() {
 		if ( $this->language === null ) {
-			global $wgLang;
-			$this->language = $this->request->getVal( 'lang' );
-			if ( !$this->language ) {
-				$this->language = $wgLang->getCode();
-			}
+			// Must be a valid language code after this point (bug 62849)
+			$this->language = RequestContext::sanitizeLangCode( $this->request->getVal( 'lang' ) );
 		}
 		return $this->language;
 	}
@@ -160,7 +155,7 @@ class ResourceLoaderContext {
 		if ( $this->direction === null ) {
 			$this->direction = $this->request->getVal( 'dir' );
 			if ( !$this->direction ) {
-				# directionality based on user language (see bug 6100)
+				// Determine directionality based on user language (bug 6100)
 				$this->direction = Language::factory( $this->getLanguage() )->getDir();
 			}
 		}

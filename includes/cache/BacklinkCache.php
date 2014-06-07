@@ -48,6 +48,7 @@ class BacklinkCache {
 	/**
 	 * Multi dimensions array representing batches. Keys are:
 	 *  > (string) links table name
+	 *   > (int) batch size
 	 *    > 'numRows' : Number of rows for this link table
 	 *    > 'batches' : array( $start, $end )
 	 *
@@ -107,6 +108,7 @@ class BacklinkCache {
 		if ( !self::$cache->has( $dbKey, 'obj', 3600 ) ) {
 			self::$cache->set( $dbKey, 'obj', new self( $title ) );
 		}
+
 		return self::$cache->get( $dbKey, 'obj' );
 	}
 
@@ -148,15 +150,16 @@ class BacklinkCache {
 		if ( !isset( $this->db ) ) {
 			$this->db = wfGetDB( DB_SLAVE );
 		}
+
 		return $this->db;
 	}
 
 	/**
 	 * Get the backlinks for a given table. Cached in process memory only.
-	 * @param $table String
-	 * @param $startId Integer|false
-	 * @param $endId Integer|false
-	 * @param $max Integer|INF
+	 * @param string $table
+	 * @param int|bool $startId
+	 * @param int|bool $endId
+	 * @param int|INF $max
 	 * @return TitleArrayFromResult
 	 */
 	public function getLinks( $table, $startId = false, $endId = false, $max = INF ) {
@@ -169,16 +172,17 @@ class BacklinkCache {
 	 * @param $startId Integer|false
 	 * @param $endId Integer|false
 	 * @param $max Integer|INF
+	 * @param $select string 'all' or 'ids'
 	 * @return ResultWrapper
 	 */
-	protected function queryLinks( $table, $startId, $endId, $max ) {
+	protected function queryLinks( $table, $startId, $endId, $max, $select = 'all' ) {
 		wfProfileIn( __METHOD__ );
 
 		$fromField = $this->getPrefix( $table ) . '_from';
 
 		if ( !$startId && !$endId && is_infinite( $max )
-			&& isset( $this->fullResultCache[$table] ) )
-		{
+			&& isset( $this->fullResultCache[$table] )
+		) {
 			wfDebug( __METHOD__ . ": got results from cache\n" );
 			$res = $this->fullResultCache[$table];
 		} else {
@@ -192,20 +196,34 @@ class BacklinkCache {
 			if ( $endId ) {
 				$conds[] = "$fromField <= " . intval( $endId );
 			}
-			$options = array( 'STRAIGHT_JOIN', 'ORDER BY' => $fromField );
+			$options = array( 'ORDER BY' => $fromField );
 			if ( is_finite( $max ) && $max > 0 ) {
 				$options['LIMIT'] = $max;
 			}
 
-			$res = $this->getDB()->select(
-				array( $table, 'page' ),
-				array( 'page_namespace', 'page_title', 'page_id' ),
-				$conds,
-				__METHOD__,
-				$options
-			);
+			if ( $select === 'ids' ) {
+				// Just select from the backlink table and ignore the page JOIN
+				$res = $this->getDB()->select(
+					$table,
+					array( $this->getPrefix( $table ) . '_from AS page_id' ),
+					array_filter( $conds, function ( $clause ) { // kind of janky
+						return !preg_match( '/(\b|=)page_id(\b|=)/', $clause );
+					} ),
+					__METHOD__,
+					$options
+				);
+			} else {
+				// Select from the backlink table and JOIN with page title information
+				$res = $this->getDB()->select(
+					array( $table, 'page' ),
+					array( 'page_namespace', 'page_title', 'page_id' ),
+					$conds,
+					__METHOD__,
+					array_merge( array( 'STRAIGHT_JOIN' ), $options )
+				);
+			}
 
-			if ( !$startId && !$endId && $res->numRows() < $max ) {
+			if ( $select === 'all' && !$startId && !$endId && $res->numRows() < $max ) {
 				// The full results fit within the limit, so cache them
 				$this->fullResultCache[$table] = $res;
 			} else {
@@ -214,6 +232,7 @@ class BacklinkCache {
 		}
 
 		wfProfileOut( __METHOD__ );
+
 		return $res;
 	}
 
@@ -255,8 +274,6 @@ class BacklinkCache {
 	protected function getConditions( $table ) {
 		$prefix = $this->getPrefix( $table );
 
-		// @todo FIXME: imagelinks and categorylinks do not rely on getNamespace,
-		// they could be moved up for nicer case statements
 		switch ( $table ) {
 			case 'pagelinks':
 			case 'templatelinks':
@@ -278,15 +295,10 @@ class BacklinkCache {
 				);
 				break;
 			case 'imagelinks':
-				$conds = array(
-					'il_to' => $this->title->getDBkey(),
-					'page_id=il_from'
-				);
-				break;
 			case 'categorylinks':
 				$conds = array(
-					'cl_to' => $this->title->getDBkey(),
-					'page_id=cl_from',
+					"{$prefix}_to" => $this->title->getDBkey(),
+					"page_id={$prefix}_from"
 				);
 				break;
 			default:
@@ -316,11 +328,12 @@ class BacklinkCache {
 	 * @return integer
 	 */
 	public function getNumLinks( $table, $max = INF ) {
-		global $wgMemc;
+		global $wgMemc, $wgUpdateRowsPerJob;
 
 		// 1) try partition cache ...
 		if ( isset( $this->partitionCache[$table] ) ) {
 			$entry = reset( $this->partitionCache[$table] );
+
 			return min( $max, $entry['numRows'] );
 		}
 
@@ -338,9 +351,17 @@ class BacklinkCache {
 		}
 
 		// 4) fetch from the database ...
-		$count = $this->getLinks( $table, false, false, $max )->count();
-		if ( $count < $max ) { // full count
-			$wgMemc->set( $memcKey, $count, self::CACHE_EXPIRY );
+		if ( is_infinite( $max ) ) { // no limit at all
+			// Use partition() since it will batch the query and skip the JOIN.
+			// Use $wgUpdateRowsPerJob just to encourage cache reuse for jobs.
+			$this->partition( $table, $wgUpdateRowsPerJob ); // updates $this->partitionCache
+			return $this->partitionCache[$table][$wgUpdateRowsPerJob]['numRows'];
+		} else { // probably some sane limit
+			// Fetch the full title info, since the caller will likely need it next
+			$count = $this->getLinks( $table, false, false, $max )->count();
+			if ( $count < $max ) { // full count
+				$wgMemc->set( $memcKey, $count, self::CACHE_EXPIRY );
+			}
 		}
 
 		return min( $max, $count );
@@ -361,6 +382,7 @@ class BacklinkCache {
 		// 1) try partition cache ...
 		if ( isset( $this->partitionCache[$table][$batchSize] ) ) {
 			wfDebug( __METHOD__ . ": got from partition cache\n" );
+
 			return $this->partitionCache[$table][$batchSize]['batches'];
 		}
 
@@ -371,6 +393,7 @@ class BacklinkCache {
 		if ( isset( $this->fullResultCache[$table] ) ) {
 			$cacheEntry = $this->partitionResult( $this->fullResultCache[$table], $batchSize );
 			wfDebug( __METHOD__ . ": got from full result cache\n" );
+
 			return $cacheEntry['batches'];
 		}
 
@@ -386,6 +409,7 @@ class BacklinkCache {
 		if ( is_array( $memcValue ) ) {
 			$cacheEntry = $memcValue;
 			wfDebug( __METHOD__ . ": got from memcached $memcKey\n" );
+
 			return $cacheEntry['batches'];
 		}
 
@@ -396,13 +420,13 @@ class BacklinkCache {
 		$selectSize = max( $batchSize, 200000 - ( 200000 % $batchSize ) );
 		$start = false;
 		do {
-			$res = $this->queryLinks( $table, $start, false, $selectSize );
+			$res = $this->queryLinks( $table, $start, false, $selectSize, 'ids' );
 			$partitions = $this->partitionResult( $res, $batchSize, false );
 			// Merge the link count and range partitions for this chunk
 			$cacheEntry['numRows'] += $partitions['numRows'];
 			$cacheEntry['batches'] = array_merge( $cacheEntry['batches'], $partitions['batches'] );
 			if ( count( $partitions['batches'] ) ) {
-				list( $lStart, $lEnd ) = end( $partitions['batches'] );
+				list( , $lEnd ) = end( $partitions['batches'] );
 				$start = $lEnd + 1; // pick up after this inclusive range
 			}
 		} while ( $partitions['numRows'] >= $selectSize );
@@ -420,6 +444,7 @@ class BacklinkCache {
 		$wgMemc->set( $memcKey, $cacheEntry['numRows'], self::CACHE_EXPIRY );
 
 		wfDebug( __METHOD__ . ": got from database\n" );
+
 		return $cacheEntry['batches'];
 	}
 

@@ -8,8 +8,8 @@ jQuery( function ( $ ) {
 			.attr( 'tabindex', '0' )
 			// For accessibility, show the menu when the h3 is clicked (bug 24298/46486)
 			.on( 'click keypress', function ( e ) {
-				if( e.type === 'click' || e.which === 13 ) {
-					$el.find( '.menu:first' ).toggleClass( 'menuForceShow' );
+				if ( e.type === 'click' || e.which === 13 ) {
+					$el.toggleClass( 'menuForceShow' );
 					e.preventDefault();
 				}
 			} )

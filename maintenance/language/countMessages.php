@@ -50,7 +50,7 @@ class CountMessages extends Maintenance {
 			// print "$code: $numMessages\n";
 			$total += $numMessages;
 			if ( $numMessages > 0 ) {
-				$nonZero ++;
+				$nonZero++;
 			}
 		}
 		$this->output( "\nTotal: $total\n" );

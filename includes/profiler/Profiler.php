@@ -96,7 +96,7 @@ class ProfileSection {
  */
 class Profiler {
 	protected $mStack = array(), $mWorkStack = array(), $mCollated = array(),
-		$mCalls = array(), $mTotals = array();
+		$mCalls = array(), $mTotals = array(), $mPeriods = array();
 	protected $mTimeMetric = 'wall';
 	protected $mProfileID = false, $mCollateDone = false, $mTemplated = false;
 
@@ -227,15 +227,17 @@ class Profiler {
 		$bit = array_pop( $this->mWorkStack );
 
 		if ( !$bit ) {
-			$this->debug( "Profiling error, !\$bit: $functionname\n" );
+			$this->debugGroup( 'profileerror', "Profiling error, !\$bit: $functionname" );
 		} else {
 			if ( $functionname == 'close' ) {
-				$message = "Profile section ended by close(): {$bit[0]}";
-				$this->debug( "$message\n" );
-				$this->mStack[] = array( $message, 0, 0.0, 0, 0.0, 0 );
+				if ( $bit[0] != '-total' ) {
+					$message = "Profile section ended by close(): {$bit[0]}";
+					$this->debugGroup( 'profileerror', $message );
+					$this->mStack[] = array( $message, 0, 0.0, 0, 0.0, 0 );
+				}
 			} elseif ( $bit[0] != $functionname ) {
 				$message = "Profiling error: in({$bit[0]}), out($functionname)";
-				$this->debug( "$message\n" );
+				$this->debugGroup( 'profileerror', $message );
 				$this->mStack[] = array( $message, 0, 0.0, 0, 0.0, 0 );
 			}
 			$bit[] = $time;
@@ -283,8 +285,8 @@ class Profiler {
 			return; // short-circuit
 		// @TODO: hardcoded check is a tad janky (what about FOR UPDATE?)
 		} elseif ( !preg_match( '/^query-m: (?!SELECT)/', $method )
-			&& $realtime < $this->mDBLockThreshold )
-		{
+			&& $realtime < $this->mDBLockThreshold
+		) {
 			return; // not a DB master query nor slow enough
 		}
 		$now = microtime( true );
@@ -324,7 +326,7 @@ class Profiler {
 					list( $method, $realtime ) = $info;
 					$msg .= sprintf( "%d\t%.6f\t%s\n", $i, $realtime, $method );
 				}
-				wfDebugLog( 'DBPerformance', $msg );
+				$this->debugGroup( 'DBPerformance', $msg );
 			}
 			unset( $this->mDBTrxHoldingLocks[$name] );
 			unset( $this->mDBTrxMethodTimes[$name] );
@@ -556,6 +558,7 @@ class Profiler {
 				$this->mMin[$fname] = 1 << 24;
 				$this->mMax[$fname] = 0;
 				$this->mOverhead[$fname] = 0;
+				$this->mPeriods[$fname] = array();
 			}
 
 			$this->mCollated[$fname] += $elapsed;
@@ -564,6 +567,7 @@ class Profiler {
 			$this->mMin[$fname] = min( $this->mMin[$fname], $elapsed );
 			$this->mMax[$fname] = max( $this->mMax[$fname], $elapsed );
 			$this->mOverhead[$fname] += $subcalls;
+			$this->mPeriods[$fname][] = compact( 'start', 'end', 'memory', 'subcalls' );
 		}
 
 		$this->mCalls['-overhead-total'] = $profileCount;
@@ -606,6 +610,37 @@ class Profiler {
 		$prof .= "\nTotal: $total\n\n";
 
 		return $prof;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getRawData() {
+		$this->collateData();
+
+		$profile = array();
+		$total = isset( $this->mCollated['-total'] ) ? $this->mCollated['-total'] : 0;
+		foreach ( $this->mCollated as $fname => $elapsed ) {
+			$periods = array();
+			foreach ( $this->mPeriods[$fname] as $period ) {
+				$period['start'] *= 1000;
+				$period['end'] *= 1000;
+				$periods[] = $period;
+			}
+			$profile[] = array(
+				'name' => $fname,
+				'calls' => $this->mCalls[$fname],
+				'elapsed' => $elapsed * 1000,
+				'percent' => $total ? 100. * $elapsed / $total : 0,
+				'memory' => $this->mMemory[$fname],
+				'min' => $this->mMin[$fname] * 1000,
+				'max' => $this->mMax[$fname] * 1000,
+				'overhead' => $this->mOverhead[$fname],
+				'periods' => $periods,
+			);
+		}
+
+		return $profile;
 	}
 
 	/**
@@ -717,6 +752,18 @@ class Profiler {
 	function debug( $s ) {
 		if ( function_exists( 'wfDebug' ) ) {
 			wfDebug( $s );
+		}
+	}
+
+	/**
+	 * Add an entry in the debug log group
+	 *
+	 * @param string $group Group to send the message to
+	 * @param string $s to output
+	 */
+	function debugGroup( $group, $s ) {
+		if ( function_exists( 'wfDebugLog' ) ) {
+			wfDebugLog( $group, $s );
 		}
 	}
 

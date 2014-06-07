@@ -29,16 +29,27 @@
  * @ingroup FileRepo
  */
 class LocalRepo extends FileRepo {
-	var $fileFactory           = array( 'LocalFile'   , 'newFromTitle' );
-	var $fileFactoryKey        = array( 'LocalFile'   , 'newFromKey'   );
-	var $fileFromRowFactory    = array( 'LocalFile'   , 'newFromRow'   );
-	var $oldFileFactory        = array( 'OldLocalFile', 'newFromTitle' );
-	var $oldFileFactoryKey     = array( 'OldLocalFile', 'newFromKey'   );
-	var $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow'   );
+	/** @var array */
+	protected $fileFactory = array( 'LocalFile', 'newFromTitle' );
+
+	/** @var array */
+	protected $fileFactoryKey = array( 'LocalFile', 'newFromKey' );
+
+	/** @var array */
+	protected $fileFromRowFactory = array( 'LocalFile', 'newFromRow' );
+
+	/** @var array */
+	protected $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow' );
+
+	/** @var array */
+	protected $oldFileFactory = array( 'OldLocalFile', 'newFromTitle' );
+
+	/** @var array */
+	protected $oldFileFactoryKey = array( 'OldLocalFile', 'newFromKey' );
 
 	/**
 	 * @throws MWException
-	 * @param $row
+	 * @param array $row
 	 * @return LocalFile
 	 */
 	function newFileFromRow( $row ) {
@@ -52,8 +63,8 @@ class LocalRepo extends FileRepo {
 	}
 
 	/**
-	 * @param $title
-	 * @param $archiveName
+	 * @param Title $title
+	 * @param string $archiveName
 	 * @return OldLocalFile
 	 */
 	function newFromArchiveName( $title, $archiveName ) {
@@ -66,7 +77,7 @@ class LocalRepo extends FileRepo {
 	 * interleave database locks with file operations, which is potentially a
 	 * remote operation.
 	 *
-	 * @param $storageKeys array
+	 * @param array $storageKeys
 	 *
 	 * @return FileRepoStatus
 	 */
@@ -97,6 +108,7 @@ class LocalRepo extends FileRepo {
 			}
 			$dbw->commit( __METHOD__ );
 		}
+
 		return $status;
 	}
 
@@ -111,6 +123,7 @@ class LocalRepo extends FileRepo {
 		$options = ( $lock === 'lock' ) ? array( 'FOR UPDATE' ) : array();
 
 		$dbw = $this->getMasterDB();
+
 		return (bool)$dbw->selectField( 'filearchive', '1',
 			array( 'fa_storage_group' => 'deleted', 'fa_storage_key' => $key ),
 			__METHOD__, $options
@@ -131,6 +144,7 @@ class LocalRepo extends FileRepo {
 		$ext = File::normalizeExtension( substr( $key, strcspn( $key, '.' ) + 1 ) );
 
 		$dbw = $this->getMasterDB();
+
 		return (bool)$dbw->selectField( 'oldimage', '1',
 			array( 'oi_sha1' => $sha1,
 				'oi_archive_name ' . $dbw->buildLike( $dbw->anyString(), ".$ext" ),
@@ -152,7 +166,7 @@ class LocalRepo extends FileRepo {
 	/**
 	 * Checks if there is a redirect named as $title
 	 *
-	 * @param $title Title of file
+	 * @param Title $title Title of file
 	 * @return bool
 	 */
 	function checkRedirect( Title $title ) {
@@ -178,6 +192,7 @@ class LocalRepo extends FileRepo {
 		$id = $this->getArticleID( $title );
 		if ( !$id ) {
 			$wgMemc->add( $memcKey, " ", $expiry );
+
 			return false;
 		}
 		$dbr = $this->getSlaveDB();
@@ -191,9 +206,11 @@ class LocalRepo extends FileRepo {
 		if ( $row && $row->rd_namespace == NS_FILE ) {
 			$targetTitle = Title::makeTitle( $row->rd_namespace, $row->rd_title );
 			$wgMemc->add( $memcKey, $targetTitle->getDBkey(), $expiry );
+
 			return $targetTitle;
 		} else {
 			$wgMemc->add( $memcKey, '', $expiry );
+
 			return false;
 		}
 	}
@@ -202,7 +219,7 @@ class LocalRepo extends FileRepo {
 	 * Function link Title::getArticleID().
 	 * We can't say Title object, what database it should use, so we duplicate that function here.
 	 *
-	 * @param $title Title
+	 * @param Title $title
 	 * @return bool|int|mixed
 	 */
 	protected function getArticleID( $title ) {
@@ -219,7 +236,133 @@ class LocalRepo extends FileRepo {
 			),
 			__METHOD__ //Function name
 		);
+
 		return $id;
+	}
+
+	public function findFiles( array $items, $flags = 0 ) {
+		$finalFiles = array(); // map of (DB key => corresponding File) for matches
+
+		$searchSet = array(); // map of (normalized DB key => search params)
+		foreach ( $items as $item ) {
+			if ( is_array( $item ) ) {
+				$title = File::normalizeTitle( $item['title'] );
+				if ( $title ) {
+					$searchSet[$title->getDBkey()] = $item;
+				}
+			} else {
+				$title = File::normalizeTitle( $item );
+				if ( $title ) {
+					$searchSet[$title->getDBkey()] = array();
+				}
+			}
+		}
+
+		$fileMatchesSearch = function ( File $file, array $search ) {
+			// Note: file name comparison done elsewhere (to handle redirects)
+			$user = ( !empty( $search['private'] ) && $search['private'] instanceof User )
+				? $search['private']
+				: null;
+
+			return (
+				$file->exists() &&
+				(
+					( empty( $search['time'] ) && !$file->isOld() ) ||
+					( !empty( $search['time'] ) && $search['time'] === $file->getTimestamp() )
+				) &&
+				( !empty( $search['private'] ) || !$file->isDeleted( File::DELETED_FILE ) ) &&
+				$file->userCan( File::DELETED_FILE, $user )
+			);
+		};
+
+		$repo = $this;
+		$applyMatchingFiles = function ( ResultWrapper $res, &$searchSet, &$finalFiles )
+			use ( $repo, $fileMatchesSearch, $flags )
+		{
+			global $wgContLang;
+			$info = $repo->getInfo();
+			foreach ( $res as $row ) {
+				$file = $repo->newFileFromRow( $row );
+				// There must have been a search for this DB key, but this has to handle the
+				// cases were title capitalization is different on the client and repo wikis.
+				$dbKeysLook = array( str_replace( ' ', '_', $file->getName() ) );
+				if ( !empty( $info['initialCapital'] ) ) {
+					// Search keys for "hi.png" and "Hi.png" should use the "Hi.png file"
+					$dbKeysLook[] = $wgContLang->lcfirst( $file->getName() );
+				}
+				foreach ( $dbKeysLook as $dbKey ) {
+					if ( isset( $searchSet[$dbKey] )
+						&& $fileMatchesSearch( $file, $searchSet[$dbKey] )
+					) {
+						$finalFiles[$dbKey] = ( $flags & FileRepo::NAME_AND_TIME_ONLY )
+							? array( 'title' => $dbKey, 'timestamp' => $file->getTimestamp() )
+							: $file;
+						unset( $searchSet[$dbKey] );
+					}
+				}
+			}
+		};
+
+		$dbr = $this->getSlaveDB();
+
+		// Query image table
+		$imgNames = array();
+		foreach ( array_keys( $searchSet ) as $dbKey ) {
+			$imgNames[] = $this->getNameFromTitle( File::normalizeTitle( $dbKey ) );
+		}
+
+		if ( count( $imgNames ) ) {
+			$res = $dbr->select( 'image',
+				LocalFile::selectFields(), array( 'img_name' => $imgNames ), __METHOD__ );
+			$applyMatchingFiles( $res, $searchSet, $finalFiles );
+		}
+
+		// Query old image table
+		$oiConds = array(); // WHERE clause array for each file
+		foreach ( $searchSet as $dbKey => $search ) {
+			if ( isset( $search['time'] ) ) {
+				$oiConds[] = $dbr->makeList(
+					array(
+						'oi_name' => $this->getNameFromTitle( File::normalizeTitle( $dbKey ) ),
+						'oi_timestamp' => $dbr->timestamp( $search['time'] )
+					),
+					LIST_AND
+				);
+			}
+		}
+
+		if ( count( $oiConds ) ) {
+			$res = $dbr->select( 'oldimage',
+				OldLocalFile::selectFields(), $dbr->makeList( $oiConds, LIST_OR ), __METHOD__ );
+			$applyMatchingFiles( $res, $searchSet, $finalFiles );
+		}
+
+		// Check for redirects...
+		foreach ( $searchSet as $dbKey => $search ) {
+			if ( !empty( $search['ignoreRedirect'] ) ) {
+				continue;
+			}
+
+			$title = File::normalizeTitle( $dbKey );
+			$redir = $this->checkRedirect( $title ); // hopefully hits memcached
+
+			if ( $redir && $redir->getNamespace() == NS_FILE ) {
+				$file = $this->newFile( $redir );
+				if ( $file && $fileMatchesSearch( $file, $search ) ) {
+					$file->redirectedFrom( $title->getDBkey() );
+					if ( $flags & FileRepo::NAME_AND_TIME_ONLY ) {
+						$finalFiles[$dbKey] = array(
+							'title' => $file->getTitle()->getDBkey(),
+							'timestamp' => $file->getTimestamp()
+						);
+					} else {
+						$finalFiles[$dbKey] = $file;
+					}
+				}
+			}
+		}
+
+		return $finalFiles;
 	}
 
 	/**
@@ -227,7 +370,7 @@ class LocalRepo extends FileRepo {
 	 * SHA-1 content hash.
 	 *
 	 * @param string $hash a sha1 hash to look for
-	 * @return Array
+	 * @return array
 	 */
 	function findBySha1( $hash ) {
 		$dbr = $this->getSlaveDB();
@@ -299,13 +442,14 @@ class LocalRepo extends FileRepo {
 			'img_name ' . $dbr->buildLike( $prefix, $dbr->anyString() ),
 			__METHOD__,
 			$selectOptions
-			);
+		);
 
 		// Build file objects
 		$files = array();
 		foreach ( $res as $row ) {
 			$files[] = $this->newFileFromRow( $row );
 		}
+
 		return $files;
 	}
 
@@ -334,13 +478,14 @@ class LocalRepo extends FileRepo {
 	 */
 	function getSharedCacheKey( /*...*/ ) {
 		$args = func_get_args();
+
 		return call_user_func_array( 'wfMemcKey', $args );
 	}
 
 	/**
 	 * Invalidates image redirect cache related to that image
 	 *
-	 * @param $title Title of page
+	 * @param Title $title Title of page
 	 * @return void
 	 */
 	function invalidateImageRedirect( Title $title ) {
@@ -353,5 +498,19 @@ class LocalRepo extends FileRepo {
 			// lagged slave.
 			$wgMemc->set( $memcKey, ' PURGED', 12 );
 		}
+	}
+
+	/**
+	 * Return information about the repository.
+	 *
+	 * @return array
+	 * @since 1.22
+	 */
+	function getInfo() {
+		global $wgFavicon;
+
+		return array_merge( parent::getInfo(), array(
+			'favicon' => wfExpandUrl( $wgFavicon ),
+		) );
 	}
 }

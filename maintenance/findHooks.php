@@ -42,6 +42,11 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class FindHooks extends Maintenance {
+	/*
+	 * Hooks that are ignored
+	 */
+	protected static $ignore = array( 'testRunLegacyHooks' );
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = 'Find hooks that are undocumented, missing, or just plain wrong';
@@ -64,24 +69,39 @@ class FindHooks extends Maintenance {
 			$IP . '/includes/actions/',
 			$IP . '/includes/api/',
 			$IP . '/includes/cache/',
+			$IP . '/includes/changes/',
+			$IP . '/includes/clientpool/',
 			$IP . '/includes/content/',
 			$IP . '/includes/context/',
+			$IP . '/includes/dao/',
 			$IP . '/includes/db/',
+			$IP . '/includes/debug/',
+			$IP . '/includes/deferred/',
 			$IP . '/includes/diff/',
+			$IP . '/includes/externalstore/',
+			$IP . '/includes/filebackend/',
 			$IP . '/includes/filerepo/',
 			$IP . '/includes/filerepo/file/',
+			$IP . '/includes/gallery/',
+			$IP . '/includes/htmlform/',
 			$IP . '/includes/installer/',
 			$IP . '/includes/interwiki/',
+			$IP . '/includes/jobqueue/',
+			$IP . '/includes/json/',
 			$IP . '/includes/logging/',
 			$IP . '/includes/media/',
 			$IP . '/includes/parser/',
+			$IP . '/includes/rcfeed/',
 			$IP . '/includes/resourceloader/',
 			$IP . '/includes/revisiondelete/',
 			$IP . '/includes/search/',
+			$IP . '/includes/site/',
+			$IP . '/includes/specialpage/',
 			$IP . '/includes/specials/',
 			$IP . '/includes/upload/',
 			$IP . '/languages/',
 			$IP . '/maintenance/',
+			$IP . '/maintenance/language/',
 			$IP . '/tests/',
 			$IP . '/tests/parser/',
 			$IP . '/tests/phpunit/suites/',
@@ -103,8 +123,7 @@ class FindHooks extends Maintenance {
 		$this->printArray( 'Documented and not found', $deprecated );
 		$this->printArray( 'Unclear hook calls', $bad );
 
-		if ( count( $todo ) == 0 && count( $deprecated ) == 0 && count( $bad ) == 0 )
-		{
+		if ( count( $todo ) == 0 && count( $deprecated ) == 0 && count( $bad ) == 0 ) {
 			$this->output( "Looks good!\n" );
 		}
 	}
@@ -129,7 +148,7 @@ class FindHooks extends Maintenance {
 	private function getHooksFromLocalDoc( $doc ) {
 			$m = array();
 			$content = file_get_contents( $doc );
-			preg_match_all( "/\n'(.*?)'/", $content, $m );
+			preg_match_all( "/\n'(.*?)':/", $content, $m );
 			return array_unique( $m[1] );
 	}
 
@@ -241,8 +260,11 @@ class FindHooks extends Maintenance {
 		if ( $sort ) {
 			asort( $arr );
 		}
+
 		foreach ( $arr as $v ) {
-			$this->output( "$msg: $v\n" );
+			if ( !in_array( $v, self::$ignore ) ) {
+				$this->output( "$msg: $v\n" );
+			}
 		}
 	}
 }

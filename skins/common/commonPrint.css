@@ -17,6 +17,12 @@ a.new {
 	border: 1px solid #aaaaaa;
 	background-color: #f9f9f9;
 	padding: 5px;
+	display: -moz-inline-block;
+	display: inline-block;
+	display: table;
+	/* IE7 and earlier */
+	zoom: 1;
+	*display: inline;
 }
 
 /* images */
@@ -112,6 +118,7 @@ div.top,
 div#column-one,
 #colophon,
 .mw-editsection,
+.mw-editsection-like,
 .toctoggle,
 .tochidden,
 div#f-poweredbyico,
@@ -153,6 +160,10 @@ ul {
 }
 
 h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
+
+dt {
 	font-weight: bold;
 }
 

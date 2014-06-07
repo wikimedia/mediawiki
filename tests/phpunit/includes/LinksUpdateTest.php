@@ -1,7 +1,6 @@
 <?php
 
 /**
- *
  * @group Database
  * ^--- make sure temporary tables are used.
  */
@@ -52,7 +51,11 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		return array( $t, $po );
 	}
 
+	/**
+	 * @covers ParserOutput::addLink
+	 */
 	public function testUpdate_pagelinks() {
+		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
 		$po->addLink( Title::newFromText( "Foo" ) );
@@ -86,7 +89,11 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		), $update->getRemovedLinks() );
 	}
 
+	/**
+	 * @covers ParserOutput::addExternalLink
+	 */
 	public function testUpdate_externallinks() {
+		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
 		$po->addExternalLink( "http://testing.com/wiki/Foo" );
@@ -96,7 +103,11 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers ParserOutput::addCategory
+	 */
 	public function testUpdate_categorylinks() {
+		/** @var ParserOutput $po */
 		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
 
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
@@ -108,7 +119,11 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers ParserOutput::addInterwikiLink
+	 */
 	public function testUpdate_iwlinks() {
+		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
 		$target = Title::makeTitleSafe( NS_MAIN, "Foo", '', 'linksupdatetest' );
@@ -119,7 +134,11 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers ParserOutput::addTemplate
+	 */
 	public function testUpdate_templatelinks() {
+		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
 		$po->addTemplate( Title::newFromText( "Template:Foo" ), 23, 42 );
@@ -129,7 +148,11 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers ParserOutput::addImage
+	 */
 	public function testUpdate_imagelinks() {
+		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
 		$po->addImage( "Foo.png" );
@@ -139,7 +162,11 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers ParserOutput::addLanguageLink
+	 */
 	public function testUpdate_langlinks() {
+		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
 		$po->addLanguageLink( Title::newFromText( "en:Foo" )->getFullText() );
@@ -149,7 +176,11 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
+	/**
+	 * @covers ParserOutput::setProperty
+	 */
 	public function testUpdate_page_props() {
+		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
 		$po->setProperty( "foo", "bar" );

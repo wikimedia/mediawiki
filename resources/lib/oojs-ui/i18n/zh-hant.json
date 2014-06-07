@@ -1,0 +1,23 @@
+{
+    "@metadata": {
+        "authors": [
+            "Anakmalaysia",
+            "Ch.Andrew",
+            "Hydra",
+            "Justincheng12345",
+            "Liflon",
+            "Liuxinyu970226",
+            "Qiyue2001",
+            "Radish10cm",
+            "Shirayuki",
+            "Simon Shek",
+            "Spring Roll Conan",
+            "Waihorace"
+        ]
+    },
+    "ooui-dialog-action-close": "關閉",
+    "ooui-outline-control-move-down": "向下移項",
+    "ooui-outline-control-move-up": "向上移項",
+    "ooui-outline-control-remove": "移除項",
+    "ooui-toolbar-more": "更多"
+}

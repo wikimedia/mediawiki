@@ -48,9 +48,17 @@
 		} );
 	} );
 
-	QUnit.asyncTest( 'getRights', 1, function ( assert ) {
+	QUnit.test( 'getRights', 2, function ( assert ) {
+		QUnit.stop();
+		QUnit.stop();
+
 		mw.user.getRights( function ( rights ) {
 			assert.equal( $.type( rights ), 'array', 'Callback gets an array' );
+			QUnit.start();
+		} );
+
+		mw.user.getRights().done( function ( rights ) {
+			assert.equal( $.type( rights ), 'array', 'Using promise interface instead of callback' );
 			QUnit.start();
 		} );
 	} );

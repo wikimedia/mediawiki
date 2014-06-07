@@ -107,7 +107,7 @@ class CoreTagHooks {
 	 * Renders a thumbnail list of the given images, with optional captions.
 	 * Full syntax documented on the wiki:
 	 *
-	 *   http://www.mediawiki.org/wiki/Help:Images#Gallery_syntax
+	 *   https://www.mediawiki.org/wiki/Help:Images#Gallery_syntax
 	 *
 	 * @todo break Parser::renderImageGallery out here too.
 	 *

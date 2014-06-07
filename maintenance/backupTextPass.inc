@@ -3,7 +3,7 @@
  * BackupDumper that postprocesses XML dumps from dumpBackup.php to add page text
  *
  * Copyright (C) 2005 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -82,7 +82,6 @@ class TextPassDumper extends BackupDumper {
 	 */
 	protected $db;
 
-
 	/**
 	 * Drop the database connection $this->db and try to get a new one.
 	 *
@@ -123,15 +122,13 @@ class TextPassDumper extends BackupDumper {
 			throw new MWException( __METHOD__ . " rotating DB failed to obtain new load balancer (" . $e->getMessage() . ")" );
 		}
 
-
 		// 2. The Connection, through the load balancer.
 		try {
-			$this->db = $this->lb->getConnection( DB_SLAVE, 'backup' );
+			$this->db = $this->lb->getConnection( DB_SLAVE, 'dump' );
 		} catch ( Exception $e ) {
 			throw new MWException( __METHOD__ . " rotating DB failed to obtain new database (" . $e->getMessage() . ")" );
 		}
 	}
-
 
 	function initProgress( $history = WikiExporter::FULL ) {
 		parent::initProgress();
@@ -420,8 +417,8 @@ class TextPassDumper extends BackupDumper {
 		$text = false; // The candidate for a good text. false if no proper value.
 		$failures = 0; // The number of times, this invocation of getText already failed.
 
-		static $consecutiveFailedTextRetrievals = 0; // The number of times getText failed without
-		                                             // yielding a good text in between.
+		// The number of times getText failed without yielding a good text in between.
+		static $consecutiveFailedTextRetrievals = 0;
 
 		$this->fetchCount++;
 
@@ -555,7 +552,6 @@ class TextPassDumper extends BackupDumper {
 
 		return "";
 	}
-
 
 	/**
 	 * May throw a database error if, say, the server dies during query.

@@ -127,7 +127,7 @@ class WikiMap {
 class WikiReference {
 	private $mMinor; ///< 'en', 'meta', 'mediawiki', etc
 	private $mMajor; ///< 'wiki', 'wiktionary', etc
-	private $mCanonicalServer; ///< canonical server URL, e.g. 'http://www.mediawiki.org'
+	private $mCanonicalServer; ///< canonical server URL, e.g. 'https://www.mediawiki.org'
 	private $mServer; ///< server URL, may be protocol-relative, e.g. '//www.mediawiki.org'
 	private $mPath;   ///< path, '/wiki/$1'
 

@@ -3,7 +3,7 @@
  * Check for articles to fix after adding/deleting namespaces
  *
  * Copyright © 2005-2007 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,10 +50,7 @@ class NamespaceConflictChecker extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgTitle;
-
 		$this->db = wfGetDB( DB_MASTER );
-		$wgTitle = Title::newFromText( 'Namespace title conflict cleanup script' );
 
 		$fix = $this->hasOption( 'fix' );
 		$suffix = $this->getOption( 'suffix', '' );

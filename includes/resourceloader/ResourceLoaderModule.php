@@ -398,7 +398,8 @@ abstract class ResourceLoaderModule {
 	 * Helper method for calculating when the module's hash (if it has one) changed.
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return integer: UNIX timestamp or 0 if there is no hash provided
+	 * @return integer: UNIX timestamp or 0 if no hash was provided
+	 *  by getModifiedHash()
 	 */
 	public function getHashMtime( ResourceLoaderContext $context ) {
 		$hash = $this->getModifiedHash( $context );
@@ -407,7 +408,7 @@ abstract class ResourceLoaderModule {
 		}
 
 		$cache = wfGetCache( CACHE_ANYTHING );
-		$key = wfMemcKey( 'resourceloader', 'modulemodifiedhash', $this->getName() );
+		$key = wfMemcKey( 'resourceloader', 'modulemodifiedhash', $this->getName(), $hash );
 
 		$data = $cache->get( $key );
 		if ( is_array( $data ) && $data['hash'] === $hash ) {
@@ -425,14 +426,91 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the last modification timestamp of the message blob for this
-	 * module in a given language.
+	 * Get the hash for whatever this module may contain.
+	 *
+	 * This is the method subclasses should implement if they want to make
+	 * use of getHashMTime() inside getModifiedTime().
 	 *
 	 * @param ResourceLoaderContext $context
 	 * @return string|null: Hash
 	 */
 	public function getModifiedHash( ResourceLoaderContext $context ) {
 		return null;
+	}
+
+	/**
+	 * Helper method for calculating when this module's definition summary was last changed.
+	 *
+	 * @return integer: UNIX timestamp or 0 if no definition summary was provided
+	 *  by getDefinitionSummary()
+	 */
+	public function getDefinitionMtime( ResourceLoaderContext $context ) {
+		wfProfileIn( __METHOD__ );
+		$summary = $this->getDefinitionSummary( $context );
+		if ( $summary === null ) {
+			wfProfileOut( __METHOD__ );
+			return 0;
+		}
+
+		$hash = md5( json_encode( $summary ) );
+
+		$cache = wfGetCache( CACHE_ANYTHING );
+
+		// Embed the hash itself in the cache key. This allows for a few nifty things:
+		// - During deployment, servers with old and new versions of the code communicating
+		//   with the same memcached will not override the same key repeatedly increasing
+		//   the timestamp.
+		// - In case of the definition changing and then changing back in a short period of time
+		//   (e.g. in case of a revert or a corrupt server) the old timestamp and client-side cache
+		//   url will be re-used.
+		// - If different context-combinations (e.g. same skin, same language or some combination
+		//   thereof) result in the same definition, they will use the same hash and timestamp.
+		$key = wfMemcKey( 'resourceloader', 'moduledefinition', $this->getName(), $hash );
+
+		$data = $cache->get( $key );
+		if ( is_int( $data ) && $data > 0 ) {
+			// We've seen this hash before, re-use the timestamp of when we first saw it.
+			wfProfileOut( __METHOD__ );
+			return $data;
+		}
+
+		wfDebugLog( 'resourceloader', __METHOD__ . ": New definition hash for module {$this->getName()} in context {$context->getHash()}: $hash." );
+
+		$timestamp = time();
+		$cache->set( $key, $timestamp );
+
+		wfProfileOut( __METHOD__ );
+		return $timestamp;
+	}
+
+	/**
+	 * Get the definition summary for this module.
+	 *
+	 * This is the method subclasses should implement if they want to make
+	 * use of getDefinitionMTime() inside getModifiedTime().
+	 *
+	 * Return an array containing values from all significant properties of this
+	 * module's definition. Be sure to include things that are explicitly ordered,
+	 * in their actaul order (bug 37812).
+	 *
+	 * Avoid including things that are insiginificant (e.g. order of message
+	 * keys is insignificant and should be sorted to avoid unnecessary cache
+	 * invalidation).
+	 *
+	 * Avoid including things already considered by other methods inside your
+	 * getModifiedTime(), such as file mtime timestamps.
+	 *
+	 * Serialisation is done using json_encode, which means object state is not
+	 * taken into account when building the hash. This data structure must only
+	 * contain arrays and scalars as values (avoid object instances) which means
+	 * it requires abstraction.
+	 *
+	 * @return Array|null
+	 */
+	public function getDefinitionSummary( ResourceLoaderContext $context ) {
+		return array(
+			'class' => get_class( $this ),
+		);
 	}
 
 	/**

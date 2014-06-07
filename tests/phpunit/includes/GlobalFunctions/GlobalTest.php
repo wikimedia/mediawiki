@@ -141,9 +141,8 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->assertEquals( $result, wfArrayToCgi( $array ) );
 	}
 
-
 	/**
-	 * @covers ::testWfArrayDiff2
+	 * @covers ::wfArrayToCgi
 	 */
 	public function testArrayToCGI2() {
 		$this->assertEquals(
@@ -293,11 +292,11 @@ class GlobalTest extends MediaWikiTestCase {
 		unlink( $wgDebugLogFile );
 
 		wfDebugMem();
-		$this->assertGreaterThan( 5000, preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) ) );
+		$this->assertGreaterThan( 1000, preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) ) );
 		unlink( $wgDebugLogFile );
 
 		wfDebugMem( true );
-		$this->assertGreaterThan( 5000000, preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) ) );
+		$this->assertGreaterThan( 1000000, preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) ) );
 		unlink( $wgDebugLogFile );
 
 		$wgDebugLogFile = $old_log_file;
@@ -438,11 +437,11 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param String $old: Text as it was in the database
-	 * @param String $mine: Text submitted while user was editing
-	 * @param String $yours: Text submitted by the user
-	 * @param Boolean $expectedMergeResult Whether the merge should be a success
-	 * @param String $expectedText: Text after merge has been completed
+	 * @param string $old Text as it was in the database
+	 * @param string $mine Text submitted while user was editing
+	 * @param string $yours Text submitted by the user
+	 * @param bool $expectedMergeResult Whether the merge should be a success
+	 * @param string $expectedText Text after merge has been completed
 	 *
 	 * @dataProvider provideMerge()
 	 * @group medium

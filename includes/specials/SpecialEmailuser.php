@@ -138,18 +138,19 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$ret = self::getTarget( $this->mTarget );
 		if ( !$ret instanceof User ) {
 			if ( $this->mTarget != '' ) {
+				// Messages used here: notargettext, noemailtext, nowikiemailtext
 				$ret = ( $ret == 'notarget' ) ? 'emailnotarget' : ( $ret . 'text' );
 				$out->wrapWikiMsg( "<p class='error'>$1</p>", $ret );
 			}
 			$out->addHTML( $this->userForm( $this->mTarget ) );
 
-			return false;
+			return;
 		}
 
 		$this->mTargetObj = $ret;
 
 		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getTitle() ); // Remove subpage
+		$context->setTitle( $this->getPageTitle() ); // Remove subpage
 		$form = new HTMLForm( $this->getFormFields(), $context );
 		// By now we are supposed to be sure that $this->mTarget is a user name
 		$form->addPreText( $this->msg( 'emailpagetext', $this->mTarget )->parse() );
@@ -159,7 +160,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$form->loadData();
 
 		if ( !wfRunHooks( 'EmailUserForm', array( &$form ) ) ) {
-			return false;
+			return;
 		}
 
 		$result = $form->show();
@@ -260,7 +261,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			'form',
 			array( 'method' => 'get', 'action' => $wgScript, 'id' => 'askusername' )
 		) .
-			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
+			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
 			Xml::openElement( 'fieldset' ) .
 			Html::rawElement( 'legend', null, $this->msg( 'emailtarget' )->parse() ) .
 			Xml::inputLabel(
@@ -305,6 +306,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 		$target = self::getTarget( $data['Target'] );
 		if ( !$target instanceof User ) {
+			// Messages used here: notargettext, noemailtext, nowikiemailtext
 			return $context->msg( $target . 'text' )->parseAsBlock();
 		}
 
@@ -330,9 +332,10 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			// This is a bit ugly, but will serve to differentiate
 			// wiki-borne mails from direct mails and protects against
 			// SPF and bounce problems with some mailers (see below).
-			global $wgPasswordSender, $wgPasswordSenderName;
+			global $wgPasswordSender;
 
-			$mailFrom = new MailAddress( $wgPasswordSender, $wgPasswordSenderName );
+			$mailFrom = new MailAddress( $wgPasswordSender,
+				wfMessage( 'emailsender' )->inContentLanguage()->text() );
 			$replyTo = $from;
 		} else {
 			// Put the sending user's e-mail address in the From: header.

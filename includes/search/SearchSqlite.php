@@ -25,21 +25,7 @@
  * Search engine hook for SQLite
  * @ingroup Search
  */
-class SearchSqlite extends SearchEngine {
-
-	/**
-	 * @var DatabaseSqlite
-	 */
-	protected $db;
-
-	/**
-	 * Creates an instance of this class
-	 * @param $db DatabaseSqlite: database object
-	 */
-	function __construct( $db ) {
-		parent::__construct( $db );
-	}
-
+class SearchSqlite extends SearchDatabase {
 	/**
 	 * Whether fulltext search is supported by current schema
 	 * @return Boolean
@@ -199,18 +185,6 @@ class SearchSqlite extends SearchEngine {
 	}
 
 	/**
-	 * Return a partial WHERE clause to exclude redirects, if so set
-	 * @return String
-	 */
-	function queryRedirect() {
-		if ( $this->showRedirects ) {
-			return '';
-		} else {
-			return 'AND page_is_redirect=0';
-		}
-	}
-
-	/**
 	 * Return a partial WHERE clause to limit the search to the given namespaces
 	 * @return String
 	 */
@@ -245,7 +219,6 @@ class SearchSqlite extends SearchEngine {
 	function getQuery( $filteredTerm, $fulltext ) {
 		return $this->limitResult(
 			$this->queryMain( $filteredTerm, $fulltext ) . ' ' .
-			$this->queryRedirect() . ' ' .
 			$this->queryNamespaces()
 		);
 	}
@@ -281,8 +254,7 @@ class SearchSqlite extends SearchEngine {
 		$searchindex = $this->db->tableName( 'searchindex' );
 		return "SELECT COUNT(*) AS c " .
 			"FROM $page,$searchindex " .
-			"WHERE page_id=$searchindex.rowid AND $match" .
-			$this->queryRedirect() . ' ' .
+			"WHERE page_id=$searchindex.rowid AND $match " .
 			$this->queryNamespaces();
 	}
 

@@ -66,11 +66,38 @@ class DerivativeContext extends ContextSource {
 	private $skin;
 
 	/**
+	 * @var Config
+	 */
+	private $config;
+
+	/**
 	 * Constructor
 	 * @param IContextSource $context Context to inherit from
 	 */
 	public function __construct( IContextSource $context ) {
 		$this->setContext( $context );
+	}
+
+	/**
+	 * Set the SiteConfiguration object
+	 *
+	 * @param Config $s
+	 */
+	public function setConfig( Config $s ) {
+		$this->config = $s;
+	}
+
+	/**
+	 * Get the Config object
+	 *
+	 * @return Config
+	 */
+	public function getConfig() {
+		if ( !is_null( $this->config ) ) {
+			return $this->config;
+		} else {
+			return $this->getContext()->getConfig();
+		}
 	}
 
 	/**
@@ -99,6 +126,7 @@ class DerivativeContext extends ContextSource {
 	 * Set the Title object
 	 *
 	 * @param Title $t
+	 * @throws MWException
 	 */
 	public function setTitle( $t ) {
 		if ( $t !== null && !$t instanceof Title ) {
@@ -298,6 +326,7 @@ class DerivativeContext extends ContextSource {
 	 */
 	public function msg() {
 		$args = func_get_args();
+
 		return call_user_func_array( 'wfMessage', $args )->setContext( $this );
 	}
 }

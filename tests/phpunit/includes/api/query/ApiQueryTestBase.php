@@ -1,7 +1,5 @@
 <?php
 /**
- *
- *
  * Created on Feb 10, 2013
  *
  * Copyright © 2013 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
@@ -104,47 +102,43 @@ STR;
 
 	protected function assertResult( $exp, $result, $message = '' ) {
 		try {
-			$this->assertResultRecursive( $exp, $result );
-		} catch ( Exception $e ) {
+			$exp = self::sanitizeResultArray( $exp );
+			$result = self::sanitizeResultArray( $result );
+			$this->assertEquals( $exp, $result );
+		} catch ( PHPUnit_Framework_ExpectationFailedException $e ) {
 			if ( is_array( $message ) ) {
 				$message = http_build_query( $message );
 			}
-			print "\nRequest: $message\n";
-			print "\nExpected:\n";
-			print_r( $exp );
-			print "\nResult:\n";
-			print_r( $result );
-			throw $e; // rethrow it
+			throw new PHPUnit_Framework_ExpectationFailedException(
+				$e->getMessage() . "\nRequest: $message",
+				new PHPUnit_Framework_ComparisonFailure(
+					$exp,
+					$result,
+					print_r( $exp, true ),
+					print_r( $result, true ),
+					false,
+					$e->getComparisonFailure()->getMessage() . "\nRequest: $message"
+				)
+			);
 		}
 	}
 
 	/**
-	 * Recursively compare arrays, ignoring mismatches in numeric key and pageids.
-	 * @param $expected array expected values
-	 * @param $result array returned values
+	 * Recursively ksorts a result array and removes any 'pageid' keys.
+	 * @param array $result
+	 * @return array
 	 */
-	private function assertResultRecursive( $expected, $result ) {
-		reset( $expected );
-		reset( $result );
-		while ( true ) {
-			$e = each( $expected );
-			$r = each( $result );
-			// If either of the arrays is shorter, abort. If both are done, success.
-			$this->assertEquals( (bool)$e, (bool)$r );
-			if ( !$e ) {
-				break; // done
-			}
-			// continue only if keys are identical or both keys are numeric
-			$this->assertTrue( $e['key'] === $r['key'] || ( is_numeric( $e['key'] ) && is_numeric( $r['key'] ) ) );
-			// don't compare pageids
-			if ( $e['key'] !== 'pageid' ) {
-				// If values are arrays, compare recursively, otherwise compare with ===
-				if ( is_array( $e['value'] ) && is_array( $r['value'] ) ) {
-					$this->assertResultRecursive( $e['value'], $r['value'] );
-				} else {
-					$this->assertEquals( $e['value'], $r['value'] );
-				}
+	private static function sanitizeResultArray( $result ) {
+		unset( $result['pageid'] );
+		foreach ( $result as $key => $value ) {
+			if ( is_array( $value ) ) {
+				$result[$key] = self::sanitizeResultArray( $value );
 			}
 		}
+
+		// Sort the result by keys, then take advantage of how array_merge will
+		// renumber numeric keys while leaving others alone.
+		ksort( $result );
+		return array_merge( $result );
 	}
 }

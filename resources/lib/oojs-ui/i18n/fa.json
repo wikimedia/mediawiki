@@ -1,0 +1,21 @@
+{
+    "@metadata": {
+        "authors": [
+            "Dalba",
+            "Ebraminio",
+            "Jdforrester",
+            "Ladsgroup",
+            "Mjbmr",
+            "Nojan Madinehi",
+            "Reza1615",
+            "Taha",
+            "درفش کاویانی",
+            "Armin1392"
+        ]
+    },
+    "ooui-dialog-action-close": "بستن",
+    "ooui-outline-control-move-down": "انتقال مورد به پایین",
+    "ooui-outline-control-move-up": "انتقال مورد به بالا",
+    "ooui-outline-control-remove": "حذف مورد",
+    "ooui-toolbar-more": "بیشتر"
+}

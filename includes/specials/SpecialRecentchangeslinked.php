@@ -26,8 +26,9 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialRecentchangeslinked extends SpecialRecentChanges {
-	var $rclTargetTitle;
+class SpecialRecentChangesLinked extends SpecialRecentChanges {
+	/** @var bool|Title */
+	protected $rclTargetTitle;
 
 	function __construct() {
 		parent::__construct( 'Recentchangeslinked' );
@@ -37,28 +38,12 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		$opts = parent::getDefaultOptions();
 		$opts->add( 'target', '' );
 		$opts->add( 'showlinkedto', false );
+
 		return $opts;
 	}
 
 	public function parseParameters( $par, FormOptions $opts ) {
 		$opts['target'] = $par;
-	}
-
-	public function feedSetup() {
-		$opts = parent::feedSetup();
-		$opts['target'] = $this->getRequest()->getVal( 'target' );
-		return $opts;
-	}
-
-	public function getFeedObject( $feedFormat ) {
-		$feed = new ChangesFeed( $feedFormat, false );
-		$feedObj = $feed->getFeedObject(
-			$this->msg( 'recentchangeslinked-title', $this->getTargetTitle()->getPrefixedText() )
-				->inContentLanguage()->text(),
-			$this->msg( 'recentchangeslinked-feed' )->inContentLanguage()->text(),
-			$this->getTitle()->getFullURL()
-		);
-		return array( $feed, $feedObj );
 	}
 
 	public function doMainQuery( $conds, $opts ) {
@@ -71,8 +56,10 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		}
 		$outputPage = $this->getOutput();
 		$title = Title::newFromURL( $target );
-		if ( !$title || $title->getInterwiki() != '' ) {
-			$outputPage->wrapWikiMsg( "<div class=\"errorbox\">\n$1\n</div>", 'allpagesbadtitle' );
+		if ( !$title || $title->isExternal() ) {
+			$outputPage->addHtml( '<div class="errorbox">' . $this->msg( 'allpagesbadtitle' )
+					->parse() . '</div>' );
+
 			return false;
 		}
 
@@ -106,7 +93,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 				'wl_user' => $uid,
 				'wl_title=rc_title',
 				'wl_namespace=rc_namespace'
-			));
+			) );
 		}
 		if ( $this->getUser()->isAllowed( 'rollback' ) ) {
 			$tables[] = 'page';
@@ -122,7 +109,10 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 			$opts['tagfilter']
 		);
 
-		if ( !wfRunHooks( 'SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$select ) ) ) {
+		if ( !wfRunHooks( 'SpecialRecentChangesQuery',
+			array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$select ),
+			'1.23' )
+		) {
 			return false;
 		}
 
@@ -145,14 +135,20 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		}
 
 		// field name prefixes for all the various tables we might want to join with
-		$prefix = array( 'pagelinks' => 'pl', 'templatelinks' => 'tl', 'categorylinks' => 'cl', 'imagelinks' => 'il' );
+		$prefix = array(
+			'pagelinks' => 'pl',
+			'templatelinks' => 'tl',
+			'categorylinks' => 'cl',
+			'imagelinks' => 'il'
+		);
 
 		$subsql = array(); // SELECT statements to combine with UNION
 
 		foreach ( $link_tables as $link_table ) {
 			$pfx = $prefix[$link_table];
 
-			// imagelinks and categorylinks tables have no xx_namespace field, and have xx_to instead of xx_title
+			// imagelinks and categorylinks tables have no xx_namespace field,
+			// and have xx_to instead of xx_title
 			if ( $link_table == 'imagelinks' ) {
 				$link_ns = NS_FILE;
 			} elseif ( $link_table == 'categorylinks' ) {
@@ -225,6 +221,13 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		return $res;
 	}
 
+	function setTopText( FormOptions $opts ) {
+		$target = $this->getTargetTitle();
+		if ( $target ) {
+			$this->getOutput()->addBacklinkSubtitle( $target );
+		}
+	}
+
 	/**
 	 * Get options to be displayed in a form
 	 *
@@ -256,13 +259,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 				$this->rclTargetTitle = false;
 			}
 		}
-		return $this->rclTargetTitle;
-	}
 
-	function setTopText( FormOptions $opts ) {
-		$target = $this->getTargetTitle();
-		if ( $target ) {
-			$this->getOutput()->addBacklinkSubtitle( $target );
-		}
+		return $this->rclTargetTitle;
 	}
 }

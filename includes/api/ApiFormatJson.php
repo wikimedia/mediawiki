@@ -43,6 +43,7 @@ class ApiFormatJson extends ApiFormatBase {
 		if ( $params['callback'] ) {
 			return 'text/javascript';
 		}
+
 		return 'application/json';
 	}
 
@@ -80,16 +81,18 @@ class ApiFormatJson extends ApiFormatBase {
 
 	public function getParamDescription() {
 		return array(
-			'callback' => 'If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.',
-			'utf8' => 'If specified, encodes most (but not all) non-ASCII characters as UTF-8 instead of replacing them with hexadecimal escape sequences.',
+			'callback' => 'If specified, wraps the output into a given function ' .
+				'call. For safety, all user-specific data will be restricted.',
+			'utf8' => 'If specified, encodes most (but not all) non-ASCII ' .
+				'characters as UTF-8 instead of replacing them with hexadecimal escape sequences.',
 		);
 	}
 
 	public function getDescription() {
 		if ( $this->mIsRaw ) {
 			return 'Output data with the debugging elements in JSON format' . parent::getDescription();
-		} else {
-			return 'Output data in JSON format' . parent::getDescription();
 		}
+
+		return 'Output data in JSON format' . parent::getDescription();
 	}
 }

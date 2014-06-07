@@ -63,6 +63,13 @@ class Preferences {
 	);
 
 	/**
+	 * @return array
+	 */
+	static function getSaveBlacklist() {
+		return self::$saveBlacklist;
+	}
+
+	/**
 	 * @throws MWException
 	 * @param $user User
 	 * @param $context IContextSource
@@ -77,8 +84,8 @@ class Preferences {
 
 		self::profilePreferences( $user, $context, $defaultPreferences );
 		self::skinPreferences( $user, $context, $defaultPreferences );
-		self::filesPreferences( $user, $context, $defaultPreferences );
 		self::datetimePreferences( $user, $context, $defaultPreferences );
+		self::filesPreferences( $user, $context, $defaultPreferences );
 		self::renderingPreferences( $user, $context, $defaultPreferences );
 		self::editingPreferences( $user, $context, $defaultPreferences );
 		self::rcPreferences( $user, $context, $defaultPreferences );
@@ -186,7 +193,7 @@ class Preferences {
 	 */
 	static function profilePreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		global $wgAuth, $wgContLang, $wgParser, $wgCookieExpiration, $wgLanguageCode,
-			$wgDisableTitleConversion, $wgDisableLangConversion, $wgMaxSigChars,
+			$wgDisableLangConversion, $wgMaxSigChars,
 			$wgEnableEmail, $wgEmailConfirmToEdit, $wgEnableUserEmail, $wgEmailAuthentication,
 			$wgEnotifWatchlist, $wgEnotifUserTalk, $wgEnotifRevealEditorAddress,
 			$wgSecureLogin;
@@ -294,15 +301,7 @@ class Preferences {
 				'section' => 'personal/info',
 			);
 		}
-		if ( $wgCookieExpiration > 0 ) {
-			$defaultPreferences['rememberpassword'] = array(
-				'type' => 'toggle',
-				'label' => $context->msg( 'tog-rememberpassword' )->numParams(
-					ceil( $wgCookieExpiration / ( 3600 * 24 ) ) )->text(),
-				'section' => 'personal/info',
-			);
-		}
-		// Only show preferhttps if secure login is turned on
+		// Only show prefershttps if secure login is turned on
 		if ( $wgSecureLogin && wfCanIPUseHTTPS( $context->getRequest()->getIP() ) ) {
 			$defaultPreferences['prefershttps'] = array(
 				'type' => 'toggle',
@@ -374,14 +373,6 @@ class Preferences {
 						'section' => 'personal/i18n',
 						'help-message' => 'prefs-help-variant',
 					);
-
-					if ( !$wgDisableTitleConversion ) {
-						$defaultPreferences['noconvertlink'] = array(
-							'type' => 'toggle',
-							'section' => 'personal/i18n',
-							'label-message' => 'tog-noconvertlink',
-						);
-					}
 				} else {
 					$defaultPreferences["variant-$langCode"] = array(
 						'type' => 'api',
@@ -403,7 +394,12 @@ class Preferences {
 		}
 
 		// show a preview of the old signature first
-		$oldsigWikiText = $wgParser->preSaveTransform( "~~~", $context->getTitle(), $user, ParserOptions::newFromContext( $context ) );
+		$oldsigWikiText = $wgParser->preSaveTransform(
+			'~~~',
+			$context->getTitle(),
+			$user,
+			ParserOptions::newFromContext( $context )
+		);
 		$oldsigHTML = $context->getOutput()->parseInline( $oldsigWikiText, true, true );
 		$defaultPreferences['oldsig'] = array(
 			'type' => 'info',
@@ -423,7 +419,8 @@ class Preferences {
 		$defaultPreferences['fancysig'] = array(
 			'type' => 'toggle',
 			'label-message' => 'tog-fancysig',
-			'help-message' => 'prefs-help-signature', // show general help about signature at the bottom of the section
+			// show general help about signature at the bottom of the section
+			'help-message' => 'prefs-help-signature',
 			'section' => 'personal/signature'
 		);
 
@@ -643,7 +640,7 @@ class Preferences {
 				'type' => 'radio',
 				'options' => $dateOptions,
 				'label' => '&#160;',
-				'section' => 'datetime/dateformat',
+				'section' => 'rendering/dateformat',
 			);
 		}
 
@@ -660,7 +657,7 @@ class Preferences {
 			'raw' => 1,
 			'label-message' => 'servertime',
 			'default' => $nowserver,
-			'section' => 'datetime/timeoffset',
+			'section' => 'rendering/timeoffset',
 		);
 
 		$defaultPreferences['nowlocal'] = array(
@@ -668,7 +665,7 @@ class Preferences {
 			'raw' => 1,
 			'label-message' => 'localtime',
 			'default' => $nowlocal,
-			'section' => 'datetime/timeoffset',
+			'section' => 'rendering/timeoffset',
 		);
 
 		// Grab existing pref.
@@ -682,8 +679,8 @@ class Preferences {
 			$minDiff = $tz[1];
 			$tzSetting = sprintf( '%+03d:%02d', floor( $minDiff / 60 ), abs( $minDiff ) % 60 );
 		} elseif ( count( $tz ) > 1 && $tz[0] == 'ZoneInfo' &&
-			!in_array( $tzOffset, HTMLFormField::flattenOptions( $tzOptions ) ) )
-		{
+			!in_array( $tzOffset, HTMLFormField::flattenOptions( $tzOptions ) )
+		) {
 			# Timezone offset can vary with DST
 			$userTZ = timezone_open( $tz[2] );
 			if ( $userTZ !== false ) {
@@ -698,7 +695,7 @@ class Preferences {
 			'options' => $tzOptions,
 			'default' => $tzSetting,
 			'size' => 20,
-			'section' => 'datetime/timeoffset',
+			'section' => 'rendering/timeoffset',
 		);
 	}
 
@@ -742,38 +739,18 @@ class Preferences {
 		}
 
 		$defaultPreferences['stubthreshold'] = array(
-			'type' => 'selectorother',
+			'type' => 'select',
 			'section' => 'rendering/advancedrendering',
 			'options' => $stubThresholdOptions,
 			'size' => 20,
 			'label-raw' => $context->msg( 'stub-threshold' )->text(), // Raw HTML message. Yay?
 		);
 
-		if ( $wgAllowUserCssPrefs ) {
-			$defaultPreferences['showtoc'] = array(
-				'type' => 'toggle',
-				'section' => 'rendering/advancedrendering',
-				'label-message' => 'tog-showtoc',
-			);
-		}
-		$defaultPreferences['nocache'] = array(
-			'type' => 'toggle',
-			'label-message' => 'tog-nocache',
-			'section' => 'rendering/advancedrendering',
-		);
 		$defaultPreferences['showhiddencats'] = array(
 			'type' => 'toggle',
 			'section' => 'rendering/advancedrendering',
 			'label-message' => 'tog-showhiddencats'
 		);
-
-		if ( $wgAllowUserCssPrefs ) {
-			$defaultPreferences['justify'] = array(
-				'type' => 'toggle',
-				'section' => 'rendering/advancedrendering',
-				'label-message' => 'tog-justify',
-			);
-		}
 
 		$defaultPreferences['numberheadings'] = array(
 			'type' => 'toggle',
@@ -791,13 +768,6 @@ class Preferences {
 		global $wgAllowUserCssPrefs;
 
 		## Editing #####################################
-		if ( $wgAllowUserCssPrefs ) {
-			$defaultPreferences['editsection'] = array(
-				'type' => 'toggle',
-				'section' => 'editing/advancedediting',
-				'label-message' => 'tog-editsection',
-			);
-		}
 		$defaultPreferences['editsectiononrightclick'] = array(
 			'type' => 'toggle',
 			'section' => 'editing/advancedediting',
@@ -1044,29 +1014,7 @@ class Preferences {
 	 * @param $defaultPreferences Array
 	 */
 	static function searchPreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		global $wgContLang, $wgVectorUseSimpleSearch;
-
-		## Search #####################################
-		$defaultPreferences['searchlimit'] = array(
-			'type' => 'int',
-			'label-message' => 'resultsperpage',
-			'section' => 'searchoptions/displaysearchoptions',
-			'min' => 0,
-		);
-
-		if ( $wgVectorUseSimpleSearch ) {
-			$defaultPreferences['vector-simplesearch'] = array(
-				'type' => 'toggle',
-				'label-message' => 'vector-simplesearch-preference',
-				'section' => 'searchoptions/displaysearchoptions',
-			);
-		}
-
-		$defaultPreferences['disablesuggest'] = array(
-			'type' => 'toggle',
-			'label-message' => 'mwsuggest-disable',
-			'section' => 'searchoptions/displaysearchoptions',
-		);
+		global $wgContLang;
 
 		$defaultPreferences['searcheverything'] = array(
 			'type' => 'toggle',
@@ -1109,9 +1057,8 @@ class Preferences {
 		$mptitle = Title::newMainPage();
 		$previewtext = $context->msg( 'skin-preview' )->text();
 
-		# Only show members of Skin::getSkinNames() rather than
-		# $skinNames (skins is all skin names from Language.php)
-		$validSkinNames = Skin::getUsableSkins();
+		# Only show skins that aren't disabled in $wgSkipSkins
+		$validSkinNames = Skin::getAllowedSkins();
 
 		# Sort by UI skin name. First though need to update validSkinNames as sometimes
 		# the skinkey & UI skinname differ (e.g. "standard" skinkey is "Classic" in the UI).
@@ -1146,7 +1093,10 @@ class Preferences {
 				$linkTools[] = Linker::link( $jsPage, $context->msg( 'prefs-custom-js' )->escaped() );
 			}
 
-			$display = $sn . ' ' . $context->msg( 'parentheses', $context->getLanguage()->pipeList( $linkTools ) )->text();
+			$display = $sn . ' ' . $context->msg(
+				'parentheses',
+				$context->getLanguage()->pipeList( $linkTools )
+			)->text();
 			$ret[$display] = $skinkey;
 		}
 
@@ -1237,8 +1187,13 @@ class Preferences {
 				$form->msg( 'badsiglength' )->numParams( $wgMaxSigChars )->text() );
 		} elseif ( isset( $alldata['fancysig'] ) &&
 				$alldata['fancysig'] &&
-				false === $wgParser->validateSig( $signature ) ) {
-			return Xml::element( 'span', array( 'class' => 'error' ), $form->msg( 'badsig' )->text() );
+				$wgParser->validateSig( $signature ) === false
+		) {
+			return Xml::element(
+				'span',
+				array( 'class' => 'error' ),
+				$form->msg( 'badsig' )->text()
+			);
 		} else {
 			return true;
 		}
@@ -1269,7 +1224,12 @@ class Preferences {
 	 * @param array $remove array of items to remove
 	 * @return HtmlForm
 	 */
-	static function getFormObject( $user, IContextSource $context, $formClass = 'PreferencesForm', array $remove = array() ) {
+	static function getFormObject(
+		$user,
+		IContextSource $context,
+		$formClass = 'PreferencesForm',
+		array $remove = array()
+	) {
 		$formDescriptor = Preferences::getPreferences( $user, $context );
 		if ( count( $remove ) ) {
 			$removeKeys = array_flip( $remove );
@@ -1310,9 +1270,16 @@ class Preferences {
 		$timestamp = MWTimestamp::getLocalInstance();
 		// Check that $wgLocalTZoffset is the same as the local time zone offset
 		if ( $wgLocalTZoffset == $timestamp->format( 'Z' ) / 60 ) {
-			$server_tz_msg = $context->msg( 'timezoneuseserverdefault', $timestamp->getTimezone()->getName() )->text();
+			$server_tz_msg = $context->msg(
+				'timezoneuseserverdefault',
+				$timestamp->getTimezone()->getName()
+			)->text();
 		} else {
-			$tzstring = sprintf( '%+03d:%02d', floor( $wgLocalTZoffset / 60 ), abs( $wgLocalTZoffset ) % 60 );
+			$tzstring = sprintf(
+				'%+03d:%02d',
+				floor( $wgLocalTZoffset / 60 ),
+				abs( $wgLocalTZoffset ) % 60
+			);
 			$server_tz_msg = $context->msg( 'timezoneuseserverdefault', $tzstring )->text();
 		}
 		$opt[$server_tz_msg] = "System|$wgLocalTZoffset";
@@ -1412,10 +1379,9 @@ class Preferences {
 	 *
 	 * @param $formData
 	 * @param $form PreferencesForm
-	 * @param $entryPoint string
 	 * @return bool|Status|string
 	 */
-	static function tryFormSubmit( $formData, $form, $entryPoint = 'internal' ) {
+	static function tryFormSubmit( $formData, $form ) {
 		global $wgHiddenPrefs, $wgAuth;
 
 		$user = $form->getModifiedUser();
@@ -1435,7 +1401,7 @@ class Preferences {
 
 		// Fortunately, the realname field is MUCH simpler
 		// (not really "private", but still shouldn't be edited without permission)
-		if ( !in_array( 'realname', $wgHiddenPrefs ) && $user->isAllowed( 'editmyprivateinfo' ) ) {
+		if ( !in_array( 'realname', $wgHiddenPrefs ) && $user->isAllowed( 'editmyprivateinfo' ) && array_key_exists( 'realname', $formData ) ) {
 			$realName = $formData['realname'];
 			$user->setRealName( $realName );
 		}
@@ -1448,7 +1414,6 @@ class Preferences {
 			# If users have saved a value for a preference which has subsequently been disabled
 			# via $wgHiddenPrefs, we don't want to destroy that setting in case the preference
 			# is subsequently re-enabled
-			# TODO: maintenance script to actually delete these
 			foreach ( $wgHiddenPrefs as $pref ) {
 				# If the user has not set a non-default value here, the default will be returned
 				# and subsequently discarded
@@ -1462,6 +1427,7 @@ class Preferences {
 				$user->setOption( $key, $value );
 			}
 
+			wfRunHooks( 'PreferencesFormPreSave', array( $formData, $form, $user, &$result ) );
 			$user->saveSettings();
 		}
 
@@ -1476,7 +1442,7 @@ class Preferences {
 	 * @return Status
 	 */
 	public static function tryUISubmit( $formData, $form ) {
-		$res = self::tryFormSubmit( $formData, $form, 'ui' );
+		$res = self::tryFormSubmit( $formData, $form );
 
 		if ( $res ) {
 			$urlOptions = array( 'success' => 1 );

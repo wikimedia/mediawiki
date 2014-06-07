@@ -32,7 +32,6 @@
  */
 
 class ORMRow implements IORMRow {
-
 	/**
 	 * The fields of the object.
 	 * field name (w/o prefix) => value
@@ -130,8 +129,10 @@ class ORMRow implements IORMRow {
 
 			if ( $result !== false ) {
 				$this->setFields( $this->table->getFieldsFromDBResult( $result ), $override );
+
 				return true;
 			}
+
 			return false;
 		}
 
@@ -232,8 +233,7 @@ class ORMRow implements IORMRow {
 	 * @return boolean
 	 */
 	public function hasIdField() {
-		return $this->hasField( 'id' )
-			&& !is_null( $this->getField( 'id' ) );
+		return $this->hasField( 'id' ) && !is_null( $this->getField( 'id' ) );
 	}
 
 	/**
@@ -252,7 +252,7 @@ class ORMRow implements IORMRow {
 				$value = $this->fields[$name];
 
 				// Skip null id fields so that the DBMS can set the default.
-				if ( $name === 'id' && is_null ( $value ) ) {
+				if ( $name === 'id' && is_null( $value ) ) {
 					continue;
 				}
 
@@ -456,8 +456,9 @@ class ORMRow implements IORMRow {
 
 	/**
 	 * Before removal of an object happens, @see beforeRemove gets called.
-	 * This method loads the fields of which the names have been returned by this one (or all fields if null is returned).
-	 * This allows for loading info needed after removal to get rid of linked data and the like.
+	 * This method loads the fields of which the names have been returned by
+	 * this one (or all fields if null is returned). This allows for loading
+	 * info needed after removal to get rid of linked data and the like.
 	 *
 	 * @since 1.20
 	 *
@@ -552,7 +553,6 @@ class ORMRow implements IORMRow {
 	 * @param array|string|null $summaryFields
 	 */
 	public function loadSummaryFields( $summaryFields = null ) {
-
 	}
 
 	/**
@@ -590,5 +590,4 @@ class ORMRow implements IORMRow {
 	public function getTable() {
 		return $this->table;
 	}
-
 }

@@ -45,6 +45,8 @@ class EmailConfirmation extends UnlistedSpecialPage {
 		$this->checkReadOnly();
 		$this->checkPermissions();
 
+		$this->requireLogin( 'confirmemail_needlogin' );
+
 		// This could also let someone check the current email address, so
 		// require both permissions.
 		if ( !$this->getUser()->isAllowed( 'viewmyprivateinfo' ) ) {
@@ -52,22 +54,10 @@ class EmailConfirmation extends UnlistedSpecialPage {
 		}
 
 		if ( $code === null || $code === '' ) {
-			if ( $this->getUser()->isLoggedIn() ) {
-				if ( Sanitizer::validateEmail( $this->getUser()->getEmail() ) ) {
-					$this->showRequestForm();
-				} else {
-					$this->getOutput()->addWikiMsg( 'confirmemail_noemail' );
-				}
+			if ( Sanitizer::validateEmail( $this->getUser()->getEmail() ) ) {
+				$this->showRequestForm();
 			} else {
-				$llink = Linker::linkKnown(
-					SpecialPage::getTitleFor( 'Userlogin' ),
-					$this->msg( 'loginreqlink' )->escaped(),
-					array(),
-					array( 'returnto' => $this->getTitle()->getPrefixedText() )
-				);
-				$this->getOutput()->addHTML(
-					$this->msg( 'confirmemail_needlogin' )->rawParams( $llink )->parse()
-				);
+				$this->getOutput()->addWikiMsg( 'confirmemail_noemail' );
 			}
 		} else {
 			$this->attemptConfirm( $code );
@@ -90,19 +80,17 @@ class EmailConfirmation extends UnlistedSpecialPage {
 			} else {
 				$out->addWikiText( $status->getWikiText( 'confirmemail_sendfailed' ) );
 			}
+		} elseif ( $user->isEmailConfirmed() ) {
+			// date and time are separate parameters to facilitate localisation.
+			// $time is kept for backward compat reasons.
+			// 'emailauthenticated' is also used in SpecialPreferences.php
+			$lang = $this->getLanguage();
+			$emailAuthenticated = $user->getEmailAuthenticationTimestamp();
+			$time = $lang->userTimeAndDate( $emailAuthenticated, $user );
+			$d = $lang->userDate( $emailAuthenticated, $user );
+			$t = $lang->userTime( $emailAuthenticated, $user );
+			$out->addWikiMsg( 'emailauthenticated', $time, $d, $t );
 		} else {
-			if ( $user->isEmailConfirmed() ) {
-				// date and time are separate parameters to facilitate localisation.
-				// $time is kept for backward compat reasons.
-				// 'emailauthenticated' is also used in SpecialPreferences.php
-				$lang = $this->getLanguage();
-				$emailAuthenticated = $user->getEmailAuthenticationTimestamp();
-				$time = $lang->userTimeAndDate( $emailAuthenticated, $user );
-				$d = $lang->userDate( $emailAuthenticated, $user );
-				$t = $lang->userTime( $emailAuthenticated, $user );
-				$out->addWikiMsg( 'emailauthenticated', $time, $d, $t );
-			}
-
 			if ( $user->isEmailConfirmationPending() ) {
 				$out->wrapWikiMsg(
 					"<div class=\"error mw-confirmemail-pending\">\n$1\n</div>",
@@ -113,7 +101,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 			$out->addWikiMsg( 'confirmemail_text' );
 			$form = Html::openElement(
 				'form',
-				array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL() )
+				array( 'method' => 'post', 'action' => $this->getPageTitle()->getLocalURL() )
 			) . "\n";
 			$form .= Html::hidden( 'token', $user->getEditToken() ) . "\n";
 			$form .= Xml::submitButton( $this->msg( 'confirmemail_send' )->text() ) . "\n";

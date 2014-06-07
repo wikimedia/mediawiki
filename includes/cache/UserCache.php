@@ -36,10 +36,12 @@ class UserCache {
 		if ( $instance === null ) {
 			$instance = new self();
 		}
+
 		return $instance;
 	}
 
-	protected function __construct() {}
+	protected function __construct() {
+	}
 
 	/**
 	 * Get a property of a user based on their user ID
@@ -53,6 +55,7 @@ class UserCache {
 			wfDebug( __METHOD__ . ": querying DB for prop '$prop' for user ID '$userId'.\n" );
 			$this->doQuery( array( $userId ) ); // cache miss
 		}
+
 		return isset( $this->cache[$userId][$prop] )
 			? $this->cache[$userId][$prop]
 			: false; // user does not exist?
@@ -63,6 +66,7 @@ class UserCache {
 	 *
 	 * @param integer $userId
 	 * @param string $ip
+	 * @return string
 	 * @since 1.22
 	 */
 	public function getUserName( $userId, $ip ) {

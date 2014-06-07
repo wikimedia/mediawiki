@@ -97,7 +97,7 @@ class StripState {
 	}
 
 	/**
-	 * @param  $text
+	 * @param $text
 	 * @return mixed
 	 */
 	function unstripBoth( $text ) {

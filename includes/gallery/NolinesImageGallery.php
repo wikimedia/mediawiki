@@ -22,7 +22,6 @@
  */
 
 class NolinesImageGallery extends TraditionalImageGallery {
-
 	protected function getThumbPadding() {
 		return 0;
 	}

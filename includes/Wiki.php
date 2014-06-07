@@ -95,8 +95,8 @@ class MediaWiki {
 			// Check variant links so that interwiki links don't have to worry
 			// about the possible different language variants
 			if ( count( $wgContLang->getVariants() ) > 1
-				&& !is_null( $ret ) && $ret->getArticleID() == 0 )
-			{
+				&& !is_null( $ret ) && $ret->getArticleID() == 0
+			) {
 				$wgContLang->findVariantLink( $title, $ret );
 			}
 		}
@@ -117,11 +117,11 @@ class MediaWiki {
 		}
 
 		// Use the main page as default title if nothing else has been provided
-		if ( $ret === null && strval( $title ) === '' && $action !== 'delete' ) {
+		if ( $ret === null && strval( $title ) === '' && !$request->getCheck( 'curid' ) && $action !== 'delete' ) {
 			$ret = Title::newMainPage();
 		}
 
-		if ( $ret === null || ( $ret->getDBkey() == '' && $ret->getInterwiki() == '' ) ) {
+		if ( $ret === null || ( $ret->getDBkey() == '' && !$ret->isExternal() ) ) {
 			$ret = SpecialPage::getTitleFor( 'Badtitle' );
 		}
 
@@ -155,19 +155,6 @@ class MediaWiki {
 	}
 
 	/**
-	 * Create an Article object of the appropriate class for the given page.
-	 *
-	 * @deprecated in 1.18; use Article::newFromTitle() instead
-	 * @param $title Title
-	 * @param $context IContextSource
-	 * @return Article object
-	 */
-	public static function articleFromTitle( $title, IContextSource $context ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		return Article::newFromTitle( $title, $context );
-	}
-
-	/**
 	 * Performs the request.
 	 * - bad titles
 	 * - read restriction
@@ -197,9 +184,9 @@ class MediaWiki {
 		wfRunHooks( 'BeforeInitialize', array( &$title, &$unused, &$output, &$user, $request, $this ) );
 
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
-		if ( is_null( $title ) || ( $title->getDBkey() == '' && $title->getInterwiki() == '' ) ||
-			$title->isSpecial( 'Badtitle' ) )
-		{
+		if ( is_null( $title ) || ( $title->getDBkey() == '' && !$title->isExternal() )
+			|| $title->isSpecial( 'Badtitle' )
+		) {
 			$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
 			wfProfileOut( __METHOD__ );
 			throw new BadTitleError();
@@ -231,7 +218,7 @@ class MediaWiki {
 		$pageView = false; // was an article or special page viewed?
 
 		// Interwiki redirects
-		if ( $title->getInterwiki() != '' ) {
+		if ( $title->isExternal() ) {
 			$rdfrom = $request->getVal( 'rdfrom' );
 			if ( $rdfrom ) {
 				$url = $title->getFullURL( array( 'rdfrom' => $rdfrom ) );
@@ -242,8 +229,8 @@ class MediaWiki {
 			}
 			// Check for a redirect loop
 			if ( !preg_match( '/^' . preg_quote( $wgServer, '/' ) . '/', $url )
-				&& $title->isLocal() )
-			{
+				&& $title->isLocal()
+			) {
 				// 301 so google et al report the target as the actual url.
 				$output->redirect( $url, 301 );
 			} else {
@@ -253,11 +240,11 @@ class MediaWiki {
 			}
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
 		} elseif ( $request->getVal( 'action', 'view' ) == 'view' && !$request->wasPosted()
-			&& ( $request->getVal( 'title' ) === null ||
-				$title->getPrefixedDBkey() != $request->getVal( 'title' ) )
+			&& ( $request->getVal( 'title' ) === null
+				|| $title->getPrefixedDBkey() != $request->getVal( 'title' ) )
 			&& !count( $request->getValueNames( array( 'action', 'title' ) ) )
-			&& wfRunHooks( 'TestCanonicalRedirect', array( $request, $title, $output ) ) )
-		{
+			&& wfRunHooks( 'TestCanonicalRedirect', array( $request, $title, $output ) )
+		) {
 			if ( $title->isSpecialPage() ) {
 				list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
 				if ( $name ) {
@@ -302,13 +289,6 @@ class MediaWiki {
 			$article = $this->initializeArticle();
 			if ( is_object( $article ) ) {
 				$pageView = true;
-				/**
-				 * $wgArticle is deprecated, do not use it.
-				 * @deprecated since 1.18
-				 */
-				global $wgArticle;
-				$wgArticle = new DeprecatedGlobal( 'wgArticle', $article, '1.18' );
-
 				$this->performAction( $article, $requestTitle );
 			} elseif ( is_string( $article ) ) {
 				$output->redirect( $article );
@@ -365,12 +345,12 @@ class MediaWiki {
 		$action = $request->getVal( 'action', 'view' );
 		$file = ( $title->getNamespace() == NS_FILE ) ? $article->getFile() : null;
 		if ( ( $action == 'view' || $action == 'render' ) // ... for actions that show content
-			&& !$request->getVal( 'oldid' ) && // ... and are not old revisions
-			!$request->getVal( 'diff' ) && // ... and not when showing diff
-			$request->getVal( 'redirect' ) != 'no' && // ... unless explicitly told not to
+			&& !$request->getVal( 'oldid' ) // ... and are not old revisions
+			&& !$request->getVal( 'diff' ) // ... and not when showing diff
+			&& $request->getVal( 'redirect' ) != 'no' // ... unless explicitly told not to
 			// ... and the article is not a non-redirect image page with associated file
-			!( is_object( $file ) && $file->exists() && !$file->getRedirected() ) )
-		{
+			&& !( is_object( $file ) && $file->exists() && !$file->getRedirected() )
+		) {
 			// Give extensions a change to ignore/handle redirects as needed
 			$ignoreRedirect = $target = false;
 
@@ -427,8 +407,8 @@ class MediaWiki {
 		$user = $this->context->getUser();
 
 		if ( !wfRunHooks( 'MediaWikiPerformAction',
-			array( $output, $page, $title, $user, $request, $this ) ) )
-		{
+				array( $output, $page, $title, $user, $request, $this ) )
+		) {
 			wfProfileOut( __METHOD__ );
 			return;
 		}
@@ -465,6 +445,10 @@ class MediaWiki {
 		try {
 			$this->checkMaxLag();
 			$this->main();
+			if ( function_exists( 'fastcgi_finish_request' ) ) {
+				fastcgi_finish_request();
+			}
+			$this->triggerJobs();
 			$this->restInPeace();
 		} catch ( Exception $e ) {
 			MWExceptionHandler::handle( $e );
@@ -547,7 +531,7 @@ class MediaWiki {
 					&& $this->context->getUser()->requiresHTTPS()
 				)
 			) &&
-			$request->detectProtocol() == 'http'
+			$request->getProtocol() == 'http'
 		) {
 			$oldUrl = $request->getFullRequestURL();
 			$redirUrl = str_replace( 'http://', 'https://', $oldUrl );
@@ -588,6 +572,7 @@ class MediaWiki {
 						$cache->loadFromFileCache( $this->context );
 					}
 					// Do any stats increment/watchlist stuff
+					// Assume we're viewing the latest revision (this should always be the case with file cache)
 					$this->context->getWikiPage()->doViewUpdates( $this->context->getUser() );
 					// Tell OutputPage that output is taken care of
 					$this->context->getOutput()->disable();
@@ -599,8 +584,12 @@ class MediaWiki {
 			wfProfileOut( 'main-try-filecache' );
 		}
 
+		// Actually do the work of the request and build up any output
 		$this->performRequest();
 
+		// Either all DB and deferred updates should happen or none.
+		// The later should not be cancelled due to client disconnect.
+		ignore_user_abort( true );
 		// Now commit any transactions, so that unreported errors after
 		// output() don't roll back the whole DB transaction
 		wfGetLBFactory()->commitMasterChanges();
@@ -618,9 +607,6 @@ class MediaWiki {
 		// Do any deferred jobs
 		DeferredUpdates::doUpdates( 'commit' );
 
-		// Execute a job from the queue
-		$this->doJobs();
-
 		// Log profiling data, e.g. in the database or UDP
 		wfLogProfilingData();
 
@@ -633,14 +619,20 @@ class MediaWiki {
 	}
 
 	/**
-	 * Do a job from the job queue
+	 * Potentially open a socket and sent an HTTP request back to the server
+	 * to run a specified number of jobs. This registers a callback to cleanup
+	 * the socket once it's done.
 	 */
-	private function doJobs() {
-		global $wgJobRunRate, $wgPhpCli, $IP;
+	protected function triggerJobs() {
+		global $wgJobRunRate, $wgServer, $wgRunJobsAsync;
 
 		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
 			return;
+		} elseif ( $this->getTitle()->isSpecial( 'RunJobs' ) ) {
+			return; // recursion guard
 		}
+
+		$section = new ProfileSection( __METHOD__ );
 
 		if ( $wgJobRunRate < 1 ) {
 			$max = mt_getrandmax();
@@ -652,50 +644,59 @@ class MediaWiki {
 			$n = intval( $wgJobRunRate );
 		}
 
-		if ( !wfShellExecDisabled() && is_executable( $wgPhpCli ) ) {
-			// Start a background process to run some of the jobs
-			wfProfileIn( __METHOD__ . '-exec' );
-			$retVal = 1;
-			$cmd = wfShellWikiCmd( "$IP/maintenance/runJobs.php", array( '--maxjobs', $n ) );
-			$cmd .= " >" . wfGetNull() . " 2>&1"; // don't hang PHP on pipes
-			if ( wfIsWindows() ) {
-				// Using START makes this async and also works around a bug where using
-				// wfShellExec() with a quoted script name causes a filename syntax error.
-				$cmd = "START /B \"bg\" $cmd";
-			} else {
-				$cmd = "$cmd &";
-			}
-			wfShellExec( $cmd, $retVal );
-			wfProfileOut( __METHOD__ . '-exec' );
+		if ( !$wgRunJobsAsync ) {
+			// If running jobs asynchronously has been disabled, run the job here
+			// while the user waits
+			SpecialRunJobs::executeJobs( $n );
+			return;
+		}
+
+		if ( !JobQueueGroup::singleton()->queuesHaveJobs( JobQueueGroup::TYPE_DEFAULT ) ) {
+			return; // do not send request if there are probably no jobs
+		}
+
+		$query = array( 'title' => 'Special:RunJobs',
+			'tasks' => 'jobs', 'maxjobs' => $n, 'sigexpiry' => time() + 5 );
+		$query['signature'] = SpecialRunJobs::getQuerySignature( $query );
+
+		$errno = $errstr = null;
+		$info = wfParseUrl( $wgServer );
+		wfSuppressWarnings();
+		$sock = fsockopen(
+			$info['host'],
+			isset( $info['port'] ) ? $info['port'] : 80,
+			$errno,
+			$errstr,
+			// If it takes more than 100ms to connect to ourselves there
+			// is a problem elsewhere.
+			0.1
+		);
+		wfRestoreWarnings();
+		if ( !$sock ) {
+			wfDebugLog( 'runJobs', "Failed to start cron API (socket error $errno): $errstr\n" );
+			// Fall back to running the job here while the user waits
+			SpecialRunJobs::executeJobs( $n );
+			return;
+		}
+
+		$url = wfAppendQuery( wfScript( 'index' ), $query );
+		$req = "POST $url HTTP/1.1\r\nHost: {$info['host']}\r\nConnection: Close\r\n\r\n";
+
+		wfDebugLog( 'runJobs', "Running $n job(s) via '$url'\n" );
+		// Send a cron API request to be performed in the background.
+		// Give up if this takes too long to send (which should be rare).
+		stream_set_timeout( $sock, 1 );
+		$bytes = fwrite( $sock, $req );
+		if ( $bytes !== strlen( $req ) ) {
+			wfDebugLog( 'runJobs', "Failed to start cron API (socket write error)\n" );
 		} else {
-			try {
-				// Fallback to running the jobs here while the user waits
-				$group = JobQueueGroup::singleton();
-				do {
-					$job = $group->pop( JobQueueGroup::USE_CACHE ); // job from any queue
-					if ( $job ) {
-						$output = $job->toString() . "\n";
-						$t = - microtime( true );
-						wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
-						$success = $job->run();
-						wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
-						$group->ack( $job ); // done
-						$t += microtime( true );
-						$t = round( $t * 1000 );
-						if ( $success === false ) {
-							$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
-						} else {
-							$output .= "Success, Time: $t ms\n";
-						}
-						wfDebugLog( 'jobqueue', $output );
-					}
-				} while ( --$n && $job );
-			} catch ( MWException $e ) {
-				// We don't want exceptions thrown during job execution to
-				// be reported to the user since the output is already sent.
-				// Instead we just log them.
-				MWExceptionHandler::logException( $e );
+			// Do not wait for the response (the script should handle client aborts).
+			// Make sure that we don't close before that script reaches ignore_user_abort().
+			$status = fgets( $sock );
+			if ( !preg_match( '#^HTTP/\d\.\d 202 #', $status ) ) {
+				wfDebugLog( 'runJobs', "Failed to start cron API: received '$status'\n" );
 			}
 		}
+		fclose( $sock );
 	}
 }

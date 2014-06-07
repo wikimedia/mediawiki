@@ -32,61 +32,35 @@ interface LoadMonitor {
 	 *
 	 * @param LoadBalancer $parent
 	 */
-	function __construct( $parent );
+	public function __construct( $parent );
 
 	/**
 	 * Perform pre-connection load ratio adjustment.
-	 * @param $loads array
-	 * @param string $group the selected query group
-	 * @param $wiki String
+	 * @param array $loads
+	 * @param string|bool $group The selected query group. Default: false
+	 * @param string|bool $wiki Default: false
 	 */
-	function scaleLoads( &$loads, $group = false, $wiki = false );
-
-	/**
-	 * Perform post-connection backoff.
-	 *
-	 * If the connection is in overload, this should return a backoff factor
-	 * which will be used to control polling time. The number of threads
-	 * connected is a good measure.
-	 *
-	 * If there is no overload, zero can be returned.
-	 *
-	 * A threshold thread count is given, the concrete class may compare this
-	 * to the running thread count. The threshold may be false, which indicates
-	 * that the sysadmin has not configured this feature.
-	 *
-	 * @param $conn DatabaseBase
-	 * @param $threshold Float
-	 */
-	function postConnectionBackoff( $conn, $threshold );
+	public function scaleLoads( &$loads, $group = false, $wiki = false );
 
 	/**
 	 * Return an estimate of replication lag for each server
 	 *
-	 * @param $serverIndexes
-	 * @param $wiki
+	 * @param array $serverIndexes
+	 * @param string $wiki
 	 *
 	 * @return array
 	 */
-	function getLagTimes( $serverIndexes, $wiki );
+	public function getLagTimes( $serverIndexes, $wiki );
 }
 
-class LoadMonitor_Null implements LoadMonitor {
-	function __construct( $parent ) {
+class LoadMonitorNull implements LoadMonitor {
+	public function __construct( $parent ) {
 	}
 
-	function scaleLoads( &$loads, $group = false, $wiki = false ) {
+	public function scaleLoads( &$loads, $group = false, $wiki = false ) {
 	}
 
-	function postConnectionBackoff( $conn, $threshold ) {
-	}
-
-	/**
-	 * @param $serverIndexes
-	 * @param $wiki
-	 * @return array
-	 */
-	function getLagTimes( $serverIndexes, $wiki ) {
+	public function getLagTimes( $serverIndexes, $wiki ) {
 		return array_fill_keys( $serverIndexes, 0 );
 	}
 }
@@ -97,40 +71,25 @@ class LoadMonitor_Null implements LoadMonitor {
  *
  * @ingroup Database
  */
-class LoadMonitor_MySQL implements LoadMonitor {
+class LoadMonitorMySQL implements LoadMonitor {
+	/** @var LoadBalancer */
+	public $parent;
 
-	/**
-	 * @var LoadBalancer
-	 */
-	var $parent;
-
-	/**
-	 * @param LoadBalancer $parent
-	 */
-	function __construct( $parent ) {
+	public function __construct( $parent ) {
 		$this->parent = $parent;
 	}
 
-	/**
-	 * @param $loads
-	 * @param $group bool
-	 * @param $wiki bool
-	 */
-	function scaleLoads( &$loads, $group = false, $wiki = false ) {
+	public function scaleLoads( &$loads, $group = false, $wiki = false ) {
 	}
 
-	/**
-	 * @param $serverIndexes
-	 * @param $wiki
-	 * @return array
-	 */
-	function getLagTimes( $serverIndexes, $wiki ) {
+	public function getLagTimes( $serverIndexes, $wiki ) {
 		if ( count( $serverIndexes ) == 1 && reset( $serverIndexes ) == 0 ) {
 			// Single server only, just return zero without caching
 			return array( 0 => 0 );
 		}
 
-		wfProfileIn( __METHOD__ );
+		$section = new ProfileSection( __METHOD__ );
+
 		$expiry = 5;
 		$requestRate = 10;
 
@@ -148,7 +107,7 @@ class LoadMonitor_MySQL implements LoadMonitor {
 			$chance = max( 0, ( $expiry - $elapsed ) * $requestRate );
 			if ( mt_rand( 0, $chance ) != 0 ) {
 				unset( $times['timestamp'] ); // hide from caller
-				wfProfileOut( __METHOD__ );
+
 				return $times;
 			}
 			wfIncrStats( 'lag_cache_miss_expired' );
@@ -159,13 +118,13 @@ class LoadMonitor_MySQL implements LoadMonitor {
 		# Cache key missing or expired
 		if ( $wgMemc->add( "$memcKey:lock", 1, 10 ) ) {
 			# Let this process alone update the cache value
-			$unlocker = new ScopedCallback( function() use ( $wgMemc, $memcKey ) {
+			$unlocker = new ScopedCallback( function () use ( $wgMemc, $memcKey ) {
 				$wgMemc->delete( $memcKey );
 			} );
 		} elseif ( is_array( $times ) ) {
 			# Could not acquire lock but an old cache exists, so use it
 			unset( $times['timestamp'] ); // hide from caller
-			wfProfileOut( __METHOD__ );
+
 			return $times;
 		}
 
@@ -185,26 +144,6 @@ class LoadMonitor_MySQL implements LoadMonitor {
 		$wgMemc->set( $memcKey, $times, $expiry + 10 );
 		unset( $times['timestamp'] ); // hide from caller
 
-		wfProfileOut( __METHOD__ );
 		return $times;
-	}
-
-	/**
-	 * @param $conn DatabaseBase
-	 * @param $threshold
-	 * @return int
-	 */
-	function postConnectionBackoff( $conn, $threshold ) {
-		if ( !$threshold ) {
-			return 0;
-		}
-		$status = $conn->getMysqlStatus( "Thread%" );
-		if ( $status['Threads_running'] > $threshold ) {
-			$server = $conn->getProperty( 'mServer' );
-			wfLogDBError( "LB backoff from $server - Threads_running = {$status['Threads_running']}\n" );
-			return $status['Threads_connected'];
-		} else {
-			return 0;
-		}
 	}
 }

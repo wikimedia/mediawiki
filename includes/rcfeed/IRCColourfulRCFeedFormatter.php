@@ -1,11 +1,36 @@
 <?php
+
+/**
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
+
+/**
+ * Generates a colourful notification intended for humans on IRC.
+ *
+ * @since 1.22
+ */
+
 class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 	/**
-	 * Generates a colourful notification intended for humans on IRC.
 	 * @see RCFeedFormatter::getLine
 	 */
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
-		global $wgUseRCPatrol, $wgUseNPPatrol, $wgLocalInterwiki,
+		global $wgUseRCPatrol, $wgUseNPPatrol, $wgLocalInterwikis,
 			$wgCanonicalServer, $wgScript, $wgDBname;
 		$attribs = $rc->getAttributes();
 		if ( $attribs['rc_type'] == RC_LOG ) {
@@ -31,7 +56,7 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 				$query .= '&rcid=' . $attribs['rc_id'];
 			}
 			// HACK: We need this hook for WMF's secure server setup
-			wfRunHooks( 'IRCLineURL', array( &$url, &$query ) );
+			wfRunHooks( 'IRCLineURL', array( &$url, &$query, $rc ) );
 			$url .= $query;
 		}
 
@@ -63,8 +88,9 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 			$flag .= ( $attribs['rc_type'] == RC_NEW ? "N" : "" ) . ( $attribs['rc_minor'] ? "M" : "" ) . ( $attribs['rc_bot'] ? "B" : "" );
 		}
 
-		if ( $feed['add_interwiki_prefix'] === true && $wgLocalInterwiki !== false ) {
-			$prefix = $wgLocalInterwiki;
+		if ( $feed['add_interwiki_prefix'] === true && $wgLocalInterwikis ) {
+			// we use the first entry in $wgLocalInterwikis in recent changes feeds
+			$prefix = $wgLocalInterwikis[0];
 		} elseif ( $feed['add_interwiki_prefix'] ) {
 			$prefix = $feed['add_interwiki_prefix'];
 		} else {

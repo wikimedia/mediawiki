@@ -36,7 +36,7 @@ abstract class Collation {
 
 	/**
 	 * @throws MWException
-	 * @param $collationName string
+	 * @param string $collationName
 	 * @return Collation
 	 */
 	static function factory( $collationName ) {
@@ -47,6 +47,8 @@ abstract class Collation {
 				return new IdentityCollation;
 			case 'uca-default':
 				return new IcuCollation( 'root' );
+			case 'xx-uca-ckb':
+				return new CollationCkb;
 			default:
 				$match = array();
 				if ( preg_match( '/^uca-([a-z@=-]+)$/', $collationName, $match ) ) {
@@ -149,9 +151,9 @@ class IdentityCollation extends Collation {
 }
 
 class IcuCollation extends Collation {
-	const FIRST_LETTER_VERSION = 1;
+	const FIRST_LETTER_VERSION = 2;
 
-	var $primaryCollator, $mainCollator, $locale;
+	var $primaryCollator, $mainCollator, $locale, $digitTransformLanguage;
 	var $firstLetterData;
 
 	/**
@@ -284,7 +286,12 @@ class IcuCollation extends Collation {
 			throw new MWException( 'An ICU collation was requested, ' .
 				'but the intl extension is not available.' );
 		}
+
 		$this->locale = $locale;
+		// Drop everything after the '@' in locale's name
+		$localeParts = explode( '@', $locale );
+		$this->digitTransformLanguage = Language::factory( $locale === 'root' ? 'en' : $localeParts[0] );
+
 		$this->mainCollator = Collator::create( $locale );
 		if ( !$this->mainCollator ) {
 			throw new MWException( "Invalid ICU locale specified for collation: $locale" );
@@ -319,16 +326,14 @@ class IcuCollation extends Collation {
 
 		// Check for CJK
 		$firstChar = mb_substr( $string, 0, 1, 'UTF-8' );
-		if ( ord( $firstChar ) > 0x7f
-			&& self::isCjk( utf8ToCodepoint( $firstChar ) ) )
-		{
+		if ( ord( $firstChar ) > 0x7f && self::isCjk( utf8ToCodepoint( $firstChar ) ) ) {
 			return $firstChar;
 		}
 
 		$sortKey = $this->getPrimarySortKey( $string );
 
 		// Do a binary search to find the correct letter to sort under
-		$min = $this->findLowerBound(
+		$min = ArrayUtils::findLowerBound(
 			array( $this, 'getSortKeyByLetterIndex' ),
 			$this->getFirstLetterCount(),
 			'strcmp',
@@ -347,7 +352,7 @@ class IcuCollation extends Collation {
 		}
 
 		$cache = wfGetCache( CACHE_ANYTHING );
-		$cacheKey = wfMemcKey( 'first-letters', $this->locale );
+		$cacheKey = wfMemcKey( 'first-letters', $this->locale, $this->digitTransformLanguage->getCode() );
 		$cacheEntry = $cache->get( $cacheKey );
 
 		if ( $cacheEntry && isset( $cacheEntry['version'] )
@@ -366,6 +371,12 @@ class IcuCollation extends Collation {
 			// Remove unnecessary ones, if any
 			if ( isset( self::$tailoringFirstLetters['-' . $this->locale] ) ) {
 				$letters = array_diff( $letters, self::$tailoringFirstLetters['-' . $this->locale] );
+			}
+			// Apply digit transforms
+			$digits = array( '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' );
+			$letters = array_diff( $letters, $digits );
+			foreach ( $digits as $digit ) {
+				$letters[] = $this->digitTransformLanguage->formatNum( $digit, true );
 			}
 		} else {
 			$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );
@@ -459,7 +470,7 @@ class IcuCollation extends Collation {
 			$prev = $trimmedKey;
 		}
 		foreach ( $duplicatePrefixes as $badKey ) {
-			wfDebug( "Removing '{$letterMap[$badKey]}' from first letters." );
+			wfDebug( "Removing '{$letterMap[$badKey]}' from first letters.\n" );
 			unset( $letterMap[$badKey] );
 			// This code assumes that unsetting does not change sort order.
 		}
@@ -503,6 +514,8 @@ class IcuCollation extends Collation {
 	 * Do a binary search, and return the index of the largest item that sorts
 	 * less than or equal to the target value.
 	 *
+	 * @deprecated in 1.23; use ArrayUtils::findLowerBound() instead
+	 *
 	 * @param array $valueCallback A function to call to get the value with
 	 *     a given array index.
 	 * @param int $valueCount The number of items accessible via $valueCallback,
@@ -515,35 +528,8 @@ class IcuCollation extends Collation {
 	 *     sorts before all items.
 	 */
 	function findLowerBound( $valueCallback, $valueCount, $comparisonCallback, $target ) {
-		if ( $valueCount === 0 ) {
-			return false;
-		}
-
-		$min = 0;
-		$max = $valueCount;
-		do {
-			$mid = $min + ( ( $max - $min ) >> 1 );
-			$item = call_user_func( $valueCallback, $mid );
-			$comparison = call_user_func( $comparisonCallback, $target, $item );
-			if ( $comparison > 0 ) {
-				$min = $mid;
-			} elseif ( $comparison == 0 ) {
-				$min = $mid;
-				break;
-			} else {
-				$max = $mid;
-			}
-		} while ( $min < $max - 1 );
-
-		if ( $min == 0 ) {
-			$item = call_user_func( $valueCallback, $min );
-			$comparison = call_user_func( $comparisonCallback, $target, $item );
-			if ( $comparison < 0 ) {
-				// Before the first item
-				return false;
-			}
-		}
-		return $min;
+		wfDeprecated( __METHOD__, '1.23' );
+		return ArrayUtils::findLowerBound( $valueCallback, $valueCount, $comparisonCallback, $target );
 	}
 
 	static function isCjk( $codepoint ) {
@@ -604,5 +590,19 @@ class IcuCollation extends Collation {
 		} else {
 			return false;
 		}
+	}
+}
+
+/**
+ * Workaround for the lack of support of Sorani Kurdish / Central Kurdish language ('ckb') in ICU.
+ *
+ * Uses the same collation rules as Persian / Farsi ('fa'), but different characters for digits.
+ */
+class CollationCkb extends IcuCollation {
+	function __construct() {
+		// This will set $locale and collators, which affect the actual sorting order
+		parent::__construct( 'fa' );
+		// Override the 'fa' language set by parent constructor, which affects #getFirstLetterData()
+		$this->digitTransformLanguage = Language::factory( 'ckb' );
 	}
 }

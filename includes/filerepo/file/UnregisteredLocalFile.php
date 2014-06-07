@@ -27,23 +27,34 @@
  *
  * Read-only.
  *
- * TODO: Currently it doesn't really work in the repository role, there are
+ * @todo Currently it doesn't really work in the repository role, there are
  * lots of functions missing. It is used by the WebStore extension in the
  * standalone role.
  *
  * @ingroup FileAbstraction
  */
 class UnregisteredLocalFile extends File {
-	var $title, $path, $mime, $dims, $metadata;
+	/** @var Title */
+	protected $title;
 
-	/**
-	 * @var MediaHandler
-	 */
-	var $handler;
+	/** @var string */
+	protected $path;
+
+	/** @var bool|string */
+	protected $mime;
+
+	/** @var array Dimension data */
+	protected $dims;
+
+	/** @var bool|string Handler-specific metadata which will be saved in the img_metadata field */
+	protected $metadata;
+
+	/** @var MediaHandler */
+	public $handler;
 
 	/**
 	 * @param string $path Storage path
-	 * @param $mime string
+	 * @param string $mime
 	 * @return UnregisteredLocalFile
 	 */
 	static function newFromPath( $path, $mime ) {
@@ -51,8 +62,8 @@ class UnregisteredLocalFile extends File {
 	}
 
 	/**
-	 * @param $title
-	 * @param $repo
+	 * @param Title $title
+	 * @param FileRepo $repo
 	 * @return UnregisteredLocalFile
 	 */
 	static function newFromTitle( $title, $repo ) {
@@ -64,14 +75,15 @@ class UnregisteredLocalFile extends File {
 	 * A FileRepo object is not required here, unlike most other File classes.
 	 *
 	 * @throws MWException
-	 * @param $title Title|bool
-	 * @param $repo FileRepo|bool
-	 * @param $path string|bool
-	 * @param $mime string|bool
+	 * @param Title|bool $title
+	 * @param FileRepo|bool $repo
+	 * @param string|bool $path
+	 * @param string|bool $mime
 	 */
 	function __construct( $title = false, $repo = false, $path = false, $mime = false ) {
 		if ( !( $title && $repo ) && !$path ) {
-			throw new MWException( __METHOD__ . ': not enough parameters, must specify title and repo, or a full path' );
+			throw new MWException( __METHOD__ .
+				': not enough parameters, must specify title and repo, or a full path' );
 		}
 		if ( $title instanceof Title ) {
 			$this->title = File::normalizeTitle( $title, 'exception' );
@@ -95,7 +107,7 @@ class UnregisteredLocalFile extends File {
 	}
 
 	/**
-	 * @param $page int
+	 * @param int $page
 	 * @return bool
 	 */
 	private function cachePageDimensions( $page = 1 ) {
@@ -105,24 +117,27 @@ class UnregisteredLocalFile extends File {
 			}
 			$this->dims[$page] = $this->handler->getPageDimensions( $this, $page );
 		}
+
 		return $this->dims[$page];
 	}
 
 	/**
-	 * @param $page int
-	 * @return number
+	 * @param int $page
+	 * @return int
 	 */
 	function getWidth( $page = 1 ) {
 		$dim = $this->cachePageDimensions( $page );
+
 		return $dim['width'];
 	}
 
 	/**
-	 * @param $page int
-	 * @return number
+	 * @param int $page
+	 * @return int
 	 */
 	function getHeight( $page = 1 ) {
 		$dim = $this->cachePageDimensions( $page );
+
 		return $dim['height'];
 	}
 
@@ -134,17 +149,19 @@ class UnregisteredLocalFile extends File {
 			$magic = MimeMagic::singleton();
 			$this->mime = $magic->guessMimeType( $this->getLocalRefPath() );
 		}
+
 		return $this->mime;
 	}
 
 	/**
-	 * @param $filename String
-	 * @return Array|bool
+	 * @param string $filename
+	 * @return array|bool
 	 */
 	function getImageSize( $filename ) {
 		if ( !$this->getHandler() ) {
 			return false;
 		}
+
 		return $this->handler->getImageSize( $this, $this->getLocalRefPath() );
 	}
 
@@ -159,6 +176,7 @@ class UnregisteredLocalFile extends File {
 				$this->metadata = $this->handler->getMetadata( $this, $this->getLocalRefPath() );
 			}
 		}
+
 		return $this->metadata;
 	}
 
@@ -179,6 +197,7 @@ class UnregisteredLocalFile extends File {
 	 */
 	function getSize() {
 		$this->assertRepoDefined();
+
 		return $this->repo->getFileSize( $this->path );
 	}
 
@@ -187,7 +206,7 @@ class UnregisteredLocalFile extends File {
 	 * The file at the path of $fsFile should not be deleted (or at least
 	 * not until the end of the request). This is mostly a performance hack.
 	 *
-	 * @param $fsFile FSFile
+	 * @param FSFile $fsFile
 	 * @return void
 	 */
 	public function setLocalReference( FSFile $fsFile ) {

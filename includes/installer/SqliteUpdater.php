@@ -31,6 +31,8 @@ class SqliteUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return array(
+			array( 'disableContentHandlerUseDB' ),
+
 			// 1.14
 			array( 'addField', 'site_stats', 'ss_active_users', 'patch-ss_active_users.sql' ),
 			array( 'doActiveUsersInit' ),
@@ -97,6 +99,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addField', 'archive', 'ar_content_format', 'patch-archive-ar_content_format.sql' ),
 			array( 'addField', 'archive', 'ar_content_model', 'patch-archive-ar_content_model.sql' ),
 			array( 'addField', 'page', 'page_content_model', 'patch-page-page_content_model.sql' ),
+			array( 'enableContentHandlerUseDB' ),
+
 			array( 'dropField', 'site_stats', 'ss_admins', 'patch-drop-ss_admins.sql' ),
 			array( 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ),
 			array( 'addTable', 'sites', 'patch-sites.sql' ),
@@ -111,9 +115,19 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addIndex', 'page_props', 'pp_propname_page',
 				'patch-page_props-propname-page-index.sql' ),
 			array( 'addIndex', 'image', 'img_media_mime', 'patch-img_media_mime-index.sql' ),
+
+			// 1.22
 			array( 'addIndex', 'iwlinks', 'iwl_prefix_from_title', 'patch-iwlinks-from-title-index.sql' ),
 			array( 'addField', 'archive', 'ar_id', 'patch-archive-ar_id.sql' ),
 			array( 'addField', 'externallinks', 'el_id', 'patch-externallinks-el_id.sql' ),
+
+			// 1.23
+			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
+			array( 'addIndex', 'logging', 'log_user_text_type_time',
+				'patch-logging_user_text_type_time_index.sql' ),
+			array( 'addIndex', 'logging', 'log_user_text_time', 'patch-logging_user_text_time_index.sql' ),
+			array( 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ),
+			array( 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ),
 		);
 	}
 

@@ -3,7 +3,7 @@
  * Tests for UtfNormal::cleanUp() function.
  *
  * Copyright © 2004 Brion Vibber <brion@pobox.com>
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,6 +30,9 @@
  *
  * @ingroup UtfNormal
  * @group Large
+ *
+ * @todo covers tags, will be UtfNormal::cleanUp once the below is resolved
+ * @todo split me into test methods and providers per the below comment
  *
  * We ignore code coverage for this test suite until they are rewritten
  * to use data providers (bug 46561).

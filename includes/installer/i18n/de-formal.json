@@ -1,0 +1,8 @@
+{
+    "@metadata": {
+        "authors": [
+            "MichaelFrey"
+        ]
+    },
+    "mainpagedocfooter": "Hilfe zur Benutzung und Konfiguration der Wiki-Software finden Sie im [//meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].\n\n== Starthilfen ==\n* [//www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]\n* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]"
+}

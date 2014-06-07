@@ -1,8 +1,11 @@
-MediaWiki 1.22 is a collaborative project released under the
+{{int:version-credits-summary}}
+<!--
+MediaWiki 1.23 is a collaborative project released under the
 GNU General Public License v2. We would like to recognize the
 following names for their contribution to the product.
-
+-->
 <!-- Please notice that the following can be found parsed under Special:Version/Credits -->
+
 == Developers ==
 * Aaron Schulz
 * Alex Z.
@@ -126,6 +129,7 @@ following names for their contribution to the product.
 * Ebrahim Byagowi
 * Edward Z. Yang
 * Elvis Stansvik
+* Eranroz
 * Erwin Dokter
 * Federico Leva
 * FunPika

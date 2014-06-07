@@ -33,9 +33,8 @@
  * @ingroup Media
  */
 class XCFHandler extends BitmapHandler {
-
 	/**
-	 * @param $file
+	 * @param File $file
 	 * @return bool
 	 */
 	function mustRender( $file ) {
@@ -45,9 +44,9 @@ class XCFHandler extends BitmapHandler {
 	/**
 	 * Render files as PNG
 	 *
-	 * @param $ext
-	 * @param $mime
-	 * @param $params
+	 * @param string $ext
+	 * @param string $mime
+	 * @param array $params
 	 * @return array
 	 */
 	function getThumbType( $ext, $mime, $params = null ) {
@@ -57,8 +56,8 @@ class XCFHandler extends BitmapHandler {
 	/**
 	 * Get width and height from the XCF header.
 	 *
-	 * @param $image
-	 * @param $filename
+	 * @param File $image
+	 * @param string $filename
 	 * @return array
 	 */
 	function getImageSize( $image, $filename ) {
@@ -103,12 +102,12 @@ class XCFHandler extends BitmapHandler {
 		#        (enum GimpImageBaseType in libgimpbase/gimpbaseenums.h)
 		try {
 			$header = wfUnpack(
-				  "A9magic"     # A: space padded
-				. "/a5version"  # a: zero padded
-				. "/Nwidth"     # \
-				. "/Nheight"    # N: unsigned long 32bit big endian
-				. "/Nbase_type" # /
-			, $binaryHeader
+				"A9magic" . # A: space padded
+					"/a5version" . # a: zero padded
+					"/Nwidth" . # \
+					"/Nheight" . # N: unsigned long 32bit big endian
+					"/Nbase_type", # /
+				$binaryHeader
 			);
 		} catch ( MWException $mwe ) {
 			return false;
@@ -117,26 +116,29 @@ class XCFHandler extends BitmapHandler {
 		# Check values
 		if ( $header['magic'] !== 'gimp xcf' ) {
 			wfDebug( __METHOD__ . " '$filename' has invalid magic signature.\n" );
+
 			return false;
 		}
 		# TODO: we might want to check for sane values of width and height
 
-		wfDebug( __METHOD__ . ": canvas size of '$filename' is {$header['width']} x {$header['height']} px\n" );
+		wfDebug( __METHOD__ .
+			": canvas size of '$filename' is {$header['width']} x {$header['height']} px\n" );
 
 		# Forge a return array containing metadata information just like getimagesize()
 		# See PHP documentation at: http://www.php.net/getimagesize
 		$metadata = array();
 		$metadata[0] = $header['width'];
 		$metadata[1] = $header['height'];
-		$metadata[2] = null;   # IMAGETYPE constant, none exist for XCF.
+		$metadata[2] = null; # IMAGETYPE constant, none exist for XCF.
 		$metadata[3] = sprintf(
 			'height="%s" width="%s"', $header['height'], $header['width']
 		);
 		$metadata['mime'] = 'image/x-xcf';
 		$metadata['channels'] = null;
-		$metadata['bits'] = 8;  # Always 8-bits per color
+		$metadata['bits'] = 8; # Always 8-bits per color
 
-		assert( '7 == count($metadata); # return array must contains 7 elements just like getimagesize() return' );
+		assert( '7 == count($metadata); ' .
+			'# return array must contains 7 elements just like getimagesize() return' );
 
 		return $metadata;
 	}
@@ -144,6 +146,8 @@ class XCFHandler extends BitmapHandler {
 	/**
 	 * Must use "im" for XCF
 	 *
+	 * @param string $dstPath
+	 * @param bool $checkDstPath
 	 * @return string
 	 */
 	protected static function getScalerType( $dstPath, $checkDstPath = true ) {

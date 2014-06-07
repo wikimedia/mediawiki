@@ -117,7 +117,7 @@ class FileDuplicateSearchPage extends QueryPage {
 				'form',
 				array( 'id' => 'fileduplicatesearch', 'method' => 'get', 'action' => $wgScript )
 			) . "\n" .
-				Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n" .
+				Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) . "\n" .
 				Html::openElement( 'fieldset' ) . "\n" .
 				Html::element( 'legend', null, $this->msg( 'fileduplicatesearch-legend' )->text() ) . "\n" .
 				Xml::inputLabel(

@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "පසිඳු කාවින්ද"
+        ]
+    },
+    "config-page-language": "Teanga",
+    "config-page-name": "Ainm",
+    "config-admin-password": "D'fhocal faire:",
+    "config-help": "Cuidiú",
+    "mainpagetext": "'''D'éirigh le suiteáil MediaWiki.'''",
+    "mainpagedocfooter": "Féach ar [//meta.wikimedia.org/wiki/MediaWiki_localisation doiciméid um conas an chomhéadán a athrú]\nagus an [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar úsáideora] chun cabhair úsáide agus fíoraíochta a fháil."
+}

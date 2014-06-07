@@ -33,6 +33,8 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 
 	protected $origin = self::ORIGIN_CORE_INDIVIDUAL;
 
+	protected $targets = array( 'desktop', 'mobile' );
+
 	/* Methods */
 
 	/**
@@ -41,12 +43,12 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		$hash = $context->getHash();
-		if ( isset( $this->modifiedTime[$hash] ) ) {
-			return $this->modifiedTime[$hash];
+		if ( !isset( $this->modifiedTime[$hash] ) ) {
+			global $wgUser;
+			$this->modifiedTime[$hash] = wfTimestamp( TS_UNIX, $wgUser->getTouched() );
 		}
 
-		global $wgUser;
-		return $this->modifiedTime[$hash] = wfTimestamp( TS_UNIX, $wgUser->getTouched() );
+		return $this->modifiedTime[$hash];
 	}
 
 	/**

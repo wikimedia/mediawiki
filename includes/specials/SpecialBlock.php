@@ -28,27 +28,23 @@
  * @ingroup SpecialPage
  */
 class SpecialBlock extends FormSpecialPage {
-	/** The maximum number of edits a user can have and still be hidden
-	 * TODO: config setting? */
-	const HIDEUSER_CONTRIBLIMIT = 1000;
-
 	/** @var User user to be blocked, as passed either by parameter (url?wpTarget=Foo)
 	 * or as subpage (Special:Block/Foo) */
 	protected $target;
 
-	/// @var Block::TYPE_ constant
+	/** @var Integer Block::TYPE_ constant */
 	protected $type;
 
-	/// @var  User|String the previous block target
+	/** @var User|String the previous block target */
 	protected $previousTarget;
 
-	/// @var Bool whether the previous submission of the form asked for HideUser
+	/** @var Bool whether the previous submission of the form asked for HideUser */
 	protected $requestedHideUser;
 
-	/// @var Bool
+	/** @var Bool */
 	protected $alreadyBlocked;
 
-	/// @var Array
+	/** @var Array */
 	protected $preErrors = array();
 
 	public function __construct() {
@@ -221,6 +217,9 @@ class SpecialBlock extends FormSpecialPage {
 
 		$this->maybeAlterFormDefaults( $a );
 
+		// Allow extensions to add more fields
+		wfRunHooks( 'SpecialBlockModifyFormFields', array( $this, &$a ) );
+
 		return $a;
 	}
 
@@ -293,14 +292,14 @@ class SpecialBlock extends FormSpecialPage {
 		if ( $this->requestedHideUser ) {
 			$fields['Confirm']['type'] = 'check';
 			unset( $fields['Confirm']['default'] );
-			$this->preErrors[] = 'ipb-confirmhideuser';
+			$this->preErrors[] = array( 'ipb-confirmhideuser', 'ipb-confirmaction' );
 		}
 
 		# Or if the user is trying to block themselves
 		if ( (string)$this->target === $this->getUser()->getName() ) {
 			$fields['Confirm']['type'] = 'check';
 			unset( $fields['Confirm']['default'] );
-			$this->preErrors[] = 'ipb-blockingself';
+			$this->preErrors[] = array( 'ipb-blockingself', 'ipb-confirmaction' );
 		}
 	}
 
@@ -594,12 +593,12 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Given the form data, actually implement a block
-	 * @param  $data Array
-	 * @param  $context IContextSource
+	 * @param $data Array
+	 * @param $context IContextSource
 	 * @return Bool|String
 	 */
 	public static function processForm( array $data, IContextSource $context ) {
-		global $wgBlockAllowsUTEdit;
+		global $wgBlockAllowsUTEdit, $wgHideUserContribLimit;
 
 		$performer = $context->getUser();
 
@@ -627,7 +626,7 @@ class SpecialBlock extends FormSpecialPage {
 			if ( $target === $performer->getName() &&
 				( $data['PreviousTarget'] !== $target || !$data['Confirm'] )
 			) {
-				return array( 'ipb-blockingself' );
+				return array( 'ipb-blockingself', 'ipb-confirmaction' );
 			}
 		} elseif ( $type == Block::TYPE_RANGE ) {
 			$userId = 0;
@@ -670,12 +669,15 @@ class SpecialBlock extends FormSpecialPage {
 			} elseif ( !in_array( $data['Expiry'], array( 'infinite', 'infinity', 'indefinite' ) ) ) {
 				# Bad expiry.
 				return array( 'ipb_expiry_temp' );
-			} elseif ( $user->getEditCount() > self::HIDEUSER_CONTRIBLIMIT ) {
+			} elseif ( $wgHideUserContribLimit !== false
+				&& $user->getEditCount() > $wgHideUserContribLimit
+			) {
 				# Typically, the user should have a handful of edits.
 				# Disallow hiding users with many edits for performance.
-				return array( 'ipb_hide_invalid' );
+				return array( array( 'ipb_hide_invalid',
+					Message::numParam( $wgHideUserContribLimit ) ) );
 			} elseif ( !$data['Confirm'] ) {
-				return array( 'ipb-confirmhideuser' );
+				return array( 'ipb-confirmhideuser', 'ipb-confirmaction' );
 			}
 		}
 
@@ -692,8 +694,9 @@ class SpecialBlock extends FormSpecialPage {
 		$block->isAutoblocking( $data['AutoBlock'] );
 		$block->mHideName = $data['HideUser'];
 
-		if ( !wfRunHooks( 'BlockIp', array( &$block, &$performer ) ) ) {
-			return array( 'hookaborted' );
+		$reason = array( 'hookaborted' );
+		if ( !wfRunHooks( 'BlockIp', array( &$block, &$performer, &$reason ) ) ) {
+			return $reason;
 		}
 
 		# Try to insert block. Is there a conflicting block?
@@ -726,8 +729,17 @@ class SpecialBlock extends FormSpecialPage {
 					return array( 'cant-see-hidden-user' );
 				}
 
-				$currentBlock->delete();
-				$status = $block->insert();
+				$currentBlock->isHardblock( $block->isHardblock() );
+				$currentBlock->prevents( 'createaccount', $block->prevents( 'createaccount' ) );
+				$currentBlock->mExpiry = $block->mExpiry;
+				$currentBlock->isAutoblocking( $block->isAutoblocking() );
+				$currentBlock->mHideName = $block->mHideName;
+				$currentBlock->prevents( 'sendemail', $block->prevents( 'sendemail' ) );
+				$currentBlock->prevents( 'editownusertalk', $block->prevents( 'editownusertalk' ) );
+				$currentBlock->mReason = $block->mReason;
+
+				$status = $currentBlock->update();
+
 				$logaction = 'reblock';
 
 				# Unset _deleted fields if requested
@@ -935,7 +947,7 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Process the form on POST submission.
-	 * @param  $data Array
+	 * @param $data Array
 	 * @return Bool|Array true for success, false for didn't-try, array of errors on failure
 	 */
 	public function onSubmit( array $data ) {

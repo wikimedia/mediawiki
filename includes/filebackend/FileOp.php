@@ -34,20 +34,35 @@
  * @since 1.19
  */
 abstract class FileOp {
-	/** @var Array */
+	/** @var array */
 	protected $params = array();
+
 	/** @var FileBackendStore */
 	protected $backend;
 
-	protected $state = self::STATE_NEW; // integer
-	protected $failed = false; // boolean
-	protected $async = false; // boolean
-	protected $batchId; // string
+	/** @var int */
+	protected $state = self::STATE_NEW;
 
-	protected $doOperation = true; // boolean; operation is not a no-op
-	protected $sourceSha1; // string
-	protected $overwriteSameCase; // boolean
-	protected $destExists; // boolean
+	/** @var bool */
+	protected $failed = false;
+
+	/** @var bool */
+	protected $async = false;
+
+	/** @var string */
+	protected $batchId;
+
+	/** @var bool Operation is not a no-op */
+	protected $doOperation = true;
+
+	/** @var string */
+	protected $sourceSha1;
+
+	/** @var bool */
+	protected $overwriteSameCase;
+
+	/** @var bool */
+	protected $destExists;
 
 	/* Object life-cycle */
 	const STATE_NEW = 1;
@@ -58,47 +73,29 @@ abstract class FileOp {
 	 * Build a new batch file operation transaction
 	 *
 	 * @param FileBackendStore $backend
-	 * @param Array $params
-	 * @throws MWException
+	 * @param array $params
+	 * @throws FileBackendError
 	 */
 	final public function __construct( FileBackendStore $backend, array $params ) {
 		$this->backend = $backend;
-		list( $required, $optional ) = $this->allowedParams();
-		// @todo normalizeAnyStoragePaths() calls are overzealous, use a parameter list
+		list( $required, $optional, $paths ) = $this->allowedParams();
 		foreach ( $required as $name ) {
 			if ( isset( $params[$name] ) ) {
-				// Normalize paths so the paths to the same file have the same string
-				$this->params[$name] = self::normalizeAnyStoragePaths( $params[$name] );
+				$this->params[$name] = $params[$name];
 			} else {
-				throw new MWException( "File operation missing parameter '$name'." );
+				throw new FileBackendError( "File operation missing parameter '$name'." );
 			}
 		}
 		foreach ( $optional as $name ) {
 			if ( isset( $params[$name] ) ) {
-				// Normalize paths so the paths to the same file have the same string
-				$this->params[$name] = self::normalizeAnyStoragePaths( $params[$name] );
+				$this->params[$name] = $params[$name];
 			}
 		}
-		$this->params = $params;
-	}
-
-	/**
-	 * Normalize $item or anything in $item that is a valid storage path
-	 *
-	 * @param string $item|array
-	 * @return string|Array
-	 */
-	protected function normalizeAnyStoragePaths( $item ) {
-		if ( is_array( $item ) ) {
-			$res = array();
-			foreach ( $item as $k => $v ) {
-				$k = self::normalizeIfValidStoragePath( $k );
-				$v = self::normalizeIfValidStoragePath( $v );
-				$res[$k] = $v;
+		foreach ( $paths as $name ) {
+			if ( isset( $this->params[$name] ) ) {
+				// Normalize paths so the paths to the same file have the same string
+				$this->params[$name] = self::normalizeIfValidStoragePath( $this->params[$name] );
 			}
-			return $res;
-		} else {
-			return self::normalizeIfValidStoragePath( $item );
 		}
 	}
 
@@ -111,8 +108,10 @@ abstract class FileOp {
 	protected static function normalizeIfValidStoragePath( $path ) {
 		if ( FileBackend::isStoragePath( $path ) ) {
 			$res = FileBackend::normalizeStoragePath( $path );
+
 			return ( $res !== null ) ? $res : $path;
 		}
+
 		return $path;
 	}
 
@@ -120,7 +119,6 @@ abstract class FileOp {
 	 * Set the batch UUID this operation belongs to
 	 *
 	 * @param string $batchId
-	 * @return void
 	 */
 	final public function setBatchId( $batchId ) {
 		$this->batchId = $batchId;
@@ -148,7 +146,7 @@ abstract class FileOp {
 	/**
 	 * Get a new empty predicates array for precheck()
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	final public static function newPredicates() {
 		return array( 'exists' => array(), 'sha1' => array() );
@@ -157,7 +155,7 @@ abstract class FileOp {
 	/**
 	 * Get a new empty dependency tracking array for paths read/written to
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	final public static function newDependencies() {
 		return array( 'read' => array(), 'write' => array() );
@@ -167,18 +165,19 @@ abstract class FileOp {
 	 * Update a dependency tracking array to account for this operation
 	 *
 	 * @param array $deps Prior path reads/writes; format of FileOp::newPredicates()
-	 * @return Array
+	 * @return array
 	 */
 	final public function applyDependencies( array $deps ) {
 		$deps['read'] += array_fill_keys( $this->storagePathsRead(), 1 );
 		$deps['write'] += array_fill_keys( $this->storagePathsChanged(), 1 );
+
 		return $deps;
 	}
 
 	/**
 	 * Check if this operation changes files listed in $paths
 	 *
-	 * @param array $paths Prior path reads/writes; format of FileOp::newPredicates()
+	 * @param array $deps Prior path reads/writes; format of FileOp::newPredicates()
 	 * @return boolean
 	 */
 	final public function dependsOn( array $deps ) {
@@ -192,6 +191,7 @@ abstract class FileOp {
 				return true; // "flow" dependency
 			}
 		}
+
 		return false;
 	}
 
@@ -200,7 +200,7 @@ abstract class FileOp {
 	 *
 	 * @param array $oPredicates Pre-op info about files (format of FileOp::newPredicates)
 	 * @param array $nPredicates Post-op info about files (format of FileOp::newPredicates)
-	 * @return Array
+	 * @return array
 	 */
 	final public function getJournalEntries( array $oPredicates, array $nPredicates ) {
 		if ( !$this->doOperation ) {
@@ -232,6 +232,7 @@ abstract class FileOp {
 				);
 			}
 		}
+
 		return array_merge( $nullEntries, $updateEntries, $deleteEntries );
 	}
 
@@ -240,7 +241,7 @@ abstract class FileOp {
 	 * This must update $predicates for each path that the op can change
 	 * except when a failing status object is returned.
 	 *
-	 * @param Array $predicates
+	 * @param array $predicates
 	 * @return Status
 	 */
 	final public function precheck( array &$predicates ) {
@@ -252,10 +253,12 @@ abstract class FileOp {
 		if ( !$status->isOK() ) {
 			$this->failed = true;
 		}
+
 		return $status;
 	}
 
 	/**
+	 * @param array $predicates
 	 * @return Status
 	 */
 	protected function doPrecheck( array &$predicates ) {
@@ -283,6 +286,7 @@ abstract class FileOp {
 		} else { // no-op
 			$status = Status::newGood();
 		}
+
 		return $status;
 	}
 
@@ -302,23 +306,24 @@ abstract class FileOp {
 		$this->async = true;
 		$result = $this->attempt();
 		$this->async = false;
+
 		return $result;
 	}
 
 	/**
 	 * Get the file operation parameters
 	 *
-	 * @return Array (required params list, optional params list)
+	 * @return array (required params list, optional params list, list of params that are paths)
 	 */
 	protected function allowedParams() {
-		return array( array(), array() );
+		return array( array(), array(), array() );
 	}
 
 	/**
 	 * Adjust params to FileBackendStore internal file calls
 	 *
-	 * @param Array $params
-	 * @return Array (required params list, optional params list)
+	 * @param array $params
+	 * @return array (required params list, optional params list)
 	 */
 	protected function setFlags( array $params ) {
 		return array( 'async' => $this->async ) + $params;
@@ -327,7 +332,7 @@ abstract class FileOp {
 	/**
 	 * Get a list of storage paths read from for this operation
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	public function storagePathsRead() {
 		return array();
@@ -336,7 +341,7 @@ abstract class FileOp {
 	/**
 	 * Get a list of storage paths written to for this operation
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	public function storagePathsChanged() {
 		return array();
@@ -347,7 +352,7 @@ abstract class FileOp {
 	 * Also set the destExists, overwriteSameCase and sourceSha1 member variables.
 	 * A bad status will be returned if there is no chance it can be overwritten.
 	 *
-	 * @param Array $predicates
+	 * @param array $predicates
 	 * @return Status
 	 */
 	protected function precheckDestExistence( array $predicates ) {
@@ -373,12 +378,15 @@ abstract class FileOp {
 				} else {
 					$this->overwriteSameCase = true; // OK
 				}
+
 				return $status; // do nothing; either OK or bad status
 			} else {
 				$status->fatal( 'backend-fail-alreadyexists', $this->params['dst'] );
+
 				return $status;
 			}
 		}
+
 		return $status;
 	}
 
@@ -396,7 +404,7 @@ abstract class FileOp {
 	 * Check if a file will exist in storage when this operation is attempted
 	 *
 	 * @param string $source Storage path
-	 * @param Array $predicates
+	 * @param array $predicates
 	 * @return bool
 	 */
 	final protected function fileExists( $source, array $predicates ) {
@@ -404,6 +412,7 @@ abstract class FileOp {
 			return $predicates['exists'][$source]; // previous op assures this
 		} else {
 			$params = array( 'src' => $source, 'latest' => true );
+
 			return $this->backend->fileExists( $params );
 		}
 	}
@@ -412,7 +421,7 @@ abstract class FileOp {
 	 * Get the SHA-1 of a file in storage when this operation is attempted
 	 *
 	 * @param string $source Storage path
-	 * @param Array $predicates
+	 * @param array $predicates
 	 * @return string|bool False on failure
 	 */
 	final protected function fileSha1( $source, array $predicates ) {
@@ -422,6 +431,7 @@ abstract class FileOp {
 			return false; // previous op assures this
 		} else {
 			$params = array( 'src' => $source, 'latest' => true );
+
 			return $this->backend->getFileSha1Base36( $params );
 		}
 	}
@@ -439,7 +449,6 @@ abstract class FileOp {
 	 * Log a file operation failure and preserve any temp files
 	 *
 	 * @param string $action
-	 * @return void
 	 */
 	final public function logFailure( $action ) {
 		$params = $this->params;
@@ -459,8 +468,11 @@ abstract class FileOp {
  */
 class CreateFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( array( 'content', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'headers' ) );
+		return array(
+			array( 'content', 'dst' ),
+			array( 'overwrite', 'overwriteSame', 'headers' ),
+			array( 'dst' )
+		);
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -470,11 +482,13 @@ class CreateFileOp extends FileOp {
 			$status->fatal( 'backend-fail-maxsize',
 				$this->params['dst'], $this->backend->maxFileSizeInternal() );
 			$status->fatal( 'backend-fail-create', $this->params['dst'] );
+
 			return $status;
 		// Check if a file can be placed/changed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
 			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-create', $this->params['dst'] );
+
 			return $status;
 		}
 		// Check if destination file exists
@@ -485,6 +499,7 @@ class CreateFileOp extends FileOp {
 			$predicates['exists'][$this->params['dst']] = true;
 			$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
 		}
+
 		return $status; // safe to call attempt()
 	}
 
@@ -493,6 +508,7 @@ class CreateFileOp extends FileOp {
 			// Create the file at the destination
 			return $this->backend->createInternal( $this->setFlags( $this->params ) );
 		}
+
 		return Status::newGood();
 	}
 
@@ -511,8 +527,11 @@ class CreateFileOp extends FileOp {
  */
 class StoreFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( array( 'src', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'headers' ) );
+		return array(
+			array( 'src', 'dst' ),
+			array( 'overwrite', 'overwriteSame', 'headers' ),
+			array( 'src', 'dst' )
+		);
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -520,17 +539,20 @@ class StoreFileOp extends FileOp {
 		// Check if the source file exists on the file system
 		if ( !is_file( $this->params['src'] ) ) {
 			$status->fatal( 'backend-fail-notexists', $this->params['src'] );
+
 			return $status;
 		// Check if the source file is too big
 		} elseif ( filesize( $this->params['src'] ) > $this->backend->maxFileSizeInternal() ) {
 			$status->fatal( 'backend-fail-maxsize',
 				$this->params['dst'], $this->backend->maxFileSizeInternal() );
 			$status->fatal( 'backend-fail-store', $this->params['src'], $this->params['dst'] );
+
 			return $status;
 		// Check if a file can be placed/changed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
 			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-store', $this->params['src'], $this->params['dst'] );
+
 			return $status;
 		}
 		// Check if destination file exists
@@ -541,6 +563,7 @@ class StoreFileOp extends FileOp {
 			$predicates['exists'][$this->params['dst']] = true;
 			$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
 		}
+
 		return $status; // safe to call attempt()
 	}
 
@@ -549,6 +572,7 @@ class StoreFileOp extends FileOp {
 			// Store the file at the destination
 			return $this->backend->storeInternal( $this->setFlags( $this->params ) );
 		}
+
 		return Status::newGood();
 	}
 
@@ -559,6 +583,7 @@ class StoreFileOp extends FileOp {
 		if ( $hash !== false ) {
 			$hash = wfBaseConvert( $hash, 16, 36, 31 );
 		}
+
 		return $hash;
 	}
 
@@ -573,8 +598,11 @@ class StoreFileOp extends FileOp {
  */
 class CopyFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( array( 'src', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'headers' ) );
+		return array(
+			array( 'src', 'dst' ),
+			array( 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'headers' ),
+			array( 'src', 'dst' )
+		);
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -586,15 +614,18 @@ class CopyFileOp extends FileOp {
 				// Update file existence predicates (cache 404s)
 				$predicates['exists'][$this->params['src']] = false;
 				$predicates['sha1'][$this->params['src']] = false;
+
 				return $status; // nothing to do
 			} else {
 				$status->fatal( 'backend-fail-notexists', $this->params['src'] );
+
 				return $status;
 			}
-		// Check if a file can be placed/changed at the destination
+			// Check if a file can be placed/changed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
 			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-copy', $this->params['src'], $this->params['dst'] );
+
 			return $status;
 		}
 		// Check if destination file exists
@@ -605,6 +636,7 @@ class CopyFileOp extends FileOp {
 			$predicates['exists'][$this->params['dst']] = true;
 			$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
 		}
+
 		return $status; // safe to call attempt()
 	}
 
@@ -621,6 +653,7 @@ class CopyFileOp extends FileOp {
 			// Copy the file to the destination
 			$status = $this->backend->copyInternal( $this->setFlags( $this->params ) );
 		}
+
 		return $status;
 	}
 
@@ -639,8 +672,11 @@ class CopyFileOp extends FileOp {
  */
 class MoveFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( array( 'src', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'headers' ) );
+		return array(
+			array( 'src', 'dst' ),
+			array( 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'headers' ),
+			array( 'src', 'dst' )
+		);
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -652,15 +688,18 @@ class MoveFileOp extends FileOp {
 				// Update file existence predicates (cache 404s)
 				$predicates['exists'][$this->params['src']] = false;
 				$predicates['sha1'][$this->params['src']] = false;
+
 				return $status; // nothing to do
 			} else {
 				$status->fatal( 'backend-fail-notexists', $this->params['src'] );
+
 				return $status;
 			}
 		// Check if a file can be placed/changed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
 			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
 			$status->fatal( 'backend-fail-move', $this->params['src'], $this->params['dst'] );
+
 			return $status;
 		}
 		// Check if destination file exists
@@ -673,6 +712,7 @@ class MoveFileOp extends FileOp {
 			$predicates['exists'][$this->params['dst']] = true;
 			$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
 		}
+
 		return $status; // safe to call attempt()
 	}
 
@@ -697,6 +737,7 @@ class MoveFileOp extends FileOp {
 			// Move the file to the destination
 			$status = $this->backend->moveInternal( $this->setFlags( $this->params ) );
 		}
+
 		return $status;
 	}
 
@@ -715,7 +756,7 @@ class MoveFileOp extends FileOp {
  */
 class DeleteFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( array( 'src' ), array( 'ignoreMissingSource' ) );
+		return array( array( 'src' ), array( 'ignoreMissingSource' ), array( 'src' ) );
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -727,20 +768,24 @@ class DeleteFileOp extends FileOp {
 				// Update file existence predicates (cache 404s)
 				$predicates['exists'][$this->params['src']] = false;
 				$predicates['sha1'][$this->params['src']] = false;
+
 				return $status; // nothing to do
 			} else {
 				$status->fatal( 'backend-fail-notexists', $this->params['src'] );
+
 				return $status;
 			}
 		// Check if a file can be placed/changed at the source
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['src'] ) ) {
 			$status->fatal( 'backend-fail-usable', $this->params['src'] );
 			$status->fatal( 'backend-fail-delete', $this->params['src'] );
+
 			return $status;
 		}
 		// Update file existence predicates
 		$predicates['exists'][$this->params['src']] = false;
 		$predicates['sha1'][$this->params['src']] = false;
+
 		return $status; // safe to call attempt()
 	}
 
@@ -760,7 +805,7 @@ class DeleteFileOp extends FileOp {
  */
 class DescribeFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( array( 'src' ), array( 'headers' ) );
+		return array( array( 'src' ), array( 'headers' ), array( 'src' ) );
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -768,11 +813,13 @@ class DescribeFileOp extends FileOp {
 		// Check if the source file exists
 		if ( !$this->fileExists( $this->params['src'], $predicates ) ) {
 			$status->fatal( 'backend-fail-notexists', $this->params['src'] );
+
 			return $status;
 		// Check if a file can be placed/changed at the source
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['src'] ) ) {
 			$status->fatal( 'backend-fail-usable', $this->params['src'] );
 			$status->fatal( 'backend-fail-describe', $this->params['src'] );
+
 			return $status;
 		}
 		// Update file existence predicates
@@ -780,6 +827,7 @@ class DescribeFileOp extends FileOp {
 			$this->fileExists( $this->params['src'], $predicates );
 		$predicates['sha1'][$this->params['src']] =
 			$this->fileSha1( $this->params['src'], $predicates );
+
 		return $status; // safe to call attempt()
 	}
 
@@ -796,4 +844,5 @@ class DescribeFileOp extends FileOp {
 /**
  * Placeholder operation that has no params and does nothing
  */
-class NullFileOp extends FileOp {}
+class NullFileOp extends FileOp {
+}

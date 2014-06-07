@@ -281,7 +281,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				'form',
 				array(
 					'method' => 'post',
-					'action' => $this->getTitle()->getLocalURL( 'action=submit' ),
+					'action' => $this->getPageTitle()->getLocalURL( 'action=submit' ),
 					'id' => 'movepage'
 				)
 			) .
@@ -351,7 +351,16 @@ class MovePageForm extends UnlistedSpecialPage {
 			);
 		}
 
-		if ( $user->isAllowed( 'suppressredirect' ) && $handler->supportsRedirects() ) {
+		if ( $user->isAllowed( 'suppressredirect' ) ) {
+			if ( $handler->supportsRedirects() ) {
+				$isChecked = $this->leaveRedirect;
+				$options = array();
+			} else {
+				$isChecked = false;
+				$options = array(
+					'disabled' => 'disabled'
+				);
+			}
 			$out->addHTML( "
 				<tr>
 					<td></td>
@@ -360,7 +369,8 @@ class MovePageForm extends UnlistedSpecialPage {
 						$this->msg( 'move-leave-redirect' )->text(),
 						'wpLeaveRedirect',
 						'wpLeaveRedirect',
-						$this->leaveRedirect
+						$isChecked,
+						$options
 					) .
 					"</td>
 				</tr>"
@@ -457,7 +467,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$nt = $this->newTitle;
 
 		# don't allow moving to pages with # in
-		if ( !$nt || $nt->getFragment() != '' ) {
+		if ( !$nt || $nt->hasFragment() ) {
 			$this->showForm( array( array( 'badtitletext' ) ) );
 
 			return;
@@ -583,8 +593,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		$dbr = wfGetDB( DB_MASTER );
 		if ( $this->moveSubpages && (
 			MWNamespace::hasSubpages( $nt->getNamespace() ) || (
-				$this->moveTalk &&
-					MWNamespace::hasSubpages( $nt->getTalkPage()->getNamespace() )
+				$this->moveTalk
+					&& MWNamespace::hasSubpages( $nt->getTalkPage()->getNamespace() )
 			)
 		) ) {
 			$conds = array(

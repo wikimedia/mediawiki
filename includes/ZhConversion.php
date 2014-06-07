@@ -2,7 +2,7 @@
 /**
  * Simplified / Traditional Chinese conversion tables
  *
- * Automatically generated using code and data in includes/zhtable/
+ * Automatically generated using code and data in maintenance/language/zhtable/
  * Do not modify directly!
  *
  * @file
@@ -7578,6 +7578,7 @@ $zh2Hant = array(
 '管人吊脚儿事' => '管人弔腳兒事',
 '管制法' => '管制法',
 '管干' => '管幹',
+'箱里' => '箱裡',
 '节欲' => '節慾',
 '节余' => '節餘',
 '范例' => '範例',

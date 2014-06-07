@@ -1,0 +1,14 @@
+{
+    "@metadata": {
+        "authors": [
+            "Ashok modhvadia",
+            "KartikMistry",
+            "The Discoverer"
+        ]
+    },
+    "ooui-dialog-action-close": "બંધ કરો",
+    "ooui-outline-control-move-down": "વસ્તુ નીચે ખસેડો",
+    "ooui-outline-control-move-up": "વસ્તુ ઉપર ખસેડો",
+    "ooui-outline-control-remove": "વસ્તુ હટાવો",
+    "ooui-toolbar-more": "વધુ"
+}

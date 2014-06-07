@@ -4,6 +4,7 @@
  * @group API
  * @group Database
  * @group medium
+ * @covers ApiQueryRevisions
  */
 class ApiQueryRevisionsTest extends ApiTestCase {
 
