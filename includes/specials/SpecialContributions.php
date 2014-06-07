@@ -270,7 +270,12 @@ class SpecialContributions extends IncludableSpecialPage {
 			// Show a note if the user is blocked and display the last block log entry.
 			// Do not expose the autoblocks, since that may lead to a leak of accounts' IPs,
 			// and also this will display a totally irrelevant log entry as a current block.
-			if ( $userObj->isBlocked() && $userObj->getBlock()->getType() != Block::TYPE_AUTO ) {
+			$block = Block::newFromTarget( $userObj, $userObj );
+			if ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) {
+				if ( $block->getType() == Block::TYPE_RANGE ) {
+					$nt = MWNamespace::getCanonicalName( NS_USER ) . ':' . $block->getTarget();
+				}
+
 				$out = $this->getOutput(); // showLogExtract() wants first parameter by reference
 				LogEventsList::showLogExtract(
 					$out,
