@@ -160,6 +160,9 @@
 	'gv' => 'Gaelg',		# Manx
 	'ha' => 'Hausa',	# Hausa
 	'hak' => '客家語/Hak-kâ-ngî',	# Hakka
+	'hak-hans' => "客家语（简体）‎\xE2\x80\x8E",		# Hakka (Simplified Han)
+	'hak-hant' => "客家語（繁體）‎\xE2\x80\x8E",   		# Hakka (Traditional Han)
+	'hak-latn' => "Hak-kâ-ngî (Pha̍k-fa-sṳ)\xE2\x80\x8E",	# Hakka (Latin)
 	'haw' => 'Hawai`i',		# Hawaiian
 	'he' => 'עברית',	# Hebrew
 	'hi' => 'हिन्दी',	# Hindi
