@@ -203,11 +203,12 @@ class CSSMin {
 			$remote = substr( $remote, 0, -1 );
 		}
 
-		// Note: This will not correctly handle cases where ';', '{' or '}'
-		// appears in the rule itself, e.g. in a quoted string. You are advised
+		// Note: This will correctly handle cases where ';', '{' or '}' appears
+		// in a css block comment (/* ... */). All other occurrences, e.g. in
+		// quoted strings, will not be handled correctly. You are advised
 		// not to use such characters in file names. We also match start/end of
 		// the string to be consistent in edge-cases ('@import url(…)').
-		$pattern = '/(?:^|[;{])\K[^;{}]*' . CSSMin::URL_REGEX . '[^;}]*(?=[;}]|$)/';
+		$pattern = '/(?:^|[;{])\K(?:\/\*.*?\*\/|[^;{}])*' . CSSMin::URL_REGEX . '(?:\/\*.*?\*\/|[^;}])*(?=[;}]|$)/';
 
 		return preg_replace_callback(
 			$pattern,
