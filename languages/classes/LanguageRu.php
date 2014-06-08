@@ -65,6 +65,8 @@ class LanguageRu extends Language {
 						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'тей';
 					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ды' ) {
 						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'дов';
+					} elseif ( join( '', array_slice( $chars[0], -1 ) ) === 'д' ) {
+						$word = join( '', array_slice( $chars[0], 0, -1 ) ) . 'да';
 					} elseif ( join( '', array_slice( $chars[0], -3 ) ) === 'ник' ) {
 						$word = join( '', array_slice( $chars[0], 0, -3 ) ) . 'ника';
 					} elseif ( join( '', array_slice( $chars[0], -3 ) ) === 'ные' ) {
@@ -91,6 +93,8 @@ class LanguageRu extends Language {
 						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'тях';
 					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ды' ) {
 						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'дах';
+					} elseif ( join( '', array_slice( $chars[0], -1 ) ) === 'д' ) {
+						$word = join( '', array_slice( $chars[0], 0, -1 ) ) . 'де';
 					} elseif ( join( '', array_slice( $chars[0], -3 ) ) === 'ник' ) {
 						$word = join( '', array_slice( $chars[0], 0, -3 ) ) . 'нике';
 					} elseif ( join( '', array_slice( $chars[0], -3 ) ) === 'ные' ) {
