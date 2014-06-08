@@ -554,7 +554,7 @@
 	"changeemail-oldemail": "Nykyinen sähköpostiosoite:",
 	"changeemail-newemail": "Uusi sähköpostiosoite:",
 	"changeemail-none": "(ei asetettu)",
-	"changeemail-password": "Salasanasi sivustolla {{SITENAME}}",
+	"changeemail-password": "{{SITENAME}}-salasanasi:",
 	"changeemail-submit": "Muuta sähköpostiosoite",
 	"changeemail-cancel": "Peruuta",
 	"changeemail-throttled": "Olet tehnyt liian monta kirjautumisyritystä.\nOdota $1 ennen kuin yrität uudelleen.",

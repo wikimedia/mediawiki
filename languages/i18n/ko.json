@@ -1475,7 +1475,7 @@
 	"unusedtemplateswlh": "다른 링크",
 	"randompage": "임의 문서로",
 	"randompage-nopages": "{{PLURAL:$2|다음}} 이름공간에는 문서가 없습니다: $1",
-	"randomincategory": "분류에 있는 임의 문서",
+	"randomincategory": "분류 안의 임의 문서",
 	"randomincategory-invalidcategory": "\"$1\"(은)는 올바른 분류 이름이 아닙니다.",
 	"randomincategory-nopages": "[[:Category:$1]]에 문서가 없습니다.",
 	"randomincategory-selectcategory": "분류에서 임의 문서 얻기: $1 $2",

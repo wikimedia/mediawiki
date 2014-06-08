@@ -21,7 +21,8 @@
 			"Sporeunai",
 			"Ihojose",
 			"Seb35",
-			"McDutchie"
+			"McDutchie",
+			"Miguel2706"
 		]
 	},
 	"config-desc": "El instalador de MediaWiki",
@@ -202,7 +203,7 @@
 	"config-mysql-utf8": "UTF-8",
 	"config-mysql-charset-help": "En '''modo binario''', MediaWiki almacena texto UTF-8 para la base de datos en campos binarios.\nEsto es más eficiente que el modo UTF-8 de MySQL y le permite utilizar la gama completa de caracteres Unicode.\n\nEn '''modo UTF-8''', MySQL sabrá qué conjunto de caracteres emplean sus datos y puede presentarlos y convertirlos adecuadamente, pero no le permitirá almacenar caracteres por encima del [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plano multilingüe básico].",
 	"config-mssql-auth": "Tipo de autentificación:",
-	"config-mssql-install-auth": "Seleccione el tipo de autenticación que se utilizará para conectarse a la base de datos durante el proceso de instalación.\nSi selecciona \"{{int:config-mssql-windowsauth}}\", serán utilizadas las credenciales del usuario con que el servidor Web se está ejecutando.",
+	"config-mssql-install-auth": "Seleccione el tipo de autenticación que se utilizará para conectarse a la base de datos durante el proceso de instalación.\nSi selecciona \"{{int:config-mssql-windowsauth}}\", las credenciales de cualquier usuario de el servidor web que se está ejecutando van a ser utilizadas.",
 	"config-mssql-web-auth": "Seleccione el tipo de autenticación que utilizará el servidor web para conectarse al servidor de base de datos, durante el funcionamiento normal de la wiki.\nSi selecciona \"{{int:config-mssql-windowsauth}}\", las credenciales del usuario que sea cual sea el servidor Web se ejecuta como será utilizado.",
 	"config-mssql-sqlauth": "Autenticación de SQL Server",
 	"config-mssql-windowsauth": "Autentificación de Windows",
