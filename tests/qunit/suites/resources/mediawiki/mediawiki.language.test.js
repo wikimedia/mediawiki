@@ -259,6 +259,18 @@
 				description: 'Grammar test for prepositional case, доводы -> доводах'
 			},
 			{
+				word: 'Викисклад',
+				grammarForm: 'prepositional',
+				expected: 'Викискладе',
+				description: 'Grammar test for prepositional case, Викисклад -> Викискладе'
+			},
+			{
+				word: 'Викисклад',
+				grammarForm: 'genitive',
+				expected: 'Викисклада',
+				description: 'Grammar test for genitive case, Викисклад -> Викисклада'
+			},
+			{
 				word: 'песчаник',
 				grammarForm: 'prepositional',
 				expected: 'песчанике',
