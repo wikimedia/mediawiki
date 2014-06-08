@@ -119,6 +119,23 @@ class CSSMinTest extends MediaWikiTestCase {
 				array( 'foo { prop: url(/w/skin/images/bar.png); }', false, 'http://example.org/quux', false ),
 				'foo { prop: url(http://doc.example.org/w/skin/images/bar.png); }',
 			),
+			array(
+				'Simple case with comments before url',
+				array( 'foo { prop: /* some {funny} comment */ url(bar.png); }', false, 'http://example.org', false ),
+				'foo { prop: /* some {funny} comment */ url(http://example.org/bar.png); }',
+			),
+			array(
+				'Simple case with comments after url',
+				array( 'foo { prop: url(bar.png)/* some {funny} comment */ ; }', false, 'http://example.org', false ),
+				'foo { prop: url(http://example.org/bar.png)/* some {funny} comment */ ; }',
+			),
+			array(
+				'Offensive line from jquery.ui.theme.css (bug 60077)',
+				array( '.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #d3d3d3/*{borderColorDefault}*/; background: #e6e6e6/*{bgColorDefault}*/ url(images/ui-bg_glass_75_e6e6e6_1x400.png)/*{bgImgUrlDefault}*/ 50%/*{bgDefaultXPos}*/ 50%/*{bgDefaultYPos}*/ repeat-x/*{bgDefaultRepeat}*/; font-weight: normal/*{fwDefault}*/; color: #555555/*{fcDefault}*/; }', false, 'http://example.org', false ),
+				'.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #d3d3d3/*{borderColorDefault}*/; background: #e6e6e6/*{bgColorDefault}*/ url(http://example.org/images/ui-bg_glass_75_e6e6e6_1x400.png)/*{bgImgUrlDefault}*/ 50%/*{bgDefaultXPos}*/ 50%/*{bgDefaultYPos}*/ repeat-x/*{bgDefaultRepeat}*/; font-weight: normal/*{fwDefault}*/; color: #555555/*{fcDefault}*/; }',
+			),
+
+
 		);
 	}
 
