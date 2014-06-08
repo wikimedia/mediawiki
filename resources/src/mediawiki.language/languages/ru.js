@@ -25,6 +25,8 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 				word = word.substr(0, word.length - 2 ) + 'тей';
 			} else if ( word.substr( word.length - 2 ) === 'ды' ) {
 				word = word.substr(0, word.length - 2 ) + 'дов';
+			} else if ( word.substr( word.length - 1 ) === 'д' ) {
+				word = word.substr(0, word.length - 1 ) + 'да';
 			} else if ( word.substr( word.length - 3 ) === 'ные' ) {
 				word = word.substr(0, word.length - 3 ) + 'ных';
 			} else if ( word.substr( word.length - 3 ) === 'ник' ) {
@@ -42,6 +44,8 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 				word = word.substr(0, word.length - 2 ) + 'тях';
 			} else if ( word.substr( word.length - 2 ) === 'ды' ) {
 				word = word.substr(0, word.length - 2 ) + 'дах';
+			} else if ( word.substr( word.length - 1 ) === 'д' ) {
+				word = word.substr(0, word.length - 1 ) + 'де';
 			} else if ( word.substr( word.length - 3 ) === 'ные' ) {
 				word = word.substr(0, word.length - 3 ) + 'ных';
 			} else if ( word.substr( word.length - 3 ) === 'ник' ) {

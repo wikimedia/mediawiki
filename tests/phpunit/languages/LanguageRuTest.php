@@ -96,6 +96,16 @@ class LanguageRuTest extends LanguageClassesTestCase {
 				'prepositional',
 			),
 			array(
+				'Викисклада',
+				'Викисклад',
+				'genitive',
+			),
+			array(
+				'Викискладе',
+				'Викисклад',
+				'prepositional',
+			),
+			array(
 				'Викиданных',
 				'Викиданные',
 				'prepositional',
