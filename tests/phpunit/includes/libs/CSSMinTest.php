@@ -203,6 +203,16 @@ class CSSMinTest extends MediaWikiTestCase {
 				"foo { background: url($red); background: url(http://localhost/w/red.gif?timestamp)!ie; }",
 			),
 			array(
+				'Can not re-embed data: URIs',
+				"foo { /* @embed */ background: url($red); }",
+				"foo { background: url($red); }",
+			),
+			array(
+				'Can not remap data: URIs',
+				"foo { background: url($red); }",
+				"foo { background: url($red); }",
+			),
+			array(
 				'Can not embed remote URLs',
 				'foo { /* @embed */ background: url(http://example.org/w/foo.png); }',
 				'foo { background: url(http://example.org/w/foo.png); }',
