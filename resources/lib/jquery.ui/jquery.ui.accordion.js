@@ -98,7 +98,7 @@ $.widget( "ui.accordion", {
 
 		self._createIcons();
 		self.resize();
-		
+
 		// ARIA
 		self.element.attr( "role", "tablist" );
 
@@ -193,7 +193,7 @@ $.widget( "ui.accordion", {
 
 	_setOption: function( key, value ) {
 		$.Widget.prototype._setOption.apply( this, arguments );
-			
+
 		if ( key == "active" ) {
 			this.activate( value );
 		}
@@ -252,12 +252,13 @@ $.widget( "ui.accordion", {
 			maxHeight;
 
 		if ( options.fillSpace ) {
-			if ( $.browser.msie ) {
+			var profile = $.client.profile();
+			if ( profile.name === 'msie' ) {
 				var defOverflow = this.element.parent().css( "overflow" );
 				this.element.parent().css( "overflow", "hidden");
 			}
 			maxHeight = this.element.parent().height();
-			if ($.browser.msie) {
+			if ( profile.name === 'msie' ) {
 				this.element.parent().css( "overflow", defOverflow );
 			}
 

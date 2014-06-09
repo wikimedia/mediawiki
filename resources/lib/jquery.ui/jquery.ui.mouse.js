@@ -109,7 +109,8 @@ $.widget("ui.mouse", {
 
 	_mouseMove: function(event) {
 		// IE mouseup check - mouseup happened when mouse was out of window
-		if ($.browser.msie && !(document.documentMode >= 9) && !event.button) {
+		var profile = $.client.profile();
+		if (profile.name === 'msie' && !(document.documentMode >= 9) && !event.button) {
 			return this._mouseUp(event);
 		}
 

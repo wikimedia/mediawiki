@@ -282,7 +282,8 @@ $.widget("ui.resizable", $.ui.mouse, {
 		if (!trigger) return false;
 
 		// Calculate the attrs that will be change
-		var data = trigger.apply(this, [event, dx, dy]), ie6 = $.browser.msie && $.browser.version < 7, csdif = this.sizeDiff;
+		var profile = $.client.profile();
+		var data = trigger.apply(this, [event, dx, dy]), ie6 = profile.name === 'msie' && profile.version < 7, csdif = this.sizeDiff;
 
 		// Put this in the mouseDrag handler since the user can start pressing shift while resizing
 		this._updateVirtualBoundaries(event.shiftKey);
@@ -434,6 +435,7 @@ $.widget("ui.resizable", $.ui.mouse, {
 		for (var i=0; i < this._proportionallyResizeElements.length; i++) {
 
 			var prel = this._proportionallyResizeElements[i];
+			var profile = $.client.profile();
 
 			if (!this.borderDif) {
 				var b = [prel.css('borderTopWidth'), prel.css('borderRightWidth'), prel.css('borderBottomWidth'), prel.css('borderLeftWidth')],
@@ -445,7 +447,7 @@ $.widget("ui.resizable", $.ui.mouse, {
 				});
 			}
 
-			if ($.browser.msie && !(!($(element).is(':hidden') || $(element).parents(':hidden').length)))
+			if (profile.name === 'msie' && !(!($(element).is(':hidden') || $(element).parents(':hidden').length)))
 				continue;
 
 			prel.css({
@@ -460,6 +462,7 @@ $.widget("ui.resizable", $.ui.mouse, {
 	_renderProxy: function() {
 
 		var el = this.element, o = this.options;
+		var profile = $.client.profile();
 		this.elementOffset = el.offset();
 
 		if(this._helper) {
@@ -467,7 +470,7 @@ $.widget("ui.resizable", $.ui.mouse, {
 			this.helper = this.helper || $('<div style="overflow:hidden;"></div>');
 
 			// fix ie6 offset TODO: This seems broken
-			var ie6 = $.browser.msie && $.browser.version < 7, ie6offset = (ie6 ? 1 : 0),
+			var ie6 = profile.name === 'msie' && profile.version < 7, ie6offset = (ie6 ? 1 : 0),
 			pxyoffset = ( ie6 ? 2 : -1 );
 
 			this.helper.addClass(this._helper).css({

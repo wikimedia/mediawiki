@@ -787,7 +787,8 @@ $.extend($.ui.dialog.overlay, {
 		var scrollHeight,
 			offsetHeight;
 		// handle IE 6
-		if ($.browser.msie && $.browser.version < 7) {
+		var profile = $.client.profile();
+		if (profile.name === 'msie' && profile.version < 7) {
 			scrollHeight = Math.max(
 				document.documentElement.scrollHeight,
 				document.body.scrollHeight
@@ -812,7 +813,8 @@ $.extend($.ui.dialog.overlay, {
 		var scrollWidth,
 			offsetWidth;
 		// handle IE
-		if ( $.browser.msie ) {
+		var profile = $.client.profile();
+		if ( profile.name === 'msie' ) {
 			scrollWidth = Math.max(
 				document.documentElement.scrollWidth,
 				document.body.scrollWidth
