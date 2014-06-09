@@ -1503,7 +1503,7 @@
 	"filedelete-maintenance": "Deletion and restoration of files temporarily disabled during maintenance.",
 	"filedelete-maintenance-title": "Cannot delete file",
 	"mimesearch": "MIME search",
-	"mimesearch-summary": "This page enables the filtering of files for their MIME type.\nInput: contenttype/subtype, e.g. <code>image/jpeg</code>.",
+	"mimesearch-summary": "This page enables the filtering of files for their MIME type.\nInput: contenttype/subtype or contenttype/*, e.g. <code>image/jpeg</code>.",
 	"mimetype": "MIME type:",
 	"download": "download",
 	"unwatchedpages": "Unwatched pages",

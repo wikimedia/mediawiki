@@ -51,6 +51,11 @@ class MIMEsearchPage extends QueryPage {
 	}
 
 	public function getQueryInfo() {
+		$minorType = array();
+		if ( $this->minor !== '*' ) {
+			// Allow wildcard searching
+			$minorType['img_minor_mime'] = $this->minor;
+		}
 		$qi = array(
 			'tables' => array( 'image' ),
 			'fields' => array(
@@ -67,7 +72,6 @@ class MIMEsearchPage extends QueryPage {
 			),
 			'conds' => array(
 				'img_major_mime' => $this->major,
-				'img_minor_mime' => $this->minor,
 				// This is in order to trigger using
 				// the img_media_mime index in "range" mode.
 				'img_media_type' => array(
@@ -81,7 +85,7 @@ class MIMEsearchPage extends QueryPage {
 					MEDIATYPE_TEXT,
 					MEDIATYPE_EXECUTABLE,
 					MEDIATYPE_ARCHIVE,
-				),
+				) + $minorType,
 			),
 		);
 
