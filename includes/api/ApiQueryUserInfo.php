@@ -31,6 +31,8 @@
  */
 class ApiQueryUserInfo extends ApiQueryBase {
 
+	const WL_UNREAD_LIMIT = 1000;
+
 	private $prop = array();
 
 	public function __construct( ApiQuery $query, $moduleName ) {
@@ -50,7 +52,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	protected function getCurrentUserInfo() {
-		global $wgHiddenPrefs;
+		global $wgHiddenPrefs, $wgRCMaxAge;
 		$user = $this->getUser();
 		$result = $this->getResult();
 		$vals = array();
@@ -153,6 +155,28 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['acceptlang'] = $acceptLang;
 		}
 
+		if ( isset( $this->prop['unreadcount'] ) ) {
+			$dbr = $this->getQuery()->getNamedDB( 'watchlist', DB_SLAVE, 'watchlist' );
+
+			$sql = $dbr->selectSQLText(
+				'watchlist',
+				array( 'dummy' => 1 ),
+				array(
+					'wl_user' => $user->getId(),
+					'wl_notificationtimestamp IS NOT NULL',
+				),
+				__METHOD__,
+				array( 'LIMIT' => self::WL_UNREAD_LIMIT )
+			);
+			$count = $dbr->selectField( array( 'c' => "($sql)" ), 'COUNT(*)' );
+
+			if ( $count >= self::WL_UNREAD_LIMIT ) {
+				$vals['unreadcount'] = self::WL_UNREAD_LIMIT . '+';
+			} else {
+				$vals['unreadcount'] = (int)$count;
+			}
+		}
+
 		return $vals;
 	}
 
@@ -212,7 +236,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'email',
 					'realname',
 					'acceptlang',
-					'registrationdate'
+					'registrationdate',
+					'unreadcount',
 				)
 			)
 		);
@@ -237,6 +262,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				'  acceptlang       - Echoes the Accept-Language header sent by ' .
 					'the client in a structured format',
 				'  registrationdate - Adds the user\'s registration date',
+				'  unreadcount      - Adds the count of unread pages on the user\'s watchlist ' .
+					'(maximum ' . ( self::WL_UNREAD_LIMIT - 1 ) . '; returns "' .
+					self::WL_UNREAD_LIMIT . '+" if more)',
 			)
 		);
 	}
