@@ -2878,6 +2878,7 @@
 	"version-ext-colheader-description": "Апісаньне",
 	"version-ext-colheader-credits": "Аўтары",
 	"version-license-title": "Ліцэнзія для $1",
+	"version-license-not-found": "Для гэтага пашырэньня няма падрабязных зьвестак пра ліцэнзію.",
 	"version-poweredby-credits": "{{SITENAME}} працуе на праграмным забесьпячэньні '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 	"version-poweredby-others": "іншыя",
 	"version-poweredby-translators": "перакладчыкі з translatewiki.net",
