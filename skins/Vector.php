@@ -476,25 +476,17 @@ class VectorTemplate extends BaseTemplate {
 						echo ' emptyPortlet';
 					}
 					?>" aria-labelledby="p-variants-label">
-						<h3 id="mw-vector-current-variant">
-							<?php
-							foreach ( $this->data['variant_urls'] as $link ) {
-								?>
-								<?php
-								if ( stripos( $link['attributes'], 'selected' ) !== false ) {
-									?>
-									<?php
-									echo htmlspecialchars( $link['text'] )
-									?>
-								<?php
-								}
-								?>
-							<?php
+						<?php
+						foreach ( $this->data['variant_urls'] as $link ) {
+							if ( stripos( $link['attributes'], 'selected' ) !== false ) {
+								$curVariant = $link['text'];
+								break;
 							}
-							?>
-						</h3>
-
-						<h3 id="p-variants-label"><span><?php $this->msg( 'variants' ) ?></span><a href="#"></a></h3>
+						}
+						?>
+						<h3 id="p-variants-label"><span
+							style="display: block;" <?php /* Temporary WMF deployment hack, to be removed before 1.24 release */ ?>
+							><?php echo htmlspecialchars( $curVariant ) ?></span><a href="#"></a></h3>
 
 						<div class="menu">
 							<ul>
