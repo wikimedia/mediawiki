@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (c9b9f8345d)
+ * OOjs UI v0.1.0-pre (098f84f8a0)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Thu Jun 05 2014 18:43:23 GMT-0700 (PDT)
+ * Date: Mon Jun 09 2014 14:32:26 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -2524,7 +2524,6 @@ OO.ui.GroupElement = function OoUiGroupElement( $group, config ) {
 	// Properties
 	this.$group = $group;
 	this.items = [];
-	this.$items = this.$( [] );
 	this.aggregateItemEvents = {};
 };
 
@@ -2601,7 +2600,7 @@ OO.ui.GroupElement.prototype.aggregate = function ( events ) {
  */
 OO.ui.GroupElement.prototype.addItems = function ( items, index ) {
 	var i, len, item, event, events, currentIndex,
-		$items = this.$( [] );
+		itemElements = [];
 
 	for ( i = 0, len = items.length; i < len; i++ ) {
 		item = items[i];
@@ -2624,21 +2623,19 @@ OO.ui.GroupElement.prototype.addItems = function ( items, index ) {
 			item.connect( this, events );
 		}
 		item.setElementGroup( this );
-		$items = $items.add( item.$element );
+		itemElements.push( item.$element.get( 0 ) );
 	}
 
 	if ( index === undefined || index < 0 || index >= this.items.length ) {
-		this.$group.append( $items );
+		this.$group.append( itemElements );
 		this.items.push.apply( this.items, items );
 	} else if ( index === 0 ) {
-		this.$group.prepend( $items );
+		this.$group.prepend( itemElements );
 		this.items.unshift.apply( this.items, items );
 	} else {
-		this.$items.eq( index ).before( $items );
+		this.items[index].$element.before( itemElements );
 		this.items.splice.apply( this.items, [ index, 0 ].concat( items ) );
 	}
-
-	this.$items = this.$items.add( $items );
 
 	return this;
 };
@@ -2672,7 +2669,6 @@ OO.ui.GroupElement.prototype.removeItems = function ( items ) {
 			item.setElementGroup( null );
 			this.items.splice( index, 1 );
 			item.$element.detach();
-			this.$items = this.$items.not( item.$element );
 		}
 	}
 
@@ -2703,10 +2699,8 @@ OO.ui.GroupElement.prototype.clearItems = function () {
 			item.disconnect( this, remove );
 		}
 		item.setElementGroup( null );
+		item.$element.detach();
 	}
-	this.items = [];
-	this.$items.detach();
-	this.$items = this.$( [] );
 
 	return this;
 };
@@ -5068,9 +5062,13 @@ OO.ui.StackLayout.prototype.clearItems = function () {
  * @fires set
  */
 OO.ui.StackLayout.prototype.setItem = function ( item ) {
+	var i, len;
+
 	if ( item !== this.currentItem ) {
 		if ( !this.continuous ) {
-			this.$items.css( 'display', '' );
+			for ( i = 0, len = this.items.length; i < len; i++ ) {
+				this.items[i].$element.css( 'display', '' );
+			}
 		}
 		if ( $.inArray( item, this.items ) !== -1 ) {
 			if ( !this.continuous ) {
@@ -8482,7 +8480,7 @@ OO.ui.TextInputMenuWidget.prototype.position = function () {
 		// Fix for RTL (for some reason, no need to fix if the frameoffset is set)
 		if ( this.$element.css( 'direction' ) === 'rtl' ) {
 			dimensions.right = this.$element.parent().position().left -
-				dimensions.width - dimensions.left;
+				$container.width() - dimensions.left;
 			// Erase the value for 'left':
 			delete dimensions.left;
 		}
