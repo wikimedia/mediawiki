@@ -484,9 +484,7 @@ class VectorTemplate extends BaseTemplate {
 							}
 						}
 						?>
-						<h3 id="p-variants-label"><span
-							style="display: block;" <?php /* Temporary WMF deployment hack, to be removed before 1.24 release */ ?>
-							><?php echo htmlspecialchars( $curVariant ) ?></span><a href="#"></a></h3>
+						<h3 id="p-variants-label"><span><?php echo htmlspecialchars( $curVariant ) ?></span><a href="#"></a></h3>
 
 						<div class="menu">
 							<ul>
