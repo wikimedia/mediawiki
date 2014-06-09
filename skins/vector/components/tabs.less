@@ -143,15 +143,23 @@ div#mw-head div.vectorMenu h3 {
 	margin-right: -1px;
 }
 
-div#mw-head div.vectorMenu h4,
-div.vectorMenu#p-variants #mw-vector-current-variant {
-	display: inline-block;
-	float: left;
-	font-size: 0.8em;
-	padding-left: 0.5em;
-	padding-top: 1.375em;
-	font-weight: normal;
-	border: none;
+// The "Variants" menu has a really funny structure
+div#mw-head div.vectorMenu#p-variants {
+	#p-variants-label span {
+		display: none;
+	}
+
+	#mw-vector-current-variant {
+		display: inline-block;
+		float: left;
+		padding-right: 20px;
+		font-size: 0.8em;
+		padding-left: 0.5em;
+		padding-top: 1.375em;
+		font-weight: normal;
+		border: none;
+		background-image: none;
+	}
 }
 
 div.vectorMenu h3 span {
