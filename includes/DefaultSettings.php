@@ -7077,6 +7077,16 @@ $wgPagePropsHaveSortkey = true;
 $wgHttpsPort = 443;
 
 /**
+ * Secret and algorithm for hmac-based key derivation function (fast,
+ * cryptographically secure random numbers).
+ * This should be set in LocalSettings.php, otherwise wgSecretKey will
+ * be used.
+ * @since 1.24
+ */
+$wgHKDFSecret = false;
+$wgHKDFAlgorithm = 'sha256';
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
