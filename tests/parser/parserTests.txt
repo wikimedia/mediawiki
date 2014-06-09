@@ -2209,6 +2209,16 @@ data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},
 !! end
 
 !! test
+Parsoid: Pipe in template with nested template in external link target in template parameter (seriously)
+!! options
+parsoid
+!! wikitext
+{{echo|[{{fullurl:{{FULLPAGENAME}}|action=edit}} bar]}}
+!! html
+<p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[{{fullurl:{{FULLPAGENAME}}|action=edit}} bar]"}},"i":0}}]}'>[Main Page bar]</p>
+!! end
+
+!! test
 Templates: Don't escape already nowiki-escaped text in template parameters
 !! options
 parsoid=html2wt,wt2wt
@@ -2354,6 +2364,57 @@ c
 <th> bar
 </th></tr></table>
 
+!!end
+
+!!test
+2d. Indent-Pre and tables
+!! wikitext
+ a
+ {|
+ | b
+ |}
+!! html/php
+<pre>a
+</pre>
+<table>
+<tr>
+<td> b
+</td></tr></table>
+
+!! html/parsoid
+<pre>a</pre>
+ 
+<table>
+ 
+<tbody>
+<tr>
+<td> b</td></tr>
+ </tbody></table>
+!!end
+
+!!test
+2e. Indent-Pre and table-line syntax
+!! wikitext
+ a
+ | b
+ | c
+!! html/parsoid
+<pre>a
+| b
+| c</pre>
+!!end
+
+!!test
+2f. Indent-pre started by table-line syntax
+!! wikitext
+a
+ | b
+ | c
+!! html/parsoid
+<p>a</p>
+<pre>
+| b
+| c</pre>
 !!end
 
 !!test
@@ -4143,32 +4204,6 @@ Bug 4781, 5267: %28, %29 in bracketed URL
 <p><a rel="mw:ExtLink" href="http://www.example.com/?title=Ben-Hur_%281959_film%29">link</a></p>
 !! end
 
-# Note that parsoid does not munge anchor text; all non-space
-# characters are valid in HTML5 ids.
-!! test
-Anchor containing a #. (bug 63430)
-!! wikitext
-[[Main Page#And#Link]]
-!! html/php
-<p><a href="/wiki/Main_Page#And.23Link" title="Main Page">Main Page#And#Link</a>
-</p>
-!! html/parsoid
-<p><a rel="mw:WikiLink" href="./Main_Page#And%23Link">Main Page#And#Link</a></p>
-!! end
-
-# Note that parsoid does not munge anchor text; all non-space
-# characters are valid in HTML5 ids.
-!! test
-Anchor containing a #. (bug 63430)
-!! wikitext
-[[Main Page#And#Link]]
-!! html/php
-<p><a href="/wiki/Main_Page#And.23Link" title="Main Page">Main Page#And#Link</a>
-</p>
-!! html/parsoid
-<p><a rel="mw:WikiLink" href="./Main_Page#And%23Link">Main Page#And#Link</a></p>
-!! end
-
 !! test
 External link containing a period in the anchor. (bug 63947)
 !! wikitext
@@ -4770,6 +4805,18 @@ Accept "||" in table headings
 <th> h2
 </th></tr></table>
 
+!! end
+
+!! test
+Accept "!!" in table data
+!! wikitext
+{|
+| Foo!! ||
+|}
+!! html/parsoid
+<table data-parsoid='{}'>
+<tbody data-parsoid='{}'><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'> Foo!! </td><td data-parsoid='{"stx_v":"row","autoInsertedEnd":true}'></td></tr>
+</tbody></table>
 !! end
 
 !! test
@@ -5484,6 +5531,19 @@ Link with multiple pipes
 </p>
 !! end
 
+# Note that parsoid does not munge anchor text; all non-space
+# characters are valid in HTML5 ids.
+!! test
+Anchor containing a #. (bug 63430)
+!! wikitext
+[[Main Page#And#Link]]
+!! html/php
+<p><a href="/wiki/Main_Page#And.23Link" title="Main Page">Main Page#And#Link</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Main_Page#And%23Link">Main Page#And#Link</a></p>
+!! end
+
 !! test
 Link to namespaces
 !! wikitext
@@ -6056,6 +6116,14 @@ parsoid
 [[Foo|{{echo|a}} b {{echo|c}}]]
 !! html
 <p><a rel="mw:WikiLink" href="Foo"><span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"a"}},"i":0}}]}'>a</span> b <span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"c"}},"i":0}}]}'>c</span></a></p>
+!! end
+
+!! test
+Link with angle bracket after anchor
+!! wikitext
+[[Foo#<bar>]]
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Foo#%3Cbar%3E" data-parsoid='{"stx":"simple","a":{"href":"./Foo#%3Cbar%3E"},"sa":{"href":"Foo#&lt;bar>"}}'>Foo#&lt;bar></a></p>
 !! end
 
 ###
@@ -8629,7 +8697,7 @@ parsoid=wt2html,wt2wt
 |c
 |}
 !!html/parsoid
-<meta typeof="mw:Includes/IncludeOnly" data-parsoid='{"src":"&lt;includeonly>a&lt;/includeonly>"}'/><meta typeof="mw:Includes/IncludeOnly/End" data-parsoid='{"src":"&lt;/includeonly>"}'/><span typeof="mw:Param" about="#mwt1" id="mwt1" data-mw="{}">{{{b}}}</span><table about="#mwt1">
+<meta typeof="mw:Includes/IncludeOnly" data-parsoid='{"src":"&lt;includeonly>a&lt;/includeonly>"}'/><meta typeof="mw:Includes/IncludeOnly/End" data-parsoid='{"src":"&lt;/includeonly>"}'/><span data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'>{{{b}}}</span><table about="#mwt1" typeof="mw:Param" data-parsoid='{"a":{" ":null},"sa":{" ":""},"src":"{| {{{b}}}\n|c\n|}"}'>
 <tbody><tr><td>c</td></tr>
 </tbody></table>
 !!end
@@ -19680,6 +19748,20 @@ Indented table with an empty td
 <td>foo
 </td></tr></table>
 
+!!end
+
+!!test
+Indented block & table
+!! wikitext
+ <div>foo</div>
+ {|
+ |foo
+ |}
+!! html/parsoid
+ <div data-parsoid='{"stx":"html"}'>foo</div>
+ <table><tbody>
+ <tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'>foo</td></tr>
+ </tbody></table>
 !!end
 
 !!test
