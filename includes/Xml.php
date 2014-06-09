@@ -814,9 +814,12 @@ class Xml {
 	 * @param array $rows An array of arrays of strings, each to be a row in a table
 	 * @param array $attribs An array of attributes to apply to the table tag [optional]
 	 * @param array $headers An array of strings to use as table headers [optional]
+	 * @param bool $escape Whether HTML entities in headers and rows should be escaped [optional]
 	 * @return string
 	 */
-	public static function buildTable( $rows, $attribs = array(), $headers = null ) {
+	public static function buildTable( $rows, $attribs = array(), $headers = null,
+		$escape = true
+	) {
 		$s = Xml::openElement( 'table', $attribs );
 
 		if ( is_array( $headers ) ) {
@@ -829,7 +832,11 @@ class Xml {
 					$attribs['id'] = $id;
 				}
 
-				$s .= Xml::element( 'th', $attribs, $header );
+				if ( $escape ) {
+					$s .= Xml::element( 'th', $attribs, $header );
+				} else {
+					$s .= Xml::tags( 'th', $attribs, $header );
+				}
 			}
 			$s .= Xml::closeElement( 'thead' );
 		}
@@ -841,7 +848,7 @@ class Xml {
 				$attribs['id'] = $id;
 			}
 
-			$s .= Xml::buildTableRow( $attribs, $row );
+			$s .= Xml::buildTableRow( $attribs, $row, $escape );
 		}
 
 		$s .= Xml::closeElement( 'table' );
@@ -853,9 +860,10 @@ class Xml {
 	 * Build a row for a table
 	 * @param array $attribs An array of attributes to apply to the tr tag
 	 * @param array $cells An array of strings to put in <td>
+	 * @param bool $escape Whether HTML entities should be escaped [optional]
 	 * @return string
 	 */
-	public static function buildTableRow( $attribs, $cells ) {
+	public static function buildTableRow( $attribs, $cells, $escape = true ) {
 		$s = Xml::openElement( 'tr', $attribs );
 
 		foreach ( $cells as $id => $cell ) {
@@ -865,7 +873,11 @@ class Xml {
 				$attribs['id'] = $id;
 			}
 
-			$s .= Xml::element( 'td', $attribs, $cell );
+			if ( $escape ) {
+				$s .= Xml::element( 'td', $attribs, $cell );
+			} else {
+				$s .= Xml::tags( 'td', $attribs, $cell );
+			}
 		}
 
 		$s .= Xml::closeElement( 'tr' );
