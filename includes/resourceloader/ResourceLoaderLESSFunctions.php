@@ -62,6 +62,6 @@ class ResourceLoaderLESSFunctions {
 
 		$data = CSSMin::encodeImageAsDataURI( $file );
 		$less->addParsedFile( $file );
-		return 'url(' . $data . ')';
+		return CSSMin::buildUrlValue( $data );
 	}
 }
