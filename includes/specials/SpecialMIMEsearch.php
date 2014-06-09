@@ -28,7 +28,7 @@
  * @ingroup SpecialPage
  */
 class MIMEsearchPage extends QueryPage {
-	protected $major, $minor;
+	protected $major, $minor, $mime;
 
 	function __construct( $name = 'MIMEsearch' ) {
 		parent::__construct( $name );
@@ -100,33 +100,36 @@ class MIMEsearchPage extends QueryPage {
 		return array();
 	}
 
-	function execute( $par ) {
+	/**
+	 * Return HTML to put just before the results.
+	 */
+	function getPageHeader() {
 		global $wgScript;
 
-		$mime = $par ? $par : $this->getRequest()->getText( 'mime' );
-
-		$this->setHeaders();
-		$this->outputHeader();
-		$this->getOutput()->addHTML(
-			Xml::openElement(
+		return Xml::openElement(
 				'form',
 				array( 'id' => 'specialmimesearch', 'method' => 'get', 'action' => $wgScript )
 			) .
-				Xml::openElement( 'fieldset' ) .
-				Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
-				Xml::element( 'legend', null, $this->msg( 'mimesearch' )->text() ) .
-				Xml::inputLabel( $this->msg( 'mimetype' )->text(), 'mime', 'mime', 20, $mime ) .
-				' ' .
-				Xml::submitButton( $this->msg( 'ilsubmit' )->text() ) .
-				Xml::closeElement( 'fieldset' ) .
-				Xml::closeElement( 'form' )
-		);
+			Xml::openElement( 'fieldset' ) .
+			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
+			Xml::element( 'legend', null, $this->msg( 'mimesearch' )->text() ) .
+			Xml::inputLabel( $this->msg( 'mimetype' )->text(), 'mime', 'mime', 20, $this->mime ) .
+			' ' .
+			Xml::submitButton( $this->msg( 'ilsubmit' )->text() ) .
+					Xml::closeElement( 'fieldset' ) .
+					Xml::closeElement( 'form' );
+	}
 
-		list( $this->major, $this->minor ) = File::splitMime( $mime );
+	function execute( $par ) {
+		$this->mime = $par ? $par : $this->getRequest()->getText( 'mime' );
+		list( $this->major, $this->minor ) = File::splitMime( $this->mime );
 
 		if ( $this->major == '' || $this->minor == '' || $this->minor == 'unknown' ||
 			!self::isValidType( $this->major )
 		) {
+			$this->setHeaders();
+			$this->outputHeader();
+			$this->getOutput()->addHTML( $this->getPageHeader() );
 			return;
 		}
 
