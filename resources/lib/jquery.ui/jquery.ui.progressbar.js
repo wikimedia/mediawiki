@@ -1,11 +1,12 @@
 /*!
- * jQuery UI Progressbar 1.8.24
+ * jQuery UI Progressbar 1.9.2
+ * http://jqueryui.com
  *
- * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
+ * Copyright 2012 jQuery Foundation and other contributors
+ * Released under the MIT license.
  * http://jquery.org/license
  *
- * http://docs.jquery.com/UI/Progressbar
+ * http://api.jqueryui.com/progressbar/
  *
  * Depends:
  *   jquery.ui.core.js
@@ -14,6 +15,7 @@
 (function( $, undefined ) {
 
 $.widget( "ui.progressbar", {
+	version: "1.9.2",
 	options: {
 		value: 0,
 		max: 100
@@ -38,7 +40,7 @@ $.widget( "ui.progressbar", {
 		this._refreshValue();
 	},
 
-	destroy: function() {
+	_destroy: function() {
 		this.element
 			.removeClass( "ui-progressbar ui-widget ui-widget-content ui-corner-all" )
 			.removeAttr( "role" )
@@ -47,8 +49,6 @@ $.widget( "ui.progressbar", {
 			.removeAttr( "aria-valuenow" );
 
 		this.valueDiv.remove();
-
-		$.Widget.prototype.destroy.apply( this, arguments );
 	},
 
 	value: function( newValue ) {
@@ -69,7 +69,7 @@ $.widget( "ui.progressbar", {
 			}
 		}
 
-		$.Widget.prototype._setOption.apply( this, arguments );
+		this._super( key, value );
 	},
 
 	_value: function() {
@@ -86,8 +86,8 @@ $.widget( "ui.progressbar", {
 	},
 
 	_refreshValue: function() {
-		var value = this.value();
-		var percentage = this._percentage();
+		var value = this.value(),
+			percentage = this._percentage();
 
 		if ( this.oldValue !== value ) {
 			this.oldValue = value;
@@ -100,10 +100,6 @@ $.widget( "ui.progressbar", {
 			.width( percentage.toFixed(0) + "%" );
 		this.element.attr( "aria-valuenow", value );
 	}
-});
-
-$.extend( $.ui.progressbar, {
-	version: "1.8.24"
 });
 
 })( jQuery );
