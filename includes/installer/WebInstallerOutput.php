@@ -124,6 +124,12 @@ class WebInstallerOutput {
 	 * @return string
 	 */
 	public function getCSS() {
+		// Horrible, horrible hack: the installer is currently hardcoded to use the Vector skin, so load
+		// it here. Include instead of require, as this will work without it, it will just look bad.
+		global $wgResourceModules;
+		global $wgStyleDirectory;
+		include_once "$wgStyleDirectory/Vector/Vector.php";
+
 		$moduleNames = array(
 			// See SkinTemplate::setupSkinUserCss
 			'mediawiki.legacy.shared',
@@ -146,6 +152,10 @@ class WebInstallerOutput {
 		foreach ( $moduleNames as $moduleName ) {
 			/** @var ResourceLoaderFileModule $module */
 			$module = $resourceLoader->getModule( $moduleName );
+			// One of the modules will be missing if Vector is unavailable
+			if ( !$module ) {
+				continue;
+			}
 
 			// Based on: ResourceLoaderFileModule::getStyles (without the DB query)
 			$styles = ResourceLoader::makeCombinedStyles( $module->readStyleFiles(

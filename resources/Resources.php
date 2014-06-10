@@ -128,34 +128,12 @@ return array(
 	 *
 	 * See Vector for an example.
 	 */
-	'skins.vector.styles' => array(
-		// Used in the web installer. Test it after modifying this definition!
-		'styles' => array(
-			'screen.less' => array( 'media' => 'screen' ),
-			'screen-hd.less' => array( 'media' => 'screen and (min-width: 982px)' ),
-		),
-		'remoteSkinPath' => 'vector',
-		'localBasePath' => $GLOBALS['wgStyleDirectory'] . '/vector',
-	),
 	'skins.monobook.styles' => array(
 		'styles' => array(
 			'main.css' => array( 'media' => 'screen' ),
 		),
 		'remoteSkinPath' => 'monobook',
 		'localBasePath' => $GLOBALS['wgStyleDirectory'] . '/monobook',
-	),
-	'skins.vector.js' => array(
-		'scripts' => array(
-			'collapsibleTabs.js',
-			'vector.js',
-		),
-		'position' => 'top',
-		'dependencies' => array(
-			'jquery.throttle-debounce',
-			'jquery.tabIndex',
-		),
-		'remoteSkinPath' => 'vector',
-		'localBasePath' => $GLOBALS['wgStyleDirectory'] . '/vector',
 	),
 
 	/* jQuery */
@@ -1228,7 +1206,7 @@ return array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.css',
 		'skinStyles' => array(
-			'vector' => 'skins/vector/special.less', // FIXME this should use $wgStyleDirectory
+			'vector' => 'skins/Vector/special.less', // FIXME this should use $wgStyleDirectory
 		),
 	),
 	'mediawiki.special.block' => array(
@@ -1277,7 +1255,7 @@ return array(
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.preferences.css',
 		'position' => 'top',
 		'skinStyles' => array(
-			'vector' => 'skins/vector/special.preferences.less', // FIXME this should use $wgStyleDirectory
+			'vector' => 'skins/Vector/special.preferences.less', // FIXME this should use $wgStyleDirectory
 		),
 		'messages' => array(
 			'prefs-tabs-navigation-hint',

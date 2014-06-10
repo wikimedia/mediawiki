@@ -1182,8 +1182,6 @@ $wgAutoloadLocalClasses = array(
 	# skins
 	'MonoBookTemplate' => 'skins/monobook/MonoBook.php',
 	'SkinMonoBook' => 'skins/monobook/MonoBook.php',
-	'SkinVector' => 'skins/vector/Vector.php',
-	'VectorTemplate' => 'skins/vector/Vector.php',
 );
 
 class AutoLoader {

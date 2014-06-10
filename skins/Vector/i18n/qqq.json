@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"skinname-vector": "{{optional}}",
+	"vector.css": "{{optional}}",
+	"vector.js": "{{optional}}",
+	"vector-action-addsection": "Used in the Vector skin. See for example {{canonicalurl:Talk:Main_Page|useskin=vector}}",
+	"vector-action-delete": "Used in the Vector skin, as the name of a tab at the top of the page. See for example {{canonicalurl:Main_Page|useskin=vector}}\n\n{{Identical|Delete}}",
+	"vector-action-move": "Used in the Vector skin, on the tabs at the top of the page. See for example {{canonicalurl:Talk:Main_Page|useskin=vector}}\n\n{{Identical|Move}}",
+	"vector-action-protect": "Tab at top of page, in vector skin\n\n{{Identical|Protect}}",
+	"vector-action-undelete": "Tab at top of page, in vector skin.\n{{Identical|Undelete}}",
+	"vector-action-unprotect": "Tab at top of page, in vector skin.\n{{Identical|Change protection}}",
+	"vector-view-create": "Tab label in the Vector skin. See for example {{canonicalurl:Foo|useskin=vector}}\n{{Identical|Create}}",
+	"vector-view-edit": "Tab label in the Vector skin. See for example {{canonicalurl:Main_Page|useskin=vector}}\n{{Identical|Edit}}",
+	"vector-view-history": "Tab label in the Vector skin. See for example {{canonicalurl:Main_Page|useskin=vector}}\n{{Identical|View history}}",
+	"vector-view-view": "Tab label in the Vector skin (verb). See for example {{canonicalurl:Main_Page|useskin=vector}}.\n{{Identical|Read}}",
+	"vector-view-viewsource": "Tab label in the Vector skin.\n{{Identical|View source}}",
+	"vector-more-actions": "Label in the Vector skin's menu for the less-important or rarer actions which are not shown as tabs (like moving the page, or for sysops deleting or protecting the page), as well as (for users with a narrow viewing window in their browser) the less-important tab actions which the user's browser is unable to fit in. {{Identical|More}}"
+}
