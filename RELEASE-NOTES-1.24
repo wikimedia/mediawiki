@@ -115,6 +115,9 @@ production.
 * Upgrade Sinon.JS to 1.10.3.
 * Added the es5-shim polyfill for older or non-compliant javascript engines.
 * Upgrade jQuery Cookie to v1.2.0.
+* (bug 66440) The MediaWiki web installer will now allow you to choose the skins
+  to enable (from the ones included in download tarball) and decide which one
+  should be the default.
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language
