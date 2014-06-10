@@ -163,8 +163,11 @@ class UserMailer {
 	public static function send( $to, $from, $subject, $body, $replyto = null,
 		$contentType = 'text/plain; charset=UTF-8'
 	) {
-		global $wgSMTP, $wgEnotifMaxRecips, $wgAdditionalMailParams, $wgAllowHTMLEmail;
+		global $wgSMTP, $wgEnotifMaxRecips, $wgAdditionalMailParams, $wgAllowHTMLEmail,
+			$wgEnableVERP;
+
 		$mime = null;
+
 		if ( !is_array( $to ) ) {
 			$to = array( $to );
 		}
@@ -239,7 +242,6 @@ class UserMailer {
 		# -- hashar 20120218
 
 		$headers['From'] = $from->toString();
-		$headers['Return-Path'] = $from->address;
 
 		if ( $replyto ) {
 			$headers['Reply-To'] = $replyto->toString();
@@ -330,15 +332,27 @@ class UserMailer {
 				$headers['To'] = $to[0]->toString();
 			}
 
-			# Split jobs since SMTP servers tends to limit the maximum
-			# number of possible recipients.
-			$chunks = array_chunk( $to, $wgEnotifMaxRecips );
-			foreach ( $chunks as $chunk ) {
-				$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
-				# FIXME : some chunks might be sent while others are not!
-				if ( !$status->isOK() ) {
-					wfRestoreWarnings();
-					return $status;
+			if ( $wgEnableVERP ) {
+				foreach ( $to as $recip ) {
+					$fromVERP = wfRunHooks( 'VERPAddressGenerate', array( $recip, &$from , &$headers ) );
+					if ( $fromVERP ) {
+						$headers['From'] = $from->toString();
+						$headers['Return-Path'] = $from->address;
+					}
+					$status = self::sendWithPear( $mail_object, $recip->toString(), $headers, $body );
+				}
+			} else {
+				# Split jobs since SMTP servers tends to limit the maximum
+				# number of possible recipients.
+				$chunks = array_chunk( $to, $wgEnotifMaxRecips );
+				$headers['Return-Path'] = $from->address;
+				foreach ( $chunks as $chunk ) {
+					$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
+					# FIXME : some chunks might be sent while others are not!
+					if ( !$status->isOK() ) {
+						wfRestoreWarnings();
+						return $status;
+					}
 				}
 			}
 			wfRestoreWarnings();
@@ -350,8 +364,6 @@ class UserMailer {
 			if ( count( $to ) > 1 ) {
 				$headers['To'] = 'undisclosed-recipients:;';
 			}
-			$headers = self::arrayToHeaderString( $headers, $endl );
-
 			wfDebug( "Sending mail via internal mail() function\n" );
 
 			self::$mErrorString = '';
@@ -363,6 +375,18 @@ class UserMailer {
 				$safeMode = wfIniGetBool( 'safe_mode' );
 
 				foreach ( $to as $recip ) {
+					if ( $wgEnableVERP ) {
+						$fromVERP = wfRunHooks( 'VERPAddressGenerate', array( $recip, &$from , &$headers ) );
+						if( $fromVERP ) {
+							$headers['From'] = $from->toString();
+							$headers['Return-Path'] = $from->address;
+						}
+					} else {
+						$headers['Return-Path'] = $from->address;
+					}
+
+					$headers = self::arrayToHeaderString( $headers, $endl );
+
 					if ( $safeMode ) {
 						$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
 					} else {
