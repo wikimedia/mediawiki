@@ -166,7 +166,7 @@ class HistoryAction extends FormlessAction {
 			$conds = array();
 		}
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
-			$checkDeleted = Xml::checkLabel( $this->msg( 'history-show-deleted' )->text(),
+			$checkDeleted = Html::checkLabel( $this->msg( 'history-show-deleted' )->text(),
 				'deleted', 'mw-show-deleted-only', $request->getBool( 'deleted' ) ) . "\n";
 		} else {
 			$checkDeleted = '';
@@ -176,20 +176,20 @@ class HistoryAction extends FormlessAction {
 		$action = htmlspecialchars( $wgScript );
 		$out->addHTML(
 			"<form action=\"$action\" method=\"get\" id=\"mw-history-searchform\">" .
-			Xml::fieldset(
+			Html::fieldset(
 				$this->msg( 'history-fieldset-title' )->text(),
 				false,
 				array( 'id' => 'mw-history-search' )
 			) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n" .
 			Html::hidden( 'action', 'history' ) . "\n" .
-			Xml::dateMenu(
+			Html::dateMenu(
 				( $year == null ? MWTimestamp::getLocalInstance()->format( 'Y' ) : $year ),
 				$month
 			) . '&#160;' .
 			( $tagSelector ? ( implode( '&#160;', $tagSelector ) . '&#160;' ) : '' ) .
 			$checkDeleted .
-			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "\n" .
+			Html::submit( $this->msg( 'allpagessubmit' )->text() ) . "\n" .
 			'</fieldset></form>'
 		);
 
@@ -548,7 +548,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	function submitButton( $message, $attributes = array() ) {
 		# Disable submit button if history has 1 revision only
 		if ( $this->getNumRows() > 1 ) {
-			return Xml::submitButton( $message, $attributes );
+			return Html::submit( $message, $attributes );
 		} else {
 			return '';
 		}
@@ -602,10 +602,10 @@ class HistoryPager extends ReverseChronologicalPager {
 			$this->preventClickjacking();
 			// If revision was hidden from sysops, disable the checkbox
 			if ( !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
-				$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
+				$del = Html::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
 			// Otherwise, enable the checkbox...
 			} else {
-				$del = Xml::check( 'showhiderevisions', false,
+				$del = Html::check( 'showhiderevisions', false,
 					array( 'name' => 'ids[' . $rev->getId() . ']' ) );
 			}
 		// User can only view deleted revisions...
@@ -720,7 +720,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$attribs['class'] = implode( ' ', $classes );
 		}
 
-		return Xml::tags( 'li', $attribs, $s ) . "\n";
+		return Html::rawElement( 'li', $attribs, $s ) . "\n";
 	}
 
 	/**
@@ -829,7 +829,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$radio = array( 'type' => 'radio', 'value' => $id );
 			/** @todo Move title texts to javascript */
 			if ( $firstInList ) {
-				$first = Xml::element( 'input',
+				$first = Html::element( 'input',
 					array_merge( $radio, array(
 						'style' => 'visibility:hidden',
 						'name' => 'oldid',
@@ -847,13 +847,13 @@ class HistoryPager extends ReverseChronologicalPager {
 				} else {
 					$checkmark = array();
 				}
-				$first = Xml::element( 'input',
+				$first = Html::element( 'input',
 					array_merge( $radio, $checkmark, array(
 						'name' => 'oldid',
 						'id' => "mw-oldid-$id" ) ) );
 				$checkmark = array();
 			}
-			$second = Xml::element( 'input',
+			$second = Html::element( 'input',
 				array_merge( $radio, $checkmark, array(
 					'name' => 'diff',
 					'id' => "mw-diff-$id" ) ) );

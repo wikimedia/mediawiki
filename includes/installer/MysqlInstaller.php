@@ -358,7 +358,7 @@ class MysqlInstaller extends DatabaseInstaller {
 			$this->setVar( '_MysqlEngine', reset( $engines ) );
 		}
 
-		$s .= Xml::openElement( 'div', array(
+		$s .= Html::openElement( 'div', array(
 			'id' => 'dbMyisamWarning'
 		) );
 		$myisamWarning = 'config-mysql-myisam-dep';
@@ -366,12 +366,12 @@ class MysqlInstaller extends DatabaseInstaller {
 			$myisamWarning = 'config-mysql-only-myisam-dep';
 		}
 		$s .= $this->parent->getWarningBox( wfMessage( $myisamWarning )->text() );
-		$s .= Xml::closeElement( 'div' );
+		$s .= Html::closeElement( 'div' );
 
 		if ( $this->getVar( '_MysqlEngine' ) != 'MyISAM' ) {
-			$s .= Xml::openElement( 'script', array( 'type' => 'text/javascript' ) );
+			$s .= Html::openElement( 'script', array( 'type' => 'text/javascript' ) );
 			$s .= '$(\'#dbMyisamWarning\').hide();';
-			$s .= Xml::closeElement( 'script' );
+			$s .= Html::closeElement( 'script' );
 		}
 
 		if ( count( $engines ) >= 2 ) {

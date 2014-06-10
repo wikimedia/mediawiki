@@ -2811,7 +2811,7 @@ $templates
 				$extraQuery
 			);
 			if ( $useESI && $wgResourceLoaderUseESI ) {
-				$esi = Xml::element( 'esi:include', array( 'src' => $url ) );
+				$esi = Html::element( 'esi:include', array( 'src' => $url ) );
 				if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
 					$link = Html::inlineStyle( $esi );
 				} else {

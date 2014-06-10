@@ -791,7 +791,7 @@ abstract class HTMLFormField {
 				$this->mOptionsLabelsNotFromMessage = true;
 				$this->mOptions = self::forceToStringRecursive( $this->mParams['options'] );
 			} elseif ( array_key_exists( 'options-message', $this->mParams ) ) {
-				/** @todo This is copied from Xml::listDropDown(), deprecate/avoid duplication? */
+				/** @todo This is copied from Html::select(), deprecate/avoid duplication? */
 				$message = $this->msg( $this->mParams['options-message'] )->inContentLanguage()->plain();
 
 				$optgroup = false;

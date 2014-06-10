@@ -267,7 +267,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			if ( $row->rd_from && $level < 2 ) {
 				$out->addHTML( $this->listItem( $row, $nt, $target, true ) );
 				$this->showIndirectLinks( $level + 1, $nt, $wgMaxRedirectLinksRetrieved );
-				$out->addHTML( Xml::closeElement( 'li' ) );
+				$out->addHTML( Html::closeElement( 'li' ) );
 			} else {
 				$out->addHTML( $this->listItem( $row, $nt, $target ) );
 			}
@@ -283,7 +283,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	}
 
 	protected function listStart( $level ) {
-		return Xml::openElement( 'ul', ( $level ? array() : array( 'id' => 'mw-whatlinkshere-list' ) ) );
+		return Html::openElement( 'ul', ( $level ? array() : array( 'id' => 'mw-whatlinkshere-list' ) ) );
 	}
 
 	protected function listItem( $row, $nt, $target, $notClose = false ) {
@@ -341,12 +341,12 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		);
 
 		return $notClose ?
-			Xml::openElement( 'li' ) . "$link $propsText $dirmark $wlh\n" :
-			Xml::tags( 'li', null, "$link $propsText $dirmark $wlh" ) . "\n";
+			Html::openElement( 'li' ) . "$link $propsText $dirmark $wlh\n" :
+			Html::rawElement( 'li', null, "$link $propsText $dirmark $wlh" ) . "\n";
 	}
 
 	protected function listEnd() {
-		return Xml::closeElement( 'ul' );
+		return Html::closeElement( 'ul' );
 	}
 
 	protected function wlhLink( Title $target, $text ) {
@@ -414,7 +414,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$namespace = $this->opts->consumeValue( 'namespace' );
 
 		# Build up the form
-		$f = Xml::openElement( 'form', array( 'action' => $wgScript ) );
+		$f = Html::openElement( 'form', array( 'action' => $wgScript ) );
 
 		# Values that should not be forgotten
 		$f .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
@@ -422,10 +422,10 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$f .= Html::hidden( $name, $value );
 		}
 
-		$f .= Xml::fieldset( $this->msg( 'whatlinkshere' )->text() );
+		$f .= Html::fieldset( $this->msg( 'whatlinkshere' )->text() );
 
 		# Target input
-		$f .= Xml::inputLabel( $this->msg( 'whatlinkshere-page' )->text(), 'target',
+		$f .= Html::inputLabel( $this->msg( 'whatlinkshere-page' )->text(), 'target',
 			'mw-whatlinkshere-target', 40, $target );
 
 		$f .= ' ';
@@ -446,10 +446,10 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$f .= ' ';
 
 		# Submit
-		$f .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() );
+		$f .= Html::submit( $this->msg( 'allpagessubmit' )->text() );
 
 		# Close
-		$f .= Xml::closeElement( 'fieldset' ) . Xml::closeElement( 'form' ) . "\n";
+		$f .= Html::closeElement( 'fieldset' ) . Html::closeElement( 'form' ) . "\n";
 
 		return $f;
 	}
@@ -483,7 +483,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				$this->makeSelfLink( $msg, array_merge( $changed, $overrides ) ) )->escaped();
 		}
 
-		return Xml::fieldset(
+		return Html::fieldset(
 			$this->msg( 'whatlinkshere-filters' )->text(),
 			$this->getLanguage()->pipeList( $links )
 		);

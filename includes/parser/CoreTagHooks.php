@@ -55,7 +55,7 @@ class CoreTagHooks {
 		$content = StringUtils::delimiterReplace( '<nowiki>', '</nowiki>', '$1', $text, 'i' );
 
 		$attribs = Sanitizer::validateTagAttributes( $attribs, 'pre' );
-		return Xml::openElement( 'pre', $attribs ) .
+		return Html::openElement( 'pre', $attribs ) .
 			Xml::escapeTagsOnly( $content ) .
 			'</pre>';
 	}

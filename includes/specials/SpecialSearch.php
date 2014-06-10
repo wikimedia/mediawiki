@@ -225,9 +225,9 @@ class SpecialSearch extends SpecialPage {
 				$out->redirect( $url );
 			} else {
 				$out->addHTML(
-					Xml::openElement( 'fieldset' ) .
-					Xml::element( 'legend', null, $this->msg( 'search-external' )->text() ) .
-					Xml::element(
+					Html::openElement( 'fieldset' ) .
+					Html::element( 'legend', null, $this->msg( 'search-external' )->text() ) .
+					Html::element(
 						'p',
 						array( 'class' => 'mw-searchdisabled' ),
 						$this->msg( 'searchdisabled' )->text()
@@ -237,7 +237,7 @@ class SpecialSearch extends SpecialPage {
 						'UTF-8',
 						$this->msg( 'searchbutton' )->escaped()
 					)->text() .
-					Xml::closeElement( 'fieldset' )
+					Html::closeElement( 'fieldset' )
 				);
 			}
 
@@ -300,7 +300,7 @@ class SpecialSearch extends SpecialPage {
 
 		// start rendering the page
 		$out->addHtml(
-			Xml::openElement(
+			Html::openElement(
 				'form',
 				array(
 					'id' => ( $this->profile === 'advanced' ? 'powersearch' : 'search' ),
@@ -313,9 +313,9 @@ class SpecialSearch extends SpecialPage {
 			# This is an awful awful ID name. It's not a table, but we
 			# named it poorly from when this was a table so now we're
 			# stuck with it
-			Xml::openElement( 'div', array( 'id' => 'mw-search-top-table' ) ) .
+			Html::openElement( 'div', array( 'id' => 'mw-search-top-table' ) ) .
 			$this->shortDialog( $term ) .
-			Xml::closeElement( 'div' )
+			Html::closeElement( 'div' )
 		);
 
 		// Sometimes the search engine knows there are too many hits
@@ -360,7 +360,7 @@ class SpecialSearch extends SpecialPage {
 		$out->addHTML( $this->formHeader( $term, $num, $totalRes ) );
 		$out->addHtml( $this->getProfileForm( $this->profile, $term ) );
 
-		$out->addHtml( Xml::closeElement( 'form' ) );
+		$out->addHtml( Html::closeElement( 'form' ) );
 		$out->addHtml( "<div class='searchresults'>" );
 
 		// prev/next links
@@ -932,16 +932,16 @@ class SpecialSearch extends SpecialPage {
 			}
 
 			$rows[$subject] .=
-				Xml::openElement(
+				Html::openElement(
 					'td', array( 'style' => 'white-space: nowrap' )
 				) .
-				Xml::checkLabel(
+				Html::checkLabel(
 					$name,
 					"ns{$namespace}",
 					"mw-search-ns{$namespace}",
 					in_array( $namespace, $this->namespaces )
 				) .
-				Xml::closeElement( 'td' );
+				Html::closeElement( 'td' );
 		}
 
 		$rows = array_values( $rows );
@@ -951,16 +951,16 @@ class SpecialSearch extends SpecialPage {
 		// be arranged nicely while still accommodating different screen widths
 		$namespaceTables = '';
 		for ( $i = 0; $i < $numRows; $i += 4 ) {
-			$namespaceTables .= Xml::openElement(
+			$namespaceTables .= Html::openElement(
 				'table',
 				array( 'cellpadding' => 0, 'cellspacing' => 0 )
 			);
 
 			for ( $j = $i; $j < $i + 4 && $j < $numRows; $j++ ) {
-				$namespaceTables .= Xml::tags( 'tr', null, $rows[$j] );
+				$namespaceTables .= Html::rawElement( 'tr', null, $rows[$j] );
 			}
 
-			$namespaceTables .= Xml::closeElement( 'table' );
+			$namespaceTables .= Html::closeElement( 'table' );
 		}
 
 		$showSections = array( 'namespaceTables' => $namespaceTables );
@@ -977,7 +977,7 @@ class SpecialSearch extends SpecialPage {
 		$user = $this->getUser();
 		if ( $user->isLoggedIn() ) {
 			$remember .= Html::hidden( 'nsToken', $user->getEditToken() ) .
-			Xml::checkLabel(
+			Html::checkLabel(
 				wfMessage( 'powersearch-remember' )->text(),
 				'nsRemember',
 				'mw-search-powersearch-remember',
@@ -986,19 +986,19 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		// Return final output
-		return Xml::openElement(
+		return Html::openElement(
 			'fieldset',
 			array( 'id' => 'mw-searchoptions', 'style' => 'margin:0em;' )
 		) .
-			Xml::element( 'legend', null, $this->msg( 'powersearch-legend' )->text() ) .
-			Xml::tags( 'h4', null, $this->msg( 'powersearch-ns' )->parse() ) .
+			Html::element( 'legend', null, $this->msg( 'powersearch-legend' )->text() ) .
+			Html::rawElement( 'h4', null, $this->msg( 'powersearch-ns' )->parse() ) .
 			Html::element( 'div', array( 'id' => 'mw-search-togglebox' ) ) .
-			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
-			implode( Xml::element( 'div', array( 'class' => 'divider' ), '', false ), $showSections ) .
+			Html::element( 'div', array( 'class' => 'divider' ) ) .
+			implode( Html::element( 'div', array( 'class' => 'divider' ) ), $showSections ) .
 			$hidden .
-			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
+			Html::element( 'div', array( 'class' => 'divider' ) ) .
 			$remember .
-			Xml::closeElement( 'fieldset' );
+			Html::closeElement( 'fieldset' );
 	}
 
 	/**
@@ -1053,7 +1053,7 @@ class SpecialSearch extends SpecialPage {
 	 * @return string
 	 */
 	protected function formHeader( $term, $resultsShown, $totalNum ) {
-		$out = Xml::openElement( 'div', array( 'class' => 'mw-search-formheader' ) );
+		$out = Html::openElement( 'div', array( 'class' => 'mw-search-formheader' ) );
 
 		$bareterm = $term;
 		if ( $this->startsWithImage( $term ) ) {
@@ -1065,8 +1065,8 @@ class SpecialSearch extends SpecialPage {
 		$lang = $this->getLanguage();
 
 		// Outputs XML for Search Types
-		$out .= Xml::openElement( 'div', array( 'class' => 'search-types' ) );
-		$out .= Xml::openElement( 'ul' );
+		$out .= Html::openElement( 'div', array( 'class' => 'search-types' ) );
+		$out .= Html::openElement( 'ul' );
 		foreach ( $profiles as $id => $profile ) {
 			if ( !isset( $profile['parameters'] ) ) {
 				$profile['parameters'] = array();
@@ -1075,7 +1075,7 @@ class SpecialSearch extends SpecialPage {
 
 			$tooltipParam = isset( $profile['namespace-messages'] ) ?
 				$lang->commaList( $profile['namespace-messages'] ) : null;
-			$out .= Xml::tags(
+			$out .= Html::rawElement(
 				'li',
 				array(
 					'class' => $this->profile === $id ? 'current' : 'normal'
@@ -1089,8 +1089,8 @@ class SpecialSearch extends SpecialPage {
 				)
 			);
 		}
-		$out .= Xml::closeElement( 'ul' );
-		$out .= Xml::closeElement( 'div' );
+		$out .= Html::closeElement( 'ul' );
+		$out .= Html::closeElement( 'div' );
 
 		// Results-info
 		if ( $resultsShown > 0 ) {
@@ -1109,13 +1109,13 @@ class SpecialSearch extends SpecialPage {
 					->numParams( $this->limit, $this->offset + 1, $resultsShown )
 					->parse();
 			}
-			$out .= Xml::tags( 'div', array( 'class' => 'results-info' ),
-				Xml::tags( 'ul', null, Xml::tags( 'li', null, $top ) )
+			$out .= Html::rawElement( 'div', array( 'class' => 'results-info' ),
+				Html::rawElement( 'ul', null, Html::rawElement( 'li', null, $top ) )
 			);
 		}
 
-		$out .= Xml::element( 'div', array( 'style' => 'clear:both' ), '', false );
-		$out .= Xml::closeElement( 'div' );
+		$out .= Html::element( 'div', array( 'style' => 'clear:both' ) );
+		$out .= Html::closeElement( 'div' );
 
 		return $out;
 	}
@@ -1135,7 +1135,7 @@ class SpecialSearch extends SpecialPage {
 			'class' => 'mw-ui-input',
 		) ) . "\n";
 		$out .= Html::hidden( 'fulltext', 'Search' ) . "\n";
-		$out .= Xml::submitButton(
+		$out .= Html::submit(
 			$this->msg( 'searchbutton' )->text(),
 			array( 'class' => array( 'mw-ui-button', 'mw-ui-progressive' ) )
 		) . "\n";
@@ -1167,7 +1167,7 @@ class SpecialSearch extends SpecialPage {
 			$opt
 		);
 
-		return Xml::element(
+		return Html::element(
 			'a',
 			array(
 				'href' => $this->getPageTitle()->getLocalURL( $stParams ),

@@ -257,14 +257,14 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 */
 	protected function userForm( $name ) {
 		global $wgScript;
-		$string = Xml::openElement(
+		$string = Html::openElement(
 			'form',
 			array( 'method' => 'get', 'action' => $wgScript, 'id' => 'askusername' )
 		) .
 			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
-			Xml::openElement( 'fieldset' ) .
+			Html::openElement( 'fieldset' ) .
 			Html::rawElement( 'legend', null, $this->msg( 'emailtarget' )->parse() ) .
-			Xml::inputLabel(
+			Html::inputLabel(
 				$this->msg( 'emailusername' )->text(),
 				'target',
 				'emailusertarget',
@@ -272,9 +272,9 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				$name
 			) .
 			' ' .
-			Xml::submitButton( $this->msg( 'emailusernamesubmit' )->text() ) .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' ) . "\n";
+			Html::submit( $this->msg( 'emailusernamesubmit' )->text() ) .
+			Html::closeElement( 'fieldset' ) .
+			Html::closeElement( 'form' ) . "\n";
 
 		return $string;
 	}

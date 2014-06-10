@@ -217,7 +217,7 @@ abstract class MediaTransformOutput {
 	 */
 	protected function linkWrap( $linkAttribs, $contents ) {
 		if ( $linkAttribs ) {
-			return Xml::tags( 'a', $linkAttribs, $contents );
+			return Html::rawElement( 'a', $linkAttribs, $contents );
 		} else {
 			return $contents;
 		}
@@ -412,7 +412,7 @@ class ThumbnailImage extends MediaTransformOutput {
 
 		wfRunHooks( 'ThumbnailBeforeProduceHTML', array( $this, &$attribs, &$linkAttribs ) );
 
-		return $this->linkWrap( $linkAttribs, Xml::element( 'img', $attribs ) );
+		return $this->linkWrap( $linkAttribs, Html::element( 'img', $attribs ) );
 	}
 }
 

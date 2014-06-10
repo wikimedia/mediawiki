@@ -1545,7 +1545,7 @@ class Article implements Page {
 					array( 'cannotdelete', wfEscapeWikiText( $title->getPrefixedText() ) )
 				);
 			$outputPage->addHTML(
-				Xml::element( 'h2', null, $deleteLogPage->getName()->text() )
+				Html::element( 'h2', null, $deleteLogPage->getName()->text() )
 			);
 			LogEventsList::showLogExtract(
 				$outputPage,
@@ -1650,7 +1650,7 @@ class Article implements Page {
 			$suppress = "<tr id=\"wpDeleteSuppressRow\">
 					<td></td>
 					<td class='mw-input'><strong>" .
-						Xml::checkLabel( wfMessage( 'revdelete-suppress' )->text(),
+						Html::checkLabel( wfMessage( 'revdelete-suppress' )->text(),
 							'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '4' ) ) .
 					"</strong></td>
 				</tr>";
@@ -1659,17 +1659,17 @@ class Article implements Page {
 		}
 		$checkWatch = $user->getBoolOption( 'watchdeletion' ) || $user->isWatched( $this->getTitle() );
 
-		$form = Xml::openElement( 'form', array( 'method' => 'post',
+		$form = Html::openElement( 'form', array( 'method' => 'post',
 			'action' => $this->getTitle()->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .
-			Xml::openElement( 'fieldset', array( 'id' => 'mw-delete-table' ) ) .
-			Xml::tags( 'legend', null, wfMessage( 'delete-legend' )->escaped() ) .
-			Xml::openElement( 'table', array( 'id' => 'mw-deleteconfirm-table' ) ) .
+			Html::openElement( 'fieldset', array( 'id' => 'mw-delete-table' ) ) .
+			Html::rawElement( 'legend', null, wfMessage( 'delete-legend' )->escaped() ) .
+			Html::openElement( 'table', array( 'id' => 'mw-deleteconfirm-table' ) ) .
 			"<tr id=\"wpDeleteReasonListRow\">
 				<td class='mw-label'>" .
-					Xml::label( wfMessage( 'deletecomment' )->text(), 'wpDeleteReasonList' ) .
+					Html::label( wfMessage( 'deletecomment' )->text(), 'wpDeleteReasonList' ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::listDropDown(
+					Html::select(
 						'wpDeleteReasonList',
 						wfMessage( 'deletereason-dropdown' )->inContentLanguage()->text(),
 						wfMessage( 'deletereasonotherlist' )->inContentLanguage()->text(),
@@ -1681,7 +1681,7 @@ class Article implements Page {
 			</tr>
 			<tr id=\"wpDeleteReasonRow\">
 				<td class='mw-label'>" .
-					Xml::label( wfMessage( 'deleteotherreason' )->text(), 'wpReason' ) .
+					Html::label( wfMessage( 'deleteotherreason' )->text(), 'wpReason' ) .
 				"</td>
 				<td class='mw-input'>" .
 				Html::input( 'wpReason', $reason, 'text', array(
@@ -1700,7 +1700,7 @@ class Article implements Page {
 			<tr>
 				<td></td>
 				<td class='mw-input'>" .
-					Xml::checkLabel( wfMessage( 'watchthis' )->text(),
+					Html::checkLabel( wfMessage( 'watchthis' )->text(),
 						'wpWatch', 'wpWatch', $checkWatch, array( 'tabindex' => '3' ) ) .
 				"</td>
 			</tr>";
@@ -1711,17 +1711,17 @@ class Article implements Page {
 			<tr>
 				<td></td>
 				<td class='mw-submit'>" .
-					Xml::submitButton( wfMessage( 'deletepage' )->text(),
+					Html::submit( wfMessage( 'deletepage' )->text(),
 						array( 'name' => 'wpConfirmB', 'id' => 'wpConfirmB', 'tabindex' => '5' ) ) .
 				"</td>
 			</tr>" .
-			Xml::closeElement( 'table' ) .
-			Xml::closeElement( 'fieldset' ) .
+			Html::closeElement( 'table' ) .
+			Html::closeElement( 'fieldset' ) .
 			Html::hidden(
 				'wpEditToken',
 				$user->getEditToken( array( 'delete', $this->getTitle()->getPrefixedText() ) )
 			) .
-			Xml::closeElement( 'form' );
+			Html::closeElement( 'form' );
 
 			if ( $user->isAllowed( 'editinterface' ) ) {
 				$title = Title::makeTitle( NS_MEDIAWIKI, 'Deletereason-dropdown' );
@@ -1737,7 +1737,7 @@ class Article implements Page {
 		$outputPage->addHTML( $form );
 
 		$deleteLogPage = new LogPage( 'delete' );
-		$outputPage->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName()->text() ) );
+		$outputPage->addHTML( Html::element( 'h2', null, $deleteLogPage->getName()->text() ) );
 		LogEventsList::showLogExtract( $outputPage, 'delete',
 			$this->getTitle()
 		);
@@ -1774,7 +1774,7 @@ class Article implements Page {
 					"<div class=\"error mw-error-cannotdelete\">\n" . $status->getWikiText() . "\n</div>"
 				);
 				$deleteLogPage = new LogPage( 'delete' );
-				$outputPage->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName()->text() ) );
+				$outputPage->addHTML( Html::element( 'h2', null, $deleteLogPage->getName()->text() ) );
 
 				LogEventsList::showLogExtract(
 					$outputPage,

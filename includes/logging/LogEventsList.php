@@ -125,26 +125,26 @@ class LogEventsList extends ContextSource {
 		}
 
 		// date menu
-		$html .= Xml::tags( 'p', null, Xml::dateMenu( (int)$year, (int)$month ) );
+		$html .= Html::rawElement( 'p', null, Html::dateMenu( (int)$year, (int)$month ) );
 
 		// Tag filter
 		if ( $tagSelector ) {
-			$html .= Xml::tags( 'p', null, implode( '&#160;', $tagSelector ) );
+			$html .= Html::rawElement( 'p', null, implode( '&#160;', $tagSelector ) );
 		}
 
 		// Filter links
 		if ( $filter ) {
-			$html .= Xml::tags( 'p', null, $this->getFilterLinks( $filter ) );
+			$html .= Html::rawElement( 'p', null, $this->getFilterLinks( $filter ) );
 		}
 
 		// Submit button
-		$html .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() );
+		$html .= Html::submit( $this->msg( 'allpagessubmit' )->text() );
 
 		// Fieldset
-		$html = Xml::fieldset( $this->msg( 'log' )->text(), $html );
+		$html = Html::fieldset( $this->msg( 'log' )->text(), $html );
 
 		// Form wrapping
-		$html = Xml::tags( 'form', array( 'action' => $wgScript, 'method' => 'get' ), $html );
+		$html = Html::rawElement( 'form', array( 'action' => $wgScript, 'method' => 'get' ), $html );
 
 		$this->getOutput()->addHTML( $html );
 	}
@@ -248,7 +248,7 @@ class LogEventsList extends ContextSource {
 	 * @return string Formatted HTML
 	 */
 	private function getUserInput( $user ) {
-		$label = Xml::inputLabel(
+		$label = Html::inputLabel(
 			$this->msg( 'specialloguserlabel' )->text(),
 			'user',
 			'mw-log-user',
@@ -264,7 +264,7 @@ class LogEventsList extends ContextSource {
 	 * @return string Formatted HTML
 	 */
 	private function getTitleInput( $title ) {
-		$label = Xml::inputLabel(
+		$label = Html::inputLabel(
 			$this->msg( 'speciallogtitlelabel' )->text(),
 			'page',
 			'mw-log-page',
@@ -281,7 +281,7 @@ class LogEventsList extends ContextSource {
 	 */
 	private function getTitlePattern( $pattern ) {
 		return '<span style="white-space: nowrap">' .
-			Xml::checkLabel( $this->msg( 'log-title-wildcard' )->text(), 'pattern', 'pattern', $pattern ) .
+			Html::checkLabel( $this->msg( 'log-title-wildcard' )->text(), 'pattern', 'pattern', $pattern ) .
 			'</span>';
 	}
 
@@ -296,7 +296,7 @@ class LogEventsList extends ContextSource {
 			$offender = ''; // Blank field if invalid
 		}
 		if ( count( $types ) == 1 && $types[0] == 'suppress' ) {
-			return Xml::inputLabel( $this->msg( 'revdelete-offender' )->text(), 'offender',
+			return Html::inputLabel( $this->msg( 'revdelete-offender' )->text(), 'offender',
 				'mw-log-offender', 20, $offender );
 		}
 
@@ -379,9 +379,9 @@ class LogEventsList extends ContextSource {
 				if ( $canHide && $this->flags & self::USE_REVDEL_CHECKBOXES ) {
 					// If event was hidden from sysops
 					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) {
-						$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
+						$del = Html::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
 					} else {
-						$del = Xml::check(
+						$del = Html::check(
 							'showhiderevisions',
 							false,
 							array( 'name' => 'ids[' . $row->log_id . ']' )
@@ -569,7 +569,7 @@ class LogEventsList extends ContextSource {
 				$dir = $context->getLanguage()->getDir();
 				$lang = $context->getLanguage()->getCode();
 
-				$s = Xml::openElement( 'div', array(
+				$s = Html::openElement( 'div', array(
 					'class' => "mw-warning-with-logexcerpt mw-content-$dir",
 					'dir' => $dir,
 					'lang' => $lang,

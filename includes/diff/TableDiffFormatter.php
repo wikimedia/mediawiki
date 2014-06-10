@@ -129,7 +129,7 @@ class TableDiffFormatter extends DiffFormatter {
 	protected function wrapLine( $marker, $class, $line ) {
 		if ( $line !== '' ) {
 			// The <div> wrapper is needed for 'overflow: auto' style to scroll properly
-			$line = Xml::tags( 'div', null, $this->escapeWhiteSpace( $line ) );
+			$line = Html::rawElement( 'div', null, $this->escapeWhiteSpace( $line ) );
 		}
 
 		return "<td class='diff-marker'>$marker</td><td class='$class'>$line</td>";

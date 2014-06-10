@@ -632,6 +632,32 @@ class Html {
 	}
 
 	/**
+	 * Convenience function to produce an "<fieldset>" and "<legend>" element.
+	 *
+	 * @param string|bool $legend Legend of the fieldset. If evaluates to false,
+	 *   legent is not added.
+	 * @param string|bool $content Pre-escaped content for the fieldset.
+	 *   If false, only open fieldset is returned.
+	 * @param array $attribs Associative array of miscellaneous extra
+	 *   attributes, passed to Html::element()
+	 * @return string Raw HTML
+	 */
+		public static function fieldset( $legend = false, $content = false, $attribs = array() ) {
+			$html = self::openElement( 'fieldset', $attribs ) . "\n";
+
+			if ( $legend ) {
+				$html .= self::element( 'legend', array(), $legend ) . "\n";
+			}
+
+			if ( $content !== false ) {
+				$html .= $content . "\n";
+				$html .= self::closeElement( 'fieldset' ) . "\n";
+			}
+
+			return $html;
+		}
+
+	/**
 	 * Convenience function to produce an "<input>" element.  This supports the
 	 * new HTML5 input types and attributes.
 	 *
@@ -651,6 +677,36 @@ class Html {
 	}
 
 	/**
+	 * Internal function for use in checkboxes and radio buttons and such.
+	 *
+	 * @param string $name
+	 * @param bool $present
+	 *
+	 * @return array
+	 */
+	public static function attrib( $name, $present = true ) {
+		return $present ? array( $name => $name ) : array();
+	}
+
+	/**
+	 * Convenience function to produce an HTML checkbox
+	 *
+	 * @param string $name Value of the name attribute
+	 * @param bool $checked Whether the checkbox is checked or not
+	 * @param array $attribs Array other attributes
+	 * @return string HTML
+	 */
+	public static function check( $name, $checked = false, $attribs = array() ) {
+		return self::element( 'input', array_merge(
+			array(
+				'name' => $name,
+				'type' => 'checkbox',
+				'value' => 1 ),
+			self::attrib( 'checked', $checked ),
+			$attribs ) );
+	}
+
+	/**
 	 * Convenience function to produce an input element with type=hidden
 	 *
 	 * @param string $name Name attribute
@@ -661,6 +717,85 @@ class Html {
 	 */
 	public static function hidden( $name, $value, $attribs = array() ) {
 		return self::input( $name, $value, 'hidden', $attribs );
+	}
+
+	/**
+	 * Convenience function to produce an input element with type=submit
+	 *
+	 * @param string $value Value attribute
+	 * @param array $attribs Associative array of miscellaneous extra
+	 *   attributes, passed to Html::element()
+	 * @return string Raw HTML
+	 *
+	 */
+	public static function submit( $value, $attribs = array() ) {
+		return self::input( null, $value, 'submit', $attribs );
+	}
+
+	/**
+	 * Create a date selector
+	 *
+	 * @param string $selected The month which should be selected, default ''.
+	 * @param string $allmonths Value of a special item denoting all month.
+	 *   Null to not include (default).
+	 * @param string $id Element identifier
+	 * @return string Html string containing the month selector
+	 */
+	public static function monthSelector( $selected = '', $allmonths = null, $id = 'month' ) {
+		global $wgLang;
+		$options = array();
+		if ( is_null( $selected ) ) {
+			$selected = '';
+		}
+		if ( !is_null( $allmonths ) ) {
+			$options[] = self::option(
+				wfMessage( 'monthsall' )->text(),
+				$allmonths,
+				$selected === $allmonths
+			);
+		}
+		for ( $i = 1; $i < 13; $i++ ) {
+			$options[] = self::option( $wgLang->getMonthName( $i ), $i, $selected === $i );
+		}
+		return self::openElement( 'select', array(
+			'id' => $id,
+			'name' => 'month',
+			'class' => 'mw-month-selector'
+		) )
+			. implode( "\n", $options )
+			. self::closeElement( 'select' );
+	}
+
+	/**
+	 * @param int $year
+	 * @param int $month
+	 * @return string Formatted HTML
+	 */
+	public static function dateMenu( $year, $month ) {
+		# Offset overrides year/month selection
+		if ( $month && $month !== -1 ) {
+			$encMonth = intval( $month );
+		} else {
+			$encMonth = '';
+		}
+		if ( $year ) {
+			$encYear = intval( $year );
+		} elseif ( $encMonth ) {
+			$timestamp = MWTimestamp::getInstance();
+			$thisMonth = intval( $timestamp->format( 'n' ) );
+			$thisYear = intval( $timestamp->format( 'Y' ) );
+			if ( intval( $encMonth ) > $thisMonth ) {
+				$thisYear--;
+			}
+			$encYear = $thisYear;
+		} else {
+			$encYear = '';
+		}
+		$inputAttribs = array( 'id' => 'year', 'maxlength' => 4, 'size' => 7 );
+		return self::label( wfMessage( 'year' )->text(), 'year' ) . ' ' .
+			self::input( 'year', $encYear, 'number', $inputAttribs ) . ' ' .
+			self::label( wfMessage( 'month' )->text(), 'month' ) . ' ' .
+			self::monthSelector( $encMonth, -1 );
 	}
 
 	/**
@@ -688,6 +823,176 @@ class Html {
 			$spacedValue = $value;
 		}
 		return self::element( 'textarea', $attribs, $spacedValue );
+	}
+
+	/**
+	 * Convenience function to produce a <label> element.
+	 *
+	 * @param string $text Text of the label
+	 * @param string $for For attribute
+	 * @param array $attribs Associative array of miscellaneous extra
+	 *   attributes, passed to Html::element(). This will usually be
+	 *   the same array as is passed to the corresponding element,
+	 *   so this function will cherry-pick appropriate attributes
+	 *   to apply to the label as well, only class and title are applied.
+	 * @return string Raw HTML
+	 */
+	public static function label( $text, $for, $attribs = array() ) {
+		$a = array( 'for' => $for );
+		$labelAttr = array( 'class', 'title' );
+		foreach( $labelAttr as $attr ) {
+			if ( isset( $attribs[$attr] ) ) {
+				$a[$attr] = $attribs[$attr];
+			}
+		}
+		return self::element( 'label', $a, $text );
+	}
+
+	/**
+	 * Convenience function to build an HTML text input field with a label
+	 *
+	 * @param string $label Text of the label
+	 * @param string $name Value of the name attribute
+	 * @param string $id Id of the input
+	 * @param int|bool $size Value of the size attribute
+	 * @param string|bool $value Value of the value attribute
+	 * @param array $attribs Other attributes
+	 * @return string HTML
+	 */
+	public static function inputLabel( $label, $name, $id, $size = false,
+		$value = false, $attribs = array()
+	) {
+		return self::label( $label, $id, $attribs ) .
+			'&#160;' .
+			self::input( $name, $size, $value, array( 'id' => $id ) + $attribs );
+	}
+
+	/**
+	 * Convenience function to produce an HTML checkbox with a label
+	 *
+	 * @param string $label
+	 * @param string $name
+	 * @param string $id
+	 * @param bool $checked
+	 * @param array $attribs
+	 *
+	 * @return string HTML
+	 */
+	public static function checkLabel( $label, $name, $id, $checked = false, $attribs = array() ) {
+		return self::check( $name, $checked, array( 'id' => $id ) + $attribs ) .
+			'&#160;' .
+			self::label( $label, $id, $attribs );
+	}
+
+	/**
+	 * Convenience function to produce an HTML radio button with a label
+	 *
+	 * @param string $label
+	 * @param string $name
+	 * @param string $value
+	 * @param string $id
+	 * @param bool $checked
+	 * @param array $attribs
+	 *
+	 * @return string HTML
+	 */
+	public static function radioLabel( $label, $name, $value, $id,
+		$checked = false, $attribs = array()
+	) {
+		return self::radio( $name, $value, $checked, array( 'id' => $id ) + $attribs ) .
+			'&#160;' .
+			self::label( $label, $id, $attribs );
+	}
+
+	/**
+	 * Convenience function to produce an HTML drop-down list item.
+	 *
+	 * @param string $text Text for this item. Will be HTML escaped
+	 * @param string $value Form submission value; if empty, use text
+	 * @param bool $selected If true, will be the default selected item
+	 * @param array $attribs Optional additional HTML attributes
+	 * @return string HTML
+	 */
+	public static function option( $text, $value = null, $selected = false,
+			$attribs = array() ) {
+		if ( !is_null( $value ) ) {
+			$attribs['value'] = $value;
+		}
+		if ( $selected ) {
+			$attribs['selected'] = 'selected';
+		}
+		return self::element( 'option', $attribs, $text );
+	}
+
+	/**
+	 * Convenience function to produce an HTML drop-down list.
+	 *
+	 * @param string $name Name and id for the drop-down
+	 * @param string $list Correctly formatted text (newline delimited) to be
+	 *   used to generate the options.
+	 * @param string $other Text for the "Other reasons" option
+	 * @param string $selected Option which should be pre-selected
+	 * @param string $class CSS classes for the drop-down
+	 * @param int $tabindex Value of the tabindex attribute
+	 * @return string
+	 */
+	public static function select( $name = '', $list = '', $other = '',
+		$selected = '', $class = '', $tabindex = null
+	) {
+		$optgroup = false;
+
+		$options = self::option( $other, 'other', $selected === 'other' );
+
+		foreach ( explode( "\n", $list ) as $option ) {
+			$value = trim( $option );
+			if ( $value == '' ) {
+				continue;
+			} elseif ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
+				// A new group is starting ...
+				$value = trim( substr( $value, 1 ) );
+				if ( $optgroup ) {
+					$options .= self::closeElement( 'optgroup' );
+				}
+				$options .= self::openElement( 'optgroup', array( 'label' => $value ) );
+				$optgroup = true;
+			} elseif ( substr( $value, 0, 2 ) == '**' ) {
+				// groupmember
+				$value = trim( substr( $value, 2 ) );
+				$options .= self::option( $value, $value, $selected === $value );
+			} else {
+				// groupless reason list
+				if ( $optgroup ) {
+					$options .= self::closeElement( 'optgroup' );
+				}
+				$options .= self::option( $value, $value, $selected === $value );
+				$optgroup = false;
+			}
+		}
+
+		if ( $optgroup ) {
+			$options .= self::closeElement( 'optgroup' );
+		}
+
+		$attribs = array();
+
+		if ( $name ) {
+			$attribs['id'] = $name;
+			$attribs['name'] = $name;
+		}
+
+		if ( $class ) {
+			$attribs['class'] = $class;
+		}
+
+		if ( $tabindex ) {
+			$attribs['tabindex'] = $tabindex;
+		}
+
+		return self::openElement( 'select', $attribs )
+			. "\n"
+			. $options
+			. "\n"
+			. self::closeElement( 'select' );
 	}
 
 	/**
@@ -792,6 +1097,55 @@ class Html {
 			. Html::closeElement( 'select' );
 
 		return $ret;
+	}
+
+	/**
+	 * Construct a language selector appropriate for use in a form or preferences
+	 *
+	 * @param string $selected The language code of the selected language
+	 * @param bool $customisedOnly If true only languages which have some content are listed
+	 * @param string $inLanguage The ISO code of the language to display the select list in (optional)
+	 * @param array $overrideAttrs Override the attributes of the select tag (since 1.20)
+	 * @param Message|null $msg Label message key (since 1.20)
+	 * @return array containing 2 items: label HTML and select list HTML
+	 */
+	public static function languageSelector( $selected, $customisedOnly = true,
+		$inLanguage = null, $overrideAttrs = array(), Message $msg = null
+	) {
+		global $wgLanguageCode;
+
+		$include = $customisedOnly ? 'mwfile' : 'mw';
+		$languages = Language::fetchLanguageNames( $inLanguage, $include );
+
+		// Make sure the site language is in the list;
+		// a custom language code might not have a defined name...
+		if ( !array_key_exists( $wgLanguageCode, $languages ) ) {
+			$languages[$wgLanguageCode] = $wgLanguageCode;
+		}
+
+		ksort( $languages );
+
+		/**
+		 * If a bogus value is set, default to the content language.
+		 * Otherwise, no default is selected and the user ends up
+		 * with Afrikaans since it's first in the list.
+		 */
+		$selected = isset( $languages[$selected] ) ? $selected : $wgLanguageCode;
+		$options = "\n";
+		foreach ( $languages as $code => $name ) {
+			$options .= self::option( "$code - $name", $code, $code == $selected ) . "\n";
+		}
+
+		$attrs = array( 'id' => 'wpUserLanguage', 'name' => 'wpUserLanguage' );
+		$attrs = array_merge( $attrs, $overrideAttrs );
+
+		if ( $msg === null ) {
+			$msg = wfMessage( 'yourlanguage' );
+		}
+		return array(
+			self::label( $msg->text(), $attrs['id'] ),
+			self::rawElement( 'select', $attrs, $options )
+		);
 	}
 
 	/**

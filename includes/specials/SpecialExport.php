@@ -184,15 +184,15 @@ class SpecialExport extends SpecialPage {
 		$out = $this->getOutput();
 		$out->addWikiMsg( 'exporttext' );
 
-		$form = Xml::openElement( 'form', array( 'method' => 'post',
+		$form = Html::openElement( 'form', array( 'method' => 'post',
 			'action' => $this->getPageTitle()->getLocalURL( 'action=submit' ) ) );
-		$form .= Xml::inputLabel(
+		$form .= Html::inputLabel(
 			$this->msg( 'export-addcattext' )->text(),
 			'catname',
 			'catname',
 			40
 		) . '&#160;';
-		$form .= Xml::submitButton(
+		$form .= Html::submit(
 			$this->msg( 'export-addcat' )->text(),
 			array( 'name' => 'addcat' )
 		) . '<br />';
@@ -208,14 +208,14 @@ class SpecialExport extends SpecialPage {
 					'class' => 'namespaceselector',
 				)
 			) . '&#160;';
-			$form .= Xml::submitButton(
+			$form .= Html::submit(
 				$this->msg( 'export-addns' )->text(),
 				array( 'name' => 'addns' )
 			) . '<br />';
 		}
 
 		if ( $wgExportAllowAll ) {
-			$form .= Xml::checkLabel(
+			$form .= Html::checkLabel(
 				$this->msg( 'exportall' )->text(),
 				'exportall',
 				'exportall',
@@ -223,16 +223,15 @@ class SpecialExport extends SpecialPage {
 			) . '<br />';
 		}
 
-		$form .= Xml::element(
-			'textarea',
-			array( 'name' => 'pages', 'cols' => 40, 'rows' => 10 ),
+		$form .= Html::textarea(
+			'pages',
 			$page,
-			false
+			array( 'cols' => 40, 'rows' => 10 )
 		);
 		$form .= '<br />';
 
 		if ( $wgExportAllowHistory ) {
-			$form .= Xml::checkLabel(
+			$form .= Html::checkLabel(
 				$this->msg( 'exportcuronly' )->text(),
 				'curonly',
 				'curonly',
@@ -242,7 +241,7 @@ class SpecialExport extends SpecialPage {
 			$out->addWikiMsg( 'exportnohistory' );
 		}
 
-		$form .= Xml::checkLabel(
+		$form .= Html::checkLabel(
 			$this->msg( 'export-templates' )->text(),
 			'templates',
 			'wpExportTemplates',
@@ -250,7 +249,7 @@ class SpecialExport extends SpecialPage {
 		) . '<br />';
 
 		if ( $wgExportMaxLinkDepth || $this->userCanOverrideExportDepth() ) {
-			$form .= Xml::inputLabel(
+			$form .= Html::inputLabel(
 				$this->msg( 'export-pagelinks' )->text(),
 				'pagelink-depth',
 				'pagelink-depth',
@@ -260,14 +259,14 @@ class SpecialExport extends SpecialPage {
 		}
 
 		/* Enable this when we can do something useful exporting/importing image information.
-		$form .= Xml::checkLabel(
+		$form .= Html::checkLabel(
 				$this->msg( 'export-images' )->text(),
 				'images',
 				'wpExportImages',
 				false
 			) . '<br />';
 		*/
-		$form .= Xml::checkLabel(
+		$form .= Html::checkLabel(
 			$this->msg( 'export-download' )->text(),
 			'wpDownload',
 			'wpDownload',
@@ -275,7 +274,7 @@ class SpecialExport extends SpecialPage {
 		) . '<br />';
 
 		if ( $wgExportAllowListContributors ) {
-			$form .= Xml::checkLabel(
+			$form .= Html::checkLabel(
 				$this->msg( 'exportlistauthors' )->text(),
 				'listauthors',
 				'listauthors',
@@ -283,11 +282,11 @@ class SpecialExport extends SpecialPage {
 			) . '<br />';
 		}
 
-		$form .= Xml::submitButton(
+		$form .= Html::submit(
 			$this->msg( 'export-submit' )->text(),
 			Linker::tooltipAndAccesskeyAttribs( 'export' )
 		);
-		$form .= Xml::closeElement( 'form' );
+		$form .= Html::closeElement( 'form' );
 
 		$out->addHTML( $form );
 	}

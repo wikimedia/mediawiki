@@ -795,7 +795,7 @@ class HTMLForm extends ContextSource {
 
 		# Include a <fieldset> wrapper for style, if requested.
 		if ( $this->mWrapperLegend !== false ) {
-			$html = Xml::fieldset( $this->mWrapperLegend, $html );
+			$html = Html::fieldset( $this->mWrapperLegend, $html );
 		}
 		# Use multipart/form-data
 		$encType = $this->mUseMultipart
@@ -885,7 +885,7 @@ class HTMLForm extends ContextSource {
 				);
 			}
 
-			$buttons .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
+			$buttons .= Html::submit( $this->getSubmitText(), $attribs ) . "\n";
 		}
 
 		if ( $this->mShowReset ) {
@@ -1271,7 +1271,7 @@ class HTMLForm extends ContextSource {
 					if ( $fieldsetIDPrefix ) {
 						$attributes['id'] = Sanitizer::escapeId( "$fieldsetIDPrefix$key" );
 					}
-					$subsectionHtml .= Xml::fieldset( $legend, $section, $attributes ) . "\n";
+					$subsectionHtml .= Html::fieldset( $legend, $section, $attributes ) . "\n";
 				} else {
 					// Just return the inputs, nothing fancy.
 					$subsectionHtml .= $section;
