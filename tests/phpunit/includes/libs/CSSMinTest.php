@@ -291,6 +291,41 @@ class CSSMinTest extends MediaWikiTestCase {
 				'@import url(//localhost/styles.css?query=yes)',
 				'@import url(//localhost/styles.css?query=yes)',
 			),
+			array(
+				'Simple case with comments before url',
+				'foo { prop: /* some {funny;} comment */ url(bar.png); }',
+				'foo { prop: /* some {funny;} comment */ url(http://localhost/w/bar.png); }',
+			),
+			array(
+				'Simple case with comments after url',
+				'foo { prop: url(red.gif)/* some {funny;} comment */ ; }',
+				'foo { prop: url(http://localhost/w/red.gif?timestamp)/* some {funny;} comment */ ; }',
+			),
+			array(
+				'Embedded file with comment before url',
+				'foo { /* @embed */ background: /* some {funny;} comment */ url(red.gif); }',
+				"foo { background: /* some {funny;} comment */ url($red); background: /* some {funny;} comment */ url(http://localhost/w/red.gif?timestamp)!ie; }",
+			),
+			array(
+				'Embedded file with comment after url',
+				'foo { /* @embed */ background: url(red.gif) /* some {funny;} comment */; }',
+				"foo { background: url($red) /* some {funny;} comment */; background: url(http://localhost/w/red.gif?timestamp) /* some {funny;} comment */!ie; }",
+			),
+			array(
+				'Embedded file with comment outside the rule',
+				'foo { /* @embed */ background: url(red.gif); /* some {funny;} comment */ }',
+				"foo { background: url($red); background: url(http://localhost/w/red.gif?timestamp)!ie; /* some {funny;} comment */ }",
+			),
+			array(
+				'Rule with two urls, each with comments',
+				'{ background: /*asd*/ url(something.png); background: /*jkl*/ url(something.png); }',
+				'{ background: /*asd*/ url(http://localhost/w/something.png); background: /*jkl*/ url(http://localhost/w/something.png); }',
+			),
+			array(
+				'Sanity check for offending line from jquery.ui.theme.css (bug 60077)',
+				'.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #d3d3d3/*{borderColorDefault}*/; background: #e6e6e6/*{bgColorDefault}*/ url(images/ui-bg_glass_75_e6e6e6_1x400.png)/*{bgImgUrlDefault}*/ 50%/*{bgDefaultXPos}*/ 50%/*{bgDefaultYPos}*/ repeat-x/*{bgDefaultRepeat}*/; font-weight: normal/*{fwDefault}*/; color: #555555/*{fcDefault}*/; }',
+				'.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #d3d3d3/*{borderColorDefault}*/; background: #e6e6e6/*{bgColorDefault}*/ url(http://localhost/w/images/ui-bg_glass_75_e6e6e6_1x400.png)/*{bgImgUrlDefault}*/ 50%/*{bgDefaultXPos}*/ 50%/*{bgDefaultYPos}*/ repeat-x/*{bgDefaultRepeat}*/; font-weight: normal/*{fwDefault}*/; color: #555555/*{fcDefault}*/; }',
+			),
 		);
 	}
 
