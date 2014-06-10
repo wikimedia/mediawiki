@@ -2539,11 +2539,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 	 * @return string
 	 */
 	protected function escapeLikeInternal( $s ) {
-		$s = str_replace( '\\', '\\\\', $s );
-		$s = $this->strencode( $s );
-		$s = str_replace( array( '%', '_' ), array( '\%', '\_' ), $s );
-
-		return $s;
+		return addcslashes( $s, '\%_' );
 	}
 
 	/**
@@ -2579,7 +2575,7 @@ abstract class DatabaseBase implements IDatabase, DatabaseType {
 			}
 		}
 
-		return " LIKE '" . $s . "' ";
+		return " LIKE {$this->addQuotes( $s )} ";
 	}
 
 	/**
