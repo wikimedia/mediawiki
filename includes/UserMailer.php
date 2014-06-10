@@ -126,6 +126,26 @@ class UserMailer {
 		return Status::newGood();
 	}
 
+	/**
+	 * Generate VERP address
+	 *
+	 * @param $to
+	 *
+	 * @return ReturnPath address
+	 */
+	protected static function generateVERP( $to ) {
+		global $wgVERPalgo, $wgVERPsecret, $wgServer, $wgSMTP;
+		if(  is_array( $wgSMTP ) && isset( $wgSMTP['IDHost'] ) && $wgSMTP['IDHost'] ) {
+			$email_domain = $wgSMTP['IDHost'];
+		} else {
+			$url = wfParseUrl( $wgServer );
+			$email_domain = $url['host'];
+		}
+		$verp_hash = hash_hmac( $wgVERPalgo, $to, $wgVERPsecret );
+		$email_prefix = 'bounces';
+		$returnPath = $email_prefix.'-'.$verp_hash.'@'.$email_domain;
+		return $returnPath;
+	}
 
 	/**
 	 * Creates a single string from an associative array
@@ -167,7 +187,7 @@ class UserMailer {
 	public static function send( $to, $from, $subject, $body, $replyto = null,
 		$contentType = array('type' => 'text/plain', 'charset' => 'utf-8')
 	) {
-		global $wgSMTP, $wgAllowHTMLEmail;
+		global $wgSMTP, $wgAllowHTMLEmail, $wgEnableVERP;
 		if ( !is_array( $to ) ) {
 			$to = array( $to );
 		}
@@ -214,7 +234,7 @@ class UserMailer {
 			return Status::newFatal( 'user-mail-no-addy' );
 		}
 
-		// Check if swiftmailer is installed in vendor/ 
+		// Check if swiftmailer is installed in vendor/
 		if ( !stream_resolve_include_path( 'vendor/swiftmailer/swiftmailer/lib/classes/Swift.php' ) ) {
 			wfDebug( "SwiftMailer package is not installed. \n 
 			Please run 'composer install' from MediaWiki installation directory\n" );
@@ -224,8 +244,6 @@ class UserMailer {
 			$message = Swift_Message::newInstance()
 					->setSubject( $subject )
 					->setFrom( array( $from->address => $from->name ) );
-
-			$message->setReturnPath( $from->address );
 
 			if ( $replyto ) {
 				$message->setReplyTo( $replyto->toString() );
@@ -262,6 +280,12 @@ class UserMailer {
 			wfDebug( "Sending mail via Swift::Mail\n" );
 
 			foreach ( $to as $recip ) {
+				if ( $wgEnableVERP ) {
+					$returnPath = self::generateVERP( $recip->address );
+				} else {
+					$returnPath = $from->address;
+				}
+				$message->setReturnPath( $returnPath );
 				$message->setTo( array( $recip->address => $recip->name) );
 				$status = self::sendWithSwift( $mailer, $message );
 				# FIXME : some chunks might be sent while others are not!
