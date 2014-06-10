@@ -929,7 +929,8 @@ class LoginForm extends SpecialPage {
 				break;
 			case self::ABORTED:
 				$error = $this->mAbortLoginErrorMsg ?: 'login-abort-generic';
-				$this->mainLoginForm( $this->msg( $error )->text() );
+				$this->mainLoginForm( $this->msg( $error,
+						wfEscapeWikiText( $this->mUsername ) )->text() );
 				break;
 			default:
 				throw new MWException( 'Unhandled case value' );
