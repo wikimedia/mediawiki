@@ -163,7 +163,7 @@ class UserMailer {
 	public static function send( $to, $from, $subject, $body, $replyto = null,
 		$contentType = 'text/plain; charset=UTF-8'
 	) {
-		global $wgSMTP, $wgEnotifMaxRecips, $wgAdditionalMailParams, $wgAllowHTMLEmail;
+		global $wgSMTP, $wgEnotifMaxRecips, $wgAdditionalMailParams, $wgAllowHTMLEmail, $wgPasswordSender;
 		$mime = null;
 		if ( !is_array( $to ) ) {
 			$to = array( $to );
@@ -239,7 +239,17 @@ class UserMailer {
 		# -- hashar 20120218
 
 		$headers['From'] = $from->toString();
-		$headers['Return-Path'] = $from->address;
+		$returnPath = $from->address;
+		$extraParams = $wgAdditionalMailParams;
+
+		// Hook to generate custom VERP address for 'Return-Path'
+		wfRunHooks( 'UserMailerChangeReturnPath', array( $to, &$returnPath ) );
+		# Add the envelope sender address using the -f command line option when PHP mail() is used.
+		# Will default to the $from->address when the UserMailerChangeReturnPath hook fails and the
+		# generated VERP address when the hook runs effectively.
+		$extraParams .= ' -f ' . $returnPath;
+
+		$headers['Return-Path'] = $returnPath;
 
 		if ( $replyto ) {
 			$headers['Reply-To'] = $replyto->toString();
@@ -371,7 +381,7 @@ class UserMailer {
 							self::quotedPrintable( $subject ),
 							$body,
 							$headers,
-							$wgAdditionalMailParams
+							$extraParams
 						);
 					}
 				}
