@@ -48,4 +48,5 @@ wfLogProfilingData();
 // Shut down the database.  foo()->bar() syntax is not supported in PHP4, and this file
 // needs to *parse* in PHP4, although we'll never get down here to worry about = vs =&
 $lb = wfGetLBFactory();
+$lb->commitMasterChanges();
 $lb->shutdown();
