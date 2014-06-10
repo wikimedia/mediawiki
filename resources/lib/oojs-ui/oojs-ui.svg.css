@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (15f4156bac)
+ * OOjs UI v0.1.0-pre (99068355d6)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Mon Jun 09 2014 16:46:13 GMT-0700 (PDT)
+ * Date: Tue Jun 10 2014 11:03:38 GMT-0700 (PDT)
  */
 
 /* Textures */
@@ -467,13 +467,17 @@
   min-width: 8em;
 }
 
+.oo-ui-menuToolGroup .oo-ui-toolGroup-tools {
+  padding: 0.25em 0 0.25em 0;
+}
+
 .oo-ui-menuToolGroup .oo-ui-tool {
   display: block;
 }
 
 .oo-ui-menuToolGroup .oo-ui-tool-link {
   display: block;
-  padding: 0.25em 1em 0.25em 0.25em;
+  padding: 0 1em 0 0.25em;
   white-space: nowrap;
   cursor: pointer;
 }
