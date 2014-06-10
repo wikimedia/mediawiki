@@ -764,7 +764,7 @@ class WebInstaller extends Installer {
 
 		return "<div class=\"config-block\">\n" .
 			"  <div class=\"config-block-label\">\n" .
-			Xml::tags( 'label',
+			Html::rawElement( 'label',
 				$attributes,
 				$labelText
 			) . "\n" .
@@ -809,14 +809,15 @@ class WebInstaller extends Installer {
 		return $this->label(
 			$params['label'],
 			$params['controlName'],
-			Xml::input(
+			Html::input(
 				$params['controlName'],
-				30, // intended to be overridden by CSS
 				$params['value'],
+				'text',
 				$params['attribs'] + array(
 					'id' => $params['controlName'],
 					'class' => 'config-input-text',
-					'tabindex' => $this->nextTabIndex()
+					'tabindex' => $this->nextTabIndex(),
+					'size' => 30 // intended to be overridden by CSS
 				)
 			),
 			$params['help']
@@ -856,15 +857,15 @@ class WebInstaller extends Installer {
 		return $this->label(
 			$params['label'],
 			$params['controlName'],
-			Xml::textarea(
+			Html::textarea(
 				$params['controlName'],
 				$params['value'],
-				30,
-				5,
 				$params['attribs'] + array(
 					'id' => $params['controlName'],
 					'class' => 'config-input-text',
-					'tabindex' => $this->nextTabIndex()
+					'tabindex' => $this->nextTabIndex(),
+					'cols' => 30,
+					'rows' => 5
 				)
 			),
 			$params['help']
@@ -939,7 +940,7 @@ class WebInstaller extends Installer {
 		return "<div class=\"config-input-check\">\n" .
 			$params['help'] .
 			"<label>\n" .
-			Xml::check(
+			Html::check(
 				$params['controlName'],
 				$params['value'],
 				$params['attribs'] + array(
@@ -1005,9 +1006,9 @@ class WebInstaller extends Installer {
 
 			$s .=
 				'<li>' .
-				Xml::radio( $params['controlName'], $value, $checked, $itemAttribs ) .
+				Html::radio( $params['controlName'], $value, $checked, $itemAttribs ) .
 				'&#160;' .
-				Xml::tags( 'label', array( 'for' => $id ), $this->parse(
+				Html::rawElement( 'label', array( 'for' => $id ), $this->parse(
 					wfMessage( $params['itemLabelPrefix'] . strtolower( $value ) )->plain()
 				) ) .
 				"</li>\n";

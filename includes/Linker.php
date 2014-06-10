@@ -2286,7 +2286,7 @@ class Linker {
 		$html = wfMessage( $msgKey )->escaped();
 		$tag = $restricted ? 'strong' : 'span';
 		$link = self::link( $sp, $html, array(), $query, array( 'known', 'noclasses' ) );
-		return Xml::tags(
+		return Html::rawElement(
 			$tag,
 			array( 'class' => 'mw-revdelundel-link' ),
 			wfMessage( 'parentheses' )->rawParams( $link )->escaped()
@@ -2305,7 +2305,7 @@ class Linker {
 		$msgKey = $delete ? 'rev-delundel' : 'rev-showdeleted';
 		$html = wfMessage( $msgKey )->escaped();
 		$htmlParentheses = wfMessage( 'parentheses' )->rawParams( $html )->escaped();
-		return Xml::tags( 'span', array( 'class' => 'mw-revdelundel-link' ), $htmlParentheses );
+		return Html::rawElement( 'span', array( 'class' => 'mw-revdelundel-link' ), $htmlParentheses );
 	}
 
 	/* Deprecated methods */
@@ -2418,7 +2418,7 @@ class Linker {
 		if ( $tooltip === false ) {
 			return '';
 		}
-		return Xml::expandAttributes( array(
+		return Html::expandAttributes( array(
 			'title' => $tooltip
 		) );
 	}

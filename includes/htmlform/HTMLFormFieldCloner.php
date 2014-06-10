@@ -335,8 +335,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		}
 
 		if ( !empty( $this->mParams['row-legend'] ) ) {
-			$legend = $this->msg( $this->mParams['row-legend'] )->text();
-			$html = Xml::fieldset( $legend, $html );
+			$html = Html::fieldset( $this->msg( $this->mParams['row-legend'] )->text(), $html );
 		}
 
 		return $html;

@@ -237,15 +237,15 @@ class UsersPager extends AlphabeticPager {
 		list( $self ) = explode( '/', $this->getTitle()->getPrefixedDBkey() );
 
 		# Form tag
-		$out = Xml::openElement(
+		$out = Html::openElement(
 			'form',
 			array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listusers-form' )
 		) .
-			Xml::fieldset( $this->msg( 'listusers' )->text() ) .
+			Html::fieldset( $this->msg( 'listusers' )->text() ) .
 			Html::hidden( 'title', $self );
 
 		# Username field
-		$out .= Xml::label( $this->msg( 'listusersfrom' )->text(), 'offset' ) . ' ' .
+		$out .= Html::label( $this->msg( 'listusersfrom' )->text(), 'offset' ) . ' ' .
 			Html::input(
 				'username',
 				$this->requestedUser,
@@ -258,28 +258,28 @@ class UsersPager extends AlphabeticPager {
 			) . ' ';
 
 		# Group drop-down list
-		$out .= Xml::label( $this->msg( 'group' )->text(), 'group' ) . ' ' .
-			Xml::openElement( 'select', array( 'name' => 'group', 'id' => 'group' ) ) .
-			Xml::option( $this->msg( 'group-all' )->text(), '' );
+		$out .= Html::label( $this->msg( 'group' )->text(), 'group' ) . ' ' .
+			Html::openElement( 'select', array( 'name' => 'group', 'id' => 'group' ) ) .
+			Html::option( $this->msg( 'group-all' )->text(), '' );
 		foreach ( $this->getAllGroups() as $group => $groupText ) {
-			$out .= Xml::option( $groupText, $group, $group == $this->requestedGroup );
+			$out .= Html::option( $groupText, $group, $group == $this->requestedGroup );
 		}
-		$out .= Xml::closeElement( 'select' ) . '<br />';
-		$out .= Xml::checkLabel(
+		$out .= Html::closeElement( 'select' ) . '<br />';
+		$out .= Html::checkLabel(
 			$this->msg( 'listusers-editsonly' )->text(),
 			'editsOnly',
 			'editsOnly',
 			$this->editsOnly
 		);
 		$out .= '&#160;';
-		$out .= Xml::checkLabel(
+		$out .= Html::checkLabel(
 			$this->msg( 'listusers-creationsort' )->text(),
 			'creationSort',
 			'creationSort',
 			$this->creationSort
 		);
 		$out .= '&#160;';
-		$out .= Xml::checkLabel(
+		$out .= Html::checkLabel(
 			$this->msg( 'listusers-desc' )->text(),
 			'desc',
 			'desc',
@@ -291,10 +291,10 @@ class UsersPager extends AlphabeticPager {
 
 		# Submit button and form bottom
 		$out .= Html::hidden( 'limit', $this->mLimit );
-		$out .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() );
+		$out .= Html::submit( $this->msg( 'allpagessubmit' )->text() );
 		wfRunHooks( 'SpecialListusersHeader', array( $this, &$out ) );
-		$out .= Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' );
+		$out .= Html::closeElement( 'fieldset' ) .
+			Html::closeElement( 'form' );
 
 		return $out;
 	}

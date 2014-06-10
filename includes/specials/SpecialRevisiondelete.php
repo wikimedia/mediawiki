@@ -311,7 +311,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				$lang->userDate( $oimage->getTimestamp(), $user ),
 				$lang->userTime( $oimage->getTimestamp(), $user ) );
 			$this->getOutput()->addHTML(
-				Xml::openElement( 'form', array(
+				Html::openElement( 'form', array(
 					'method' => 'POST',
 					'action' => $this->getPageTitle()->getLocalURL( array(
 							'target' => $this->targetObj->getPrefixedDBkey(),
@@ -320,7 +320,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 						) )
 					)
 				) .
-				Xml::submitButton( $this->msg( 'revdelete-show-file-submit' )->text() ) .
+				Html::submit( $this->msg( 'revdelete-show-file-submit' )->text() ) .
 				'</form>'
 			);
 
@@ -403,18 +403,18 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 		// Show form if the user can submit
 		if ( $this->mIsAllowed ) {
-			$out = Xml::openElement( 'form', array( 'method' => 'post',
+			$out = Html::openElement( 'form', array( 'method' => 'post',
 					'action' => $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) ),
 					'id' => 'mw-revdel-form-revisions' ) ) .
-				Xml::fieldset( $this->msg( 'revdelete-legend' )->text() ) .
+				Html::fieldset( $this->msg( 'revdelete-legend' )->text() ) .
 				$this->buildCheckBoxes() .
-				Xml::openElement( 'table' ) .
+				Html::openElement( 'table' ) .
 				"<tr>\n" .
 					'<td class="mw-label">' .
-						Xml::label( $this->msg( 'revdelete-log' )->text(), 'wpRevDeleteReasonList' ) .
+						Html::label( $this->msg( 'revdelete-log' )->text(), 'wpRevDeleteReasonList' ) .
 					'</td>' .
 					'<td class="mw-input">' .
-						Xml::listDropDown( 'wpRevDeleteReasonList',
+						Html::select( 'wpRevDeleteReasonList',
 							$this->msg( 'revdelete-reason-dropdown' )->inContentLanguage()->text(),
 							$this->msg( 'revdelete-reasonotherlist' )->inContentLanguage()->text(),
 							$this->getRequest()->getText( 'wpRevDeleteReasonList', 'other' ), 'wpReasonDropDown', 1
@@ -422,34 +422,34 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					'</td>' .
 				"</tr><tr>\n" .
 					'<td class="mw-label">' .
-						Xml::label( $this->msg( 'revdelete-otherreason' )->text(), 'wpReason' ) .
+						Html::label( $this->msg( 'revdelete-otherreason' )->text(), 'wpReason' ) .
 					'</td>' .
 					'<td class="mw-input">' .
-						Xml::input(
+						Html::input(
 							'wpReason',
-							60,
 							$this->otherReason,
-							array( 'id' => 'wpReason', 'maxlength' => 100 )
+							'text',
+							array( 'id' => 'wpReason', 'maxlength' => 100, 'size' => 60 )
 						) .
 					'</td>' .
 				"</tr><tr>\n" .
 					'<td></td>' .
 					'<td class="mw-submit">' .
-						Xml::submitButton( $this->msg( 'revdelete-submit', $numRevisions )->text(),
+						Html::submit( $this->msg( 'revdelete-submit', $numRevisions )->text(),
 							array( 'name' => 'wpSubmit' ) ) .
 					'</td>' .
 				"</tr>\n" .
-				Xml::closeElement( 'table' ) .
+				Html::closeElement( 'table' ) .
 				Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() ) .
 				Html::hidden( 'target', $this->targetObj->getPrefixedText() ) .
 				Html::hidden( 'type', $this->typeName ) .
 				Html::hidden( 'ids', implode( ',', $this->ids ) ) .
-				Xml::closeElement( 'fieldset' ) . "\n";
+				Html::closeElement( 'fieldset' ) . "\n";
 		} else {
 			$out = '';
 		}
 		if ( $this->mIsAllowed ) {
-			$out .= Xml::closeElement( 'form' ) . "\n";
+			$out .= Html::closeElement( 'form' ) . "\n";
 			// Show link to edit the dropdown reasons
 			if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
 				$title = Title::makeTitle( NS_MEDIAWIKI, 'Revdelete-reason-dropdown' );
@@ -459,7 +459,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					array(),
 					array( 'action' => 'edit' )
 				);
-				$out .= Xml::tags( 'p', array( 'class' => 'mw-revdel-editreasons' ), $link ) . "\n";
+				$out .= Html::rawElement( 'p', array( 'class' => 'mw-revdel-editreasons' ), $link ) . "\n";
 			}
 		}
 		$this->getOutput()->addHTML( $out );
@@ -504,7 +504,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				// Messages: revdelete-hide-text, revdelete-hide-image, revdelete-hide-name,
 				// revdelete-hide-comment, revdelete-hide-user, revdelete-hide-restricted
 				list( $message, $name, $field ) = $item;
-				$innerHTML = Xml::checkLabel(
+				$innerHTML = Html::checkLabel(
 					$this->msg( $message )->text(),
 					$name,
 					$name,
@@ -515,7 +515,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					$innerHTML = "<b>$innerHTML</b>";
 				}
 
-				$line = Xml::tags( 'td', array( 'class' => 'mw-input' ), $innerHTML );
+				$line = Html::rawElement( 'td', array( 'class' => 'mw-input' ), $innerHTML );
 				$html .= "<tr>$line</tr>\n";
 			}
 		} else {
@@ -538,9 +538,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				} else {
 					$selected = -1; // use existing field
 				}
-				$line = '<td class="mw-revdel-checkbox">' . Xml::radio( $name, -1, $selected == -1 ) . '</td>';
-				$line .= '<td class="mw-revdel-checkbox">' . Xml::radio( $name, 0, $selected == 0 ) . '</td>';
-				$line .= '<td class="mw-revdel-checkbox">' . Xml::radio( $name, 1, $selected == 1 ) . '</td>';
+				$line = '<td class="mw-revdel-checkbox">' . Html::radio( $name, -1, $selected == -1 ) . '</td>';
+				$line .= '<td class="mw-revdel-checkbox">' . Html::radio( $name, 0, $selected == 0 ) . '</td>';
+				$line .= '<td class="mw-revdel-checkbox">' . Html::radio( $name, 1, $selected == 1 ) . '</td>';
 				$label = $this->msg( $message )->escaped();
 				if ( $field == Revision::DELETED_RESTRICTED ) {
 					$label = "<b>$label</b>";

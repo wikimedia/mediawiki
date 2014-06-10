@@ -140,11 +140,11 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		return "<form action=\"$action\" method=\"get\">\n" .
 			'<fieldset>' .
-			Xml::element( 'legend', array(), $this->msg( 'protectedtitles' )->text() ) .
+			Html::element( 'legend', array(), $this->msg( 'protectedtitles' )->text() ) .
 			Html::hidden( 'title', $special ) . "&#160;\n" .
 			$this->getNamespaceMenu( $namespace ) . "&#160;\n" .
 			$this->getLevelMenu( $level ) . "&#160;\n" .
-			"&#160;" . Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "\n" .
+			"&#160;" . Html::submit( $this->msg( 'allpagessubmit' )->text() ) . "\n" .
 			"</fieldset></form>";
 	}
 
@@ -197,11 +197,11 @@ class SpecialProtectedtitles extends SpecialPage {
 		// Third pass generates sorted XHTML content
 		foreach ( $m as $text => $type ) {
 			$selected = ( $type == $pr_level );
-			$options[] = Xml::option( $text, $type, $selected );
+			$options[] = Html::option( $text, $type, $selected );
 		}
 
-		return Xml::label( $this->msg( 'restriction-level' )->text(), $this->IdLevel ) . '&#160;' .
-			Xml::tags( 'select',
+		return Html::label( $this->msg( 'restriction-level' )->text(), $this->IdLevel ) . '&#160;' .
+			Html::rawElement( 'select',
 				array( 'id' => $this->IdLevel, 'name' => $this->IdLevel ),
 				implode( "\n", $options ) );
 	}

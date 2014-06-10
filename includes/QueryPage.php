@@ -540,7 +540,7 @@ abstract class QueryPage extends SpecialPage {
 		$dbr = wfGetDB( DB_SLAVE );
 		$this->preprocessResults( $dbr, $res );
 
-		$out->addHTML( Xml::openElement( 'div', array( 'class' => 'mw-spcontent' ) ) );
+		$out->addHTML( Html::openElement( 'div', array( 'class' => 'mw-spcontent' ) ) );
 
 		# Top header and navigation
 		if ( $this->shownavigation ) {
@@ -557,7 +557,7 @@ abstract class QueryPage extends SpecialPage {
 				# No results to show, so don't bother with "showing X of Y" etc.
 				# -- just let the user know and give up now
 				$out->addWikiMsg( 'specialpage-empty' );
-				$out->addHTML( Xml::closeElement( 'div' ) );
+				$out->addHTML( Html::closeElement( 'div' ) );
 				return;
 			}
 		}
@@ -577,7 +577,7 @@ abstract class QueryPage extends SpecialPage {
 			$out->addHTML( '<p>' . $paging . '</p>' );
 		}
 
-		$out->addHTML( Xml::closeElement( 'div' ) );
+		$out->addHTML( Html::closeElement( 'div' ) );
 
 		return min( $this->numRows, $this->limit ); # do not return the one extra row, if exist
 	}

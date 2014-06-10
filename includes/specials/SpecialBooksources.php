@@ -127,7 +127,7 @@ class SpecialBookSources extends SpecialPage {
 		) . "\n";
 		$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) . "\n";
 		$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) . "\n";
-		$form .= '<p>' . Xml::inputLabel(
+		$form .= '<p>' . Html::inputLabel(
 			$this->msg( 'booksources-isbn' )->text(),
 			'isbn',
 			'isbn',
@@ -135,7 +135,7 @@ class SpecialBookSources extends SpecialPage {
 			$this->isbn,
 			array( 'autofocus' => true )
 		);
-		$form .= '&#160;' . Xml::submitButton( $this->msg( 'booksources-go' )->text() ) . "</p>\n";
+		$form .= '&#160;' . Html::submit( $this->msg( 'booksources-go' )->text() ) . "</p>\n";
 		$form .= Html::closeElement( 'form' ) . "\n";
 		$form .= Html::closeElement( 'fieldset' ) . "\n";
 

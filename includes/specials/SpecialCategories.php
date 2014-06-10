@@ -182,17 +182,17 @@ class CategoryPager extends AlphabeticPager {
 	public function getStartForm( $from ) {
 		global $wgScript;
 
-		return Xml::tags(
+		return Html::rawElement(
 			'form',
 			array( 'method' => 'get', 'action' => $wgScript ),
 			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
-				Xml::fieldset(
+				Html::fieldset(
 					$this->msg( 'categories' )->text(),
-					Xml::inputLabel(
+					Html::inputLabel(
 						$this->msg( 'categoriesfrom' )->text(),
 						'from', 'from', 20, $from ) .
 						' ' .
-						Xml::submitButton( $this->msg( 'allpagessubmit' )->text()
+						Html::submit( $this->msg( 'allpagessubmit' )->text()
 						)
 				)
 		);

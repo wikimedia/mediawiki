@@ -371,36 +371,36 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$extraOpts = $this->getExtraOptions( $opts );
 		$extraOptsCount = count( $extraOpts );
 		$count = 0;
-		$submit = ' ' . Xml::submitbutton( $this->msg( 'allpagessubmit' )->text() );
+		$submit = ' ' . Html::submit( $this->msg( 'allpagessubmit' )->text() );
 
-		$out = Xml::openElement( 'table', array( 'class' => 'mw-recentchanges-table' ) );
+		$out = Html::openElement( 'table', array( 'class' => 'mw-recentchanges-table' ) );
 		foreach ( $extraOpts as $name => $optionRow ) {
 			# Add submit button to the last row only
 			++$count;
 			$addSubmit = ( $count === $extraOptsCount ) ? $submit : '';
 
-			$out .= Xml::openElement( 'tr' );
+			$out .= Html::openElement( 'tr' );
 			if ( is_array( $optionRow ) ) {
-				$out .= Xml::tags(
+				$out .= Html::rawElement(
 					'td',
 					array( 'class' => 'mw-label mw-' . $name . '-label' ),
 					$optionRow[0]
 				);
-				$out .= Xml::tags(
+				$out .= Html::rawElement(
 					'td',
 					array( 'class' => 'mw-input' ),
 					$optionRow[1] . $addSubmit
 				);
 			} else {
-				$out .= Xml::tags(
+				$out .= Html::rawElement(
 					'td',
 					array( 'class' => 'mw-input', 'colspan' => 2 ),
 					$optionRow . $addSubmit
 				);
 			}
-			$out .= Xml::closeElement( 'tr' );
+			$out .= Html::closeElement( 'tr' );
 		}
-		$out .= Xml::closeElement( 'table' );
+		$out .= Html::closeElement( 'table' );
 
 		$unconsumed = $opts->getUnconsumedValues();
 		foreach ( $unconsumed as $key => $value ) {
@@ -409,12 +409,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$t = $this->getPageTitle();
 		$out .= Html::hidden( 'title', $t->getPrefixedText() );
-		$form = Xml::tags( 'form', array( 'action' => $wgScript ), $out );
+		$form = Html::rawElement( 'form', array( 'action' => $wgScript ), $out );
 		$panel[] = $form;
 		$panelString = implode( "\n", $panel );
 
 		$this->getOutput()->addHTML(
-			Xml::fieldset(
+			Html::fieldset(
 				$this->msg( 'recentchanges-legend' )->text(),
 				$panelString,
 				array( 'class' => 'rcoptions' )
@@ -511,13 +511,13 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			array( 'selected' => $opts['namespace'], 'all' => '' ),
 			array( 'name' => 'namespace', 'id' => 'namespace' )
 		);
-		$nsLabel = Xml::label( $this->msg( 'namespace' )->text(), 'namespace' );
-		$invert = Xml::checkLabel(
+		$nsLabel = Html::label( $this->msg( 'namespace' )->text(), 'namespace' );
+		$invert = Html::checkLabel(
 			$this->msg( 'invert' )->text(), 'invert', 'nsinvert',
 			$opts['invert'],
 			array( 'title' => $this->msg( 'tooltip-invert' )->text() )
 		);
-		$associated = Xml::checkLabel(
+		$associated = Html::checkLabel(
 			$this->msg( 'namespace_association' )->text(), 'associated', 'nsassociated',
 			$opts['associated'],
 			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
@@ -536,7 +536,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		list( $label, $input ) = Xml::inputLabelSep( $this->msg( 'rc_categories' )->text(),
 			'categories', 'mw-categories', false, $opts['categories'] );
 
-		$input .= ' ' . Xml::checkLabel( $this->msg( 'rc_categories_any' )->text(),
+		$input .= ' ' . Html::checkLabel( $this->msg( 'rc_categories_any' )->text(),
 			'categories_any', 'mw-categories_any', $opts['categories_any'] );
 
 		return array( $label, $input );
