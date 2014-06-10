@@ -948,6 +948,7 @@ class WebInstallerOptions extends WebInstallerPage {
 	 */
 	public function execute() {
 		if ( $this->getVar( '_SkipOptional' ) == 'skip' ) {
+			$this->submitSkins();
 			return 'skip';
 		}
 		if ( $this->parent->request->wasPosted() ) {
@@ -1024,6 +1025,38 @@ class WebInstallerOptions extends WebInstallerPage {
 			"</div>" .
 			$this->getFieldSetEnd()
 		);
+
+		$skins = $this->parent->findExtensions( 'skins' );
+		$skinHtml = $this->getFieldSetStart( 'config-skins' );
+
+		if ( $skins ) {
+			$skinNames = array_map( 'strtolower', $skins );
+
+			$radioButtons = $this->parent->getRadioElements( array(
+				'var' => 'wgDefaultSkin',
+				'itemLabels' => array_fill_keys( $skinNames, 'config-skins-use-as-default' ),
+				'values' => $skinNames,
+				'value' => $this->getDefaultSkin( $skinNames ),
+			) );
+
+			foreach ( $skins as $skin ) {
+				$skinHtml .=
+					'<div class="config-skins-item">' .
+					$this->parent->getCheckBox( array(
+						'var' => "skin-$skin",
+						'rawtext' => $skin,
+						'value' => true, // all found skins enabled by default
+					) ) .
+					'<div class="config-skins-use-as-default">' . $radioButtons[ strtolower( $skin ) ] . '</div>' .
+					'</div>';
+			}
+		} else {
+			$skinHtml .= $this->parent->getWarningBox( wfMessage( 'config-skins-missing' )->plain() );
+		}
+
+		$skinHtml .= $this->parent->getHelpBox( 'config-skins-help' ) .
+			$this->getFieldSetEnd();
+		$this->addHTML( $skinHtml );
 
 		$extensions = $this->parent->findExtensions();
 
@@ -1221,6 +1254,40 @@ class WebInstallerOptions extends WebInstallerPage {
 	}
 
 	/**
+	 * Returns a default value to be used for $wgDefaultSkin: the preferred skin, if available among
+	 * the installed skins, or any other one otherwise.
+	 *
+	 * @param string[] $skinNames Names of installed skins.
+	 * @return string
+	 */
+	public function getDefaultSkin( array $skinNames ) {
+		$defaultSkin = $GLOBALS['wgDefaultSkin'];
+		if ( in_array( $defaultSkin, $skinNames ) ) {
+			return $defaultSkin;
+		} else {
+			return $skinNames[0];
+		}
+	}
+
+	/**
+	 * If the user skips this installer page, we still need to set up the default skins, but ignore
+	 * everything else.
+	 *
+	 * @return bool
+	 */
+	public function submitSkins() {
+		$skins = $this->parent->findExtensions( 'skins' );
+		$this->parent->setVar( '_Skins', $skins );
+
+		if ( $skins ) {
+			$skinNames = array_map( 'strtolower', $skins );
+			$this->parent->setVar( 'wgDefaultSkin', $this->getDefaultSkin( $skinNames ) );
+		}
+
+		return true;
+	}
+
+	/**
 	 * @return bool
 	 */
 	public function submit() {
@@ -1228,7 +1295,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			'wgEnableEmail', 'wgPasswordSender', 'wgEnableUploads', 'wgLogo',
 			'wgEnableUserEmail', 'wgEnotifUserTalk', 'wgEnotifWatchlist',
 			'wgEmailAuthentication', 'wgMainCacheType', '_MemCachedServers',
-			'wgUseInstantCommons' ) );
+			'wgUseInstantCommons', 'wgDefaultSkin' ) );
 
 		if ( !array_key_exists( $this->getVar( '_RightsProfile' ), $this->parent->rightsProfiles )
 		) {
@@ -1261,6 +1328,15 @@ class WebInstallerOptions extends WebInstallerPage {
 			$this->setVar( 'wgRightsUrl', '' );
 			$this->setVar( 'wgRightsIcon', '' );
 		}
+
+		$skinsAvailable = $this->parent->findExtensions( 'skins' );
+		$skinsToInstall = array();
+		foreach ( $skinsAvailable as $skin ) {
+			if ( $this->parent->request->getCheck( 'config_skin-' . $skin ) ) {
+				$skinsToInstall[] = $skin;
+			}
+		}
+		$this->parent->setVar( '_Skins', $skinsToInstall );
 
 		$extsAvailable = $this->parent->findExtensions();
 		$extsToInstall = array();

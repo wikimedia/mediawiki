@@ -97,6 +97,22 @@
 	margin-left: 10em;
 }
 
+.config-skins-item {
+	/* Clearfix */
+	clear: left;
+	overflow: hidden;
+}
+
+.config-skins-item .config-input-check {
+	margin-left: 10em;
+	width: 20em;
+	float: left;
+}
+
+.config-skins-item .config-skins-use-as-default {
+	float: left;
+}
+
 .error {
 	color: red;
 	background-color: #fff;
