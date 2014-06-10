@@ -1719,7 +1719,9 @@ class User {
 		// If more than one group applies, use the group with the highest limit
 		foreach ( $this->getGroups() as $group ) {
 			if ( isset( $limits[$group] ) ) {
-				if ( $userLimit === false || $limits[$group] > $userLimit ) {
+				if ( $userLimit === false
+					|| $limits[$group][0] / $limits[$group][1] > $userLimit[0] / $userLimit[1]
+				) {
 					$userLimit = $limits[$group];
 				}
 			}
