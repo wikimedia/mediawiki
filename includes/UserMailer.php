@@ -238,6 +238,8 @@ class UserMailer {
 		#
 		# -- hashar 20120218
 
+		// Hook to generate custom VERP address for 'From' and 'Retrun-Path'
+		wfRunHooks( 'UserMailerChangeFromAddress', array( $to, &$from ) );
 		$headers['From'] = $from->toString();
 		$headers['Return-Path'] = $from->address;
 
@@ -350,7 +352,6 @@ class UserMailer {
 			if ( count( $to ) > 1 ) {
 				$headers['To'] = 'undisclosed-recipients:;';
 			}
-			$headers = self::arrayToHeaderString( $headers, $endl );
 
 			wfDebug( "Sending mail via internal mail() function\n" );
 
@@ -363,6 +364,7 @@ class UserMailer {
 				$safeMode = wfIniGetBool( 'safe_mode' );
 
 				foreach ( $to as $recip ) {
+					$headers = self::arrayToHeaderString( $headers, $endl );
 					if ( $safeMode ) {
 						$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
 					} else {
