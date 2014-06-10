@@ -2,6 +2,23 @@
  * Style Parsoid HTML+RDFa output consistent with wikitext from PHP parser.
  */
 
+/*csslint regex-selectors:false */
+
+/*
+ * Auto-numbered external links
+ * Parsoid renders those as link without content, and lets CSS do the
+ * counting. This way the counting style can be customized, and counts update
+ * automatically when content is modified.
+ */
+.mw-body-content {
+	counter-reset: mw-NumberedExtLink;
+}
+
+.mw-body-content a[rel~="mw:ExtLink"]:empty:after {
+	content: "[" counter(mw-NumberedExtLink) "]";
+	counter-increment: mw-NumberedExtLink;
+}
+
 /**
  * References
  *
@@ -96,8 +113,12 @@ figure[typeof~='mw:Image/Frame'] img,
 	margin: 4px;
 }
 
-// Some basic styling for Parsoid render testing
-body[data-parsoid] {
+/*
+ * Finally, some basic styling for Parsoid render testing.
+ * Only Parsoid directly sets .mw-body-content directly on the body, so this
+ * shouldn't affect anything else.
+ */
+body.mw-body-content {
 	background-color: #fff;
 	padding: 0.8em;
 }
