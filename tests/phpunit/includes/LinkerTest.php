@@ -82,4 +82,105 @@ class LinkerTest extends MediaWikiLangTestCase {
 			# TODO!
 		);
 	}
+
+	/**
+	 * @dataProvider provideCasesForFormatComment
+	 * @covers Linker::formatComment
+	 * @covers Linker::formatAutocomments
+	 * @covers Linker::formatLinksInComment
+	 */
+	public function testFormatComment( $expected, $comment, $title = false, $local = false ) {
+		$this->setMwGlobals( array(
+			'wgArticlePath' => '/wiki/$1',
+			'wgWellFormedXml' => true,
+		) );
+		
+		if ( $title === false ) {
+			$title = Title::newFromText( 'Project:Test title' );
+			$title->mArticleID = 123; // pretend that this page exists
+		}
+
+		$this->assertEquals(
+			$expected,
+			Linker::formatComment( $comment, $title, $local )
+		);
+	}
+
+	public static function provideCasesForFormatComment() {
+		return array(
+			// Linker::formatComment
+			array(
+				'a&lt;script&gt;b',
+				'a<script>b',
+			),
+			array(
+				'a—b',
+				'a&mdash;b',
+			),
+			array(
+				"&#039;&#039;&#039;not bolded&#039;&#039;&#039;",
+				"'''not bolded'''",
+			),
+			// Linker::formatAutocomments
+			array(
+				'<a href="/wiki/index.php?title=Project:Test_title&amp;action=edit&amp;redlink=1" title="Test title (page does not exist)">→</a>‎<span dir="auto"><span class="autocomment">autocomment</span></span>',
+				"/* autocomment */",
+			),
+			array(
+				'<a href="/wiki/index.php?title=Project:Test_title&amp;action=edit&amp;redlink=1" title="Test title (page does not exist)">→</a>‎<span dir="auto"><span class="autocomment"><a href="/wiki/index.php?title=Linkie%3F&amp;action=edit&amp;redlink=1" class="new" title="Linkie? (page does not exist)">linkie?</a></span></span>',
+				"/* [[linkie?]] */",
+			),
+			array(
+				'<a href="/wiki/index.php?title=Project:Test_title&amp;action=edit&amp;redlink=1" title="Test title (page does not exist)">→</a>‎<span dir="auto"><span class="autocomment">autocomment: </span> post</span>',
+				"/* autocomment */ post",
+			),
+			array(
+				"???",
+				"pre /* autocomment */",
+			),
+			array(
+				"???",
+				"pre /* autocomment */ post",
+			),
+			array(
+				"???",
+				"/* autocomment */ multiple? /* autocomment2 */ ",
+			),
+			array(
+				"???",
+				"/* autocomment */",
+				false, true
+			),
+			array(
+				"???",
+				"/* autocomment */",
+				null
+			),
+			// Linker::formatLinksInComment
+			array(
+				'abc <a href="/wiki/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">link</a> def',
+				"abc [[link]] def",
+			),
+			array(
+				'abc <a href="/wiki/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">text</a> def',
+				"abc [[link|text]] def",
+			),
+			array(
+				"???",
+				"abc [[Special:BlankPage|]] def",
+			),
+			array(
+				'abc <a href="/wiki/index.php?title=%C4%84%C5%9B%C5%BC&amp;action=edit&amp;redlink=1" class="new" title="Ąśż (page does not exist)">ąśż</a> def',
+				"abc [[%C4%85%C5%9B%C5%BC]] def",
+			),
+			array(
+				"???",
+				"abc [[#section]] def",
+			),
+			array(
+				"???",
+				"abc [[/subpage]] def",
+			),
+		);
+	}
 }
