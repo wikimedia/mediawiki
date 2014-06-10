@@ -115,8 +115,8 @@ class ApiRollback extends ApiBase {
 		$p = $this->getModulePrefix();
 
 		return array(
-			'title' => "Title of the page you want to delete. Cannot be used together with {$p}pageid",
-			'pageid' => "Page ID of the page you want to delete. Cannot be used together with {$p}title",
+			'title' => "Title of the page you want to rollback. Cannot be used together with {$p}pageid",
+			'pageid' => "Page ID of the page you want to rollback. Cannot be used together with {$p}title",
 			'user' => 'Name of the user whose edits are to be rolled back. If ' .
 				'set incorrectly, you\'ll get a badtoken error.',
 			'token' => 'A rollback token previously retrieved through ' .
