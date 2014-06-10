@@ -1585,7 +1585,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 				if ( !$rev ) {
 					wfDebug( __METHOD__ . " asked for bogus section (page: " .
-						$this->getId() . "; section: $section; edittime: $edittime)\n" );
+						$this->getId() . "; section: $section)\n" );
 					wfProfileOut( __METHOD__ );
 					return null;
 				}
