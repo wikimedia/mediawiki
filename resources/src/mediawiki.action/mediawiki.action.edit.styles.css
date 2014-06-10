@@ -33,10 +33,39 @@
 	font-size: 0.9em;
 }
 
+#wpSummaryLabel {
+	float: left;
+	margin-right: 0.5em;
+}
+
+/* Create a line break when the remaining space is less than 20em */
+#wpSummaryDiv:before {
+	content: "";
+	display: table;
+	width: 40em;
+}
+
+/* Hack for a box with the remaining space */
+#wpSummaryDiv {
+	display: table-cell;
+	width: 1%;
+	/* IE7 and earlier */
+	*width: 100%;
+}
+
 #wpSummary {
 	display: block;
+	width: 100%;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 	margin-top: 0;
 	margin-bottom: 0.5em;
+}
+
+/* Ensure that the element after the summary is below of #wpSummaryLabel */
+#wpSummaryDiv + * {
+	clear: left;
 }
 
 .editButtons input:first-child {
