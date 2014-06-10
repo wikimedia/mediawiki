@@ -3227,6 +3227,15 @@ $wgIncludeLegacyJavaScript = true;
 $wgIncludejQueryMigrate = false;
 
 /**
+ * Whether to include the jQuery Migrate library, which lets legacy JS that
+ * requires jQuery 1.8.x to work and breaks with 1.9.x+.
+ *
+ * @since 1.24
+ * @deprecated since 1.24, to be removed in 1.25
+ */
+$wgIncludejQueryMigrate = false;
+
+/**
  * Whether to preload the mediawiki.util module as blocking module in the top
  * queue.
  *
