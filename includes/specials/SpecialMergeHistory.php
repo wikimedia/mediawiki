@@ -283,7 +283,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$last = $this->message['last'];
 
 		$ts = wfTimestamp( TS_MW, $row->rev_timestamp );
-		$checkBox = Xml::radio( 'mergepoint', $ts, false );
+		$checkBox = Xml::radio( 'mergepoint', $ts, ( $this->mTimestamp === $ts ) );
 
 		$user = $this->getUser();
 
@@ -325,6 +325,18 @@ class SpecialMergeHistory extends SpecialPage {
 				->rawParams( $checkBox, $last, $pageLink, $userLink, $stxt, $comment )->escaped() );
 	}
 
+	/**
+	 * Actually attempt the history move
+	 *
+	 * @todo: if all versions of page A are moved to B and then a user
+	 * tries to do a reverse-merge via the "unmerge" log link, then page
+	 * A will still be a redirect (as it was after the original merge),
+	 * though it will have the old revisions back from before (as expected).
+	 * The user may have to "undo" the redirect manually to finish the "unmerge".
+	 * Maybe this should delete redirects at the target page of merges?
+	 *
+	 * @return boolean Success
+	 */
 	function merge() {
 		# Get the titles directly from the IDs, in case the target page params
 		# were spoofed. The queries are done based on the IDs, so it's best to
@@ -368,13 +380,25 @@ class SpecialMergeHistory extends SpecialPage {
 
 			return false;
 		}
-		# Update the revisions
+		# Get the timestamp pivot condition
 		if ( $this->mTimestamp ) {
 			$timewhere = "rev_timestamp <= {$this->mTimestamp}";
 			$timestampLimit = wfTimestamp( TS_MW, $this->mTimestamp );
 		} else {
 			$timewhere = "rev_timestamp <= {$maxtimestamp}";
 			$timestampLimit = wfTimestamp( TS_MW, $lasttimestamp );
+		}
+		# Check that there are not too many revisions to move
+		$limit = 5000; // avoid too much slave lag
+		$count = $dbw->select( 'revision', '1',
+			array( 'rev_page' => $this->mTargetID, $timewhere ),
+			__METHOD__,
+			array( 'LIMIT' => $limit + 1 )
+		)->numRows();
+		if ( $count > $limit ) {
+			$this->getOutput()->addWikiMsg( 'mergehistory-fail-toobig' );
+
+			return false;
 		}
 		# Do the moving...
 		$dbw->update(
@@ -452,6 +476,7 @@ class SpecialMergeHistory extends SpecialPage {
 			array( $destTitle->getPrefixedText(), $timestampLimit ), $this->getUser()
 		);
 
+		# @TODO: message should use redirect=no
 		$this->getOutput()->addWikiMsg( 'mergehistory-success',
 			$targetTitle->getPrefixedText(), $destTitle->getPrefixedText(), $count );
 
