@@ -1353,6 +1353,18 @@ $wgNoReplyAddress = 'reply@not.possible';
 $wgEnableEmail = true;
 
 /**
+ * Mediawiki VERP Configurations
+ * Set to true to enable the e-mail VERP features:
+ * wgEnableVERP - Engales VERP for bounce handling
+ * wgVERPalgo - Algorithm to hash the return path address.Possible algorithms are 
+ * md2. md4, md5, sha1, sha224, sha256, sha384, ripemd128, ripemd160, whirlpool and more.
+ * wgVERPsecret - The secret key to hash the return path address
+ */
+$wgEnableVERP = false;
+$wgVERPalgo = 'md5';
+$wgVERPsecret = 'MediaiwkiVERP';
+
+/**
  * Set to true to enable user-to-user e-mail.
  * This can potentially be abused, as it's hard to track.
  */
