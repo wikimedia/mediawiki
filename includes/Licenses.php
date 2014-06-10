@@ -148,7 +148,7 @@ class Licenses extends HTMLFormField {
 		}
 
 		$val = str_repeat( /* &nbsp */ "\xc2\xa0", $depth * 2 ) . $text;
-		return str_repeat( "\t", $depth ) . Xml::element( 'option', $attribs, $val ) . "\n";
+		return str_repeat( "\t", $depth ) . Html::element( 'option', $attribs, $val ) . "\n";
 	}
 
 	/**#@-*/

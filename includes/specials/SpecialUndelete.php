@@ -811,23 +811,23 @@ class SpecialUndelete extends SpecialPage {
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'undelete-search-title' ) );
 		$out->addHTML(
-			Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
-				Xml::fieldset( $this->msg( 'undelete-search-box' )->text() ) .
+			Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
+				Html::fieldset( $this->msg( 'undelete-search-box' )->text() ) .
 				Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) .
 				Html::rawElement(
 					'label',
 					array( 'for' => 'prefix' ),
 					$this->msg( 'undelete-search-prefix' )->parse()
 				) .
-				Xml::input(
+				Html::input(
 					'prefix',
-					20,
 					$this->mSearchPrefix,
-					array( 'id' => 'prefix', 'autofocus' => true )
+					'text',
+					array( 'id' => 'prefix', 'autofocus' => true, 'size' => 20 )
 				) . ' ' .
-				Xml::submitButton( $this->msg( 'undelete-search-submit' )->text() ) .
-				Xml::closeElement( 'fieldset' ) .
-				Xml::closeElement( 'form' )
+				Html::submit( $this->msg( 'undelete-search-submit' )->text() ) .
+				Html::closeElement( 'fieldset' ) .
+				Html::closeElement( 'form' )
 		);
 
 		# List undeletable articles
@@ -991,7 +991,7 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( $isText ) {
 			// source view for textual content
-			$sourceView = Xml::element(
+			$sourceView = Html::element(
 				'textarea',
 				array(
 					'readonly' => 'readonly',
@@ -1001,7 +1001,7 @@ class SpecialUndelete extends SpecialPage {
 				$content->getNativeData() . "\n"
 			);
 
-			$previewButton = Xml::element( 'input', array(
+			$previewButton = Html::element( 'input', array(
 				'type' => 'submit',
 				'name' => 'preview',
 				'value' => $this->msg( 'showpreview' )->text()
@@ -1011,34 +1011,34 @@ class SpecialUndelete extends SpecialPage {
 			$previewButton = '';
 		}
 
-		$diffButton = Xml::element( 'input', array(
+		$diffButton = Html::element( 'input', array(
 			'name' => 'diff',
 			'type' => 'submit',
 			'value' => $this->msg( 'showdiff' )->text() ) );
 
 		$out->addHTML(
 			$sourceView .
-				Xml::openElement( 'div', array(
+				Html::openElement( 'div', array(
 					'style' => 'clear: both' ) ) .
-				Xml::openElement( 'form', array(
+				Html::openElement( 'form', array(
 					'method' => 'post',
 					'action' => $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) ) ) ) .
-				Xml::element( 'input', array(
+				Html::element( 'input', array(
 					'type' => 'hidden',
 					'name' => 'target',
 					'value' => $this->mTargetObj->getPrefixedDBkey() ) ) .
-				Xml::element( 'input', array(
+				Html::element( 'input', array(
 					'type' => 'hidden',
 					'name' => 'timestamp',
 					'value' => $timestamp ) ) .
-				Xml::element( 'input', array(
+				Html::element( 'input', array(
 					'type' => 'hidden',
 					'name' => 'wpEditToken',
 					'value' => $user->getEditToken() ) ) .
 				$previewButton .
 				$diffButton .
-				Xml::closeElement( 'form' ) .
-				Xml::closeElement( 'div' )
+				Html::closeElement( 'form' ) .
+				Html::closeElement( 'div' )
 		);
 	}
 
@@ -1151,7 +1151,7 @@ class SpecialUndelete extends SpecialPage {
 			$lang->userDate( $file->getTimestamp(), $user ),
 			$lang->userTime( $file->getTimestamp(), $user ) );
 		$out->addHTML(
-			Xml::openElement( 'form', array(
+			Html::openElement( 'form', array(
 					'method' => 'POST',
 					'action' => $this->getPageTitle()->getLocalURL( array(
 						'target' => $this->mTarget,
@@ -1160,7 +1160,7 @@ class SpecialUndelete extends SpecialPage {
 					) ),
 				)
 			) .
-				Xml::submitButton( $this->msg( 'undelete-show-file-submit' )->text() ) .
+				Html::submit( $this->msg( 'undelete-show-file-submit' )->text() ) .
 				'</form>'
 		);
 	}
@@ -1244,7 +1244,7 @@ class SpecialUndelete extends SpecialPage {
 		if ( $this->mAllowed ) {
 			$action = $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) );
 			# Start the form here
-			$top = Xml::openElement(
+			$top = Html::openElement(
 				'form',
 				array( 'method' => 'post', 'action' => $action, 'id' => 'undelete' )
 			);
@@ -1253,12 +1253,12 @@ class SpecialUndelete extends SpecialPage {
 
 		# Show relevant lines from the deletion log:
 		$deleteLogPage = new LogPage( 'delete' );
-		$out->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName()->text() ) . "\n" );
+		$out->addHTML( Html::element( 'h2', null, $deleteLogPage->getName()->text() ) . "\n" );
 		LogEventsList::showLogExtract( $out, 'delete', $this->mTargetObj );
 		# Show relevant lines from the suppression log:
 		$suppressLogPage = new LogPage( 'suppress' );
 		if ( $this->getUser()->isAllowed( 'suppressionlog' ) ) {
-			$out->addHTML( Xml::element( 'h2', null, $suppressLogPage->getName()->text() ) . "\n" );
+			$out->addHTML( Html::element( 'h2', null, $suppressLogPage->getName()->text() ) . "\n" );
 			LogEventsList::showLogExtract( $out, 'suppress', $this->mTargetObj );
 		}
 
@@ -1270,7 +1270,7 @@ class SpecialUndelete extends SpecialPage {
 					"<tr>
 						<td>&#160;</td>
 						<td class='mw-input'>" .
-						Xml::checkLabel( $this->msg( 'revdelete-unsuppress' )->text(),
+						Html::checkLabel( $this->msg( 'revdelete-unsuppress' )->text(),
 							'wpUnsuppress', 'mw-undelete-unsuppress', $this->mUnsuppress ) .
 						"</td>
 					</tr>";
@@ -1278,8 +1278,8 @@ class SpecialUndelete extends SpecialPage {
 				$unsuppressBox = '';
 			}
 
-			$table = Xml::fieldset( $this->msg( 'undelete-fieldset-title' )->text() ) .
-				Xml::openElement( 'table', array( 'id' => 'mw-undelete-table' ) ) .
+			$table = Html::fieldset( $this->msg( 'undelete-fieldset-title' )->text() ) .
+				Html::openElement( 'table', array( 'id' => 'mw-undelete-table' ) ) .
 				"<tr>
 					<td colspan='2' class='mw-undelete-extrahelp'>" .
 				$this->msg( 'undeleteextrahelp' )->parseAsBlock() .
@@ -1287,38 +1287,38 @@ class SpecialUndelete extends SpecialPage {
 			</tr>
 			<tr>
 				<td class='mw-label'>" .
-				Xml::label( $this->msg( 'undeletecomment' )->text(), 'wpComment' ) .
+				Html::label( $this->msg( 'undeletecomment' )->text(), 'wpComment' ) .
 				"</td>
 				<td class='mw-input'>" .
-				Xml::input(
+				Html::input(
 					'wpComment',
-					50,
 					$this->mComment,
-					array( 'id' => 'wpComment', 'autofocus' => true )
+					'text',
+					array( 'id' => 'wpComment', 'autofocus' => true, 'size' => 50 )
 				) .
 				"</td>
 			</tr>
 			<tr>
 				<td>&#160;</td>
 				<td class='mw-submit'>" .
-				Xml::submitButton(
+				Html::submit(
 					$this->msg( 'undeletebtn' )->text(),
 					array( 'name' => 'restore', 'id' => 'mw-undelete-submit' )
 				) . ' ' .
-				Xml::submitButton(
+				Html::submit(
 					$this->msg( 'undeleteinvert' )->text(),
 					array( 'name' => 'invert', 'id' => 'mw-undelete-invert' )
 				) .
 				"</td>
 			</tr>" .
 				$unsuppressBox .
-				Xml::closeElement( 'table' ) .
-				Xml::closeElement( 'fieldset' );
+				Html::closeElement( 'table' ) .
+				Html::closeElement( 'fieldset' );
 
 			$out->addHTML( $table );
 		}
 
-		$out->addHTML( Xml::element( 'h2', null, $this->msg( 'history' )->text() ) . "\n" );
+		$out->addHTML( Html::element( 'h2', null, $this->msg( 'history' )->text() ) . "\n" );
 
 		if ( $haveRevisions ) {
 			# The page's stored (deleted) history:
@@ -1337,7 +1337,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		if ( $haveFiles ) {
-			$out->addHTML( Xml::element( 'h2', null, $this->msg( 'filehist' )->text() ) . "\n" );
+			$out->addHTML( Html::element( 'h2', null, $this->msg( 'filehist' )->text() ) . "\n" );
 			$out->addHTML( '<ul>' );
 			foreach ( $files as $row ) {
 				$out->addHTML( $this->formatFileRow( $row ) );
@@ -1350,7 +1350,7 @@ class SpecialUndelete extends SpecialPage {
 			# Slip in the hidden controls here
 			$misc = Html::hidden( 'target', $this->mTarget );
 			$misc .= Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() );
-			$misc .= Xml::closeElement( 'form' );
+			$misc .= Html::closeElement( 'form' );
 			$out->addHTML( $misc );
 		}
 
@@ -1369,12 +1369,12 @@ class SpecialUndelete extends SpecialPage {
 		if ( $this->mAllowed ) {
 			if ( $this->mInvert ) {
 				if ( in_array( $ts, $this->mTargetTimestamp ) ) {
-					$checkBox = Xml::check( "ts$ts" );
+					$checkBox = Html::check( "ts$ts" );
 				} else {
-					$checkBox = Xml::check( "ts$ts", true );
+					$checkBox = Html::check( "ts$ts", true );
 				}
 			} else {
-				$checkBox = Xml::check( "ts$ts" );
+				$checkBox = Html::check( "ts$ts" );
 			}
 		} else {
 			$checkBox = '';
@@ -1448,7 +1448,7 @@ class SpecialUndelete extends SpecialPage {
 			)
 			->escaped();
 
-		return Xml::tags( 'li', $attribs, $revisionRow ) . "\n";
+		return Html::rawElement( 'li', $attribs, $revisionRow ) . "\n";
 	}
 
 	private function formatFileRow( $row ) {
@@ -1457,7 +1457,7 @@ class SpecialUndelete extends SpecialPage {
 		$user = $this->getUser();
 
 		if ( $this->mAllowed && $row->fa_storage_key ) {
-			$checkBox = Xml::check( 'fileid' . $row->fa_id );
+			$checkBox = Html::check( 'fileid' . $row->fa_id );
 			$key = urlencode( $row->fa_storage_key );
 			$pageLink = $this->getFileLink( $file, $this->getPageTitle(), $ts, $key );
 		} else {

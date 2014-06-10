@@ -50,10 +50,10 @@ class SpecialListGroupRights extends SpecialPage {
 		$out->wrapWikiMsg( "<div class=\"mw-listgrouprights-key\">\n$1\n</div>", 'listgrouprights-key' );
 
 		$out->addHTML(
-			Xml::openElement( 'table', array( 'class' => 'wikitable mw-listgrouprights-table' ) ) .
+			Html::openElement( 'table', array( 'class' => 'wikitable mw-listgrouprights-table' ) ) .
 				'<tr>' .
-				Xml::element( 'th', null, $this->msg( 'listgrouprights-group' )->text() ) .
-				Xml::element( 'th', null, $this->msg( 'listgrouprights-rights' )->text() ) .
+				Html::element( 'th', null, $this->msg( 'listgrouprights-group' )->text() ) .
+				Html::element( 'th', null, $this->msg( 'listgrouprights-rights' )->text() ) .
 				'</tr>'
 		);
 
@@ -129,7 +129,7 @@ class SpecialListGroupRights extends SpecialPage {
 				'
 			) );
 		}
-		$out->addHTML( Xml::closeElement( 'table' ) );
+		$out->addHTML( Html::closeElement( 'table' ) );
 		$this->outputNamespaceProtectionInfo();
 	}
 
@@ -147,7 +147,7 @@ class SpecialListGroupRights extends SpecialPage {
 				'class' => 'mw-headline',
 				'id' => $wgParser->guessSectionNameFromWikiText( $header )
 			), $header ) ) .
-			Xml::openElement( 'table', array( 'class' => 'wikitable' ) ) .
+			Html::openElement( 'table', array( 'class' => 'wikitable' ) ) .
 			Html::element(
 				'th',
 				array(),
@@ -173,7 +173,7 @@ class SpecialListGroupRights extends SpecialPage {
 			}
 
 			$out->addHTML(
-				Xml::openElement( 'tr' ) .
+				Html::openElement( 'tr' ) .
 				Html::rawElement(
 					'td',
 					array(),
@@ -184,7 +184,7 @@ class SpecialListGroupRights extends SpecialPage {
 						array( 'namespace' => $namespace )
 					)
 				) .
-				Xml::openElement( 'td' ) . Xml::openElement( 'ul' )
+				Html::openElement( 'td' ) . Html::openElement( 'ul' )
 			);
 
 			if ( !is_array( $rights ) ) {
@@ -206,12 +206,12 @@ class SpecialListGroupRights extends SpecialPage {
 			}
 
 			$out->addHTML(
-				Xml::closeElement( 'ul' ) .
-				Xml::closeElement( 'td' ) .
-				Xml::closeElement( 'tr' )
+				Html::closeElement( 'ul' ) .
+				Html::closeElement( 'td' ) .
+				Html::closeElement( 'tr' )
 			);
 		}
-		$out->addHTML( Xml::closeElement( 'table' ) );
+		$out->addHTML( Html::closeElement( 'table' ) );
 	}
 
 	/**

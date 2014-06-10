@@ -24,9 +24,9 @@ class HTMLCheckField extends HTMLFormField {
 				array(
 					'class' => 'mw-ui-checkbox-label'
 				),
-				Xml::check( $this->mName, $value, $attr ) . $this->mLabel );
+				Html::check( $this->mName, $value, $attr ) . $this->mLabel );
 		} else {
-			return Xml::check( $this->mName, $value, $attr )
+			return Html::check( $this->mName, $value, $attr )
 			. '&#160;'
 			. Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
 		}

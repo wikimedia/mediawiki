@@ -127,7 +127,7 @@ class LinkSearchPage extends QueryPage {
 			Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) . "\n" .
 			Html::openElement( 'fieldset' ) . "\n" .
 			Html::element( 'legend', array(), $this->msg( 'linksearch' )->text() ) . "\n" .
-			Xml::inputLabel(
+			Html::inputLabel(
 				$this->msg( 'linksearch-pat' )->text(),
 				'target',
 				'target',
@@ -149,7 +149,7 @@ class LinkSearchPage extends QueryPage {
 			);
 		}
 
-		$s .= Xml::submitButton( $this->msg( 'linksearch-ok' )->text() ) . "\n" .
+		$s .= Html::submit( $this->msg( 'linksearch-ok' )->text() ) . "\n" .
 			Html::closeElement( 'fieldset' ) . "\n" .
 			Html::closeElement( 'form' ) . "\n";
 		$out->addHTML( $s );

@@ -120,14 +120,14 @@ class FileDuplicateSearchPage extends QueryPage {
 				Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) . "\n" .
 				Html::openElement( 'fieldset' ) . "\n" .
 				Html::element( 'legend', null, $this->msg( 'fileduplicatesearch-legend' )->text() ) . "\n" .
-				Xml::inputLabel(
+				Html::inputLabel(
 					$this->msg( 'fileduplicatesearch-filename' )->text(),
 					'filename',
 					'filename',
 					50,
 					$this->filename
 				) . "\n" .
-				Xml::submitButton( $this->msg( 'fileduplicatesearch-submit' )->text() ) . "\n" .
+				Html::submit( $this->msg( 'fileduplicatesearch-submit' )->text() ) . "\n" .
 				Html::closeElement( 'fieldset' ) . "\n" .
 				Html::closeElement( 'form' )
 		);

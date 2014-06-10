@@ -136,7 +136,7 @@ class VectorTemplate extends BaseTemplate {
 						Linker::tooltip( $xmlID );
 				} else {
 					$nav[$section][$key]['key'] =
-						Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( $xmlID ) );
+						Html::expandAttributes( Linker::tooltipAndAccesskeyAttribs( $xmlID ) );
 				}
 			}
 		}
@@ -260,7 +260,7 @@ class VectorTemplate extends BaseTemplate {
 					?>);" href="<?php
 					echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] )
 					?>" <?php
-					echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) )
+					echo Html::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) )
 					?>></a></div>
 				<?php $this->renderPortals( $this->data['sidebar'] ); ?>
 			</div>

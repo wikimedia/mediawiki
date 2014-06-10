@@ -47,7 +47,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			} else {
 				$thisAttribs = array( 'id' => "{$this->mID}-$info", 'value' => $info );
 
-				$checkbox = Xml::check(
+				$checkbox = Html::check(
 					$this->mName . '[]',
 					in_array( $info, $value, true ),
 					$attribs + $thisAttribs

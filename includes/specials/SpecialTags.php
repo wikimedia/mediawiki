@@ -45,11 +45,11 @@ class SpecialTags extends SpecialPage {
 		$out->wrapWikiMsg( "<div class='mw-tags-intro'>\n$1\n</div>", 'tags-intro' );
 
 		// Write the headers
-		$html = Xml::tags( 'tr', null, Xml::tags( 'th', null, $this->msg( 'tags-tag' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-display-header' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-active-header' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-hitcount-header' )->parse() )
+		$html = Html::rawElement( 'tr', null, Html::rawElement( 'th', null, $this->msg( 'tags-tag' )->parse() ) .
+			Html::rawElement( 'th', null, $this->msg( 'tags-display-header' )->parse() ) .
+			Html::rawElement( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
+			Html::rawElement( 'th', null, $this->msg( 'tags-active-header' )->parse() ) .
+			Html::rawElement( 'th', null, $this->msg( 'tags-hitcount-header' )->parse() )
 		);
 
 		// Used in #doTagRow()
@@ -59,7 +59,7 @@ class SpecialTags extends SpecialPage {
 			$html .= $this->doTagRow( $tag, $hitcount );
 		}
 
-		$out->addHTML( Xml::tags(
+		$out->addHTML( Html::rawElement(
 			'table',
 			array( 'class' => 'wikitable sortable mw-tags-table' ),
 			$html
@@ -69,7 +69,7 @@ class SpecialTags extends SpecialPage {
 	function doTagRow( $tag, $hitcount ) {
 		$user = $this->getUser();
 		$newRow = '';
-		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
+		$newRow .= Html::rawElement( 'td', null, Html::element( 'code', null, $tag ) );
 
 		$disp = ChangeTags::tagDescription( $tag );
 		if ( $user->isAllowed( 'editinterface' ) ) {
@@ -80,7 +80,7 @@ class SpecialTags extends SpecialPage {
 			);
 			$disp .= $this->msg( 'parentheses' )->rawParams( $editLink )->escaped();
 		}
-		$newRow .= Xml::tags( 'td', null, $disp );
+		$newRow .= Html::rawElement( 'td', null, $disp );
 
 		$msg = $this->msg( "tag-$tag-description" );
 		$desc = !$msg->exists() ? '' : $msg->parse();
@@ -92,11 +92,11 @@ class SpecialTags extends SpecialPage {
 			);
 			$desc .= $this->msg( 'parentheses' )->rawParams( $editDescLink )->escaped();
 		}
-		$newRow .= Xml::tags( 'td', null, $desc );
+		$newRow .= Html::rawElement( 'td', null, $desc );
 
 		$active = isset( $this->definedTags[$tag] ) ? 'tags-active-yes' : 'tags-active-no';
 		$active = $this->msg( $active )->escaped();
-		$newRow .= Xml::tags( 'td', null, $active );
+		$newRow .= Html::rawElement( 'td', null, $active );
 
 		$hitcountLabel = $this->msg( 'tags-hitcount' )->numParams( $hitcount )->escaped();
 		$hitcountLink = Linker::link(
@@ -107,9 +107,9 @@ class SpecialTags extends SpecialPage {
 		);
 
 		// add raw $hitcount for sorting, because tags-hitcount contains numbers and letters
-		$newRow .= Xml::tags( 'td', array( 'data-sort-value' => $hitcount ), $hitcountLink );
+		$newRow .= Html::rawElement( 'td', array( 'data-sort-value' => $hitcount ), $hitcountLink );
 
-		return Xml::tags( 'tr', null, $newRow ) . "\n";
+		return Html::rawElement( 'tr', null, $newRow ) . "\n";
 	}
 
 	protected function getGroupName() {

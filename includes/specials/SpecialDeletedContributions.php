@@ -523,7 +523,7 @@ class DeletedContributionsPage extends SpecialPage {
 			$options['target'] = '';
 		}
 
-		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
+		$f = Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
 
 		foreach ( $options as $name => $value ) {
 			if ( in_array( $name, array( 'namespace', 'target', 'contribs' ) ) ) {
@@ -532,9 +532,9 @@ class DeletedContributionsPage extends SpecialPage {
 			$f .= "\t" . Html::hidden( $name, $value ) . "\n";
 		}
 
-		$f .= Xml::openElement( 'fieldset' );
-		$f .= Xml::element( 'legend', array(), $this->msg( 'sp-contributions-search' )->text() );
-		$f .= Xml::tags(
+		$f .= Html::openElement( 'fieldset' );
+		$f .= Html::element( 'legend', array(), $this->msg( 'sp-contributions-search' )->text() );
+		$f .= Html::rawElement(
 			'label',
 			array( 'for' => 'target' ),
 			$this->msg( 'sp-contributions-username' )->parse()
@@ -560,9 +560,9 @@ class DeletedContributionsPage extends SpecialPage {
 				'class' => 'namespaceselector',
 			)
 		) . ' ';
-		$f .= Xml::submitButton( $this->msg( 'sp-contributions-submit' )->text() );
-		$f .= Xml::closeElement( 'fieldset' );
-		$f .= Xml::closeElement( 'form' );
+		$f .= Html::submit( $this->msg( 'sp-contributions-submit' )->text() );
+		$f .= Html::closeElement( 'fieldset' );
+		$f .= Html::closeElement( 'form' );
 
 		return $f;
 	}

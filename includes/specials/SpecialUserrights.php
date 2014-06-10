@@ -429,8 +429,8 @@ class UserrightsPage extends SpecialPage {
 				)
 			) .
 			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
-			Xml::fieldset( $this->msg( 'userrights-lookup-user' )->text() ) .
-			Xml::inputLabel(
+			Html::fieldset( $this->msg( 'userrights-lookup-user' )->text() ) .
+			Html::inputLabel(
 				$this->msg( 'userrights-user-editname' )->text(),
 				'user',
 				'username',
@@ -438,7 +438,7 @@ class UserrightsPage extends SpecialPage {
 				str_replace( '_', ' ', $this->mTarget ),
 				array( 'autofocus' => true )
 			) . ' ' .
-			Xml::submitButton( $this->msg( 'editusergroup' )->text() ) .
+			Html::submit( $this->msg( 'editusergroup' )->text() ) .
 			Html::closeElement( 'fieldset' ) .
 			Html::closeElement( 'form' ) . "\n"
 		);
@@ -522,7 +522,7 @@ class UserrightsPage extends SpecialPage {
 		);
 
 		$this->getOutput()->addHTML(
-			Xml::openElement(
+			Html::openElement(
 				'form',
 				array(
 					'method' => 'post',
@@ -537,8 +537,8 @@ class UserrightsPage extends SpecialPage {
 				'conflictcheck-originalgroups',
 				implode( ',', $user->getGroups() )
 			) . // Conflict detection
-			Xml::openElement( 'fieldset' ) .
-			Xml::element(
+			Html::openElement( 'fieldset' ) .
+			Html::element(
 				'legend',
 				array(),
 				$this->msg( 'userrights-editusergroup', $user->getName() )->text()
@@ -548,28 +548,28 @@ class UserrightsPage extends SpecialPage {
 			$this->msg( 'userrights-groups-help', $user->getName() )->parse() .
 			$grouplist .
 			$this->groupCheckboxes( $groups, $user ) .
-			Xml::openElement( 'table', array( 'id' => 'mw-userrights-table-outer' ) ) .
+			Html::openElement( 'table', array( 'id' => 'mw-userrights-table-outer' ) ) .
 				"<tr>
 					<td class='mw-label'>" .
-						Xml::label( $this->msg( 'userrights-reason' )->text(), 'wpReason' ) .
+						Html::label( $this->msg( 'userrights-reason' )->text(), 'wpReason' ) .
 					"</td>
 					<td class='mw-input'>" .
-						Xml::input( 'user-reason', 60, $this->getRequest()->getVal( 'user-reason', false ),
-							array( 'id' => 'wpReason', 'maxlength' => 255 ) ) .
+						Html::input( 'user-reason', $this->getRequest()->getVal( 'user-reason', false ), 'text',
+							array( 'id' => 'wpReason', 'maxlength' => 255, 'size' => 60 ) ) .
 					"</td>
 				</tr>
 				<tr>
 					<td></td>
 					<td class='mw-submit'>" .
-						Xml::submitButton( $this->msg( 'saveusergroups' )->text(),
+						Html::submit( $this->msg( 'saveusergroups' )->text(),
 							array( 'name' => 'saveusergroups' ) +
 								Linker::tooltipAndAccesskeyAttribs( 'userrights-set' )
 						) .
 					"</td>
 				</tr>" .
-			Xml::closeElement( 'table' ) . "\n" .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' ) . "\n"
+			Html::closeElement( 'table' ) . "\n" .
+			Html::closeElement( 'fieldset' ) .
+			Html::closeElement( 'form' ) . "\n"
 		);
 	}
 
@@ -642,14 +642,14 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		// Build the HTML table
-		$ret .= Xml::openElement( 'table', array( 'class' => 'mw-userrights-groups' ) ) .
+		$ret .= Html::openElement( 'table', array( 'class' => 'mw-userrights-groups' ) ) .
 			"<tr>\n";
 		foreach ( $columns as $name => $column ) {
 			if ( $column === array() ) {
 				continue;
 			}
 			// Messages: userrights-changeable-col, userrights-unchangeable-col
-			$ret .= Xml::element(
+			$ret .= Html::element(
 				'th',
 				null,
 				$this->msg( 'userrights-' . $name . '-col', count( $column ) )->text()
@@ -671,16 +671,16 @@ class UserrightsPage extends SpecialPage {
 				} else {
 					$text = htmlspecialchars( $member );
 				}
-				$checkboxHtml = Xml::checkLabel( $text, "wpGroup-" . $group,
+				$checkboxHtml = Html::checkLabel( $text, "wpGroup-" . $group,
 					"wpGroup-" . $group, $checkbox['set'], $attr );
 				$ret .= "\t\t" . ( $checkbox['disabled']
-					? Xml::tags( 'span', array( 'class' => 'mw-userrights-disabled' ), $checkboxHtml )
+					? Html::rawElement( 'span', array( 'class' => 'mw-userrights-disabled' ), $checkboxHtml )
 					: $checkboxHtml
 				) . "<br />\n";
 			}
 			$ret .= "\t</td>\n";
 		}
-		$ret .= Xml::closeElement( 'tr' ) . Xml::closeElement( 'table' );
+		$ret .= Html::closeElement( 'tr' ) . Html::closeElement( 'table' );
 
 		return $ret;
 	}
@@ -734,7 +734,7 @@ class UserrightsPage extends SpecialPage {
 	 */
 	protected function showLogFragment( $user, $output ) {
 		$rightsLogPage = new LogPage( 'rights' );
-		$output->addHTML( Xml::element( 'h2', null, $rightsLogPage->getName()->text() ) );
+		$output->addHTML( Html::element( 'h2', null, $rightsLogPage->getName()->text() ) );
 		LogEventsList::showLogExtract( $output, 'rights', $user->getUserPage() );
 	}
 

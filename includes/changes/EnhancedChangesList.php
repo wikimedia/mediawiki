@@ -102,7 +102,7 @@ class EnhancedChangesList extends ChangesList {
 			# Process current cache
 			$ret = $this->recentChangesBlock();
 			$this->rc_cache = array();
-			$ret .= Xml::element( 'h4', null, $date ) . "\n";
+			$ret .= Html::element( 'h4', null, $date ) . "\n";
 			$this->lastdate = $date;
 		}
 

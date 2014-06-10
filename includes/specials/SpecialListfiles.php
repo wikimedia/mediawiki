@@ -454,7 +454,7 @@ class ImageListPager extends TablePager {
 						$filePage,
 						htmlspecialchars( $filePage->getText() )
 					);
-					$download = Xml::element( 'a',
+					$download = Html::element( 'a',
 						array( 'href' => wfLocalFile( $filePage )->getURL() ),
 						$imgfile
 					);
@@ -522,7 +522,7 @@ class ImageListPager extends TablePager {
 		return Html::openElement( 'form',
 			array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listfiles-form' )
 		) .
-			Xml::fieldset( $this->msg( 'listfiles' )->text() ) .
+			Html::fieldset( $this->msg( 'listfiles' )->text() ) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
 			Xml::buildForm( $inputForm, 'table_pager_limit_submit', array( 'tabindex' => 5 ) ) .
 			$this->getHiddenFields( array( 'limit', 'ilsearch', 'user', 'title', 'ilshowall' ) ) .
