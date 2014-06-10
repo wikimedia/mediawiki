@@ -126,6 +126,17 @@ class UserMailer {
 		return Status::newGood();
 	}
 
+	/**
+	 * Generate VERP address
+	 *
+	 * @param $to
+	 *
+	 * @return ReturnPath address
+	 */
+	protected static function generateVERP( $to ) {
+		$returnPath = 'bounces-' . str_replace('@', '=', $to ) . '@wikimedia.org';
+		return $returnPath;
+	}
 
 	/**
 	 * Creates a single string from an associative array
@@ -167,7 +178,7 @@ class UserMailer {
 	public static function send( $to, $from, $subject, $body, $replyto = null,
 		$contentType = array('type' => 'text/plain', 'charset' => 'utf-8')
 	) {
-		global $wgSMTP, $wgAllowHTMLEmail;
+		global $wgSMTP, $wgAllowHTMLEmail, $wgEnableVERP;
 		if ( !is_array( $to ) ) {
 			$to = array( $to );
 		}
@@ -225,8 +236,6 @@ class UserMailer {
 					->setSubject( $subject )
 					->setFrom( array( $from->address => $from->name ) );
 
-			$message->setReturnPath( $from->address );
-
 			if ( $replyto ) {
 				$message->setReplyTo( $replyto->toString() );
 			}
@@ -262,6 +271,12 @@ class UserMailer {
 			wfDebug( "Sending mail via Swift::Mail\n" );
 
 			foreach ( $to as $recip ) {
+				if ( $wgEnableVERP ) {
+					$returnPath = self::generateVERP( $recip->address );
+				} else {
+					$returnPath = $from->address;
+				}
+				$message->setReturnPath( $returnPath );
 				$message->setTo( array( $recip->address => $recip->name) );
 				$status = self::sendWithSwift( $mailer, $message );
 				# FIXME : some chunks might be sent while others are not!
