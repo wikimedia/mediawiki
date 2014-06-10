@@ -2931,6 +2931,11 @@ invalidated and GetExtendedMetadata hook called again).
 $timestamp: The timestamp metadata was generated
 $file: The file the metadata is for
 
+'UserMailerChangeFromAddress' : Called to generate a VERP from and return address
+when UserMailer sends an email, with a bounce handling extension.
+$to: The recipient address array
+&$from: The from address array reference
+
 'WantedPages::getQueryInfo': Called in WantedPagesPage::getQueryInfo(), can be
 used to alter the SQL query which gets the list of wanted pages.
 &$wantedPages: WantedPagesPage object

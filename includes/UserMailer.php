@@ -238,6 +238,8 @@ class UserMailer {
 		#
 		# -- hashar 20120218
 
+		// Hook to generate custom VERP address for 'From' and 'Retrun-Path'
+		wfRunHooks( 'UserMailerChangeFromAddress', array( $to, &$from ) );
 		$headers['From'] = $from->toString();
 		$headers['Return-Path'] = $from->address;
 
