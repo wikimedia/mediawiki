@@ -185,6 +185,52 @@
 	}
 }
 
+// Buttons with icons
+//
+// The `mw-ui-button-with-icon` mixin includes rules to add a pseudo element
+// with a background image (using the `.background-image-svg` mixin), which
+// acts as an icon.
+//
+// In the example below, the `.with-icon-ok` class is defined as follows:
+//
+//     .with-icon-ok {
+//         .mw-ui-button-with-icon("images/kss/ok.svg", "images/kss/ok.png");
+//     }
+//
+// Markup:
+// <button class="mw-ui-button mw-ui-progressive with-icon-ok">.with-icon-ok</button>
+// <button class="mw-ui-button mw-ui-progressive with-icon-ok" disabled>.with-icon-ok</button><br />
+// <button class="mw-ui-button mw-ui-progressive mw-ui-big with-icon-ok">.mw-ui-big.with-icon-ok</button>
+//
+// Styleguide 2.1.7
+
+.mw-ui-button-with-icon(@icon_svg; @icon_png) {
+	& {
+		position: relative;
+		padding-left: 1em + 1.4em;
+		*padding-left: 1em; // IE7- doesn't support pseudo elements
+
+		// IE8 has partial support for pseudo elements but only when
+		// using the :before syntax.
+		&:before {
+			content: "";
+			display: block;
+			width: 1.4em;
+			height: 1.4em;
+			position: absolute;
+			left: 0.5em;
+			bottom: 0.5em;
+			.background-image-svg(@icon_svg, @icon_png);
+			background-repeat: no-repeat;
+			background-size: 100%;
+		}
+	}
+}
+
+.with-icon-ok {
+	.mw-ui-button-with-icon("images/kss/ok.svg", "images/kss/ok.png");
+}
+
 a.mw-ui-button {
 	text-decoration: none;
 
