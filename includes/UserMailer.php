@@ -238,9 +238,6 @@ class UserMailer {
 		#
 		# -- hashar 20120218
 
-		$headers['From'] = $from->toString();
-		$headers['Return-Path'] = $from->address;
-
 		if ( $replyto ) {
 			$headers['Reply-To'] = $replyto->toString();
 		}
@@ -334,6 +331,11 @@ class UserMailer {
 			# number of possible recipients.
 			$chunks = array_chunk( $to, $wgEnotifMaxRecips );
 			foreach ( $chunks as $chunk ) {
+
+				$retChangeFrom = wfRunHooks( 'UserMailerChangeFromAddress', array( $chunk, &$from , &$headers ) );
+				$headers['From'] = $from->toString();
+				$headers['Return-Path'] = $from->address;
+
 				$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
 				# FIXME : some chunks might be sent while others are not!
 				if ( !$status->isOK() ) {
@@ -350,7 +352,6 @@ class UserMailer {
 			if ( count( $to ) > 1 ) {
 				$headers['To'] = 'undisclosed-recipients:;';
 			}
-			$headers = self::arrayToHeaderString( $headers, $endl );
 
 			wfDebug( "Sending mail via internal mail() function\n" );
 
@@ -363,6 +364,11 @@ class UserMailer {
 				$safeMode = wfIniGetBool( 'safe_mode' );
 
 				foreach ( $to as $recip ) {
+					$retChangeFrom = wfRunHooks( 'UserMailerChangeFromAddress', array( $chunk, &$from , &$headers ) );
+					$headers['From'] = $from->toString();
+					$headers['Return-Path'] = $from->address;
+
+					$headers = self::arrayToHeaderString( $headers, $endl );
 					if ( $safeMode ) {
 						$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
 					} else {
