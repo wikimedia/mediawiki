@@ -226,7 +226,7 @@ class FileDeleteForm {
 			$suppress = "<tr id=\"wpDeleteSuppressRow\">
 					<td></td>
 					<td class='mw-input'><strong>" .
-						Xml::checkLabel( wfMessage( 'revdelete-suppress' )->text(),
+						Html::checkLabel( wfMessage( 'revdelete-suppress' )->text(),
 							'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '3' ) ) .
 					"</strong></td>
 				</tr>";
@@ -235,19 +235,19 @@ class FileDeleteForm {
 		}
 
 		$checkWatch = $wgUser->getBoolOption( 'watchdeletion' ) || $wgUser->isWatched( $this->title );
-		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction(),
+		$form = Html::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction(),
 			'id' => 'mw-img-deleteconfirm' ) ) .
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, wfMessage( 'filedelete-legend' )->text() ) .
+			Html::openElement( 'fieldset' ) .
+			Html::element( 'legend', null, wfMessage( 'filedelete-legend' )->text() ) .
 			Html::hidden( 'wpEditToken', $wgUser->getEditToken( $this->oldimage ) ) .
 			$this->prepareMessage( 'filedelete-intro' ) .
-			Xml::openElement( 'table', array( 'id' => 'mw-img-deleteconfirm-table' ) ) .
+			Html::openElement( 'table', array( 'id' => 'mw-img-deleteconfirm-table' ) ) .
 			"<tr>
 				<td class='mw-label'>" .
-					Xml::label( wfMessage( 'filedelete-comment' )->text(), 'wpDeleteReasonList' ) .
+					Html::label( wfMessage( 'filedelete-comment' )->text(), 'wpDeleteReasonList' ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::listDropDown(
+					Html::select(
 						'wpDeleteReasonList',
 						wfMessage( 'filedelete-reason-dropdown' )->inContentLanguage()->text(),
 						wfMessage( 'filedelete-reason-otherlist' )->inContentLanguage()->text(),
@@ -259,11 +259,11 @@ class FileDeleteForm {
 			</tr>
 			<tr>
 				<td class='mw-label'>" .
-					Xml::label( wfMessage( 'filedelete-otherreason' )->text(), 'wpReason' ) .
+					Html::label( wfMessage( 'filedelete-otherreason' )->text(), 'wpReason' ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::input( 'wpReason', 60, $wgRequest->getText( 'wpReason' ),
-						array( 'type' => 'text', 'maxlength' => '255', 'tabindex' => '2', 'id' => 'wpReason' ) ) .
+					Html::input( 'wpReason', $wgRequest->getText( 'wpReason' ), 'text',
+						array( 'maxlength' => '255', 'tabindex' => '2', 'id' => 'wpReason', 'size' => 60 ) ) .
 				"</td>
 			</tr>
 			{$suppress}";
@@ -272,7 +272,7 @@ class FileDeleteForm {
 			<tr>
 				<td></td>
 				<td class='mw-input'>" .
-					Xml::checkLabel( wfMessage( 'watchthis' )->text(),
+					Html::checkLabel( wfMessage( 'watchthis' )->text(),
 						'wpWatch', 'wpWatch', $checkWatch, array( 'tabindex' => '3' ) ) .
 				"</td>
 			</tr>";
@@ -281,7 +281,7 @@ class FileDeleteForm {
 			<tr>
 				<td></td>
 				<td class='mw-submit'>" .
-					Xml::submitButton(
+					Html::submit(
 						wfMessage( 'filedelete-submit' )->text(),
 						array(
 							'name' => 'mw-filedelete-submit',
@@ -291,9 +291,9 @@ class FileDeleteForm {
 					) .
 				"</td>
 			</tr>" .
-			Xml::closeElement( 'table' ) .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' );
+			Html::closeElement( 'table' ) .
+			Html::closeElement( 'fieldset' ) .
+			Html::closeElement( 'form' );
 
 			if ( $wgUser->isAllowed( 'editinterface' ) ) {
 				$title = Title::makeTitle( NS_MEDIAWIKI, 'Filedelete-reason-dropdown' );

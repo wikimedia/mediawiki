@@ -101,50 +101,50 @@ class SpecialAllpages extends IncludableSpecialPage {
 		global $wgScript;
 		$t = $this->getPageTitle();
 
-		$out = Xml::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
-		$out .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
+		$out = Html::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
+		$out .= Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
 		$out .= Html::hidden( 'title', $t->getPrefixedText() );
-		$out .= Xml::openElement( 'fieldset' );
-		$out .= Xml::element( 'legend', null, $this->msg( 'allpages' )->text() );
-		$out .= Xml::openElement( 'table', array( 'id' => 'nsselect', 'class' => 'allpages' ) );
+		$out .= Html::openElement( 'fieldset' );
+		$out .= Html::element( 'legend', null, $this->msg( 'allpages' )->text() );
+		$out .= Html::openElement( 'table', array( 'id' => 'nsselect', 'class' => 'allpages' ) );
 		$out .= "<tr>
 	<td class='mw-label'>" .
-			Xml::label( $this->msg( 'allpagesfrom' )->text(), 'nsfrom' ) .
+			Html::label( $this->msg( 'allpagesfrom' )->text(), 'nsfrom' ) .
 			"	</td>
 	<td class='mw-input'>" .
-			Xml::input( 'from', 30, str_replace( '_', ' ', $from ), array( 'id' => 'nsfrom' ) ) .
+			Html::input( 'from', str_replace( '_', ' ', $from ), array( 'id' => 'nsfrom', 'size' => 30 ) ) .
 			"	</td>
 </tr>
 <tr>
 	<td class='mw-label'>" .
-			Xml::label( $this->msg( 'allpagesto' )->text(), 'nsto' ) .
+			Html::label( $this->msg( 'allpagesto' )->text(), 'nsto' ) .
 			"	</td>
 			<td class='mw-input'>" .
-			Xml::input( 'to', 30, str_replace( '_', ' ', $to ), array( 'id' => 'nsto' ) ) .
+			Html::input( 'to', str_replace( '_', ' ', $to ), array( 'id' => 'nsto', 'size' => 30 ) ) .
 			"		</td>
 </tr>
 <tr>
 	<td class='mw-label'>" .
-			Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
+			Html::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
 			"	</td>
 			<td class='mw-input'>" .
 			Html::namespaceSelector(
 				array( 'selected' => $namespace ),
 				array( 'name' => 'namespace', 'id' => 'namespace' )
 			) . ' ' .
-			Xml::checkLabel(
+			Html::checkLabel(
 				$this->msg( 'allpages-hide-redirects' )->text(),
 				'hideredirects',
 				'hideredirects',
 				$hideredirects
 			) . ' ' .
-			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
+			Html::submit( $this->msg( 'allpagessubmit' )->text() ) .
 			"	</td>
 </tr>";
-		$out .= Xml::closeElement( 'table' );
-		$out .= Xml::closeElement( 'fieldset' );
-		$out .= Xml::closeElement( 'form' );
-		$out .= Xml::closeElement( 'div' );
+		$out .= Html::closeElement( 'table' );
+		$out .= Html::closeElement( 'fieldset' );
+		$out .= Html::closeElement( 'form' );
+		$out .= Html::closeElement( 'div' );
 
 		return $out;
 	}
@@ -214,7 +214,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			);
 
 			if ( $res->numRows() > 0 ) {
-				$out = Xml::openElement( 'table', array( 'class' => 'mw-allpages-table-chunk' ) );
+				$out = Html::openElement( 'table', array( 'class' => 'mw-allpages-table-chunk' ) );
 				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 					$t = Title::newFromRow( $s );
 					if ( $t ) {
@@ -239,7 +239,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 				if ( ( $n % 3 ) != 0 ) {
 					$out .= "</tr>\n";
 				}
-				$out .= Xml::closeElement( 'table' );
+				$out .= Html::closeElement( 'table' );
 			} else {
 				$out = '';
 			}
@@ -341,7 +341,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 		}
 
 		$nsForm = $this->namespaceForm( $namespace, $from, $to, $hideredirects );
-		$out2 = Xml::openElement( 'table', array( 'class' => 'mw-allpages-table-form' ) ) .
+		$out2 = Html::openElement( 'table', array( 'class' => 'mw-allpages-table-form' ) ) .
 			'<tr>
 						<td>' .
 			$nsForm .

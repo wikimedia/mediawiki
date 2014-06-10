@@ -43,7 +43,7 @@ class ChangeTags {
 		$tags = explode( ',', $tags );
 		$displayTags = array();
 		foreach ( $tags as $tag ) {
-			$displayTags[] = Xml::tags(
+			$displayTags[] = Html::rawElement(
 				'span',
 				array( 'class' => 'mw-tag-marker ' .
 								Sanitizer::escapeClass( "mw-tag-marker-$tag" ) ),
@@ -55,7 +55,7 @@ class ChangeTags {
 			->numParams( count( $displayTags ) )
 			->rawParams( $wgLang->commaList( $displayTags ) )
 			->parse();
-		$markers = Xml::tags( 'span', array( 'class' => 'mw-tag-markers' ), $markers );
+		$markers = Html::rawElement( 'span', array( 'class' => 'mw-tag-markers' ), $markers );
 
 		return array( $markers, $classes );
 	}
@@ -262,11 +262,11 @@ class ChangeTags {
 				array( 'for' => 'tagfilter' ),
 				wfMessage( 'tag-filter' )->parse()
 			),
-			Xml::input(
+			Html::input(
 				'tagfilter',
-				20,
 				$selected,
-				array( 'class' => 'mw-tagfilter-input', 'id' => 'tagfilter' )
+				'text',
+				array( 'class' => 'mw-tagfilter-input', 'id' => 'tagfilter', 'size' => 20 )
 			)
 		);
 
@@ -276,12 +276,12 @@ class ChangeTags {
 
 		$html = implode( '&#160;', $data );
 		$html .= "\n" .
-			Xml::element(
+			Html::element(
 				'input',
 				array( 'type' => 'submit', 'value' => wfMessage( 'tag-filter-submit' )->text() )
 			);
 		$html .= "\n" . Html::hidden( 'title', $title->getPrefixedText() );
-		$html = Xml::tags(
+		$html = Html::rawElement(
 			'form',
 			array( 'action' => $title->getLocalURL(), 'class' => 'mw-tagfilter-form', 'method' => 'get' ),
 			$html

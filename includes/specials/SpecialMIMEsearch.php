@@ -108,18 +108,18 @@ class MIMEsearchPage extends QueryPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->getOutput()->addHTML(
-			Xml::openElement(
+			Html::openElement(
 				'form',
 				array( 'id' => 'specialmimesearch', 'method' => 'get', 'action' => $wgScript )
 			) .
-				Xml::openElement( 'fieldset' ) .
+				Html::openElement( 'fieldset' ) .
 				Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
-				Xml::element( 'legend', null, $this->msg( 'mimesearch' )->text() ) .
-				Xml::inputLabel( $this->msg( 'mimetype' )->text(), 'mime', 'mime', 20, $mime ) .
+				Html::element( 'legend', null, $this->msg( 'mimesearch' )->text() ) .
+				Html::inputLabel( $this->msg( 'mimetype' )->text(), 'mime', 'mime', 20, $mime ) .
 				' ' .
-				Xml::submitButton( $this->msg( 'ilsubmit' )->text() ) .
-				Xml::closeElement( 'fieldset' ) .
-				Xml::closeElement( 'form' )
+				Html::submit( $this->msg( 'ilsubmit' )->text() ) .
+				Html::closeElement( 'fieldset' ) .
+				Html::closeElement( 'form' )
 		);
 
 		list( $this->major, $this->minor ) = File::splitMime( $mime );

@@ -55,14 +55,14 @@ class WithoutInterwikiPage extends PageQueryPage {
 			Html::openElement( 'fieldset' ) . "\n" .
 			Html::element( 'legend', null, $this->msg( 'withoutinterwiki-legend' )->text() ) . "\n" .
 			Html::hidden( 'title', $t->getPrefixedText() ) . "\n" .
-			Xml::inputLabel(
+			Html::inputLabel(
 				$this->msg( 'allpagesprefix' )->text(),
 				'prefix',
 				'wiprefix',
 				20,
 				$prefix
 			) . "\n" .
-			Xml::submitButton( $this->msg( 'withoutinterwiki-submit' )->text() ) . "\n" .
+			Html::submit( $this->msg( 'withoutinterwiki-submit' )->text() ) . "\n" .
 			Html::closeElement( 'fieldset' ) . "\n" .
 			Html::closeElement( 'form' );
 	}

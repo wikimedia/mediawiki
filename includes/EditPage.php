@@ -2447,13 +2447,13 @@ class EditPage {
 
 		// Add an empty field to trip up spambots
 		$wgOut->addHTML(
-			Xml::openElement( 'div', array( 'id' => 'antispam-container', 'style' => 'display: none;' ) )
+			Html::openElement( 'div', array( 'id' => 'antispam-container', 'style' => 'display: none;' ) )
 			. Html::rawElement(
 				'label',
 				array( 'for' => 'wpAntiSpam' ),
 				wfMessage( 'simpleantispam-label' )->parse()
 			)
-			. Xml::element(
+			. Html::element(
 				'input',
 				array(
 					'type' => 'text',
@@ -2462,7 +2462,7 @@ class EditPage {
 					'value' => ''
 				)
 			)
-			. Xml::closeElement( 'div' )
+			. Html::closeElement( 'div' )
 		);
 
 		wfRunHooks( 'EditPage::showEditForm:fields', array( &$this, &$wgOut ) );
@@ -2482,7 +2482,7 @@ class EditPage {
 			$wgOut->addHTML(
 				'<div class="mw-confirm-recreate">' .
 					wfMessage( $key, $username, "<nowiki>$comment</nowiki>" )->parse() .
-				Xml::checkLabel( wfMessage( 'recreate' )->text(), 'wpRecreate', 'wpRecreate', false,
+				Html::checkLabel( wfMessage( 'recreate' )->text(), 'wpRecreate', 'wpRecreate', false,
 					array( 'title' => Linker::titleAttrib( 'recreate' ), 'tabindex' => 1, 'id' => 'wpRecreate' )
 				) .
 				'</div>'
@@ -2835,12 +2835,12 @@ class EditPage {
 
 		$label = null;
 		if ( $labelText ) {
-			$label = Xml::tags(
+			$label = Html::rawElement(
 				'label',
 				$inputAttrs['id'] ? array( 'for' => $inputAttrs['id'] ) : null,
 				$labelText
 			);
-			$label = Xml::tags( 'span', $spanLabelAttrs, $label );
+			$label = Html::rawElement( 'span', $spanLabelAttrs, $label );
 		}
 
 		$input = Html::input( 'wpSummary', $summary, 'text', $inputAttrs );
@@ -2904,7 +2904,7 @@ class EditPage {
 
 		$summary = wfMessage( $message )->parse()
 			. Linker::commentBlock( $summary, $this->mTitle, $isSubjectPreview );
-		return Xml::tags( 'div', array( 'class' => 'mw-summary-preview' ), $summary );
+		return Html::rawElement( 'div', array( 'class' => 'mw-summary-preview' ), $summary );
 	}
 
 	protected function showFormBeforeText() {
@@ -3048,7 +3048,7 @@ HTML
 			$attribs['style'] = 'display: none;';
 		}
 
-		$wgOut->addHTML( Xml::openElement( 'div', $attribs ) );
+		$wgOut->addHTML( Html::openElement( 'div', $attribs ) );
 
 		if ( $this->formtype == 'preview' ) {
 			$this->showPreview( $previewOutput );
@@ -3794,9 +3794,9 @@ HTML
 					'id' => 'wpMinoredit',
 				);
 				$checkboxes['minor'] =
-					Xml::check( 'wpMinoredit', $checked['minor'], $attribs ) .
+					Html::check( 'wpMinoredit', $checked['minor'], $attribs ) .
 					"&#160;<label for='wpMinoredit' id='mw-editpage-minoredit'" .
-					Xml::expandAttributes( array( 'title' => Linker::titleAttrib( 'minoredit', 'withaccess' ) ) ) .
+					Html::expandAttributes( array( 'title' => Linker::titleAttrib( 'minoredit', 'withaccess' ) ) ) .
 					">{$minorLabel}</label>";
 			}
 		}
@@ -3810,9 +3810,9 @@ HTML
 				'id' => 'wpWatchthis',
 			);
 			$checkboxes['watch'] =
-				Xml::check( 'wpWatchthis', $checked['watch'], $attribs ) .
+				Html::check( 'wpWatchthis', $checked['watch'], $attribs ) .
 				"&#160;<label for='wpWatchthis' id='mw-editpage-watch'" .
-				Xml::expandAttributes( array( 'title' => Linker::titleAttrib( 'watch', 'withaccess' ) ) ) .
+				Html::expandAttributes( array( 'title' => Linker::titleAttrib( 'watch', 'withaccess' ) ) ) .
 				">{$watchLabel}</label>";
 		}
 		wfRunHooks( 'EditPageBeforeEditChecks', array( &$this, &$checkboxes, &$tabindex ) );
@@ -3841,7 +3841,7 @@ HTML
 			'title' => wfMessage( 'tooltip-save' )->text()
 				. ' [' . wfMessage( 'accesskey-save' )->text() . ']',
 		);
-		$buttons['save'] = Xml::element( 'input', $temp, '' );
+		$buttons['save'] = Html::element( 'input', $temp, '' );
 
 		++$tabindex; // use the same for preview and live preview
 		// @todo FIXME: Hardcoded square brackets.
@@ -3855,7 +3855,7 @@ HTML
 			'title' => wfMessage( 'tooltip-preview' )->text()
 				. ' [' . wfMessage( 'accesskey-preview' )->text() . ']',
 		);
-		$buttons['preview'] = Xml::element( 'input', $temp, '' );
+		$buttons['preview'] = Html::element( 'input', $temp, '' );
 		$buttons['live'] = '';
 
 		// @todo FIXME: Hardcoded square brackets.
@@ -3869,7 +3869,7 @@ HTML
 			'title' => wfMessage( 'tooltip-diff' )->text()
 				. ' [' . wfMessage( 'accesskey-diff' )->text() . ']',
 		);
-		$buttons['diff'] = Xml::element( 'input', $temp, '' );
+		$buttons['diff'] = Html::element( 'input', $temp, '' );
 
 		wfRunHooks( 'EditPageBeforeEditButtons', array( &$this, &$buttons, &$tabindex ) );
 		return $buttons;
@@ -3898,9 +3898,9 @@ HTML
 
 		$s =
 			'<?xml version="1.0" encoding="UTF-8" ?>' . "\n" .
-			Xml::tags( 'livepreview', null,
-				Xml::element( 'preview', null, $previewText )
-				#.	Xml::element( 'category', null, $categories )
+			Html::rawElement( 'livepreview', null,
+				Html::element( 'preview', null, $previewText )
+				#.	Html::element( 'category', null, $categories )
 			);
 		echo $s;
 	}

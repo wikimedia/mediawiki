@@ -411,7 +411,7 @@ EOT;
 				$line,
 				$m
 			) ) {
-				$xml .= Xml::tags(
+				$xml .= Html::rawElement(
 					'OBJECT',
 					array(
 						#'data' => '',
@@ -421,8 +421,8 @@ EOT;
 						#'usemap' => '',
 					),
 					"\n" .
-						Xml::element( 'PARAM', array( 'name' => 'DPI', 'value' => $m[3] ) ) . "\n" .
-						Xml::element( 'PARAM', array( 'name' => 'GAMMA', 'value' => $m[4] ) ) . "\n"
+						Html::element( 'PARAM', array( 'name' => 'DPI', 'value' => $m[3] ) ) . "\n" .
+						Html::element( 'PARAM', array( 'name' => 'GAMMA', 'value' => $m[4] ) ) . "\n"
 				) . "\n";
 
 				return true;

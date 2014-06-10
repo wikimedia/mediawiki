@@ -229,13 +229,13 @@ class SpecialNewpages extends IncludableSpecialPage {
 			list( $tagFilterLabel, $tagFilterSelector ) = $tagFilter;
 		}
 
-		$form = Xml::openElement( 'form', array( 'action' => $wgScript ) ) .
+		$form = Html::openElement( 'form', array( 'action' => $wgScript ) ) .
 			Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) .
-			Xml::fieldset( $this->msg( 'newpages' )->text() ) .
-			Xml::openElement( 'table', array( 'id' => 'mw-newpages-table' ) ) .
+			Html::fieldset( $this->msg( 'newpages' )->text() ) .
+			Html::openElement( 'table', array( 'id' => 'mw-newpages-table' ) ) .
 			'<tr>
 				<td class="mw-label">' .
-			Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
+			Html::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
 			'</td>
 			<td class="mw-input">' .
 			Html::namespaceSelector(
@@ -248,7 +248,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 					'class' => 'namespaceselector',
 				)
 			) . '&#160;' .
-			Xml::checkLabel(
+			Html::checkLabel(
 				$this->msg( 'invert' )->text(),
 				'invert',
 				'nsinvert',
@@ -268,15 +268,15 @@ class SpecialNewpages extends IncludableSpecialPage {
 			( $wgEnableNewpagesUserFilter ?
 				'<tr>
 				<td class="mw-label">' .
-					Xml::label( $this->msg( 'newpages-username' )->text(), 'mw-np-username' ) .
+					Html::label( $this->msg( 'newpages-username' )->text(), 'mw-np-username' ) .
 					'</td>
 				<td class="mw-input">' .
-					Xml::input( 'username', 30, $userText, array( 'id' => 'mw-np-username' ) ) .
+					Html::input( 'username', $userText, 'text', array( 'id' => 'mw-np-username', 'size' => 30 ) ) .
 					'</td>
 			</tr>' : '' ) .
 			'<tr> <td></td>
 				<td class="mw-submit">' .
-			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
+			Html::submit( $this->msg( 'allpagessubmit' )->text() ) .
 			'</td>
 		</tr>' .
 			'<tr>
@@ -285,10 +285,10 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$this->filterLinks() .
 			'</td>
 			</tr>' .
-			Xml::closeElement( 'table' ) .
-			Xml::closeElement( 'fieldset' ) .
+			Html::closeElement( 'table' ) .
+			Html::closeElement( 'fieldset' ) .
 			$hidden .
-			Xml::closeElement( 'form' );
+			Html::closeElement( 'form' );
 
 		$this->getOutput()->addHTML( $form );
 	}

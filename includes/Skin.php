@@ -1493,7 +1493,7 @@ abstract class Skin extends ContextSource {
 			$msgs = array();
 
 			foreach ( $newtalks as $newtalk ) {
-				$msgs[] = Xml::element(
+				$msgs[] = Html::element(
 					'a',
 					array( 'href' => $newtalk['link'] ), $newtalk['wiki']
 				);

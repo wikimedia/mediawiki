@@ -259,7 +259,7 @@ class Xml {
 		$selected = isset( $languages[$selected] ) ? $selected : $wgLanguageCode;
 		$options = "\n";
 		foreach ( $languages as $code => $name ) {
-			$options .= Xml::option( "$code - $name", $code, $code == $selected ) . "\n";
+			$options .= Html::option( "$code - $name", $code, $code == $selected ) . "\n";
 		}
 
 		$attrs = array( 'id' => 'wpUserLanguage', 'name' => 'wpUserLanguage' );
@@ -421,7 +421,7 @@ class Xml {
 	}
 
 	/**
-	 * Same as Xml::inputLabel() but return input and label in an array
+	 * Same as Html::inputLabel() but return input and label in an array
 	 *
 	 * @param string $label
 	 * @param string $name
@@ -959,7 +959,7 @@ class XmlSelect {
 				$contents = self::formatOptions( $value, $default );
 				$data .= Html::rawElement( 'optgroup', array( 'label' => $label ), $contents ) . "\n";
 			} else {
-				$data .= Xml::option( $label, $value, $value === $default ) . "\n";
+				$data .= Html::option( $label, $value, $value === $default ) . "\n";
 			}
 		}
 
