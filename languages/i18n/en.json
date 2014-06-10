@@ -840,6 +840,7 @@
 	"mergehistory-empty": "No revisions can be merged.",
 	"mergehistory-success": "$3 {{PLURAL:$3|revision|revisions}} of [[:$1]] successfully merged into [[:$2]].",
 	"mergehistory-fail": "Unable to perform history merge, please recheck the page and time parameters.",
+	"mergehistory-fail-toobig" : "Unable to perform history merge as more than the limit of $1 {{PLURAL:$1|revision|revisions}} would be moved.",
 	"mergehistory-no-source": "Source page $1 does not exist.",
 	"mergehistory-no-destination": "Destination page $1 does not exist.",
 	"mergehistory-invalid-source": "Source page must be a valid title.",
