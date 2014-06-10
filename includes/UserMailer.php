@@ -236,10 +236,13 @@ class UserMailer {
 		#
 		#  PEAR mailer should be passed a Subject header.
 		#
-		# -- hashar 20120218
+		# -- hashar 20120218s
 
 		$headers['From'] = $from->toString();
-		$headers['Return-Path'] = $from->address;
+		$returnPath = $from->address;
+		// Hook to generate custom VERP address for 'Return-Path'
+		wfRunHooks( 'UserMailerChangeReturnPath', array( $to, &$returnPath ) );
+		$headers['Return-Path'] = $returnPath;
 
 		if ( $replyto ) {
 			$headers['Reply-To'] = $replyto->toString();
