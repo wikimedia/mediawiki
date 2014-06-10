@@ -2,8 +2,14 @@
  * Vector-specific scripts
  */
 jQuery( function ( $ ) {
+	/**
+	 * Focus search input at the very end
+	 */
 	$( '#searchInput' ).attr( 'tabindex', $( document ).lastTabIndex() + 1 );
 
+	/**
+	 * Dropdown menu accessibility
+	 */
 	$( 'div.vectorMenu' ).each( function () {
 		var $el = $( this );
 		$el.find( '> h3 > a' ).parent()
@@ -33,7 +39,7 @@ jQuery( function ( $ ) {
 	$( '#mw-panel > .portal:first' ).addClass( 'first' );
 
 	/**
-	 * Collapsible tabs for Vector
+	 * Collapsible tabs
 	 */
 	var $cactions = $( '#p-cactions' ),
 		$tabContainer = $( '#p-views ul' ),
