@@ -101,8 +101,6 @@ class ChangeTags {
 				'specified when adding a tag to a change!' );
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
-
 		// Might as well look for rcids and so on.
 		if ( !$rc_id ) {
 			// Info might be out of date, somewhat fractionally, on slave.
