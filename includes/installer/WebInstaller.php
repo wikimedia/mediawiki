@@ -960,6 +960,7 @@ class WebInstaller extends Installer {
 	 *      var:             The variable to be configured (required)
 	 *      label:           The message name for the label (required)
 	 *      itemLabelPrefix: The message name prefix for the item labels (required)
+	 *      itemLabels:      List of message names to use for the item labels instead of itemLabelPrefix, keyed by values
 	 *      values:          List of allowed values (required)
 	 *      itemAttribs:     Array of attribute arrays, outer key is the value name (optional)
 	 *      commonAttribs:   Attribute array applied to all items
@@ -970,6 +971,31 @@ class WebInstaller extends Installer {
 	 * @return string
 	 */
 	public function getRadioSet( $params ) {
+		$items = $this->getRadioElements( $params );
+
+		if ( !isset( $params['label'] ) ) {
+			$label = '';
+		} else {
+			$label = $params['label'];
+		}
+
+		$s = "<ul>\n";
+		foreach ( $items as $value => $item ) {
+			$s .= "<li>$item</li>\n";
+		}
+		$s .= "</ul>\n";
+
+		return $this->label( $label, $params['controlName'], $s, $params['help'] );
+	}
+
+	/**
+	 * Get a set of labelled radio buttons. You probably want to use getRadioSet(), not this.
+	 *
+	 * @see getRadioSet
+	 *
+	 * @return array
+	 */
+	public function getRadioElements( $params ) {
 		if ( !isset( $params['controlName'] ) ) {
 			$params['controlName'] = 'config_' . $params['var'];
 		}
@@ -978,15 +1004,12 @@ class WebInstaller extends Installer {
 			$params['value'] = $this->getVar( $params['var'] );
 		}
 
-		if ( !isset( $params['label'] ) ) {
-			$label = '';
-		} else {
-			$label = $params['label'];
-		}
 		if ( !isset( $params['help'] ) ) {
 			$params['help'] = "";
 		}
-		$s = "<ul>\n";
+
+		$items = array();
+
 		foreach ( $params['values'] as $value ) {
 			$itemAttribs = array();
 
@@ -1003,19 +1026,17 @@ class WebInstaller extends Installer {
 			$itemAttribs['id'] = $id;
 			$itemAttribs['tabindex'] = $this->nextTabIndex();
 
-			$s .=
-				'<li>' .
+			$items[$value] =
 				Xml::radio( $params['controlName'], $value, $checked, $itemAttribs ) .
 				'&#160;' .
 				Xml::tags( 'label', array( 'for' => $id ), $this->parse(
-					wfMessage( $params['itemLabelPrefix'] . strtolower( $value ) )->plain()
-				) ) .
-				"</li>\n";
+					isset( $params['itemLabels'] ) ?
+						wfMessage( $params['itemLabels'][$value] )->plain() :
+						wfMessage( $params['itemLabelPrefix'] . strtolower( $value ) )->plain()
+				) );
 		}
 
-		$s .= "</ul>\n";
-
-		return $this->label( $label, $params['controlName'], $s, $params['help'] );
+		return $items;
 	}
 
 	/**
