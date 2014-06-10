@@ -2874,7 +2874,11 @@ class WikiPage implements Page, IDBAccessObject {
 		$logEntry->setTarget( $logTitle );
 		$logEntry->setComment( $reason );
 		$logid = $logEntry->insert();
-		$logEntry->publish( $logid );
+
+		$dbw->onTransactionPreCommitOrIdle( function() use ( $dbw, $logEntry, $logid ) {
+			// Bug 56776: avoid deadlocks (especially from FileDeleteForm)
+			$logEntry->publish( $logid );
+		} );
 
 		if ( $commit ) {
 			$dbw->commit( __METHOD__ );
