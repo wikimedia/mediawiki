@@ -128,7 +128,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 				$rowContents .= Html::rawElement(
 					'td',
 					array(),
-					Xml::check( "{$this->mName}[]", $checked, $attribs + $thisAttribs )
+					Html::check( "{$this->mName}[]", $checked, $attribs + $thisAttribs )
 				);
 			}
 			$tableContents .= Html::rawElement( 'tr', array(), "\n$rowContents\n" );

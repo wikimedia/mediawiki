@@ -52,7 +52,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		} else {
 			$this->getOutput()->addModules( $modules );
 		}
-		$output = Xml::openElement( 'ul', $attribs );
+		$output = Html::openElement( 'ul', $attribs );
 		if ( $this->mCaption ) {
 			$output .= "\n\t<li class='gallerycaption'>{$this->mCaption}</li>";
 		}

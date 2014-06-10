@@ -159,13 +159,13 @@ class ImagePage extends Article {
 			# NS_FILE is in the user language, but this section (the actual wikitext)
 			# should be in page content language
 			$pageLang = $this->getTitle()->getPageViewLanguage();
-			$out->addHTML( Xml::openElement( 'div', array( 'id' => 'mw-imagepage-content',
+			$out->addHTML( Html::openElement( 'div', array( 'id' => 'mw-imagepage-content',
 				'lang' => $pageLang->getHtmlCode(), 'dir' => $pageLang->getDir(),
 				'class' => 'mw-content-' . $pageLang->getDir() ) ) );
 
 			parent::view();
 
-			$out->addHTML( Xml::closeElement( 'div' ) );
+			$out->addHTML( Html::closeElement( 'div' ) );
 		} else {
 			# Just need to set the right headers
 			$out->setArticleFlag( true );
@@ -186,7 +186,7 @@ class ImagePage extends Article {
 		$this->imageHistory();
 		// TODO: Cleanup the following
 
-		$out->addHTML( Xml::element( 'h2',
+		$out->addHTML( Html::element( 'h2',
 			array( 'id' => 'filelinks' ),
 			wfMessage( 'imagelinks' )->text() ) . "\n" );
 		$this->imageDupes();
@@ -202,7 +202,7 @@ class ImagePage extends Article {
 		}
 
 		if ( $showmeta ) {
-			$out->addHTML( Xml::element(
+			$out->addHTML( Html::element(
 				'h2',
 				array( 'id' => 'metadata' ),
 				wfMessage( 'metadata' )->text() ) . "\n" );
@@ -507,19 +507,19 @@ class ImagePage extends Article {
 					);
 					$options = array();
 					for ( $i = 1; $i <= $count; $i++ ) {
-						$options[] = Xml::option( $lang->formatNum( $i ), $i, $i == $page );
+						$options[] = Html::option( $lang->formatNum( $i ), $i, $i == $page );
 					}
-					$select = Xml::tags( 'select',
+					$select = Html::rawElement( 'select',
 						array( 'id' => 'pageselector', 'name' => 'page' ),
 						implode( "\n", $options ) );
 
 					$out->addHTML(
 						'</td><td><div class="multipageimagenavbox">' .
-						Xml::openElement( 'form', $formParams ) .
+						Html::openElement( 'form', $formParams ) .
 						Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
 							wfMessage( 'imgmultigoto' )->rawParams( $select )->parse() .
-						Xml::submitButton( wfMessage( 'imgmultigo' )->text() ) .
-						Xml::closeElement( 'form' ) .
+						Html::submit( wfMessage( 'imgmultigo' )->text() ) .
+						Html::closeElement( 'form' ) .
 						"<hr />$thumb1\n$thumb2<br style=\"clear: both\" /></div></td></tr></table>"
 					);
 				}
@@ -1042,7 +1042,7 @@ EOT
 			} else {
 				$display = $code;
 			}
-			$opts .= "\n" . Xml::option( $display, $code, $curLang === $code );
+			$opts .= "\n" . Html::option( $display, $code, $curLang === $code );
 			if ( $curLang === $code ) {
 				$haveCurrentLang = true;
 			}
@@ -1053,7 +1053,7 @@ EOT
 		if ( !$haveDefaultLang ) {
 			// Its hard to know if the content is really in the default language, or
 			// if its just unmarked content that could be in any language.
-			$opts = Xml::option(
+			$opts = Html::option(
 				wfMessage( 'img-lang-default' )->text(),
 				$defaultLang,
 				$defaultLang === $curLang
@@ -1066,7 +1066,7 @@ EOT
 			} else {
 				$display = $curLang;
 			}
-			$opts = Xml::option( $display, $curLang, true ) . $opts;
+			$opts = Html::option( $display, $curLang, true ) . $opts;
 		}
 
 		$select = Html::rawElement(
@@ -1074,7 +1074,7 @@ EOT
 			array( 'id' => 'mw-imglangselector', 'name' => 'lang' ),
 			$opts
 		);
-		$submit = Xml::submitButton( wfMessage( 'img-lang-go' )->text() );
+		$submit = Html::submit( wfMessage( 'img-lang-go' )->text() );
 
 		$formContents = wfMessage( 'img-lang-info' )->rawParams( $select, $submit )->parse()
 			. Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() );
@@ -1148,12 +1148,12 @@ class ImageHistoryList extends ContextSource {
 	 * @return string
 	 */
 	public function beginImageHistoryList( $navLinks = '' ) {
-		return Xml::element( 'h2', array( 'id' => 'filehistory' ), $this->msg( 'filehist' )->text() )
+		return Html::element( 'h2', array( 'id' => 'filehistory' ), $this->msg( 'filehist' )->text() )
 			. "\n"
 			. "<div id=\"mw-imagepage-section-filehistory\">\n"
 			. $this->msg( 'filehist-help' )->parseAsBlock()
 			. $navLinks . "\n"
-			. Xml::openElement( 'table', array( 'class' => 'wikitable filehistory' ) ) . "\n"
+			. Html::openElement( 'table', array( 'class' => 'wikitable filehistory' ) ) . "\n"
 			. '<tr><td></td>'
 			. ( $this->current->isLocal()
 				&& ( $this->getUser()->isAllowedAny( 'delete', 'deletedhistory' ) ) ? '<td></td>' : '' )
@@ -1285,7 +1285,7 @@ class ImageHistoryList extends ContextSource {
 			$row .= '<span class="history-deleted">' . $url . '</span>';
 		} else {
 			$url = $iscur ? $this->current->getUrl() : $this->current->getArchiveUrl( $img );
-			$row .= Xml::element(
+			$row .= Html::element(
 				'a',
 				array( 'href' => $url ),
 				$lang->userTimeAndDate( $timestamp, $user )

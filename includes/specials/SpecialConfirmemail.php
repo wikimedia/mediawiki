@@ -104,7 +104,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 				array( 'method' => 'post', 'action' => $this->getPageTitle()->getLocalURL() )
 			) . "\n";
 			$form .= Html::hidden( 'token', $user->getEditToken() ) . "\n";
-			$form .= Xml::submitButton( $this->msg( 'confirmemail_send' )->text() ) . "\n";
+			$form .= Html::submit( $this->msg( 'confirmemail_send' )->text() ) . "\n";
 			$form .= Html::closeElement( 'form' ) . "\n";
 			$out->addHTML( $form );
 		}

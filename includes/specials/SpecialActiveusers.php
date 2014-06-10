@@ -194,18 +194,23 @@ class ActiveUsersPager extends UsersPager {
 		$limit = $this->mLimit ? Html::hidden( 'limit', $this->mLimit ) : '';
 
 		# Form tag
-		$out = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
-		$out .= Xml::fieldset( $this->msg( 'activeusers' )->text() ) . "\n";
+		$out = Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
+		$out .= Html::openElement( 'fieldset' ) . "\n";
+		$out .= Html::element(
+			'legend',
+			array(),
+			$this->msg( 'activeusers' )->text()
+		) . "\n";
 		$out .= Html::hidden( 'title', $self->getPrefixedDBkey() ) . $limit . "\n";
 
 		# Username field
-		$out .= Xml::inputLabel( $this->msg( 'activeusers-from' )->text(),
+		$out .= Html::inputLabel( $this->msg( 'activeusers-from' )->text(),
 			'username', 'offset', 20, $this->requestedUser, array( 'tabindex' => 1 ) ) . '<br />';
 
-		$out .= Xml::checkLabel( $this->msg( 'activeusers-hidebots' )->text(),
+		$out .= Html::checkLabel( $this->msg( 'activeusers-hidebots' )->text(),
 			'hidebots', 'hidebots', $this->opts->getValue( 'hidebots' ), array( 'tabindex' => 2 ) );
 
-		$out .= Xml::checkLabel(
+		$out .= Html::checkLabel(
 			$this->msg( 'activeusers-hidesysops' )->text(),
 			'hidesysops',
 			'hidesysops',
@@ -214,12 +219,12 @@ class ActiveUsersPager extends UsersPager {
 		) . '<br />';
 
 		# Submit button and form bottom
-		$out .= Xml::submitButton(
+		$out .= Html::submit(
 			$this->msg( 'allpagessubmit' )->text(),
 			array( 'tabindex' => 4 )
 		) . "\n";
-		$out .= Xml::closeElement( 'fieldset' );
-		$out .= Xml::closeElement( 'form' );
+		$out .= Html::closeElement( 'fieldset' );
+		$out .= Html::closeElement( 'form' );
 
 		return $out;
 	}

@@ -169,7 +169,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				<tr>
 					<td></td>
 					<td class='mw-input'>" .
-				Xml::checkLabel(
+				Html::checkLabel(
 					$this->msg( 'delete_and_move_confirm' )->text(),
 					'wpConfirm',
 					'wpConfirm'
@@ -302,7 +302,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$handler = ContentHandler::getForTitle( $this->oldTitle );
 
 		$out->addHTML(
-			Xml::openElement(
+			Html::openElement(
 				'form',
 				array(
 					'method' => 'post',
@@ -310,9 +310,9 @@ class MovePageForm extends UnlistedSpecialPage {
 					'id' => 'movepage'
 				)
 			) .
-				Xml::openElement( 'fieldset' ) .
-				Xml::element( 'legend', null, $this->msg( 'move-page-legend' )->text() ) .
-				Xml::openElement( 'table', array( 'id' => 'mw-movepage-table' ) ) .
+				Html::openElement( 'fieldset' ) .
+				Html::element( 'legend', null, $this->msg( 'move-page-legend' )->text() ) .
+				Html::openElement( 'table', array( 'id' => 'mw-movepage-table' ) ) .
 				"<tr>
 				<td class='mw-label'>" .
 				$this->msg( 'movearticle' )->escaped() .
@@ -323,7 +323,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			</tr>
 			<tr>
 				<td class='mw-label'>" .
-				Xml::label( $this->msg( 'newtitle' )->text(), 'wpNewTitleMain' ) .
+				Html::label( $this->msg( 'newtitle' )->text(), 'wpNewTitleMain' ) .
 				"</td>
 				<td class='mw-input'>" .
 				Html::namespaceSelector(
@@ -333,14 +333,14 @@ class MovePageForm extends UnlistedSpecialPage {
 					),
 					array( 'name' => 'wpNewTitleNs', 'id' => 'wpNewTitleNs' )
 				) .
-				Xml::input(
+				Html::input(
 					'wpNewTitleMain',
-					60,
 					$wgContLang->recodeForEdit( $newTitle->getText() ),
+					'text',
 					array(
-						'type' => 'text',
 						'id' => 'wpNewTitleMain',
 						'maxlength' => 255
+						'size' => 60,
 					)
 				) .
 				Html::hidden( 'wpOldTitle', $this->oldTitle->getPrefixedText() ) .
@@ -348,13 +348,13 @@ class MovePageForm extends UnlistedSpecialPage {
 			</tr>
 			<tr>
 				<td class='mw-label'>" .
-				Xml::label( $this->msg( 'movereason' )->text(), 'wpReason' ) .
+				Html::label( $this->msg( 'movereason' )->text(), 'wpReason' ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::input( 'wpReason', 60, $this->reason, array(
-						'type' => 'text',
+					Html::input( 'wpReason', $this->reason, 'text', array(
 						'id' => 'wpReason',
 						'maxlength' => 200,
+						'size' => 60,
 					) ) .
 				"</td>
 			</tr>"
@@ -365,7 +365,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				<tr>
 					<td></td>
 					<td class='mw-input'>" .
-					Xml::checkLabel(
+					Html::checkLabel(
 						$this->msg( 'movetalk' )->text(),
 						'wpMovetalk',
 						'wpMovetalk',
@@ -390,7 +390,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				<tr>
 					<td></td>
 					<td class='mw-input' >" .
-					Xml::checkLabel(
+					Html::checkLabel(
 						$this->msg( 'move-leave-redirect' )->text(),
 						'wpLeaveRedirect',
 						'wpLeaveRedirect',
@@ -407,7 +407,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				<tr>
 					<td></td>
 					<td class='mw-input' >" .
-					Xml::checkLabel(
+					Html::checkLabel(
 						$this->msg( 'fix-double-redirects' )->text(),
 						'wpFixRedirects',
 						'wpFixRedirects',
@@ -423,14 +423,14 @@ class MovePageForm extends UnlistedSpecialPage {
 				<tr>
 					<td></td>
 					<td class=\"mw-input\">" .
-					Xml::check(
+					Html::check(
 						'wpMovesubpages',
 						# Don't check the box if we only have talk subpages to
 						# move and we aren't moving the talk page.
 						$this->moveSubpages && ( $this->oldTitle->hasSubpages() || $this->moveTalk ),
 						array( 'id' => 'wpMovesubpages' )
 					) . '&#160;' .
-					Xml::tags( 'label', array( 'for' => 'wpMovesubpages' ),
+					Html::rawElement( 'label', array( 'for' => 'wpMovesubpages' ),
 						$this->msg(
 							( $this->oldTitle->hasSubpages()
 								? 'move-subpages'
@@ -450,7 +450,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			<tr>
 				<td></td>
 				<td class='mw-input'>" .
-				Xml::checkLabel(
+				Html::checkLabel(
 					$this->msg( 'move-watch' )->text(),
 					'wpWatch',
 					'watch',
@@ -465,13 +465,13 @@ class MovePageForm extends UnlistedSpecialPage {
 			<tr>
 				<td>&#160;</td>
 				<td class='mw-submit'>" .
-				Xml::submitButton( $movepagebtn, array( 'name' => $submitVar ) ) .
+				Html::submit( $movepagebtn, array( 'name' => $submitVar ) ) .
 				"</td>
 			</tr>" .
-				Xml::closeElement( 'table' ) .
+				Html::closeElement( 'table' ) .
 				Html::hidden( 'wpEditToken', $user->getEditToken() ) .
-				Xml::closeElement( 'fieldset' ) .
-				Xml::closeElement( 'form' ) .
+				Html::closeElement( 'fieldset' ) .
+				Html::closeElement( 'form' ) .
 				"\n"
 		);
 
@@ -735,7 +735,7 @@ class MovePageForm extends UnlistedSpecialPage {
 	function showLogFragment( $title ) {
 		$moveLogPage = new LogPage( 'move' );
 		$out = $this->getOutput();
-		$out->addHTML( Xml::element( 'h2', null, $moveLogPage->getName()->text() ) );
+		$out->addHTML( Html::element( 'h2', null, $moveLogPage->getName()->text() ) );
 		LogEventsList::showLogExtract( $out, 'move', $title );
 	}
 

@@ -51,7 +51,7 @@ class HTMLRadioField extends HTMLFormField {
 				$html .= $this->formatOptions( $info, $value );
 			} else {
 				$id = Sanitizer::escapeId( $this->mID . "-$info" );
-				$radio = Xml::radio( $this->mName, $info, $info === $value, $attribs + array( 'id' => $id ) );
+				$radio = Html::radio( $this->mName, $info, $info === $value, $attribs + array( 'id' => $id ) );
 				$radio .= '&#160;' . call_user_func( $elementFunc, 'label', array( 'for' => $id ), $label );
 
 				$html .= ' ' . Html::rawElement(

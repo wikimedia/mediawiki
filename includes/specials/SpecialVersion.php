@@ -146,7 +146,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	private static function getMediaWikiCredits() {
-		$ret = Xml::element(
+		$ret = Html::element(
 			'h2',
 			array( 'id' => 'mw-version-license' ),
 			wfMessage( 'version-license' )->text()
@@ -216,12 +216,12 @@ class SpecialVersion extends SpecialPage {
 		// Allow a hook to add/remove items.
 		wfRunHooks( 'SoftwareInfo', array( &$software ) );
 
-		$out = Xml::element(
+		$out = Html::element(
 				'h2',
 				array( 'id' => 'mw-version-software' ),
 				wfMessage( 'version-software' )->text()
 			) .
-				Xml::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'sv-software' ) ) .
+				Html::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'sv-software' ) ) .
 				"<tr>
 					<th>" . wfMessage( 'version-software-product' )->text() . "</th>
 					<th>" . wfMessage( 'version-software-version' )->text() . "</th>
@@ -234,7 +234,7 @@ class SpecialVersion extends SpecialPage {
 				</tr>\n";
 		}
 
-		return $out . Xml::closeElement( 'table' );
+		return $out . Html::closeElement( 'table' );
 	}
 
 	/**
@@ -431,12 +431,12 @@ class SpecialVersion extends SpecialPage {
 
 		$extensionTypes = self::getExtensionTypes();
 
-		$out = Xml::element(
+		$out = Html::element(
 				'h2',
 				array( 'id' => 'mw-version-ext' ),
 				$this->msg( 'version-extensions' )->text()
 			) .
-			Xml::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'sv-ext' ) );
+			Html::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'sv-ext' ) );
 
 		// Make sure the 'other' type is set to an array.
 		if ( !array_key_exists( 'other', $wgExtensionCredits ) ) {
@@ -460,7 +460,7 @@ class SpecialVersion extends SpecialPage {
 		// We want the 'other' type to be last in the list.
 		$out .= $this->getExtensionCategory( 'other', $extensionTypes['other'] );
 
-		$out .= Xml::closeElement( 'table' );
+		$out .= Html::closeElement( 'table' );
 
 		return $out;
 	}

@@ -643,7 +643,7 @@ class Preferences {
 		// Info
 		$now = wfTimestampNow();
 		$lang = $context->getLanguage();
-		$nowlocal = Xml::element( 'span', array( 'id' => 'wpLocalTime' ),
+		$nowlocal = Html::element( 'span', array( 'id' => 'wpLocalTime' ),
 			$lang->time( $now, true ) );
 		$nowserver = $lang->time( $now, false ) .
 			Html::hidden( 'wpServerTime', (int)substr( $now, 8, 2 ) * 60 + (int)substr( $now, 10, 2 ) );
@@ -1161,13 +1161,13 @@ class Preferences {
 	static function validateSignature( $signature, $alldata, $form ) {
 		global $wgParser, $wgMaxSigChars;
 		if ( mb_strlen( $signature ) > $wgMaxSigChars ) {
-			return Xml::element( 'span', array( 'class' => 'error' ),
+			return Html::element( 'span', array( 'class' => 'error' ),
 				$form->msg( 'badsiglength' )->numParams( $wgMaxSigChars )->text() );
 		} elseif ( isset( $alldata['fancysig'] ) &&
 				$alldata['fancysig'] &&
 				$wgParser->validateSig( $signature ) === false
 		) {
-			return Xml::element(
+			return Html::element(
 				'span',
 				array( 'class' => 'error' ),
 				$form->msg( 'badsig' )->text()
@@ -1526,7 +1526,7 @@ class PreferencesForm extends HTMLForm {
 	 * @return string
 	 */
 	function wrapForm( $html ) {
-		$html = Xml::tags( 'div', array( 'id' => 'preferences' ), $html );
+		$html = Html::rawElement( 'div', array( 'id' => 'preferences' ), $html );
 
 		return parent::wrapForm( $html );
 	}
@@ -1546,7 +1546,7 @@ class PreferencesForm extends HTMLForm {
 
 			$html .= "\n" . Linker::link( $t, $this->msg( 'restoreprefs' )->escaped() );
 
-			$html = Xml::tags( 'div', array( 'class' => 'mw-prefs-buttons' ), $html );
+			$html = Html::rawElement( 'div', array( 'class' => 'mw-prefs-buttons' ), $html );
 		}
 
 		return $html;

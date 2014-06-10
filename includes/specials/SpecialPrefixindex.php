@@ -103,23 +103,23 @@ class SpecialPrefixindex extends SpecialAllpages {
 	protected function namespacePrefixForm( $namespace = NS_MAIN, $from = '' ) {
 		global $wgScript;
 
-		$out = Xml::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
-		$out .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
+		$out = Html::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
+		$out .= Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
 		$out .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
-		$out .= Xml::openElement( 'fieldset' );
-		$out .= Xml::element( 'legend', null, $this->msg( 'allpages' )->text() );
-		$out .= Xml::openElement( 'table', array( 'id' => 'nsselect', 'class' => 'allpages' ) );
+		$out .= Html::openElement( 'fieldset' );
+		$out .= Html::element( 'legend', null, $this->msg( 'allpages' )->text() );
+		$out .= Html::openElement( 'table', array( 'id' => 'nsselect', 'class' => 'allpages' ) );
 		$out .= "<tr>
 				<td class='mw-label'>" .
-			Xml::label( $this->msg( 'allpagesprefix' )->text(), 'nsfrom' ) .
+			Html::label( $this->msg( 'allpagesprefix' )->text(), 'nsfrom' ) .
 			"</td>
 				<td class='mw-input'>" .
-			Xml::input( 'prefix', 30, str_replace( '_', ' ', $from ), array( 'id' => 'nsfrom' ) ) .
+			Html::input( 'prefix', str_replace( '_', ' ', $from ), 'text', array( 'id' => 'nsfrom', 'size' => 30 ) ) .
 			"</td>
 			</tr>
 			<tr>
 			<td class='mw-label'>" .
-			Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
+			Html::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
 			"</td>
 				<td class='mw-input'>" .
 			Html::namespaceSelector( array(
@@ -129,25 +129,25 @@ class SpecialPrefixindex extends SpecialAllpages {
 				'id' => 'namespace',
 				'class' => 'namespaceselector',
 			) ) .
-			Xml::checkLabel(
+			Html::checkLabel(
 				$this->msg( 'allpages-hide-redirects' )->text(),
 				'hideredirects',
 				'hideredirects',
 				$this->hideRedirects
 			) . ' ' .
-			Xml::checkLabel(
+			Html::checkLabel(
 				$this->msg( 'prefixindex-strip' )->text(),
 				'stripprefix',
 				'stripprefix',
 				$this->stripPrefix
 			) . ' ' .
-			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
+			Html::submit( $this->msg( 'allpagessubmit' )->text() ) .
 			"</td>
 			</tr>";
-		$out .= Xml::closeElement( 'table' );
-		$out .= Xml::closeElement( 'fieldset' );
-		$out .= Xml::closeElement( 'form' );
-		$out .= Xml::closeElement( 'div' );
+		$out .= Html::closeElement( 'table' );
+		$out .= Html::closeElement( 'fieldset' );
+		$out .= Html::closeElement( 'form' );
+		$out .= Html::closeElement( 'div' );
 
 		return $out;
 	}
@@ -208,7 +208,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 
 			$n = 0;
 			if ( $res->numRows() > 0 ) {
-				$out = Xml::openElement( 'table', array( 'class' => 'mw-prefixindex-list-table' ) );
+				$out = Html::openElement( 'table', array( 'class' => 'mw-prefixindex-list-table' ) );
 
 				$prefixLength = strlen( $prefix );
 				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
@@ -243,7 +243,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 					$out .= '</tr>';
 				}
 
-				$out .= Xml::closeElement( 'table' );
+				$out .= Html::closeElement( 'table' );
 			} else {
 				$out = '';
 			}
@@ -255,7 +255,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 		} else {
 			$nsForm = $this->namespacePrefixForm( $namespace, $prefix );
 			$self = $this->getPageTitle();
-			$out2 = Xml::openElement( 'table', array( 'id' => 'mw-prefixindex-nav-table' ) ) .
+			$out2 = Html::openElement( 'table', array( 'id' => 'mw-prefixindex-nav-table' ) ) .
 				'<tr>
 					<td>' .
 				$nsForm .
@@ -294,7 +294,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 					);
 			}
 			$out2 .= "</td></tr>" .
-				Xml::closeElement( 'table' );
+				Html::closeElement( 'table' );
 		}
 
 		$this->getOutput()->addHTML( $out2 . $out . $footer );

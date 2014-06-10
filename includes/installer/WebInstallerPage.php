@@ -94,7 +94,7 @@ abstract class WebInstallerPage {
 		if ( $continue ) {
 			// Fake submit button for enter keypress (bug 26267)
 			// Messages: config-continue, config-restart, config-regenerate
-			$s .= Xml::submitButton(
+			$s .= Html::submit(
 				wfMessage( "config-$continue" )->text(),
 				array(
 					'name' => "enter-$continue",
@@ -105,7 +105,7 @@ abstract class WebInstallerPage {
 
 		if ( $back ) {
 			// Message: config-back
-			$s .= Xml::submitButton(
+			$s .= Html::submit(
 				wfMessage( "config-$back" )->text(),
 				array(
 					'name' => "submit-$back",
@@ -116,7 +116,7 @@ abstract class WebInstallerPage {
 
 		if ( $continue ) {
 			// Messages: config-continue, config-restart, config-regenerate
-			$s .= Xml::submitButton(
+			$s .= Html::submit(
 				wfMessage( "config-$continue" )->text(),
 				array(
 					'name' => "submit-$continue",
@@ -297,7 +297,7 @@ class WebInstallerLanguage extends WebInstallerPage {
 			if ( isset( $wgDummyLanguageCodes[$code] ) ) {
 				continue;
 			}
-			$s .= "\n" . Xml::option( "$code - $lang", $code, $code == $selectedCode );
+			$s .= "\n" . Html::option( "$code - $lang", $code, $code == $selectedCode );
 		}
 		$s .= "\n</select>\n";
 
@@ -548,7 +548,7 @@ class WebInstallerDBConnect extends WebInstallerPage {
 			$installer = $this->parent->getDBInstaller( $type );
 			$types .=
 				'<li>' .
-				Xml::radioLabel(
+				Html::radioLabel(
 					$installer->getReadableName(),
 					'DBType',
 					$type,

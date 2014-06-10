@@ -144,8 +144,8 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 			: $this->msg( 'changeemail-none' )->text();
 
 		$this->getOutput()->addHTML(
-			Xml::fieldset( $this->msg( 'changeemail-header' )->text() ) .
-				Xml::openElement( 'form',
+			Html::fieldset( $this->msg( 'changeemail-header' )->text() ) .
+				Html::openElement( 'form',
 					array(
 						'method' => 'post',
 						'action' => $this->getPageTitle()->getLocalURL(),
@@ -153,7 +153,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 				Html::hidden( 'token', $user->getEditToken() ) . "\n" .
 				Html::hidden( 'returnto', $this->getRequest()->getVal( 'returnto' ) ) . "\n" .
 				$this->msg( 'changeemail-text' )->parseAsBlock() . "\n" .
-				Xml::openElement( 'table', array( 'id' => 'mw-changeemail-table' ) ) . "\n"
+				Html::openElement( 'table', array( 'id' => 'mw-changeemail-table' ) ) . "\n"
 		);
 		$items = array(
 			array( 'wpName', 'username', 'text', $user->getName() ),
@@ -170,13 +170,13 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 				"<tr>\n" .
 				"<td></td>\n" .
 				'<td class="mw-input">' .
-				Xml::submitButton( $this->msg( 'changeemail-submit' )->text() ) .
-				Xml::submitButton( $this->msg( 'changeemail-cancel' )->text(), array( 'name' => 'wpCancel' ) ) .
+				Html::submit( $this->msg( 'changeemail-submit' )->text() ) .
+				Html::submit( $this->msg( 'changeemail-cancel' )->text(), array( 'name' => 'wpCancel' ) ) .
 				"</td>\n" .
 				"</tr>\n" .
-				Xml::closeElement( 'table' ) .
-				Xml::closeElement( 'form' ) .
-				Xml::closeElement( 'fieldset' ) . "\n"
+				Html::closeElement( 'table' ) .
+				Html::closeElement( 'form' ) .
+				Html::closeElement( 'fieldset' ) . "\n"
 		);
 	}
 
@@ -200,7 +200,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 			$out .= "<tr>\n";
 			$out .= "\t<td class='mw-label'>";
 			if ( $type != 'text' ) {
-				$out .= Xml::label( $this->msg( $label )->text(), $name );
+				$out .= Html::label( $this->msg( $label )->text(), $name );
 			} else {
 				$out .= $this->msg( $label )->escaped();
 			}

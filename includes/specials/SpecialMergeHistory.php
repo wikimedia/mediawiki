@@ -164,26 +164,26 @@ class SpecialMergeHistory extends SpecialPage {
 		$this->getOutput()->addWikiMsg( 'mergehistory-header' );
 
 		$this->getOutput()->addHTML(
-			Xml::openElement( 'form', array(
+			Html::openElement( 'form', array(
 				'method' => 'get',
 				'action' => $wgScript ) ) .
 				'<fieldset>' .
-				Xml::element( 'legend', array(),
+				Html::element( 'legend', array(),
 					$this->msg( 'mergehistory-box' )->text() ) .
 				Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) .
 				Html::hidden( 'submitted', '1' ) .
 				Html::hidden( 'mergepoint', $this->mTimestamp ) .
-				Xml::openElement( 'table' ) .
+				Html::openElement( 'table' ) .
 				'<tr>
-				<td>' . Xml::label( $this->msg( 'mergehistory-from' )->text(), 'target' ) . '</td>
-				<td>' . Xml::input( 'target', 30, $this->mTarget, array( 'id' => 'target' ) ) . '</td>
+				<td>' . Html::label( $this->msg( 'mergehistory-from' )->text(), 'target' ) . '</td>
+				<td>' . Html::input( 'target', $this->mTarget, array( 'id' => 'target', 'size' => 30 ) ) . '</td>
 			</tr><tr>
-				<td>' . Xml::label( $this->msg( 'mergehistory-into' )->text(), 'dest' ) . '</td>
-				<td>' . Xml::input( 'dest', 30, $this->mDest, array( 'id' => 'dest' ) ) . '</td>
+				<td>' . Html::label( $this->msg( 'mergehistory-into' )->text(), 'dest' ) . '</td>
+				<td>' . Html::input( 'dest', $this->mDest, array( 'id' => 'dest', 'size' => 30 ) ) . '</td>
 			</tr><tr><td>' .
-				Xml::submitButton( $this->msg( 'mergehistory-go' )->text() ) .
+				Html::submit( $this->msg( 'mergehistory-go' )->text() ) .
 				'</td></tr>' .
-				Xml::closeElement( 'table' ) .
+				Html::closeElement( 'table' ) .
 				'</fieldset>' .
 				'</form>'
 		);
@@ -202,7 +202,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$titleObj = $this->getPageTitle();
 		$action = $titleObj->getLocalURL( array( 'action' => 'submit' ) );
 		# Start the form here
-		$top = Xml::openElement(
+		$top = Html::openElement(
 			'form',
 			array(
 				'method' => 'post',
@@ -216,29 +216,29 @@ class SpecialMergeHistory extends SpecialPage {
 			# Format the user-visible controls (comment field, submission button)
 			# in a nice little table
 			$table =
-				Xml::openElement( 'fieldset' ) .
+				Html::openElement( 'fieldset' ) .
 					$this->msg( 'mergehistory-merge', $this->mTargetObj->getPrefixedText(),
 						$this->mDestObj->getPrefixedText() )->parse() .
-					Xml::openElement( 'table', array( 'id' => 'mw-mergehistory-table' ) ) .
+					Html::openElement( 'table', array( 'id' => 'mw-mergehistory-table' ) ) .
 					'<tr>
 						<td class="mw-label">' .
-					Xml::label( $this->msg( 'mergehistory-reason' )->text(), 'wpComment' ) .
+					Html::label( $this->msg( 'mergehistory-reason' )->text(), 'wpComment' ) .
 					'</td>
 					<td class="mw-input">' .
-					Xml::input( 'wpComment', 50, $this->mComment, array( 'id' => 'wpComment' ) ) .
+					Html::input( 'wpComment', $this->mComment, array( 'id' => 'wpComment', 'size' => 50 ) ) .
 					'</td>
 					</tr>
 					<tr>
 						<td>&#160;</td>
 						<td class="mw-submit">' .
-					Xml::submitButton(
+					Html::submit(
 						$this->msg( 'mergehistory-submit' )->text(),
 						array( 'name' => 'merge', 'id' => 'mw-merge-submit' )
 					) .
 					'</td>
 					</tr>' .
-					Xml::closeElement( 'table' ) .
-					Xml::closeElement( 'fieldset' );
+					Html::closeElement( 'table' ) .
+					Html::closeElement( 'fieldset' );
 
 			$out->addHTML( $table );
 		}
@@ -270,7 +270,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$misc .= Html::hidden( 'target', $this->mTarget );
 		$misc .= Html::hidden( 'dest', $this->mDest );
 		$misc .= Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() );
-		$misc .= Xml::closeElement( 'form' );
+		$misc .= Html::closeElement( 'form' );
 		$out->addHTML( $misc );
 
 		return true;
@@ -283,7 +283,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$last = $this->message['last'];
 
 		$ts = wfTimestamp( TS_MW, $row->rev_timestamp );
-		$checkBox = Xml::radio( 'mergepoint', $ts, false );
+		$checkBox = Html::radio( 'mergepoint', $ts, false );
 
 		$user = $this->getUser();
 

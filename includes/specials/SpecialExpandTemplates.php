@@ -137,13 +137,13 @@ class SpecialExpandTemplates extends SpecialPage {
 	 */
 	private function makeForm( $title, $input ) {
 		$self = $this->getPageTitle();
-		$form = Xml::openElement(
+		$form = Html::openElement(
 			'form',
 			array( 'method' => 'post', 'action' => $self->getLocalUrl() )
 		);
 		$form .= "<fieldset><legend>" . $this->msg( 'expandtemplates' )->escaped() . "</legend>\n";
 
-		$form .= '<p>' . Xml::inputLabel(
+		$form .= '<p>' . Html::inputLabel(
 			$this->msg( 'expand_templates_title' )->plain(),
 			'wpContextTitle',
 			'contexttitle',
@@ -151,48 +151,46 @@ class SpecialExpandTemplates extends SpecialPage {
 			$title,
 			array( 'autofocus' => true )
 		) . '</p>';
-		$form .= '<p>' . Xml::label(
+		$form .= '<p>' . Html::label(
 			$this->msg( 'expand_templates_input' )->text(),
 			'input'
 		) . '</p>';
-		$form .= Xml::textarea(
+		$form .= Html::textarea(
 			'wpInput',
 			$input,
-			10,
-			10,
-			array( 'id' => 'input' )
+			array( 'id' => 'input', 'cols' => 10, 'rows' => 10 )
 		);
 
-		$form .= '<p>' . Xml::checkLabel(
+		$form .= '<p>' . Html::checkLabel(
 			$this->msg( 'expand_templates_remove_comments' )->text(),
 			'wpRemoveComments',
 			'removecomments',
 			$this->removeComments
 		) . '</p>';
-		$form .= '<p>' . Xml::checkLabel(
+		$form .= '<p>' . Html::checkLabel(
 			$this->msg( 'expand_templates_remove_nowiki' )->text(),
 			'wpRemoveNowiki',
 			'removenowiki',
 			$this->removeNowiki
 		) . '</p>';
-		$form .= '<p>' . Xml::checkLabel(
+		$form .= '<p>' . Html::checkLabel(
 			$this->msg( 'expand_templates_generate_xml' )->text(),
 			'wpGenerateXml',
 			'generate_xml',
 			$this->generateXML
 		) . '</p>';
-		$form .= '<p>' . Xml::checkLabel(
+		$form .= '<p>' . Html::checkLabel(
 			$this->msg( 'expand_templates_generate_rawhtml' )->text(),
 			'wpGenerateRawHtml',
 			'generate_rawhtml',
 			$this->generateRawHtml
 		) . '</p>';
-		$form .= '<p>' . Xml::submitButton(
+		$form .= '<p>' . Html::submit(
 			$this->msg( 'expand_templates_ok' )->text(),
 			array( 'accesskey' => 's' )
 		) . '</p>';
 		$form .= "</fieldset>\n";
-		$form .= Xml::closeElement( 'form' );
+		$form .= Html::closeElement( 'form' );
 
 		return $form;
 	}
@@ -206,12 +204,10 @@ class SpecialExpandTemplates extends SpecialPage {
 	 */
 	private function makeOutput( $output, $heading = 'expand_templates_output' ) {
 		$out = "<h2>" . $this->msg( $heading )->escaped() . "</h2>\n";
-		$out .= Xml::textarea(
+		$out .= Html::textarea(
 			'output',
 			$output,
-			10,
-			10,
-			array( 'id' => 'output', 'readonly' => 'readonly' )
+			array( 'id' => 'output', 'readonly' => 'readonly', 'cols' => 10, 'rows' => 10 )
 		);
 
 		return $out;

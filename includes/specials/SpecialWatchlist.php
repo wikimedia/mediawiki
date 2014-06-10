@@ -439,26 +439,26 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				'class' => 'namespaceselector',
 			)
 		) . '&#160;';
-		$form .= Xml::checkLabel(
+		$form .= Html::checkLabel(
 			$this->msg( 'invert' )->text(),
 			'invert',
 			'nsinvert',
 			$opts['invert'],
 			array( 'title' => $this->msg( 'tooltip-invert' )->text() )
 		) . '&#160;';
-		$form .= Xml::checkLabel(
+		$form .= Html::checkLabel(
 			$this->msg( 'namespace_association' )->text(),
 			'associated',
 			'nsassociated',
 			$opts['associated'],
 			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
 		) . '&#160;';
-		$form .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "</p>\n";
+		$form .= Html::submit( $this->msg( 'allpagessubmit' )->text() ) . "</p>\n";
 		foreach ( $hiddenFields as $key => $value ) {
 			$form .= Html::hidden( $key, $value ) . "\n";
 		}
-		$form .= Xml::closeElement( 'fieldset' ) . "\n";
-		$form .= Xml::closeElement( 'form' ) . "\n";
+		$form .= Html::closeElement( 'fieldset' ) . "\n";
+		$form .= Html::closeElement( 'form' ) . "\n";
 		$this->getOutput()->addHTML( $form );
 
 		$this->setBottomText( $opts );
@@ -490,23 +490,23 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$form .= "</p>";
 
 		if ( $numItems > 0 && $wgShowUpdatedMarker ) {
-			$form .= Xml::openElement( 'form', array( 'method' => 'post',
+			$form .= Html::openElement( 'form', array( 'method' => 'post',
 				'action' => $this->getPageTitle()->getLocalURL(),
 				'id' => 'mw-watchlist-resetbutton' ) ) . "\n" .
-			Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) . "\n" .
+			Html::submit( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) . "\n" .
 			Html::hidden( 'reset', 'all' ) . "\n";
 			foreach ( $nondefaults as $key => $value ) {
 				$form .= Html::hidden( $key, $value ) . "\n";
 			}
-			$form .= Xml::closeElement( 'form' ) . "\n";
+			$form .= Html::closeElement( 'form' ) . "\n";
 		}
 
-		$form .= Xml::openElement( 'form', array(
+		$form .= Html::openElement( 'form', array(
 			'method' => 'post',
 			'action' => $this->getPageTitle()->getLocalURL(),
 			'id' => 'mw-watchlist-form'
 		) );
-		$form .= Xml::fieldset(
+		$form .= Html::fieldset(
 			$this->msg( 'watchlist-options' )->text(),
 			false,
 			array( 'id' => 'mw-watchlist-options' )
