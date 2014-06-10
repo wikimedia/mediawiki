@@ -82,4 +82,108 @@ class LinkerTest extends MediaWikiLangTestCase {
 			# TODO!
 		);
 	}
+
+	/**
+	 * @dataProvider provideCasesForFormatComment
+	 * @covers Linker::formatComment
+	 * @covers Linker::formatAutocomments
+	 * @covers Linker::formatLinksInComment
+	 */
+	public function testFormatComment( $expected, $comment, $title = false, $local = false ) {
+		$this->setMwGlobals( array(
+			'wgArticlePath' => '/wiki/$1',
+			'wgWellFormedXml' => true,
+		) );
+		
+		if ( $title === false ) {
+			$title = Title::newFromText( 'Test title' );
+		}
+
+		$this->assertEquals(
+			$expected,
+			Linker::formatComment( $comment, $title, $local )
+		);
+	}
+
+	public static function provideCasesForFormatComment() {
+		return array(
+			// Linker::formatComment
+			array(
+				'a&lt;script&gt;b',
+				'a<script>b',
+			),
+			array(
+				'a&mdash;b',
+				'a&mdash;b',
+			),
+			array(
+				"'''not bolded'''",
+				"'''not bolded'''",
+			),
+			// Linker::formatAutocomments
+			array(
+				"???",
+				"/* autocomment */",
+			),
+			array(
+				"???",
+				"/* [[linkie?]] */",
+			),
+			array(
+				"???",
+				"/* autocomment */ post",
+			),
+			array(
+				"???",
+				"pre /* autocomment */",
+			),
+			array(
+				"???",
+				"pre /* autocomment */ post",
+			),
+			array(
+				"???",
+				"/* autocomment */ multiple? /* autocomment2 */ ",
+			),
+			array(
+				"???",
+				"/* autocomment */",
+				false, true
+			),
+			array(
+				"???",
+				"/* autocomment */",
+				null
+			),
+			// Linker::formatLinksInComment
+			array(
+				"???",
+				"abc [[link]] def",
+			),
+			array(
+				"???",
+				"abc [[link|text]] def",
+			),
+			array(
+				"???",
+				"abc [[no-pipe-trick|]] def",
+			),
+			array(
+				"???",
+				"abc [[%C4%85%C5%9B%C5%BC]] def",
+			),
+			array(
+				"???",
+				"abc [[link#section]] def",
+			),
+			array(
+				"???",
+				"abc [[#section]] def",
+			),
+			array(
+				"???",
+				"abc [[/subpage]] def",
+			),
+		);
+	}
 }
