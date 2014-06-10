@@ -113,6 +113,7 @@ return array(
 		// skin over-rides common content styling.
 		'skinStyles' => array(
 			'default' => 'resources/src/mediawiki.skinning/content.parsoid.less',
+			'minerva' => array(),
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
