@@ -151,6 +151,9 @@ changes to languages because of Bugzilla reports.
 * (bug 63755) The deprecated constants RC_MOVE and RC_MOVE_OVER_REDIRECT were
   removed.
 * Special:MostLinkedTemplates has been renamed to Special:MostTranscludedPages.
+* The skin autodiscovery mechanism has been deprecated and will be removed in
+  MediaWiki 1.25. See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery
+  for migration guide for creators and users of custom skins that relied on it.
 
 ==== Renamed classes ====
 * CLDRPluralRuleConverter_Expression to CLDRPluralRuleConverterExpression
