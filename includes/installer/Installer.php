@@ -207,6 +207,7 @@ abstract class Installer {
 		'_LicenseCode' => 'none',
 		'_CCDone' => false,
 		'_Extensions' => array(),
+		'_Skins' => array(),
 		'_MemCachedServers' => '',
 		'_UpgradeKeySupplied' => false,
 		'_ExistingDBSettings' => false,
@@ -1403,17 +1404,20 @@ abstract class Installer {
 	}
 
 	/**
-	 * Finds extensions that follow the format /extensions/Name/Name.php,
+	 * Finds extensions that follow the format /$directory/Name/Name.php,
 	 * and returns an array containing the value for 'Name' for each found extension.
 	 *
+	 * Reasonable values for $directory include 'extensions' (the default) and 'skins'.
+	 *
+	 * @param string $directory Directory to search in
 	 * @return array
 	 */
-	public function findExtensions() {
+	public function findExtensions( $directory = 'extensions' ) {
 		if ( $this->getVar( 'IP' ) === null ) {
 			return array();
 		}
 
-		$extDir = $this->getVar( 'IP' ) . '/extensions';
+		$extDir = $this->getVar( 'IP' ) . '/' . $directory;
 		if ( !is_readable( $extDir ) || !is_dir( $extDir ) ) {
 			return array();
 		}
