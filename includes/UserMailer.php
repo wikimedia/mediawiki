@@ -239,7 +239,14 @@ class UserMailer {
 		# -- hashar 20120218
 
 		$headers['From'] = $from->toString();
-		$headers['Return-Path'] = $from->address;
+		$returnPath = $from->address;
+		// Hook to generate custom VERP address for 'Return-Path'
+		$res = wfRunHooks( 'UserMailerChangeReturnPath', array( $to, &$returnPath ) );
+		// Add the envelope sender address using the -f command line option
+		if ( $res ) {
+			$wgAdditionalMailParams = '-f '.$returnPath;
+		}
+		$headers['Return-Path'] = $returnPath;
 
 		if ( $replyto ) {
 			$headers['Reply-To'] = $replyto->toString();
