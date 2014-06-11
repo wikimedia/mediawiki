@@ -134,12 +134,10 @@ class MWCryptRand {
 		// It's mostly worthless but throw the wiki's id into the data for a little more variance
 		$state .= wfWikiID();
 
-		// If we have a secret key or proxy key set then throw it into the state as well
-		global $wgSecretKey, $wgProxyKey;
+		// If we have a secret key set then throw it into the state as well
+		global $wgSecretKey;
 		if ( $wgSecretKey ) {
 			$state .= $wgSecretKey;
-		} elseif ( $wgProxyKey ) {
-			$state .= $wgProxyKey;
 		}
 
 		return $state;

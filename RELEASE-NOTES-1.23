@@ -472,6 +472,7 @@ changes to languages because of Bugzilla reports.
 
 ==== Removed globals ====
 * $wgBetterDirectionality (deprecated in 1.18)
+* $wgProxyKey (deprecated in 1.14)
 
 == Compatibility ==
 
