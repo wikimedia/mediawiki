@@ -464,3 +464,12 @@
 	path = extensions/Nostalgia
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Nostalgia.git
 	branch = wmf/1.24wmf8
+[submodule "extensions/JsonConfig"]
+	path = extensions/JsonConfig
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/JsonConfig.git
+[submodule "extensions/ZeroBanner"]
+	path = extensions/ZeroBanner
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ZeroBanner.git
+[submodule "extensions/ZeroPortal"]
+	path = extensions/ZeroPortal
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ZeroPortal.git
