@@ -1119,6 +1119,9 @@ HTML;
 
 		# collect the originating ips
 		$ip = $this->getRawIP();
+		if ( !$ip ) {
+			throw new MWException( 'Unable to determine IP.' );
+		}
 
 		# Append XFF
 		$forwardedFor = $this->getHeader( 'X-Forwarded-For' );
@@ -1126,34 +1129,35 @@ HTML;
 			$isConfigured = IP::isConfiguredProxy( $ip );
 			$ipchain = array_map( 'trim', explode( ',', $forwardedFor ) );
 			$ipchain = array_reverse( $ipchain );
-			if ( $ip ) {
-				array_unshift( $ipchain, $ip );
-			}
+			array_unshift( $ipchain, $ip );
 
 			# Step through XFF list and find the last address in the list which is a
 			# trusted server. Set $ip to the IP address given by that trusted server,
 			# unless the address is not sensible (e.g. private). However, prefer private
 			# IP addresses over proxy servers controlled by this site (more sensible).
+			# Note that some XFF values might be "unknown" with Squid/Varnish.
 			foreach ( $ipchain as $i => $curIP ) {
-				// ignore 'unknown' value from Squid when 'forwarded_for off' and try next
-				if ( $curIP === 'unknown' ) {
-					continue;
-				}
 				$curIP = IP::sanitizeIP( IP::canonicalize( $curIP ) );
-				if ( IP::isTrustedProxy( $curIP ) && isset( $ipchain[$i + 1] ) ) {
-					if ( IP::isConfiguredProxy( $curIP ) || // bug 48919; treat IP as sane
-						IP::isPublic( $ipchain[$i + 1] ) ||
-						$wgUsePrivateIPs
-					) {
-						$nextIP = IP::canonicalize( $ipchain[$i + 1] );
-						if ( !$nextIP && $isConfigured ) {
-							// We have not yet made it past CDN/proxy servers of this site,
-							// so either they are misconfigured or there is some IP spoofing.
-							throw new MWException( "Invalid IP given in XFF '$forwardedFor'." );
-						}
-						$ip = $nextIP;
-						continue;
+				if ( !$curIP || !isset( $ipchain[$i + 1] ) || $ipchain[$i + 1] === 'unknown'
+					|| !IP::isTrustedProxy( $curIP )
+				) {
+					break; // IP is not valid/trusted or does not point to anything
+				}
+				if (
+					IP::isPublic( $ipchain[$i + 1] ) ||
+					$wgUsePrivateIPs ||
+					IP::isConfiguredProxy( $curIP ) // bug 48919; treat IP as sane
+				) {
+					// Follow the next IP according to the proxy
+					$nextIP = IP::canonicalize( $ipchain[$i + 1] );
+					if ( !$nextIP && $isConfigured ) {
+						// We have not yet made it past CDN/proxy servers of this site,
+						// so either they are misconfigured or there is some IP spoofing.
+						throw new MWException( "Invalid IP given in XFF '$forwardedFor'." );
 					}
+					$ip = $nextIP;
+					// keep traversing the chain
+					continue;
 				}
 				break;
 			}
