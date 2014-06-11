@@ -275,6 +275,8 @@ class SanitizerTest extends MediaWikiTestCase {
 			array( '/* insecure input */', 'background-image: image-set("asdf.png" 1x, "asdf.png" 2x);' ),
 			array( '/* insecure input */', 'background-image: -webkit-image-set("asdf.png" 1x, "asdf.png" 2x);' ),
 			array( '/* insecure input */', 'background-image: -moz-image-set("asdf.png" 1x, "asdf.png" 2x);' ),
+			array( '/* insecure input */', 'foo: attr( title, url );' ),
+			array( '/* insecure input */', 'foo: attr( title url );' ),
 		);
 	}
 
