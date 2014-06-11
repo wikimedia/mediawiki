@@ -9,6 +9,7 @@ MediaWiki 1.26 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.26 ===
+* $wgBrowserBlackList was removed.
 
 === New features in 1.26 ===
 
