@@ -569,20 +569,30 @@ class MimeMagic {
 	 * @param string $file
 	 * @param mixed $ext
 	 * @return bool|string
+	 * @throws MWException
 	 */
 	private function doGuessMimeType( $file, $ext ) { // TODO: remove $ext param
 		// Read a chunk of the file
 		wfSuppressWarnings();
-		// @todo FIXME: Shouldn't this be rb?
-		$f = fopen( $file, 'rt' );
+		$f = fopen( $file, 'rb' );
 		wfRestoreWarnings();
 
 		if ( !$f ) {
 			return 'unknown/unknown';
 		}
+
+		$fsize = filesize( $file );
+		if ( $fsize === false ) {
+			return 'unknown/unknown';
+		}
+
 		$head = fread( $f, 1024 );
-		fseek( $f, -65558, SEEK_END );
-		$tail = fread( $f, 65558 ); // 65558 = maximum size of a zip EOCDR
+		$tailLength = min( 65558, $fsize ); // 65558 = maximum size of a zip EOCDR
+		if ( fseek( $f, -1 * $tailLength, SEEK_END ) === -1 ) {
+			throw new MWException(
+				"Seeking $tailLength bytes from EOF failed in " . __METHOD__ );
+		}
+		$tail = fread( $f, $tailLength );
 		fclose( $f );
 
 		wfDebug( __METHOD__ . ": analyzing head and tail of $file for magic numbers.\n" );
