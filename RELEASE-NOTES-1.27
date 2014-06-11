@@ -1,3 +1,11 @@
+== MediaWiki 1.27.2 ==
+This is not a release yet!
+
+=== Changes since 1.27.1 ===
+
+* (T68404) CSS3 attr() function with url type argument is no longer allowed
+  in inline styles.
+
 == MediaWiki 1.27.1 ==
 
 This is a maintenance release of the MediaWiki 1.27 branch.
