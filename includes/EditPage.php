@@ -3830,7 +3830,6 @@ HTML
 	public function getEditButtons( &$tabindex ) {
 		$buttons = array();
 
-		// @todo FIXME: Hardcoded square brackets.
 		$temp = array(
 			'id' => 'wpSave',
 			'name' => 'wpSave',
@@ -3839,12 +3838,15 @@ HTML
 			'value' => wfMessage( 'savearticle' )->text(),
 			'accesskey' => wfMessage( 'accesskey-save' )->text(),
 			'title' => wfMessage( 'tooltip-save' )->text()
-				. ' [' . wfMessage( 'accesskey-save' )->text() . ']',
+				. wfMessage( 'word-separator' )->text()
+				. wfMessage(
+					'brackets',
+					wfMessage( 'accesskey-save' )->text()
+				)->text(),
 		);
 		$buttons['save'] = Xml::element( 'input', $temp, '' );
 
 		++$tabindex; // use the same for preview and live preview
-		// @todo FIXME: Hardcoded square brackets.
 		$temp = array(
 			'id' => 'wpPreview',
 			'name' => 'wpPreview',
@@ -3853,12 +3855,15 @@ HTML
 			'value' => wfMessage( 'showpreview' )->text(),
 			'accesskey' => wfMessage( 'accesskey-preview' )->text(),
 			'title' => wfMessage( 'tooltip-preview' )->text()
-				. ' [' . wfMessage( 'accesskey-preview' )->text() . ']',
+				. wfMessage( 'word-separator' )->text()
+				. wfMessage(
+					'brackets',
+					wfMessage( 'accesskey-preview' )->text()
+				)->text(),
 		);
 		$buttons['preview'] = Xml::element( 'input', $temp, '' );
 		$buttons['live'] = '';
 
-		// @todo FIXME: Hardcoded square brackets.
 		$temp = array(
 			'id' => 'wpDiff',
 			'name' => 'wpDiff',
@@ -3867,7 +3872,11 @@ HTML
 			'value' => wfMessage( 'showdiff' )->text(),
 			'accesskey' => wfMessage( 'accesskey-diff' )->text(),
 			'title' => wfMessage( 'tooltip-diff' )->text()
-				. ' [' . wfMessage( 'accesskey-diff' )->text() . ']',
+				. wfMessage( 'word-separator' )->text()
+				. wfMessage(
+					'brackets',
+					wfMessage( 'accesskey-diff' )->text()
+				)->text(),
 		);
 		$buttons['diff'] = Xml::element( 'input', $temp, '' );
 
