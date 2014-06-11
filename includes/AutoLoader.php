@@ -1177,10 +1177,6 @@ $wgAutoloadLocalClasses = array(
 	# mw-config
 	'InstallerOverrides' => 'mw-config/overrides.php',
 	'MyLocalSettingsGenerator' => 'mw-config/overrides.php',
-
-	# skins
-	'MonoBookTemplate' => 'skins/monobook/MonoBook.php',
-	'SkinMonoBook' => 'skins/monobook/MonoBook.php',
 );
 
 class AutoLoader {
