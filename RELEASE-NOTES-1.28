@@ -22,6 +22,7 @@ production.
 * The deprecated $wgEditEncoding variable has been removed; it was only used
   for Esperanto language character conversion. You are now recommended to use
   input methods provided by the UniversalLanguageSelector extension.
+* (T67297) $wgBrowserBlackList was removed.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
