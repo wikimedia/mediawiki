@@ -254,6 +254,9 @@ class EditPage {
 	public $incompleteForm = false;
 
 	/** @var bool */
+	protected $oldForm = false;
+
+	/** @var bool */
 	public $tooBig = false;
 
 	/** @var bool */
@@ -537,6 +540,12 @@ class EditPage {
 			return;
 		}
 
+		if ( $this->oldForm ) {
+			wfDebug( __METHOD__ . ": Refusing submission of old form.\n" );
+			$this->showReadOnlyForm( wfMessage( 'edit_form_old' )->parseAsBlock(), $this->textbox1 );
+			return;
+		}
+
 		$this->isConflict = false;
 		// css / js subpages of user pages get a special treatment
 		$this->isCssJsSubpage = $this->mTitle->isCssJsSubpage();
@@ -647,6 +656,32 @@ class EditPage {
 			throw new PermissionsError( $action, $permErrors );
 		}
 
+		$errorHtml = $wgOut->parse( $wgOut->formatPermissionsErrorMessage( $permErrors, 'edit' ),
+			true, true ) . "<hr />\n";
+
+		# If the user made changes, preserve them when showing the markup
+		# (This happens when a user is blocked during edit, for instance)
+		if ( !$this->firsttime ) {
+			$text = $this->textbox1;
+			$errorHtml .= wfMessage( 'viewyourtext' )->parseAsBlock();
+		} else {
+			$text = $this->toEditText( $content );
+			$errorHtml .= wfMessage( 'viewsourcetext' )->parseAsBlock();
+		}
+
+		$this->showReadOnlyForm( $errorHtml, $text );
+	}
+
+	/**
+	 * Show a "View source for ..." page with the given error message and text.
+	 *
+	 * @since 1.27
+	 * @param string $errorHtml HTML of the error message to display
+	 * @param string $text Contents of textbox
+	 */
+	protected function showReadOnlyForm( $errorHtml, $text ) {
+		global $wgOut;
+
 		Hooks::run( 'EditPage::showReadOnlyForm:initial', array( $this, &$wgOut ) );
 
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
@@ -658,18 +693,7 @@ class EditPage {
 		$wgOut->addHTML( $this->editFormPageTop );
 		$wgOut->addHTML( $this->editFormTextTop );
 
-		$wgOut->addWikiText( $wgOut->formatPermissionsErrorMessage( $permErrors, 'edit' ) );
-		$wgOut->addHTML( "<hr />\n" );
-
-		# If the user made changes, preserve them when showing the markup
-		# (This happens when a user is blocked during edit, for instance)
-		if ( !$this->firsttime ) {
-			$text = $this->textbox1;
-			$wgOut->addWikiMsg( 'viewyourtext' );
-		} else {
-			$text = $this->toEditText( $content );
-			$wgOut->addWikiMsg( 'viewsourcetext' );
-		}
+		$wgOut->addHTML( $errorHtml );
 
 		$wgOut->addHTML( $this->editFormTextBeforeContent );
 		$this->showTextbox( $text, 'wpTextbox1', array( 'readonly' ) );
@@ -771,7 +795,7 @@ class EditPage {
 			# These fields need to be checked for encoding.
 			# Also remove trailing whitespace, but don't remove _initial_
 			# whitespace from the text boxes. This may be significant formatting.
-			$this->textbox1 = $this->safeUnicodeInput( $request, 'wpTextbox1' );
+			$this->textbox1 = rtrim( $request->getText( 'wpTextbox1' ) );
 			if ( !$request->getCheck( 'wpTextbox2' ) ) {
 				// Skip this if wpTextbox2 has input, it indicates that we came
 				// from a conflict page with raw page text, not a custom form
@@ -807,6 +831,10 @@ class EditPage {
 			}
 
 			$this->scrolltop = $request->getIntOrNull( 'wpScrolltop' );
+
+			# "safemode" is a parameter used by MediaWiki 1.26 and older when armoring
+			# non-ASCII characters against broken browsers. It is no longer supported.
+			$this->oldForm = $request->getBool( 'safemode' );
 
 			if ( $this->textbox1 === '' && $request->getVal( 'wpTextbox1' ) === null ) {
 				// wpTextbox1 field is missing, possibly due to being "too big"
@@ -2712,10 +2740,6 @@ class EditPage {
 				$wgOut->addWikiText( $this->hookError );
 			}
 
-			if ( !$this->checkUnicodeCompliantBrowser() ) {
-				$wgOut->addWikiMsg( 'nonunicodebrowser' );
-			}
-
 			if ( $this->section != 'new' ) {
 				$revision = $this->mArticle->getRevisionFetched();
 				if ( $revision ) {
@@ -2974,9 +2998,6 @@ class EditPage {
 
 HTML
 		);
-		if ( !$this->checkUnicodeCompliantBrowser() ) {
-			$wgOut->addHTML( Html::hidden( 'safemode', '1' ) );
-		}
 	}
 
 	protected function showFormAfterText() {
@@ -3063,9 +3084,9 @@ HTML
 	}
 
 	protected function showTextbox( $text, $name, $customAttribs = array() ) {
-		global $wgOut, $wgUser;
+		global $wgContLang, $wgOut, $wgUser;
 
-		$wikitext = $this->safeUnicodeOutput( $text );
+		$wikitext = $wgContLang->recodeForEdit( $text );
 		if ( strval( $wikitext ) !== '' ) {
 			// Ensure there's a newline at the end, otherwise adding lines
 			// is awkward.
@@ -3981,138 +4002,22 @@ HTML
 	}
 
 	/**
-	 * Check if the browser is on a blacklist of user-agents known to
-	 * mangle UTF-8 data on form submission. Returns true if Unicode
-	 * should make it through, false if it's known to be a problem.
-	 * @return bool
-	 */
-	private function checkUnicodeCompliantBrowser() {
-		global $wgBrowserBlackList, $wgRequest;
-
-		$currentbrowser = $wgRequest->getHeader( 'User-Agent' );
-		if ( $currentbrowser === false ) {
-			// No User-Agent header sent? Trust it by default...
-			return true;
-		}
-
-		foreach ( $wgBrowserBlackList as $browser ) {
-			if ( preg_match( $browser, $currentbrowser ) ) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	/**
-	 * Filter an input field through a Unicode de-armoring process if it
-	 * came from an old browser with known broken Unicode editing issues.
-	 *
+	 * @deprecated since 1.27
 	 * @param WebRequest $request
 	 * @param string $field
 	 * @return string
 	 */
 	protected function safeUnicodeInput( $request, $field ) {
-		$text = rtrim( $request->getText( $field ) );
-		return $request->getBool( 'safemode' )
-			? $this->unmakeSafe( $text )
-			: $text;
+		return rtrim( $request->getText( $field ) );
 	}
 
 	/**
-	 * Filter an output field through a Unicode armoring process if it is
-	 * going to an old browser with known broken Unicode editing issues.
-	 *
+	 * @deprecated since 1.27
 	 * @param string $text
 	 * @return string
 	 */
 	protected function safeUnicodeOutput( $text ) {
 		global $wgContLang;
-		$codedText = $wgContLang->recodeForEdit( $text );
-		return $this->checkUnicodeCompliantBrowser()
-			? $codedText
-			: $this->makeSafe( $codedText );
-	}
-
-	/**
-	 * A number of web browsers are known to corrupt non-ASCII characters
-	 * in a UTF-8 text editing environment. To protect against this,
-	 * detected browsers will be served an armored version of the text,
-	 * with non-ASCII chars converted to numeric HTML character references.
-	 *
-	 * Preexisting such character references will have a 0 added to them
-	 * to ensure that round-trips do not alter the original data.
-	 *
-	 * @param string $invalue
-	 * @return string
-	 */
-	private function makeSafe( $invalue ) {
-		// Armor existing references for reversibility.
-		$invalue = strtr( $invalue, array( "&#x" => "&#x0" ) );
-
-		$bytesleft = 0;
-		$result = "";
-		$working = 0;
-		$valueLength = strlen( $invalue );
-		for ( $i = 0; $i < $valueLength; $i++ ) {
-			$bytevalue = ord( $invalue[$i] );
-			if ( $bytevalue <= 0x7F ) { // 0xxx xxxx
-				$result .= chr( $bytevalue );
-				$bytesleft = 0;
-			} elseif ( $bytevalue <= 0xBF ) { // 10xx xxxx
-				$working = $working << 6;
-				$working += ( $bytevalue & 0x3F );
-				$bytesleft--;
-				if ( $bytesleft <= 0 ) {
-					$result .= "&#x" . strtoupper( dechex( $working ) ) . ";";
-				}
-			} elseif ( $bytevalue <= 0xDF ) { // 110x xxxx
-				$working = $bytevalue & 0x1F;
-				$bytesleft = 1;
-			} elseif ( $bytevalue <= 0xEF ) { // 1110 xxxx
-				$working = $bytevalue & 0x0F;
-				$bytesleft = 2;
-			} else { // 1111 0xxx
-				$working = $bytevalue & 0x07;
-				$bytesleft = 3;
-			}
-		}
-		return $result;
-	}
-
-	/**
-	 * Reverse the previously applied transliteration of non-ASCII characters
-	 * back to UTF-8. Used to protect data from corruption by broken web browsers
-	 * as listed in $wgBrowserBlackList.
-	 *
-	 * @param string $invalue
-	 * @return string
-	 */
-	private function unmakeSafe( $invalue ) {
-		$result = "";
-		$valueLength = strlen( $invalue );
-		for ( $i = 0; $i < $valueLength; $i++ ) {
-			if ( ( substr( $invalue, $i, 3 ) == "&#x" ) && ( $invalue[$i + 3] != '0' ) ) {
-				$i += 3;
-				$hexstring = "";
-				do {
-					$hexstring .= $invalue[$i];
-					$i++;
-				} while ( ctype_xdigit( $invalue[$i] ) && ( $i < strlen( $invalue ) ) );
-
-				// Do some sanity checks. These aren't needed for reversibility,
-				// but should help keep the breakage down if the editor
-				// breaks one of the entities whilst editing.
-				if ( ( substr( $invalue, $i, 1 ) == ";" ) && ( strlen( $hexstring ) <= 6 ) ) {
-					$codepoint = hexdec( $hexstring );
-					$result .= UtfNormal\Utils::codepointToUtf8( $codepoint );
-				} else {
-					$result .= "&#x" . $hexstring . substr( $invalue, $i, 1 );
-				}
-			} else {
-				$result .= substr( $invalue, $i, 1 );
-			}
-		}
-		// reverse the transform that we made for reversibility reasons.
-		return strtr( $result, array( "&#x0" => "&#x" ) );
+		return $wgContLang->recodeForEdit( $text );
 	}
 }
