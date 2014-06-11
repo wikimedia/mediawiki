@@ -4826,11 +4826,6 @@ $wgSecretKey = false;
  */
 $wgProxyList = array();
 
-/**
- * @deprecated since 1.14
- */
-$wgProxyKey = false;
-
 /** @} */ # end of proxy scanner settings
 
 /************************************************************************//**
