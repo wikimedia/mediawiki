@@ -207,44 +207,6 @@
 							$imageDiv.width( newWidth );
 							$caption.width( curRow[j].captionWidth + ( newWidth - curRow[j].imgWidth ) );
 						}
-
-						hookInfo = {
-							fullWidth: newWidth + padding,
-							imgWidth: newWidth,
-							imgHeight: preferredHeight,
-							$innerDiv: $innerDiv,
-							$imageDiv: $imageDiv,
-							$outerDiv: $outerDiv,
-							// Whether the hook took action
-							resolved: false
-						};
-
-						/**
-						 * Gallery resize.
-						 *
-						 * If your handler resizes an image, it should also set the resolved
-						 * property to true. Additionally, because this module only exposes this
-						 * logic temporarily, you should load your module in position top to
-						 * ensure it is registered before this runs (FIXME: Don't use mw.hook)
-						 *
-						 * See TimedMediaHandler for an example.
-						 *
-						 * @event mediawiki_page_gallery_resize
-						 * @member mw.hook
-						 * @param {Object} hookInfo
-						 */
-						mw.hook( 'mediawiki.page.gallery.resize' ).fire( hookInfo );
-
-						if ( !hookInfo.resolved ) {
-							if ( imageElm ) {
-								// We don't always have an img, e.g. in the case of an invalid file.
-								imageElm.width = newWidth;
-								imageElm.height = preferredHeight;
-							} else {
-								// Not a file box.
-								$imageDiv.height( preferredHeight );
-							}
-						}
 					}
 				}
 			}() );
