@@ -116,6 +116,17 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 					),
 				)
 			),
+			array(
+				"$base/Soccer_ball_animated.svg",
+				array(
+					'width' => 150,
+					'height' => 150,
+					'originalWidth' => '150',
+					'originalHeight' => '150',
+					'animated' => true,
+					'translations' => array()
+				),
+			),
 		);
 	}
 
