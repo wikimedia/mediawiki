@@ -806,6 +806,7 @@
 	"session_fail_preview_html": "Used as error message in Preview page.",
 	"token_suffix_mismatch": "Error message in Preview page.\n\nSee also:\n* {{msg-mw|Token suffix mismatch}}\n* {{msg-mw|Session fail preview}}\n* {{msg-mw|Edit form incomplete}}",
 	"edit_form_incomplete": "Error message in Preview page.\n\nSee also:\n* {{msg-mw|Token suffix mismatch}}\n* {{msg-mw|Session fail preview}}\n* {{msg-mw|Edit form incomplete}}",
+	"edit_form_old": "Error message that may be shown after {{msg-mw|savearticle}}, {{msg-mw|showpreview}}, or {{msg-mw|showdiff}} is clicked.\n\nSee also:\n* {{msg-mw|Token suffix mismatch}}\n* {{msg-mw|Session fail preview}}\n* {{msg-mw|Edit form incomplete}}",
 	"editing": "Shown as page title when editing a page. Parameters:\n* $1 - the name of the page that is being edited. e.g. \"Editing Main Page\"\n{{Related|Editing}}",
 	"creating": "Shown as page title when creating a page. Parameters:\n* $1 - the name of the page that is being created. Example: \"Creating Main Page\".\n{{Related|Editing}}",
 	"editingsection": "This message displays at the top of the page when a user is editing a page section. Parameters:\n* $1 - page name\n{{Related|Editing}}",
