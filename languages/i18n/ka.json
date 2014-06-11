@@ -1842,7 +1842,7 @@
 	"sp-contributions-toponly": "აჩვენე მხოლოდ ბოლო ვერსიები",
 	"sp-contributions-submit": "ძიება",
 	"whatlinkshere": "ბმული გვერდზე",
-	"whatlinkshere-title": "გვერდები, რომლებიც შეიცავენ ბმულებს „$1“-ზე",
+	"whatlinkshere-title": "გვერდები, რომლებიც შეიცავენ „$1“-ის ბმულებს",
 	"whatlinkshere-page": "გვერდი:",
 	"linkshere": "მომდევნო გვერდები შეიცავენ ბმულებს '''[[:$1]]'''-ზე:",
 	"nolinkshere": "'''[[:$1]]'''-ზე ბმული არ არის.",

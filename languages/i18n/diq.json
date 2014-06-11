@@ -19,7 +19,8 @@
 			"Xoser",
 			"Geitost",
 			"Microchip08",
-			"아라"
+			"아라",
+			"Calak"
 		]
 	},
 	"tog-underline": "Bınê gırey de xete bance:",
@@ -178,6 +179,7 @@
 	"vector-view-view": "Bıwane",
 	"vector-view-viewsource": "Çımey bıvêne",
 	"actions": "Hereketi",
+	"vector-more-actions": "Zêde",
 	"namespaces": "Heruna naman",
 	"variants": "Varyanti",
 	"navigation-heading": "Menuyê navigasyoni",

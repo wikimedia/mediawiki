@@ -46,7 +46,8 @@
 			"Дар'я Козлова",
 			"Максим Підліснюк",
 			"Тест",
-			"아라"
+			"아라",
+			"Calak"
 		]
 	},
 	"tog-underline": "Підкреслювати посилання:\nПідкреслювання посилань:",
@@ -205,6 +206,7 @@
 	"vector-view-view": "Читати",
 	"vector-view-viewsource": "Переглянути код",
 	"actions": "Дії",
+	"vector-more-actions": "Більше",
 	"namespaces": "Простори назв",
 	"variants": "Варіанти",
 	"navigation-heading": "Навігаційне меню",

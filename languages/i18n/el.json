@@ -36,7 +36,8 @@
 			"Περίεργος",
 			"לערי ריינהארט",
 			"Kolega2357",
-			"아라"
+			"아라",
+			"Calak"
 		]
 	},
 	"tog-underline": "Υπογράμμιση συνδέσμων:",
@@ -194,6 +195,7 @@
 	"vector-view-view": "Ανάγνωση",
 	"vector-view-viewsource": "Προβολή κώδικα",
 	"actions": "Ενέργειες",
+	"vector-more-actions": "Περισσότερα",
 	"namespaces": "Χώροι ονομάτων",
 	"variants": "Παραλλαγές",
 	"navigation-heading": "Μενού πλοήγησης",

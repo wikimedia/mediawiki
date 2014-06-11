@@ -99,7 +99,7 @@
 	"config-gd": "Se ha encontrado una biblioteca de gráficos GD integrada.\nLa miniaturización de imágenes se habilitará si habilitas las subidas.",
 	"config-no-scaling": "No se ha encontrado ninguma biblioteca GD o ImageMagik.\nSe inhabilitará la miniaturización de imágenes.",
 	"config-no-uri": "'''Error:''' No se pudo determinar el URI actual.\nSe interrumpió la instalación.",
-	"config-no-cli-uri": "''' Advertencia ''': No se ha especificado ningún <code>--scriptpath</code>, por defecto se usará: <code>$1</code> .",
+	"config-no-cli-uri": "<strong>Aviso:</strong> No se especificó <code>--scriptpath</code>; se usa el valor predeterminado: <code>$1</code>.",
 	"config-using-server": "Utilizando el nombre de servidor \"<nowiki>$1</nowiki>\".",
 	"config-using-uri": "Utilizando la dirección URL del servidor \"<nowiki>$1$2</nowiki>\".",
 	"config-uploads-not-safe": "'''Atención:''' Su directorio por defecto para las cargas, <code>$1</code>, es vulnerable a la ejecución de scripts arbitrarios.\nAunque MediaWiki comprueba todos los archivos cargados por si hubiese amenazas de seguridad, es altamente recomendable [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security cerrar esta vulnerabilidad de seguridad] antes de activar las cargas.",

@@ -56,7 +56,8 @@
 			"Wolf Lambert",
 			"לערי ריינהארט",
 			"아라",
-			"Mar(c)"
+			"Mar(c)",
+			"Calak"
 		]
 	},
 	"tog-underline": "Koppelingen onderstrepen:",
@@ -214,6 +215,7 @@
 	"vector-view-view": "Lezen",
 	"vector-view-viewsource": "Brontekst bekijken",
 	"actions": "Acties",
+	"vector-more-actions": "Meer",
 	"namespaces": "Naamruimten",
 	"variants": "Varianten",
 	"navigation-heading": "Navigatiemenu",

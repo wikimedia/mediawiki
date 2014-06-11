@@ -40,7 +40,8 @@
 			"XVEC",
 			"Àlex",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Calak"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -199,6 +200,7 @@
 	"vector-view-view": "Mostra",
 	"vector-view-viewsource": "Mostra el codi",
 	"actions": "Accions",
+	"vector-more-actions": "Més",
 	"namespaces": "Espais de noms",
 	"variants": "Variants",
 	"navigation-heading": "Menú de navegació",
