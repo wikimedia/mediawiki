@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rotemliss"
+		]
+	},
+	"createbox-desc": "תיבת קלט מיוחדת ליצירת דפים",
+	"createbox-create": "יצירה",
+	"createbox-exists": "מצטערים, \"'''{{FULLPAGENAME}}'''\" כבר קיים.\n\nאינכם יכולים ליצור את הדף, אך באפשרותכם [{{fullurl:{{FULLPAGENAME}}|action=edit}} לערוך אותו], [{{fullurl:{{FULLPAGENAME}}}} לקרוא אותו] או ליצור דף אחר באמצעות התיבה למטה.\n\n<createbox>break=no</createbox>"
+}

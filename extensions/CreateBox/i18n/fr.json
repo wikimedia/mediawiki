@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Crochet.david",
+			"Verdy p"
+		]
+	},
+	"createbox-desc": "Boîte de saisie spécialisée pour la création de page",
+	"createbox-create": "Créer",
+	"createbox-exists": "Désolé, « '''{{FULLPAGENAME}}''' » existe déjà.\n\nVous ne pouvez pas créer cette page, mais vous pouvez [{{fullurl:{{FULLPAGENAME}}|action=edit}} la modifier], [{{fullurl:{{FULLPAGENAME}}}} la lire] ou choisir de créer une page différente à l’aide de la boîte ci-dessous.\n\n<createbox>break=no</createbox>"
+}

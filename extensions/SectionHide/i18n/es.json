@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Arcane21"
+		]
+	},
+	"sectionhide": "Sección Ocultar",
+	"sectionhide-desc": "Proporciona un enlace Mostrar/ocultar en las partidas de la sección",
+	"sectionhide-hide": "Ocultar",
+	"sectionhide-show": "Mostrar",
+	"sectionhide-hideall": "todos ocultar",
+	"sectionhide-showall": "todos mostrar"
+}

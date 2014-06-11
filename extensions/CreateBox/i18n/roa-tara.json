@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joetaras"
+		]
+	},
+	"createbox-desc": "scatele de input specializzate pe le ccreaziune de le pàggene",
+	"createbox-create": "Ccreje",
+	"createbox-exists": "Me dispiace, \"'''{{FULLPAGENAME}}'''\" già esiste.\n\nTu non ge puè ccrejà sta pàgene, ma tu 'a puè [{{fullurl:{{FULLPAGENAME}}|action=edit}} cangià], [{{fullurl:{{FULLPAGENAME}}}} leggerle], o scacchie de ccrejà 'a pàgene cu 'nu nome differende ausanne 'a scatele ca ste aqquà sotte.\n\n<createbox>break=no</createbox>"
+}

@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"createbox-desc": "Caixa de entrada especializada para a creación de páxinas",
+	"createbox-create": "Crear",
+	"createbox-exists": "Sentímolo, \"'''{{FULLPAGENAME}}'''\" xa existe.\n\nNon pode crear esta páxina, pero pode [{{fullurl:{{FULLPAGENAME}}|action=edit}} editala], [{{fullurl:{{FULLPAGENAME}}}} lela], ou elixir crear unha páxina diferente usando a caixa de embaixo.\n\n<createbox>break=no</createbox>"
+}

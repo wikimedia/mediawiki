@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chrisportelli"
+		]
+	},
+	"createbox-desc": "''Inputbox'' speċjalizzata għall-ħolqien ta' paġni",
+	"createbox-create": "Oħloq",
+	"createbox-exists": "Skużana, \"'''{{FULLPAGENAME}}'''\" teżisti diġà.\n\nMa tistax toħloq din il-paġna, imma tista' [{{fullurl:{{FULLPAGENAME}}|action=edit}} timmodifikaha], [{{fullurl:{{FULLPAGENAME}}}} taqraha] jew tagħżel li tikkrea paġna differenti bl-użu tal-kaxxa t'hawn taħt.\n\n<createbox>break=no</createbox>"
+}

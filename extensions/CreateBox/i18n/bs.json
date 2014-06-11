@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"CERminator"
+		]
+	},
+	"createbox-desc": "Specijalizirana kutija unosa za pravljenje stranice",
+	"createbox-create": "Napravi",
+	"createbox-exists": "Žao nam je, \"'''{{FULLPAGENAME}}'''\" već postoji.\n\nNe možete napraviti ovu stranicu, ali je možete [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti], [{{fullurl:{{FULLPAGENAME}}}} pročitati] ili odabrati pravljenje druge stranice koristeći kutiju ispod.\n\n<createbox>break=no</createbox>"
+}

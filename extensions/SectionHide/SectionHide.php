@@ -43,4 +43,4 @@ $wgHooks['DoEditSectionLink'][]   = 'SectionHideHooks::onDoEditSectionLink';
 $wgAutoloadClasses[ 'SectionHideHooks' ] = __DIR__ . '/SectionHideHooks.php';
 $wgExtensionMessagesFiles[ 'SectionHide' ] = __DIR__ . '/SectionHide.i18n.php';
 $wgExtensionMessagesFiles[ 'SectionHideAlias' ] = __DIR__ . '/SectionHide.alias.php';
-
+$wgMessagesDirs['SectionHide'] = __DIR__ . '/i18n';

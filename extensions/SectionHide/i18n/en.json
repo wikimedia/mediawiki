@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hoggle42"
+		]
+	},
+	"sectionhide": "Section Hide",
+	"sectionhide-desc": "Provides a hide/show link on section headings",
+	"sectionhide-hide": "hide",
+	"sectionhide-show": "show",
+	"sectionhide-hideall": "hide all",
+	"sectionhide-showall": "show all"
+}

@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Horacewai2",
+			"Mark85296341",
+			"Wrightbus"
+		]
+	},
+	"createbox-desc": "於Wiki中包含建立頁面的輸入框",
+	"createbox-create": "建立",
+	"createbox-exists": "抱歉，'''{{FULLPAGENAME}}'''已經存在於{{SITENAME}}。\n\n你不能建立本頁，但你可以[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯本頁]、[{{fullurl:{{FULLPAGENAME}}}} 閱讀本頁]或在下方輸入另一個名字繼續建立頁面：\n\n<createbox>break=no</createbox>"
+}

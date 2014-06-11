@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Purodha"
+		]
+	},
+	"createbox-desc": "En spezjell Feld för der Tittel enzejävve för neu Sigge aanzelääje.",
+	"createbox-create": "Aanläje!",
+	"createbox-exists": "De Sigg „'''{{FULLPAGENAME}}'''“ es ald doh.\n\nDo kanns se nit aanläje, ävver Do kanns di Sigg\n[{{fullurl:{{FULLPAGENAME}}|action=edit}} ändere], [{{fullurl:{{FULLPAGENAME}}}} lesse],\nudder en ander Sigg neu aanläje:\n<br />\n<createbox>break=no</createbox>"
+}

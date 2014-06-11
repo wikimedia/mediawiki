@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robby"
+		]
+	},
+	"createbox-desc": "Spezialiséiert Këscht fir Säiten unzeleeën",
+	"createbox-create": "Maachen",
+	"createbox-exists": "Pardon, \"'''{{FULLPAGENAME}}'''\" gëtt et schonn.\n\nDir kënnt dës Säit net uleeën, awer Dir kënnt [{{fullurl:{{FULLPAGENAME}}|action=edit}} s'änneren], [{{fullurl:{{FULLPAGENAME}}}} liest] oder wielt fir eng aner Säit unzeleeë mat Hëllef vun der Këscht ënnendrënner."
+}

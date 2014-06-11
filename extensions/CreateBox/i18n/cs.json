@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jezevec",
+			"Jkjk"
+		]
+	},
+	"createbox-desc": "Speciální vstupní pole pro vytváření stránek",
+	"createbox-create": "Vytvořit",
+	"createbox-exists": "Omlouváme se, ale \"'''{{FULLPAGENAME}}'''\" již existuje.\n\nNemůžete vytvořit tuto stránku, ale můžete jí [{{fullurl:{{FULLPAGENAME}}|action=edit}} editovat], [{{fullurl:{{FULLPAGENAME}}}} zobrazit], nebo vytvořit jinou stránku pomocí následujícího pole.\n\n<createbox>break=no</createbox>"
+}

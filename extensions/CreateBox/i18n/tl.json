@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"AnakngAraw"
+		]
+	},
+	"createbox-desc": "Natatanging lalagyang-kahon para sa paglikha ng pahina",
+	"createbox-create": "Likhain",
+	"createbox-exists": "Paumanhin, umiiral na ang \"'''{{FULLPAGENAME}}'''\".\n\nHindi mo malilikha ang pahinang ito, subalit maaari mong [{{fullurl:{{FULLPAGENAME}}|action=edit}} baguhin ito], [{{fullurl:{{FULLPAGENAME}}}} basahin ito], o piliing lumikha ng isang naiibang pahina na ginagamit ang kahong nasa ibaba.\n \n<createbox>break=no</createbox>"
+}

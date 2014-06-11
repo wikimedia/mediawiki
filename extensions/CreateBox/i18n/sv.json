@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"M.M.S."
+		]
+	},
+	"createbox-desc": "Specialiserad formulärbox för sidskapning",
+	"createbox-create": "Skapa",
+	"createbox-exists": "Beklagar, \"'''{{FULLPAGENAME}}'''\" existerar redan.\n\nDu kan inte skapa den här sidan, men du kan [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera den], [{{fullurl:{{FULLPAGENAME}}}} läsa den], eller välja att skapa en annan sida genom att använda boxen nedan.\n\n<createbox>break=no</createbox>"
+}

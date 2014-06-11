@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"ChrisiPK",
+			"Kghbln",
+			"Revolus"
+		]
+	},
+	"createbox-desc": "Ermöglicht ein spezielles Eingabefeld zur Seitenerstellung",
+	"createbox-create": "Erstellen",
+	"createbox-exists": "„'''{{FULLPAGENAME}}'''“ ist bereits vorhanden.\n\nDu kannst diese Seite daher nicht anlegen, sie aber [{{fullurl:{{FULLPAGENAME}}|action=edit}} bearbeiten], [{{fullurl:{{FULLPAGENAME}}}} lesen] oder eine Seite anderen Namens mithilfe des untenstehenden Eingabefeldes anlegen.\n\n<createbox>break=no</createbox>"
+}

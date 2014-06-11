@@ -44,6 +44,7 @@ $wgExtensionCredits['parserhook'][] = array(
 
 $dir = dirname( __FILE__ ) . '/';
 $wgExtensionMessagesFiles['YouTube'] = $dir . 'YouTube.i18n.php';
+$wgMessagesDirs['YouTube'] = $dir . '/i18n';
 
 $wgHooks['ParserFirstCallInit'][] = 'wfYouTube';
 

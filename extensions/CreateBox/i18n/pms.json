@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dragonòt"
+		]
+	},
+	"createbox-desc": "Inputbox specialisà për creassion ëd pàgine",
+	"createbox-create": "Crea",
+	"createbox-exists": "Am dëspias, \"'''{{FULLPAGENAME}}'''\" a esist già.\n\nIt peule pa creé sta pàgina-sì, ma it peule [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifichela], [{{fullurl:{{FULLPAGENAME}}}} lesla], o serne ëd creé na pàgina diferenta an dovrand ël box sota.\n\n<createbox>break=no</createbox>"
+}

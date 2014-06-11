@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Meno25"
+		]
+	},
+	"createbox-desc": "صندوق إدخال متخصص لإنشاء الصفحات",
+	"createbox-create": "إنشاء",
+	"createbox-exists": "عذرا، \"'''{{FULLPAGENAME}}'''\" موجودة بالفعل.\n\nأنت لا يمكنك إنشاء هذه الصفحة، لكن يمكنك [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعديلها], [{{fullurl:{{FULLPAGENAME}}}} قراءتها]، أو اختيار إنشاء صفحة أخرى باستخدام الصندوق بالأسفل.\n\n<createbox>break=no</createbox>"
+}

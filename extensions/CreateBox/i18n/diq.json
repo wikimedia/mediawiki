@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Erdemaslancan"
+		]
+	},
+	"createbox-create": "Vıraze",
+	"createbox-exists": "Xeta, \"'''{{FULLPAGENAME}}'''\" xora esta.\n\nFeqet şıma şenê [{{fullurl:{{FULLPAGENAME}}|action=edit}} bıvurnê],  ya zi [{{fullurl:{{FULLPAGENAME}}}} buwanê], ya na  dora cêrêna peşti gerênra şıma şenê  zewmi pela vırazê.\n\n<createbox>break=no</createbox>"
+}

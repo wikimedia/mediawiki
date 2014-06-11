@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gzdavidwong"
+		]
+	},
+	"createbox-desc": "于Wiki中包含创建页面的输入框",
+	"createbox-create": "建立",
+	"createbox-exists": "抱歉，'''{{FULLPAGENAME}}'''已经存在于{{SITENAME}}。\n\n你不能创建本页，但你可以[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编辑本页]、[{{fullurl:{{FULLPAGENAME}}}} 阅读本页]或在下方输入另一个名字继续创建页面：\n\n<createbox>break=no</createbox>"
+}

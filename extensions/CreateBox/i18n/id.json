@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bennylin"
+		]
+	},
+	"createbox-desc": "\"Inputbox\" khusus untuk pembuatan halaman",
+	"createbox-create": "Buat",
+	"createbox-exists": "Maaf, \"'''{{FULLPAGENAME}}'''\" sudah ada.\n\nAnda tidak dapat membuat halaman ini, namun Anda dapat [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyuntingnya], [{{fullurl:{{FULLPAGENAME}}}} membacanya], atau membuat halaman lainnya dengan menggunakan kotak di bawah ini.\n\n<createbox>break=no</createbox>"
+}

@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Michawiki"
+		]
+	},
+	"createbox-desc": "Specielne zapódawańske pólo za napóranje bokow",
+	"createbox-create": "Napóraś",
+	"createbox-exists": "\"'''{{FULLPAGENAME}}'''\" južo eksistěrujo.\n\nNjamóžoš tós ten bok napóraś, ale móžoš jen [{{fullurl:{{FULLPAGENAME}}|action=edit}} wobźěłaś],\n[{{fullurl:{{FULLPAGENAME}}}} cytaś] abo wubraś, aby drugi bok z pomocu slědujucego kašćika napórał.\n\n<createbox>break=no</createbox>"
+}

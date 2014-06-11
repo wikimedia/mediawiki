@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jack Phoenix",
+			"Mobe",
+			"Nike"
+		]
+	},
+	"createbox-desc": "Erityinen syöttölomake sivun luontiin.",
+	"createbox-create": "Luo",
+	"createbox-exists": "Pahoittelut, \"'''{{FULLPAGENAME}}'''\" on jo olemassa.\n\nEt voi luoda tätä sivua, mutta voit [{{fullurl:{{FULLPAGENAME}}|action=edit}} muokata sitä], [{{fullurl:{{FULLPAGENAME}}}} lukea sitä], tai luoda erilaisen sivun allaolevaa laatikkoa käyttäen.\n\n<createbox>break=no</createbox>"
+}

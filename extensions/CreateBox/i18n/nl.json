@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Siebrand"
+		]
+	},
+	"createbox-desc": "Aangepast invoerveld voor het aanmaken van nieuwe pagina's",
+	"createbox-create": "Aanmaken",
+	"createbox-exists": "\"'''{{FULLPAGENAME}}'''\" bestaat al.\n\nU kunt deze pagina niet aanmaken, maar u kunt deze [{{fullurl:{{FULLPAGENAME}}|action=edit}} bewerken], [{{fullurl:{{FULLPAGENAME}}}} bekijken], of een andere pagina aanmaken via het onderstaande formulier.\n\n<createbox>break=no</createbox>"
+}

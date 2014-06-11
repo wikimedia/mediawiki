@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Crazymadlover",
+			"Imre"
+		]
+	},
+	"createbox-desc": "Tabla de ingreso especializada para creación de página",
+	"createbox-create": "Crear",
+	"createbox-exists": "Disculpe, \"'''{{FULLPAGENAME}}'''\" ya existe.\n\nNo puedes crear esta página, pero puedes [{{fullurl:{{FULLPAGENAME}}|action=edit}} editarla], [{{fullurl:{{FULLPAGENAME}}}} leerla], o escoger crear una página diferente usando la tabla de debajo.\n\n<createbox>break=no</createbox>"
+}

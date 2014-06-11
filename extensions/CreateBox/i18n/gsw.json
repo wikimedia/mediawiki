@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Als-Holder"
+		]
+	},
+	"createbox-desc": "Speziäll Yygabfäld zum Aalege vu Syte",
+	"createbox-create": "Aalege",
+	"createbox-exists": "Excusez, „'''{{FULLPAGENAME}}'''“ git s scho.\n\nDu chasch die Syte nit aalege, aber Du chasch si [{{fullurl:{{FULLPAGENAME}}|action=edit}} bearbeite], [{{fullurl:{{FULLPAGENAME}}}} läse] oder e anderi Syte aalege mit em Yygabfäld, wu do unte stoht.\n\n<createbox>break=no</createbox>"
+}

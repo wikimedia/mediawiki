@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06"
+		]
+	},
+	"createbox-desc": "Специјализирана вносна кутија за создавање страници",
+	"createbox-create": "Создај",
+	"createbox-exists": "Жалиме, но „'''{{FULLPAGENAME}}'''“ веќе постои.\n\nНе можете да ја создадете оваа страница, но можете да ја [{{fullurl:{{FULLPAGENAME}}|action=edit}} уредите], [{{fullurl:{{FULLPAGENAME}}}} прочитате], или да изберете да создадете друга страница со помош на кутијата подолу.\n\n<createbox>break=no</createbox>"
+}

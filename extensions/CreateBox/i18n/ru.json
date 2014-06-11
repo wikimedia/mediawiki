@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ferrer",
+			"Innv",
+			"Александр Сигачёв"
+		]
+	},
+	"createbox-desc": "Специализированные формы для создания страниц",
+	"createbox-create": "Создать",
+	"createbox-exists": "Извините, \"'''{{FULLPAGENAME}}'''\" уже существует.\n\nВы не можете создать эту страницу, но вы можете [{{fullurl:{{FULLPAGENAME}}|action=edit}} отредактировать], [{{fullurl:{{FULLPAGENAME}}}} просмотреть] её, или выбрать для создания другую страницу в форме.\n\n<createbox>break=no</createbox>"
+}

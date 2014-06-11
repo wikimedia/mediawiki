@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"AS"
+		]
+	},
+	"createbox-desc": "Спеціалізоване поле вводу для створення сторінок",
+	"createbox-create": "Створити",
+	"createbox-exists": "Даруйте, \"'''{{FULLPAGENAME}}'''\" вже існує.\n\nВи не можете створити цю сторінку, але ви можете [{{fullurl:{{FULLPAGENAME}}|action=edit}} редагувати її], [{{fullurl:{{FULLPAGENAME}}}} переглянути її], або створити іншу сторінку, використовуючи поле нижче.\n\n<createbox>break=no</createbox>"
+}

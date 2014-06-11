@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Anakmalaysia"
+		]
+	},
+	"createbox-desc": "Ruang input khusus untuk penciptaan laman",
+	"createbox-create": "Cipta",
+	"createbox-exists": "Maaf, \"'''{{FULLPAGENAME}}'''\" sudah wujud.\n\nAnda tidak boleh mencipta laman ini, tetapi anda boleh [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyuntingnya], [{{fullurl:{{FULLPAGENAME}}}} membacanya], atau memilih untuk mencipta laman yang baru dengan menggunakan ruangan di bawah.\n\n<createbox>break=no</createbox>"
+}

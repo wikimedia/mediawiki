@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Helix84"
+		]
+	},
+	"createbox-desc": "Špecializované vstupné pole na vytváranie stránok",
+	"createbox-create": "Vytvoriť",
+	"createbox-exists": "Prepáčte, „'''{{FULLPAGENAME}}'''” už existuje.\n\nTúto stránku nemôžete vytvoriť, ale môžete ju [{{fullurl:{{FULLPAGENAME}}|action=edit}} upravovať], [{{fullurl:{{FULLPAGENAME}}}} čítať] alebo vytvoriť inú stránku pomocou tohto vstupného poľa.\n\n<createbox>break=no</createbox>"
+}

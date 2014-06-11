@@ -45,6 +45,7 @@ $wgExtensionCredits['parserhook'][] = array(
 
 $dir = dirname( __FILE__ ) . '/';
 $wgExtensionMessagesFiles['CreateBox'] = $dir . 'CreateBox.i18n.php';
+$wgMessagesDirs['CreateBox'] = $dir . '/i18n';
 
 function wfCreateBox( $parser ) {
   $parser->setHook( 'createbox', 'acMakeBox' );

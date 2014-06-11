@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Shanmugamp7",
+			"TRYPPN"
+		]
+	},
+	"createbox-create": "உருவாக்கவும்",
+	"createbox-exists": "மன்னிக்கவும், \"'''{{FULLPAGENAME}}'''\" ஏற்கனவே உள்ளது.\n\nஇந்தப் பக்கத்தை உருவாக்க இயலாது, ஆனால் நீங்கள் [{{fullurl:{{FULLPAGENAME}}|action=edit}} இதை தொகுக்கலாம்], [{{fullurl:{{FULLPAGENAME}}}}படிக்கலாம்], அல்லது கீழேயுள்ள பெட்டியைப் பயன்படுத்தி வேறு பக்கத்தை உருவாக்கத் தேர்ந்த்தேடுக்கவும்.\n\n<createbox>break=no</createbox>"
+}

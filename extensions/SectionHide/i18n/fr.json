@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Arcane21"
+		]
+	},
+	"sectionhide": "Section Cacher",
+	"sectionhide-desc": "Fournit un lien de cacher/montrer sur les en-têtes de section",
+	"sectionhide-hide": "Cacher",
+	"sectionhide-show": "Montrer",
+	"sectionhide-hideall": "toute cacher",
+	"sectionhide-showall": "toute montrer"
+}

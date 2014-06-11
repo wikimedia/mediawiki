@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Cedric31"
+		]
+	},
+	"createbox-desc": "Bóstia de picada especializada per la creacion de pagina",
+	"createbox-create": "Crear",
+	"createbox-exists": "O planhèm, \"'''{{FULLPAGENAME}}'''\" existís ja.\n\nPodètz pas crear aquesta pagina, mas la podètz [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar], [{{fullurl:{{FULLPAGENAME}}}} legir] o causir de crear una pagina diferenta amb l’ajuda de la bóstia çaijós.\n\n<createbox>break=no</createbox>"
+}

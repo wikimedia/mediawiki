@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Harald Khan",
+			"Njardarlogar"
+		]
+	},
+	"createbox-desc": "Spesialisert tekstboks for oppretting av sider",
+	"createbox-create": "Opprett",
+	"createbox-exists": "Orsak, «'''{{FULLPAGENAME}}'''» finst frå før.\n\nDu kan ikkje oppretta denne sida, men du kan [{{fullurl:{{FULLPAGENAME}}|action=edit}} endra ho], [{{fullurl:{{FULLPAGENAME}}}} lesa ho] eller oppretta ei anna sida ved hjelp av boksen nedanfor.\n\n<createbox>break=no</createbox>"
+}

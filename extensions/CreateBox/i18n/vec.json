@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Candalua"
+		]
+	},
+	"createbox-desc": "Inputbox specialixà par la creassion de pàxene",
+	"createbox-create": "Crèa",
+	"createbox-exists": "Scusa, \"'''{{FULLPAGENAME}}'''\" la esiste de xà.\n\nNo ti pol crear sta pàxena, ma ti pol [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificarla], [{{fullurl:{{FULLPAGENAME}}}} lèxerla] o sièliere de crear na pàxena difarente doparando la casèla qua soto.\n\n<createbox>break=no</createbox>"
+}

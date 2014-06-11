@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby",
+			"Purodha"
+		]
+	},
+	"createbox-desc": "Extension description displayed on [[Special:Version]].",
+	"createbox-create": "{{Identical|Create}}"
+}

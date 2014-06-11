@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joseph",
+			"Karduelis"
+		]
+	},
+	"createbox-desc": "Sayfası oluşturmak için özelleştirilmiş girdikutusu",
+	"createbox-create": "Oluştur",
+	"createbox-exists": "Üzgünüz, \"'''{{FULLPAGENAME}}'''\" zaten mevcut.\n\nBu sayfayı oluşturamazsınız, ancak [{{fullurl:{{FULLPAGENAME}}|action=edit}} değiştirebilir], [{{fullurl:{{FULLPAGENAME}}}} okuyabilir], ya da aşağıdaki kutuyu kullanarak farklı bir sayfa oluşturmayı seçebilirsiniz.\n\n<createbox>break=no</createbox>"
+}

@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vinhtantran"
+		]
+	},
+	"createbox-desc": "Hộp nhập liệu đặc biệt dùng để tạo trang",
+	"createbox-create": "Tạo",
+	"createbox-exists": "Xin lỗi, \"'''{{FULLPAGENAME}}'''\" đã tồn tại.\n\nBạn không thể tạo trang này, nhưng bạn có thể [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi nó], [{{fullurl:{{FULLPAGENAME}}}} đọc nó], hoặc chọn tạo một trang khác sử dụng hộp phía dưới.\n\n<createbox>break=no</createbox>"
+}

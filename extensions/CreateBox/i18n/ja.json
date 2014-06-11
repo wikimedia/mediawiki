@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aotake",
+			"Fievarsty",
+			"Shirayuki"
+		]
+	},
+	"createbox-desc": "ページ作成に特化した入力ボックス",
+	"createbox-create": "作成",
+	"createbox-exists": "残念ながら「'''{{FULLPAGENAME}}'''」は既に存在します。\n\nこのページの作成はできませんが、[{{fullurl:{{FULLPAGENAME}}|action=edit}} 同名のページを編集]、[{{fullurl:{{FULLPAGENAME}}}} 閲覧]、または以下のBoxを使用して他の名前のページを作成できます。\n\n<createbox>break=no</createbox>"
+}

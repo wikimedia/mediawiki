@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ross McClure"
+		]
+	},
+	"createbox-desc": "Specialised inputbox for page creation",
+	"createbox-create": "Create",
+	"createbox-exists": "Sorry, \"'''{{FULLPAGENAME}}'''\" already exists.\n\nYou cannot create this page, but you can [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit it], [{{fullurl:{{FULLPAGENAME}}}} read it], or choose to create a different page using the box below.\n\n<createbox>break=no</createbox>"
+}

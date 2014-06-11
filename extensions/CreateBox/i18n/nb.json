@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"createbox-desc": "Spesialisert tekstboks for sideoppretting",
+	"createbox-create": "Opprett",
+	"createbox-exists": "Beklager, «'''{{FULLPAGENAME}}'''» finnes fra før.\n\nDu kan ikke opprette denne siden, men du kan [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigere den], [{{fullurl:{{FULLPAGENAME}}}} lese den] eller opprette en annen siden med hjelp av boksen nedenfor.\n\n<createbox>break=no</createbox>"
+}

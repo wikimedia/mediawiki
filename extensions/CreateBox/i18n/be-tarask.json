@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"EugeneZelenko",
+			"Jim-by",
+			"Zedlik"
+		]
+	},
+	"createbox-desc": "Спэцыялізаванае поле ўводу для стварэньня старонак",
+	"createbox-create": "Стварыць",
+	"createbox-exists": "Прабачце, «'''{{FULLPAGENAME}}'''» ужо існуе.\n\nВы ня можаце стварыць гэту старонку, але Вы можаце [{{fullurl:{{FULLPAGENAME}}|action=edit}} рэдагаваць яе], [{{fullurl:{{FULLPAGENAME}}}} чытаць яе] альбо стварыць іншую старонку з дапамогай поля ніжэй.\n\n<createbox>break=no</createbox>"
+}

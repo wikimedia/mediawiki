@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dani"
+		]
+	},
+	"createbox-desc": "Speciális inputbox lapkészítéshez",
+	"createbox-create": "Készítés",
+	"createbox-exists": "Sajnáljuk, de „'''{{FULLPAGENAME}}'''” című lap már létezik.\n\nNem készítheted el a lapot, de [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted], [{{fullurl:{{FULLPAGENAME}}}} elolvashatod], vagy választhatsz egy másik lapnevet a lenti dobozban.\n\n<createbox>break=no</createbox>"
+}

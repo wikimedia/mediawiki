@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Michawiki"
+		]
+	},
+	"createbox-desc": "Specielne zapodatny kašćik za wutworjenje stronow",
+	"createbox-create": "Wutworić",
+	"createbox-exists": "Wodaj, \"'''{{FULLPAGENAME}}'''\" hižo eksistuje.\n\nNjemóžeš tutu stronu wutworić, ale móžeš [{{fullurl:{{FULLPAGENAME}}|action=edit}} ju wobdźěłać], [{{fullurl:{{FULLPAGENAME}}}} čitać] abo z pomocu slědowaceho kašćik druhu stronu wutworić.\n\n<createbox>break=no</createbox>"
+}

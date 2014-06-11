@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ukabia"
+		]
+	},
+	"createbox-desc": "Ntiyéntiyé di mkpà maka éké ihü",
+	"createbox-create": "Ké",
+	"createbox-exists": "Ndó, \"'''{{FULLPAGENAME}}'''\" di kwà.\n\nÍ nweríkí ké ihü á, mànà Í nwẹríkí [{{fullurl:{{FULLPAGENAME}}|action=edit}} rüo élú yá], [{{fullurl:{{FULLPAGENAME}}}} gwuó ya], ma Í jí ngwa nor nà àlà ngá Í kpátá ihü nke òzór.\n\n<createbox>gbàjié=mbạ</createbox>"
+}

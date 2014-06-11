@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ashok modhvadia"
+		]
+	},
+	"createbox-desc": "પાનું બનાવવા માટેનું વિશેષ આગતચોકઠું",
+	"createbox-create": "બનાવો",
+	"createbox-exists": "માફ કરો,\"'''{{FULLPAGENAME}}'''\" પહેલેથી અસ્તિત્વમાં છે.\n\nતમે આ પાનું બનાવી શકતા નથી, પરંતુ તમે [{{fullurl:{{FULLPAGENAME}}|action=edit}} સંપાદિત] કરી શકો છો,[{{fullurl:{{FULLPAGENAME}}}} વાંચી શકો છો], અથવા નિચેનાં ચોકઠાનો ઉપયોગ કરી અલગ પાનું બનાવી શકો છો.\n\n<createbox>break=no</createbox>"
+}

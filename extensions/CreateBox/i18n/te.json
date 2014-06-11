@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kiranmayee",
+			"Veeven"
+		]
+	},
+	"createbox-desc": "వ్యాసమును సృష్టించుటకు ఒక ప్రత్యేక ఇన్పుట్ బాక్స్",
+	"createbox-create": "సృష్టించు",
+	"createbox-exists": "క్షమించండి, \"'''{{FULLPAGENAME}}'''\" ఇప్పటికే ఉంది.\n\nఈ పేజీని మీరు సృష్టించలేరు, కానీ మీరు [{{fullurl:{{FULLPAGENAME}}|action=edit}} దీన్ని మార్చవచ్చు], [{{fullurl:{{FULLPAGENAME}}}} చదువవచ్చు], లేదా క్రింది పెట్టెని ఉపయోగించి మరో పేజీని సృష్టించవచ్చు.\n\n<createbox>break=no</createbox>"
+}

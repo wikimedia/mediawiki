@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lovekhmer",
+			"Thearith",
+			"គីមស៊្រុន"
+		]
+	},
+	"createbox-create": "បង្កើត",
+	"createbox-exists": "សូមអភ័យទោស! \"'''{{FULLPAGENAME}}'''\" មានរួចហើយ។\n\nអ្នកមិនអាចបង្កើតទំព័រនេះទេ ប៉ុន្តែអ្នកអាច[{{fullurl:{{FULLPAGENAME}}|action=edit}} កែសម្រួល] [{{fullurl:{{FULLPAGENAME}}}} អាន] ឬ បង្កើតទំព័រផ្សេងមួយទៀតដោយប្រើប្រអប់ខាងក្រោម។\n\n<createbox>break=no</createbox>"
+}

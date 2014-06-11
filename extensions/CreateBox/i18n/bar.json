@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mucalexx"
+		]
+	},
+	"createbox-desc": "Daméglicht a speziejs Eihgowefejdel za da Seitenerstejung",
+	"createbox-create": "Erstejn",
+	"createbox-exists": "„'''{{FULLPAGENAME}}'''“ existierd schoh.\n\nDu kauhst d' Seiten ned auhléng, ower du kauhstas [{{fullurl:{{FULLPAGENAME}}|action=edit}} beorwaten], [{{fullurl:{{FULLPAGENAME}}}} leesen] óder a aundre Seiten mid da Hijf vam untensteeherden Eihgowefejdel auhléng.\n\n<createbox>break=no</createbox>"
+}
