@@ -321,6 +321,7 @@
 	path = extensions/TorBlock
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TorBlock.git
 	branch = REL1_23
-[submodule "Josa"]
-	path = Josa
+[submodule "extensions/Josa"]
+	path = extensions/Josa
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Josa.git
+	branch = REL1_23
