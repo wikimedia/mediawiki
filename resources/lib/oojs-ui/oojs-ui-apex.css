@@ -1,12 +1,38 @@
 .oo-ui-dialog {
   background-color: #fff;
   background-color: rgba(255, 255, 255, 0.5);
+  /* Opening and closing animation */
+
   opacity: 0;
+}
+
+.oo-ui-dialog > .oo-ui-window-frame {
+  -webkit-transform: scale(0.5);
+     -moz-transform: scale(0.5);
+      -ms-transform: scale(0.5);
+       -o-transform: scale(0.5);
+          transform: scale(0.5);
+}
+
+.oo-ui-dialog.oo-ui-window-setup,
+.oo-ui-dialog.oo-ui-window-setup > .oo-ui-window-frame {
   -webkit-transition: all 250ms ease-in-out;
      -moz-transition: all 250ms ease-in-out;
       -ms-transition: all 250ms ease-in-out;
        -o-transition: all 250ms ease-in-out;
           transition: all 250ms ease-in-out;
+}
+
+.oo-ui-dialog.oo-ui-window-ready {
+  opacity: 1;
+}
+
+.oo-ui-dialog.oo-ui-window-ready > .oo-ui-window-frame {
+  -webkit-transform: scale(1);
+     -moz-transform: scale(1);
+      -ms-transform: scale(1);
+       -o-transform: scale(1);
+          transform: scale(1);
 }
 
 .oo-ui-dialog-content .oo-ui-window-head,
@@ -57,17 +83,7 @@
   background-color: #fff;
   border: solid 1px #ccc;
   border-radius: 0.5em;
-  -webkit-transform: scale(0.5);
-     -moz-transform: scale(0.5);
-      -ms-transform: scale(0.5);
-       -o-transform: scale(0.5);
-          transform: scale(0.5);
   box-shadow: 0 0.2em 1em rgba(0, 0, 0, 0.3);
-  -webkit-transition: all 250ms ease-in-out;
-     -moz-transition: all 250ms ease-in-out;
-      -ms-transition: all 250ms ease-in-out;
-       -o-transition: all 250ms ease-in-out;
-          transition: all 250ms ease-in-out;
 }
 
 .oo-ui-dialog-small > .oo-ui-window-frame {
@@ -83,18 +99,6 @@
 .oo-ui-dialog-large > .oo-ui-window-frame {
   width: 800px;
   max-height: 690px;
-}
-
-.oo-ui-dialog-open {
-  opacity: 1;
-}
-
-.oo-ui-dialog-open > .oo-ui-window-frame {
-  -webkit-transform: scale(1);
-     -moz-transform: scale(1);
-      -ms-transform: scale(1);
-       -o-transform: scale(1);
-          transform: scale(1);
 }
 
 .oo-ui-dialog-content .oo-ui-window-head,

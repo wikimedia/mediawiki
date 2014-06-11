@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.1.0-pre (99068355d6)
+ * OOjs UI v0.1.0-pre (063ec067fa)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2014 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: Tue Jun 10 2014 11:03:38 GMT-0700 (PDT)
+ * Date: Wed Jun 11 2014 10:43:41 GMT-0700 (PDT)
  */
 ( function ( OO ) {
 
@@ -1023,20 +1023,29 @@ OO.mixinClass( OO.ui.Window, OO.EventEmitter );
 /* Events */
 
 /**
- * Open window.
+ * Window is setup.
  *
- * Fired after window has been opened.
+ * Fired after the setup process has been executed.
+ *
+ * @event setup
+ * @param {Object} data Window opening data
+ */
+
+/**
+ * Window is ready.
+ *
+ * Fired after the ready process has been executed.
  *
  * @event open
  * @param {Object} data Window opening data
  */
 
 /**
- * Close window.
+ * Window is torn down
  *
- * Fired after window has been closed.
+ * Fired after the teardown process has been executed.
  *
- * @event close
+ * @event teardown
  * @param {Object} data Window closing data
  */
 
@@ -1081,7 +1090,7 @@ OO.ui.Window.prototype.isVisible = function () {
  * @return {boolean} Window is opening
  */
 OO.ui.Window.prototype.isOpening = function () {
-	return !!this.opening && this.opening.state() !== 'resolved';
+	return !!this.opening && this.opening.state() === 'pending';
 };
 
 /**
@@ -1090,7 +1099,7 @@ OO.ui.Window.prototype.isOpening = function () {
  * @return {boolean} Window is closing
  */
 OO.ui.Window.prototype.isClosing = function () {
-	return !!this.closing && this.closing.state() !== 'resolved';
+	return !!this.closing && this.closing.state() === 'pending';
 };
 
 /**
@@ -1099,7 +1108,7 @@ OO.ui.Window.prototype.isClosing = function () {
  * @return {boolean} Window is opened
  */
 OO.ui.Window.prototype.isOpened = function () {
-	return !!this.opened && this.opened.state() !== 'resolved';
+	return !!this.opened && this.opened.state() === 'pending';
 };
 
 /**
@@ -1335,22 +1344,18 @@ OO.ui.Window.prototype.open = function ( data ) {
 	this.frame.load().done( OO.ui.bind( function () {
 		this.$element.show();
 		this.visible = true;
-		this.emit( 'opening', data );
 		this.getSetupProcess( data ).execute().done( OO.ui.bind( function () {
-			this.emit( 'open', data );
+			this.$element.addClass( 'oo-ui-window-setup' );
+			this.emit( 'setup', data );
 			setTimeout( OO.ui.bind( function () {
-				// Focus the content div (which has a tabIndex) to inactivate
-				// (but not clear) selections in the parent frame.
-				// Must happen after 'open' is emitted (to ensure it is visible)
-				// but before 'ready' is emitted (so subclasses can give focus to something
-				// else)
 				this.frame.$content.focus();
 				this.getReadyProcess( data ).execute().done( OO.ui.bind( function () {
+					this.$element.addClass( 'oo-ui-window-ready' );
 					this.emit( 'ready', data );
 					this.opened = $.Deferred();
-					this.opening.resolve( this.opened.promise() );
 					// Now that we are totally done opening, it's safe to allow closing
 					this.closing = null;
+					this.opening.resolve( this.opened.promise() );
 				}, this ) );
 			}, this ) );
 		}, this ) );
@@ -1370,9 +1375,19 @@ OO.ui.Window.prototype.open = function ( data ) {
  * @return {jQuery.Promise} Promise resolved when window is closed
  */
 OO.ui.Window.prototype.close = function ( data ) {
+	var close;
+
 	// Return existing promise if already closing or closed
 	if ( this.closing ) {
 		return this.closing.promise();
+	}
+
+	// Close after opening is done if opening is in progress
+	if ( this.opening && this.opening.state() === 'pending' ) {
+		close = OO.ui.bind( function () {
+			return this.close( data );
+		}, this );
+		return this.opening.then( close, close );
 	}
 
 	// Close the window
@@ -1380,13 +1395,14 @@ OO.ui.Window.prototype.close = function ( data ) {
 	// window.close() and trigger the safety check above
 	this.closing = $.Deferred();
 	this.frame.$content.find( ':focus' ).blur();
-	this.emit( 'closing', data );
+	this.$element.removeClass( 'oo-ui-window-ready' );
 	this.getTeardownProcess( data ).execute().done( OO.ui.bind( function () {
+		this.$element.removeClass( 'oo-ui-window-setup' );
+		this.emit( 'teardown', data );
 		// To do something different with #opened, resolve/reject #opened in the teardown process
-		if ( this.opened.state() === 'pending' ) {
+		if ( this.opened && this.opened.state() === 'pending' ) {
 			this.opened.resolve();
 		}
-		this.emit( 'close', data );
 		this.$element.hide();
 		this.visible = false;
 		this.closing.resolve();
@@ -1444,78 +1460,61 @@ OO.mixinClass( OO.ui.WindowSet, OO.EventEmitter );
 /* Events */
 
 /**
- * @event opening
- * @param {OO.ui.Window} win Window that's being opened
+ * @event setup
+ * @param {OO.ui.Window} win Window that's been setup
  * @param {Object} config Window opening information
  */
 
 /**
- * @event open
- * @param {OO.ui.Window} win Window that's been opened
+ * @event ready
+ * @param {OO.ui.Window} win Window that's read
  * @param {Object} config Window opening information
  */
 
 /**
- * @event closing
- * @param {OO.ui.Window} win Window that's being closed
- * @param {Object} config Window closing information
- */
-
-/**
- * @event close
- * @param {OO.ui.Window} win Window that's been closed
+ * @event teardown
+ * @param {OO.ui.Window} win Window that's been torn down
  * @param {Object} config Window closing information
  */
 
 /* Methods */
 
 /**
- * Handle a window that's being opened.
+ * Handle a window setup event.
  *
- * @param {OO.ui.Window} win Window that's being opened
+ * @param {OO.ui.Window} win Window that's been setup
  * @param {Object} [config] Window opening information
- * @fires opening
+ * @fires setup
  */
-OO.ui.WindowSet.prototype.onWindowOpening = function ( win, config ) {
+OO.ui.WindowSet.prototype.onWindowSetup = function ( win, config ) {
 	if ( this.currentWindow && this.currentWindow !== win ) {
 		this.currentWindow.close();
 	}
 	this.currentWindow = win;
-	this.emit( 'opening', win, config );
+	this.emit( 'setup', win, config );
 };
 
 /**
- * Handle a window that's been opened.
+ * Handle a window ready event.
  *
- * @param {OO.ui.Window} win Window that's been opened
+ * @param {OO.ui.Window} win Window that's ready
  * @param {Object} [config] Window opening information
- * @fires open
+ * @fires ready
  */
-OO.ui.WindowSet.prototype.onWindowOpen = function ( win, config ) {
-	this.emit( 'open', win, config );
+OO.ui.WindowSet.prototype.onWindowReady = function ( win, config ) {
+	this.emit( 'ready', win, config );
 };
 
 /**
- * Handle a window that's being closed.
+ * Handle a window teardown event.
  *
- * @param {OO.ui.Window} win Window that's being closed
+ * @param {OO.ui.Window} win Window that's been torn down
  * @param {Object} [config] Window closing information
- * @fires closing
+ * @fires teardown
  */
-OO.ui.WindowSet.prototype.onWindowClosing = function ( win, config ) {
+OO.ui.WindowSet.prototype.onWindowTeardown = function ( win, config ) {
 	this.currentWindow = null;
-	this.emit( 'closing', win, config );
-};
-
-/**
- * Handle a window that's been closed.
- *
- * @param {OO.ui.Window} win Window that's been closed
- * @param {Object} [config] Window closing information
- * @fires close
- */
-OO.ui.WindowSet.prototype.onWindowClose = function ( win, config ) {
-	this.emit( 'close', win, config );
+	this.emit( 'teardown', win, config );
 };
 
 /**
@@ -1562,7 +1561,7 @@ OO.ui.WindowSet.prototype.createWindow = function ( name ) {
  * Connects event handlers and attaches it to the DOM. Calling
  * OO.ui.Window#open will not work until the window is added to the set.
  *
- * @param {OO.ui.Window} win
+ * @param {OO.ui.Window} win Window to add
  */
 OO.ui.WindowSet.prototype.addWindow = function ( win ) {
 	if ( this.windowList.indexOf( win ) !== -1 ) {
@@ -1572,10 +1571,9 @@ OO.ui.WindowSet.prototype.addWindow = function ( win ) {
 	this.windowList.push( win );
 
 	win.connect( this, {
-		'opening': [ 'onWindowOpening', win ],
-		'open': [ 'onWindowOpen', win ],
-		'closing': [ 'onWindowClosing', win ],
-		'close': [ 'onWindowClose', win ]
+		'setup': [ 'onWindowSetup', win ],
+		'ready': [ 'onWindowReady', win ],
+		'teardown': [ 'onWindowTeardown', win ]
 	} );
 	this.$element.append( win.$element );
 };
@@ -1608,7 +1606,6 @@ OO.ui.Dialog = function OoUiDialog( config ) {
 
 	// Events
 	this.$element.on( 'mousedown', false );
-	this.connect( this, { 'open': 'onOpen' } );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-dialog' );
@@ -1695,13 +1692,6 @@ OO.ui.Dialog.prototype.onFrameDocumentKeyDown = function ( e ) {
 };
 
 /**
- * Handle window open events.
- */
-OO.ui.Dialog.prototype.onOpen = function () {
-	this.$element.addClass( 'oo-ui-dialog-open' );
-};
-
-/**
  * Set dialog size.
  *
  * @param {string} [size='large'] Symbolic name of dialog size, `small`, `medium` or `large`
@@ -1718,9 +1708,6 @@ OO.ui.Dialog.prototype.setSize = function ( size ) {
 		state = name === size;
 		cssClass = sizeCssClasses[name];
 		this.$element.toggleClass( cssClass, state );
-		if ( this.frame.$content ) {
-			this.frame.$content.toggleClass( cssClass, state );
-		}
 	}
 };
 
@@ -1770,7 +1757,7 @@ OO.ui.Dialog.prototype.getSetupProcess = function ( data ) {
 OO.ui.Dialog.prototype.getTeardownProcess = function ( data ) {
 	return OO.ui.Dialog.super.prototype.getTeardownProcess.call( this, data )
 		.first( function () {
-			this.$element.removeClass( 'oo-ui-dialog-open' );
+			// Wait for closing transition
 			return OO.ui.Process.static.delay( 250 );
 		}, this )
 		.next( function () {
@@ -2113,7 +2100,7 @@ OO.ui.ConfirmationDialog.prototype.initialize = function () {
 		this.cancelButton.$element
 	);
 
-	this.connect( this, { 'close': [ 'close', 'cancel' ] } );
+	this.connect( this, { 'teardown': [ 'close', 'cancel' ] } );
 };
 
 /*
