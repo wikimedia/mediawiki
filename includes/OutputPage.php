@@ -1889,7 +1889,12 @@ class OutputPage extends ContextSource {
 	 *   /w/index.php?title=Main_page&variant=zh-cn should never be served.
 	 */
 	function addAcceptLanguage() {
-		$lang = $this->getTitle()->getPageLanguage();
+		$title = $this->getTitle();
+		if ( !$title instanceof Title ) {
+			return;
+		}
+
+		$lang = $title->getPageLanguage();
 		if ( !$this->getRequest()->getCheck( 'variant' ) && $lang->hasVariants() ) {
 			$variants = $lang->getVariants();
 			$aloption = array();
