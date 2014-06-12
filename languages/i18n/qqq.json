@@ -1264,6 +1264,7 @@
 	"right-browsearchive": "{{doc-right|browsearchive}}",
 	"right-undelete": "{{doc-right|undelete}}",
 	"right-suppressrevision": "{{doc-right|suppressrevision}}\nThis user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.\nIt can be given to the group {{msg-mw|group-suppress}}, although that group is disabled by default.\n\nSee also:\n* {{msg-mw|right-suppressionlog}}\n* {{msg-mw|right-hideuser}}\n* {{msg-mw|right-deletelogentry}}\n* {{msg-mw|right-deleterevision}}",
+	"right-viewsuppressed": "{{doc-right|viewsuppressed}}\nThis user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.\nIt can be given to any group for observation of suppression activities.\n\nSee also:\n* {{msg-mw|right-suppressrevision}},
 	"right-suppressionlog": "{{doc-right|suppressionlog}}\nThis user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.\nIt can be given to the group {{msg-mw|group-suppress}}, although that group is disabled by default.\n\nSee also\n* {{msg-mw|right-suppressrevision}}\n* {{msg-mw|right-hideuser}}\n* {{msg-mw|right-deletelogentry}}\n* {{msg-mw|right-deleterevision}}",
 	"right-block": "{{doc-right|block}}",
 	"right-blockemail": "{{doc-right|blockemail}}",
