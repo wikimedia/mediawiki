@@ -17,10 +17,12 @@ production.
 * $wgSearchEverythingOnlyLoggedIn was removed as the 'searcheverything'
   user option was removed. Use $wgNamespacesToBeSearchedDefault instead or
   if you used to have $wgDefaultUserOptions['searcheverything'] = 1.
-* $wgMasterWaitTimeout has been deprecated.
-* $wgDBClusterTimeout has been removed.
 * $wgProxyKey has been removed. It is no longer used by MediaWiki core.
   Ensure $wgSecretKey is set in LocalSettings.php.
+* $wgMasterWaitTimeout has been deprecated.
+* $wgDBClusterTimeout has been removed.
+* $wgFileStore was removed after having been deprecated in 1.17. Alternative
+  configurations are $wgDeletedDirectory and $wgHashedUploadDirectory.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
