@@ -116,6 +116,8 @@ production.
 * Upgrade Sinon.JS to 1.10.3.
 * Added the es5-shim polyfill for older or non-compliant javascript engines.
 * Upgrade jQuery Cookie to v1.2.0.
+* (bug 20476) Add a "viewsuppressed" user right to be able to view
+  suppressed content but not suppress it ("suppressrevision" right).
 
 === Bug fixes in 1.24 ===
 * (bug 49116) Footer copyright notice is now always displayed in user language

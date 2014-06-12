@@ -318,7 +318,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				// Paranoia: avoid brute force searches (bug 17342)
 				if ( !$this->getUser()->isAllowed( 'deletedhistory' ) ) {
 					$bitmask = Revision::DELETED_USER;
-				} elseif ( !$this->getUser()->isAllowed( 'suppressrevision' ) ) {
+				} elseif ( !$this->getUser()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 					$bitmask = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
 				} else {
 					$bitmask = 0;
