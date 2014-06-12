@@ -1596,7 +1596,7 @@
 	"watchlistanontext": "Du lyt $1 for å vise eller endre sider på overvakingslista di.",
 	"watchnologin": "Ikkje innlogga",
 	"addwatch": "↓Legg til i overvakingslista",
-	"addedwatchtext": "Sida «[[:$1]]» er lagd til i [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av henne og den tilhøyrande diskusjonssida hennar vil bli oppførde der.",
+	"addedwatchtext": "Sida «[[:$1]]» er lagd til i [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av henne og den tilhøyrande diskusjonssida hennar vil bli oppførte der.",
 	"removewatch": "Fjerna frå overvakingslista",
 	"removedwatchtext": "Sida «[[:$1]]» er fjerna frå [[Special:Watchlist|overvakingslista di]].",
 	"watch": "Overvak",
