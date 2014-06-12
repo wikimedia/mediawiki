@@ -1740,11 +1740,6 @@ $wgDBerrorLog = false;
 $wgDBerrorLogTZ = false;
 
 /**
- * When to give an error message
- */
-$wgDBClusterTimeout = 10;
-
-/**
  * Scale load balancer polling time so that under overload conditions, the
  * database server receives a SHOW STATUS query at an average interval of this
  * many microseconds
