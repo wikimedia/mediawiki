@@ -17,6 +17,8 @@ production.
 * $wgSearchEverythingOnlyLoggedIn was removed as the 'searcheverything'
   user option was removed. Use $wgNamespacesToBeSearchedDefault instead or
   if you used to have $wgDefaultUserOptions['searcheverything'] = 1.
+* $wgProxyKey has been removed. It is no longer used by MediaWiki core.
+  Ensure $wgSecretKey is set in LocalSettings.php.
 
 === New features in 1.24 ===
 * Added a new hook, "WhatLinksHereProps", to allow extensions to annotate
@@ -217,7 +219,7 @@ Don't forget to always back up your database before upgrading!
 
 See the file UPGRADE for more detailed upgrade instructions.
 
-For notes on 1.22.x and older releases, see HISTORY.
+For notes on 1.23.x and older releases, see HISTORY.
 
 == Online documentation ==
 
