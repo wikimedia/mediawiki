@@ -356,11 +356,6 @@ $wgEnableAsyncUploads = false;
 $wgIllegalFileChars = ":";
 
 /**
- * @deprecated since 1.17 use $wgDeletedDirectory
- */
-$wgFileStore = array();
-
-/**
  * What directory to place deleted uploads in.
  * Defaults to "{$wgUploadDirectory}/deleted".
  */
