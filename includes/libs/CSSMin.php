@@ -40,6 +40,7 @@ class CSSMin {
 	const EMBED_SIZE_LIMIT = 24576;
 	const URL_REGEX = 'url\(\s*[\'"]?(?P<file>[^\?\)\'"]*?)(?P<query>\?[^\)\'"]*?|)[\'"]?\s*\)';
 	const EMBED_REGEX = '\/\*\s*\@embed\s*\*\/';
+	const COMMENT_REGEX = '\/\*.*?\*\/';
 
 	/* Protected Static Members */
 
@@ -203,13 +204,31 @@ class CSSMin {
 			$remote = substr( $remote, 0, -1 );
 		}
 
+		// Replace all comments by a placeholder so they will not interfere
+		// with the remapping
+		// Warning: This will also catch on anything looking like the start of
+		// a comment between quotation marks (e.g. "foo /* bar").
+		$comments = array();
+		$placeholder = uniqid( '', true );
+
+		$pattern = '/(?!' . CSSMin::EMBED_REGEX . ')(' . CSSMin::COMMENT_REGEX . ')/s';
+
+		$source = preg_replace_callback(
+			$pattern,
+			function ( $match ) use ( &$comments, $placeholder ) {
+				$comments[] = $match[ 0 ];
+				return $placeholder . ( count( $comments ) - 1 ) . 'x';
+			},
+			$source
+		);
+
 		// Note: This will not correctly handle cases where ';', '{' or '}'
 		// appears in the rule itself, e.g. in a quoted string. You are advised
 		// not to use such characters in file names. We also match start/end of
 		// the string to be consistent in edge-cases ('@import url(…)').
 		$pattern = '/(?:^|[;{])\K[^;{}]*' . CSSMin::URL_REGEX . '[^;}]*(?=[;}]|$)/';
 
-		return preg_replace_callback(
+		$source = preg_replace_callback(
 			$pattern,
 			function ( $matchOuter ) use ( $local, $remote, $embedData ) {
 				$rule = $matchOuter[0];
@@ -262,6 +281,15 @@ class CSSMin {
 					return $ruleWithRemapped;
 				}
 			}, $source );
+
+		// Re-insert comments
+		$pattern = '/' . $placeholder . '(\d+)x/';
+		$source = preg_replace_callback( $pattern, function( $match ) use ( &$comments ) {
+			return $comments[ $match[1] ];
+		}, $source );
+
+		return $source;
+
 	}
 
 	/**
