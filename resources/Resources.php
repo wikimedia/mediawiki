@@ -1451,14 +1451,24 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
+	/* es5-shim */
+	'es5-shim' => array(
+		'scripts' => array(
+			'resources/lib/es5-shim/es5-shim.js',
+		),
+		'skipFunction' => 'resources/src/es5-skip.js'
+	),
+
 	/* OOjs */
-	// WARNING: OOjs and OOjs-UI are NOT COMPATIBLE with older browsers and
-	// WILL BREAK if loaded in browsers that don't support ES5
 	'oojs' => array(
 		'scripts' => array(
 			'resources/lib/oojs/oojs.js',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
+		'dependencies' => array(
+			'es5-shim',
+			'json',
+		),
 	),
 	'oojs-ui' => array(
 		'scripts' => array(
@@ -1483,6 +1493,7 @@ return array(
 			'ooui-dialog-confirm-default-cancel'
 		),
 		'dependencies' => array(
+			'es5-shim',
 			'oojs',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
