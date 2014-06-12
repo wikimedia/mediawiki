@@ -402,7 +402,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		}
 
 		// Show form if the user can submit
-		if ( $this->mIsAllowed ) {
+		if ( $this->getUser()->isAllowed( 'viewsuppressed' ) && !$this->getUser()->isAllowed( 'suppressrevision' ) && Revision::DELETED_RESTRICTED ) {
+			$out = '';
+		} elseif ( $this->mIsAllowed ) {
 			$out = Xml::openElement( 'form', array( 'method' => 'post',
 					'action' => $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) ),
 					'id' => 'mw-revdel-form-revisions' ) ) .
@@ -445,10 +447,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				Html::hidden( 'type', $this->typeName ) .
 				Html::hidden( 'ids', implode( ',', $this->ids ) ) .
 				Xml::closeElement( 'fieldset' ) . "\n";
-		} else {
-			$out = '';
-		}
-		if ( $this->mIsAllowed ) {
 			$out .= Xml::closeElement( 'form' ) . "\n";
 			// Show link to edit the dropdown reasons
 			if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
@@ -461,6 +459,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				);
 				$out .= Xml::tags( 'p', array( 'class' => 'mw-revdel-editreasons' ), $link ) . "\n";
 			}
+		} else {
+			$out = '';
 		}
 		$this->getOutput()->addHTML( $out );
 	}
