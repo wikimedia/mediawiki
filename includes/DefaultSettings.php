@@ -5160,6 +5160,11 @@ $wgStatsFormatString = "stats/%s - %s 1 1 1 1 %s\n";
 $wgDisableCounters = false;
 
 /**
+ * This controls whether the page view counter is disaplyed or not
+ */
+$wgEnableCounterDisplay = true;
+
+/**
  * InfoAction retrieves a list of transclusion links (both to and from).
  * This number puts a limit on that query in the case of highly transcluded
  * templates.
